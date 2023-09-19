@@ -113,14 +113,6 @@
       "value": "Is Delete "
     },
     {
-      "name": "login",
-      "value": "Login"
-    },
-    {
-      "name": "logout",
-      "value": "Logout"
-    },
-    {
       "name": "tablet",
       "value": "Tablet"
     },
@@ -159,14 +151,6 @@
     {
       "name": "incredible",
       "value": "Incredible"
-    },
-    {
-      "name": "is_login",
-      "value": "Is Login?"
-    },
-    {
-      "name": "is_logout",
-      "value": "Is Logout?"
     }
   ]
 }

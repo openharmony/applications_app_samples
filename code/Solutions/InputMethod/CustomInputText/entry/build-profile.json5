@@ -15,9 +15,7 @@
 
 {
   "apiType": 'stageMode',
-  "buildOption": {
-    "compileMode": "esmodule"
-  },
+  "buildOption": {},
   "targets": [
     {
       "name": "default",

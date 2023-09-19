@@ -57,7 +57,10 @@ struct Index {
                     if (CurActiveAbility.GetInstance().GetGlobalAbility() == undefined) {
                       return;
                     }
-                    let want = { bundleName: 'com.samples.recovery', abilityName: 'SecondAbility' };
+                    let want: Record<string, Object> = {
+                      'bundleName': 'com.samples.recovery',
+                      'abilityName': 'SecondAbility'
+                    };
                     CurActiveAbility.GetInstance().GetGlobalAbility().context.startAbility(want);
                   })
                   .height('28vp')
@@ -86,7 +89,10 @@ struct Index {
                   if (CurActiveAbility.GetInstance().GetGlobalAbility() == undefined) {
                     return;
                   }
-                  let want = { bundleName: 'com.samples.recovery', abilityName: 'EntryAbility' };
+                  let want: Record<string, Object> = {
+                      'bundleName': 'com.samples.recovery',
+                      'abilityName': 'EntryAbility'
+                    };
                   CurActiveAbility.GetInstance().GetGlobalAbility().context.startAbility(want);
                 })
                 .height('28vp')

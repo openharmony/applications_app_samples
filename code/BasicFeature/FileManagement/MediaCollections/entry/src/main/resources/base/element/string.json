@@ -197,20 +197,24 @@
       "value": "正在播放"
     },
     {
-      "name": "tooKit_search",
+      "name": "toolKit_search",
       "value": "搜索"
     },
     {
-      "name": "tooKit_setting",
+      "name": "toolKit_setting",
       "value": "设置"
     },
     {
-      "name": "tooKit_play",
+      "name": "toolKit_play",
       "value": "播放"
     },
     {
-      "name": "tooKit_null",
+      "name": "toolKit_null",
       "value": " "
+    },
+    {
+      "name": "toolKit_speed",
+      "value": "倍速"
     }
   ]
 }

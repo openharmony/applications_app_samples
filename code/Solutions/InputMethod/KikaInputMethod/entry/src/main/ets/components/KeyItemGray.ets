@@ -13,27 +13,29 @@
  * limitations under the License.
  */
 
-import { KeyStyle } from '../common/StyleConfiguration';
-import { MenuKey, MenuType } from '../model/keyboardKeyData';
+import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
+import { MenuKey, MenuType } from '../model/KeyboardKeyData';
+
+@Styles function pressedStyles() {
+  .backgroundColor($r('app.color.key_item_gray_pressed'))
+}
+
+@Styles function normalStyles() {
+  .backgroundColor($r('app.color.key_item_gray'))
+}
 
 // 无大小写的灰色组件
 @Component
 export struct KeyItemGray {
-  private keyValue: string;
-  @Link inputStyle: KeyStyle;
-  @Link menuType: number;
-
-  @Styles pressedStyles() {
-    .backgroundColor($r('app.color.key_item_gray_pressed'))
-  }
-
-  @Styles normalStyles() {
-    .backgroundColor($r('app.color.key_item_gray'))
-  }
+  private keyValue: string | undefined = undefined;
+  @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
+  @Consume menuType: number;
 
   build() {
     Stack() {
-      Text(this.keyValue).fontSize(this.inputStyle.switchNumberFontSize).fontColor('black')
+      if (this.keyValue) {
+        Text(this.keyValue).fontSize(this.inputStyle.switchNumberFontSize).fontColor('black')
+      }
     }
     .backgroundColor($r('app.color.key_item_gray'))
     .borderRadius(4)
@@ -50,7 +52,7 @@ export struct KeyItemGray {
     .width(this.inputStyle.switchButtonWidth)
     .shadow({ radius: 1, color: $r('app.color.shadow'), offsetY: 3 })
     .stateStyles({
-      normal: this.normalStyles, pressed: this.pressedStyles
+      normal: normalStyles, pressed: pressedStyles
     })
   }
 }

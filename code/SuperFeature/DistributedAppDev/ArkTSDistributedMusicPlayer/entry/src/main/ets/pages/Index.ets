@@ -12,28 +12,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import display from '@ohos.display'
-import hardware_deviceManager from '@ohos.distributedHardware.deviceManager'
-import KvStoreModel from '../model/KvStoreModel'
-import Logger from '../model/Logger'
-import mediaQuery from '@ohos.mediaquery'
-import PlayerModel from '../model/PlayerModel'
-import { RemoteDeviceModel } from '../model/RemoteDeviceModel'
-import { DeviceDialog } from '../common/DeviceDialog'
+import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
+import display from '@ohos.display';
+import common from '@ohos.app.ability.common';
+import hardware_deviceManager from '@ohos.distributedHardware.deviceManager';
+import mediaQuery from '@ohos.mediaquery';
+import rpc from '@ohos.rpc';
+import Want from '@ohos.app.ability.Want';
+
+import PermissionRequestResult from 'security/PermissionRequestResult';
+import KvStoreModel from '../model/KvStoreModel';
+import Logger from '../model/Logger';
+import PlayerModel from '../model/PlayerModel';
+
+import { ConnectOptions } from 'ability/connectOptions';
+import { ElementName } from 'bundle/elementName';
+import { RemoteDeviceModel } from '../model/RemoteDeviceModel';
+import { DeviceDialog } from '../common/DeviceDialog';
 import {
   APPLICATION_BUNDLE_NAME,
   APPLICATION_SERVICE_NAME,
   MusicSharedEventCode,
   MusicSharedStatus,
   MusicConnectEvent
-} from '../common/MusicSharedDefinition'
-import rpc from '@ohos.rpc'
-import common from '@ohos.app.ability.common'
-import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl'
-import deviceManager from '@ohos.distributedHardware.deviceManager'
-import Want from '@ohos.app.ability.Want';
-import ability from '@ohos.ability.ability';
-import uri from '@ohos.uri'
+} from '../common/MusicSharedDefinition';
 
 const TAG: string = 'Index'
 const DESIGN_WIDTH: number = 720.0
@@ -144,22 +146,23 @@ struct Index {
 
   remoteServiceExtensionConnectEvent(event: string) {
     if (typeof (event) === 'string') {
+      let viewThis = AppStorage.Get<Index>('viewThis');
       if (event === MusicConnectEvent.EVENT_CONNECT) {
         this.clickFlag = MusicSharedStatus.MUSIC_STOP_SHARED
         this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_hop')
         Logger.info(TAG, 'remote service on connect callbacked')
       } else if (event === MusicConnectEvent.EVENT_DISCONNECT) {
-        this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_hop')
-        this.clickFlag = MusicSharedStatus.MUSIC_SHARED
-        this.showPromptDialog($r('app.string.ConnectRemoteDevices'), $r('app.string.onDisconnectService'))
+        viewThis.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_hop')
+        viewThis.clickFlag = MusicSharedStatus.MUSIC_SHARED;
+        viewThis.showPromptDialog($r('app.string.ConnectRemoteDevices'), $r('app.string.onDisconnectService'));
       } else if (event === MusicConnectEvent.EVENT_FAILED) {
-        this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_hop')
-        this.clickFlag = MusicSharedStatus.MUSIC_SHARED
-        this.showPromptDialog($r('app.string.ConnectRemoteDevices'), $r('app.string.onFailedService'))
+        viewThis.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_hop');
+        viewThis.clickFlag = MusicSharedStatus.MUSIC_SHARED;
+        viewThis.showPromptDialog($r('app.string.ConnectRemoteDevices'), $r('app.string.onFailedService'));
       } else if (event === MusicConnectEvent.EVENT_TIMEOUT) {
         this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_hop')
-        this.clickFlag = MusicSharedStatus.MUSIC_SHARED
-        this.showPromptDialog($r('app.string.ConnectRemoteDevices'), $r('app.string.ConnectionTimeout'))
+        viewThis.clickFlag = MusicSharedStatus.MUSIC_SHARED;
+        viewThis.showPromptDialog($r('app.string.ConnectRemoteDevices'), $r('app.string.ConnectionTimeout'));
       }
     } else {
       Logger.info(TAG, 'event is not a string')
@@ -169,13 +172,15 @@ struct Index {
   musicPause() {
     Logger.info(TAG, 'music pause recv')
     PlayerModel.pause()
-    this.imageArrays[PREVIOUS_CLICK] = $r('app.media.ic_play')
+    let viewThis = AppStorage.Get<Index>('viewThis');
+    viewThis.imageArrays[PREVIOUS_CLICK] = $r('app.media.ic_play');
   }
 
   musicPlay() {
     Logger.info(TAG, 'music play recv')
-    PlayerModel.play(DEFAULT_NUM, true)
-    this.imageArrays[PREVIOUS_CLICK] = $r('app.media.ic_pause')
+    PlayerModel.play(DEFAULT_NUM, true);
+    let viewThis = AppStorage.Get<Index>('viewThis');
+    viewThis.imageArrays[PREVIOUS_CLICK] = $r('app.media.ic_pause');
   }
 
   exitMusicApp() {
@@ -190,7 +195,7 @@ struct Index {
         reply,
         option)
     } else {
-      Logger.info(TAG, `Remote start type is error or deviceID is empty, typeof= ${typeof (this.localExtensionRemote)}`)
+      Logger.info(TAG, `Remote start type is error or deviceID is empty, typeof= ${typeof (viewThis.localExtensionRemote)}`);
     }
   }
 
@@ -329,8 +334,8 @@ struct Index {
         parameters: {
           isFA: 'EXIT'
         }
-      }).then((data) => {
-        Logger.info(TAG, `startAbility finished ${JSON.stringify(data)}`)
+      }).then(() => {
+        Logger.info(TAG, `startAbility finished`);
       })
       this.isDistributed = false
       this.selectedIndex = 0
@@ -517,7 +522,7 @@ struct Index {
     let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
     let permission: Array<Permissions> = ['ohos.permission.DISTRIBUTED_DATASYNC']
     try {
-      atManager.requestPermissionsFromUser(this.context, permission).then((data) => {
+      atManager.requestPermissionsFromUser(this.context, permission).then((data: PermissionRequestResult) => {
         Logger.info(TAG, `data: ${JSON.stringify(data)}`)
       }).catch((err: object) => {
         Logger.info(TAG, `err: ${JSON.stringify(err)}`)
@@ -525,7 +530,7 @@ struct Index {
     } catch (err) {
       Logger.info(TAG, `catch err->${JSON.stringify(err)}`)
     }
-    display.getDefaultDisplay().then((dis) => {
+    display.getDefaultDisplay().then((dis: display.Display) => {
       Logger.info(TAG, `getDefaultDisplay dis= ${JSON.stringify(dis)}`)
       let proportion = DESIGN_WIDTH / dis.width
       let screenWidth = DESIGN_WIDTH

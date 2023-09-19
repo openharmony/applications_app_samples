@@ -225,7 +225,7 @@ export default function appTest() {
       await driver.delayMs(1000);
       await currentCalendarSwitch.click();
       //验证是否在设置的时间之后收到通知
-      await driver.delayMs(300000);
+      await driver.delayMs(180000);
       // 坐标基于rk3568
       await driver.swipe(180, 0, 180, 50, 600);
       await driver.delayMs(1000);
@@ -413,7 +413,7 @@ export default function appTest() {
       // 设置计时器时间
       for (let i = 0; i < 6; i++) {
         // 坐标基于rk3568
-        await driver.swipe(505, 793, 505, 750, 600);
+        await driver.swipe(505, 793, 505, 740, 600);
         await driver.delayMs(1000);
       }
       // 启动计时器

@@ -71,7 +71,7 @@ export class ProcessMenuOperation implements MenuOperation, AsyncCallback<String
 
   // Asynchronous callback for getSelection
   callback(uris: string[]): void {
-    this.callbackBindImpl(uris)
+    this.callbackBindImpl(uris);
   }
 
   protected callbackBindImpl(uris: string[]): void {
@@ -104,7 +104,7 @@ export class ProcessMenuOperation implements MenuOperation, AsyncCallback<String
     }
     this.startTime = Date.now();
 
-    this.requestOneBatchOperation()
+    this.requestOneBatchOperation();
   }
 
   // Batch circular deletion
@@ -142,7 +142,7 @@ export class ProcessMenuOperation implements MenuOperation, AsyncCallback<String
 
   // Operate cancel callback
   onOperateCancelled(): void {
-    this.onOperateCancelledBindImpl()
+    this.onOperateCancelledBindImpl();
   }
 
   protected onOperateCancelledBindImpl(): void {
@@ -166,7 +166,7 @@ export class ProcessMenuOperation implements MenuOperation, AsyncCallback<String
   }
 
   setFindSameOperation(newOperation: number): void {
-    this.setFindSameOperationBindImpl(newOperation)
+    this.setFindSameOperationBindImpl(newOperation);
   }
 
   protected setFindSameOperationBindImpl(newOperation: number): void {

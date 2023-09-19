@@ -105,6 +105,6 @@ struct Index {
 
   getResourceString(resource: Resource) {
     let context = getContext(this) as common.UIAbilityContext;
-    return context.resourceManager.getStringSync(resource);
+    return context.resourceManager.getStringSync(resource.id);
   }
 }

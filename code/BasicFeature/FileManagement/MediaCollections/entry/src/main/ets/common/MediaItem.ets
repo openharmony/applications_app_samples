@@ -25,13 +25,14 @@ const TAG: string = 'MediaItem:'
 export struct MediaItem {
   @State translateLeft: number = 0
   @State translateRight: number = TRANSLATE
-  @State pixelMap: iaImage.PixelMap = undefined
-  @State mediaItem: mediaLibrary.FileAsset = undefined
+  @State pixelMap: iaImage.PixelMap = {} as iaImage.PixelMap
+  @State mediaItem: mediaLibrary.FileAsset = {} as mediaLibrary.FileAsset
   @Link @Watch('leftSliderChange') leftSliderIndex: number
   private index: number = -1
-  private deleteDialogShow: (index: number, mediaType) => void
-  private renameDialogShow: (index: number, mediaType) => void
-
+  private deleteDialogShow: () => void = () => {}
+  private renameDialogShow: () => void = () => {}
+  @Link fileIndex: number
+  @Link fileType: number
   leftSliderChange() {
     animateTo({ duration: 500, curve: Curve.Linear }, () => {
       if (this.index !== this.leftSliderIndex) {
@@ -50,8 +51,8 @@ export struct MediaItem {
   }
 
   async aboutToAppear() {
-    let size: iaImage.Size = { width: 100, height: 66 }
-    this.mediaItem.getThumbnail(size, (err, pixelMap) => {
+    let size: mediaLibrary.Size = { width: 100, height: 66 }
+    this.mediaItem.getThumbnail(size, (err: Error, pixelMap: iaImage.PixelMap) => {
       Logger.info(TAG, 'getThumbnail callback')
       if (err) {
         Logger.info(TAG, `getThumbnail callback,err=${JSON.stringify(err)}`)
@@ -63,11 +64,10 @@ export struct MediaItem {
   }
 
   getImageSrc() {
-    switch (this.mediaItem.mediaType) {
-      case mediaLibrary.MediaType.VIDEO:
-        return $r('app.media.videoCover')
-      case mediaLibrary.MediaType.AUDIO:
-        return $r('app.media.audioCover')
+    if (this.mediaItem.mediaType === mediaLibrary.MediaType.VIDEO) {
+      return $r('app.media.videoCover')
+    } else {
+      return $r('app.media.audioCover')
     }
   }
 
@@ -122,6 +122,7 @@ export struct MediaItem {
             })
             .objectFit(ImageFit.Contain)
         }
+        .id('rename')
         .margin({
           left: 5
         })
@@ -132,7 +133,9 @@ export struct MediaItem {
         .type(ButtonType.Circle)
         .onClick(() => {
           this.leftSliderIndex = -1
-          this.renameDialogShow(this.index, this.mediaItem.mediaType)
+          this.fileIndex = this.index
+          this.fileType = this.mediaItem.mediaType
+          this.renameDialogShow()
         })
 
         Button() {
@@ -143,6 +146,7 @@ export struct MediaItem {
               height: 40
             })
         }
+        .id('delete')
         .type(ButtonType.Circle)
         .size({
           width: 40,
@@ -153,7 +157,9 @@ export struct MediaItem {
           left: 8
         })
         .onClick(() => {
-          this.deleteDialogShow(this.index, this.mediaItem.mediaType)
+          this.fileIndex = this.index
+          this.fileType = this.mediaItem.mediaType
+          this.deleteDialogShow()
           this.leftSliderIndex = -1
         })
       }

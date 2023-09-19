@@ -70,9 +70,11 @@ export default function IndexTest() {
       // This API supports only one parameter: clear action function.
       hilog.info(DOMAIN, TAG, 'Back to first page start');
       await driver.delayMs(1000);
-      await driver.swipe(320, 516, 430, 516, 600);
+      // 坐标基于rk3568
+      await driver.swipe(70, 870, 670, 870, 600);
       await driver.delayMs(1000);
-      await driver.swipe(320, 516, 430, 516, 600);
+      // 坐标基于rk3568
+      await driver.swipe(70, 870, 670, 870, 600);
       await driver.delayMs(1000);
       hilog.info(DOMAIN, TAG, 'Back to first page finish');
     })
@@ -94,7 +96,8 @@ export default function IndexTest() {
     it('ArkTSCard_Animation', 0, async function () {
       hilog.info(DOMAIN, TAG, 'ArkTSCard_Animation test start');
       await driver.delayMs(1000);
-      await driver.swipe(430, 516, 320, 516, 600);
+      // 坐标基于rk3568
+      await driver.swipe(670, 870, 70, 870, 600);
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('This is a service widget for animation.'));
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.add_to_desktop'))));
@@ -108,9 +111,11 @@ export default function IndexTest() {
     it('ArkTSCard_Canvas', 0, async function () {
       hilog.info(DOMAIN, TAG, 'ArkTSCard_Canvas test start');
       await driver.delayMs(1000);
-      await driver.swipe(430, 516, 320, 516, 600);
+      // 坐标基于rk3568
+      await driver.swipe(670, 870, 70, 870, 600);
       await driver.delayMs(1000);
-      await driver.swipe(430, 516, 320, 516, 600);
+      // 坐标基于rk3568
+      await driver.swipe(670, 870, 70, 870, 600);
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('This is a service widget for canvas.'));
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.add_to_desktop'))));

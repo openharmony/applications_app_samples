@@ -52,7 +52,6 @@ export class BatchRecoverMenuOperation extends ProcessMenuOperation {
     this.menuContext.broadCast.emit(BroadcastConstants.DELETE_PROGRESS_DIALOG,
       [$r('app.string.action_recover'), this.count]);
 
-
     if (dataSource == null) {
       this.items = this.menuContext.items;
     } else {
@@ -69,5 +68,5 @@ export class BatchRecoverMenuOperation extends ProcessMenuOperation {
       this.menuContext.broadCast.emit(BroadcastConstants.UPDATE_PROGRESS, [this.getExpectProgress(), this.currentBatch]);
       this.cyclicOperation();
     })
-    }
+  }
 }

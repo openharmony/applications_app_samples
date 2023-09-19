@@ -13,17 +13,36 @@
  * limitations under the License.
  */
 
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import inputMethod from '@ohos.inputMethod';
 import { Driver, ON, Component, MatchPattern } from '@ohos.UiTest';
 import { describe, it, expect } from '@ohos/hypium';
+import { logger } from '../util/Logger';
 
+const TAG = '[Sample_UploadAndDownload]';
+const BUNDLE = 'UploadAndDownload_';
+
+// 此应用为预置输入法应用，这部分在code/Solutions/InputMethod/CustomInputText中已验证，不需要写测试用例
+// 此处添加拉起测试demo的用例即可
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
-    it('assertContain', 0, function () {
-      console.info("it begin")
-      let a = 'abc'
-      let b = 'b'
-      expect(a).assertContain(b)
-      expect(a).assertEqual(a)
+  let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
+
+  describe('ActsAbilityTest', () => {
+    // 拉起测试demo界面
+    it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
+      logger.info(TAG, `${BUNDLE}StartAbility_001 begin`)
+      await delegator.executeShellCommand('aa start -b com.example.kikakeyboard -a TestAbility').then(result => {
+        logger.info(TAG, `${BUNDLE}start ability finished, result = ${JSON.stringify(result)}`);
+      }).catch((err: Error) => {
+        logger.info(TAG, `${BUNDLE}start ability failed, err = ${JSON.stringify(err)}`);
+      })
+      await delegator.getCurrentTopAbility().then((ability: UIAbility) => {
+        logger.info(TAG, `${BUNDLE}get top ability`);
+        expect(ability.context.abilityInfo.bundleName).assertEqual('com.example.kikakeyboard');
+      })
+      logger.info(TAG, `${BUNDLE}StartAbility_001 end`);
+      done();
     })
   })
 }

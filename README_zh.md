@@ -43,7 +43,7 @@
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>类Web开发范式</strong></td>
-  <td x:str><a href="code/UI/JsComponentCollection/JsComponentCollection">Js组件集</a></td>
+  <td x:str><a href="code/UI/JsComponentCollection/JsComponentCollection">JS组件集</a></td>
   <td ></td>
   <td ></td>
   <td ></td>
@@ -53,13 +53,13 @@
   <td x:str><strong>应用模型</strong></td>
   <td x:str><a href="code/BasicFeature/ApplicationModels/StageModel">Stage模型（API 10）</a></td>
   <td x:str><a href="code/BasicFeature/ApplicationModels/AbilityStartMode">Ability的启动方式</a></td>
-  <td x:str><a href="code/BasicFeature/ApplicationModels/CustomShare">自定义分享</a></td>
+  <td x:str><a href="code/BasicFeature/ApplicationModels/CustomShare">自定义分享（API 10）</a></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td rowspan="2" x:str><strong>通知</strong></td>
   <td x:str><a href="code/BasicFeature/Notification/CustomEmitter">自定义Emitter</a></td>
-  <td x:str><a href="code/BasicFeature/Notification/CustomNotification">自定义通知</a></td>
+  <td x:str><a href="code/BasicFeature/Notification/CustomNotification">自定义通知（API 10）</a></td>
   <td x:str><a href="code/BasicFeature/Notification/CustomCommonEvent">公共事件的订阅和发布（API 10）</a></td>
   <td x:str><a href="code/BasicFeature/Notification/CustomNotificationBadge">自定义通知角标（API 10）</a></td>
  </tr>
@@ -71,7 +71,7 @@
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>窗口管理</strong></td>
-  <td x:str><a href="code/BasicFeature/WindowManagement/WindowManage">窗口管理</a></td>
+  <td x:str><a href="code/BasicFeature/WindowManagement/WindowManage">窗口管理（API 10）</a></td>
   <td x:str><a href="code/BasicFeature/WindowManagement/WindowRatio">窗口（API 10）</a></td>
   <td ></td>
   <td ></td>
@@ -85,7 +85,7 @@
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td rowspan="3" x:str><strong>媒体</strong></td>
-  <td x:str><a href="code/BasicFeature/Media/Image">图片显示及处理</a></td>
+  <td x:str><a href="code/BasicFeature/Media/Image">图片显示及处理（API 10）</a></td>
   <td x:str><a href="code/BasicFeature/Media/VideoShow">视频播放</a></td>
   <td x:str><a href="code/BasicFeature/Media/GamePuzzle">图片裁剪与分割</a></td>
   <td x:str><a href="code/BasicFeature/Media/ImageShow">图片显示</a></td>
@@ -105,7 +105,7 @@
  <tr height="18" style='height:13.50pt;'>
   <td rowspan="2"><strong>安全</strong></td>
   <td x:str><a href="code/BasicFeature/Security/Cipher">加解密</a></td>
-  <td x:str><a href="code/BasicFeature/Security/AppAccountManager">应用账号管理</a></td>
+  <td x:str><a href="code/BasicFeature/Security/AppAccountManager">应用帐号管理</a></td>
   <td x:str><a href="code/BasicFeature/Security/CertificateFramework">证书算法库框架</a></td>
   <td x:str><a href="code/BasicFeature/Security/CryptoFramework">通用密钥库系统（cryptoFramework）</a></td>
  </tr>
@@ -234,7 +234,7 @@
   <td rowspan="2" x:str><strong>应用模型</strong></td>
   <td x:str><a href="code/SystemFeature/ApplicationModels/Launcher">仿桌面应用（API 10）</a></td>
   <td x:str><a href="code/SystemFeature/ApplicationModels/MissionManager">任务管理</a></td>
-  <td x:str><a href="code/SystemFeature/ApplicationModels/StaticSubscriber">静态订阅</a></td>
+  <td x:str><a href="code/SystemFeature/ApplicationModels/StaticSubscriber">静态订阅（API 10）</a></td>
   <td x:str><a href="code/SystemFeature/ApplicationModels/AccessibilityExtAbility">无障碍扩展</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
@@ -247,7 +247,7 @@
   <td x:str><strong>媒体</strong></td>
   <td x:str><a href="code/SystemFeature/Media/Screenshot">截屏</a></td>
   <td x:str><a href="code/SystemFeature/Media/ScreenRecorder">录屏</a></td>
-  <td x:str><a href="code/SystemFeature/Media/Camera">相机和媒体库</a></td>
+  <td x:str><a href="code/SystemFeature/Media/Camera">相机和媒体库（API 10）</a></td>
   <td ></td>
  </tr>
  </tr>
@@ -267,7 +267,7 @@
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>网络与连接</strong></td>
-  <td x:str><a href="code/SystemFeature/Connectivity/Wlan">Wlan</a></td>
+  <td x:str><a href="code/SystemFeature/Connectivity/Wlan">WLAN</a></td>
   <td x:str><a href="code/SystemFeature/Connectivity/Bluetooth">蓝牙</a></td>
   <td ></td>
   <td ></td>
@@ -282,8 +282,9 @@
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>设备管理</strong></td>
   <td x:str><a href="code/SystemFeature/DeviceManagement/StorageStatistic">存储空间统计</a></td>
-  <td x:str><a href="code/SystemFeature/DeviceManagement/Screen">屏幕属性</a></td>
+  <td x:str><a href="code/SystemFeature/DeviceManagement/Screen">屏幕属性（API 10）</a></td>
   <td x:str><a href="code/SystemFeature/DeviceManagement/DeviceManagementCollection">设备管理合集（API 10）</a></td>
+  <td x:str><a href="code/SystemFeature/DeviceManagement/Mouse">鼠标外设（API 10）</a></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
@@ -296,7 +297,7 @@
   <td height="90" align="center" rowspan="7" style='height:67.50pt;' x:str><strong>关键特性</strong></td>
   <td rowspan="2" x:str><strong>一次开发，多端部署</strong></td>
   <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/AdaptiveCapabilities">ArkTS一多能力集合（API 10）</a></td>
-  <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/JsAdaptiveCapabilities">Js一多能力集合</a></td>
+  <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/JsAdaptiveCapabilities">JS一多能力集合</a></td>
   <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/Weather">入门示例：天气应用</a></td>
   <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/HealthyDiet">典型页面场景：健康饮食</a></td>
  </tr>
@@ -309,9 +310,9 @@
  <tr height="18" style='height:13.50pt;'>
   <td rowspan="3" x:str><strong>分布式</strong></td>
   <td x:str><a href="code/SuperFeature/DistributedAppDev/ArkTSDistributedMusicPlayer">ArkTS分布式音乐播放</a></td>
-  <td x:str><a href="code/SuperFeature/DistributedAppDev/JsDistributedMusicPlayer">Js分布式音乐播放（API 10）</a></td>
+  <td x:str><a href="code/SuperFeature/DistributedAppDev/JsDistributedMusicPlayer">JS分布式音乐播放（API 10）</a></td>
   <td x:str><a href="code/SuperFeature/DistributedAppDev/ArkTSDistributedCalc">分布式计算器</a></td>
-  <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributeCalc">Js分布式计算器（API 10）</a></td>
+  <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributeCalc">JS分布式计算器（API 10）</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
  <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedNote">分布式对象</a></td>
@@ -327,7 +328,7 @@
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td rowspan="2" x:str><strong>卡片</strong></td>
-  <td x:str><a href="code/SuperFeature/Widget/AdaptiveServiceWidget">Js多设备自适应服务卡片</a></td>
+  <td x:str><a href="code/SuperFeature/Widget/AdaptiveServiceWidget">JS多设备自适应服务卡片</a></td>
   <td x:str><a href="code/SuperFeature/Widget/FormExtAbility">Stage模型卡片</a></td>
   <td x:str><a href="code/SuperFeature/Widget/FormGame">Stage模型卡片JS与C++通信</a></td>
   <td x:str><a href="code/SuperFeature/Widget/RequestAddForm">应用主动添加数据代理卡片到桌面（API 10）</a></td>
@@ -379,7 +380,7 @@
   <td x:str><strong>工具</strong></td>
   <td x:str><a href="code/Solutions/Tools/PatternLock">图案密码锁</a></td>
   <td x:str><a href="code/Solutions/Tools/FlipClock">翻页时钟</a></td>
-  <td x:str><a href="code/Solutions/Tools/JsClock">Js时钟（API 10）</a></td>
+  <td x:str><a href="code/Solutions/Tools/JsClock">JS时钟（API 10）</a></td>
   <td x:str><a href="code/Solutions/Tools/ArkTSClock">ArkTS时钟</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
@@ -392,7 +393,7 @@
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>应用程序包</strong></td>
-  <td x:str><a href="code/Project/ApplicationHap/MultiHap">多hap</a></td>
+  <td x:str><a href="code/Project/ApplicationHap/MultiHap">多HAP</a></td>
   <td ></td>
   <td ></td>
   <td ></td>
@@ -412,12 +413,19 @@
   <td x:str><a href="code/LaunguageBaseClassLibrary/ZipLib">压缩与解压</a></td>
   <td ></td>
  </tr>
+ <tr height="18" style='height:13.50pt;'>
+  <td rowspan="1" align="center" x:str><strong>性能</strong></td>
+  <td rowspan="1" x:str><strong>方舟运行时</strong></td>
+  <td x:str><a href="code/Performance/ArkRuntime"> N-Body模拟程序（API 10）</a></td>
+  <td ></td>
+ </tr>
  <tr>
  <![if supportMisalignedColumns]>
    <tr height="18" style="display:none;">
    </tr>
   <![endif]>
 </table>
+
 
 
 
@@ -474,6 +482,8 @@ code
   |---ApplicationHap               # 应用程序包
   |---Test                         # 测试框架
 |---LaunguageBaseClassLibrary  # 语言基础类库
+|---Performance                # 性能
+  |---ArkRuntime                   # 方舟运行时
 ```
 
 ## 约束<a name="section18841871178"></a>

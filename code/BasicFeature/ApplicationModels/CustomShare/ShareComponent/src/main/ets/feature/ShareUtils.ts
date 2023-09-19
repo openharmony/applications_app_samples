@@ -191,7 +191,7 @@ export class ShareUtils {
     }, 1500)
   }
 
-  // 分析视频文件
+  // 分享视频文件
   async startApp(fd: number, fileAssetName: string, contextCaller) {
     Logger.info(TAG, `startApp:startApp fd : ${fd}`)
     try {

@@ -18,7 +18,7 @@ import deviceManager from '@ohos.distributedHardware.deviceManager';
 import logger from '../common/Logger';
 
 // the value is in scope [0, 65535]
-const SUBSCRIBE_ID = 100;
+let SUBSCRIBE_ID = 100;
 // DeviceManager sa id
 const PUBLISH_ID = 4802;
 
@@ -322,6 +322,7 @@ class RemoteDeviceModel {
       logger.error('[DeviceManager.RemoteDeviceModel] serviceDie');
     })
 
+    SUBSCRIBE_ID = Math.floor(65536 * Math.random())
     let info = {
       subscribeId: SUBSCRIBE_ID,
       mode: 0xAA,
@@ -443,70 +444,6 @@ class RemoteDeviceModel {
       } catch (e) {
         logger.error('[DeviceManager.RemoteDeviceModel] unAuthenticateDevice failed err: ' + e.toString());
       }
-    }
-  }
-
-  importCredential(): void {
-    logger.info('[DeviceManager.RemoteDeviceModel] importCredential');
-    if (typeof (this.deviceManager) == 'undefined') {
-      logger.error('[DeviceManager.RemoteDeviceModel] deviceManager has not initialized');
-      constant.showToast('deviceManager has not initialized');
-      return;
-    }
-
-    let credentialInfo = {
-      "processType": 1,
-      "authType": 1,
-      "userId": "123",
-      "credentialData":
-      [
-        {
-          "credentialType": 1,
-          "credentialId": "104",
-          "authCode": "1234567812345678123456781234567812345678123456781234567812345678",
-          "serverPk": "",
-          "pkInfoSignature": "",
-          "pkInfo": "",
-          "peerDeviceId": ""
-        }
-      ]
-    };
-    try {
-      this.deviceManager.importCredential(JSON.stringify(credentialInfo), (data) => {
-        if (data) {
-          logger.info('[DeviceManager.RemoteDeviceModel] importCredential succeed: ' + JSON.stringify(data));
-        } else {
-          logger.info('[DeviceManager.RemoteDeviceModel] importCredential failed');
-        }
-      })
-    } catch (e) {
-      logger.error('[DeviceManager.RemoteDeviceModel] importCredential failed err: ' + e.toString());
-    }
-  }
-
-  deleteCredential(): void {
-    logger.info('[DeviceManager.RemoteDeviceModel] deleteCredential');
-    if (typeof (this.deviceManager) == 'undefined') {
-      logger.error('[DeviceManager.RemoteDeviceModel] deviceManager has not initialized');
-      constant.showToast('deviceManager has not initialized');
-      return;
-    }
-
-    let credentialInfo = {
-      "processType": 1,
-      "authType": 1,
-      "userId": "123"
-    };
-    try {
-      this.deviceManager.deleteCredential(JSON.stringify(credentialInfo), (data) => {
-        if (data) {
-          logger.info('[DeviceManager.RemoteDeviceModel] deleteCredential succeed: ' + JSON.stringify(data));
-        } else {
-          logger.info('[DeviceManager.RemoteDeviceModel] deleteCredential failed');
-        }
-      })
-    } catch (e) {
-      logger.error('[DeviceManager.RemoteDeviceModel] deleteCredential failed err: ' + e.toString());
     }
   }
 }

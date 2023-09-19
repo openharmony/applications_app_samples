@@ -1,6 +1,3 @@
-// @ts-nocheck
-
-
 /*
  * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,7 +16,7 @@
 
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import { gridData } from '../model/GridData'
-import { myMedia } from '../model/myMedia'
+import { AVPlayer }  from '../model/AVPlayer'
 import { MediaItem } from './MediaItem'
 import { ToolKitItem } from '../common/ToolkitItem'
 
@@ -27,7 +24,7 @@ import { ToolKitItem } from '../common/ToolkitItem'
 export struct Toolkit {
   @State isBom: boolean = true
   @State leftSliderIndex: number = -1
-  @Link myMedia: myMedia
+  @Link myMedia: AVPlayer
   @Link isOpacity: number
   @Link isSurface: boolean
   @Link btnEnabled: boolean
@@ -42,13 +39,15 @@ export struct Toolkit {
   @Link itemData: mediaLibrary.FileAsset
   @Link audioData: Array<mediaLibrary.FileAsset>
   @Link videoData: Array<mediaLibrary.FileAsset>
-  private timer: number = undefined
-  private timerOut: number = undefined
+  @Link fileIndex: number
+  @Link fileType: number
+  private timer: number = 0
+  private timerOut: number = 0
   private scroller: Scroller = new Scroller()
-  private mXComponentController: XComponentController
-  private deleteDialogShow: (index: number, mediaType) => void
-  private renameDialogShow: (index: number, mediaType) => void
-  private context: any
+  private mXComponentController: XComponentController = {} as XComponentController
+  private deleteDialogShow: () => void = () => {}
+  private renameDialogShow: () => void = () => {}
+  private context: Context = getContext(this)
   @State audioText: string = ''
   @State videoText: string = ''
 
@@ -71,7 +70,7 @@ export struct Toolkit {
     this.videoText = await this.convertResourceToString($r('app.string.phoneMain_video'))
   }
   async convertResourceToString(resource: Resource){
-    return await this.context.resourceManager.getString(resource)
+    return await this.context.resourceManager.getString(resource.id)
   }
   build() {
     Flex({ direction: FlexDirection.Column }) {
@@ -108,7 +107,7 @@ export struct Toolkit {
                 this.isBom = !this.isBom
                 this.isTitle = item.textStr
               })
-            }, item => item.textStr)
+            }, (item: gridData) => item.textStr)
           }
           .columnsTemplate('1fr 1fr')
           .margin({ top: 5 })
@@ -125,8 +124,10 @@ export struct Toolkit {
                     index: index,
                     mediaItem: item,
                     leftSliderIndex: $leftSliderIndex,
-                    deleteDialogShow: this.deleteDialogShow.bind(this),
-                    renameDialogShow: this.renameDialogShow.bind(this)
+                    fileIndex: $fileIndex,
+                    fileType: $fileType,
+                    deleteDialogShow: () => this.deleteDialogShow(),
+                    renameDialogShow: () => this.renameDialogShow()
                   })
                 }
                 .padding({ bottom: 8, left: 12 })
@@ -138,7 +139,7 @@ export struct Toolkit {
                   this.isOpacity = 1
                   this.isStreamShow = false
                   this.streamOpacity = 0.4
-                  this.streamBtnText = $r('app.string.tooKit_play')
+                  this.streamBtnText = $r('app.string.toolKit_play')
                   this.isShowMenu = true
                   this.itemData = item
                   this.myMedia.init(this.itemData)
@@ -148,7 +149,7 @@ export struct Toolkit {
                     }, 1000)
                   }
                 })
-              }, item => item.id)
+              }, (item: mediaLibrary.FileAsset) => item.id.toString())
             }
             .editMode(true)
           }
@@ -163,8 +164,10 @@ export struct Toolkit {
                     index: index,
                     mediaItem: item,
                     leftSliderIndex: $leftSliderIndex,
-                    deleteDialogShow: this.deleteDialogShow.bind(this),
-                    renameDialogShow: this.renameDialogShow.bind(this)
+                    fileIndex: $fileIndex,
+                    fileType: $fileType,
+                    deleteDialogShow: () => this.deleteDialogShow(),
+                    renameDialogShow: () => this.renameDialogShow()
                   })
                 }
                 .padding({ bottom: 8, left: 12 })
@@ -177,7 +180,7 @@ export struct Toolkit {
                   this.itemData = item
                   this.isSurface = !this.isSurface
                   this.isStreamShow = false
-                  this.streamBtnText = $r('app.string.tooKit_play')
+                  this.streamBtnText = $r('app.string.toolKit_play')
                   this.streamOpacity = 0.4
                   this.timerOut = setTimeout(() => {
                     let surfaceId = this.mXComponentController.getXComponentSurfaceId()
@@ -190,7 +193,7 @@ export struct Toolkit {
                     }, 1000)
                   }
                 })
-              }, item => item.id)
+              }, (item: mediaLibrary.FileAsset) => item.id.toString())
             }
             .editMode(true)
           }

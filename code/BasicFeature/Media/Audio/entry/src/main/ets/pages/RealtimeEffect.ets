@@ -211,9 +211,9 @@ struct RealtimeAudioEffectQuery {
     this.appContext = getContext()
   }
 
-  async onBackPress() {
-    await this.audioRenderer.stop()
-    await this.audioRenderer.release()
+  onBackPress() {
+    this.audioRenderer.stop()
+    this.audioRenderer.release()
   }
 
   async onPageHide() {

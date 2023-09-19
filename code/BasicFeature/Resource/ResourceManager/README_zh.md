@@ -139,9 +139,9 @@ pause
 
 1. 本工程示例仅支持标准系统上运行。
 
-2. 本工程仅支持API version 10版本SDK，版本号：4.0.10.5及以上。
+2. 本工程仅支持API version 10版本SDK，版本号：4.0.9.6，镜像版本号：Openharmony 4.0.9.6。
 
-3. 本工程示例需要使用DevEco Studio 4.0 Beta2 (Build Version: 4.0.0.400, built on August 2, 2023)及以上版本才可编译运行。
+3. 本工程示例需要使用DevEco Studio 3.1.1 Release (Build Version: 3.1.0.501, built on June 20, 2023)及以上版本才可编译运行。
 
 ### 下载
 

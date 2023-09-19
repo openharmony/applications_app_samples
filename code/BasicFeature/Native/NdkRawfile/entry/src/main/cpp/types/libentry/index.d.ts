@@ -15,7 +15,7 @@
 
 import resourceManager from '@ohos.resourceManager';
 
-export const getFileList: (resmgr: resourceManager.ResourceManager, path: string) => Array<String>;
+export const getFileList: (resmgr: resourceManager.ResourceManager, path: string) => Array<string>;
 
 export const getRawFileContent: (resmgr: resourceManager.ResourceManager, path: string) => Uint8Array;
 

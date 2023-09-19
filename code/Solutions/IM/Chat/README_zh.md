@@ -26,16 +26,31 @@
 
 ### 工程目录
 ```
-entry/src/main/MainAbility
-|---/common
-|   |---BasicDataSource.ets                // 封装整个FeatureAbility模块启用，监听Ability对应的窗口等逻辑
-|   |---Loggger.ets                        // 封装整个日志
-|   |---MsgBase.ets                        // 组件传值定义页面
-|---/components                                 
-|   |---Header.ets                         // 定义应用头部导航栏
-|---/pages                                                               
+chatList/src/main/ets                     // 列表类功能HAR共享包
+|---/pages    
 |   |---ChatDetailPage.ets                 // 具体的某一聊天页面            
 |   |---ChatListPage.ets                   // 整体聊天页面
+|---/utils
+|   |---Constants.ets                      // 封装只读常量
+|   |---DataFactory.ets                    // 封装对数据处理方法
+|   |---Logger.ets                         // 封装整个日志
+|---/view
+|   |---ChatView.ets                       // 聊天列表每个单独模块
+|   |---OptLayoutChatView.ets              // 可复用的列表模块
+|---/viewModel
+|   |---BasicDataSource.ets                // 封装朋友列表数据方法
+|   |---ChatListDataSource.ets             // 封装聊天列表数据方法
+|   |---MsgBase.ets                        // 封装聊天列表对象方法
+entry/src/main/ets
+|---/entryability
+|   |---EntryAbility.ts                    // 封装整个模块启用，监听Ability对应的窗口等逻辑
+|---/utils
+|   |---Logger.ets                         // 封装整个日志
+|---/view
+|   |---CustomDialogExample.ets            // 自定义功能弹窗页面
+|   |---TopBar.ets                         // 定义应用头部导航栏
+|---/pages                                                               
+|   |---Detail.ets                         // 聊天详情页面
 |   |---DiscoverPage.ets                   // 发现页面
 |   |---FriendsMomentsPage.ets             // 朋友圈页面
 |   |---FriendsPage.ets                    // 通讯录页面
@@ -66,9 +81,9 @@ FriendsPage() }。
 
 ### 约束与限制
 
-1.本示例已适配API version 10版本SDK，版本号：4.0.7.5。
+1.本示例已适配API version 10版本SDK，版本号：4.0.9.6，镜像版本号: Openharmony 4.0.9.6。
 
-2.本示例需要使用DevEco Studio 3.1 Release (Build Version: 3.1.0.500, built on April 28, 2023)及以上才可编译运行。
+2.本示例需要使用DevEco Studio 4.0 Beta2 (Build Version: 4.0.0.400, built on August 2, 2023)及以上才可编译运行。
 
 ### 下载
 

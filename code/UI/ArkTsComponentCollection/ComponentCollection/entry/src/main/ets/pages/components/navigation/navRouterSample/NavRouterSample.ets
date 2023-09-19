@@ -50,20 +50,7 @@ struct NavRouterSample {
         .width("90%")
         .margin({ top: 12 })
       }
-      .title("主标题")
       .mode(NavigationMode.Stack)
-      .menus([
-        {value: "", icon: "./image/ic_public_search.svg", action: ()=> {}},
-        {value: "", icon: "./image/ic_public_add.svg", action: ()=> {}},
-        {value: "", icon: "./image/ic_public_add.svg", action: ()=> {}},
-        {value: "", icon: "./image/ic_public_add.svg", action: ()=> {}},
-        {value: "", icon: "./image/ic_public_add.svg", action: ()=> {}}
-      ])
-      .toolBar({items: [
-        {value: "func", icon: "./image/ic_public_highlights.svg", action: ()=> {}},
-        {value: "func", icon: "./image/ic_public_highlights.svg", action: ()=> {}},
-        {value: "func", icon: "./image/ic_public_highlights.svg", action: ()=> {}}
-      ]})
     }
     .height('100%')
     .width('100%')

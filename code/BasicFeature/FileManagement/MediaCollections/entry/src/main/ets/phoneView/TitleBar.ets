@@ -13,31 +13,34 @@
  * limitations under the License.
  */
 
-// @ts-nocheck
-
 import { LoadingDialog } from '../phoneView/LoadingDialog'
-import { myMedia } from '../model/myMedia'
+import { AVPlayer }  from '../model/AVPlayer'
 import Logger from '../model/Logger'
 
 const TAG = 'InputDialog: '
+const TITLE_HTTP: string= 'http'
+const TITLE_HTTPS: string= 'https'
+const TITLE_DATA: string= 'dataSource'
+const TITLE_FILE: string= 'file'
 
 @Component
 export struct TitleBar {
   @Link isPlaying: boolean
   @Link currentTime: number
-  @Link myMedia: myMedia
-  @Prop httpUrl: string
+  @Link myMedia: AVPlayer
+  @Prop httpUrl: string = ''
   @Link isXComponent: boolean
   @State search: boolean = true
   @State isInputBg: string = 'rgba(255,255,255,1)'
-  private timer: number = undefined
-  private mXComponentController: XComponentController
+  private timer: number = 0
+  private mXComponentController: XComponentController = {} as XComponentController
   private LoadingDialog: CustomDialogController = new CustomDialogController({
     builder: LoadingDialog(),
     autoCancel: false,
     alignment: DialogAlignment.Center,
     customStyle: true
   })
+
 
   build() {
     Row() {
@@ -64,7 +67,14 @@ export struct TitleBar {
             Logger.info(TAG + `${this.httpUrl}`)
             let surfaceId = this.mXComponentController.getXComponentSurfaceId()
             Logger.info(TAG + surfaceId)
-            this.myMedia.httpInit(this.httpUrl, surfaceId)
+            let index = this.httpUrl.indexOf(':')
+            let playMode = this.httpUrl.slice(0, index)
+            Logger.info(TAG, 'play mode is:' + playMode)
+            if ((playMode === TITLE_HTTP) || (playMode === TITLE_HTTPS)) {
+              this.myMedia.httpInit(this.httpUrl, surfaceId)
+            } else if (playMode === TITLE_FILE) {
+              this.myMedia.fdSrcInit(this.httpUrl.substr(index + 1), surfaceId)
+            }
             if (this.timer !== undefined) {
               clearInterval(this.timer)
             }

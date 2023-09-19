@@ -16,20 +16,15 @@
 import deviceInfo from '@ohos.deviceInfo';
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 import logger from '../common/Logger';
-import preferences from '@ohos.data.preferences';
 import remoteDeviceModel from '../model/RemoteDeviceModel';
 import router from '@ohos.router';
 import { FilterOption } from '../pages/FilterOption';
-import { LoginDialog } from '../pages/LoginDialog';
 import { ListDeviceView } from '../pages/ListDeviceView';
-
-let preference: preferences.Preferences = null;
 
 @Entry
 @Component
 struct Index {
   @State isShowLoading: boolean = false;
-  @State isImportedCredential: boolean = false;
   @State indexWidth: string = '100%';
   @StorageLink('localDevice') localDevice: deviceManager.DeviceInfo = null;
   @StorageLink('trustedDeviceList') trustedDeviceList: Array<deviceManager.DeviceInfo> =
@@ -43,7 +38,6 @@ struct Index {
   @State isDiscovering: boolean = false;
 
   scroller: Scroller = new Scroller();
-  loginDialog: CustomDialogController = null;
 
   async routeFilterOptionPage() {
     let options = {
@@ -53,48 +47,6 @@ struct Index {
       await router.pushUrl(options);
     } catch (err) {
       logger.info(`fail callback, code: ${err.code}, msg: ${err.msg}`);
-    }
-  }
-
-  async getPreferences() {
-    try {
-      preference = await preferences.getPreferences(globalThis.context, 'config');
-    } catch (e) {
-      logger.error(`getPreferences failed err: ` + e.toString());
-    }
-  }
-
-  async readConfig(callback) {
-    if (!preference) {
-      await this.getPreferences();
-    }
-    try {
-      preference.get('isImportCredential', false).then((value) => {
-        logger.info(`get value of 'isImportCredential' success, value: ${value}`);
-        callback(value);
-      })
-    } catch (e) {
-      logger.error(`get value of 'isImportCredential' failed err: ` + e.toString());
-    }
-  }
-
-  async writeConfig(value) {
-    if (!preference) {
-      await this.getPreferences();
-    }
-    try {
-      preference.put('isImportCredential', value).then(() => {
-        logger.info(`put value of 'isImportCredential' success, value: ${value}`);
-        preference.flush(function (err) {
-          if (err) {
-            logger.error(`flush value of 'isImportCredential' failed err: ` + err.toString());
-            return;
-          }
-          logger.error(`flush value of 'isImportCredential' success`);
-        });
-      });
-    } catch (e) {
-      logger.error(`put value of 'isImportCredential' failed err: ` + e.toString());
     }
   }
 
@@ -112,10 +64,6 @@ struct Index {
 
   async aboutToAppear() {
     await remoteDeviceModel.createDeviceManager();
-
-    this.readConfig((value) => {
-      this.isImportedCredential = value;
-    })
     try {
       logger.info(`local deviceType:` + deviceInfo.deviceType);
       globalThis.deviceTypeName = globalThis.resourceManager.getStringSync($r('app.string.device_type').id);
@@ -183,50 +131,6 @@ struct Index {
                 .fontFamily('HarmonyHeiTi-Medium')
                 .fontWeight(500)
                 .margin({ left: 8 })
-              Blank()
-              Text(!this.isImportedCredential ? $r('app.string.login') : $r('app.string.logout'))
-                .fontSize(14)
-                .fontColor('#182431')
-                .fontFamily('HarmonyHeiTi')
-                .opacity(0.6)
-                .onClick(() => {
-                  if (this.isImportedCredential) {
-                    this.loginDialog = new CustomDialogController({
-                      builder: LoginDialog({
-                        option: $r('app.string.is_logout'),
-                        confirm: () => {
-                          remoteDeviceModel.deleteCredential();
-                          this.isImportedCredential = !this.isImportedCredential;
-                        }
-                      }),
-                      autoCancel: true,
-                      alignment: deviceInfo.deviceType == 'tablet' ? DialogAlignment.Center : DialogAlignment.Bottom,
-                      gridCount: 4,
-                      customStyle: deviceInfo.deviceType == 'tablet' ? false : true
-                    });
-                    this.loginDialog.open();
-                  } else {
-                    this.loginDialog = new CustomDialogController({
-                      builder: LoginDialog({
-                        option: $r('app.string.is_login'),
-                        confirm: () => {
-                          remoteDeviceModel.importCredential();
-                          this.isImportedCredential = !this.isImportedCredential;
-                        }
-                      }),
-                      autoCancel: true,
-                      alignment: deviceInfo.deviceType == 'tablet' ? DialogAlignment.Center : DialogAlignment.Bottom,
-                      gridCount: 4,
-                      customStyle: deviceInfo.deviceType == 'tablet' ? false : true
-                    });
-                    this.loginDialog.open();
-                  }
-                  this.writeConfig(this.isImportedCredential);
-                })
-                .margin({ right: 4 })
-              Image($r('app.media.ic_arrow'))
-                .width(12)
-                .height(24)
             }
             .width('100%')
             .height(48)
