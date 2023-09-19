@@ -20,7 +20,7 @@ const TAG: string = 'DeviceDialog'
 @CustomDialog
 export struct DeviceDialog {
   controller?: CustomDialogController
-  private deviceList: Array<deviceManager.DeviceBasicInfo> = []
+  @StorageLink('deviceList') deviceList: Array<deviceManager.DeviceBasicInfo> = []
   private selectedIndex: number | undefined = 0
   private onSelectedIndexChange: (selectedIndex: number | undefined) => void = () => {
   }
@@ -29,7 +29,7 @@ export struct DeviceDialog {
   build() {
     Column() {
       Text($r('app.string.choiceDevice'))
-        .fontSize('30px')
+        .fontSize(px2vp(30))
         .width('100%')
         .height('20%')
         .fontColor(Color.Black)
@@ -37,9 +37,9 @@ export struct DeviceDialog {
       List() {
         ForEach(this.deviceList, (item: deviceManager.DeviceBasicInfo, index: number | undefined) => {
           ListItem() {
-            Flex({direction:FlexDirection.Row,justifyContent:FlexAlign.SpaceBetween}) {
+            Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
               Text(item.deviceName)
-                .fontSize('30px')
+                .fontSize(px2vp(30))
                 .width('80%')
                 .fontColor(Color.Black)
               Radio({ value: '', group: 'radioGroup' })
@@ -65,7 +65,7 @@ export struct DeviceDialog {
           }
           .width('100%')
           .height('40%')
-        }, (item:deviceManager.DeviceBasicInfo) => item.deviceName)
+        }, (item: deviceManager.DeviceBasicInfo) => item.deviceName)
       }
       .height('60%')
       .width('100%')
@@ -86,13 +86,13 @@ export struct DeviceDialog {
         }
       })
     }
-    .margin({bottom:15})
+    .margin({ bottom: 15 })
     .onAreaChange((oldArea: Area, newArea: Area) => {
       this.deviceDialogWidth = (newArea.width > newArea.height ? newArea.height : newArea.width) as number * 0.1 //percentage
     })
     .width('80%')
-    .height('240px')
-    .padding({ left: 18, right: 32})
+    .height(px2vp(240))
+    .padding({ left: 18, right: 32 })
     .backgroundColor(Color.White)
     .border({ color: Color.White, radius: 20 })
   }

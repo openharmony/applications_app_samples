@@ -28,7 +28,7 @@ const DEVICE_DISCOVERY_RANGE: number = 1000
 export struct TitleBarComponent {
   @Prop isLand: boolean | null = null
   @State selectedIndex: number | undefined = 0
-  @State deviceList: Array<deviceManager.DeviceBasicInfo> = []
+  @StorageLink('deviceList') deviceList: Array<deviceManager.DeviceBasicInfo> = []
   @Link isDistributed: boolean
   private isShow: boolean = false
   private startAbilityCallBack: (key: string) => void = () => {
@@ -49,6 +49,10 @@ export struct TitleBarComponent {
       return
     }
     this.selectDevice()
+  }
+
+  aboutToAppear() {
+    AppStorage.setOrCreate('deviceList', this.deviceList)
   }
 
   clearSelectState() {
@@ -129,6 +133,7 @@ export struct TitleBarComponent {
               deviceType: deviceTempList[i].deviceType,
               networkId: deviceTempList[i].networkId,
             })
+            AppStorage.set('deviceList', this.deviceList)
           }
         }
       }
@@ -136,7 +141,6 @@ export struct TitleBarComponent {
     if (this.dialogController === null) {
       this.dialogController = new CustomDialogController({
         builder: DeviceDialog({
-          deviceList: this.deviceList,
           selectedIndex: this.selectedIndex,
           onSelectedIndexChange: this.onSelectedIndexChange
         }),

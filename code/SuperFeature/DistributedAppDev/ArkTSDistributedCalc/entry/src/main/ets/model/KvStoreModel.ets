@@ -25,7 +25,7 @@ export class KvStoreModel {
   public kvManager: distributedData.KVManager | null = null
   public kvStore: distributedData.DeviceKVStore | null = null
 
-  async createKvStore(context: common.UIAbilityContext, callback: Callback<void>) {
+  async createKvStore(context: common.BaseContext, callback: Callback<void>) {
     if ((typeof (this.kvStore) !== 'undefined')) {
       callback()
       return
@@ -47,7 +47,7 @@ export class KvStoreModel {
       backup: false,
       autoSync: true,
       kvStoreType: 1,
-      securityLevel: 1
+      securityLevel: distributedData.SecurityLevel.S1
     };
     Logger.info(TAG, `kvManager.getKVStore begin`);
     if (this.kvManager !== null) {

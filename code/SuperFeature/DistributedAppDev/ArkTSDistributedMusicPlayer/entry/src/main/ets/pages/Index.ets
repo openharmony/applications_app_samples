@@ -33,6 +33,7 @@ import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl'
 import deviceManager from '@ohos.distributedHardware.deviceManager'
 import Want from '@ohos.app.ability.Want';
 import ability from '@ohos.ability.ability';
+import uri from '@ohos.uri'
 
 const TAG: string = 'Index'
 const DESIGN_WIDTH: number = 720.0
@@ -46,7 +47,7 @@ const ABILITY_SHARED_BUTTON = 0
 const DEFAULT_NUM = -1
 const PREVIOUS_CLICK = 2
 
-interface params {
+type Params = {
   uri: string,
   seekTo: number,
   isPlaying: boolean
@@ -118,7 +119,7 @@ struct Index {
           selectedIndexChange: this.selectedIndexChange
         }),
         autoCancel: true,
-        customStyle:true
+        customStyle: true
       })
       this.dialogController.open()
       Logger.info(TAG, 'CustomDialogController end')
@@ -145,7 +146,7 @@ struct Index {
     if (typeof (event) === 'string') {
       if (event === MusicConnectEvent.EVENT_CONNECT) {
         this.clickFlag = MusicSharedStatus.MUSIC_STOP_SHARED
-        this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_pause')
+        this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_hop')
         Logger.info(TAG, 'remote service on connect callbacked')
       } else if (event === MusicConnectEvent.EVENT_DISCONNECT) {
         this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_hop')
@@ -230,7 +231,7 @@ struct Index {
       data.writeString(JSON.stringify(params))
       this.localExtensionRemote.sendRequest(MusicSharedEventCode.START_DISTRIBUTED_MUSIC_SERVICE, data, reply, option)
       this.deviceId = deviceId
-      this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_pause')
+      this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_hop')
     } else {
       Logger.info(TAG, `Remote start type is error or deviceID is empty, typeof= ${typeof (this.localExtensionRemote)}`)
     }
@@ -292,7 +293,7 @@ struct Index {
   }
 
   startAbilityContinuation(deviceId: string) {
-    let params: params
+    let params: Params
     Logger.info(TAG, `startAbilityContinuation PlayerModel.index= ${PlayerModel.index}/${PlayerModel.playlist.audioFiles.length}`)
     if (PlayerModel.index >= 0 && PlayerModel.index <= PlayerModel.playlist.audioFiles.length) {
       params = {
@@ -591,7 +592,7 @@ struct Index {
       .width('90%')
       .margin({ top: '12%' })
 
-      Slider({ value: typeof (this.currentProgress) === 'number' ? 0 : this.currentProgress })
+      Slider({ value: typeof (this.currentProgress) === 'number' ? this.currentProgress : 0 })
         .trackColor('#64CCE7FF')
         .width('90%')
         .selectedColor('#ff0c4ae7')

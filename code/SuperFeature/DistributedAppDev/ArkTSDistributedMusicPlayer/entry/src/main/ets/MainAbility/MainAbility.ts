@@ -14,7 +14,7 @@
  */
 import UIAbility from '@ohos.app.ability.UIAbility'
 import Logger from '../model/Logger'
-import window from '@ohos.window';
+import window from '@ohos.window'
 
 const TAG: string = 'MainAbility'
 
