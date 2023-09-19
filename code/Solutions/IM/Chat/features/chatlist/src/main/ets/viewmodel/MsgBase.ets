@@ -170,15 +170,15 @@ export class FriendMoment {
   media: string = ''
   mediaPreview: string = ''
 
-  constructor(id: string, user: ChatContact, text: string, time?: string, List?: Array<string>, media?: string, mediaPreview?: string) {
+  constructor(id: string, user: ChatContact, text: string, time?: string, list?: Array<string>, media?: string, mediaPreview?: string) {
     this.id = id;
     this.user = user;
     if (time !== undefined) {
       this.time = time;
     }
     this.text = text;
-    if (List.length) {
-      this.imageList = List;
+    if (list.length) {
+      this.imageList = list;
     }
     else if (media) {
       this.media = media;
