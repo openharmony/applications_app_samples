@@ -22,6 +22,8 @@ import { RemoteDeviceModel } from '../model/RemoteDeviceModel'
 import { TitleBarComponent } from '../common/TitleBarComponent'
 import { isOperator, calc } from '../model/Calculator'
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
+import common from '@ohos.app.ability.common';
+import mediaquery from '@ohos.mediaquery';
 
 const TAG: string = 'Index'
 const EXIT: string = 'exit'
@@ -38,8 +40,7 @@ struct Index {
   private listener = mediaQuery.matchMediaSync('screen and (min-aspect-ratio: 1.5) or (orientation: landscape)')
   private kvStoreModel: KvStoreModel = new KvStoreModel()
   private remoteDeviceModel: RemoteDeviceModel = new RemoteDeviceModel()
-
-  onLand = (mediaQueryResult) => {
+  onLand = (mediaQueryResult: mediaquery.MediaQueryResult) => {
     Logger.debug(TAG, `onLand: mediaQueryResult.matches= ${mediaQueryResult.matches}`)
     if (mediaQueryResult.matches) {
       this.isLand = true
@@ -53,13 +54,13 @@ struct Index {
     this.kvStoreModel.put(DATA_CHANGE, this.expression)
   }
 
-  isOperator(operator) {
+  isOperator(operator: string) {
     return (
       operator === '+' || operator === '-' || operator === '*' || operator === '/'
     )
   }
 
-  onInputValue = (value) => {
+  onInputValue = (value: string) => {
     Logger.info(TAG, `this.isLand=${this.isLand}`);
     if (value === 'C') { // 当用户点击C按钮，表达式和运算结果归0
       this.expression = '';
@@ -99,23 +100,24 @@ struct Index {
 
   async aboutToAppear() {
     this.listener.on('change', this.onLand)
-    let context = getContext(this) as any
+    let context = getContext(this) as common.UIAbilityContext
     let atManager = abilityAccessCtrl.createAtManager()
     try {
       atManager.requestPermissionsFromUser(context, ['ohos.permission.DISTRIBUTED_DATASYNC']).then((data) => {
         Logger.info(TAG, `data: ${JSON.stringify(data)}`)
-      }).catch((err) => {
+      }).catch((err: object) => {
         Logger.info(TAG, `err: ${JSON.stringify(err)}`)
       })
-    } catch(err) {
+    } catch (err) {
       Logger.info(TAG, `catch err->${JSON.stringify(err)}`)
     }
     Logger.info(TAG, `grantPermission,requestPermissionsFromUser`)
-    if (AppStorage.Get('isRemote') === 'isRemote') {
+    let isRemote: string | undefined = AppStorage.get('isRemote')
+    if (isRemote === 'isRemote' ? true : false) {
       this.isDistributed = true
       this.isShow = true
     }
-    this.kvStoreModel.setOnMessageReceivedListener(context, DATA_CHANGE, (value) => {
+    this.kvStoreModel.setOnMessageReceivedListener(context, DATA_CHANGE, (value: string) => {
       Logger.debug(TAG, `DATA_CHANGE: ${value},this.isDistributed = ${this.isDistributed}`)
       if (this.isDistributed) {
         if (value.search(EXIT) !== -1) {
