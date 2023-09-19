@@ -18,15 +18,18 @@ import common from '@ohos.app.ability.common';
 import fs from '@ohos.file.fs';
 import router from '@ohos.router';
 import picker from '@ohos.file.picker';
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
-
 import MediaFileUri from '../media/MediaFileUri';
 import Logger from '../common/Logger';
-
+import { BusinessError } from '@ohos.base';
+import { terminateSelf } from '../utils/utils'
 
 const TAG = 'EditFile: ';
 let storage = LocalStorage.GetShared();
 const OPACITY_VALUE = 0.6; // 透明度
+interface myParams extends Object {
+  myUri: string
+  fileName: string
+}
 
 @Entry(storage)
 @Component
@@ -59,8 +62,8 @@ struct EditFile {
       this.myUri = this.loadUri;
       Logger.info(TAG, 'The count of getFileInfo is myFileContent ' + this.myFileContent);
     } else {
-      this.myUri = router.getParams()['uri'];
-      this.myFileName = router.getParams()['fileName'];
+      this.myUri = (router.getParams() as myParams).myUri;
+      this.myFileName = (router.getParams() as myParams).fileName;
 
       this.myFileContent = this.mediaFileUri.readFileContent(this.myUri);
       this.myFileSize = this.mediaFileUri.myGetFileSize(this.myUri, fs.OpenMode.READ_ONLY);
@@ -74,55 +77,11 @@ struct EditFile {
   }
 
   async writeContentForSaveAsFile(myUri: string, wrFlag: Boolean = false): Promise<void> {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.FILE; // mediaLibrary.MediaType.IMAGE
-    let args = imageType.toString();
-    // 创建文件获取选项，此处参数为获取image类型的文件资源
-    let imagesFetchOp = {
-      selections: fileKeyObj.MEDIA_TYPE + '= ?',
-      selectionArgs: [args], // imageType.toString()
-      uri: myUri,
-    };
-    let media = mediaLibrary.getMediaLibrary(getContext(this));
-    // 获取文件资源，使用callback方式返回异步结果
-    media.getFileAssets(imagesFetchOp, async (error, fetchFileResult) => {
-      // 判断获取的文件资源的检索结果集是否为undefined，若为undefined则接口调用失败
-      if (fetchFileResult === undefined) {
-        Logger.error(TAG, 'get fetchFileResult failed with error: ' + error);
-        return;
-      }
-      // 获取文件检索结果集中的总数
-      const count = fetchFileResult.getCount();
-      // 判断结果集中的数量是否小于0，小于0时表示接口调用失败
-      if (count < 0) {
-        Logger.error(TAG, 'get count from fetchFileResult failed, count: ' + count);
-        return;
-      }
-      // 判断结果集中的数量是否等于0，等于0时表示接口调用成功，但是检索结果集为空，请检查文件获取选项参数配置是否有误和设备中是否存在相应文件
-      if (count === 0) {
-        Logger.info(TAG, 'The count of fetchFileResult is zero');
-        return;
-      }
-      Logger.info(TAG, 'Get fetchFileResult successfully, count: ' + count);
-      // 获取文件检索结果集中的第一个资源，使用callback方式返回异步结果，文件数量较多时请使用getAllObject接口
-      fetchFileResult.getFirstObject(async (error, fileAsset) => {
-        // 检查获取的第一个资源是否为undefined，若为undefined则接口调用失败
-        if (fileAsset === undefined) {
-          Logger.error(TAG, 'get first object failed with error: ' + error);
-          return;
-        }
-        Logger.info(TAG, 'fileAsset.displayName ' + '0 : ' + fileAsset.displayName);
-        Logger.info(TAG, 'fileAsset.uri 0:' + fileAsset.uri);
-        Logger.info(TAG, 'myUri: ' + myUri);
-
-        if (wrFlag) {
-          Logger.info(TAG, 'fileAsset.displayName wrFlag is true');
-          Logger.info(TAG, 'fileAsset.displayName wrFlag myFileContent :' + this.myFileContent);
-          this.mediaFileUri.writeFileContent(myUri, this.myFileContent);
-        }
-        fetchFileResult.close();
-      });
-    });
+    if (wrFlag) {
+      Logger.info(TAG, 'fileAsset.displayName wrFlag is true');
+      Logger.info(TAG, 'fileAsset.displayName wrFlag myFileContent :' + this.myFileContent);
+      this.mediaFileUri.writeFileContent(myUri, this.myFileContent);
+    }
   }
 
   /**
@@ -141,8 +100,8 @@ struct EditFile {
         }
         Logger.info(TAG, 'fileAsset.displayName wrFlag myFileContent :' + this.myFileContent);
         this.writeContentForSaveAsFile(this.uriSave, true); // 用 medialibrary 重新获取uri，进行写入操作
-      }).catch((err) => {
-        Logger.error(TAG, 'DocumentViewPicker.save failed with err: ' + err);
+      }).catch((err: BusinessError) => {
+        Logger.error(TAG, 'DocumentViewPicker.save failed with err: ' + JSON.stringify(err));
       });
     } catch (err) {
       Logger.error(TAG, 'DocumentViewPicker failed with err: ' + err);
@@ -151,17 +110,6 @@ struct EditFile {
 
   onPageShow(): void {
     this.getFileInfo();
-  }
-
-  aboutToDisappear(): void {
-
-  }
-
-  onPageHide(): void {
-  }
-
-  terminateSelf(context) {
-    context.terminateSelf();
   }
 
   build() {
@@ -180,9 +128,8 @@ struct EditFile {
             .onClick(() => {
               if (this.loadFlag) {
                 Logger.info(TAG, 'end page');
-
                 let context = getContext(this);
-                this.terminateSelf(context);
+                terminateSelf(context)
               } else {
                 router.back();
               }
@@ -278,8 +225,8 @@ struct EditFile {
                     this.myFileSize = fs.statSync(file.fd).size;
                     AppStorage.SetOrCreate('myFileSize', this.myFileSize);
                     Logger.info(TAG, 'save onClick this.myFileSize ' + this.myFileSize);
-                  }).catch((err) => {
-                    Logger.info(TAG, "write data to file failed with error message: " + err.message + ", error code: " + err.code);
+                  }).catch((err: BusinessError) => {
+                    Logger.info(TAG, "write data to file failed with error:" + JSON.stringify(err));
                   });
                   fs.closeSync(file);
                 } else {

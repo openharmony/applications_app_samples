@@ -22,6 +22,7 @@ import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 const MAX_SELECT_NUM = 3; // 选择媒体文件的最大数目
 const TAG = 'pickerIndex';
 
+
 @Entry
 @Component
 struct Index {
@@ -58,11 +59,11 @@ struct Index {
         if (editFlag) {
           this.getFilenameByUri(this.uri);
         }
-      }).catch((err) => {
-        Logger.error(TAG, 'DocumentViewPicker.select failed with err: ' + err);
+      }).catch((err: BusinessError) => {
+        Logger.error(TAG, 'DocumentViewPicker.select failed with err: ' + JSON.stringify(err));
       });
     } catch (err) {
-      Logger.error(TAG, 'DocumentViewPicker failed with err: ' + err);
+      Logger.error(TAG, 'DocumentViewPicker failed with err: ' + JSON.stringify(err));
     }
   }
 
@@ -81,8 +82,8 @@ struct Index {
           Logger.info(TAG, `save file uri: ${this.uri}`);
         }
         this.getFilenameByUri(this.uri);
-      }).catch((err) => {
-        Logger.error(TAG, 'DocumentViewPicker.save failed with err: ' + err);
+      }).catch((err: BusinessError) => {
+        Logger.error(TAG, 'DocumentViewPicker.save failed with err: ' + JSON.stringify(err));
       });
     } catch (err) {
       Logger.error(TAG, 'DocumentViewPicker failed with err: ' + err);
@@ -92,7 +93,7 @@ struct Index {
   async getFilenameByUriForMedia(myUris: string[]) {
     Logger.info(TAG, ' getFilenameByUriForMedia begin');
     // 创建文件获取选项，此处参数为获取image类型的文件资源
-    let imagesFetchOp = {
+    let imagesFetchOp: mediaLibrary.MediaFetchOptions = {
       selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? OR ' + mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
       selectionArgs: [mediaLibrary.MediaType.IMAGE.toString(), mediaLibrary.MediaType.VIDEO.toString()],
       uri: myUris[0],
@@ -157,59 +158,17 @@ struct Index {
   }
 
   async getFilenameByUri(myUri: string): Promise<void> {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.FILE; // mediaLibrary.MediaType.IMAGE
-    let args = imageType.toString();
-    // 创建文件获取选项，此处参数为获取image类型的文件资源
-    let imagesFetchOp = {
-      selections: fileKeyObj.MEDIA_TYPE + '= ?',
-      selectionArgs: [args], // imageType.toString()
-      uri: myUri,
-    };
-    let media = mediaLibrary.getMediaLibrary(getContext(this));
-    // 获取文件资源，使用callback方式返回异步结果
-    media.getFileAssets(imagesFetchOp, async (error, fetchFileResult) => {
-      // 判断获取的文件资源的检索结果集是否为undefined，若为undefined则接口调用失败
-      if (fetchFileResult === undefined) {
-        Logger.error(TAG, 'get fetchFileResult failed with error: ' + error);
-        return;
+    //获取文件名称
+    this.filename = (myUri.split("/").pop()) as string
+    router.pushUrl({
+      url: 'pages/EditFile',
+      params: {
+        fileName: this.filename,
+        myUri: myUri
       }
-      // 获取文件检索结果集中的总数
-      const count = fetchFileResult.getCount();
-      // 判断结果集中的数量是否小于0，小于0时表示接口调用失败
-      if (count < 0) {
-        Logger.error(TAG, 'get count from fetchFileResult failed, count: ' + count);
-        return;
-      }
-      // 判断结果集中的数量是否等于0，等于0时表示接口调用成功，但是检索结果集为空，请检查文件获取选项参数配置是否有误和设备中是否存在相应文件
-      if (count === 0) {
-        Logger.info(TAG, 'The count of fetchFileResult is zero');
-        return;
-      }
-      Logger.info(TAG, 'Get fetchFileResult successfully, count: ' + count);
-      // 获取文件检索结果集中的第一个资源，使用callback方式返回异步结果，文件数量较多时请使用getAllObject接口
-      fetchFileResult.getFirstObject(async (error, fileAsset) => {
-        // 检查获取的第一个资源是否为undefined，若为undefined则接口调用失败
-        if (fileAsset === undefined) {
-          Logger.error(TAG, 'get first object failed with error: ' + error);
-          return;
-        }
-        Logger.info(TAG, 'fileAsset.displayName ' + '0 : ' + fileAsset.displayName);
-        Logger.info(TAG, 'fileAsset.uri 0:' + fileAsset.uri);
-        Logger.info(TAG, 'myUri: ' + myUri);
-
-        this.filename = fileAsset.displayName;
-        router.pushUrl({
-          url: 'pages/EditFile',
-          params: {
-            fileName: this.filename,
-            uri: myUri
-          }
-        }, router.RouterMode.Standard);
-        fetchFileResult.close();
-      });
-    });
+    }, router.RouterMode.Standard);
   }
+
 
   /**
    * 拉起picker选择图片/视频
@@ -241,18 +200,13 @@ struct Index {
           this.getFilenameByUriForMedia(array);
         }
       })
-        .catch((err) => {
-          Logger.error(TAG, 'PhotoViewPicker.select failed with err: ' + err);
+        .catch((err: BusinessError) => {
+          Logger.error(TAG, 'PhotoViewPicker.select failed with err: ' + JSON.stringify(err));
         });
     } catch (err) {
       Logger.error(TAG, 'PhotoViewPicker failed with err: ' + err);
     }
   }
-
-  aboutToAppear(): void {
-    this.mediaFileUri.getAllFiles(getContext(this));
-  }
-
   aboutToDisappear(): void {
     this.fileNameList = [];
     this.fileSizeList = [];
@@ -260,7 +214,8 @@ struct Index {
   }
 
   onPageShow(): void {
-    this.mediaFileUri.getAllFiles(getContext(this));
+    let context = getContext(this) as common.UIAbilityContext;
+    this.mediaFileUri.getAllFiles(context);
   }
 
   build() {
@@ -323,7 +278,7 @@ struct Index {
 
           Column() {
             List({ space: 12, initialIndex: 0 }) {
-              ForEach(this.fileNameList, (item, index) => {
+              ForEach(this.fileNameList, (item: string, index?: number) => {
                 ListItem() {
                   Row() {
                     Image($r('app.media.ic_docs'))
@@ -340,18 +295,19 @@ struct Index {
                       .textAlign(TextAlign.Start)
                       .margin({ left: 0, right: 16 })
                       .width('64.5%')
-
-                    Text('Size: ' + JSON.stringify(this.fileSizeList[index]) + 'B')
-                      .fontSize(14)
-                      .fontFamily('HarmonyHeiTi-Medium')
-                      .lineHeight(19)
-                      .fontColor('#182431')
-                      .textAlign(TextAlign.End)
-                      .opacity(0.6)
-                      .width('20.8%')
-                      .margin({ left: 0, right: 12 })
+                    if (index !== undefined) {
+                      Text('Size: ' + JSON.stringify(this.fileSizeList[index]) + 'B')
+                        .fontSize(14)
+                        .fontFamily('HarmonyHeiTi-Medium')
+                        .lineHeight(19)
+                        .fontColor('#182431')
+                        .textAlign(TextAlign.End)
+                        .opacity(0.6)
+                        .width('20.8%')
+                        .margin({ left: 0, right: 12 })
+                    }
                   }
-                  .id('fileItem' + index)
+                  .id('fileItem' + (index !== undefined ? index : ""))
                   .borderRadius(24)
                   .width('100%')
                   .height(64)
@@ -360,15 +316,17 @@ struct Index {
                 }
                 .onClick(() => {
                   Logger.info(TAG, 'fileAsset.displayName fileName item: ' + item);
-                  router.pushUrl({
-                    url: 'pages/EditFile',
-                    params: {
-                      fileName: item,
-                      uri: this.fileUriList[index]
-                    }
-                  }, router.RouterMode.Standard);
+                  if (index !== undefined) {
+                    router.pushUrl({
+                      url: 'pages/EditFile',
+                      params: {
+                        fileName: item,
+                        myUri: this.fileUriList[index]
+                      }
+                    }, router.RouterMode.Standard);
+                  }
                 })
-              }, item => item)
+              }, (item: string) => item)
             }
             .listDirection(Axis.Vertical) // 排列方向
             .id('indexList')
