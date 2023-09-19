@@ -167,16 +167,22 @@ export class FriendMoment {
   text: string
   time: string = ''
   imageList: Array<string> = new Array<string>()
+  media: string = '' // media为需要获取的视频url
+  mediaPreview: string = '' //mediaPreview为需要获取的视频预览图url
 
-  constructor(id: string, user: ChatContact, text: string, time?: string, List?: Array<string>) {
+  constructor(id: string, user: ChatContact, text: string, time?: string, list?: Array<string>, media?: string, mediaPreview?: string) {
     this.id = id;
     this.user = user;
     if (time !== undefined) {
       this.time = time;
     }
     this.text = text;
-    if (List != null) {
-      this.imageList = List;
+    if (list.length) {
+      this.imageList = list;
+    }
+    else if (media) {
+      this.media = media;
+      this.mediaPreview = mediaPreview;
     }
   }
 
