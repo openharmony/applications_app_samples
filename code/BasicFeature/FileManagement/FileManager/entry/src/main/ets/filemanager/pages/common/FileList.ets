@@ -27,9 +27,9 @@ export struct FileList {
   @State fileList: FileDataSource = new FileDataSource()
   @State isNoFile: boolean = true
   @State showDeleteButton: boolean = false
-  title: Resource
-  mediaType: mediaLibrary.MediaType
-  itemClickFunction: (fileAsset: mediaLibrary.FileAsset) => void
+  title: Resource = {} as Resource;
+  mediaType: mediaLibrary.MediaType = mediaLibrary.MediaType.FILE
+  itemClickFunction: (fileAsset: mediaLibrary.FileAsset) => void = () => {}
 
   async aboutToAppear() {
     let files = await FileManager.getFileAssets(getContext(), this.mediaType)
@@ -47,7 +47,7 @@ export struct FileList {
         continue
       }
       Logger.debug('getFileAssetsByType success, fileAsset.displayName ' + i + ': ' + fileAsset.displayName +
-      ' data:' + fileAsset.dateAdded, +', ' + fileAsset.dateModified)
+      ' data:' + fileAsset.dateAdded + ', ' + fileAsset.dateModified)
       this.fileList.pushData(fileAsset)
     }
   }
@@ -146,7 +146,7 @@ export struct FileList {
                 itemIsNoFile: $isNoFile
               })
             }
-          }, listItem => JSON.stringify(listItem.title) )
+          }, (listItem: mediaLibrary.FileAsset) => JSON.stringify(listItem.title))
         }
         .height('100%')
         .width('100%')
@@ -164,9 +164,9 @@ struct FileListItemComponent {
   @Link itemFileList: FileDataSource
   @Link itemShowDeleteButton: boolean
   @Link itemIsNoFile: boolean
-  private fileListItem: mediaLibrary.FileAsset
-  private itemClickFunction: (fileAsset: mediaLibrary.FileAsset) => void
-  private itemId: number
+  private fileListItem: mediaLibrary.FileAsset = {} as mediaLibrary.FileAsset;
+  private itemClickFunction: (fileAsset: mediaLibrary.FileAsset) => void = () => {}
+  private itemId: number = 0
 
   @Styles itemPressedStyles() {
     .backgroundColor($r('app.color.item_pressed'))
@@ -238,7 +238,7 @@ struct FileListItemComponent {
       this.itemClickFunction(this.fileListItem)
     })
     .gesture(LongPressGesture({ repeat: true })
-      .onAction((event: GestureEvent) => {
+      .onAction((event?: GestureEvent) => {
         this.itemShowDeleteButton = true
       })
     )
