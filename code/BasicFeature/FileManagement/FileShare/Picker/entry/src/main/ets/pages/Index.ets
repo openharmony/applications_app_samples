@@ -14,14 +14,15 @@
  */
 
 import picker from '@ohos.file.picker';
-import Logger from '../common/Logger';
-import MediaFileUri from '../media/MediaFileUri';
 import router from '@ohos.router';
 import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
+import Logger from '../common/Logger';
+import MediaFileUri from '../media/MediaFileUri';
 
 const MAX_SELECT_NUM = 3; // 选择媒体文件的最大数目
 const TAG = 'pickerIndex';
-
 
 @Entry
 @Component
@@ -132,23 +133,12 @@ struct Index {
         }
         Logger.info(TAG, ' fileAsset.uri 0:' + fileAsset.uri);
         Logger.info(TAG, ' myUri: ' + myUris[0]);
-
         let index = 0;
-
         this.imageNames[index] = fileAsset.displayName;
-        // if (fileAsset.mediaType === mediaLibrary.MediaType.IMAGE) {
-        //   this.imageFlagCur = 1;
-        // } else if (fileAsset.mediaType === mediaLibrary.MediaType.VIDEO) {
-        //   this.imageFlagCur = 2;
-        // } else {
-        //   this.imageFlagCur = 0;
-        // }
-
         Logger.info(TAG, ' ViewMedia imageFlagCur ' + this.imageFlagCur);
         router.pushUrl({
           url: 'pages/ViewMedia',
           params: {
-            // imageFlag: this.imageFlagCur,
             uris: myUris
           }
         }, router.RouterMode.Standard);
@@ -168,7 +158,6 @@ struct Index {
       }
     }, router.RouterMode.Standard);
   }
-
 
   /**
    * 拉起picker选择图片/视频
@@ -207,6 +196,7 @@ struct Index {
       Logger.error(TAG, 'PhotoViewPicker failed with err: ' + err);
     }
   }
+
   aboutToDisappear(): void {
     this.fileNameList = [];
     this.fileSizeList = [];

@@ -52,7 +52,6 @@
       "name": "write_image_video_permission",
       "value": "user write image video permission"
     },
-
     {
       "name": "edit_file_permission",
       "value": "user edit file permission"

@@ -1,3 +1,3 @@
-export function  terminateSelf(context:any) {
+export function terminateSelf(context: any) {
   context.terminateSelf()
 }

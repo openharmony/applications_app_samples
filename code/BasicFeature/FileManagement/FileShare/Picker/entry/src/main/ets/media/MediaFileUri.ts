@@ -15,24 +15,22 @@
 
 import fileIo from '@ohos.fileio';
 import fs from '@ohos.file.fs';
-import Logger from '../common/Logger';
-import { bufferToString } from '../common/Common';
 import { BusinessError } from '@ohos.base';
 import fileAccess from '@ohos.file.fileAccess';
+import Logger from '../common/Logger';
+import { bufferToString } from '../common/Common';
 
+const TAG = 'MediaFileUri';
 const RECENT_MAX = 10; // 最近打开最大文件数
 const BUFFER_SIZE = 4096; // 文件读写缓冲区大小
 const COMMON_FD = -1; // 文件fd默认值
-const TAG = 'MediaFileUri';
-
 const MODE_READ_ONLY = 0;
 const MODE_WRITE_ONLY = 1;
 const MODE_READ_WRITE = 2;
 
 export default class MediaFileUri {
-  private commonFd: number = COMMON_FD;
   content: string = '';
-
+  private commonFd: number = COMMON_FD;
   private fileSizeList: Array<number> = [];
   private fileNameList: Array<string> = [];
   private fileUriList: Array<string> = [];

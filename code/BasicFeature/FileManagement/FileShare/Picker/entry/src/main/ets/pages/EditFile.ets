@@ -18,10 +18,10 @@ import common from '@ohos.app.ability.common';
 import fs from '@ohos.file.fs';
 import router from '@ohos.router';
 import picker from '@ohos.file.picker';
+import { BusinessError } from '@ohos.base';
 import MediaFileUri from '../media/MediaFileUri';
 import Logger from '../common/Logger';
-import { BusinessError } from '@ohos.base';
-import { terminateSelf } from '../utils/utils'
+import { terminateSelf } from '../utils/utils';
 
 const TAG = 'EditFile: ';
 let storage = LocalStorage.GetShared();

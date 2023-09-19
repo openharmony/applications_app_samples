@@ -18,14 +18,16 @@ import fs from '@ohos.file.fs'; // 实现应用文件访问能力
 import router from '@ohos.router';
 import picker from '@ohos.file.picker';
 import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+import { BusinessError } from '@ohos.base';
 import MediaFileUri from '../media/MediaFileUri';
 import Logger from '../common/Logger';
-import { BusinessError } from '@ohos.base';
 
 const TAG = 'ViewMedia';
+
 interface myParams extends Object {
   uris: string[]
 }
+
 @Entry
 @Component
 struct ViewMedia {
@@ -54,12 +56,12 @@ struct ViewMedia {
       photoPicker.save(PhotoSaveOptions).then((PhotoSaveResult) => {
         Logger.info(TAG, 'PhotoViewPicker.save successfully, PhotoSaveResult uri: ' + JSON.stringify(PhotoSaveResult));
         if (PhotoSaveResult !== null && PhotoSaveResult !== undefined) {
-          PhotoSaveResult.forEach((value:string) => {
+          PhotoSaveResult.forEach((value: string) => {
             this.uri = value;
             Logger.info(TAG, `save image/video uri: ${this.uri}`);
           })
         }
-      }).catch((err:BusinessError) => {
+      }).catch((err: BusinessError) => {
         Logger.error(TAG, 'PhotoViewPicker.save failed with err: ' + JSON.stringify(err));
       });
     } catch (err) {
@@ -82,7 +84,7 @@ struct ViewMedia {
   getMediaNameByUri(myUri: string, index: number) {
     Logger.info(TAG, 'getMediaNameByUri getFilenameByUriForMedia begin');
     // 创建文件获取选项，此处参数为获取image类型的文件资源
-    let imagesFetchOp:mediaLibrary.MediaFetchOptions = {
+    let imagesFetchOp: mediaLibrary.MediaFetchOptions = {
       selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? OR ' + mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
       selectionArgs: [mediaLibrary.MediaType.IMAGE.toString(), mediaLibrary.MediaType.VIDEO.toString()],
       uri: myUri
@@ -223,9 +225,6 @@ struct ViewMedia {
             .width(25)
             .height(25)
             .visibility(Visibility.Hidden)
-            .onClick(() => {
-              // 另存为点击事件
-            })
         }
         .height('100%')
         .width('37.2%')
@@ -264,7 +263,6 @@ struct ViewMedia {
                         .autoPlay(false)
                         .controls(true)
                         .borderRadius(24)
-                          //.height('22.7%')
                         .visibility(this.myFileTypes[index] === mediaLibrary.MediaType.VIDEO ? Visibility.Visible : Visibility.Hidden)
 
                       Image($r('app.media.ic_PAUSE'))
@@ -288,7 +286,7 @@ struct ViewMedia {
                 .height('100%')
               }
               .height('25%')
-            }, (item:string) => item)
+            }, (item: string) => item)
           }
           .id('picScroller')
           .scrollBar(BarState.Auto)
