@@ -160,24 +160,20 @@ struct OneMoment {
             if (this.moment.imageList.length >= this.imageListMinLength) {
               ForEach(this.moment.imageList, (image: string, index?: number) => {
                 GridItem() {
-                  Stack() {
-                    Image(image)
-                      .id(`${index}`)
-                      .width($r('app.integer.friendMomentsPage_image_width'))
-                      .height($r('app.integer.friendMomentsPage_image_height'))
-                      .borderRadius($r('app.integer.friendMomentsPage_image_radius'))
-                      .onClick(() => {
-                        router.pushUrl({
-                          url: 'pages/FullImagePage',
-                          params: {
-                            resourceStr: image,
-                            isMedia: false
-                          }
-                        })
+                  Image(image)
+                    .id(`${index}`)
+                    .width($r('app.integer.friendMomentsPage_image_width'))
+                    .height($r('app.integer.friendMomentsPage_image_height'))
+                    .borderRadius($r('app.integer.friendMomentsPage_image_radius'))
+                    .onClick(() => {
+                      router.pushUrl({
+                        url: 'pages/FullImagePage',
+                        params: {
+                          resourceStr: image,
+                          isMedia: false
+                        }
                       })
-                  }
-                  .width($r('app.integer.friendMomentsPage_image_width'))
-                  .height($r('app.integer.friendMomentsPage_image_height'))
+                    })
                 }
               }, (image: string) => image)
             }
@@ -272,7 +268,7 @@ class FriendMomentsData extends BasicDataSource<FriendMoment> {
   // 根据index获取具体项
   public getData(index: number): FriendMoment {
     // 判断组件是否已经缓存到最后一项数据了
-    if (index === this.momentList.length - 1) {
+    if (index == this.momentList.length - 1) {
       // 目前json文件只有3个，所以对3取余后加一实现循环获取3个json
       getFriendMomentByTaskPool(FriendMomentJsonUrl.FRIEND_MOMENT_JSON_URL[this.getJsonIndex % 3]);
       this.getJsonIndex++;
