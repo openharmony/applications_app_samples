@@ -140,7 +140,7 @@ export default class MediaFileUri {
     fs.closeSync(file);
   }
 
-  async getFileData(url: string) {
+  async getFileData(url: string): Promise<void> {
     let isDone: boolean = false;
     let fileInfo = await this.fileAccessHelper.getFileInfoFromUri(url);
     try {
@@ -163,7 +163,7 @@ export default class MediaFileUri {
     }
   }
 
-  async getAllFiles(context) {
+  async getAllFiles(context): Promise<void> {
     Logger.info(TAG, 'getAllFiles begin');
     this.fileInfos = []
     this.fileAccessHelper = fileAccess.createFileAccessHelper(context);
