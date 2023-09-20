@@ -210,21 +210,22 @@ struct OneMoment {
                   .width($r('app.integer.friendMomentsPage_single_video_width'))
                   .height($r('app.integer.friendMomentsPage_single_video_height'))
                   .borderRadius($r('app.integer.friendMomentsPage_single_video_radius'))
-                  .onClick(() => {
-                    router.pushUrl({
-                      url: 'pages/FullImagePage',
-                      params: {
-                        resourceUrl: this.moment.media,
-                        isMedia: true
-                      }
-                    })
-                  })
+
                 Image($r('app.media.ic_public_play_norm'))
                   .width($r('app.integer.friendMomentsPage_image_width'))
                   .height($r('app.integer.friendMomentsPage_image_height'))
               }
               .width($r('app.integer.friendMomentsPage_single_video_width'))
               .height($r('app.integer.friendMomentsPage_single_video_height'))
+              .onClick(() => {
+                router.pushUrl({
+                  url: 'pages/FullImagePage',
+                  params: {
+                    resourceUrl: this.moment.media,
+                    isMedia: true
+                  }
+                })
+              })
             }
           }
           .columnsTemplate('1fr 1fr 1fr')
