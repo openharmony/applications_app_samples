@@ -19,16 +19,18 @@ import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry
 import { Hypium } from '@ohos/hypium'
 import testsuite from '../test/List.test'
 import Window from '@ohos.window'
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
 
 export default class TestAbility extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want : Want, launchParam : AbilityConstant.LaunchParam) {
     hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
     hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onCreate');
     hilog.info(0x0000, 'testTag', '%{public}s', 'want param:' + JSON.stringify(want) ?? '');
     hilog.info(0x0000, 'testTag', '%{public}s', 'launchParam:' + JSON.stringify(launchParam) ?? '');
-    var abilityDelegator: any
+    let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
     abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-    var abilityDelegatorArguments: any
+    let abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
     abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
     hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
     hilog.info(0x0000, 'testTag', '%{public}s', 'start run testcase!!!');

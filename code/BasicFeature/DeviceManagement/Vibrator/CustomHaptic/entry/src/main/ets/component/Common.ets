@@ -50,33 +50,36 @@ export default struct CommonLayout {
                 .padding({ left: 20 })
               }
               .layoutWeight(7)
-
-              Image($r("app.media.music"))
-                .width(15)
-                .height(15)
-                .visibility(this.status[Item.id] ? Visibility.Visible : Visibility.Hidden)
+              if (Item.id !== undefined){
+                Image($r("app.media.music"))
+                  .width(15)
+                  .height(15)
+                  .visibility(this.status[Item.id] ? Visibility.Visible : Visibility.Hidden)
+              }
             }
             .id("audioHaptic")
             .width("95%")
             .height(70)
             .padding({ top: 5, left: 10, right: 10, bottom: 5 })
-            .backgroundColor(this.status[Item.id] ? "#1a3e3f56" : "#4d191a32")
+            .backgroundColor(this.status[Item.id!] ? "#1a3e3f56" : "#4d191a32")
             .onClick(() => {
-              this.status = getDynamicStates(this.status, Item.id)
-              AudioPlayer.playAudio(Item.audioName)
+              this.status = getDynamicStates(this.status, Item.id!)
+              AudioPlayer.playAudio(Item.audioName!)
               if (this.vibrationIntensity === 'H') {
                 Logger.info(TAG, "High intensity mode")
-                playVibrateCustom(Item.vibratorFileH)
+                playVibrateCustom(Item.vibratorFileH!)
               } else if (this.vibrationIntensity === 'M') {
                 Logger.info(TAG, "Middle intensity mode")
-                playVibrateCustom(Item.vibratorFileM)
+                playVibrateCustom(Item.vibratorFileM!)
               } else if (this.vibrationIntensity === 'L') {
                 Logger.info(TAG, "Low intensity mode")
-                playVibrateCustom(Item.vibratorFileL)
+                playVibrateCustom(Item.vibratorFileL!)
               } else {
                 Logger.info(TAG, "Vibration mode error")
               }
-              Logger.info(TAG, Item.id.toString() + ' ' + Item.name + ' ' + Item.audioName)
+              if (Item.id) {
+                Logger.info(TAG, Item.id.toString() + ' ' + Item.name + ' ' + Item.audioName)
+              }
             })
           }
         }) // LazyForEach

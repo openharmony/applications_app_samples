@@ -60,7 +60,7 @@ export default struct MyInfoModule {
                 icon: $r("app.media.app_icon"),
                 title: $r("app.string.my_high_mode"),
                 action: () => {
-                  this.selectContent = $r("app.string.my_high_mode"),
+                  this.selectContent = $r("app.string.my_high_mode")
                   this.vibrationIntensity = 'H'
                   Logger.info(TAG, 'Vibration intensity is high')
                 }
@@ -69,7 +69,7 @@ export default struct MyInfoModule {
                 icon: $r("app.media.app_icon"),
                 title: $r("app.string.my_middle_mode"),
                 action: () => {
-                  this.selectContent = $r("app.string.my_middle_mode"),
+                  this.selectContent = $r("app.string.my_middle_mode")
                   this.vibrationIntensity = 'M'
                   Logger.info(TAG, 'Vibration intensity is middle')
                 }
@@ -78,7 +78,7 @@ export default struct MyInfoModule {
                 icon: $r("app.media.app_icon"),
                 title: $r("app.string.my_low_mode"),
                 action: () => {
-                  this.selectContent = $r("app.string.my_low_mode"),
+                  this.selectContent = $r("app.string.my_low_mode")
                   this.vibrationIntensity = 'L'
                   Logger.info(TAG, 'Vibration intensity is low')
                 }

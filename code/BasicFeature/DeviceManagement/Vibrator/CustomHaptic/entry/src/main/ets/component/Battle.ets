@@ -20,7 +20,7 @@ import CommonLayout from './Common'
 export default struct BattleLayout {
   @State battleList: ImageDataSource = new ImageDataSource(getImageBattleList())
   @State status: boolean[] = [false, false, false, false, false, false]
-  @Link vibrationIntensity: string
+  @Link vibrationIntensity : string
 
   build() {
     CommonLayout({

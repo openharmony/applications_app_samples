@@ -17,22 +17,26 @@ import hilog from '@ohos.hilog';
 import { describe, it, expect } from '@ohos/hypium';
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
 import { Driver, ON, Component, MatchPattern } from '@ohos.UiTest';
+import Want from '@ohos.app.ability.Want';
 
 const TAG = '[Sample_Haptic]';
 const DOMAIN = 0xF811;
 const BUNDLE = 'Haptic_';
 
 export default function abilityTest() {
-  describe('AppTest', function () {
+  describe('AppTest',() =>{
     /**
      * 启动应用
      */
-    it(BUNDLE + 'VerifyVibrationFunction_001', 0, async function (done) {
+    it(BUNDLE + 'VerifyVibrationFunction_001', 0, async (done : Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'VerifyVibrationFunction_001 begin');
-      let want = {
-        bundleName: "com.samples.haptic",
-        abilityName: "EntryAbility"
-      };
+      let want : Want = new Want();
+      want.bundleName = "com.samples.haptic";
+      want.abilityName = "EntryAbility";
+      // let want = {
+      //   bundleName : "com.samples.haptic",
+      //   abilityName: "EntryAbility"
+      // };
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       abilityDelegator.startAbility(want, (err) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'VerifyVibrationFunction_001,err.code:' + err.code);
@@ -47,7 +51,7 @@ export default function abilityTest() {
     /**
      * 进入"我的"界面
      */
-    it(BUNDLE + 'VerifyVibrationFunction_002', 0, async function (done) {
+    it(BUNDLE + 'VerifyVibrationFunction_002', 0, async (done : Function ) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'VerifyVibrationFunction_002 begin');
       let driver = Driver.create();
       await driver.assertComponentExist(ON.id('indexMy'));
@@ -61,7 +65,7 @@ export default function abilityTest() {
     /**
      * 进入振动强度选择
      */
-    it(BUNDLE + 'VerifyVibrationFunction_003', 0, async function (done) {
+    it(BUNDLE + 'VerifyVibrationFunction_003', 0, async (done : Function ) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'VerifyVibrationFunction_003 begin');
       let driver = Driver.create();
       await driver.assertComponentExist(ON.id('intensitySelect'));
@@ -77,7 +81,7 @@ export default function abilityTest() {
     /**
      * 返回主界面
      */
-    it(BUNDLE + 'VerifyVibrationFunction_004', 0, async function (done) {
+    it(BUNDLE + 'VerifyVibrationFunction_004', 0, async (done : Function ) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'VerifyVibrationFunction_004 begin');
       let driver = Driver.create();
       await driver.assertComponentExist(ON.id('indexDiscover'));
@@ -91,7 +95,7 @@ export default function abilityTest() {
     /**
      * 验证振效库功能
      */
-    it(BUNDLE + 'VerifyVibrationFunction_005', 0, async function (done) {
+    it(BUNDLE + 'VerifyVibrationFunction_005', 0, async (done : Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'VerifyVibrationFunction_005 begin');
       let driver = Driver.create();
       await driver.assertComponentExist(ON.id('audioHaptic'));
@@ -105,7 +109,7 @@ export default function abilityTest() {
     /**
      * 验证振感视频播放
      */
-    it(BUNDLE + 'VerifyVibrationFunction_006', 0, async function (done) {
+    it(BUNDLE + 'VerifyVibrationFunction_006', 0, async (done : Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'VerifyVibrationFunction_006 begin');
       let driver = Driver.create();
       await driver.assertComponentExist(ON.id('videoPreview'));
@@ -119,7 +123,7 @@ export default function abilityTest() {
     /**
      * 返回主界面
      */
-    it(BUNDLE + 'VerifyVibrationFunction_007', 0, async function (done) {
+    it(BUNDLE + 'VerifyVibrationFunction_007', 0, async (done : Function ) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'VerifyVibrationFunction_007 begin');
       let driver = Driver.create();
       await driver.assertComponentExist(ON.id('videoBack'));

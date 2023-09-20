@@ -18,10 +18,10 @@ import Logger from './Logger'
 const TAG = '[TabBar]'
 
 export class TabModel {
-  index: number
-  content: Resource
-  left: number
-  width: number
+  index ?: number
+  content ?: Resource
+  left ?: number
+  width ?: number
 }
 
 @Component
@@ -29,8 +29,8 @@ export default struct TabBar {
   private fontSizeNormal = 18
   private tabMargin = 15
   private titleLength = 3
-  @Link titleArr: Resource[]
-  @Link currentIndex: number
+  @Link titleArr : Resource[]
+  @Link currentIndex : number
   private left: number = 0
   private tabSelected: (position: number, title: string) => void = (position: number, title: string) => {
     Logger.info(TAG, 'tabSelected position = ' + position + ', title = ' + title)
@@ -39,7 +39,7 @@ export default struct TabBar {
   private scroller: Scroller = new Scroller()
 
   aboutToAppear() {
-    this.tabDataArr = this.titleArr.map((title, index) => {
+    this.tabDataArr = this.titleArr.map((title : Resource, index : number) => {
       let tabModel = new TabModel()
       tabModel.index = index
       tabModel.content = title
@@ -64,18 +64,20 @@ export default struct TabBar {
               .textAlign(TextAlign.Center)
             Column()
               .height(3)
-              .width(Item.width - this.tabMargin * 2)
+              .width(Item.width! - this.tabMargin * 2)
               .margin({ top: 10 })
               .backgroundColor("#2AEFCC")
               .visibility(this.currentIndex === Item.index ? Visibility.Visible : Visibility.Hidden)
           }
-          .width(Item.width)
+          .width(Item.width!)
           .height('100%')
           .backgroundColor("#00002222")
           .onClick(() => {
-            this.currentIndex = Item.index
+            if (Item.index !== undefined) {
+              this.currentIndex = Item.index
+            }
           })
-        }, Item => Item.index)
+        }, (Item : TabModel) => Item.index!.toString())
       }
     }
     .scrollable(ScrollDirection.Horizontal)
