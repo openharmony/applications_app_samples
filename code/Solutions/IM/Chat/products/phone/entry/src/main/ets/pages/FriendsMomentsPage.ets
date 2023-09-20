@@ -169,7 +169,7 @@ struct OneMoment {
                       router.pushUrl({
                         url: 'pages/FullImagePage',
                         params: {
-                          resourceStr: image,
+                          resourceUrl: image,
                           isMedia: false
                         }
                       })
@@ -187,7 +187,7 @@ struct OneMoment {
                     router.pushUrl({
                       url: 'pages/FullImagePage',
                       params: {
-                        resourceStr: this.moment.imageList[0],
+                        resourceUrl: this.moment.imageList[0],
                         isMedia: false
                       }
                     })
