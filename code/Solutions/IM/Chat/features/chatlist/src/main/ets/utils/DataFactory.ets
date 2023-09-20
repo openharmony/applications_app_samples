@@ -88,7 +88,6 @@ export async function getMessageListFromJSON(): Promise<string[]> {
   return await jsonObj.getMessageList();
 }
 
-
 class JsonObject {
   private jsonFileDir: string = '';
 

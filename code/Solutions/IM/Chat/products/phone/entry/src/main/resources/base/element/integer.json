@@ -213,6 +213,34 @@
       "value": 70
     },
     {
+      "name": "friendMomentsPage_image_radius",
+      "value": 16
+    },
+    {
+      "name": "friendMomentsPage_single_image_width",
+      "value": 250
+    },
+    {
+      "name": "friendMomentsPage_single_image_height",
+      "value": 150
+    },
+    {
+      "name": "friendMomentsPage_single_image_radius",
+      "value": 16
+    },
+    {
+      "name": "friendMomentsPage_single_video_width",
+      "value": 200
+    },
+    {
+      "name": "friendMomentsPage_single_video_height",
+      "value": 200
+    },
+    {
+      "name": "friendMomentsPage_single_video_radius",
+      "value": 24
+    },
+    {
       "name": "friendMomentsPage_image_borderRadius",
       "value": 5
     },
@@ -242,6 +270,10 @@
     },
     {
       "name": "friendMomentsPage_oneMoment_height",
+      "value": 50
+    },
+    {
+      "name": "friendMomentsPage_useImage_radius",
       "value": 50
     },
     {
