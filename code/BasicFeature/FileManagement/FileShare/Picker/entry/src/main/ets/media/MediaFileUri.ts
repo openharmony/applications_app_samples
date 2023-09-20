@@ -16,7 +16,6 @@
 import fileIo from '@ohos.fileio';
 import fs from '@ohos.file.fs';
 import fileAccess from '@ohos.file.fileAccess';
-import { BusinessError } from '@ohos.base';
 import Logger from '../common/Logger';
 import { bufferToString } from '../common/Common';
 
@@ -158,8 +157,7 @@ export default class MediaFileUri {
         }
       }
     } catch (err) {
-      let error: BusinessError = err as BusinessError;
-      Logger.info(TAG, `listFile failed, errCode: ${error.code}, errMessage:${error.message}`);
+      Logger.info(TAG, `listFile failed, ${err}`);
     }
   }
 

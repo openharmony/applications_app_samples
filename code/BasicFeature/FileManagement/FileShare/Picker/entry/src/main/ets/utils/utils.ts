@@ -1,3 +1,3 @@
-export function terminateSelf(context: any): void {
+export function terminateSelf(context): void {
   context.terminateSelf();
 }
