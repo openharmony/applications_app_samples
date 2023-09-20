@@ -22,7 +22,7 @@ interface deviceData {
 }
 
 interface extraInfo {
-  bindType:number
+  bindType: number
   targetPkgName: string
   appName: string
 }
@@ -33,7 +33,7 @@ let SUBSCRIBE_ID: number = 100
 export const BUNDLE_NAME: string = 'ohos.samples.etsdistributedcalc'
 
 export class RemoteDeviceModel {
-  public deviceList: Array<deviceManager.DeviceBasicInfo> | null = []
+  public deviceList: Array<deviceManager.DeviceBasicInfo> | undefined = undefined
   public discoverList: Array<deviceManager.DeviceBasicInfo> = []
   private callback: () => void = () => {
   }
@@ -50,9 +50,9 @@ export class RemoteDeviceModel {
     Logger.info(TAG, 'deviceManager.createDeviceManager begin')
     try {
       let dmInstance = deviceManager.createDeviceManager(BUNDLE_NAME);
-        this.deviceManager = dmInstance
-        this.registerDeviceListCallbackImplement(callback)
-        Logger.info(TAG, `createDeviceManager callback returned, value= ${JSON.stringify(this.deviceManager)}`)
+      this.deviceManager = dmInstance
+      this.registerDeviceListCallbackImplement(callback)
+      Logger.info(TAG, `createDeviceManager callback returned, value= ${JSON.stringify(this.deviceManager)}`)
     } catch (error) {
       Logger.error(TAG, `createDeviceManager throw code:${error.code} message:${error.message}`)
     }
@@ -163,6 +163,7 @@ export class RemoteDeviceModel {
           if (data === null) {
             return
           }
+          this.discoverList = []
           Logger.info(TAG, `discoverSuccess data=${JSON.stringify(data)}`)
           this.deviceFound(data.device)
         })
@@ -195,13 +196,19 @@ export class RemoteDeviceModel {
    * 通过SUBSCRIBE_ID搜索分布式组网内的设备
    */
   startDeviceDiscovery() {
-    let discoverParam:Record<string,number> = {
+    let discoverParam: Record<string, number> = {
       'discoverTargetType': 1
+    };
+    let filterOptions = {
+      availableStatus: 1,
+      discoverDistance: 50,
+      authenticationStatus: 0,
+      authorizationType: 0
     };
     Logger.info(TAG, `startDeviceDiscovery${SUBSCRIBE_ID}`)
     try {
       if (this.deviceManager !== null) {
-        this.deviceManager.startDiscovering(discoverParam)
+        this.deviceManager.startDiscovering(discoverParam, filterOptions)
       }
     } catch (error) {
       Logger.error(TAG, `startDeviceDiscovery throw code:${error.code} message:${error.message}`)

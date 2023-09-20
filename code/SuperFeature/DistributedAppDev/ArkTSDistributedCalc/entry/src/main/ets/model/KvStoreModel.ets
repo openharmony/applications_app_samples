@@ -22,8 +22,8 @@ const TAG: string = 'KvStoreModel'
 const STORE_ID: string = 'distributedcalc'
 
 export class KvStoreModel {
-  public kvManager: distributedData.KVManager | null = null
-  public kvStore: distributedData.DeviceKVStore | null = null
+  public kvManager: distributedData.KVManager | undefined = undefined
+  public kvStore: distributedData.DeviceKVStore | undefined = undefined
 
   async createKvStore(context: common.BaseContext, callback: Callback<void>) {
     if ((typeof (this.kvStore) !== 'undefined')) {
@@ -50,7 +50,7 @@ export class KvStoreModel {
       securityLevel: distributedData.SecurityLevel.S1
     };
     Logger.info(TAG, `kvManager.getKVStore begin`);
-    if (this.kvManager !== null) {
+    if (this.kvManager !== undefined) {
       this.kvManager.getKVStore(STORE_ID, options, (err, store: distributedData.DeviceKVStore) => {
         Logger.info(TAG, `getKVStore success, kvStore= ${store}`);
         this.kvStore = store;
