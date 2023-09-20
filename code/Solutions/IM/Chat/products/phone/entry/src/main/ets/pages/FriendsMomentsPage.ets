@@ -210,7 +210,6 @@ struct OneMoment {
                   .width($r('app.integer.friendMomentsPage_single_video_width'))
                   .height($r('app.integer.friendMomentsPage_single_video_height'))
                   .borderRadius($r('app.integer.friendMomentsPage_single_video_radius'))
-
                 Image($r('app.media.ic_public_play_norm'))
                   .width($r('app.integer.friendMomentsPage_image_width'))
                   .height($r('app.integer.friendMomentsPage_image_height'))
