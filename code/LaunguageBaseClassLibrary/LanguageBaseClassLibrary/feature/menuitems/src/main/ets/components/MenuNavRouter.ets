@@ -69,7 +69,7 @@ export struct MenuNavRouter {
     Row() {
       Text(title)
         .fontColor($r('app.color.black'))
-        .fontSize(26)
+        .fontSize(16)
         .fontWeight(FontWeight.Bold)
 
       Row() {
