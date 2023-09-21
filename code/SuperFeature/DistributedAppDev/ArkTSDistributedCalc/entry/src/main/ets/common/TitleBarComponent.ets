@@ -114,6 +114,7 @@ export struct TitleBarComponent {
     this.deviceList = []
     // 注册监听回调，发现设备或查找到已认证设备会弹窗显示
     this.remoteDeviceModel.registerDeviceListCallback(() => {
+      this.deviceList = []
       Logger.info(TAG, `registerDeviceListCallback, callback entered`)
       this.deviceList.push({
         deviceId: '0',

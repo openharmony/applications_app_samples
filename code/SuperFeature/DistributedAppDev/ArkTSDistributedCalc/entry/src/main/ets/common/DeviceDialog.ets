@@ -20,7 +20,7 @@ const TAG: string = 'DeviceDialog'
 @CustomDialog
 export struct DeviceDialog {
   controller?: CustomDialogController
-  @StorageLink('deviceList') deviceList: Array<deviceManager.DeviceBasicInfo> = []
+  @StorageLink('deviceList') deviceList: Array<deviceManager.DeviceBasicInfo> = AppStorage.get('deviceList')
   private selectedIndex: number | undefined = 0
   private onSelectedIndexChange: (selectedIndex: number | undefined) => void = () => {
   }
