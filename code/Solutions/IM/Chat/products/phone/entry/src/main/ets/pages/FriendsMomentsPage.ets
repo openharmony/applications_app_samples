@@ -298,16 +298,6 @@ async function getFriendMomentByTaskPool(jsonUrl) {
   AppStorage.setOrCreate('momentData', momentData);
 }
 
-// 直接调用http接口获取数据
-async function getFriendMomentByWeb(jsonUrl) {
-  let friendMomentArray: Array<FriendMoment> = await getWebData(jsonUrl);
-  let momentData: FriendMomentsData = AppStorage.get<FriendMomentsData>('momentData');
-  for (let i = 0; i < friendMomentArray.length; i++) {
-    momentData.pushData(friendMomentArray[i]);
-  }
-  AppStorage.setOrCreate('momentData', momentData);
-}
-
 // 获取网络数据
 @Concurrent
 async function getWebData(url: string): Promise<Array<FriendMoment>> {
