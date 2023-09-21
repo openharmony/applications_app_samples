@@ -50,7 +50,8 @@ export default struct CommonLayout {
                 .padding({ left: 20 })
               }
               .layoutWeight(7)
-              if (Item.id !== undefined){
+
+              if (Item.id !== undefined) {
                 Image($r("app.media.music"))
                   .width(15)
                   .height(15)

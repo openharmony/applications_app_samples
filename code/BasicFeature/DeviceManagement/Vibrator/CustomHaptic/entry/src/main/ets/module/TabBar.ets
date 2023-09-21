@@ -29,8 +29,8 @@ export default struct TabBar {
   private fontSizeNormal = 18
   private tabMargin = 15
   private titleLength = 3
-  @Link titleArr : Resource[]
-  @Link currentIndex : number
+  @Link titleArr: Resource[]
+  @Link currentIndex: number
   private left: number = 0
   private tabSelected: (position: number, title: string) => void = (position: number, title: string) => {
     Logger.info(TAG, 'tabSelected position = ' + position + ', title = ' + title)
@@ -39,7 +39,7 @@ export default struct TabBar {
   private scroller: Scroller = new Scroller()
 
   aboutToAppear() {
-    this.tabDataArr = this.titleArr.map((title : Resource, index : number) => {
+    this.tabDataArr = this.titleArr.map((title: Resource, index: number) => {
       let tabModel = new TabModel()
       tabModel.index = index
       tabModel.content = title
@@ -77,7 +77,7 @@ export default struct TabBar {
               this.currentIndex = Item.index
             }
           })
-        }, (Item : TabModel) => Item.index!.toString())
+        }, (Item: TabModel) => Item.index!.toString())
       }
     }
     .scrollable(ScrollDirection.Horizontal)

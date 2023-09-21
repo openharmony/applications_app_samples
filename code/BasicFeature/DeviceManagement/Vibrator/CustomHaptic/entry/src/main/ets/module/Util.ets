@@ -23,32 +23,32 @@ const TAG = '[Util]'
 
 export function getDynamicStates(dis: boolean[], id: number): boolean[] {
   for (let i = 0; i < dis.length; i++) {
-      i === id ? dis[i] = true : dis[i] = false
+    i === id ? dis[i] = true : dis[i] = false
     Logger.info(TAG, dis[i].toString())
   }
   return dis
 }
 
 export async function playVibrateCustom(fileName: string) {
-  let rawFd : resourceManager.RawFileDescriptor | undefined = undefined
+  let rawFd: resourceManager.RawFileDescriptor | undefined = undefined
   await getContext().resourceManager.getRawFd(fileName).then(value => {
     rawFd = value
     Logger.info(TAG, "rawFd of vibration:" + " fd:" + rawFd.fd + ", offset:" + rawFd.offset + ", length: " + rawFd.length)
   })
   try {
     //let tmptime: vibrator.VibrateTime =
-      vibrator.startVibration({
-        type: "file" ,
-        hapticFd: { fd: rawFd!.fd, offset: rawFd!.offset, length: rawFd!.length }
-      }, {
-        usage: "unknown"
-      }, (error : BusinessError) => {
-        if (error) {
-          Logger.info(TAG, 'startVibration failed, type is file, in callback');
-        } else {
-          Logger.info(TAG, 'startVibration successful, type is file, in callback');
-        }
-      });
+    vibrator.startVibration({
+      type: "file",
+      hapticFd: { fd: rawFd!.fd, offset: rawFd!.offset, length: rawFd!.length }
+    }, {
+      usage: "unknown"
+    }, (error: BusinessError) => {
+      if (error) {
+        Logger.info(TAG, 'startVibration failed, type is file, in callback');
+      } else {
+        Logger.info(TAG, 'startVibration successful, type is file, in callback');
+      }
+    });
   } catch (error) {
     Logger.info(TAG, 'startVibration failed, type is file, in catch, err code:' + error.code + ' err msg:' + error.message)
   }
@@ -58,30 +58,30 @@ export function changeOrientationInternal(lastWindow: Window.Window, portrait: b
   if (portrait) {
     lastWindow.setPreferredOrientation(Window.Orientation.LANDSCAPE).then(() => {
       Logger.info(TAG, "setPreferredOrientation success")
-    }).catch((error : string) => {
+    }).catch((error: string) => {
       Logger.info(TAG, "setPreferredOrientation failure" + JSON.stringify(error))
     })
   } else {
     lastWindow.setPreferredOrientation(Window.Orientation.PORTRAIT).then(() => {
       Logger.info(TAG, "setPreferredOrientation success")
-    }).catch((error : string) => {
+    }).catch((error: string) => {
       Logger.info(TAG, "setPreferredOrientation failure: " + JSON.stringify(error))
     })
   }
 }
 
 export function changeOrientation(portrait: boolean): void {
-  Window.getLastWindow(getContext()).then((lastWindow : Window.Window) => {
+  Window.getLastWindow(getContext()).then((lastWindow: Window.Window) => {
     changeOrientationInternal(lastWindow, portrait)
-  }).catch((error : string) => {
+  }).catch((error: string) => {
     Logger.info(TAG, "getLastWindow error: " + JSON.stringify(error))
   })
 }
 
 export function hideTitleBar(): void {
-  Window.getLastWindow(getContext()).then((lastWindow : Window.Window) => {
+  Window.getLastWindow(getContext()).then((lastWindow: Window.Window) => {
     if (lastWindow) {
-      lastWindow.setWindowSystemBarEnable([], (err : BusinessError) => {
+      lastWindow.setWindowSystemBarEnable([], (err: BusinessError) => {
         if (err) {
           Logger.info(TAG, "hideTitleBar failed")
         } else {
@@ -89,15 +89,15 @@ export function hideTitleBar(): void {
         }
       })
     }
-  }).catch((error :string) => {
+  }).catch((error: string) => {
     Logger.info(TAG, "getLastWindow error: " + JSON.stringify(error))
   })
 }
 
 export function showTitleBar(): void {
-  Window.getLastWindow(getContext()).then((lastWindow : Window.Window) => {
+  Window.getLastWindow(getContext()).then((lastWindow: Window.Window) => {
     if (lastWindow) {
-      lastWindow.setWindowSystemBarEnable(['status', 'navigation'], (err : BusinessError) => {
+      lastWindow.setWindowSystemBarEnable(['status', 'navigation'], (err: BusinessError) => {
         if (err) {
           Logger.info(TAG, "showTitleBar failed")
         } else {
@@ -105,7 +105,7 @@ export function showTitleBar(): void {
         }
       })
     }
-  }).catch((error : string) => {
+  }).catch((error: string) => {
     Logger.info(TAG, "getLastWindow error: " + JSON.stringify(error))
   })
 }

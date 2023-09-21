@@ -702,7 +702,7 @@ export function getImageExerciseList(): Array<ImagesData> {
 }
 
 export abstract class BaseDataSource<T> implements IDataSource {
-  private mDataSource: T[] =[] ;
+  private mDataSource: T[] = [];
 
   constructor(dataList: T[]) {
     this.mDataSource = dataList;
@@ -712,7 +712,7 @@ export abstract class BaseDataSource<T> implements IDataSource {
     return this.mDataSource === null ? 0 : this.mDataSource.length
   }
 
-  getData(index: number): T|null {
+  getData(index: number): T | null {
     return index >= 0 && index < this.totalCount() ? this.mDataSource[index] : null;
   }
 
