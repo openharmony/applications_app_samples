@@ -313,7 +313,7 @@ async function getFriendMomentByWeb(jsonUrl) {
 async function getWebData(url: string): Promise<Array<FriendMoment>> {
   Logger.info('getWebData onMessage start');
   try {
-    let webData = await http.createHttp().request(
+    let webData: http.HttpResponse = await http.createHttp().request(
       url,
       { header: {
         'Content-Type': 'application/json'
@@ -321,6 +321,7 @@ async function getWebData(url: string): Promise<Array<FriendMoment>> {
         connectTimeout: FriendMomentJsonUrl.CONNECT_TIME, readTimeout: FriendMomentJsonUrl.READ_TIME
       })
     if (typeof (webData.result) === 'string') {
+      // 解析json字符串
       let jsonObj: Array<FriendMoment> = await JSON.parse(webData.result).FriendMoment;
       let friendMomentBuckets: Array<FriendMoment> = new Array<FriendMoment>();
       // 映射json数据为FriendMoment对象
@@ -330,6 +331,11 @@ async function getWebData(url: string): Promise<Array<FriendMoment>> {
         let chatModelTemp = new FriendMoment(jsonObj[i].id, contactTemp, jsonObj[i].text, '',
           jsonObj[i].imageList, jsonObj[i].media, jsonObj[i].mediaPreview);
         friendMomentBuckets.push(chatModelTemp);
+      }
+      // 设置count计数，用来延长方法执行时间，方便后续监视性能
+      let taskCount: number = 0;
+      for (let i = 0;i < 10000; i++) {
+        taskCount++;
       }
       Logger.info('getFriendMomentObj onMessage end');
       return friendMomentBuckets;
