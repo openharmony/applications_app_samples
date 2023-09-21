@@ -30,13 +30,10 @@ export default function abilityTest() {
      */
     it(BUNDLE + 'VerifyVibrationFunction_001', 0, async (done : Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'VerifyVibrationFunction_001 begin');
-      let want : Want = new Want();
-      want.bundleName = "com.samples.haptic";
-      want.abilityName = "EntryAbility";
-      // let want = {
-      //   bundleName : "com.samples.haptic",
-      //   abilityName: "EntryAbility"
-      // };
+      let want = {
+         bundleName : "com.samples.haptic",
+         abilityName: "EntryAbility"
+      };
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       abilityDelegator.startAbility(want, (err) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'VerifyVibrationFunction_001,err.code:' + err.code);
