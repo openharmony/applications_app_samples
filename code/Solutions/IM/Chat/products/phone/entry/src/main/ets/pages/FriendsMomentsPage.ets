@@ -289,7 +289,7 @@ class FriendMomentsData extends BasicDataSource<FriendMoment> {
 async function getFriendMomentByTaskPool(jsonUrl) {
   // 初始化Task对象，传入待执行的方法和参数
   let task: taskpool.Task = new taskpool.Task(getWebData, jsonUrl);
-  // 像任务池中添加新对象
+  // 向任务池中添加新对象
   let friendMomentArray: Array<FriendMoment> = await taskpool.execute(task, taskpool.Priority.MEDIUM) as Array<FriendMoment>;
   let momentData: FriendMomentsData = AppStorage.get<FriendMomentsData>('momentData');
   for (let i = 0; i < friendMomentArray.length; i++) {
