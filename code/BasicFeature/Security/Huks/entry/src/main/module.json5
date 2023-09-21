@@ -33,6 +33,11 @@
         "value": "all"
       }
     ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.ACCESS_BIOMETRIC"
+      }
+    ],
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",

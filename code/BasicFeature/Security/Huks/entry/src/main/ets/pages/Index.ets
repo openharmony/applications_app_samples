@@ -34,36 +34,76 @@ struct Index {
       Navigation() {
         Stack({ alignContent: Alignment.Center }) {
           Column() {
-            Button($r('app.string.new_key'))
-              .id('new_key')
-              .margin(10)
-              .fontSize(20)
-              .width('40%')
-              .height('10%')
-              .onClick(() => {
-                router.push({
-                  url: 'pages/SelectPage',
-                  params: {
-                    flag: true
+            GridRow() {
+              GridCol({ span: { xs: 12, sm: 12, md: 12, lg: 12 } }) {
+                Column() {
+                  Button() {
+                    Text($r('app.string.new_key')).fontSize(16).fontWeight(500)
+                      .lineHeight(22)
+                      .fontColor('#FFFFFF')
                   }
-                })
-              })
+                  .id('new_key')
+                  .borderRadius(20)
+                  .type(ButtonType.Capsule)
+                  .width('100%')
+                  .height('40vp')
+                  .margin({ bottom: 16 })
+                  .backgroundColor('#007DFF')
+                  .onClick(() => {
+                    router.pushUrl({
+                      url: 'pages/SelectPage',
+                      params: {
+                        flag: 1
+                      }
+                    })
+                  });
+                  Button() {
+                    Text($r('app.string.old_key')).fontSize(16).fontWeight(500)
+                      .lineHeight(22)
+                      .fontColor('#FFFFFF')
+                  }
+                  .borderRadius(20)
+                  .id('old_key')
+                  .type(ButtonType.Capsule)
+                  .margin({ left: 24, right: 24 })
+                  .margin({ bottom: 16 })
+                  .width('100%')
+                  .height('40vp')
+                  .backgroundColor('#007DFF')
+                  .onClick(() => {
+                    router.pushUrl({
+                      url: 'pages/SelectPage',
+                      params: {
+                        flag: 2
+                      }
+                    })
+                  });
 
-            Button($r('app.string.old_key'))
-              .id('old_key')
-              .margin(10)
-              .fontSize(20)
-              .width('40%')
-              .height('10%')
-              .onClick(() => {
-                router.push({
-                  url: 'pages/SelectPage',
-                  params: {
-                    flag: false
+                  Button() {
+                    Text($r('app.string.min_access_control')).fontSize(16).fontWeight(500)
+                      .lineHeight(22)
+                      .fontColor('#FFFFFF')
                   }
-                })
-              })
-          }
+                  .borderRadius(20)
+                  .id('min_access_control')
+                  .type(ButtonType.Capsule)
+                  .margin({ left: 24, right: 24 })
+                  .margin({ bottom: 16 })
+                  .width('100%')
+                  .height('40vp')
+                  .backgroundColor('#007DFF')
+                  .onClick(() => {
+                    router.pushUrl({
+                      url: 'pages/SelectPage',
+                      params: {
+                        flag: 3
+                      }
+                    })
+                  });
+                }
+              }
+            }.margin({ left: 24, right: 24 })
+          }.width('100%').height('296vp').justifyContent(FlexAlign.End)
         }
         .height('94%')
       }

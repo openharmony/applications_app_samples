@@ -178,5 +178,43 @@ export default function abilityTest() {
       Logger.info(TAG, BUNDLE + 'CipherByOldKeyFunction_002 end');
       done();
     })
+
+    /**
+     * 使用HUKS进行低安访问控制加密
+     */
+    it(BUNDLE + 'MinAccessControlFunction_001', 0, async function (done) {
+      Logger.info(TAG, BUNDLE + 'MinAccessControlFunction_001 begin');
+      // 点击新密钥按钮，跳转至使用新密钥进行加解密页面
+      Logger.info(TAG, BUNDLE + 'MinAccessControlFunction_001 encryption');
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('min_access_control'));
+      let encryption = await driver.findComponent(ON.id('min_access_control'));
+      await encryption.click();
+      // 未输入发送的消息内容时，点击发送按钮，弹出toast弹窗提示信息：This message is null,toast弹窗信息暂不支持测试
+      await driver.assertComponentExist(ON.id('save_password'));
+      let encryptionBtn = await driver.findComponent(ON.id('save_password'));
+      await encryptionBtn.click();
+
+      Logger.info(TAG, BUNDLE + 'MinAccessControlFunction_001 input encryption content');
+      await driver.assertComponentExist(ON.id('passwordInput'));
+      let encryptionInput = await driver.findComponent(ON.id('passwordInput'));
+      // encryptionInput.enableKeyboradOnFocus(false);
+      await encryptionInput.inputText('test');
+      let encryptionContent = await encryptionInput.getText();
+      Logger.info(TAG, BUNDLE + `MinAccessControlFunction_001 select encryptionContent:${encryptionContent}`);
+      expect(encryptionContent).assertEqual('test');
+      // 点击发送按钮进行加密并发送密文消息
+      await encryptionBtn.click();
+      // 文本框显示加密后的消息内容
+      Logger.info(TAG, BUNDLE + 'MinAccessControlFunction_001 show encryption content');
+      await driver.assertComponentExist(ON.id('cipherTextinfo'));
+      let encryptionInfo = await driver.findComponent(ON.id('cipherTextinfo'));
+      let encryptionMessage = await encryptionInfo.getText();
+      Logger.info(TAG, BUNDLE + `MinAccessControlFunction_001 select encryptionMessage:${encryptionMessage}`);
+      expect(encryptionMessage === 'test').assertFalse();
+      Logger.info(TAG, BUNDLE + 'MinAccessControlFunction_001 end');
+      done();
+    })
+
   })
 }

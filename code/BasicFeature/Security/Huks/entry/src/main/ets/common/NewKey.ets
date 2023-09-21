@@ -30,7 +30,8 @@ export struct NewKey {
     Stack({alignContent:Alignment.Center}) {
       Column() {
         Text($r('app.string.input_message')).fontSize(20).margin({ left: 1, top:1 })
-        TextArea()
+        TextInput()
+          .enableKeyboardOnFocus(false)
           .margin(4)
           .width('90%')
           .id('encryptionInput')
@@ -51,7 +52,7 @@ export struct NewKey {
                   message: 'This message is null.'
                 })
               } else {
-                this.huksModel.encryptData(this.message, (result) => {
+                this.huksModel.encryptData(this.message, (result: string) => {
                   Logger.info(TAG, `this result = ${result}`)
                   this.cipherTextinfo = `${result}`
                 })
@@ -80,12 +81,13 @@ export struct NewKey {
                   message: 'This message is null.'
                 })
               } else {
-                this.huksModel.decryptData((result) => {
+                this.huksModel.decryptData((result: string) => {
                   Logger.info(TAG, `this result = ${result}`)
                   this.plainTextinfo = `${result}`
                 })
               }
-            })
+            }
+            )
         }
 
         Text(this.plainTextinfo)
