@@ -24,9 +24,10 @@ import Logger from '../../model/Logger'
 import DistributedAccountModel from '../../model/DistributedAccountModel'
 import DatabaseUtils from '../../common/utils/DatabaseUtils'
 import CommonConstants from '../../common/constants/CommonConstants'
+import  { GlobalContext, routerParams } from '../../common/database/GlobalContext';
 
 const TAG: string = `[DistributedAccountInfo]`
-let distributedInfo: distributedAccount.DistributedInfo = router.getParams()['distributedInfo']
+let distributedInfo: distributedAccount.DistributedInfo = (router.getParams() as routerParams).distributedInfo;
 let distributedAccountModel = new DistributedAccountModel();
 
 @Entry
@@ -35,7 +36,7 @@ struct DistributedAccountInfo {
   @State localName: string = ''
 
   aboutToAppear() {
-    DatabaseUtils.queryAccountData(distributedInfo.name, globalThis.rdbStore)
+    DatabaseUtils.queryAccountData(distributedInfo.name, GlobalContext.getrdbStore())
       .then(async (accountData: relationalStore.ResultSet) => {
         accountData.goToFirstRow()
         let accountManager = osAccount.getAccountManager();
@@ -100,7 +101,7 @@ struct DistributedAccountInfo {
                   value: $r('app.string.unbind'),
                   fontColor: Color.Red,
                   action: () => {
-                    DatabaseUtils.queryAccountData(distributedInfo.name, globalThis.rdbStore)
+                    DatabaseUtils.queryAccountData(distributedInfo.name, GlobalContext.getrdbStore())
                       .then((accountData: relationalStore.ResultSet) => {
                         accountData.goToFirstRow()
                         distributedAccountModel.unBind(accountData.getLong(accountData.getColumnIndex(CommonConstants.FIELD_LOCAL_ID)), accountData.getString(accountData.getColumnIndex(CommonConstants.FIELD_DISTRIBUTED_ACCOUNT_ID)), distributedInfo.name)

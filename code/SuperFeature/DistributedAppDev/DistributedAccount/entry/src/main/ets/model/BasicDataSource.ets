@@ -23,7 +23,7 @@ class BasicDataSource implements IDataSource {
     return 0
   }
 
-  public getData(index: number): any {
+  public getData(index: number): distributedAccount.DistributedInfo | undefined {
     return undefined
   }
 
@@ -92,6 +92,10 @@ export default class DistributedAccountDataSource extends BasicDataSource {
   public addData(index: number, data: distributedAccount.DistributedInfo): void {
     this.dataArray.splice(index, 0, data)
     this.notifyDataAdd(index)
+  }
+
+  public clearData(): void {
+    this.dataArray = []
   }
 
   public pushData(data: distributedAccount.DistributedInfo): void {

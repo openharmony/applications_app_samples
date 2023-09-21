@@ -15,7 +15,9 @@
 
 import DataRdb from '@ohos.data.relationalStore';
 import Account from '../database/Account';
+import { BusinessError } from '@ohos.base';
 import CommonConstants from '../constants/CommonConstants';
+import { GlobalContext } from '../database/GlobalContext';
 import Logger from '../../model/Logger';
 
 const TAG: string = `[DatabaseUtils]`
@@ -35,7 +37,7 @@ export class DatabaseUtils {
    * @return {globalThis.rdbStore} return rdbStore RDB database
    */
   async createRdbStore(context: Context) {
-    if (!globalThis.rdbStore) {
+    if (!GlobalContext.getrdbStore()) {
       // 获取RdbStore
       await DataRdb.getRdbStore(context, CommonConstants.RDB_STORE_CONFIG)
         .then((rdbStore: DataRdb.RdbStore) => {
@@ -43,16 +45,16 @@ export class DatabaseUtils {
             // 创建数据表
             rdbStore.executeSql(CommonConstants.CREATE_TABLE_ACCOUNT).then(() => {
               Logger.info(TAG, 'executeSql Account successful');
-            }).catch((error) => {
+            }).catch((error: BusinessError) => {
               Logger.error(TAG, 'executeSql Account error ' + JSON.stringify(error));
             });
-            globalThis.rdbStore = rdbStore;
+            GlobalContext.setrdbStore(rdbStore);
           }
-        }).catch((error) => {
+        }).catch((error: BusinessError) => {
           Logger.error(TAG, 'createRdbStore error ' + JSON.stringify(error));
         });
     }
-    return globalThis.rdbStore;
+    return GlobalContext.getrdbStore();
   }
 
   /**
@@ -64,7 +66,7 @@ export class DatabaseUtils {
   insertAccount(account: Account, rdbStore: DataRdb.RdbStore) {
     rdbStore.insert(CommonConstants.TABLE_ACCOUNT, account.toValuesBucket()).then((rowId) => {
       Logger.info(TAG, 'insertAccount successful ' + rowId);
-    }).catch((error) => {
+    }).catch((error: BusinessError) => {
       Logger.error(TAG, 'insertAccount error ' + JSON.stringify(error));
     });
   }
@@ -81,7 +83,7 @@ export class DatabaseUtils {
     predicates.equalTo(CommonConstants.FIELD_DISTRIBUTED_ACCOUNT_NAME, accountName);
     rdbStore.update(account.toValuesBucket(), predicates).then(async (rows) => {
       Logger.info(`Updated row count: ${rows}`);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       Logger.error(`Updated failed, code is ${err.code},message is ${err.message}`);
     })
   }
@@ -97,7 +99,7 @@ export class DatabaseUtils {
     predicates.equalTo(CommonConstants.FIELD_LOCAL_ID, localId);
     rdbStore.delete(predicates).then(() => {
       Logger.info(TAG, 'deleteAccountData delete successful ');
-    }).catch((error) => {
+    }).catch((error: BusinessError) => {
       Logger.error(TAG, 'deleteAccountData delete error ' + JSON.stringify(error));
     });
   }
@@ -109,18 +111,17 @@ export class DatabaseUtils {
    * @param {DataRdb.RdbStore} rdbStore RDB database.
    */
   queryAccountData(accountName: string, rdbStore: DataRdb.RdbStore) {
-    return new Promise((resolve, reject) => {
+    return new Promise<DataRdb.ResultSet>((resolve, reject) => {
       let predicates: DataRdb.RdbPredicates = new DataRdb.RdbPredicates(CommonConstants.TABLE_ACCOUNT);
       predicates.equalTo(CommonConstants.FIELD_DISTRIBUTED_ACCOUNT_NAME, accountName);
       rdbStore.query(predicates).then((resultSet) => {
         resolve(resultSet)
         Logger.info(TAG, 'queryAccountData query successful');
-      }).catch((error) => {
+      }).catch((error: BusinessError) => {
         reject(error)
         Logger.error(TAG, 'queryAccountData query error ' + JSON.stringify(error));
       });
     })
   }
 }
-
-export default new DatabaseUtils(globalThis.context);
+export default new DatabaseUtils(GlobalContext.getContext());
