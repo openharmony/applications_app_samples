@@ -36,7 +36,6 @@ export async function playVibrateCustom(fileName: string) {
     Logger.info(TAG, "rawFd of vibration:" + " fd:" + rawFd.fd + ", offset:" + rawFd.offset + ", length: " + rawFd.length)
   })
   try {
-    //let tmptime: vibrator.VibrateTime =
     vibrator.startVibration({
       type: "file",
       hapticFd: { fd: rawFd!.fd, offset: rawFd!.offset, length: rawFd!.length }
@@ -50,7 +49,8 @@ export async function playVibrateCustom(fileName: string) {
       }
     });
   } catch (error) {
-    Logger.info(TAG, 'startVibration failed, type is file, in catch, err code:' + error.code + ' err msg:' + error.message)
+    let err: BusinessError = error as BusinessError;
+    Logger.info(TAG, 'startVibration failed, type is file, in catch, err code:' + err.code + ' err msg:' + err.message)
   }
 }
 
@@ -58,13 +58,13 @@ export function changeOrientationInternal(lastWindow: Window.Window, portrait: b
   if (portrait) {
     lastWindow.setPreferredOrientation(Window.Orientation.LANDSCAPE).then(() => {
       Logger.info(TAG, "setPreferredOrientation success")
-    }).catch((error: string) => {
+    }).catch((error: BusinessError) => {
       Logger.info(TAG, "setPreferredOrientation failure" + JSON.stringify(error))
     })
   } else {
     lastWindow.setPreferredOrientation(Window.Orientation.PORTRAIT).then(() => {
       Logger.info(TAG, "setPreferredOrientation success")
-    }).catch((error: string) => {
+    }).catch((error: BusinessError) => {
       Logger.info(TAG, "setPreferredOrientation failure: " + JSON.stringify(error))
     })
   }
@@ -73,7 +73,7 @@ export function changeOrientationInternal(lastWindow: Window.Window, portrait: b
 export function changeOrientation(portrait: boolean): void {
   Window.getLastWindow(getContext()).then((lastWindow: Window.Window) => {
     changeOrientationInternal(lastWindow, portrait)
-  }).catch((error: string) => {
+  }).catch((error: BusinessError) => {
     Logger.info(TAG, "getLastWindow error: " + JSON.stringify(error))
   })
 }
@@ -89,7 +89,7 @@ export function hideTitleBar(): void {
         }
       })
     }
-  }).catch((error: string) => {
+  }).catch((error: BusinessError) => {
     Logger.info(TAG, "getLastWindow error: " + JSON.stringify(error))
   })
 }
@@ -105,7 +105,7 @@ export function showTitleBar(): void {
         }
       })
     }
-  }).catch((error: string) => {
+  }).catch((error: BusinessError) => {
     Logger.info(TAG, "getLastWindow error: " + JSON.stringify(error))
   })
 }

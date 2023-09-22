@@ -55,29 +55,29 @@ export default struct TabBar {
   build() {
     Scroll(this.scroller) {
       Flex({ direction: FlexDirection.Row }) {
-        ForEach(this.tabDataArr, (Item: TabModel) => {
+        ForEach(this.tabDataArr, (item: TabModel) => {
           Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-            Text(Item.content)
-              .fontSize(this.currentIndex === Item.index ? this.fontSizeNormal + 3 : this.fontSizeNormal)
-              .fontColor(this.currentIndex === Item.index ? "#2AEFCC" : Color.White)
-              .fontWeight(this.currentIndex === Item.index ? FontWeight.Bold : FontWeight.Normal)
+            Text(item.content)
+              .fontSize(this.currentIndex === item.index ? this.fontSizeNormal + 3 : this.fontSizeNormal)
+              .fontColor(this.currentIndex === item.index ? "#2AEFCC" : Color.White)
+              .fontWeight(this.currentIndex === item.index ? FontWeight.Bold : FontWeight.Normal)
               .textAlign(TextAlign.Center)
             Column()
               .height(3)
-              .width(Item.width! - this.tabMargin * 2)
+              .width(item.width! - this.tabMargin * 2)
               .margin({ top: 10 })
               .backgroundColor("#2AEFCC")
-              .visibility(this.currentIndex === Item.index ? Visibility.Visible : Visibility.Hidden)
+              .visibility(this.currentIndex === item.index ? Visibility.Visible : Visibility.Hidden)
           }
-          .width(Item.width!)
+          .width(item.width!)
           .height('100%')
           .backgroundColor("#00002222")
           .onClick(() => {
-            if (Item.index !== undefined) {
-              this.currentIndex = Item.index
+            if (item.index !== undefined) {
+              this.currentIndex = item.index
             }
           })
-        }, (Item: TabModel) => Item.index!.toString())
+        }, (item: TabModel) => item.index!.toString())
       }
     }
     .scrollable(ScrollDirection.Horizontal)

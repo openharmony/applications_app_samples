@@ -69,20 +69,7 @@ class AudioPlayer {
       this.avPlayer = await media.createAVPlayer();
       this.setAVPlayerCallback();
     }
-    
-    let rawFd = undefined;
-    await globalThis.getContext()
-      .resourceManager
-      .getRawFd(audioName)
-      .then(value => {
-        rawFd = value;
-        Logger.info(TAG, 'get audio resource successful');
-        Logger.info(TAG, 'rawFd of audio:' + ' fd:' + rawFd.fd + ', offset:' + rawFd.offset + ', length: ' + rawFd.length);
-      })
-      .catch((error) => {
-        Logger.info(TAG, 'get audio resource failed, err code:' + error.code + ' err msg:' + error.message);
-      });
-
+    let rawFd: resourceManager.RawFileDescriptor = globalThis.getContext().resourceManager.getRawFdSync(audioName);
     this.avPlayer.fdSrc = rawFd;
   }
 }
