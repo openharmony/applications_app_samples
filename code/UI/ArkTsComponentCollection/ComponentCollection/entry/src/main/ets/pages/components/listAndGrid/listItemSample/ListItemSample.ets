@@ -68,7 +68,7 @@ struct RowSample {
             }
             .selectable(this.selectable)
             .onSelect((b) => {
-              this.output = b == true ? `进入鼠标框选范围` : `移除鼠标框选范围`;
+              this.output = b === true ? `进入鼠标框选范围` : `移除鼠标框选范围`;
             })
             .swipeAction({
               end: this.swipeAction(index)

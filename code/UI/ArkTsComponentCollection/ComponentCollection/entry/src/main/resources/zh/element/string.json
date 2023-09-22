@@ -4492,6 +4492,10 @@
     {
       "name": "navigator_third_page_back",
       "value": "返回第一个页面"
+    },
+    {
+      "name": "navigator_return_message",
+      "value": "hello! 这是第一个页面传过来的参数"
     }
   ]
 }

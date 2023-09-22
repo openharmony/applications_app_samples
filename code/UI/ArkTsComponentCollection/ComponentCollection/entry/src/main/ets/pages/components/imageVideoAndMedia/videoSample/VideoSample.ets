@@ -53,7 +53,6 @@ struct VideoSample {
           controller: this.controller })
           .height(300)
           .width('100%')
-          .padding({left:LEFT_PADDING,right:RIGHT_PADDING})
           .autoPlay(this.autoPlay)
           .controls(this.controlsShow)
           .muted(this.mutedShow)

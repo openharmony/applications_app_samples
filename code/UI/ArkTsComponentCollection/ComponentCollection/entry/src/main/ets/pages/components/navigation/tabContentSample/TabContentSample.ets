@@ -49,7 +49,14 @@ struct TabSample {
             .height('100%')
             .backgroundColor('#00CB87')
         }
-        .tabBar(new SubTabBarStyle('green'))
+        .tabBar(new SubTabBarStyle('green')
+          .labelStyle({
+            overflow: TextOverflow.Clip,
+            maxLines: 10,
+            minFontSize: 10,
+            heightAdaptivePolicy: TextHeightAdaptivePolicy.MAX_LINES_FIRST,
+            font: { size: 16 }
+          }))
 
         TabContent() {
           Column()
@@ -57,7 +64,14 @@ struct TabSample {
             .height('100%')
             .backgroundColor('#007DFF')
         }
-        .tabBar(new SubTabBarStyle('blue'))
+        .tabBar(new SubTabBarStyle('blue')
+          .labelStyle({
+            overflow: TextOverflow.Clip,
+            maxLines: 10,
+            minFontSize: 10,
+            heightAdaptivePolicy: TextHeightAdaptivePolicy.MAX_LINES_FIRST,
+            font: { size: 16 }
+          }))
 
         TabContent() {
           Column()
@@ -65,7 +79,14 @@ struct TabSample {
             .height('100%')
             .backgroundColor('#FFBF00')
         }
-        .tabBar(new SubTabBarStyle('yellow'))
+        .tabBar(new SubTabBarStyle('yellow')
+          .labelStyle({
+            overflow: TextOverflow.Clip,
+            maxLines: 10,
+            minFontSize: 10,
+            heightAdaptivePolicy: TextHeightAdaptivePolicy.MAX_LINES_FIRST,
+            font: { size: 16 }
+          }))
 
         TabContent() {
           Column()
@@ -73,7 +94,14 @@ struct TabSample {
             .height('100%')
             .backgroundColor('#E67C92')
         }
-        .tabBar(new SubTabBarStyle('pink'))
+        .tabBar(new SubTabBarStyle('pink')
+          .labelStyle({
+            overflow: TextOverflow.Clip,
+            maxLines: 10,
+            minFontSize: 10,
+            heightAdaptivePolicy: TextHeightAdaptivePolicy.MAX_LINES_FIRST,
+            font: { size: 16 }
+          }))
       }
       .vertical(this.vertical)
       .barMode(BarMode.Fixed)
@@ -81,8 +109,6 @@ struct TabSample {
       .height(300)
       .padding({ left: LEFT_PADDING, right: RIGHT_PADDING })
       .margin({ bottom: 20 })
-
-
       .flexGrow(0)
 
       Scroll() {

@@ -97,7 +97,6 @@ struct TabSample {
         this.currentIndex = index
       })
       .padding({ left: LEFT_PADDING, right: RIGHT_PADDING })
-
       .flexGrow(0)
 
       Scroll() {

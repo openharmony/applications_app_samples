@@ -56,7 +56,7 @@ struct GridItemSample {
       Column() {
         Grid() {
           ForEach(this.itemsText, (item, index) => {
-            if (index == 0) {
+            if (index === 0) {
               GridItem() {
                 Text(item)
                   .itemStyle()

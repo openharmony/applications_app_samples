@@ -68,7 +68,7 @@ struct SwiperSample {
       // component
       Swiper(this.controller) {
         ForEach(this.data, (item: number, index) => {
-          if (index % 2 == 0) {
+          if (index % 2 === 0) {
             Text(item.toString())
               .swiperItemStyle($r('app.color.background_orange'))
           } else {

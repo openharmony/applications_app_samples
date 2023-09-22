@@ -20,7 +20,7 @@ import { LEFT_PADDING, RIGHT_PADDING } from '../../ComponentData';
 @Component
 struct NavigationSample {
   @State active: boolean = false
-  private Text: object = {message : 'hello! 这是第一个页面传过来的参数'}
+  private Text: object = {message : $r('app.string.navigator_return_message')}
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start}) {

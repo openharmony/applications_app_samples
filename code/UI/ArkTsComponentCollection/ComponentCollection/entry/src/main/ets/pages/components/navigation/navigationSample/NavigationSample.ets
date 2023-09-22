@@ -72,11 +72,11 @@ struct NavigationSample {
     Row() {
       ForEach(this.Build, item => {
         Column() {
-          Image(this.currentIndex == item.num ? $r('app.media.icon') : $r('app.media.ic_pen'))
+          Image(this.currentIndex === item.num ? $r('app.media.icon') : $r('app.media.ic_pen'))
             .width(24)
             .height(24)
           Text(item.text)
-            .fontColor(this.currentIndex == item.num ? '#007DFF' : '#182431')
+            .fontColor(this.currentIndex === item.num ? '#007DFF' : '#182431')
             .fontSize(10)
             .lineHeight(14)
             .fontWeight(500)

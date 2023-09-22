@@ -21,7 +21,7 @@ import { LEFT_PADDING, RIGHT_PADDING } from '../../ComponentData';
 @Component
 struct DetailExample {
   // 接收Navigator.ets的传参
-  private text: any = router.getParams()['text']
+  private text:string = router.getParams()['text']
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {

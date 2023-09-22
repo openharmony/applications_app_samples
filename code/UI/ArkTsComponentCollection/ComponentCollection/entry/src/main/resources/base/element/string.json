@@ -5391,6 +5391,10 @@
     {
       "name": "navigator_third_page_back",
       "value": "Go back to the first page"
+    },
+    {
+      "name": "navigator_return_message",
+      "value": "hello! This is a param form the first page"
     }
   ]
 }
