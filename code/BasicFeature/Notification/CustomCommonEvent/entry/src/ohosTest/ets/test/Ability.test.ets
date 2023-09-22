@@ -21,6 +21,7 @@ import historyFeature from '../../../main/ets/feature/HistoryFeature';
 import { logger } from '../util/Logger';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import Base from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
 
 const TAG = '[Sample_CustomCommonEvent]';
 const BUNDLE = 'CustomCommonEvent_';
@@ -37,11 +38,11 @@ export default function abilityTest() {
     it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}StartAbility_001 begin`)
       let delegator: AbilityDelegatorRegistry.AbilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-      class want {
-        bundleName: string = "com.samples.customcommonevent"
-        abilityName: string = "LauncherAbility"
+      let want: Want = {
+        bundleName: "com.samples.customcommonevent",
+        abilityName: "LauncherAbility"
       }
-      delegator.startAbility(new want(), (err: Base.BusinessError) => {
+      delegator.startAbility(want, (err: Base.BusinessError) => {
         logger.info(TAG, `${BUNDLE}startAbility end err ${JSON.stringify(err)}`);
       })
       await driver.delayMs(1000);
@@ -105,7 +106,7 @@ export default function abilityTest() {
       let jumpToHistory = await driver.findComponent(ON.id('jumpToHistory'));
       await jumpToHistory.click();
       await driver.delayMs(1000);
-      if(ability){
+      if (ability) {
         let feature: historyFeature = new historyFeature(ability.context);
         let recorderArray = await feature.getData().then((data: Array<Array<string>>) => {
           return data;

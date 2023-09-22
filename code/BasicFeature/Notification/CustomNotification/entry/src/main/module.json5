@@ -17,7 +17,7 @@
   "module": {
     "name": "entry",
     "type": "entry",
-    "srcEntrance": "./ets/Application/MyAbilityStage.ts",
+    "srcEntrance": "./ets/Application/MyAbilityStage.ets",
     "description": "$string:entry_desc",
     "mainElement": "MainAbility",
     "deviceTypes": [
@@ -36,7 +36,7 @@
     "abilities": [
       {
         "name": "MainAbility",
-        "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+        "srcEntrance": "./ets/MainAbility/MainAbility.ets",
         "description": "$string:mainAbility_desc",
         "icon": "$media:icon",
         "label": "$string:mainAbility_label",

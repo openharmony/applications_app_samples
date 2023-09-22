@@ -25,7 +25,7 @@ class WantAgentUtil {
    * @return return the created WantAgent object.
    */
   async createWantAgentForStartAbility(bundleName: string, abilityName: string) {
-    let wantAgentInfo = {
+    let wantAgentInfo: wantAgent.WantAgentInfo = {
       wants: [
         {
           bundleName: bundleName,
@@ -45,7 +45,7 @@ class WantAgentUtil {
    * @return return the created WantAgent object.
    */
   async createWantAgentForCommonEvent(action: string) {
-    let wantAgentInfo = {
+    let wantAgentInfo: wantAgent.WantAgentInfo = {
       wants: [{ action: action }],
       operationType: wantAgent.OperationType.SEND_COMMON_EVENT,
       requestCode: REQUEST_CODE // requestCode是WantAgentInfo的请求码，是使用者定义的一个私有值
