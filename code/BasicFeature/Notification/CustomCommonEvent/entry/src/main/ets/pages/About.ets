@@ -16,13 +16,17 @@
 import consts from '../module/Consts'
 import { Header } from '../component/Header'
 
+class HeaderType {
+  src: string = 'aboutTitle.png'
+}
+
 @Entry
 @Component
 struct About {
   build() {
     Column() {
-      Header({src: 'aboutTitle.png'})
-      Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+      Header(new HeaderType())
+      Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center } as FlexOptions) {
         Image($rawfile('icon.png')).size({ width: 114, height: 114 })
         Text($r('app.string.sample_version')).size({ width: '80%', height: '5%' })
           .fontSize(10)
@@ -32,7 +36,8 @@ struct About {
           .fontSize(16)
           .textAlign(TextAlign.Center)
           .fontColor(0x878980)
-      }.size({ width: '90%', height: '90%' })
+      }.size({ width: '90%', height: '85%' } as SizeOptions)
+      .position({ x: '5%', y: '10%' })
     }.size({ width: '100%', height: '100%' })
     .backgroundImage($rawfile('vbg720.png'))
     .backgroundImageSize(ImageSize.Contain)
