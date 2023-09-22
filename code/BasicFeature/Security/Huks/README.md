@@ -8,6 +8,9 @@ This sample shows how `@ohos.security.huks` works to implement encryption and de
 
 2. Using an old key for message encryption and decryption transmission: Import an old key using HUKS' import key interface to simulate the scenario of encrypting the sent message on the old device and decrypting the received message on the new device.
 
+3. Click the **Minimum Access Control** button on the main page, enter the password to be saved in the input box of the new key interface, and click ** Save password **
+   Button, after entering the PIN code, the encrypted password content will be displayed in the lower text box, and then click ** Read Password ** button, and the decrypted message content will be displayed in the lower text box.
+
 ### Usage
 
 1. Click the **New Key** button on the main page, enter the message content to be sent in the input box of the new key interface, and click **Send Message**
