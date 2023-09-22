@@ -18,8 +18,7 @@ import { notificationManagement } from '@ohos/notification';
 import { notificationUtil } from '@ohos/notification';
 import { TitleBar } from '../components/TitleBar'
 
-// const BUNDLE_NAME: string = 'ohos.samples.customnotification';
-type buttonMsg = {
+interface buttonMsg {
   text: Resource,
   icon: Resource,
   callback?: () => void

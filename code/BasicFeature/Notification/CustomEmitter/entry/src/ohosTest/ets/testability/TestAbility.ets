@@ -13,22 +13,24 @@
  * limitations under the License.
  */
 
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-import UIAbility from '@ohos.app.ability.UIAbility'
-import Window from '@ohos.window'
-import { Hypium } from '@ohos/hypium'
-import testsuite from '../test/List.test'
-import Logger from '../util/Logger'
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Window from '@ohos.window';
+import { Hypium } from '@ohos/hypium';
+import testsuite from '../test/List.test';
+import Logger from '../util/Logger';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 export default class TestAbility extends UIAbility {
-  onCreate(want, launchParam) {
-    Logger.info('TestAbility onCreate')
-    Logger.info('want param:' + JSON.stringify(want) ?? '')
-    Logger.info('launchParam:' + JSON.stringify(launchParam) ?? '')
-    var abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-    var abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
-    Logger.info('start run testcase!!!')
-    Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    Logger.info('TestAbility onCreate');
+    Logger.info('want param:' + JSON.stringify(want) ?? '');
+    Logger.info('launchParam:' + JSON.stringify(launchParam) ?? '');
+    let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+    let abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
+    Logger.info('start run testcase!!!');
+    Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
   }
 
   onDestroy() {
@@ -39,22 +41,22 @@ export default class TestAbility extends UIAbility {
     Logger.info('TestAbility onWindowStageCreate');
     windowStage.loadContent('testability/pages/Index', (err, data) => {
       if (err.code) {
-        Logger.error('Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '')
-        return
+        Logger.error('Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
       }
-      Logger.info('Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '')
+      Logger.info('Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
     })
   }
 
   onWindowStageDestroy() {
-    Logger.info('TestAbility onWindowStageDestroy')
+    Logger.info('TestAbility onWindowStageDestroy');
   }
 
   onForeground() {
-    Logger.info('TestAbility onForeground')
+    Logger.info('TestAbility onForeground');
   }
 
   onBackground() {
-    Logger.info('TestAbility onBackground')
+    Logger.info('TestAbility onBackground');
   }
 }

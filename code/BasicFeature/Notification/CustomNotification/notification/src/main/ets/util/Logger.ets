@@ -29,19 +29,19 @@ class Logger {
     hilog.isLoggable(this.domain, prefix, hilog.LogLevel.ERROR);
   }
 
-  debug(...args: any[]) {
+  debug(...args: Array<string | number | boolean | object | null | undefined>) {
     hilog.debug(this.domain, this.prefix, this.format, args);
   }
 
-  info(...args: any[]) {
+  info(...args: Array<string | number | boolean | object | null | undefined>) {
     hilog.info(this.domain, this.prefix, this.format, args);
   }
 
-  warn(...args: any[]) {
+  warn(...args: Array<string | number | boolean | object | null | undefined>) {
     hilog.warn(this.domain, this.prefix, this.format, args);
   }
 
-  error(...args: any[]) {
+  error(...args: Array<string | number | boolean | object | null | undefined>) {
     hilog.error(this.domain, this.prefix, this.format, args);
   }
 }
