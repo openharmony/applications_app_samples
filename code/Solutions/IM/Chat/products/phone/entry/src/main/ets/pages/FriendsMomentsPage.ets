@@ -292,6 +292,7 @@ async function getFriendMomentByTaskPool(jsonUrl) {
   // 向任务池中添加新对象
   let friendMomentArray: Array<FriendMoment> = await taskpool.execute(task, taskpool.Priority.MEDIUM) as Array<FriendMoment>;
   let momentData: FriendMomentsData = AppStorage.get<FriendMomentsData>('momentData');
+  // 将数组循环写入页面对象中
   for (let i = 0; i < friendMomentArray.length; i++) {
     momentData.pushData(friendMomentArray[i]);
   }
