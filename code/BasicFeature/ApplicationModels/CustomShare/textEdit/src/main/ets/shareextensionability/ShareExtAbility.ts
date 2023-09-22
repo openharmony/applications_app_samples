@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+import ShareExtensionAbility from '@ohos.app.ability.ShareExtensionAbility';
 import Logger from '../model/Logger';
 
-const TAG: string = '[Sample_UIExtensionAbility]';
+const TAG: string = '[Sample_ShareExtensionAbility]';
 
-export default class UiExtAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   storage: LocalStorage;
   message: string;
   onCreate() {
@@ -41,7 +41,7 @@ export default class UiExtAbility extends UIExtensionAbility {
         'session': session,
         'messages': this.message
       });
-    session.loadContent('pages/UIExtenIndex', this.storage);
+    session.loadContent('pages/ShareExtenIndex', this.storage);
   }
 
   onDestroy() {

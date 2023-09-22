@@ -49,12 +49,12 @@
     ],
     "extensionAbilities": [
       {
-        "name": "UIExtAbility",
+        "name": "ShareExtAbility",
         "icon": "$media:icon",
         "description": "UIExtAbility",
-        "type": "ui",
+        "type": "share",
         "visible": true,
-        "srcEntry": "./ets/uiextensionability/UIExtAbility.ts"
+        "srcEntry": "./ets/shareextensionability/ShareExtAbility.ts"
       }
     ]
   }
