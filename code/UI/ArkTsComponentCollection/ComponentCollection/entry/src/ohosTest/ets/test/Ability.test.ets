@@ -326,7 +326,7 @@ export default function abilityTest() {
         await driver.assertComponentExist(ON.id('datePicker'));
         let datePicker = await driver.findComponent(ON.id('datePicker'));
         let point = await datePicker.getBoundsCenter();
-        await driver.swipe(point.x - 20, point.y + 20, point.x - 20, point.y - 20);
+        await driver.swipe(point.x - 20, point.y + 20, point.x - 20, point.y - 40);
         await driver.delayMs(DELAY_TIME);
         await driver.assertComponentExist(ON.id('dateValue'));
         let dateValue = await driver.findComponent(ON.id('dateValue'));
@@ -337,7 +337,7 @@ export default function abilityTest() {
         await driver.delayMs(DELAY_TIME);
         // 使时间计时器上滑6次
         for (let i = 0; i < 6; i++) {
-          await driver.swipe(point.x - 20, point.y + 20, point.x - 20, point.y - 20);
+          await driver.swipe(point.x - 20, point.y + 20, point.x - 20, point.y - 40);
           await driver.delayMs(1000);
         }
         if (await dateValue.getText() !== '2023-05-28') {
@@ -3991,13 +3991,14 @@ export default function abilityTest() {
         // 进入页面
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.component_transition')));
         // 点击显示
-        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.component_transition_show')));
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.component_transition_hide')));
         await driver.delayMs(DELAY_TIME);
         // 点击隐藏
-        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.component_transition_hide')));
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.component_transition_show')));
         await driver.delayMs(DELAY_TIME);
         // 返回
         await checkButtonAndClickWithID('backBtn');
+
         await driver.delayMs(DELAY_TIME);
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.transition_animation')));
         Logger.info(BUNDLE + testName + ' end');
