@@ -13,8 +13,14 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
+import router from '@ohos.router';
 
+export class Flag {
+  public  static value : number = 0;
+  public  static set(v : number): void {
+    Flag.value = v;
+  }
+}
 @Entry
 @Component
 struct Index {
@@ -50,6 +56,7 @@ struct Index {
                   .margin({ bottom: 16 })
                   .backgroundColor('#007DFF')
                   .onClick(() => {
+                    Flag.set(1);
                     router.pushUrl({
                       url: 'pages/SelectPage',
                       params: {
@@ -71,6 +78,7 @@ struct Index {
                   .height('40vp')
                   .backgroundColor('#007DFF')
                   .onClick(() => {
+                    Flag.set(2);
                     router.pushUrl({
                       url: 'pages/SelectPage',
                       params: {
@@ -93,6 +101,7 @@ struct Index {
                   .height('40vp')
                   .backgroundColor('#007DFF')
                   .onClick(() => {
+                    Flag.set(3);
                     router.pushUrl({
                       url: 'pages/SelectPage',
                       params: {

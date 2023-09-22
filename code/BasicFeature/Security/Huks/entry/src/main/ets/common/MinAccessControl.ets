@@ -24,7 +24,7 @@ export struct MinAccessControl {
   @State cipherTextinfo: string = ''
   @State plainTextinfo: string = ''
   @State inputPassword: string = ''
-  private huksModel: HuksModel = new HuksModel()
+  huksModel: HuksModel = new HuksModel()
 
   build() {
     Stack({ alignContent: Alignment.Center }) {

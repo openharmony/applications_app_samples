@@ -17,13 +17,12 @@ import router from '@ohos.router'
 import { NewKey } from '../common/NewKey'
 import { OldKey } from '../common/OldKey'
 import { MinAccessControl } from  '../common/MinAccessControl'
-import Logger from '../model/Logger'
+import { Flag } from '../pages/Index'
 
 @Entry
 @Component
 struct SelectPage {
-  @State Params: number = router.getParams()['flag']
-
+  @State Params: number = Flag.value;
   @Builder NavigationTitle() {
     Column() {
     }

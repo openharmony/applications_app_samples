@@ -86,8 +86,7 @@ export struct NewKey {
                   this.plainTextinfo = `${result}`
                 })
               }
-            }
-            )
+            })
         }
 
         Text(this.plainTextinfo)

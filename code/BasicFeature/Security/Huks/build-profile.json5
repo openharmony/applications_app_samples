@@ -15,27 +15,13 @@
 
 {
   "app": {
-    "signingConfigs": [
-      {
-        "name": "default",
-        "type": "OpenHarmony",
-        "material": {
-          "certpath": "C:\\Users\\zhangtuo\\.ohos\\config\\auto_debug_Huks_com.samples.huks_420086000109188119.cer",
-          "storePassword": "0000001BFCE41ABFCB47D05A8810EB339FB7B10BA149585336399C68236F5DB64C1D627C9674C00B46D7E3",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001BA0F3E9B4A6A399DA5627B55C38C40B1E56EE3F480078CF3C67213A19A3FCA4A28942F0AD000CE1",
-          "profile": "C:\\Users\\zhangtuo\\.ohos\\config\\auto_debug_Huks_com.samples.huks_420086000109188119.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\zhangtuo\\.ohos\\config\\auto_debug_Huks_com.samples.huks_420086000109188119.p12"
-        }
-      }
-    ],
+    "signingConfigs": [],
     "compileSdkVersion": 10,
     "compatibleSdkVersion": 10,
     "products": [
       {
         "name": "default",
-        "signingConfig": "default",
+        "signingConfig": "debug_default"
       }
     ]
   },
