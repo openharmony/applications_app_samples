@@ -15,6 +15,7 @@
 
 import notification from '@ohos.notificationManager';
 import { logger } from '../util/Logger';
+import Base from '@ohos.base';
 
 const BUNDLE_NAME: string = 'com.example.CustomNotificationPush';
 
@@ -33,7 +34,7 @@ class NotificationFilterUtil {
 
   constructor() {
     this.disableContentTypes.fill(false);
-    let bundle = {
+    let bundle: notification.BundleOption = {
       bundle: BUNDLE_NAME,
     };
     notification.setNotificationEnable(bundle, true).then(() => {
@@ -48,7 +49,7 @@ class NotificationFilterUtil {
         notification.on("checkNotification", this.OnCheckNotification);
         this.disableContentTypes.fill(false);
       } catch (error) {
-        logger.error(`notificationManager.on error: ${JSON.stringify(error)}`);
+        logger.error(`notificationManager.on error: ${JSON.stringify(error as Base.BusinessError)}`);
       }
       logger.info("notificationFilter enable success");
     }
@@ -56,7 +57,7 @@ class NotificationFilterUtil {
       try {
         notification.off("checkNotification");
       } catch (error) {
-        logger.error(`notificationManager.off error: ${JSON.stringify(error)}`);
+        logger.error(`notificationManager.off error: ${JSON.stringify(error as Base.BusinessError)}`);
       }
       logger.info("notificationFilter disable success");
     }
@@ -71,9 +72,11 @@ class NotificationFilterUtil {
   OnCheckNotification = (info: notification.NotificationCheckInfo) => {
     logger.info(`OnCheckNotification info: ${JSON.stringify(info.contentType)}`);
     if (this.disableContentTypes[info.contentType] === false) {
-      return { code: 0, message: "Notification send success" };
+      let result: notification.NotificationCheckResult = { code: 0, message: "Notification send success" };
+      return result;
     } else {
-      return { code: 1, message: "Notification send fail" };
+      let result: notification.NotificationCheckResult = { code: 1, message: "Notification send fail" };
+      return result;
     }
   }
 }
