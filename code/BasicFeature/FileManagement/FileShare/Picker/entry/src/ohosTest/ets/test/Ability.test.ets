@@ -14,7 +14,7 @@
  */
 import hilog from '@ohos.hilog';
 import { describe, it, expect } from '@ohos/hypium';
-import { Driver, ON} from '@ohos.UiTest';
+import { Driver, ON } from '@ohos.UiTest';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
 const TAG = '[Sample_Picker]';
@@ -202,9 +202,9 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text(confirm));
       await driver.delayMs(2000);
       // 使用text找到组件后点击不生效，因此采用坐标
-      await driver.click(511, 1040); // 新建文件夹-点击确定图标
+      await driver.click(511, 610); // 新建文件夹-点击确定图标
       await driver.delayMs(2000);
-      await driver.click(655, 110); //新建文件并保存-点击保存图标
+      await driver.click(650, 116); // 新建文件并保存-点击保存图标
       await driver.delayMs(500);
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'NewFileFunction_001 end');
@@ -265,9 +265,9 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text(confirm));
       await driver.delayMs(2000);
       // 使用text找到组件后点击不生效，因此采用坐标
-      await driver.click(511, 1040); // 新建文件夹-点击确定图标
+      await driver.click(511, 610); // 新建文件夹-点击确定图标
       await driver.delayMs(2000);
-      await driver.click(655, 110); //新建文件并保存-点击保存图标
+      await driver.click(650, 116); // 新建文件并保存-点击保存图标
       await driver.delayMs(1000);
       await driver.pressBack();
       await driver.delayMs(1000);
