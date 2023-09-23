@@ -1,6 +1,26 @@
 {
   "color": [
     {
+      "name": "title_font_color",
+      "value": "#182431"
+    },
+    {
+      "name": "friends_page_search_border_color",
+      "value": "#33182431"
+    },
+    {
+      "name": "friends_page_search_icon_color",
+      "value": "#007DFF"
+    },
+    {
+      "name": "friends_page_background",
+      "value": "#ffffff"
+    },
+    {
+      "name": "friends_page_divider_color",
+      "value": "#0c000000"
+    },
+    {
       "name": "start_window_background",
       "value": "#FFFFFF"
     },
@@ -26,7 +46,11 @@
     },
     {
       "name": "setting_text_color",
-      "value": "#182431"
+      "value": "#99182431"
+    },
+    {
+      "name": "setting_divider_color",
+      "value": "#0c000000"
     },
     {
       "name": "discover_page_background",
@@ -70,7 +94,7 @@
     },
     {
       "name": "top_bar_background_color",
-      "value": "#eeeeee"
+      "value": "#ffffff"
     },
     {
       "name": "discovery_bar_title_color",
@@ -83,6 +107,38 @@
     {
       "name": "tab_bar_separator_line_color",
       "value": "#182431"
+    },
+    {
+      "name": "top_bar_font_color",
+      "value": "#182431"
+    },
+    {
+      "name": "ic_album",
+      "value": "#31D25D"
+    },
+    {
+      "name": "ic_collect",
+      "value": "#F9C541"
+    },
+    {
+      "name": "ic_wallet",
+      "value": "#FA6400"
+    },
+    {
+      "name": "ic_cards",
+      "value": "#FA6400"
+    },
+    {
+      "name": "ic_emoji",
+      "value": "#F9A035"
+    },
+    {
+      "name": "ic_settings",
+      "value": "#007DFF"
+    },
+    {
+      "name": "ic_record",
+      "value": "#2D3DDF"
     }
   ]
 }

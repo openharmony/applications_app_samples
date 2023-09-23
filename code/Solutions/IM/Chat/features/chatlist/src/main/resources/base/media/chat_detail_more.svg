@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="15px" viewBox="0 0 16 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>more</title>
+    <defs>
+        <path d="M1.75,11 C2.71649831,11 3.5,11.7835017 3.5,12.75 C3.5,13.7164983 2.71649831,14.5 1.75,14.5 C0.783501688,14.5 0,13.7164983 0,12.75 C0,11.7835017 0.783501688,11 1.75,11 Z M13.25,11 C14.2164983,11 15,11.7835017 15,12.75 C15,13.7164983 14.2164983,14.5 13.25,14.5 C12.2835017,14.5 11.5,13.7164983 11.5,12.75 C11.5,11.7835017 12.2835017,11 13.25,11 Z M1.75,0 C2.71649831,0 3.5,0.783501688 3.5,1.75 C3.5,2.71649831 2.71649831,3.5 1.75,3.5 C0.783501688,3.5 0,2.71649831 0,1.75 C0,0.783501688 0.783501688,0 1.75,0 Z M13.25,0 C14.2164983,0 15,0.783501688 15,1.75 C15,2.71649831 14.2164983,3.5 13.25,3.5 C12.2835017,3.5 11.5,2.71649831 11.5,1.75 C11.5,0.783501688 12.2835017,0 13.25,0 Z" id="path-1"></path>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="聊天" transform="translate(-316.000000, -44.000000)">
+            <g id="AppBar/Regular/basic+actions" transform="translate(24.000000, 37.000000)">
+                <g id="AppBar/Port/Item/Extendable/action-area/ic_2" transform="translate(192.000000, 3.000000)">
+                    <g id="ic/public/add" transform="translate(96.000000, 0.000000)">
+                        <g id="symbol/frame/symbol_grid24-copy"></g>
+                        <g id="四筒" transform="translate(4.500000, 4.500000)">
+                            <mask id="mask-2" fill="white">
+                                <use xlink:href="#path-1"></use>
+                            </mask>
+                            <use id="形状结合" fill="#000000" xlink:href="#path-1"></use>
+                            <rect id="color/#000000" fill="#182431" mask="url(#mask-2)" x="-4.5" y="-4.75" width="24" height="24"></rect>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

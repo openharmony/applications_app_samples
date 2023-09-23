@@ -26,6 +26,8 @@ const ABOUT_TO_APPEAR_TRACE: string = 'FriendsPage_AboutToAppear_HiTrace';
 const ABOUT_TO_APPEAR_TRACE_ID: number = 1; // aboutToAppear 中使用的 taskId
 const MAKE_LOCAL_DATA_TRACE: string = 'FriendsPage_MakeLocalData_HiTrace';
 const MAKE_LOCAL_DATA_TRACE_ID: number = 2; // makeDataLocal 中使用的 taskId
+const LAYOUT_WEIGHT: number = 1; // 自动分配剩余空间
+const LIST_SPACE: number = 11; // 列表默认间隔
 
 @Entry
 @Component
@@ -36,74 +38,60 @@ struct FriendsMomentsPage {
 
   build() {
     Column() {
+      Row() {
+        Image($r('app.media.ic_back'))
+          .height($r('app.integer.friendMomentsPage_title_icon_width'))
+          .width($r('app.integer.friendMomentsPage_title_icon_height'))
+          .objectFit(ImageFit.Contain)
+          .onClick(() => {
+            router.back()
+          })
+          .syncLoad(true)
+
+        Text($r('app.string.circle'))
+          .fontSize($r('app.integer.friendMomentsPage_title_fontSize'))
+          .fontColor($r('app.color.title_font_color'))
+          .fontWeight(FontWeight.Bold)
+          .margin({ left: $r('app.integer.friendMomentsPage_title_margin_left') })
+          .fontFamily($r('app.string.harmony_hei_ti'))
+          .lineHeight($r('app.integer.friendMomentsPage_title_line_height'))
+          .layoutWeight(LAYOUT_WEIGHT)
+        Image($r('app.media.camera'))
+          .height($r('app.integer.friendMomentsPage_title_icon_height'))
+          .width($r('app.integer.friendMomentsPage_title_icon_width'))
+          .objectFit(ImageFit.Contain)
+      }
+      .alignItems(VerticalAlign.Center)
+      .height($r('app.integer.friendMomentsPage_title_height'))
+      .width($r('app.string.layout_100'))
+      .padding({
+        left: $r('app.integer.friendMomentsPage_title_padding_left'),
+        right: $r('app.integer.friendMomentsPage_title_padding_right'),
+        top: $r('app.integer.friendMomentsPage_title_padding_top'),
+        bottom: $r('app.integer.friendMomentsPage_title_padding_bottom')
+      })
+
       Column() {
-        Row() {
-          Image($r('app.media.icon_friend_moment_back'))
-            .height($r('app.integer.friendMomentsPage_background_width'))
-            .width($r('app.integer.friendMomentsPage_background_height'))
-            .onClick(() => {
-              router.back()
-            }).syncLoad(true)
-          Text($r('app.string.circle'))
-            .fontSize($r('app.integer.friendMomentsPage_title_fontSize'))
-            .fontColor(Color.White)
-          Image($r('app.media.icon_talk'))
-            .height($r('app.integer.friendMomentsPage_background_height'))
-            .width($r('app.integer.friendMomentsPage_background_width'))
-        }
-        .backgroundColor(Color.Black)
-        .justifyContent(FlexAlign.SpaceBetween)
-        .height($r('app.integer.friendMomentsPage_title_height'))
-        .width($r('app.string.layout_100'))
-        .padding({
-          left: $r('app.integer.friendMomentsPage_title_padding_left'),
-          right: $r('app.integer.friendMomentsPage_title_padding_right')
-        })
-
-        Column() {
-          List() {
+        List({ space: LIST_SPACE }) {
+          LazyForEach(this.momentData, (moment: FriendMoment) => {
             ListItem() {
-              Column() {
-                Row() {
-                  Image($r("app.media.user_bg"))
-                }
-                .height($r('app.string.layout_100'))
-                .width($r('app.string.layout_100'))
-
-                Row() {
-                  Text($r('app.string.myself'))
-                    .fontSize($r('app.integer.friendMomentsPage_name_fontSize'))
-                    .fontColor(Color.White)
-                    .margin({
-                      top: $r('app.integer.friendMomentsPage_name_margin_left'),
-                      right: $r('app.integer.friendMomentsPage_name_margin_right')
-                    })
-                  Image($r('app.media.head_image'))
-                    .height($r('app.integer.layout_50'))
-                    .width($r('app.integer.layout_50'))
-                }
-                .margin({ top: $r('app.integer.layout_minus_25') })
-              }
-              .margin({ bottom: $r('app.integer.friendMomentsPage_owner_margin_bottom') })
-              .alignItems(HorizontalAlign.End)
-              .height($r('app.string.friendMomentsPage_owner_margin_height'))
+              OneMoment({ moment: moment })
             }
-
-            LazyForEach(this.momentData, (moment: FriendMoment) => {
-              ListItem() {
-                OneMoment({ moment: moment })
-              }
-            }, (moment: FriendMoment) => moment.id)
-          }
-          .cachedCount(this.cachedCountNumber)
-          .width($r('app.string.layout_100'))
-          .height($r('app.string.layout_100'))
-          .listDirection(Axis.Vertical)
+          }, (moment: FriendMoment) => moment.id)
         }
+        .cachedCount(this.cachedCountNumber)
+        .width($r('app.string.layout_100'))
         .height($r('app.string.layout_100'))
+        .listDirection(Axis.Vertical)
+        .divider({
+          strokeWidth: $r('app.integer.friends_page_divider_width'),
+          color: $r('app.color.friends_page_divider_color'),
+          startMargin: $r('app.integer.friendMomentsPage_list_divider_margin'),
+          endMargin: $r('app.integer.friendMomentsPage_list_divider_margin')
+        })
       }
       .height($r('app.string.layout_100'))
-      .padding({ bottom: $r('app.integer.friendMomentsPage_layout_padding_bottom') })
+      .layoutWeight(LAYOUT_WEIGHT)
     }
     .height($r('app.string.layout_100'))
     .width($r('app.string.layout_100'))
@@ -127,7 +115,7 @@ struct FriendsMomentsPage {
         this.momentData.pushData(friendMomentObj[i]);
       }
     } else {
-      Logger.info(TAG, "makeLocalData get JSON error");
+      Logger.info(TAG, 'makeLocalData get JSON error');
     }
     hiTraceMeter.finishTrace(MAKE_LOCAL_DATA_TRACE, MAKE_LOCAL_DATA_TRACE_ID);
   }
@@ -137,27 +125,47 @@ struct FriendsMomentsPage {
 struct OneMoment {
   private moment: FriendMoment = new FriendMoment('', new ChatContact('', ''), '', '', [], '', '');
   @State imageListMinLength: number = 2;
+  @State liked: boolean = false // 是否点赞
 
   build() {
-    Row() {
+    Column() {
       Row() {
         Image(this.moment.user.userImage)
           .autoResize(false)
-          .borderRadius($r('app.integer.friendMomentsPage_useImage_radius'))
+          .width($r('app.integer.friendMomentsPage_user_image_width'))
+          .height($r('app.integer.friendMomentsPage_user_image_height'))
+          .borderRadius($r('app.integer.friendMomentsPage_user_image_border_radius'))
+        Column() {
+          Text(this.moment.user.userName)
+            .fontSize($r('app.integer.friendMomentsPage_useName_fontSize'))
+            .fontColor($r('app.color.title_font_color'))
+            .lineHeight($r('app.integer.friendMomentsPage_useName_line_height'))
+            .fontFamily($r('app.string.harmony_hei_ti'))
+            .fontWeight(FontWeight.Medium)
+          Text(this.moment.text)
+            .fontSize($r('app.integer.friendMomentsPage_userText_fontSize'))
+            .fontColor($r('app.color.title_font_color'))
+            .lineHeight($r('app.integer.friendMomentsPage_userText_line_height'))
+            .opacity($r('app.float.opacity_zero_point_six'))
+            .margin({ top: $r('app.integer.friendMomentsPage_userText_margin_top') })
+        }
+        .margin({ left: $r('app.integer.friendMomentsPage_user_col_margin_left') })
+        .layoutWeight(LAYOUT_WEIGHT)
+        .alignItems(HorizontalAlign.Start)
       }
-      .width($r('app.integer.friendMomentsPage_oneMoment_width'))
-      .height($r('app.integer.friendMomentsPage_oneMoment_height'))
+      .width($r('app.string.layout_100'))
+      .constraintSize({ minHeight: $r('app.integer.friendMomentsPage_oneMoment_height') })
+      .padding({
+        left: $r('app.integer.friendMomentsPage_row_padding_left'),
+        right: $r('app.integer.friendMomentsPage_row_padding_right'),
+        top: $r('app.integer.friendMomentsPage_row_padding_top'),
+        bottom: $r('app.integer.friendMomentsPage_row_padding_bottom')
+      })
 
       Column() {
-        Text(this.moment.user.userName)
-          .fontSize($r('app.integer.friendMomentsPage_useName_fontSize'))
-          .fontColor(Color.Black)
-        Text(this.moment.text)
-          .fontSize($r('app.integer.friendMomentsPage_userText_fontSize'))
-          .fontColor(Color.Black)
         if (this.moment.imageList.length) {
-          Grid() {
-            if (this.moment.imageList.length >= this.imageListMinLength) {
+          if (this.moment.imageList.length >= this.imageListMinLength) {
+            Grid() {
               ForEach(this.moment.imageList, (image: string, index?: number) => {
                 GridItem() {
                   Image(image)
@@ -177,82 +185,95 @@ struct OneMoment {
                 }
               }, (image: string) => image)
             }
-            else {
-              GridItem() {
-                Image(this.moment.imageList[0])
-                  .width($r('app.integer.friendMomentsPage_single_image_width'))
-                  .height($r('app.integer.friendMomentsPage_single_image_height'))
-                  .borderRadius($r('app.integer.friendMomentsPage_single_image_radius'))
-                  .onClick(() => {
-                    router.pushUrl({
-                      url: 'pages/FullImagePage',
-                      params: {
-                        resourceStr: this.moment.imageList[0],
-                        isMedia: false
-                      }
-                    })
-                  })
-              }
-            }
+            .columnsTemplate('1fr 1fr 1fr')
+            .rowsTemplate('1fr 1fr 1fr')
+            .columnsGap($r('app.integer.friendMomentsPage_grid_gap'))
+            .rowsGap($r('app.integer.friendMomentsPage_grid_gap'))
+            .height($r('app.integer.friendMomentsPage_grid_width'))
+            .width($r('app.integer.friendMomentsPage_grid_height'))
           }
-          .columnsTemplate('1fr 1fr 1fr')
-          .rowsTemplate('1fr 1fr 1fr')
-          .columnsGap($r('app.integer.layout_1'))
-          .rowsGap($r('app.integer.layout_1'))
-          .height($r('app.integer.layout_250'))
-          .width($r('app.integer.layout_250'))
+          else {
+            Image(this.moment.imageList[0])
+              .width($r('app.integer.friendMomentsPage_single_image_width'))
+              .height($r('app.integer.friendMomentsPage_single_image_height'))
+              .borderRadius($r('app.integer.friendMomentsPage_single_image_radius'))
+              .onClick(() => {
+                router.pushUrl({
+                  url: 'pages/FullImagePage',
+                  params: {
+                    resourceStr: this.moment.imageList[0],
+                    isMedia: false
+                  }
+                })
+              })
+          }
         }
         else {
-          Grid() {
-            GridItem() {
-              Stack({ alignContent: Alignment.Center }) {
-                Image(this.moment.mediaPreview)
-                  .width($r('app.integer.friendMomentsPage_single_video_width'))
-                  .height($r('app.integer.friendMomentsPage_single_video_height'))
-                  .borderRadius($r('app.integer.friendMomentsPage_single_video_radius'))
-                  .onClick(() => {
-                    router.pushUrl({
-                      url: 'pages/FullImagePage',
-                      params: {
-                        resourceUrl: this.moment.media,
-                        isMedia: true
-                      }
-                    })
-                  })
-                Image($r('app.media.ic_public_play_norm'))
-                  .width($r('app.integer.friendMomentsPage_image_width'))
-                  .height($r('app.integer.friendMomentsPage_image_height'))
-              }
+          Stack({ alignContent: Alignment.Center }) {
+            Image(this.moment.mediaPreview)
               .width($r('app.integer.friendMomentsPage_single_video_width'))
               .height($r('app.integer.friendMomentsPage_single_video_height'))
-            }
+              .borderRadius($r('app.integer.friendMomentsPage_single_video_radius'))
+              .onClick(() => {
+                router.pushUrl({
+                  url: 'pages/FullImagePage',
+                  params: {
+                    resourceUrl: this.moment.media,
+                    isMedia: true
+                  }
+                })
+
+              })
+            Image($r('app.media.play'))
+              .width($r('app.integer.friendMomentsPage_icon_play_width'))
+              .height($r('app.integer.friendMomentsPage_icon_play_height'))
           }
-          .columnsTemplate('1fr 1fr 1fr')
-          .rowsTemplate('1fr 1fr 1fr')
-          .columnsGap($r('app.integer.layout_1'))
-          .rowsGap($r('app.integer.layout_1'))
-          .height($r('app.integer.layout_250'))
-          .width($r('app.integer.layout_250'))
+          .width($r('app.integer.friendMomentsPage_single_video_width'))
+          .height($r('app.integer.friendMomentsPage_single_video_height'))
+
         }
-        Row() {
-          Text(this.moment.time).fontColor("#e3e3e3").fontSize($r('app.integer.friendMomentsPage_time_fontSize'))
-          Image($r('app.media.afr'))
-            .height($r('app.integer.friendMomentsPage_time_height'))
-            .width($r('app.integer.friendMomentsPage_time_width'))
-        }
-        .justifyContent(FlexAlign.SpaceBetween)
-        .width($r('app.string.layout_100'))
-        .margin({ top: $r('app.integer.friendMomentsPage_row_margin_top') })
-        .padding({ right: $r('app.integer.friendMomentsPage_row_padding_right') })
       }
       .alignItems(HorizontalAlign.Start)
       .width($r('app.string.layout_100'))
-      .margin({ left: $r('app.integer.friendMomentsPage_col_margin_left') })
+      .padding({
+        left: $r('app.integer.friendMomentsPage_image_group_padding_left'),
+        right: $r('app.integer.friendMomentsPage_image_group_padding_right')
+      })
+
+      Row() {
+        Row() {
+          MomentHandler({
+            imageStr: $r('app.media.ic_share'),
+            text: $r('app.string.friendMomentsPage_share')
+          })
+          MomentHandler({
+            imageStr: this.liked ? $r('app.media.ic_thumbsup_pre') : $r('app.media.ic_thumbsup'),
+            text: $r('app.string.friendMomentsPage_thumbsup')
+          })
+            .margin({ left: $r('app.integer.friendMomentsPage_thumbsup_margin_left') })
+            .onClick(() => {
+              this.liked = !this.liked
+            })
+          MomentHandler({
+            imageStr: $r('app.media.ic_message'),
+            text: $r('app.string.friendMomentsPage_message')
+          })
+            .margin({ left: $r('app.integer.friendMomentsPage_message_margin_left') })
+        }
+      }
+      .justifyContent(FlexAlign.SpaceBetween)
+      .width($r('app.string.layout_100'))
+      .margin({
+        top: $r('app.integer.friendMomentsPage_handler_margin_top'),
+        bottom: $r('app.integer.friendMomentsPage_handler_margin_bottom')
+      })
+      .padding({
+        left: $r('app.integer.friendMomentsPage_handler_padding_left'),
+        right: $r('app.integer.friendMomentsPage_handler_padding_right')
+      })
+
     }
-    .justifyContent(FlexAlign.Start)
-    .margin({ left: $r('app.integer.friendMomentsPage_col_margin_left') })
-    .padding({ right: $r('app.integer.friendMomentsPage_col_padding_right') })
-    .alignItems(VerticalAlign.Top)
+    .width($r('app.string.layout_100'))
   }
 }
 
@@ -331,4 +352,27 @@ async function getFriendMomentObj(friendMomentStr: string): Promise<Array<Friend
   }
   Logger.info('getFriendMomentObj onMessage end');
   return friendMomentBuckets;
+}
+
+@Component
+struct MomentHandler {
+  @Prop imageStr: Resource = $r('app.media.ic_share')
+  private text: string | Resource = ''
+
+  build() {
+    Row() {
+      Image(this.imageStr)
+        .height($r('app.integer.friendMomentsPage_handler_icon_height'))
+        .width($r('app.integer.friendMomentsPage_handler_icon_width'))
+        .objectFit(ImageFit.Contain)
+        .autoResize(false)
+      Text(this.text)
+        .fontSize($r('app.integer.friendMomentsPage_handler_text_font_size'))
+        .fontColor($r('app.color.title_font_color'))
+        .fontFamily($r('app.string.harmony_hei_ti'))
+        .opacity($r('app.float.opacity_zero_point_six'))
+        .margin({ left: $r('app.integer.layout_5') })
+    }
+    .alignItems(VerticalAlign.Center)
+  }
 }

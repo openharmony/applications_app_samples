@@ -22,12 +22,14 @@ import Logger from '@ohos/chatlist/src/main/ets/utils/Logger';
 import hiTraceMeter from '@ohos.hiTraceMeter';
 
 const TAG: string = 'entry_FriendsPage';
-const LIST_SPACE: number = 2;
+const LIST_SPACE: number = 0; // 列表默认间隔
+const LAYOUT_WEIGHT: number = 1; // 自动分配剩余空间
 const LIST_INITIAL_INDEX: number = 0;
 const ABOUT_TO_APPEAR_TRACE: string = 'FriendsPage_AboutToAppear_HiTrace';
 const ABOUT_TO_APPEAR_TRACE_ID: number = 1; // aboutToAppear 中使用的 taskId
 const MAKE_DATA_LOCAL_TRACE: string = 'FriendsPage_MakeDataLocal_HiTrace';
-const MAKE_DATA_LOCAL_TRACE_ID:number = 2; // makeDataLocal 中使用的 taskId
+const MAKE_DATA_LOCAL_TRACE_ID: number = 2; // makeDataLocal 中使用的 taskId
+const ID_SEARCH: string = "search"; // 搜索框中搜索栏的ID
 
 class FriendsPageItemType {
   image: string | Resource = ''
@@ -37,74 +39,103 @@ class FriendsPageItemType {
 /**
  * 通讯录页面组件
  */
+@Preview
 @Component
 export struct FriendsPage {
   @State friendsListLength: number = 0;
   private friendsListData: FriendListData = new FriendListData();
   private friendsPageItem: FriendsPageItemType[] = [
-    { image: $r('app.media.icon_addfriend'), text: $r('app.string.new_friend') },
-    { image: $r('app.media.icon_group'), text: $r('app.string.group') },
-    { image: $r('app.media.chat_home'), text: $r('app.string.only_chat') },
-    { image: $r('app.media.label'), text: $r('app.string.label') },
-    { image: $r('app.media.public'), text: $r('app.string.official_account') },
-    { image: $r('app.media.icon_public'), text: $r('app.string.subscription') },
-    { image: $r('app.media.empresa'), text: $r('app.string.enterprise') }];
+    { image: $r("app.media.new_friend"), text: $r('app.string.new_friend') },
+    { image: $r("app.media.group"), text: $r('app.string.group') },
+    { image: $r("app.media.chat_only"), text: $r('app.string.only_chat') },
+    { image: $r("app.media.label"), text: $r('app.string.label') },
+    { image: $r("app.media.official_account"), text: $r('app.string.official_account') },
+    { image: $r("app.media.subscription"), text: $r('app.string.subscription') },
+    { image: $r("app.media.enterprise"), text: $r('app.string.enterprise') }];
 
   build() {
     Column() {
-      Stack({ alignContent: Alignment.Top }) {
-        Column() {
-          List() {
-            ListItem() {
-              Column() {
-                Stack({ alignContent: Alignment.Center }) {
-                  Text($r('app.string.search'))
-                    .fontSize($r('app.integer.text_font_20'))
-                }
-                .backgroundColor(Color.White)
-                .height($r('app.string.layout_50'))
-                .width($r('app.string.layout_100_percent'))
-                .margin({
-                  left: $r('app.integer.layout_10'),
-                  right: $r('app.integer.layout_10'),
-                  top: $r('app.integer.layout_5'),
-                  bottom: $r('app.integer.layout_5')
-                })
-                .onClick(() => {
-                  router.pushUrl({ url: PageConstants.SEARCH_PAGE });
-                })
-
-                List({ space: LIST_SPACE, initialIndex: LIST_INITIAL_INDEX }) {
-                  ForEach(this.friendsPageItem, (item: FriendsPageItemType) => {
-                    ListItem() {
-                      ChatContactItemView({ image: item.image, text: item.text })
-                    }
-                  }, (item: FriendsPageItemType) => JSON.stringify(item))
-                }
-              }
-            }
-
-            LazyForEach(this.friendsListData, (msg: ChatContact) => {
-              ListItem() {
-                ChatContactItemView({ image: msg.userImage, text: msg.userName })
-              }
-              .onClick(() => {
-                router.pushUrl({
-                  url: PageConstants.CHAT_DETAIL_PAGE,
-                  params: { chatImage: msg.userImage, chatName: msg.userName, chatId: msg.userId } });
-              })
-            }, (msg: ChatContact) => msg.userId)
-          }
-          .listDirection(Axis.Vertical)
-          .width($r('app.string.layout_100'))
-          .height($r('app.string.layout_100'))
-        }
+      Row() {
+        Text($r('app.string.contacts'))
+          .fontSize($r('app.integer.friends_page_title_font_size'))
+          .fontWeight(FontWeight.Bold)
+          .lineHeight($r('app.integer.friends_page_title_height'))
+          .fontColor($r('app.color.title_font_color'))
+          .fontFamily($r('app.string.harmony_hei_ti'))
+          .height($r('app.integer.friends_page_title_height'))
       }
       .width($r('app.string.layout_100'))
+      .height($r('app.integer.friends_page_title_bar_height'))
+      .justifyContent(FlexAlign.Start)
+
+      // 搜索栏
+      Row() {
+        Search({ placeholder: $r("app.string.search_place_holder") })
+          .enableKeyboardOnFocus(false)
+          .placeholderFont({ size: $r('app.integer.search_font_size') })
+          .searchIcon({
+            src: $r('app.media.search_svg'),
+            size: $r('app.integer.search_svg_height')
+          })
+          .placeholderColor($r('app.string.search_inline_border_color'))
+          .backgroundColor(Color.White)
+          .height($r('app.integer.search_inline_height'))
+          .width($r('app.integer.search_inline_width'))
+          .textFont({ size: $r('app.integer.search_font_size') })
+          .border({
+            width: $r('app.integer.search_inline_border_width'),
+            color: $r('app.string.search_inline_border_color')
+          })
+          .borderRadius($r('app.integer.search_border_radius'))
+          .id(ID_SEARCH)
+      }
+      .alignItems(VerticalAlign.Center)
+      .justifyContent(FlexAlign.Center)
+      .height($r('app.integer.search_outline_height'))
+      .width($r('app.string.layout_100'))
+      .backgroundColor($r('app.color.search_outline_background_color'))
+
+      List() {
+        ListItem() {
+          List({ space: LIST_SPACE, initialIndex: LIST_INITIAL_INDEX }) {
+            ForEach(this.friendsPageItem, (item: FriendsPageItemType) => {
+              ListItem() {
+                ChatContactItemView({ image: item.image, text: item.text })
+              }
+            }, (item: FriendsPageItemType) => JSON.stringify(item))
+          }
+          .divider({
+            strokeWidth: $r('app.integer.friends_page_divider_width'),
+            color: $r('app.color.friends_page_divider_color'),
+            startMargin: $r('app.integer.friends_page_search_divider_start_margin')
+          })
+        }
+
+        LazyForEach(this.friendsListData, (msg: ChatContact) => {
+          ListItem() {
+            ChatContactItemView({ image: msg.userImage, text: msg.userName })
+          }
+          .onClick(() => {
+            router.pushUrl({
+              url: PageConstants.CHAT_DETAIL_PAGE,
+              params: { chatImage: msg.userImage, chatName: msg.userName, chatId: msg.userId } });
+          })
+        })
+      }
+      .layoutWeight(LAYOUT_WEIGHT)
+      .divider({
+        strokeWidth: $r('app.integer.friends_page_divider_width'),
+        color: $r('app.color.friends_page_divider_color'),
+        startMargin: $r('app.integer.friends_page_search_divider_start_margin')
+      })
     }
     .backgroundColor($r('app.color.friends_page_background'))
     .width($r('app.string.layout_100'))
     .height($r('app.string.layout_100'))
+    .padding({
+      left: $r('app.integer.friends_page_padding_left'),
+      right: $r('app.integer.friends_page_padding_left')
+    })
   }
 
   async aboutToAppear(): Promise<void> {
@@ -136,17 +167,20 @@ export struct ChatContactItemView {
   build() {
     Row() {
       Image(this.image)
-        .width($r('app.integer.layout_40'))
-        .height($r('app.integer.layout_40'))
-        .borderRadius($r('app.integer.layout_5'))
+        .width(53)
+        .height(53)
+        .borderRadius(27)
       Text(this.text)
-        .fontSize($r('app.integer.layout_15'))
-        .fontColor($r('app.color.friends_page_text_color'))
-        .margin({ left: $r('app.integer.layout_10') })
+        .width(331)
+        .height(29)
+        .fontSize(21)
+        .fontFamily($r('app.string.harmony_hei_ti'))
+        .fontColor($r('app.color.title_font_color'))
+        .fontWeight(500)
+        .margin({ left: 21 })
     }
     .width($r('app.string.layout_100'))
-    .height($r('app.integer.layout_60'))
-    .padding({ left: $r('app.integer.layout_10'), right: $r('app.integer.layout_10') })
+    .height(85)
     .backgroundColor(Color.White)
   }
 }
