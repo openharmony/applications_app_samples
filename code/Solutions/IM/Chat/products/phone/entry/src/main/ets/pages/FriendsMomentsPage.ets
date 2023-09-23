@@ -125,7 +125,7 @@ struct FriendsMomentsPage {
 struct OneMoment {
   private moment: FriendMoment = new FriendMoment('', new ChatContact('', ''), '', '', [], '', '');
   @State imageListMinLength: number = 2;
-  @State liked: boolean = false // 是否点赞
+  @State liked: boolean = false; // 是否点赞
 
   build() {
     Column() {

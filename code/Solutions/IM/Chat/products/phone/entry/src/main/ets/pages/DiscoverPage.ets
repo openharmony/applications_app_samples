@@ -45,7 +45,7 @@ export struct DiscoverPage {
     [new SettingViewData($r('app.media.icon_de_nearby'), $r('app.string.around'))],
     [new SettingViewData($r('app.media.icon_de_shop'), $r('app.string.shopping')),
       new SettingViewData($r('app.media.icon_de_game'), $r('app.string.game'))]
-  ]
+  ];
 
   build() {
     Column() {

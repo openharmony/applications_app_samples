@@ -24,7 +24,7 @@ import Logger from '../utils/Logger';
 
 const TAG: string = 'ChatListDisplayView';
 // 搜索框中搜索栏的ID
-const ID_SEARCH: string = "search";
+const ID_SEARCH: string = 'search';
 // 删除item后，下方的item顶上来的动画的播放时间
 const DELETE_ANIMATION_DURATION: number = 500;
 const ABOUT_TO_APPEAR_TRACE: string = 'ChatListPage_AboutToAppear_HiTrace';

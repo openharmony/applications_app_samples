@@ -161,8 +161,8 @@ export struct FriendsPage {
  */
 @Component
 export struct ChatContactItemView {
-  private image: string | Resource = ''
-  private text: string | Resource = ''
+  private image: string | Resource = '';
+  private text: string | Resource = '';
 
   build() {
     Row() {
