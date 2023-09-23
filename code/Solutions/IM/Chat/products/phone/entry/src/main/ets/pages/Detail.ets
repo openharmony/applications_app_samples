@@ -18,14 +18,10 @@ import { ChatDetailPage } from '@ohos/chatlist';
 @Entry
 @Component
 struct Detail {
-  aboutToAppear(): void {
-  }
-
   build() {
     Column() {
       ChatDetailPage()
     }
   }
-
 }
 

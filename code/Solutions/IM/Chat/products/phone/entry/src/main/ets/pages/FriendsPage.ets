@@ -29,11 +29,11 @@ const ABOUT_TO_APPEAR_TRACE: string = 'FriendsPage_AboutToAppear_HiTrace';
 const ABOUT_TO_APPEAR_TRACE_ID: number = 1; // aboutToAppear 中使用的 taskId
 const MAKE_DATA_LOCAL_TRACE: string = 'FriendsPage_MakeDataLocal_HiTrace';
 const MAKE_DATA_LOCAL_TRACE_ID: number = 2; // makeDataLocal 中使用的 taskId
-const ID_SEARCH: string = "search"; // 搜索框中搜索栏的ID
+const ID_SEARCH: string = 'search'; // 搜索框中搜索栏的ID
 
 class FriendsPageItemType {
-  image: string | Resource = ''
-  text: string | Resource = ''
+  image: string | Resource = '';
+  text: string | Resource = '';
 }
 
 /**
@@ -45,13 +45,13 @@ export struct FriendsPage {
   @State friendsListLength: number = 0;
   private friendsListData: FriendListData = new FriendListData();
   private friendsPageItem: FriendsPageItemType[] = [
-    { image: $r("app.media.new_friend"), text: $r('app.string.new_friend') },
-    { image: $r("app.media.group"), text: $r('app.string.group') },
-    { image: $r("app.media.chat_only"), text: $r('app.string.only_chat') },
-    { image: $r("app.media.label"), text: $r('app.string.label') },
-    { image: $r("app.media.official_account"), text: $r('app.string.official_account') },
-    { image: $r("app.media.subscription"), text: $r('app.string.subscription') },
-    { image: $r("app.media.enterprise"), text: $r('app.string.enterprise') }];
+    { image: $r('app.media.new_friend'), text: $r('app.string.new_friend') },
+    { image: $r('app.media.group'), text: $r('app.string.group') },
+    { image: $r('app.media.chat_only'), text: $r('app.string.only_chat') },
+    { image: $r('app.media.label'), text: $r('app.string.label') },
+    { image: $r('app.media.official_account'), text: $r('app.string.official_account') },
+    { image: $r('app.media.subscription'), text: $r('app.string.subscription') },
+    { image: $r('app.media.enterprise'), text: $r('app.string.enterprise') }];
 
   build() {
     Column() {
@@ -70,7 +70,7 @@ export struct FriendsPage {
 
       // 搜索栏
       Row() {
-        Search({ placeholder: $r("app.string.search_place_holder") })
+        Search({ placeholder: $r('app.string.search_place_holder') })
           .enableKeyboardOnFocus(false)
           .placeholderFont({ size: $r('app.integer.search_font_size') })
           .searchIcon({
@@ -167,20 +167,20 @@ export struct ChatContactItemView {
   build() {
     Row() {
       Image(this.image)
-        .width(53)
-        .height(53)
-        .borderRadius(27)
+        .width($r('app.integer.friends_page_contact_image_width'))
+        .height($r('app.integer.friends_page_contact_image_width'))
+        .borderRadius($r('app.integer.friends_page_contact_image_height'))
       Text(this.text)
-        .width(331)
-        .height(29)
-        .fontSize(21)
+        .width($r('app.integer.friends_page_contact_text_width'))
+        .height($r('app.integer.friends_page_contact_text_height'))
+        .fontSize($r('app.integer.friends_page_contact_text_font_size'))
         .fontFamily($r('app.string.harmony_hei_ti'))
         .fontColor($r('app.color.title_font_color'))
-        .fontWeight(500)
-        .margin({ left: 21 })
+        .fontWeight(FontWeight.Bold)
+        .margin({ left: $r('app.integer.friends_page_contact_text_margin_left') })
     }
     .width($r('app.string.layout_100'))
-    .height(85)
+    .height($r('app.integer.friends_page_contact_row_height'))
     .backgroundColor(Color.White)
   }
 }

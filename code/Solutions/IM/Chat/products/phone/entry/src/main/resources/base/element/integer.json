@@ -89,6 +89,38 @@
       "value": 1
     },
     {
+      "name": "friends_page_contact_image_width",
+      "value": 53
+    },
+    {
+      "name": "friends_page_contact_image_height",
+      "value": 53
+    },
+    {
+      "name": "friends_page_contact_image_border_radius",
+      "value": 27
+    },
+    {
+      "name": "friends_page_contact_text_width",
+      "value": 331
+    },
+    {
+      "name": "friends_page_contact_text_height",
+      "value": 29
+    },
+    {
+      "name": "friends_page_contact_text_font_size",
+      "value": 21
+    },
+    {
+      "name": "friends_page_contact_text_margin_left",
+      "value": 21
+    },
+    {
+      "name": "friends_page_contact_row_height",
+      "value": 85
+    },
+    {
       "name": "setting_padding_left",
       "value": 16
     },

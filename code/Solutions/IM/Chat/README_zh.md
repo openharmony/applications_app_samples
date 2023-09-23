@@ -12,7 +12,7 @@
 [README_en.md](README_en.md)
 | 主页                                    | 通讯录                                      | 发现                                     | 个人页面                                |
 | ------------------------------------- | ---------------------------------------- | -------------------------------------- | ----------------------------------- |
-| ![](screenshots/device/chat_home.jpeg) | ![](screenshots/device/chat_address.jpeg) | ![](screenshots\device\chat_found.jpeg) | ![](screenshots/device/chat_me.jpeg) |
+| ![](screenshots/device/chat_home.jpeg) | ![](screenshots/device/chat_address.jpeg) | ![](screenshots/device/chat_found.jpeg) | ![](screenshots/device/chat_me.jpeg) |
 
 使用说明
 

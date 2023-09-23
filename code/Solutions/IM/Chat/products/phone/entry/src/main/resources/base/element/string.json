@@ -29,6 +29,10 @@
       "value": "搜索..."
     },
     {
+      "name": "search_place_holder",
+      "value": "搜索..."
+    },
+    {
       "name": "user1Name",
       "value": "自己"
     },

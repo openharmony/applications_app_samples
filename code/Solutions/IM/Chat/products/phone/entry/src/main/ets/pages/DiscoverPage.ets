@@ -38,17 +38,13 @@ const LAYOUT_WEIGHT: number = 1; // 自动分配剩余空间
 export struct DiscoverPage {
   private scroller: Scroller = new Scroller();
   private settingViewData: Array<Array<SettingViewData>> = [
-    [
-      new SettingViewData($r('app.media.icon_de_scan'), $r('app.string.scan')),
-      new SettingViewData($r('app.media.icon_de_shake'), $r('app.string.shake'))
-    ],
+    [new SettingViewData($r('app.media.icon_de_scan'), $r('app.string.scan')),
+      new SettingViewData($r('app.media.icon_de_shake'), $r('app.string.shake'))],
     [new SettingViewData($r('app.media.searchOne'), $r('app.string.search_one'))],
     [new SettingViewData($r('app.media.applet'), $r('app.string.applet'))],
     [new SettingViewData($r('app.media.icon_de_nearby'), $r('app.string.around'))],
-    [
-      new SettingViewData($r('app.media.icon_de_shop'), $r('app.string.shopping')),
-      new SettingViewData($r('app.media.icon_de_game'), $r('app.string.game'))
-    ]
+    [new SettingViewData($r('app.media.icon_de_shop'), $r('app.string.shopping')),
+      new SettingViewData($r('app.media.icon_de_game'), $r('app.string.game'))]
   ]
 
   build() {

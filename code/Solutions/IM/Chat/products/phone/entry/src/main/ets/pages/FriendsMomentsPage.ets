@@ -356,8 +356,8 @@ async function getFriendMomentObj(friendMomentStr: string): Promise<Array<Friend
 
 @Component
 struct MomentHandler {
-  @Prop imageStr: Resource = $r('app.media.ic_share')
-  private text: string | Resource = ''
+  @Prop imageStr: Resource = $r('app.media.ic_share');
+  private text: string | Resource = '';
 
   build() {
     Row() {
