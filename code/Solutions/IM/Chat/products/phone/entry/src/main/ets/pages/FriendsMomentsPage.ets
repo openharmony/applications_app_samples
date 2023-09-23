@@ -323,7 +323,7 @@ async function getWebData(url: string): Promise<Array<FriendMoment>> {
           jsonObj[i].imageList, jsonObj[i].media, jsonObj[i].mediaPreview);
         friendMomentBuckets.push(chatModelTemp);
       }
-      // 设置count计数，用来延长方法执行时间，方便后续监视性能
+      // 在TaskPool中模拟耗时操作
       let taskCount: number = 0;
       for (let i = 0;i < 10000; i++) {
         taskCount++;
