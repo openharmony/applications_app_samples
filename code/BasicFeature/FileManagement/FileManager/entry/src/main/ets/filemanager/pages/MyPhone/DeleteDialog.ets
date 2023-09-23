@@ -16,8 +16,8 @@
 // 用户输入名字的弹窗
 @CustomDialog
 export struct DeleteDialog {
-  controller: CustomDialogController
-  confirm: () => void
+  controller?: CustomDialogController
+  confirm: () => void = () => {}
 
   build() {
     Column() {
@@ -41,7 +41,7 @@ export struct DeleteDialog {
           .fontColor(Color.Gray)
           .padding({ top: 8, bottom: 8 })
           .onClick(() => {
-            this.controller.close()
+            this.controller?.close()
           })
       }
       .width(200)

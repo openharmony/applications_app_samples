@@ -21,15 +21,49 @@ import { ImageTextMessage, FileMessage } from '../viewmodel/MsgBase';
 import image from '@ohos.multimedia.image';
 import Constants from '../utils/Constants';
 import hiTraceMeter from '@ohos.hiTraceMeter';
+import Want from '@ohos.app.ability.Want';
+import Logger from '../utils/Logger';
+import fs from '@ohos.file.fs';
 
 const ABOUT_TO_APPEAR_TRACE: string = 'ChatDetailPage_AboutToAppear_HiTrace';
 const ABOUT_TO_APPEAR_TRACE_ID: number = 1; // aboutToAppear 中使用的 taskId
 const MAKE_DATA_LOCAL_TRACE: string = 'ChatDetailPage_MakeDataLocal_HiTrace';
 const MAKE_DATA_LOCAL_TRACE_ID: number = 2; // makeDataLocal 中使用的 taskId
 
+export class WantModel {
+  srcImage: string;
+  textContent: string;
+  senderId: number;
+
+  constructor(srcImage?: string, text?: string, senderId?: number) {
+    this.srcImage = srcImage;
+    this.textContent = text;
+    this.senderId = senderId;
+  }
+
+  toString(): string {
+    return this.srcImage + "  " + this.textContent + "  " + this.senderId;
+  }
+}
+
+export class WantFileModel {
+  fdImage: number;
+  kindId: number;
+
+  constructor(fdImage?: number, kindId?: number) {
+    this.fdImage = fdImage;
+    this.kindId = kindId;
+  }
+}
+
+class ShareDate {
+  type: string;
+  value: number;
+}
+
 @Preview
 @Component
-// 聊天页面
+  // 聊天页面
 export struct ChatDetailPage {
   @State msgLength: number = 0;
   userMyself = new ChatContact('1', $r('app.string.myself'));
@@ -42,10 +76,14 @@ export struct ChatDetailPage {
   private chatDetailData = new ChatDetailData();
   private scroller: Scroller = new Scroller();
   @State wantId: number = 0;
-  @State fdImg: number = 0;
   @State userMyselfName: string = '';
   @State userFriendName: string = '';
   @State listHeight: number = 0;
+  @State want: Want = undefined;
+  wantParams: WantModel = new WantModel("./resources/images/photo0.jpg", "111", 0);
+  wantFileParams: WantFileModel = new WantFileModel();
+  @State imageFile: image.PixelMap = undefined;
+  @State imageSize: number = 90960;
   private params = router.getParams() as Record<string, Object>;
   chatId: number = this.params.chatId as number;
   chatName: string | Resource = this.params.chatName as string | Resource;
@@ -97,7 +135,11 @@ export struct ChatDetailPage {
       }
       .listDirection(Axis.Vertical)
       .divider({ strokeWidth: 2, color: $r('app.color.detail_divider') })
-      .padding({ left: $r('app.integer.layout_10'), right: $r('app.integer.layout_10'), bottom: $r('app.integer.layout_10') })
+      .padding({
+        left: $r('app.integer.layout_10'),
+        right: $r('app.integer.layout_10'),
+        bottom: $r('app.integer.layout_10')
+      })
       .layoutWeight(1)
       .width('100%')
 
@@ -106,7 +148,10 @@ export struct ChatDetailPage {
         Image($r('app.media.chatting_mode_voice'))
           .width(32)
           .padding(5)
-          .margin({ left: $r('app.integer.opt_layout_chat_view_item_padding_right'), right: $r('app.integer.search_font_size') })
+          .margin({
+            left: $r('app.integer.opt_layout_chat_view_item_padding_right'),
+            right: $r('app.integer.search_font_size')
+          })
         TextInput({ placeholder: '', text: this.keyboardStr })
           .id('bottomTextInput')
           .height($r('app.integer.search_inline_height'))
@@ -146,7 +191,10 @@ export struct ChatDetailPage {
           .width($r('app.integer.opt_layout_chat_view_item_padding_right'))
           .margin({ right: $r('app.integer.search_font_size') })
       }
-      .borderRadius({ topLeft: $r('app.integer.search_border_radius'), topRight: $r('app.integer.search_border_radius') })
+      .borderRadius({
+        topLeft: $r('app.integer.search_border_radius'),
+        topRight: $r('app.integer.search_border_radius')
+      })
       .backgroundColor(Color.White)
       .width('100%')
       .height($r('app.integer.search_outline_height'))
@@ -154,6 +202,36 @@ export struct ChatDetailPage {
     }
     .backgroundColor($r('app.color.detail_body_background'))
     .height('100%')
+  }
+
+  async getWant() {
+    // 文本、链接的参数处理
+    this.want = AppStorage.get('want');
+    if (this.want.parameters) {
+      this.wantParams.srcImage = this.want.parameters.srcImg as string;
+      this.wantParams.textContent = this.want.parameters.text as string;
+      this.wantParams.senderId = this.want.parameters.kindId as number;
+      this.wantId = this.wantParams.senderId;
+    }
+  }
+
+  async fdTransformPixelMap(): Promise<void> {
+    try {
+      let shareDate = this.want.parameters["keyFd"] as ShareDate;
+      this.wantFileParams.fdImage = shareDate.value;
+      let buffer = new ArrayBuffer(this.imageSize);
+      let readOut = await fs.readSync(this.wantFileParams.fdImage, buffer);
+      Logger.info('fdTransformPixelMap: readOut---' + readOut);
+      let imageSource: image.ImageSource = undefined;
+      imageSource = await image.createImageSource(buffer);
+      let decodingOptions = {
+        editable: true, // 是否可编辑
+        desiredPixelFormat: 3 // 解码的像素格式
+      };
+      this.imageFile = await imageSource.createPixelMap(decodingOptions); // 通过图片解码参数创建PixelMap对象
+    } catch (errorOut) {
+      Logger.info('fdTransformPixelMap: errorOut ---' + errorOut);
+    }
   }
 
   async convertResourceToString(resource: Resource) {
@@ -195,13 +273,20 @@ export struct ChatDetailPage {
       }
       this.chatDetailData.pushData(msgBody);
     }
-    let lastMsg = new TextMessage(this.lastMsg);
-    this.chatDetailData.pushData(new MessageBase('1000', userFriend, userMyself, lastMsg, 1, todayDate.getSeconds()));
+    if (this.wantId === 1) {
+      let lastMsg = new ImageTextMessage(200, 100, this.wantParams.srcImage, this.wantParams.textContent);
+      this.chatDetailData.pushData(new MessageBase('1000', userMyself, userFriend, lastMsg, 3, todayDate.getSeconds()));
+    } else if (this.wantId === 2) {
+      await this.fdTransformPixelMap();
+      let lastMsg = new FileMessage(180, 200, this.imageFile);
+      this.chatDetailData.pushData(new MessageBase('1000', userMyself, userFriend, lastMsg, 3, todayDate.getSeconds()));
+    }
     this.msgLength = this.chatDetailData.totalCount();
     hiTraceMeter.finishTrace(MAKE_DATA_LOCAL_TRACE, MAKE_DATA_LOCAL_TRACE_ID);
   }
 
   async aboutToAppear() {
+    await this.getWant();
     hiTraceMeter.startTrace(ABOUT_TO_APPEAR_TRACE, ABOUT_TO_APPEAR_TRACE_ID);
     this.makeDataLocal();
     hiTraceMeter.finishTrace(ABOUT_TO_APPEAR_TRACE, ABOUT_TO_APPEAR_TRACE_ID);
@@ -209,7 +294,7 @@ export struct ChatDetailPage {
 }
 
 @Component
-// 聊天对话框
+  // 聊天对话框
 export struct ChatItemView {
   private msg: MessageBase = new MessageBase('', new ChatContact('', ''), new ChatContact('', ''), new MessageBody(), 0);
 
@@ -227,17 +312,26 @@ export struct ChatItemView {
               Row() {
                 Text((this.msg.msgBody as TextMessage).msg)
                   .lineHeight($r('app.integer.search_text_height'))
-                  .constraintSize({minHeight: $r('app.integer.search_inline_height')})
+                  .constraintSize({ minHeight: $r('app.integer.search_inline_height') })
                   .fontSize($r('app.integer.search_font_size'))
                   .fontColor($r('app.color.top_bar_font_color'))
                   .backgroundColor(Color.White)
-                  .padding({top: $r('app.integer.layout_10'), left: $r('app.integer.text_font_16'), bottom: $r('app.integer.layout_10'), right: $r('app.integer.text_font_16')})
-                  .borderRadius({ topLeft: $r('app.integer.layout_5'), topRight: $r('app.integer.opt_layout_chat_view_item_padding_right'), bottomLeft: $r('app.integer.opt_layout_chat_view_item_padding_right'), bottomRight: $r('app.integer.opt_layout_chat_view_item_padding_right') })
+                  .padding({
+                    top: $r('app.integer.layout_10'),
+                    left: $r('app.integer.text_font_16'),
+                    bottom: $r('app.integer.layout_10'),
+                    right: $r('app.integer.text_font_16')
+                  })
+                  .borderRadius({ topLeft: $r('app.integer.layout_5'),
+                    topRight: $r('app.integer.opt_layout_chat_view_item_padding_right'),
+                    bottomLeft: $r('app.integer.opt_layout_chat_view_item_padding_right'),
+                    bottomRight: $r('app.integer.opt_layout_chat_view_item_padding_right')
+                  })
               }
             } else if (this.msg.msgType === 2) {
               Image((this.msg.msgBody as ImageMessage).image)
-                .width((this.msg.msgBody as ImageMessage).width > 1 ? $r('app.integer.layout_245') : (this.msg.msgBody as ImageMessage).width)
-                .height((this.msg.msgBody as ImageMessage).height > 1 ? $r('app.integer.layout_147') : (this.msg.msgBody as ImageMessage).height)
+                .width($r('app.integer.layout_245'))
+                .height($r('app.integer.layout_147'))
                 .borderRadius($r('app.integer.search_border_radius'))
             }
           }
@@ -260,17 +354,27 @@ export struct ChatItemView {
               Row() {
                 Text((this.msg.msgBody as TextMessage).msg)
                   .lineHeight($r('app.integer.search_text_height'))
-                  .constraintSize({minHeight: $r('app.integer.opt_layout_chat_view_profile_picture_height')})
+                  .constraintSize({ minHeight: $r('app.integer.opt_layout_chat_view_profile_picture_height') })
                   .fontSize($r('app.integer.search_font_size'))
                   .backgroundColor($r('app.color.detail_item_message_background'))
                   .fontColor($r('app.color.top_bar_font_color'))
-                  .padding({top: $r('app.integer.layout_10'), left: $r('app.integer.text_font_16'), bottom: $r('app.integer.layout_10'), right: $r('app.integer.text_font_16')})
-                  .borderRadius({ topLeft: $r('app.integer.opt_layout_chat_view_item_padding_right'), topRight: $r('app.integer.layout_5'), bottomLeft: $r('app.integer.opt_layout_chat_view_item_padding_right'), bottomRight: $r('app.integer.opt_layout_chat_view_item_padding_right') })
+                  .padding({
+                    top: $r('app.integer.layout_10'),
+                    left: $r('app.integer.text_font_16'),
+                    bottom: $r('app.integer.layout_10'),
+                    right: $r('app.integer.text_font_16')
+                  })
+                  .borderRadius({
+                    topLeft: $r('app.integer.opt_layout_chat_view_item_padding_right'),
+                    topRight: $r('app.integer.layout_5'),
+                    bottomLeft: $r('app.integer.opt_layout_chat_view_item_padding_right'),
+                    bottomRight: $r('app.integer.opt_layout_chat_view_item_padding_right')
+                  })
               }
             } else if (this.msg.msgType === 2) {
               Image((this.msg.msgBody as ImageMessage).image)
-                .width((this.msg.msgBody as ImageMessage).width > 1 ? $r('app.integer.layout_245') : (this.msg.msgBody as ImageMessage).width)
-                .height((this.msg.msgBody as ImageMessage).height > 1 ? $r('app.integer.layout_147') : (this.msg.msgBody as ImageMessage).height)
+                .width($r('app.integer.layout_245'))
+                .height($r('app.integer.layout_147'))
                 .borderRadius($r('app.integer.search_border_radius'))
             } else if (this.msg.msgType === 3) {
               // 接收分享的页面

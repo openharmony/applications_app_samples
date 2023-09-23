@@ -29,9 +29,10 @@ struct Index {
   aboutToAppear() {
     this.want = {
       bundleName: 'ohos.samples.customshare',
-      abilityName: 'UIExtAbility',
+      abilityName: 'ShareExtAbility',
       moduleName: 'textEdit',
       parameters: {
+        'ability.want.params.uiExtensionType': 'share',
         'shareMessages': this.messages
       }
     }

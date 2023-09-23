@@ -181,14 +181,14 @@ export default function appTest() {
       let date = new Date;
       // 坐标基于rk3568
       if (date.getMinutes() >= 57) {
-        await driver.swipe(122, 950, 122, 900, 600);
+        await driver.swipe(188, 934, 188, 850, 600);
         await driver.delayMs(1000);
       }
-      await driver.swipe(522, 950, 522, 900, 600);
+      await driver.swipe(534, 934, 534, 850, 600);
       await driver.delayMs(1000);
-      await driver.swipe(522, 950, 522, 900, 600);
+      await driver.swipe(534, 934, 534, 850, 600);
       await driver.delayMs(1000);
-      await driver.swipe(522, 950, 522, 900, 600);
+      await driver.swipe(534, 934, 534, 850, 600);
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await getResourceString(($r('app.string.determine')))));
       let timeConfirm: Component = await driver.findComponent(ON.text(await getResourceString(($r('app.string.determine')))));
@@ -266,7 +266,7 @@ export default function appTest() {
       await addClock.click();
       await driver.delayMs(1000);
       // 坐标基于rk3568
-      await driver.swipe(522, 950, 522, 900, 600);
+      await driver.swipe(522, 934, 522, 850, 600);
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.determine'))));
       let confirm: Component = await driver.findComponent(ON.text(await getResourceString(($r('app.string.determine')))));
@@ -303,17 +303,17 @@ export default function appTest() {
       await driver.delayMs(1000);
       let date = new Date;
       if (date.getMinutes() >= 56) {
-        await driver.swipe(122, 950, 122, 900, 600);
+        await driver.swipe(188, 934, 188, 850, 600);
         await driver.delayMs(1000);
       }
       // 坐标基于rk3568
-      await driver.swipe(522, 950, 522, 900, 600);
+      await driver.swipe(522, 934, 522, 850, 600);
       await driver.delayMs(1000);
-      await driver.swipe(522, 950, 522, 900, 600);
+      await driver.swipe(522, 934, 522, 850, 600);
       await driver.delayMs(1000);
-      await driver.swipe(522, 950, 522, 900, 600);
+      await driver.swipe(522, 934, 522, 850, 600);
       await driver.delayMs(1000);
-      await driver.swipe(522, 950, 522, 900, 600);
+      await driver.swipe(522, 934, 522, 850, 600);
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.determine'))));
       let confirmBtn: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.determine'))));

@@ -59,10 +59,9 @@ export struct MyPhone {
 
   async aboutToAppear() {
     // 有路由参数就加载当前路由文件路径
-    if (router.getParams()) {
-      this.directoryPath = router.getParams()['directoryPath'] ? router.getParams()['directoryPath'] : ''
-      this.directoryName = router.getParams()['directoryName'] ? router.getParams()['directoryName'] : ''
-    }
+    let params = router.getParams() as Record<string, Object>;
+    this.directoryPath = params.directoryPath as string;
+    this.directoryName = params.directoryName as string;
     // 回到首页就读取当前内存变化
     if (this.directoryPath === BASE_PATH) {
       this.totalSize = await FileSystem.getTotalSize()
@@ -95,37 +94,41 @@ export struct MyPhone {
     builder: InputNameDialog({
       type: this.fileDialogType,
       confirm: () => {
-        if (!AppStorage.Get('name')) {
-          return prompt.showToast({ message: $r('app.string.tip_input_name') })
+        const name: string | undefined = AppStorage.Get('name');
+        if (!name) {
+          return prompt.showToast({ message: $r('app.string.tip_input_name') });
         }
         if (this.fileDialogType === 1) {
-          FileSystem.createDirectory(this.directoryPath + AppStorage.Get('name'))
+          FileSystem.createDirectory(this.directoryPath + name);
         } else {
           // 创建文件
-          FileSystem.createFile(this.directoryPath + AppStorage.Get('name'))
+          FileSystem.createFile(this.directoryPath + name);
         }
-        this.updateFileData()
-        this.inputNameDialog.close()
+        this.updateFileData();
+        this.inputNameDialog.close();
       }
     }),
     autoCancel: true
-  })
+  });
 
   // 重命名弹窗
   renameDialog: CustomDialogController = new CustomDialogController({
     builder: InputNameDialog({
       name: this.selectedFiles[0],
       confirm: () => {
-        if (!AppStorage.Get('name')) {
-          return prompt.showToast({ message: $r('app.string.tip_input_name') })
+        const name: string | undefined = AppStorage.Get('name');
+        if (!name) {
+          return prompt.showToast({ message: $r('app.string.tip_input_name') });
         }
-        FileSystem.renameFile(this.directoryPath + this.selectedFiles[0], this.directoryPath + AppStorage.Get('name'))
-        this.updateFileData()
-        this.renameDialog.close()
+        const sourcePath = this.directoryPath + this.selectedFiles[0];
+        const destinationPath = this.directoryPath + name;
+        FileSystem.renameFile(sourcePath, destinationPath);
+        this.updateFileData();
+        this.renameDialog.close();
       }
     }),
     autoCancel: true
-  })
+  });
 
   // 删除文件的弹窗
   deleteDialog: CustomDialogController = new CustomDialogController({
@@ -194,7 +197,7 @@ export struct MyPhone {
             .height(20)
             .onClick(() => {
               this.fileData = []
-              AppStorage.SetOrCreate('flashPage',!AppStorage.Get('flashPage'))
+              AppStorage.SetOrCreate('flashPage',!AppStorage.Get<string>('flashPage'));
               router.back()
               this.canMove = true
             })

@@ -84,6 +84,10 @@
     {
       "name": "top_bar_font_color",
       "value": "#182431"
+    },
+    {
+      "name": "tab_bar_separator_line_color",
+      "value": "#182431"
     }
   ]
 }

@@ -12,6 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import Constants from '@ohos/chatList/src/main/ets/utils/Constants';
+import hilog from '@ohos.hilog';
 
 @Observed
 class SettingMenu {
@@ -54,19 +56,24 @@ export struct SettingPage {
                 .fontSize($r('app.integer.setting_name_font_size'))
                 .fontColor($r('app.color.setting_text_color'))
             }
+
             Text($r('app.string.chat_number'))
               .fontSize($r('app.integer.setting_name_font_size'))
               .fontColor($r('app.color.setting_text_color'))
           }
           .alignItems(HorizontalAlign.Start)
-          .padding({ left: $r('app.integer.setting_name_padding_left') })
+          .padding({
+            left: $r('app.integer.setting_name_padding_left')
+          })
         }
         .padding($r('app.integer.setting_head_padding_left'))
         .width($r('app.string.layout_100'))
       }
       .backgroundColor($r('app.color.setting_text_background'))
       .height($r('app.integer.setting_head_column_height'))
-      .margin({ bottom: $r('app.integer.setting_head_column_margin_bottom') })
+      .margin({
+        bottom: $r('app.integer.setting_head_column_margin_bottom')
+      })
 
       // 创建基础功能分组
       List() {
@@ -78,7 +85,9 @@ export struct SettingPage {
           },
           (item: SettingMenu) => item.id.toString())
       }
-      .margin({ bottom: $r('app.integer.setting_head_column_margin_bottom') })
+      .margin({
+        bottom: $r('app.integer.setting_head_column_margin_bottom')
+      })
 
       // 创建其他功能分组
       List() {
@@ -86,7 +95,9 @@ export struct SettingPage {
           (item: SettingMenu) => {
             ListItem() {
               SettingItemView({ image: item.image, text: item.text })
-                .margin({ bottom: $r('app.integer.setting_head_column_margin_bottom') })
+                .margin({
+                  bottom: $r('app.integer.setting_head_column_margin_bottom')
+                })
             }
           },
           (item: SettingMenu) => item.id.toString())
@@ -96,13 +107,16 @@ export struct SettingPage {
     .width($r('app.string.layout_100'))
     .height($r('app.string.layout_100'))
   }
-
 }
 
 @Component
 export struct SettingItemView {
   private image: string | Resource = ''; // 功能菜单图标
   private text: string | Resource = ''; // 功能菜单文本
+  private topLeftBorderRadius: number | Resource = $r('app.integer.setting_menu_zero_borderRadius'); // 圆角左上弧度
+  private topRightBorderRadius: number | Resource = $r('app.integer.setting_menu_zero_borderRadius'); // 圆角设置右上弧度
+  private bottomLeftBorderRadius: number | Resource = $r('app.integer.setting_menu_zero_borderRadius'); // 圆角设置左下弧度
+  private bottomRightBorderRadius: number | Resource = $r('app.integer.setting_menu_zero_borderRadius'); // 圆角设置右下弧度
 
   build() {
     Stack({ alignContent: Alignment.End }) {
@@ -110,24 +124,42 @@ export struct SettingItemView {
         Image(this.image)
           .width($r('app.integer.setting_menu_width'))
           .height($r('app.integer.setting_menu_width'))
+          .objectFit(ImageFit.Contain)
         Text(this.text)
           .fontSize($r('app.integer.setting_menu_font_size'))
           .fontColor($r('app.color.setting_text_color'))
-          .margin({ left: $r('app.integer.setting_menu_margin_left') })
+          .margin({
+            left: $r('app.integer.setting_menu_margin_left')
+          })
       }
       .width($r('app.string.layout_100'))
       .height($r('app.integer.setting_menu_height'))
-      .padding({ left: $r('app.integer.setting_menu_padding_left'),
-        right: $r('app.integer.setting_menu_padding_left') })
+      .padding({
+        left: $r('app.integer.setting_menu_padding_left'),
+        right: $r('app.integer.setting_menu_padding_left')
+      })
       .backgroundColor($r('app.color.setting_text_background'))
+      .borderRadius({
+        topLeft: this.topLeftBorderRadius,
+        topRight: this.topRightBorderRadius,
+        bottomLeft: this.bottomLeftBorderRadius,
+        bottomRight: this.bottomRightBorderRadius
+      })
 
       Image($r('app.media.right_arrow'))
         .height($r('app.integer.setting_menu_arrow_height'))
         .width($r('app.integer.setting_menu_arrow_width'))
         .align(Alignment.End)
-        .margin({ right: $r('app.integer.setting_menu_padding_left') })
+        .margin({
+          right: $r('app.integer.setting_menu_padding_left')
+        })
+        .objectFit(ImageFit.Contain)
     }
     .width($r('app.string.layout_100'))
     .height($r('app.integer.setting_menu_height'))
+    .padding({
+      left: $r('app.integer.setting_menu_padding_left'),
+      right: $r('app.integer.setting_menu_padding_left')
+    })
   }
 }

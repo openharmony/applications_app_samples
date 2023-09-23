@@ -29,6 +29,7 @@ const ID_SEARCH: string = "search";
 const DELETE_ANIMATION_DURATION: number = 500;
 const ABOUT_TO_APPEAR_TRACE: string = 'ChatListPage_AboutToAppear_HiTrace';
 const ABOUT_TO_APPEAR_TRACE_ID: number = 3; // aboutToAppear 中使用的 taskId
+const REUSE_ID: string = 'ChatListPage_ReuseId';
 
 class Message {
   chatItem: ChatModel;
@@ -61,7 +62,7 @@ export struct ChatListDisplayView {
     // reusable component
     if (this.reusable) {
       ReusableChatView(new Message(msg))
-        .reuseId(msg.user.userId)
+        .reuseId(REUSE_ID)
     } else {
       ChatView(new Message(msg))
     }
@@ -73,7 +74,7 @@ export struct ChatListDisplayView {
     // reusable component
     if (this.reusable) {
       ReusableOptLayoutChatView(new Message(msg))
-        .reuseId(msg.user.userId)
+        .reuseId(REUSE_ID)
     } else {
       OptLayoutChatView(new Message(msg))
     }

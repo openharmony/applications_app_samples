@@ -26,4 +26,6 @@ struct Detail {
       ChatDetailPage()
     }
   }
+
 }
+

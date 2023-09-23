@@ -1,7 +1,7 @@
 {
   "src": [
     "pages/Index",
-    "pages/UIExtenIndex",
+    "pages/ShareExtenIndex",
     "pages/TemplateBuilder"
   ]
 }

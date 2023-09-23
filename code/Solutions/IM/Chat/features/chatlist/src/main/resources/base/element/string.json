@@ -134,7 +134,7 @@
     },
     {
       "name": "around",
-      "value": "附件的人"
+      "value": "附近的人"
     },
     {
       "name": "shopping",
@@ -195,6 +195,10 @@
     {
       "name": "layout_92",
       "value": "92%"
+    },
+    {
+      "name": "layout_93",
+      "value": "93%"
     },
     {
       "name": "search_inline_border_color",

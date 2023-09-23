@@ -19,30 +19,39 @@ const TAG: string = 'DeviceDialog'
 
 @CustomDialog
 export struct DeviceDialog {
-  controller: CustomDialogController
+  controller?: CustomDialogController
   private deviceLists: Array<hardware_deviceManager.DeviceInfo> = []
-  private selectedIndex: number
-  private selectedIndexChange: (selectedIndex: number) => void
+  private selectedIndex: number = 0
+  private selectedIndexChange: (selectedIndex: number) => void = () => {
+  }
 
   build() {
     Column() {
       Text($r('app.string.choiceDevice'))
-        .fontSize(30)
-        .width('100%')
+        .fontSize('32px')
+        .width('434px')
         .fontColor(Color.Black)
         .textAlign(TextAlign.Start)
-        .fontWeight(FontWeight.Bold)
+        .fontWeight(600)
       List() {
-        ForEach(this.deviceLists, (item, index) => {
+        ForEach(this.deviceLists, (item: hardware_deviceManager.DeviceInfo, index: number | undefined) => {
           ListItem() {
-            Row() {
+            Flex({
+              direction: FlexDirection.Row,
+              justifyContent: FlexAlign.SpaceBetween,
+              alignItems: ItemAlign.Center
+            }) {
               Text(item.deviceName)
-                .fontSize(21)
-                .width('90%')
+                .fontSize(16)
+                .width('86%')
                 .fontColor(Color.Black)
-              Image(index === this.selectedIndex ? $r('app.media.checked') : $r('app.media.uncheck'))
-                .width('8%')
-                .objectFit(ImageFit.Contain)
+                .textAlign(TextAlign.Start)
+              Radio({ value: '', group: 'radioGroup' })
+                .radioStyle({
+                  checkedBackgroundColor: '#ff0d64fb'
+                })
+                .width('7%')
+                .checked(index === this.selectedIndex ? true : false)
             }
             .height(55)
             .onClick(() => {
@@ -51,27 +60,39 @@ export struct DeviceDialog {
                 Logger.info(TAG, 'index === this.selectedIndex')
                 return
               }
-              this.selectedIndex = index
-              this.controller.close()
+              this.selectedIndex = index !== undefined ? index : 0
+              if (this.controller !== undefined) {
+                this.controller.close()
+              }
               this.selectedIndexChange(this.selectedIndex)
             })
           }
-        }, item => item.deviceName)
-      }.width('100%').height("20%")
+          .width('434px')
+          .height('80px')
+        })
+      }
+      .margin({ top: 12 })
+      .width('434px')
+      .height('18%')
 
       Button() {
         Text($r('app.string.cancel'))
           .width('90%')
           .fontSize(21)
-          .fontColor('#0D9FFB')
+          .fontColor('#ff0d64fb')
           .textAlign(TextAlign.Center)
       }
+      .margin({ bottom: 16 })
       .type(ButtonType.Capsule)
       .backgroundColor(Color.White)
       .onClick(() => {
-        this.controller.close()
+        if (this.controller !== undefined) {
+          this.controller.close()
+        }
       })
     }
+    .margin({ bottom: 36 })
+    .width('500px')
     .padding(10)
     .backgroundColor(Color.White)
     .border({ color: Color.White, radius: 20 })
