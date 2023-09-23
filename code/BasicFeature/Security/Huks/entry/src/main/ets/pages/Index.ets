@@ -58,10 +58,7 @@ struct Index {
                   .onClick(() => {
                     Flag.set(1);
                     router.pushUrl({
-                      url: 'pages/SelectPage',
-                      params: {
-                        flag: 1
-                      }
+                      url: 'pages/SelectPage'
                     })
                   });
                   Button() {
@@ -80,10 +77,7 @@ struct Index {
                   .onClick(() => {
                     Flag.set(2);
                     router.pushUrl({
-                      url: 'pages/SelectPage',
-                      params: {
-                        flag: 2
-                      }
+                      url: 'pages/SelectPage'
                     })
                   });
 
@@ -103,10 +97,7 @@ struct Index {
                   .onClick(() => {
                     Flag.set(3);
                     router.pushUrl({
-                      url: 'pages/SelectPage',
-                      params: {
-                        flag: 3
-                      }
+                      url: 'pages/SelectPage'
                     })
                   });
                 }
