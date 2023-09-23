@@ -6,7 +6,15 @@
     },
     {
       "name": "tabbar_background",
-      "value": "#EEEEEE"
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "tabbar_font_color_normal",
+      "value": "#182431"
+    },
+    {
+      "name": "tabbar_font_color_selected",
+      "value": "#007DFF"
     },
     {
       "name": "setting_column_color",
@@ -18,23 +26,23 @@
     },
     {
       "name": "setting_text_color",
-      "value": "#000000"
+      "value": "#182431"
     },
     {
       "name": "discover_page_background",
-      "value": "#cccccc"
+      "value": "#F1F3F5"
     },
     {
       "name": "divider_color",
-      "value": "#cccccc"
+      "value": "#F1F3F5"
     },
     {
       "name": "customDialog_list_divider_color",
-      "value": "#888888"
+      "value": "#F1F3F5"
     },
     {
       "name": "customDialog_list_backgroundColor",
-      "value": "#2E363E"
+      "value": "#FFFFFF"
     },
     {
       "name": "customDialog_Toggle_selectedColor",
@@ -46,15 +54,15 @@
     },
     {
       "name": "customDialog_ToggleComponent_fontColor",
-      "value": "#ffffff"
+      "value": "#182431"
     },
     {
       "name": "customDialog_Prompt_Text_fontColor",
-      "value": "#ffffff"
+      "value": "#182431"
     },
     {
       "name": "customDialog_diaLogDivider_fontColor",
-      "value": "#888888"
+      "value": "#182431"
     },
     {
       "name": "friends_page_text_color",
@@ -63,6 +71,18 @@
     {
       "name": "top_bar_background_color",
       "value": "#eeeeee"
+    },
+    {
+      "name": "discovery_bar_title_color",
+      "value": "#182431"
+    },
+    {
+      "name": "discovery_bar_background_color",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "tab_bar_separator_line_color",
+      "value": "#182431"
     }
   ]
 }

@@ -23,14 +23,9 @@ const TAB_INDEX_0: number = 0;
 const TAB_INDEX_1: number = 1;
 const TAB_INDEX_2: number = 2;
 const TAB_INDEX_3: number = 3;
-const chatIconNormal : string = './resources/images/chatIconNormal.png'; // 聊天未选中图片路径
-const chatIconSelected : string = './resources/images/chatIconSelected.png'; // 聊天选中图片路径
-const contactIconNormal : string = './resources/images/contactIconNormal.png'; // 通讯录未选中图片路径
-const contactIconSelected : string = './resources/images/contactIconSelected.png'; // 通讯录选中图片路径
-const findIconNormal : string = './resources/images/findIconNormal.png'; // 发现未选中图片路径
-const findIconSelected : string = './resources/images/findIconSelected.png'; // 发现选中图片路径
-const profileIconNormal : string = './resources/images/profileIconNormal.png'; // 我未选中图片路径
-const profileIconSelected : string = './resources/images/profileIconSelected.png'; // 我选中图片路径
+// divider组件的strokWidth为1
+const DIVIDER_LINE_STROKWIDTH: number = 1;
+const TABBAR_SEPARATE_LINE = 0.05;
 
 @Entry
 @Component
@@ -42,8 +37,13 @@ struct Index {
 
   // 设置tabBar样式的位置、未选中图片、选中图片及文字显示的参数
   @Builder
-  TabBuilder(index: number, imageNormal: string, imageSelected: string, text: Resource) {
+  TabBuilder(index: number, imageNormal: Resource, imageSelected: Resource, text: Resource) {
     Column() {
+      Divider()
+        .vertical(false)
+        .strokeWidth(DIVIDER_LINE_STROKWIDTH)
+        .color($r('app.color.tab_bar_separator_line_color'))
+        .opacity(TABBAR_SEPARATE_LINE)
       Image(this.currentIndex === index ? imageSelected : imageNormal)
         .syncLoad(true)
         .width($r('app.integer.tabbar_image_width'))
@@ -52,6 +52,8 @@ struct Index {
         .objectFit(ImageFit.Contain)
       Text(text)
         .fontSize($r('app.integer.tabbar_item_font_size'))
+        .fontColor(this.currentIndex === index ?
+        $r('app.color.tabbar_font_color_selected') : $r('app.color.tabbar_font_color_normal'));
     }
     .height($r('app.string.layout_100'))
     .width($r('app.string.layout_100'))
@@ -65,22 +67,34 @@ struct Index {
           ChatListDisplayView()
         }
       }
-      .tabBar(this.TabBuilder(TAB_INDEX_0, chatIconNormal, chatIconSelected, $r('app.string.chat')))
+      .tabBar(this.TabBuilder(TAB_INDEX_0,
+        $r('app.media.chatIconNormal'),
+        $r('app.media.chatIconSelected'),
+        $r('app.string.chat')));
 
       TabContent() {
         FriendsPage()
       }
-      .tabBar(this.TabBuilder(TAB_INDEX_1, contactIconNormal, contactIconSelected, $r('app.string.contacts')))
+      .tabBar(this.TabBuilder(TAB_INDEX_1,
+        $r('app.media.contactIconNormal'),
+        $r('app.media.contactIconSelected'),
+        $r('app.string.contacts')));
 
       TabContent() {
         DiscoverPage()
       }
-      .tabBar(this.TabBuilder(TAB_INDEX_2, findIconNormal, findIconSelected, $r('app.string.discovery')))
+      .tabBar(this.TabBuilder(TAB_INDEX_2,
+        $r('app.media.findIconNormal'),
+        $r('app.media.findIconSelected'),
+        $r('app.string.discovery')));
 
       TabContent() {
         SettingPage()
       }
-      .tabBar(this.TabBuilder(TAB_INDEX_3, profileIconNormal, profileIconSelected, $r('app.string.my')))
+      .tabBar(this.TabBuilder(TAB_INDEX_3,
+        $r('app.media.profileIconNormal'),
+        $r('app.media.profileIconSelected'),
+        $r('app.string.my')));
     }
     .onChange((index: number) => {
       this.currentIndex = index;
