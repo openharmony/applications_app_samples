@@ -96,8 +96,18 @@
         }
       },
       {
-        "name" : "ohos.permission.READ_IMAGEVIDEO",
-        "reason": "$string:write_image_video_permission",
+        "name" : "ohos.permission.FILE_ACCESS_MANAGER",
+        "reason": "$string:edit_file_permission",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when":"always"
+        }
+      },
+      {
+        "name" : "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED",
+        "reason": "$string:edit_file_permission",
         "usedScene": {
           "abilities": [
             "EntryAbility"
