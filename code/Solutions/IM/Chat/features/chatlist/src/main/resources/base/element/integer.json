@@ -17,6 +17,10 @@
       "value": 12
     },
     {
+      "name": "text_font_13",
+      "value": 13
+    },
+    {
       "name": "layout_70",
       "value": 70
     },
@@ -29,12 +33,24 @@
       "value": 58
     },
     {
+      "name": "layout_37",
+      "value": 37
+    },
+    {
       "name": "layout_48",
       "value": 48
     },
     {
       "name": "layout_40",
       "value": 40
+    },
+    {
+      "name": "layout_245",
+      "value": 245
+    },
+    {
+      "name": "layout_147",
+      "value": 147
     },
     {
       "name": "layout_minus_38",
@@ -53,8 +69,16 @@
       "value": 15
     },
     {
+      "name": "layout_266",
+      "value": 266
+    },
+    {
       "name": "layout_10",
       "value": 10
+    },
+    {
+      "name": "layout_11",
+      "value": 11
     },
     {
       "name": "layout_5",
@@ -78,15 +102,27 @@
     },
     {
       "name": "search_font_size",
-      "value": 18
+      "value": 21
     },
     {
       "name": "search_border_radius",
-      "value": 4
+      "value": 26
     },
     {
       "name": "search_outline_height",
-      "value": 50
+      "value": 75
+    },
+    {
+      "name": "search_inline_height",
+      "value": 53
+    },
+    {
+      "name": "search_inline_width",
+      "value": 416
+    },
+    {
+      "name": "search_inline_border_width",
+      "value": 2
     },
     {
       "name": "search_outline_padding_left",
@@ -122,11 +158,11 @@
     },
     {
       "name": "chat_list_delete_width",
-      "value": 80
+      "value": 53
     },
     {
       "name": "chat_list_delete_height",
-      "value": 70
+      "value": 53
     },
     {
       "name": "chat_view_image_width",
@@ -227,6 +263,78 @@
     {
       "name": "chat_view_row_padding_bottom",
       "value": 10
+    },
+    {
+      "name": "search_svg_height",
+      "value": 24
+    },
+    {
+      "name": "search_text_height",
+      "value": 29
+    },
+    {
+      "name": "search_text_width",
+      "value": 383
+    },
+    {
+      "name": "opt_layout_chat_view_item_height",
+      "value": 85
+    },
+    {
+      "name": "opt_layout_chat_view_item_padding_left",
+      "value": 32
+    },
+    {
+      "name": "opt_layout_chat_view_item_padding_right",
+      "value": 32
+    },
+    {
+      "name": "opt_layout_chat_view_item_padding_top",
+      "value": 16
+    },
+    {
+      "name": "opt_layout_chat_view_item_padding_bottom",
+      "value": 16
+    },
+    {
+      "name": "opt_layout_chat_view_profile_picture_width",
+      "value": 53
+    },
+    {
+      "name": "opt_layout_chat_view_profile_picture_height",
+      "value": 53
+    },
+    {
+      "name": "opt_layout_chat_view_profile_picture_radius",
+      "value": 26
+    },
+    {
+      "name": "opt_layout_chat_view_user_name_font_size",
+      "value": 21
+    },
+    {
+      "name": "opt_layout_chat_view_red_dot_width",
+      "value": 20
+    },
+    {
+      "name": "opt_layout_chat_view_red_dot_height",
+      "value": 20
+    },
+    {
+      "name": "opt_layout_chat_view_red_dot_container_width",
+      "value": 22
+    },
+    {
+      "name": "opt_layout_chat_view_red_dot_container_height",
+      "value": 22
+    },
+    {
+      "name": "chat_list_page_start_margin",
+      "value": 102
+    },
+    {
+      "name": "chat_list_page_delete_row_width",
+      "value": 85
     }
   ]
 }

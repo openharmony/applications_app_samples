@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon_delete</title>
+    <defs>
+        <path d="M17.131,5.25 L15.9682288,17.0681369 C15.8045878,18.7318206 14.4055495,20 12.7338372,20 L12.7338372,20 L6.26616277,20 C4.59445049,20 3.19541221,18.7318206 3.03177119,17.0681369 L3.03177119,17.0681369 L1.868,5.25 L17.131,5.25 Z M8.03125,9.75 L6.96875,9.75 C6.84793771,9.75 6.75,9.84793771 6.75,9.96875 L6.75,9.96875 L6.75,17.03125 C6.75,17.1520623 6.84793771,17.25 6.96875,17.25 L6.96875,17.25 L8.03125,17.25 C8.15206229,17.25 8.25,17.1520623 8.25,17.03125 L8.25,17.03125 L8.25,9.96875 C8.25,9.84793771 8.15206229,9.75 8.03125,9.75 L8.03125,9.75 Z M12.03125,9.75 L10.96875,9.75 C10.8479377,9.75 10.75,9.84793771 10.75,9.96875 L10.75,9.96875 L10.75,17.03125 C10.75,17.1520623 10.8479377,17.25 10.96875,17.25 L10.96875,17.25 L12.03125,17.25 C12.1520623,17.25 12.25,17.1520623 12.25,17.03125 L12.25,17.03125 L12.25,9.96875 C12.25,9.84793771 12.1520623,9.75 12.03125,9.75 L12.03125,9.75 Z M9.5,0 C11.0727118,-2.88902466e-16 12.362769,1.2101879 12.4897427,2.75013463 L18.25,2.75 C18.6642136,2.75 19,3.08578644 19,3.5 C19,3.89942022 18.68777,4.22591522 18.2940682,4.24872683 L18.25,4.25 L0.75,4.25 C0.335786438,4.25 0,3.91421356 0,3.5 C0,3.10057978 0.312229991,2.77408478 0.705931803,2.75127317 L0.75,2.75 L6.51025734,2.75013463 C6.63723098,1.2101879 7.92728822,2.88902466e-16 9.5,0 Z" id="path-1"></path>
+        <rect id="path-3" x="-2.5" y="-2" width="24" height="24"></rect>
+        <filter x="-135.4%" y="-114.6%" width="370.8%" height="370.8%" filterUnits="objectBoundingBox" id="filter-4">
+            <feOffset dx="0" dy="5" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="10" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.10266644 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="消息列表-删除" transform="translate(-308.000000, -276.000000)">
+            <g id="Group-4" transform="translate(296.000000, 264.000000)">
+                <g id="icon_delete" transform="translate(12.000000, 12.000000)">
+                    <circle id="Oval-3" fill="#E84026" cx="20" cy="20" r="20"></circle>
+                    <g id="ic/delete/ic_delete" transform="translate(8.000000, 8.000000)">
+                        <g id="symbol/frame/symbol_grid24"></g>
+                        <g id="编组-2" transform="translate(2.500000, 2.000000)">
+                            <mask id="mask-2" fill="white">
+                                <use xlink:href="#path-1"></use>
+                            </mask>
+                            <g id="形状结合" fill-rule="nonzero"></g>
+                            <g id="color/#000000" mask="url(#mask-2)">
+                                <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
+                                <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-3"></use>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

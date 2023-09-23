@@ -338,35 +338,39 @@
     },
     {
       "name": "top_bar_font_size",
-      "value": 20
+      "value": 32
     },
     {
       "name": "top_bar_text_height",
       "value": 44
     },
     {
+      "name": "top_bar_text_padding_left",
+      "value": 32
+    },
+    {
       "name": "top_bar_add_button_image_height",
-      "value": 23
+      "value": 32
     },
     {
       "name": "top_bar_add_button_image_width",
-      "value": 23
+      "value": 32
     },
     {
       "name": "top_bar_add_button_width",
-      "value": 70
+      "value": 44
     },
     {
       "name": "top_bar_add_button_height",
       "value": 50
     },
     {
-      "name": "top_bar_add_button_padding_left",
-      "value": 20
+      "name": "top_bar_add_button_padding_right",
+      "value": 32
     },
     {
       "name": "top_bar_height",
-      "value": 50
+      "value": 75
     },
     {
       "name": "discovery_bar_font_size",

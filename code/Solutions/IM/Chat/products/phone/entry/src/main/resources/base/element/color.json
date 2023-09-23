@@ -70,7 +70,7 @@
     },
     {
       "name": "top_bar_background_color",
-      "value": "#eeeeee"
+      "value": "#ffffff"
     },
     {
       "name": "discovery_bar_title_color",
@@ -82,6 +82,10 @@
     },
     {
       "name": "tab_bar_separator_line_color",
+      "value": "#182431"
+    },
+    {
+      "name": "top_bar_font_color",
       "value": "#182431"
     }
   ]

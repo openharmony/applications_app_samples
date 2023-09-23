@@ -54,6 +54,7 @@ export struct ChatListDisplayView {
   @StorageLink('list_cached_count') listCachedCount: boolean | undefined = AppStorage.get('list_cached_count');
   // 是否使用布局优化
   @StorageLink('page_layout') pageLayout: boolean | undefined = AppStorage.get('page_layout');
+  controller: SearchController = new SearchController();
 
   // 非布局优化的列表item加载数据
   @Builder
@@ -83,7 +84,7 @@ export struct ChatListDisplayView {
   @Builder
   deleteAction(msg: ChatModel) {
     Row() {
-      Text($r('app.string.delete'))
+      Image(($r('app.media.icon_delete')))
         .onClick(() => {
           animateTo({ duration: DELETE_ANIMATION_DURATION }, () => {
             if (this.lazyForEach) {
@@ -94,93 +95,95 @@ export struct ChatListDisplayView {
             }
           })
         })
-        .backgroundColor(Color.Blue)
-        .fontColor(Color.White)
-        .fontSize($r('app.integer.chat_list_delete_font_size'))
         .width($r('app.integer.chat_list_delete_width'))
         .height($r('app.integer.chat_list_delete_height'))
-        .textAlign(TextAlign.Center)
-    }.justifyContent(FlexAlign.SpaceEvenly)
+    }
+    .width($r('app.integer.chat_list_page_delete_row_width'))
+    .height($r('app.string.layout_100'))
+    .justifyContent(FlexAlign.SpaceEvenly)
   }
 
   build() {
-    List() {
-      ListItem() {
-        // 搜索栏
-        Row() {
-          Stack({ alignContent: Alignment.Center }) {
-            Text($r("app.string.search"))
-              .fontSize($r('app.integer.search_font_size'))
-              .fontColor($r('app.color.search_font_color'))
-          }
-          .id(ID_SEARCH)
-          .backgroundColor(Color.White)
-          .height($r('app.string.layout_100'))
-          .width($r('app.string.layout_100'))
-          .borderRadius($r('app.integer.search_border_radius'))
+    Column(){
+      // 搜索栏
+      Row() {
+        Column() {
+          Search({placeholder: $r("app.string.search_place_holder")})
+            .enableKeyboardOnFocus(false)
+            .placeholderFont({size: $r('app.integer.search_font_size')})
+            .searchIcon({src: $r('app.media.search_svg'), size: $r('app.integer.search_svg_height')})
+            .placeholderColor($r('app.string.search_inline_border_color'))
+            .backgroundColor(Color.White)
+            .height($r('app.integer.search_inline_height'))
+            .width($r('app.integer.search_inline_width'))
+            .textFont({size: $r('app.integer.search_font_size')})
+            .border({width: $r('app.integer.search_inline_border_width'), color: $r('app.string.search_inline_border_color')})
+            .borderRadius($r('app.integer.search_border_radius'))
+            .id(ID_SEARCH)
         }
-        .height($r('app.integer.search_outline_height'))
+        .alignItems(HorizontalAlign.Center)
+        .height($r('app.integer.search_inline_height'))
         .width($r('app.string.layout_100'))
-        .backgroundColor($r('app.color.search_outline_background_color'))
-        .padding({
-          top: $r('app.integer.search_outline_padding_top'),
-          left: $r('app.integer.search_outline_padding_left'),
-          right: $r('app.integer.search_outline_padding_right'),
-          bottom: $r('app.integer.search_outline_padding_bottom')
-        })
       }
+      .alignItems(VerticalAlign.Center)
+      .height($r('app.integer.search_outline_height'))
+      .width($r('app.string.layout_100'))
+      .backgroundColor($r('app.color.search_outline_background_color'))
 
-      if (this.lazyForEach) {
-        // 懒加载加载数据
-        LazyForEach(this.chatListLazy, (msg: ChatModel) => {
-          ListItem() {
-            if (this.pageLayout) {
-              // 使用布局优化时加载的item
-              this.OptChatViewBuilder(msg);
-            } else {
-              // 不使用布局优化时加载的item
-              this.chatViewBuilder(msg);
+      List() {
+        if (this.lazyForEach) {
+          // 懒加载加载数据
+          LazyForEach(this.chatListLazy, (msg: ChatModel) => {
+            ListItem() {
+              if (this.pageLayout) {
+                // 使用布局优化时加载的item
+                this.OptChatViewBuilder(msg);
+              } else {
+                // 不使用布局优化时加载的item
+                this.chatViewBuilder(msg);
+              }
             }
-          }
-          .transition(TransitionEffect.OPACITY) // 删除item后，List显示的最后一个item顶上来的动画
-          .swipeAction({ // 用于设置ListItem的划出组件，end是ListItem向左划动时item右边的组件（List垂直布局时）或ListItem向上划动时item下方的组件（List水平布局时）
-            end: this.deleteAction(msg),
-          })
-        }, (msg: ChatModel) => msg.user.userId)
-      } else {
-        ForEach(this.chatListArray, (msg: ChatModel) => {
-          ListItem() {
-            if (this.pageLayout) {
-              // 使用布局优化时加载的item
-              this.OptChatViewBuilder(msg);
-            } else {
-              // 不使用布局优化时加载的item
-              this.chatViewBuilder(msg);
+            .transition(TransitionEffect.OPACITY) // 删除item后，List显示的最后一个item顶上来的动画
+            .swipeAction({ // 用于设置ListItem的划出组件，end是ListItem向左划动时item右边的组件（List垂直布局时）或ListItem向上划动时item下方的组件（List水平布局时）
+              end: this.deleteAction(msg),
+            })
+          }, (msg: ChatModel) => msg.user.userId)
+        } else {
+          ForEach(this.chatListArray, (msg: ChatModel) => {
+            ListItem() {
+              if (this.pageLayout) {
+                // 使用布局优化时加载的item
+                this.OptChatViewBuilder(msg);
+              } else {
+                // 不使用布局优化时加载的item
+                this.chatViewBuilder(msg);
+              }
             }
-          }
-          .transition(TransitionEffect.OPACITY) // 删除item后，List显示的最后一个item顶上来的动画
-          .swipeAction({ // 用于设置ListItem的划出组件，end是ListItem向左划动时item右边的组件（List垂直布局时）或ListItem向上划动时item下方的组件（List水平布局时）
-            end: this.deleteAction(msg),
-          })
-        }, (msg: ChatModel) => msg.user.userId)
+            .transition(TransitionEffect.OPACITY) // 删除item后，List显示的最后一个item顶上来的动画
+            .swipeAction({ // 用于设置ListItem的划出组件，end是ListItem向左划动时item右边的组件（List垂直布局时）或ListItem向上划动时item下方的组件（List水平布局时）
+              end: this.deleteAction(msg),
+            })
+          }, (msg: ChatModel) => msg.user.userId)
+        }
       }
+      .backgroundColor(Color.White)
+      .listDirection(Axis.Vertical)
+      .divider({
+        strokeWidth: $r('app.integer.chat_list_divider_stroke_width'),
+        color: $r('app.color.chat_list_divider_color'),
+        startMargin: $r('app.integer.chat_list_page_start_margin'),
+        endMargin: $r('app.integer.opt_layout_chat_view_item_padding_right')
+      })
+      .height($r('app.string.layout_92'))
+      .width($r('app.string.layout_100'))
+      .cachedCount(this.listCachedCount ? Constants.CACHED_COUNT : Constants.CACHED_COUNT_0) // 缓存列表数量
     }
-    .backgroundColor(Color.White)
-    .listDirection(Axis.Vertical)
-    .divider({
-      strokeWidth: $r('app.integer.chat_list_divider_stroke_width'),
-      color: $r('app.color.chat_list_divider_color'),
-      startMargin: $r('app.integer.chat_list_divider_start_margin'),
-      endMargin: $r('app.integer.chat_list_divider_end_margin')
-    })
-    .height($r('app.string.layout_92'))
-    .width($r('app.string.layout_100'))
-    .cachedCount(this.listCachedCount ? Constants.CACHED_COUNT : Constants.CACHED_COUNT_0) // 缓存列表数量
   }
 
   async aboutToAppear(): Promise<void> {
     Logger.info(TAG, "ChatListPage aboutToAppear");
     hiTraceMeter.startTrace(ABOUT_TO_APPEAR_TRACE, ABOUT_TO_APPEAR_TRACE_ID);
+    this.controller.stopEditing();
     await makeDataLocal(this.chatListLazy);
     await makeDataList(this.chatListArray);
     hiTraceMeter.finishTrace(ABOUT_TO_APPEAR_TRACE, ABOUT_TO_APPEAR_TRACE_ID);
