@@ -24,7 +24,7 @@ import Logger from '../utils/Logger';
 
 const TAG: string = 'ChatListDisplayView';
 // 搜索框中搜索栏的ID
-const ID_SEARCH: string = "search";
+const ID_SEARCH: string = 'search';
 // 删除item后，下方的item顶上来的动画的播放时间
 const DELETE_ANIMATION_DURATION: number = 500;
 const ABOUT_TO_APPEAR_TRACE: string = 'ChatListPage_AboutToAppear_HiTrace';
@@ -104,28 +104,27 @@ export struct ChatListDisplayView {
   }
 
   build() {
-    Column(){
+    Column() {
       // 搜索栏
       Row() {
-        Column() {
-          Search({placeholder: $r("app.string.search_place_holder")})
-            .enableKeyboardOnFocus(false)
-            .placeholderFont({size: $r('app.integer.search_font_size')})
-            .searchIcon({src: $r('app.media.search_svg'), size: $r('app.integer.search_svg_height')})
-            .placeholderColor($r('app.string.search_inline_border_color'))
-            .backgroundColor(Color.White)
-            .height($r('app.integer.search_inline_height'))
-            .width($r('app.integer.search_inline_width'))
-            .textFont({size: $r('app.integer.search_font_size')})
-            .border({width: $r('app.integer.search_inline_border_width'), color: $r('app.string.search_inline_border_color')})
-            .borderRadius($r('app.integer.search_border_radius'))
-            .id(ID_SEARCH)
-        }
-        .alignItems(HorizontalAlign.Center)
-        .height($r('app.integer.search_inline_height'))
-        .width($r('app.string.layout_100'))
+        Search({ placeholder: $r("app.string.search_place_holder") })
+          .enableKeyboardOnFocus(false)
+          .placeholderFont({ size: $r('app.integer.search_font_size') })
+          .searchIcon({ src: $r('app.media.search_svg'), size: $r('app.integer.search_svg_height') })
+          .placeholderColor($r('app.string.search_inline_border_color'))
+          .backgroundColor(Color.White)
+          .height($r('app.integer.search_inline_height'))
+          .width($r('app.integer.search_inline_width'))
+          .textFont({ size: $r('app.integer.search_font_size') })
+          .border({
+            width: $r('app.integer.search_inline_border_width'),
+            color: $r('app.string.search_inline_border_color')
+          })
+          .borderRadius($r('app.integer.search_border_radius'))
+          .id(ID_SEARCH)
       }
       .alignItems(VerticalAlign.Center)
+      .justifyContent(FlexAlign.Center)
       .height($r('app.integer.search_outline_height'))
       .width($r('app.string.layout_100'))
       .backgroundColor($r('app.color.search_outline_background_color'))

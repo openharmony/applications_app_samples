@@ -9,10 +9,10 @@
 文件存储管理能力接口[@ohos.fileio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-fileio.md) 。  
 
 ### 效果预览
-
+[README_en.md](README_en.md)
 | 主页                                    | 通讯录                                      | 发现                                     | 个人页面                                |
 | ------------------------------------- | ---------------------------------------- | -------------------------------------- | ----------------------------------- |
-| ![](screenshots/device/chat_home.png) | ![](screenshots/device/chat_address.png) | ![](screenshots\device\chat_found.png) | ![](screenshots/device/chat_me.png) |
+| ![](screenshots/device/chat_home.jpeg) | ![](screenshots/device/chat_address.jpeg) | ![](screenshots/device/chat_found.jpeg) | ![](screenshots/device/chat_me.jpeg) |
 
 使用说明
 

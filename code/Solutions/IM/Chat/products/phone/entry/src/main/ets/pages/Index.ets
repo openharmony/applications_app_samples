@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { ChatListDisplayView } from "@ohos/chatlist";
+import { ChatListDisplayView } from '@ohos/chatlist';
 import { FriendsPage } from './FriendsPage';
 import { DiscoverPage } from './DiscoverPage';
 import { SettingPage } from './SettingPage';
