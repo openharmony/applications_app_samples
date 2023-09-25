@@ -290,8 +290,12 @@ struct PresentPage {
             .width('100%')
             .id('FirstMusicInQueue')
             .onClick(() => {
-              Log.info(TAG, 'pre skip :' + this.queueItemsMap[this.sessionArray[0]][0].itemId);
-              this.controller.skip(this.sessionArray[0], this.queueItemsMap[this.sessionArray[0]][0].itemId);
+              if (this.sessionArray[0] &&
+                this.queueItemsMap[this.sessionArray[0]] &&
+                this.queueItemsMap[this.sessionArray[0]][0] !== undefined) {
+                Log.info(TAG, 'pre skip :' + this.queueItemsMap[this.sessionArray[0]][0].itemId);
+                this.controller.skip(this.sessionArray[0], this.queueItemsMap[this.sessionArray[0]][0].itemId);
+              }
             })
 
             Divider()
@@ -316,8 +320,12 @@ struct PresentPage {
             .width('100%')
             .id('SecondMusicInQueue')
             .onClick(() => {
-              Log.info(TAG, 'pre skip :' + this.queueItemsMap[this.sessionArray[0]][1].itemId);
-              this.controller.skip(this.sessionArray[0], this.queueItemsMap[this.sessionArray[0]][1].itemId);
+              if (this.sessionArray[0] &&
+                this.queueItemsMap[this.sessionArray[0]] &&
+                this.queueItemsMap[this.sessionArray[0]][1] !== undefined) {
+                Log.info(TAG, 'pre skip :' + this.queueItemsMap[this.sessionArray[0]][1].itemId);
+                this.controller.skip(this.sessionArray[0], this.queueItemsMap[this.sessionArray[0]][1].itemId);
+              }
             })
 
             Divider()
@@ -342,7 +350,11 @@ struct PresentPage {
             .width('100%')
             .id('ThirdMusicInQueue')
             .onClick(() => {
-              this.controller.skip(this.sessionArray[0], this.queueItemsMap[this.sessionArray[0]][2].itemId);
+              if (this.sessionArray[0] &&
+                this.queueItemsMap[this.sessionArray[0]] &&
+                this.queueItemsMap[this.sessionArray[0]][2] !== undefined) {
+                this.controller.skip(this.sessionArray[0], this.queueItemsMap[this.sessionArray[0]][2].itemId);
+              }
             })
           }
           .width('288vp')

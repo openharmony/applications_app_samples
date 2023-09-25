@@ -18,10 +18,15 @@ import fs from '@ohos.file.fs'; // 实现应用文件访问能力
 import router from '@ohos.router';
 import picker from '@ohos.file.picker';
 import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+import { BusinessError } from '@ohos.base';
 import MediaFileUri from '../media/MediaFileUri';
 import Logger from '../common/Logger';
 
 const TAG = 'ViewMedia';
+
+interface myParams extends Object {
+  uris: string[]
+}
 
 @Entry
 @Component
@@ -32,7 +37,7 @@ struct ViewMedia {
   @State myFileTypes: number[] = [];
   @StorageLink('myFileName') myFileName: string = '';
   @StorageLink('myFileSize') myFileSize: number = 0;
-  @State myUris: string[] = router.getParams()['uris'];
+  @State myUris: string[] = (router.getParams() as myParams).uris;
   @State uri: string = 'Hello World';
   @StorageLink('showPauses') showPauses: Array<number> = [];
   mediaFileUri: MediaFileUri = new MediaFileUri();
@@ -51,13 +56,13 @@ struct ViewMedia {
       photoPicker.save(PhotoSaveOptions).then((PhotoSaveResult) => {
         Logger.info(TAG, 'PhotoViewPicker.save successfully, PhotoSaveResult uri: ' + JSON.stringify(PhotoSaveResult));
         if (PhotoSaveResult !== null && PhotoSaveResult !== undefined) {
-          PhotoSaveResult.forEach((value) => {
+          PhotoSaveResult.forEach((value: string) => {
             this.uri = value;
             Logger.info(TAG, `save image/video uri: ${this.uri}`);
           })
         }
-      }).catch((err) => {
-        Logger.error(TAG, 'PhotoViewPicker.save failed with err: ' + err);
+      }).catch((err: BusinessError) => {
+        Logger.error(TAG, 'PhotoViewPicker.save failed with err: ' + JSON.stringify(err));
       });
     } catch (err) {
       Logger.error(TAG, 'PhotoViewPicker failed with err: ' + err);
@@ -78,9 +83,8 @@ struct ViewMedia {
 
   getMediaNameByUri(myUri: string, index: number) {
     Logger.info(TAG, 'getMediaNameByUri getFilenameByUriForMedia begin');
-
     // 创建文件获取选项，此处参数为获取image类型的文件资源
-    let imagesFetchOp = {
+    let imagesFetchOp: mediaLibrary.MediaFetchOptions = {
       selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? OR ' + mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
       selectionArgs: [mediaLibrary.MediaType.IMAGE.toString(), mediaLibrary.MediaType.VIDEO.toString()],
       uri: myUri
@@ -221,9 +225,6 @@ struct ViewMedia {
             .width(25)
             .height(25)
             .visibility(Visibility.Hidden)
-            .onClick(() => {
-              // 另存为点击事件
-            })
         }
         .height('100%')
         .width('37.2%')
@@ -237,55 +238,55 @@ struct ViewMedia {
         // 显示媒体文件的容器
         Column() {
           List({ space: 20, initialIndex: 0 }) {
-            ForEach(this.myUris, (uri, index) => {
+            ForEach(this.myUris, (uri: string, index?: number) => {
               ListItem() {
                 Column() {
                   Image(uri)
                     .borderRadius(24)
-                    .visibility(this.myFileTypes[index] === mediaLibrary.MediaType.IMAGE ? Visibility.Visible : Visibility.Hidden)
+                    .visibility(index !== undefined && this.myFileTypes[index] === mediaLibrary.MediaType.IMAGE ? Visibility.Visible : Visibility.Hidden)
                     .onClick(() => {
-                      this.myFileSize = this.myFileSizes[index];
-                      this.myFileName = this.myFileNames[index];
+                      if (index !== undefined) {
+                        this.myFileSize = this.myFileSizes[index];
+                        this.myFileName = this.myFileNames[index];
+                      }
                       AppStorage.SetOrCreate('myFileName', this.myFileName);
                       AppStorage.SetOrCreate('myFileSize', this.myFileSize);
-                      Logger.info(TAG, 'Image onClick index is ' + index);
-                      Logger.info(TAG, 'Image onClick this.myFileNames[index] is ' + this.myFileNames[index]);
                       Logger.info(TAG, 'Image onClick myFileName is ' + this.myFileName);
                       Logger.info(TAG, 'Image onClick myFileName is ' + this.myFileSize);
                     })
-
-                  Stack({ alignContent: Alignment.Center }) {
-                    Video({
-                      src: uri,
-                      controller: this.controllers[index]
-                    })
-                      .autoPlay(false)
-                      .controls(true)
-                      .borderRadius(24)
-                      //.height('22.7%')
-                      .visibility(this.myFileTypes[index] === mediaLibrary.MediaType.VIDEO ? Visibility.Visible : Visibility.Hidden)
-
-                    Image($r('app.media.ic_PAUSE'))
-                      .width(25)
-                      .height(25)
-                      .onClick(() => {
-                        this.controllers[index].start();
-                        this.showPauses[index] = 0;
+                  if (index !== undefined) {
+                    Stack({ alignContent: Alignment.Center }) {
+                      Video({
+                        src: uri,
+                        controller: this.controllers[index]
                       })
-                      .visibility(this.showPauses[index] === 0 ? Visibility.Hidden : Visibility.Visible)
-                  }
-                  .onClick(() => {
-                    this.myFileSize = this.myFileSizes[index];
-                    this.myFileName = this.myFileNames[index];
+                        .autoPlay(false)
+                        .controls(true)
+                        .borderRadius(24)
+                        .visibility(this.myFileTypes[index] === mediaLibrary.MediaType.VIDEO ? Visibility.Visible : Visibility.Hidden)
 
-                    AppStorage.SetOrCreate('myFileName', this.myFileName);
-                    AppStorage.SetOrCreate('myFileSize', this.myFileSize);
-                  })
+                      Image($r('app.media.ic_PAUSE'))
+                        .width(25)
+                        .height(25)
+                        .onClick(() => {
+                          this.controllers[index].start();
+                          this.showPauses[index] = 0;
+                        })
+                        .visibility(this.showPauses[index] === 0 ? Visibility.Hidden : Visibility.Visible)
+                    }
+                    .onClick(() => {
+                      this.myFileSize = this.myFileSizes[index];
+                      this.myFileName = this.myFileNames[index];
+
+                      AppStorage.SetOrCreate('myFileName', this.myFileName);
+                      AppStorage.SetOrCreate('myFileSize', this.myFileSize);
+                    })
+                  }
                 }
                 .height('100%')
               }
               .height('25%')
-            }, item => item)
+            }, (item: string) => item)
           }
           .id('picScroller')
           .scrollBar(BarState.Auto)

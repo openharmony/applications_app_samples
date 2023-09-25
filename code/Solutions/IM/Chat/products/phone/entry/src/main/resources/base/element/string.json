@@ -22,7 +22,15 @@
     },
     {
       "name": "search",
-      "value": "搜索"
+      "value": "搜索..."
+    },
+    {
+      "name": "search_place_holder",
+      "value": "搜索..."
+    },
+    {
+      "name": "search_place_holder",
+      "value": "搜索..."
     },
     {
       "name": "user1Name",
@@ -46,7 +54,7 @@
     },
     {
       "name": "my",
-      "value": "我"
+      "value": "我的"
     },
     {
       "name": "add_friends",
@@ -114,7 +122,7 @@
     },
     {
       "name": "only_chat",
-      "value": "仅聊天的人"
+      "value": "仅聊天的朋友"
     },
     {
       "name": "label",
@@ -150,7 +158,7 @@
     },
     {
       "name": "around",
-      "value": "附件的人"
+      "value": "附近的人"
     },
     {
       "name": "shopping",
@@ -239,6 +247,22 @@
     {
       "name": "friendMomentsPage_owner_margin_height",
       "value": "40%"
+    },
+    {
+      "name": "harmony_hei_ti",
+      "value": "HarmonyHeiTi"
+    },
+    {
+      "name": "friendMomentsPage_share",
+      "value": "分享"
+    },
+    {
+      "name": "friendMomentsPage_thumbsup",
+      "value": "点赞"
+    },
+    {
+      "name": "friendMomentsPage_message",
+      "value": "评论"
     }
   ]
 }

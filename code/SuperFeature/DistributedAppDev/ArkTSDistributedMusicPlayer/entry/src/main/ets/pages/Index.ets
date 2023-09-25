@@ -19,14 +19,12 @@ import hardware_deviceManager from '@ohos.distributedHardware.deviceManager';
 import mediaQuery from '@ohos.mediaquery';
 import rpc from '@ohos.rpc';
 import Want from '@ohos.app.ability.Want';
-
 import PermissionRequestResult from 'security/PermissionRequestResult';
 import KvStoreModel from '../model/KvStoreModel';
 import Logger from '../model/Logger';
 import PlayerModel from '../model/PlayerModel';
-
-import { ConnectOptions } from 'ability/connectOptions';
-import { ElementName } from 'bundle/elementName';
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+import ability from '@ohos.ability.ability';
 import { RemoteDeviceModel } from '../model/RemoteDeviceModel';
 import { DeviceDialog } from '../common/DeviceDialog';
 import {
@@ -195,7 +193,7 @@ struct Index {
         reply,
         option)
     } else {
-      Logger.info(TAG, `Remote start type is error or deviceID is empty, typeof= ${typeof (viewThis.localExtensionRemote)}`);
+      Logger.info(TAG, `Remote start type is error or deviceID is empty, typeof= ${typeof (this.localExtensionRemote)}`);
     }
   }
 

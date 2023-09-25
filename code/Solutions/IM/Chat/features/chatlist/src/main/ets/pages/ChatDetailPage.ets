@@ -21,15 +21,49 @@ import { ImageTextMessage, FileMessage } from '../viewmodel/MsgBase';
 import image from '@ohos.multimedia.image';
 import Constants from '../utils/Constants';
 import hiTraceMeter from '@ohos.hiTraceMeter';
+import Want from '@ohos.app.ability.Want';
+import Logger from '../utils/Logger';
+import fs from '@ohos.file.fs';
 
 const ABOUT_TO_APPEAR_TRACE: string = 'ChatDetailPage_AboutToAppear_HiTrace';
 const ABOUT_TO_APPEAR_TRACE_ID: number = 1; // aboutToAppear 中使用的 taskId
 const MAKE_DATA_LOCAL_TRACE: string = 'ChatDetailPage_MakeDataLocal_HiTrace';
 const MAKE_DATA_LOCAL_TRACE_ID: number = 2; // makeDataLocal 中使用的 taskId
 
+export class WantModel {
+  srcImage: string;
+  textContent: string;
+  senderId: number;
+
+  constructor(srcImage?: string, text?: string, senderId?: number) {
+    this.srcImage = srcImage;
+    this.textContent = text;
+    this.senderId = senderId;
+  }
+
+  toString(): string {
+    return this.srcImage + "  " + this.textContent + "  " + this.senderId;
+  }
+}
+
+export class WantFileModel {
+  fdImage: number;
+  kindId: number;
+
+  constructor(fdImage?: number, kindId?: number) {
+    this.fdImage = fdImage;
+    this.kindId = kindId;
+  }
+}
+
+class ShareDate {
+  type: string;
+  value: number;
+}
+
 @Preview
 @Component
-// 聊天页面
+  // 聊天页面
 export struct ChatDetailPage {
   @State msgLength: number = 0;
   userMyself = new ChatContact('1', $r('app.string.myself'));
@@ -42,10 +76,14 @@ export struct ChatDetailPage {
   private chatDetailData = new ChatDetailData();
   private scroller: Scroller = new Scroller();
   @State wantId: number = 0;
-  @State fdImg: number = 0;
   @State userMyselfName: string = '';
   @State userFriendName: string = '';
   @State listHeight: number = 0;
+  @State want: Want = undefined;
+  wantParams: WantModel = new WantModel("./resources/images/photo0.jpg", "111", 0);
+  wantFileParams: WantFileModel = new WantFileModel();
+  @State imageFile: image.PixelMap = undefined;
+  @State imageSize: number = 90960;
   private params = router.getParams() as Record<string, Object>;
   chatId: number = this.params.chatId as number;
   chatName: string | Resource = this.params.chatName as string | Resource;
@@ -56,34 +94,36 @@ export struct ChatDetailPage {
     Column() {
       // 顶部导航栏
       Row() {
-        Image($r('app.media.left'))
-          .id('returnBtn')
-          .height(23)
-          .width(23)
-          .margin({ top: 8 })
-          .onClick(() => {
-            router.back();
-          })
+        Row() {
+          Image($r('app.media.chat_detail_back'))
+            .id('returnBtn')
+            .height($r('app.integer.opt_layout_chat_view_item_padding_right'))
+            .width($r('app.integer.opt_layout_chat_view_item_padding_right'))
+            .onClick(() => {
+              router.back();
+            })
 
-        Text(this.chatName)
-          .fontSize(19)
-          .fontColor(Color.Black)
-          .textAlign(TextAlign.Center)
-          .margin({ top: 8, left: 40 })
-        Stack({ alignContent: Alignment.Center }) {
-          Text('···')
-            .height(23)
-            .width(50)
+          Text(this.chatName)
+            .fontSize($r('app.integer.opt_layout_chat_view_profile_picture_radius'))
+            .lineHeight($r('app.integer.layout_37'))
             .fontColor(Color.Black)
-            .fontSize(30)
-            .fontWeight(10)
+            .fontWeight(FontWeight.Bold)
+            .textAlign(TextAlign.Start)
+            .margin({ left: $r('app.integer.search_font_size') })
+        }
+        .margin({ left: $r('app.integer.opt_layout_chat_view_item_padding_right') })
+
+        Stack({ alignContent: Alignment.End }) {
+          Image($r('app.media.chat_detail_more'))
+            .height($r('app.integer.opt_layout_chat_view_item_padding_right'))
+            .width($r('app.integer.opt_layout_chat_view_item_padding_right'))
+            .margin({ right: $r('app.integer.opt_layout_chat_view_item_padding_right') })
         }
         .id('moreBtn')
       }
-      .height(50)
+      .height($r('app.integer.search_outline_height'))
       .width('100%')
-      .backgroundColor($r('app.color.detail_return_background'))
-      .padding({ left: 0, right: 10 })
+      .backgroundColor(Color.White)
       .justifyContent(FlexAlign.SpaceBetween)
 
       List({ scroller: this.scroller, initialIndex: this.msgLength - 1 }) {
@@ -95,20 +135,29 @@ export struct ChatDetailPage {
       }
       .listDirection(Axis.Vertical)
       .divider({ strokeWidth: 2, color: $r('app.color.detail_divider') })
-      .padding({ left: 10, right: 10, bottom: 10 })
+      .padding({
+        left: $r('app.integer.layout_10'),
+        right: $r('app.integer.layout_10'),
+        bottom: $r('app.integer.layout_10')
+      })
       .layoutWeight(1)
       .width('100%')
 
       // 底部输入框
-      Row({ space: 5 }) {
-        Image($r('app.media.chatting_setmode_voice'))
-          .height(20)
-          .width(20)
+      Row() {
+        Image($r('app.media.chatting_mode_voice'))
+          .width(32)
+          .padding(5)
+          .margin({
+            left: $r('app.integer.opt_layout_chat_view_item_padding_right'),
+            right: $r('app.integer.search_font_size')
+          })
         TextInput({ placeholder: '', text: this.keyboardStr })
           .id('bottomTextInput')
-          .height(40)
-          .width('80%')
-          .backgroundColor($r('app.color.detail_bottom_text_input_background'))
+          .height($r('app.integer.search_inline_height'))
+          .width($r('app.integer.layout_266'))
+          .borderRadius($r('app.integer.search_border_radius'))
+          .backgroundColor($r('app.string.chat_detail_input_background'))
           .enterKeyType(EnterKeyType.Send)
           .onChange((value: string) => {
             this.keyboardStr = value;
@@ -123,10 +172,11 @@ export struct ChatDetailPage {
             this.scroller.scrollToIndex(this.msgLength - 1);
             this.keyboardStr = '';
           })
-        Image($r('app.media.chatting_expression'))
+        Image($r('app.media.input_emoji'))
           .id('chatExpression')
-          .height(20)
-          .width(20)
+          .height($r('app.integer.opt_layout_chat_view_item_padding_right'))
+          .width($r('app.integer.opt_layout_chat_view_item_padding_right'))
+          .margin({ left: $r('app.integer.search_font_size'), right: $r('app.integer.search_font_size') })
           .onClick(() => {
             let imageStr = `/resources/images/photo${((this.chatId) % 50)}.jpg`;
             let msg = new ImageMessage(40, 50, imageStr);
@@ -136,17 +186,52 @@ export struct ChatDetailPage {
             this.msgLength = this.chatDetailData.totalCount();
             this.scroller.scrollToIndex(this.msgLength - 1);
           })
-        Image($r('app.media.type_select'))
-          .height(20)
-          .width(20)
-          .margin({ right: 10 })
+        Image($r('app.media.input_add'))
+          .height($r('app.integer.opt_layout_chat_view_item_padding_right'))
+          .width($r('app.integer.opt_layout_chat_view_item_padding_right'))
+          .margin({ right: $r('app.integer.search_font_size') })
       }
-      .backgroundColor($r('app.color.detail_bottom_input_background'))
+      .borderRadius({
+        topLeft: $r('app.integer.search_border_radius'),
+        topRight: $r('app.integer.search_border_radius')
+      })
+      .backgroundColor(Color.White)
       .width('100%')
-      .padding(10)
+      .height($r('app.integer.search_outline_height'))
+      .alignItems(VerticalAlign.Center)
     }
     .backgroundColor($r('app.color.detail_body_background'))
     .height('100%')
+  }
+
+  async getWant() {
+    // 文本、链接的参数处理
+    this.want = AppStorage.get('want');
+    if (this.want.parameters) {
+      this.wantParams.srcImage = this.want.parameters.srcImg as string;
+      this.wantParams.textContent = this.want.parameters.text as string;
+      this.wantParams.senderId = this.want.parameters.kindId as number;
+      this.wantId = this.wantParams.senderId;
+    }
+  }
+
+  async fdTransformPixelMap(): Promise<void> {
+    try {
+      let shareDate = this.want.parameters["keyFd"] as ShareDate;
+      this.wantFileParams.fdImage = shareDate.value;
+      let buffer = new ArrayBuffer(this.imageSize);
+      let readOut = await fs.readSync(this.wantFileParams.fdImage, buffer);
+      Logger.info('fdTransformPixelMap: readOut---' + readOut);
+      let imageSource: image.ImageSource = undefined;
+      imageSource = await image.createImageSource(buffer);
+      let decodingOptions = {
+        editable: true, // 是否可编辑
+        desiredPixelFormat: 3 // 解码的像素格式
+      };
+      this.imageFile = await imageSource.createPixelMap(decodingOptions); // 通过图片解码参数创建PixelMap对象
+    } catch (errorOut) {
+      Logger.info('fdTransformPixelMap: errorOut ---' + errorOut);
+    }
   }
 
   async convertResourceToString(resource: Resource) {
@@ -188,13 +273,20 @@ export struct ChatDetailPage {
       }
       this.chatDetailData.pushData(msgBody);
     }
-    let lastMsg = new TextMessage(this.lastMsg);
-    this.chatDetailData.pushData(new MessageBase('1000', userFriend, userMyself, lastMsg, 1, todayDate.getSeconds()));
+    if (this.wantId === 1) {
+      let lastMsg = new ImageTextMessage(200, 100, this.wantParams.srcImage, this.wantParams.textContent);
+      this.chatDetailData.pushData(new MessageBase('1000', userMyself, userFriend, lastMsg, 3, todayDate.getSeconds()));
+    } else if (this.wantId === 2) {
+      await this.fdTransformPixelMap();
+      let lastMsg = new FileMessage(180, 200, this.imageFile);
+      this.chatDetailData.pushData(new MessageBase('1000', userMyself, userFriend, lastMsg, 3, todayDate.getSeconds()));
+    }
     this.msgLength = this.chatDetailData.totalCount();
     hiTraceMeter.finishTrace(MAKE_DATA_LOCAL_TRACE, MAKE_DATA_LOCAL_TRACE_ID);
   }
 
   async aboutToAppear() {
+    await this.getWant();
     hiTraceMeter.startTrace(ABOUT_TO_APPEAR_TRACE, ABOUT_TO_APPEAR_TRACE_ID);
     this.makeDataLocal();
     hiTraceMeter.finishTrace(ABOUT_TO_APPEAR_TRACE, ABOUT_TO_APPEAR_TRACE_ID);
@@ -202,7 +294,7 @@ export struct ChatDetailPage {
 }
 
 @Component
-// 聊天对话框
+  // 聊天对话框
 export struct ChatItemView {
   private msg: MessageBase = new MessageBase('', new ChatContact('', ''), new ChatContact('', ''), new MessageBody(), 0);
 
@@ -212,59 +304,78 @@ export struct ChatItemView {
         // 聊天页面对方的消息
         Row() {
           Image(this.msg.from.userImage)
-            .width(40)
-            .height(40)
-            .borderRadius(5)
+            .width($r('app.integer.opt_layout_chat_view_profile_picture_height'))
+            .height($r('app.integer.opt_layout_chat_view_profile_picture_height'))
+            .borderRadius($r('app.integer.opt_layout_chat_view_profile_picture_radius'))
           Column() {
             if (this.msg.msgType === 1) {
               Row() {
-                Polygon({ width: 10, height: 10 })
-                  .points([[5, 5], [10, 10], [10, 0]])
-                  .fill(Color.White)
                 Text((this.msg.msgBody as TextMessage).msg)
-                  .fontSize(15)
-                  .fontColor($r('app.color.detail_item_message_font'))
+                  .lineHeight($r('app.integer.search_text_height'))
+                  .constraintSize({ minHeight: $r('app.integer.search_inline_height') })
+                  .fontSize($r('app.integer.search_font_size'))
+                  .fontColor($r('app.color.top_bar_font_color'))
                   .backgroundColor(Color.White)
-                  .padding(10)
-                  .borderRadius(5)
-              }.margin({ left: -10 })
+                  .padding({
+                    top: $r('app.integer.layout_10'),
+                    left: $r('app.integer.text_font_16'),
+                    bottom: $r('app.integer.layout_10'),
+                    right: $r('app.integer.text_font_16')
+                  })
+                  .borderRadius({ topLeft: $r('app.integer.layout_5'),
+                    topRight: $r('app.integer.opt_layout_chat_view_item_padding_right'),
+                    bottomLeft: $r('app.integer.opt_layout_chat_view_item_padding_right'),
+                    bottomRight: $r('app.integer.opt_layout_chat_view_item_padding_right')
+                  })
+              }
             } else if (this.msg.msgType === 2) {
               Image((this.msg.msgBody as ImageMessage).image)
-                .width((this.msg.msgBody as ImageMessage).width)
-                .height((this.msg.msgBody as ImageMessage).height)
+                .width($r('app.integer.layout_245'))
+                .height($r('app.integer.layout_147'))
+                .borderRadius($r('app.integer.search_border_radius'))
             }
           }
-          .margin({ left: 15 })
+          .margin({ left: $r('app.integer.layout_11') })
           .alignItems(HorizontalAlign.Start)
         }
         .width('100%')
         .alignItems(VerticalAlign.Top)
-        .margin({ top: 15 })
-        .padding({ right: 50 })
+        .margin({ top: $r('app.integer.layout_15') })
+        .padding({ right: $r('app.integer.chat_view_time_width') })
       } else {
         // 聊天页面本人消息
         Row() {
           Image(this.msg.from.userImage)
-            .width(40)
-            .height(40)
-            .borderRadius(5)
+            .width($r('app.integer.opt_layout_chat_view_profile_picture_height'))
+            .height($r('app.integer.opt_layout_chat_view_profile_picture_height'))
+            .borderRadius($r('app.integer.opt_layout_chat_view_profile_picture_radius'))
           Column() {
             if (this.msg.msgType === 1) {
               Row() {
                 Text((this.msg.msgBody as TextMessage).msg)
-                  .fontSize(15)
-                  .fontColor($r('app.color.detail_item_message_font'))
+                  .lineHeight($r('app.integer.search_text_height'))
+                  .constraintSize({ minHeight: $r('app.integer.opt_layout_chat_view_profile_picture_height') })
+                  .fontSize($r('app.integer.search_font_size'))
                   .backgroundColor($r('app.color.detail_item_message_background'))
-                  .borderRadius(5)
-                  .padding(10)
-                Polygon({ width: 10, height: 10 })
-                  .points([[0, 0], [0, 10], [5, 5]])
-                  .fill($r('app.color.detail_item_message_fill'))
-              }.margin({ right: -10 })
+                  .fontColor($r('app.color.top_bar_font_color'))
+                  .padding({
+                    top: $r('app.integer.layout_10'),
+                    left: $r('app.integer.text_font_16'),
+                    bottom: $r('app.integer.layout_10'),
+                    right: $r('app.integer.text_font_16')
+                  })
+                  .borderRadius({
+                    topLeft: $r('app.integer.opt_layout_chat_view_item_padding_right'),
+                    topRight: $r('app.integer.layout_5'),
+                    bottomLeft: $r('app.integer.opt_layout_chat_view_item_padding_right'),
+                    bottomRight: $r('app.integer.opt_layout_chat_view_item_padding_right')
+                  })
+              }
             } else if (this.msg.msgType === 2) {
               Image((this.msg.msgBody as ImageMessage).image)
-                .width((this.msg.msgBody as ImageMessage).width)
-                .height((this.msg.msgBody as ImageMessage).height)
+                .width($r('app.integer.layout_245'))
+                .height($r('app.integer.layout_147'))
+                .borderRadius($r('app.integer.search_border_radius'))
             } else if (this.msg.msgType === 3) {
               // 接收分享的页面
               Column() {
@@ -290,14 +401,14 @@ export struct ChatItemView {
                 .objectFit(ImageFit.Contain)
             }
           }
-          .margin({ right: 15 })
+          .margin({ right: $r('app.integer.layout_11') })
           .alignItems(HorizontalAlign.End)
         }
         .alignItems(VerticalAlign.Top)
         .width('100%')
         .direction(Direction.Rtl)
-        .padding({ left: 50 })
-        .margin({ top: 15 })
+        .padding({ left: $r('app.integer.chat_view_time_width') })
+        .margin({ top: $r('app.integer.layout_15') })
       }
     }
   }

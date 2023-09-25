@@ -69,7 +69,7 @@ struct SystemIcon {
             Text()
               .animatableWidthAndHeight(this.centralDiameter)
               .animation({ duration: 500, curve: "ease" })
-              .borderRadius(this.centralDiameter / 2)
+              .borderRadius(8)
               .backgroundColor($r('app.color.COLOR_8C9BA2'))
 
             this.lineComponent(0)
@@ -81,10 +81,9 @@ struct SystemIcon {
           .height(48)
           .margin({ bottom: 8 })
           .alignContent(Alignment.Center)
-
         }
         .width(54)
-        .height(120)
+        .height(130)
         .offset({ x: 34, y: -10 })
         .alignContent(Alignment.Bottom)
 

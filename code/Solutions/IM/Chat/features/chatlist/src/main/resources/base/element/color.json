@@ -8,7 +8,7 @@
       "value": "#999999"
     },{
       "name": "search_outline_background_color",
-      "value": "#eeeeee"
+      "value": "#ffffff"
     },{
       "name": "chat_list_divider_color",
       "value": "#f3f3f3"
@@ -31,7 +31,7 @@
     },
     {
       "name": "detail_body_background",
-      "value": "#f3f3f3"
+      "value": "#F1F3F5"
     },
     {
       "name": "detail_item_message_font",
@@ -39,7 +39,7 @@
     },
     {
       "name": "detail_item_message_background",
-      "value": "#7fec7d"
+      "value": "#D0E9F3"
     },
     {
       "name": "detail_item_message_fill",
@@ -76,6 +76,18 @@
     {
       "name": "friends_page_background",
       "value": "#e3e3e3"
+    },
+    {
+      "name": "search_svg",
+      "value": "#007DFF"
+    },
+    {
+      "name": "top_bar_font_color",
+      "value": "#182431"
+    },
+    {
+      "name": "tab_bar_separator_line_color",
+      "value": "#182431"
     }
   ]
 }

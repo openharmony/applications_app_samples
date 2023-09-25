@@ -33,6 +33,9 @@ class MessageDetail {
   }
 }
 
+// divider组件的strokWidth为1
+const DIVIDER_LINE_STROKWIDTH: number = 1;
+
 // 首页右上角点击加号时弹出的列表
 @CustomDialog
 export struct CustomDialogExample {
@@ -48,10 +51,11 @@ export struct CustomDialogExample {
   // 缓存数量开关
   @StorageLink('list_cached_count') listCachedCount: boolean | undefined = AppStorage.get('list_cached_count');
   private promptArr: PromptType[] = [
-    new PromptType($r('app.media.pic1'), $r('app.string.add_friends')),
-    new PromptType($r('app.media.pic2'), $r('app.string.group_chat')),
-    new PromptType($r('app.media.pic3'), $r('app.string.scan')),
-    new PromptType($r('app.media.pic4'), $r('app.string.collection_payment'))];
+    { image: $r('app.media.pic1'), text: $r('app.string.add_friends') },
+    { image: $r('app.media.pic2'), text: $r('app.string.group_chat') },
+    { image: $r('app.media.pic3'), text: $r('app.string.scan') },
+    { image: $r('app.media.pic4'), text: $r('app.string.collection_payment') }
+  ];
 
   build() {
     Column() {
@@ -67,13 +71,20 @@ export struct CustomDialogExample {
       .listDirection(Axis.Vertical) // 排列方向
       // 每行之间的分界线
       .divider({
-        strokeWidth: $r("app.float.customDialog_list_friction"),
+        strokeWidth:DIVIDER_LINE_STROKWIDTH,
         color: $r("app.color.customDialog_list_divider_color"),
         startMargin: $r("app.integer.customDialog_divider_startMargin"),
-        endMargin: $r("app.integer.customDialog_divider_endMargin") })
+        endMargin: $r("app.integer.customDialog_divider_endMargin")
+      })
 
       // 分隔线组件
-      diaLogDivider()
+      Divider()
+        .strokeWidth(DIVIDER_LINE_STROKWIDTH)
+        .color($r("app.color.customDialog_list_divider_color"))
+        .margin({
+          left: $r("app.integer.customDialog_divider_startMargin"),
+          right: $r('app.integer.customDialog_divider_endMargin')
+        })
       // 懒加载开关
       ToggleComponent({ text_option: $r('app.string.prop_lazy_for_each'), isOn: $lazyForEach })
       diaLogDivider()
@@ -92,7 +103,7 @@ export struct CustomDialogExample {
     .backgroundColor($r("app.color.customDialog_list_backgroundColor"))
     .borderRadius($r("app.integer.customDialog_list_borderRadius"))
     .padding({
-      left: $r("app.integer.customDialog_list_padding_left"),
+      top: $r("app.integer.customDialog_list_padding_top"),
       bottom: $r("app.integer.customDialog_list_padding_bottom")
     })
     .width($r("app.integer.customDialog_list_width"))
@@ -112,16 +123,21 @@ struct Prompt {
         .height($r("app.integer.customDialog_Prompt_Image_height"))
         .width($r("app.integer.customDialog_Prompt_Image_width"))
         .margin({
-          top: $r("app.integer.customDialog_Prompt_Image_margin_top"),
-          right: $r("app.integer.customDialog_Prompt_Image_margin_right")
+          left: $r("app.integer.customDialog_Prompt_Image_margin_left"),
         })
+        .objectFit(ImageFit.Contain)
       Text(this.text)
         .fontSize($r("app.integer.customDialog_Prompt_Text_fontSize"))
         .fontColor($r("app.color.customDialog_Prompt_Text_fontColor"))
-        .margin({ top: $r("app.integer.customDialog_Prompt_Text_margin_top") })
+        .margin({
+          left: $r("app.integer.customDialog_Prompt_Text_margin_left")
+        })
     }
     .width('100%')
-    .padding($r("app.integer.customDialog_Prompt_padding"))
+    .padding({
+      top: $r("app.integer.customDialog_Prompt_padding_top"),
+      bottom: $r("app.integer.customDialog_Prompt_padding_bottom")
+    })
     .justifyContent(FlexAlign.Start)
     .onClick(() => {
       this.controller.close()
@@ -135,19 +151,15 @@ struct Prompt {
 // 分隔线组件
 @Component
 struct diaLogDivider {
-  resource: Resource = $r('app.float.customDialog_diaLogDivider_strokeWidth')
-  res: resourceManager.Resource = {
-    bundleName: this.resource.bundleName,
-    moduleName: this.resource.moduleName,
-    id: this.resource.id
-  }
-
   build() {
     Column() {
       Divider()
-        .strokeWidth(getContext().resourceManager.getNumber(this.res))
-        .color($r("app.color.customDialog_diaLogDivider_fontColor"))
-        .margin({ left: $r("app.integer.customDialog_diaLogDivider_margin_left") })
+        .strokeWidth(DIVIDER_LINE_STROKWIDTH)
+        .color($r("app.color.customDialog_list_divider_color"))
+        .margin({
+          left: $r("app.integer.customDialog_diaLogDivider_margin_left"),
+          right: $r('app.integer.customDialog_diaLogDivider_margin_right')
+        })
     }
   }
 }
@@ -161,22 +173,30 @@ struct ToggleComponent {
   build() {
     Column() {
       Row() {
+        Text(this.text_option)
+          .fontSize($r("app.integer.customDialog_ToggleComponent_fontSize"))
+          .fontColor($r("app.color.customDialog_ToggleComponent_fontColor"))
+          .margin({
+            left: $r("app.integer.customDialog_ToggleComponent_margin_left")
+          })
+
         // 状态按钮样式的开关组件
         Toggle({ type: ToggleType.Switch, isOn: this.isOn })
           .selectedColor($r("app.color.customDialog_Toggle_selectedColor"))
           .width($r("app.integer.customDialog_Toggle_width"))
+          .height($r("app.integer.customDialog_Toggle_height"))
           .switchPointColor($r("app.color.customDialog_Toggle_switchPointColor"))
           .onChange((isOn: boolean) => {
             this.isOn = isOn
           })
-        Text(this.text_option)
-          .fontSize($r("app.integer.customDialog_ToggleComponent_fontSize"))
-          .fontColor($r("app.color.customDialog_ToggleComponent_fontColor"))
-          .margin({ left: $r("app.integer.customDialog_ToggleComponent_margin_left") })
       }
       .width('100%')
-      .padding($r("app.integer.customDialog_ToggleComponent_padding"))
-      .justifyContent(FlexAlign.Start)
+      .padding({
+        top: $r("app.integer.customDialog_Prompt_margin_top"),
+        bottom: $r("app.integer.customDialog_Prompt_margin_bottom"),
+        right: $r("app.integer.customDialog_ToggleComponent_margin_right")
+      })
+      .justifyContent(FlexAlign.SpaceBetween)
     }
   }
 }
