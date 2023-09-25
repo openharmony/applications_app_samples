@@ -22,11 +22,11 @@ const TAG: string = '[Sample_MultiColumns]';
 const BUNDLE = 'MultiColumns_';
 
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
     /**
      * 拉起应用,进入A+B+C页面，拖拽窗口至360vp
      */
-    it(BUNDLE + 'DragWindow_001', 0, async function (done) {
+    it(BUNDLE + 'DragWindow_001', 0, async (done: Function) => {
       let driver = Driver.create();
       await startAbility();
       await driver.delayMs(1000);
@@ -40,7 +40,7 @@ export default function abilityTest() {
     /**
      * 拉起应用,进入A+B+C页面，拖拽窗口至600vp
      */
-    it(BUNDLE + 'DragWindow_002', 0, async function (done) {
+    it(BUNDLE + 'DragWindow_002', 0, async (done: Function) => {
       let driver = Driver.create();
       await terminateAbility();
       await driver.delayMs(1000);
@@ -56,7 +56,7 @@ export default function abilityTest() {
     /**
      * 拉起应用,进入A+B+C页面，拖拽窗口至840vp
      */
-    it(BUNDLE + 'DragWindow_003', 0, async function (done) {
+    it(BUNDLE + 'DragWindow_003', 0, async (done: Function) => {
       let driver = Driver.create();
       await terminateAbility();
       await driver.delayMs(1000);
@@ -72,7 +72,7 @@ export default function abilityTest() {
     /**
      * 拉起应用,进入A+C页面，拖拽窗口至360vp
      */
-    it(BUNDLE + 'DragWindow_004', 0, async function (done) {
+    it(BUNDLE + 'DragWindow_004', 0, async (done: Function) => {
       let driver = Driver.create();
       await terminateAbility();
       await driver.delayMs(1000);
@@ -88,7 +88,7 @@ export default function abilityTest() {
     /**
      * 拉起应用,进入A+C页面，拖拽窗口至600vp
      */
-    it(BUNDLE + 'DragWindow_005', 0, async function (done) {
+    it(BUNDLE + 'DragWindow_005', 0, async (done: Function) => {
       let driver = Driver.create();
       await terminateAbility();
       await driver.delayMs(1000);
@@ -104,7 +104,7 @@ export default function abilityTest() {
     /**
      * 拉起应用,进入B+C页面，拖拽窗口至360vp
      */
-    it(BUNDLE + 'DragWindow_006', 0, async function (done) {
+    it(BUNDLE + 'DragWindow_006', 0, async (done: Function) => {
       let driver = Driver.create();
       await terminateAbility();
       await driver.delayMs(1000);
@@ -120,7 +120,7 @@ export default function abilityTest() {
     /**
      * 拉起应用,进入B+C页面，拖拽窗口至600vp
      */
-    it(BUNDLE + 'DragWindow_007', 0, async function (done) {
+    it(BUNDLE + 'DragWindow_007', 0, async (done: Function) => {
       let driver = Driver.create();
       await terminateAbility();
       await driver.delayMs(1000);
