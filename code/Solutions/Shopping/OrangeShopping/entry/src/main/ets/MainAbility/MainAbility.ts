@@ -13,27 +13,28 @@
  * limitations under the License.
  */
 
-import UIAbility from '@ohos.app.ability.UIAbility'
-import { logger } from '@ohos/details-page-component'
-import { notificationUtil } from '@ohos/notification'
-import { QRCodeScanConst } from '@ohos/scan-component'
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { logger } from '@ohos/details-page-component';
+import { notificationUtil } from '@ohos/notification';
+import { QRCodeScanConst } from '@ohos/scan-component';
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import Want from '@ohos.app.ability.Want';
 
-const TAG: string = 'MainAbility'
+const TAG: string = 'MainAbility';
 
 export default class MainAbility extends UIAbility {
-  onCreate(want, launchParam) {
-    logger.info(TAG, 'onCreate')
-    const that = this
+  onCreate(want: Want): void {
+    logger.info(TAG, 'onCreate');
+    const that = this;
     this.context.eventHub.on("getAbilityData", (data) => {
-      data.context = that.context
-      data.launchWant = want
+      data.context = that.context;
+      data.launchWant = want;
     })
-    this.requestPermission()
-    AppStorage.SetOrCreate('context', this.context)
+    this.requestPermission();
+    AppStorage.setOrCreate('context', this.context);
   }
 
-  requestPermission = async () => {
+  async requestPermission(): Promise<void> {
     let permissionRequestResult = await abilityAccessCtrl.createAtManager().requestPermissionsFromUser(this.context,
       [
         'ohos.permission.CAMERA',
@@ -46,36 +47,35 @@ export default class MainAbility extends UIAbility {
     // 如果权限列表中有-1，说明用户拒绝了授权
     if (permissionRequestResult.authResults[0] === 0) {
       // 控制相机是否打开
-      AppStorage.SetOrCreate(QRCodeScanConst.HAS_CAMERA_PERMISSION, true)
-      logger.info('MainAbility permissionRequestResult success')
+      AppStorage.setOrCreate(QRCodeScanConst.HAS_CAMERA_PERMISSION, true);
+      logger.info('MainAbility permissionRequestResult success');
     }
-    await notificationUtil.enableNotification()
+    await notificationUtil.enableNotification();
   }
 
-  onDestroy() {
-    logger.info(TAG, 'onDestroy')
+  onDestroy(): void {
+    logger.info(TAG, 'onDestroy');
   }
 
-  onWindowStageCreate(windowStage) {
+  onWindowStageCreate(windowStage): void {
     // Main window is created, set main page for this ability
-    logger.info(TAG, 'onWindowStageCreate')
-
-    windowStage.setUIContent(this.context, 'pages/Index', null)
+    logger.info(TAG, 'onWindowStageCreate');
+    windowStage.setUIContent(this.context, 'pages/Index', null);
   }
 
-  onWindowStageDestroy() {
+  onWindowStageDestroy(): void {
     // Main window is destroyed, release UI related resources
-    logger.info(TAG, 'onWindowStageDestroy')
+    logger.info(TAG, 'onWindowStageDestroy');
   }
 
-  onForeground() {
+  onForeground(): void {
     // Ability has brought to foreground
-    logger.info(TAG, 'MainAbility onForeground')
-    AppStorage.SetOrCreate('cameraStatus', !AppStorage.Get('cameraStatus'))
+    logger.info(TAG, 'MainAbility onForeground');
+    AppStorage.setOrCreate('cameraStatus',!AppStorage.Get('cameraStatus'));
   }
 
-  onBackground() {
+  onBackground(): void {
     // Ability has back to background
-    logger.info(TAG, 'onBackground')
+    logger.info(TAG, 'onBackground');
   }
 }

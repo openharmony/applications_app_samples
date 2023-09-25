@@ -13,30 +13,28 @@
  * limitations under the License.
  */
 
-import mediaquery from '@ohos.mediaquery'
-import window from '@ohos.window'
-import { NavigationHomePage } from '@ohos/navigation-component'
-import { UpdateDialog } from '@ohos/updatedialog'
-import { EventsDialog } from '@ohos/details-page-component'
-import { EmitterClass } from '@ohos/emitter'
+import mediaQuery from '@ohos.mediaquery';
+import window from '@ohos.window';
+import { NavigationHomePage } from '@ohos/navigation-component';
+import { UpdateDialog } from '@ohos/updatedialog';
+import { EventsDialog } from '@ohos/details-page-component';
+import { EmitterClass } from '@ohos/emitter';
 
 @Entry
 @Component
 struct HomePage {
-  @State url: string = ''
-  @State option: object = undefined
-  @State curBp: string = 'md' // curBp指当前窗口断点，sm代表小屏，md代表中屏，lg代表大屏
-  private smListener: any
-  private mdListener: any
-  private lgListener: any
-  @StorageLink('shoppingCartGoodsList') shoppingCartGoodsList: { data: { id: number } }[] = []
-  private emitterClass: EmitterClass = new EmitterClass()
-
+  @State url: string = '';
+  @State option: object = undefined;
+  @State curBp: string = 'md'; // curBp指当前窗口断点，sm代表小屏，md代表中屏，lg代表大屏
+  private smListener: mediaQuery.MediaQueryListener;
+  private mdListener: mediaQuery.MediaQueryListener;
+  private lgListener: mediaQuery.MediaQueryListener;
+  @StorageLink('shoppingCartGoodsList') shoppingCartGoodsList: { data: { id: number } }[] = [];
+  private emitterClass: EmitterClass = new EmitterClass();
   EventsDialogController: CustomDialogController = new CustomDialogController({
     builder: EventsDialog(),
     customStyle: true
   })
-
   UpdateDialogController: CustomDialogController = new CustomDialogController({
     builder: UpdateDialog(),
     customStyle: true
@@ -44,35 +42,35 @@ struct HomePage {
 
   build() {
     Column() {
-      NavigationHomePage({ url: this.url })
+      NavigationHomePage({ url: this.url });
     }
   }
 
-  aboutToAppear() {
-    if(AppStorage.Get('nowIndex') === undefined || AppStorage.Get('nowIndex') === 0){
+  aboutToAppear(): void {
+    if (AppStorage.get('nowIndex') === undefined || AppStorage.Get('nowIndex') === 0) {
       this.UpdateDialogController.open()
     }
-    this.emitterClass.showEventsDialog(()=>{
-      if(AppStorage.Get('nowIndex') === undefined || AppStorage.Get('nowIndex') === 0){
+    this.emitterClass.showEventsDialog(() => {
+      if (AppStorage.get('nowIndex') === undefined || AppStorage.Get('nowIndex') === 0) {
         this.EventsDialogController.open()
       }
     })
-    this.emitterClass.setShoppingCartGoodsList((eventData)=>{
+    this.emitterClass.setShoppingCartGoodsList((eventData) => {
       this.shoppingCartGoodsList.push(eventData.data.id)
-      AppStorage.SetOrCreate('shoppingCartGoodsList', this.shoppingCartGoodsList)
+      AppStorage.setOrCreate('shoppingCartGoodsList', this.shoppingCartGoodsList)
     })
-    this.smListener = mediaquery.matchMediaSync('(320vp<=width<520vp)')
+    this.smListener = mediaQuery.matchMediaSync('(320vp<=width<520vp)')
     this.smListener.on('change', this.isBreakpointSM)
-    this.mdListener = mediaquery.matchMediaSync('(520vp<=width<840vp)')
+    this.mdListener = mediaQuery.matchMediaSync('(520vp<=width<840vp)')
     this.mdListener.on('change', this.isBreakpointMD)
-    this.lgListener = mediaquery.matchMediaSync('(840vp<=width)')
+    this.lgListener = mediaQuery.matchMediaSync('(840vp<=width)')
     this.lgListener.on('change', this.isBreakpointLG)
-    window.getTopWindow({ stageMode: true }).then(result => {
+    window.getLastWindow({ stageMode: true }).then(result => {
       result.setFullScreen(false)
     })
   }
 
-  aboutToDisappear() {
+  aboutToDisappear(): void {
     this.smListener.off('change', this.isBreakpointSM)
     this.mdListener.off('change', this.isBreakpointMD)
     this.lgListener.off('change', this.isBreakpointLG)
@@ -81,19 +79,19 @@ struct HomePage {
   isBreakpointSM = (mediaQueryResult) => {
     if (mediaQueryResult.matches) {
       this.curBp = 'sm'
-      AppStorage.SetOrCreate('curBp', this.curBp)
+      AppStorage.setOrCreate('curBp', this.curBp)
     }
   }
   isBreakpointMD = (mediaQueryResult) => {
     if (mediaQueryResult.matches) {
       this.curBp = 'md'
-      AppStorage.SetOrCreate('curBp', this.curBp)
+      AppStorage.setOrCreate('curBp', this.curBp)
     }
   }
   isBreakpointLG = (mediaQueryResult) => {
     if (mediaQueryResult.matches) {
       this.curBp = 'lg'
-      AppStorage.SetOrCreate('curBp', this.curBp)
+      AppStorage.setOrCreate('curBp', this.curBp)
     }
   }
 }

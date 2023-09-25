@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-import { DetailPage } from '@ohos/details-page-component'
+import { DetailPage } from '@ohos/details-page-component';
 
 @Entry
 @Component
 struct Detail {
   build() {
     Column() {
-      DetailPage()
+      DetailPage();
     }
   }
 }

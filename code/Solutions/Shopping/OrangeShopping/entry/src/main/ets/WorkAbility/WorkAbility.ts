@@ -13,35 +13,36 @@
  * limitations under the License.
  */
 
-import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility'
-import { notificationUtil, notificationContentUtil, notificationRequestUtil, wantAgentUtil } from '@ohos/notification'
-import { logger } from '@ohos/details-page-component'
+import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
+import { notificationUtil, notificationContentUtil, notificationRequestUtil, wantAgentUtil } from '@ohos/notification';
+import { logger } from '@ohos/details-page-component';
+import workScheduler from '@ohos.resourceschedule.workScheduler';
 
-const TAG: string = 'WorkAbility'
-const BUNDLE_NAME = 'ohos.samples.orangeshopping'
-const ABILITY_NAME = 'MainAbility'
-const NOTIFICATION_ID = 1 // 定义发送通知的id,默认1
+const TAG: string = 'WorkAbility';
+const BUNDLE_NAME: string = 'ohos.samples.orangeshopping';
+const ABILITY_NAME: string = 'MainAbility';
+const NOTIFICATION_ID: number = 1 // 定义发送通知的id,默认1
 
 export default class WorkAbility extends WorkSchedulerExtensionAbility {
-  onWorkStart(workInfo) {
-    logger.info(TAG, `onWorkStart ${JSON.stringify(workInfo)}`)
+  onWorkStart(workInfo: workScheduler.WorkInfo) {
+    logger.info(TAG, `onWorkStart ${JSON.stringify(workInfo)}`);
     if (workInfo.parameters) {
-      this.publishNotification(workInfo.parameters)
+      this.publishNotification(workInfo.parameters);
     }
   }
 
   onWorkStop(workInfo) {
-    logger.info(TAG, `onWorkStop ${JSON.stringify(workInfo)}`)
-    notificationUtil.cancelNotificationById(1)
+    logger.info(TAG, `onWorkStop ${JSON.stringify(workInfo)}`);
+    notificationUtil.cancelNotificationById(1);
   }
 
-  publishNotification = async (parameters: any) => {
-    let parametersObject = JSON.parse(parameters)
-    logger.info(TAG, `publishNotification parametersObject= ${parametersObject}`)
+  async publishNotification(parameters: any): Promise<void> {
+    let parametersObject = JSON.parse(parameters);
+    logger.info(TAG, `publishNotification parametersObject= ${parametersObject}`);
     let basicContent = {
       title: parametersObject.title,
       text: ''
-    }
+    };
     let actionButtons = [
       {
         title: parametersObject.firstButton,
@@ -51,13 +52,13 @@ export default class WorkAbility extends WorkSchedulerExtensionAbility {
         title: parametersObject.secondButton,
         wantAgent: await wantAgentUtil.createWantAgentForStartAbility(BUNDLE_NAME, ABILITY_NAME)
       }
-    ]
+    ];
     try {
-      let notificationContent = notificationContentUtil.initBasicNotificationContent(basicContent)
-      let notificationRequest = notificationRequestUtil.initButtonNotificationRequest(notificationContent, actionButtons)
-      notificationUtil.publishNotification(notificationRequest, NOTIFICATION_ID)
+      let notificationContent = notificationContentUtil.initBasicNotificationContent(basicContent);
+      let notificationRequest = notificationRequestUtil.initButtonNotificationRequest(notificationContent, actionButtons);
+      notificationUtil.publishNotification(notificationRequest, NOTIFICATION_ID);
     } catch (error) {
-      logger.info(TAG, `publish notification error ${JSON.stringify(error)}`)
+      logger.info(TAG, `publish notification error ${JSON.stringify(error)}`);
     }
   }
 }

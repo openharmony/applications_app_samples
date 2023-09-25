@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-import { SwiperPicturesModel, CommentModel } from '../model/DetailMode'
+import { SwiperPicturesModel, CommentModel } from '../model/DetailMode';
 
 export const SWIPER_PICTURE_DATA: Array<SwiperPicturesModel> = [
   { src: $r('app.media.swiper1') },
   { src: $r('app.media.swiper2') },
   { src: $r('app.media.swiper3') },
   { src: $r('app.media.swiper4') }
-]
+];
 
 export const COMMENT_DATA: Array<CommentModel> = [
   {
@@ -53,7 +53,7 @@ export const COMMENT_DATA: Array<CommentModel> = [
     img: $r('app.media.star'),
     text: '和描述相符很喜欢，做工细致，颜色好看，原装正品'
   }
-]
+];
 
 export const CITY_DATA = [
   { name: 'A', city: [{ name: '安徽', city: ['亳州', '安庆'] }] },
@@ -71,8 +71,8 @@ export const CITY_DATA = [
   { name: 'X', city: ['西藏', '新疆'] },
   { name: 'Y', city: ['云南'] },
   { name: 'Z', city: [{ name: '浙江', city: ['宁波', '杭州'] }] }
-]
+];
 
-export const HOT_CITY = ['北京', '上海', '广州', '深圳', '杭州', '南京', '苏州', '天津', '武汉', '长沙', '重庆', '成都']
+export const HOT_CITY = ['北京', '上海', '广州', '深圳', '杭州', '南京', '苏州', '天津', '武汉', '长沙', '重庆', '成都'];
 
-export const TAB_VALUE = ['A', 'B', 'C', 'F', 'G', 'H', 'J', 'L', 'N', 'Q', 'S', 'T', 'X', 'Y', 'Z']
+export const TAB_VALUE = ['A', 'B', 'C', 'F', 'G', 'H', 'J', 'L', 'N', 'Q', 'S', 'T', 'X', 'Y', 'Z'];

@@ -13,17 +13,18 @@
 * limitations under the License.
 */
 
-import { CITY_DATA, HOT_CITY, TAB_VALUE } from '../mock/DetailData'
+import { CITY_DATA, HOT_CITY, TAB_VALUE } from '../mock/DetailData';
 
 @Component
 export struct Location {
-  @Link isPanel: boolean
-  private scroller: Scroller = new Scroller()
-  @State stabIndex: number = 0
-  @State location: boolean = true
-  @Link currentLocation: string
+  @Link isPanel: boolean;
+  private scroller: Scroller = new Scroller();
+  @State stabIndex: number = 0;
+  @State location: boolean = true;
+  @Link currentLocation: string;
 
-  @Builder cityList(city: any) {
+  @Builder
+  cityList(city: any) {
     if (this.currentLocation === city.name) {
       List() {
         ForEach(city.city, twoCity => {
@@ -34,7 +35,7 @@ export struct Location {
                 .height(30)
                 .fontSize(14)
                 .onClick(() => {
-                  this.currentLocation = city.name + '/' + twoCity
+                  this.currentLocation = city.name + '/' + twoCity;
                 })
             }
           }
@@ -54,7 +55,7 @@ export struct Location {
           .height(6)
           .margin({ top: 10 })
           .onClick(() => {
-            this.isPanel = !this.isPanel
+            this.isPanel = !this.isPanel;
           })
       }
       .width('100%')
@@ -118,7 +119,7 @@ export struct Location {
                   .maxLines(3)
                   .fontColor($r('app.color.blank'))
                   .onClick(() => {
-                    this.currentLocation = item
+                    this.currentLocation = item;
                   })
               })
             }
@@ -141,9 +142,9 @@ export struct Location {
                         .width('100%')
                         .onClick(() => {
                           if (item.name === undefined) {
-                            this.currentLocation = item
+                            this.currentLocation = item;
                           } else {
-                            this.currentLocation = item.name
+                            this.currentLocation = item.name;
                           }
                         })
                       this.cityList(item)
@@ -158,7 +159,7 @@ export struct Location {
             .divider({ strokeWidth: 2, color: $r('app.color.divider'), startMargin: 0, endMargin: 20 })
             .listDirection(Axis.Vertical)
             .onScrollIndex((firstIndex: number, lastIndex: number) => {
-              this.stabIndex = firstIndex
+              this.stabIndex = firstIndex;
             })
           }
           .alignItems(HorizontalAlign.Start)
@@ -173,7 +174,7 @@ export struct Location {
             .selectedFont({ size: 16, weight: FontWeight.Bolder })
             .popupFont({ size: 30, weight: FontWeight.Bolder })
             .alignStyle(this.location ? IndexerAlign.Right : IndexerAlign.Left)
-            .onSelected((tabIndex: number) => {
+            .onSelect((tabIndex: number) => {
               this.scroller.scrollToIndex(tabIndex)
             })
         }

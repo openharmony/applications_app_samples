@@ -13,21 +13,21 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
+import router from '@ohos.router';
 
 export default class RouterUtil {
   static gotoHome() {
-    router.replace({
+    router.replaceUrl({
       url: 'pages/Home'
-    })
+    });
   }
 
   static gotoDetail() {
-    router.push({
+    router.pushUrl({
       url: 'pages/Detail',
       params: {
         id: 10
       }
-    })
+    });
   }
 }

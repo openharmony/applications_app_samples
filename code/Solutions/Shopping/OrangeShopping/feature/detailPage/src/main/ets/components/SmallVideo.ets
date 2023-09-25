@@ -15,21 +15,21 @@
 
 @Component
 export struct SmallVideo {
-  @State smallVideoSrc: Resource = $r('app.media.videos')
-  @Link @Watch("onChanged") isHidden: boolean
-  @Link isCancel: boolean
-  @Consume('playTime') updateTime: number
-  smallVideoController: VideoController = new VideoController()
+  @State smallVideoSrc: Resource = $r('app.media.videos');
+  @Link @Watch("onChanged") isHidden: boolean;
+  @Link isCancel: boolean;
+  @Consume('playTime') updateTime: number;
+  smallVideoController: VideoController = new VideoController();
 
   onChanged(): void {
     if (this.isHidden) {
       this.smallVideoController.start();
-      this.smallVideoController.setCurrentTime(this.updateTime)
+      this.smallVideoController.setCurrentTime(this.updateTime);
     }
   }
 
   aboutToAppear() {
-    this.smallVideoController.setCurrentTime(this.updateTime)
+    this.smallVideoController.setCurrentTime(this.updateTime);
   }
 
   build() {
@@ -44,7 +44,7 @@ export struct SmallVideo {
           .muted(true)
           .id('smallVideo')
           .onFinish(() => {
-            this.isHidden = false
+            this.isHidden = false;
           })
 
         // 视频小窗口的右上角X
@@ -54,8 +54,8 @@ export struct SmallVideo {
           .position({ x: '80%', y: '10%' })
           .id('closeBtn')
           .onClick(() => {
-            this.isHidden = false
-            this.isCancel = false
+            this.isHidden = false;
+            this.isCancel = false;
           })
       }
     }

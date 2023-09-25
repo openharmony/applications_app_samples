@@ -13,23 +13,32 @@
  * limitations under the License.
  */
 
-import { TAB_TITLE_DATA } from '../mock/ProductsData'
-import { MainPage } from '../components/home/MainPage'
-import { NewProduct } from '../components/home/NewProduct'
-import { ShopCart } from '../components/home/ShopCart'
-import { User } from '../components/user/User'
+import { TAB_TITLE_DATA } from '../mock/ProductsData';
+import { MainPage } from '../components/home/MainPage';
+import { NewProduct } from '../components/home/NewProduct';
+import { ShopCart } from '../components/home/ShopCart';
+import { User } from '../components/user/User';
 
-AppStorage.Link('isUpdateDialogOpen') || AppStorage.SetOrCreate('isUpdateDialogOpen', false)
+AppStorage.link('isUpdateDialogOpen') || AppStorage.setOrCreate('isUpdateDialogOpen', false);
+
+export class Url {
+  url: string;
+
+  constructor(url: string) {
+    this.url = url;
+  }
+}
 
 @Entry
 @Component
 export struct NavigationHomePage {
-  @State tabsIndex: number = AppStorage.Get('nowIndex') || 0
-  @StorageProp('curBp') curBp: string = 'sm'
-  private url: string
-  private controller: TabsController = new TabsController()
+  @State tabsIndex: number = AppStorage.get('nowIndex') || 0;
+  @StorageProp('curBp') curBp: string = 'sm';
+  private url: string;
+  private controller: TabsController = new TabsController();
 
-  @Builder TabBarBuilder(index: number) {
+  @Builder
+  TabBarBuilder(index: number) {
     Column() {
       Image(this.getTabBarImage(index))
         .id('homeTab' + index)
@@ -39,7 +48,9 @@ export struct NavigationHomePage {
       Text(TAB_TITLE_DATA[index].title)
         .fontSize(10)
         .fontWeight(500)
-        .margin({ top: 4 })
+        .margin({
+          top: 4
+        })
         .opacity(this.tabsIndex === index ? 1 : 0.6)
         .fontWeight(this.tabsIndex === index ? 500 : 400)
         .fontColor(this.tabsIndex === index ? $r('app.color.pink') : Color.Black)
@@ -48,7 +59,7 @@ export struct NavigationHomePage {
     .width('100%')
     .height('100%')
     .onClick(() => {
-      this.controller.changeIndex(index)
+      this.controller.changeIndex(index);
     })
   }
 
@@ -60,20 +71,28 @@ export struct NavigationHomePage {
         controller: this.controller
       }) {
         TabContent() {
-          MainPage({ url: this.url })
-        }.tabBar(this.TabBarBuilder(0))
+          MainPage(new Url(this.url));
+        }.tabBar(
+          this.TabBarBuilder(0)
+        )
 
         TabContent() {
-          NewProduct({ url: this.url })
-        }.tabBar(this.TabBarBuilder(1))
+          NewProduct(new Url(this.url));
+        }.tabBar(
+          this.TabBarBuilder(1)
+        )
 
         TabContent() {
-          ShopCart({ url: this.url })
-        }.tabBar(this.TabBarBuilder(2))
+          ShopCart(new Url(this.url));
+        }.tabBar(
+          this.TabBarBuilder(2)
+        )
 
         TabContent() {
-          User()
-        }.tabBar(this.TabBarBuilder(3))
+          User();
+        }.tabBar(
+          this.TabBarBuilder(3)
+        )
       }
       .scrollable(false)
       .vertical(this.curBp === 'sm' ? false : true)
@@ -81,16 +100,16 @@ export struct NavigationHomePage {
       .barWidth(this.curBp === 'sm' ? '100%' : 56)
       .barHeight(this.curBp === 'sm' ? 56 : '100%')
       .onChange((index: number) => {
-        this.tabsIndex = index
+        this.tabsIndex = index;
       })
     }
     .backgroundColor($r('app.color.divider'))
   }
 
-  getTabBarImage(index: number) {
+  getTabBarImage(index: number): Resource {
     if (this.tabsIndex === index) {
-      return TAB_TITLE_DATA[index].selectedUri
+      return TAB_TITLE_DATA[index].selectedUri;
     }
-    return TAB_TITLE_DATA[index].uri
+    return TAB_TITLE_DATA[index].uri;
   }
 }

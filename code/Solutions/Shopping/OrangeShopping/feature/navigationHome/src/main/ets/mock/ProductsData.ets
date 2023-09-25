@@ -244,129 +244,129 @@ export const PRODUCT_DATA: Array<ProductDataModel> = [
   {
     id: 0,
     uri: $r('app.media.product001'),
-    title: $r('app.string.product_data_title_device'),
-    info: $r('app.string.product_data_title_device'),
+    title: $r('app.string.product_data_title_device0'),
+    info: $r('app.string.product_data_info_device0'),
     labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price')
+    price: $r('app.string.product_data_price0')
   },
   {
     id: 1,
     uri: $r('app.media.product002'),
-    title: $r('app.string.product_data_title_device'),
-    info: $r('app.string.product_data_title_device'),
+    title: $r('app.string.product_data_title_device1'),
+    info: $r('app.string.product_data_info_device1'),
     labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price')
+    price: $r('app.string.product_data_price1')
   },
   {
     id: 2,
     uri: $r('app.media.product003'),
-    title: $r('app.string.product_data_title_device'),
-    info: $r('app.string.product_data_title_device'),
+    title: $r('app.string.product_data_title_device2'),
+    info: $r('app.string.product_data_info_device2'),
     labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price')
+    price: $r('app.string.product_data_price2')
   },
   {
     id: 3,
     uri: $r('app.media.product004'),
-    title: $r('app.string.product_data_title_device'),
-    info: undefined,
+    title: $r('app.string.product_data_title_device3'),
+    info: $r('app.string.product_data_info_device3'),
     labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price')
+    price: $r('app.string.product_data_price3')
   },
   {
     id: 4,
     uri: $r('app.media.product005'),
-    title: $r('app.string.product_data_title_device'),
-    info: $r('app.string.product_data_title_device'),
+    title: $r('app.string.product_data_title_device4'),
+    info: $r('app.string.product_data_info_device4'),
     labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price')
+    price: $r('app.string.product_data_price4')
   },
   {
     id: 5,
     uri: $r('app.media.product006'),
-    title: $r('app.string.product_data_title_device'),
-    info: undefined,
+    title: $r('app.string.product_data_title_device5'),
+    info: $r('app.string.product_data_info_device5'),
     labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price')
+    price: $r('app.string.product_data_price5')
   },
   {
     id: 6,
     uri: $r('app.media.product007'),
-    title: $r('app.string.product_data_title_device'),
-    info: undefined,
+    title: $r('app.string.product_data_title_device5'),
+    info: $r('app.string.product_data_info_device5'),
     labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price')
+    price: $r('app.string.product_data_price5')
   },
   {
     id: 7,
     uri: $r('app.media.product008'),
-    title: $r('app.string.product_data_title_device'),
-    info: undefined,
+    title: $r('app.string.product_data_title_device7'),
+    info: $r('app.string.product_data_info_device7'),
     labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price')
+    price: $r('app.string.product_data_price7')
   },
   {
     id: 8,
     uri: $r('app.media.product001'),
-    title: $r('app.string.product_data_title_device'),
-    info: undefined,
+    title: $r('app.string.product_data_title_device0'),
+    info: $r('app.string.product_data_info_device0'),
     labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price')
+    price: $r('app.string.product_data_price0')
   },
   {
     id: 9,
     uri: $r('app.media.product002'),
-    title: $r('app.string.product_data_title_device'),
-    info: undefined,
+    title: $r('app.string.product_data_title_device1'),
+    info: $r('app.string.product_data_info_device1'),
     labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price')
+    price: $r('app.string.product_data_price1')
   },
   {
     id: 10,
     uri: $r('app.media.product003'),
-    title: $r('app.string.product_data_title_device'),
-    info: undefined,
+    title: $r('app.string.product_data_title_device2'),
+    info: $r('app.string.product_data_info_device2'),
     labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price')
+    price: $r('app.string.product_data_price2')
   },
   {
     id: 11,
     uri: $r('app.media.product004'),
-    title: $r('app.string.product_data_title_device'),
-    info: undefined,
+    title: $r('app.string.product_data_title_device3'),
+    info: $r('app.string.product_data_info_device3'),
     labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price')
+    price: $r('app.string.product_data_price3')
   },
   {
     id: 12,
     uri: $r('app.media.product005'),
-    title: $r('app.string.product_data_title_device'),
-    info: undefined,
+    title: $r('app.string.product_data_title_device4'),
+    info: $r('app.string.product_data_info_device4'),
     labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price')
+    price: $r('app.string.product_data_price4')
   },
   {
     id: 13,
     uri: $r('app.media.product006'),
-    title: $r('app.string.product_data_title_device'),
-    info: undefined,
+    title: $r('app.string.product_data_title_device5'),
+    info: $r('app.string.product_data_info_device5'),
     labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price')
+    price: $r('app.string.product_data_price5')
   },
   {
     id: 14,
     uri: $r('app.media.product007'),
-    title: $r('app.string.product_data_title_device'),
-    info: undefined,
+    title: $r('app.string.product_data_title_device5'),
+    info: $r('app.string.product_data_info_device5'),
     labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price')
+    price: $r('app.string.product_data_price5')
   },
   {
     id: 15,
     uri: $r('app.media.product008'),
-    title: $r('app.string.product_data_title_device'),
-    info: undefined,
+    title: $r('app.string.product_data_title_device7'),
+    info: $r('app.string.product_data_info_device7'),
     labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price')
+    price: $r('app.string.product_data_price7')
   }
 ]

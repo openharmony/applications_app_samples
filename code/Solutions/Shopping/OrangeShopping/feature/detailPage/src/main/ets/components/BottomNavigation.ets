@@ -13,16 +13,21 @@
 * limitations under the License.
 */
 
-import router from '@ohos.router'
-import prompt from '@ohos.prompt'
-import { EmitterClass } from '@ohos/emitter'
-import { ProductDataModel } from '../model/DetailMode'
+import router from '@ohos.router';
+import { EmitterClass } from '@ohos/emitter';
+import { ProductDataModel } from '../model/DetailMode';
+import curves from '@ohos.curves';
 
 @Component
 export struct BottomNavigation {
-  @StorageProp('curBp') curBp: string = 'md'
-  @Link goodItemData: ProductDataModel
-  private emitterClass: EmitterClass = new EmitterClass()
+  @StorageProp('curBp') curBp: string = 'md';
+  @Link goodItemData: ProductDataModel;
+  private emitterClass: EmitterClass = new EmitterClass();
+  @Link animateAppear: boolean; // 动画开始标识
+  @Link animateScale: boolean; // 开始缩小动画标识
+  @Link animatePath: boolean; // 开始路径动画标识
+  @State animateSpring: boolean = false; // 开始弹簧动画标识
+  @State productCount: number = 1;
 
   build() {
     Row() {
@@ -39,16 +44,30 @@ export struct BottomNavigation {
         }
         .width(74)
         .onClick(() => {
-          AppStorage.SetOrCreate('nowIndex',0)
-          router.push({
+          AppStorage.SetOrCreate('nowIndex', 0)
+          router.pushUrl({
             url: 'pages/Home'
-          })
+          });
         })
 
         Column() {
-          Image($r('app.media.cart'))
-            .width(22)
-            .height(22)
+          Stack({ alignContent: Alignment.TopEnd }) {
+            Image($r('app.media.cart'))
+              .width(22)
+              .height(22)
+              .rotate(this.animateSpring ? { angle: 10 } : { angle: 0 })
+
+            Text(`${this.productCount}`)
+              .borderRadius(10)
+              .width(15)
+              .height(15)
+              .backgroundColor("#ea6055")
+              .fontSize(10)
+              .textAlign(TextAlign.Center)
+              .fontColor(Color.White)
+              .margin({ top: -10, right: -10 })
+          }
+
           Text($r('app.string.shopping_cart'))
             .fontColor($r('app.color.blank'))
             .fontSize(10)
@@ -57,10 +76,10 @@ export struct BottomNavigation {
         }
         .width(74)
         .onClick(() => {
-          AppStorage.SetOrCreate('nowIndex',2)
-          router.push({
+          AppStorage.setOrCreate('nowIndex', 2)
+          router.pushUrl({
             url: 'pages/Home'
-          })
+          });
         })
       }
       .justifyContent(this.curBp === 'sm' ? FlexAlign.SpaceEvenly : FlexAlign.Start)
@@ -74,8 +93,44 @@ export struct BottomNavigation {
         }
         .alignItems(VerticalAlign.Center)
         .padding({ left: 20, right: 20 })
-        .onClick(()=>{
-          this.emitterClass.addGoods(this.goodItemData.id)
+        .onClick(() => {
+          // 添加商品到购物车
+          this.emitterClass.addGoods(this.goodItemData.id);
+          // this.emitterClass.shoppingCartGoodsList
+
+          // 准备显示动画
+          this.animateAppear = !this.animateAppear;
+
+          // 用0.5秒实现动画缩小，曲线使用EaseOut，特点是开始快，结束慢
+          animateTo({ duration: 500, curve: Curve.EaseOut,
+            onFinish: () => {
+              // 用1秒实现动画曲线，曲线使用EaseIn，特点是开始慢，结束快
+              animateTo({ duration: 1000, curve: Curve.EaseIn,
+                onFinish: () => {
+                  // 动画结束，将参数复原，及时移除动画视图
+                  this.animateAppear = !this.animateAppear;
+                  this.animatePath = !this.animatePath;
+                  this.animateScale = !this.animateScale;
+                  // 设置弹簧动画，初始速度100，质量1，刚度225，阻尼10，
+                  // 建议从初始速度0，质量1，刚度225，阻尼30，开始调参，这是临届阻尼的参数
+                  // 如果觉得曲线一开始太慢了，可以把初速度加大
+                  this.animateSpring = !this.animateSpring;
+                  // interpolatingSpring的参数需要调试，通过调试找到自己想要的效果
+                  animateTo({ duration: 1, curve: curves.interpolatingSpring(100, 1, 225, 10), iterations: 1 }, () => {
+                    // 开始弹簧动画
+                    this.animateSpring = !this.animateSpring;
+                    // 更改数字
+                    this.productCount = this.productCount + 1;
+                  })
+                } }, () => {
+                // 开始路径动画
+                this.animatePath = !this.animatePath;
+              })
+            } }, () => {
+            // 开始缩小动画
+            this.animateScale = !this.animateScale;
+          })
+
         })
 
         Row() {
@@ -98,3 +153,4 @@ export struct BottomNavigation {
     .backgroundColor($r('app.color.divider'))
   }
 }
+

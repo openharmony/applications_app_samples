@@ -12,26 +12,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import { TITLE_BAR_DATA } from '../../mock/ProductsData'
-import { GoodsList } from '../good/GoodsList'
-import { SwiperComponent } from './Swiper'
+import { Url } from '../../main/NavigationHomePage';
+import { TITLE_BAR_DATA } from '../../mock/ProductsData';
+import { TitleBarModel } from '../../model/GoodsModel';
+import { GoodsList } from '../good/GoodsList';
+import { SwiperComponent } from './Swiper';
 
 @Component
 export struct HomePageContent {
-  @State tabsIndex: number = 0
-  private url: string
-  private controller: TabsController = new TabsController()
-  @StorageLink('listHeight') listHeight: number = 100
-  @StorageLink('curBp') curBp: string = 'sm'
+  @State tabsIndex: number = 0;
+  private url: string;
+  private controller: TabsController = new TabsController();
+  @StorageLink('listHeight') listHeight: number = 100;
+  @StorageLink('curBp') curBp: string = 'sm';
 
   build() {
     Column() {
       SwiperComponent()
         .width('100%')
       Row() {
-        ForEach(TITLE_BAR_DATA, item => {
-          Column({ space: 6 }) {
+        ForEach(TITLE_BAR_DATA, (item: TitleBarModel) => {
+          Column({
+            space: 6
+          }) {
             Text(item.title)
               .fontSize(16)
               .fontWeight(400)
@@ -43,31 +46,36 @@ export struct HomePageContent {
               .fontColor(this.tabsIndex === item.id ? $r('app.color.pink') : Color.Black)
           }
           .onClick(() => {
-            this.tabsIndex = item.id
-            this.controller.changeIndex(item.id)
+            this.tabsIndex = item.id;
+            this.controller.changeIndex(item.id);
           })
-        }, item => item.id.toString())
+        }, (item: TitleBarModel) => item.id.toString())
       }
       .width('100%')
-      .padding({ top: 12, bottom: 12, left: 20, right: 20 })
+      .padding({
+        top: 12,
+        bottom: 12,
+        left: 20,
+        right: 20
+      })
       .justifyContent(FlexAlign.SpaceBetween)
 
       // 主页下半部分商品展示--全部、精选、新品、实惠
       Tabs({ controller: this.controller }) {
         TabContent() {
-          GoodsList({ url: this.url })
+          GoodsList(new Url(this.url));
         }
 
         TabContent() {
-          GoodsList({ url: this.url })
+          GoodsList(new Url(this.url));
         }
 
         TabContent() {
-          GoodsList({ url: this.url })
+          GoodsList(new Url(this.url));
         }
 
         TabContent() {
-          GoodsList({ url: this.url })
+          GoodsList(new Url(this.url));
         }
       }
       .height(this.listHeight + 12)

@@ -24,7 +24,6 @@ export struct EventsDialog {
           .objectFit(ImageFit.Contain)
           .height(300)
           .aspectRatio(1.5)
-
         Column() {
           Text($r('app.string.shopping'))
             .fontSize(24)
@@ -50,7 +49,7 @@ export struct EventsDialog {
       .backgroundColor('rgba(0,0,0,0.3)')
       .borderRadius('18vp')
       .onClick(() => {
-        this.customDialogController.close()
+        this.customDialogController.close();
       })
     }
     .backgroundColor('#F1F3F5')
