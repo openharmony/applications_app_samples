@@ -40,10 +40,10 @@ struct Index {
   private chessboardLineWidth: number = 1.5;
   private chessboardDotRadius: number = this.chessboardLineWidth * 3;
   private chessPiecesCount: number = 0;
-  private chessPiecesArray: any = null;
-  private processRecord: any = null;
+  private chessPiecesArray: Array<string | number | boolean | object> = [];
+  private processRecord: Array<string | number | boolean | object> = [];
 
-  chessPiecesInit(areaWidth, areaHeight): void {
+  chessPiecesInit(areaWidth: number, areaHeight: number): void {
     this.canvasWidth = areaWidth;
     this.canvasHeight = areaHeight;
     this.chessboardPosX = this.canvasWidth * this.chessboardMargin;
@@ -83,16 +83,18 @@ struct Index {
       this.paintStartInfo();
       return;
     }
-    let prev = this.processRecord.pop();
-    this.chessPiecesArray[prev[0]][prev[1]] = -1;
-    this.paintBackground();
-    this.paintChessboard();
-    for (let i = 0; i < this.processRecord.length; ++i) {
-      let process = this.processRecord[i];
-      this.paintChessPieces(process[0], process[1], i);
+    let prev: string | number | boolean | object | undefined = this.processRecord.pop();
+    if (prev) {
+      this.chessPiecesArray[prev[0]][prev[1]] = -1;
+      this.paintBackground();
+      this.paintChessboard();
+      for (let i = 0; i < this.processRecord.length; ++i) {
+        let process: string | number | boolean | object = this.processRecord[i];
+        this.paintChessPieces(process[0], process[1], i);
+      }
+      this.chessPiecesCount--;
+      this.paintProcess();
     }
-    this.chessPiecesCount--;
-    this.paintProcess();
   }
 
   paintBackground(): void {
@@ -154,7 +156,7 @@ struct Index {
     );
   }
 
-  paintChessboardDot(posX, poxY, radius, color): void {
+  paintChessboardDot(posX: number, poxY: number, radius: number, color: string): void {
     this.context.beginPath();
     this.context.moveTo(posX - radius, poxY);
     this.context.arc(posX, poxY, radius, 2 * Math.PI, 0, true);
@@ -164,7 +166,7 @@ struct Index {
     this.context.fill();
   }
 
-  processClick(posX, posY): void {
+  processClick(posX: number, posY: number): void {
     let widthGap = this.chessboardWidth / this.chessboardLines;
     let heightGap = this.chessboardHeight / this.chessboardLines;
     let chessIndexX = Math.round((posX - this.chessboardPosX) / widthGap);
@@ -188,7 +190,7 @@ struct Index {
     this.checkVictoryDefeat();
   }
 
-  paintChessPieces(chessIndexX, chessIndexY, count): void {
+  paintChessPieces(chessIndexX: number, chessIndexY: number, count: number): void {
     let widthGap = this.chessboardWidth / this.chessboardLines;
     let heightGap = this.chessboardHeight / this.chessboardLines;
     let drawPosX = chessIndexX * widthGap + this.chessboardPosX;
@@ -199,8 +201,8 @@ struct Index {
     this.paintChessboardDot(drawPosX, drawPosY, chessPiecesRadius, color);
   }
 
-  dfsCheckCountLW(type, count, indexX, indexY): number {
-    let curCount = count;
+  dfsCheckCountLW(type: number, count: number, indexX: number, indexY: number): number {
+    let curCount: number = count;
     if (indexX - 1 >= 0) { // Left
       if (this.chessPiecesArray[indexX - 1][indexY] == type) {
         this.chessPiecesArray[indexX - 1][indexY] = type + 100; // Avoid dead cycle
@@ -216,8 +218,8 @@ struct Index {
     return curCount;
   }
 
-  dfsCheckCountUD(type, count, indexX, indexY): number {
-    let curCount = count;
+  dfsCheckCountUD(type: number, count: number, indexX: number, indexY: number): number {
+    let curCount: number = count;
     if (indexY - 1 >= 0) { // Up
       if (this.chessPiecesArray[indexX][indexY - 1] == type) {
         this.chessPiecesArray[indexX][indexY - 1] = type + 100; // Avoid dead cycle
@@ -233,8 +235,8 @@ struct Index {
     return curCount
   }
 
-  dfsCheckCountLU(type, count, indexX, indexY): number {
-    let curCount = count;
+  dfsCheckCountLU(type: number, count: number, indexX: number, indexY: number): number {
+    let curCount: number = count;
     if (indexX - 1 >= 0 && indexY - 1 >= 0) { // Left & Up
       if (this.chessPiecesArray[indexX - 1][indexY -1] == type) {
         this.chessPiecesArray[indexX - 1][indexY -1] = type + 100; // Avoid dead cycle
@@ -250,8 +252,8 @@ struct Index {
     return curCount;
   }
 
-  dfsCheckCountWU(type, count, indexX, indexY): number {
-    let curCount = count;
+  dfsCheckCountWU(type: number, count: number, indexX: number, indexY: number): number {
+    let curCount: number = count;
     if (indexX + 1 <= this.chessboardLines && indexY - 1 >= 0) { // Write & Up
       if (this.chessPiecesArray[indexX + 1][indexY - 1] == type) {
         this.chessPiecesArray[indexX + 1][indexY - 1] = type + 100; // Avoid dead cycle
@@ -277,8 +279,8 @@ struct Index {
     }
   }
 
-  dfsCheckCount(type, count, indexX, indexY): number {
-    let curCount = count;
+  dfsCheckCount(type: number, count: number, indexX: number, indexY: number): number {
+    let curCount: number = count;
     this.chessPiecesArray[indexX][indexY] += 100; // Avoid dead cycle
     curCount = Math.max(curCount, this.dfsCheckCountLW(type, count, indexX, indexY));
     this.restoreChessPiecesArray();
@@ -366,7 +368,7 @@ struct Index {
     this.ctxInfo.fillText(this.BLACK_FIRST, 0, this.infoAreaHeight / 1.5);
   }
 
-  paintGameOver(type): void {
+  paintGameOver(type: number): void {
     console.info('[ArkTSCard] Paint game over');
     let info = this.BLACK_WIN;
     if (type == 1) {
@@ -406,6 +408,7 @@ struct Index {
                   })
               }.width('40%').height('100%')
               .backgroundColor('#fff8c6c6')
+
               Column() {
                 Button($r('app.string.res_fallback')).width('80%').height('95%')
                   .onClick(() => {
