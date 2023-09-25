@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { CommonItemSliderNew, CommonItemSelect, CommonSwitcher } from '../../../../common/AttributeModificationTool';
+import { CommonItemTwoRowSlider, CommonItemSelect, CommonSwitcher } from '../../../../common/AttributeModificationTool';
 
 @Component
 export struct PropertiesControlPanel {
@@ -51,7 +51,7 @@ export struct PropertiesControlPanel {
         testID: `swiper_004`
       })
 
-      CommonItemSliderNew({
+      CommonItemTwoRowSlider({
         changeValue: $itemSpace,
         name: $r('app.string.swiper_properties_item_space'),
         min: 100,

@@ -49,7 +49,7 @@ export struct CommonItemSlider {
         let text = '  screenX:' + event.screenX + '  screenY:' + event.screenY
         console.log('Sample_ComponentCollection' + text)
       })
-      Text(`${Math.trunc(this.changeValue)}`+this.vpTest)
+      Text(`${Math.trunc(this.changeValue)}` + this.vpTest)
     }
     .id(this.testId)
     .width('100%')
@@ -59,13 +59,13 @@ export struct CommonItemSlider {
 }
 
 /**
- *  New Slider style
- *  Text at the top left of the slider
+ *  New Slider style to two row
+ *  Text Name at the top left of the slider
  *  ChangeValue at the top right of the slider
  * @param changeValue slide to change
  */
 @Component
-export struct CommonItemSliderNew {
+export struct CommonItemTwoRowSlider {
   @Link changeValue: number
   private min: number
   private max: number
@@ -150,7 +150,7 @@ export struct CommonItemSelect {
     .padding({ left: this.isItemStyle ? 0 : 12, right: this.isItemStyle ? 0 : 12 })
     .borderRadius(this.isItemStyle ? 0 : 24)
     .backgroundColor(this.isItemStyle ? Color.Transparent : Color.White)
-    .margin({bottom:6})
+    .margin({ bottom: 6 })
   }
 }
 
@@ -290,10 +290,10 @@ export struct ImageItemSlider {
         .layoutWeight(1)
         .onChange((value: number) => {
           this.changeValue = value
-          console.log('Sample_ComponentCollection'+String(value))
+          console.log('Sample_ComponentCollection' + String(value))
         }).onClick((event: ClickEvent) => {
         let text = '  screenX:' + event.screenX + '  screenY:' + event.screenY
-        console.log('Sample_ComponentCollection'+text)
+        console.log('Sample_ComponentCollection' + text)
       })
       Text(`${Math.trunc(this.changeValue)}`)
     }

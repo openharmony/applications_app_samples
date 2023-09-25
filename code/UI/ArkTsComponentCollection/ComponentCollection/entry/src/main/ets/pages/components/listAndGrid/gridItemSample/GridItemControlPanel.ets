@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { CommonItemSliderNew, CommonItemSelect } from '../../../../common/AttributeModificationTool';
+import { CommonItemTwoRowSlider, CommonItemSelect } from '../../../../common/AttributeModificationTool';
 
 @Component
 export struct PropertiesControlPanel {

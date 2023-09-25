@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { CommonItemSliderNew, CommonItemSelect, CommonItemColorSelect
+import { CommonItemTwoRowSlider, CommonItemSelect, CommonItemColorSelect
 } from '../../../../common/AttributeModificationTool';
 import { getStringArrayData } from '../../../../data/ResourceDataHandle';
 import { PATH_SELECT_COMMANDS } from '../../ComponentData';
@@ -70,7 +70,7 @@ export struct PathControlPanel {
         selectColor: $stroke,
         testId: 'path_color_002'
       })
-      CommonItemSliderNew({
+      CommonItemTwoRowSlider({
         changeValue: $fillOpacity,
         max: 100,
         min: 0,
@@ -78,7 +78,7 @@ export struct PathControlPanel {
         vpTest:'%',
         testId: 'path_slider_001'
       })
-      CommonItemSliderNew({
+      CommonItemTwoRowSlider({
         changeValue: $strokeOpacity,
         max: 100,
         min: 0,
@@ -86,14 +86,14 @@ export struct PathControlPanel {
         vpTest:'%',
         testId: 'path_slider_002'
       })
-      CommonItemSliderNew({
+      CommonItemTwoRowSlider({
         changeValue: $strokeWidth,
         max: 10,
         min: 3,
         name: $r('app.string.path_stroke_width'),
         testId: 'path_slider_003'
       })
-      CommonItemSliderNew({
+      CommonItemTwoRowSlider({
         changeValue: $strokeDashArray,
         max: 40,
         min: 1,

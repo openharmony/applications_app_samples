@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { CommonItemSliderNew, CommonItemSelect } from '../../../../common/AttributeModificationTool';
+import { CommonItemTwoRowSlider, CommonItemSelect } from '../../../../common/AttributeModificationTool';
 import { getStringArrayData } from '../../../../data/ResourceDataHandle';
 import {  GRIDCONTAIER_SIZE_TYPE_SELECT_DATA  } from '../../ComponentData';
 
@@ -49,7 +49,7 @@ export struct ArgumentsControlPanel {
         testId: `gridcontainer_001`
       })
 
-      CommonItemSliderNew({
+      CommonItemTwoRowSlider({
         changeValue: $gutter,
         min:0,
         max:20,
@@ -57,7 +57,7 @@ export struct ArgumentsControlPanel {
         testId: `gridcontainer_002`
       })
 
-      CommonItemSliderNew({
+      CommonItemTwoRowSlider({
         changeValue: $gridMargin,
         min:0,
         max:12,

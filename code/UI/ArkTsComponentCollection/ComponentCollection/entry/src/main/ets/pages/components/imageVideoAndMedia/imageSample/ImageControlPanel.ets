@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { CommonItemSliderNew, CommonItemSelect, CommonItemColorSelect } from '../../../../common/AttributeModificationTool';
+import { CommonItemTwoRowSlider, CommonItemSelect, CommonItemColorSelect } from '../../../../common/AttributeModificationTool';
 import { getStringArrayData } from '../../../../data/ResourceDataHandle';
 import { OBJECT_FIT_SELECT, RENDER_MODE_SELECT, REPEAT_SELECT } from '../../../components/ComponentData';
 
@@ -53,7 +53,7 @@ export struct SourceSizeControlPanel {
           }
         },testId:'image_001'
       })
-      CommonItemSliderNew(
+      CommonItemTwoRowSlider(
         {
           changeValue: $sizeHeight,
           min: 0,
@@ -62,7 +62,7 @@ export struct SourceSizeControlPanel {
           testId:'image_slider_001'
         }
       )
-      CommonItemSliderNew(
+      CommonItemTwoRowSlider(
         {
           changeValue: $sizeWidth,
           min: 0,

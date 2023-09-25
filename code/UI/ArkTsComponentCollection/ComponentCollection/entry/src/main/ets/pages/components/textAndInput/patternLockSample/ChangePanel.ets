@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { CommonItemSliderNew, CommonItemColorSelect } from '../../../../common/AttributeModificationTool';
+import { CommonItemTwoRowSlider, CommonItemColorSelect } from '../../../../common/AttributeModificationTool';
 
 @Component
 export struct PatternLockControlPanel{
@@ -28,21 +28,21 @@ export struct PatternLockControlPanel{
 
   build(){
     Column(){
-      CommonItemSliderNew({
+      CommonItemTwoRowSlider({
         changeValue:$sideLength,
         name:$r('app.string.patternlock_side_length'),
         max:200,
         min:100,
         testId:'patternLock_slider_001'
       })
-      CommonItemSliderNew({
+      CommonItemTwoRowSlider({
         changeValue:$circleRadius,
         name:$r('app.string.patternlock_circle_radius'),
         max:12,
         min:3,
         testId:'patternLock_slider_002'
       })
-      CommonItemSliderNew({
+      CommonItemTwoRowSlider({
         changeValue:$pathStrokeWidth,
         name:$r('app.string.patternlock_pathstroke_width'),
         max:20,
