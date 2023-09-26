@@ -139,6 +139,10 @@
     {
       "name": "ic_record",
       "value": "#2D3DDF"
+    },
+    {
+      "name": "process_color",
+      "value": "#32C5FF"
     }
   ]
 }

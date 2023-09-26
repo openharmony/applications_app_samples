@@ -2,6 +2,7 @@
   "src": [
     "pages/Index",
     "pages/Detail",
-    "pages/FriendsMomentsPage"
+    "pages/FriendsMomentsPage",
+    "pages/FullImagePage"
   ]
 }

@@ -30,6 +30,10 @@ export default class EntryAbility extends UIAbility {
     PersistentStorage.persistProp('image_sync_load', true); // 图片同步加载初始化
     PersistentStorage.persistProp('page_layout', true); // 页面布局初始化
     PersistentStorage.persistProp('list_cached_count', true); // 列表缓存条数初始化
+    AppStorage.setOrCreate('downComplete', false); // 初始化下载完成
+    AppStorage.setOrCreate('downLoadStatus', 0); // 初始化下载状态
+    AppStorage.setOrCreate('videoDuration', 0); // 初始化播放总时长
+    AppStorage.setOrCreate('videoCurrentTime', 0); // 初始化播放当前时长
   }
 
   onDestroy(): void {
