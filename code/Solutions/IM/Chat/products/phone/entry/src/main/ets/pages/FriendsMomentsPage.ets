@@ -307,7 +307,7 @@ class FriendMomentsData extends BasicDataSource<FriendMoment> {
 }
 
 // task任务池
-async function getFriendMomentByTaskPool(jsonUrl) {
+async function getFriendMomentByTaskPool(jsonUrl): Promise<void> {
   // 初始化Task对象，传入待执行的方法和参数
   let task: taskpool.Task = new taskpool.Task(getWebData, jsonUrl);
   // 向任务池中添加新对象
@@ -318,6 +318,10 @@ async function getFriendMomentByTaskPool(jsonUrl) {
     momentData.pushData(friendMomentArray[i]);
   }
   AppStorage.setOrCreate('momentData', momentData);
+}
+
+class jsonResult {
+  FriendMoment: Array<FriendMoment>
 }
 
 // 获取网络数据
@@ -334,7 +338,8 @@ async function getWebData(url: string): Promise<Array<FriendMoment>> {
       })
     if (typeof (webData.result) === 'string') {
       // 解析json字符串
-      let jsonObj: Array<FriendMoment> = await JSON.parse(webData.result).FriendMoment;
+      let jsonResult = await JSON.parse(webData.result) as jsonResult;
+      let jsonObj: Array<FriendMoment> = jsonResult.FriendMoment;
       let friendMomentBuckets: Array<FriendMoment> = new Array<FriendMoment>();
       // 映射json数据为FriendMoment对象
       for (let i = 0; i < jsonObj.length; i++) {
@@ -352,7 +357,7 @@ async function getWebData(url: string): Promise<Array<FriendMoment>> {
       Logger.info('getFriendMomentObj onMessage end');
       return friendMomentBuckets;
     } else {
-      Logger.info("getWebData makeLocalData get JSON error");
+      Logger.info('getWebData makeLocalData get JSON error');
     }
   } catch (err) {
     Logger.error(`get result failed, code is ${err.code}, message is ${err.message}`);
