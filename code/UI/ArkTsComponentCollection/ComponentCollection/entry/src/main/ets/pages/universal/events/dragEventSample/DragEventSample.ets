@@ -210,6 +210,7 @@ struct DragEventSample {
                       .id('icon')
                       .width(48)
                       .aspectRatio(1)
+                      .draggable(false)
                   }
                   .bindContextMenu(this.menuBuilder(), ResponseType.LongPress)
                   .onDragStart(() => {
