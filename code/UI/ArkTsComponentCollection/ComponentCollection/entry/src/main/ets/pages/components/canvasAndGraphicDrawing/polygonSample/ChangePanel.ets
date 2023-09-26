@@ -40,7 +40,7 @@ export struct PolygonControlPanel {
         testId: 'polygon_color_002'
       })
       CommonItemSlider({
-        changeValue: $strokeOpacity,
+        changeValue: $fillOpacity,
         max: 100,
         min: 0,
         name: $r('app.string.polygon_fill_opacity'),
@@ -48,7 +48,7 @@ export struct PolygonControlPanel {
         testId: 'polygon_slider_001'
       })
       CommonItemSlider({
-        changeValue: $fillOpacity,
+        changeValue: $strokeOpacity,
         max: 100,
         min: 0,
         name: $r('app.string.polygon_stroke_opacity'),

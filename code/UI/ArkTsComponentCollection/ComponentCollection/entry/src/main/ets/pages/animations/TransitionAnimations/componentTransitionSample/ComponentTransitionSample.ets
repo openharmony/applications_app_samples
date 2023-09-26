@@ -19,7 +19,7 @@ import { TitleBar } from '../../../../common/TitleBar';
 @Component
 struct ComponentTransitionSample {
   @State flag: boolean = true;
-  @State show: Resource = $r('app.string.component_transition_show');
+  @State show: Resource = $r('app.string.component_transition_hide');
 
   build() {
     Column() {
@@ -53,9 +53,9 @@ struct ComponentTransitionSample {
               .onClick(() => {
                 // 点击Button控制Image的显示和消失
                 if (this.flag) {
-                  this.show = $r('app.string.component_transition_hide');
-                } else {
                   this.show = $r('app.string.component_transition_show');
+                } else {
+                  this.show = $r('app.string.component_transition_hide');
                 }
                 // 使用TransitionOptions指定transition时，必须配合animateTo才能产生动画
                 animateTo({ duration: 1000 }, () => {

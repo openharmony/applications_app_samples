@@ -52,7 +52,7 @@ export struct LineControlPanel {
         changeValue: $endPointX,
         max: 200,
         min: 0,
-        name: $r('app.string.line_end_point_y'),
+        name: $r('app.string.line_end_point_x'),
         testId: 'line_slider_003'
       })
       CommonItemSlider({
