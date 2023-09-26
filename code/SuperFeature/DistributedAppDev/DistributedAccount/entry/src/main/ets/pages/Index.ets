@@ -18,9 +18,11 @@ import promptAction from '@ohos.promptAction';
 import picker from '@ohos.file.picker';
 import osAccount from '@ohos.account.osAccount';
 import relationalStore from '@ohos.data.relationalStore';
+import { BusinessError } from '@ohos.base';
 import Logger from '../model/Logger';
 import DistributedAccountModel from '../model/DistributedAccountModel';
 import DatabaseUtils from '../common/utils/DatabaseUtils';
+import { GlobalContext } from '../common/database/GlobalContext';
 
 const TAG: string = `[Index]`
 let distributedAccountModel = new DistributedAccountModel();
@@ -31,7 +33,7 @@ struct Index {
   @State clickable: boolean = false
   @State photoSelectUri: string = ''
   @State @Watch('setClickable') osAccountSelect: string = ''
-  localIdSelect: number
+  localIdSelect: number = 0
   @State accountArr: Array<osAccount.OsAccountInfo> = []
   @State accountSelectArr: Array<SelectOption> = []
   @State @Watch('setClickable') distributedAccountName: string = ''
@@ -48,7 +50,7 @@ struct Index {
         Logger.info(TAG, 'PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
         this.photoSelectUri = PhotoSelectResult.photoUris[0]
         Logger.info(TAG, 'PhotoViewPicker：' + this.photoSelectUri);
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         Logger.error(TAG, 'PhotoViewPicker.select failed with err: ' + err);
       });
     } catch (err) {
@@ -78,9 +80,17 @@ struct Index {
     try {
       this.accountArr = await accountManager.queryAllCreatedOsAccounts()
       Logger.info(TAG, 'queryAllCreatedOsAccounts, accountArr: ' + JSON.stringify(this.accountArr));
-      let osAccountArray = []
+      let osAccountArray: Array<SelectOption> = []
+      let items: SelectOption = {
+        value: "",
+        icon: ""
+      }
       for (let i = 0; i < this.accountArr.length; i++) {
-        osAccountArray.push({ value: this.accountArr[i].localName, icon: this.accountArr[i].photo })
+        items = {
+          value: this.accountArr[i].localName,
+          icon: this.accountArr[i].photo
+        }
+        osAccountArray.push(items)
       }
       Logger.info(TAG, 'queryAllCreatedOsAccounts osAccountArray:' + JSON.stringify(this.accountSelectArr));
       this.accountSelectArr = osAccountArray
@@ -108,7 +118,7 @@ struct Index {
             .backgroundColor($r('sys.color.ohos_id_color_background'))
             .padding({ top: 15, bottom: 15, left: 12, right: 12 })
             .onChange((value: string) => {
-              DatabaseUtils.queryAccountData(value, globalThis.rdbStore)
+              DatabaseUtils.queryAccountData(value, GlobalContext.getrdbStore())
                 .then((result: relationalStore.ResultSet) => {
                   if (result.rowCount === 0) {
                     this.distributedAccountName = value
