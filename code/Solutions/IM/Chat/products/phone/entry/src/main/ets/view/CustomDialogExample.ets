@@ -13,8 +13,6 @@
  * limitations under the License.
  */
 
-import resourceManager from '@ohos.resourceManager';
-
 class PromptType {
   image: string | Resource = ''
   text: string | Resource = ''
@@ -35,6 +33,11 @@ class MessageDetail {
 
 // divider组件的strokWidth为1
 const DIVIDER_LINE_STROKWIDTH: number = 1;
+// initialIndex的初始值
+const INITIAL_INDEX: number = 0;
+// space的初始值
+const SPACE: number = 2;
+
 
 // 首页右上角点击加号时弹出的列表
 @CustomDialog
@@ -60,7 +63,7 @@ export struct CustomDialogExample {
   build() {
     Column() {
       // 首页右上角点击加号按钮弹出的列表框的前4个item
-      List({ space: 2, initialIndex: 0 }) {
+      List({ space: SPACE, initialIndex: INITIAL_INDEX }) {
         ForEach(this.promptArr, (item: PromptType) => {
           ListItem() {
             Prompt({ image: item.image, text: item.text, controller: this.controller })

@@ -29,6 +29,8 @@ const ABOUT_TO_APPEAR_TRACE: string = 'ChatDetailPage_AboutToAppear_HiTrace';
 const ABOUT_TO_APPEAR_TRACE_ID: number = 1; // aboutToAppear 中使用的 taskId
 const MAKE_DATA_LOCAL_TRACE: string = 'ChatDetailPage_MakeDataLocal_HiTrace';
 const MAKE_DATA_LOCAL_TRACE_ID: number = 2; // makeDataLocal 中使用的 taskId
+const STROKE_WIDTH: number = 2; // strokeWidth的宽度
+const LAYOUT_WEIGHT: number = 1; // layoutWeight参数
 
 export class WantModel {
   srcImage: string;
@@ -134,20 +136,21 @@ export struct ChatDetailPage {
         }, (msg: MessageBase) => msg.msgId)
       }
       .listDirection(Axis.Vertical)
-      .divider({ strokeWidth: 2, color: $r('app.color.detail_divider') })
+      .divider({ strokeWidth: STROKE_WIDTH, color: $r('app.color.detail_divider') })
       .padding({
         left: $r('app.integer.layout_10'),
         right: $r('app.integer.layout_10'),
         bottom: $r('app.integer.layout_10')
       })
-      .layoutWeight(1)
       .width('100%')
+      .height('100%')
+      .layoutWeight(LAYOUT_WEIGHT)
 
       // 底部输入框
       Row() {
         Image($r('app.media.chatting_mode_voice'))
-          .width(32)
-          .padding(5)
+          .width($r('app.integer.opt_layout_chat_view_voice_image_width'))
+          .padding($r('app.integer.opt_layout_chat_view_voice_image_padding'))
           .margin({
             left: $r('app.integer.opt_layout_chat_view_item_padding_right'),
             right: $r('app.integer.search_font_size')
@@ -220,10 +223,10 @@ export struct ChatDetailPage {
       let shareDate = this.want.parameters["keyFd"] as ShareDate;
       this.wantFileParams.fdImage = shareDate.value;
       let buffer = new ArrayBuffer(this.imageSize);
-      let readOut = await fs.readSync(this.wantFileParams.fdImage, buffer);
+      let readOut = fs.readSync(this.wantFileParams.fdImage, buffer);
       Logger.info('fdTransformPixelMap: readOut---' + readOut);
       let imageSource: image.ImageSource = undefined;
-      imageSource = await image.createImageSource(buffer);
+      imageSource = image.createImageSource(buffer);
       let decodingOptions = {
         editable: true, // 是否可编辑
         desiredPixelFormat: 3 // 解码的像素格式

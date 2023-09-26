@@ -18,12 +18,11 @@ import window from '@ohos.window';
 import router from '@ohos.router';
 import Logger from '../utils/Logger';
 import Want from '@ohos.app.ability.Want';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 const TAG: string = 'EntryAbility';
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+  onCreate(want: Want): void {
     Logger.info(TAG, 'MainAbility onCreate');
     AppStorage.setOrCreate<Want>('want', want);
     PersistentStorage.persistProp('lazy_for_each', true); // 懒加载初始化
@@ -65,7 +64,7 @@ export default class EntryAbility extends UIAbility {
     Logger.info(TAG, `MainAbility onBackground`);
   }
 
-  onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+  onNewWant(want: Want): void {
     AppStorage.setOrCreate('want', want);
     router.pushUrl({
       url: 'pages/Index'

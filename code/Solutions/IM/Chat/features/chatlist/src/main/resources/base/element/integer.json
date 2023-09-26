@@ -285,6 +285,14 @@
       "value": 32
     },
     {
+      "name": "opt_layout_chat_view_voice_image_width",
+      "value": 32
+    },
+    {
+      "name": "opt_layout_chat_view_voice_image_padding",
+      "value": 5
+    },
+    {
       "name": "opt_layout_chat_view_item_padding_right",
       "value": 32
     },
