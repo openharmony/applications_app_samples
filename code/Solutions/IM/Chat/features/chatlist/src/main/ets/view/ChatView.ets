@@ -103,7 +103,7 @@ struct ChatView {
     .width($r('app.string.layout_100'))
     .height($r('app.integer.chat_view_row_height'))
     .padding({ left: $r('app.integer.chat_view_row_padding_left'), right: $r('app.integer.chat_view_row_padding_right'), top: $r('app.integer.chat_view_row_padding_top'), bottom: $r('app.integer.chat_view_row_padding_bottom') })
-    .onClick((event?: ClickEvent) => {
+    .onClick(() => {
       // 进入聊天详情页
       router.pushUrl({
         url: 'pages/Detail',

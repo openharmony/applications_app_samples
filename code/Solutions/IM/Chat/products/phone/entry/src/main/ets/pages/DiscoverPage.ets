@@ -28,7 +28,6 @@ class SettingViewData {
     this.text = text;
   }
 }
-;
 
 const CHAT_COMMUNITY = 'chatCommunity';
 const LIST_SPACE: number = 16; // 列表默认间隔
@@ -36,10 +35,9 @@ const LAYOUT_WEIGHT: number = 1; // 自动分配剩余空间
 
 @Component
 export struct DiscoverPage {
-  private scroller: Scroller = new Scroller();
-  private settingViewData: Array<Array<SettingViewData>> = [
+  private settingViewData: Array< Array<SettingViewData>> = [
     [new SettingViewData($r('app.media.icon_de_scan'), $r('app.string.scan')),
-      new SettingViewData($r('app.media.icon_de_shake'), $r('app.string.shake'))],
+        new SettingViewData($r('app.media.icon_de_shake'), $r('app.string.shake'))],
     [new SettingViewData($r('app.media.searchOne'), $r('app.string.search_one'))],
     [new SettingViewData($r('app.media.applet'), $r('app.string.applet'))],
     [new SettingViewData($r('app.media.icon_de_nearby'), $r('app.string.around'))],
@@ -102,12 +100,13 @@ export struct DiscoverPage {
           .borderRadius($r('app.integer.setting_menu_border_radius'))
           .padding({ top: $r('app.integer.layout_5'), bottom: $r('app.integer.layout_5') })
           .alignSelf(ItemAlign.Center)
-
         })
       }
       .padding({ left: $r('app.integer.setting_padding_left'), right: $r('app.integer.setting_padding_left') })
       .layoutWeight(LAYOUT_WEIGHT)
       .margin({ top: $r('app.integer.discovery_list_margin_top') })
+      .width($r('app.string.layout_100'))
+      .height($r('app.string.layout_100'))
     }
     .backgroundColor($r('app.color.discover_page_background'))
     .width($r('app.string.layout_100'))
