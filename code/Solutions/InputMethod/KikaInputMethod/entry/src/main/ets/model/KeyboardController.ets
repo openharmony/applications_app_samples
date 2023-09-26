@@ -437,11 +437,6 @@ class KeyboardController {
       }
     });
 
-    InputMethodEngine.on('setCallingWindow', () => {
-      this.inputHandle.addLog('setCallingWindow');
-      this.initWindow();
-    });
-
     this.mKeyboardDelegate = inputMethodEngine.getKeyboardDelegate();
 
     this.mKeyboardDelegate.on('keyDown', (keyEvent: inputMethodEngine.KeyEvent) => {

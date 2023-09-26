@@ -383,11 +383,6 @@ export class KeyboardController {
       this.mContext.destroy();
     });
 
-    InputMethodEngine.on('setCallingWindow', () => {
-      this.inputHandle.addLog('setCallingWindow');
-      this.initWindow();
-    });
-
     this.mKeyboardDelegate = inputMethodEngine.getKeyboardDelegate();
     this.mKeyboardDelegate.on('keyDown', (keyEvent: inputMethodEngine.KeyEvent) => {
       if (this.isKeyboardShow) {
