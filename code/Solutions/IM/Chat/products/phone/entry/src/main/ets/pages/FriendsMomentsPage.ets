@@ -108,14 +108,9 @@ struct FriendsMomentsPage {
   async makeLocalData(): Promise<void> {
     Logger.info(TAG, 'makeLocalData');
     hiTraceMeter.startTrace(MAKE_LOCAL_DATA_TRACE, MAKE_LOCAL_DATA_TRACE_ID);
-    let friendMomentJsonStr: http.HttpResponse = await getWebData(FriendMomentJsonUrl.FRIEND_MOMENT_JSON_URL[0]);
-    if (typeof (friendMomentJsonStr.result) === 'string') {
-      let friendMomentObj: Array<FriendMoment> = await getFriendMomentObj(friendMomentJsonStr.result);
-      for (let i = 0; i < friendMomentObj.length; i++) {
-        this.momentData.pushData(friendMomentObj[i]);
-      }
-    } else {
-      Logger.info(TAG, 'makeLocalData get JSON error');
+    let friendMomentArray: Array<FriendMoment> = await getWebData(FriendMomentJsonUrl.FRIEND_MOMENT_JSON_URL[0]);
+    for (let i = 0; i < friendMomentArray.length; i++) {
+      this.momentData.pushData(friendMomentArray[i]);
     }
     hiTraceMeter.finishTrace(MAKE_LOCAL_DATA_TRACE, MAKE_LOCAL_DATA_TRACE_ID);
   }
@@ -177,8 +172,9 @@ struct OneMoment {
                       router.pushUrl({
                         url: 'pages/FullImagePage',
                         params: {
-                          resourceStr: image,
-                          isMedia: false
+                          resourceUrl: JSON.stringify(this.moment.imageList),
+                          isMedia: false,
+                          imageIndex: index
                         }
                       })
                     })
@@ -201,7 +197,7 @@ struct OneMoment {
                 router.pushUrl({
                   url: 'pages/FullImagePage',
                   params: {
-                    resourceStr: this.moment.imageList[0],
+                    resourceUrl: this.moment.imageList[0],
                     isMedia: false
                   }
                 })
@@ -311,47 +307,61 @@ class FriendMomentsData extends BasicDataSource<FriendMoment> {
 }
 
 // task任务池
-async function getFriendMomentByTaskPool(jsonUrl) {
+async function getFriendMomentByTaskPool(jsonUrl): Promise<void> {
+  // 初始化Task对象，传入待执行的方法和参数
   let task: taskpool.Task = new taskpool.Task(getWebData, jsonUrl);
-  let webData: string = await taskpool.execute(task, taskpool.Priority.MEDIUM) as string;
-  let friendMomentJsonStr: Array<FriendMoment> = await getFriendMomentObj(webData['result']);
+  // 向任务池中添加新对象
+  let friendMomentArray: Array<FriendMoment> = await taskpool.execute(task, taskpool.Priority.MEDIUM) as Array<FriendMoment>;
   let momentData: FriendMomentsData = AppStorage.get<FriendMomentsData>('momentData');
-  for (let i = 0; i < friendMomentJsonStr.length; i++) {
-    momentData.pushData(friendMomentJsonStr[i]);
+  // 将数组循环写入页面对象中
+  for (let i = 0; i < friendMomentArray.length; i++) {
+    momentData.pushData(friendMomentArray[i]);
   }
   AppStorage.setOrCreate('momentData', momentData);
 }
 
+class jsonResult {
+  FriendMoment: Array<FriendMoment>
+}
+
 // 获取网络数据
 @Concurrent
-async function getWebData(url: string): Promise<http.HttpResponse> {
+async function getWebData(url: string): Promise<Array<FriendMoment>> {
   Logger.info('getWebData onMessage start');
   try {
-    return await http.createHttp().request(
+    let webData: http.HttpResponse = await http.createHttp().request(
       url,
       { header: {
         'Content-Type': 'application/json'
       },
         connectTimeout: FriendMomentJsonUrl.CONNECT_TIME, readTimeout: FriendMomentJsonUrl.READ_TIME
       })
+    if (typeof (webData.result) === 'string') {
+      // 解析json字符串
+      let jsonResult = await JSON.parse(webData.result) as jsonResult;
+      let jsonObj: Array<FriendMoment> = jsonResult.FriendMoment;
+      let friendMomentBuckets: Array<FriendMoment> = new Array<FriendMoment>();
+      // 映射json数据为FriendMoment对象
+      for (let i = 0; i < jsonObj.length; i++) {
+        let contactTemp = new ChatContact(jsonObj[i].user.userId, jsonObj[i].user.userName,
+          jsonObj[i].user.userImage);
+        let chatModelTemp = new FriendMoment(jsonObj[i].id, contactTemp, jsonObj[i].text, '',
+          jsonObj[i].imageList, jsonObj[i].media, jsonObj[i].mediaPreview);
+        friendMomentBuckets.push(chatModelTemp);
+      }
+      // 在TaskPool中模拟耗时操作
+      let taskCount: number = 0;
+      for (let i = 0;i < 10000; i++) {
+        taskCount++;
+      }
+      Logger.info('getFriendMomentObj onMessage end');
+      return friendMomentBuckets;
+    } else {
+      Logger.info('getWebData makeLocalData get JSON error');
+    }
   } catch (err) {
     Logger.error(`get result failed, code is ${err.code}, message is ${err.message}`);
   }
-}
-
-async function getFriendMomentObj(friendMomentStr: string): Promise<Array<FriendMoment>> {
-  let jsonObj: Array<FriendMoment> = await JSON.parse(friendMomentStr).FriendMoment;
-  let friendMomentBuckets: Array<FriendMoment> = new Array<FriendMoment>();
-  // 映射json数据为FriendMoment对象
-  for (let i = 0; i < jsonObj.length; i++) {
-    let contactTemp = new ChatContact(jsonObj[i].user.userId, jsonObj[i].user.userName,
-      jsonObj[i].user.userImage);
-    let chatModelTemp = new FriendMoment(jsonObj[i].id, contactTemp, jsonObj[i].text, '',
-      jsonObj[i].imageList, jsonObj[i].media, jsonObj[i].mediaPreview);
-    friendMomentBuckets.push(chatModelTemp);
-  }
-  Logger.info('getFriendMomentObj onMessage end');
-  return friendMomentBuckets;
 }
 
 @Component
