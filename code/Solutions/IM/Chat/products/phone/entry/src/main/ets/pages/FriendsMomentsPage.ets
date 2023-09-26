@@ -210,23 +210,21 @@ struct OneMoment {
               .width($r('app.integer.friendMomentsPage_single_video_width'))
               .height($r('app.integer.friendMomentsPage_single_video_height'))
               .borderRadius($r('app.integer.friendMomentsPage_single_video_radius'))
-              .onClick(() => {
-                router.pushUrl({
-                  url: 'pages/FullImagePage',
-                  params: {
-                    resourceUrl: this.moment.media,
-                    isMedia: true
-                  }
-                })
-
-              })
             Image($r('app.media.play'))
               .width($r('app.integer.friendMomentsPage_icon_play_width'))
               .height($r('app.integer.friendMomentsPage_icon_play_height'))
           }
           .width($r('app.integer.friendMomentsPage_single_video_width'))
           .height($r('app.integer.friendMomentsPage_single_video_height'))
-
+          .onClick(() => {
+            router.pushUrl({
+              url: 'pages/FullImagePage',
+              params: {
+                resourceUrl: this.moment.media,
+                isMedia: true
+              }
+            })
+          })
         }
       }
       .alignItems(HorizontalAlign.Start)
