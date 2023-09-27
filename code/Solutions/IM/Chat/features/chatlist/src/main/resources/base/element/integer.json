@@ -21,6 +21,10 @@
       "value": 13
     },
     {
+      "name": "text_font_10",
+      "value": 10
+    },
+    {
       "name": "layout_70",
       "value": 70
     },
@@ -37,6 +41,10 @@
       "value": 37
     },
     {
+      "name": "layout_28",
+      "value": 28
+    },
+    {
       "name": "layout_48",
       "value": 48
     },
@@ -45,12 +53,12 @@
       "value": 40
     },
     {
-      "name": "layout_245",
-      "value": 245
+      "name": "layout_184",
+      "value": 184
     },
     {
-      "name": "layout_147",
-      "value": 147
+      "name": "layout_111",
+      "value": 111
     },
     {
       "name": "layout_minus_38",
@@ -61,6 +69,14 @@
       "value": 30
     },
     {
+      "name": "layout_24",
+      "value": 24
+    },
+    {
+      "name": "layout_22",
+      "value": 22
+    },
+    {
       "name": "layout_20",
       "value": 20
     },
@@ -69,12 +85,24 @@
       "value": 15
     },
     {
-      "name": "layout_266",
-      "value": 266
+      "name": "layout_19",
+      "value": 19
+    },
+    {
+      "name": "layout_12",
+      "value": 12
+    },
+    {
+      "name": "layout_200",
+      "value": 200
     },
     {
       "name": "layout_10",
       "value": 10
+    },
+    {
+      "name": "layout_8",
+      "value": 8
     },
     {
       "name": "layout_11",
@@ -83,6 +111,10 @@
     {
       "name": "layout_5",
       "value": 5
+    },
+    {
+      "name": "layout_4",
+      "value": 4
     },
     {
       "name": "layout_2",
@@ -102,19 +134,23 @@
     },
     {
       "name": "search_font_size",
-      "value": 21
+      "value": 16
     },
     {
       "name": "search_border_radius",
-      "value": 26
+      "value": 20
     },
     {
       "name": "search_outline_height",
-      "value": 75
+      "value": 56
     },
     {
       "name": "search_inline_height",
-      "value": 53
+      "value": 40
+    },
+    {
+      "name": "search_inline_margin",
+      "value": 24
     },
     {
       "name": "search_inline_width",
@@ -122,7 +158,7 @@
     },
     {
       "name": "search_inline_border_width",
-      "value": 2
+      "value": 1
     },
     {
       "name": "search_outline_padding_left",
@@ -158,11 +194,11 @@
     },
     {
       "name": "chat_list_delete_width",
-      "value": 53
+      "value": 40
     },
     {
       "name": "chat_list_delete_height",
-      "value": 53
+      "value": 40
     },
     {
       "name": "chat_view_image_width",
@@ -226,7 +262,7 @@
     },
     {
       "name": "chat_view_time_width",
-      "value": 50
+      "value": 64
     },
     {
       "name": "chat_view_time_font_size",
@@ -246,7 +282,7 @@
     },
     {
       "name": "chat_view_row_height",
-      "value": 70
+      "value": 52
     },
     {
       "name": "chat_view_row_padding_left",
@@ -266,11 +302,11 @@
     },
     {
       "name": "search_svg_height",
-      "value": 24
+      "value": 18
     },
     {
       "name": "search_text_height",
-      "value": 29
+      "value": 22
     },
     {
       "name": "search_text_width",
@@ -278,15 +314,15 @@
     },
     {
       "name": "opt_layout_chat_view_item_height",
-      "value": 85
+      "value": 64
     },
     {
       "name": "opt_layout_chat_view_item_padding_left",
-      "value": 32
+      "value": 24
     },
     {
       "name": "opt_layout_chat_view_voice_image_width",
-      "value": 32
+      "value": 24
     },
     {
       "name": "opt_layout_chat_view_voice_image_padding",
@@ -294,55 +330,55 @@
     },
     {
       "name": "opt_layout_chat_view_item_padding_right",
-      "value": 32
+      "value": 24
     },
     {
       "name": "opt_layout_chat_view_item_padding_top",
-      "value": 16
+      "value": 12
     },
     {
       "name": "opt_layout_chat_view_item_padding_bottom",
-      "value": 16
+      "value": 12
     },
     {
       "name": "opt_layout_chat_view_profile_picture_width",
-      "value": 53
+      "value": 40
     },
     {
       "name": "opt_layout_chat_view_profile_picture_height",
-      "value": 53
+      "value": 40
     },
     {
       "name": "opt_layout_chat_view_profile_picture_radius",
-      "value": 26
+      "value": 20
     },
     {
       "name": "opt_layout_chat_view_user_name_font_size",
-      "value": 21
+      "value": 16
     },
     {
       "name": "opt_layout_chat_view_red_dot_width",
-      "value": 20
+      "value": 16
     },
     {
       "name": "opt_layout_chat_view_red_dot_height",
-      "value": 20
+      "value": 16
     },
     {
       "name": "opt_layout_chat_view_red_dot_container_width",
-      "value": 22
+      "value": 20
     },
     {
       "name": "opt_layout_chat_view_red_dot_container_height",
-      "value": 22
+      "value": 20
     },
     {
       "name": "chat_list_page_start_margin",
-      "value": 102
+      "value": 76
     },
     {
       "name": "chat_list_page_delete_row_width",
-      "value": 85
+      "value": 64
     }
   ]
 }

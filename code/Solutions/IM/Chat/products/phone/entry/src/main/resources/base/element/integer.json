@@ -622,23 +622,23 @@
     },
     {
       "name": "top_bar_font_size",
-      "value": 32
+      "value": 24
     },
     {
       "name": "top_bar_text_height",
-      "value": 44
+      "value": 33
     },
     {
       "name": "top_bar_text_padding_left",
-      "value": 32
+      "value": 24
     },
     {
       "name": "top_bar_add_button_image_height",
-      "value": 32
+      "value": 24
     },
     {
       "name": "top_bar_add_button_image_width",
-      "value": 32
+      "value": 24
     },
     {
       "name": "top_bar_add_button_width",
@@ -650,11 +650,11 @@
     },
     {
       "name": "top_bar_add_button_padding_right",
-      "value": 32
+      "value": 24
     },
     {
       "name": "top_bar_height",
-      "value": 75
+      "value": 56
     },
     {
       "name": "discovery_bar_font_size",

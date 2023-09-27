@@ -63,18 +63,18 @@ struct OptLayoutChatView {
       if (this.chatItem.unreadMsgCount > 0) { // 红点消息大于0条时渲染红点
         Row() {
           Text(`${this.chatItem.unreadMsgCount}`)
-            .borderRadius($r('app.integer.layout_10'))
+            .borderRadius($r('app.integer.layout_8'))
             .constraintSize({minWidth: $r('app.integer.opt_layout_chat_view_red_dot_width')})
             .height($r('app.integer.opt_layout_chat_view_red_dot_height'))
             .backgroundColor($r('app.color.unread_msg_tip'))
-            .fontSize($r('app.integer.text_font_13'))
+            .fontSize($r('app.integer.text_font_10'))
             .textAlign(TextAlign.Center)
             .fontColor(Color.White)
         }
         .alignItems(VerticalAlign.Center)
         .justifyContent(FlexAlign.Center)
-        .borderRadius($r('app.integer.layout_11'))
-        .margin({ top: $r('app.integer.layout_minus_8'), left: $r('app.integer.layout_minus_38') })
+        .borderRadius($r('app.integer.layout_10'))
+        .margin({ top: $r('app.integer.layout_minus_8'), left: $r('app.integer.layout_24') })
         .constraintSize({minWidth: $r('app.integer.opt_layout_chat_view_red_dot_container_width')})
         .height($r('app.integer.opt_layout_chat_view_red_dot_container_height'))
         .backgroundColor(Color.White)
@@ -89,6 +89,7 @@ struct OptLayoutChatView {
       Text(this.chatItem.user.userName)
         .fontColor($r('app.color.top_bar_font_color'))
         .fontSize($r('app.integer.opt_layout_chat_view_user_name_font_size'))
+        .lineHeight($r('app.integer.layout_22'))
         .font({ weight: 450 })
         .margin({ top: $r('app.integer.layout_0'), left: $r('app.integer.chat_view_row_height') })
         .alignRules({
@@ -110,9 +111,10 @@ struct OptLayoutChatView {
         .id('time')
       Text(this.chatItem.lastMsg)
         .fontColor($r('app.string.search_inline_border_color'))
-        .fontSize($r('app.integer.search_font_size'))
+        .fontSize($r('app.integer.text_font_14'))
+        .lineHeight($r('app.integer.layout_19'))
         .maxLines(1)
-        .margin({ top: $r('app.integer.opt_layout_chat_view_item_padding_right'), left: $r('app.integer.chat_view_row_height') })
+        .margin({ top: $r('app.integer.layout_24'), left: $r('app.integer.chat_view_row_height') })
         .alignRules({
           top: { anchor: '__container__', align: VerticalAlign.Top },
           left: { anchor: '__container__', align: HorizontalAlign.Start }

@@ -107,7 +107,7 @@ export struct ChatDetailPage {
 
           Text(this.chatName)
             .fontSize($r('app.integer.opt_layout_chat_view_profile_picture_radius'))
-            .lineHeight($r('app.integer.layout_37'))
+            .lineHeight($r('app.integer.layout_28'))
             .fontColor(Color.Black)
             .fontWeight(FontWeight.Bold)
             .textAlign(TextAlign.Start)
@@ -147,18 +147,17 @@ export struct ChatDetailPage {
       .layoutWeight(LAYOUT_WEIGHT)
 
       // 底部输入框
-      Row() {
+      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
         Image($r('app.media.chatting_mode_voice'))
-          .width($r('app.integer.opt_layout_chat_view_voice_image_width'))
-          .padding($r('app.integer.opt_layout_chat_view_voice_image_padding'))
+          .height($r('app.integer.opt_layout_chat_view_voice_image_width'))
           .margin({
-            left: $r('app.integer.opt_layout_chat_view_item_padding_right'),
+            left: $r('app.integer.search_font_size'),
             right: $r('app.integer.search_font_size')
           })
         TextInput({ placeholder: '', text: this.keyboardStr })
           .id('bottomTextInput')
           .height($r('app.integer.search_inline_height'))
-          .width($r('app.integer.layout_266'))
+          .layoutWeight(1)
           .borderRadius($r('app.integer.search_border_radius'))
           .backgroundColor($r('app.string.chat_detail_input_background'))
           .enterKeyType(EnterKeyType.Send)
@@ -201,7 +200,6 @@ export struct ChatDetailPage {
       .backgroundColor(Color.White)
       .width('100%')
       .height($r('app.integer.search_outline_height'))
-      .alignItems(VerticalAlign.Center)
     }
     .backgroundColor($r('app.color.detail_body_background'))
     .height('100%')
@@ -320,12 +318,12 @@ export struct ChatItemView {
                   .fontColor($r('app.color.top_bar_font_color'))
                   .backgroundColor(Color.White)
                   .padding({
-                    top: $r('app.integer.layout_10'),
-                    left: $r('app.integer.text_font_16'),
-                    bottom: $r('app.integer.layout_10'),
-                    right: $r('app.integer.text_font_16')
+                    top: $r('app.integer.layout_8'),
+                    left: $r('app.integer.text_font_13'),
+                    bottom: $r('app.integer.layout_8'),
+                    right: $r('app.integer.text_font_13')
                   })
-                  .borderRadius({ topLeft: $r('app.integer.layout_5'),
+                  .borderRadius({ topLeft: $r('app.integer.layout_4'),
                     topRight: $r('app.integer.opt_layout_chat_view_item_padding_right'),
                     bottomLeft: $r('app.integer.opt_layout_chat_view_item_padding_right'),
                     bottomRight: $r('app.integer.opt_layout_chat_view_item_padding_right')
@@ -333,17 +331,17 @@ export struct ChatItemView {
               }
             } else if (this.msg.msgType === 2) {
               Image((this.msg.msgBody as ImageMessage).image)
-                .width($r('app.integer.layout_245'))
-                .height($r('app.integer.layout_147'))
+                .width($r('app.integer.layout_184'))
+                .height($r('app.integer.layout_111'))
                 .borderRadius($r('app.integer.search_border_radius'))
             }
           }
-          .margin({ left: $r('app.integer.layout_11') })
+          .margin({ left: $r('app.integer.layout_8') })
           .alignItems(HorizontalAlign.Start)
         }
         .width('100%')
         .alignItems(VerticalAlign.Top)
-        .margin({ top: $r('app.integer.layout_15') })
+        .margin({ top: $r('app.integer.layout_12') })
         .padding({ right: $r('app.integer.chat_view_time_width') })
       } else {
         // 聊天页面本人消息
@@ -362,22 +360,22 @@ export struct ChatItemView {
                   .backgroundColor($r('app.color.detail_item_message_background'))
                   .fontColor($r('app.color.top_bar_font_color'))
                   .padding({
-                    top: $r('app.integer.layout_10'),
-                    left: $r('app.integer.text_font_16'),
-                    bottom: $r('app.integer.layout_10'),
-                    right: $r('app.integer.text_font_16')
+                    top: $r('app.integer.layout_8'),
+                    left: $r('app.integer.text_font_13'),
+                    bottom: $r('app.integer.layout_8'),
+                    right: $r('app.integer.text_font_13')
                   })
                   .borderRadius({
                     topLeft: $r('app.integer.opt_layout_chat_view_item_padding_right'),
-                    topRight: $r('app.integer.layout_5'),
+                    topRight: $r('app.integer.layout_4'),
                     bottomLeft: $r('app.integer.opt_layout_chat_view_item_padding_right'),
                     bottomRight: $r('app.integer.opt_layout_chat_view_item_padding_right')
                   })
               }
             } else if (this.msg.msgType === 2) {
               Image((this.msg.msgBody as ImageMessage).image)
-                .width($r('app.integer.layout_245'))
-                .height($r('app.integer.layout_147'))
+                .width($r('app.integer.layout_184'))
+                .height($r('app.integer.layout_111'))
                 .borderRadius($r('app.integer.search_border_radius'))
             } else if (this.msg.msgType === 3) {
               // 接收分享的页面
@@ -404,14 +402,14 @@ export struct ChatItemView {
                 .objectFit(ImageFit.Contain)
             }
           }
-          .margin({ right: $r('app.integer.layout_11') })
+          .margin({ right: $r('app.integer.layout_8') })
           .alignItems(HorizontalAlign.End)
         }
         .alignItems(VerticalAlign.Top)
         .width('100%')
         .direction(Direction.Rtl)
         .padding({ left: $r('app.integer.chat_view_time_width') })
-        .margin({ top: $r('app.integer.layout_15') })
+        .margin({ top: $r('app.integer.layout_12') })
       }
     }
   }
