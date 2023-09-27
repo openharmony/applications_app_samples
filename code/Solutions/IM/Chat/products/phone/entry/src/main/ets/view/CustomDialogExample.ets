@@ -137,10 +137,7 @@ struct Prompt {
         })
     }
     .width('100%')
-    .padding({
-      top: $r("app.integer.customDialog_Prompt_padding_top"),
-      bottom: $r("app.integer.customDialog_Prompt_padding_bottom")
-    })
+    .height($r('app.integer.customDialog_Prompt_height'))
     .justifyContent(FlexAlign.Start)
     .onClick(() => {
       this.controller.close()
@@ -194,9 +191,8 @@ struct ToggleComponent {
           })
       }
       .width('100%')
+      .height($r('app.integer.customDialog_Prompt_height'))
       .padding({
-        top: $r("app.integer.customDialog_Prompt_margin_top"),
-        bottom: $r("app.integer.customDialog_Prompt_margin_bottom"),
         right: $r("app.integer.customDialog_ToggleComponent_margin_right")
       })
       .justifyContent(FlexAlign.SpaceBetween)

@@ -108,7 +108,7 @@ struct Index {
         this.message = $r('app.string.my');
       }
     })
-    .barWidth($r('app.integer.tabbar_width'))
+    .barWidth($r('app.string.layout_100'))
     .barHeight($r('app.integer.tabbar_height'))
     .backgroundColor($r('app.color.tabbar_background'))
   }
