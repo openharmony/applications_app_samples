@@ -132,8 +132,8 @@ library/
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568；
-2. 本示例仅支持API10版本SDK，版本号：4.0.9.6，镜像版本号：Openharmony 4.0.9.6；
-3. 本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)才可编译运行；
+2. 本示例仅支持API10版本SDK，版本号：4.0.10.10，镜像版本号：Openharmony 4.0.10.10；
+3. 本示例需要使用DevEco Studio 4.0 Beta2 (Build Version: 4.0.0.400, built on August 2, 2023)才可编译运行；
 
 ### 下载
 
