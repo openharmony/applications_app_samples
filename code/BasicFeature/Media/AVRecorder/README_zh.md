@@ -39,8 +39,8 @@ entry/src/main/ets/
 
 * 录控功能接口调用实现参考工程目录中的音频录制页面和视频录制页面
   * 调用create()、prepare()、getInputSurface()、start()、pause()、resume()、stop()、reset()、release()接口实现录制器的创建、准备、录控操作、重置、销毁实例等功能；
-  * 视频录制[VRecorder.ets](code/BasicFeature/Media/AVRecorder/entry/src/main/ets/recorder/VideoRecorder.ets)调用Camera接口实现相机出流功能配合视频录制功能，相机的实现方法参考自相机接口[@ohos.multimedia.camera](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-camera.md)
-* 调用MediaLibrary实现创建录制文件代码在[SaveCameraAsset.ets](code/BasicFeature/Media/AVRecorder/entry/src/main/ets/utils/SaveCameraAsset.ets)，实现方法参考[@ohos.multimedia.medialibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md)接口说明
+  * 视频录制[VRecorder.ets](entry/src/main/ets/recorder/VideoRecorder.ets)调用Camera接口实现相机出流功能配合视频录制功能，相机的实现方法参考自相机接口[@ohos.multimedia.camera](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-camera.md)
+* 调用MediaLibrary实现创建录制文件代码在[SaveCameraAsset.ets](entry/src/main/ets/utils/SaveCameraAsset.ets)，实现方法参考[@ohos.multimedia.medialibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md)接口说明
 
 ### 相关权限
 
