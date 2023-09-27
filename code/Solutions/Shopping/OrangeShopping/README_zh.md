@@ -145,6 +145,8 @@ OrangeShopping
 
 6.弹窗升级需配置服务器后触发。
 
+7.本示例所配置的权限ohos.permission.CAPTURE_SCREEN为system_core级别(相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)查看)，需要手动配置对应级别的权限签名(具体操作可查看[自动化签名方案](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/)。
+
 ### 下载
 
 如需单独下载本工程，执行如下命令：
