@@ -25,6 +25,10 @@
       "value": "搜索"
     },
     {
+      "name": "search_place_holder",
+      "value": "搜索..."
+    },
+    {
       "name": "user1Name",
       "value": "自己"
     },
@@ -130,7 +134,7 @@
     },
     {
       "name": "around",
-      "value": "附件的人"
+      "value": "附近的人"
     },
     {
       "name": "shopping",
@@ -191,6 +195,18 @@
     {
       "name": "layout_92",
       "value": "92%"
+    },
+    {
+      "name": "layout_93",
+      "value": "93%"
+    },
+    {
+      "name": "search_inline_border_color",
+      "value": "rgba(24,36,49,0.20)"
+    },
+    {
+      "name": "chat_detail_input_background",
+      "value": "rgba(0,0,0,0.05)"
     }
   ]
 }

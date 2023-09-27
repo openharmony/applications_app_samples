@@ -30,7 +30,7 @@ entry/src/main/ets/
 ### 具体实现
 * 页面中使用了Lottie对象控制动画的一系列操作，源码参考[Lottie.ets](entry/src/main/ets/pages/Lottie.ets):
     * 初始化动画：在canvas的onReady里使用loadAnimation加载动画，须提前声明Animator(‘__lottie_ets’)对象，并在Canvas完成布局后调用；
-    * Lottie动画操作：lottie.play播放动画，lottie.pause暂停播放，lottie.setDirection设置播放顺序，详细接口描述见[Lottie模块](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-components-canvas-lottie.md)
+    * Lottie动画操作：lottie.play播放动画，lottie.pause暂停播放，lottie.setDirection设置播放顺序
 ### 相关权限
 
 不涉及。

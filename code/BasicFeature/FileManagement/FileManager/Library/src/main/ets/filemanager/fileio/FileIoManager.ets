@@ -29,6 +29,25 @@ const KB_SYMBOL: string = 'KB'
 const BYTE_SYMBOL: string = 'B'
 
 class FileSystem {
+  // 获取文件大小
+  getFileSize(filePath: string): string {
+    try {
+      let fileSize = fileio.statSync(filePath).size;
+      if (fileSize / GB_MAGNITUDE > 1) {
+        return `${(fileSize / GB_MAGNITUDE).toFixed(2)}${GB_SYMBOL}`;
+      } else if (fileSize / MB_MAGNITUDE > 1) {
+        return `${(fileSize / MB_MAGNITUDE).toFixed(2)}${MB_SYMBOL}`;
+      } else if (fileSize / KB_MAGNITUDE > 1) {
+        return `${(fileSize / KB_MAGNITUDE).toFixed(2)}${KB_SYMBOL}`;
+      } else {
+        return `${fileSize}${BYTE_SYMBOL}`;
+      }
+    } catch (err) {
+      Logger.error(`getFileSize failed, code is ${err.code}, message is ${err.message}`);
+      throw new Error(`getFileSize failed, code is ${err.code}, message is ${err.message}`);
+    }
+  }
+
   // 总空间---默认GB
   async getTotalSize(): Promise<string> {
     let totalSize: number = await storageStatistics.getTotalSize()
@@ -53,85 +72,77 @@ class FileSystem {
   // 根据沙箱路径打开目录
   getSubdirectory(filePath: string): Array<SubDirectoryType> {
     // 获取目录
-    let dir = fileio.opendirSync(filePath)
+    let dir = fileio.opendirSync(filePath);
     // 读取的结果
-    let dirent
+    let dirent: fileio.Dirent;
     // 结果数组
-    let subdirectory = []
+    class SubDirectory {
+      name: string = ''
+      type: number = 0
+      time: Date
+      childrenNum: number = 0
+      fileSize: string = ''
+      constructor(time: Date) {
+        this.time = time
+      }
+    }
+    let subdirectory: Array<SubDirectory> = []
     do {
-      dirent = dir.readSync()
+      dirent = dir.readSync();
       if (dirent) {
-        let subdirectoryNum = 0
-        let fileSize = ''
-        let time = new Date()
+        let subdirectoryNum: number = 0;
+        let fileSize: string = '';
+        let time: Date = new Date();
         // 如果是文件夹，就读取文件夹中文件的数量
         if (dirent.isDirectory()) {
-          subdirectoryNum = this.getSubdirectoryNum(filePath + `${dirent.name}`)
+          subdirectoryNum = this.getSubdirectoryNum(filePath + `${dirent.name}`);
         } else {
-          // 如果不是问价夹，就读取文件大小和时间
-          fileSize = this.getFileSize(filePath + `${dirent.name}`)
-          time = this.getFileTime(filePath + `${dirent.name}`)
+          // 如果不是文件夹，就读取文件大小和时间
+          fileSize = this.getFileSize(filePath + `${dirent.name}`);
+          time = this.getFileTime(filePath + `${dirent.name}`);
         }
-        subdirectory.push({
-          name: dirent.name,
-          type: dirent.isDirectory() ? 1 : 2,
-          time,
-          childrenNum: subdirectoryNum,
-          fileSize
-        })
+        let item = new SubDirectory(time)
+        item.name = dirent.name
+        item.type = dirent.isDirectory() ? 1 : 2
+        item.childrenNum = subdirectoryNum
+        item.fileSize = fileSize
+        subdirectory.push(item)
       }
-    } while (dirent)
-    return subdirectory
+    } while (dirent);
+    return subdirectory;
   }
 
   // 获取目录中的子目录个数
   getSubdirectoryNum(filePath: string): number {
-    let dir = fileio.opendirSync(filePath)
+    let dir = fileio.opendirSync(filePath);
     // 读取的结果
-    let dirent
+    let dirent: fileio.Dirent;
     // 记录子目录的个数
-    let subdirectoryNum = 0
+    let subdirectoryNum = 0;
     do {
-      dirent = dir.readSync()
+      dirent = dir.readSync();
       if (dirent) {
-        subdirectoryNum++
+        subdirectoryNum++;
       }
-    } while (dirent)
-    return subdirectoryNum
-  }
-
-  // 获取文件大小
-  getFileSize(filePath: string): string {
-    try {
-      let fileSize = fileio.statSync(filePath).size
-      if (fileSize / GB_MAGNITUDE > 1) {
-        return `${(fileSize / GB_MAGNITUDE).toFixed(2)}${GB_SYMBOL}`
-      } else if (fileSize / MB_MAGNITUDE > 1) {
-        return `${(fileSize / MB_MAGNITUDE).toFixed(2)}${MB_SYMBOL}`
-      } else if (fileSize / KB_MAGNITUDE > 1) {
-        return `${(fileSize / KB_MAGNITUDE).toFixed(2)}${KB_SYMBOL}`
-      } else {
-        return `${fileSize}${BYTE_SYMBOL}`
-      }
-    } catch (err) {
-      Logger.error(`getFileSize failed，code is ${err.code}, message is ${err.message}`)
-    }
+    } while (dirent);
+    return subdirectoryNum;
   }
 
   // 获取文件修改时间
   getFileTime(filePath: string): Date {
     try {
-      let fileTime = fileio.statSync(filePath).ctime
-      return new Date(fileTime * 1000)
+      let fileTime = fileio.statSync(filePath).ctime;
+      return new Date(fileTime * 1000);
     } catch (err) {
-      Logger.error(`getFileTime failed，code is ${err.code}, message is ${err.message}`)
+      Logger.error(`getFileTime failed, code is ${err.code}, message is ${err.message}`);
+      throw new Error(`getFileTime failed, code is ${err.code}, message is ${err.message}`);
     }
   }
 
   // 创建目录
   createDirectory(filePath: string): void {
     try {
-      fileio.mkdirSync(filePath)
+      fileio.mkdirSync(filePath);
     } catch (err) {
       Logger.error(`create directory failed, code is ${err.code}, message is ${err.message}`)
     }
@@ -140,7 +151,7 @@ class FileSystem {
   // 创建文件
   createFile(filePath: string): void {
     try {
-      fileio.openSync(filePath, 0o100, 0o666)
+      fileio.openSync(filePath, 0o100, 0o666);
     } catch (err) {
       Logger.error(`create file failed, code is ${err.code}, message is ${err.message}`)
     }
@@ -149,14 +160,12 @@ class FileSystem {
   // 删除目录和文件---选中项
   deleteSelected(dataArray: Map<string, number>): void {
     try {
-      // 遍历数据，分别调用对应的api删除数据
-      for (let data of dataArray) {
-        if (data[1] === 1) {
-          fileio.rmdirSync(data[0])
+      dataArray.forEach((value, data) => {
+        if (value === 1) {
+          fileio.rmdirSync(data);
         } else {
-          fileio.unlinkSync(data[0])
-        }
-      }
+          fileio.unlinkSync(data);
+        }})
       prompt.showToast({ message: $r('app.string.label_delete_success') })
     } catch (err) {
       Logger.error(`delete failed, code is ${err.code}, message is ${err.message}`)
@@ -167,7 +176,7 @@ class FileSystem {
   copyFile(filePath: string, newFilePath: string): void {
     try {
       // 遍历数据直接copy所有项目
-      fileio.copyFileSync(filePath, newFilePath)
+      fileio.copyFileSync(filePath, newFilePath);
     } catch (err) {
       Logger.error(`copy file failed, code is ${err.code}, message is ${err.message}`)
     }
@@ -176,7 +185,7 @@ class FileSystem {
   // 重命名文件
   renameFile(filePath: string, newFilePath: string): void {
     try {
-      fileio.renameSync(filePath, newFilePath)
+      fileio.renameSync(filePath, newFilePath);
     } catch (err) {
       Logger.error(`rename file failed, code is ${err.code}, message is ${err.message}`)
     }
@@ -196,7 +205,7 @@ class FileSystem {
         let needMoveFiles: Array<FileType> = []
         // 遍历子目录数据
         subdirectory.forEach((subdirectoryData: SubDirectoryType) => {
-          let data = {
+          let data: FileType = {
             filePath: `${file.filePath}/${subdirectoryData.name}`,
             fileName: subdirectoryData.name,
             type: subdirectoryData.type

@@ -18,12 +18,11 @@ import window from '@ohos.window';
 import router from '@ohos.router';
 import Logger from '../utils/Logger';
 import Want from '@ohos.app.ability.Want';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 const TAG: string = 'EntryAbility';
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+  onCreate(want: Want): void {
     Logger.info(TAG, 'MainAbility onCreate');
     AppStorage.setOrCreate<Want>('want', want);
     PersistentStorage.persistProp('lazy_for_each', true); // 懒加载初始化
@@ -31,6 +30,10 @@ export default class EntryAbility extends UIAbility {
     PersistentStorage.persistProp('image_sync_load', true); // 图片同步加载初始化
     PersistentStorage.persistProp('page_layout', true); // 页面布局初始化
     PersistentStorage.persistProp('list_cached_count', true); // 列表缓存条数初始化
+    AppStorage.setOrCreate('downComplete', false); // 初始化下载完成
+    AppStorage.setOrCreate('downLoadStatus', 0); // 初始化下载状态
+    AppStorage.setOrCreate('videoDuration', 0); // 初始化播放总时长
+    AppStorage.setOrCreate('videoCurrentTime', 0); // 初始化播放当前时长
   }
 
   onDestroy(): void {
@@ -65,7 +68,7 @@ export default class EntryAbility extends UIAbility {
     Logger.info(TAG, `MainAbility onBackground`);
   }
 
-  onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+  onNewWant(want: Want): void {
     AppStorage.setOrCreate('want', want);
     router.pushUrl({
       url: 'pages/Index'

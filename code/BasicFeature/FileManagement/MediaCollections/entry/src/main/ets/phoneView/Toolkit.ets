@@ -14,7 +14,7 @@
  */
 
 import { MediaItem } from '../common/MediaItem'
-import { myMedia } from '../model/myMedia'
+import { AVPlayer }  from '../model/AVPlayer'
 import { gridData } from '../model/GridData'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import { GridDataItem } from '../phoneView/GridDataItem'
@@ -25,25 +25,27 @@ export struct Toolkit {
   @State isTitle: string = ''
   @State leftSliderIndex: number = -1
   @State clickIndex: number = -1
-  @State itemData: mediaLibrary.FileAsset = undefined
-  @Link myMedia: myMedia
+  @State itemData: mediaLibrary.FileAsset = {} as mediaLibrary.FileAsset
+  @Link myMedia: AVPlayer
   @Link currentTime: number
   @Link isXComponent: boolean
   @Link audioData: Array<mediaLibrary.FileAsset>
   @Link videoData: Array<mediaLibrary.FileAsset>
   @Link isPlaying: boolean
   @Link surfaceId: number
-  private timer: number = undefined
+  @Link fileIndex: number
+  @Link fileType: number
+  private timer: number = 0
   private scroller: Scroller = new Scroller()
-  private deleteDialogShow: (index: number, mediaType) => void
-  private renameDialogShow: (index: number, mediaType) => void
+  private deleteDialogShow: () => void = () => {}
+  private renameDialogShow: () => void = () => {}
   private GridData: gridData[] = [
     { icon: $r('app.media.icon_color_music'), textStr: '音频', id: 'music' },
     { icon: $r('app.media.icon_color_video'), textStr: '视频', id: 'video' },
     { icon: $r('app.media.icon_color_favorite'), textStr: '收藏', id: 'favorite' },
     { icon: $r('app.media.icon_color_me'), textStr: '我的', id: 'me' },
   ]
-  private context: any
+  private context: Context = getContext(this)
   @State audioText: string = ''
   @State videoText: string = ''
   async aboutToAppear(){
@@ -51,10 +53,9 @@ export struct Toolkit {
     this.videoText = await this.convertResourceToString($r('app.string.phoneMain_video'))
   }
   async convertResourceToString(resource: Resource){
-    return await this.context.resourceManager.getString(resource)
+    return await this.context.resourceManager.getStringValue(resource.id)
   }
   build() {
-
     Flex({ direction: FlexDirection.Column }) {
       Flex({ justifyContent: FlexAlign.SpaceAround }) {
         ForEach(this.GridData, (item: gridData, index) => {
@@ -67,7 +68,7 @@ export struct Toolkit {
             context: this.context,
             isXComponent: $isXComponent
           })
-        }, item => item.textStr)
+        }, (item: gridData) => item.textStr)
       }.padding({ top: 10, bottom: 16 })
 
       if (this.isTitle == this.audioText || this.isTitle == this.videoText) {
@@ -80,20 +81,22 @@ export struct Toolkit {
                     index: index,
                     mediaItem: item,
                     leftSliderIndex: $leftSliderIndex,
-                    deleteDialogShow: this.deleteDialogShow.bind(this),
-                    renameDialogShow: this.renameDialogShow.bind(this)
+                    fileIndex: $fileIndex,
+                    fileType: $fileType,
+                    deleteDialogShow: () => this.deleteDialogShow(),
+                    renameDialogShow: () => this.renameDialogShow()
                   })
                 }
                 .width('96%')
                 .padding({ bottom: 12, left: 4 })
-                .onClick(() => {
+                .onClick(async () => {
                   this.isPlaying = true
                   this.itemData = item
                   if (this.isTitle == this.audioText) {
                     this.isXComponent = false
                     this.myMedia.init(this.itemData)
                   } else {
-                    this.myMedia.init(this.itemData, this.surfaceId)
+                    this.myMedia.init(this.itemData, this.surfaceId.toString())
                   }
                   if (this.isPlaying) {
                     this.timer = setInterval(() => {
@@ -101,7 +104,7 @@ export struct Toolkit {
                     }, 1000)
                   }
                 })
-              }, item => item.displayName)
+              }, (item: mediaLibrary.FileAsset) => item.displayName)
             }
             .height(260)
             .alignListItem(ListItemAlign.Center)

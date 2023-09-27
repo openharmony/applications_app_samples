@@ -43,7 +43,7 @@ struct Clock {
     this.context.translate(-this.radius, -this.radius)
   }
 
-  fillTime(time) {
+  fillTime(time: number) {
     return time < 10 ? `0${time}` : `${time}`
   }
 
@@ -55,7 +55,7 @@ struct Clock {
   async getSize() {
     let mDisplay = await display.getDefaultDisplay()
     Logger.info(TAG, `getDefaultDisplay mDisplay = ${JSON.stringify(mDisplay)}`)
-    this.canvasWidth = px2vp(mDisplay.width > mDisplay.height ? mDisplay.height * 0.5 : mDisplay.width * 0.5)
+    this.canvasWidth = px2vp(mDisplay.width > mDisplay.height ? mDisplay.height * 0.6 : mDisplay.width * 0.6)
     this.radius = this.canvasWidth / 2
   }
 
@@ -63,8 +63,8 @@ struct Clock {
     this.context.save()
 
     // 绘制背景
-    var grad = this.context.createRadialGradient(this.radius, this.radius, this.radius - 35, this.radius,
-    this.radius, this.radius)
+    let grad = this.context.createRadialGradient(this.radius, this.radius, this.radius - 32, this.radius,
+      this.radius, this.radius)
     grad.addColorStop(0.0, 'white')
     grad.addColorStop(0.9, '#eee')
     grad.addColorStop(1.0, 'white')
@@ -76,11 +76,11 @@ struct Clock {
     this.context.lineWidth = 6
     this.context.beginPath()
     this.context.strokeStyle = '#fff'
-    this.context.arc(0, 0, this.radius - 6, 0, 2 * Math.PI, false)
+    this.context.arc(0, 0, this.radius - 5, 0, 2 * Math.PI, false)
     this.context.stroke()
 
     // 绘制时间文字
-    this.context.font = '25px'
+    this.context.font = '30px'
     this.context.textAlign = "center"
     this.context.textBaseline = "middle"
     this.context.fillStyle = '#000'
@@ -103,13 +103,13 @@ struct Clock {
         let x1 = Math.cos(rad) * (this.radius - 20)
         let y1 = Math.sin(rad) * (this.radius - 20)
         this.context.strokeStyle = '#000'
-        this.context.lineWidth = 4
+        this.context.lineWidth = 2
         this.context.lineTo(x1, y1)
       } else {
         let x1 = Math.cos(rad) * (this.radius - 18)
         let y1 = Math.sin(rad) * (this.radius - 18)
         this.context.strokeStyle = '#ccc'
-        this.context.lineWidth = 3
+        this.context.lineWidth = 1
         this.context.lineTo(x1, y1)
       }
       this.context.stroke()
@@ -117,7 +117,7 @@ struct Clock {
   }
 
   // 绘制时针
-  drawHour(hour, minute) {
+  drawHour(hour: number, minute: number) {
     this.context.save()
     this.context.beginPath()
     this.context.lineWidth = 8
@@ -133,10 +133,10 @@ struct Clock {
   }
 
   // 绘制分针
-  drawMinute(minute) {
+  drawMinute(minute: number) {
     this.context.save()
     this.context.beginPath()
-    this.context.lineWidth = 6
+    this.context.lineWidth = 5
     this.context.lineCap = 'round'
     let rad = 2 * Math.PI / 60 * minute
     this.context.rotate(rad)
@@ -148,16 +148,16 @@ struct Clock {
   }
 
   // 绘制秒针
-  drawSecond(second) {
+  drawSecond(second: number) {
     this.context.save()
     this.context.beginPath()
-    this.context.lineWidth = 4
+    this.context.lineWidth = 2
     this.context.lineCap = 'round'
     let rad = 2 * Math.PI / 60 * second
     this.context.rotate(rad)
     this.context.moveTo(0, 10)
     this.context.strokeStyle = '#05f'
-    this.context.lineTo(0, -this.radius + 18)
+    this.context.lineTo(0, -this.radius + 21)
     this.context.stroke()
     this.context.restore()
   }
@@ -173,10 +173,10 @@ struct Clock {
   }
 
   // 绘制表盘下面时间文本
-  drawTime(time) {
+  drawTime(time: string) {
     this.context.save()
     this.context.beginPath()
-    this.context.font = '60px'
+    this.context.font = '90px'
     this.context.textAlign = "center"
     this.context.textBaseline = "middle"
     this.context.fillStyle = '#000'
@@ -187,6 +187,7 @@ struct Clock {
   build() {
     Stack({ alignContent: Alignment.Center }) {
       Canvas(this.context)
+        .padding({ top: 76 })
         .width(this.canvasWidth)
         .height(this.canvasWidth + HEIGHT_ADD)
         .onReady(() => {

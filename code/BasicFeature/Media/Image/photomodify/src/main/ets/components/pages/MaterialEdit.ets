@@ -83,8 +83,8 @@ export default struct MaterialEdit {
   async saveChange(): Promise<void> {
     const pm: image.PixelMap = this.pixelMap;
     if (!this.isCancelQuit && pm !== null) {
-      const width: number = this.imageWidth;
-      const height: number = this.imageHeight;
+      const width: number = px2vp(this.imageWidth);
+      const height: number = px2vp(this.imageHeight);
       const settings: RenderingContextSettings = new RenderingContextSettings(true);
       const offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(width, height, settings);
       // 绘制背景
@@ -97,7 +97,7 @@ export default struct MaterialEdit {
       // 计算中心点，在编辑模式下的坐标
       point = offsetOrigin(point, leftTopPointX, leftTopPointY);
       // 编辑和实际尺寸的缩放比例
-      const scale: number = this.imageWidth / this.actualImageWidth;
+      const scale: number = px2vp(this.imageWidth) / this.actualImageWidth;
       // 乘以系数，还原到在原图尺寸的坐标
       point = transformCoordinates(point, scale);
       if (this.isTextMaterial) {

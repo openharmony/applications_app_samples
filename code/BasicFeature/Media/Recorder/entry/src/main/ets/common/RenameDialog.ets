@@ -16,6 +16,7 @@
 import prompt from '@ohos.prompt'
 import common from '@ohos.app.ability.common'
 import { Record } from '../model/Record'
+import MediaManager from '../model/MediaManager';
 
 @CustomDialog
 export struct RenameDialog {
@@ -23,9 +24,12 @@ export struct RenameDialog {
   private record: Record = new Record(getContext(this) as common.UIAbilityContext)
   private newName: string = ''
   private renameCallback: (newName: string) => void
-
-  aboutToAppear() {
+  private recordList: Array<Record> = [];
+  private mediaManager = new MediaManager(getContext(this) as common.UIAbilityContext);
+  
+  async aboutToAppear() {
     this.newName = this.record.fileAsset.title
+    this.recordList = await this.mediaManager.queryAllAudios();
   }
 
   build() {
@@ -54,8 +58,13 @@ export struct RenameDialog {
             return
           }
           this.controller.close()
-          if (this.newName != this.record.fileAsset.title) {
+          let filterResult: Array<Record> = this.recordList.filter((item: Record) => {
+            return item.fileAsset.title === this.newName;
+          })
+          if (this.newName != this.record.fileAsset.title && filterResult.length === 0) {
             this.renameCallback(this.newName)
+          } else {
+            prompt.showToast({ message: 'File name already exists' });
           }
         })
 

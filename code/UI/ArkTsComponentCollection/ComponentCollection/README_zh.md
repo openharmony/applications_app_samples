@@ -45,35 +45,50 @@ entry/src/main/ets/
 |   |---Index.ets                                        // 首页
 |   |---animations                                       // 动画
 |   |   |---AnimationData.ets
+|   |   |---animateToSample    
+|   |   |   |---AnimateToSample.ets 
+|   |   |---animationSample    
+|   |   |   |---AnimationSample.ets 
 |   |   |---interpolationCalculationSample    
 |   |   |   |---InterpolationCalculationSample.ets       // 插值计算
-|   |   |---pageTransitionSample
-|   |   |   |---PageTransitionSample.ets                 // 页面间转场
-|   |   |   |---PageTransitionSampleTo.ets      
-|   |   |---shareElementTransitionSample
-|   |   |   |---ShareElementTransitionSample.ets         // 共享元素转场
-|   |   |   |---ShareElementTransitionSampleTo.ets
-|   |   |---floatingSample
-|   |   |   |---FloatingWindowSample.ets                 // 悬浮窗
-|   |   |---folderSample
-|   |   |   |---FolderSample.ets                         // 文件夹展开
-|   |   |---systemIcon
-|   |   |   |---SystemIcon.ets                           // 系统图标
-|   |   |---gallerySample
-|   |   |   |---GalleryCardSample.ets                    // 图库卡片展开
-|   |   |---multiplexSample
-|   |   |   |---MultiplexSample.ets                      // 多任务
-|   |   |---shopSample
-|   |   |   |---ShopCardSample.ets                       // 商店卡片展开
-|   |   |---layoutAnimationSample
-|   |   |   |---LayoutAnimationSample.ets                // 布局动效
-|   |   |---sideBarTransitionSample
-|   |   |   |---SideBarTransitionSample.ets              // 侧边栏动效
-|   |   |---sizeTransitionSample
-|   |   |   |---SizeTransitionSample.ets                 // 尺寸变换动效
-|   |---components                                       // 详情页面
+|   |   |---motionPathSample    
+|   |   |   |---MotionPathSample.ets                     // 路径动画
+|   |   |---TransitionAnimations                         // 转场动画
+|   |   |   |---componentTransitionSample                // 组件内转场
+|   |   |   |   |---ComponentTransitionSample.ets        
+|   |   |   |---floatingSample                           // 悬浮窗
+|   |   |   |   |---FloatingWindowComponent.ets          
+|   |   |   |   |---FloatingWindowSample.ets                 
+|   |   |   |---folderSample                             // 文件夹展开
+|   |   |   |   |---Folder.ets                         
+|   |   |   |   |---FolderItem.ets                         
+|   |   |   |   |---FolderSample.ets                         
+|   |   |   |---gallerySample                            // 图库卡片展开
+|   |   |   |   |---GalleryCardSample.ets                    
+|   |   |   |---layoutAnimationSample                    // 布局动效
+|   |   |   |   |---LayoutAnimationSample.ets                
+|   |   |   |---multiplexSample                          // 多任务
+|   |   |   |   |---MultiplexModel.ets                      
+|   |   |   |   |---MultiplexSample.ets                      
+|   |   |   |   |---ScrollItem.ets                       
+|   |   |   |---pageTransitionSample                     // 页面间转场
+|   |   |   |   |---PageTransitionSample.ets                      
+|   |   |   |   |---PageTransitionSampleTo.ets                      
+|   |   |   |---shareElementTransitionSample             // 共享元素转场
+|   |   |   |   |---ShareElementTransitionSample.ets                     
+|   |   |   |   |---ShareElementTransitionSampleTo.ets                     
+|   |   |   |---shopSample                               // 商店卡片展开
+|   |   |   |   |---ShopCardSample.ets                      
+|   |   |   |---sideBarTransitionSample                  // 侧边栏动效
+|   |   |   |   |---ChangePanel.ets              
+|   |   |   |   |---SideBarTransitionSample.ets              
+|   |   |   |---sizeTransitionSample                     // 尺寸变换动效
+|   |   |   |   |---SizeTransitionSample.ets                 
+|   |   |   |---systemIcon                               // 系统图标
+|   |   |   |   |---SystemIcon.ets                           
+|   |---components                                       
 |   |   |---ComponentData.ets
-|   |   |---auxiliary         // 辅助
+|   |   |---auxiliary                                    // 辅助
 |   |   |   |---alphabetIndexerSample
 |   |   |   |   |---AlphabetIndexerSample.ets            // 字母索引条
 |   |   |   |---badgeSample
@@ -166,23 +181,29 @@ entry/src/main/ets/
 |   |   |   |   |---ShadowsSample.ets                    // 阴影
 |   |   |   |---transformSample
 |   |   |   |   |---TransformSample.ets                  // 转换
-|   |   |---informationPresentationAndDynamicEffects
+|   |   |---informationPresentationAndDynamicEffects     
 |   |   |   |---dataPanelSample
 |   |   |   |   |---DataPanelSample.ets                  // 数据面板
 |   |   |   |---gaugeSample
 |   |   |   |   |---GaugeSample.ets                      // 仪表盘
+|   |   |   |---imageFitFullSample
+|   |   |   |   |---ImageFitFullSample.ets               // 动效
 |   |   |   |---loadingProgressSample
 |   |   |   |   |---LoadingProgressSample.ets
 |   |   |   |---listSample                               // 列表
 |   |   |   |   |---ListSample.ets
 |   |   |   |---marqueeSample
 |   |   |   |   |---MarqueeSample.ets                    // 跑马灯
-|   |   |   |---radioSample
-|   |   |   |   |---RadioSample.ets                      // 单选
+|   |   |   |---particleSample
+|   |   |   |   |---ParticleSample.ets                   // 粒子效果
 |   |   |   |---progressSample
 |   |   |   |   |---ProgressSample.ets                   // 进度条
 |   |   |   |---qrCodeSample
 |   |   |   |   |---QRCodeSample.ets                     // 二维码
+|   |   |   |---scrollToSample
+|   |   |   |   |---ScrollToSample.ets                   // 动效
+|   |   |   |---tapsSwitchSample
+|   |   |   |   |---TapsSwitchSample.ets                 // 模糊切换
 |   |   |   |---textclockSample
 |   |   |   |   |---TextClockSample.ets                  // 文字时钟
 |   |   |   |---textTimerSample

@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { logger } from '@ohos/photomodify';
+import { logger, readImage } from '@ohos/photomodify';
 import router from '@ohos.router';
 import GetPictures from '../pages/GetPictures';
 
@@ -25,6 +25,7 @@ struct Index {
   @State isShowCamera: boolean = false;
   @State isLand: boolean = false;
   @State pixelMaps: Array<PixelMap> = [];
+  @State imageArr: Array<PixelMap> = [];
   @StorageLink('imageList') imageList: Array<string> = [];
   @StorageLink('fileFd') fileSrc: string = null;
   @StorageLink('isUpdate') isUpdate: boolean = false;
@@ -42,6 +43,13 @@ struct Index {
     }
   }
 
+  async onPageShow(): Promise<void> {
+    this.imageArr = await Promise.all(this.imageList.map(imgUrl =>{
+      return readImage(imgUrl)
+    }))
+
+    logger.info(`arr-${this.imageArr.length}`)
+  }
   build() {
     Column() {
       Row() {
@@ -105,10 +113,10 @@ struct Index {
                   ForEach(this.imageList, (imgUrl: string, index) => {
                     GridItem() {
                       if (index < this.imageList.length) {
-                        Image(imgUrl)
+                        Image(this.imageArr[index])
                           .onClick(() => {
                             AppStorage.SetOrCreate('selectIndex', index);
-                            this.isLand = true
+                            this.isLand = true;
                             router.pushUrl({
                               url: 'pages/UpdatePages',
                               params: { mediaUri: imgUrl }

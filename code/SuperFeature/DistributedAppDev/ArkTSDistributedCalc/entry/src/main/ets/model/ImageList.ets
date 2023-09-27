@@ -22,73 +22,80 @@ export class ImageList {
   }
 }
 
-export function obtainImgVertical(): Array<ImageList> {
-  let list =
+export function obtainImgVertical(): Record<string, string | Resource>[] {
+  let list: Record<string, string | Resource>[] =
     [
-      { image: $r('app.media.ic_cal_delete_c'), value: 'C' },
-      { image: $r('app.media.ic_cal_devide'), value: '/' },
-      { image: $r('app.media.ic_cal_multiply'), value: '*' },
-      { image: $r('app.media.ic_cal_seven'), value: '7' },
-      { image: $r('app.media.ic_cal_eight'), value: '8' },
-      { image: $r('app.media.ic_cal_nine'), value: '9' },
-      { image: $r('app.media.ic_cal_four'), value: '4' },
-      { image: $r('app.media.ic_cal_five'), value: '5' },
-      { image: $r('app.media.ic_cal_six'), value: '6' },
-      { image: $r('app.media.ic_cal_one'), value: '1' },
-      { image: $r('app.media.ic_cal_two'), value: '2' },
-      { image: $r('app.media.ic_cal_three'), value: '3' },
-      { image: $r('app.media.ic_cal_zero'), value: '0' },
-      { image: $r('app.media.ic_cal_point'), value: '.' }
+      { 'image': $r('app.media.ic_cal_seven'), 'value': '7' },
+      { 'image': $r('app.media.ic_cal_eight'), 'value': '8' },
+      { 'image': $r('app.media.ic_cal_nine'), 'value': '9' },
+      { 'image': $r('app.media.ic_cal_four'), 'value': '4' },
+      { 'image': $r('app.media.ic_cal_five'), 'value': '5' },
+      { 'image': $r('app.media.ic_cal_six'), 'value': '6' },
+      { 'image': $r('app.media.ic_cal_one'), 'value': '1' },
+      { 'image': $r('app.media.ic_cal_two'), 'value': '2' },
+      { 'image': $r('app.media.ic_cal_three'), 'value': '3' },
+      { 'image': $r('app.media.ic_cal_zero'), 'value': '0' },
+      { 'image': $r('app.media.ic_cal_point'), 'value': '.' },
     ]
   return list
 }
 
-export function obtainImgV(): Array<ImageList> {
-  let list =
+export function obtainImgV(): Record<string, string | Resource>[] {
+  let list: Record<string, string | Resource>[] =
     [
-      { image: $r('app.media.ic_cal_delete'), value: 'D' },
-      { image: $r('app.media.ic_cal_minus'), value: '-' },
-      { image: $r('app.media.ic_cal_plus'), value: '+' },
-      { image: $r('app.media.ic_cal_equal'), value: '=' }
+      { 'image': $r('app.media.ic_cal_delete'), 'value': 'D' },
+      { 'image': $r('app.media.ic_cal_delete_c'), 'value': 'C' },
+      { 'image': $r('app.media.ic_cal_equal'), 'value': '=' }
     ];
   return list;
 }
 
-export function obtainImgLevel(): Array<ImageList> {
-  let list = [
-    { image: $r('app.media.ic_cal_seven'), value: '7' },
-    { image: $r('app.media.ic_cal_eight'), value: '8' },
-    { image: $r('app.media.ic_cal_nine'), value: '9' },
-    { image: $r('app.media.ic_cal_devide'), value: '/' },
-    { image: $r('app.media.ic_cal_four'), value: '4' },
-    { image: $r('app.media.ic_cal_five'), value: '5' },
-    { image: $r('app.media.ic_cal_six'), value: '6' },
-    { image: $r('app.media.ic_cal_multiply'), value: '*' },
-    { image: $r('app.media.ic_cal_one'), value: '1' },
-    { image: $r('app.media.ic_cal_two'), value: '2' },
-    { image: $r('app.media.ic_cal_three'), value: '3' },
-    { image: $r('app.media.ic_cal_minus'), value: '-' },
-    { image: $r('app.media.ic_cal_zero'), value: '0' },
-    { image: $r('app.media.ic_cal_point'), value: '.' },
-    { image: $r('app.media.ic_cal_plus'), value: '+' }
+export function obtainImgVs(): Record<string, string | Resource>[] {
+  let list: Record<string, string | Resource>[] =
+    [
+      { 'image': $r('app.media.ic_cal_devide'), 'value': '/' },
+      { 'image': $r('app.media.ic_cal_multiply'), 'value': '*' },
+      { 'image': $r('app.media.ic_cal_minus'), 'value': '-' },
+      { 'image': $r('app.media.ic_cal_plus'), 'value': '+' }
+    ];
+  return list;
+}
+
+export function obtainImgLevel(): Record<string, string | Resource>[] {
+  let list: Record<string, string | Resource>[] = [
+    { 'image': $r('app.media.ic_cal_seven'), 'value': '7' },
+    { 'image': $r('app.media.ic_cal_eight'), 'value': '8' },
+    { 'image': $r('app.media.ic_cal_nine'), 'value': '9' },
+    { 'image': $r('app.media.ic_cal_devide'), 'value': '/' },
+    { 'image': $r('app.media.ic_cal_four'), 'value': '4' },
+    { 'image': $r('app.media.ic_cal_five'), 'value': '5' },
+    { 'image': $r('app.media.ic_cal_six'), 'value': '6' },
+    { 'image': $r('app.media.ic_cal_multiply'), 'value': '*' },
+    { 'image': $r('app.media.ic_cal_one'), 'value': '1' },
+    { 'image': $r('app.media.ic_cal_two'), 'value': '2' },
+    { 'image': $r('app.media.ic_cal_three'), 'value': '3' },
+    { 'image': $r('app.media.ic_cal_minus'), 'value': '-' },
+    { 'image': $r('app.media.ic_cal_zero'), 'value': '0' },
+    { 'image': $r('app.media.ic_cal_point'), 'value': '.' },
+    { 'image': $r('app.media.ic_cal_plus'), 'value': '+' }
   ]
   return list
 }
 
-export function obtainImg(): Array<ImageList> {
-  let list = [
-    { image: $r('app.media.ic_cal_delete'), value: 'D' },
-    { image: $r('app.media.ic_cal_delete_c'), value: 'C' },
-    { image: $r('app.media.ic_cal_equal'), value: '=' }
+export function obtainImg(): Record<string, string | Resource>[] {
+  let list: Record<string, string | Resource>[] = [
+    { 'image': $r('app.media.ic_cal_delete'), 'value': 'D' },
+    { 'image': $r('app.media.ic_cal_delete_c'), 'value': 'C' },
+    { 'image': $r('app.media.ic_cal_equal'), 'value': '=' }
   ];
   return list;
 }
 
-export function obtainImgL(): Array<ImageList> {
-  let list = [
-    { image: $r('app.media.ic_cal_zero'), value: '0' },
-    { image: $r('app.media.ic_cal_point'), value: '.' },
-    { image: $r('app.media.ic_cal_plus'), value: '+' }
+export function obtainImgL(): Record<string, string | Resource>[] {
+  let list: Record<string, string | Resource>[] = [
+    { 'image': $r('app.media.ic_cal_zero'), 'value': '0' },
+    { 'image': $r('app.media.ic_cal_point'), 'value': '.' },
+    { 'image': $r('app.media.ic_cal_plus'), 'value': '+' }
   ]
   return list
 }

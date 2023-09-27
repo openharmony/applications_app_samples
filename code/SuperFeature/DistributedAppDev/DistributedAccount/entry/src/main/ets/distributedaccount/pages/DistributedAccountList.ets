@@ -30,7 +30,7 @@ struct DistributedAccountList {
   private accountArr: Array<osAccount.OsAccountInfo> = []
 
   async onPageShow() {
-    this.distributedAccountArr['dataArray'] = []
+    this.distributedAccountArr.clearData();
     let accountManager = osAccount.getAccountManager();
     this.accountArr = await accountManager.queryAllCreatedOsAccounts()
     Logger.info('queryAllCreatedOsAccounts, accountArr: ' + JSON.stringify(this.accountArr));
@@ -58,7 +58,7 @@ struct DistributedAccountList {
       .padding({ left: 12 })
 
       List({ space: 16 }) {
-        LazyForEach(this.distributedAccountArr, (item: distributedAccount.DistributedInfo, index: number) => {
+        LazyForEach(this.distributedAccountArr, (item: distributedAccount.DistributedInfo, index: number | undefined) => {
           ListItem() {
             Row() {
               Text(item.name)

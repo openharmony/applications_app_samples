@@ -89,48 +89,49 @@ entry/src/main/ets/
 |   |---resourceQualifier
 |   |   |---ResourceQualifier.ets                        // 资源文件使用
 |   |---responsiveLayout
+|   |   |---ResponsiveLayoutIndex.ets                    
 |   |   |---breakpoint
 |   |   |   |---BreakpointSample.ets                     // 断点
 |   |   |---mediaQuery
 |   |   |   |---MediaQuerySample.ets                     // 媒体查询
-|   |   |---typicalScene
-|   |   |   |---banner
-|   |   |   |   |---BannerSample.ets                     // 广告栏
-|   |   |   |---bigImage
-|   |   |   |   |---BigImageSample.ets                   // 大图浏览
-|   |   |   |---diversion
-|   |   |   |   |---DiversionSample.ets                  // 挪移布局
-|   |   |   |---header
-|   |   |   |   |---HeaderSample.ets                     // 顶部布局
-|   |   |   |---indentation
-|   |   |   |   |---IndentationSample.ets                // 缩进布局
-|   |   |   |---multiLaneList
-|   |   |   |   |---MultiLaneListSample.ets              // 多列列表
-|   |   |   |---operationEntries
-|   |   |   |   |---OperationEntriesSample.ets           // 操作入口
-|   |   |   |---repeat
-|   |   |   |   |---RepeatSample.ets                     // 重复布局
-|   |   |   |---responsiveGrid
-|   |   |   |   |---ResponsiveGridSample.ets             // 网格视图
-|   |   |   |---sidebar
-|   |   |   |   |---SidebarSample.ets                    // 侧边栏
-|   |   |   |---tabs
-|   |   |   |   |---TabsSample.ets                       // 页签布局
-|   |   |   |---multiScene                               
-|   |   |   |   |---data	
-|   |   |   |   |   |---apliications	
-|   |   |   |   |   |   |---Apliications.ets		
-|   |   |   |   |   |---home
-|   |   |   |   |   |   |---Home.ets					
-|   |   |   |   |---pages    
-|   |   |   |   |   |---apliications
-|   |   |   |   |   |   |---Apliications.ets	
-|   |   |   |   |   |---home	
-|   |   |   |   |   |   |---Home.ets
-|   |   |   |   |   |---player	
-|   |   |   |   |   |   |---Player.ets
-|   |   |   |   |   |---MultiScene.ets	                 // 一多典型场景
-|   |   |   |---TypicalSceneIndex.ets                    // 典型布局场景
+|   |---typicalScene
+|   |   |---banner
+|   |   |   |---BannerSample.ets                         // 广告栏
+|   |   |---bigImage
+|   |   |   |---BigImageSample.ets                       // 大图浏览
+|   |   |---diversion
+|   |   |   |---DiversionSample.ets                      // 挪移布局
+|   |   |---header
+|   |   |   |---HeaderSample.ets                         // 顶部布局
+|   |   |---indentation
+|   |   |   |---IndentationSample.ets                    // 缩进布局
+|   |   |---multiLaneList
+|   |   |   |---MultiLaneListSample.ets                  // 多列列表
+|   |   |---multiScene                               
+|   |   |   |---data	
+|   |   |   |   |---apliications	
+|   |   |   |   |   |---Apliications.ets		
+|   |   |   |   |---home
+|   |   |   |   |   |---Home.ets					
+|   |   |   |---pages    
+|   |   |   |   |---apliications
+|   |   |   |   |   |---Apliications.ets	
+|   |   |   |   |---home	
+|   |   |   |   |   |---Home.ets
+|   |   |   |   |---player	
+|   |   |   |   |   |---Player.ets
+|   |   |   |   |---MultiScene.ets	                     // 一多典型场景
+|   |   |---operationEntries
+|   |   |   |---OperationEntriesSample.ets               // 操作入口
+|   |   |---repeat
+|   |   |   |---RepeatSample.ets                         // 重复布局
+|   |   |---responsiveGrid
+|   |   |   |---ResponsiveGridSample.ets                 // 网格视图
+|   |   |---sidebar
+|   |   |   |---SidebarSample.ets                        // 侧边栏
+|   |   |---tabs
+|   |   |   |---TabsSample.ets                           // 页签布局
+|   |   |---TypicalSceneIndex.ets                        // 典型布局场景
 ```
 ### 具体实现
 

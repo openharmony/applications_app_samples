@@ -15,13 +15,15 @@
 
 import util from '@ohos.util';
 import huks from '@ohos.security.huks';
+import userAuth from '@ohos.userIAM.userAuth';
 import promptAction from '@ohos.promptAction';
 import Logger from './Logger';
 
 const TAG: string = '[HUKS]';
-
+const CHALLENG_LEN = 6;
 const IV: string = '001122334455';
 let cipherData:Uint8Array;
+let challengeNew = new Uint8Array(CHALLENG_LEN);
 
 // 密钥明文
 let PLAIN_TEXT_SIZE_16 = new Uint8Array([
@@ -35,6 +37,69 @@ function stringToUint8Array(str: string): Uint8Array {
     arr.push(str.charCodeAt(i));
   }
   return new Uint8Array(arr);
+}
+
+// 生成Sm2密钥属性信息
+function getSm2GenerateProperties(properties): void {
+  let index = 0;
+  properties[index++] = {
+    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+    value: huks.HuksKeyAlg.HUKS_ALG_SM2
+  };
+  properties[index++] = {
+    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+    value: huks.HuksKeySize.HUKS_SM2_KEY_SIZE_256
+  };
+  properties[index++] = {
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT |
+    huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+  };
+  return;
+}
+
+// Sm2加密密钥属性信息
+function getSm2EncryptProperties(properties): void {
+  let index = 0;
+  properties[index++] = {
+    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+    value: huks.HuksKeyAlg.HUKS_ALG_SM2
+  };
+  properties[index++] = {
+    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+    value: huks.HuksKeySize.HUKS_SM2_KEY_SIZE_256
+  };
+  properties[index++] = {
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT
+  };
+  properties[index++] = {
+    tag: huks.HuksTag.HUKS_TAG_DIGEST,
+    value: huks.HuksKeyDigest.HUKS_DIGEST_SM3
+  };
+  return;
+}
+
+// Sm2解密密钥属性信息
+function getSm2DecryptProperties(properties): void {
+  let index = 0;
+  properties[index++] = {
+    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+    value: huks.HuksKeyAlg.HUKS_ALG_SM2
+  };
+  properties[index++] = {
+    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+    value: huks.HuksKeySize.HUKS_SM2_KEY_SIZE_256
+  };
+  properties[index++] = {
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+  };
+  properties[index++] = {
+    tag: huks.HuksTag.HUKS_TAG_DIGEST,
+    value: huks.HuksKeyDigest.HUKS_DIGEST_SM3
+  };
+  return;
 }
 
 function uint8ArrayToString(fileData): string {
@@ -261,6 +326,7 @@ export class HuksModel {
     let emptyOptions = {
       properties: []
     };
+
     await huks.initSession(aesKeyAlias, options).then((data) => {
       Logger.info(TAG, `decrypt initSession success, data: ${JSON.stringify(data)}`);
       handle = data.handle;
@@ -283,6 +349,115 @@ export class HuksModel {
       Logger.error(TAG, `delete key failed, ${JSON.stringify(err.code)}: ${JSON.stringify(err.message)}`);
     });
   }
+
+  // 模拟使用Sm2 生成密钥并进行加密
+  async encryptDataUseSm2(plainText: string, resultCallback): Promise<void> {
+    let sm2KeyAlias = 'test_sm2KeyAlias';
+    let handle;
+    let generateKeyProperties = new Array();
+    getSm2GenerateProperties(generateKeyProperties);
+    let generateKeyOptions = {
+      properties: generateKeyProperties
+    };
+    await huks.generateKeyItem(sm2KeyAlias, generateKeyOptions).then((data) => {
+      Logger.info(TAG, `generate key success, data: ${JSON.stringify(data)}`);
+    }).catch((err)=>{
+      Logger.error(TAG, `generate key failed, ${JSON.stringify(err.code)}: ${JSON.stringify(err.message)}`);
+    });
+
+    let encryptProperties = new Array();
+    getSm2EncryptProperties(encryptProperties);
+    let encryptOptions = {
+      properties:encryptProperties,
+      inData: stringToUint8Array(plainText)
+    };
+    await huks.initSession(sm2KeyAlias, encryptOptions).then((data) => {
+      Logger.info(TAG, `encrypt initSession success, data: ${JSON.stringify(data)}`);
+      handle = data.handle;
+    }).catch((err)=>{
+      Logger.error(TAG, `encrypt initSession failed, ${JSON.stringify(err.code)}: ${JSON.stringify(err.message)}`);
+    });
+    await huks.finishSession(handle, encryptOptions).then((data) => {
+      Logger.info(TAG, `encrypt finishSession success, data: ${JSON.stringify(data)}`);
+      cipherData = data.outData;
+      let that = new util.Base64Helper();
+      resultCallback(that.encodeToStringSync(cipherData));
+    }).catch((err)=>{
+      Logger.error(TAG, `encrypt finishSession failed, ${JSON.stringify(err.code)}: ${JSON.stringify(err.message)}`);
+      promptAction.showToast({
+        message: `send message failed, ${JSON.stringify(err.code)}: ${JSON.stringify(err.message)}`,
+        duration: 6500,
+      });
+    });
+  }
+
+  async finishSession(handle, options, resultCallback): Promise<void> {
+    await huks.finishSession(handle, options).then((data) => {
+      Logger.info(TAG, `decrypt finishSession success, data: ${JSON.stringify(data)}`);
+      resultCallback(uint8ArrayToString(data.outData));
+    }).catch((err) => {
+      Logger.error(TAG, `decrypt finishSession failed, ${JSON.stringify(err.code)}: ${JSON.stringify(err.message)}`);
+      promptAction.showToast({
+        message: `receive message failed, ${JSON.stringify(err.code)}: ${JSON.stringify(err.message)}`,
+        duration: 6500,
+      });
+    });
+  }
+
+  async userIAMAuthFinger(finishSessionFunction, param) : Promise<void> {
+    const authParam : userAuth.AuthParam = {
+      challenge: challengeNew,
+      authType: [userAuth.UserAuthType.PIN],
+      authTrustLevel: userAuth.AuthTrustLevel.ATL1
+    };
+    const widgetParam :userAuth.WidgetParam = {
+      title: 'PIN'
+    };
+    try {
+      let userAuthInstance = await userAuth.getUserAuthInstance(authParam, widgetParam);
+      Logger.info(TAG, 'get userAuth instance success');
+      await userAuthInstance.on('result', {
+        onResult(result) {
+          Logger.info(TAG, 'userAuthInstance callback result = ' + JSON.stringify(result));
+          finishSessionFunction(param.handleParam, param.optionsParam, param.resultCallbackParam);
+        }
+      });
+      Logger.info(TAG, 'auth on success');
+      await userAuthInstance.start();
+      Logger.info(TAG, 'auth on success');
+    } catch (error) {
+      Logger.error(TAG, 'auth catch error: ' + JSON.stringify(error));
+    }
+  }
+
+  // 模拟使用HUKS生成的新密钥进行低安访问控制与解密
+  async decryptDataUseSm2(resultCallback): Promise<void> {
+    let decryptOptions = new Array();
+    getSm2DecryptProperties(decryptOptions);
+    let sm2KeyAlias = 'test_sm2KeyAlias';
+    let handle;
+    let options = {
+      properties: decryptOptions,
+      inData: cipherData
+    };
+    let emptyOptions = {
+      properties: []
+    };
+    await huks.initSession(sm2KeyAlias, options).then((data) => {
+      Logger.info(TAG, `decrypt initSession success, data: ${JSON.stringify(data)}`);
+      handle = data.handle;
+    }).catch((err) => {
+      Logger.error(TAG, `decrypt initSession failed, ${JSON.stringify(err.code)}: ${JSON.stringify(err.message)}`);
+    });
+    let finishSessionFunction = this.finishSession;
+    let param = {
+      handleParam : handle,
+      optionsParam : options,
+      resultCallbackParam : resultCallback,
+    };
+    await this.userIAMAuthFinger(finishSessionFunction, param);
+  }
+
 
   // 模拟设备1使用旧密钥在本地进行加密
   async encryptDataUserOldKey(plainText: string, resultCallback): Promise<void> {

@@ -64,14 +64,14 @@ export struct TopMenu {
             .height(this.inputStyle.downMenuPicHeight)
             .objectFit(ImageFit.Contain)
             .id('kikaInputDown')
-            .onClick(() => {
-              this.submenuType = SubMenuType.NORMAL;
-              InputHandler.getInstance().hideKeyboardSelf();
-            })
         }
         .width(this.inputStyle.downMenuWidth)
         .borderRadius(4)
         .height('100%')
+        .onClick(() => {
+          this.submenuType = SubMenuType.NORMAL;
+          InputHandler.getInstance().hideKeyboardSelf();
+        })
       }
       .width('100%')
       .layoutWeight(1)

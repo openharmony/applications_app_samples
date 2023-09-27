@@ -72,6 +72,8 @@ class KvStoreModel {
     await this.kvStore.put(key, value)
     this.kvStore.get(key).then((data) => {
       Logger.info(TAG, `kvStore.get ${key} = ${JSON.stringify(data)}`)
+    }).catch((err) => {
+      Logger.error(TAG, `kvStore.put  ${key} failed, ${JSON.stringify(err)}`)
     })
     Logger.info(TAG, `kvStore.put ${key} finished`)
   }

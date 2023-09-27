@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { ChatModel } from './MsgBase';
+
 
 /**
  * IDataSource处理数据监听的基本实现
@@ -23,6 +23,7 @@ export abstract class BasicDataSource<T> implements IDataSource {
   public abstract totalCount(): number
 
   public getData(index: number): T | void {
+    console.info('getDataindex:'+index);
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {

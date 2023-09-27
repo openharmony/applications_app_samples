@@ -14,14 +14,17 @@
  */
 import router from '@ohos.router';
 import { logger } from '../util/Logger';
+import { readImage } from '../util/MediaUtil';
 
 @Component
 export struct UpdatePage {
   @State mediaUri: string = router.getParams()['mediaUri'];
   @State isLand: boolean = false;
+  @State pixelMap: PixelMap = null;
 
-  aboutToAppear(): void {
+ async aboutToAppear(): Promise<void> {
     logger.info('UpdatePage mediaUri' + this.mediaUri);
+    this.pixelMap = await readImage(this.mediaUri);
   }
 
   build() {
@@ -41,7 +44,7 @@ export struct UpdatePage {
       .width('100%')
 
       Row() {
-        Image(this.mediaUri)
+        Image(this.pixelMap)
           .objectFit(ImageFit.Contain)
           .backgroundColor($r('app.color.update_page_image'))
           .width('90%')

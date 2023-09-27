@@ -27,13 +27,13 @@ export struct TopMenu {
         Image($rawfile('down.svg'))
           .width(this.inputStyle.downMenuPicWidth)
           .height(this.inputStyle.downMenuPicHeight)
-          .onClick(() => {
-            InputHandler.getInstance().hideKeyboardSelf();
-          })
       }
       .width(this.inputStyle.downMenuWidth)
       .borderRadius(4)
       .height('100%')
+      .onClick(() => {
+        InputHandler.getInstance().hideKeyboardSelf();
+      })
     }
     .width('100%')
     .height(this.inputStyle.downMenuHeight)

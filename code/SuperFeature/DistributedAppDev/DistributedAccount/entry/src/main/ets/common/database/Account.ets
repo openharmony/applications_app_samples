@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+import DataRdb from '@ohos.data.relationalStore';
+
 /**
  * Database account entity class.
  */
@@ -20,28 +22,28 @@ export default class Account {
   /**
    * The name in the distributed information of the OS account.
    */
-  distributedAccountName: string;
+  distributedAccountName: string = "";
 
   /**
    * The ID in the distributed information of the OS account.
    */
-  distributedAccountID: string;
+  distributedAccountID: string = "";
 
   /**
    * The local ID of an OS account.
    */
-  localId: number;
+  localId: number = 0;
 
   /**
    * Get inserted account data.
    *
    * @return Return account data.
    */
-  toValuesBucket() {
+  toValuesBucket(): DataRdb.ValuesBucket {
     return {
-      'distributedAccountName': this.distributedAccountName,
-      'distributedAccountID': this.distributedAccountID,
-      'localId': this.localId
+      distributedAccountName: this.distributedAccountName,
+      distributedAccountID: this.distributedAccountID,
+      localId: this.localId
     };
   }
 }

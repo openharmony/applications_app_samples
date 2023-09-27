@@ -19,15 +19,17 @@ import { Logger, FileManager } from '@ohos/feature-file-manager'
 @Entry
 @Component
 struct ImagePreview {
-  @State imagePixelMap: PixelMap = undefined
-  fileName: string = router.getParams()['imageFileName']
+  private params = router.getParams() as Record<string, Object>;
+  @State imagePixelMap: PixelMap | null = null;
+  fileName: string = this.params.imageFileName as string
 
   async aboutToAppear() {
-    this.fileName = router.getParams()['imageFileName']
+    this.fileName = this.params.imageFileName as string
     Logger.debug('fileName: ' + this.fileName)
     let file = await FileManager.getFileAssetsByName(getContext(this), this.fileName)
     this.imagePixelMap = await FileManager.getPixelMapByFileAsset(file)
-    Logger.debug('pixel size: ' + this.imagePixelMap.getPixelBytesNumber())
+    if (this.imagePixelMap != undefined)
+      Logger.debug('pixel size: ' + this.imagePixelMap.getPixelBytesNumber())
   }
 
   build() {

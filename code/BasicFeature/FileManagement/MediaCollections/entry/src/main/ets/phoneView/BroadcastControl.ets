@@ -13,21 +13,28 @@
  * limitations under the License.
  */
 
-// @ts-nocheck
-import { myMedia } from '../model/myMedia'
+import { AVPlayer } from '../model/AVPlayer'
 import { getTimeString } from '../model/TimeTools'
-
+import Logger from '../model/Logger'
+const TAG = 'AVPlayerSample:'
 @Component
 export struct BroadcastControl {
   @State isInformation: boolean = false
-  @Link myMedia: myMedia
+  @Link myMedia: AVPlayer
   @Link isXComponent: boolean
   @Link surfaceId: number
   @Link isPlaying: boolean
   @Link currentTime: number
-  private timer: number = undefined
-  private mXComponentController: XComponentController
-  private dialogController: CustomDialogController = null
+  @State speedTag: number = 1
+  private timer: number = 0
+  private mXComponentController: XComponentController = {} as XComponentController
+
+  async aboutToAppear() {
+    this.myMedia.setTimeUpdateCallback((time) => {
+      Logger.info(TAG, 'timeUpdate, time is:' + time)
+      this.currentTime = time
+    })
+  }
 
   build() {
     Column() {
@@ -64,7 +71,7 @@ export struct BroadcastControl {
               controller: this.mXComponentController
             })
               .onLoad(() => {
-                this.surfaceId = this.mXComponentController.getXComponentSurfaceId()
+                this.surfaceId = Number(this.mXComponentController.getXComponentSurfaceId())
               })
               .height('70%')
               .width('100%')

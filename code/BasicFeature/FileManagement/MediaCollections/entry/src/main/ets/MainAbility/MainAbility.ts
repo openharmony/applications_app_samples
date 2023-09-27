@@ -13,52 +13,60 @@
  * limitations under the License.
  */
 
-import UIAbility from '@ohos.app.ability.UIAbility'
-import display from '@ohos.display'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import display from '@ohos.display';
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import type { Permissions } from '@ohos.abilityAccessCtrl';
 
 export default class MainAbility extends UIAbility {
   async onCreate(want, launchParam) {
-    console.log("[Demo] MainAbility onCreate")
+    console.log('[Demo] MainAbility onCreate');
   }
 
   onDestroy() {
-    console.log("[Demo] MainAbility onDestroy")
+    console.log('[Demo] MainAbility onDestroy');
   }
 
   async onWindowStageCreate(windowStage) {
-    console.log("[Demo] MainAbility onWindowStageCreate")
-    let abilityDisplay = await display.getDefaultDisplaySync()
-    let abilityDisplayWidth = abilityDisplay.width
-    const displayWidth: number = 2500
+    console.log('[Demo] MainAbility onWindowStageCreate');
+    let context = this.context;
+    let permissionNames: Array<Permissions> = ['ohos.permission.MEDIA_LOCATION', 'ohos.permission.READ_MEDIA',
+      'ohos.permission.WRITE_MEDIA'];
+    let atManager = abilityAccessCtrl.createAtManager();
+    await atManager.requestPermissionsFromUser(context, permissionNames).then((data) => {
+      console.info('getPermission success');
+    });
+    let abilityDisplay = display.getDefaultDisplaySync();
+    let abilityDisplayWidth = abilityDisplay.width;
+    const displayWidth: number = 2500;
     if (abilityDisplayWidth > displayWidth) {
-      windowStage.loadContent("pages/index", (err, data) => {
+      windowStage.loadContent('pages/index', (err, data) => {
         if (err.code) {
           console.error('Failed to load the content. Cause:' + JSON.stringify(err));
           return;
         }
-        console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
+        console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
       });
     } else {
-      windowStage.loadContent("pages/phoneMain", (err, data) => {
+      windowStage.loadContent('pages/phoneMain', (err, data) => {
         if (err.code) {
           console.error('Failed to load the content. Cause:' + JSON.stringify(err));
           return;
         }
-        console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
+        console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
       });
     }
-
   }
 
   onWindowStageDestroy() {
-    console.log("[Demo] MainAbility onWindowStageDestroy")
+    console.log('[Demo] MainAbility onWindowStageDestroy');
   }
 
   onForeground() {
-    console.log("[Demo] MainAbility onForeground")
+    console.log('[Demo] MainAbility onForeground');
   }
 
   onBackground() {
-    console.log("[Demo] MainAbility onBackground")
+    console.log('[Demo] MainAbility onBackground');
   }
 }

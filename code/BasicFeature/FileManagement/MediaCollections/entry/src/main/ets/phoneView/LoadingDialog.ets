@@ -15,7 +15,7 @@
 
 @CustomDialog
 export struct LoadingDialog {
-  private controller: CustomDialogController
+  private controller: CustomDialogController = {} as CustomDialogController
 
   build() {
     Row() {

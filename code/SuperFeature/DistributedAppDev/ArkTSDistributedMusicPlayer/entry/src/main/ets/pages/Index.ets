@@ -19,14 +19,12 @@ import hardware_deviceManager from '@ohos.distributedHardware.deviceManager';
 import mediaQuery from '@ohos.mediaquery';
 import rpc from '@ohos.rpc';
 import Want from '@ohos.app.ability.Want';
-
 import PermissionRequestResult from 'security/PermissionRequestResult';
 import KvStoreModel from '../model/KvStoreModel';
 import Logger from '../model/Logger';
 import PlayerModel from '../model/PlayerModel';
-
-import { ConnectOptions } from 'ability/connectOptions';
-import { ElementName } from 'bundle/elementName';
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+import ability from '@ohos.ability.ability';
 import { RemoteDeviceModel } from '../model/RemoteDeviceModel';
 import { DeviceDialog } from '../common/DeviceDialog';
 import {
@@ -49,12 +47,11 @@ const ABILITY_SHARED_BUTTON = 0
 const DEFAULT_NUM = -1
 const PREVIOUS_CLICK = 2
 
-class ParamType {
-  uri: string
-  seekTo: number
+type Params = {
+  uri: string,
+  seekTo: number,
   isPlaying: boolean
 }
-;
 
 @Entry
 @Component
@@ -76,12 +73,12 @@ struct Index {
   @State albumSrc: Resource = $r('app.media.album')
   @State selectedIndex: number = 0
   @State imageArrays: Array<Resource> = [$r('app.media.ic_hop'), $r('app.media.ic_play_previous'), $r('app.media.ic_play'), $r('app.media.ic_play_next')]
-  private dialogController: CustomDialogController = null
+  private dialogController: CustomDialogController | null = null
   private remoteDeviceModel: RemoteDeviceModel = new RemoteDeviceModel()
-  private context: common.UIAbilityContext;
-  private deviceId: string;
+  private context: common.UIAbilityContext | null = null
+  private deviceId: string | null = null
   private clickFlag = MusicSharedStatus.MUSIC_SHARED
-  private localExtensionRemote: rpc.RemoteProxy = null;
+  private localExtensionRemote: rpc.IRemoteObject | null = null
   onLand = (mediaQueryResult: mediaQuery.MediaQueryResult) => {
     Logger.info(TAG, `onLand: mediaQueryResult.matches= ${mediaQueryResult.matches}`)
     if (mediaQueryResult.matches) {
@@ -101,7 +98,8 @@ struct Index {
         deviceType: hardware_deviceManager.DeviceType.UNKNOWN_TYPE,
         networkId: '',
         range: ONE_THOUSAND,
-      } as hardware_deviceManager.DeviceInfo)
+        authForm: 0
+      })
       let deviceTempList = this.remoteDeviceModel.discoverLists.length > 0 ? this.remoteDeviceModel.discoverLists : this.remoteDeviceModel.deviceLists
       for (let i = 0; i < deviceTempList.length; i++) {
         Logger.info(TAG, `device ${i}/${deviceTempList.length} deviceId= ${deviceTempList[i].deviceId},
@@ -120,7 +118,8 @@ struct Index {
           selectedIndex: this.selectedIndex,
           selectedIndexChange: this.selectedIndexChange
         }),
-        autoCancel: true
+        autoCancel: true,
+        customStyle: true
       })
       this.dialogController.open()
       Logger.info(TAG, 'CustomDialogController end')
@@ -147,8 +146,8 @@ struct Index {
     if (typeof (event) === 'string') {
       let viewThis = AppStorage.Get<Index>('viewThis');
       if (event === MusicConnectEvent.EVENT_CONNECT) {
-        viewThis.clickFlag = MusicSharedStatus.MUSIC_STOP_SHARED;
-        viewThis.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_pause');
+        this.clickFlag = MusicSharedStatus.MUSIC_STOP_SHARED
+        this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_hop')
         Logger.info(TAG, 'remote service on connect callbacked')
       } else if (event === MusicConnectEvent.EVENT_DISCONNECT) {
         viewThis.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_hop')
@@ -184,14 +183,17 @@ struct Index {
 
   exitMusicApp() {
     Logger.info(TAG, `exit music app called`)
-    let viewThis = AppStorage.Get<Index>('viewThis');
-    if (typeof (viewThis.localExtensionRemote) === 'object') {
+    if (this.localExtensionRemote !== null && typeof (this.localExtensionRemote) === 'object') {
       let option = new rpc.MessageOption()
       let data = new rpc.MessageParcel()
       let reply = new rpc.MessageParcel()
-      viewThis.localExtensionRemote.sendRequest(MusicSharedEventCode.STOP_LOCAL_SERIVCE, data, reply, option);
+      this.localExtensionRemote.sendRequest(
+        MusicSharedEventCode.STOP_LOCAL_SERIVCE,
+        data,
+        reply,
+        option)
     } else {
-      Logger.info(TAG, `Remote start type is error or deviceID is empty, typeof= ${typeof (viewThis.localExtensionRemote)}`);
+      Logger.info(TAG, `Remote start type is error or deviceID is empty, typeof= ${typeof (this.localExtensionRemote)}`);
     }
   }
 
@@ -199,29 +201,32 @@ struct Index {
     let localServiceWant: Want = {
       bundleName: APPLICATION_BUNDLE_NAME,
       abilityName: APPLICATION_SERVICE_NAME,
-    };
-    let connectOptions: ConnectOptions = {
-      onConnect(elementName: ElementName, remote: rpc.IRemoteObject) {
-        let viewThis = AppStorage.Get<Index>('viewThis');
-        viewThis.localExtensionRemote = remote as rpc.RemoteProxy;
-        Logger.info(TAG, `onConnect called elementName is ${JSON.stringify(elementName)}`);
+    }
+    let connectOptions: ability.ConnectOptions = {
+      onConnect: (elementName, remote) => {
+        this.localExtensionRemote = remote
+        Logger.info(TAG, `onConnect called elementName is ${JSON.stringify(elementName)}`)
       },
-      onDisconnect(elementName: ElementName) {
-        let viewThis = AppStorage.Get<Index>('viewThis');
-        viewThis.context.terminateSelf();
-        Logger.info(TAG, `OnDisconnect called elementName is ${JSON.stringify(elementName)}`)
+      onDisconnect: (elementName) => {
+        if (this.context !== null) {
+          this.context.terminateSelf()
+          Logger.info(TAG, `OnDisconnect called elementName is ${JSON.stringify(elementName)}`)
+        }
       },
-      onFailed(code: number) {
-        let viewThis = AppStorage.Get<Index>('viewThis');
-        viewThis.context.terminateSelf();
-        Logger.info(TAG, `OnFailed called code is ${JSON.stringify(code)}`)
+      onFailed: (code) => {
+        if (this.context !== null) {
+          this.context.terminateSelf()
+          Logger.info(TAG, `OnFailed called code is ${JSON.stringify(code)}`)
+        }
       }
     }
-    this.context.connectServiceExtensionAbility(localServiceWant, connectOptions)
+    if (this.context !== null) {
+      this.context.connectServiceExtensionAbility(localServiceWant, connectOptions)
+    }
   }
 
-  startRemoteExtension(deviceId: string, params: ParamType) {
-    if (typeof (this.localExtensionRemote) === 'object' && typeof (deviceId) === 'string' && deviceId !== '') {
+  startRemoteExtension(deviceId: string, params: object) {
+    if (this.localExtensionRemote !== null && typeof (this.localExtensionRemote) === 'object' && typeof (deviceId) === 'string' && deviceId !== '') {
       let option = new rpc.MessageOption()
       let data = new rpc.MessageParcel()
       let reply = new rpc.MessageParcel()
@@ -229,14 +234,14 @@ struct Index {
       data.writeString(JSON.stringify(params))
       this.localExtensionRemote.sendRequest(MusicSharedEventCode.START_DISTRIBUTED_MUSIC_SERVICE, data, reply, option)
       this.deviceId = deviceId
-      this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_pause')
+      this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_hop')
     } else {
       Logger.info(TAG, `Remote start type is error or deviceID is empty, typeof= ${typeof (this.localExtensionRemote)}`)
     }
   }
 
   stopRemoteExtension() {
-    if (typeof (this.localExtensionRemote) === 'object' && typeof (this.deviceId) === 'string' && this.deviceId !== '') {
+    if (this.localExtensionRemote !== null && typeof (this.localExtensionRemote) === 'object' && typeof (this.deviceId) === 'string' && this.deviceId !== '') {
       let option = new rpc.MessageOption()
       let data = new rpc.MessageParcel()
       let reply = new rpc.MessageParcel()
@@ -249,16 +254,16 @@ struct Index {
   }
 
   sendMessagePlay() {
-    if (this.localExtensionRemote === null) {
+    if (this.localExtensionRemote !== null) {
+      let option = new rpc.MessageOption()
+      let data = new rpc.MessageParcel()
+      let reply = new rpc.MessageParcel()
+      this.localExtensionRemote.sendRequest(MusicSharedEventCode.PLAY_MUSIC_SERVICE, data, reply, option)
+      Logger.info(TAG, `onPlayClick send mssage success`)
+    } else {
       Logger.info(TAG, `can not get proxy`)
       return
     }
-    let option = new rpc.MessageOption()
-    let data = new rpc.MessageParcel()
-    let reply = new rpc.MessageParcel()
-
-    this.localExtensionRemote.sendRequest(MusicSharedEventCode.PLAY_MUSIC_SERVICE, data, reply, option)
-    Logger.info(TAG, `onPlayClick send mssage success`)
   }
 
   sendMessagePause() {
@@ -283,13 +288,15 @@ struct Index {
   }
 
   dismissDialog() {
-    this.dialogController.close()
+    if (this.dialogController !== null) {
+      this.dialogController.close()
+    }
     this.remoteDeviceModel.unregisterDeviceListCallback()
     this.isDialogShowing = false
   }
 
   startAbilityContinuation(deviceId: string) {
-    let params: ParamType;
+    let params: Params
     Logger.info(TAG, `startAbilityContinuation PlayerModel.index= ${PlayerModel.index}/${PlayerModel.playlist.audioFiles.length}`)
     if (PlayerModel.index >= 0 && PlayerModel.index <= PlayerModel.playlist.audioFiles.length) {
       params = {
@@ -305,9 +312,11 @@ struct Index {
       }
     }
     Logger.info(TAG, `context.startAbility deviceId= ${deviceId}`)
-    KvStoreModel.setOnMessageReceivedListener(this.context, REMOTE_ABILITY_STARTED, () => {
-      Logger.info(TAG, 'OnMessageReceived, terminateSelf')
-    })
+    if (this.context !== null) {
+      KvStoreModel.setOnMessageReceivedListener(this.context, REMOTE_ABILITY_STARTED, () => {
+        Logger.info(TAG, 'OnMessageReceived, terminateSelf')
+      })
+    }
     Logger.info(TAG, `context.startAbility start`)
     this.clickFlag = MusicSharedStatus.MUSIC_REMOTING
     this.startRemoteExtension(deviceId, params)
@@ -316,7 +325,7 @@ struct Index {
   }
 
   selectedIndexChange = (selectedIndex: number) => {
-    if (selectedIndex === 0) {
+    if (this.context !== null && selectedIndex === 0) {
       this.context.startAbility({ bundleName: 'ohos.samples.etsdistributedmusicplayer',
         abilityName: 'MainAbility',
         deviceId: this.deviceLists[selectedIndex].deviceId,
@@ -328,7 +337,9 @@ struct Index {
       })
       this.isDistributed = false
       this.selectedIndex = 0
-      this.dialogController.close()
+      if (this.dialogController !== null) {
+        this.dialogController.close()
+      }
       this.deviceLists = []
       return
     }
@@ -345,7 +356,7 @@ struct Index {
       return
     }
     Logger.info(TAG, 'start ability, needAuth')
-    this.remoteDeviceModel.authDevice(this.deviceLists[this.selectedIndex], (device: hardware_deviceManager.DeviceInfo) => {
+    this.remoteDeviceModel.authDevice(this.deviceLists[this.selectedIndex], (device: deviceManager.DeviceInfo) => {
       Logger.info(TAG, 'auth and online finished')
       this.startAbilityContinuation(device.networkId)
     })
@@ -402,9 +413,10 @@ struct Index {
 
   onAppSharedClick() {
     if (this.clickFlag === MusicSharedStatus.MUSIC_SHARED) {
-      Logger.info(TAG, `start button is ${JSON.stringify(this.imageArrays[ABILITY_SHARED_BUTTON])}`)
+      Logger.info(TAG, `1start button is ${JSON.stringify(this.imageArrays[ABILITY_SHARED_BUTTON])}`)
       this.showDialog()
     } else if (this.clickFlag === MusicSharedStatus.MUSIC_STOP_SHARED) {
+      Logger.info(TAG, `2start button is ${JSON.stringify(this.imageArrays[ABILITY_SHARED_BUTTON])}`)
       this.stopRemoteExtension()
       this.imageArrays[ABILITY_SHARED_BUTTON] = $r('app.media.ic_hop')
     }
@@ -476,8 +488,8 @@ struct Index {
 
   restoreFromWant() {
     Logger.info(TAG, 'restoreFromWant')
-    let status: Record<string, string | number> = AppStorage.Get('status');
-    if (status !== null && status.uri !== null) {
+    let status: Record<string, Object> | undefined = AppStorage.get('status')
+    if (status !== undefined && status !== null && status.uri !== null) {
       KvStoreModel.broadcastMessage(this.context, REMOTE_ABILITY_STARTED)
       Logger.info(TAG, 'restorePlayingStatus')
       PlayerModel.restorePlayingStatus(status, (index: number) => {
@@ -489,12 +501,10 @@ struct Index {
             this.refreshSongInfo(0)
           })
         }
-        Logger.info(TAG, `Index PlayerModel.restorePlayingStatus this.totalMs = ${this.totalMs}, status.seekTo = ${status.seekTo}`)
-        if (status.seekTo === undefined) {
-          Logger.info(TAG, `status.seekTo is ${typeof status.seekTo}`);
-          return;
+        if (status !== undefined) {
+          Logger.info(TAG, `Index PlayerModel.restorePlayingStatus this.totalMs = ${this.totalMs}, status.seekTo = ${status.seekTo}`)
+          this.currentProgress = Math.floor(Number(status.seekTo) / this.totalMs * ONE_HUNDRED)
         }
-        this.currentProgress = Math.floor(status.seekTo as number / this.totalMs * ONE_HUNDRED);
       })
     } else {
       PlayerModel.preLoad(0, () => {
@@ -512,7 +522,7 @@ struct Index {
     try {
       atManager.requestPermissionsFromUser(this.context, permission).then((data: PermissionRequestResult) => {
         Logger.info(TAG, `data: ${JSON.stringify(data)}`)
-      }).catch((err) => {
+      }).catch((err: object) => {
         Logger.info(TAG, `err: ${JSON.stringify(err)}`)
       })
     } catch (err) {
@@ -538,7 +548,7 @@ struct Index {
     })
     Logger.info(TAG, 'getDefaultDisplay end')
     this.currentTimeText = this.getShownTimer(0)
-    PlayerModel.setOnStatusChangedListener((isPlaying: boolean) => {
+    PlayerModel.setOnStatusChangedListener((isPlaying: string) => {
       Logger.info(TAG, `on player status changed, isPlaying= ${isPlaying} refresh ui`)
       PlayerModel.setOnPlayingProgressListener((currentTimeMs: number) => {
         this.currentTimeText = this.getShownTimer(currentTimeMs)
@@ -555,27 +565,24 @@ struct Index {
       Logger.info(TAG, 'on playlist generated, refresh ui')
       this.restoreFromWant()
     })
-    AppStorage.SetOrCreate('viewThis', this);
-    AppStorage.SetOrCreate('exitMusicApp', this.exitMusicApp);
-    AppStorage.SetOrCreate('remoteServiceExtensionConnectEvent', this.remoteServiceExtensionConnectEvent);
-    AppStorage.SetOrCreate('musicPlay', this.musicPlay);
-    AppStorage.SetOrCreate('musicPause', this.musicPause);
     this.connectLocalExtension()
   }
 
   build() {
     Column() {
+      Blank()
+        .width('100%')
+        .height(72)
       Text(this.title)
         .width('100%')
-        .fontSize(30)
+        .fontSize(28)
         .margin({ top: '10%' })
         .fontColor(Color.White)
         .textAlign(TextAlign.Center)
       Image(this.albumSrc)
-        .width(this.isLand ? '60%' : '80%')
-        .height(this.isLand ? '50%' : '35%')
+        .width(this.isLand ? '60%' : '89%')
         .objectFit(ImageFit.Contain)
-        .margin({ top: 20, left: 40, right: 40 })
+        .margin({ top: 50, left: 40, right: 40 })
       Row() {
         Text(this.currentTimeText)
           .fontSize(20)
@@ -586,14 +593,15 @@ struct Index {
           .fontColor(Color.White)
       }
       .width('90%')
-      .margin({ top: '10%' })
+      .margin({ top: '12%' })
 
-      Slider({ value: Number.isNaN(this.currentProgress) ? 0 : this.currentProgress })
-        .width('80%')
+      Slider({ value: typeof (this.currentProgress) === 'number' ? this.currentProgress : 0 })
+        .trackColor('#64CCE7FF')
+        .width('90%')
         .selectedColor('#ff0c4ae7')
         .onChange((value: number, mode: SliderChangeMode) => {
           this.currentProgress = value
-          if (Number.isNaN(this.totalMs)) {
+          if (typeof (this.totalMs) === 'number') {
             this.currentProgress = 0
             Logger.info(TAG, `setProgress ignored, totalMs= ${this.totalMs}`)
             return
@@ -607,10 +615,10 @@ struct Index {
         })
 
       Row() {
-        ForEach(this.imageArrays, (item: Resource, index: number) => {
+        ForEach(this.imageArrays, (item: Resource, index: number | undefined) => {
           Column() {
             Image(item)
-              .size({ width: 72, height: 72 })
+              .size({ width: 74, height: 74 })
               .objectFit(ImageFit.Contain)
               .onClick(() => {
                 switch (index) {
@@ -631,7 +639,7 @@ struct Index {
                 }
               })
           }
-          .id('image' + (index + 1))
+          .id('image' + (index !== undefined ? (index + 1) : 0))
           .width(100)
           .height(100)
           .alignItems(HorizontalAlign.Center)
@@ -640,7 +648,7 @@ struct Index {
 
       }
       .width('100%')
-      .margin({ top: '10%' })
+      .margin({ top: '4%' })
       .justifyContent(FlexAlign.SpaceEvenly)
     }
     .width('100%')
