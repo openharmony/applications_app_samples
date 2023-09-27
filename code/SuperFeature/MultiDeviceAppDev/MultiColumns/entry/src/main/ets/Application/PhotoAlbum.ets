@@ -16,27 +16,33 @@
 import { PhotoContent } from '../common/PhotoContent'
 import { PhotoSideBar } from '../common/PhotoSideBar'
 
-@Entry
+let storage = LocalStorage.GetShared()
+
+@Entry(storage)
 @Component
 struct PhotoAlbum {
   @State sideBarStatus: boolean = true
+  @LocalStorageLink('currentBreakPoint') currentBreakPoint: string = 'sm'
 
   build() {
-    SideBarContainer(SideBarContainerType.Embed) {
-      Column() {
-        PhotoSideBar().margin({ top: 64 })
-      }.backgroundColor('#f1f3f5')
+    GridRow() {
+      GridCol({ span: { sm: 12, md: 12, lg: 12 } }) {
+        SideBarContainer(SideBarContainerType.AUTO) {
+          Column() {
+            PhotoSideBar().margin({ top: 64 })
+          }.backgroundColor('#f1f3f5')
 
-      Column() {
-        PhotoContent({ sideBarStatus: $sideBarStatus })
+          Column() {
+            PhotoContent({ sideBarStatus: $sideBarStatus })
+          }
+        }
+        .controlButton({ left: 24, top: 16, width: 24, height: 24 })
+        .onChange((value: boolean) => {
+          this.sideBarStatus = value
+        })
       }
-    }
-    .sideBarWidth(300)
-    .minSideBarWidth(240)
-    .minContentWidth(360)
-    .controlButton({ left: 24, top: 16, width: 24, height: 24 })
-    .onChange((value: boolean) => {
-      this.sideBarStatus = value
+    }.onBreakpointChange((breakpoint: string) => {
+      this.currentBreakPoint = breakpoint
     })
   }
 }

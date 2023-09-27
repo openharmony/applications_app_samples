@@ -29,10 +29,15 @@ export struct PhotoContent {
   ]
   @State columnsTemplate: string = '1fr 1fr 1fr'
   @Link @Watch('onStateChange') sideBarStatus: boolean
+  @LocalStorageProp('currentBreakPoint') currentBreakPoint: string = 'sm'
+
+  aboutToAppear() {
+    this.columnsTemplate = this.currentBreakPoint === 'sm' ? '1fr 1fr 1fr 1fr' : '1fr 1fr 1fr'
+  }
 
   onStateChange() {
     animateTo({ duration: 300 }, () => {
-      if (this.sideBarStatus === true) {
+      if (this.sideBarStatus === true && this.currentBreakPoint !== 'sm') {
         this.columnsTemplate = '1fr 1fr 1fr'
       } else {
         this.columnsTemplate = '1fr 1fr 1fr 1fr'
@@ -54,7 +59,7 @@ export struct PhotoContent {
         ForEach(this.photoList, (item: photoType) => {
           GridItem() {
             Column() {
-              Image(item.src).width(190).aspectRatio(1).borderRadius(12)
+              Image(item.src).width('100%').aspectRatio(1).borderRadius(12)
               Column() {
                 Text(item.name).margin({ top: 8 }).fontSize(14).fontWeight(FontWeight.Regular)
                 Text(item.count.toString()).fontSize(12).fontWeight(FontWeight.Regular)
