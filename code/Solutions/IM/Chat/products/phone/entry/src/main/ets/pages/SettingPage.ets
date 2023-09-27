@@ -174,7 +174,7 @@ export struct SettingItemView {
           .fontColor($r('app.color.setting_text_color'))
           .margin({ left: $r('app.integer.setting_menu_margin_left') })
           .layoutWeight(LAYOUT_WEIGHT)
-        Image($r('app.media.right_grey'))
+        Image($r('app.media.right_arrow'))
           .height($r('app.integer.setting_menu_arrow_height'))
           .width($r('app.integer.setting_menu_arrow_width'))
           .align(Alignment.End)
