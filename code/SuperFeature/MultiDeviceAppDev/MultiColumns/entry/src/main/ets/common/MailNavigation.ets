@@ -23,11 +23,13 @@ export struct MailNavigation {
   @State mailList: string[] = ['1', '1', '1', '1', '1', '1']
   @LocalStorageProp('currentBreakPoint') currentBreakPoint: string = 'md'
 
-  @Builder myRouter(name: string, param?: number) {
+  @Builder
+  myRouter(name: string, param?: number | undefined) {
     MailContent()
   }
 
-  @Builder NavigationMenus() {
+  @Builder
+  NavigationMenus() {
     if (this.currentBreakPoint !== 'md') {
       Row() {
         Image($r('app.media.add'))
@@ -41,7 +43,8 @@ export struct MailNavigation {
     }
   }
 
-  @Builder NavigationTitle() {
+  @Builder
+  NavigationTitle() {
     Column() {
       Text($r('app.string.recvBox'))
         .fontColor('#000')
