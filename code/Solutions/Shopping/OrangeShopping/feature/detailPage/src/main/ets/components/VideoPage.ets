@@ -12,20 +12,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import router from '@ohos.router'
+import router from '@ohos.router';
 
 @Component
 export struct VideoPage {
-  @State videoSrc: Resource = $rawfile('video_4.mp4')
-  @State controls: boolean = false
-  @State isFull: boolean = false
-  @State isPause: boolean = true
-  @State isPlayClick: boolean = true
-  @State firstClick: boolean = true
-  @State isHidden: boolean = true
-  @Link isStart: boolean
-  @Consume('playTime') updateTime: number
-  detailVideoController: VideoController = new VideoController()
+  @State videoSrc: Resource = $rawfile('video_4.mp4');
+  @State controls: boolean = false;
+  @State isFull: boolean = false;
+  @State isPause: boolean = true;
+  @State isPlayClick: boolean = true;
+  @State coverUrl: string = '';
+  @State firstClick: boolean = true;
+  @State isHidden: boolean = true;
+  @Link isStart: boolean;
+  @Consume('playTime') updateTime: number;
+  detailVideoController: VideoController = new VideoController();
 
   build() {
     Column() {
@@ -40,7 +41,7 @@ export struct VideoPage {
           .controls(this.controls)
           .objectFit(ImageFit.Contain)
           .onUpdate((e) => {
-            this.updateTime = e.time
+            this.updateTime = e.time;
           })
           .onPrepared((e) => {
             console.info('VideoPage_onPrepared:' + e.duration)
@@ -48,26 +49,32 @@ export struct VideoPage {
           .onClick(() => {
             if (this.isPlayClick) { // 判断play按钮是否用过，没有用过，进入这层
               if (this.firstClick) { // 第一次点击视频开始播放，再次点击进入全屏
-                this.detailVideoController.start()
-                this.isHidden = !this.isHidden
-                this.isStart = true
-                this.firstClick = !this.firstClick
+                this.detailVideoController.start();
+                this.isHidden = !this.isHidden;
+                this.isStart = true;
+                this.firstClick = !this.firstClick;
               } else {
-                router.push({ url: 'pages/FullPage', params: { videoSrc: this.videoSrc, videoTime: this.updateTime } })
+                router.pushUrl({
+                  url: 'pages/FullPage',
+                  params: { videoSrc: this.videoSrc, videoTime: this.updateTime }
+                });
               }
             } else {
-              router.push({ url: 'pages/FullPage', params: { videoSrc: this.videoSrc, videoTime: this.updateTime } })
+              router.pushUrl({
+                url: 'pages/FullPage',
+                params: { videoSrc: this.videoSrc, videoTime: this.updateTime }
+              });
             }
           })
           .onFinish(() => {
-            this.isHidden = true
-            this.isStart = false
+            this.isHidden = true;
+            this.isStart = false;
           })
 
         // 空白层预览
-        if(this.isHidden){
+        if (this.isHidden) {
           Column() {
-            Image($r('app.media.preview_Img'))
+            Image(this.coverUrl)
               .id('previewImg')
               .objectFit(ImageFit.Contain)
           }
@@ -77,16 +84,16 @@ export struct VideoPage {
         }
 
         // 视频上的play图标
-        if(this.isHidden){
+        if (this.isHidden) {
           Column() {
             Image($r('app.media.play'))
               .id('playBtn')
               .width(76).height(76)
               .onClick(() => {
-                this.detailVideoController.start()
-                this.isHidden = !this.isHidden
-                this.isStart = true
-                this.isPlayClick = false
+                this.detailVideoController.start();
+                this.isHidden = !this.isHidden;
+                this.isStart = true;
+                this.isPlayClick = false;
               })
           }
         }

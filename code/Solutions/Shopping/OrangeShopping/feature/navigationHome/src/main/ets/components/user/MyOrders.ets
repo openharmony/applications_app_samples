@@ -13,11 +13,12 @@
  * limitations under the License.
  */
 
-import { ORDER_DATA } from '../../mock/ProductsData'
+import { ORDER_DATA } from '../../mock/ProductsData';
+import { OrderModel } from '../../model/GoodsModel';
 
 @Component
 export struct MyOrderComponent {
-  @StorageProp('curBp') curBp: string = 'sm'
+  @StorageProp('curBp') curBp: string = 'sm';
 
   build() {
     Column() {
@@ -35,29 +36,45 @@ export struct MyOrderComponent {
             .objectFit(ImageFit.Contain)
         }
       }
-      .padding({ left: 12, right: 12 })
+      .padding({
+        left: 12,
+        right: 12
+      })
       .width('100%')
 
       Row() {
-        ForEach(ORDER_DATA, item => {
+        ForEach(ORDER_DATA, (item: OrderModel) => {
           Column() {
             Image(item.img)
               .aspectRatio(1)
               .width(28)
               .objectFit(ImageFit.Contain)
-              .margin({ bottom: 12 })
+              .margin({
+                bottom: 12
+              })
             Text(item.title)
               .fontSize(12)
           }
           .layoutWeight(1)
-        }, item => item.id.toString())
+        }, (item: OrderModel) => item.id.toString())
       }
       .width('100%')
-      .margin({ top: 14 })
+      .margin({
+        top: 14
+      })
     }
-    .padding({ left: 12, right: 12, top: 16, bottom: 16 })
-    .border({ radius: 16 })
+    .padding({
+      left: 12,
+      right: 12,
+      top: 16,
+      bottom: 16
+    })
+    .border({
+      radius: 16
+    })
     .backgroundColor($r('app.color.white'))
-    .margin({ top: 12 })
+    .margin({
+      top: 12
+    })
   }
 }

@@ -13,31 +13,31 @@
 * limitations under the License.
 */
 
-import router from '@ohos.router'
-import prompt from '@ohos.promptAction'
-import workScheduler from '@ohos.resourceschedule.workScheduler'
-import { logger } from '../utils/Logger'
-import { ButtonDialogBuilder } from '@ohos/sharecomponent'
+import router from '@ohos.router';
+import prompt from '@ohos.promptAction';
+import workScheduler from '@ohos.resourceschedule.workScheduler';
+import { logger } from '../utils/Logger';
+import { ButtonDialogBuilder } from '@ohos/sharecomponent';
 
-const SRC_IMG = 'https://res5.vmallres.com/pimages/uomcdn/CN/pms/202207/gbom/6941487270880/428_428_1142FAB7EA4DCBDD8C64BF54486A7D4Bmp.png'
-const TAG: string = 'Information'
+const SRC_IMG: string = 'https://res5.vmallres.com/pimages/uomcdn/CN/pms/202207/gbom/6941487270880/428_428_1142FAB7EA4DCBDD8C64BF54486A7D4Bmp.png';
+const TAG: string = 'Information';
 
 @Component
 export struct Information {
-  @State collected: boolean = false
-  private data: any[] = router.getParams()['goodItem']
-  @State recommend: string = ''
-  @State commodity: string = ''
+  @State collected: boolean = false;
+  private data: any[] = router.getParams()['goodItem'];
+  @State recommend: string = '';
+  @State commodity: string = '';
 
   aboutToAppear() {
-    let context: Context = getContext(this)
-    this.recommend = context.resourceManager.getStringSync($r('app.string.recommend').id)
-    this.commodity = context.resourceManager.getStringSync($r('app.string.commodity').id)
+    let context: Context = getContext(this);
+    this.recommend = context.resourceManager.getStringSync($r('app.string.recommend').id);
+    this.commodity = context.resourceManager.getStringSync($r('app.string.commodity').id);
   }
 
   // 分享弹框
-  controller: TabsController = new TabsController()
-  shareDialog: CustomDialogController
+  controller: TabsController = new TabsController();
+  shareDialog: CustomDialogController;
 
   build() {
     Column() {
@@ -77,7 +77,7 @@ export struct Information {
             alignment: DialogAlignment.Bottom,
             customStyle: true,
           })
-          this.shareDialog.open()
+          this.shareDialog.open();
         })
 
         Row() {
@@ -91,7 +91,7 @@ export struct Information {
         }
         .opacity(0.6)
         .onClick(() => {
-          this.collected = !this.collected
+          this.collected = !this.collected;
         })
 
         Row({ space: 6 }) {
@@ -116,12 +116,12 @@ export struct Information {
               firstButton: getContext(this).resourceManager.getStringSync($r('app.string.close')),
               secondButton: getContext(this).resourceManager.getStringSync($r('app.string.go_to_view'))
             }
-          }
+          };
           try {
-            workScheduler.startWork(workInfo)
-            prompt.showToast({ message: $r('app.string.subscribe_notice') })
+            workScheduler.startWork(workInfo);
+            prompt.showToast({ message: $r('app.string.subscribe_notice') });
           } catch (error) {
-            logger.info(TAG, `startWork error ${JSON.stringify(error)}`)
+            logger.info(TAG, `startWork error ${JSON.stringify(error)}`);
           }
         })
       }

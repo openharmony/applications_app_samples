@@ -13,16 +13,17 @@
  * limitations under the License.
  */
 
-import { Cart } from '../shoppingCart/Cart'
-import { FavorGoodList } from '../shoppingCart/FavorGoodlist'
-import { ProductDataModel } from '../../model/GoodsModel'
+import { Cart } from '../shoppingCart/Cart';
+import { FavorGoodList } from '../shoppingCart/FavorGoodlist';
+import { ProductDataModel } from '../../model/GoodsModel';
+import { Url } from '../../main/NavigationHomePage';
 
 @Preview
 @Component
 export struct ShopCart {
-  private url: string
-  @StorageLink('goodsListHeight') goodsListHeight: number = 100
-  @State shoppingCartGoodsList: ProductDataModel[] = AppStorage.Get('shoppingCartGoodsList')
+  private url: string;
+  @StorageLink('goodsListHeight') goodsListHeight: number = 100;
+  @State shoppingCartGoodsList: ProductDataModel[] = AppStorage.get('shoppingCartGoodsList');
 
   build() {
     Column() {
@@ -43,25 +44,39 @@ export struct ShopCart {
                 .opacity(0.6)
             }
             .width('100%')
-            .margin({ top: 16, bottom: 12 })
+            .margin({
+              top: 16,
+              bottom: 12
+            })
 
-            Cart({ shoppingCartGoodsListToCart: $shoppingCartGoodsList })
+            Cart({ shoppingCartGoodsListToCart: $shoppingCartGoodsList });
           }
           .width('100%')
-          .padding({ right: 12 })
+          .padding({
+            right: 12
+          })
           .backgroundColor($r('app.color.divider'))
 
           Text($r('app.string.guess_you_like'))
             .fontSize(20)
             .fontColor($r('app.color.blank'))
-            .padding({ top: 24, bottom: 20, left: 12 })
-          FavorGoodList({ url: this.url })
+            .padding({
+              top: 24,
+              bottom: 20,
+              left: 12
+            })
+          FavorGoodList(new Url(this.url));
         }
-        .padding({ bottom: 12 })
+        .padding({
+          bottom: 12
+        })
         .alignItems(HorizontalAlign.Start)
       }
       .layoutWeight(1)
-      .padding({ left: 12, right: 12 })
+      .padding({
+        left: 12,
+        right: 12
+      })
       .scrollBar(BarState.Off)
       .align(Alignment.Top)
 

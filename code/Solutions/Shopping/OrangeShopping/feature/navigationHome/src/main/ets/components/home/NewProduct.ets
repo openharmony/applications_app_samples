@@ -13,29 +13,36 @@
  * limitations under the License.
  */
 
-import { GoodsList } from '../good/GoodsList'
-import { NEW_PRODUCT_TITLE_BAR_DATA, SWIPER_DATA } from '../../mock/ProductsData'
+import { GoodsList } from '../good/GoodsList';
+import { NEW_PRODUCT_TITLE_BAR_DATA, SWIPER_DATA } from '../../mock/ProductsData';
+import { NewProductTitleBarModel, SwiperModel } from '../../model/GoodsModel';
+import { Url } from '../../main/NavigationHomePage';
 
 @Component
 export struct NewProduct {
-  @State tabsIndex: number = 0
-  @StorageProp('curBp') curBp: string = 'md'
-  private url: string
-  private controller: TabsController = new TabsController()
+  @State tabsIndex: number = 0;
+  @StorageProp('curBp') curBp: string = 'md';
+  private url: string;
+  private controller: TabsController = new TabsController();
 
   build() {
     Column() {
       Scroll() {
         Column() {
           Swiper() {
-            ForEach(SWIPER_DATA, item => {
+            ForEach(SWIPER_DATA, (item: SwiperModel) => {
               Navigator({ target: 'pages/detail' }) {
                 Image(item.img)
                   .objectFit(ImageFit.Cover)
                   .width('100%')
-                  .borderRadius({ bottomLeft: 12, bottomRight: 12, topLeft: 0, topRight: 0 })
+                  .borderRadius({
+                    bottomLeft: 12,
+                    bottomRight: 12,
+                    topLeft: 0,
+                    topRight: 0
+                  })
               }
-            }, item => item.id.toString())
+            }, (item: SwiperModel) => item.id.toString())
           }
           .width('100%')
           .height(186)
@@ -43,10 +50,17 @@ export struct NewProduct {
           .itemSpace(10)
           .displayCount(this.curBp === 'sm' ? 1 : this.curBp === 'md' ? 2 : 3)
           // 这里的导航点需要位于swiper的右下角，此处使用right:24
-          .indicatorStyle({ right: 24, selectedColor: $r('app.color.point'), color: $r('app.color.point_selected') })
+          .indicator(
+            Indicator
+              .dot()
+              .selectedItemWidth(10)
+              .right(24)
+              .color($r('app.color.point_selected'))
+              .selectedColor($r('app.color.point'))
+          )
 
           Row() {
-            ForEach(NEW_PRODUCT_TITLE_BAR_DATA, item => {
+            ForEach(NEW_PRODUCT_TITLE_BAR_DATA, (item: NewProductTitleBarModel) => {
               Column() {
                 Text(item.title)
                   .fontSize(16)
@@ -57,10 +71,10 @@ export struct NewProduct {
               .justifyContent(FlexAlign.Center)
               .align(Alignment.Center)
               .onClick(() => {
-                this.tabsIndex = item.id
-                this.controller.changeIndex(item.id)
+                this.tabsIndex = item.id;
+                this.controller.changeIndex(item.id);
               })
-            }, item => item.id.toString())
+            }, (item: NewProductTitleBarModel) => item.id.toString())
 
             Row() {
               Image($r('app.media.line_navclass'))
@@ -71,21 +85,32 @@ export struct NewProduct {
                 .width(16)
                 .height(16)
                 .objectFit(ImageFit.Contain)
-                .margin({ left: 4 })
+                .margin({
+                  left: 4
+                })
               Text($r('app.string.classification'))
                 .fontSize(16)
                 .opacity(0.6)
                 .fontColor($r('app.color.blank'))
-                .margin({ left: 2 })
+                .margin({
+                  left: 2
+                })
             }
           }
           .width('100%')
-          .padding({ left: 12, right: 12, bottom: 16, top: 16 })
+          .padding({
+            left: 12,
+            right: 12,
+            bottom: 16,
+            top: 16
+          })
           .justifyContent(FlexAlign.SpaceBetween)
 
-          GoodsList({ url: this.url })
+          GoodsList(new Url(this.url));
         }
-        .padding({ bottom: 12 })
+        .padding({
+          bottom: 12
+        })
       }
       .layoutWeight(1)
       .scrollBar(BarState.Off)

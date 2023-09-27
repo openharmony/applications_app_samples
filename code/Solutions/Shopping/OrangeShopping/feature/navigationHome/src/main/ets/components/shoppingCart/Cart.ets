@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 
-import { ProductDataModel } from '../../model/GoodsModel'
-import { PRODUCT_DATA } from '../../mock/ProductsData'
+import { ProductDataModel } from '../../model/GoodsModel';
+import { PRODUCT_DATA } from '../../mock/ProductsData';
 
 @Component
 export struct Cart {
-  @StorageProp('curBp') curBp: string = 'sm'
-  @Link shoppingCartGoodsListToCart: ProductDataModel[]
+  @StorageProp('curBp') curBp: string = 'sm';
+  @Link shoppingCartGoodsListToCart: ProductDataModel[];
 
   build() {
     Column() {
@@ -33,7 +33,10 @@ export struct Cart {
           .width(24)
           .aspectRatio(1)
           .objectFit(ImageFit.Contain)
-          .margin({ left: 12, right: 8 })
+          .margin({
+            left: 12,
+            right: 8
+          })
         Text($r('app.string.shopping_self_support'))
           .fontSize(14)
           .fontWeight(400)
@@ -52,7 +55,10 @@ export struct Cart {
             .width(70)
             .height(80)
             .objectFit(ImageFit.Contain)
-            .margin({ left: 12, right: 16 })
+            .margin({
+              left: 12,
+              right: 16
+            })
 
           Column() {
             Text(PRODUCT_DATA[item].title)
@@ -64,7 +70,9 @@ export struct Cart {
               .width('100%')
               .fontSize(12)
               .opacity(0.6)
-              .margin({ top: 12 })
+              .margin({
+                top: 12
+              })
 
             Row() {
               Text(PRODUCT_DATA[item].price)
@@ -78,21 +86,30 @@ export struct Cart {
                   .height(24)
                   .objectFit(ImageFit.Contain)
                 Text(`${1}`)
-                  .margin({ left: 10, right: 10 })
+                  .margin({
+                    left: 10,
+                    right: 10
+                  })
                   .fontSize(12)
                 Image($r('app.media.add'))
                   .width(24)
                   .height(24)
                   .objectFit(ImageFit.Contain)
               }
-              .margin({ right: 12 })
+              .margin({
+                right: 12
+              })
             }
             .width('100%')
-            .margin({ top: 12 })
+            .margin({
+              top: 12
+            })
           }
           .flexGrow(1)
           .flexShrink(1)
-          .margin({ top: 20 })
+          .margin({
+            top: 20
+          })
         }
         .width('100%')
       }, item => item.toString())
@@ -100,6 +117,9 @@ export struct Cart {
     .width('100%')
     .backgroundColor($r('app.color.white'))
     .borderRadius(16)
-    .padding({ top: 12, bottom: 12 })
+    .padding({
+      top: 12,
+      bottom: 12
+    })
   }
 }

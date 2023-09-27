@@ -13,7 +13,7 @@
 * limitations under the License.
 */
 
-import { COMMENT_DATA } from '../mock/DetailData'
+import { COMMENT_DATA } from '../mock/DetailData';
 
 @Component
 export struct Valuation {

@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-import { LivePage } from '@ohos/video-component'
+import { LivePage } from '@ohos/video-component';
 
 @Entry
 @Component
 struct Live {
   build() {
     Column() {
-      LivePage()
+      LivePage();
     }
   }
 }

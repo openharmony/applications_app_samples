@@ -14,12 +14,12 @@
  */
 
 import AbilityStage from '@ohos.app.ability.AbilityStage';
-import { logger } from '@ohos/details-page-component'
+import { logger } from '@ohos/details-page-component';
 
-const TAG: string = 'MyAbilityStage'
+const TAG: string = 'MyAbilityStage';
 
 export default class MyAbilityStage extends AbilityStage {
   onCreate() {
-    logger.info(TAG, 'onCreate')
+    logger.info(TAG, 'onCreate');
   }
 }

@@ -15,8 +15,8 @@
 
 @Component
 export struct ServiceSectionComponent {
-
-  @Builder serverSection(img: Resource, label: Resource) {
+  @Builder
+  serverSection(img: Resource, label: Resource) {
     Column() {
       Image(img)
         .width(40)
@@ -24,7 +24,9 @@ export struct ServiceSectionComponent {
         .objectFit(ImageFit.Contain)
       Text(label)
         .fontSize(12)
-        .margin({ top: 12 })
+        .margin({
+          top: 12
+        })
     }
     .width('25%')
     .justifyContent(FlexAlign.Center)
@@ -39,8 +41,13 @@ export struct ServiceSectionComponent {
     }
     .width('100%')
     .justifyContent(FlexAlign.SpaceBetween)
-    .padding({ top: 16, bottom: 16})
+    .padding({
+      top: 16,
+      bottom: 16
+    })
     .backgroundColor($r('app.color.white'))
-    .border({ radius: 16 })
+    .border({
+      radius: 16
+    })
   }
 }

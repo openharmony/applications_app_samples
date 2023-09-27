@@ -13,42 +13,57 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
-import Http from '@ohos/http'
-import { PRODUCT_DATA } from '../../mock/ProductsData'
-import { GoodResponse } from '../../model/GoodsModel'
-import { Products_Data } from '../../mock/ProductsData'
+import Http from '@ohos/http';
+import { PRODUCT_DATA } from '../../mock/ProductsData';
+import { GoodResponse } from '../../model/GoodsModel';
+import { Products_Data } from '../../mock/ProductsData';
+import router from '@ohos.router';
 
 @Component
 export struct GoodsList {
-  @State getDataFromHttp: boolean = false
-  private url: string
-  private option: object
-  @State productsData: GoodResponse = Products_Data
+  @State getDataFromHttp: boolean = false;
+  private url: string;
+  private option: object;
+  @State productsData: GoodResponse = Products_Data;
+  @State active: boolean = false;
 
   async aboutToAppear() {
-    Http.setUrl(this.url)
-    Http.setOptions(this.option)
-    this.getDataFromHttp = false
-    let info = await Http.request()
+    Http.setUrl(this.url);
+    Http.setOptions(this.option);
+    this.getDataFromHttp = false;
+    let info = await Http.request();
     if (info.responseCode === 200 && info.result !== undefined) {
-      this.getDataFromHttp = true
-      this.productsData = JSON.parse(info.result.toString())
+      this.getDataFromHttp = true;
+      this.productsData = JSON.parse(info.result.toString());
     }
   }
 
   build() {
-    GridRow({ gutter: { x: vp2px(8), y: vp2px(8) }, }) {
+    GridRow({
+      gutter: {
+        x: vp2px(8),
+        y: vp2px(8)
+      },
+    }) {
       ForEach(this.getDataFromHttp ? this.productsData.data.records : PRODUCT_DATA, item => {
-        GridCol({ span: { sm: 6, md: 6, lg: 4 } }) {
+        GridCol({
+          span: {
+            sm: 6,
+            md: 6,
+            lg: 4
+          }
+        }) {
           Column() {
-            // 此处的商品图片需要根据父组件的宽度而变化，这里使用65%
+
+            // 方案二：使用router跳转页面，配合共享元素动画
             Image(item.uri)
               .id('goods' + item.id)
               .width('70%')
               .aspectRatio(1)
+              .clip(true)
               .objectFit(ImageFit.Contain)
               .margin({ bottom: 12 })
+              .sharedTransition('goods' + item.id, { duration: 600, curve: Curve.Linear, delay: 100 })
 
             Column() {
               Text(item.title)
@@ -57,14 +72,21 @@ export struct GoodsList {
 
               Text(item.info)
                 .width('100%')
-                .fontSize(14)
-                .margin({ top: 6 })
+                .fontSize(12)
+                .fontColor("#858184")
+                .margin({
+                  top: 6
+                })
 
               Text(item.price)
                 .fontColor($r('app.color.pink'))
                 .fontSize(16)
-                .margin({ top: 6 })
-                .offset({ x: -3 }) // 因为￥是中文字符，上面的xx是中文字符，占的宽度不一样，所以需要对齐，添加offset
+                .margin({
+                  top: 6
+                })
+                .offset({
+                  x: -3
+                }) // 因为￥是中文字符，上面的xx是中文字符，占的宽度不一样，所以需要对齐，添加offset
 
               Column() {
                 Text(item.labels)
@@ -72,17 +94,27 @@ export struct GoodsList {
                   .fontColor($r('app.color.white'))
               }
               .borderRadius(6)
-              .padding({ left: 6, right: 6, top: 4, bottom: 4 })
+              .padding({
+                left: 6,
+                right: 6,
+                top: 4,
+                bottom: 4
+              })
               .backgroundColor($r('app.color.pink'))
-              .margin({ top: 6 })
+              .margin({
+                top: 6
+              })
             }
             .alignItems(HorizontalAlign.Start)
           }
           .borderRadius(10)
           .padding(12)
           .backgroundColor($r('app.color.white'))
+
+          // 方案二：使用正常router跳转，配合共享元素动画
           .onClick(() => {
-            router.push({
+            this.active = true;
+            router.pushUrl({
               url: 'pages/Detail',
               params: { goodId: item.id, goodItem: item }
             })
@@ -90,9 +122,12 @@ export struct GoodsList {
         }
       }, item => item.id.toString())
     }
-    .padding({ left: 12, right: 12 })
-    .onAreaChange((oldArea: Area, newArea: Area) => {
-      AppStorage.SetOrCreate('listHeight', newArea.height as number)
+    .padding({
+      left: 12,
+      right: 12
+    })
+    .onAreaChange((newArea: Area) => {
+      AppStorage.setOrCreate('listHeight', newArea.height as number);
     })
   }
 }

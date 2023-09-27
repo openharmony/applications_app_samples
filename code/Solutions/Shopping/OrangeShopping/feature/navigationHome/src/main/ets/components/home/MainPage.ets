@@ -13,26 +13,31 @@
  * limitations under the License.
  */
 
-import { NAV_DATA } from '../../mock/ProductsData'
-import { TitleBarComponent } from '../../components/home/TitleBar'
-import { HomePageContent } from '../../components/home/HomePageContent'
+import { NAV_DATA } from '../../mock/ProductsData';
+import { TitleBarComponent } from '../../components/home/TitleBar';
+import { HomePageContent } from '../../components/home/HomePageContent';
+import { NavDataModel } from '../../model/GoodsModel';
+import { Url } from '../../main/NavigationHomePage';
 
 @Component
 export struct MainPage {
-  @State navTabsIndex: number = 0
-  private url: string
-  private navController: TabsController = new TabsController()
-  @StorageProp('curBp') curBp: string = 'sm'
+  @State navTabsIndex: number = 0;
+  private url: string;
+  private navController: TabsController = new TabsController();
+  @StorageProp('curBp') curBp: string = 'sm';
 
   build() {
     Column() {
       TitleBarComponent()
-        .backgroundImageSize({ width: '100%', height: '100%' })
+        .backgroundImageSize({
+          width: '100%',
+          height: '100%'
+        })
         .backgroundImage($r('app.media.title_bar'), ImageRepeat.NoRepeat)
       Scroll() {
         Column() {
           Row() {
-            ForEach(NAV_DATA, item => {
+            ForEach(NAV_DATA, (item: NavDataModel) => {
               Row() {
                 Text(item.navData)
                   .fontSize(16)
@@ -42,10 +47,10 @@ export struct MainPage {
               }
               .align(Alignment.Center)
               .onClick(() => {
-                this.navTabsIndex = item.id
-                this.navController.changeIndex(item.id)
+                this.navTabsIndex = item.id;
+                this.navController.changeIndex(item.id);
               })
-            }, item => item.id.toString())
+            }, (item: NavDataModel) => item.id.toString())
 
             Row() {
               Divider()
@@ -57,24 +62,31 @@ export struct MainPage {
                 .width(16)
                 .height(16)
                 .objectFit(ImageFit.Contain)
-                .margin({ left: 4 })
+                .margin({
+                  left: 4
+                })
               Text($r('app.string.classification'))
                 .fontSize(16)
                 .opacity(0.8)
                 .fontColor($r('app.color.white'))
-                .margin({ left: 2 })
+                .margin({
+                  left: 2
+                })
             }
           }
           .width('100%')
           .justifyContent(FlexAlign.SpaceBetween)
           .padding(12)
 
-          HomePageContent({ url: this.url })
+          HomePageContent(new Url(this.url));
         }
       }
       .width('100%')
       .height('100%')
-      .backgroundImageSize({ width: '100%', height: 200 })
+      .backgroundImageSize({
+        width: '100%',
+        height: 200
+      })
       .backgroundImage($r('app.media.home_background'), ImageRepeat.NoRepeat)
       .scrollBar(BarState.Off)
       .flexGrow(1)
