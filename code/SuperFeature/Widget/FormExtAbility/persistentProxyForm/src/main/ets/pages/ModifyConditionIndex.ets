@@ -13,68 +13,80 @@
  * limitations under the License.
  */
 
-import formProvider from '@ohos.app.form.formProvider';
-import formBindingData from '@ohos.app.form.formBindingData';
-import formHost from '@ohos.app.form.formHost';
-import Logger from '../../common/Logger';
+import base from '@ohos.base';
+import common from '@ohos.app.ability.common';
 import dataShare from '@ohos.data.dataShare';
+import formBindingData from '@ohos.app.form.formBindingData';
+import formInfo from '@ohos.app.form.formInfo';
+import formObserver from '@ohos.app.form.formObserver';
+import formProvider from '@ohos.app.form.formProvider';
+import Logger from '../../common/Logger';
 import { getPersistentConditionID, savePersistentConditionID } from '../../common/StatePersistence';
 
 const TAG = '[Sample_ModifyConditionIndex]';
-let dataShareHelper;
+let dataShareHelper: dataShare.DataShareHelper;
 let conditionID = '110000';
-let context;
+let context: common.UIAbilityContext;
 
-function updateCardDisplayContent(runningFormInfo): void {
+function updateCardDisplayContent(runningFormInfo: formInfo.RunningFormInfo): void {
   Logger.info(`TAG updateCardDisplayContent bundle: ${runningFormInfo.bundleName}`);
-  let template = {
+  let template: dataShare.Template = {
     predicates: {
-      'list': `select cityTemperature as cityTemperature, cityName as cityName from TBL00 where cityId = ${conditionID}`
+      list: `select cityTemperature as cityTemperature, cityName as cityName from TBL00 where cityId = ${conditionID}`
     },
     scheduler: ''
   };
   dataShare.createDataShareHelper(context, 'datashareproxy://ohos.samples.formextability', { isProxy: true })
-    .then((data) => {
+    .then((data: dataShare.DataShareHelper) => {
       dataShareHelper = data;
       dataShareHelper.addTemplate('datashareproxy://ohos.samples.formextability/test', conditionID, template);
     });
-  let proxies = [{ 'key': 'datashareproxy://ohos.samples.formextability/test', 'subscriberId': conditionID }];
-  let formData;
+
+  class ProxiesType {
+    key: string
+    subscriberId: string
+  };
+
+  let proxies = [{
+    key: 'datashareproxy://ohos.samples.formextability/test',
+    subscriberId: conditionID
+  } as ProxiesType];
+  let formData: String;
   Logger.info(TAG, `formData: ${JSON.stringify(formData)}`);
   let formBinding = formBindingData.createFormBindingData(formData);
   formBinding['proxies'] = proxies;
   formProvider.updateForm(runningFormInfo.formId, formBinding).then(() => {
     Logger.info(TAG, `update Form OK formData is ${JSON.stringify(formBinding)}`);
-  }).catch((err) => {
+  }).catch((err: base.BusinessError<void>) => {
     Logger.error(TAG, `update Form Failed ${JSON.stringify(err)}`);
   });
 }
 
 function modifyCondition(): void {
-  let formInstanceFilterArkTS = {
+  let formInstanceFilterArkTS: formInfo.FormProviderFilter = {
     bundleName: 'ohos.samples.formextability',
     abilityName: 'EntryFormAbility',
     formName: 'persistentWidget',
     moduleName: 'persistentProxyForm'
   };
-  let formInstanceFilterJS = {
+  let formInstanceFilterJS: formInfo.FormProviderFilter = {
     bundleName: 'ohos.samples.formextability',
     abilityName: 'EntryFormAbility',
     formName: 'persistentWidgetJS',
     moduleName: 'persistentProxyForm'
   };
-  formHost.getRunningFormInfosByFilter(formInstanceFilterArkTS).then((data) => {
+  formObserver.getRunningFormInfosByFilter(formInstanceFilterArkTS).then((data: Array<formInfo.RunningFormInfo>) => {
     Logger.info(TAG, `getRunningFormInfosByFilter data: ${JSON.stringify(data)}`);
     AppStorage.SetOrCreate('runningFormInfo', JSON.stringify(data));
     data.forEach(updateCardDisplayContent);
-  }).catch((err) => {
+  }).catch((err: base.BusinessError<void>) => {
     Logger.error(TAG, `getRunningFormInfosByFilter err is ${JSON.stringify(err)}`);
   });
-  formHost.getRunningFormInfosByFilter(formInstanceFilterJS).then((data) => {
+  formObserver.getRunningFormInfosByFilter(formInstanceFilterJS).then((data: Array<formInfo.RunningFormInfo>) => {
     Logger.info(TAG, `getRunningFormInfosByFilter data: ${JSON.stringify(data)}`);
     AppStorage.SetOrCreate('runningFormInfo', JSON.stringify(data));
     data.forEach(updateCardDisplayContent);
-  }).catch((err) => {
+  }).catch((err: base.BusinessError<void>) => {
     Logger.error(TAG, `getRunningFormInfosByFilter err is ${JSON.stringify(err)}`);
   });
 }
@@ -86,7 +98,7 @@ struct IndexThi {
   @State persistentSwitchFlag: boolean = true;
 
   aboutToAppear() {
-    context = getContext(this) as typeof context;
+    context = getContext(this) as common.UIAbilityContext;
     this.persistentConditionID = getPersistentConditionID(context);
     if (typeof this.persistentConditionID !== 'string' || this.persistentConditionID === '') {
       this.persistentConditionID = '110000'
