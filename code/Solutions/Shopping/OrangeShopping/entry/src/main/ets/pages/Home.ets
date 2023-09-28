@@ -13,85 +13,97 @@
  * limitations under the License.
  */
 
-import mediaQuery from '@ohos.mediaquery';
+import mediaquery from '@ohos.mediaquery';
 import window from '@ohos.window';
 import { NavigationHomePage } from '@ohos/navigation-component';
 import { UpdateDialog } from '@ohos/updatedialog';
 import { EventsDialog } from '@ohos/details-page-component';
-import { EmitterClass } from '@ohos/emitter';
+import { EmitterClass, EventsData } from '@ohos/emitter';
+import { Url } from '@ohos/navigation-component/src/main/ets/main/NavigationHomePage';
+
+const NOW_INDEX: string = 'nowIndex';
+const SHOPPING_CART_COODS_LIST: string = 'shoppingCartGoodsList';
+const CUR_BP_STR: string = 'curBp';
+const SMALL_SCREEN = 'sm';
+const MID_SCREEN = 'md';
+const LARGE_SCREEN = 'lg';
+const SMALL_WIDTH: string = '(320vp<=width<520vp)';
+const MID_WIDTH: string = '(520vp<=width<840vp)';
+const LARGE_WIDTH: string = '(840vp<=width)';
 
 @Entry
 @Component
 struct HomePage {
   @State url: string = '';
   @State option: object = undefined;
-  @State curBp: string = 'md'; // curBp指当前窗口断点，sm代表小屏，md代表中屏，lg代表大屏
-  private smListener: mediaQuery.MediaQueryListener;
-  private mdListener: mediaQuery.MediaQueryListener;
-  private lgListener: mediaQuery.MediaQueryListener;
-  @StorageLink('shoppingCartGoodsList') shoppingCartGoodsList: { data: { id: number } }[] = [];
+  @State curBp: string = MID_SCREEN; // curBp指当前窗口断点，sm代表小屏，md代表中屏，lg代表大屏
+  private smListener: mediaquery.MediaQueryListener;
+  private mdListener: mediaquery.MediaQueryListener;
+  private lgListener: mediaquery.MediaQueryListener;
+  @StorageLink(SHOPPING_CART_COODS_LIST) shoppingCartGoodsList: EventsData[] = [];
   private emitterClass: EmitterClass = new EmitterClass();
   EventsDialogController: CustomDialogController = new CustomDialogController({
     builder: EventsDialog(),
     customStyle: true
-  })
+  });
   UpdateDialogController: CustomDialogController = new CustomDialogController({
     builder: UpdateDialog(),
     customStyle: true
-  })
+  });
 
   build() {
     Column() {
-      NavigationHomePage({ url: this.url });
+      NavigationHomePage(new Url(this.url));
     }
   }
 
-  aboutToAppear(): void {
-    if (AppStorage.get('nowIndex') === undefined || AppStorage.Get('nowIndex') === 0) {
-      this.UpdateDialogController.open()
+  aboutToAppear() {
+    if (AppStorage.get<number>(NOW_INDEX) === undefined || AppStorage.get<number>(NOW_INDEX) === 0) {
+      this.UpdateDialogController.open();
     }
     this.emitterClass.showEventsDialog(() => {
-      if (AppStorage.get('nowIndex') === undefined || AppStorage.Get('nowIndex') === 0) {
-        this.EventsDialogController.open()
+      if (AppStorage.get<number>(NOW_INDEX) === undefined || AppStorage.get<number>(NOW_INDEX) === 0) {
+        this.EventsDialogController.open();
       }
-    })
+    });
     this.emitterClass.setShoppingCartGoodsList((eventData) => {
       this.shoppingCartGoodsList.push(eventData.data.id)
-      AppStorage.setOrCreate('shoppingCartGoodsList', this.shoppingCartGoodsList)
-    })
-    this.smListener = mediaQuery.matchMediaSync('(320vp<=width<520vp)')
-    this.smListener.on('change', this.isBreakpointSM)
-    this.mdListener = mediaQuery.matchMediaSync('(520vp<=width<840vp)')
-    this.mdListener.on('change', this.isBreakpointMD)
-    this.lgListener = mediaQuery.matchMediaSync('(840vp<=width)')
-    this.lgListener.on('change', this.isBreakpointLG)
+      AppStorage.setOrCreate<EventsData[]>(SHOPPING_CART_COODS_LIST, this.shoppingCartGoodsList)
+    });
+    this.smListener = mediaquery.matchMediaSync(SMALL_WIDTH);
+    this.smListener.on('change', this.isBreakpointSM);
+    this.mdListener = mediaquery.matchMediaSync(MID_WIDTH);
+    this.mdListener.on('change', this.isBreakpointMD);
+    this.lgListener = mediaquery.matchMediaSync(LARGE_WIDTH);
+    this.lgListener.on('change', this.isBreakpointLG);
     window.getLastWindow({ stageMode: true }).then(result => {
-      result.setFullScreen(false)
-    })
+      result.setWindowSystemBarEnable(['status', 'navigation']);
+      result.setWindowLayoutFullScreen(false)
+    });
   }
 
-  aboutToDisappear(): void {
-    this.smListener.off('change', this.isBreakpointSM)
-    this.mdListener.off('change', this.isBreakpointMD)
-    this.lgListener.off('change', this.isBreakpointLG)
+  aboutToDisappear() {
+    this.smListener.off('change', this.isBreakpointSM);
+    this.mdListener.off('change', this.isBreakpointMD);
+    this.lgListener.off('change', this.isBreakpointLG);
   }
 
-  isBreakpointSM = (mediaQueryResult) => {
+  isBreakpointSM = (mediaQueryResult: mediaquery.MediaQueryResult): void => {
     if (mediaQueryResult.matches) {
-      this.curBp = 'sm'
-      AppStorage.setOrCreate('curBp', this.curBp)
+      this.curBp = SMALL_SCREEN;
+      AppStorage.setOrCreate(CUR_BP_STR, this.curBp);
     }
-  }
-  isBreakpointMD = (mediaQueryResult) => {
+  };
+  isBreakpointMD = (mediaQueryResult: mediaquery.MediaQueryResult): void => {
     if (mediaQueryResult.matches) {
-      this.curBp = 'md'
-      AppStorage.setOrCreate('curBp', this.curBp)
+      this.curBp = MID_SCREEN;
+      AppStorage.setOrCreate(CUR_BP_STR, this.curBp);
     }
-  }
-  isBreakpointLG = (mediaQueryResult) => {
+  };
+  isBreakpointLG = (mediaQueryResult: mediaquery.MediaQueryResult): void => {
     if (mediaQueryResult.matches) {
-      this.curBp = 'lg'
-      AppStorage.setOrCreate('curBp', this.curBp)
+      this.curBp = LARGE_SCREEN;
+      AppStorage.setOrCreate(CUR_BP_STR, this.curBp);
     }
-  }
+  };
 }

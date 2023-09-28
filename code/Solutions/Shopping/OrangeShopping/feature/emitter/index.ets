@@ -13,4 +13,4 @@
 * limitations under the License.
 */
 
-export { EmitterClass } from './src/main/ets/components/feature/EmitterClass'
+export { EmitterClass, EventsData } from './src/main/ets/components/feature/EmitterClass'

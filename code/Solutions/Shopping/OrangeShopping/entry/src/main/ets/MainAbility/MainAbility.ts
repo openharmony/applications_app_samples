@@ -17,33 +17,37 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import { logger } from '@ohos/details-page-component';
 import { notificationUtil } from '@ohos/notification';
 import { QRCodeScanConst } from '@ohos/scan-component';
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-import Want from '@ohos.app.ability.Want';
+import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
+import type Want from '@ohos.app.ability.Want';
 
 const TAG: string = 'MainAbility';
+const EVENT: string = 'getAbilityData';
+const PERMISSIONS: Array<Permissions> = [
+  'ohos.permission.CAMERA',
+  'ohos.permission.MICROPHONE',
+  'ohos.permission.READ_MEDIA',
+  'ohos.permission.WRITE_MEDIA',
+  'ohos.permission.MEDIA_LOCATION',
+  'ohos.permission.INTERNET'
+];
+const CONTEXT: string = 'context';
+const INDEX_UIL: string = 'pages/Index';
+const CAMERA_STATUS_STR: string = 'cameraStatus';
 
 export default class MainAbility extends UIAbility {
   onCreate(want: Want): void {
     logger.info(TAG, 'onCreate');
-    const that = this;
-    this.context.eventHub.on("getAbilityData", (data) => {
-      data.context = that.context;
+    this.context.eventHub.on(EVENT, (data) => {
+      data.context = this.context;
       data.launchWant = want;
-    })
+    });
     this.requestPermission();
-    AppStorage.setOrCreate('context', this.context);
+    AppStorage.setOrCreate(CONTEXT, this.context);
   }
 
-  async requestPermission(): Promise<void> {
+  requestPermission = async (): Promise<void> => {
     let permissionRequestResult = await abilityAccessCtrl.createAtManager().requestPermissionsFromUser(this.context,
-      [
-        'ohos.permission.CAMERA',
-        'ohos.permission.MICROPHONE',
-        'ohos.permission.READ_MEDIA',
-        'ohos.permission.WRITE_MEDIA',
-        'ohos.permission.MEDIA_LOCATION',
-        'ohos.permission.INTERNET'
-      ]);
+      PERMISSIONS);
     // 如果权限列表中有-1，说明用户拒绝了授权
     if (permissionRequestResult.authResults[0] === 0) {
       // 控制相机是否打开
@@ -60,7 +64,8 @@ export default class MainAbility extends UIAbility {
   onWindowStageCreate(windowStage): void {
     // Main window is created, set main page for this ability
     logger.info(TAG, 'onWindowStageCreate');
-    windowStage.setUIContent(this.context, 'pages/Index', null);
+
+    windowStage.setUIContent(this.context, INDEX_UIL, null);
   }
 
   onWindowStageDestroy(): void {
@@ -71,7 +76,7 @@ export default class MainAbility extends UIAbility {
   onForeground(): void {
     // Ability has brought to foreground
     logger.info(TAG, 'MainAbility onForeground');
-    AppStorage.setOrCreate('cameraStatus',!AppStorage.Get('cameraStatus'));
+    AppStorage.setOrCreate(CAMERA_STATUS_STR,!AppStorage.get(CAMERA_STATUS_STR));
   }
 
   onBackground(): void {

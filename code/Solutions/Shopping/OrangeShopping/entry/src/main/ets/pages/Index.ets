@@ -22,7 +22,7 @@ struct Index {
   build() {
     Column() {
       TransitionsAnimation({
-        gotoNav: () => {
+        gotoNav: (): void => {
           routerUtil.gotoHome();
         }
       });

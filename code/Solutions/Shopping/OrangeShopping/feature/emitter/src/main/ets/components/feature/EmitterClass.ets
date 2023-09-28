@@ -24,7 +24,7 @@ class EventsId {
   }
 }
 
-class EventsData {
+export class EventsData {
   data: Data;
 
   constructor(data: Data) {
