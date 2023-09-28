@@ -14,7 +14,7 @@
 
 | 编辑删除                                            | 图片调整                                                | 图片标记                                            | 
 |-------------------------------------------------|-----------------------------------------------------|-------------------------------------------------|
-| ![edit.jpeg](screenshots%2Fdevices%2Fedit.jpeg) | ![adjust.jpeg](screenshots%2Fdevices%2Fadjust.jpeg) | ![crop.jpeg](screenshots%2Fdevices%2Fcrop.jpeg) |
+| ![edit.jpeg](screenshots%2Fdevices%2Fedit.jpeg) | ![adjust.jpeg](screenshots%2Fdevices%2Fadjust.jpeg) | ![crop.jpeg](screenshots%2Fdevices%2Fmark.jpeg) |
 
 | 图片裁剪                                            | 图片缩放                                              | 图片旋转                                                | 
 |-------------------------------------------------|---------------------------------------------------|-----------------------------------------------------|
