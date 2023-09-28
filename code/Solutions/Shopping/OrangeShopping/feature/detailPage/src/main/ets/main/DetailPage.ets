@@ -59,15 +59,15 @@ export struct DetailPage {
             Stack({ alignContent: Alignment.BottomEnd }) {
               Swiper() {
                 VideoPage({ isStart: $openFirst, coverUrl: this.goodDetailData['uri'] })
-                  .id('VideoPage')
+                  .id('VideoPage');
                 ForEach(SWIPER_PICTURE_DATA, () => {
                   Column() {
                     Image(this.goodDetailData['uri'])
-                      .objectFit(ImageFit.Contain)
+                      .objectFit(ImageFit.Contain);
                   }
                   .aspectRatio(1.12)
                   .backgroundColor('#ffffff')
-                  .width('100%')
+                  .width('100%');
                 })
               }
               .height(300)
@@ -75,38 +75,38 @@ export struct DetailPage {
               .indicator(false)
               .onChange((index: number) => {
                 this.swiperIndex = index;
-              })
+              });
 
               Row() {
                 Text(`${this.swiperIndex + 1}/${SWIPER_PICTURE_DATA.length + 1}`)
                   .fontSize(12)
-                  .fontColor($r('app.color.white'))
+                  .fontColor($r('app.color.white'));
               }
               .width(46)
               .height(24)
               .borderRadius(12)
               .justifyContent(FlexAlign.Center)
               .backgroundColor($r('app.color.bg3'))
-              .margin({ right: 16, bottom: 16 })
+              .margin({ right: 16, bottom: 16 });
             }
             .width('100%')
             .height(300)
-            .backgroundColor($r('app.color.white'))
+            .backgroundColor($r('app.color.white'));
 
             Column() {
               Information()
-                .margin({ top: 12 })
+                .margin({ top: 12 });
               Choice()
-                .margin({ top: 12 })
+                .margin({ top: 12 });
               AddressService({ currentLocation: $currentLocation, isPanel: $isPanel })
-                .margin({ top: 12 })
+                .margin({ top: 12 });
               Valuation()
-                .margin({ top: 12 })
+                .margin({ top: 12 });
             }
-            .padding({ left: 12, right: 12 })
+            .padding({ left: 12, right: 12 });
           }
           .id('goodsDetail' + this.goodDetailData['id'])
-          .width('100%')
+          .width('100%');
         }
         .width('100%')
         .align(Alignment.Top)
@@ -124,7 +124,7 @@ export struct DetailPage {
               this.isState = true;
             }
           }
-        })
+        });
 
         Image($r('app.media.back'))
           .width(32)
@@ -132,7 +132,7 @@ export struct DetailPage {
           .position({ x: 20, y: 20 })
           .onClick(() => {
             router.back();
-          })
+          });
 
         Image($r("app.media.share"))
           .width(32)
@@ -152,18 +152,18 @@ export struct DetailPage {
               autoCancel: true,
               alignment: DialogAlignment.Bottom,
               customStyle: true
-            })
-            this.shareDialog.open()
-          })
+            });
+            this.shareDialog.open();
+          });
 
         Column({ space: 12 }) {
           Image($r('app.media.broadcast'))
             .width(32)
-            .height(32)
+            .height(32);
 
           Text($r('app.string.broadcast'))
             .fontSize(14)
-            .fontColor($r('app.color.blank'))
+            .fontColor($r('app.color.blank'));
         }
         .id('directVideo')
         .width(62)
@@ -177,34 +177,34 @@ export struct DetailPage {
         .translate({ x: -82, y: 0 })
         .onClick(() => {
           router.pushUrl({ url: 'pages/LivePage' });
-        })
+        });
 
         BottomNavigation({
           goodItemData: $goodDetailData,
           animateAppear: $animateAppear,
-          animateScale: $animateAppear,
+          animateScale: $animateScale,
           animatePath: $animatePath
         })
           .position({ x: 0, y: '100%' })
-          .translate({ x: 0, y: -56 })
+          .translate({ x: 0, y: -56 });
         SmallVideo({ isHidden: $isHidden, isCancel: $isCancel })
           .position({ x: '100%', y: '60%' })
-          .translate({ x: -180, y: 0 })
+          .translate({ x: -180, y: 0 });
         Panel(this.isPanel) {
-          Location({ isPanel: $isPanel, currentLocation: $currentLocation })
+          Location({ isPanel: $isPanel, currentLocation: $currentLocation });
         }
         .mode(PanelMode.Half)
         .dragBar(false)
         .halfHeight(this.curBp === 'sm' ? 650 : 530)
         .miniHeight(0)
         .onChange(() => {
-          this.isPanel = false
-        })
+          this.isPanel = false;
+        });
 
         Column() {
           Image(this.goodDetailData['uri'])
             .borderRadius(this.animateScale ? 1000 : 0)
-            .transition(TransitionEffect.OPACITY)
+            .transition(TransitionEffect.OPACITY);
         }
         .width('100%')
         .height(300)
@@ -217,11 +217,12 @@ export struct DetailPage {
         }) : { x: 1, y: 1, centerY: '100%' })
         .opacity(this.animatePath ? 0.3 : 1)
         .translate(this.animatePath ? { x: -80, y: 100 } : { x: 0 })
-        .motionPath({ path: 'Mstart.x start.y C -200 50, -150 200, end.x end.y', from: 0.0, to: 1.0, rotatable: false })
+        .motionPath({ path: 'Mstart.x start.y C -200 50, -150 200, end.x end.y', from: 0.0, to: 1.0, rotatable: false });
       }
       .height('100%')
       .width('100%')
       .backgroundColor($r('app.color.divider'))
+      .align(this.animatePath ? Alignment.Bottom : Alignment.Top);
 
       // 通过isShowImage变量开关控制页面跳转动效，默认为true
       if (this.isShowImage) {
@@ -232,12 +233,12 @@ export struct DetailPage {
             .onComplete(() => {
               setTimeout(() => {
                 this.isShowImage = false;
-              }, 800)
-            })
+              }, 800);
+            });
         }
         .width('100%')
         .aspectRatio(1.12)
-        .backgroundColor('#ffffff')
+        .backgroundColor('#ffffff');
       }
     }
   }
