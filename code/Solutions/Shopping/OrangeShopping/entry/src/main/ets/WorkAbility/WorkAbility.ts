@@ -24,14 +24,14 @@ const ABILITY_NAME: string = 'MainAbility';
 const NOTIFICATION_ID: number = 1 // 定义发送通知的id,默认1
 
 export default class WorkAbility extends WorkSchedulerExtensionAbility {
-  onWorkStart(workInfo: workScheduler.WorkInfo) {
+  onWorkStart(workInfo: workScheduler.WorkInfo): void {
     logger.info(TAG, `onWorkStart ${JSON.stringify(workInfo)}`);
     if (workInfo.parameters) {
       this.publishNotification(workInfo.parameters);
     }
   }
 
-  onWorkStop(workInfo) {
+  onWorkStop(workInfo: workScheduler.WorkInfo): void {
     logger.info(TAG, `onWorkStop ${JSON.stringify(workInfo)}`);
     notificationUtil.cancelNotificationById(1);
   }
