@@ -13,35 +13,39 @@
  * limitations under the License.
  */
 
+import base from '@ohos.base';
+import common from '@ohos.app.ability.common';
 import dataShare from '@ohos.data.dataShare';
-import Logger from '../../common/Logger';
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import formHost from '@ohos.app.form.formHost';
+import formInfo from '@ohos.app.form.formInfo';
+import formObserver from '@ohos.app.form.formObserver';
 import prompt from '@ohos.promptAction';
+import resourceManager from '@ohos.resourceManager';
+import { ValuesBucket, ValueType } from '@ohos.data.ValuesBucket';
+import Logger from '../../common/Logger';
 
 const TAG = '[Sample_PublishIndex]';
-let conditionCity;
-let conditionID = '110000';
+let conditionCity: string;
+let conditionID: ValueType = '110000';
 let conditionData = '-30 ℃';
-let conditionDataToNumber;
-let context;
-let shenYang;
-let hangZhou;
-const formInstanceFilter = {
+let context: common.UIAbilityContext;
+let shenYang: string;
+let hangZhou: string;
+const formInstanceFilter: formInfo.FormProviderFilter = {
   bundleName: 'ohos.samples.formextability',
   moduleName: 'persistentProxyForm'
 };
 
-function updateRDB(context): void {
+function updateRDB(context: common.UIAbilityContext): void {
   dataShare.createDataShareHelper(context, 'datashareproxy://ohos.samples.formextability', { isProxy: true })
-    .then((data) => {
+    .then((data: dataShare.DataShareHelper) => {
       Logger.info(TAG, `createDataShareHelper succeed, data :  ${JSON.stringify(data)}`);
       let dataShareHelper = data;
       let da = new dataSharePredicates.DataSharePredicates();
       da.equalTo('cityId', conditionID);
-      let va = {
-        'cityName': conditionCity,
-        'cityTemperature': conditionData
+      let va: ValuesBucket = {
+        cityName: conditionCity,
+        cityTemperature: conditionData
       };
       try {
         let uri = 'datashareproxy://ohos.samples.formextability/test';
@@ -61,17 +65,17 @@ function updateRDB(context): void {
         Logger.info(TAG, `update error2: code: ${err.code}, message: ${err.message} `);
       }
     })
-    .catch((err) => {
+    .catch((err: base.BusinessError<void>) => {
       Logger.info(TAG, `createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
     });
 }
 
 function publish(): void {
   Logger.info(TAG, 'publish called');
-  formHost.getRunningFormInfosByFilter(formInstanceFilter).then((data) => {
+  formObserver.getRunningFormInfosByFilter(formInstanceFilter).then((data: Array<formInfo.RunningFormInfo>) => {
     Logger.info(TAG, `getRunningFormInfosByFilter data: ${JSON.stringify(data)}`);
     AppStorage.SetOrCreate('RunningFormInfo', JSON.stringify(data));
-  }).catch((err) => {
+  }).catch((err: base.BusinessError<void>) => {
     Logger.error(TAG, `getRunningFormInfosByFilter err is ${JSON.stringify(err)}`);
     prompt.showToast(
       { message: `publish err, getRunningFormInfosByFilter1 failed ${JSON.stringify(err)}`, duration: 5000 });
@@ -81,10 +85,24 @@ function publish(): void {
 @Entry
 @Component
 struct IndexSec {
+  private inputText: string;
+
   aboutToAppear() {
-    context = getContext(this) as typeof context;
-    shenYang = context.resourceManager.getStringSync($r('app.string.city_sy'));
-    hangZhou = context.resourceManager.getStringSync($r('app.string.city_hz'));
+    context = getContext(this) as common.UIAbilityContext;
+    let syTemp = $r('app.string.city_sy');
+    let hzTemp = $r('app.string.city_hz');
+    let citySy: resourceManager.Resource = {
+      bundleName: syTemp.bundleName,
+      moduleName: syTemp.moduleName,
+      id: syTemp.id
+    };
+    let cityHz: resourceManager.Resource = {
+      bundleName: hzTemp.bundleName,
+      moduleName: hzTemp.moduleName,
+      id: hzTemp.id
+    };
+    shenYang = context.resourceManager.getStringSync(citySy);
+    hangZhou = context.resourceManager.getStringSync(cityHz);
     conditionCity = shenYang;
   }
 
@@ -169,7 +187,7 @@ struct IndexSec {
                 .borderRadius(16)
                 .backgroundColor($r('sys.color.ohos_id_color_text_field_sub_bg'))
                 .onChange((text) => {
-                  conditionData = text + ' ℃';
+                  this.inputText = text;
                 })
               Text('℃')
                 .fontSize(30)
@@ -191,13 +209,13 @@ struct IndexSec {
           .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
           .backgroundColor($r('sys.color.ohos_id_color_component_activated'))
           .onClick(() => {
-            conditionDataToNumber = conditionData.split(/[℃]/);
-            if (Number(conditionDataToNumber[0]) >= -40 && Number(conditionDataToNumber[0]) <= 60) {
-              Logger.info(TAG, `correct temperature is ${conditionDataToNumber[0]}`);
+            if (Number(this.inputText) >= -40 && Number(this.inputText) <= 60) {
+              Logger.info(TAG, `correct temperature is ${this.inputText}`);
+              conditionData = this.inputText + ' ℃';
               publish();
               updateRDB(context);
             } else {
-              Logger.info(TAG, `incorrect temperature is ${conditionDataToNumber[0]}`);
+              Logger.info(TAG, `incorrect temperature is ${this.inputText}`);
               prompt.showToast({ message: 'Please enter the correct value from -40 to 60', duration: 5000 });
             }
           })
