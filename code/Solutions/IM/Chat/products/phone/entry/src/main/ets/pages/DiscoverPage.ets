@@ -55,8 +55,8 @@ export struct DiscoverPage {
           .backgroundColor($r('app.color.discovery_bar_background_color'))
           .width($r('app.integer.discovery_bar_title_width'))
           .height($r('app.integer.discovery_bar_text_height'))
+          .lineHeight($r('app.integer.setting_title_height'))
           .margin({
-            top: $r('app.integer.discovery_text_margin_top'),
             left: $r('app.integer.discovery_text_margin_left')
           })
       }

@@ -27,7 +27,7 @@ const ABOUT_TO_APPEAR_TRACE_ID: number = 1; // aboutToAppear 中使用的 taskId
 const MAKE_LOCAL_DATA_TRACE: string = 'FriendsPage_MakeLocalData_HiTrace';
 const MAKE_LOCAL_DATA_TRACE_ID: number = 2; // makeDataLocal 中使用的 taskId
 const LAYOUT_WEIGHT: number = 1; // 自动分配剩余空间
-const LIST_SPACE: number = 11; // 列表默认间隔
+const LIST_SPACE: number = 8; // 列表默认间隔
 
 @Entry
 @Component

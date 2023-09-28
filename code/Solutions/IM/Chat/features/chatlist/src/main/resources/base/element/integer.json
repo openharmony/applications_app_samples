@@ -102,15 +102,15 @@
     },
     {
       "name": "search_font_size",
-      "value": 21
+      "value": 16
     },
     {
       "name": "search_border_radius",
-      "value": 26
+      "value": 20
     },
     {
       "name": "search_outline_height",
-      "value": 75
+      "value": 56
     },
     {
       "name": "search_inline_height",
@@ -118,7 +118,7 @@
     },
     {
       "name": "search_inline_width",
-      "value": 416
+      "value": 312
     },
     {
       "name": "search_inline_border_width",
@@ -266,7 +266,7 @@
     },
     {
       "name": "search_svg_height",
-      "value": 24
+      "value": 18
     },
     {
       "name": "search_text_height",
