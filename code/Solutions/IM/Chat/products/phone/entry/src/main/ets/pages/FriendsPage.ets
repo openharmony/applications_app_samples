@@ -67,6 +67,7 @@ export struct FriendsPage {
       .width($r('app.string.layout_100'))
       .height($r('app.integer.friends_page_title_bar_height'))
       .justifyContent(FlexAlign.Start)
+      .alignItems(VerticalAlign.Center)
 
       // 搜索栏
       Row() {
@@ -80,10 +81,10 @@ export struct FriendsPage {
           .placeholderColor($r('app.string.search_inline_border_color'))
           .backgroundColor(Color.White)
           .height($r('app.integer.search_inline_height'))
-          .width($r('app.integer.search_inline_width'))
+          .width($r('app.string.layout_100'))
           .textFont({ size: $r('app.integer.search_font_size') })
           .border({
-            width: $r('app.integer.search_inline_border_width'),
+            width: $r('app.float.search_inline_border_width'),
             color: $r('app.string.search_inline_border_color')
           })
           .borderRadius($r('app.integer.search_border_radius'))
@@ -94,6 +95,7 @@ export struct FriendsPage {
       .height($r('app.integer.search_outline_height'))
       .width($r('app.string.layout_100'))
       .backgroundColor($r('app.color.search_outline_background_color'))
+      .margin({ top: $r('app.integer.discovery_list_margin_top') })
 
       List() {
         ListItem() {
@@ -169,7 +171,7 @@ export struct ChatContactItemView {
       Image(this.image)
         .width($r('app.integer.friends_page_contact_image_width'))
         .height($r('app.integer.friends_page_contact_image_width'))
-        .borderRadius($r('app.integer.friends_page_contact_image_height'))
+        .borderRadius($r('app.integer.friends_page_contact_image_border_radius'))
       Text(this.text)
         .width($r('app.integer.friends_page_contact_text_width'))
         .height($r('app.integer.friends_page_contact_text_height'))

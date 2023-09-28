@@ -23,6 +23,10 @@
     {
       "name": "top_bar_separator_line_height",
       "value": "0.5"
+    },
+    {
+      "name": "search_inline_border_width",
+      "value": "1.5"
     }
   ]
 }

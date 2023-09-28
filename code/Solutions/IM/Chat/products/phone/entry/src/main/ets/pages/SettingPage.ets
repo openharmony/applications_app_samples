@@ -81,15 +81,19 @@ export struct SettingPage {
                   .fontSize($r('app.integer.setting_chat_num_font_size'))
                   .fontFamily($r('app.string.harmony_hei_ti'))
                   .fontColor($r('app.color.setting_text_color'))
+                  .lineHeight($r('app.integer.setting_chat_num_line_height'))
                   .margin({ top: $r('app.integer.setting_chat_num_margin_top') })
               }
               .alignItems(HorizontalAlign.Start)
               .margin({ left: $r('app.integer.setting_name_margin_left') })
             }
-            .padding($r('app.integer.setting_head_padding_left'))
             .width($r('app.string.layout_100'))
           }
           .backgroundImage($r('app.media.my_top_bg'))
+          .backgroundImageSize({
+            width: $r('app.string.layout_100'),
+            height: $r('app.integer.setting_head_column_height')
+          })
           .width($r('app.string.layout_100'))
           .height($r('app.integer.setting_head_column_height'))
           .margin({ bottom: $r('app.integer.setting_head_column_margin_bottom') })
@@ -145,6 +149,7 @@ export struct SettingPage {
         }
       }
       .layoutWeight(LAYOUT_WEIGHT)
+      .margin({ top: $r('app.integer.discovery_list_margin_top') })
     }
     .backgroundColor('#F1F3F5')
     .width($r('app.string.layout_100'))
@@ -174,6 +179,7 @@ export struct SettingItemView {
           .fontColor($r('app.color.setting_text_color'))
           .margin({ left: $r('app.integer.setting_menu_margin_left') })
           .layoutWeight(LAYOUT_WEIGHT)
+          .lineHeight($r('app.integer.setting_menu_width'))
         Image($r('app.media.right_arrow'))
           .height($r('app.integer.setting_menu_arrow_height'))
           .width($r('app.integer.setting_menu_arrow_width'))
@@ -183,8 +189,10 @@ export struct SettingItemView {
       }
       .width($r('app.string.layout_100'))
       .height($r('app.integer.settingPage_menu_height'))
-      .padding({ left: $r('app.integer.setting_menu_padding_left'),
-        right: $r('app.integer.setting_menu_padding_left') })
+      .padding({
+        left: $r('app.integer.setting_menu_padding_left'),
+        right: $r('app.integer.setting_menu_padding_left')
+      })
       .alignItems(VerticalAlign.Center)
     }
     .width($r('app.string.layout_100'))

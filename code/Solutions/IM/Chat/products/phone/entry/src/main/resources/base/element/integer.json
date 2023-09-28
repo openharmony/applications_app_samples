@@ -22,63 +22,23 @@
     },
     {
       "name": "friends_page_padding_left",
-      "value": 32
-    },
-    {
-      "name": "friends_page_title_font_size",
-      "value": 32
-    },
-    {
-      "name": "friends_page_title_height",
-      "value": 44
-    },
-    {
-      "name": "friends_page_title_bar_height",
-      "value": 75
-    },
-    {
-      "name": "friends_page_search_icon_width",
       "value": 24
     },
     {
-      "name": "friends_page_search_font_size",
-      "value": 21
+      "name": "friends_page_title_font_size",
+      "value": 24
     },
     {
-      "name": "friends_page_search_text_width",
-      "value": 352
+      "name": "friends_page_title_height",
+      "value": 33
     },
     {
-      "name": "friends_page_search_text_height",
-      "value": 29
-    },
-    {
-      "name": "friends_page_search_text_margin",
-      "value": 8
-    },
-    {
-      "name": "friends_page_search_height",
-      "value": 53
-    },
-    {
-      "name": "friends_page_search_border_radius",
-      "value": 27
-    },
-    {
-      "name": "friends_page_search_margin",
-      "value": 11
-    },
-    {
-      "name": "friends_page_search_padding",
-      "value": 16
-    },
-    {
-      "name": "friends_page_search_border_width",
-      "value": 1
+      "name": "friends_page_title_bar_height",
+      "value": 56
     },
     {
       "name": "friends_page_search_divider_start_margin",
-      "value": 75
+      "value": 56
     },
     {
       "name": "friends_page_divider_width",
@@ -86,35 +46,35 @@
     },
     {
       "name": "friends_page_contact_image_width",
-      "value": 53
+      "value": 40
     },
     {
       "name": "friends_page_contact_image_height",
-      "value": 53
+      "value": 40
     },
     {
       "name": "friends_page_contact_image_border_radius",
-      "value": 27
+      "value": 20
     },
     {
       "name": "friends_page_contact_text_width",
-      "value": 331
+      "value": 248
     },
     {
       "name": "friends_page_contact_text_height",
-      "value": 29
+      "value": 22
     },
     {
       "name": "friends_page_contact_text_font_size",
-      "value": 21
+      "value": 16
     },
     {
       "name": "friends_page_contact_text_margin_left",
-      "value": 21
+      "value": 16
     },
     {
       "name": "friends_page_contact_row_height",
-      "value": 85
+      "value": 64
     },
     {
       "name": "setting_padding_left",
@@ -122,23 +82,23 @@
     },
     {
       "name": "setting_title_font_size",
-      "value": 32
+      "value": 24
     },
     {
       "name": "setting_title_height",
-      "value": 44
+      "value": 33
     },
     {
       "name": "setting_title_bar_height",
-      "value": 75
+      "value": 56
     },
     {
       "name": "setting_title_margin_left",
-      "value": 16
+      "value": 12
     },
     {
       "name": "setting_head_image_width",
-      "value": 64
+      "value": 48
     },
     {
       "name": "setting_head_column_space",
@@ -146,31 +106,35 @@
     },
     {
       "name": "setting_name_font_size",
-      "value": 27
+      "value": 20
     },
     {
       "name": "setting_name_line_height",
-      "value": 37
+      "value": 28
     },
     {
       "name": "setting_chat_num_font_size",
-      "value": 16
+      "value": 12
+    },
+    {
+      "name": "setting_chat_num_line_height",
+      "value": 17
     },
     {
       "name": "setting_chat_num_margin_top",
-      "value": 5
+      "value": 4
     },
     {
       "name": "setting_name_margin_left",
-      "value": 21
-    },
-    {
-      "name": "setting_profile_padding",
       "value": 16
     },
     {
+      "name": "setting_profile_padding",
+      "value": 12
+    },
+    {
       "name": "setting_my_icon_border_radius",
-      "value": 32
+      "value": 24
     },
     {
       "name": "setting_head_padding_left",
@@ -182,15 +146,15 @@
     },
     {
       "name": "setting_head_column_height",
-      "value": 129
+      "value": 97
     },
     {
       "name": "setting_head_column_margin_bottom",
-      "value": 16
+      "value": 12
     },
     {
       "name": "setting_list_margin_bottom",
-      "value": 16
+      "value": 12
     },
     {
       "name": "setting_list_divider_width",
@@ -198,7 +162,7 @@
     },
     {
       "name": "setting_search_divider_start_margin",
-      "value": 42
+      "value": 46
     },
     {
       "name": "setting_search_divider_end_margin",
@@ -206,11 +170,11 @@
     },
     {
       "name": "setting_basic_menu_list_height",
-      "value": 260
+      "value": 195
     },
     {
       "name": "setting_basic_menu_height",
-      "value": 267
+      "value": 200
     },
     {
       "name": "setting_other_menu_list_height",
@@ -238,7 +202,7 @@
     },
     {
       "name": "setting_menu_height",
-      "value": 75
+      "value": 56
     },
     {
       "name": "setting_menu_text_width",
@@ -366,43 +330,43 @@
     },
     {
       "name": "friendMomentsPage_title_icon_width",
-      "value": 32
+      "value": 24
     },
     {
       "name": "friendMomentsPage_title_icon_height",
-      "value": 32
+      "value": 24
     },
     {
       "name": "friendMomentsPage_title_fontSize",
-      "value": 27
+      "value": 20
     },
     {
       "name": "friendMomentsPage_title_height",
-      "value": 67
+      "value": 50
     },
     {
       "name": "friendMomentsPage_title_margin_left",
-      "value": 21
+      "value": 16
     },
     {
       "name": "friendMomentsPage_title_line_height",
-      "value": 37
+      "value": 24
     },
     {
       "name": "friendMomentsPage_title_padding_left",
-      "value": 32
+      "value": 24
     },
     {
       "name": "friendMomentsPage_title_padding_right",
-      "value": 32
+      "value": 24
     },
     {
       "name": "friendMomentsPage_title_padding_top",
-      "value": 17
+      "value": 13
     },
     {
       "name": "friendMomentsPage_title_padding_bottom",
-      "value": 12
+      "value": 9
     },
     {
       "name": "friendMomentsPage_name_fontSize",
@@ -410,7 +374,7 @@
     },
     {
       "name": "friendMomentsPage_list_divider_margin",
-      "value": 16
+      "value": 12
     },
     {
       "name": "friendMomentsPage_name_margin_left",
@@ -422,63 +386,63 @@
     },
     {
       "name": "friendMomentsPage_image_group_padding_left",
-      "value": 80
+      "value": 60
     },
     {
       "name": "friendMomentsPage_image_group_padding_right",
-      "value": 80
+      "value": 60
     },
     {
       "name": "friendMomentsPage_thumbsup_margin_left",
-      "value": 148
+      "value": 111
     },
     {
       "name": "friendMomentsPage_message_margin_left",
-      "value": 32
+      "value": 24
     },
     {
       "name": "friendMomentsPage_image_height",
-      "value": 107
+      "value": 80
     },
     {
       "name": "friendMomentsPage_image_width",
-      "value": 107
+      "value": 80
     },
     {
       "name": "friendMomentsPage_image_radius",
-      "value": 21
+      "value": 16
     },
     {
       "name": "friendMomentsPage_single_image_width",
-      "value": 245
+      "value": 184
     },
     {
       "name": "friendMomentsPage_single_image_height",
-      "value": 149
+      "value": 112
     },
     {
       "name": "friendMomentsPage_single_image_radius",
-      "value": 21
+      "value": 16
     },
     {
       "name": "friendMomentsPage_single_video_width",
-      "value": 224
+      "value": 168
     },
     {
       "name": "friendMomentsPage_single_video_height",
-      "value": 224
+      "value": 168
     },
     {
       "name": "friendMomentsPage_single_video_radius",
-      "value": 21
+      "value": 16
     },
     {
       "name": "friendMomentsPage_icon_play_width",
-      "value": 53
+      "value": 40
     },
     {
       "name": "friendMomentsPage_icon_play_height",
-      "value": 53
+      "value": 40
     },
     {
       "name": "friendMomentsPage_image_borderRadius",
@@ -510,7 +474,7 @@
     },
     {
       "name": "friendMomentsPage_oneMoment_height",
-      "value": 50
+      "value": 38
     },
     {
       "name": "friendMomentsPage_useImage_radius",
@@ -518,31 +482,31 @@
     },
     {
       "name": "friendMomentsPage_useName_fontSize",
-      "value": 21
+      "value": 16
     },
     {
       "name": "friendMomentsPage_useName_line_height",
-      "value": 29
+      "value": 22
     },
     {
       "name": "friendMomentsPage_user_image_width",
-      "value": 53
+      "value": 40
     },
     {
       "name": "friendMomentsPage_user_image_height",
-      "value": 53
+      "value": 40
     },
     {
       "name": "friendMomentsPage_user_image_border_radius",
-      "value": 27
+      "value": 20
     },
     {
       "name": "friendMomentsPage_userText_fontSize",
-      "value": 19
+      "value": 14
     },
     {
       "name": "friendMomentsPage_userText_line_height",
-      "value": 25
+      "value": 19
     },
     {
       "name": "friendMomentsPage_userText_margin_top",
@@ -550,35 +514,35 @@
     },
     {
       "name": "friendMomentsPage_user_col_margin_left",
-      "value": 11
+      "value": 8
     },
     {
       "name": "friendMomentsPage_row_padding_left",
-      "value": 16
+      "value": 12
     },
     {
       "name": "friendMomentsPage_row_padding_right",
-      "value": 21
+      "value": 16
     },
     {
       "name": "friendMomentsPage_row_padding_top",
-      "value": 13
+      "value": 10
     },
     {
       "name": "friendMomentsPage_row_padding_bottom",
-      "value": 15
+      "value": 11
     },
     {
       "name": "friendMomentsPage_grid_gap",
-      "value": 5
+      "value": 4
     },
     {
       "name": "friendMomentsPage_grid_width",
-      "value": 331
+      "value": 248
     },
     {
       "name": "friendMomentsPage_grid_height",
-      "value": 331
+      "value": 248
     },
     {
       "name": "friendMomentsPage_time_fontSize",
@@ -594,31 +558,31 @@
     },
     {
       "name": "friendMomentsPage_handler_icon_width",
-      "value": 27
+      "value": 20
     },
     {
       "name": "friendMomentsPage_handler_icon_height",
-      "value": 27
+      "value": 20
     },
     {
       "name": "friendMomentsPage_handler_text_font_size",
-      "value": 16
+      "value": 12
     },
     {
       "name": "friendMomentsPage_handler_padding_left",
-      "value": 80
+      "value": 60
     },
     {
       "name": "friendMomentsPage_handler_padding_right",
-      "value": 21
+      "value": 16
     },
     {
       "name": "friendMomentsPage_handler_margin_top",
-      "value": 18
+      "value": 14
     },
     {
       "name": "friendMomentsPage_handler_margin_bottom",
-      "value": 17
+      "value": 13
     },
     {
       "name": "top_bar_font_size",
@@ -666,7 +630,7 @@
     },
     {
       "name": "discovery_bar_height",
-      "value": 60
+      "value": 56
     },
     {
       "name": "discovery_bar_text_height",
