@@ -114,7 +114,7 @@ export struct ChatListDisplayView {
           .placeholderColor($r('app.string.search_inline_border_color'))
           .backgroundColor(Color.White)
           .height($r('app.integer.search_inline_height'))
-          .width($r('app.integer.search_inline_width'))
+          .margin({left: $r('app.integer.search_inline_margin'), right: $r('app.integer.search_inline_margin')})
           .textFont({ size: $r('app.integer.search_font_size') })
           .border({
             width: $r('app.integer.search_inline_border_width'),
