@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { CommonItemSlider, CommonItemSelect, CommonSwitcher } from '../../../../common/AttributeModificationTool';
+import { CommonItemTwoRowSlider, CommonItemSelect, CommonSwitcher } from '../../../../common/AttributeModificationTool';
 import { getStringArrayData } from '../../../../data/ResourceDataHandle';
 import { SBC_POSITION_DATA, SBC_TYPE_DATA } from '../../ComponentData';
 
@@ -62,14 +62,14 @@ export struct PropertyControlPanel {
   @Link isAutoHidden: boolean;
 
   build() {
-    Column() {
+    Column({space:5}) {
       CommonSwitcher({
         name: $r('app.string.sidebarcontainer_show_switch'),
         bool: $isShowSidebar,
         testID: `sidebarContainer_002`
       })
 
-      CommonItemSlider({
+      CommonItemTwoRowSlider({
         changeValue: $leftMargin,
         min: 0,
         max: 100,
@@ -77,7 +77,7 @@ export struct PropertyControlPanel {
         testId: `sidebarContainer_003`
       })
 
-      CommonItemSlider({
+      CommonItemTwoRowSlider({
         changeValue: $topMargin,
         min: 0,
         max: 100,
@@ -106,7 +106,7 @@ export struct PropertyControlPanel {
         testId: `sidebarContainer_006`
       })
 
-      CommonItemSlider({
+      CommonItemTwoRowSlider({
         changeValue: $minWidth,
         min: 10,
         max: 190,
@@ -114,7 +114,7 @@ export struct PropertyControlPanel {
         testId: `sidebarContainer_007`
       })
 
-      CommonItemSlider({
+      CommonItemTwoRowSlider({
         changeValue: $maxWidth,
         min: 210,
         max: 300,

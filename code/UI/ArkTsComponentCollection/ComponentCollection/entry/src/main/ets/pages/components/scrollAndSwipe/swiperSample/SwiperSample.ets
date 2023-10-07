@@ -21,7 +21,7 @@ import { PropertiesControlPanel } from './SwiperControlPanel';
 @Extend(Column) function backgroundStyle() {
   .width('100%')
   .padding(12)
-  .borderRadius(24)
+  .borderRadius(16)
   .backgroundColor(Color.White)
   .justifyContent(FlexAlign.Start)
 }
@@ -44,9 +44,7 @@ struct SwiperSample {
   @State duration: number = 400;
   @State loop: boolean = false;
   @State autoPlay: boolean = false;
-  @State interval : number = 1000;
-  @State nextMarginLength: number = 0
-  @State prevMarginLength: number = 0
+  @State interval: number = 1000;
   private controller: SwiperController = new SwiperController();
   private data: number[] = [];
 
@@ -55,6 +53,7 @@ struct SwiperSample {
     .padding(12)
     .borderRadius(10)
   }
+
   aboutToAppear() {
     for (let i = 1; i < 11; i++) {
       this.data.push(i)
@@ -67,32 +66,28 @@ struct SwiperSample {
         .flexGrow(0)
       IntroductionTitle({ introduction: $r('app.string.swiper_introduction') })
       // component
-      Column() {
-        Swiper(this.controller) {
-          ForEach(this.data, (item: number, index) => {
-            if (index % 2 == 0) {
-              Text(item.toString())
-                .swiperItemStyle($r('app.color.background_orange'))
-            } else {
-              Text(item.toString())
-                .swiperItemStyle($r('app.color.background_light_gray'))
-            }
-          })
-        }
-        .nextMargin(this.nextMarginLength)
-        .prevMargin(this.prevMarginLength)
-        .disableSwipe(this.isDisableSwipe)
-        .itemSpace(this.itemSpace)
-        .vertical(this.isVertical)
-        .duration(this.duration)
-        .loop(this.loop)
-        .interval(this.interval)
-        .autoPlay(this.autoPlay)
+      Swiper(this.controller) {
+        ForEach(this.data, (item: number, index) => {
+          if (index % 2 === 0) {
+            Text(item.toString())
+              .swiperItemStyle($r('app.color.background_orange'))
+          } else {
+            Text(item.toString())
+              .swiperItemStyle($r('app.color.background_light_gray'))
+          }
+        })
       }
-      .padding({ left: LEFT_PADDING, right: RIGHT_PADDING })
-      .backgroundStyle()
-      .height(200)
+      .disableSwipe(this.isDisableSwipe)
+      .itemSpace(this.itemSpace)
+      .vertical(this.isVertical)
+      .duration(this.duration)
+      .loop(this.loop)
+      .interval(this.interval)
+      .autoPlay(this.autoPlay)
+      .borderRadius(16)
+      .backgroundColor(Color.White)
       .width('100%')
+      .height(200)
       .flexGrow(0)
 
       Scroll() {
@@ -101,15 +96,15 @@ struct SwiperSample {
           IntroductionTitle({ introduction: $r('app.string.swiper_introduction_arguments') })
           Column() {
             Row() {
-              Button($r('app.string.swiper_controller_next'))
-                .buttonStyle()
-                .margin({right:40})
+              Text($r('app.string.swiper_controller_next'))
+                .fontColor($r('app.color.background_blue'))
+                .margin({ right: 40 })
                 .onClick(() => {
                   this.controller.showNext()
                 })
 
-              Button($r('app.string.swiper_controller_previous'))
-                .buttonStyle()
+              Text($r('app.string.swiper_controller_previous'))
+                .fontColor($r('app.color.background_blue'))
                 .onClick(() => {
                   this.controller.showPrevious()
                 })
@@ -126,9 +121,7 @@ struct SwiperSample {
               duration: $duration,
               loop: $loop,
               autoPlay: $autoPlay,
-              interval : $interval,
-              nextMarginLength: $nextMarginLength,
-              prevMarginLength: $prevMarginLength
+              interval: $interval
             })
           }
           .backgroundStyle()

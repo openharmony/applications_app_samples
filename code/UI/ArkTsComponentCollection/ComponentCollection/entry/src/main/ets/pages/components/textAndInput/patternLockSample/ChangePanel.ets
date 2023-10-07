@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { CommonItemSlider, CommonItemColorSelect } from '../../../../common/AttributeModificationTool';
+import { CommonItemTwoRowSlider, CommonItemColorSelect } from '../../../../common/AttributeModificationTool';
 
 @Component
 export struct PatternLockControlPanel{
@@ -27,52 +27,52 @@ export struct PatternLockControlPanel{
 
 
   build(){
-      Column(){
-        CommonItemSlider({
-          changeValue:$sideLength,
-          name:$r('app.string.patternlock_side_length'),
-          max:200,
-          min:100,
-          testId:'patternLock_slider_001'
-        })
-        CommonItemSlider({
-          changeValue:$circleRadius,
-          name:$r('app.string.patternlock_circle_radius'),
-          max:12,
-          min:3,
-          testId:'patternLock_slider_002'
-        })
-        CommonItemSlider({
-          changeValue:$pathStrokeWidth,
-          name:$r('app.string.patternlock_pathstroke_width'),
-          max:20,
-          min:10,
-          testId:'patternLock_slider_003'
-        })
-        CommonItemColorSelect({
-          name: $r('app.string.patternlock_regular_color'),
-          isItemStyle: true,
-          selectColor: $regularColor,
-          testId:'patternLock_color_001'
-        })
+    Column(){
+      CommonItemTwoRowSlider({
+        changeValue:$sideLength,
+        name:$r('app.string.patternlock_side_length'),
+        max:200,
+        min:100,
+        testId:'patternLock_slider_001'
+      })
+      CommonItemTwoRowSlider({
+        changeValue:$circleRadius,
+        name:$r('app.string.patternlock_circle_radius'),
+        max:12,
+        min:3,
+        testId:'patternLock_slider_002'
+      })
+      CommonItemTwoRowSlider({
+        changeValue:$pathStrokeWidth,
+        name:$r('app.string.patternlock_pathstroke_width'),
+        max:20,
+        min:10,
+        testId:'patternLock_slider_003'
+      })
       CommonItemColorSelect({
-          name: $r('app.string.patternlock_active_color'),
-          isItemStyle: true,
-          selectColor: $activeColor,
+        name: $r('app.string.patternlock_regular_color'),
+        isItemStyle: true,
+        selectColor: $regularColor,
+        testId:'patternLock_color_001'
+      })
+      CommonItemColorSelect({
+        name: $r('app.string.patternlock_active_color'),
+        isItemStyle: true,
+        selectColor: $activeColor,
         testId:'patternLock_color_002'
-        })
+      })
       CommonItemColorSelect({
-          name: $r('app.string.patternlock_select_color'),
-          isItemStyle: true,
-          selectColor: $selectedColor,
+        name: $r('app.string.patternlock_select_color'),
+        isItemStyle: true,
+        selectColor: $selectedColor,
         testId:'patternLock_color_003'
-        })
+      })
       CommonItemColorSelect({
-          name: $r('app.string.patternlock_path_color'),
-          isItemStyle: true,
-          selectColor: $pathColor,
+        name: $r('app.string.patternlock_path_color'),
+        isItemStyle: true,
+        selectColor: $pathColor,
         testId:'patternLock_color_004'
-        })
-      }
+      })
+    }
   }
 }

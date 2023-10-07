@@ -21,14 +21,14 @@ import { ArgumentsControlPanel, PropertiesControlPanel } from './ListControlPane
 @Extend(Column) function backgroundStyle() {
   .width('100%')
   .padding(12)
-  .borderRadius(24)
+  .borderRadius(16)
   .backgroundColor(Color.White)
   .justifyContent(FlexAlign.SpaceAround)
 }
 
 @Extend(Text) function listItemTextStyle() {
   .fontSize(15)
-  .borderRadius(24)
+  .borderRadius(8)
   .textAlign(TextAlign.Center)
   .backgroundColor($r('app.color.background_grey'))
 }
@@ -41,7 +41,7 @@ struct ListSample {
   @State strokeWidth: number = 0;
   @State color: Resource = $r('app.color.background_blue');
   @State barState: BarState = BarState.Auto;
-  @State initIndex: number = globalThis.listSampleInitIndex == undefined ? 0 : globalThis.listSampleInitIndex;
+  @State initIndex: number = globalThis.listSampleInitIndex === undefined ? 0 : globalThis.listSampleInitIndex;
   @State edgeEffect: EdgeEffect = EdgeEffect.Spring;
   @State isChainAnimation: boolean = false;
   @State multiSelectable: boolean = false;
@@ -51,8 +51,8 @@ struct ListSample {
   private numberArray: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   @Styles listItemTextDynamicSize(){
-    .height(this.listDirection == Axis.Horizontal ? '80%' : '20%')
-    .width(this.listDirection == Axis.Vertical ? '80%' : '20%')
+    .height(this.listDirection === Axis.Horizontal ? '80%' : '20%')
+    .width(this.listDirection === Axis.Vertical ? '80%' : '20%')
   }
 
   build() {

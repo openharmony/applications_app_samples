@@ -21,7 +21,7 @@ import { ArgumentsControlPanel, PropertyControlPanel } from './SideBarContainerC
 @Extend(Column) function backgroundStyle() {
   .width('100%')
   .padding(12)
-  .borderRadius(24)
+  .borderRadius(16)
   .backgroundColor(Color.White)
   .justifyContent(FlexAlign.SpaceAround)
 }
@@ -54,12 +54,8 @@ struct SideBarContainerSample {
   build() {
     Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
       TitleBar({ title: $r('app.string.sidebarcontainer_title') })
-        .flexGrow(0)
       IntroductionTitle({ introduction: $r('app.string.sidebarcontainer_drag_divider') })
-        .flexGrow(0)
-        .height(60)
       // 展示区
-      Column() {
         Column() {
           SideBarContainer(this.sbcType) {
             // 侧边栏
@@ -68,7 +64,6 @@ struct SideBarContainerSample {
                 Text($r('app.string.sidebarcontainer_sidebar_text_one'))
                   .sidebarTextStyle()
               }
-
               Button() {
                 Text($r('app.string.sidebarcontainer_sidebar_text_two'))
                   .sidebarTextStyle()
@@ -109,9 +104,7 @@ struct SideBarContainerSample {
           })
         }
         .backgroundStyle()
-      }
-      .flexBasis(400)
-      .flexGrow(0)
+        .height(400)
 
       // 控制面板
       Scroll() {
@@ -141,8 +134,9 @@ struct SideBarContainerSample {
         }
         .width('100%')
       }
+      .id('sideBar_scroll_001')
       .width('100%')
-      .flexGrow(1)
+      .layoutWeight(1)
       .padding({ bottom: 30 })
     }
     .width('100%')

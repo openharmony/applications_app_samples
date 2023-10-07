@@ -21,7 +21,7 @@ import { PatternLockControlPanel } from './ChangePanel'
 @Extend(Column) function cardStyle() {
   .backgroundColor(Color.White)
   .padding(12)
-  .borderRadius(24)
+  .borderRadius(16)
   .width('100%')
 }
 
@@ -40,8 +40,8 @@ struct PattternLockSample {
   private patternLockController: PatternLockController = new PatternLockController()
 
   build() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
-      TitleBar({ title: $r('app.string.patternlock_title') }).flexGrow(1)
+    Column() {
+      TitleBar({ title: $r('app.string.patternlock_title') })
       Column() {
         Text(this.message).textAlign(TextAlign.Center).margin(20).fontSize(20)
         PatternLock(this.patternLockController)
@@ -82,12 +82,10 @@ struct PattternLockSample {
           this.message = 'Please input password'
         })
       }.cardStyle()
-      .flexGrow(1)
       .height('55%')
-
-      Scroll() {
-        Column() {
-          IntroductionTitle({ introduction: $r('app.string.patternlock_change') })
+      IntroductionTitle({ introduction: $r('app.string.patternlock_change') })
+      Column() {
+        Scroll() {
           Column() {
             PatternLockControlPanel({
               sideLength: $sideLength,
@@ -98,13 +96,15 @@ struct PattternLockSample {
               regularColor: $regularColor,
               pathColor: $pathColor
             })
-          }.cardStyle()
+          }
         }
       }.id('patternLock_scroll_001')
-      .flexGrow(0)
-      .height('35%')
-      .margin({bottom:50})
-    }.backgroundColor($r('app.color.background_light_gray'))
+      .cardStyle()
+      .layoutWeight(1)
+      .margin({bottom:8})
+    }.justifyContent(FlexAlign.Start)
+    .alignItems(HorizontalAlign.Center)
+    .backgroundColor($r('app.color.background_light_gray'))
     .height('100%')
     .padding({ left: LEFT_PADDING, right: RIGHT_PADDING })
   }

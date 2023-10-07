@@ -21,7 +21,7 @@ import { ArgumentsControlPanel, ZIndexControlPanel } from './StackControlPanel'
 @Extend(Column) function backgroundStyle() {
   .width('100%')
   .padding(12)
-  .borderRadius(24)
+  .borderRadius(16)
   .backgroundColor(Color.White)
   .justifyContent(FlexAlign.SpaceAround)
 }

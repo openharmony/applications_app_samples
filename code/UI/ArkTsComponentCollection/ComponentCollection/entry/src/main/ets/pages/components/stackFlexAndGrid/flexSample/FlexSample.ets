@@ -20,7 +20,7 @@ import { DirectionControlPanel, WrapControlPanel, JustifyContentControlPanel, Al
 @Extend(Column) function backgroundStyle() {
   .width('100%')
   .padding(12)
-  .borderRadius(24)
+  .borderRadius(16)
   .backgroundColor(Color.White)
   .justifyContent(FlexAlign.SpaceAround)
 }
@@ -44,13 +44,13 @@ struct FlexSample {
     .height('20%')
   }
   @Styles dynamicSize(){
-    .width(this.flexDirection == FlexDirection.Row || this.flexDirection == FlexDirection.RowReverse ? '50%': 100)
-    .height(this.flexDirection == FlexDirection.Column || this.flexDirection == FlexDirection.ColumnReverse ? '50%' : 50  )
+    .width(this.flexDirection === FlexDirection.Row || this.flexDirection === FlexDirection.RowReverse ? '50%': 100)
+    .height(this.flexDirection === FlexDirection.Column || this.flexDirection === FlexDirection.ColumnReverse ? '50%' : 50  )
   }
 
   @Styles alignContentDynamicSize(){
-    .width(this.flexDirection == FlexDirection.Column || this.flexDirection == FlexDirection.ColumnReverse ? 20:'50%')
-    .height(this.flexDirection == FlexDirection.Row || this.flexDirection == FlexDirection.RowReverse ? 20 : '50%')
+    .width(this.flexDirection === FlexDirection.Column || this.flexDirection === FlexDirection.ColumnReverse ? 20:'50%')
+    .height(this.flexDirection === FlexDirection.Row || this.flexDirection === FlexDirection.RowReverse ? 20 : '50%')
   }
   build() {
     Column() {

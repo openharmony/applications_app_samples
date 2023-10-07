@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { CommonItemSlider, CommonItemColorSelect } from '../../../../common/AttributeModificationTool';
+import { CommonItemSlider, CommonItemColorSelect ,CommonItemTwoRowSlider} from '../../../../common/AttributeModificationTool';
 
 @Component
 export struct CircleControlPanel {
@@ -40,14 +40,14 @@ export struct CircleControlPanel {
         selectColor: $stroke,
         testId: 'circle_color_002'
       })
-      CommonItemSlider({
+      CommonItemTwoRowSlider({
         changeValue: $circleRadius,
         max: 200,
         min: 100,
         name: $r('app.string.circle_change_radius'),
         testId: 'circle_slider_001'
       })
-      CommonItemSlider({
+      CommonItemTwoRowSlider({
         changeValue: $fillOpacity,
         max: 100,
         min: 0,
@@ -56,7 +56,7 @@ export struct CircleControlPanel {
         vpTest: '%',
         testId: 'circle_slider_002'
       })
-      CommonItemSlider({
+      CommonItemTwoRowSlider({
         changeValue: $strokeOpacity,
         max: 100,
         min: 0,
@@ -65,14 +65,14 @@ export struct CircleControlPanel {
         vpTest: '%',
         testId: 'circle_slider_003'
       })
-      CommonItemSlider({
+      CommonItemTwoRowSlider({
         changeValue: $strokeWidth,
         max: 10,
         min: 3,
         name: $r('app.string.circle_change_strokewidth'),
         testId: 'circle_slider_004'
       })
-      CommonItemSlider({
+      CommonItemTwoRowSlider({
         changeValue: $strokeDashArray,
         max: 40,
         min: 1,

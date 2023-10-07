@@ -49,11 +49,58 @@ export struct CommonItemSlider {
         let text = '  screenX:' + event.screenX + '  screenY:' + event.screenY
         console.log('Sample_ComponentCollection' + text)
       })
-      Text(`${Math.trunc(this.changeValue)}`+this.vpTest)
+      Text(`${Math.trunc(this.changeValue)}` + this.vpTest)
     }
     .id(this.testId)
     .width('100%')
     .height(40)
+    .justifyContent(FlexAlign.SpaceAround)
+  }
+}
+
+/**
+ *  New Slider style to two row
+ *  Text Name at the top left of the slider
+ *  ChangeValue at the top right of the slider
+ * @param changeValue slide to change
+ */
+@Component
+export struct CommonItemTwoRowSlider {
+  @Link changeValue: number
+  private min: number
+  private max: number
+  private name: ResourceStr
+  private step: number = 1
+  private testId: string = 'test_colorSelect'
+  private vpTest: string = 'vp'
+
+  build() {
+    Column() {
+      Row() {
+        Text(this.name)
+        Text(`${Math.trunc(this.changeValue)}` + this.vpTest)
+      }
+      .justifyContent(FlexAlign.SpaceBetween)
+      .margin({ bottom: 4 })
+      .width('100%')
+
+      Slider({
+        value: this.changeValue,
+        step: this.step,
+        min: this.min,
+        max: this.max })
+        .id(this.testId)
+        .width('100%')
+        .onChange((value: number) => {
+          this.changeValue = value
+          console.log('Sample_ComponentCollection' + String(value))
+        }).onClick((event: ClickEvent) => {
+        let text = '  screenX:' + event.screenX + '  screenY:' + event.screenY
+        console.log('Sample_ComponentCollection' + text)
+      })
+    }
+    .width('100%')
+    .height(60)
     .justifyContent(FlexAlign.SpaceAround)
   }
 }
@@ -103,7 +150,7 @@ export struct CommonItemSelect {
     .padding({ left: this.isItemStyle ? 0 : 12, right: this.isItemStyle ? 0 : 12 })
     .borderRadius(this.isItemStyle ? 0 : 24)
     .backgroundColor(this.isItemStyle ? Color.Transparent : Color.White)
-    .margin({bottom:12})
+    .margin({ bottom: 6 })
   }
 }
 
@@ -164,6 +211,7 @@ export struct CommonItemColorSelect {
         })
         .id(this.testId)
     }
+    .margin({ bottom: 6 })
     .borderRadius(this.isItemStyle ? 0 : 24)
     .size({ width: '100%', height: this.isItemStyle ? 42 : 70 })
     .padding({ left: this.isItemStyle ? 0 : 12, right: this.isItemStyle ? 0 : 12 })
@@ -242,10 +290,10 @@ export struct ImageItemSlider {
         .layoutWeight(1)
         .onChange((value: number) => {
           this.changeValue = value
-          console.log('Sample_ComponentCollection'+String(value))
+          console.log('Sample_ComponentCollection' + String(value))
         }).onClick((event: ClickEvent) => {
         let text = '  screenX:' + event.screenX + '  screenY:' + event.screenY
-        console.log('Sample_ComponentCollection'+text)
+        console.log('Sample_ComponentCollection' + text)
       })
       Text(`${Math.trunc(this.changeValue)}`)
     }

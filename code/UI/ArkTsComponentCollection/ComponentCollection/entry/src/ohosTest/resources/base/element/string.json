@@ -3614,6 +3614,9 @@
     {
       "name": "list_name",
       "value": "List"
+    },{
+      "name": "navigator_title",
+      "value": "Navigator"
     }
   ]
 }

@@ -4464,6 +4464,38 @@
     {
       "name": "particle_spawn_stop",
       "value": "停止"
+    },
+    {
+      "name": "navigator_first_page",
+      "value": "Navigator 第一个页面"
+    },
+    {
+      "name": "navigator_second_page",
+      "value": "Navigator 第二个页面"
+    },
+    {
+      "name": "navigator_third_page",
+      "value": "Navigator 第三个页面"
+    },
+    {
+      "name": "navigator_first_page_push",
+      "value": "去往第二个页面"
+    },
+    {
+      "name": "navigator_first_page_active",
+      "value": "点击切换 activate 状态"
+    },
+    {
+      "name": "navigator_second_page_push",
+      "value": "去往第三个页面"
+    },
+    {
+      "name": "navigator_third_page_back",
+      "value": "返回第一个页面"
+    },
+    {
+      "name": "navigator_return_message",
+      "value": "hello! 这是第一个页面传过来的参数"
     }
   ]
 }

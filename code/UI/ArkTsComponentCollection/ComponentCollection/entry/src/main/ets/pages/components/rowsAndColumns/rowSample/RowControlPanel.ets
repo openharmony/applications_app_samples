@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { CommonItemSlider, CommonItemSelect } from '../../../../common/AttributeModificationTool';
+import { CommonItemTwoRowSlider, CommonItemSelect } from '../../../../common/AttributeModificationTool';
 import { getStringArrayData } from '../../../../data/ResourceDataHandle';
 import { ROW_ALIGNITEMS_DATA, ROW_JUSTIFYCONTENT_DATA } from '../../ComponentData';
 
@@ -23,7 +23,7 @@ export struct ArgumentsControlPanel {
 
   build() {
     Column() {
-      CommonItemSlider(
+      CommonItemTwoRowSlider(
         {
           changeValue: $elementSpacing,
           min: 0,

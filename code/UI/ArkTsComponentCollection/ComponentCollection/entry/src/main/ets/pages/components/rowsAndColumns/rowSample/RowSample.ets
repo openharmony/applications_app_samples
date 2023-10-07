@@ -22,14 +22,14 @@ import { ArgumentsControlPanel, PropertyControlPanel } from './RowControlPanel';
   .width('100%')
   .height(400)
   .padding(12)
-  .borderRadius(24)
+  .borderRadius(16)
   .backgroundColor(Color.White)
 }
 
 @Extend(Column) function columnStyle() {
   .width('100%')
   .padding(12)
-  .borderRadius(24)
+  .borderRadius(16)
   .backgroundColor(Color.White)
   .justifyContent(FlexAlign.SpaceAround)
 }

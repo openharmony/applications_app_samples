@@ -18,7 +18,7 @@ import { LEFT_PADDING, RIGHT_PADDING } from '../../ComponentData';
 
 @Extend(Column) function cardStyle() {
   .backgroundColor($r('app.color.white'))
-  .borderRadius(24)
+  .borderRadius(16)
   .width('100%')
   .padding(12)
 }
@@ -46,6 +46,7 @@ struct CanvasSample {
             })
             .size({ width: 300, height: 200 })
         }.cardStyle()
+        .height('35%')
       }.padding({ left: LEFT_PADDING, right: RIGHT_PADDING })
     }
     .backgroundColor($r('app.color.background_light_gray'))

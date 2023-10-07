@@ -19,7 +19,7 @@ import { LEFT_PADDING, RIGHT_PADDING } from '../../ComponentData';
 
 @Extend(Column) function cardStyle(){
   .backgroundColor($r('app.color.white'))
-  .borderRadius(24)
+  .borderRadius(16)
   .width('100%')
   .padding(12)
 }
@@ -30,31 +30,31 @@ struct XComponentSample {
   xcomponentController: XComponentController = new XComponentController();
 
   build() {
-      Column() {
-        TitleBar({ title: $r('app.string.xcomponent_title') })
-          Column(){
-          IntroductionTitle({introduction:$r('app.string.xcomponent_show')})
-            Column() {
-              XComponent({
-                id: 'xcomponent',
-                type: 'surface',
-                controller: this.xcomponentController
-              })
-                .onLoad(() => {
-                  this.xcomponentController.setXComponentSurfaceSize({surfaceWidth:500,surfaceHeight:500})
-                  this.surfaceId = this.xcomponentController.getXComponentSurfaceId()
-                })
-                .width('400px')
-                .height('400px')
-            }
-            .backgroundColor(Color.Black)
-            .cardStyle()
-          }
-          .padding({ left: LEFT_PADDING, right: RIGHT_PADDING })
-          .margin({ bottom: 100 })
+    Column() {
+      TitleBar({ title: $r('app.string.xcomponent_title') })
+      Column(){
+        IntroductionTitle({introduction:$r('app.string.xcomponent_show')})
+        Column() {
+          XComponent({
+            id: 'xcomponent',
+            type: 'surface',
+            controller: this.xcomponentController
+          })
+            .onLoad(() => {
+              this.xcomponentController.setXComponentSurfaceSize({surfaceWidth:500,surfaceHeight:500})
+              this.surfaceId = this.xcomponentController.getXComponentSurfaceId()
+            })
+            .width('400px')
+            .height('400px')
+        }
+        .backgroundColor(Color.Black)
+        .cardStyle()
       }
-      .height('100%')
-      .backgroundColor(($r('app.color.background_grey')))
+      .padding({ left: LEFT_PADDING, right: RIGHT_PADDING })
+      .margin({ bottom: 100 })
+    }
+    .height('100%')
+    .backgroundColor(($r('app.color.background_grey')))
 
   }
 }

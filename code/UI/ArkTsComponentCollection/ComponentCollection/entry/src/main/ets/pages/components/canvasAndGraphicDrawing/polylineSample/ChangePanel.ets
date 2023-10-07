@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { CommonItemSlider, CommonItemColorSelect} from '../../../../common/AttributeModificationTool';
+import { CommonItemTwoRowSlider, CommonItemColorSelect} from '../../../../common/AttributeModificationTool';
 
 @Component
 export struct PolylineControlPanel {
@@ -36,49 +36,49 @@ export struct PolylineControlPanel {
         selectColor: $stroke,
         testId: 'polyline_color_001'
       })
-      CommonItemSlider({
+      CommonItemTwoRowSlider({
         changeValue: $polylineFirstX,
         max: 100,
         min: 0,
         name: $r('app.string.polyline_first_x'),
         testId: 'polyline_slider_001'
       })
-      CommonItemSlider({
+      CommonItemTwoRowSlider({
         changeValue: $polylineFirstY,
         max: 100,
         min: 0,
         name: $r('app.string.polyline_first_y'),
         testId: 'polyline_slider_002'
       })
-      CommonItemSlider({
+      CommonItemTwoRowSlider({
         changeValue: $polylineSecondX,
         max: 100,
         min: 0,
         name: $r('app.string.polyline_second_x'),
         testId: 'polyline_slider_003'
       })
-      CommonItemSlider({
+      CommonItemTwoRowSlider({
         changeValue: $polylineSecondY,
         max: 100,
         min: 0,
         name: $r('app.string.polyline_second_y'),
         testId: 'polyline_slider_004'
       })
-      CommonItemSlider({
+      CommonItemTwoRowSlider({
         changeValue: $polylineThirdX,
         max: 100,
         min: 0,
         name: $r('app.string.polyline_third_x'),
         testId: 'polyline_slider_005'
       })
-      CommonItemSlider({
+      CommonItemTwoRowSlider({
         changeValue: $polylineThirdY,
         max: 100,
         min: 0,
         name: $r('app.string.polyline_third_y'),
         testId: 'polyline_slider_006'
       })
-      CommonItemSlider({
+      CommonItemTwoRowSlider({
         changeValue: $strokeOpacity,
         max: 100,
         min: 0,
@@ -86,14 +86,14 @@ export struct PolylineControlPanel {
         vpTest: '%',
         testId: 'polyline_slider_007'
       })
-      CommonItemSlider({
+      CommonItemTwoRowSlider({
         changeValue: $strokeWidth,
         max: 10,
         min: 3,
         name: $r('app.string.polyline_stroke_width'),
         testId: 'polyline_slider_008'
       })
-      CommonItemSlider({
+      CommonItemTwoRowSlider({
         changeValue: $strokeDashArray,
         max: 40,
         min: 1,

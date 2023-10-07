@@ -20,7 +20,7 @@ import { LEFT_PADDING, RIGHT_PADDING } from '../../ComponentData';
 @Extend(Column) function backgroundStyle() {
   .width('100%')
   .padding(12)
-  .borderRadius(24)
+  .borderRadius(16)
   .backgroundColor(Color.White)
   .justifyContent(FlexAlign.Start)
 }
@@ -31,7 +31,7 @@ struct TabSample {
   @State barPosition: BarPosition = BarPosition.Start;
   @State isDisabled: boolean = true;
   @State isBottomTabBar: boolean = false;
-  @State vertical : boolean = false;
+  @State vertical: boolean = false;
   private controller: TabsController = new TabsController();
 
   build() {
@@ -39,51 +39,76 @@ struct TabSample {
       TitleBar({ title: $r('app.string.tab_content_title') })
         .flexGrow(0)
       // component
-      Column() {
-        Tabs({ barPosition: this.vertical ? BarPosition.Start : this.isBottomTabBar ? BarPosition.End : BarPosition.Start, controller: this.controller }) {
-          TabContent() {
-            Column()
-              .width('100%')
-              .height('100%')
-              .backgroundColor('#00CB87')
-          }
-          .tabBar(new SubTabBarStyle('green'))
-
-          TabContent() {
-            Column()
-              .width('100%')
-              .height('100%')
-              .backgroundColor('#007DFF')
-          }
-          .tabBar(new SubTabBarStyle('blue'))
-
-          TabContent() {
-            Column()
-              .width('100%')
-              .height('100%')
-              .backgroundColor('#FFBF00')
-          }
-          .tabBar(new SubTabBarStyle('yellow'))
-
-          TabContent() {
-            Column()
-              .width('100%')
-              .height('100%')
-              .backgroundColor('#E67C92')
-          }
-          .tabBar(new SubTabBarStyle('pink'))
+      Tabs({
+        barPosition: this.vertical ? BarPosition.Start : this.isBottomTabBar ? BarPosition.End : BarPosition.Start,
+        controller: this.controller
+      }) {
+        TabContent() {
+          Column()
+            .width('100%')
+            .height('100%')
+            .backgroundColor('#00CB87')
         }
-        .vertical(this.vertical)
-        .barMode(BarMode.Fixed)
-        .width('100%')
-        .height('100%')
-        .barWidth(360)
+        .tabBar(new SubTabBarStyle('green')
+          .labelStyle({
+            overflow: TextOverflow.Clip,
+            maxLines: 10,
+            minFontSize: 10,
+            heightAdaptivePolicy: TextHeightAdaptivePolicy.MAX_LINES_FIRST,
+            font: { size: 16 }
+          }))
+
+        TabContent() {
+          Column()
+            .width('100%')
+            .height('100%')
+            .backgroundColor('#007DFF')
+        }
+        .tabBar(new SubTabBarStyle('blue')
+          .labelStyle({
+            overflow: TextOverflow.Clip,
+            maxLines: 10,
+            minFontSize: 10,
+            heightAdaptivePolicy: TextHeightAdaptivePolicy.MAX_LINES_FIRST,
+            font: { size: 16 }
+          }))
+
+        TabContent() {
+          Column()
+            .width('100%')
+            .height('100%')
+            .backgroundColor('#FFBF00')
+        }
+        .tabBar(new SubTabBarStyle('yellow')
+          .labelStyle({
+            overflow: TextOverflow.Clip,
+            maxLines: 10,
+            minFontSize: 10,
+            heightAdaptivePolicy: TextHeightAdaptivePolicy.MAX_LINES_FIRST,
+            font: { size: 16 }
+          }))
+
+        TabContent() {
+          Column()
+            .width('100%')
+            .height('100%')
+            .backgroundColor('#E67C92')
+        }
+        .tabBar(new SubTabBarStyle('pink')
+          .labelStyle({
+            overflow: TextOverflow.Clip,
+            maxLines: 10,
+            minFontSize: 10,
+            heightAdaptivePolicy: TextHeightAdaptivePolicy.MAX_LINES_FIRST,
+            font: { size: 16 }
+          }))
       }
-      .padding({ left: LEFT_PADDING, right: RIGHT_PADDING })
-      .backgroundStyle()
-      .margin({bottom : 20})
-      .height(300)
+      .vertical(this.vertical)
+      .barMode(BarMode.Fixed)
       .width('100%')
+      .height(300)
+      .padding({ left: LEFT_PADDING, right: RIGHT_PADDING })
+      .margin({ bottom: 20 })
       .flexGrow(0)
 
       Scroll() {
