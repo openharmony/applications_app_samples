@@ -27,22 +27,24 @@
 ### 工程目录
 
 ```
-chatList/src/main/ets                     // 列表类功能HAR共享包
+features/chatlist/src/main/ets             // 列表类功能HAR共享包
 |---/pages    
 |   |---ChatDetailPage.ets                 // 具体的某一聊天页面            
 |   |---ChatListPage.ets                   // 整体聊天页面
 |---/utils
 |   |---Constants.ets                      // 封装只读常量
 |   |---DataFactory.ets                    // 封装对数据处理方法
+|   |---FriendMomentJsonUrl.ets            // 封装朋友圈json地址
 |   |---Logger.ets                         // 封装整个日志
+|   |---PageConstants.ets                  // 封装页面地址只读常量
 |---/view
 |   |---ChatView.ets                       // 聊天列表每个单独模块
 |   |---OptLayoutChatView.ets              // 可复用的列表模块
-|---/viewModel
+|---/viewmodel
 |   |---BasicDataSource.ets                // 封装朋友列表数据方法
 |   |---ChatListDataSource.ets             // 封装聊天列表数据方法
 |   |---MsgBase.ets                        // 封装聊天列表对象方法
-entry/src/main/ets
+products/phone/entry/src/main/ets
 |---/entryability
 |   |---EntryAbility.ts                    // 封装整个模块启用，监听Ability对应的窗口等逻辑
 |---/utils
@@ -51,10 +53,13 @@ entry/src/main/ets
 |   |---CustomDialogExample.ets            // 自定义功能弹窗页面
 |   |---TopBar.ets                         // 定义应用头部导航栏
 |---/pages                                                               
+|   |---/workers 
+|   |   |---worker.ts                      // worker线程逻辑处理
 |   |---Detail.ets                         // 聊天详情页面
 |   |---DiscoverPage.ets                   // 发现页面
 |   |---FriendsMomentsPage.ets             // 朋友圈页面
 |   |---FriendsPage.ets                    // 通讯录页面
+|   |---FullImagePage.ets                  // 点击朋友圈图片放大图
 |   |---Index.ets                          // 首页
 |   |---SettingPage.ets                    // 我的页面
 |---resources/images                       // 放置图片，icon资源等           
@@ -66,10 +71,10 @@ entry/src/main/ets
 
 ### 具体实现
 
-1、定义要跳转子页面：在entry/pages/index.ets中通过TabContent()定义要跳转的子页面，[源码参考](./entry/src/main/ets/pages/Index.ets)   
+1、定义要跳转子页面：在products/phone/entry/pages/index.ets中通过TabContent()定义要跳转的子页面，[源码参考](./products/phone/entry/src/main/ets/pages/Index.ets)   
 例如：跳转通讯录界面：TabContent() {
 FriendsPage() }。  
-2、使用LazyForEach数据懒加载对“聊天”和“通讯录”模块进行数据渲染：当LazyForEach在滚动容器中使用，框架会根据滚动容器可视区域按需创建组件，当组件划出可视区域外时，框架会进行组件销毁回收以降低内存占用，[源码参考](./entry/src/main/ets/pages/FriendsPage.ets )。  
+2、使用LazyForEach数据懒加载对“聊天”和“通讯录”模块进行数据渲染：当LazyForEach在滚动容器中使用，框架会根据滚动容器可视区域按需创建组件，当组件划出可视区域外时，框架会进行组件销毁回收以降低内存占用，[源码参考](./products/phone/entry/src/main/ets/pages/FriendsPage.ets )。  
 3、页面之间的跳转通过在config.json中先配置好相关路由，并通过router.push()进行页面跳转,例如：跳转到搜索页面router.push({ url: 'pages/SearchPage' })。  
 4、页面组件加载前，通过fileio.readSync以同步的方式读取数据，在EntryAbility生命周期中获取对应的Want信息。
 
