@@ -126,6 +126,7 @@ struct OneMoment {
     Column() {
       Row() {
         Image(this.moment.user.userImage)
+          .id('userImage')
           .autoResize(false)
           .width($r('app.integer.friendMomentsPage_user_image_width'))
           .height($r('app.integer.friendMomentsPage_user_image_height'))
@@ -190,6 +191,7 @@ struct OneMoment {
           }
           else {
             Image(this.moment.imageList[0])
+              .id('singleImage')
               .width($r('app.integer.friendMomentsPage_single_image_width'))
               .height($r('app.integer.friendMomentsPage_single_image_height'))
               .borderRadius($r('app.integer.friendMomentsPage_single_image_radius'))
@@ -216,6 +218,7 @@ struct OneMoment {
           }
           .width($r('app.integer.friendMomentsPage_single_video_width'))
           .height($r('app.integer.friendMomentsPage_single_video_height'))
+          .id('videoComponent')
           .onClick(() => {
             router.pushUrl({
               url: 'pages/FullImagePage',

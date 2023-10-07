@@ -106,6 +106,7 @@ struct FullImagePage {
             Swiper() {
               ForEach(this.imageUrlArray, (item: string) => {
                 Image(item)
+                  .id('swiperImage')
                   .width('100%')
                   .height($r('app.integer.image_height_size'))
                   .objectFit(ImageFit.Contain)
@@ -159,7 +160,9 @@ struct FullImagePage {
         }
       }
       this.AnimationComp();
-    }.onClick(() => {
+    }
+    .id('mediaPage')
+    .onClick(() => {
       router.back();
     })
   }
