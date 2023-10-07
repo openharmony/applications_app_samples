@@ -56,7 +56,7 @@
         "srcEntrance": "./ets/serviceability/ServiceAbility.ts",
         "label": "$string:ServiceAbility_label",
         "description": "$string:ServiceAbility_desc",
-        "type": "service"
+        "type": "form"
       }
     ],
     "requestPermissions": [
