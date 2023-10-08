@@ -17,6 +17,7 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 import { describe, it, expect } from '@ohos/hypium';
 import { Driver, ON, Component, MatchPattern } from '@ohos.UiTest';
 import Logger from '../../../../../entry/src/main/ets/model/Logger'
+import Want from '@ohos.app.ability.Want';
 
 const TAG = '[Sample_CommonEventPublish]';
 const BUNDLE = 'CommonEventPublish_';
@@ -24,13 +25,13 @@ const BUNDLE = 'CommonEventPublish_';
 export default function abilityTest() {
   let driver = Driver.create();
   let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
     /**
-     * À­Æð·¢²¼¾²Ì¬¶©ÔÄÏûÏ¢Ó¦ÓÃ
+     * æ‹‰èµ·å‘å¸ƒé™æ€è®¢é˜…æ¶ˆæ¯åº”ç”¨
      */
-    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+    it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
       Logger.info(TAG, `${BUNDLE}StartAbility_001 begin`);
-      let want = {
+      let want: Want = {
         bundleName: "com.samples.staticsubscriber",
         abilityName: "com.samples.commoneventpublisher.MainAbility"
       };
@@ -43,9 +44,9 @@ export default function abilityTest() {
     })
 
     /**
-     * µã»÷·¢²¼ÏûÏ¢
+     * ç‚¹å‡»å‘å¸ƒæ¶ˆæ¯
      */
-    it(BUNDLE + 'Publish_001', 0, async function (done) {
+    it(BUNDLE + 'Publish_001', 0, async (done: Function) => {
       Logger.info(TAG, `${BUNDLE}Publish_001 begin`);
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('btnPublish'));
