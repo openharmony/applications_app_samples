@@ -35,6 +35,10 @@
     {
       "name": "photo",
       "value": "拍照"
+    },
+    {
+      "name": "newFolder",
+      "value": "新建文件夹"
     }
   ]
 }

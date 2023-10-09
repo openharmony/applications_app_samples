@@ -14,7 +14,7 @@
  */
 import hilog from '@ohos.hilog';
 import { describe, it, expect } from '@ohos/hypium';
-import { Driver, ON } from '@ohos.UiTest';
+import { Driver, ON, MatchPattern } from '@ohos.UiTest';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
 const TAG = '[Sample_Picker]';
@@ -192,20 +192,19 @@ export default function abilityTest() {
       }
 
       await driver.delayMs(3000);
-
-      // 系统 picker 拉起的页面无法通过自定义id找到组件，因此采用坐标
-      await driver.click(570, 116); // 新建文件夹
+      await driver.assertComponentExist(ON.type('Image'))
+      let imgs = await driver.findComponents(ON.type('Image'));
+      await imgs[9].click(); // 新建文件夹
       await driver.delayMs(1000);
       let newDir = await getResourceString($r('app.string.new_dir'));
       let confirm = await getResourceString($r('app.string.label_confirm'));
       await driver.assertComponentExist(ON.text(newDir));
       await driver.assertComponentExist(ON.text(confirm));
+      let createDir = await driver.findComponent(ON.text(confirm));
+      await createDir.click(); // 新建文件夹-点击确定图标
       await driver.delayMs(2000);
-      // 使用text找到组件后点击不生效，因此采用坐标
-      await driver.click(511, 610); // 新建文件夹-点击确定图标
-      await driver.delayMs(2000);
-      await driver.click(650, 116); // 新建文件并保存-点击保存图标
-      await driver.delayMs(500);
+      await imgs[10].click(); // 新建文件并保存-点击保存图标
+
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'NewFileFunction_001 end');
     })
@@ -217,9 +216,6 @@ export default function abilityTest() {
     it('EditFileFunction_001', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'EditFileFunction_001 begin');
       let driver = await Driver.create();
-      await driver.delayMs(1000);
-      // 系统 picker 拉起的页面无法通过自定义id找到组件，因此采用坐标
-      await driver.click(470, 210);
       await driver.delayMs(500);
       await driver.assertComponentExist(ON.id('editable'));
       let editable = await driver.findComponent(ON.id('editable'));
@@ -249,26 +245,27 @@ export default function abilityTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + 'SaveAsFunction_001 begin');
       let driver = await Driver.create();
       await driver.delayMs(1000);
-      // 系统 picker 拉起的页面无法通过自定义id找到组件，因此采用坐标
-      await driver.click(470, 210);
-      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.type('ListItem'));
+      let files = await driver.findComponents(ON.type('ListItem'));
+      await files[0].click();
+      await driver.delayMs(2000);
       await driver.assertComponentExist(ON.id('saveAs'));
       let editable = await driver.findComponent(ON.id('saveAs'));
       await editable.click();
       await driver.delayMs(2000);
-      // 系统 picker 拉起的页面无法通过自定义id找到组件，因此采用坐标
-      await driver.click(570, 116); // 新建文件夹
+      await driver.assertComponentExist(ON.type('Image'))
+      let imgs = await driver.findComponents(ON.type('Image'));
+      await imgs[9].click(); // 新建文件夹
       await driver.delayMs(1000);
       let newDir = await getResourceString($r('app.string.new_dir'));
       let confirm = await getResourceString($r('app.string.label_confirm'));
       await driver.assertComponentExist(ON.text(newDir));
       await driver.assertComponentExist(ON.text(confirm));
       await driver.delayMs(2000);
-      // 使用text找到组件后点击不生效，因此采用坐标
-      await driver.click(511, 610); // 新建文件夹-点击确定图标
+      let createDir = await driver.findComponent(ON.text(confirm));
+      await createDir.click(); // 新建文件夹-点击确定图标
       await driver.delayMs(2000);
-      await driver.click(650, 116); // 新建文件并保存-点击保存图标
-      await driver.delayMs(1000);
+      await imgs[10].click(); // 新建文件并保存-点击保存图标
       await driver.pressBack();
       await driver.delayMs(1000);
       done();
@@ -286,11 +283,15 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('picture'));
       let picture = await driver.findComponent(ON.id('picture'));
       await picture.click();
-      await driver.delayMs(8000);
-      // 系统 picker 拉起的页面无法通过自定义id找到组件，因此采用坐标
-      await driver.click(653, 264);
-      await driver.click(49, 570);
-      await driver.click(675, 570);
+      await driver.delayMs(6000);
+      // 系统 picker 拉起的页面无法通过自定义id找到组件，因此采用控件类型
+      await driver.assertComponentExist(ON.type('GridItem'));
+      let gridItems = await driver.findComponents(ON.type('GridItem'));
+      await gridItems[4].click();
+      await driver.delayMs(500);
+      await gridItems[5].click();
+      await driver.delayMs(500);
+      await gridItems[6].click();
       await driver.delayMs(500);
       let finishText = await getResourceString($r('app.string.finish'));
       await driver.assertComponentExist(ON.text(finishText));
@@ -317,25 +318,36 @@ export default function abilityTest() {
       let picture = await driver.findComponent(ON.id('picture'));
       await picture.click();
       await driver.delayMs(6000);
-      // 系统 picker 拉起的页面无法通过自定义id找到组件，因此采用坐标
-      await driver.click(657, 41);
+      await driver.assertComponentExist(ON.type('Image'));
+      let choseType = await driver.findComponents(ON.type('Image'));
+      await choseType[4].click();
       await driver.delayMs(1000);
-      await driver.click(355, 200);
+      await driver.assertComponentExist(ON.type('GridItem'));
+      let gridItems = await driver.findComponents(ON.type('GridItem'));
+      await gridItems[4].click();
       await driver.delayMs(1000);
-      await driver.click(653, 264);
-      await driver.click(49, 570);
+      await driver.assertComponentExist(ON.type('GridItem'));
+      let videoItems = await driver.findComponents(ON.type('GridItem'));
+      await videoItems[4].click();
+      await driver.delayMs(500);
+      await videoItems[5].click();
+      await driver.delayMs(500);
+      await videoItems[6].click();
       await driver.delayMs(1000);
       let finishText = await getResourceString($r('app.string.finish'));
       await driver.assertComponentExist(ON.text(finishText));
       let finish = await driver.findComponent(ON.text(finishText));
       await finish.click();
-      await driver.delayMs(1500);
-      await driver.click(357, 292);
-      await driver.delayMs(1000);
-      await driver.click(355, 576);
-      await driver.delayMs(1000);
-      await driver.click(491, 576);
-      await driver.delayMs(1000);
+      await driver.delayMs(3000);
+      await driver.assertComponentExist(ON.type("Video"));
+      let playVideo = await driver.findComponents(ON.type("Video"));
+      await playVideo[0].click();
+      await driver.delayMs(2000);
+      // 获取视频的大小，名称信息，无法通过id,text,type获取，故使用坐标
+      await driver.click(458, 610);
+      await driver.delayMs(2000);
+      await driver.click(450, 914);
+      await driver.delayMs(2000);
       await driver.assertComponentExist(ON.id('back2Index'));
       let back2Index = await driver.findComponent(ON.id('back2Index'));
       await back2Index.click();
@@ -358,11 +370,16 @@ export default function abilityTest() {
       await driver.delayMs(6000);
 
       // 选择新建文件夹中的文件
-      await driver.click(43, 339);
+      let newFolder = await getResourceString($r('app.string.newFolder'));
+      await driver.assertComponentExist(ON.text(newFolder, MatchPattern.EQUALS));
+      let choseDir = await driver.findComponent(ON.text(newFolder, MatchPattern.EQUALS));
+      await choseDir.click();
       await driver.delayMs(2000);
 
       // 查看文件
-      await driver.click(57, 337);
+      await driver.assertComponentExist(ON.type('ListItem'));
+      let files = await driver.findComponents(ON.type('ListItem'));
+      await files[0].click();
       await driver.delayMs(1000);
       await driver.pressBack();
       done();

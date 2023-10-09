@@ -35,6 +35,10 @@
     {
       "name": "photo",
       "value": "PHOTO"
+    },
+    {
+      "name": "newFolder",
+      "value": "NewFolder"
     }
   ]
 }
