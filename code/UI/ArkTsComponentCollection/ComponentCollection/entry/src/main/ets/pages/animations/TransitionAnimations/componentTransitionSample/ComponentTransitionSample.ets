@@ -14,7 +14,8 @@
  */
 
 import { TitleBar } from '../../../../common/TitleBar';
-AppStorage.set('state',true)
+
+AppStorage.set('state',true);
 @Entry
 @Component
 struct ComponentTransitionSample {
