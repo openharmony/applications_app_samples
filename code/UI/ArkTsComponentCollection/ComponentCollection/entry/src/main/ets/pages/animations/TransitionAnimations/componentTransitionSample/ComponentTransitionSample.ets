@@ -14,11 +14,11 @@
  */
 
 import { TitleBar } from '../../../../common/TitleBar';
-
+AppStorage.set('state',true)
 @Entry
 @Component
 struct ComponentTransitionSample {
-  @State flag: boolean = true;
+  @StorageLink('state') flag: boolean = true;
   @State show: Resource = $r('app.string.component_transition_hide');
 
   build() {
