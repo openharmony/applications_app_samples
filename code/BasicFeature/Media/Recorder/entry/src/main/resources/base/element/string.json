@@ -43,6 +43,10 @@
     {
       "name": "check_title_selected_end",
       "value": "items"
+    },
+    {
+      "name": "rename_fail",
+      "value": "Renaming failed. Please check if there is a file with the same name in the recycle bin"
     }
   ]
 }

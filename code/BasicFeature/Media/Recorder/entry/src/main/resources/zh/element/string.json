@@ -43,6 +43,10 @@
     {
       "name": "check_title_selected_end",
       "value": "项"
+    },
+    {
+      "name": "rename_fail",
+      "value": "重命名失败，请检查回收站是否有重名文件"
     }
   ]
 }
