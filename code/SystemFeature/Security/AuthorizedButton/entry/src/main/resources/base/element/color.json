@@ -1,0 +1,32 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "bottom_title_divider",
+      "value": "#99838388"
+    },
+    {
+      "name": "font_color_shallow",
+      "value": "#99000000"
+    },
+    {
+      "name": "background_shallow_grey",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "button_default_bg_color",
+      "value": "#007DFF"
+    },
+    {
+      "name": "button_default_bg_color1",
+      "value": "#eceef0"
+    },
+    {
+      "name": "button_default_text_color",
+      "value": "#FF93BFEC"
+    }
+  ]
+}

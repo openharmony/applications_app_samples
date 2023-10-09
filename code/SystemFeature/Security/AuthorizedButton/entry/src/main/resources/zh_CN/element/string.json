@@ -1,0 +1,84 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "安全控件"
+    },
+    {
+      "name": "LocationButton_label",
+      "value": "LocationButton安全控件"
+    },
+    {
+      "name": "PasteButton_label",
+      "value": "PasteButton安全控件"
+    },
+    {
+      "name": "SaveButton_label",
+      "value": "SaveButton安全控件"
+    },
+    {
+      "name": "Authorized_button",
+      "value": "Button安全控件"
+    },
+    {
+      "name": "Locate_information",
+      "value": "定位信息"
+    },
+    {
+      "name": "Get_current_positioning_information",
+      "value": "获取当前定位信息..."
+    },
+    {
+      "name": "User_authorized",
+      "value": "用户已授权"
+    },
+    {
+      "name": "User_refuses_authorization",
+      "value": "用户拒绝授权"
+    },
+    {
+      "name": "Loading_positioning",
+      "value": "获取定位中..."
+    },
+    {
+      "name": "Copy",
+      "value": "复制"
+    },
+    {
+      "name": "Copy_succeed",
+      "value": "复制成功"
+    },
+    {
+      "name": "Paste_succeed",
+      "value": "粘贴成功"
+    },
+    {
+      "name": "Copy_content",
+      "value": "复制内容"
+    },
+    {
+      "name": "Happy_every_day",
+      "value": "天天开心"
+    },
+    {
+      "name": "Paste_content",
+      "value": "粘贴内容"
+    },
+    {
+      "name": "Save_failed",
+      "value": "保存失败"
+    },
+    {
+      "name": "Save_succeed",
+      "value": "保存成功"
+    }
+  ]
+}
