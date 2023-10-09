@@ -1,0 +1,84 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "AuthorizedButton"
+    },
+    {
+      "name": "LocationButton_label",
+      "value": "LocationButton"
+    },
+    {
+      "name": "PasteButton_label",
+      "value": "PasteButton"
+    },
+    {
+      "name": "SaveButton_label",
+      "value": "SaveButton"
+    },
+    {
+      "name": "Authorized_button",
+      "value": "AuthorizedButton"
+    },
+    {
+      "name": "Locate_information",
+      "value": "locate information"
+    },
+    {
+      "name": "Get_current_positioning_information",
+      "value": "Get current positioning information..."
+    },
+    {
+      "name": "User_authorized",
+      "value": "User authorized"
+    },
+    {
+      "name": "User_refuses_authorization",
+      "value": "User refuses authorization"
+    },
+    {
+      "name": "Loading_positioning",
+      "value": "Loading positioning"
+    },
+    {
+      "name": "Copy",
+      "value": "Copy"
+    },
+    {
+      "name": "Copy_succeed",
+      "value": "Copy succeed"
+    },
+    {
+      "name": "Paste_succeed",
+      "value": "Paste succeed"
+    },
+    {
+      "name": "Copy_content",
+      "value": "copy content"
+    },
+    {
+      "name": "Happy_every_day",
+      "value": "Happy every day"
+    },
+    {
+      "name": "Paste_content",
+      "value": "paste content"
+    },
+    {
+      "name": "Save_failed",
+      "value": "Save failed"
+    },
+    {
+      "name": "Save_succeed",
+      "value": "Save succeed"
+    }
+  ]
+}
