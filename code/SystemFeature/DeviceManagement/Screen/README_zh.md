@@ -38,10 +38,10 @@ entry/src/main/ets/
 
 ### 具体实现
 
-- 增加屏幕、移除屏幕的功能接口封装在DisplayModel，源码参考：[DisplayModel](code/SystemFeature/DeviceManagement/Screen/entry/src/main/ets/model/DisplayModel.ts)
+- 增加屏幕、移除屏幕的功能接口封装在DisplayModel，源码参考：[DisplayModel](entry/src/main/ets/model/DisplayModel.ts)
   - 使用screen.createVirtualScreen来创建虚拟屏幕;
   - 使用screen.destroyVirtualScreen来销毁虚拟屏幕;
-- 获取Display对象显示屏幕所有属性信息的功能封装在ShowInfo，源码参考：[ShowInfo](code/SystemFeature/DeviceManagement/Screen/entry/src/main/ets/common/ShowInfo.ets)
+- 获取Display对象显示屏幕所有属性信息的功能封装在ShowInfo，源码参考：[ShowInfo](entry/src/main/ets/common/ShowInfo.ets)
   - 使用display.Display来显示默认屏幕信息;
   - 使用display.Display[]来显示所有屏幕信息;；
 
