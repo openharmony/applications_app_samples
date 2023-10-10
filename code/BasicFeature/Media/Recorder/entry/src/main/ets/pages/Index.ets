@@ -76,10 +76,23 @@ struct Index {
   async renameCallBack(newName) {
     Logger.info(TAG, `renameCallBack: newName=${newName}`);
     let duration = await this.mediaManager.getFileDuration(this.renameRecord.fileAsset.title);
+    let backups = this.renameRecord.fileAsset.title;
     this.renameRecord.fileAsset.title = newName;
     this.renameRecord.fileAsset.commitModify(err => {
       if (err !== undefined) {
         Logger.info(TAG, `commitModify: err:${err}`);
+        AlertDialog.show(
+          {
+            message: $r('app.string.rename_fail'),
+            primaryButton: {
+              value: $r('app.string.sure'),
+              action: () => {
+                this.renameRecord.fileAsset.title = backups;
+                return;
+              }
+            }
+          }
+        )
         return;
       }
       Logger.info(TAG, `commitModify success`);

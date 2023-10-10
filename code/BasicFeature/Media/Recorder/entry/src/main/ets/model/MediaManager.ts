@@ -100,8 +100,14 @@ class MediaManager {
   }
 
   async deleteFile(fileAsset: mediaLibrary.FileAsset): Promise<void> {
-    Logger.info(TAG, `deleteFile,title = ${fileAsset.title},uri = ${fileAsset.uri}`);
-    await fileAsset.trash(true);
+    Logger.info(TAG, `mst deleteFile,title = ${fileAsset.title},uri = ${fileAsset.uri}`);
+    fileAsset.trash(true, (error) => {
+      if (error) {
+        console.error('mediaLibrary trash failed with error: ' + error);
+      } else {
+        console.info('mediaLibrary trash Successful');
+      }
+    });
   }
 
   onAudioChange(callback: () => void) {
