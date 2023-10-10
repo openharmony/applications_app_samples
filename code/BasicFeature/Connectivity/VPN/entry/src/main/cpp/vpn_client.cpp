@@ -15,8 +15,6 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
-#define VPN_LOG_TAG "NetMgrVpn"
-#define VPN_LOG_DOMAIN 0x15b0
 #define MAKE_FILE_NAME (strrchr(__FILE__, '/') + 1)
 
 #define NETMANAGER_VPN_LOGE(fmt, ...)                                                                                  \
@@ -31,8 +29,10 @@
     OH_LOG_Print(LOG_APP, LOG_DEBUG, VPN_LOG_DOMAIN, VPN_LOG_TAG, "vpn [%{public}s %{public}d] " fmt, MAKE_FILE_NAME,  \
                  __LINE__, ##__VA_ARGS__)
 
-
-#define BUFFER_SIZE 2048
+constexpr string VPN_LOG_TAG = "NetMgrVpn";
+constexpr int VPN_LOG_DOMAIN = 0x15b0;
+constexpr int BUFFER_SIZE = 2048;
+constexpr int EAGAIN = 11;
 
 struct FdInfo {
     int32_t tunFd = 0;
@@ -40,13 +40,13 @@ struct FdInfo {
     struct sockaddr_in serverAddr;
 };
 
-static FdInfo fdInfo;
 static bool threadRunF = false;
 static std::thread threadt1;
 static std::thread threadt2;
 
 static constexpr const int MAX_STRING_LENGTH = 1024;
-std::string GetStringFromValueUtf8(napi_env env, napi_value value) {
+static std::string GetStringFromValueUtf8(napi_env env, napi_value value)
+{
     std::string result;
     char str[MAX_STRING_LENGTH] = {0};
     size_t length = 0;
@@ -57,7 +57,9 @@ std::string GetStringFromValueUtf8(napi_env env, napi_value value) {
     return result;
 }
 
-void HandleReadTunfd(FdInfo fdInfo) {
+static void HandleReadTunfd(FdInfo fdInfo)
+{
+    FdInfo fdInfo;
     uint8_t buffer[BUFFER_SIZE] = {0};
     while (threadRunF) {
         if (fdInfo.tunFd <= 0) {
@@ -67,7 +69,7 @@ void HandleReadTunfd(FdInfo fdInfo) {
 
         int ret = read(fdInfo.tunFd, buffer, sizeof(buffer));
         if (ret <= 0) {
-            if (errno != 11) {
+            if (errno != EAGAIN) {
                 //    NETMANAGER_VPN_LOGE("read tun device error: %{public}d %{public}d", errno, fdInfo.tunFd);
                 sleep(1);
             }
@@ -76,7 +78,8 @@ void HandleReadTunfd(FdInfo fdInfo) {
 
         // 读取到虚拟网卡的数据，通过tcp隧道，发送给客户端
         NETMANAGER_VPN_LOGD("buffer: %{public}s, len: %{public}d", buffer, ret);
-        ret = sendto(fdInfo.tunnelFd, buffer, ret, 0, (struct sockaddr *)&fdInfo.serverAddr, sizeof(fdInfo.serverAddr));
+        ret = sendto(fdInfo.tunnelFd, buffer, ret, 0, reinterpret_cast<struct sockaddr *>(&fdInfo.serverAddr),
+                     sizeof(fdInfo.serverAddr));
         if (ret <= 0) {
             NETMANAGER_VPN_LOGE("send to server[%{public}s:%{public}d] failed, ret: %{public}d, error: %{public}s",
                                 inet_ntoa(fdInfo.serverAddr.sin_addr), ntohs(fdInfo.serverAddr.sin_port), ret,
@@ -86,7 +89,9 @@ void HandleReadTunfd(FdInfo fdInfo) {
     }
 }
 
-void HandleTcpReceived(FdInfo fdInfo) {
+void HandleTcpReceived(FdInfo fdInfo)
+{
+    FdInfo fdInfo;
     int addrlen = sizeof(struct sockaddr_in);
     uint8_t buffer[BUFFER_SIZE] = {0};
     while (threadRunF) {
@@ -95,10 +100,11 @@ void HandleTcpReceived(FdInfo fdInfo) {
             continue;
         }
 
-        int length = recvfrom(fdInfo.tunnelFd, buffer, sizeof(buffer), 0, (struct sockaddr *)&fdInfo.serverAddr,
-                              (socklen_t *)&addrlen);
+        int length = recvfrom(fdInfo.tunnelFd, buffer, sizeof(buffer), 0,
+                              reinterpret_cast<struct sockaddr *>(&fdInfo.serverAddr),
+                              reinterpret_cast<socklen_t *>(&addrlen));
         if (length < 0) {
-            if (errno != 11) {
+            if (errno != EAGAIN) {
                 NETMANAGER_VPN_LOGE("read tun device error: %{public}d %{public}d", errno, fdInfo.tunnelFd);
             }
             continue;
@@ -113,7 +119,9 @@ void HandleTcpReceived(FdInfo fdInfo) {
     }
 }
 
-static napi_value TcpConnect(napi_env env, napi_callback_info info) {
+static napi_value TcpConnect(napi_env env, napi_callback_info info)
+{
+    FdInfo fdInfo;
     size_t argc = 2;
     napi_value args[2] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
@@ -131,9 +139,9 @@ static napi_value TcpConnect(napi_env env, napi_callback_info info) {
     }
 
     struct timeval timeout = {1, 0};
-    setsockopt(sockFd, SOL_SOCKET, SO_RCVTIMEO, (char *)&timeout, sizeof(struct timeval));
+    setsockopt(sockFd, SOL_SOCKET, SO_RCVTIMEO, reinterpret_cast<char *>(&timeout), sizeof(struct timeval));
 
-    memset(&fdInfo.serverAddr, 0, sizeof(fdInfo.serverAddr));
+    memcpy_s(&fdInfo.serverAddr, 0, sizeof(fdInfo.serverAddr));
     fdInfo.serverAddr.sin_family = AF_INET;
     fdInfo.serverAddr.sin_addr.s_addr = inet_addr(ipAddr.c_str()); // server's IP addr
     fdInfo.serverAddr.sin_port = htons(port);                      // port
@@ -145,7 +153,9 @@ static napi_value TcpConnect(napi_env env, napi_callback_info info) {
     return tunnelFd;
 }
 
-static napi_value StartVpn(napi_env env, napi_callback_info info) {
+static napi_value StartVpn(napi_env env, napi_callback_info info)
+{
+    FdInfo fdInfo;
     size_t argc = 2;
     napi_value args[2] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
@@ -173,7 +183,8 @@ static napi_value StartVpn(napi_env env, napi_callback_info info) {
     return retValue;
 }
 
-static napi_value StopVpn(napi_env env, napi_callback_info info) {
+static napi_value StopVpn(napi_env env, napi_callback_info info)
+{
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
@@ -199,7 +210,8 @@ static napi_value StopVpn(napi_env env, napi_callback_info info) {
 }
 
 EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports) {
+static napi_value Init(napi_env env, napi_value exports)
+{
     napi_property_descriptor desc[] = {
         {"tcpConnect", nullptr, TcpConnect, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"startVpn", nullptr, StartVpn, nullptr, nullptr, nullptr, napi_default, nullptr},
@@ -210,7 +222,8 @@ static napi_value Init(napi_env env, napi_value exports) {
 }
 EXTERN_C_END
 
-static napi_module demoModule = {
+static napi_module demoModule =
+{
     .nm_version = 1,
     .nm_flags = 0,
     .nm_filename = nullptr,
@@ -220,7 +233,8 @@ static napi_module demoModule = {
     .reserved = {0},
 };
 
-extern "C" __attribute__((constructor)) void RegisterEntryModule(void) {
+extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
+{
     NETMANAGER_VPN_LOGI("vpn 15b0 HELLO ~~~~~~~~~~");
     napi_module_register(&demoModule);
 }
