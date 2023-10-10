@@ -1,0 +1,141 @@
+/*
+* Copyright (c) 2023 Huawei Device Co., Ltd.
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+  *
+  *     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+import vpn from '@ohos.net.vpn';
+import vpn_client from 'libvpn_client.so';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import common from '@ohos.app.ability.common';
+
+let g_tunFd = -1
+let g_tunnelFd = -1
+
+@Entry
+@Component
+struct StartVpn {
+  @State message: string = 'Toy VPN'
+  @State vpnServerIp: string = '192.168.31.13'
+  @State tunIp: string = '10.0.0.5'
+
+  @State routeAddr: string = '192.168.214.0'
+  @State prefix: string = '24'
+
+  @State blockedAppName: string = 'com.example.baidumyapplication'
+  private context = getContext(this) as common.UIAbilityContext;
+  private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context)
+
+  CreateTunnel() {
+    g_tunnelFd = vpn_client.tcpConnect(this.vpnServerIp, 8888)
+  }
+
+  Protect() {
+    console.info("vpn Protect")
+    this.VpnConnection.protect(g_tunnelFd).then(function () {
+      console.info("vpn Protect Success ")
+    }).catch(function (err) {
+      console.info("vpn Protect Failed " + JSON.stringify(err))
+    })
+  }
+
+  SetupVpn() {
+    console.info("vpn SetupVpn")
+    let config = {
+      addresses: [{
+        address: {
+          address: this.tunIp,
+          family: 1
+        },
+        prefixLength: 24,
+      }],
+      mtu: 1400,
+      dnsAddresses: [
+        "114.114.114.114"
+      ],
+      trustedApplications: [],
+      blockedApplications: [ this.blockedAppName ]
+    }
+
+    try {
+      this.VpnConnection.setUp(config, (error, data) => {
+        g_tunFd = data
+        console.info("tunfd: " + JSON.stringify(data));
+        vpn_client.startVpn(g_tunFd, g_tunnelFd)
+      })
+    } catch (error) {
+      console.info("vpn setUp fail " + JSON.stringify(error));
+    }
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(35)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            console.info("vpn Client")
+          })
+
+        Row() {
+          Text('server ip').fontSize(30).width('40%').textAlign(TextAlign.Center)
+            .backgroundColor(0xAFEEEE)
+          TextInput({text:'192.168.31.13'}).onChange((value) => {
+            this.vpnServerIp = value
+          }).width('60%').margin(2)
+        }.width('90%')
+
+        Row() {
+          Text('tun ip').fontSize(30).width('40%').textAlign(TextAlign.Center)
+            .backgroundColor(0xAFEEEE)
+          TextInput({text:'10.0.0.5'}).onChange((value) => {
+            this.tunIp = value
+          }).width('60%').margin(2)
+        }.width('90%')
+
+        Row() {
+          Text('blockedApp').fontSize(30).width('40%').textAlign(TextAlign.Center)
+            .backgroundColor(0xAFEEEE)
+          TextInput({text:'com.example.baidumyapplication'}).onChange((value) => {
+            this.blockedAppName = value
+          }).width('60%').margin(2)
+        }.width('90%')
+        Row() {
+          Text('routeAddr').fontSize(30).width('40%').textAlign(TextAlign.Center)
+            .backgroundColor(0xAFEEEE)
+          TextInput({text:'192.168.214.185/24'}).onChange((value) => {
+            let stringArr = value.split('/')
+            this.routeAddr = stringArr[0]
+            this.prefix = (stringArr.length > 1) ? stringArr[1] : '24'
+          }).width('60%').margin(2).onClick(() => {
+            console.info("addr " + JSON.stringify(this.routeAddr))
+            console.info("prefix " + JSON.stringify(this.prefix))
+          })
+        }.width('90%')
+
+        Button('创建对象').onClick(() => {
+          this.CreateTunnel()
+        }).fontSize(50)
+        Button('隧道保护').onClick(() => {
+          this.Protect()
+        }).fontSize(50)
+        Button('启动vpn').onClick(() => {
+          this.SetupVpn()
+        }).fontSize(50)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+
