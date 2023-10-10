@@ -78,7 +78,7 @@ static void HandleReadTunfd(FdInfo fdInfo)
 
         // 读取到虚拟网卡的数据，通过tcp隧道，发送给客户端
         NETMANAGER_VPN_LOGD("buffer: %{public}s, len: %{public}d", buffer, ret);
-        ret = sendto(fdInfo.tunnelFd, buffer, ret, 0, reinterpret_cast<struct sockaddr *>(&fdInfo.serverAddr),
+        ret = sendto(fdInfo.tunnelFd, buffer, ret, 0, static_cast<struct sockaddr *>(&fdInfo.serverAddr),
                      sizeof(fdInfo.serverAddr));
         if (ret <= 0) {
             NETMANAGER_VPN_LOGE("send to server[%{public}s:%{public}d] failed, ret: %{public}d, error: %{public}s",
@@ -89,7 +89,7 @@ static void HandleReadTunfd(FdInfo fdInfo)
     }
 }
 
-void HandleTcpReceived(FdInfo fdInfo)
+static void HandleTcpReceived(FdInfo fdInfo)
 {
     FdInfo fdInfo;
     int addrlen = sizeof(struct sockaddr_in);
@@ -101,8 +101,8 @@ void HandleTcpReceived(FdInfo fdInfo)
         }
 
         int length = recvfrom(fdInfo.tunnelFd, buffer, sizeof(buffer), 0,
-                              reinterpret_cast<struct sockaddr *>(&fdInfo.serverAddr),
-                              reinterpret_cast<socklen_t *>(&addrlen));
+                              static_cast<struct sockaddr *>(&fdInfo.serverAddr),
+                              static_cast<socklen_t *>(&addrlen));
         if (length < 0) {
             if (errno != EAGAIN) {
                 NETMANAGER_VPN_LOGE("read tun device error: %{public}d %{public}d", errno, fdInfo.tunnelFd);
@@ -139,7 +139,7 @@ static napi_value TcpConnect(napi_env env, napi_callback_info info)
     }
 
     struct timeval timeout = {1, 0};
-    setsockopt(sockFd, SOL_SOCKET, SO_RCVTIMEO, reinterpret_cast<char *>(&timeout), sizeof(struct timeval));
+    setsockopt(sockFd, SOL_SOCKET, SO_RCVTIMEO, static_cast<char *>(&timeout), sizeof(struct timeval));
 
     memcpy_s(&fdInfo.serverAddr, 0, sizeof(fdInfo.serverAddr));
     fdInfo.serverAddr.sin_family = AF_INET;
