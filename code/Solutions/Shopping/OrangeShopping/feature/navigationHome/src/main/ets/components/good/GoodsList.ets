@@ -126,7 +126,7 @@ export struct GoodsList {
       left: 12,
       right: 12
     })
-    .onAreaChange((newArea: Area) => {
+    .onAreaChange((oldValue: Area, newArea: Area) => {
       AppStorage.setOrCreate('listHeight', newArea.height as number);
     })
   }
