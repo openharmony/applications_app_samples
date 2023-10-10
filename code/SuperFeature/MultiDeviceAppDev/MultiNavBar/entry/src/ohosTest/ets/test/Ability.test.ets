@@ -22,11 +22,11 @@ const TAG: string = '[Sample_MultiNavBar]';
 const BUNDLE = 'MultiNavBar_';
 
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
     /**
      * 拉起应用，拖拽窗口至360vp
      */
-    it(BUNDLE + 'testAbility_001', 0, async function (done) {
+    it(BUNDLE + 'testAbility_001', 0, async (done: Function) => {
       let driver = Driver.create();
       await startAbility();
       await driver.delayMs(1000);
@@ -38,7 +38,7 @@ export default function abilityTest() {
     /**
      * 拉起应用，拖拽窗口至580vp
      */
-    it(BUNDLE + 'testAbility_002', 0, async function (done) {
+    it(BUNDLE + 'testAbility_002', 0, async (done: Function) => {
       let driver = Driver.create();
       await startAbility();
       await driver.delayMs(1000);
@@ -50,7 +50,7 @@ export default function abilityTest() {
     /**
      * 拉起应用，拖拽窗口至800vp
      */
-    it(BUNDLE + 'testAbility_003', 0, async function (done) {
+    it(BUNDLE + 'testAbility_003', 0, async (done: Function) => {
       let driver = Driver.create();
       await startAbility();
       await driver.delayMs(1000);
@@ -62,7 +62,7 @@ export default function abilityTest() {
     /**
      * 拉起应用，拖拽窗口至800vp，点击汉堡按钮切换至侧边导航栏
      */
-    it(BUNDLE + 'testAbility_004', 0, async function (done) {
+    it(BUNDLE + 'testAbility_004', 0, async (done: Function) => {
       let driver = Driver.create();
       await startAbility();
       await driver.delayMs(1000);
@@ -76,7 +76,7 @@ export default function abilityTest() {
     /**
      * 拉起应用，拖拽窗口至1080vp
      */
-    it(BUNDLE + 'testAbility_005', 0, async function (done) {
+    it(BUNDLE + 'testAbility_005', 0, async (done: Function) => {
       let driver = Driver.create();
       await startAbility();
       await driver.delayMs(1000);
@@ -88,7 +88,7 @@ export default function abilityTest() {
     /**
      * 拉起应用，拖拽窗口至1080vp，点击汉堡按钮切换至侧边Tabs
      */
-    it(BUNDLE + 'testAbility_006', 0, async function (done) {
+    it(BUNDLE + 'testAbility_006', 0, async (done: Function) => {
       let driver = Driver.create();
       await startAbility();
       await driver.delayMs(1000);
@@ -102,7 +102,7 @@ export default function abilityTest() {
     /**
      * 拉起应用，拖拽窗口至1080vp，点击汉堡按钮切换至侧边Tabs，点击搜索图标切换至侧边导航栏
      */
-    it(BUNDLE + 'testAbility_007', 0, async function (done) {
+    it(BUNDLE + 'testAbility_007', 0, async (done: Function) => {
       let driver = Driver.create();
       await startAbility();
       await driver.delayMs(1000);
@@ -118,7 +118,7 @@ export default function abilityTest() {
     /**
      * 拉起应用，拖拽窗口至1080vp，拖动侧边导航栏区域
      */
-    it(BUNDLE + 'testAbility_008', 0, async function (done) {
+    it(BUNDLE + 'testAbility_008', 0, async (done: Function) => {
       let driver = Driver.create();
       await startAbility();
       await driver.delayMs(1000);
@@ -132,7 +132,7 @@ export default function abilityTest() {
     /**
      * 拉起应用，拖拽窗口至1080vp，点击底部工具栏添加按钮，再次点击汉堡按钮切换至侧边Tabs，点击底部工具更多图标
      */
-    it(BUNDLE + 'testAbility_009', 0, async function (done) {
+    it(BUNDLE + 'testAbility_009', 0, async (done: Function) => {
       let driver = Driver.create();
       await startAbility();
       await driver.delayMs(1000);

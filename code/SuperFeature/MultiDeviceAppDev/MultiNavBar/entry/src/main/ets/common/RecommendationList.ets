@@ -13,34 +13,34 @@
  * limitations under the License.
  */
 
-import { BreakpointType } from '../common/BreakpointSystem'
-import { StyleConfiguration } from '../common/Configuration'
+import { BreakpointType } from '../common/BreakpointSystem';
+import { StyleConfiguration } from '../common/Configuration';
 
 class ItemType {
-  name: Resource
-  src: Resource
+  name: Resource;
+  src: Resource;
 
   constructor(name: Resource, src: Resource) {
-    this.name = name
-    this.src = src
+    this.name = name;
+    this.src = src;
   }
 }
 
 @Component
 export struct RecommendationList {
-  @LocalStorageProp("currentBreakpoint") currentBreakpoint: string = 'md'
+  @LocalStorageProp("currentBreakpoint") currentBreakpoint: string = 'md';
   @State bannerList: Resource[] = [
   $r('app.media.ic_public_swiper1'),
   $r('app.media.ic_public_swiper2'),
   $r('app.media.ic_public_swiper3'),
-  ]
+  ];
   @State gridList: ItemType[] = [
     new ItemType($r('app.string.category'), $r('app.media.entrances')),
     new ItemType($r('app.string.rank'), $r('app.media.entrances2')),
     new ItemType($r('app.string.quickApp'), $r('app.media.entrances4')),
     new ItemType($r('app.string.garden'), $r('app.media.entrances5')),
     new ItemType($r('app.string.education'), $r('app.media.entrances6')),
-  ]
+  ];
   @State appIconList: ItemType[] = [
     new ItemType($r('app.string.double'), $r('app.media.ic_public_app1')),
     new ItemType($r('app.string.photoEditing'), $r('app.media.ic_public_app2')),
@@ -52,7 +52,7 @@ export struct RecommendationList {
     new ItemType($r('app.string.mathematicsSquare'), $r('app.media.ic_public_app8')),
     new ItemType($r('app.string.carefree'), $r('app.media.ic_public_app9')),
     new ItemType($r('app.string.double'), $r('app.media.ic_public_app10')),
-  ]
+  ];
   @State gameIconList: ItemType[] = [
     new ItemType($r('app.string.romance'), $r('app.media.ic_public_game1')),
     new ItemType($r('app.string.dreaming'), $r('app.media.ic_public_game2')),
@@ -64,9 +64,10 @@ export struct RecommendationList {
     new ItemType($r('app.string.dreaming'), $r('app.media.ic_public_game8')),
     new ItemType($r('app.string.ambush'), $r('app.media.ic_public_game9')),
     new ItemType($r('app.string.romance'), $r('app.media.ic_public_game10')),
-  ]
+  ];
 
-  @Builder Banner() {
+  @Builder
+  Banner() {
     Swiper() {
       ForEach(this.bannerList, (item: Resource) => {
         Image(item).width('100%').height('100%').borderRadius(10)
@@ -82,7 +83,8 @@ export struct RecommendationList {
     .height(StyleConfiguration.getBreakpointStyle(this.currentBreakpoint).recommendCompGridItemHeight)
   }
 
-  @Builder ApplicationList(data: ItemType[]) {
+  @Builder
+  ApplicationList(data: ItemType[]) {
     List({ space: new BreakpointType(20, 32, 36).GetValue(this.currentBreakpoint) }) {
       ForEach(data, (item: ItemType) => {
         ListItem() {
@@ -100,10 +102,11 @@ export struct RecommendationList {
           }
         }
       })
-    }.listDirection(Axis.Horizontal)
+    }.listDirection(Axis.Horizontal).scrollBar(BarState.Off)
   }
 
-  @Builder ApplicationType(desc: Resource) {
+  @Builder
+  ApplicationType(desc: Resource) {
     Row() {
       Text(desc).fontSize(16).fontWeight(FontWeight.Medium)
       Blank()
