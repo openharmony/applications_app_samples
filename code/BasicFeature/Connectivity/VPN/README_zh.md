@@ -47,7 +47,7 @@ VPN权限: ohos.permission.MANAGE_VPN
 
 
 **约束与限制**
-本示例仅支持标准系统上运行，支持设备：RK3568。
+本示例仅支持标准系统上运行。
 
 本示例为Stage模型，已适配API version 10版本SDK，版本号：4.0.9.6，镜像版本号: Openharmony 4.0.9.6。
 
