@@ -13,18 +13,18 @@
  * limitations under the License.
  */
 
-import { BreakpointType, SideBarMode } from '../common/BreakpointSystem'
-import { StyleConfiguration } from '../common/Configuration'
-import { MenuType } from '../model/MenuType'
-import { sideListData } from '../model/SideListData'
+import { BreakpointType, SideBarMode } from '../common/BreakpointSystem';
+import { StyleConfiguration } from '../common/Configuration';
+import { MenuType } from '../model/MenuType';
+import { sideListData } from '../model/SideListData';
 
 @Component
 export struct SideBarController {
-  @LocalStorageProp("currentBreakpoint") currentBreakpoint: string = 'md'
-  @LocalStorageLink("currentSideBarMode") currentSideBarMode: string = 'list'
-  @Link currentSubIndex: number
-  @Link currentMainIndex: number
-  mainController: TabsController
+  @LocalStorageProp("currentBreakpoint") currentBreakpoint: string = 'md';
+  @LocalStorageLink("currentSideBarMode") currentSideBarMode: string = 'list';
+  @Link currentSubIndex: number;
+  @Link currentMainIndex: number;
+  mainController: TabsController = new TabsController();
 
   build() {
     Scroll() {
@@ -38,7 +38,7 @@ export struct SideBarController {
               .id('switchButton')
               .onClick(() => {
                 animateTo({ duration: 300 }, () => {
-                  this.currentSideBarMode = this.currentSideBarMode === 'tabs' ? 'list' : 'tabs'
+                  this.currentSideBarMode = this.currentSideBarMode === 'tabs' ? 'list' : 'tabs';
                 })
               })
           }
@@ -62,8 +62,8 @@ export struct SideBarController {
 
 @Component
 struct AccountInfo {
-  @LocalStorageProp("currentBreakpoint") currentBreakpoint: string = 'md'
-  @LocalStorageProp("currentSideBarMode") currentSideBarMode: string = 'list'
+  @LocalStorageProp("currentBreakpoint") currentBreakpoint: string = 'md';
+  @LocalStorageProp("currentSideBarMode") currentSideBarMode: string = 'list';
 
   build() {
     Row() {
@@ -95,26 +95,26 @@ struct AccountInfo {
 
 @Component
 export struct SearchModule {
-  @LocalStorageProp("currentBreakpoint") currentBreakpoint: string = 'md'
-  @LocalStorageLink("currentSideBarMode") @Watch('onCurrentSideBarModeChange') currentSideBarMode: string = 'list'
-  @State searchCompWidth: number | string = '100%'
-  controller: SearchController = new SearchController()
-  @State searchFocusAble: boolean = true
-  @State placeholderText: Resource = $r('app.string.search')
+  @LocalStorageProp("currentBreakpoint") currentBreakpoint: string = 'md';
+  @LocalStorageLink("currentSideBarMode") @Watch('onCurrentSideBarModeChange') currentSideBarMode: string = 'list';
+  @State searchCompWidth: number | string = '100%';
+  controller: SearchController = new SearchController();
+  @State searchFocusAble: boolean = true;
+  @State placeholderText: Resource = $r('app.string.search');
 
   aboutToAppear() {
     if (this.currentSideBarMode === 'list') {
-      this.searchCompWidth = 40
-      this.placeholderText = $r('app.string.nullString')
+      this.searchCompWidth = 40;
+      this.placeholderText = $r('app.string.nullString');
     }
   }
 
   onCurrentSideBarModeChange() {
     animateTo({ duration: 300, onFinish: () => {
-      this.searchFocusAble = this.currentSideBarMode === 'tabs' ? true : false
+      this.searchFocusAble = this.currentSideBarMode === 'tabs' ? true : false;
     } }, () => {
-      this.searchCompWidth = this.searchCompWidth === '100%' ? 40 : '100%'
-      this.placeholderText = this.searchCompWidth === 40 ? $r('app.string.nullString') : $r('app.string.search')
+      this.searchCompWidth = this.searchCompWidth === '100%' ? 40 : '100%';
+      this.placeholderText = this.searchCompWidth === 40 ? $r('app.string.nullString') : $r('app.string.search');
     })
   }
 
@@ -130,7 +130,7 @@ export struct SearchModule {
         .onTouch((event: TouchEvent) => {
           animateTo({ duration: 300 }, () => {
             if (event.type === TouchType.Up && this.currentSideBarMode === 'list') {
-              this.currentSideBarMode = 'tabs'
+              this.currentSideBarMode = 'tabs';
             }
           })
         })
@@ -146,15 +146,15 @@ export struct SearchModule {
 
 @Component
 export struct SideBarPrimaryNavigation {
-  @LocalStorageProp("currentBreakpoint") currentBreakpoint: string = 'md'
-  @LocalStorageProp("currentSideBarMode") currentSideBarMode: string = 'list'
-  @State sideListData: MenuType[] = sideListData
-  mainController: TabsController
-  @Link currentSubIndex: number
-  @Link currentMainIndex: number
+  @LocalStorageProp("currentBreakpoint") currentBreakpoint: string = 'md';
+  @LocalStorageProp("currentSideBarMode") currentSideBarMode: string = 'list';
+  @State sideListData: MenuType[] = sideListData;
+  mainController: TabsController = new TabsController();
+  @Link currentSubIndex: number;
+  @Link currentMainIndex: number;
 
   subControllerChangeIndex(subController: TabsController, index: number) {
-    subController.changeIndex(index)
+    subController.changeIndex(index);
   }
 
   build() {
@@ -179,7 +179,7 @@ export struct SideBarPrimaryNavigation {
               PrimaryMenu({
                 sideTitleName: item.name,
                 subTitleNameList: item.subTitleList,
-                changeIndex: this.subControllerChangeIndex.bind(this),
+                changeIndex: () => this.subControllerChangeIndex,
                 tabsController: item.subController,
                 mainTabsController: this.mainController,
                 icon: item.icon,
@@ -206,35 +206,35 @@ export struct SideBarPrimaryNavigation {
 
 @Component
 export struct PrimaryMenu {
-  @LocalStorageProp("currentBreakpoint") currentBreakpoint: string = 'md'
-  @LocalStorageProp("currentSideBarMode") currentSideBarMode: string = 'list'
-  @Link currentSubIndex: number
-  @Link currentMainIndex: number
-  sideTitleName: Resource
-  subTitleNameList: MenuType[]
-  changeIndex: Function
-  tabsController: TabsController
-  mainTabsController: TabsController
-  icon: Resource
-  index: number
-  @State isItemWrap: boolean = false
+  @LocalStorageProp("currentBreakpoint") currentBreakpoint: string = 'md';
+  @LocalStorageProp("currentSideBarMode") currentSideBarMode: string = 'list';
+  @Link currentSubIndex: number;
+  @Link currentMainIndex: number;
+  sideTitleName: Resource = $r('app.string.index');
+  subTitleNameList: MenuType[] = new Array();
+  changeIndex: Function = () => {
+  };
+  tabsController: TabsController = new TabsController();
+  mainTabsController: TabsController = new TabsController();
+  icon: Resource = $r('app.media.icon');
+  index: number = 0;
+  @State isItemWrap: boolean = false;
   @State iconList: Resource[] = [
   $r('app.media.ic_home_actived'),
   $r('app.media.ic_app_actived'),
   $r('app.media.ic_game_actived'),
   $r('app.media.ic_search_actived'),
   $r('app.media.ic_mine_actived'),
-  ]
+  ];
 
   getSelectColor() {
     if (this.index === 0 && (this.index !== this.currentMainIndex || this.currentSideBarMode === 'tabs')) {
-      return '#66000000'
+      return '#66000000';
     } else if (this.currentSideBarMode === 'tabs') {
-      return ''
+      return '';
     } else {
-      return StyleConfiguration.getBreakpointStyle(this.currentBreakpoint)
-        .getCurrentMainTabsStyle(this.index, this.currentMainIndex)
-        .fillColor
+      return StyleConfiguration.getCurrentMainTabsStyle(this.index, this.currentMainIndex, this.currentBreakpoint)
+        .fillColor;
     }
   }
 
@@ -244,24 +244,24 @@ export struct PrimaryMenu {
         Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Start }) {
           Flex({
             direction: this.isItemWrap ? FlexDirection.Column : new BreakpointType(FlexDirection.Row, FlexDirection.Row,
-              new SideBarMode(FlexDirection.Column, FlexDirection.Row).GetValue(this.currentSideBarMode))
-                                                                  .GetValue(this.currentBreakpoint),
+              this.currentSideBarMode === 'list' ? FlexDirection.Column : FlexDirection.Row)
+              .GetValue(this.currentBreakpoint),
             justifyContent: StyleConfiguration.getSubTabsControllerStyle(this.currentBreakpoint, this.currentSideBarMode)
               .sideBarPrimaryMenuFlexAlign,
             alignItems: ItemAlign.Center,
-            alignContent: new BreakpointType(undefined, undefined, FlexAlign.Center).GetValue(this.currentBreakpoint),
+            alignContent: new BreakpointType(FlexAlign.Start, FlexAlign.Start, FlexAlign.Center).GetValue(this.currentBreakpoint),
           }) {
             Image((this.index === this.currentMainIndex) && (this.currentSideBarMode === 'list' || this.currentBreakpoint === 'sm') ? this.iconList[this.index] : this.icon)
               .width(24)
               .height(24)
               .fillColor(this.getSelectColor())
               .margin(this.isItemWrap ? StyleConfiguration.getBreakpointStyle(this.currentBreakpoint)
-                                          .sideBarPrimaryMenuImgMargin : 0)
+                .sideBarPrimaryMenuImgMargin : 0)
             if (this.currentSideBarMode === 'tabs' || (this.currentBreakpoint !== 'md' && this.currentSideBarMode === 'list')) {
               Text(this.sideTitleName)
-                .fontColor(this.currentSideBarMode === 'tabs' ? '#182431' : StyleConfiguration.getBreakpointStyle(this.currentBreakpoint)
-                                                                              .getCurrentMainTabsStyle(this.index, this.currentMainIndex)
-                                                                              .fontColor)
+                .fontColor(this.currentSideBarMode === 'tabs' ? '#182431' : StyleConfiguration
+                  .getCurrentMainTabsStyle(this.index, this.currentMainIndex, this.currentBreakpoint)
+                  .fontColor)
                 .fontSize(StyleConfiguration.getBreakpointStyle(this.currentBreakpoint).sideBarPrimaryMenuTextSize)
                 .height(StyleConfiguration.getBreakpointStyle(this.currentBreakpoint).sideBarPrimaryMenuTextHeight)
                 .fontWeight(FontWeight.Medium)
@@ -269,7 +269,7 @@ export struct PrimaryMenu {
                   {
                     left: 4
                   } : StyleConfiguration.getSubTabsControllerStyle(this.currentBreakpoint, this.currentSideBarMode)
-                        .sideBarPrimaryMenuTextMargin)
+                  .sideBarPrimaryMenuTextMargin)
                 .textAlign(StyleConfiguration.getSubTabsControllerStyle(this.currentBreakpoint, this.currentSideBarMode)
                   .primaryMenuTextAlign)
                 .transition({ type: TransitionType.All, opacity: 0 })
@@ -277,31 +277,29 @@ export struct PrimaryMenu {
           }
           .onClick(() => {
             animateTo({ duration: 300 }, () => {
-              this.currentMainIndex = this.index
-              this.currentSubIndex = 0
-              this.mainTabsController.changeIndex(this.index)
+              this.currentMainIndex = this.index;
+              this.currentSubIndex = 0;
+              this.mainTabsController.changeIndex(this.index);
             })
           })
           .width('100%')
           .height(new BreakpointType(56, 40,
-            new SideBarMode(56, 40).GetValue(this.currentSideBarMode))
+            this.currentSideBarMode === 'list' ? 56 : 40)
             .GetValue(this.currentBreakpoint))
           .padding(StyleConfiguration.getSubTabsControllerStyle(this.currentBreakpoint, this.currentSideBarMode)
             .sideBarPrimaryMenuListPadding)
           .onAreaChange((oldVal, newVal) => {
-            animateTo({ duration: 300 }, () => {
-              if (newVal.width > 104) {
-                this.isItemWrap = false
-              } else {
-                this.isItemWrap = true
-              }
-            })
+            if (newVal.width > 104) {
+              this.isItemWrap = false;
+            } else {
+              this.isItemWrap = true;
+            }
           })
 
 
           if (this.currentMainIndex === this.index
-          && new BreakpointType(false, true, true).GetValue(this.currentBreakpoint)
-          && this.currentSideBarMode === 'tabs') {
+            && new BreakpointType(false, true, true).GetValue(this.currentBreakpoint)
+            && this.currentSideBarMode === 'tabs') {
             SecondaryMenu({
               subTitleNameList: this.subTitleNameList,
               changeIndex: this.changeIndex,
@@ -319,12 +317,13 @@ export struct PrimaryMenu {
 
 @Component
 export struct SecondaryMenu {
-  @LocalStorageProp("currentBreakpoint") currentBreakpoint: string = 'md'
-  @LocalStorageProp("currentSideBarMode") currentSideBarMode: string = 'list'
-  @Link currentSubIndex: number
-  subTitleNameList: MenuType[]
-  changeIndex: Function
-  tabsController: TabsController
+  @LocalStorageProp("currentBreakpoint") currentBreakpoint: string = 'md';
+  @LocalStorageProp("currentSideBarMode") currentSideBarMode: string = 'list';
+  @Link currentSubIndex: number | undefined;
+  subTitleNameList: MenuType[] = new Array();
+  changeIndex: Function = () => {
+  };
+  tabsController: TabsController = new TabsController();
 
   build() {
     Column() {
@@ -333,16 +332,14 @@ export struct SecondaryMenu {
           space: StyleConfiguration.getSubTabsControllerStyle(this.currentBreakpoint, this.currentSideBarMode)
             .secondMenuListSpace
         }) {
-          ForEach(this.subTitleNameList, (item, index) => {
+          ForEach(this.subTitleNameList, (item: MenuType, index: number) => {
             ListItem() {
               Column() {
                 Text(item.name)
-                  .fontSize(StyleConfiguration.getSubTabsControllerStyle(this.currentBreakpoint, this.currentSideBarMode)
-                    .getCurrentSubTabsStyle(index, this.currentSubIndex)
+                  .fontSize(StyleConfiguration.getCurrentSubTabsStyle(this.currentBreakpoint, this.currentSideBarMode, index, this.currentSubIndex)
                     .fontSize)
                   .fontWeight(FontWeight.Medium)
-                  .fontColor(StyleConfiguration.getSubTabsControllerStyle(this.currentBreakpoint, this.currentSideBarMode)
-                    .getCurrentSubTabsStyle(index, this.currentSubIndex)
+                  .fontColor(StyleConfiguration.getCurrentSubTabsStyle(this.currentBreakpoint, this.currentSideBarMode, index, this.currentSubIndex)
                     .fontColor)
                   .margin(StyleConfiguration.getSubTabsControllerStyle(this.currentBreakpoint, this.currentSideBarMode)
                     .secondMenuListItemMargin)
@@ -355,13 +352,12 @@ export struct SecondaryMenu {
               .borderRadius(8)
               .width(StyleConfiguration.getSubTabsControllerStyle(this.currentBreakpoint, this.currentSideBarMode)
                 .secondMenuListItemWidth)
-              .backgroundColor(StyleConfiguration.getSubTabsControllerStyle(this.currentBreakpoint, this.currentSideBarMode)
-                .getCurrentSubTabsStyle(index, this.currentSubIndex)
+              .backgroundColor(StyleConfiguration.getCurrentSubTabsStyle(this.currentBreakpoint, this.currentSideBarMode, index, this.currentSubIndex)
                 .backgroundColor)
             }.onClick(() => {
               animateTo({ duration: 300 }, () => {
-                this.currentSubIndex = index
-                this.changeIndex(this.tabsController, index)
+                this.currentSubIndex = index;
+                this.changeIndex(this.tabsController, index);
               })
             })
           })
@@ -378,17 +374,19 @@ export struct SecondaryMenu {
   }
 }
 
+interface MenuElement {
+  value: string;
+  action: () => void;
+  icon?: Resource;
+}
+
 @Component
 struct FootBarTools {
-  @LocalStorageProp("currentBreakpoint") currentBreakpoint: string = 'md'
-  @LocalStorageProp("currentSideBarMode") currentSideBarMode: string = 'list'
-  @State toolList: {
-    value: string,
-    action: () => void,
-    icon?: Resource
-  }[] = [
+  @LocalStorageProp("currentBreakpoint") currentBreakpoint: string = 'md';
+  @LocalStorageProp("currentSideBarMode") currentSideBarMode: string = 'list';
+  @State toolList: MenuElement[] = [
     { value: 'Menu1', action: this.callback, icon: $r('app.media.ic_favourites') },
-  ]
+  ];
 
   callback() {
   }
@@ -397,7 +395,7 @@ struct FootBarTools {
     Column() {
       List({ space: 24 }) {
         if (this.currentSideBarMode === 'tabs') {
-          ForEach(this.toolList, (item) => {
+          ForEach(this.toolList, (item: MenuElement) => {
             ListItem() {
               Image(item.icon).width(24).height(24)
             }

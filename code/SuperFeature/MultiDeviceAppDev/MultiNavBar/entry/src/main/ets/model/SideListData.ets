@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { MenuType } from './MenuType'
+import { MenuType } from './MenuType';
 
 export let sideListData: MenuType[] = [
   {
@@ -53,4 +53,4 @@ export let sideListData: MenuType[] = [
     subController_sm: new TabsController(),
     subTitleList: [{ name: $r('app.string.discovery') }, { name: $r('app.string.hot') }]
   }
-]
+];

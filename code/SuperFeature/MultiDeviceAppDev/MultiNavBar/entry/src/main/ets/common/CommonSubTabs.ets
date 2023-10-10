@@ -13,22 +13,22 @@
  * limitations under the License.
  */
 
-import { BreakpointType } from '../common/BreakpointSystem'
-import { StyleConfiguration } from '../common/Configuration'
-import { MenuType } from '../model/MenuType'
-import { RecommendationList } from './RecommendationList'
-import { SearchModule, SecondaryMenu } from './SideBarController'
+import { BreakpointType } from '../common/BreakpointSystem';
+import { StyleConfiguration } from '../common/Configuration';
+import { MenuType } from '../model/MenuType';
+import { RecommendationList } from './RecommendationList';
+import { SearchModule, SecondaryMenu } from './SideBarController';
 
 @Component
 export struct CommonSubTabs {
-  @LocalStorageProp("currentBreakpoint") currentBreakpoint: string = 'md'
-  @Link currentSubIndex: number
-  subTabsController: TabsController
-  subTabsContentList: MenuType[]
-  @LocalStorageProp("currentSideBarMode") currentSideBarMode: string = 'tabs'
+  @LocalStorageProp("currentBreakpoint") currentBreakpoint: string = 'md';
+  @Link currentSubIndex: number;
+  subTabsController: TabsController = new TabsController();
+  subTabsContentList: MenuType[] = new Array();
+  @LocalStorageProp("currentSideBarMode") currentSideBarMode: string = 'tabs';
 
   subControllerChangeIndex(subController: TabsController, index: number) {
-    subController.changeIndex(index)
+    subController.changeIndex(index);
   }
 
   build() {
@@ -67,13 +67,13 @@ export struct CommonSubTabs {
           } else {
             TabContent()
           }
-        }, item => JSON.stringify(item))
+        }, (item: MenuType) => JSON.stringify(item))
       }
       .scrollable(false)
       .layoutWeight(1)
       .barHeight(0)
       .onChange((index: number) => {
-        this.currentSubIndex = index
+        this.currentSubIndex = index;
       })
       .width('100%')
     }
@@ -82,8 +82,8 @@ export struct CommonSubTabs {
 
 @Component
 struct SubTabsContentTitle {
-  subTabsTitleName: Resource
-  @LocalStorageProp("currentBreakpoint") currentBreakpoint: string = 'md'
+  subTabsTitleName: Resource = $r('app.string.recommend');
+  @LocalStorageProp("currentBreakpoint") currentBreakpoint: string = 'md';
 
   build() {
     Row() {
