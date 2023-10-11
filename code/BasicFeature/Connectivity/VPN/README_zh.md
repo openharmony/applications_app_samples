@@ -12,23 +12,8 @@
 **使用说明**
 
 1.搭建服务器环境，服务端配置
-方法一
-`iptables -I FORWARD -j ACCEPT`
-在iptables防火墙的FORWARD链中添加规则，允许网络数据包的转发。
-
-`echo 1 > /proc/sys/net/ipv4/ip_forward`
-启用IP转发
-
-`iptables -t nat -A POSTROUTING -s 10.0.0.0/24 -o eho1 -j MASQUERADE`
-命令用于配置iptables防火墙的网络地址转换（NAT）规则
-
-`sudo ./server`
-创建服务器
-
-方法二
-可以使用/server文件夹下的setserver.sh
-
-`chmod +x setup.sh`
+使用/server文件夹下的setserver.sh
+`chmod +x setserver.sh`
 `./setserver.sh`
 
 2.运行服务器后会有创建tun成功提示
