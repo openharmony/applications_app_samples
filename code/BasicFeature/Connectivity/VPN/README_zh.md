@@ -8,6 +8,7 @@
 ![main.jpeg](sceenshots%2Fmain.jpeg)
 ![start.jpeg](sceenshots%2Fstart.jpeg)
 ![stop.jpeg](sceenshots%2Fstop.jpeg)
+![success.jpeg](sceenshots%2Fsuccess.jpeg)
 
 **使用说明**
 
@@ -52,10 +53,10 @@ VPN权限: ohos.permission.MANAGE_VPN
 
 **下载本工程**
 如需单独下载本工程，执行如下命令：
-```
+````
 git init
 git config core.sparsecheckout true
 echo code/BasicFeature/Connectivity/VPN/ > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
-```
+````
