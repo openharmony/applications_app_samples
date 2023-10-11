@@ -20,6 +20,8 @@ import hiTraceMeter from '@ohos.hiTraceMeter';
 import http from '@ohos.net.http';
 import taskpool from '@ohos.taskpool';
 import FriendMomentJsonUrl from '@ohos/chatlist/src/main/ets/utils/FriendMomentJsonUrl';
+import promptAction from '@ohos.promptAction';
+import { BusinessError } from '@ohos.base';
 
 const TAG: string = 'entry_FriendsMomentsPage';
 const ABOUT_TO_APPEAR_TRACE: string = 'FriendsPage_AboutToAppear_HiTrace';
@@ -28,6 +30,7 @@ const MAKE_LOCAL_DATA_TRACE: string = 'FriendsPage_MakeLocalData_HiTrace';
 const MAKE_LOCAL_DATA_TRACE_ID: number = 2; // makeDataLocal 中使用的 taskId
 const LAYOUT_WEIGHT: number = 1; // 自动分配剩余空间
 const LIST_SPACE: number = 8; // 列表默认间隔
+const PROMPT_DURATION: number = 3500; // 提示框持续时间
 
 @Entry
 @Component
@@ -109,8 +112,21 @@ struct FriendsMomentsPage {
     Logger.info(TAG, 'makeLocalData');
     hiTraceMeter.startTrace(MAKE_LOCAL_DATA_TRACE, MAKE_LOCAL_DATA_TRACE_ID);
     let friendMomentArray: Array<FriendMoment> = await getWebData(FriendMomentJsonUrl.FRIEND_MOMENT_JSON_URL[0]);
-    for (let i = 0; i < friendMomentArray.length; i++) {
-      this.momentData.pushData(friendMomentArray[i]);
+    if (friendMomentArray) {
+      for (let i = 0; i < friendMomentArray.length; i++) {
+        this.momentData.pushData(friendMomentArray[i]);
+      }
+    } else {
+      try {
+        promptAction.showToast({
+          message: $r('app.string.friendMomentsPage_prompt_message'),
+          duration: PROMPT_DURATION
+        });
+      } catch (error) {
+        let message = (error as BusinessError).message;
+        let code = (error as BusinessError).code;
+        Logger.info(`showToast args error code is ${code}, message is ${message}`);
+      };
     }
     hiTraceMeter.finishTrace(MAKE_LOCAL_DATA_TRACE, MAKE_LOCAL_DATA_TRACE_ID);
   }

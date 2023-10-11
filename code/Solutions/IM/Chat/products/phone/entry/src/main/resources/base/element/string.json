@@ -259,6 +259,10 @@
     {
       "name": "friendMomentsPage_message",
       "value": "评论"
+    },
+    {
+      "name": "friendMomentsPage_prompt_message",
+      "value": "当前无法链接网络，可检查网络设置是否正常。"
     }
   ]
 }
