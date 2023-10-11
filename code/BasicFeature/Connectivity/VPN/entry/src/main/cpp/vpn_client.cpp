@@ -55,9 +55,9 @@ struct FdInfo {
     struct sockaddr_in serverAddr;
 };
 
-static bool threadRunF = false;
-static std::thread threadt1;
-static std::thread threadt2;
+static bool g_threadRunF = false;
+static std::thread g_threadt1;
+static std::thread g_threadt2;
 
 static constexpr const int MAX_STRING_LENGTH = 1024;
 static std::string GetStringFromValueUtf8(napi_env env, napi_value value)
@@ -76,7 +76,7 @@ static void HandleReadTunfd(FdInfo fdInfo)
 {
     FdInfo fdInfo;
     uint8_t buffer[BUFFER_SIZE] = {0};
-    while (threadRunF) {
+    while (g_threadRunF) {
         if (fdInfo.tunFd <= 0) {
             sleep(1);
             continue;
@@ -85,13 +85,12 @@ static void HandleReadTunfd(FdInfo fdInfo)
         int ret = read(fdInfo.tunFd, buffer, sizeof(buffer));
         if (ret <= 0) {
             if (errno != EAGAIN) {
-                //    NETMANAGER_VPN_LOGE("read tun device error: %{public}d %{public}d", errno, fdInfo.tunFd);
                 sleep(1);
             }
             continue;
         }
 
-        // 读取到虚拟网卡的数据，通过tcp隧道，发送给客户端
+        // Read the data from the virtual network interface and send it to the client through a TCP tunnel.
         NETMANAGER_VPN_LOGD("buffer: %{public}s, len: %{public}d", buffer, ret);
         ret = sendto(fdInfo.tunnelFd, buffer, ret, 0, static_cast<struct sockaddr *>(&fdInfo.serverAddr),
                      sizeof(fdInfo.serverAddr));
@@ -109,7 +108,7 @@ static void HandleTcpReceived(FdInfo fdInfo)
     FdInfo fdInfo;
     int addrlen = sizeof(struct sockaddr_in);
     uint8_t buffer[BUFFER_SIZE] = {0};
-    while (threadRunF) {
+    while (g_threadRunF) {
         if (fdInfo.tunnelFd <= 0) {
             sleep(1);
             continue;
@@ -129,7 +128,7 @@ static void HandleTcpReceived(FdInfo fdInfo)
                             inet_ntoa(fdInfo.serverAddr.sin_addr), ntohs(fdInfo.serverAddr.sin_port), buffer, length);
         int ret = write(fdInfo.tunFd, buffer, length);
         if (ret <= 0) {
-            // NETMANAGER_VPN_LOGE("error Write To Tunfd, errno: %{public}d", errno);
+            NETMANAGER_VPN_LOGE("error Write To Tunfd, errno: %{public}d", errno);
         }
     }
 }
@@ -137,7 +136,8 @@ static void HandleTcpReceived(FdInfo fdInfo)
 static napi_value TcpConnect(napi_env env, napi_callback_info info)
 {
     FdInfo fdInfo;
-    size_t argc = 2;
+    size_t numArgs = 2;
+    size_t argc = numArgs;
     napi_value args[2] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
@@ -154,7 +154,7 @@ static napi_value TcpConnect(napi_env env, napi_callback_info info)
     }
 
     struct timeval timeout = {1, 0};
-    setsockopt(sockFd, SOL_SOCKET, SO_RCVTIMEO, static_cast<char *>(&timeout), sizeof(struct timeval));
+    setsockopt(sockFd, SOL_SOCKET, SO_RCVTIMEO, static_cast<std::string *>(&timeout), sizeof(struct timeval));
 
     memcpy_s(&fdInfo.serverAddr, sizeof(fdInfo.serverAddr), 0, sizeof(fdInfo.serverAddr));
     fdInfo.serverAddr.sin_family = AF_INET;
@@ -171,25 +171,26 @@ static napi_value TcpConnect(napi_env env, napi_callback_info info)
 static napi_value StartVpn(napi_env env, napi_callback_info info)
 {
     FdInfo fdInfo;
-    size_t argc = 2;
+    size_t numArgs = 2;
+    size_t argc = numArgs;
     napi_value args[2] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
     napi_get_value_int32(env, args[0], &fdInfo.tunFd);
     napi_get_value_int32(env, args[1], &fdInfo.tunnelFd);
 
-    if (threadRunF) {
-        threadRunF = false;
-        threadt1.join();
-        threadt2.join();
+    if (g_threadRunF) {
+        g_threadRunF = false;
+        g_threadt1.join();
+        g_threadt2.join();
     }
 
-    threadRunF = true;
+    g_threadRunF = true;
     std::thread tt1(HandleReadTunfd, fdInfo);
     std::thread tt2(HandleTcpReceived, fdInfo);
 
-    threadt1 = std::move(tt1);
-    threadt2 = std::move(tt2);
+    g_threadt1 = std::move(tt1);
+    g_threadt2 = std::move(tt2);
 
     NETMANAGER_VPN_LOGI("StartVpn successful\n");
 
@@ -211,10 +212,10 @@ static napi_value StopVpn(napi_env env, napi_callback_info info)
         tunnelFd = 0;
     }
 
-    if (threadRunF) {
-        threadRunF = false;
-        threadt1.join();
-        threadt2.join();
+    if (g_threadRunF) {
+        g_threadRunF = false;
+        g_threadt1.join();
+        g_threadt2.join();
     }
 
     NETMANAGER_VPN_LOGI("StopVpn successful\n");

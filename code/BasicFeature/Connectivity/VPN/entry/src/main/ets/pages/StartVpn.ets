@@ -28,7 +28,6 @@ struct StartVpn {
   @State vpnServerIp: string = '192.168.31.13'
   @State tunIp: string = '10.0.0.5'
 
-  @State routeAddr: string = '192.168.214.0'
   @State prefix: string = '24'
 
   @State blockedAppName: string = 'com.example.baidumyapplication'
@@ -109,18 +108,6 @@ struct StartVpn {
           TextInput({text:'com.example.baidumyapplication'}).onChange((value) => {
             this.blockedAppName = value
           }).width('60%').margin(2)
-        }.width('90%')
-        Row() {
-          Text('routeAddr').fontSize(30).width('40%').textAlign(TextAlign.Center)
-            .backgroundColor(0xAFEEEE)
-          TextInput({text:'192.168.214.185/24'}).onChange((value) => {
-            let stringArr = value.split('/')
-            this.routeAddr = stringArr[0]
-            this.prefix = (stringArr.length > 1) ? stringArr[1] : '24'
-          }).width('60%').margin(2).onClick(() => {
-            console.info("addr " + JSON.stringify(this.routeAddr))
-            console.info("prefix " + JSON.stringify(this.prefix))
-          })
         }.width('90%')
 
         Button('创建对象').onClick(() => {
