@@ -4012,10 +4012,12 @@ export default function abilityTest() {
         }
         // 进入页面
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.component_transition')));
-        // 点击显示
+        expect(AppStorage.get('state')).assertEqual(true); // true 表示处于显示状态
+        // 点击隐藏
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.component_transition_hide')));
         await driver.delayMs(DELAY_TIME);
-        // 点击隐藏
+        expect(AppStorage.get('state')).assertEqual(false); // false 表示处于隐藏状态
+        // 点击显示
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.component_transition_show')));
         await driver.delayMs(DELAY_TIME);
         // 返回
