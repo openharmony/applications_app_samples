@@ -14,7 +14,7 @@
  */
 
 import router from '@ohos.router';
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+import deviceManager from '@ohos.distributedDeviceManager';
 import common from '@ohos.app.ability.common';
 import { BUNDLE, ABILITY } from '../model/Const';
 import DistributedCanvasModel from '../model/DistributedCanvasModel';
@@ -42,7 +42,7 @@ struct IndexCanvas {
   @StorageLink('sessionId') globalSessionId: string = '';
   @StorageLink('canvasModel') globalObject: DistributedCanvasModel = new DistributedCanvasModel();
   @StorageLink('isOnline') globalIsOnline: boolean = false;
-  @State devices: Array<deviceManager.DeviceInfo> = [];
+  @State devices: Array<deviceManager.DeviceBasicInfo> = [];
   private canvasDataSource: CanvasDataSource = new CanvasDataSource();
 
   onPageShow() {

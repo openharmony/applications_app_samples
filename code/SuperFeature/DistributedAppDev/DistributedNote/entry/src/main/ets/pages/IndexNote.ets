@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+import deviceManager from '@ohos.distributedDeviceManager';
 import router from '@ohos.router';
 import common from '@ohos.app.ability.common';
 import { BUNDLE, ABILITY } from '../model/Const';
@@ -36,7 +36,7 @@ struct IndexNote {
   private sessionId: string = '';
   @StorageLink('sessionId') globalSessionId: string = '';
   @StorageLink('objectModel') globalObject: DistributedObjectModel = new DistributedObjectModel();
-  @State devices: Array<deviceManager.DeviceInfo> = [];
+  @State devices: Array<deviceManager.DeviceBasicInfo> = [];
   @State isOnline: boolean = false;
   @State notes: Array<Note> = [];
   private noteDataSource : NoteDataSource = new NoteDataSource();
