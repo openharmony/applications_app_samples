@@ -1,3 +1,18 @@
+/*
+* Copyright (c) 2023 Huawei Device Co., Ltd.
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+  *
+  *     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
 #include "napi/native_api.h"
 #include "hilog/log.h"
 
@@ -141,7 +156,7 @@ static napi_value TcpConnect(napi_env env, napi_callback_info info)
     struct timeval timeout = {1, 0};
     setsockopt(sockFd, SOL_SOCKET, SO_RCVTIMEO, static_cast<char *>(&timeout), sizeof(struct timeval));
 
-    memcpy_s(&fdInfo.serverAddr, 0, sizeof(fdInfo.serverAddr));
+    memcpy_s(&fdInfo.serverAddr, sizeof(fdInfo.serverAddr), 0, sizeof(fdInfo.serverAddr));
     fdInfo.serverAddr.sin_family = AF_INET;
     fdInfo.serverAddr.sin_addr.s_addr = inet_addr(ipAddr.c_str()); // server's IP addr
     fdInfo.serverAddr.sin_port = htons(port);                      // port
@@ -222,8 +237,7 @@ static napi_value Init(napi_env env, napi_value exports)
 }
 EXTERN_C_END
 
-static napi_module demoModule =
-{
+static napi_module demoModule = {
     .nm_version = 1,
     .nm_flags = 0,
     .nm_filename = nullptr,
