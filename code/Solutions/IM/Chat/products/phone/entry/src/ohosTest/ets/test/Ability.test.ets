@@ -22,6 +22,8 @@ import Want from '@ohos.app.ability.Want';
 const BUNDLE = 'Chat';
 const TAG = '[Sample_Chat_Test]';
 const delegator = AbilityDelegatorRegistry.getAbilityDelegator();
+// 设置图片数组的索引值
+const imageIndex = 1;
 
 // 资源本地化
 async function getResourceString<T extends Resource>(resource: T): Promise<string> {
@@ -92,31 +94,77 @@ export default function abilityTest() {
     })
 
     /**
-     * 朋友圈测试
+     * 并发场景测试
      */
-    it(BUNDLE + 'ChatCommunityFunction_001', 0, async (done: Function) => {
-      Logger.info(TAG, BUNDLE + 'ChatCommunityFunction_001 begin')
-      let driver = Driver.create()
-      await driver.delayMs(1000)
-      Logger.info(TAG, BUNDLE + 'ChatCommunityFunction_001 clickDiscover')
+    it(BUNDLE + 'TaskPoolFunction_001', 0, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}TaskPoolFunction_001 begin`);
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      Logger.info(TAG, `${BUNDLE}TaskPoolFunction_001 clickDiscover`);
       // 点击发现
-      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.discovery'))))
-      let discover = await driver.findComponent(ON.text(await getResourceString($r('app.string.discovery'))))
-      await discover.click()
-      await driver.delayMs(1000)
-      Logger.info(TAG, BUNDLE + 'ChatCommunityFunction_001 clickChatCommunity')
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.discovery'))));
+      let discover = await driver.findComponent(ON.text(await getResourceString($r('app.string.discovery'))));
+      await discover.click();
+      await driver.delayMs(1000);
+      Logger.info(TAG, `${BUNDLE}TaskPoolFunction_001 clickChatCommunity`);
       // 点击朋友圈
-      await driver.assertComponentExist(ON.id('chatCommunity'))
-      let chatCommunity = await driver.findComponent(ON.id('chatCommunity'))
-      await chatCommunity.click()
-      await driver.delayMs(1000)
-      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.circle'))))
-      Logger.info(TAG, BUNDLE + 'ChatCommunityFunction_001 backToDiscover')
-      await driver.pressBack()
-      await driver.delayMs(1000)
-      await driver.assertComponentExist(ON.id('chatCommunity'))
-      Logger.info(TAG, BUNDLE + 'ChatCommunityFunction_001 end')
-      done()
+      await driver.assertComponentExist(ON.id('chatCommunity'));
+      let chatCommunity = await driver.findComponent(ON.id('chatCommunity'));
+      await chatCommunity.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.circle'))));
+      await driver.delayMs(2000);
+      await driver.assertComponentExist(ON.id('userImage'));
+      await driver.delayMs(1000);
+      // 点击单张图片
+      Logger.info(TAG, `${BUNDLE}TaskPoolFunction_001 clickSingleImage`);
+      let singleImage = await driver.findComponent(ON.id('singleImage'));
+      await singleImage.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('mediaPage'));
+      await driver.pressBack();
+      await driver.delayMs(1000);
+      // 点击多张图片
+      Logger.info(TAG, `${BUNDLE}TaskPoolFunction_001 clickMultipleImage`);
+      let imageArray = await driver.findComponent(ON.id(`${imageIndex}`));
+      await imageArray.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('mediaPage'));
+      await driver.assertComponentExist(ON.id('swiperImage'));
+      await driver.delayMs(1000);
+      await driver.swipe(0, 500, 600, 500, 600);
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('swiperImage'));
+      await driver.swipe(600, 500, 0, 500, 600);
+      await driver.delayMs(1000);
+      await driver.swipe(600, 500, 0, 500, 600);
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('swiperImage'));
+      await driver.swipe(600, 500, 0, 500, 600);
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('swiperImage'));
+      await driver.pressBack();
+      await driver.delayMs(1000);
+      // 点击视频
+      Logger.info(TAG, `${BUNDLE}TaskPoolFunction_001 clickVideoComponent`);
+      let videoComponent = await driver.findComponent(ON.id('videoComponent'));
+      await videoComponent.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('mediaPage'));
+      await driver.pressBack();
+      await driver.delayMs(1000);
+      // 滑动页面 循环连续向上滑动10次
+      for (let index = 0; index < 10; index++) {
+        await driver.swipe(0, 1200, 0, 100, 600);
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.id('userImage'));
+      }
+      Logger.info(TAG, `${BUNDLE}TaskPoolFunction_001 backToDiscover`);
+      await driver.pressBack();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('chatCommunity'));
+      Logger.info(TAG, `${BUNDLE}TaskPoolFunction_001 end`);
+      done();
     })
   })
 }
