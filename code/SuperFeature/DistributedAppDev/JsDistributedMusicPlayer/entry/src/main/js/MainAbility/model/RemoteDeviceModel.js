@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import deviceManager from '@ohos.distributedHardware.deviceManager'
+import deviceManager from '@ohos.distributedDeviceManager'
 import { logger } from '../model/Logger'
 
 var SUBSCRIBE_ID = 100
@@ -33,15 +33,11 @@ export default class RemoteDeviceModel {
     if (typeof (this.#deviceManager) === 'undefined') {
       logger.info(TAG, `deviceManager.createDeviceManager begin`)
       try {
-        deviceManager.createDeviceManager('ohos.samples.distributedmusicplayer', (error, value) => {
-          if (error) {
-            logger.error(TAG, `createDeviceManager failed.`)
-            return
-          }
-          this.#deviceManager = value
-          this.registerDeviceListCallback_(callback)
-          logger.info(TAG, `createDeviceManager callback returned, error=${error} value=${value}`)
-        })
+        let dmInstance = deviceManager.createDeviceManager('ohos.samples.distributedmusicplayer');
+        logger.info(TAG, `dmInstance= ${JSON.stringify (dmInstance)}`)
+        this.#deviceManager = dmInstance
+        this.registerDeviceListCallback_(callback)
+        logger.info(TAG, `createDeviceManager callback returned, value= ${JSON.stringify(this.#deviceManager)}`)
       } catch (error) {
         logger.info(TAG, `createDeviceManager throw error, error=${error} message=${error.message}`)
       }
@@ -62,7 +58,7 @@ export default class RemoteDeviceModel {
 
     logger.info(TAG, `getTrustedDeviceListSync begin`)
     try {
-      var list = this.#deviceManager.getTrustedDeviceListSync()
+      var list = this.#deviceManager.getAvailableDeviceListSync()
       logger.debug(TAG, `getTrustedDeviceListSync end, deviceList=${JSON.stringify(list)}`)
       if (typeof (list) != 'undefined' && typeof (list.length) != 'undefined') {
         this.deviceList = list
@@ -77,12 +73,12 @@ export default class RemoteDeviceModel {
       this.#deviceManager.on('deviceStateChange', (data) => {
         logger.debug(TAG, `deviceStateChange data=${JSON.stringify(data)}`)
         switch (data.action) {
-          case deviceManager.DeviceStateChangeAction.READY:
+          case deviceManager.DeviceStateChange.AVAILABLE:
             this.discoverList = []
             this.deviceList.push(data.device)
             logger.debug(TAG, `ready, updated device list=${JSON.stringify(this.deviceList)}`)
             try {
-              let list = this.deviceManager.getTrustedDeviceListSync()
+              let list = this.deviceManager.getAvailableDeviceListSync()
               logger.debug(TAG, `getTrustedDeviceListSync end, deviceList=${JSON.stringify(list)}`)
               if (typeof (list) !== 'undefined' && typeof (list.length) !== 'undefined') {
                 this.deviceList = list
@@ -92,7 +88,7 @@ export default class RemoteDeviceModel {
             }
             this.callback()
             break
-          case deviceManager.DeviceStateChangeAction.OFFLINE:
+          case deviceManager.DeviceStateChange.UNAVAILABLE:
             if (this.deviceList.length > 0) {
               let list = []
               for (let j = 0; j < this.deviceList.length; j++) {
@@ -109,9 +105,9 @@ export default class RemoteDeviceModel {
             break
         }
       })
-      this.#deviceManager.on('deviceFound', (data) => {
+      this.#deviceManager.on('discoverSuccess', (data) => {
         this.discoverList = [];
-        logger.debug(TAG, `deviceFound data=${JSON.stringify(data)} deviceList=${this.deviceList} length=${this.deviceList.length}`)
+        logger.debug(TAG, `discoverSuccess data=${JSON.stringify(data)} deviceList=${this.deviceList} length=${this.deviceList.length}`)
         for (var i = 0; i < this.discoverList.length; i++) {
           if (this.discoverList[i].deviceId === data.device.deviceId) {
             logger.info(TAG, `device founded, ignored`)
@@ -121,8 +117,8 @@ export default class RemoteDeviceModel {
         this.discoverList[this.discoverList.length] = data.device
         this.callback()
       })
-      this.#deviceManager.on('discoverFail', (data) => {
-        logger.debug(TAG, `discoverFail data=${JSON.stringify(data)}`)
+      this.#deviceManager.on('discoverFailure', (data) => {
+        logger.debug(TAG, `discoverFailure data=${JSON.stringify(data)}`)
       })
       this.#deviceManager.on('serviceDie', () => {
         logger.error(TAG, `serviceDie`)
@@ -132,55 +128,51 @@ export default class RemoteDeviceModel {
     }
 
 
-    SUBSCRIBE_ID = Math.floor(65536 * Math.random())
-    var info = {
-      subscribeId: SUBSCRIBE_ID,
-      mode: 0xAA,
-      medium: 2,
-      freq: 2,
-      isSameAccount: false,
-      isWakeRemote: true,
-      capability: 0
-    }
-    logger.debug(`startDeviceDiscovery ${SUBSCRIBE_ID}`)
+    let discoverParam = {
+      'discoverTargetType': 1
+    };
+    let filterOptions = {
+      'availableStatus': 0
+    };
+    logger.info(TAG, `startDiscovering${SUBSCRIBE_ID}`)
     try {
-      this.#deviceManager.startDeviceDiscovery(info)
+      if (this.deviceManager !== null) {
+        this.#deviceManager.startDiscovering(discoverParam, filterOptions)
+      }
     } catch (error) {
-      logger.info(TAG, `startDeviceDiscovery throw error, error=${error} message=${error.message}`)
+      logger.error(TAG, `startDiscovering throw code:${error.code} message:${error.message}`)
     }
   }
 
   authDevice(deviceId, callback) {
     logger.debug(TAG, `authDevice ${deviceId}`)
-    for (var i = 0; i < this.discoverList.length; i++) {
-      if (this.discoverList[i].deviceId === deviceId) {
-        logger.info(TAG, `device founded, ignored`)
-        let extraInfo = {
-          "targetPkgName": 'ohos.samples.distributedmusicplayer',
-          "appName": 'Music',
-          "appDescription": 'Music player application',
-          "business": '0'
-        }
-        let authParam = {
-          "authType": 1,
-          "appIcon": '',
-          "appThumbnail": '',
-          "extraInfo": extraInfo
-        }
-        logger.debug(TAG, `authenticateDevice ${JSON.stringify(this.discoverList[i])}`)
-        try {
-          this.#deviceManager.authenticateDevice(this.discoverList[i], authParam, (err, data) => {
+    for (let i = 0; i < this.discoverDevices.length; i++) {
+      if (this.discoverDevices[i].deviceId !== deviceId) {
+        continue
+      }
+      if (this.#deviceManager === undefined) {
+        return
+      }
+      logger.debug(TAG, `authenticateDevice ${JSON.stringify(this.discoverList[i])}`)
+      try {
+        if (this.deviceManager !== null) {
+          this.#deviceManager.bindTarget(deviceId, {
+            bindType: 1,
+            targetPkgName: 'ohos.samples.distributedmusicplayer',
+            appName: 'Music',
+          }, (err, data) => {
             if (err) {
-              logger.error(TAG, `authenticateDevice failed, err=${JSON.stringify(err)}`)
-              this.authCallback = null
-            } else {
-              logger.debug(TAG, `authenticateDevice succeed, data=${JSON.stringify(data)}`)
-              this.authCallback = callback
+              logger.error(TAG, `authenticateDevice error: ${JSON.stringify(err)}`)
+              this.authCallback = () => {
+              }
+              return
             }
+            logger.debug(TAG, `authenticateDevice succeed: ${JSON.stringify(data)}`)
+            this.authCallback = callback
           })
-        } catch (error) {
-          logger.info(TAG, `authenticateDevice throw error, error=${error} message=${error.message}`)
         }
+      } catch (error) {
+        logger.error(TAG, `authenticateDevice throw throw code:${error.code} message:${error.message}`)
       }
     }
   }
@@ -191,10 +183,10 @@ export default class RemoteDeviceModel {
       return
     }
     try {
-      this.#deviceManager.stopDeviceDiscovery(SUBSCRIBE_ID)
+      this.#deviceManager.stopDiscovering(SUBSCRIBE_ID)
       this.#deviceManager.off('deviceStateChange')
-      this.#deviceManager.off('deviceFound')
-      this.#deviceManager.off('discoverFail')
+      this.#deviceManager.off('discoverSuccess')
+      this.#deviceManager.off('discoverFailure')
       this.#deviceManager.off('serviceDie')
       this.deviceList = []
     } catch (error) {
