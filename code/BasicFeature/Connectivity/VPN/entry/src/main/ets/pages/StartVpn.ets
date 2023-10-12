@@ -87,6 +87,7 @@ struct StartVpn {
           })
 
         Row() {
+          //ip address of server
           Text('server ip').fontSize(30).width('40%').textAlign(TextAlign.Center)
             .backgroundColor(0xAFEEEE)
           TextInput({text:'192.168.31.13'}).onChange((value) => {
@@ -95,6 +96,7 @@ struct StartVpn {
         }.width('90%')
 
         Row() {
+          //ip address of tun-vpn on server
           Text('tun ip').fontSize(30).width('40%').textAlign(TextAlign.Center)
             .backgroundColor(0xAFEEEE)
           TextInput({text:'10.0.0.5'}).onChange((value) => {
@@ -103,6 +105,7 @@ struct StartVpn {
         }.width('90%')
 
         Row() {
+          //blocked Hap
           Text('blockedApp').fontSize(30).width('40%').textAlign(TextAlign.Center)
             .backgroundColor(0xAFEEEE)
           TextInput({text:'com.example.baidumyapplication'}).onChange((value) => {
