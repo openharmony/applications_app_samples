@@ -29,7 +29,7 @@ struct MailBox {
   build() {
     GridRow() {
       GridCol({ span: { sm: 12, md: 12, lg: 12 } }) {
-        SideBarContainer(SideBarContainerType.Embed) {
+        SideBarContainer(SideBarContainerType.AUTO) {
           // Area A
           Column() {
             MailSideBar()
@@ -46,10 +46,10 @@ struct MailBox {
           }.height('100%').width('100%')
         }
         .sideBarWidth(this.sideBarWidth)
+        .minSideBarWidth(240)
+        .minContentWidth(this.currentBreakPoint === 'sm' ? 360 : 600)
         .controlButton({ left: 24, top: 40, width: 24, height: 24 })
-        .maxSideBarWidth(this.sideBarWidth)
-        .minSideBarWidth(239)
-        .minContentWidth(600)
+        .showSideBar(this.currentBreakPoint === 'lg')
         .onChange((value: boolean) => {
           this.isFold = value
         })
