@@ -13,6 +13,10 @@
 **使用说明**
 
 1.搭建服务器环境，服务端配置
+命令用于配置iptables防火墙的网络地址转换（NAT）规则
+其中eth1:具备网络连通性的以太网端口标识
+`iptables -t nat -A POSTROUTING -s 10.0.0.0/24 -o "eth1" -j MASQUERADE`
+
 使用/server文件夹下的setserver.sh
 `chmod +x setserver.sh`
 `./setserver.sh`
