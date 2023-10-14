@@ -55,7 +55,7 @@ struct FdInfo {
     struct sockaddr_in serverAddr;
 };
 
-static FdInfo fdInfo;
+static FdInfo g_fdInfo;
 static bool g_threadRunF = false;
 static std::thread g_threadt1;
 static std::thread g_threadt2;
@@ -132,7 +132,6 @@ static void HandleTcpReceived(FdInfo fdInfo)
 
 static napi_value TcpConnect(napi_env env, napi_callback_info info)
 {
-    FdInfo fdInfo;
     size_t numArgs = 2;
     size_t argc = numArgs;
     napi_value args[2] = {nullptr};
@@ -153,10 +152,10 @@ static napi_value TcpConnect(napi_env env, napi_callback_info info)
     struct timeval timeout = {1, 0};
     setsockopt(sockFd, SOL_SOCKET, SO_RCVTIMEO, (char *)&timeout, sizeof(struct timeval));
 
-    memset(&fdInfo.serverAddr, 0, sizeof(fdInfo.serverAddr));
-    fdInfo.serverAddr.sin_family = AF_INET;
-    fdInfo.serverAddr.sin_addr.s_addr = inet_addr(ipAddr.c_str()); // server's IP addr
-    fdInfo.serverAddr.sin_port = htons(port);                      // port
+    memset(&g_fdInfo.serverAddr, 0, sizeof(g_fdInfo.serverAddr));
+    g_fdInfo.serverAddr.sin_family = AF_INET;
+    g_fdInfo.serverAddr.sin_addr.s_addr = inet_addr(ipAddr.c_str()); // server's IP addr
+    g_fdInfo.serverAddr.sin_port = htons(port);                      // port
 
     NETMANAGER_VPN_LOGI("Connection successful\n");
 
@@ -167,14 +166,13 @@ static napi_value TcpConnect(napi_env env, napi_callback_info info)
 
 static napi_value StartVpn(napi_env env, napi_callback_info info)
 {
-    FdInfo fdInfo;
     size_t numArgs = 2;
     size_t argc = numArgs;
     napi_value args[2] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
-    napi_get_value_int32(env, args[0], &fdInfo.tunFd);
-    napi_get_value_int32(env, args[1], &fdInfo.tunnelFd);
+    napi_get_value_int32(env, args[0], &g_fdInfo.tunFd);
+    napi_get_value_int32(env, args[1], &g_fdInfo.tunnelFd);
 
     if (g_threadRunF) {
         g_threadRunF = false;
@@ -183,8 +181,8 @@ static napi_value StartVpn(napi_env env, napi_callback_info info)
     }
 
     g_threadRunF = true;
-    std::thread tt1(HandleReadTunfd, fdInfo);
-    std::thread tt2(HandleTcpReceived, fdInfo);
+    std::thread tt1(HandleReadTunfd, g_fdInfo);
+    std::thread tt2(HandleTcpReceived, g_fdInfo);
 
     g_threadt1 = std::move(tt1);
     g_threadt2 = std::move(tt2);
