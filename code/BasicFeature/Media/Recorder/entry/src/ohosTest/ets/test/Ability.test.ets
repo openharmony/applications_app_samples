@@ -21,6 +21,7 @@ import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 
 const TAG = '[Sample_Recorder]';
 const BUNDLE = 'Recorder_';
+const RENAMED = 'renamed' + new Date().getTime();
 let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
 let ability;
 
@@ -57,6 +58,9 @@ export default function abilityTest() {
   let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
   let driver: Driver = Driver.create();
   describe('ActsAbilityTest', function () {
+    /**
+     * 拉起应用
+     */
     it(BUNDLE + 'StartAbility_001', 0, async function (done) {
       logger.info(TAG, BUNDLE + 'StartAbility_001 begin');
       let want = {
@@ -117,7 +121,7 @@ export default function abilityTest() {
     })
 
     /**
-     * 录音功能,录音界面，暂停继续录制功能
+     * 录音功能，录音界面，暂停继续录制功能
      */
     it(BUNDLE + 'RecordePage_002', 0, async function (done) {
       logger.info(TAG, BUNDLE + 'RecordePage_002 begin');
@@ -142,7 +146,7 @@ export default function abilityTest() {
     })
 
     /**
-     * 录音功能,录音界面，停止录音功能
+     * 录音功能，录音界面，停止录音功能
      */
     it(BUNDLE + 'RecordePage_003', 0, async function (done) {
       logger.info(TAG, BUNDLE + 'RecordePage_003 begin');
@@ -314,19 +318,74 @@ export default function abilityTest() {
         await checkedRename.click();
         await driver.assertComponentExist(ON.type('TextInput'));
         let renameInput = await driver.findComponent(ON.type('TextInput'));
-        await renameInput.inputText('recorderRenamed');
+        await renameInput.inputText(RENAMED);
         await driver.assertComponentExist(ON.text('确定', MatchPattern.CONTAINS));
         let sure = await driver.findComponent(ON.text('确定', MatchPattern.CONTAINS));
         await sure.click();
-        await driver.delayMs(500);
-        await driver.assertComponentExist(ON.text('recorderRenamed', MatchPattern.CONTAINS));
+        await driver.assertComponentExist(ON.text('renamed', MatchPattern.CONTAINS));
       }
       logger.info(TAG, BUNDLE + 'SlideAudioItem_001 end');
       done();
     })
 
     /**
-     * 首页，已有录音，多选状态和推出多选状态
+     * 首页，重新录一条音频，并将其重命名为跟前面重命名文件同样名字
+     */
+    it(BUNDLE + 'RenameRepeat_001', 0, async function (done) {
+      logger.info(TAG, BUNDLE + 'RenameRepeat_001 begin');
+      await driver.delayMs(1000);
+      // 录制前的音频文件数量
+      let sAudios: Component[] = await driver.findComponents(ON.type('ListItem'));
+      sAudios = componentNullAble(sAudios);
+      // 重新录一条音频
+      await driver.assertComponentExist(ON.id('btnRecord'));
+      let btnRecord = await driver.findComponent(ON.id('btnRecord'));
+      await btnRecord.click();
+      await driver.delayMs(2000);
+      await driver.assertComponentExist(ON.id('finishRecord'));
+      let finishRecord = await driver.findComponent(ON.id('finishRecord'));
+      await finishRecord.click();
+      await driver.delayMs(500);
+      // 录制后的音频文件数量
+      let eAudios: Component[] = await driver.findComponents(ON.type('ListItem'));
+      eAudios = componentNullAble(eAudios);
+      expect(sAudios.length + 1).assertEqual(eAudios.length);
+      // 如果有至少2个录音文件
+      if (eAudios.length >= 2) {
+
+        // 坐标基于设备RK3568，左滑第二个文件，点击一下退出左滑状态
+        await driver.swipe(500, 400, 367, 400, 500);
+        await driver.delayMs(1000);
+        await eAudios[1].click();
+        // 长按，勾选，并重命名第二个文件
+        await driver.delayMs(1000);
+        await eAudios[1].longClick();
+        await driver.delayMs(1000);
+        await eAudios[1].click();
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.id('checkedRename'));
+        let checkedRename = await driver.findComponent(ON.id('checkedRename'));
+        await driver.delayMs(1000);
+        await checkedRename.click();
+        await driver.assertComponentExist(ON.type('TextInput'));
+        let renameInput = await driver.findComponent(ON.type('TextInput'));
+
+        await renameInput.inputText(RENAMED);
+        await driver.assertComponentExist(ON.text('确定', MatchPattern.CONTAINS));
+        let sure = await driver.findComponent(ON.text('确定', MatchPattern.CONTAINS));
+        await sure.click();
+        // 同样名称RENAMED的音频文件应该只有一个
+        await driver.assertComponentExist(ON.text(RENAMED));
+        let renameAudios: Component[] = await driver.findComponents(ON.text(RENAMED));
+        renameAudios = componentNullAble(renameAudios);
+        expect(renameAudios.length).assertEqual(1);
+      }
+      logger.info(TAG, BUNDLE + 'RenameRepeat_001 end');
+      done();
+    })
+
+    /**
+     * 首页，已有录音，多选状态和退出多选状态
      */
     it(BUNDLE + 'CheckState_001', 0, async function (done) {
       logger.info(TAG, BUNDLE + 'CheckState_001 begin');
