@@ -30,6 +30,8 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
+#define VPN_LOG_TAG "NetMgrVpn"
+#define VPN_LOG_DOMAIN 0x15b0
 #define MAKE_FILE_NAME (strrchr(__FILE__, '/') + 1)
 
 #define NETMANAGER_VPN_LOGE(fmt, ...)                                                                                  \
@@ -44,10 +46,8 @@
     OH_LOG_Print(LOG_APP, LOG_DEBUG, VPN_LOG_DOMAIN, VPN_LOG_TAG, "vpn [%{public}s %{public}d] " fmt, MAKE_FILE_NAME,  \
                  __LINE__, ##__VA_ARGS__)
 
-constexpr string VPN_LOG_TAG = "NetMgrVpn";
-constexpr int VPN_LOG_DOMAIN = 0x15b0;
 constexpr int BUFFER_SIZE = 2048;
-constexpr int EAGAIN = 11;
+constexpr int ERRORAGAIN = 11;
 
 struct FdInfo {
     int32_t tunFd = 0;
@@ -55,6 +55,7 @@ struct FdInfo {
     struct sockaddr_in serverAddr;
 };
 
+static FdInfo fdInfo;
 static bool g_threadRunF = false;
 static std::thread g_threadt1;
 static std::thread g_threadt2;
@@ -74,7 +75,6 @@ static std::string GetStringFromValueUtf8(napi_env env, napi_value value)
 
 static void HandleReadTunfd(FdInfo fdInfo)
 {
-    FdInfo fdInfo;
     uint8_t buffer[BUFFER_SIZE] = {0};
     while (g_threadRunF) {
         if (fdInfo.tunFd <= 0) {
@@ -84,7 +84,7 @@ static void HandleReadTunfd(FdInfo fdInfo)
 
         int ret = read(fdInfo.tunFd, buffer, sizeof(buffer));
         if (ret <= 0) {
-            if (errno != EAGAIN) {
+            if (errno != ERRORAGAIN) {
                 sleep(1);
             }
             continue;
@@ -92,8 +92,7 @@ static void HandleReadTunfd(FdInfo fdInfo)
 
         // Read the data from the virtual network interface and send it to the client through a TCP tunnel.
         NETMANAGER_VPN_LOGD("buffer: %{public}s, len: %{public}d", buffer, ret);
-        ret = sendto(fdInfo.tunnelFd, buffer, ret, 0, static_cast<struct sockaddr *>(&fdInfo.serverAddr),
-                     sizeof(fdInfo.serverAddr));
+        ret = sendto(fdInfo.tunnelFd, buffer, ret, 0, (struct sockaddr *)&fdInfo.serverAddr, sizeof(fdInfo.serverAddr));
         if (ret <= 0) {
             NETMANAGER_VPN_LOGE("send to server[%{public}s:%{public}d] failed, ret: %{public}d, error: %{public}s",
                                 inet_ntoa(fdInfo.serverAddr.sin_addr), ntohs(fdInfo.serverAddr.sin_port), ret,
@@ -105,7 +104,6 @@ static void HandleReadTunfd(FdInfo fdInfo)
 
 static void HandleTcpReceived(FdInfo fdInfo)
 {
-    FdInfo fdInfo;
     int addrlen = sizeof(struct sockaddr_in);
     uint8_t buffer[BUFFER_SIZE] = {0};
     while (g_threadRunF) {
@@ -114,9 +112,8 @@ static void HandleTcpReceived(FdInfo fdInfo)
             continue;
         }
 
-        int length = recvfrom(fdInfo.tunnelFd, buffer, sizeof(buffer), 0,
-                              static_cast<struct sockaddr *>(&fdInfo.serverAddr),
-                              static_cast<socklen_t *>(&addrlen));
+        int length = recvfrom(fdInfo.tunnelFd, buffer, sizeof(buffer), 0, (struct sockaddr *)&fdInfo.serverAddr,
+                              (socklen_t *)&addrlen);
         if (length < 0) {
             if (errno != EAGAIN) {
                 NETMANAGER_VPN_LOGE("read tun device error: %{public}d %{public}d", errno, fdInfo.tunnelFd);
@@ -154,9 +151,9 @@ static napi_value TcpConnect(napi_env env, napi_callback_info info)
     }
 
     struct timeval timeout = {1, 0};
-    setsockopt(sockFd, SOL_SOCKET, SO_RCVTIMEO, static_cast<std::string *>(&timeout), sizeof(struct timeval));
+    setsockopt(sockFd, SOL_SOCKET, SO_RCVTIMEO, (char *)&timeout, sizeof(struct timeval));
 
-    memcpy_s(&fdInfo.serverAddr, sizeof(fdInfo.serverAddr), 0, sizeof(fdInfo.serverAddr));
+    memset(&fdInfo.serverAddr, 0, sizeof(fdInfo.serverAddr));
     fdInfo.serverAddr.sin_family = AF_INET;
     fdInfo.serverAddr.sin_addr.s_addr = inet_addr(ipAddr.c_str()); // server's IP addr
     fdInfo.serverAddr.sin_port = htons(port);                      // port

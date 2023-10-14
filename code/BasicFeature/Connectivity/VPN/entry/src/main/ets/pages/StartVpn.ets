@@ -40,30 +40,57 @@ struct StartVpn {
 
   Protect() {
     console.info("vpn Protect")
-    this.VpnConnection.protect(g_tunnelFd).then(function () {
+    this.VpnConnection.protect(g_tunnelFd).then(() => {
       console.info("vpn Protect Success ")
-    }).catch(function (err) {
+    }).catch((err : Error) => {
       console.info("vpn Protect Failed " + JSON.stringify(err))
     })
   }
 
   SetupVpn() {
     console.info("vpn SetupVpn")
-    let config = {
-      addresses: [{
-        address: {
-          address: this.tunIp,
-          family: 1
-        },
-        prefixLength: 24,
-      }],
-      mtu: 1400,
-      dnsAddresses: [
-        "114.114.114.114"
-      ],
-      trustedApplications: [],
-      blockedApplications: [ this.blockedAppName ]
+    class Address {
+      address: string;
+      family: number;
+
+      constructor(address: string, family: number) {
+        this.address = address;
+        this.family = family;
+      }
     }
+
+    class AddressWithPrefix {
+      address: Address;
+      prefixLength: number;
+
+      constructor(address: Address, prefixLength: number) {
+        this.address = address;
+        this.prefixLength = prefixLength;
+      }
+    }
+
+    class Config {
+      addresses: AddressWithPrefix[];
+      mtu: number;
+      dnsAddresses: string[];
+      trustedApplications: string[];
+      blockedApplications: string[];
+
+      constructor(
+        tunIp: string,
+        blockedAppName: string
+      ) {
+        this.addresses = [
+          new AddressWithPrefix(new Address(tunIp, 1), 24)
+        ];
+        this.mtu = 1400;
+        this.dnsAddresses = ["114.114.114.114"];
+        this.trustedApplications = [];
+        this.blockedApplications = [blockedAppName];
+      }
+    }
+
+    let config = new Config("yourTunIp", "yourBlockedAppName");
 
     try {
       this.VpnConnection.setUp(config, (error, data) => {

@@ -35,10 +35,9 @@ struct StopVpn {
   Destroy() {
     console.info("vpn Destroy")
     vpn_client.stopVpn(g_tunnelFd)
-    // @ts-ignore
-    this.VpnConnection.destroy().then(function () {
+    this.VpnConnection.destroy().then(() => {
       console.info("vpn Destroy Success ")
-    }).catch(function (err) {
+    }).catch((err : Error) => {
       console.info("vpn Destroy Failed " + JSON.stringify(err))
     })
   }
