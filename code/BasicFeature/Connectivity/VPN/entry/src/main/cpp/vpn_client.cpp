@@ -90,7 +90,8 @@ static void HandleReadTunfd(FdInfo fdInfo)
 
         // Read the data from the virtual network interface and send it to the client through a TCP tunnel.
         NETMANAGER_VPN_LOGD("buffer: %{public}s, len: %{public}d", buffer, ret);
-        ret = sendto(fdInfo.tunnelFd, buffer, ret, 0, (struct sockaddr *)&fdInfo.serverAddr, sizeof(fdInfo.serverAddr));
+        ret = sendto(fdInfo.tunnelFd, buffer, ret, 0,
+                     reinterpret_cast<struct sockaddr *>(&fdInfo.serverAddr), sizeof(fdInfo.serverAddr));
         if (ret <= 0) {
             NETMANAGER_VPN_LOGE("send to server[%{public}s:%{public}d] failed, ret: %{public}d, error: %{public}s",
                                 inet_ntoa(fdInfo.serverAddr.sin_addr), ntohs(fdInfo.serverAddr.sin_port), ret,
@@ -110,8 +111,9 @@ static void HandleTcpReceived(FdInfo fdInfo)
             continue;
         }
 
-        int length = recvfrom(fdInfo.tunnelFd, buffer, sizeof(buffer), 0, (struct sockaddr *)&fdInfo.serverAddr,
-                              (socklen_t *)&addrlen);
+        int length = recvfrom(fdInfo.tunnelFd, buffer, sizeof(buffer), 0,
+                              reinterpret_cast<struct sockaddr *>(&fdInfo.serverAddr),
+                              reinterpret_cast<socklen_t *>(&addrlen));
         if (length < 0) {
             if (errno != EAGAIN) {
                 NETMANAGER_VPN_LOGE("read tun device error: %{public}d %{public}d", errno, fdInfo.tunnelFd);
@@ -148,7 +150,7 @@ static napi_value TcpConnect(napi_env env, napi_callback_info info)
     }
 
     struct timeval timeout = {1, 0};
-    setsockopt(sockFd, SOL_SOCKET, SO_RCVTIMEO, (char *)&timeout, sizeof(struct timeval));
+    setsockopt(sockFd, SOL_SOCKET, SO_RCVTIMEO, reinterpret_cast<char *>(&timeout), sizeof(struct timeval));
 
     memset(&g_fdInfo.serverAddr, 0, sizeof(g_fdInfo.serverAddr));
     g_fdInfo.serverAddr.sin_family = AF_INET;
