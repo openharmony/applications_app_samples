@@ -30,20 +30,18 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
-#define VPN_LOG_TAG "NetMgrVpn"
-#define VPN_LOG_DOMAIN 0x15b0
 #define MAKE_FILE_NAME (strrchr(__FILE__, '/') + 1)
 
 #define NETMANAGER_VPN_LOGE(fmt, ...)                                                                                  \
-    OH_LOG_Print(LOG_APP, LOG_ERROR, VPN_LOG_DOMAIN, VPN_LOG_TAG, "vpn [%{public}s %{public}d] " fmt, MAKE_FILE_NAME,  \
+    OH_LOG_Print(LOG_APP, LOG_ERROR, 0x15b0, "NetMgrVpn", "vpn [%{public}s %{public}d] " fmt, MAKE_FILE_NAME,  \
                  __LINE__, ##__VA_ARGS__)
 
 #define NETMANAGER_VPN_LOGI(fmt, ...)                                                                                  \
-    OH_LOG_Print(LOG_APP, LOG_INFO, VPN_LOG_DOMAIN, VPN_LOG_TAG, "vpn [%{public}s %{public}d] " fmt, MAKE_FILE_NAME,   \
+    OH_LOG_Print(LOG_APP, LOG_INFO, 0x15b0, "NetMgrVpn", "vpn [%{public}s %{public}d] " fmt, MAKE_FILE_NAME,   \
                  __LINE__, ##__VA_ARGS__)
 
 #define NETMANAGER_VPN_LOGD(fmt, ...)                                                                                  \
-    OH_LOG_Print(LOG_APP, LOG_DEBUG, VPN_LOG_DOMAIN, VPN_LOG_TAG, "vpn [%{public}s %{public}d] " fmt, MAKE_FILE_NAME,  \
+    OH_LOG_Print(LOG_APP, LOG_DEBUG, 0x15b0, "NetMgrVpn", "vpn [%{public}s %{public}d] " fmt, MAKE_FILE_NAME,  \
                  __LINE__, ##__VA_ARGS__)
 
 constexpr int BUFFER_SIZE = 2048;
