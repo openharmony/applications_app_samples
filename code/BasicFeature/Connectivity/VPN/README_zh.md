@@ -1,16 +1,15 @@
 # VPN连接
 
-**介绍**
+### 介绍
 本示例使用@ohos.net.vpn接口创建VPN 隧道，建立vpn网络，vpn隧道保护，销毁VPN网络等功能。
 实现了VPN的进行服务器连接，发送数据的功能
 
-**预览效果:**
-![main.jpeg](sceenshots%2Fmain.jpeg)
-![start.jpeg](sceenshots%2Fstart.jpeg)
-![stop.jpeg](sceenshots%2Fstop.jpeg)
-![success.jpeg](sceenshots%2Fsuccess.jpeg)
+### 效果预览
+| 主页                             | vpn启动                              | vpn关闭                                     | 成功                                     |
+| ------------------------------ | --------------------------------- | --------------------------------------- | --------------------------------------- |
+| ![main.jpeg](sceenshots%2Fmain.jpeg) | ![start.jpeg](sceenshots%2Fstart.jpeg) | ![stop.jpeg](sceenshots%2Fstop.jpeg) |![success.jpeg](sceenshots%2Fsuccess.jpeg)|
 
-**使用说明**
+使用说明：
 
 1.搭建服务器环境，服务端配置
 命令用于配置iptables防火墙的网络地址转换（NAT）规则
@@ -27,7 +26,8 @@
 
 4.访问成功后返回选在关闭vpn按钮，断开vpn连接
 
-**工程目录**
+### 工程目录
+
 ```
 entry/src/main/ets/
 |---entryability
@@ -40,11 +40,17 @@ entry/src/main/ets/
 |   |---Logger.ets                 // 日志
 
 ```
-**相关权限**
+
+### 相关权限
 网络权限: ohos.permission.INTERNET
 VPN权限: ohos.permission.MANAGE_VPN
 
-**约束与限制**
+### 依赖
+
+不涉及
+
+### 约束与限制
+
 1.本示例仅支持标准系统上运行。
 
 2.本示例为Stage模型，已适配API version 10版本SDK，版本号：4.0.9.6，镜像版本号: Openharmony 4.0.9.6。
@@ -55,12 +61,14 @@ VPN权限: ohos.permission.MANAGE_VPN
 
 5.该示例运行测试完成后，再次运行需要重新启动服务端和客户端
 
-**下载本工程**
+### 下载
+
 如需单独下载本工程，执行如下命令：
-````
+
+```
 git init
 git config core.sparsecheckout true
 echo code/BasicFeature/Connectivity/VPN/ > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
-````
+```
