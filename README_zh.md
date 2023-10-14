@@ -49,7 +49,7 @@
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td height="270" align="center" rowspan="27" style='height:202.50pt' x:str><strong>基础特性</strong></td>
+  <td height="270" align="center" rowspan="28" style='height:202.50pt' x:str><strong>基础特性</strong></td>
   <td x:str><strong>应用模型</strong></td>
   <td x:str><a href="code/BasicFeature/ApplicationModels/StageModel">Stage模型（API 10）</a></td>
   <td x:str><a href="code/BasicFeature/ApplicationModels/AbilityStartMode">Ability的启动方式</a></td>
@@ -72,7 +72,7 @@
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>窗口管理</strong></td>
   <td x:str><a href="code/BasicFeature/WindowManagement/WindowManage">窗口管理（API 10）</a></td>
-  <td x:str><a href="code/BasicFeature/WindowManagement/WindowRatio">窗口（API 10）</a></td>
+  <td x:str><a href="code/BasicFeature/WindowManagement/WindowRatio">悬浮窗（API 10）</a></td>
   <td ></td>
   <td ></td>
  </tr>
@@ -86,7 +86,7 @@
  <tr height="18" style='height:13.50pt;'>
   <td rowspan="3" x:str><strong>媒体</strong></td>
   <td x:str><a href="code/BasicFeature/Media/Image">图片显示及处理（API 10）</a></td>
-  <td x:str><a href="code/BasicFeature/Media/VideoShow">视频播放</a></td>
+  <td x:str><a href="code/BasicFeature/Media/VideoShow">媒体库视频</a></td>
   <td x:str><a href="code/BasicFeature/Media/GamePuzzle">图片裁剪与分割</a></td>
   <td x:str><a href="code/BasicFeature/Media/ImageShow">图片显示</a></td>
  </tr>
@@ -110,16 +110,16 @@
   <td x:str><a href="code/BasicFeature/Security/CryptoFramework">通用密钥库系统（cryptoFramework）</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td x:str><a href="code/BasicFeature/Security/Huks">通用密钥库系统（huks）</a></td>
+  <td x:str><a href="code/BasicFeature/Security/Huks">通用密钥库系统（huks）（API 10）</a></td>
   <td x:str><a href="code/BasicFeature/Security/PaySecurely">支付</a></td>
   <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td rowspan="2" x:str><strong>网络与连接</strong></td>
-  <td x:str><a href="code/BasicFeature/Connectivity/Http">Http</a></td>
+  <td x:str><a href="code/BasicFeature/Connectivity/Http">Http（API 10）</a></td>
   <td x:str><a href="code/BasicFeature/Connectivity/RPC">RPC通信</a></td>
-  <td x:str><a href="code/BasicFeature/Connectivity/Socket">网络管理-Socket连接</a></td>
+  <td x:str><a href="code/BasicFeature/Connectivity/Socket">网络管理-Socket连接（UDP）</a></td>
   <td x:str><a href="code/BasicFeature/Connectivity/WebSocket">WebSocket</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
@@ -136,10 +136,16 @@
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td x:str><strong>文件管理</strong></td>
+  <td rowspan="2" x:str><strong>文件管理</strong></td>
   <td x:str><a href="code/BasicFeature/FileManagement/FileBackupExtension">应用接入数据备份恢复（API 10）</a></td>
   <td x:str><a href="code/BasicFeature/FileManagement/FileManager">文件管理（API 10）</a></td>
   <td x:str><a href="code/BasicFeature/FileManagement/MediaCollections">媒体管理合集</a></td>
+  <td x:str><a href="code/BasicFeature/FileManagement/Photos">相册（API 10）</a></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
+  <td x:str><a href="code/BasicFeature/FileManagement/FileShare/SandboxShare">文件分享与访问</a></td>
+  <td x:str><a href="code/BasicFeature/FileManagement/FileShare/Picker">选择并查看文档与媒体文件（API 10）</a></td>
+  <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
@@ -226,7 +232,7 @@
   <td x:str><strong>Native</strong></td>
   <td x:str><a href="code/BasicFeature/Native/NdkRawfile">获取Rawfile资源</a></td>
   <td x:str><a href="code/BasicFeature/Native/NdkXComponent">Native XComponent（API 10）</a></td>
-  <td ></td>
+  <td x:str><a href="code/BasicFeature/Native/NdkOpenGL">OpenGL三棱椎（API 10）</a></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
@@ -254,7 +260,7 @@
   <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>安全</strong></td>
   <td x:str><a href="code/SystemFeature/Security/AbilityAccessCtrl">应用访问权限控制</a></td>
-  <td ></td>
+  <td x:str><a href="code/SystemFeature/Security/AuthorizedButton">安全控件类型的UI控件（API 10）</a></td>
   <td ></td>
   <td ></td>
  </tr>
@@ -274,18 +280,17 @@
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>数据管理</strong></td>
-  <td x:str><a href="code/SystemFeature/DataManagement/CrossAppDataShare">系统应用跨应用数据共享</a></td>
+  <td x:str><a href="code/SystemFeature/DataManagement/CrossAppDataShare">跨应用数据共享</a></td>
   <td ></td>
   <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>设备管理</strong></td>
-  <td x:str><a href="code/SystemFeature/DeviceManagement/StorageStatistic">存储空间统计</a></td>
+  <td x:str><a href="code/SystemFeature/DeviceManagement/StorageStatistic">存储空间统计（API 10）</a></td>
   <td x:str><a href="code/SystemFeature/DeviceManagement/Screen">屏幕属性（API 10）</a></td>
   <td x:str><a href="code/SystemFeature/DeviceManagement/DeviceManagementCollection">设备管理合集（API 10）</a></td>
   <td x:str><a href="code/SystemFeature/DeviceManagement/Mouse">鼠标外设（API 10）</a></td>
-  <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>国际化</strong></td>
@@ -294,8 +299,8 @@
   <td ></td>
   <td ></td>
  <tr height="18" style='height:13.50pt;'>
-  <td height="90" align="center" rowspan="7" style='height:67.50pt;' x:str><strong>关键特性</strong></td>
-  <td rowspan="2" x:str><strong>一次开发，多端部署</strong></td>
+  <td height="90" align="center" rowspan="8" style='height:67.50pt;' x:str><strong>关键特性</strong></td>
+  <td rowspan="3" x:str><strong>一次开发，多端部署</strong></td>
   <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/AdaptiveCapabilities">ArkTS一多能力集合（API 10）</a></td>
   <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/JsAdaptiveCapabilities">JS一多能力集合</a></td>
   <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/Weather">入门示例：天气应用</a></td>
@@ -308,14 +313,20 @@
   <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/MultiColumns">典型页面场景：一多分栏控件（API 10）</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
+ <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/MultiNavBar">典型页面场景：一多导航栏（API 10）</a></td>
+  <td></td>
+  <td></td>
+  <td></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
   <td rowspan="3" x:str><strong>分布式</strong></td>
   <td x:str><a href="code/SuperFeature/DistributedAppDev/ArkTSDistributedMusicPlayer">ArkTS分布式音乐播放</a></td>
   <td x:str><a href="code/SuperFeature/DistributedAppDev/JsDistributedMusicPlayer">JS分布式音乐播放（API 10）</a></td>
-  <td x:str><a href="code/SuperFeature/DistributedAppDev/ArkTSDistributedCalc">分布式计算器</a></td>
+  <td x:str><a href="code/SuperFeature/DistributedAppDev/ArkTSDistributedCalc">分布式计算器（API 10）</a></td>
   <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributeCalc">JS分布式计算器（API 10）</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
- <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedNote">分布式对象</a></td>
+ <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedNote">分布式对象（API 10）</a></td>
   <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedRdb">分布式关系型数据库（API 10）</a></td>
   <td x:str><a href="code/SuperFeature/DistributedAppDev/Kvstore">分布式数据管理</a></td>
   <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedAuthentication">分布式组网认证（API 10）</a></td>
@@ -329,8 +340,8 @@
  <tr height="18" style='height:13.50pt;'>
   <td rowspan="2" x:str><strong>卡片</strong></td>
   <td x:str><a href="code/SuperFeature/Widget/AdaptiveServiceWidget">JS多设备自适应服务卡片</a></td>
-  <td x:str><a href="code/SuperFeature/Widget/FormExtAbility">Stage模型卡片</a></td>
-  <td x:str><a href="code/SuperFeature/Widget/FormGame">Stage模型卡片JS与C++通信</a></td>
+  <td x:str><a href="code/SuperFeature/Widget/FormExtAbility">Stage模型卡片（API 10）</a></td>
+  <td x:str><a href="code/SuperFeature/Widget/FormGame">Stage模型卡片JS与C++通信（API 10）</a></td>
   <td x:str><a href="code/SuperFeature/Widget/RequestAddForm">应用主动添加数据代理卡片到桌面（API 10）</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
@@ -417,6 +428,8 @@
   <td rowspan="1" align="center" x:str><strong>性能</strong></td>
   <td rowspan="1" x:str><strong>方舟运行时</strong></td>
   <td x:str><a href="code/Performance/ArkRuntime"> N-Body模拟程序（API 10）</a></td>
+  <td ></td>
+  <td ></td>
   <td ></td>
  </tr>
  <tr>
