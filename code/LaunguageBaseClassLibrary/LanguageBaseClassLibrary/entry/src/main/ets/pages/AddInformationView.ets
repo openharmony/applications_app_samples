@@ -22,7 +22,7 @@ const MIN_AGE = 1;
 const AGE_RANGE = 9;
 const AGE_DEFAULT = 0;
 
-const arr = [...Array(AGE_RANGE)].map((_, i) => `${i + MIN_AGE}${getString($r('app.string.old'))}`);
+const arr = Array(AGE_RANGE).fill(0).map((_, i) => `${i + MIN_AGE}${getString($r('app.string.old'))}`);
 
 @CustomDialog
 struct AgePickDialog {
