@@ -5,10 +5,12 @@
 实现了VPN的进行服务器连接，发送数据的功能
 
 ### 效果预览
-| 主页                             | vpn启动                              | vpn关闭                                     | 成功                                     |
-| ------------------------------ | --------------------------------- | --------------------------------------- | --------------------------------------- |
-| ![main.jpeg](sceenshots%2Fmain.jpeg) | ![start.jpeg](sceenshots%2Fstart.jpeg) | ![stop.jpeg](sceenshots%2Fstop.jpeg) |![success.jpeg](sceenshots%2Fsuccess.jpeg)|
-
+| 主页                             | vpn启动                              | vpn关闭                                     | 
+| ------------------------------ | --------------------------------- | --------------------------------------- |
+| ![main.jpeg](sceenshots%2Fmain.jpeg) | ![start.jpeg](sceenshots%2Fstart.jpeg) | ![stop.jpeg](sceenshots%2Fstop.jpeg) |
+| 成功                                     |
+| --------------------------------------- |
+| ![success.jpeg](sceenshots%2Fsuccess.jpeg)|
 使用说明：
 
 1.需要一台Linux系统(推荐使用ubuntu系统)的机器作为服务器 确保此机器连接网络
