@@ -11,16 +11,20 @@
 
 使用说明：
 
-1.搭建服务器环境，服务端配置
-命令用于配置iptables防火墙的网络地址转换（NAT）规则
-其中eth1:具备网络连通性的以太网端口标识
+1.需要一台Linux系统(推荐使用ubuntu系统)的机器作为服务器 确保此机器连接网络
+
+1）搭建服务器环境，配置服务端
+配置iptables防火墙的网络地址转换（NAT）规则
+其中"eth1"的值为具备网络连通性的以太网端口标识
 `iptables -t nat -A POSTROUTING -s 10.0.0.0/24 -o "eth1" -j MASQUERADE`
 
-使用/server文件夹下的setserver.sh
+2）运行/server文件夹下的setserver.sh
 `chmod +x setserver.sh`
 `./setserver.sh`
 
 2.运行服务器后会有创建tun成功提示
+
+3.将openharmony设备(如rk3568开发板)与用作服务器的机器通过网线连通
 
 3.打开vpn应用。用户点击创建对象，隧道保护，启动vpn等按钮，vpn启动后尝试用别的hap包访问百度
 

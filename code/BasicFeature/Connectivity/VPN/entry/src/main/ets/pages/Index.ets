@@ -42,7 +42,7 @@ struct Index {
           }).catch((err: BusinessError) => {
             console.error(`Failed to jump to the second page.Code is ${err.code}, message is ${err.message}`)
           })
-        }).width('100%')
+        }).width('70%').fontSize(45).margin(16)
         Button('停用VPN').onClick(() => {
           console.info(`Succeeded in clicking the 'Next' button.`)
           router.pushUrl({ url: 'pages/StopVpn' }).then(() => {
@@ -50,10 +50,8 @@ struct Index {
           }).catch((err: BusinessError) => {
             console.error(`Failed to jump to the second page.Code is ${err.code}, message is ${err.message}`)
           })
-        })
-          .width('100%')
-      }
-      .height('100%')
-    }
+        }).width('70%').fontSize(45)
+      }.width('100%')
+    }.height('100%')
   }
 }
