@@ -8,8 +8,9 @@
 | 主页                             | vpn启动                              | vpn关闭                                     | 
 | ------------------------------ | --------------------------------- | --------------------------------------- |
 | ![main.jpeg](sceenshots%2Fmain.jpeg) | ![start.jpeg](sceenshots%2Fstart.jpeg) | ![stop.jpeg](sceenshots%2Fstop.jpeg) |
-| 成功                                     |
-| --------------------------------------- |
+
+| 成功                             |
+| ------------------------------ |
 | ![success.jpeg](sceenshots%2Fsuccess.jpeg)|
 使用说明：
 
