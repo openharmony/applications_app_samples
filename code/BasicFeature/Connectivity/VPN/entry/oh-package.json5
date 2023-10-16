@@ -21,6 +21,6 @@
   "author": "",
   "license": "",
   "dependencies": {
-    "libentry.so": "file:./src/main/cpp/types/libentry"
+    "libvpn_client.so": "file:./src/main/cpp/types/libentry"
   }
 }
