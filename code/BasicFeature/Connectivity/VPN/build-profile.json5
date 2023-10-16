@@ -15,20 +15,7 @@
 
 {
   "app": {
-    "signingConfigs": [
-      {
-        "name": "default",
-        "material": {
-          "certpath": ".\\signconfig\\auto_ohos_default_ToyVpn_com.example.testvpnclient.cer",
-          "storePassword": "0000001B8FFD9FE4D98B92D5E75E097276BDFCDB18C3C255F4374E7CF9E31CA120DFDA0FCD6FA7E19F1340",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001B0C04F8ED18985D7621FD3964436E238EAE65A7ED815D32A3EE58627C7F9E815BD9F6F84BCAD3E2",
-          "profile": ".\\signconfig\\auto_ohos_default_ToyVpn_com.example.testvpnclient.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": ".\\signconfig\\auto_ohos_default_ToyVpn_com.example.testvpnclient.p12"
-        }
-      }
-    ],
+    "signingConfigs": [],
     "products": [
       {
         "name": "default",
