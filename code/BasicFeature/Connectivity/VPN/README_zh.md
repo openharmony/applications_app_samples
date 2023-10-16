@@ -20,19 +20,22 @@
 其中"eth1"的值为具备网络连通性的以太网端口标识，一般为eno1
 `iptables -t nat -A POSTROUTING -s 10.0.0.0/24 -o "eth1" -j MASQUERADE`
 
-4.运行/server文件夹下的setserver.sh
+4.在server文件夹打开终端
+`unzip server.zip`
+
+5.运行/server文件夹下的setserver.sh
 `chmod +x setserver.sh`
 `./setserver.sh`
 
-5.运行服务器成功后终端会开始打印log持续监听
+6.运行服务器成功后终端会开始打印log持续监听
 
-6.打开vpn应用。用户先后点击创建对象，隧道保护，启动vpn按钮，vpn启动后尝试用浏览器等hap包访问百度
+7.打开vpn应用。用户先后点击创建对象，隧道保护，启动vpn按钮，vpn启动后尝试用浏览器等hap包访问百度
 
 | 成功                             |
 | ------------------------------ |
 | ![success.jpeg](sceenshots%2Fsuccess.jpeg)|
 
-7.访问成功后返回主页面，关闭vpn按钮，断开vpn连接
+8.访问成功后返回主页面，关闭vpn按钮，断开vpn连接
 
 ### 工程目录
 
