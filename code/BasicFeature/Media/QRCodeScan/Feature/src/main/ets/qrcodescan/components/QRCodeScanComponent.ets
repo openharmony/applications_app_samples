@@ -152,7 +152,14 @@ export default struct QRCodeScanComponent {
                             message: $r('app.string.queryImageFailed'),
                             duration: 1000
                           })
-                          return;
+                          setInterval(async () => {
+                            // 监听相机权限
+                            this.watchCameraPermission()
+                            // 设置扫描动画
+                            this.setQRCodeScanAnimation()
+                            // 解析二维码图片信息
+                            this.qrCodeParser.parseQRCodeImageFromCamera(this.cameraService);
+                          }, 4000)
                         }
                         // 获取解析数据
                         let qrCodeParseRlt = await this.qrCodeParser.parseImageQRCode(selectedUri[0]);

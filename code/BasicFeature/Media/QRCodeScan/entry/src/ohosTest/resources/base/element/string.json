@@ -23,6 +23,10 @@
     {
       "name": "button_finish",
       "value": "finish"
+    },
+    {
+      "name": "can_not_parse_QRcode",
+      "value": "can not parse QRcode"
     }
   ]
 }
