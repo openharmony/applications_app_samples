@@ -120,7 +120,6 @@ class RemoteDeviceModel {
           this.deviceStateChangeActionReady(data.device)
           break
         case deviceManager.DeviceStateChange.UNAVAILABLE:
-        // case deviceManager.DeviceStateChange.CHANGE:
           this.deviceStateChangeActionOffline(data.device)
           break
         default:
