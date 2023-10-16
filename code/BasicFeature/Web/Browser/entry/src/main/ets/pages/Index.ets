@@ -48,7 +48,7 @@ struct Index {
   aboutToAppear() {
     try {
       let deviceType = parameter.getSync("const.build.characteristics")
-      if (deviceType === 'phone') {
+      if (deviceType === 'default') {
         this.isPhone = true
       }
     } catch (e) {

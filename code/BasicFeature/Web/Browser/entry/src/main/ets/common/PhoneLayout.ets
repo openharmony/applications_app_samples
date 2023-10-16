@@ -59,7 +59,7 @@ export struct PhoneLayout {
           .color('#0000ff')
       }
       Row() {
-        ForEach(this.toolPoneArray, item => {
+        ForEach(this.toolPoneArray, (item, index) => {
           Column() {
             Divider().color('#e9eaec')
             Button({ type: ButtonType.Normal }) {
@@ -116,6 +116,7 @@ export struct PhoneLayout {
             })
           }
           .width('20%')
+          .id(`navigationButton${index}`)
         })
       }
       .justifyContent(FlexAlign.SpaceAround)
@@ -126,55 +127,65 @@ export struct PhoneLayout {
     .height('100%')
   }
 
+  @Builder TitleBar() {
+    Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+      Column() {
+        TextInput({ placeholder: '输入网址...', text: this.browser.inputValue })
+          .placeholderFont({ size: 16, weight: 500 })
+          .fontSize(16)
+          .height(34)
+          .margin({ left: 6 })
+          .id('inputUrl')
+          .onChange((value: string) => {
+            Logger.info(TAG, `onChange`)
+            this.addr = value
+          })
+          .onSubmit((enterKey: EnterKeyType) => {
+            Logger.info(TAG, `onSubmit`)
+            this.browser.webControllerArray[this.browser.tabArrayIndex].controller.loadUrl({
+              url: `https://${this.addr}`
+            })
+            this.addr = ''
+          })
+      }
+
+      Column() {
+        Button({ type: ButtonType.Normal }) {
+          Image($r('app.media.submit'))
+        }
+        .width(BUTTON_WIDTH)
+        .height(BUTTON_WIDTH)
+        .backgroundColor(this.hasDown ? DOWN_COLOR : UP_COLOR)
+        .margin({ top: 6 })
+        .id(`actionButton0`)
+      }
+      .width('10%')
+      .height(34)
+      .flexShrink(0)
+      .backgroundColor(this.hasDown ? DOWN_COLOR : UP_COLOR)
+      .borderRadius(BUTTON_RADIUS)
+      .margin({ left: 6, right: 6 })
+      .onTouch((event: TouchEvent) => {
+        if (event.type === TouchType.Down) {
+          this.hasDown = true
+        } else if (event.type === TouchType.Up) {
+          this.hasDown = false
+        }
+      })
+      .onClick((event: ClickEvent) => {
+        this.browser.loadUrl(this.addr)
+        this.addr = ''
+      })
+    }
+    .position({ x: 0, y: 3 })
+  }
+
   build() {
     Column() {
       Navigation() {
-        Column() {
-          Row() {
-            TextInput({ placeholder: '输入网址...', text: this.browser.inputValue })
-              .placeholderFont({ size: 16, weight: 500 })
-              .fontSize(16)
-              .margin(2)
-              .height(30)
-              .onChange((value: string) => {
-                Logger.info(TAG, `onChange`)
-                this.addr = value
-              })
-              .onSubmit((enterKey: EnterKeyType) => {
-                Logger.info(TAG, `onSubmit`)
-                this.browser.webControllerArray[this.browser.tabArrayIndex].controller.loadUrl({
-                  url: `https://${this.addr}`
-                })
-                this.addr = ''
-              })
-            Button({ type: ButtonType.Normal }) {
-              Image($r('app.media.submit'))
-            }
-            .margin(8)
-            .width(BUTTON_WIDTH)
-            .height(BUTTON_WIDTH)
-            .backgroundColor(this.hasDown ? DOWN_COLOR : UP_COLOR)
-            .borderRadius(BUTTON_RADIUS)
-            .flexShrink(0)
-            .onTouch((event: TouchEvent) => {
-              if (event.type === TouchType.Down) {
-                this.hasDown = true
-              } else if (event.type === TouchType.Up) {
-                this.hasDown = false
-              }
-            })
-            .onClick((event: ClickEvent) => {
-              this.browser.loadUrl(this.addr)
-              this.addr = ''
-            })
-          }
-
-          Column() {
-            WebTab({ browser: $browser, isPhone: $isPhone })
-          }
-        }
+        WebTab({ browser: $browser, isPhone: $isPhone })
       }
-      .hideTitleBar(true)
+      .title({ builder: this.TitleBar, height: 40 })
       .toolBar(this.ToolBar)
       .hideBackButton(true)
     }
