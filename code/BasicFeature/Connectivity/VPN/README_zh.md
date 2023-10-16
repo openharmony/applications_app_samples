@@ -9,30 +9,30 @@
 | ------------------------------ | --------------------------------- | --------------------------------------- |
 | ![main.jpeg](sceenshots%2Fmain.jpeg) | ![start.jpeg](sceenshots%2Fstart.jpeg) | ![stop.jpeg](sceenshots%2Fstop.jpeg) |
 
-| 成功                             |
-| ------------------------------ |
-| ![success.jpeg](sceenshots%2Fsuccess.jpeg)|
-
 ### 使用说明
 
 1.需要一台Linux系统(推荐使用ubuntu系统)的机器作为服务器 确保此机器连接网络
 
-1）搭建服务器环境，配置服务端
-配置iptables防火墙的网络地址转换（NAT）规则
-其中"eth1"的值为具备网络连通性的以太网端口标识
+2.将openharmony设备(如rk3568开发板)与用作服务器的机器通过网线连通
+
+3.搭建服务器环境，配置服务端
+打开linux终端 使用下列指令配置iptables防火墙的网络地址转换（NAT）规则
+其中"eth1"的值为具备网络连通性的以太网端口标识，一般为eno1
 `iptables -t nat -A POSTROUTING -s 10.0.0.0/24 -o "eth1" -j MASQUERADE`
 
-2）运行/server文件夹下的setserver.sh
+4.运行/server文件夹下的setserver.sh
 `chmod +x setserver.sh`
 `./setserver.sh`
 
-2.运行服务器后会有创建tun成功提示
+5.运行服务器成功后终端会开始打印log持续监听
 
-3.将openharmony设备(如rk3568开发板)与用作服务器的机器通过网线连通
+6.打开vpn应用。用户先后点击创建对象，隧道保护，启动vpn按钮，vpn启动后尝试用浏览器等hap包访问百度
 
-3.打开vpn应用。用户点击创建对象，隧道保护，启动vpn等按钮，vpn启动后尝试用别的hap包访问百度
+| 成功                             |
+| ------------------------------ |
+| ![success.jpeg](sceenshots%2Fsuccess.jpeg)|
 
-4.访问成功后返回选在关闭vpn按钮，断开vpn连接
+7.访问成功后返回主页面，关闭vpn按钮，断开vpn连接
 
 ### 工程目录
 
@@ -69,7 +69,7 @@ VPN权限: ohos.permission.MANAGE_VPN
 
 5.该示例运行测试完成后，再次运行需要重新启动服务端和客户端。
 
-6.本示例需要使用@ohos.net.vpn系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEcoStudio中替换，具体操作可参考 [替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/) 。
+6.本示例需要使用@ohos.net.vpn(https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-net-vpn.md)系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEcoStudio中替换，具体操作可参考 [替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/) 。
 
 7.本示例使用了system_basic级别的权限（相关权限级别请查看[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md) ），需要手动配置高级别的权限签名(具体操作可查看[自动化签名方案](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/) ) 。
 
