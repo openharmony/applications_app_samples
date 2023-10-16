@@ -22,7 +22,7 @@ const TAG = '[Sample_Huks]'
 const BUNDLE = 'Huks_'
 
 // 返回首页
-async function backToIndexPage(driver) {
+async function backToIndexPage(driver: Driver) {
   Logger.info(TAG, BUNDLE + 'backToIndexPage begin')
   await driver.pressBack();
   await driver.delayMs(500)
@@ -33,11 +33,11 @@ async function backToIndexPage(driver) {
 
 export default function abilityTest() {
   let driver = Driver.create();
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest',  () => {
     /**
      * 拉起应用
      */
-    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+    it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
       Logger.info(TAG, BUNDLE + 'StartAbility_001 begin');
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
@@ -57,7 +57,7 @@ export default function abilityTest() {
     /**
      * 使用HUKS生成的新密钥进行加密
      */
-    it(BUNDLE + 'CipherByNewKeyFunction_001', 0, async function (done) {
+    it(BUNDLE + 'CipherByNewKeyFunction_001', 0, async (done: Function) => {
       Logger.info(TAG, BUNDLE + 'CipherByNewKeyFunction_001 begin');
       // 点击新密钥按钮，跳转至使用新密钥进行加解密页面
       Logger.info(TAG, BUNDLE + 'CipherByNewKeyFunction_001 encryption');
@@ -93,7 +93,7 @@ export default function abilityTest() {
     /**
      * 使用HUKS生成的新密钥进行解密
      */
-    it(BUNDLE + 'CipherByNewKeyFunction_002', 0, async function (done) {
+    it(BUNDLE + 'CipherByNewKeyFunction_002', 0, async (done: Function) => {
       Logger.info(TAG, BUNDLE + 'CipherByNewKeyFunction_002 begin');
       // 点击接收消息对发送的消息密文进行解密
       Logger.info(TAG, BUNDLE + 'CipherByNewKeyFunction_001 decryption');
@@ -116,7 +116,7 @@ export default function abilityTest() {
     /**
      * 使用HUKS导入的旧密钥进行加密
      */
-    it(BUNDLE + 'CipherByOldKeyFunction_001', 0, async function(done) {
+    it(BUNDLE + 'CipherByOldKeyFunction_001', 0, async (done: Function) => {
       Logger.info(TAG, BUNDLE + 'CipherByOldKeyFunction_001 begin');
       // 点击新密钥按钮，跳转至使用新密钥进行加解密页面
       Logger.info(TAG, BUNDLE + 'CipherByOldKeyFunction_001 encryption');
@@ -152,7 +152,7 @@ export default function abilityTest() {
     /**
      * 使用HUKS导入的旧密钥进行解密
      */
-    it(BUNDLE + 'CipherByOldKeyFunction_002', 0, async function(done) {
+    it(BUNDLE + 'CipherByOldKeyFunction_002', 0, async (done: Function) => {
       Logger.info(TAG, BUNDLE + 'CipherByOldKeyFunction_002 begin');
       // 点击新密钥按钮，跳转至使用新密钥进行加解密页面
       Logger.info(TAG, BUNDLE + 'CipherByOldKeyFunction_002 decryption');
@@ -182,7 +182,7 @@ export default function abilityTest() {
     /**
      * 使用HUKS进行低安访问控制加密
      */
-    it(BUNDLE + 'MinAccessControlFunction_001', 0, async function (done) {
+    it(BUNDLE + 'MinAccessControlFunction_001', 0, async (done: Function) => {
       Logger.info(TAG, BUNDLE + 'MinAccessControlFunction_001 begin');
       // 点击低安访问控制按钮，跳转至使用低安访问控制页面
       Logger.info(TAG, BUNDLE + 'MinAccessControlFunction_001 encryption');
@@ -199,13 +199,14 @@ export default function abilityTest() {
       Logger.info(TAG, BUNDLE + 'MinAccessControlFunction_001 input encryption content');
       await driver.assertComponentExist(ON.id('passwordInput'));
       let encryptionInput = await driver.findComponent(ON.id('passwordInput'));
-      // encryptionInput.enableKeyboradOnFocus(false);
       await encryptionInput.inputText('test');
+      await driver.delayMs(1000);
       let encryptionContent = await encryptionInput.getText();
       Logger.info(TAG, BUNDLE + `MinAccessControlFunction_001 select encryptionContent:${encryptionContent}`);
       expect(encryptionContent).assertEqual('test');
       // 点击发送按钮进行加密并发送密文消息
       await encryptionBtn.click();
+      await driver.delayMs(1000);
       // 文本框显示加密后的消息内容
       Logger.info(TAG, BUNDLE + 'MinAccessControlFunction_001 show encryption content');
       await driver.assertComponentExist(ON.id('cipherTextinfo'));
