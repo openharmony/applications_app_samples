@@ -36,7 +36,7 @@ struct Index {
             hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Client');
           })
         Button('Start VPN').onClick(() => {
-          hilog.info(0x0000, 'developTag', '%{public}s', 'Succeeded in clicking the 'Next' button.');
+          hilog.info(0x0000, 'developTag', '%{public}s', 'Succeeded in clicking the button.');
           router.pushUrl({ url: 'pages/StartVpn' }).then(() => {
             hilog.info(0x0000, 'developTag', '%{public}s', 'Succeeded in jumping to the second page.');
           }).catch((err: BusinessError) => {
@@ -45,7 +45,7 @@ struct Index {
           })
         }).width('70%').fontSize(45).margin(16)
         Button('Stop VPN').onClick(() => {
-          hilog.info(0x0000, 'developTag', '%{public}s', 'Succeeded in clicking the 'Next' button.');
+          hilog.info(0x0000, 'developTag', '%{public}s', 'Succeeded in clicking the button.');
           router.pushUrl({ url: 'pages/StopVpn' }).then(() => {
             hilog.info(0x0000, 'developTag', '%{public}s', 'Succeeded in jumping to the second page.');
           }).catch((err: BusinessError) => {

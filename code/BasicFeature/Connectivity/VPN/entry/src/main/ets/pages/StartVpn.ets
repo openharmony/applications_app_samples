@@ -44,7 +44,7 @@ struct StartVpn {
     this.VpnConnection.protect(g_tunnelFd).then(() => {
       hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Protect Success');
     }).catch((err : Error) => {
-      hilog.error(0x0000, 'developTag', 'vpn Protect Failed %{public}s', JSON.stringify(err) ?? '');
+      hilog.error(0x0000, 'developTag', 'vpn Protect Failed %{public}s', JSON.stringify(error) ?? '');
     })
   }
 
