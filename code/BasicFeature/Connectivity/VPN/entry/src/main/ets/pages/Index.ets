@@ -33,7 +33,7 @@ struct Index {
           .fontSize(35)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            console.info("vpn Client");
+            hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Client');
           })
         Button('Start VPN').onClick(() => {
           console.info(`Succeeded in clicking the 'Next' button.`)

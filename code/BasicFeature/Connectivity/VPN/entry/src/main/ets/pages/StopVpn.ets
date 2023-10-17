@@ -33,12 +33,12 @@ struct StopVpn {
   private context = getContext(this) as common.UIAbilityContext;
   private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
   Destroy() {
-    console.info("vpn Destroy");
+    hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Destroy');
     vpn_client.stopVpn(g_tunnelFd);
     this.VpnConnection.destroy().then(() => {
-      console.info("vpn Destroy Success ");
+      hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Destroy Success');
     }).catch((err : Error) => {
-      console.info("vpn Destroy Failed " + JSON.stringify(err));
+      hilog.error(0x0000, 'developTag', 'vpn Destroy Failed: %{public}s', JSON.stringify(err) ?? '');
     })
   }
 
@@ -49,7 +49,7 @@ struct StopVpn {
           .fontSize(35)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            console.info("vpn Client");
+            hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Client');
           })
         Button('关闭vpn').onClick(() => {
           this.Destroy();

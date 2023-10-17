@@ -40,16 +40,16 @@ struct StartVpn {
   }
 
   Protect() {
-    console.info("vpn Protect");
+    hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Protect');
     this.VpnConnection.protect(g_tunnelFd).then(() => {
-      console.info("vpn Protect Success ");
+      hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Protect Success');
     }).catch((err : Error) => {
-      console.info("vpn Protect Failed " + JSON.stringify(err));
+      hilog.error(0x0000, 'developTag', 'vpn Protect Failed %{public}s', JSON.stringify(err) ?? '');
     })
   }
 
   SetupVpn() {
-    console.info("vpn SetupVpn")
+    hilog.info(0x0000, 'developTag', '%{public}s', 'vpn SetupVpn');
     class Address {
       address: string;
       family: number;
@@ -91,16 +91,16 @@ struct StartVpn {
       }
     }
 
-    let config = new Config("yourTunIp", "yourBlockedAppName");
+    let config = new Config(this.tunIp, this.blockedAppName);
 
     try {
       this.VpnConnection.setUp(config, (error, data) => {
         g_tunFd = data;
-        console.info("tunfd: " + JSON.stringify(data));
+        hilog.error(0x0000, 'developTag', 'tunfd: %{public}s', JSON.stringify(data) ?? '');
         vpn_client.startVpn(g_tunFd, g_tunnelFd);
       })
     } catch (error) {
-      console.info("vpn setUp fail " + JSON.stringify(error));
+      hilog.error(0x0000, 'developTag', 'vpn setUp fail: %{public}s', JSON.stringify(err) ?? '');
     }
   }
 
@@ -111,7 +111,7 @@ struct StartVpn {
           .fontSize(35)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            console.info("vpn Client")
+            hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Client');
           })
 
         Row() {
@@ -137,7 +137,7 @@ struct StartVpn {
           Text('blockedApp').fontSize(30).width('40%').textAlign(TextAlign.Center)
             .backgroundColor(0xAFEEEE)
           TextInput({text:'com.example.baidumyapplication'}).onChange((value) => {
-            this.blockedAppName = value
+            this.blockedAppName = value;
           }).width('60%').margin(2)
         }.width('90%')
 
