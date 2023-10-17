@@ -100,7 +100,7 @@ struct StartVpn {
         vpn_client.startVpn(g_tunFd, g_tunnelFd);
       })
     } catch (error) {
-      hilog.error(0x0000, 'developTag', 'vpn setUp fail: %{public}s', JSON.stringify(err) ?? '');
+      hilog.error(0x0000, 'developTag', 'vpn setUp fail: %{public}s', JSON.stringify(error) ?? '');
     }
   }
 
