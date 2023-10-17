@@ -13,37 +13,38 @@
 * limitations under the License.
 */
 
+import hilog from '@ohos.hilog';
 import vpn from '@ohos.net.vpn';
 import vpn_client from 'libvpn_client.so';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import common from '@ohos.app.ability.common';
 
-let g_tunFd = -1
-let g_tunnelFd = -1
+let g_tunFd = -1;
+let g_tunnelFd = -1;
 
 @Entry
 @Component
 struct StartVpn {
-  @State message: string = 'Toy VPN'
-  @State vpnServerIp: string = '192.168.31.13'
-  @State tunIp: string = '10.0.0.5'
+  @State message: string = 'Toy VPN';
+  @State vpnServerIp: string = '192.168.31.13';
+  @State tunIp: string = '10.0.0.5';
 
-  @State prefix: string = '24'
+  @State prefix: string = '24';
 
-  @State blockedAppName: string = 'com.example.baidumyapplication'
+  @State blockedAppName: string = 'com.example.baidumyapplication';
   private context = getContext(this) as common.UIAbilityContext;
-  private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context)
+  private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
 
   CreateTunnel() {
-    g_tunnelFd = vpn_client.tcpConnect(this.vpnServerIp, 8888)
+    g_tunnelFd = vpn_client.tcpConnect(this.vpnServerIp, 8888);
   }
 
   Protect() {
-    console.info("vpn Protect")
+    console.info("vpn Protect");
     this.VpnConnection.protect(g_tunnelFd).then(() => {
-      console.info("vpn Protect Success ")
+      console.info("vpn Protect Success ");
     }).catch((err : Error) => {
-      console.info("vpn Protect Failed " + JSON.stringify(err))
+      console.info("vpn Protect Failed " + JSON.stringify(err));
     })
   }
 
@@ -94,9 +95,9 @@ struct StartVpn {
 
     try {
       this.VpnConnection.setUp(config, (error, data) => {
-        g_tunFd = data
+        g_tunFd = data;
         console.info("tunfd: " + JSON.stringify(data));
-        vpn_client.startVpn(g_tunFd, g_tunnelFd)
+        vpn_client.startVpn(g_tunFd, g_tunnelFd);
       })
     } catch (error) {
       console.info("vpn setUp fail " + JSON.stringify(error));
@@ -118,7 +119,7 @@ struct StartVpn {
           Text('server ip').fontSize(30).width('40%').textAlign(TextAlign.Center)
             .backgroundColor(0xAFEEEE)
           TextInput({text:'192.168.31.13'}).onChange((value) => {
-            this.vpnServerIp = value
+            this.vpnServerIp = value;
           }).width('60%').margin(2)
         }.width('90%')
 
@@ -127,7 +128,7 @@ struct StartVpn {
           Text('tun ip').fontSize(30).width('40%').textAlign(TextAlign.Center)
             .backgroundColor(0xAFEEEE)
           TextInput({text:'10.0.0.5'}).onChange((value) => {
-            this.tunIp = value
+            this.tunIp = value;
           }).width('60%').margin(2)
         }.width('90%')
 
@@ -141,13 +142,13 @@ struct StartVpn {
         }.width('90%')
 
         Button('创建对象').onClick(() => {
-          this.CreateTunnel()
+          this.CreateTunnel();
         }).fontSize(50)
         Button('隧道保护').onClick(() => {
-          this.Protect()
+          this.Protect();
         }).fontSize(50)
         Button('启动vpn').onClick(() => {
-          this.SetupVpn()
+          this.SetupVpn();
         }).fontSize(50)
       }
       .width('100%')

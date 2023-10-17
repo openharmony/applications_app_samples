@@ -18,13 +18,13 @@ import router from '@ohos.router';
 import { BusinessError } from '@ohos.base';
 
 
-let g_tunFd = -1
-let g_tunnelFd = -1
+let g_tunFd = -1;
+let g_tunnelFd = -1;
 
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Toy VPN'
+  @State message: string = 'Toy VPN';
 
   build() {
     Row() {
@@ -33,22 +33,22 @@ struct Index {
           .fontSize(35)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            console.info("vpn Client")
+            console.info("vpn Client");
           })
         Button('Start VPN').onClick(() => {
           console.info(`Succeeded in clicking the 'Next' button.`)
           router.pushUrl({ url: 'pages/StartVpn' }).then(() => {
-            console.info('Succeeded in jumping to the second page.')
+            console.info('Succeeded in jumping to the second page.');
           }).catch((err: BusinessError) => {
-            console.error(`Failed to jump to the second page.Code is ${err.code}, message is ${err.message}`)
+            console.error(`Failed to jump to the second page.Code is ${err.code}, message is ${err.message}`);
           })
         }).width('70%').fontSize(45).margin(16)
         Button('Stop VPN').onClick(() => {
-          console.info(`Succeeded in clicking the 'Next' button.`)
+          console.info(`Succeeded in clicking the 'Next' button.`);
           router.pushUrl({ url: 'pages/StopVpn' }).then(() => {
-            console.info('Succeeded in jumping to the second page.')
+            console.info('Succeeded in jumping to the second page.');
           }).catch((err: BusinessError) => {
-            console.error(`Failed to jump to the second page.Code is ${err.code}, message is ${err.message}`)
+            console.error(`Failed to jump to the second page.Code is ${err.code}, message is ${err.message}`);
           })
         }).width('70%').fontSize(45)
       }.width('100%')
