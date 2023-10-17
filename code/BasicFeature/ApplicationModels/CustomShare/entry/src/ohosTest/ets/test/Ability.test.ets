@@ -25,11 +25,11 @@ const BUNDLE = 'CustomShare_';
 let ability: UIAbility;
 
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
     /**
      * 打开应用
      */
-    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+    it(BUNDLE + 'StartAbility_001', 0, async (done: () => void) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin');
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
@@ -80,7 +80,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('shareLinkResource'));
       let shareLink = await driver.findComponent(ON.id('shareLinkResource'));
       await shareLink.click();
-      await driver.delayMs(1000),
+      await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('toShare'));
       // 点击Chat
       hilog.info(DOMAIN, TAG, BUNDLE + 'ShareLinkFunction_001 clickChatButton');
