@@ -13,6 +13,7 @@
 * limitations under the License.
 */
 
+import hilog from '@ohos.hilog';
 import vpn_client from "libvpn_client.so";
 import vpn from '@ohos.net.vpn';
 import common from '@ohos.app.ability.common';
