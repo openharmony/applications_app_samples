@@ -12,22 +12,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import mediaquery from '@ohos.mediaquery'
-import parameter from '@ohos.systemparameter'
-import { TabletTitle, BrowserTabs, WebTab } from '../common/TitleBar'
-import { PhoneLayout } from '../common/PhoneLayout'
-import { Browser, LoadingStatus } from '../model/Browser'
-import Logger from '../model/Logger'
+import mediaquery from '@ohos.mediaquery';
+import parameter from '@ohos.systemparameter';
+import { TabletTitle, BrowserTabs, WebTab } from '../common/TitleBar';
+import { PhoneLayout } from '../common/PhoneLayout';
+import { Browser, LoadingStatus } from '../model/Browser';
+import Logger from '../model/Logger';
 
-const TAG = '[index]'
+const TAG = '[index]';
 
 @Entry
 @Component
 struct Index {
-  @State isPhone: boolean= false
-  @State browser: Browser= new Browser()
-  private isInit: Boolean= false
-  listener= mediaquery.matchMediaSync('(orientation:landscape)')
+  @State isPhone: boolean= false;
+  @State browser: Browser= new Browser();
+  private isInit: Boolean= false;
+  listener= mediaquery.matchMediaSync('(orientation:landscape)');
 
   build() {
     Column() {
@@ -47,38 +47,38 @@ struct Index {
 
   aboutToAppear() {
     try {
-      let deviceType = parameter.getSync("const.build.characteristics")
+      let deviceType = parameter.getSync("const.build.characteristics");
       if (deviceType === 'default') {
-        this.isPhone = true
+        this.isPhone = true;
       }
     } catch (e) {
-      Logger.info(TAG, `getSync unexpected error: ${e}`)
+      Logger.info(TAG, `getSync unexpected error: ${e}`);
     }
   }
 
   orientationCallback(result) {
     if (!this.isInit) {
       if (result.matches) {
-        this.isPhone = false
+        this.isPhone = false;
       } else {
-        this.isPhone = true
+        this.isPhone = true;
       }
-      this.isInit = true
+      this.isInit = true;
     }
-    Logger.info(TAG, `orientationCallback end,isPhone=${this.isPhone}`)
+    Logger.info(TAG, `orientationCallback end,isPhone=${this.isPhone}`);
   }
 
   onBackPress(): boolean{
-    Logger.info(TAG, `enter onBackPress`)
+    Logger.info(TAG, `enter onBackPress`);
     if (this.browser.webControllerArray[this.browser.tabArrayIndex].controller.accessBackward() ||
     this.browser.loadingStatus === LoadingStatus.LOADING) {
-      this.browser.webControllerArray[this.browser.tabArrayIndex].controller.backward()
-      return true
+      this.browser.webControllerArray[this.browser.tabArrayIndex].controller.backward();
+      return true;
     }
-    return false
+    return false;
   }
 
   onDeviceChange() {
-    this.browser = new Browser()
+    this.browser = new Browser();
   }
 }

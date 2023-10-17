@@ -12,15 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Browser } from '../model/Browser'
-import { WebTab } from './TitleBar'
-import Logger from '../model/Logger'
+import { Browser } from '../model/Browser';
+import { WebTab } from './TitleBar';
+import Logger from '../model/Logger';
 
-const TAG: string = '[PhoneLayout]'
-const BUTTON_WIDTH: number = 22
-const BUTTON_RADIUS: number = 4
-const DOWN_COLOR: string = '#e4e4e4'
-const UP_COLOR: string = '#00000000'
+const TAG: string = '[PhoneLayout]';
+const BUTTON_WIDTH: number = 22;
+const BUTTON_RADIUS: number = 4;
+const DOWN_COLOR: string = '#e4e4e4';
+const UP_COLOR: string = '#00000000';
 
 @Component
 export struct PhoneLayout {
@@ -29,7 +29,7 @@ export struct PhoneLayout {
   @State hasDown: boolean = false;
   @State pageCount: string = '1';
   @State arrayIndex: number = 0;
-  private addr: string = ''
+  private addr: string = '';
   private toolPoneArray: Array<{
     imageSrc: Resource,
     id: number
@@ -50,7 +50,7 @@ export struct PhoneLayout {
       imageSrc: $r('app.media.ic_public_refresh'),
       id: 3
     }
-  ]
+  ];
 
   @Builder ToolBar() {
     Column() {
@@ -59,7 +59,7 @@ export struct PhoneLayout {
           .color('#0000ff')
       }
       Row() {
-        ForEach(this.toolPoneArray, (item, index) => {
+        ForEach(this.toolPoneArray, (item: any, index: number) => {
           Column() {
             Divider().color('#e9eaec')
             Button({ type: ButtonType.Normal }) {
@@ -89,26 +89,26 @@ export struct PhoneLayout {
             .flexShrink(0)
             .onTouch((event: TouchEvent) => {
               if (event.type === TouchType.Down) {
-                this.arrayIndex = item.id
+                this.arrayIndex = item.id;
               } else if (event.type === TouchType.Up) {
-                this.arrayIndex = 0
+                this.arrayIndex = 0;
               }
             })
             .onClick((event: ClickEvent) => {
               switch (item.id) {
                 case 1:
-                  this.browser.Back()
+                  this.browser.Back();
                   break;
                 case 2:
-                  this.browser.Forward()
+                  this.browser.Forward();
                   break;
                 case 3:
-                  this.browser.Refresh()
+                  this.browser.Refresh();
                   break;
                 case 5:
                   this.browser.webControllerArray[this.browser.tabArrayIndex].controller.loadUrl({
                     url: $rawfile('phone.html')
-                  })
+                  });
                   break;
                 default:
                   break;
@@ -137,15 +137,15 @@ export struct PhoneLayout {
           .margin({ left: 6 })
           .id('inputUrl')
           .onChange((value: string) => {
-            Logger.info(TAG, `onChange`)
-            this.addr = value
+            Logger.info(TAG, `onChange`);
+            this.addr = value;
           })
           .onSubmit((enterKey: EnterKeyType) => {
-            Logger.info(TAG, `onSubmit`)
+            Logger.info(TAG, `onSubmit`);
             this.browser.webControllerArray[this.browser.tabArrayIndex].controller.loadUrl({
               url: `https://${this.addr}`
-            })
-            this.addr = ''
+            });
+            this.addr = '';
           })
       }
 
@@ -167,14 +167,14 @@ export struct PhoneLayout {
       .margin({ left: 6, right: 6 })
       .onTouch((event: TouchEvent) => {
         if (event.type === TouchType.Down) {
-          this.hasDown = true
+          this.hasDown = true;
         } else if (event.type === TouchType.Up) {
-          this.hasDown = false
+          this.hasDown = false;
         }
       })
       .onClick((event: ClickEvent) => {
-        this.browser.loadUrl(this.addr)
-        this.addr = ''
+        this.browser.loadUrl(this.addr);
+        this.addr = '';
       })
     }
     .position({ x: 0, y: 3 })
