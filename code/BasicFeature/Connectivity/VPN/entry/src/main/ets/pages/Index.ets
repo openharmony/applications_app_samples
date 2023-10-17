@@ -36,19 +36,21 @@ struct Index {
             hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Client');
           })
         Button('Start VPN').onClick(() => {
-          console.info(`Succeeded in clicking the 'Next' button.`)
+          hilog.info(0x0000, 'developTag', '%{public}s', 'Succeeded in clicking the 'Next' button.');
           router.pushUrl({ url: 'pages/StartVpn' }).then(() => {
-            console.info('Succeeded in jumping to the second page.');
+            hilog.info(0x0000, 'developTag', '%{public}s', 'Succeeded in jumping to the second page.');
           }).catch((err: BusinessError) => {
-            console.error(`Failed to jump to the second page.Code is ${err.code}, message is ${err.message}`);
+            hilog.error(0x0000, 'developTag', 'Failed to jump to the second page: %{public}s',
+                        JSON.stringify(err) ?? '');
           })
         }).width('70%').fontSize(45).margin(16)
         Button('Stop VPN').onClick(() => {
-          console.info(`Succeeded in clicking the 'Next' button.`);
+          hilog.info(0x0000, 'developTag', '%{public}s', 'Succeeded in clicking the 'Next' button.');
           router.pushUrl({ url: 'pages/StopVpn' }).then(() => {
-            console.info('Succeeded in jumping to the second page.');
+            hilog.info(0x0000, 'developTag', '%{public}s', 'Succeeded in jumping to the second page.');
           }).catch((err: BusinessError) => {
-            console.error(`Failed to jump to the second page.Code is ${err.code}, message is ${err.message}`);
+            hilog.error(0x0000, 'developTag', 'Failed to jump to the second page: %{public}s',
+                        JSON.stringify(err) ?? '');
           })
         }).width('70%').fontSize(45)
       }.width('100%')
