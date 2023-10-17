@@ -1,6 +1,7 @@
-import { StyleConfiguration } from '../common/Configuration'
-import { MenuType } from '../model/MenuType'
-import { CommonSubTabs } from './CommonSubTabs'
+import { StyleConfiguration } from '../common/Configuration';
+import { MenuType } from '../model/MenuType';
+import { CommonSubTabs } from './CommonSubTabs';
+
 /*
  * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,12 +19,12 @@ import { CommonSubTabs } from './CommonSubTabs'
 
 @Component
 export struct CommonMainTabs {
-  @LocalStorageProp("currentBreakpoint") currentBreakpoint: string = 'md'
-  @Link currentMainIndex: number
-  @Link currentSubIndex: number
-  mainTabsController: TabsController
-  subTabsController: TabsController
-  mainTabsContentList: MenuType[]
+  @LocalStorageProp("currentBreakpoint") currentBreakpoint: string = 'md';
+  @Link currentMainIndex: number;
+  @Link currentSubIndex: number;
+  mainTabsController: TabsController = new TabsController();
+  subTabsController: TabsController = new TabsController();
+  mainTabsContentList: MenuType[] = new Array();
 
   build() {
     Tabs({ barPosition: BarPosition.Start, controller: this.mainTabsController, index: this.currentMainIndex }) {
@@ -42,9 +43,9 @@ export struct CommonMainTabs {
         } else {
           TabContent()
         }
-      }, item => JSON.stringify(item))
+      }, (item: MenuType) => JSON.stringify(item))
     }.scrollable(false).barHeight(0).width('100%').onChange((index: number) => {
-      this.currentMainIndex = index
+      this.currentMainIndex = index;
     })
   }
 }
