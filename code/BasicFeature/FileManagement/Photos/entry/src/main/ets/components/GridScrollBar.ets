@@ -15,7 +15,7 @@
 
 @Component
 export struct GridScrollBar {
-  scroller: Scroller;
+  scroller: Scroller = new Scroller();
   @State isClickScrollBar: boolean = false;
   @Link isHideScrollBar: boolean;
 

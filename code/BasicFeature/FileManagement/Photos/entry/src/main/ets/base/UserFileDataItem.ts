@@ -35,7 +35,7 @@ export class UserFileDataItem implements DateAdded {
   viewType: ViewType = ViewType.ITEM;
   readonly hashIndex: number;
   index: number;
-  dateAdded: number | null = null;
+  dateAdded: number = 0;
   dateModified: number;
   dateTaken: number;
   status: number = MediaConstants.UNDEFINED;

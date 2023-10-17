@@ -26,7 +26,7 @@ export struct AddNotesDialog {
   @StorageLink('isHorizontal') isHorizontal: boolean = screenManager.isHorizontal();
   @StorageLink('isSidebar') isSidebar: boolean = screenManager.isSidebar();
   @StorageLink('leftBlank') leftBlank: number[] = [0, 0, 0, 0];
-  controller: CustomDialogController;
+  controller?: CustomDialogController;
   @Consume dialogCallback: DialogCallback;
   @State isNull: boolean = false;
   private inputNote: string = '';
@@ -46,8 +46,10 @@ export struct AddNotesDialog {
           }.height($r('app.float.icon_size'))
           .width($r('app.float.icon_size'))
           .onClick((): void => {
-            if(this.dialogCallback != null) this.dialogCallback.cancelCallback();
-            this.controller.close()
+            if (this.dialogCallback?.cancelCallback !== undefined) {
+              this.dialogCallback.cancelCallback()
+            };
+            this.controller?.close()
           })
         }.margin({ right: $r('app.float.dialog_icon_margin_horizontal') })
 
@@ -77,11 +79,13 @@ export struct AddNotesDialog {
               p.then<void, void>((message: string): void => {
                 showToast(message)
               });
-              this.controller.close()
+              this.controller?.close()
               return
             }
-            if(this.dialogCallback != null) this.dialogCallback.confirmCallback(this.inputNote);
-            this.controller.close();
+            if (this.dialogCallback?.confirmCallback !== null) {
+              this.dialogCallback.confirmCallback(this.inputNote);
+            }
+            this.controller?.close();
           })
         }
       }.margin({ top: $r('sys.float.ohos_id_text_paragraph_margin_s'),

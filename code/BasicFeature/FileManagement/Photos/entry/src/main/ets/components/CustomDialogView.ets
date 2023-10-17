@@ -42,22 +42,14 @@ export struct CustomDialogView {
   @Provide dialogMessage: Resource = $r('app.string.common_place_holder', String(''));
   @Provide dialogDeleteMessage: Resource = $r('app.string.common_place_holder', String(''));
   @Provide progressMessage: Resource = $r('app.string.common_place_holder', String(''));
-  @Provide dialogCallback: DialogCallback = { confirmCallback: null, cancelCallback: null };
-  @Provide saveDialogCallback: SaveDialogCallback = { saveAsNewCallback: null, replaceOriginalCallback: null };
+  @Provide dialogCallback: DialogCallback = { confirmCallback: null, cancelCallback: undefined };
+  @Provide saveDialogCallback: SaveDialogCallback = new SaveDialogCallback();
   @Consume broadCast: Broadcast;
-  @Provide progressParam: ProgressParam = { cancelFunc: null, operationType: '' };
+  @Provide progressParam: ProgressParam = new ProgressParam();
   @Provide deleteProgress: number = 0;
   @Provide deleteProgressParam: DeleteProgressParam = { currentCount: 0, totalCount: 0, message: null, deleteProgress: 0};
-  @Provide cancelParam: CancelParam = { continueFunc: null, cancelFunc: null };
-  @Provide findSameNameParam: FindSameNameParam = {
-    sourceFileAsset: null,
-    targetFileAsset: null,
-    replaceFunc: null,
-    skipFunc: null,
-    cancelFunc: null,
-    singlePhoto: null,
-    doSameFunc: null
-  };
+  @Provide cancelParam: CancelParam = new CancelParam();
+  @Provide findSameNameParam: FindSameNameParam = new FindSameNameParam();
   @Provide cancelMessage: Resource = $r('app.string.common_place_holder', String(''));
   @Provide renameFileName: string = '';
   @Provide mediaDetails: MediaDetails = {
@@ -94,33 +86,33 @@ export struct CustomDialogView {
   };
   @StorageLink('isHorizontal') isHorizontal: boolean = screenManager.isHorizontal();
   @StorageLink('isSidebar') isSidebar: boolean = screenManager.isSidebar();
-  dialogController: CustomDialogController | null;
-  multiSelectDialog: CustomDialogController | null;
-  deleteDialogController: CustomDialogController | null;
-  deleteProgressDialogController: CustomDialogController | null;
-  progressDialogController: CustomDialogController | null;
-  cancelDialogController: CustomDialogController | null;
-  renameFileDialogController: CustomDialogController | null;
-  saveDialogController: CustomDialogController | null;
-  addNotesDialogController: CustomDialogController | null;
-  newAlbumDialogController: CustomDialogController | null;
-  findSameNameDialog: CustomDialogController | null;
-  saveImageDialogController: CustomDialogController | null;
+  dialogController?: CustomDialogController ;
+  multiSelectDialog?: CustomDialogController ;
+  deleteDialogController?: CustomDialogController ;
+  deleteProgressDialogController?: CustomDialogController ;
+  progressDialogController?: CustomDialogController ;
+  cancelDialogController?: CustomDialogController ;
+  renameFileDialogController?: CustomDialogController ;
+  saveDialogController?: CustomDialogController ;
+  addNotesDialogController?: CustomDialogController ;
+  newAlbumDialogController?: CustomDialogController ;
+  findSameNameDialog?: CustomDialogController ;
+  saveImageDialogController?: CustomDialogController ;
 
   aboutToDisappear(): void {
     Log.info(TAG, 'aboutToDisappear');
-    this.dialogController = null;
-    this.multiSelectDialog = null;
-    this.deleteDialogController = null;
-    this.deleteProgressDialogController = null;
-    this.progressDialogController = null;
-    this.cancelDialogController = null;
-    this.renameFileDialogController = null;
-    this.saveDialogController = null;
-    this.addNotesDialogController = null;
-    this.newAlbumDialogController = null;
-    this.findSameNameDialog = null;
-    this.saveImageDialogController = null;
+    this.dialogController = undefined;
+    this.multiSelectDialog = undefined;
+    this.deleteDialogController = undefined;
+    this.deleteProgressDialogController = undefined;
+    this.progressDialogController = undefined;
+    this.cancelDialogController = undefined;
+    this.renameFileDialogController = undefined;
+    this.saveDialogController = undefined;
+    this.addNotesDialogController = undefined;
+    this.newAlbumDialogController = undefined;
+    this.findSameNameDialog = undefined;
+    this.saveImageDialogController = undefined;
   }
 
   aboutToAppear(): void {
@@ -247,30 +239,30 @@ export struct CustomDialogView {
           count: count
         };
 
-        self.multiSelectDialog.open();
+        self.multiSelectDialog?.open();
       });
 
     this.broadCast.on(BroadcastConstants.SHOW_DELETE_DIALOG,
-      (deleteMessage: Resource, dialogDeleteMessage: Resource, confirmCallback: Function, cancelCallback?: Function): void => {
+      (deleteMessage: Resource, dialogDeleteMessage: Resource, confirmCallback: Function|null, cancelCallback?: Function): void => {
         Log.info(TAG, 'SHOW_DELETE_DIALOG ');
         self.dialogMessage = deleteMessage;
         self.dialogDeleteMessage = dialogDeleteMessage;
         self.dialogCallback = { confirmCallback: confirmCallback, cancelCallback: cancelCallback };
-        self.deleteDialogController.open();
+        self.deleteDialogController?.open();
       });
     this.broadCast.on(BroadcastConstants.SHOW_RENAME_PHOTO_DIALOG,
       (fileName: string, confirmCallback: Function, cancelCallback?: Function): void => {
         Log.info(TAG, 'SHOW_RENAME_PHOTO_DIALOG ');
         self.renameFileName = fileName;
         self.dialogCallback = { confirmCallback: confirmCallback, cancelCallback: cancelCallback };
-        self.renameFileDialogController.open();
+        self.renameFileDialogController?.open();
       });
 
     this.broadCast.on(BroadcastConstants.SHOW_ADD_NOTES_PHOTO_DIALOG,
       (confirmCallback: Function, cancelCallback?: Function): void => {
         Log.info(TAG, 'SHOW_ADD_NOTES_PHOTO_DIALOG ');
         self.dialogCallback = { confirmCallback: confirmCallback, cancelCallback: cancelCallback };
-        self.addNotesDialogController.open();
+        self.addNotesDialogController?.open();
       });
 
     this.broadCast.on(BroadcastConstants.SHOW_PROGRESS_DIALOG,
@@ -288,7 +280,7 @@ export struct CustomDialogView {
           self.progressParam.cancelFunc = cancelFunc;
         }
 
-        self.progressDialogController.open();
+        self.progressDialogController?.open();
       });
 
     this.broadCast.on(BroadcastConstants.UPDATE_PROGRESS,
@@ -299,10 +291,10 @@ export struct CustomDialogView {
         self.deleteProgressParam.currentCount = currentCount;
         if (progress === Constants.PROGRESS_MAX) {
           Log.info(TAG, 'Update progress 100%');
-          self.progressDialogController.close();
+          self.progressDialogController?.close();
           self.deleteProgress = 0;
           self.deleteProgressParam.deleteProgress = 0;
-          self.deleteProgressDialogController.close();
+          self.deleteProgressDialogController?.close();
           self.deleteProgressParam.currentCount = 0;
         }
       });
@@ -313,7 +305,7 @@ export struct CustomDialogView {
         self.cancelParam.continueFunc = continueFunc;
         self.cancelParam.cancelFunc = cancelFunc;
         Log.info(TAG, 'CANCEL_OPERATE');
-        self.cancelDialogController.open();
+        self.cancelDialogController?.open();
       });
 
     this.broadCast.on(BroadcastConstants.SHOW_SAVE_PHOTO_DIALOG,
@@ -321,7 +313,7 @@ export struct CustomDialogView {
         Log.info(TAG, 'SHOW_SAVE_PHOTO_DIALOG');
         self.saveDialogCallback
         = { saveAsNewCallback: saveAsNewCallback, replaceOriginalCallback: replaceOriginalCallback };
-        self.saveDialogController.open();
+        self.saveDialogController?.open();
       });
 
     this.broadCast.on(BroadcastConstants.SHOW_NEW_ALBUM_PHOTO_DIALOG,
@@ -329,7 +321,7 @@ export struct CustomDialogView {
         Log.info(TAG, 'SHOW_NEW_ALBUM_PHOTO_DIALOG');
         self.renameFileName = fileName;
         self.dialogCallback = { confirmCallback: confirmCallback, cancelCallback: cancelCallback };
-        self.newAlbumDialogController.open();
+        self.newAlbumDialogController?.open();
       });
 
     this.broadCast.on(BroadcastConstants.FIND_SAME_FILE_DIALOG,
@@ -343,7 +335,7 @@ export struct CustomDialogView {
         self.findSameNameParam.cancelFunc = cancelFunc;
         self.findSameNameParam.singlePhoto = (count == 1);
         self.findSameNameParam.doSameFunc = doSameFunc;
-        self.findSameNameDialog.open();
+        self.findSameNameDialog?.open();
       });
 
     this.broadCast.on(BroadcastConstants.DELETE_PROGRESS_DIALOG,
@@ -354,7 +346,7 @@ export struct CustomDialogView {
         self.deleteProgressParam.message = message;
         self.deleteProgress = 0;
         self.deleteProgressParam.deleteProgress = 0;
-        self.deleteProgressDialogController.open();
+        self.deleteProgressDialogController?.open();
       });
   }
 
@@ -375,7 +367,7 @@ export struct CustomDialogView {
         displayName: item.displayName,
         dateModified: item.dateModified
       };
-      this.dialogController.open();
+      this.dialogController?.open();
     })
   }
 

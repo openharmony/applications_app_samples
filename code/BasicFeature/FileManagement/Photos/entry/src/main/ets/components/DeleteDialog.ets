@@ -27,7 +27,7 @@ export struct DeleteDialog {
   @Consume dialogCallback: DialogCallback;
   @Consume dialogMessage: Resource;
   @Consume dialogDeleteMessage: Resource;
-  controller: CustomDialogController;
+  controller?: CustomDialogController ;
 
   aboutToAppear(): void {
   }
@@ -62,8 +62,10 @@ export struct DeleteDialog {
           .height($r('app.float.details_dialog_button_height'))
           .onClick((): void => {
             Log.debug(this.TAG, 'cancelCallback');
-            this.controller.close();
-            if(this.dialogCallback != null) this.dialogCallback.cancelCallback();
+            this.controller?.close();
+            if (this.dialogCallback?.cancelCallback !== undefined) {
+              this.dialogCallback.cancelCallback()
+            };
           })
 
           Row() {
@@ -91,8 +93,10 @@ export struct DeleteDialog {
           .height($r('app.float.details_dialog_button_height'))
           .onClick((): void => {
             Log.debug(this.TAG, 'confirmCallback');
-            this.controller.close();
-            if(this.dialogCallback != null) this.dialogCallback.confirmCallback();
+            this.controller?.close();
+            if (this.dialogCallback?.confirmCallback !== null) {
+              this.dialogCallback.confirmCallback()
+            };
           })
         }
       }

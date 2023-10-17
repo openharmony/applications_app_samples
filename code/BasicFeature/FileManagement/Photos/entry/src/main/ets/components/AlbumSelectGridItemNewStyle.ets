@@ -26,7 +26,7 @@ const TAG = 'AlbumSelectGridItemNewStyle'
 // The item of album grid, and it's new style.
 @Component
 export struct AlbumSelectGridItemNewStyle {
-  private staticIconList: Map<string, Resource> = null;
+  private staticIconList: Map<string, Resource> | null = null;
 
   private getStaticIconList(): Map<string, Resource> {
     if(this.staticIconList === null) {
@@ -38,7 +38,7 @@ export struct AlbumSelectGridItemNewStyle {
     return this.staticIconList;
   };
 
-  item: AlbumDataItem;
+  item: AlbumDataItem = new AlbumDataItem('', 0, '', 0, '', 0, 0);
   @State isEmptyAlbum: boolean = false;
   @Provide isBigCard: boolean = false;
   @Provide gridHeight: number = 0;
@@ -51,7 +51,7 @@ export struct AlbumSelectGridItemNewStyle {
   @State cardWidth: number = 0;
   @State cardHeight: number = 0;
   @State transformV: number = 0;
-  @State thumbnail: PixelMap = undefined;
+  @State thumbnail: PixelMap | undefined = undefined;
 
   aboutToAppear(): void {
     Log.debug(TAG, 'aboutToAppear + ' + this.item.uri);

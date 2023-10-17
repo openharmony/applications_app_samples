@@ -20,8 +20,8 @@ import { Constants } from '../constants/Constants';
 
 @Observed
 export class CancelParam {
-  continueFunc: Function
-  cancelFunc: Function
+  continueFunc: Function | null = null
+  cancelFunc: Function | null = null
 }
 
 @CustomDialog
@@ -30,7 +30,7 @@ export struct CancelOperationDialog {
   @StorageLink('isHorizontal') isHorizontal: boolean = screenManager.isHorizontal();
   @StorageLink('isSidebar') isSidebar: boolean = screenManager.isSidebar();
   @StorageLink('leftBlank') leftBlank: number[] = [0, 0, 0, 0];
-  controller: CustomDialogController;
+  controller?: CustomDialogController;
   @Consume cancelMessage: Resource;
   @Consume broadCast: Broadcast;
   @Consume deleteProgress: number;
@@ -65,8 +65,10 @@ export struct CancelOperationDialog {
           .height($r('app.float.details_dialog_button_height'))
           .onClick((): void => {
             Log.info(this.TAG, 'click continue')
-            this.cancelParam.continueFunc();
-            this.controller.close()
+            if (this.cancelParam?.continueFunc !== null) {
+              this.cancelParam.continueFunc();
+            }
+            this.controller?.close()
           })
 
           Row() {
@@ -94,8 +96,10 @@ export struct CancelOperationDialog {
           .height($r('app.float.details_dialog_button_height'))
           .onClick((): void => {
             Log.info(this.TAG, 'click cancel')
-            this.cancelParam.cancelFunc();
-            this.controller.close()
+            if (this.cancelParam?.cancelFunc !== null) {
+              this.cancelParam.cancelFunc();
+            }
+            this.controller?.close()
           })
         }
       }

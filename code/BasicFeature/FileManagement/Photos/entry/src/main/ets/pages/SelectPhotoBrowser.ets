@@ -34,6 +34,7 @@ import Want from '@ohos.app.ability.Want'
 import common from '@ohos.app.ability.common'
 
 const TAG = 'SelectPhotoBrowser';
+
 // select mode
 @Entry
 @Component
@@ -48,12 +49,10 @@ struct SelectPhotoBrowser {
   @Provide pageFrom: number = RouterConstants.ENTRY_FROM.NORMAL;
   @Provide canSwipe: boolean = true;
   isMultiPick = true;
-  selectPhotoTransition: string;
+  selectPhotoTransition: string = '';
   controller: SwiperController = new SwiperController();
-
   // swiper currentIndex, there may not be onChanged callback during data refresh, so mediaItem cannot be saved
   @Provide('transitionIndex') currentIndex: number = 0;
-
   // The global Broadcast of the application process. Event registration and destruction should be paired
   private appBroadcast: Broadcast = broadcastManager.getBroadcast();
   private browserDataSource: GroupItemDataSource = new GroupItemDataSource();
@@ -93,7 +92,11 @@ struct SelectPhotoBrowser {
       this.browserDataSource.setAlbumName((param.albumInfo as SimpleAlbumDataItem).displayName)
     }
 
-    this.browserDataSource.groupDataItem = AppStorage.Get<UserFileDataItem[]>(Constants.APP_KEY_PHOTO_BROWSER);
+    let items: UserFileDataItem[] | undefined = AppStorage.Get<UserFileDataItem[]>(Constants.APP_KEY_PHOTO_BROWSER)
+    if (items !== undefined) {
+      this.browserDataSource.groupDataItem = items;
+    }
+
     let pos = 0;
     if (!Number.isNaN(param.position)) {
       pos = new Number(param.position).valueOf()
@@ -106,8 +109,6 @@ struct SelectPhotoBrowser {
     } else {
       this.selectPhotoTransition = '';
     }
-    this.onMenuClicked = (action: Action): void => this.onMenuClickedBindImpl(action);
-
     // register event handling
     this.broadCast.on(PhotoConstants.TOGGLE_BAR, (event: Object): void => {
       Log.info(TAG, 'TOGGLE_BAR : ' + JSON.stringify(event));
@@ -200,7 +201,11 @@ struct SelectPhotoBrowser {
   }
 
   getCurrentPhoto(): UserFileDataItem {
-    return this.browserDataSource.groupDataItem[this.currentIndex];
+    if (this.browserDataSource.groupDataItem !== undefined) {
+      return this.browserDataSource.groupDataItem[this.currentIndex];
+    }else{
+      return new UserFileDataItem('',[],'',0)
+    }
   }
 
   onBackPress(): boolean {
@@ -235,10 +240,11 @@ struct SelectPhotoBrowser {
     }
     let param1: Map<string, string[]> = new Map<string, string[]>();
     param1.set('select-item-list', uriArray);
+
     let abilityResult: common.AbilityResult = {
       resultCode: 0,
       want: {
-        parameters: Object.fromEntries<string[]>(param1)
+        parameters: { 'select-item-list': uriArray }
       } as Want
     };
     terminateSelfWithResult(abilityResult);

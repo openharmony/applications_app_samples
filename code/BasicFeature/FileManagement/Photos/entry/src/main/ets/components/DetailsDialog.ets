@@ -21,18 +21,18 @@ import { Constants } from '../constants/Constants';
 
 @Observed
 export class MediaDetails {
-  mediaType: number
-  height: number
-  width: number
-  size: number
-  path: string
-  duration: number
-  title: string
-  dateTaken: number
-  dateAdded: number
-  uri: string
-  displayName: string
-  dateModified: number
+  mediaType: number = 0
+  height: number = 0
+  width: number = 0
+  size: number = 0
+  path: string = ''
+  duration: number = 0
+  title: string = ''
+  dateTaken: number = 0
+  dateAdded: number = 0
+  uri: string = ''
+  displayName: string = ''
+  dateModified: number = 0
 }
 
 @CustomDialog
@@ -42,8 +42,8 @@ export struct DetailsDialog {
   @StorageLink('isSidebar') isSidebar: boolean = screenManager.isSidebar();
   @StorageLink('leftBlank') leftBlank: number[] = [0, 0, 0, 0];
   sizeConvert = 1024;
-  controller: CustomDialogController;
-  dataTime: string;
+  controller?: CustomDialogController ;
+  dataTime: string = '';
   @Consume mediaDetails: MediaDetails;
 
   aboutToAppear(): void {
@@ -193,7 +193,7 @@ export struct DetailsDialog {
         .backgroundColor($r('app.color.transparent'))
         .height($r('app.float.details_dialog_button_height'))
         .onClick((): void => {
-          this.controller.close()
+          this.controller?.close()
         })
       }.width('100%')
       .height($r('app.float.details_dialog_button_area_height'))

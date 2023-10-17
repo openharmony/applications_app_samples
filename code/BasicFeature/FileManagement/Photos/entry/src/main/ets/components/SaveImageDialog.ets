@@ -24,14 +24,14 @@ export struct SaveImageDialog {
   @StorageLink('isHorizontal') isHorizontal: boolean = screenManager.isHorizontal();
   @StorageLink('isSidebar') isSidebar: boolean = screenManager.isSidebar();
   @StorageLink('leftBlank') leftBlank: number[] = [0, 0, 0, 0];
-  controller: CustomDialogController;
+  controller?: CustomDialogController
 
   controllerClose(): void {
     this.controllerCloseBindImpl()
   }
 
   private controllerCloseBindImpl(): void {
-    this.controller.close()
+    this.controller?.close()
   }
 
   aboutToAppear(): void {

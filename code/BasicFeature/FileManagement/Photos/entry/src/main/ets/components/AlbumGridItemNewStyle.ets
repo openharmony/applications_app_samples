@@ -30,10 +30,10 @@ const TAG = 'AlbumGridItemNewStyle'
 
 @Component
 export struct AlbumGridItemNewStyle {
-  private staticIconList: Map<string, Resource> = null;
+  private staticIconList: Map<string, Resource> | null = null;
 
   private getStaticIconList(): Map<string, Resource> {
-    if(this.staticIconList === null) {
+    if (this.staticIconList === null) {
       let icons: Map<string, Resource> = new Map<string, Resource>();
       icons.set(MediaConstants.ALBUM_ID_VIDEO, $r('app.media.ic_video'));
       icons.set(MediaConstants.ALBUM_ID_FAVOR, $r('app.media.ic_favorite_overlay'));
@@ -42,8 +42,8 @@ export struct AlbumGridItemNewStyle {
     return this.staticIconList;
   };
 
-  item: AlbumDataItem;
-  lazyItem: LazyItem<AlbumDataItem>;
+  item: AlbumDataItem = new AlbumDataItem('', 0, '', 0, '', 0, 0);
+  lazyItem: LazyItem<AlbumDataItem> = new LazyItem(this.item, 0);
   @State isEmptyAlbum: boolean = false;
   @State selectable: boolean = true;
   @State icHeight: number = 0;
@@ -62,7 +62,7 @@ export struct AlbumGridItemNewStyle {
   iconMarkAnchorY = Constants.ALBUM_SET_NEW_ICON_SIZE + Constants.ALBUM_SET_NEW_ICON_MARGIN;
   @State cardWidth: number = 0;
   @State cardHeight: number = 0;
-  @State thumbnail: PixelMap = undefined;
+  @State thumbnail: PixelMap | undefined = undefined;
 
   aboutToAppear(): void {
     Log.debug(TAG, 'aboutToAppear');

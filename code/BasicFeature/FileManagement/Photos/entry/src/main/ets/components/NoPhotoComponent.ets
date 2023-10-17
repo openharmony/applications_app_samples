@@ -22,7 +22,7 @@ const TAG = 'NoPhotoComponent'
 @Component
 export struct NoPhotoComponent {
   private TAG: string = 'NoPhotoComponent';
-  title: Resource;
+  title: Resource | undefined = undefined;
   // set an initial value temporarily, later change to 0.
   @State offSetY: number = Constants.EMPTY_PAGE_DEFAULT_OFFSET;
   @StorageLink('isHorizontal') isHorizontal: boolean = screenManager.isHorizontal();
@@ -71,6 +71,7 @@ export struct NoPhotoComponent {
           .fontFamily($r('app.string.id_text_font_family_regular'))
           .fontColor($r('app.color.tertiary_title_text_color'))
       }
+      .id('NoPhotoComponent')
       .width('100%')
       .offset({ x: 0, y: this.offSetY })
       .padding({ left: $r('app.float.max_padding_start'), right: $r('app.float.max_padding_start') })

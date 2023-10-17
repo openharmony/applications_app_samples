@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,7 +26,7 @@ export struct RenameDialog {
   @StorageLink('isHorizontal') isHorizontal: boolean = screenManager.isHorizontal();
   @StorageLink('isSidebar') isSidebar: boolean = screenManager.isSidebar();
   @StorageLink('leftBlank') leftBlank: number[] = [0, 0, 0, 0];
-  controller: CustomDialogController;
+  controller?: CustomDialogController ;
   @Consume renameFileName: string;
   @Consume dialogCallback: DialogCallback;
   @State isNull: boolean = false;
@@ -105,8 +104,10 @@ export struct RenameDialog {
           .backgroundColor($r('app.color.transparent'))
           .height($r('app.float.details_dialog_button_height'))
           .onClick((): void => {
-            if(this.dialogCallback != null) this.dialogCallback.cancelCallback();
-            this.controller.close()
+            if (this.dialogCallback?.cancelCallback !== undefined) {
+              this.dialogCallback.cancelCallback()
+            };
+            this.controller?.close()
           })
 
           Row() {
@@ -133,17 +134,20 @@ export struct RenameDialog {
           .onClick((): void => {
             let passCheck = Constants.NAME_PATTERN.test(this.inputName);
             if (passCheck) {
-              getResourceString($r('app.string.specific_characters_not_supported')).then<void, void>((message: string): void => {
-                showToast(message)
-              });
+              getResourceString($r('app.string.specific_characters_not_supported'))
+                .then<void, void>((message: string): void => {
+                  showToast(message)
+                });
               return;
             }
             if (this.inputName === this.renameFileName) {
-              this.controller.close();
+              this.controller?.close();
               return;
             }
-            if(this.dialogCallback != null) this.dialogCallback.confirmCallback(this.inputName);
-            this.controller.close();
+            if (this.dialogCallback != null && this.dialogCallback.confirmCallback !== null) {
+              this.dialogCallback.confirmCallback(this.inputName);
+            }
+            this.controller?.close();
           })
         }
       }

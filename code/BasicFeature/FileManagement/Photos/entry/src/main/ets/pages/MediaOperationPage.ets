@@ -46,8 +46,8 @@ struct MediaOperationPage {
   @Provide loadingFinish: boolean = false;
   @State listCardWidth: number = 0;
   isActive: boolean = false; // Whether the page is in the foreground
-  sourceAlbumId: string;
-  private albumInfo: SimpleAlbumDataItem;
+  sourceAlbumId: string = '';
+  private albumInfo: SimpleAlbumDataItem = new SimpleAlbumDataItem('','','','','',0,0);
   private appBroadcast: Broadcast = broadcastManager.getBroadcast();
   private albumsDataSource: AlbumsDataSource = new AlbumsDataSource()
   private scroller: Scroller = new Scroller();
@@ -67,8 +67,6 @@ struct MediaOperationPage {
     this.albumsDataSource.setBlackList(blackList)
     this.onActive();
     this.loadAlbums()
-    this.onMenuClicked = (action: Action): void => this.onMenuClickedBindImpl(action);
-
     this.broadCast.on(BroadcastConstants.MEDIA_OPERATION, (albumInfo: SimpleAlbumDataItem, completedFunc?: Function): void => {
       router.back({
         uri: '',
@@ -109,8 +107,6 @@ struct MediaOperationPage {
   createNewAlbum(): void {
     Log.info(TAG, 'createNewAlbum');
     let menuContext = new MenuContext();
-    this.onOperationStart = (): void => this.onOperationStartBindImpl();
-    this.onOperationEnd = (): void => this.onOperationEndBindImpl();
     menuContext
       .withOperationStartCallback(this.onOperationStart)
       .withOperationEndCallback(this.onOperationEnd)
@@ -184,10 +180,10 @@ struct MediaOperationPage {
             List() {
               LazyForEach(this.albumsDataSource, (item: LazyItem<AlbumDataItem>): void => {
                 ListItem() {
-                  AlbumListCard({ item: item.get() })
+                  AlbumListCard({ item: item?.get() })
                 }
-              }, (item: LazyItem<AlbumDataItem>): string => (item == null) && (item.get() != undefined && item.get() != null) ?
-                JSON.stringify(item) : item.getHashCode())
+              }, (item: LazyItem<AlbumDataItem>): string =>
+              item == null && ((item as LazyItem<AlbumDataItem>).get() != undefined && (item as LazyItem<AlbumDataItem>).get() != null) ? JSON.stringify(item) : item.getHashCode())
             }
             .divider({
               strokeWidth: 1,
