@@ -14,14 +14,15 @@
  */
 
 import prompt from '@ohos.prompt'
+import common from '@ohos.app.ability.common'
 import AbilityContextController from '../feature/AbilityContextController'
 import { PublicTitleBar } from './component/PublicTitleBar'
 
 @Entry
 @Component
 struct AbilityContextPage {
-  private abilityContext: AbilityContextController
-  private appContext: any = null
+  private appContext: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+  private abilityContext: AbilityContextController = new AbilityContextController(this.appContext);
 
   build() {
     Column() {
@@ -267,12 +268,12 @@ struct AbilityContextPage {
   }
 
   aboutToAppear() {
-    this.appContext = getContext(this)
-    this.abilityContext = new AbilityContextController(this.appContext)
+    this.appContext = getContext(this) as common.UIAbilityContext;
+    this.abilityContext = new AbilityContextController(this.appContext);
   }
 }
 
-@Extend(Button) function fancy (click) {
+@Extend(Button) function fancy (click: (event?: ClickEvent) => void) {
   .width('60%')
   .height(40)
   .align(Alignment.Center)

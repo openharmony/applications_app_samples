@@ -16,14 +16,16 @@
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import testsuite from '../test/List.test';
 import UIAbility from '@ohos.app.ability.UIAbility';
-import type window from '@ohos.window';
+import window from '@ohos.window';
 import { Hypium } from '@ohos/hypium';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { logger } from '../util/Logger';
 
 const TAG: string = 'TestAbility';
 
 export default class TestAbility extends UIAbility {
-  onCreate(want, launchParam): void {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     logger.info(TAG, `TestAbility onCreate, want param: ${JSON.stringify(want)},launchParam: ${JSON.stringify(launchParam)}`);
   }
 
