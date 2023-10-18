@@ -18,15 +18,15 @@ import { Header } from '../component/Header';
 @Entry
 @Component
 struct Detail {
-  private arr: Array<string> = router.getParams()['recEvents'];
-  private filteredArr: Array<string> = router.getParams()['onceEvents'];
+  private arr: Array<string> = (router.getParams() as Record<string, object>)['recEvents'] as Array<string>;
+  private filteredArr: Array<string> = (router.getParams() as Record<string, object>)['onceEvents'] as Array<string>;
 
   build() {
     Column() {
       Header({src: 'detailTitle.png'})
       Column() {
         List({ space: 10, initialIndex: 0 }) {
-          ForEach(this.arr, (item) => {
+          ForEach(this.arr, (item: string) => {
             ListItem() {
               Text(item).size({ width: '100%', height: '100%' })
                 .fontSize(16)
@@ -56,7 +56,7 @@ struct Detail {
           .textAlign(TextAlign.Start)
           .fontColor(0x000000)
           .id('onceEventText')
-        ForEach(this.filteredArr, (item) => {
+        ForEach(this.filteredArr, (item: string) => {
           Text(item).size({ width: '100%', height: '20%' })
             .fontSize(14)
             .textAlign(TextAlign.Center)

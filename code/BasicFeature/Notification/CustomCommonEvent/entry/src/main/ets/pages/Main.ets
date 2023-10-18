@@ -20,6 +20,8 @@ import mainFeature from '../feature/MainFeature';
 import router from '@ohos.router';
 import Logger from '../module/Logger';
 import surveillanceEventsManager from '../module/SurveillanceEventsManager';
+import commonEventManager from '@ohos.commonEventManager';
+import { BusinessError } from '@ohos.base';
 
 @Entry
 @Component
@@ -35,7 +37,7 @@ struct Main {
   @State currentEvent: string = '';
   @State detailState: Visibility = Visibility.None;
   @State currentState: Visibility = Visibility.None;
-  private validEventsSubscriber = null; // this subscriber subscribe system defined ordinary events
+  private validEventsSubscriber: commonEventManager.CommonEventSubscriber | null = null; // this subscriber subscribe system defined ordinary events
   private feature: mainFeature = new mainFeature();
 
   async onPageShow() {
@@ -65,7 +67,7 @@ struct Main {
     }
   }
 
-  private systemEventCallback = (error, event) => {
+  private systemEventCallback = (error: BusinessError, event: commonEventManager.CommonEventData) => {
     let index = this.feature.getCurrentValidEvents().indexOf(event.event);
     this.recTimesArray[index]++;
     this.recEventsArray[index] = event.event + ' : ' + this.recTimesArray[index].toString();
@@ -83,13 +85,13 @@ struct Main {
     sysTime.getCurrentTime().then((curTime) => {
       this.startTime = curTime;
       // start subscribe
-      let subscriberInfo = {
+      let subscriberInfo: commonEventManager.CommonEventSubscribeInfo = {
         events: this.feature.getCurrentValidEvents()
       };
       if (subscriberInfo['events'].length === 0) {
         return;
       }
-      commonEvent.createSubscriber(subscriberInfo, (error, subscriber) => {
+      commonEvent.createSubscriber(subscriberInfo, (error: BusinessError, subscriber: commonEventManager.CommonEventSubscriber) => {
         this.validEventsSubscriber = subscriber;
         commonEvent.subscribe(subscriber, this.systemEventCallback);
       });
@@ -108,7 +110,7 @@ struct Main {
       commonEvent.unsubscribe(this.validEventsSubscriber, () => {
         Logger.info("unsubscribe called");
       })
-      let options = {
+      let options: commonEventManager.CommonEventPublishData = {
         isOrdered: true,
         parameters: {
           'startTime': utils.getLocaleTime(this.startTime),

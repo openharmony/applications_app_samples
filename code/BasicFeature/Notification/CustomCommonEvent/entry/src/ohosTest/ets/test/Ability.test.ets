@@ -15,15 +15,17 @@
 
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import commonEventManager from '@ohos.commonEventManager';
-import type common from '@ohos.app.ability.common';
+import common from '@ohos.app.ability.common';
 import { describe, it, expect } from '@ohos/hypium';
 import { Driver, ON, MatchPattern } from '@ohos.UiTest';
 import historyFeature from '../../../main/ets/feature/HistoryFeature';
 import { logger } from '../util/Logger';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
 
 const TAG = '[Sample_CustomCommonEvent]';
 const BUNDLE = 'CustomCommonEvent_';
-let ability;
+let ability: UIAbility;
 const RADIO_ID: Array<string> = [
 commonEventManager.Support.COMMON_EVENT_WIFI_POWER_STATE,
 commonEventManager.Support.COMMON_EVENT_SCREEN_OFF,
@@ -31,12 +33,12 @@ commonEventManager.Support.COMMON_EVENT_SCREEN_ON
 ];
 
 export default function abilityTest() {
-  let driver = Driver.create();
-  describe('AbilityTest', function () {
-    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+  let driver: Driver = Driver.create();
+  describe('AbilityTest', () => {
+    it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}StartAbility_001 begin`)
-      let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
-      let want = {
+      let delegator: AbilityDelegatorRegistry.AbilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+      let want: Want = {
         bundleName: "com.samples.customcommonevent",
         abilityName: "LauncherAbility"
       };
@@ -53,7 +55,7 @@ export default function abilityTest() {
     })
 
     // 进入监听界面，监听
-    it(BUNDLE + 'Main_001', 0, async function () {
+    it(BUNDLE + 'Main_001', 0, async () => {
       logger.info(TAG, `${BUNDLE}Main_001 begin`);
       // 进入监听界面，进行试11次监听
       await driver.delayMs(1000);
@@ -79,7 +81,7 @@ export default function abilityTest() {
     })
 
     // 进入详情界面
-    it(BUNDLE + 'Detail_001', 0, async function (done) {
+    it(BUNDLE + 'Detail_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}Detail_001 begin`);
       await driver.assertComponentExist(ON.id('nextDetail'));
       let nextDetail = await driver.findComponent(ON.id('nextDetail'));
@@ -97,7 +99,7 @@ export default function abilityTest() {
     })
 
     // 进入历史页面
-    it(BUNDLE + 'History_001', 0, async function () {
+    it(BUNDLE + 'History_001', 0, async () => {
       logger.info(TAG, `${BUNDLE}History_001 begin`);
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('jumpToHistory'));
@@ -121,7 +123,7 @@ export default function abilityTest() {
     })
 
     // 进入设置页面
-    it(BUNDLE + 'Setting_001', 0, async function (done) {
+    it(BUNDLE + 'Setting_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}Setting_001 begin`);
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('jumpToSetting'));
@@ -135,7 +137,7 @@ export default function abilityTest() {
     })
 
     // 设置功能
-    it(BUNDLE + 'Setting_002', 0, async function (done) {
+    it(BUNDLE + 'Setting_002', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}Setting_002 begin`);
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id(RADIO_ID[1] + '1'));
@@ -157,7 +159,7 @@ export default function abilityTest() {
     })
 
     // 进入关于页面
-    it(BUNDLE + 'About_001', 0, async function (done) {
+    it(BUNDLE + 'About_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}About_001 begin`);
       await driver.delayMs(1000);
       // 点击进入关于页面

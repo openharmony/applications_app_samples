@@ -19,8 +19,8 @@ import settingFeature from '../feature/SettingFeature';
 import { Header } from '../component/Header';
 
 class EventData {
-  event: string;
-  title: Resource
+  event: string = '';
+  title: Resource | undefined = undefined
 }
 
 @Entry
