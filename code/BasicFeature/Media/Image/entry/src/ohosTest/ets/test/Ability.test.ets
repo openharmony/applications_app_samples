@@ -17,6 +17,7 @@ import { Driver, ON } from '@ohos.UiTest';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import hilog from '@ohos.hilog';
 import { getString } from '../utils/ResourceUtil';
+import { BusinessError } from '@ohos.base';
 
 const TAG: string = '[Sample_Image]';
 const DOMAIN: number = 0xF811;
@@ -48,11 +49,11 @@ async function saveEdit() {
 }
 
 export default function ActsAbilityTest() {
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
     /**
      * 启动Ability
      */
-    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+    it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin');
       let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
       await abilityDelegatorRegistry.executeShellCommand('aa start -a MainAbility -b ohos.samples.image');
@@ -63,11 +64,11 @@ export default function ActsAbilityTest() {
     /**
      * 获取权限
      */
-    it(BUNDLE + 'RequestPermissionFunction_001', 0, async function (done) {
+    it(BUNDLE + 'RequestPermissionFunction_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'RequestPermissionFunction_001 begin');
       let driver: Driver = Driver.create();
       await driver.delayMs(1000);
-      const tipAllow: string = getString($r('app.string.allow'));
+      let tipAllow: string = getString($r('app.string.allow'));
       await driver.assertComponentExist(ON.text(tipAllow));
       let stack = await driver.findComponent(ON.text(tipAllow));
       await stack.click();
@@ -80,7 +81,7 @@ export default function ActsAbilityTest() {
     /**
      * 选择图片
      */
-    it(BUNDLE + 'ChoosePhoto_001', 0, async function (done) {
+    it(BUNDLE + 'ChoosePhoto_001', 0, async (done: Function) => {
       // 从相册中选择
       hilog.info(DOMAIN, TAG, BUNDLE + 'ChoosePhoto_001 begin');
       let driver = Driver.create();
@@ -90,7 +91,7 @@ export default function ActsAbilityTest() {
       await stack.click();
       await driver.delayMs(1000);
       // 拍照,坐标选择,固定坐标只支持RK3568，其他设备需要调整
-      const takePhoto: string = getString($r('app.string.takePhoto'));
+      let takePhoto: string = getString($r('app.string.takePhoto'));
       await driver.assertComponentExist(ON.text(takePhoto));
       let take_photo = await driver.findComponent(ON.text(takePhoto));
       // 点击拍照唤起相机
@@ -106,7 +107,7 @@ export default function ActsAbilityTest() {
       await driver.click(540, 260);
       await driver.delayMs(3000);
       // 点击完成
-      const tipCompleted: string = getString($r('app.string.completed'));
+      let tipCompleted: string = getString($r('app.string.completed'));
       await driver.assertComponentExist(ON.text(tipCompleted));
       let finish = await driver.findComponent(ON.text(tipCompleted));
       await finish.click();
@@ -118,13 +119,13 @@ export default function ActsAbilityTest() {
     /**
      * 点击裁剪
      */
-    it(BUNDLE + 'CropPhoto_001', 0, async function (done) {
+    it(BUNDLE + 'CropPhoto_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'CropPhoto_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
       // 进入编辑
       await enterEdit();
-      const tipCrop: string = getString($r('app.string.crop'));
+      let tipCrop: string = getString($r('app.string.crop'));
       await driver.assertComponentExist(ON.text(tipCrop));
       let stack = await driver.findComponent(ON.text(tipCrop));
       await stack.click();
@@ -136,11 +137,11 @@ export default function ActsAbilityTest() {
     /**
      * 点击4:3
      */
-    it(BUNDLE + 'Crop4:3_001', 0, async function (done) {
+    it(BUNDLE + 'Crop4:3_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'Crop4:3_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
-      const tipPercent: string = getString($r('app.string.percent43'));
+      let tipPercent: string = getString($r('app.string.percent43'));
       await driver.assertComponentExist(ON.text(tipPercent));
       let stack = await driver.findComponent(ON.text(tipPercent));
       await stack.click();
@@ -156,15 +157,15 @@ export default function ActsAbilityTest() {
     /**
      * 点击16:9
      */
-    it(BUNDLE + 'Crop16:9_001', 0, async function (done) {
+    it(BUNDLE + 'Crop16:9_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'Crop16:9 begin');
       let driver = Driver.create();
-      const tipCrop = getString($r('app.string.crop'));
+      let tipCrop = getString($r('app.string.crop'));
       await driver.assertComponentExist(ON.text(tipCrop));
       let crop = await driver.findComponent(ON.text(tipCrop));
       await crop.click();
       await driver.delayMs(1000);
-      const tipPercent = getString($r('app.string.percent169'));
+      let tipPercent = getString($r('app.string.percent169'));
       await driver.assertComponentExist(ON.text(tipPercent));
       let stack = await driver.findComponent(ON.text(tipPercent));
       await stack.click();
@@ -180,15 +181,15 @@ export default function ActsAbilityTest() {
     /**
      * 点击1:1
      */
-    it(BUNDLE + 'Crop1:1_001', 0, async function (done) {
+    it(BUNDLE + 'Crop1:1_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'Crop1:1 begin');
       let driver = Driver.create();
-      const tipCrop = getString($r('app.string.crop'));
+      let tipCrop = getString($r('app.string.crop'));
       await driver.assertComponentExist(ON.text(tipCrop));
       let crop = await driver.findComponent(ON.text(tipCrop));
       await crop.click();
       await driver.delayMs(1000);
-      const tipPercent = getString($r('app.string.percent11'));
+      let tipPercent = getString($r('app.string.percent11'));
       await driver.assertComponentExist(ON.text(tipPercent));
       let stack = await driver.findComponent(ON.text(tipPercent));
       await stack.click();
@@ -204,16 +205,16 @@ export default function ActsAbilityTest() {
     /**
      * 点击原图
      */
-    it(BUNDLE + 'CropOrigin_001', 0, async function (done) {
+    it(BUNDLE + 'CropOrigin_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'CropOrigin begin');
       let driver = Driver.create();
-      const tipCrop = getString($r('app.string.crop'));
+      let tipCrop = getString($r('app.string.crop'));
       await driver.assertComponentExist(ON.text(tipCrop));
       let crop = await driver.findComponent(ON.text(tipCrop));
       await crop.click();
       await driver.delayMs(1000);
       await driver.delayMs(1000);
-      const tipOrigin = getString($r('app.string.origin'));
+      let tipOrigin = getString($r('app.string.origin'));
       await driver.assertComponentExist(ON.text(tipOrigin));
       let stack = await driver.findComponent(ON.text(tipOrigin));
       await stack.click();
@@ -231,13 +232,13 @@ export default function ActsAbilityTest() {
     /**
      * 点击缩放
      */
-    it(BUNDLE + 'ScalePhoto_001', 0, async function (done) {
+    it(BUNDLE + 'ScalePhoto_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ScalePhoto_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
       // 进入编辑
       await enterEdit();
-      const tip: string = getString($r('app.string.scale'));
+      let tip: string = getString($r('app.string.scale'));
       await driver.assertComponentExist(ON.text(tip));
       let stack = await driver.findComponent(ON.text(tip));
       await stack.click();
@@ -249,11 +250,11 @@ export default function ActsAbilityTest() {
     /**
      * 点击缩小
      */
-    it(BUNDLE + 'Scale_001', 0, async function (done) {
+    it(BUNDLE + 'Scale_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'Scale_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
-      const zoomOut: string = getString($r('app.string.zoomOut'));
+      let zoomOut: string = getString($r('app.string.zoomOut'));
       await driver.assertComponentExist(ON.text(zoomOut));
       let stack = await driver.findComponent(ON.text(zoomOut));
       await stack.click();
@@ -269,15 +270,15 @@ export default function ActsAbilityTest() {
     /**
      * 点击放大
      */
-    it(BUNDLE + 'Scale_002', 0, async function (done) {
+    it(BUNDLE + 'Scale_002', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'Scale_002 begin');
       let driver = Driver.create();
-      const tip = getString($r('app.string.scale'));
+      let tip = getString($r('app.string.scale'));
       await driver.assertComponentExist(ON.text(tip));
       let scale = await driver.findComponent(ON.text(tip));
       await scale.click();
       await driver.delayMs(1000);
-      const zoomIn = getString($r('app.string.zoomIn'));
+      let zoomIn = getString($r('app.string.zoomIn'));
       await driver.assertComponentExist(ON.text(zoomIn));
       let stack = await driver.findComponent(ON.text(zoomIn));
       await stack.click();
@@ -295,13 +296,13 @@ export default function ActsAbilityTest() {
     /**
      * 点击旋转
      */
-    it(BUNDLE + 'RotatePhoto_001', 0, async function (done) {
+    it(BUNDLE + 'RotatePhoto_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'RotatePhoto_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
       // 进入编辑
       await enterEdit();
-      const tip: string = getString($r('app.string.rotate'));
+      let tip: string = getString($r('app.string.rotate'));
       await driver.assertComponentExist(ON.text(tip));
       let stack = await driver.findComponent(ON.text(tip));
       await stack.click();
@@ -313,7 +314,7 @@ export default function ActsAbilityTest() {
     /**
      * 旋转-90度
      */
-    it(BUNDLE + 'Rotate_001', 0, async function (done) {
+    it(BUNDLE + 'Rotate_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'Rotate_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -332,10 +333,10 @@ export default function ActsAbilityTest() {
     /**
      * 旋转90度
      */
-    it(BUNDLE + 'Rotate_002', 0, async function (done) {
+    it(BUNDLE + 'Rotate_002', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'Rotate_002 begin');
       let driver = Driver.create();
-      const tip = getString($r('app.string.rotate'));
+      let tip = getString($r('app.string.rotate'));
       await driver.assertComponentExist(ON.text(tip));
       let scale = await driver.findComponent(ON.text(tip));
       await scale.click();
@@ -357,13 +358,13 @@ export default function ActsAbilityTest() {
     /**
      * 点击调色
      */
-    it(BUNDLE + 'ToningPhoto_001', 0, async function (done) {
+    it(BUNDLE + 'ToningPhoto_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ToningPhoto_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
       // 进入编辑
       await enterEdit();
-      const tip: string = getString($r('app.string.toning'));
+      let tip: string = getString($r('app.string.toning'));
       await driver.assertComponentExist(ON.text(tip));
       let stack = await driver.findComponent(ON.text(tip));
       await stack.click();
@@ -375,7 +376,7 @@ export default function ActsAbilityTest() {
     /**
      * 拖动滑动条
      */
-    it(BUNDLE + 'Toning_001', 0, async function (done) {
+    it(BUNDLE + 'Toning_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'Toning_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -399,13 +400,13 @@ export default function ActsAbilityTest() {
     /**
      * 点击标记
      */
-    it(BUNDLE + 'Mark_001', 0, async function (done) {
+    it(BUNDLE + 'Mark_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'Mark_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
       // 进入编辑
       await enterEdit();
-      const mark: string = getString($r('app.string.mark'));
+      let mark: string = getString($r('app.string.mark'));
       await driver.assertComponentExist(ON.text(mark));
       let stack = await driver.findComponent(ON.text(mark));
       await stack.click();
@@ -417,11 +418,11 @@ export default function ActsAbilityTest() {
     /**
      * 点击文字
      */
-    it(BUNDLE + 'Text_001', 0, async function (done) {
+    it(BUNDLE + 'Text_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'Text_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
-      const text: string = getString($r('app.string.text'));
+      let text: string = getString($r('app.string.text'));
       await driver.assertComponentExist(ON.text(text));
       let stack = await driver.findComponent(ON.text(text));
       await stack.click();
@@ -433,7 +434,7 @@ export default function ActsAbilityTest() {
     /**
      * 输入文字
      */
-    it(BUNDLE + 'TextInput_001', 0, async function (done) {
+    it(BUNDLE + 'TextInput_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'TextInput_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -456,7 +457,7 @@ export default function ActsAbilityTest() {
     /**
      * 点击撤销
      */
-    it(BUNDLE + 'Repeal_001', 0, async function (done) {
+    it(BUNDLE + 'Repeal_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'Repeal_001 begin');
       let driver = Driver.create();
       await driver.assertComponentExist(ON.id('Repeal'));
@@ -472,13 +473,13 @@ export default function ActsAbilityTest() {
     /**
      * 点击标记
      */
-    it(BUNDLE + 'Mark_001', 0, async function (done) {
+    it(BUNDLE + 'Mark_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'Mark_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
       // 进入编辑
       await enterEdit();
-      const mark: string = getString($r('app.string.mark'));
+      let mark: string = getString($r('app.string.mark'));
       await driver.assertComponentExist(ON.text(mark));
       let stack = await driver.findComponent(ON.text(mark));
       await stack.click();
@@ -490,11 +491,11 @@ export default function ActsAbilityTest() {
     /**
      * 添加贴纸
      */
-    it(BUNDLE + 'AddSticker_001', 0, async function (done) {
+    it(BUNDLE + 'AddSticker_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'AddSticker_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
-      const sticker: string = getString($r('app.string.sticker'));
+      let sticker: string = getString($r('app.string.sticker'));
       await driver.assertComponentExist(ON.text(sticker));
       let stack = await driver.findComponent(ON.text(sticker));
       await stack.click();

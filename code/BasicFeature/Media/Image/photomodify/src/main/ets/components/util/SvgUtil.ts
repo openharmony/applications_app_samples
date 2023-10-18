@@ -14,7 +14,6 @@
  */
 import convertxml from '@ohos.convertxml';
 import util from '@ohos.util';
-
 /**
  * 画svg到离线画板
  * @param context
