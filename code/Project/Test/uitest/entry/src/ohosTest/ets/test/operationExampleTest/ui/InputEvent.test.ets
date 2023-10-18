@@ -77,5 +77,25 @@ export default function InputEventTest() {
       expect(text == "中文测试").assertTrue()
       done()
     })
+
+    /**
+     * @tc.number:InputEventTest_002
+     * @tc.name: clickEventTest_Input_zh
+     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
+     * @tc.desc: 检测uitest inputText 输入中文功能测试
+     */
+    it('clickEventTest_Input_driver',TestType.FUNCTION, async (done: Function) => {
+      let driver = Driver.create()
+      await driver.delayMs(WAIT_UI_READYMS)
+      let input = await driver.findComponent(ON.type('TextInput'))
+      let center = await input.getBoundsCenter()
+      await input.clearText();
+      await driver.inputText(center, '1234556')
+      await driver.delayMs(WAIT_UI_READYMS)
+      let input_new = await driver.findComponent(ON.type('TextInput'))
+      let text = await input_new.getText()
+      expect(text == "1234556").assertTrue()
+      done()
+    })
   })
 }

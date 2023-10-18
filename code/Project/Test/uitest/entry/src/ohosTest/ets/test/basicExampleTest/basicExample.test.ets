@@ -17,9 +17,9 @@ import Want from '@ohos.app.ability.Want';
 import { describe, it, expect, TestType } from '@ohos/hypium'
 import { Driver, ON } from '@ohos.UiTest'
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 import Logger from '../../util/Logger';
-import EntryAbility from '../../../../main/ets/entryability/EntryAbility';
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator()
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
@@ -46,7 +46,7 @@ export default function basicExampleTest() {
       await delegator.startAbility(want);
       await sleep(1000);
       // check top display ability
-      await delegator.getCurrentTopAbility().then((ability: EntryAbility)=>{
+      await delegator.getCurrentTopAbility().then((ability: UIAbility)=>{
         console.info("get top ability");
         expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
       })
