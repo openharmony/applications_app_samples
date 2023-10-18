@@ -96,14 +96,15 @@ class IntlUtil {
     let options = numfmt.resolvedOptions();
     options.locale = locale;
     options.numberingSystem = currentLocale.numberingSystem;
-    options.currency = 'CNY';
-    options.currencySign = 'symbol';
-    options.localeMatcher = 'best fit';
-    options.style = 'decimal';
+    options.useGrouping = true;
     let params = [i18n.System.getSystemLanguage(), locale];
     let numberFormat = new Intl.NumberFormat(params, options);
-    options.style = 'currency';
-    let currencyFormat = new Intl.NumberFormat(params, options);
+    let currencyOptions = {
+      locale: locale,
+      currency: 'CNY',
+      style: 'currency'
+    };
+    let currencyFormat = new Intl.NumberFormat(params, currencyOptions);
     options.style = 'percent';
     let percentFormat = new Intl.NumberFormat(params, options);
     // 此处返回的只是一个示例，因此1234567，123456，78.9并不具有实际意义
