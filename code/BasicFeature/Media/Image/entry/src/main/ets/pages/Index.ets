@@ -25,7 +25,7 @@ struct Index {
   @State isShowCamera: boolean = false;
   @State isLand: boolean = false;
   @State pixelMaps: Array<PixelMap|undefined> = [];
-  @State imageArr: Array<PixelMap> = [];
+  @State imageArr: Array<PixelMap | null> = [];
   @StorageLink('imageList') imageList: Array<string> = [];
   @StorageLink('fileFd') fileSrc: string = '';
   @StorageLink('isUpdate') isUpdate: boolean = false;

@@ -143,7 +143,9 @@ export struct EditImage {
 
   async aboutToAppear(): Promise<void> {
     this.pixelMap = await readImage(this.mediaUris);
-    this.originBM = await copyPixelMap(this.pixelMap);
+    if (this.pixelMap !== null) {
+      this.originBM = await copyPixelMap(this.pixelMap);
+    }
   }
 
   aboutToDisappear(): void {
