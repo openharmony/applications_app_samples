@@ -28,7 +28,7 @@ export default function SwipeEventTest() {
       let want: Want = {
         bundleName : bundleName,
         abilityName : "SwipeAbility"
-      }
+      };
       await delegator.startAbility(want);
     })
 
@@ -39,18 +39,18 @@ export default function SwipeEventTest() {
      * @tc.desc: 检测 uitest swipe 水平滑到功能 坐标点仅支持RK3568
      */
     it('testSwipe_h', TestType.FUNCTION, async (done: Function) => {
-      let driver = Driver.create()
-      await driver.delayMs(WAIT_UI_READYMS)
-      let swiper = await driver.findComponent(ON.id('swiper'))
+      let driver = Driver.create();
+      await driver.delayMs(WAIT_UI_READYMS);
+      let swiper = await driver.findComponent(ON.id('swiper'));
       let point = await swiper.getBounds();
-      await driver.delayMs(WAIT_UI_READYMS)
-      await driver.swipe(point.left, 300, point.right, 300)
-      await driver.delayMs(WAIT_UI_READYMS)
-      await driver.swipe(point.left, 300, point.right, 300)
-      await driver.delayMs(WAIT_UI_READYMS)
-      let text = await driver.findComponent(ON.id('swiper_text'))
-      expect(await text.getText()).assertEqual("arkUI")
-      done()
+      await driver.delayMs(WAIT_UI_READYMS);
+      await driver.swipe(point.left, 300, point.right, 300);
+      await driver.delayMs(WAIT_UI_READYMS);
+      await driver.swipe(point.left, 300, point.right, 300);
+      await driver.delayMs(WAIT_UI_READYMS);
+      let text = await driver.findComponent(ON.id('swiper_text'));
+      expect(await text.getText()).assertEqual("arkUI");
+      done();
     })
 
     /**
@@ -60,13 +60,13 @@ export default function SwipeEventTest() {
      * @tc.desc: 检测 uitest swipe 竖着滑到功能 坐标点仅支持RK3568
      */
     it('testSwipe_v', TestType.FUNCTION, async (done: Function) => {
-      let driver = Driver.create()
-      await driver.delayMs(WAIT_UI_READYMS)
-      await driver.swipe(400, 700, 400, 500)
-      await driver.delayMs(WAIT_UI_READYMS)
-      let text = await driver.findComponent(ON.id('scroll_item'))
-      expect(await text.getText()).not().assertEqual("0")
-      done()
+      let driver = Driver.create();
+      await driver.delayMs(WAIT_UI_READYMS);
+      await driver.swipe(400, 700, 400, 500);
+      await driver.delayMs(WAIT_UI_READYMS);
+      let text = await driver.findComponent(ON.id('scroll_item'));
+      expect(await text.getText()).not().assertEqual("0");
+      done();
     })
   })
 }

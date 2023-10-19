@@ -29,7 +29,7 @@ export default function ScrollerEventTest() {
       let want: Want = {
         bundleName : bundleName,
         abilityName : "ScrollerAbility"
-      }
+      };
       await delegator.startAbility(want);
     })
 
@@ -40,14 +40,14 @@ export default function ScrollerEventTest() {
      * @tc.desc: 检测 uitest scrollToBottom 滑到底部功能
      */
     it('ScrollerEvent_bottom', TestType.FUNCTION, async (done: Function) => {
-      let driver = Driver.create()
-      await driver.delayMs(WAIT_UI_READYMS)
-      let scroll = await driver.findComponent(ON.type('Scroll'))
+      let driver = Driver.create();
+      await driver.delayMs(WAIT_UI_READYMS);
+      let scroll = await driver.findComponent(ON.type('Scroll'));
       await scroll.scrollToBottom();
-      await driver.delayMs(WAIT_UI_READYMS)
+      await driver.delayMs(WAIT_UI_READYMS);
       let text = await driver.findComponent(ON.id("scroller_item_text"));
       expect(await text.getText()).not().assertEqual("0");
-      done()
+      done();
     })
 
     /**
@@ -57,15 +57,15 @@ export default function ScrollerEventTest() {
      * @tc.desc: 检测 uitest scrollToTop 滑到顶部功能
      */
     it('ScrollerEvent_top', TestType.FUNCTION, async (done: Function) => {
-      let driver = Driver.create()
-      await driver.delayMs(WAIT_UI_READYMS)
-      let scroll = await driver.findComponent(ON.type('Scroll'))
+      let driver = Driver.create();
+      await driver.delayMs(WAIT_UI_READYMS);
+      let scroll = await driver.findComponent(ON.type('Scroll'));
       await scroll.scrollToBottom();
-      await driver.delayMs(WAIT_UI_READYMS)
+      await driver.delayMs(WAIT_UI_READYMS);
       await scroll.scrollToTop();
       let text = await driver.findComponent(ON.id("scroller_item_text"));
       expect(await text.getText()).assertEqual("0");
-      done()
+      done();
     })
   })
 }

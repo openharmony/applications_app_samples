@@ -46,7 +46,7 @@ export default function WindowAttr() {
       let want: Want = {
         bundleName : bundleName,
         abilityName : "EntryAbility"
-      }
+      };
       await delegator.startAbility(want);
     })
 
@@ -57,16 +57,16 @@ export default function WindowAttr() {
      * @tc.desc: 设置window指定的大小与方向测试
      */
     it("WindowAttr_Test_001", TestType.FUNCTION, async (done: Function) => {
-      Logger.info(TAG, BUNDLE + "Test_001 start")
-      let driver = Driver.create()
-      await driver.delayMs(WAIT_UI_READYMS)
-      let window = await driver.findWindow({bundleName: bundleName})
-      // 获取widow bundle名称
-      let name = await window.getBundleName()
+      Logger.info(TAG, BUNDLE + "Test_001 start");
+      let driver = Driver.create();
+      await driver.delayMs(WAIT_UI_READYMS);
+      let window = await driver.findWindow({bundleName: bundleName});
+      // 获取widow bundle名称;
+      let name = await window.getBundleName();
       // 断言bundleName
-      expect(name == bundleName).assertTrue()
-      Logger.info(TAG, BUNDLE + "Test_001 end")
-      done()
+      expect(name == bundleName).assertTrue();
+      Logger.info(TAG, BUNDLE + "Test_001 end");
+      done();
     })
   })
 }

@@ -39,17 +39,17 @@ export default function FlingEventTest() {
      * @tc.desc: 检测uitest fling 功能 坐标点仅支持RK3568
      */
     it('FlingEvent_h', TestType.FUNCTION, async (done: Function) => {
-      let driver = Driver.create()
-      await driver.delayMs(WAIT_UI_READYMS)
-      let swiper = await driver.findComponent(ON.id('swiper'))
+      let driver = Driver.create();
+      await driver.delayMs(WAIT_UI_READYMS);
+      let swiper = await driver.findComponent(ON.id('swiper'));
       let point = await swiper.getBounds();
-      await driver.fling({x: point.left, y:300},{x:point.right, y:300}, 20, 600)
-      await driver.delayMs(WAIT_UI_READYMS)
-      await driver.fling({x: point.left, y:300},{x:point.right, y:300}, 20, 600)
-      await driver.delayMs(WAIT_UI_READYMS)
-      let text = await driver.findComponent(ON.id('swiper_text'))
-      expect(await text.getText()).assertEqual("arkUI")
-      done()
+      await driver.fling({x: point.left, y:300},{x:point.right, y:300}, 20, 600);
+      await driver.delayMs(WAIT_UI_READYMS);
+      await driver.fling({x: point.left, y:300},{x:point.right, y:300}, 20, 600);
+      await driver.delayMs(WAIT_UI_READYMS);
+      let text = await driver.findComponent(ON.id('swiper_text'));
+      expect(await text.getText()).assertEqual("arkUI");
+      done();
     })
 
     /**
@@ -59,13 +59,13 @@ export default function FlingEventTest() {
      * @tc.desc: 检测uitest fling 功能 坐标点仅支持RK3568
      */
     it('FlingEvent_v', TestType.FUNCTION, async (done: Function) => {
-      let driver = Driver.create()
-      await driver.delayMs(WAIT_UI_READYMS)
-      await driver.fling({x:400, y:700},{x:400, y:500}, 20, 600 )
-      await driver.delayMs(WAIT_UI_READYMS)
-      let text = await driver.findComponent(ON.id('scroll_item'))
-      expect(await text.getText()).not().assertEqual("0")
-      done()
+      let driver = Driver.create();
+      await driver.delayMs(WAIT_UI_READYMS);
+      await driver.fling({x:400, y:700},{x:400, y:500}, 20, 600 );
+      await driver.delayMs(WAIT_UI_READYMS);
+      let text = await driver.findComponent(ON.id('scroll_item'));
+      expect(await text.getText()).not().assertEqual("0");
+      done();
     })
 
     /**
@@ -76,17 +76,17 @@ export default function FlingEventTest() {
      */
     it('FlingEvent_d', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create()
-      await driver.delayMs(WAIT_UI_READYMS)
-      await driver.fling(UiDirection.LEFT, 39000)
-      await driver.delayMs(WAIT_UI_READYMS)
-      await driver.fling(UiDirection.RIGHT, 39000)
-      await driver.delayMs(WAIT_UI_READYMS)
-      await driver.fling(UiDirection.DOWN, 39000)
-      await driver.delayMs(WAIT_UI_READYMS)
-      await driver.fling(UiDirection.UP, 39000)
-      let text = await driver.findComponent(ON.text('next page'))
+      await driver.delayMs(WAIT_UI_READYMS);
+      await driver.fling(UiDirection.LEFT, 39000);
+      await driver.delayMs(WAIT_UI_READYMS);
+      await driver.fling(UiDirection.RIGHT, 39000);
+      await driver.delayMs(WAIT_UI_READYMS);
+      await driver.fling(UiDirection.DOWN, 39000);
+      await driver.delayMs(WAIT_UI_READYMS);
+      await driver.fling(UiDirection.UP, 39000);
+      let text = await driver.findComponent(ON.text('next page'));
       expect(text !== null).assertTrue();
-      done()
+      done();
     })
   })
 }

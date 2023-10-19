@@ -37,7 +37,7 @@ export default function basicExampleTest() {
      * @tc.desc: 验证UI操作点击指定按钮后，界面变化是否符合预期
      */
     it('testUiExample',TestType.FUNCTION, async (done: Function) => {
-      Logger.info(TAG, 'testUiExample start')
+      Logger.info(TAG, 'testUiExample start');
       //start tested ability
       let want: Want = {
         bundleName : bundleName,
