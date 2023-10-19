@@ -16,6 +16,7 @@
 import router from '@ohos.router'
 import Logger from '../model/Logger'
 import { AccountData } from '../model/AccountData'
+import { AccountModel } from '../model/AccountModel'
 
 const TAG: string = '[AccountInfo]'
 
@@ -26,6 +27,7 @@ export struct AccountInfo {
   @Prop signature: string
   @Prop bundleName: string
   private storage: AccountData = AccountData.getInstance()
+  private accountModel: AccountModel = new AccountModel()
 
   @Builder infoShow(title: Resource, value: string) {
     Row() {
@@ -115,6 +117,7 @@ export struct AccountInfo {
                 primaryButton: {
                   value: $r('app.string.confirm'),
                   action: () => {
+                    this.accountModel.deleteAccount(`${this.username}_${this.bundleName}`)
                     this.storage.deleteStorageValue(getContext(), this.username, this.bundleName)
                     router.replace({
                       url: 'pages/Login',
