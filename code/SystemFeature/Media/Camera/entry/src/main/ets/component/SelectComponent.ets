@@ -18,30 +18,34 @@ const TAG: string = '[SelectComponent]';
 
 @CustomDialog
 export struct SelectComponent {
-  controller: CustomDialogController;
-  private title: Resource = null;
+  controller?: CustomDialogController;
+  private title: Resource | null = null;
   private dataList: Resource[] = [];
   @Link selectType: number;
   @State selected: number = 0 // 当前选择项的索引;
 
   aboutToAppear() {
-    Logger.info(TAG, `aboutToAppear selectType_ ${AppStorage.Get(`selectType_${this.selectType}`)}`);
-    this.selected = AppStorage.Get(`selectType_${this.selectType}`);
+    Logger.info(TAG, `aboutToAppear selectType_ ${AppStorage.Get<number>(`selectType_${this.selectType}`)}`);
+    let selectTypeValue: number | undefined = AppStorage.Get<number>(`selectType_${this.selectType}`)
+    if (selectTypeValue !== undefined) {
+      this.selected = selectTypeValue;
+    }
   }
 
   build() {
     Column() {
-
-      Text(this.title)
-        .fontSize(20)
-        .width('90%')
-        .fontColor($r('app.color.COLOR_E6000000'))
-        .fontFamily($r('app.string.font_family'))
-        .textAlign(TextAlign.Start)
-        .margin({ top: 20, bottom: 12 })
+      if (this.title !== null) {
+        Text(this.title)
+          .fontSize(20)
+          .width('90%')
+          .fontColor($r('app.color.COLOR_E6000000'))
+          .fontFamily($r('app.string.font_family'))
+          .textAlign(TextAlign.Start)
+          .margin({ top: 20, bottom: 12 })
+      }
 
       List() {
-        ForEach(this.dataList, (item, index) => {
+        ForEach(this.dataList, (item: Resource, index: number) => {
           ListItem() {
             Column() {
               Row() {
@@ -73,7 +77,9 @@ export struct SelectComponent {
           .width('100%')
           .height(48)
           .onClick(() => {
-            this.selected = index;
+            if (index !== undefined) {
+              this.selected = index;
+            }
             Logger.info(TAG, `item onClick ${this.selected}`);
           })
         })
@@ -89,7 +95,7 @@ export struct SelectComponent {
           .layoutWeight(1)
           .textAlign(TextAlign.Center)
           .onClick(() => {
-            this.controller.close();
+            this.controller?.close();
           })
 
         Divider()
@@ -109,7 +115,7 @@ export struct SelectComponent {
             // 确认后返回当前索引
             AppStorage.SetOrCreate(`selectType_${this.selectType}`, this.selected);
             Logger.info(TAG, `confirm onClick ${this.selected}`);
-            this.controller.close();
+            this.controller?.close();
           })
       }
       .alignItems(VerticalAlign.Center)
