@@ -17,6 +17,12 @@ import BatteryStatsUtil from '../util/BatteryStatsUtil';
 import { BatteryStatsDataSource } from '../model/BatteryStatsDataSource';
 import { BatteryStatsList } from '../components/batterystats/BatteryStatsList';
 
+interface HeaderType {
+  title: Resource,
+  visible: boolean,
+  callback: Function
+}
+
 @Preview
 @Component
 export struct BatteryStats {
@@ -38,11 +44,7 @@ export struct BatteryStats {
     this.softTotal = BatteryStatsUtil.getTotalPercent(this.softListData.getList());
   }
 
-  @Builder header($$: {
-    title: Resource,
-    visible: boolean,
-    callback
-  }) {
+  @Builder header($$: HeaderType) {
     Row() {
       Text($$.title)
         .fontSize(18)
@@ -65,15 +67,17 @@ export struct BatteryStats {
     })
   }
 
+  callback = ()=>{
+    this.visibleHard = !this.visibleHard;
+  }
+
   build() {
     Scroll(this.scroller) {
       Column() {
         this.header({
           title: $r('app.string.battery_stats_hardware', this.hardTotal),
           visible: this.visibleHard,
-          callback: () => {
-            this.visibleHard = !this.visibleHard;
-          }
+          callback: (): void => this.callback()
         })
         if (this.visibleHard) {
           BatteryStatsList({
@@ -85,9 +89,7 @@ export struct BatteryStats {
         this.header({
           title: $r("app.string.battery_stats_software", this.softTotal),
           visible: this.visibleSoft,
-          callback: () => {
-            this.visibleSoft = !this.visibleSoft;
-          }
+          callback: (): void => this.callback()
         })
         if (this.visibleSoft) {
           if (this.softListData.totalCount() > 0) {

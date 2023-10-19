@@ -19,10 +19,10 @@ import InputDevice from '../util/InputDeviceUtil'
 
 @Component
 struct InputDeviceList {
-  mIsShowIcon: boolean
-  mIsShowStyle: boolean
+  mIsShowIcon: boolean = false
+  mIsShowStyle: boolean = false
   @Link mInputDevices: InputDeviceInfo[]
-  onClickItem: (deviceInfo: InputDeviceInfo) => void
+  onClickItem: (deviceInfo: InputDeviceInfo) => void = () => {}
 
   @Builder CustomDivider() {
     Divider()
@@ -110,7 +110,7 @@ struct InputDeviceList {
 @Component
 export struct InputDeviceManager {
   @State mInputDevices: InputDeviceInfo[] = []
-  @State mCurDevice: InputDeviceInfo = null
+  @State mCurDevice: InputDeviceInfo | null = null
   @State mInputDeviceList: InputDeviceInfo[] = []
   @State mIsListener: boolean = false
   @State mIsRefreshing: boolean = false
@@ -180,7 +180,7 @@ export struct InputDeviceManager {
                 .onChange((isOn) => {
                   this.mIsListener = isOn
                   if (isOn) {
-                    InputDevice.registerChange(this.onDeviceChange.bind(this))
+                    InputDevice.registerChange((devices: InputDeviceInfo[]): void => this.onDeviceChange(devices))
                   } else {
                     InputDevice.unregisterChange()
                   }
@@ -218,7 +218,7 @@ export struct InputDeviceManager {
             mInputDevices: $mInputDevices,
             mIsShowIcon: true,
             mIsShowStyle: false,
-            onClickItem: this.onClickItem.bind(this)
+            onClickItem: (deviceInfo: InputDeviceInfo): void => this.onClickItem(deviceInfo)
           })
 
         }.justifyContent(FlexAlign.Center)

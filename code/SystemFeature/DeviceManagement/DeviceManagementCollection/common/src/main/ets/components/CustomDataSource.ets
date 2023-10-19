@@ -20,8 +20,8 @@ class BasicDataSource implements IDataSource {
     return 0;
   }
 
-  public getData(index: number): any {
-    return undefined;
+  public getData(index: number): string {
+    return '';
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -59,7 +59,7 @@ class BasicDataSource implements IDataSource {
 export class CustomDataSource extends BasicDataSource {
   public dataArray: string[] = [];
 
-  constructor(ele) {
+  constructor(ele: string[]) {
     super();
     for (let index = 0; index < ele.length; index++) {
       this.dataArray.push(ele[index]);
@@ -75,7 +75,7 @@ export class CustomDataSource extends BasicDataSource {
   }
 
   public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0);
+    this.dataArray.splice(index, 0,data);
     this.notifyDataAdd(index);
   }
 }

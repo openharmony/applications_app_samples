@@ -18,39 +18,47 @@ import inputEventClient from '@ohos.multimodalInput.inputEventClient'
 
 const TAG: string = '[Sample_InputEventUtil]'
 
+interface KeyEventType{
+  KeyEvent: inputEventClient.KeyEvent
+}
+
 /**
  * 注入返回按键事件
  */
 export function injectBackEvent(): void {
   try {
-    let backKeyDown = {
-      isPressed: true,
-      keyCode: 2,
-      keyDownDuration: 0,
-      isIntercepted: false
+    let backKeyDown: KeyEventType = {
+      KeyEvent:{
+        isPressed: true,
+        keyCode: 2,
+        keyDownDuration: 0,
+        isIntercepted: false
+      }
     }
-    inputEventClient.injectEvent({ KeyEvent: backKeyDown })
+    inputEventClient.injectEvent(backKeyDown)
 
-    let backKeyUp = {
-      isPressed: false,
-      keyCode: 2,
-      keyDownDuration: 0,
-      isIntercepted: false
+    let backKeyUp: KeyEventType = {
+      KeyEvent: {
+        isPressed: false,
+        keyCode: 2,
+        keyDownDuration: 0,
+        isIntercepted: false
+      }
     };
-    inputEventClient.injectEvent({ KeyEvent: backKeyUp })
+    inputEventClient.injectEvent(backKeyUp)
   } catch (error) {
     console.log(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`)
   }
 }
 
 class TouchManagerUtil {
-  private callback = null
+  private callback: Function | null = null
 
-  public registerTouch(callback): void {
+  public registerTouch(callback: Function): void {
     logger.info(`${TAG} registerTouch`)
     try {
       this.callback = callback
-      inputMonitor.on('touch', this.onTouchCallback.bind(this))
+      inputMonitor.on('touch', (touchEvent: TouchEvent): Boolean => this.onTouchCallback(touchEvent))
     } catch (error) {
       logger.error(`${TAG} register touch on failed, error: ${JSON.stringify(error, [`code`, `message`])}`)
     }
@@ -67,9 +75,9 @@ class TouchManagerUtil {
 
   }
 
-  private onTouchCallback(event: inputMonitor.TouchEventReceiver) {
+  private onTouchCallback(event: TouchEvent) {
     logger.info(`${TAG} onTouchCallback event: ${JSON.stringify(event)}`)
-    if (this.callback) {
+    if (this.callback && this.callback !== null && this.callback !== undefined) {
       this.callback(formatJson(JSON.stringify(event)))
     }
     return false

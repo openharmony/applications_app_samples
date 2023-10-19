@@ -15,6 +15,8 @@
 
 import brightness from '@ohos.brightness';
 import settings from '@ohos.settings';
+import { GlobalContext } from '../../../../../../entry/src/main/ets/pages/GlobalContext'
+import { BusinessError } from '@ohos.base';
 
 @Preview
 @Component
@@ -22,7 +24,8 @@ export struct BrightnessManager {
   @State value: number = 0;
 
   async aboutToAppear() {
-    let brightness = await settings.getValue(globalThis.abilityContext, settings.display.SCREEN_BRIGHTNESS_STATUS);
+    let ctx: Context = GlobalContext.getContext().getValue('abilityContext') as Context
+    let brightness = await settings.getValue(ctx, settings.display.SCREEN_BRIGHTNESS_STATUS);
     this.value = Number(brightness);
   }
 

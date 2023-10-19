@@ -14,6 +14,7 @@
  */
 import inputConsumer from '@ohos.multimodalInput.inputConsumer'
 import keyCode from '@ohos.multimodalInput.keyCode'
+import { Callback } from '@ohos.base'
 
 /**
  * 组合按键
@@ -21,7 +22,8 @@ import keyCode from '@ohos.multimodalInput.keyCode'
 class InputConsumerUtil {
   private mKeyOptionS: inputConsumer.KeyOptions
   private mKeyOptionD: inputConsumer.KeyOptions
-  private mCallback: any
+  private mCallback: Callback<inputConsumer.KeyOptions> = () => {
+  }
 
   constructor() {
     this.mKeyOptionS = this.createKeyOptions([keyCode.KeyCode.KEYCODE_ALT_LEFT, keyCode.KeyCode.KEYCODE_SHIFT_LEFT], keyCode.KeyCode.KEYCODE_S)
@@ -33,7 +35,7 @@ class InputConsumerUtil {
    * @param callback 回调
    * @param keyOptions 组合键选项 默认：a+b+e组合按键
    */
-  subscribe(callback: any): void {
+  subscribe(callback: Callback<inputConsumer.KeyOptions>): void {
     this.mCallback = callback
     // 创建按键监听器
     inputConsumer.on('key', this.mKeyOptionS, callback)
@@ -44,8 +46,8 @@ class InputConsumerUtil {
    * 取消订阅组合按键
    * @param keyOptions 组合键选项 默认：a+b+e组合按键
    */
-  unsubscribe() : void {
-    if(this.mCallback) {
+  unsubscribe(): void {
+    if (this.mCallback) {
       inputConsumer.off('key', this.mKeyOptionS, this.mCallback)
       inputConsumer.off('key', this.mKeyOptionD, this.mCallback)
     } else {

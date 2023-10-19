@@ -15,6 +15,7 @@
 
 import settings from '@ohos.settings';
 import { ColumnOperation } from '../components/ColumnOperation';
+import { GlobalContext } from '../../../../../../entry/src/main/ets/pages/GlobalContext'
 
 @Preview
 @Component
@@ -48,9 +49,9 @@ export struct SettingsManager {
     switch (index) {
       case 0:
         try {
-          //@ts-ignore
-          let status = await settings.setValue(globalThis.abilityContext, settings.display.SCREEN_BRIGHTNESS_STATUS, '100');
-          let val = await settings.getValue(globalThis.abilityContext, settings.display.SCREEN_BRIGHTNESS_STATUS);
+          let ctx: Context = GlobalContext.getContext().getValue('abilityContext') as Context
+          let status = await settings.setValue(ctx, settings.display.SCREEN_BRIGHTNESS_STATUS, '100');
+          let val = await settings.getValue(ctx, settings.display.SCREEN_BRIGHTNESS_STATUS);
           this.result = `set SCREEN_BRIGHTNESS_STATUS 100 ${status}, current value:${val}`;
         } catch (err) {
           this.result = `set SCREEN_BRIGHTNESS_STATUS 100 fail: ${err}`;

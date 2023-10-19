@@ -35,8 +35,8 @@ export function getDeviceList(callback: (data: InputDeviceInfo[]) => void) {
         let devices: InputDeviceInfo[] = []
         for (const item of ids) {
           logger.info(`${TAG} get device info, id: ${item}`)
-          let deviceData: InputDeviceInfo = await getDeviceInfo(item)
-          if (devices.indexOf(deviceData) === -1) {
+          let deviceData: InputDeviceInfo | null = await getDeviceInfo(item)
+          if (deviceData !== null && devices.indexOf(deviceData) === -1) {
             logger.info(`${TAG} add device, deviceId: ${deviceData.id}`)
             devices.push(deviceData)
           }
@@ -55,9 +55,10 @@ export function getDeviceList(callback: (data: InputDeviceInfo[]) => void) {
  * 获取设备信息
  * @param deviceId 设备ID
  */
-export async function getDeviceInfo(deviceId: number): Promise<InputDeviceInfo> {
-  let deviceData: InputDeviceInfo
+export async function getDeviceInfo(deviceId: number): Promise<InputDeviceInfo | null> {
+
   try {
+    let deviceData: InputDeviceInfo
     let inputDeviceData: inputDevice.InputDeviceData = await inputDevice.getDeviceInfo(deviceId)
     logger.info(`${TAG} get device info ${JSON.stringify(inputDeviceData)}`)
     deviceData = {
@@ -74,11 +75,12 @@ export async function getDeviceInfo(deviceId: number): Promise<InputDeviceInfo> 
       icon_source: getDeviceIcon(inputDeviceData.sources),
       connect: false
     }
+    return deviceData
   } catch (error) {
     logger.error(`${TAG} Failed to get device info, error: ${JSON.stringify(error, [`code`, `message`])}`)
   }
-  return deviceData
 
+  return null
 }
 
 /**
@@ -111,14 +113,14 @@ function getDeviceIcon(sources: string[]): Resource {
 }
 
 class InputDevice {
-  private callback = null
+  private callback: Function | null = null
   private deviceList: InputDeviceInfo[] = []
 
-  public registerChange(callback): void {
+  public registerChange(callback: Function): void {
     logger.info(`${TAG} registerChange`)
     try {
       this.callback = callback
-      inputDevice.on('change', this.onChangeCallback.bind(this))
+      inputDevice.on('change', (data: inputDevice.DeviceListener) => this.onChangeCallback(data))
     } catch (error) {
       logger.error(`${TAG} Listen device event failed, error: ${JSON.stringify(error, [`code`, `message`])}`)
     }
@@ -128,7 +130,7 @@ class InputDevice {
     try {
       inputDevice.off('change')
       this.deviceList = []
-      if (this.callback) {
+      if (this.callback && this.callback !== null) {
         this.callback(this.deviceList)
         this.callback = null
       }
@@ -143,7 +145,7 @@ class InputDevice {
     logger.info(`${TAG} onChangeCallback event: ${JSON.stringify(data)}`)
     // 获取设备信息
     let deviceId: number = data.deviceId
-    let deviceInfo: InputDeviceInfo = null
+    let deviceInfo: InputDeviceInfo | null = null
     let curIndex: number = -1
     let tempIndex: number = -1
     let delCount: number = 0
@@ -164,20 +166,23 @@ class InputDevice {
     }
     // 根据状态修改
     let type: inputDevice.ChangedType = data.type
-    if (type === 'add') {
+    if (type === 'add' && deviceInfo !== null && deviceInfo !== undefined) {
       // 连接
       deviceInfo.connect = true
-    } else if (type === 'remove') {
+    } else if (type === 'remove' && deviceInfo !== null && deviceInfo !== undefined) {
       // 断开
       deviceInfo.connect = false
     }
-    this.deviceList.splice(curIndex, delCount, deviceInfo)
+
+    if (deviceInfo !== null) {
+      this.deviceList.splice(curIndex, delCount, deviceInfo)
+    }
     logger.info(`${TAG} get device info deviceId count:${this.deviceList.length}}`)
     // fixme xjs 当前OH 3.2 release系统存在应用多次启动后出现回调多次，所以这里进行数据去重处理
     this.deviceList = this.removeDuplicate(this.deviceList)
     logger.info(`${TAG} get device info deviceId: ${deviceId} deviceInfo: ${JSON.stringify(deviceInfo)} count:${this.deviceList.length}}`)
 
-    if (this.callback) {
+    if (this.callback && this.callback !== null) {
       this.callback(this.deviceList)
     }
   }
@@ -187,13 +192,13 @@ class InputDevice {
    * @param arr 列表
    */
   private removeDuplicate(arr: InputDeviceInfo[]): InputDeviceInfo[] {
-    const newArr = []
+    const newArr: InputDeviceInfo[] = []
     for (const item of arr) {
       // 检查缓存中是否已经存在
       if (newArr.find((cur: InputDeviceInfo) =>
       cur.id === item.id &&
-      cur.name === item.name &&
-      cur.connect === item.connect)
+        cur.name === item.name &&
+        cur.connect === item.connect)
       ) {
         // 已经存在说明以前记录过，现在这个就是多余的，直接忽略
         continue;

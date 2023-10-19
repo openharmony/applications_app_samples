@@ -15,22 +15,23 @@
 import batteryInfo from '@ohos.batteryInfo'
 import commonEventManager from '@ohos.commonEventManager'
 import { logger, getString } from '@ohos/common'
+import { BusinessError } from '@ohos.base'
 
-let mBatteryPresent // 是否支持电池或电池是否在位
-let mBatterySOC // 电池电量
-let mChargingStatus // 电池充电状态
-let mHealthStatus // 电池健康状态
-let mPluggedType // 电池充电器类型
-let mVoltage // 电池电压
-let mTechnology // 电池技术型号
-let mTemperature // 电池温度
-let mCapacityLevel // 电池电量等级
+let mBatteryPresent: SubscribedAbstractProperty<boolean> // 是否支持电池或电池是否在位
+let mBatterySOC: SubscribedAbstractProperty<string> // 电池电量
+let mChargingStatus: SubscribedAbstractProperty<string> // 电池充电状态
+let mHealthStatus: SubscribedAbstractProperty<string> // 电池健康状态
+let mPluggedType: SubscribedAbstractProperty<string> // 电池充电器类型
+let mVoltage: SubscribedAbstractProperty<string> // 电池电压
+let mTechnology: SubscribedAbstractProperty<string> // 电池技术型号
+let mTemperature: SubscribedAbstractProperty<string> // 电池温度
+let mCapacityLevel: SubscribedAbstractProperty<string> // 电池电量等级
 /**
  * 设备管理—电量信息
  */
 class BatteryInfoUtil {
   private TAG: string = '[BatteryManager]'
-  private subscriber
+  private subscriber: commonEventManager.CommonEventSubscriber | null = null
 
   constructor() {
     mBatteryPresent = AppStorage.SetAndLink('BatteryPresent', true)
@@ -287,7 +288,7 @@ class BatteryInfoUtil {
 
   public registerEventBatteryChanged(): void {
     // 创建消息订阅者
-    let subscribeInfo = {
+    let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
       events: [commonEventManager.Support.COMMON_EVENT_BATTERY_CHANGED]
     }
     commonEventManager.createSubscriber(subscribeInfo).then((commonEventSubscriber) => {
@@ -295,7 +296,7 @@ class BatteryInfoUtil {
       this.subscriber = commonEventSubscriber
       // 订阅公共事件
       try {
-        commonEventManager.subscribe(this.subscriber, (err, data) => {
+        commonEventManager.subscribe(this.subscriber, (err: BusinessError, data: commonEventManager.CommonEventData) => {
           if (err) {
             logger.error(`${this.TAG} subscribe failed, code is ${err.code}, message is ${err.message}`)
           } else {
@@ -303,36 +304,41 @@ class BatteryInfoUtil {
             // 处理电池各参数数据
             // "parameters":{"0":11,"1":4123456,"2":222,"3":1,"4":0,"5":0,"6":0,"7":0,"8":4000000,"9":false,"10":"Li-ion","11":1000,"moduleName":""}},
             // 电量
-            this.disposeBatterySOC(data?.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_SOC])
+
+            if (data.parameters === undefined) {
+              return
+            }
+
+            this.disposeBatterySOC(data.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_SOC])
             logger.info(`${this.TAG} subscribe data EXTRA_SOC ${data?.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_SOC]}`)
             // 电压
-            mVoltage.set(data?.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_VOLTAGE].toString())
+            mVoltage.set(data.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_VOLTAGE].toString())
             // 温度
-            let temperature: number = data?.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_TEMPERATURE] / 10
+            let temperature: number = data.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_TEMPERATURE] / 10
             mTemperature.set(temperature.toString())
             // 电池健康状态
-            this.disposeHealthStatus(data?.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_HEALTH_STATE])
+            this.disposeHealthStatus(data.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_HEALTH_STATE])
             // 充电器类型
-            this.disposePluggedType(data?.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_PLUGGED_TYPE])
+            this.disposePluggedType(data.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_PLUGGED_TYPE])
             // 充电状态
-            this.disposeChargingStatus(data?.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_CHARGE_STATE])
+            this.disposeChargingStatus(data.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_CHARGE_STATE])
             // 技术型号
-            this.disposeTechnology(data?.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_TECHNOLOGY])
+            this.disposeTechnology(data.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_TECHNOLOGY])
             // 设备是否支持电池或者电池是否在位
-            mBatteryPresent.set(data?.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_PRESENT])
+            mBatteryPresent.set(data.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_PRESENT])
           }
         })
       } catch (err) {
         logger.error(`${this.TAG} subscribe failed, code is ${err.code}, message is ${err.message}`)
       }
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       logger.error(`${this.TAG} createSubscriber failed, code is ${err.code}, message is ${err.message}`)
     })
   }
 
   public unregisterEventBatteryChanged(): void {
     logger.info(`${this.TAG} unregisterEventBatteryChanged`)
-    if (this.subscriber) {
+    if (this.subscriber && this.subscriber !== null && this.subscriber !== undefined) {
       try {
         commonEventManager.unsubscribe(this.subscriber, (err) => {
           if (err) {

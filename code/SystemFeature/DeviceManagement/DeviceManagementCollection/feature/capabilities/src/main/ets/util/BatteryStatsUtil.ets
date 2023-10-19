@@ -17,6 +17,8 @@ import batteryStats from '@ohos.batteryStatistics';
 import { BatteryStatsModel } from '../model/BatteryStatsModel';
 import bundleManager from '@ohos.bundle.bundleManager';
 import { logger } from '@ohos/common';
+import { GlobalContext } from '../../../../../../entry/src/main/ets/pages/GlobalContext'
+import resourceManager from '@ohos.resourceManager';
 
 const TAG: string = '[Sample_BatteryStatsUtil]';
 
@@ -25,7 +27,7 @@ const TAG: string = '[Sample_BatteryStatsUtil]';
  */
 export class BatteryStatsUtil {
   // 缓存应用
-  private applications: Array<bundleManager.ApplicationInfo>;
+  private applications: Array<bundleManager.ApplicationInfo> = [];
   private hardwareNames: Map<batteryStats.ConsumptionType, Resource> = new Map<batteryStats.ConsumptionType, Resource>();
   private hardwareIcons: Map<batteryStats.ConsumptionType, Resource> = new Map<batteryStats.ConsumptionType, Resource>();
 
@@ -36,7 +38,7 @@ export class BatteryStatsUtil {
   async getSoftListData(): Promise<Array<BatteryStatsModel>> {
     return new Promise(async (resolve, reject) => {
       let appFlags = bundleManager.ApplicationFlag.GET_APPLICATION_INFO_DEFAULT;
-      let listItems = [];
+      let listItems: BatteryStatsModel[] = [];
       try {
         if (!this.applications || this.applications.length === 0) {
           this.applications = await bundleManager.getAllApplicationInfo(appFlags);
@@ -44,7 +46,7 @@ export class BatteryStatsUtil {
         let length = this.applications.length;
         for (let i = 0;i < length; i++) {
           let software = await this.getItemSoftware(this.applications[i]);
-          if (software) {
+          if (software !== null) {
             listItems.push(software);
           }
         }
@@ -86,14 +88,10 @@ export class BatteryStatsUtil {
    * @param pro='power'
    * @param order='desc'
    */
-  compare(pro = 'percent', order = 'desc') {
-    return function (obj1, obj2) {
-      let val1 = obj1[pro];
-      let val2 = obj2[pro];
-      if (order === 'desc') {
-        val1 = obj2[pro];
-        val2 = obj1[pro];
-      }
+  compare() {
+    return (obj1: BatteryStatsModel, obj2: BatteryStatsModel) => {
+      let val1: number = obj1.percent;
+      let val2: number = obj2.percent;
       if (val2 < val1) {
         return 1;
       } else if (val2 > val1) {
@@ -116,33 +114,35 @@ export class BatteryStatsUtil {
    * 获取软件耗电信息
    * @return {BatteryStatsModel} new BatteryStatsModel()
    */
-  getItemSoftware(appInfo: bundleManager.ApplicationInfo): Promise<BatteryStatsModel> {
+  getItemSoftware(appInfo: bundleManager.ApplicationInfo): Promise<BatteryStatsModel | null> {
     return new Promise(async (resolve, reject) => {
-      let label: string;
-      let imageBase64: string;
+      let label: string = '';
+      let imageBase64: string = '';
       let power = 0;
       let percent = 0;
-      let icon: Resource;
+      let icon: Resource | undefined = undefined;
 
-      let labelResource = {
+      let labelResource: resourceManager.Resource = {
         bundleName: appInfo.labelResource.bundleName,
         moduleName: appInfo.labelResource.moduleName,
         id: appInfo.labelResource.id
       };
       try {
-        label = await globalThis.abilityContext.resourceManager.getStringValue(labelResource);
+        let ctx: Context = GlobalContext.getContext().getValue('abilityContext') as Context
+        label = await ctx.resourceManager.getStringValue(labelResource);
       } catch (err) {
         logger.error(TAG, `getStringValue failed, err : ${JSON.stringify(err)}.`);
       }
 
-      if (label) {
-        let iconResource = {
+      if (label !== '') {
+        let iconResource: resourceManager.Resource = {
           bundleName: appInfo.iconResource.bundleName,
           moduleName: appInfo.iconResource.moduleName,
           id: appInfo.iconResource.id
         };
         try {
-          imageBase64 = await globalThis.abilityContext.resourceManager.getMediaContentBase64(iconResource);
+          let ctx: Context = GlobalContext.getContext().getValue('abilityContext') as Context
+          imageBase64 = await ctx.resourceManager.getMediaContentBase64(iconResource);
         } catch (err) {
           logger.error(TAG, `getMediaContent failed, err : ${JSON.stringify(err)}.`);
           icon = $r("app.media.ic_default");
@@ -160,7 +160,9 @@ export class BatteryStatsUtil {
         itemInfo.power = power;
         itemInfo.percent = percent;
         itemInfo.nameStr = label;
-        itemInfo.iconBase64 = imageBase64;
+        if (imageBase64 !== '') {
+          itemInfo.iconBase64 = imageBase64;
+        }
         itemInfo.icon = icon;
         resolve(itemInfo)
       } else {

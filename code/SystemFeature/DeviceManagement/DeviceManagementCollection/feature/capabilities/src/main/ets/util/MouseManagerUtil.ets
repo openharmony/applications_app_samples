@@ -46,14 +46,15 @@ export function setPointerVisible(visible: boolean): void {
 /**
  * 获取鼠标指针是否显示
  */
-export function isPointerVisible(): Promise<boolean> {
-  let result: Promise<boolean>
+export async function isPointerVisible(): Promise<boolean | undefined> {
   try {
-    result = pointer.isPointerVisible()
+    let result: boolean
+    result = await pointer.isPointerVisible()
+    return result
   } catch (error) {
     logger.error(`${TAG} Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`)
   }
-  return result
+  return undefined
 }
 
 /**
@@ -75,7 +76,7 @@ export function setPointerSpeed(speed: number): void {
  * @param style 样式
  */
 export function setPointerStyle(style: pointer.PointerStyle): void {
-  let context = getContext(this) as common.UIAbilityContext
+  let context = getContext() as common.UIAbilityContext
   window.getLastWindow(context, (error, win) => {
     if (error.code) {
       logger.error(`${TAG} Failed to obtain the top window. Cause: ${JSON.stringify(error)}`)
@@ -101,7 +102,7 @@ export function setPointerStyle(style: pointer.PointerStyle): void {
  */
 export async function getPointerStyle(): Promise<pointer.PointerStyle> {
   let result: pointer.PointerStyle = pointer.PointerStyle.DEFAULT
-  let context = getContext(this) as common.UIAbilityContext
+  let context = getContext() as common.UIAbilityContext
   try {
     let lastWindow = await window.getLastWindow(context)
     let windowId = lastWindow.getWindowProperties().id
@@ -121,13 +122,13 @@ export async function getPointerStyle(): Promise<pointer.PointerStyle> {
 }
 
 class MouseManagerUtil {
-  private callback = null
+  private callback: Function | null = null
 
-  public registerMouse(callback): void {
+  public registerMouse(callback: Function): void {
     logger.info(`${TAG} registerMouse`)
     try {
       this.callback = callback
-      inputMonitor.on('mouse', this.onMouseCallback.bind(this))
+      inputMonitor.on('mouse', (event: MouseEvent): boolean => this.onMouseCallback(event))
     } catch (error) {
       logger.error(`${TAG} register mouse on failed, error: ${JSON.stringify(error, [`code`, `message`])}`)
     }
@@ -135,7 +136,7 @@ class MouseManagerUtil {
 
   public unregisterMouse(): void {
     try {
-      inputMonitor.off('mouse', this.onMouseCallback.bind(this))
+      inputMonitor.off('mouse', (event: MouseEvent): boolean => this.onMouseCallback(event))
       this.callback = null
       logger.info(`${TAG} Monitor off success`)
     } catch (error) {
@@ -146,7 +147,7 @@ class MouseManagerUtil {
 
   private onMouseCallback(event: MouseEvent) : boolean {
     logger.info(`${TAG} onMouseCallback event: ${JSON.stringify(event)}`)
-    if (this.callback) {
+    if (this.callback && this.callback !== null && this.callback !== undefined) {
       this.callback(formatJson(JSON.stringify(event)))
     }
     return false

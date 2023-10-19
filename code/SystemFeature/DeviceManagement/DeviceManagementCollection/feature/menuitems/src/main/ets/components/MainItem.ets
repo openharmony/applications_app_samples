@@ -15,7 +15,7 @@
 
 @Component
 export struct MainItem {
-  private title: string | Resource;
+  private title: string | Resource = '';
   @LocalStorageProp('isSplitMode') isSplitMode: boolean = false;
   @State isTouched: boolean = false;
 

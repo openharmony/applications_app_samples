@@ -31,7 +31,7 @@ import pointer from '@ohos.multimodalInput.pointer'
 @Component
 export struct MouseManager {
   @State mMouseEvent: string = ''
-  @State mIsVisible: boolean = false
+  @State mIsVisible: boolean | undefined = false
   // 鼠标速度
   private mPointerSpeedArr = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11']
   // 鼠标样式
@@ -84,10 +84,10 @@ export struct MouseManager {
       range: this.mPointerSpeedArr,
       selected: this.mSpeedIndex,
       onAccept: (result: TextPickerResult) => {
-        let indexTemp:any = result.index
-        let speedTemp: any = result.value
-        this.mSpeedIndex = indexTemp
-        this.mSpeedVal = speedTemp
+        let indexTemp: number | number[] = result.index
+        let speedTemp: string | string[] = result.value
+        this.mSpeedIndex = indexTemp as number
+        this.mSpeedVal = speedTemp as string
         setPointerSpeed(Number(this.mSpeedVal))
         console.info("TextPickerDialog:onAccept()" + JSON.stringify(result))
       }
@@ -229,7 +229,7 @@ export struct MouseManager {
               .onChange((isOn) => {
                 this.mIsShowMouseData = isOn
                 if (isOn) {
-                  MouseManagerUtil.registerMouse(this.onMouseEvent.bind(this))
+                  MouseManagerUtil.registerMouse((data: string): void => this.onMouseEvent(data))
                 } else {
                   MouseManagerUtil.unregisterMouse()
                 }
