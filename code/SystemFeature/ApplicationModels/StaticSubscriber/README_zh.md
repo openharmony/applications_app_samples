@@ -67,11 +67,12 @@ entry/src/main/ets/
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568。
-2. 本示例已适配API version 10版本SDK，版本号：4.0.9.6,镜像版本号：[OpenHarmony_4.0.9.6]
+2. 本示例已适配API version 10版本SDK，版本号：4.0.10.10,镜像版本号：[OpenHarmony_4.0.10.10]
 3. 静态订阅仅支持系统应用，需要配置系统应用签名，可以参考[特殊权限配置方法](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/)，把配置文件中的“apl”字段信息改为“system_core”。
 4. 本示例开发中需要手动替换Full SDK才能编译通过，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。
 5. 实现静态订阅的应用需要经过性能功耗团队评审符合功耗要求，如果您希望在调试阶段尝试使用该功能，可修改系统配置文件/system/etc/app/install_list_capability.json,将待调试应用的包名添加至json文件中。
 6. 修改系统配置文件可以参考[静态订阅公共事件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/common-event-static-subscription.md)。
+7. 本示例需要使用DevEco Studio 4.0 Beta2 (Build Version: 4.0.0.400 构建 2023年8月2日)及以上版本才可编译运行。
 
 ### 下载
 
