@@ -335,8 +335,8 @@ export struct ModifyInfo {
               })
           }
           else {
-            let email = await this.getInfo('null', `${this.username}_${this.bundleName}`, `email_${this.bundleName}`)
-            let signature = await this.getInfo('null', `${this.username}_${this.bundleName}`, `signature_${this.bundleName}`)
+            let email = await this.getInfo('', `${this.username}_${this.bundleName}`, `email_${this.bundleName}`)
+            let signature = await this.getInfo('', `${this.username}_${this.bundleName}`, `signature_${this.bundleName}`)
             AlertDialog.show(
               {
                 message: $r('app.string.modify_info'),
