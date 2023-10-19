@@ -30,11 +30,11 @@ async function getResourceString(resource: Resource): Promise<string> {
 }
 
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
     /**
      * 拉起应用
      */
-    it('StartAbility_001', 0, async function (done) {
+    it('StartAbility_001', 0, async (done: Function) => {
       Logger.info(TAG, BUNDLE +  'StartAbility_001 begin');
       try {
         await delegator.startAbility({
@@ -49,7 +49,7 @@ export default function abilityTest() {
       Logger.info(TAG, BUNDLE + 'StartAbility_001 end');
     })
 
-    it('getPermission_001', 0, async function () {
+    it('getPermission_001', 0, async () => {
       Logger.info(TAG, BUNDLE + 'getPermission_001 begin');
       await DRIVER.delayMs(1000);
       await DRIVER.assertComponentExist(ON.text(await getResourceString($r('app.string.allow'))));
@@ -61,7 +61,7 @@ export default function abilityTest() {
     /**
      * 检查首页
      */
-    it('CheckIndex_001', 0, async function () {
+    it('CheckIndex_001', 0, async () => {
       Logger.info(TAG, BUNDLE + 'CheckIndex_001 begin');
       // 等待数据刷新
       await DRIVER.delayMs(5000);
@@ -79,7 +79,7 @@ export default function abilityTest() {
     /**
      * 检查应用列表
      */
-    it('CheckAppInfo_001', 0, async function () {
+    it('CheckAppInfo_001', 0, async () => {
       Logger.info(TAG, BUNDLE + 'CheckAppInfo_001 end');
       // 等待数据刷新
       let appInfo = await DRIVER.findComponent(ON.text(await getResourceString($r('app.string.query_data_application'))));
