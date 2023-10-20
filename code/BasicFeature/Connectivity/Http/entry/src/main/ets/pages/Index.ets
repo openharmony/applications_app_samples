@@ -20,12 +20,13 @@ import { setting } from '@ohos/http'
 @Component
 struct Index {
   @State url: string = ''
-  @State option: object = undefined
+  @State option?: object = undefined
 
   aboutToAppear() {
     try {
-      this.url = <string> router.getParams()['url']
-      this.option = <object> router.getParams()['option']
+      let params = router.getParams() as Record<string, string | object>;
+      this.url = params['url'] as string
+      this.option = params['option'] as object
     } catch (err) {
       this.url = ''
       this.option = undefined
