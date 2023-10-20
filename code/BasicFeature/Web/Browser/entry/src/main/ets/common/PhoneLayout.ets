@@ -130,7 +130,7 @@ export struct PhoneLayout {
   @Builder TitleBar() {
     Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
       Column() {
-        TextInput({ placeholder: '输入网址...', text: this.browser.inputValue })
+        TextInput({ placeholder: $r('app.string.Input_url'), text: this.browser.inputValue })
           .placeholderFont({ size: 16, weight: 500 })
           .fontSize(16)
           .height(34)
