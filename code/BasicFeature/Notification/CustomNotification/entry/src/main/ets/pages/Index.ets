@@ -13,28 +13,33 @@
  * limitations under the License.
  */
 
-import { NotificationPublish } from '../components/NotificationPublish'
-import { NotificationList } from '../components/NotificationList'
+import { NotificationPublish } from '../components/NotificationPublish';
+import { NotificationList } from '../components/NotificationList';
 
 export interface TabImage {
   selectedImage: Resource,
   unselectedImage: Resource,
-}
+};
+
+interface TabIndexType {
+  MESSAGE_TAB: number
+  NOTIFICATION_TAB: number
+};
 
 const MESSAGE_TAB: TabImage = {
   selectedImage: $r('app.media.ic_messages_filled'),
   unselectedImage: $r('app.media.ic_messages'),
-}
+};
 
 const NOTIFICATION_TAB: TabImage = {
   selectedImage: $r('app.media.ic_public_send_filled'),
   unselectedImage: $r('app.media.ic_public_send'),
-}
+};
 
-const TAB_INDEX = {
+const TAB_INDEX: TabIndexType = {
   MESSAGE_TAB: 0,
   NOTIFICATION_TAB: 1
-}
+};
 
 @Entry
 @Component

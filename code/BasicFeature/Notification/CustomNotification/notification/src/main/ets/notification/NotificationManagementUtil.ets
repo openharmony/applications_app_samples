@@ -16,6 +16,11 @@
 import notification from '@ohos.notificationManager';
 import { logger } from '../util/Logger';
 
+interface getAllNotificationsResultType {
+  groupNotifications: Array<Array<notification.NotificationRequest>>,
+  countsByType: Array<number>
+};
+
 const NOTIFICATION_TYPE_SIZE = 5;
 
 // 通知管理
@@ -86,10 +91,11 @@ class NotificationManagementUtil {
 
   // 获取当前所有消息及数量
   async getAllNotifications() {
-    return {
+    let result: getAllNotificationsResultType = {
       groupNotifications: this.typeNotifications,
       countsByType: this.countsByType
-    }
+    };
+    return result;
   }
 }
 

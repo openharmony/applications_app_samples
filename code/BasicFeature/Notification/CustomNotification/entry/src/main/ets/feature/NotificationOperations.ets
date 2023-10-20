@@ -13,32 +13,41 @@
  * limitations under the License.
  */
 
-import image from '@ohos.multimedia.image'
+import image from '@ohos.multimedia.image';
 import {
   logger,
   notificationUtil,
   notificationContentUtil,
   notificationRequestUtil,
   wantAgentUtil
-} from '@ohos/notification'
-import notification from '@ohos.notificationManager'
+} from '@ohos/notification';
+import notification from '@ohos.notificationManager';
+
+interface notificationIdType {
+  BASIC: number,
+  LONG_TEXT: number,
+  MULTI_LINE: number,
+  PICTURE: number,
+  BUTTON: number,
+  WANTAGENT: number
+};
 
 const TAG: string = 'NotificationOperations';
 const BUNDLE_NAME: string = 'ohos.samples.customnotification';
 const ABILITY_NAME: string = 'MainAbility';
 const MULTI_LINE_CONTENT: Array<string> = ['line0', 'line1', 'line2', 'line3']; // 多行文本通知的多行文本内容
-const NOTIFICATION_ID = { // 定义不同类型通知的通知id
+const NOTIFICATION_ID: notificationIdType = { // 定义不同类型通知的通知id
   BASIC: 1,
   LONG_TEXT: 2,
   MULTI_LINE: 3,
   PICTURE: 4,
   BUTTON: 5,
   WANTAGENT: 6
-}
+};
 
 export default class NotificationOperations {
-  private context: Context = undefined;
-  private basicContent: notification.NotificationBasicContent = undefined;
+  private context: Context;
+  private basicContent: notification.NotificationBasicContent;
 
   // 在初始化函数初始化基本通知类型的参数
   constructor(context: Context) {
@@ -50,7 +59,7 @@ export default class NotificationOperations {
       title: notificationTitle,
       text: notificationText,
       additionalText: notificationAdditional
-    }
+    };
   }
 
   // 发布基本类型通知
@@ -116,7 +125,7 @@ export default class NotificationOperations {
     try {
       logger.info(TAG, `publishNotificationWithButtons`);
       this.basicContent.title = this.context.resourceManager.getStringSync($r('app.string.notification_with_buttons'));
-      let actionButtons = [
+      let actionButtons: notification.NotificationActionButton[] = [
         {
           title: this.context.resourceManager.getStringSync($r('app.string.first_button')),
           wantAgent: await wantAgentUtil.createWantAgentForCommonEvent('')

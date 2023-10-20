@@ -105,7 +105,7 @@ notification/src/main/ets/
 
 3.本示例仅支持API10版本SDK，版本号：4.0.7.5，镜像版本号：Openharmony 4.0.7.5。
 
-4.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on May 18, 2023)编译运行。
+4.本示例需要使用DevEco Studio 4.0 Beta2 (Build Version: 4.0.0.400, built on August 2, 2023)编译运行。
 
 ### 下载
 
