@@ -31,7 +31,7 @@ export default function MoveToEventTest() {
     beforeAll(async () => {
       let want: Want = {
         bundleName : bundleName,
-        abilityName : "EntryAbility"
+        abilityName : 'EntryAbility'
       };
       await delegator.startAbility(want);
     })
@@ -43,7 +43,7 @@ export default function MoveToEventTest() {
      * @tc.desc: 检测 window1.moveTo 功能
      */
     it("MoveTo_Test_001", TestType.FUNCTION, async (done: Function) => {
-      Logger.info(TAG, BUNDLE + "Test_001 start");
+      Logger.info(TAG, BUNDLE + 'Test_001 start');
       let driver = Driver.create();
       await driver.delayMs(WAIT_UI_READYMS);
       let window = await driver.findWindow({bundleName: bundleName});
@@ -69,7 +69,7 @@ export default function MoveToEventTest() {
           expect(false).assertTrue();
         }
       } finally {
-        Logger.info(TAG, BUNDLE + "Test_001 end");
+        Logger.info(TAG, BUNDLE + 'Test_001 end');
         done();
       }
     })

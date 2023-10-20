@@ -41,13 +41,13 @@ export default function basicExampleTest() {
       //start tested ability
       let want: Want = {
         bundleName : bundleName,
-        abilityName : "EntryAbility"
+        abilityName : 'EntryAbility'
       }
       await delegator.startAbility(want);
       await sleep(1000);
       // check top display ability
       await delegator.getCurrentTopAbility().then((ability: UIAbility)=>{
-        console.info("get top ability");
+        console.info('get top ability');
         expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
       })
       // ui test code

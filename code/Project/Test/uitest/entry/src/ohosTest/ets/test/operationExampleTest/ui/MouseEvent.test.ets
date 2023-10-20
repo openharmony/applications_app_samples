@@ -29,7 +29,7 @@ export default function MouseEventTest() {
     beforeAll(async () => {
       let want: Want = {
         bundleName : bundleName,
-        abilityName : "MouseAbility"
+        abilityName : 'MouseAbility'
       };
       await delegator.startAbility(want);
     })
@@ -43,10 +43,10 @@ export default function MouseEventTest() {
     it('testMouseClick1', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create();
       await driver.delayMs(WAIT_UI_READYMS);
-      let button = await driver.findComponent(ON.id("mouse_test"));
+      let button = await driver.findComponent(ON.id('mouse_test'));
       let point = await button.getBoundsCenter();
-      await driver.mouseClick(point, MouseButton.MOUSE_BUTTON_LEFT, 2017) //在100，100 鼠标左键点击
-      let text = await driver.findComponent(ON.id("mouse_test_result"));
+      await driver.mouseClick(point, MouseButton.MOUSE_BUTTON_LEFT, 2017) // 在100，100 鼠标左键点击
+      let text = await driver.findComponent(ON.id('mouse_test_result'));
       expect(await text.getText() === 'left').assertTrue();
       done();
     })
@@ -60,7 +60,7 @@ export default function MouseEventTest() {
     it('testMouseDoubleClick_left', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create();
       await driver.delayMs(WAIT_UI_READYMS);
-      let button = await driver.findComponent(ON.id("mouse_test"));
+      let button = await driver.findComponent(ON.id('mouse_test'));
       let point = await button.getBoundsCenter();
       await driver.mouseDoubleClick(point, MouseButton.MOUSE_BUTTON_LEFT, 0, 0);
       let newButton = await driver.findComponent(ON.text('doubleClick'));
@@ -79,7 +79,7 @@ export default function MouseEventTest() {
     it('testMouseLongClick', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create();
       await driver.delayMs(WAIT_UI_READYMS);
-      let button = await driver.findComponent(ON.id("mouse_test"));
+      let button = await driver.findComponent(ON.id('mouse_test'));
       let point = await button.getBoundsCenter();
       await driver.mouseLongClick(point, MouseButton.MOUSE_BUTTON_LEFT, 0, 0);
       let newButton = await driver.findComponent(ON.text('longClick'));
@@ -99,10 +99,10 @@ export default function MouseEventTest() {
     it('testMouseClick2', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create();
       await driver.delayMs(WAIT_UI_READYMS);
-      let button = await driver.findComponent(ON.id("mouse_test"));
+      let button = await driver.findComponent(ON.id('mouse_test'));
       let point = await button.getBoundsCenter();
       await driver.mouseClick(point, MouseButton.MOUSE_BUTTON_RIGHT, 2017) //在100，100 鼠标右键点击
-      let text = await driver.findComponent(ON.id("mouse_test_result"));
+      let text = await driver.findComponent(ON.id('mouse_test_result'));
       expect(await text.getText() === 'right').assertTrue();
       done();
     })
@@ -116,11 +116,11 @@ export default function MouseEventTest() {
     it('testMouseClick3', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create();
       await driver.delayMs(WAIT_UI_READYMS);
-      let button = await driver.findComponent(ON.id("mouse_test"));
+      let button = await driver.findComponent(ON.id('mouse_test'));
       let point = await button.getBoundsCenter();
       await driver.mouseClick(point, MouseButton.MOUSE_BUTTON_MIDDLE, 2017); //在100，100 鼠标右键点击
       await driver.delayMs(WAIT_UI_READYMS);
-      let text = await driver.findComponent(ON.id("mouse_test_result"));
+      let text = await driver.findComponent(ON.id('mouse_test_result'));
       expect(await text.getText() === 'middle').assertTrue();
       done();
     })

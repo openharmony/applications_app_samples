@@ -28,7 +28,7 @@ export default function ScrollerEventTest() {
     beforeAll(async () => {
       let want: Want = {
         bundleName : bundleName,
-        abilityName : "ScrollerAbility"
+        abilityName : 'ScrollerAbility'
       };
       await delegator.startAbility(want);
     })
@@ -45,7 +45,7 @@ export default function ScrollerEventTest() {
       let scroll = await driver.findComponent(ON.type('Scroll'));
       await scroll.scrollToBottom();
       await driver.delayMs(WAIT_UI_READYMS);
-      let text = await driver.findComponent(ON.id("scroller_item_text"));
+      let text = await driver.findComponent(ON.id('scroller_item_text'));
       expect(await text.getText()).not().assertEqual("0");
       done();
     })
@@ -63,8 +63,8 @@ export default function ScrollerEventTest() {
       await scroll.scrollToBottom();
       await driver.delayMs(WAIT_UI_READYMS);
       await scroll.scrollToTop();
-      let text = await driver.findComponent(ON.id("scroller_item_text"));
-      expect(await text.getText()).assertEqual("0");
+      let text = await driver.findComponent(ON.id('scroller_item_text'));
+      expect(await text.getText()).assertEqual('0');
       done();
     })
   })

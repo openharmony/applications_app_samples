@@ -56,7 +56,7 @@ export default function findExampleTest() {
     beforeAll(async  () => {
       let want: Want = {
         bundleName : bundleName,
-        abilityName : "EntryAbility"
+        abilityName : 'EntryAbility'
       }
       await delegator.startAbility(want);
     })
@@ -70,9 +70,9 @@ export default function findExampleTest() {
     it("findComponent_On_ID", TestType.FUNCTION, async (done: Function) => {
       let dr = await Driver.create();
       await dr.delayMs(DELAYMS);
-      let text  = await dr.findComponent(ON.id("idTest"))
+      let text  = await dr.findComponent(ON.id('idTest'))
       expect(dr).not().assertNull();
-      expect(await text.getId()).assertEqual("idTest");
+      expect(await text.getId()).assertEqual('idTest');
       done();
     })
 
@@ -85,7 +85,7 @@ export default function findExampleTest() {
     it("findComponents_On_ID", TestType.FUNCTION, async  (done: Function) => {
       let dr = await Driver.create();
       await dr.delayMs(DELAYMS);
-      let textArr  = await dr.findComponents(ON.id("scroll_item"));
+      let textArr  = await dr.findComponents(ON.id('scroll_item'));
       expect(dr).not().assertNull();
       for (let index = 0; index < textArr.length; index++) {
         const element = textArr[index];
@@ -103,9 +103,9 @@ export default function findExampleTest() {
     it("findComponents_On_isBefore", TestType.FUNCTION, async  (done: Function) => {
       let dr = await Driver.create();
       expect(dr).not().assertNull();
-      let radio  = await dr.findComponent(ON.type("Radio").isBefore(ON.id("radio_test1")));
-      expect(await radio.getType()).assertEqual("Radio");
-      expect(await radio.getId()).assertEqual("radio_test");
+      let radio  = await dr.findComponent(ON.type("Radio").isBefore(ON.id('radio_test1')));
+      expect(await radio.getType()).assertEqual('Radio');
+      expect(await radio.getId()).assertEqual('radio_test');
       done();
     })
 
@@ -118,9 +118,9 @@ export default function findExampleTest() {
     it("findComponents_On_isBefore_1", TestType.FUNCTION, async  (done: Function) => {
       let dr = await Driver.create();
       expect(dr).not().assertNull();
-      let radio  = await dr.findComponent(ON.type("Radio").isAfter(ON.id("radio_test")));
-      expect(await radio.getType()).assertEqual("Radio");
-      expect(await radio.getId()).assertEqual("radio_test1");
+      let radio  = await dr.findComponent(ON.type('Radio').isAfter(ON.id('radio_test')));
+      expect(await radio.getType()).assertEqual('Radio');
+      expect(await radio.getId()).assertEqual('radio_test1');
       done();
     })
 
@@ -135,9 +135,9 @@ export default function findExampleTest() {
       let driver = Driver.create();
       await driver.delayMs(DELAYMS);
       let Button1 = await driver.findComponent(ON.text('unit_jsunit', MatchPattern.EQUALS));
-      expect(await Button1.getText()).assertEqual("unit_jsunit");
+      expect(await Button1.getText()).assertEqual('unit_jsunit');
       let Button2 = await driver.findComponent(ON.text('unit', MatchPattern.STARTS_WITH));
-      expect(await Button2.getText()).assertEqual("unit_jsunit");
+      expect(await Button2.getText()).assertEqual('unit_jsunit');
     })
 
     /**

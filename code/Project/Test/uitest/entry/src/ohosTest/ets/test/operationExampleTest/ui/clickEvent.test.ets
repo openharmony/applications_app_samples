@@ -27,7 +27,7 @@ export default function clickEventTest() {
     beforeAll(async () => {
       let want: Want = {
         bundleName : bundleName,
-        abilityName : "clickAbility"
+        abilityName : 'clickAbility'
       }
       await delegator.startAbility(want);
     })
@@ -41,12 +41,12 @@ export default function clickEventTest() {
     it('clickEventTest_click',TestType.FUNCTION, async (done: Function) => {
       let dr = await Driver.create();
       await dr.delayMs(WAIT_UI_READYMS);
-      let button = await dr.findComponent(ON.id("click_bt"));
-      let text = await dr.findComponent(ON.id("result_text"));
-      expect(await text.getText() == "Hello World").assertTrue();
+      let button = await dr.findComponent(ON.id('click_bt'));
+      let text = await dr.findComponent(ON.id('result_text'));
+      expect(await text.getText() == 'Hello World').assertTrue();
       await button.click();
-       let text1 = await dr.findComponent(ON.id("result_text"));
-      expect(await text1.getText() === "singleClick").assertTrue();
+       let text1 = await dr.findComponent(ON.id('result_text'));
+      expect(await text1.getText() === 'singleClick').assertTrue();
       done();
     })
 

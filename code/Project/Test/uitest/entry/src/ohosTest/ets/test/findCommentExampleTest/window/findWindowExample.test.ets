@@ -34,7 +34,7 @@ export default function findWindowExampleTest() {
     it('findWindowExampleTest_bundleName', TestType.FUNCTION, async (done: Function) => {
       let want: Want = {
         bundleName : bundleName,
-        abilityName : "EntryAbility"
+        abilityName :'EntryAbility'
       }
       await delegator.startAbility(want);
       let driver = Driver.create();

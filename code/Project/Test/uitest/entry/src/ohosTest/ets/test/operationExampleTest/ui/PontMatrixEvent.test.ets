@@ -27,7 +27,7 @@ export default function PontMatrixEventTest() {
     beforeAll(async () => {
       let want: Want = {
         bundleName : bundleName,
-        abilityName : "PointMatrixAbility"
+        abilityName : 'PointMatrixAbility'
       };
       await delegator.startAbility(want);
     })

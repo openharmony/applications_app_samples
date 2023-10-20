@@ -38,14 +38,14 @@ import Logger from '../../../util/Logger'
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const WAIT_UI_READYMS = 1000;
-const TAG = "WindowAttr_Test";
-const BUNDLE = "WindowAttr_"
+const TAG = 'WindowAttr_Test';
+const BUNDLE = 'WindowAttr_'
 export default function WindowAttr() {
   describe('WindowAttr',  () => {
     beforeAll(async () => {
       let want: Want = {
         bundleName : bundleName,
-        abilityName : "EntryAbility"
+        abilityName : 'EntryAbility'
       };
       await delegator.startAbility(want);
     })
@@ -57,7 +57,7 @@ export default function WindowAttr() {
      * @tc.desc: 设置window指定的大小与方向测试
      */
     it("WindowAttr_Test_001", TestType.FUNCTION, async (done: Function) => {
-      Logger.info(TAG, BUNDLE + "Test_001 start");
+      Logger.info(TAG, BUNDLE + 'Test_001 start');
       let driver = Driver.create();
       await driver.delayMs(WAIT_UI_READYMS);
       let window = await driver.findWindow({bundleName: bundleName});
@@ -65,7 +65,7 @@ export default function WindowAttr() {
       let name = await window.getBundleName();
       // 断言bundleName
       expect(name == bundleName).assertTrue();
-      Logger.info(TAG, BUNDLE + "Test_001 end");
+      Logger.info(TAG, BUNDLE + 'Test_001 end');
       done();
     })
   })

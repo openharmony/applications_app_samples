@@ -27,7 +27,7 @@ export default function FlingEventTest() {
     beforeAll(async () => {
       let want: Want = {
         bundleName : bundleName,
-        abilityName : "FlingAbility"
+        abilityName : 'FlingAbility'
       }
       await delegator.startAbility(want);
     })
@@ -48,7 +48,7 @@ export default function FlingEventTest() {
       await driver.fling({x: point.left, y:300},{x:point.right, y:300}, 20, 600);
       await driver.delayMs(WAIT_UI_READYMS);
       let text = await driver.findComponent(ON.id('swiper_text'));
-      expect(await text.getText()).assertEqual("arkUI");
+      expect(await text.getText()).assertEqual('arkUI');
       done();
     })
 
@@ -64,7 +64,7 @@ export default function FlingEventTest() {
       await driver.fling({x:400, y:700},{x:400, y:500}, 20, 600 );
       await driver.delayMs(WAIT_UI_READYMS);
       let text = await driver.findComponent(ON.id('scroll_item'));
-      expect(await text.getText()).not().assertEqual("0");
+      expect(await text.getText()).not().assertEqual('0');
       done();
     })
 

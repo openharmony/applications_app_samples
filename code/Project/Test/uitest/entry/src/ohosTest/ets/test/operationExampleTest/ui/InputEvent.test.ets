@@ -23,7 +23,7 @@ const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const WAIT_UI_READYMS = 1000;
 let ab: UIAbility;
-
+let test: string = '中文测试';
 export default function InputEventTest() {
   describe('InputEventTest', () => {
       beforeAll(async () => {
@@ -37,7 +37,7 @@ export default function InputEventTest() {
 
         let want: Want = {
           bundleName : bundleName,
-          abilityName : "InputAbility"
+          abilityName : 'InputAbility'
         };
         await delegator.startAbility(want);
     })
@@ -70,11 +70,11 @@ export default function InputEventTest() {
       let driver = Driver.create();
       await driver.delayMs(WAIT_UI_READYMS);
       let input = await driver.findComponent(ON.type('TextInput'));
-      await input.inputText("中文测试");
+      await input.inputText(test);
       await driver.delayMs(WAIT_UI_READYMS);
       let input_new = await driver.findComponent(ON.type('TextInput'));
       let text = await input_new.getText();
-      expect(text == "中文测试").assertTrue();
+      expect(text == test).assertTrue();
       done();
     })
 
@@ -94,7 +94,7 @@ export default function InputEventTest() {
       await driver.delayMs(WAIT_UI_READYMS);
       let input_new = await driver.findComponent(ON.type('TextInput'));
       let text = await input_new.getText();
-      expect(text == "1234556").assertTrue();
+      expect(text == '1234556').assertTrue();
       done();
     })
   })

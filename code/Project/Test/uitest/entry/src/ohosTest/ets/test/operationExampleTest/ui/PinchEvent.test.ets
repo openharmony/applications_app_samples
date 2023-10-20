@@ -27,7 +27,7 @@ export default function PinchEventTest() {
     beforeAll(async () => {
       let want: Want = {
         bundleName : bundleName,
-        abilityName : "PinchAbility"
+        abilityName : 'PinchAbility'
       };
       await delegator.startAbility(want);
     })

@@ -27,7 +27,7 @@ export default function SwipeEventTest() {
     beforeAll(async () => {
       let want: Want = {
         bundleName : bundleName,
-        abilityName : "SwipeAbility"
+        abilityName : 'SwipeAbility'
       };
       await delegator.startAbility(want);
     })
@@ -49,7 +49,7 @@ export default function SwipeEventTest() {
       await driver.swipe(point.left, 300, point.right, 300);
       await driver.delayMs(WAIT_UI_READYMS);
       let text = await driver.findComponent(ON.id('swiper_text'));
-      expect(await text.getText()).assertEqual("arkUI");
+      expect(await text.getText()).assertEqual('arkUI');
       done();
     })
 
