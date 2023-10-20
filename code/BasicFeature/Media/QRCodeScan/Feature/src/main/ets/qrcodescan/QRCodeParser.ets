@@ -133,7 +133,7 @@ class QRCodeParser {
     let luminanceSource = new RGBLuminanceSource(int32Array, 120, 120);
     let binaryBitmap = new BinaryBitmap(new HybridBinarizer(luminanceSource));
     let mltiFormatReader = new MultiFormatReader();
-    let hints:Map<number,number[]> = new Map();
+    let hints: Map<number, number[]> = new Map();
     hints.set(DecodeHintType.POSSIBLE_FORMATS, [BarcodeFormat.QR_CODE]);
     mltiFormatReader.setHints(hints);
     try {
