@@ -203,8 +203,8 @@ struct SelectPhotoBrowser {
   getCurrentPhoto(): UserFileDataItem {
     if (this.browserDataSource.groupDataItem !== undefined) {
       return this.browserDataSource.groupDataItem[this.currentIndex];
-    }else{
-      return new UserFileDataItem('',[],'',0)
+    } else {
+      return new UserFileDataItem('', [], '', 0)
     }
   }
 

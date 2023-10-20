@@ -71,7 +71,6 @@ export struct NoPhotoComponent {
           .fontFamily($r('app.string.id_text_font_family_regular'))
           .fontColor($r('app.color.tertiary_title_text_color'))
       }
-      .id('NoPhotoComponent')
       .width('100%')
       .offset({ x: 0, y: this.offSetY })
       .padding({ left: $r('app.float.max_padding_start'), right: $r('app.float.max_padding_start') })

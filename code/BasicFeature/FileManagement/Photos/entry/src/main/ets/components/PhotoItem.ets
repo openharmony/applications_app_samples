@@ -36,7 +36,7 @@ class PreItemType{
 
 @Component
 export struct PhotoItem {
-  item: UserFileDataItem = new UserFileDataItem('',[],'',0);
+  item: UserFileDataItem = new UserFileDataItem('', [], '', 0);
   pageName: string = ''
   @State matrix: Matrix4.Matrix4Transit | null = Matrix4.identity().copy();
   @State photoItemDirection: PanDirection = PanDirection.Vertical;
@@ -54,7 +54,7 @@ export struct PhotoItem {
   @Provide isLoading: boolean = true;
   private imgScale: number = 1;
   private firstLoad: boolean = true;
-  private preItem:PreItemType = { rotate: 0, height: 0, width: 0 };
+  private preItem: PreItemType = { rotate: 0, height: 0, width: 0 };
   private timeStamp: string = '';
 
   onTransitionChange() {

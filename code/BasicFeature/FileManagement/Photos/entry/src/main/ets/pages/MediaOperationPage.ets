@@ -47,7 +47,7 @@ struct MediaOperationPage {
   @State listCardWidth: number = 0;
   isActive: boolean = false; // Whether the page is in the foreground
   sourceAlbumId: string = '';
-  private albumInfo: SimpleAlbumDataItem = new SimpleAlbumDataItem('','','','','',0,0);
+  private albumInfo: SimpleAlbumDataItem = new SimpleAlbumDataItem('', '', '', '', '', 0, 0);
   private appBroadcast: Broadcast = broadcastManager.getBroadcast();
   private albumsDataSource: AlbumsDataSource = new AlbumsDataSource()
   private scroller: Scroller = new Scroller();
@@ -182,8 +182,7 @@ struct MediaOperationPage {
                 ListItem() {
                   AlbumListCard({ item: item?.get() })
                 }
-              }, (item: LazyItem<AlbumDataItem>): string =>
-              item == null && ((item as LazyItem<AlbumDataItem>).get() != undefined && (item as LazyItem<AlbumDataItem>).get() != null) ? JSON.stringify(item) : item.getHashCode())
+              }, (item: LazyItem<AlbumDataItem>): string => item.getHashCode())
             }
             .divider({
               strokeWidth: 1,

@@ -521,7 +521,7 @@ struct PhotoBrowser {
         this.browserDataSource.setAlbumName(this.albumInfo.displayName)
       }
 
-      let items: UserFileDataItem[]|undefined;
+      let items: UserFileDataItem[] | undefined;
       if (param.viewData != null) {
         items = []
         let uriArr: string[] = String(param.viewData).split(',');

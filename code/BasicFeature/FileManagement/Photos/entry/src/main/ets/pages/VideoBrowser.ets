@@ -35,8 +35,8 @@ struct VideoBrowser {
   @Provide moreMenuList: Action[] = [];
   private broadCast: Broadcast = new Broadcast();
   private myVideoController: VideoController = new VideoController();
-  private uri:string = '';
-  private dateAdded:number = 0;
+  private uri: string = '';
+  private dateAdded: number = 0;
   private previewUri: object | null = null;
 
   onBackPress(): boolean {

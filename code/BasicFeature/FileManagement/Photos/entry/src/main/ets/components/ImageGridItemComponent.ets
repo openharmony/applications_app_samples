@@ -35,8 +35,8 @@ export struct ImageGridItemComponent {
   @State pressAnimScale: number = 1.0;
   @State isError: boolean = false;
   pageName = '';
-  mediaItem: UserFileDataItem = new UserFileDataItem('',[],'',0);
-  lazyItem: LazyItem<UserFileDataItem> = new LazyItem(this.mediaItem,0)
+  mediaItem: UserFileDataItem = new UserFileDataItem('', [], '', 0);
+  lazyItem: LazyItem<UserFileDataItem> = new LazyItem(this.mediaItem, 0)
   isThird = false;
   private isEnteringPhoto = false;
   private isPush = false;

@@ -74,8 +74,7 @@ export struct PhotoSwiper {
           })
           .zIndex(this.getIndex(item))
         }
-      }, (item: LazyItem<UserFileDataItem>): string =>
-      item == null && ((item as LazyItem<UserFileDataItem>).get() != undefined && (item as LazyItem<UserFileDataItem>).get() != null) ? JSON.stringify(item) : item.getHashCode())
+      }, (item: LazyItem<UserFileDataItem>): string => item.getHashCode())
     }
     .itemSpace('8vp')
     .gesture(PanGesture({

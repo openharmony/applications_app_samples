@@ -69,7 +69,7 @@ struct PhotoGridPage {
   @StorageLink('PhotoGridPageIndex') @Watch('onIndexChange') PhotoGridPageIndex: number = Constants.INVALID;
   @StorageLink('isSplitMode') isSplitMode: boolean = screenManager.isSplitMode();
   @StorageLink('leftBlank') leftBlank: number[] = [0, 0, 0, 0];
-  private albumInfo: SimpleAlbumDataItem = new SimpleAlbumDataItem('','','','','',0,0);
+  private albumInfo: SimpleAlbumDataItem = new SimpleAlbumDataItem('', '', '', '', '', 0, 0);
   title: string = '';
   deviceName: string = '';
   scroller: Scroller | null = new Scroller();
@@ -328,7 +328,7 @@ struct PhotoGridPage {
     animateTo({ duration: Constants.DELETE_ANIMATE_DURATION }, (): void => {
       this.groupDataSource.dataRemove();
       if (this.groupDataSource.groupDataItem) {
-        this.isEmpty = this.groupDataSource.groupDataItem.length==0 ? true : false;
+        this.isEmpty = this.groupDataSource.groupDataItem.length == 0 ? true : false;
       }
       this.isHideScrollBar = (this.groupDataSource.totalCount() <= Constants.GRID_SCROLL_BAR_VISIBLE_THRESHOLD)
     })
@@ -635,8 +635,7 @@ struct PhotoGridPage {
               .aspectRatio(1)
               .columnStart(item.get().index % this.gridRowCount)
               .columnEnd(item.get().index % this.gridRowCount)
-            }, (item: LazyItem<UserFileDataItem>): string =>
-            item == null && ((item as LazyItem<UserFileDataItem>).get() != undefined && (item as LazyItem<UserFileDataItem>).get() != null) ? JSON.stringify(item) : item.getHashCode())
+            }, (item: LazyItem<UserFileDataItem>): string => item.getHashCode())
           }
           .columnsTemplate('1fr '.repeat(this.gridRowCount))
           .columnsGap(Constants.GRID_GUTTER)
