@@ -38,7 +38,7 @@ export struct BatteryInfo {
 
   build() {
     List() {
-      ForEach(this.table, (item) => {
+      ForEach(this.table, (item: ListModel) => {
         ListItem() {
           Row() {
             Text(item.title)
