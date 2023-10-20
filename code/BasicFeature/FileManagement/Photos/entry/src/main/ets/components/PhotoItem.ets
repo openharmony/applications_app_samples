@@ -29,15 +29,15 @@ import { getThumbnail } from '../models/ThumbnailModel';
 const TAG = 'PhotoItem'
 
 class PreItemType{
-  rotate: number = 0
-  height: number = 0
-  width: number = 0
+  rotate: number = 0;
+  height: number = 0;
+  width: number = 0;
 }
 
 @Component
 export struct PhotoItem {
   item: UserFileDataItem = new UserFileDataItem('', [], '', 0);
-  pageName: string = ''
+  pageName: string = '';
   @State matrix: Matrix4.Matrix4Transit | null = Matrix4.identity().copy();
   @State photoItemDirection: PanDirection = PanDirection.Vertical;
   @Consume broadCast: Broadcast;
@@ -207,8 +207,8 @@ export struct PhotoItem {
             .onError((): void => {
               Log.error(TAG, 'image show error ' + this.thumbnail + ' ' + this.item.width + ' ' + this.item.height);
               if (this.thumbnail == undefined || this.item.width === 0 || this.item.height === 0) {
-                this.updateThumbnail()
-                return
+                this.updateThumbnail();
+                return;
               }
               this.showError = true;
               this.isLoading = true;

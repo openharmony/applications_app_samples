@@ -105,9 +105,9 @@ export struct RenameDialog {
           .height($r('app.float.details_dialog_button_height'))
           .onClick((): void => {
             if (this.dialogCallback?.cancelCallback !== undefined) {
-              this.dialogCallback.cancelCallback()
+              this.dialogCallback.cancelCallback();
             };
-            this.controller?.close()
+            this.controller?.close();
           })
 
           Row() {
@@ -136,7 +136,7 @@ export struct RenameDialog {
             if (passCheck) {
               getResourceString($r('app.string.specific_characters_not_supported'))
                 .then<void, void>((message: string): void => {
-                  showToast(message)
+                  showToast(message);
                 });
               return;
             }

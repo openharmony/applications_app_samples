@@ -27,7 +27,7 @@ export struct DeleteDialog {
   @Consume dialogCallback: DialogCallback;
   @Consume dialogMessage: Resource;
   @Consume dialogDeleteMessage: Resource;
-  controller?: CustomDialogController ;
+  controller?: CustomDialogController;
 
   aboutToAppear(): void {
   }
@@ -64,7 +64,7 @@ export struct DeleteDialog {
             Log.debug(this.TAG, 'cancelCallback');
             this.controller?.close();
             if (this.dialogCallback?.cancelCallback !== undefined) {
-              this.dialogCallback.cancelCallback()
+              this.dialogCallback.cancelCallback();
             };
           })
 
@@ -95,7 +95,7 @@ export struct DeleteDialog {
             Log.debug(this.TAG, 'confirmCallback');
             this.controller?.close();
             if (this.dialogCallback?.confirmCallback !== null) {
-              this.dialogCallback.confirmCallback()
+              this.dialogCallback.confirmCallback();
             };
           })
         }

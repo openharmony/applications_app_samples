@@ -23,13 +23,13 @@ import { Constants } from '../constants/Constants';
 
 @Observed
 export class FindSameNameParam {
-  sourceFileAsset: photoAccessHelper.PhotoAsset | null = null
-  targetFileAsset: photoAccessHelper.PhotoAsset | null = null
-  replaceFunc: Function | null = null
-  skipFunc: Function | null = null
-  cancelFunc: Function | null = null
-  singlePhoto: boolean = false
-  doSameFunc: Function | null = null
+  sourceFileAsset: photoAccessHelper.PhotoAsset | null = null;
+  targetFileAsset: photoAccessHelper.PhotoAsset | null = null;
+  replaceFunc: Function | null = null;
+  skipFunc: Function | null = null;
+  cancelFunc: Function | null = null;
+  singlePhoto: boolean = false;
+  doSameFunc: Function | null = null;
 }
 
 @CustomDialog
@@ -44,7 +44,7 @@ export struct FindSameNameDialog {
   @Consume findSameNameParam: FindSameNameParam;
   sourceDetails: photoAccessHelper.PhotoAsset | null = null;
   targetDetails: photoAccessHelper.PhotoAsset | null = null;
-  controller?: CustomDialogController
+  controller?: CustomDialogController;
   dataTime: string = '';
   targetDataTime: string = '';
   timeConvert = 1000;

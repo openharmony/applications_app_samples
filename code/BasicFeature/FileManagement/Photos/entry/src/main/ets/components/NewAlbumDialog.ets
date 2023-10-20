@@ -22,11 +22,11 @@ import { getResourceString } from '../utils/ResourceUtils';
 
 @CustomDialog
 export struct NewAlbumDialog {
-  private TAG: string = 'NewAlbumDialog'
+  private TAG: string = 'NewAlbumDialog';
   @StorageLink('isHorizontal') isHorizontal: boolean = screenManager.isHorizontal();
   @StorageLink('isSidebar') isSidebar: boolean = screenManager.isSidebar();
   @StorageLink('leftBlank') leftBlank: number[] = [0, 0, 0, 0];
-  controller?: CustomDialogController
+  controller?: CustomDialogController;
   @Consume renameFileName: string;
   @Consume dialogCallback: DialogCallback;
   @State isNull: boolean = false;
@@ -107,7 +107,7 @@ export struct NewAlbumDialog {
             if (this.dialogCallback?.cancelCallback !== undefined) {
               this.dialogCallback.cancelCallback();
             }
-            this.controller?.close()
+            this.controller?.close();
           })
 
           Row() {
@@ -142,7 +142,7 @@ export struct NewAlbumDialog {
             if (this.dialogCallback != null && this.dialogCallback.confirmCallback !== null) {
               this.dialogCallback.confirmCallback(this.inputName);
             }
-            this.controller?.close()
+            this.controller?.close();
           })
         }
       }

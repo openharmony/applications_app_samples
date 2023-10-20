@@ -68,7 +68,7 @@ export struct CancelOperationDialog {
             if (this.cancelParam?.continueFunc !== null) {
               this.cancelParam.continueFunc();
             }
-            this.controller?.close()
+            this.controller?.close();
           })
 
           Row() {
@@ -99,7 +99,7 @@ export struct CancelOperationDialog {
             if (this.cancelParam?.cancelFunc !== null) {
               this.cancelParam.cancelFunc();
             }
-            this.controller?.close()
+            this.controller?.close();
           })
         }
       }

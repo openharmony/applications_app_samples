@@ -47,9 +47,9 @@ export struct AddNotesDialog {
           .width($r('app.float.icon_size'))
           .onClick((): void => {
             if (this.dialogCallback?.cancelCallback !== undefined) {
-              this.dialogCallback.cancelCallback()
+              this.dialogCallback.cancelCallback();
             };
-            this.controller?.close()
+            this.controller?.close();
           })
         }.margin({ right: $r('app.float.dialog_icon_margin_horizontal') })
 
@@ -79,7 +79,7 @@ export struct AddNotesDialog {
               p.then<void, void>((message: string): void => {
                 showToast(message)
               });
-              this.controller?.close()
+              this.controller?.close();
               return
             }
             if (this.dialogCallback?.confirmCallback !== null) {

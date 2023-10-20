@@ -19,7 +19,7 @@ import { Constants } from '../constants/Constants';
 @Observed
 export class MultiSelectDetails {
   count: number = 0;
-  size: number = 0
+  size: number = 0;
 }
 
 @CustomDialog
@@ -94,7 +94,7 @@ export struct MultiSelectDialog {
         .backgroundColor($r('app.color.transparent'))
         .height($r('app.float.details_dialog_button_height'))
         .onClick((): void => {
-          this.controller?.close()
+          this.controller?.close();
         })
       }
       .width('100%')

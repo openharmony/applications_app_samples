@@ -22,8 +22,8 @@ import { DateUtil } from '../utils/DateUtil';
 
 @Observed
 export class SaveDialogCallback {
-  saveAsNewCallback: Function | null = null
-  replaceOriginalCallback: Function | null = null
+  saveAsNewCallback: Function | null = null;
+  replaceOriginalCallback: Function | null = null;
 }
 
 @CustomDialog
@@ -33,7 +33,7 @@ export struct SaveDialog {
   @StorageLink('leftBlank') leftBlank: number[] = [0, 0, 0, 0];
   @Consume broadCast: Broadcast;
   @Consume saveDialogCallback: SaveDialogCallback;
-  controller?: CustomDialogController
+  controller?: CustomDialogController;
 
   build() {
     Column() {
@@ -56,7 +56,7 @@ export struct SaveDialog {
               .height($r('app.float.details_dialog_button_height'))
               .width('100%')
               .onClick((): void => {
-                this.controller?.close()
+                this.controller?.close();
               }).backgroundColor($r('app.color.transparent'))
             }
             .width(Constants.PERCENT_ONE_THIRD)
@@ -83,9 +83,9 @@ export struct SaveDialog {
               .width('100%')
               .onClick((): void => {
                 this.broadCast.emit(BroadcastConstants.SHOW_EDIT_SAVE_PROGRESS_DIALOG, []);
-                this.controller?.close()
+                this.controller?.close();
                 if (this.saveDialogCallback != null && this.saveDialogCallback.replaceOriginalCallback !== null) {
-                  this.saveDialogCallback.replaceOriginalCallback()
+                  this.saveDialogCallback.replaceOriginalCallback();
                 }
               }).backgroundColor($r('app.color.transparent'))
             }.width(Constants.PERCENT_ONE_THIRD)
@@ -113,10 +113,10 @@ export struct SaveDialog {
               .height($r('app.float.details_dialog_button_height'))
               .width('100%')
               .onClick((): void => {
-                this.controller?.close()
+                this.controller?.close();
                 this.broadCast.emit(BroadcastConstants.SHOW_EDIT_SAVE_PROGRESS_DIALOG, []);
                 if (this.saveDialogCallback != null && this.saveDialogCallback.saveAsNewCallback !== null) {
-                  this.saveDialogCallback.saveAsNewCallback()
+                  this.saveDialogCallback.saveAsNewCallback();
                 }
               }).backgroundColor($r('app.color.transparent'))
             }
@@ -141,10 +141,10 @@ export struct SaveDialog {
           .height($r('app.float.details_dialog_button_height'))
           .margin({ bottom: $r('app.float.adjust_text_margin_bottom') })
           .onClick((): void => {
-            this.controller?.close()
+            this.controller?.close();
             this.broadCast.emit(BroadcastConstants.SHOW_EDIT_SAVE_PROGRESS_DIALOG, []);
             if (this.saveDialogCallback != null && this.saveDialogCallback.saveAsNewCallback !== null) {
-              this.saveDialogCallback.saveAsNewCallback()
+              this.saveDialogCallback.saveAsNewCallback();
             }
           }).backgroundColor($r('app.color.transparent'))
 
@@ -158,9 +158,9 @@ export struct SaveDialog {
           .margin({ bottom: $r('app.float.adjust_text_margin_bottom') })
           .onClick((): void => {
             this.broadCast.emit(BroadcastConstants.SHOW_EDIT_SAVE_PROGRESS_DIALOG, []);
-            this.controller?.close()
+            this.controller?.close();
             if (this.saveDialogCallback?.replaceOriginalCallback != null) {
-              this.saveDialogCallback.replaceOriginalCallback()
+              this.saveDialogCallback.replaceOriginalCallback();
             }
           }).backgroundColor($r('app.color.transparent'))
 
@@ -173,7 +173,7 @@ export struct SaveDialog {
           .height($r('app.float.details_dialog_button_height'))
           .margin({ bottom: $r('app.float.adjust_text_padding_bottom_isVertical') })
           .onClick((): void => {
-            this.controller?.close()
+            this.controller?.close();
           }).backgroundColor($r('app.color.transparent'))
         }
         .height($r('app.float.save_dialog_height'))

@@ -27,7 +27,7 @@ const TAG = 'PhotoSwiper'
 
 @Component
 export struct PhotoSwiper {
-  photoSwiperTransition: string = ''
+  photoSwiperTransition: string = '';
   private dataSource: GroupItemDataSource = new GroupItemDataSource();
   @Consume currentIndex: number;
   @Consume broadCast: Broadcast;

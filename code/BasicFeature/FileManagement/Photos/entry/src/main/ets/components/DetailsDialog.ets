@@ -21,18 +21,18 @@ import { Constants } from '../constants/Constants';
 
 @Observed
 export class MediaDetails {
-  mediaType: number = 0
-  height: number = 0
-  width: number = 0
-  size: number = 0
-  path: string = ''
-  duration: number = 0
-  title: string = ''
-  dateTaken: number = 0
-  dateAdded: number = 0
-  uri: string = ''
-  displayName: string = ''
-  dateModified: number = 0
+  mediaType: number = 0;
+  height: number = 0;
+  width: number = 0;
+  size: number = 0;
+  path: string = '';
+  duration: number = 0;
+  title: string = '';
+  dateTaken: number = 0;
+  dateAdded: number = 0;
+  uri: string = '';
+  displayName: string = '';
+  dateModified: number = 0;
 }
 
 @CustomDialog
@@ -193,7 +193,7 @@ export struct DetailsDialog {
         .backgroundColor($r('app.color.transparent'))
         .height($r('app.float.details_dialog_button_height'))
         .onClick((): void => {
-          this.controller?.close()
+          this.controller?.close();
         })
       }.width('100%')
       .height($r('app.float.details_dialog_button_area_height'))

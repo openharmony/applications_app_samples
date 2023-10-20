@@ -19,8 +19,8 @@ import { Constants } from '../constants/Constants';
 
 @Observed
 export class ProgressParam {
-  cancelFunc: Function | null = null
-  operationType: string = ''
+  cancelFunc: Function | null = null;
+  operationType: string = '';
 }
 
 @CustomDialog
@@ -28,7 +28,7 @@ export struct ProgressDialog {
   @StorageLink('isHorizontal') isHorizontal: boolean = screenManager.isHorizontal();
   @StorageLink('isSidebar') isSidebar: boolean = screenManager.isSidebar();
   @StorageLink('leftBlank') leftBlank: number[] = [0, 0, 0, 0];
-  controller?: CustomDialogController
+  controller?: CustomDialogController;
   @Consume progressMessage: Resource;
   @Consume deleteProgress: number;
   @Consume progressParam: ProgressParam;

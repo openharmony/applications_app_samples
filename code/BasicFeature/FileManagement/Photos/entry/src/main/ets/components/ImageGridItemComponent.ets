@@ -36,7 +36,7 @@ export struct ImageGridItemComponent {
   @State isError: boolean = false;
   pageName = '';
   mediaItem: UserFileDataItem = new UserFileDataItem('', [], '', 0);
-  lazyItem: LazyItem<UserFileDataItem> = new LazyItem(this.mediaItem, 0)
+  lazyItem: LazyItem<UserFileDataItem> = new LazyItem(this.mediaItem, 0);
   isThird = false;
   private isEnteringPhoto = false;
   private isPush = false;

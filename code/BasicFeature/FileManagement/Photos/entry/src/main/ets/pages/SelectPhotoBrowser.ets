@@ -92,7 +92,7 @@ struct SelectPhotoBrowser {
       this.browserDataSource.setAlbumName((param.albumInfo as SimpleAlbumDataItem).displayName)
     }
 
-    let items: UserFileDataItem[] | undefined = AppStorage.Get<UserFileDataItem[]>(Constants.APP_KEY_PHOTO_BROWSER)
+    let items: UserFileDataItem[] | undefined = AppStorage.Get<UserFileDataItem[]>(Constants.APP_KEY_PHOTO_BROWSER);
     if (items !== undefined) {
       this.browserDataSource.groupDataItem = items;
     }
@@ -204,7 +204,7 @@ struct SelectPhotoBrowser {
     if (this.browserDataSource.groupDataItem !== undefined) {
       return this.browserDataSource.groupDataItem[this.currentIndex];
     } else {
-      return new UserFileDataItem('', [], '', 0)
+      return new UserFileDataItem('', [], '', 0);
     }
   }
 
