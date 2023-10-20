@@ -27,8 +27,8 @@ let driver = Driver.create();
 let buttonId = 'shareLinkResource';
 
 export default function shareTest() {
-  describe('ActsShareTest', function () {
-    beforeAll(async function () {
+  describe('ActsShareTest', () => {
+    beforeAll(async () => {
       await driver.delayMs(500);
       await driver.pressBack();
       await driver.delayMs(1000);
@@ -56,7 +56,7 @@ export default function shareTest() {
      * @tc.name: Test the ability to provide shared templates
      * @tc.desc: Click the share button to jump to the interface, and then click the cancel button
      */
-    it('Acts_ShareTemplate_0100', 0, async function (done) {
+    it('Acts_ShareTemplate_0100', 0, async (done: () => void) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'Acts_ShareTemplate_0100 start');
       await driver.delayMs(500);
       let button = await driver.findComponent(ON.id(buttonId));
@@ -77,7 +77,7 @@ export default function shareTest() {
     * @tc.desc: Click on the share button to jump to the interface, then click on the share demo to jump to the
     *           interface, and then click on the return to share button
     */
-    it('Acts_ShareTemplate_0200', 0, async function (done) {
+    it('Acts_ShareTemplate_0200', 0, async (done: () => void) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'Acts_ShareTemplate_0200 start');
       await driver.delayMs(1000);
       let button = await driver.findComponent(ON.id(buttonId));
@@ -106,7 +106,7 @@ export default function shareTest() {
     * @tc.desc: Click the share button to jump to the interface, then click the share demonstration to jump to
     *           the interface, and then click to stay in the shared text
     */
-    it('Acts_ShareTemplate_0300', 0, async function (done) {
+    it('Acts_ShareTemplate_0300', 0, async (done: () => void) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'Acts_ShareTemplate_0300 start');
       await driver.delayMs(1000);
       let button = await driver.findComponent(ON.id(buttonId));
@@ -131,7 +131,7 @@ export default function shareTest() {
       done();
     })
 
-    it('Acts_ShareTemplate_0400', 0, async function (done) {
+    it('Acts_ShareTemplate_0400', 0, async (done: () => void) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'Acts_ShareTemplate_0400 start');
       await driver.delayMs(1000);
       let button = await driver.findComponent(ON.id(buttonId));
@@ -160,7 +160,7 @@ export default function shareTest() {
     * @tc.desc: Click the share button to jump to the interface, then click the share demonstration to jump to
     *           the interface, and then click to stay in the share editing mode
     */
-    it('Acts_ShareTemplate_0500', 0, async function (done) {
+    it('Acts_ShareTemplate_0500', 0, async (done: () => void) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'Acts_ShareTemplate_0500 start');
       await driver.delayMs(1000);
       let button = await driver.findComponent(ON.id(buttonId));
