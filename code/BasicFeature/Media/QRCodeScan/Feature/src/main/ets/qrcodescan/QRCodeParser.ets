@@ -107,7 +107,7 @@ class QRCodeParser {
       selections: ``,
       selectionArgs: [],
       uri: imageSrc
-    }
+    };
     // 获取图片文件资源
     let fetchIdFileResult = await media.getFileAssets(imagesIdFetchOp);
     let fileIdAsset = await fetchIdFileResult.getFirstObject();
@@ -160,7 +160,7 @@ class QRCodeParser {
       selections: ``,
       selectionArgs: [],
       uri: imageSrc
-    }
+    };
     // 获取图片文件资源
     let fetchIdFileResult = await media.getFileAssets(imagesIdFetchOp);
     let fileIdAsset = await fetchIdFileResult.getFirstObject();

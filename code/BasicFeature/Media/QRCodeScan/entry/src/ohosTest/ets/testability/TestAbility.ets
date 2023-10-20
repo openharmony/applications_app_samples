@@ -28,9 +28,9 @@ export default class TestAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onCreate')
     hilog.info(0x0000, 'testTag', '%{public}s', 'want param:' + JSON.stringify(want) ?? '')
     hilog.info(0x0000, 'testTag', '%{public}s', 'launchParam:' + JSON.stringify(launchParam) ?? '')
-    let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator
+    let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
     abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-    let abilityDelegatorArguments: AbilityDelegatorRegistry.AbilityDelegatorArgs
+    let abilityDelegatorArguments: AbilityDelegatorRegistry.AbilityDelegatorArgs;
     abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
     hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO)
     hilog.info(0x0000, 'testTag', '%{public}s', 'start run testcase!!!')

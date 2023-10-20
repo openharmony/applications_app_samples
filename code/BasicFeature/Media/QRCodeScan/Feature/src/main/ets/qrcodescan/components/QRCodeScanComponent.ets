@@ -32,7 +32,7 @@ export default struct QRCodeScanComponent {
   @StorageProp('qrCodeParseResult') @Watch('showQrCodeResult') qrCodeParseResult: string = ''
   @State qrCodeImage: image.PixelMap | undefined = undefined
   @State animationOrdinate: number = QRCodeScanConst.SCAN_TO_TOP_HEIGHT
-  @State hasCameraPermission: boolean | undefined = false
+  @State hasCameraPermission: boolean | undefined = false;
   @State isQRCodeScanStopped: boolean = false
   // 每当应用切换回来都重新打开相机
   @StorageLink('cameraStatus') @Watch('reCreateCamera') isCameraOpened: boolean = false
