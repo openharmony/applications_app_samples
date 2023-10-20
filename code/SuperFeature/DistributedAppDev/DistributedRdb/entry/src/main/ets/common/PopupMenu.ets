@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import deviceManager from '@ohos.distributedDeviceManager'
+import deviceManager from '@ohos.distributedDeviceManager';
 import common from '@ohos.app.ability.common'
 import router from '@ohos.router'
 import Logger from '../model/Logger'
@@ -32,7 +32,7 @@ export struct PopupMenu {
     { icon: $r('app.media.setting'), text: $r('app.string.setting') },
     { icon: $r('app.media.connect'), text: $r('app.string.connect') }]
   private handleStartAbility: () => void = null
-  private deviceList: Array<deviceManager.DeviceBasicInfo> = []
+  private deviceList: Array<deviceManager.DeviceBasicInfo> = [];
   private dialogController: CustomDialogController = null
   @Link state: {
     popupMenu: boolean,
@@ -108,7 +108,7 @@ export struct PopupMenu {
 
   showDialog() {
     RemoteDeviceModel.registerDeviceListCallback(() => {
-      Logger.info(TAG, 'registerDeviceListCallback, callback entered' + JSON.stringify(RemoteDeviceModel.discoverList))
+      Logger.info(TAG, 'registerDeviceListCallback, callback entered' + JSON.stringify(RemoteDeviceModel.discoverList));
       this.deviceList = []
       this.deviceList.push({
         deviceId: '0',

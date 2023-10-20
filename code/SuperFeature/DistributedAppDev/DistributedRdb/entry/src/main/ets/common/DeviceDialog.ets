@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-import deviceManager from '@ohos.distributedDeviceManager'
+import deviceManager from '@ohos.distributedDeviceManager';
 
 @CustomDialog
 export struct DeviceDialog {
   private controller: CustomDialogController
   private selectedIndex: number = 0
   private onSelectedIndexChange: (selectedIndex: number) => void
-  @State deviceList: Array<deviceManager.DeviceBasicInfo> = []
+  @State deviceList: Array<deviceManager.DeviceBasicInfo> = [];
 
   build() {
     Column() {
