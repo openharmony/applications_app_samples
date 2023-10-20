@@ -15,9 +15,9 @@
 @CustomDialog
 struct InputTextDialog {
   @Link inputValue: string;
-  controller: CustomDialogController;
-  cancel: () => void;
-  confirm: () => void;
+  controller?: CustomDialogController;
+  cancel: () => void = () => {};
+  confirm: () => void = () => {};
 
   build() {
     Column() {
@@ -33,12 +33,16 @@ struct InputTextDialog {
       Flex({ justifyContent: FlexAlign.SpaceAround }) {
         Button($r('app.string.input_text_dialog_cancel'))
           .onClick(() => {
-            this.controller.close();
+            if (this.controller !== undefined && this.controller !== null) {
+              this.controller.close();
+            }
             this.cancel();
           }).backgroundColor(Color.White).fontColor(Color.Black)
         Button($r('app.string.input_text_dialog_sure'))
           .onClick(() => {
-            this.controller.close();
+            if (this.controller !== undefined && this.controller !== null) {
+              this.controller.close();
+            }
             this.confirm();
           }).backgroundColor(Color.White).fontColor(Color.Red)
           .id('Sure')

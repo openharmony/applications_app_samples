@@ -16,74 +16,26 @@
 import { CropTasks, ScaleTasks, TaskData, Tasks } from '../model/AdjustData';
 
 export const adjustDatas: TaskData [] = [
-  {
-    'task': Tasks.CROP,
-    'image': $r('app.media.ic_screen'),
-    'text': $r('app.string.crop'),
-  },
-  {
-    'task': Tasks.SCALE,
-    'image': $r('app.media.ic_scale'),
-    'text': $r('app.string.scale'),
-  },
-  {
-    'task': Tasks.ROTATE,
-    'image': $r('app.media.ic_rotate'),
-    'text': $r('app.string.rotate'),
-  },
-  {
-    'task': Tasks.TONING,
-    'image': $r('app.media.ic_brightness_small'),
-    'text': $r('app.string.toning'),
-  },
+  new TaskData(Tasks.CROP, $r('app.media.ic_screen'), $r('app.string.crop')),
+  new TaskData(Tasks.SCALE, $r('app.media.ic_scale'), $r('app.string.scale')),
+  new TaskData(Tasks.ROTATE, $r('app.media.ic_rotate'), $r('app.string.rotate')),
+  new TaskData(Tasks.TONING, $r('app.media.ic_brightness_small'), $r('app.string.toning'))
 ];
 
 export const markDatas: TaskData [] = [
-  {
-    'task': Tasks.TEXT,
-    'image': $r('app.media.ic_font'),
-    'text': $r('app.string.text'),
-  },
-  {
-    'task': Tasks.STICKER,
-    'image': $r('app.media.ic_image'),
-    'text': $r('app.string.sticker')
-  }
+  new TaskData(Tasks.TEXT, $r('app.media.ic_font'), $r('app.string.text')),
+  new TaskData(Tasks.STICKER, $r('app.media.ic_image'), $r('app.string.sticker'))
 ];
 
 
 export const cropTaskDatas: TaskData[] = [
-  {
-    'task': CropTasks.ORIGIN,
-    'image': $r('app.media.ic_origin'),
-    'text': $r('app.string.origin_photo')
-  },
-  {
-    'task': CropTasks.THREE_FOUR,
-    'image': $r('app.media.three_four_gray'),
-    'text': $r('app.string.proportion_three_four'),
-  },
-  {
-    'task': CropTasks.NINE_SIXTH,
-    'image': $r('app.media.nine_sixth_gray'),
-    'text': $r('app.string.proportion_nine_sixth'),
-  },
-  {
-    'task': CropTasks.ONE_ONE,
-    'image': $r('app.media.one_one_gray'),
-    'text': $r('app.string.proportion_one_one')
-  }
+  new TaskData(CropTasks.ORIGIN, $r('app.media.ic_origin'), $r('app.string.origin_photo')),
+  new TaskData(CropTasks.THREE_FOUR, $r('app.media.three_four_gray'), $r('app.string.proportion_three_four')),
+  new TaskData(CropTasks.NINE_SIXTH, $r('app.media.nine_sixth_gray'), $r('app.string.proportion_nine_sixth')),
+  new TaskData(CropTasks.ONE_ONE, $r('app.media.one_one_gray'), $r('app.string.proportion_one_one'))
 ];
 
 export const scaleTaskDatas: TaskData[] = [
-  {
-    'task': ScaleTasks.AMPLIFICARION,
-    'image': $r('app.media.scale_big'),
-    'text': $r('app.string.amplification'),
-  },
-  {
-    'task': ScaleTasks.NARROW,
-    'image': $r('app.media.scale_small'),
-    'text': $r('app.string.narrow'),
-  }
+  new TaskData(ScaleTasks.AMPLIFICARION, $r('app.media.scale_big'), $r('app.string.amplification')),
+  new TaskData(ScaleTasks.NARROW, $r('app.media.scale_small'), $r('app.string.narrow'))
 ];
