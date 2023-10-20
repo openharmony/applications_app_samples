@@ -29,35 +29,40 @@ export struct Play {
 
         GridCol({ span: { sm: 12, md: 6, lg: 6 } }) {
           Row() {
-            Image($r('app.media.favorite'))
-              .width(48 + 2 * 12) // border = 12
-              .height(48)
-              .objectFit(ImageFit.Contain)
-              .displayPriority(1)
+            Button({ type: ButtonType.Circle, stateEffect: true }) {
+              Image($r('app.media.favorite')).width(48).height(48)}
+            .width(48)
+            .height(48)
+            .displayPriority(1)
+            .backgroundColor('white')
 
-            Image($r('app.media.down'))
-              .width(48 + 2 * 12) // border = 12
+            Button({ type: ButtonType.Circle, stateEffect: true }) {
+              Image($r('app.media.down')).width(48).height(48)}
+              .width(48)
               .height(48)
-              .objectFit(ImageFit.Contain)
               .displayPriority(2)
+              .backgroundColor('white')
 
-            Image($r('app.media.pause'))
-              .width(48 + 2 * 12) // border = 12
-              .height(48)
-              .objectFit(ImageFit.Contain)
-              .displayPriority(3)
+            Button({ type: ButtonType.Circle, stateEffect: true }) {
+              Image($r('app.media.pause')).width(48).height(48)}
+            .width(48)
+            .height(48)
+            .displayPriority(3)
+            .backgroundColor('white')
 
-            Image($r('app.media.next'))
-              .width(48 + 2 * 12) // border = 12
-              .height(48)
-              .objectFit(ImageFit.Contain)
-              .displayPriority(2)
+            Button({ type: ButtonType.Circle, stateEffect: true }) {
+              Image($r('app.media.next')).width(48).height(48)}
+            .width(48)
+            .height(48)
+            .displayPriority(2)
+            .backgroundColor('white')
 
-            Image($r('app.media.list'))
-              .width(48 + 2 * 12) // border = 12
-              .height(48)
-              .objectFit(ImageFit.Contain)
-              .displayPriority(1)
+            Button({ type: ButtonType.Circle, stateEffect: true }) {
+              Image($r('app.media.list')).width(48).height(48)}
+            .width(48)
+            .height(48)
+            .displayPriority(1)
+            .backgroundColor('white')
           }
           .width('100%')
           .height('100%')
