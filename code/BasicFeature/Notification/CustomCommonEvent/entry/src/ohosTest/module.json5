@@ -17,7 +17,7 @@
   "module": {
     "name": "entry_test",
     "type": "feature",
-    "srcEntrance": "./ets/Application/TestAbilityStage.ts",
+    "srcEntry": "./ets/Application/TestAbilityStage.ts",
     "description": "$string:entry_test_desc",
     "mainElement": "TestAbility",
     "deviceTypes": [

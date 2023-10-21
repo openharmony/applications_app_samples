@@ -15,7 +15,7 @@
 
 import { notificationFilter, ContentCallBackType } from '../feature/NotificationFilterUtil';
 
-type checkBoxesMsg = {
+interface checkBoxesMsg {
   text: Resource,
   enable: boolean,
   contentType: ContentCallBackType

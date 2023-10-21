@@ -24,21 +24,21 @@ struct Index {
   @State isShowComment: boolean = true;
   @State isShowCamera: boolean = false;
   @State isLand: boolean = false;
-  @State pixelMaps: Array<PixelMap> = [];
-  @State imageArr: Array<PixelMap> = [];
+  @State pixelMaps: Array<PixelMap|undefined> = [];
+  @State imageArr: Array<PixelMap | null> = [];
   @StorageLink('imageList') imageList: Array<string> = [];
-  @StorageLink('fileFd') fileSrc: string = null;
+  @StorageLink('fileFd') fileSrc: string = '';
   @StorageLink('isUpdate') isUpdate: boolean = false;
   private GetPictures: GetPictures = new GetPictures();
   scroller: Scroller = new Scroller();
 
-  terminateSelf(context: any): void {
+  terminateSelf(context: ESObject): void {
     context.terminateSelf();
   }
 
   aboutToAppear(): void {
     logger.info(TAG, 'enter aboutToAppear');
-    if (AppStorage.Get('pixelMaps')) {
+    if (AppStorage.Get<string[]>('pixelMaps')) {
       this.pixelMaps.push(undefined);
     }
   }
@@ -110,12 +110,12 @@ struct Index {
 
               if (this.imageList.length > 0) {
                 Grid() {
-                  ForEach(this.imageList, (imgUrl: string, index) => {
+                  ForEach(this.imageList, (imgUrl: string, index:number) => {
                     GridItem() {
                       if (index < this.imageList.length) {
                         Image(this.imageArr[index])
                           .onClick(() => {
-                            AppStorage.SetOrCreate('selectIndex', index);
+                            AppStorage.SetOrCreate<number>('selectIndex', index);
                             this.isLand = true;
                             router.pushUrl({
                               url: 'pages/UpdatePages',

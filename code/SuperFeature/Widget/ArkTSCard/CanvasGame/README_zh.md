@@ -74,7 +74,7 @@ entry/src/main/
 
 2.本示例为Stage模型的ArkTS卡片，从API version 9开始支持。
 
-3.本示例需要使用DevEco Studio 3.1 Release (Build Version: 3.1.0.400, built on March 29, 2023)才可编译运行。
+3.本示例需要使用DevEco Studio 4.0 Beta2 (Build Version: 4.0.0.400, built on August 2, 2023)才可编译运行。
 
 ### 下载
 

@@ -13,15 +13,15 @@
 * limitations under the License.
 */
 
-import router from '@ohos.router'
-import { CustomEmitter } from '@ohos/emitter'
-import { ProductDataModel } from '../model/GoodsModel'
+import router from '@ohos.router';
+import { CustomEmitter } from '@ohos/emitter';
+import { ProductDataModel } from '../model/GoodsModel';
 
 @Component
 export struct BottomNavigation {
-  @StorageProp('curBp') curBp: string = 'md'
-  @Link goodItemData: ProductDataModel
-  private emitterClass: CustomEmitter = new CustomEmitter()
+  @StorageProp('curBp') curBp: string = 'md';
+  @Link goodItemData: ProductDataModel;
+  private emitterClass: CustomEmitter = new CustomEmitter();
 
   build() {
     Row() {

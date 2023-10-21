@@ -11,6 +11,10 @@
     {
       "name": "MainAbility_label",
       "value": "浏览器"
+    },
+    {
+      "name": "Input_url",
+      "value": "InputUrl"
     }
   ]
 }

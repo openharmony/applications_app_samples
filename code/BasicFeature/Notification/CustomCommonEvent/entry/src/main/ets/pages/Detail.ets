@@ -18,8 +18,8 @@ import { Header } from '../component/Header';
 @Entry
 @Component
 struct Detail {
-  private arr: Array<string> = (router.getParams() as Record<string, object>)['recEvents'] as Array<string>;
-  private filteredArr: Array<string> = (router.getParams() as Record<string, object>)['onceEvents'] as Array<string>;
+  private arr: Array<string> = (router.getParams() as Record<string, string[]>)['recEvents'];
+  private filteredArr: Array<string> = (router.getParams() as Record<string, string[]>)['onceEvents'];
 
   build() {
     Column() {

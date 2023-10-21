@@ -27,6 +27,10 @@
     {
       "name": "EntryFormAbility_label",
       "value": "form_label"
+    },
+    {
+      "name": "AddForm",
+      "value": "添加到桌面"
     }
   ]
 }

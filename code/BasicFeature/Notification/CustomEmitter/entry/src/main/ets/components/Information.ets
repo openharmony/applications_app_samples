@@ -13,24 +13,24 @@
 * limitations under the License.
 */
 
-import router from '@ohos.router'
+import router from '@ohos.router';
 
 @Component
 export struct Information {
-  @State collected: boolean = false
-  private data: any[] = router.getParams()['goodItem']
-  @State recommend: string = ''
-  @State commodity: string = ''
+  @State collected: boolean = false;
+  private data: string | number | boolean | object | null[]
+    = (router.getParams() as Record<string, string | number | boolean | object | null[]>)['goodItem'];
+  @State recommend: string = '';
+  @State commodity: string = '';
 
   aboutToAppear() {
-    let context: Context = getContext(this)
-    this.recommend = context.resourceManager.getStringSync($r('app.string.recommend').id)
-    this.commodity = context.resourceManager.getStringSync($r('app.string.commodity').id)
+    let context: Context = getContext(this);
+    this.recommend = context.resourceManager.getStringSync($r('app.string.recommend').id);
+    this.commodity = context.resourceManager.getStringSync($r('app.string.commodity').id);
   }
 
   // 分享弹框
-  controller: TabsController = new TabsController()
-  shareDialog: CustomDialogController
+  controller: TabsController = new TabsController();
 
   build() {
     Column() {

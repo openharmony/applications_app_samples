@@ -14,7 +14,7 @@
  */
 
 export default class PixelMapQueue {
-  private items: PixelMap[];
+  private items: PixelMap[] = [];
 
   constructor() {
     this.items = [];
@@ -24,7 +24,7 @@ export default class PixelMapQueue {
     this.items.push(pm);
   }
 
-  pop(): PixelMap {
+  pop(): PixelMap | undefined {
     return this.items.pop();
   }
 }

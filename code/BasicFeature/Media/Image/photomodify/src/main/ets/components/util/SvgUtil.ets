@@ -12,9 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import xml from '@ohos.convertxml';
 import convertxml from '@ohos.convertxml';
 import util from '@ohos.util';
-
 /**
  * 画svg到离线画板
  * @param context
@@ -51,7 +51,7 @@ export async function drawSvg(context: Context, offContext: OffscreenCanvasRende
 
 export function transformToSvgObj(text: string): SvgClass {
   let conv: convertxml.ConvertXML = new convertxml.ConvertXML();
-  let options = {
+  let options: xml.ConvertOptions = {
     trim: false,
     declarationKey: '_declaration',
     instructionKey: '_instruction',
@@ -66,56 +66,73 @@ export function transformToSvgObj(text: string): SvgClass {
     elementsKey: '_elements'
   };
   const obj: Object = conv.convertToJSObject(text, options);
-  const e: Elements[] = getAllElements(obj);
+  const e: Elements[] = getAllElements(obj as ObjectType);
   const svgClass: SvgClass = new SvgClass();
   for (let i: number = 0; i < e.length; i++) {
     const element: Elements = e[i];
     if (element.name === 'svg') {
-      svgClass.width = Number(element._attributes['width']);
-      svgClass.height = Number(element._attributes['height']);
+      svgClass.width = Number(element._attributes.width);
+      svgClass.height = Number(element._attributes.height);
     } else if (element.name === 'path') {
       const path: SvgPath = new SvgPath();
-      path.path = element._attributes['d'];
-      path.fillColor = element._attributes['fill'];
+      path.path = element._attributes.d;
+      path.fillColor = element._attributes.fill;
       svgClass.paths.push(path);
     }
   }
   return svgClass;
 }
 
-function getAllElements(obj: Object): Elements[] {
+function getAllElements(obj: ObjectType): Elements[] {
   const set: Elements[] = [];
   if (obj instanceof Array) {
-    const length: number = obj['length'];
+    const length: number = obj.length;
     for (let i: number = 0; i < length; i++) {
       set.push(...getAllElements(obj[i]));
     }
   }
-  if (obj.hasOwnProperty('_attributes') && obj.hasOwnProperty('_type')
-  && obj['_type'] === 'element' && obj.hasOwnProperty('_name')) {
+  if (obj._attributes !== undefined && obj?._type !== undefined
+    && obj._type === 'element' && obj._name !== undefined) {
     const e: Elements = new Elements();
-    e.name = obj['_name'];
-    e._attributes = obj['_attributes'];
+    e.name = obj._name;
+    e._attributes = obj._attributes;
     set.push(e);
   }
-  if (obj.hasOwnProperty('_elements')) {
-    set.push(...getAllElements(obj['_elements']));
+  if (obj._elements !== undefined) {
+    set.push(...getAllElements(obj._elements));
   }
   return set;
 }
 
-class Elements {
-  name: string;
-  _attributes: Object;
+class ObjectType{
+  _attributes?:AttributesType
+  _type?:string
+  _name?:string
+  _elements?:ObjectType
 }
 
+
+class Elements {
+  name: string = '';
+  _attributes: AttributesType = new AttributesType();
+}
+
+class AttributesType{
+  width:number = 0
+  height:number = 0
+  d:string = ''
+  fill:string = ''
+}
+
+
+
 export class SvgClass {
-  width: number;
-  height: number;
+  width: number = 0;
+  height: number = 0;
   paths: SvgPath[] = [];
 }
 
 export class SvgPath {
-  path: string;
-  fillColor: string;
+  path: string = '';
+  fillColor: string = '';
 }

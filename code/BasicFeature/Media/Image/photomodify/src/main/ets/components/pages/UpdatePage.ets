@@ -18,9 +18,9 @@ import { readImage } from '../util/MediaUtil';
 
 @Component
 export struct UpdatePage {
-  @State mediaUri: string = router.getParams()['mediaUri'];
+  @State mediaUri: string = (router.getParams() as Record<string, Object>)['mediaUri'] as string;
   @State isLand: boolean = false;
-  @State pixelMap: PixelMap = null;
+  @State pixelMap: PixelMap | null = null;
 
  async aboutToAppear(): Promise<void> {
     logger.info('UpdatePage mediaUri' + this.mediaUri);

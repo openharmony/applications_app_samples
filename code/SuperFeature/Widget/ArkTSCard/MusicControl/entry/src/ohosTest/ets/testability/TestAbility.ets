@@ -20,18 +20,19 @@ import { Hypium } from '@ohos/hypium'
 import Window from '@ohos.window'
 import testsuite from '../test/List.test'
 import Logger from '../../../main/ets/util/Logger'
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 const TAG = 'TestAbility'
 
 export default class TestAbility extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     Logger.info(TAG, 'TestAbility onCreate');
     Logger.info(TAG, 'want param:' + JSON.stringify(want) ?? '');
     Logger.info(TAG, 'launchParam:' + JSON.stringify(launchParam) ?? '');
-    var abilityDelegator: any
+    let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator
     abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-    var abilityDelegatorArguments: any
-    abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
+    let abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
     Logger.info(TAG, 'start run testcase!!!');
     Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
   }

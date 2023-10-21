@@ -20,7 +20,7 @@ import { Header } from '../component/Header';
 
 class EventData {
   event: string = '';
-  title: Resource | undefined = undefined
+  title: Resource | null = null;
 }
 
 @Entry

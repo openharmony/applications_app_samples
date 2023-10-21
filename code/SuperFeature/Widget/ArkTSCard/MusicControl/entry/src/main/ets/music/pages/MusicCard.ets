@@ -106,7 +106,7 @@ struct MusicCard {
         })
 
       Row() {
-        ForEach(this.imageArrays, (item, index) => {
+        ForEach(this.imageArrays, (item: string, index: number) => {
           Column() {
             Image(item)
               .size({ width: this.widthSize[index], height: this.heightSize[index] })

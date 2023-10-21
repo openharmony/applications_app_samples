@@ -21,11 +21,12 @@ import { Driver, ON, MatchPattern } from '@ohos.UiTest';
 import historyFeature from '../../../main/ets/feature/HistoryFeature';
 import { logger } from '../util/Logger';
 import UIAbility from '@ohos.app.ability.UIAbility';
+import Base from '@ohos.base';
 import Want from '@ohos.app.ability.Want';
 
 const TAG = '[Sample_CustomCommonEvent]';
 const BUNDLE = 'CustomCommonEvent_';
-let ability: UIAbility;
+let ability: UIAbility | null = null;
 const RADIO_ID: Array<string> = [
 commonEventManager.Support.COMMON_EVENT_WIFI_POWER_STATE,
 commonEventManager.Support.COMMON_EVENT_SCREEN_OFF,
@@ -41,8 +42,8 @@ export default function abilityTest() {
       let want: Want = {
         bundleName: "com.samples.customcommonevent",
         abilityName: "LauncherAbility"
-      };
-      delegator.startAbility(want, (err) => {
+      }
+      delegator.startAbility(want, (err: Base.BusinessError) => {
         logger.info(TAG, `${BUNDLE}startAbility end err ${JSON.stringify(err)}`);
       })
       await driver.delayMs(1000);
@@ -106,14 +107,16 @@ export default function abilityTest() {
       let jumpToHistory = await driver.findComponent(ON.id('jumpToHistory'));
       await jumpToHistory.click();
       await driver.delayMs(1000);
-      let feature: historyFeature = new historyFeature(ability.context);
-      let recorderArray = await feature.getData().then((data: Array<Array<string>>) => {
-        return data;
-      })
-      // 判断添加10条数据之后的历史记录
-      if (recorderArray.length > 1) {
-        logger.info(TAG, 'Empty failed');
-        expect().assertFail();
+      if (ability) {
+        let feature: historyFeature = new historyFeature(ability.context);
+        let recorderArray = await feature.getData().then((data: Array<Array<string>>) => {
+          return data;
+        })
+        // 判断添加10条数据之后的历史记录
+        if (recorderArray.length > 1) {
+          logger.info(TAG, 'Empty failed');
+          expect().assertFail();
+        }
       }
 
       // 返回首页

@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 
-export class MenuType {
-  name: Resource
-  icon?: Resource
-  subController?: TabsController
-  subController_sm?: TabsController
-  subTitleList?: MenuType[]
-  menuContent?: string
-  isVisible?: boolean = false
-  parentNode?: number
+export interface  MenuType {
+  name: Resource;
+  icon?: Resource;
+  subController?: TabsController;
+  subController_sm?: TabsController;
+  subTitleList?: MenuType[];
+  menuContent?: string;
+  isVisible?: boolean;
+  parentNode?: number;
 }

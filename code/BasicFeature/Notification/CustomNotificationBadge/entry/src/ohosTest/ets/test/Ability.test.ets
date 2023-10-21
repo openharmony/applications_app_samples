@@ -18,6 +18,7 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON } from '@ohos.UiTest';
 import UIAbility from '@ohos.app.ability.UIAbility';
+import Base from '@ohos.base';
 
 const TAG: string = '[Samples_Badge]';
 const DOMAIN = 0xF811;
@@ -25,11 +26,11 @@ const BUNDLE = 'Badge_';
 let ability: UIAbility;
 
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
     /**
      * 打开应用
      */
-    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+    it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin');
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
@@ -39,7 +40,7 @@ export default function abilityTest() {
         });
         done();
       } catch (expection) {
-        hilog.info(DOMAIN, TAG, 'StartAbility end err:' + JSON.stringify(expection));
+        hilog.info(DOMAIN, TAG, 'StartAbility end err:' + JSON.stringify(expection as Base.BusinessError));
         expect(0).assertEqual(expection.code);
         done();
       }
