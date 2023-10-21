@@ -2,15 +2,17 @@
 
 ### 介绍
 
-这是一个仿聊天类应用，使用了静态布局搭建了不同的页面。为了优化内存与性能体验，在部分list场景使用了懒加载。  
+这是一个仿聊天类应用，使用了静态布局搭建了不同的页面。为了优化内存与性能体验，在部分list场景使用了懒加载。
 
-本示例用到了 图片处理能力接口[@ohos.multimedia.image](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md )。  
+本示例用到了
+图片处理能力接口[@ohos.multimedia.image](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md )。
 
-文件存储管理能力接口[@ohos.fileio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-fileio.md) 。  
+文件存储管理能力接口[@ohos.fileio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-fileio.md) 。
 
 ### 效果预览
+
 [README_en.md](README_en.md)
-| 主页                                    | 通讯录                                      | 发现                                     | 个人页面                                |
+| 主页 | 通讯录 | 发现 | 个人页面 |
 | ------------------------------------- | ---------------------------------------- | -------------------------------------- | ----------------------------------- |
 | ![](screenshots/device/chat_home.jpeg) | ![](screenshots/device/chat_address.jpeg) | ![](screenshots/device/chat_found.jpeg) | ![](screenshots/device/chat_me.jpeg) |
 
@@ -71,11 +73,13 @@ products/phone/entry/src/main/ets
 
 ### 具体实现
 
-1、定义要跳转子页面：在products/phone/entry/pages/index.ets中通过TabContent()定义要跳转的子页面，[源码参考](./products/phone/entry/src/main/ets/pages/Index.ets)   
+1、定义要跳转子页面：在products/phone/entry/pages/index.ets中通过TabContent()
+定义要跳转的子页面，[源码参考](./products/phone/entry/src/main/ets/pages/Index.ets)   
 例如：跳转通讯录界面：TabContent() {
 FriendsPage() }。  
 2、使用LazyForEach数据懒加载对“聊天”和“通讯录”模块进行数据渲染：当LazyForEach在滚动容器中使用，框架会根据滚动容器可视区域按需创建组件，当组件划出可视区域外时，框架会进行组件销毁回收以降低内存占用，[源码参考](./products/phone/entry/src/main/ets/pages/FriendsPage.ets )。  
-3、页面之间的跳转通过在config.json中先配置好相关路由，并通过router.push()进行页面跳转,例如：跳转到搜索页面router.push({ url: 'pages/SearchPage' })。  
+3、页面之间的跳转通过在config.json中先配置好相关路由，并通过router.push()进行页面跳转,例如：跳转到搜索页面router.push({
+url: 'pages/SearchPage' })。  
 4、页面组件加载前，通过fileio.readSync以同步的方式读取数据，在EntryAbility生命周期中获取对应的Want信息。
 
 ### 相关权限
@@ -88,7 +92,7 @@ FriendsPage() }。
 
 ### 约束与限制
 
-1.本示例已适配API version 10版本SDK，版本号：4.0.9.6，镜像版本号: Openharmony 4.0.9.6。
+1.本示例已适配API version 10版本SDK，版本号：4.0.10.11，镜像版本号: Openharmony 4.1.1.5。
 
 2.本示例需要使用DevEco Studio 4.0 Beta2 (Build Version: 4.0.0.400, built on August 2, 2023)及以上才可编译运行。
 
