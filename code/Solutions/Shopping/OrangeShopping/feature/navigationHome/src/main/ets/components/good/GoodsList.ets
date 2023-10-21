@@ -15,15 +15,15 @@
 
 import Http from '@ohos/http';
 import { PRODUCT_DATA } from '../../mock/ProductsData';
-import { GoodResponse } from '../../model/GoodsModel';
+import { GoodResponse, Info, ProductDataModel } from '../../model/GoodsModel';
 import { Products_Data } from '../../mock/ProductsData';
 import router from '@ohos.router';
 
 @Component
 export struct GoodsList {
   @State getDataFromHttp: boolean = false;
-  private url: string;
-  private option: object;
+  private url: string = '';
+  private option: Object = new Object();
   @State productsData: GoodResponse = Products_Data;
   @State active: boolean = false;
 
@@ -45,7 +45,7 @@ export struct GoodsList {
         y: vp2px(8)
       },
     }) {
-      ForEach(this.getDataFromHttp ? this.productsData.data.records : PRODUCT_DATA, item => {
+      ForEach(this.getDataFromHttp ? this.productsData.data.records : PRODUCT_DATA, (item: ESObject) => {
         GridCol({
           span: {
             sm: 6,
@@ -120,7 +120,7 @@ export struct GoodsList {
             })
           })
         }
-      }, item => item.id.toString())
+      }, (item: ESObject): string => item.id.toString())
     }
     .padding({
       left: 12,

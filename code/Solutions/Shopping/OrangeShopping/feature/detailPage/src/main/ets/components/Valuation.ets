@@ -14,6 +14,7 @@
 */
 
 import { COMMENT_DATA } from '../mock/DetailData';
+import { CommentModel } from '../model/DetailMode';
 
 @Component
 export struct Valuation {
@@ -43,7 +44,7 @@ export struct Valuation {
       .justifyContent(FlexAlign.SpaceBetween)
 
       Column() {
-        ForEach(COMMENT_DATA, item => {
+        ForEach(COMMENT_DATA, (item: CommentModel) => {
           Row() {
             Image(item.url)
               .objectFit(ImageFit.Contain)

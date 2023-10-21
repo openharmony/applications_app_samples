@@ -13,7 +13,7 @@
 * limitations under the License.
 */
 
-import { CITY_DATA, HOT_CITY, TAB_VALUE } from '../mock/DetailData';
+import { CityType, CITY_DATA, HOT_CITY, TAB_VALUE } from '../mock/DetailData';
 
 @Component
 export struct Location {
@@ -24,10 +24,10 @@ export struct Location {
   @Link currentLocation: string;
 
   @Builder
-  cityList(city: any) {
+  cityList(city: ESObject) {
     if (this.currentLocation === city.name) {
       List() {
-        ForEach(city.city, twoCity => {
+        ForEach(city.city, (twoCity: ESObject) => {
           ListItem() {
             Column() {
               Text(`${twoCity}`)
@@ -110,7 +110,7 @@ export struct Location {
             .margin({ top: 14, bottom: 14 })
 
             Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center, wrap: FlexWrap.Wrap }) {
-              ForEach(HOT_CITY, (item) => {
+              ForEach(HOT_CITY, (item: string) => {
                 // 这里规定每行占四个城市，使用25%
                 Text(`${item}`)
                   .margin({ bottom: 16 })
@@ -126,7 +126,7 @@ export struct Location {
             .width('100%')
 
             List({ space: 14, initialIndex: 0, scroller: this.scroller }) {
-              ForEach(CITY_DATA, (index) => {
+              ForEach(CITY_DATA, (index:CityType) => {
                 ListItem() {
                   Column() {
                     Text(`${index.name}`)
@@ -135,7 +135,7 @@ export struct Location {
                       .fontColor($r('app.color.blank'))
                       .width('100%')
 
-                    ForEach(index.city, item => {
+                    ForEach(index.city, (item:ESObject) => {
                       Text(`${item.name === undefined ? item : item.name}`)
                         .height(30)
                         .fontSize(14)

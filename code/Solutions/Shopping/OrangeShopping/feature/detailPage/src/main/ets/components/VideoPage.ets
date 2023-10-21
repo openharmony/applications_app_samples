@@ -41,10 +41,13 @@ export struct VideoPage {
           .controls(this.controls)
           .objectFit(ImageFit.Contain)
           .onUpdate((e) => {
-            this.updateTime = e.time;
+            if (e !== undefined) {
+              this.updateTime = e.time;
+            }
+
           })
           .onPrepared((e) => {
-            console.info('VideoPage_onPrepared:' + e.duration)
+            console.info('VideoPage_onPrepared:' + e?.duration);
           })
           .onClick(() => {
             if (this.isPlayClick) { // 判断play按钮是否用过，没有用过，进入这层
