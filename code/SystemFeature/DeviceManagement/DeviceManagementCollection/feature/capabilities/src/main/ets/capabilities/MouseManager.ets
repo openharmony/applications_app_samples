@@ -229,7 +229,7 @@ export struct MouseManager {
               .onChange((isOn) => {
                 this.mIsShowMouseData = isOn
                 if (isOn) {
-                  MouseManagerUtil.registerMouse((data: string): void => this.onMouseEvent(data))
+                  MouseManagerUtil.registerMouse((data: string): void => this.onMouseEvent(data));
                 } else {
                   MouseManagerUtil.unregisterMouse()
                 }

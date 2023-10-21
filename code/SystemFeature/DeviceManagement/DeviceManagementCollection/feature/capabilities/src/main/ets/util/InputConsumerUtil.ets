@@ -14,7 +14,7 @@
  */
 import inputConsumer from '@ohos.multimodalInput.inputConsumer'
 import keyCode from '@ohos.multimodalInput.keyCode'
-import { Callback } from '@ohos.base'
+import { Callback } from '@ohos.base';
 
 /**
  * 组合按键
@@ -23,7 +23,7 @@ class InputConsumerUtil {
   private mKeyOptionS: inputConsumer.KeyOptions
   private mKeyOptionD: inputConsumer.KeyOptions
   private mCallback: Callback<inputConsumer.KeyOptions> = () => {
-  }
+  };
 
   constructor() {
     this.mKeyOptionS = this.createKeyOptions([keyCode.KeyCode.KEYCODE_ALT_LEFT, keyCode.KeyCode.KEYCODE_SHIFT_LEFT], keyCode.KeyCode.KEYCODE_S)

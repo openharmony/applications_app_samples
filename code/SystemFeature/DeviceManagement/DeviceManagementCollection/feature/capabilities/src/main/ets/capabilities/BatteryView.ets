@@ -24,7 +24,7 @@ const TAG: string = '[Sample_BatteryView]'
 
 @Component
 struct BatteryInfoView {
-  private mName: string | Resource = ''
+  private mName: string | Resource = '';
   private mIsLine?: boolean = true
   private mViewID?: string = ''
   @Prop mValue: string

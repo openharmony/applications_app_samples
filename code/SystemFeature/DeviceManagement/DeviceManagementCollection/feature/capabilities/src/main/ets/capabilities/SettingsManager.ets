@@ -15,7 +15,7 @@
 
 import settings from '@ohos.settings';
 import { ColumnOperation } from '../components/ColumnOperation';
-import { GlobalContext } from '../../../../../../entry/src/main/ets/pages/GlobalContext'
+import { GlobalContext } from '../../../../../../entry/src/main/ets/pages/GlobalContext';
 
 @Preview
 @Component

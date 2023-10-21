@@ -17,7 +17,7 @@ import batteryStats from '@ohos.batteryStatistics';
 import { BatteryStatsModel } from '../model/BatteryStatsModel';
 import bundleManager from '@ohos.bundle.bundleManager';
 import { logger } from '@ohos/common';
-import { GlobalContext } from '../../../../../../entry/src/main/ets/pages/GlobalContext'
+import { GlobalContext } from '../../../../../../entry/src/main/ets/pages/GlobalContext';
 import resourceManager from '@ohos.resourceManager';
 
 const TAG: string = '[Sample_BatteryStatsUtil]';
@@ -128,7 +128,7 @@ export class BatteryStatsUtil {
         id: appInfo.labelResource.id
       };
       try {
-        let ctx: Context = GlobalContext.getContext().getValue('abilityContext') as Context
+        let ctx: Context = GlobalContext.getContext().getValue('abilityContext') as Context;
         label = await ctx.resourceManager.getStringValue(labelResource);
       } catch (err) {
         logger.error(TAG, `getStringValue failed, err : ${JSON.stringify(err)}.`);
@@ -141,7 +141,7 @@ export class BatteryStatsUtil {
           id: appInfo.iconResource.id
         };
         try {
-          let ctx: Context = GlobalContext.getContext().getValue('abilityContext') as Context
+          let ctx: Context = GlobalContext.getContext().getValue('abilityContext') as Context;
           imageBase64 = await ctx.resourceManager.getMediaContentBase64(iconResource);
         } catch (err) {
           logger.error(TAG, `getMediaContent failed, err : ${JSON.stringify(err)}.`);

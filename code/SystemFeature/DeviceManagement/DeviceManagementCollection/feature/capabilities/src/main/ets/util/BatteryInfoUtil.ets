@@ -17,21 +17,21 @@ import commonEventManager from '@ohos.commonEventManager'
 import { logger, getString } from '@ohos/common'
 import { BusinessError } from '@ohos.base'
 
-let mBatteryPresent: SubscribedAbstractProperty<boolean> // 是否支持电池或电池是否在位
-let mBatterySOC: SubscribedAbstractProperty<string> // 电池电量
-let mChargingStatus: SubscribedAbstractProperty<string> // 电池充电状态
-let mHealthStatus: SubscribedAbstractProperty<string> // 电池健康状态
-let mPluggedType: SubscribedAbstractProperty<string> // 电池充电器类型
-let mVoltage: SubscribedAbstractProperty<string> // 电池电压
-let mTechnology: SubscribedAbstractProperty<string> // 电池技术型号
-let mTemperature: SubscribedAbstractProperty<string> // 电池温度
-let mCapacityLevel: SubscribedAbstractProperty<string> // 电池电量等级
+let mBatteryPresent: SubscribedAbstractProperty<boolean>; // 是否支持电池或电池是否在位
+let mBatterySOC: SubscribedAbstractProperty<string>; // 电池电量
+let mChargingStatus: SubscribedAbstractProperty<string>; // 电池充电状态
+let mHealthStatus: SubscribedAbstractProperty<string>; // 电池健康状态
+let mPluggedType: SubscribedAbstractProperty<string>; // 电池充电器类型
+let mVoltage: SubscribedAbstractProperty<string>; // 电池电压
+let mTechnology: SubscribedAbstractProperty<string>; // 电池技术型号
+let mTemperature: SubscribedAbstractProperty<string>; // 电池温度
+let mCapacityLevel: SubscribedAbstractProperty<string>; // 电池电量等级
 /**
  * 设备管理—电量信息
  */
 class BatteryInfoUtil {
   private TAG: string = '[BatteryManager]'
-  private subscriber: commonEventManager.CommonEventSubscriber | null = null
+  private subscriber: commonEventManager.CommonEventSubscriber | null = null;
 
   constructor() {
     mBatteryPresent = AppStorage.SetAndLink('BatteryPresent', true)
@@ -306,26 +306,26 @@ class BatteryInfoUtil {
             // 电量
 
             if (data.parameters === undefined) {
-              return
+              return;
             }
 
-            this.disposeBatterySOC(data.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_SOC])
-            logger.info(`${this.TAG} subscribe data EXTRA_SOC ${data?.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_SOC]}`)
+            this.disposeBatterySOC(data.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_SOC]);
+            logger.info(`${this.TAG} subscribe data EXTRA_SOC ${data?.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_SOC]}`);
             // 电压
-            mVoltage.set(data.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_VOLTAGE].toString())
+            mVoltage.set(data.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_VOLTAGE].toString());
             // 温度
-            let temperature: number = data.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_TEMPERATURE] / 10
-            mTemperature.set(temperature.toString())
+            let temperature: number = data.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_TEMPERATURE] / 10;
+            mTemperature.set(temperature.toString());
             // 电池健康状态
-            this.disposeHealthStatus(data.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_HEALTH_STATE])
+            this.disposeHealthStatus(data.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_HEALTH_STATE]);
             // 充电器类型
-            this.disposePluggedType(data.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_PLUGGED_TYPE])
+            this.disposePluggedType(data.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_PLUGGED_TYPE]);
             // 充电状态
-            this.disposeChargingStatus(data.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_CHARGE_STATE])
+            this.disposeChargingStatus(data.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_CHARGE_STATE]);
             // 技术型号
-            this.disposeTechnology(data.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_TECHNOLOGY])
+            this.disposeTechnology(data.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_TECHNOLOGY]);
             // 设备是否支持电池或者电池是否在位
-            mBatteryPresent.set(data.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_PRESENT])
+            mBatteryPresent.set(data.parameters[batteryInfo.CommonEventBatteryChangedKey.EXTRA_PRESENT]);
           }
         })
       } catch (err) {

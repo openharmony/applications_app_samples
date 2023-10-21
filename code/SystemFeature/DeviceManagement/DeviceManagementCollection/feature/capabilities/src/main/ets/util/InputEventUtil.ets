@@ -35,7 +35,7 @@ export function injectBackEvent(): void {
         isIntercepted: false
       }
     }
-    inputEventClient.injectEvent(backKeyDown)
+    inputEventClient.injectEvent(backKeyDown);
 
     let backKeyUp: KeyEventType = {
       KeyEvent: {
@@ -45,20 +45,20 @@ export function injectBackEvent(): void {
         isIntercepted: false
       }
     };
-    inputEventClient.injectEvent(backKeyUp)
+    inputEventClient.injectEvent(backKeyUp);
   } catch (error) {
     console.log(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`)
   }
 }
 
 class TouchManagerUtil {
-  private callback: Function | null = null
+  private callback: Function | null = null;
 
   public registerTouch(callback: Function): void {
     logger.info(`${TAG} registerTouch`)
     try {
       this.callback = callback
-      inputMonitor.on('touch', (touchEvent: TouchEvent): Boolean => this.onTouchCallback(touchEvent))
+      inputMonitor.on('touch', (touchEvent: TouchEvent): Boolean => this.onTouchCallback(touchEvent));
     } catch (error) {
       logger.error(`${TAG} register touch on failed, error: ${JSON.stringify(error, [`code`, `message`])}`)
     }

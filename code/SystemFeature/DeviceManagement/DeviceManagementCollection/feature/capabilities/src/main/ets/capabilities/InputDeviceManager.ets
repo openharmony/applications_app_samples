@@ -19,10 +19,10 @@ import InputDevice from '../util/InputDeviceUtil'
 
 @Component
 struct InputDeviceList {
-  mIsShowIcon: boolean = false
-  mIsShowStyle: boolean = false
+  mIsShowIcon: boolean = false;
+  mIsShowStyle: boolean = false;
   @Link mInputDevices: InputDeviceInfo[]
-  onClickItem: (deviceInfo: InputDeviceInfo) => void = () => {}
+  onClickItem: (deviceInfo: InputDeviceInfo) => void = () => {};
 
   @Builder CustomDivider() {
     Divider()

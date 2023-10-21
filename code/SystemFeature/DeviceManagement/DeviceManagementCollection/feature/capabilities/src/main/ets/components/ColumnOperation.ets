@@ -56,7 +56,7 @@ export struct ColumnOperation {
   async aboutToAppear() {
     if (this.operationRes !== undefined) {
       let menuList: Array<string> = await getStringArray(this.operationRes);
-      this.operationSource = menuList
+      this.operationSource = menuList;
     }
   }
 }
