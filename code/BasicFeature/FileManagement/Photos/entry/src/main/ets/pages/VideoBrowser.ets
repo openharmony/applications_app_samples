@@ -35,9 +35,9 @@ struct VideoBrowser {
   @Provide moreMenuList: Action[] = [];
   private broadCast: Broadcast = new Broadcast();
   private myVideoController: VideoController = new VideoController();
-  private uri = '';
-  private dateAdded = 0;
-  private previewUri = null;
+  private uri: string = '';
+  private dateAdded: number = 0;
+  private previewUri: object | null = null;
 
   onBackPress(): boolean {
     Log.info(this.TAG, 'onBackPress');
@@ -51,12 +51,10 @@ struct VideoBrowser {
 
   private onMenuClickedBindImpl(action: Action): void {
     Log.info(this.TAG, 'onMenuClicked, action: ' + action.actionID);
-    let menuOperation: MenuOperation;
     if (action === Action.BACK) {
       this.onBackPress();
       return;
     }
-    menuOperation.doAction();
   }
 
   aboutToAppear(): void {
@@ -73,7 +71,6 @@ struct VideoBrowser {
     Log.info(this.TAG, 'uri is ' + this.uri);
     this.photoDate = DateUtil.getLocalizedDate(this.dateAdded);
     this.timeAndLocation = DateUtil.getLocalizedTime(this.dateAdded);
-    this.onMenuClicked = (action: Action): void => this.onMenuClickedBindImpl(action);
     screenManager.setSystemUi(false);
   }
 

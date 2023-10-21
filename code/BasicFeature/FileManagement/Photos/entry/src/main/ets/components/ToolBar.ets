@@ -22,8 +22,8 @@ import { Action } from '../models/Action';
 import { ActionBarMode } from '../models/ActionBarMode';
 
 export class MenuItem {
-  value: string;
-  action: () => void;
+  value: string = '';
+  action: () => void = () => {};
 }
 
 @Component
@@ -35,7 +35,7 @@ export struct ToolBar {
   @StorageLink('isHorizontal') isHorizontal: boolean = screenManager.isHorizontal();
   @State showPopup: boolean = false;
   private isFromPhotoBrowser = false;
-  onMenuClicked: Function;
+  onMenuClicked: Function | null = null;
   @State actionBarProp: ActionBarProp = new ActionBarProp();
 
   private createActionBar(): ActionBarProp {

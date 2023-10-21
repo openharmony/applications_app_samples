@@ -24,7 +24,7 @@ import { MediaOperationType } from '../models/MediaOperationType';
 export struct MediaOperationActionBar {
   @Consume pageType: string;
   @Consume @Watch('updateActionBar') loadingFinish: boolean;
-  onMenuClicked: Function;
+  onMenuClicked: Function | undefined = undefined;
   @StorageLink('isHorizontal') isHorizontal: boolean = screenManager.isHorizontal();
   @State actionBarProp: ActionBarProp = new ActionBarProp();
 
