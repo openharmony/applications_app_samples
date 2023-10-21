@@ -29,7 +29,10 @@ export struct HashSetView {
   private dataSource: HashSetDataSource = new HashSetDataSource();
 
   aboutToAppear() {
-    emitter.on({ eventId: Constant.EMITTER_ID_HASH_SET }, (eventData) => {
+    emitter.on({ eventId: Constant.EMITTER_ID_HASH_SET }, (eventData: emitter.EventData) => {
+      if (eventData.data === undefined) {
+        return;
+      }
       let item: string = eventData.data.value;
       this.dataSource.addData(item);
       this.totalCount = this.dataSource.totalCount();
@@ -60,7 +63,7 @@ export struct HashSetView {
             }
             .height(72)
             .width('100%')
-          }, (item, index) => JSON.stringify(item) + index)
+          }, (item: string, index: number) => JSON.stringify(item) + index)
         }
         .width('100%')
         .height('100%')
