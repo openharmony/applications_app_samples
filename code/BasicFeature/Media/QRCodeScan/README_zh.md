@@ -60,8 +60,8 @@ Feature/src/main/ets/
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行,支持设备:RK3568。
-2. 本示例已适配API version 10版本SDK，版本号：4.0.10.7，本示例涉及使用系统接口：xcomponent.d.ts，需要手动替换Full
-   SDK（4.0.10.7）才能编译通过，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。 
+2. 本示例已适配API version 10版本SDK，版本号：4.0.10.10，本示例涉及使用系统接口：xcomponent.d.ts，需要手动替换Full
+   SDK（4.0.10.10）才能编译通过，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。 
 3. 本示例需要使用DevEco Studio 4.0 Beta2 (Build Version: 4.0.0.400, built on August 2, 2023)才可编译运行。
 4. 本示例所配置的权限为system_core级别(相关权限级别可通过[权限定义列表]( https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md )查看)，需要手动配置对应级别的权限签名(具体操作可查看[自动化签名方案]( https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/ ))。
 5. 本示例类型为系统应用，需要手动配置对应级别的应用类型("app-feature": "hos_system_app")。具体可参考profile配置文件[bundle-info对象内部结构]( https://gitee.com/openharmony/docs/blob/eb73c9e9dcdd421131f33bb8ed6ddc030881d06f/zh-cn/application-dev/security/app-provision-structure.md#bundle-info%E5%AF%B9%E8%B1%A1%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84 )

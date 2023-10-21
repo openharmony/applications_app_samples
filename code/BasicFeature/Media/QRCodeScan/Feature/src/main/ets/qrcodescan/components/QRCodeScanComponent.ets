@@ -18,7 +18,7 @@ import image from '@ohos.multimedia.image'
 import prompt from '@ohos.promptAction'
 import common from '@ohos.app.ability.common'
 import { CameraService } from '../CameraService'
-import { QRCodeScanConst, ImageAttribute } from '../QRCodeScanConst';
+import { QRCodeScanConst, ImageAttribute, DecodeResultAttribute } from '../QRCodeScanConst';
 import { QRCodeParser } from '../QRCodeParser'
 
 /**
@@ -32,7 +32,7 @@ export default struct QRCodeScanComponent {
   @StorageProp('qrCodeParseResult') @Watch('showQrCodeResult') qrCodeParseResult: string = ''
   @State qrCodeImage: image.PixelMap | undefined = undefined
   @State animationOrdinate: number = QRCodeScanConst.SCAN_TO_TOP_HEIGHT
-  @State hasCameraPermission: boolean = false
+  @State hasCameraPermission: boolean | undefined = false;
   @State isQRCodeScanStopped: boolean = false
   // 每当应用切换回来都重新打开相机
   @StorageLink('cameraStatus') @Watch('reCreateCamera') isCameraOpened: boolean = false
@@ -71,8 +71,8 @@ export default struct QRCodeScanComponent {
             .onLoad(() => {
               // 适配可能需要获取设备信息
               this.xComponentController.setXComponentSurfaceSize({
-                surfaceWidth: QRCodeScanConst.IMG_DEFAULT_SIZE.WIDTH,
-                surfaceHeight: QRCodeScanConst.IMG_DEFAULT_SIZE.HEIGHT
+                surfaceWidth: QRCodeScanConst.IMG_DEFAULT_SIZE_WIDTH,
+                surfaceHeight: QRCodeScanConst.IMG_DEFAULT_SIZE_HEIGHT
               })
               this.surFaceId = this.xComponentController.getXComponentSurfaceId()
               this.cameraService.createCamera(this.surFaceId)
@@ -162,7 +162,7 @@ export default struct QRCodeScanComponent {
                           }, 4000)
                         }
                         // 获取解析数据
-                        let qrCodeParseRlt = await this.qrCodeParser.parseImageQRCode(selectedUri[0]);
+                        let qrCodeParseRlt: DecodeResultAttribute = await this.qrCodeParser.parseImageQRCode((selectedUri as string[])[0]);
                         if (qrCodeParseRlt.isSucess) {
                           prompt.showDialog({
                             title: $r('app.string.qrcodeResult'),
