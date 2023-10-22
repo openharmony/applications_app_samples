@@ -20,7 +20,7 @@ class BasicDataSource implements IDataSource {
     return 0;
   }
 
-  public getData(index: number): any {
+  public getData(index: number): ESObject {
     return undefined;
   }
 
@@ -59,7 +59,7 @@ class BasicDataSource implements IDataSource {
 export class CustomDataSource extends BasicDataSource {
   public dataArray: string[] = [];
 
-  constructor(ele) {
+  constructor(ele: Array<string>) {
     super()
     for (let index = 0; index < ele.length; index++) {
       this.dataArray.push(ele[index]);

@@ -17,38 +17,41 @@ import { CustomDataSource, getStringArray } from '@ohos/common';
 
 @Component
 export struct ColumnOperation {
-  private operationRes: Resource = undefined;
+  private operationRes?: Resource = undefined;
   private operationSource: CustomDataSource = new CustomDataSource([]);
-  private doOperation: (index: number) => void;
+  private doOperation: (index: number) => void = () => {
+  };
 
   build() {
-    Column() {
-      LazyForEach(this.operationSource, (item, index) => {
-        Row() {
-          Button() {
-            Text(item)
-              .fontSize(20)
-              .fontWeight(FontWeight.Medium)
-              .fontColor($r("app.color.list_title"))
-              .width('100%')
-              .padding({
-                left: 16
-              })
-              .textAlign(TextAlign.Start)
+    List() {
+      LazyForEach(this.operationSource, (item: string, index: number) => {
+        ListItem(){
+          Row() {
+            Button() {
+              Text(item)
+                .fontSize(20)
+                .fontWeight(FontWeight.Medium)
+                .fontColor($r("app.color.list_title"))
+                .width('100%')
+                .padding({
+                  left: 16
+                })
+                .textAlign(TextAlign.Start)
+            }
+            .width('100%')
+            .height(68)
+            .borderRadius(20)
+            .type(ButtonType.Normal)
+            .backgroundColor($r("app.color.white"))
+            .margin({ top: 16 })
+            .onClick(() => {
+              this.doOperation(index)
+            })
           }
           .width('100%')
-          .height(68)
-          .borderRadius(20)
-          .type(ButtonType.Normal)
-          .backgroundColor($r("app.color.white"))
-          .margin({ top: 16 })
-          .onClick(() => {
-            this.doOperation(index)
-          })
+          .justifyContent(FlexAlign.Start)
         }
-        .width('100%')
-        .justifyContent(FlexAlign.Start)
-      }, index => index)
+      }, (index: number) => index.toString())
     }
     .width('100%')
   }
@@ -56,7 +59,7 @@ export struct ColumnOperation {
   async aboutToAppear() {
     if (this.operationRes) {
       let menuList = await getStringArray(this.operationRes);
-      this.operationSource['dataArray'] = menuList;
+      this.operationSource.dataArray = menuList;
       this.operationSource.notifyDataReload();
     }
   }
