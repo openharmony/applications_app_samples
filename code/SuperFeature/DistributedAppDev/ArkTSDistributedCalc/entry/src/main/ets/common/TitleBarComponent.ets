@@ -79,11 +79,11 @@ export struct TitleBarComponent {
     Logger.info(TAG, `start ability1, needAuth：`)
     if (this.selectedIndex !== undefined) {
       this.remoteDeviceModel.authenticateDevice(this.deviceList[this.selectedIndex], () => {
-        Logger.info(TAG, `auth and online finished`)
+        Logger.info(TAG, `auth and online finished`);
         if (this.remoteDeviceModel !== null && this.remoteDeviceModel.deviceList !== null && this.selectedIndex !== undefined) {
-          for (let i = 0; i < this.remoteDeviceModel.deviceList.length; i++) {
-            if (this.remoteDeviceModel.deviceList[i].deviceName === this.deviceList[this.selectedIndex].deviceName) {
-              this.startAbility(this.remoteDeviceModel.deviceList[i].networkId)
+          for (let i = 0; i < this.remoteDeviceModel.deviceList!.length; i++) {
+            if (this.remoteDeviceModel.deviceList![i].deviceName === this.deviceList[this.selectedIndex].deviceName) {
+              this.startAbility(this.remoteDeviceModel.deviceList![i].networkId);
             }
           }
         }
@@ -122,17 +122,17 @@ export struct TitleBarComponent {
         deviceType: '0',
         networkId: ''
       })
-      let deviceTempList = this.remoteDeviceModel.discoverList.length > 0 ? this.remoteDeviceModel.discoverList : this.remoteDeviceModel.deviceList
+      let deviceTempList = this.remoteDeviceModel.discoverList.length > 0 ? this.remoteDeviceModel.discoverList : this.remoteDeviceModel.deviceList;
       if (deviceTempList !== null) {
-        for (let i = 0; i < deviceTempList.length; i++) {
-          Logger.debug(TAG, `device ${i}/${deviceTempList.length} deviceId= ${deviceTempList[i].deviceId},
-        deviceName= ${deviceTempList[i].deviceName}, deviceType= ${deviceTempList[i].deviceType}`)
+        for (let i = 0; i < deviceTempList!.length; i++) {
+          Logger.debug(TAG, `device ${i}/${deviceTempList!.length} deviceId= ${deviceTempList![i].deviceId},
+        deviceName= ${deviceTempList![i].deviceName}, deviceType= ${deviceTempList![i].deviceType}`);
           if (deviceTempList !== null) {
             this.deviceList.push({
-              deviceId: deviceTempList[i].deviceId,
-              deviceName: deviceTempList[i].deviceName,
-              deviceType: deviceTempList[i].deviceType,
-              networkId: deviceTempList[i].networkId,
+              deviceId: deviceTempList![i].deviceId,
+              deviceName: deviceTempList![i].deviceName,
+              deviceType: deviceTempList![i].deviceType,
+              networkId: deviceTempList![i].networkId,
             })
             AppStorage.set('deviceList', this.deviceList)
           }
