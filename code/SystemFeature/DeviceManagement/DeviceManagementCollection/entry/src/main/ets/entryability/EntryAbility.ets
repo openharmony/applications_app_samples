@@ -30,7 +30,7 @@ export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     logger.info(TAG, 'Ability onCreate');
     AppStorage.SetOrCreate('selectedLabel', '');
-    GlobalContext.getContext().setValue('abilityContext',this.context)
+    GlobalContext.getContext().setValue('abilityContext',this.context);
   }
 
   updateBreakpoint(windowWidth: number): void {

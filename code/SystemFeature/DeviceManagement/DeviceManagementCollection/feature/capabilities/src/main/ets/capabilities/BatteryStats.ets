@@ -18,8 +18,8 @@ import { BatteryStatsDataSource } from '../model/BatteryStatsDataSource';
 import { BatteryStatsList } from '../components/batterystats/BatteryStatsList';
 
 interface HeaderType {
-  title: Resource,
-  visible: boolean,
+  title: Resource
+  visible: boolean
   callback: Function
 }
 

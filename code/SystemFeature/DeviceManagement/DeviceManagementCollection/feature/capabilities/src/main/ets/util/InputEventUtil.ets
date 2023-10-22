@@ -34,7 +34,7 @@ export function injectBackEvent(): void {
         keyDownDuration: 0,
         isIntercepted: false
       }
-    }
+    };
     inputEventClient.injectEvent(backKeyDown);
 
     let backKeyUp: KeyEventType = {
