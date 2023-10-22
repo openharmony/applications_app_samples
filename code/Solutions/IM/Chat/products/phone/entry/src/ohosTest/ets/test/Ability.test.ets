@@ -82,6 +82,8 @@ export default function abilityTest() {
       await chatExpression.click()
       await driver.delayMs(1000)
       Logger.info(TAG, BUNDLE + 'SendMessageFunction_001 clickReturnBtn')
+      // 解决因为输入法导致返回键没有在界面上的问题
+      await driver.pressBack();
       // 点击返回主页
       await driver.assertComponentExist(ON.id('returnBtn'))
       let returnChatListPageBtn = await driver.findComponent(ON.id('returnBtn'))

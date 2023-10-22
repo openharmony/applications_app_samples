@@ -15,7 +15,7 @@
 
 import router from '@ohos.router';
 import worker, { MessageEvents } from '@ohos.worker';
-import type common from '@ohos.app.ability.common';
+import  common from '@ohos.app.ability.common';
 
 // 动画持续时间
 const DURATION: number = 300;
@@ -33,15 +33,15 @@ const INDICATOR_COLOR: string = '#99ffffff';
 @Entry
 @Component
 struct FullImagePage {
-  @State mediaData: string = router.getParams()['resourceUrl'];
+  @State mediaData: string = (router.getParams() as Record<string,Object>)['resourceUrl'] as string;
   // swiper当前图片地址
   @State imageUrlArray: Array<string> = [];
   // 初始化图片放大倍数
   @State imageScale: number = 1;
   // 是否是图片数据
-  @State isImageData: boolean = router.getParams()['isMedia'];
+  @State isImageData: boolean = (router.getParams()as Record<string,Object>)['isMedia'] as boolean;
   // 选中图片的index
-  @State imageIndex: number = router.getParams()['imageIndex'];
+  @State imageIndex: number = (router.getParams() as Record<string,Object>)['imageIndex'] as number;
   // 初始化文件加载路径
   @State filePath: string = '';
   // 初始化下载是否完成状态
@@ -134,10 +134,15 @@ struct FullImagePage {
               .controls(false)
               .autoPlay(true)
               .onPrepared((e) => {
-                this.videoDuration = e.duration;
+                if ( e !== undefined) {
+                  this.videoDuration = e.duration;
+                }
+
               })
               .onUpdate((e) => {
-                this.videoCurrentTime = e.time;
+                if(e!==undefined) {
+                  this.videoCurrentTime = e.time;
+                }
               })
           }
           .width('100%')
