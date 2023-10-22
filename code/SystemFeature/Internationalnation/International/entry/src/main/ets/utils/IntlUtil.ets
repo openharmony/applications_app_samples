@@ -31,7 +31,7 @@ class IntlUtil {
     }
     let currentLocale = new Intl.Locale();
     let locale = i18n.System.getSystemLocale();
-    let options = {
+    let options: ESObject = {
       locale: locale,
       dateStyle: 'medium',
       timeStyle: 'medium',
@@ -77,7 +77,7 @@ class IntlUtil {
     return `GMT${offset > 0 ? '+' : '-'}${this.getTimeString(offset)}`;
   }
 
-  getTimeString(duration: number) {
+  getTimeString(duration: number): string {
     let time = duration;
     if (time < 0) {
       time = 0 - time;
@@ -87,6 +87,7 @@ class IntlUtil {
     if (hour > 0) {
       return `${this.fillNum(hour)}:${this.fillNum(minute)}`;
     }
+    return '';
   }
 
   getNumberFormatString() {

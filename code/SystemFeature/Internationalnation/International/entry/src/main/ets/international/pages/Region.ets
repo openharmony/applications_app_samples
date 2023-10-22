@@ -23,18 +23,13 @@ const TAG: string = 'Country';
 @Entry
 @Component
 struct Region {
-  private country: string = router.getParams()['currentCountry'];
-  private localLanguage: string = router.getParams()['language'];
+  private params = router.getParams() as Record<string, string>;
+  private country: string = this.params.currentCountry as string;
+  private localLanguage: string = this.params.language;
   private suggestIds: Array<string> = [];
   private countryIds: Array<string> = [];
-  @State countries: Array<{
-    key: string,
-    value: string
-  }> = [];
-  @State suggestCounties: Array<{
-    key: string,
-    value: string
-  }> = [];
+  @State countries: Array<Countrie> = [];
+  @State suggestCounties: Array<SuggestCountie> = [];
 
   aboutToAppear() {
     Logger.info(TAG, `this.country = ${this.country}`);
@@ -47,7 +42,7 @@ struct Region {
     this.countryIds.forEach(id => {
       let country = i18n.System.getDisplayCountry(id, this.localLanguage);
       this.countries.push({ key: country, value: '' });
-      let isSuggested: boolean;
+      let isSuggested: boolean = false;
       try {
         isSuggested = i18n.System.isSuggested(this.localLanguage, id);
       } catch (err) {
@@ -60,7 +55,7 @@ struct Region {
     })
   }
 
-  setSuggestRegion = (index) => {
+  setSuggestRegion = (index: number) => {
     let region = this.suggestIds[index];
     try {
       i18n.System.setSystemRegion(region);
@@ -69,7 +64,7 @@ struct Region {
     }
     router.back();
   }
-  setRegion = (index) => {
+  setRegion = (index: number) => {
     let region = this.countryIds[index];
     try {
       i18n.System.setSystemRegion(region);
@@ -124,4 +119,14 @@ struct Region {
     .height('100%')
     .backgroundColor($r('app.color.f5f5f5'))
   }
+}
+
+class Countrie {
+  key: string = '';
+  value: string = '';
+}
+
+class SuggestCountie {
+  key: string = '';
+  value: string = '';
 }

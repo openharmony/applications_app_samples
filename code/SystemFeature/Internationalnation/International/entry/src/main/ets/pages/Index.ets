@@ -35,7 +35,7 @@ struct Index {
   build() {
     Column() {
       TitleBar()
-      ForEach(this.operations, (item, index) => {
+      ForEach(this.operations, (item: string, index: number) => {
         Row() {
           OperationView({ mKey: item, value: '', handleClick: () => {
             router.push({
@@ -43,7 +43,7 @@ struct Index {
             });
           } })
         }
-      }, item => item)
+      }, (item: string) => item)
     }
     .width('100%')
     .height('100%')
