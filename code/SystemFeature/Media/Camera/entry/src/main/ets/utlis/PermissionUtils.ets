@@ -52,7 +52,8 @@ export default async function grantPermission(): Promise<boolean> {
     }
     if (pems.length > 0) {
       Logger.info(TAG, 'grantPermission  requestPermissionsFromUser :' + JSON.stringify(pems));
-      let ctx: common.UIAbilityContext = GlobalContext.getContext().getValue('cameraContext') as common.UIAbilityContext
+      let ctx: common.UIAbilityContext = GlobalContext.getContext()
+        .getValue('cameraContext') as common.UIAbilityContext;
       let result: PermissionRequestResult = await atManager.requestPermissionsFromUser(ctx, pems);
 
       let grantStatus: Array<number> = result.authResults;

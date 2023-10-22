@@ -26,7 +26,7 @@ export struct SelectComponent {
 
   aboutToAppear() {
     Logger.info(TAG, `aboutToAppear selectType_ ${AppStorage.Get<number>(`selectType_${this.selectType}`)}`);
-    let selectTypeValue: number | undefined = AppStorage.Get<number>(`selectType_${this.selectType}`)
+    let selectTypeValue: number | undefined = AppStorage.Get<number>(`selectType_${this.selectType}`);
     if (selectTypeValue !== undefined) {
       this.selected = selectTypeValue;
     }

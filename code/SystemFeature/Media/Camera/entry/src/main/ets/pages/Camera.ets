@@ -27,7 +27,7 @@ import common from '@ohos.app.ability.common';
 enum CameraMode {
   modePhoto = 0, // 拍照模式
   modeVideo = 1 // 录像模式
-}
+};
 
 const TAG: string = '[CameraPage]';
 
