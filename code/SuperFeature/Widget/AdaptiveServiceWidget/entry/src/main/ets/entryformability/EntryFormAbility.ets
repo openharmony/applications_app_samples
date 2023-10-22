@@ -13,40 +13,41 @@
  * limitations under the License.
  */
 
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility'
-import formBindingData from '@ohos.application.formBindingData'
-import formInfo from '@ohos.application.formInfo'
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import formBindingData from '@ohos.application.formBindingData';
+import formInfo from '@ohos.application.formInfo';
+import Want from '@ohos.app.ability.Want';
 
 export default class EntryFormAbility extends FormExtensionAbility {
-  onCreate(want) {
+  onCreate(want: Want): formBindingData.FormBindingData {
     // Called to return a FormBindingData object.
-    let formData = {}
-    return formBindingData.createFormBindingData(formData)
+    let formData = new Object();
+    return formBindingData.createFormBindingData(formData);
   }
 
-  onCastToNormal(formId) {
+  onCastToNormal(formId: string): void {
     // Called when the form provider is notified that a temporary form is successfully
     // converted to a normal form.
   }
 
-  onUpdate(formId) {
+  onUpdate(formId: string): void {
     // Called to notify the form provider to update a specified form.
   }
 
-  onVisibilityChange(newStatus) {
+  onVisibilityChange(newStatus: string): void {
     // Called when the form provider receives form events from the system.
   }
 
-  onEvent(formId, message) {
+  onEvent(formId: string, message: string): void {
     // Called when a specified message event defined by the form provider is triggered.
   }
 
-  onDestroy(formId) {
+  onDestroy(formId: string): void {
     // Called to notify the form provider that a specified form has been destroyed.
   }
 
-  onAcquireFormState(want) {
+  onAcquireFormState(want: Want): formInfo.FormState {
     // Called to return a {@link FormState} object.
-    return formInfo.FormState.READY
+    return formInfo.FormState.READY;
   }
 }
