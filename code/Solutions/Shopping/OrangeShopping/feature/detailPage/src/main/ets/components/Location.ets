@@ -126,7 +126,7 @@ export struct Location {
             .width('100%')
 
             List({ space: 14, initialIndex: 0, scroller: this.scroller }) {
-              ForEach(CITY_DATA, (index:CityType) => {
+              ForEach(CITY_DATA, (index: CityType) => {
                 ListItem() {
                   Column() {
                     Text(`${index.name}`)
@@ -135,7 +135,7 @@ export struct Location {
                       .fontColor($r('app.color.blank'))
                       .width('100%')
 
-                    ForEach(index.city, (item:ESObject) => {
+                    ForEach(index.city, (item: ESObject) => {
                       Text(`${item.name === undefined ? item : item.name}`)
                         .height(30)
                         .fontSize(14)

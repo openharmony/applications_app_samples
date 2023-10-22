@@ -14,26 +14,26 @@
  */
 
 export class GoodResponse {
-  code: number = 0
-  data: Records = new Records([], 0)
-  error: string = ''
+  code: number;
+  data: Records;
+  error: string;
 
   constructor(code: number, data: Records, error: string) {
     this.code = code;
     this.data = data;
-    this.error = error
+    this.error = error;
   }
 }
 
 export class Info {
-  id: number = 0
-  uri: string = ''
-  title: string = ''
-  info: string = ''
-  labels: string = ''
-  price: number = 0
+  id: number;
+  uri: string;
+  title: string;
+  info: string;
+  labels: string;
+  price: number;
 
-  constructor(id: number = 0, uri: string, title: string, info: string, labels: string, price: number) {
+  constructor(id: number, uri: string, title: string, info: string, labels: string, price: number) {
     this.id = id;
     this.uri = uri;
     this.title = title;
@@ -44,8 +44,8 @@ export class Info {
 }
 
 export class Records {
-  records: Array<Info> = []
-  totalCount: number = 0
+  records: Array<Info>;
+  totalCount: number;
 
   constructor(records: Array<Info>, totalCount: number) {
     this.records = records;
@@ -59,9 +59,9 @@ export class TabTitleModel {
   title: Resource;
 
   constructor(uri: Resource, selectedUri: Resource, title: Resource) {
-    this.uri = uri
-    this.selectedUri = selectedUri
-    this.title = title
+    this.uri = uri;
+    this.selectedUri = selectedUri;
+    this.title = title;
   }
 }
 
@@ -72,10 +72,10 @@ export class FavorLiveListsModel {
   viewsInfo: Resource;
 
   constructor(id: number, imgSrc: Resource, title: Resource, viewsInfo: Resource) {
-    this.id = id
-    this.imgSrc = imgSrc
-    this.title = title
-    this.viewsInfo = viewsInfo
+    this.id = id;
+    this.imgSrc = imgSrc;
+    this.title = title;
+    this.viewsInfo = viewsInfo;
   }
 }
 
@@ -85,9 +85,9 @@ export class OrderModel {
   title: Resource;
 
   constructor(id: number, img: Resource, title: Resource) {
-    this.id = id
-    this.img = img
-    this.title = title
+    this.id = id;
+    this.img = img;
+    this.title = title;
   }
 }
 
@@ -99,11 +99,11 @@ export class ShopCartItemDataModel {
   price: Resource;
 
   constructor(id: number, uri: Resource, title: Resource, labels: Resource, price: Resource) {
-    this.id = id
-    this.uri = uri
-    this.title = title
-    this.labels = labels
-    this.price = price
+    this.id = id;
+    this.uri = uri;
+    this.title = title;
+    this.labels = labels;
+    this.price = price;
   }
 }
 
@@ -112,8 +112,8 @@ export class SearchTextModel {
   searchText: Resource;
 
   constructor(id: number, searchText: Resource) {
-    this.id = id
-    this.searchText = searchText
+    this.id = id;
+    this.searchText = searchText;
   }
 }
 
@@ -122,18 +122,18 @@ export class SwiperModel {
   img: Resource;
 
   constructor(id: number, img: Resource) {
-    this.id = id
-    this.img = img
+    this.id = id;
+    this.img = img;
   }
 }
 
 export class NewProductTitleBarModel {
-  id: number = 0;
+  id: number;
   title: Resource | undefined = undefined;
 
   constructor(id: number, title: Resource) {
-    this.id = id
-    this.title = title
+    this.id = id;
+    this.title = title;
   }
 }
 
@@ -142,25 +142,25 @@ export class NavDataModel {
   navData: Resource | undefined = undefined;
 
   constructor(id: number, navData: Resource) {
-    this.navData = navData
-    this.id = id
+    this.navData = navData;
+    this.id = id;
   }
 }
 
 export class TitleBarModel {
-  id: number = 0;
+  id: number;
   title: Resource | undefined = undefined;
   content: Resource | undefined = undefined;
 
   constructor(id: number, title: Resource, content: Resource) {
-    this.id = id
-    this.title = title
-    this.content = content
+    this.id = id;
+    this.title = title;
+    this.content = content;
   }
 }
 
 export class ProductDataModel {
-  id: number = 0;
+  id: number;
   uri: Resource | undefined = undefined;
   title: Resource | undefined = undefined;
   info: Resource | undefined = undefined;
@@ -168,11 +168,11 @@ export class ProductDataModel {
   price: Resource | undefined = undefined;
 
   constructor(id: number, uri: Resource, title: Resource, info: Resource, labels: Resource, price: Resource) {
-    this.id = id
-    this.uri = uri
-    this.info = info
-    this.title = title
-    this.labels = labels
-    this.price = price
+    this.id = id;
+    this.uri = uri;
+    this.info = info;
+    this.title = title;
+    this.labels = labels;
+    this.price = price;
   }
 }

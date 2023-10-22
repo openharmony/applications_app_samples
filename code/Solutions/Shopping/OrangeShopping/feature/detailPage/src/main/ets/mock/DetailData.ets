@@ -16,8 +16,8 @@
 import { SwiperPicturesModel, CommentModel } from '../model/DetailMode';
 
 export class CityType {
-  name: string = ''
-  city: CityType[] | string[] = []
+  name: string;
+  city: CityType[] | string[];
 
   constructor(name: string, city: CityType[] | string[]) {
     this.name = name;

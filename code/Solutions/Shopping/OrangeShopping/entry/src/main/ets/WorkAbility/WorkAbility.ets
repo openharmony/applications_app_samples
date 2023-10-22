@@ -19,7 +19,6 @@ import { logger } from '@ohos/details-page-component';
 import workScheduler from '@ohos.resourceschedule.workScheduler';
 import notification from '@ohos.notificationManager'
 
-
 const TAG: string = 'WorkAbility';
 const BUNDLE_NAME: string = 'ohos.samples.orangeshopping';
 const ABILITY_NAME: string = 'MainAbility';
