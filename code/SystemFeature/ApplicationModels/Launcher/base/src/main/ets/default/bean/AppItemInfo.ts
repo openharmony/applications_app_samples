@@ -35,12 +35,12 @@ export class AppItemInfo {
   /**
    * Indicates appLabelId.
    */
-  appLabelId: string | undefined
+  appLabelId: string;
 
   /**
    * Indicates bundleName.
    */
-  bundleName: string | undefined
+  bundleName: string;
 
   /**
    * Indicates abilityName.

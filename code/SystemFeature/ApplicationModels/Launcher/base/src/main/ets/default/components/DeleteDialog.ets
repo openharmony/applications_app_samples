@@ -22,7 +22,8 @@ export struct DeleteDialog {
   private appInfo: GridLayoutItemInfo = new GridLayoutItemInfo()
   private dialogContent: string = ''
   private controller: CustomDialogController
-  private confirm: () => void
+  private confirm: () => void = () => {
+  }
   private mResourceManager: ResourceManager = ResourceManager.getInstance(getContext(this))
   @State icon: string = ''
 
@@ -32,13 +33,13 @@ export struct DeleteDialog {
     }
   }
 
-  public iconLoadCallback(image) {
+  public iconLoadCallback: (image: string) => void = (image: string) => {
     this.icon = image
   }
 
   public updateIcon() {
-    this.mResourceManager.getAppIconWithCache( this.appInfo.appIconId, this.appInfo.bundleName,
-    this.iconLoadCallback.bind(this), '')
+    this.mResourceManager.getAppIconWithCache(this.appInfo.appIconId, this.appInfo.bundleName,
+    this.iconLoadCallback, '');
   }
 
   build() {

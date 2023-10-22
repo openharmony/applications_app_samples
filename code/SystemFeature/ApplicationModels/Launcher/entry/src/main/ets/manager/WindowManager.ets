@@ -18,22 +18,23 @@ import promptAction from '@ohos.promptAction';
 import CommonEvent from '@ohos.commonEvent'
 import Window from '@ohos.window'
 import { EventConstants,Logger } from '@ohos/base'
+import { BusinessError } from '@ohos.base';
 
 const TAG: string = 'WindowManager'
 
-export const WINDOW_NAMES = {
+export const WINDOW_NAMES: ESObject = {
   home: 'Home',
   recents: 'RecentsPage',
   form: 'FormPage',
 }
 
-export const WINDOW_PAGES = {
+export const WINDOW_PAGES: ESObject = {
   home: 'pages/Home',
   recents: 'pages/RecentsPage',
   form: 'pages/FormPage',
 }
 
-const SUBSCRIBER_INFO = {
+const SUBSCRIBER_INFO: ESObject = {
   events: [
     EventConstants.EVENT_ENTER_HOME,
     EventConstants.EVENT_ENTER_RECENTS,
@@ -43,15 +44,15 @@ const SUBSCRIBER_INFO = {
 }
 
 export default class WindowManager {
-  public mWindowSize: number[] = [720, 1080]
-  private subscriber = undefined
-  private context: any = undefined
+  public mWindowSize: number[] = [720, 1080];
+  private subscriber: ESObject = undefined;
+  private context: Context | undefined = undefined;
 
-  constructor(context) {
-    this.context = context
+  constructor(context: Context) {
+    this.context = context;
   }
 
-  subscribeCallBack = async (err, data) => {
+  subscribeCallBack = async (err: BusinessError, data: ESObject) => {
     if (err.code) {
       Logger.error(TAG, `subscribe, failed: ${JSON.stringify(err)}`)
       return
@@ -59,7 +60,7 @@ export default class WindowManager {
     Logger.info(TAG, `subscribe, ${JSON.stringify(data)}`)
     switch (data.event) {
       case EventConstants.EVENT_CLEAR_RECENTS:
-        let uninstallMessage: string = this.context.resourceManager.getStringSync($r('app.string.clear_all_missions_message').id);
+        let uninstallMessage: string = this.context!.resourceManager.getStringSync($r('app.string.clear_all_missions_message').id);
         promptAction.showToast({
           message: uninstallMessage
         });
@@ -102,11 +103,11 @@ export default class WindowManager {
     void abilityWindow.resetSize(width, height);
   }
 
-  async createWindow(windowName: string, page: string, isFullScreen) {
+  async createWindow(windowName: string, page: string, isFullScreen: boolean) {
     Logger.info(TAG, `createWindow, name: ${windowName}  page: ${page}`)
     try {
       let displayData = await display.getDefaultDisplay()
-      let window = await Window.create(this.context, windowName, Window.WindowType.TYPE_DESKTOP)
+      let window = await Window.create(this.context!, windowName, Window.WindowType.TYPE_DESKTOP)
       await window.resetSize(displayData.height, displayData.width)
       await window.loadContent(page)
       if (isFullScreen) {
@@ -118,7 +119,7 @@ export default class WindowManager {
     }
   }
 
-  async showOrCreateWindow(windowName: string, page: string, isFullScreen) {
+  async showOrCreateWindow(windowName: string, page: string, isFullScreen: boolean) {
     Logger.info(TAG, `showOrCreateWindow, name ${windowName}`)
     try {
       let window = await Window.find(windowName)
