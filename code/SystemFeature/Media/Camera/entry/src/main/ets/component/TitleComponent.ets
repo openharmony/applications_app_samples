@@ -22,7 +22,7 @@ export default struct Title {
   private isIndex: boolean = true;
 
   aboutToAppear() {
-    this.hasBack = parseInt(router.getLength()) > 0;
+    this.hasBack = Number(router.getLength()) > 0;
   }
 
   build() {
