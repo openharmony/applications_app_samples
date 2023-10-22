@@ -43,15 +43,15 @@ function updateCardDisplayContent(runningFormInfo: formInfo.RunningFormInfo): vo
     });
 
   class ProxiesType {
-    key: string
-    subscriberId: string
+    key: string = '';
+    subscriberId: string = '';
   };
 
   let proxies = [{
     key: 'datashareproxy://ohos.samples.formextability/test',
     subscriberId: conditionID
   } as ProxiesType];
-  let formData: String;
+  let formData: string = '';
   Logger.info(TAG, `formData: ${JSON.stringify(formData)}`);
   let formBinding = formBindingData.createFormBindingData(formData);
   formBinding['proxies'] = proxies;
