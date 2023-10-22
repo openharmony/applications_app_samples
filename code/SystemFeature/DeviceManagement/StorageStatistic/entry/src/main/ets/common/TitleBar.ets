@@ -18,7 +18,7 @@ import router from '@ohos.router'
 // Page title bar
 @Component
 export struct TitleBar {
-  private title: ResourceStr
+  private title: ResourceStr = ''
 
   build() {
     Column() {
