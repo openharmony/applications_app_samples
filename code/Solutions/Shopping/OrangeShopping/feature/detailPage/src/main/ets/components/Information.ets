@@ -25,7 +25,7 @@ const TAG: string = 'Information';
 @Component
 export struct Information {
   @State collected: boolean = false;
-  private data: any[] = router.getParams()['goodItem'];
+  private data: ESObject[] = (router.getParams() as Record<string, Object>)['goodItem'] as ESObject;
   @State recommend: string = '';
   @State commodity: string = '';
 
@@ -37,7 +37,7 @@ export struct Information {
 
   // 分享弹框
   controller: TabsController = new TabsController();
-  shareDialog: CustomDialogController;
+  shareDialog?: CustomDialogController;
 
   build() {
     Column() {
@@ -77,7 +77,7 @@ export struct Information {
             alignment: DialogAlignment.Bottom,
             customStyle: true,
           })
-          this.shareDialog.open();
+          this.shareDialog?.open();
         })
 
         Row() {
@@ -106,7 +106,7 @@ export struct Information {
         }
         .opacity(0.6)
         .onClick(() => {
-          let workInfo = {
+          let workInfo: workScheduler.WorkInfo = {
             workId: 1,
             networkType: workScheduler.NetworkType.NETWORK_TYPE_WIFI,
             bundleName: 'ohos.samples.orangeshopping',

@@ -22,7 +22,7 @@ import { Url } from '../../main/NavigationHomePage';
 export struct NewProduct {
   @State tabsIndex: number = 0;
   @StorageProp('curBp') curBp: string = 'md';
-  private url: string;
+  private url: string = '';
   private controller: TabsController = new TabsController();
 
   build() {
