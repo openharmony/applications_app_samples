@@ -14,6 +14,7 @@
  */
 
 import DateShareHelper from '../feature/DataShareHelper'
+import DataShareResultSet from '@ohos.data.DataShareResultSet'
 import { BookModel, getBooksFromResultSet } from '../feature/BookModel'
 import { BookView } from './component/BookView'
 import { TitleBar } from './component/TitleBar'
@@ -22,16 +23,16 @@ import { UpdateDataDialog } from '../pages/component/UpdateDataDialog'
 @Entry
 @Component
 struct DataShareExtAbilityPage {
-  @State message: string = ''
-  @State books: Array<BookModel> = []
-  private fileFd: number
-  private dialogController: CustomDialogController = null
+  @State message: string = '';
+  @State books: Array<BookModel> = [];
+  private fileFd: number = 0;
+  private dialogController?: CustomDialogController;
 
   build() {
     Column() {
       TitleBar({ books: $books })
       List() {
-          ForEach(this.books, item => {
+          ForEach(this.books, (item: BookModel) => {
             ListItem() {
               BookView({ book: item, books: $books })
             }
@@ -40,7 +41,7 @@ struct DataShareExtAbilityPage {
             .borderRadius(20)
             .onClick(() => {
               if (this.dialogController !== null) {
-                this.dialogController = null
+                this.dialogController = undefined;
               }
               this.dialogController = new CustomDialogController({
                 builder: UpdateDataDialog({
@@ -51,7 +52,7 @@ struct DataShareExtAbilityPage {
               })
               this.dialogController.open()
             })
-          }, item => JSON.stringify(item))
+          }, (item: BookModel) => JSON.stringify(item))
         }
         .width('100%')
         .height('100%')
@@ -64,9 +65,9 @@ struct DataShareExtAbilityPage {
   }
 
   async aboutToAppear() {
-    let context = getContext(this)
-    await DateShareHelper.getDataShareHelper(context)
-    let data = await DateShareHelper.queryAll()
-    this.books = getBooksFromResultSet(data)
+    let context = getContext(this);
+    await DateShareHelper.getDataShareHelper(context);
+    let data: Promise<DataShareResultSet> = await DateShareHelper.queryAll();
+    this.books = getBooksFromResultSet(data);
   }
 }

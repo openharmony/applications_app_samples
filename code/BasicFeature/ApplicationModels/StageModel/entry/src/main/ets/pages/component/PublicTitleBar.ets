@@ -17,7 +17,7 @@ import router from '@ohos.router'
 
 @Component
 export struct PublicTitleBar {
-  private textName: string | Resource
+  private textName?: string | Resource;
 
   build() {
     Row() {

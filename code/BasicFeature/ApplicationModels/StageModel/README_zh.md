@@ -133,11 +133,11 @@ Stage模型的设计基于如下三个出发点：
 
 1.本示例仅支持标准系统上运行。
 
-2.本示例已适配API version 10版本SDK，版本号：4.0.9.6,镜像版本号：Openharmony 4.0.9.6，本示例使用了 ServiceExtensionAbility、DataShareExtensionAbility等相关系统接口，需要替换Full SDK，使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。
+2.本示例已适配API version 10版本SDK，版本号：4.0.10.10,镜像版本号：Openharmony 4.0.10.10，本示例使用了 ServiceExtensionAbility、DataShareExtensionAbility等相关系统接口，需要替换Full SDK，使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。
 
 3.本示例使用了 ServiceExtensionAbility、DataShareExtensionAbility，需要在签名证书UnsgnedReleasedProfileTemplate.json中配置"app-privilege-capabilities": ["AllowAppUsePrivilegeExtension"]，否则安装失败。具体操作指南可参考[应用特权配置指南](https://gitee.com/openharmony/docs/blob/eb73c9e9dcdd421131f33bb8ed6ddc030881d06f/zh-cn/device-dev/subsystems/subsys-app-privilege-config-guide.md)。
 
-4.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)及以上版本进行编译。
+4.本示例需要使用DevEco Studio 4.0 Beta2 (Build Version: 4.0.0.400, built on August 2, 2023)及以上版本进行编译。
 
 ### 下载
 
