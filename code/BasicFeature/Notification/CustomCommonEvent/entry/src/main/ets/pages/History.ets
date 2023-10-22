@@ -90,7 +90,7 @@ struct History {
             .backgroundColor(0xFFFFFF)
             .borderRadius(10)
             .opacity(0.8)
-          }, (item: string) => JSON.stringify(item))
+          }, (item: Array<string>) => JSON.stringify(item))
         }
         .listDirection(Axis.Vertical)
         .chainAnimation(false)

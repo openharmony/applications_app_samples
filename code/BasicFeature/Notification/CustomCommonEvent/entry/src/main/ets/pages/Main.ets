@@ -90,7 +90,7 @@ struct Main {
       if (subscriberInfo['events'].length === 0) {
         return;
       }
-      commonEvent.createSubscriber(subscriberInfo, (error, subscriber) => {
+      commonEvent.createSubscriber(subscriberInfo, (error: BusinessError, subscriber: commonEventManager.CommonEventSubscriber) => {
         this.validEventsSubscriber = subscriber;
         commonEvent.subscribe(subscriber, this.systemEventCallback);
       });
