@@ -13,23 +13,25 @@
  * limitations under the License.
  */
 
+import { ColorArr } from '../../../common/ColorEntity';
+
 @Entry
 @Component
 struct GridRowSample9 {
-  private elements: Object[] = [
-    { 'index': 1, 'color': $r('sys.color.ohos_id_color_palette_aux1') },
-    { 'index': 2, 'color': $r('sys.color.ohos_id_color_palette_aux2') },
-    { 'index': 3, 'color': $r('sys.color.ohos_id_color_palette_aux3') },
-    { 'index': 4, 'color': $r('sys.color.ohos_id_color_palette_aux4') },
-    { 'index': 5, 'color': $r('sys.color.ohos_id_color_palette_aux5') },
-    { 'index': 6, 'color': $r('sys.color.ohos_id_color_palette_aux6') }
+  private elements: ColorArr[] = [
+    { index: 1, color: $r('sys.color.ohos_id_color_palette_aux1') },
+    { index: 2, color: $r('sys.color.ohos_id_color_palette_aux2') },
+    { index: 3, color: $r('sys.color.ohos_id_color_palette_aux3') },
+    { index: 4, color: $r('sys.color.ohos_id_color_palette_aux4') },
+    { index: 5, color: $r('sys.color.ohos_id_color_palette_aux5') },
+    { index: 6, color: $r('sys.color.ohos_id_color_palette_aux6') }
   ]
 
   build() {
     GridRow() {
       GridCol({ span: { sm: 12, md: 10, lg: 8 }, offset: { sm: 0, md: 1, lg: 2 } }) {
         GridRow() {
-          ForEach(this.elements, (item) => {
+          ForEach(this.elements, (item : ColorArr) => {
             GridCol({ span: { sm: 6, md: 4, lg: 3 } }) {
               Row() {
                 Text(`${item.index}`).fontSize(24)

@@ -44,7 +44,7 @@ struct WrapCapabilitySample {
         justifyContent: FlexAlign.Center,
         wrap: FlexWrap.Wrap
       }) {
-        ForEach(this.imageList, (item) => {
+        ForEach(this.imageList, (item : Resource) => {
           Image(item)
             .width(72)
             .height(138)
