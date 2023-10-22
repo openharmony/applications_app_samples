@@ -17,15 +17,18 @@ import hilog from '@ohos.hilog';
 import Ability from '@ohos.app.ability.UIAbility';
 import Window from '@ohos.window';
 import remoteDeviceModel from '../model/RemoteDeviceModel';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { GlobalContext, getGlobalObject, setGlobalObject } from '../common/GlobalThis'
 
 export default class EntryAbility extends Ability {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
     hilog.info(0x0000, 'testTag', '%{public}s', 'want param:' + JSON.stringify(want) ?? '');
     hilog.info(0x0000, 'testTag', '%{public}s', 'launchParam:' + JSON.stringify(launchParam) ?? '');
-    globalThis.context = this.context;
-    globalThis.resourceManager = this.context.resourceManager;
+    setGlobalObject('this.context', this.context);
+    setGlobalObject('this.context.resourceManager', this.context.resourceManager);
     this.initFilterOption();
     remoteDeviceModel.createDeviceManager();
   }
@@ -35,21 +38,36 @@ export default class EntryAbility extends Ability {
   }
 
   initFilterOption() {
-    globalThis.DeviceTypeItemList = [this.getStringByResource($r('app.string.no_filter')),
-      this.getStringByResource($r('app.string.tablet')),
-      this.getStringByResource($r('app.string.phone')),
-      this.getStringByResource($r('app.string.other'))];
-    globalThis.AuthFormItemList = [this.getStringByResource($r('app.string.no_filter')),
-      this.getStringByResource($r('app.string.identical_account')),
-      this.getStringByResource($r('app.string.across_account')),
-      this.getStringByResource($r('app.string.no_account'))];
-    globalThis.IsOnlineItemList = [this.getStringByResource($r('app.string.no_filter')),
-      this.getStringByResource($r('app.string.online')),
-      this.getStringByResource($r('app.string.offline'))];
-    globalThis.IsTrustedItemList = [this.getStringByResource($r('app.string.no_filter')),
-      this.getStringByResource($r('app.string.credible')),
-      this.getStringByResource($r('app.string.incredible'))];
-    globalThis.RangeItemList = [this.getStringByResource($r('app.string.no_filter')), '50', '80', '100'];
+    let DeviceTypeItemList: Array<string> = [
+    this.context.resourceManager.getStringSync($r('app.string.no_filter')),
+    this.context.resourceManager.getStringSync($r('app.string.tablet')),
+    this.context.resourceManager.getStringSync($r('app.string.phone')),
+    this.context.resourceManager.getStringSync($r('app.string.other')),
+    ];
+    setGlobalObject('DeviceTypeItemList', DeviceTypeItemList);
+    let AuthFormItemList: Array<string> = [
+    this.context.resourceManager.getStringSync($r('app.string.no_filter')),
+    this.context.resourceManager.getStringSync($r('app.string.identical_account')),
+    this.context.resourceManager.getStringSync($r('app.string.identical_account')),
+    this.context.resourceManager.getStringSync($r('app.string.no_account')),
+    ];
+    setGlobalObject('AuthFormItemList', AuthFormItemList);
+    let IsOnlineItemList: Array<string> = [
+    this.context.resourceManager.getStringSync($r('app.string.no_filter')),
+    this.context.resourceManager.getStringSync($r('app.string.online')),
+    this.context.resourceManager.getStringSync($r('app.string.offline')),
+    ];
+    setGlobalObject('IsOnlineItemList', IsOnlineItemList);
+    let IsTrustedItemList: Array<string> = [
+    this.context.resourceManager.getStringSync($r('app.string.no_filter')),
+    this.context.resourceManager.getStringSync($r('app.string.credible')),
+    this.context.resourceManager.getStringSync($r('app.string.incredible')),
+    ];
+    setGlobalObject('IsTrustedItemList', IsTrustedItemList);
+    let RangeItemList: Array<string> = [
+    this.context.resourceManager.getStringSync($r('app.string.no_filter')), '50', '80', '100'];
+    setGlobalObject('RangeItemList', RangeItemList);
+
   }
 
   onDestroy() {

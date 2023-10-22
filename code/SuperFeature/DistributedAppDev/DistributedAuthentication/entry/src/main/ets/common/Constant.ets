@@ -15,10 +15,11 @@
 
 import prompt from '@system.prompt';
 
-export default {
-  showToast(message): void {
+class showToastType{
+  showToast(message:string): void {
     prompt.showToast({
       message: message
     });
-  },
+  }
 }
+export default new showToastType();
