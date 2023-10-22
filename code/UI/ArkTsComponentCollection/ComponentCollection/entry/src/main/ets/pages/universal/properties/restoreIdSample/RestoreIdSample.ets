@@ -72,12 +72,12 @@ struct RestoreIdExample {
           IntroductionTitle({ introduction: $r('app.string.list') })
           Column() {
             List({ space: 8 }) {
-              ForEach(this.fruits, (item) => {
+              ForEach(this.fruits, (item: string) => {
                 ListItem() {
                   Button(item)
                     .buttonStyle()
                 }
-              }, item => item)
+              }, (item: string) => item)
             }
             .alignListItem(ListItemAlign.Center)
             .width('100%')
@@ -117,7 +117,7 @@ struct RestoreIdExample {
                   .backgroundColor(0xAFEEEE)
                   .textAlign(TextAlign.Center)
                   .fontSize(30)
-              }, item => item)
+              }, (item: string) => item)
             }
             .cachedCount(2)
             .index(1)

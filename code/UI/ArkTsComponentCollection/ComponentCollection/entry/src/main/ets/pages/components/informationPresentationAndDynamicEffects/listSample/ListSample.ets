@@ -50,7 +50,7 @@ struct ListSample {
         .leftTitleStyle()
       Column() {
         List({ space: 10 }) {
-          ForEach(this.arr, (item) => {
+          ForEach(this.arr, (item: number) => {
             ListItem() {
               Text('item' + item)
                 .width('100%')
@@ -72,7 +72,7 @@ struct ListSample {
                 actionAreaDistance: 56,
               }
             })
-          }, item => item)
+          }, (item: number) => item.toString())
         }
       }
       .cardStyle()

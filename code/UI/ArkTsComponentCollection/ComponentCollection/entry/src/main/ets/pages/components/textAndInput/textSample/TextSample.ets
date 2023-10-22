@@ -13,11 +13,12 @@
  * limitations under the License.
  */
 
-import measure from '@ohos.measure'
-import { ChangeTextCase, ChangeTextAttribute } from './ChangePanel'
-import { TitleBar } from '../../../../common/TitleBar'
+import measure from '@ohos.measure';
+import { ChangeTextCase, ChangeTextAttribute } from './ChangePanel';
+import { TitleBar } from '../../../../common/TitleBar';
 
-@Extend(Column) function backgroundStyle() {
+@Extend(Column)
+function backgroundStyle() {
   .size({ width: '100%' })
   .margin({ top: 12 })
   .padding(12)
@@ -29,19 +30,18 @@ import { TitleBar } from '../../../../common/TitleBar'
 @Entry
 @Component
 struct TextSample {
-  @State lineHeight: number = 23
-  @State textMaxLines: number = -1
-  @State letterSpacing: number = 2
-  @State fontColor: string = '#FF000000'
-  @State textCase: TextCase = TextCase.Normal
-  @State textAlign: TextAlign = TextAlign.Start
-  @State textOverFlow: TextOverflow = TextOverflow.None
-  @State styleForDecorative: TextDecorationType = TextDecorationType.None
-  @State textContent: Resource = $r('app.string.text_content')
-  textSize : SizeOptions = measure.measureTextSize({
+  @State lineHeight: number = 23;
+  @State textMaxLines: number = -1;
+  @State letterSpacing: number = 2;
+  @State fontColor: string = '#FF000000';
+  @State textCase: TextCase = TextCase.Normal;
+  @State textAlign: TextAlign = TextAlign.Start;
+  @State textOverFlow: TextOverflow = TextOverflow.None;
+  @State styleForDecorative: TextDecorationType = TextDecorationType.None;
+  @State textContent: Resource = $r('app.string.text_content');
+  textSize: SizeOptions = measure.measureTextSize({
     textContent: $r('app.string.text_content'),
-  })
-
+  });
 
   build() {
     Column() {
@@ -72,32 +72,32 @@ struct TextSample {
               styleForDecorative: $styleForDecorative,
             })
 
-            Row(){
+            Row() {
               Text($r('app.string.text_width'))
               Blank()
-              Text(this.textSize.width.toString() + ' px')
+              Text(this.textSize.width!.toString() + ' px')
                 .width(150)
                 .fontSize(20)
                 .textAlign(TextAlign.Center)
 
             }
-            .size({ width: '100%', height: 42  })
-            .padding({ left:  0 , right: 0  })
-            .borderRadius(0 )
-            .backgroundColor( Color.Transparent)
+            .size({ width: '100%', height: 42 })
+            .padding({ left: 0, right: 0 })
+            .borderRadius(0)
+            .backgroundColor(Color.Transparent)
 
-            Row(){
+            Row() {
               Text($r('app.string.text_height'))
               Blank()
-              Text(this.textSize.height.toString() + ' px')
+              Text(this.textSize.height!.toString() + ' px')
                 .width(150)
                 .fontSize(20)
                 .textAlign(TextAlign.Center)
             }
-            .size({ width: '100%', height: 42  })
-            .padding({ left:  0 , right: 0  })
-            .borderRadius(0 )
-            .backgroundColor( Color.Transparent)
+            .size({ width: '100%', height: 42 })
+            .padding({ left: 0, right: 0 })
+            .borderRadius(0)
+            .backgroundColor(Color.Transparent)
           }
           .backgroundStyle()
 

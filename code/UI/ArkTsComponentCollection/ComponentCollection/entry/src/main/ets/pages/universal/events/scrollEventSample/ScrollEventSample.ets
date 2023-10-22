@@ -45,7 +45,7 @@ struct ScrollEventSample {
               }
             })
 
-            ForEach(this.arr, (item) => {
+            ForEach(this.arr, (item: number) => {
               Text(item.toString())
                 .width('100%')
                 .height(80)
@@ -54,7 +54,7 @@ struct ScrollEventSample {
                 .fontSize(16)
                 .textAlign(TextAlign.Center)
                 .margin({ left: 12, right: 12, top: 16 })
-            }, item => item)
+            }, (item: number) => JSON.stringify(item))
           }.width('100%')
         }
         .scrollable(ScrollDirection.Vertical)

@@ -13,28 +13,28 @@
  * limitations under the License.
  */
 
-import Logger from '../util/Logger'
+import Logger from '../util/Logger';
 
-let context = getContext(this)
+let context = getContext(this);
 
 export function getStringArrayData(resourceArrayData: Resource[]): string[] {
   if (!resourceArrayData) {
-    return
+    return [];
   }
-  let resourceStringArrayData: string[] = []
+  let resourceStringArrayData: string[] = [];
   resourceArrayData.forEach(item => {
     try {
-      resourceStringArrayData.push(context.resourceManager.getStringSync(item.id))
+      resourceStringArrayData.push(context.resourceManager.getStringSync(item.id));
     } catch (error) {
-      Logger.error(`callback getStringValue failed, error code: ${error.code}, message: ${error.message}.`)
+      Logger.error(`callback getStringValue failed, error code: ${error.code}, message: ${error.message}.`);
     }
   })
-  return resourceStringArrayData
+  return resourceStringArrayData;
 }
 
 export function getStringData(resourceData: Resource): string {
   if (!resourceData) {
-    return
+    return '';
   }
-  return context.resourceManager.getStringSync(resourceData.id)
+  return context.resourceManager.getStringSync(resourceData.id);
 }

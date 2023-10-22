@@ -19,7 +19,7 @@ export struct ListItemDrag {
   @State dragIndex: number = -1
 
   // 自定义拖拽过程中显示的内容
-  @Builder pixelMapBuilder(item) {
+  @Builder pixelMapBuilder(item: string) {
     Text(item)
       .width(400)
       .height(80)
@@ -30,12 +30,14 @@ export struct ListItemDrag {
   }
 
   changeIndex(index1: number, index2: number) {
-    [this.numbers[index1], this.numbers[index2]] = [this.numbers[index2], this.numbers[index1]]
+    let temp = this.numbers[index1];
+    this.numbers[index1] = this.numbers[index2];
+    this.numbers[index2] = temp;
   }
 
   build() {
     List({ space: 20 }) {
-      ForEach(this.numbers, (item, index) => {
+      ForEach(this.numbers, (item: string, index: number) => {
         ListItem() {
           Text(item)
             .id('listItem' + index)
@@ -47,7 +49,7 @@ export struct ListItemDrag {
             .backgroundColor(0xAFEEEE)
         }
         .visibility(this.dragIndex === index ? Visibility.Hidden : Visibility.Visible)
-      }, item => item)
+      }, (item: string) => item)
     }
     .width(400)
     .height(200)

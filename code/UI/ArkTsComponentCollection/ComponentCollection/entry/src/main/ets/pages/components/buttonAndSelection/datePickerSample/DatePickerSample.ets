@@ -23,7 +23,8 @@ struct DatePickerSample {
   // 当前日期选择器组件的日期
   private currentPickerDate: Date = new Date('2022-10-30');
 
-  @Styles itemBorder() {
+  @Styles
+  itemBorder() {
     .padding(12)
     .borderRadius(24)
     .margin({ top: 12 })
@@ -49,16 +50,18 @@ struct DatePickerSample {
           .lunar(this.isLunar)
           .onChange((date: DatePickerResult) => {
             // Get date from value
-            let month: string = `${date.month + 1}`
-            let day: string = `${date.day}`
-            if (date.month < 9) {
-              month = `0${date.month + 1}`
+            if (date.year && date.month && date.day) {
+              let month: string = `${date.month + 1}`;
+              let day: string = `${date.day}`;
+              if (date.month < 9) {
+                month = `0${date.month + 1}`;
+              }
+              if (date.day < 10) {
+                day = `0${date.day}`;
+              }
+              this.selectDate = `${date.year}-${month}-${day}`;
+              this.currentPickerDate.setFullYear(date.year, date.month, date.day);
             }
-            if (date.day < 10) {
-              day = `0${date.day}`
-            }
-            this.selectDate = `${date.year}-${month}-${day}`;
-            this.currentPickerDate.setFullYear(date.year, date.month, date.day);
           })
         Row() {
           Checkbox()

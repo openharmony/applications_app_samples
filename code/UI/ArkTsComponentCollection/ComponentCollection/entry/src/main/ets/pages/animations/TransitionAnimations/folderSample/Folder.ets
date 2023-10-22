@@ -27,8 +27,8 @@ export default struct Folder {
             GridItem() {
               FolderItem({ isOpen: $isOpen, img: image, name: `${(index + 1) + i * this.images.length}` })
             }
-          }, (image, index) => index.toString())
-        }, (image, index) => index.toString())
+          }, (image: Resource, index: number) => index.toString())
+        }, (image: Resource, index: number) => index.toString())
       }
       .columnsTemplate('1fr 1fr 1fr')
       .rowsTemplate('1fr 1fr 1fr')

@@ -69,7 +69,7 @@ struct RefreshSample {
         Refresh({ refreshing: $$this.isRefreshing, offset: this.mOffset, friction: this.mFriction, builder:this.refreshBuilder }) {
           Scroll() {
             Column() {
-              ForEach(this.dataArray, (item) => {
+              ForEach(this.dataArray, (item: number) => {
                 Stack() {
                   Text((item + this.counter).toString())
                     .fontSize(20)

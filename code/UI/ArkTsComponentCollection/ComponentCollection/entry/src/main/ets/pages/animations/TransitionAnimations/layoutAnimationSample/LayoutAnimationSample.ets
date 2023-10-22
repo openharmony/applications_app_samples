@@ -34,16 +34,16 @@ import { IntroductionTitle } from '../../../../common/IntroductionTitle'
 @Entry
 @Component
 struct LayoutAnimationSample {
-  @State mPadding: number = 5
-  @State mMargin: number = 5
-  @State mSize: number = 100
-  @State mPositionX: number = 10
-  @State mPositionY: number = 0
-  @State mAlignment: Alignment = Alignment.Center
-  @State mDirection: Direction = Direction.Rtl
-  @State mColor: Color = Color.Pink
-  @State mHorizontalAlign: HorizontalAlign = HorizontalAlign.Start
-  intervalID
+  @State mPadding: number = 5;
+  @State mMargin: number = 5;
+  @State mSize: number = 100;
+  @State mPositionX: number = 10;
+  @State mPositionY: number = 0;
+  @State mAlignment: Alignment = Alignment.Center;
+  @State mDirection: Direction = Direction.Rtl;
+  @State mColor: Color = Color.Pink;
+  @State mHorizontalAlign: HorizontalAlign = HorizontalAlign.Start;
+  intervalID: number | null = null;
 
   onPageShow() {
     this.intervalID = setInterval(() => {
@@ -105,7 +105,7 @@ struct LayoutAnimationSample {
           IntroductionTitle({ introduction: $r('app.string.layout_animation_expansion_margin') })
           Column() {
             Row() {
-              ForEach(['1', '2', '3'], (item) => {
+              ForEach(['1', '2', '3'], (item: string) => {
                 Text(item)
                   .textStyle()
                   .margin(this.mMargin)
@@ -118,7 +118,7 @@ struct LayoutAnimationSample {
           IntroductionTitle({ introduction: $r('app.string.layout_animation_expansion_direction') })
           Column() {
             Row() {
-              ForEach(['1', '2', '3'], (item) => {
+              ForEach(['1', '2', '3'], (item: string) => {
                 Text(item)
                   .textStyle()
                   .backgroundColor(this.mColor)

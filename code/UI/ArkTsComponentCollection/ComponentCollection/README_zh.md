@@ -495,12 +495,12 @@ entry/src/main/ets/
 
 1.本示例仅支持标准系统上运行，支持设备：RK3568。
 
-2.本示例仅支持API10版本SDK，版本号：4.0.10.1,镜像版本号：[OpenHarmony_4.0.10.1]
+2.本示例仅支持API10版本SDK，版本号：4.0.10.11,镜像版本号：[OpenHarmony_4.1.1.5]
 
 3.本示例涉及使用系统接口，FormComponent组件相关接口，需要手动替换Full
 SDK才能编译通过，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)。
 
-4.本示例需要使用DevEco Studio 3.1 Release (Build Version: 3.1.0.500, built on April 28, 2023)才可编译运行。
+4.本示例需要使用DevEco Studio 4.0 Beta2 (Build Version: 4.0.0.400, built on August 2, 2023)才可编译运行。
 
 5.本示例涉及ohos.permission.GET_BUNDLE_INFO_PRIVILEGED、ohos.permission.REQUIRE_FORM为system_basic级别（相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
 查看），需要配置高权限签名，可参考[应用apl等级说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/accesstoken-overview.md#应用apl等级说明)。
