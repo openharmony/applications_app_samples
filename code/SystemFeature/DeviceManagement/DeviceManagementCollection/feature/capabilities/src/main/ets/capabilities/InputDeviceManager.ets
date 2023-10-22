@@ -110,7 +110,7 @@ struct InputDeviceList {
 @Component
 export struct InputDeviceManager {
   @State mInputDevices: InputDeviceInfo[] = []
-  @State mCurDevice: InputDeviceInfo | null = null
+  @State mCurDevice: InputDeviceInfo | null = null;
   @State mInputDeviceList: InputDeviceInfo[] = []
   @State mIsListener: boolean = false
   @State mIsRefreshing: boolean = false
@@ -180,7 +180,7 @@ export struct InputDeviceManager {
                 .onChange((isOn) => {
                   this.mIsListener = isOn
                   if (isOn) {
-                    InputDevice.registerChange((devices: InputDeviceInfo[]): void => this.onDeviceChange(devices))
+                    InputDevice.registerChange((devices: InputDeviceInfo[]): void => this.onDeviceChange(devices));
                   } else {
                     InputDevice.unregisterChange()
                   }

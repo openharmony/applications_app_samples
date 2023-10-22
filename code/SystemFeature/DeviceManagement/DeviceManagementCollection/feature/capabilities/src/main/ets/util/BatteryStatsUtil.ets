@@ -134,7 +134,7 @@ export class BatteryStatsUtil {
         logger.error(TAG, `getStringValue failed, err : ${JSON.stringify(err)}.`);
       }
 
-      if (label !== '') {
+      if (label) {
         let iconResource: resourceManager.Resource = {
           bundleName: appInfo.iconResource.bundleName,
           moduleName: appInfo.iconResource.moduleName,

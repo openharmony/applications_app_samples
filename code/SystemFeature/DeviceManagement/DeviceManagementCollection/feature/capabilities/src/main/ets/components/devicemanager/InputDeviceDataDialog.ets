@@ -20,7 +20,7 @@ import inputDevice from '@ohos.multimodalInput.inputDevice'
 @CustomDialog
 export struct InputDeviceDataDialog {
   @Link mDeviceInfo: InputDeviceInfo
-  mController?: CustomDialogController
+  mController?: CustomDialogController;
   cancel?: () => void
 
   build() {
@@ -126,7 +126,7 @@ export struct InputDeviceDataDialog {
 
 @Component
 struct DeviceData {
-  title: string | Resource = ''
+  title: string | Resource = '';
   context?: string = ''
   isShowDivider?: boolean = true
 

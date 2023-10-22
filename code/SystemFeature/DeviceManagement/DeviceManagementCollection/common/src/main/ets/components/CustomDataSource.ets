@@ -75,7 +75,7 @@ export class CustomDataSource extends BasicDataSource {
   }
 
   public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0,data);
+    this.dataArray.splice(index, 0, data);
     this.notifyDataAdd(index);
   }
 }

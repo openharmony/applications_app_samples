@@ -49,7 +49,7 @@ export struct SettingsManager {
     switch (index) {
       case 0:
         try {
-          let ctx: Context = GlobalContext.getContext().getValue('abilityContext') as Context
+          let ctx: Context = GlobalContext.getContext().getValue('abilityContext') as Context;
           let status = await settings.setValue(ctx, settings.display.SCREEN_BRIGHTNESS_STATUS, '100');
           let val = await settings.getValue(ctx, settings.display.SCREEN_BRIGHTNESS_STATUS);
           this.result = `set SCREEN_BRIGHTNESS_STATUS 100 ${status}, current value:${val}`;

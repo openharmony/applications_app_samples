@@ -52,7 +52,7 @@ export struct InputEventManager {
               .onChange((isOn) => {
                 this.mIsShowTouchData = isOn
                 if (isOn) {
-                  TouchManagerUtil.registerTouch((touchData: string): void => this.touchCallback(touchData))
+                  TouchManagerUtil.registerTouch((touchData: string): void => this.touchCallback(touchData));
                 } else {
                   this.mTouchData = ''
                   TouchManagerUtil.unregisterTouch()
@@ -123,12 +123,12 @@ export struct InputEventManager {
           })
           .onTouch((event) => {
             if (event !== undefined && event !== null) {
-              console.log(`TouchManagerUtil onTouch event ${JSON.stringify(event)}`)
+              console.log(`TouchManagerUtil onTouch event ${JSON.stringify(event)}`);
               if (event.type === TouchType.Down) {
-                this.mBtnBg = $r('app.color.btn_press_bg')
+                this.mBtnBg = $r('app.color.btn_press_bg');
               }
               if (event.type === TouchType.Up) {
-                this.mBtnBg = $r('app.color.btn_normal_bg')
+                this.mBtnBg = $r('app.color.btn_normal_bg');
               }
             }
           })
