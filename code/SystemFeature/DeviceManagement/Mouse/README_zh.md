@@ -40,7 +40,7 @@ entry/src/main/ets/
 * 本示例主要分为一个模块，
   * 鼠标外设模块
     * 主要展示了鼠标外设的五种功能设置场景
-    * 源码链接：[Main.ets](Mouse/entry/src/main/ets/pages/Main.ets)，
+    * 源码链接：[Main.ets](entry/src/main/ets/pages/Main.ets)，
     * 接口参考：[@ohos.multimodalInput.pointer](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-pointer.md)
 
 ### 相关权限
@@ -57,11 +57,17 @@ entry/src/main/ets/
 
 1.本示例仅支持标准系统上运行,支持设备:RK3568；
 
-2.本示例已适配API version 10版本SDK，版本号：4.0.11.5，镜像版本号：Openharmony 4.1.1.1。当前支持的SDK版本链接如下：
+2.本示例已适配API version 10版本SDK，版本号：4.1.1.2，镜像版本号：Openharmony 4.1.1.1。当前支持的SDK版本链接如下：
 
 [SDK全量包下载链接](http://ci.openharmony.cn/workbench/cicd/dailybuild/detail/component)
 
 3.本示例需要使用DevEco Studio 3.1.1 Release (3.1.0.501, built on June 20, 2023)及以上版本才可编译运行；
+
+4.本示例涉及使用系统接口@ohos.multimodalInput.pointer：setPointerSize，需要手动替换Full SDK才能编译通过，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)
+
+5.本示例所配置的权限为system_basic级别(相关权限级别可通过[权限定义列表](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/permission-list.md/)查看),需要手动配置对应级别的权限签名(具体操作可查看[自动化签名方案](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/))
+
+6.本示例有使用系统特性api，需要手动配置对应级别的应用类型("app-feature": "hos_system_app")。具体可参考profile配置文件[bundle-info对象内部结构](https://gitee.com/openharmony/docs/blob/eb73c9e9dcdd421131f33bb8ed6ddc030881d06f/zh-cn/application-dev/security/app-provision-structure.md#bundle-info%E5%AF%B9%E8%B1%A1%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84)
 
 ### 下载
 

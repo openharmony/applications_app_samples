@@ -24,11 +24,13 @@ struct Main {
   @State isInitColor: boolean = true;
   @State isInitStyle: boolean = true;
   private colorBlack: number = 0x171717;
+  private leftButton: string = '向左键';
+  private rightButton: string = '向右键';
 
   aboutToAppear(): void {
     try {
-      pointer.getMousePrimaryButton((error, primary) => {
-        this.primaryButton = primary == pointer.PrimaryButton.LEFT ? '向左键' : '向右键';
+      pointer.getMousePrimaryButton((error: Error, primary: pointer.PrimaryButton) => {
+        this.primaryButton = primary == pointer.PrimaryButton.LEFT ? this.leftButton : this.rightButton;
         console.log(`Get mouse primary button success, primary: ${JSON.stringify(primary)}`);
       });
     } catch (error) {
@@ -36,7 +38,7 @@ struct Main {
     }
 
     try {
-      pointer.getHoverScrollState((error, state) => {
+      pointer.getHoverScrollState((error: Error, state: boolean) => {
         this.isAble = state;
         console.log(`Get the mouse hover scroll success, state: ${JSON.stringify(state)}`);
       })
@@ -45,7 +47,7 @@ struct Main {
     }
 
     try {
-      pointer.getPointerSize((error, size) => {
+      pointer.getPointerSize((error: Error, size: number) => {
         this.initSize = size;
         console.log(`getPointerSize success, size: ${JSON.stringify(size)}`);
       })
@@ -54,7 +56,7 @@ struct Main {
     }
 
     try {
-      pointer.getPointerColor((error, color) => {
+      pointer.getPointerColor((error: Error, color: number) => {
         this.isInitColor = color == this.colorBlack ? true : false;
         console.log(`getPointerColor success, color: ${JSON.stringify(color)}`);
         console.info('getPointerColor iSInitColor::' + this.isInitColor);
@@ -178,14 +180,16 @@ struct Main {
               min: 1,
               max: 7,
               style: SliderStyle.OutSet
-            }).onTouch(event => {
-              event.stopPropagation();
+            }).onTouch((event?: TouchEvent) => {
+              if (event) {
+                event.stopPropagation?.();
+              }
             })
               .showTips(true, this.initSize.toFixed(0).toString())
               .onChange((value: number, mode: SliderChangeMode) => {
                 this.initSize = value
                 try {
-                  pointer.setPointerSize(value, (error) => {
+                  pointer.setPointerSize(value, (error: Error) => {
                     if (error) {
                       console.log(`setPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
                       return;
@@ -339,7 +343,6 @@ struct Main {
         .padding({ top: 4, bottom: 4, left: 12 })
         .backgroundColor(Color.White)
       }
-      .width('49.0625%')
       .constraintSize({ minWidth: 584 })
       .margin({ left: 12, right: 12 })
     }
