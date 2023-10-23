@@ -32,7 +32,10 @@ struct Index {
   @StorageLink('timeCost') @Watch('timeCostChanged') timeCost: String = ''
 
   timeCostChanged(): void {
-    this.message = AppStorage.get('timeCost')
+    let timeCost: string | undefined = AppStorage.get<string>('timeCost')
+    if (timeCost !== undefined) {
+      this.message = timeCost
+    }
   }
 
   build() {
