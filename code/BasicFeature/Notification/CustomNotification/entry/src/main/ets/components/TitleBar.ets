@@ -20,12 +20,14 @@ export struct TitleBar {
 
   build() {
     Row() {
-      Text(this.title)
-        .fontSize(24)
-        .fontWeight(700)
-        .lineHeight(32)
-        .margin({ left: 24 })
-        .fontColor('#182431')
+      if (this.title !== undefined && this.title !== null) {
+        Text(this.title)
+          .fontSize(24)
+          .fontWeight(700)
+          .lineHeight(32)
+          .margin({ left: 24 })
+          .fontColor('#182431')
+      }
     }
     .width('100%')
     .height(70)
