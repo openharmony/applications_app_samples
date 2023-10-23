@@ -13,32 +13,32 @@
  * limitations under the License.
  */
 
-import Logger from '../mode/Logger'
-import vibrator from '@ohos.vibrator'
-import { TextDialog } from '../common/TextDialog'
-import { TimerPicker } from '../common/TimerPicker'
+import Logger from '../mode/Logger';
+import vibrator from '@ohos.vibrator';
+import { TextDialog } from '../common/TextDialog';
+import { TimerPicker } from '../common/TimerPicker';
 
-let TAG = '[TextTimerComponent]'
-const HOUR_MS = 3600 * 1000
-const MINUTE_MS = 60 * 1000
-const SECOND_MS = 1000
-const TOTAL = 100
+let TAG = '[TextTimerComponent]';
+const HOUR_MS = 3600 * 1000;
+const MINUTE_MS = 60 * 1000;
+const SECOND_MS = 1000;
+const TOTAL = 100;
 
 @Component
 export struct TextTimerComponent {
-  @State @Watch('onChange') hours: number = 0
-  @State @Watch('onChange') minutes: number = 0
-  @State @Watch('onChange') seconds: number = 0
-  @State duration: number = 0
-  @State progressValue: number = 0
-  @State hourText: string = '00'
-  @State minuteText: string = '00'
-  @State secondText: string = '00'
-  @State textStr: string = ''
-  private vibrationDuration: number = 10000
-  private timeout: number = 10000
-  private counts: number
-  private timerId: number
+  @State @Watch('onChange') hours: number = 0;
+  @State @Watch('onChange') minutes: number = 0;
+  @State @Watch('onChange') seconds: number = 0;
+  @State duration: number = 0;
+  @State progressValue: number = 0;
+  @State hourText: string = '00';
+  @State minuteText: string = '00';
+  @State secondText: string = '00';
+  @State textStr: string = '';
+  private vibrationDuration: number = 10000;
+  private timeout: number = 10000;
+  private counts: number;
+  private timerId: number;
   private timerPicker: CustomDialogController = new CustomDialogController({
     builder: TimerPicker({ hours: $hours, minutes: $minutes, seconds: $seconds, duration: $duration }),
     autoCancel: true
@@ -49,18 +49,18 @@ export struct TextTimerComponent {
   })
 
   formatTime(value: number) {
-    return (value > 9 ? '' : '0') + value
+    return (value > 9 ? '' : '0') + value;
   }
 
   onChange() {
-    this.hourText = this.formatTime(this.hours)
-    this.minuteText = this.formatTime(this.minutes)
-    this.secondText = this.formatTime(this.seconds)
-    this.textStr = `${this.hourText} : ${this.minuteText} : ${this.secondText}`
+    this.hourText = this.formatTime(this.hours);
+    this.minuteText = this.formatTime(this.minutes);
+    this.secondText = this.formatTime(this.seconds);
+    this.textStr = `${this.hourText} : ${this.minuteText} : ${this.secondText}`;
   }
 
   aboutToAppear() {
-    this.textStr = `${this.hourText} : ${this.minuteText} : ${this.secondText}`
+    this.textStr = `${this.hourText} : ${this.minuteText} : ${this.secondText}`;
   }
 
   build() {
@@ -75,7 +75,9 @@ export struct TextTimerComponent {
       }
       .margin({ bottom: 80 })
       .onClick(() => {
-        this.timerPicker.open()
+        if(this.hours === 0 && this.minutes === 0 && this.seconds === 0) {
+          this.timerPicker.open();
+        }
       })
 
       Button('start')
@@ -85,22 +87,25 @@ export struct TextTimerComponent {
         .backgroundColor('#0D9FFB')
         .id('start')
         .onClick(() => {
+          if(this.timerId) {
+            clearInterval(this.timerId);
+          }
           this.timerId = setInterval(() => {
-            Logger.info(TAG, `countdown hours: ${this.hours}, minutes: ${this.minutes}, seconds: ${this.seconds}`)
-            this.counts = this.hours * HOUR_MS + this.minutes * MINUTE_MS + this.seconds * SECOND_MS
-            this.progressValue += TOTAL / this.duration
-            Logger.info(TAG, `counts is: ${this.counts}`)
+            Logger.info(TAG, `countdown hours: ${this.hours}, minutes: ${this.minutes}, seconds: ${this.seconds}`);
+            this.counts = this.hours * HOUR_MS + this.minutes * MINUTE_MS + this.seconds * SECOND_MS;
+            this.progressValue += TOTAL / this.duration;
+            Logger.info(TAG, `counts is: ${this.counts}`);
             if (this.counts > 0) {
-              this.counts = this.counts - SECOND_MS
-              Logger.info(TAG, `countdown counts = ${this.counts}, progress = ${this.progressValue}`)
+              this.counts = this.counts - SECOND_MS;
+              Logger.info(TAG, `countdown counts = ${this.counts}, progress = ${this.progressValue}`);
 
-              this.hours = Math.floor(this.counts / HOUR_MS)
-              this.counts = this.counts - this.hours * HOUR_MS
+              this.hours = Math.floor(this.counts / HOUR_MS);
+              this.counts = this.counts - this.hours * HOUR_MS;
 
-              this.minutes = Math.floor(this.counts / MINUTE_MS)
-              this.counts = this.counts - this.minutes * MINUTE_MS
+              this.minutes = Math.floor(this.counts / MINUTE_MS);
+              this.counts = this.counts - this.minutes * MINUTE_MS;
 
-              this.seconds = Math.floor(this.counts / SECOND_MS)
+              this.seconds = Math.floor(this.counts / SECOND_MS);
             }
             if (this.hours === 0 && this.minutes === 0 && this.seconds === 0) {
               try {
@@ -112,19 +117,19 @@ export struct TextTimerComponent {
                   usage: 'simulateReality'
                 }, (error) => {
                   if (error) {
-                    Logger.error(TAG, `error.code = ${error.code}, error.message = ${error.message}`)
+                    Logger.error(TAG, `error.code = ${error.code}, error.message = ${error.message}`);
                     return;
                   }
-                  Logger.info(TAG, `${TAG} Callback returned to indicate a successful vibration`)
-                  this.textDialog.open()
-                  this.progressValue = 0
+                  Logger.info(TAG, `${TAG} Callback returned to indicate a successful vibration`);
+                  this.textDialog.open();
+                  this.progressValue = 0;
                   setTimeout(() => {
-                    this.textDialog.close()
+                    this.textDialog.close();
                   }, this.timeout)
-                  clearInterval(this.timerId)
+                  clearInterval(this.timerId);
                 });
               } catch (err) {
-                Logger.error(TAG, `catch error.code = ${err.code}, error.message = ${err.message}`)
+                Logger.error(TAG, `catch error.code = ${err.code}, error.message = ${err.message}`);
               }
             }
           }, 1000)
@@ -136,9 +141,12 @@ export struct TextTimerComponent {
         .backgroundColor('#0D9FFB')
         .id('reset')
         .onClick(() => {
-          this.progressValue = 0
-          this.textStr = '00:00:00'
-          clearInterval(this.timerId)
+          this.hours = 0;
+          this.minutes = 0;
+          this.seconds = 0;
+          this.progressValue = 0;
+          this.textStr = '00:00:00';
+          clearInterval(this.timerId);
         })
     }
     .width('100%')

@@ -71,7 +71,7 @@ export struct TextDialog {
           this.controller.close()
         })
       }
-    }
+    }.id('textDialog')
 
   }
 }
