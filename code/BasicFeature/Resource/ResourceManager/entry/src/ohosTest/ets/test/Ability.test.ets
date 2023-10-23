@@ -109,7 +109,7 @@ export default function appTest() {
           setTimeout(()=>{
             CommonEventManager.publish("TestResourcesEvent", publishCB); // 发布事件
             done()
-          }, 1500)
+          }, 2000)
         })
         done()
       } catch (error) {
@@ -123,7 +123,7 @@ export default function appTest() {
     /**
      * 进入应用，测试getStringValue接口
      */
-    it(BUNDLE + 'CreateFunction_001', 0, async function () {
+    it(BUNDLE + 'CreateFunction_001', 1, async function () {
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_001 begin')
       let driver = await Driver.create()
       await driver.delayMs(3000)
@@ -136,7 +136,7 @@ export default function appTest() {
     /**
      * 进入应用，测试getStringArrayValue接口
      */
-    it(BUNDLE + 'CreateFunction_002', 0, async function () {
+    it(BUNDLE + 'CreateFunction_002', 2, async function () {
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_002 begin')
       let driver = await Driver.create()
       await driver.delayMs(3000)
@@ -149,7 +149,7 @@ export default function appTest() {
     /**
      * 进入应用，测试getPluralStringValue接口
      */
-    it(BUNDLE + 'CreateFunction_003', 0, async function () {
+    it(BUNDLE + 'CreateFunction_003', 3, async function () {
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_003 begin')
       let driver = await Driver.create()
       await driver.delayMs(3000)
@@ -163,7 +163,7 @@ export default function appTest() {
     /**
      * 进入应用，测试getConfiguration接口
      */
-    it(BUNDLE + 'CreateFunction_004', 0, async function () {
+    it(BUNDLE + 'CreateFunction_004', 4, async function () {
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_004 begin')
       let driver = await Driver.create()
       await driver.delayMs(3000)
@@ -176,7 +176,7 @@ export default function appTest() {
     /**
      * 进入应用，测试getDeviceCapability接口
      */
-    it(BUNDLE + 'CreateFunction_005', 0, async function () {
+    it(BUNDLE + 'CreateFunction_005', 5, async function () {
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_005 begin')
       let driver = await Driver.create()
       await driver.delayMs(3000)
@@ -189,7 +189,7 @@ export default function appTest() {
     /**
      * 进入应用，测试getMediaContent接口
      */
-    it(BUNDLE + 'CreateFunction_006', 0, async function () {
+    it(BUNDLE + 'CreateFunction_006', 6, async function () {
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_006 begin')
       let driver = await Driver.create()
       await driver.delayMs(3000)
@@ -202,7 +202,7 @@ export default function appTest() {
     /**
      * 进入应用，测试getMediaContentBase64接口
      */
-    it(BUNDLE + 'CreateFunction_007', 0, async function () {
+    it(BUNDLE + 'CreateFunction_007', 7, async function () {
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_007 begin')
       let driver = await Driver.create()
       await driver.delayMs(3000)
@@ -215,7 +215,7 @@ export default function appTest() {
     /**
      * 进入应用，测试getStringSync接口
      */
-    it(BUNDLE + 'CreateFunction_008', 0, async function () {
+    it(BUNDLE + 'CreateFunction_008', 8, async function () {
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_008 begin')
       let driver = await Driver.create()
       await driver.delayMs(3000)
@@ -229,7 +229,7 @@ export default function appTest() {
     /**
      * 进入应用，测试getMediaContentBase64接口
      */
-    it(BUNDLE + 'CreateFunction_009', 0, async function () {
+    it(BUNDLE + 'CreateFunction_009', 9, async function () {
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_009 begin')
       let driver = await Driver.create()
       await driver.delayMs(3000)
@@ -242,7 +242,7 @@ export default function appTest() {
     /**
      * 进入应用，测试getSystemResourceManager接口
      */
-    it(BUNDLE + 'CreateFunction_010', 0, async function () {
+    it(BUNDLE + 'CreateFunction_010', 10, async function () {
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_010 begin')
       let driver = await Driver.create()
       await driver.delayMs(3000)
