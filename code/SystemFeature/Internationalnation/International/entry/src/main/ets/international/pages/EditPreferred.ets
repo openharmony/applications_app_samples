@@ -23,28 +23,26 @@ const TAG: string = 'EditPreferred';
 @Component
 struct EditPreferred {
   @State preferredLanguages: LazyDataSource = new LazyDataSource();
-  private localLanguage: string = router.getParams()['language'];
+  private params = router.getParams() as Record<string, string>;
+  private localLanguage: string = this.params.language as string;
   private deletePreferredLanguages: Array<number> = [];
 
   aboutToAppear() {
-    let preferredLanguages = [];
+    let preferredLanguages: Array<PreferredLanguage> = [];
     let preferredLanguageIds = i18n.System.getPreferredLanguageList();
     Logger.info(TAG, `this.preferredLanguageIds = ${JSON.stringify(preferredLanguageIds)}`);
     preferredLanguageIds.forEach(id => {
-      preferredLanguages.push([
-      i18n.System.getDisplayLanguage(id, id),
-      i18n.System.getDisplayLanguage(id, this.localLanguage)
-      ]);
+      preferredLanguages.push({
+        key: i18n.System.getDisplayLanguage(id, id),
+        value: i18n.System.getDisplayLanguage(id, this.localLanguage)
+      });
     });
-    this.preferredLanguages['dataArray'] = preferredLanguages;
+    this.preferredLanguages.dataArray = preferredLanguages;
     this.preferredLanguages.notifyDataReload();
   }
 
   @Builder
-  PreferredItem($$: {
-    preferred,
-    index
-  }) {
+  PreferredItem($$: Data) {
     Column() {
       if ($$.index !== 0) {
         Divider()
@@ -75,7 +73,7 @@ struct EditPreferred {
             .objectFit(ImageFit.Contain)
             .onClick(() => {
               this.deletePreferredLanguages.push($$.index);
-              this.preferredLanguages['dataArray'].splice($$.index, 1);
+              this.preferredLanguages.dataArray.splice($$.index, 1);
               this.preferredLanguages.notifyDataReload();
             })
         }
@@ -88,9 +86,13 @@ struct EditPreferred {
   @Builder
   PreferredView() {
     Column() {
-      LazyForEach(this.preferredLanguages, (item, index) => {
-        this.PreferredItem({ preferred: item, index: index });
-      }, item => item[0])
+      List() {
+        LazyForEach(this.preferredLanguages, (item: ESObject, index: number) => {
+          ListItem() {
+            this.PreferredItem(new Data(item, index));
+          }
+        }, (item: ESObject) => item[0])
+      }
     }
     .width('95%')
     .padding(10)
@@ -142,5 +144,20 @@ struct EditPreferred {
     .width('100%')
     .height('100%')
     .backgroundColor($r('app.color.f5f5f5'))
+  }
+}
+
+class PreferredLanguage {
+  key: string = '';
+  value: string = '';
+}
+
+class Data {
+  preferred: string = '';
+  index: number = 0;
+
+  constructor(preferred: string, index: number) {
+    this.preferred = preferred;
+    this.index = index;
   }
 }
