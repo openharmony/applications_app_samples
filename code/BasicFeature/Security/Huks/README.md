@@ -25,7 +25,7 @@ button, the encrypted password content will be displayed in the text box below, 
 
 1. This sample can only be run on standard-system devices.
 
-2. This sample has been adapted to the API version 10 SDK (4.0.10.10).
+2. This sample has been adapted to the API version 10 SDK (4.0.10.11).
 
 3. This sample requires DevEco Studio 3.1.1 Release (Build Version: 3.1.0.501) to compile and run.
 
