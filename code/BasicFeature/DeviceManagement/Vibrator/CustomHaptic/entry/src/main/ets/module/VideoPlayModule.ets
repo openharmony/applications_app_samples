@@ -20,11 +20,11 @@ import { changeOrientation, showTitleBar, playVibrateCustom, hideTitleBar } from
 @Entry
 @Component
 struct VideoPlayModule {
-  @State videoName: string = router.getParams()['videoName']
-  private pages: string = router.getParams()['pages']
-  @State videoSrc: Resource = router.getParams()['videoSrc']
-  @State previewUri: Resource = router.getParams()['previewUri']
-  private vibrateFileName: string = router.getParams()['vibrateFileName']
+  @State videoName: string = (router.getParams() as Record<string, string>)['videoName']
+  private pages: string = (router.getParams() as Record<string, string>)['pages']
+  @State videoSrc: Resource = (router.getParams() as Record<string, Resource>)['videoSrc']
+  @State previewUri: Resource = (router.getParams() as Record<string, Resource>)['previewUri']
+  private vibrateFileName: string = (router.getParams() as Record<string, string>)['vibrateFileName']
   @State portrait: boolean = true
   videoController: VideoController = new VideoController()
 

@@ -23,7 +23,8 @@ struct Index {
   @State barIndex: number = 0
   @State vibrationIntensity: string = 'L'
 
-  @Builder Discover() {
+  @Builder
+  Discover() {
 
     Column({ space: 5 }) {
       Text($r("app.string.index_find"))
@@ -40,7 +41,8 @@ struct Index {
     })
   }
 
-  @Builder My() {
+  @Builder
+  My() {
     Column({ space: 5 }) {
       Text($r("app.string.index_my"))
         .fontSize(16)

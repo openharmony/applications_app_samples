@@ -109,7 +109,7 @@ export default struct DisplayModule {
       Scroll() {
         Column() {
           Swiper(this.swiperController) {
-            ForEach(this.titleArr, (item) => {
+            ForEach(this.titleArr, (item: string) => {
               Column() {
                 if (this.currentIndex === TabIndex.RACING) {
                   RacingLayout({
@@ -153,7 +153,7 @@ export default struct DisplayModule {
                     .height("100%")
                 }
               }
-            }, item => item)
+            }, (item: string) => item)
           }
           .index(0)
           .autoPlay(false)
