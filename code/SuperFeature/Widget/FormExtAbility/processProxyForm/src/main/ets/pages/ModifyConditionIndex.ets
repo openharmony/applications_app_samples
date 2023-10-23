@@ -28,7 +28,7 @@ let context: common.UIAbilityContext;
 
 function updateCardDisplayContent(runningFormInfo: formInfo.RunningFormInfo): void {
   Logger.info(TAG, `updateCardDisplayContent bundle: ${runningFormInfo.bundleName}`);
-  let proxies = [
+  let proxies:Array<formBindingData.ProxyData> = [
     {
       key: 'cityName',
       subscriberId: conditionID

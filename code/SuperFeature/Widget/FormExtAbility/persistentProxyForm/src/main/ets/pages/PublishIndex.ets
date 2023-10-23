@@ -85,7 +85,7 @@ function publish(): void {
 @Entry
 @Component
 struct IndexSec {
-  private inputText: string;
+  private inputText: string = '';
 
   aboutToAppear() {
     context = getContext(this) as common.UIAbilityContext;
