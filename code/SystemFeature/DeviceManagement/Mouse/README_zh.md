@@ -57,7 +57,7 @@ entry/src/main/ets/
 
 1.本示例仅支持标准系统上运行,支持设备:RK3568；
 
-2.本示例已适配API version 10版本SDK，版本号：4.1.1.2，镜像版本号：Openharmony 4.1.1.1。当前支持的SDK版本链接如下：
+2.本示例已适配API version 10版本SDK，版本号：4.0.10.11，镜像版本号：Openharmony 4.0.10.11。当前支持的SDK版本链接如下：
 
 [SDK全量包下载链接](http://ci.openharmony.cn/workbench/cicd/dailybuild/detail/component)
 
