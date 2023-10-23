@@ -1,4 +1,4 @@
-# 蓝牙
+# 蓝牙（仅对系统应用开放）
 
 ### 介绍
 
@@ -39,7 +39,7 @@ entry/src/main/ets/
     * 发现设备：在foundDevices()函数中通过bluetooth.on('bluetoothDeviceFind')方法来监听设备发现事件，并且通过bluetooth.getPairedDevices()方法来更新已配对蓝牙地址，然后通过bluetooth.startBluetoothDiscovery()方法开启蓝牙扫描，去发现远端设备，并且通过bluetooth.setBluetoothScanMode()方法来被远端设备发现。
     * 蓝牙配对：通过bluetooth.on('pinRequired')方法来监听远端蓝牙设备的配对请求事件，点击配对执行bluetooth.setDevicePairingConfirmation(this.data.deviceId, true)方法，点击取消执行bluetooth.setDevicePairingConfirmation(this.data.deviceId, false)方法。
     * 取消配对：最后通过bluetooth.cancelPairedDevice()来断开指定的远端设备连接。
-  
+
 ### 相关权限
 
 [ohos.permission.USE_BLUETOOTH](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionuse_bluetooth)

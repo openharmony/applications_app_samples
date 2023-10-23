@@ -1,4 +1,4 @@
-# EnterpriseAdminExtensionAbility的创建与使用
+# EnterpriseAdminExtensionAbility的创建与使用（仅对系统应用开放）
 
 ### 介绍
 
