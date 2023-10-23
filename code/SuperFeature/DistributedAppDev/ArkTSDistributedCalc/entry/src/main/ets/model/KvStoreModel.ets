@@ -75,24 +75,24 @@ export class KvStoreModel {
   }
 
   setOnMessageReceivedListener(context: common.UIAbilityContext, msg: string, callback: Callback<string>) {
-    Logger.info(TAG, `setOnMessageReceivedListener: ${msg}`)
+    Logger.info(TAG, `setOnMessageReceivedListener: ${msg}`);
     this.createKvStore(context, () => {
-      Logger.info(TAG, `kvStore.on(dataChange) begin`)
+      Logger.info(TAG, `kvStore.on(dataChange) begin`);
       if (this.kvStore !== null) {
-        this.kvStore.on('dataChange', 1, (data) => {
-          Logger.debug(TAG, `dataChange, ${JSON.stringify(data)}`)
-          let entries = data.insertEntries.length > 0 ? data.insertEntries : data.updateEntries
+        this.kvStore!.on('dataChange', 1, (data) => {
+          Logger.debug(TAG, `dataChange, ${JSON.stringify(data)}`);
+          let entries = data.insertEntries.length > 0 ? data.insertEntries : data.updateEntries;
           for (let i = 0; i < entries.length; i++) {
             if (entries[i].key === msg) {
-              let value = entries[i].value.value.toString()
-              Logger.debug(TAG, `Entries receive msg :${msg}, value：${value}`)
-              callback(value)
-              return
+              let value = entries[i].value.value.toString();
+              Logger.debug(TAG, `Entries receive msg :${msg}, value：${value}`);
+              callback(value);
+              return;
             }
           }
         })
       }
-      Logger.info(TAG, `kvStore.on(dataChange) end`)
+      Logger.info(TAG, `kvStore.on(dataChange) end`);
     })
   }
 }
