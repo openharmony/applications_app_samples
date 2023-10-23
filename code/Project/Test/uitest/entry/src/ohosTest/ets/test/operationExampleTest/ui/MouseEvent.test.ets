@@ -101,7 +101,7 @@ export default function MouseEventTest() {
       await driver.delayMs(WAIT_UI_READYMS);
       let button = await driver.findComponent(ON.id('mouse_test'));
       let point = await button.getBoundsCenter();
-      await driver.mouseClick(point, MouseButton.MOUSE_BUTTON_RIGHT, 2017) //在100，100 鼠标右键点击
+      await driver.mouseClick(point, MouseButton.MOUSE_BUTTON_RIGHT, 2017) // 在100，100 鼠标右键点击
       let text = await driver.findComponent(ON.id('mouse_test_result'));
       expect(await text.getText() === 'right').assertTrue();
       done();
@@ -118,7 +118,7 @@ export default function MouseEventTest() {
       await driver.delayMs(WAIT_UI_READYMS);
       let button = await driver.findComponent(ON.id('mouse_test'));
       let point = await button.getBoundsCenter();
-      await driver.mouseClick(point, MouseButton.MOUSE_BUTTON_MIDDLE, 2017); //在100，100 鼠标右键点击
+      await driver.mouseClick(point, MouseButton.MOUSE_BUTTON_MIDDLE, 2017); // 在100，100 鼠标右键点击
       await driver.delayMs(WAIT_UI_READYMS);
       let text = await driver.findComponent(ON.id('mouse_test_result'));
       expect(await text.getText() === 'middle').assertTrue();
