@@ -68,7 +68,7 @@ export struct DeviceInfo {
 
   build() {
     List() {
-      ForEach(this.table, (item) => {
+      ForEach(this.table, (item: ListModel) => {
         ListItem() {
           RadiusColumn() {
             Row() {

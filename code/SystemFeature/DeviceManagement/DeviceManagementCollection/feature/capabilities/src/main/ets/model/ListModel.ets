@@ -14,17 +14,17 @@
  */
 
 export class ListModel {
-  title: String;
+  title: string;
   function: Function;
-  value: String;
+  value: string;
 
-  constructor(title: String, func: Function, value: String = '') {
+  constructor(title: string, func: Function, value: string = '') {
     this.title = title;
     this.function = func;
     this.value = value;
   }
 
-  setValue(value: String) {
+  setValue(value: string) {
     this.value = value;
   }
 
