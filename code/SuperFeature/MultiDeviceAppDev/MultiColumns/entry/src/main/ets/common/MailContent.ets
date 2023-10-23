@@ -31,9 +31,13 @@ export struct MailContent {
       Column() {
         Column() {
           Row() {
-            Image('')
-              .width(24)
-              .height(24)
+            if (this.currentBreakPoint === 'sm') {
+              Row().width(24).height(24)
+            } else {
+              Image($r('app.media.ic_expand'))
+                .width(24)
+                .height(24)
+            }
             Text('HHHxx UXD')
               .fontSize(20)
               .lineHeight(23)

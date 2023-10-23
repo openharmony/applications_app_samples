@@ -13,94 +13,47 @@
  * limitations under the License.
  */
 
-import mediaquery from '@ohos.mediaquery'
-
 export class BreakpointType<T> {
-  sm: T
-  md: T
-  lg: T
+  sm: T;
+  md: T;
+  lg: T;
 
   constructor(sm: T, md: T, lg: T) {
-    this.sm = sm
-    this.md = md
-    this.lg = lg
+    this.sm = sm;
+    this.md = md;
+    this.lg = lg;
   }
 
-  GetValue(currentBreakpoint: string) {
+  GetValue(currentBreakpoint: string): T | undefined {
     if (currentBreakpoint === 'sm') {
-      return this.sm
+      return this.sm;
     }
     if (currentBreakpoint === 'md') {
-      return this.md
+      return this.md;
     }
     if (currentBreakpoint === 'lg') {
-      return this.lg
+      return this.lg;
     }
-    return undefined
+    return undefined;
   }
 }
 
 export class SideBarMode<T> {
-  list: T
-  tabs: T
+  list: T;
+  tabs: T;
 
   constructor(list: T, tabs: T) {
-    this.list = list
-    this.tabs = tabs
+    this.list = list;
+    this.tabs = tabs;
   }
 
-  GetValue(currentSideBarMode: string) {
+  GetValue(currentSideBarMode: string): T | undefined {
     if (currentSideBarMode === 'list') {
-      return this.list
+      return this.list;
     }
     if (currentSideBarMode === 'tabs') {
-      return this.tabs
+      return this.tabs;
     }
-    return undefined
-  }
-}
-
-export class BreakpointSystem {
-  private currentBreakpoint: string = 'md'
-  private smListener: mediaquery.MediaQueryListener
-  private mdListener: mediaquery.MediaQueryListener
-  private lgListener: mediaquery.MediaQueryListener
-
-  private updateCurrentBreakpoint(breakpoint: string) {
-    if (this.currentBreakpoint !== breakpoint) {
-      this.currentBreakpoint = breakpoint
-      AppStorage.Set<string>('currentBreakpoint', this.currentBreakpoint)
-    }
-  }
-
-  private isBreakpointSM = (mediaQueryResult) => {
-    if (mediaQueryResult.matches) {
-      this.updateCurrentBreakpoint('sm')
-    }
-  }
-  private isBreakpointMD = (mediaQueryResult) => {
-    if (mediaQueryResult.matches) {
-      this.updateCurrentBreakpoint('md')
-    }
-  }
-  private isBreakpointLG = (mediaQueryResult) => {
-    if (mediaQueryResult.matches) {
-      this.updateCurrentBreakpoint('lg')
-    }
-  }
-
-  public register() {
-    this.smListener = mediaquery.matchMediaSync("(320vp<width<520vp)")
-    this.smListener.on("change", this.isBreakpointSM)
-    this.mdListener = mediaquery.matchMediaSync("(520vp<width<840vp)")
-    this.mdListener.on("change", this.isBreakpointMD)
-    this.lgListener = mediaquery.matchMediaSync("(840vp<width)")
-    this.lgListener.on("change", this.isBreakpointLG)
-  }
-
-  public unregister() {
-    this.smListener.off("change", this.isBreakpointSM)
-    this.mdListener.off("change", this.isBreakpointMD)
-    this.lgListener.off("change", this.isBreakpointLG)
+    return undefined;
   }
 }
