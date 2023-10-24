@@ -109,7 +109,8 @@ export default function appTest() {
       await confirm.click();
       await driver.delayMs(500);
       // 点击确定后，弹窗会关闭
-      expect(await startBtn.isFocused()).assertTrue();
+      let dialog = await driver.findComponent(ON.id('textDialog'));
+      expect(dialog === null).assertTrue();
       Logger.info(TAG, BUNDLE + 'StartCountdownTime_001 end');
     })
     // 重置定时器
