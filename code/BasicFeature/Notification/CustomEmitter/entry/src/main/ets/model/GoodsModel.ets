@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 
-export class GoodResponse {
+export interface GoodResponse {
   code: number
   data: Records
   error: string
 }
 
-class Info {
+interface Info {
   id: number
   uri: string
   title: string
@@ -28,35 +28,36 @@ class Info {
   price: number
 }
 
-class Records {
+interface Records {
   records: Array<Info>
   totalCount: number
 }
 
 export class TabTitleModel {
-  constructor(public uri: Resource, public selectedUri: Resource, public title: Resource) {
+  public uri: Resource
+  public selectedUri: Resource
+  public title: Resource
+
+  constructor(uri: Resource, selectedUri: Resource, title: Resource) {
     this.uri = uri
     this.selectedUri = selectedUri
     this.title = title
   }
 }
 
-export class ShopCartItemDataModel {
-  constructor(public id: number, public uri: Resource, public title: Resource, public label: Resource, public price: Resource) {
-    this.id = id
-    this.uri = uri
-    this.title = title
-    this.label = label
-    this.price = price
-  }
+export interface ShopCartItemDataModel {
+  id: number
+  uri: Resource
+  title: Resource
+  label: Resource
+  price: Resource
 }
-export class ProductDataModel {
-  constructor(public id: number, public uri: Resource, public title: Resource, public info: Resource, public label: Resource, public price: Resource) {
-    this.id = id
-    this.uri = uri
-    this.info = info
-    this.title = title
-    this.label = label
-    this.price = price
-  }
+
+export interface  ProductDataModel {
+  id: number
+  uri: Resource
+  title: Resource
+  info: Resource | undefined
+  label: Resource
+  price: Resource
 }

@@ -13,14 +13,17 @@
  * limitations under the License.
  */
 
-import UIAbility from '@ohos.app.ability.UIAbility'
-import Window from '@ohos.window'
-import { logger } from '@ohos/notification'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Window from '@ohos.window';
+import { logger } from '@ohos/notification';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Base from '@ohos.base';
 
 const TAG: string = 'MainAbility';
 
 export default class MainAbility extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     logger.info(TAG, 'Ability onCreate');
   }
 
@@ -31,12 +34,11 @@ export default class MainAbility extends UIAbility {
   onWindowStageCreate(windowStage: Window.WindowStage) {
     // Main window is created, set main page for this ability
     logger.info(TAG, 'Ability onWindowStageCreate');
-    windowStage.loadContent('pages/Index', (err, data) => {
+    windowStage.loadContent('pages/Index', (err: Base.BusinessError) => {
       if (err.code) {
         logger.info(TAG, 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
       }
-      logger.info(TAG, 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
     });
   }
 

@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { ProductDataModel } from '../model/GoodsModel'
-import { PRODUCT_DATA } from '../mock/ProductsData'
+import { ProductDataModel } from '../model/GoodsModel';
+import { PRODUCT_DATA } from '../mock/ProductsData';
 
 @Component
 export struct Cart {
@@ -41,7 +41,7 @@ export struct Cart {
       }
       .width('100%')
 
-      ForEach(this.shoppingCartGoodsListToCart ? this.shoppingCartGoodsListToCart : [], item => {
+      ForEach(this.shoppingCartGoodsListToCart ? this.shoppingCartGoodsListToCart : [], (item: number) => {
         Row() {
           Toggle({ type: ToggleType.Checkbox })
             .width(20)
