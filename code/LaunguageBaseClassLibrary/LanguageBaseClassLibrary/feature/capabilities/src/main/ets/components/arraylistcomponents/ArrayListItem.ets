@@ -19,7 +19,7 @@ import { Information } from '../../model/Information';
 export struct ArrayListItem {
   @ObjectLink information: Information;
   private index: number = 0;
-  private handleOnClick: (index: number) => void;
+  private handleOnClick: (index: number) => void = () => {};
 
   build() {
     Row() {

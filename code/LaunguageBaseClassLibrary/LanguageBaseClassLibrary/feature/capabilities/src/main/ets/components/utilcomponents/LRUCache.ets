@@ -60,7 +60,7 @@ export struct LRUCache {
   action = (key: string) => {
     if (this.isGet) {
       if (lruBuffer.contains(key)) {
-        let value = lruBuffer.get(key);
+        let value: string = lruBuffer.get(key) as string;
         this.resultText = `key = ${key},  value=${value}`;
       } else {
         this.resultText = `the key:${key} is not found`;
@@ -101,7 +101,7 @@ export struct LRUCache {
         break;
       case 5:
         this.isGet = true;
-        this.actionSheets = <string[]> lruBuffer.keys();
+        this.actionSheets = lruBuffer.keys() as string[];
         this.actionDialogController.open();
         break;
       case 6:
@@ -109,7 +109,7 @@ export struct LRUCache {
         break;
       case 7:
         this.isGet = false;
-        this.actionSheets = <string[]> lruBuffer.keys();
+        this.actionSheets = lruBuffer.keys() as string[];
         this.actionDialogController.open();
         break;
       case 8:

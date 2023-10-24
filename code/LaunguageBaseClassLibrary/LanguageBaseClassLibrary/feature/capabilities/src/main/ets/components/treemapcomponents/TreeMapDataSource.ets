@@ -26,11 +26,11 @@ export class TreeMapDataSource extends BaseDataSource {
     return this.arr.length;
   }
 
-  public getData(index: number): any {
-    let key = this.arr[index];
-    let value = this.dataArr.get(key);
+  public getData(index: number): KeyValuePair {
+    let key: string = this.arr[index];
+    let value: string = this.dataArr.get(key);
     this.dataArr.get(this.arr[index]);
-    let keyValuePair: KeyValuePair = { key: `${this.arr[index]}`, value: value };
+    let keyValuePair: KeyValuePair = new KeyValuePair(`${this.arr[index]}`, value);
     return keyValuePair;
   }
 

@@ -17,16 +17,16 @@ import { CustomDataSource, getStringArray } from '@ohos/common';
 
 @Component
 export struct GridOperation {
-  private operationRes: Resource = undefined;
-  private operationSource: CustomDataSource = new CustomDataSource([]);
-  private doOperation: (index: number) => void;
+  private operationRes: Resource | undefined = undefined;
+  @State operationSource: string[] = [];
+  private doOperation: (index: number) => void = () => {};
 
   build() {
     Column() {
       GridRow({ columns: 12, gutter: { x: 2, y: 5 },
         direction: GridRowDirection.Row
       }) {
-        LazyForEach(this.operationSource, (item, index) => {
+        ForEach(this.operationSource, (item: string, index: number) => {
           GridCol({ span: { xs: 6, sm: 6, md: 4, lg: 4 } }) {
             Row() {
               Button() {
@@ -44,7 +44,7 @@ export struct GridOperation {
             }
             .justifyContent(FlexAlign.Center)
           }
-        }, index => index)
+        }, (index: string) => index)
       }
     }
     .width('100%')
@@ -54,8 +54,7 @@ export struct GridOperation {
   async aboutToAppear() {
     if (this.operationRes) {
       let menuList = await getStringArray(this.operationRes);
-      this.operationSource['dataArray'] = menuList;
-      this.operationSource.notifyDataReload();
+      this.operationSource = menuList;
     }
   }
 }
