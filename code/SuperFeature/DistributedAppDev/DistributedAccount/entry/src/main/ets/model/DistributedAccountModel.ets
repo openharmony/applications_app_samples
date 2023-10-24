@@ -15,17 +15,20 @@
 
 import distributedAccount from '@ohos.account.distributedAccount';
 import Account from '../common/database/Account';
+import { BusinessError } from '@ohos.base';
 import DatabaseUtils from '../common/utils/DatabaseUtils';
 import Logger from './Logger';
+import { GlobalContext } from '../common/database/GlobalContext';
 
 const TAG: string = `[DistributedAccountModel]`
 
 let accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
 
 export default class DistributedAccountModel {
-  bind(localId, distributedAccountName, distributedAccountNickName, distributedAccountAvatar): Promise<void> {
+  bind(localId: number, distributedAccountName: string, distributedAccountNickName: string,
+       distributedAccountAvatar: string): Promise<void> {
     return new Promise((resolve, reject) => {
-      let accountInfo = {
+      let accountInfo: distributedAccount.DistributedInfo = {
         // 随机生成帐号id
         id: Math.floor(Math.random() * 10000 + 1000).toString(),
         name: distributedAccountName,
@@ -40,10 +43,10 @@ export default class DistributedAccountModel {
           account.distributedAccountName = accountInfo.name
           account.distributedAccountID = accountInfo.id
           account.localId = localId
-          DatabaseUtils.insertAccount(account, globalThis.rdbStore)
+          DatabaseUtils.insertAccount(account, GlobalContext.getrdbStore())
           Logger.info(TAG, 'setOsAccountDistributedInfoByLocalId  Success');
           resolve()
-        }).catch((err) => {
+        }).catch((err: BusinessError) => {
           Logger.error(TAG, "setOsAccountDistributedInfoByLocalId  err: " + JSON.stringify(err));
           reject(err)
         });
@@ -54,9 +57,9 @@ export default class DistributedAccountModel {
     })
   }
 
-  unBind(localId, distributedAccountID, distributedAccountName): Promise<void> {
+  unBind(localId: number, distributedAccountID: string, distributedAccountName: string): Promise<void> {
     return new Promise((resolve, reject) => {
-      let accountInfo = {
+      let accountInfo: distributedAccount.DistributedInfo = {
         id: distributedAccountID,
         name: distributedAccountName,
         event: 'Ohos.account.event.LOGOUT'
@@ -64,10 +67,10 @@ export default class DistributedAccountModel {
       try {
         accountAbility.setOsAccountDistributedInfoByLocalId(localId, accountInfo).then(() => {
           // 从数据表中删除
-          DatabaseUtils.deleteAccountData(localId, globalThis.rdbStore)
+          DatabaseUtils.deleteAccountData(localId, GlobalContext.getrdbStore())
           Logger.info(TAG, 'setOsAccountDistributedInfoByLocalId successfully');
           resolve()
-        }).catch((err) => {
+        }).catch((err: BusinessError) => {
           Logger.error(TAG, "setOsAccountDistributedInfoByLocalId exception: " + JSON.stringify(err));
           reject(err)
         });
@@ -84,7 +87,7 @@ export default class DistributedAccountModel {
         accountAbility.getOsAccountDistributedInfo().then((data) => {
           Logger.info(TAG, "getOsAccountDistributedInfo data: " + JSON.stringify(data));
           resolve(data)
-        }).catch((err) => {
+        }).catch((err: BusinessError) => {
           Logger.error(TAG, "getOsAccountDistributedInfo err: " + JSON.stringify(err));
           reject(err)
         });
@@ -101,7 +104,7 @@ export default class DistributedAccountModel {
         accountAbility.getOsAccountDistributedInfoByLocalId(localId).then((data) => {
           Logger.info(TAG, 'distributed information: ' + JSON.stringify(data));
           resolve(data)
-        }).catch((err) => {
+        }).catch((err: BusinessError) => {
           Logger.error(TAG, 'getOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
           reject(err)
         });

@@ -15,9 +15,9 @@
 
 @Component
 export struct ListItemComponent {
-  private title: string | Resource;
-  private endText: string | Resource;
-  private endArrowIsShow: boolean;
+  private title: string | Resource = '';
+  private endText: string | Resource = '';
+  private endArrowIsShow: boolean = false;
 
   aboutToAppear() {
     if (this.endText === 'true') {
