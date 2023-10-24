@@ -92,9 +92,9 @@ url: 'pages/SearchPage' })。
 
 ### 约束与限制
 
-1.本示例已适配API version 10版本SDK，版本号：4.0.10.11，镜像版本号: Openharmony 4.1.1.5。
+1.本示例已适配API version 10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0Release)。
 
-2.本示例需要使用DevEco Studio 4.0 Beta2 (Build Version: 4.0.0.400, built on August 2, 2023)及以上才可编译运行。
+2.本示例需要使用DevEco Studio 版本号(4.0Release)及以上版本才可编译运行。
 
 ### 下载
 
