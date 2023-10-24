@@ -16,6 +16,14 @@
 import notification from '@ohos.notificationManager'
 import { WantAgent } from '@ohos.wantAgent'
 
+interface NotificationRequestUtilResultType {
+  slotType: notification.SlotType,
+  id: number, // 通知id，默认为1
+  content: notification.NotificationContent
+  wantAgent?: WantAgent,
+  actionButtons?: notification.NotificationActionButton[]
+}
+
 class NotificationRequestUtil {
   /**
    * init basic NotificationRequest
@@ -58,7 +66,7 @@ class NotificationRequestUtil {
     if (notificationActionButtons.length > 2) { // 当前通知接口最大允许有两个按钮，超过两个按钮不展示
       actionButtons = notificationActionButtons.splice(0, 2)
     }
-    return {
+    let result: NotificationRequestUtilResultType = {
       slotType: notification.SlotType.CONTENT_INFORMATION,
       id: 1, // 通知id，默认为1
       content: notificationContent,

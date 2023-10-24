@@ -16,6 +16,14 @@
 import image from '@ohos.multimedia.image'
 import notification from '@ohos.notificationManager'
 
+interface NotificationContentUtilResultType {
+  contentType: notification.ContentType
+  normal?: notification.NotificationBasicContent
+  longText?: notification.NotificationLongTextContent
+  multiLine?: notification.NotificationMultiLineContent
+  picture?: notification.NotificationPictureContent
+}
+
 class NotificationContentUtil {
   /**
    * init basic notification content
