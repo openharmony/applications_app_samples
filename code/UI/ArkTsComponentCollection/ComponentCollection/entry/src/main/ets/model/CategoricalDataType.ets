@@ -22,7 +22,8 @@ export interface FirstLevelCategory {
 
 export interface SecondLevelCategory {
   title: Resource, // Second-level category titles
-  childNodes: ThirdLevelCategory[]
+  childNodes: ThirdLevelCategory[],
+  image?: Resource
 }
 
 export interface ThirdLevelCategory {

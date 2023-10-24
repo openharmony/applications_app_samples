@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 
-const BIG_SCALE = 1.34;
-const SMALL_SCALE = 0.75;
-
 import { IntroductionTitle } from '../../../../common/IntroductionTitle';
 import { TitleBar } from '../../../../common/TitleBar';
 import { getStringData } from '../../../../data/ResourceDataHandle';
 import ShowToast from '../../../../util/ShowToast';
+
+const BIG_SCALE = 1.34;
+const SMALL_SCALE = 0.75;
 
 @Entry
 @Component

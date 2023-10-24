@@ -19,7 +19,8 @@ import ShowToast from '../../../../util/ShowToast';
 import Logger from '../../../../util/Logger';
 import { TitleBar } from '../../../../common/TitleBar';
 
-@Extend(Column) function backgroundStyle() {
+@Extend(Column)
+function backgroundStyle() {
   .width('100%')
   .padding(12)
   .borderRadius(24)
@@ -29,23 +30,23 @@ import { TitleBar } from '../../../../common/TitleBar';
 @Entry
 @Component
 struct TextInputSample {
-  @State caretIndex: number = 0
-  @State inputLength: number = 0
-  @State hasFilterError: boolean = false
-  @State showPasswordIcon: boolean = true
-  @State inputType: InputType = InputType.Normal
-  @State inputContent: string = ''
-  @State typePlaceholder: Resource = $r('app.string.text_input_normal_type')
-  @State inputSelectContent: string = ''
-  @State startSelect: number = 0
-  @State endSelect: number = 0
-  @State maxSelect: number = 0
-  @State selects: string[] = ['0']
-  private select: number = 1
-  private maxLength: number = 12
-  private context: any = getContext(this)
-  private inputController: TextInputController = new TextInputController()
-  private inputSelectController: TextInputController = new TextInputController()
+  @State caretIndex: number = 0;
+  @State inputLength: number = 0;
+  @State hasFilterError: boolean = false;
+  @State showPasswordIcon: boolean = true;
+  @State inputType: InputType = InputType.Normal;
+  @State inputContent: string = '';
+  @State typePlaceholder: Resource = $r('app.string.text_input_normal_type');
+  @State inputSelectContent: string = '';
+  @State startSelect: number = 0;
+  @State endSelect: number = 0;
+  @State maxSelect: number = 0;
+  @State selects: string[] = ['0'];
+  private select: number = 1;
+  private maxLength: number = 12;
+  private context: Context = getContext(this);
+  private inputController: TextInputController = new TextInputController();
+  private inputSelectController: TextInputController = new TextInputController();
 
   build() {
     Column() {
@@ -197,6 +198,7 @@ struct TextInputSample {
               }
             })
           }
+
           IntroductionTitle({ introduction: $r('app.string.text_input_set_text_selection') })
           Column() {
             TextInput({ controller: this.inputSelectController })
@@ -213,9 +215,11 @@ struct TextInputSample {
               Text($r('app.string.text_input_set_text_selection_start_select'))
               Column() {
                 TextPicker({ range: this.selects, selected: this.select })
-                  .onChange((value: string, index: number) => {
-                    this.startSelect = parseInt(value)
-                    Logger.info(`Picker item changed, value: ${value}, index: ${index}`)
+                  .onChange((value: string | string[], index: number | number[]) => {
+                    if (!Array.isArray(value)) {
+                      this.startSelect = Number.parseInt(value);
+                      Logger.info(`Picker item changed, value: ${value}, index: ${index}`);
+                    }
                   })
               }
               .height(90)
@@ -224,9 +228,11 @@ struct TextInputSample {
               Text($r('app.string.text_input_set_text_selection_end_select'))
               Column() {
                 TextPicker({ range: this.selects, selected: this.select })
-                  .onChange((value: string, index: number) => {
-                    this.endSelect = parseInt(value)
-                    Logger.info(`Picker item changed, value: ${value}, index: ${index}`)
+                  .onChange((value: string | string[], index: number | number[]) => {
+                    if (!Array.isArray(value)) {
+                      this.endSelect = Number.parseInt(value);
+                      Logger.info(`Picker item changed, value: ${value}, index: ${index}`);
+                    }
                   })
                   .id('end_select')
               }

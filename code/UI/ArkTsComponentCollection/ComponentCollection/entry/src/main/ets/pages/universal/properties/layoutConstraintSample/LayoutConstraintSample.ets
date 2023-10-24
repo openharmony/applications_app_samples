@@ -61,7 +61,7 @@ struct LayoutExample {
       IntroductionTitle({ introduction: $r('app.string.layout_constrain_aspectRatio') })
       Row() {
         Row({ space: 5 }) {
-          ForEach(this.childrenOne, (item) => {
+          ForEach(this.childrenOne, (item: string) => {
             // 组件宽度 = 组件高度*1.5 = 90
             Text(item)
               .backgroundColor(0xbbb2cb)
@@ -74,7 +74,7 @@ struct LayoutExample {
               .fontSize(20)
               .aspectRatio(1.5)
               .width(60)
-          }, item => item)
+          }, (item: string) => item)
         }
         .size({ width: '100%', height: 100 })
         .backgroundColor(0xd2cab3)
@@ -94,7 +94,7 @@ struct LayoutExample {
             .id('layout_btn')
           // 通过变量设置Flex父容器宽度
           Flex({ justifyContent: FlexAlign.SpaceBetween }) {
-            ForEach(this.children, (item) => {
+            ForEach(this.children, (item: ChildInfo) => {
               // 使用displayPriority给子组件绑定显示优先级
               Text(item.text)
                 .width(50)
@@ -103,7 +103,7 @@ struct LayoutExample {
                 .textAlign(TextAlign.Center)
                 .backgroundColor(0xbbb2cb)
                 .displayPriority(item.priority)
-            }, item => item.text)
+            }, (item: ChildInfo) => item.text)
           }
           .width(this.container[this.currentIndex].size)
           .backgroundColor(0xd2cab3)

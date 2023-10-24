@@ -13,36 +13,44 @@
  * limitations under the License.
  */
 
-class Utils {
-  static rect_left
-  static rect_top
-  static rect_right
-  static rect_bottom
-  static rect_value
-
-  //获取组件所占矩形区域坐标
-  static getComponentRect(key) {
-    let strJson = getInspectorByKey(key)
-    let obj = JSON.parse(strJson)
-    let rectInfo = JSON.parse('[' + obj.$rect + ']')
-    this.rect_left = JSON.parse('[' + rectInfo[0] + ']')[0]
-    this.rect_top = JSON.parse('[' + rectInfo[0] + ']')[1]
-    this.rect_right = JSON.parse('[' + rectInfo[1] + ']')[0]
-    this.rect_bottom = JSON.parse('[' + rectInfo[1] + ']')[1]
-    return this.rect_value = {
-      "left": this.rect_left, "top": this.rect_top, "right": this.rect_right, "bottom": this.rect_bottom
-    }
-  }
-}
-
 import { getStringData } from '../../../../data/ResourceDataHandle';
 import { TitleBar } from '../../../../common/TitleBar';
 
-@Extend(Button) function buttonStyle() {
+@Extend(Button)
+function buttonStyle() {
   .fontSize(16)
   .height(40)
   .width('100%')
   .margin({ left: 24, right: 24, top: 12, bottom: 8 })
+}
+
+class RectValue {
+  left: number = 0;
+  top: number = 0;
+  right: number = 0;
+  bottom: number = 0;
+}
+
+class Utils {
+  static rect_left: number;
+  static rect_top: number;
+  static rect_right: number;
+  static rect_bottom: number;
+  static rect_value: RectValue;
+
+  //获取组件所占矩形区域坐标
+  static getComponentRect(key: string) {
+    let strJson = getInspectorByKey(key);
+    let obj: Record<string, Object> = JSON.parse(strJson);
+    let rectInfo: Array<string> = JSON.parse('[' + obj.$rect + ']');
+    Utils.rect_left = JSON.parse('[' + rectInfo[0] + ']')[0];
+    Utils.rect_top = JSON.parse('[' + rectInfo[0] + ']')[1];
+    Utils.rect_right = JSON.parse('[' + rectInfo[1] + ']')[0];
+    Utils.rect_bottom = JSON.parse('[' + rectInfo[1] + ']')[1];
+    return Utils.rect_value = {
+      left: Utils.rect_left, top: Utils.rect_top, right: Utils.rect_right, bottom: Utils.rect_bottom
+    }
+  }
 }
 
 @Entry
@@ -150,7 +158,9 @@ struct ComponentIDSample {
                   pressure: 1,
                   tiltX: 1,
                   tiltY: 1,
-                  sourceTool: SourceTool.Unknown
+                  sourceTool: SourceTool.Unknown,
+                  stopPropagation: () => {
+                  }
                 };
                 sendMouseEvent(mouseEvent); // 发送鼠标事件
               }, 2000)
@@ -170,7 +180,9 @@ struct ComponentIDSample {
                   deviceId: 0,
                   metaKey: 0,
                   timestamp: 0,
-                  intentionCode: 2
+                  intentionCode: 2,
+                  stopPropagation: () => {
+                  }
                 };
                 sendKeyEvent(keyEvent); // 发送按键事件
               }, 2000)

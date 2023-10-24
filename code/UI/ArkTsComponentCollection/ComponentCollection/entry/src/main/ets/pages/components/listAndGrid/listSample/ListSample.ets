@@ -18,7 +18,8 @@ import { TitleBar } from '../../../../common/TitleBar';
 import { LEFT_PADDING, RIGHT_PADDING } from '../../ComponentData';
 import { ArgumentsControlPanel, PropertiesControlPanel } from './ListControlPanel';
 
-@Extend(Column) function backgroundStyle() {
+@Extend(Column)
+function backgroundStyle() {
   .width('100%')
   .padding(12)
   .borderRadius(16)
@@ -26,7 +27,8 @@ import { ArgumentsControlPanel, PropertiesControlPanel } from './ListControlPane
   .justifyContent(FlexAlign.SpaceAround)
 }
 
-@Extend(Text) function listItemTextStyle() {
+@Extend(Text)
+function listItemTextStyle() {
   .fontSize(15)
   .borderRadius(8)
   .textAlign(TextAlign.Center)
@@ -41,7 +43,7 @@ struct ListSample {
   @State strokeWidth: number = 0;
   @State color: Resource = $r('app.color.background_blue');
   @State barState: BarState = BarState.Auto;
-  @State initIndex: number = globalThis.listSampleInitIndex === undefined ? 0 : globalThis.listSampleInitIndex;
+  @State initIndex: number = AppStorage.get<number>('listSampleInitIndex') || 0;
   @State edgeEffect: EdgeEffect = EdgeEffect.Spring;
   @State isChainAnimation: boolean = false;
   @State multiSelectable: boolean = false;
@@ -50,7 +52,8 @@ struct ListSample {
   private controller: Scroller = new Scroller();
   private numberArray: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-  @Styles listItemTextDynamicSize(){
+  @Styles
+  listItemTextDynamicSize(){
     .height(this.listDirection === Axis.Horizontal ? '80%' : '20%')
     .width(this.listDirection === Axis.Vertical ? '80%' : '20%')
   }
@@ -63,7 +66,7 @@ struct ListSample {
       // List
       Column() {
         List({ scroller: this.controller, initialIndex: this.initIndex, space: this.space }) {
-          ForEach(this.numberArray, (item, index) => {
+          ForEach(this.numberArray, (item: number, index: number) => {
             ListItem() {
               Text(item + ``)
                 .listItemTextStyle()
