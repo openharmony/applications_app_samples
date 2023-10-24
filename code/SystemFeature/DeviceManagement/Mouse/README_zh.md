@@ -57,11 +57,11 @@ entry/src/main/ets/
 
 1.本示例仅支持标准系统上运行,支持设备:RK3568；
 
-2.本示例已适配API version 10版本SDK，版本号：4.0.10.11，镜像版本号：Openharmony 4.0.10.11。当前支持的SDK版本链接如下：
+2.本示例已适配API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0 Release)。当前支持的SDK版本链接如下：
 
 [SDK全量包下载链接](http://ci.openharmony.cn/workbench/cicd/dailybuild/detail/component)
 
-3.本示例需要使用DevEco Studio 3.1.1 Release (3.1.0.501, built on June 20, 2023)及以上版本才可编译运行；
+3.本示例需要使用DevEco Studio 版本号(4.0 Release)及以上版本才可编译运行；
 
 4.本示例涉及使用系统接口@ohos.multimodalInput.pointer：setPointerSize，需要手动替换Full SDK才能编译通过，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)
 
