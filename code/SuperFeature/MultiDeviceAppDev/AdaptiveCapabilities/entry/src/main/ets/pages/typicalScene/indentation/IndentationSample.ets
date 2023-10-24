@@ -19,7 +19,7 @@ struct IndentationSample {
   build() {
     Row() {
       GridRow() {
-        ForEach([0, 1, 2, 4], (item, index) => {
+        ForEach([0, 1, 2, 4], (item:number, index) => {
           GridCol({
             span: { sm: 10, md: 8, lg: 8 },
             offset: {

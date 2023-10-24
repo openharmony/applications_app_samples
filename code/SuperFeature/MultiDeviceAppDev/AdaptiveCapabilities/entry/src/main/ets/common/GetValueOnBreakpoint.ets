@@ -15,19 +15,24 @@
 
 import window from '@ohos.window';
 
+export class Breakpoints {
+  xs: number = 0;
+  sm: number = 0;
+  md: number = 0;
+  lg: number = 0;
+}
+
 // 全局断点接口
-export default function getValueOnBreakpoint(breakpointsLabels: string[], breakpoints: {
-  xs: number,
-  sm: number,
-  md: number,
-  lg: number
-}): string {
+export default function getValueOnBreakpoint(breakpointsLabels: string[], breakpoints: Breakpoints): string {
   if (breakpointsLabels.length < 4) {
-    return;
+    return '';
   }
-  let windowObj: window.Window = AppStorage.Get('windowObj');
+  let windowObj: window.Window |undefined= AppStorage.Get('windowObj');
+  if(windowObj == undefined){
+    return '';
+  }
   let windowWidthVp = px2vp(windowObj.getWindowProperties().windowRect.width);
-  let newBreakpoint: string = undefined;
+  let newBreakpoint: string = '';
   if (windowWidthVp < breakpoints.sm) {
     newBreakpoint = breakpointsLabels[0];
   } else if (windowWidthVp < breakpoints.md) {
