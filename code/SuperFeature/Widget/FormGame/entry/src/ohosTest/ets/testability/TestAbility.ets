@@ -18,9 +18,12 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
 import { Hypium } from '@ohos/hypium';
 import testsuite from '../test/List.test';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import window from '@ohos.window';
 
 export default class TestAbility extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, "FormGame", "%{public}s", 'TestAbility onCreate')
   }
 
@@ -28,7 +31,7 @@ export default class TestAbility extends UIAbility {
     hilog.info(0x0000, "FormGame", "%{public}s", 'TestAbility onDestroy')
   }
 
-  onWindowStageCreate(windowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, "FormGame", "%{public}s", 'TestAbility onWindowStageCreate')
     windowStage.loadContent("testability/pages/index", (err, data) => {
       if (err.code) {
@@ -38,10 +41,8 @@ export default class TestAbility extends UIAbility {
       hilog.info(0x0000, "FormGame", "%{public}s", 'Succeeded in loading the content. Data: ' + JSON.stringify(data))
     });
 
-    var abilityDelegator: any
-    abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-    var abilityDelegatorArguments: any
-    abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
+    let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+    let abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
     hilog.info(0x0000, "FormGame", "%{public}s", 'start run testcase!!!')
     Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
   }
