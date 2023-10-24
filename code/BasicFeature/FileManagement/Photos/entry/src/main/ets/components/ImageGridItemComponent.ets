@@ -30,13 +30,13 @@ export struct ImageGridItemComponent {
   @Consume broadCast: Broadcast;
   @Consume  @Watch('restPress') isSelectedMode: boolean;
   @Consume @Watch('onShow') isShow: boolean;
-  @State thumbnail: PixelMap = undefined;
+  @State thumbnail: PixelMap | undefined = undefined;
   @State isFavourite: boolean = false;
   @State pressAnimScale: number = 1.0;
   @State isError: boolean = false;
   pageName = '';
-  lazyItem: LazyItem<UserFileDataItem>
-  mediaItem: UserFileDataItem;
+  mediaItem: UserFileDataItem = new UserFileDataItem('', [], '', 0);
+  lazyItem: LazyItem<UserFileDataItem> = new LazyItem(this.mediaItem, 0);
   isThird = false;
   private isEnteringPhoto = false;
   private isPush = false;

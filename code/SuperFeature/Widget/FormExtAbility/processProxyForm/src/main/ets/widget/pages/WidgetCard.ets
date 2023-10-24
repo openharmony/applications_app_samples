@@ -57,13 +57,13 @@ struct WidgetCard {
     .height(FULL_HEIGHT_PERCENT)
     .onClick(() => {
       class ParamsType {
-        message: string;
+        message: string = '';
       };
 
       class ActionType {
-        action: string;
-        abilityName: string;
-        params: ParamsType;
+        action: string = '';
+        abilityName: string = '';
+        params: ParamsType = { message: '' };
       };
       let action: ActionType = {
         action: ACTION_TYPE,

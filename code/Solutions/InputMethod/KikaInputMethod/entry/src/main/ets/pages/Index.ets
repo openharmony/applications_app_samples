@@ -24,7 +24,7 @@ import {
   symbolSourceListData,
   keySourceListType,
   sourceListType
-} from '../model/keyboardKeyData';
+} from '../model/KeyboardKeyData';
 import { KeyMenu } from '../components/KeyMenu';
 import { NumberMenu } from '../components/NumberMenu';
 import { StyleConfiguration, KeyStyle } from '../common/StyleConfiguration';
@@ -38,10 +38,7 @@ const TAG: string = 'index->';
 @Entry
 @Component
 struct Index {
-  private keyList: keySourceListType[] = keySourceListData;
-  private numberList: sourceListType[] = numberSourceListData;
-  private symbolList: sourceListType[] = symbolSourceListData;
-  @State menuType: number = MenuType.NORMAL;
+  @Provide menuType: number = MenuType.NORMAL;
   @StorageLink('inputPattern') @Watch('inputPatternChange') inputPattern: InputType = InputType.Normal
   @StorageLink('submenuType') submenuType: number = SubMenuType.NORMAL;
   @StorageLink('isLandscape') @Watch('change') isLandscape: boolean = false;
@@ -55,7 +52,7 @@ struct Index {
     return true;
   }
 
-  inputPatternChange() {
+  inputPatternChange(): void {
     if (this.inputPattern === InputType.Number || this.inputPattern === InputType.PhoneNumber) {
       this.menuType = MenuType.NUMBER;
     } else {
@@ -63,38 +60,28 @@ struct Index {
     }
   }
 
-  change() {
-    AppStorage.Set('inputStyle', StyleConfiguration.getInputStyle(this.isLandscape, this.isRkDevice, DEVICE_TYPE));
+  change(): void {
+    AppStorage.set('inputStyle', StyleConfiguration.getInputStyle(this.isLandscape, this.isRkDevice, DEVICE_TYPE));
   }
 
   build() {
     Stack() {
       Column() {
-        TopMenu({ inputStyle: $inputStyle, submenuType: $submenuType })
+        TopMenu()
         Column() {
           if (this.submenuType > SubMenuType.NORMAL) {
             if (this.submenuType === SubMenuType.MENU) {
-              Submenu({ submenuType: $submenuType,inputStyle: $inputStyle })
+              Submenu()
             } else {
-              EditView({inputStyle: $inputStyle});
+              EditView();
             }
           } else {
             if (this.menuType === MenuType.NORMAL) {
-              KeyMenu({
-                keyList: this.keyList,
-                menuType: $menuType,
-                inputStyle: $inputStyle
-              })
+              KeyMenu()
             } else if (this.menuType === MenuType.NUMBER) {
-              NumberMenu({
-                numberList: this.numberList,
-                menuType: $menuType,
-                inputStyle: $inputStyle })
+              NumberMenu()
             } else {
-              SymbolMenu({
-                symbolList: this.symbolList,
-                menuType: $menuType,
-                inputStyle: $inputStyle })
+              SymbolMenu()
             }
           }
         }

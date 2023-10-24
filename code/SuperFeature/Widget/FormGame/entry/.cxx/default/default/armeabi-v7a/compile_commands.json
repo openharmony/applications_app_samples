@@ -1,0 +1,13 @@
+[
+{
+  "directory": "D:/work/fork/applications_app_samples/code/SuperFeature/Widget/FormGame/entry/.cxx/default/default/armeabi-v7a",
+  "command": "C:\\Users\\x30053359\\AppData\\Local\\OpenHarmony\\Sdk\\10\\native\\llvm\\bin\\clang++.exe --target=arm-linux-ohos --gcc-toolchain=C:/Users/x30053359/AppData/Local/OpenHarmony/Sdk/10/native/llvm --sysroot=C:/Users/x30053359/AppData/Local/OpenHarmony/Sdk/10/native/sysroot  -Dinfoutil_EXPORTS -ID:/work/fork/applications_app_samples/code/SuperFeature/Widget/FormGame/entry/src/main/cpp -ID:/work/fork/applications_app_samples/code/SuperFeature/Widget/FormGame/entry/src/main/cpp/include  -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security -march=armv7a   -D__MUSL__ -O0 -g -fno-limit-debug-info  -fPIC   -o CMakeFiles\\infoutil.dir\\native_module.cpp.o -c D:\\work\\fork\\applications_app_samples\\code\\SuperFeature\\Widget\\FormGame\\entry\\src\\main\\cpp\\native_module.cpp",
+  "file": "D:\\work\\fork\\applications_app_samples\\code\\SuperFeature\\Widget\\FormGame\\entry\\src\\main\\cpp\\native_module.cpp"
+},
+
+{
+  "directory": "D:/work/fork/applications_app_samples/code/SuperFeature/Widget/FormGame/entry/.cxx/default/default/armeabi-v7a",
+  "command": "C:\\Users\\x30053359\\AppData\\Local\\OpenHarmony\\Sdk\\10\\native\\llvm\\bin\\clang++.exe --target=arm-linux-ohos --gcc-toolchain=C:/Users/x30053359/AppData/Local/OpenHarmony/Sdk/10/native/llvm --sysroot=C:/Users/x30053359/AppData/Local/OpenHarmony/Sdk/10/native/sysroot  -Dinfoutil_EXPORTS -ID:/work/fork/applications_app_samples/code/SuperFeature/Widget/FormGame/entry/src/main/cpp -ID:/work/fork/applications_app_samples/code/SuperFeature/Widget/FormGame/entry/src/main/cpp/include  -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security -march=armv7a   -D__MUSL__ -O0 -g -fno-limit-debug-info  -fPIC   -o CMakeFiles\\infoutil.dir\\napi_info_util.cpp.o -c D:\\work\\fork\\applications_app_samples\\code\\SuperFeature\\Widget\\FormGame\\entry\\src\\main\\cpp\\napi_info_util.cpp",
+  "file": "D:\\work\\fork\\applications_app_samples\\code\\SuperFeature\\Widget\\FormGame\\entry\\src\\main\\cpp\\napi_info_util.cpp"
+}
+]

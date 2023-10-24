@@ -48,4 +48,4 @@ export const COLLECTION_CATEGORIES: FirstLevelCategory[] =
     }
   ]
 
-export const fruitArray: Resource[] =[]
+export const fruitArray: Resource[] = []

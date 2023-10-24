@@ -17,11 +17,11 @@ import avSession from '@ohos.multimedia.avsession';
 
 export default class MediaData {
   queueItemDescFirst: avSession.AVMediaDescription = {
-    mediaId: '001',
+    assetId: '001',
     title: 'First music',
     subtitle: 'music_sub_name',
     description: 'music_description',
-    iconUri: 'http://www.xxx.com',
+    mediaImage: 'http://www.xxx.com',
     extras: {
       'extras': 'any'
     }
@@ -31,11 +31,11 @@ export default class MediaData {
     description: this.queueItemDescFirst
   };
   queueItemDescSecond: avSession.AVMediaDescription = {
-    mediaId: '002',
+    assetId: '002',
     title: 'Second music',
     subtitle: 'music_sub_name',
     description: 'music_description',
-    iconUri: 'http://www.xxx.com',
+    mediaImage: 'http://www.xxx.com',
     extras: {
       'extras': 'any'
     }
@@ -45,11 +45,11 @@ export default class MediaData {
     description: this.queueItemDescSecond
   };
   queueItemDescThird: avSession.AVMediaDescription = {
-    mediaId: '003',
+    assetId: '003',
     title: 'Third music',
     subtitle: 'music_sub_name',
     description: 'music_description',
-    iconUri: 'http://www.xxx.com',
+    mediaImage: 'http://www.xxx.com',
     extras: {
       'extras': 'any'
     }

@@ -32,6 +32,7 @@ struct SpanSample {
   @State decoration: TextDecorationType = TextDecorationType.None
   @State textCase: TextCase = TextCase.Normal
   @State decorationColor: Color = Color.Red
+  @State lineHeight: number = 3
 
   build() {
     Column() {
@@ -59,23 +60,45 @@ struct SpanSample {
           Column() {
             Text() {
               Span($r('app.string.span_text_decoration'))
-                .fontSize(20)
+                .font({
+                  size: 20
+                })
+                .height(50)
+                .lineHeight(this.lineHeight)
                 .decoration({
                   type: this.decoration, // Decoration type
                   color: this.decorationColor // Line color
                 })
 
               Span($r('app.string.span_text_spacing'))
-                .fontSize(20)
+                .font({
+                  size: 20
+                })
+                .lineHeight(this.lineHeight)
                 .letterSpacing(this.letterSpacing) // Letter spacing
             }
-            .height(50)
-
+            .height(60)
+            .fontSize(50)
             ChangePanel({
               letterSpacing: $letterSpacing,
               decoration: $decoration,
-              decorationColor: $decorationColor
+              decorationColor: $decorationColor,
+              lineHeight: $lineHeight
             })
+          }
+          .backgroundStyle()
+
+          IntroductionTitle({ introduction: $r('app.string.span_inherits_text_attribute') })
+          Column() {
+            Text() {
+              Span($r('app.string.span_does_not_inherit_text_attribute'))
+                .fontSize(20)
+                .height(50)
+
+              Span($r('app.string.span_inherits_text_attribute'))
+            }
+            .height(70)
+            .fontSize(10)
           }
           .backgroundStyle()
           .margin({ bottom: 80 })

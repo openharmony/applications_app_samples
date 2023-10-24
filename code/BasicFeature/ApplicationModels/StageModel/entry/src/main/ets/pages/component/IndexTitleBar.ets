@@ -15,7 +15,7 @@
 
 @Component
 export struct IndexTitleBar {
-  private textName: string | Resource
+  private textName?: string | Resource;
 
   build() {
     Row() {

@@ -113,14 +113,6 @@
       "value": "是否删除 "
     },
     {
-      "name": "login",
-      "value": "登录"
-    },
-    {
-      "name": "logout",
-      "value": "注销"
-    },
-    {
       "name": "tablet",
       "value": "平板"
     },
@@ -159,14 +151,6 @@
     {
       "name": "incredible",
       "value": "不可信"
-    },
-    {
-      "name": "is_login",
-      "value": "是否登录？"
-    },
-    {
-      "name": "is_logout",
-      "value": "是否注销？"
     }
   ]
 }

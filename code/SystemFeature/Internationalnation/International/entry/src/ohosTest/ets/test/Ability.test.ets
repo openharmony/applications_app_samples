@@ -62,30 +62,30 @@ async function checkScrollAndClickWithType(type: string, text: string) {
 }
 
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
-    beforeAll(function () {
+    beforeAll(() => {
       // Presets an action, which is performed only once before all test cases of the test suite start.
       // This API supports only one parameter: preset action function.
     })
-    beforeEach(function () {
+    beforeEach(() => {
       // Presets an action, which is performed before each unit test case starts.
       // The number of execution times is the same as the number of test cases defined by **it**.
       // This API supports only one parameter: preset action function.
     })
-    afterEach(function () {
+    afterEach(() => {
       // Presets a clear action, which is performed after each unit test case ends.
       // The number of execution times is the same as the number of test cases defined by **it**.
       // This API supports only one parameter: clear action function.
     })
-    afterAll(function () {
+    afterAll(() => {
       // Presets a clear action, which is performed after all test cases of the test suite end.
       // This API supports only one parameter: clear action function.
     })
     /**
      * 拉起应用
      */
-    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+    it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
       Logger.info(TAG, BUNDLE + 'StartAbility_001 begin');
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
@@ -104,7 +104,7 @@ export default function abilityTest() {
     /**
      * 测试语言和地区
      */
-    it(BUNDLE + 'TimeZone_001', 0, async (done) => {
+    it(BUNDLE + 'TimeZone_001', 0, async (done: Function) => {
       Logger.info(TAG, BUNDLE + 'TimeZone_001 begin');
       // 进入语言和地区页面
       await driver.delayMs(1000);
@@ -134,7 +134,7 @@ export default function abilityTest() {
     /**
      * 测试时区设置
      */
-    it(BUNDLE + 'TimeZone_002', 0, async (done) => {
+    it(BUNDLE + 'TimeZone_002', 0, async (done: Function) => {
       Logger.info(TAG, BUNDLE + 'TimeZone_002 begin');
       // 进入时间和日期页面
       await driver.delayMs(1000);
@@ -162,7 +162,7 @@ export default function abilityTest() {
     /**
      * 测试区域格式示例
      */
-    it(BUNDLE + 'TimeZone_003', 0, async (done) => {
+    it(BUNDLE + 'TimeZone_003', 0, async (done: Function) => {
       Logger.info(TAG, BUNDLE + 'TimeZone_003 begin');
       // 进入时间和日期页面
       await driver.delayMs(1000);

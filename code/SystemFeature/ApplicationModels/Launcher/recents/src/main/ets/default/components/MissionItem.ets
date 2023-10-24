@@ -21,33 +21,33 @@ import { EventConstants, LauncherAbilityManager, Logger, ResourceManager } from 
 
 
 const TAG: string = 'MissionItem'
-const MISSION_OPERATE = {
+const MISSION_OPERATE : ESObject = {
   CHANGE_LOCK: 0,
   CLEAR: 1
 }
 
 @Component
 export default struct MissionItem {
-  private index: number = -1
-  private missionInfo: MissionInfo = undefined
-  private context: any = undefined
-  @State snapShot: image.PixelMap | undefined = undefined
-  @State icon: string = ''
-  @State translateY: number = 0
+  private index: number = -1;
+  private missionInfo: MissionInfo = new MissionInfo();
+  private context: Context | undefined = undefined;
+  @State snapShot: image.PixelMap | undefined = undefined;
+  @State icon: string = '';
+  @State translateY: number = 0;
 
   aboutToAppear() {
-    this.context = getContext(this)
-    this.updateData()
+    this.context = getContext(this);
+    this.updateData();
   }
 
   async updateData() {
-    this.snapShot = await MissionModel.getSnapShot(this.missionInfo.missionId)
+    this.snapShot = await MissionModel.getSnapShot(this.missionInfo.missionId);
     ResourceManager.getInstance(this.context)
-      .getAppIconWithCache(this.missionInfo.appIconId, this.missionInfo.bundleName, this.iconLoadCallback, '')
+      .getAppIconWithCache(this.missionInfo.appIconId, this.missionInfo.bundleName, this.iconLoadCallback, '');
   }
 
   iconLoadCallback = (image: string) => {
-    this.icon = image
+    this.icon = image;
   }
 
   build() {
@@ -84,11 +84,11 @@ export default struct MissionItem {
     .translate({ y: this.translateY })
     .onClick(() => {
       CommonEvent.publish(EventConstants.EVENT_ENTER_HOME, () => {
-        Logger.info(TAG, `exit recents`)
+        Logger.info(TAG, `exit recents`);
       })
       setTimeout(() => {
         LauncherAbilityManager.getInstance(this.context)
-          .startLauncherAbility(this.missionInfo.abilityName, this.missionInfo.bundleName)
+          .startLauncherAbility(this.missionInfo.abilityName, this.missionInfo.bundleName);
       }, 100)
     })
   }

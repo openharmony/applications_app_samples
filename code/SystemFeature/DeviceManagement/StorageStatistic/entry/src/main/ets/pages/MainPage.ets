@@ -17,8 +17,9 @@
 import Logger from '../utils/Logger';
 import { QueryStorageData } from '../common/QueryStorageData';
 import { StorageList } from './StorageList';
-import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
+import abilityAccessCtrl, { PermissionRequestResult, Permissions } from '@ohos.abilityAccessCtrl';
 import common from '@ohos.app.ability.common';
+import { BusinessError } from '@ohos.base';
 
 const TAG: string = 'MainPage';
 const permissions: Array<Permissions> = ['ohos.permission.GET_INSTALLED_BUNDLE_LIST'];
@@ -33,9 +34,9 @@ struct MainPage {
     let context = getContext(this) as common.UIAbilityContext;
     let atManager = abilityAccessCtrl.createAtManager();
     try {
-      await atManager.requestPermissionsFromUser(context, permissions).then((data) => {
+      await atManager.requestPermissionsFromUser(context, permissions).then((data:PermissionRequestResult) => {
         Logger.info(TAG, `data: ${JSON.stringify(data)}`);
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         Logger.info(TAG, `err: ${JSON.stringify(err)}`);
       })
     } catch(err) {

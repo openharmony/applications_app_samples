@@ -14,11 +14,15 @@
     },
     {
       "name": "font_color_shallow",
-      "value": "#99000000"
+      "value": "#182431"
     },
     {
       "name": "font_color_dark",
       "value": "#000000"
+    },
+    {
+      "name": "font_color_red",
+      "value": "#FFD22C2C"
     },
     {
       "name": "tab_bar_select",

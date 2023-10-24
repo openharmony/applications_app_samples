@@ -124,8 +124,10 @@ struct DataPanelSample {
       name: $r('app.string.canvas_createPattern'),
       func: () => {
         this.context.save();
-        let pattern = this.context.createPattern(this.img, 'repeat');
-        this.context.fillStyle = pattern;
+        let pattern: CanvasPattern | null = this.context.createPattern(this.img, 'repeat');
+        if(pattern !== null){
+          this.context.fillStyle = pattern;
+        }
         this.context.fillRect(0, 0, 200, 200);
         this.context.restore();
       },

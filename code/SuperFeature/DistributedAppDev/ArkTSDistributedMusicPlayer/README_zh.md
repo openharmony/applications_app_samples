@@ -16,7 +16,7 @@
 
 音视频相关媒体业务能力接口[@ohos.multimedia.media](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-media.md )
 
-分布式设备管理能力接口(设备管理)，实现设备之间的kvStore对象的数据传输交互[@ohos.distributedHardware.deviceManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-device-manager.md )
+分布式设备管理能力接口(设备管理)，实现设备之间的kvStore对象的数据传输交互[@ohos.distributedDeviceManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-distributedDeviceManager.md )
 
 ### 效果预览
 | 首页                              |
@@ -94,11 +94,11 @@ deviceManager.createDeviceManager('ohos.samples.distributedmusicplayer') [源码
 
 2.本示例完整功能必须双端授予允许使用分布式协同能力，否则在只有发起端授权条件下，发起端会弹框提示错误。
 
-3.本示例为stage模型，已适配API version 9版本SDK，版本号：3.2.11.9；
+3.本示例为stage模型，已适配API version 10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0Release)。
 
-4.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)才可编译运行。
+4.本示例需要使用DevEco Studio 版本号(4.0Release)才可编译运行。
 
-5.本示例需要使用@ohos.distributedHardware.deviceManager系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。
+5.本示例需要使用@ohos.distributedDeviceManager系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。
 
 ### 下载
 

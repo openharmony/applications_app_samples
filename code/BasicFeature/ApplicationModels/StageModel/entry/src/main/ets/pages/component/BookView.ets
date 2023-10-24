@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+import DataShareResultSet from '@ohos.data.DataShareResultSet'
 import DateShareHelper from '../../feature/DataShareHelper'
 import Logger from '../../util/Logger'
 import { BookModel, getBooksFromResultSet } from '../../feature/BookModel'
@@ -21,8 +22,8 @@ const TAG = 'bookView'
 
 @Component
 export struct BookView {
-  @Link books: Array<BookModel>
-  private book: BookModel = null
+  @Link books: Array<BookModel>;
+  private book: BookModel = new BookModel();
 
   build() {
     Row() {
@@ -68,9 +69,9 @@ export struct BookView {
   }
 
   async delete(){
-    let data = await DateShareHelper.deleteBook(this.book)
+    let data: Promise<DataShareResultSet> = await DateShareHelper.deleteBook(this.book);
     if (data !== undefined) {
-      this.books = getBooksFromResultSet(data)
+      this.books = getBooksFromResultSet(data);
     }
   }
 }

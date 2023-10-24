@@ -65,7 +65,7 @@ struct BundlePage {
   }
 }
 
-@Extend(Button) function fancy (click) {
+@Extend(Button) function fancy (click: (event?: ClickEvent) => void) {
   .width('60%')
   .height(40)
   .align(Alignment.Center)

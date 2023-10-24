@@ -29,9 +29,10 @@ struct GridRowSample3 {
     GridRow({ columns: { sm: 4, md: 8, lg: 12 },
       gutter: { x: { sm: 8, md: 16, lg: 24 }, y: { sm: 8, md: 16, lg: 24 } }
     }) {
-      ForEach(this.bgColors, (bgColor) => {
+      ForEach(this.bgColors, (bgColor : ResourceColor) => {
         GridCol({ span: { sm: 2, md: 2, lg: 2 } }) {
           Row()
+            .width('100%')
             .backgroundColor(bgColor)
             .height(30)
         }

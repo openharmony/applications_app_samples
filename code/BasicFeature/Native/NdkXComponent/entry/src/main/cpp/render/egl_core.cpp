@@ -274,7 +274,7 @@ void EGLCore::Background()
     }
 }
 
-void EGLCore::Draw()
+void EGLCore::Draw(int& hasDraw)
 {
     flag_ = false;
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "EGLCore", "Draw");
@@ -332,11 +332,12 @@ void EGLCore::Draw()
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "Draw FinishDraw failed");
         return;
     }
+    hasDraw = 1;
 
     flag_ = true;
 }
 
-void EGLCore::ChangeColor()
+void EGLCore::ChangeColor(int& hasChangeColor)
 {
     if (!flag_) {
         return;
@@ -394,6 +395,7 @@ void EGLCore::ChangeColor()
     if (!FinishDraw()) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "ChangeColor FinishDraw failed");
     }
+    hasChangeColor = 1;
 }
 
 GLint EGLCore::PrepareDraw()

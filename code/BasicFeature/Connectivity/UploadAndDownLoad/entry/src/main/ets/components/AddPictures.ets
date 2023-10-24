@@ -70,7 +70,7 @@ export struct AddPictures {
   }
 
   addImages = (images: Array<string>) => {
-    images.forEach(item => {
+    images.forEach((item: string) => {
       if (!this.imageList.includes(item)) {
         this.imageList.push(item);
       }
@@ -98,9 +98,9 @@ export struct AddPictures {
             photoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
             photoSelectOptions.maxSelectNumber = 5;
             let photoPicker = new picker.PhotoViewPicker();
-            photoPicker.select(photoSelectOptions).then((photoSelectResult) => {
+            photoPicker.select(photoSelectOptions).then((photoSelectResult: picker.PhotoSelectResult) => {
               this.addImages(photoSelectResult.photoUris);
-            }).catch((err) => {
+            }).catch((err: Error) => {
               logger.info(TAG, `'PhotoViewPicker.select failed with err: ${JSON.stringify(err)}`);
             });
           } catch (err) {

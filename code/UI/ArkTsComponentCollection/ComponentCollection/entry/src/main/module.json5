@@ -66,6 +66,9 @@
       },
       {
         "name": 'ohos.permission.REQUIRE_FORM'
+      },
+      {
+        "name" : "ohos.permission.INTERNET"
       }
     ]
   }

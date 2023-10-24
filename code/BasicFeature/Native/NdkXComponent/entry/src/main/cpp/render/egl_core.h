@@ -26,9 +26,9 @@ public:
     ~EGLCore() {}
     bool EglContextInit(void* window, int width, int height);
     bool CreateEnvironment();
-    void Draw();
+    void Draw(int& hasDraw);
     void Background();
-    void ChangeColor();
+    void ChangeColor(int& hasChangeColor);
     void Release();
     void UpdateSize(int width, int height);
 

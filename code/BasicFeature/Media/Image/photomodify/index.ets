@@ -18,3 +18,5 @@ export { logger } from './src/main/ets/components/util/Logger';
 export { UpdatePage } from './src/main/ets/components/pages/UpdatePage';
 
 export { EditImage } from './src/main/ets/components/pages/EditImage';
+
+export { readImage } from './src/main/ets/components/util/MediaUtil';

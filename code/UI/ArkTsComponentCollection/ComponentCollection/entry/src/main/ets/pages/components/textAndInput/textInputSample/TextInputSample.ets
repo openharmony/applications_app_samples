@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,12 +13,14 @@
  * limitations under the License.
  */
 
-import { CommonItemSelect } from '../../../../common/AttributeModificationTool'
-import { IntroductionTitle } from '../../../../common/IntroductionTitle'
-import ShowToast from '../../../../util/ShowToast'
-import { TitleBar } from '../../../../common/TitleBar'
+import { CommonItemSelect } from '../../../../common/AttributeModificationTool';
+import { IntroductionTitle } from '../../../../common/IntroductionTitle';
+import ShowToast from '../../../../util/ShowToast';
+import Logger from '../../../../util/Logger';
+import { TitleBar } from '../../../../common/TitleBar';
 
-@Extend(Column) function backgroundStyle() {
+@Extend(Column)
+function backgroundStyle() {
   .width('100%')
   .padding(12)
   .borderRadius(24)
@@ -28,16 +30,23 @@ import { TitleBar } from '../../../../common/TitleBar'
 @Entry
 @Component
 struct TextInputSample {
-  @State caretIndex: number = 0
-  @State inputLength: number = 0
-  @State hasFilterError: boolean = false
-  @State showPasswordIcon: boolean = true
-  @State inputType: InputType = InputType.Normal
-  @State inputContent: string = ''
-  @State typePlaceholder: Resource = $r('app.string.text_input_normal_type')
-  private maxLength: number = 12
-  private context: any = getContext(this)
-  private inputController: TextInputController = new TextInputController()
+  @State caretIndex: number = 0;
+  @State inputLength: number = 0;
+  @State hasFilterError: boolean = false;
+  @State showPasswordIcon: boolean = true;
+  @State inputType: InputType = InputType.Normal;
+  @State inputContent: string = '';
+  @State typePlaceholder: Resource = $r('app.string.text_input_normal_type');
+  @State inputSelectContent: string = '';
+  @State startSelect: number = 0;
+  @State endSelect: number = 0;
+  @State maxSelect: number = 0;
+  @State selects: string[] = ['0'];
+  private select: number = 1;
+  private maxLength: number = 12;
+  private context: Context = getContext(this);
+  private inputController: TextInputController = new TextInputController();
+  private inputSelectController: TextInputController = new TextInputController();
 
   build() {
     Column() {
@@ -121,14 +130,12 @@ struct TextInputSample {
             .onEditChange(isEditing => {
               // You can get edit status by isEditing
             })
-            .enableKeyboardOnFocus(false)
 
           IntroductionTitle({ introduction: $r('app.string.text_input_placeholder_style') })
           TextInput({ placeholder: $r('app.string.text_input_placeholder') })
             .type(InputType.Normal)
             .placeholderFont({ size: '16fp', weight: FontWeight.Normal })
             .placeholderColor(Color.Red)
-            .enableKeyboardOnFocus(false)
 
           IntroductionTitle({ introduction: $r('app.string.text_input_filter') })
           TextInput({ placeholder: $r('app.string.text_input_only_input_english') })
@@ -141,7 +148,6 @@ struct TextInputSample {
             .onChange((value: string) => {
               this.hasFilterError = false
             })
-            .enableKeyboardOnFocus(false)
           Text(this.hasFilterError ? $r('app.string.text_input_only_input_english') : '')
             .width('100%')
             .height(this.hasFilterError ? 15 : 0)
@@ -158,7 +164,6 @@ struct TextInputSample {
               .onChange((value: string) => {
                 this.inputLength = value.length
               })
-              .enableKeyboardOnFocus(false)
             Text(`${this.inputLength}/${this.maxLength}`)
               .width('100%')
               .fontSize(16)
@@ -172,7 +177,6 @@ struct TextInputSample {
           Row() {
             TextInput({ controller: this.inputController })
               .layoutWeight(1)
-              .enableKeyboardOnFocus(false)
               .onChange((value: string) => {
                 this.caretIndex = value.length
                 this.inputContent = value
@@ -194,6 +198,58 @@ struct TextInputSample {
               }
             })
           }
+
+          IntroductionTitle({ introduction: $r('app.string.text_input_set_text_selection') })
+          Column() {
+            TextInput({ controller: this.inputSelectController })
+              .enableKeyboardOnFocus(false)
+              .id('test_input_to_select')
+              .onChange((value: string) => {
+                this.inputSelectContent = value
+                this.maxSelect = value.length
+                for (let i = 0;i < this.maxSelect; i++) {
+                  this.selects[i] = i.toString()
+                }
+              })
+            Row() {
+              Text($r('app.string.text_input_set_text_selection_start_select'))
+              Column() {
+                TextPicker({ range: this.selects, selected: this.select })
+                  .onChange((value: string | string[], index: number | number[]) => {
+                    if (!Array.isArray(value)) {
+                      this.startSelect = Number.parseInt(value);
+                      Logger.info(`Picker item changed, value: ${value}, index: ${index}`);
+                    }
+                  })
+              }
+              .height(90)
+              .width(100)
+
+              Text($r('app.string.text_input_set_text_selection_end_select'))
+              Column() {
+                TextPicker({ range: this.selects, selected: this.select })
+                  .onChange((value: string | string[], index: number | number[]) => {
+                    if (!Array.isArray(value)) {
+                      this.endSelect = Number.parseInt(value);
+                      Logger.info(`Picker item changed, value: ${value}, index: ${index}`);
+                    }
+                  })
+                  .id('end_select')
+              }
+              .height(90)
+              .width(100)
+
+              Button($r('app.string.text_area_set_text_selection'))
+                .id('button_to_select')
+                .onClick(() => {
+                  this.inputSelectController.setTextSelection(this.startSelect, this.endSelect)
+                  Logger.info(`startSelect: ${this.startSelect}, endSelect: ${this.endSelect}`)
+                })
+            }
+            .justifyContent(FlexAlign.SpaceAround)
+            .width('100%')
+          }
+          .backgroundStyle()
           .margin({ bottom: 70 })
         }
         .constraintSize({ minHeight: '100%' }) // Let the minHeight of the component cover screen at least

@@ -31,7 +31,7 @@ class IntlUtil {
     }
     let currentLocale = new Intl.Locale();
     let locale = i18n.System.getSystemLocale();
-    let options = {
+    let options: ESObject = {
       locale: locale,
       dateStyle: 'medium',
       timeStyle: 'medium',
@@ -77,7 +77,7 @@ class IntlUtil {
     return `GMT${offset > 0 ? '+' : '-'}${this.getTimeString(offset)}`;
   }
 
-  getTimeString(duration: number) {
+  getTimeString(duration: number): string {
     let time = duration;
     if (time < 0) {
       time = 0 - time;
@@ -87,6 +87,7 @@ class IntlUtil {
     if (hour > 0) {
       return `${this.fillNum(hour)}:${this.fillNum(minute)}`;
     }
+    return '';
   }
 
   getNumberFormatString() {
@@ -96,14 +97,15 @@ class IntlUtil {
     let options = numfmt.resolvedOptions();
     options.locale = locale;
     options.numberingSystem = currentLocale.numberingSystem;
-    options.currency = 'CNY';
-    options.currencySign = 'symbol';
-    options.localeMatcher = 'best fit';
-    options.style = 'decimal';
+    options.useGrouping = true;
     let params = [i18n.System.getSystemLanguage(), locale];
     let numberFormat = new Intl.NumberFormat(params, options);
-    options.style = 'currency';
-    let currencyFormat = new Intl.NumberFormat(params, options);
+    let currencyOptions = {
+      locale: locale,
+      currency: 'CNY',
+      style: 'currency'
+    };
+    let currencyFormat = new Intl.NumberFormat(params, currencyOptions);
     options.style = 'percent';
     let percentFormat = new Intl.NumberFormat(params, options);
     // 此处返回的只是一个示例，因此1234567，123456，78.9并不具有实际意义

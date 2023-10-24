@@ -16,6 +16,11 @@
 import { IntroductionTitle } from '../../../../common/IntroductionTitle'
 import { TitleBar } from '../../../../common/TitleBar'
 
+class Angele {
+  angle: number = 0;
+  rotateInfo!: Resource;
+}
+
 @Extend(Row) function rowStyle() {
   .padding(12)
   .width('100%')
@@ -27,22 +32,16 @@ import { TitleBar } from '../../../../common/TitleBar'
 @Entry
 @Component
 struct RotateSample {
-  private rotateAngele: Array<{
-    angle: number,
-    rotateInfo: Resource
-  }> =
+  private rotateAngele: Array<Angele> =
     [
       { angle: 0, rotateInfo: $r('app.string.rotate_before_image') },
       { angle: 15, rotateInfo: $r('app.string.rotate_image_angle') }
-    ]
-  private componentAngele: Array<{
-    angle: number,
-    rotateInfo: Resource
-  }> =
+    ];
+  private componentAngele: Array<Angele> =
     [
       { angle: 0, rotateInfo: $r('app.string.rotate_before_component') },
       { angle: 15, rotateInfo: $r('app.string.rotate_image_angle') }
-    ]
+    ];
 
   build() {
     Column() {
@@ -52,7 +51,7 @@ struct RotateSample {
           IntroductionTitle({ introduction: $r('app.string.rotate_photo') })
           // Image rotation
           Row() {
-            ForEach(this.rotateAngele, (item) => {
+            ForEach(this.rotateAngele, (item: Angele) => {
               Column() {
                 Image($r('app.media.ic_scenery1'))
                   .width(150)
@@ -78,7 +77,7 @@ struct RotateSample {
           IntroductionTitle({ introduction: $r('app.string.rotate_container') })
           // Container rotation
           Row() {
-            ForEach(this.componentAngele, (item) => {
+            ForEach(this.componentAngele, (item: Angele) => {
               Column() {
                 Column() {
                   this.TextInfo()

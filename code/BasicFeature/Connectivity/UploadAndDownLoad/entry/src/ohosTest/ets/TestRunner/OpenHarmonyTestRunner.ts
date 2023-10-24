@@ -13,19 +13,19 @@
  * limitations under the License.
  */
 
+import TestRunner from '@ohos.application.testRunner';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import type TestRunner from '@ohos.application.testRunner';
 import { logger } from '../util/Logger';
 
-let abilityDelegator = undefined;
-let abilityDelegatorArguments = undefined;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator = undefined;
+let abilityDelegatorArguments: AbilityDelegatorRegistry.AbilityDelegatorArgs = undefined;
 const TAG: string = 'OpenHarmonyTestRunner';
 
-async function onAbilityCreateCallback() {
+function onAbilityCreateCallback(): void {
   logger.info(TAG, 'onAbilityCreateCallback');
 }
 
-async function addAbilityMonitorCallback(err: any) {
+function addAbilityMonitorCallback(err: Error): void {
   logger.info(TAG, `addAbilityMonitorCallback : ${JSON.stringify(err) ?? ''} `);
 }
 
@@ -42,24 +42,21 @@ export default class OpenHarmonyTestRunner implements TestRunner {
     abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
     abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
     let testAbilityName = abilityDelegatorArguments.bundleName + '.TestAbility';
-    let lMonitor = {
+    let lMonitor: AbilityDelegatorRegistry.AbilityMonitor = {
       abilityName: testAbilityName,
       onAbilityCreate: onAbilityCreateCallback,
     };
     abilityDelegator.addAbilityMonitor(lMonitor, addAbilityMonitorCallback);
     let cmd = 'aa start -d 0 -a TestAbility' + ' -b ' + abilityDelegatorArguments.bundleName;
     let debug = abilityDelegatorArguments.parameters['-D'];
-    if (debug == 'true') {
+    if (debug === 'true') {
       cmd += ' -D';
     }
     logger.info(TAG, `cmd : ${cmd}`);
     abilityDelegator.executeShellCommand(cmd,
-      (err: Error, d: {
-        stdResult: string,
-        exitCode: number
-      }) => {
+      (err, d) => {
         logger.info(TAG, `executeShellCommand : err : ${JSON.stringify(err) ?? ''},data: ${d.stdResult ?? ''}, ${d.exitCode ?? ''}`);
-      });
+      })
     logger.info(TAG, 'OpenHarmonyTestRunner onRun end');
   }
 }

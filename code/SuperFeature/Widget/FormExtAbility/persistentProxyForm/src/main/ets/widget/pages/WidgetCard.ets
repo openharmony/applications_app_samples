@@ -22,8 +22,8 @@ const FULL_WIDTH_PERCENT: string = '100%';
 const FULL_HEIGHT_PERCENT: string = '100%';
 
 class ListType {
-  cityTemperature: string
-  cityName: string
+  cityTemperature: string = '';
+  cityName: string = '';
 }
 
 @Entry(storage)
@@ -61,13 +61,13 @@ struct WidgetCard {
     .height(FULL_HEIGHT_PERCENT)
     .onClick(() => {
       class ParamsType {
-        message: string;
+        message: string = '';
       };
 
       class ActionType {
-        action: string;
-        abilityName: string;
-        params: ParamsType;
+        action: string = '';
+        abilityName: string = '';
+        params: ParamsType = { message: '' };
       };
       let action: ActionType = {
         action: ACTION_TYPE,

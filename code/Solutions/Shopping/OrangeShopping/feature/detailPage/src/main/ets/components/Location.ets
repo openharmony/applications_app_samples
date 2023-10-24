@@ -13,20 +13,21 @@
 * limitations under the License.
 */
 
-import { CITY_DATA, HOT_CITY, TAB_VALUE } from '../mock/DetailData'
+import { CityType, CITY_DATA, HOT_CITY, TAB_VALUE } from '../mock/DetailData';
 
 @Component
 export struct Location {
-  @Link isPanel: boolean
-  private scroller: Scroller = new Scroller()
-  @State stabIndex: number = 0
-  @State location: boolean = true
-  @Link currentLocation: string
+  @Link isPanel: boolean;
+  private scroller: Scroller = new Scroller();
+  @State stabIndex: number = 0;
+  @State location: boolean = true;
+  @Link currentLocation: string;
 
-  @Builder cityList(city: any) {
+  @Builder
+  cityList(city: ESObject) {
     if (this.currentLocation === city.name) {
       List() {
-        ForEach(city.city, twoCity => {
+        ForEach(city.city, (twoCity: ESObject) => {
           ListItem() {
             Column() {
               Text(`${twoCity}`)
@@ -34,7 +35,7 @@ export struct Location {
                 .height(30)
                 .fontSize(14)
                 .onClick(() => {
-                  this.currentLocation = city.name + '/' + twoCity
+                  this.currentLocation = city.name + '/' + twoCity;
                 })
             }
           }
@@ -54,7 +55,7 @@ export struct Location {
           .height(6)
           .margin({ top: 10 })
           .onClick(() => {
-            this.isPanel = !this.isPanel
+            this.isPanel = !this.isPanel;
           })
       }
       .width('100%')
@@ -109,7 +110,7 @@ export struct Location {
             .margin({ top: 14, bottom: 14 })
 
             Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center, wrap: FlexWrap.Wrap }) {
-              ForEach(HOT_CITY, (item) => {
+              ForEach(HOT_CITY, (item: string) => {
                 // 这里规定每行占四个城市，使用25%
                 Text(`${item}`)
                   .margin({ bottom: 16 })
@@ -118,14 +119,14 @@ export struct Location {
                   .maxLines(3)
                   .fontColor($r('app.color.blank'))
                   .onClick(() => {
-                    this.currentLocation = item
+                    this.currentLocation = item;
                   })
               })
             }
             .width('100%')
 
             List({ space: 14, initialIndex: 0, scroller: this.scroller }) {
-              ForEach(CITY_DATA, (index) => {
+              ForEach(CITY_DATA, (index: CityType) => {
                 ListItem() {
                   Column() {
                     Text(`${index.name}`)
@@ -134,16 +135,16 @@ export struct Location {
                       .fontColor($r('app.color.blank'))
                       .width('100%')
 
-                    ForEach(index.city, item => {
+                    ForEach(index.city, (item: ESObject) => {
                       Text(`${item.name === undefined ? item : item.name}`)
                         .height(30)
                         .fontSize(14)
                         .width('100%')
                         .onClick(() => {
                           if (item.name === undefined) {
-                            this.currentLocation = item
+                            this.currentLocation = item;
                           } else {
-                            this.currentLocation = item.name
+                            this.currentLocation = item.name;
                           }
                         })
                       this.cityList(item)
@@ -158,7 +159,7 @@ export struct Location {
             .divider({ strokeWidth: 2, color: $r('app.color.divider'), startMargin: 0, endMargin: 20 })
             .listDirection(Axis.Vertical)
             .onScrollIndex((firstIndex: number, lastIndex: number) => {
-              this.stabIndex = firstIndex
+              this.stabIndex = firstIndex;
             })
           }
           .alignItems(HorizontalAlign.Start)
@@ -173,7 +174,7 @@ export struct Location {
             .selectedFont({ size: 16, weight: FontWeight.Bolder })
             .popupFont({ size: 30, weight: FontWeight.Bolder })
             .alignStyle(this.location ? IndexerAlign.Right : IndexerAlign.Left)
-            .onSelected((tabIndex: number) => {
+            .onSelect((tabIndex: number) => {
               this.scroller.scrollToIndex(tabIndex)
             })
         }

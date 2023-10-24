@@ -1,0 +1,3 @@
+D:/work/fork/applications_app_samples/code/SuperFeature/Widget/FormGame/entry/.cxx/default/default/armeabi-v7a/CMakeFiles/infoutil.dir
+D:/work/fork/applications_app_samples/code/SuperFeature/Widget/FormGame/entry/.cxx/default/default/armeabi-v7a/CMakeFiles/edit_cache.dir
+D:/work/fork/applications_app_samples/code/SuperFeature/Widget/FormGame/entry/.cxx/default/default/armeabi-v7a/CMakeFiles/rebuild_cache.dir

@@ -274,7 +274,7 @@ export class ProviderFeature {
     that.MetadataPixelMapArray.push(await that.saveRawFileToPixelMap('second_with_background.png'));
     that.MetadataPixelMapArray.push(await that.saveRawFileToPixelMap('third_with_background.png'));
     for (let i = 0;i < that.queueItemPixelMapArray.length; i++) {
-      that.queueItems[i].description.icon = that.queueItemPixelMapArray[i];
+      that.queueItems[i].description.mediaImage = that.queueItemPixelMapArray[i];
       that.avMetadataList[i].mediaImage = that.MetadataPixelMapArray[i];
     }
     this.currentPlayItemLink.set(this.queueItems[0]);

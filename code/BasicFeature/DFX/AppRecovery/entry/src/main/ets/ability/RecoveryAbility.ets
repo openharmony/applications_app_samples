@@ -19,24 +19,27 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import Want from '@ohos.app.ability.Want';
 
 import Logger from '../common/Logger'
+import { CurActiveAbility } from '../common/CurActiveAbility';
 
 const TAG: string = 'SecondAbility';
 
 export default class RecoveryAbility extends UIAbility {
   storage: LocalStorage = new LocalStorage();
 
-  onCreate(want: Want, launchParam) {
+  onCreate(want: Want, launchParam:AbilityConstant.LaunchParam): void  {
     Logger.info(TAG, 'onCreate');
     this.storage.setOrCreate<string>('launchReason', launchParam.launchReason.toString());
     this.storage.setOrCreate<string>('lastExitReason', launchParam.lastExitReason.toString());
-    AppStorage.SetOrCreate<string>('RecoverAbility', want.parameters['RecoverAbility'] as string);
+    if (want.parameters !== undefined) {
+      AppStorage.SetOrCreate<string>('RecoverAbility', want.parameters['RecoverAbility'] as string);
+    }
   }
 
-  onDestroy() {
+  onDestroy(): void {
     Logger.info(TAG, 'onDestroy');
   }
 
-  onWindowStageCreate(windowStage: Window.WindowStage) {
+  onWindowStageCreate(windowStage: Window.WindowStage):void {
     Logger.info(TAG, 'onWindowStageCreate');
     windowStage.loadContent('pages/RecoveryPage', this.storage, (err, data) => {
       if (err.code) {
@@ -46,22 +49,22 @@ export default class RecoveryAbility extends UIAbility {
     });
   }
 
-  onWindowStageDestroy() {
+  onWindowStageDestroy(): void {
     Logger.info(TAG, 'onWindowStageDestroy');
   }
 
-  onForeground() {
+  onForeground(): void {
     Logger.info(TAG, 'onForeground');
-    globalThis.curActiveAbility = this;
+    CurActiveAbility.GetInstance().SetGlobalAbility(this);
   }
 
-  onSaveState(reason, wantParam: { [key: string]: any }) {
+  onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>): AbilityConstant.OnSaveResult {
     // No need to save state
     Logger.info(TAG, 'onSaveState');
     return AbilityConstant.OnSaveResult.ALL_REJECT;
   }
 
-  onBackground() {
+  onBackground(): void {
     // Ability has back to background
     Logger.info(TAG, 'onBackground');
   }

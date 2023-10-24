@@ -13,25 +13,25 @@
 * limitations under the License.
 */
 
-import router from '@ohos.router'
-import { Information } from '../components/Information'
-import { Choice } from '../components/Choice'
-import { Valuation } from '../components/Valuation'
-import { BottomNavigation } from '../components/BottomNavigation'
-import { ProductDataModel } from '../model/GoodsModel'
+import router from '@ohos.router';
+import { Information } from '../components/Information';
+import { Choice } from '../components/Choice';
+import { Valuation } from '../components/Valuation';
+import { BottomNavigation } from '../components/BottomNavigation';
+import { ProductDataModel } from '../model/GoodsModel';
 
 @Entry
 @Component
 struct DetailPage {
-  @State isPanel: boolean = false
-  @State goodDetailData: ProductDataModel = router.getParams()['goodItem']
-  @State currentLocation: string = ''
-  @State swiperList: Array<number> = [0,0,0,0]
-  @State recommend: string = ''
-  @State commodity: string = ''
-  @State swiperIndex: number = 0
-  @StorageProp('curBp') curBp: string = 'md'
-  private scroller: Scroller = new Scroller()
+  @State isPanel: boolean = false;
+  @State goodDetailData: ProductDataModel = (router.getParams() as Record<string, ProductDataModel>)['goodItem'];
+  @State currentLocation: string = '';
+  @State swiperList: Array<number> = [0,0,0,0];
+  @State recommend: string = '';
+  @State commodity: string = '';
+  @State swiperIndex: number = 0;
+  @StorageProp('curBp') curBp: string = 'md';
+  private scroller: Scroller = new Scroller();
 
   build() {
     Stack({ alignContent: Alignment.BottomStart }) {
@@ -39,7 +39,7 @@ struct DetailPage {
         Column({ space: 12 }) {
           Stack({ alignContent: Alignment.BottomEnd }) {
             Swiper() {
-              ForEach(this.swiperList, item => {
+              ForEach(this.swiperList, () => {
                 Column() {
                   Image(this.goodDetailData.uri)
                     .id(this.goodDetailData.id.toString())
@@ -105,9 +105,9 @@ struct DetailPage {
   }
 
   aboutToAppear() {
-    let context: Context = getContext(this)
-    this.currentLocation = context.resourceManager.getStringSync($r('app.string.address').id)
-    this.recommend = context.resourceManager.getStringSync($r('app.string.recommend').id)
-    this.commodity = context.resourceManager.getStringSync($r('app.string.commodity').id)
+    let context: Context = getContext(this);
+    this.currentLocation = context.resourceManager.getStringSync($r('app.string.address').id);
+    this.recommend = context.resourceManager.getStringSync($r('app.string.recommend').id);
+    this.commodity = context.resourceManager.getStringSync($r('app.string.commodity').id);
   }
 }

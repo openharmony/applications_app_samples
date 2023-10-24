@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
-import { GoodResponse, ShopCartItemDataModel } from '../model/GoodsModel'
-import { PRODUCTS_Data, SHOP_CART_ITEM_DATA } from '../mock/ProductsData'
+import router from '@ohos.router';
+import { GoodResponse, ShopCartItemDataModel } from '../model/GoodsModel';
+import { PRODUCTS_Data, SHOP_CART_ITEM_DATA } from '../mock/ProductsData';
 
 @Component
 export struct FavorGoodList {
-  private url: string
-  @State productsData: GoodResponse = PRODUCTS_Data
+  private url: string = '';
+  @State productsData: GoodResponse = PRODUCTS_Data;
 
   @Builder GoodItem(shopItem: ShopCartItemDataModel) {
     Column() {
@@ -59,20 +59,20 @@ export struct FavorGoodList {
       router.push({
         url: 'pages/Detail',
         params: { goodId: shopItem.id, goodItem: shopItem }
-      })
+      });
     })
   }
 
   build() {
     GridRow({ gutter: { x: vp2px(8), y: vp2px(8) } }) {
-      ForEach(SHOP_CART_ITEM_DATA, item => {
+      ForEach(SHOP_CART_ITEM_DATA, (item: ShopCartItemDataModel) => {
         GridCol({ span: { sm: 6, md: 6, lg: 4 } }) {
-          this.GoodItem(item)
+          this.GoodItem(item);
         }
-      }, (item, index) => item.toString() + index)
+      }, (item: ShopCartItemDataModel, index: number) => item.toString() + index)
     }
     .onAreaChange((oldArea: Area, newArea: Area) => {
-      AppStorage.SetOrCreate('goodsListHeight', newArea.height as number)
+      AppStorage.SetOrCreate('goodsListHeight', newArea.height as number);
     })
   }
 }

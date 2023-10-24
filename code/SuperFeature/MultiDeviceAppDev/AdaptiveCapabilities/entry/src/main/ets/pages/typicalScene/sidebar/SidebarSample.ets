@@ -15,9 +15,9 @@
 
 import { BreakpointSystem } from '../../../common/BreakpointSystem'
 
-type ImageData = {
-  label: string,
-  imageSrc: Resource
+class ImageData {
+  label: string = '';
+  imageSrc: Resource = $r("app.media.my_image_moon");
 }
 
 const images: ImageData[] = [

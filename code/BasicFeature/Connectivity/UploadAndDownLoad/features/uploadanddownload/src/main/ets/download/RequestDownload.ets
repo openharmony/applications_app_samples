@@ -22,9 +22,9 @@ import { TOAST_BOTTOM, TASK_MAX } from '../utils/Constants';
 const TAG: string = 'RequestDownload';
 
 class RequestDownload {
-  private context: common.UIAbilityContext = undefined;
+  private context: common.UIAbilityContext | undefined = undefined;
   private waitList: Array<string[]> = [];
-  private downloadTask: request.agent.Task = undefined;
+  private downloadTask: request.agent.Task | undefined = undefined;
 
   constructor() {
     setInterval(() => {
@@ -35,7 +35,7 @@ class RequestDownload {
   async downloadFilesBackground(folder: string, files: Array<string>) {
     logger.info(TAG, 'downloadFiles');
     this.context = getContext(this) as common.UIAbilityContext;
-    files.forEach(item => {
+    files.forEach((item: string) => {
       this.waitList.push([folder, item]);
     });
   }
@@ -45,7 +45,7 @@ class RequestDownload {
       state: request.agent.State.RUNNING
     });
     if (tasks.length < TASK_MAX && this.waitList.length > 0) {
-      let downloadList = [];
+      let downloadList: Array<string[]> = [];
       if (this.waitList.length <= TASK_MAX - tasks.length) {
         downloadList = this.waitList;
         this.waitList = [];
@@ -59,6 +59,9 @@ class RequestDownload {
   }
 
   async createBackgroundTask(downloadList: Array<string[]>) {
+    if (this.context === undefined) {
+      return;
+    }
     for (let i = 0; i < downloadList.length; i++) {
       try {
         let splitUrl = downloadList[i][1].split('//')[1].split('/');
@@ -76,7 +79,7 @@ class RequestDownload {
         let downTask = await request.agent.create(this.context, downloadConfig);
         await downTask.start();
       } catch (err) {
-        logger.error(TAG, `task  err.code  = ${err.code} , msg= ${err.message}`);
+        logger.error(TAG, `task  err, err  = ${JSON.stringify(err)}`);
         this.waitList.push(downloadList[i]);
       }
     }
@@ -111,7 +114,7 @@ class RequestDownload {
       this.downloadTask = await request.agent.create(context, downloadConfig);
       this.downloadTask.on('progress', (progress: request.agent.Progress) => {
         logger.info(TAG, `progress,  progress = ${progress.processed} ${progress.state}`);
-        let processed = parseInt(progress.processed.toString());
+        let processed = Number(progress.processed.toString()).valueOf();
         let size = progress.sizes[0];
         let process: number = Math.floor(processed / size * 100);
         if (process < 100) {
@@ -124,14 +127,16 @@ class RequestDownload {
         this.deleteTask();
       })
       this.downloadTask.on('failed', async (progress: request.agent.Progress) => {
-        let taskInfo = await request.agent.show(this.downloadTask.tid);
-        logger.info(TAG, `fail,  resean = ${taskInfo.reason}, faults = ${JSON.stringify(taskInfo.faults)}`);
+        if (this.downloadTask) {
+          let taskInfo = await request.agent.show(this.downloadTask.tid);
+          logger.info(TAG, `fail,  resean = ${taskInfo.reason}, faults = ${JSON.stringify(taskInfo.faults)}`);
+        }
         callback(100, false);
         this.deleteTask();
       })
       await this.downloadTask.start();
     } catch (err) {
-      logger.error(TAG, `task  err.code  = ${err.code} , msg= ${err.message}`);
+      logger.error(TAG, `task  err, err  = ${JSON.stringify(err)}`);
       callback(100, false);
     }
   }
@@ -143,9 +148,8 @@ class RequestDownload {
         this.downloadTask.off('completed');
         this.downloadTask.off('failed');
         await request.agent.remove(this.downloadTask.tid);
-      }
-      catch (err) {
-        logger.info(TAG, `deleteTask fail,err= ${JSON.stringify(err)}`);
+      } catch (err) {
+        logger.info(TAG, `deleteTask fail, err= ${JSON.stringify(err)}`);
       }
     }
 

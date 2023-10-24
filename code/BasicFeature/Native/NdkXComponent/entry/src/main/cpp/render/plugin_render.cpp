@@ -291,8 +291,7 @@ napi_value PluginRender::NapiDrawPattern(napi_env env, napi_callback_info info)
     std::string id(idStr);
     PluginRender* render = PluginRender::GetInstance(id);
     if (render != nullptr) {
-        render->eglCore_->Draw();
-        hasDraw_ = 1;
+        render->eglCore_->Draw(hasDraw_);
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender", "render->eglCore_->Draw() executed");
     }
     return nullptr;
@@ -349,8 +348,7 @@ void PluginRender::OnTouchEvent(OH_NativeXComponent* component, void* window)
     std::string id(idStr);
     PluginRender* render = PluginRender::GetInstance(id);
     if (render != nullptr && touchEvent.type == OH_NativeXComponent_TouchEventType::OH_NATIVEXCOMPONENT_UP) {
-        render->eglCore_->ChangeColor();
-        hasChangeColor_ = 1;
+        render->eglCore_->ChangeColor(hasChangeColor_);
     }
     float tiltX = 0.0f;
     float tiltY = 0.0f;

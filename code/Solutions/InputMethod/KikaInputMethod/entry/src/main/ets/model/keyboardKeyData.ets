@@ -23,7 +23,7 @@ export interface sourceListType {
   content: string
 }
 
-export enum MenuKey{
+export enum MenuKey {
   NUMBER_KEY = '?123',
   NORMAL_KEY = 'ABC',
   SPECIAL_KEY = '=/\<'
@@ -346,5 +346,5 @@ export let symbolSourceListData: sourceListType[] = [
   },
   {
     content: ']'
-  },
+  }
 ]

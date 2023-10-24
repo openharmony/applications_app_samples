@@ -1,4 +1,3 @@
-// @ts-nocheck
 /*
 * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,7 +26,7 @@ struct Index {
   @State title: string = ''
   @State srcImage: string = ''
   private controller: TabsController = new TabsController() // 分享弹框
-  private shareDialog: CustomDialogController
+  private shareDialog?: CustomDialogController
 
   homeBtn() {
     this.shareDialog = new CustomDialogController({
@@ -46,8 +45,8 @@ struct Index {
     this.shareDialog.open()
   }
 
-  convertResourceToString(resource: Resource) {
-    let context = getContext(this) as any
+  convertResourceToString(resource: Resource): string {
+    let context = getContext(this) as Context
     return context.resourceManager.getStringSync(resource.id)
   }
 

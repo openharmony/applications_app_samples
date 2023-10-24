@@ -15,20 +15,24 @@
 
 import deviceInfo from '@ohos.deviceInfo';
 import deviceManager from '@ohos.distributedHardware.deviceManager';
+import { GlobalContext, getGlobalObject, setGlobalObject } from '../common/GlobalThis';
 import logger from '../common/Logger';
 import remoteDeviceModel from '../model/RemoteDeviceModel';
 
 @CustomDialog
 struct DeleteDeviceDialog {
-  @Prop deviceName: string;
+  @Prop deviceName: string = '';
   @Link deviceInfo: deviceManager.DeviceInfo;
-  controller: CustomDialogController;
-  cancel: () => void;
-  confirm: () => void;
+  controller?: CustomDialogController;
+  cancel: () => void = () => {
+  };
+  confirm: () => void = () => {
+  };
   private isDelete: string = '';
 
   aboutToAppear() {
-    this.isDelete = globalThis.resourceManager.getStringSync($r('app.string.isDelete').id);
+    this.isDelete = getContext(this).resourceManager.getStringSync($r('app.string.isDelete').id);
+    setGlobalObject('isDelete', this.isDelete)
   }
 
   build() {
@@ -38,7 +42,7 @@ struct DeleteDeviceDialog {
         .fontFamily('HarmonyHeiTi-Medium')
         .fontWeight(500)
         .lineHeight(26)
-        .margin({bottom: 26})
+        .margin({ bottom: 26 })
         .fontSize(20)
         .fontColor('#182431')
 
@@ -46,7 +50,7 @@ struct DeleteDeviceDialog {
         Button($r('app.string.cancel'))
           .fontSize(16)
           .onClick(() => {
-            this.controller.close();
+            this.controller!.close();
             this.cancel();
           })
           .backgroundColor(0xffffff)
@@ -61,7 +65,7 @@ struct DeleteDeviceDialog {
         Button($r('app.string.delete'))
           .fontSize(16)
           .onClick(() => {
-            this.controller.close();
+            this.controller!.close();
             this.confirm();
           })
           .backgroundColor(0xffffff)
@@ -79,13 +83,13 @@ struct DeleteDeviceDialog {
 
 @Component
 export struct ListDeviceView {
-  @State deviceInfo: deviceManager.DeviceInfo = null;
+  @State deviceInfo: deviceManager.DeviceInfo | undefined = undefined;
   @State visible: Visibility = Visibility.None;
   dialogController: CustomDialogController = new CustomDialogController({
     builder: DeleteDeviceDialog({
       cancel: this.onCancel,
       confirm: this.onAccept,
-      deviceName: this.deviceInfo.deviceName,
+      deviceName: this.deviceInfo!.deviceName,
       deviceInfo: $deviceInfo
     }),
     cancel: this.existApp,
@@ -101,7 +105,7 @@ export struct ListDeviceView {
 
   onAccept() {
     logger.info('[DeviceManager.RemoteDeviceModel] listDeviceView ' + JSON.stringify(this.deviceInfo));
-    remoteDeviceModel.unAuthenticateDevice(this.deviceInfo);
+    remoteDeviceModel.unAuthenticateDevice(this.deviceInfo!);
     logger.info('Callback when the second button is clicked');
   }
 
@@ -109,7 +113,7 @@ export struct ListDeviceView {
     logger.info('Click the callback in the blank area');
   }
 
-  getDeviceTypeIcon(deviceType): Resource {
+  getDeviceTypeIcon(deviceType: deviceManager.DeviceType): Resource {
     if (deviceType == deviceManager.DeviceType.TABLET) {
       return $r('app.media.ic_pad');
     } else if (deviceType == deviceManager.DeviceType.PHONE) {
@@ -124,26 +128,26 @@ export struct ListDeviceView {
   build() {
     Column() {
       Row() {
-        Image(this.getDeviceTypeIcon(this.deviceInfo.deviceType))
+        Image(this.getDeviceTypeIcon(this.deviceInfo!.deviceType))
           .width(24)
           .height(24)
           .align(Alignment.Start)
         Column() {
-          Text(this.deviceInfo.deviceName)
+          Text(this.deviceInfo!.deviceName)
             .fontSize(16)
             .fontColor('#182431')
             .fontFamily('HarmonyHeiTi-Medium')
             .fontWeight(500)
             .margin({ left: 12 })
             .lineHeight(22)
-          Text(this.deviceInfo.deviceId + ', ' + this.deviceInfo.authForm.toString())
+          Text(this.deviceInfo!.deviceId + ', ' + this.deviceInfo!.authForm.toString())
             .fontSize(14)
             .opacity(0.6)
-            .margin({ left: 12, top: 2})
+            .margin({ left: 12, top: 2 })
             .fontColor('#182431')
             .maxLines(1)
-            .textOverflow({overflow: TextOverflow.Ellipsis})
-            .constraintSize({maxWidth: '60%'})
+            .textOverflow({ overflow: TextOverflow.Ellipsis })
+            .constraintSize({ maxWidth: '60%' })
         }.alignItems(HorizontalAlign.Start)
 
         Blank()
@@ -159,7 +163,7 @@ export struct ListDeviceView {
             .height(24)
             .margin({ left: 6 })
         }
-        .margin({left: 24})
+        .margin({ left: 24 })
         .visibility(this.visible)
         .onClick(() => {
           this.dialogController.open();

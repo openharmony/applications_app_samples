@@ -19,7 +19,7 @@ export class DialogDataModel {
   public text: Resource
   public id: number
 
-  constructor(src: Resource, text: Resource, id: number) {
+  constructor(src?: Resource, text?: Resource, id?: number) {
     this.src = src
     this.text = text
     this.id = id

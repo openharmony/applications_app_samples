@@ -26,7 +26,7 @@ const TAG: string = '[Sample_SavePixelMap]';
 export async function savePixelMap(context: Context, pm: PixelMap): Promise<string> {
   if (pm === null) {
     logger.error(TAG, '传入的pm为空');
-    return;
+    return '';
   }
   const imagePackerApi: image.ImagePacker = image.createImagePacker();
   let packOpts: image.PackingOption = { format: 'image/jpeg', quality: 30 };
@@ -35,7 +35,7 @@ export async function savePixelMap(context: Context, pm: PixelMap): Promise<stri
     return await saveFile(context, data);
   } catch (err) {
     logger.error(TAG, '保存文件失败，err=' + JSON.stringify(err));
-    return;
+    return '';
   }
 }
 
@@ -52,10 +52,15 @@ async function saveFile(context: Context, data: ArrayBuffer): Promise<string> {
 }
 
 function setImageList(uri: string) {
-  let imageList: Array<string> = AppStorage.Get('imageList');
-  const index: number = AppStorage.Get('selectIndex');
-  imageList[index] = uri;
+
+  let imageList: Array<string> | undefined = AppStorage.Get('imageList');
+  const index: number | undefined = AppStorage.Get('selectIndex');
+  if (imageList !== undefined && index !== undefined) {
+    imageList[index] = uri;
+  }
   AppStorage.SetOrCreate<Array<string>>('imageList', imageList);
+
+
 }
 
 function getTimeStr() {

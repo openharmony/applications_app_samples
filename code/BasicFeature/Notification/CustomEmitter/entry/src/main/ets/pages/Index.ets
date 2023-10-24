@@ -13,36 +13,50 @@
 * limitations under the License.
 */
 
-import router from '@ohos.router'
-import { CustomEmitter } from '@ohos/emitter'
-import { EventsDialog } from '../components/EventsDialog'
-import { PRODUCT_DATA } from '../mock/ProductsData'
+import router from '@ohos.router';
+import { CustomEmitter } from '@ohos/emitter';
+import { EventsDialog } from '../components/EventsDialog';
+import { PRODUCT_DATA } from '../mock/ProductsData';
+import { ProductDataModel } from '../model/GoodsModel';
+import emitter from '@ohos.events.emitter';
+
+class GoodsListInner {
+  id: number = 0
+}
+
+class GoodsList {
+  data: GoodsListInner = {
+    id: 0
+  }
+}
 
 @Entry
 @Component
 struct Index {
-  @StorageLink('shoppingCartGoodsList') shoppingCartGoodsList: { data: { id: number } }[] = []
-  private emitterClass: CustomEmitter = new CustomEmitter()
+  @StorageLink('shoppingCartGoodsList') shoppingCartGoodsList: GoodsList[] = [];
+  private emitterClass: CustomEmitter = new CustomEmitter();
   eventsDialogController: CustomDialogController = new CustomDialogController({
     builder: EventsDialog(),
     customStyle: true
-  })
+  });
 
   aboutToAppear() {
     this.emitterClass.showEventsDialog(() => {
-      this.eventsDialogController.open()
+      this.eventsDialogController.open();
     })
-    this.emitterClass.setShoppingCartGoodsList((eventData) => {
-      this.shoppingCartGoodsList.push(eventData.data.id)
-      AppStorage.SetOrCreate('shoppingCartGoodsList', this.shoppingCartGoodsList)
-    })
+    this.emitterClass.setShoppingCartGoodsList((eventData: emitter.EventData) => {
+      if (eventData.data) {
+        this.shoppingCartGoodsList.push(eventData.data.id);
+        AppStorage.SetOrCreate('shoppingCartGoodsList', this.shoppingCartGoodsList);
+      }
+    });
   }
 
   build() {
     Scroll() {
       Column() {
         GridRow({ gutter: { x: vp2px(8), y: vp2px(8) }, }) {
-          ForEach(PRODUCT_DATA, (item, index) => {
+          ForEach(PRODUCT_DATA, (item: ProductDataModel, index: number) => {
             GridCol({ span: { sm: 6, md: 6, lg: 4 } }) {
               Column() {
                 // 此处的商品图片需要根据父组件的宽度而变化，这里使用70%
@@ -95,7 +109,7 @@ struct Index {
         }
         .margin({ left: 12, right: 12 })
         .onAreaChange((oldArea: Area, newArea: Area) => {
-          AppStorage.SetOrCreate('listHeight', newArea.height as number)
+          AppStorage.SetOrCreate('listHeight', newArea.height as number);
         })
       }
     }

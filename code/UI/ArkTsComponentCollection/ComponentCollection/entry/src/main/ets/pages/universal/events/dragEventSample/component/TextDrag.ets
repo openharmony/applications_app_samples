@@ -29,6 +29,7 @@ export struct TextDrag {
         .id('text')
         .fontSize(24)
         .visibility(this.visible ? Visibility.Visible : Visibility.Hidden)
+        .draggable(true)
         .onDragStart(() => {
           this.visible = false
           return this.pixelMapBuilder

@@ -21,8 +21,8 @@ struct Index {
     Column() {
       Row() {
         Column() {
-          Image($r('app.media.png01_findxhdpi')).width(72).height(72).margin({ top: 36 })
-          Text($r('app.string.SelectOutputDevice')).fontColor(Color.Black).fontSize(16).margin({ top: 12 })
+          Image($r('app.media.png01_findxhdpi')).width(72).height(72).margin({ top: 36 });
+          Text($r('app.string.SelectOutputDevice')).fontColor(Color.Black).fontSize(16).margin({ top: 12 });
         }
         .id('select_output_device_card')
         .backgroundColor(Color.White)
@@ -31,12 +31,12 @@ struct Index {
         .height(188)
         .borderRadius(30)
         .onClick(async() => {
-          await router.pushUrl({ url:'pages/PreferOutputDevice' })
-        })
+          await router.pushUrl({ url:'pages/PreferOutputDevice' });
+        });
 
         Column() {
-          Image($r('app.media.png01_audioxhdpi')).width(72).height(72).margin({ top: 36 })
-          Text($r('app.string.AudioFocus')).fontColor(Color.Black).fontSize(16).margin({ top: 12 })
+          Image($r('app.media.png01_audioxhdpi')).width(72).height(72).margin({ top: 36 });
+          Text($r('app.string.AudioFocus')).fontColor(Color.Black).fontSize(16).margin({ top: 12 });
         }
         .id('audio_focus_card')
         .backgroundColor(Color.White)
@@ -44,16 +44,16 @@ struct Index {
         .width(174)
         .height(188)
         .onClick(async() => {
-          await router.pushUrl({ url: 'pages/Focus' })
-        })
+          await router.pushUrl({ url: 'pages/Focus' });
+        });
       }
       .margin({ top: 32 })
       .justifyContent(FlexAlign.SpaceBetween)
 
       Row() {
         Column() {
-          Image($r('app.media.png01_Soundeffectsxhdpi')).width(72).height(72).margin({ top: 36 })
-          Text($r('app.string.AudioEffectManager')).fontColor(Color.Black).fontSize(16).margin({ top: 12 })
+          Image($r('app.media.png01_Soundeffectsxhdpi')).width(72).height(72).margin({ top: 36 });
+          Text($r('app.string.AudioEffectManager')).fontColor(Color.Black).fontSize(16).margin({ top: 12 });
         }
         .id('audio_effect_manager_card')
         .backgroundColor(Color.White)
@@ -62,12 +62,12 @@ struct Index {
         .width(174)
         .height(188)
         .onClick(async () => {
-          await router.pushUrl({ url: 'pages/PresetEffect' })
+          await router.pushUrl({ url: 'pages/PresetEffect' });
         })
 
         Column() {
-          Image($r('app.media.png01_Recordingxxxhdpi')).width(72).height(72).margin({ top: 36 })
-          Text($r('app.string.AUDIO_CAPTURER')).fontColor(Color.Black).fontSize(16).margin({ top: 12 })
+          Image($r('app.media.png01_Recordingxxxhdpi')).width(72).height(72).margin({ top: 36 });
+          Text($r('app.string.AUDIO_CAPTURER')).fontColor(Color.Black).fontSize(16).margin({ top: 12 });
         }
         .id('audio_capturer_card')
         .backgroundColor(Color.White)
@@ -76,11 +76,11 @@ struct Index {
         .height(188)
         .onClick(async () => {
           await router.pushUrl({ url: 'pages/NormalCapturer' });
-        })
+        });
       }
       .margin({ top: 12 })
-      .justifyContent(FlexAlign.SpaceBetween)
+      .justifyContent(FlexAlign.SpaceBetween);
     }
-    .height('100%').width('100%').backgroundColor('#F1F3F5')
+    .height('100%').width('100%').backgroundColor('#F1F3F5');
   }
 }

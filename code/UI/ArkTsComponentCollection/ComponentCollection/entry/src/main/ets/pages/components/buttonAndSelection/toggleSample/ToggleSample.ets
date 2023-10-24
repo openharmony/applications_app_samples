@@ -27,11 +27,11 @@ import { TitleBar } from '../../../../common/TitleBar'
 @Entry
 @Component
 struct ToggleSample {
-  @State testIndexId: string = 'testIndexId'
-  @State isNormalSelect: boolean = false
-  @State isCustomSelect: boolean = true
-  private context: any = getContext(this)
-  private toggleState: string = this.context.resourceManager.getStringSync($r('app.string.toggle_state').id)
+  @State testIndexId: string = 'testIndexId';
+  @State isNormalSelect: boolean = false;
+  @State isCustomSelect: boolean = true;
+  private context: Context = getContext(this);
+  private toggleState: string = this.context.resourceManager.getStringSync($r('app.string.toggle_state').id);
 
   build() {
     Column() {

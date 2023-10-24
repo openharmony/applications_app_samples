@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+import deviceInfo from '@ohos.deviceInfo';
+
 export interface KeyStyle {
   deviceType?: string,
   basicButtonWidth: Resource,
@@ -37,7 +39,7 @@ export interface KeyStyle {
   number1234ontFSize?: Resource,
   keyboardHeight: Resource,
   editPicSize: Resource,
-  editFontSize:Resource,
+  editFontSize: Resource,
   editDriverLeft: Resource,
   subMenuWidth: Resource,
   editCircleSize: Resource,
@@ -48,7 +50,23 @@ export interface KeyStyle {
 }
 
 export class StyleConfiguration {
-  static getInputStyle(islandSpace, isRkDevice, deviceType): KeyStyle {
+  static getSavedInputStyle(): KeyStyle {
+    let style = AppStorage.get<KeyStyle>('inputStyle');
+    if (style) {
+      return style;
+    }
+    let isLandscape = AppStorage.get<boolean>('isLandscape');
+    if (isLandscape === undefined) {
+      isLandscape = false;
+    }
+    let isRkDevice = AppStorage.get<boolean>('isRkDevice');
+    if (isRkDevice === undefined) {
+      isRkDevice = false;
+    }
+    return StyleConfiguration.getInputStyle(isLandscape, isRkDevice, deviceInfo.deviceType)
+  }
+
+  static getInputStyle(islandSpace: boolean, isRkDevice: boolean, deviceType: string): KeyStyle {
     if (isRkDevice) {
       return {
         basicButtonWidth: $r('app.float.rk_basic_button_width'),
@@ -72,12 +90,12 @@ export class StyleConfiguration {
         switchNumberFontSize: $r('app.float.rk_switch_number_fontSize'),
         number1234ontFSize: $r('app.float.rk_number_1234_fontSize'),
         keyboardHeight: $r('app.float.rk_keyboard_height'),
-        editPicSize:$r('app.float.rk_edit_pic_size'),
-        editFontSize:$r('app.float.rk_edit_font_size'),
+        editPicSize: $r('app.float.rk_edit_pic_size'),
+        editFontSize: $r('app.float.rk_edit_font_size'),
         editDriverLeft: $r('app.float.rk_edit_driver_left'),
         subMenuWidth: $r('app.float.rk_sub_menu_width'),
         editCircleSize: $r('app.float.rk_edit_circle_size'),
-        editSmallCircle:  $r('app.float.rk_edit_small_circle_size'),
+        editSmallCircle: $r('app.float.rk_edit_small_circle_size'),
         editButtonSize: $r('app.float.rk_edit_button_size'),
         editImageSize: $r('app.float.rk_edit_img_size'),
         editSmallCircleMargin: $r('app.float.rk_edit_small_circle_margin')
@@ -106,12 +124,12 @@ export class StyleConfiguration {
           symbol_fontSize: $r('app.float.landSpace_symbol_fontSize'),
           switchNumberFontSize: $r('app.float.landSpace_switch_number_fontSize'),
           keyboardHeight: $r('app.float.landSpace_keyboard_height'),
-          editPicSize:$r('app.float.rk_edit_pic_size'),
-          editFontSize:$r('app.float.rk_edit_font_size'),
+          editPicSize: $r('app.float.rk_edit_pic_size'),
+          editFontSize: $r('app.float.rk_edit_font_size'),
           editDriverLeft: $r('app.float.rk_edit_driver_left'),
           subMenuWidth: $r('app.float.rk_sub_menu_width'),
           editCircleSize: $r('app.float.rk_edit_circle_size'),
-          editSmallCircle:  $r('app.float.rk_edit_small_circle_size'),
+          editSmallCircle: $r('app.float.rk_edit_small_circle_size'),
           editButtonSize: $r('app.float.rk_edit_button_size'),
           editImageSize: $r('app.float.rk_edit_img_size'),
           editSmallCircleMargin: $r('app.float.rk_edit_small_circle_margin')
@@ -139,12 +157,12 @@ export class StyleConfiguration {
           symbol_fontSize: $r('app.float.landSpace_symbol_fontSize'),
           switchNumberFontSize: $r('app.float.portrait_switch_number_fontSize'),
           keyboardHeight: $r('app.float.portrait_keyboard_height'),
-          editPicSize:$r('app.float.rk_edit_pic_size'),
-          editFontSize:$r('app.float.rk_edit_font_size'),
+          editPicSize: $r('app.float.rk_edit_pic_size'),
+          editFontSize: $r('app.float.rk_edit_font_size'),
           editDriverLeft: $r('app.float.rk_edit_driver_left'),
           subMenuWidth: $r('app.float.rk_sub_menu_width'),
           editCircleSize: $r('app.float.rk_edit_circle_size'),
-          editSmallCircle:  $r('app.float.rk_edit_small_circle_size'),
+          editSmallCircle: $r('app.float.rk_edit_small_circle_size'),
           editButtonSize: $r('app.float.rk_edit_button_size'),
           editImageSize: $r('app.float.rk_edit_img_size'),
           editSmallCircleMargin: $r('app.float.rk_edit_small_circle_margin')
@@ -175,12 +193,12 @@ export class StyleConfiguration {
           switchNumberFontSize: $r('app.float.switch_number_fontSize'),
           number1234ontFSize: $r('app.float.number_1234_fontSize'),
           keyboardHeight: $r('app.float.keyboard_height'),
-          editPicSize:$r('app.float.s_edit_pic_size'),
-          editFontSize:$r('app.float.s_edit_font_size'),
+          editPicSize: $r('app.float.s_edit_pic_size'),
+          editFontSize: $r('app.float.s_edit_font_size'),
           editDriverLeft: $r('app.float.s_edit_driver_left'),
           subMenuWidth: $r('app.float.s_sub_menu_width'),
           editCircleSize: $r('app.float.s_edit_circle_size'),
-          editSmallCircle:  $r('app.float.s_edit_small_circle_size'),
+          editSmallCircle: $r('app.float.s_edit_small_circle_size'),
           editButtonSize: $r('app.float.s_edit_button_size'),
           editImageSize: $r('app.float.s_edit_img_size'),
           editSmallCircleMargin: $r('app.float.s_edit_small_circle_margin')
@@ -208,12 +226,12 @@ export class StyleConfiguration {
           switchNumberFontSize: $r('app.float.switch_number_fontSize'),
           number1234ontFSize: $r('app.float.number_1234_fontSize'),
           keyboardHeight: $r('app.float.keyboard_height'),
-          editPicSize:$r('app.float.s_edit_pic_size'),
-          editFontSize:$r('app.float.s_edit_font_size'),
+          editPicSize: $r('app.float.s_edit_pic_size'),
+          editFontSize: $r('app.float.s_edit_font_size'),
           editDriverLeft: $r('app.float.s_edit_driver_left'),
           subMenuWidth: $r('app.float.s_sub_menu_width'),
           editCircleSize: $r('app.float.h_edit_circle_size'),
-          editSmallCircle:  $r('app.float.h_edit_small_circle_size'),
+          editSmallCircle: $r('app.float.h_edit_small_circle_size'),
           editButtonSize: $r('app.float.h_edit_button_size'),
           editImageSize: $r('app.float.h_edit_img_size'),
           editSmallCircleMargin: $r('app.float.h_edit_small_circle_margin')

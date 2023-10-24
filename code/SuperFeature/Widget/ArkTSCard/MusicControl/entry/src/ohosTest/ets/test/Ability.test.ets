@@ -25,12 +25,12 @@ const DRIVER = Driver.create();
 let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
 
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
 
     /**
      * 长按打开卡片列表
      */
-    it(BUNDLE + 'OpenFormList_001', 0, async function (done) {
+    it(BUNDLE + 'OpenFormList_001', 0, async (done: Function) => {
       let ability = await abilityDelegatorRegistry.getCurrentTopAbility();
       let manager = ability.context.resourceManager;
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
@@ -60,7 +60,7 @@ export default function abilityTest() {
     /**
      * 创建卡片
      */
-    it(BUNDLE + 'createForm_001', 0, async function (done) {
+    it(BUNDLE + 'createForm_001', 0, async (done: Function) => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       logger.info(TAG, `${BUNDLE}createForm_001 begin`);
       let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager;

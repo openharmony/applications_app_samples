@@ -46,26 +46,23 @@ struct Language {
     Logger.info(TAG, `this.currentRegion = ${this.currentRegion}`);
     this.localLanguage = i18n.System.getSystemLanguage();
     Logger.info(TAG, `this.localLanguage = ${this.localLanguage}`);
-    let preferredLanguages = [];
+    let preferredLanguages: ESObject[] = [];
     let preferredLanguageIds = i18n.System.getPreferredLanguageList();
     Logger.info(TAG, `this.preferredLanguageIds = ${JSON.stringify(preferredLanguageIds)}`);
     preferredLanguageIds.forEach(id => {
-      preferredLanguages.push({
+      let item: ESObject = {
         id: id,
         language: i18n.System.getDisplayLanguage(id, id),
         country: i18n.System.getDisplayLanguage(id, this.localLanguage)
-      });
+      }
+      preferredLanguages.push(item);
     });
-    this.preferredLanguages['dataArray'] = preferredLanguages;
+    this.preferredLanguages.dataArray = preferredLanguages;
     this.preferredLanguages.notifyDataReload();
   }
 
   @Builder
-  LanguageItem($$: {
-    languageInfo,
-    index,
-    handleClick
-  }) {
+  LanguageItem($$: Data) {
     Column() {
       if ($$.index !== 0) {
         Divider()
@@ -106,24 +103,28 @@ struct Language {
   @Builder
   LanguageView() {
     Column() {
-      LazyForEach(this.preferredLanguages, (item, index) => {
-        this.LanguageItem({ languageInfo: item, index: index, handleClick: () => {
-          if (item.id !== this.localLanguage) {
-            try {
-              i18n.System.setSystemLanguage(item.id);
-            } catch (err) {
-              Logger.error(`setSystemLanguage failed, code is ${err.code}, message is ${err.message}`);
-            }
-            this.refreshData();
-            prompt.showToast({
-              message: this.languageSwitchTips
-            });
-            setTimeout(() => {
-              this.context.terminateSelf();
-            }, 2000);
+      List() {
+        LazyForEach(this.preferredLanguages, (item: ESObject, index: number) => {
+          ListItem() {
+            this.LanguageItem(new Data(item, index, () => {
+              if (item.id !== this.localLanguage) {
+                try {
+                  i18n.System.setSystemLanguage(item.id);
+                } catch (err) {
+                  Logger.error(`setSystemLanguage failed, code is ${err.code}, message is ${err.message}`);
+                }
+                this.refreshData();
+                prompt.showToast({
+                  message: this.languageSwitchTips
+                });
+                setTimeout(() => {
+                  this.context.terminateSelf();
+                }, 2000);
+              }
+            }))
           }
-        } })
-      }, item => item.language)
+        }, (item: ESObject) => item.language)
+      }
     }
     .width('95%')
     .padding(10)
@@ -184,5 +185,17 @@ struct Language {
     .width('100%')
     .height('100%')
     .backgroundColor($r('app.color.f5f5f5'))
+  }
+}
+
+class Data {
+  languageInfo: ESObject = undefined;
+  index: number = 0;
+  handleClick: (event: ClickEvent) => void;
+
+  constructor(languageInfo: ESObject, index: number, handleClick: (event: ClickEvent) => void) {
+    this.languageInfo = languageInfo;
+    this.index = index;
+    this.handleClick = handleClick;
   }
 }

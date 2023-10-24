@@ -16,12 +16,12 @@
 import common from '@ohos.app.ability.common';
 
 export async function getStringArray(resource: Resource): Promise<Array<string>> {
-  let context = getContext(this) as common.UIAbilityContext;
+  let context = getContext() as common.UIAbilityContext;
   let menuList: Array<string> = await context.resourceManager.getStringArrayValue(resource);
   return menuList;
 }
 
 export function getString(resource: Resource): string {
-  let context = getContext(this) as common.UIAbilityContext;
+  let context = getContext() as common.UIAbilityContext;
   return context.resourceManager.getStringSync(resource);
 }

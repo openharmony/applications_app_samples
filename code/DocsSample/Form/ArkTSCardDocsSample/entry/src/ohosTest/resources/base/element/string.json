@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "add_form_to_desktop",
+      "value": "服务卡片"
+    },
+    {
+      "name": "add_to_desktop",
+      "value": "添加到桌面"
+    }
+  ]
+}

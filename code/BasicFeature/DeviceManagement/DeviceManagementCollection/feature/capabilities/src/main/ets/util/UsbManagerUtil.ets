@@ -16,12 +16,13 @@
 import commonEventManager from '@ohos.commonEventManager';
 import promptAction from '@ohos.promptAction';
 import usbManager from '@ohos.usbManager';
+import { BusinessError } from '@ohos.base';
 import CheckEmptyUtils from './CheckEmptyUtils';
 import { DeviceAttribute } from '../model/DeviceAttribute';
 import { logger } from '@ohos/common';
 
 const TAG: string = 'UsbManagerUtil';
-let commonEventSubscriber = undefined;
+let commonEventSubscriber : commonEventManager.CommonEventSubscriber | undefined = undefined;
 
 export function getDeviceList(): DeviceAttribute[] {
   let usbDevices: usbManager.USBDevice[] = usbManager.getDevices();
@@ -37,7 +38,7 @@ export function getDeviceList(): DeviceAttribute[] {
   let devices: DeviceAttribute[] = [];
   for (let index = 0;index < usbDevices.length; index++) {
     logger.info(TAG, `usb devices ${index} : ${JSON.stringify(devices)}`);
-    let deviceAttribute = {
+    let deviceAttribute: DeviceAttribute = {
       version: usbDevices[index].version,
       serial: usbDevices[index].serial,
       productName: usbDevices[index].productName,
@@ -52,9 +53,9 @@ export function getDeviceList(): DeviceAttribute[] {
     if (devices.indexOf(deviceAttribute) === -1) {
       devices.push(deviceAttribute);
     }
-    logger.info(TAG, `usb devices : ${JSON.stringify(devices)}`);
-    return devices;
   }
+  logger.info(TAG, `usb devices : ${JSON.stringify(devices)}`);
+  return devices;
 }
 
 export function createUsbSubscribe(callback: () => void) {
@@ -63,11 +64,11 @@ export function createUsbSubscribe(callback: () => void) {
     return;
   }
   logger.info(TAG, 'usb subUsbListener....');
-  let commonEventSubscribeInfo = {
+  let commonEventSubscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
     events: [commonEventManager.Support.COMMON_EVENT_USB_DEVICE_DETACHED, commonEventManager.Support.COMMON_EVENT_USB_DEVICE_ATTACHED]
   };
   let promise = commonEventManager.createSubscriber(commonEventSubscribeInfo);
-  let usbSubscribeCallback = (err, data) => {
+  let usbSubscribeCallback = (err: BusinessError, data: commonEventManager.CommonEventData) => {
     logger.info(TAG, `SubscriberCallBack  data = ${JSON.stringify(data)}`);
     if (data.event === 'usual.event.hardware.usb.action.USB_DEVICE_ATTACHED') {
       promptAction.showToast({ message: $r('app.string.toast_inserted') });
@@ -82,7 +83,7 @@ export function createUsbSubscribe(callback: () => void) {
     commonEventSubscriber = data;
     commonEventManager.subscribe(commonEventSubscriber, usbSubscribeCallback);
     logger.info(TAG, 'Subscriber.subscribe success');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     logger.info(TAG, `Subscriber.createSubscriber promise err = ${JSON.stringify(err)}`);
   })
 }

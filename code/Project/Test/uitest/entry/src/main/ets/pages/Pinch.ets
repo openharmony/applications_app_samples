@@ -26,7 +26,6 @@ struct ScreenExample {
         .height(200)
         .width(200)
         .id("pinch_ima")
-        .position({x:150, y:200})
         .scale({ x: this.myscale, y: this.myscale, z: this.myscale })
         .gesture(
         PinchGesture()

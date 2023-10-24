@@ -1,0 +1,61 @@
+{
+  "forms": [
+    {
+      "name": "widget",
+      "description": "This is a service widget.",
+      "src": "./ets/widget/pages/WidgetCard.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": true,
+      "updateEnabled": true,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 1,
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "2*2"
+      ]
+    },
+    {
+      "name": "animation",
+      "description": "This is a service widget for animation.",
+      "src": "./ets/widget/pages/AnimationCard.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": false,
+      "updateEnabled": false,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 1,
+      "defaultDimension": "4*4",
+      "supportDimensions": [
+        "4*4"
+      ]
+    },
+    {
+      "name": "canvas",
+      "description": "This is a service widget for canvas.",
+      "src": "./ets/widget/pages/CanvasCard.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": false,
+      "updateEnabled": false,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 1,
+      "defaultDimension": "4*4",
+      "supportDimensions": [
+        "4*4"
+      ]
+    }
+  ]
+}

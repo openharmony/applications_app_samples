@@ -16,7 +16,7 @@
 import taskpool from '@ohos.taskpool'
 import router from '@ohos.router'
 
-function functionForTasks(numberOfExecutions) {
+function functionForTasks(numberOfExecutions: number) {
   "use concurrent"
   return numberOfExecutions + 1
 }
@@ -26,7 +26,7 @@ export struct TaskPool {
   @State numberOfExecutions: number = 0;
   private isExecute = true;
   private clickAble = true;
-  @State task: taskpool.Task = null;
+  @State task: taskpool.Task | null = null;
   @State msg: string = 'task ready';
 
   build() {
@@ -83,7 +83,7 @@ export struct TaskPool {
                 this.clickAble = false;
                 this.msg = 'task is running';
                 await taskpool.execute(this.task)
-                  .then((res) => {
+                  .then((res: ESObject) => {
                     this.numberOfExecutions = Number(JSON.parse(JSON.stringify(res)));
                   });
               }

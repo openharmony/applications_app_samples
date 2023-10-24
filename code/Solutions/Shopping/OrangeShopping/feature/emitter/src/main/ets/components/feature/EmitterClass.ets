@@ -13,50 +13,60 @@
  * limitations under the License.
  */
 
-import emitter from '@ohos.events.emitter'
-import { EmitterConst } from '../../common/EmitterConst'
+import emitter from '@ohos.events.emitter';
+import { EmitterConst } from '../../common/EmitterConst';
+
+class EventsId {
+  eventId: number;
+
+  constructor(eventId: number) {
+    this.eventId = eventId;
+  }
+}
+
+export class EventsData {
+  data: Data;
+
+  constructor(data: Data) {
+    this.data = data;
+  }
+}
+
+class Data {
+  id: number
+
+  constructor(id: number) {
+    this.id = id;
+  }
+}
 
 export class EmitterClass {
-  shoppingCartGoodsList: { data: { id: number } }[] = []
+  shoppingCartGoodsList: EventsData[] = [];
 
   // 单次订阅回调
-  public showEventsDialog(callback) {
-    let dialogShowEventsId = {
-      eventId: EmitterConst.DIALOG_EVENT_ID
-    }
-    let dialogShowEventsData = {
-      data: {
-        id: EmitterConst.DIALOG_EVENT_ID
-      }
-    }
+  public showEventsDialog(callback: () => void): void {
+    let dialogShowEventsId: EventsId = new EventsId(EmitterConst.DIALOG_EVENT_ID);
+    let dialogShowEventsData: EventsData = new EventsData(new Data(EmitterConst.DIALOG_EVENT_ID));
     // 单次订阅事件--广告
-    emitter.once(dialogShowEventsId, callback)
+    emitter.once(dialogShowEventsId, callback);
     // 事件发布
-    emitter.emit(dialogShowEventsId, dialogShowEventsData)
+    emitter.emit(dialogShowEventsId, dialogShowEventsData);
   }
 
   // 持久化订阅的事件回调
-  public setShoppingCartGoodsList(callback: (eventData) => void) {
-    let addGoodDataId = {
-      eventId: EmitterConst.ADD_EVENT_ID
-    }
+  public setShoppingCartGoodsList(callback: ESObject): void {
+    let addGoodDataId: EventsId = new EventsId(EmitterConst.ADD_EVENT_ID);
     // 以持久化方式订阅购物车添加事件并接收事件回调
-    emitter.off(EmitterConst.ADD_EVENT_ID)
-    emitter.on(addGoodDataId, (eventData) => {
-      callback(eventData)
-    })
+    emitter.off(EmitterConst.ADD_EVENT_ID);
+    emitter.on(addGoodDataId, (eventData: EventsData) => {
+      callback(eventData);
+    });
   }
 
-  public addGoods(goodId) {
-    let addToShoppingCartId = {
-      eventId: EmitterConst.ADD_EVENT_ID
-    }
-    let shoppingCartData = {
-      data: {
-        id: goodId
-      }
-    }
+  public addGoods(goodId: number): void {
+    let addToShoppingCartId: EventsId = new EventsId(EmitterConst.ADD_EVENT_ID);
+    let shoppingCartData: EventsData = new EventsData(new Data(goodId));
     // 持续订阅发布事件
-    emitter.emit(addToShoppingCartId, shoppingCartData)
+    emitter.emit(addToShoppingCartId, shoppingCartData);
   }
 }

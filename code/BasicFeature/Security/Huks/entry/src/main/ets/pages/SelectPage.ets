@@ -16,19 +16,15 @@
 import router from '@ohos.router'
 import { NewKey } from '../common/NewKey'
 import { OldKey } from '../common/OldKey'
+import { MinAccessControl } from  '../common/MinAccessControl'
+import { Flag } from '../pages/Index'
 
 @Entry
 @Component
 struct SelectPage {
-  private flag: boolean = router.getParams()['flag']
-
+  @State Params: number = Flag.value;
   @Builder NavigationTitle() {
     Column() {
-      Text($r('app.string.back'))
-        .fontColor('#182431')
-        .fontSize(20)
-        .lineHeight(25)
-        .fontWeight(700)
     }
     .alignItems(HorizontalAlign.Start)
   }
@@ -36,10 +32,12 @@ struct SelectPage {
   build() {
     Column() {
       Navigation() {
-        if (this.flag) {
+        if (this.Params === 1) {
           NewKey()
-        } else {
+        } else if (this.Params === 2) {
           OldKey()
+        } else {
+          MinAccessControl()
         }
       }
       .title({ builder: this.NavigationTitle, height: 56 })

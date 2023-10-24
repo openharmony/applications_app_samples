@@ -22,6 +22,7 @@ export struct ChangePanel {
   @Link letterSpacing: number
   @Link decoration: TextDecorationType
   @Link decorationColor: Color
+  @Link lineHeight: number
 
   build() {
     Column() {
@@ -29,7 +30,16 @@ export struct ChangePanel {
         changeValue: $letterSpacing,
         min: 0,
         max: 12,
-        name: $r('app.string.span_letter_spacing')
+        name: $r('app.string.span_letter_spacing'),
+        testId:'Slider1'
+      })
+
+      CommonItemSlider({
+        changeValue: $lineHeight,
+        min: 0,
+        max: 100,
+        name: $r('app.string.span_line_height'),
+        testId:'Slider2'
       })
 
       CommonItemSelect({

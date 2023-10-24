@@ -22,19 +22,19 @@ import { QRCodeScanConst } from './QRCodeScanConst'
  * 相机服务
  */
 class CameraService {
-  private cameraInput: camera.CameraInput
-  private photoOutput: camera.PhotoOutput
-  private previewOutput: camera.PreviewOutput
-  private captureSession: camera.CaptureSession
-  public imageReceiver: image.ImageReceiver
+  private cameraInput: camera.CameraInput | undefined = undefined;
+  private photoOutput: camera.PhotoOutput | undefined = undefined;
+  private previewOutput: camera.PreviewOutput | undefined = undefined;
+  private captureSession: camera.CaptureSession | undefined = undefined;
+  public imageReceiver: image.ImageReceiver;
 
   constructor(imgReceiver?: image.ImageReceiver) {
     if (imgReceiver === undefined) {
-      this.imageReceiver = image.createImageReceiver(QRCodeScanConst.IMG_DEFAULT_SIZE.WIDTH,
-      QRCodeScanConst.IMG_DEFAULT_SIZE.HEIGHT, image.ImageFormat.JPEG, QRCodeScanConst.MAX_IMAGE_CAPACITY)
+      this.imageReceiver = image.createImageReceiver(QRCodeScanConst.IMG_DEFAULT_SIZE_WIDTH,
+      QRCodeScanConst.IMG_DEFAULT_SIZE_HEIGHT, image.ImageFormat.JPEG, QRCodeScanConst.MAX_IMAGE_CAPACITY);
     } else {
       this.imageReceiver = image.createImageReceiver(imgReceiver.size.width, imgReceiver.size.height,
-      imgReceiver.format, imgReceiver.capacity)
+      imgReceiver.format, imgReceiver.capacity);
     }
   }
 
@@ -42,12 +42,12 @@ class CameraService {
    * 以指定参数触发一次拍照
    */
   takePicture() {
-    let photoSetting = {
+    let photoSetting: camera.PhotoCaptureSetting = {
       rotation: camera.ImageRotation.ROTATION_0,
       quality: camera.QualityLevel.QUALITY_LEVEL_MEDIUM,
       mirror: false
-    }
-    this.photoOutput.capture(photoSetting)
+    };
+    this.photoOutput?.capture(photoSetting);
   }
 
   /**
@@ -96,11 +96,11 @@ class CameraService {
    * 创建相机
    */
   async releaseCamera() {
-    await this.captureSession.release()
-    await this.cameraInput.close()
-    await this.photoOutput.release()
-    await this.previewOutput.release()
-    await this.imageReceiver.release()
+    await this.captureSession?.release();
+    await this.cameraInput?.close();
+    await this.photoOutput?.release();
+    await this.previewOutput?.release();
+    await this.imageReceiver.release();
   }
 }
 

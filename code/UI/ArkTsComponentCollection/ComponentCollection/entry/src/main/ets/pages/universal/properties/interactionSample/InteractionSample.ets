@@ -13,11 +13,21 @@
  * limitations under the License.
  */
 
-import { TitleBar } from '../../../../common/TitleBar'
-import promptAction from '@ohos.prompt'
-import prompt from '@ohos.prompt'
-import { getStringData } from '../../../../data//ResourceDataHandle'
-import { placementsNameData, hitTestModeNameData, hoverEffectNameData } from '../../UniversialData'
+import pointer from '@ohos.multimodalInput.pointer';
+import promptAction from '@ohos.prompt';
+import prompt from '@ohos.prompt';
+import window from '@ohos.window';
+import { TitleBar } from '../../../../common/TitleBar';
+import { getStringData } from '../../../../data//ResourceDataHandle';
+import { placementsNameData, hitTestModeNameData, hoverEffectNameData, pointerStyleNameData, PointerStyleName } from '../../UniversialData';
+import Logger from '../../../../util/Logger';
+import measure from '@ohos.measure';
+
+class MMenu {
+  value: string = '';
+  icon!: Resource;
+  action:  () => void = (): void => {};
+}
 
 @Extend(Text) function leftTitleStyle() {
   .fontColor($r('app.color.sub_title_color'))
@@ -50,46 +60,52 @@ import { placementsNameData, hitTestModeNameData, hoverEffectNameData } from '..
 @Entry
 @Component
 struct Interaction {
-  @State buttonIsDisabled: boolean = false
-  @State listIsDisabled: boolean = false
-  @State alertText: string = ''
-  @State handlePopup: boolean = false
-  @State handleCustomPopup: boolean = false
-  @State mPlacementOnTop: boolean = false
-  @State mArrowOffset: number = 0
-  @State mPlacement: Placement = Placement.Top
-  @State mHitTestMode: HitTestMode = HitTestMode.Default
-  @State mBackgroundHandleClick: boolean = false
-  @State mForgroundHandleClick: boolean = false
-  @State mForgroundChildHandleClick: boolean = false
-  @State mComponentDisabled: boolean = false
-  @State mComponentFocused: boolean = false
-  @State mTabIndex: number = 0
+  @State isMask: boolean = false;
+  @State buttonIsDisabled: boolean = false;
+  @State listIsDisabled: boolean = false;
+  @State alertText: string = '';
+  @State handlePopup: boolean = false;
+  @State handleCustomPopup: boolean = false;
+  @State mPlacementOnTop: boolean = false;
+  @State mArrowOffset: number = 0;
+  @State mPlacement: Placement = Placement.Top;
+  @State mHitTestMode: HitTestMode = HitTestMode.Default;
+  @State mBackgroundHandleClick: boolean = false;
+  @State mForgroundHandleClick: boolean = false;
+  @State mForgroundChildHandleClick: boolean = false;
+  @State mComponentDisabled: boolean = false;
+  @State mComponentFocused: boolean = false;
+  @State mTabIndex: number = 0;
   @State mHoverEffect: HoverEffect = HoverEffect.None;
-  private mTouchableTestResult: string = ''
-  private mToastTimer = null
-  private mMenuLists = [
+  @State mPointerStyle: pointer.PointerStyle = pointer.PointerStyle.DEFAULT;
+  private mTouchableTestResult: string = '';
+  private mToastTimer: number | null = null;
+  private mMenuLists: MMenu[] = [
     {
       value: getStringData($r('app.string.components_interaction_menuone')),
+      icon: $r('app.media.ic_other'),
       action: () => {
       }
     },
     {
       value: getStringData($r('app.string.components_interaction_menutwo')),
+      icon: $r('app.media.ic_other'),
       action: () => {
       }
     },
     {
       value: getStringData($r('app.string.components_interaction_menuthree')),
+      icon: $r('app.media.ic_other'),
       action: () => {
       }
     },
     {
       value: getStringData($r('app.string.components_interaction_menufour')),
+      icon: $r('app.media.ic_other'),
       action: () => {
       }
     }
-  ]
+  ];
 
   @Styles normalStyles() {
     .backgroundColor($r('app.color.normal_bg_color'))
@@ -129,24 +145,43 @@ struct Interaction {
     }.width(140).height(40).padding(10)
   }
 
+  @Builder menuBuilder() {
+    Menu() {
+      MenuItem({ startIcon: $r('app.media.ic_other'), content: $r('app.string.components_interaction_menuone') })
+      MenuItemGroup({ header: $r('app.string.components_interaction_menutwo') }) {
+        MenuItem({
+          startIcon: $r('app.media.ic_other'),
+          content: $r('app.string.components_interaction_menuthree')
+        })
+        MenuItem({
+          startIcon: $r('app.media.ic_other'),
+          content: $r('app.string.components_interaction_menufour')
+        })
+      }
+    }
+  }
+  private context: Context = getContext(this)
   private placementsNameArray = placementsNameData
   private hitTestModeNameArray = hitTestModeNameData
   private hoverEffectNameArray = hoverEffectNameData
+  private pointerStyleNameArray = pointerStyleNameData
 
   @Builder tabbarTitle(name: string | Resource, index: number) {
-    Stack() {
+    Column() {
       Text(name)
         .fontSize(22)
         .fontColor(this.mTabIndex === index ? $r('app.color.title_colorone') : $r('app.color.title_colortwo'))
+        .margin({ bottom: 5 })
 
       if (this.mTabIndex === index) {
         Row()
+          .width(measure.measureTextSize({textContent:name}).width)
           .backgroundColor($r('app.color.title_colorone'))
-          .width('100%')
           .height(2)
-          .position({ y: 48 })
       }
-    }.width(48)
+    }
+    .margin(8)
+    .constraintSize({ minWidth: 32 })
     .height(56)
   }
 
@@ -283,6 +318,13 @@ struct Interaction {
                     .onChange((value) => {
                       this.mPlacementOnTop = value
                     })
+                  Text($r('app.string.interaction_mask'))
+                    .fontSize(15)
+                  Checkbox()
+                    .select(this.isMask)
+                    .onChange((value) => {
+                      this.isMask = value
+                    })
                 }.alignSelf(ItemAlign.Start)
 
                 Text($r('app.string.interaction_arrowoffset'))
@@ -319,7 +361,8 @@ struct Interaction {
                       action: () => {
                         this.handlePopup = false
                       }
-                    }
+                    },
+                    mask: this.isMask
                   }).id('test_popButton')
               }.cardStyle()
 
@@ -525,27 +568,93 @@ struct Interaction {
 
         TabContent() {
           Column() {
-            Blank()
-            Row() {
-              Blank()
-              ForEach([1, 2, 3, 4, 5], (item) => {
+            Scroll() {
+              Column() {
+                Text($r('app.string.bind_menu_customBuilder'))
+                  .leftTitleStyle()
                 Column() {
-                  Image($r('app.media.ic_other'))
-                    .width(30)
-                    .height(30)
-                  Text($r('app.string.option'))
-                    .fontSize(15)
-                }
-                .bindMenu(this.mMenuLists)
+                  Text($r('app.string.click_on_any_action_below'))
+                    .leftTitleStyle()
+                  Row() {
+                    Blank()
+                    ForEach([1, 2, 3, 4, 5], (item: number) => {
+                      Column() {
+                        Image($r('app.media.ic_other'))
+                          .width(30)
+                          .height(30)
+                        Text($r('app.string.option'))
+                          .fontSize(15)
+                      }
+                      .id('menuBuilder' + item)
+                      .bindMenu(this.menuBuilder)
 
-                Blank()
-              })
-            }.width('100%')
+                      Blank()
+                    })
+                  }.width('100%')
+
+                  Blank()
+                }.cardStyle().height(250)
+
+                Text($r('app.string.bind_menu_content'))
+                  .leftTitleStyle()
+                Column() {
+                  Text($r('app.string.click_on_any_action_below'))
+                    .leftTitleStyle()
+                  Row() {
+                    Blank()
+                    ForEach([1, 2, 3, 4, 5], (item: number) => {
+                      Column() {
+                        Image($r('app.media.ic_other'))
+                          .width(30)
+                          .height(30)
+                        Text($r('app.string.option'))
+                          .fontSize(15)
+                      }
+                      .id('mMenuLists' + item)
+                      .bindMenu(this.mMenuLists)
+
+                      Blank()
+                    })
+                  }.width('100%')
+
+                  Blank()
+                }.cardStyle().height(250)
+
+                Text($r('app.string.bind_content_menu'))
+                  .leftTitleStyle()
+                Column() {
+                  Text($r('app.string.long_press_any_action_below'))
+                    .leftTitleStyle()
+                  Row() {
+                    Blank()
+                    ForEach([1, 2, 3, 4, 5], (item: number) => {
+                      Column() {
+                        Image($r('app.media.ic_other'))
+                          .width(30)
+                          .height(30)
+                        Text($r('app.string.option'))
+                          .fontSize(15)
+                      }
+                      .id('contextMenu' + item)
+                      .bindContextMenu(
+                        this.menuBuilder,
+                        ResponseType.LongPress,
+                        {
+                          offset: { x: 0, y: 0 }
+                        }
+                      )
+                      Blank()
+                    })
+                  }.width('100%')
+
+                  Blank()
+                }.cardStyle().height(250).margin({ bottom: 70 })
+              }
+            }
           }.height('100%')
           .width('100%')
           .padding(20)
         }.tabBar(this.tabbarTitle($r('app.string.menu'), 5))
-        .height('100%')
 
         TabContent() {
           Column() {
@@ -585,10 +694,77 @@ struct Interaction {
           }.width('100%')
           .padding(12)
         }.tabBar(this.tabbarTitle($r('app.string.multiState'), 6))
-      }.layoutWeight(1)
+
+        TabContent() {
+          Scroll() {
+            Column() {
+              Text($r('app.string.multi_short_key'))
+                .leftTitleStyle()
+              Column() {
+                Text($r('app.string.on_short_key'))
+                  .leftTitleStyle()
+                Button($r('app.string.multi_short_key'))
+                  .onClick(() => {
+                    prompt.showToast({
+                      message: getStringData($r('app.string.short_key_pressed')),
+                      duration: 1000,
+                    });
+                  })
+                  .keyboardShortcut('a', [ModifierKey.CTRL])
+              }.cardStyle()
+
+              Text($r('app.string.set_mouse_style'))
+                .leftTitleStyle()
+              Column() {
+                Flex({ wrap: FlexWrap.Wrap }) {
+                  ForEach(this.pointerStyleNameArray, (item: PointerStyleName) => {
+                    Row() {
+                      Radio({ value: item.key, group: 'pointerStyle' })
+                        .id(item.key)
+                        .checked(this.mPointerStyle === item.value)
+                        .onChange((isChecked: boolean) => {
+                          if (isChecked) {
+                            this.mPointerStyle = item.value;
+                            try {
+                              let promise = window.getLastWindow(this.context);
+                              promise.then((win)=> {
+                                let windowId = win.getWindowProperties().id;
+                                Logger.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(win));
+                                if (windowId < 0) {
+                                  Logger.info(`Invalid windowId`);
+                                  return;
+                                }
+                                try {
+                                  pointer.setPointerStyle(windowId, this.mPointerStyle, error => {
+                                    Logger.info(`Set pointer style success`);
+                                  });
+                                } catch (error) {
+                                  Logger.info(`Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                                }
+                              }).catch((err: Error)=>{
+                                Logger.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+                              });
+                            } catch (exception) {
+                              Logger.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
+                            }
+                          }
+                        })
+                      Text(item.key)
+                        .fontSize(10)
+                    }.width('50%')
+                  })
+                }.width('100%')
+              }.cardStyle()
+            }.width('100%')
+            .padding(12)
+          }
+        }.tabBar(this.tabbarTitle($r('app.string.multimode_input'), 7))
+      }
+      .barOverlap(true)
       .onChange((index) => {
         this.mTabIndex = index
       })
+      .barOverlap(true)
       .barMode(BarMode.Scrollable)
     }
     .height('100%')

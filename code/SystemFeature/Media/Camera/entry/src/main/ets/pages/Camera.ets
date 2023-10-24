@@ -20,11 +20,14 @@ import { VideoFrame } from '../model/CameraModel';
 import Title from '../component/TitleComponent';
 import grantPermission from '../utlis/PermissionUtils';
 import Logger from '../utlis/Logger';
+import { GlobalContext } from '../utlis/GlobalContext'
+import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
 
-const CameraMode = {
-  modePhoto: 0, // 拍照模式
-  modeVideo: 1 // 录像模式
-}
+enum CameraMode {
+  modePhoto = 0, // 拍照模式
+  modeVideo = 1 // 录像模式
+};
 
 const TAG: string = '[CameraPage]';
 
@@ -103,13 +106,13 @@ struct CameraPage {
       if (this.surfaceId) {
         this.cameraModel.initCamera(this.surfaceId);
       }
-    }).catch(rej => {
+    }).catch((rej: BusinessError) => {
       Logger.info(TAG, `权限申请失败  ${JSON.stringify(rej)}`);
     })
 
     this.surfaceId = this.mXComponentController.getXComponentSurfaceId();
     Logger.info(TAG, `aboutToAppear,surfaceId=${this.surfaceId}`);
-    this.cameraModel.setTakePictureHandleCallback(this.takePictureHandle.bind(this));
+    this.cameraModel.setTakePictureHandleCallback((photoUri: string): void => this.takePictureHandle(photoUri));
   }
 
   onPageHide() {
@@ -161,10 +164,10 @@ struct CameraPage {
   }
 
   startAbilityToPhoto() {
-    globalThis.cameraContext.startAbility({
+    (GlobalContext.getContext().getValue('cameraContext') as common.UIAbilityContext).startAbility({
       bundleName: 'com.ohos.photos',
       abilityName: 'com.ohos.photos.MainAbility'
-    }, (error) => {
+    }, (error: BusinessError) => {
       Logger.info(TAG, `error.code = ${error.code}`)
     });
   }
@@ -173,7 +176,7 @@ struct CameraPage {
     this.imageThumbnail = thumbnail;
     Logger.info(TAG, `takePicture end , thumbnail: ${this.imageThumbnail}`);
   };
-  animateParam = {
+  animateParam: AnimateParam = {
     duration: 500,
     onFinish: () => {
       this.isPointShow = true;

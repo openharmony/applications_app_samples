@@ -20,7 +20,15 @@ import { logger, notificationUtil, notificationContentUtil, notificationRequestU
 const TAG: string = 'Sample_Notification';
 const MULTI_LINE_CONTENT: Array<string> = ['line0', 'line1', 'line2', 'line3']; // 多行文本通知的多行文本内容
 
-const NOTIFICATION_GROUP = { // 定义不同类型通知的通知组
+interface NOTIFICATION_GROUP_TYPE {
+  BASIC: string
+  LONG_TEXT: string
+  MULTI_LINE: string
+  PICTURE: string
+  CONVERSATION: string
+}
+
+const NOTIFICATION_GROUP: NOTIFICATION_GROUP_TYPE = { // 定义不同类型通知的通知组
   BASIC: 'BASIC',
   LONG_TEXT: 'LONG_TEXT',
   MULTI_LINE: 'MULTI_LINE',
@@ -29,8 +37,8 @@ const NOTIFICATION_GROUP = { // 定义不同类型通知的通知组
 }
 
 export default class NotificationOperations {
-  private context: Context = undefined;
-  private basicContent: notification.NotificationBasicContent = undefined;
+  private context: Context;
+  private basicContent: notification.NotificationBasicContent;
 
   // 在初始化函数初始化基本通知类型的参数
   constructor(context: Context) {

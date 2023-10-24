@@ -13,18 +13,30 @@
  * limitations under the License.
  */
 
+import testNapi from 'libentry.so';
+import resourceManager from '@ohos.resourceManager';
+
+let rawfilelist: string[];
+let rawfileContet: Uint8Array;
+let rawfileDescriptor: resourceManager.RawFileDescriptor;
+
 @Entry
 @Component
 struct Index {
+  async aboutToAppear() {
+    rawfilelist = testNapi.getFileList(getContext().resourceManager, ''); // 获取rawfile目录下的子目录和文件
+    rawfileContet = testNapi.getRawFileContent(getContext().resourceManager, 'rawfile.txt');
+    rawfileDescriptor = testNapi.getRawFileDescriptor(getContext().resourceManager, 'rawfile.txt');
+  }
 
   build() {
     Row() {
       Column() {
-        Text('getFileList = ' + globalThis.rawfilelist).id('get_file_list').fontSize(30)
-        Text('getRawFileContent = ' + globalThis.rawfileContet).id('get_raw_file_content').fontSize(30)
-        Text('rawfileDescriptor.fd = ' + globalThis.rawfileDescriptor.fd).fontSize(30)
-        Text('rawfileDescriptor.offset = ' + globalThis.rawfileDescriptor.offset).fontSize(30)
-        Text('rawfileDescriptor.length = ' + globalThis.rawfileDescriptor.length).id('length').fontSize(30)
+        Text('getFileList = ' + rawfilelist).id('get_file_list').fontSize(30)
+        Text('getRawFileContent = ' + rawfileContet).id('get_raw_file_content').fontSize(30)
+        Text('rawfileDescriptor.fd = ' + rawfileDescriptor.fd).fontSize(30)
+        Text('rawfileDescriptor.offset = ' + rawfileDescriptor.offset).fontSize(30)
+        Text('rawfileDescriptor.length = ' + rawfileDescriptor.length).id('length').fontSize(30)
       }
       .width('100%')
     }

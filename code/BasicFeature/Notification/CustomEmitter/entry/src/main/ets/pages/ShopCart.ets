@@ -13,17 +13,18 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
-import { Cart } from '../shoppingCart/Cart'
-import { FavorGoodList } from '../shoppingCart/FavorGoodlist'
-import { ProductDataModel } from '../model/GoodsModel'
+import router from '@ohos.router';
+import { Cart } from '../shoppingCart/Cart';
+import { FavorGoodList } from '../shoppingCart/FavorGoodlist';
+import { ProductDataModel } from '../model/GoodsModel';
 
 @Entry
 @Component
 struct ShopCart {
-  private url: string
-  @State shoppingCartGoodsList: ProductDataModel[] = AppStorage.Get('shoppingCartGoodsList')
-  @StorageLink('goodsListHeight') goodsListHeight: number = 100
+  private url: string = '';
+  @State shoppingCartGoodsList: ProductDataModel[]
+    = AppStorage.get('shoppingCartGoodsList') as ProductDataModel[];
+  @StorageLink('goodsListHeight') goodsListHeight: number = 100;
 
   build() {
     Column() {

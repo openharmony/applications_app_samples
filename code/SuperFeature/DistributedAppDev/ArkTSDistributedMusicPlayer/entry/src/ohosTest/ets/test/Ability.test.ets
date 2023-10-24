@@ -36,11 +36,11 @@ async function controlMusicPlay() {
 }
 
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
     /**
      * 拉起应用
      */
-    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+    it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
       Logger.info(TAG, `${BUNDLE}StartAbility_001 begin`);
       try {
         await abilityDelegator.startAbility({

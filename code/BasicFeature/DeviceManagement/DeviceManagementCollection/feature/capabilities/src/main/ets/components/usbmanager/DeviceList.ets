@@ -20,8 +20,10 @@ export struct DeviceList {
   @Link isRefreshing: boolean;
   @Link device: DeviceAttribute;
   @Consume('devicesList') devices: Array<DeviceAttribute>;
-  public getDeviceList?: () => void;
-  public openDialog?: () => void;
+  public getDeviceList: () => void = () => {
+  };
+  public openDialog: () => void = () => {
+  };
 
   build() {
     Column() {
@@ -38,7 +40,7 @@ export struct DeviceList {
 
       Refresh({ refreshing: this.isRefreshing, offset: 120, friction: 100 }) {
         List() {
-          ForEach(this.devices, (item: DeviceAttribute, index) => {
+          ForEach(this.devices, (item: DeviceAttribute, index: number) => {
             ListItem() {
               Text(`${item.manufacturerName} ${item.productName}`)
                 .height(60)

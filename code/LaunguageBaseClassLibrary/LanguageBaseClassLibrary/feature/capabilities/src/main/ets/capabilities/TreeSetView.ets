@@ -29,7 +29,7 @@ export struct TreeSetView {
 
   aboutToAppear() {
     emitter.on({ eventId: Constant.EMITTER_ID_TREE_SET }, (eventData) => {
-      this.dataSource.addData(eventData.data['value']);
+      this.dataSource.addData((eventData.data as Record<string, Object>)['value'] as string);
       this.totalCount = this.dataSource.totalCount();
     });
   }
@@ -52,7 +52,7 @@ export struct TreeSetView {
             .height(72)
             .width('100%')
             .margin({ bottom: 20 })
-          }, (item, index) => JSON.stringify(item) + index)
+          }, (item: string, index: number) => JSON.stringify(item) + index)
         }
         .width('100%')
         .layoutWeight(1)

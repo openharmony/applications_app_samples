@@ -19,11 +19,11 @@ import util from '@ohos.util';
 export struct CheckType {
   @State result: string = ' ';
   @Link checkResult: string;
-  @Link presetValue: Array<unknown>;
+  @Link presetValue: Array<Int8Array | Number | String | Boolean>;
 
-  check(value) {
-    let utilType = new util.types();
-    let utilData = new Map([
+  check(value: Object) {
+    let utilType: util.types = new util.types();
+    let utilData: Map<string, boolean> | null = new Map([
       ['ArrayBuffer', utilType.isAnyArrayBuffer(value)],
       ['Int8Array', utilType.isInt8Array(value)],
       ['Number', utilType.isNumberObject(value)],
@@ -37,10 +37,9 @@ export struct CheckType {
       ['Float32Array', utilType.isFloat32Array(value)],
       ['Generator', utilType.isGeneratorFunction(value)]
     ]);
-    for (let [key, value] of utilData) {
-      if (value === true) {
-        this.result = key;
-        break;
+    for (let item of utilData) {
+      if (item[1] === true) {
+        this.result = item[0];
       }
     }
     utilData = null;

@@ -203,6 +203,7 @@ export class LauncherAbilityManager {
             this.notifyLauncherAbilityChange(EventConstants.EVENT_PACKAGE_REMOVED,
               bundleChangeInfo.bundleName, bundleChangeInfo.userId)
           }
+          AppStorage.Set('isRefresh', true)
         })
       }
       const index = this.mLauncherAbilityChangeListeners.indexOf(listener)

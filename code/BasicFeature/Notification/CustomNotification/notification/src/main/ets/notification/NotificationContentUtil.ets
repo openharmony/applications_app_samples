@@ -22,11 +22,12 @@ class NotificationContentUtil {
    * @param basicContent
    * @return return the created NotificationContent
    */
-  initBasicNotificationContent(basicContent: notification.NotificationBasicContent) {
+
+  initBasicNotificationContent(basicContent: notification.NotificationBasicContent): notification.NotificationContent {
     return {
       contentType: notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT, // 通知内容类型
       normal: basicContent // 基本类型通知内容
-    }
+    };
   }
 
   /**
@@ -38,7 +39,8 @@ class NotificationContentUtil {
    * @param notificationExpandedTitle
    * @return return the created NotificationContent
    */
-  initNotificationLongTextContent(basicContent: notification.NotificationBasicContent, notificationLongText: string, notificationBriefText: string, notificationExpandedTitle: string) {
+
+  initNotificationLongTextContent(basicContent: notification.NotificationBasicContent, notificationLongText: string, notificationBriefText: string, notificationExpandedTitle: string): notification.NotificationContent {
     return {
       contentType: notification.ContentType.NOTIFICATION_CONTENT_LONG_TEXT, // 通知内容类型
       longText: {
@@ -49,7 +51,7 @@ class NotificationContentUtil {
         briefText: notificationBriefText, // 通知概要内容，是对通知内容的总结
         expandedTitle: notificationExpandedTitle // 通知展开时的标题
       }
-    }
+    };
   }
 
   /**
@@ -60,7 +62,8 @@ class NotificationContentUtil {
    * @param notificationLines
    * @return return the created NotificationContent
    */
-  initNotificationMultiLineContent(basicContent: notification.NotificationBasicContent, notificationBriefText: string, notificationLongTitle: string, notificationLines: Array<string>) {
+
+  initNotificationMultiLineContent(basicContent: notification.NotificationBasicContent, notificationBriefText: string, notificationLongTitle: string, notificationLines: Array<string>): notification.NotificationContent {
     return {
       contentType: notification.ContentType.NOTIFICATION_CONTENT_MULTILINE, // 通知内容类型
       multiLine: {
@@ -71,7 +74,7 @@ class NotificationContentUtil {
         longTitle: notificationLongTitle, // 通知展开时的标题
         lines: notificationLines // 通知的多行文本
       }
-    }
+    };
   }
 
   /**
@@ -82,7 +85,8 @@ class NotificationContentUtil {
    * @param notificationPicture
    * @return return the created NotificationContent
    */
-  initNotificationPictureContent(basicContent: notification.NotificationBasicContent, notificationBriefText: string, notificationExpandedTitle: string, notificationPicture: image.PixelMap) {
+
+  initNotificationPictureContent(basicContent: notification.NotificationBasicContent, notificationBriefText: string, notificationExpandedTitle: string, notificationPicture: image.PixelMap): notification.NotificationContent {
     return {
       contentType: notification.ContentType.NOTIFICATION_CONTENT_PICTURE, // 通知内容类型
       picture: {
@@ -93,7 +97,7 @@ class NotificationContentUtil {
         expandedTitle: notificationExpandedTitle, // 通知展开时的标题
         picture: notificationPicture // 通知的图片
       }
-    }
+    };
   }
 }
 

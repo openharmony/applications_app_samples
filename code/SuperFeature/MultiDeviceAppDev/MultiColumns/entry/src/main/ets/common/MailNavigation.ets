@@ -60,7 +60,7 @@ export struct MailNavigation {
   }
 
   aboutToAppear() {
-    this.pathInfo.push({ name: 'one' })
+    this.pathInfo.pushPath({ name: 'one' })
   }
 
   build() {

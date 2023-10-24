@@ -15,6 +15,7 @@
 import CommonEventManager from '@ohos.commonEventManager'
 import Logger from '../model/Logger'
 import promptAction from '@ohos.promptAction'
+import Base from '@ohos.base'
 
 @Entry
 @Component
@@ -49,10 +50,10 @@ struct Index {
                 duration: 2000,
               });
             } catch (error) {
-              Logger.error(`showToast args error code is ${error.code}, message is ${error.message}`);
+              Logger.error(`showToast args error code is ${(error as Base.BusinessError).code}, message is ${(error as Base.BusinessError).message}`);
             }
             Logger.info(`Set static subscriber state success, state is ${true}`);
-          }).catch((err) => {
+          }).catch((err: Base.BusinessError) => {
             Logger.info(`Set static subscriber state failed, errCode: ${err.code}, errMes: ${err.message}`);
           })
         })
@@ -76,11 +77,11 @@ struct Index {
                 duration: 2000,
               });
             } catch (error) {
-              Logger.error('showToast args error code is ${error.code}, message is ${error.message}');
+              Logger.error(`showToast args error code is ${(error as Base.BusinessError).code}, message is ${(error as Base.BusinessError).message}`);
             }
-            Logger.info('Set static subscriber state success, state is ${true}');
-          }).catch((err) => {
-            Logger.info('Set static subscriber state failed, errCode: ${err.code}, errMes: ${err.message}');
+            Logger.info(`Set static subscriber state success, state is ${true}`);
+          }).catch((err: Base.BusinessError) => {
+            Logger.info(`Set static subscriber state failed, errCode: ${err.code}, errMes: ${err.message}`);
           })
         })
       }

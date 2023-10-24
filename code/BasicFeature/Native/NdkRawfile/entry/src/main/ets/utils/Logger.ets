@@ -18,27 +18,26 @@ import hilog from '@ohos.hilog'
 class LoggerModel {
   private domain: number
   private prefix: string
-  private format: string = '%{public}s'
 
   constructor(prefix: string) {
     this.prefix = prefix
     this.domain = 0xFF00
   }
 
-  debug(...args: any[]) {
-    hilog.debug(this.domain, this.prefix, this.format, args)
+  debug(message: string): void {
+    hilog.debug(this.domain, this.prefix, message)
   }
 
-  info(...args: any[]) {
-    hilog.info(this.domain, this.prefix, this.format, args)
+  info(message: string): void {
+    hilog.info(this.domain, this.prefix, message)
   }
 
-  warn(...args: any[]) {
-    hilog.warn(this.domain, this.prefix, this.format, args)
+  warn(message: string): void {
+    hilog.warn(this.domain, this.prefix, message)
   }
 
-  error(...args: any[]) {
-    hilog.error(this.domain, this.prefix, this.format, args)
+  error(message: string): void {
+    hilog.error(this.domain, this.prefix, message)
   }
 }
 

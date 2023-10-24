@@ -33,13 +33,13 @@ export default class GetPictures {
         }
       }
     );
-    let want: Want = abilityResult['want'];
+    let want: Want | undefined = abilityResult.want;
     if (want !== null && want !== undefined) {
-      let param: Want = want['parameters'];
+      let param: Want | undefined = want.parameters;
       if (param !== null && param !== undefined) {
         let result: Array<string> = param['select-item-list'] as Array<string>;
         let select: Array<string> = [];
-        if (result.length >= LENGTH) {
+        if (result.length === LENGTH) {
           for (let i: number = LENGTH_START; i < LENGTH; i++) {
             select.push(result[i]);
           }

@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-import { setting } from '@ohos/http'
+import { setting } from '@ohos/http';
 
 @Entry
 @Component
 struct Index {
   build() {
     Column() {
-      setting()
+      setting();
     }
   }
 }

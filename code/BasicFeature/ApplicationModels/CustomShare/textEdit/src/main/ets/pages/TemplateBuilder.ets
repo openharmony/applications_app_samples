@@ -23,9 +23,9 @@ const TAG: string = '[Sample_TemplateBuilder]';
 @Entry
 @Component
 export struct TemplateBuilder {
-  private shareDialog: CustomDialogController;
+  private shareDialog?: CustomDialogController;
   private context = getContext(this) as common.UIAbilityContext;
-  private want: Want;
+  private want?: Want;
 
   build() {
     Column() {

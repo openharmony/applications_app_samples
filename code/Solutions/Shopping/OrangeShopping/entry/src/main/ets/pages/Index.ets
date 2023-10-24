@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import routerUtil from '../utils/RouterUtil'
-import { TransitionsAnimation } from '@ohos/enter-animation'
+import routerUtil from '../utils/RouterUtil';
+import { TransitionsAnimation } from '@ohos/enter-animation';
 
 @Entry
 @Component
@@ -22,10 +22,10 @@ struct Index {
   build() {
     Column() {
       TransitionsAnimation({
-        gotoNav: () => {
-          routerUtil.gotoHome()
+        gotoNav: (): void => {
+          routerUtil.gotoHome();
         }
-      })
+      });
     }
   }
 }

@@ -14,7 +14,7 @@
  */
 
 import window from '@ohos.window'
-import getValueOnBreakpoint from '../../../common/GetValueOnBreakpoint';
+import getValueOnBreakpoint, { Breakpoints } from '../../../common/GetValueOnBreakpoint';
 
 @Entry
 @Component
@@ -23,7 +23,7 @@ struct BreakpointSample {
 
   listenOnBreakpoint(windowObj: window.Window) {
     const breakpointsLabels: string[] = ['xSmall', 'small', 'medium', 'large'];
-    const breakpoints = { xs: 0, sm: 320, md: 600, lg: 840 };
+    const breakpoints :Breakpoints= { xs: 0, sm: 320, md: 600, lg: 840 };
     this.currentBreakpoint = getValueOnBreakpoint(breakpointsLabels, breakpoints);
     windowObj.on('windowSizeChange', () => {
       this.currentBreakpoint = getValueOnBreakpoint(breakpointsLabels, breakpoints);
@@ -31,13 +31,17 @@ struct BreakpointSample {
   }
 
   aboutToAppear() {
-    let windowObj: window.Window = AppStorage.Get('windowObj')
-    this.listenOnBreakpoint(windowObj);
+    let windowObj: window.Window | undefined = AppStorage.Get('windowObj');
+    if(windowObj != undefined){
+      this.listenOnBreakpoint(windowObj);
+    }
   }
 
   aboutToDisappear() {
-    let windowObj: window.Window = AppStorage.Get('windowObj')
-    windowObj.off('windowSizeChange')
+    let windowObj: window.Window | undefined= AppStorage.Get('windowObj');
+    if(windowObj != undefined){
+      windowObj.off('windowSizeChange');
+    }
   }
 
   build() {
