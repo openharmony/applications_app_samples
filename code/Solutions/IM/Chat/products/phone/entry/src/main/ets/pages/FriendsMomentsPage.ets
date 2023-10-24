@@ -191,7 +191,8 @@ struct OneMoment {
                         params: {
                           resourceUrl: JSON.stringify(this.moment.imageList),
                           isMedia: false,
-                          imageIndex: index
+                          imageIndex: index,
+                          isMultipleImages: true
                         }
                       })
                     })
@@ -324,13 +325,13 @@ class FriendMomentsData extends BasicDataSource<FriendMoment> {
 }
 
 // task任务池
-async function getFriendMomentByTaskPool(jsonUrl:ESObject): Promise<void> {
+async function getFriendMomentByTaskPool(jsonUrl: ESObject): Promise<void> {
   // 初始化Task对象，传入待执行的方法和参数
   let task: taskpool.Task = new taskpool.Task(getWebData, jsonUrl);
   // 向任务池中添加新对象
   let friendMomentArray: Array<FriendMoment> = await taskpool.execute(task, taskpool.Priority.MEDIUM) as Array<FriendMoment>;
-  let momentData: FriendMomentsData|undefined = AppStorage.get<FriendMomentsData>('momentData');
-  if(momentData!==undefined) {
+  let momentData: FriendMomentsData | undefined = AppStorage.get<FriendMomentsData>('momentData');
+  if (momentData !== undefined) {
     // 将数组循环写入页面对象中
     for (let i = 0; i < friendMomentArray.length; i++) {
       momentData.pushData(friendMomentArray[i]);
