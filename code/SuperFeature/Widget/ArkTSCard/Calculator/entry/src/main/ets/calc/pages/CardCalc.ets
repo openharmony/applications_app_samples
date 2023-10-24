@@ -34,7 +34,7 @@ struct CardCalc {
       .height('20%')
 
       Row() {
-        ForEach(calcButton1(), (item, index) => {
+        ForEach(calcButton1(), (item: ImageList, index: number) => {
           Button({ type: ButtonType.Normal }) {
             Image(item.image)
               .height('100%')
@@ -53,7 +53,7 @@ struct CardCalc {
       .width('100%')
 
       Row() {
-        ForEach(calcButton2(), (item, index) => {
+        ForEach(calcButton2(), (item: ImageList, index: number) => {
           Button({ type: ButtonType.Normal }) {
             Image(item.image)
               .height('100%')
@@ -74,7 +74,7 @@ struct CardCalc {
       .height('16%')
 
       Row() {
-        ForEach(calcButton3(), (item, index) => {
+        ForEach(calcButton3(), (item: ImageList, index: number) => {
           Button({ type: ButtonType.Normal }) {
             Image(item.image)
               .height('100%')
@@ -95,7 +95,7 @@ struct CardCalc {
       .height('16%')
 
       Row() {
-        ForEach(calcButton4(), (item, index) => {
+        ForEach(calcButton4(), (item: ImageList, index: number) => {
           Button({ type: ButtonType.Normal }) {
             Image(item.image)
               .height('100%')
@@ -116,7 +116,7 @@ struct CardCalc {
       .height('16%')
 
       Row() {
-        ForEach(calcButton5(), (item, index) => {
+        ForEach(calcButton5(), (item: ImageList, index: number) => {
           Button({ type: ButtonType.Normal }) {
             Image(item.image)
               .height('100%')
@@ -159,7 +159,7 @@ struct CardCalc {
     console.error("ArkTSForm onBackPress")
   }
 
-  onInputValue = (value) => {
+  onInputValue = (value: string) => {
     if (value === 'C') { // 当用户点击C按钮，表达式和运算结果归0
       this.expression = '';
       this.result = '';
@@ -195,18 +195,13 @@ struct CardCalc {
   }
 }
 
-class ImageList {
+interface ImageList {
   image: Resource;
   value: string;
-
-  constructor(image: Resource, value: string) {
-    this.image = image;
-    this.value = value;
-  }
 }
 
 function calcButton1(): Array<ImageList> {
-  let list =
+  let list: Array<ImageList> =
     [
       { image: $r('app.media.ic_cal_delete_c'), value: 'C' },
       { image: $r('app.media.ic_cal_division'), value: '/' },
@@ -217,7 +212,7 @@ function calcButton1(): Array<ImageList> {
 }
 
 function calcButton2(): Array<ImageList> {
-  let list =
+  let list: Array<ImageList> =
     [
       { image: $r('app.media.ic_cal_seven'), value: '7' },
       { image: $r('app.media.ic_cal_eight'), value: '8' },
@@ -228,7 +223,7 @@ function calcButton2(): Array<ImageList> {
 }
 
 function calcButton3(): Array<ImageList> {
-  let list =
+  let list: Array<ImageList> =
     [
       { image: $r('app.media.ic_cal_four'), value: '4' },
       { image: $r('app.media.ic_cal_five'), value: '5' },
@@ -239,7 +234,7 @@ function calcButton3(): Array<ImageList> {
 }
 
 function calcButton4(): Array<ImageList> {
-  let list =
+  let list: Array<ImageList> =
     [
       { image: $r('app.media.ic_cal_one'), value: '1' },
       { image: $r('app.media.ic_cal_two'), value: '2' },
@@ -251,26 +246,26 @@ function calcButton4(): Array<ImageList> {
 }
 
 function calcButton5(): Array<ImageList> {
-  let list =
+  let list: Array<ImageList> =
     [
       { image: $r('app.media.ic_cal_equal'), value: '=' }
     ]
   return list;
 }
 
-export function calc(inputContent) {
-  const infixExpression = parseInfixExpression(inputContent);
-  const suffixExpression = toSuffixExpression(infixExpression);
+export function calc(inputContent: string): string {
+  const infixExpression: string[] = parseInfixExpression(inputContent);
+  const suffixExpression: string[] = toSuffixExpression(infixExpression);
   return calcSuffixExpression(suffixExpression);
 }
 
-function parseInfixExpression(inputContent) {
-  const size = inputContent.length;
+function parseInfixExpression(inputContent: string) {
+  const size: number = inputContent.length;
   const lastIndex = size - 1;
   let singleChar = '';
-  const expression = [];
+  const expression: Array<string> = [];
   for (let index = 0; index < size; index++) {
-    const element = inputContent[index];
+    const element: string = inputContent[index];
     if (isGrouping(element)) {
       if (singleChar !== '') {
         expression.push(singleChar);
@@ -299,19 +294,19 @@ function parseInfixExpression(inputContent) {
   return expression;
 }
 
-function toSuffixExpression(expression) {
-  const operatorStack = [];
-  const suffixExpression = [];
-  let topOperator;
-  for (let index = 0, size = expression.length; index < size; ++index) {
-    const element = expression[index];
+function toSuffixExpression(expression: string[]) {
+  const operatorStack: string[] = [];
+  const suffixExpression: string[] = [];
+  let topOperator: string;
+  for (let index = 0, size: number = expression.length; index < size; ++index) {
+    const element: string = expression[index];
     if (element === '(') {
       operatorStack.push(element);
       continue;
     }
     if (element === ')') {
       if (operatorStack.length) {
-        let operator = operatorStack.pop();
+        let operator: string | undefined = operatorStack.pop();
         while (operator !== '(') {
           suffixExpression.push(operator);
           operator = operatorStack.pop();
@@ -341,18 +336,18 @@ function toSuffixExpression(expression) {
   return suffixExpression;
 }
 
-function calcSuffixExpression(expression) {
-  const numberStack = [];
+function calcSuffixExpression(expression: string[]) {
+  const numberStack: string[] = [];
   while (expression.length) {
-    let element = expression.shift();
-    if (!isOperator(element)) {
+    let element: string | undefined = expression.shift();
+    if (!isOperator(element as string)) {
       numberStack.push(element);
     } else {
-      const firstStackElement = numberStack.pop();
-      const secondStackElement = numberStack.pop();
-      const result = OPERATORHANDLERS[element](secondStackElement, firstStackElement);
+      const firstStackElement: string | undefined = numberStack.pop();
+      const secondStackElement: string | undefined = numberStack.pop();
+      const result: string = OPERATORHANDLERS[element as string](secondStackElement, firstStackElement);
       if (result.length > 15) {
-        numberStack.push(parseFloat(result).toExponential());
+        numberStack.push((Number.parseFloat(result).toExponential()) as string);
       } else {
         numberStack.push(result);
       }
@@ -361,43 +356,43 @@ function calcSuffixExpression(expression) {
   return numberStack[0];
 }
 
-function isOperator(operator) {
+function isOperator(operator: string) {
   return (
     operator === '+' || operator === '-' || operator === '*' || operator === '/'
   );
 }
 
-function isGrouping(operator) {
+function isGrouping(operator: string) {
   return operator === '(' || operator === ')';
 }
 
-function isSymbol(symbol) {
+function isSymbol(symbol: string) {
   return symbol === '+' || symbol === '-';
 }
 
-function isPrioritized(firstOperator, secondOperator) {
+function isPrioritized(firstOperator: string, secondOperator: string) {
   return OPERATORLEVELS[firstOperator] > OPERATORLEVELS[secondOperator];
 }
 
-const OPERATORLEVELS = {
+const OPERATORLEVELS: Record<string, number> = {
   '+': 0,
   '-': 0,
   '*': 1,
   '/': 1,
 }
 
-const OPERATORHANDLERS = {
-  '+': (firstOperand, secondOperand) => (parseFloat(firstOperand) + parseFloat(secondOperand)).toFixed(
-    getFloatNum(firstOperand, secondOperand, '+')),
-  '-': (firstOperand, secondOperand) => (firstOperand - secondOperand).toFixed(
+const OPERATORHANDLERS: Record<string, Function> = {
+  '+': (firstOperand: string, secondOperand: string) => (Number.parseFloat(firstOperand) + Number.parseFloat(secondOperand)).toFixed(
+    getFloatNum(Number(firstOperand), Number(secondOperand), '+')),
+  '-': (firstOperand: number, secondOperand: number) => (firstOperand - secondOperand).toFixed(
     getFloatNum(firstOperand, secondOperand, '-')),
-  '*': (firstOperand, secondOperand) => (firstOperand * secondOperand).toFixed(
+  '*': (firstOperand: number, secondOperand: number) => (firstOperand * secondOperand).toFixed(
     getFloatNum(firstOperand, secondOperand, '*')),
-  '/': (firstOperand, secondOperand) => (firstOperand / secondOperand).toFixed(
+  '/': (firstOperand: number, secondOperand: number) => (firstOperand / secondOperand).toFixed(
     getFloatNum(firstOperand, secondOperand, '/')),
 }
 
-function getFloatNum(firstOperand, secondOperand, oprate) {
+function getFloatNum(firstOperand: number, secondOperand: number, oprate: string) {
   let result = 0;
   let oneString = (new String(firstOperand)).toString();
   let otherString = (new String(secondOperand)).toString();

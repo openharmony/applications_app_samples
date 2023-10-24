@@ -200,10 +200,7 @@ export struct RegisterInfo {
               .maxLength(20)
               .type(item.inputType)
               .maxLength(item.length)
-                // .inputFilter(item.inputFilter)
-              .inputFilter('', (e) => {
-                console.log(`zhanghong,e:${JSON.stringify(e)}`)
-              })
+              .inputFilter(item.inputFilter)
               .fontWeight(FontWeight.Bold)
               .placeholderFont({ size: 16, weight: FontWeight.Normal })
               .onChange(async (value: string) => {

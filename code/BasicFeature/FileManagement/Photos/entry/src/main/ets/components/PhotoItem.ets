@@ -28,27 +28,33 @@ import { getThumbnail } from '../models/ThumbnailModel';
 
 const TAG = 'PhotoItem'
 
+class PreItemType{
+  rotate: number = 0;
+  height: number = 0;
+  width: number = 0;
+}
+
 @Component
 export struct PhotoItem {
-  item: UserFileDataItem;
-  pageName: string
-  @State matrix: Matrix4.Matrix4Transit = Matrix4.identity().copy();
+  item: UserFileDataItem = new UserFileDataItem('', [], '', 0);
+  pageName: string = '';
+  @State matrix: Matrix4.Matrix4Transit | null = Matrix4.identity().copy();
   @State photoItemDirection: PanDirection = PanDirection.Vertical;
   @Consume broadCast: Broadcast;
   @State objectFit: ImageFit = ImageFit.Contain;
-  @State thumbnail: PixelMap = undefined;
+  @State thumbnail: PixelMap | undefined = undefined;
   @State ratio: number = 1.0;
   @State showError: boolean = false;
   @Consume isPullingDown: boolean;
   @Consume pageFrom: number;
   @Consume('transitionIndex') @Watch('onTransitionChange') updateTransition: number;
-  private eventPipeline: EventPipeline;
+  private eventPipeline: EventPipeline | null = null;
   private animationOption: AnimationOption | null = null;
   private animationEndMatrix: Matrix4TransitWithMatrix4x4 | null = null;
   @Provide isLoading: boolean = true;
   private imgScale: number = 1;
   private firstLoad: boolean = true;
-  private preItem = { rotate: 0, height: 0, width: 0 };
+  private preItem: PreItemType = { rotate: 0, height: 0, width: 0 };
   private timeStamp: string = '';
 
   onTransitionChange() {
@@ -175,47 +181,50 @@ export struct PhotoItem {
       .height('100%')
 
       Row() {
-        Image(this.thumbnail)
-          .rotate({ x: 0, y: 0, z: 1, angle: 0 })
-          .transform(this.matrix)
-          .autoResize(false)
-          .fitOriginalSize(false)
-          .aspectRatio(this.ratio)
-          .objectFit(ImageFit.Cover)
-          .width('100%')
-          .height('100%')
-          .constraintSize({maxWidth:'100%', maxHeight:'100%'})
-          .sharedTransition(this.item.index === this.updateTransition ? this.pageName + this.item.getHashCode() : Constants.DEFAULT_TRANSITION_ID, {
-            duration: Constants.SHARE_TRANSITION_DURATION,
-            zIndex: 0,
-          })
-          .onComplete((): void => {
-            Log.info(TAG, 'onComplete finish, index: ' + this.item.index +', item: ' + JSON.stringify(this.item) + ', uri: ' + this.thumbnail + '.');
-            this.showError = false;
-            this.isLoading = false;
-            if (this.updateTransition === this.item.index) {
-              this.broadCast.emit(Constants.PHOTO_SHOW_STATE, [true]);
-            }
-          })
-          .onError((): void => {
-            Log.error(TAG, 'image show error ' + this.thumbnail + ' ' + this.item.width + ' ' + this.item.height);
-            if (this.thumbnail == undefined || this.item.width === 0 || this.item.height === 0) {
-              this.updateThumbnail()
-              return
-            }
-            this.showError = true;
-            this.isLoading = true;
-            if (this.updateTransition === this.item.index) {
-              this.broadCast.emit(Constants.PHOTO_SHOW_STATE, [false]);
-            }
-          })
+        if (this.thumbnail !== null && this.thumbnail !== undefined) {
+          Image(this.thumbnail)
+            .rotate({ x: 0, y: 0, z: 1, angle: 0 })
+            .transform(this.matrix)
+            .autoResize(false)
+            .fitOriginalSize(false)
+            .aspectRatio(this.ratio)
+            .objectFit(ImageFit.Cover)
+            .width('100%')
+            .height('100%')
+            .constraintSize({maxWidth:'100%', maxHeight:'100%'})
+            .sharedTransition(this.item.index === this.updateTransition ? this.pageName + this.item.getHashCode() : Constants.DEFAULT_TRANSITION_ID, {
+              duration: Constants.SHARE_TRANSITION_DURATION,
+              zIndex: 0,
+            })
+            .onComplete((): void => {
+              Log.info(TAG, 'onComplete finish, index: ' + this.item.index +', item: ' + JSON.stringify(this.item) + ', uri: ' + this.thumbnail + '.');
+              this.showError = false;
+              this.isLoading = false;
+              if (this.updateTransition === this.item.index) {
+                this.broadCast.emit(Constants.PHOTO_SHOW_STATE, [true]);
+              }
+            })
+            .onError((): void => {
+              Log.error(TAG, 'image show error ' + this.thumbnail + ' ' + this.item.width + ' ' + this.item.height);
+              if (this.thumbnail == undefined || this.item.width === 0 || this.item.height === 0) {
+                this.updateThumbnail();
+                return;
+              }
+              this.showError = true;
+              this.isLoading = true;
+              if (this.updateTransition === this.item.index) {
+                this.broadCast.emit(Constants.PHOTO_SHOW_STATE, [false]);
+              }
+            })
+        }
+
       }
       .width('100%')
       .height('100%')
       .justifyContent(FlexAlign.Center)
       .alignItems(VerticalAlign.Center)
       .onClick((): void => {
-        this.broadCast.emit(Constants.TOGGLE_BAR, [null]);
+        this.broadCast.emit(Constants.TOGGLE_BAR, []);
       })
       .parallelGesture(
       GestureGroup(GestureMode.Parallel,
@@ -232,7 +241,7 @@ export struct PhotoItem {
           Log.debug(TAG, 'PinchGesture onActionStart scale:' +
               event.scale + ', cx: ' + event.pinchCenterX + ', cy: ' + event.pinchCenterY);
           if (this.item.mediaType === photoAccessHelper.PhotoType.IMAGE) {
-            this.eventPipeline.onScaleStart(event.scale, event.pinchCenterX, event.pinchCenterY);
+            this.eventPipeline?.onScaleStart(event.scale, event.pinchCenterX, event.pinchCenterY);
           }
         })
         .onActionUpdate((event: GestureEvent): void => {
@@ -242,7 +251,7 @@ export struct PhotoItem {
             return;
           }
           if (this.item.mediaType === photoAccessHelper.PhotoType.IMAGE) {
-            this.eventPipeline.onScale(event.scale);
+            this.eventPipeline?.onScale(event.scale);
           }
         })
         .onActionEnd((): void => {
@@ -252,13 +261,13 @@ export struct PhotoItem {
             return;
           }
           if (this.item.mediaType === photoAccessHelper.PhotoType.IMAGE) {
-            this.eventPipeline.onScaleEnd();
+            this.eventPipeline?.onScaleEnd();
             if (this.animationOption != null) {
               animateTo({
                 duration: this.animationOption.duration,
                 curve: this.animationOption.curve,
                 onFinish: (): void => {
-                  this.eventPipeline.onAnimationEnd(this.animationEndMatrix);
+                  this.eventPipeline?.onAnimationEnd(this.animationEndMatrix);
                   this.animationOption = null;
                   this.animationEndMatrix = null;
                 }
@@ -274,23 +283,23 @@ export struct PhotoItem {
         .onActionStart((event: GestureEvent): void => {
           Log.debug(TAG, 'PanGesture start offsetX: ' +
                   vp2px(event.offsetX) + ', offsetY: ' + vp2px(event.offsetY));
-          this.eventPipeline.onMoveStart(vp2px(event.offsetX), vp2px(event.offsetY));
+          this.eventPipeline?.onMoveStart(vp2px(event.offsetX), vp2px(event.offsetY));
         })
         .onActionUpdate((event: GestureEvent): void => {
           Log.debug(TAG, 'PanGesture update offsetX: ' +
                   vp2px(event.offsetX) + ', offsetY: ' + vp2px(event.offsetY));
-          this.eventPipeline.onMove(vp2px(event.offsetX), vp2px(event.offsetY));
+          this.eventPipeline?.onMove(vp2px(event.offsetX), vp2px(event.offsetY));
         })
         .onActionEnd((event: GestureEvent): void => {
           Log.debug(TAG, 'PanGesture end offsetX: ' +
                   vp2px(event.offsetX) + ', offsetY: ' + vp2px(event.offsetY));
-          this.eventPipeline.onMoveEnd(vp2px(event.offsetX), vp2px(event.offsetY));
+          this.eventPipeline?.onMoveEnd(vp2px(event.offsetX), vp2px(event.offsetY));
           if (this.animationOption != null) {
             animateTo({
               duration: this.animationOption.duration,
               curve: this.animationOption.curve,
               onFinish: (): void => {
-                this.eventPipeline.onAnimationEnd(this.animationEndMatrix);
+                this.eventPipeline?.onAnimationEnd(this.animationEndMatrix);
                 this.animationOption = null;
                 this.animationEndMatrix = null;
               }
@@ -311,14 +320,14 @@ export struct PhotoItem {
           if (this.item.mediaType === photoAccessHelper.PhotoType.VIDEO) {
             return;
           }
-          this.eventPipeline.onDoubleTap(event.fingerList[0].localX, event.fingerList[0].localY);
+          this.eventPipeline?.onDoubleTap(event.fingerList[0].localX, event.fingerList[0].localY);
           if (this.animationOption != null) {
             Log.debug(TAG, 'TapGesture animateTo start');
             animateTo({
               duration: this.animationOption.duration,
               curve: this.animationOption.curve,
               onFinish: (): void => {
-                this.eventPipeline.onAnimationEnd(this.animationEndMatrix);
+                this.eventPipeline?.onAnimationEnd(this.animationEndMatrix);
                 this.animationOption = null;
                 this.animationEndMatrix = null;
               }
@@ -331,7 +340,7 @@ export struct PhotoItem {
       )
       .clip(true)
       .onTouch((event: TouchEvent): void => {
-        this.eventPipeline.onTouch(event);
+        this.eventPipeline?.onTouch(event);
       })
 
       if (this.isVideoPlayBtnShow()) {

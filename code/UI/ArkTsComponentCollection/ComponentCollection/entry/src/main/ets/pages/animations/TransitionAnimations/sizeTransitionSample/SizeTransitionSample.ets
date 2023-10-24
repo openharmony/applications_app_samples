@@ -101,7 +101,7 @@ struct SizeTransitionSample {
           IntroductionTitle({ introduction: $r('app.string.size_transition_grid_item') })
           Column() {
             Grid() {
-              ForEach([1, 2, 3], (item) => {
+              ForEach([1, 2, 3], (item: number) => {
                 GridItem() {
                   Text(getStringData($r('app.string.size_transition_grid_item')) + item)
                 }.margin(5).width(100)
@@ -118,7 +118,7 @@ struct SizeTransitionSample {
           IntroductionTitle({ introduction: $r('app.string.size_transition_list_item') })
           Column() {
             List() {
-              ForEach([1, 2, 3, 4], (item) => {
+              ForEach([1, 2, 3, 4], (item: number) => {
                 ListItem() {
                   Text(getStringData($r('app.string.size_transition_list_item')) + item)
                 }.margin(5).width(100)
@@ -136,7 +136,7 @@ struct SizeTransitionSample {
           IntroductionTitle({ introduction: $r('app.string.size_transition_swiper_item') })
           Column() {
             Swiper() {
-              ForEach([1, 2, 3, 4], (item) => {
+              ForEach([1, 2, 3, 4], (item: number) => {
                 Text(getStringData($r('app.string.size_transition_swiper_item')) + item)
               })
             }
@@ -151,7 +151,7 @@ struct SizeTransitionSample {
           IntroductionTitle({ introduction: ($r('app.string.size_transition_expansion_tabContent')) })
           Column() {
             Tabs() {
-              ForEach([0, 1, 2], (item) => {
+              ForEach([0, 1, 2], (item: number) => {
                 TabContent() {
                   Text(getStringData($r('app.string.size_transition_expansion_tabContent')) + item)
                 }

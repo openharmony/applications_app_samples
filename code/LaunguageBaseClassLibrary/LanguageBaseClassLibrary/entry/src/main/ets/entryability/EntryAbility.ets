@@ -15,19 +15,21 @@
 
 import display from '@ohos.display';
 import UIAbility from '@ohos.app.ability.UIAbility';
-import type window from '@ohos.window';
+import window from '@ohos.window';
 import { logger } from '@ohos/common';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 const BREAKPOINT_MD: number = 600;
 const BREAKPOINT_BIG: number = 840;
 const PARAMS_PX_TO_VP: number = 160;
-const TAG: string = '[Sample_EntryAbility]';
+const TAG: string = 'EntryAbility';
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want, launchParam): void {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     logger.info(TAG, 'Ability onCreate');
     AppStorage.SetOrCreate('selectedLabel', '');
-    globalThis.abilityContext = this.context;
+    AppStorage.SetOrCreate('selectedSecondLabel', '');
   }
 
   updateBreakpoint(windowWidth: number): void {

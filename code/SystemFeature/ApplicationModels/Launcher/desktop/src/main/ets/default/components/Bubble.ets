@@ -31,20 +31,20 @@ const TAG: string = 'Bubble'
 
 @Component
 export default struct Bubble {
-  @StorageLink('DesktopLayoutModel') desktopLayoutModel: DesktopLayoutModel = undefined
-  private appInfo: GridLayoutItemInfo = new GridLayoutItemInfo()
-  private mDefaultAppIcon: string = ''
-  private menuInfos: Array<MenuInfo> = undefined
-  private context: any = undefined
-  @State customPopup: boolean = false
-  @State formInfo: CardItemInfo | undefined = undefined
-  @State icon: string = ''
+  @StorageLink('DesktopLayoutModel') desktopLayoutModel: DesktopLayoutModel | undefined = undefined;
+  private appInfo: GridLayoutItemInfo = new GridLayoutItemInfo();
+  private mDefaultAppIcon: string = '';
+  private menuInfos: Array<MenuInfo> | undefined = [];
+  private context: Context | undefined = undefined;
+  @State customPopup: boolean = false;
+  @State formInfo: CardItemInfo = new CardItemInfo();
+  @State icon: string = '';
   @State badgeNum: number = 0;
   dialogController: CustomDialogController = new CustomDialogController({
     builder: DeleteDialog({
       confirm: () => {
         // 卸载应用的逻辑
-        this.desktopLayoutModel.uninstallAppItem(this.appInfo)
+        this.desktopLayoutModel?.uninstallAppItem(this.appInfo);
       },
       appInfo: this.appInfo,
       dialogContent: this.appInfo.appName + ' ?',
@@ -96,7 +96,7 @@ export default struct Bubble {
         .onClick(() => {
           let selectForm = this.getSelectedFormInfo()
           if (!CheckEmptyUtils.isEmpty(selectForm)) {
-            this.desktopLayoutModel.createCardToDeskTop(this.getSelectedFormInfo())
+            this.desktopLayoutModel?.createCardToDeskTop(this.getSelectedFormInfo())
           }
           this.customPopup = false
         })
@@ -163,40 +163,40 @@ export default struct Bubble {
       })
     )
     .onClick(() => {
-      this.desktopLayoutModel.jumpTo(this.appInfo.abilityName, this.appInfo.bundleName)
+      this.desktopLayoutModel?.jumpTo(this.appInfo.abilityName, this.appInfo.bundleName)
     })
   }
 
   aboutToAppear() {
-    this.updateIcon()
-    this.menuInfos = this.desktopLayoutModel.buildMenuInfoList(this.appInfo, this.dialogController)
-    let appFormInfo = this.desktopLayoutModel.getAppItemFormInfo(this.appInfo.bundleName)
+    this.updateIcon();
+    this.menuInfos = this.desktopLayoutModel?.buildMenuInfoList(this.appInfo, this.dialogController);
+    let appFormInfo = this.desktopLayoutModel?.getAppItemFormInfo(this.appInfo.bundleName!);
     if (appFormInfo && appFormInfo.length > 0) {
-      this.formInfo = appFormInfo[0]
+      this.formInfo = appFormInfo[0];
     }
-    let subscriber = {
+    let subscriber: notificationSubscribe.NotificationSubscriber = {
       onConsume: this.onConsumeCallback,
       onCancel: this.onCancelCallback,
       onBadgeChanged: this.onBadgeChangedCallback
     }
-    let info = {
-      bundleNames: [this.appInfo.bundleName]
+    let info: notificationSubscribe.NotificationSubscribeInfo = {
+      bundleNames: [this.appInfo.bundleName!]
     };
     notificationSubscribe.subscribe(subscriber, info).then(() => {
       console.info(JSON.stringify(this.appInfo.bundleName) + "subscribe success");
     })
   }
 
-  onConsumeCallback = (data) => {
+  onConsumeCallback = (data: notificationSubscribe.SubscribeCallbackData) => {
     this.badgeNum += 1;
     console.info("Consume callback : " + JSON.stringify(data));
   }
 
-  onCancelCallback = (data) => {
+  onCancelCallback = (data: notificationSubscribe.SubscribeCallbackData) => {
     console.info("Cancel callback" + JSON.stringify(data));
   }
 
-  onBadgeChangedCallback = (data) => {
+  onBadgeChangedCallback = (data: ESObject) => {
     if (data.bundle === this.appInfo.bundleName) {
       this.badgeNum = data.badgeNumber;
       console.info("bundle: ", data.bundle);
@@ -219,9 +219,9 @@ export default struct Bubble {
     if (CheckEmptyUtils.isEmpty(this.formInfo)) {
       return undefined
     }
-    let formCardItem: any = {}
+    let formCardItem: Record<string, Object> = {}
     formCardItem.cardId = this.formInfo.cardId
-    formCardItem.appName = this.appInfo.appName
+    formCardItem.appName = this.appInfo.appName!
     formCardItem.cardName = this.formInfo.cardName
     formCardItem.bundleName = this.formInfo.bundleName
     formCardItem.abilityName = this.formInfo.abilityName

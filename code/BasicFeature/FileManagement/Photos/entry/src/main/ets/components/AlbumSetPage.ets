@@ -33,7 +33,7 @@ import { userFileObserver } from '../base/UserFileObserver';
 import { Log } from '../utils/Log';
 import { AlbumBarModel } from '../models/AlbumBarModel';
 import { ToolBar } from './ToolBar';
-import abilityAccessCtrl,{Permissions} from '@ohos.abilityAccessCtrl';
+import abilityAccessCtrl,{ PermissionRequestResult, Permissions} from '@ohos.abilityAccessCtrl';
 import { GlobalContext } from '../common/GlobalContext';
 import common from '@ohos.app.ability.common';
 import {
@@ -51,6 +51,8 @@ import { AlbumsDataSource } from '../common/AlbumsDataSource';
 import { LazyItem } from '../common/ItemDataSource';
 import { AlbumDataItem } from '../common/AlbumDataItem';
 import { userFileModel } from '../base/UserFileModel';
+import { BusinessError } from '@ohos.base';
+
 // Album Set Page
 const TAG = 'AlbumSetPage'
 
@@ -63,16 +65,16 @@ export struct AlbumSetPage {
   @Provide gridColumnsCount: number = 0;
   @Provide broadCast: Broadcast = new Broadcast();
   @Consume @Watch('onIndexPageShow') isShow: boolean;
-  private dataObserver: CommonObserverCallback = new CommonObserverCallback(this as UserFileDataChangeCallback);
+  private dataObserver: CommonObserverCallback | null = new CommonObserverCallback(this as UserFileDataChangeCallback);
   appBroadcast: Broadcast = broadcastManager.getBroadcast();
   isActive = false; // Whether the page is in the foreground
 
-  scroller: Scroller = new Scroller();
+  scroller: Scroller | null = new Scroller();
   @StorageLink('isSidebar') isSidebar: boolean = screenManager.isSidebar();
 
   @Provide moreMenuList: Action[] = [];
   private needNotify = false;
-  private barModel: AlbumBarModel = new AlbumBarModel();
+  private barModel: AlbumBarModel | null = new AlbumBarModel();
   private albumsDataSource: AlbumsDataSource = new AlbumsDataSource();
   private isMediaLibDataChanged: boolean = true;
 
@@ -80,17 +82,20 @@ export struct AlbumSetPage {
   @State toolBarMenuList: Action[] = [];
 
   updateActionBar(): void {
-    this.actionBarProp = this.barModel.createActionBar(
-      this.isAlbumSetSelectedMode,
-      this.selectedAlbumsCount,
-      this.albumsDataSource.isDisableRename(),
-      this.albumsDataSource.isDisableDelete(),
-    );
-    this.toolBarMenuList = this.barModel.getMenuList(
-      this.isAlbumSetSelectedMode,
-      this.selectedAlbumsCount,
-      this.albumsDataSource.isDisableRename(),
-      this.albumsDataSource.isDisableDelete());
+    if (this.barModel !== null) {
+      this.actionBarProp = this.barModel.createActionBar(
+        this.isAlbumSetSelectedMode,
+        this.selectedAlbumsCount,
+        this.albumsDataSource.isDisableRename(),
+        this.albumsDataSource.isDisableDelete(),
+      );
+
+      this.toolBarMenuList = this.barModel.getMenuList(
+        this.isAlbumSetSelectedMode,
+        this.selectedAlbumsCount,
+        this.albumsDataSource.isDisableRename(),
+        this.albumsDataSource.isDisableDelete());
+    }
   }
 
   onMenuClicked(action: Action, arg: Object[]): void {
@@ -197,7 +202,6 @@ export struct AlbumSetPage {
     this.initGridRowCount();
 
     let self = this;
-    this.onMenuClicked = (action: Action, args: Object[]): void => this.onMenuClickedBindImpl(action, args);
     this.broadCast.on(BroadcastConstants.SELECT, (index: number): void => this.onSelect(index));
 
     screenManager.on(screenManager.ON_WIN_SIZE_CHANGED, (): void => {
@@ -319,7 +323,7 @@ export struct AlbumSetPage {
 
   private onResetZeroBindImpl(pageNumber: number): void {
     if (pageNumber === Constants.ALBUM_PAGE_INDEX) {
-      this.scroller.scrollEdge(Edge.Top);
+      this.scroller?.scrollEdge(Edge.Top);
     }
   }
 
@@ -336,7 +340,7 @@ export struct AlbumSetPage {
     Log.info(TAG, 'the grid count in a line is: ' + this.gridColumnsCount);
   }
 
-  onUserFileDataChange(changeType): void {
+  onUserFileDataChange(changeType: string): void {
     Log.info(TAG, 'onUserFileDataChange type: ' + changeType);
     this.isMediaLibDataChanged = true;
     this.albumsDataSource.resetLoadState();
@@ -365,16 +369,16 @@ export struct AlbumSetPage {
       'ohos.permission.WRITE_IMAGEVIDEO',
     ];
     let appContext: common.UIAbilityContext = GlobalContext.getContext().getObject('appContext') as common.UIAbilityContext;
-    var AtManager = abilityAccessCtrl.createAtManager();
+    let AtManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
     //requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
-    AtManager.requestPermissionsFromUser(appContext, array).then((data) => {
+    AtManager.requestPermissionsFromUser(appContext, array).then((data:PermissionRequestResult) => {
       Log.info(TAG,'data type:' + typeof(data));
       Log.info(TAG,'data:' + data);
       Log.info(TAG,'data permissions:' + data.permissions);
       Log.info(TAG,'data result:' + data.authResults);
       //reload
       this.onUserFileDataChange('None');
-    }).catch((err) => {
+    }).catch((err:BusinessError) => {
       Log.error(TAG,'Failed to start ability'+ err.code);
     })
   }
@@ -423,7 +427,7 @@ export struct AlbumSetPage {
         if (!this.isEmpty) {
           ActionBar({
             actionBarProp: $actionBarProp,
-            onMenuClicked: this.onMenuClicked
+            onMenuClicked: (action: Action, arg: Object[]): void => this.onMenuClicked(action, arg)
           })
           Column() {
             this.LocalAlbumSet()
@@ -432,7 +436,7 @@ export struct AlbumSetPage {
         if (this.isAlbumSetSelectedMode) {
           ToolBar({
             toolMenuList: $toolBarMenuList,
-            onMenuClicked: this.onMenuClicked
+            onMenuClicked: (action: Action, arg: Object[]): void => this.onMenuClicked(action, arg)
           })
         }
       }

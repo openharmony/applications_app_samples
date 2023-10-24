@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-import { IntroductionTitle } from '../../../../common/IntroductionTitle'
-import ShowToast from '../../../../util/ShowToast'
-import { TitleBar } from '../../../../common/TitleBar'
+import { IntroductionTitle } from '../../../../common/IntroductionTitle';
+import ShowToast from '../../../../util/ShowToast';
+import { TitleBar } from '../../../../common/TitleBar';
 
 @Extend(Column) function columnStyle() {
   .width('100%')
@@ -27,10 +27,11 @@ import { TitleBar } from '../../../../common/TitleBar'
 @Entry
 @Component
 struct RadioSample {
-  @State radioItemWidth: number = 0
-  @State responseRegionIndex: number = 0
-  @State noResponseRegionIndex: number = 0
-  private cityNames: Resource[] = [$r('app.string.radio_beijing'), $r('app.string.radio_shanghai'), $r('app.string.radio_guangzhou'), $r('app.string.radio_shenzhen')]
+  @State radioItemWidth: number = 0;
+  @State responseRegionIndex: number = 0;
+  @State noResponseRegionIndex: number = 0;
+  private context: Context = getContext(this);
+  private cityNames: Resource[] = [$r('app.string.radio_beijing'), $r('app.string.radio_shanghai'), $r('app.string.radio_guangzhou'), $r('app.string.radio_shenzhen')];
 
   build() {
     Column() {
@@ -39,10 +40,10 @@ struct RadioSample {
         Column({ space: 12 }) {
           IntroductionTitle({ introduction: $r("app.string.radio_no_response_region") })
           Column() {
-            ForEach(this.cityNames, (item, index) => {
+            ForEach(this.cityNames, (item: Resource, index: number) => {
               Row() {
                 // Only one option for the same group
-                Radio({ value: item, group: 'noResponse' }).checked(false)
+                Radio({ value: this.context.resourceManager.getStringSync(item), group: 'noResponse' }).checked(false)
                   .checked(this.noResponseRegionIndex === index)
                   .onChange((isChecked: boolean) => {
                     if (isChecked) {
@@ -59,9 +60,9 @@ struct RadioSample {
 
           IntroductionTitle({ introduction: $r("app.string.radio_has_response_region") })
           Column() {
-            ForEach(this.cityNames, (item, index) => {
+            ForEach(this.cityNames, (item: Resource, index: number) => {
               Row() {
-                Radio({ value: item, group: 'responseRegion' })
+                Radio({ value: this.context.resourceManager.getStringSync(item), group: 'responseRegion' })
                   .size({ width: 20, height: 20 })
                   .checked(this.responseRegionIndex === index)
                   .responseRegion({

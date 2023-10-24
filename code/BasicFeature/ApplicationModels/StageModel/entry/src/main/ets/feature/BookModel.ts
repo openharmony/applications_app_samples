@@ -22,7 +22,7 @@ export class BookModel {
   name: string
   introduction: string
 
-  constructor(id: number, name: string, introduction: string) {
+  constructor(id?: number, name?: string, introduction?: string) {
     this.id = id
     this.name = name
     this.introduction = introduction

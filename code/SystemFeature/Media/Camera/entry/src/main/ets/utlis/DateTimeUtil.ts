@@ -17,7 +17,7 @@
  * @file 日期工具
  */
 
-const NINE = 9; // 这是数字9
+const NINE: number = 9; // 这是数字9
 
 export default class DateTimeUtil {
   /**

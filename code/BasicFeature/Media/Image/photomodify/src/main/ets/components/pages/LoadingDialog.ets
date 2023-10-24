@@ -14,7 +14,7 @@
  */
 @CustomDialog
 struct LoadingDialog {
-  controller: CustomDialogController;
+  controller?: CustomDialogController;
 
   build() {
     Column() {

@@ -13,33 +13,32 @@
  * limitations under the License.
  */
 
-import { CommonItemSlider } from '../../../../common/AttributeModificationTool'
-import { IntroductionTitle } from '../../../../common/IntroductionTitle'
-import { TitleBar } from '../../../../common/TitleBar'
+import { CommonItemSlider } from '../../../../common/AttributeModificationTool';
+import { IntroductionTitle } from '../../../../common/IntroductionTitle';
+import { TitleBar } from '../../../../common/TitleBar';
+
+class Slider {
+  isXAxis: boolean = false;
+  axisName!: Resource;
+}
 
 @Entry
 @Component
 struct TranslateSample {
-  @State imageTranslateX: number = 0
-  @State imageTranslateY: number = 0
-  @State containerTranslateX: number = 0
-  @State containerTranslateY: number = 0
-  private componentSliders: Array<{
-    isXAxis: boolean,
-    axisName: Resource
-  }> =
+  @State imageTranslateX: number = 0;
+  @State imageTranslateY: number = 0;
+  @State containerTranslateX: number = 0;
+  @State containerTranslateY: number = 0;
+  private componentSliders: Array<Slider> =
     [
       { isXAxis: true, axisName: $r('app.string.translate_x_axis') },
       { isXAxis: false, axisName: $r('app.string.translate_y_axis') }
-    ]
-  private imageSliders: Array<{
-    isXAxis: boolean,
-    axisName: Resource
-  }> =
+    ];
+  private imageSliders: Array<Slider> =
     [
       { isXAxis: true, axisName: $r('app.string.translate_x_axis') },
       { isXAxis: false, axisName: $r('app.string.translate_y_axis') }
-    ]
+    ];
 
   build() {
     Column() {
@@ -61,7 +60,7 @@ struct TranslateSample {
           .backgroundColor(Color.White)
           .justifyContent(FlexAlign.Center)
 
-          ForEach(this.imageSliders, (item) => {
+          ForEach(this.imageSliders, (item: Slider) => {
             Row() {
               if (item.isXAxis) {
                 CommonItemSlider({ changeValue: $imageTranslateX, min: -20, max: 20, name: item.axisName })
@@ -91,7 +90,7 @@ struct TranslateSample {
           .backgroundColor(Color.White)
           .padding({ top: 4, bottom: 4 })
 
-          ForEach(this.componentSliders, (item) => {
+          ForEach(this.componentSliders, (item: Slider) => {
             Row() {
               if (item.isXAxis) {
                 // -20和20为平移的区间

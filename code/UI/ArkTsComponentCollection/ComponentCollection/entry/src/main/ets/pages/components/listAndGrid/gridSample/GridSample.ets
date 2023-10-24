@@ -56,7 +56,7 @@ struct GridSample {
       Column() {
         Scroll(){
           Grid(this.controller) {
-            ForEach(this.itemsText, text => {
+            ForEach(this.itemsText, (text: string) => {
               GridItem() {
                 Text(text)
                   .itemStyle()

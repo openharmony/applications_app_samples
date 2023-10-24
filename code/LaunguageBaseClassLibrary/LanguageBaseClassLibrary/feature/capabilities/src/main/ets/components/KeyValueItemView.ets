@@ -20,8 +20,9 @@ import { DeleteView } from './DeleteView';
 export struct KeyValueItemView {
   @ObjectLink keyValuePair: KeyValuePair;
   @State deleteEnabled: boolean = true;
-  private deleteAction: (event?: ClickEvent) => void;
-  private index: number;
+  private deleteAction: (event?: ClickEvent) => void = () => {
+  };
+  private index: number = 0;
 
   build() {
     Row() {

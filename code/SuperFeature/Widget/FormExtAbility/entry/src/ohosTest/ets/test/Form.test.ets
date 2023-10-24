@@ -17,6 +17,7 @@ import { describe, it, expect, beforeAll, afterAll } from '@ohos/hypium';
 import { Driver, ON } from '@ohos.UiTest';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import hilog from '@ohos.hilog';
+import { BusinessError } from '@ohos.base';
 
 const TAG = '[Sample_DataProxyForm_Test]';
 const DOMAIN = 0xF811;
@@ -42,7 +43,7 @@ export default function formTest() {
       // Open launcher
       await abilityDelegator.executeShellCommand('aa start -b ohos.samples.launcher -a MainAbility').then((result) =>{
         hilog.info(DOMAIN, TAG, BUNDLE + 'start launcher success');
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'start launcher fail');
       });
     })
@@ -51,7 +52,7 @@ export default function formTest() {
       // Close launcher
       await abilityDelegator.executeShellCommand('pkill -f ohos.samples.launcher').then((result) =>{
         hilog.info(DOMAIN, TAG, BUNDLE + 'close launcher success');
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'close launcher fail');
       });
     })
@@ -61,7 +62,7 @@ export default function formTest() {
      * Input:Long click on the application icon, select 'service card' from the pop-up menu and select 'Add a card to the desktop' button.
      * Expected output:An ArkTs card is added to the desktop successfully.
      */
-    it(BUNDLE + 'DataProxyForm_001', 0, async (done) => {
+    it(BUNDLE + 'DataProxyForm_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_001 begin');
       await driver.delayMs(3000);
       // Confirm the number of cards on the desktop
@@ -73,7 +74,7 @@ export default function formTest() {
         expect(result !== null).assertTrue();
         cardArkTsCount = result.split(pushCardArkTs).length - 1;
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_001 cardArkTsCount:' + cardArkTsCount);
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_001 hilog err is: ' + JSON.stringify(err));
       });
       await driver.delayMs(1000);
@@ -130,7 +131,7 @@ export default function formTest() {
         let result = JSON.stringify(data);
         hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_001 getFormData data: ${JSON.stringify(data)}`);
         cardArkTsCountSecond = result.split(pushCardArkTs).length - 1;
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_001 hilog err is: ' + JSON.stringify(err));
       });
 
@@ -164,7 +165,7 @@ export default function formTest() {
      * Input:Long click on the application icon, select 'service card' from the pop-up menu and select 'service card' button.
      * Expected output:A Js card is added to the desktop successfully.
      */
-    it(BUNDLE + 'DataProxyForm_002', 1, async (done) => {
+    it(BUNDLE + 'DataProxyForm_002', 1, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_002 begin');
       await driver.delayMs(1000);
       // Confirm the number of cards
@@ -176,7 +177,7 @@ export default function formTest() {
         expect(result !== null).assertTrue();
         cardJsCount = result.split(pushCardJs).length - 1;
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_002 cardJsCount:' + cardJsCount);
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_002 hilog err is: ' + JSON.stringify(err));
       });
 
@@ -235,7 +236,7 @@ export default function formTest() {
         let result = JSON.stringify(data);
         hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_002 getFormData data: ${JSON.stringify(data)}`);
         cardJsCountSecond = result.split(pushCardJs).length - 1;
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_002 hilog err is: ' + JSON.stringify(err));
       });
 
@@ -269,7 +270,7 @@ export default function formTest() {
      * Input:Long click on the application icon, select 'service card' from the pop-up menu and select 'Add a card to the desktop' button.
      * Expected output:An ArkTs card is added to the desktop successfully.
      */
-    it(BUNDLE + 'DataProxyForm_003', 2, async (done) => {
+    it(BUNDLE + 'DataProxyForm_003', 2, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_003 begin');
       await driver.delayMs(3000);
       // Confirm the number of cards on the desktop
@@ -281,7 +282,7 @@ export default function formTest() {
         expect(result !== null).assertTrue();
         cardArkTsCount = result.split(cardArkTs).length - 1;
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_003 cardArkTsCount:' + cardArkTsCount);
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_003 hilog err is: ' + JSON.stringify(err));
       });
       await driver.delayMs(1000);
@@ -326,7 +327,7 @@ export default function formTest() {
         let result = JSON.stringify(data);
         hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_003 getFormData data: ${JSON.stringify(data)}`);
         cardArkTsCountSecond = result.split(cardArkTs).length - 1;
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_003 hilog err is: ' + JSON.stringify(err));
       });
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_003 assert an ArkTs card has been added, ' +
@@ -358,7 +359,7 @@ export default function formTest() {
      * Input:Long click on the application icon, select 'service card' from the pop-up menu and select 'service card' button.
      * Expected output:A Js card is added to the desktop successfully.
      */
-    it(BUNDLE + 'DataProxyForm_004', 3, async (done) => {
+    it(BUNDLE + 'DataProxyForm_004', 3, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_004 begin');
       await driver.delayMs(1000);
       // Confirm the number of cards
@@ -370,7 +371,7 @@ export default function formTest() {
         expect(result !== null).assertTrue();
         cardJsCount = result.split(cardJs).length - 1;
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_004 cardJsCount:' + cardJsCount);
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_004 hilog err is: ' + JSON.stringify(err));
       });
 
@@ -417,7 +418,7 @@ export default function formTest() {
         let result = JSON.stringify(data);
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_004 getFormData data: ' + JSON.stringify(data));
         cardJsCountSecond = result.split(cardJs).length - 1;
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_004 hilog err is: ' + JSON.stringify(err));
       });
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_004 assert an ArkTs card has been added, ' +
@@ -449,7 +450,7 @@ export default function formTest() {
      * Input:Long click on the card, select 'delete' from the pop-up menu,and confirm to remove.
      * Expected output:An ArkTs card is deleted from the desktop successfully.
      */
-    it(BUNDLE + 'DataProxyForm_005', 4, async (done) => {
+    it(BUNDLE + 'DataProxyForm_005', 4, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_005 begin');
       await driver.delayMs(1000);
       // Long click the application
@@ -502,7 +503,7 @@ export default function formTest() {
         expect(result !== null).assertTrue();
         cardArkTsCount = result.split(pushCardArkTs).length - 1;
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_005 cardArkTsCount:' + cardArkTsCount);
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_005 hilog err is: ' + JSON.stringify(err));
       });
 
@@ -529,7 +530,7 @@ export default function formTest() {
         let result = JSON.stringify(data);
         hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_005 getFormData data: ${JSON.stringify(data)}`);
         cardArkTsCountSecond = result.split(pushCardArkTs).length - 1;
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_005 hilog err is: ' + JSON.stringify(err));
       });
 
@@ -548,7 +549,7 @@ export default function formTest() {
      * Input:Long click on the card, select 'delete' from the pop-up menu.
      * Expected output:A Js card is deleted from the desktop successfully.
      */
-    it(BUNDLE + 'DataProxyForm_006', 5, async (done) => {
+    it(BUNDLE + 'DataProxyForm_006', 5, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_006 begin');
       await driver.delayMs(1000);
       // Long click the application
@@ -607,7 +608,7 @@ export default function formTest() {
         expect(result !== null).assertTrue();
         cardJsCount = result.split(pushCardJs).length - 1;
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_006 cardJsCount:' + cardJsCount);
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_006 hilog err is: ' + JSON.stringify(err));
       });
 
@@ -634,7 +635,7 @@ export default function formTest() {
         let result = JSON.stringify(data);
         hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_006 getFormData data: ${JSON.stringify(data)}`);
         cardJsCountSecond = result.split(pushCardJs).length - 1;
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_006 hilog err is: ' + JSON.stringify(err));
       });
 
@@ -653,7 +654,7 @@ export default function formTest() {
      * Input:Long click on the card, select 'delete' from the pop-up menu,and confirm to remove.
      * Expected output:An ArkTs card is deleted from the desktop successfully.
      */
-    it(BUNDLE + 'DataProxyForm_007', 6, async (done) => {
+    it(BUNDLE + 'DataProxyForm_007', 6, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_007 begin');
       await driver.delayMs(1000);
       // Long click the application
@@ -694,7 +695,7 @@ export default function formTest() {
         expect(result !== null).assertTrue();
         cardArkTsCount = result.split(cardArkTs).length - 1;
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_007 cardArkTsCount:' + cardArkTsCount);
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_007 hilog err is: ' + JSON.stringify(err));
       });
 
@@ -721,7 +722,7 @@ export default function formTest() {
         let result = JSON.stringify(data);
         hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_007 getFormData data: ${JSON.stringify(data)}`);
         cardArkTsCountSecond = result.split(cardArkTs).length - 1;
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_007 hilog err is: ' + JSON.stringify(err));
       });
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_007 assert an ArkTs card has been deleted, ' +
@@ -738,7 +739,7 @@ export default function formTest() {
      * Input:Long click on the card, select 'delete' from the pop-up menu.
      * Expected output:A Js card is deleted from the desktop successfully.
      */
-    it(BUNDLE + 'DataProxyForm_008', 7, async (done) => {
+    it(BUNDLE + 'DataProxyForm_008', 7, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_008 begin');
       await driver.delayMs(1000);
       // Long click the application
@@ -785,7 +786,7 @@ export default function formTest() {
         expect(result !== null).assertTrue();
         cardJsCount = result.split(cardJs).length - 1;
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_008 cardJsCount:' + cardJsCount);
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_008 hilog err is: ' + JSON.stringify(err));
       });
 
@@ -812,7 +813,7 @@ export default function formTest() {
         let result = JSON.stringify(data);
         hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_008 getFormData data: ${JSON.stringify(data)}`);
         cardJsCountSecond = result.split(cardJs).length - 1;
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_008 hilog err is: ' + JSON.stringify(err));
       });
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_008 assert an ArkTs card has been deleted, ' +

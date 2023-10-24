@@ -21,9 +21,9 @@ const TAG: string = 'AddDialog';
 
 @CustomDialog
 export struct AddDialog {
-  @State writeInformation: Information = new Information('', NaN, '')
-  private saveData: (information: Information) => void;
-  private controller: CustomDialogController;
+  @State writeInformation: Information = new Information('', Number.NaN, '')
+  private saveData: (information: Information) => void = () => {};
+  private controller?: CustomDialogController;
 
   build() {
     Column() {
@@ -128,7 +128,7 @@ export struct AddDialog {
         .layoutWeight(7)
         .backgroundColor(Color.White)
         .onClick(() => {
-          this.controller.close();
+          this.controller?.close();
         })
       }
       .margin({ top: 12 })
@@ -141,7 +141,7 @@ export struct AddDialog {
       prompt.showToast({ message: $r('app.string.name_null') });
       return;
     }
-    if (this.writeInformation.age < 1 || isNaN(this.writeInformation.age)) {
+    if (this.writeInformation.age < 1 || Number.isNaN(this.writeInformation.age)) {
       prompt.showToast({ message: $r('app.string.age_null') });
       return;
     }
@@ -152,6 +152,6 @@ export struct AddDialog {
     if (this.writeInformation.name !== '' && this.writeInformation.phone !== '' && this.writeInformation.age > 0) {
       this.saveData(this.writeInformation);
     }
-    this.controller.close();
+    this.controller?.close();
   }
 }

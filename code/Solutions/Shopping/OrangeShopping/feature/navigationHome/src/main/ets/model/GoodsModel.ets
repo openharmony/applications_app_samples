@@ -14,103 +14,165 @@
  */
 
 export class GoodResponse {
-  code: number
-  data: Records
-  error: string
+  code: number;
+  data: Records;
+  error: string;
+
+  constructor(code: number, data: Records, error: string) {
+    this.code = code;
+    this.data = data;
+    this.error = error;
+  }
 }
 
-class Info {
-  id: number
-  uri: string
-  title: string
-  info: string
-  labels: string
-  price: number
+export class Info {
+  id: number;
+  uri: string;
+  title: string;
+  info: string;
+  labels: string;
+  price: number;
+
+  constructor(id: number, uri: string, title: string, info: string, labels: string, price: number) {
+    this.id = id;
+    this.uri = uri;
+    this.title = title;
+    this.info = info;
+    this.labels = labels;
+    this.price = price;
+  }
 }
 
-class Records {
-  records: Array<Info>
-  totalCount: number
+export class Records {
+  records: Array<Info>;
+  totalCount: number;
+
+  constructor(records: Array<Info>, totalCount: number) {
+    this.records = records;
+    this.totalCount = totalCount;
+  }
 }
 
 export class TabTitleModel {
-  constructor(public uri: Resource, public selectedUri: Resource, public title: Resource) {
-    this.uri = uri
-    this.selectedUri = selectedUri
-    this.title = title
+  uri: Resource;
+  selectedUri: Resource;
+  title: Resource;
+
+  constructor(uri: Resource, selectedUri: Resource, title: Resource) {
+    this.uri = uri;
+    this.selectedUri = selectedUri;
+    this.title = title;
   }
 }
 
 export class FavorLiveListsModel {
-  constructor(public id: number, public imgSrc: Resource, public title: Resource, public viewsInfo: Resource) {
-    this.id = id
-    this.imgSrc = imgSrc
-    this.title = title
-    this.viewsInfo = viewsInfo
+  id: number;
+  imgSrc: Resource;
+  title: Resource;
+  viewsInfo: Resource;
+
+  constructor(id: number, imgSrc: Resource, title: Resource, viewsInfo: Resource) {
+    this.id = id;
+    this.imgSrc = imgSrc;
+    this.title = title;
+    this.viewsInfo = viewsInfo;
   }
 }
 
 export class OrderModel {
-  constructor(public id: number, public img: Resource, public title: Resource) {
-    this.id = id
-    this.img = img
-    this.title = title
+  id: number;
+  img: Resource;
+  title: Resource;
+
+  constructor(id: number, img: Resource, title: Resource) {
+    this.id = id;
+    this.img = img;
+    this.title = title;
   }
 }
 
 export class ShopCartItemDataModel {
-  constructor(public id: number, public uri: Resource, public title: Resource, public labels: Resource, public price: Resource) {
-    this.id = id
-    this.uri = uri
-    this.title = title
-    this.labels = labels
-    this.price = price
+  id: number;
+  uri: Resource;
+  title: Resource;
+  labels: Resource;
+  price: Resource;
+
+  constructor(id: number, uri: Resource, title: Resource, labels: Resource, price: Resource) {
+    this.id = id;
+    this.uri = uri;
+    this.title = title;
+    this.labels = labels;
+    this.price = price;
   }
 }
 
 export class SearchTextModel {
-  constructor(public id: number, public searchText: Resource) {
-    this.id = id
-    this.searchText = searchText
+  id: number;
+  searchText: Resource;
+
+  constructor(id: number, searchText: Resource) {
+    this.id = id;
+    this.searchText = searchText;
   }
 }
 
 export class SwiperModel {
-  constructor(public id: number, public img: Resource) {
-    this.id = id
-    this.img = img
+  id: number;
+  img: Resource;
+
+  constructor(id: number, img: Resource) {
+    this.id = id;
+    this.img = img;
   }
 }
 
 export class NewProductTitleBarModel {
-  constructor(public id: number, public title: Resource) {
-    this.id = id
-    this.title = title
+  id: number;
+  title: Resource | undefined = undefined;
+
+  constructor(id: number, title: Resource) {
+    this.id = id;
+    this.title = title;
   }
 }
 
 export class NavDataModel {
-  constructor(public navData: Resource, public id: number) {
-    this.navData = navData
-    this.id = id
+  id: number = 0;
+  navData: Resource | undefined = undefined;
+
+  constructor(id: number, navData: Resource) {
+    this.navData = navData;
+    this.id = id;
   }
 }
 
 export class TitleBarModel {
-  constructor(public id: number, public title: Resource, public content: Resource) {
-    this.id = id
-    this.title = title
-    this.content = content
+  id: number;
+  title: Resource | undefined = undefined;
+  content: Resource | undefined = undefined;
+
+  constructor(id: number, title: Resource, content: Resource) {
+    this.id = id;
+    this.title = title;
+    this.content = content;
   }
 }
 
 export class ProductDataModel {
-  constructor(public id: number, public uri: Resource, public title: Resource, public info: Resource, public labels: Resource, public price: Resource) {
-    this.id = id
-    this.uri = uri
-    this.info = info
-    this.title = title
-    this.labels = labels
-    this.price = price
+  id: number;
+  uri: Resource | undefined = undefined;
+  title: Resource | undefined = undefined;
+  info: Resource | undefined = undefined;
+  labels: Resource | undefined = undefined;
+  price: Resource | undefined = undefined;
+
+  constructor(id: number, uri: Resource, title: Resource, info: Resource, labels: Resource, price: Resource) {
+    this.id = id;
+    this.uri = uri;
+    this.info = info;
+    this.title = title;
+    this.labels = labels;
+    this.price = price;
   }
 }

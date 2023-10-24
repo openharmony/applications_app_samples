@@ -21,7 +21,7 @@ import { SwiperComponent } from './Swiper';
 @Component
 export struct HomePageContent {
   @State tabsIndex: number = 0;
-  private url: string;
+  private url: string = '';
   private controller: TabsController = new TabsController();
   @StorageLink('listHeight') listHeight: number = 100;
   @StorageLink('curBp') curBp: string = 'sm';

@@ -16,7 +16,7 @@
 import common from '@ohos.app.ability.common';
 import util from '@ohos.util';
 
-export let lruBuffer = new util.LRUCache();
+export let lruBuffer: util.LRUCache<string, string> = new util.LRUCache();
 
 export function initLRUCache(): string {
   lruBuffer = new util.LRUCache();
@@ -47,17 +47,17 @@ export function putKeyValue(): string {
 }
 
 export function operationLog(): string {
-  lruBuffer.createDefault(10);
-  lruBuffer.get(10);
+  lruBuffer.createDefault('10');
+  lruBuffer.get('10');
   return `getCreateCount=${lruBuffer.getCreateCount()}\n`
-  + `getMissCount=${lruBuffer.getMissCount()}\n`
-  + `getRemovalCount=${lruBuffer.getRemovalCount()}\n`
-  + `getMatchCount=${lruBuffer.getMatchCount()}\n`
-  + `getPutCount=${lruBuffer.getPutCount()}\n`;
+    + `getMissCount=${lruBuffer.getMissCount()}\n`
+    + `getRemovalCount=${lruBuffer.getRemovalCount()}\n`
+    + `getMatchCount=${lruBuffer.getMatchCount()}\n`
+    + `getPutCount=${lruBuffer.getPutCount()}\n`;
 }
 
 export function getString(resource: Resource) {
-  let context = getContext(this) as common.UIAbilityContext;
+  let context = getContext() as common.UIAbilityContext;
   let resultStr = context.resourceManager.getStringSync(resource);
   return resultStr;
 }
@@ -75,9 +75,11 @@ export function randomString(length: number): string {
 
 export function getAllKeyValues(): string {
   let result = '';
-  let entries = lruBuffer.entries();
-  for (let iterator of entries) {
-    result += `key: ${iterator[0]}, value: ${iterator[1]}\n`;
-  }
+  let keyArr: string[] = lruBuffer.keys();
+  let valueArr: string[] = lruBuffer.values();
+  keyArr.forEach((key: string, index: number) => {
+    result += `key: ${key}, value: ${valueArr[index]}\n`;
+  })
+
   return result;
 }

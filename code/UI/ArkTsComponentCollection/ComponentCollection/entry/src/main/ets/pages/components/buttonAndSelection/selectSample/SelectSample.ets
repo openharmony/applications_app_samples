@@ -20,18 +20,18 @@ import { TitleBar } from '../../../../common/TitleBar'
 @Entry
 @Component
 struct SelectSample {
-  @State selectIndex: number = 0
-  private context: any = getContext(this)
-  private indexTitle: string = this.context.resourceManager.getStringSync($r('app.string.select_index').id)
-  private valueTitle: string = this.context.resourceManager.getStringSync($r('app.string.select_value').id)
+  @State selectIndex: number = 0;
+  private context: Context = getContext(this);
+  private indexTitle: string = this.context.resourceManager.getStringSync($r('app.string.select_index').id);
+  private valueTitle: string = this.context.resourceManager.getStringSync($r('app.string.select_value').id);
   private selectIcon: ResourceStr[] = [
   $r('app.media.ic_select_option_picture'),
   $r('app.media.ic_select_option_collection'),
-  $r('app.media.ic_select_option_gesture')]
+  $r('app.media.ic_select_option_gesture')];
   private cityNames: SelectOption[] = [{ value: $r('app.string.radio_beijing') }, {
     value: $r('app.string.radio_shanghai')
-  }, { value: $r('app.string.radio_shenzhen') }]
-  @State onSelectId: string = ''
+  }, { value: $r('app.string.radio_shenzhen') }];
+  @State onSelectId: string = '';
 
   @Styles itemBorder() {
     .height(60)

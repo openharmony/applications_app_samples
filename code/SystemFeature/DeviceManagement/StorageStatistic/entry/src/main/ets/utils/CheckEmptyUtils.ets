@@ -21,7 +21,7 @@ class CheckEmptyUtils {
    * @param {any} obj
    * @return {boolean} true(empty)
    */
-  isEmpty(obj: any): boolean {
+  isEmpty(obj: ESObject): boolean {
     return (typeof obj === 'undefined' || obj == null || obj === '')
   }
 

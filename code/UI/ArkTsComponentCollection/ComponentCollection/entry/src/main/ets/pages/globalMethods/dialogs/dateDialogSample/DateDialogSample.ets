@@ -18,7 +18,8 @@ import ShowToast from '../../../../util/ShowToast'
 import { TitleBar } from '../../../../common/TitleBar'
 import { getStringData } from '../../../../data/ResourceDataHandle'
 
-@Extend(Text) function textStyle() {
+@Extend(Text)
+function textStyle() {
   .height(40)
   .padding(8)
   .fontSize(20)
@@ -27,7 +28,8 @@ import { getStringData } from '../../../../data/ResourceDataHandle'
   .backgroundColor($r('app.color.background_grey'))
 }
 
-@Extend(Row) function rowStyle() {
+@Extend(Row)
+function rowStyle() {
   .height(50)
   .padding(6)
   .width('100%')
@@ -107,32 +109,36 @@ struct DataDialogSample {
   }
 
   setDate(isLunar: boolean, value: DatePickerResult) {
-    this.selectedDate.setFullYear(value.year, value.month, value.day)
-    let month: string = `${value.month + 1}`
-    let day: string = `${value.day}`
-    if (value.month < 9) {
-      month = `0${value.month + 1}`
-    }
-    if (value.day < 10) {
-      day = `0${value.day}`
-    }
-    if (isLunar) {
-      this.lunarDate = `${value.year}-${month}-${day}`
-    } else {
-      this.gregorianDate = `${value.year}-${month}-${day}`
+    if (value.year && value.month && value.day) {
+      this.selectedDate.setFullYear(value.year, value.month, value.day);
+      let month: string = `${value.month + 1}`;
+      let day: string = `${value.day}`;
+      if (value.month < 9) {
+        month = `0${value.month + 1}`;
+      }
+      if (value.day < 10) {
+        day = `0${value.day}`;
+      }
+      if (isLunar) {
+        this.lunarDate = `${value.year}-${month}-${day}`;
+      } else {
+        this.gregorianDate = `${value.year}-${month}-${day}`;
+      }
     }
   }
 
   ShowToastDate(value: DatePickerResult) {
-    let month: string = `${value.month + 1}`
-    let day: string = `${value.day}`
-    if (value.month < 9) {
-      month = `0${value.month + 1}`
+    if (value.year && value.month && value.day) {
+      let month: string = `${value.month + 1}`;
+      let day: string = `${value.day}`;
+      if (value.month < 9) {
+        month = `0${value.month + 1}`;
+      }
+      if (value.day < 10) {
+        day = `0${value.day}`;
+      }
+      ShowToast.shortToast(`${this.context.resourceManager.getStringSync($r('app.string.date_picker_toast_date')
+        .id)}${value.year}-${month}-${day}`);
     }
-    if (value.day < 10) {
-      day = `0${value.day}`
-    }
-    ShowToast.shortToast(`${this.context.resourceManager.getStringSync($r('app.string.date_picker_toast_date')
-      .id)}${value.year}-${month}-${day}`)
   }
 }

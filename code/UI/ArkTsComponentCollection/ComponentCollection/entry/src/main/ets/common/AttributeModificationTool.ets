@@ -17,6 +17,10 @@ import common from '@ohos.app.ability.common'
 
 const TOOL_WIDTH: SizeOptions = { width: 150, height: 38 }
 
+class ResourceObjectType {
+  value!: Resource;
+}
+
 /**
  * Slider in item style
  *
@@ -24,13 +28,13 @@ const TOOL_WIDTH: SizeOptions = { width: 150, height: 38 }
  */
 @Component
 export struct CommonItemSlider {
-  @Link changeValue: number
-  private min: number
-  private max: number
-  private name: ResourceStr
-  private step: number = 1
-  private testId: string = 'test_colorSelect'
-  private vpTest: string = 'vp'
+  @Link changeValue: number;
+  private min: number = 0;
+  private max: number = 0;
+  private name: ResourceStr = '';
+  private step: number = 1;
+  private testId: string = 'test_colorSelect';
+  private vpTest: string = 'vp';
 
   build() {
     Row() {
@@ -66,13 +70,13 @@ export struct CommonItemSlider {
  */
 @Component
 export struct CommonItemTwoRowSlider {
-  @Link changeValue: number
-  private min: number
-  private max: number
-  private name: ResourceStr
-  private step: number = 1
-  private testId: string = 'test_colorSelect'
-  private vpTest: string = 'vp'
+  @Link changeValue: number;
+  private min: number = 0;
+  private max: number = 0;
+  private name: ResourceStr = '';
+  private step: number = 1;
+  private testId: string = 'test_colorSelect';
+  private vpTest: string = 'vp';
 
   build() {
     Column() {
@@ -111,14 +115,14 @@ export struct CommonItemTwoRowSlider {
 @Component
 export struct CommonItemSelect {
   private selects: ResourceStr[] = [];
-  private callback: (index: number, value?: string) => void;
+  private callback: (index: number, value: string) => void = (index: number, value: string) => {};
   private selectOption: SelectOption[] = [];
-  private name: ResourceStr;
+  private name: ResourceStr = '';
   private testId: string = 'test_itemSelect';
-  private selectIndex: number;
+  private selectIndex: number = 0;
   private fontSize: Font = { size: 15, weight: FontWeight.Medium };
   private isItemStyle: boolean = true;
-  private text: string = "请选择"
+  private text: string = "请选择";
 
   aboutToAppear() {
     this.selects.forEach((selects, index) => {
@@ -164,11 +168,11 @@ export struct CommonItemColorSelect {
   @Link selectColor: Resource;
   @State selectIndex: number = 0;
   private testId: string = 'test_colorSelect';
-  private name: Resource;
+  private name!: Resource;
   private isItemStyle: boolean = true;
-  private colorNames: Array<{ value: Resource }> = [{ value: $r('app.string.divider_color_blue') }, {
+  private colorNames: Array<ResourceObjectType> = [{ value: $r('app.string.divider_color_blue') }, {
     value: $r('app.string.divider_color_green')
-  }, { value: $r('app.string.divider_color_orange') }, { value: $r('app.string.divider_color_pink') }]
+  }, { value: $r('app.string.divider_color_orange') }, { value: $r('app.string.divider_color_pink') }];
 
   changeResourceToString(resourceData: Resource) {
     let context = getContext(this) as common.UIAbilityContext
@@ -227,7 +231,7 @@ export struct CommonItemColorSelect {
 @Component
 export struct CommonItemInput {
   @Link inputValue: string;
-  private name: Resource;
+  private name!: Resource;
   private placeholder?: ResourceStr = '';
 
   build() {
@@ -253,10 +257,10 @@ export struct CommonItemInput {
 
 @Component
 export struct CommonSwitcher {
-  @Link bool: boolean
-  private name: ResourceStr
-  private testId: string = ''
-  private testID: string = ''
+  @Link bool: boolean;
+  private name: ResourceStr = '';
+  private testId: string = '';
+  private testID: string = '';
 
   build() {
     Row() {
@@ -274,10 +278,10 @@ export struct CommonSwitcher {
 
 @Component
 export struct ImageItemSlider {
-  @Link changeValue: number
-  private min: number
-  private max: number
-  private name: ResourceStr
+  @Link changeValue: number;
+  private min: number = 0;
+  private max: number = 0;
+  private name: ResourceStr = '';
 
   build() {
     Row() {

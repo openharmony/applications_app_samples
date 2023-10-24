@@ -24,26 +24,12 @@ import {
   NewProductTitleBarModel,
   NavDataModel,
   TitleBarModel,
-  ProductDataModel
-} from '../model/GoodsModel'
+  ProductDataModel,
+  Records,
+  Info
+} from '../model/GoodsModel';
 
-export const Products_Data: GoodResponse = {
-  code: 0,
-  data: {
-    records: [
-      {
-        id: -1,
-        uri: '',
-        title: '',
-        info: '',
-        labels: '',
-        price: -1
-      }
-    ],
-    totalCount: -1
-  },
-  error: null
-}
+export const Products_Data: GoodResponse = new GoodResponse(0, new Records([new Info(-1, '', '', '', '', -1)], -1), '')
 
 export const TAB_TITLE_DATA: Array<TabTitleModel> = [
   new TabTitleModel($r('app.media.home'), $r('app.media.home_selected'), $r('app.string.tab_title_data_home')),
@@ -53,320 +39,92 @@ export const TAB_TITLE_DATA: Array<TabTitleModel> = [
 ]
 
 export const FAVOR_LIVE_LIST_DATA: Array<FavorLiveListsModel> = [
-  {
-    id: 0,
-    imgSrc: $r('app.media.live_coriander'),
-    title: $r('app.string.favor_live_lists_data_title'),
-    viewsInfo: $r('app.string.favor_live_lists_data_viewsInfo')
-  },
-  {
-    id: 1,
-    imgSrc: $r('app.media.live_scene'),
-    title: $r('app.string.favor_live_lists_data_title'),
-    viewsInfo: $r('app.string.favor_live_lists_data_viewsInfo')
-  },
-  {
-    id: 2,
-    imgSrc: $r('app.media.live_scene'),
-    title: $r('app.string.favor_live_lists_data_title'),
-    viewsInfo: $r('app.string.favor_live_lists_data_viewsInfo')
-  },
-  {
-    id: 3,
-    imgSrc: $r('app.media.live_coriander'),
-    title: $r('app.string.favor_live_lists_data_title'),
-    viewsInfo: $r('app.string.favor_live_lists_data_viewsInfo')
-  }
+  new FavorLiveListsModel(0, $r('app.media.live_coriander'), $r('app.string.favor_live_lists_data_title'), $r('app.string.favor_live_lists_data_viewsInfo')),
+  new FavorLiveListsModel(1, $r('app.media.live_scene'), $r('app.string.favor_live_lists_data_title'), $r('app.string.favor_live_lists_data_viewsInfo')),
+  new FavorLiveListsModel(2, $r('app.media.live_scene'), $r('app.string.favor_live_lists_data_title'), $r('app.string.favor_live_lists_data_viewsInfo')),
+  new FavorLiveListsModel(3, $r('app.media.live_coriander'), $r('app.string.favor_live_lists_data_title'), $r('app.string.favor_live_lists_data_viewsInfo'))
 ]
 
 export const ORDER_DATA: Array<OrderModel> = [
-  {
-    id: 1,
-    img: $r('app.media.obligation'),
-    title: $r('app.string.order_data_title_obligation')
-  },
-  {
-    id: 2,
-    img: $r('app.media.wait_delivery'),
-    title: $r('app.string.order_data_title_wait_deliver')
-  },
-  {
-    id: 3,
-    img: $r('app.media.wait_receive'),
-    title: $r('app.string.order_data_title_wait_receive')
-  },
-  {
-    id: 4,
-    img: $r('app.media.wait_evaluted'),
-    title: $r('app.string.order_data_title_wait_recommend')
-  },
-  {
-    id: 5,
-    img: $r('app.media.refund'),
-    title: $r('app.string.order_data_title_refund')
-  }
+  new OrderModel(1, $r('app.media.obligation'), $r('app.string.order_data_title_obligation')),
+  new OrderModel(2, $r('app.media.wait_delivery'), $r('app.string.order_data_title_wait_deliver')),
+  new OrderModel(3, $r('app.media.wait_receive'), $r('app.string.order_data_title_wait_receive')),
+  new OrderModel(4, $r('app.media.wait_evaluted'), $r('app.string.order_data_title_wait_recommend')),
+  new OrderModel(5, $r('app.media.refund'), $r('app.string.order_data_title_refund'))
 ]
 
 export const SHOP_CART_ITEM_DATA: Array<ShopCartItemDataModel> = [
-  {
-    id: 1,
-    uri: $r('app.media.product006'),
-    title: $r('app.string.product_data_title_device'),
-    labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price')
-  },
-  {
-    id: 2,
-    uri: $r('app.media.product006'),
-    title: $r('app.string.product_data_title_device'),
-    labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price')
-  },
-  {
-    id: 3,
-    uri: $r('app.media.product006'),
-    title: $r('app.string.product_data_title_device'),
-    labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price')
-  },
-  {
-    id: 4,
-    uri: $r('app.media.product006'),
-    title: $r('app.string.product_data_title_device'),
-    labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price')
-  },
-  {
-    id: 5,
-    uri: $r('app.media.product006'),
-    title: $r('app.string.product_data_title_device'),
-    labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price')
-  },
-  {
-    id: 6,
-    uri: $r('app.media.product006'),
-    title: $r('app.string.product_data_title_device'),
-    labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price')
-  },
-  {
-    id: 7,
-    uri: $r('app.media.product007'),
-    title: $r('app.string.product_data_title_device'),
-    labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price')
-  },
-  {
-    id: 8,
-    uri: $r('app.media.product008'),
-    title: $r('app.string.product_data_title_device'),
-    labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price')
-  },
-  {
-    id: 9,
-    uri: $r('app.media.product009'),
-    title: $r('app.string.product_data_title_device'),
-    labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price')
-  },
-  {
-    id: 10,
-    uri: $r('app.media.product010'),
-    title: $r('app.string.product_data_title_device'),
-    labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price')
-  }
+  new ShopCartItemDataModel(1, $r('app.media.product006'), $r('app.string.product_data_title_device'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price')),
+  new ShopCartItemDataModel(2, $r('app.media.product006'), $r('app.string.product_data_title_device'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price')),
+  new ShopCartItemDataModel(3, $r('app.media.product006'), $r('app.string.product_data_title_device'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price')),
+  new ShopCartItemDataModel(4, $r('app.media.product006'), $r('app.string.product_data_title_device'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price')),
+  new ShopCartItemDataModel(5, $r('app.media.product006'), $r('app.string.product_data_title_device'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price')),
+  new ShopCartItemDataModel(6, $r('app.media.product006'), $r('app.string.product_data_title_device'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price')),
+  new ShopCartItemDataModel(7, $r('app.media.product007'), $r('app.string.product_data_title_device'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price')),
+  new ShopCartItemDataModel(8, $r('app.media.product008'), $r('app.string.product_data_title_device'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price')),
+  new ShopCartItemDataModel(9, $r('app.media.product009'), $r('app.string.product_data_title_device'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price')),
+  new ShopCartItemDataModel(10, $r('app.media.product010'), $r('app.string.product_data_title_device'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price'))
 ]
 
 export const FIND_SEARCH_TEXT_DATA: Array<SearchTextModel> = [
-  { id: 0, searchText: $r('app.string.find_search_text_data_search_text') },
-  { id: 1, searchText: $r('app.string.find_search_text_data_searchTex') },
-  { id: 2, searchText: $r('app.string.find_search_text_data_searchTe') }
+  new SearchTextModel(0, $r('app.string.find_search_text_data_search_text')),
+  new SearchTextModel(1, $r('app.string.find_search_text_data_searchTex')),
+  new SearchTextModel(2, $r('app.string.find_search_text_data_searchTe'))
 ]
 
 export const INDEX_DATA: Array<SwiperModel> = [
-  { id: 0, img: $r('app.media.banner_movie1') },
-  { id: 1, img: $r("app.media.banner_movie3") },
-  { id: 2, img: $r('app.media.banner_movie1') },
-  { id: 3, img: $r("app.media.banner_movie3") }
+  new SwiperModel(0, $r('app.media.banner_movie1')),
+  new SwiperModel(1, $r("app.media.banner_movie3")),
+  new SwiperModel(2, $r('app.media.banner_movie1')),
+  new SwiperModel(3, $r("app.media.banner_movie3"))
 ]
 
 export const SWIPER_DATA: Array<SwiperModel> = [
-  { id: 0, img: $r("app.media.banner_movie2") },
-  { id: 1, img: $r("app.media.banner_movie2") },
-  { id: 2, img: $r("app.media.banner_movie2") },
-  { id: 3, img: $r("app.media.banner_movie2") }
+  new SwiperModel(0, $r("app.media.banner_movie2")),
+  new SwiperModel(1, $r("app.media.banner_movie2")),
+  new SwiperModel(2, $r("app.media.banner_movie2")),
+  new SwiperModel(3, $r("app.media.banner_movie2"))
 ]
 
 export const NEW_PRODUCT_TITLE_BAR_DATA: Array<NewProductTitleBarModel> = [
-  { id: 0, title: $r('app.string.new_product_title_bar_data_title_selected') },
-  { id: 1, title: $r('app.string.new_product_title_bar_data_title_phone') },
-  { id: 2, title: $r('app.string.new_product_title_bar_data_title_electric_appliance') },
-  { id: 3, title: $r('app.string.new_product_title_bar_data_title_sport') },
-  { id: 4, title: $r('app.string.new_product_title_bar_data_title_clothes') }
+  new NewProductTitleBarModel(0, $r('app.string.new_product_title_bar_data_title_selected')),
+  new NewProductTitleBarModel(1, $r('app.string.new_product_title_bar_data_title_phone')),
+  new NewProductTitleBarModel(2, $r('app.string.new_product_title_bar_data_title_electric_appliance')),
+  new NewProductTitleBarModel(3, $r('app.string.new_product_title_bar_data_title_sport')),
+  new NewProductTitleBarModel(4, $r('app.string.new_product_title_bar_data_title_clothes'))
 ]
 
 export const NAV_DATA: Array<NavDataModel> = [
-  { id: 0, navData: $r('app.string.tab_title_data_home') },
-  { id: 1, navData: $r('app.string.nav_data_phone') },
-  { id: 2, navData: $r('app.string.nav_data_food') },
-  { id: 3, navData: $r('app.string.nav_data_men_wear') },
-  { id: 4, navData: $r('app.string.nav_data_sport') },
-  { id: 5, navData: $r('app.string.nav_data_home_appliances') }
+  new NavDataModel(0, $r('app.string.tab_title_data_home')),
+  new NavDataModel(1, $r('app.string.nav_data_phone')),
+  new NavDataModel(2, $r('app.string.nav_data_food')),
+  new NavDataModel(3, $r('app.string.nav_data_men_wear')),
+  new NavDataModel(4, $r('app.string.nav_data_sport')),
+  new NavDataModel(5, $r('app.string.nav_data_home_appliances'))
 ]
 
 export const TITLE_BAR_DATA: Array<TitleBarModel> = [
-  {
-    id: 0,
-    title: $r('app.string.title_bar_data_title_all'),
-    content: $r('app.string.title_bar_data_content_recommend')
-  },
-  {
-    id: 1,
-    title: $r('app.string.title_bar_data_title_selected'),
-    content: $r('app.string.title_bar_data_content_find')
-  },
-  {
-    id: 2,
-    title: $r('app.string.title_bar_data_title_new_product'),
-    content: $r('app.string.title_bar_data_content_first_publish')
-  },
-  {
-    id: 3,
-    title: $r('app.string.title_bar_data_title_benefits'),
-    content: $r('app.string.title_bar_data_content_cheap_good')
-  }
+  new TitleBarModel(0, $r('app.string.title_bar_data_title_all'), $r('app.string.title_bar_data_content_recommend')),
+  new TitleBarModel(1, $r('app.string.title_bar_data_title_selected'), $r('app.string.title_bar_data_content_find')),
+  new TitleBarModel(2, $r('app.string.title_bar_data_title_new_product'), $r('app.string.title_bar_data_content_first_publish')),
+  new TitleBarModel(3, $r('app.string.title_bar_data_title_benefits'), $r('app.string.title_bar_data_content_cheap_good'))
 ]
 
 export const PRODUCT_DATA: Array<ProductDataModel> = [
-  {
-    id: 0,
-    uri: $r('app.media.product001'),
-    title: $r('app.string.product_data_title_device0'),
-    info: $r('app.string.product_data_info_device0'),
-    labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price0')
-  },
-  {
-    id: 1,
-    uri: $r('app.media.product002'),
-    title: $r('app.string.product_data_title_device1'),
-    info: $r('app.string.product_data_info_device1'),
-    labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price1')
-  },
-  {
-    id: 2,
-    uri: $r('app.media.product003'),
-    title: $r('app.string.product_data_title_device2'),
-    info: $r('app.string.product_data_info_device2'),
-    labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price2')
-  },
-  {
-    id: 3,
-    uri: $r('app.media.product004'),
-    title: $r('app.string.product_data_title_device3'),
-    info: $r('app.string.product_data_info_device3'),
-    labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price3')
-  },
-  {
-    id: 4,
-    uri: $r('app.media.product005'),
-    title: $r('app.string.product_data_title_device4'),
-    info: $r('app.string.product_data_info_device4'),
-    labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price4')
-  },
-  {
-    id: 5,
-    uri: $r('app.media.product006'),
-    title: $r('app.string.product_data_title_device5'),
-    info: $r('app.string.product_data_info_device5'),
-    labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price5')
-  },
-  {
-    id: 6,
-    uri: $r('app.media.product007'),
-    title: $r('app.string.product_data_title_device5'),
-    info: $r('app.string.product_data_info_device5'),
-    labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price5')
-  },
-  {
-    id: 7,
-    uri: $r('app.media.product008'),
-    title: $r('app.string.product_data_title_device7'),
-    info: $r('app.string.product_data_info_device7'),
-    labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price7')
-  },
-  {
-    id: 8,
-    uri: $r('app.media.product001'),
-    title: $r('app.string.product_data_title_device0'),
-    info: $r('app.string.product_data_info_device0'),
-    labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price0')
-  },
-  {
-    id: 9,
-    uri: $r('app.media.product002'),
-    title: $r('app.string.product_data_title_device1'),
-    info: $r('app.string.product_data_info_device1'),
-    labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price1')
-  },
-  {
-    id: 10,
-    uri: $r('app.media.product003'),
-    title: $r('app.string.product_data_title_device2'),
-    info: $r('app.string.product_data_info_device2'),
-    labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price2')
-  },
-  {
-    id: 11,
-    uri: $r('app.media.product004'),
-    title: $r('app.string.product_data_title_device3'),
-    info: $r('app.string.product_data_info_device3'),
-    labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price3')
-  },
-  {
-    id: 12,
-    uri: $r('app.media.product005'),
-    title: $r('app.string.product_data_title_device4'),
-    info: $r('app.string.product_data_info_device4'),
-    labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price4')
-  },
-  {
-    id: 13,
-    uri: $r('app.media.product006'),
-    title: $r('app.string.product_data_title_device5'),
-    info: $r('app.string.product_data_info_device5'),
-    labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price5')
-  },
-  {
-    id: 14,
-    uri: $r('app.media.product007'),
-    title: $r('app.string.product_data_title_device5'),
-    info: $r('app.string.product_data_info_device5'),
-    labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price5')
-  },
-  {
-    id: 15,
-    uri: $r('app.media.product008'),
-    title: $r('app.string.product_data_title_device7'),
-    info: $r('app.string.product_data_info_device7'),
-    labels: $r('app.string.product_data_labels_new_product'),
-    price: $r('app.string.product_data_price7')
-  }
+  new ProductDataModel(0, $r('app.media.product001'), $r('app.string.product_data_title_device0'), $r('app.string.product_data_info_device0'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price0')),
+  new ProductDataModel(1, $r('app.media.product002'), $r('app.string.product_data_title_device1'), $r('app.string.product_data_info_device1'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price1')),
+  new ProductDataModel(2, $r('app.media.product003'), $r('app.string.product_data_title_device2'), $r('app.string.product_data_info_device2'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price2')),
+  new ProductDataModel(3, $r('app.media.product004'), $r('app.string.product_data_title_device3'), $r('app.string.product_data_info_device3'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price3')),
+  new ProductDataModel(4, $r('app.media.product005'), $r('app.string.product_data_title_device4'), $r('app.string.product_data_info_device4'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price4')),
+  new ProductDataModel(5, $r('app.media.product006'), $r('app.string.product_data_title_device5'), $r('app.string.product_data_info_device5'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price5')),
+  new ProductDataModel(6, $r('app.media.product007'), $r('app.string.product_data_title_device5'), $r('app.string.product_data_info_device5'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price5')),
+  new ProductDataModel(7, $r('app.media.product008'), $r('app.string.product_data_title_device7'), $r('app.string.product_data_info_device7'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price7')),
+  new ProductDataModel(8, $r('app.media.product001'), $r('app.string.product_data_title_device0'), $r('app.string.product_data_info_device0'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price0')),
+  new ProductDataModel(9, $r('app.media.product002'), $r('app.string.product_data_title_device1'), $r('app.string.product_data_info_device1'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price1')),
+  new ProductDataModel(10, $r('app.media.product003'), $r('app.string.product_data_title_device2'), $r('app.string.product_data_info_device2'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price2')),
+  new ProductDataModel(11, $r('app.media.product004'), $r('app.string.product_data_title_device3'), $r('app.string.product_data_info_device3'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price3')),
+  new ProductDataModel(12, $r('app.media.product005'), $r('app.string.product_data_title_device4'), $r('app.string.product_data_info_device4'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price4')),
+  new ProductDataModel(13, $r('app.media.product006'), $r('app.string.product_data_title_device5'), $r('app.string.product_data_info_device5'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price5')),
+  new ProductDataModel(14, $r('app.media.product007'), $r('app.string.product_data_title_device5'), $r('app.string.product_data_info_device5'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price5')),
+  new ProductDataModel(15, $r('app.media.product008'), $r('app.string.product_data_title_device7'), $r('app.string.product_data_info_device7'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price7'))
 ]

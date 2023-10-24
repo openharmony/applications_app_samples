@@ -33,14 +33,20 @@ const STROKE_WIDTH: number = 2; // strokeWidth的宽度
 const LAYOUT_WEIGHT: number = 1; // layoutWeight参数
 
 export class WantModel {
-  srcImage: string;
-  textContent: string;
-  senderId: number;
+  srcImage: string = '';
+  textContent: string = '';
+  senderId: number = 0;
 
   constructor(srcImage?: string, text?: string, senderId?: number) {
-    this.srcImage = srcImage;
-    this.textContent = text;
-    this.senderId = senderId;
+    if (srcImage !== undefined) {
+      this.srcImage = srcImage;
+    }
+    if (text !== undefined) {
+      this.textContent = text;
+    }
+    if (senderId !== undefined) {
+      this.senderId = senderId;
+    }
   }
 
   toString(): string {
@@ -49,18 +55,23 @@ export class WantModel {
 }
 
 export class WantFileModel {
-  fdImage: number;
-  kindId: number;
+  fdImage: number = 0;
+  kindId: number = 0;
 
   constructor(fdImage?: number, kindId?: number) {
-    this.fdImage = fdImage;
-    this.kindId = kindId;
+    if (fdImage !== undefined) {
+      this.fdImage = fdImage;
+    }
+
+    if (kindId !== undefined) {
+      this.kindId = kindId;
+    }
   }
 }
 
 class ShareDate {
-  type: string;
-  value: number;
+  type: string = '';
+  value: number = 0;
 }
 
 @Preview
@@ -81,10 +92,10 @@ export struct ChatDetailPage {
   @State userMyselfName: string = '';
   @State userFriendName: string = '';
   @State listHeight: number = 0;
-  @State want: Want = undefined;
+  @State want: Want | undefined = undefined;
   wantParams: WantModel = new WantModel("./resources/images/photo0.jpg", "111", 0);
   wantFileParams: WantFileModel = new WantFileModel();
-  @State imageFile: image.PixelMap = undefined;
+  @State imageFile: image.PixelMap | undefined = undefined;
   @State imageSize: number = 90960;
   private params = router.getParams() as Record<string, Object>;
   chatId: number = this.params.chatId as number;
@@ -208,7 +219,7 @@ export struct ChatDetailPage {
   async getWant() {
     // 文本、链接的参数处理
     this.want = AppStorage.get('want');
-    if (this.want.parameters) {
+    if (this.want?.parameters) {
       this.wantParams.srcImage = this.want.parameters.srcImg as string;
       this.wantParams.textContent = this.want.parameters.text as string;
       this.wantParams.senderId = this.want.parameters.kindId as number;
@@ -218,14 +229,18 @@ export struct ChatDetailPage {
 
   async fdTransformPixelMap(): Promise<void> {
     try {
+      if (this.want?.parameters === undefined) {
+        return
+      }
+
       let shareDate = this.want.parameters["keyFd"] as ShareDate;
       this.wantFileParams.fdImage = shareDate.value;
       let buffer = new ArrayBuffer(this.imageSize);
       let readOut = fs.readSync(this.wantFileParams.fdImage, buffer);
       Logger.info('fdTransformPixelMap: readOut---' + readOut);
-      let imageSource: image.ImageSource = undefined;
+      let imageSource: image.ImageSource | undefined = undefined;
       imageSource = image.createImageSource(buffer);
-      let decodingOptions = {
+      let decodingOptions: image.DecodingOptions = {
         editable: true, // 是否可编辑
         desiredPixelFormat: 3 // 解码的像素格式
       };
@@ -279,8 +294,10 @@ export struct ChatDetailPage {
       this.chatDetailData.pushData(new MessageBase('1000', userMyself, userFriend, lastMsg, 3, todayDate.getSeconds()));
     } else if (this.wantId === 2) {
       await this.fdTransformPixelMap();
-      let lastMsg = new FileMessage(180, 200, this.imageFile);
-      this.chatDetailData.pushData(new MessageBase('1000', userMyself, userFriend, lastMsg, 3, todayDate.getSeconds()));
+      if (this.imageFile !== undefined) {
+        let lastMsg = new FileMessage(180, 200, this.imageFile);
+        this.chatDetailData.pushData(new MessageBase('1000', userMyself, userFriend, lastMsg, 3, todayDate.getSeconds()));
+      }
     }
     this.msgLength = this.chatDetailData.totalCount();
     hiTraceMeter.finishTrace(MAKE_DATA_LOCAL_TRACE, MAKE_DATA_LOCAL_TRACE_ID);

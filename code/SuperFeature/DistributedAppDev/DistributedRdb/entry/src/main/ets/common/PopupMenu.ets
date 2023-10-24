@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import deviceManager from '@ohos.distributedHardware.deviceManager'
+import deviceManager from '@ohos.distributedDeviceManager';
 import common from '@ohos.app.ability.common'
 import router from '@ohos.router'
 import Logger from '../model/Logger'
@@ -32,7 +32,7 @@ export struct PopupMenu {
     { icon: $r('app.media.setting'), text: $r('app.string.setting') },
     { icon: $r('app.media.connect'), text: $r('app.string.connect') }]
   private handleStartAbility: () => void = null
-  private deviceList: Array<deviceManager.DeviceInfo> = []
+  private deviceList: Array<deviceManager.DeviceBasicInfo> = [];
   private dialogController: CustomDialogController = null
   @Link state: {
     popupMenu: boolean,
@@ -96,7 +96,7 @@ export struct PopupMenu {
       deviceId: deviceId,
       parameters: {
         isStage: 'Stage',
-        device: localDevice
+        dmsSrcNetworkId: localDevice
       }
     })
     setTimeout(() => {
@@ -108,15 +108,13 @@ export struct PopupMenu {
 
   showDialog() {
     RemoteDeviceModel.registerDeviceListCallback(() => {
-      Logger.info(TAG, 'registerDeviceListCallback, callback entered')
+      Logger.info(TAG, 'registerDeviceListCallback, callback entered' + JSON.stringify(RemoteDeviceModel.discoverList));
       this.deviceList = []
       this.deviceList.push({
         deviceId: '0',
         deviceName: 'Local device',
-        deviceType: 0,
-        networkId: '0',
-        range: 0,
-        authForm: 0,
+        deviceType: '0',
+        networkId: '0'
       })
       let deviceTempList = RemoteDeviceModel.discoverList.length > 0 ? RemoteDeviceModel.discoverList : RemoteDeviceModel.deviceList
       for (let i = 0; i < deviceTempList.length; i++) {

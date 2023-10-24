@@ -15,12 +15,17 @@
 import audio from '@ohos.multimedia.audio';
 import fs from '@ohos.file.fs';
 import router from '@ohos.router';
+import { BusinessError } from '@ohos.base';
 
 const MIN_RECORD_SECOND = 5;
 const TOTAL_SECOND = 30;
 const RANDOM_NUM = 10000;
 const INTERVAL_TIME = 1000;
 const READ_TIME_OUT = 0;
+class Options {
+  offset: number = 0;
+  length: number = 0;
+}
 
 @Entry
 @Component
@@ -28,10 +33,10 @@ struct NormalCapturer {
   @State fontColor: string = '#182431';
   @State selectedFontColor: string = '#007DFF';
   @State currentIndex: number = 0;
-  private audioCapturer = null;
-  private audioRenderer = null;
-  @State recordState: string = 'init'; // [init,started,continued,paused,stoped]
-  private audioCapturerOptions = {
+  private audioCapturer?: audio.AudioCapturer;
+  private audioRenderer?: audio.AudioRenderer;
+  @State recordState: string = 'init'; // [init,started,continued,paused,stoped];
+  private audioCapturerOptions: audio.AudioCapturerOptions = {
     streamInfo: {
       samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
       channels: audio.AudioChannel.CHANNEL_2,
@@ -43,7 +48,7 @@ struct NormalCapturer {
       capturerFlags: 0
     }
   };
-  private audioRendererOptions = {
+  private audioRendererOptions: audio.AudioRendererOptions = {
     streamInfo: {
       samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
       channels: audio.AudioChannel.CHANNEL_2,
@@ -62,7 +67,7 @@ struct NormalCapturer {
   @State renderState: number = 0;
   @State recordSec: number = 0;
   @State showTime: string = '00:00:00';
-  private interval = null;
+  private interval: number = 0;
   private bufferSize = 0;
   private path = ``;
   private fd = 0;
@@ -78,20 +83,20 @@ struct NormalCapturer {
         .fontSize(16)
         .fontWeight(this.currentIndex === index ? 500 : 400)
         .lineHeight(22)
-        .margin({ top: 17, bottom: 7 })
+        .margin({ top: 17, bottom: 7 });
       Divider()
         .strokeWidth(2)
         .color('#007DFF')
-        .opacity(this.currentIndex === index ? 1 : 0)
-    }.width(78).id('btn_' + btnId)
+        .opacity(this.currentIndex === index ? 1 : 0);
+    }.width(78).id('btn_' + btnId);
   }
 
-  async aboutToAppear() {
+  async aboutToAppear(): Promise<void> {
     console.log('NomalCapturer aboutToAppear');
     await this.initResource();
   }
 
-  async initResource() {
+  async initResource(): Promise<void> {
     try {
       this.audioCapturer = await audio.createAudioCapturer(this.audioCapturerOptions);
       this.bufferSize = await this.audioCapturer.getBufferSize();
@@ -101,69 +106,73 @@ struct NormalCapturer {
       this.date = this.getDate(1);
       await this.openFile(this.path);
     } catch (err) {
-      console.log(`NormalCapturer:createAudioCapturer err=${JSON.stringify(err)}`);
+      let error = err as BusinessError;
+      console.log(`NormalCapturer:createAudioCapturer err=${JSON.stringify(error)}`);
     }
   }
 
-  async releseResource() {
+  async releseResource(): Promise<void> {
     if (this.fd > 0) {
       this.closeFile();
       this.fd = 0;
     }
     if (this.interval) {
-      clearInterval(this.interval)
+      clearInterval(this.interval);
     }
-    if (this.audioCapturer !== null) {
+    if (this.audioCapturer) {
       console.log('NomalCapturer,audioCapturer released');
       await this.audioCapturer.release();
-      this.audioCapturer = null;
+      this.audioCapturer = undefined;
       this.recordState = 'init';
       clearInterval(this.interval);
     }
-    if (this.audioRenderer !== null) {
+    if (this.audioRenderer) {
       console.log('NomalCapturer,audioRenderer released');
       await this.audioRenderer.release();
-      this.audioRenderer = null;
+      this.audioRenderer = undefined;
     }
   }
 
-  async aboutToDisappear() {
+  async aboutToDisappear(): Promise<void> {
     console.log('NomalCapturer,aboutToDisappear is called');
     await this.releseResource();
   }
 
-  async openFile(path) {
+  async openFile(path: string): Promise<void> {
     console.log(path);
     try {
       await fs.open(path, 0o100);
       console.log('file created success');
     } catch (err) {
-      console.log('file created err:' + JSON.stringify(err));
-      return
+      let error = err as BusinessError;
+      console.log('file created err:' + JSON.stringify(error));
+      return;
     }
 
-    let file
     try {
-      file = await fs.open(path, 0o2);
+      let file = await fs.open(path, 0o2);
       this.fd = file.fd;
       console.log(`file open success for read and write mode,fd=${file.fd}`);
     } catch (err) {
-      console.log('file open err:' + JSON.stringify(err));
-      return
-    }
-  }
-
-  async closeFile() {
-    try {
-      await fs.close(this.fd);
-      console.log('file close success');
-    } catch (err) {
+      let error = err as BusinessError;
+      console.log('file open err:' + JSON.stringify(error));
       return;
     }
   }
 
-  async capturerStart() {
-    if (this.audioCapturer === null) {
+  async closeFile(): Promise<void> {
+    try {
+      await fs.close(this.fd);
+      console.log('file close success');
+    } catch (err) {
+      let error = err as BusinessError;
+      console.log('file close err:' + JSON.stringify(error));
+      return;
+    }
+  }
+
+  async capturerStart(): Promise<void> {
+    if (!this.audioCapturer) {
       console.log(`NormalCapturer,capturerStart:audioCapturer is null`);
       return;
     }
@@ -179,7 +188,7 @@ struct NormalCapturer {
         if (this.recordSec >= TOTAL_SECOND) {
           // over TOTAL_SECOND,need to stop auto
           clearInterval(this.interval);
-          if (this.audioCapturer.state === audio.AudioState.STATE_RUNNING) {
+          if (this.audioCapturer && this.audioCapturer.state === audio.AudioState.STATE_RUNNING) {
             await this.capturerStop();
           }
           return;
@@ -192,11 +201,12 @@ struct NormalCapturer {
         await this.readCapturer();
       }, READ_TIME_OUT);
     } catch (err) {
-      console.log(`NormalCapturer:audioCapturer start err=${JSON.stringify(err)}`);
+      let error = err as BusinessError;
+      console.log(`NormalCapturer:audioCapturer start err=${JSON.stringify(error)}`);
     }
   }
 
-  async renderCreate() {
+  async renderCreate(): Promise<void> {
     try {
       this.audioRenderer = await audio.createAudioRenderer(this.audioRendererOptions);
       this.renderState = this.audioRenderer.state;
@@ -204,17 +214,22 @@ struct NormalCapturer {
         this.renderState = state;
       });
     } catch (err) {
-      console.log(`createAudioRenderer err=${JSON.stringify(err)}`);
+      let error = err as BusinessError;
+      console.log(`createAudioRenderer err=${JSON.stringify(error)}`);
     }
   }
 
-  async renderStart() {
+  async renderStart(): Promise<void> {
+    if (!this.audioRenderer) {
+      return;
+    }
     let bufferSize = 0;
     try {
       bufferSize = await this.audioRenderer.getBufferSize();
       await this.audioRenderer.start();
     } catch (err) {
-      console.log(`start err:${JSON.stringify(err)}`);
+      let error = err as BusinessError;
+      console.log(`start err:${JSON.stringify(error)}`);
     }
 
     try {
@@ -233,7 +248,7 @@ struct NormalCapturer {
         if (this.audioRenderer.state === audio.AudioState.STATE_RELEASED) {
           return;
         }
-        let options = {
+        let options: Options = {
           offset: startOffset,
           length: bufferSize
         };
@@ -251,37 +266,50 @@ struct NormalCapturer {
         await this.renderStop();
       }
     } catch (err) {
-      console.log(`write err:${JSON.stringify(err)}`);
+      let error = err as BusinessError;
+      console.log(`write err:${JSON.stringify(error)}`);
     }
   }
 
-  async renderPause() {
+  async renderPause(): Promise<void> {
+    if (!this.audioRenderer) {
+      return;
+    }
     try {
       await this.audioRenderer.pause();
     } catch (err) {
-      console.log(`pause err:${JSON.stringify(err)}`);
+      let error = err as BusinessError;
+      console.log(`pause err:${JSON.stringify(error)}`);
     }
   }
 
-  async renderStop() {
+  async renderStop(): Promise<void> {
+    if (!this.audioRenderer) {
+      return;
+    }
     try {
       await this.audioRenderer.stop();
       this.start = 0;
     } catch (err) {
-      console.log(`stop err:${JSON.stringify(err)}`);
+      let error = err as BusinessError;
+      console.log(`stop err:${JSON.stringify(error)}`);
     }
   }
 
-  async releaseStop() {
+  async releaseStop(): Promise<void> {
+    if (!this.audioRenderer) {
+      return;
+    }
     try {
       await this.audioRenderer.release();
     } catch (err) {
-      console.log(`release err:${JSON.stringify(err)}`);
+      let error = err as BusinessError;
+      console.log(`release err:${JSON.stringify(error)}`);
     }
   }
 
-  async capturerContinue() {
-    if (this.audioCapturer === null) {
+  async capturerContinue(): Promise<void> {
+    if (!this.audioCapturer) {
       console.log(`NormalCapturer,capturerContinue:audioCapturer is null`);
       return;
     }
@@ -294,7 +322,7 @@ struct NormalCapturer {
         if (this.recordSec >= TOTAL_SECOND) {
           // over TOTAL_SECOND,need to stop auto
           clearInterval(this.interval);
-          if (this.audioCapturer.state === audio.AudioState.STATE_RUNNING) {
+          if (this.audioCapturer && this.audioCapturer.state === audio.AudioState.STATE_RUNNING) {
             await this.capturerStop();
           }
           return;
@@ -306,12 +334,13 @@ struct NormalCapturer {
         await this.readCapturer();
       }, READ_TIME_OUT);
     } catch (err) {
-      console.log(`NormalCapturer:audioCapturer start err=${JSON.stringify(err)}`);
+      let error = err as BusinessError;
+      console.log(`NormalCapturer:audioCapturer start err=${JSON.stringify(error)}`);
     }
   }
 
-  async capturerStop() {
-    if (this.audioCapturer === null) {
+  async capturerStop(): Promise<void> {
+    if (!this.audioCapturer) {
       console.log(`NormalCapturer,capturerStop:audioCapturer is null`);
       return;
     }
@@ -325,16 +354,17 @@ struct NormalCapturer {
       this.recordState = 'stopped';
       clearInterval(this.interval);
     } catch (err) {
+      let error = err as BusinessError;
       // when recordState is paused
       this.recordState = 'stopped';
-      console.log(`NormalCapturer:audioCapturer stop err=${JSON.stringify(err)}`);
+      console.log(`NormalCapturer:audioCapturer stop err=${JSON.stringify(error)}`);
     }
     this.isRecordOver = true;
     await this.renderCreate();
   }
 
-  async capturerPause() {
-    if (this.audioCapturer === null) {
+  async capturerPause(): Promise<void> {
+    if (!this.audioCapturer) {
       console.log(`NormalCapturer,capturerPause:audioCapturer is null`);
       return;
     }
@@ -345,19 +375,19 @@ struct NormalCapturer {
 
       clearInterval(this.interval);
     } catch (err) {
-      console.log(`NormalCapturer:audioCapturer stop err=${JSON.stringify(err)}`);
+      let error = err as BusinessError;
+      console.log(`NormalCapturer:audioCapturer stop err=${JSON.stringify(error)}`);
       return;
     }
   }
 
-  async readCapturer() {
+  async readCapturer(): Promise<void> {
     console.log('NormalCapturer:readCapturer enter');
-    if (this.audioCapturer === null) {
+    if (!this.audioCapturer) {
       console.log(`NormalCapturer,readCapturer:audioCapturer is null`);
       return;
     }
 
-    let buffer = null;
     try {
       let startOffset = this.capturerOffsetStart;
       while (true) {
@@ -365,9 +395,9 @@ struct NormalCapturer {
           console.log('state is changed to be stopped');
           break;
         }
-        buffer = await this.audioCapturer.read(this.bufferSize, true)
+        let buffer = await this.audioCapturer.read(this.bufferSize, true);
         console.log('NormalCapturer:readCapturer read success');
-        let options = {
+        let options: Options = {
           offset: startOffset,
           length: this.bufferSize
         };
@@ -377,11 +407,12 @@ struct NormalCapturer {
         this.capturerOffsetStart = startOffset;
       }
     } catch (err) {
-      console.log(`readCapturer err=${JSON.stringify(err)}`);
+      let error = err as BusinessError;
+      console.log(`readCapturer err=${JSON.stringify(error)}`);
     }
   }
 
-  formatNumber(num) {
+  formatNumber(num: number): string {
     if (num <= 9) {
       return '0' + num;
     } else {
@@ -389,7 +420,7 @@ struct NormalCapturer {
     }
   }
 
-  getDate(mode) {
+  getDate(mode: number): string {
     let date = new Date();
     if (mode === 1) {
       return `${date.getFullYear()}/${this.formatNumber(date.getMonth() + 1)}/${this.formatNumber(date.getDate())}`;
@@ -398,7 +429,7 @@ struct NormalCapturer {
     }
   }
 
-  getTimesBySecond(t) {
+  getTimesBySecond(t: number): string {
     let h = Math.floor(t / 60 / 60 % 24);
     let m = Math.floor(t / 60 % 60);
     let s = Math.floor(t % 60);
@@ -410,7 +441,7 @@ struct NormalCapturer {
 
   @Builder InitRecord() {
     Column() {
-      Image($r('app.media.ic_record')).width(56).height(56)
+      Image($r('app.media.ic_record')).width(56).height(56);
     }
     .width('100%')
     .height(56)
@@ -418,29 +449,29 @@ struct NormalCapturer {
     .id('normal_start_record_btn')
     .onClick(() => {
       this.capturerStart();
-    })
+    });
   }
 
   @Builder StartedRecord() {
     Column() {
       Text(this.showTime).fontSize(21).fontWeight(500).margin({ bottom: 8 })
-    }.width('100%').height(66).position({ y: 30 }).id('normal_show_time_txt')
+    }.width('100%').height(66).position({ y: 30 }).id('normal_show_time_txt');
 
 
     Column() {
-      Image($r('app.media.ic_recording')).width(56).height(56)
+      Image($r('app.media.ic_recording')).width(56).height(56);
     }
     .width('100%')
     .height(56)
     .position({ y: 60 })
     .id('normal_stop_record_btn')
     .onClick(() => {
-      this.capturerStop()
-    })
+      this.capturerStop();
+    });
 
     Column() {
-      Image($r('app.media.ic_record_pause')).width(24).height(24)
-      Text($r('app.string.PAUSE')).fontSize(12).fontWeight(400).id('normal_pause_record_btn').margin({ top: 2 })
+      Image($r('app.media.ic_record_pause')).width(24).height(24);
+      Text($r('app.string.PAUSE')).fontSize(12).fontWeight(400).id('normal_pause_record_btn').margin({ top: 2 });
     }
     .height(56)
     .width(56)
@@ -448,25 +479,25 @@ struct NormalCapturer {
     .alignItems(HorizontalAlign.Center)
     .justifyContent(FlexAlign.Center)
     .onClick(() => {
-      this.capturerPause()
-    })
+      this.capturerPause();
+    });
   }
 
   @Builder PausedRecord() {
     Column() {
-      Text(this.showTime).fontSize(21).fontWeight(500).margin({ bottom: 8 })
-    }.width('100%').height(66).position({ y: 30 })
+      Text(this.showTime).fontSize(21).fontWeight(500).margin({ bottom: 8 });
+    }.width('100%').height(66).position({ y: 30 });
 
     Column() {
-      Image($r('app.media.ic_recording')).width(56).height(56)
+      Image($r('app.media.ic_recording')).width(56).height(56);
     }.width('100%').height(56).position({ y: 60 })
     .onClick(() => {
-      this.capturerStop()
-    })
+      this.capturerStop();
+    });
 
     Column() {
-      Image($r('app.media.ic_record_continue')).width(24).height(24)
-      Text($r('app.string.CONTINUE')).fontSize(12).fontWeight(400).margin({ top: 2 })
+      Image($r('app.media.ic_record_continue')).width(24).height(24);
+      Text($r('app.string.CONTINUE')).fontSize(12).fontWeight(400).margin({ top: 2 });
     }
     .height(56)
     .width(56)
@@ -475,19 +506,19 @@ struct NormalCapturer {
     .justifyContent(FlexAlign.Center)
     .id('normal_continue_record_btn')
     .onClick(() => {
-      this.capturerContinue()
-    })
+      this.capturerContinue();
+    });
   }
 
   @Builder FinishedRecord() {
     Column() {
-      Image($r('app.media.ic_record')).width(56).height(56)
+      Image($r('app.media.ic_record')).width(56).height(56);
     }
     .width('100%')
     .height(56)
     .position({ y: 60 })
     .opacity(0.4)
-    .id('disalbe_btn')
+    .id('disalbe_btn');
   }
 
   build() {
@@ -501,22 +532,22 @@ struct NormalCapturer {
         .titleMode(NavigationTitleMode.Mini)
         .title($r('app.string.AUDIO_CAPTURER'))
         .mode(NavigationMode.Stack)
-        .backgroundColor('#F1F3F5')
+        .backgroundColor('#F1F3F5');
       }
       .id('normal_capturer_back_btn')
       .width('100%')
       .height(56)
       .onClick(async () => {
         await router.replaceUrl({ url: 'pages/Index' });
-      })
+      });
 
       Column() {
         Tabs({ barPosition: BarPosition.Start, index: 0 }) {
           TabContent() {
-          }.tabBar(this.TabBuilder(0, 'normal_capturer'))
+          }.tabBar(this.TabBuilder(0, 'normal_capturer'));
 
           TabContent() {
-          }.tabBar(this.TabBuilder(1, 'parallel_capturer'))
+          }.tabBar(this.TabBuilder(1, 'parallel_capturer'));
         }
         .vertical(false)
         .barMode(BarMode.Fixed)
@@ -531,7 +562,7 @@ struct NormalCapturer {
         })
         .width('100%')
         .height(56)
-      }.padding({ left: 12, right: 12 })
+      }.padding({ left: 12, right: 12 });
 
 
       if (this.isRecordOver === true) {
@@ -541,14 +572,14 @@ struct NormalCapturer {
               .fontSize(16)
               .fontWeight(500)
               .fontColor('#182431')
-              .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
+              .fontFamily($r('sys.string.ohos_id_text_font_family_medium'));
             if (this.renderState === audio.AudioState.STATE_RUNNING) {
-              Image($r('app.media.ic_record_playing')).width(24).height(24).id('playing_state')
+              Image($r('app.media.ic_record_playing')).width(24).height(24).id('playing_state');
             } else {
-              Image($r('app.media.ic_record_paused')).width(24).height(24).id('paused_state')
+              Image($r('app.media.ic_record_paused')).width(24).height(24).id('paused_state');
             }
 
-          }.width('100%').height(24).justifyContent(FlexAlign.SpaceBetween).margin({ top: 16 })
+          }.width('100%').height(24).justifyContent(FlexAlign.SpaceBetween).margin({ top: 16 });
 
           Row() {
             Text(this.date)
@@ -556,14 +587,14 @@ struct NormalCapturer {
               .fontWeight(400)
               .fontColor('#182431')
               .opacity(0.6)
-              .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
+              .fontFamily($r('sys.string.ohos_id_text_font_family_medium'));
             Text(this.getTimesBySecond(this.recordSec) + '')
               .fontSize(16)
               .fontWeight(400)
               .fontColor('#182431')
               .opacity(0.6)
-              .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
-          }.width('100%').height(24).justifyContent(FlexAlign.SpaceBetween).margin({ top: 4 })
+              .fontFamily($r('sys.string.ohos_id_text_font_family_medium'));
+          }.width('100%').height(24).justifyContent(FlexAlign.SpaceBetween).margin({ top: 4 });
 
           Row() {
             Progress({ value: this.playSec, total: this.recordSec, type: ProgressType.Linear })
@@ -571,7 +602,7 @@ struct NormalCapturer {
               .value(this.playSec)
               .width('100%')
               .height(4)
-          }.margin({ top: 23, bottom: 3 })
+          }.margin({ top: 23, bottom: 3 });
 
           Row() {
             Text(this.getTimesBySecond(this.playSec) + '')
@@ -579,14 +610,14 @@ struct NormalCapturer {
               .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
               .fontColor('#182431')
               .opacity(0.6)
-              .fontWeight(400)
+              .fontWeight(400);
             Text(this.getTimesBySecond(this.recordSec) + '')
               .fontSize(12)
               .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
               .fontColor('#182431')
               .opacity(0.6)
-              .fontWeight(400)
-          }.justifyContent(FlexAlign.SpaceBetween).width('100%')
+              .fontWeight(400);
+          }.justifyContent(FlexAlign.SpaceBetween).width('100%');
         }
         .width('100%')
         .height(126)
@@ -608,7 +639,7 @@ struct NormalCapturer {
           if (this.renderState === audio.AudioState.STATE_STOPPED) {
             this.renderStart();
           }
-        })
+        });
       }
       Row() {
         if (this.recordState === 'init') {
@@ -626,12 +657,12 @@ struct NormalCapturer {
       .width('100%')
       .alignItems(VerticalAlign.Center)
       .height(116)
-      .position({ y: '82%' })
+      .position({ y: '82%' });
     }
     .width('100%')
     .height('100%')
     .justifyContent(FlexAlign.Start)
     .backgroundColor('#F1F3F5')
-    .padding({ left: 12, right: 12 })
+    .padding({ left: 12, right: 12 });
   }
 }

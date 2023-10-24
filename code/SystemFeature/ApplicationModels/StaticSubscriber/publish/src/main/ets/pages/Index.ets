@@ -16,6 +16,7 @@
 import CommonEventManager from '@ohos.commonEventManager'
 import promptAction from '@ohos.promptAction'
 import Logger from '../../../../../entry/src/main/ets/model/Logger'
+import Base from '@ohos.base'
 
 const SEND_DATA:string = 'usual.event.SEND_DATA'
 
@@ -37,7 +38,7 @@ struct Index {
         .height('5%')
         .onClick(() => {
           // 公共事件相关信息
-          let options = {
+          let options: CommonEventManager.CommonEventPublishData = {
             code: 0, // 公共事件的初始代码
             bundleName: '',
             data: getContext(this).resourceManager.getStringSync($r('app.string.publish_data')),
@@ -45,7 +46,7 @@ struct Index {
           }
 
           // 发布公共事件回调
-          function publishCallback(err) {
+          let publishCallback = (err: Base.BusinessError) => {
             if (err) {
               Logger.error(`publish failed ${JSON.stringify(err)}`);
             } else {
@@ -55,7 +56,7 @@ struct Index {
                   duration: 2000,
                 });
               } catch (error) {
-                Logger.error(`showToast args error code is ${error.code}, message is ${error.message}`);
+                Logger.error(`showToast args error code is ${(error as Base.BusinessError).code}, message is ${(error as Base.BusinessError).message}`);
               }
               Logger.info('publish success');
             }

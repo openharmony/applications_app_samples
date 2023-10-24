@@ -37,7 +37,7 @@ struct SideBarTransitionSample {
       TitleBar({ title: $r('app.string.side_bar_effects_title') })
       SideBarContainer(this.mSideBarContainerType) {
         Column() {
-          ForEach(this.arr, (item, index) => {
+          ForEach(this.arr, (item: number, index: number) => {
             Column({ space: 5 }) {
               Image($r('app.media.icon')).width(64).height(64)
               Text(item + '')
@@ -47,7 +47,7 @@ struct SideBarTransitionSample {
             .onClick(() => {
               this.current = item
             })
-          }, item => item)
+          }, (item: number) => item.toString())
         }
         .visibility(this.mShowSideBar ? Visibility.Visible : Visibility.Hidden)
         .width('100%')

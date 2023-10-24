@@ -29,8 +29,8 @@ import promptAction from '@ohos.promptAction';
 export struct Thermal {
   @State table: ListModel[] = [
     new ListModel('Thermal level', ThermalUtil.getLevel),
-    new ListModel('Callback level', null),
-    new ListModel('Last callback time', null)
+    new ListModel('Callback level', undefined),
+    new ListModel('Last callback time', undefined)
   ];
 
   aboutToAppear() {
@@ -43,7 +43,7 @@ export struct Thermal {
 
   build() {
     List() {
-      ForEach(this.table, (item) => {
+      ForEach(this.table, (item: ListModel) => {
         ListItem() {
           Row() {
             Text(item.title)
@@ -84,9 +84,9 @@ export struct Thermal {
   initThermal() {
     const INDEX_0 = 0;
     const INDEX_1 = 1;
-    ThermalUtil.registerThermalLevelCallback((level: Number) => {
-      this.table[INDEX_0] = new ListModel('Thermal level', null, ThermalUtil.getLevel());
-      this.table[INDEX_1] = new ListModel('Callback level', null, ThermalUtil.getStrLevel(level));
+    ThermalUtil.registerThermalLevelCallback((level: number) => {
+      this.table[INDEX_0] = new ListModel('Thermal level', undefined, ThermalUtil.getLevel());
+      this.table[INDEX_1] = new ListModel('Callback level', undefined, ThermalUtil.getStrLevel(level));
       this.getCurrentTime();
       if (level === thermal.ThermalLevel.WARNING) {
         try {
@@ -104,7 +104,7 @@ export struct Thermal {
   getCurrentTime() {
     const INDEX_2 = 2;
     systemTime.getCurrentTime().then((date: number) => {
-      this.table[INDEX_2] = new ListModel('Last callback time', null, ThermalUtil.timestampToTime(date));
+      this.table[INDEX_2] = new ListModel('Last callback time', undefined, ThermalUtil.timestampToTime(date));
     })
   }
 }

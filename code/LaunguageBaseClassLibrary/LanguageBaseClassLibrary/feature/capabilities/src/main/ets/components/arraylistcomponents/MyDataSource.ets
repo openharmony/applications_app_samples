@@ -20,7 +20,7 @@ export class MyDataSource {
   public dataArray: ArrayList<Information> = new ArrayList();
   private listeners: DataChangeListener[] = [];
 
-  constructor(ele) {
+  constructor(ele: ArrayList<Information>) {
     for (let index = 0;index < ele.length; index++) {
       this.dataArray.add(ele[index]);
     }

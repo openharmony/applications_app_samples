@@ -54,10 +54,10 @@ export struct CustomDialogExample {
   // 缓存数量开关
   @StorageLink('list_cached_count') listCachedCount: boolean | undefined = AppStorage.get('list_cached_count');
   private promptArr: PromptType[] = [
-    { image: $r('app.media.pic1'), text: $r('app.string.add_friends') },
-    { image: $r('app.media.pic2'), text: $r('app.string.group_chat') },
-    { image: $r('app.media.pic3'), text: $r('app.string.scan') },
-    { image: $r('app.media.pic4'), text: $r('app.string.collection_payment') }
+    new PromptType($r('app.media.pic1'),$r('app.string.add_friends')),
+    new PromptType($r('app.media.pic2'),$r('app.string.group_chat')),
+    new PromptType($r('app.media.pic3'),$r('app.string.scan')),
+    new PromptType($r('app.media.pic4'),$r('app.string.collection_payment'))
   ];
 
   build() {

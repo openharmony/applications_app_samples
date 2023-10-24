@@ -69,7 +69,7 @@ struct Examples {
     this.language = i18n.System.getDisplayLanguage(systemLanguage, systemLanguage);
   }
 
-  @Builder TextView($$: { text }) {
+  @Builder TextView($$: Data) {
     Text($$.text)
       .fontSize(20)
       .fontColor($r('app.color.gray'))
@@ -80,17 +80,17 @@ struct Examples {
   build() {
     Column() {
       TitleBar({ hasBackPress: true, title: $r('app.string.format_example') })
-      this.TextView({ text: this.language })
+      this.TextView(new Data(this.language))
       Column() {
-        this.TextView({ text: this.date })
-        this.TextView({ text: this.time })
-        ForEach(this.numberFormat, (item, index) => {
-          this.TextView({ text: item });
-        }, item => item)
-        this.TextView({ text: this.pluralFormat })
-        this.TextView({ text: this.timeZoneDetect })
-        this.TextView({ text: this.normalizer })
-        this.TextView({ text: this.mDirection })
+        this.TextView(new Data(this.date))
+        this.TextView(new Data(this.time))
+        ForEach(this.numberFormat, (item: string, index: number) => {
+          this.TextView(new Data(item));
+        }, (item: string) => item)
+        this.TextView(new Data(this.pluralFormat))
+        this.TextView(new Data(this.timeZoneDetect))
+        this.TextView(new Data(this.normalizer))
+        this.TextView(new Data(this.mDirection))
       }
       .width('95%')
       .padding({ bottom: 20, left: 10, right: 10 })
@@ -101,5 +101,13 @@ struct Examples {
     .width('100%')
     .height('100%')
     .backgroundColor($r('app.color.f5f5f5'))
+  }
+}
+
+class Data {
+  text: string = '';
+
+  constructor(text: string) {
+    this.text = text;
   }
 }

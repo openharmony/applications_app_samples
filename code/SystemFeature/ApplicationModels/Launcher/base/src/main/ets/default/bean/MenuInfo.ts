@@ -22,20 +22,20 @@ export class MenuInfo {
   /**
    * Image source for this item.
    */
-  menuImgSrc: Resource = undefined
+  menuImgSrc: Resource = undefined;
 
   /**
    * Menu text for this item.
    */
-  menuText: Resource = undefined
+  menuText: Resource = undefined;
 
   /**
    * Callback when item is clicked.
    */
-  onMenuClick: Function | undefined
+  onMenuClick: Function;
 
   /**
    * bundleName
    */
-  bundleName: string | undefined
+  bundleName: string | undefined;
 }

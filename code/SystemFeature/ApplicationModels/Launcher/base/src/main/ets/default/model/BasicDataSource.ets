@@ -13,78 +13,80 @@
  * limitations under the License.
  */
 
+import { GridLayoutItemInfo } from '../bean/GridLayoutItemInfo'
+
 class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = []
+  private listeners: DataChangeListener[] = [];
 
   public totalCount(): number {
-    return 0
+    return 0;
   }
-  public getData(index: number): any {
-    return undefined
+  public getData(index: number): ESObject {
+    return undefined;
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
     if (this.listeners.indexOf(listener) < 0) {
-      console.info('add listener')
-      this.listeners.push(listener)
+      console.info('add listener');
+      this.listeners.push(listener);
     }
   }
   unregisterDataChangeListener(listener: DataChangeListener): void {
     const pos = this.listeners.indexOf(listener);
     if (pos >= 0) {
-      console.info('remove listener')
-      this.listeners.splice(pos, 1)
+      console.info('remove listener');
+      this.listeners.splice(pos, 1);
     }
   }
 
   notifyDataReload(): void {
     this.listeners.forEach(listener => {
-      listener.onDataReloaded()
+      listener.onDataReloaded();
     })
   }
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataAdd(index)
+      listener.onDataAdd(index);
     })
   }
   notifyDataChange(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataChange(index)
+      listener.onDataChange(index);
     })
   }
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataDelete(index)
+      listener.onDataDelete(index);
     })
   }
   notifyDataMove(from: number, to: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataMove(from, to)
+      listener.onDataMove(from, to);
     })
   }
 }
 
 export class MyDataSource extends BasicDataSource {
-  private dataArray: any[] = []
+  dataArray: ESObject[] = [];
 
-  constructor(data: any[]) {
-    super()
-    this.dataArray = data
+  constructor(data: ESObject[]) {
+    super();
+    this.dataArray = data;
   }
 
   public totalCount(): number {
-    return this.dataArray.length
+    return this.dataArray.length;
   }
-  public getData(index: number): any {
-    return this.dataArray[index]
+  public getData(index: number): ESObject {
+    return this.dataArray[index];
   }
 
-  public addData(index: number, data: any): void {
-    this.dataArray.splice(index, 0, data)
-    this.notifyDataAdd(index)
+  public addData(index: number, data: ESObject): void {
+    this.dataArray.splice(index, 0, data);
+    this.notifyDataAdd(index);
   }
-  public pushData(data: any): void {
-    this.dataArray.push(data)
-    this.notifyDataAdd(this.dataArray.length - 1)
+  public pushData(data: ESObject): void {
+    this.dataArray.push(data);
+    this.notifyDataAdd(this.dataArray.length - 1);
   }
 }

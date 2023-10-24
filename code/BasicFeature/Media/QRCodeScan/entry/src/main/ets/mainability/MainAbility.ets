@@ -16,11 +16,15 @@
 import UIAbility from '@ohos.app.ability.UIAbility'
 import { Logger, QRCodeScanConst } from '@ohos/feature-qr-code-scan'
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
+import { BusinessError } from '@ohos.base'
+import Want from '@ohos.app.ability.Want'
+import AbilityConstant from '@ohos.app.ability.AbilityConstant'
+import window from '@ohos.window'
 
 const TAG = 'MainAbility'
 
 export default class MainAbility extends UIAbility {
-  async onCreate(want, launchParam) {
+  async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     Logger.info(TAG, 'MainAbility onCreate')
     let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
     try {
@@ -35,7 +39,7 @@ export default class MainAbility extends UIAbility {
           Logger.info(TAG, 'MainAbility permissionRequestResult failed')
         }
         AppStorage.SetOrCreate('context', this.context)
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         Logger.info(TAG, `err: ${JSON.stringify(err)}`)
       })
     } catch (err) {
@@ -47,9 +51,9 @@ export default class MainAbility extends UIAbility {
     Logger.info('MainAbility onDestroy')
   }
 
-  onWindowStageCreate(windowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage) {
     Logger.info('MainAbility onWindowStageCreate')
-    windowStage.loadContent('pages/Index', (err, data) => {
+    windowStage.loadContent('pages/Index', (err: BusinessError, data: void) => {
       if (err.code) {
         Logger.error('Failed to load the content. Cause:' + JSON.stringify(err))
         return
@@ -62,7 +66,7 @@ export default class MainAbility extends UIAbility {
   }
 
   onForeground() {
-    AppStorage.SetOrCreate('cameraStatus', !AppStorage.Get('cameraStatus'))
+    AppStorage.SetOrCreate('cameraStatus',!AppStorage.Get<boolean>('cameraStatus'))
     Logger.info('MainAbility onForeground')
   }
 

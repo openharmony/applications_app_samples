@@ -61,8 +61,8 @@ struct TextPickerSample {
         .leftTitleStyle()
       Column() {
         TextPicker({ range: this.fruits, selected: this.select })
-          .onChange((value: string, index: number) => {
-            Logger.info(`Picker item changed, value: ${value}, index: ${index}`)
+          .onChange((value: string | string[], index: number | number[]) => {
+            Logger.info(`Picker item changed, value: ${value}, index: ${index}`);
           })
       }.height('40%')
       .cardStyle()

@@ -17,19 +17,20 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import { Driver, ON, Component, MatchPattern } from '@ohos.UiTest'
 import Logger from '../util/Logger'
+import Want from '@ohos.app.ability.Want'
 
 const BUNDLE = 'Setting'
 const TAG = '[Sample_Setting]'
 
 export default function appTest() {
-  describe('appTest', function () {
+  describe('appTest',  () => {
     /**
      * 拉起Ability
      */
-    it(BUNDLE + '_startAbility', 0, async (done) => {
+    it(BUNDLE + '_startAbility', 0, async (done:Function) => {
       Logger.info(TAG, BUNDLE + '_startAbility start')
-      let driver = await Driver.create()
-      let want = {
+      let driver :Driver= await Driver.create()
+      let want :Want= {
         bundleName: 'ohos.samples.settings',
         abilityName: 'MainAbility'
       }
@@ -156,7 +157,7 @@ export default function appTest() {
     /**
      * 窗口化
      */
-    it(BUNDLE + '_WindowResume', 5, async (done) => {
+    it(BUNDLE + '_WindowResume', 5, async (done:Function) => {
       Logger.info(TAG, BUNDLE + '_WindowResume start')
       let driver = await Driver.create()
       let window = await driver.findWindow({

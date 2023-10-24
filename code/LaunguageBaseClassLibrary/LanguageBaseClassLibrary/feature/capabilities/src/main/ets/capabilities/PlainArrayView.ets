@@ -23,7 +23,7 @@ import { Constant } from '../Constant';
 
 const MIN_LENGTH = 0;
 const isNaturalNumber = (str: string): boolean => {
-  const regExp = /^\d+$/;
+  let regExp: RegExp = new RegExp('^\\d+$');
   return regExp.test(str);
 };
 
@@ -62,7 +62,7 @@ export struct PlainArrayView {
             .height(72)
             .width('100%')
             .margin({ bottom: 20 })
-          }, (item, index) => JSON.stringify(item) + index)
+          }, (item: KeyValuePair, index: number) => JSON.stringify(item) + index)
         }
         .width('100%')
         .layoutWeight(1)

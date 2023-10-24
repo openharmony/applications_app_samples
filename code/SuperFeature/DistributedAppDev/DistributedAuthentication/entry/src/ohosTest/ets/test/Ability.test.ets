@@ -23,6 +23,7 @@ const TAG = '[Sample_DeviceManager]';
 const DOMAIN = 0xF811;
 
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+
 async function getResourceString(resource: Resource): Promise<string> {
   let manage = abilityDelegator.getAppContext().resourceManager
   let text = await manage.getStringValue(resource)
@@ -30,11 +31,11 @@ async function getResourceString(resource: Resource): Promise<string> {
 }
 
 export default function IndexTest() {
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
     /**
      * 启动Ability
      */
-    it(BUNDLE + 'startAbility_001', 0, async function (done) {
+    it(BUNDLE + 'startAbility_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'startAbility_001 start');
       try {
         await abilityDelegator.startAbility({
@@ -89,7 +90,7 @@ export default function IndexTest() {
       let driver = Driver.create();
       await driver.delayMs(500);
       await driver.assertComponentExist(ON.type('Toggle'));
-      let toggleList:Array<Component> = await driver.findComponents(ON.type('Toggle'));
+      let toggleList: Array<Component> = await driver.findComponents(ON.type('Toggle'));
       hilog.info(DOMAIN, TAG, BUNDLE + 'NotAllow_Discovered end toggleList.length = ' + toggleList.length);
       await driver.delayMs(500);
       await toggleList[0].click();

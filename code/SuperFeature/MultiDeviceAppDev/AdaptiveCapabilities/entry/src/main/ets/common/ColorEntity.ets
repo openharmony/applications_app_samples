@@ -13,11 +13,7 @@
  * limitations under the License.
  */
 
-import AbilityStage from '@ohos.app.ability.AbilityStage'
-import { logger } from '@ohos/notification'
-
-export default class MyAbilityStage extends AbilityStage {
-  onCreate() {
-    logger.info('MyAbilityStage', 'AbilityStage onCreate');
-  }
+export class ColorArr{
+  index:number=0;
+  color:Resource|Color=0;
 }

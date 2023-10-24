@@ -17,8 +17,8 @@ import prompt from '@system.prompt';
 @Component
 export default struct FolderItem {
   @Link isOpen: boolean;
-  private img: Resource = null;
-  private name: string = null;
+  private img: Resource | null = null;
+  private name: string | null = null;
 
   build() {
     Stack() {

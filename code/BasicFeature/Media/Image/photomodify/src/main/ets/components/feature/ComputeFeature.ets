@@ -40,10 +40,10 @@ export default class ComputeFeature {
    * 初始化参数
    */
   // 容器宽高
-  containerWidth: number;
-  containerHeight: number;
-  imageWidth: number;
-  imageHeight: number;
+  containerWidth: number = 0;
+  containerHeight: number = 0;
+  imageWidth: number = 0;
+  imageHeight: number = 0;
   materialWidth: number = 0;
   materialHeight: number = 0;
 
@@ -55,22 +55,22 @@ export default class ComputeFeature {
   minMaterialHeight: number = 0;
 
   // 拖拽点的半径
-  dotRadius: number;
+  dotRadius: number = 0;
 
   // 初始化素材中心点，一般也是父容器的中心点
-  initX: number;
-  initY: number;
-  x: number;
-  y: number;
-  fontSize: number;
+  initX: number = 0;
+  initY: number = 0;
+  x: number = 0;
+  y: number = 0;
+  fontSize: number = 0;
 
   // 拖拽动作相关
-  currentType: NodeType;
-  dragStartWidth: number;
-  dragStartHeight: number;
-  dragStartFontSize: number;
-  dragStartX: number;
-  dragStartY: number;
+  currentType: NodeType = NodeType.LEFT_TOP;
+  dragStartWidth: number = 0;
+  dragStartHeight: number= 0;
+  dragStartFontSize: number= 0;
+  dragStartX: number= 0;
+  dragStartY: number= 0;
 
   setMaterialAndImageSize(cw: number, ch: number, iw: number, ih: number): void {
     this.containerWidth = cw;
@@ -122,9 +122,9 @@ export default class ComputeFeature {
    * @param dy
    * @param callback
    */
-  onDrag(dx: number, dy: number, callback: (w: number, h: number, scale: number, fontSize: number) => {}): void {
-    let width: number;
-    let height: number;
+  onDrag(dx: number, dy: number, callback: (w: number, h: number, scale: number, fontSize: number) => void): void {
+    let width: number = 0;
+    let height: number = 0;
     switch (this.currentType) {
       case NodeType.RIGHT_TOP:
         width = this.dragStartWidth + 2 * dx;
@@ -148,7 +148,7 @@ export default class ComputeFeature {
   /**
    * 拖拽中心点
    */
-  onDragCenter(dx: number, dy: number, callback: (x: number, y: number) => {}): void {
+  onDragCenter(dx: number, dy: number, callback: (x: number, y: number) => void): void {
     const minX: number = this.initX - this.imageWidth / 2 + this.materialWidth / 2;
     const maxX: number = this.initX + this.imageWidth / 2 - this.materialWidth / 2;
     const minY: number = this.initY - this.imageHeight / 2 + this.materialHeight / 2;
@@ -170,10 +170,10 @@ export default class ComputeFeature {
   }
 
   endDrag(): void {
-    this.currentType = null;
-    this.dragStartWidth = null;
-    this.dragStartHeight = null;
-    this.dragStartFontSize = null;
+    this.currentType = NodeType.LEFT_TOP;
+    this.dragStartWidth = 0;
+    this.dragStartHeight = 0;
+    this.dragStartFontSize = 0;
     this.dragStartX = 0;
     this.dragStartY = 0;
   }

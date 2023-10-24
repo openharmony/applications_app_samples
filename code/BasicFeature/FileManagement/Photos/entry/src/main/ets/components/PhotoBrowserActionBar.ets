@@ -23,7 +23,7 @@ import { Log } from '../utils/Log';
 @Component
 export struct PhotoBrowserActionBar {
   @Consume @Watch('updateActionBar') menuList: Action[];
-  onMenuClicked: Function;
+  onMenuClicked: Function | undefined = undefined;
   isVideoPage: boolean = false;
   @State actionBarProp: ActionBarProp = new ActionBarProp();
 

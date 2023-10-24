@@ -31,7 +31,7 @@ const SRC_IMG: string = 'https://res5.vmallres.com/pimages/uomcdn/CN/pms/202207/
 export struct DetailPage {
   @State sOpacity: number = 1;
   @State isPanel: boolean = false;
-  @State goodDetailData: any[] = router.getParams()['goodItem'];
+  @State goodDetailData: ESObject[] = (router.getParams() as Record<string,Object>)['goodItem'] as ESObject;
   @State currentLocation: string = '';
   @State recommend: string = '';
   @State commodity: string = '';
@@ -44,7 +44,7 @@ export struct DetailPage {
   @State openFirst: boolean = false;
   @Provide('playTime') playNum: number = 20;
   @StorageProp('curBp') curBp: string = 'md';
-  private shareDialog: CustomDialogController;
+  private shareDialog?: CustomDialogController;
   private scroller: Scroller = new Scroller();
   @State isShowImage: boolean = true;
   @State animateAppear: boolean = false;
@@ -153,7 +153,7 @@ export struct DetailPage {
               alignment: DialogAlignment.Bottom,
               customStyle: true
             });
-            this.shareDialog.open();
+            this.shareDialog?.open();
           });
 
         Column({ space: 12 }) {

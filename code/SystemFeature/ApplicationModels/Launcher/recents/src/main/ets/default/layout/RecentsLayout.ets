@@ -20,12 +20,11 @@ import MissionInfo from '../bean/MisssionInfo'
 import MissionModel from '../model/MissionModel'
 import { EventConstants, Logger, MyDataSource } from '@ohos/base'
 
-
 const TAG: string = 'RecentsLayout'
-const SUBSCRIBER_INFO = {
+const SUBSCRIBER_INFO: ESObject = {
   events: [EventConstants.EVENT_ENTER_RECENTS]
 }
-const MISSION_OPERATE = {
+const MISSION_OPERATE: ESObject = {
   CHANGE_LOCK: 0,
   CLEAR: 1
 }
@@ -34,7 +33,7 @@ const MISSION_OPERATE = {
 export struct RecentsLayout {
   @State missionInfos: Array<MissionInfo> = new Array<MissionInfo>()
   @State showEmptyMessage: boolean = false
-  private subscriber = undefined
+  private subscriber : ESObject = undefined
   private missionsData: MyDataSource = new MyDataSource([])
 
   async aboutToAppear() {
@@ -47,7 +46,7 @@ export struct RecentsLayout {
     let context = getContext(this)
     this.missionInfos = await MissionModel.getMissionInfos(context)
     Logger.info(TAG, `refreshRecentsData end,result = ${this.missionInfos.length}`)
-    this.missionsData['dataArray'] = this.missionInfos
+    this.missionsData.dataArray = this.missionInfos
     this.missionsData.notifyDataReload()
     if (this.missionInfos.length > 0) {
       this.showEmptyMessage = false
@@ -57,8 +56,8 @@ export struct RecentsLayout {
   }
   handleOperateMission = async (index: number, operate: number) => {
     Logger.info(TAG, `handleOperateMission, index=${index}, operate=${operate}`)
-    this.missionInfos = this.missionsData['dataArray']
-    this.missionsData['dataArray'] = []
+    this.missionInfos = this.missionsData.dataArray
+    this.missionsData.dataArray = []
     this.missionsData.notifyDataReload()
     if (this.missionInfos[index]) {
       if (operate === MISSION_OPERATE.CHANGE_LOCK) {
@@ -94,7 +93,7 @@ export struct RecentsLayout {
           .alignSelf(ItemAlign.Center)
       } else {
         List({ space: 16 }) {
-          LazyForEach(this.missionsData, (item, index) => {
+          LazyForEach(this.missionsData, (item: MissionInfo, index: number) => {
             ListItem() {
               MissionItem({ missionInfo: item, index: index })
             }
@@ -109,7 +108,7 @@ export struct RecentsLayout {
                 }
               })
             )
-          }, item => item.appName)
+          }, (item: MissionInfo) => item.appName)
         }
         .listDirection(Axis.Horizontal)
         .height('60%')

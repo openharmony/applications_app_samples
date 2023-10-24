@@ -38,7 +38,7 @@ struct Index {
         .color($r('sys.color.ohos_id_color_list_separator'))
       MenuList({
         menuList: $r('app.strarray.language_base_class_library_list'),
-        addAction: (title) => {
+        addAction: (title: string) => {
           logger.info(TAG, `addAction: title = ${title}`)
           switch (title) {
             case getString($r('app.string.deque')):
