@@ -34,6 +34,7 @@ export function compareTo(): string {
   if (result === -1) {
     return getString($r('app.string.less_than'));
   }
+  return '';
 }
 
 export function getValueOf(): string {

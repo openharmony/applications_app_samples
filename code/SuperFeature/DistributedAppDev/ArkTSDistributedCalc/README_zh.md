@@ -96,9 +96,9 @@ entry/src/main/ets/
 
 2.分布式计算功能使用的前提是分布式组网。
 
-3.本示例已适配API version 10版本SDK，版本号：4.0.10.11，镜像版本号：[OpenHarmony_4.1.1.5](http://download.ci.openharmony.cn/version/Master_Version/OpenHarmony_4.1.1.5/20230928_070934/version-Master_Version-OpenHarmony_4.1.1.5-20230928_070934-dayu200_weekly_img.tar.gz)。
+3.本示例已适配API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0 Release)。
 
-4.本示例需要使用DevEco Studio 4.0 Beta2 (Build Version: 4.0.0.400, built on August 2, 2023)及以上版本进行编译。
+4.本示例需要使用DevEco Studio 版本号(4.0 Release)及以上版本才可编译运行。
 
 5.本示例需要使用@ohos.distributedHardware.deviceManager系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。
 

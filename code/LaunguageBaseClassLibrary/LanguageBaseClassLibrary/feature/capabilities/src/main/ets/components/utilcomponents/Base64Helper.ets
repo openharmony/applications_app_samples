@@ -89,7 +89,7 @@ export struct Base64Helper {
   }
 
   encode() {
-    let strToAscii = [];
+    let strToAscii: number[] = [];
     for (let i = 0;i < this.input.length; i++) {
       strToAscii.push(this.input.charCodeAt(i));
     }

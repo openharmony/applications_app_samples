@@ -15,7 +15,7 @@
 
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 import TestRunner from '@ohos.application.testRunner'
-import { Logger } from '@ohos/base'
+import { logger } from '../util/Logger';
 
 var abilityDelegator = undefined
 var abilityDelegatorArguments = undefined
@@ -37,11 +37,11 @@ function translateParamsToString(parameters) {
 }
 
 async function onAbilityCreateCallback() {
-  Logger.info(TAG, 'onAbilityCreateCallback')
+  logger.info(TAG, 'onAbilityCreateCallback');
 }
 
 async function addAbilityMonitorCallback(err: any) {
-  Logger.info(TAG, `addAbilityMonitorCallback: ${JSON.stringify(err)}`)
+  logger.info(TAG, `addAbilityMonitorCallback: ${JSON.stringify(err)}`);
 }
 
 export default class OpenHarmonyTestRunner implements TestRunner {
@@ -49,11 +49,11 @@ export default class OpenHarmonyTestRunner implements TestRunner {
   }
 
   onPrepare() {
-    Logger.info(TAG, 'OpenHarmonyTestRunner OnPrepare')
+    logger.info(TAG, 'OpenHarmonyTestRunner OnPrepare');
   }
 
   async onRun() {
-    Logger.info(TAG, 'OpenHarmonyTestRunner onRun run')
+    logger.info(TAG, 'OpenHarmonyTestRunner onRun run');
     abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
     abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
     var testAbilityName = abilityDelegatorArguments.bundleName + '.TestAbility'
@@ -68,13 +68,13 @@ export default class OpenHarmonyTestRunner implements TestRunner {
     if (debug == 'true') {
       cmd += ' -D'
     }
-    Logger.info(TAG, `cmd : ${cmd}`)
+    logger.info(TAG, `cmd : ${cmd}`);
     abilityDelegator.executeShellCommand(cmd,
       (err: any, d: any) => {
         console.info('executeShellCommand : err : ' + JSON.stringify(err));
         console.info('executeShellCommand : data : ' + d.stdResult);
         console.info('executeShellCommand : data : ' + d.exitCode);
       })
-    Logger.info(TAG, 'OpenHarmonyTestRunner onRun end')
+    logger.info(TAG, 'OpenHarmonyTestRunner onRun end');
   }
 }

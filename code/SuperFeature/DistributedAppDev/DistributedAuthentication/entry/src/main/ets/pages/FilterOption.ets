@@ -16,16 +16,19 @@
 import deviceInfo from '@ohos.deviceInfo';
 import logger from '../common/Logger';
 import router from '@ohos.router';
+import { GlobalContext, getGlobalObject, setGlobalObject } from '../common/GlobalThis'
 
 @CustomDialog
 struct FilterOptionDialog {
-  title: string;
-  filterItems: string[];
-  controller: CustomDialogController;
-  cancel: () => void;
-  confirm: (selectedIndex, title) => void;
-  selectedIndex: number;
-  filterOptions: Object;
+  title: string = '';
+  filterItems: string[] = [];
+  controller?: CustomDialogController;
+  cancel: () => void = () => {
+  };
+  confirm: (selectedIndex: number, title: string) => void = () => {
+  };
+  selectedIndex: number = 0;
+  filterOptions: Object = new Object();
 
   build() {
     Column() {
@@ -34,10 +37,10 @@ struct FilterOptionDialog {
         .fontColor('#182431')
         .fontFamily('HarmonyHeiTi-Medium')
         .fontWeight(500)
-        .margin({bottom: 24})
+        .margin({ bottom: 24 })
 
       List() {
-        ForEach(this.filterItems, (item, index) => {
+        ForEach(this.filterItems, (item: string, index: number) => {
           ListItem() {
             Column() {
               Row() {
@@ -57,7 +60,7 @@ struct FilterOptionDialog {
                   })
                   .align(Alignment.End)
               }
-              .margin({bottom: 6, top: 6})
+              .margin({ bottom: 6, top: 6 })
               .width('100%')
 
               Divider()
@@ -67,14 +70,14 @@ struct FilterOptionDialog {
             }.width('100%')
             .height(48)
           }
-        }, item => JSON.stringify(item))
+        }, (item: string) => JSON.stringify(item))
       }.width('100%')
       .height((this.filterItems.length) * 48)
 
       Flex({ justifyContent: FlexAlign.SpaceAround }) {
         Button($r('app.string.cancel'))
           .onClick(() => {
-            this.controller.close()
+            this.controller!.close()
             this.cancel()
           })
           .backgroundColor(0xffffff)
@@ -88,7 +91,7 @@ struct FilterOptionDialog {
           .alignSelf(ItemAlign.Center)
         Button($r('app.string.confirm'))
           .onClick(() => {
-            this.controller.close()
+            this.controller!.close()
             this.confirm(this.selectedIndex, this.title)
           })
           .backgroundColor(0xffffff)
@@ -112,7 +115,7 @@ export struct FilterOption {
   @State isOnline: string = '';
   @State isTrusted: string = '';
   @State range: string = '';
-  dialogController: CustomDialogController = null;
+  dialogController: CustomDialogController | undefined = undefined;
   filterOptions: Object = new Object();
   onSelectedIndexChange = async (index: number, title: string) => {
     this.onSelected(index, title);
@@ -120,15 +123,26 @@ export struct FilterOption {
 
   aboutToAppear() {
     try {
-      this.deviceType = globalThis.DeviceTypeItemList[globalThis.filterOptions[globalThis.deviceTypeName]];
-      this.authForm = globalThis.AuthFormItemList[globalThis.filterOptions[globalThis.authFormName]];
-      this.isOnline = globalThis.IsOnlineItemList[globalThis.filterOptions[globalThis.isOnlineName]];
-      this.isTrusted = globalThis.IsTrustedItemList[globalThis.filterOptions[globalThis.isTrustedName]];
-      this.range = globalThis.RangeItemList[globalThis.filterOptions[globalThis.rangeName]];
+      let filterOptions = getGlobalObject('filterOptions') as Map<string, number>;
+      let DeviceTypeItemList = getGlobalObject('DeviceTypeItemList') as string[];
+      let deviceTypeName = getGlobalObject("deviceTypeName") as string;
+      let AuthFormItemList = getGlobalObject('AuthFormItemList') as string[];
+      let authFormName = getGlobalObject("authFormName") as string;
+      let IsOnlineItemList = getGlobalObject('IsOnlineItemList') as string[];
+      let isOnlineName = getGlobalObject("isOnlineName") as string;
+      let IsTrustedItemList = getGlobalObject('IsTrustedItemList') as string[];
+      let isTrustedName = getGlobalObject("isTrustedName") as string;
+      let RangeItemList = getGlobalObject('RangeItemList') as string[];
+      let rangeName = getGlobalObject("rangeName") as string;
+      this.deviceType = DeviceTypeItemList[filterOptions.get(deviceTypeName)!]
+      this.authForm = AuthFormItemList[filterOptions.get(authFormName)!]
+      this.isOnline = IsOnlineItemList[filterOptions.get(isOnlineName)!]
+      this.isTrusted = IsTrustedItemList[filterOptions.get(isTrustedName)!]
+      this.range = RangeItemList[filterOptions.get(rangeName)!]
     } catch (error) {
       logger.error(`getStringByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
     }
-    logger.info('aboutToAppear filterOptions = ' + JSON.stringify(globalThis.filterOptions));
+    logger.info('aboutToAppear filterOptions = ' + JSON.stringify(getGlobalObject('filterOptions')));
   }
 
   onCancel() {
@@ -136,14 +150,26 @@ export struct FilterOption {
   }
 
   onSelected(index: number, title: string) {
-    logger.info('filterOptions = ' + JSON.stringify(globalThis.filterOptions) + ' index = ' + index +
+    logger.info('filterOptions = ' + JSON.stringify(GlobalContext.getContext()
+      .getObject('filterOptions')) + ' index = ' + index +
       ' title = ' + title);
-    globalThis.filterOptions[title] = index;
-    this.deviceType = globalThis.DeviceTypeItemList[globalThis.filterOptions[globalThis.deviceTypeName]];
-    this.authForm = globalThis.AuthFormItemList[globalThis.filterOptions[globalThis.authFormName]];
-    this.isOnline = globalThis.IsOnlineItemList[globalThis.filterOptions[globalThis.isOnlineName]];
-    this.isTrusted = globalThis.IsTrustedItemList[globalThis.filterOptions[globalThis.isTrustedName]];
-    this.range = globalThis.RangeItemList[globalThis.filterOptions[globalThis.rangeName]];
+    setGlobalObject("title", index)
+    let filterOptions = getGlobalObject('filterOptions') as Map<string, number>;
+    let DeviceTypeItemList = getGlobalObject('DeviceTypeItemList') as string[];
+    let deviceTypeName = getGlobalObject("deviceTypeName") as string;
+    let AuthFormItemList = getGlobalObject('AuthFormItemList') as string[];
+    let authFormName = getGlobalObject("authFormName") as string;
+    let IsOnlineItemList = getGlobalObject('IsOnlineItemList') as string[];
+    let isOnlineName = getGlobalObject("isOnlineName") as string;
+    let IsTrustedItemList = getGlobalObject('IsTrustedItemList') as string[];
+    let isTrustedName = getGlobalObject("isTrustedName") as string;
+    let RangeItemList = getGlobalObject('RangeItemList') as string[];
+    let rangeName = getGlobalObject("rangeName") as string;
+    this.deviceType = this.deviceType = DeviceTypeItemList[filterOptions.get(deviceTypeName)!]
+    this.authForm = AuthFormItemList[filterOptions.get(authFormName)!]
+    this.isOnline = IsOnlineItemList[filterOptions.get(isOnlineName)!]
+    this.isTrusted = IsTrustedItemList[filterOptions.get(isTrustedName)!]
+    this.range = RangeItemList[filterOptions.get(rangeName)!]
   }
 
   existApp() {
@@ -153,7 +179,7 @@ export struct FilterOption {
   openDialog(itemList: string[], titleResource: Resource) {
     let title = '';
     try {
-      title = globalThis.resourceManager.getStringSync(titleResource.id);
+      title = getContext(this).resourceManager.getStringSync(titleResource.id);
     } catch (error) {
       logger.error(`getStringByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
     }
@@ -164,7 +190,7 @@ export struct FilterOption {
         filterItems: itemList,
         cancel: this.onCancel,
         confirm: this.onSelectedIndexChange,
-        selectedIndex: globalThis.filterOptions[title]
+        selectedIndex: (getGlobalObject('filterOptions') as Map<string, number>).get(title)
       }),
       cancel: this.existApp,
       autoCancel: true,
@@ -195,7 +221,7 @@ export struct FilterOption {
           .lineHeight(26)
       }
       .width('100%')
-      .margin({top: 12, bottom: 24})
+      .margin({ top: 12, bottom: 24 })
       .padding({ left: 12 })
 
       Column() {
@@ -214,13 +240,13 @@ export struct FilterOption {
           Image($r('app.media.ic_arrow'))
             .width(12)
             .height(24)
-            .margin({left: 4})
+            .margin({ left: 4 })
         }
-        .margin({top: 4})
+        .margin({ top: 4 })
         .width('100%')
         .height(48)
         .onClick(() => {
-          this.openDialog(globalThis.DeviceTypeItemList, $r('app.string.device_type'));
+          this.openDialog(getGlobalObject('DeviceTypeItemList') as string[], $r('app.string.device_type'));
         })
 
         Divider()
@@ -242,12 +268,12 @@ export struct FilterOption {
           Image($r('app.media.ic_arrow'))
             .width(12)
             .height(24)
-            .margin({left: 4})
+            .margin({ left: 4 })
         }
         .width('100%')
         .height(48)
         .onClick(() => {
-          this.openDialog(globalThis.IsOnlineItemList, $r('app.string.is_online'));
+          this.openDialog(getGlobalObject('IsOnlineItemList') as string[], $r('app.string.is_online'));
         })
 
         Divider()
@@ -269,12 +295,12 @@ export struct FilterOption {
           Image($r('app.media.ic_arrow'))
             .width(12)
             .height(24)
-            .margin({left: 4})
+            .margin({ left: 4 })
         }
         .width('100%')
         .height(48)
         .onClick(() => {
-          this.openDialog(globalThis.IsTrustedItemList, $r('app.string.is_trusted'));
+          this.openDialog(getGlobalObject('IsTrustedItemList') as string[], $r('app.string.is_trusted'));
         })
 
         Divider()
@@ -296,12 +322,12 @@ export struct FilterOption {
           Image($r('app.media.ic_arrow'))
             .width(12)
             .height(24)
-            .margin({left: 4})
+            .margin({ left: 4 })
         }
         .width('100%')
         .height(48)
         .onClick(() => {
-          this.openDialog(globalThis.AuthFormItemList, $r('app.string.auth_form'));
+          this.openDialog(getGlobalObject('AuthFormItemList') as string[], $r('app.string.auth_form'));
         })
 
         Divider()
@@ -323,17 +349,17 @@ export struct FilterOption {
           Image($r('app.media.ic_arrow'))
             .width(12)
             .height(24)
-            .margin({left: 4})
+            .margin({ left: 4 })
         }
         .width('100%')
         .height(48)
         .onClick(() => {
-          this.openDialog(globalThis.RangeItemList, $r('app.string.range'));
+          this.openDialog(getGlobalObject('RangeItemList') as string[], $r('app.string.range'));
         })
-        .margin({bottom: 4})
+        .margin({ bottom: 4 })
       }.width('100%')
       .borderRadius(24)
-      .padding({left: 12, right: 12})
+      .padding({ left: 12, right: 12 })
       .backgroundColor('#FFFFFF')
     }.backgroundColor('#F1F3F5')
     .padding(12)

@@ -15,6 +15,15 @@
 
 import mediaQuery from '@ohos.mediaquery'
 
+export class BreakPointTypeOptionEntity<T> implements BreakPointTypeOption<T>{
+  xs?: T
+  sm?: T
+  md?: T
+  lg?: T
+  xl?: T
+  xxl?: T
+}
+
 declare interface BreakPointTypeOption<T> {
   xs?: T
   sm?: T
@@ -25,73 +34,75 @@ declare interface BreakPointTypeOption<T> {
 }
 
 export class BreakPointType<T> {
-  options: BreakPointTypeOption<T>
+  options: BreakPointTypeOption<T>;
 
   constructor(option: BreakPointTypeOption<T>) {
-    this.options = option
+    this.options = option;
   }
 
-  getValue(currentBreakPoint: string) {
+  getValue(currentBreakPoint: string) :T{
     if (currentBreakPoint === 'xs') {
-      return this.options.xs
+      return this.options.xs as T;
     } else if (currentBreakPoint === 'sm') {
-      return this.options.sm
+      return this.options.sm as T;
     } else if (currentBreakPoint === 'md') {
-      return this.options.md
+      return this.options.md as T;
     } else if (currentBreakPoint === 'lg') {
-      return this.options.lg
+      return this.options.lg as T;
     } else if (currentBreakPoint === 'xl') {
-      return this.options.xl
+      return this.options.xl as T;
     } else if (currentBreakPoint === 'xxl') {
-      return this.options.xxl
+      return this.options.xxl as T;
     } else {
-      return undefined
+      return this.options.xs as T;
     }
   }
 }
 
-type Breakpoint = {
-  name: string
-  size: number
-  mediaQueryListener?: mediaQuery.MediaQueryListener
+class BreakpointEntity {
+  name: string = '';
+  size: number = 0;
+  mediaQueryListener?: mediaQuery.MediaQueryListener;
 }
 
 export class BreakpointSystem {
-  private currentBreakpoint: string = 'md'
-  private breakpoints: Breakpoint[] = [
+  private currentBreakpoint: string = 'md';
+  private breakpoints: BreakpointEntity[] = [
     { name: 'xs', size: 0 }, { name: 'sm', size: 320 },
     { name: 'md', size: 600 }, { name: 'lg', size: 840 }
   ]
 
   private updateCurrentBreakpoint(breakpoint: string) {
     if (this.currentBreakpoint !== breakpoint) {
-      this.currentBreakpoint = breakpoint
-      AppStorage.Set<string>('currentBreakpoint', this.currentBreakpoint)
-      console.log('on current breakpoint: ' + this.currentBreakpoint)
+      this.currentBreakpoint = breakpoint;
+      AppStorage.Set<string>('currentBreakpoint', this.currentBreakpoint);
+      console.log('on current breakpoint: ' + this.currentBreakpoint);
     }
   }
 
   public register() {
-    this.breakpoints.forEach((breakpoint: Breakpoint, index) => {
-      let condition
+    this.breakpoints.forEach((breakpoint: BreakpointEntity, index) => {
+      let condition :string = '';
       if (index === this.breakpoints.length - 1) {
-        condition = '(' + breakpoint.size + 'vp<=width' + ')'
+        condition = '(' + breakpoint.size + 'vp<=width' + ')';
       } else {
-        condition = '(' + breakpoint.size + 'vp<=width<' + this.breakpoints[index + 1].size + 'vp)'
+        condition = '(' + breakpoint.size + 'vp<=width<' + this.breakpoints[index + 1].size + 'vp)';
       }
-      console.log(condition)
-      breakpoint.mediaQueryListener = mediaQuery.matchMediaSync(condition)
+      console.log(condition);
+      breakpoint.mediaQueryListener = mediaQuery.matchMediaSync(condition);
       breakpoint.mediaQueryListener.on('change', (mediaQueryResult) => {
         if (mediaQueryResult.matches) {
-          this.updateCurrentBreakpoint(breakpoint.name)
+          this.updateCurrentBreakpoint(breakpoint.name);
         }
       })
     })
   }
 
   public unregister() {
-    this.breakpoints.forEach((breakpoint: Breakpoint) => {
-      breakpoint.mediaQueryListener.off('change')
+    this.breakpoints.forEach((breakpoint: BreakpointEntity) => {
+      if(breakpoint != undefined && breakpoint.mediaQueryListener !=undefined){
+        breakpoint.mediaQueryListener.off('change');
+      }
     })
   }
 }

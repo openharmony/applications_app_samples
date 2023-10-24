@@ -28,7 +28,7 @@ struct DiversionSample {
   private listener = mediaquery.matchMediaSync('(orientation: landscape)')
 
   // 监听横竖屏
-  onPortrait(mediaQueryResult) {
+  onPortrait(mediaQueryResult: mediaquery.MediaQueryResult) {
     if (mediaQueryResult.matches) { // 若设备为横屏状态，更改相应的页面布局
       this.isVertical = true
       this.barWidth = 100
@@ -41,8 +41,9 @@ struct DiversionSample {
   }
 
   aboutToAppear() {
-    const portraitFunc = this.onPortrait.bind(this) // 绑定当前应用实例
-    this.listener.on('change', portraitFunc) //绑定回调函数
+    this.listener.on('change', (mediaQueryResult:mediaquery.MediaQueryResult) => {
+      this.onPortrait(mediaQueryResult);
+    }) //绑定回调函数
   }
 
   @Builder NavigationTitle() {
@@ -61,7 +62,7 @@ struct DiversionSample {
     }.alignItems(HorizontalAlign.Start)
   }
 
-  @Builder TabBuilder(title, targetIndex: number, selectedImg: Resource, normalImg: Resource) {
+  @Builder TabBuilder(title: Resource, targetIndex: number, selectedImg: Resource, normalImg: Resource) {
     Column() {
       Image(this.currentIndex === targetIndex ? selectedImg : normalImg)
         .size({ width: 25, height: 25 })

@@ -20,7 +20,8 @@ import mainFeature from '../feature/MainFeature';
 import router from '@ohos.router';
 import Logger from '../module/Logger';
 import surveillanceEventsManager from '../module/SurveillanceEventsManager';
-import Base from '@ohos.base';
+import Base, { BusinessError } from '@ohos.base';
+import commonEventManager from '@ohos.commonEventManager';
 
 @Entry
 @Component

@@ -28,7 +28,7 @@ export struct StringCode {
   @State resdec: string = '';
   @State read: string = '';
   @State write: string = '';
-  private resArray: Uint8Array = undefined;
+  private resArray: Uint8Array | undefined = undefined;
 
   build() {
     Scroll() {

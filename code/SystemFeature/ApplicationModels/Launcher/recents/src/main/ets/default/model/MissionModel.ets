@@ -22,7 +22,7 @@ const NUMMAX: number = 20
 const TAG: string = 'MissionModel'
 
 class MissionModel {
-  async getMissionInfos(context: any) {
+  async getMissionInfos(context: Context) {
     let missionInfoList: Array<MissionInfo> = new Array<MissionInfo>()
     let missionInfos = await missionManager.getMissionInfos('', NUMMAX)
     Logger.info(TAG, `getMissionInfos = ${missionInfos.length}`)
@@ -30,15 +30,15 @@ class MissionModel {
     for (let recentItem of missionInfos) {
       let missionInfo = new MissionInfo()
       missionInfo.missionId = recentItem.missionId
-      missionInfo.bundleName = recentItem.want.bundleName
-      missionInfo.abilityName = recentItem.want.abilityName
+      missionInfo.bundleName = recentItem.want.bundleName!
+      missionInfo.abilityName = recentItem.want.abilityName!
       missionInfo.lockedState = recentItem.lockedState
       let appInfo = await launcherAbilityManager.getAppInfoByBundleName(missionInfo.bundleName)
       if (appInfo == undefined) {
         continue
       }
-      missionInfo.appIconId = appInfo.appIconId
-      missionInfo.appName = appInfo.appName
+      missionInfo.appIconId = appInfo.appIconId!
+      missionInfo.appName = appInfo.appName!
       Logger.info(TAG, `missionInfo = ${JSON.stringify(missionInfo)}`)
       missionInfoList.push(missionInfo)
     }
@@ -46,7 +46,7 @@ class MissionModel {
     return missionInfoList
   }
 
-  async getSnapShot(missionId) {
+  async getSnapShot(missionId: number) {
     let missionSnapshot = await missionManager.getMissionSnapShot('', missionId)
     let snapshot: image.PixelMap = missionSnapshot.snapshot
     return snapshot

@@ -13,17 +13,25 @@
  * limitations under the License.
  */
 
-import { BreakpointSystem, BreakPointType } from '../../../common/BreakpointSystem'
+import { BreakpointSystem, BreakPointType, BreakPointTypeOptionEntity } from '../../../common/BreakpointSystem';
 
-type TabBar = {
-  name: Resource
-  icon: Resource
-  selectIcon: Resource
+class TabBar {
+  name: Resource | string ='';
+  icon: Resource = $r('app.media.ic_music_home');
+  selectIcon: Resource = $r('app.media.ic_music_home_selected');
 }
 
 @Entry
 @Component
 struct Home {
+  smHome:Margin={ top: 4 };
+  mdHome:Margin={ left: 8 };
+  lgHome:Margin={ top: 4 };
+  breakPointTypeOptionEntity: BreakPointTypeOptionEntity<Margin>={
+    sm: this.smHome,
+    md: this.mdHome,
+    lg: this.lgHome
+  }
   private tabs: Array<TabBar> = [
     {
       name: $r('app.string.tabBar1'),
@@ -55,10 +63,7 @@ struct Home {
         .size({ width: 36, height: 36 })
       Text(tabBar.name)
         .fontColor(this.currentIndex === index ? '#FF1948' : '#999')
-        .margin(new BreakPointType({
-          sm: { top: 4 },
-          md: { left: 8 },
-          lg: { top: 4 } }).getValue(this.currentBreakpoint))
+        .margin(new BreakPointType(this.breakPointTypeOptionEntity).getValue(this.currentBreakpoint))
         .fontSize(16)
     }
     .width('100%')
@@ -84,7 +89,7 @@ struct Home {
         lg: BarPosition.Start
       }).getValue(this.currentBreakpoint)
     }) {
-      ForEach(this.tabs, (item, index) => {
+      ForEach(this.tabs, (item: TabBar, index) => {
         TabContent() {
           Stack() {
             Text(item.name).fontSize(30)

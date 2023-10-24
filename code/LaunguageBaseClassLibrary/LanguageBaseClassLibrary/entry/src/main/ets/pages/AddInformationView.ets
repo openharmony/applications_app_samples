@@ -22,12 +22,14 @@ const MIN_AGE = 1;
 const AGE_RANGE = 9;
 const AGE_DEFAULT = 0;
 
-const arr = Array(AGE_RANGE).fill(0).map((_, i) => `${i + MIN_AGE}${getString($r('app.string.old'))}`);
+const arr = Array(AGE_RANGE)
+  .fill(0)
+  .map<string>((_: number, i: number) => `${i + MIN_AGE}${getString($r('app.string.old'))}`);
 
 @CustomDialog
 struct AgePickDialog {
-  private controller: CustomDialogController;
-  private sure: (age: number) => void;
+  private controller?: CustomDialogController;
+  private sure: (age: number) => void = () => {};
   @State select: number = AGE_DEFAULT;
 
   build() {
@@ -41,8 +43,10 @@ struct AgePickDialog {
 
       Column() {
         TextPicker({ range: arr, selected: this.select })
-          .onChange((value: string, index: number) => {
-            this.select = index;
+          .onChange((value: string | string[], index: number | number[]) => {
+            if (typeof index === 'number') {
+              this.select = index;
+            }
           })
       }
       .width('100%')
@@ -56,7 +60,7 @@ struct AgePickDialog {
           .fontSize(16)
           .fontColor($r('app.color.text_color_accent'))
           .onClick(() => {
-            this.controller.close();
+            this.controller?.close();
           })
         Divider()
           .vertical(true)
@@ -70,7 +74,7 @@ struct AgePickDialog {
           .fontColor($r('app.color.text_color_accent'))
           .onClick(() => {
             this.sure(this.select + MIN_AGE)
-            this.controller.close();
+            this.controller?.close();
           })
       }
       .height(40)
@@ -85,7 +89,7 @@ struct AgePickDialog {
 @Entry
 @Component
 export struct AddInformationView {
-  @State information: Information = { name: '', age: 0, phone: '', clickAble: true }
+  @State information: Information = new Information('', 0, '', true)
   private dialogController: CustomDialogController = new CustomDialogController({
     builder: AgePickDialog({ sure: (age: number) => {
       this.information.age = age;
@@ -96,7 +100,7 @@ export struct AddInformationView {
   @State flag: string = '';
 
   aboutToAppear() {
-    let tem: string = router.getParams()['title'];
+    let tem: string = (router.getParams() as Record<string, Object>)['title'] as string;
     if (!tem) {
       return;
     }
@@ -162,12 +166,12 @@ export struct AddInformationView {
               break;
           }
 
-          let event = {
+          let event: emitter.InnerEvent = {
             eventId: eventId,
             priority: emitter.EventPriority.HIGH
           };
 
-          let eventData = {
+          let eventData: emitter.EventData = {
             data: this.information
           };
 

@@ -20,8 +20,8 @@ import { MenuNavRouter } from '../components/MenuNavRouter';
 export struct MenuList {
   @State menuListData: Array<string> = [];
   @BuilderParam childNavDestination: () => void;
-  private menuList: Resource = undefined;
-  private addAction?: (title) => void;
+  private menuList: Resource | undefined = undefined;
+  private addAction?: (title: string) => void;
 
   build() {
     List({ space: 12 }) {

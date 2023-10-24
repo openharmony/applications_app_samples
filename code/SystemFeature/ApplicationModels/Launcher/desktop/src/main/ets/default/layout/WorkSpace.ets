@@ -18,21 +18,21 @@ import LauncherGridLayout from '../components/LauncherGridLayout'
 import { DesktopLayoutModel } from '../model/DesktopLayoutModel'
 import { EventConstants, GridLayoutItemInfo, Logger } from '@ohos/base'
 
-const TAG: string = 'WorkSpace'
+const TAG: string = 'WorkSpace';
 
 @Component
 export struct WorkSpace {
-  @StorageLink('DesktopLayoutModel') desktopLayoutModel: DesktopLayoutModel = undefined
+  @StorageLink('DesktopLayoutModel') desktopLayoutModel: DesktopLayoutModel | undefined = undefined;
   @StorageLink('isRefresh') @Watch('refreshWorkSpace') isRefresh: boolean = false;
-  @State appPages: Array<Array<GridLayoutItemInfo>> = [[]]
-  private swiperController: SwiperController = new SwiperController()
+  @State appPages: Array<Array<GridLayoutItemInfo>> | undefined = [[]];
+  private swiperController: SwiperController = new SwiperController();
 
   build() {
     Column() {
       Swiper(this.swiperController) {
-        ForEach(this.appPages, item => {
+        ForEach(this.appPages, (item: Array<GridLayoutItemInfo>) => {
           LauncherGridLayout({ gridInfos: item })
-        }, item => JSON.stringify(item))
+        }, (item: Array<GridLayoutItemInfo>) => JSON.stringify(item))
       }
       .indicatorStyle({
         selectedColor: Color.White
@@ -42,14 +42,14 @@ export struct WorkSpace {
       .gesture(
       PanGesture({ fingers: 1, direction: PanDirection.Up, distance: 20 })
         .onActionStart((event: GestureEvent) => {
-          console.info('Pan start')
+          console.info('Pan start');
         })
         .onActionUpdate((event: GestureEvent) => {
         })
         .onActionEnd(() => {
           console.info('Pan end')
           CommonEvent.publish(EventConstants.EVENT_ENTER_RECENTS, () => {
-            Logger.info(TAG, 'publish EVENT_ENTER_RECENTS')
+            Logger.info(TAG, 'publish EVENT_ENTER_RECENTS');
           })
         })
       )
@@ -60,21 +60,21 @@ export struct WorkSpace {
   }
 
   aboutToAppear() {
-    Logger.info(TAG, 'aboutToAppear')
-    this.getData()
+    Logger.info(TAG, 'aboutToAppear');
+    this.getData();
   }
 
   refreshWorkSpace() {
-    Logger.info(TAG, 'refreshWorkSpace')
+    Logger.info(TAG, 'refreshWorkSpace');
     if (this.isRefresh) {
-      this.appPages = this.desktopLayoutModel.getLayoutInfoCache()
-      AppStorage.SetOrCreate('isRefresh', false)
-      Logger.info(TAG, 'refreshWorkSpace' + JSON.stringify(this.appPages))
+      this.appPages = this.desktopLayoutModel?.getLayoutInfoCache();
+      AppStorage.SetOrCreate('isRefresh', false);
+      Logger.info(TAG, 'refreshWorkSpace' + JSON.stringify(this.appPages));
     }
   }
 
   async getData() {
-    this.appPages = await this.desktopLayoutModel.getLayoutInfo()
-    Logger.info(TAG, `getLauncherAbilityList end,appPages = ${JSON.stringify(this.appPages)}`)
+    this.appPages = await this.desktopLayoutModel?.getLayoutInfo();
+    Logger.info(TAG, `getLauncherAbilityList end,appPages = ${JSON.stringify(this.appPages)}`);
   }
 }

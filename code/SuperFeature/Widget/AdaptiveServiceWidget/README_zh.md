@@ -60,9 +60,9 @@ return formInfo.FormState.READY }。
 
 1.本示例支持在标准系统上运行。
 
-2.本示例需要使用DevEco Studio 4.0 Beta2 (Build Version: 4.0.0.400, built on August 2, 2023)及以上版本才可编译运行。
+2.本示例需要使用DevEco Studio 版本号(4.0 Release)及以上版本才可编译运行。
 
-3.本示例已适配API version 10版本SDK，版本号：4.0.10.11，镜像版本号：[OpenHarmony_4.1.1.5](http://download.ci.openharmony.cn/version/Master_Version/OpenHarmony_4.1.1.5/20230928_070934/version-Master_Version-OpenHarmony_4.1.1.5-20230928_070934-dayu200_weekly_img.tar.gz)。
+3.本示例已适配API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0 Release)。
 
 ### 下载
 

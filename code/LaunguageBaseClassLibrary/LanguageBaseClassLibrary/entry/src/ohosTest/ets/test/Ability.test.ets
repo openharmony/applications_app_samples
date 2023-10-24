@@ -17,6 +17,7 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 import { describe, it, expect } from '@ohos/hypium';
 import { Driver, ON, MatchPattern } from '@ohos.UiTest';
 import { logger } from '../util/Logger';
+import Want from '@ohos.app.ability.Want';
 
 const TAG: string = 'Sample_LanguageBaseClassLibraryTest';
 const BUNDLE = 'LanguageBaseClassLibrary';
@@ -112,11 +113,11 @@ async function addValue(driver: Driver, value: string) {
 }
 
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
     // 打开应用
-    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+    it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}StartAbility_001 begin`);
-      let want = {
+      let want: Want = {
         bundleName: 'com.samples.languagebaseclasslibrary',
         abilityName: 'EntryAbility'
       };
@@ -129,7 +130,7 @@ export default function abilityTest() {
     })
 
     // 进入xml解析、生成与转换页面
-    it(BUNDLE + 'Xml_ConvertXml_001', 0, async function (done) {
+    it(BUNDLE + 'Xml_ConvertXml_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}Xml_ConvertXml_001 begin`);
       await driver.delayMs(200);
       // find component on text 'Xml'
@@ -162,7 +163,7 @@ export default function abilityTest() {
     })
 
     // 进入Util界面
-    it(BUNDLE + 'util_001', 0, async function (done) {
+    it(BUNDLE + 'util_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}util_001 begin`);
       await driver.delayMs(200);
       // check text
@@ -175,7 +176,7 @@ export default function abilityTest() {
     })
 
     // StringCode(字符串编码)
-    it(BUNDLE + 'StringCodeFunction_001', 0, async function (done) {
+    it(BUNDLE + 'StringCodeFunction_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE} StringCodeFunction_001 begin`);
       await driver.delayMs(200);
       // 进入字符串编解码界面
@@ -222,7 +223,7 @@ export default function abilityTest() {
     })
 
     // RationalNumber(有理数)
-    it(BUNDLE + 'RationalNumber_001', 0, async function (done) {
+    it(BUNDLE + 'RationalNumber_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}RationalNumber_001 begin`);
       await driver.delayMs(200);
       // 进入有理数界面
@@ -267,7 +268,7 @@ export default function abilityTest() {
     })
 
     // 进入到LRUCache (缓冲区)
-    it(BUNDLE + 'UtilLruBuffer_001', 0, async function (done) {
+    it(BUNDLE + 'UtilLruBuffer_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}UtilLruBuffer_001 begin`);
       await driver.delayMs(200);
       // find component on text 'LRUCache'
@@ -351,7 +352,7 @@ export default function abilityTest() {
     })
 
     // Base64Helper (Base64编解码)
-    it(BUNDLE + 'UtilBase64Codec_001', 0, async function (done) {
+    it(BUNDLE + 'UtilBase64Codec_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}UtilBase64Codec_001 begin`);
       await driver.delayMs(200);
       // 进入Base64编解码
@@ -376,7 +377,7 @@ export default function abilityTest() {
     })
 
     // TypeCheck (类型检查)
-    it(BUNDLE + 'TypeCheck_001', 0, async function (done) {
+    it(BUNDLE + 'TypeCheck_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}TypeCheck_001 begin`);
       await driver.delayMs(200);
       // 进入类型检查
@@ -404,7 +405,7 @@ export default function abilityTest() {
     })
 
     // 进入Url字符串解析页面
-    it(BUNDLE + 'Url_001', 0, async function (done) {
+    it(BUNDLE + 'Url_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}Url_001 begin`);
       await driver.delayMs(500);
       // find component on text 'Xml'
@@ -420,7 +421,7 @@ export default function abilityTest() {
     })
 
     // Url字符串解析
-    it(BUNDLE + 'ClickUrlStringBtnFunction_001', 0, async function (done) {
+    it(BUNDLE + 'ClickUrlStringBtnFunction_001', 0, async (done: Function) => {
       logger.info(TAG, BUNDLE + 'ClickUrlStringBtnFunction_001 begin')
       await driver.delayMs(1000)
       // 点击插入键值对到查询字符串
@@ -478,7 +479,7 @@ export default function abilityTest() {
     })
 
     // 进入TaskPool页面
-    it(BUNDLE + 'TaskPool_001', 0, async function (done) {
+    it(BUNDLE + 'TaskPool_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}TaskPool_001 begin`);
       await driver.delayMs(200);
       // 滚动到TaskPool
@@ -506,7 +507,7 @@ export default function abilityTest() {
     })
 
     // 进入Deque界面
-    it(BUNDLE + 'deque_001', 0, async function (done) {
+    it(BUNDLE + 'deque_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}deque_001 begin`);
       await driver.delayMs(200);
       // 滚动到Deque
@@ -524,7 +525,7 @@ export default function abilityTest() {
     })
 
     // 新增数据
-    it(BUNDLE + 'DequeAddFunction_001', 0, async function (done) {
+    it(BUNDLE + 'DequeAddFunction_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE} DequeAddFunction_001 begin`);
       await driver.delayMs(200);
       // 添加三条数据
@@ -542,7 +543,7 @@ export default function abilityTest() {
     })
 
     // 进入HashMap界面
-    it(BUNDLE + 'hash_map_001', 0, async function (done) {
+    it(BUNDLE + 'hash_map_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}hash_map_001 begin`);
       await driver.delayMs(200);
       // 滚动到HashMap
@@ -560,7 +561,7 @@ export default function abilityTest() {
     })
 
     // 新增数据
-    it(BUNDLE + 'HashMapAddFunction_001', 0, async function (done) {
+    it(BUNDLE + 'HashMapAddFunction_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE} HashMapAddFunction_001 begin`);
       await driver.delayMs(200);
       // 添加三条数据
@@ -578,7 +579,7 @@ export default function abilityTest() {
     })
 
     // 进入HashSet界面
-    it(BUNDLE + 'hash_set_001', 0, async function (done) {
+    it(BUNDLE + 'hash_set_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}hash_set_001 begin`);
       await driver.delayMs(200);
       // 滚动到HashSet
@@ -596,7 +597,7 @@ export default function abilityTest() {
     })
 
     // 新增数据
-    it(BUNDLE + 'HashSetAddFunction_001', 0, async function (done) {
+    it(BUNDLE + 'HashSetAddFunction_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE} HashSetAddFunction_001 begin`);
       await driver.delayMs(200);
       // 添加三条数据
@@ -614,7 +615,7 @@ export default function abilityTest() {
     })
 
     // 进入LightWeightMap界面
-    it(BUNDLE + 'light_weight_map_001', 0, async function (done) {
+    it(BUNDLE + 'light_weight_map_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}light_weight_map_001 begin`);
       await driver.delayMs(200);
       // 滚动到LightWeightMap
@@ -632,7 +633,7 @@ export default function abilityTest() {
     })
 
     // 新增数据
-    it(BUNDLE + 'LightWeightMapAddFunction_001', 0, async function (done) {
+    it(BUNDLE + 'LightWeightMapAddFunction_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE} LightWeightMapAddFunction_001 begin`);
       await driver.delayMs(200);
       // 添加三条数据
@@ -650,7 +651,7 @@ export default function abilityTest() {
     })
 
     // 进入LightWeightSet界面
-    it(BUNDLE + 'light_weight_set_001', 0, async function (done) {
+    it(BUNDLE + 'light_weight_set_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}light_weight_set_001 begin`);
       await driver.delayMs(200);
       // 滚动到LightWeightSet
@@ -668,7 +669,7 @@ export default function abilityTest() {
     })
 
     // 新增数据
-    it(BUNDLE + 'LightWeightSetAddFunction_001', 0, async function (done) {
+    it(BUNDLE + 'LightWeightSetAddFunction_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE} LightWeightSetAddFunction_001 begin`);
       await driver.delayMs(200);
       // 添加三条数据
@@ -686,7 +687,7 @@ export default function abilityTest() {
     })
 
     // 进入LinkedList界面
-    it(BUNDLE + 'linked_list_001', 0, async function (done) {
+    it(BUNDLE + 'linked_list_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}linked_list_001 begin`);
       await driver.delayMs(200);
       // 滚动到LinkedList
@@ -704,7 +705,7 @@ export default function abilityTest() {
     })
 
     // 新增数据
-    it(BUNDLE + 'LinkedListAddFunction_001', 0, async function (done) {
+    it(BUNDLE + 'LinkedListAddFunction_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE} LinkedListAddFunction_001 begin`);
       await driver.delayMs(200);
       // 添加三条数据
@@ -722,7 +723,7 @@ export default function abilityTest() {
     })
 
     // 进入List页面
-    it(BUNDLE + 'list_001', 0, async function (done) {
+    it(BUNDLE + 'list_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE} list_001 begin`);
       await driver.delayMs(200);
       //find component on text 'list'
@@ -745,7 +746,7 @@ export default function abilityTest() {
     })
 
     // 进入plain_array页面
-    it(BUNDLE + 'plain_array_001', 0, async function (done) {
+    it(BUNDLE + 'plain_array_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE} plain_array_001 begin`);
       await driver.delayMs(200);
       //find component on text 'plain_array'
@@ -768,7 +769,7 @@ export default function abilityTest() {
     })
 
     // 进入queue页面
-    it(BUNDLE + 'queue_001', 0, async function (done) {
+    it(BUNDLE + 'queue_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE} queue_001 begin`);
       await driver.delayMs(200);
       //find component on text 'queue'
@@ -791,7 +792,7 @@ export default function abilityTest() {
     })
 
     // 进入stack页面
-    it(BUNDLE + 'stack_001', 0, async function (done) {
+    it(BUNDLE + 'stack_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE} stack_001 begin`);
       await driver.delayMs(200);
       // find component on text 'stack'
@@ -814,7 +815,7 @@ export default function abilityTest() {
     })
 
     // 进入tree_map页面
-    it(BUNDLE + 'tree_map_001', 0, async function (done) {
+    it(BUNDLE + 'tree_map_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE} tree_map_001 begin`);
       await driver.delayMs(200);
       //find component on text 'tree_map'
@@ -837,7 +838,7 @@ export default function abilityTest() {
     })
 
     // 进入tree_set页面
-    it(BUNDLE + 'tree_set_001', 0, async function (done) {
+    it(BUNDLE + 'tree_set_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE} tree_set_001 begin`);
       await driver.delayMs(200);
       //find component on text 'tree_set'
@@ -860,7 +861,7 @@ export default function abilityTest() {
     })
 
     // 进入vector页面
-    it(BUNDLE + 'vector_001', 0, async function (done) {
+    it(BUNDLE + 'vector_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE} vector_001 begin`);
       await driver.delayMs(200);
       //find component on text 'vector'

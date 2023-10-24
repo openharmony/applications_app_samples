@@ -61,7 +61,7 @@ export struct LightWeightMapView {
             }
             .height(72)
             .width('100%')
-          }, (item, index) => JSON.stringify(item) + index)
+          }, (item: KeyValuePair, index: number) => JSON.stringify(item) + index)
         }
         .width('100%')
         .height('100%')

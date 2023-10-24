@@ -18,21 +18,25 @@ import UIAbility from '@ohos.app.ability.UIAbility'
 import { Hypium } from '@ohos/hypium'
 import testsuite from '../test/List.test'
 import { Logger } from '@ohos/base'
+import Want from '@ohos.app.ability.Want'
+import AbilityConstant from '@ohos.app.ability.AbilityConstant'
+import { BusinessError } from '@ohos.base'
+import window from '@ohos.window'
 
 const TAG: string = 'TestAbility'
 
 export default class TestAbility extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     // launcher需要通过拉起ServiceExtensionAbility的方式拉起
     Logger.info(TAG, 'TestAbility onCreate')
-    let serviceWant = {
+    let serviceWant: Want = {
       'deviceId': '',
       'bundleName': 'ohos.samples.launcher',
       'abilityName': 'MainAbility'
     }
     this.context.startServiceExtensionAbility(serviceWant).then(() => {
       Logger.info('startServiceExtensionAbility success')
-    }).catch((error) => {
+    }).catch((error: BusinessError) => {
       Logger.info('startServiceExtensionAbility failed: ' + JSON.stringify(error))
     })
   }
@@ -41,7 +45,7 @@ export default class TestAbility extends UIAbility {
     Logger.info(TAG, 'TestAbility onDestroy')
   }
 
-  onWindowStageCreate(windowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage) {
     Logger.info(TAG, 'TestAbility onWindowStageCreate')
     windowStage.loadContent("testability/pages/Index", (err, data) => {
       if (err.code) {
@@ -51,10 +55,8 @@ export default class TestAbility extends UIAbility {
       Logger.error(TAG, `Succeeded in loading the content. Data:: ${JSON.stringify(data)}`)
     })
 
-    let abilityDelegator: any
-    abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-    let abilityDelegatorArguments: any
-    abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
+    let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+    let abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
     Logger.info(TAG, 'start run testcase!!!')
     Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
   }
