@@ -62,9 +62,9 @@ AOT(Ahead Of Time)，即预先编译，在应用程序运行前，将代码预�
 
 ### 约束与限制
 
-1.本示例已适配API version 10版本SDK，版本号：4.0.9.6，镜像版本号: OpenHarmony 4.0.9.6。
+1.本示例已适配API version 10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0Release) 。
 
-2.本示例需要使用DevEco Studio 4.0 Beta2 (Build Version: 4.0.0.400, built on August 2, 2023)及以上才可编译运行。
+2.本示例需要使用DevEco Studio 版本号(4.0Release)及以上才可编译运行。
 
 ### 下载
 
