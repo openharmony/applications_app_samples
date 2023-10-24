@@ -43,7 +43,7 @@ export default function launcherTest() {
      * Input:Click to open the application, return to the desktop, and then click the icon again.
      * Expected output:Pull the most recent ability to the foreground, no new ability instance be created.
      */
-    it(BUNDLE + 'StartRecentAbility_001', 0, async (done) => {
+    it(BUNDLE + 'StartRecentAbility_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartRecentAbility_001 begin')
       let driver = Driver.create()
       await driver.delayMs(1000)
@@ -103,7 +103,7 @@ export default function launcherTest() {
      *       Return to the desktop and open the application by long clicking again.
      * Expected output:Pull the most recent ability to the foreground, no new ability instance will be created.
      */
-    it(BUNDLE + 'StartRecentAbility_002', 1, async (done) => {
+    it(BUNDLE + 'StartRecentAbility_002', 1, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartRecentAbility_002 begin')
       let driver = Driver.create()
       await driver.delayMs(1000)
@@ -170,7 +170,7 @@ export default function launcherTest() {
      *       Click the icon to open the application again.
      * Expected output:Pull EntryAbility to the foreground, no new ability instance will be created.
      */
-    it(BUNDLE + 'StartRecentAbility_003', 2, async (done) => {
+    it(BUNDLE + 'StartRecentAbility_003', 2, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartRecentAbility_003 begin')
       let driver = Driver.create()
       await driver.delayMs(1000)
@@ -237,7 +237,7 @@ export default function launcherTest() {
      *       Click the back button after opening SecondAbility.
      * Expected output:Return to EntryAbility instead of to the desktop.
      */
-    it(BUNDLE + 'TaskChainBack_001', 3, async (done) => {
+    it(BUNDLE + 'TaskChainBack_001', 3, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'TaskChainBack_001 begin')
       let driver = Driver.create()
       await driver.delayMs(1000)

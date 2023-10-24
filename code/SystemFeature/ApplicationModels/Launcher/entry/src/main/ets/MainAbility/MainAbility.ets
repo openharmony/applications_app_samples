@@ -18,10 +18,11 @@ import WindowManager from '../manager/WindowManager';
 import { DesktopLayoutModel } from '@ohos/desktop';
 import { Logger } from '@ohos/base';
 import { WINDOW_NAMES, WINDOW_PAGES } from '../manager/WindowManager';
+import Want from '@ohos.app.ability.Want';
 
 export default class MainAbility extends ServiceExtensionAbility {
-  private windowManager: WindowManager = undefined
-  onCreate(want) {
+  private windowManager: WindowManager | undefined = undefined;
+  onCreate(want: Want) {
     Logger.info('[MainAbility]', 'onCreate')
     this.initLauncher()
   }
@@ -37,7 +38,7 @@ export default class MainAbility extends ServiceExtensionAbility {
     Logger.info('[MainAbility]', 'onDestroy')
   }
 
-  onRequest(want, startId) {
+  onRequest(want: Want, startId: number) {
     Logger.info('[MainAbility]', `onRequest, want:${want.abilityName}`)
   }
 }
