@@ -18,7 +18,7 @@ import { notificationManagement } from '@ohos/notification';
 import { notificationUtil } from '@ohos/notification';
 import { TitleBar } from '../components/TitleBar'
 
-interface buttonMsg {
+export interface ButtonMsg {
   text: Resource,
   icon: Resource,
   callback?: () => void
@@ -29,7 +29,7 @@ export struct NotificationPublish {
   private notificationOperations: NotificationOperations = new NotificationOperations(getContext(this));
   @State isPromptTone: boolean = false;
   @State isVibrationEffect: boolean = false;
-  @State buttons: buttonMsg[] = [
+  @State buttons: ButtonMsg[] = [
     {
       icon: $r('app.media.ic_notice_jiben'),
       text: $r('app.string.basic_notification'),
@@ -61,7 +61,7 @@ export struct NotificationPublish {
       callback: this.notificationOperations.publishNotificationWithWantAgent
     }]
 
-  @Builder view(button: buttonMsg) {
+  @Builder view(button: ButtonMsg) {
     Column() {
       Image(button.icon).width(40).height(28).objectFit(ImageFit.Contain)
         .margin({ bottom: 10 })
@@ -132,9 +132,9 @@ export struct NotificationPublish {
       .alignItems(VerticalAlign.Center)
 
       Flex({ wrap: FlexWrap.Wrap, justifyContent: FlexAlign.SpaceBetween, alignContent: FlexAlign.SpaceEvenly }) {
-        ForEach(this.buttons, (item: buttonMsg, index: number) => {
+        ForEach(this.buttons, (item: ButtonMsg, index: number) => {
           this.view(item)
-        }, (item: buttonMsg) => item.toString())
+        }, (item: ButtonMsg) => item.toString())
       }
       .width('90%')
 

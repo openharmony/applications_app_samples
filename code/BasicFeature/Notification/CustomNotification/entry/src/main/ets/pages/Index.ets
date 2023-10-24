@@ -21,10 +21,6 @@ export interface TabImage {
   unselectedImage: Resource,
 };
 
-interface TabIndexType {
-  MESSAGE_TAB: number
-  NOTIFICATION_TAB: number
-};
 
 const MESSAGE_TAB: TabImage = {
   selectedImage: $r('app.media.ic_messages_filled'),
@@ -36,10 +32,10 @@ const NOTIFICATION_TAB: TabImage = {
   unselectedImage: $r('app.media.ic_public_send'),
 };
 
-const TAB_INDEX: TabIndexType = {
-  MESSAGE_TAB: 0,
-  NOTIFICATION_TAB: 1
-};
+const enum TAB_INDEX {
+  MESSAGE_TAB = 0,
+  NOTIFICATION_TAB = 1
+}
 
 @Entry
 @Component
