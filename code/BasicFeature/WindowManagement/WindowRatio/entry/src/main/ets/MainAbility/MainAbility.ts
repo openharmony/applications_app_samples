@@ -46,7 +46,7 @@ export default class MainAbility extends UIAbility {
     } else {
       console.info('MyApplicationDemo getMainWindow success');
     }
-    globalThis.windows = windows;
+    AppStorage.setOrCreate<window.Window>('windows',windows);
     let mode = window.WindowMode.FLOATING;
     try {
       let promise = windows.setWindowMode(mode);
