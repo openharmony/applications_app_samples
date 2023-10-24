@@ -13,13 +13,14 @@
  * limitations under the License.
  */
 
-import resourceManager from '@ohos.resourceManager'
-import Logger from './Logger'
+import resourceManager from '@ohos.resourceManager';
+import Logger from './Logger';
+import { CurActiveAbility } from './CurActiveAbility';
 
 export class ResUtil {
   async getString(id): Promise<string> {
-    let resourceMgr = globalThis.curActiveAbility.context.resourceManager;
-    return resourceMgr.getString(id);
+    let resourceMgr = CurActiveAbility.GetInstance().GetGlobalAbility().context.resourceManager;
+    return resourceMgr.getStringValue(id);
   }
 }
 
