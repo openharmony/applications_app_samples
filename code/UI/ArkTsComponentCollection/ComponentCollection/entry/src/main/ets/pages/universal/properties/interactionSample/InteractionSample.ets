@@ -13,15 +13,21 @@
  * limitations under the License.
  */
 
-import pointer from '@ohos.multimodalInput.pointer'
-import promptAction from '@ohos.prompt'
-import prompt from '@ohos.prompt'
-import window from '@ohos.window'
-import { TitleBar } from '../../../../common/TitleBar'
-import { getStringData } from '../../../../data//ResourceDataHandle'
-import { placementsNameData, hitTestModeNameData, hoverEffectNameData, pointerStyleNameData } from '../../UniversialData'
-import Logger from '../../../../util/Logger'
-import measure from '@ohos.measure'
+import pointer from '@ohos.multimodalInput.pointer';
+import promptAction from '@ohos.prompt';
+import prompt from '@ohos.prompt';
+import window from '@ohos.window';
+import { TitleBar } from '../../../../common/TitleBar';
+import { getStringData } from '../../../../data//ResourceDataHandle';
+import { placementsNameData, hitTestModeNameData, hoverEffectNameData, pointerStyleNameData, PointerStyleName } from '../../UniversialData';
+import Logger from '../../../../util/Logger';
+import measure from '@ohos.measure';
+
+class MMenu {
+  value: string = '';
+  icon!: Resource;
+  action:  () => void = (): void => {};
+}
 
 @Extend(Text) function leftTitleStyle() {
   .fontColor($r('app.color.sub_title_color'))
@@ -54,27 +60,27 @@ import measure from '@ohos.measure'
 @Entry
 @Component
 struct Interaction {
-  @State isMask: boolean = false
-  @State buttonIsDisabled: boolean = false
-  @State listIsDisabled: boolean = false
-  @State alertText: string = ''
-  @State handlePopup: boolean = false
-  @State handleCustomPopup: boolean = false
-  @State mPlacementOnTop: boolean = false
-  @State mArrowOffset: number = 0
-  @State mPlacement: Placement = Placement.Top
-  @State mHitTestMode: HitTestMode = HitTestMode.Default
-  @State mBackgroundHandleClick: boolean = false
-  @State mForgroundHandleClick: boolean = false
-  @State mForgroundChildHandleClick: boolean = false
-  @State mComponentDisabled: boolean = false
-  @State mComponentFocused: boolean = false
-  @State mTabIndex: number = 0
-  @State mHoverEffect: HoverEffect = HoverEffect.None
-  @State mPointerStyle: pointer.PointerStyle = pointer.PointerStyle.DEFAULT
-  private mTouchableTestResult: string = ''
-  private mToastTimer = null
-  private mMenuLists = [
+  @State isMask: boolean = false;
+  @State buttonIsDisabled: boolean = false;
+  @State listIsDisabled: boolean = false;
+  @State alertText: string = '';
+  @State handlePopup: boolean = false;
+  @State handleCustomPopup: boolean = false;
+  @State mPlacementOnTop: boolean = false;
+  @State mArrowOffset: number = 0;
+  @State mPlacement: Placement = Placement.Top;
+  @State mHitTestMode: HitTestMode = HitTestMode.Default;
+  @State mBackgroundHandleClick: boolean = false;
+  @State mForgroundHandleClick: boolean = false;
+  @State mForgroundChildHandleClick: boolean = false;
+  @State mComponentDisabled: boolean = false;
+  @State mComponentFocused: boolean = false;
+  @State mTabIndex: number = 0;
+  @State mHoverEffect: HoverEffect = HoverEffect.None;
+  @State mPointerStyle: pointer.PointerStyle = pointer.PointerStyle.DEFAULT;
+  private mTouchableTestResult: string = '';
+  private mToastTimer: number | null = null;
+  private mMenuLists: MMenu[] = [
     {
       value: getStringData($r('app.string.components_interaction_menuone')),
       icon: $r('app.media.ic_other'),
@@ -99,7 +105,7 @@ struct Interaction {
       action: () => {
       }
     }
-  ]
+  ];
 
   @Styles normalStyles() {
     .backgroundColor($r('app.color.normal_bg_color'))
@@ -154,7 +160,7 @@ struct Interaction {
       }
     }
   }
-  private context: any = getContext(this)
+  private context: Context = getContext(this)
   private placementsNameArray = placementsNameData
   private hitTestModeNameArray = hitTestModeNameData
   private hoverEffectNameArray = hoverEffectNameData
@@ -571,7 +577,7 @@ struct Interaction {
                     .leftTitleStyle()
                   Row() {
                     Blank()
-                    ForEach([1, 2, 3, 4, 5], (item) => {
+                    ForEach([1, 2, 3, 4, 5], (item: number) => {
                       Column() {
                         Image($r('app.media.ic_other'))
                           .width(30)
@@ -596,7 +602,7 @@ struct Interaction {
                     .leftTitleStyle()
                   Row() {
                     Blank()
-                    ForEach([1, 2, 3, 4, 5], (item) => {
+                    ForEach([1, 2, 3, 4, 5], (item: number) => {
                       Column() {
                         Image($r('app.media.ic_other'))
                           .width(30)
@@ -621,7 +627,7 @@ struct Interaction {
                     .leftTitleStyle()
                   Row() {
                     Blank()
-                    ForEach([1, 2, 3, 4, 5], (item) => {
+                    ForEach([1, 2, 3, 4, 5], (item: number) => {
                       Column() {
                         Image($r('app.media.ic_other'))
                           .width(30)
@@ -711,14 +717,14 @@ struct Interaction {
                 .leftTitleStyle()
               Column() {
                 Flex({ wrap: FlexWrap.Wrap }) {
-                  ForEach(this.pointerStyleNameArray, (item: string) => {
+                  ForEach(this.pointerStyleNameArray, (item: PointerStyleName) => {
                     Row() {
-                      Radio({ value: item, group: 'pointerStyle' })
-                        .id(item)
-                        .checked(this.mPointerStyle === pointer.PointerStyle[item])
+                      Radio({ value: item.key, group: 'pointerStyle' })
+                        .id(item.key)
+                        .checked(this.mPointerStyle === item.value)
                         .onChange((isChecked: boolean) => {
                           if (isChecked) {
-                            this.mPointerStyle = pointer.PointerStyle[item];
+                            this.mPointerStyle = item.value;
                             try {
                               let promise = window.getLastWindow(this.context);
                               promise.then((win)=> {
@@ -735,7 +741,7 @@ struct Interaction {
                                 } catch (error) {
                                   Logger.info(`Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
                                 }
-                              }).catch((err)=>{
+                              }).catch((err: Error)=>{
                                 Logger.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
                               });
                             } catch (exception) {
@@ -743,7 +749,7 @@ struct Interaction {
                             }
                           }
                         })
-                      Text(item)
+                      Text(item.key)
                         .fontSize(10)
                     }.width('50%')
                   })

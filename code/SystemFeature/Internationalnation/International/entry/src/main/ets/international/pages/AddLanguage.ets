@@ -24,14 +24,8 @@ const TAG: string = 'AddLanguage';
 @Component
 struct AddLanguage {
   private languageIds: Array<string> = [];
-  @State languages: Array<{
-    key: string,
-    value: string
-  }> = [];
-  @State preferredLanguages: Array<{
-    key: string,
-    value: string
-  }> = [];
+  @State languages: Array<Language> = [];
+  @State preferredLanguages: Array<PreferredLanguage> = [];
 
   aboutToAppear() {
     let preferredLanguageIds = i18n.System.getPreferredLanguageList();
@@ -55,7 +49,7 @@ struct AddLanguage {
     });
   }
 
-  addLanguage = (index) => {
+  addLanguage = (index: number) => {
     let language = this.languageIds[index];
     Logger.info(TAG, `addPreferredLanguage = ${language}`);
     try {
@@ -74,7 +68,8 @@ struct AddLanguage {
           OperationListView({
             title: $r('app.string.added_language'),
             operations: this.preferredLanguages,
-            handleItemClick: null
+            handleItemClick: () => {
+            }
           })
           OperationListView({
             title: $r('app.string.all_language'),
@@ -88,4 +83,14 @@ struct AddLanguage {
     .height('100%')
     .backgroundColor($r('app.color.f5f5f5'))
   }
+}
+
+class Language {
+  key: string = '';
+  value: string = '';
+}
+
+class PreferredLanguage {
+  key: string = '';
+  value: string = '';
 }

@@ -21,7 +21,7 @@ struct RepeatSample {
   @State isWidescreen: boolean = false
   @State currentBreakpoint: string = 'sm'
   private listener: mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(width>1200)')
-  onWidthChange = (mediaQueryResult) => {
+  onWidthChange = (mediaQueryResult:mediaquery.MediaQueryResult) => {
     if (mediaQueryResult.matches) {
       this.isWidescreen = true
     } else {

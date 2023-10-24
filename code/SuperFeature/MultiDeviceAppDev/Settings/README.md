@@ -85,11 +85,11 @@ Navigation组件支持自动切换单栏和双栏的显示效果，同时可以�
 
 ### 约束与限制
 
-1. 本示例仅支持在标准系统上运行。
+1. 本示例仅支持标准系统上运行，支持设备：RK3568。
 
-2. 本示例已适配API version 9版本SDK，版本号：3.2.11.9。
+2. 本示例为Stage模型，支持API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0 Release)
 
-3. 本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)及以上版本才可编译运行。
+3. 本示例需要使用DevEco Studio 版本号(4.0 Release)及以上版本才可编译运行。
 
 4. 本示例需要使用[新框架](https://gitee.com/yan-shuifeng/arkui_docs/blob/master/%E6%96%B0%E6%A1%86%E6%9E%B6%E5%88%87%E6%8D%A2/acenewpipe.md)，才可以正常安装运行。
 

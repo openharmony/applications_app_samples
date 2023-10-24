@@ -20,60 +20,60 @@ export class CardItemInfo {
   /**
    * Indicates form id
    */
-  cardId: number | undefined
+  cardId: number;
 
   /**
    * Indicates form bundleName.
    */
-  bundleName: string | undefined
+  bundleName: string;
 
   /**
    * Indicates form abilityName.
    */
-  abilityName: string | undefined
+  abilityName: string;
 
   /**
    * Indicates form moduleName.
    */
-  moduleName: string | undefined
+  moduleName: string;
 
   /**
    * Indicates cardName.
    */
-  cardName: string | undefined
+  cardName: string;
 
   /**
    * Indicates form dimension.
    */
-  cardDimension: number | undefined
+  cardDimension: number | undefined;
 
   /**
    * Indicates form size.
    */
-  area: number[] | undefined
+  area: number[] | undefined;
 
   /**
    * Indicates form description.
    */
-  description = ''
+  description = '';
 
   /**
    * Indicates form formConfigAbility.
    */
-  formConfigAbility: string | undefined
+  formConfigAbility: string;
 
   /**
    * Indicates form of app labelId.
    */
-  appLabelId: number | undefined
+  appLabelId: number;
 
   /**
    * Indicates form of app name.
    */
-  appName: string | undefined
+  appName: string | undefined;
 
   /**
    * Indicates form of support Dimensions.
    */
-  supportDimensions: number[] | undefined
+  supportDimensions: number[] = [];
 }

@@ -20,7 +20,7 @@ import { TABS_BAR_POSITION_SELECT, TABS_BAR_MODE_SELECT } from '../../ComponentD
 @Component
 export struct ArgumentsControlPanel {
   @Link barPosition: BarPosition;
-  private changeIndex !: (index) => void;
+  private changeIndex !: (index: number) => void;
 
   build() {
     Column() {
@@ -93,7 +93,7 @@ export struct PropertiesControlPanel {
         name: $r('app.string.tabs_properties_animation_duration'),
         selects: ['400', '1000', '2000', '3000'],
         callback: (index, duration) => {
-          this.animationDuration = parseInt(duration);
+          this.animationDuration = Number.parseInt(duration);
         },
         testId: `tab_006`
       })

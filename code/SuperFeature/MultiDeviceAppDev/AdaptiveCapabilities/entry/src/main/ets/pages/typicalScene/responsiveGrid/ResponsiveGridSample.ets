@@ -15,9 +15,9 @@
 
 import { BreakpointSystem, BreakPointType } from '../../../common/BreakpointSystem'
 
-type GridItemInfo = {
-  name: Resource
-  image: Resource
+class GridItemInfo {
+  name: Resource = $r('app.string.playlist_collection');
+  image: Resource = $r('app.media.1');
 }
 
 @Entry

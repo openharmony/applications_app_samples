@@ -20,7 +20,7 @@ import { BatteryStatsModel } from '../model/BatteryStatsModel';
  */
 export class BatteryStatsDataSource implements IDataSource {
   private listItems: Array<BatteryStatsModel> = [];
-  private listener: DataChangeListener;
+  private listener: DataChangeListener | null = null;
 
   constructor(list: Array<BatteryStatsModel>) {
     this.listItems = list;
@@ -31,7 +31,7 @@ export class BatteryStatsDataSource implements IDataSource {
   }
 
   onDataReloaded() {
-    this.listener.onDataReloaded();
+    this.listener?.onDataReloaded();
   }
 
   pushData(data: BatteryStatsModel): void {

@@ -55,7 +55,7 @@ struct GridItemSample {
       // component
       Column() {
         Grid() {
-          ForEach(this.itemsText, (item, index) => {
+          ForEach(this.itemsText, (item: string, index: number) => {
             if (index === 0) {
               GridItem() {
                 Text(item)

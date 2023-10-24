@@ -13,7 +13,17 @@
  * limitations under the License.
  */
 
-import { SecondLevelCategory, ThirdLevelCategory } from '../../model/CategoricalDataType'
+import { SecondLevelCategory, ThirdLevelCategory } from '../../model/CategoricalDataType';
+import pointer from '@ohos.multimodalInput.pointer';
+
+export interface ResourceObjectType {
+  value: Resource
+}
+
+export interface PointerStyleName {
+  key: string
+  value: pointer.PointerStyle
+}
 
 const GRAPHIC_TRANSFORMATION: ThirdLevelCategory[] =
   [
@@ -134,7 +144,7 @@ const GRAPHIC_TRANSFORMATION: ThirdLevelCategory[] =
       title: $r('app.string.safe_area'),
       url: 'pages/universal/properties/safeAreaSample/SafeAreaSample'
     }
-  ]
+  ];
 
 const COMMON_EVENTS: ThirdLevelCategory[] =
   [
@@ -183,7 +193,7 @@ const COMMON_EVENTS: ThirdLevelCategory[] =
       title: $r('app.string.scroll_event'),
       url: 'pages/universal/events/scrollEventSample/ScrollEventSample'
     }
-  ]
+  ];
 
 const GESTURE: ThirdLevelCategory[] =
   [
@@ -227,7 +237,7 @@ const GESTURE: ThirdLevelCategory[] =
       title: $r('app.string.combined_gestures'),
       url: 'pages/universal/gesture/combinedSample/CombinedSample'
     }
-  ]
+  ];
 
 // Generic categorical data, second menu data
 export const UNIVERSAL_CATEGORIES: SecondLevelCategory[] =
@@ -235,10 +245,10 @@ export const UNIVERSAL_CATEGORIES: SecondLevelCategory[] =
     { title: $r('app.string.common_events'), childNodes: COMMON_EVENTS },
     { title: $r('app.string.common_properties'), childNodes: GRAPHIC_TRANSFORMATION },
     { title: $r('app.string.gesture_process'), childNodes: GESTURE }
-  ]
+  ];
 
 // univesal/properties/DisplaySample
-export let locationTypes: { value: Resource }[] =
+export let locationTypes: ResourceObjectType[] =
   [
     { value: $r('app.string.components_display_center') },
     { value: $r('app.string.components_display_topstart') },
@@ -249,27 +259,70 @@ export let locationTypes: { value: Resource }[] =
     { value: $r('app.string.components_display_bottomstart') },
     { value: $r('app.string.components_display_bottom') },
     { value: $r('app.string.components_display_bottomend') }
-  ]
+  ];
 
-export let visibileTypes: { value: Resource }[] =
+export let visibileTypes: ResourceObjectType[] =
   [
     { value: $r('app.string.components_display_visible') },
     { value: $r('app.string.components_display_hidden') },
     { value: $r('app.string.components_display_none') },
-  ]
+  ];
 
 // univesal/properties/InteractionSample
-export let placementsNameData = ['TopLeft', 'Top', 'TopRight', 'RightTop', 'Right', 'RightBottom', 'LeftTop', 'Left', 'LeftBottom', 'BottomLeft', 'Bottom', 'BottomRight']
-export let hitTestModeNameData = ['Default', 'Block', 'Transparent', 'None']
-export let hoverEffectNameData = ['None', 'Highlight', 'Auto', 'Scale']
-export let pointerStyleNameData = ['DEFAULT', 'EAST', 'WEST', 'SOUTH','NORTH','WEST_EAST','NORTH_SOUTH','NORTH_EAST','NORTH_WEST','SOUTH_EAST','SOUTH_WEST','NORTH_EAST_SOUTH_WEST','NORTH_WEST_SOUTH_EAST','CROSS','CURSOR_COPY','CURSOR_FORBID','COLOR_SUCKER','HAND_GRABBING','HAND_OPEN','HAND_POINTING','HELP','MOVE','RESIZE_LEFT_RIGHT','RESIZE_UP_DOWN','SCREENSHOT_CHOOSE','SCREENSHOT_CURSOR','TEXT_CURSOR','ZOOM_IN','ZOOM_OUT','MIDDLE_BTN_EAST','MIDDLE_BTN_WEST','MIDDLE_BTN_SOUTH','MIDDLE_BTN_NORTH','MIDDLE_BTN_NORTH_SOUTH','MIDDLE_BTN_NORTH_EAST','MIDDLE_BTN_NORTH_WEST','MIDDLE_BTN_SOUTH_EAST','MIDDLE_BTN_SOUTH_WEST','MIDDLE_BTN_NORTH_SOUTH_WEST_EAST']
+export let placementsNameData = ['TopLeft', 'Top', 'TopRight', 'RightTop', 'Right', 'RightBottom', 'LeftTop', 'Left', 'LeftBottom', 'BottomLeft', 'Bottom', 'BottomRight'];
 
-export let selectImageSizeData: Resource[] = [$r('app.string.background_image_size_cover'), $r('app.string.background_image_size_contain')]
+export let hitTestModeNameData = ['Default', 'Block', 'Transparent', 'None'];
 
-export let selectImageAlignmentData: Resource[] = [$r('app.string.background_image_position_top_start'), $r('app.string.background_image_position_top'), $r('app.string.background_image_position_top_end'), $r('app.string.background_image_position_start'),   $r('app.string.background_image_position_center'),  $r('app.string.background_image_position_end'),  $r('app.string.background_image_position_bottom_start'), $r('app.string.background_image_position_bottom'), $r('app.string.background_image_position_bottom_end') ]
+export let hoverEffectNameData = ['None', 'Highlight', 'Auto', 'Scale'];
 
-export let selectBlurStyleColorModeData: Resource[] = [$r('app.string.blur_style_system'), $r('app.string.blur_style_light'), $r('app.string.blur_style_dark')]
+export let pointerStyleNameData: PointerStyleName[] = [
+  { key: 'DEFAULT', value: pointer.PointerStyle.DEFAULT },
+  { key: 'EAST', value: pointer.PointerStyle.EAST },
+  { key: 'WEST', value: pointer.PointerStyle.WEST },
+  { key: 'SOUTH', value: pointer.PointerStyle.SOUTH },
+  { key: 'NORTH', value: pointer.PointerStyle.NORTH },
+  { key: 'WEST_EAST', value: pointer.PointerStyle.WEST_EAST },
+  { key: 'NORTH_SOUTH', value: pointer.PointerStyle.NORTH_SOUTH },
+  { key: 'NORTH_EAST', value: pointer.PointerStyle.NORTH_EAST },
+  { key: 'NORTH_WEST', value: pointer.PointerStyle.NORTH_WEST },
+  { key: 'SOUTH_EAST', value: pointer.PointerStyle.SOUTH_EAST },
+  { key: 'SOUTH_WEST', value: pointer.PointerStyle.SOUTH_WEST },
+  { key: 'NORTH_EAST_SOUTH_WEST', value: pointer.PointerStyle.NORTH_EAST_SOUTH_WEST },
+  { key: 'NORTH_WEST_SOUTH_EAST', value: pointer.PointerStyle.NORTH_WEST_SOUTH_EAST },
+  { key: 'CROSS', value: pointer.PointerStyle.CROSS },
+  { key: 'CURSOR_COPY', value: pointer.PointerStyle.CURSOR_COPY },
+  { key: 'CURSOR_FORBID', value: pointer.PointerStyle.CURSOR_FORBID },
+  { key: 'COLOR_SUCKER', value: pointer.PointerStyle.COLOR_SUCKER },
+  { key: 'HAND_GRABBING', value: pointer.PointerStyle.HAND_GRABBING },
+  { key: 'HAND_OPEN', value: pointer.PointerStyle.HAND_OPEN },
+  { key: 'HAND_POINTING', value: pointer.PointerStyle.HAND_POINTING },
+  { key: 'HELP', value: pointer.PointerStyle.HELP },
+  { key: 'MOVE', value: pointer.PointerStyle.MOVE },
+  { key: 'RESIZE_LEFT_RIGHT', value: pointer.PointerStyle.RESIZE_LEFT_RIGHT },
+  { key: 'RESIZE_UP_DOWN', value: pointer.PointerStyle.RESIZE_UP_DOWN },
+  { key: 'SCREENSHOT_CHOOSE', value: pointer.PointerStyle.SCREENSHOT_CHOOSE },
+  { key: 'SCREENSHOT_CURSOR', value: pointer.PointerStyle.SCREENSHOT_CURSOR },
+  { key: 'TEXT_CURSOR', value: pointer.PointerStyle.TEXT_CURSOR },
+  { key: 'ZOOM_IN', value: pointer.PointerStyle.ZOOM_IN },
+  { key: 'ZOOM_OUT', value: pointer.PointerStyle.ZOOM_OUT },
+  { key: 'MIDDLE_BTN_EAST', value: pointer.PointerStyle.MIDDLE_BTN_EAST },
+  { key: 'MIDDLE_BTN_WEST', value: pointer.PointerStyle.MIDDLE_BTN_WEST },
+  { key: 'MIDDLE_BTN_SOUTH', value: pointer.PointerStyle.MIDDLE_BTN_SOUTH },
+  { key: 'MIDDLE_BTN_NORTH', value: pointer.PointerStyle.MIDDLE_BTN_NORTH },
+  { key: 'MIDDLE_BTN_NORTH_SOUTH', value: pointer.PointerStyle.MIDDLE_BTN_NORTH_SOUTH },
+  { key: 'MIDDLE_BTN_NORTH_EAST', value: pointer.PointerStyle.MIDDLE_BTN_NORTH_EAST },
+  { key: 'MIDDLE_BTN_NORTH_WEST', value: pointer.PointerStyle.MIDDLE_BTN_NORTH_WEST },
+  { key: 'MIDDLE_BTN_SOUTH_EAST', value: pointer.PointerStyle.MIDDLE_BTN_SOUTH_EAST },
+  { key: 'MIDDLE_BTN_SOUTH_WEST', value: pointer.PointerStyle.MIDDLE_BTN_SOUTH_WEST },
+  { key: 'MIDDLE_BTN_NORTH_SOUTH_WEST_EAST', value: pointer.PointerStyle.MIDDLE_BTN_NORTH_SOUTH_WEST_EAST }
+];
 
-export let selectBlurStyleAdaptiveColorData: Resource[] = [$r('app.string.blur_style_default'), $r('app.string.blur_style_average')]
+export let selectImageSizeData: Resource[] = [$r('app.string.background_image_size_cover'), $r('app.string.background_image_size_contain')];
 
-export let selectShadowTypeData: Resource[] = [$r('app.string.shadow_type_color'), $r('app.string.shadow_type_blur')]
+export let selectImageAlignmentData: Resource[] = [$r('app.string.background_image_position_top_start'), $r('app.string.background_image_position_top'), $r('app.string.background_image_position_top_end'), $r('app.string.background_image_position_start'), $r('app.string.background_image_position_center'), $r('app.string.background_image_position_end'), $r('app.string.background_image_position_bottom_start'), $r('app.string.background_image_position_bottom'), $r('app.string.background_image_position_bottom_end')];
+
+export let selectBlurStyleColorModeData: Resource[] = [$r('app.string.blur_style_system'), $r('app.string.blur_style_light'), $r('app.string.blur_style_dark')];
+
+export let selectBlurStyleAdaptiveColorData: Resource[] = [$r('app.string.blur_style_default'), $r('app.string.blur_style_average')];
+
+export let selectShadowTypeData: Resource[] = [$r('app.string.shadow_type_color'), $r('app.string.shadow_type_blur')];

@@ -261,7 +261,7 @@ export struct PrimaryMenu {
               Text(this.sideTitleName)
                 .fontColor(this.currentSideBarMode === 'tabs' ? '#182431' : StyleConfiguration
                   .getCurrentMainTabsStyle(this.index, this.currentMainIndex, this.currentBreakpoint)
-                  .fontColor)
+                  .fontColor as ResourceColor)
                 .fontSize(StyleConfiguration.getBreakpointStyle(this.currentBreakpoint).sideBarPrimaryMenuTextSize)
                 .height(StyleConfiguration.getBreakpointStyle(this.currentBreakpoint).sideBarPrimaryMenuTextHeight)
                 .fontWeight(FontWeight.Medium)
@@ -340,7 +340,7 @@ export struct SecondaryMenu {
                     .fontSize)
                   .fontWeight(FontWeight.Medium)
                   .fontColor(StyleConfiguration.getCurrentSubTabsStyle(this.currentBreakpoint, this.currentSideBarMode, index, this.currentSubIndex)
-                    .fontColor)
+                    .fontColor as ResourceColor)
                   .margin(StyleConfiguration.getSubTabsControllerStyle(this.currentBreakpoint, this.currentSideBarMode)
                     .secondMenuListItemMargin)
               }
@@ -353,7 +353,7 @@ export struct SecondaryMenu {
               .width(StyleConfiguration.getSubTabsControllerStyle(this.currentBreakpoint, this.currentSideBarMode)
                 .secondMenuListItemWidth)
               .backgroundColor(StyleConfiguration.getCurrentSubTabsStyle(this.currentBreakpoint, this.currentSideBarMode, index, this.currentSubIndex)
-                .backgroundColor)
+                .backgroundColor as ResourceColor)
             }.onClick(() => {
               animateTo({ duration: 300 }, () => {
                 this.currentSubIndex = index;

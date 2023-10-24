@@ -13,15 +13,18 @@
  * limitations under the License.
  */
 
-import { IntroductionTitle } from '../../../../common/IntroductionTitle'
-import { FormComponentDrag } from './component/FormComponentDrag'
-import { GridItemDrag } from './component/GridItemDrag'
-import { HyperlinkDrag } from './component/HyperlinkDrag'
-import { ImageDrag } from './component/ImageDrag'
-import { ListItemDrag } from './component/ListItemDrag'
-import { TextDrag } from './component/TextDrag'
-import { VideoDrag } from './component/VideoDrag'
-import router from '@ohos.router'
+import { IntroductionTitle } from '../../../../common/IntroductionTitle';
+import { FormComponentDrag } from './component/FormComponentDrag';
+import { GridItemDrag } from './component/GridItemDrag';
+import { HyperlinkDrag } from './component/HyperlinkDrag';
+import { ImageDrag } from './component/ImageDrag';
+import { ListItemDrag } from './component/ListItemDrag';
+import { TextDrag } from './component/TextDrag';
+import { VideoDrag } from './component/VideoDrag';
+import Logger from '../../../../util/Logger';
+import router from '@ohos.router';
+
+const TAG = '[DragEventSample]';
 
 @Extend(Row) function rowStyle() {
   .width('100%')
@@ -140,14 +143,19 @@ struct DragEventSample {
               .justifyContent(FlexAlign.Center)
               .onDragEnter(() => {
                 this.isAreaValid = true
+                Logger.info(TAG, 'leftArea onDragEnter, isAreaValid: ' + this.isAreaValid)
               })
               .onDragMove(() => {
                 this.isAreaValid = true
+                Logger.info(TAG, 'leftArea onDragMove, isAreaValid: ' + this.isAreaValid)
               })
               .onDragLeave(() => {
                 this.isAreaValid = false
+                Logger.info(TAG, 'leftArea onDragLeave')
               })
-              .onDrop(() => {
+              .onDrop((event: DragEvent) => {
+                Logger.info(TAG, 'leftArea onDrop')
+                event.useCustomDropAnimation = false
                 this.hideLeftIcon = false
                 this.showOkBadge = true
                 this.leftIconWidth = 48
@@ -186,11 +194,19 @@ struct DragEventSample {
               .justifyContent(FlexAlign.Center)
               .onDragEnter(() => {
                 this.isAreaValid = false
+                Logger.info(TAG, 'rightArea onDragEnter, isAreaValid: ' + this.isAreaValid)
               })
               .onDragMove(() => {
                 this.isAreaValid = false
+                Logger.info(TAG, 'rightArea onDragMove, isAreaValid: ' + this.isAreaValid)
               })
-              .onDrop(() => {
+              .onDragLeave(() => {
+                this.isAreaValid = true
+                Logger.info(TAG, 'rightArea onDragLeave')
+              })
+              .onDrop((event: DragEvent) => {
+                Logger.info(TAG, 'rightArea onDrop')
+                event.useCustomDropAnimation = false
                 this.hideRightIcon = false
                 this.showCancelBadge = true
                 this.rightIconWidth = 72
@@ -214,12 +230,14 @@ struct DragEventSample {
                   }
                   .bindContextMenu(this.menuBuilder(), ResponseType.LongPress)
                   .onDragStart(() => {
+                    Logger.info(TAG, 'onDragStart')
                     this.backgroundBlur = false
                     // 拖拽时关闭菜单
                     ContextMenu.close()
                     return this.pixelMapBuilder
                   })
                   .onTouch((event: TouchEvent) => {
+                    Logger.info(TAG, 'onTouch')
                     if (event.type === TouchType.Down) {
                       this.backgroundBlur = true
                     }

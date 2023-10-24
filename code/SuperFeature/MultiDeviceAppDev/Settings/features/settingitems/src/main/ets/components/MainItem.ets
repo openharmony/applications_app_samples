@@ -15,9 +15,9 @@
 
 @Component
 export struct MainItem {
-  private title: string | Resource
-  private tag: string | Resource
-  private icon: string | Resource
+  private title: string | Resource = '';
+  private tag: string | Resource = '';
+  private icon: string | Resource = '';
   private label: string = ''
   @LocalStorageLink('selectedLabel') selectedLabel: string = ''
   @LocalStorageProp('isSplitMode') isSplitMode: boolean = false

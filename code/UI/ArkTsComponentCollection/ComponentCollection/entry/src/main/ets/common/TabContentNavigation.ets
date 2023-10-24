@@ -13,10 +13,11 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
-import { SecondLevelCategory, ThirdLevelCategory, FourthLevelCategory } from '../model/CategoricalDataType'
+import router from '@ohos.router';
+import { SecondLevelCategory, ThirdLevelCategory, FourthLevelCategory } from '../model/CategoricalDataType';
 
-@Extend(Column) function ColumnStyle() {
+@Extend(Column)
+function ColumnStyle() {
   .width('100%')
   .borderRadius(24)
   .backgroundColor(Color.White)
@@ -25,10 +26,10 @@ import { SecondLevelCategory, ThirdLevelCategory, FourthLevelCategory } from '..
 
 @Component
 export struct TabContentNavigation {
-  private categories: ThirdLevelCategory[] | SecondLevelCategory[]
+  private categories: ThirdLevelCategory[] | SecondLevelCategory[] = new Array<ThirdLevelCategory>();
 
-  hasSecondLevelCategory(category) {
-    return category && category.image ? false : true
+  hasSecondLevelCategory(category: ThirdLevelCategory | SecondLevelCategory): boolean {
+    return category && category.image ? false : true;
   }
 
   build() {
@@ -78,6 +79,7 @@ export struct TabContentNavigation {
       .layoutWeight(1)
       .padding({ left: 16, right: 16, top: 4 })
       .id('list_001')
+
       Blank()
     }
     .height('100%')
@@ -87,10 +89,10 @@ export struct TabContentNavigation {
 
 @Component
 struct ThirdLevelNavigation {
-  @State isUnfold: boolean = false
-  private thirdLevelCategory: ThirdLevelCategory
-  private ThirdLevelNavigationIndex: number;
-  private secondLevelCategoryIndex: number;
+  @State isUnfold: boolean = false;
+  private thirdLevelCategory!: ThirdLevelCategory;
+  private ThirdLevelNavigationIndex: number = 0;
+  private secondLevelCategoryIndex: number = 0;
 
   build() {
     Column() {
@@ -120,9 +122,11 @@ struct ThirdLevelNavigation {
       .onClick(() => {
         if (this.thirdLevelCategory.childNodes === undefined) {
           // Click to jump to the corresponding page
-          router.push({
-            url: this.thirdLevelCategory.url
-          })
+          if (this.thirdLevelCategory.url) {
+            router.pushUrl({
+              url: this.thirdLevelCategory.url
+            })
+          }
         } else {
           this.isUnfold = !this.isUnfold
         }
@@ -150,7 +154,7 @@ struct ThirdLevelNavigation {
 
 @Component
 struct FourthLevelNavigation {
-  private fourthLevelCategory: FourthLevelCategory
+  private fourthLevelCategory!: FourthLevelCategory;
 
   build() {
     Row() {
@@ -167,7 +171,7 @@ struct FourthLevelNavigation {
     .width('100%')
     .onClick(() => {
       // Click to jump to the corresponding page
-      router.push({
+      router.pushUrl({
         url: this.fourthLevelCategory.url
       })
     })

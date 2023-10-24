@@ -20,19 +20,22 @@ import { LEFT_PADDING, RIGHT_PADDING } from '../../ComponentData';
 @Component
 struct NavigationSample {
   @State active: boolean = false
-  private Text: object = {message : $r('app.string.navigator_return_message')}
+  private Text: Record<string, Resource> = { 'message': $r('app.string.navigator_return_message') };
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start}) {
-      TitleBar({title: $r('app.string.navigator_title')})
-        .margin({bottom:12})
-      Navigator({ target: 'pages/components/navigation/navigatorSample/NavigatorSecondPage', type: NavigationType.Push }) {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+      TitleBar({ title: $r('app.string.navigator_title') })
+        .margin({ bottom: 12 })
+      Navigator({
+        target: 'pages/components/navigation/navigatorSample/NavigatorSecondPage',
+        type: NavigationType.Push
+      }) {
         Text($r('app.string.navigation_first_page_push'))
           .width('100%')
           .textAlign(TextAlign.Center)
           .id(`navigator_001`)
       }.params({ text: this.Text }) // 传参数到Detail页面
-      .margin({bottom:12})
+      .margin({ bottom: 12 })
     }
     .padding({ left: LEFT_PADDING, right: RIGHT_PADDING })
     .height('100%')

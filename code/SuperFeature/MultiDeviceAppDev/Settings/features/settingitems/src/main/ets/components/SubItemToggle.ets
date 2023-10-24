@@ -16,7 +16,7 @@
 @Component
 export struct SubItemToggle {
   @LocalStorageProp('currentBreakpoint') curBp: string = 'sm'
-  private title: string | Resource
+  private title: string | Resource = '';
   private isOn: boolean = false
 
   build() {

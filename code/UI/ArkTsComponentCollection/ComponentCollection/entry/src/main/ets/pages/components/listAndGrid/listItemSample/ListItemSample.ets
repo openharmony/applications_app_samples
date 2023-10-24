@@ -18,7 +18,8 @@ import { IntroductionTitle } from '../../../../common/IntroductionTitle';
 import { TitleBar } from '../../../../common/TitleBar';
 import { LEFT_PADDING, RIGHT_PADDING } from '../../ComponentData';
 
-@Extend(Column) function backgroundStyle() {
+@Extend(Column)
+function backgroundStyle() {
   .width('100%')
   .padding(12)
   .borderRadius(16)
@@ -26,7 +27,8 @@ import { LEFT_PADDING, RIGHT_PADDING } from '../../ComponentData';
   .justifyContent(FlexAlign.SpaceAround)
 }
 
-@Extend(Text) function listItemTextStyle() {
+@Extend(Text)
+function listItemTextStyle() {
   .fontSize(15)
   .borderRadius(16)
   .textAlign(TextAlign.Center)
@@ -40,7 +42,8 @@ struct RowSample {
   @State selectable: boolean = false;
   @State output: string = '';
 
-  @Builder swipeAction(index: number) {
+  @Builder
+  swipeAction(index: number) {
     Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceAround }) {
       Button(`删除`)
         .onClick(() => {
@@ -59,7 +62,7 @@ struct RowSample {
       Column() {
 
         List({ space: 10 }) {
-          ForEach(this.numberArray, (item, index) => {
+          ForEach(this.numberArray, (item: number, index: number) => {
             ListItem() {
               Text(item + ``)
                 .listItemTextStyle()
@@ -104,12 +107,12 @@ struct RowSample {
       Scroll() {
         // 控制面板
         Column() {
-          IntroductionTitle({introduction: $r('app.string.list_item_introduction_properties')})
+          IntroductionTitle({ introduction: $r('app.string.list_item_introduction_properties') })
           Column() {
             CommonSwitcher({
               name: $r('app.string.list_item_properties_selectable'),
               bool: $selectable,
-              testID : `listitem_001`
+              testID: `listitem_001`
             })
           }
           .backgroundStyle()

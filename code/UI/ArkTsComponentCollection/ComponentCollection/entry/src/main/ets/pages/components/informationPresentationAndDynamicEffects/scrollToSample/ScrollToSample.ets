@@ -106,10 +106,10 @@ struct ScrollToSample {
               }).id('scroll_to_effect_scroller');
             Scroll(this.mScroller) {
               Column() {
-                ForEach(this.scrollArr, (item) => {
+                ForEach(this.scrollArr, (item: number) => {
                   Text(item.toString())
                     .fancyText();
-                }, item => item);
+                }, (item: number) => item.toString());
               }
               .padding({ top: 6, bottom: 12 })
               .width('100%')
@@ -146,7 +146,7 @@ struct ScrollToSample {
               }).id('scroll_to_effect_list');
 
             List({ scroller: this.listScroller }) {
-              ForEach(this.scrollArr, (item) => {
+              ForEach(this.scrollArr, (item: number) => {
                 ListItem() {
                   Text(item.toString())
                     .fancyText();
@@ -154,7 +154,7 @@ struct ScrollToSample {
                 .width('100%')
                 .alignSelf(ItemAlign.Center)
                 .backgroundColor(Color.White);
-              }, item => item);
+              }, (item: number) => item.toString());
 
             }
             .alignSelf(ItemAlign.Center)
@@ -192,7 +192,7 @@ struct ScrollToSample {
                     .width('100%')
                     .gridText();
                 };
-              }, day => day);
+              }, (day: string) => day);
             }
             .alignSelf(ItemAlign.Center)
             .columnsTemplate('1fr 1fr 1fr')
@@ -230,14 +230,14 @@ struct ScrollToSample {
                   },);
                 }
               }).id('scroll_to_effect_waterflow');
-            WaterFlow({ footer: this.itemFoot.bind(this), scroller: this.waterFlowScroller }) {
+            WaterFlow({ footer: (): void => this.itemFoot(), scroller: this.waterFlowScroller }) {
               ForEach(this.scrollArr, (day: string) => {
                 FlowItem() {
                   Text('hello')
                     .width('30%')
                     .gridText();
                 };
-              }, day => day);
+              }, (day: string) => day);
             }
             .alignSelf(ItemAlign.Center)
             .columnsTemplate('1fr 1fr 1fr')

@@ -22,9 +22,9 @@ import TitleBar from '../../components/TitleBar';
 const TAG: string = 'DateAndTime';
 
 export class TimeZoneInfo {
-  key: string
-  timeZone: string
-  display: Resource
+  key: string = '';
+  timeZone: string = '';
+  display: Resource | undefined = undefined;
 }
 
 @Entry
@@ -82,12 +82,7 @@ struct DateAndTime {
   }
 
   @Builder
-  TimeView($$: {
-    key,
-    value,
-    isDivider,
-    handleClick
-  }) {
+  TimeView($$: Data) {
     if ($$.isDivider) {
       Divider()
         .color($r('app.color.divider'))
@@ -118,7 +113,7 @@ struct DateAndTime {
         Column() {
           this.Hours24View()
           Column() {
-            this.TimeView({ key: $r('app.string.date'), value: this.date, isDivider: false, handleClick: () => {
+            this.TimeView(new Data($r('app.string.date'), this.date, false, () => {
               DatePickerDialog.show({
                 lunar: false,
                 onAccept: (result: DatePickerResult) => {
@@ -131,8 +126,8 @@ struct DateAndTime {
                   });
                 }
               })
-            } })
-            this.TimeView({ key: $r('app.string.time'), value: this.time, isDivider: true, handleClick: () => {
+            }))
+            this.TimeView(new Data($r('app.string.time'), this.time, true, () => {
               TimePickerDialog.show({
                 useMilitaryTime: this.is24Hours,
                 onAccept: (result: TimePickerResult) => {
@@ -145,12 +140,12 @@ struct DateAndTime {
                   });
                 }
               })
-            } })
-            this.TimeView({ key: $r('app.string.time_zone'), value: this.timeZone, isDivider: true, handleClick: () => {
+            }))
+            this.TimeView(new Data($r('app.string.time_zone'), this.timeZone, true, () => {
               router.pushUrl({
                 url: 'international/pages/TimeZone'
               });
-            } })
+            }))
           }
           .width('95%')
           .padding(10)
@@ -163,5 +158,19 @@ struct DateAndTime {
     .width('100%')
     .height('100%')
     .backgroundColor($r('app.color.f5f5f5'))
+  }
+}
+
+class Data {
+  key: Resource | undefined = undefined;
+  value: string = '';
+  isDivider: boolean = false;
+  handleClick: (event: ClickEvent) => void;
+
+  constructor(key: Resource | undefined, value: string, isDivider: boolean, handleClick: (event: ClickEvent) => void) {
+    this.key = key;
+    this.value = value;
+    this.isDivider = isDivider;
+    this.handleClick = handleClick;
   }
 }

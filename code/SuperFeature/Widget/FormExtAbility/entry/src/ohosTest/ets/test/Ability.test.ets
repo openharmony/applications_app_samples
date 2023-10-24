@@ -20,7 +20,7 @@ import { Driver, ON } from '@ohos.UiTest';
 const DRIVER = Driver.create();
 
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
     beforeAll(async () => {
       // Exit the test interface to execute the test case
       await DRIVER.pressBack();
@@ -30,7 +30,7 @@ export default function abilityTest() {
     /**
      * 长按打开卡片列表
      */
-    it('OpenFormList_001', 0, async function (done) {
+    it('OpenFormList_001', 0, async (done: Function) => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       hilog.info(0x0000, 'testTag', 'OpenFormList_001 begin');
       await DRIVER.delayMs(1000);
@@ -57,7 +57,7 @@ export default function abilityTest() {
     /**
      * 创建卡片
      */
-    it('createForm_001', 0, async function () {
+    it('createForm_001', 0, async () => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       hilog.info(0x0000, 'testTag', 'createForm_001 begin');
       await DRIVER.delayMs(1000);

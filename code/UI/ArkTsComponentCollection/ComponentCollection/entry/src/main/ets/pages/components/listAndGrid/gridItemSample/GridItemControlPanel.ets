@@ -28,7 +28,7 @@ export struct PropertiesControlPanel {
         name: $r('app.string.grid_item_row_start'),
         selects: ['0', '1', '2', '3', '4'],
         callback: (index, value) => {
-          this.rowStart = parseInt(value);
+          this.rowStart = Number.parseInt(value);
         },
         testId: `griditem_001`
       })
@@ -37,7 +37,7 @@ export struct PropertiesControlPanel {
         name: $r('app.string.grid_item_row_end'),
         selects: ['0', '1', '2', '3', '4'],
         callback: (index, value) => {
-          this.rowEnd = parseInt(value);
+          this.rowEnd = Number.parseInt(value);
         },
         testId: `griditem_002`
       })
@@ -46,7 +46,7 @@ export struct PropertiesControlPanel {
         name: $r('app.string.grid_item_column_start'),
         selects: ['0', '1', '2', '3', '4'],
         callback: (index, value) => {
-          this.columnStart = parseInt(value);
+          this.columnStart = Number.parseInt(value);
         },
         testId: `griditem_003`
       })
@@ -55,7 +55,7 @@ export struct PropertiesControlPanel {
         name: $r('app.string.grid_item_column_end'),
         selects: ['0', '1', '2', '3', '4'],
         callback: (index, value) => {
-          this.columnEnd = parseInt(value);
+          this.columnEnd = Number.parseInt(value);
         },
         testId: `griditem_004`
       })
