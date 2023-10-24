@@ -17,6 +17,7 @@ import mediaQuery from '@ohos.mediaquery';
 import prompt from '@ohos.promptAction';
 import common from '@ohos.app.ability.common';
 import image from '@ohos.multimedia.image'
+import http from '@ohos.net.http';
 import { RequestRes, RequestResContent } from '../model/HttpModel'
 import { httpRequest } from '../net/HttpRequest'
 import { dialogData } from '../mock/ShareData'
@@ -43,14 +44,14 @@ const TAG: string = 'ShareDialogBuilder'
 @CustomDialog
 struct ShareDialogBuilder {
   private controller?: CustomDialogController
-  private contextCaller: any
+  private contextCaller?: common.UIAbilityContext
   private detailTitleText: string = ''
   private detailPriceText: string = ''
   private title: string = ''
   private srcImage: string = ''
-  private confirm: () => void
+  private confirm: () => void = () => {
+  }
   private shareUtils: ShareUtils = new ShareUtils(getContext(this))
-  @State pixelMap: image.PixelMap = undefined
 
   build() {
     Column() {
@@ -100,7 +101,7 @@ struct ShareDialogBuilder {
       Flex({ justifyContent: FlexAlign.SpaceAround }) {
         Button($r('app.string.cancel'))
           .onClick(() => {
-            this.controller.close()
+            this.controller?.close()
             Logger.info(TAG, `ShareDialogBuilder onCancel`)
           })
           .backgroundColor($r('app.color.color_0xffffff'))
@@ -109,7 +110,7 @@ struct ShareDialogBuilder {
           .onClick(() => {
             this.shareUtils.getScreen(isLand, this.contextCaller)
             Logger.info(TAG, `getScreen success`)
-            this.controller.close()
+            this.controller?.close()
           })
           .backgroundColor($r('app.color.color_0xffffff'))
           .fontColor(Color.Black)
@@ -136,7 +137,7 @@ export struct ButtonDialogBuilder {
   private title: string = ''
   private srcImage: string = ''
   private context?: AbilityContext
-  private contextCaller?: any
+  private contextCaller?: common.UIAbilityContext
   private shareUtils: ShareUtils = new ShareUtils(getContext(this))
   private isLand = mediaQuery.matchMediaSync('(orientation:landscape)')
   @State dialogData: Array<DialogDataModel> = dialogData
@@ -173,24 +174,25 @@ export struct ButtonDialogBuilder {
   shareVideo = () => {
     this.shareUtils.getFileData(this.contextCaller)
   }
-  onPortrait = (mediaQueryResult) => {
+  onPortrait = (mediaQueryResult: mediaQuery.MediaQueryResult) => {
     isLand = !mediaQueryResult.matches
   }
 
   async aboutToAppear() {
     Logger.info(TAG, `get Component's aboutToAppear success`)
-    this.context = getContext(this) as any
-    let data = {
-      context: null,
-      launchWant: null
+    this.context = getContext(this) as common.UIAbilityContext
+    class Data {
+      context = null
+      launchWant = null
     }
+    let data: Data = { context: null, launchWant: null }
     Logger.info(TAG, 'aboutToAppear')
     this.context.eventHub.emit('getAbilityData', data)
     Logger.info(TAG, `aboutToAppear: ${JSON.stringify(data.context)}}, want: ${JSON.stringify(data.launchWant)}`)
-    this.contextCaller = this.context // 拿到全局的context
+    this.contextCaller = this.context as common.UIAbilityContext // 拿到全局的context
     Logger.info(TAG, JSON.stringify(this.contextCaller))
-    httpRequest(ShareConst.REQUEST, ShareConst.METHOD, '', (data) => {
-      let requestRes: RequestRes = JSON.parse(data.result)
+    httpRequest(ShareConst.REQUEST, ShareConst.METHOD, '', (data: http.HttpResponse) => {
+      let requestRes: RequestRes = JSON.parse(data.result as string)
       let requestResContent: RequestResContent = requestRes.data
       Logger.info(TAG, `requestRes: ${requestRes}, requestResContent: ${requestResContent}`)
       this.title = requestResContent.title
@@ -238,7 +240,7 @@ export struct ButtonDialogBuilder {
           })
           .onClick(() => {
             Logger.info(TAG, `onclick close`)
-            this.controller.close()
+            this.controller?.close()
           })
         }
         .borderRadius(16)
@@ -255,25 +257,29 @@ export struct ButtonDialogBuilder {
 struct DialogLayoutComponent {
   @Link dialogData: Array<DialogDataModel>
   private controller?: CustomDialogController
-  private onShareFriend: () => void
-  private openDialog: () => void
-  private shareVideo: () => void
-  private contextCaller?: any
+  private onShareFriend: () => void = () => {
+  }
+  private openDialog: () => void = () => {
+  }
+  private shareVideo: () => void = () => {
+  }
+  private contextCaller?: common.UIAbilityContext
   private srcImage: string = ''
   // 新增分享模板内容
   private context = getContext(this) as common.UIAbilityContext;
   private messages: string = 'It is a shared message';
 
-  convertResourceToString(resource: Resource) {
-    return this.contextCaller.resourceManager.getStringSync(resource.id)
+  convertResourceToString(resource: Resource): string | Resource {
+    return this.contextCaller ? this.contextCaller.resourceManager.getStringSync(resource.id) : ''
   }
 
   build() {
     Column() {
       Flex({ justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center }) {
         ForEach(this.dialogData.map((dialogDataItem, dialogDataIndex) => {
-          return { index: dialogDataIndex + 1, data: dialogDataItem }
-        }), (item) => {
+          let model: Model = { index: dialogDataIndex + 1, data: dialogDataItem }
+          return model
+        }), (item: Model) => {
           Column() {
             Image(item.data.src)
               .width($r('app.float.width_height_value'))
@@ -290,24 +296,24 @@ struct DialogLayoutComponent {
             if (item.index === 1) {
               this.onShareFriend()
               Logger.info(TAG, "onShareFriend")
-              this.controller.close()
+              this.controller?.close()
             } else if (item.index === 2) { // 图库文件分享的入口
               prompt.showToast({
                 message: this.convertResourceToString($r('app.string.todo')),
                 duration: ShareConst.DURATION_NUMBER
               })
-              this.controller.close();
+              this.controller?.close();
             } else if (item.index === 3) {
-              this.controller.close()
+              this.controller?.close()
               prompt.showToast({
                 message: this.convertResourceToString($r('app.string.todo')),
                 duration: 3000
               });
             } else if (item.index === 4) { // 应用内文件分享的入口
               this.openDialog()
-              this.controller.close()
+              this.controller?.close()
             } else if (item.index === 5) {
-              this.controller.close();
+              this.controller?.close();
               this.context.startAbility({
                 bundleName: "ohos.samples.customshare",
                 abilityName: "TextReceiveAbility",
@@ -323,7 +329,7 @@ struct DialogLayoutComponent {
                 }
               });
             } else if (item.index === 6) {
-              this.controller.close();
+              this.controller?.close();
               this.context.startAbility({
                 bundleName: "ohos.samples.customshare",
                 abilityName: "EditTextAbility",
@@ -340,7 +346,7 @@ struct DialogLayoutComponent {
               });
             }
           })
-        }, item => item.data.id)
+        }, (item: Model) => item.data.id.toString())
       }
       .width("100%")
       .height($r('app.float.wh_value_hundred'))
@@ -349,4 +355,9 @@ struct DialogLayoutComponent {
       })
     }.width("100%")
   }
+}
+
+class Model {
+  index: number = 0
+  data: DialogDataModel = new DialogDataModel()
 }

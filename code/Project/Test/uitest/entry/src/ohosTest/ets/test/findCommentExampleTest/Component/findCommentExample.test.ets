@@ -45,14 +45,16 @@
 import { describe, it, expect, beforeAll, TestType } from '@ohos/hypium'
 import { Driver, ON, MatchPattern } from '@ohos.UiTest'
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import Want from '@ohos.app.ability.Want';
+
 const delegator = abilityDelegatorRegistry.getAbilityDelegator()
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const DELAYMS = 1000;
 const  arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 export default function findExampleTest() {
-  describe('findExampleTest', function () {
-    beforeAll(async  function () {
-      let want = {
+  describe('findExampleTest', () => {
+    beforeAll(async  () => {
+      let want: Want = {
         bundleName : bundleName,
         abilityName : "EntryAbility"
       }
@@ -65,7 +67,7 @@ export default function findExampleTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 使用ON.id 获取单个组件
      */
-    it("findComponent_On_ID", TestType.FUNCTION, async  function (done) {
+    it("findComponent_On_ID", TestType.FUNCTION, async (done: Function) => {
       let dr = await Driver.create();
       await dr.delayMs(DELAYMS)
       let text  = await dr.findComponent(ON.id("idTest"))
@@ -80,7 +82,7 @@ export default function findExampleTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 使用ON.id 获取多个组件
      */
-    it("findComponents_On_ID", TestType.FUNCTION, async  function (done) {
+    it("findComponents_On_ID", TestType.FUNCTION, async  (done: Function) => {
       let dr = await Driver.create();
       await dr.delayMs(DELAYMS)
       let textArr  = await dr.findComponents(ON.id("scroll_item"));
@@ -98,7 +100,7 @@ export default function findExampleTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 使用ON.isBefore 获取单个组件
      */
-    it("findComponents_On_isBefore", TestType.FUNCTION, async  function (done) {
+    it("findComponents_On_isBefore", TestType.FUNCTION, async  (done: Function) => {
       let dr = await Driver.create();
       expect(dr).not().assertNull();
       let radio  = await dr.findComponent(ON.type("Radio").isBefore(ON.id("radio_test1")));
@@ -109,11 +111,11 @@ export default function findExampleTest() {
 
     /**
      * @tc.number:findExampleTest_004
-     * @tc.name: findComponents_On_isBefore
+     * @tc.name: findComponents_On_isBefore_1
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 使用ON.isAfter 获取单个组件
      */
-    it("findComponents_On_isBefore", TestType.FUNCTION, async  function (done) {
+    it("findComponents_On_isBefore_1", TestType.FUNCTION, async  (done: Function) => {
       let dr = await Driver.create();
       expect(dr).not().assertNull();
       let radio  = await dr.findComponent(ON.type("Radio").isAfter(ON.id("radio_test")));
@@ -129,7 +131,7 @@ export default function findExampleTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 使用不同的匹配模式获取控件对象
      */
-    it('testMatchPattern', TestType.FUNCTION, async function () {
+    it('testMatchPattern', TestType.FUNCTION, async () => {
       let driver = Driver.create()
       await driver.delayMs(DELAYMS)
       let Button1 = await driver.findComponent(ON.text('unit_jsunit', MatchPattern.EQUALS))
@@ -144,7 +146,7 @@ export default function findExampleTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 使用ScrollSearch 获取单个组件
      */
-    it("findComponents_scrollSearch", TestType.FUNCTION, async  function (done) {
+    it("findComponents_scrollSearch", TestType.FUNCTION, async  (done: Function) => {
       let dr = await Driver.create();
       await dr.delayMs(DELAYMS);
       let scrollBar = await dr.findComponent(ON.type('Scroll'))

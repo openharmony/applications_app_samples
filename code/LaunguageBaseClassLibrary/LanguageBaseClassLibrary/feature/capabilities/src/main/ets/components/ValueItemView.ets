@@ -18,9 +18,9 @@ import { DeleteView } from './DeleteView';
 @Component
 export struct ValueItemView {
   @State deleteEnabled: boolean = true;
-  private value: string;
-  private deleteAction: (event?: ClickEvent) => void;
-  private index: number;
+  private value: string = '';
+  private deleteAction: (event?: ClickEvent) => void = () => {};
+  private index: number = 0;
 
   build() {
     Row() {

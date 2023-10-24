@@ -83,7 +83,7 @@ export default function abilityTest() {
       let rotateLeft = (await rotateVideo.getBounds()).left;
       Logger.info(TAG, `originLeft: ${originLeft}, rotateLeft: ${rotateLeft}`);
       // 竖屏旋转后，video组件的left坐标变大
-      await expect(originLeft).assertLess(rotateLeft);
+      await expect(rotateLeft).assertLess(originLeft);
       // 还原窗口
       await driver.pressBack();
       await windowBtn.click();

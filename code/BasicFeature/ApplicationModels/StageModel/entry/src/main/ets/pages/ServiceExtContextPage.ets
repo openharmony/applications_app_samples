@@ -19,7 +19,7 @@ import ServiceExContextController from '../feature/ServiceExtContextController'
 @Entry
 @Component
 struct ServiceExContextPage {
-  private serviceExContext: ServiceExContextController = undefined
+  private serviceExContext?: ServiceExContextController = undefined;
 
   build() {
     Column() {
@@ -28,43 +28,43 @@ struct ServiceExContextPage {
         Column() {
           Button($r("app.string.start_ability"))
             .fancy(() => {
-              this.serviceExContext.startAbility()
+              this.serviceExContext?.startAbility();
             })
           Button($r("app.string.start_service_extension_ability"))
             .fancy(() => {
-              this.serviceExContext.startServiceExtensionAbility()
+              this.serviceExContext?.startServiceExtensionAbility();
             })
           Button($r("app.string.start_service_extension_ability_with_account"))
             .fancy(() => {
-              this.serviceExContext.startServiceExtensionAbilityWithAccount()
+              this.serviceExContext?.startServiceExtensionAbilityWithAccount();
             })
           Button($r("app.string.stop_service_extension_ability"))
             .fancy(() => {
-              this.serviceExContext.stopServiceExtensionAbility()
+              this.serviceExContext?.stopServiceExtensionAbility();
             })
           Button($r("app.string.stop_service_extension_ability_with_account"))
             .fancy(() => {
-              this.serviceExContext.stopServiceExtensionAbilityWithAccount()
+              this.serviceExContext?.stopServiceExtensionAbilityWithAccount();
             })
           Button($r("app.string.terminate_self"))
             .fancy(() => {
-              this.serviceExContext.terminateSelf()
+              this.serviceExContext?.terminateSelf();
             })
           Button($r("app.string.connect_ability"))
             .fancy(() => {
-              this.serviceExContext.connectAbility()
+              this.serviceExContext?.connectAbility();
             })
           Button($r("app.string.connect_ability_with_account"))
             .fancy(() => {
-              this.serviceExContext.connectAbilityWithAccount()
+              this.serviceExContext?.connectAbilityWithAccount();
             })
           Button($r("app.string.disconnect_ability"))
             .fancy(() => {
-              this.serviceExContext.disconnectAbility()
+              this.serviceExContext?.disconnectAbility();
             })
           Button($r("app.string.start_ability_with_account"))
             .fancy(() => {
-              this.serviceExContext.startAbilityWithAccount()
+              this.serviceExContext?.startAbilityWithAccount();
             })
         }
         .width('100%')
@@ -79,12 +79,12 @@ struct ServiceExContextPage {
   }
 
   aboutToAppear() {
-    let context = getContext(this)
-    this.serviceExContext = new ServiceExContextController(context)
+    let context = getContext(this);
+    this.serviceExContext = new ServiceExContextController(context);
   }
 }
 
-@Extend(Button) function fancy (click) {
+@Extend(Button) function fancy (click: (event?: ClickEvent) => void) {
   .width('60%')
   .height(40)
   .align(Alignment.Center)

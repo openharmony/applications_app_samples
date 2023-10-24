@@ -15,15 +15,17 @@
 
 @Component
 export struct RewardSectionComponent {
-
-  @Builder options(img: Resource, label: Resource) {
+  @Builder
+  options(img: Resource, label: Resource) {
     Column() {
       Image(img)
         .aspectRatio(1)
         .width(40)
         .objectFit(ImageFit.Contain)
       Text(label)
-        .margin({ top: 12 })
+        .margin({
+          top: 12
+        })
         .fontSize(12)
     }
     .width('25%')
@@ -32,14 +34,19 @@ export struct RewardSectionComponent {
 
   build() {
     Row() {
-      this.options($r('app.media.vip_channel'), $r('app.string.point_reward'))
-      this.options($r('app.media.point_reward'), $r('app.string.interaction'))
-      this.options($r('app.media.interaction'), $r('app.string.interaction'))
-      this.options($r('app.media.card_volumn'), $r('app.string.card_volume'))
+      this.options($r('app.media.vip_channel'), $r('app.string.point_reward'));
+      this.options($r('app.media.point_reward'), $r('app.string.interaction'));
+      this.options($r('app.media.interaction'), $r('app.string.interaction'));
+      this.options($r('app.media.card_volumn'), $r('app.string.card_volume'));
     }
     .width('100%')
-    .padding({ top: 16, bottom: 16})
+    .padding({
+      top: 16,
+      bottom: 16
+    })
     .backgroundColor($r('app.color.white'))
-    .border({ radius: 16 })
+    .border({
+      radius: 16
+    })
   }
 }

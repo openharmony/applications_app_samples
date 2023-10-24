@@ -28,7 +28,7 @@ export struct InputConsumer {
   @State mIsShowInputConsumerInfo: boolean = false
   @State mInputConsumerInfo: string = ''
 
-  callback(KeyOptions: inputConsumer.KeyOptions) {
+  callback(KeyOptions: inputConsumer.KeyOptions): void {
     this.mInputConsumerInfo = formatJson(JSON.stringify(KeyOptions))
     const finalKey: number = KeyOptions.finalKey
     switch (finalKey) {
@@ -74,7 +74,7 @@ export struct InputConsumer {
             .onChange((isOn) => {
               if (isOn) {
                 this.mIsShowInputConsumerInfo = true
-                InputConsumerUtil.subscribe(this.callback.bind(this))
+                InputConsumerUtil.subscribe((KeyOptions: inputConsumer.KeyOptions): void => this.callback(KeyOptions))
               } else {
                 this.clear()
               }

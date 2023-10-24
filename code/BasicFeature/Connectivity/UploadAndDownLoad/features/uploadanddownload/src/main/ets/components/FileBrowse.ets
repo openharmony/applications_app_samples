@@ -31,7 +31,7 @@ export struct FileBrowse {
   build() {
     Navigation() {
       List({ space: 12 }) {
-        ForEach(this.folders, item => {
+        ForEach(this.folders, (item: string) => {
           ListItem() {
             NavRouter() {
               Row() {
@@ -97,7 +97,7 @@ export struct FileBrowse {
               .textAlign(TextAlign.Center)
           }
         }
-        ForEach(this.files, item => {
+        ForEach(this.files, (item: string) => {
           ListItem() {
             Text(decodeURIComponent(item))
               .fontSize(16)

@@ -23,13 +23,13 @@ import { Constants } from '../constants/Constants';
 
 @Observed
 export class FindSameNameParam {
-  sourceFileAsset: photoAccessHelper.PhotoAsset
-  targetFileAsset: photoAccessHelper.PhotoAsset
-  replaceFunc: Function
-  skipFunc: Function
-  cancelFunc: Function
-  singlePhoto: boolean
-  doSameFunc: Function
+  sourceFileAsset: photoAccessHelper.PhotoAsset | null = null;
+  targetFileAsset: photoAccessHelper.PhotoAsset | null = null;
+  replaceFunc: Function | null = null;
+  skipFunc: Function | null = null;
+  cancelFunc: Function | null = null;
+  singlePhoto: boolean = false;
+  doSameFunc: Function | null = null;
 }
 
 @CustomDialog
@@ -42,17 +42,17 @@ export struct FindSameNameDialog {
   @Consume dialogCallback: DialogCallback;
   @Consume dialogMessage: Resource;
   @Consume findSameNameParam: FindSameNameParam;
-  sourceDetails: photoAccessHelper.PhotoAsset;
-  targetDetails: photoAccessHelper.PhotoAsset;
-  controller: CustomDialogController;
-  dataTime: string;
-  targetDataTime: string;
+  sourceDetails: photoAccessHelper.PhotoAsset | null = null;
+  targetDetails: photoAccessHelper.PhotoAsset | null = null;
+  controller?: CustomDialogController;
+  dataTime: string = '';
+  targetDataTime: string = '';
   timeConvert = 1000;
 
-  getTitle(name): string {
+  getTitle(name: string): string {
     Log.info(this.TAG, 'getTitle ' + name);
     if (name != null) {
-      let index = name.lastIndexOf('.');
+      let index: number = name.lastIndexOf('.');
       if (index === -1) {
         return name;
       }
@@ -66,8 +66,8 @@ export struct FindSameNameDialog {
     this.sourceDetails = this.findSameNameParam.sourceFileAsset;
     this.targetDetails = this.findSameNameParam.targetFileAsset;
     try{
-      this.dataTime = DateUtil.getDateTimeFormat(this.sourceDetails.get(photoAccessHelper.PhotoKeys.DATE_MODIFIED.toString()) as number * this.timeConvert);
-      this.targetDataTime = DateUtil.getDateTimeFormat(this.targetDetails.get(photoAccessHelper.PhotoKeys.DATE_MODIFIED.toString()) as number * this.timeConvert);
+      this.dataTime = DateUtil.getDateTimeFormat(this.sourceDetails?.get(photoAccessHelper.PhotoKeys.DATE_MODIFIED.toString()) as number * this.timeConvert);
+      this.targetDataTime = DateUtil.getDateTimeFormat(this.targetDetails?.get(photoAccessHelper.PhotoKeys.DATE_MODIFIED.toString()) as number * this.timeConvert);
     }catch (err){
     }
   }
@@ -84,11 +84,13 @@ export struct FindSameNameDialog {
 
       Row() {
         Column() {
-          Text($r('app.string.target_has_same_name', this.getTitle(this.sourceDetails.displayName)))
-            .fontSize($r('sys.float.ohos_id_text_size_sub_title2'))
-            .fontWeight(FontWeight.Medium)
-            .fontColor($r('sys.color.ohos_id_color_text_primary'))
-            .maxLines(3)
+          if(this.sourceDetails !== null && this.sourceDetails !== undefined){
+            Text($r('app.string.target_has_same_name', this.getTitle(this.sourceDetails.displayName)))
+              .fontSize($r('sys.float.ohos_id_text_size_sub_title2'))
+              .fontWeight(FontWeight.Medium)
+              .fontColor($r('sys.color.ohos_id_color_text_primary'))
+              .maxLines(3)
+          }
         }
       }.margin({
         bottom: $r('app.float.same_name_date_title_dialog_bottom') })
@@ -198,7 +200,7 @@ export struct FindSameNameDialog {
               this.findSameNameParam.doSameFunc(FindSameOperation.REPLACE);
             }
             if(this.findSameNameParam.replaceFunc != null) this.findSameNameParam.replaceFunc();
-            this.controller.close();
+            this.controller?.close();
           })
 
           Row() {
@@ -231,7 +233,7 @@ export struct FindSameNameDialog {
                 this.findSameNameParam.doSameFunc(FindSameOperation.SKIP);
               }
               if(this.findSameNameParam.skipFunc != null) this.findSameNameParam.skipFunc();
-              this.controller.close();
+              this.controller?.close();
             })
 
             Row() {
@@ -261,7 +263,7 @@ export struct FindSameNameDialog {
           .onClick((): void => {
             Log.debug(this.TAG, 'cancelFunc');
             if(this.findSameNameParam.cancelFunc != null) this.findSameNameParam.cancelFunc();
-            this.controller.close();
+            this.controller?.close();
           })
         }
       }

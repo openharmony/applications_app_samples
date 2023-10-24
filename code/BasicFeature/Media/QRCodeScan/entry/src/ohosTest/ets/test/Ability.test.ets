@@ -31,11 +31,11 @@ async function getResourceString(resource: Resource): Promise<string> {
 }
 
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
     /**
      * 拉起应用
      */
-    it(BUNDLE + 'StartAbility_001 begin', 0, async function (done) {
+    it(BUNDLE + 'StartAbility_001 begin', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin')
       try {
         await abilityDelegator.startAbility({
@@ -53,7 +53,7 @@ export default function abilityTest() {
     /**
      * 扫描二维码
      */
-    it(BUNDLE + 'CreateQRCodeScanFunction_001', 0, async function () {
+    it(BUNDLE + 'CreateQRCodeScanFunction_001', 0, async () => {
       // create UiDriver
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateQRCodeScanFunction_001 begin')
       let driver = Driver.create();
@@ -76,6 +76,9 @@ export default function abilityTest() {
       await driver.delayMs(1000);
       await agreeBtn.click();
       await driver.delayMs(1000);
+      // 等待触发相机取景框识别失败提示
+      await driver.delayMs(3000);
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.can_not_parse_QRcode'))));
       // 点击相册
       await driver.assertComponentExist(ON.id('scanPhoto'));
       let scanPhoto = await driver.findComponent(ON.id('scanPhoto'));
@@ -90,6 +93,7 @@ export default function abilityTest() {
       let finish = await driver.findComponent(ON.text(await getResourceString($r('app.string.button_finish'))));
       await finish.click();
       await driver.delayMs(1000)
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.can_not_parse_QRcode'))));
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateQRCodeScanFunction_001 end')
     })
   })

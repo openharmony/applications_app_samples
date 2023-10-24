@@ -13,13 +13,15 @@
  * limitations under the License.
  */
 
-import UIAbility from '@ohos.app.ability.UIAbility'
-import Window from '@ohos.window'
-import Logger from '../utils/Logger'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Window from '@ohos.window';
+import Logger from '../utils/Logger';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want, launchParam) {
-    Logger.info('Ability onCreate')
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    Logger.info('Ability onCreate');
   }
 
   onDestroy() {

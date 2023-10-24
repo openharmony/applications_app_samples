@@ -71,7 +71,7 @@ export struct TempView {
     .width('100%')
   }
 
-  alertDialog(title, message, value) {
+  alertDialog(title: ResourceStr, message: ResourceStr, value: ResourceStr) {
     AlertDialog.show(
       {
         title: title,

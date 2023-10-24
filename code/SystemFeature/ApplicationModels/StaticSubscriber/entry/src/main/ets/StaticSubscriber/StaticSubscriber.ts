@@ -46,7 +46,7 @@ export default class StaticSubscriber extends StaticSubscriberExtensionAbility {
         contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
           title: event.data,
-          text: '',
+          text: 'content',
           additionalText: ''
         }
       }

@@ -46,7 +46,7 @@
 
 import { describe, it, expect, TestType } from '@ohos/hypium'
 export default async function assertExampleTest() {
-  describe('assertExampleTest', function () {
+  describe('assertExampleTest', () => {
 
     /**
      * @tc.number:basicExampleTest_001
@@ -55,7 +55,7 @@ export default async function assertExampleTest() {
      * @tc.desc: 检验actualvalue和expectvalue(0)的接近程度是否是expectValue(1)
      * @tc.version since1.0.0
      */
-    it('basicExampleTest_001', TestType.FUNCTION, function () {
+    it('basicExampleTest_001', TestType.FUNCTION, () => {
       let a = 100
       let b = 0.1
       expect(a).assertClose(99, b)
@@ -68,7 +68,7 @@ export default async function assertExampleTest() {
      * @tc.desc: 检验actualvalue是否是null
      * @tc.version since1.0.0
      */
-    it('basicExampleTest_002', TestType.FUNCTION, function () {
+    it('basicExampleTest_002', TestType.FUNCTION, () => {
       expect(null).assertNull(); // true
     })
 
@@ -79,7 +79,7 @@ export default async function assertExampleTest() {
      * @tc.desc: 检验'abc'中是否包含'a'
      * @tc.version since1.0.0
      */
-    it('basicExampleTest_003',TestType.FUNCTION, function () {
+    it('basicExampleTest_003',TestType.FUNCTION, () => {
       let a = "abc";
       let b= "a"
       expect(a).assertContain(b);
@@ -92,7 +92,7 @@ export default async function assertExampleTest() {
      * @tc.desc: 抛出一个错误
      * @tc.version since1.0.0
      */
-    it('basicExampleTest_04',TestType.FUNCTION, function () {
+    it('basicExampleTest_04',TestType.FUNCTION, () => {
       expect().not().assertFail(); // 默认用例失败，使用not pass 用例
     })
 
@@ -104,7 +104,7 @@ export default async function assertExampleTest() {
      * @tc.desc: 检验actualvalue是否是false。
      * @tc.version since1.0.0
      */
-    it('basicExampleTest_05',TestType.FUNCTION, function () {
+    it('basicExampleTest_05',TestType.FUNCTION, () => {
       expect(false).assertFalse();
     })
 
@@ -115,7 +115,7 @@ export default async function assertExampleTest() {
      * @tc.desc: 检验10是否是Number类型
      * @tc.version since1.0.0
      */
-    it('basicExampleTest_06',TestType.FUNCTION, function () {
+    it('basicExampleTest_06',TestType.FUNCTION, () => {
       expect(10).assertInstanceOf("Number");
     })
 
@@ -126,7 +126,7 @@ export default async function assertExampleTest() {
      * @tc.desc: 检验5是否大于4
      * @tc.version since1.0.0
      */
-    it('basicExampleTest_07',TestType.FUNCTION, function () {
+    it('basicExampleTest_07',TestType.FUNCTION, () => {
       expect(5).assertLarger(4);
     })
 
@@ -137,7 +137,7 @@ export default async function assertExampleTest() {
      * @tc.desc: 检验1是否小于2
      * @tc.version since1.0.0
      */
-    it('basicExampleTest_08',TestType.FUNCTION, function () {
+    it('basicExampleTest_08',TestType.FUNCTION, () => {
       expect(1).assertLess(2);
     })
 
@@ -148,7 +148,7 @@ export default async function assertExampleTest() {
      * @tc.desc: 检验undefined是否是undefined
      * @tc.version since1.0.0
      */
-    it('basicExampleTest_09',TestType.FUNCTION, function () {
+    it('basicExampleTest_09',TestType.FUNCTION, () => {
       expect(undefined).assertUndefined();
     })
 
@@ -159,7 +159,7 @@ export default async function assertExampleTest() {
      * @tc.desc: 检验testThro方法抛出Error内容是否是"test"
      * @tc.version since1.0.0
      */
-    it('basicExampleTest_010', TestType.FUNCTION, function () {
+    it('basicExampleTest_010', TestType.FUNCTION, () => {
       expect(testThro).assertThrowError("test");
     });
 
@@ -170,7 +170,7 @@ export default async function assertExampleTest() {
      * @tc.desc: 检验actualvalue是否是true
      * @tc.version since1.0.0
      */
-    it('basicExampleTest_011', TestType.FUNCTION, function () {
+    it('basicExampleTest_011', TestType.FUNCTION, () => {
       expect(true).assertTrue();
     });
 
@@ -181,7 +181,7 @@ export default async function assertExampleTest() {
      * @tc.desc: 检验"test1"是否等于"test1"
      * @tc.version since1.0.0
      */
-    it('basicExampleTest_012', TestType.FUNCTION, function () {
+    it('basicExampleTest_012', TestType.FUNCTION, () => {
       expect("test1").assertEqual("test1");
     });
 
@@ -192,8 +192,8 @@ export default async function assertExampleTest() {
      * @tc.desc: 判断promise是否处于Pending状态
      * @tc.version since1.0.4
      */
-    it('basicExampleTest_013', TestType.FUNCTION, function () {
-      let p = new Promise(function () {
+    it('basicExampleTest_013', TestType.FUNCTION, () => {
+      let p = new Promise<void>(() => {
       });
       expect(p).assertPromiseIsPending();
     });
@@ -205,10 +205,11 @@ export default async function assertExampleTest() {
      * @tc.desc: 判断promise是否处于Rejected状态
      * @tc.version since1.0.4
      */
-    it('basicExampleTest_014', TestType.FUNCTION, function () {
-      let p = Promise.reject({
-        bad: 'no'
-      });
+    it('basicExampleTest_014', TestType.FUNCTION, () => {
+      let info : PromiseInfo = {
+        res: "no"
+      }
+      let p = Promise.reject<string>(info);
       expect(p).assertPromiseIsRejected();
     });
 
@@ -219,13 +220,12 @@ export default async function assertExampleTest() {
      * @tc.desc: 判断promise是否处于Rejected状态，并且比较执行的结果值
      * @tc.version since1.0.4
      */
-    it("basicExampleTest_015", TestType.FUNCTION, function () {
-      let p = Promise.reject({
-        res:'reject value'
-      })
-      expect(p).assertPromiseIsRejectedWith({
-        res: 'reject value'
-      })
+    it("basicExampleTest_015", TestType.FUNCTION, () => {
+      let info : PromiseInfo = {
+        res: "reject value"
+      }
+      let p = Promise.reject(info)
+      expect(p).assertPromiseIsRejectedWith(info)
     })
 
     /**
@@ -235,7 +235,7 @@ export default async function assertExampleTest() {
      * @tc.desc: 判断promise是否处于Rejected状态并有异常，同时比较异常的类型和message值
      * @tc.version since1.0.4
      */
-    it('basicExampleTest_016', TestType.FUNCTION, function () {
+    it('basicExampleTest_016', TestType.FUNCTION, () => {
       let p1 = Promise.reject(new Error('number'));
       expect(p1).assertPromiseIsRejectedWithError(Error);
     });
@@ -247,10 +247,11 @@ export default async function assertExampleTest() {
      * @tc.desc: 判断promise是否处于Resolved状态
      * @tc.version since1.0.4
      */
-    it('basicExampleTest_017', TestType.FUNCTION, function () {
-      let p = Promise.resolve({
-        res: 'result value'
-      });
+    it('basicExampleTest_017', TestType.FUNCTION, () => {
+      let info : PromiseInfo = {
+        res: "result value"
+      }
+      let p = Promise.resolve(info);
       expect(p).assertPromiseIsResolved();
     });
 
@@ -262,13 +263,12 @@ export default async function assertExampleTest() {
      * @tc.desc: 判断promise是否处于Resolved状态，并且比较执行的结果值
      * @tc.version since1.0.4
      */
-    it('basicExampleTest_018', TestType.FUNCTION, function () {
-      let p = Promise.resolve({
-        res: 'result value'
-      });
-      expect(p).assertPromiseIsResolvedWith({
-        res: 'result value'
-      });
+    it('basicExampleTest_018', TestType.FUNCTION, () => {
+      let info : PromiseInfo = {
+        res: "result value"
+      }
+      let p = Promise.resolve(info);
+      expect(p).assertPromiseIsResolvedWith(info);
     });
 
     /**
@@ -278,7 +278,7 @@ export default async function assertExampleTest() {
      * @tc.desc: 检验actualvalue是否是一个NAN
      * @tc.version since1.0.4
      */
-    it('basicExampleTest_019',TestType.FUNCTION, function () {
+    it('basicExampleTest_019',TestType.FUNCTION, () => {
       expect(Number.NaN).assertNaN(); // true
     })
 
@@ -289,7 +289,7 @@ export default async function assertExampleTest() {
      * @tc.desc: 检验actualvalue是否等于Number.NEGATIVE_INFINITY
      * @tc.version since1.0.4
      */
-    it('basicExampleTest_020',TestType.FUNCTION, function () {
+    it('basicExampleTest_020',TestType.FUNCTION, () => {
       expect(Number.NEGATIVE_INFINITY).assertNegUnlimited(); // true
     })
 
@@ -300,7 +300,7 @@ export default async function assertExampleTest() {
      * @tc.desc: 检验actualvalue是否等于Number.POSITIVE_INFINITY
      * @tc.version since1.0.4
      */
-    it('basicExampleTest_021', TestType.FUNCTION, function () {
+    it('basicExampleTest_021', TestType.FUNCTION, () => {
       expect(Number.POSITIVE_INFINITY).assertPosUnlimited(); // true
     })
 
@@ -311,7 +311,7 @@ export default async function assertExampleTest() {
      * @tc.desc: 检验actualvalue是否大于等于expectvalue
      * @tc.version since1.0.4
      */
-    it('basicExampleTest_022', TestType.FUNCTION, function () {
+    it('basicExampleTest_022', TestType.FUNCTION, () => {
       expect(1).assertLargerOrEqual(1)
     })
 
@@ -322,7 +322,7 @@ export default async function assertExampleTest() {
      * @tc.desc: 检验actualvalue是否小于等于expectvalue
      * @tc.version since1.0.4
      */
-    it('basicExampleTest_023',TestType.FUNCTION, function () {
+    it('basicExampleTest_023',TestType.FUNCTION, () => {
       expect(1).assertLessOrEqual(2);
     })
 
@@ -333,13 +333,21 @@ export default async function assertExampleTest() {
      * @tc.desc: 检验对象a 与对象b是否有相同的对象属性
      * @tc.version since1.0.4
      */
-    it("basicExampleTest_024", TestType.FUNCTION, function () {
-      const a = {x:1};
-      const b = {x:1};
+    it("basicExampleTest_024", TestType.FUNCTION, () => {
+      const a: SampleTest = {x:1};
+      const b: SampleTest = {x:1};
       expect(a).assertDeepEquals(b);
     })
 });
 }
 function testThro() {
     throw new Error("test");
+}
+
+interface SampleTest {
+  x: number;
+}
+
+interface PromiseInfo{
+  res : string;
 }

@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-import { QRCodeScanComponent } from "@ohos/scan-component"
+import { QRCodeScanComponent } from "@ohos/scan-component";
 
 @Entry
 @Component
 struct Scan {
   build() {
     Column() {
-      QRCodeScanComponent()
+      QRCodeScanComponent();
     }
   }
 }

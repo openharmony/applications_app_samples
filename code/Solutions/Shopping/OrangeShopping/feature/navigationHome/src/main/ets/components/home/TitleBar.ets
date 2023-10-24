@@ -13,15 +13,19 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
-import { FIND_SEARCH_TEXT_DATA } from '../../mock/ProductsData'
+import router from '@ohos.router';
+import { FIND_SEARCH_TEXT_DATA } from '../../mock/ProductsData';
+import { SearchTextModel } from '../../model/GoodsModel';
 
 @Component
 export struct TitleBarComponent {
-
   build() {
     Column() {
-      Flex({ justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center, wrap: FlexWrap.Wrap }) {
+      Flex({
+        justifyContent: FlexAlign.SpaceAround,
+        alignItems: ItemAlign.Center,
+        wrap: FlexWrap.Wrap
+      }) {
         Row() {
           Image($r('app.media.logo'))
             .width(24)
@@ -32,9 +36,9 @@ export struct TitleBarComponent {
             .aspectRatio(1)
             .objectFit(ImageFit.Contain)
             .onClick(() => {
-              router.push({
+              router.pushUrl({
                 url: 'pages/ScanPage'
-              })
+              });
             })
         }
         .width('100%')
@@ -46,7 +50,7 @@ export struct TitleBarComponent {
             .width(20)
             .aspectRatio(1)
           Swiper() {
-            ForEach(FIND_SEARCH_TEXT_DATA, item => {
+            ForEach(FIND_SEARCH_TEXT_DATA, (item: SearchTextModel) => {
               Column() {
                 Text(item.searchText)
                   .opacity(0.6)
@@ -56,7 +60,7 @@ export struct TitleBarComponent {
               }
               .width('100%')
               .alignItems(HorizontalAlign.Start)
-            }, item => item.id.toString())
+            }, (item: SearchTextModel) => item.id.toString())
           }
           .loop(true)
           .autoPlay(true)
@@ -68,13 +72,28 @@ export struct TitleBarComponent {
         .zIndex(2)
         .width('100%')
         .justifyContent(FlexAlign.Start)
-        .margin({ top: 8, bottom: 12 })
-        .padding({left: 12, right: 12})
+        .margin({
+          top: 8,
+          bottom: 12
+        })
+        .padding({
+          left: 12,
+          right: 12
+        })
         .backgroundColor($r('app.color.white'))
-        .border({ width: 2, color: $r('app.color.white'), radius: 40 })
+        .border({
+          width: 2,
+          color: $r('app.color.white'),
+          radius: 40
+        })
       }
-      .margin({ top: 12 })
-      .padding({ left: 12, right: 12 })
+      .margin({
+        top: 12
+      })
+      .padding({
+        left: 12,
+        right: 12
+      })
     }
     .width('100%')
   }

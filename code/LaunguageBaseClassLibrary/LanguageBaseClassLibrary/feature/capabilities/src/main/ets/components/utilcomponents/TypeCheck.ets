@@ -30,7 +30,7 @@ for (let i = 0; i < int8Array.length; i++) {
 @Component
 export struct TypeCheck {
   @State checkResult: string = '';
-  @State presetValue: Array<unknown> = [numVal, strVal, boolVal, int8Array];
+  @State presetValue: Array<Int8Array | Number | String | Boolean> = [numVal, strVal, boolVal, int8Array];
 
   build() {
     Scroll() {

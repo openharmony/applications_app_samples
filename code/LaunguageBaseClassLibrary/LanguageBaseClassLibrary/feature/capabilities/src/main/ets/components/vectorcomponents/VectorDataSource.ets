@@ -24,7 +24,7 @@ export class VectorDataSource extends BaseDataSource {
     return this.dataArr.length;
   }
 
-  public getData(index: number): any {
+  public getData(index: number): Information {
     return this.dataArr.get(index);
   }
 

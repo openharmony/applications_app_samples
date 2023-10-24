@@ -14,7 +14,7 @@
 
 | 编辑删除                                            | 图片调整                                                | 图片标记                                            | 
 |-------------------------------------------------|-----------------------------------------------------|-------------------------------------------------|
-| ![edit.jpeg](screenshots%2Fdevices%2Fedit.jpeg) | ![adjust.jpeg](screenshots%2Fdevices%2Fadjust.jpeg) | ![crop.jpeg](screenshots%2Fdevices%2Fcrop.jpeg) |
+| ![edit.jpeg](screenshots%2Fdevices%2Fedit.jpeg) | ![adjust.jpeg](screenshots%2Fdevices%2Fadjust.jpeg) | ![crop.jpeg](screenshots%2Fdevices%2Fmark.jpeg) |
 
 | 图片裁剪                                            | 图片缩放                                              | 图片旋转                                                | 
 |-------------------------------------------------|---------------------------------------------------|-----------------------------------------------------|
@@ -28,7 +28,7 @@
 
 1. 发表评价页面点击添加图片/照片，页面跳转到图片选择页面；
 2. 进入图片选择页面后，选择需要显示的图片；
-3. 选中图片后，页面会跳转到图片编辑删除页面，点击编辑进入到编辑功能页；
+3. 选中图片后，页面会跳转到发表评价页面，点击图片跳转到图片编辑删除页面，点击编辑进入到编辑功能页；
 4. 调整菜单有裁剪、缩放、旋转、调色功能；
 5. 标记菜单有添加文字、添加贴纸功能；
 6. 编辑完成后，点击撤回按钮图片会还原到上一个编辑状态；
@@ -93,8 +93,8 @@ photomodify/src/main/ets/components
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568;
-2. 本示例为Stage模型，已适配API version 10版本SDK，版本号：4.0.7.5，镜像版本号：OpenHarmony4.0.7.5;
-3. 本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400 构建 2023年4月7日)及以上版本才可编译运行。
+2. 本示例为Stage模型，已适配API version 10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0Release);
+3. 本示例需要使用DevEco Studio 版本号(4.0Release)及以上版本才可编译运行。
 
 ### 下载
 

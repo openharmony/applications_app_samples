@@ -36,10 +36,9 @@ export class QRCodeScanConst {
   static readonly QR_CODE_SIZE: number = px2vp(300)
 
   // 图片默认大小
-  static readonly IMG_DEFAULT_SIZE = {
-    WIDTH: 1920,
-    HEIGHT: 1080
-  }
+  static readonly IMG_DEFAULT_SIZE_WIDTH = 1920;
+
+  static readonly IMG_DEFAULT_SIZE_HEIGHT = 1080;
 
   // 同时访问的最大图像数
   static readonly MAX_IMAGE_CAPACITY = 8

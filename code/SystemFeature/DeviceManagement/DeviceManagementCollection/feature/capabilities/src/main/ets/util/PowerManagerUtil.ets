@@ -49,14 +49,16 @@ export class PowerManagerUtil {
   static async getPowerModeName(): Promise<string> {
     let powerModeNames = await getStringArray($r('app.strarray.power_mode'))
     switch (power.getPowerMode()) {
-      case this.powerModes[0]:
+      case PowerManagerUtil.powerModes[0]:
         return powerModeNames[0];
-      case this.powerModes[1]:
+      case PowerManagerUtil.powerModes[1]:
         return powerModeNames[1];
-      case this.powerModes[2]:
+      case PowerManagerUtil.powerModes[2]:
         return powerModeNames[2];
-      case this.powerModes[3]:
+      case PowerManagerUtil.powerModes[3]:
         return powerModeNames[3];
+      default:
+        return ''
     }
   }
 }

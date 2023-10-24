@@ -63,8 +63,8 @@ struct SliderSample {
               .onChange((value: number) => {
                 this.minOrMaxValue = value
               }).onClick((event: ClickEvent) => {
-                let text = '  screenX:' + event.screenX + '  screenY:' + event.screenY
-                console.log('Sample_ComponentCollection'+text)
+              let text = '  screenX:' + event.screenX + '  screenY:' + event.screenY
+              console.log('Sample_ComponentCollection' + text)
             })
             Text(`${Math.trunc(this.minOrMaxValue)}`).id('test_Text1')
           }
@@ -115,7 +115,7 @@ struct SliderSample {
               .padding({ left: 12, right: 12 })
 
             Row() {
-              ForEach(this.steps, (item) => {
+              ForEach(this.steps, (item: string) => {
                 Text(item)
                   .fontSize(18)
                   .textAlign(TextAlign.Center)

@@ -16,11 +16,11 @@
 // 用户输入名字的弹窗
 @CustomDialog
 export struct InputNameDialog {
-  controller: CustomDialogController
+  controller?: CustomDialogController
   textController: TextInputController = new TextInputController()
-  confirm: () => void
-  name: string
-  type: number
+  confirm: () => void = () => {}
+  name: string = ''
+  type: number = 0
 
   aboutToAppear() {
     if (this.name) {
@@ -85,7 +85,7 @@ export struct InputNameDialog {
         .id('cancel')
         .fontSize(20)
         .onClick(() => {
-          this.controller.close()
+          this.controller?.close()
         })
     }
     .width('100%')

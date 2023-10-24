@@ -52,7 +52,7 @@ export struct VectorView {
             .height(72)
             .width('100%')
             .margin({ bottom: 20 })
-          }, (item, index) => JSON.stringify(item) + index)
+          }, (item: Information, index: number) => JSON.stringify(item) + index)
         }
         .width('100%')
         .layoutWeight(1)

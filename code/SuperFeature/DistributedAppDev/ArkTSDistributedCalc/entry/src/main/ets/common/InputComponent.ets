@@ -21,35 +21,39 @@ export struct InputComponent {
   build() {
     Stack({ alignContent: this.isLand ? Alignment.BottomStart : Alignment.TopEnd }) {
       Column() {
-        Scroll() {
+        Row() {
           Text(this.expression)
+            .margin({ top: '3%' })
+            .height('100%')
+            .width('100%')
             .id('expression')
-            .maxLines(1)
             .opacity(0.9)
             .fontWeight(400)
             .textAlign(TextAlign.Start)
-            .fontSize(this.isLand ? 50 : 35)
+            .fontSize(this.isLand ? '50px' : '35px')
         }
+        .height('48%')
         .width('90%')
-        .scrollable(ScrollDirection.Horizontal)
-        .align(this.isLand ? Alignment.Start : Alignment.End)
-        Scroll() {
+        .align(this.isLand ? Alignment.End : Alignment.Start)
+        Row() {
           Text(this.result)
+            .margin({ top: '1%' })
+            .height('100%')
+            .width('100%')
             .id('result')
-            .maxLines(1)
             .opacity(0.38)
             .textAlign(TextAlign.Start)
-            .fontSize(this.isLand ? 45 : 30)
+            .fontSize(this.isLand ? '50px' : '31px')
             .margin(this.isLand ? { bottom: 64 } : {})
         }
+        .height('46%')
         .width('90%')
-        .scrollable(ScrollDirection.Horizontal)
-        .align(this.isLand ? Alignment.Start : Alignment.End)
+        .align(this.isLand ? Alignment.End : Alignment.Start)
       }
       .width('100%')
       .align(Alignment.Center)
     }
     .width(this.isLand ? '34%' : '100%')
-    .height(this.isLand ? '100%' : '30%')
+    .height(this.isLand ? '100%' : '34%')
   }
 }

@@ -12,16 +12,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility'
-import rpc from '@ohos.rpc'
-import Logger from '../model/Logger'
-import { APPLICATION_BUNDLE_NAME, APPLICATION_ABILITY_NAME, APPLICATION_SERVICE_NAME, MusicSharedEventCode, MusicConnectEvent } from '../common/MusicSharedDefinition'
+import rpc from '@ohos.rpc';
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import Logger from '../model/Logger';
+import {
+  APPLICATION_BUNDLE_NAME,
+  APPLICATION_ABILITY_NAME,
+  APPLICATION_SERVICE_NAME,
+  MusicSharedEventCode,
+  MusicConnectEvent
+} from '../common/MusicSharedDefinition';
 
 const TAG: string = 'ServiceAbility'
 const CONNECT_REMOTE_TIMEOUT = 10000
 
+let remoteProxy: rpc.RemoteProxy = null;
+
 class DistributedMusicServiceExtension extends rpc.RemoteObject {
   private context
+
   constructor(des, context) {
     super(des)
     this.context = context
@@ -35,43 +44,54 @@ class DistributedMusicServiceExtension extends rpc.RemoteObject {
           if (remote === null) {
             Logger.info(TAG, 'Remote is null')
           }
-          globalThis.viewThis.remoteProxy = remote;
+          remoteProxy = remote as rpc.RemoteProxy;
           clearTimeout(timeoutId)
-          if (typeof(globalThis.viewThis) === 'object' &&
-            typeof(globalThis.viewThis.remoteServiceExtensionConnectEvent) === 'function') {
-            globalThis.viewThis.remoteServiceExtensionConnectEvent(MusicConnectEvent.EVENT_CONNECT)
+          let remoteServiceExtensionConnectEvent = AppStorage.Get<(event: string) => void>('remoteServiceExtensionConnectEvent');
+          if (remoteServiceExtensionConnectEvent === undefined) {
+            Logger.info(TAG, `Connect remote service callback is ${JSON.stringify(remoteServiceExtensionConnectEvent)}`);
+            return;
           }
+          remoteServiceExtensionConnectEvent(MusicConnectEvent.EVENT_CONNECT);
         },
         onDisconnect(elementName): void {
           Logger.info(TAG, `ServiceExtension has onDisconnected,elementName= ${JSON.stringify(elementName)}`)
           clearTimeout(timeoutId)
-          if (typeof(globalThis.viewThis) === 'object' &&
-            typeof(globalThis.viewThis.remoteServiceExtensionConnectEvent) === 'function') {
-            globalThis.viewThis.remoteServiceExtensionConnectEvent(MusicConnectEvent.EVENT_DISCONNECT)
+          remoteProxy = null;
+          let remoteServiceExtensionConnectEvent = AppStorage.Get<(event: string) => void>('remoteServiceExtensionConnectEvent');
+          if (remoteServiceExtensionConnectEvent === undefined) {
+            Logger.info(TAG, `Disconnect remote service callback is ${JSON.stringify(remoteServiceExtensionConnectEvent)}`);
+            return;
           }
+          remoteServiceExtensionConnectEvent(MusicConnectEvent.EVENT_DISCONNECT);
         },
         onFailed(code): void {
           Logger.info(TAG, `ServiceExtension has onFailed, code= ${JSON.stringify(code)}`)
           clearTimeout(timeoutId)
-          if (typeof(globalThis.viewThis) === 'object' &&
-            typeof(globalThis.viewThis.remoteServiceExtensionConnectEvent) === 'function') {
-            globalThis.viewThis.remoteServiceExtensionConnectEvent(MusicConnectEvent.EVENT_FAILED)
+          remoteProxy = null;
+          let remoteServiceExtensionConnectEvent = AppStorage.Get<(event: string) => void>('remoteServiceExtensionConnectEvent');
+          if (remoteServiceExtensionConnectEvent === undefined) {
+            Logger.info(TAG, `Failed remote service callback is ${JSON.stringify(remoteServiceExtensionConnectEvent)}`);
+            return;
           }
+          remoteServiceExtensionConnectEvent(MusicConnectEvent.EVENT_FAILED);
         }
       }
 
       this.context.connectServiceExtensionAbility(want, connectOptions)
       let timeoutId = setTimeout(() => {
         Logger.info(TAG, 'Connect remote service extension timeout')
-        if (typeof(globalThis.viewThis) === 'object' &&
-          typeof(globalThis.viewThis.remoteServiceExtensionConnectEvent) === 'function') {
-          globalThis.viewThis.remoteServiceExtensionConnectEvent(MusicConnectEvent.EVENT_TIMEOUT)
+        let remoteServiceExtensionConnectEvent = AppStorage.Get<(event: string) => void>('remoteServiceExtensionConnectEvent');
+        if (remoteServiceExtensionConnectEvent === undefined) {
+          Logger.info(TAG, `Timeout remote service callback is ${JSON.stringify(remoteServiceExtensionConnectEvent)}`);
+          return;
         }
+        remoteServiceExtensionConnectEvent(MusicConnectEvent.EVENT_TIMEOUT);
       }, CONNECT_REMOTE_TIMEOUT)
     } catch (err) {
       Logger.info(TAG, `ConnectServiceExtensionAbility has failed, want= ${JSON.stringify(want)}, err= ${JSON.stringify(err)}`)
     }
   }
+
   stopServiceAbility(want): void {
     this.context.stopServiceExtensionAbility(want).then(() => {
       Logger.info(TAG, `Stop service has been succeeded, want= ${JSON.stringify(want)}`)
@@ -79,10 +99,11 @@ class DistributedMusicServiceExtension extends rpc.RemoteObject {
       Logger.info(TAG, `Stop service has been failed, want= ${JSON.stringify(want)}, err= ${JSON.stringify(err)}`)
     })
   }
+
   onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, options: rpc.MessageOption): boolean {
     if (code === MusicSharedEventCode.START_DISTRIBUTED_MUSIC_SERVICE) {
       let deviceId = data.readString()
-      let stringJson:string = data.readString()
+      let stringJson: string = data.readString()
       let jsonData = JSON.parse(stringJson)
       let params = {
         uri: jsonData.uri,
@@ -106,27 +127,37 @@ class DistributedMusicServiceExtension extends rpc.RemoteObject {
       }
       this.stopServiceAbility(want)
     } else if (code === MusicSharedEventCode.PLAY_MUSIC_SERVICE) {
-      if (globalThis.viewThis.remoteProxy === null) {
+      if (remoteProxy === null) {
         Logger.info(TAG, 'Play local is null')
         return false
       }
       let option = new rpc.MessageOption()
       let data = new rpc.MessageParcel()
       let reply = new rpc.MessageParcel()
-      globalThis.viewThis.remoteProxy.sendRequest(MusicSharedEventCode.PLAY_MUSIC_SERVICE_REMOTE, data, reply, option)
+      remoteProxy.sendRequest(MusicSharedEventCode.PLAY_MUSIC_SERVICE_REMOTE, data, reply, option);
     } else if (code === MusicSharedEventCode.PAUSE_MUSIC_SERVICE) {
-      if (globalThis.viewThis.remoteProxy === null) {
+      if (remoteProxy === null) {
         Logger.info(TAG, 'Pause local is null')
         return false
       }
       let option = new rpc.MessageOption()
       let data = new rpc.MessageParcel()
       let reply = new rpc.MessageParcel()
-      globalThis.viewThis.remoteProxy.sendRequest(MusicSharedEventCode.PAUSE_MUSIC_SERVICE_REMOTE, data, reply, option)
+      remoteProxy.sendRequest(MusicSharedEventCode.PAUSE_MUSIC_SERVICE_REMOTE, data, reply, option);
     } else if (code === MusicSharedEventCode.PLAY_MUSIC_SERVICE_REMOTE) {
-      globalThis.viewThis.musicPlay()
+      let musicPlay = AppStorage.Get<() => void>('musicPlay');
+      if (musicPlay === undefined) {
+        Logger.error(TAG, 'get play callback form app storage falied');
+        return false;
+      }
+      musicPlay();
     } else if (code === MusicSharedEventCode.PAUSE_MUSIC_SERVICE_REMOTE) {
-      globalThis.viewThis.musicPause()
+      let musicPause = AppStorage.Get<() => void>('musicPause');
+      if (musicPause === undefined) {
+        Logger.error(TAG, 'get pause callback form app storage falied');
+        return false;
+      }
+      musicPause();
     } else if (code === MusicSharedEventCode.STOP_LOCAL_SERIVCE) {
       this.context.terminateSelf().then(() => {
         Logger.info(TAG, 'TerminateSelf service extension has been succeeded')
@@ -156,6 +187,7 @@ export default class ServiceAbility extends ServiceExtensionAbility {
       })
     }
   }
+
   onDestroy(): void {
     Logger.info(TAG, 'ServiceAbility onDestroy')
   }

@@ -13,29 +13,32 @@
  * limitations under the License.
  */
 
-import { keySourceListType, } from '../model/keyboardKeyData';
-import { KeyStyle } from '../common/StyleConfiguration';
+import { keySourceListType, } from '../model/KeyboardKeyData';
+import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
 import { InputHandler } from '../model/KeyboardController';
+
+
+@Styles function pressedStyles() {
+  .backgroundColor($r('app.color.key_item_normal_pressed'))
+}
+
+@Styles function normalStyles() {
+  .backgroundColor($r('app.color.key_item_normal'))
+}
 
 // 无大小写的按键组件
 @Component
 export struct KeyItem {
-  private keyValue: keySourceListType;
-  @Link inputStyle: KeyStyle;
-
-  @Styles pressedStyles() {
-    .backgroundColor($r('app.color.key_item_normal_pressed'))
-  }
-
-  @Styles normalStyles() {
-    .backgroundColor($r('app.color.key_item_normal'))
-  }
+  private keyValue: keySourceListType | undefined = undefined;
+  @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Text(this.keyValue.content)
-        .fontSize(this.inputStyle.symbol_fontSize)
-        .fontColor(Color.Black)
+      if (this.keyValue) {
+        Text(this.keyValue.content)
+          .fontSize(this.inputStyle.symbol_fontSize)
+          .fontColor(Color.Black)
+      }
     }
     .backgroundColor($r('app.color.key_item_normal'))
     .borderRadius(4)
@@ -43,10 +46,12 @@ export struct KeyItem {
     .height('100%')
     .shadow({ radius: 1, color: $r('app.color.shadow'), offsetY: 3 })
     .onClick(() => {
-      InputHandler.getInstance().insertText(this.keyValue.content);
+      if (this.keyValue) {
+        InputHandler.getInstance().insertText(this.keyValue.content);
+      }
     })
     .stateStyles({
-      normal: this.normalStyles, pressed: this.pressedStyles
+      normal: normalStyles, pressed: pressedStyles
     })
   }
 }

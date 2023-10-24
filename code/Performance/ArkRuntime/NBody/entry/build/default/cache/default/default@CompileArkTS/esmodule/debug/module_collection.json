@@ -1,0 +1,16 @@
+{
+  "D:\\work\\fork\\applications_app_samples\\code\\Performance\\ArkRuntime\\NBody\\entry\\src\\main\\ets\\entryability\\EntryAbility.ets": [
+    "ohos.app.ability.UIAbility"
+  ],
+  "D:\\work\\fork\\applications_app_samples\\code\\Performance\\ArkRuntime\\NBody\\entry\\src\\main\\ets\\workers\\CalculateWorker.ts": [
+    "ohos.worker"
+  ],
+  "D:\\work\\fork\\applications_app_samples\\code\\Performance\\ArkRuntime\\NBody\\entry\\src\\main\\ets\\model\\CalculateUtil.ets": [
+    "ohos.taskpool",
+    "ohos.worker",
+    "ohos.util"
+  ],
+  "D:\\work\\fork\\applications_app_samples\\code\\Performance\\ArkRuntime\\NBody\\entry\\src\\main\\ets\\utils\\Logger.ets": [
+    "ohos.hilog"
+  ]
+}

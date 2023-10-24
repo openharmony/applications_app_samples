@@ -14,27 +14,41 @@
  */
 
 export class SwiperPicturesModel {
-  constructor(public src: Resource) {
-    this.src = src
+  public src: Resource;
+
+  constructor(src: Resource) {
+    this.src = src;
   }
 }
 
 export class CommentModel {
-  constructor(public url: Resource, public user: string, public img: Resource, public text: string) {
-    this.url = url
-    this.user = user
-    this.img = img
-    this.text = text
+  public url: Resource;
+  public user: string;
+  public img: Resource;
+  public text: string;
+
+  constructor(url: Resource, user: string, img: Resource, text: string) {
+    this.url = url;
+    this.user = user;
+    this.img = img;
+    this.text = text;
   }
 }
 
 export class ProductDataModel {
-  constructor(public id: number, public uri: Resource, public title: Resource, public info: Resource, public labels: Resource, public price: Resource) {
-    this.id = id
-    this.uri = uri
-    this.info = info
-    this.title = title
-    this.labels = labels
-    this.price = price
+  public id: number;
+  public uri: Resource;
+  public title: Resource;
+  public info: Resource;
+  public labels: Resource;
+  public price: Resource;
+
+  constructor(id: number, uri: Resource, title: Resource, info: Resource, labels: Resource, price: Resource) {
+    this.id = id;
+    this.uri = uri;
+    this.info = info;
+    this.title = title;
+    this.labels = labels;
+    this.price = price;
   }
 }

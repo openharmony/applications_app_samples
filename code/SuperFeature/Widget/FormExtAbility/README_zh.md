@@ -155,9 +155,9 @@ return formInfo.FormState.READY }。
 
 1.本示例仅支持标准系统上运行，支持设备：RK3568。
 
-2.本示例已适配API version 10版本SDK，版本号：4.0.10.7,镜像版本号：[OpenHarmony_4.0.10.7](http://download.ci.openharmony.cn/version/Master_Version/OpenHarmony_4.0.10.7/20230908_010926/version-Master_Version-OpenHarmony_4.0.10.7-20230908_010926-dayu200_monthly_img.tar.gz)。
+2.本示例为Stage模型，支持API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0 Release)。
 
-3.本示例需要使用DevEco Studio 3.1 Release (Build Version: 3.1.0.500 构建 2023年4月28日)才可编译运行。
+3.本示例需要使用DevEco Studio 版本号(4.0 Release)及以上版本才可编译运行。
 
 4.本示需要使用Full SDK编译。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南]( https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/ )。
 

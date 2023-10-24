@@ -19,10 +19,10 @@ const TAG: string = 'SelectFolderDialog';
 
 @CustomDialog
 export struct SelectFolderDialog {
-  @Consume downloadFolder: Array<string>
-  private controller: CustomDialogController
-  @State selectedFolder: string = undefined;
-  private selectFolder: (folder: string) => void
+  @Consume downloadFolder: Array<string>;
+  @State selectedFolder: string = '';
+  private controller: CustomDialogController = new CustomDialogController({ builder: null });
+  private selectFolder: (folder: string) => void = (folder: string) => {};
 
   build() {
     Column() {
@@ -34,8 +34,8 @@ export struct SelectFolderDialog {
         .opacity(0.9)
         .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
         .margin({ bottom: 12 })
-      ForEach(this.downloadFolder, (item: string, index: number) => {
-        if (index !== 0) {
+      ForEach(this.downloadFolder, (item: string, index?: number) => {
+        if (index && index !== 0) {
           Divider()
         }
         Row() {

@@ -1,0 +1,5 @@
+# ninja log v5
+5	83	7198197995741302	CMakeFiles/infoutil.dir/native_module.cpp.o	62f89ae5bf3cd248
+1	704	7198198001931346	CMakeFiles/infoutil.dir/napi_info_util.cpp.o	41b04f3766267300
+706	803	7198198002931246	D:/work/fork/applications_app_samples/code/SuperFeature/Widget/FormGame/entry/build/default/intermediates/cmake/default/obj/armeabi-v7a/libinfoutil.so	9af6419637dc7a5f
+4	94	7198198355685962	D:/work/fork/applications_app_samples/code/SuperFeature/Widget/FormGame/entry/build/default/intermediates/cmake/default/obj/armeabi-v7a/libinfoutil.so	9af6419637dc7a5f

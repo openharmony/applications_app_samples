@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-import { FullPage } from '@ohos/video-component'
+import { FullPage } from '@ohos/video-component';
 
 @Entry
 @Component
 struct Detail {
   build() {
     Column() {
-      FullPage()
+      FullPage();
     }
   }
 }

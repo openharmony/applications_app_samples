@@ -17,23 +17,17 @@ import LazyDataSource from '../utils/LazyDataSource';
 @Component
 export default struct OperationListView {
   private title: string | Resource = '';
-  private operations: Array<{
-    key: string,
-    value: string
-  }> = [];
-  private handleItemClick: (index: number) => void;
+  private operations: Array<Operation> = [];
+  private handleItemClick: (index: number) => void = () => {};
   private operationData: LazyDataSource = new LazyDataSource();
 
   aboutToAppear() {
-    this.operationData['dataArray'] = this.operations;
+    this.operationData.dataArray = this.operations;
     this.operationData.notifyDataReload();
   }
 
   @Builder
-  OperationItem($$: {
-    operationInfo,
-    index
-  }) {
+  OperationItem($$: Data) {
     Column() {
       if ($$.index !== 0) {
         Divider()
@@ -70,9 +64,13 @@ export default struct OperationListView {
         .fontSize(20)
         .fontColor($r('app.color.gray'))
       Column() {
-        LazyForEach(this.operationData, (item, index) => {
-          this.OperationItem({ operationInfo: item, index: index });
-        }, item => item.key)
+        List() {
+          LazyForEach(this.operationData, (item: ESObject, index: number) => {
+            ListItem() {
+              this.OperationItem(new Data(item, index));
+            }
+          }, (item: ESObject) => item.key)
+        }
       }
       .width('95%')
       .backgroundColor($r('app.color.white'))
@@ -80,5 +78,20 @@ export default struct OperationListView {
       .padding(10)
       .border({ color: $r('app.color.white'), width: 1, radius: 15 })
     }
+  }
+}
+
+class Operation {
+  key: string = '';
+  value: string = '';
+}
+
+class Data {
+  operationInfo: Operation = new Operation();
+  index: number = 0;
+
+  constructor(operationInfo: Operation, index: number) {
+    this.operationInfo = operationInfo;
+    this.index = index;
   }
 }

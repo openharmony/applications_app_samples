@@ -23,16 +23,16 @@ import Logger from '../../utils/Logger'
  */
 @Component
 export default struct ThumbnailImage {
-  @State thumbnail: PixelMap = undefined
+  @State thumbnail: PixelMap | null = null
   // 私有成员变量使用private修饰
-  private fileAsset: mediaLibrary.FileAsset
+  private fileAsset?: mediaLibrary.FileAsset
 
   async aboutToAppear() {
     if (this.fileAsset == undefined) {
-      Logger.error('fileAsset undefined')
+      Logger.error('fileAsset undefined');
       return
     }
-    this.thumbnail = await FileManager.getThumbnail(this.fileAsset)
+    this.thumbnail = await FileManager.getThumbnail(this.fileAsset);
   }
 
   build() {

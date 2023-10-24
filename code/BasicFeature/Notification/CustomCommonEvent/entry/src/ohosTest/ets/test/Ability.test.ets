@@ -15,6 +15,7 @@
 
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import commonEventManager from '@ohos.commonEventManager';
+import common from '@ohos.app.ability.common';
 import { describe, it, expect } from '@ohos/hypium';
 import { Driver, ON, MatchPattern } from '@ohos.UiTest';
 import historyFeature from '../../../main/ets/feature/HistoryFeature';
@@ -33,7 +34,7 @@ commonEventManager.Support.COMMON_EVENT_SCREEN_ON
 ];
 
 export default function abilityTest() {
-  let driver = Driver.create();
+  let driver: Driver = Driver.create();
   describe('AbilityTest', () => {
     it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}StartAbility_001 begin`)

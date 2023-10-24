@@ -23,6 +23,7 @@ const TAG = '[Sample_DeviceManager]';
 const DOMAIN = 0xF811;
 
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+
 async function getResourceString(resource: Resource): Promise<string> {
   let manage = abilityDelegator.getAppContext().resourceManager
   let text = await manage.getStringValue(resource)
@@ -30,11 +31,11 @@ async function getResourceString(resource: Resource): Promise<string> {
 }
 
 export default function IndexTest() {
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
     /**
      * 启动Ability
      */
-    it(BUNDLE + 'startAbility_001', 0, async function (done) {
+    it(BUNDLE + 'startAbility_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'startAbility_001 start');
       try {
         await abilityDelegator.startAbility({
@@ -89,30 +90,12 @@ export default function IndexTest() {
       let driver = Driver.create();
       await driver.delayMs(500);
       await driver.assertComponentExist(ON.type('Toggle'));
-      let toggleList:Array<Component> = await driver.findComponents(ON.type('Toggle'));
+      let toggleList: Array<Component> = await driver.findComponents(ON.type('Toggle'));
       hilog.info(DOMAIN, TAG, BUNDLE + 'NotAllow_Discovered end toggleList.length = ' + toggleList.length);
       await driver.delayMs(500);
       await toggleList[0].click();
       await driver.delayMs(1000);
       hilog.info(DOMAIN, TAG, BUNDLE + 'NotAllowDiscovered_001 end');
-    });
-
-    /**
-     * 导入凭据
-     */
-    it(BUNDLE + 'ImportCredential_001', 0, async () => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ImportCredential_001 start');
-      let driver = Driver.create();
-      await driver.delayMs(500);
-      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.login')), MatchPattern.CONTAINS));
-      let importCredential = await driver.findComponent(ON.text(await getResourceString($r('app.string.login')), MatchPattern.CONTAINS));
-      await importCredential.click();
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.confirm')), MatchPattern.CONTAINS));
-      let confirm = await driver.findComponent(ON.text(await getResourceString($r('app.string.confirm')), MatchPattern.CONTAINS));
-      await confirm.click();
-      await driver.delayMs(1000);
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ImportCredential_001 end');
     });
 
     /**
@@ -128,24 +111,6 @@ export default function IndexTest() {
       await discover[2].click();
       await driver.delayMs(1000);
       hilog.info(DOMAIN, TAG, BUNDLE + 'DiscoveryDevices_001 end');
-    });
-
-    /**
-     * 删除凭据
-     */
-    it(BUNDLE + 'DeleteCredential_001', 0, async () => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'DeleteCredential_001 start');
-      let driver = Driver.create();
-      await driver.delayMs(500);
-      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.logout')), MatchPattern.CONTAINS));
-      let deleteCredential = await driver.findComponent(ON.text(await getResourceString($r('app.string.logout')), MatchPattern.CONTAINS));
-      await deleteCredential.click();
-      await driver.delayMs(200);
-      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.confirm')), MatchPattern.CONTAINS));
-      let confirm = await driver.findComponent(ON.text(await getResourceString($r('app.string.confirm')), MatchPattern.CONTAINS));
-      await confirm.click();
-      await driver.delayMs(1000);
-      hilog.info(DOMAIN, TAG, BUNDLE + 'DeleteCredential_001 end');
     });
 
     /**

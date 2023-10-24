@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
+import router from '@ohos.router';
 
 // Page title bar
 @Component
 export struct TitleBar {
-  private title: Resource
+  private title!: Resource;
 
   build() {
     Column() {
@@ -30,7 +30,8 @@ export struct TitleBar {
           .objectFit(ImageFit.Contain)
           .onClick(() => {
             router.back()
-          }).id('backBtn')
+          })
+          .id('backBtn')
         Text(this.title)
           .fontSize(20)
           .layoutWeight(1)

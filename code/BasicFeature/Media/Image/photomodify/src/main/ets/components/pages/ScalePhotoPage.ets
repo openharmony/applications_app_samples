@@ -20,16 +20,18 @@ const SCALE_COUNT: number = 3;
 
 @Component
 export struct ScalePhotoPage {
-  @Link pixelMap: PixelMap;
+  @Link pixelMap: PixelMap | null;
   @State scaleCount: number = SCALE_COUNT; // 缩小次数
   @State amplificationCount: number = 0; // 放大次数
   @State canClick: boolean = true;
   @Link dpi: string;
-  private tempPixelMap: PixelMap = undefined;
+  private tempPixelMap: PixelMap | undefined | null = undefined;
 
   async computeDpi() {
-    const imageInfo: image.ImageInfo = await this.pixelMap.getImageInfo();
-    this.dpi = imageInfo.size.width + '*' + imageInfo.size.height;
+    if (this.pixelMap !== null && this.pixelMap !== undefined) {
+      const imageInfo: image.ImageInfo = await this.pixelMap.getImageInfo();
+      this.dpi = imageInfo.size.width + '*' + imageInfo.size.height;
+    }
   }
 
   build() {
@@ -56,7 +58,7 @@ export struct ScalePhotoPage {
             }
             if (this.canClick) {
               this.canClick = false;
-              await this.pixelMap.scale(0.8, 0.8);
+              await this.pixelMap?.scale(0.8, 0.8);
               this.computeDpi();
               setTimeout(() => {
                 this.canClick = true;
@@ -69,7 +71,7 @@ export struct ScalePhotoPage {
             }
             if (this.canClick) {
               this.canClick = false;
-              await this.pixelMap.scale(1.25, 1.25);
+              await this.pixelMap?.scale(1.25, 1.25);
               this.computeDpi();
               setTimeout(() => {
                 this.canClick = true;

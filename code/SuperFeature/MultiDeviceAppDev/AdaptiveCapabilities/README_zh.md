@@ -89,48 +89,49 @@ entry/src/main/ets/
 |   |---resourceQualifier
 |   |   |---ResourceQualifier.ets                        // 资源文件使用
 |   |---responsiveLayout
+|   |   |---ResponsiveLayoutIndex.ets                    
 |   |   |---breakpoint
 |   |   |   |---BreakpointSample.ets                     // 断点
 |   |   |---mediaQuery
 |   |   |   |---MediaQuerySample.ets                     // 媒体查询
-|   |   |---typicalScene
-|   |   |   |---banner
-|   |   |   |   |---BannerSample.ets                     // 广告栏
-|   |   |   |---bigImage
-|   |   |   |   |---BigImageSample.ets                   // 大图浏览
-|   |   |   |---diversion
-|   |   |   |   |---DiversionSample.ets                  // 挪移布局
-|   |   |   |---header
-|   |   |   |   |---HeaderSample.ets                     // 顶部布局
-|   |   |   |---indentation
-|   |   |   |   |---IndentationSample.ets                // 缩进布局
-|   |   |   |---multiLaneList
-|   |   |   |   |---MultiLaneListSample.ets              // 多列列表
-|   |   |   |---operationEntries
-|   |   |   |   |---OperationEntriesSample.ets           // 操作入口
-|   |   |   |---repeat
-|   |   |   |   |---RepeatSample.ets                     // 重复布局
-|   |   |   |---responsiveGrid
-|   |   |   |   |---ResponsiveGridSample.ets             // 网格视图
-|   |   |   |---sidebar
-|   |   |   |   |---SidebarSample.ets                    // 侧边栏
-|   |   |   |---tabs
-|   |   |   |   |---TabsSample.ets                       // 页签布局
-|   |   |   |---multiScene                               
-|   |   |   |   |---data	
-|   |   |   |   |   |---apliications	
-|   |   |   |   |   |   |---Apliications.ets		
-|   |   |   |   |   |---home
-|   |   |   |   |   |   |---Home.ets					
-|   |   |   |   |---pages    
-|   |   |   |   |   |---apliications
-|   |   |   |   |   |   |---Apliications.ets	
-|   |   |   |   |   |---home	
-|   |   |   |   |   |   |---Home.ets
-|   |   |   |   |   |---player	
-|   |   |   |   |   |   |---Player.ets
-|   |   |   |   |   |---MultiScene.ets	                 // 一多典型场景
-|   |   |   |---TypicalSceneIndex.ets                    // 典型布局场景
+|   |---typicalScene
+|   |   |---banner
+|   |   |   |---BannerSample.ets                         // 广告栏
+|   |   |---bigImage
+|   |   |   |---BigImageSample.ets                       // 大图浏览
+|   |   |---diversion
+|   |   |   |---DiversionSample.ets                      // 挪移布局
+|   |   |---header
+|   |   |   |---HeaderSample.ets                         // 顶部布局
+|   |   |---indentation
+|   |   |   |---IndentationSample.ets                    // 缩进布局
+|   |   |---multiLaneList
+|   |   |   |---MultiLaneListSample.ets                  // 多列列表
+|   |   |---multiScene                               
+|   |   |   |---data	
+|   |   |   |   |---apliications	
+|   |   |   |   |   |---Apliications.ets		
+|   |   |   |   |---home
+|   |   |   |   |   |---Home.ets					
+|   |   |   |---pages    
+|   |   |   |   |---apliications
+|   |   |   |   |   |---Apliications.ets	
+|   |   |   |   |---home	
+|   |   |   |   |   |---Home.ets
+|   |   |   |   |---player	
+|   |   |   |   |   |---Player.ets
+|   |   |   |   |---MultiScene.ets	                     // 一多典型场景
+|   |   |---operationEntries
+|   |   |   |---OperationEntriesSample.ets               // 操作入口
+|   |   |---repeat
+|   |   |   |---RepeatSample.ets                         // 重复布局
+|   |   |---responsiveGrid
+|   |   |   |---ResponsiveGridSample.ets                 // 网格视图
+|   |   |---sidebar
+|   |   |   |---SidebarSample.ets                        // 侧边栏
+|   |   |---tabs
+|   |   |   |---TabsSample.ets                           // 页签布局
+|   |   |---TypicalSceneIndex.ets                        // 典型布局场景
 ```
 ### 具体实现
 
@@ -148,11 +149,11 @@ entry/src/main/ets/
 
 ### 约束与限制
 
-1.本示例仅支持标准系统上运行。
+1.本示例仅支持标准系统上运行，支持设备：RK3568。
 
-2.本示例为Stage模型，已适配API version 10版本SDK，版本号：4.0.9.3，镜像版本号：OpenHarmony 4.0.9.3。
+2.本示例为Stage模型，支持API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0 Release)
 
-3.本示例需要使用DevEco Studio 3.1 Release (Build Version: 3.1.0.500, built on April 28, 2023)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 版本号(4.0 Release)及以上版本才可编译运行。
 
 4.本示例在开发板上运行时，可以修改开发板系统配置文件以使能应用窗口能力。
 

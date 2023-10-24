@@ -65,9 +65,9 @@ uitest
 ### 约束与限制
 1.本示例仅支持标准系统上运行。
 
-2.本示例从API version 9 版本SDK起开始支持，历史SDK版本不适用.
+2.本示例从API version 10 版本SDK起开始支持，SDK版本号(API Version 10 Release),镜像版本号(4.0Release)。
 
-3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 版本号(4.0Release)及以上版本才可编译运行。
 
 ### 下载
 

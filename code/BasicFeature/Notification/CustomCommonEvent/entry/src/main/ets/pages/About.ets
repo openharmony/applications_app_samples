@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-import consts from '../module/Consts'
 import { Header } from '../component/Header'
 
 class HeaderType {

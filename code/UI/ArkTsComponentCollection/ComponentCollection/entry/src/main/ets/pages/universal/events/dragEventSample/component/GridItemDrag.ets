@@ -15,13 +15,14 @@
 
 @Component
 export struct GridItemDrag {
-  @State numbers: string[] = Array.apply(null, { length: 15 }).map(function (item, i) {
+  @State numbers: string[] = new Array(15).fill('').map((item: string, i: number) => {
     return i.toString()
-  })
-  @State dragIndex: number = -1
+  });
+  @State dragIndex: number = -1;
 
   // 自定义拖拽过程中显示的内容
-  @Builder pixelMapBuilder(item) {
+  @Builder
+  pixelMapBuilder(item: string) {
     Text(item)
       .fontSize(16)
       .width(80)
@@ -31,12 +32,14 @@ export struct GridItemDrag {
   }
 
   changeIndex(index1: number, index2: number) {
-    [this.numbers[index1], this.numbers[index2]] = [this.numbers[index2], this.numbers[index1]]
+    let temp = this.numbers[index1];
+    this.numbers[index1] = this.numbers[index2];
+    this.numbers[index2] = temp;
   }
 
   build() {
     Grid() {
-      ForEach(this.numbers, (item, index) => {
+      ForEach(this.numbers, (item: string, index) => {
         GridItem() {
           Text(item)
             .id('gridItem' + index)
@@ -47,7 +50,7 @@ export struct GridItemDrag {
             .textAlign(TextAlign.Center)
         }
         .visibility(this.dragIndex === index ? Visibility.Hidden : Visibility.Visible)
-      }, item => item)
+      }, (item: string) => item)
     }
     .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
     .rowsTemplate('1fr 1fr 1fr')

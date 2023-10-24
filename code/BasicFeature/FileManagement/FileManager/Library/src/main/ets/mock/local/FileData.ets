@@ -16,15 +16,15 @@
 // 文件价\文件结构
 export class FileStructure {
   // 名字
-  public name: string
+  public name: string = "";
   // 时间
-  public time: string
+  public time: string = "";
   // 子文件数量
-  public childrenNum: number
+  public childrenNum?: number
   // 数据类型 1：文件夹、2：文件
-  public type: number
+  public type: number = 0;
   // 文件大小
-  public size: string
+  public size?: string
   // 处理日期格式
   private dateFormat(time: Date): string {
     let date = time
@@ -55,26 +55,26 @@ export class FileStructure {
 }
 
 // 待删除的目录结构
-export type DeletedData = {
-  path: string
-  type: number
+export interface DeletedData {
+  path: string;
+  type: number;
 }
 
 // 移动文件的结构
-export type FileType = {
+export interface FileType  {
   // 路径---完整路径，用于打开或者直接创建copy
-  filePath: string
+  filePath: string;
   // 名字---拼接到目标路径下
-  fileName: string
+  fileName: string;
   // 类型---判断是否进入递归
-  type: number
+  type: number;
 }
 
 // 子目录结构
-export type SubDirectoryType = {
-  name: string,
-  type: number,
-  time: Date,
-  childrenNum: number,
-  fileSize: string
+export interface SubDirectoryType  {
+  name: string;
+  type: number;
+  time: Date;
+  childrenNum?: number;
+  fileSize?: string;
 }

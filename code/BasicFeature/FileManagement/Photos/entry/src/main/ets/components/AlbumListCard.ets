@@ -24,15 +24,15 @@ const TAG = 'AlbumListCard'
 export struct AlbumListCard {
   @State useAlt: boolean = false;
   @Consume broadCast: Broadcast;
-  item: AlbumDataItem;
-  @State thumbnail: PixelMap = undefined;
-  @State mediaRes: Resource = undefined;
+  item: AlbumDataItem = new AlbumDataItem('',0,'',0,'',0,0);
+  @State thumbnail: PixelMap | undefined = undefined;
+  @State mediaRes: Resource | undefined = undefined;
 
   aboutToAppear(): void {
     Log.info(TAG, 'album mediaSet ' + JSON.stringify(this.item));
     this.item.load().then<void, void>(async (): Promise<void>  => {
       this.thumbnail = await this.item.getThumbnail();
-      Log.error(TAG,'this.thumbnail：'+this.thumbnail)
+      Log.error(TAG,'this.thumbnail：'+this.thumbnail);
     })
     this.item.getVideoCount().then<void, void>((videoCount: number): void  => {
       this.mediaRes = this.showMediaRes(videoCount);

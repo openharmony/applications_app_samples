@@ -14,8 +14,8 @@
  */
 
 interface MaterialData {
-  getResource(): Resource;
-  getName(): Resource;
+  getResource(): Resource | undefined;
+  getName(): Resource | undefined;
 }
 
 class FontColorData implements MaterialData {
@@ -27,11 +27,11 @@ class FontColorData implements MaterialData {
     this.name = name;
   }
 
-  getResource(): Resource {
+  getResource(): Resource | undefined {
     return this.fontColor;
   }
 
-  getName(): Resource {
+  getName(): Resource | undefined {
     return this.name;
   }
 }
@@ -44,11 +44,11 @@ class ImageData implements MaterialData {
     this.image = image;
   }
 
-  getResource(): Resource {
+  getResource(): Resource | undefined {
     return this.image;
   }
 
-  getName(): Resource {
+  getName(): Resource | undefined {
     return this.name;
   }
 }

@@ -13,44 +13,49 @@
  * limitations under the License.
  */
 
-import UIAbility from '@ohos.app.ability.UIAbility'
-import Window from '@ohos.window'
-import { Logger } from '../utils/Logger'
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import hilog from '@ohos.hilog';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import window from '@ohos.window';
+
+const TAG = '[Sample_ResourceManager]';
+const DOMAIN = 0xFF00;
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want, launchParam) {
-    Logger.info('Ability onCreate')
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    hilog.info(DOMAIN, TAG, '%{public}s', 'Ability onCreate');
   }
 
   onDestroy() {
-    Logger.info('Ability onDestroy')
+    hilog.info(DOMAIN, TAG, '%{public}s', 'Ability onDestroy');
   }
 
-  onWindowStageCreate(windowStage: Window.WindowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
-    Logger.info('Ability onWindowStageCreate')
-    AppStorage.SetOrCreate('ResMgrTitle', this.context.resourceManager.getStringSync($r("app.string.title").id));
+    hilog.info(DOMAIN, TAG, '%{public}s', 'Ability onWindowStageCreate');
+
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
-        Logger.error(`Failed to load the content. Cause: ${JSON.stringify(err)}`)
-        return
+        hilog.error(DOMAIN, TAG, 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
       }
-      Logger.info(`Succeeded in loading the content. Data: ${JSON.stringify(data)}`)
-    })
+      hilog.info(DOMAIN, TAG, 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+    });
   }
 
   onWindowStageDestroy() {
     // Main window is destroyed, release UI related resources
-    Logger.info('Ability onWindowStageDestroy')
+    hilog.info(DOMAIN, TAG, '%{public}s', 'Ability onWindowStageDestroy');
   }
 
   onForeground() {
     // Ability has brought to foreground
-    Logger.info('Ability onForeground')
+    hilog.info(DOMAIN, TAG, '%{public}s', 'Ability onForeground');
   }
 
   onBackground() {
     // Ability has back to background
-    Logger.info('Ability onBackground')
+    hilog.info(DOMAIN, TAG, '%{public}s', 'Ability onBackground');
   }
 }

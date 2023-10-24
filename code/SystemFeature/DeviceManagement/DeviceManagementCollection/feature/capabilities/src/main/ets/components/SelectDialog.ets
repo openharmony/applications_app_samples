@@ -16,12 +16,13 @@
 @CustomDialog
 export struct SelectDialog {
   private menus: Array<string> = [];
-  private doOperation: (index: number) => void;
-  controller: CustomDialogController;
+  private doOperation: (index: number) => void = () => {
+  };
+  controller?: CustomDialogController;
 
   build() {
     Column() {
-      ForEach(this.menus, (item, index) => {
+      ForEach(this.menus, (item: string, index: number) => {
         Row() {
           Button() {
             Text(item)
@@ -34,13 +35,13 @@ export struct SelectDialog {
           .type(ButtonType.Normal)
           .backgroundColor($r("app.color.white"))
           .onClick(() => {
-            this.controller.close();
+            this.controller?.close();
             this.doOperation(index);
           })
         }
         .width('100%')
         .justifyContent(FlexAlign.Start)
-      }, index => index)
+      }, (index: string) => index)
     }
     .borderRadius(20)
     .width('100%')

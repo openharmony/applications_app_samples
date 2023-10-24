@@ -16,14 +16,16 @@
 import { describe, beforeAll, it, expect, TestType } from '@ohos/hypium'
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON} from '@ohos.UiTest'
+import Want from '@ohos.app.ability.Want';
+
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const WAIT_UI_READYMS = 1000;
 
 export default function PinchEventTest() {
-  describe('PinchEventTest', function () {
-    beforeAll(async function () {
-      let want = {
+  describe('PinchEventTest', () => {
+    beforeAll(async () => {
+      let want: Want = {
         bundleName : bundleName,
         abilityName : "PinchAbility"
       }
@@ -36,12 +38,12 @@ export default function PinchEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest pinchIn  功能
      */
-    it('PinchEventTest_In', TestType.FUNCTION, async function (done) {
+    it('PinchEventTest_In', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create()
       await driver.delayMs(WAIT_UI_READYMS)
       let image1 = await driver.findComponent(ON.id('pinch_ima'))
       let bounds1 = await image1.getBounds()
-      await image1.pinchIn(0.5);
+      await image1.pinchIn(0.3);
       await driver.delayMs(WAIT_UI_READYMS)
       let image2 = await driver.findComponent(ON.id('pinch_ima'))
       let bounds2 = await image2.getBounds()
@@ -56,12 +58,12 @@ export default function PinchEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest pinchOut  功能
      */
-    it('PinchEventTest_Out', TestType.FUNCTION, async function (done) {
+    it('PinchEventTest_Out', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create()
       await driver.delayMs(WAIT_UI_READYMS)
       let image1 = await driver.findComponent(ON.id('pinch_ima'))
       let bounds1 = await image1.getBounds()
-      await image1.pinchOut(1.5);
+      await image1.pinchIn(0.8);
       await driver.delayMs(WAIT_UI_READYMS)
       let image2 = await driver.findComponent(ON.id('pinch_ima'))
       let bounds2 = await image2.getBounds()

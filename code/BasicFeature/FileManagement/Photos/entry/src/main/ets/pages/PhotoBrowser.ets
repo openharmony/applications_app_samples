@@ -82,7 +82,7 @@ struct PhotoBrowser {
   @StorageLink('isSplitMode') isSplitMode: boolean = screenManager.isSplitMode();
   @StorageLink('leftBlank') leftBlank: number[] = [0, 0, 0, 0];
   @StorageLink('entryFromHap') entryFromHap: number = Constants.ENTRY_FROM_NONE;
-  photoBrowserTransition: string;
+  photoBrowserTransition: string = '';
   @State isDataChanged:boolean = true;
   private isFromCard = false;
 
@@ -100,11 +100,11 @@ struct PhotoBrowser {
   private jumpSourceToMain: number = JumpSourceToMain.None;
 
   // time to view the current picture
-  private checkedTransition: string;
+  private checkedTransition: string = '';
 
   // When clicking quickly, only run aboutToAppear for the first time
-  private hasAppeared: boolean;
-  private albumInfo: SimpleAlbumDataItem;
+  private hasAppeared: boolean = false;
+  private albumInfo: SimpleAlbumDataItem = new SimpleAlbumDataItem('','','','','',0,0);
   private deviceName = '';
   private backFromCopy = false;
   private pullDownFlag: boolean = false;
@@ -162,7 +162,6 @@ struct PhotoBrowser {
         return;
       }
       menuContext = new MenuContext();
-      this.onDeleteEnd = (): void => this.onDeleteEndBindImpl();
       menuContext.withItems([currentPhoto])
         .withOperationEndCallback(this.onDeleteEnd)
         .withBroadCast(this.broadCast)
@@ -498,7 +497,7 @@ struct PhotoBrowser {
       Log.info(TAG, 'photoBrowser start with param');
       Log.debug(TAG, 'param: ' + JSON.stringify(param));
       if (param.pageFrom != null) {
-        this.pageFrom = parseInt(param.pageFrom.toString());
+        this.pageFrom = Number(param.pageFrom.toString());
       }
       if (this.pageFrom === Constants.ENTRY_FROM.CAMERA) {
         this.isFromCamera = true;
@@ -522,7 +521,7 @@ struct PhotoBrowser {
         this.browserDataSource.setAlbumName(this.albumInfo.displayName)
       }
 
-      let items: UserFileDataItem[];
+      let items: UserFileDataItem[] | undefined;
       if (param.viewData != null) {
         items = []
         let uriArr: string[] = String(param.viewData).split(',');
@@ -585,7 +584,6 @@ struct PhotoBrowser {
     userFileObserver.registerObserver(this.dataObserver);
     this.checkedTransition = this.photoBrowserTransition;
 
-    this.onMenuClicked = (action: Action): void => this.onMenuClickedBindImpl(action);
 
     // register event handling
     this.broadCast.on(PhotoConstants.TOGGLE_BAR, (): void => {
@@ -647,8 +645,10 @@ struct PhotoBrowser {
 
   private async dataSourceLoadFinish(): Promise<void> {
     await this.browserDataSource.reloadGroupItemData(false);
-    for(let i = 0;i < this.browserDataSource.groupDataItem.length;i++) {
-       await this.browserDataSource.groupDataItem[i].load(false);
+    if (this.browserDataSource.groupDataItem !== undefined) {
+      for (let i = 0;i < this.browserDataSource.groupDataItem.length; i++) {
+        await this.browserDataSource.groupDataItem[i].load(false);
+      }
     }
     this.onPhotoChanged(this.currentIndex);
     this.browserDataSource.notifyDataChange(this.currentIndex);
@@ -665,7 +665,7 @@ struct PhotoBrowser {
     if (params != null && params.pageType != null && this.backFromCopy) {
       Log.debug(TAG, 'MediaOperation back ' + JSON.stringify(params))
       let menuContext = new MenuContext();
-      let menuOperation: MenuOperation;
+      let menuOperation: MenuOperation | undefined = undefined;
       let currentPhoto = this.getCurrentPhoto();
       if (currentPhoto == undefined) {
         Log.warn(TAG, 'MediaOperation currentPhoto is undefined');
@@ -676,14 +676,16 @@ struct PhotoBrowser {
         albumInfo = params.albumInfo.toString();
       }
       if (params.pageType === MediaOperationType.Move) {
-        this.onMoveEnd = (err: object, count: number, total: number): Promise<void> => this.onMoveEndBindImpl(err, count, total);
         menuContext.withItems([currentPhoto])
           .withBroadCast(this.broadCast)
           .withAlbumInfo(JSON.parse(albumInfo) as SimpleAlbumDataItem)
           .withOperationEndCallback(this.onMoveEnd);
         menuOperation = new MoveMenuOperation(menuContext);
       }
-      menuOperation.doAction();
+
+      if(menuOperation !== undefined){
+        menuOperation.doAction();
+      }
     }
     this.backFromCopy = false;
   }
@@ -692,7 +694,7 @@ struct PhotoBrowser {
     this.showBars();
   }
 
-  onUserFileDataChange(changeType): void {
+  onUserFileDataChange(changeType: string): void {
     Log.info(TAG, 'onUserFileDataChange type: ' + changeType);
     this.dataSourceLoadFinish();
   }
@@ -724,11 +726,11 @@ struct PhotoBrowser {
       if (!this.isFromViewData) {
         if (this.isShowBar) {
           PhotoBrowserActionBar({
-            onMenuClicked: this.onMenuClicked,
+            onMenuClicked: (action: Action): void => this.onMenuClicked(action),
           })
           ToolBar({
             toolMenuList: $toolMenuList,
-            onMenuClicked: this.onMenuClicked,
+            onMenuClicked: (action: Action): void => this.onMenuClicked(action),
             isFromPhotoBrowser: true
           })
         }

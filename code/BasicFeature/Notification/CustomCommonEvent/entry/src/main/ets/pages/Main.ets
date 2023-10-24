@@ -20,7 +20,8 @@ import mainFeature from '../feature/MainFeature';
 import router from '@ohos.router';
 import Logger from '../module/Logger';
 import surveillanceEventsManager from '../module/SurveillanceEventsManager';
-import Base from '@ohos.base';
+import Base, { BusinessError } from '@ohos.base';
+import commonEventManager from '@ohos.commonEventManager';
 
 @Entry
 @Component
@@ -87,7 +88,10 @@ struct Main {
       let subscriberInfo: commonEvent.CommonEventSubscribeInfo = {
         events: this.feature.getCurrentValidEvents()
       };
-      commonEvent.createSubscriber(subscriberInfo, (error, subscriber) => {
+      if (subscriberInfo['events'].length === 0) {
+        return;
+      }
+      commonEvent.createSubscriber(subscriberInfo, (error: BusinessError, subscriber: commonEventManager.CommonEventSubscriber) => {
         this.validEventsSubscriber = subscriber;
         commonEvent.subscribe(subscriber, this.systemEventCallback);
       });

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px"
+     height="40px"
+     viewBox="0 0 40 40"
+     version="1.1"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>ic_mouse_static</title>
+    <defs>
+        <path
+            d="M13.5757359,8.64573593 C13.8100505,8.41142136 14.1899495,8.41142136 14.4242641,8.64573593 L26.3757359,20.5972078 C26.4882578,20.7097296 26.5514719,20.862342 26.5514719,21.0214719 C26.5514719,21.3528427 26.2828427,21.6214719 25.9514719,21.6214719 L21.337,21.621 L24.7534806,28.453122 C24.9016998,28.7494963 24.7815963,29.1099105 24.485222,29.2581297 L21.7215613,30.6402584 C21.425187,30.7884776 21.0647728,30.6683741 20.9165537,30.3719998 L17.494,23.527 L14.4242641,26.5972078 C14.3342466,26.6872253 14.2185712,26.7456858 14.0944272,26.7654693 L14,26.7729437 C13.6686292,26.7729437 13.4,26.5043146 13.4,26.1729437 L13.4,9.07 C13.4,8.91087011 13.4632141,8.75825776 13.5757359,8.64573593 Z"
+            id="path-1"></path>
+        <filter
+            x="-54.0%"
+            y="-27.3%"
+            width="207.1%"
+            height="163.7%"
+            filterUnits="objectBoundingBox"
+            id="filter-2">
+            <feMorphology
+                radius="0.6"
+                operator="dilate"
+                in="SourceAlpha"
+                result="shadowSpreadOuter1"></feMorphology>
+            <feOffset
+                dx="0"
+                dy="1"
+                in="shadowSpreadOuter1"
+                result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur
+                stdDeviation="2"
+                in="shadowOffsetOuter1"
+                result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite
+                in="shadowBlurOuter1"
+                in2="SourceAlpha"
+                operator="out"
+                result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix
+                values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.399502841 0"
+                type="matrix"
+                in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g
+        id="ic_mouse_static"
+        stroke="none"
+        stroke-width="1"
+        fill="none"
+        fill-rule="evenodd">
+        <g id="形状结合">
+            <use
+                fill="black"
+                fill-opacity="1"
+                filter="url(#filter-2)"
+                xlink:href="#path-1"></use>
+            <use
+                stroke="#FFFFFF"
+                stroke-width="1.2"
+                fill="#182431"
+                fill-rule="evenodd"
+                xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>

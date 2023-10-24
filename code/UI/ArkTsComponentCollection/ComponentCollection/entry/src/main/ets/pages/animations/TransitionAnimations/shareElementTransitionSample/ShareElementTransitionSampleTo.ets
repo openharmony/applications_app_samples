@@ -18,8 +18,8 @@ import router from '@ohos.router'
 @Entry
 @Component
 struct ShareElementTransitionSampleTo {
-  @State image: Resource = undefined
-  @State sharedTransitionID: number = -1
+  @State image: Resource | undefined = undefined;
+  @State sharedTransitionID: number = -1;
 
   build() {
     Column() {
@@ -36,7 +36,8 @@ struct ShareElementTransitionSampleTo {
   }
 
   aboutToAppear() {
-    this.image = router.getParams()['image']
-    this.sharedTransitionID = router.getParams()['id']
+    let params = router.getParams() as Record<string, string | number | Resource>;
+    this.image = params.image as Resource;
+    this.sharedTransitionID = params.id as number;
   }
 }

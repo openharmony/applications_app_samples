@@ -14,6 +14,6 @@
 */
 
 export class EmitterConst {
-  static readonly DIALOG_EVENT_ID = 1001
-  static readonly ADD_EVENT_ID = 1025
+  static readonly DIALOG_EVENT_ID: number = 1001;
+  static readonly ADD_EVENT_ID: number = 1025;
 }

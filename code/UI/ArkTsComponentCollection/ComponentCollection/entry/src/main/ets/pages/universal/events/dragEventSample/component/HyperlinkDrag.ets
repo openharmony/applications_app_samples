@@ -29,6 +29,7 @@ export struct HyperlinkDrag {
         .id('hyperlink')
         .color('#007DFF')
         .visibility(this.visible ? Visibility.Visible : Visibility.Hidden)
+        .draggable(true)
         .onDragStart(() => {
           this.visible = false
           return this.pixelMapBuilder

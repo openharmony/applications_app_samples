@@ -18,10 +18,10 @@ import { Constants } from '../constants/Constants';
 
 @Observed
 export class DeleteProgressParam {
-  currentCount: number
-  totalCount: number
-  message: Resource
-  deleteProgress: number
+  currentCount: number = 0;
+  totalCount: number = 0;
+  message: Resource | null = null;
+  deleteProgress: number = 0;
 }
 
 @CustomDialog
@@ -29,7 +29,7 @@ export struct DeleteProgressDialog {
   @StorageLink('isHorizontal') isHorizontal: boolean = screenManager.isHorizontal();
   @StorageLink('isSidebar') isSidebar: boolean = screenManager.isSidebar();
   @StorageLink('leftBlank') leftBlank: number[] = [0, 0, 0, 0];
-  controller: CustomDialogController
+  controller?: CustomDialogController;
   @Consume deleteProgressParam: DeleteProgressParam;
 
   build() {
@@ -40,7 +40,7 @@ export struct DeleteProgressDialog {
           .fontFamily($r('app.string.id_text_font_family_regular'))
           .fontColor($r('sys.color.ohos_id_color_text_primary'))
           .textOverflow({ overflow: TextOverflow.Ellipsis })
-        Text((this.deleteProgressParam.currentCount/this.deleteProgressParam.totalCount).toString())
+        Text(`${this.deleteProgressParam.currentCount}/${this.deleteProgressParam.totalCount}`)
           .fontSize($r('sys.float.ohos_id_text_size_body2'))
           .fontFamily($r('app.string.id_text_font_family_regular'))
           .flexGrow(1)

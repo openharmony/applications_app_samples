@@ -44,7 +44,7 @@ struct ImageSpanSample {
               ImageSpan($r('app.media.banner'))
                 .verticalAlign(this.imageSpanAlignment)
                 .objectFit(this.imageFit)
-                .width(400)
+                .width(300)
                 .height(350)
                 .border({ width: 1 })
               Span($r('app.string.text_content_en_last'))

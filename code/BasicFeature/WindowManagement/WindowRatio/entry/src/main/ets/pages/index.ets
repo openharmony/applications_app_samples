@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import window from '@ohos.window';
 
 @Entry
 @Component
@@ -114,13 +115,16 @@ struct Index {
           .onClick(() => {
             console.info('MyApplicationDemo ' + 'get the ratio = ' + this.windowRatio);
             try {
-              globalThis.windows.setAspectRatio(this.windowRatio, (error) => {
-                if (error.code) {
-                  console.error('MyApplicationDemo ' + 'Failed to set the aspect ratio of window. Cause:' + JSON.stringify(error));
-                  return;
-                }
-                console.info('MyApplicationDemo ' + 'Succeeded in setting the aspect ratio of window.');
-              });
+              let windows: window.Window | undefined = AppStorage.get<window.Window>('windows');
+              if (windows !== undefined) {
+                windows.setAspectRatio(this.windowRatio, (error) => {
+                  if (error.code) {
+                    console.error('MyApplicationDemo ' + 'Failed to set the aspect ratio of window. Cause:' + JSON.stringify(error));
+                    return;
+                  }
+                  console.info('MyApplicationDemo ' + 'Succeeded in setting the aspect ratio of window.');
+                });
+              }
             } catch (exception) {
               console.error('MyApplicationDemo ' + 'Failed to set the aspect ratio of window. Cause: ' + JSON.stringify(exception));
             }

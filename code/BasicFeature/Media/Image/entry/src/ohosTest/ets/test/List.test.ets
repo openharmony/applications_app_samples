@@ -13,18 +13,8 @@
  * limitations under the License.
  */
 
-import StickerTest from './Sticker.test';
-import TextTest from './Text.test';
-import ToningTest from './Toning.test';
-import RotateTest from './Rotate.test';
-import ScaleTest from './Scale.test';
-import CropTest from './Crop.test';
+import ActsAbilityTest from './Ability.test';
 
 export default function testsuite() {
-  CropTest()
-  ScaleTest()
-  RotateTest()
-  ToningTest()
-  TextTest()
-  StickerTest()
+  ActsAbilityTest()
 }

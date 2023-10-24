@@ -67,12 +67,12 @@ struct WidgetCard {
     .borderStyle(12)
     .onClick(() => {
       class ParamsData {
-        message: string = "";
+        message: string = '';
       };
 
       class ActionType {
-        action: string = "";
-        abilityName: string = "";
+        action: string = '';
+        abilityName: string = '';
         params: ParamsData = { message : '' };
       };
       let action: ActionType = {

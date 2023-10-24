@@ -22,7 +22,7 @@
     },
     {
       "name": "distributed_calculator",
-      "value": "分布式计算器"
+      "value": "计算器"
     },
     {
       "name": "distributed_permission",
@@ -30,7 +30,7 @@
     },
     {
       "name": "localhost",
-      "value": "本机(结束协同)"
+      "value": "Local device"
     }
   ]
 }

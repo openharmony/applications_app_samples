@@ -56,12 +56,12 @@ class UserFileModel {
   }
 
   async getUserAlbumItemByUri(uri: string): Promise<photoAccessHelper.Album> {
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = null
-    let album: photoAccessHelper.Album = null
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = null;
+    let album: photoAccessHelper.Album = null;
     try {
       Log.info(TAG, 'getUserAlbumItemByUri');
       let predicates = new dataSharePredicates.DataSharePredicates();
-      predicates.equalTo(photoAccessHelper.AlbumKeys.URI, uri)
+      predicates.equalTo(photoAccessHelper.AlbumKeys.URI, uri);
       let fetchOptions = {
         fetchColumns: MediaConstants.EMPTY_FETCH_COLUMNS,
         predicates: predicates
@@ -152,10 +152,11 @@ class UserFileModel {
   }
 
   async createAlbum(albumName: string): Promise<SimpleAlbumDataItem> {
-    let newAlbum:SimpleAlbumDataItem = undefined;
+    let newAlbum: SimpleAlbumDataItem = undefined;
     try {
       let album = await this.userFileMgr.createAlbum(albumName);
-      newAlbum = new SimpleAlbumDataItem(MediaConstants.ALBUM_ID_USER, album.displayName, album.albumUri, '', '', MediaConstants.ALBUM_TYPE_USER, MediaConstants.ALBUM_SUBTYPE_USER_GENERIC)
+      newAlbum = new SimpleAlbumDataItem(MediaConstants.ALBUM_ID_USER, albumName, album.albumUri,
+        '', '', MediaConstants.ALBUM_TYPE_USER, MediaConstants.ALBUM_SUBTYPE_USER_GENERIC);
     } catch (err) {
       Log.error(TAG, 'createAlbum failed with error: ' + err);
     }
@@ -166,7 +167,7 @@ class UserFileModel {
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = null;
     try {
       let predicates = new dataSharePredicates.DataSharePredicates();
-      predicates.equalTo(photoAccessHelper.AlbumKeys.ALBUM_NAME, albumName)
+      predicates.equalTo(photoAccessHelper.AlbumKeys.ALBUM_NAME, albumName);
       let fetchOptions = {
         fetchColumns: MediaConstants.EMPTY_FETCH_COLUMNS,
         predicates: predicates
@@ -197,7 +198,7 @@ class UserFileModel {
     try {
       fetchFileResult = await this.userFileMgr.getAssets(fetchOption);
       Log.debug(TAG, 'deleteAll getPhotoAssets');
-      let deleteAllGetAllObject = hiSysEventDataQueryTimedOut('deleteAllGetAllObject')
+      let deleteAllGetAllObject = hiSysEventDataQueryTimedOut('deleteAllGetAllObject');
       let fileAssets: photoAccessHelper.PhotoAsset[] = await fetchFileResult.getAllObject();
       clearTimeout(deleteAllGetAllObject);
       for (let i = 0;i < fileAssets.length; i++) {
@@ -216,7 +217,7 @@ class UserFileModel {
 
   async getAllMediaItems(): Promise<photoAccessHelper.PhotoAsset[]> {
     let fileAssets: photoAccessHelper.PhotoAsset[] = [];
-    let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = null
+    let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = null;
     try {
       let predicates = new dataSharePredicates.DataSharePredicates();
       let emptyFetchOption = {
@@ -235,12 +236,12 @@ class UserFileModel {
         photoFetchResult.close();
       }
     }
-    return fileAssets
+    return fileAssets;
   }
 
   async getAllMediaItemsByType(type: number, subType: number, albumFetchOption, fileFetchOption): Promise<photoAccessHelper.PhotoAsset[]> {
     let fileAssets: photoAccessHelper.PhotoAsset[] = [];
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = null
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = null;
     try {
       Log.info(TAG, 'getAllMediaItemsByUserFile');
       Log.info(TAG, 'type:' + type);
@@ -254,12 +255,12 @@ class UserFileModel {
       Log.info(TAG, 'get Album fetchResult, count: ' + fetchResult.getCount());
       for (let i = 0; i < fetchResult.getCount(); i++) {
         let albumAsset: photoAccessHelper.Album = await fetchResult.getObjectByPosition(i);
-        let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = null
+        let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = null;
         try {
           photoFetchResult = await albumAsset.getAssets(fileFetchOption);
           for (let i = 0; i < photoFetchResult.getCount(); i++) {
             let photoAsset = await photoFetchResult.getObjectByPosition(i);
-            fileAssets.push(photoAsset)
+            fileAssets.push(photoAsset);
             Log.info(TAG, 'getPhotoAssets successfully, file displayName: ' + photoAsset.displayName);
           }
         } catch (err) {
@@ -289,7 +290,7 @@ class UserFileModel {
     try {
       albumFetchResult = await this.userFileMgr.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.TRASH);
       let albumAsset = await albumFetchResult.getFirstObject();
-      let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = null
+      let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = null;
       try {
         let predicates = new dataSharePredicates.DataSharePredicates();
         let emptyFetchOption = {
@@ -326,7 +327,7 @@ class UserFileModel {
     Log.info(TAG, 'getMediaItemByUri');
     Log.info(TAG, 'uri:' + uri);
     let predicates = new dataSharePredicates.DataSharePredicates();
-    predicates.equalTo(photoAccessHelper.PhotoKeys.URI, uri)
+    predicates.equalTo(photoAccessHelper.PhotoKeys.URI, uri);
     let fetchOptions = {
       fetchColumns: MediaConstants.FILE_ASSET_FETCH_COLUMNS,
       predicates: predicates
@@ -354,7 +355,7 @@ class UserFileModel {
     let count = 0;
     let fetchFileResult: photoAccessHelper.FetchResult = null;
     let predicates = new dataSharePredicates.DataSharePredicates();
-    predicates.equalTo(photoAccessHelper.PhotoKeys.DISPLAY_NAME, displayName)
+    predicates.equalTo(photoAccessHelper.PhotoKeys.DISPLAY_NAME, displayName);
     let fetchOptions = {
       fetchColumns: MediaConstants.FILE_ASSET_FETCH_COLUMNS,
       predicates: predicates
@@ -362,7 +363,7 @@ class UserFileModel {
     try {
       fetchFileResult = await this.userFileMgr.getAssets(fetchOptions);
       Log.debug(TAG, 'getMediaItemCountsByDisplayName getPhotoAssets');
-      count = await fetchFileResult.getCount()
+      count = await fetchFileResult.getCount();
     } catch (err) {
       Log.error(TAG, 'getMediaItemCountsByDisplayName error:' + JSON.stringify(err));
     } finally {
@@ -385,14 +386,14 @@ class UserFileModel {
     let fetchResult: photoAccessHelper.FetchResult = null;
     try {
       let predicates = new dataSharePredicates.DataSharePredicates();
-      predicates.equalTo(photoAccessHelper.AlbumKeys.ALBUM_NAME, albumName)
+      predicates.equalTo(photoAccessHelper.AlbumKeys.ALBUM_NAME, albumName);
       let fetchOptions = {
         fetchColumns: MediaConstants.EMPTY_FETCH_COLUMNS,
         predicates: predicates
       };
       fetchResult = await this.userFileMgr.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, fetchOptions);
       Log.info(TAG, 'fetchResult' + fetchResult.getCount());
-      count = fetchResult.getCount()
+      count = fetchResult.getCount();
     } catch (err) {
       Log.error(TAG, 'getUserAlbumCountByName error:' + JSON.stringify(err));
     } finally {
@@ -425,7 +426,7 @@ class UserFileModel {
     let album = null;
     try {
       let predicates = new dataSharePredicates.DataSharePredicates();
-      predicates.equalTo(photoAccessHelper.AlbumKeys.ALBUM_NAME, albumName)
+      predicates.equalTo(photoAccessHelper.AlbumKeys.ALBUM_NAME, albumName);
       let fetchOptions = {
         fetchColumns: MediaConstants.EMPTY_FETCH_COLUMNS,
         predicates: predicates
@@ -474,14 +475,14 @@ class UserFileModel {
     await fileAsset.close(fd);
   }
 
-  async addPhotoToAlbumByUserFileMgr(albumUri: string, uri: string) {
+  async addPhotoToAlbumByUserFileMgr(albumUri: string, uri: string): Promise<void> {
     Log.info(TAG, 'addPhotoAssetsDemoPromise');
     Log.info(TAG, 'albumUri' + albumUri);
     Log.info(TAG, 'mediaItem.uri' + uri);
     try {
       let album = await this.getUserAlbumItemByUri(albumUri);
       let predicates = new dataSharePredicates.DataSharePredicates();
-      predicates.equalTo(photoAccessHelper.PhotoKeys.URI, uri)
+      predicates.equalTo(photoAccessHelper.PhotoKeys.URI, uri);
       let fetchOptions = {
         fetchColumns: MediaConstants.FILE_ASSET_FETCH_COLUMNS,
         predicates: predicates

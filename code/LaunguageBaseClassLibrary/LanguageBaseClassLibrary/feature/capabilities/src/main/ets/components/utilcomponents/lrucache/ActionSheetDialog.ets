@@ -15,10 +15,10 @@
 
 @CustomDialog
 export struct ActionSheetDialog {
-  private controller: CustomDialogController;
+  private controller?: CustomDialogController;
   private title: string = '';
-  private sheets = [];
-  private action: (key: string) => void;
+  private sheets: string[] = [];
+  private action: (key: string) => void = () => {};
 
   build() {
     Column() {
@@ -29,7 +29,7 @@ export struct ActionSheetDialog {
         .textAlign(TextAlign.Center)
         .margin({ top: 10, bottom: 10 })
       List() {
-        ForEach(this.sheets, item => {
+        ForEach(this.sheets, (item: string) => {
           ListItem() {
             Row() {
               Text('key:')
@@ -45,7 +45,7 @@ export struct ActionSheetDialog {
           }
           .width('100%')
           .onClick(() => {
-            this.controller.close();
+            this.controller?.close();
             this.action(item);
           })
         })

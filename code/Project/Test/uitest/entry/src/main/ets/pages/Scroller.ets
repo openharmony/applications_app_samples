@@ -26,7 +26,7 @@ struct ScrollExample {
         Stack({ alignContent: Alignment.TopStart }) {
           Scroll(this.scroller) {
             Column() {
-              ForEach(this.arr, (item) => {
+              ForEach(this.arr, (item: number) => {
                 Text(item.toString())
                   .width('90%')
                   .height(50)
@@ -36,7 +36,7 @@ struct ScrollExample {
                   .textAlign(TextAlign.Center)
                   .margin({ top: 10 })
                   .id("scroller_item_text")
-              }, item => item)
+              }, (item: string) => item)
             }.width('100%')
           }.id("scroll_test")
           .scrollable(ScrollDirection.Vertical)  // 滚动方向纵向
@@ -59,11 +59,6 @@ struct ScrollExample {
               this.scroller.scrollBy(0,150);
             })
             .margin({ top: 10, left: 20 })
-          Button('scroll 100')
-            .onClick(() => { // 点击后滑动到指定位置，即下滑100.0vp的距离
-              this.scroller.scrollTo({ xOffset: 0, yOffset: this.scroller.currentOffset().yOffset + 100 });
-            })
-            .margin({ top: 60, left: 20 })
           Button('back top')
             .onClick(() => { // 点击后回到顶部
               this.scroller.scrollEdge(Edge.Top);
@@ -77,25 +72,20 @@ struct ScrollExample {
         }.width('100%').height('30%').backgroundColor(0xDCDCDC)
         Stack({ alignContent: Alignment.TopStart }) {
           List({ space: 20, initialIndex: 0 }) {
-            ForEach(this.ListArr, (item) => {
+            ForEach(this.ListArr, (item:string) => {
               ListItem() {
                 Text('' + item)
                   .id("list_item_text")
                   .width('100%').height(100).fontSize(16)
                   .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
               }.editable(true)
-            }, item => item)
+            }, (item: string) => item)
           }
           Button('scroll 150')
             .onClick(() => { // 点击后下滑指定距离150.0vp
               this.scroller.scrollBy(0,150);
             })
             .margin({ top: 10, left: 20 })
-          Button('scroll 100')
-            .onClick(() => { // 点击后滑动到指定位置，即下滑100.0vp的距离
-              this.scroller.scrollTo({ xOffset: 0, yOffset: this.scroller.currentOffset().yOffset + 100 });
-            })
-            .margin({ top: 60, left: 20 })
           Button('back top')
             .onClick(() => { // 点击后回到顶部
               this.scroller.scrollEdge(Edge.Top);
