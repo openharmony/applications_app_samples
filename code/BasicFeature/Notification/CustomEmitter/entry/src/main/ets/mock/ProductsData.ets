@@ -18,7 +18,7 @@ import {
   TabTitleModel,
   ShopCartItemDataModel,
   ProductDataModel
-} from '../model/GoodsModel'
+} from '../model/GoodsModel';
 
 export const PRODUCTS_Data: GoodResponse = {
   code: 0,
@@ -35,7 +35,7 @@ export const PRODUCTS_Data: GoodResponse = {
     ],
     totalCount: -1
   },
-  error: null
+  error: ''
 }
 
 export const TAB_TITLE_DATA: Array<TabTitleModel> = [

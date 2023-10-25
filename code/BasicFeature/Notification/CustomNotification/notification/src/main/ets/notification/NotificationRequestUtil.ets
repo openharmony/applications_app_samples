@@ -22,12 +22,13 @@ class NotificationRequestUtil {
    * @param notificationContent
    * @return return the created NotificationRequest
    */
-  initBasicNotificationRequest(notificationContent: notification.NotificationContent) {
+
+  initBasicNotificationRequest(notificationContent: notification.NotificationContent): notification.NotificationRequest {
     return {
       slotType: notification.SlotType.CONTENT_INFORMATION,
       id: 1, // 通知id，默认为1
       content: notificationContent
-    }
+    };
   }
 
   /**
@@ -36,15 +37,15 @@ class NotificationRequestUtil {
    * @param notificationWantAgent
    * @return return the created NotificationRequest
    */
-  initWantAgentNotificationRequest(notificationContent: notification.NotificationContent, notificationWantAgent: WantAgent) {
+
+  initWantAgentNotificationRequest(notificationContent: notification.NotificationContent, notificationWantAgent: WantAgent): notification.NotificationRequest {
     return {
       slotType: notification.SlotType.CONTENT_INFORMATION,
       id: 1, // 通知id，默认为1
       content: notificationContent,
       wantAgent: notificationWantAgent
-    }
+    };
   }
-
 
   /**
    * init NotificationRequest width buttons
@@ -52,7 +53,7 @@ class NotificationRequestUtil {
    * @param notificationActionButtons
    * @return return the created NotificationRequest
    */
-  initButtonNotificationRequest(notificationContent: notification.NotificationContent, notificationActionButtons: notification.NotificationActionButton[]) {
+  initButtonNotificationRequest(notificationContent: notification.NotificationContent, notificationActionButtons: notification.NotificationActionButton[]): notification.NotificationRequest {
     let actionButtons = notificationActionButtons
     if (notificationActionButtons.length > 2) { // 当前通知接口最大允许有两个按钮，超过两个按钮不展示
       actionButtons = notificationActionButtons.splice(0, 2)
@@ -62,7 +63,7 @@ class NotificationRequestUtil {
       id: 1, // 通知id，默认为1
       content: notificationContent,
       actionButtons: actionButtons
-    }
+    };
   }
 }
 

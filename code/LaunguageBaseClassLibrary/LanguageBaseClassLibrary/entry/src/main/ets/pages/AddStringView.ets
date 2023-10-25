@@ -26,12 +26,16 @@ export struct AddKeyValueView {
   @State flag: string = '';
 
   aboutToAppear() {
-    let tem: string = router.getParams()['title'];
+    let tem: string = (router.getParams() as Record<string, Object>)['title'] as string;
     if (!tem) {
       return;
     }
     this.flag = tem;
-    this.title = `${getString($r('app.string.add'))}${tem.match(/.*(?=\(|（)/)[0]}`;
+    let regex: RegExp = new RegExp('.*(?=\\(|（)');
+    let matchArr: RegExpMatchArray | null = tem.match(regex);
+    if (matchArr !== null) {
+      this.title = `${getString($r('app.string.add'))}${matchArr[0]}`;
+    }
   }
 
   build() {
@@ -84,12 +88,12 @@ export struct AddKeyValueView {
               break;
           }
 
-          let event = {
+          let event: emitter.InnerEvent = {
             eventId: eventId,
             priority: emitter.EventPriority.HIGH
           };
 
-          let eventData = {
+          let eventData: emitter.EventData = {
             data: { 'value': this.value }
           };
 

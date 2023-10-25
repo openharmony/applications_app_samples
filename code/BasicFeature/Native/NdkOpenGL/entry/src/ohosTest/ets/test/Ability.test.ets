@@ -23,16 +23,21 @@ const ABILITY_NAME = 'EntryAbility';
 const TAG = 'NdkOpenGLTest';
 const DOMAIN = 0xF629;
 
+interface wantType {
+  bundleName: string;
+  abilityName: string
+}
+
 export default function abilityTest() {
   let driver = Driver.create();
   let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
-  describe('ActsAbilityTest', function () {
-    it(BUNDLE_NAME + ' StartAbility_001', 0, async function (done) {
+  describe('ActsAbilityTest', () => {
+    it(BUNDLE_NAME + ' StartAbility_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, `${BUNDLE_NAME} StartAbility_001 begin`);
       let want = {
         bundleName: BUNDLE_NAME,
         abilityName: ABILITY_NAME
-      };
+      } as wantType;
       delegator.startAbility(want, (err) => {
         hilog.info(DOMAIN, TAG, `${BUNDLE_NAME} startAbility end err ${JSON.stringify(err)}`);
       })
@@ -44,7 +49,7 @@ export default function abilityTest() {
     /**
      * 左右滑动
      */
-    it(BUNDLE_NAME + ' Swipe_001', 0, async function (done) {
+    it(BUNDLE_NAME + ' Swipe_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, '%{public}s', BUNDLE_NAME + ' Swipe_001 begin');
 
       try {
@@ -65,7 +70,7 @@ export default function abilityTest() {
     /**
      * 上下滑动
      */
-    it(BUNDLE_NAME + ' Swipe_002', 0, async function (done) {
+    it(BUNDLE_NAME + ' Swipe_002', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, '%{public}s', BUNDLE_NAME + ' Swipe_002 begin');
 
       try {
@@ -86,7 +91,7 @@ export default function abilityTest() {
     /**
      * 对角线滑动
      */
-    it(BUNDLE_NAME + ' Swipe_003', 0, async function (done) {
+    it(BUNDLE_NAME + ' Swipe_003', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, '%{public}s', BUNDLE_NAME + ' Swipe_003 begin');
 
       try {

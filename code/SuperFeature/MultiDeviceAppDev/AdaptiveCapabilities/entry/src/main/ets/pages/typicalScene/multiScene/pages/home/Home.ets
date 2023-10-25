@@ -80,7 +80,7 @@ export struct HomePage {
           Column() {
             Row() {
               Swiper(this.swiperController) {
-                ForEach(this.bannerArr, (item) => {
+                ForEach(this.bannerArr, (item: Resource) => {
                   Image(item)
                 })
               }.width('100%')
@@ -100,7 +100,7 @@ export struct HomePage {
         GridCol({ span: { sm: 12, md: 6, lg: 6 } }) {
           Column() {
             List({ space: 10, initialIndex: 0 }) {
-              ForEach(ArticlesData, (item) => {
+              ForEach(ArticlesData, (item : Articles) => {
                 ListItem() {
                   this.Item(item)
                 }

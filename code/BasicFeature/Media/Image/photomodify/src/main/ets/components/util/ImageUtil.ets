@@ -37,8 +37,8 @@ export function getContainSize(componentW: number, componentH: number, imageW: n
 }
 
 export class Size {
-  width: number;
-  height: number;
+  width: number = 0;
+  height: number = 0;
   // 缩放比
-  scale: number;
+  scale: number = 0;
 }

@@ -13,34 +13,45 @@
  * limitations under the License.
  */
 
-import { MenuType } from '../model/MenuType'
-import { sideListData } from '../model/SideListData'
-import { CommonMainTabs } from '../common/CommonMainTabs'
-import { StyleConfiguration } from '../common/Configuration'
-import { SideBarController } from '../common/SideBarController'
-import { BreakpointType, SideBarMode } from '../common/BreakpointSystem'
+import { MenuType } from '../model/MenuType';
+import { sideListData } from '../model/SideListData';
+import { CommonMainTabs } from '../common/CommonMainTabs';
+import { StyleConfiguration } from '../common/Configuration';
+import { SideBarController } from '../common/SideBarController';
+import { BreakpointType, SideBarMode } from '../common/BreakpointSystem';
 
-let storage = LocalStorage.GetShared()
+let storage = LocalStorage.GetShared();
 
 @Entry(storage)
 @Component
 struct AppStore {
-  @LocalStorageLink("currentBreakpoint") currentBreakpoint: string = 'md'
-  @LocalStorageLink("currentSideBarMode") @Watch('onCurrentSideBarModeChange') currentSideBarMode: string = 'tabs'
-  @State sideListData: MenuType[] = sideListData
-  @State currentMainIndex: number = 0
-  @State currentSubIndex: number = 0
-  mainController: TabsController = new TabsController()
-  @State sideBarWidth: number = 64
+  @LocalStorageLink("currentBreakpoint") currentBreakpoint: string = 'md';
+  @LocalStorageLink("currentSideBarMode") @Watch('onCurrentSideBarModeChange') currentSideBarMode: string = 'tabs';
+  @State sideListData: MenuType[] = sideListData;
+  @State currentMainIndex: number = 0;
+  @State currentSubIndex: number = 0;
+  mainController: TabsController = new TabsController();
+  @State sideBarWidth: number = 64;
 
   onCurrentSideBarModeChange() {
     animateTo({ duration: 300 }, () => {
       if (this.currentSideBarMode === 'list') {
-        this.sideBarWidth = new BreakpointType(0, 64, 96).GetValue(this.currentBreakpoint)
+        let sideBarWidth = new BreakpointType(0, 64, 96).GetValue(this.currentBreakpoint);
+        this.sideBarWidth = sideBarWidth === undefined ? this.sideBarWidth : sideBarWidth;
       } else {
-        this.sideBarWidth = 240
+        this.sideBarWidth = 240;
       }
     })
+  }
+
+  getMinSideBarWidth() {
+    let sideBarWidth = new SideBarMode(this.sideBarWidth, 240).GetValue(this.currentSideBarMode);
+    return sideBarWidth === undefined ? this.sideBarWidth : sideBarWidth;
+  }
+
+  getMaxSideBarWidth() {
+    let sideBarWidth = new SideBarMode(this.sideBarWidth, 280).GetValue(this.currentSideBarMode);
+    return sideBarWidth === undefined ? this.sideBarWidth : sideBarWidth;
   }
 
   build() {
@@ -74,8 +85,8 @@ struct AppStore {
               .controlButtonStyle)
             .autoHide(false)
             .sideBarWidth(this.sideBarWidth)
-            .minSideBarWidth(new SideBarMode(this.sideBarWidth, 240).GetValue(this.currentSideBarMode))
-            .maxSideBarWidth(new SideBarMode(this.sideBarWidth, 280).GetValue(this.currentSideBarMode))
+            .minSideBarWidth(this.getMinSideBarWidth())
+            .maxSideBarWidth(this.getMaxSideBarWidth())
           }
           .visibility(this.currentBreakpoint !== 'sm' ? Visibility.Visible : Visibility.None)
 
@@ -99,12 +110,12 @@ struct AppStore {
         }
       }
     }.onBreakpointChange((breakpoints: string) => {
-      this.currentBreakpoint = breakpoints
+      this.currentBreakpoint = breakpoints;
       setTimeout(() => {
         animateTo({ duration: 300 }, () => {
           if (this.currentSideBarMode === 'list') {
-            this.sideBarWidth = new
-            BreakpointType(0, 64, 96).GetValue(this.currentBreakpoint)
+            let sideBarWidth = new BreakpointType(0, 64, 96).GetValue(this.currentBreakpoint);
+            this.sideBarWidth = sideBarWidth === undefined ? this.sideBarWidth : sideBarWidth;
           }
         })
       }, 100)

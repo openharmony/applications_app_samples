@@ -24,9 +24,9 @@ const BUNDLE = 'StageModel_';
 export default function abilityTest() {
   let driver = Driver.create();
   let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
     // 启动应用
-    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+    it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}StartAbility_001 begin`);
       await startMainAbility();
       logger.info(TAG, `${BUNDLE}StartAbility_001 end`);
@@ -34,7 +34,7 @@ export default function abilityTest() {
     })
 
     // 进入DataShareExtAbility
-    it(BUNDLE + 'DataShareExtAbility_001', 0, async function (done) {
+    it(BUNDLE + 'DataShareExtAbility_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}DataShareExtAbility_001 begin`);
       await driver.assertComponentExist(ON.text('DataShareExtAbility', MatchPattern.CONTAINS));
       let btnDataShare = await driver.findComponent(ON.text('DataShareExtAbility', MatchPattern.CONTAINS));
@@ -46,7 +46,7 @@ export default function abilityTest() {
     })
 
     // DataShareExtAbility 添加、更新、删除功能
-    it(BUNDLE + 'DataShareExtAbility_002', 0, async function (done) {
+    it(BUNDLE + 'DataShareExtAbility_002', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}DataShareExtAbility_002 begin`);
       // 添加功能
       await driver.assertComponentExist(ON.id('btnAdd'));
@@ -93,7 +93,7 @@ export default function abilityTest() {
     })
 
     // AbilityContext 相关功能
-    it(BUNDLE + 'AbilityContext_001', 0, async function (done) {
+    it(BUNDLE + 'AbilityContext_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}AbilityContext_001 begin`);
       await driver.assertComponentExist(ON.text('AbilityContext', MatchPattern.CONTAINS));
       let btnAbilityContext = await driver.findComponent(ON.text('AbilityContext', MatchPattern.CONTAINS));
@@ -109,7 +109,7 @@ export default function abilityTest() {
     })
 
     // AbilityContext 相关功能
-    it(BUNDLE + 'AbilityContext_002', 0, async function (done) {
+    it(BUNDLE + 'AbilityContext_002', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}AbilityContext_002 begin`);
       await clickAndToast('disconnectAbility');
       await clickAndJump('startAbilityWithAccount');
@@ -120,7 +120,7 @@ export default function abilityTest() {
     })
 
     // AbilityContext 相关功能
-    it(BUNDLE + 'AbilityContext_003', 0, async function (done) {
+    it(BUNDLE + 'AbilityContext_003', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}AbilityContext_003 begin`);
       await clickAndToast('applicationInfo');
       await clickAndToast('cacheDir');
@@ -131,7 +131,7 @@ export default function abilityTest() {
     })
 
     // AbilityContext 相关功能
-    it(BUNDLE + 'AbilityContext_004', 0, async function (done) {
+    it(BUNDLE + 'AbilityContext_004', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}AbilityContext_004 begin`);
       await driver.assertComponentExist(ON.type('Scroll'));
       let scroll = await driver.findComponent(ON.type('Scroll'));
@@ -146,7 +146,7 @@ export default function abilityTest() {
     })
 
     // ServiceExtContext相关
-    it(BUNDLE + 'ServiceExtContext_001', 0, async function (done) {
+    it(BUNDLE + 'ServiceExtContext_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}ServiceExtContext_001 begin`);
       await driver.assertComponentExist(ON.text('ServiceExtContext', MatchPattern.CONTAINS));
       let btnAbilityContext = await driver.findComponent(ON.text('ServiceExtContext', MatchPattern.CONTAINS));
@@ -164,7 +164,7 @@ export default function abilityTest() {
     })
 
     // Bundle相关
-    it(BUNDLE + 'Bundle_001', 0, async function (done) {
+    it(BUNDLE + 'Bundle_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}Bundle_001 begin`);
       await driver.assertComponentExist(ON.text('Bundle', MatchPattern.CONTAINS));
       let btnAbilityContext = await driver.findComponent(ON.text('Bundle', MatchPattern.CONTAINS));
@@ -182,7 +182,7 @@ export default function abilityTest() {
     })
 
     // AbilityAccessCtrl相关
-    it(BUNDLE + 'AbilityAccessCtrl_001', 0, async function (done) {
+    it(BUNDLE + 'AbilityAccessCtrl_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}AbilityAccessCtrl_001 begin`);
       await driver.assertComponentExist(ON.text('AbilityAccessCtrl', MatchPattern.CONTAINS));
       let btnAbilityContext = await driver.findComponent(ON.text('AbilityAccessCtrl', MatchPattern.CONTAINS));
@@ -201,7 +201,7 @@ export default function abilityTest() {
     })
 
     // DataShareHelper相关
-    it(BUNDLE + 'DataShareHelper_001', 0, async function (done) {
+    it(BUNDLE + 'DataShareHelper_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}DataShareHelper_001 begin`);
       await driver.assertComponentExist(ON.text('DataShareHelper', MatchPattern.CONTAINS));
       let btnAbilityContext = await driver.findComponent(ON.text('DataShareHelper', MatchPattern.CONTAINS));
@@ -219,7 +219,7 @@ export default function abilityTest() {
     })
 
     // Window相关
-    it(BUNDLE + 'Window_001', 0, async function (done) {
+    it(BUNDLE + 'Window_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}Window_001 begin`);
       await driver.assertComponentExist(ON.text('Window', MatchPattern.CONTAINS));
       let btnAbilityContext = await driver.findComponent(ON.text('Window', MatchPattern.CONTAINS));
@@ -234,47 +234,46 @@ export default function abilityTest() {
       logger.info(TAG, `${BUNDLE}Window_001 end`);
       done();
     })
-
-    async function clickAndJump(text: string) {
-      let component = await scrollToSearch(text);
-      await component.click();
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('Pull up Success', MatchPattern.CONTAINS));
-      await driver.pressBack();
-      await driver.delayMs(1000);
-    }
-
-    async function clickAndToast(text: string) {
-      let component = await scrollToSearch(text);
-      await component.click();
-      await driver.waitForComponent(ON.type('Toast'), 2000);
-      await driver.delayMs(1000);
-    }
-
-    async function scrollToSearch(find: string): Promise<Component> {
-      await driver.assertComponentExist(ON.type('Scroll'));
-      let scroll = await driver.findComponent(ON.type('Scroll'));
-      let findComponent = await scroll.scrollSearch(ON.text(find));
-      return findComponent;
-    }
-
-    async function startMainAbility(): Promise<void> {
-      let want = {
-        bundleName: "ohos.samples.stagemodel",
-        abilityName: "MainAbility"
-      };
-      delegator.startAbility(want, (err) => {
-        logger.info(TAG, `${BUNDLE}startAbility end err ${JSON.stringify(err)}`);
-      });
-      await driver.delayMs(2000);
-      await delegator.getCurrentTopAbility().then((Ability) => {
-        logger.info(TAG, `${BUNDLE}get top ability`);
-        expect(Ability.context.abilityInfo.name).assertEqual('MainAbility');
-      })
-    }
-
-    function getString(res: Resource){
-      return delegator.getAppContext().resourceManager.getStringSync(res);
-    }
   })
+
+  let clickAndJump = async (text: string) => {
+    let component = await scrollToSearch(text);
+    await component.click();
+    await driver.delayMs(1000);
+    await driver.assertComponentExist(ON.text('Pull up Success', MatchPattern.CONTAINS));
+    await driver.pressBack();
+    await driver.delayMs(1000);
+  }
+
+  let clickAndToast = async (text: string) => {
+    let component = await scrollToSearch(text);
+    await component.click();
+    await driver.waitForComponent(ON.type('Toast'), 2000);
+    await driver.delayMs(1000);
+  }
+
+  let scrollToSearch = async (find: string): Promise<Component> => {
+    await driver.assertComponentExist(ON.type('Scroll'));
+    let scroll = await driver.findComponent(ON.type('Scroll'));
+    let findComponent = await scroll.scrollSearch(ON.text(find));
+    return findComponent;
+  }
+
+  let startMainAbility = async (): Promise<void> => {
+    delegator.startAbility({
+      bundleName: 'ohos.samples.stagemodel',
+      abilityName: 'MainAbility'
+    }, (err) => {
+      logger.info(TAG, `${BUNDLE}startAbility end err ${JSON.stringify(err)}`);
+    });
+    await driver.delayMs(2000);
+    await delegator.getCurrentTopAbility().then((Ability) => {
+      logger.info(TAG, `${BUNDLE}get top ability`);
+      expect(Ability.context.abilityInfo.name).assertEqual('MainAbility');
+    })
+  }
+
+  let getString = (res: Resource): string => {
+    return delegator.getAppContext().resourceManager.getStringSync(res);
+  }
 }

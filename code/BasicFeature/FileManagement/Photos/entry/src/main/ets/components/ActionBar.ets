@@ -30,7 +30,7 @@ const TAG: string = 'ActionBar';
 @Component
 export struct ActionBar {
   @Link actionBarProp: ActionBarProp;
-  onMenuClicked: Function;
+  onMenuClicked: Function | undefined = undefined;
   isVideoPage: boolean = false;
   @State hasTabBar: boolean = false;
 

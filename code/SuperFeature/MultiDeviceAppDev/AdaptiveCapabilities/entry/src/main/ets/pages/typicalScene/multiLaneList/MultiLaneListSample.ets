@@ -15,9 +15,9 @@
 
 import { BreakpointSystem, BreakPointType } from '../../../common/BreakpointSystem'
 
-type ListItemInfo = {
-  name: Resource,
-  image: Resource
+class ListItemInfo  {
+  name: Resource = $r('app.string.playlist_collection');
+  image: Resource = $r('app.media.1');
 }
 
 @Entry

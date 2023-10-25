@@ -15,7 +15,7 @@
 
 @Component
 export struct IntroductionTitle {
-  private introduction: Resource
+  private introduction!: Resource;
 
   build() {
     Text(this.introduction)

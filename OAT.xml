@@ -141,6 +141,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/Solutions/IM/Chat/products/phone/entry/src/main/resources/rawfile/video_2.zip" desc="Provided by code/Solutions/IM/Chat"/>
                 <filteritem type="filepath" name="code/Solutions/IM/Chat/products/phone/entry/src/main/resources/rawfile/video_3.zip" desc="Provided by code/Solutions/IM/Chat"/>
                 <filteritem type="filepath" name="code/Solutions/IM/Chat/products/phone/entry/src/main/resources/rawfile/video_4.zip" desc="Provided by code/Solutions/IM/Chat"/>
+                <filteritem type="filepath" name="code/BasicFeature/Connectivity/VPN/server/server.zip" desc="Provided by code/BasicFeature/Connectivity/VPN"/>
 		<filteritem type="filepath" name="code/BasicFeature/Connectivity/StageSocket/certificate_file.zip" desc="Provided by code/BasicFeature/Connectivity/StageSocket"/>
             </filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >

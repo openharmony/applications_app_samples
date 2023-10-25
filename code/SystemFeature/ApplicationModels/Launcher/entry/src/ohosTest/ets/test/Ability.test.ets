@@ -110,7 +110,7 @@ export default function abilityTest() {
      * 输入：向左/向右滑动动作
      * 预期输出：桌面正常滑动且显示正常
      */
-    it(BUNDLE + 'ShowDesktop_001', 0, async (done) => {
+    it(BUNDLE + 'ShowDesktop_001', 0, async (done: Function) => {
       Logger.info(TAG, BUNDLE + 'ShowDesktop_001 begin.')
       let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
       await driver.fling({ x: 300, y: 300 }, { x: 500, y: 300 }, 5, 200)
@@ -133,7 +133,7 @@ export default function abilityTest() {
      * 输入：长按应用图标，在弹出的菜单中选择添加服务卡片
      * 预期输出：服务卡片正常添加
      */
-    it(BUNDLE + 'AddForm_001', 1, async (done) => {
+    it(BUNDLE + 'AddForm_001', 1, async (done: Function) => {
       Logger.info(TAG, BUNDLE + 'AddForm_001 begin.')
       let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
       await driver.delayMs(1000)
@@ -163,15 +163,16 @@ export default function abilityTest() {
      * 输入：长按应用图标，在弹出的菜单中选择卸载
      * 预期输出：在卸载弹窗出现后，正常点击卸载
      */
-    it(BUNDLE + 'UninstallApp_001', 2, async (done) => {
+    it(BUNDLE + 'UninstallApp_001', 2, async (done: Function) => {
       Logger.info(TAG, BUNDLE + 'UninstallApp_001 begin.')
       let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
       await driver.delayMs(1000)
       let camera = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.camera'))))
       await camera.longClick()
       await driver.delayMs(500)
-      // 点击“卸载”物理坐标，尝试卸载应用
-      await driver.click(400, 346);
+      // 点击卸载，尝试卸载应用
+      let uninstallBtn = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.uninstall'))))
+      await uninstallBtn.click();
       await driver.delayMs(1000)
       // 检查卸载弹窗是否弹出
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.uninstall'))))
@@ -188,7 +189,7 @@ export default function abilityTest() {
      * 输入：点击打开不同应用
      * 预期输出：各应用打开正常，断言关键字正常
      */
-    it(BUNDLE + 'OpenApps_001', 3, async (done) => {
+    it(BUNDLE + 'OpenApps_001', 3, async (done: Function) => {
       Logger.info(TAG, BUNDLE + 'OpenApps_001 begin.')
       let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
       let appList = [
@@ -217,7 +218,7 @@ export default function abilityTest() {
      * 输入：点击清除最近任务
      * 预期输出：最近任务被清除
      */
-    it(BUNDLE + 'CleanRecent_001', 4, async (done) => {
+    it(BUNDLE + 'CleanRecent_001', 4, async (done: Function) => {
       Logger.info(TAG, BUNDLE + 'CleanRecent_001 begin.')
       let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager
       // 打开最近任务

@@ -16,11 +16,11 @@
 export class ScopeNumber {
   temp: number;
 
-  constructor(value) {
+  constructor(value: number) {
     this.temp = value;
   }
 
-  compareTo(value) {
+  compareTo(value: ScopeNumber) {
     return this.temp >= value.getTemp();
   }
 

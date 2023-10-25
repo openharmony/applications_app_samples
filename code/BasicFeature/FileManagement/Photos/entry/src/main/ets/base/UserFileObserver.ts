@@ -30,7 +30,7 @@ class UserFileObserver {
   private static readonly OBSERVER_ALBUM_CHANGE: string = 'albumChange';
   private static readonly OBSERVER_REMOTE_FILE_CHANGE: string = 'remoteFileChange';
 
-  registerObserver(callback: UserFileObserverCallback): void {
+  registerObserver(callback: UserFileObserverCallback | null): void {
     Log.info(TAG, 'registerObserver');
     if (callback == null) {
       Log.warn(TAG, 'registerObserver with empty callback');
@@ -68,7 +68,7 @@ class UserFileObserver {
     }
   }
 
-  unregisterObserver(callback: UserFileObserverCallback): void {
+  unregisterObserver(callback: UserFileObserverCallback | null): void {
     Log.info(TAG, 'unregisterObserver');
     const pos = this.callbacks.indexOf(callback);
     if (pos >= 0) {

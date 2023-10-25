@@ -115,7 +115,7 @@ struct SliderSample {
               .padding({ left: 12, right: 12 })
 
             Row() {
-              ForEach(this.steps, (item) => {
+              ForEach(this.steps, (item: string) => {
                 Text(item)
                   .fontSize(18)
                   .textAlign(TextAlign.Center)

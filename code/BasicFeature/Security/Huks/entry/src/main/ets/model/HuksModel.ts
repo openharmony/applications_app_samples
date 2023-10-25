@@ -21,8 +21,9 @@ import Logger from './Logger';
 
 const TAG: string = '[HUKS]';
 const CHALLENG_LEN = 6;
+const ALWAYSVAILD = 4;
 const IV: string = '001122334455';
-let cipherData:Uint8Array;
+let cipherData: Uint8Array;
 let challengeNew = new Uint8Array(CHALLENG_LEN);
 
 // 密钥明文
@@ -54,6 +55,22 @@ function getSm2GenerateProperties(properties): void {
     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT |
     huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+  };
+  properties[index++] = {
+    tag: huks.HuksTag.HUKS_TAG_CHALLENGE_TYPE,
+    value: huks.HuksChallengeType.HUKS_CHALLENGE_TYPE_NORMAL
+  };
+  properties[index++] = {
+    tag: huks.HuksTag.HUKS_TAG_KEY_AUTH_PURPOSE,
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+  };
+  properties[index++] = {
+    tag: huks.HuksTag.HUKS_TAG_USER_AUTH_TYPE,
+    value: huks.HuksUserAuthType.HUKS_USER_AUTH_TYPE_PIN
+  };
+  properties[index++] = {
+    tag: huks.HuksTag.HUKS_TAG_KEY_AUTH_ACCESS_TYPE,
+    value: ALWAYSVAILD
   };
   return;
 }
@@ -391,8 +408,8 @@ export class HuksModel {
     });
   }
 
-  async finishSession(handle, options, resultCallback): Promise<void> {
-    await huks.finishSession(handle, options).then((data) => {
+  async finishSession(handle, options, resultCallback, authToken: Uint8Array): Promise<void> {
+    await huks.finishSession(handle, options, authToken).then((data) => {
       Logger.info(TAG, `decrypt finishSession success, data: ${JSON.stringify(data)}`);
       resultCallback(uint8ArrayToString(data.outData));
     }).catch((err) => {
@@ -405,6 +422,7 @@ export class HuksModel {
   }
 
   async userIAMAuthFinger(finishSessionFunction, param) : Promise<void> {
+    Logger.info(TAG, '[HUKS->userIAM]start userAuth...');
     const authParam : userAuth.AuthParam = {
       challenge: challengeNew,
       authType: [userAuth.UserAuthType.PIN],
@@ -419,7 +437,7 @@ export class HuksModel {
       await userAuthInstance.on('result', {
         onResult(result) {
           Logger.info(TAG, 'userAuthInstance callback result = ' + JSON.stringify(result));
-          finishSessionFunction(param.handleParam, param.optionsParam, param.resultCallbackParam);
+          finishSessionFunction(param.handleParam, param.optionsParam, param.resultCallbackParam, result.token);
         }
       });
       Logger.info(TAG, 'auth on success');
@@ -446,6 +464,7 @@ export class HuksModel {
     await huks.initSession(sm2KeyAlias, options).then((data) => {
       Logger.info(TAG, `decrypt initSession success, data: ${JSON.stringify(data)}`);
       handle = data.handle;
+      challengeNew = data.challenge;
     }).catch((err) => {
       Logger.error(TAG, `decrypt initSession failed, ${JSON.stringify(err.code)}: ${JSON.stringify(err.message)}`);
     });

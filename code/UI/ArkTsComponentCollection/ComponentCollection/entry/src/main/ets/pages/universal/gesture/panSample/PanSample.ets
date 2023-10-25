@@ -13,15 +13,15 @@
  * limitations under the License.
  */
 
-const LEFT_UP_X = -110; // 限定距离
-const RIGHT_UP_X = 110;
-const LEFT_UP_Y = -118;
-const RIGHT_UP_Y = 118;
-
 import { IntroductionTitle } from '../../../../common/IntroductionTitle';
 import { TitleBar } from '../../../../common/TitleBar';
 import { getStringData } from '../../../../data/ResourceDataHandle';
 import ShowToast from '../../../../util/ShowToast';
+
+const LEFT_UP_X = -110; // 限定距离
+const RIGHT_UP_X = 110;
+const LEFT_UP_Y = -118;
+const RIGHT_UP_Y = 118;
 
 @Extend(Button) function buttonStyle() {
   .margin(8)

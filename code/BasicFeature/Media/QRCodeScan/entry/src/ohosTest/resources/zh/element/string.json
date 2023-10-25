@@ -23,6 +23,10 @@
     {
       "name": "button_finish",
       "value": "完成"
+    },
+    {
+      "name": "can_not_parse_QRcode",
+      "value": "未识别到二维码"
     }
   ]
 }

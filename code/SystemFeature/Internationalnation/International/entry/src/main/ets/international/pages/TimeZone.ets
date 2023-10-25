@@ -20,9 +20,9 @@ import TitleBar from '../../components/TitleBar';
 import IntlUtil from '../../utils/IntlUtil';
 
 class TimeZoneInfo {
-  key: string
-  timeZone: string
-  display: string
+  key: string = '';
+  timeZone: string = '';
+  display: string = '';
 }
 
 const TAG: string = 'TimeZone';
@@ -32,7 +32,7 @@ const TAG: string = 'TimeZone';
 struct TimeZone {
   @State timeZoneSrc: TimeZoneInfo[] = [];
 
-  async setTimeZone(key) {
+  async setTimeZone(key: string) {
     try {
       let timeZone = await systemTime.getTimezone();
       if (timeZone === key) {
@@ -71,7 +71,7 @@ struct TimeZone {
       TitleBar({ hasBackPress: true, title: $r('app.string.time_zone') })
       Scroll() {
         Column() {
-          ForEach(this.timeZoneSrc, (item, index) => {
+          ForEach(this.timeZoneSrc, (item: TimeZoneInfo, index: number) => {
             Column() {
               if (index !== 0) {
                 Divider()
@@ -95,7 +95,7 @@ struct TimeZone {
             .onClick(() => {
               this.setTimeZone(item.key);
             })
-          }, item => item.key)
+          }, (item: TimeZoneInfo) => item.key)
         }
         .width('95%')
         .padding(10)

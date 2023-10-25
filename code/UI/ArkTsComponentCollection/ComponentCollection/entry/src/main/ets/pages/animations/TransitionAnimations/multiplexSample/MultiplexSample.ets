@@ -29,7 +29,7 @@ struct MultiplexSample {
   @StorageProp('windowWidth') windowWidth: number = 480;
   @StorageProp('windowHeight') windowHeight: number = 720;
   @State resources: Array<MultiplexModel> = new Array<MultiplexModel>();
-  @State currentModel: MultiplexModel = null; // 当前item
+  @State currentModel: MultiplexModel | null = null; // 当前item
   @State onceXOffset: number = 0; // 本次滑动X轴距离
   @State @Watch('scrollIndexUpdated') scrollIndex: number = 0; // 当前滑动item下标
 
@@ -50,7 +50,7 @@ struct MultiplexSample {
   getSize(size: number, resource: MultiplexModel) {
     let changeRatio = 0.1 * (Math.abs(this.onceXOffset) / (this.windowWidth / 2));
     let changeSize = Math.floor(size * (changeRatio > 0.1 ? 0.1 : changeRatio));
-    if (this.currentModel.getId() === resource.getId()) {
+    if (this.currentModel && this.currentModel.getId() === resource.getId()) {
       return size * SELECT_SIZE - changeSize;
     }
     return size * UNSELECT_SIZE;
@@ -88,8 +88,8 @@ struct MultiplexSample {
                 })
                 .width(this.getSize(this.windowWidth, resource))
                 .height(this.getSize(this.windowHeight, resource))
-                .zIndex(resource.getId() === this.currentModel.getId() ? 1 : 0)
-                .blur(resource.getId() === this.currentModel.getId() ? 0 : 5)
+                .zIndex(resource.getId() === (this.currentModel && this.currentModel.getId()) ? 1 : 0)
+                .blur(resource.getId() === (this.currentModel && this.currentModel.getId()) ? 0 : 5)
             }, (item: MultiplexModel) => {
               return item.getId();
             })
@@ -140,7 +140,7 @@ struct MultiplexSample {
   scrollCurrentIndex() {
     let index = 0
     for (let i = 0;i < this.resources.length; i++) {
-      if (this.currentModel.getId() === this.resources[i].getId()) {
+      if (this.currentModel && this.currentModel.getId() === this.resources[i].getId()) {
         index = i;
         break;
       }
@@ -155,7 +155,7 @@ struct MultiplexSample {
   onDelete = (id: string) => {
     for (let i = this.resources.length - 1;i >= 0; i--) {
       if (this.resources[i].getId() === id) {
-        let isCurrent = this.resources[i].getId() === this.currentModel.getId();
+        let isCurrent = this.resources[i].getId() === this.currentModel?.getId();
         this.resources.splice(i, 1);
         if (isCurrent) {
           if (i === this.resources.length) {

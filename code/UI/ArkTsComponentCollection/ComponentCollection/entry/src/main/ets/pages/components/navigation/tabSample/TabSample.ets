@@ -106,7 +106,7 @@ struct TabSample {
           Column() {
             ArgumentsControlPanel({
               barPosition: $barPosition,
-              changeIndex: (index) => {
+              changeIndex: (index: number) => {
                 this.controller.changeIndex(index);
               }
             })

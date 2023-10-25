@@ -64,7 +64,7 @@ export struct PropertiesControlPanel {
         name: $r('app.string.swiper_properties_duration'),
         selects: ['400', '1000', '2000'],
         callback: (index, str) => {
-          this.duration = parseInt(str)
+          this.duration = Number.parseInt(str);
         },
         testId:`swiper_006`
       })
@@ -73,7 +73,7 @@ export struct PropertiesControlPanel {
         name: $r('app.string.swiper_properties_interval'),
         selects: ['1000', '2000', '3000'],
         callback: (index, str) => {
-          this.interval = parseInt(str)
+          this.interval = Number.parseInt(str);
         },
         testId:`swiper_007`
       })

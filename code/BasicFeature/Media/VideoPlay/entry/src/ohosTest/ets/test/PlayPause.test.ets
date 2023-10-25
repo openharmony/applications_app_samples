@@ -53,7 +53,7 @@ export default function PlayPauseTest() {
     it(BUNDLE + 'PlayPause_002', 0, async function (done) {
       hilog.info(DOMAIN, TAG, BUNDLE + 'PlayPause_002 begin');
       let driver = Driver.create();
-      await driver.delayMs(2000);
+      await driver.delayMs(6000);
       // 拉起操作界面
       await driver.assertComponentExist(ON.id('Video'));
       let stack = await driver.findComponent(ON.id('Video'));

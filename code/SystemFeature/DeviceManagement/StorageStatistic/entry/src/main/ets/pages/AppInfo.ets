@@ -22,7 +22,7 @@ import { TitleBar } from '../common/TitleBar'
 const TAG: string = 'AppInfo'
 
 function convertString(resource: Resource, data: number): string {
-  let resultString = getContext(this).resourceManager.getStringSync(resource.id)
+  let resultString = getContext().resourceManager.getStringSync(resource.id)
   return `${resultString} ${ParseData.parseSizeToString(data)}    `
 }
 

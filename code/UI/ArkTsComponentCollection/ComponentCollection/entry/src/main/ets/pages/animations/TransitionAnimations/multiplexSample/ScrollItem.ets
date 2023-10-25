@@ -17,8 +17,9 @@ import { MultiplexModel } from './MultiplexModel';
 @Component
 export struct ScrollItem {
   private panOption: PanGestureOptions = new PanGestureOptions({ direction: PanDirection.Vertical, fingers: 1 });
-  private resource: MultiplexModel;
-  private onDelete: (id: string) => void;
+  private resource!: MultiplexModel;
+  private onDelete: (id: string) => void = (id: string) => {
+  };
   @StorageProp('windowHeight') windowHeight: number = 720;
   @State offsetX: number = 0; // X轴滑动距离
   @State offsetY: number = 0; // Y轴滑动距离
@@ -70,10 +71,10 @@ export struct ScrollItem {
           console.info('Pan start');
         })
         .onActionUpdate((event: GestureEvent) => {
-          let sx;
+          let sx: number;
           if (event.offsetY - this.offsetY <= 0) {
             sx = (this.sx - Math.abs(event.offsetY - this.offsetY) / this.windowHeight);
-          } else if (event.offsetY - this.offsetY > 0) {
+          } else {
             sx = (this.sx + Math.abs(event.offsetY - this.offsetY) / this.windowHeight);
           }
           this.move(sx);
@@ -112,12 +113,12 @@ export struct ScrollItem {
    */
   restore() {
     let that = this;
-    var intervalID = setInterval(function () {
+    let intervalID = setInterval(() => {
       that.move(that.sx += 0.01);
       if (that.sx >= 1) {
         clearInterval(intervalID);
       }
-    }, 10)
+    }, 10);
   }
 
   /**
@@ -125,12 +126,12 @@ export struct ScrollItem {
    */
   delete() {
     let that = this;
-    var intervalID = setInterval(function () {
+    let intervalID = setInterval(() => {
       that.move(that.sx -= 0.01);
       if (that.sx < 0.2) {
         clearInterval(intervalID);
         that.onDelete(that.resource.getId());
       }
-    }, 10)
+    }, 10);
   }
 }

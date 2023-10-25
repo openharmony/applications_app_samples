@@ -15,14 +15,14 @@
 
 import router from '@ohos.router';
 import Http from '@ohos/http';
-import { GoodResponse, ShopCartItemDataModel } from '../../model/GoodsModel';
+import { GoodResponse, Info, Records, ShopCartItemDataModel } from '../../model/GoodsModel';
 import { Products_Data, SHOP_CART_ITEM_DATA } from '../../mock/ProductsData';
 
 @Component
 export struct FavorGoodList {
   @State flag: boolean = false;
-  private url: string;
-  private option: object;
+  private url: string = '';
+  private option: Object = new Object();
   @State productsData: GoodResponse = Products_Data;
 
   async aboutToAppear() {
@@ -101,7 +101,7 @@ export struct FavorGoodList {
         y: vp2px(8)
       }
     }) {
-      ForEach(this.flag ? this.productsData.data.records : SHOP_CART_ITEM_DATA, item => {
+      ForEach(this.flag ? this.productsData.data.records : SHOP_CART_ITEM_DATA, (item: ESObject) => {
         GridCol({
           span: {
             sm: 6,
@@ -110,7 +110,9 @@ export struct FavorGoodList {
         }) {
           this.GoodItem(item);
         }
-      }, item => item.id.toString())
+      }, (item: Info | ShopCartItemDataModel) => {
+        return item.id.toString();
+      })
     }
     .onAreaChange((newArea: Area) => {
       console.info(`LSQ: newArea is ${newArea.height}`);

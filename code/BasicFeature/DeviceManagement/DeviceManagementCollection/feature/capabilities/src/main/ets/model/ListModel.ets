@@ -14,22 +14,22 @@
  */
 
 export class ListModel {
-  title: String;
-  function: Function;
-  value: String;
+  title: string;
+  function: Function | undefined;
+  value: string;
 
-  constructor(title: String, func: Function, value: String = '') {
+  constructor(title: string, func: Function | undefined, value: string = '') {
     this.title = title;
     this.function = func;
     this.value = value;
   }
 
-  setValue(value: String) {
+  setValue(value: string) {
     this.value = value;
   }
 
   getValue() {
-    if (this.function == null) {
+    if (this.function == undefined) {
       return this.value;
     }
     this.value = this.function();

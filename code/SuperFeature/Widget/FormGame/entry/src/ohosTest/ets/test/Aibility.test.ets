@@ -24,12 +24,12 @@ const BUNDLE = 'FormGame_';
 let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
 
 export default function abilityTest(){
-  describe('ActsAbilityTest',function(){
+  describe('ActsAbilityTest',() => {
 
     /**
      * 添加卡片到桌面功能验证
      */
-    it('FormGame_OpenFormList_001',0,async function (done){
+    it('FormGame_OpenFormList_001',0,async (done: Function) => {
       Logger.info(TAG, BUNDLE + 'FormGame_OpenFormList_001 begin');
       let ability = await abilityDelegatorRegistry.getCurrentTopAbility();
       let manager = ability.context.resourceManager;

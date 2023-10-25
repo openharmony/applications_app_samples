@@ -138,8 +138,8 @@ struct GridSettingsSample {
                       .height(80)
                       .textAlign(TextAlign.Center)
                   }
-                }, day => day)
-              }, day => day)
+                }, (day: string) => day)
+              }, (day: string) => day)
             }
             .columnsTemplate('1fr 1fr 1fr 1fr')
             .columnsGap(10)

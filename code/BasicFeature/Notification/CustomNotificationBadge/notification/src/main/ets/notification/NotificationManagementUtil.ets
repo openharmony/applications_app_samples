@@ -18,6 +18,11 @@ import { logger } from '../util/Logger';
 
 const NOTIFICATION_TYPE_SIZE = 5;
 
+interface getAllNotificationsResultType {
+  groupNotifications: Array<Array<notification.NotificationRequest>>
+  countsByType: Array<number>
+}
+
 // 通知管理
 class NotificationManagementUtil {
   typeNotifications: Array<Array<notification.NotificationRequest>> = new Array(NOTIFICATION_TYPE_SIZE + 1);
@@ -76,10 +81,11 @@ class NotificationManagementUtil {
 
   // 获取当前所有消息及数量
   async getAllNotifications() {
-    return {
+    let result: getAllNotificationsResultType = {
       groupNotifications: this.typeNotifications,
       countsByType: this.countsByType
     }
+    return result;
   }
 }
 

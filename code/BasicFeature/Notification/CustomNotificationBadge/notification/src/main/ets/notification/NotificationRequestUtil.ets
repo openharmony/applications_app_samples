@@ -15,6 +15,12 @@
 
 import notification from '@ohos.notificationManager';
 
+interface NotificationRequestUtilResultType {
+  slotType: notification.SlotType,
+  id: number, // 通知id，默认为1
+  content: notification.NotificationContent
+}
+
 class NotificationRequestUtil {
   /**
    * init basic NotificationRequest
@@ -22,11 +28,12 @@ class NotificationRequestUtil {
    * @return return the created NotificationRequest
    */
   initBasicNotificationRequest(notificationContent: notification.NotificationContent) {
-    return {
+    let result: NotificationRequestUtilResultType = {
       slotType: notification.SlotType.CONTENT_INFORMATION,
       id: 1, // 通知id，默认为1
       content: notificationContent
     }
+    return result;
   }
 }
 

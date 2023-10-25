@@ -29,22 +29,23 @@ import { FontColorData, MaterialData } from '../model/MaterialData';
 import { fontColors, stickers } from '../model/MaterialModels';
 import { getContainSize, Size } from '../util/ImageUtil';
 import { savePixelMap } from '../util/FileUtil';
+import { BusinessError } from '@ohos.base';
 
 const TAG: string = '[Sample_EditImage]';
 
 @Component
 export struct EditImage {
-  @State mediaUris: string = router.getParams()['mediaUris'];
-  @State pixelMap: PixelMap = undefined;
+  @State mediaUris: string = (router.getParams() as Record<string, Object>)['mediaUris'] as string;
+  @State pixelMap: PixelMap | undefined | null = undefined;
   @State adjustMarkJudg: boolean = false;
   @State currentTask: number = Tasks.ADJUST;
   @State currentCropTask: number = CropTasks.NONE;
-  @State tempPixelMap: image.PixelMap = undefined;
-  @State cancelOkText: Resource = null;
+  @State tempPixelMap: image.PixelMap | undefined | null = undefined;
+  @State cancelOkText: Resource | null = null;
   @State brightnessValue: number = 0;
   @State outSetValueOne: number = 0;
   @State cropFlag: boolean = false;
-  @State originBM: PixelMap = null;
+  @State originBM: PixelMap | null = null;
   @State cropIndex: number = 0;
   @State canClick: boolean = true;
   @State loading: boolean = false;
@@ -52,9 +53,9 @@ export struct EditImage {
   // 选择资源素材index
   @State resourceIndex: number = 0;
   @State isTextMaterial: boolean = true;
-  selectedResource: Resource = $r('app.color.material_font_color_one');
+  selectedResource: Resource | undefined = $r('app.color.material_font_color_one');
   scroller: Scroller = new Scroller();
-  brightnessOriginBM: PixelMap = null;
+  brightnessOriginBM: PixelMap | null | undefined = null;
   @State resolution: string = '';
   @State inputValue: string = '';
   // 分辨率的坐标
@@ -63,7 +64,7 @@ export struct EditImage {
   // 分辨率
   @State dpi: string = '';
   // 图片父容器大小
-  containerArea: Area;
+  containerArea: Area | null = null;
   private pixelMapQueue: PixelMapQueue = new PixelMapQueue();
 
   onOpen(): void {
@@ -83,13 +84,13 @@ export struct EditImage {
   /**
    * 输入文字素材弹窗
    */
-  dialogController: CustomDialogController = new CustomDialogController({
+  dialogController: CustomDialogController | undefined = new CustomDialogController({
     builder: InputTextDialog({
-      cancel: this.onCancel.bind(this),
-      confirm: this.onAccept.bind(this),
+      cancel: (): void => this.onCancel(),
+      confirm: (): void => this.onAccept(),
       inputValue: $inputValue
     }),
-    cancel: this.existApp.bind(this),
+    cancel: (): void => this.existApp(),
     autoCancel: true,
     alignment: DialogAlignment.Bottom,
     offset: { dx: 0, dy: -20 },
@@ -128,9 +129,11 @@ export struct EditImage {
     }
     this.isCancelQuit = true;
     this.outSetValueOne = 0;
-    this.pixelMap = await copyPixelMap(this.originBM); // 拷贝
+    if (this.originBM !== null && this.originBM !== undefined) {
+      this.pixelMap = await copyPixelMap(this.originBM); // 拷贝
+    }
     // 移出一个缓存
-    const pm: image.PixelMap = this.pixelMapQueue.pop();
+    const pm: image.PixelMap|undefined = this.pixelMapQueue.pop();
     this.releasePm(pm);
   }
 
@@ -140,11 +143,12 @@ export struct EditImage {
 
   async aboutToAppear(): Promise<void> {
     this.pixelMap = await readImage(this.mediaUris);
-    this.originBM = await copyPixelMap(this.pixelMap);
+    if (this.pixelMap !== null) {
+      this.originBM = await copyPixelMap(this.pixelMap);
+    }
   }
 
   aboutToDisappear(): void {
-    delete this.dialogController,
     this.dialogController = undefined
   }
 
@@ -159,13 +163,23 @@ export struct EditImage {
       this.isTextMaterial = hasInputText;
       this.resourceIndex = 0;
       this.isCancelQuit = false;
-      this.currentTask = item.task;
-      this.cancelOkText = item.text;
-      this.originBM = await copyPixelMap(this.pixelMap);
+      if (item.task !== undefined) {
+        this.currentTask = item.task;
+      }
+
+      if (item.text !== undefined) {
+        this.cancelOkText = item.text;
+      }
+
+      if (this.pixelMap) {
+        this.originBM = await copyPixelMap(this.pixelMap);
+      }
       // 保存到队列
-      this.pixelMapQueue.push(this.originBM);
+      if (this.originBM !== null && this.originBM !== undefined) {
+        this.pixelMapQueue.push(this.originBM);
+      }
     } else if (item.task === Tasks.TEXT) {
-      this.dialogController.open();
+      this.dialogController?.open();
     }
   }
 
@@ -173,8 +187,8 @@ export struct EditImage {
    * 撤销功能
    */
   async repeal(): Promise<void> {
-    const pm: image.PixelMap = this.pixelMapQueue.pop();
-    if (pm !== null) {
+    const pm: image.PixelMap | undefined = this.pixelMapQueue.pop();
+    if (pm !== null && pm !== undefined) {
       this.pixelMap = await copyPixelMap(pm);
     }
   }
@@ -205,6 +219,9 @@ export struct EditImage {
    * @param proportion
    */
   async cropImage(proportion: number): Promise<void> {
+    if (!this.pixelMap) {
+      return;
+    }
     let imageInfo: image.ImageInfo = await this.pixelMap.getImageInfo();
     if (!imageInfo) {
       return;
@@ -278,8 +295,12 @@ export struct EditImage {
     .width('100%')
   }
 
-  releasePm(pm: PixelMap): void {
-    pm.release().catch(err => {
+  releasePm(pm: PixelMap | undefined): void {
+    if(!pm){
+      return
+    }
+
+    pm.release().catch((err:BusinessError) => {
       logger.error('pm release异常:' + JSON.stringify(err));
     });
   }
@@ -366,7 +387,7 @@ export struct EditImage {
   getCropTool() {
     Row() {
       List() {
-        ForEach(cropTaskDatas, (item: TaskData, index) => {
+        ForEach(cropTaskDatas, (item: TaskData, index: number) => {
           ListItem() {
             Column() {
               Image(item.image)
@@ -382,7 +403,9 @@ export struct EditImage {
             .height('100%')
             .width('25%')
             .onClick(async () => {
-              this.currentCropTask = item.task;
+              if (item.task !== undefined) {
+                this.currentCropTask = item.task;
+              }
               this.pixelMap = await copyPixelMap(this.originBM); // 拷贝
               this.flushPage();
               this.cropIndex = index;
@@ -427,14 +450,18 @@ export struct EditImage {
             .height('100%')
             .width('25%')
             .onClick(async () => {
-              this.currentTask = item.task;
+              if (item.task !== undefined) {
+                this.currentTask = item.task;
+              }
               if (this.currentTask === Tasks.SCALE) {
                 this.computeDpiPosition();
               }
               if (item.task === Tasks.TONING) {
                 this.brightnessOriginBM = this.pixelMap;
               }
-              this.cancelOkText = item.text
+              if (item.text !== undefined) {
+                this.cancelOkText = item.text
+              }
               this.originBM = await copyPixelMap(this.pixelMap) // 拷贝
               if (item.task === Tasks.ROTATE) {
                 this.pixelMap = await copyPixelMap(this.originBM);
@@ -479,7 +506,7 @@ export struct EditImage {
       .onClick(async () => {
         if (this.canClick) {
           this.canClick = false;
-          await this.pixelMap.rotate(90);
+          await this.pixelMap?.rotate(90);
           setTimeout(() => {
             this.canClick = true;
             this.flushPage();
@@ -500,7 +527,7 @@ export struct EditImage {
       .onClick(async () => {
         if (this.canClick) {
           this.canClick = false;
-          await this.pixelMap.rotate(-90);
+          await this.pixelMap?.rotate(-90);
           setTimeout(() => {
             this.canClick = true;
             this.flushPage();
@@ -553,12 +580,16 @@ export struct EditImage {
     }
     this.loading = true;
     this.loadingController.open();
-    const uri: string = await savePixelMap(getContext(this), this.pixelMap);
-    logger.debug('保存图片地址为:' + uri);
-    router.pushUrl({
-      url: 'pages/Index',
-      params: { isShowCamera: true }
-    });
+
+    if (this.pixelMap !== undefined && this.pixelMap !== null) {
+      const uri: string = await savePixelMap(getContext(this), this.pixelMap);
+      logger.debug('保存图片地址为:' + uri);
+      router.pushUrl({
+        url: 'pages/Index',
+        params: { isShowCamera: true }
+      });
+    }
+
   }
 
   @Builder
@@ -566,7 +597,7 @@ export struct EditImage {
     Row() {
       Scroll() {
         List({ scroller: this.scroller }) {
-          ForEach(materials, (item: MaterialData, index) => {
+          ForEach(materials, (item: MaterialData, index:number) => {
             ListItem() {
               Column() {
                 if (item instanceof FontColorData) {
@@ -689,9 +720,9 @@ export struct EditImage {
             isCancelQuit: this.isCancelQuit,
             selectedMaterialIndex: this.resourceIndex,
             isTextMaterial: this.isTextMaterial,
-            onCancel: this.onEditCancel.bind(this),
-            onOpen: this.onOpen.bind(this),
-            onClose: this.onClose.bind(this)
+            onCancel: (): Promise<void> => this.onEditCancel(),
+            onOpen: (): void => this.onOpen(),
+            onClose: (): void => this.onClose()
           }).width('90%')
             .height('90%')
         }.layoutWeight(1)

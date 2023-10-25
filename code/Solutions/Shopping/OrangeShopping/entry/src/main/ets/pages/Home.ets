@@ -35,11 +35,11 @@ const LARGE_WIDTH: string = '(840vp<=width)';
 @Component
 struct HomePage {
   @State url: string = '';
-  @State option: object = undefined;
+  @State option: object|undefined = undefined;
   @State curBp: string = MID_SCREEN; // curBp指当前窗口断点，sm代表小屏，md代表中屏，lg代表大屏
-  private smListener: mediaquery.MediaQueryListener;
-  private mdListener: mediaquery.MediaQueryListener;
-  private lgListener: mediaquery.MediaQueryListener;
+  private smListener: mediaquery.MediaQueryListener | undefined = undefined;
+  private mdListener: mediaquery.MediaQueryListener | undefined = undefined;
+  private lgListener: mediaquery.MediaQueryListener | undefined = undefined;
   @StorageLink(SHOPPING_CART_COODS_LIST) shoppingCartGoodsList: EventsData[] = [];
   private emitterClass: EmitterClass = new EmitterClass();
   EventsDialogController: CustomDialogController = new CustomDialogController({
@@ -66,7 +66,7 @@ struct HomePage {
         this.EventsDialogController.open();
       }
     });
-    this.emitterClass.setShoppingCartGoodsList((eventData) => {
+    this.emitterClass.setShoppingCartGoodsList((eventData: ESObject) => {
       this.shoppingCartGoodsList.push(eventData.data.id)
       AppStorage.setOrCreate<EventsData[]>(SHOPPING_CART_COODS_LIST, this.shoppingCartGoodsList)
     });
@@ -83,9 +83,9 @@ struct HomePage {
   }
 
   aboutToDisappear() {
-    this.smListener.off('change', this.isBreakpointSM);
-    this.mdListener.off('change', this.isBreakpointMD);
-    this.lgListener.off('change', this.isBreakpointLG);
+    this.smListener?.off('change', this.isBreakpointSM);
+    this.mdListener?.off('change', this.isBreakpointMD);
+    this.lgListener?.off('change', this.isBreakpointLG);
   }
 
   isBreakpointSM = (mediaQueryResult: mediaquery.MediaQueryResult): void => {

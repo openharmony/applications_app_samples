@@ -39,7 +39,7 @@ export default struct Banner {
 
   build() {
     Swiper() {
-      ForEach(this.bannerArr, (item) => {
+      ForEach(this.bannerArr, (item : Resource) => {
         Image(item)
           .size({ width: '100%', height: 200 })
           .borderRadius(12)

@@ -30,7 +30,7 @@ export class QueryStorageData {
   public itemSizeList: number[] = []
   public appDataList: AppData[] = []
   public classifiedDataList: StorageData[] = []
-  private context: any = getContext(this) as any
+  private context: Context = getContext(this) as Context
 
   private async initClassifiedDataList() {
     this.classifiedDataList = []
@@ -94,6 +94,10 @@ export class QueryStorageData {
   }
 
   public async initData(callback?: (hasInit: boolean) => void) {
+    if(callback === undefined){
+      return
+    }
+
     try {
       await this.initClassifiedDataList()
       await this.initAppDataList()
@@ -131,8 +135,8 @@ export class QueryStorageData {
         Logger.info(TAG, 'getAppNameSync resourceManager is empty')
         return appName
       }
-      let bundleContext = this.context.createBundleContext(bundleName)
-      let resMgrName = await bundleContext.resourceManager.getString(labelId)
+      let bundleContext: Context = this.context.createBundleContext(bundleName)
+      let resMgrName: string = await bundleContext.resourceManager.getString(labelId)
       Logger.info(TAG, `getAppNameSync resMgrName: ${resMgrName}`)
       if (resMgrName != null) {
         return resMgrName

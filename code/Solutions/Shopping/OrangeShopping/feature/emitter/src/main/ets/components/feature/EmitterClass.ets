@@ -54,7 +54,7 @@ export class EmitterClass {
   }
 
   // 持久化订阅的事件回调
-  public setShoppingCartGoodsList(callback): void {
+  public setShoppingCartGoodsList(callback: ESObject): void {
     let addGoodDataId: EventsId = new EventsId(EmitterConst.ADD_EVENT_ID);
     // 以持久化方式订阅购物车添加事件并接收事件回调
     emitter.off(EmitterConst.ADD_EVENT_ID);

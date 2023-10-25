@@ -18,6 +18,6 @@ Directions for use
 
 Constraints and Limitations
 
-1. This example has been adapted to the API version 10 SDK with version number 4.0.9.6 and image version number OpenHarmony 4.0.9.6.
+1. The SDK version must be API Version 10 Release or later.
 
-2. This sample requires DevEco Studio 4.0 Beta2 (Build Version: 4.0.0.400, built on August 2, 2023) to compile and run.
+2. This sample requires DevEco Studio 4.0 Release to compile and run.

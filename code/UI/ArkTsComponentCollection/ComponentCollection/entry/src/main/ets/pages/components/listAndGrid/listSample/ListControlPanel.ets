@@ -35,8 +35,8 @@ export struct ArgumentsControlPanel {
         name: $r('app.string.list_properties_initial_index'),
         selects : ['0','1','2','3','4','5','6','7','8','9'],
         callback : (index,value)=>{
-          this.initIndex = parseInt(value);
-          globalThis.listSampleInitIndex = parseInt(value);
+          this.initIndex = Number.parseInt(value);
+          AppStorage.setOrCreate('listSampleInitIndex', Number.parseInt(value));
         },
         testId: `list_002`
       })
@@ -142,7 +142,7 @@ export struct PropertiesControlPanel {
         name: $r('app.string.list_properties_lanes'),
         selects : ['0','1','2','3','4','5','6','7','8','9'],
         callback : (index,value)=>{
-          this.lanes = parseInt(value);
+          this.lanes = Number.parseInt(value);
         },
         testId: `list_010`
       })

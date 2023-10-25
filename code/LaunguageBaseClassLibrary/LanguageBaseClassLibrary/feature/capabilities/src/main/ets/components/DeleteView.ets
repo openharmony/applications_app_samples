@@ -15,7 +15,7 @@
 
 @Component
 export struct DeleteView {
-  private enable: boolean;
+  private enable: boolean = false;
 
   build() {
     Row() {

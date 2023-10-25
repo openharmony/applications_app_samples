@@ -19,7 +19,7 @@ class BasicDataSource implements IDataSource {
     return 0;
   }
 
-  public getData(index: number): any {
+  public getData(index: number): ESObject {
     return undefined;
   }
 
@@ -56,17 +56,17 @@ class BasicDataSource implements IDataSource {
 }
 
 export default class LazyDataSource extends BasicDataSource {
-  public dataArray: any[] = [];
+  public dataArray: ESObject[] = [];
 
   public totalCount(): number {
     return this.dataArray.length;
   }
 
-  public getData(index: number): any {
+  public getData(index: number): ESObject {
     return this.dataArray[index];
   }
 
-  public addData(index: number, data: any): void {
+  public addData(index: number, data: ESObject): void {
     this.dataArray.splice(index, 0);
     this.notifyDataAdd(index);
   }
