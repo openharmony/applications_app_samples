@@ -50,6 +50,7 @@ workerPort.onmessage = (e: MessageEvents): void => {
   request.downloadFile(context, {
     url: mediaDataUrl,
     filePath: inFilePath
+
   }).then((downloadTask) => {
     downloadTask.on('progress', (receivedSize: number, totalSize: number) => {
       Logger.info(`receivedSize:${receivedSize},totalSize:${totalSize}`);
