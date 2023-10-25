@@ -29,11 +29,11 @@ export default struct CommonLayout {
   build() {
     Column({ space: 10 }) {
       List() {
-        LazyForEach(this.dataList, (Item: ImagesData) => {
+        LazyForEach(this.dataList, (item: ImagesData) => {
           ListItem() {
             Row() {
               Row() {
-                Image(Item.src)
+                Image(item.src)
                   .width(60)
                   .height(50)
                   .borderRadius(5)
@@ -42,7 +42,7 @@ export default struct CommonLayout {
 
               Stack({ alignContent: Alignment.Start }) {
                 Column() {
-                  Text(Item.name)
+                  Text(item.name)
                     .fontSize(15)
                     .fontColor(Color.White)
                 }
@@ -51,32 +51,36 @@ export default struct CommonLayout {
               }
               .layoutWeight(7)
 
-              Image($r("app.media.music"))
-                .width(15)
-                .height(15)
-                .visibility(this.status[Item.id] ? Visibility.Visible : Visibility.Hidden)
+              if (item.id !== undefined) {
+                Image($r("app.media.music"))
+                  .width(15)
+                  .height(15)
+                  .visibility(this.status[item.id] ? Visibility.Visible : Visibility.Hidden)
+              }
             }
             .id("audioHaptic")
             .width("95%")
             .height(70)
             .padding({ top: 5, left: 10, right: 10, bottom: 5 })
-            .backgroundColor(this.status[Item.id] ? "#1a3e3f56" : "#4d191a32")
+            .backgroundColor(this.status[item.id!] ? "#1a3e3f56" : "#4d191a32")
             .onClick(() => {
-              this.status = getDynamicStates(this.status, Item.id)
-              AudioPlayer.playAudio(Item.audioName)
+              this.status = getDynamicStates(this.status, item.id!)
+              AudioPlayer.playAudio(item.audioName!)
               if (this.vibrationIntensity === 'H') {
                 Logger.info(TAG, "High intensity mode")
-                playVibrateCustom(Item.vibratorFileH)
+                playVibrateCustom(item.vibratorFileH!)
               } else if (this.vibrationIntensity === 'M') {
                 Logger.info(TAG, "Middle intensity mode")
-                playVibrateCustom(Item.vibratorFileM)
+                playVibrateCustom(item.vibratorFileM!)
               } else if (this.vibrationIntensity === 'L') {
                 Logger.info(TAG, "Low intensity mode")
-                playVibrateCustom(Item.vibratorFileL)
+                playVibrateCustom(item.vibratorFileL!)
               } else {
                 Logger.info(TAG, "Vibration mode error")
               }
-              Logger.info(TAG, Item.id.toString() + ' ' + Item.name + ' ' + Item.audioName)
+              if (item.id) {
+                Logger.info(TAG, item.id.toString() + ' ' + item.name + ' ' + item.audioName)
+              }
             })
           }
         }) // LazyForEach

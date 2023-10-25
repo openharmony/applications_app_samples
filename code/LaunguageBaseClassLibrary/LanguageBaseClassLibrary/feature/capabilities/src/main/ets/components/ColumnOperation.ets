@@ -17,13 +17,13 @@ import { CustomDataSource, getStringArray } from '@ohos/common';
 
 @Component
 export struct ColumnOperation {
-  private operationRes: Resource = undefined;
-  private operationSource: CustomDataSource = new CustomDataSource([]);
-  private doOperation: (index: number) => void;
+  private operationRes: Resource | undefined = undefined;
+  @State operationSource: string[] = [];
+  private doOperation: (index: number) => void = () => {};
 
   build() {
     Column() {
-      LazyForEach(this.operationSource, (item, index) => {
+      ForEach(this.operationSource, (item: string, index: number) => {
         Row() {
           Button() {
             Text(item)
@@ -41,7 +41,7 @@ export struct ColumnOperation {
         }
         .width('100%')
         .justifyContent(FlexAlign.Center)
-      }, index => index)
+      }, (index: string) => index)
     }
     .width('100%')
     .padding({ bottom: 15 })
@@ -50,8 +50,7 @@ export struct ColumnOperation {
   async aboutToAppear() {
     if (this.operationRes) {
       let menuList = await getStringArray(this.operationRes);
-      this.operationSource['dataArray'] = menuList;
-      this.operationSource.notifyDataReload();
+      this.operationSource = menuList;
     }
   }
 }

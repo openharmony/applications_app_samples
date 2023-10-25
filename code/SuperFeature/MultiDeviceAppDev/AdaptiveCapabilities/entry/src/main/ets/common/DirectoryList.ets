@@ -15,16 +15,16 @@
 
 import router from '@ohos.router'
 
-type DirectoryItem = {
-  title: Resource,
-  uri: string,
-  id: string
+class DirectoryItem {
+  title: Resource | string = '';
+  uri: string = '';
+  id: string = '';
 }
 
 @Component
 struct DirectoryList {
-  private directory: DirectoryItem[]
-  private title: Resource
+  private directory: DirectoryItem[]=[];
+  private title?: Resource;
 
   build() {
     Scroll() {
@@ -34,7 +34,7 @@ struct DirectoryList {
           .fontWeight(FontWeight.Bold)
           .height(100);
 
-        ForEach(this.directory, (item) => {
+        ForEach(this.directory, (item : DirectoryItem) => {
           Button(item.title)
           .id(item.id)
           .fontSize(20)
@@ -47,7 +47,7 @@ struct DirectoryList {
               url: item.uri
             })
           });
-        });
+        },(item:DirectoryItem)=>JSON.stringify(item));
       }
     }
     .width('100%')

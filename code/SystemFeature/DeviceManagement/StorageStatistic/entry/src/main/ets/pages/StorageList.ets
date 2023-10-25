@@ -20,7 +20,7 @@ import { QueryVolumeData } from '../common/QueryVolumeData'
 import { StorageData } from '../model/StorageData'
 
 function convertString(resource: Resource, molecule: number, denominator: number): string {
-  let resultString = getContext(this).resourceManager.getStringSync(resource.id)
+  let resultString = getContext().resourceManager.getStringSync(resource.id)
   return `${resultString} ${ParseData.parseSizeToString(molecule)}/${ParseData.parseSizeToString(denominator)}`
 }
 
@@ -47,10 +47,14 @@ export struct StorageList {
   @State isVolumeDataInit: boolean = false
   private itemSizeList: number[] = []
   private storageDataList: StorageData[] = []
-  private queryData: QueryStorageData = undefined
+  private queryData: QueryStorageData | undefined = undefined
   private queryVolumeData: QueryVolumeData = new QueryVolumeData()
 
   aboutToAppear() {
+    if (this.queryData === undefined || this.queryData === null) {
+      return
+    }
+
     this.storageDataList = this.queryData.classifiedDataList
     this.itemSizeList = this.queryData.itemSizeList
     this.totalSize = this.queryData.totalSize

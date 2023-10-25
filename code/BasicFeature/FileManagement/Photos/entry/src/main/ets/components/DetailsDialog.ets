@@ -21,18 +21,18 @@ import { Constants } from '../constants/Constants';
 
 @Observed
 export class MediaDetails {
-  mediaType: number
-  height: number
-  width: number
-  size: number
-  path: string
-  duration: number
-  title: string
-  dateTaken: number
-  dateAdded: number
-  uri: string
-  displayName: string
-  dateModified: number
+  mediaType: number = 0;
+  height: number = 0;
+  width: number = 0;
+  size: number = 0;
+  path: string = '';
+  duration: number = 0;
+  title: string = '';
+  dateTaken: number = 0;
+  dateAdded: number = 0;
+  uri: string = '';
+  displayName: string = '';
+  dateModified: number = 0;
 }
 
 @CustomDialog
@@ -42,8 +42,8 @@ export struct DetailsDialog {
   @StorageLink('isSidebar') isSidebar: boolean = screenManager.isSidebar();
   @StorageLink('leftBlank') leftBlank: number[] = [0, 0, 0, 0];
   sizeConvert = 1024;
-  controller: CustomDialogController;
-  dataTime: string;
+  controller?: CustomDialogController ;
+  dataTime: string = '';
   @Consume mediaDetails: MediaDetails;
 
   aboutToAppear(): void {
@@ -180,25 +180,6 @@ export struct DetailsDialog {
         }.margin({
           bottom: $r('sys.float.ohos_id_text_paragraph_margin_s') })
       }
-      Row() {
-        Column() {
-          Text($r('app.string.path'))
-            .fontSize($r('sys.float.ohos_id_text_size_body2'))
-            .fontFamily($r('app.string.id_text_font_family_regular'))
-            .fontColor($r('sys.color.ohos_id_color_text_primary'))
-        }
-
-        Column() {
-          Text(this.getDisplayPath())
-            .fontSize($r('sys.float.ohos_id_text_size_body2'))
-            .fontFamily($r('app.string.id_text_font_family_regular'))
-            .fontColor($r('sys.color.ohos_id_color_text_secondary'))
-            .maxLines(Constants.DETAILS_DIALOG_PATH_MAX_LINE)
-            .padding({ right: $r('app.float.dialog_content_margin') })
-        }
-      }.alignItems(VerticalAlign.Top)
-      .margin({
-        bottom: $r('sys.float.ohos_id_text_paragraph_margin_s') })
 
       Stack({ alignContent: Alignment.Top }) {
         Button() {
@@ -212,7 +193,7 @@ export struct DetailsDialog {
         .backgroundColor($r('app.color.transparent'))
         .height($r('app.float.details_dialog_button_height'))
         .onClick((): void => {
-          this.controller.close()
+          this.controller?.close();
         })
       }.width('100%')
       .height($r('app.float.details_dialog_button_area_height'))

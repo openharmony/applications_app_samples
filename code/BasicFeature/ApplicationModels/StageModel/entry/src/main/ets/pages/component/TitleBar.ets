@@ -14,12 +14,13 @@
  */
 
 import router from '@ohos.router'
+import DataShareResultSet from '@ohos.data.DataShareResultSet'
 import DataShareHelper from '../../feature/DataShareHelper'
 import { BookModel, getBooksFromResultSet } from '../../feature/BookModel'
 
 @Component
 export struct TitleBar {
-  @Link books: Array<BookModel>
+  @Link books: Array<BookModel>;
 
   build() {
     Row() {
@@ -51,7 +52,7 @@ export struct TitleBar {
   }
 
   async add() {
-    let data = await DataShareHelper.insert()
-    this.books = getBooksFromResultSet(data)
+    let data: Promise<DataShareResultSet> = await DataShareHelper.insert();
+    this.books = getBooksFromResultSet(data);
   }
 }

@@ -13,15 +13,15 @@
  * limitations under the License.
  */
 
-import { KeyStyle } from '../common/StyleConfiguration';
+import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
 import { InputHandler } from '../model/KeyboardController';
-import { SubMenuType } from '../model/keyboardKeyData';
+import { SubMenuType } from '../model/KeyboardKeyData';
 
 @Preview
 @Component
 export struct TopMenu {
-  @Link inputStyle: KeyStyle;
-  @Link submenuType: number;
+  @StorageLink('submenuType') submenuType: number = SubMenuType.NORMAL;
+  @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
 
   build() {
     Column() {
@@ -37,7 +37,7 @@ export struct TopMenu {
             .objectFit(ImageFit.Contain)
             .id('keyboardMenu')
         }
-        .margin({left: 8})
+        .margin({ left: 8 })
         .width(this.inputStyle.downMenuWidth)
         .borderRadius(4)
         .height('100%')
@@ -64,14 +64,14 @@ export struct TopMenu {
             .height(this.inputStyle.downMenuPicHeight)
             .objectFit(ImageFit.Contain)
             .id('kikaInputDown')
-            .onClick(() => {
-              this.submenuType = SubMenuType.NORMAL;
-              InputHandler.getInstance().hideKeyboardSelf();
-            })
         }
         .width(this.inputStyle.downMenuWidth)
         .borderRadius(4)
         .height('100%')
+        .onClick(() => {
+          this.submenuType = SubMenuType.NORMAL;
+          InputHandler.getInstance().hideKeyboardSelf();
+        })
       }
       .width('100%')
       .layoutWeight(1)

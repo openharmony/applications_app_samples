@@ -107,7 +107,7 @@ export struct DisplayDevice {
         .fontSize(22)
         .backgroundColor('#007dff')
         .type(ButtonType.Capsule)
-        .margin({top: '86%', left: '6%', right: '6%', bottom: '3%' })
+        .margin({top: '10%', left: '6%', right: '6%', bottom: '3%' })
         .onClick(async () => {
           let result = await this.displayModel.createVirtualScreen(this.screenIds.length)
           Logger.info(TAG, `this createVirtualScreen screen id = ${JSON.stringify(this.screenIds)}`)

@@ -40,7 +40,7 @@ export struct Applications {
     Scroll(this.scroller) {
       Column() {
         Flex({ justifyContent: FlexAlign.SpaceEvenly, wrap: FlexWrap.Wrap }) {
-          ForEach(ApplicationsData, (item) => {
+          ForEach(ApplicationsData, (item : string) => {
             this.Item(item)
           })
         }.width('80%')

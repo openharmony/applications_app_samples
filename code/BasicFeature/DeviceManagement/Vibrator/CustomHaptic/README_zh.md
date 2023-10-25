@@ -58,9 +58,11 @@ entry/src/main/ets/
 
 ### 约束与限制
 
-1. 本示例仅可在支持自定义振动的标准系统上运行； 
-2. 本示例仅适配API version 10版本SDK，版本号：4.0.8.2，需要手动替换Full SDK才能编译通过，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)；
-3. 本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)及以上版本才可编译运行。
+1.本示例仅可在支持自定义振动的标准系统上运行。
+
+2.本示例为Stage模型，仅适配API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0 Release)
+
+3.本示例需要使用DevEco Studio 版本号(4.0 Release)及以上版本才可编译运行。
 
 ### 下载
 如需单独下载本工程，执行如下命令：

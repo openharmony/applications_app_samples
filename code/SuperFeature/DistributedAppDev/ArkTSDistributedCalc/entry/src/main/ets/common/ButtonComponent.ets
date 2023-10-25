@@ -12,64 +12,92 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { obtainImgVertical, obtainImgV } from '../model/ImageList'
+import { obtainImgVertical, obtainImgV, obtainImgVs } from '../model/ImageList'
+
+interface ImageList {
+  image: Resource
+  value: string
+}
 
 @Component
 export struct ButtonComponent {
-  private onInputValue: (result) => void
+  private onInputValue: (result: string) => void = () => {
+  }
 
   build() {
     Row() {
       Grid() {
-        ForEach(obtainImgV(), (item, index) => {
+        ForEach(obtainImgV(), (item: ImageList, index: number | undefined) => {
           GridItem() {
             Button({ type: ButtonType.Normal }) {
               Image(item.image)
-                .height('100%')
-                .aspectRatio(index < 3 ? 1 : 0.6)
-                .objectFit(ImageFit.Contain)
+                .width('45%')
+                .height('35%')
+                .objectFit(ImageFit.Cover)
             }
             .id(item.value)
             .width('100%')
             .height('100%')
-            .borderRadius(20)
-            .backgroundColor(index < 3 ? '#33007DFF' : '#007DFF')
+            .borderRadius('16px')
+            .backgroundColor(index !== undefined && index < 2 ? '#33007DFF' : '#FF006CDE')
             .onClick(() => {
               this.onInputValue(item.value)
             })
           }
-          .rowStart(index)
-          .rowEnd(index === 3 ? index + 1 : index)
+          .rowStart(index !== undefined ? index : 0)
+          .rowEnd(index !== undefined && index === 2 ? (index !== undefined ? index + 1 : 0) : (index !== undefined ? index : 0))
+          .columnStart(4)
+          .columnEnd(4)
+        })
+        ForEach(obtainImgVs(), (item: ImageList, index) => {
+          GridItem() {
+            Button({ type: ButtonType.Normal }) {
+              Image(item.image)
+                .width('45%')
+                .height('35%')
+                .objectFit(ImageFit.Cover)
+            }
+            .id(item.value)
+            .width('100%')
+            .height('100%')
+            .borderRadius('16px')
+            .backgroundColor('#33007DFF')
+            .onClick(() => {
+              this.onInputValue(item.value)
+            })
+          }
+          .rowStart(index !== undefined ? index : 0)
+          .rowEnd(index !== undefined ? index : 0)
           .columnStart(3)
           .columnEnd(3)
         })
-        ForEach(obtainImgVertical(), (item, index) => {
+        ForEach(obtainImgVertical(), (item: ImageList, index) => {
           GridItem() {
             Button({ type: ButtonType.Normal }) {
               Image(item.image)
-                .height('100%')
-                .aspectRatio(item.value === '0' ? 2.5 : 1)
-                .objectFit(ImageFit.Contain)
+                .width('55%')
+                .height('55%')
+                .objectFit(ImageFit.Cover)
             }
             .id(item.value)
             .width('100%')
             .height('100%')
-            .borderRadius(20)
-            .backgroundColor(index < 3 ? '#33007DFF' : '#F0F0F0')
+            .borderRadius('16px')
+            .backgroundColor('#F0F0F0')
             .onClick(() => {
               this.onInputValue(item.value)
             })
           }
-          .columnStart(index % 3)
-          .columnEnd(item.value === '0' ? (index % 3 + 1) : index % 3)
+          .columnStart(index === undefined ? 0 : index % 3)
+          .columnEnd(index !== undefined && item.value === '0' ? (index % 3 + 1) : index !== undefined ? index % 3 : 0)
         })
       }
-      .columnsGap(10)
-      .rowsGap(10)
-      .columnsTemplate('1fr 1fr 1fr 1fr')
-      .rowsTemplate('1fr 1fr 1fr 1fr 1fr')
+      .columnsGap(5)
+      .rowsGap(5)
+      .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
+      .rowsTemplate('1fr 1fr 1fr 1fr ')
     }
     .padding(10)
-    .size({ width: '100%', height: '60%' })
+    .size({ width: '100%', height: '56%' })
   }
 }

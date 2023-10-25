@@ -20,8 +20,8 @@ import { TitleBar } from './/TitleBar';
 
 @Component
 export struct NotificationList {
-  @State groupNotifications: Array<Array<notification.NotificationRequest>> = undefined;
-  @State countsByType: Array<number> = null;
+  @State groupNotifications: Array<Array<notification.NotificationRequest>> = [];
+  @State countsByType: Array<number> = [];
 
   aboutToAppear() {
     notificationManagement.getAllNotifications().then((data) => {
@@ -64,30 +64,38 @@ export struct NotificationList {
 @Component
 export struct NotificationItem {
   @State notificationNum: number = 0;
-  @State notifications: notification.NotificationRequest[] = undefined;
-  private title: Resource;
-  private content: string;
+  @State notifications: notification.NotificationRequest[] = [];
+  private title: Resource | null = null;
+  private content: string = '';
 
   aboutToAppear() {
     switch (this.notifications[0].content.contentType) {
       case notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT: {
         this.title = $r('app.string.basic_notification');
-        this.content = this.notifications[0].content.normal.text;
+        if (this.notifications[0].content.normal) {
+          this.content = this.notifications[0].content.normal.text;
+        }
         break;
       }
       case notification.ContentType.NOTIFICATION_CONTENT_LONG_TEXT: {
         this.title = $r('app.string.long_text_notification');
-        this.content = this.notifications[0].content.longText.text;
+        if (this.notifications[0].content.longText) {
+          this.content = this.notifications[0].content.longText.text;
+        }
         break;
       }
       case notification.ContentType.NOTIFICATION_CONTENT_PICTURE: {
         this.title = $r('app.string.picture_notification');
-        this.content = this.notifications[0].content.picture.text;
+        if (this.notifications[0].content.picture) {
+          this.content = this.notifications[0].content.picture.text;
+        }
         break;
       }
       case notification.ContentType.NOTIFICATION_CONTENT_MULTILINE: {
         this.title = $r('app.string.multiline_notification');
-        this.content = this.notifications[0].content.multiLine.text;
+        if (this.notifications[0].content.multiLine) {
+          this.content = this.notifications[0].content.multiLine.text;
+        }
         break;
       }
     }

@@ -69,7 +69,7 @@ export struct PhotoSideBar {
           .borderRadius(10)
         }
 
-        ForEach(this.photoList, (item: photoType, index: number) => {
+        ForEach(this.photoList, (item: photoType, index: number | undefined) => {
           ListItem() {
             Row() {
               Text(item.name)

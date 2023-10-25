@@ -22,7 +22,7 @@ class Logger {
   private prefix: string;
   private format: string = '%{public}s, %{public}s';
 
-  constructor(prefix: string, domain) {
+  constructor(prefix: string, domain: number) {
     this.prefix = prefix;
     this.domain = domain;
   }

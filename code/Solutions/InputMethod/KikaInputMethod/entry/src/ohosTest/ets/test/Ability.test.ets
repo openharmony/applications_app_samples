@@ -14,6 +14,7 @@
  */
 
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
 import { describe, it, expect } from '@ohos/hypium';
 import { Driver, ON, MatchPattern } from '@ohos.UiTest';
 import { logger } from '../util/Logger';
@@ -22,41 +23,43 @@ const TAG: string = 'Sample_KikaInput_Test';
 const BUNDLE = 'KikaInput_';
 
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
     // 打开自绘编辑框应用
-    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+    it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}StartAbility_001 begin`);
       let driver: Driver = Driver.create();
       let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
       await delegator.executeShellCommand('aa start -b com.samples.kikainput -a TestAbility').then(result => {
         logger.info(TAG, `${BUNDLE}start ability finished, result = ${JSON.stringify(result)}`);
-      }).catch(err => {
+      }).catch((err: Error) => {
         logger.info(TAG, `${BUNDLE}start ability failed, err = ${JSON.stringify(err)}`);
       })
-      await driver.delayMs(3000);
-      await delegator.getCurrentTopAbility().then((Ability) => {
+      await driver.delayMs(2000);
+      await delegator.getCurrentTopAbility().then((ability: UIAbility) => {
         logger.info(TAG, `${BUNDLE}get top ability`);
-        expect(Ability.context.abilityInfo.name).assertEqual('TestAbility');
+        expect(ability.context.abilityInfo.name).assertEqual('TestAbility');
       })
       logger.info(TAG, `${BUNDLE}StartAbility_001 end`);
       done();
     })
 
     // 切换输入法应用
-    it(BUNDLE + 'ChangeInputMethod_001', 0, async function (done) {
+    it(BUNDLE + 'ChangeInputMethod_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}ChangeInputMethod_001 begin`);
       let driver: Driver = Driver.create();
       let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
-      await delegator.executeShellCommand('aa start ability -a InputMethod -b cn.openharmony.inputmethodchoosedialog').then(result => {
-        logger.info(TAG, `${BUNDLE}start ability finished, result = ${JSON.stringify(result)}`);
-      }).catch(err => {
-        logger.info(TAG, `${BUNDLE}start ability failed, err = ${JSON.stringify(err)}`);
-      })
-      await driver.delayMs(2000);
+      await delegator.executeShellCommand('aa start ability -a InputMethod -b cn.openharmony.inputmethodchoosedialog')
+        .then(result => {
+          logger.info(TAG, `${BUNDLE}start ability finished, result = ${JSON.stringify(result)}`);
+        })
+        .catch((err: Error) => {
+          logger.info(TAG, `${BUNDLE}start ability failed, err = ${JSON.stringify(err)}`);
+        })
+      await driver.delayMs(1000);
       await driver.assertComponentExist(ON.type('List'));
       let list = await driver.findComponent(ON.type('List'));
       let kikainput = await list.scrollSearch(ON.text('kikainput', MatchPattern.CONTAINS));
-      await driver.delayMs(2000);
+      await driver.delayMs(1000);
       let bound = await kikainput.getBounds();
       await driver.click(bound.right - 10, bound.bottom - 10);
       await driver.delayMs(1000);
@@ -65,7 +68,7 @@ export default function abilityTest() {
     })
 
     // 点击自绘编辑框拉起输入法，并输入内容
-    it(BUNDLE + 'ShowKeyboard_001', 0, async function (done) {
+    it(BUNDLE + 'ShowKeyboard_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}ShowKeyboard_001 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(1000);
@@ -108,7 +111,7 @@ export default function abilityTest() {
     })
 
     // 进入菜单
-    it(BUNDLE + 'EditModel_001', 0, async function (done) {
+    it(BUNDLE + 'EditModel_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}EditModel_001 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(1000);
@@ -126,7 +129,7 @@ export default function abilityTest() {
     })
 
     // 编辑界面，向左移动光标
-    it(BUNDLE + 'MoveCursor_001', 0, async function (done) {
+    it(BUNDLE + 'MoveCursor_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}MoveCursor_001 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(1000);
@@ -144,7 +147,7 @@ export default function abilityTest() {
     })
 
     // 编辑界面，向右移动光标
-    it(BUNDLE + 'MoveCursor_002', 0, async function (done) {
+    it(BUNDLE + 'MoveCursor_002', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}MoveCursor_002 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(1000);
@@ -162,7 +165,7 @@ export default function abilityTest() {
     })
 
     // 编辑界面，文本选中
-    it(BUNDLE + 'Selection_001', 0, async function (done) {
+    it(BUNDLE + 'Selection_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}Selection_001 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(1000);
@@ -186,9 +189,9 @@ export default function abilityTest() {
       done();
     })
 
-    // 编辑界面，文本选中
-    it(BUNDLE + 'Selection_001', 0, async function (done) {
-      logger.info(TAG, `${BUNDLE}Selection_001 begin`);
+    // 隐藏软键盘
+    it(BUNDLE + 'HideKeyboard_001', 0, async (done: Function) => {
+      logger.info(TAG, `${BUNDLE}HideKeyboard_001 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('kikaInputDown'));
@@ -197,7 +200,7 @@ export default function abilityTest() {
       await driver.delayMs(1000);
       let down = await driver.findComponent(ON.id('kikaInputDown'));
       expect(down).assertNull();
-      logger.info(TAG, `${BUNDLE}Selection_001 end`);
+      logger.info(TAG, `${BUNDLE}HideKeyboard_001 end`);
       done();
     })
   })

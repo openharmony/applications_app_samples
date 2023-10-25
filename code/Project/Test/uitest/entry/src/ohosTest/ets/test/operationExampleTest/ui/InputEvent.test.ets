@@ -17,14 +17,16 @@ import { describe, beforeAll, it, expect, TestType } from '@ohos/hypium'
 import UIAbility from '@ohos.app.ability.UIAbility';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON} from '@ohos.UiTest'
+import Want from '@ohos.app.ability.Want';
+
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const WAIT_UI_READYMS = 1000;
 let ab: UIAbility;
 
 export default function InputEventTest() {
-  describe('InputEventTest', function () {
-      beforeAll(async function () {
+  describe('InputEventTest', () => {
+      beforeAll(async () => {
       await  delegator.addAbilityMonitor({
         abilityName: 'InputAbility',
         moduleName: bundleName,
@@ -33,7 +35,7 @@ export default function InputEventTest() {
       }
       });
 
-        let want = {
+        let want: Want = {
           bundleName : bundleName,
           abilityName : "InputAbility"
         }
@@ -46,7 +48,7 @@ export default function InputEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest inputText 功能
      */
-    it('clickEventTest_Input',TestType.FUNCTION, async function (done) {
+    it('clickEventTest_Input',TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create()
       await driver.delayMs(WAIT_UI_READYMS)
       let input = await driver.findComponent(ON.type('TextInput'))
@@ -64,16 +66,15 @@ export default function InputEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest inputText 输入中文功能测试
      */
-    it('clickEventTest_Input_zh',TestType.FUNCTION, async function (done) {
+    it('clickEventTest_Input_zh',TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create()
       await driver.delayMs(WAIT_UI_READYMS)
       let input = await driver.findComponent(ON.type('TextInput'))
-      let result =  await ab.context.resourceManager.getStringValue($r('app.string.test'));
-      await input.inputText(result)
+      await input.inputText("中文测试")
       await driver.delayMs(WAIT_UI_READYMS)
       let input_new = await driver.findComponent(ON.type('TextInput'))
       let text = await input_new.getText()
-      expect(text === result).assertTrue()
+      expect(text == "中文测试").assertTrue()
       done()
     })
   })

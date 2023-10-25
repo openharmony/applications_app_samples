@@ -1,4 +1,4 @@
-# 屏幕属性
+# 屏幕属性（仅对系统应用开放）
 
 ### 介绍
 
@@ -38,10 +38,10 @@ entry/src/main/ets/
 
 ### 具体实现
 
-- 增加屏幕、移除屏幕的功能接口封装在DisplayModel，源码参考：[DisplayModel](code/SystemFeature/DeviceManagement/Screen/entry/src/main/ets/model/DisplayModel.ts)
+- 增加屏幕、移除屏幕的功能接口封装在DisplayModel，源码参考：[DisplayModel](entry/src/main/ets/model/DisplayModel.ts)
   - 使用screen.createVirtualScreen来创建虚拟屏幕;
   - 使用screen.destroyVirtualScreen来销毁虚拟屏幕;
-- 获取Display对象显示屏幕所有属性信息的功能封装在ShowInfo，源码参考：[ShowInfo](code/SystemFeature/DeviceManagement/Screen/entry/src/main/ets/common/ShowInfo.ets)
+- 获取Display对象显示屏幕所有属性信息的功能封装在ShowInfo，源码参考：[ShowInfo](entry/src/main/ets/common/ShowInfo.ets)
   - 使用display.Display来显示默认屏幕信息;
   - 使用display.Display[]来显示所有屏幕信息;；
 
@@ -57,11 +57,11 @@ entry/src/main/ets/
 
 1.本示例仅支持在标准系统上运行。
 
-2.本示例为Stage模型，仅支持API10版本SDK，版本号：4.0.8.2，镜像版本号：OpenHarmony 4.0.8.2。
+2.本示例为Stage模型，支持API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0 Release)。
 
 3.编译前下载最新每日构建中ohos-sdk，解压并替换@ohos.screen.d.ts文件。
 
-4.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)及以上版本才可编译运行。
+4.本示例需要使用DevEco Studio 版本号(4.0 Release)及以上版本才可编译运行。
 
 5.本示例需要使用@ohos.screen系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。
 

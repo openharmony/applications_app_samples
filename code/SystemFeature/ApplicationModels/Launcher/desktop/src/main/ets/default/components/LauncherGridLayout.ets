@@ -17,6 +17,7 @@
 import common from '@ohos.app.ability.common';
 import promptAction from '@ohos.promptAction';
 import wantConstant from '@ohos.ability.wantConstant';
+import Want from '@ohos.app.ability.Want';
 import Bubble from './Bubble';
 import CardItem from './CardItem';
 import { CommonConstants, GridLayoutItemInfo, Logger, MyDataSource, ResourceManager } from '@ohos/base';
@@ -28,18 +29,18 @@ const TAG: string = 'LauncherGridLayout'
 
 @Component
 export default struct LauncherGridLayout {
-  @StorageLink('DesktopLayoutModel') desktopLayoutModel: DesktopLayoutModel = undefined
-  @StorageLink('cardLabelId') cardLabelId: string = ''
-  @State columnsTemplate: string = ''
-  @State rowsTemplate: string = ''
-  @State gridInfos: Array<GridLayoutItemInfo> = []
-  private gridData: MyDataSource = undefined
-  private delayTime: number = 3000
-  private createCardTime: number = 500
+  @StorageLink('DesktopLayoutModel') desktopLayoutModel: DesktopLayoutModel | undefined = undefined;
+  @StorageLink('cardLabelId') cardLabelId: string = '';
+  @State columnsTemplate: string = '';
+  @State rowsTemplate: string = '';
+  @State gridInfos: Array<GridLayoutItemInfo> = [];
+  private gridData: MyDataSource | undefined = undefined;
+  private delayTime: number = 3000;
+  private createCardTime: number = 500;
 
   build() {
     Grid() {
-      LazyForEach(this.gridData, item => {
+      LazyForEach(this.gridData, (item: GridLayoutItemInfo) => {
         GridItem() {
           if (item.typeId === CommonConstants.TYPE_APP) {
             Bubble({
@@ -65,8 +66,8 @@ export default struct LauncherGridLayout {
         .columnStart(item.column)
         .rowEnd(item.row + item.area[0] - 1)
         .columnEnd(item.column + item.area[1] - 1)
-      }, item => {
-        return `${item.typeId}${item.row}${item.column}`
+      }, (item: GridLayoutItemInfo) => {
+        return `${item.typeId}${item.row}${item.column}`;
       })
     }
     .columnsTemplate(this.columnsTemplate)
@@ -89,7 +90,7 @@ export default struct LauncherGridLayout {
 
   // 拉起元服务
   startShopping(): void {
-    let orangeWant = {
+    let orangeWant : Want = {
       bundleName: SHOPPING_BUNDLE,
       moduleName: 'entry',
       abilityName: 'EntryAbility',
@@ -100,10 +101,10 @@ export default struct LauncherGridLayout {
   }
 
   // 点击桌面占位图触发免安装与替换桌面卡片的逻辑
-  async createCardAndInstall(item): Promise<void> {
+  async createCardAndInstall(item: GridLayoutItemInfo): Promise<void> {
     // 包名需要修改 'com.samples.asorangeshopping'
     let currentBundleFormsInfo: Array<CardItemInfo> = await FormModel.getFormsInfoByBundleName(SHOPPING_BUNDLE)
-    let formCardItem = {
+    let formCardItem : ESObject = {
       cardId: 0,
       appName: currentBundleFormsInfo[0].appName,
       cardName: currentBundleFormsInfo[0].cardName,
@@ -121,14 +122,14 @@ export default struct LauncherGridLayout {
       promptAction.showToast({
         message: $r('app.string.install_asorangeshopping')
       })
-      return
+      return;
     }
     // 移除桌面占位图
-    await this.desktopLayoutModel.removeItemFromDeskTop(item)
+    await this.desktopLayoutModel?.removeItemFromDeskTop(item);
     setTimeout(async () => {
       // 创建桌面卡片
-      await this.desktopLayoutModel.createCardToDeskTop(formCardItem)
+      await this.desktopLayoutModel?.createCardToDeskTop(formCardItem);
     }, this.createCardTime)
-    AppStorage.SetOrCreate('formMgrItem', currentBundleFormsInfo)
+    AppStorage.SetOrCreate('formMgrItem', currentBundleFormsInfo);
   }
 }

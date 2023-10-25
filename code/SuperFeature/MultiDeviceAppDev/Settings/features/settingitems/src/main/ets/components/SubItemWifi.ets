@@ -15,10 +15,10 @@
 
 @Component
 export struct SubItemWifi {
-  private title: string | Resource
-  private subTitle: string | Resource
-  private isConnected: boolean
-  private icon: Resource
+  private title: string | Resource = '';
+  private subTitle: string | Resource = '';
+  private isConnected: boolean = false;
+  private icon: Resource = $r('app.media.ic_wifi_signal_4_dark')
   @State isTouched: boolean = false
 
   build() {

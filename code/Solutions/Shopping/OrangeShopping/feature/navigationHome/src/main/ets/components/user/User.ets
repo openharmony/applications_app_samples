@@ -13,30 +13,49 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
-import { FAVOR_LIVE_LIST_DATA } from '../../mock/ProductsData'
-import { MyOrderComponent } from '../user/MyOrders'
-import { RewardSectionComponent } from '../user/RrewardSection'
-import { ServiceSectionComponent } from '../user/ServiceSection'
+import router from '@ohos.router';
+import { FAVOR_LIVE_LIST_DATA } from '../../mock/ProductsData';
+import { FavorLiveListsModel } from '../../model/GoodsModel';
+import { MyOrderComponent } from '../user/MyOrders';
+import { RewardSectionComponent } from '../user/RrewardSection';
+import { ServiceSectionComponent } from '../user/ServiceSection';
 
 @Component
 export struct User {
-  @StorageProp('curBp') curBp: string = 'sm'
+  @StorageProp('curBp') curBp: string = 'sm';
 
   build() {
     Column() {
       Scroll() {
-        GridRow({ columns: { sm: 4, md: 8, lg: 12 }, gutter: { x: vp2px(8), y: vp2px(12) } }) {
-          GridCol({ span: { sm: 4, md: 8, lg: 12 } }) {
+        GridRow({
+          columns: {
+            sm: 4,
+            md: 8,
+            lg: 12
+          },
+          gutter: {
+            x: vp2px(8),
+            y: vp2px(12)
+          }
+        }) {
+          GridCol({
+            span: {
+              sm: 4,
+              md: 8,
+              lg: 12
+            }
+          }) {
             Column() {
               Row() {
                 Image($r('app.media.setting'))
                   .width(24)
                   .aspectRatio(1)
                   .objectFit(ImageFit.Contain)
-                  .margin({ right: 16 })
+                  .margin({
+                    right: 16
+                  })
                   .onClick(() => {
-                    router.replace({
+                    router.replaceUrl({
                       url: 'pages/Setting'
                     })
                   })
@@ -59,7 +78,9 @@ export struct User {
                     .fontSize(16)
                     .fontWeight(500)
                     .fontColor($r('app.color.white'))
-                    .margin({ bottom: 12 })
+                    .margin({
+                      bottom: 12
+                    })
                   Row() {
                     Row() {
                       Text($r('app.string.sign_Info'))
@@ -78,33 +99,59 @@ export struct User {
                     .padding(4)
                     .borderRadius(10)
                     .backgroundColor($r('app.color.point_selected'))
-                    .margin({ left: 4 })
+                    .margin({
+                      left: 4
+                    })
                   }
                 }
                 .alignItems(HorizontalAlign.Start)
-                .padding({ left: 12 })
+                .padding({
+                  left: 12
+                })
               }
               .width('100%')
-              .padding({ left: 12 })
+              .padding({
+                left: 12
+              })
 
-              MyOrderComponent()
+              MyOrderComponent();
             }
           }
 
-          GridCol({ span: { sm: 4, md: 4, lg: 6 } }) {
-            RewardSectionComponent()
+          GridCol({
+            span: {
+              sm: 4,
+              md: 4,
+              lg: 6
+            }
+          }) {
+            RewardSectionComponent();
           }
 
-          GridCol({ span: { sm: 4, md: 4, lg: 6 } }) {
-            ServiceSectionComponent()
+          GridCol({
+            span: {
+              sm: 4,
+              md: 4,
+              lg: 6
+            }
+          }) {
+            ServiceSectionComponent();
           }
 
-          GridCol({ span: { sm: 4, md: 8, lg: 12 } }) {
+          GridCol({
+            span: {
+              sm: 4,
+              md: 8,
+              lg: 12
+            }
+          }) {
             Row() {
               Text($r('app.string.often_see_live'))
                 .fontSize(16)
                 .fontWeight(500)
-                .margin({ left: 12 })
+                .margin({
+                  left: 12
+                })
               Blank()
               Row() {
                 Text($r('app.string.read_more'))
@@ -117,11 +164,19 @@ export struct User {
               }
             }
             .width('100%')
-            .padding({ top: 4 })
+            .padding({
+              top: 4
+            })
           }
 
-          ForEach(FAVOR_LIVE_LIST_DATA, item => {
-            GridCol({ span: { sm: 2, md: 4, lg: 4 } }) {
+          ForEach(FAVOR_LIVE_LIST_DATA, (item: FavorLiveListsModel) => {
+            GridCol({
+              span: {
+                sm: 2,
+                md: 4,
+                lg: 4
+              }
+            }) {
               Stack({ alignContent: Alignment.TopStart }) {
                 Image(item.imgSrc)
                   .objectFit(ImageFit.Cover)
@@ -133,27 +188,46 @@ export struct User {
                   }
                   .backgroundColor($r('app.color.red'))
                   .borderRadius(10)
-                  .padding({ left: 6, right: 6, bottom: 2, top: 2 })
+                  .padding({
+                    left: 6,
+                    right: 6,
+                    bottom: 2,
+                    top: 2
+                  })
 
                   Text(item.viewsInfo)
                     .fontSize(10)
                     .fontColor($r('app.color.white'))
-                    .margin({ left: 6 })
+                    .margin({
+                      left: 6
+                    })
                 }
                 .borderRadius(10)
-                .padding({ right: 6 })
+                .padding({
+                  right: 6
+                })
                 .backgroundColor($r('app.color.point'))
-                .margin({ left: 12, top: 12 })
+                .margin({
+                  left: 12,
+                  top: 12
+                })
               }
               .width('100%')
             }
-          }, item => item.id.toString())
+          }, (item: FavorLiveListsModel) => item.id.toString())
         }
-        .padding({ left: 12, right: 12, bottom: 12 })
+        .padding({
+          left: 12,
+          right: 12,
+          bottom: 12
+        })
       }
       .layoutWeight(1)
       .scrollBar(BarState.Off)
-      .backgroundImageSize({ width: '100%', height: '25%' })
+      .backgroundImageSize({
+        width: '100%',
+        height: '25%'
+      })
       .backgroundImage($r('app.media.home_mask'), ImageRepeat.NoRepeat)
 
       Divider()

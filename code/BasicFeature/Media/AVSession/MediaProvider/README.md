@@ -149,9 +149,11 @@ entry/src/main/ets/
 
 ### 约束与限制
 
-1. 本示例仅支持标准系统上运行，支持设备：RK3568；
-2. 本示例仅支持API10版本SDK，版本号：4.0.7.1，本涉及涉及使用AVSession模块相关系统接口，需要手动替换Full SDK才能编译通过，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)
-3. 本示例需要使用DevEco Studio 3.1 Release (Build Version: 3.1.0.500)才可编译运行；
+1. 本示例仅支持标准系统上运行，支持设备：RK3568。
+
+2. 本示例为Stage模型，支持API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0 Release)
+
+3. 本示例需要使用DevEco Studio 版本号(4.0 Release)及以上版本才可编译运行。
 
 ### 下载
 

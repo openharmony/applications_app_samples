@@ -21,42 +21,44 @@ import { BatteryStatsDataSource } from '../../model/BatteryStatsDataSource';
  */
 @Component
 export struct BatteryStatsList {
-  private listData: BatteryStatsDataSource;
+  private listData: BatteryStatsDataSource | undefined = undefined;
 
   build() {
     List() {
-      LazyForEach(this.listData, (item: BatteryStatsModel) => {
-        ListItem() {
-          Row() {
-            Image(item.icon ? item.icon : item.iconBase64)
-              .objectFit(ImageFit.Contain)
-              .width(32)
-              .height(32)
-              .margin({
-                left: 16,
-                right: 16
-              })
-            Text(item.name ? item.name : item.nameStr)
-              .fontSize(20)
-              .fontWeight(FontWeight.Medium)
-              .fontColor($r("app.color.list_title"))
-              .textOverflow({
-                overflow: TextOverflow.Ellipsis
-              })
-              .layoutWeight(1)
-            Text((item.percent * 100).toFixed(0) + '%')
-              .fontSize(18)
-              .fontColor($r("app.color.list_content"))
-              .textOverflow({
-                overflow: TextOverflow.Ellipsis
-              })
-              .margin({
-                right: 16,
-              })
+      if (this.listData !== undefined && this.listData !== null) {
+        LazyForEach(this.listData, (item: BatteryStatsModel) => {
+          ListItem() {
+            Row() {
+              Image(item.icon ? item.icon : item.iconBase64)
+                .objectFit(ImageFit.Contain)
+                .width(32)
+                .height(32)
+                .margin({
+                  left: 16,
+                  right: 16
+                })
+              Text(item.name ? item.name : item.nameStr)
+                .fontSize(20)
+                .fontWeight(FontWeight.Medium)
+                .fontColor($r("app.color.list_title"))
+                .textOverflow({
+                  overflow: TextOverflow.Ellipsis
+                })
+                .layoutWeight(1)
+              Text((item.percent * 100).toFixed(0) + '%')
+                .fontSize(18)
+                .fontColor($r("app.color.list_content"))
+                .textOverflow({
+                  overflow: TextOverflow.Ellipsis
+                })
+                .margin({
+                  right: 16,
+                })
+            }
+            .height(65)
           }
-          .height(65)
-        }
-      }, (item, index) => index + JSON.stringify(item))
+        }, (item: BatteryStatsModel, index: number) => index + JSON.stringify(item))
+      }
     }
     .divider({
       strokeWidth: px2vp(1),

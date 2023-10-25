@@ -13,12 +13,13 @@
  * limitations under the License.
  */
 
-import { IntroductionTitle } from '../../../../common/IntroductionTitle'
-import ShowToast from '../../../../util/ShowToast'
-import { TitleBar } from '../../../../common/TitleBar'
-import { getStringData } from '../../../../data/ResourceDataHandle'
+import { IntroductionTitle } from '../../../../common/IntroductionTitle';
+import ShowToast from '../../../../util/ShowToast';
+import { TitleBar } from '../../../../common/TitleBar';
+import { getStringData } from '../../../../data/ResourceDataHandle';
 
-@Extend(Text) function textStyle() {
+@Extend(Text)
+function textStyle() {
   .height(40)
   .padding(8)
   .fontSize(20)
@@ -27,7 +28,8 @@ import { getStringData } from '../../../../data/ResourceDataHandle'
   .backgroundColor($r('app.color.background_grey'))
 }
 
-@Extend(Row) function rowStyle() {
+@Extend(Row)
+function rowStyle() {
   .height(50)
   .padding(6)
   .width('100%')
@@ -38,10 +40,10 @@ import { getStringData } from '../../../../data/ResourceDataHandle'
 @Entry
 @Component
 struct TimeDialogSample {
-  @State fullTime: string = getStringData($r('app.string.time_picker_dialog_timeone'))
-  @State halfTime: string = getStringData($r('app.string.time_picker_dialog_timeone'))
-  private context: any = getContext(this)
-  private selectTime: Date = new Date(getStringData($r('app.string.time_picker_dialog_timetwo')))
+  @State fullTime: string = getStringData($r('app.string.time_picker_dialog_timeone'));
+  @State halfTime: string = getStringData($r('app.string.time_picker_dialog_timeone'));
+  private context: Context = getContext(this);
+  private selectTime: Date = new Date(getStringData($r('app.string.time_picker_dialog_timetwo')));
 
   build() {
     Column() {
@@ -103,32 +105,36 @@ struct TimeDialogSample {
   }
 
   setTime(isUseMilitaryTime: boolean, value: TimePickerResult) {
-    this.selectTime.setHours(value.hour, value.minute)
-    let hour: string = `${value.hour}`
-    let minute: string = `${value.minute}`
-    if (value.hour < 10) {
-      hour = `0${value.hour}`
-    }
-    if (value.minute < 10) {
-      minute = `0${value.minute}`
-    }
-    if (isUseMilitaryTime) {
-      this.fullTime = `${hour}:${minute}`
-    } else {
-      this.halfTime = `${hour}:${minute}`
+    if (value.hour && value.minute) {
+      this.selectTime.setHours(value.hour, value.minute);
+      let hour: string = `${value.hour}`;
+      let minute: string = `${value.minute}`;
+      if (value.hour < 10) {
+        hour = `0${value.hour}`;
+      }
+      if (value.minute < 10) {
+        minute = `0${value.minute}`;
+      }
+      if (isUseMilitaryTime) {
+        this.fullTime = `${hour}:${minute}`;
+      } else {
+        this.halfTime = `${hour}:${minute}`;
+      }
     }
   }
 
   ShowToastTime(value: TimePickerResult) {
-    let hour: string = `${value.hour}`
-    let minute: string = `${value.minute}`
-    if (value.hour < 10) {
-      hour = `0${value.hour}`
+    if (value.hour && value.minute) {
+      let hour: string = `${value.hour}`;
+      let minute: string = `${value.minute}`;
+      if (value.hour < 10) {
+        hour = `0${value.hour}`;
+      }
+      if (value.minute < 10) {
+        minute = `0${value.minute}`;
+      }
+      ShowToast.shortToast(`${this.context.resourceManager.getStringSync($r('app.string.time_picker_toast_time')
+        .id)}${hour}:${minute}`);
     }
-    if (value.minute < 10) {
-      minute = `0${value.minute}`
-    }
-    ShowToast.shortToast(`${this.context.resourceManager.getStringSync($r('app.string.time_picker_toast_time')
-      .id)}${hour}:${minute}`)
   }
 }

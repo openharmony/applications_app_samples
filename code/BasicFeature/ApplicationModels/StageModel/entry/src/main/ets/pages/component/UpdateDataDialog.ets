@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+import DataShareResultSet from '@ohos.data.DataShareResultSet';
 import { BookModel, getBooksFromResultSet } from '../../feature/BookModel';
 import DateShareHelper from '../../feature/DataShareHelper';
 import Logger from '../../util/Logger';
@@ -22,8 +23,8 @@ const TAG: string = 'UpdateData';
 @CustomDialog
 export struct UpdateDataDialog {
   @Link books: Array<BookModel>;
-  private book: BookModel;
-  controller: CustomDialogController;
+  private book: BookModel = new BookModel();
+  controller?: CustomDialogController;
 
   build() {
     Column() {
@@ -65,7 +66,7 @@ export struct UpdateDataDialog {
           .layoutWeight(1)
           .textAlign(TextAlign.Center)
           .onClick(() => {
-            this.controller.close()
+            this.controller?.close()
           })
         Text($r('app.string.ok'))
           .fontSize(21)
@@ -83,8 +84,8 @@ export struct UpdateDataDialog {
 
   async update() {
     Logger.info(TAG, 'updateBook start');
-    let data = await DateShareHelper.updateBook(this.book);
+    let data: Promise<DataShareResultSet> = await DateShareHelper.updateBook(this.book);
     this.books = getBooksFromResultSet(data);
-    this.controller.close();
+    this.controller?.close();
   }
 }

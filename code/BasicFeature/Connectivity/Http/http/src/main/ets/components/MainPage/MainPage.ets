@@ -23,10 +23,10 @@ AppStorage.SetOrCreate('dataLength', 0)
 @Entry
 @Component
 export struct setting {
-  private getUri: string
-  private getOption: object
+  private getUri: string = ''
+  private getOption?: object
   @State url: string = ''
-  @State option: object = undefined
+  @State option?: object = undefined
   @State flag: number = 1
   @State keys: string[] = []
   @State list: number[] = [0]
@@ -35,22 +35,21 @@ export struct setting {
   @State method: string = 'GET'
   @State showPage: boolean = false
   @State resultInfo: string = ''
-  @State methods: Array<{ name: string }> = [{ name: 'GET' }, { name: 'HEAD' }, { name: 'OPTIONS' }, {
-    name: 'TRACE' }, { name: 'DELETE' }, { name: 'POST' }, { name: 'PUT' }, { name: 'CONNECT' }]
+  @State methods: Array<string> = ['GET', 'HEAD', 'OPTIONS', 'TRACE', 'DELETE', 'POST', 'PUT', 'CONNECT']
 
   @Builder MenuBuilder() {
     Column() {
-      ForEach(this.methods, item => {
-        Text(item.name)
+      ForEach(this.methods, (item: string) => {
+        Text(item)
           .margin(5)
           .fontSize(16)
           .textAlign(TextAlign.Center)
           .onClick(() => {
-            this.method = item.name
+            this.method = item
           })
 
         Divider().height(1)
-      }, item => item.name.toString())
+      }, (item: string) => item.toString())
     }
     .width('180vp')
   }
@@ -59,15 +58,15 @@ export struct setting {
     this.url = this.getUri
     this.option = this.getOption
     Http.setUrl(this.url)
-    let context: any = getContext(this)
+    let context: Context = getContext(this)
     this.resultInfo = context.resourceManager.getStringSync($r('app.string.result').id)
     setInterval(() => {
       if (Http.url !== '') {
         this.result = "\r\nThe length of the data received by this callback: " +
-        JSON.stringify(AppStorage.Get('dataLength')) +
+        JSON.stringify(AppStorage.Get('dataLength') as number) +
         "\r\n" + "The length of the data received: " +
-        JSON.stringify(AppStorage.Get('receiveSize')) + "\r\n" + "Total length of data: " +
-        JSON.stringify(AppStorage.Get('totalSize')) + "\r\n" + "Percentage: " +
+        JSON.stringify(AppStorage.Get('receiveSize') as number) + "\r\n" + "Total length of data: " +
+        JSON.stringify(AppStorage.Get('totalSize') as number) + "\r\n" + "Percentage: " +
         JSON.stringify(Math.floor((AppStorage.Get('receiveSize') as number) /
         (AppStorage.Get('totalSize') as number) * 10000) / 100) + '%'
       } else {
@@ -104,7 +103,7 @@ export struct setting {
           .width('95%')
           .height('10%')
 
-          ForEach(this.list, (item, index) => {
+          ForEach(this.list, (item: number, index: number) => {
             Row() {
               Text('Key: ')
                 .width('20%')
@@ -138,7 +137,7 @@ export struct setting {
             }
             .width('95%')
             .height('10%')
-          }, item => item.toString())
+          }, (item: number) => item.toString())
 
           Column() {
             Button($r('app.string.add'))

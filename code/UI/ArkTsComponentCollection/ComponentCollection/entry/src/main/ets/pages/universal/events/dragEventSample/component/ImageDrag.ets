@@ -31,6 +31,7 @@ export struct ImageDrag {
         .width(48)
         .aspectRatio(1)
         .visibility(this.visible ? Visibility.Visible : Visibility.Hidden)
+        .draggable(true)
         .onDragStart(() => {
           this.visible = false
           return this.pixelMapBuilder

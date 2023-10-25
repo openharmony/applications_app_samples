@@ -21,7 +21,7 @@ import { ActionBarButton } from './ActionBarButton';
 @Component
 export struct DetailMenuPanel {
   @Link actionBarProp: ActionBarProp;
-  onMenuClicked: Function;
+  onMenuClicked: Function | null = null;
 
   build() {
     Row() {

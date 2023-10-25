@@ -84,12 +84,12 @@ export class KvStoreModel {
     this.createKvStore(() => {
       logger.info(TAG, `kvStore.on(dataChange) begin`)
       try {
-      this.kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (data) => {
-        logger.debug(TAG, `dataChange, ${JSON.stringify(data)}`)
-        logger.debug(TAG, `dataChange, insert ${data.insertEntries.length} update ${data.updateEntries.length}`)
-        let entries = data.insertEntries.length > 0 ? data.insertEntries : data.updateEntries
-        this.simplify(entries, msg, refreshdata)
-      })
+        this.kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (data) => {
+          logger.debug(TAG, `dataChange, ${JSON.stringify(data)}`)
+          logger.debug(TAG, `dataChange, insert ${data.insertEntries.length} update ${data.updateEntries.length}`)
+          let entries = data.insertEntries.length > 0 ? data.insertEntries : data.updateEntries
+          this.simplify(entries, msg, refreshdata)
+        })
       } catch(error) {
         logger.error(TAG, `kvStore.on(dataChange) code is ${JSON.stringify(error.code)}, message is ${JSON.stringify(error.message)}`)
       }

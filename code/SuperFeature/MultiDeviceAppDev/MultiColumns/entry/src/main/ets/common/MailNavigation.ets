@@ -23,11 +23,13 @@ export struct MailNavigation {
   @State mailList: string[] = ['1', '1', '1', '1', '1', '1']
   @LocalStorageProp('currentBreakPoint') currentBreakPoint: string = 'md'
 
-  @Builder myRouter(name: string, param?: number) {
+  @Builder
+  myRouter(name: string, param?: number | undefined) {
     MailContent()
   }
 
-  @Builder NavigationMenus() {
+  @Builder
+  NavigationMenus() {
     if (this.currentBreakPoint !== 'md') {
       Row() {
         Image($r('app.media.add'))
@@ -41,7 +43,8 @@ export struct MailNavigation {
     }
   }
 
-  @Builder NavigationTitle() {
+  @Builder
+  NavigationTitle() {
     Column() {
       Text($r('app.string.recvBox'))
         .fontColor('#000')
@@ -57,7 +60,7 @@ export struct MailNavigation {
   }
 
   aboutToAppear() {
-    this.pathInfo.push({ name: 'one' })
+    this.pathInfo.pushPath({ name: 'one' })
   }
 
   build() {
@@ -69,7 +72,7 @@ export struct MailNavigation {
           }.height(56)
 
           List() {
-            ForEach(this.mailList, (item, index) => {
+            ForEach(this.mailList, (item: string, index: number | undefined) => {
               ListItem() {
                 Column() {
                   Row() {
@@ -102,7 +105,7 @@ export struct MailNavigation {
         }
       }
     }
-    .navBarWidth(new BreakpointType(321, 321, 390).GetValue(this.currentBreakPoint))
+    .navBarWidth(new BreakpointType(321, 321, 390).GetValue(this.currentBreakPoint) as number | Length)
     .navDestination(this.myRouter)
     .menus(this.NavigationMenus)
     .width('100%')

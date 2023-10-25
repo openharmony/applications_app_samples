@@ -38,9 +38,9 @@ export class MailType {
 export class photoType {
   name: Resource
   count: number
-  src: Resource
+  src: Resource | undefined
 
-  constructor(name: Resource, count: number, src?: Resource) {
+  constructor(name: Resource, count: number, src?: Resource | undefined) {
     this.name = name
     this.count = count
     this.src = src

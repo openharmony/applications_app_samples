@@ -13,15 +13,15 @@
  * limitations under the License.
  */
 
-import { TitleBar } from '../../../../common/TitleBar'
-import { getStringData } from '../../../../data/ResourceDataHandle'
-import { locationTypes, visibileTypes } from '../../UniversialData'
+import { TitleBar } from '../../../../common/TitleBar';
+import { getStringData } from '../../../../data/ResourceDataHandle';
+import { locationTypes, visibileTypes, ResourceObjectType } from '../../UniversialData';
 
 @Extend(Column) function cardStyle() {
   .backgroundColor(Color.White)
   .borderRadius(24)
   .width('100%')
-  .padding(15)
+  .margin({ bottom: 12 })
 }
 
 @Extend(Text) function subTitleStyle() {
@@ -30,27 +30,35 @@ import { locationTypes, visibileTypes } from '../../UniversialData'
   .height(22)
 }
 
+@Extend(Text) function leftTitleStyle() {
+  .fontSize(18)
+  .width('100%')
+  .direction(Direction.Ltr)
+  .margin({ left: 24, top: 8, bottom: 8 })
+  .fontColor($r('app.color.font_color_shallow'))
+}
+
 @Entry
 @Component
 struct Page {
-  @State firstZindex: number = 0
-  @State secondZindex: number = 0
-  @State thirdZindex: number = 0
-  @State alignmentLocation: Alignment = Alignment.Center
-  @State offsetX: number = 0
-  @State offsetY: number = 0
-  @State selectIndex: number = 0
-  @State currentVisibility: Visibility = Visibility.Visible
-  @State visibleIndex: number = 0
-  @State contentOpacity: number = 0.5
-  @State currentTabIndex: number = 0
-  private visibilityArray: Visibility[] = [Visibility.Visible, Visibility.Hidden, Visibility.None]
+  @State firstZindex: number = 0;
+  @State secondZindex: number = 0;
+  @State thirdZindex: number = 0;
+  @State alignmentLocation: Alignment = Alignment.Center;
+  @State offsetX: number = 0;
+  @State offsetY: number = 0;
+  @State selectIndex: number = 0;
+  @State currentVisibility: Visibility = Visibility.Visible;
+  @State visibleIndex: number = 0;
+  @State contentOpacity: number = 0.5;
+  @State currentTabIndex: number = 0;
+  private visibilityArray: Visibility[] = [Visibility.Visible, Visibility.Hidden, Visibility.None];
   private alignments: Alignment[] = [Alignment.Center, Alignment.TopStart,
-                                    Alignment.TopEnd, Alignment.Top, Alignment.Start,
-                                    Alignment.End, Alignment.BottomStart,
-                                    Alignment.Bottom, Alignment.BottomEnd]
-  private selectArray: { value: Resource }[] = locationTypes
-  private visibleArray: { value: Resource }[] = visibileTypes
+  Alignment.TopEnd, Alignment.Top, Alignment.Start,
+  Alignment.End, Alignment.BottomStart,
+  Alignment.Bottom, Alignment.BottomEnd];
+  private selectArray: ResourceObjectType[] = locationTypes;
+  private visibleArray: ResourceObjectType[] = visibileTypes;
 
   @Builder tabbarTitle(name: string | Resource, index: number) {
     Stack() {
@@ -166,9 +174,7 @@ struct Page {
                 .subTitleStyle()
 
               Text($r('app.string.positon_modify'))
-                .subTitleStyle()
-                .margin({ top: 20, bottom: 12, left: 12 })
-                .alignSelf(ItemAlign.Start)
+                .leftTitleStyle()
               Column() {
                 Select(this.selectArray).onSelect((index: number) => {
                   this.alignmentLocation = this.alignments[index]
@@ -178,9 +184,7 @@ struct Page {
               }.cardStyle()
 
               Text($r('app.string.offset_modify'))
-                .subTitleStyle()
-                .margin({ top: 20, bottom: 12, left: 12 })
-                .alignSelf(ItemAlign.Start)
+                .leftTitleStyle()
               Column() {
                 Row({ space: 20 }) {
                   Text($r('app.string.x_offset'))
@@ -218,6 +222,9 @@ struct Page {
                 .height(100)
                 .backgroundColor(Color.Blue)
                 .visibility(this.currentVisibility)
+                .animation({
+                  duration: 2000
+                })
               Row()
                 .width(100)
                 .height(100)
@@ -227,9 +234,7 @@ struct Page {
             Text($r('app.string.effects_display'))
               .subTitleStyle()
             Text($r('app.string.visibility_change'))
-              .margin({ top: 20, left: 12 })
-              .subTitleStyle()
-              .alignSelf(ItemAlign.Start)
+              .leftTitleStyle()
             Column() {
               Select(this.visibleArray)
                 .value(getStringData(this.visibleArray[this.visibleIndex].value))
@@ -257,9 +262,7 @@ struct Page {
               .subTitleStyle()
 
             Text($r('app.string.opacity_change'))
-              .subTitleStyle()
-              .alignSelf(ItemAlign.Start)
-              .margin({ left: 12, bottom: 12 })
+              .leftTitleStyle()
             Column() {
               Row() {
                 Text('0')

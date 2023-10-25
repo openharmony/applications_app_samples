@@ -14,16 +14,16 @@
  */
 
 export class SwiperPicturesModel {
-  constructor(public src: Resource) {
-    this.src = src
+  public src: Resource
+
+  constructor(src: Resource) {
+    this.src = src;
   }
 }
 
-export class CommentModel {
-  constructor(public url: Resource, public user: string, public img: Resource, public text: Resource) {
-    this.url = url
-    this.user = user
-    this.img = img
-    this.text = text
-  }
+export interface CommentModel {
+  url: Resource
+  user: string
+  img: Resource
+  text: Resource
 }

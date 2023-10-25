@@ -15,6 +15,7 @@
 
 import systemParameter from '@ohos.systemParameterEnhance';
 import { ColumnOperation } from '../components/ColumnOperation';
+import { BusinessError } from '@ohos.base';
 
 @Preview
 @Component
@@ -49,7 +50,7 @@ export struct SystemParameter {
       case 0:
         try {
           let that = this;
-          systemParameter.set("const.parameter.test_key", "test", function (err) {
+          systemParameter.set("const.parameter.test_key", "test", (err: BusinessError) => {
             if (err == undefined) {
               that.result = `set const.parameter.test_key success`;
             } else {
@@ -63,7 +64,7 @@ export struct SystemParameter {
       case 1:
         try {
           let that = this;
-          systemParameter.get("const.parameter.test_key", function (err, data) {
+          systemParameter.get("const.parameter.test_key", (err: BusinessError, data: string) => {
             if (err == undefined) {
               that.result = `get const.parameter.test_key success:${data}`;
             } else {

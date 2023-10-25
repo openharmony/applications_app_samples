@@ -58,7 +58,7 @@ export struct MenuNavRouter {
               logger.info(TAG, `NavRouter isActivated= ${isActivated}, selectedLabel=${item}`);
             }
           })
-        }, item => JSON.stringify(item))
+        }, (item: string) => JSON.stringify(item))
       }
     }
   }

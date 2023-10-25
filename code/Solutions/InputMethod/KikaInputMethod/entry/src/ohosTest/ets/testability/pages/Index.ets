@@ -74,10 +74,12 @@ struct Index {
       .border({ width: 1, radius: 16 })
       .padding(5)
       .height(45)
-      .onClick((event) => {
-        logger.info(TAG, `click event= ${ JSON.stringify(event)}`);
-        focusControl.requestFocus('customInputText');
-        this.initTextInput(event);
+      .onClick((event?: ClickEvent) => {
+        if(event) {
+          logger.info(TAG, `click event= ${ JSON.stringify(event)}`);
+          focusControl.requestFocus('customInputText');
+          this.initTextInput(event);
+        }
       })
     }
     .height('100%')

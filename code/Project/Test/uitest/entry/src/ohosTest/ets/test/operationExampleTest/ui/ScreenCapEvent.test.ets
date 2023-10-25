@@ -17,7 +17,7 @@ import { describe, it, expect, TestType } from '@ohos/hypium'
 import {Driver} from '@ohos.UiTest'
 const WAIT_UI_READYMS = 1000;
 export default function ScreenCapEventTest() {
-  describe('ScreenCapEvent', function () {
+  describe('ScreenCapEvent', () => {
 
     /**
      * @tc.number:ScreenCapEventTest_001
@@ -25,7 +25,7 @@ export default function ScreenCapEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest screenCap 功能
      */
-    it('testScreenCap', TestType.FUNCTION, async function (done) {
+    it('testScreenCap', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create()
       await driver.delayMs(WAIT_UI_READYMS)
       let savePath = '/data/storage/el2/base/cache/1.png'
@@ -40,7 +40,7 @@ export default function ScreenCapEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest screenCapture 指定大小截图功能
      */
-    it('testScreenCap_1', TestType.FUNCTION, async function (done) {
+    it('testScreenCap_1', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create()
       await driver.delayMs(WAIT_UI_READYMS)
       let savePath = '/data/storage/el2/base/cache/2.png'

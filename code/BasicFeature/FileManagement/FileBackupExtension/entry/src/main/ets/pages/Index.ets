@@ -23,7 +23,7 @@ const TAG: string = '[Sample_FileBackDemo]';
 @Component
 struct BackupExample {
   createFile = new CreateFile();
-  baseDir: string = AppStorage.Get('sanBoxFileDir') + '/TextDir';
+  baseDir: string = AppStorage.Get<string>('sanBoxFileDir') + '/TextDir';
   @State filePathSize: Array<string> = [];
   @State showFilePath: Array<string> = [];
 
@@ -61,7 +61,7 @@ struct BackupExample {
         .width('93%')
 
       List({ space: 10, initialIndex: 0 }) {
-        ForEach(this.showFilePath, (item, index) => {
+        ForEach(this.showFilePath, (item: string, index?: number) => {
           ListItem() {
             Column() {
               if (this.showFilePath[0] === '') {
@@ -82,15 +82,17 @@ struct BackupExample {
                   .fontWeight(500)
                   .margin({ left: 20 })
                   .id('file' + index)
-                Text(this.filePathSize[index])
-                  .fontSize(14)
-                  .width('20%')
-                  .textAlign(TextAlign.End)
-                  .fontColor('#182431')
-                  .fontWeight(400)
-                  .margin({ right: 16 })
-                  .opacity(0.6)
-                  .id('size' + index)
+                if (index != undefined) {
+                  Text(this.filePathSize[index])
+                    .fontSize(14)
+                    .width('20%')
+                    .textAlign(TextAlign.End)
+                    .fontColor('#182431')
+                    .fontWeight(400)
+                    .margin({ right: 16 })
+                    .opacity(0.6)
+                    .id('size' + index)
+                }
               }
               .width('100%')
               .height(56)
@@ -106,7 +108,7 @@ struct BackupExample {
             }
             .width('100%')
           }
-        }, item => item)
+        }, (item: string) => item)
       }
       .height('80%')
       .width('93%')

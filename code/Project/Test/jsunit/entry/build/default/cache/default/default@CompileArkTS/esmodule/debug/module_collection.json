@@ -1,0 +1,9 @@
+{
+  "D:\\work\\fork\\applications_app_samples\\code\\Project\\Test\\jsunit\\entry\\src\\main\\ets\\entryability\\EntryAbility.ts": [
+    "ohos.app.ability.UIAbility",
+    "ohos.hilog"
+  ],
+  "D:\\work\\fork\\applications_app_samples\\code\\Project\\Test\\jsunit\\entry\\src\\main\\ets\\util\\Logger.ts": [
+    "ohos.hilog"
+  ]
+}

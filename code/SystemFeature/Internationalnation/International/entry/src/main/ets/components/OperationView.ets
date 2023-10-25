@@ -16,7 +16,7 @@
 export default struct OperationView {
   private mKey: string | Resource = '';
   private showArrow: boolean = true;
-  private handleClick: () => void;
+  private handleClick: () => void = () => {};
   @Prop value: string;
 
   build() {

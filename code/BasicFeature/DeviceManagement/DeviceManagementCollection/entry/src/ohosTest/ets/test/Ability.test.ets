@@ -18,6 +18,7 @@ import { describe, beforeAll, it } from '@ohos/hypium';
 import { Driver, ON, MatchPattern } from '@ohos.UiTest';
 import { logger } from '../util/Logger';
 import { getString, getStringArray } from '../util/ResourceUtil';
+import Want from '@ohos.app.ability.Want';
 
 const TAG: string = 'Sample_DeviceManagement';
 const BUNDLE = 'DeviceManagement_';
@@ -27,9 +28,9 @@ export default function abilityTest() {
   /**
    * 启动测试app
    */
-  beforeAll(async function () {
+  beforeAll(async () => {
     logger.info(TAG, `${BUNDLE}StartAbility_001, begin`);
-    let want = {
+    let want : Want = {
       bundleName: "com.samples.devicemanagementcollection",
       abilityName: "EntryAbility"
     };
@@ -40,12 +41,12 @@ export default function abilityTest() {
     await driver.delayMs(1000);
     logger.info(TAG, `${BUNDLE}StartAbility_001, end`);
   })
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
 
     /**
      * 电量信息
      */
-    it(BUNDLE + 'BatteryInfo_001', 0, async function (done) {
+    it(BUNDLE + 'BatteryInfo_001', 0, async (done: Function) => {
       let driver: Driver = Driver.create();
       await driver.delayMs(200);
       logger.info(TAG, `${BUNDLE}BatteryInfo_001, begin`);
@@ -68,7 +69,7 @@ export default function abilityTest() {
     /**
      * RunningLock
      */
-    it(BUNDLE + 'RunningLock_001', 0, async function (done) {
+    it(BUNDLE + 'RunningLock_001', 0, async (done: Function) => {
       let driver: Driver = Driver.create();
       await driver.delayMs(200);
       logger.info(TAG, `${BUNDLE}RunningLock_001, begin`);
@@ -116,7 +117,7 @@ export default function abilityTest() {
     /**
      * 系统电源管理
      */
-    it(BUNDLE + 'Power_001', 0, async function (done) {
+    it(BUNDLE + 'Power_001', 0, async (done: Function) => {
       let driver: Driver = Driver.create();
       logger.info(TAG, `${BUNDLE}Power_001, begin`);
       await driver.assertComponentExist(ON.type('List'));
@@ -162,7 +163,7 @@ export default function abilityTest() {
     /**
      * 设置数据项名称
      */
-    it(BUNDLE + 'Settings_001', 0, async function (done) {
+    it(BUNDLE + 'Settings_001', 0, async (done: Function) => {
       let driver: Driver = Driver.create();
       await driver.delayMs(200);
       logger.info(TAG, `${BUNDLE}Settings_001, begin`);
@@ -214,7 +215,7 @@ export default function abilityTest() {
     /**
      * 设备状态感知框架
      */
-    it(BUNDLE + 'Stationary_001', 0, async function (done) {
+    it(BUNDLE + 'Stationary_001', 0, async (done: Function) => {
       let driver: Driver = Driver.create();
       await driver.delayMs(200);
       logger.info(TAG, `${BUNDLE}Stationary_001, begin`);
@@ -262,7 +263,7 @@ export default function abilityTest() {
     /**
      * 热管理
      */
-    it(BUNDLE + 'Thermal_001', 0, async function (done) {
+    it(BUNDLE + 'Thermal_001', 0, async (done: Function) => {
       let driver: Driver = Driver.create();
       await driver.delayMs(200);
       logger.info(TAG, `${BUNDLE}Thermal_001, begin`);
@@ -287,7 +288,7 @@ export default function abilityTest() {
     /**
      * USB管理
      */
-    it(BUNDLE + 'UsbManager_001', 0, async function (done) {
+    it(BUNDLE + 'UsbManager_001', 0, async (done: Function) => {
       let driver: Driver = Driver.create();
       await driver.delayMs(200);
       logger.info(TAG, `${BUNDLE}UsbManager_001, begin`);

@@ -17,7 +17,7 @@
 // Page title bar
 @Component
 export struct TitleBar {
-  private title: Resource
+  private title: string | Resource | undefined = undefined
 
   build() {
     Row() {

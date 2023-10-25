@@ -67,7 +67,7 @@ export class RenameMenuOperation implements MenuOperation, MenuOperationCallback
   }
 
   private async confirmCallback(title: string): Promise<void> {
-    return await this.confirmCallbackBindImpl(title)
+    return await this.confirmCallbackBindImpl(title);
   }
 
   private async confirmCallbackBindImpl(title: string): Promise<void> {
@@ -101,7 +101,7 @@ export class RenameMenuOperation implements MenuOperation, MenuOperationCallback
 
   private async rename(item: UserFileDataItem, name: string): Promise<Object[]> {
     Log.info(TAG, 'renameSinglePhoto start');
-    item.setName(name);
+    await item.setName(name);
     return [item.title, item.displayName] as Object[];
   }
 
@@ -121,7 +121,7 @@ export class RenameMenuOperation implements MenuOperation, MenuOperationCallback
   }
 
   private cancelCallback(): void {
-    this.cancelCallbackBindImpl()
+    this.cancelCallbackBindImpl();
   }
 
   private cancelCallbackBindImpl(): void {

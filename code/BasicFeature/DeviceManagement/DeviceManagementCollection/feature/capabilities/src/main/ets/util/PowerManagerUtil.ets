@@ -16,13 +16,14 @@
 import power from '@ohos.power';
 import { getStringArray } from '@ohos/common';
 
+let powerModes: Array<power.DevicePowerMode> = [
+power.DevicePowerMode.MODE_NORMAL,
+power.DevicePowerMode.MODE_POWER_SAVE,
+power.DevicePowerMode.MODE_PERFORMANCE,
+power.DevicePowerMode.MODE_EXTREME_POWER_SAVE
+];
+
 export class PowerManagerUtil {
-  static powerModes: Array<power.DevicePowerMode> = [
-  power.DevicePowerMode.MODE_NORMAL,
-  power.DevicePowerMode.MODE_POWER_SAVE,
-  power.DevicePowerMode.MODE_PERFORMANCE,
-  power.DevicePowerMode.MODE_EXTREME_POWER_SAVE
-  ];
 
   static isActive(): boolean {
     return power.isActive();
@@ -37,14 +38,16 @@ export class PowerManagerUtil {
   static async getPowerModeName(): Promise<string> {
     let powerModeNames = await getStringArray($r('app.strarray.power_mode'))
     switch (power.getPowerMode()) {
-      case this.powerModes[0]:
+      case powerModes[0]:
         return powerModeNames[0];
-      case this.powerModes[1]:
+      case powerModes[1]:
         return powerModeNames[1];
-      case this.powerModes[2]:
+      case powerModes[2]:
         return powerModeNames[2];
-      case this.powerModes[3]:
+      case powerModes[3]:
         return powerModeNames[3];
+      default:
+        return ''
     }
   }
 }

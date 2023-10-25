@@ -14,27 +14,27 @@
  */
 
 class Logger {
-  prefix = ''
+  prefix: string = '';
 
-  constructor(prefix) {
-    this.prefix = prefix
+  constructor(prefix: string) {
+    this.prefix = prefix;
   }
 
-  debug(...args) {
-    console.debug(this.prefix + args)
+  debug(...args: string[]): void {
+    console.debug(this.prefix + args);
   }
 
-  info(...args) {
-    console.info(this.prefix + args)
+  info(...args: string[]): void {
+    console.info(this.prefix + args);
   }
 
-  warn(...args) {
-    console.warn(this.prefix + args)
+  warn(...args: string[]): void {
+    console.warn(this.prefix + args);
   }
 
-  error(...args) {
-    console.error(this.prefix + args)
+  error(...args: string[]): void {
+    console.error(this.prefix + args);
   }
 }
 
-export default new Logger('[Sample_AdaptiveServiceWidget]')
+export default new Logger('[Sample_AdaptiveServiceWidget]');

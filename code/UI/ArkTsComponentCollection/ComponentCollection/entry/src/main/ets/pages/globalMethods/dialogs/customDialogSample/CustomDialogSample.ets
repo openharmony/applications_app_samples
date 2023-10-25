@@ -53,7 +53,7 @@ struct CustomDialogSample {
   })
   private rightDialog: CustomDialogController = new CustomDialogController({
     builder: UpgradeDialog(),
-    offset: { dx: 20, dy: 150 }
+    offset: { dx: 20, dy: 30 }
   })
   private customDialog: CustomDialogController = new CustomDialogController({
     builder: UpgradeDialog(),

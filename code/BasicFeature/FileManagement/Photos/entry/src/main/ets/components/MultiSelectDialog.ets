@@ -18,8 +18,8 @@ import { Constants } from '../constants/Constants';
 
 @Observed
 export class MultiSelectDetails {
-  count: number;
-  size: number
+  count: number = 0;
+  size: number = 0;
 }
 
 @CustomDialog
@@ -27,7 +27,7 @@ export struct MultiSelectDialog {
   @StorageLink('isHorizontal') isHorizontal: boolean = screenManager.isHorizontal();
   @StorageLink('isSidebar') isSidebar: boolean = screenManager.isSidebar();
   @StorageLink('leftBlank') leftBlank: number[] = [0, 0, 0, 0];
-  controller: CustomDialogController;
+  controller?: CustomDialogController;
   @Consume multiSelectDetails: MultiSelectDetails;
 
   aboutToAppear(): void {
@@ -94,7 +94,7 @@ export struct MultiSelectDialog {
         .backgroundColor($r('app.color.transparent'))
         .height($r('app.float.details_dialog_button_height'))
         .onClick((): void => {
-          this.controller.close()
+          this.controller?.close();
         })
       }
       .width('100%')

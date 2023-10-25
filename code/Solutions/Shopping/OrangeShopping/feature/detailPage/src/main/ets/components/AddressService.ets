@@ -15,10 +15,11 @@
 
 @Component
 export struct AddressService {
-  @Link isPanel: boolean
-  @Link currentLocation: string
+  @Link isPanel: boolean;
+  @Link currentLocation: string;
 
-  @Builder Server(text: Resource, marginTop: number) {
+  @Builder
+  Server(text: Resource, marginTop: number) {
     Row() {
       Image($r('app.media.service'))
         .objectFit(ImageFit.Contain)
@@ -78,7 +79,7 @@ export struct AddressService {
       .alignItems(VerticalAlign.Top)
       .width('100%')
       .onClick(() => {
-        this.isPanel = !this.isPanel
+        this.isPanel = !this.isPanel;
       })
 
       Row() {

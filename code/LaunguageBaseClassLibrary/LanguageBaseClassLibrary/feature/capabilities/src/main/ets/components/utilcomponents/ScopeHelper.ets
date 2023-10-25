@@ -79,7 +79,7 @@ export struct ScopeHelper {
     .align(Alignment.Start)
   }
 
-  dialog(title, message, value) {
+  dialog(title: ResourceStr, message: ResourceStr, value: ResourceStr) {
     AlertDialog.show(
       {
         title: title,

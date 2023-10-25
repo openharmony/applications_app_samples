@@ -13,8 +13,10 @@
  * limitations under the License.
  */
 
+import base from '@ohos.base';
 import formProvider from '@ohos.app.form.formProvider';
 import formBindingData from '@ohos.app.form.formBindingData';
+import Want from '@ohos.app.ability.Want';
 import Logger from '../logger/Logger';
 
 let conditionID = '110000';
@@ -41,7 +43,7 @@ struct Index {
         .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
         .backgroundColor($r('sys.color.ohos_id_color_component_activated'))
         .onClick(() => {
-          let want = {
+          let want: Want = {
             abilityName: 'EntryFormAbility',
             parameters: {
               'ohos.extra.param.key.form_dimension': FormDimension.Dimension_2_2,
@@ -50,12 +52,12 @@ struct Index {
             }
           };
           let bindingData = formBindingData.createFormBindingData();
-          let proxies = [{key: 'weather', subscriberid: conditionID}];
+          let proxies = [{ key: 'weather', subscriberid: conditionID } as formBindingData.ProxyData];
           bindingData['proxies'] = proxies;
           Logger.debug(`RequestPublishForm want: ${JSON.stringify(want)}`);
-          formProvider.requestPublishForm(want, bindingData).then((str) => {
+          formProvider.requestPublishForm(want, bindingData).then((str: string) => {
             Logger.debug(`RequestPublishForm success : ${str}`);
-          }).catch((err) => {
+          }).catch((err: base.BusinessError<void>) => {
             Logger.debug(`RequestPublishForm failed : ${err}`);
           });
           Logger.debug('=====> want is ' + JSON.stringify(want));
@@ -68,7 +70,7 @@ struct Index {
             .fontWeight(FontWeight.Bold)
         }
         .margin({
-          'top': 20
+          top: 20
         })
         .id(this.addJsButtonId)
         .width(220)
@@ -76,7 +78,7 @@ struct Index {
         .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
         .backgroundColor($r('sys.color.ohos_id_color_component_activated'))
         .onClick(() => {
-          let want = {
+          let want: Want = {
             abilityName: 'EntryFormAbility',
             parameters: {
               'ohos.extra.param.key.form_dimension': FormDimension.Dimension_2_2,
@@ -86,9 +88,9 @@ struct Index {
           };
           let bindingData = formBindingData.createFormBindingData();
           Logger.debug(`RequestPublishForm want: ${JSON.stringify(want)}`);
-          formProvider.requestPublishForm(want, bindingData).then((str) => {
+          formProvider.requestPublishForm(want, bindingData).then((str: string) => {
             Logger.debug(`RequestPublishForm success : ${str}`);
-          }).catch((err) => {
+          }).catch((err: base.BusinessError<void>) => {
             Logger.debug(`RequestPublishForm failed : ${err}`);
           });
           Logger.debug('=====> want is ' + JSON.stringify(want));

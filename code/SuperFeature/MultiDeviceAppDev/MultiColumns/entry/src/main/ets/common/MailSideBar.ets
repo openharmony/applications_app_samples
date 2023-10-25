@@ -60,7 +60,7 @@ struct AccountInfo {
     Column() {
       this.accountInfo()
       List() {
-        ForEach(this.accountList, (item: string, index: number) => {
+        ForEach(this.accountList, (item: string, index: number | undefined) => {
           ListItem() {
             Row() {
               Text()
@@ -121,7 +121,7 @@ struct MailStatusList {
         this.accountInfo()
       }.padding({ left: 9, right: 9 })
 
-      ForEach(this.mailState, (item: MailType, index: number) => {
+      ForEach(this.mailState, (item: MailType, index: number | undefined) => {
         ListItem() {
           Row() {
             Image(item.src).width(24).height(24)

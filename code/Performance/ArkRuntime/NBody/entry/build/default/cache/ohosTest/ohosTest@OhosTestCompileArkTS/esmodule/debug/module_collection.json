@@ -1,0 +1,32 @@
+{
+  "D:\\work\\fork\\applications_app_samples\\code\\Performance\\ArkRuntime\\NBody\\entry\\src\\ohosTest\\ets\\testability\\pages\\Index.ets": [
+    "ohos.hilog"
+  ],
+  "D:\\work\\fork\\applications_app_samples\\code\\Performance\\ArkRuntime\\NBody\\entry\\src\\main\\ets\\workers\\CalculateWorker.ts": [
+    "ohos.worker"
+  ],
+  "D:\\work\\fork\\applications_app_samples\\code\\Performance\\ArkRuntime\\NBody\\entry\\src\\ohosTest\\ets\\testability\\TestAbility.ets": [
+    "ohos.app.ability.UIAbility",
+    "ohos.app.ability.abilityDelegatorRegistry",
+    "ohos.hilog"
+  ],
+  "D:\\work\\fork\\applications_app_samples\\code\\Performance\\ArkRuntime\\NBody\\entry\\src\\ohosTest\\ets\\testrunner\\OpenHarmonyTestRunner.ts": [
+    "ohos.hilog",
+    "ohos.app.ability.abilityDelegatorRegistry"
+  ],
+  "D:\\work\\fork\\applications_app_samples\\code\\Performance\\ArkRuntime\\NBody\\entry\\src\\main\\ets\\model\\CalculateUtil.ets": [
+    "ohos.taskpool",
+    "ohos.worker",
+    "ohos.util"
+  ],
+  "D:\\work\\fork\\applications_app_samples\\code\\Performance\\ArkRuntime\\NBody\\entry\\src\\main\\ets\\utils\\Logger.ets": [
+    "ohos.hilog"
+  ],
+  "D:\\work\\fork\\applications_app_samples\\code\\Performance\\ArkRuntime\\NBody\\entry\\src\\ohosTest\\ets\\test\\Ability.test.ets": [
+    "ohos.app.ability.abilityDelegatorRegistry",
+    "ohos.UiTest"
+  ],
+  "D:\\work\\fork\\applications_app_samples\\code\\Performance\\ArkRuntime\\NBody\\entry\\src\\ohosTest\\ets\\util\\Logger.ets": [
+    "ohos.hilog"
+  ]
+}

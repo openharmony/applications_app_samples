@@ -16,11 +16,12 @@
 import { IntroductionTitle } from '../../../../common/IntroductionTitle'
 import { TitleBar } from '../../../../common/TitleBar'
 
-@Extend(Row) function rowStyle () {
+@Extend(Row) function rowStyle() {
+  .width('100%')
   .padding(12)
   .borderRadius(24)
   .backgroundColor(Color.White)
-  .margin({ left: 12, right: 12 })
+  .margin({ bottom: 12 })
   .justifyContent(FlexAlign.SpaceBetween)
 }
 
@@ -41,6 +42,18 @@ struct Size {
             }
             .width(100)
             .height(100)
+            .borderRadius(5)
+            .justifyContent(FlexAlign.Center)
+            .backgroundColor($r('app.color.background_green'))
+
+            Row() {
+              Text($r('app.string.size_width_fixed_60vw'))
+                .fontSize(18)
+                .fontColor(Color.White)
+            }
+            .width('60vw')
+            .height(100)
+            .margin({ left: 20 })
             .borderRadius(5)
             .justifyContent(FlexAlign.Center)
             .backgroundColor($r('app.color.background_green'))
@@ -76,6 +89,17 @@ struct Size {
             .backgroundColor($r('app.color.background_blue'))
 
             Row() {
+              Text($r('app.string.size_height_fixed_60vh'))
+                .fontSize(18)
+                .fontColor(Color.White)
+            }
+            .height('60vh')
+            .borderRadius(5)
+            .margin({ left: 20 })
+            .justifyContent(FlexAlign.Center)
+            .backgroundColor($r('app.color.background_blue'))
+
+            Row() {
               Text($r('app.string.size_height_percent'))
                 .fontSize(18)
                 .width('100%')
@@ -92,7 +116,21 @@ struct Size {
             .backgroundColor($r('app.color.background_blue'))
           }
           .rowStyle()
+
+          Row() {
+            Row() {
+              Text($r('app.string.size_height_fixed_calc'))
+                .fontSize(18)
+                .fontColor(Color.White)
+            }
+            .height('calc(200vp - 100vp)')
+            .borderRadius(5)
+            .justifyContent(FlexAlign.Center)
+            .backgroundColor($r('app.color.background_blue'))
+          }
+          .rowStyle()
         }
+        .margin({ left: 12, right: 12 })
         .constraintSize({ minHeight: '100%' })
       }
     }

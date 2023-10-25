@@ -20,7 +20,7 @@ import { getString } from '@ohos/common';
 @Component
 export struct RunningLockManager {
   @State result: string = '';
-  private timeoutID: number;
+  private timeoutID: number = 0;
 
   aboutToDisappear() {
     if (this.timeoutID) {

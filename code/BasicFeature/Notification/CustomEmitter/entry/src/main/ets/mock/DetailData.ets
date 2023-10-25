@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { CommentModel } from '../model/DetailMode'
+import { CommentModel } from '../model/DetailMode';
 
 export const COMMENT_DATA: Array<CommentModel> = [
   {
@@ -40,4 +40,4 @@ export const COMMENT_DATA: Array<CommentModel> = [
     img: $r('app.media.star'),
     text: $r('app.string.depicted')
   }
-]
+];

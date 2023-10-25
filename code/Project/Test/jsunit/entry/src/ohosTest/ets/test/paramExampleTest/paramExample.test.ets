@@ -60,7 +60,7 @@
 import {describe, it, expect, TestType} from '@ohos/hypium';
 
 export default function paramExampleTest() {
-  describe('paramExampleTest', function () {
+  describe('paramExampleTest', () => {
 
     /**
      * @tc.number:paramExampleTest_001
@@ -70,7 +70,7 @@ export default function paramExampleTest() {
      * @tc.done 异步用例执行完成回调函数
      * @tc.suitParam 使用数据传递功能给测试套传递的参数对象, suitParam对象参考传递数据对象
      */
-    it('testDataDriverAsync', TestType.FUNCTION, async  function (done, suitParam) {
+    it('testDataDriverAsync', TestType.FUNCTION, async (done: Function, suitParam: SuitParam) => {
       let suitParam1 = suitParam.suiteParams1;
       let suitParam2 = suitParam.suiteParams2;
       expect(suitParam1).assertEqual("suiteParams001");
@@ -86,7 +86,7 @@ export default function paramExampleTest() {
      * @tc.done 异步用例执行完成回调函数
      * @tc.suitParam 使用数据传递功能给测试用例传递的参数对象, suitParam对象参考传递数据对象
      */
-    it('testDataDriverParam', TestType.FUNCTION, async  function (done, suitParam) {
+    it('testDataDriverParam', TestType.FUNCTION, async (done: Function, suitParam: SuitParam) => {
       let suitParam1 = suitParam.suiteParams1;
       let suitParam2 = suitParam.suiteParams2;
       let spParam1 = suitParam.ts1;
@@ -98,4 +98,10 @@ export default function paramExampleTest() {
       done();
     });
   });
+}
+interface SuitParam {
+  suiteParams1: string,
+  suiteParams2: string,
+  ts1: string,
+  ts2: string,
 }

@@ -69,13 +69,18 @@ export class MoveMenuOperation extends ProcessMenuOperation {
   }
 
   requestOneBatchOperation(): void {
-    let item = this.items[this.currentBatch++] as UserFileDataItem;
-    userFileModel.addPhotoToAlbumByUserFileMgr(this.albumInfo.uri, item.uri)
-    this.onCompleted();
+    let item = this.items[this.currentBatch] as UserFileDataItem;
+    if (item != null) {
+      item.addToAlbum(this.albumInfo.uri).then<void, void>((): void => {
+        this.currentBatch++;
+        this.menuContext.broadCast.emit(BroadcastConstants.UPDATE_PROGRESS, [this.getExpectProgress(), this.currentBatch]);
+        this.cyclicOperation();
+      })
+    }
   }
 
   cancelFunc(): void {
-    this.cancelFuncBindImpl()
+    this.cancelFuncBindImpl();
   }
 
   private cancelFuncBindImpl(): void {
@@ -90,7 +95,7 @@ export class MoveMenuOperation extends ProcessMenuOperation {
 
   // Move cancel callback
   onOperateContinue(): void {
-    this.onOperateContinueBindImpl()
+    this.onOperateContinueBindImpl();
   }
 
   private onOperateContinueBindImpl(): void {

@@ -16,14 +16,16 @@
 import { describe, beforeAll, it, expect, TestType } from '@ohos/hypium'
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON, PointerMatrix} from '@ohos.UiTest'
+import Want from '@ohos.app.ability.Want';
+
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const WAIT_UI_READYMS = 1000;
 
 export default function PontMatrixEventTest() {
-  describe('PontMatrixEventTest', function () {
-    beforeAll(async function () {
-      let want = {
+  describe('PontMatrixEventTest', () => {
+    beforeAll(async () => {
+      let want: Want = {
         bundleName : bundleName,
         abilityName : "PointMatrixAbility"
       }
@@ -36,7 +38,7 @@ export default function PontMatrixEventTest() {
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest injectMultiPointerAction 功能
      */
-    it('testInjectMultiPointerAction', TestType.FUNCTION, async function (done) {
+    it('testInjectMultiPointerAction', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create()
       await driver.delayMs(WAIT_UI_READYMS)
       let image1 = await driver.findComponent(ON.id('pinch_ima'))

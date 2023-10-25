@@ -30,6 +30,7 @@ export class FileModel {
   constructor(name: string, isFolder: boolean, files: Array<string>) {
     this.name = name;
     this.files = files;
+    this.isFolder = isFolder;
     if (isFolder) {
       this.fileType = FileType.FOLDER
     } else {

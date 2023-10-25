@@ -51,14 +51,25 @@ struct RefreshSample {
   @State mFriction: number = 62
   private dataArray: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
+  @Builder refreshBuilder() {
+    Column() {
+      Text($r('app.string.auxiliary_refresh_refreshing'))
+        .fontSize(16)
+    }
+    .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Center)
+    .padding(16)
+    .borderRadius(12)
+  }
+
   build() {
     Column() {
       TitleBar({ title: $r('app.string.auxiliary_refresh') })
       Column() {
-        Refresh({ refreshing: $$this.isRefreshing, offset: this.mOffset, friction: this.mFriction }) {
+        Refresh({ refreshing: $$this.isRefreshing, offset: this.mOffset, friction: this.mFriction, builder:this.refreshBuilder }) {
           Scroll() {
             Column() {
-              ForEach(this.dataArray, (item) => {
+              ForEach(this.dataArray, (item: number) => {
                 Stack() {
                   Text((item + this.counter).toString())
                     .fontSize(20)
@@ -69,10 +80,11 @@ struct RefreshSample {
 
                 Blank(6)
               })
-            }.width('80%')
+            }.width('100%')
           }.width('100%')
           .height(300)
         }
+        .width('100%')
         .height(300)
         .onRefreshing(() => {
           setTimeout(() => {

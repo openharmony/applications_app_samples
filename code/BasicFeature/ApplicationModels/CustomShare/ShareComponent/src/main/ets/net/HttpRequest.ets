@@ -18,7 +18,7 @@ import { ShareConst } from '../util/ShareConst'
 
 const TAG: string = 'httpRequest'
 
-export function httpRequest(url, method, params, callback) {
+export function httpRequest(url: string, method: string, params: string, callback: (data: http.HttpResponse) => void) {
   let httpRequest = http.createHttp()
   httpRequest.request(url,
     {

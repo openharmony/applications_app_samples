@@ -19,7 +19,7 @@ import { TitleBar } from '../common/TitleBar'
 import { VolumeData } from '../model/VolumeData'
 
 function getString(resource: Resource): string {
-  return getContext(this).resourceManager.getStringSync(resource.id)
+  return getContext().resourceManager.getStringSync(resource.id)
 }
 
 function convertString(resource: Resource, molecule: number, denominator: number): string {

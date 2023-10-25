@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { logger } from '@ohos/photomodify';
+import { logger, readImage } from '@ohos/photomodify';
 import router from '@ohos.router';
 import GetPictures from '../pages/GetPictures';
 
@@ -24,24 +24,32 @@ struct Index {
   @State isShowComment: boolean = true;
   @State isShowCamera: boolean = false;
   @State isLand: boolean = false;
-  @State pixelMaps: Array<PixelMap> = [];
+  @State pixelMaps: Array<PixelMap|undefined> = [];
+  @State imageArr: Array<PixelMap | null> = [];
   @StorageLink('imageList') imageList: Array<string> = [];
-  @StorageLink('fileFd') fileSrc: string = null;
+  @StorageLink('fileFd') fileSrc: string = '';
   @StorageLink('isUpdate') isUpdate: boolean = false;
   private GetPictures: GetPictures = new GetPictures();
   scroller: Scroller = new Scroller();
 
-  terminateSelf(context: any): void {
+  terminateSelf(context: ESObject): void {
     context.terminateSelf();
   }
 
   aboutToAppear(): void {
     logger.info(TAG, 'enter aboutToAppear');
-    if (AppStorage.Get('pixelMaps')) {
+    if (AppStorage.Get<string[]>('pixelMaps')) {
       this.pixelMaps.push(undefined);
     }
   }
 
+  async onPageShow(): Promise<void> {
+    this.imageArr = await Promise.all(this.imageList.map(imgUrl =>{
+      return readImage(imgUrl)
+    }))
+
+    logger.info(`arr-${this.imageArr.length}`)
+  }
   build() {
     Column() {
       Row() {
@@ -102,13 +110,13 @@ struct Index {
 
               if (this.imageList.length > 0) {
                 Grid() {
-                  ForEach(this.imageList, (imgUrl: string, index) => {
+                  ForEach(this.imageList, (imgUrl: string, index:number) => {
                     GridItem() {
                       if (index < this.imageList.length) {
-                        Image(imgUrl)
+                        Image(this.imageArr[index])
                           .onClick(() => {
-                            AppStorage.SetOrCreate('selectIndex', index);
-                            this.isLand = true
+                            AppStorage.SetOrCreate<number>('selectIndex', index);
+                            this.isLand = true;
                             router.pushUrl({
                               url: 'pages/UpdatePages',
                               params: { mediaUri: imgUrl }

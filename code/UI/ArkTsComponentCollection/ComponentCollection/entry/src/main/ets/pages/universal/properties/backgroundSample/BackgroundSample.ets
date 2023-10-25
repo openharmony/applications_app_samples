@@ -15,13 +15,14 @@
 
 import { IntroductionTitle } from '../../../../common/IntroductionTitle'
 import { TitleBar } from '../../../../common/TitleBar'
+import { ChangePanel } from './ChangePanel'
 
 @Extend(Row) function rowStyle() {
   .padding(8)
   .height(120)
   .borderRadius(24)
   .backgroundColor(Color.White)
-  .margin({ left: 12, right: 12 })
+  .margin({ bottom: 12 })
 }
 
 @Extend(Text) function textStyle(marginValue: number) {
@@ -31,6 +32,7 @@ import { TitleBar } from '../../../../common/TitleBar'
   .fontColor(Color.White)
   .textAlign(TextAlign.Center)
   .margin({ left: marginValue, right: marginValue })
+  .margin({ bottom: 12 })
 }
 
 @Extend(Text) function titleText() {
@@ -38,6 +40,14 @@ import { TitleBar } from '../../../../common/TitleBar'
   .margin({ bottom: 4 })
   .textAlign(TextAlign.Center)
   .fontColor($r('app.color.font_color_shallow'))
+}
+
+@Extend(Column) function columnStyle() {
+  .width('100%')
+  .padding(12)
+  .borderRadius(24)
+  .backgroundColor(Color.White)
+  .justifyContent(FlexAlign.SpaceAround)
 }
 
 @Extend(Text) function textBorder() {
@@ -51,6 +61,8 @@ import { TitleBar } from '../../../../common/TitleBar'
 @Entry
 @Component
 struct Background {
+  @State imageSize: ImageSize = ImageSize.Cover
+  @State alignment: Alignment = Alignment.TopStart
   build() {
     Column() {
       TitleBar({ title: $r('app.string.prop_background') })
@@ -102,17 +114,18 @@ struct Background {
           .rowStyle()
 
           IntroductionTitle({ introduction: $r('app.string.background_image') })
-          Grid() {
-            GridItem() {
-              Column() {
-                Text($r('app.string.background_image_default'))
-                  .titleText()
-                Text()
-                  .textBorder()
-                  .backgroundImageSize(ImageSize.Cover)
-                  .backgroundImage($r('app.media.ic_scenery1'))
+          Column() {
+            Grid() {
+              GridItem() {
+                Column() {
+                  Text($r('app.string.background_image_default'))
+                    .titleText()
+                  Text()
+                    .textBorder()
+                    .backgroundImageSize(ImageSize.Cover)
+                    .backgroundImage($r('app.media.ic_scenery1'))
+                }
               }
-            }
 
             GridItem() {
               Column() {
@@ -136,28 +149,57 @@ struct Background {
               }
             }
 
-            GridItem() {
-              Column() {
-                Text($r('app.string.background_image_offset'))
-                  .titleText()
-                Text()
-                  .textBorder()
-                  .backgroundImageSize(ImageSize.Cover)
-                  .backgroundImagePosition({ x: 20, y: 20 })
-                  .backgroundImage($r('app.media.ic_scenery1'))
+              GridItem() {
+                Column() {
+                  Text($r('app.string.background_image_offset'))
+                    .titleText()
+                  Text()
+                    .textBorder()
+                    .backgroundImageSize(ImageSize.Cover)
+                    .backgroundImagePosition({ x: 20, y: 20 })
+                    .backgroundImage($r('app.media.ic_scenery1'))
+                }
               }
             }
+            .rowsGap(8)
+            .padding(8)
+            .height(250)
+            .columnsGap(8)
+            .borderRadius(24)
+            .rowsTemplate('1fr 1fr')
+            .columnsTemplate('1fr 1fr')
+            .backgroundColor(Color.White)
+            .margin({ left: 12, right: 12 })
+
           }
-          .rowsGap(8)
-          .padding(8)
-          .height(250)
-          .columnsGap(8)
-          .borderRadius(24)
-          .rowsTemplate('1fr 1fr')
-          .columnsTemplate('1fr 1fr')
-          .backgroundColor(Color.White)
-          .margin({ left: 12, right: 12 })
+          .columnStyle()
+
+          IntroductionTitle({ introduction: $r('app.string.background_image_transformation_effect') })
+          Column() {
+            Text()
+              .width('100%')
+              .height(200)
+              .borderRadius(8)
+              .borderWidth(1)
+              .borderColor(Color.Black)
+              .backgroundImageSize(this.imageSize)
+              .backgroundImagePosition(this.alignment)
+              .animation({
+                duration: 2000
+              })
+              .margin({ bottom: 4 })
+              .backgroundImage($r('app.media.ic_scenery1'))
+
+            ChangePanel({
+              imageSize: $imageSize,
+              alignment: $alignment
+            })
+            .margin({ bottom: 40 })
+          }
+          .columnStyle()
         }
+        .padding({ left: 12, right: 12 })
+        .margin({ bottom: 80 })
         .constraintSize({ minHeight: '100%' })
       }
     }

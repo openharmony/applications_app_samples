@@ -34,7 +34,7 @@ struct Index {
   private currentIndex: number = this.preIndex;
 
   private appBroadcast: Broadcast = broadcastManager.getBroadcast();
-  private jumpSource: number;
+  private jumpSource: number = 0;
   @StorageLink('entryFromHap') entryFromHap: number = Constants.ENTRY_FROM_NONE;
   @StorageLink('permissionStatus') @Watch('onUpdate') permission: boolean = false;
   @State isUpdate: boolean = false;

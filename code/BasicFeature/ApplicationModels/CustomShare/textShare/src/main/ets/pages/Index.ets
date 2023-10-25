@@ -22,7 +22,7 @@ struct Index {
   @StorageLink('messages') messages: string = 'No shared information on the current page';
   @StorageLink('sharedFlag') sharedFlag: boolean = false;
   private context = getContext(this) as common.UIAbilityContext;
-  private shareDialog: CustomDialogController;
+  private shareDialog?: CustomDialogController;
 
   build() {
     Column() {
@@ -42,9 +42,10 @@ struct Index {
             context: this.context,
             want: {
               bundleName: 'ohos.samples.customshare',
-              abilityName: 'UIExtAbility',
+              abilityName: 'ShareExtAbility',
               moduleName: 'textShare',
               parameters: {
+                'ability.want.params.uiExtensionType': 'share',
                 'shareMessages': this.messages
               }
             }

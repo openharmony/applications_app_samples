@@ -75,7 +75,7 @@ struct LoadingProgressSample {
             Circle({ width: 20, height: 20 })
               .colorPicker(item, () => {
                 this.mColor = item
-              }).id('test_circle'+index)
+              }).id('test_circle' + index)
               .stateStyles({
                 pressed: pressedStyle,
                 normal: {

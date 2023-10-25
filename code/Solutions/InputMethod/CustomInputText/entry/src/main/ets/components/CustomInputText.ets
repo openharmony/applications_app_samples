@@ -32,12 +32,12 @@ export struct CustomInputText {
   @State cursorIndex: number = 0;
   @State selectIndex: number = 0;
   @State inputWidth: number = 320;
-  @Link @Watch('isAttachedChange') isAttached: boolean;
-  @Link @Watch('isOnChange') isOn: boolean;
-  @Link @Watch('isShowChange') isShow: boolean;
-  @Link @Watch('changeSelection') isChangeSelection: boolean;
-  @Prop enterKeyIndex: number;
-  @Prop inputTypeIndex: number;
+  @Consume @Watch('isAttachedChange') isAttached: boolean;
+  @Consume @Watch('isOnChange') isOn: boolean;
+  @Consume @Watch('isShowChange') isShow: boolean;
+  @Consume @Watch('changeSelection') isChangeSelection: boolean;
+  @Consume enterKeyIndex: number;
+  @Consume inputTypeIndex: number;
   @Consume selectStart: number;
   @Consume selectEnd: number;
   private inputController: inputMethod.InputMethodController = inputMethod.getController();
@@ -77,11 +77,11 @@ export struct CustomInputText {
         .margin({ top: 5 })
         .position({ x: this.cursorLeft, y: 0 })
         .onAreaChange((oldArea: Area, newArea: Area) => {
-          if (newArea.globalPosition.x != this.cursorInfo.left) {
-            this.cursorInfo.left = <number> newArea.globalPosition.x;
-            this.cursorInfo.top = <number> newArea.position.y;
-            this.cursorInfo.width = <number> newArea.width;
-            this.cursorInfo.height = <number> newArea.height;
+          if (newArea.globalPosition.x as number !== this.cursorInfo.left) {
+            this.cursorInfo.left = newArea.globalPosition.x as number;
+            this.cursorInfo.top = newArea.position.y as number;
+            this.cursorInfo.width = newArea.width as number;
+            this.cursorInfo.height = newArea.height as number;
             logger.info(TAG, `cursor change: this.cursorInfo=${JSON.stringify(this.cursorInfo)}`);
             this.inputController.updateCursor(this.cursorInfo);
           }
@@ -102,9 +102,11 @@ export struct CustomInputText {
     .backgroundColor($r('app.color.input_text_background'))
     .padding({ left: 10, right: 10, top: 5, bottom: 5 })
     .height(45)
-    .onClick((event: ClickEvent) => {
-      logger.info(TAG, `click event= ${JSON.stringify(event)}`);
-      this.initTextInput(event);
+    .onClick((event?: ClickEvent) => {
+      if (event) {
+        logger.info(TAG, `click event= ${JSON.stringify(event)}`);
+        this.initTextInput(event);
+      }
     })
   }
 

@@ -15,6 +15,8 @@
 
 import media from '@ohos.multimedia.media';
 import Logger from './Logger';
+import resourceManager from '@ohos.resourceManager';
+import { BusinessError } from '@ohos.base';
 
 const TAG = '[AudioPlayer]';
 
@@ -77,7 +79,7 @@ class AudioPlayer {
         Logger.info(TAG, 'get audio resource successful');
         Logger.info(TAG, 'rawFd of audio:' + ' fd:' + rawFd.fd + ', offset:' + rawFd.offset + ', length: ' + rawFd.length);
       })
-      .catch((error) => {
+      .catch((error: BusinessError) => {
         Logger.info(TAG, 'get audio resource failed, err code:' + error.code + ' err msg:' + error.message);
       });
     this.avPlayer.fdSrc = rawFd;

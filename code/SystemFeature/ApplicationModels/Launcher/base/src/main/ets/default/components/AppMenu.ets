@@ -17,18 +17,18 @@ import { MenuInfo } from '../bean/MenuInfo'
 
 @Component
 export struct AppMenu {
-  private menuInfos: Array<MenuInfo> = new Array<MenuInfo>()
+  private menuInfos: Array<MenuInfo> = new Array<MenuInfo>();
 
   build() {
     Column() {
-      ForEach(this.menuInfos, (item) => {
+      ForEach(this.menuInfos, (item: MenuInfo) => {
         Column() {
 
           MenuInfoItem({
             menuInfo: item
           })
         }
-      }, item => JSON.stringify(item))
+      }, (item: MenuInfo) => JSON.stringify(item))
     }
     .padding({ top: 4, bottom: 4, left: 4, right: 4 })
     .borderRadius(12)
@@ -37,7 +37,7 @@ export struct AppMenu {
 
 @Component
 struct MenuInfoItem {
-  private menuInfo: MenuInfo
+  private menuInfo: MenuInfo = new MenuInfo();
 
   build() {
     Row() {
@@ -58,8 +58,8 @@ struct MenuInfoItem {
     .width(235)
     .justifyContent(FlexAlign.Start)
     .onClick(() => {
-      this.menuInfo.onMenuClick()
-      ContextMenu.close()
+      this.menuInfo.onMenuClick();
+      ContextMenu.close();
     })
   }
 }

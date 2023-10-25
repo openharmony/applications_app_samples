@@ -17,7 +17,7 @@
   "module": {
     "name": "entry",
     "type": "entry",
-    "srcEntrance": "./ets/Application/MyAbilityStage.ts",
+    "srcEntrance": "./ets/Application/MyAbilityStage.ets",
     "description": "$string:entry_descc",
     "mainElement": "MainAbility",
     "deviceTypes": [
@@ -31,7 +31,7 @@
     "abilities": [
       {
         "name": "MainAbility",
-        "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+        "srcEntrance": "./ets/MainAbility/MainAbility.ets",
         "description": "$string:MainAbility_descc",
         "icon": "$media:icon",
         "label": "$string:MainAbility_name",
@@ -54,7 +54,7 @@
     "extensionAbilities": [
       {
         "name": "WorkAbility",
-        "srcEntrance": "./ets/WorkAbility/WorkAbility.ts",
+        "srcEntrance": "./ets/WorkAbility/WorkAbility.ets",
         "label": "$string:WorkSchedulerExtensionAbility_label",
         "description": "$string:WorkSchedulerExtensionAbility_desc",
         "type": "workScheduler",

@@ -18,6 +18,7 @@ import { describe, beforeAll, it } from '@ohos/hypium';
 import { Driver, ON, MatchPattern } from '@ohos.UiTest';
 import { logger } from '../util/Logger';
 import { getString, getStringArray } from '../util/ResourceUtil';
+import Want from '@ohos.app.ability.Want';
 
 const TAG: string = '[Sample_DeviceManagementSys]';
 const BUNDLE = 'DeviceManagementSys_';
@@ -36,9 +37,9 @@ export default function abilityTest() {
   /**
    * 启动测试app
    */
-  beforeAll(async function () {
+  beforeAll(async () => {
     logger.info(TAG, `${BUNDLE}StartAbility_001, begin`);
-    let want = {
+    let want: Want = {
       bundleName: "com.samples.devicemanagementcollectionsys",
       abilityName: "EntryAbility"
     };
@@ -49,12 +50,11 @@ export default function abilityTest() {
     await driver.delayMs(1000);
     logger.info(TAG, `${BUNDLE}StartAbility_001, end`);
   })
-  describe('ActsAbilityTest', function () {
-
+  describe('ActsAbilityTest', () => {
     /**
      * 耗电统计
      */
-    it(BUNDLE + 'BatteryStats_001', 0, async function (done) {
+    it(BUNDLE + 'BatteryStats_001', 0, async (done: Function) => {
       let driver: Driver = Driver.create();
       await driver.delayMs(200);
       logger.info(TAG, `${BUNDLE}BatteryStats_001, begin`);
@@ -92,7 +92,7 @@ export default function abilityTest() {
     /**
      * 屏幕亮度
      */
-    it(BUNDLE + 'Brightness_001', 0, async function (done) {
+    it(BUNDLE + 'Brightness_001', 0, async (done: Function) => {
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
       logger.info(TAG, `${BUNDLE}Brightness_001, begin`);
@@ -121,7 +121,7 @@ export default function abilityTest() {
     /**
      * 系统电源管理
      */
-    it(BUNDLE + 'Power_001', 0, async function (done) {
+    it(BUNDLE + 'Power_001', 0, async (done: Function) => {
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
       logger.info(TAG, `${BUNDLE}Power_001, begin`);
@@ -210,7 +210,7 @@ export default function abilityTest() {
     /**
      * 设置数据项名称
      */
-    it(BUNDLE + 'Settings_001', 0, async function (done) {
+    it(BUNDLE + 'Settings_001', 0, async (done: Function) => {
       let driver: Driver = Driver.create();
       await driver.delayMs(200);
       logger.info(TAG, `${BUNDLE}Settings_001, begin`);
@@ -241,7 +241,7 @@ export default function abilityTest() {
     /**
      * 系统能力
      */
-    it(BUNDLE + 'SystemCapability_001', 0, async function (done) {
+    it(BUNDLE + 'SystemCapability_001', 0, async (done: Function) => {
       let driver: Driver = Driver.create();
       await driver.delayMs(200);
 
@@ -273,7 +273,7 @@ export default function abilityTest() {
     /**
      * 系统参数
      */
-    it(BUNDLE + 'SystemParameter_001', 0, async function (done) {
+    it(BUNDLE + 'SystemParameter_001', 0, async (done: Function) => {
       let driver: Driver = Driver.create();
       await driver.delayMs(200);
 
@@ -313,7 +313,7 @@ export default function abilityTest() {
     /**
      * 电量管理：无法获取电量信息
      */
-    it(BUNDLE + 'BatteryManager_001', 0, async function (done) {
+    it(BUNDLE + 'BatteryManager_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}BatteryManager_001 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
@@ -337,7 +337,7 @@ export default function abilityTest() {
     /**
      * 电量管理：获取电量信息：充电状态、充电类型、电池电压
      */
-    it(BUNDLE + 'BatteryManager_002', 0, async function (done) {
+    it(BUNDLE + 'BatteryManager_002', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}BatteryManager_002 begin`);
       let driver: Driver = Driver.create();
       let batteryContext = await driver.findComponent(ON.id('batteryContext'));
@@ -353,7 +353,7 @@ export default function abilityTest() {
     /**
      * 电量管理：获取电量信息：电池电量类型、温度、等级
      */
-    it(BUNDLE + 'BatteryManager_003', 0, async function (done) {
+    it(BUNDLE + 'BatteryManager_003', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}BatteryManager_003 begin`);
       let driver: Driver = Driver.create();
       let batteryContext = await driver.findComponent(ON.id('batteryContext'));
@@ -370,7 +370,7 @@ export default function abilityTest() {
     /**
      * 设备信息：开启设备信息页面
      */
-    it(BUNDLE + 'DeviceInfo_001', 0, async function (done) {
+    it(BUNDLE + 'DeviceInfo_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}DeviceInfo_001 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
@@ -389,7 +389,7 @@ export default function abilityTest() {
     /**
      * 设备信息：厂家、品牌、外部的产品系列
      */
-    it(BUNDLE + 'DeviceInfo_002', 0, async function (done) {
+    it(BUNDLE + 'DeviceInfo_002', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}DeviceInfo_002 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
@@ -403,7 +403,7 @@ export default function abilityTest() {
     /**
      * 设备信息：产品系列、设备型号、软件型号
      */
-    it(BUNDLE + 'DeviceInfo_003', 0, async function (done) {
+    it(BUNDLE + 'DeviceInfo_003', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}DeviceInfo_003 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
@@ -417,7 +417,7 @@ export default function abilityTest() {
     /**
      * 设备信息：设备硬件配置、序列号
      */
-    it(BUNDLE + 'DeviceInfo_004', 0, async function (done) {
+    it(BUNDLE + 'DeviceInfo_004', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}DeviceInfo_004 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
@@ -430,7 +430,7 @@ export default function abilityTest() {
     /**
      * 设备信息：滑动页面到‘Bootloader版本号’选项
      */
-    it(BUNDLE + 'DeviceInfo_005', 0, async function (done) {
+    it(BUNDLE + 'DeviceInfo_005', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}DeviceInfo_005 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
@@ -443,7 +443,7 @@ export default function abilityTest() {
     /**
      * 设备信息：页面滑动到‘首个版本系统软件API版本’选项
      */
-    it(BUNDLE + 'DeviceInfo_006', 0, async function (done) {
+    it(BUNDLE + 'DeviceInfo_006', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}DeviceInfo_006 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
@@ -456,7 +456,7 @@ export default function abilityTest() {
     /**
      * 设备信息：首个版本系统软件API版本、版本ID、构建类型
      */
-    it(BUNDLE + 'DeviceInfo_007', 0, async function (done) {
+    it(BUNDLE + 'DeviceInfo_007', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}DeviceInfo_007 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
@@ -473,7 +473,7 @@ export default function abilityTest() {
     /**
      * 设备信息：构建用户、构建主机、构建时间
      */
-    it(BUNDLE + 'DeviceInfo_008', 0, async function (done) {
+    it(BUNDLE + 'DeviceInfo_008', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}DeviceInfo_008 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
@@ -487,7 +487,7 @@ export default function abilityTest() {
     /**
      * 设备信息：页面滑动到‘UDID’选项
      */
-    it(BUNDLE + 'DeviceInfo_009', 0, async function (done) {
+    it(BUNDLE + 'DeviceInfo_009', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}DeviceInfo_009 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
@@ -500,7 +500,7 @@ export default function abilityTest() {
     /**
      * 设备信息：构建版本Hash、uuid
      */
-    it(BUNDLE + 'DeviceInfo_010', 0, async function (done) {
+    it(BUNDLE + 'DeviceInfo_010', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}DeviceInfo_010 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
@@ -514,7 +514,7 @@ export default function abilityTest() {
     /**
      * 打开组合按键页面
      */
-    it(BUNDLE + 'InputConsumer_001', 0, async function (done) {
+    it(BUNDLE + 'InputConsumer_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}InputConsumer_001 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
@@ -533,7 +533,7 @@ export default function abilityTest() {
     /**
      * 组合按键查找组合按键页面中关键组件
      */
-    it(BUNDLE + 'InputConsumer_002', 0, async function (done) {
+    it(BUNDLE + 'InputConsumer_002', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}InputConsumer_002 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
@@ -549,7 +549,7 @@ export default function abilityTest() {
     /**
      * 打开输入设备页面
      */
-    it(BUNDLE + 'InputDeviceManager_001', 0, async function (done) {
+    it(BUNDLE + 'InputDeviceManager_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}InputDeviceManager_001 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
@@ -568,7 +568,7 @@ export default function abilityTest() {
     /**
      * 输入设备：打开热插拔监听器
      */
-    it(BUNDLE + 'InputDeviceManager_002', 0, async function (done) {
+    it(BUNDLE + 'InputDeviceManager_002', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}InputDeviceManager_002 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
@@ -580,11 +580,10 @@ export default function abilityTest() {
       logger.info(TAG, `${BUNDLE}InputDeviceManager_002 end`);
       done();
     })
-
     /**
      * 输入设备：外设输入列表
      */
-    it(BUNDLE + 'InputDeviceManager_003', 0, async function (done) {
+    it(BUNDLE + 'InputDeviceManager_003', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}InputDeviceManager_003 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
@@ -601,7 +600,7 @@ export default function abilityTest() {
     /**
      * 打开输入事件页面
      */
-    it(BUNDLE + 'InputEventManager_001', 0, async function (done) {
+    it(BUNDLE + 'InputEventManager_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}InputEventManager_001 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
@@ -620,7 +619,7 @@ export default function abilityTest() {
     /**
      * 输入事件：打开输入事件监听器，展示输入事件
      */
-    it(BUNDLE + 'InputEventManager_002', 0, async function (done) {
+    it(BUNDLE + 'InputEventManager_002', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}InputEventManager_002 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
@@ -637,7 +636,7 @@ export default function abilityTest() {
     /**
      * 输入事件：模拟系统返回事件
      */
-    it(BUNDLE + 'InputEventManager_003', 0, async function (done) {
+    it(BUNDLE + 'InputEventManager_003', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}InputEventManager_003 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
@@ -652,7 +651,7 @@ export default function abilityTest() {
     /**
      * 打开鼠标指针设置页面
      */
-    it(BUNDLE + 'MouseManager_001', 0, async function (done) {
+    it(BUNDLE + 'MouseManager_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}MouseManager_001 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
@@ -670,7 +669,7 @@ export default function abilityTest() {
     /**
      * 鼠标指针：设置鼠标显示或隐藏
      */
-    it(BUNDLE + 'MouseManager_002', 0, async function (done) {
+    it(BUNDLE + 'MouseManager_002', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}MouseManager_002 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
@@ -686,7 +685,7 @@ export default function abilityTest() {
     /**
      * 鼠标指针：设置鼠标样式
      */
-    it(BUNDLE + 'MouseManager_003', 0, async function (done) {
+    it(BUNDLE + 'MouseManager_003', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}MouseManager_003 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
@@ -702,7 +701,7 @@ export default function abilityTest() {
     /**
      * 鼠标指针：监听鼠标
      */
-    it(BUNDLE + 'MouseManager_004', 0, async function (done) {
+    it(BUNDLE + 'MouseManager_004', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}MouseManager_004 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
@@ -717,7 +716,7 @@ export default function abilityTest() {
     /**
      * 鼠标指针：打开鼠标监听器
      */
-    it(BUNDLE + 'MouseManager_005', 0, async function (done) {
+    it(BUNDLE + 'MouseManager_005', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}MouseManager_005 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
@@ -733,7 +732,7 @@ export default function abilityTest() {
     /**
      * 鼠标指针：鼠标事件详细信息
      */
-    it(BUNDLE + 'MouseManager_006', 0, async function (done) {
+    it(BUNDLE + 'MouseManager_006', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}MouseManager_006 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
@@ -750,7 +749,7 @@ export default function abilityTest() {
     /**
      * 打开输入按键事件页面
      */
-    it(BUNDLE + 'InputKeyEventManager_001', 0, async function (done) {
+    it(BUNDLE + 'InputKeyEventManager_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}InputKeyEventManager_001 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
@@ -768,7 +767,7 @@ export default function abilityTest() {
     /**
      * 监听输入按键事件
      */
-    it(BUNDLE + 'InputKeyEventManager_002', 0, async function (done) {
+    it(BUNDLE + 'InputKeyEventManager_002', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}InputKeyEventManager_002 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
@@ -783,7 +782,7 @@ export default function abilityTest() {
     /**
      * 显示输入按键事件信息
      */
-    it(BUNDLE + 'InputKeyEventManager_003', 0, async function (done) {
+    it(BUNDLE + 'InputKeyEventManager_003', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}InputKeyEventManager_003 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);

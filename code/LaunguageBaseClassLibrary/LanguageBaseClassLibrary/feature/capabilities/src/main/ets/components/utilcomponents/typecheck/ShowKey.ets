@@ -17,7 +17,7 @@
 export struct ShowKey {
   @State result: string = ' ';
   @Link checkResult: string;
-  @Link presetValue: Array<unknown>;
+  @Link presetValue: Array<Int8Array | Number | String | Boolean>;
 
   build() {
     Button() {

@@ -38,12 +38,12 @@
 2. 各个子模块界面中点击功能按钮完成各个功能。
 3. Util中有二级菜单，点击进入对应的二级界面，包含：
 
-    * StringCode：字符串编解码，点击功能按钮完成各个功能。
-    * RationnalNumber：有理数比较，点击功能按钮完成各个功能。
-    * LRUCache：LRU缓冲区，点击功能按钮完成各个功能。
-    * ScopeHelper：范围判断，点击功能按钮完成各个功能。
-    * Base64Helper：Base64编解码，点击功能按钮完成各个功能。
-    * TypeCheck：类型检查，点击功能按钮完成各个功能。
+   * StringCode：字符串编解码，点击功能按钮完成各个功能。
+   * RationnalNumber：有理数比较，点击功能按钮完成各个功能。
+   * LRUCache：LRU缓冲区，点击功能按钮完成各个功能。
+   * ScopeHelper：范围判断，点击功能按钮完成各个功能。
+   * Base64Helper：Base64编解码，点击功能按钮完成各个功能。
+   * TypeCheck：类型检查，点击功能按钮完成各个功能。
 4. TaskPool界面中，点击Execute task执行任务，点击Cancel task取消任务。
 5. ArrayList界面中，点击+号添加数据后展示数据，点击删除按钮删除对应的一条数据。
 6. Deque界面中，点击+号添加数据后展示数据，点击删除按钮删除对应的一条数据。
@@ -167,11 +167,11 @@ LanguageBaseClassLibrary
 
 1. 本示例仅支持标准系统上运行。
 
-2. 本示例适配API version 10版本，版本号：4.0.8.3，镜像版本号：OpenHarmony 4.0.8.3。
+2. 本示例支持API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0 Release)。
 
 3. 本示例涉及使用系统接口，需要手动替换Full SDK才能编译通过，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/) 。
 
-4. 本示例需要使用DevEco Studio 3.1 Release (Build Version: 3.1.0.500, built on April 28, 2023)才可编译运行。
+4. 本示例需要使用DevEco Studio 版本号(4.0 Release)及以上版本才可编译运行。
 
 ###  下载
 

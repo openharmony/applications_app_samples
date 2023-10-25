@@ -24,7 +24,7 @@ struct Settings {
   @State pathInfo: NavPathStack = new NavPathStack()
   @LocalStorageLink('currentBreakPoint') currentBreakPoint: string = 'md'
 
-  @Builder myRouter(name: string, param?: number) {
+  @Builder myRouter(name: string, param?: number | undefined) {
     WlanItem()
   }
 
@@ -36,7 +36,7 @@ struct Settings {
   }
 
   aboutToAppear() {
-    this.pathInfo.push({ name: 'one' })
+    this.pathInfo.pushPath({ name: 'one' })
   }
 
   build() {

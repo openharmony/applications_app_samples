@@ -25,7 +25,7 @@ export class TreeSetDataSource extends BaseDataSource {
     return this.dataArr.length;
   }
 
-  public getData(index: number): any {
+  public getData(index: number): string {
     return this.arr[index];
   }
 
@@ -36,7 +36,7 @@ export class TreeSetDataSource extends BaseDataSource {
     this.notifyDataReload();
   }
 
-  public deleteData(value: string, index): void {
+  public deleteData(value: string, index: number): void {
     this.dataArr.remove(value);
     this.arr.removeByIndex(index);
     this.notifyDataDelete(index);

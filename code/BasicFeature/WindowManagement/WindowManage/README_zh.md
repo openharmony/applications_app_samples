@@ -71,11 +71,9 @@ entry/src/main/ets/
 
 2.本示例不支持release版本,仅支持master版本,当前software version为OpenHarmony 4.0.8.2
 
-3.本示例SDK仅支持api10及以上版本,当前支持的SDK版本链接如下：
+3.本示例仅支持API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0Release)
 
-[SDK全量包下载链接](http://download.ci.openharmony.cn/version/Daily_Version/ohos-sdk-public/20230610_140110/version-Daily_Version-ohos-sdk-public-20230610_140110-ohos-sdk-public.tar.gz)
-
-4.本示例需要使用DevEco Studio 3.1 Beta2 (3.1.0.500, built on April 28, 2023)及以上版本才可编译运行；
+4.本示例需要使用DevEco Studio 版本号(4.0Release)及以上版本才可编译运行。
 
 5.本示例所配置的权限ohos.permission.SYSTEM_FLOAT_WINDOW为system_basic级别(相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)查看)，需要手动配置对应级别的权限签名(具体操作可查看[自动化签名方案](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/)。
 
