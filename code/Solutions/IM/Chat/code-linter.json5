@@ -1,0 +1,61 @@
+/*
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+{
+  "files": [ // 用于表示配置适用的文件范围的 glob 模式数组。在没有指定的情况下，应用默认配置
+    "**/*.js",
+    "**/*.ts",
+    "**/*.ets",
+    "**/*.js"
+  ],
+  "ignore": [ // 一个表示配置对象不应适用的文件的 glob 模式数组。如果没有指定，配置对象将适用于所有由 files 匹配的文件
+    "**/.preview/**/*",
+    "**/build/**/*",
+    "**/oh_modules/**/*",
+    "**/ohosTest/**/*",
+    "**/node_modules/**/*",
+    "**/hvigorfile.ts"
+  ],
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "ruleSet": [],
+  "rules": {
+    // 以下为codelinter工具默认配置
+    "@typescript-eslint/await-thenable": "warn",
+    "@typescript-eslint/explicit-function-return-type": "warn", // 函数返回值类型约束
+    "@typescript-eslint/explicit-module-boundary-types": "warn", // 函数返回值类型约束
+    "@typescript-eslint/no-dynamic-delete": "warn",
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/no-for-in-array": "warn",
+    "@typescript-eslint/no-this-alias": "warn",
+    "@typescript-eslint/no-unnecessary-type-constraint": "warn",
+    "@typescript-eslint/no-unsafe-argument": "warn",
+    "@typescript-eslint/no-unsafe-assignment": "warn",
+    "@typescript-eslint/no-unsafe-call": "warn",
+    "@typescript-eslint/no-unsafe-member-access": "warn",
+    "@typescript-eslint/no-unsafe-return": "warn",
+    "@typescript-eslint/prefer-literal-enum-member": "warn",
+    // 以下为自定义配置，off表示忽略该条规则
+    "@typescript-eslint/consistent-type-imports": "off", // 忽略自动导入规则
+    "@typescript-eslint/quotes": [ // 使用字符串单引号检测
+      "warn",
+      "single"
+    ],
+    "@typescript-eslint/no-empty-function": "warn", // 空函数体警告
+    "@typescript-eslint/dot-notation": "warn" // 强制使用点符号访问对象属性,禁止使用[]方式访问属性
+  },
+  "overrides": []
+}

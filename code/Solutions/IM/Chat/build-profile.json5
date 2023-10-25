@@ -15,20 +15,35 @@
 
 {
   "app": {
-    "signingConfigs": [],
-    "compileSdkVersion": 10,
-    "compatibleSdkVersion": 10,
     "products": [
       {
         "name": "default",
         "signingConfig": "default",
+        "compileSdkVersion": 10,
+        "compatibleSdkVersion": 10,
+        "targetSdkVersion": 10,
+        "runtimeOS": "OpenHarmony"
       }
+    ],
+    "signingConfigs": [
     ]
   },
   "modules": [
     {
       "name": "entry",
-      "srcPath": "./entry",
+      "srcPath": "./products/phone/entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "chatList",
+      "srcPath": "./features/chatlist",
       "targets": [
         {
           "name": "default",
