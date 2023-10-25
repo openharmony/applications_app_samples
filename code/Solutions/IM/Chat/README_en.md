@@ -27,6 +27,6 @@ Directions for use
 
 Constraints and Limitations
 
-1. The SDK version must be 3.1.5.5 or later.
+1. The SDK version must be API Version 10 Release or later.
 
-2. This sample requires DevEco Studio 3.0 Beta4 (Build Version: 3.0.0.992, built on July 14, 2022) to compile and run.
+2. This sample requires DevEco Studio 4.0 Release to compile and run.

@@ -1,0 +1,8 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/Detail",
+    "pages/FriendsMomentsPage",
+    "pages/FullImagePage"
+  ]
+}

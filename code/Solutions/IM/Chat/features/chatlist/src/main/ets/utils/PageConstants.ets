@@ -13,10 +13,8 @@
  * limitations under the License.
  */
 
-export { logger } from './src/main/ets/util/Logger';
-
-export { CustomDataSource } from './src/main/ets/components/CustomDataSource';
-
-export { getString, getStringArray } from './src/main/ets/util/ResourceUtil';
-
-export { formatJson } from './src/main/ets/util/JSONUtils';
+export default class PageConstants {
+  public static readonly CHAT_DETAIL_PAGE: string = 'pages/ChatDetailPage';
+  public static readonly DETAIL_PAGE: string = 'pages/Detail';
+  public static readonly SEARCH_PAGE: string = 'pages/SearchPage';
+}

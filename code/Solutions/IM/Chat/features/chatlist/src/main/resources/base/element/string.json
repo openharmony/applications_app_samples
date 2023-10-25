@@ -1,0 +1,212 @@
+{
+  "string": [
+    {
+      "name": "shared_desc",
+      "value": "module shared_desc description"
+    },
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Chat"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "聊天"
+    },
+    {
+      "name": "search",
+      "value": "搜索"
+    },
+    {
+      "name": "search_place_holder",
+      "value": "搜索..."
+    },
+    {
+      "name": "user1Name",
+      "value": "自己"
+    },
+    {
+      "name": "user2Name",
+      "value": "朋友"
+    },
+    {
+      "name": "chat",
+      "value": "聊天"
+    },
+    {
+      "name": "contacts",
+      "value": "通讯录"
+    },
+    {
+      "name": "discovery",
+      "value": "发现"
+    },
+    {
+      "name": "my",
+      "value": "我"
+    },
+    {
+      "name": "add_friends",
+      "value": "添加好友"
+    },
+    {
+      "name": "group_chat",
+      "value": "发起群聊"
+    },
+    {
+      "name": "scan",
+      "value": "扫一扫"
+    },
+    {
+      "name": "collection_payment",
+      "value": "收付款"
+    },
+    {
+      "name": "alert_dialog",
+      "value": "功能开发中"
+    },
+    {
+      "name": "message1",
+      "value": "我是好友消息1"
+    },
+    {
+      "name": "message2",
+      "value": "我是好友消息2"
+    },
+    {
+      "name": "myself",
+      "value": "自己"
+    },
+    {
+      "name": "friend",
+      "value": "朋友"
+    },
+    {
+      "name": "new_friend",
+      "value": "新的朋友"
+    },
+    {
+      "name": "group",
+      "value": "群聊"
+    },
+    {
+      "name": "only_chat",
+      "value": "仅聊天的人"
+    },
+    {
+      "name": "label",
+      "value": "标签"
+    },
+    {
+      "name": "official_account",
+      "value": "公众号"
+    },
+    {
+      "name": "enterprise",
+      "value": "企业聊天联系人"
+    },
+    {
+      "name": "subscription",
+      "value": "订阅号"
+    },
+    {
+      "name": "circle",
+      "value": "朋友圈"
+    },
+    {
+      "name": "shake",
+      "value": "摇一摇"
+    },
+    {
+      "name": "search_one",
+      "value": "搜一搜"
+    },
+    {
+      "name": "applet",
+      "value": "小程序"
+    },
+    {
+      "name": "around",
+      "value": "附近的人"
+    },
+    {
+      "name": "shopping",
+      "value": "购物"
+    },
+    {
+      "name": "game",
+      "value": "游戏"
+    },
+    {
+      "name": "album",
+      "value": "相册"
+    },
+    {
+      "name": "collection",
+      "value": "收藏"
+    },
+    {
+      "name": "wallet",
+      "value": "钱包"
+    },
+    {
+      "name": "card",
+      "value": "卡包"
+    },
+    {
+      "name": "expression",
+      "value": "表情"
+    },
+    {
+      "name": "setting",
+      "value": "设置"
+    },
+    {
+      "name": "chat_list",
+      "value": "加载聊天记录"
+    },
+    {
+      "name": "permission_internet",
+      "value": "允许使用Internet网络"
+    },
+    {
+      "name": "layout_100_percent",
+      "value": "100%"
+    },
+    {
+      "name": "layout_50",
+      "value": "50"
+    },
+    {
+      "name": "delete",
+      "value": "删除"
+    },
+    {
+      "name": "layout_100",
+      "value": "100%"
+    },
+    {
+      "name": "layout_92",
+      "value": "92%"
+    },
+    {
+      "name": "layout_93",
+      "value": "93%"
+    },
+    {
+      "name": "search_inline_border_color",
+      "value": "rgba(24,36,49,0.20)"
+    },
+    {
+      "name": "chat_detail_input_background",
+      "value": "rgba(0,0,0,0.05)"
+    }
+  ]
+}

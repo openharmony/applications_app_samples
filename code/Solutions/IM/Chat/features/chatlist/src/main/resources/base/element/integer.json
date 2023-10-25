@@ -1,0 +1,384 @@
+{
+  "integer": [
+    {
+      "name": "text_font_20",
+      "value": 20
+    },
+    {
+      "name": "text_font_16",
+      "value": 16
+    },
+    {
+      "name": "text_font_14",
+      "value": 14
+    },
+    {
+      "name": "text_font_12",
+      "value": 12
+    },
+    {
+      "name": "text_font_13",
+      "value": 13
+    },
+    {
+      "name": "text_font_10",
+      "value": 10
+    },
+    {
+      "name": "layout_70",
+      "value": 70
+    },
+    {
+      "name": "layout_60",
+      "value": 60
+    },
+    {
+      "name": "layout_58",
+      "value": 58
+    },
+    {
+      "name": "layout_37",
+      "value": 37
+    },
+    {
+      "name": "layout_28",
+      "value": 28
+    },
+    {
+      "name": "layout_48",
+      "value": 48
+    },
+    {
+      "name": "layout_40",
+      "value": 40
+    },
+    {
+      "name": "layout_184",
+      "value": 184
+    },
+    {
+      "name": "layout_111",
+      "value": 111
+    },
+    {
+      "name": "layout_minus_38",
+      "value": 38
+    },
+    {
+      "name": "layout_30",
+      "value": 30
+    },
+    {
+      "name": "layout_24",
+      "value": 24
+    },
+    {
+      "name": "layout_22",
+      "value": 22
+    },
+    {
+      "name": "layout_20",
+      "value": 20
+    },
+    {
+      "name": "layout_15",
+      "value": 15
+    },
+    {
+      "name": "layout_19",
+      "value": 19
+    },
+    {
+      "name": "layout_12",
+      "value": 12
+    },
+    {
+      "name": "layout_200",
+      "value": 200
+    },
+    {
+      "name": "layout_10",
+      "value": 10
+    },
+    {
+      "name": "layout_8",
+      "value": 8
+    },
+    {
+      "name": "layout_11",
+      "value": 11
+    },
+    {
+      "name": "layout_5",
+      "value": 5
+    },
+    {
+      "name": "layout_4",
+      "value": 4
+    },
+    {
+      "name": "layout_2",
+      "value": 2
+    },
+    {
+      "name": "layout_1",
+      "value": 1
+    },
+    {
+      "name": "layout_0",
+      "value": 0
+    },
+    {
+      "name": "layout_minus_8",
+      "value": -8
+    },
+    {
+      "name": "search_font_size",
+      "value": 16
+    },
+    {
+      "name": "search_border_radius",
+      "value": 20
+    },
+    {
+      "name": "search_outline_height",
+      "value": 56
+    },
+    {
+      "name": "search_inline_height",
+      "value": 40
+    },
+    {
+      "name": "search_inline_margin",
+      "value": 24
+    },
+    {
+      "name": "search_inline_width",
+      "value": 312
+    },
+    {
+      "name": "search_inline_border_width",
+      "value": 1
+    },
+    {
+      "name": "search_outline_padding_left",
+      "value": 10
+    },
+    {
+      "name": "search_outline_padding_right",
+      "value": 10
+    },
+    {
+      "name": "search_outline_padding_top",
+      "value": 2
+    },
+    {
+      "name": "search_outline_padding_bottom",
+      "value": 13
+    },
+    {
+      "name": "chat_list_divider_stroke_width",
+      "value": 1
+    },
+    {
+      "name": "chat_list_divider_start_margin",
+      "value": 80
+    },
+    {
+      "name": "chat_list_divider_end_margin",
+      "value": 0
+    },
+    {
+      "name": "chat_list_delete_font_size",
+      "value": 20
+    },
+    {
+      "name": "chat_list_delete_width",
+      "value": 40
+    },
+    {
+      "name": "chat_list_delete_height",
+      "value": 40
+    },
+    {
+      "name": "chat_view_image_width",
+      "value": 48
+    },
+    {
+      "name": "chat_view_image_height",
+      "value": 48
+    },
+    {
+      "name": "chat_view_image_margin_left",
+      "value": 20
+    },
+    {
+      "name": "chat_view_image_border_radius",
+      "value": 5
+    },
+    {
+      "name": "chat_view_unread_border_radius",
+      "value": 10
+    },
+    {
+      "name": "chat_view_unread_width",
+      "value": 20
+    },
+    {
+      "name": "chat_view_unread_height",
+      "value": 20
+    },
+    {
+      "name": "chat_view_unread_font_size",
+      "value": 12
+    },
+    {
+      "name": "chat_view_unread_margin_top",
+      "value": -10
+    },
+    {
+      "name": "chat_view_unread_margin_right",
+      "value": -10
+    },
+    {
+      "name": "chat_view_col_padding_right",
+      "value": 12
+    },
+    {
+      "name": "chat_view_user_name_font_size",
+      "value": 16
+    },
+    {
+      "name": "chat_view_user_name_margin_bottom",
+      "value": 3
+    },
+    {
+      "name": "chat_view_user_msg_font_size",
+      "value": 14
+    },
+    {
+      "name": "chat_view_user_msg_margin_top",
+      "value": 5
+    },
+    {
+      "name": "chat_view_time_width",
+      "value": 64
+    },
+    {
+      "name": "chat_view_time_font_size",
+      "value": 12
+    },
+    {
+      "name": "chat_view_time_margin_right",
+      "value": 6
+    },
+    {
+      "name": "chat_view_time_margin_bottom",
+      "value": 27
+    },
+    {
+      "name": "chat_view_time_col_padding_left",
+      "value": 15
+    },
+    {
+      "name": "chat_view_row_height",
+      "value": 52
+    },
+    {
+      "name": "chat_view_row_padding_left",
+      "value": 8
+    },
+    {
+      "name": "chat_view_row_padding_right",
+      "value": 10
+    },
+    {
+      "name": "chat_view_row_padding_top",
+      "value": 10
+    },
+    {
+      "name": "chat_view_row_padding_bottom",
+      "value": 10
+    },
+    {
+      "name": "search_svg_height",
+      "value": 18
+    },
+    {
+      "name": "search_text_height",
+      "value": 22
+    },
+    {
+      "name": "search_text_width",
+      "value": 383
+    },
+    {
+      "name": "opt_layout_chat_view_item_height",
+      "value": 64
+    },
+    {
+      "name": "opt_layout_chat_view_item_padding_left",
+      "value": 24
+    },
+    {
+      "name": "opt_layout_chat_view_voice_image_width",
+      "value": 24
+    },
+    {
+      "name": "opt_layout_chat_view_voice_image_padding",
+      "value": 5
+    },
+    {
+      "name": "opt_layout_chat_view_item_padding_right",
+      "value": 24
+    },
+    {
+      "name": "opt_layout_chat_view_item_padding_top",
+      "value": 12
+    },
+    {
+      "name": "opt_layout_chat_view_item_padding_bottom",
+      "value": 12
+    },
+    {
+      "name": "opt_layout_chat_view_profile_picture_width",
+      "value": 40
+    },
+    {
+      "name": "opt_layout_chat_view_profile_picture_height",
+      "value": 40
+    },
+    {
+      "name": "opt_layout_chat_view_profile_picture_radius",
+      "value": 20
+    },
+    {
+      "name": "opt_layout_chat_view_user_name_font_size",
+      "value": 16
+    },
+    {
+      "name": "opt_layout_chat_view_red_dot_width",
+      "value": 16
+    },
+    {
+      "name": "opt_layout_chat_view_red_dot_height",
+      "value": 16
+    },
+    {
+      "name": "opt_layout_chat_view_red_dot_container_width",
+      "value": 20
+    },
+    {
+      "name": "opt_layout_chat_view_red_dot_container_height",
+      "value": 20
+    },
+    {
+      "name": "chat_list_page_start_margin",
+      "value": 76
+    },
+    {
+      "name": "chat_list_page_delete_row_width",
+      "value": 64
+    }
+  ]
+}

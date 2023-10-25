@@ -1,0 +1,268 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "chat_number",
+      "value": "聊天号：*******"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Chat"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "聊天"
+    },
+    {
+      "name": "search",
+      "value": "搜索..."
+    },
+    {
+      "name": "search_place_holder",
+      "value": "搜索..."
+    },
+    {
+      "name": "user1Name",
+      "value": "自己"
+    },
+    {
+      "name": "user2Name",
+      "value": "朋友"
+    },
+    {
+      "name": "chat",
+      "value": "聊天"
+    },
+    {
+      "name": "contacts",
+      "value": "通讯录"
+    },
+    {
+      "name": "discovery",
+      "value": "发现"
+    },
+    {
+      "name": "my",
+      "value": "我的"
+    },
+    {
+      "name": "add_friends",
+      "value": "添加好友"
+    },
+    {
+      "name": "group_chat",
+      "value": "发起群聊"
+    },
+    {
+      "name": "scan",
+      "value": "扫一扫"
+    },
+    {
+      "name": "collection_payment",
+      "value": "收付款"
+    },
+    {
+      "name": "prop_lazy_for_each",
+      "value": "懒加载"
+    },
+    {
+      "name": "prop_reusable",
+      "value": "组件复用"
+    },
+    {
+      "name": "prop_syncLoad",
+      "value": "同步加载"
+    },
+    {
+      "name": "prop_layout",
+      "value": "布局优化"
+    },
+    {
+      "name": "prop_cachedCount",
+      "value": "缓存数量"
+    },
+    {
+      "name": "alert_dialog",
+      "value": "功能开发中"
+    },
+    {
+      "name": "message1",
+      "value": "我是好友消息1"
+    },
+    {
+      "name": "message2",
+      "value": "我是好友消息2"
+    },
+    {
+      "name": "myself",
+      "value": "自己"
+    },
+    {
+      "name": "friend",
+      "value": "朋友"
+    },
+    {
+      "name": "new_friend",
+      "value": "新的朋友"
+    },
+    {
+      "name": "group",
+      "value": "群聊"
+    },
+    {
+      "name": "only_chat",
+      "value": "仅聊天的朋友"
+    },
+    {
+      "name": "label",
+      "value": "标签"
+    },
+    {
+      "name": "official_account",
+      "value": "公众号"
+    },
+    {
+      "name": "enterprise",
+      "value": "企业聊天联系人"
+    },
+    {
+      "name": "subscription",
+      "value": "订阅号"
+    },
+    {
+      "name": "circle",
+      "value": "朋友圈"
+    },
+    {
+      "name": "shake",
+      "value": "摇一摇"
+    },
+    {
+      "name": "search_one",
+      "value": "搜一搜"
+    },
+    {
+      "name": "applet",
+      "value": "小程序"
+    },
+    {
+      "name": "around",
+      "value": "附近的人"
+    },
+    {
+      "name": "shopping",
+      "value": "购物"
+    },
+    {
+      "name": "game",
+      "value": "游戏"
+    },
+    {
+      "name": "album",
+      "value": "相册"
+    },
+    {
+      "name": "collection",
+      "value": "收藏"
+    },
+    {
+      "name": "wallet",
+      "value": "钱包"
+    },
+    {
+      "name": "card",
+      "value": "卡包"
+    },
+    {
+      "name": "expression",
+      "value": "表情"
+    },
+    {
+      "name": "setting",
+      "value": "设置"
+    },
+    {
+      "name": "chat_list",
+      "value": "加载聊天记录"
+    },
+    {
+      "name": "permission_internet",
+      "value": "允许使用Internet网络"
+    },
+    {
+      "name": "friend_word",
+      "value": "朋友"
+    },
+    {
+      "name": "chatCommunity",
+      "value": "我是聊天社区消息"
+    },
+    {
+      "name": "landscape0",
+      "value": "landscape0"
+    },
+    {
+      "name": "landscape1",
+      "value": "landscape1"
+    },
+    {
+      "name": "landscape2",
+      "value": "landscape2"
+    },
+    {
+      "name": "landscape3",
+      "value": "landscape3"
+    },
+    {
+      "name": "landscape4",
+      "value": "landscape4"
+    },
+    {
+      "name": "landscape5",
+      "value": "landscape5"
+    },
+    {
+      "name": "landscape6",
+      "value": "landscape6"
+    },
+    {
+      "name": "landscape7",
+      "value": "landscape7"
+    },
+    {
+      "name": "landscape8",
+      "value": "landscape8"
+    },
+    {
+      "name": "friendMomentsPage_owner_margin_height",
+      "value": "40%"
+    },
+    {
+      "name": "harmony_hei_ti",
+      "value": "HarmonyHeiTi"
+    },
+    {
+      "name": "friendMomentsPage_share",
+      "value": "分享"
+    },
+    {
+      "name": "friendMomentsPage_thumbsup",
+      "value": "点赞"
+    },
+    {
+      "name": "friendMomentsPage_message",
+      "value": "评论"
+    },
+    {
+      "name": "friendMomentsPage_prompt_message",
+      "value": "当前无法链接网络，可检查网络设置是否正常。"
+    }
+  ]
+}

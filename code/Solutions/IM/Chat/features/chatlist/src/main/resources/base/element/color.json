@@ -1,0 +1,93 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },{
+      "name": "search_font_color",
+      "value": "#999999"
+    },{
+      "name": "search_outline_background_color",
+      "value": "#ffffff"
+    },{
+      "name": "chat_list_divider_color",
+      "value": "#f3f3f3"
+    },
+    {
+      "name": "detail_return_background",
+      "value": "#e3e3e3"
+    },
+    {
+      "name": "detail_divider",
+      "value": "#f3f3f3"
+    },
+    {
+      "name": "detail_bottom_text_input_background",
+      "value": "#f3f3f3"
+    },
+    {
+      "name": "detail_bottom_input_background",
+      "value": "#e3e3e3"
+    },
+    {
+      "name": "detail_body_background",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "detail_item_message_font",
+      "value": "#000"
+    },
+    {
+      "name": "detail_item_message_background",
+      "value": "#D0E9F3"
+    },
+    {
+      "name": "detail_item_message_fill",
+      "value": "#7fec7d"
+    },
+    {
+      "name": "detail_item_message_image_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "detail_item_message_image_font",
+      "value": "#000"
+    },
+    {
+      "name": "detail_item_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "unread_msg",
+      "value": "#ea6055"
+    },
+    {
+      "name": "last_msg",
+      "value": "#999999"
+    },
+    {
+      "name": "chat_view_text_color",
+      "value": "#999999"
+    },
+    {
+      "name": "unread_msg_tip",
+      "value": "#ea6055"
+    },
+    {
+      "name": "friends_page_background",
+      "value": "#e3e3e3"
+    },
+    {
+      "name": "search_svg",
+      "value": "#007DFF"
+    },
+    {
+      "name": "top_bar_font_color",
+      "value": "#182431"
+    },
+    {
+      "name": "tab_bar_separator_line_color",
+      "value": "#182431"
+    }
+  ]
+}
