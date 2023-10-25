@@ -79,6 +79,53 @@ FriendsPage() }。
 url: 'pages/SearchPage' })。  
 4、页面组件加载前，通过fileio.readSync以同步的方式读取数据，在EntryAbility生命周期中获取对应的Want信息。
 
+### AOT开启方式
+
+1. 打开Chat工程，完成同步，并将工程编译模式调整为 release。
+2. 指定热点ap文件储存路径，并关闭混淆功能。即，在模块级 build-profile.json5 文件中，配置如下：
+
+   ```ts
+   {
+     "apiType": "stageMode",
+     "buildOption": {
+       "arkOptions": {
+         "apPath": "./modules.ap"
+       }
+     },
+     "buildOptionSet": [
+       {
+         "name": "release",
+         "arkOptions": {
+           "obfuscation": {
+             "ruleOptions": {
+               "enable": false
+             }
+           }
+         }
+       }
+     ],
+     ...
+   }
+   ```
+3. 从设备端采集热点ap文件：
+   - 通过命令行开启设备ap文件开关。
+     ```shell
+     hdc shell param set ark.profile true
+     ```
+   - 将应用按步骤1中release模式打包出hap并安装到设备上，在需要优化的场景进行操作，记录高频操作后，通过命令行导出ap文件。
+     ```shell
+     hdc file recv /data/local/ark-profile/100/{bundleName}/modules.ap {apPath}
+     ```
+4. 将步骤3中获取到的ap文件，放入步骤2中指定的apPath路径。
+5. 按照步骤1中的release编译模式进行编译，并安装到设备，等待设备端侧AOT编译优化完成后，应用运行性能即可得到相应的提升。
+
+> **AOT前置约束说明**
+> - 仅支持API10及以上版本Stage模型的ArkTS工程
+> - 目前仅HAP和HSP支持该功能
+> - IDE需要4.0.1.400及以上版本
+> - Node.js需要14.19.1及以上版本
+> - SDK建议升级到OpenHarmony 4.0 beta2（4.0.9.2）及以上版本
+
 ### 相关权限
 
 不涉及。
