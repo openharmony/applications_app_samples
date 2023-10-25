@@ -63,7 +63,7 @@ struct Download {
           List({ space: 12 }) {
             LazyForEach(this.fileData, (item: FileModel, index?: number) => {
               ListItem() {
-                if (index) {
+                if (index !== undefined) {
                   this.FileItem(item, index)
                 }
               }
