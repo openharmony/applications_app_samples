@@ -25,15 +25,14 @@ const TAG: string = 'ArrayListView';
 @Preview
 @Component
 export struct ArrayListView {
-  private dataSource: MyDataSource = new MyDataSource([]);
-  private informations: ArrayList<Information> = new ArrayList();
+  @State dataSource: Information[] = [];
+  private informations: Information[] = [];
   private dialogController: CustomDialogController = new CustomDialogController({
     builder: AddDialog({
       saveData: (writeInformation: Information) => {
-        this.informations.add(writeInformation);
-        this.dataSource['dataArray'] = this.informations;
-        this.dataSource.notifyDataReload();
-        logger.info(TAG, `this.list= ${this.dataSource.totalCount()}`);
+        this.informations.push(writeInformation);
+        this.dataSource = this.informations;
+        logger.info(TAG, `this.list= ${this.dataSource.length}`);
       }
     }),
     autoCancel: true,
@@ -64,11 +63,11 @@ export struct ArrayListView {
       .width('100%')
 
       List({ space: 12 }) {
-        LazyForEach(this.dataSource, (item, index) => {
+        ForEach(this.dataSource, (item: Information, index: number) => {
           ListItem() {
             ArrayListItem({ information: item, index: index, handleOnClick: this.handleOnClick })
           }
-        }, (item, index) => JSON.stringify(item) + index)
+        }, (item: Information, index: number) => JSON.stringify(item) + index)
       }
       .margin({ top: 10 })
     }
@@ -77,8 +76,6 @@ export struct ArrayListView {
   }
 
   handleOnClick = (index: number) => {
-    this.informations.removeByIndex(index);
-    this.dataSource['dataArray'] = this.informations;
-    this.dataSource.notifyDataReload();
+    this.dataSource = this.informations.splice(index);
   }
 }

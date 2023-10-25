@@ -103,11 +103,11 @@ class QRCodeParser {
   async parseImageQRCode(imageSrc: string): Promise<DecodeResultAttribute> {
     Logger.info(`parseImageQRCode start`);
     let media = mediaLibrary.getMediaLibrary(AppStorage.Get<common.UIAbilityContext>('context'));
-    let imagesIdFetchOp = {
+    let imagesIdFetchOp: mediaLibrary.MediaFetchOptions = {
       selections: ``,
       selectionArgs: [],
       uri: imageSrc
-    }
+    };
     // 获取图片文件资源
     let fetchIdFileResult = await media.getFileAssets(imagesIdFetchOp);
     let fileIdAsset = await fetchIdFileResult.getFirstObject();
@@ -115,7 +115,7 @@ class QRCodeParser {
     let fd = await fileIdAsset.open('RW');
     // 获取PixelMap图片数据
     let imageSource = image.createImageSource(fd, { sourceDensity: 120, sourceSize: { width: 120, height: 120 } })
-    let decodingOptions = {
+    let decodingOptions: image.DecodingOptions = {
       sampleSize: 1,
       editable: true,
       desiredSize: { width: 120, height: 120 },
@@ -133,7 +133,7 @@ class QRCodeParser {
     let luminanceSource = new RGBLuminanceSource(int32Array, 120, 120);
     let binaryBitmap = new BinaryBitmap(new HybridBinarizer(luminanceSource));
     let mltiFormatReader = new MultiFormatReader();
-    let hints = new Map();
+    let hints: Map<number, number[]> = new Map();
     hints.set(DecodeHintType.POSSIBLE_FORMATS, [BarcodeFormat.QR_CODE]);
     mltiFormatReader.setHints(hints);
     try {
@@ -156,11 +156,11 @@ class QRCodeParser {
   async getImageSource(imageSrc: string): Promise<ImageAttribute> {
     Logger.info(`getImageSource start`);
     let media = mediaLibrary.getMediaLibrary(AppStorage.Get<common.UIAbilityContext>('context'));
-    let imagesIdFetchOp = {
+    let imagesIdFetchOp: mediaLibrary.MediaFetchOptions = {
       selections: ``,
       selectionArgs: [],
       uri: imageSrc
-    }
+    };
     // 获取图片文件资源
     let fetchIdFileResult = await media.getFileAssets(imagesIdFetchOp);
     let fileIdAsset = await fetchIdFileResult.getFirstObject();
@@ -172,7 +172,7 @@ class QRCodeParser {
     // 获取当前时间
     let time = new Date().getTime();
     // 拼接路径
-    let imagePath = `${context.cacheDir}/${time.toString()}_note.${imgType}`;
+    let imagePath = `${context?.cacheDir}/${time.toString()}_note.${imgType}`;
     // 将图片copy到此路径当中
     await fileio.copyFile(fd, imagePath);
     // 创建一个图片源类

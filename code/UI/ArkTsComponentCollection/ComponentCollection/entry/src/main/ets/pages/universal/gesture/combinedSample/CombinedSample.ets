@@ -13,15 +13,15 @@
  * limitations under the License.
  */
 
-const LEFT_UP_X = -80; // 限定距离
-const RIGHT_UP_X = 80;
-const LEFT_UP_Y = -130;
-const RIGHT_UP_Y = 130;
-
 import { IntroductionTitle } from '../../../../common/IntroductionTitle';
 import { TitleBar } from '../../../../common/TitleBar';
 import { getStringData } from '../../../../data/ResourceDataHandle';
 import ShowToast from '../../../../util/ShowToast';
+
+const LEFT_UP_X = -80; // 限定距离
+const RIGHT_UP_X = 80;
+const LEFT_UP_Y = -130;
+const RIGHT_UP_Y = 130;
 
 @Entry
 @Component

@@ -27,14 +27,14 @@ const TAG = 'PhotoSwiper'
 
 @Component
 export struct PhotoSwiper {
-  photoSwiperTransition: string
-  private dataSource: GroupItemDataSource;
+  photoSwiperTransition: string = '';
+  private dataSource: GroupItemDataSource = new GroupItemDataSource();
   @Consume currentIndex: number;
   @Consume broadCast: Broadcast;
   @Consume canSwipe: boolean;
   @State duration: number = 400;
-  onPhotoChanged: Function;
-  private swiperController: SwiperController;
+  onPhotoChanged: Function | null = null;
+  private swiperController?: SwiperController;
 
   aboutToAppear(): void {
     this.broadCast.on(BroadcastConstants.ON_DATA_RELOADED, (): void => {
@@ -74,8 +74,7 @@ export struct PhotoSwiper {
           })
           .zIndex(this.getIndex(item))
         }
-      }, (item: LazyItem<UserFileDataItem>): string => item == null && (item.get() != undefined && item.get() != null) ?
-        JSON.stringify(item) : item.getHashCode())
+      }, (item: LazyItem<UserFileDataItem>): string => item.getHashCode())
     }
     .itemSpace('8vp')
     .gesture(PanGesture({
@@ -92,7 +91,7 @@ export struct PhotoSwiper {
           AppStorage.SetOrCreate<number>('isLeftSwiper', 0);
         }
       }
-      if (this.duration !== 0) {
+      if (this.duration !== 0 && this.onPhotoChanged !== null) {
         this.onPhotoChanged(index);
       }
     })

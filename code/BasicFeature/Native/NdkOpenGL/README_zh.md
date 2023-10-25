@@ -64,7 +64,7 @@ Native XComponent相关函数如下：
 | OH_NativeXComponent_GetXComponentOffset(OH_NativeXComponent *component, const void *window, double *x, double *y)                                | 获取ArkUI XComponent组件相对屏幕左上顶点的偏移量 |
 | OH_NativeXComponent_GetTouchEvent(OH_NativeXComponent *component, const void *window, OH_NativeXComponent_TouchEvent *touchEvent)                | 获取ArkUI XComponent调度的触摸事件        |
 | OH_NativeXComponent_GetTouchPointToolType(OH_NativeXComponent *component, uint32_t pointIndex, OH_NativeXComponent_TouchPointToolType *toolType) | 获取ArkUI XComponent触摸点工具类型        |
-| OH_NativeXComponent_GetTouchPointTiltX(OH_NativeXComponent  *component, uint32_t pointIndex, float *tiltX)                                       | 获取ArkUI XComponent触摸点倾斜与X轴角度     |
+| OH_NativeXComponent_GetTouchPointTiltX(OH_NativeXComponent *component, uint32_t pointIndex, float *tiltX)                                       | 获取ArkUI XComponent触摸点倾斜与X轴角度     |
 | OH_NativeXComponent_GetTouchPointTiltY(OH_NativeXComponent *component, uint32_t pointIndex, float *tiltY)                                        | 获取ArkUI XComponent触摸点倾斜与Y轴角度     |
 | OH_NativeXComponent_GetMouseEvent(OH_NativeXComponent *component, const void *window, OH_NativeXComponent_MouseEvent *mouseEvent)                | 获取ArkUI XComponent调度的鼠标事件        |
 | OH_NativeXComponent_RegisterCallback(OH_NativeXComponent *component, OH_NativeXComponent_Callback *callback)                                     | 实例注册回调                           |
@@ -82,9 +82,9 @@ Native XComponent相关函数如下：
 
 1. 本示例仅支持标准系统上运行。
 
-2. 本示例已适配API version 10版本SDK，版本号：4.0.9.6。
+2. 本示例已适配API version 10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0Release) 。
 
-3. 本示例需要使用DevEco Studio 3.1 Release (Build Version: 3.1.0.500 构建 2023年4月28日)及以上版本才可编译运行。
+3. 本示例需要使用DevEco Studio 版本号(4.0Release)及以上版本才可编译运行。
 
 ### 下载
 

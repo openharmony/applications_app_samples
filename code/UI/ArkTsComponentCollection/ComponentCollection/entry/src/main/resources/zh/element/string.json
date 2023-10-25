@@ -3843,7 +3843,7 @@
     },
     {
       "name": "list_introduction_delete",
-      "value": "右划 item 以删除"
+      "value": "左划 item 以删除"
     },
     {
       "name": "list_item_title",

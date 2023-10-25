@@ -60,8 +60,8 @@ struct NewAlbumPage {
   private scroller: Scroller = new Scroller();
   private isActive = false;
   private appBroadcast: Broadcast = broadcastManager.getBroadcast();
-  private isNewAlbum: boolean = AppStorage.Get<boolean>(Constants.APP_KEY_NEW_ALBUM);
-  private targetAlbum: SimpleAlbumDataItem = AppStorage.Get<SimpleAlbumDataItem>(Constants.APP_KEY_NEW_ALBUM_TARGET);
+  private isNewAlbum: boolean | undefined = AppStorage.Get<boolean>(Constants.APP_KEY_NEW_ALBUM);
+  private targetAlbum: SimpleAlbumDataItem | undefined = AppStorage.Get<SimpleAlbumDataItem>(Constants.APP_KEY_NEW_ALBUM_TARGET);
   private barModel: NewAlbumBarModel = new NewAlbumBarModel();
   private groupDataSource: GroupItemDataSource = new GroupItemDataSource();
   @State actionBarProp: ActionBarProp = new ActionBarProp();
@@ -105,7 +105,7 @@ struct NewAlbumPage {
           this.moveOperation();
           this.groupDataSource.setSelect(false)
         }
-	      }
+      }
     }
   }
 
@@ -192,16 +192,17 @@ struct NewAlbumPage {
       });
     }
   }
+
   private moveOperation(): void {
     let menuContext = new MenuContext();
-    this.onOperationStart = (): void => this.onOperationStartBindImpl();
-    this.onOperationEnd = (): void => this.onOperationEndBindImpl();
-    menuContext
-      .withDataSource(this.groupDataSource)
-      .withOperationStartCallback(this.onOperationStart)
-      .withOperationEndCallback(this.onOperationEnd)
-      .withBroadCast(this.broadCast)
-      .withAlbumInfo(this.targetAlbum);
+    if (this.targetAlbum !== undefined) {
+      menuContext
+        .withDataSource(this.groupDataSource)
+        .withOperationStartCallback((): void => this.onOperationStart())
+        .withOperationEndCallback((): void => this.onOperationEnd())
+        .withBroadCast(this.broadCast)
+        .withAlbumInfo(this.targetAlbum);
+    }
     let menuOperation = new MoveMenuOperation(menuContext);
     menuOperation.doAction();
   }
@@ -221,7 +222,6 @@ struct NewAlbumPage {
       this.groupDataSource.notifyDataReload()
       this.isHideScrollBar = (this.groupDataSource.totalCount() <= Constants.GRID_SCROLL_BAR_VISIBLE_THRESHOLD)
     })
-    this.onMenuClicked = (action: Action): void => this.onMenuClickedBindImpl(action);
     this.broadCast.on(BroadcastConstants.SELECT, (index: number): void => this.onSelect(index));
 
     this.broadCast.on(BroadcastConstants.JUMP_PHOTO_BROWSER, (name: string, item: UserFileDataItem): void => {
@@ -242,7 +242,7 @@ struct NewAlbumPage {
     let margin = 0;
     let maxThumbWidth = px2vp(Constants.GRID_IMAGE_SIZE) * Constants.GRID_MAX_SIZE_RATIO;
     this.gridRowCount = Math.max(Constants.GRID_MIN_COUNT, Math.ceil(((contentWidth - Constants.NUMBER_2 * margin)
-    + Constants.GRID_GUTTER) / (maxThumbWidth + Constants.GRID_GUTTER)));
+      + Constants.GRID_GUTTER) / (maxThumbWidth + Constants.GRID_GUTTER)));
     Log.info(TAG, 'initGridRowCount contentWidth: ' + contentWidth);
   }
 
@@ -280,7 +280,7 @@ struct NewAlbumPage {
     Column() {
       ActionBar({
         actionBarProp: $actionBarProp,
-        onMenuClicked: this.onMenuClicked
+        onMenuClicked: (action: Action): void => this.onMenuClicked(action)
       })
       if (this.isEmpty) {
         NoPhotoComponent({
@@ -301,15 +301,14 @@ struct NewAlbumPage {
               .aspectRatio(1)
               .columnStart(item.get().index % this.gridRowCount)
               .columnEnd(item.get().index % this.gridRowCount)
-            }, (item: LazyItem<AlbumDataItem>): string => (item == null) && (item.get() != undefined && item.get() != null) ?
-              JSON.stringify(item) : item.getHashCode())
+            }, (item: LazyItem<AlbumDataItem>): string => item.getHashCode())
           }
           .columnsTemplate('1fr '.repeat(this.gridRowCount))
           .columnsGap(Constants.GRID_GUTTER)
           .rowsGap(Constants.GRID_GUTTER)
           .cachedCount(Constants.GRID_CACHE_ROW_COUNT)
 
-          GridScrollBar({ scroller: this.scroller, isHideScrollBar: $isHideScrollBar});
+          GridScrollBar({ scroller: this.scroller, isHideScrollBar: $isHideScrollBar });
         }
         .layoutWeight(1)
       }

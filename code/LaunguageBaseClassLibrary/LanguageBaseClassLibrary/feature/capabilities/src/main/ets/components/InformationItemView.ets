@@ -20,8 +20,8 @@ import { getString } from '@ohos/common';
 @Component
 export struct InformationItemView {
   @ObjectLink information: Information;
-  private deleteAction: (event?: ClickEvent) => void;
-  private index: number;
+  private deleteAction: (event?: ClickEvent) => void = () => {};
+  private index: number = 0;
 
   build() {
     Row() {

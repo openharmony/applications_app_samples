@@ -29,7 +29,10 @@ export struct LightWeightSetView {
   private dataSource: LightWeightSetDataSource = new LightWeightSetDataSource();
 
   aboutToAppear() {
-    emitter.on({ eventId: Constant.EMITTER_ID_LIGHT_WEIGHT_SET }, (eventData) => {
+    emitter.on({ eventId: Constant.EMITTER_ID_LIGHT_WEIGHT_SET }, (eventData: emitter.EventData) => {
+      if (eventData.data === undefined) {
+        return;
+      }
       let item: string = eventData.data.value;
       this.dataSource.addData(item);
       this.lightWeightSet.add(item);
@@ -60,7 +63,7 @@ export struct LightWeightSetView {
             }
             .height(72)
             .width('100%')
-          }, (item, index) => JSON.stringify(item) + index)
+          }, (item: string, index: number) => JSON.stringify(item) + index)
         }
         .width('100%')
         .height('100%')

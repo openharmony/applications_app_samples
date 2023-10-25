@@ -236,7 +236,7 @@
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td height="90" align="center" rowspan="9" style='height:67.50pt;' x:str><strong>系统特性</strong></td>
+  <td height="90" align="center" rowspan="9" style='height:67.50pt;' x:str><strong>系统特性（仅对系统应用开放）</strong></td>
   <td rowspan="2" x:str><strong>应用模型</strong></td>
   <td x:str><a href="code/SystemFeature/ApplicationModels/Launcher">仿桌面应用（API 10）</a></td>
   <td x:str><a href="code/SystemFeature/ApplicationModels/MissionManager">任务管理</a></td>
@@ -438,6 +438,7 @@
    </tr>
   <![endif]>
 </table>
+
 
 
 

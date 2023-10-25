@@ -130,7 +130,6 @@ struct SwiperSample {
         .width('100%')
       }
       .flexGrow(1)
-      .flexBasis(100)
       .margin({ bottom: 10 })
     }
     .padding({ left: LEFT_PADDING, right: RIGHT_PADDING })

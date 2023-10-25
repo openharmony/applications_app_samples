@@ -19,7 +19,7 @@ import { NewProduct } from '../components/home/NewProduct';
 import { ShopCart } from '../components/home/ShopCart';
 import { User } from '../components/user/User';
 
-AppStorage.link('isUpdateDialogOpen') || AppStorage.setOrCreate('isUpdateDialogOpen', false);
+AppStorage.link<boolean>('isUpdateDialogOpen') || AppStorage.setOrCreate<boolean>('isUpdateDialogOpen', false);
 
 export class Url {
   url: string;
@@ -34,7 +34,7 @@ export class Url {
 export struct NavigationHomePage {
   @State tabsIndex: number = AppStorage.get('nowIndex') || 0;
   @StorageProp('curBp') curBp: string = 'sm';
-  private url: string;
+  private url: string = '';
   private controller: TabsController = new TabsController();
 
   @Builder

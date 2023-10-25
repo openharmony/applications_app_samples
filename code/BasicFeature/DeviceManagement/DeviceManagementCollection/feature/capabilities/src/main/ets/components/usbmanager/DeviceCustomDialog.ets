@@ -20,7 +20,7 @@ import { DeviceAttribute } from '../../model/DeviceAttribute';
 @CustomDialog
 export struct DeviceCustomDialog {
   private device: DeviceAttribute = new DeviceAttribute();
-  private controller: CustomDialogController;
+  private controller?: CustomDialogController;
 
   build() {
     Column() {
@@ -87,7 +87,7 @@ export struct DeviceCustomDialog {
         .margin({ top: 8, bottom: 8 })
         .fontColor($r("sys.color.ohos_id_color_activated"))
         .onClick(() => {
-          this.controller.close();
+          this.controller?.close();
         })
     }
   }

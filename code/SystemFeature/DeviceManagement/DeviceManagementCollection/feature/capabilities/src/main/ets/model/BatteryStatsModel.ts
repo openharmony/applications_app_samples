@@ -19,11 +19,11 @@ import type batteryStats from '@ohos.batteryStatistics';
  * baterystats data entity.
  */
 export class BatteryStatsModel {
-  icon: Resource; // 耗电信息相关图标资源文件
+  icon: Resource | undefined; // 耗电信息相关图标资源文件
 
   iconBase64: string; // 耗电信息相关图标二进制文件
 
-  name: Resource; // 耗电信息相关的名字资源文件
+  name: Resource | undefined; // 耗电信息相关的名字资源文件
 
   nameStr: string; // 耗电信息相关的名字字符串
 

@@ -60,9 +60,10 @@ struct PageTransitionSampleTo {
   }
 
   aboutToAppear() {
-    this.transitionType = router.getParams()['type']
-    this.angle = router.getParams()['angle']
-    this.zoom = router.getParams()['zoom']
+    let params = router.getParams() as Record<string, string | number | SlideEffect>;
+    this.transitionType = params.type as SlideEffect;
+    this.angle = params.angle as number;
+    this.zoom = params.zoom as number;
   }
 
   pageTransition() {

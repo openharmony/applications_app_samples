@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-import { TitleBar } from '../../../../common/TitleBar'
-import { getStringData } from '../../../../data/ResourceDataHandle'
-import { locationTypes, visibileTypes } from '../../UniversialData'
+import { TitleBar } from '../../../../common/TitleBar';
+import { getStringData } from '../../../../data/ResourceDataHandle';
+import { locationTypes, visibileTypes, ResourceObjectType } from '../../UniversialData';
 
 @Extend(Column) function cardStyle() {
   .backgroundColor(Color.White)
@@ -41,24 +41,24 @@ import { locationTypes, visibileTypes } from '../../UniversialData'
 @Entry
 @Component
 struct Page {
-  @State firstZindex: number = 0
-  @State secondZindex: number = 0
-  @State thirdZindex: number = 0
-  @State alignmentLocation: Alignment = Alignment.Center
-  @State offsetX: number = 0
-  @State offsetY: number = 0
-  @State selectIndex: number = 0
-  @State currentVisibility: Visibility = Visibility.Visible
-  @State visibleIndex: number = 0
-  @State contentOpacity: number = 0.5
-  @State currentTabIndex: number = 0
-  private visibilityArray: Visibility[] = [Visibility.Visible, Visibility.Hidden, Visibility.None]
+  @State firstZindex: number = 0;
+  @State secondZindex: number = 0;
+  @State thirdZindex: number = 0;
+  @State alignmentLocation: Alignment = Alignment.Center;
+  @State offsetX: number = 0;
+  @State offsetY: number = 0;
+  @State selectIndex: number = 0;
+  @State currentVisibility: Visibility = Visibility.Visible;
+  @State visibleIndex: number = 0;
+  @State contentOpacity: number = 0.5;
+  @State currentTabIndex: number = 0;
+  private visibilityArray: Visibility[] = [Visibility.Visible, Visibility.Hidden, Visibility.None];
   private alignments: Alignment[] = [Alignment.Center, Alignment.TopStart,
   Alignment.TopEnd, Alignment.Top, Alignment.Start,
   Alignment.End, Alignment.BottomStart,
-  Alignment.Bottom, Alignment.BottomEnd]
-  private selectArray: { value: Resource }[] = locationTypes
-  private visibleArray: { value: Resource }[] = visibileTypes
+  Alignment.Bottom, Alignment.BottomEnd];
+  private selectArray: ResourceObjectType[] = locationTypes;
+  private visibleArray: ResourceObjectType[] = visibileTypes;
 
   @Builder tabbarTitle(name: string | Resource, index: number) {
     Stack() {

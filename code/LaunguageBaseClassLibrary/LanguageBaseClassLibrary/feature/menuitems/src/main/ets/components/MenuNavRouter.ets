@@ -26,7 +26,7 @@ export struct MenuNavRouter {
   @StorageLink('selectedSecondLabel') selectedSecondLabel: string = '';
   @BuilderParam navDestination: () => void;
   private childList: Array<string> = [];
-  private addAction?: (title) => void;
+  private addAction?: (title:string) => void;
 
   @Builder CustomDivider() {
     Divider()
@@ -59,13 +59,13 @@ export struct MenuNavRouter {
               logger.info(TAG, `NavRouter isActivated= ${isActivated}, selectedLabel=${item}`);
             }
           })
-        }, item => JSON.stringify(item))
+        }, (item: string) => JSON.stringify(item))
       }
     }
   }
 
   @Builder
-  CustomTitle(title) {
+  CustomTitle(title: string) {
     Row() {
       Text(title)
         .fontColor($r('app.color.black'))
@@ -94,7 +94,7 @@ export struct MenuNavRouter {
     .justifyContent(FlexAlign.SpaceBetween)
   }
 
-  showAddButton(title) {
+  showAddButton(title: string) {
     let ret = false
     switch (title) {
       case getString($r('app.string.deque')):

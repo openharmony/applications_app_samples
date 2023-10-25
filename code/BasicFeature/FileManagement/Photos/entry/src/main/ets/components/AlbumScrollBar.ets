@@ -15,35 +15,38 @@
 
 @Component
 export struct AlbumScrollBar {
-  scroller: Scroller;
+  scroller: Scroller | null = null;
   @State isClickScrollBar: boolean = false;
   @Consume isHideScrollBar: boolean;
   hasSideBar: boolean = true;
 
   build() {
-    ScrollBar({ scroller: this.scroller, direction: ScrollBarDirection.Vertical,
-      state: this.isHideScrollBar ? BarState.Off : BarState.Auto }) {
-      Row() {
-      }
-      .width(this.isClickScrollBar ?
+    if (this.scroller !== null && this.scroller !== undefined) {
+      ScrollBar({ scroller: this.scroller, direction: ScrollBarDirection.Vertical,
+        state: this.isHideScrollBar ? BarState.Off : BarState.Auto }) {
+        Row() {
+        }
+        .width(this.isClickScrollBar ?
         $r('app.float.album_scrollbar_select_size') : $r('app.float.album_scrollbar_normal_size'))
-      .height($r('app.float.album_scrollbar_height_size'))
-      .border({ radius: $r('app.float.album_scrollbar_radius') })
-      .backgroundColor($r('app.color.album_scrollbar_color'))
-    }
-    .height('100%')
-    .position({ x: '100%', y: 0 })
-    .markAnchor({
-      x: this.isClickScrollBar
-        ? $r('app.float.album_scrollbar_select_size') : $r('app.float.album_scrollbar_normal_size'),
-      y: 0
-    })
-    .onTouch((event: TouchEvent): void => {
-      if (event.type === TouchType.Down) {
-        this.isClickScrollBar = true;
-      } else if (event.type === TouchType.Up) {
-        this.isClickScrollBar = false;
+        .height($r('app.float.album_scrollbar_height_size'))
+        .border({ radius: $r('app.float.album_scrollbar_radius') })
+        .backgroundColor($r('app.color.album_scrollbar_color'))
       }
-    })
+      .height('100%')
+      .position({ x: '100%', y: 0 })
+      .markAnchor({
+        x: this.isClickScrollBar
+          ? $r('app.float.album_scrollbar_select_size') : $r('app.float.album_scrollbar_normal_size'),
+        y: 0
+      })
+      .onTouch((event: TouchEvent): void => {
+        if (event.type === TouchType.Down) {
+          this.isClickScrollBar = true;
+        } else if (event.type === TouchType.Up) {
+          this.isClickScrollBar = false;
+        }
+      })
+    }
+
   }
 }

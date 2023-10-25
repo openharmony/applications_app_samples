@@ -40,7 +40,7 @@ struct ScrollBarSample {
         Column() {
           Scroll(this.vscroller) {
             Column() {
-              ForEach(this.dataArray, (item) => {
+              ForEach(this.dataArray, (item: number) => {
                 Stack() {
                   Text(item.toString())
                     .fontSize(20)
@@ -77,7 +77,7 @@ struct ScrollBarSample {
         Column() {
           Scroll(this.hscroller) {
             Row() {
-              ForEach(this.dataArray, (item) => {
+              ForEach(this.dataArray, (item: number) => {
                 Stack() {
                   Text(item.toString())
                     .fontSize(20)

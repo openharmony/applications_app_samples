@@ -22,7 +22,7 @@ import { Url } from '../../main/NavigationHomePage';
 @Component
 export struct MainPage {
   @State navTabsIndex: number = 0;
-  private url: string;
+  private url: string = '';
   private navController: TabsController = new TabsController();
   @StorageProp('curBp') curBp: string = 'sm';
 

@@ -89,7 +89,7 @@ export function computeNBodyByWorker(totalTimeSteps: number): void {
 
   // 设置如何处理，来自worker线程的消息
   workerInstance.onmessage = (e: MessageEvents): void => {
-    let data = e.data;
+    let data: Record<string, Object> = e.data;
     Logger.info(TAG, 'computeNBodyByWorker: executed successfully, total time costed = ' + data.result + ' ms.');
     AppStorage.set<String>('timeCost', util.format(calculateResult, data.result));
   }

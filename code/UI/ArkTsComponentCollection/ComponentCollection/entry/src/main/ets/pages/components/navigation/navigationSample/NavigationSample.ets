@@ -19,9 +19,9 @@ import { LEFT_PADDING, RIGHT_PADDING } from '../../ComponentData';
 @Entry
 @Component
 struct NavigationSample {
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-  @State currentIndex: number = 0
-  @State Build: Array<Object> = [
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  @State currentIndex: number = 0;
+  @State Build: Array<BuildType> = [
     {
       text: 'add',
       num: 0
@@ -34,7 +34,7 @@ struct NavigationSample {
       text: 'collect',
       num: 2
     }
-  ]
+  ];
 
   @Builder NavigationTitle() {
     Column() {
@@ -70,7 +70,7 @@ struct NavigationSample {
 
   @Builder NavigationToolbar() {
     Row() {
-      ForEach(this.Build, item => {
+      ForEach(this.Build, (item: BuildType) => {
         Column() {
           Image(this.currentIndex === item.num ? $r('app.media.icon') : $r('app.media.ic_pen'))
             .width(24)
@@ -102,7 +102,7 @@ struct NavigationSample {
             .enableKeyboardOnFocus(false)
 
           List({ space: 12, initialIndex: 0 }) {
-            ForEach(this.arr, (item) => {
+            ForEach(this.arr, (item: number) => {
               ListItem() {
                 Text('' + item)
                   .width('90%')
@@ -113,7 +113,7 @@ struct NavigationSample {
                   .fontWeight(500)
                   .textAlign(TextAlign.Center)
               }.editable(true)
-            }, item => item)
+            }, (item: number) => item.toString())
           }
           .height(324)
           .width('100%')
@@ -136,4 +136,8 @@ struct NavigationSample {
     .width('100%')
     .backgroundColor($r('app.color.background_shallow_grey'))
   }
+}
+class BuildType {
+  text: string = '';
+  num: number = 0;
 }

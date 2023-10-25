@@ -17,20 +17,21 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 import { Driver, ON, MatchPattern } from '@ohos.UiTest';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import Logger from '../utils/Logger';
+import Want from '@ohos.app.ability.Want';
 
 const BUNDLE = 'OrangeShopping';
 const TAG = '[Sample_OrangeShopping]';
 
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
     /**
      * 拉起一个ability
      * 本示例运行时间较长，请将Time Out调整为600s，确保用例正常执行
      */
-    it(BUNDLE + 'StartAbility_001', 0, async (done) => {
+    it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
       Logger.info(TAG, 'StartAbility_001 start');
-      let driver = await Driver.create();
-      let want = {
+      let driver: Driver = await Driver.create();
+      let want: Want = {
         bundleName: 'ohos.samples.orangeshopping',
         abilityName: 'MainAbility'
       }
@@ -47,7 +48,7 @@ export default function abilityTest() {
     /**
      * 获取权限
      */
-    it(BUNDLE + 'GetPermission_001', 0, async (done) => {
+    it(BUNDLE + 'GetPermission_001', 0, async (done: Function) => {
       Logger.info(TAG, 'GetPermission_001 start');
       let driver = await Driver.create();
       let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager;
@@ -82,7 +83,7 @@ export default function abilityTest() {
     /**
      * 点击底部Tab切换不同页面
      */
-    it(BUNDLE + 'SwitchPage_001', 0, async (done) => {
+    it(BUNDLE + 'SwitchPage_001', 0, async (done: Function) => {
       Logger.info(TAG, 'SwitchPage_001 start');
       let driver = await Driver.create();
       let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager;
@@ -96,7 +97,7 @@ export default function abilityTest() {
       await newProduct.click();
       await driver.delayMs(1000);
       await driver.assertComponentExist(
-      ON.text(await resourceManager.getStringValue($r('app.string.title_bar_data_title_selected'))));
+        ON.text(await resourceManager.getStringValue($r('app.string.title_bar_data_title_selected'))));
       // 切换到购物车页
       let shoppingCart = await driver.findComponent(ON.id('homeTab2'));
       await shoppingCart.click();
@@ -107,13 +108,13 @@ export default function abilityTest() {
       await userCenter.click();
       await driver.delayMs(1000);
       await driver.assertComponentExist(
-      ON.text(await resourceManager.getStringValue($r('app.string.official_Service'))));
+        ON.text(await resourceManager.getStringValue($r('app.string.official_Service'))));
       // 切换到首页
       let mainPage = await driver.findComponent(ON.id('homeTab0'));
       await mainPage.click();
       await driver.delayMs(1000);
       await driver.assertComponentExist(
-      ON.text(await resourceManager.getStringValue($r('app.string.tab_title_data_home'))));
+        ON.text(await resourceManager.getStringValue($r('app.string.tab_title_data_home'))));
       Logger.info(TAG, 'SwitchPage_001 end');
       done();
     })
@@ -121,7 +122,7 @@ export default function abilityTest() {
     /**
      * 点击播放键，播放视频
      */
-    it(BUNDLE + 'PlayVideo_001', 0, async (done) => {
+    it(BUNDLE + 'PlayVideo_001', 0, async (done: Function) => {
       Logger.info(TAG, 'PlayVideo_001 start');
       let driver = await Driver.create();
       let goods0 = await driver.findComponent(ON.id('goods0'));
@@ -142,7 +143,7 @@ export default function abilityTest() {
     /**
      * 点击视频组件，进入全屏界面，检查播放与暂停功能
      */
-    it(BUNDLE + 'FullVideo_001', 0, async (done) => {
+    it(BUNDLE + 'FullVideo_001', 0, async (done: Function) => {
       Logger.info(TAG, 'FullVideo_001 start');
       let driver = await Driver.create();
       await driver.assertComponentExist(ON.id('VideoPage'));
@@ -172,7 +173,7 @@ export default function abilityTest() {
     /**
      * 添加某商品到购物车界面
      */
-    it(BUNDLE + 'AddGoodsToCart_001', 0, async (done) => {
+    it(BUNDLE + 'AddGoodsToCart_001', 0, async (done: Function) => {
       Logger.info(TAG, 'AddGoodsToCart_001 start');
       let driver = await Driver.create();
       let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager;
@@ -183,17 +184,17 @@ export default function abilityTest() {
       await driver.delayMs(1000);
       // 检查跳转后商品是否一致
       await driver.assertComponentExist(
-      ON.text(await resourceManager.getStringValue($r('app.string.add_to_cart'))));
+        ON.text(await resourceManager.getStringValue($r('app.string.add_to_cart'))));
       await driver.assertComponentExist(ON.id('goodsDetail0'));
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.shopping_cart'))));
       // 点击添加商品到购物车当中
       let addBtn = await driver.findComponent(
-      ON.text(await resourceManager.getStringValue($r('app.string.add_to_cart'))));
+        ON.text(await resourceManager.getStringValue($r('app.string.add_to_cart'))));
       await addBtn.click();
       await driver.delayMs(1000);
       // 跳转到购物车页面
       let cartBtn = await driver.findComponent(
-      ON.text(await resourceManager.getStringValue($r('app.string.shopping_cart'))));
+        ON.text(await resourceManager.getStringValue($r('app.string.shopping_cart'))));
       await cartBtn.click();
       await driver.delayMs(1000);
       // 检查商品是否已经添加
@@ -210,7 +211,7 @@ export default function abilityTest() {
     /**
      * 进入直播间
      */
-    it(BUNDLE + 'OpenLivePage_001', 0, async (done) => {
+    it(BUNDLE + 'OpenLivePage_001', 0, async (done: Function) => {
       Logger.info(TAG, 'OpenLivePage_001 start');
       let driver = await Driver.create();
       let goods0 = await driver.findComponent(ON.id('goods0'));

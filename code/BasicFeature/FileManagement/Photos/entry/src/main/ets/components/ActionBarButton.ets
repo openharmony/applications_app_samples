@@ -25,12 +25,12 @@ export interface EventVisibility {
 @Component
 export struct ActionBarButton {
   @StorageLink('isHorizontal') isHorizontal: boolean = screenManager.isHorizontal();
-  private res: Resource = undefined;
-  action: Action;
-  onMenuClicked: Function;
+  private res: Resource | undefined = undefined;
+  action: Action = Action.NONE;
+  onMenuClicked: Function | null = null;
   isFirst = false;
   isAutoTint = true;
-  colorMode: ActionBarColorMode;
+  colorMode: ActionBarColorMode = ActionBarColorMode.NORMAL;
   @State showPopup: boolean = false;
   @Consume moreMenuList: Action[];
 
@@ -44,7 +44,7 @@ export struct ActionBarButton {
           .fontSize($r('sys.float.ohos_id_text_size_body1'))
           .onClick((): void => {
             this.showPopup = false;
-            if(this.onMenuClicked != null) this.onMenuClicked(menu);
+            if (this.onMenuClicked != null) this.onMenuClicked(menu);
           })
         if (this.moreMenuList.indexOf(menu) !== this.moreMenuList.length - 1) {
           Divider()
@@ -75,7 +75,7 @@ export struct ActionBarButton {
           .height($r('app.float.icon_size'))
           .width($r('app.float.icon_size'))
           .fillColor(this.colorMode === ActionBarColorMode.TRANSPARENT ?
-            Action.ICON_DEFAULT_COLOR_CONTRARY : this.action.fillColor)
+          Action.ICON_DEFAULT_COLOR_CONTRARY : this.action.fillColor)
       } else {
         Image(this.res)
           .height($r('app.float.icon_size'))

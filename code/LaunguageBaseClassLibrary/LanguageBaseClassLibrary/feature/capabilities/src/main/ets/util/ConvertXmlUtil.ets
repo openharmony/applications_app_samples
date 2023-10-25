@@ -48,18 +48,18 @@ export function parserNode(input: string): string {
     bufView[k] = input.charCodeAt(k);
   }
   let parser = new xml.XmlPullParser(arrayBuffer);
-  let arr = {};
+  let arr: Record<number, string> = {};
   let i = 0;
 
-  function func(key, info) {
+  let func = (key: xml.EventType, info: xml.ParseInfo) => {
     arr[i] = `key:${key}, value:${info.getDepth()} ${info.getColumnNumber()} ` +
-    `${info.getLineNumber()} ${info.getAttributeCount()} ${info.getName()} ` +
-    `${info.getText()} ${info.isEmptyElementTag()} ${info.isWhitespace()}\n`;
+      `${info.getLineNumber()} ${info.getAttributeCount()} ${info.getName()} ` +
+      `${info.getText()} ${info.isEmptyElementTag()} ${info.isWhitespace()}\n`;
     i++;
     return true;
   }
 
-  let options = { supportDoctype: true, ignoreNameSpace: true, tokenValueCallbackFunction: func };
+  let options: xml.ParseOptions = { supportDoctype: true, ignoreNameSpace: true, tokenValueCallbackFunction: func };
   parser.parse(options);
   let str = '';
   for (let j = 0; j < i; ++j) {
@@ -70,7 +70,7 @@ export function parserNode(input: string): string {
 
 export function convertNode(input: string): string {
   logger.info(TAG, 'convertNode start');
-  let options = {
+  let options: ConvertXML.ConvertOptions = {
     trim: false,
     declarationKey: "_declaration",
     instructionKey: "_instruction",

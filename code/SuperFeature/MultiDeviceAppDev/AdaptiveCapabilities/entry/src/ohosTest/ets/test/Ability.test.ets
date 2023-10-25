@@ -17,6 +17,7 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 import { Driver, ON } from '@ohos.UiTest'
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 import hilog from '@ohos.hilog'
+import resmgr from '@ohos.resourceManager';
 
 const TAG = '[Sample_AdaptiveCapabilities]'
 const DOMAIN = 0xF811
@@ -43,9 +44,9 @@ async function checkButtonAndClickWithText(text: string) {
 // 获取AbilityDelegator
 let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
 // 启动后获取app上下文
-let context;
+let context: Context;
 // 启动后获取resourceManager
-let manager;
+let manager: resmgr.ResourceManager;
 
 async function checkRadioAndClickWithID(text: string) {
   await driver.assertComponentExist(ON.id(text));
@@ -68,11 +69,11 @@ async function getResourceString(resource: Resource): Promise<string> {
 }
 
 export default function appTest() {
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
     /**
      * 打开应用
      */
-    it(BUNDLE + 'StartAbility_001 begin', 0, async function (done) {
+    it(BUNDLE + 'StartAbility_001 begin', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin')
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
@@ -93,7 +94,7 @@ export default function appTest() {
     /**
      * 自适应布局 (目前坐标只适用于RK3568)
      */
-    it(BUNDLE + 'CreateAdaptiveCapabilitiesOneFunction_001', 0, async function () {
+    it(BUNDLE + 'CreateAdaptiveCapabilitiesOneFunction_001', 0, async  ()=> {
       // create UiDriver
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateAdaptiveCapabilitiesOneFunction_001 begin')
       let driver = Driver.create()
@@ -188,7 +189,7 @@ export default function appTest() {
     /**
      * 响应式布局 (目前坐标只适用于RK3568)
      */
-    it(BUNDLE + 'CreateAdaptiveCapabilitiesTwoFunction_001', 0, async function () {
+    it(BUNDLE + 'CreateAdaptiveCapabilitiesTwoFunction_001', 0, async () => {
       // create UiDriver
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateAdaptiveCapabilitiesTwoFunction_001 begin')
       let driver = Driver.create()
@@ -215,8 +216,8 @@ export default function appTest() {
       await driver.delayMs(1000)
       // 点击栅格columns和gutter
       await checkButtonAndClickWithID('GridRowSample3')
-      let checkBtn = await driver.findComponent(ON.type('GridCol'))
-      await checkBtn.click()
+      let checkBtn = await driver.findComponent(ON.type('GridCol'));
+      await checkBtn.click();
       await driver.pressBack()
       await driver.delayMs(1000)
       // 点击栅格margin
@@ -264,7 +265,7 @@ export default function appTest() {
     /**
      * 典型布局场景 (目前坐标只适用于RK3568)
      */
-    it(BUNDLE + 'CreateAdaptiveCapabilitiesThreeFunction_001', 0, async function () {
+    it(BUNDLE + 'CreateAdaptiveCapabilitiesThreeFunction_001', 0, async () => {
       // create UiDriver
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateAdaptiveCapabilitiesThreeFunction_001 begin')
       let driver = Driver.create()
@@ -290,6 +291,8 @@ export default function appTest() {
       await checkButtonAndClickWithID('HeaderSample')
       await driver.pressBack()
       await driver.delayMs(1000)
+      await driver.pressBack();
+      await driver.delayMs(1000);
       // 点击广告栏
       await checkButtonAndClickWithID('BannerSample')
       // swiper滑动
@@ -366,7 +369,7 @@ export default function appTest() {
     /**
      * 资源文件使用
      */
-    it(BUNDLE + 'CreateAdaptiveCapabilitiesFourFunction_001', 0, async function () {
+    it(BUNDLE + 'CreateAdaptiveCapabilitiesFourFunction_001', 0, async () => {
       // create UiDriver
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateAdaptiveCapabilitiesFourFunction_001 begin')
       let driver = Driver.create()
@@ -382,7 +385,7 @@ export default function appTest() {
     /**
      * 交互归一能力
      */
-    it(BUNDLE + 'CreateAdaptiveCapabilitiesFiveFunction_001', 0, async function () {
+    it(BUNDLE + 'CreateAdaptiveCapabilitiesFiveFunction_001', 0, async () => {
       // create UiDriver
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateAdaptiveCapabilitiesFiveFunction_001 begin')
       let driver = Driver.create()

@@ -98,14 +98,14 @@ struct AlphabetIndexerSample {
           Column() {
             IntroductionTitle({ introduction: $r('app.string.alphabetindexer_list_display') })
             List({ space: 20, initialIndex: 0, scroller: this.scroller }) {
-              ForEach(this.arrayA.concat(this.arrayB).concat(this.arrayC).concat(this.arrayL), (item) => {
+              ForEach(this.arrayA.concat(this.arrayB).concat(this.arrayC).concat(this.arrayL), (item: string) => {
                 ListItem() {
                   Text(item)
                     .width('80%')
                     .fontSize(30)
                     .textAlign(TextAlign.Center)
                 }.editable(true)
-              }, item => JSON.stringify(item))
+              }, (item: string) => JSON.stringify(item))
             }
             .width('100%')
             .height('50%')

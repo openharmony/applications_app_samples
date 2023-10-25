@@ -39,9 +39,9 @@ export default struct MaterialEdit {
   @Prop isCancelQuit: boolean;
   @Prop selectedMaterialIndex: number;
   @Prop isTextMaterial: boolean;
-  onCancel: () => void;
-  onOpen: () => void;
-  onClose: () => void;
+  onCancel: () => void = () => {};
+  onOpen: () => void = () => {};
+  onClose: () => void = () => {};
   // 容器尺寸
   containerHeight: number = 0;
   containerWidth: number = 0;
@@ -62,7 +62,7 @@ export default struct MaterialEdit {
   originWidth: number = 120;
   originHeight: number = 120;
   originFontSize: number = 30;
-  eventType: string;
+  eventType: string = '';
   panOption: PanGestureOptions = new PanGestureOptions();
   computeFeature: ComputeFeature = new ComputeFeature();
 
@@ -102,25 +102,30 @@ export default struct MaterialEdit {
       point = transformCoordinates(point, scale);
       if (this.isTextMaterial) {
         // 绘制文字
-        const resource: Resource = fontColors[this.selectedMaterialIndex].getName();
-        const colorString: string = await this.convertResourceToString(resource);
-        offContext.fillStyle = colorString;
-        const fontPx: number = fp2px(this.fontSize * scale);
-        offContext.font = fontPx + 'px sans-serif';
-        const measure: TextMetrics = offContext.measureText(this.text);
-        const textWidth: number = measure.width;
-        const textHeight: number = measure.height;
-        // 写入点是素材的左下角,所以要加入图片宽高的偏移量
-        point = offsetOrigin(point, textWidth / 2, -textHeight / 2)
-        offContext.fillText(this.text, point.x, point.y);
+        const resource: Resource | undefined = fontColors[this.selectedMaterialIndex].getName();
+        if(resource !== undefined){
+          const colorString: string = await this.convertResourceToString(resource);
+          offContext.fillStyle = colorString;
+          const fontPx: number = fp2px(this.fontSize * scale);
+          offContext.font = fontPx + 'px sans-serif';
+          const measure: TextMetrics = offContext.measureText(this.text);
+          const textWidth: number = measure.width;
+          const textHeight: number = measure.height;
+          // 写入点是素材的左下角,所以要加入图片宽高的偏移量
+          point = offsetOrigin(point, textWidth / 2, -textHeight / 2)
+          offContext.fillText(this.text, point.x, point.y);
+        }
       } else {
         // 绘制贴图
-        const imgResource: Resource = stickers[this.selectedMaterialIndex].getResource();
-        const imgWidth: number = this.originWidth * this.scalePercent * scale;
-        const imgHeight: number = this.originHeight * this.scalePercent * scale;
-        // 写入的坐标是素材的左上角坐标
-        point = offsetOrigin(point, imgWidth / 2, imgHeight / 2);
-        await drawSvg(getContext(this), offContext, imgResource, imgWidth, imgHeight, point.x, point.y);
+        const imgResource: Resource | undefined = stickers[this.selectedMaterialIndex].getResource();
+        if (imgResource !== undefined) {
+          const imgWidth: number = this.originWidth * this.scalePercent * scale;
+          const imgHeight: number = this.originHeight * this.scalePercent * scale;
+          // 写入的坐标是素材的左上角坐标
+          point = offsetOrigin(point, imgWidth / 2, imgHeight / 2);
+          await drawSvg(getContext(this), offContext, imgResource, imgWidth, imgHeight, point.x, point.y);
+
+        }
       }
       // 获取新的pm
       const newPm: image.PixelMap = offContext.getPixelMap(0, 0, width, height);
@@ -152,7 +157,6 @@ export default struct MaterialEdit {
       this.materialWidth = w;
       this.fontSize = fontSize;
       this.scalePercent = scale;
-      return null;
     });
   }
 
@@ -202,7 +206,7 @@ export default struct MaterialEdit {
       }))
   }
 
-  getImageResource(): Resource {
+  getImageResource(): Resource | undefined {
     return stickers[this.selectedMaterialIndex].getResource();
   }
 
@@ -214,10 +218,13 @@ export default struct MaterialEdit {
         .fontColor(fontColors[this.selectedMaterialIndex].getResource())
         .getMaterialStyle()
     } else {
-      Image(this.getImageResource())
-        .width(this.originWidth * this.scalePercent)
-        .height(this.originHeight * this.scalePercent)
-        .getMaterialStyle()
+      if (this.getImageResource() !== undefined && this.getImageResource() !== null) {
+        Image(this.getImageResource())
+          .width(this.originWidth * this.scalePercent)
+          .height(this.originHeight * this.scalePercent)
+          .getMaterialStyle()
+      }
+
     }
   }
 
@@ -285,7 +292,6 @@ export default struct MaterialEdit {
           center: { anchor: '__container__', align: VerticalAlign.Center }
         };
     }
-    return null;
   }
 
   build() {

@@ -20,11 +20,11 @@ const TAG: string = 'CardItem'
 
 @Component
 export default struct CardItem {
-  @StorageLink('DesktopLayoutModel') desktopLayoutModel: DesktopLayoutModel = undefined
-  private formInfo: GridLayoutItemInfo = new GridLayoutItemInfo()
-  private dialogTitle: string = ''
-  private dimension: number = 0
-  private menuInfos: Array<MenuInfo> = undefined
+  @StorageLink('DesktopLayoutModel') desktopLayoutModel: DesktopLayoutModel | undefined = undefined;
+  private formInfo: GridLayoutItemInfo = new GridLayoutItemInfo();
+  private dialogTitle: string = '';
+  private dimension: number = 0;
+  private menuInfos: Array<MenuInfo> | undefined = undefined;
 
   @Builder MenuBuilder() {
     Column() {
@@ -42,9 +42,9 @@ export default struct CardItem {
       FormComponent({
         id: this.formInfo.cardId,
         name: this.formInfo.cardName,
-        bundle: this.formInfo.bundleName,
-        ability: this.formInfo.abilityName,
-        module: this.formInfo.moduleName,
+        bundle: this.formInfo.bundleName!,
+        ability: this.formInfo.abilityName!,
+        module: this.formInfo.moduleName!,
         dimension: this.dimension
       })
         .clip(new Rect({
@@ -80,7 +80,7 @@ export default struct CardItem {
     builder: RemoveDialog({
       confirm: async () => {
         // 移除卡片的逻辑
-        this.desktopLayoutModel.removeItemFromDeskTop(this.formInfo)
+        this.desktopLayoutModel?.removeItemFromDeskTop(this.formInfo)
       },
       cardName: this.formInfo.appName
     }),
@@ -90,6 +90,6 @@ export default struct CardItem {
 
   aboutToAppear() {
     this.dimension = FormManager.getCardDimension(this.formInfo.area)
-    this.menuInfos = this.desktopLayoutModel.buildCardInfoList(this.dialogController)
+    this.menuInfos = this.desktopLayoutModel?.buildCardInfoList(this.dialogController)
   }
 }

@@ -27,9 +27,9 @@ const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 let driver = Driver.create();
 
 export default function CameraTest() {
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
-    beforeAll(async function (done) {
+    beforeAll(async (done: Function) => {
       // Presets an action, which is performed only once before all test cases of the test suite start.
       // This API supports only one parameter: preset action function.
 
@@ -45,21 +45,21 @@ export default function CameraTest() {
       await driver.delayMs(1000);
       done();
     })
-    beforeEach(function () {
+    beforeEach(() => {
       // Presets an action, which is performed before each unit test case starts.
       // The number of execution times is the same as the number of test cases defined by **it**.
       // This API supports only one parameter: preset action function.
     })
-    afterEach(function () {
+    afterEach(() => {
       // Presets a clear action, which is performed after each unit test case ends.
       // The number of execution times is the same as the number of test cases defined by **it**.
       // This API supports only one parameter: clear action function.
     })
-    afterAll(function () {
+    afterAll(() => {
       // Presets a clear action, which is performed after all test cases of the test suite end.
       // This API supports only one parameter: clear action function.
     })
-    it(BUNDLE + 'TakePicture_Video', 0, async function (done) {
+    it(BUNDLE + 'TakePicture_Video', 0, async (done: Function) => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       hilog.info(DOMAIN, TAG, BUNDLE + 'TakePicture_video begin');
       await driver.delayMs(1000);
@@ -87,7 +87,7 @@ export default function CameraTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + 'TakePicture_video end');
     })
 
-    it(BUNDLE + 'Rotation', 0, async function (done) {
+    it(BUNDLE + 'Rotation', 0, async (done: Function) => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       hilog.info(DOMAIN, TAG, BUNDLE + 'Rotation begin');
       await driver.delayMs(1000);
@@ -117,7 +117,7 @@ export default function CameraTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + 'Rotation end');
     })
 
-    it(BUNDLE + 'Resolution', 0, async function (done) {
+    it(BUNDLE + 'Resolution', 0, async (done: Function) => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       hilog.info(DOMAIN, TAG, BUNDLE + 'Resolution begin');
       await driver.delayMs(1000);
@@ -156,7 +156,7 @@ export default function CameraTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + 'Resolution end');
     })
 
-    it(BUNDLE + 'IntoPhoto', 0, async function (done) {
+    it(BUNDLE + 'IntoPhoto', 0, async (done: Function) => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       hilog.info(DOMAIN, TAG, BUNDLE + 'IntoPhoto begin');
       await driver.delayMs(1000);
@@ -174,7 +174,7 @@ export default function CameraTest() {
    * 根据id拿到组件并点击
    * @param id
    */
-  async function checkAndClickById(id: string, log: string) {
+  let checkAndClickById = async (id: string, log: string) => {
     hilog.info(DOMAIN, TAG, BUNDLE + `${log} id:${id}`);
     await driver.assertComponentExist(ON.id(id));
     let res = await driver.findComponent(ON.id(id));
@@ -184,14 +184,14 @@ export default function CameraTest() {
    * 根据text拿到组件并点击
    * @param text
    */
-  async function checkAndClickByText(text: string, log: string) {
+  let checkAndClickByText = async (text: string, log: string) => {
     hilog.info(DOMAIN, TAG, BUNDLE + `${log} text:${text}`);
     await driver.assertComponentExist(ON.text(text));
     let res = await driver.findComponent(ON.text(text));
     await res.click();
   }
 
-  async function checkAndClickPermission(text: string, log: string) {
+  let checkAndClickPermission = async (text: string, log: string) => {
     hilog.info(DOMAIN, TAG, BUNDLE + `${log} text:${text}`);
     await driver.delayMs(1000);
     await driver.assertComponentExist(ON.text(getString($r('app.string.whether')) + text, MatchPattern.CONTAINS));

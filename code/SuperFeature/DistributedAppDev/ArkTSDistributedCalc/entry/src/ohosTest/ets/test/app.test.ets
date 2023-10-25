@@ -17,6 +17,7 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 import { describe, it, expect } from '@ohos/hypium';
 import { Driver, ON, Component, MatchPattern } from '@ohos.UiTest';
 import { logger } from '../util/Logger';
+import Want from '@ohos.app.ability.Want';
 
 const TAG = '[Sample_ArkTSDistributedCalc]';
 const BUNDLE = 'ArkTSDistributedCalc_';
@@ -24,11 +25,11 @@ const BUNDLE = 'ArkTSDistributedCalc_';
 export default function appTest() {
   let driver = Driver.create();
   let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
-  describe('appTest', function () {
+  describe('appTest', () => {
     // 启动应用
-    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+    it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}StartAbility_002 begin`);
-      let want = {
+      let want: Want = {
         bundleName: "ohos.samples.etsdistributedcalc",
         abilityName: "MainAbility"
       };
@@ -43,7 +44,7 @@ export default function appTest() {
     /**
      * 获取权限，并判断是否正常进入主页
      */
-    it(BUNDLE + 'RequestPermissionFunction_001', 0, async function (done) {
+    it(BUNDLE + 'RequestPermissionFunction_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}RequestPermissionFunction_001 begin`);
       // 获取权限
       await driver.delayMs(1000);
@@ -61,7 +62,7 @@ export default function appTest() {
     /**
      * 检测选择设备弹窗是否能正常弹出
      */
-    it(BUNDLE + 'SelectDeviceDialog_001', 0, async function (done) {
+    it(BUNDLE + 'SelectDeviceDialog_001', 0, async (done: Function ) => {
       logger.info(TAG, `${BUNDLE}SelectDeviceDialog_001 begin`);
       // 获取权限
       await driver.assertComponentExist(ON.id('selectDevice'))
@@ -79,7 +80,7 @@ export default function appTest() {
     /**
      * clear功能
      */
-    it(BUNDLE + 'Clear_001', 0, async function (done) {
+    it(BUNDLE + 'Clear_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}Clear_001 begin`);
       await driver.assertComponentExist(ON.id('7'));
       await driver.assertComponentExist(ON.id('5'));
@@ -105,7 +106,7 @@ export default function appTest() {
     /**
      * Delete功能
      */
-    it(BUNDLE + 'Delete_001', 0, async function (done) {
+    it(BUNDLE + 'Delete_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}Delete_001 begin`);
       await driver.assertComponentExist(ON.id('7'));
       await driver.assertComponentExist(ON.id('5'));
@@ -131,7 +132,7 @@ export default function appTest() {
     /**
      * 简单混合运算
      */
-    it(BUNDLE + 'Operation_001', 0, async function (done) {
+    it(BUNDLE + 'Operation_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}Operation_001 begin`);
       await driver.assertComponentExist(ON.id('C'));
       let clear = await driver.findComponent(ON.id('C'));

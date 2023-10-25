@@ -14,7 +14,7 @@
  */
 
 import worker, { ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@ohos.worker';
-import { computeTask } from '../model/CalculateUtil';
+import { offsetMomentum, energy, advance } from '../model/NBody_ETS_6';
 import Logger from '../utils/Logger';
 
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
@@ -53,3 +53,29 @@ workerPort.onmessageerror = function (e: MessageEvents): void {
 workerPort.onerror = function (e: ErrorEvent): void {
   Logger.error(TAG, 'CalculateWorker: onerror = ' + e.message);
 };
+
+/**
+ * 运行天体轨道计算程序
+ * @param totalTimeSteps 时间推移量
+ * @returns 计算时间
+ */
+function computeTask(totalTimeSteps: number): number {
+  const tagInTask: string = 'computeTask';
+  const timeStep: number = 0.01; // 单位:hour
+  const fractionDigits: number = 9; // 机械能数值小数位
+  let start: number = new Date().getTime();
+
+  // 建立孤立系统的动量守恒
+  offsetMomentum();
+  Logger.info(tagInTask, energy().toFixed(fractionDigits));
+
+  // 更新天体在按指定的时间变化后的位置信息
+  for (let i: number = 0; i < totalTimeSteps; i++) {
+    advance(timeStep);
+  }
+
+  // 判断系统计算前后机械能守恒
+  Logger.info(tagInTask, energy().toFixed(fractionDigits));
+  let end: number = new Date().getTime();
+  return end - start;
+}

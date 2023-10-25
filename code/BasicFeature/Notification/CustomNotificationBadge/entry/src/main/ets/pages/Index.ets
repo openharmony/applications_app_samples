@@ -30,7 +30,12 @@ const NOTIFICATION_TAB: TabImage = {
   unselectedImage: $r('app.media.ic_public_send'),
 }
 
-const TAB_INDEX = {
+interface TAB_INDEX_TYPE {
+  MESSAGE_TAB: number
+  NOTIFICATION_TAB: number
+}
+
+const TAB_INDEX: TAB_INDEX_TYPE = {
   MESSAGE_TAB: 0,
   NOTIFICATION_TAB: 1
 }

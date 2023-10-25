@@ -81,7 +81,7 @@ struct AlbumSelect {
       } else {
         AppStorage.SetOrCreate<boolean>(Constants.APP_KEY_NEW_ALBUM, false);
       }
-      let albumInfo: SimpleAlbumDataItem = null;
+      let albumInfo: SimpleAlbumDataItem | null = null;
       if(param.albumInfo != null) {
         albumInfo = JSON.parse(param.albumInfo.toString());
       }
@@ -95,7 +95,6 @@ struct AlbumSelect {
     }
 
     this.loadAlbums();
-    this.onMenuClicked = (action: Action): void => this.onMenuClickedBindImpl(action);
     this.updateActionBar();
   }
 

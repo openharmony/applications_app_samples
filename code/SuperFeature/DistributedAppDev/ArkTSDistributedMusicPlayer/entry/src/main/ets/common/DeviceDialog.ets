@@ -12,18 +12,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import hardware_deviceManager from '@ohos.distributedHardware.deviceManager'
-import Logger from '../model/Logger'
+import deviceManager from '@ohos.distributedDeviceManager';
+import Logger from '../model/Logger';
 
-const TAG: string = 'DeviceDialog'
+const TAG: string = 'DeviceDialog';
 
 @CustomDialog
 export struct DeviceDialog {
-  controller?: CustomDialogController
-  private deviceLists: Array<hardware_deviceManager.DeviceInfo> = []
-  private selectedIndex: number = 0
+  controller?: CustomDialogController;
+  private deviceLists: Array<deviceManager.DeviceBasicInfo> = [];
+  private selectedIndex: number = 0;
   private selectedIndexChange: (selectedIndex: number) => void = () => {
-  }
+  };
 
   build() {
     Column() {
@@ -34,7 +34,7 @@ export struct DeviceDialog {
         .textAlign(TextAlign.Start)
         .fontWeight(600)
       List() {
-        ForEach(this.deviceLists, (item: hardware_deviceManager.DeviceInfo, index: number | undefined) => {
+        ForEach(this.deviceLists, (item: deviceManager.DeviceBasicInfo, index: number | undefined) => {
           ListItem() {
             Flex({
               direction: FlexDirection.Row,

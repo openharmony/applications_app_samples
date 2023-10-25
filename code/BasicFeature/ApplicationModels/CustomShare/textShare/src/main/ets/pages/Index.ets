@@ -22,7 +22,7 @@ struct Index {
   @StorageLink('messages') messages: string = 'No shared information on the current page';
   @StorageLink('sharedFlag') sharedFlag: boolean = false;
   private context = getContext(this) as common.UIAbilityContext;
-  private shareDialog: CustomDialogController;
+  private shareDialog?: CustomDialogController;
 
   build() {
     Column() {

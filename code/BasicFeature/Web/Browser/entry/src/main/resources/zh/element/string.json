@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "浏览器"
+    },
+    {
+      "name": "Input_url",
+      "value": "输入网址..."
+    }
+  ]
+}

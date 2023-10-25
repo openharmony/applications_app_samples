@@ -24,9 +24,9 @@ const TAG = 'AlbumListCard'
 export struct AlbumListCard {
   @State useAlt: boolean = false;
   @Consume broadCast: Broadcast;
-  item: AlbumDataItem;
-  @State thumbnail: PixelMap = undefined;
-  @State mediaRes: Resource = undefined;
+  item: AlbumDataItem = new AlbumDataItem('',0,'',0,'',0,0);
+  @State thumbnail: PixelMap | undefined = undefined;
+  @State mediaRes: Resource | undefined = undefined;
 
   aboutToAppear(): void {
     Log.info(TAG, 'album mediaSet ' + JSON.stringify(this.item));

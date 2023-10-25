@@ -17,17 +17,18 @@ import { describe, it, expect } from '@ohos/hypium';
 import { Driver, ON, Component } from '@ohos.UiTest';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import Logger from '../util/Logger';
+import Want from '@ohos.app.ability.Want';
 
 
 const BUNDLE = 'AdaptiveServiceWidget_';
 const TAG = 'AppTestPage';
 
 export default function appTest() {
-  describe('appTest', function () {
+  describe('appTest', () => {
     // 打开应用
-    it(BUNDLE + 'StartAbility', 0, async function (done) {
-      Logger.info(TAG, 'StartAbility start')
-      let want = {
+    it(BUNDLE + 'StartAbility', 0, (done: Function) => {
+      Logger.info(TAG, 'StartAbility start');
+      let want: Want = {
         bundleName: "ohos.samples.adaptiveservicewidget",
         abilityName: "EntryAbility"
       };

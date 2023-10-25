@@ -73,9 +73,9 @@ ohos.permission.ACCESS_BIOMETRIC
 
 1.本示例仅支持标准系统上运行。
 
-2.本示例已适配API version 10 版本SDK，版本号：4.0.10.10。
+2.本示例支持API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0Release)。
 
-3.本示例需要使用DevEco Studio 3.1.1 Release (Build Version: 3.1.0.501)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 版本号(4.0Release)及以上版本才可编译运行。
 
 4.本示例在无设备证书的设备中运行时，需预先在本机命令行中"hdc shell setenforce 0"命令，才可保证示例功能正常执行。
 

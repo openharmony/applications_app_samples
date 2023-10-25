@@ -16,7 +16,7 @@
 import thermal from '@ohos.thermal';
 
 export class ThermalUtil {
-  static getLevel() {
+  static getLevel(): string {
     return ThermalUtil.getStrLevel(thermal.getLevel());
   }
 
@@ -50,7 +50,7 @@ export class ThermalUtil {
     return value
   }
 
-  static registerThermalLevelCallback(callback: any) {
+  static registerThermalLevelCallback(callback: (level: number) => void) {
     thermal.registerThermalLevelCallback(callback);
   }
 

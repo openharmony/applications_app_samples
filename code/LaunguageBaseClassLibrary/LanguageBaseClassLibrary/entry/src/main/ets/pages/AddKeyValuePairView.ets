@@ -21,17 +21,20 @@ import { getString } from '@ohos/common';
 @Entry
 @Component
 export struct AddKeyValueView {
-  @State keyValuePair: KeyValuePair = { key: '', value: '' }
+  @State keyValuePair: KeyValuePair = new KeyValuePair('', '')
   @State title: string = '';
   @State flag: string = '';
 
   aboutToAppear() {
-    let tem: string = router.getParams()['title'];
+    let tem: string = (router.getParams() as Record<string, Object>)['title'] as string;
     if (!tem) {
       return;
     }
     this.flag = tem;
-    this.title = `${getString($r('app.string.add'))}${tem.match(/.*(?=\(|（)/)[0]}`;
+    let matchArr: RegExpMatchArray | null = tem.match(new RegExp('.*(?=\\(|（)'));
+    if (matchArr !== null) {
+      this.title = `${getString($r('app.string.add'))}${matchArr[0]}`;
+    }
   }
 
   build() {
@@ -87,12 +90,12 @@ export struct AddKeyValueView {
               break;
           }
 
-          let event = {
+          let event: emitter.InnerEvent = {
             eventId: eventId,
             priority: emitter.EventPriority.HIGH
           };
 
-          let eventData = {
+          let eventData: emitter.EventData = {
             data: this.keyValuePair
           };
 

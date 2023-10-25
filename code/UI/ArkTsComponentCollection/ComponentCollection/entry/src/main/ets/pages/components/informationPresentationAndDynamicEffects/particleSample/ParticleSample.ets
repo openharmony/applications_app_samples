@@ -15,7 +15,54 @@
 
 import { TitleBar } from '../../../../common/TitleBar';
 
-let sampleParticleEngine = {};
+class TrackSpawnReturn {
+  x?: number;
+  y?: number;
+  d: number = 0.0;
+}
+class Point {
+  x: number = 0.0;
+  y: number = 0.0;
+  vy: number = 0.0;
+  z: number = 0.0;
+  radius: number = 0.0;
+  color: number = 0.0;
+  distance: number = 0.0;
+}
+class ParticleEngine {
+  ctx!: CanvasRenderingContext2D;
+  width: number = 0;
+  height: number = 0;
+  frameNo: number = 0;
+
+  // canvas x
+  camX: number = 0;
+  // canvas y
+  camY: number = 0;
+  // canvas analog z
+  camZ: number = 0;
+  // particle curve rate of its orbits
+  pitch: number = 0.0;
+  yaw: number = 0;
+  // central axis of canvas width
+  cx: number = 0.0;
+  // central axis of canvas height
+  cy: number = 0.0;
+  // particle orbits generation scale
+  scale: number = 0;
+
+  points:Array<Point> = [];
+  // max particles to be generated
+  initParticles: number = 0;
+  // y shifting rate for each frame
+  initV: number = 0.0;
+  // max particles generation radius
+  distributionRadius: number = 0;
+  // vortex generated height
+  vortexHeight: number = 0;
+}
+
+let sampleParticleEngine: ParticleEngine = new ParticleEngine();
 
 @Entry
 @Component
@@ -23,9 +70,9 @@ struct ParticleSample {
   private settings: RenderingContextSettings = new RenderingContextSettings(true);
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
   private spawn: boolean = false;
-  private interval: number;
+  private interval: number = 0;
 
-  elevation(x, y, z) {
+  elevation(x: number, y: number, z: number) {
     let distance = Math.sqrt(x * x + y * y + z * z);
     if (distance && z / distance >= -1 && z / distance <= 1){
       return Math.acos(z / distance);
@@ -33,7 +80,7 @@ struct ParticleSample {
     return 0.00000001;
   }
 
-  rgb(colorRGBData) {
+  rgb(colorRGBData: number) {
     colorRGBData += 0.000001;
     // generate rgb value by random for particles
     let r = Math.round((0.5 + Math.sin(colorRGBData) * 0.5) * 16);
@@ -42,13 +89,13 @@ struct ParticleSample {
     return '#' + r.toString(16) + g.toString(16) + b.toString(16);
   }
 
-  interpolateColors(RGB1, RGB2, degree) {
-    let w2 = degree;
-    let w1 = 1 - w2;
+  interpolateColors(RGB1: number[], RGB2: number[], degree: number) {
+    let w2: number = degree;
+    let w1: number = 1 - w2;
     return [w1 * RGB1[0] + w2 * RGB2[0], w1 * RGB1[1] + w2 * RGB2[1], w1 * RGB1[2] + w2 * RGB2[2]];
   }
 
-  rgbArray(colorRGBData) {
+  rgbArray(colorRGBData: number) {
     colorRGBData += 0.000001;
     // generate rgb value by random for particles and returned as an array
     let r = Math.round((0.5 + Math.sin(colorRGBData) * 0.5) * 256);
@@ -57,7 +104,7 @@ struct ParticleSample {
     return [r, g, b];
   }
 
-  colorString(colorArray) {
+  colorString(colorArray: number[]) {
     // generate rgb value by random with a generated rgb array for particles and returned as a string
     let r = Math.round(colorArray[0]);
     let g = Math.round(colorArray[1]);
@@ -65,13 +112,13 @@ struct ParticleSample {
     return '#' + ('0' + r.toString(16)).slice(-2) + ('0' + g.toString(16)).slice(-2) + ('0' + b.toString(16)).slice(-2);
   }
 
-  particleEnginePerform(particleEngine) {
+  particleEnginePerform(particleEngine: ParticleEngine) {
     if (particleEngine.points.length < particleEngine.initParticles) {
       for (let i = 0; i < 5; ++i) {
         this.particleItemSpawn(particleEngine);
       }
     }
-    let p, d, t;
+    let p: number, d: number, t: number;
 
     // generate particle move path for animation which is a spiral orbit
     p = Math.atan2(particleEngine.camX, particleEngine.camZ);
@@ -85,7 +132,7 @@ struct ParticleSample {
     particleEngine.yaw = Math.PI + p + t;
     particleEngine.pitch = this.elevation(particleEngine.camX, particleEngine.camZ, particleEngine.camY) - Math.PI / 2;
 
-    let x, y, z;
+    let x: number, y: number, z: number;
     for (let i = 0; i < particleEngine.points.length; ++i) {
       x = particleEngine.points[i].x;
       y = particleEngine.points[i].y;
@@ -104,8 +151,8 @@ struct ParticleSample {
     }
   }
 
-  TrackSpawn(x, y, z, particleEngine) {
-    let p, d;
+  TrackSpawn(x: number, y: number, z: number, particleEngine: ParticleEngine): TrackSpawnReturn {
+    let p: number, d: number;
     x -= particleEngine.camX;
     y -= particleEngine.camY - 8;
     z -= particleEngine.camZ;
@@ -142,17 +189,17 @@ struct ParticleSample {
     }
   }
 
-  sortMethod(a, b) {
+  sortMethod(a: Point, b: Point) {
     return b.distance - a.distance;
   }
 
-  particleSpawn(particleEngine) {
+  particleSpawn(particleEngine: ParticleEngine) {
     particleEngine.ctx.globalAlpha = 0.15;
     particleEngine.ctx.fillStyle = '#000';
     particleEngine.ctx.globalCompositeOperation = 'source-over';
     particleEngine.ctx.fillRect(0, 0, particleEngine.width, particleEngine.height);
 
-    let point, x, y, z, a, size, d;
+    let point: TrackSpawnReturn, x: number, y: number, z: number, a: number, size: number, d: number;
     for (let i = 0; i < particleEngine.points.length; ++i) {
       x = particleEngine.points[i].x;
       y = particleEngine.points[i].y;
@@ -165,7 +212,7 @@ struct ParticleSample {
         a = 0.8 - Math.pow(d / (particleEngine.vortexHeight / 2), 1000) * 0.8;
         particleEngine.ctx.globalAlpha = a >= 0 && a <= 1 ? a : 0;
         particleEngine.ctx.fillStyle = this.rgb(particleEngine.points[i].color);
-        if (point.x > -1 && point.x < particleEngine.width && point.y > -1 && point.y < particleEngine.height) {
+        if (point.x !== undefined && point.y !== undefined && point.x > -1 && point.x < particleEngine.width && point.y > -1 && point.y < particleEngine.height) {
           particleEngine.ctx.fillRect(point.x - size / 2, point.y - size / 2, size, size);
         }
       }
@@ -173,16 +220,17 @@ struct ParticleSample {
     particleEngine.points.sort(this.sortMethod);
   }
 
-  particleItemSpawn(particleEngine) {
-    let p;
-    let ls;
-    let pt = {
+  particleItemSpawn(particleEngine: ParticleEngine) {
+    let p: number;
+    let ls: number;
+    let pt: Point = {
       x: 0.0,
       y: 0.0,
       vy: 0.0,
       z: 0.0,
       radius: 0.0,
       color: 0.0,
+      distance: 0.0
     };
     // vortex points x, y, z(analog) values generation
     p = Math.PI * 2 * Math.random();
@@ -196,7 +244,7 @@ struct ParticleSample {
     particleEngine.points.push(pt);
   }
 
-  init(particleEngine) {
+  init(particleEngine: ParticleEngine) {
     particleEngine.ctx = this.context;
     particleEngine.width = this.context.width;
     particleEngine.height = this.context.height;
@@ -229,7 +277,7 @@ struct ParticleSample {
     particleEngine.vortexHeight = 25;
   }
 
-  particleFrameGenerate(particleEngine) {
+  particleFrameGenerate(particleEngine: ParticleEngine) {
     particleEngine.frameNo++;
     this.particleEnginePerform(particleEngine);
     this.particleSpawn(particleEngine);

@@ -23,12 +23,12 @@ const BUNDLE = 'http';
 let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
 
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
 
     /**
      * 拉起应用
      */
-    it(`${BUNDLE}_StartAbility_001`, 0, async function (done) {
+    it(`${BUNDLE}_StartAbility_001`, 0, async (done: Function) => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       hilog.info(0xF811, 'testTag', 'StartAbility_001 begin');
       try {

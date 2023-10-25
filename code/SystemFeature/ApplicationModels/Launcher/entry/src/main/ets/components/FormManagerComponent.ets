@@ -31,22 +31,22 @@ const TAG: string = 'FormManagerComponent'
 
 @Component
 export default struct FormManagerComponent {
-  @StorageLink('formAppInfo') formAppInfo: AppItemInfo = undefined
-  @StorageLink('formMgrItem') formItem: Array<CardItemInfo> = []
-  @StorageLink('DesktopLayoutModel') desktopLayoutModel: DesktopLayoutModel = undefined
-  private mSwiperController: SwiperController = new SwiperController()
-  private mSwiperIndex: number = 0
-  private mFormIdList: number[] = []
+  @StorageLink('formAppInfo') formAppInfo: AppItemInfo = new AppItemInfo();
+  @StorageLink('formMgrItem') formItem: Array<CardItemInfo> = [];
+  @StorageLink('DesktopLayoutModel') desktopLayoutModel: DesktopLayoutModel | undefined = undefined;
+  private mSwiperController: SwiperController = new SwiperController();
+  private mSwiperIndex: number = 0;
+  private mFormIdList: number[] = [];
 
   build() {
     Column() {
-      Text(this.formAppInfo.appName)
+      Text(this.formAppInfo?.appName)
         .fontColor(Color.White)
         .fontSize(22)
       Column({ space: 5 }) {
         Swiper(this.mSwiperController) {
-          ForEach(this.formItem, (formItem) => {
-            ForEach(formItem.supportDimensions, (dimensionItem) => {
+          ForEach(this.formItem, (formItem: CardItemInfo) => {
+            ForEach(formItem.supportDimensions, (dimensionItem: number) => {
               Column() {
                 Text(formItem.description)
                   .width('70%')
@@ -54,7 +54,7 @@ export default struct FormManagerComponent {
                   .fontSize(20)
                   .textAlign(TextAlign.Center)
                 Column() {
-                  if (this.formAppInfo.bundleName == formItem.bundleName) {
+                  if (this.formAppInfo?.bundleName == formItem.bundleName) {
                     FormComponent({
                       id: formItem.cardId,
                       name: formItem.cardName,
@@ -81,8 +81,8 @@ export default struct FormManagerComponent {
                 .height('80%')
                 .justifyContent(FlexAlign.Center)
               }.width('100%')
-            }, (dimensionItem) => JSON.stringify(dimensionItem))
-          }, (formItem) => JSON.stringify(formItem))
+            }, (dimensionItem: number) => JSON.stringify(dimensionItem))
+          }, (formItem: CardItemInfo) => JSON.stringify(formItem))
         }
         .width('100%')
         .height('100%')
@@ -117,7 +117,7 @@ export default struct FormManagerComponent {
         Logger.info(TAG, `add card to desktop`);
         let selectForm = this.getSelectedFormInfo();
         if (!CheckEmptyUtils.isEmpty(selectForm)) {
-          await this.desktopLayoutModel.createCardToDeskTop(this.getSelectedFormInfo());
+          await this.desktopLayoutModel?.createCardToDeskTop(this.getSelectedFormInfo());
           CommonEvent.publish(EventConstants.EVENT_ENTER_HOME, () => {
             Logger.info(TAG, 'publish EVENT_ENTER_HOME');
           })
@@ -128,47 +128,47 @@ export default struct FormManagerComponent {
   }
 
   aboutToAppear(): void {
-    Logger.info(TAG, `aboutToAppear formAppInfo: ${JSON.stringify(this.formAppInfo)}`)
-    this.getCurrentFormInfo()
+    Logger.info(TAG, `aboutToAppear formAppInfo: ${JSON.stringify(this.formAppInfo)}`);
+    this.getCurrentFormInfo();
   }
 
   /**
    * Get current form information by bundle name.
    */
   private async getCurrentFormInfo() {
-    let currentBundleFormsInfo: Array<CardItemInfo> = await FormModel.getFormsInfoByBundleName(this.formAppInfo.bundleName)
-    AppStorage.SetOrCreate('formMgrItem', currentBundleFormsInfo)
+    let currentBundleFormsInfo: Array<CardItemInfo> = await FormModel.getFormsInfoByBundleName(this.formAppInfo?.bundleName);
+    AppStorage.SetOrCreate('formMgrItem', currentBundleFormsInfo);
   }
 
   getSelectedFormInfo() {
     if (CheckEmptyUtils.isEmptyArr(this.formItem) || this.mSwiperIndex > this.formItem.length) {
-      return undefined
+      return undefined;
     }
-    let formCardItem: any = {}
-    let count = 0
-    let isStop = false
+    let formCardItem: Record<string, Object> = {};
+    let count = 0;
+    let isStop = false;
     for (let i = 0; i < this.formItem.length; i++) {
       if (isStop) {
-        break
+        break;
       }
       for (let j = 0; j < this.formItem[i].supportDimensions.length; j++) {
         if (count === this.mSwiperIndex) {
-          formCardItem.cardId = this.mFormIdList[this.mSwiperIndex]
-          formCardItem.appName = this.formAppInfo.appName
-          formCardItem.cardName = this.formItem[i].cardName
-          formCardItem.bundleName = this.formItem[i].bundleName
-          formCardItem.abilityName = this.formItem[i].abilityName
-          formCardItem.moduleName = this.formItem[i].moduleName
-          formCardItem.dimension = this.formItem[i].supportDimensions[j]
-          formCardItem.formConfigAbility = this.formItem[i].formConfigAbility
-          formCardItem.appLabelId = this.formAppInfo.appLabelId
-          isStop = true
-          break
+          formCardItem.cardId = this.mFormIdList[this.mSwiperIndex];
+          formCardItem.appName = this.formAppInfo.appName!;
+          formCardItem.cardName = this.formItem[i].cardName;
+          formCardItem.bundleName = this.formItem[i].bundleName;
+          formCardItem.abilityName = this.formItem[i].abilityName;
+          formCardItem.moduleName = this.formItem[i].moduleName;
+          formCardItem.dimension = this.formItem[i].supportDimensions[j];
+          formCardItem.formConfigAbility = this.formItem[i].formConfigAbility;
+          formCardItem.appLabelId = this.formAppInfo.appLabelId;
+          isStop = true;
+          break;
         }
-        count++
+        count++;
       }
     }
-    Logger.info(TAG, `getSelectedFormInfo formCardItem: ${JSON.stringify(formCardItem)}`)
-    return formCardItem
+    Logger.info(TAG, `getSelectedFormInfo formCardItem: ${JSON.stringify(formCardItem)}`);
+    return formCardItem;
   }
 }

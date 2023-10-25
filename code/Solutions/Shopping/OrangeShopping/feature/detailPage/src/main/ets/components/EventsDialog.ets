@@ -49,7 +49,7 @@ export struct EventsDialog {
       .backgroundColor('rgba(0,0,0,0.3)')
       .borderRadius('18vp')
       .onClick(() => {
-        this.customDialogController.close();
+        this.customDialogController?.close();
       })
     }
     .backgroundColor('#F1F3F5')

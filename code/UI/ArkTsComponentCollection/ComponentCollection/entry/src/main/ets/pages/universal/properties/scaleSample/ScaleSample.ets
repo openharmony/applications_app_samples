@@ -17,6 +17,11 @@ import { ImageItemSlider } from '../../../../common/AttributeModificationTool';
 import { IntroductionTitle } from '../../../../common/IntroductionTitle';
 import { TitleBar } from '../../../../common/TitleBar';
 
+class ImageSlider {
+  isXAxis: boolean = false;
+  axisName!: Resource;
+}
+
 @Entry
 @Component
 struct TranslateSample {
@@ -24,10 +29,7 @@ struct TranslateSample {
   @State imageTranslateY: number = 1;
   @State containerTranslateX: number = 0;
   @State containerTranslateY: number = 0;
-  private imageSliders: Array<{
-    isXAxis: boolean,
-    axisName: Resource
-  }> =
+  private imageSliders: Array<ImageSlider> =
     [
       { isXAxis: true, axisName: $r('app.string.translate_x_axis') },
       { isXAxis: false, axisName: $r('app.string.translate_y_axis') }
@@ -53,7 +55,7 @@ struct TranslateSample {
           .backgroundColor(Color.White)
           .justifyContent(FlexAlign.Center)
 
-          ForEach(this.imageSliders, (item) => {
+          ForEach(this.imageSliders, (item: ImageSlider) => {
             Row() {
               if (item.isXAxis) {
                 ImageItemSlider({ changeValue: $imageTranslateX, min: 0, max: 4, name: item.axisName })

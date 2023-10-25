@@ -20,29 +20,31 @@ import remoteDeviceModel from '../model/RemoteDeviceModel';
 import router from '@ohos.router';
 import { FilterOption } from '../pages/FilterOption';
 import { ListDeviceView } from '../pages/ListDeviceView';
+import { getGlobalObject, setGlobalObject } from '../common/GlobalThis'
+
+class optionsType {
+  url: string = 'pages/FilterOption'
+}
 
 @Entry
 @Component
 struct Index {
   @State isShowLoading: boolean = false;
   @State indexWidth: string = '100%';
-  @StorageLink('localDevice') localDevice: deviceManager.DeviceInfo = null;
+  @StorageLink('localDevice') localDevice: deviceManager.DeviceInfo | undefined = undefined;
   @StorageLink('trustedDeviceList') trustedDeviceList: Array<deviceManager.DeviceInfo> =
-    new Array<deviceManager.DeviceInfo>();
+  new Array<deviceManager.DeviceInfo>();
   @StorageLink('discoverDeviceList') discoverDeviceList: Array<deviceManager.DeviceInfo> =
-    new Array<deviceManager.DeviceInfo>();
+  new Array<deviceManager.DeviceInfo>();
   @State isSupportRange: boolean = false;
   @State isAllowDiscovered: boolean = true;
   @State isLocalDeviceActive: boolean = false;
   @State filterOption: string = '';
   @State isDiscovering: boolean = false;
-
   scroller: Scroller = new Scroller();
 
   async routeFilterOptionPage() {
-    let options = {
-      url: 'pages/FilterOption',
-    };
+    let options = new optionsType();
     try {
       await router.pushUrl(options);
     } catch (err) {
@@ -50,7 +52,7 @@ struct Index {
     }
   }
 
-  getDeviceTypeIcon(deviceType): Resource {
+  getDeviceTypeIcon(deviceType: deviceManager.DeviceType): Resource {
     if (deviceType == deviceManager.DeviceType.TABLET) {
       return $r('app.media.ic_pad');
     } else if (deviceType == deviceManager.DeviceType.PHONE) {
@@ -66,37 +68,45 @@ struct Index {
     await remoteDeviceModel.createDeviceManager();
     try {
       logger.info(`local deviceType:` + deviceInfo.deviceType);
-      globalThis.deviceTypeName = globalThis.resourceManager.getStringSync($r('app.string.device_type').id);
-      globalThis.authFormName = globalThis.resourceManager.getStringSync($r('app.string.auth_form').id);
-      globalThis.isOnlineName = globalThis.resourceManager.getStringSync($r('app.string.is_online').id);
-      globalThis.isTrustedName = globalThis.resourceManager.getStringSync($r('app.string.is_trusted').id);
-      globalThis.rangeName = globalThis.resourceManager.getStringSync($r('app.string.range').id);
-      globalThis.filterOptions = new Object();
-      globalThis.filterOptions[globalThis.deviceTypeName] = 0;
-      globalThis.filterOptions[globalThis.authFormName] = 0;
-      globalThis.filterOptions[globalThis.isOnlineName] = 0;
-      globalThis.filterOptions[globalThis.isTrustedName] = 0;
-      globalThis.filterOptions[globalThis.rangeName] = 0;
+      let deviceTypeName: string = getContext(this).resourceManager.getStringSync($r('app.string.device_type').id);
+      let authFormName: string = getContext(this).resourceManager.getStringSync($r('app.string.auth_form').id);
+      let isOnlineName: string = getContext(this).resourceManager.getStringSync($r('app.string.is_online').id);
+      let isTrustedName: string = getContext(this).resourceManager.getStringSync($r('app.string.is_trusted').id);
+      let rangeName: string = getContext(this).resourceManager.getStringSync($r('app.string.range').id);
+
+      setGlobalObject('deviceTypeName', deviceTypeName)
+      setGlobalObject('authFormName', authFormName)
+      setGlobalObject('isOnlineName', isOnlineName)
+      setGlobalObject('isTrustedName', isTrustedName)
+      setGlobalObject('rangeName', rangeName)
+
+      let filterOptions = new Map<string, number>();
+      filterOptions.set(deviceTypeName, 0)
+      filterOptions.set(authFormName, 0)
+      filterOptions.set(isOnlineName, 0)
+      filterOptions.set(isTrustedName, 0)
+      filterOptions.set(rangeName, 0)
+      setGlobalObject('filterOptions', filterOptions)
+
     } catch (error) {
       logger.error(`getStringByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
     }
   }
 
   getFilterOption() {
-    let filterOptionList = new Object();
-    filterOptionList[globalThis.deviceTypeName] = globalThis.DeviceTypeItemList;
-    filterOptionList[globalThis.authFormName] = globalThis.AuthFormItemList;
-    filterOptionList[globalThis.isOnlineName] = globalThis.IsOnlineItemList;
-    filterOptionList[globalThis.isTrustedName] = globalThis.IsTrustedItemList;
-    filterOptionList[globalThis.rangeName] = globalThis.RangeItemList;
-
+    let filterOptionList = new Map<string, Array<string>>();
+    filterOptionList.set(getGlobalObject('deviceTypeName') as string, getGlobalObject('DeviceTypeItemList') as string[])
+    filterOptionList.set(getGlobalObject('authFormName') as string, getGlobalObject('AuthFormItemList') as string[])
+    filterOptionList.set(getGlobalObject('isOnlineName') as string, getGlobalObject('IsOnlineItemList') as string[])
+    filterOptionList.set(getGlobalObject('isTrustedName') as string, getGlobalObject('IsTrustedItemList') as string[])
+    filterOptionList.set(getGlobalObject('rangeName') as string, getGlobalObject('RangeItemList') as string[])
     this.filterOption = '';
-    for (var i in globalThis.filterOptions) {
-      if (globalThis.filterOptions[i] == 0) {
-        continue;
+    let tempMap = getGlobalObject('filterOptions') as Map<string, number>
+    tempMap.forEach((value: number, key: string, map: Map<string, number>) => {
+      if (value !== 0) {
+        this.filterOption += (filterOptionList.get(key) as Array<string>)[value] + ' ';
       }
-      this.filterOption += filterOptionList[i][globalThis.filterOptions[i]] + ' ';
-    }
+    })
     logger.info('[DeviceManager.RemoteDeviceModel] this.filterOption = ' + JSON.stringify(this.filterOption));
   }
 
@@ -122,10 +132,10 @@ struct Index {
 
           Column() {
             Row() {
-              Image(this.getDeviceTypeIcon(this.localDevice.deviceType))
+              Image(this.getDeviceTypeIcon(this.localDevice!.deviceType))
                 .width(24)
                 .height(24)
-              Text(this.localDevice.deviceName)
+              Text(this.localDevice!.deviceName)
                 .fontSize(16)
                 .fontColor('#182431')
                 .fontFamily('HarmonyHeiTi-Medium')
@@ -230,7 +240,7 @@ struct Index {
             }.width('100%')
 
             List() {
-              ForEach(this.trustedDeviceList, (item, index) => {
+              ForEach(this.trustedDeviceList, (item: deviceManager.DeviceInfo, index: number) => {
                 ListItem() {
                   Column() {
                     ListDeviceView({ deviceInfo: item, visible: Visibility.Visible })
@@ -240,7 +250,7 @@ struct Index {
                       .visibility(index == this.trustedDeviceList.length - 1 ? Visibility.None : Visibility.Visible)
                   }
                 }
-              }, item => JSON.stringify(item))
+              }, (item: deviceManager.DeviceInfo) => JSON.stringify(item))
             }
             .width('100%')
             .borderRadius(24)
@@ -318,7 +328,7 @@ struct Index {
             .alignItems(HorizontalAlign.Center)
 
             List() {
-              ForEach(this.discoverDeviceList, (item, index) => {
+              ForEach(this.discoverDeviceList, (item: deviceManager.DeviceInfo, index: number) => {
                 ListItem() {
                   Column() {
                     ListDeviceView({ deviceInfo: item })
@@ -331,7 +341,7 @@ struct Index {
                 .onClick(() => {
                   remoteDeviceModel.authenticateDevice(item);
                 })
-              }, item => JSON.stringify(item))
+              }, (item: deviceManager.DeviceInfo) => JSON.stringify(item))
             }
             .visibility(this.discoverDeviceList.length == 0 ? Visibility.None : Visibility.Visible)
             .width('100%')

@@ -20,19 +20,19 @@ export class Logger {
   static DOMAIN: number = 0xFF00
   static FORMAT: string = '%{public}s, %{public}s'
 
-  static debug(...args: any[]) {
+  static debug(...args: string[]) {
     hilog.debug(Logger.DOMAIN, Logger.PREFIX, Logger.FORMAT, args)
   }
 
-  static info(...args: any[]) {
+  static info(...args: string[]) {
     hilog.info(Logger.DOMAIN, Logger.PREFIX, Logger.FORMAT, args)
   }
 
-  static warn(...args: any[]) {
+  static warn(...args: string[]) {
     hilog.warn(Logger.DOMAIN, Logger.PREFIX, Logger.FORMAT, args)
   }
 
-  static error(...args: any[]) {
+  static error(...args: string[]) {
     hilog.error(Logger.DOMAIN, Logger.PREFIX, Logger.FORMAT, args)
   }
 }

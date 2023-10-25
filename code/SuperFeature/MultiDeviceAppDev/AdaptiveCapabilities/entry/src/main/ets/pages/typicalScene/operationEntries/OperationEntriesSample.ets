@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-type OperationItem = {
-  name: Resource,
-  icon: Resource
+class OperationItem {
+  name: Resource | string = '';
+  icon: Resource = $r('app.media.self_fm');
 }
 
 @Entry
@@ -35,7 +35,7 @@ export default struct OperationEntries {
   build() {
     Scroll() {
       Row() {
-        ForEach(this.listData, (item) => {
+        ForEach(this.listData, (item :OperationItem) => {
           Column() {
             Image(item.icon)
               .width(48)

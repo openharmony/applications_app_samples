@@ -4474,7 +4474,7 @@
     },
     {
       "name": "list_introduction_delete",
-      "value": "Right-click item to delete it"
+      "value": "Left-click item to delete it"
     },
     {
       "name": "list_item_title",

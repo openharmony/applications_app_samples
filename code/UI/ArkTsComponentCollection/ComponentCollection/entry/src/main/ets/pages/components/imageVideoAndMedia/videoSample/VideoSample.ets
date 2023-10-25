@@ -21,7 +21,8 @@ import { AutoPlaySwitchPanel, VideoFitControlPanel, CurrentRateControlPanel } fr
 import window from '@ohos.window';
 import common from '@ohos.app.ability.common';
 
-@Extend(Column) function cardStyle() {
+@Extend(Column)
+function cardStyle() {
   .backgroundColor($r('app.color.white'))
   .borderRadius(16)
   .width('100%')
@@ -39,7 +40,7 @@ struct VideoSample {
   @State videoFit: ImageFit = ImageFit.Auto;
   @State videoLoop: boolean = false;
   controller: VideoController = new VideoController();
-  private context: any = getContext(this) as common.UIAbilityContext;
+  private context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
 
   //fixme:修复了视频组件全屏后，视频控制栏消失的情况，推测为被Scroll组件包裹后会出现之前的情况，目前仍出现问题为：全屏后视频播放栏与系统导航栏重合无法正常点击
   build() {
@@ -83,24 +84,23 @@ struct VideoSample {
           })
           .onFullscreenChange((event) => {
             if (event.fullscreen) {
-              let windowClass = null;
               try {
                 let promise = window.getLastWindow(this.context);
                 promise.then((data) => {
-                  windowClass = data;
+                  let windowClass: window.Window = data;
                   console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
                   let names = [];
                   try {
-                    let promise = windowClass.setWindowSystemBarEnable(names);
+                    let promise: Promise<void> = windowClass.setWindowSystemBarEnable(names);
                     promise.then(() => {
                       console.info('Succeeded in setting the system bar to be invisible.');
-                    }).catch((err) => {
+                    }).catch((err: Error) => {
                       console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(err));
                     });
                   } catch (exception) {
                     console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(exception));
                   }
-                }).catch((err) => {
+                }).catch((err: Error) => {
                   console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
                 });
               } catch (exception) {
@@ -109,24 +109,23 @@ struct VideoSample {
               ShowToast.shortToast('FullScreen')
             }
             else {
-              let windowClass = null;
               try {
                 let promise = window.getLastWindow(this.context);
                 promise.then((data) => {
-                  windowClass = data;
+                  let windowClass: window.Window = data;
                   console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
-                  let names = ['status', 'navigation'];
+                  let names: Array<"status" | "navigation"> = ['status', 'navigation'];
                   try {
-                    let promise = windowClass.setWindowSystemBarEnable(names);
+                    let promise: Promise<void> = windowClass.setWindowSystemBarEnable(names);
                     promise.then(() => {
                       console.info('Succeeded in setting the system bar to be invisible.');
-                    }).catch((err) => {
+                    }).catch((err: Error) => {
                       console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(err));
                     });
                   } catch (exception) {
                     console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(exception));
                   }
-                }).catch((err) => {
+                }).catch((err: Error) => {
                   console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
                 });
               } catch (exception) {

@@ -22,7 +22,7 @@ const TAG = 'NoPhotoComponent'
 @Component
 export struct NoPhotoComponent {
   private TAG: string = 'NoPhotoComponent';
-  title: Resource;
+  title: Resource | undefined = undefined;
   // set an initial value temporarily, later change to 0.
   @State offSetY: number = Constants.EMPTY_PAGE_DEFAULT_OFFSET;
   @StorageLink('isHorizontal') isHorizontal: boolean = screenManager.isHorizontal();

@@ -16,28 +16,31 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import { Driver, ON, MatchPattern } from '@ohos.UiTest';
 import hilog from '@ohos.hilog';
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import Want from '@ohos.app.ability.Want';
+import Base from '@ohos.base';
 
-const TAG: string = '[Sample_StaticSubscriber]'
-const DOMAIN = 0xF811
-const BUNDLE = 'StaticSubscriber_'
+
+const TAG: string = '[Sample_StaticSubscriber]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'StaticSubscriber_';
 
 export default function abilityTest() {
   let driver = Driver.create();
   let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
     /**
-     * À­Æð¾²Ì¬¶©ÔÄÓ¦ÓÃ
+     * æ‹‰èµ·é™æ€è®¢é˜…åº”ç”¨
      */
-    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+    it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, '${BUNDLE}StartAbility_001 begin');
-      let want = {
+      let want: Want = {
         bundleName: "com.samples.staticsubscriber",
         abilityName: "EntryAbility"
       };
-      delegator.startAbility(want, (err) => {
-        hilog.info(DOMAIN, TAG, '${BUNDLE}startAbility end err ${JSON.stringify(err)}');
+      delegator.startAbility(want, (err: Base.BusinessError) => {
+        hilog.info(DOMAIN, TAG, `${BUNDLE}startAbility end err ${JSON.stringify(err)}`);
       })
       await driver.delayMs(1000);
       hilog.info(DOMAIN, TAG, '${BUNDLE}StartAbility_001 end');
@@ -45,9 +48,9 @@ export default function abilityTest() {
     })
 
     /**
-     * ¿ªÆô¾²Ì¬¶©ÔÄ
+     * å¼€å¯é™æ€è®¢é˜…
      */
-    it(BUNDLE + 'EnableStaticsubscriber_001', 0, async function (done) {
+    it(BUNDLE + 'EnableStaticsubscriber_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, '${BUNDLE}EnableStaticsubscriber_001 begin');
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('btnEnable'));
@@ -59,9 +62,9 @@ export default function abilityTest() {
     })
 
     /**
-     * ¹Ø±Õ¾²Ì¬¶©ÔÄ
+     * å…³é—­é™æ€è®¢é˜…
      */
-    it(BUNDLE + 'DisableStaticsubscriber_001', 0, async function (done) {
+    it(BUNDLE + 'DisableStaticsubscriber_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, '${BUNDLE}DisableStaticsubscriber_001 begin');
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('btnDisable'));

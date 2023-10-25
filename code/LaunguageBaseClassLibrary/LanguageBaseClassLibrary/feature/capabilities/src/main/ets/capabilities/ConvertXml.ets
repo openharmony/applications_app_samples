@@ -46,7 +46,7 @@ export struct ConvertXml {
     .align(Alignment.Start)
   }
 
-  doOperation = (index) => {
+  doOperation = (index: number) => {
     switch (index) {
       case 0:
         this.output = serializerNode();

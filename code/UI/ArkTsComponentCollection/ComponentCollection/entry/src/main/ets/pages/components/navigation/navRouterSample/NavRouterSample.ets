@@ -27,7 +27,7 @@ struct NavRouterSample {
       Navigation() {
 
         List({ space: 12 }) {
-          ForEach(this.arr, (item) => {
+          ForEach(this.arr, (item: number) => {
             ListItem() {
               NavRouter() {
                 Text(getStringData($r('app.string.nav_router')) + item)
@@ -44,8 +44,8 @@ struct NavRouterSample {
                 .title("NavDestinationTitle" + item)
               }
             }
-            .id('Navigation'+item)
-          }, item => item)
+            .id('Navigation' + item)
+          }, (item: number) => item.toString())
         }
         .width("90%")
         .margin({ top: 12 })
