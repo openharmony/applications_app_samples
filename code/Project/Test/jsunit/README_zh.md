@@ -56,7 +56,7 @@ jsunit
 
 2.本示例为Stage模型，支持API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0 Release)。
 
-3.本示例需要使用DevEco Studio 4.0 Beta2 (Build Version: 4.0.0.400, built on August 2, 2023)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 版本号(4.0 Release)及以上版本才可编译运行。
 
 ### 下载
 
