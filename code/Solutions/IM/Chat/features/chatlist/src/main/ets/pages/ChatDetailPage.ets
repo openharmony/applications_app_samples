@@ -78,6 +78,7 @@ class ShareDate {
 @Component
   // 聊天页面
 export struct ChatDetailPage {
+  @StorageLink('keyboardHeight') keyboardHeight: number = 0;
   @State msgLength: number = 0;
   userMyself = new ChatContact('1', $r('app.string.myself'));
   userFriend = new ChatContact('2', $r('app.string.friend'));
@@ -135,7 +136,7 @@ export struct ChatDetailPage {
         .id('moreBtn')
       }
       .height($r('app.integer.search_outline_height'))
-      .width('100%')
+      .width($r('app.string.layout_100'))
       .backgroundColor(Color.White)
       .justifyContent(FlexAlign.SpaceBetween)
 
@@ -153,8 +154,7 @@ export struct ChatDetailPage {
         right: $r('app.integer.layout_10'),
         bottom: $r('app.integer.layout_10')
       })
-      .width('100%')
-      .height('100%')
+      .width($r('app.string.layout_100'))
       .layoutWeight(LAYOUT_WEIGHT)
 
       // 底部输入框
@@ -168,7 +168,7 @@ export struct ChatDetailPage {
         TextInput({ placeholder: '', text: this.keyboardStr })
           .id('bottomTextInput')
           .height($r('app.integer.search_inline_height'))
-          .layoutWeight(1)
+          .layoutWeight(LAYOUT_WEIGHT)
           .borderRadius($r('app.integer.search_border_radius'))
           .backgroundColor($r('app.string.chat_detail_input_background'))
           .enterKeyType(EnterKeyType.Send)
@@ -209,11 +209,13 @@ export struct ChatDetailPage {
         topRight: $r('app.integer.search_border_radius')
       })
       .backgroundColor(Color.White)
-      .width('100%')
+      .width($r('app.string.layout_100'))
       .height($r('app.integer.search_outline_height'))
     }
+    .padding({ bottom: px2vp((this.keyboardHeight)) })
+    .expandSafeArea([SafeAreaType.KEYBOARD])
     .backgroundColor($r('app.color.detail_body_background'))
-    .height('100%')
+    .height($r('app.string.layout_100'))
   }
 
   async getWant() {

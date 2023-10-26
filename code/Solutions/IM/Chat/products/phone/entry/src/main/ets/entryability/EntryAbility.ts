@@ -51,6 +51,24 @@ export default class EntryAbility extends UIAbility {
       }
       Logger.info(TAG, `Succeeded in loading the content. Data:  ${JSON.stringify(data)}`);
     });
+
+    windowStage.getMainWindow((err, data) => {
+      if (err.code) {
+        Logger.error(TAG, `Failed to obtain the main window.Cause: ${JSON.stringify(err)}`)
+        return;
+      }
+      let windowClass = null;
+      windowClass = data;
+      // 设置监听键盘变化，用来设置inputView避让输入法
+      try {
+        windowClass.on('keyboardHeightChange', (data) => {
+          Logger.info(TAG, `keyboardHeightChange.Data: ${JSON.stringify(data)}`)
+          AppStorage.setOrCreate('keyboardHeight', data)
+        })
+      } catch (exception) {
+        Logger.error(TAG, `Failed to enable the listener for keyboard height changes.Cause: ${JSON.stringify(exception)}`)
+      }
+    });
   }
 
   onWindowStageDestroy(): void {

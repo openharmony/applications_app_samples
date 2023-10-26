@@ -4,15 +4,12 @@
 
 这是一个仿聊天类应用，使用了静态布局搭建了不同的页面。为了优化内存与性能体验，在部分list场景使用了懒加载。
 
-本示例用到了
-图片处理能力接口[@ohos.multimedia.image](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md )。
+本示例用到了 图片处理能力接口[@ohos.multimedia.image](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md )。
 
 文件存储管理能力接口[@ohos.fileio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-fileio.md) 。
 
 ### 效果预览
-
-[README_en.md](README_en.md)
-| 主页 | 通讯录 | 发现 | 个人页面 |
+| 主页                                    | 通讯录                                      | 发现                                     | 个人页面                                |
 | ------------------------------------- | ---------------------------------------- | -------------------------------------- | ----------------------------------- |
 | ![](screenshots/device/chat_home.jpeg) | ![](screenshots/device/chat_address.jpeg) | ![](screenshots/device/chat_found.jpeg) | ![](screenshots/device/chat_me.jpeg) |
 
@@ -49,11 +46,6 @@ features/chatlist/src/main/ets             // 列表类功能HAR共享包
 products/phone/entry/src/main/ets
 |---/entryability
 |   |---EntryAbility.ts                    // 封装整个模块启用，监听Ability对应的窗口等逻辑
-|---/utils
-|   |---Logger.ets                         // 封装整个日志
-|---/view
-|   |---CustomDialogExample.ets            // 自定义功能弹窗页面
-|   |---TopBar.ets                         // 定义应用头部导航栏
 |---/pages                                                               
 |   |---/workers 
 |   |   |---worker.ts                      // worker线程逻辑处理
@@ -64,7 +56,12 @@ products/phone/entry/src/main/ets
 |   |---FullImagePage.ets                  // 点击朋友圈图片放大图
 |   |---Index.ets                          // 首页
 |   |---SettingPage.ets                    // 我的页面
-|---resources/images                       // 放置图片，icon资源等           
+|---resources/images                       // 放置图片，icon资源等  
+|---/utils
+|   |---Logger.ets                         // 封装整个日志
+|---/view
+|   |---CustomDialogExample.ets            // 自定义功能弹窗页面
+|   |---TopBar.ets                         // 定义应用头部导航栏
 ```
 
 #### 相关概念
