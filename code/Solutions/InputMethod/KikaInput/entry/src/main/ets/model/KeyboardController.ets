@@ -284,7 +284,6 @@ export class KeyboardController {
     let keyHeight = dHeight * keyHeightRate;
     this.barPosition = dHeight - keyHeight - navigationbar_height;
     this.inputHandle.addLog(`initWindow-dWidth = ${dWidth};dHeight = ${dHeight};keyboard height = ${keyHeight};;navibar height = navigationbar_height`);
-    this.inputHandle.addLog(`initWindow-window = ${typeof (windowManager)}`);
     this.inputHandle.addLog(`initWindow-deviceType = ${deviceInfo.deviceType}`);
     let panelInfo: inputMethodEngine.PanelInfo = {
       type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
@@ -369,11 +368,11 @@ export class KeyboardController {
   private registerListener(): void {
     this.inputHandle.addLog('registerListener');
 
-    display.on('change', (screenEvent) => {
+    display.on('change', (screenEvent: number) => {
       this.inputHandle.addLog('screenChangeEvent');
       this.resizePanel();
     });
-    InputMethodEngine.on('inputStart', (kbController, textInputClient) => {
+    InputMethodEngine.on('inputStart', (kbController: inputMethodEngine.KeyboardController, textInputClient: inputMethodEngine.InputClient) => {
       this.inputHandle.addLog('keyboard inputStart');
       this.inputHandle.onInputStart(kbController, textInputClient);
     })
@@ -400,15 +399,16 @@ export class KeyboardController {
       this.inputHandle.addLog(`keyUp: result = ${result}`);
       return result;
     });
+
     this.mKeyboardDelegate.on('cursorContextChange', (x: number, y: number, height: number) => {
       let cursorInfo: CursorInfo = { x: x, y: y, height: height }
       this.inputHandle.setCursorInfo(cursorInfo);
     });
     if (isDebug) {
-      this.mKeyboardDelegate.on('selectionChange', (oldBegin, oldEnd, newBegin, newEnd) => {
+      this.mKeyboardDelegate.on('selectionChange', (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => {
         this.inputHandle.setSelectInfo('selectInfo: from(' + oldBegin + ',' + oldEnd + ') to (' + newBegin + ',' + newEnd + ')');
       });
-      this.mKeyboardDelegate.on('textChange', (text) => {
+      this.mKeyboardDelegate.on('textChange', (text: string) => {
         this.inputHandle.setTextInfo('textInfo: ' + text);
       });
     }

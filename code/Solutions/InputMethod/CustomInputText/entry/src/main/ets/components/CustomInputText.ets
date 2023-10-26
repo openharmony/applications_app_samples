@@ -204,7 +204,7 @@ export struct CustomInputText {
   }
 
   initListener(): void {
-    this.inputController.on('insertText', (text) => {
+    this.inputController.on('insertText', (text: string) => {
       logger.info(TAG, `insertText, text: ${text}`);
       if ((this.cursorLeft + this.context.measureText(text).width + this.context.measureText(this.lastInput)
         .width) > this.context.width) {
@@ -216,7 +216,7 @@ export struct CustomInputText {
       this.selectInput = '';
       this.cursorLeft = this.context.measureText(this.inputText).width;
     })
-    this.inputController.on('deleteRight', (length) => {
+    this.inputController.on('deleteRight', (length: number) => {
       let message = this.inputText + this.selectInput + this.lastInput;
       if (this.cursorIndex < message.length) {
         this.selectIndex = this.cursorIndex;
@@ -228,13 +228,13 @@ export struct CustomInputText {
         this.lastInput = message.substring(this.cursorIndex + length, message.length);
       }
     })
-    this.inputController.on('deleteLeft', (length) => {
+    this.inputController.on('deleteLeft', (length: number) => {
       this.inputText = this.inputText.substring(0, this.inputText.length - length);
       this.cursorIndex = this.inputText.length;
       this.selectIndex = this.cursorIndex;
       this.cursorLeft = this.context.measureText(this.inputText).width;
     })
-    this.inputController.on('moveCursor', (direction) => {
+    this.inputController.on('moveCursor', (direction: inputMethod.Direction) => {
       logger.info(TAG, `Succeeded in moveCursor, direction: ${direction}`);
       let message = this.inputText + this.selectInput + this.lastInput;
       this.selectInput = '';
@@ -257,7 +257,7 @@ export struct CustomInputText {
       this.lastInput = message.substring(this.cursorIndex, message.length);
       this.cursorLeft = this.context.measureText(this.inputText).width;
     });
-    this.inputController.on('selectByMovement', (movement) => {
+    this.inputController.on('selectByMovement', (movement: inputMethod.Movement) => {
       logger.info(TAG, `Succeeded in selectByMovement, direction: ${movement.direction}`);
       let message = this.inputText + this.selectInput + this.lastInput;
       if (movement.direction === inputMethod.Direction.CURSOR_UP) {
@@ -286,7 +286,7 @@ export struct CustomInputText {
         this.lastInput = message.substring(this.cursorIndex, message.length);
       }
     });
-    this.inputController.on('selectByRange', (range) => {
+    this.inputController.on('selectByRange', (range: inputMethod.Range) => {
       logger.info(TAG, `selectByRange this.range: ${JSON.stringify(range)}`);
       let message = this.inputText + this.selectInput + this.lastInput;
       if (range.start === 0 && range.end === 0) {
