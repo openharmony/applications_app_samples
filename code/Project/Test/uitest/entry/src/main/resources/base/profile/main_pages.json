@@ -10,6 +10,7 @@
     "pages/Swipe",
     "pages/Pinch",
     "pages/Scroller",
-    "pages/Drag"
+    "pages/Drag",
+    "pages/five"
   ]
 }

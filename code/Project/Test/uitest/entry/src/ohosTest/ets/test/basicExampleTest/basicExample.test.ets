@@ -17,9 +17,9 @@ import Want from '@ohos.app.ability.Want';
 import { describe, it, expect, TestType } from '@ohos/hypium'
 import { Driver, ON } from '@ohos.UiTest'
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 import Logger from '../../util/Logger';
-import EntryAbility from '../../../../main/ets/entryability/EntryAbility';
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator()
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
@@ -37,17 +37,17 @@ export default function basicExampleTest() {
      * @tc.desc: 验证UI操作点击指定按钮后，界面变化是否符合预期
      */
     it('testUiExample',TestType.FUNCTION, async (done: Function) => {
-      Logger.info(TAG, 'testUiExample start')
+      Logger.info(TAG, 'testUiExample start');
       //start tested ability
       let want: Want = {
         bundleName : bundleName,
-        abilityName : "EntryAbility"
+        abilityName : 'EntryAbility'
       }
       await delegator.startAbility(want);
       await sleep(1000);
       // check top display ability
-      await delegator.getCurrentTopAbility().then((ability: EntryAbility)=>{
-        console.info("get top ability");
+      await delegator.getCurrentTopAbility().then((ability: UIAbility)=>{
+        console.info('get top ability');
         expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
       })
       // ui test code

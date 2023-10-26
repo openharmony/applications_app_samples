@@ -85,9 +85,12 @@ struct DragExample {
               .width('100%').height(80).fontSize(16).borderRadius(10)
               .textAlign(TextAlign.Center).backgroundColor(0xAFEEEE)
           }
-          .onDragStart((event: DragEvent, extraParams: string) => {
+          .onDragStart((event: DragEvent | undefined, extraParams: string | undefined) => {
+            if (extraParams == undefined) {
+              return;
+            }
             console.log('ListItem onDragStarts, ' + extraParams)
-            let jsonString: extraObj = JSON.parse(extraParams)
+            let jsonString: ObjTest = JSON.parse(extraParams)
             this.dragBool = true
             this.text = this.numbers[jsonString.selectedIndex]
             this.select = jsonString.selectedIndex
@@ -98,17 +101,20 @@ struct DragExample {
       .editMode(true)
       .height('50%').width('90%').border({ width: 1 })
       .divider({ strokeWidth: 2, color: 0xFFFFFF, startMargin: 20, endMargin: 20 })
-      .onDragEnter((event: DragEvent, extraParams: string) => {
+      .onDragEnter((event: DragEvent | undefined, extraParams: string | undefined) => {
         console.log('List onDragEnter, ' + extraParams)
       })
-      .onDragMove((event: DragEvent, extraParams: string) => {
+      .onDragMove((event: DragEvent | undefined, extraParams: string | undefined) => {
         console.log('List onDragMove, ' + extraParams)
       })
-      .onDragLeave((event: DragEvent, extraParams: string) => {
+      .onDragLeave((event: DragEvent | undefined, extraParams: string | undefined) => {
         console.log('List onDragLeave, ' + extraParams)
       })
-      .onDrop((event: DragEvent, extraParams: string) => {
-        let jsonString: extraObj = JSON.parse(extraParams)
+      .onDrop((event: DragEvent  | undefined, extraParams: string | undefined) => {
+        if (extraParams == undefined) {
+          return;
+        }
+        let jsonString: ObjTest = JSON.parse(extraParams)
         if (this.bool) {
           this.numbers.splice(jsonString.insertIndex, 0, this.text)
           this.bool = false
@@ -122,7 +128,7 @@ struct DragExample {
     }.width('100%').height('100%').padding({ top: 20 }).margin({ top: 20 })
   }
 }
-interface extraObj {
+interface ObjTest {
   insertIndex: number,
   selectedIndex: number
 }

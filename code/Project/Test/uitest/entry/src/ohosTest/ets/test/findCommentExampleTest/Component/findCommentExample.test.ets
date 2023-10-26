@@ -56,7 +56,7 @@ export default function findExampleTest() {
     beforeAll(async  () => {
       let want: Want = {
         bundleName : bundleName,
-        abilityName : "EntryAbility"
+        abilityName : 'EntryAbility'
       }
       await delegator.startAbility(want);
     })
@@ -69,11 +69,11 @@ export default function findExampleTest() {
      */
     it("findComponent_On_ID", TestType.FUNCTION, async (done: Function) => {
       let dr = await Driver.create();
-      await dr.delayMs(DELAYMS)
-      let text  = await dr.findComponent(ON.id("idTest"))
+      await dr.delayMs(DELAYMS);
+      let text  = await dr.findComponent(ON.id('idTest'))
       expect(dr).not().assertNull();
-      expect(await text.getId()).assertEqual("idTest");
-      done()
+      expect(await text.getId()).assertEqual('idTest');
+      done();
     })
 
     /**
@@ -84,14 +84,14 @@ export default function findExampleTest() {
      */
     it("findComponents_On_ID", TestType.FUNCTION, async  (done: Function) => {
       let dr = await Driver.create();
-      await dr.delayMs(DELAYMS)
-      let textArr  = await dr.findComponents(ON.id("scroll_item"));
+      await dr.delayMs(DELAYMS);
+      let textArr  = await dr.findComponents(ON.id('scroll_item'));
       expect(dr).not().assertNull();
       for (let index = 0; index < textArr.length; index++) {
         const element = textArr[index];
         expect(await element.getText() ===  arr[index].toString()).assertTrue();
       }
-      done()
+      done();
     })
 
     /**
@@ -103,10 +103,10 @@ export default function findExampleTest() {
     it("findComponents_On_isBefore", TestType.FUNCTION, async  (done: Function) => {
       let dr = await Driver.create();
       expect(dr).not().assertNull();
-      let radio  = await dr.findComponent(ON.type("Radio").isBefore(ON.id("radio_test1")));
-      expect(await radio.getType()).assertEqual("Radio");
-      expect(await radio.getId()).assertEqual("radio_test");
-      done()
+      let radio  = await dr.findComponent(ON.type("Radio").isBefore(ON.id('radio_test1')));
+      expect(await radio.getType()).assertEqual('Radio');
+      expect(await radio.getId()).assertEqual('radio_test');
+      done();
     })
 
     /**
@@ -118,10 +118,10 @@ export default function findExampleTest() {
     it("findComponents_On_isBefore_1", TestType.FUNCTION, async  (done: Function) => {
       let dr = await Driver.create();
       expect(dr).not().assertNull();
-      let radio  = await dr.findComponent(ON.type("Radio").isAfter(ON.id("radio_test")));
-      expect(await radio.getType()).assertEqual("Radio");
-      expect(await radio.getId()).assertEqual("radio_test1");
-      done()
+      let radio  = await dr.findComponent(ON.type('Radio').isAfter(ON.id('radio_test')));
+      expect(await radio.getType()).assertEqual('Radio');
+      expect(await radio.getId()).assertEqual('radio_test1');
+      done();
     })
 
 
@@ -132,12 +132,12 @@ export default function findExampleTest() {
      * @tc.desc: 使用不同的匹配模式获取控件对象
      */
     it('testMatchPattern', TestType.FUNCTION, async () => {
-      let driver = Driver.create()
-      await driver.delayMs(DELAYMS)
-      let Button1 = await driver.findComponent(ON.text('unit_jsunit', MatchPattern.EQUALS))
-      expect(await Button1.getText()).assertEqual("unit_jsunit")
-      let Button2 = await driver.findComponent(ON.text('unit', MatchPattern.STARTS_WITH))
-      expect(await Button2.getText()).assertEqual("unit_jsunit")
+      let driver = Driver.create();
+      await driver.delayMs(DELAYMS);
+      let Button1 = await driver.findComponent(ON.text('unit_jsunit', MatchPattern.EQUALS));
+      expect(await Button1.getText()).assertEqual('unit_jsunit');
+      let Button2 = await driver.findComponent(ON.text('unit', MatchPattern.STARTS_WITH));
+      expect(await Button2.getText()).assertEqual('unit_jsunit');
     })
 
     /**
@@ -149,12 +149,12 @@ export default function findExampleTest() {
     it("findComponents_scrollSearch", TestType.FUNCTION, async  (done: Function) => {
       let dr = await Driver.create();
       await dr.delayMs(DELAYMS);
-      let scrollBar = await dr.findComponent(ON.type('Scroll'))
+      let scrollBar = await dr.findComponent(ON.type('Scroll'));
       await dr.delayMs(DELAYMS);
-      let button = await scrollBar.scrollSearch(ON.text('5'))
+      let button = await scrollBar.scrollSearch(ON.text('5'));
       await dr.delayMs(DELAYMS);
       expect(await button.getText()).assertEqual("5");
-      done()
+      done();
     })
   })
 }

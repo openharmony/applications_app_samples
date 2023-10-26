@@ -34,15 +34,15 @@ export default function findWindowExampleTest() {
     it('findWindowExampleTest_bundleName', TestType.FUNCTION, async (done: Function) => {
       let want: Want = {
         bundleName : bundleName,
-        abilityName : "EntryAbility"
+        abilityName :'EntryAbility'
       }
       await delegator.startAbility(want);
-      let driver = Driver.create()
-      await driver.delayMs(DELAYMS)
-      let window = await driver.findWindow({bundleName: bundleName})
-      let name = await window.getBundleName()
-      expect(name === bundleName).assertTrue()
-      done()
+      let driver = Driver.create();
+      await driver.delayMs(DELAYMS);
+      let window = await driver.findWindow({bundleName: bundleName});
+      let name = await window.getBundleName();
+      expect(name === bundleName).assertTrue();
+      done();
     })
   })
 }

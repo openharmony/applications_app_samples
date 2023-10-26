@@ -34,10 +34,21 @@ struct Mouse {
             .fontWeight(FontWeight.Bold)
         }
         .id("hover_bt")
-        .onHover((isHover: boolean) => {
+        .onHover((isHover: boolean | undefined, event?: HoverEvent | undefined) => {
           if (isHover) {
             this.hoverMsg = 'hover'
           }
+        })
+        Button() {
+          Text("toMouseDrag")
+            .id("toMouseDrag")
+            .fontSize(15)
+            .fontWeight(FontWeight.Bold)
+        }.onClick((event?: ClickEvent) => {
+          router.push({
+            url: "pages/five"
+          })
+
         })
         Button() {
           Text(this.hoverText)
@@ -48,7 +59,7 @@ struct Mouse {
         .id("mouse_test")
         .type(ButtonType.Capsule)
         .margin({ top: 20 })
-        .onHover((isHover: boolean) => {
+        .onHover((isHover: boolean | undefined, event?: HoverEvent | undefined) => {
           if (isHover) {
             this.hoverText = 'hover'
           }
@@ -56,6 +67,7 @@ struct Mouse {
         .onMouse((event: MouseEvent) => {
           switch (event.button) {
             case MouseButton.Left :
+              console.log("ljl","left");
               this.hoverText = 'left'
               break
             case MouseButton.Right :
@@ -64,11 +76,27 @@ struct Mouse {
             case MouseButton.Middle :
               this.hoverText = 'middle'
               break
-            default :
-              this.hoverText = 'default'
+            default:
+              console.log("ljl","defaultTest");
             break
           }
         })
+        .gesture(
+          TapGesture({ count: 2 })
+            .onAction(() => {
+              router.push({
+                url: "pages/Third"
+              })
+            })
+        )
+        .gesture(
+          LongPressGesture({ repeat: false })
+            .onAction(() => {
+              router.push({
+                url: "pages/Fourth"
+              })
+            })
+        )
         Column(){
           Scroll(this.scroller) {
             Flex({ direction: FlexDirection.Column }) {

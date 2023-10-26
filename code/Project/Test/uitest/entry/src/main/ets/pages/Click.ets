@@ -48,7 +48,7 @@ struct Click {
         )
         .gesture(
         LongPressGesture({ repeat: false })
-          .onAction((event: GestureEvent) => {
+          .onAction(() => {
             router.push({ uri: 'pages/Fourth' })
           })
         )

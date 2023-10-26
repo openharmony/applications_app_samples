@@ -41,5 +41,5 @@ export default function testsuite() {
   scroller();
   moveWindow();
   reSizeWindow();
-  windowAttr()
+  windowAttr();
 }

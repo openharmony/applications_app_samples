@@ -23,7 +23,7 @@ const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const WAIT_UI_READYMS = 1000;
 let ab: UIAbility;
-
+let test: string = '中文测试';
 export default function InputEventTest() {
   describe('InputEventTest', () => {
       beforeAll(async () => {
@@ -37,8 +37,8 @@ export default function InputEventTest() {
 
         let want: Want = {
           bundleName : bundleName,
-          abilityName : "InputAbility"
-        }
+          abilityName : 'InputAbility'
+        };
         await delegator.startAbility(want);
     })
 
@@ -49,15 +49,15 @@ export default function InputEventTest() {
      * @tc.desc: 检测uitest inputText 功能
      */
     it('clickEventTest_Input',TestType.FUNCTION, async (done: Function) => {
-      let driver = Driver.create()
-      await driver.delayMs(WAIT_UI_READYMS)
-      let input = await driver.findComponent(ON.type('TextInput'))
-      await input.inputText('123')
-      await driver.delayMs(WAIT_UI_READYMS)
-      let input_new = await driver.findComponent(ON.type('TextInput'))
-      let text = await input_new.getText()
-      expect(text === '123').assertTrue()
-      done()
+      let driver = Driver.create();
+      await driver.delayMs(WAIT_UI_READYMS);
+      let input = await driver.findComponent(ON.type('TextInput'));
+      await input.inputText('123');
+      await driver.delayMs(WAIT_UI_READYMS);
+      let input_new = await driver.findComponent(ON.type('TextInput'));
+      let text = await input_new.getText();
+      expect(text === '123').assertTrue();
+      done();
     })
 
     /**
@@ -67,15 +67,35 @@ export default function InputEventTest() {
      * @tc.desc: 检测uitest inputText 输入中文功能测试
      */
     it('clickEventTest_Input_zh',TestType.FUNCTION, async (done: Function) => {
-      let driver = Driver.create()
-      await driver.delayMs(WAIT_UI_READYMS)
-      let input = await driver.findComponent(ON.type('TextInput'))
-      await input.inputText("中文测试")
-      await driver.delayMs(WAIT_UI_READYMS)
-      let input_new = await driver.findComponent(ON.type('TextInput'))
-      let text = await input_new.getText()
-      expect(text == "中文测试").assertTrue()
-      done()
+      let driver = Driver.create();
+      await driver.delayMs(WAIT_UI_READYMS);
+      let input = await driver.findComponent(ON.type('TextInput'));
+      await input.inputText(test);
+      await driver.delayMs(WAIT_UI_READYMS);
+      let input_new = await driver.findComponent(ON.type('TextInput'));
+      let text = await input_new.getText();
+      expect(text == test).assertTrue();
+      done();
+    })
+
+    /**
+     * @tc.number:InputEventTest_002
+     * @tc.name: clickEventTest_Input_zh
+     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
+     * @tc.desc: 检测uitest inputText 输入中文功能测试
+     */
+    it('clickEventTest_Input_driver',TestType.FUNCTION, async (done: Function) => {
+      let driver = Driver.create();
+      await driver.delayMs(WAIT_UI_READYMS);
+      let input = await driver.findComponent(ON.type('TextInput'));
+      let center = await input.getBoundsCenter();
+      await input.clearText();
+      await driver.inputText(center, '1234556');
+      await driver.delayMs(WAIT_UI_READYMS);
+      let input_new = await driver.findComponent(ON.type('TextInput'));
+      let text = await input_new.getText();
+      expect(text == '1234556').assertTrue();
+      done();
     })
   })
 }

@@ -26,12 +26,12 @@ export default function ScreenCapEventTest() {
      * @tc.desc: 检测uitest screenCap 功能
      */
     it('testScreenCap', TestType.FUNCTION, async (done: Function) => {
-      let driver = Driver.create()
-      await driver.delayMs(WAIT_UI_READYMS)
-      let savePath = '/data/storage/el2/base/cache/1.png'
-      let success = await driver.screenCap(savePath)
-      expect(success === true).assertTrue()
-      done()
+      let driver = Driver.create();
+      await driver.delayMs(WAIT_UI_READYMS);
+      let savePath = '/data/storage/el2/base/cache/1.png';
+      let success = await driver.screenCap(savePath);
+      expect(success === true).assertTrue();
+      done();
     })
 
     /**
@@ -41,12 +41,12 @@ export default function ScreenCapEventTest() {
      * @tc.desc: 检测uitest screenCapture 指定大小截图功能
      */
     it('testScreenCap_1', TestType.FUNCTION, async (done: Function) => {
-      let driver = Driver.create()
-      await driver.delayMs(WAIT_UI_READYMS)
-      let savePath = '/data/storage/el2/base/cache/2.png'
-      let success = await driver.screenCapture(savePath, {left: 0, top: 0, right: 100, bottom: 100})
-      expect(success === true).assertTrue()
-      done()
+      let driver = Driver.create();
+      await driver.delayMs(WAIT_UI_READYMS);
+      let savePath = '/data/storage/el2/base/cache/2.png';
+      let success = await driver.screenCapture(savePath, {left: 0, top: 0, right: 100, bottom: 100});
+      expect(success === true).assertTrue();
+      done();
     })
   })
 }
