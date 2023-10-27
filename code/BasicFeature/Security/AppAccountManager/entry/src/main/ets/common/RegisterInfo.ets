@@ -343,7 +343,7 @@ export struct RegisterInfo {
                 confirm: {
                   value: $r('app.string.close'),
                   action: () => {
-                    router.replace({
+                    router.push({
                       url: 'pages/Login',
                       params: {
                         bundleName: this.bundleName

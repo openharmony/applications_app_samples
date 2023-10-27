@@ -61,7 +61,7 @@ export struct AccountInfo {
           .fontColor(Color.White)
           .type(ButtonType.Capsule)
           .onClick(() => {
-            router.replace({
+            router.push({
               url: 'pages/Modify',
               params: {
                 username: this.username,
@@ -85,7 +85,7 @@ export struct AccountInfo {
                 primaryButton: {
                   value: $r('app.string.confirm'),
                   action: () => {
-                    router.replace({
+                    router.push({
                       url: 'pages/Index'
                     })
                   }
@@ -119,7 +119,7 @@ export struct AccountInfo {
                   action: () => {
                     this.accountModel.deleteAccount(`${this.username}_${this.bundleName}`);
                     this.storage.deleteStorageValue(getContext(), this.username, this.bundleName)
-                    router.replace({
+                    router.push({
                       url: 'pages/Login',
                       params: {
                         bundleName: this.bundleName

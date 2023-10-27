@@ -96,7 +96,7 @@ export struct LoginInfo {
         .fontColor(Color.White)
         .type(ButtonType.Capsule)
         .onClick(() => {
-          router.replace({
+          router.push({
             url: 'pages/Register',
             params: {
               bundleName: this.bundleName
@@ -159,7 +159,7 @@ export struct LoginInfo {
               signature = ''
               Logger.info(TAG, `getAccountExtraInfo failed err is ${JSON.stringify(err)}`)
             }
-            router.replace({
+            router.push({
               url: 'pages/Account',
               params: {
                 email: email,

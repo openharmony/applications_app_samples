@@ -318,7 +318,7 @@ export struct ModifyInfo {
                 confirm: {
                   value: $r('app.string.close'),
                   action: () => {
-                    router.replace({
+                    router.push({
                       url: 'pages/Account',
                       params: {
                         email: email,
@@ -343,7 +343,7 @@ export struct ModifyInfo {
                 confirm: {
                   value: $r('app.string.close'),
                   action: () => {
-                    router.replace({
+                    router.push({
                       url: 'pages/Account',
                       params: {
                         email: email,
