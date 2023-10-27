@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例中主要介绍开发者如何使用Native XComponent接口来获取NativeWindow实例、获取布局/事件信息、注册事件回调并通过OpenGL/EGL实现在页面上绘制形状。功能主要包括点击按钮绘制一个五角星，并可以通过点击XComponent区域改变五角星的颜色。
+本示例中主要介绍开发者如何使用Native XComponent接口来获取NativeWindow实例、获取布局/事件信息、注册事件回调并通过Drawing API实现在页面上绘制形状。功能主要包括点击按钮绘制一个五角星和“Hello World Drawing”文字。
 
 使用说明
 
@@ -12,6 +12,11 @@
 
 3. 点击页面底部“Draw Text”按钮，页面将绘制“Hello World Drawing”。
 
+### 效果预览
+
+| 主页                                 | 绘制五角星                                    | 绘制文字                                            |
+| ------------------------------------ | --------------------------------------------- | --------------------------------------------------- |
+| ![main](screenshots/device/Index.jpg) | ![draw star](screenshots/device/DrawStar.jpg) | ![change color](screenshots/device/DrawText.jpg) |
 
 ### 工程目录
 
