@@ -18,7 +18,8 @@
 	"acls":{
 		"allowed-acls":[
 			"ohos.permission.DISTRIBUTED_DATASYNC",
-			"ohos.permission.START_ABILITIES_FROM_BACKGROUND"
+			"ohos.permission.START_ABILITIES_FROM_BACKGROUND",
+			"ohos.permission.ACCESS_SERVICE_DM"
 		]
 	},
 	"permissions":{
