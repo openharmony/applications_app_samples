@@ -110,10 +110,10 @@ struct Index {
 
               if (this.imageList.length > 0) {
                 Grid() {
-                  ForEach(this.imageList, (imgUrl: string, index:number) => {
+                  ForEach(this.imageList, (imgUrl: string, index: number) => {
                     GridItem() {
                       if (index < this.imageList.length) {
-                        Image(this.imageArr[index])
+                        Image(this.imageArr ? this.imageArr[index] : imgUrl)
                           .onClick(() => {
                             AppStorage.SetOrCreate<number>('selectIndex', index);
                             this.isLand = true;
