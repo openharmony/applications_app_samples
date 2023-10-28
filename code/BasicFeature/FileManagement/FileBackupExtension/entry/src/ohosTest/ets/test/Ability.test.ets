@@ -19,14 +19,21 @@ import { Driver, ON } from '@ohos.UiTest';
 
 const TAG = '[Sample_BackupExtension]';
 const BUNDLE = 'BackupExtension_';
+let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+
+// 资源本地化
+async function getResourceString(resource: Resource): Promise<string> {
+  let manage = abilityDelegator.getAppContext().resourceManager;
+  let text = await manage.getStringValue(resource);
+  return text;
+}
 
 export default function abilityTest() {
-
   describe('ActsAbilityTest', () => {
     /**
      * 打开应用
      */
-    it(BUNDLE + 'StartAbility_001', 0, async (done) => {
+    it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
       console.info(TAG, BUNDLE + 'StartAbility_001 begin');
       let driver = Driver.create();
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -41,20 +48,7 @@ export default function abilityTest() {
       }
       console.info(TAG, BUNDLE + 'StartAbility_001 end');
       await driver.delayMs(1000);
-      let resource = $r('app.string.fileData').id;
-      let str = '';
-      try {
-        this.context.resourceManager.getStringValue(resource, (error, value) => {
-          if (error != null) {
-            console.log("error is " + error);
-          } else {
-            str = value;
-          }
-        });
-      } catch (error) {
-        console.error(`callback getStringValue failed, error code: ${error.code}, message: ${error.message}.`)
-      }
-      await driver.assertComponentExist(ON.text(str));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.fileData'))));
       await driver.assertComponentExist(ON.id('file0'));
       done();
     })
