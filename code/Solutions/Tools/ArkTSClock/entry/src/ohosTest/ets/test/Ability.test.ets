@@ -23,8 +23,8 @@ const DOMAIN = 0xF811;
 const BUNDLE = 'Clock_';
 
 export default function appTest() {
-  describe('ActsAbilityTest', function () {
-    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+  describe('ActsAbilityTest', () => {
+    it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin');
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
@@ -43,7 +43,7 @@ export default function appTest() {
     /**
      * 进入应用
      */
-    it(BUNDLE + 'CreateFunction_001', 0, async function () {
+    it(BUNDLE + 'CreateFunction_001', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'CreateFunction_001 begin');
       let driver = Driver.create();
       await driver.delayMs(3000);
