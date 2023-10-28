@@ -30,7 +30,7 @@ struct Index {
           })
           .width('33.6%')
           .height(40)
-          .shadow(ShadowStyle.OUTER_DEFAULT_LG)
+          // .shadow(ShadowStyle.OUTER_DEFAULT_LG)
         Button('Draw Text')
           .fontSize('16fp')
           .fontWeight(500)
@@ -44,11 +44,11 @@ struct Index {
           })
           .width('33.6%')
           .height(40)
-          .shadow(ShadowStyle.OUTER_DEFAULT_LG)
+          // .shadow(ShadowStyle.OUTER_DEFAULT_LG)
       }
       .width('100%')
       .justifyContent(FlexAlign.Center)
-      .shadow(ShadowStyle.OUTER_DEFAULT_SM)
+      // .shadow(ShadowStyle.OUTER_DEFAULT_SM)
       .alignItems(VerticalAlign.Bottom)
       .layoutWeight(1)
     }
