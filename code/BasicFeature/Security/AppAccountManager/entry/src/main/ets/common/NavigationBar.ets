@@ -49,7 +49,7 @@ export struct NavigationBar {
                 primaryButton: {
                   value: $r('app.string.confirm'),
                   action: () => {
-                    router.replace({
+                    router.push({
                       url: this.url,
                       params: {
                         bundleName: this.bundleName,

@@ -136,7 +136,7 @@ export struct BundleInfo {
         .borderRadius(20)
         .backgroundColor('#f6f6f6')
         .onClick(() => {
-          router.replace({
+          router.push({
             url: 'pages/Login',
             params: {
               bundleName: item.name
