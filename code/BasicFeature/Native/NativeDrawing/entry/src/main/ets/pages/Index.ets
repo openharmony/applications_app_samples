@@ -1,4 +1,4 @@
-import XComponentContext from "../interface/XComponentContext"
+import XComponentContext from "../interface/XComponentContext";
 
 const TAG = '[Sample_DrawingAPI]';
 
