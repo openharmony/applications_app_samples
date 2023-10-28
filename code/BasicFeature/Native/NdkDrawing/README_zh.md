@@ -1,8 +1,8 @@
-# Native XComponent
+# NdkDrawing
 
 ### 介绍
 
-本示例中主要介绍开发者如何使用Native XComponent接口来获取NativeWindow实例、获取布局/事件信息、注册事件回调并通过Drawing API实现在页面上绘制形状。功能主要包括点击按钮绘制一个五角星和“Hello World Drawing”文字。
+本示例中主要介绍开发者在利用Native XComponent来获取NativeWindow实例、获取布局/事件信息、注册事件回调并通过Drawing API实现在页面上绘制形状。功能主要包括点击按钮绘制一个五角星和“Hello World Drawing”文字。
 
 使用说明
 
@@ -35,7 +35,10 @@
 │  │  │  └──sample_bitmap.h
 │  ├──ets                           // ets代码区
 │  │  ├──entryability
-│  │  │  └──EntryAbility.ts         // 程序入口类
+│  │  │  ├──EntryAbility.ts         // 程序入口类
+|  |  |  └──EntryAbility.ets
+|  |  ├──interface
+│  │  │  └──XComponentContext.ts    // XComponentContext
 │  │  └──pages                      // 页面文件
 │  │     └──Index.ets               // 主界面
 |  ├──resources         			// 资源文件目录
@@ -89,7 +92,7 @@ XComponent NativeWindow。
 
 1. 本示例仅支持标准系统上运行。
 
-2. 本示例仅支持API version 10版本SDK，版本号：4.0.8.2。
+2. 本示例仅支持API version 10版本SDK，版本号：4.0.9.6。
 
 3. 本示例需要使用DevEco Studio 3.1 Release (Build Version: 3.1.0.500 构建 2023年4月28日)及以上版本才可编译运行。
 

@@ -31,7 +31,7 @@ export default function abilityTest() {
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
         await abilityDelegator.startAbility({
-          bundleName: 'com.samples.drawing',
+          bundleName: 'com.samples.ndkdrawing',
           abilityName: 'EntryAbility'
         });
       } catch (exception) {
@@ -53,7 +53,7 @@ export default function abilityTest() {
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
         await abilityDelegator.startAbility({
-          bundleName: 'com.samples.drawing',
+          bundleName: 'com.samples.ndkdrawing',
           abilityName: 'EntryAbility'
         });
       } catch (exception) {
