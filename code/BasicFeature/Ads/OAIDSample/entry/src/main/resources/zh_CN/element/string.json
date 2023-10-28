@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "OAIDSample"
+    },
+    {
+      "name": "oaid_title",
+      "value": "OAIDSample"
+    },
+    {
+      "name": "oaid_btn_promise",
+      "value": "通过Promise获取OAID"
+    },
+    {
+      "name": "oaid_btn_asynccallback",
+      "value": "通过异步callback获取OAID"
+    },
+    {
+      "name": "oaid_btn_reset",
+      "value": "重置OAID"
+    },
+    {
+      "name": "oaid_label",
+      "value": "OAID:"
+    }
+  ]
+}
