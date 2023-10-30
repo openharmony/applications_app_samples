@@ -65,6 +65,9 @@
       },
       {
         "name": "ohos.permission.START_ABILITIES_FROM_BACKGROUND"
+      },
+      {
+        "name": "ohos.permission.START_INVISIBLE_ABILITY"
       }
     ]
   }

@@ -84,6 +84,8 @@ deviceManager.createDeviceManager('ohos.samples.distributedmusicplayer') [源码
 
 允许音乐服务后台拉起音乐页面：[ohos.permission.START_ABILITIES_FROM_BACKGROUND](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionstart_abilities_from_background)
 
+允许应用进行调用,无论Ability是否可见: [ohos.permission.START_INVISIBLE_ABILITY](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionstart_invisible_ability)
+
 ### 依赖
 
 不涉及
