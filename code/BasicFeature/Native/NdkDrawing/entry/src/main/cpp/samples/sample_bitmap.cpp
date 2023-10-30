@@ -179,7 +179,7 @@ void SampleBitMap::SetPenAndBrush() {
     OH_Drawing_CanvasAttachBrush(cCanvas_, cBrush_);
 }
 
-void SampleBitMap::DrawStar() {
+void SampleBitMap::DrawPath() {
     // 在画布上画path的形状，五角星的边框样式为pen设置，颜色填充为Brush设置
     OH_Drawing_CanvasDrawPath(cCanvas_, cPath_);
 }
@@ -259,10 +259,10 @@ napi_value SampleBitMap::NapiDrawPattern(napi_env env, napi_callback_info info) 
         render->Create();
         render->ConstructPath();
         render->SetPenAndBrush();
-        render->DrawStar();
+        render->DrawPath();
         render->DisPlay();
         render->Destroy();
-        DRAWING_LOGI("DrawStar executed");
+        DRAWING_LOGI("DrawPath executed");
     } else {
         DRAWING_LOGE("render is nullptr");
     }

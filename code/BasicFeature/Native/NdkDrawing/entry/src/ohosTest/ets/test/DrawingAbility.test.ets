@@ -31,7 +31,7 @@ export default function abilityTest() {
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
         await abilityDelegator.startAbility({
-          bundleName: 'com.samples.ndkdrawing',
+          bundleName: 'com.samples.nativedrawing',
           abilityName: 'EntryAbility'
         });
       } catch (exception) {
@@ -47,26 +47,26 @@ export default function abilityTest() {
     /**
      * 点击按钮，绘制图形
      */
-    it('DrawStar_001', 2, async () => {
-      console.info(TAG, 'DrawStar_001 begin');
+    it('DrawPath_001', 2, async () => {
+      console.info(TAG, 'DrawPath_001 begin');
       let driver = Driver.create();
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
         await abilityDelegator.startAbility({
-          bundleName: 'com.samples.ndkdrawing',
+          bundleName: 'com.samples.nativedrawing',
           abilityName: 'EntryAbility'
         });
       } catch (exception) {
-        console.info(TAG, `DrawStar_001 exception = ${JSON.stringify(exception)}`);
+        console.info(TAG, `DrawPath_001 exception = ${JSON.stringify(exception)}`);
         expect().assertFail();
       }
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Draw Path'));
-      let drawStarBtn = await driver.findComponent(ON.text('Draw Path'));
+      let drawPathBtn = await driver.findComponent(ON.text('Draw Path'));
       // 点击'Draw Path'按钮
-      await drawStarBtn.click();
+      await drawPathBtn.click();
       await driver.delayMs(1000);
-      console.info(TAG, 'DrawStar_001 end');
+      console.info(TAG, 'DrawPath_001 end');
     })
   })
 }

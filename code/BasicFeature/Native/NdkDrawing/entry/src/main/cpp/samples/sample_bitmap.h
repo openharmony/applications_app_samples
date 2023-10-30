@@ -39,7 +39,7 @@ public:
     static napi_value NapiDrawPattern(napi_env env, napi_callback_info info);
     static napi_value NapiDrawText(napi_env env, napi_callback_info info);
     static void Release(std::string &id);
-    void DrawStar();
+    void DrawPath();
     void DrawText();
     void SetWidth(uint64_t width);
     void SetHeight(uint64_t height);

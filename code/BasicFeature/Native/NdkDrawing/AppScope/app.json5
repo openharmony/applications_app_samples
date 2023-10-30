@@ -1,6 +1,6 @@
 {
   "app": {
-    "bundleName": "com.samples.ndkdrawing",
+    "bundleName": "com.samples.nativedrawing",
     "vendor": "example",
     "versionCode": 1000000,
     "versionName": "1.0.0",

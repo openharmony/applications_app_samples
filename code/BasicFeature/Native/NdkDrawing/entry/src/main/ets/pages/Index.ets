@@ -15,7 +15,6 @@ struct Index {
             this.xComponentContext = xComponentContext as XComponentContext;
           })
       }.height('88%')
-
       Row() {
         Button('Draw Path')
           .fontSize('16fp')

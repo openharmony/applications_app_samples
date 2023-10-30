@@ -1,4 +1,4 @@
-# NdkDrawing
+# Native Drawing
 
 ### 介绍
 
@@ -14,9 +14,9 @@
 
 ### 效果预览
 
-| 主页                                 | 绘制五角星                                    | 绘制文字                                            |
-| ------------------------------------ | --------------------------------------------- | --------------------------------------------------- |
-| ![main](screenshots/device/Index.jpg) | ![Draw Path](screenshots/device/DrawStar.jpg) | ![change color](screenshots/device/DrawText.jpg) |
+| 主页                                 | 绘制五角星                                         | 绘制文字                                            |
+| ------------------------------------ |-----------------------------------------------| --------------------------------------------------- |
+| ![main](screenshots/device/Index.jpg) | ![Draw Path](screenshots/device/DrawPath.jpg) | ![change color](screenshots/device/DrawText.jpg) |
 
 ### 工程目录
 
