@@ -64,7 +64,7 @@ static void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window)
     SampleBitMap::Release(id);
 }
 
-static std::unordered_map<std::string, SampleBitMap *> instance;
+static std::unordered_map<std::string, SampleBitMap *> g_instance;
 
 void SampleBitMap::SetWidth(uint64_t width)
 {
@@ -381,7 +381,7 @@ void SampleBitMap::Release(std::string &id)
     if (render != nullptr) {
         delete render;
         render = nullptr;
-        instance.erase(instance.find(id));
+        g_instance.erase(g_instance.find(id));
     }
 }
 
@@ -410,11 +410,11 @@ void SampleBitMap::RegisterCallback(OH_NativeXComponent *nativeXComponent)
 
 SampleBitMap *SampleBitMap::GetInstance(std::string &id)
 {
-    if (instance.find(id) == instance.end()) {
+    if (g_instance.find(id) == g_instance.end()) {
         SampleBitMap *render = new SampleBitMap(id);
-        instance[id] = render;
+        g_instance[id] = render;
         return render;
     } else {
-        return instance[id];
+        return g_instance[id];
     }
 }

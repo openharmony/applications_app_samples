@@ -20,10 +20,9 @@
 #include "common/log_common.h"
 #include "plugin_manager.h"
 
-static PluginManager pluginManager;
-
 PluginManager *PluginManager::GetInstance()
 {
+    static PluginManager pluginManager;
     return &pluginManager;
 }
 
