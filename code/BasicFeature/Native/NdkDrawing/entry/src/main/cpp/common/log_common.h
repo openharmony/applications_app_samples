@@ -17,7 +17,7 @@
 #include <hilog/log.h>
 #define LOG_PRINT_DOMAIN 0xFF00
 #define APP_LOG_DOMAIN 0x0001
-static constexpr const char *APP_LOG_TAG = "DrawingSample";
+constexpr const char *APP_LOG_TAG = "DrawingSample";
 #define DRAWING_LOGI(...) ((void)OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN, APP_LOG_TAG, __VA_ARGS__))
 #define DRAWING_LOGD(...) ((void)OH_LOG_Print(LOG_APP, LOG_DEBUG, LOG_DOMAIN, APP_LOG_TAG, __VA_ARGS__))
 #define DRAWING_LOGW(...) ((void)OH_LOG_Print(LOG_APP, LOG_WARN, LOG_DOMAIN, APP_LOG_TAG, __VA_ARGS__))
