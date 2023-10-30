@@ -1,0 +1,28 @@
+{
+  "color": [
+    {
+      "name": "key_item_normal",
+      "value": "#ffffff"
+    },
+    {
+      "name": "key_item_normal_pressed",
+      "value": "#AEB3BD"
+    },
+    {
+      "name": "key_item_gray",
+      "value": "#a8abb7"
+    },
+    {
+      "name": "key_item_gray_pressed",
+      "value": "#868b95"
+    },
+    {
+      "name": "shadow",
+      "value": "#76787c"
+    },
+    {
+      "name": "key_item_normal_text",
+      "value": "#606060"
+    }
+  ]
+}

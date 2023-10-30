@@ -18,6 +18,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import window from '@ohos.window';
 import Want from '@ohos.app.ability.Want';
 import { logger } from '../utils/Logger';
+import { BusinessError } from '@ohos.base';
 
 const TAG: string = 'EntryAbility';
 
@@ -33,7 +34,7 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability
     logger.info(TAG, 'Ability onWindowStageCreate');
-    windowStage.loadContent('pages/Index', (err, data) => {
+    windowStage.loadContent('pages/Index', (err: BusinessError, data: void) => {
       if (err.code) {
         logger.error(TAG, `Failed to load the content. Cause:${JSON.stringify(err) ?? ''}`);
         return;
