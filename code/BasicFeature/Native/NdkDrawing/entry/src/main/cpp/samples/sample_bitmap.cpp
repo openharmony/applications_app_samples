@@ -16,10 +16,10 @@
 #include <bits/alltypes.h>
 #include <native_drawing/drawing_font_collection.h>
 #include <native_drawing/drawing_text_typography.h>
-#include "sample_bitmap.h"
 #include "common/log_common.h"
+#include "sample_bitmap.h"
 
-void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window)
+static void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window)
 {
     DRAWING_LOGI("OnSurfaceCreatedCB");
     if ((component == nullptr) || (window == nullptr)) {
@@ -47,7 +47,7 @@ void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window)
     }
 }
 
-void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window)
+static void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window)
 {
     DRAWING_LOGI("OnSurfaceDestroyedCB");
     if ((component == nullptr) || (window == nullptr)) {
@@ -64,13 +64,22 @@ void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window)
     SampleBitMap::Release(id);
 }
 
-std::unordered_map<std::string, SampleBitMap *> instance_;
+std::unordered_map<std::string, SampleBitMap *> instance;
 
-void SampleBitMap::SetWidth(uint64_t width) { width_ = width; }
+void SampleBitMap::SetWidth(uint64_t width)
+{
+    width_ = width;
+}
 
-void SampleBitMap::SetHeight(uint64_t height) { height_ = height; }
+void SampleBitMap::SetHeight(uint64_t height)
+{
+    height_ = height;
+}
 
-void SampleBitMap::SetNativeWindow(OHNativeWindow *nativeWindow) { nativeWindow_ = nativeWindow; }
+void SampleBitMap::SetNativeWindow(OHNativeWindow *nativeWindow)
+{
+    nativeWindow_ = nativeWindow;
+}
 
 void SampleBitMap::Prepare()
 {
@@ -113,7 +122,7 @@ void SampleBitMap::DisPlay()
         }
     }
     // 设置刷新区域，如果Region中的Rect为nullptr,或者rectNumber为0，则认为OHNativeWindowBuffer全部有内容更改。
-    Region region{nullptr, 0};
+    Region region {nullptr, 0};
     // 通过OH_NativeWindow_NativeWindowFlushBuffer 提交给消费者使用，例如：显示在屏幕上。
     OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow_, buffer_, fenceFd_, region);
     // 内存使用完记得去掉内存映射
@@ -125,12 +134,13 @@ void SampleBitMap::DisPlay()
 
 void SampleBitMap::Create()
 {
+    uint32_t width = static_cast<uint32_t>(bufferHandle_->stride / 4);
     // 创建一个bitmap对象
     cBitmap_ = OH_Drawing_BitmapCreate();
     // 定义bitmap的像素格式
-    OH_Drawing_BitmapFormat cFormat{COLOR_FORMAT_RGBA_8888, ALPHA_FORMAT_OPAQUE};
+    OH_Drawing_BitmapFormat cFormat {COLOR_FORMAT_RGBA_8888, ALPHA_FORMAT_OPAQUE};
     // 构造对应格式的bitmap
-    OH_Drawing_BitmapBuild(cBitmap_, width_, height_, &cFormat);
+    OH_Drawing_BitmapBuild(cBitmap_, width, height_, &cFormat);
 
     // 创建一个canvas对象
     cCanvas_ = OH_Drawing_CanvasCreate();
@@ -371,7 +381,7 @@ void SampleBitMap::Release(std::string &id)
     if (render != nullptr) {
         delete render;
         render = nullptr;
-        instance_.erase(instance_.find(id));
+        instance.erase(instance.find(id));
     }
 }
 
@@ -400,11 +410,11 @@ void SampleBitMap::RegisterCallback(OH_NativeXComponent *nativeXComponent)
 
 SampleBitMap *SampleBitMap::GetInstance(std::string &id)
 {
-    if (instance_.find(id) == instance_.end()) {
-        SampleBitMap *instance = new SampleBitMap(id);
-        instance_[id] = instance;
-        return instance;
+    if (instance.find(id) == instance.end()) {
+        SampleBitMap *render = new SampleBitMap(id);
+        instance[id] = render;
+        return render;
     } else {
-        return instance_[id];
+        return instance[id];
     }
 }

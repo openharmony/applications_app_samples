@@ -17,12 +17,15 @@
 #include <cstdint>
 #include <hilog/log.h>
 #include <string>
-#include "plugin_manager.h"
 #include "common/log_common.h"
+#include "plugin_manager.h"
 
-static PluginManager pluginManager_;
+static PluginManager pluginManager;
 
-PluginManager *PluginManager::GetInstance() { return &pluginManager_; }
+PluginManager *PluginManager::GetInstance()
+{
+    return &pluginManager;
+}
 
 PluginManager::~PluginManager()
 {

@@ -54,9 +54,7 @@ public:
     void Destroy();
     static SampleBitMap *GetInstance(std::string &id);
     std::string id_;
-    using DrawButton = std::function<napi_value>(napi_env env, napi_callback_info info);
 private:
-    void SetTextStyle();
     OH_NativeXComponent_Callback renderCallback_;
 
     uint64_t width_ = 0;

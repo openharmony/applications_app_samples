@@ -7,7 +7,7 @@
 #ifndef LOG_COMMON_H
 #define LOG_COMMON_H
 #include <hilog/log.h>
-const unsigned int LOG_PRINT_DOMAIN = 0xFF00;
+#define LOG_PRINT_DOMAIN 0xFF00
 #define APP_LOG_DOMAIN 0x0001
 #define APP_LOG_TAG "DrawingSample"
 #define DRAWING_LOGI(...) ((void)OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN, APP_LOG_TAG, __VA_ARGS__))
