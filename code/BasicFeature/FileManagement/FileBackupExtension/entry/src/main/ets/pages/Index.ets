@@ -82,7 +82,7 @@ struct BackupExample {
                   .fontWeight(500)
                   .margin({ left: 20 })
                   .id('file' + index)
-                if (index != undefined) {
+                if (index !== undefined) {
                   Text(this.filePathSize[index])
                     .fontSize(14)
                     .width('20%')
