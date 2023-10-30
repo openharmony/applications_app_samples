@@ -19,7 +19,8 @@
 #include "sample_bitmap.h"
 #include "common/log_common.h"
 
-void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window) {
+void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window)
+{
     DRAWING_LOGI("OnSurfaceCreatedCB");
     if ((component == nullptr) || (window == nullptr)) {
         DRAWING_LOGE("OnSurfaceCreatedCB: component or window is null");
@@ -46,7 +47,8 @@ void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window) {
     }
 }
 
-void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window) {
+void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window)
+{
     DRAWING_LOGI("OnSurfaceDestroyedCB");
     if ((component == nullptr) || (window == nullptr)) {
         DRAWING_LOGE("OnSurfaceDestroyedCB: component or window is null");
@@ -64,14 +66,14 @@ void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window) {
 
 std::unordered_map<std::string, SampleBitMap *> instance_;
 
-
 void SampleBitMap::SetWidth(uint64_t width) { width_ = width; }
 
 void SampleBitMap::SetHeight(uint64_t height) { height_ = height; }
 
 void SampleBitMap::SetNativeWindow(OHNativeWindow *nativeWindow) { nativeWindow_ = nativeWindow; }
 
-void SampleBitMap::Prepare() {
+void SampleBitMap::Prepare()
+{
     if (nativeWindow_ == nullptr) {
         DRAWING_LOGE("nativeWindow_ is nullptr");
         return;
@@ -98,7 +100,8 @@ void SampleBitMap::Prepare() {
     }
 }
 
-void SampleBitMap::DisPlay() {
+void SampleBitMap::DisPlay()
+{
     // 画完后获取像素地址，地址指向的内存包含画布画的像素数据
     void *bitmapAddr = OH_Drawing_BitmapGetPixels(cBitmap_);
     uint32_t *value = static_cast<uint32_t *>(bitmapAddr);
@@ -120,7 +123,8 @@ void SampleBitMap::DisPlay() {
     }
 }
 
-void SampleBitMap::Create() {
+void SampleBitMap::Create()
+{
     // 创建一个bitmap对象
     cBitmap_ = OH_Drawing_BitmapCreate();
     // 定义bitmap的像素格式
@@ -136,7 +140,8 @@ void SampleBitMap::Create() {
     OH_Drawing_CanvasClear(cCanvas_, OH_Drawing_ColorSetArgb(0xFF, 0xFF, 0xFF, 0xFF));
 }
 
-void SampleBitMap::ConstructPath() {
+void SampleBitMap::ConstructPath()
+{
     int len = height_ / 4;
     float aX = width_ / 2;
     float aY = height_ / 4;
@@ -161,12 +166,14 @@ void SampleBitMap::ConstructPath() {
     OH_Drawing_PathClose(cPath_);
 }
 
-void SampleBitMap::SetPenAndBrush() {
+void SampleBitMap::SetPenAndBrush()
+{
+    constexpr float penWidth = 10.0f; // pen width 10
     // 创建一个画笔Pen对象，Pen对象用于形状的边框线绘制
     cPen_ = OH_Drawing_PenCreate();
     OH_Drawing_PenSetAntiAlias(cPen_, true);
     OH_Drawing_PenSetColor(cPen_, OH_Drawing_ColorSetArgb(0xFF, 0xFF, 0x00, 0x00));
-    OH_Drawing_PenSetWidth(cPen_, 10.0);
+    OH_Drawing_PenSetWidth(cPen_, penWidth);
     OH_Drawing_PenSetJoin(cPen_, LINE_ROUND_JOIN);
     // 将Pen画笔设置到canvas中
     OH_Drawing_CanvasAttachPen(cCanvas_, cPen_);
@@ -179,12 +186,14 @@ void SampleBitMap::SetPenAndBrush() {
     OH_Drawing_CanvasAttachBrush(cCanvas_, cBrush_);
 }
 
-void SampleBitMap::DrawPath() {
+void SampleBitMap::DrawPath()
+{
     // 在画布上画path的形状，五角星的边框样式为pen设置，颜色填充为Brush设置
     OH_Drawing_CanvasDrawPath(cCanvas_, cPath_);
 }
 
-void SampleBitMap::DrawText() {
+void SampleBitMap::DrawText()
+{
     // 选择从左到右/左对齐等排版属性
     OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
     OH_Drawing_SetTypographyTextDirection(typoStyle, TEXT_DIRECTION_LTR);
@@ -220,7 +229,8 @@ void SampleBitMap::DrawText() {
     OH_Drawing_TypographyPaint(typography, cCanvas_, position[0], position[1]);
 }
 
-napi_value SampleBitMap::NapiDrawPattern(napi_env env, napi_callback_info info) {
+napi_value SampleBitMap::NapiDrawPattern(napi_env env, napi_callback_info info)
+{
     DRAWING_LOGI("NapiDrawPattern");
     if ((env == nullptr) || (info == nullptr)) {
         DRAWING_LOGE("NapiDrawPattern: env or info is null");
@@ -269,8 +279,9 @@ napi_value SampleBitMap::NapiDrawPattern(napi_env env, napi_callback_info info) 
     return nullptr;
 }
 
-napi_value SampleBitMap::NapiDrawText(napi_env env, napi_callback_info info) {
-    DRAWING_LOGI("NapiDrawPattern");
+napi_value SampleBitMap::NapiDrawText(napi_env env, napi_callback_info info)
+{
+    DRAWING_LOGI("NapiDrawText");
     if ((env == nullptr) || (info == nullptr)) {
         DRAWING_LOGE("NapiDrawPattern: env or info is null");
         return nullptr;
@@ -316,7 +327,8 @@ napi_value SampleBitMap::NapiDrawText(napi_env env, napi_callback_info info) {
     return nullptr;
 }
 
-SampleBitMap::~SampleBitMap() {
+SampleBitMap::~SampleBitMap()
+{
     // 销毁创建的对象
     OH_Drawing_BrushDestroy(cBrush_);
     cBrush_ = nullptr;
@@ -337,7 +349,8 @@ SampleBitMap::~SampleBitMap() {
     mappedAddr_ = nullptr;
 }
 
-void SampleBitMap::Destroy() {
+void SampleBitMap::Destroy()
+{
     // 销毁创建的对象
     OH_Drawing_BrushDestroy(cBrush_);
     cBrush_ = nullptr;
@@ -352,7 +365,8 @@ void SampleBitMap::Destroy() {
     OH_Drawing_BitmapDestroy(cBitmap_);
 }
 
-void SampleBitMap::Release(std::string &id) {
+void SampleBitMap::Release(std::string &id)
+{
     SampleBitMap *render = SampleBitMap::GetInstance(id);
     if (render != nullptr) {
         delete render;
@@ -361,7 +375,8 @@ void SampleBitMap::Release(std::string &id) {
     }
 }
 
-void SampleBitMap::Export(napi_env env, napi_value exports) {
+void SampleBitMap::Export(napi_env env, napi_value exports)
+{
     if ((env == nullptr) || (exports == nullptr)) {
         DRAWING_LOGE("Export: env or exports is null");
         return;
@@ -375,14 +390,16 @@ void SampleBitMap::Export(napi_env env, napi_value exports) {
     }
 }
 
-void SampleBitMap::RegisterCallback(OH_NativeXComponent *nativeXComponent) {
+void SampleBitMap::RegisterCallback(OH_NativeXComponent *nativeXComponent)
+{
     DRAWING_LOGI("register callback");
     renderCallback_.OnSurfaceCreated = OnSurfaceCreatedCB;
     renderCallback_.OnSurfaceDestroyed = OnSurfaceDestroyedCB;
     OH_NativeXComponent_RegisterCallback(nativeXComponent, &renderCallback_);
 }
 
-SampleBitMap *SampleBitMap::GetInstance(std::string &id) {
+SampleBitMap *SampleBitMap::GetInstance(std::string &id)
+{
     if (instance_.find(id) == instance_.end()) {
         SampleBitMap *instance = new SampleBitMap(id);
         instance_[id] = instance;

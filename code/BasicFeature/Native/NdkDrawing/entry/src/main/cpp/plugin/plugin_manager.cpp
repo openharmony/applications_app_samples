@@ -20,12 +20,12 @@
 #include "plugin_manager.h"
 #include "common/log_common.h"
 
-PluginManager *PluginManager::GetInstance() {
-    static PluginManager pluginManager_;
-    return &pluginManager_;
-}
+static PluginManager pluginManager_;
 
-PluginManager::~PluginManager() {
+PluginManager *PluginManager::GetInstance() { return &pluginManager_; }
+
+PluginManager::~PluginManager()
+{
     DRAWING_LOGI("~PluginManager");
     for (auto iter = nativeXComponentMap_.begin(); iter != nativeXComponentMap_.end(); ++iter) {
         if (iter->second != nullptr) {
@@ -44,7 +44,8 @@ PluginManager::~PluginManager() {
     pluginRenderMap_.clear();
 }
 
-void PluginManager::Export(napi_env env, napi_value exports) {
+void PluginManager::Export(napi_env env, napi_value exports)
+{
     if ((env == nullptr) || (exports == nullptr)) {
         DRAWING_LOGE("Export: env or exports is null");
         return;
@@ -83,7 +84,8 @@ void PluginManager::Export(napi_env env, napi_value exports) {
     }
 }
 
-void PluginManager::SetNativeXComponent(std::string &id, OH_NativeXComponent *nativeXComponent) {
+void PluginManager::SetNativeXComponent(std::string &id, OH_NativeXComponent *nativeXComponent)
+{
     DRAWING_LOGI("set native xComponent, ID = %{public}s.", id.c_str());
     if (nativeXComponent == nullptr) {
         DRAWING_LOGE("xcomponent null");
@@ -103,12 +105,12 @@ void PluginManager::SetNativeXComponent(std::string &id, OH_NativeXComponent *na
     }
 }
 
-SampleBitMap *PluginManager::GetRender(std::string &id) {
+SampleBitMap *PluginManager::GetRender(std::string &id)
+{
     if (pluginRenderMap_.find(id) == pluginRenderMap_.end()) {
         SampleBitMap *instance = SampleBitMap::GetInstance(id);
         pluginRenderMap_[id] = instance;
         return instance;
     }
-
     return pluginRenderMap_[id];
 }

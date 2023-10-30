@@ -31,9 +31,7 @@ public:
     void SetNativeXComponent(std::string &id, OH_NativeXComponent *nativeXComponent);
     SampleBitMap *GetRender(std::string &id);
     void Export(napi_env env, napi_value exports);
-
 private:
-    static PluginManager pluginManager_;
 
     std::unordered_map<std::string, OH_NativeXComponent *> nativeXComponentMap_;
     std::unordered_map<std::string, SampleBitMap *> pluginRenderMap_;

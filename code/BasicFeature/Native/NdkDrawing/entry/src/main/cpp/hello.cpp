@@ -19,8 +19,9 @@
 #include "plugin/plugin_manager.h"
 
 EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports) {
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "NAPI_INIT", "napi init");
+static napi_value Init(napi_env env, napi_value exports)
+{
+    DRAWING_LOGI("napi init");
     PluginManager::GetInstance()->Export(env, exports);
     return exports;
 }

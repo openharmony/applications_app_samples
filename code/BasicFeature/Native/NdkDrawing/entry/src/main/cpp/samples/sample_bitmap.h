@@ -25,7 +25,7 @@
 #include <native_drawing/drawing_pen.h>
 #include <native_drawing/drawing_brush.h>
 #include <native_drawing/drawing_path.h>
-#include <stdint.h>
+#include <cstdint>
 #include <map>
 #include <sys/mman.h>
 #include <string>
@@ -35,7 +35,7 @@ class SampleBitMap {
 public:
     SampleBitMap() = default;
     ~SampleBitMap();
-    SampleBitMap(std::string id) : id_(id) {}
+    explicit SampleBitMap(std::string id) : id_(id) {}
     static napi_value NapiDrawPattern(napi_env env, napi_callback_info info);
     static napi_value NapiDrawText(napi_env env, napi_callback_info info);
     static void Release(std::string &id);
