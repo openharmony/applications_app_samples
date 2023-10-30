@@ -17,14 +17,14 @@ struct Index {
       }.height('88%')
 
       Row() {
-        Button('Draw Star')
+        Button('Draw Path')
           .fontSize('16fp')
           .fontWeight(500)
           .margin({ bottom: 24, right: 12 })
           .onClick(() => {
-            console.log(TAG, "draw star click");
+            console.log(TAG, "Draw Path click");
             if (this.xComponentContext) {
-              console.log(TAG, "draw star");
+              console.log(TAG, "Draw Path");
               this.xComponentContext.drawPattern();
             }
           })

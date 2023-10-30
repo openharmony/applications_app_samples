@@ -39,7 +39,7 @@ export default function abilityTest() {
         expect().assertFail();
       }
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('Draw Star'));
+      await driver.assertComponentExist(ON.text('Draw Path'));
       done();
       console.info(TAG, 'StartAbility_001 end');
     })
@@ -61,9 +61,9 @@ export default function abilityTest() {
         expect().assertFail();
       }
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('Draw Star'));
-      let drawStarBtn = await driver.findComponent(ON.text('Draw Star'));
-      // 点击'Draw Star'按钮
+      await driver.assertComponentExist(ON.text('Draw Path'));
+      let drawStarBtn = await driver.findComponent(ON.text('Draw Path'));
+      // 点击'Draw Path'按钮
       await drawStarBtn.click();
       await driver.delayMs(1000);
       console.info(TAG, 'DrawStar_001 end');

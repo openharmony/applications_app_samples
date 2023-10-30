@@ -8,7 +8,7 @@
 
 1. 安装编译生成的hap包，并打开应用。
 
-2. 点击页面底部“Draw Star”按钮，页面将绘制一个五角星；
+2. 点击页面底部“Draw Path”按钮，页面将绘制一个五角星；
 
 3. 点击页面底部“Draw Text”按钮，页面将绘制“Hello World Drawing”。
 
@@ -16,7 +16,7 @@
 
 | 主页                                 | 绘制五角星                                    | 绘制文字                                            |
 | ------------------------------------ | --------------------------------------------- | --------------------------------------------------- |
-| ![main](screenshots/device/Index.jpg) | ![draw star](screenshots/device/DrawStar.jpg) | ![change color](screenshots/device/DrawText.jpg) |
+| ![main](screenshots/device/Index.jpg) | ![Draw Path](screenshots/device/DrawStar.jpg) | ![change color](screenshots/device/DrawText.jpg) |
 
 ### 工程目录
 
