@@ -64,7 +64,7 @@ static void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window)
     SampleBitMap::Release(id);
 }
 
-std::unordered_map<std::string, SampleBitMap *> instance;
+static std::unordered_map<std::string, SampleBitMap *> instance;
 
 void SampleBitMap::SetWidth(uint64_t width)
 {
@@ -104,7 +104,7 @@ void SampleBitMap::Prepare()
     // 使用系统mmap接口拿到bufferHandle的内存虚拟地址
     mappedAddr_ = static_cast<uint32_t *>(
         mmap(bufferHandle_->virAddr, bufferHandle_->size, PROT_READ | PROT_WRITE, MAP_SHARED, bufferHandle_->fd, 0));
-    if (mappedAddr_ == MAP_FAILED) {
+    if (mappedAddr_ == static_cast<uint32_t *>(MAP_FAILED)) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "DrawingSample", "mmap failed");
     }
 }
