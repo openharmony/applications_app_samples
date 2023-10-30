@@ -85,11 +85,11 @@ export default function ActsAbilityTest() {
       // 从相册中选择
       hilog.info(DOMAIN, TAG, BUNDLE + 'ChoosePhoto_001 begin');
       let driver = Driver.create();
-      await driver.delayMs(1000);
+      await driver.delayMs(2000);
       await driver.assertComponentExist(ON.id('add'));
       let stack = await driver.findComponent(ON.id('add'));
       await stack.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(2000);
       // 拍照,坐标选择,固定坐标只支持RK3568，其他设备需要调整
       let takePhoto: string = getString($r('app.string.takePhoto'));
       await driver.assertComponentExist(ON.text(takePhoto));
