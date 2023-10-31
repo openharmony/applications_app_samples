@@ -14,17 +14,17 @@
  */
 
 export class GobangConst {
-  static readonly STORE_ID: string = 'game'
-  static readonly DEVICE_A: string = 'deviceA'
-  static readonly DEVICE_B: string = 'deviceB'
-  static readonly EXIT: string = 'exit'
-  static readonly CHESS_COLOR: Array<string> = ['black', 'white']
-  static readonly WIDTH: number = 720
-  static readonly HEIGHT: number = 1280
-  static readonly SIZE: number = 16
-  static readonly AUTH_TYPE_NUMBER:number = 1
-  static readonly DEVICE_TYPE_NUMBER:number = 0
-  static readonly RANGE_NUMBER:number = 1000
-  static readonly CHECK_MODE: [number, number][] = [[1, 0], [0, 1], [1, 1], [1, -1]]
-  static readonly NUMBER: number = 65536
-}
+  static readonly STORE_ID: string = 'game';
+  static readonly DEVICE_A: string = 'deviceA';
+  static readonly DEVICE_B: string = 'deviceB';
+  static readonly EXIT: string = 'exit';
+  static readonly CHESS_COLOR: Array<string> = ['black', 'white'];
+  static readonly WIDTH: number = 720;
+  static readonly HEIGHT: number = 1280;
+  static readonly SIZE: number = 16;
+  static readonly AUTH_TYPE_NUMBER: number = 1;
+  static readonly DEVICE_TYPE_STRING: string = '0';
+  static readonly RANGE_NUMBER: number = 1000;
+  static readonly CHECK_MODE: [number, number][] = [[1, 0], [0, 1], [1, 1], [1, -1]];
+  static readonly NUMBER: number = 65536;
+};
