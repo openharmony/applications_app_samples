@@ -31,7 +31,7 @@ export class RemoteDeviceModel {
     if (typeof (this.deviceManager) === 'undefined') {
       Logger.info(TAG, 'deviceManager.createDeviceManager begin');
       try {
-        this.deviceManager = deviceManager.createDeviceManager('ohos.samples.etsdistributedmusicplayer');
+        this.deviceManager = deviceManager.createDeviceManager('ohos.samples.distributedmusicplayer');
         this.registerDeviceList(callback);
         Logger.info(TAG, `createDeviceManager callback returned, value= ${JSON.stringify(this.deviceManager)}`);
       } catch (error) {

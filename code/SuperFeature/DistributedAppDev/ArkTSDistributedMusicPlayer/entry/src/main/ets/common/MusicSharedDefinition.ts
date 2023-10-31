@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-export const APPLICATION_BUNDLE_NAME = 'ohos.samples.etsdistributedmusicplayer'
+export const APPLICATION_BUNDLE_NAME = 'ohos.samples.distributedmusicplayer'
 export const APPLICATION_SERVICE_NAME = 'ServiceAbility'
 export const APPLICATION_ABILITY_NAME = 'MainAbility'
 

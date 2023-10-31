@@ -30,7 +30,7 @@ interface extraInfo {
 const TAG: string = 'RemoteDeviceModel'
 let SUBSCRIBE_ID: number = 100
 
-export const BUNDLE_NAME: string = 'ohos.samples.etsdistributedcalc'
+export const BUNDLE_NAME: string = 'ohos.samples.distributedcalc'
 
 export class RemoteDeviceModel {
   public deviceList: Array<deviceManager.DeviceBasicInfo> | null = []
