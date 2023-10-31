@@ -17,6 +17,7 @@ import router from '@ohos.router';
 import Logger from '../../utils/Logger';
 import OperationListView from '../../components/OperationListView';
 import TitleBar from '../../components/TitleBar';
+import { BaseData } from '../../utils/LazyDataSource';
 
 const TAG: string = 'AddLanguage';
 
@@ -24,8 +25,8 @@ const TAG: string = 'AddLanguage';
 @Component
 struct AddLanguage {
   private languageIds: Array<string> = [];
-  @State languages: Array<Language> = [];
-  @State preferredLanguages: Array<PreferredLanguage> = [];
+  @State languages: Array<BaseData> = [];
+  @State preferredLanguages: Array<BaseData> = [];
 
   aboutToAppear() {
     let preferredLanguageIds = i18n.System.getPreferredLanguageList();
@@ -83,14 +84,4 @@ struct AddLanguage {
     .height('100%')
     .backgroundColor($r('app.color.f5f5f5'))
   }
-}
-
-class Language {
-  key: string = '';
-  value: string = '';
-}
-
-class PreferredLanguage {
-  key: string = '';
-  value: string = '';
 }

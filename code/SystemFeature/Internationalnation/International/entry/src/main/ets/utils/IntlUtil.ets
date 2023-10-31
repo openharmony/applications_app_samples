@@ -31,7 +31,9 @@ class IntlUtil {
     }
     let currentLocale = new Intl.Locale();
     let locale = i18n.System.getSystemLocale();
-    let options: ESObject = {
+    let language = i18n.System.getSystemLanguage();
+    let params = [language, locale];
+    let dateFormat = new Intl.DateTimeFormat(params, {
       locale: locale,
       dateStyle: 'medium',
       timeStyle: 'medium',
@@ -51,10 +53,7 @@ class IntlUtil {
       dayPeriod: 'narrow',
       localeMatcher: 'best fit',
       formatMatcher: 'best fit'
-    };
-    let language = i18n.System.getSystemLanguage();
-    let params = [language, locale];
-    let dateFormat = new Intl.DateTimeFormat(params, options);
+    });
     let date = new Date();
     Logger.info(TAG, `language = ${language}`);
     let formatString = dateFormat.format(date);
@@ -100,12 +99,11 @@ class IntlUtil {
     options.useGrouping = true;
     let params = [i18n.System.getSystemLanguage(), locale];
     let numberFormat = new Intl.NumberFormat(params, options);
-    let currencyOptions = {
+    let currencyFormat = new Intl.NumberFormat(params, {
       locale: locale,
       currency: 'CNY',
       style: 'currency'
-    };
-    let currencyFormat = new Intl.NumberFormat(params, currencyOptions);
+    });
     options.style = 'percent';
     let percentFormat = new Intl.NumberFormat(params, options);
     // 此处返回的只是一个示例，因此1234567，123456，78.9并不具有实际意义
