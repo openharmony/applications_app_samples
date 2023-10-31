@@ -15,7 +15,7 @@
 import i18n from '@ohos.i18n';
 import router from '@ohos.router';
 import Logger from '../../utils/Logger';
-import LazyDataSource from '../../utils/LazyDataSource';
+import LazyDataSource, { BaseData } from '../../utils/LazyDataSource';
 
 const TAG: string = 'EditPreferred';
 
@@ -28,11 +28,12 @@ struct EditPreferred {
   private deletePreferredLanguages: Array<number> = [];
 
   aboutToAppear() {
-    let preferredLanguages: Array<PreferredLanguage> = [];
+    let preferredLanguages: Array<BaseData> = [];
     let preferredLanguageIds = i18n.System.getPreferredLanguageList();
     Logger.info(TAG, `this.preferredLanguageIds = ${JSON.stringify(preferredLanguageIds)}`);
     preferredLanguageIds.forEach(id => {
       preferredLanguages.push({
+        id: id,
         key: i18n.System.getDisplayLanguage(id, id),
         value: i18n.System.getDisplayLanguage(id, this.localLanguage)
       });
@@ -53,12 +54,12 @@ struct EditPreferred {
       }
       Row() {
         Column() {
-          Text($$.preferred[0])
-            .fontColor($$.preferred[0] === $$.preferred[1] ? $r('app.color.blue') : $r('app.color.black'))
+          Text($$.preferred.key)
+            .fontColor($$.preferred.id === this.localLanguage ? $r('app.color.blue') : $r('app.color.black'))
             .fontSize(22)
             .margin({ top: 10, bottom: 10 })
-          if ($$.preferred[0] !== $$.preferred[1]) {
-            Text($$.preferred[1])
+          if ($$.preferred.id !== this.localLanguage) {
+            Text($$.preferred.value)
               .fontColor($r('app.color.gray'))
               .fontSize(22)
               .margin({ top: 10, bottom: 10 })
@@ -67,7 +68,7 @@ struct EditPreferred {
         .alignItems(HorizontalAlign.Start)
 
         Blank()
-        if ($$.preferred[0] !== $$.preferred[1]) {
+        if ($$.preferred.id !== this.localLanguage) {
           Image($r('app.media.delete'))
             .size({ width: 40, height: 40 })
             .objectFit(ImageFit.Contain)
@@ -87,11 +88,11 @@ struct EditPreferred {
   PreferredView() {
     Column() {
       List() {
-        LazyForEach(this.preferredLanguages, (item: ESObject, index: number) => {
+        LazyForEach(this.preferredLanguages, (item: BaseData, index: number) => {
           ListItem() {
             this.PreferredItem(new Data(item, index));
           }
-        }, (item: ESObject) => item[0])
+        }, (item: string) => JSON.stringify(item))
       }
     }
     .width('95%')
@@ -147,16 +148,11 @@ struct EditPreferred {
   }
 }
 
-class PreferredLanguage {
-  key: string = '';
-  value: string = '';
-}
-
 class Data {
-  preferred: string = '';
+  preferred: BaseData = new BaseData();
   index: number = 0;
 
-  constructor(preferred: string, index: number) {
+  constructor(preferred: BaseData, index: number) {
     this.preferred = preferred;
     this.index = index;
   }
