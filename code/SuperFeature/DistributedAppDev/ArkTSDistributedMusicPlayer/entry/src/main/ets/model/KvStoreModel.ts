@@ -29,7 +29,7 @@ class KvStoreModel {
   async createKvStore(context, callback) {
     if (typeof (this.kvStore) === 'undefined') {
       let config = {
-        bundleName: 'ohos.samples.etsdistributedmusicplayer',
+        bundleName: 'ohos.samples.distributedmusicplayer',
         userInfo: {
           userId: '0',
           userType: 0

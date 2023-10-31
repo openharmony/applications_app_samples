@@ -14,7 +14,7 @@
  */
 {
   "app": {
-    "bundleName": "ohos.samples.etsdistributedcalc",
+    "bundleName": "ohos.samples.distributedcalc",
     "vendor": "samples",
     "versionCode": 1000000,
     "versionName": "1.0.0",
