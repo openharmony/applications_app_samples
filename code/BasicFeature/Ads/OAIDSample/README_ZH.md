@@ -78,7 +78,7 @@ entry/src/main/ets/
 
 2.本示例为Stage模型，已适配API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0 Release)。
 
-3.本示例需要使用DevEco Studio 3.1 Release(Build Version: 3.1.0.500)及以上版本才可编译运行。
+3.本工程示例需要使用DevEco Studio 版本号(4.0Release)及以上版本才可编译运行。
 
 4.本实例重置OAID接口只允许系统应用调用，三方应用不支持调用。
 
