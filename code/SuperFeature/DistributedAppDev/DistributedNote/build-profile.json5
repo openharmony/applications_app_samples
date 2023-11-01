@@ -15,20 +15,7 @@
 
 {
   "app": {
-    "signingConfigs": [
-      {
-        "name": "default",
-        "material": {
-          "certpath": "C:\\Users\\Administrator\\.ohos\\config\\openharmony\\auto_ohos_default_DistributedNote_ohos.samples.distributednote.cer",
-          "storePassword": "0000001ABDCB0737D97814406337ED180844422AC40AC1BC8B8393927E3B8F90AC279BBCEC2A416DC9D8",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001AD351FD24E8C288E55D6E07C76E75A1BB86F7F38F5750EF453EB4BD2BF3CAB9F187E27905D1D9",
-          "profile": "C:\\Users\\Administrator\\.ohos\\config\\openharmony\\auto_ohos_default_DistributedNote_ohos.samples.distributednote.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\Administrator\\.ohos\\config\\openharmony\\auto_ohos_default_DistributedNote_ohos.samples.distributednote.p12"
-        }
-      }
-    ],
+    "signingConfigs": [],
     "products": [
       {
         "name": "default",
