@@ -27,9 +27,11 @@ import {
   LauncherAbilityManager,
   MenuInfo,
   RdbManager,
-  ResourceManager
+  ResourceManager,
+  FormCardItem
 } from '@ohos/base';
 import formHost from '@ohos.app.form.formHost';
+import { BusinessError } from '@ohos.base';
 
 const TAG: string = 'LayoutInfoModel';
 
@@ -343,10 +345,10 @@ export class DesktopLayoutModel {
       return;
     }
     if (appInfo?.isUninstallAble) {
-      this.mLauncherAbilityManager?.uninstallLauncherAbility(itemInfo.bundleName, (result: ESObject) => {
-        if (result.code == CommonConstants.UNINSTALL_SUCCESS) {
+      this.mLauncherAbilityManager?.uninstallLauncherAbility(itemInfo.bundleName, (err: BusinessError) => {
+        if (err.code == CommonConstants.UNINSTALL_SUCCESS) {
         }
-        this.informUninstallResult(result.code);
+        this.informUninstallResult(err.code);
       })
     } else {
       this.informUninstallResult(CommonConstants.UNINSTALL_FORBID);
@@ -429,7 +431,7 @@ export class DesktopLayoutModel {
    *
    * @param formCardItem
    */
-  async createCardToDeskTop(formCardItem: ESObject) {
+  async createCardToDeskTop(formCardItem: FormCardItem) {
     if (CheckEmptyUtils.isEmpty(formCardItem)) {
       return;
     }
@@ -553,7 +555,7 @@ export class DesktopLayoutModel {
     return false;
   }
 
-  private createNewCardItemInfo(formCardItem: ESObject): GridLayoutItemInfo | undefined {
+  private createNewCardItemInfo(formCardItem: FormCardItem): GridLayoutItemInfo | undefined {
     if (CheckEmptyUtils.isEmpty(formCardItem)) {
       return undefined;
     }

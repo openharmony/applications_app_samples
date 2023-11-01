@@ -65,7 +65,7 @@ export class CardItemInfo {
   /**
    * Indicates form of app labelId.
    */
-  appLabelId: number;
+  appLabelId: string;
 
   /**
    * Indicates form of app name.

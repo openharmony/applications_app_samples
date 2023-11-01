@@ -22,7 +22,8 @@ import {
   EventConstants,
   CommonConstants,
   FormModel,
-  Logger
+  Logger,
+  FormCardItem
 } from '@ohos/base';
 import { DesktopLayoutModel } from '@ohos/desktop';
 
@@ -144,7 +145,7 @@ export default struct FormManagerComponent {
     if (CheckEmptyUtils.isEmptyArr(this.formItem) || this.mSwiperIndex > this.formItem.length) {
       return undefined;
     }
-    let formCardItem: Record<string, Object> = {};
+    let formCardItem = new FormCardItem();
     let count = 0;
     let isStop = false;
     for (let i = 0; i < this.formItem.length; i++) {
