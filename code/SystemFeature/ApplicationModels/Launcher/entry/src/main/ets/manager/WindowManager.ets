@@ -19,22 +19,23 @@ import CommonEvent from '@ohos.commonEvent'
 import Window from '@ohos.window'
 import { EventConstants,Logger } from '@ohos/base'
 import { BusinessError } from '@ohos.base';
+import CommonEventManager from '@ohos.commonEventManager';
 
 const TAG: string = 'WindowManager'
 
-export const WINDOW_NAMES: ESObject = {
-  home: 'Home',
-  recents: 'RecentsPage',
-  form: 'FormPage',
+export const enum WINDOW_NAMES {
+  home = 'Home',
+  recents = 'RecentsPage',
+  form = 'FormPage',
 }
 
-export const WINDOW_PAGES: ESObject = {
-  home: 'pages/Home',
-  recents: 'pages/RecentsPage',
-  form: 'pages/FormPage',
+export const enum WINDOW_PAGES {
+  home = 'pages/Home',
+  recents = 'pages/RecentsPage',
+  form = 'pages/FormPage',
 }
 
-const SUBSCRIBER_INFO: ESObject = {
+const SUBSCRIBER_INFO: CommonEventSubscribeInfo = {
   events: [
     EventConstants.EVENT_ENTER_HOME,
     EventConstants.EVENT_ENTER_RECENTS,
@@ -45,45 +46,43 @@ const SUBSCRIBER_INFO: ESObject = {
 
 export default class WindowManager {
   public mWindowSize: number[] = [720, 1080];
-  private subscriber: ESObject = undefined;
+  private subscriber: CommonEventManager.CommonEventSubscriber | undefined = undefined;
   private context: Context | undefined = undefined;
 
   constructor(context: Context) {
     this.context = context;
   }
 
-  subscribeCallBack = async (err: BusinessError, data: ESObject) => {
-    if (err.code) {
-      Logger.error(TAG, `subscribe, failed: ${JSON.stringify(err)}`)
-      return
-    }
-    Logger.info(TAG, `subscribe, ${JSON.stringify(data)}`)
-    switch (data.event) {
-      case EventConstants.EVENT_CLEAR_RECENTS:
-        let uninstallMessage: string = this.context!.resourceManager.getStringSync($r('app.string.clear_all_missions_message').id);
-        promptAction.showToast({
-          message: uninstallMessage
-        });
-        this.hideWindow(WINDOW_NAMES.recents);
-        break;
-      case EventConstants.EVENT_ENTER_HOME:
-        this.hideWindow(WINDOW_NAMES.recents);
-        this.hideWindow(WINDOW_NAMES.form);
-        break
-      case EventConstants.EVENT_ENTER_RECENTS:
-        this.showOrCreateWindow(WINDOW_NAMES.recents, WINDOW_PAGES.recents, true);
-        break
-      case EventConstants.EVENT_ENTER_FORM_MANAGER:
-        this.showOrCreateWindow(WINDOW_NAMES.form, WINDOW_PAGES.form, true);
-        break
-      default:
-        break
-    }
-  }
-
   async registerWindowEvent() {
-    this.subscriber = await CommonEvent.createSubscriber(SUBSCRIBER_INFO)
-    CommonEvent.subscribe(this.subscriber, this.subscribeCallBack)
+    this.subscriber = await CommonEvent.createSubscriber(SUBSCRIBER_INFO);
+    CommonEvent.subscribe(this.subscriber!, async (err: BusinessError, data) => {
+      if (err.code) {
+        Logger.error(TAG, `subscribe, failed: ${JSON.stringify(err)}`);
+        return;
+      }
+      Logger.info(TAG, `subscribe, ${JSON.stringify(data)}`);
+      switch (data.event) {
+        case EventConstants.EVENT_CLEAR_RECENTS:
+          let uninstallMessage: string = this.context!.resourceManager.getStringSync($r('app.string.clear_all_missions_message').id);
+          promptAction.showToast({
+            message: uninstallMessage
+          });
+          this.hideWindow(WINDOW_NAMES.recents);
+          break;
+        case EventConstants.EVENT_ENTER_HOME:
+          this.hideWindow(WINDOW_NAMES.recents);
+          this.hideWindow(WINDOW_NAMES.form);
+          break;
+        case EventConstants.EVENT_ENTER_RECENTS:
+          this.showOrCreateWindow(WINDOW_NAMES.recents, WINDOW_PAGES.recents, true);
+          break;
+        case EventConstants.EVENT_ENTER_FORM_MANAGER:
+          this.showOrCreateWindow(WINDOW_NAMES.form, WINDOW_PAGES.form, true);
+          break;
+        default:
+          break;
+      }
+    })
   }
 
   async getWindowSize() {
@@ -149,4 +148,12 @@ export default class WindowManager {
       Logger.error(TAG, `destoryWindow, show error: ${JSON.stringify(error)}`);
     }
   }
+}
+
+interface CommonEventSubscribeInfo {
+  events: Array<string>;
+  publisherPermission?: string;
+  publisherDeviceId?: string;
+  userId?: number;
+  priority?: number;
 }

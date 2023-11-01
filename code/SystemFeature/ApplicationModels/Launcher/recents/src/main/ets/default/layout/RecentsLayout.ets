@@ -13,33 +13,32 @@
  * limitations under the License.
  */
 
-import prompt from '@ohos.prompt'
-import CommonEvent from '@ohos.commonEvent'
-import MissionItem from '../components/MissionItem'
-import MissionInfo from '../bean/MisssionInfo'
-import MissionModel from '../model/MissionModel'
-import { EventConstants, Logger, MyDataSource } from '@ohos/base'
+import prompt from '@ohos.prompt';
+import CommonEvent from '@ohos.commonEvent';
+import MissionItem from '../components/MissionItem';
+import MissionInfo from '../../../../../../base/src/main/ets/default/bean/MisssionInfo';
+import MissionModel from '../model/MissionModel';
+import { EventConstants, Logger, MyDataSource } from '@ohos/base';
 
 const TAG: string = 'RecentsLayout'
-const SUBSCRIBER_INFO: ESObject = {
-  events: [EventConstants.EVENT_ENTER_RECENTS]
-}
-const MISSION_OPERATE: ESObject = {
-  CHANGE_LOCK: 0,
-  CLEAR: 1
+
+enum MISSION_OPERATE {
+  CHANGE_LOCK = 0,
+  CLEAR = 1
 }
 
 @Component
 export struct RecentsLayout {
-  @State missionInfos: Array<MissionInfo> = new Array<MissionInfo>()
-  @State showEmptyMessage: boolean = false
-  private subscriber : ESObject = undefined
-  private missionsData: MyDataSource = new MyDataSource([])
+  @State missionInfos: Array<MissionInfo> = new Array<MissionInfo>();
+  @State showEmptyMessage: boolean = false;
+  private missionsData: MyDataSource = new MyDataSource([]);
 
   async aboutToAppear() {
-    await this.refreshMissionInfos()
-    this.subscriber = await CommonEvent.createSubscriber(SUBSCRIBER_INFO)
-    CommonEvent.subscribe(this.subscriber, this.refreshMissionInfos)
+    await this.refreshMissionInfos();
+    let subscriber = await CommonEvent.createSubscriber({
+      events: [EventConstants.EVENT_ENTER_RECENTS]
+    });
+    CommonEvent.subscribe(subscriber, this.refreshMissionInfos);
   }
 
   refreshMissionInfos = async () => {
