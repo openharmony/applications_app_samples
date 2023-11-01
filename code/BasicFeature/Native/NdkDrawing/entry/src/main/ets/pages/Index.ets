@@ -28,7 +28,7 @@ struct Index {
         XComponent({ id: 'xcomponentId', type: 'surface', libraryname: 'entry' })
           .onLoad((xComponentContext) => {
             this.xComponentContext = xComponentContext as XComponentContext;
-          })
+          }).width('640px') // Multiples of 64
       }.height('88%')
       Row() {
         Button('Draw Path')

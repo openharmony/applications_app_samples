@@ -92,9 +92,9 @@ XComponent NativeWindow。
 
 1. 本示例仅支持标准系统上运行。
 
-2. 本示例仅支持API version 10版本SDK，版本号：4.0.9.6。
+2. 本示例仅支持API version 10版本SDK，版本号：4.0.10.11。
 
-3. 本示例需要使用DevEco Studio 3.1 Release (Build Version: 3.1.0.500 构建 2023年4月28日)及以上版本才可编译运行。
+3. 本示例需要使用DevEco Studio 4.0 Beta2 (Build Version: 4.0.0.400 构建 2023年8月2日)及以上版本才可编译运行。
 
 ### 下载
 

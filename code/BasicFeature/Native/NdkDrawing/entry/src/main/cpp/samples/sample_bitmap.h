@@ -69,7 +69,7 @@ private:
     OHNativeWindow *nativeWindow_ = nullptr;
     uint32_t *mappedAddr_ = nullptr;
     BufferHandle *bufferHandle_ = nullptr;
-    OHNativeWindowBuffer *buffer_ = nullptr;
+    struct NativeWindowBuffer *buffer_ = nullptr;
     int fenceFd_ = 0;
 };
 

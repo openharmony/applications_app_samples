@@ -88,24 +88,16 @@ void SampleBitMap::Prepare()
         return;
     }
     // 这里的nativeWindow是从上一步骤中的回调函数中获得的
-    int32_t code = SET_BUFFER_GEOMETRY;
-    int ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, width_, height_);
-    DRAWING_LOGI("window width = %{public}llu, %{public}llu", width_, height_);
-    // 设置 OHNativeWindowBuffer 的步长
-    code = SET_STRIDE;
-    int32_t stride = 0x8;
-    DRAWING_LOGI("handleOpt ret = %{public}d", ret);
-    ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, stride);
     // 通过 OH_NativeWindow_NativeWindowRequestBuffer 获取 OHNativeWindowBuffer 实例
-    ret = OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow_, &buffer_, &fenceFd_);
+    int ret = OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow_, &buffer_, &fenceFd_);
     DRAWING_LOGI("request buffer ret = %{public}d", ret);
     // 通过 OH_NativeWindow_GetBufferHandleFromNative 获取 buffer 的 handle
     bufferHandle_ = OH_NativeWindow_GetBufferHandleFromNative(buffer_);
     // 使用系统mmap接口拿到bufferHandle的内存虚拟地址
     mappedAddr_ = static_cast<uint32_t *>(
         mmap(bufferHandle_->virAddr, bufferHandle_->size, PROT_READ | PROT_WRITE, MAP_SHARED, bufferHandle_->fd, 0));
-    if (mappedAddr_ == MAP_FAILED) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "DrawingSample", "mmap failed");
+    if (mappedAddr_ == static_cast<uint32_t *>(MAP_FAILED)) {
+        DRAWING_LOGE("mmap failed");
     }
 }
 
@@ -116,6 +108,14 @@ void SampleBitMap::DisPlay()
     uint32_t *value = static_cast<uint32_t *>(bitmapAddr);
 
     uint32_t *pixel = static_cast<uint32_t *>(mappedAddr_); // 使用mmap获取到的地址来访问内存
+    if (pixel == nullptr) {
+        DRAWING_LOGE("pixel is null");
+        return;
+    }
+    if (value == nullptr) {
+        DRAWING_LOGE("value is null");
+        return;
+    }
     for (uint32_t x = 0; x < width_; x++) {
         for (uint32_t y = 0; y < height_; y++) {
             *pixel++ = *value++;
@@ -207,12 +207,14 @@ void SampleBitMap::DrawText()
     // 选择从左到右/左对齐等排版属性
     OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
     OH_Drawing_SetTypographyTextDirection(typoStyle, TEXT_DIRECTION_LTR);
-    OH_Drawing_SetTypographyTextAlign(typoStyle, TEXT_ALIGN_CENTER);
+    OH_Drawing_SetTypographyTextAlign(typoStyle, TEXT_ALIGN_JUSTIFY);
+
+    //TEXT_ALIGN_JUSTIFY
     // 设置文字颜色，例如黑色
     OH_Drawing_TextStyle *txtStyle = OH_Drawing_CreateTextStyle();
     OH_Drawing_SetTextStyleColor(txtStyle, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00));
     // 设置文字大小、字重等属性
-    double fontSize = 100;
+    double fontSize = width_ / 15;
     OH_Drawing_SetTextStyleFontSize(txtStyle, fontSize);
     OH_Drawing_SetTextStyleFontWeight(txtStyle, FONT_WEIGHT_400);
     OH_Drawing_SetTextStyleBaseLine(txtStyle, TEXT_BASELINE_ALPHABETIC);
@@ -231,7 +233,7 @@ void SampleBitMap::DrawText()
     OH_Drawing_TypographyHandlerPopTextStyle(handler);
     OH_Drawing_Typography *typography = OH_Drawing_CreateTypography(handler);
     // 设置页面最大宽度
-    double maxWidth = 800.0;
+    double maxWidth = width_;
     OH_Drawing_TypographyLayout(typography, maxWidth);
     // 设置文本在画布上绘制的起始位置
     double position[2] = {width_ / 5.0, height_ / 2.0};
@@ -405,6 +407,9 @@ void SampleBitMap::RegisterCallback(OH_NativeXComponent *nativeXComponent)
     DRAWING_LOGI("register callback");
     renderCallback_.OnSurfaceCreated = OnSurfaceCreatedCB;
     renderCallback_.OnSurfaceDestroyed = OnSurfaceDestroyedCB;
+    // Callback must be initialized
+    renderCallback_.DispatchTouchEvent = nullptr;
+    renderCallback_.OnSurfaceChanged = nullptr;
     OH_NativeXComponent_RegisterCallback(nativeXComponent, &renderCallback_);
 }
 
