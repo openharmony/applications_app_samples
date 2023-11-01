@@ -96,7 +96,7 @@ void SampleBitMap::Prepare()
     // 使用系统mmap接口拿到bufferHandle的内存虚拟地址
     mappedAddr_ = static_cast<uint32_t *>(
         mmap(bufferHandle_->virAddr, bufferHandle_->size, PROT_READ | PROT_WRITE, MAP_SHARED, bufferHandle_->fd, 0));
-    if (mappedAddr_ == static_cast<uint32_t *>(MAP_FAILED)) {
+    if (mappedAddr_ == MAP_FAILED) {
         DRAWING_LOGE("mmap failed");
     }
 }
@@ -209,7 +209,7 @@ void SampleBitMap::DrawText()
     OH_Drawing_SetTypographyTextDirection(typoStyle, TEXT_DIRECTION_LTR);
     OH_Drawing_SetTypographyTextAlign(typoStyle, TEXT_ALIGN_JUSTIFY);
 
-    //TEXT_ALIGN_JUSTIFY
+    // TEXT_ALIGN_JUSTIFY
     // 设置文字颜色，例如黑色
     OH_Drawing_TextStyle *txtStyle = OH_Drawing_CreateTextStyle();
     OH_Drawing_SetTextStyleColor(txtStyle, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00));
