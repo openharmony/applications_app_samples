@@ -22,17 +22,17 @@ import DistributedCanvasModel from '../model/DistributedCanvasModel';
 struct Index {
   @State titleList: Array<string> = ['distributedCanvas', 'distributedNote'];
   @State urlList: Array<string> = ['pages/IndexCanvas', 'pages/IndexNote'];
-  @StorageLink('canvasModel') globalCanvasObject: DistributedCanvasModel = new DistributedCanvasModel();
-  @StorageLink('objectModel') globalObject: DistributedObjectModel = new DistributedObjectModel();
+  @StorageLink('canvasModel') globalCanvasObject?: DistributedCanvasModel = new DistributedCanvasModel();
+  @StorageLink('objectModel') globalObject?: DistributedObjectModel = new DistributedObjectModel();
 
   onPageShow(): void {
     this.globalCanvasObject = AppStorage.Get('canvasModel');
-    this.globalCanvasObject.distributedCanvas.setSessionId(() => {
+    this.globalCanvasObject?.distributedCanvas.setSessionId(() => {
       console.info('leave canvas lession.');
     });
 
     this.globalObject = AppStorage.Get('objectModel');
-    this.globalObject.distributedObject.setSessionId(() => {
+    this.globalObject?.distributedObject.setSessionId(() => {
       console.info('leave note lession.');
     });
   }
@@ -40,7 +40,7 @@ struct Index {
   build() {
     Column() {
       List({ space: 6, initialIndex: 0 }) {
-        ForEach(this.titleList, (item, index) => {
+        ForEach(this.titleList, (item: string, index) => {
           ListItem() {
             Text('' + item).fontSize(18)
           }
@@ -53,7 +53,7 @@ struct Index {
             })
           })
           .key('chose' + index )
-        }, item => item)
+        }, (item: string) => item)
       }
       .width('100%')
       .height(462)

@@ -29,7 +29,7 @@ export default struct DeviceDialog {
         .fontColor(Color.Black)
         .fontWeight(FontWeight.Bold)
       List() {
-        ForEach(this.devices, (item, index) => {
+        ForEach(this.devices, (item: deviceManager.DeviceBasicInfo, index: number | undefined) => {
           ListItem() {
             Row() {
               Text(item.deviceName)
@@ -43,10 +43,10 @@ export default struct DeviceDialog {
             }
             .height(80)
             .onClick(() => {
-              this.onSelectedIndexChange(index)
+              this.onSelectedIndexChange!(index)
             })
           }
-        }, item => item.deviceName)
+        }, (item: deviceManager.DeviceBasicInfo) => item.deviceName)
       }
       .width('80%')
       .height(150)
@@ -62,7 +62,7 @@ export default struct DeviceDialog {
       .backgroundColor(Color.White)
       .margin({ top: 20 })
       .onClick(() => {
-        this.controller.close()
+        this.controller!.close()
       })
     }
     .backgroundColor(Color.White)

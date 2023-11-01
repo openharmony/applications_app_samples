@@ -18,21 +18,21 @@ import Note from '../model/Note'
 
 @Component
 export default struct NoteItem {
-  @State note: Note | undefined = undefined
+  @State note?: Note | undefined = undefined
   private index: number = 0
 
   build() {
     Row() {
-      Image(this.note.mark >= 0 ? MARKS[this.note.mark] : $r('app.media.note'))
+      Image(this.note!.mark >= 0 ? MARKS[this.note!.mark] : $r('app.media.note'))
         .size({ width: 30, height: 30 })
         .objectFit(ImageFit.Contain)
       Column() {
-        Text(this.note.title)
+        Text(this.note!.title)
           .fontColor(Color.Black)
           .fontSize(30)
           .maxLines(1)
           .textOverflow({ overflow: TextOverflow.Ellipsis })
-        Text(this.note.content)
+        Text(this.note!.content)
           .fontColor(Color.Gray)
           .margin({ top: 10 })
           .fontSize(25)

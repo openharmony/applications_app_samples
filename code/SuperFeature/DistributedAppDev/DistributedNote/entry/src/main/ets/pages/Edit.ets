@@ -21,8 +21,8 @@ import TitleBar from '../common/TitleBar'
 @Entry
 @Component
 struct Edit {
-  @State note: Note = router.getParams()['note']
-  private isAdd: boolean = router.getParams()['isAdd']
+  @State note: Note = (router.getParams() as Record<string, Object>)['note'] as Note
+  private isAdd: boolean = (router.getParams() as Record<string, Object>)['isAdd'] as boolean
   @State imageShow: boolean = false
   @StorageLink('objectModel') globalObject: DistributedObjectModel = new DistributedObjectModel()
 
@@ -84,7 +84,7 @@ struct Edit {
         .margin({ top: 20 })
         .onClick(() => {
           if (!this.isAdd) {
-            let index = router.getParams()['index']
+            let index: number = (router.getParams() as Record<string, Object>)['index'] as number
             this.globalObject.update(index, this.note.title, this.note.content, this.note.mark)
           } else {
             this.globalObject.add(this.note.title, this.note.content, this.note.mark)
