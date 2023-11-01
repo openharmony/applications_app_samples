@@ -19,8 +19,8 @@ import common from '@ohos.app.ability.common';
 @Entry
 @Component
 struct SubWindowPage {
-  SUB_WINDOW_INNER_EVENT_ID: number = 1001
-  videoController: VideoController = new VideoController()
+  SUB_WINDOW_INNER_EVENT_ID: number = 1001;
+  videoController: VideoController = new VideoController();
 
   async startNewAbility() {
     let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
@@ -35,19 +35,20 @@ struct SubWindowPage {
         })
         .catch((error) => {
           console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+            ' error.message: ' + JSON.stringify(error.message));
         });
     } catch (paramError) {
       console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+        ' error.message: ' + JSON.stringify(paramError.message));
     }
   }
 
   build() {
-    Column() {
-      Button($r("app.string.startNewAbility")).onClick(async() => {
-        await this.startNewAbility()
-      })
+    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+      Button($r("app.string.startNewAbility"))
+        .onClick(async () => {
+          await this.startNewAbility();
+        })
         .backgroundColor('#007dff')
         .id('startAbility')
         .fontSize('22px')
@@ -61,9 +62,8 @@ struct SubWindowPage {
         controller: this.videoController
       })
         .id('smallVideo')
-        .width(400)
-        .height(250)
-        .margin(5)
+        .width(320)
+        .layoutWeight(1)
         .loop(false)
         .muted(false)
         .controls(true)
@@ -71,14 +71,15 @@ struct SubWindowPage {
         .onTouch((event: TouchEvent) => {
           let eventData = {
             data: {
-              "x": event.touches[0].x,
-              "y": event.touches[0].y,
-            } }
+              "x": event.touches[0].displayX,
+              "y": event.touches[0].displayY,
+              "type": event.type
+            } };
           let innerEvent = {
             eventId: this.SUB_WINDOW_INNER_EVENT_ID,
             priority: emitter.EventPriority.HIGH
-          }
-          emitter.emit(innerEvent, eventData)
+          };
+          emitter.emit(innerEvent, eventData);
         })
     }
     .width('100%').height('100%')
