@@ -44,7 +44,7 @@ export default function abilityTest() {
       Logger.info(TAG, `${BUNDLE}StartAbility_001 begin`);
       try {
         await abilityDelegator.startAbility({
-          bundleName: 'ohos.samples.etsdistributedmusicplayer',
+          bundleName: 'ohos.samples.distributedmusicplayer',
           abilityName: 'MainAbility'
         })
         done();

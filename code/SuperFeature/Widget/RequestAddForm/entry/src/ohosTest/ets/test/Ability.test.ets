@@ -16,8 +16,8 @@
 import { describe, it, expect, beforeAll } from '@ohos/hypium';
 import { Driver, ON } from '@ohos.UiTest';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import formManagerAbility from '@ohos.app.form.formHost';
 import hilog from '@ohos.hilog';
+import { BusinessError } from '@ohos.base';
 
 const TAG = '[Sample_RequestAdd_Test]';
 const DOMAIN = 0xF811;
@@ -36,7 +36,7 @@ export default function abilityTest() {
      * Input:Click to open the application, click the button to publish the data agent card.
      * Expected output:An ArkTs card be added to the desktop successfully.
      */
-    it(BUNDLE + 'DataProxyForm_017', 0, async (done) => {
+    it(BUNDLE + 'DataProxyForm_017', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_017 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -50,7 +50,7 @@ export default function abilityTest() {
         expect(result !== null).assertTrue();
         cardArkTsCount = result.split(formArkTs).length - 1;
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_017 cardArkTsCount:' + cardArkTsCount);
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_017 hilog err is: ' + JSON.stringify(err));
       });
 
@@ -60,7 +60,7 @@ export default function abilityTest() {
       // Get the text control border
       let rect = await app.getBounds();
       // Calculate the height of the text control
-      let height =rect.bottom - rect.top;
+      let height = rect.bottom - rect.top;
       // Get the center point of the text control
       let point = await app.getBoundsCenter();
       await driver.click(point.x, point.y - height);
@@ -79,14 +79,14 @@ export default function abilityTest() {
         hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_017 getFormData ArkTs : + ${JSON.stringify(data)}`);
         let result = JSON.stringify(data);
         cardArkTsCountSecond = result.split(formArkTs).length - 1;
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_017 hilog err is: ' + JSON.stringify(err));
       });
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_017 assert an ArkTs card has been added, ' +
-      'cardArkTsCountSecond:' + cardArkTsCountSecond);
+        'cardArkTsCountSecond:' + cardArkTsCountSecond);
       expect(cardArkTsCount + 1).assertEqual(cardArkTsCountSecond);
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_017 ' + (cardArkTsCountSecond - cardArkTsCount) + ' ArkTs card be added');
-      
+
       await driver.delayMs(500);
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_017 end');
       done();
@@ -97,7 +97,7 @@ export default function abilityTest() {
      * Input:Click to open the application, click the button to publish the data agent card.
      * Expected output:A Js card be added to the desktop successfully.
      */
-    it(BUNDLE + 'DataProxyForm_018', 0, async (done) => {
+    it(BUNDLE + 'DataProxyForm_018', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_018 begin');
       let driver = Driver.create();
       await driver.delayMs(500);
@@ -109,7 +109,7 @@ export default function abilityTest() {
         expect(result !== null).assertTrue();
         cardJsCount = result.split(formJs).length - 1;
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_018 cardJsCount:' + cardJsCount);
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_018 hilog err is: ' + JSON.stringify(err));
       });
 
@@ -117,7 +117,7 @@ export default function abilityTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_018 driver.findComponent start');
       let app = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.app_name'))));
       let rect = await app.getBounds();
-      let height =rect.bottom - rect.top;
+      let height = rect.bottom - rect.top;
       let point = await app.getBoundsCenter();
       await driver.click(point.x, point.y - height);
       hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_018 open appStore, coordinate:(${point.x},` + `${point.y - height})`);
@@ -135,14 +135,14 @@ export default function abilityTest() {
         let result = JSON.stringify(data);
         hilog.info(DOMAIN, TAG, BUNDLE + `DataProxyForm_018 getFormData Js: + ${JSON.stringify(data)}`);
         formJsCountSecond = result.split(formJs).length - 1;
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_018 hilog err is: ' + JSON.stringify(err));
       });
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_018 assert an Js card has been added, ' +
-      'formJsCountSecond:' + formJsCountSecond);
+        'formJsCountSecond:' + formJsCountSecond);
       expect(cardJsCount + 1).assertEqual(formJsCountSecond);
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_018 ' + (formJsCountSecond - cardJsCount) + ' Js card be added');
-      
+
       await driver.delayMs(500);
       hilog.info(DOMAIN, TAG, BUNDLE + 'DataProxyForm_018 end');
       done();

@@ -323,7 +323,7 @@ interface Params {
 
   selectedIndexChange = (selectedIndex: number) => {
     if (this.context !== null && selectedIndex === 0) {
-      this.context.startAbility({ bundleName: 'ohos.samples.etsdistributedmusicplayer',
+      this.context.startAbility({ bundleName: 'ohos.samples.distributedmusicplayer',
         abilityName: 'MainAbility',
         deviceId: this.deviceLists[selectedIndex].deviceId,
         parameters: {

@@ -30,7 +30,7 @@ class CalendarReminder {
   public calendarReminders: Reminder[] = []
 
   async setCalendar(date: DatePickerResult) {
-    let month = date.month < 9 ? `0${date.month + 1}` : date.month
+    let month = date.month < 9 ? `0${date.month + 1}` : `${date.month + 1}`
     let day = date.day < 10 ? `0${date.day}` : date.day
     let context: any = getContext(this)
     let selectCalendar: string = `${date.year}-${month}-${day}`

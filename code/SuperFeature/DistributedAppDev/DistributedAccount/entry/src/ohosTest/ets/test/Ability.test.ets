@@ -66,11 +66,11 @@ async function clickSelectIDAndSelectText(toggleId: string, selectText: string) 
 export default function abilityTest() {
   let driver = Driver.create()
   let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
     /**
      * 打开应用
      */
-    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+    it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
       Logger.info(TAG, BUNDLE + 'StartAbility_001 begin')
       try {
         await abilityDelegator.startAbility({
@@ -88,7 +88,7 @@ export default function abilityTest() {
     /**
      * 绑定分布式帐号
      */
-    it(BUNDLE + 'SetOsAccountDistributedInfoByLocalId_001', 0, async function () {
+    it(BUNDLE + 'SetOsAccountDistributedInfoByLocalId_001', 0, async () => {
       Logger.info(TAG, BUNDLE + 'setOsAccountDistributedInfoByLocalId_001 begin')
       await driver.delayMs(DELAY_TIME)
       // 点击选择头像
@@ -135,7 +135,7 @@ export default function abilityTest() {
     /**
      * 选择分布式帐号
      */
-    it(BUNDLE + 'SelectDistributedAccount_001', 0, async function () {
+    it(BUNDLE + 'SelectDistributedAccount_001', 0, async () => {
       Logger.info(TAG, BUNDLE + 'selectDistributedAccount_001 begin')
       await driver.delayMs(DELAY_TIME)
       // 点击分布式帐号
@@ -149,7 +149,7 @@ export default function abilityTest() {
     /**
      * 解绑分布式帐号
      */
-    it(BUNDLE + 'SetOsAccountDistributedInfoByLocalId_002', 0, async function () {
+    it(BUNDLE + 'SetOsAccountDistributedInfoByLocalId_002', 0, async () => {
       Logger.info(TAG, BUNDLE + 'setOsAccountDistributedInfoByLocalId_002 begin')
       await driver.delayMs(DELAY_TIME)
       // 点击解绑
