@@ -18,7 +18,7 @@ import Note from '../model/Note'
 
 @Component
 export default struct NoteItem {
-  @State note?: Note | undefined = undefined
+  @State note?: Note | undefined = undefined;
   private index: number = 0
 
   build() {
