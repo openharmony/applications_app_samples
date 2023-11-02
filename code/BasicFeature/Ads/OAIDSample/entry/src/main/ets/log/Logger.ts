@@ -16,30 +16,30 @@
 import hilog from '@ohos.hilog';
 
 class Logger {
-  private tag: number = 0xFF00;
+  private tag: number = 0XFF00;
   private pre: string = '[Sample_OAID]';
   private format: string = '%{public}s, %{public}s';
 
   constructor(pre: string) {
-    this.pre = pre
-    this.tag = 0xFF00
+    this.pre = pre;
+    this.tag = 0XFF00;
   }
 
   debug(...args: string[]) {
-    hilog.debug(this.tag, this.pre, this.format, args)
+    hilog.debug(this.tag, this.pre, this.format, args);
   }
 
   info(...args: string[]) {
-    hilog.info(this.tag, this.pre, this.format, args)
+    hilog.info(this.tag, this.pre, this.format, args);
   }
 
   warn(...args: string[]) {
-    hilog.warn(this.tag, this.pre, this.format, args)
+    hilog.warn(this.tag, this.pre, this.format, args);
   }
 
   error(...args: string[]) {
-    hilog.error(this.tag, this.pre, this.format, args)
+    hilog.error(this.tag, this.pre, this.format, args);
   }
 }
 
-export default new Logger('[Sample_OAID]')
+export default new Logger('[Sample_OAID]');
