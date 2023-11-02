@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>ic_music_singer</title>
+    <g id="ic_music_singer" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="编组-2" transform="translate(7.500000, 7.000000)" fill="#FF1949">
+            <path d="M12.5,11 C19.4035594,11 25,16.5964406 25,23.5 L25,25 L13.3,25 L13.3,22.295 L15.9620581,19.6336309 C16.9912523,18.6044367 17.0341354,16.9624273 16.0907073,15.8821652 L15.9620581,15.7445436 C14.8881163,14.6706018 13.1469126,14.6706018 12.0729708,15.7445436 L12.0729708,15.7445436 L9.24454365,18.5729708 C8.17060185,19.6469126 8.17060185,21.3881163 9.24454365,22.4620581 C9.9121569,23.1296713 10.8376306,23.3822645 11.7003681,23.2198375 L11.7,25 L0,25 L0,23.5 C-8.45442189e-16,16.5964406 5.59644063,11 12.5,11 Z" id="形状结合" style="mix-blend-mode: multiply;" opacity="0.800000012"></path>
+            <circle id="椭圆形" style="mix-blend-mode: multiply;" opacity="0.6" cx="12.5" cy="7" r="7"></circle>
+        </g>
+    </g>
+</svg>
