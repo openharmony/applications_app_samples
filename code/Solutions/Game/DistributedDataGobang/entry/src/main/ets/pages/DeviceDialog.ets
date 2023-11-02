@@ -13,16 +13,16 @@
  * limitations under the License.
  */
 
-import deviceManager from '@ohos.distributedHardware.deviceManager'
-import Logger from '../util/Logger'
+import deviceManager from '@ohos.distributedDeviceManager';
+import Logger from '../util/Logger';
 
-const TAG: string = 'DeviceDialog'
+const TAG: string = 'DeviceDialog';
 
 @CustomDialog
 export struct DeviceDialog {
-  private controller?: CustomDialogController
-  private deviceList: Array<deviceManager.DeviceInfo> = []
-  @Link selectedIndex: number
+  private controller?: CustomDialogController;
+  private deviceList: Array<deviceManager.DeviceBasicInfo> = [];
+  @Link selectedIndex: number;
 
   build() {
     Column() {
@@ -33,7 +33,7 @@ export struct DeviceDialog {
         .textAlign(TextAlign.Center)
         .fontWeight(FontWeight.Bold)
       List() {
-        ForEach(this.deviceList, (item, index) => {
+        ForEach(this.deviceList, (item: deviceManager.DeviceBasicInfo, index: number) => {
           ListItem() {
             Row() {
               Text(item.deviceName)
@@ -46,15 +46,15 @@ export struct DeviceDialog {
             }
             .height(55)
             .onClick(() => {
-              Logger.info(TAG, `select device: ${item.deviceId}`)
+              Logger.info(TAG, `select device: ${item.deviceId}`);
               if (index === this.selectedIndex) {
-                Logger.info(TAG, `index === this.selectedIndex`)
-                return
+                Logger.info(TAG, `index === this.selectedIndex`);
+                return;
               }
-              this.selectedIndex = index
+              this.selectedIndex = index;
             })
           }
-        }, item => item.deviceName)
+        }, (item: deviceManager.DeviceBasicInfo) => item.deviceName)
       }
       .width('100%')
       .height(150)
@@ -69,7 +69,7 @@ export struct DeviceDialog {
       .type(ButtonType.Capsule)
       .backgroundColor(Color.White)
       .onClick(() => {
-        this.controller.close()
+        this.controller?.close();
       })
     }
     .padding(10)

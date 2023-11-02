@@ -13,73 +13,74 @@
  * limitations under the License.
  */
 
-import deviceManager from '@ohos.distributedHardware.deviceManager'
-import Logger from '../util/Logger'
-import { GobangConst } from '../util/GobangConst'
-import { RemoteDeviceModel } from '../Model/RemoteDeviceModel'
-import { DeviceDialog } from './DeviceDialog'
+import deviceManager from '@ohos.distributedDeviceManager';
+import common from '@ohos.app.ability.common';
+import Logger from '../util/Logger';
+import { GobangConst } from '../util/GobangConst';
+import { RemoteDeviceModel } from '../Model/RemoteDeviceModel';
+import { DeviceDialog } from './DeviceDialog';
 
-const TAG: string = 'TitleBar'
+const TAG: string = 'TitleBar';
 
 @Component
 export struct TitleBar {
-  @State @Watch('selectedIndexChange') selectedIndex: number = 0
-  @State devices: Array<deviceManager.DeviceInfo> = []
-  @Link isDistributed: boolean
-  @Link dialogShow: boolean
-  @StorageLink('deviceFlag') deviceFlag: string = 'A'
-  private startAbilityCallBack: (key: string) => void
-  private remoteDeviceModel: RemoteDeviceModel | null = null
+  @State @Watch('selectedIndexChange') selectedIndex: number = 0;
+  @State devices: Array<deviceManager.DeviceBasicInfo> = [];
+  @Link isDistributed: boolean;
+  @Link dialogShow: boolean;
+  @StorageLink('deviceFlag') deviceFlag: string = 'A';
+  private startAbilityCallBack: (key: string) => void = () => {};
+  private remoteDeviceModel: RemoteDeviceModel | null = null;
   private dialogController: CustomDialogController = new CustomDialogController({
     builder: DeviceDialog({ deviceList: this.devices, selectedIndex: $selectedIndex }),
     autoCancel: true,
     alignment: DialogAlignment.Center
-  })
+  });
 
   clearSelectState() {
-    this.devices = []
-    this.dialogShow = false
-    this.dialogController.close()
+    this.devices = [];
+    this.dialogShow = false;
+    this.dialogController.close();
   }
 
   selectDevice() {
-    Logger.info(TAG, `start ability`)
-    this.isDistributed = true
+    Logger.info(TAG, `start ability`);
+    this.isDistributed = true;
     if (this.remoteDeviceModel === null || this.remoteDeviceModel.discoverList.length <= 0) {
-      Logger.info(TAG, `continue unauthed device: ${JSON.stringify(this.devices)}`)
-      this.startAbility(this.devices[this.selectedIndex].networkId)
-      this.clearSelectState()
-      return
-    }
-    Logger.info(TAG, `start ability, needAuth`)
+      Logger.info(TAG, `continue unauthed device: ${JSON.stringify(this.devices)}`);
+      this.startAbility(this.devices[this.selectedIndex].networkId as string);
+      this.clearSelectState();
+      return;
+    };
+    Logger.info(TAG, `start ability, needAuth`);
     this.remoteDeviceModel.authenticateDevice(this.devices[this.selectedIndex], () => {
-      Logger.info(TAG, `auth and online finished`)
-      for (let i = 0; i < this.remoteDeviceModel.deviceList.length; i++) {
-        if (this.remoteDeviceModel.deviceList[i].deviceName === this.devices[this.selectedIndex].deviceName) {
-          this.startAbility(this.remoteDeviceModel.deviceList[i].networkId)
-        }
+      Logger.info(TAG, `auth and online finished`);
+      for (let i = 0; i < (this.remoteDeviceModel as RemoteDeviceModel).deviceList.length; i++) {
+        if ((this.remoteDeviceModel as RemoteDeviceModel).deviceList[i].deviceName === this.devices[this.selectedIndex].deviceName) {
+          this.startAbility((this.remoteDeviceModel as RemoteDeviceModel).deviceList[i].networkId);
+        };
       }
-    })
-    this.clearSelectState()
+    });
+    this.clearSelectState();
   }
 
   selectedIndexChange() {
-    Logger.info(TAG, `selectedIndexChange`)
+    Logger.info(TAG, `selectedIndexChange`);
     if (this.selectedIndex === 0) {
-      Logger.info(TAG, `stop ability`)
-      this.startAbilityCallBack(GobangConst.EXIT)
-      this.isDistributed = false
-      this.devices = []
-      this.dialogController.close()
-      this.dialogShow = false
-      return
-    }
-    this.selectDevice()
+      Logger.info(TAG, `stop ability`);
+      this.startAbilityCallBack(GobangConst.EXIT);
+      this.isDistributed = false;
+      this.devices = [];
+      this.dialogController.close();
+      this.dialogShow = false;
+      return;
+    };
+    this.selectDevice();
   }
 
-  startAbility(deviceId) {
-    Logger.info(TAG, `startAbility deviceId: ${deviceId}`)
-    let context = getContext(this) as any
+  startAbility(deviceId: string) {
+    Logger.info(TAG, `startAbility deviceId: ${deviceId}`);
+    let context = getContext(this) as common.UIAbilityContext;
     context.startAbility({
       bundleName: 'ohos.samples.distributeddatagobang',
       abilityName: 'MainAbility',
@@ -88,29 +89,29 @@ export struct TitleBar {
         isB: 'B'
       }
     }).then((data) => {
-      Logger.info(TAG, `start ability finished: ${JSON.stringify(data)}`)
-      this.startAbilityCallBack(GobangConst.DEVICE_A)
-    })
+      Logger.info(TAG, `start ability finished: ${JSON.stringify(data)}`);
+      this.startAbilityCallBack(GobangConst.DEVICE_A);
+    });
   }
 
   showDialog() {
-    this.dialogShow = true
-    this.devices = []
-    this.remoteDeviceModel.registerDeviceListCallback(() => {
-      Logger.info(TAG, `registerDeviceListCallback, callback entered`)
+    this.dialogShow = true;
+    this.devices = [];
+    this.remoteDeviceModel?.registerDeviceListCallback(() => {
+      Logger.info(TAG, `registerDeviceListCallback, callback entered`);
       this.devices.push({
         deviceId: '0',
         deviceName: 'Local device',
-        deviceType: GobangConst.DEVICE_TYPE_NUMBER,
+        deviceType: GobangConst.DEVICE_TYPE_STRING,
         networkId: '',
-        range: GobangConst.RANGE_NUMBER
-      })
-      let deviceTemps = this.remoteDeviceModel.discoverList.length > 0 ? this.remoteDeviceModel.discoverList : this.remoteDeviceModel.deviceList
+      });
+      let deviceTemps = (this.remoteDeviceModel as RemoteDeviceModel).discoverList?.length > 0 ?
+        (this.remoteDeviceModel as RemoteDeviceModel).discoverList : (this.remoteDeviceModel as RemoteDeviceModel).deviceList;
       for (let i = 0; i < deviceTemps.length; i++) {
-        this.devices.push(deviceTemps[i])
-      }
-    })
-    this.dialogController.open()
+        this.devices.push(deviceTemps[i]);
+      };
+    });
+    this.dialogController.open();
   }
 
   build() {
@@ -122,8 +123,8 @@ export struct TitleBar {
         .margin({ left: 15 })
         .objectFit(ImageFit.Contain)
         .onClick(() => {
-          let context = getContext(this) as any
-          context.terminateSelf()
+          let context = getContext(this) as common.UIAbilityContext;
+          context.terminateSelf();
         })
       Blank()
         .layoutWeight(1)
@@ -135,7 +136,7 @@ export struct TitleBar {
           .margin({ right: 15 })
           .objectFit(ImageFit.Contain)
           .onClick(() => {
-            this.showDialog()
+            this.showDialog();
           })
       }
     }
