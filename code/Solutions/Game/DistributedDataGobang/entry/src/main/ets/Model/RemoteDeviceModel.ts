@@ -13,200 +13,179 @@
  * limitations under the License.
  */
 
-import deviceManager from '@ohos.distributedHardware.deviceManager'
-import Logger from '../util/Logger'
-import { GobangConst } from '../util/GobangConst'
+import deviceManager from '@ohos.distributedDeviceManager';
+import Logger from '../util/Logger';
 
-const TAG: string = 'RemoteDeviceModel'
-let subscribeId: number = 100
+const TAG: string = 'RemoteDeviceModel';
+let subscribeId: number = 100;
 
 export class RemoteDeviceModel {
-  public deviceList: Array<deviceManager.DeviceInfo> = []
-  public discoverList: Array<deviceManager.DeviceInfo> = []
-  public callback: () => void
-  public authCallback: () => void
-  public deviceManager: deviceManager.DeviceManager
+  public deviceList: Array<deviceManager.DeviceBasicInfo> = [];
+  public discoverList: Array<deviceManager.DeviceBasicInfo> = [];
+  public callback: () => void;
+  public authCallback: () => void;
+  public deviceManager: deviceManager.DeviceManager;
 
   constructor() {
-  }
+  };
 
   registerDeviceListCallback(callback) {
     if (typeof (this.deviceManager) !== 'undefined') {
-      this.registerDeviceListCallbackImplement(callback)
-      return
+      this.registerDeviceListCallbackImplement(callback);
+      return;
     }
-    Logger.info(TAG, `deviceManager.createDeviceManager begin`)
+    Logger.info(TAG, `deviceManager.createDeviceManager begin`);
     try {
-      deviceManager.createDeviceManager("ohos.samples.distributeddatagobang", (error, value) => {
-        if (error) {
-          Logger.info(TAG, `createDeviceManager failed.`)
-          return
-        }
-        this.deviceManager = value
-        this.registerDeviceListCallbackImplement(callback)
-        Logger.info(TAG, `createDeviceManager callback returned, error= ${error},value= ${value}`)
-      })
+      this.deviceManager = deviceManager.createDeviceManager("ohos.samples.distributeddatagobang");
+      this.registerDeviceListCallbackImplement(callback);
+      Logger.info(TAG, `createDeviceManager callback returned, value= ${JSON.stringify(this.deviceManager)}`);
     } catch (err) {
-      Logger.error(TAG, `createDeviceManager failed, code is ${err.code}, message is ${err.message}`)
-    }
+      Logger.error(TAG, `createDeviceManager failed, code is ${err.code}, message is ${err.message}`);
+    };
 
-    Logger.info(TAG, `deviceManager.createDeviceManager end`)
+    Logger.info(TAG, `deviceManager.createDeviceManager end`);
   }
 
   deviceStateChangeActionOffline(device) {
     if (this.deviceList.length <= 0) {
-      this.callback()
-      return
-    }
+      this.callback();
+      return;
+    };
     for (let j = 0; j < this.deviceList.length; j++) {
       if (this.deviceList[j ].deviceId === device.deviceId) {
-        this.deviceList[j] = device
-        break
-      }
-    }
-    Logger.info(TAG, `offline, device list= ${JSON.stringify(this.deviceList)}`)
-    this.callback()
+        this.deviceList[j] = device;
+        break;
+      };
+    };
+    Logger.info(TAG, `offline, device list= ${JSON.stringify(this.deviceList)}`);
+    this.callback();
   }
 
   registerDeviceListCallbackImplement(callback) {
-    Logger.info(TAG, `registerDeviceListCallback`)
-    this.callback = callback
+    Logger.info(TAG, `registerDeviceListCallback`);
+    this.callback = callback;
     if (this.deviceManager === undefined) {
-      Logger.info(TAG, `deviceManager has not initialized`)
-      this.callback()
-      return
-    }
-    Logger.info(TAG, `getTrustedDeviceListSync begin`)
+      Logger.info(TAG, `deviceManager has not initialized`);
+      this.callback();
+      return;
+    };
+    Logger.info(TAG, `getTrustedDeviceListSync begin`);
     try {
-      let list = this.deviceManager.getTrustedDeviceListSync()
-      Logger.info(TAG, `getTrustedDeviceListSync end, deviceList= ${JSON.stringify(list)}`)
+      let list = this.deviceManager.getAvailableDeviceListSync();
+      Logger.info(TAG, `getTrustedDeviceListSync end, deviceList= ${JSON.stringify(list)}`);
       if (typeof (list) !== 'undefined' && typeof (list.length) !== 'undefined') {
-        this.deviceList = list
-      }
+        this.deviceList = list;
+      };
     } catch (err) {
-      Logger.error(`getTrustedDeviceListSync failed, code is ${err.code}, message is ${err.message}`)
+      Logger.error(`getTrustedDeviceListSync failed, code is ${err.code}, message is ${err.message}`);
     }
-    this.callback()
-    Logger.info(TAG, `callback finished`)
+    this.callback();
+    Logger.info(TAG, `callback finished`);
     this.deviceManager.on('deviceStateChange', (data) => {
       if (data === null) {
-        return
-      }
-      Logger.info(TAG, `deviceStateChange data= ${JSON.stringify(data)}`)
+        return;
+      };
+      Logger.info(TAG, `deviceStateChange data= ${JSON.stringify(data)}`);
       switch (data.action) {
-        case deviceManager.DeviceStateChangeAction.READY:
-          this.discoverList = []
-          this.deviceList.push(data.device)
+        case deviceManager.DeviceStateChange.AVAILABLE:
+          this.discoverList = [];
+          this.deviceList.push(data.device);
           try {
-            let list = this.deviceManager.getTrustedDeviceListSync()
+            let list = this.deviceManager.getAvailableDeviceListSync();
             if (typeof (list) !== 'undefined' && typeof (list.length) !== 'undefined') {
-              this.deviceList = list
-            }
-            this.callback()
+              this.deviceList = list;
+            };
+            this.callback();
           } catch (err) {
-            Logger.error(TAG, `getTrustedDeviceListSync failed, code is ${err.code}, message is ${err.message}`)
+            Logger.error(TAG, `getTrustedDeviceListSync failed, code is ${err.code}, message is ${err.message}`);
           }
-          break
-        case deviceManager.DeviceStateChangeAction.OFFLINE:
-        case deviceManager.DeviceStateChangeAction.CHANGE:
-          this.deviceStateChangeActionOffline(data.device)
-          break
+          break;
+        case deviceManager.DeviceStateChange.UNAVAILABLE:
         default:
-          break
-      }
+          break;
+      };
     })
-    this.deviceManager.on('deviceFound', (data) => {
+    this.deviceManager.on('discoverSuccess', (data) => {
       if (data === null) {
-        return
-      }
-      Logger.info(TAG, `deviceFound data= ${JSON.stringify(data)}`)
-      this.deviceFound(data)
+        return;
+      };
+      Logger.info(TAG, `deviceFound data= ${JSON.stringify(data)}`);
+      this.deviceFound(data);
     })
-    this.deviceManager.on('discoverFail', (data) => {
-      Logger.info(TAG, `discoverFail data= ${JSON.stringify(data)}`)
-    })
+    this.deviceManager.on('discoverFailure', (data) => {
+      Logger.info(TAG, `discoverFail data= ${JSON.stringify(data)}`);
+    });
     this.deviceManager.on('serviceDie', () => {
-      Logger.info(TAG, `serviceDie`)
-    })
-    this.startDeviceDiscovery()
+      Logger.info(TAG, `serviceDie`);
+    });
+    this.startDeviceDiscovery();
   }
 
   deviceFound(data) {
     for (var i = 0;i < this.discoverList.length; i++) {
       if (this.discoverList[i].deviceId === data.device.deviceId) {
-        Logger.info(TAG, `device founded ignored`)
-        return
-      }
-    }
-    this.discoverList[this.discoverList.length] = data.device
-    Logger.info(TAG, `deviceFound self.discoverList= ${this.discoverList}`)
-    this.callback()
+        Logger.info(TAG, `device founded ignored`);
+        return;
+      };
+    };
+    this.discoverList[this.discoverList.length] = data.device;
+    Logger.info(TAG, `deviceFound self.discoverList= ${this.discoverList}`);
+    this.callback();
   }
 
   startDeviceDiscovery() {
-    subscribeId = Math.floor(GobangConst.NUMBER * Math.random())
-    let info = {
-      subscribeId: subscribeId,
-      mode: deviceManager.DiscoverMode.DISCOVER_MODE_ACTIVE,
-      medium: deviceManager.ExchangeMedium.COAP,
-      freq: deviceManager.ExchangeFreq.HIGH,
-      isSameAccount: false,
-      isWakeRemote: true,
-      capability: deviceManager.SubscribeCap.SUBSCRIBE_CAPABILITY_DDMP
-    }
-    Logger.info(TAG, `startDeviceDiscovery ${subscribeId}`)
+    let discoverParam = {
+      'discoverTargetType': 1
+    };
+    let filterOptions = {
+      'availableStatus': 0
+    };
+    Logger.info(TAG, `startDeviceDiscovery ${subscribeId}`);
     try {
-      this.deviceManager.startDeviceDiscovery(info)
+      this.deviceManager.startDiscovering(discoverParam, filterOptions);
     } catch (err) {
-      Logger.error(TAG, `startDeviceDiscovery failed, code is ${err.code}, message is ${err.message}`)
-    }
+      Logger.error(TAG, `startDeviceDiscovery failed, code is ${err.code}, message is ${err.message}`);
+    };
   }
 
   unregisterDeviceListCallback() {
-    Logger.info(TAG, `stopDeviceDiscovery $subscribeId}`)
+    Logger.info(TAG, `stopDeviceDiscovery $subscribeId}`);
     try {
-      this.deviceManager.stopDeviceDiscovery(subscribeId)
+      this.deviceManager.stopDiscovering();
     } catch (err) {
-      Logger.error(TAG, `stopDeviceDiscovery failed, code is ${err.code}, message is ${err.message}`)
-    }
-    this.deviceManager.off('deviceStateChange')
-    this.deviceManager.off('deviceFound')
-    this.deviceManager.off('discoverFail')
-    this.deviceManager.off('serviceDie')
-    this.deviceList = []
-    this.discoverList = []
+      Logger.error(TAG, `stopDeviceDiscovery failed, code is ${err.code}, message is ${err.message}`);
+    };
+    this.deviceManager.off('deviceStateChange');
+    this.deviceManager.off('discoverSuccess');
+    this.deviceManager.off('discoverFailure');
+    this.deviceManager.off('serviceDie');
+    this.deviceList = [];
+    this.discoverList = [];
   }
 
   authenticateDevice(device, callBack) {
-    Logger.info(TAG, `authenticateDevice ${JSON.stringify(device)}`)
+    Logger.info(TAG, `authenticateDevice ${JSON.stringify(device)}`);
     for (let i = 0; i < this.discoverList.length; i++) {
       if (this.discoverList[i].deviceId !== device.deviceId) {
-        continue
-      }
-      let extraInfo = {
-        'targetPkgName': 'ohos.samples.distributeddatagobang',
-        'appName': 'distributeddatagobang',
-        'appDescription': 'distributeddatagobang',
-        'business': '0'
-      }
-      let authParam = {
-        'authType': GobangConst.AUTH_TYPE_NUMBER,
-        'appIcon': '',
-        'appThumbnail': '',
-        'extraInfo': extraInfo
-      }
+        continue;
+      };
+      let bindParam = {
+        bindType: 1,
+        targetPkgName: 'ohos.samples.distributeddatagobang',
+        appName: 'distributeddatagobang',
+      };
       try {
-        this.deviceManager.authenticateDevice(device, authParam, (err, data) => {
+        this.deviceManager.bindTarget(device.deviceId, bindParam, (err, data) => {
           if (err) {
-            Logger.error(TAG, `authenticateDevice error: ${JSON.stringify(err)}`)
-            this.authCallback = null
-            return
+            Logger.error(TAG, `authenticateDevice error: ${JSON.stringify(err)}`);
+            this.authCallback = null;
+            return;
           }
-          Logger.info(TAG, `authenticateDevice succeed: ${JSON.stringify(data)}`)
-          this.authCallback = callBack
-        })
+          Logger.info(TAG, `authenticateDevice succeed: ${JSON.stringify(data)}`);
+          this.authCallback = callBack;
+        });
       } catch (err) {
-        Logger.error(TAG, `authenticateDevice failed, code is ${err.code}, message is ${err.message}`)
+        Logger.error(TAG, `authenticateDevice failed, code is ${err.code}, message is ${err.message}`);
       }
     }
   }
