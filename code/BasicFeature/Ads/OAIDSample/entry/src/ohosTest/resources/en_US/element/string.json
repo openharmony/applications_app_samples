@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "oaid_btn_promise",
+      "value": "Get OAID By Promise"
+    },
+    {
+      "name": "oaid_btn_asynccallback",
+      "value": "Get OAID By Async Callback"
+    },
+    {
+      "name": "oaid_btn_reset",
+      "value": "reset OAID"
+    }
+  ]
+}
