@@ -17,7 +17,6 @@
   "module": {
     "name": "entry",
     "type": "entry",
-    "srcEntrance": "./ets/Application/AbilityStage.ts",
     "description": "$string:entry_desc",
     "mainElement": "MainAbility",
     "deviceTypes": [
@@ -27,29 +26,21 @@
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
-    "uiSyntax": "ets",
     "metadata": [
       {
         "name": "ArkTSPartialUpdate",
         "value": "true"
       }
     ],
-    "requestPermissions": [
-      {
-        "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED"
-      },
-      {
-        "name": "ohos.permission.START_ABILITIES_FROM_BACKGROUND"
-      }
-    ],
+    "requestPermissions": [],
     "extensionAbilities": [
       {
-        "srcEntrance": "./ets/ServiceExtAbility/ServiceExtAbility.ts",
+        "srcEntry": "./ets/ServiceExtAbility/ServiceExtAbility.ets",
         "name": "ServiceExtAbility",
         "label": "$string:MainAbility_label",
         "description": "$string:extension_ability_descripter",
         "type": "inputMethod",
-        "visible": true
+        "exported": true
       }
     ]
   }
