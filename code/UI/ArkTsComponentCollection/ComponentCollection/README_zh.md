@@ -6,11 +6,11 @@
 
 ### 效果预览
 
-| 绑定                                          | 通用                                               | 动画                                                            | 全局方法                                               |
-|---------------------------------------------|--------------------------------------------------|---------------------------------------------------------------|----------------------------------------------------|
-| ![image](screenshots/devices/component.png) | ![image](screenshots/devices/general.png)        | ![image](screenshots/devices/animation.png)                   | ![image](screenshots/devices/global.png)           |
-| <center>Button 按钮</center>                  | <center>onClick 点击事件</center>                    | <center>元素共享转场</center>                                       | <center>警告弹窗</center>                              |
-| ![image](screenshots/devices/button_zh.png) | ![image](screenshots/devices/click_event_zh.png) | ![image](screenshots/devices/share_element_transition_zh.png) | ![image](screenshots/devices/warning_popup_zh.png) |
+| 绑定                                                         | 通用                                                       | 动画                                                                           | 全局方法                                                              |
+|------------------------------------------------------------|----------------------------------------------------------|------------------------------------------------------------------------------|-------------------------------------------------------------------|
+| <img src="screenshots/devices/component.jpeg" width="270"> | <img src="screenshots/devices/general.jpeg" width="270"> | <img src="screenshots/devices/animation.jpeg" width="270">                   | <img src="screenshots/devices/global.jpeg" width="270">           |
+| <center>Button 按钮</center>                                 | <center>onClick 点击事件</center>                            | <center>元素共享转场</center>                                                      | <center>警告弹窗</center>                                             |
+|<img src="screenshots/devices/button_zh.jpeg" width="270">              | <img src="screenshots/devices/click_event_zh.jpeg" width="270">         | <img src="screenshots/devices/share_element_transition_zh.jpeg" width="270"> | <img src="screenshots/devices/warning_popup_zh.jpeg" width="270"> |
 
 使用说明：
 
