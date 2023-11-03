@@ -22,7 +22,8 @@ import Logger from './Logger';
 const TAG: string = '[HUKS]';
 const CHALLENG_LEN = 6;
 const ALWAYSVAILD = 4;
-const IV: string = '001122334455';
+const randomIV = Math.random().toString().slice(2,14);
+const IV: string = randomIV.padEnd(16,'0');
 let cipherData: Uint8Array;
 let challengeNew = new Uint8Array(CHALLENG_LEN);
 
@@ -148,7 +149,7 @@ function getAesEncryptProperties(properties): void {
   };
   properties[index++] = {
     tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
-    value: huks.HuksCipherMode.HUKS_MODE_CBC
+    value: huks.HuksCipherMode.HUKS_MODE_GCM
   };
   properties[index++] = {
     tag: huks.HuksTag.HUKS_TAG_IV,
@@ -166,7 +167,7 @@ function getAesDecryptProperties(properties): void {
   };
   properties[index++] = {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256
+    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128
   };
   properties[index++] = {
     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
@@ -178,7 +179,7 @@ function getAesDecryptProperties(properties): void {
   };
   properties[index++] = {
     tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
-    value: huks.HuksCipherMode.HUKS_MODE_CBC
+    value: huks.HuksCipherMode.HUKS_MODE_GCM
   };
   properties[index++] = {
     tag: huks.HuksTag.HUKS_TAG_IV,
