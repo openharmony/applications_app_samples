@@ -16,24 +16,25 @@
 import distributedData from '@ohos.data.distributedKVStore'
 import common from '@ohos.app.ability.common'
 import Logger from '../util/Logger'
+import { Callback } from '@ohos.base';
 
 const STORE_ID = 'etskvstore'
 const TAG = 'KvStoreModel'
 
 export class KvStoreModel {
-  private kvManager: distributedData.KVManager = undefined
-  private kvStore: any
+  private kvManager?: distributedData.KVManager = undefined;
+  private kvStore?: distributedData.SingleKVStore = undefined;
 
   constructor() {
   }
 
-  async createKvStore(callback) {
+  async createKvStore(callback: Callback<void>) {
     if ((typeof (this.kvStore) !== 'undefined')) {
       callback()
       return;
     }
     let context: common.Context = getContext(this)
-    var config = {
+    let config: distributedData.KVManagerConfig = {
       context,
       bundleName: 'ohos.samples.kvstore',
     }
@@ -44,46 +45,51 @@ export class KvStoreModel {
       Logger.info(TAG, `ecreateKVManager err:${JSON.stringify(err)}`)
     }
     Logger.info(TAG, 'ecreateKVManager end')
-      let options = {
-        createIfMissing: true,
-        encrypt: false,
-        backup: false,
-        autoSync: true,
-        kvStoreType: distributedData.KVStoreType.SINGLE_VERSION,
-        securityLevel: distributedData.SecurityLevel.S1,
-      }
-      Logger.info(TAG, 'kvManager.getKVStore begin')
-      await this.kvManager.getKVStore(STORE_ID, options).then((store) => {
-        Logger.info(TAG, 'Succeeded in getting KVStore')
-        this.kvStore = store
-      }).catch((err) => {
-        Logger.error(TAG, `Fail to get KVStore.code is ${err.code},message is ${err.message}`)
-      });
+    let options: distributedData.Options = {
+      createIfMissing: true,
+      encrypt: false,
+      backup: false,
+      autoSync: true,
+      kvStoreType: distributedData.KVStoreType.SINGLE_VERSION,
+      securityLevel: distributedData.SecurityLevel.S1,
+    }
+    Logger.info(TAG, 'kvManager.getKVStore begin')
+    if (this.kvManager !== undefined) {
+      this.kvManager.getKVStore(STORE_ID, options, (err, store: distributedData.SingleKVStore) => {
+        Logger.info(TAG, `getKVStore success, kvStore= ${store}`);
+        this.kvStore = store;
+        callback();
+      })
+    }
     Logger.info(TAG, 'kvstorTAG,ekvManager.getKVStore end')
-    callback()
   }
 
-  put(key, value) {
-    Logger.info(TAG, `kvStore.put${key}=${value}`)
-    this.kvStore.put(key, value).then((data) => {
-      Logger.info(TAG, `kvStore.put${key} finished, data=${JSON.stringify(data)}`)
-    }).catch((err) => {
-      Logger.error(TAG, `kvStore.put ${key} failed, ${JSON.stringify(err)}`)
-    });
+  put(key: string, value: string) {
+    if (this.kvStore) {
+      Logger.debug(TAG, `kvStore.put ${key} = ${value}`);
+      this.kvStore.put(
+        key,
+        value
+      ).then((data) => {
+        Logger.debug(TAG, `kvStore.put ${key} finished, data= ${JSON.stringify(data)}`);
+      }).catch((err: object) => {
+        Logger.debug(TAG, `kvStore.put ${key} failed, ${JSON.stringify(err)}`);
+      })
+    }
   }
 
-  setOnMessageReceivedListener(msg, callback) {
+  setOnMessageReceivedListener(msg: string, callback: Callback<string>) {
     Logger.info(TAG, `setOnMessageReceivedListener ${msg}`)
     let self = this
     this.createKvStore(() => {
       Logger.info(TAG, 'kvStore.on(dataChange) begin')
-      self.kvStore.on('dataChange', 1, (data) => {
+      self.kvStore!.on('dataChange', 1, (data) => {
         Logger.info(TAG, `dataChange, ${JSON.stringify(data)}`);
         Logger.info(TAG, `dataChange, insert ${data.insertEntries.length} udpate ${data.updateEntries.length}`)
         let entries = data.insertEntries.length > 0 ? data.insertEntries : data.updateEntries
         for (let i = 0; i < entries.length; i++) {
           if (entries[i].key === msg) {
-            let value = entries[i].value.value
+            let value = entries[i].value.value.toString();
             Logger.info(TAG, `Entries receive ${msg} = ${value}`)
             callback(value)
             return;
