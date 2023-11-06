@@ -31,7 +31,7 @@ export default {
     }, 1000)
   },
   updateTime: function () {
-    var nowTime = new Date()
+    let nowTime = new Date()
     this.hour = nowTime.getHours()
     this.minute = nowTime.getMinutes()
     this.second = nowTime.getSeconds()
