@@ -17,6 +17,7 @@ import hilog from '@ohos.hilog';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON } from '@ohos.UiTest';
+import inputMethod from '@ohos.inputMethod';
 
 const DRIVER = Driver.create();
 const BUNDLE = 'http';
@@ -120,6 +121,10 @@ export default function abilityTest() {
       await DRIVER.delayMs(1000);
       let ipAddress = await DRIVER.findComponent(ON.id('GET'));
       await ipAddress.inputText('https://baidu.com');
+      await DRIVER.delayMs(1000);
+      // 停止会话,关闭键盘
+      let inputMethodController = inputMethod.getController();
+      inputMethodController.stopInputSession();
       await DRIVER.delayMs(1000);
       let submitBtn = await DRIVER.findComponent(ON.id('submit'));
       await submitBtn.click();

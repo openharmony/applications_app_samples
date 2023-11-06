@@ -18,6 +18,7 @@ import { Driver, ON, MatchPattern } from '@ohos.UiTest';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import I18n from '@ohos.i18n';
 import Logger from '../Logger';
+import inputMethod from '@ohos.inputMethod';
 
 const BUNDLE = "International_";
 const TAG: string = '[Sample_International]';
@@ -130,6 +131,11 @@ export default function abilityTest() {
       // 文本断点处理
       let longTextInput = await driver.findComponent(ON.id('long_text_input'));
       await longTextInput.inputText('text processing test');
+      await driver.delayMs(100);
+      // 停止会话,关闭键盘
+      let inputMethodController = inputMethod.getController();
+      inputMethodController.stopInputSession();
+      await driver.delayMs(100);
       let longTextButton = await driver.findComponent(ON.text(await getResourceString($r('app.string.text_breakpoint'))));
       await longTextButton.click();
       await driver.delayMs(100);
