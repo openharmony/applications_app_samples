@@ -158,7 +158,7 @@ export class RemoteDeviceModel {
         return
       }
     }
-    this.discoverList[this.discoverList.length] = data
+    this.discoverList[this.discoverList.length] = data;
     Logger.info(TAG, `deviceFound self.discoverList= ${this.discoverList}`)
     this.callback()
   }
@@ -181,28 +181,28 @@ export class RemoteDeviceModel {
   }
 
   unregisterDeviceListCallback() {
-    Logger.info(TAG, `stopDeviceDiscovery ${SUBSCRIBE_ID}`)
+    Logger.info(TAG, `stopDeviceDiscovery ${SUBSCRIBE_ID}`);
     if (this.deviceManager === undefined) {
       return
     }
     if (this.deviceManager !== undefined) {
       try {
-        Logger.info(TAG, `stopDiscovering`)
+        Logger.info(TAG, `stopDiscovering`);
         this.deviceManager.stopDiscovering();
       } catch (error) {
         Logger.error(TAG, `stopDeviceDiscovery throw error, code: ${(error as BusinessError).code} message: ${(error as BusinessError).message}`);
       }
       try {
-        this.deviceManager.off('deviceStateChange')
-        this.deviceManager.off('discoverSuccess')
-        this.deviceManager.off('discoverFailure')
-        this.deviceManager.off('serviceDie')
+        this.deviceManager.off('deviceStateChange');
+        this.deviceManager.off('discoverSuccess');
+        this.deviceManager.off('discoverFailure');
+        this.deviceManager.off('serviceDie');
       } catch (error) {
         Logger.error(TAG, `off throw error, code: ${(error as BusinessError).code} message: ${(error as BusinessError).message}`);
       }
     }
-    this.deviceList = []
-    this.discoverList = []
+    this.deviceList = [];
+    this.discoverList = [];
   }
 
   authenticateDevice(device: deviceManager.DeviceBasicInfo, callBack: Callback<void>) {
