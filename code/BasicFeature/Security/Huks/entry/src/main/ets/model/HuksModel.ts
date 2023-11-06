@@ -132,14 +132,6 @@ function uint8ArrayToString(fileData): string {
 function getAesEncryptProperties(properties): void {
   let index = 0;
   properties[index++] = {
-    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-    value: huks.HuksKeyAlg.HUKS_ALG_AES
-  };
-  properties[index++] = {
-    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128
-  };
-  properties[index++] = {
     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT
   };
@@ -149,7 +141,7 @@ function getAesEncryptProperties(properties): void {
   };
   properties[index++] = {
     tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
-    value: huks.HuksCipherMode.HUKS_MODE_GCM
+    value: huks.HuksCipherMode.HUKS_MODE_CBC
   };
   properties[index++] = {
     tag: huks.HuksTag.HUKS_TAG_IV,
@@ -162,14 +154,6 @@ function getAesEncryptProperties(properties): void {
 function getAesDecryptProperties(properties): void {
   let index = 0;
   properties[index++] = {
-    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-    value: huks.HuksKeyAlg.HUKS_ALG_AES
-  };
-  properties[index++] = {
-    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128
-  };
-  properties[index++] = {
     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
   };
@@ -179,7 +163,7 @@ function getAesDecryptProperties(properties): void {
   };
   properties[index++] = {
     tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
-    value: huks.HuksCipherMode.HUKS_MODE_GCM
+    value: huks.HuksCipherMode.HUKS_MODE_CBC
   };
   properties[index++] = {
     tag: huks.HuksTag.HUKS_TAG_IV,
@@ -192,6 +176,16 @@ function getAesDecryptProperties(properties): void {
 function getAesGenerateProperties(properties): void {
   let index = 0;
   properties[index++] = {
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT |
+    huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+  };
+  return;
+}
+
+function getAesPublicProperties(properties){
+  let index = 0;
+  properties[index++] = {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_AES
   };
@@ -199,12 +193,6 @@ function getAesGenerateProperties(properties): void {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
     value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128
   };
-  properties[index++] = {
-    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT |
-    huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
-  };
-  return;
 }
 
 // 导入SM4密钥属性信息
@@ -295,9 +283,11 @@ export class HuksModel {
     let aesKeyAlias = 'test_aesKeyAlias';
     let handle;
     let generateKeyProperties = new Array();
+    let publicProperties = new Array();
     getAesGenerateProperties(generateKeyProperties);
+    getAesPublicProperties(publicProperties);
     let generateKeyOptions = {
-      properties: generateKeyProperties
+      properties: publicProperties.concat(generateKeyProperties)
     };
     await huks.generateKeyItem(aesKeyAlias, generateKeyOptions).then((data) => {
       Logger.info(TAG, `generate key success, data: ${JSON.stringify(data)}`);
@@ -308,7 +298,7 @@ export class HuksModel {
     let encryptProperties = new Array();
     getAesEncryptProperties(encryptProperties);
     let encryptOptions = {
-      properties:encryptProperties,
+      properties:publicProperties.concat(encryptProperties),
       inData: stringToUint8Array(plainText)
     };
     await huks.initSession(aesKeyAlias, encryptOptions).then((data) => {
@@ -334,11 +324,13 @@ export class HuksModel {
   // 模拟使用HUKS生成的新密钥进行解密
   async decryptData(resultCallback): Promise<void> {
     let decryptOptions = new Array();
+    let publicProperties = new Array();
     getAesDecryptProperties(decryptOptions);
+    getAesPublicProperties(publicProperties);
     let aesKeyAlias = 'test_aesKeyAlias';
     let handle;
     let options = {
-      properties: decryptOptions,
+      properties: publicProperties.concat(decryptOptions),
       inData: cipherData
     };
     let emptyOptions = {
