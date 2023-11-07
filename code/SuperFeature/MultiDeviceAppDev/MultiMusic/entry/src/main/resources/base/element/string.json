@@ -1,0 +1,132 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "index",
+      "value": "首页"
+    },
+    {
+      "name": "radio",
+      "value": "电台"
+    },
+    {
+      "name": "discovery",
+      "value": "发现"
+    },
+    {
+      "name": "mine",
+      "value": "我的"
+    },
+    {
+      "name": "recommend",
+      "value": "推荐"
+    },
+    {
+      "name": "privacy",
+      "value": "私人FM"
+    },
+    {
+      "name": "singer",
+      "value": "歌手"
+    },
+    {
+      "name": "singList",
+      "value": "歌单"
+    },
+    {
+      "name": "rank",
+      "value": "排行榜个"
+    },
+    {
+      "name": "musicFM",
+      "value": "音乐FM"
+    },
+    {
+      "name": "hiRes",
+      "value": "Hi-Res"
+    },
+    {
+      "name": "child",
+      "value": "儿童专区"
+    },
+    {
+      "name": "digital",
+      "value": "数字专区"
+    },
+    {
+      "name": "singRecommend",
+      "value": "歌单推荐"
+    },
+    {
+      "name": "mySongs",
+      "value": "我的歌单"
+    },
+    {
+      "name": "buildBySelf",
+      "value": "自建歌单"
+    },
+    {
+      "name": "bgm",
+      "value": "超带感欧美BGM"
+    },
+    {
+      "name": "oldYear",
+      "value": "80年代"
+    },
+    {
+      "name": "pops",
+      "value": "流行粤语"
+    },
+    {
+      "name": "rock",
+      "value": "摇滚"
+    },
+    {
+      "name": "sleep",
+      "value": "哄睡"
+    },
+    {
+      "name": "sunshine",
+      "value": "我爱阳光"
+    },
+    {
+      "name": "noon",
+      "value": "温暖午后"
+    },
+    {
+      "name": "coffee",
+      "value": "咖啡馆"
+    },
+    {
+      "name": "jazz",
+      "value": "爵士"
+    },
+    {
+      "name": "bluce",
+      "value": "布鲁斯"
+    },
+    {
+      "name": "noise",
+      "value": "躁动叫醒"
+    },
+    {
+      "name": "noSleep",
+      "value": "起来嗨"
+    },
+    {
+      "name": "emo",
+      "value": "EMO了"
+    }
+  ]
+}
