@@ -17,6 +17,7 @@ import hilog from '@ohos.hilog';
 import { describe, it, expect } from '@ohos/hypium';
 import { Driver, ON} from '@ohos.UiTest';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import inputMethod from '@ohos.inputMethod';
 
 const TAG = '[Sample_JSConcurrent]';
 const DOMAIN = 0xF811;
@@ -148,6 +149,8 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('jsWorkerInPutTextArea'));
       let strInput  = await driver.findComponent(ON.id('jsWorkerInPutTextArea'));
       await strInput.inputText('dses,ssdf,add');
+      let inputMethodController = inputMethod.getController();
+      inputMethodController.stopInputSession();
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerFunction_002 end');
     })
@@ -222,6 +225,8 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('taskPoolInPutTextArea'));
       let strInput  = await driver.findComponent(ON.id('taskPoolInPutTextArea'));
       await strInput.inputText('dses,ssdf,add');
+      let inputMethodController = inputMethod.getController();
+      inputMethodController.stopInputSession();
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'TaskPoolFunction_002 end')
     })

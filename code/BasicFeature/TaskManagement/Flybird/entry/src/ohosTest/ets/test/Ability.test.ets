@@ -19,6 +19,7 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 import hilog from '@ohos.hilog'
 import Logger from '../utils/Logger';
 import resourceManager from '@ohos.resourceManager'
+import inputMethod from '@ohos.inputMethod'
 
 const TAG = '[Sample_Flybird]'
 const DOMAIN = 0xF811
@@ -85,7 +86,8 @@ export default function appTest() {
       await driver.assertComponentExist(ON.id('textArea'))
       let flyInput = await driver.findComponent(ON.id('textArea'))
       await flyInput.inputText('flybird')
-
+      let inputMethodController = inputMethod.getController()
+      inputMethodController.stopInputSession()
       Logger.info(TAG, BUNDLE + testName + ' end')
     })
 

@@ -17,6 +17,7 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 import { Driver, ON, MatchPattern } from '@ohos.UiTest';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import Logger from '../../../main/ets/data/Logger';
+import inputMethod from '@ohos.inputMethod';
 
 const BUNDLE = 'Contact';
 const TAG: string = '[Sample_Contact]';
@@ -139,6 +140,8 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('inputName'));
       let name = await driver.findComponent(ON.id('inputName'));
       await name.inputText('zs');
+      let inputMethodController = inputMethod.getController();
+      inputMethodController.stopInputSession();
       let nameValue = await name.getText();
       Logger.info(TAG, `AddContactFunction_001 name:${nameValue}`);
       expect(nameValue).assertEqual('zs');
@@ -146,6 +149,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('inputAddress'));
       let address = await driver.findComponent(ON.id('inputAddress'));
       await address.inputText('hangzhou');
+      inputMethodController.stopInputSession();
       let addressValue = await address.getText();
       Logger.info(TAG, `AddContactFunction_001 address:${addressValue}`);
       expect(addressValue).assertEqual('hangzhou');
@@ -154,6 +158,7 @@ export default function abilityTest() {
       let telephone = await driver.findComponent(ON.id('inputTelephone'));
       // 不符合规则号码
       await telephone.inputText('12321465987');
+      inputMethodController.stopInputSession();
       let illegalTelephoneValue = await telephone.getText();
       Logger.info(TAG, `AddContactFunction_001 illegalTelephone:${illegalTelephoneValue}`);
       expect(illegalTelephoneValue).assertEqual('12321465987');
@@ -161,6 +166,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('inputMail'));
       let mail = await driver.findComponent(ON.id('inputMail'));
       await mail.inputText('1505678900@163.com');
+      inputMethodController.stopInputSession();
       let mailValue = await mail.getText();
       Logger.info(TAG, `AddContactFunction_001 mail:${mailValue}`);
       expect(mailValue).assertEqual('1505678900@163.com');
@@ -173,6 +179,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('confirm'));
       // 再次输入电话，输入符合规则号码
       await telephone.inputText('15321465987');
+      inputMethodController.stopInputSession();
       let legalTelephoneValue = await telephone.getText();
       Logger.info(TAG, `AddContactFunction_001 legalTelephone:${legalTelephoneValue}`);
       expect(legalTelephoneValue).assertEqual('15321465987');
@@ -226,6 +233,8 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('updateName'));
       let updateName = await driver.findComponent(ON.id('updateName'));
       await updateName.inputText('lisi');
+      let inputMethodController = inputMethod.getController();
+      inputMethodController.stopInputSession();
       let nameValue = await updateName.getText();
       Logger.info(TAG, `EditContactFunction_001 name:${nameValue}`);
       expect(nameValue).assertEqual('lisi');
@@ -233,6 +242,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('updateAddress'));
       let updateAddress = await driver.findComponent(ON.id('updateAddress'));
       await updateAddress.inputText('beijing');
+      inputMethodController.stopInputSession();
       let addressValue = await updateAddress.getText();
       Logger.info(TAG, `EditContactFunction_001 address:${addressValue}`);
       expect(addressValue).assertEqual('beijing');
@@ -240,6 +250,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('updateTelephone'));
       let updateTelephone = await driver.findComponent(ON.id('updateTelephone'));
       await updateTelephone.inputText('12326421968');
+      inputMethodController.stopInputSession();
       let illegalUpdatePhoneNumber = await updateTelephone.getText();
       Logger.info(TAG, `EditContactFunction_001 illegalUpdatePhoneNumber:${illegalUpdatePhoneNumber}`);
       expect(illegalUpdatePhoneNumber).assertEqual('12326421968');
@@ -247,6 +258,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('updateMail'));
       let updateMail = await driver.findComponent(ON.id('updateMail'));
       await updateMail.inputText('1506589700@qq.com');
+      inputMethodController.stopInputSession();
       let mailValue = await updateMail.getText();
       Logger.info(TAG, `EditContactFunction_001 mail:${mailValue}`);
       expect(mailValue).assertEqual('1506589700@qq.com');
@@ -259,6 +271,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('confirmEdit'));
       // 再次输入电话，输入符合规则号码
       await updateTelephone.inputText('15321143568');
+      inputMethodController.stopInputSession();
       let legalUpdatePhoneNumber = await updateTelephone.getText();
       Logger.info(TAG, `EditContactFunction_001 legalUpdatePhoneNumber:${legalUpdatePhoneNumber}`);
       expect(legalUpdatePhoneNumber).assertEqual('15321143568');
@@ -282,6 +295,8 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('inputContact'));
       let inputContact = await driver.findComponent(ON.id('inputContact'));
       await inputContact.inputText('15321143568');
+      let inputMethodController = inputMethod.getController();
+      inputMethodController.stopInputSession();
       let contactInfo = await inputContact.getText();
       Logger.info(TAG, `QueryContactFunction_001 contact:${contactInfo}`);
       expect(contactInfo).assertEqual('15321143568');
@@ -365,6 +380,8 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('inputName'));
       let contactName = await driver.findComponent(ON.id('inputName'));
       await contactName.inputText('liyi');
+      let inputMethodController = inputMethod.getController();
+      inputMethodController.stopInputSession();
       let name = await contactName.getText();
       Logger.info(TAG, `ClickSettingFunction_001 name:${name}`);
       expect(name).assertEqual('liyi');
@@ -372,6 +389,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('inputAddress'));
       let address = await driver.findComponent(ON.id('inputAddress'));
       await address.inputText('shanghai');
+      inputMethodController.stopInputSession();
       let addressValue = await address.getText();
       Logger.info(TAG, `ClickSettingFunction_001 address:${addressValue}`);
       expect(addressValue).assertEqual('shanghai');
@@ -380,6 +398,7 @@ export default function abilityTest() {
       let phone = await driver.findComponent(ON.id('inputTelephone'));
       // 不符合规则号码
       await phone.inputText('12695874569');
+      inputMethodController.stopInputSession();
       let illegalPhoneNumber = await phone.getText();
       Logger.info(TAG, `ClickSettingFunction_001 illegalPhoneNumber:${illegalPhoneNumber}`);
       expect(illegalPhoneNumber).assertEqual('12695874569');
@@ -387,6 +406,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('inputMail'));
       let mail = await driver.findComponent(ON.id('inputMail'));
       await mail.inputText('1607365260@139.com');
+      inputMethodController.stopInputSession();
       let mailValue = await mail.getText();
       Logger.info(TAG, `ClickSettingFunction_001 mail:${mailValue}`);
       expect(mailValue).assertEqual('1607365260@139.com');
@@ -399,6 +419,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('confirm'));
       // 再次输入电话，输入符合规则号码
       await phone.inputText('17322305685');
+      inputMethodController.stopInputSession();
       let legalPhoneNumber = await phone.getText();
       Logger.info(TAG, `ClickSettingFunction_001 legalPhoneNumber:${legalPhoneNumber}`);
       expect(legalPhoneNumber).assertEqual('17322305685');
