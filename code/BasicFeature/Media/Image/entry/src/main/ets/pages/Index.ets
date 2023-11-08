@@ -15,6 +15,7 @@
 import { logger, readImage } from '@ohos/photomodify';
 import router from '@ohos.router';
 import GetPictures from '../pages/GetPictures';
+import common from '@ohos.app.ability.common';
 
 const TAG: string = '[Sample_Index]';
 
@@ -32,7 +33,7 @@ struct Index {
   private GetPictures: GetPictures = new GetPictures();
   scroller: Scroller = new Scroller();
 
-  terminateSelf(context: ESObject): void {
+  terminateSelf(context: common.UIAbilityContext): void {
     context.terminateSelf();
   }
 
@@ -59,7 +60,7 @@ struct Index {
           .objectFit(ImageFit.Contain)
           .onClick(() => {
             let context: Context = getContext(this);
-            this.terminateSelf(context);
+            this.terminateSelf(context as common.UIAbilityContext);
           })
 
         Text($r('app.string.publish_comments'))
