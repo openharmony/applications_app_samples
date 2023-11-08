@@ -60,6 +60,17 @@ export class KvStoreModel {
     Logger.info(TAG, `createKVManager end`)
   }
 
+  deleteKvStore() {
+    try {
+      if (this.kvManager !== undefined) {
+        Logger.info(TAG,'deleteKvStore success')
+        this.kvManager.deleteKVStore(BUNDLE_NAME,STORE_ID)
+      }
+    }catch (err){
+      Logger.error(TAG,'deleteKvStore error error is:'+JSON.stringify(err))
+    }
+  }
+
   put(key: string, value: string) {
     if (this.kvStore) {
       Logger.debug(TAG, `kvStore.put ${key} = ${value}`)
