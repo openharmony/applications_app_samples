@@ -325,7 +325,7 @@ class FriendMomentsData extends BasicDataSource<FriendMoment> {
 }
 
 // task任务池
-async function getFriendMomentByTaskPool(jsonUrl: ESObject): Promise<void> {
+async function getFriendMomentByTaskPool(jsonUrl: string): Promise<void> {
   // 初始化Task对象，传入待执行的方法和参数
   let task: taskpool.Task = new taskpool.Task(getWebData, jsonUrl);
   // 向任务池中添加新对象
