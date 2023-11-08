@@ -22,7 +22,7 @@ import Logger from './Logger';
 const TAG: string = '[HUKS]';
 const CHALLENG_LEN = 6;
 const ALWAYSVAILD = 4;
-const IV: string = '001122334455';
+const IV: string = (Math.floor(Math.random() * 1000000000000) + 1).toString();
 let cipherData: Uint8Array;
 let challengeNew = new Uint8Array(CHALLENG_LEN);
 
@@ -131,14 +131,6 @@ function uint8ArrayToString(fileData): string {
 function getAesEncryptProperties(properties): void {
   let index = 0;
   properties[index++] = {
-    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-    value: huks.HuksKeyAlg.HUKS_ALG_AES
-  };
-  properties[index++] = {
-    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128
-  };
-  properties[index++] = {
     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT
   };
@@ -160,14 +152,6 @@ function getAesEncryptProperties(properties): void {
 // AES解密密钥属性信息
 function getAesDecryptProperties(properties): void {
   let index = 0;
-  properties[index++] = {
-    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-    value: huks.HuksKeyAlg.HUKS_ALG_AES
-  };
-  properties[index++] = {
-    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256
-  };
   properties[index++] = {
     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
@@ -191,6 +175,16 @@ function getAesDecryptProperties(properties): void {
 function getAesGenerateProperties(properties): void {
   let index = 0;
   properties[index++] = {
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT |
+    huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+  };
+  return;
+}
+
+function getAesPublicProperties(properties) {
+  let index = 0;
+  properties[index++] = {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_AES
   };
@@ -198,12 +192,6 @@ function getAesGenerateProperties(properties): void {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
     value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128
   };
-  properties[index++] = {
-    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT |
-    huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
-  };
-  return;
 }
 
 // 导入SM4密钥属性信息
@@ -294,26 +282,28 @@ export class HuksModel {
     let aesKeyAlias = 'test_aesKeyAlias';
     let handle;
     let generateKeyProperties = new Array();
+    let publicProperties = new Array();
     getAesGenerateProperties(generateKeyProperties);
+    getAesPublicProperties(publicProperties);
     let generateKeyOptions = {
-      properties: generateKeyProperties
+      properties: publicProperties.concat(generateKeyProperties)
     };
     await huks.generateKeyItem(aesKeyAlias, generateKeyOptions).then((data) => {
       Logger.info(TAG, `generate key success, data: ${JSON.stringify(data)}`);
-    }).catch((err)=>{
+    }).catch((err) => {
       Logger.error(TAG, `generate key failed, ${JSON.stringify(err.code)}: ${JSON.stringify(err.message)}`);
     });
 
     let encryptProperties = new Array();
     getAesEncryptProperties(encryptProperties);
     let encryptOptions = {
-      properties:encryptProperties,
+      properties: publicProperties.concat(encryptProperties),
       inData: stringToUint8Array(plainText)
     };
     await huks.initSession(aesKeyAlias, encryptOptions).then((data) => {
       Logger.info(TAG, `encrypt initSession success, data: ${JSON.stringify(data)}`);
       handle = data.handle;
-    }).catch((err)=>{
+    }).catch((err) => {
       Logger.error(TAG, `encrypt initSession failed, ${JSON.stringify(err.code)}: ${JSON.stringify(err.message)}`);
     });
     await huks.finishSession(handle, encryptOptions).then((data) => {
@@ -321,7 +311,7 @@ export class HuksModel {
       cipherData = data.outData;
       let that = new util.Base64Helper();
       resultCallback(that.encodeToStringSync(cipherData));
-    }).catch((err)=>{
+    }).catch((err) => {
       Logger.error(TAG, `encrypt finishSession failed, ${JSON.stringify(err.code)}: ${JSON.stringify(err.message)}`);
       promptAction.showToast({
         message: `send message failed, ${JSON.stringify(err.code)}: ${JSON.stringify(err.message)}`,
@@ -333,11 +323,13 @@ export class HuksModel {
   // 模拟使用HUKS生成的新密钥进行解密
   async decryptData(resultCallback): Promise<void> {
     let decryptOptions = new Array();
+    let publicProperties = new Array();
     getAesDecryptProperties(decryptOptions);
+    getAesPublicProperties(publicProperties);
     let aesKeyAlias = 'test_aesKeyAlias';
     let handle;
     let options = {
-      properties: decryptOptions,
+      properties: publicProperties.concat(decryptOptions),
       inData: cipherData
     };
     let emptyOptions = {
@@ -362,7 +354,7 @@ export class HuksModel {
     });
     await huks.deleteKeyItem(aesKeyAlias, emptyOptions).then((data) => {
       Logger.info(TAG, `delete key success, data: ${JSON.stringify(data)}`);
-    }).catch((err)=>{
+    }).catch((err) => {
       Logger.error(TAG, `delete key failed, ${JSON.stringify(err.code)}: ${JSON.stringify(err.message)}`);
     });
   }
@@ -378,20 +370,20 @@ export class HuksModel {
     };
     await huks.generateKeyItem(sm2KeyAlias, generateKeyOptions).then((data) => {
       Logger.info(TAG, `generate key success, data: ${JSON.stringify(data)}`);
-    }).catch((err)=>{
+    }).catch((err) => {
       Logger.error(TAG, `generate key failed, ${JSON.stringify(err.code)}: ${JSON.stringify(err.message)}`);
     });
 
     let encryptProperties = new Array();
     getSm2EncryptProperties(encryptProperties);
     let encryptOptions = {
-      properties:encryptProperties,
+      properties: encryptProperties,
       inData: stringToUint8Array(plainText)
     };
     await huks.initSession(sm2KeyAlias, encryptOptions).then((data) => {
       Logger.info(TAG, `encrypt initSession success, data: ${JSON.stringify(data)}`);
       handle = data.handle;
-    }).catch((err)=>{
+    }).catch((err) => {
       Logger.error(TAG, `encrypt initSession failed, ${JSON.stringify(err.code)}: ${JSON.stringify(err.message)}`);
     });
     await huks.finishSession(handle, encryptOptions).then((data) => {
@@ -399,7 +391,7 @@ export class HuksModel {
       cipherData = data.outData;
       let that = new util.Base64Helper();
       resultCallback(that.encodeToStringSync(cipherData));
-    }).catch((err)=>{
+    }).catch((err) => {
       Logger.error(TAG, `encrypt finishSession failed, ${JSON.stringify(err.code)}: ${JSON.stringify(err.message)}`);
       promptAction.showToast({
         message: `send message failed, ${JSON.stringify(err.code)}: ${JSON.stringify(err.message)}`,
@@ -421,14 +413,14 @@ export class HuksModel {
     });
   }
 
-  async userIAMAuthFinger(finishSessionFunction, param) : Promise<void> {
+  async userIAMAuthFinger(finishSessionFunction, param): Promise<void> {
     Logger.info(TAG, '[HUKS->userIAM]start userAuth...');
-    const authParam : userAuth.AuthParam = {
+    const authParam: userAuth.AuthParam = {
       challenge: challengeNew,
       authType: [userAuth.UserAuthType.PIN],
       authTrustLevel: userAuth.AuthTrustLevel.ATL1
     };
-    const widgetParam :userAuth.WidgetParam = {
+    const widgetParam: userAuth.WidgetParam = {
       title: 'PIN'
     };
     try {
@@ -470,9 +462,9 @@ export class HuksModel {
     });
     let finishSessionFunction = this.finishSession;
     let param = {
-      handleParam : handle,
-      optionsParam : options,
-      resultCallbackParam : resultCallback,
+      handleParam: handle,
+      optionsParam: options,
+      resultCallbackParam: resultCallback,
     };
     await this.userIAMAuthFinger(finishSessionFunction, param);
   }
@@ -490,7 +482,7 @@ export class HuksModel {
     Logger.info(TAG, `key plain text: ${JSON.stringify(PLAIN_TEXT_SIZE_16)}`);
     await huks.importKeyItem(device1KeyAlias, importKeyOptions).then((data) => {
       Logger.info(TAG, `import key success, data: ${JSON.stringify(data)}`);
-    }).catch((err)=>{
+    }).catch((err) => {
       Logger.error(TAG, `import key failed, ${JSON.stringify(err.code)}: ${JSON.stringify(err.message)}`);
     });
 
@@ -498,14 +490,14 @@ export class HuksModel {
     let sm4EncryptProperties = new Array();
     getSm4EnryptProperties(sm4EncryptProperties);
     let sm4EncryptOptions = {
-      properties:sm4EncryptProperties,
+      properties: sm4EncryptProperties,
       inData: stringToUint8Array(plainText)
     };
     let handle;
     await huks.initSession(device1KeyAlias, sm4EncryptOptions).then((data) => {
       Logger.info(TAG, `encrypt initSession success, data: ${JSON.stringify(data)}`);
       handle = data.handle;
-    }).catch((err)=>{
+    }).catch((err) => {
       Logger.error(TAG, `encrypt initSession failed, ${JSON.stringify(err.code)}: ${JSON.stringify(err.message)}`);
     });
     await huks.finishSession(handle, sm4EncryptOptions).then((data) => {
@@ -513,7 +505,7 @@ export class HuksModel {
       cipherData = data.outData;
       let that = new util.Base64Helper();
       resultCallback(that.encodeToStringSync(cipherData));
-    }).catch((err)=>{
+    }).catch((err) => {
       Logger.error(TAG, `send message failed, ${JSON.stringify(err.code)}: ${JSON.stringify(err.message)}`);
       promptAction.showToast({
         message: `send message failed, ${JSON.stringify(err.code)}: ${JSON.stringify(err.message)}`,
@@ -527,7 +519,7 @@ export class HuksModel {
     };
     await huks.deleteKeyItem(device1KeyAlias, emptyOptions).then((data) => {
       Logger.info(TAG, `delete key success, data: ${JSON.stringify(data)}`);
-    }).catch((err)=>{
+    }).catch((err) => {
       Logger.error(TAG, `delete key failed, ${JSON.stringify(err.code)}: ${JSON.stringify(err.message)}`);
     });
   }
@@ -548,7 +540,7 @@ export class HuksModel {
         message: 'import old key success',
         duration: 1000,
       });
-    }).catch((err)=>{
+    }).catch((err) => {
       Logger.error(TAG, `import old key failed, ${JSON.stringify(err.code)}: ${JSON.stringify(err.message)}`);
       promptAction.showToast({
         message: `import old key failed, ${JSON.stringify(err.code)}: ${JSON.stringify(err.message)}`,
@@ -592,7 +584,7 @@ export class HuksModel {
     };
     await huks.deleteKeyItem(keyAlias, emptyOptions).then((data) => {
       Logger.info(TAG, `delete key success, data: ${JSON.stringify(data)}`);
-    }).catch((err)=>{
+    }).catch((err) => {
       Logger.error(TAG, `delete key failed, ${JSON.stringify(err.code)}: ${JSON.stringify(err.message)}`);
     });
   }
