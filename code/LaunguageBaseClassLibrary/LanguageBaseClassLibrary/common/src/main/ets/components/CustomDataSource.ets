@@ -20,8 +20,8 @@ class BasicDataSource implements IDataSource {
     return 0;
   }
 
-  public getData(index: number): ESObject {
-    return undefined;
+  public getData(index: number): Object {
+    return '';
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
