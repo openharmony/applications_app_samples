@@ -18,7 +18,7 @@ import prompt from '@ohos.prompt';
 import router from '@ohos.router';
 import TitleBar from '../../components/TitleBar';
 import Logger from '../../utils/Logger';
-import LazyDataSource from '../../utils/LazyDataSource';
+import LazyDataSource, { BaseData } from '../../utils/LazyDataSource';
 import OperationView from '../../components/OperationView';
 import ResourceUtil from '../../utils/ResourceUtil';
 
@@ -46,14 +46,14 @@ struct Language {
     Logger.info(TAG, `this.currentRegion = ${this.currentRegion}`);
     this.localLanguage = i18n.System.getSystemLanguage();
     Logger.info(TAG, `this.localLanguage = ${this.localLanguage}`);
-    let preferredLanguages: ESObject[] = [];
+    let preferredLanguages: BaseData[] = [];
     let preferredLanguageIds = i18n.System.getPreferredLanguageList();
     Logger.info(TAG, `this.preferredLanguageIds = ${JSON.stringify(preferredLanguageIds)}`);
     preferredLanguageIds.forEach(id => {
-      let item: ESObject = {
+      let item: BaseData = {
         id: id,
-        language: i18n.System.getDisplayLanguage(id, id),
-        country: i18n.System.getDisplayLanguage(id, this.localLanguage)
+        key: i18n.System.getDisplayLanguage(id, id),
+        value: i18n.System.getDisplayLanguage(id, this.localLanguage)
       }
       preferredLanguages.push(item);
     });
@@ -73,13 +73,13 @@ struct Language {
       }
       Row() {
         Column() {
-          Text($$.languageInfo.language)
+          Text($$.languageInfo.key)
             .fontSize(22)
             .margin({ top: 10, bottom: 10 })
             .fontColor($$.languageInfo.id === this.localLanguage ? $r('app.color.blue') : $r('app.color.black'))
 
           if ($$.languageInfo.id !== this.localLanguage) {
-            Text($$.languageInfo.country)
+            Text($$.languageInfo.value)
               .fontColor($r('app.color.gray'))
               .fontSize(22)
               .width('100%')
@@ -104,7 +104,7 @@ struct Language {
   LanguageView() {
     Column() {
       List() {
-        LazyForEach(this.preferredLanguages, (item: ESObject, index: number) => {
+        LazyForEach(this.preferredLanguages, (item: BaseData, index: number) => {
           ListItem() {
             this.LanguageItem(new Data(item, index, () => {
               if (item.id !== this.localLanguage) {
@@ -123,7 +123,7 @@ struct Language {
               }
             }))
           }
-        }, (item: ESObject) => item.language)
+        }, (item: BaseData) => item.key)
       }
     }
     .width('95%')
@@ -189,11 +189,11 @@ struct Language {
 }
 
 class Data {
-  languageInfo: ESObject = undefined;
+  languageInfo: BaseData = new BaseData();
   index: number = 0;
   handleClick: (event: ClickEvent) => void;
 
-  constructor(languageInfo: ESObject, index: number, handleClick: (event: ClickEvent) => void) {
+  constructor(languageInfo: BaseData, index: number, handleClick: (event: ClickEvent) => void) {
     this.languageInfo = languageInfo;
     this.index = index;
     this.handleClick = handleClick;
