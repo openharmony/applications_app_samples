@@ -18,6 +18,7 @@ import { notificationUtil, notificationContentUtil, notificationRequestUtil, wan
 import { logger } from '@ohos/details-page-component';
 import workScheduler from '@ohos.resourceschedule.workScheduler';
 import notification from '@ohos.notificationManager'
+import { ParametersObject } from '../utils/TypeClass';
 
 const TAG: string = 'WorkAbility';
 const BUNDLE_NAME: string = 'ohos.samples.orangeshopping';
@@ -37,8 +38,8 @@ export default class WorkAbility extends WorkSchedulerExtensionAbility {
     notificationUtil.cancelNotificationById(1);
   }
 
-  async publishNotification(parameters: ESObject): Promise<void> {
-    let parametersObject: ESObject = JSON.parse(parameters);
+  async publishNotification(parameters: Object): Promise<void> {
+    let parametersObject: ParametersObject = JSON.parse(JSON.stringify(parameters));
     logger.info(TAG, `publishNotification parametersObject= ${parametersObject}`);
     let basicContent: notification.NotificationBasicContent = {
       title: parametersObject.title,

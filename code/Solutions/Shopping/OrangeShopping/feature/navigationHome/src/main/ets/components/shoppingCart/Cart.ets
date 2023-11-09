@@ -19,7 +19,7 @@ import { PRODUCT_DATA } from '../../mock/ProductsData';
 @Component
 export struct Cart {
   @StorageProp('curBp') curBp: string = 'sm';
-  @Link shoppingCartGoodsListToCart: ProductDataModel[] | undefined;
+  @Link shoppingCartGoodsListToCart: number[] | undefined;
 
   build() {
     Column() {
@@ -44,7 +44,7 @@ export struct Cart {
       }
       .width('100%')
 
-      ForEach(this.shoppingCartGoodsListToCart ? this.shoppingCartGoodsListToCart : [], (item: ESObject) => {
+      ForEach(this.shoppingCartGoodsListToCart ? this.shoppingCartGoodsListToCart : [], (item: number) => {
         Row() {
           Toggle({ type: ToggleType.Checkbox })
             .width(20)
@@ -112,7 +112,7 @@ export struct Cart {
           })
         }
         .width('100%')
-      }, (item: ESObject): string => {
+      }, (item: number): string => {
         return item.toString();
       })
     }

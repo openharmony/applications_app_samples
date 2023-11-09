@@ -45,7 +45,7 @@ export struct GoodsList {
         y: vp2px(8)
       },
     }) {
-      ForEach(this.getDataFromHttp ? this.productsData.data.records : PRODUCT_DATA, (item: ESObject) => {
+      ForEach(this.getDataFromHttp ? this.productsData.data.records : PRODUCT_DATA, (item: Info | ProductDataModel) => {
         GridCol({
           span: {
             sm: 6,
@@ -78,7 +78,7 @@ export struct GoodsList {
                   top: 6
                 })
 
-              Text(item.price)
+              Text(item.price as Resource)
                 .fontColor($r('app.color.pink'))
                 .fontSize(16)
                 .margin({
@@ -120,7 +120,7 @@ export struct GoodsList {
             })
           })
         }
-      }, (item: ESObject): string => item.id.toString())
+      }, (item: Info | ProductDataModel): string => item.id.toString())
     }
     .padding({
       left: 12,

@@ -18,6 +18,7 @@ import prompt from '@ohos.promptAction';
 import workScheduler from '@ohos.resourceschedule.workScheduler';
 import { logger } from '../utils/Logger';
 import { ButtonDialogBuilder } from '@ohos/sharecomponent';
+import { ProductDataModel } from '../../../../../navigationHome/src/main/ets/model/GoodsModel'
 
 const SRC_IMG: string = 'https://res5.vmallres.com/pimages/uomcdn/CN/pms/202207/gbom/6941487270880/428_428_1142FAB7EA4DCBDD8C64BF54486A7D4Bmp.png';
 const TAG: string = 'Information';
@@ -25,7 +26,7 @@ const TAG: string = 'Information';
 @Component
 export struct Information {
   @State collected: boolean = false;
-  private data: ESObject[] = (router.getParams() as Record<string, Object>)['goodItem'] as ESObject;
+  private data: ProductDataModel = (router.getParams() as Record<string, ProductDataModel>)['goodItem'];
   @State recommend: string = '';
   @State commodity: string = '';
 
@@ -42,13 +43,13 @@ export struct Information {
   build() {
     Column() {
       Text() {
-        Span(this.data['price'])
+        Span(this.data.price)
           .fontSize(20)
           .fontColor($r('app.color.pink'))
       }
       .fontWeight(500)
 
-      Text(this.data['title'])
+      Text(this.data.title)
         .fontSize(16)
         .margin({ top: 4 })
       Row() {

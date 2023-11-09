@@ -24,6 +24,7 @@ import { VideoPage } from '../components/VideoPage';
 import { SmallVideo } from '../components/SmallVideo';
 import { SWIPER_PICTURE_DATA } from '../mock/DetailData';
 import { ButtonDialogBuilder } from '@ohos/sharecomponent';
+import { ProductDataModel } from '../../../../../navigationHome/src/main/ets/model/GoodsModel'
 
 const SRC_IMG: string = 'https://res5.vmallres.com/pimages/uomcdn/CN/pms/202207/gbom/6941487270880/428_428_1142FAB7EA4DCBDD8C64BF54486A7D4Bmp.png';
 
@@ -31,7 +32,7 @@ const SRC_IMG: string = 'https://res5.vmallres.com/pimages/uomcdn/CN/pms/202207/
 export struct DetailPage {
   @State sOpacity: number = 1;
   @State isPanel: boolean = false;
-  @State goodDetailData: ESObject[] = (router.getParams() as Record<string,Object>)['goodItem'] as ESObject;
+  @State goodDetailData: ProductDataModel = (router.getParams() as Record<string, ProductDataModel>)['goodItem'];
   @State currentLocation: string = '';
   @State recommend: string = '';
   @State commodity: string = '';
@@ -58,11 +59,11 @@ export struct DetailPage {
           Column({ space: 12 }) {
             Stack({ alignContent: Alignment.BottomEnd }) {
               Swiper() {
-                VideoPage({ isStart: $openFirst, coverUrl: this.goodDetailData['uri'] })
+                VideoPage({ isStart: $openFirst, coverUrl: this.goodDetailData.uri as string })
                   .id('VideoPage');
                 ForEach(SWIPER_PICTURE_DATA, () => {
                   Column() {
-                    Image(this.goodDetailData['uri'])
+                    Image(this.goodDetailData.uri)
                       .objectFit(ImageFit.Contain);
                   }
                   .aspectRatio(1.12)
@@ -105,7 +106,7 @@ export struct DetailPage {
             }
             .padding({ left: 12, right: 12 });
           }
-          .id('goodsDetail' + this.goodDetailData['id'])
+          .id('goodsDetail' + this.goodDetailData.id)
           .width('100%');
         }
         .width('100%')
@@ -202,7 +203,7 @@ export struct DetailPage {
         });
 
         Column() {
-          Image(this.goodDetailData['uri'])
+          Image(this.goodDetailData.uri)
             .borderRadius(this.animateScale ? 1000 : 0)
             .transition(TransitionEffect.OPACITY);
         }
@@ -227,9 +228,9 @@ export struct DetailPage {
       // 通过isShowImage变量开关控制页面跳转动效，默认为true
       if (this.isShowImage) {
         Column() {
-          Image(this.goodDetailData['uri'])
+          Image(this.goodDetailData.uri)
             .objectFit(ImageFit.Contain)
-            .sharedTransition('goods' + this.goodDetailData['id'], { duration: 600, curve: Curve.Linear, delay: 100 })
+            .sharedTransition('goods' + this.goodDetailData.id, { duration: 600, curve: Curve.Linear, delay: 100 })
             .onComplete(() => {
               setTimeout(() => {
                 this.isShowImage = false;

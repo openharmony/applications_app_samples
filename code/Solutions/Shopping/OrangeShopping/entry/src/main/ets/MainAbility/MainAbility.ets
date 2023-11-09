@@ -19,6 +19,9 @@ import { notificationUtil } from '@ohos/notification';
 import { QRCodeScanConst } from '@ohos/scan-component';
 import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
 import  Want from '@ohos.app.ability.Want';
+import window from '@ohos.window';
+import common from '@ohos.app.ability.common';
+import { EventData } from '../utils/TypeClass';
 
 const TAG: string = 'MainAbility';
 const EVENT: string = 'getAbilityData';
@@ -37,7 +40,8 @@ const CAMERA_STATUS_STR: string = 'cameraStatus';
 export default class MainAbility extends UIAbility {
   onCreate(want: Want): void {
     logger.info(TAG, 'onCreate');
-    this.context.eventHub.on(EVENT, (data: ESObject) => {
+    
+    this.context.eventHub.on(EVENT, (data: EventData) => {
       data.context = this.context;
       data.launchWant = want;
     });
@@ -61,11 +65,11 @@ export default class MainAbility extends UIAbility {
     logger.info(TAG, 'onDestroy');
   }
 
-  onWindowStageCreate(windowStage: ESObject): void {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability
     logger.info(TAG, 'onWindowStageCreate');
 
-    windowStage.setUIContent(this.context, INDEX_UIL, null);
+    windowStage.loadContent(INDEX_UIL);
   }
 
   onWindowStageDestroy(): void {

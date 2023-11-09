@@ -40,7 +40,7 @@ struct HomePage {
   private smListener: mediaquery.MediaQueryListener | undefined = undefined;
   private mdListener: mediaquery.MediaQueryListener | undefined = undefined;
   private lgListener: mediaquery.MediaQueryListener | undefined = undefined;
-  @StorageLink(SHOPPING_CART_COODS_LIST) shoppingCartGoodsList: EventsData[] = [];
+  @StorageLink(SHOPPING_CART_COODS_LIST) shoppingCartGoodsList: number[] = [];
   private emitterClass: EmitterClass = new EmitterClass();
   EventsDialogController: CustomDialogController = new CustomDialogController({
     builder: EventsDialog(),
@@ -66,9 +66,9 @@ struct HomePage {
         this.EventsDialogController.open();
       }
     });
-    this.emitterClass.setShoppingCartGoodsList((eventData: ESObject) => {
+    this.emitterClass.setShoppingCartGoodsList((eventData: EventsData) => {
       this.shoppingCartGoodsList.push(eventData.data.id)
-      AppStorage.setOrCreate<EventsData[]>(SHOPPING_CART_COODS_LIST, this.shoppingCartGoodsList)
+      AppStorage.setOrCreate<number[]>(SHOPPING_CART_COODS_LIST, this.shoppingCartGoodsList)
     });
     this.smListener = mediaquery.matchMediaSync(SMALL_WIDTH);
     this.smListener.on('change', this.isBreakpointSM);
