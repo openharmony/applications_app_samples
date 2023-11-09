@@ -98,6 +98,11 @@ struct Index {
     }
   }
 
+  aboutToDisappear() {
+    Logger.info(TAG, `index disappear`)
+    this.kvStoreModel.deleteKvStore()
+  }
+
   async aboutToAppear() {
     this.listener.on('change', this.onLand)
     let context = getContext(this) as common.UIAbilityContext

@@ -23,7 +23,7 @@ const STORE_ID: string = 'distributedcalc'
 
 export class KvStoreModel {
   public kvManager: distributedData.KVManager | undefined = undefined
-  public kvStore: distributedData.DeviceKVStore | undefined = undefined
+  public kvStore: distributedData.SingleKVStore | undefined = undefined
 
   async createKvStore(context: common.BaseContext, callback: Callback<void>) {
     if ((typeof (this.kvStore) !== 'undefined')) {
@@ -46,18 +46,29 @@ export class KvStoreModel {
       encrypt: false,
       backup: false,
       autoSync: true,
-      kvStoreType: 1,
+      kvStoreType: distributedData.KVStoreType.DEVICE_COLLABORATION,
       securityLevel: distributedData.SecurityLevel.S1
     };
     Logger.info(TAG, `kvManager.getKVStore begin`);
     if (this.kvManager !== undefined) {
-      this.kvManager.getKVStore(STORE_ID, options, (err, store: distributedData.DeviceKVStore) => {
+      this.kvManager.getKVStore(STORE_ID, options, (err, store: distributedData.SingleKVStore) => {
         Logger.info(TAG, `getKVStore success, kvStore= ${store}`);
         this.kvStore = store;
         callback();
       })
     }
     Logger.info(TAG, `createKVManager end`)
+  }
+
+  deleteKvStore() {
+    try {
+      if (this.kvManager !== undefined) {
+        Logger.info(TAG,'deleteKvStore success')
+        this.kvManager.deleteKVStore(BUNDLE_NAME,STORE_ID)
+      }
+    }catch (err){
+      Logger.error(TAG,'deleteKvStore error error is:'+JSON.stringify(err))
+    }
   }
 
   put(key: string, value: string) {
@@ -79,7 +90,7 @@ export class KvStoreModel {
     this.createKvStore(context, () => {
       Logger.info(TAG, `kvStore.on(dataChange) begin`);
       if (this.kvStore !== null) {
-        this.kvStore!.on('dataChange', 1, (data) => {
+        this.kvStore!.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (data) => {
           Logger.debug(TAG, `dataChange, ${JSON.stringify(data)}`);
           let entries = data.insertEntries.length > 0 ? data.insertEntries : data.updateEntries;
           for (let i = 0; i < entries.length; i++) {
