@@ -291,8 +291,6 @@ export default function appTest() {
       await checkButtonAndClickWithID('HeaderSample')
       await driver.pressBack()
       await driver.delayMs(1000)
-      await driver.pressBack();
-      await driver.delayMs(1000);
       // 点击广告栏
       await checkButtonAndClickWithID('BannerSample')
       // swiper滑动

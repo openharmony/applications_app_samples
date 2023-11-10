@@ -17,6 +17,7 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 import { describe, it, expect } from '@ohos/hypium';
 import { Driver, ON, Component, MatchPattern } from '@ohos.UiTest';
 import { logger } from '../util/Logger';
+import inputMethod from '@ohos.inputMethod';
 
 const TAG = '[Sample_DistributedRdb]';
 const BUNDLE = 'DistributedRdb_';
@@ -133,19 +134,24 @@ export default function abilityTest() {
       // 添加联系人数据
       await driver.assertComponentExist(ON.text('性别', MatchPattern.CONTAINS));
       let inputTexts: Component[] = await driver.findComponents(ON.type('TextInput'));
+      let inputMethodController = inputMethod.getController();
       await inputTexts[0].inputText('name1');
+      inputMethodController.stopInputSession();
       let nameValue = await inputTexts[0].getText();
       logger.info(TAG, `AddContactFunction_001 name:${nameValue}`);
       expect(nameValue).assertEqual('name1');
       await inputTexts[1].inputText('13300000000');
+      inputMethodController.stopInputSession();
       let phoneValue = await inputTexts[1].getText();
       logger.info(TAG, `AddContactFunction_001 phone:${phoneValue}`);
       expect(phoneValue).assertEqual('13300000000');
       await inputTexts[2].inputText('remark1');
+      inputMethodController.stopInputSession();
       let remarkValue = await inputTexts[2].getText();
       logger.info(TAG, `AddContactFunction_001 remark:${remarkValue}`);
       expect(remarkValue).assertEqual('remark1');
       await inputTexts[3].inputText('11');
+      inputMethodController.stopInputSession();
       let ageValue = await inputTexts[3].getText();
       logger.info(TAG, `AddContactFunction_001 age:${ageValue}`);
       expect(ageValue).assertEqual('11');
@@ -172,7 +178,9 @@ export default function abilityTest() {
       await driver.delayMs(1000)
       await driver.assertComponentExist(ON.type('TextInput'));
       let input: Component = await driver.findComponent(ON.type('TextInput'));
+      let inputMethodController = inputMethod.getController();
       await input.inputText('133');
+      inputMethodController.stopInputSession();
       let inputValue = await input.getText();
       logger.info(TAG, `AddContactConflictFunction_001 input:${inputValue}`);
       expect(inputValue).assertEqual('133');
@@ -201,19 +209,24 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text('性别', MatchPattern.CONTAINS));
       await driver.assertComponentExist(ON.type('TextInput'));
       let inputTexts: Component[] = await driver.findComponents(ON.type('TextInput'));
+      let inputMethodController = inputMethod.getController();
       await inputTexts[0].inputText('zhangsan');
+      inputMethodController.stopInputSession();
       let nameValue = await inputTexts[0].getText();
       logger.info(TAG, `AddContactConflictFunction_001 name:${nameValue}`);
       expect(nameValue).assertEqual('zhangsan');
       await inputTexts[1].inputText('12345678901');
+      inputMethodController.stopInputSession();
       let phoneValue = await inputTexts[1].getText();
       logger.info(TAG, `AddContactConflictFunction_001 phone:${phoneValue}`);
       expect(phoneValue).assertEqual('12345678901');
       await inputTexts[2].inputText('remark1');
+      inputMethodController.stopInputSession();
       let remarkValue = await inputTexts[2].getText();
       logger.info(TAG, `AddContactConflictFunction_001 remark:${remarkValue}`);
       expect(remarkValue).assertEqual('remark1');
       await inputTexts[3].inputText('18');
+      inputMethodController.stopInputSession();
       let ageValue = await inputTexts[3].getText();
       logger.info(TAG, `AddContactConflictFunction_001 age:${ageValue}`);
       expect(ageValue).assertEqual('18');
@@ -232,18 +245,22 @@ export default function abilityTest() {
 
       let inputTexts1: Component[] = await driver.findComponents(ON.type('TextInput'));
       await inputTexts1[0].inputText('lisi');
+      inputMethodController.stopInputSession();
       let name = await inputTexts1[0].getText();
       logger.info(TAG, `AddContactConflictFunction_001 name:${name}`);
       expect(name).assertEqual('lisi');
       await inputTexts1[1].inputText('12345678901'); // 电话号码和zhangsan一样
+      inputMethodController.stopInputSession();
       let phone = await inputTexts1[1].getText();
       logger.info(TAG, `AddContactConflictFunction_001 phone:${phone}`);
       expect(phone).assertEqual('12345678901');
       await inputTexts1[2].inputText('remark2');
+      inputMethodController.stopInputSession();
       let remark = await inputTexts1[2].getText();
       logger.info(TAG, `AddContactConflictFunction_001 remark:${remark}`);
       expect(remark).assertEqual('remark2');
       await inputTexts1[3].inputText('25');
+      inputMethodController.stopInputSession();
       let age = await inputTexts1[3].getText();
       logger.info(TAG, `AddContactConflictFunction_001 age:${age}`);
       expect(age).assertEqual('25');
@@ -263,6 +280,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.type('TextInput'));
       let input: Component = await driver.findComponent(ON.type('TextInput'));
       await input.inputText('12345678901');
+      inputMethodController.stopInputSession();
       let inputValue = await input.getText();
       logger.info(TAG, `AddContactConflictFunction_001 input:${inputValue}`);
       expect(inputValue).assertEqual('12345678901');

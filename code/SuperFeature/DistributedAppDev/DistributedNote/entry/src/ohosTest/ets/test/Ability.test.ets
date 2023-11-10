@@ -17,6 +17,7 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON } from '@ohos.UiTest';
 import hilog from '@ohos.hilog';
+import inputMethod from '@ohos.inputMethod';
 
 const TAG = '[Sample_DistributedNote]';
 const DOMAIN = 0xF811;
@@ -145,14 +146,17 @@ export default function appTest() {
     it(BUNDLE + 'EditFunction_001', 0, async function () {
       hilog.info(DOMAIN, TAG, BUNDLE + 'EditFunction_001 begin');
       // 输入标题
+      let inputMethodController = inputMethod.getController();
       await DRIVER.assertComponentExist(ON.id('titleInput'));
       let title = await DRIVER.findComponent(ON.id('titleInput'));
       await title.inputText('music');
+      inputMethodController.stopInputSession();
       hilog.info(DOMAIN, TAG, BUNDLE + 'EditFunction_001 inputContent');
       // 输入内容
       await DRIVER.assertComponentExist(ON.id('contentInput'));
       let content = await DRIVER.findComponent(ON.id('contentInput'));
       await content.inputText('this is a folk music');
+      inputMethodController.stopInputSession();
       hilog.info(DOMAIN, TAG, BUNDLE + 'EditFunction_001 clickSaveNote');
       // 点击保存
       await DRIVER.assertComponentExist(ON.id('saveNote'));
@@ -171,14 +175,17 @@ export default function appTest() {
       let noteData = await DRIVER.findComponent(ON.id('music'));
       await noteData.click();
       // 输入标题
+      let inputMethodController = inputMethod.getController();
       await DRIVER.assertComponentExist(ON.id('titleInput'));
       let title = await DRIVER.findComponent(ON.id('titleInput'));
       await title.inputText('book');
+      inputMethodController.stopInputSession();
       hilog.info(DOMAIN, TAG, BUNDLE + 'SaveNoteFunction_001 inputContent');
       // 输入内容
       await DRIVER.assertComponentExist(ON.id('contentInput'));
       let content = await DRIVER.findComponent(ON.id('contentInput'));
       await content.inputText('this is a history book');
+      inputMethodController.stopInputSession();
       hilog.info(DOMAIN, TAG, BUNDLE + 'SaveNoteFunction_001 clickSaveNote');
       // 点击保存
       await DRIVER.assertComponentExist(ON.id('saveNote'));
