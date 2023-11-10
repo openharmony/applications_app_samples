@@ -15,22 +15,8 @@
  
 {
   "app": {
-    "signingConfigs": [
-      {
-        "name": "default",
-        "material": {
-          "certpath": "C:\\Users\\ts\\.ohos\\config\\openharmony\\auto_ohos_default_Camera_com.example.myapplication.cer",
-          "storePassword": "0000001B314B667D63DC209D0B484B0AD835545409E1B56B008C7BF3062495F7418A6F4985FB92405FEDE9",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001B4DEE32E9ECEAD70B11B1A2130451321D8FC2EA4AFADA4D9933C598729B68FB7AB03284D022D10C",
-          "profile": "C:\\Users\\ts\\.ohos\\config\\openharmony\\auto_ohos_default_Camera_com.example.myapplication.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\ts\\.ohos\\config\\openharmony\\auto_ohos_default_Camera_com.example.myapplication.p12"
-        }
-      }
-    ],
-    "compileSdkVersion": 9,
-    "compatibleSdkVersion": 9,
+    "compileSdkVersion": 10,
+    "compatibleSdkVersion": 10,
     "products": [
       {
         "name": "default",
