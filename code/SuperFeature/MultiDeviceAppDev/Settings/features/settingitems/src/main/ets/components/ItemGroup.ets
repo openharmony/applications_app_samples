@@ -15,11 +15,13 @@
 
 @Component
 export struct ItemGroup {
-  @BuilderParam noParam: () => void
+  @BuilderParam noParam?: () => void;
 
   build() {
     Column() {
-      this.noParam()
+      if(this.noParam != null && this.noParam != undefined){
+        this.noParam();
+      }
     }
     .width('100%')
     .borderRadius(24)
