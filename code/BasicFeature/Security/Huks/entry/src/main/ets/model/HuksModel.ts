@@ -23,6 +23,8 @@ import restrictions from '@ohos.enterprise.restrictions';
 const TAG: string = '[HUKS]';
 const CHALLENG_LEN = 6;
 const ALWAYSVAILD = 4;
+const ENCODEINTO_BUFFER = 20;
+const DECRYPT_BYTE = 16;
 const IV: string = (Math.floor(Math.random() * 1000000000000) + 1).toString();
 let NONCE = '123456789012';
 let AAD = '124567890123456';
@@ -30,6 +32,7 @@ let AEAD = '124567890123456';
 let cipherData: Uint8Array;
 let cipherDataString: string;
 let challengeNew = new Uint8Array(CHALLENG_LEN);
+
 
 // 密钥明文
 let PLAIN_TEXT_SIZE_16 = new Uint8Array([
@@ -54,21 +57,21 @@ function uint8ArrayToString(fileData): string {
 }
 
 function base64ToArrayBuffer(info): Uint8Array {
-  return new util.Base64().decodeSync(info)
+  return new util.Base64().decodeSync(info);
 }
 
 function base64ToString(byte): string {
-  return new util.Base64().encodeToStringSync(byte)
+  return new util.Base64().encodeToStringSync(byte);
 }
 
 function encodeInto(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
-  let buffer = new ArrayBuffer(20);
-  let result = new Uint8Array(buffer)
+  let buffer = new ArrayBuffer(ENCODEINTO_BUFFER);
+  let result = new Uint8Array(buffer);
   result = textEncoder.encodeInto(str);
 
-  console.info("retStr==" + result)
-  return result
+  console.info('retStr==' + result);
+  return result;
 }
 
 // 生成Sm2密钥属性信息
@@ -211,7 +214,7 @@ function getAesDecryptProperties(properties, info): void {
   };
   properties[index++] = {
     tag: huks.HuksTag.HUKS_TAG_AE_TAG,
-    value: t.slice(t.length - 16)
+    value: t.slice(t.length - DECRYPT_BYTE)
   };
   properties[index++] = {
     tag: huks.HuksTag.HUKS_TAG_IV,
@@ -364,12 +367,12 @@ export class HuksModel {
     }).catch((err) => {
       Logger.error(TAG, `encrypt initSession failed, ${JSON.stringify(err.code)}: ${JSON.stringify(err.message)}`);
     });
-    encryptOptions.inData = encodeInto(plainText)
+    encryptOptions.inData = encodeInto(plainText);
 
     await huks.finishSession(handle, encryptOptions).then((data) => {
       Logger.info(TAG, `encrypt finishSession success, data: ${JSON.stringify(data)}`);
       cipherData = data.outData;
-      cipherDataString = base64ToString(cipherData)
+      cipherDataString = base64ToString(cipherData);
       let that = new util.Base64Helper();
       resultCallback(that.encodeToStringSync(cipherData));
     }).catch((err) => {
@@ -389,7 +392,7 @@ export class HuksModel {
     getAesPublicProperties(publicProperties);
     let aesKeyAlias = 'test_aesKeyAlias';
     let handle;
-    let t = base64ToArrayBuffer(cipherDataString)
+    let t = base64ToArrayBuffer(cipherDataString);
     let options = {
       properties: publicProperties.concat(decryptOptions),
       inData: base64ToArrayBuffer(cipherDataString)
@@ -404,7 +407,7 @@ export class HuksModel {
     }).catch((err) => {
       Logger.error(TAG, `decrypt initSession failed, ${JSON.stringify(err.code)}: ${JSON.stringify(err.message)}`);
     });
-    options.inData = base64ToArrayBuffer(cipherDataString).slice(0, t.length - 16);
+    options.inData = base64ToArrayBuffer(cipherDataString).slice(0, t.length - DECRYPT_BYTE);
 
     await huks.finishSession(handle, options).then((data) => {
       Logger.info(TAG, `decrypt finishSession success, data: ${JSON.stringify(data)}`);
