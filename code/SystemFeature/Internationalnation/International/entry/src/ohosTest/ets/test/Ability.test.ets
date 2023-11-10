@@ -167,7 +167,7 @@ export default function abilityTest() {
       // 进入时间和日期页面
       await driver.delayMs(1000);
       await checkButtonAndClickWithText(getString($r('app.string.format_example')));
-      await driver.assertComponentExist(ON.text('1234567'));
+      await driver.assertComponentExist(ON.text('1,234,567'));
       Logger.info(TAG, BUNDLE + 'TimeZone_003 end');
       await driver.pressBack();
       done();

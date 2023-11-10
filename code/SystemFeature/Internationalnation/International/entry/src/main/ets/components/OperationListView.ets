@@ -12,12 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import LazyDataSource from '../utils/LazyDataSource';
+import LazyDataSource, { BaseData } from '../utils/LazyDataSource';
 
 @Component
 export default struct OperationListView {
   private title: string | Resource = '';
-  private operations: Array<Operation> = [];
+  private operations: Array<BaseData> = [];
   private handleItemClick: (index: number) => void = () => {};
   private operationData: LazyDataSource = new LazyDataSource();
 
@@ -65,11 +65,11 @@ export default struct OperationListView {
         .fontColor($r('app.color.gray'))
       Column() {
         List() {
-          LazyForEach(this.operationData, (item: ESObject, index: number) => {
+          LazyForEach(this.operationData, (item: BaseData, index: number) => {
             ListItem() {
               this.OperationItem(new Data(item, index));
             }
-          }, (item: ESObject) => item.key)
+          }, (item: BaseData) => item.key)
         }
       }
       .width('95%')
@@ -81,16 +81,11 @@ export default struct OperationListView {
   }
 }
 
-class Operation {
-  key: string = '';
-  value: string = '';
-}
-
 class Data {
-  operationInfo: Operation = new Operation();
+  operationInfo: BaseData = new BaseData();
   index: number = 0;
 
-  constructor(operationInfo: Operation, index: number) {
+  constructor(operationInfo: BaseData, index: number) {
     this.operationInfo = operationInfo;
     this.index = index;
   }
