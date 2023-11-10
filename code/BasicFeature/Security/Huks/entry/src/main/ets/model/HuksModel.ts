@@ -191,7 +191,7 @@ function getAesEncryptProperties(properties): void {
 // AES解密密钥属性信息
 function getAesDecryptProperties(properties, info): void {
   let index = 0;
-  let t = base64ToArrayBuffer(info)
+  let t = base64ToArrayBuffer(info);
   properties[index++] = {
     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
