@@ -4,7 +4,7 @@
 
 本示例展示了在eTS中分布式数据管理的使用，包括KVManager对象实例的创建和KVStore数据流转的使用。  
 
-通过设备管理接口[@ohos.distributedHardware.deviceManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-device-manager.md) ，实现设备之间的kvStore对象的数据传输交互，该对象拥有以下能力[详见](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-device-manager.md) ;  
+通过设备管理接口[@ohos.distributedDeviceManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-distributedDeviceManager.md) ，实现设备之间的kvStore对象的数据传输交互，该对象拥有以下能力[详见](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-distributedDeviceManager.md) ;  
 1、注册和解除注册设备上下线变化监听  
 2、发现周边不可信设备  
 3、认证和取消认证设备  
@@ -73,7 +73,7 @@ entry/src/main/ets/
 
 4.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)及以上版本才可编译运行。
 
-3.本示例需要使用[@ohos.distributedHardware.deviceManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-device-manager.md) 系统权限的系统接口。
+3.本示例需要使用[@ohos.distributedDeviceManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-distributedDeviceManager.md) 系统权限的系统接口。
 
 ### 下载
 
