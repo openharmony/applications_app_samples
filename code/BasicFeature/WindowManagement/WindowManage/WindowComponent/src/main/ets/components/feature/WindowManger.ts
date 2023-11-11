@@ -15,6 +15,7 @@
 
 import window from '@ohos.window';
 import emitter from '@ohos.events.emitter';
+import display from '@ohos.display';
 import Logger from '../util/Logger';
 import { WindowColor, WindowEventId } from '../util/WindowConst';
 
@@ -25,7 +26,7 @@ const windowPoint = {
 const WIDTH = 320;
 const HEIGHT = 240;
 const MOVE_X = 10;
-const MOVE_Y = 500;
+let MOVE_Y = 500;
 
 class WindowType {
   moveToWidth: number;
@@ -35,17 +36,25 @@ class WindowType {
   resetSizeHeight: number;
   setPrivacyMode: boolean;
   setBrightness: number;
-}
+};
 
 class WindowManger {
   private tag: string = 'WindowManger';
+  private startX: number = 0; // 窗口移动的起始坐标X
+  private startY: number = 0; // 窗口移动的起始坐标Y
+  private endX: number = MOVE_X; // 窗口移动的结束坐标X
+  private endY: number = MOVE_Y; // 窗口移动的结束坐标Y
+  private distanceX: number = 0; // 窗口在X轴上移动距离
+  private distanceY: number = 0; // 窗口在Y轴上移动距离
+  private windowWidth: number = 0; // 当前窗口宽度
+  private windowHeight: number = 0; // 当前窗口高度
 
   initMainWindow(windowStage: window.WindowStage) {
     windowStage.getMainWindow((err, data) => {
       if (err.code) {
         Logger.error(this.tag, 'Failed to obtain the main window. Cause: ' + JSON.stringify(err));
         return;
-      }
+      };
       let mainWindow = data;
       // 窗口规避区域
       mainWindow.on('avoidAreaChange', ({type, area}) => {
@@ -67,6 +76,16 @@ class WindowManger {
       // 加载状态变量
       mainWindow.setSystemBarProperties(sysBarProps);
     });
+
+    try {
+      const displayClass = display.getDefaultDisplaySync();
+      this.windowWidth = displayClass.width;
+      this.windowHeight = displayClass.height;
+      MOVE_Y = this.windowHeight / 2;
+      this.endY = MOVE_Y;
+    } catch (err) {
+      Logger.error('Failed to obtain the default display object. Code: ' + JSON.stringify(err));
+    };
   }
 
   async initSubWindow(windowStage: window.WindowStage, windowAttribute: WindowType) {
@@ -110,7 +129,7 @@ class WindowManger {
       });
     } catch (exception) {
       console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
-    }
+    };
 
     try {
       windowStage.on('windowStageEvent', (data) => {
@@ -123,7 +142,7 @@ class WindowManger {
     };
 
     Logger.info('show');
-    subWindow.resize(WIDTH, HEIGHT);
+    subWindow.resize(vp2px(WIDTH), vp2px(HEIGHT));
     subWindow.moveWindowTo(MOVE_X, MOVE_Y); // 移动至坐标x为10，y为500的位置
     subWindow.setUIContent('pages/SubWindowPage');
     subWindow.setWindowTouchable(true);
@@ -132,36 +151,59 @@ class WindowManger {
     // onTouch的坐标绑定
     let innerEvent = {
       eventId: WindowEventId.SUB_WINDOW_INNER_EVENT_ID
-    }
+    };
     let callback = (eventData) => {
       Logger.info(this.tag, 'onTouchEventData' + eventData.data.x);
-      subWindow.moveWindowTo(windowPoint.x + eventData.data.x, windowPoint.y + eventData.data.y)
-    }
-    emitter.on(innerEvent, callback)
+      if (!this.startX || !this.startY || eventData.data.type === 0) {
+        this.startX = eventData.data.x;
+        this.startY = eventData.data.y;
+        return;
+      };
+      this.distanceX = eventData.data.x - this.startX;
+      this.distanceY = eventData.data.y - this.startY;
+      this.endX += vp2px(this.distanceX);
+      this.endY += vp2px(this.distanceY);
+      this.startX = eventData.data.x;
+      this.startY = eventData.data.y;
+      if (this.endX > 0 && this.endX < this.windowWidth - vp2px(WIDTH) && this.endY > AppStorage.get('topHeight')
+        && this.endY < this.windowHeight - vp2px(HEIGHT)) {
+        subWindow.moveWindowTo(this.endX, this.endY);
+      };
+    };
+    emitter.on(innerEvent, callback);
   }
 
   async setSubWindowAttribute(windowStage: window.WindowStage, windowAttribute: WindowType) {
-    let subWindow: window.Window = await windowStage.getMainWindow()
-    await subWindow.moveWindowTo(windowAttribute.moveToWidth, windowAttribute.moveToHeight)
+    let subWindow: window.Window = await windowStage.getMainWindow();
+    await subWindow.moveWindowTo(windowAttribute.moveToWidth, windowAttribute.moveToHeight);
     // 设置子窗口为可触状态
-    await subWindow.setWindowTouchable(windowAttribute.setTouchable)
+    await subWindow.setWindowTouchable(windowAttribute.setTouchable);
     // 设置子窗口的大小
-    await subWindow.resize(windowAttribute.resetSizeWidth, windowAttribute.resetSizeHeight)
+    await subWindow.resize(windowAttribute.resetSizeWidth, windowAttribute.resetSizeHeight);
     // 设置子窗口亮度
-    await subWindow.setWindowBrightness(windowAttribute.setBrightness)
+    await subWindow.setWindowBrightness(windowAttribute.setBrightness);
     // 设置子窗口为隐私模式
-    await subWindow.setWindowPrivacyMode(windowAttribute.setPrivacyMode)
+    await subWindow.setWindowPrivacyMode(windowAttribute.setPrivacyMode);
   }
 
   changeWindowDirection(windowStage: window.WindowStage, orientation: window.Orientation) {
     windowStage.getMainWindow((err, data) => {
       if (err.code) {
         Logger.error(this.tag, 'Failed to change the window: ' + JSON.stringify(err));
-        return
+        return;
       }
-      data.setPreferredOrientation(orientation)
+      data.setPreferredOrientation(orientation);
     });
+  }
+
+  destorySubWindowCallback() {
+    this.startX = 0;
+    this.startY = 0;
+    this.endX = MOVE_X;
+    this.endY = MOVE_Y;
+    this.distanceX = 0;
+    this.distanceY = 0;
   }
 }
 
-export default new WindowManger()
+export default new WindowManger();
