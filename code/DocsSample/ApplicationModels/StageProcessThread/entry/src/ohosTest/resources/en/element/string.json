@@ -1,0 +1,216 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "Test process thread model and task management related functional testing code"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "Ability of testing functions"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "StageProcessThread_Test"
+    },
+    {
+      "name": "main_title",
+      "value": "Process Thread Model and Task Management Development Guide"
+    },
+    {
+      "name": "process_button",
+      "value": "Process Model Development Guidance"
+    },
+    {
+      "name": "taskmanager_button",
+      "value": "Task Management Development Guidance"
+    },
+    {
+      "name": "thread_button",
+      "value": "Thread Model Development Guide"
+    },
+    {
+      "name": "subscribe_button",
+      "value": "Subscribe to the public event of screen extinction"
+    },
+    {
+      "name": "unsubscribe_button",
+      "value": "Unsubscribe from the public event of screen extinction"
+    },
+    {
+      "name": "publish_noinfo_button",
+      "value": "Publish a public event of screen extinction - no information"
+    },
+    {
+      "name": "publish_haveinfo_button",
+      "value": "Publish a public event of screen extinction - have information"
+    },
+    {
+      "name": "publish_sticky_button",
+      "value": "Publish a sticky public event of screen extinction"
+    },
+    {
+      "name": "remove_sticky_button",
+      "value": "Remove the sticky public event of screen extinction"
+    },
+    {
+      "name": "worker_button",
+      "value": "Using workers for inter thread communication"
+    },
+    {
+      "name": "register_button",
+      "value": "Registration Task Change Notification"
+    },
+    {
+      "name": "obtain_button",
+      "value": "Obtain the last 20 tasks of the system"
+    },
+    {
+      "name": "obtain_one_button",
+      "value": "Obtain detailed information about a single task"
+    },
+    {
+      "name": "obtain_snapshot_button",
+      "value": "Obtain a task snapshot of a single task"
+    },
+    {
+      "name": "obtain_low_snapshot_button",
+      "value": "Obtain a low resolution task snapshot of a single task"
+    },
+    {
+      "name": "lock_button",
+      "value": "Single task locking"
+    },
+    {
+      "name": "unlock_button",
+      "value": "Single task unlocking"
+    },
+    {
+      "name": "front_button",
+      "value": "Switch a single task to the front desk"
+    },
+    {
+      "name": "delete_button",
+      "value": "Delete a single task"
+    },
+    {
+      "name": "delete_all_button",
+      "value": "Delete all tasks"
+    },
+    {
+      "name": "unregister_button",
+      "value": "Unregister Task Change Notification"
+    },
+    {
+      "name": "emitter_subscribe_button",
+      "value": "Using Emitter for inter thread communication - subscribe to events"
+    },
+    {
+      "name": "emitter_sending_button",
+      "value": "Using Emitter for inter thread communication - sending events"
+    },
+    {
+      "name": "subscribe_success_toast",
+      "value": "Successfully subscribed to the screen off public event"
+    },
+    {
+      "name": "subscribe_failed_toast",
+      "value": "Do not repeatedly subscribe to the public event of screen off"
+    },
+    {
+      "name": "unsubscribe_success_toast",
+      "value": "Successfully unsubscribed from the screen off public event"
+    },
+    {
+      "name": "unsubscribe_failed_toast",
+      "value": "Currently not subscribed to the public event of screen off"
+    },
+    {
+      "name": "publish_noinfo_success_toast",
+      "value": "Successfully posted a screen off public event - no information"
+    },
+    {
+      "name": "publish_haveinfo_success_toast",
+      "value": "Successfully posted a screen off public event - have information"
+    },
+    {
+      "name": "publish_sticky_success_toast",
+      "value": "Successfully posted a sticky public event of screen off"
+    },
+    {
+      "name": "remove_sticky_success_toast",
+      "value": "Successfully removed the sticky public event of screen off"
+    },
+    {
+      "name": "register_success_toast",
+      "value": "Successfully registered for task change notification"
+    },
+    {
+      "name": "obtain_success_toast",
+      "value": "Successfully obtained the system's recent tasks"
+    },
+    {
+      "name": "obtain_failed_toast",
+      "value": "Successfully obtained the latest system task, but no clock task was found"
+    },
+    {
+      "name": "obtain_snapshot_success_toast",
+      "value": "Successfully obtained task snapshot"
+    },
+    {
+      "name": "obtain_low_snapshot_success_toast",
+      "value": "Successfully obtained low resolution task snapshot"
+    },
+    {
+      "name": "lock_success_toast",
+      "value": "Successfully locked"
+    },
+    {
+      "name": "unlock_success_toast",
+      "value": "Successfully unlocked"
+    },
+    {
+      "name": "delete_success_toast",
+      "value": "Successfully deleted a single task"
+    },
+    {
+      "name": "unregister_success_toast",
+      "value": "Successfully unregistered task change notification"
+    },
+    {
+      "name": "emitter_subscribe_success_toast",
+      "value": "Successfully subscribed to events using Emitter"
+    },
+    {
+      "name": "airplane_mode",
+      "value": "Airplane mode"
+    },
+    {
+      "name": "public_event_null",
+      "value": "{\"event\":\"usual.event.SCREEN_OFF\",\"bundleName\":\"\",\"code\":0,\"data\":\"\",\"parameters\":{}}"
+    },
+    {
+      "name": "public_event_initial",
+      "value": "{\"event\":\"usual.event.SCREEN_OFF\",\"bundleName\":\"\",\"code\":1,\"data\":\"initial data\",\"parameters\":{}}"
+    },
+    {
+      "name": "public_event_sticky",
+      "value": "{\"event\":\"usual.event.SCREEN_OFF\",\"bundleName\":\"\",\"code\":1,\"data\":\"initial Sticky data\",\"parameters\":{}}"
+    },
+    {
+      "name": "data_emitter",
+      "value": "{\"data\":{\"content\":\"c\",\"id\":1,\"isEmpty\":false}}"
+    },
+    {
+      "name": "data_worker",
+      "value": "{\"data\":\"message from worker thread.\"}"
+    },
+    {
+      "name": "detail_info",
+      "value": "ohos.samples.etsclock"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "StageProcessThread"
+    }
+  ]
+}
