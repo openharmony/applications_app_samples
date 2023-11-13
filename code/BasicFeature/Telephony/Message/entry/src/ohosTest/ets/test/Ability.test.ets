@@ -17,6 +17,7 @@ import hilog from '@ohos.hilog';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON } from '@ohos.UiTest';
+import inputMethod from '@ohos.inputMethod';
 
 const DRIVER = Driver.create();
 
@@ -66,9 +67,12 @@ export default function abilityTest() {
       hilog.info(0x0000, 'testTag', 'CreateContact_001 begin');
       let nameInput = await DRIVER.findComponent(ON.id('nameInput'));
       await nameInput.inputText('monster');
+      let inputMethodController = inputMethod.getController();
+      inputMethodController.stopInputSession();
       await DRIVER.delayMs(1000);
       let telInput = await DRIVER.findComponent(ON.id('telInput'));
       await telInput.inputText('13333333333');
+      inputMethodController.stopInputSession();
       await DRIVER.delayMs(1000);
       let confirm = await DRIVER.findComponent(ON.id('confirm'));
       await confirm.click();
@@ -105,6 +109,8 @@ export default function abilityTest() {
       let send = await DRIVER.findComponent(ON.id('send'));
       await send.click();
       await DRIVER.delayMs(1000);
+      let inputMethodController = inputMethod.getController();
+      inputMethodController.stopInputSession();
       await DRIVER.assertComponentExist(ON.id('messageInfo'));
       let messageInfo = await DRIVER.findComponent(ON.id('messageInfo'));
       expect(await messageInfo.getText()).assertEqual('this is a message info');
