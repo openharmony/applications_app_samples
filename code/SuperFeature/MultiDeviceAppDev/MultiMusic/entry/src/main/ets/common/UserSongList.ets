@@ -22,26 +22,30 @@ import { BreakpointType } from './BreakpointSystem';
 export struct UserSongList {
   @LocalStorageProp("currentBreakpoint") currentBreakpoint: string = 'sm';
   @State songList: SongType[] = [
-    new SongType($r('app.media.list1'), $r('app.string.bgm'), 16),
-    new SongType($r('app.media.list2'), $r('app.string.oldYear'), 48),
-    new SongType($r('app.media.list3'), $r('app.string.pops'), 30),
-    new SongType($r('app.media.list4'), $r('app.string.rock'), 25),
-    new SongType($r('app.media.list5'), $r('app.string.sleep'), 18),
-    new SongType($r('app.media.list6'), $r('app.string.sunshine'), 16),
-    new SongType($r('app.media.list7'), $r('app.string.noon'), 30),
-    new SongType($r('app.media.list8'), $r('app.string.coffee'), 24),
-    new SongType($r('app.media.list9'), $r('app.string.jazz'), 16),
-    new SongType($r('app.media.list10'), $r('app.string.bluce'), 16),
-    new SongType($r('app.media.list11'), $r('app.string.noise'), 16),
-    new SongType($r('app.media.list12'), $r('app.string.noSleep'), 16),
     new SongType($r('app.media.list4'), $r('app.string.emo'), 16),
+    new SongType($r('app.media.list12'), $r('app.string.noSleep'), 16),
+    new SongType($r('app.media.list11'), $r('app.string.noise'), 16),
+    new SongType($r('app.media.list10'), $r('app.string.bluce'), 16),
+    new SongType($r('app.media.list9'), $r('app.string.jazz'), 16),
+    new SongType($r('app.media.list8'), $r('app.string.coffee'), 24),
+    new SongType($r('app.media.list7'), $r('app.string.noon'), 30),
+    new SongType($r('app.media.list6'), $r('app.string.sunshine'), 16),
+    new SongType($r('app.media.list5'), $r('app.string.sleep'), 18),
+    new SongType($r('app.media.list4'), $r('app.string.rock'), 25),
+    new SongType($r('app.media.list3'), $r('app.string.pops'), 30),
+    new SongType($r('app.media.list2'), $r('app.string.oldYear'), 48),
+    new SongType($r('app.media.list1'), $r('app.string.bgm'), 16),
   ];
 
   build() {
     Stack({ alignContent: Alignment.Bottom }) {
       Column() {
         Row() {
-          Text($r('app.string.mySongs')).fontSize(24).lineHeight(33).height(33).fontWeight(FontWeight.Medium)
+          Text($r('app.string.mySongs'))
+            .fontWeight(FontWeight.Medium)
+            .fontSize(24)
+            .lineHeight(33)
+            .height(33)
           Blank()
           Image($r('app.media.ic_search')).width(24).height(24).margin({ right: 24 })
           Image($r('app.media.ic_more')).width(24).height(24)
@@ -84,9 +88,9 @@ export struct UserSongList {
                     Text(item.description).fontSize(16).lineHeight(22).height(22)
                     Text(item.count.toString()).fontSize(12).lineHeight(14).height(14).fontColor('#33000000')
                   }.margin({ left: new BreakpointType(16, 0, 0).GetValue(this.currentBreakpoint) })
-                  .alignItems(HorizontalAlign.Start)
-                  .justifyContent(FlexAlign.Center)
                   .height(48)
+                  .justifyContent(FlexAlign.Center)
+                  .alignItems(HorizontalAlign.Start)
 
                   if (this.currentBreakpoint === 'sm') {
                     Blank()

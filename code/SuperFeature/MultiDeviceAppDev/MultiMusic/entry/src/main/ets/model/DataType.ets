@@ -49,8 +49,8 @@ export class SongType {
   count: number;
 
   constructor(imageSrc: Resource, description: Resource, count: number) {
+    this.count = count;
     this.imageSrc = imageSrc;
     this.description = description;
-    this.count = count;
   }
 }

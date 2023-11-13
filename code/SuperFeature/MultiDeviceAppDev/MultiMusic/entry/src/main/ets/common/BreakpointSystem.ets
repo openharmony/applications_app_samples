@@ -14,25 +14,25 @@
  */
 
 export class BreakpointType<T> {
-  sm: T;
-  md: T;
   lg: T;
+  md: T;
+  sm: T;
 
   constructor(sm: T, md: T, lg: T) {
-    this.sm = sm;
-    this.md = md;
     this.lg = lg;
+    this.md = md;
+    this.sm = sm;
   }
 
   GetValue(currentBreakpoint: string): T | undefined {
-    if (currentBreakpoint === 'sm') {
-      return this.sm;
+    if (currentBreakpoint === 'lg') {
+      return this.lg;
     }
     if (currentBreakpoint === 'md') {
       return this.md;
     }
-    if (currentBreakpoint === 'lg') {
-      return this.lg;
+    if (currentBreakpoint === 'sm') {
+      return this.sm;
     }
     return undefined;
   }

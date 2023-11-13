@@ -16,16 +16,16 @@
 import { IconItem } from './DataType';
 
 export let songsList: IconItem[] = [
-  new IconItem($r('app.media.list1'), '每日私选30首用心为你甄选'),
-  new IconItem($r('app.media.list2'), '新歌推荐:哈尼哈尼莱克-相见相见'),
-  new IconItem($r('app.media.list3'), '每日新歌:哈尼哈尼莱克-相见相见'),
-  new IconItem($r('app.media.list4'), '欧美新曲:哈尼哈尼莱克-相见相见'),
-  new IconItem($r('app.media.list5'), '北欧天籁:哈尼哈尼莱克-相见相见'),
-  new IconItem($r('app.media.list6'), '怀旧经典:哈尼哈尼莱克-相见相见'),
-  new IconItem($r('app.media.list7'), '每日私选30首用心为你甄选'),
-  new IconItem($r('app.media.list8'), '新歌推荐:哈尼哈尼莱克-相见相见'),
-  new IconItem($r('app.media.list9'), '每日新歌:哈尼哈尼莱克-相见相见'),
-  new IconItem($r('app.media.list10'), '欧美新曲:哈尼哈尼莱克-相见相见'),
-  new IconItem($r('app.media.list11'), '北欧天籁:哈尼哈尼莱克-相见相见'),
   new IconItem($r('app.media.list12'), '怀旧经典:哈尼哈尼莱克-相见相见'),
+  new IconItem($r('app.media.list11'), '北欧天籁:哈尼哈尼莱克-相见相见'),
+  new IconItem($r('app.media.list10'), '欧美新曲:哈尼哈尼莱克-相见相见'),
+  new IconItem($r('app.media.list9'), '每日新歌:哈尼哈尼莱克-相见相见'),
+  new IconItem($r('app.media.list8'), '新歌推荐:哈尼哈尼莱克-相见相见'),
+  new IconItem($r('app.media.list7'), '每日私选30首用心为你甄选'),
+  new IconItem($r('app.media.list6'), '怀旧经典:哈尼哈尼莱克-相见相见'),
+  new IconItem($r('app.media.list5'), '北欧天籁:哈尼哈尼莱克-相见相见'),
+  new IconItem($r('app.media.list4'), '欧美新曲:哈尼哈尼莱克-相见相见'),
+  new IconItem($r('app.media.list3'), '每日新歌:哈尼哈尼莱克-相见相见'),
+  new IconItem($r('app.media.list2'), '新歌推荐:哈尼哈尼莱克-相见相见'),
+  new IconItem($r('app.media.list1'), '每日私选30首用心为你甄选'),
 ];

@@ -41,14 +41,18 @@ struct Index {
   TabBuilder(index: number) {
     Column() {
       Image(this.currentIndex === index ? this.selectIconList[index] : this.tabBarList[index].imageSrc)
-        .width(24).height(24)
+        .height(24).width(24)
       Text(this.tabBarList[index].description)
+        .fontColor(this.currentIndex === index ? '#ff1949' : '#000')
+        .margin({ top: 4 })
+        .height(14)
         .fontSize(10)
         .lineHeight(14)
-        .height(14)
-        .margin({ top: 4 })
-        .fontColor(this.currentIndex === index ? '#ff1949' : '#000')
-    }.width('100%').height(56).justifyContent(FlexAlign.Center).id('tabs' + index)
+    }
+    .justifyContent(FlexAlign.Center)
+    .height(56)
+    .width('100%')
+    .id('tabs' + index)
   }
 
   build() {
@@ -56,22 +60,28 @@ struct Index {
       GridCol({ span: { sm: 4, md: 8, lg: 12 } }) {
         Column() {
           Tabs({
-            barPosition: new BreakpointType(BarPosition.End, BarPosition.End, BarPosition.Start).GetValue(this.currentBreakpoint),
             controller: this.controller,
+            barPosition: new BreakpointType(BarPosition.End, BarPosition.End, BarPosition.Start).GetValue(this.currentBreakpoint),
             index: this.currentIndex
           }) {
             TabContent() {
               Column() {
                 RecommendPage()
-              }.width('100%').height('100%')
+              }.height('100%').width('100%')
             }.tabBar(this.TabBuilder(0))
 
             TabContent() {
-              Column().width('100%').height('100%').backgroundColor('#007DFF')
+              Column()
+                .backgroundColor('#007DFF')
+                .height('100%')
+                .width('100%')
             }.tabBar(this.TabBuilder(1))
 
             TabContent() {
-              Column().width('100%').height('100%').backgroundColor('#FFBF00')
+              Column()
+                .backgroundColor('#FFBF00')
+                .height('100%')
+                .width('100%')
             }.tabBar(this.TabBuilder(2))
 
             TabContent() {
@@ -81,9 +91,9 @@ struct Index {
             }.tabBar(this.TabBuilder(3))
           }
           .vertical(new BreakpointType(false, false, true).GetValue(this.currentBreakpoint))
-          .backgroundColor($r("sys.color.ohos_id_color_toolbar_sub_bg"))
-          .layoutWeight(1)
           .scrollable(false)
+          .layoutWeight(1)
+          .backgroundColor($r("sys.color.ohos_id_color_toolbar_sub_bg"))
           .onChange((index: number) => {
             this.currentIndex = index;
           })
@@ -105,17 +115,28 @@ struct Index {
 export struct MusicPlayer {
   build() {
     Row() {
-      Image($r('app.media.list1')).width(32).height(32)
+      Image($r('app.media.list1')).height(32).width(32)
       Column() {
-        Text('Witness').fontSize(14).fontWeight(FontWeight.Regular).fontColor('#1818a')
-        Text('Katy').fontSize(10).fontWeight(FontWeight.Regular).opacity(0.6)
-      }.margin({ left: 12 })
-      .alignItems(HorizontalAlign.Start)
+        Text('Witness')
+          .fontColor('#1818a')
+          .fontWeight(FontWeight.Regular)
+          .fontSize(14)
+        Text('Katy')
+          .opacity(0.6)
+          .fontWeight(FontWeight.Regular)
+          .fontSize(10)
+      }.margin({ left: 12 }).alignItems(HorizontalAlign.Start)
 
       Blank()
-      Image($r('app.media.icon_play')).width(26).height(26)
-      Image($r('app.media.ic_play')).width(26).height(26).margin({ left: 20 })
-      Image($r('app.media.ic_playList')).width(26).height(26).margin({ left: 20 })
+      Image($r('app.media.icon_play')).height(26).width(26)
+      Image($r('app.media.ic_play'))
+        .margin({ left: 20 })
+        .height(26)
+        .width(26)
+      Image($r('app.media.ic_playList'))
+        .margin({ left: 20 })
+        .height(26)
+        .width(26)
     }.width('100%')
     .backgroundColor('#f7ffffff')
     .padding({ left: 16, right: 16 })
