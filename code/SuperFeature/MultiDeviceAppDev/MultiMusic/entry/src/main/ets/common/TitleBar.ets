@@ -21,8 +21,12 @@ export default struct TitleBar {
   @Builder
   TitleIcon(imageSrc: Resource) {
     Column() {
-      Image(imageSrc).width(24).height(24)
-    }.height(56).width('100%').justifyContent(FlexAlign.Center).alignItems(HorizontalAlign.End)
+      Image(imageSrc).height(24).width(24)
+    }
+    .alignItems(HorizontalAlign.End)
+    .justifyContent(FlexAlign.Center)
+    .width('100%')
+    .height(56)
   }
 
   build() {
@@ -30,11 +34,11 @@ export default struct TitleBar {
       //title
       GridCol({ span: { sm: 7, md: 6, lg: 15 }, order: { sm: 1, md: 1, lg: 1 } }) {
         Text($r("app.string.recommend"))
-          .fontWeight(FontWeight.Medium)
-          .fontSize(24)
-          .height(56)
-          .lineHeight(33)
           .width('100%')
+          .lineHeight(33)
+          .height(56)
+          .fontSize(24)
+          .fontWeight(FontWeight.Medium)
       }
 
       //SearchComponent
