@@ -208,9 +208,8 @@ class RemoteDeviceModel {
           }, (err, data) => {
             if (err) {
               Logger.error(TAG, `authenticateDevice error: ${JSON.stringify(err)}`);
-              this.authCallback = () => {
-              }
-              return
+              this.authCallback = () => {}
+              return;
             }
             Logger.debug(TAG, `authenticateDevice succeed: ${JSON.stringify(data)}`);
             this.authCallback = callBack;
