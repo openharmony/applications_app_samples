@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例主要展示了相机的相关功能，使用[libcamera_ndk.so]
+本示例主要展示了相机的相关功能，使用[libohcamera.so]
 当前版本sample仅用作联调，最新sdk未带相机c接口头文件。
 接口实现相机的预览、拍照、录像、前后置摄像头切换进行拍照、录像，以及闪光灯、变焦、对焦、曝光等控制类功能。
 
@@ -13,7 +13,7 @@
 | ![auth](app_pic/auth1.jpg) | ![auth](app_pic/auth2.jpg) | ![auth](app_pic/auth3.jpg) | ![preview](app_pic/preview.jpg) |
 
 使用说明
-(在RK3568设备上仅支持验证1、2、3、9、10、13，NOH设备全支持)
+(因RK3568设备硬件能力，现仅支持验证1、2、3、9、10、13)
 1. 弹出是否允许“CameraSample”使用相机？点击“允许”
 2. 弹出是否允许“CameraSample”使用麦克风？点击“允许”
 3. 弹出是否允许“CameraSample”访问文件？点击“允许”
@@ -123,7 +123,7 @@ entry/src/main
 
 ### 约束与限制
 
-1. 本示例支持标准系统上运行，支持设备：RK3568，NOH；
+1. 本示例支持标准系统上运行，支持设备：RK3568；
 2. 本示例为Stage模型，已适配API version 9版本SDK，SDK版本号(API Version 9 Release)，镜像版本号(4.0Release)；
 3. 本示例需要使用DevEco Studio 版本号(3.1Release)及以上版本才可编译运行。
 
