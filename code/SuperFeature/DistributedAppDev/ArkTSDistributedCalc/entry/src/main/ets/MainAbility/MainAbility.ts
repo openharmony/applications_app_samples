@@ -19,6 +19,7 @@ const TAG: string = 'MainAbility'
 
 export default class MainAbility extends UIAbility {
   onCreate(want, launchParam) {
+    AppStorage.setOrCreate('UIAbilityContext', this.context)
     let isRemote = want.parameters.isRemote
     if (isRemote) {
       AppStorage.SetOrCreate('isRemote', isRemote)

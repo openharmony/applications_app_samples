@@ -116,12 +116,15 @@ export struct TitleBarComponent {
     this.remoteDeviceModel.registerDeviceListCallback(() => {
       this.deviceList = []
       Logger.info(TAG, `registerDeviceListCallback, callback entered`)
-      this.deviceList.push({
-        deviceId: '0',
-        deviceName: getContext(this).resourceManager.getStringSync($r('app.string.localhost').id),
-        deviceType: '0',
-        networkId: ''
-      })
+      let context: common.UIAbilityContext | undefined = AppStorage.get('UIAbilityContext')
+      if (context !== undefined) {
+        this.deviceList.push({
+          deviceId: '0',
+          deviceName: context.resourceManager.getStringSync($r('app.string.localhost').id),
+          deviceType: '0',
+          networkId: ''
+        })
+      }
       let deviceTempList = this.remoteDeviceModel.discoverList.length > 0 ? this.remoteDeviceModel.discoverList : this.remoteDeviceModel.deviceList;
       if (deviceTempList !== null) {
         for (let i = 0; i < deviceTempList!.length; i++) {

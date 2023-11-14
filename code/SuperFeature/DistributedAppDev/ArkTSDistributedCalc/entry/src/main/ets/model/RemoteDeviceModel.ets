@@ -30,16 +30,16 @@ interface extraInfo {
 const TAG: string = 'RemoteDeviceModel'
 let SUBSCRIBE_ID: number = 100
 
-export const BUNDLE_NAME: string = 'ohos.samples.etsdistributedcalc'
+export const BUNDLE_NAME: string = 'ohos.samples.distributedcalc'
 
 export class RemoteDeviceModel {
-  public deviceList: Array<deviceManager.DeviceBasicInfo> | undefined = undefined
+  public deviceList: Array<deviceManager.DeviceBasicInfo> | null = []
   public discoverList: Array<deviceManager.DeviceBasicInfo> = []
   private callback: () => void = () => {
   }
   private authCallback: () => void = () => {
   }
-  private deviceManager: deviceManager.DeviceManager | null = null
+  private deviceManager: deviceManager.DeviceManager | undefined = undefined
 
   registerDeviceListCallback(callback: Callback<void>) {
     Logger.info(TAG, `deviceManager type =${typeof (this.deviceManager)} ,${JSON.stringify(this.deviceManager)} ,${JSON.stringify(this.deviceManager) === '{}'}`)
@@ -125,7 +125,7 @@ export class RemoteDeviceModel {
     }
     Logger.info(TAG, 'getTrustedDeviceListSync begin')
     try {
-      let list = this.deviceManager !== null ? this.deviceManager.getAvailableDeviceListSync() : null;
+      let list = this.deviceManager !== undefined ? this.deviceManager.getAvailableDeviceListSync() : null;
       Logger.debug(TAG, `getTrustedDeviceListSync end, deviceList= ${JSON.stringify(list)}`);
       if (typeof (list) !== 'undefined' && JSON.stringify(list) !== '[]') {
         this.deviceList = list!;
@@ -137,7 +137,7 @@ export class RemoteDeviceModel {
     this.callback();
     Logger.info(TAG, 'callback finished');
     try {
-      if (this.deviceManager !== null) {
+      if (this.deviceManager !== undefined) {
         this.deviceManager.on('deviceStateChange', (data) => {
           if (data === null) {
             return
@@ -158,7 +158,7 @@ export class RemoteDeviceModel {
           }
         })
       }
-      if (this.deviceManager !== null) {
+      if (this.deviceManager !== undefined) {
         this.deviceManager.on('discoverSuccess', (data) => {
           if (data === null) {
             return
@@ -201,15 +201,12 @@ export class RemoteDeviceModel {
     };
 
     let filterOptions: Record<string, number> = {
-      'availableStatus': 1,
-      'discoverDistance': 50,
-      'authenticationStatus': 0,
-      'authorizationType': 0
+      'availableStatus': 0,
     };
 
     Logger.info(TAG, `startDeviceDiscovery${SUBSCRIBE_ID}`);
     try {
-      if (this.deviceManager !== null) {
+      if (this.deviceManager !== undefined) {
         this.deviceManager.startDiscovering(discoverParam, filterOptions)
       }
     } catch (error) {
@@ -222,7 +219,7 @@ export class RemoteDeviceModel {
     if (this.deviceManager === undefined) {
       return
     }
-    if (this.deviceManager !== null) {
+    if (this.deviceManager !== undefined) {
       try {
         Logger.info(TAG, `stopDiscovering`)
         this.deviceManager.stopDiscovering();
@@ -252,7 +249,7 @@ export class RemoteDeviceModel {
         return
       }
       try {
-        if (this.deviceManager !== null) {
+        if (this.deviceManager !== undefined) {
           this.deviceManager.bindTarget(device.deviceId, {
             bindType: 1,
             targetPkgName: BUNDLE_NAME,

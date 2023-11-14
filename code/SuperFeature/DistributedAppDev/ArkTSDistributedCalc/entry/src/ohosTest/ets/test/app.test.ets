@@ -30,7 +30,7 @@ export default function appTest() {
     it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}StartAbility_002 begin`);
       let want: Want = {
-        bundleName: "ohos.samples.etsdistributedcalc",
+        bundleName: "ohos.samples.distributedcalc",
         abilityName: "MainAbility"
       };
       delegator.startAbility(want, (err) => {
