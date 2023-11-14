@@ -57,25 +57,23 @@ NDKCamera::~NDKCamera()
 {
     valid_ = false;
     OH_LOG_ERROR(LOG_APP, "~NDKCamera");
-    Camera_ErrorCode ret = OH_CaptureSession_Release(captureSession_);
-    if (ret != CAMERA_OK) {
-        OH_LOG_ERROR(LOG_APP, "Release failed.");
-    }
+    Camera_ErrorCode ret = CAMERA_OK;
 
     if (cameraManager_) {
+        OH_LOG_ERROR(LOG_APP, "Release OH_CameraManager_DeleteSupportedCameraOutputCapability. enter");
+        ret = OH_CameraManager_DeleteSupportedCameraOutputCapability(cameraManager_, cameraOutputCapability_);
+        if (ret != CAMERA_OK) {
+            OH_LOG_ERROR(LOG_APP, "Delete CameraOutputCapability failed.");
+        } else {
+            OH_LOG_ERROR(LOG_APP, "Release OH_CameraManager_DeleteSupportedCameraOutputCapability. ok");
+        }
+
         OH_LOG_ERROR(LOG_APP, "Release OH_CameraManager_DeleteSupportedCameras. enter");
         ret = OH_CameraManager_DeleteSupportedCameras(cameraManager_, cameras_, size_);
         if (ret != CAMERA_OK) {
             OH_LOG_ERROR(LOG_APP, "Delete Cameras failed.");
         } else {
             OH_LOG_ERROR(LOG_APP, "Release OH_CameraManager_DeleteSupportedCameras. ok");
-        }
-
-        ret = OH_CameraManager_DeleteSupportedCameraOutputCapability(cameraManager_, cameraOutputCapability_);
-        if (ret != CAMERA_OK) {
-            OH_LOG_ERROR(LOG_APP, "Delete CameraOutputCapability failed.");
-        } else {
-            OH_LOG_ERROR(LOG_APP, "Release OH_CameraManager_DeleteSupportedCameraOutputCapability. ok");
         }
 
         ret = OH_Camera_DeleteCameraManager(cameraManager_);
@@ -99,9 +97,6 @@ Camera_ErrorCode NDKCamera::ReleaseCamera(void)
     }
     if (photoOutput_) {
         PhotoOutputRelease();
-    }
-    if (videoOutput_) {
-        OH_CaptureSession_RemoveVideoOutput(captureSession_, videoOutput_);
     }
     if (captureSession_) {
         SessionRealese();
