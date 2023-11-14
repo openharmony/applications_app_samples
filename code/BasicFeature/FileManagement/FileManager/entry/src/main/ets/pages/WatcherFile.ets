@@ -25,8 +25,8 @@ export struct DeleteDialog {
   @Link hitText: string
   @Link currentIndex: number
   controller: CustomDialogController
-  cancel: () => void
-  confirm: (index) => void
+  cancel: () => void = () => {}
+  confirm: (index: number) => void = () => {}
 
   build() {
     Column() {
@@ -119,7 +119,7 @@ struct Watcher {
   @StorageLink('newFileContent') newFileContent: string = '';
   @StorageLink('eventArray') eventArray: Array<string> = [];
   @StorageLink('addIndex') addIndex: number = 10;
-  public baseDir: string = AppStorage.Get('sanBoxFileDir');
+  public baseDir: string = AppStorage.Get<string>('sanBoxFileDir') as string;
 
   @Builder itemEnd(index: number) { // 侧滑后尾端出现的组件
     Row() {
@@ -161,7 +161,7 @@ struct Watcher {
           this.currentDelFileName = this.showFilePath[index];
           this.currentIndex = index;
           let lastIndex = this.currentDelFileName.length - 4;
-          let isDelDile = AppStorage.Get('isDelFile');
+          let isDelDile = AppStorage.Get<string>('isDelFile') as string;
           this.currentDelFileName = isDelDile + this.currentDelFileName.substring(0, lastIndex) + '?';
           this.deleteDialog.open();
         });
@@ -179,10 +179,10 @@ struct Watcher {
     builder: DeleteDialog({
       hitText: $currentDelFileName,
       cancel: this.onCancel,
-      confirm: this.onDelete.bind(this),
+      confirm: this.onDelete,
       currentIndex: $currentIndex,
     }),
-    cancel: () => void {},
+    cancel: () => {},
     alignment: DialogAlignment.Bottom,
     offset: { dx: 0, dy: -12 },
     autoCancel: true
@@ -315,7 +315,7 @@ struct Watcher {
 
             Column() {
               List({ space: 12, initialIndex: 0 }) {
-                ForEach(this.showFilePath, (item, index) => {
+                ForEach(this.showFilePath, (item: string, index?: number) => {
                   ListItem() {
                     Row() {
                       Text(item)
@@ -329,25 +329,27 @@ struct Watcher {
                         .borderRadius(10)
                         .backgroundColor(0xFFFFFF)
                         .id('item' + index)
-                      Text(JSON.stringify(this.filePathSize[index]) + 'B')
-                        .fontSize(14)
-                        .width('24.5%')
-                        .lineHeight(19)
-                        .textAlign(TextAlign.End)
-                        .fontColor('#182431')
-                        .fontWeight(400)
-                        .opacity(0.6)
-                        .margin({ right: 12 })
-                        .borderRadius(10)
-                        .backgroundColor(0xFFFFFF)
+                      if (index != undefined) {
+                        Text(JSON.stringify(this.filePathSize[index]) + 'B')
+                          .fontSize(14)
+                          .width('24.5%')
+                          .lineHeight(19)
+                          .textAlign(TextAlign.End)
+                          .fontColor('#182431')
+                          .fontWeight(400)
+                          .opacity(0.6)
+                          .margin({ right: 12 })
+                          .borderRadius(10)
+                          .backgroundColor(0xFFFFFF)
+                      }
                     }
                     .borderRadius(20)
                     .width('94%')
                     .height(56)
                     .backgroundColor(0xFFFFFF)
                   }
-                  .swipeAction({ end: this.itemEnd.bind(this, index) }) // 设置左滑属性
-                }, item => item)
+                  .swipeAction({ end: () : void => this.itemEnd(index) }) // 设置左滑属性
+                }, (item: string) => item)
               }
               .id('list')
               .alignListItem(ListItemAlign.Center)
@@ -412,7 +414,7 @@ struct Watcher {
                     .margin({ right: 24 })
                     .id('stopWatcher')
                     .onClick(() => {
-                      let showEventArray = [];
+                      let showEventArray : string[] = [];
                       Logger.info('onClick this.eventArray.length = ' + this.eventArray.length);
                       let j = 0;
                       for (let i = 0; i < this.eventArray.length; i++) {

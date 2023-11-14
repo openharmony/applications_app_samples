@@ -21,15 +21,16 @@ import OpenHarmonyTestRunner from '../../../ohosTest/ets/TestRunner/OpenHarmonyT
 import { Logger, sleep } from '../common/Common';
 import prompt from '@ohos.prompt'
 
+let params = router.getParams() as Record<string , string | number>;
 @Entry
 @Component
 struct EditFile {
   @State myContext: Context = getContext(this) as common.UIAbilityContext;
-  @State myFileSize: number = router.getParams()['fileSize'];
-  @State myFileName: string = router.getParams()['fileName'];
-  @State myFileContent: string = router.getParams()['fileContent'];
-  @State text: string = router.getParams()['text'];
-  @State data: object = router.getParams()['data'];
+  @State myFileSize: number = params.fileSize as number;
+  @State myFileName: string = params.fileName as string;
+  @State myFileContent: string = params.fileContent as string;
+  @State text: string = params.text as string;
+  @State data: Object = params ['data'];
   @State newFileSize: number = 0;
   @State newFileName: string = '';
   @State newFileContent: string = '';
@@ -48,7 +49,7 @@ struct EditFile {
   @State flagBackContent: boolean = false;
   myWatcher: MyWatcher = new MyWatcher();
   scroller: Scroller = new Scroller();
-  public baseDir: string = AppStorage.Get('sanBoxFileDir');
+  public baseDir: string = AppStorage.Get<string>('sanBoxFileDir') as string;
   controllerArea: TextAreaController = new TextAreaController();
   controllerInput: TextInputController = new TextInputController()
 

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+import { BusinessError } from '@ohos.base';
 import fs from '@ohos.file.fs';
 import { bufferToString, expect, Logger, sleep } from '../../common/Common';
 
@@ -35,13 +36,17 @@ const IN_ISDIR: number = 0x40000000;
 const BUFFER: number = 4096; // 读写文件buffer大小
 const FILE_NUMBER: number = 9; // 文件1-9命名时加上0
 
+interface FILEINFO {
+  path: string[],
+  size: number
+}
 export default class MyWatcher {
   public fileSize: number = 0;
   private baseDir: string = '';
   public watcherList: Array<fs.Watcher> = [];
   private timeOut: number = TIMEOUT;
   public log: string[] = [];
-  public fileInfo = {
+  public fileInfo: FILEINFO= {
     path: [],
     size: 0
   };
@@ -60,13 +65,13 @@ export default class MyWatcher {
     ['IN_MOVE_SELF', IN_MOVE_SELF],
     ['IN_ISDIR', IN_ISDIR]
   ]);
-  public content1: string = AppStorage.Get('fileContent1');
-  public content2: string = AppStorage.Get('fileContent2');
-  public content3: string = AppStorage.Get('fileContent3');
-  public content4: string = AppStorage.Get('fileContent4');
+  public content1: string = AppStorage.Get<string>('fileContent1') as string;
+  public content2: string = AppStorage.Get<string>('fileContent2') as string;
+  public content3: string = AppStorage.Get<string>('fileContent3') as string;
+  public content4: string = AppStorage.Get<string>('fileContent4') as string;
 
   constructor() {
-    this.baseDir = AppStorage.Get('sanBoxFileDir');
+    this.baseDir = AppStorage.Get<string>('sanBoxFileDir') as string;
   }
 
   startWatcher(watcherName: string): void {
@@ -179,8 +184,8 @@ export default class MyWatcher {
       Logger.info(TAG, 'deleteFileToWatcher deleteFile = ' + deleteFile);
       fs.unlink(deleteFile).then(() => {
         Logger.info(TAG, 'deleteFileToWatcher file succeed');
-      }).catch((err) => {
-        Logger.info(TAG, 'deleteFileToWatcher file failed with error message: ' + err.message + ', error code: ' + err.codeor);
+      }).catch((err: BusinessError) => {
+        Logger.info(TAG, 'deleteFileToWatcher file failed with error message: ' + err.message + ', error code: ' + err.code);
       });
     } catch (e) {
       Logger.error(TAG, `readyFileToWatcher has failed for: {message: ${e.message}, code: ${e.code}}`);
@@ -226,7 +231,7 @@ export default class MyWatcher {
 
   modifyFileToWatcher(oldName: string, newName: string, content: string): number {
     // 重命名文件
-    let filePath = null;
+    let filePath = '';
     if (newName.trim() === oldName.trim()) {
       filePath = this.baseDir + '/watcherDir/' + oldName;
       Logger.info('modifyFileToWatcher The new file name is the same as the old file name');
