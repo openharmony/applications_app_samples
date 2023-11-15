@@ -20,6 +20,7 @@ import {
   CheckEmptyUtils,
   CommonConstants,
   DeleteDialog,
+  FormCardItem,
   GridLayoutItemInfo,
   Logger,
   MenuInfo,
@@ -177,7 +178,14 @@ export default struct Bubble {
     let subscriber: notificationSubscribe.NotificationSubscriber = {
       onConsume: this.onConsumeCallback,
       onCancel: this.onCancelCallback,
-      onBadgeChanged: this.onBadgeChangedCallback
+      onBadgeChanged: (data: BadgeNumberCallbackData) => {
+        if (data.bundle === this.appInfo.bundleName) {
+          this.badgeNum = data.badgeNumber;
+          console.info("bundle: ", data.bundle);
+          console.info("uid: ", data.uid);
+          console.info("badgeNumber: ", data.badgeNumber);
+        }
+      }
     }
     let info: notificationSubscribe.NotificationSubscribeInfo = {
       bundleNames: [this.appInfo.bundleName!]
@@ -196,15 +204,6 @@ export default struct Bubble {
     console.info("Cancel callback" + JSON.stringify(data));
   }
 
-  onBadgeChangedCallback = (data: ESObject) => {
-    if (data.bundle === this.appInfo.bundleName) {
-      this.badgeNum = data.badgeNumber;
-      console.info("bundle: ", data.bundle);
-      console.info("uid: ", data.uid);
-      console.info("badgeNumber: ", data.badgeNumber);
-    }
-  };
-
   iconLoadCallback = (image: string) => {
     this.icon = image
   }
@@ -215,20 +214,26 @@ export default struct Bubble {
         this.iconLoadCallback, this.mDefaultAppIcon)
   }
 
-  getSelectedFormInfo() {
+  getSelectedFormInfo(): FormCardItem | undefined {
     if (CheckEmptyUtils.isEmpty(this.formInfo)) {
-      return undefined
+      return undefined;
     }
-    let formCardItem: Record<string, Object> = {}
-    formCardItem.cardId = this.formInfo.cardId
-    formCardItem.appName = this.appInfo.appName!
-    formCardItem.cardName = this.formInfo.cardName
-    formCardItem.bundleName = this.formInfo.bundleName
-    formCardItem.abilityName = this.formInfo.abilityName
-    formCardItem.moduleName = this.formInfo.moduleName
-    formCardItem.dimension = this.formInfo.supportDimensions[0]
-    formCardItem.formConfigAbility = this.formInfo.formConfigAbility
-    formCardItem.appLabelId = this.formInfo.appLabelId
-    return formCardItem
+    let formCardItem = new FormCardItem();
+    formCardItem.cardId = this.formInfo.cardId;
+    formCardItem.appName = this.appInfo.appName!;
+    formCardItem.cardName = this.formInfo.cardName;
+    formCardItem.bundleName = this.formInfo.bundleName;
+    formCardItem.abilityName = this.formInfo.abilityName;
+    formCardItem.moduleName = this.formInfo.moduleName;
+    formCardItem.dimension = this.formInfo.supportDimensions[0];
+    formCardItem.formConfigAbility = this.formInfo.formConfigAbility;
+    formCardItem.appLabelId = this.formInfo.appLabelId;
+    return formCardItem;
   }
+}
+
+export interface BadgeNumberCallbackData {
+  readonly bundle: string;
+  readonly uid: number;
+  readonly badgeNumber: number;
 }

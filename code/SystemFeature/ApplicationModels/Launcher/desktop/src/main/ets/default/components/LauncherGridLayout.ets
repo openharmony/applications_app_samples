@@ -20,7 +20,8 @@ import wantConstant from '@ohos.ability.wantConstant';
 import Want from '@ohos.app.ability.Want';
 import Bubble from './Bubble';
 import CardItem from './CardItem';
-import { CommonConstants, GridLayoutItemInfo, Logger, MyDataSource, ResourceManager } from '@ohos/base';
+import { CommonConstants, GridLayoutItemInfo, Logger, LauncherDataSource, ResourceManager,
+  FormCardItem } from '@ohos/base';
 import { CardItemInfo } from '../../../../../../base/index';
 import { DesktopLayoutModel, SHOPPING_BUNDLE } from '../model/DesktopLayoutModel';
 import { FormModel } from '../../../../../../base/index';
@@ -34,7 +35,7 @@ export default struct LauncherGridLayout {
   @State columnsTemplate: string = '';
   @State rowsTemplate: string = '';
   @State gridInfos: Array<GridLayoutItemInfo> = [];
-  private gridData: MyDataSource | undefined = undefined;
+  private gridData: LauncherDataSource | undefined = undefined;
   private delayTime: number = 3000;
   private createCardTime: number = 500;
 
@@ -77,15 +78,15 @@ export default struct LauncherGridLayout {
   }
 
   aboutToAppear() {
-    Logger.info(TAG, `gridInfos.size = ${this.gridInfos.length}`)
-    this.gridData = new MyDataSource(this.gridInfos)
+    Logger.info(TAG, `gridInfos.size = ${this.gridInfos.length}`);
+    this.gridData = new LauncherDataSource(this.gridInfos);
     for (let i = 0;i < CommonConstants.DEFAULT_COLUMN_COUNT; i++) {
-      this.columnsTemplate += '1fr '
+      this.columnsTemplate += '1fr ';
     }
     for (let i = 0;i < CommonConstants.DEFAULT_ROW_COUNT; i++) {
-      this.rowsTemplate += '1fr '
+      this.rowsTemplate += '1fr ';
     }
-    Logger.info(TAG, `this.columnsTemplate = ${this.columnsTemplate},this.rowsTemplate = ${this.rowsTemplate}`)
+    Logger.info(TAG, `this.columnsTemplate = ${this.columnsTemplate},this.rowsTemplate = ${this.rowsTemplate}`);
   }
 
   // 拉起元服务
@@ -104,17 +105,16 @@ export default struct LauncherGridLayout {
   async createCardAndInstall(item: GridLayoutItemInfo): Promise<void> {
     // 包名需要修改 'com.samples.asorangeshopping'
     let currentBundleFormsInfo: Array<CardItemInfo> = await FormModel.getFormsInfoByBundleName(SHOPPING_BUNDLE)
-    let formCardItem : ESObject = {
-      cardId: 0,
-      appName: currentBundleFormsInfo[0].appName,
-      cardName: currentBundleFormsInfo[0].cardName,
-      bundleName: currentBundleFormsInfo[0].bundleName,
-      abilityName: currentBundleFormsInfo[0].abilityName,
-      moduleName: currentBundleFormsInfo[0].moduleName,
-      dimension: currentBundleFormsInfo[0].supportDimensions[0],
-      formConfigAbility: currentBundleFormsInfo[0].formConfigAbility,
-      appLabelId: this.cardLabelId
-    }
+    let formCardItem = new FormCardItem();
+    formCardItem.cardId = 0;
+    formCardItem.appName = currentBundleFormsInfo[0].appName!;
+    formCardItem.cardName = currentBundleFormsInfo[0].cardName;
+    formCardItem.bundleName = currentBundleFormsInfo[0].bundleName;
+    formCardItem.abilityName = currentBundleFormsInfo[0].abilityName;
+    formCardItem.moduleName = currentBundleFormsInfo[0].moduleName;
+    formCardItem.dimension = currentBundleFormsInfo[0].supportDimensions[0];
+    formCardItem.formConfigAbility = currentBundleFormsInfo[0].formConfigAbility;
+    formCardItem.appLabelId = this.cardLabelId;
     Logger.info(`currentBundleFormsInfo: ${JSON.stringify(currentBundleFormsInfo)}, formCardItem: ${JSON.stringify(formCardItem)}`);
 
     // 如果bundleName查询失败，不替换卡片

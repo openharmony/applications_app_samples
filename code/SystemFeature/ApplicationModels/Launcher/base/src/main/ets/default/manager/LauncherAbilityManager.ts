@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import bundleMgr from '@ohos.bundle'
+import installer from '@ohos.bundle.installer';
 import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
 import bundleMonitor from '@ohos.bundle.bundleMonitor';
 import osAccount from '@ohos.account.osAccount'
@@ -23,6 +23,7 @@ import { CommonConstants } from '../constants/CommonConstants'
 import { EventConstants } from '../constants/EventConstants'
 import { ResourceManager } from './ResourceManager'
 import { Logger } from '../utils/Logger'
+import type { BusinessError } from '@ohos.base';
 
 const TAG: string = 'LauncherAbilityManager'
 
@@ -168,15 +169,15 @@ export class LauncherAbilityManager {
    * @params callback 卸载回调
    */
   async uninstallLauncherAbility(bundleName: string, callback): Promise<void> {
-    Logger.info(TAG, `uninstallLauncherAbility bundleName: ${bundleName}`)
-    const bundlerInstaller = await bundleMgr.getBundleInstaller()
+    Logger.info(TAG, `uninstallLauncherAbility bundleName: ${bundleName}`);
+    const bundlerInstaller = await installer.getBundleInstaller();
     bundlerInstaller.uninstall(bundleName, {
       userId: this.mUserId,
       installFlag: 0,
       isKeepData: false
-    }, (result) => {
-      Logger.info(TAG, `uninstallLauncherAbility result => ${JSON.stringify(result)}`)
-      callback(result)
+    }, (err: BusinessError) => {
+      Logger.info(TAG, `uninstallLauncherAbility result => ${JSON.stringify(err)}`);
+      callback(err);
     })
   }
 

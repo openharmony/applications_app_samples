@@ -13,7 +13,8 @@
  * limitations under the License.
  */
 
-import { GridLayoutItemInfo } from '../bean/GridLayoutItemInfo'
+import MissionInfo from '../bean/MisssionInfo';
+import { GridLayoutItemInfo } from '../bean/GridLayoutItemInfo';
 
 class BasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = [];
@@ -21,7 +22,7 @@ class BasicDataSource implements IDataSource {
   public totalCount(): number {
     return 0;
   }
-  public getData(index: number): ESObject {
+  public getData(index: number): Object | undefined {
     return undefined;
   }
 
@@ -67,9 +68,9 @@ class BasicDataSource implements IDataSource {
 }
 
 export class MyDataSource extends BasicDataSource {
-  dataArray: ESObject[] = [];
+  dataArray: MissionInfo[] = [];
 
-  constructor(data: ESObject[]) {
+  constructor(data: MissionInfo[]) {
     super();
     this.dataArray = data;
   }
@@ -77,15 +78,40 @@ export class MyDataSource extends BasicDataSource {
   public totalCount(): number {
     return this.dataArray.length;
   }
-  public getData(index: number): ESObject {
+  public getData(index: number): MissionInfo {
     return this.dataArray[index];
   }
 
-  public addData(index: number, data: ESObject): void {
+  public addData(index: number, data: MissionInfo): void {
     this.dataArray.splice(index, 0, data);
     this.notifyDataAdd(index);
   }
-  public pushData(data: ESObject): void {
+  public pushData(data: MissionInfo): void {
+    this.dataArray.push(data);
+    this.notifyDataAdd(this.dataArray.length - 1);
+  }
+}
+
+export class LauncherDataSource extends BasicDataSource {
+  dataArray: GridLayoutItemInfo[] = [];
+
+  constructor(data: GridLayoutItemInfo[]) {
+    super();
+    this.dataArray = data;
+  }
+
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+  public getData(index: number): GridLayoutItemInfo {
+    return this.dataArray[index];
+  }
+
+  public addData(index: number, data: GridLayoutItemInfo): void {
+    this.dataArray.splice(index, 0, data);
+    this.notifyDataAdd(index);
+  }
+  public pushData(data: GridLayoutItemInfo): void {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
   }
