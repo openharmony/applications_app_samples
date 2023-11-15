@@ -13,9 +13,9 @@
  * limitations under the License.
  */
  
-import { settingPublicLayout } from '../common/settingPublicLayout';
+import { settingPublicLayout } from '../common/SettingPublicLayout';
 
-import { settingRightLayout } from '../common/settingRightLayout';
+import { settingRightLayout } from '../common/SettingRightLayout';
 
 @CustomDialog
 export struct settingDialog {
@@ -41,11 +41,11 @@ export struct settingDialog {
   }
 
   onPageShow() {
-    console.info('zyk globalThis onPageShow:' + JSON.stringify(globalThis.settingDataObj));
+    console.info('globalThis onPageShow:' + JSON.stringify(globalThis.settingDataObj));
   }
 
   onPageHide() {
-    console.info('zyk globalThis onPageHide:' + JSON.stringify(globalThis.settingDataObj));
+    console.info('globalThis onPageHide:' + JSON.stringify(globalThis.settingDataObj));
   }
 
   build() {
@@ -64,7 +64,7 @@ export struct settingDialog {
           }.margin({ top: '100px', bottom: '20px' })
 
           settingPublicLayout({
-            icon: $r('app.media.ic_camera_set__Mirror'),
+            icon: $r('app.media.ic_camera_set__mirror'),
             isModeBol: true,
             borderBol: false,
             iconModeBol: true,
@@ -76,7 +76,7 @@ export struct settingDialog {
           })
           Column() {
             settingPublicLayout({
-              icon: $r('app.media.ic_camera_set__Antishake'),
+              icon: $r('app.media.ic_camera_set__antishake'),
               isModeBol: true,
               borderBol: true,
               borderBole: true,
@@ -95,21 +95,21 @@ export struct settingDialog {
             settingPublicLayout({
               backNum: 4,
               leftSliderIndex: $leftSliderIndex,
-              icon: $r('app.media.ic_camera_set_AF'),
+              icon: $r('app.media.ic_camera_set_af'),
               modeMessage: '对焦模式'
             })
             Divider().width(420).margin({ left: 20 })
             settingPublicLayout({
               backNum: 5,
               leftSliderIndex: $leftSliderIndex,
-              icon: $r('app.media.ic_camera_set_Quality'),
+              icon: $r('app.media.ic_camera_set_quality'),
               modeMessage: '拍摄质量'
             })
             Divider().width(420).margin({ left: 20 })
             settingPublicLayout({
               backNum: 6,
               leftSliderIndex: $leftSliderIndex,
-              icon: $r('app.media.ic_camera_set_Location'),
+              icon: $r('app.media.ic_camera_set_location'),
               isModeBol: true,
               borderBol: true,
               borderBole: false,
@@ -128,7 +128,7 @@ export struct settingDialog {
             settingPublicLayout({
               backNum: 7,
               leftSliderIndex: $leftSliderIndex,
-              icon: $r('app.media.ic_camera_set_Format'),
+              icon: $r('app.media.ic_camera_set_format'),
               modeMessage: '照片格式',
               isModeBol: true,
               borderBol: true,
@@ -145,21 +145,21 @@ export struct settingDialog {
             settingPublicLayout({
               backNum: 9,
               leftSliderIndex: $leftSliderIndex,
-              icon: $r('app.media.ic_camera_set_pic_Resolution'),
+              icon: $r('app.media.ic_camera_set_pic_resolution'),
               modeMessage: '照片分辨率'
             })
             Divider().width(420).margin({ left: 20 })
             settingPublicLayout({
               backNum: 10,
               leftSliderIndex: $leftSliderIndex,
-              icon: $r('app.media.ic_camera_set_video_Resolution'),
+              icon: $r('app.media.ic_camera_set_video_resolution'),
               modeMessage: '视频分辨率'
             })
             Divider().width(420).margin({ left: 20 })
             settingPublicLayout({
               backNum: 11,
               leftSliderIndex: $leftSliderIndex,
-              icon: $r('app.media.ic_camera_set_video_Rate'),
+              icon: $r('app.media.ic_camera_set_video_rate'),
               modeMessage: '录像帧率',
               isModeBol: true,
               borderBol: true,
@@ -200,7 +200,7 @@ export struct settingDialog {
     })
     // Page disappears
     .onDisAppear(async () => {
-      console.info('zyk globalThis onPageHide:' + JSON.stringify(globalThis.settingDataObj));
+      console.info('globalThis onPageHide:' + JSON.stringify(globalThis.settingDataObj));
     })
     .width('100%')
     .height('100%')

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
  
-import { settingItem } from './settingItem'
+import { settingItem } from './SettingItem'
 
 @Component
 export struct settingRightLayout {

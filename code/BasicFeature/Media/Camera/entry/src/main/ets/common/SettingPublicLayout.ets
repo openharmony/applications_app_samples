@@ -69,7 +69,7 @@ export struct settingPublicLayout {
             .switchPointColor('#FFFFFF')
             .onChange((isOn: boolean) => {
               this.getModeBol(isOn);
-              console.info('zyk Component status:' + isOn)
+              console.info('Component status:' + isOn)
             })
         } else {
           Image($r('app.media.ic_camera_set_arrow')).width(20).height(20).margin({ right: 10 })
@@ -77,8 +77,8 @@ export struct settingPublicLayout {
       }
       .onClick(() => {
         this.leftSliderIndex = this.backNum;
-        console.info('zyk leftSliderIndex status:' + this.leftSliderIndex);
-        console.info('zyk backNum status:' + this.backNum);
+        console.info('leftSliderIndex status:' + this.leftSliderIndex);
+        console.info('backNum status:' + this.backNum);
       })
       .justifyContent(FlexAlign.SpaceBetween)
       .width('100%')

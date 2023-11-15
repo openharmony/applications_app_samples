@@ -19,7 +19,7 @@ export struct mainDialog {
   controller: CustomDialogController;
 
   async aboutToAppear() {
-    console.info(`CameraZyk aboutToAppear entry`);
+    console.info(`Camera aboutToAppear entry`);
   }
 
   build() {

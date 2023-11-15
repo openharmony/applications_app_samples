@@ -20,7 +20,7 @@ import DateTimeUtil from '../model/DateTimeUtil';
 import Logger from '../model/Logger';
 
 export default class MediaUtils {
-    private tag: string = 'zyk MediaUtils';
+    private tag: string = 'MediaUtils';
     private mediaTest: mediaLibrary.MediaLibrary = mediaLibrary.getMediaLibrary(globalThis.abilityContext);
     private static instance: MediaUtils = new MediaUtils();
     private num: number = 0;

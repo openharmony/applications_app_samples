@@ -89,7 +89,7 @@ export struct settingItem {
           .textAlign(TextAlign.Start)
           .width('90%')
         if (this.isBol) {
-          Image($r('app.media.ic_camera_set_Checked')).width(24).height(24);
+          Image($r('app.media.ic_camera_set_checked')).width(24).height(24);
         } else {
           Image('').width(24).height(24).backgroundColor(Color.White);
         }

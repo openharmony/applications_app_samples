@@ -86,7 +86,7 @@ export struct SlidePage {
             let val = Number(value.toFixed(2));
             this.slideChange(val);
             this.outSetValueOne = val;
-            console.info('zyk value:' + val + 'this.sliderTextPos:' + this.sliderTextPos);
+            console.info('value:' + val + 'this.sliderTextPos:' + this.sliderTextPos);
           })
       }.width('100%')
 
