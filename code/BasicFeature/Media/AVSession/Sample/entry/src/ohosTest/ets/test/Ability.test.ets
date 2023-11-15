@@ -17,7 +17,6 @@ import hilog from '@ohos.hilog';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import {Driver, ON, MatchPattern} from '@ohos.UiTest';
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
-import {BusinessError } from '@ohos.base';
 
 const TAG: string = 'SampleText';
 const abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
