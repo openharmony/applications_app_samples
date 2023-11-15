@@ -15,8 +15,8 @@ export class PixelMapWrapper {
     this.height = height;
   }
 
-  release() {
-    if (this.pixelMap != null && this.pixelMap != undefined) {
+  release():void {
+    if (this.pixelMap !== null && this.pixelMap !== undefined) {
       this.pixelMap.release();
     }
     this.pixelMap = undefined;
