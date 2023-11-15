@@ -23,8 +23,8 @@ export class BaseDataSource implements IDataSource {
     return 0;
   }
 
-  public getData(index: number): ESObject {
-    return undefined;
+  public getData(index: number): Object {
+    return '';
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -71,4 +71,5 @@ export class BaseDataSource implements IDataSource {
       listener.onDataMove(from, to);
     })
   }
+  
 }

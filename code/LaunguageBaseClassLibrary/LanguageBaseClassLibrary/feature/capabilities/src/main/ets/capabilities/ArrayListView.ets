@@ -26,12 +26,12 @@ const TAG: string = 'ArrayListView';
 @Component
 export struct ArrayListView {
   @State dataSource: Information[] = [];
-  private informations: Information[] = [];
+  private informations: ArrayList<Information> = new ArrayList();
   private dialogController: CustomDialogController = new CustomDialogController({
     builder: AddDialog({
       saveData: (writeInformation: Information) => {
-        this.informations.push(writeInformation);
-        this.dataSource = this.informations;
+        this.informations.add(writeInformation);
+        this.dataSource = this.informations.convertToArray();
         logger.info(TAG, `this.list= ${this.dataSource.length}`);
       }
     }),
@@ -76,6 +76,7 @@ export struct ArrayListView {
   }
 
   handleOnClick = (index: number) => {
-    this.dataSource = this.informations.splice(index);
+    this.informations.removeByIndex(index);
+    this.dataSource = this.informations.convertToArray();
   }
 }
