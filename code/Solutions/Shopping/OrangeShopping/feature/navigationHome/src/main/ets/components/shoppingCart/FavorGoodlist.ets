@@ -101,14 +101,14 @@ export struct FavorGoodList {
         y: vp2px(8)
       }
     }) {
-      ForEach(this.flag ? this.productsData.data.records : SHOP_CART_ITEM_DATA, (item: ESObject) => {
+      ForEach(this.flag ? this.productsData.data.records : SHOP_CART_ITEM_DATA, (item: Object) => {
         GridCol({
           span: {
             sm: 6,
             md: 6,
             lg: 4 }
         }) {
-          this.GoodItem(item);
+          this.GoodItem(item as ShopCartItemDataModel);
         }
       }, (item: Info | ShopCartItemDataModel) => {
         return item.id.toString();
