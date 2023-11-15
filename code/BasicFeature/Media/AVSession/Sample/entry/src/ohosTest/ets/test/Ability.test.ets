@@ -27,7 +27,7 @@ export default function abilityTest() {
   describe('ActsAbilityTest', function () {
 
     /**
-     * 打开sample
+     * open_sample
      */
     it(BUNDLE +'StartAbility_001', 0, async (done) => {
       hilog.info(0x0, TAG, 'StartAbility_001 start');
