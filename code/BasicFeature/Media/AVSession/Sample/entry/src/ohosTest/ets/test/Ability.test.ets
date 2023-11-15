@@ -8,23 +8,27 @@ const TAG: string = 'SampleText';
 const abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
 export default function abilityTest() {
+  const BUNDLE = 'Sample_';
+
   describe('ActsAbilityTest', function () {
+
     /**
      * 打开sample
      */
-    it('StartAbility_001', 0, async () => {
+    it(BUNDLE +'StartAbility_001', 0, async (done) => {
       hilog.info(0x0, TAG, 'StartAbility_001 start');
       await abilityDelegator.startAbility({
         bundleName: 'com.example.avcastdemo',
         abilityName: "EntryAbility"
       })
       hilog.info(0x0, TAG, 'StartAbility_001 end');
+      done();
     })
 
     /**
      * music_last
      */
-    it('music_last', 0, async () => {
+    it(BUNDLE + 'music_last', 0, async (done) => {
       hilog.info(0x0, TAG, 'music_last start');
       let driver = await Driver.create();
       await driver.delayMs(1000);
@@ -45,6 +49,7 @@ export default function abilityTest() {
       await nextButton.click();
       await driver.delayMs(1000);
       hilog.info(0x0, TAG, 'music_last end');
+      done();
     })
   })
 }
