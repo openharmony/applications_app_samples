@@ -35,7 +35,7 @@ class RemoteDeviceModel {
     Logger.info(TAG, 'deviceManager.createDeviceManager begin')
     try {
       let dmInstance = deviceManager.createDeviceManager(BUNDLE);
-      Logger.info(TAG, `dmInstance= ${JSON.stringify (dmInstance)}`);
+      Logger.info(TAG, `dmInstance= ${JSON.stringify(dmInstance)}`);
       this.deviceManager = dmInstance;
       this.registerDeviceListCallbackImplement(stateChangeCallback);
       Logger.info(TAG, `createDeviceManager callback returned, value= ${JSON.stringify(this.deviceManager)}`);
@@ -71,7 +71,7 @@ class RemoteDeviceModel {
 
   getLocalDevice() {
     try {
-      Logger.info(TAG, `getLocalDevice`);
+      Logger.info(TAG, 'getLocalDevice');
       let deviceId: string = this.deviceManager.getLocalDeviceId();
       Logger.info(TAG, `local deviceInfo=${JSON.stringify(deviceId)}`);
       return deviceId;
@@ -207,8 +207,8 @@ class RemoteDeviceModel {
             appName: 'Distributed rdb',
           }, (err, data) => {
             if (err) {
-              Logger.error(TAG, `authenticateDevice error: ${JSON.stringify(err)}`);
-              this.authCallback = () => {}
+              Logger.error(TAG, `authenticateDevice throw error, code: ${(err as BusinessError).code} message: ${(err as BusinessError).message}`);
+              this.authCallback = () => {};
               return;
             }
             Logger.debug(TAG, `authenticateDevice succeed: ${JSON.stringify(data)}`);
