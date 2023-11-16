@@ -23,7 +23,7 @@ class BasicDataSource implements IDataSource {
     return 0;
   }
 
-  public getData(index: number): Note | Canvas {
+  public getData(index: number): Note | Canvas | undefined {
     return undefined;
   }
 
@@ -74,7 +74,7 @@ class BasicDataSource implements IDataSource {
 }
 
 export class NoteDataSource extends BasicDataSource {
-  private dataArray: Note[] = [];
+  public dataArray: Note[] = [];
 
   public totalCount(): number {
     return this.dataArray.length;
@@ -96,7 +96,7 @@ export class NoteDataSource extends BasicDataSource {
 }
 
 export class CanvasDataSource extends BasicDataSource {
-  private pathArray: Canvas[] = [];
+  public pathArray: Canvas[] = [];
 
   public totalCount(): number {
     return this.pathArray.length;
