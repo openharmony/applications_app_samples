@@ -14,9 +14,9 @@
 
 使用说明
 
-1. 弹出麦克风权限访问提示框，点击“允许”
+1. 弹出麦克风权限访问提示框，点击“允许”，如果点击"禁止"则不可进行录制，需要用户去设置页面给应用授权后方可正常录制
 2. 在主界面点击“录制和播放”，进入音频录制界面，音频录制界面默认是普通录制界面，打开低时延录制开关可进行低时延录制
-3. 点击录制按钮，开始录制，开始录制后低时延录制开关变为不可点击状态，录音时间开始计时，5s内不允许结束
+3. 点击录制按钮，开始录制，开始录制后低时延录制开关变为不可点击状态，录音时间开始计时，5s内不允许结束，30s后会自动结束录制
 4. 点击暂停按钮，暂停录制，录音时间也停止计时
 5. 点击继续按钮，继续录制，录音时间继续计时
 6. 停止录制后，会生成录制结果，界面上有一个低时延播放开关和录制成功的音频播放器，点击低时延播放开关可打开低时延播放功能，点击播放可听到录制的音频，播放未结束之前低时延播放开关为不可点击状态
@@ -48,7 +48,7 @@ entry/src/main/
 ```
 
 ### 具体实现
-* 音频录制和播放-源码参考：[hello.cpp](entry/src/main/cpp/hello.cpp)
+* 音频录制和播放-源码参考：[audioRecording.cpp](entry/src/main/cpp/audioRecording.cpp)
     * [低时延录制开发指导文档](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.0-Release/zh-cn/application-dev/media/using-ohaudio-for-recording.md)
     * [低时延播放开发指导文档](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.0-Release/zh-cn/application-dev/media/using-ohaudio-for-playback.md)
     * [低时延录制开发示例](https://gitee.com/openharmony/multimedia_audio_framework/blob/OpenHarmony-4.0-Release/frameworks/native/ohaudio/test/example/oh_audio_capturer_test.cpp)
@@ -66,8 +66,8 @@ entry/src/main/
 
 ### 约束与限制
 
-1. 本示例仅支持标准系统上运行，支持设备：RK3568（不支持低时延功能）, 工程机；
-2. 本示例仅支持API10版本SDK，版本号：4.0.10.13，镜像版本号：OpenHarmony 4.0.10.13；
+1. 本示例仅支持标准系统上运行，支持设备：RK3568（不支持低时延功能）；
+2. 本示例仅支持API10版本SDK，版本号：4.0.10.13，镜像版本号：OpenHarmony 4.0.10.13及之后的版本；
 3. 本示例需要使用DevEco Studio 4.0 Beta2 (Build Version: 4.0.0.400)才可编译运行；
 
 ### 下载
@@ -79,5 +79,5 @@ git init
 git config core.sparsecheckout true
 echo code/BasicFeature/Native/Audio/ > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
-git pull origin OpenHarmony-4.0-Release
+git pull origin ***(分支名)
 ```
