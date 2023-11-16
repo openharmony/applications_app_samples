@@ -20,6 +20,7 @@ import { Driver, ON, MatchPattern } from '@ohos.UiTest'
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import Logger from '../utils/Logger';
+import inputMethod from '@ohos.inputMethod';
 
 const TAG = '[Sample_StateManagement]'
 const BUNDLE = 'StateManagement_'
@@ -420,9 +421,11 @@ export default function abilityTest() {
         await enterPageText.click();
         await driver.delayMs(500);
         // 点击修改父组件第一个属性文本
+        let inputMethodController = inputMethod.getController();
         await driver.assertComponentExist(ON.id('attribute1'));
         let attributeOne = await driver.findComponent(ON.id('attribute1'));
         await attributeOne.inputText('123');
+        inputMethodController.stopInputSession();
         await driver.delayMs(500);
         // 点击修改子组件属性文本
         await driver.assertComponentExist(ON.id('childAttribute'));
@@ -430,6 +433,7 @@ export default function abilityTest() {
         await childAttribute.click();
         await driver.delayMs(500);
         await childAttribute.inputText('321');
+        inputMethodController.stopInputSession();
         await driver.delayMs(500);
         // 点击修改父组件第二个属性文本
         await driver.assertComponentExist(ON.id('arrayElement1'));
@@ -439,6 +443,7 @@ export default function abilityTest() {
         await driver.assertComponentExist(ON.id('attribute2'));
         let attributeTwo = await driver.findComponent(ON.id('attribute2'));
         await attributeTwo.inputText('456');
+        inputMethodController.stopInputSession();
         await driver.delayMs(500);
         // 点击修改父组件第三个属性文本
         await driver.assertComponentExist(ON.id('arrayElement2'));
@@ -450,6 +455,7 @@ export default function abilityTest() {
         await attributeThree.click();
         await driver.delayMs(500);
         await attributeThree.inputText('789');
+        inputMethodController.stopInputSession();
         await driver.delayMs(500);
         // 展示源码
         await driver.assertComponentExist(ON.id('viewSourceCode'));
