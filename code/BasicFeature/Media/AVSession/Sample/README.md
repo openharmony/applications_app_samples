@@ -142,7 +142,7 @@ const permissions: Array<Permissions> = ['ohos.permission.READ_AUDIO'];
 
 ### 约束与限制
 
-1. 本示例仅支持标准系统上运行，支持设备：NOH。
+1. 本示例仅支持标准系统上运行。
 
 2. 本示例为Stage模型，支持API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0 Release)
 
