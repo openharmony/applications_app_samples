@@ -2,7 +2,7 @@
  * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
  */
 
-import image from '@ohos.multimedia.image';
+import type image from '@ohos.multimedia.image';
 
 export class PixelMapWrapper {
   pixelMap: image.PixelMap = undefined;
@@ -35,4 +35,25 @@ export enum CircleAngle {
   HALF_CIRCLE_ANGEL = 180,
   THREE_QUARTER_CIRCLE_ANGLE = 270,
   CIRCLE_ANGLE = 360
+}
+
+export class GlobalContext {
+  private constructor() {};
+  private static instance: GlobalContext;
+  private _objects = new Map<string, Object>();
+
+  public static getContext(): GlobalContext {
+    if (!GlobalContext.instance) {
+      GlobalContext.instance = new GlobalContext();
+    }
+    return GlobalContext.instance;
+  }
+
+  getObject(value: string): Object | undefined {
+    return this._objects.get(value);
+  }
+
+  setObject(key: string, objectClass: Object): void {
+    this._objects.set(key, objectClass);
+  }
 }

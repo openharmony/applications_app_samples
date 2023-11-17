@@ -19,13 +19,13 @@
       {
         "name": "default",
         "material": {
-          "certpath": "C:\\Users\\Administrator\\.ohos\\config\\openharmony\\auto_ohos_default_AVCastDemo_com.example.avcastdemo.cer",
-          "storePassword": "0000001B957BFBD18F31073C461A5249CB723109AF0F015AC0E857B3B1632900DBB7B443B94186A1960648",
+          "certpath": "C:\\Users\\Administrator\\.ohos\\config\\openharmony\\auto_ohos_default_Sample_com.example.avcastdemo.cer",
+          "storePassword": "0000001A198059184C359E96470F82D0B52F59A6F113D4348C3152713A140711F471336EBB61FB1F3ECF",
           "keyAlias": "debugKey",
-          "keyPassword": "0000001B3A7BE00F83C488931B8D15CB4B76F2B569C81568B45942159211D9DD12B623923413F2E8500A6B",
-          "profile": "C:\\Users\\Administrator\\.ohos\\config\\openharmony\\auto_ohos_default_AVCastDemo_com.example.avcastdemo.p7b",
+          "keyPassword": "0000001AA7484314F6E0DAC705EC594E9888AEE5BEC53F4F93A97893CA50AC52B60D03E9BEF49105E3D8",
+          "profile": "C:\\Users\\Administrator\\.ohos\\config\\openharmony\\auto_ohos_default_Sample_com.example.avcastdemo.p7b",
           "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\Administrator\\.ohos\\config\\openharmony\\auto_ohos_default_AVCastDemo_com.example.avcastdemo.p12"
+          "storeFile": "C:\\Users\\Administrator\\.ohos\\config\\openharmony\\auto_ohos_default_Sample_com.example.avcastdemo.p12"
         }
       }
     ],

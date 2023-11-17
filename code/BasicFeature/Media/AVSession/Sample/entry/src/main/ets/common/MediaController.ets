@@ -20,9 +20,9 @@ import promptAction from '@ohos.promptAction';
 const TAG = 'AVCAstDemo';
 
 export default class MediaController {
-  private avPlayer: media.AVPlayer;
+  private avPlayer: media.AVPlayer | undefined = undefined;
 
-  setAvPlayer(avPlayer) {
+  setAvPlayer(avPlayer: media.AVPlayer) {
     this.avPlayer = avPlayer;
   }
 

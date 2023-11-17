@@ -25,7 +25,7 @@ export  default class AudioUtils {
   private callbackMap: Map<string, Function> = new Map();
 
   constructor() {
-    console.log(TAG, `AVPlayer seek succeede in }`);
+    console.log(TAG, `AVPlayer seek succeede in `);
   }
 
   public async init() {
@@ -55,21 +55,22 @@ export  default class AudioUtils {
           break;
         case 'initialized':
           console.log(TAG, 'AVPlayer state initialized called.');
-          if (this.surfaceId) {
+          if (this.avPlayer && this.surfaceId) {
             this.avPlayer.surfaceId = this.surfaceId;
           }
-          this.avPlayer?.prepare().then(() => {
-            console.log(TAG, 'AVPlayer prepare succeeded.');
-          }), (err) => {
-            console.log(TAG, `Invoke prepare failed, code is ${err.code}, message is ${err.message}`)
+          try {
+            this.avPlayer?.prepare().then(() => {
+              console.log(TAG, 'AVPlayer prepare succeeded.');
+            });
+          } catch(err) {
+            console.log(TAG, `Invoke prepare failed, err : ${JSON.stringify(err)}`)
           }
           break;
         case 'prepared':
           console.log(TAG, 'AVPlayer state prepare called.');
           if (this.callbackMap.get('prepared')) {
-            this.callbackMap.get('prepared').call(() => {
-              console.log(TAG, 'AVPlayer state prepare start.');
-            });
+            this.callbackMap.get('prepared');
+            console.log(TAG, 'AVPlayer state prepare start.');
             this.callbackMap.set('prepared', null);
           }
           break;
@@ -95,7 +96,7 @@ export  default class AudioUtils {
     })
   }
 
-  public on(event: 'prepared', callback) {
+  public on(event: 'prepared', callback: Function) {
     this.callbackMap.set(event, callback)
   }
 

@@ -24,16 +24,16 @@ const abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 export default function abilityTest() {
   const BUNDLE = 'Sample_';
 
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
 
     /**
      * open_sample
      */
-    it(BUNDLE +'StartAbility_001', 0, async (done) => {
+    it(BUNDLE +'StartAbility_001', 0, async (done: Function) => {
       hilog.info(0x0, TAG, 'StartAbility_001 start');
       await abilityDelegator.startAbility({
         bundleName: 'com.example.avcastdemo',
-        abilityName: "EntryAbility"
+        abilityName: 'com.example.avcastdemo.EntryAbility'
       })
       hilog.info(0x0, TAG, 'StartAbility_001 end');
       done();
@@ -42,7 +42,7 @@ export default function abilityTest() {
     /**
      * music_last
      */
-    it(BUNDLE + 'music_last', 0, async (done) => {
+    it(BUNDLE + 'music_last', 0, async (done: Function) => {
       hilog.info(0x0, TAG, 'music_last start');
       let driver = await Driver.create();
       await driver.delayMs(1000);
@@ -53,9 +53,9 @@ export default function abilityTest() {
 
       await driver.assertComponentExist(ON.id('music_play_or_pause'));
       let playOrPause = await driver.findComponent(ON.id('music_play_or_pause'));
-      await lastButton.click();
+      await playOrPause.click();
       await driver.delayMs(1000);
-      await lastButton.click();
+      await playOrPause.click();
       await driver.delayMs(1000);
 
       await driver.assertComponentExist(ON.id('music_next'));
