@@ -607,7 +607,7 @@ interface Params {
         .selectedColor('#ff0c4ae7')
         .onChange((value: number, mode: SliderChangeMode) => {
           this.currentProgress = value;
-          if (typeof (this.totalMs) === 'number') {
+          if (typeof (this.totalMs) !== 'number') {
             this.currentProgress = 0;
             Logger.info(TAG, `setProgress ignored, totalMs= ${this.totalMs}`);
             return;
