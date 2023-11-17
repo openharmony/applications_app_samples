@@ -2,7 +2,8 @@
 
 ### 介绍
 
-本示例主要展示了视频播放的相关功能，使用[@ohos.multimedia.avsession](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-avsession.md)等接口实现媒体提供方与媒体控制方自定义信息的交互功能。
+本示例主要展示了视频播放的相关功能。
+使用[@ohos.multimedia.avsession](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-avsession.md)等接口实现视频播放的功能。
 
 
 ### 效果预览
@@ -30,7 +31,6 @@ entry/src/main/ets/
 │      AudioUtils.ets                 // 控制器封装
 │      CommonUtils.ets                // 格式化时间封装
 │      Constants.ets                  // 媒体资源信息
-│      MediaController.ets            // 媒体控制封装
 │      PermissionUtils.ets            // 权限封装
 │
 ├─entryability              
@@ -123,7 +123,8 @@ const permissions: Array<Permissions> = ['ohos.permission.READ_AUDIO'];
 
 #### 网络权限（可选）
 
-如果视频资源为的网络资源（例如：Url形式的MP4），需要获取网络权限[ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissioninternet)
+如果视频资源为的网络资源（例如：Url形式的MP4）。
+需要获取网络权限[ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissioninternet)
 
 请在需要获取网络权限的Ability的`module.json5`中添加以下配置：
 
@@ -141,7 +142,7 @@ const permissions: Array<Permissions> = ['ohos.permission.READ_AUDIO'];
 
 ### 约束与限制
 
-1. 本示例仅支持标准系统上运行，支持设备：RK3568。
+1. 本示例仅支持标准系统上运行，支持设备：NOH。
 
 2. 本示例为Stage模型，支持API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0 Release)
 
@@ -149,14 +150,4 @@ const permissions: Array<Permissions> = ['ohos.permission.READ_AUDIO'];
 
 4. 本示例涉及系统接口，需要配置系统应用签名，可以参考[特殊权限配置方法](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/) ，把配置文件中的“app-feature”字段信息改为“hos_system_app”。
 
-### 下载
 
-如需单独下载本工程，执行如下命令：
-
-```
-git init
-git config core.sparsecheckout true
-echo code/BasicFeature/Media/AVSession/Sample > .git/info/sparse-checkout
-git remote add origin https://gitee.com/openharmony/applications_app_samples.git
-git pull origin master
-```
