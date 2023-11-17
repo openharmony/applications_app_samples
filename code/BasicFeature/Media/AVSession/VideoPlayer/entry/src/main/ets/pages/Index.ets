@@ -162,7 +162,7 @@ struct Index {
   }
 
   onPageHide() {
-    console.log(TAG, 'xxx onPAgeHide in.');
+    console.log(TAG, 'indexPage onPAgeHide in.');
   }
 
   async playInfoUpdated() {
@@ -752,7 +752,7 @@ struct Index {
             alignItems: ItemAlign.Center
           }) {
             Column() {
-              Text('视频播放')
+              Text($r('app.string.EntryAbility_title'))
                 .fontWeight(FontWeight.Normal)
                 .fontSize(24)
                 .textAlign(TextAlign.Start)
@@ -796,7 +796,7 @@ struct Index {
         } else {
           Row() {
             Stack({ alignContent: Alignment.Center }) {
-              Text('投播中')
+              Text($r('app.string.EntryAbility_sink'))
                 .fontColor(Color.White)
                 .fontSize(28)
             }

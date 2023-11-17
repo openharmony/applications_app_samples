@@ -16,13 +16,13 @@
 import hilog from '@ohos.hilog';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import {Driver, ON, MatchPattern} from '@ohos.UiTest';
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 
 const TAG: string = 'SampleText';
 const abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+const BUNDLE = 'Sample_';
 
 export default function abilityTest() {
-  const BUNDLE = 'Sample_';
 
   describe('ActsAbilityTest', () => {
 

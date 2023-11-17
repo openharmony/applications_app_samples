@@ -29,12 +29,12 @@ export default class PermissionUtils {
       let length: number = grantStatus.length;
       for (let i = 0; i < length; i ++) {
         if(grantStatus[i] !== 0) {
-          console.error(TAG, `User reject permission: ${grantStatus[i]}`);
+          console.info(TAG, `User reject permission: ${grantStatus[i]}`);
           callback(false);
           return;
         }
       }
-      console.error(TAG, `get permission suc`);
+      console.info(TAG, `get permission succeed`);
       callback(true);
     }).catch((err: Error) => {
       console.error(TAG, `Failed to request permissions from user. err : ${JSON.stringify(err)}`);

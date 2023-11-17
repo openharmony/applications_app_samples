@@ -11,6 +11,14 @@
     {
       "name": "EntryAbility_label",
       "value": "label"
+    },
+    {
+      "name": "EntryAbility_title",
+      "value": "Video playback"
+    },
+    {
+      "name": "EntryAbility_sink",
+      "value": "Casting"
     }
   ]
 }

@@ -26,11 +26,11 @@ export  default class AudioFrameworkTest {
     const filePath = path + '/sample_3s.wav';
     console.log(TAG, 'file path: ' + filePath);
     fs.stat(filePath, (err, state) => {
-      console.log(TAG, 'get file state suc: size = ' + state?.size + ', err = ' + err);
+      console.log(TAG, 'get file state succeed: size = ' + state?.size + ', err = ' + err);
     })
     console.log(TAG, 'try open file: ' + filePath);
     let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-    console.log(TAG, 'try open file SUC: ' + file.fd);
+    console.log(TAG, 'try open file succeed: ' + file.fd);
     fs.close(file);
   }
 }
