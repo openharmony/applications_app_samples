@@ -2,8 +2,7 @@
 
 ### 介绍
 
-本示例主要展示了视频播放的相关功能。
-使用[@ohos.multimedia.avsession](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-avsession.md)等接口实现视频播放的功能。
+本示例主要展示了视频播放的相关功能。使用[@ohos.multimedia.avsession]等接口实现视频播放的功能。
 
 
 ### 效果预览
@@ -123,8 +122,7 @@ const permissions: Array<Permissions> = ['ohos.permission.READ_AUDIO'];
 
 #### 网络权限（可选）
 
-如果视频资源为的网络资源（例如：Url形式的MP4）。
-需要获取网络权限[ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissioninternet)
+如果视频资源为的网络资源（例如：Url形式的MP4），需要获取网络权限[ohos.permission.INTERNET]。
 
 请在需要获取网络权限的Ability的`module.json5`中添加以下配置：
 

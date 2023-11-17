@@ -33,7 +33,7 @@ export default function abilityTest() {
       hilog.info(0x0, TAG, 'StartAbility_001 start');
       await abilityDelegator.startAbility({
         bundleName: 'com.example.avcastdemo',
-        abilityName: 'com.example.avcastdemo.EntryAbility'
+        abilityName: 'EntryAbility'
       })
       hilog.info(0x0, TAG, 'StartAbility_001 end');
       done();
