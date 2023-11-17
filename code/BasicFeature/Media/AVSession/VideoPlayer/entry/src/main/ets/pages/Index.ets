@@ -234,6 +234,10 @@ struct Index {
           }
         });
       }
+      this.audioUtils.on('completed', () => {
+        console.log(TAG, 'AVPlayer state completed, state to stop');
+        this.setPlayState(avSession.PlaybackState.PLAYBACK_STATE_PAUSE);
+      });
     } else {
       console.log(TAG, 'set local media fail: no audioUtils');
     }

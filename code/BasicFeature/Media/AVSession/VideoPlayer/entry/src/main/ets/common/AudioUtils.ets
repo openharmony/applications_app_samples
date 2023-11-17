@@ -82,6 +82,10 @@ export  default class AudioUtils {
           break;
         case 'completed':
           console.log(TAG, 'AVPlayer state completed called.');
+          if (this.callbackMap.get('completed')) {
+            this.callbackMap.get('completed');
+            console.log(TAG, 'AVPlayer state completed start.');
+          }
           break;
         case 'stopped':
           console.log(TAG, 'AVPlayer state stopped called.');
@@ -96,7 +100,7 @@ export  default class AudioUtils {
     })
   }
 
-  public on(event: 'prepared', callback: Function) {
+  public on(event: string, callback: Function) {
     this.callbackMap.set(event, callback)
   }
 
