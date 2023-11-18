@@ -588,8 +588,8 @@ struct Index {
     wantAgent.getWantAgent({
       wants: [
         {
-          bundleName: 'com.example.avcastdemo',
-          abilityName: 'com.example.avcastdemo.EntryAbility'
+          bundleName: 'com.samples.videoplayer',
+          abilityName: 'com.samples.videoplayer.EntryAbility'
         }
       ],
       operationType: wantAgent.OperationType.START_ABILITIES,
