@@ -107,33 +107,9 @@ entry/src/main/ets/
 
 ### 相关权限
 
-请在需要获取网络权限的Ability的`PermissionUtils.ets`中添加以下配置：
+获取访问网络的权限
+[ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissioninternet)
 
-```
-const permissions: Array<Permissions> = ['ohos.permission.READ_AUDIO'];
-```
-
-#### 系统应用权限
-
-无
-
-#### 网络权限（可选）
-
-如果视频资源为的网络资源（例如：Url形式的MP4），需要获取网络权限[ohos.permission.INTERNET]。
-
-请在需要获取网络权限的Ability的`module.json5`中添加以下配置：
-
-```json5
-{
-  "module": {
-      "requestPermissions": [
-        {
-          "name": "ohos.permission.INTERNET"
-        }
-      ]
-  }
-}
-```
 
 ### 约束与限制
 
@@ -142,7 +118,5 @@ const permissions: Array<Permissions> = ['ohos.permission.READ_AUDIO'];
 2. 本示例为Stage模型，支持API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0 Release)
 
 3. 本示例需要使用DevEco Studio 版本号(4.0 Release)及以上版本才可编译运行。
-
-4. 本示例涉及系统接口，需要配置系统应用签名，可以参考[特殊权限配置方法](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/) ，把配置文件中的“app-feature”字段信息改为“hos_system_app”。
 
 
