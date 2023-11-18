@@ -15,7 +15,7 @@
 
 {
   "app": {
-    "bundleName": "com.example.avcastdemo",
+    "bundleName": "com.samples.videoplayer",
     "vendor": "example",
     "versionCode": 1000000,
     "versionName": "1.0.0",
