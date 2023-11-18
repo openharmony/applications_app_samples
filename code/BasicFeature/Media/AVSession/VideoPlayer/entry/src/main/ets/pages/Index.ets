@@ -381,7 +381,7 @@ struct Index {
       console.info(TAG, 'on toggleFavorite session, do toggleFavorite test: ' + id);
       this.setPlayState(undefined, id, !this.isFavorMap[id]);
     });
-    //注册播放快退命令监听
+    // 注册播放快退命令监听
     this.session?.on('rewind', (time?: number) => {
       time = time ? time : 0;
       let currentTime = this.avPlayer ? this.avPlayer.currentTime : 0;
@@ -390,7 +390,7 @@ struct Index {
       console.info(TAG, 'rewind currentTime ' + timeMs);
       this.setPlayState(avSession.PlaybackState.PLAYBACK_STATE_PLAY);
     });
-    //注册播放快进命令监听
+    // 注册播放快进命令监听
     this.session?.on('fastForward', (time?: number) => {
       time = time ? time : 0;
       let currentTime = this.avPlayer ? this.avPlayer.currentTime : 0;
