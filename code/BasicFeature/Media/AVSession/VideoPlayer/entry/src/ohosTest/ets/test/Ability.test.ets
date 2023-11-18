@@ -32,7 +32,7 @@ export default function abilityTest() {
     it(BUNDLE +'StartAbility_001', 0, async (done: Function) => {
       hilog.info(0x0, TAG, 'StartAbility_001 start');
       await abilityDelegator.startAbility({
-        bundleName: 'com.example.avcastdemo',
+        bundleName: 'com.samples.videoplayer',
         abilityName: 'EntryAbility'
       })
       hilog.info(0x0, TAG, 'StartAbility_001 end');
