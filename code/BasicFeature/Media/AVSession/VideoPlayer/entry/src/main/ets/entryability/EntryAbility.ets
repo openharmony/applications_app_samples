@@ -43,30 +43,30 @@ export default class EntryAbility extends UIAbility {
       hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
     });
     windowStage.getMainWindow().then(windowClass => {
-        try {
-          windowClass.setWindowSystemBarProperties({
-            statusBarColor: Constants.THEME_COLOR,
-            statusBarContentColor: '#000000',
-          }, (err) => {
-            if (err.code) {
-              console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
-              return;
-            }
-            console.info('Succeeded in setting the system bar properties.');
-          })
-          let orientation = window.Orientation.AUTO_ROTATION;
-          windowClass.setPreferredOrientation(orientation, (err) => {
-            if (err.code) {
-              console.error('Failed to set window orientation. Cause: ' + JSON.stringify(err));
-              return;
-            }
-            console.info('Succeeded in setting window orientation.');
-          })
-        } catch (exception) {
-          console.error('Failed to set system bar to be invisible. Cause: ' + JSON.stringify(exception));
-        }
-      })
-    }
+      try {
+        windowClass.setWindowSystemBarProperties({
+          statusBarColor: Constants.THEME_COLOR,
+          statusBarContentColor: '#000000',
+        }, (err) => {
+          if (err.code) {
+            console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
+            return;
+          }
+          console.info('Succeeded in setting the system bar properties.');
+        })
+        let orientation = window.Orientation.AUTO_ROTATION;
+        windowClass.setPreferredOrientation(orientation, (err) => {
+          if (err.code) {
+            console.error('Failed to set window orientation. Cause: ' + JSON.stringify(err));
+            return;
+          }
+          console.info('Succeeded in setting window orientation.');
+        })
+      } catch (exception) {
+        console.error('Failed to set system bar to be invisible. Cause: ' + JSON.stringify(exception));
+      }
+    })
+  }
 
   onWindowStageDestroy() {
     // Main window is destroyed, release UI related resources
