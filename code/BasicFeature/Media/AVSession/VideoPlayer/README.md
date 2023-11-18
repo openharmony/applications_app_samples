@@ -25,21 +25,18 @@
 
 ```
 entry/src/main/ets/
-├─common                                // 方法封装
-│      AudioFrameworkTest.ets
-│      AudioUtils.ets                 // 控制器封装
-│      CommonUtils.ets                // 格式化时间封装
-│      Constants.ets                  // 媒体资源信息
-│      PermissionUtils.ets            // 权限封装
-│
-├─entryability              
-│      EntryAbility.ets               
-│
-└─pages
-    │  Index.ets                        // 界面实现
-    │
-    └─components
-            SongItem.ets                // 视频列表组件
+|---common                                // 方法封装
+|---|---AudioFrameworkTest.ets
+|---|---AudioUtils.ets                 // 控制器封装
+|---|---CommonUtils.ets                // 格式化时间封装
+|---|---Constants.ets                  // 媒体资源信息
+|---|---PermissionUtils.ets            // 权限封装
+|---entryability              
+|---|---EntryAbility.ets               
+|---pages
+|---|---Index.ets                        // 界面实现
+|---|---components
+|---|---|---SongItem.ets                // 视频列表组件
 ```
 
 ### 具体实现
