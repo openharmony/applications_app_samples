@@ -18,7 +18,7 @@ import common from  '@ohos.app.ability.common';
 
 const TAG = 'AVCastDemo';
 
-export  default class AudioUtils {
+export default class AudioUtils {
   public avPlayer: media.AVPlayer | null = null;
   public state: string = '';
   public surfaceId: string = '';
