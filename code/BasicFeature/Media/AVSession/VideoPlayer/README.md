@@ -4,7 +4,6 @@
 
 本示例主要展示了网络视频播放的相关功能。使用[@ohos.multimedia.avsession]等接口实现视频播放的功能。
 
-
 ### 效果预览
 
 | 主页 | 
@@ -17,7 +16,6 @@
 2. 点击暂停按钮，应用的播放状态开始变化。
 3. 点击上一个按钮，界面展示播放列表中的上一个视频的信息。
 4. 点击下一下按钮，界面展示播放列表中的下一个视频的信息。
-
 
 ### 工程目录
 
@@ -107,9 +105,7 @@ entry/src/main/ets/
 
 ### 相关权限
 
-获取访问网络的权限
-[ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissioninternet)
-
+不涉及
 
 ### 约束与限制
 
@@ -118,5 +114,3 @@ entry/src/main/ets/
 2. 本示例为Stage模型，支持API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0 Release)
 
 3. 本示例需要使用DevEco Studio 版本号(4.0 Release)及以上版本才可编译运行。
-
-
