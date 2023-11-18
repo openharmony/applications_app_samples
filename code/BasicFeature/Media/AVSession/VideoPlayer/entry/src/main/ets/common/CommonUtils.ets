@@ -13,7 +13,7 @@
 * limitations under the License.
 */
 
-export  default class CommonUtils {
+export default class CommonUtils {
   public static millSecond2Minutes(time: number) {
     const min = Math.floor(time / 1000 / 60);
     const sec = Math.ceil(time / 1000 % 60);
