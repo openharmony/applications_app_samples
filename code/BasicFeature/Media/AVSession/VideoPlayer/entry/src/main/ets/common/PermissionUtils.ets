@@ -22,7 +22,7 @@ export default class PermissionUtils {
   public static init(context: Context, callback: Function) {
     console.log(TAG, 'start init permission');
     let atManager = abilityAccessCtrl.createAtManager();
-    //requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
+    // requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
 
     atManager.requestPermissionsFromUser(context, permissions).then((data) => {
       let grantStatus: Array<number> = data.authResults;
