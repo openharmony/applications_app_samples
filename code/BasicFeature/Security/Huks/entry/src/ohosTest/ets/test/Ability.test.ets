@@ -13,27 +13,28 @@
  * limitations under the License.
  */
 
-import { describe, it, expect } from '@ohos/hypium'
-import { Driver, ON } from '@ohos.UiTest'
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
-import Logger from '../../../main/ets/model/Logger'
+import { describe, it, expect } from '@ohos/hypium';
+import { Driver, ON } from '@ohos.UiTest';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import Logger from '../../../main/ets/model/Logger';
+import inputMethod from '@ohos.inputMethod';
 
-const TAG = '[Sample_Huks]'
-const BUNDLE = 'Huks_'
+const TAG = '[Sample_Huks]';
+const BUNDLE = 'Huks_';
 
 // 返回首页
 async function backToIndexPage(driver: Driver) {
-  Logger.info(TAG, BUNDLE + 'backToIndexPage begin')
+  Logger.info(TAG, BUNDLE + 'backToIndexPage begin');
   await driver.pressBack();
-  await driver.delayMs(500)
-  await driver.assertComponentExist(ON.id('new_key'))
-  await driver.assertComponentExist(ON.id('old_key'))
-  Logger.info(TAG, BUNDLE + 'backToIndexPage end')
+  await driver.delayMs(500);
+  await driver.assertComponentExist(ON.id('new_key'));
+  await driver.assertComponentExist(ON.id('old_key'));
+  Logger.info(TAG, BUNDLE + 'backToIndexPage end');
 }
 
 export default function abilityTest() {
   let driver = Driver.create();
-  describe('ActsAbilityTest',  () => {
+  describe('ActsAbilityTest', () => {
     /**
      * 拉起应用
      */
@@ -86,6 +87,8 @@ export default function abilityTest() {
       let encryptionMessage = await encryptionInfo.getText();
       Logger.info(TAG, BUNDLE + `CipherByNewKeyFunction_001 select encryptionMessage:${encryptionMessage}`);
       expect(encryptionMessage === 'test').assertFalse();
+      let inputMethodController = inputMethod.getController();
+      inputMethodController.stopInputSession();
       Logger.info(TAG, BUNDLE + 'CipherByNewKeyFunction_001 end');
       done();
     })
@@ -145,6 +148,8 @@ export default function abilityTest() {
       let encryptionMessage = await encryptionInfo.getText();
       Logger.info(TAG, BUNDLE + `CipherByOldKeyFunction_001 select encryptionMessage:${encryptionMessage}`);
       expect(encryptionMessage === 'test').assertFalse();
+      let inputMethodController = inputMethod.getController();
+      inputMethodController.stopInputSession();
       Logger.info(TAG, BUNDLE + 'CipherByOldKeyFunction_001 end');
       done();
     })
@@ -156,6 +161,7 @@ export default function abilityTest() {
       Logger.info(TAG, BUNDLE + 'CipherByOldKeyFunction_002 begin');
       // 点击新密钥按钮，跳转至使用新密钥进行加解密页面
       Logger.info(TAG, BUNDLE + 'CipherByOldKeyFunction_002 decryption');
+      await driver.delayMs(1000);
       // 点击导入按钮导入旧密钥
       await driver.assertComponentExist(ON.id('importKeyBtn'));
       let importKeyBtn = await driver.findComponent(ON.id('importKeyBtn'));
@@ -204,6 +210,8 @@ export default function abilityTest() {
       let encryptionContent = await encryptionInput.getText();
       Logger.info(TAG, BUNDLE + `MinAccessControlFunction_001 select encryptionContent:${encryptionContent}`);
       expect(encryptionContent).assertEqual('test');
+      let inputMethodController = inputMethod.getController();
+      inputMethodController.stopInputSession();
       // 点击发送按钮进行加密并发送密文消息
       await encryptionBtn.click();
       await driver.delayMs(1000);
@@ -217,6 +225,5 @@ export default function abilityTest() {
       Logger.info(TAG, BUNDLE + 'MinAccessControlFunction_001 end');
       done();
     })
-
   })
 }
