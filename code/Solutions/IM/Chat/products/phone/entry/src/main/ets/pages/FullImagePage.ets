@@ -29,6 +29,19 @@ const LOADING_DURATION_OPEN: number = 100;
 const OPACITY: number = 0.4;
 // swiper组件导航点rgba值
 const INDICATOR_COLOR: string = '#99ffffff';
+// 定时器时间间隔
+const INTERVAL_TIME: number = 20;
+
+// work线程返回值
+class WorkData {
+  isComplete: boolean;
+  filePath: string;
+
+  constructor(isComplete: boolean, filePath: string) {
+    this.isComplete = isComplete;
+    this.filePath = filePath;
+  }
+}
 
 @Entry
 @Component
@@ -89,7 +102,7 @@ struct FullImagePage {
           // 图片显示模块
           Row() {
             Image(this.mediaData)
-              .width('100%')
+              .width($r('app.string.layout_100_percent'))
               .height($r('app.integer.image_height_size'))
               .objectFit(ImageFit.Contain)
               .gesture(
@@ -101,15 +114,15 @@ struct FullImagePage {
           }
           .backgroundColor(Color.Black)
           .justifyContent(FlexAlign.Center)
-          .width('100%')
-          .height('100%')
+          .width($r('app.string.layout_100_percent'))
+          .height($r('app.string.layout_100_percent'))
         } else {
           Column() {
             Swiper() {
               ForEach(this.imageUrlArray, (item: string) => {
                 Image(item)
                   .id('swiperImage')
-                  .width('100%')
+                  .width($r('app.string.layout_100_percent'))
                   .height($r('app.integer.image_height_size'))
                   .objectFit(ImageFit.Contain)
                   .gesture(
@@ -123,8 +136,8 @@ struct FullImagePage {
             .indicator(this.dotIndicator.color(INDICATOR_COLOR))
           }.backgroundColor(Color.Black)
           .justifyContent(FlexAlign.Center)
-          .width('100%')
-          .height('100%')
+          .width($r('app.string.layout_100_percent'))
+          .height($r('app.string.layout_100_percent'))
         }
       } else {
         // 视频显示模块
@@ -147,8 +160,8 @@ struct FullImagePage {
                 }
               })
           }
-          .width('100%')
-          .height('100%')
+          .width($r('app.string.layout_100_percent'))
+          .height($r('app.string.layout_100_percent'))
           .backgroundColor(Color.Black)
           .justifyContent(FlexAlign.Center)
 
@@ -180,7 +193,7 @@ struct FullImagePage {
       this.downloadStatus = true;
       setTimeout(() => {
         this.rotateAnimation();
-      }, 20)
+      }, INTERVAL_TIME)
       this.downLoadFile();
     } else {
       // 判断是否为多图片
@@ -222,9 +235,10 @@ struct FullImagePage {
     let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
     workerInstance.postMessage({ context, mediaData: this.mediaData, isImageData: this.isImageData });
     workerInstance.onmessage = (e: MessageEvents): void => {
-      if (e.data) {
-        this.downComplete = e.data['isComplete'];
-        this.filePath = e.data['filePath'];
+      let workData: WorkData = e.data;
+      if (workData) {
+        this.downComplete = workData.isComplete;
+        this.filePath = workData.filePath;
         workerInstance.terminate();
         setTimeout(() => {
           this.downloadStatus = false;
