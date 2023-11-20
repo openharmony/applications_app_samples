@@ -43,7 +43,7 @@ struct Examples {
 
   async getPluralFormat() {
     this.pluralFormat = await ResourceUtil.getPluralString($r('app.plural.eat_apple').id, 5);
-    this.mDirection = await ResourceUtil.getString($r('app.string.screen_direction').id);
+    this.mDirection = ResourceUtil.getString($r('app.string.screen_direction').id);
     this.mDirection += await ResourceUtil.getDirection();
   }
 
@@ -53,10 +53,10 @@ struct Examples {
     this.time = timeInfo[1];
   }
 
-  async getTimeZoneDetect() {
-    this.timeZoneDetect = await ResourceUtil.getString($r('app.string.coordinate').id);
+  getTimeZoneDetect() {
+    this.timeZoneDetect = ResourceUtil.getString($r('app.string.coordinate').id);
     this.timeZoneDetect += '(' + LONGITUDE + ',' + LATITUDE + ') ' +
-      i18n.TimeZone.getTimezonesByLocation(LONGITUDE, LATITUDE)[0].getDisplayName();
+    i18n.TimeZone.getTimezonesByLocation(LONGITUDE, LATITUDE)[0].getDisplayName();
   }
 
   getNormalizer() {
@@ -69,7 +69,8 @@ struct Examples {
     this.language = i18n.System.getDisplayLanguage(systemLanguage, systemLanguage);
   }
 
-  @Builder TextView($$: Data) {
+  @Builder
+  TextView($$: Data) {
     Text($$.text)
       .fontSize(20)
       .fontColor($r('app.color.gray'))
@@ -80,17 +81,17 @@ struct Examples {
   build() {
     Column() {
       TitleBar({ hasBackPress: true, title: $r('app.string.format_example') })
-      this.TextView(new Data(this.language))
+      this.TextView({ text: this.language })
       Column() {
-        this.TextView(new Data(this.date))
-        this.TextView(new Data(this.time))
+        this.TextView({ text: this.date })
+        this.TextView({ text: this.time })
         ForEach(this.numberFormat, (item: string, index: number) => {
-          this.TextView(new Data(item));
+          this.TextView({ text: item });
         }, (item: string) => item)
-        this.TextView(new Data(this.pluralFormat))
-        this.TextView(new Data(this.timeZoneDetect))
-        this.TextView(new Data(this.normalizer))
-        this.TextView(new Data(this.mDirection))
+        this.TextView({ text: this.pluralFormat })
+        this.TextView({ text: this.timeZoneDetect })
+        this.TextView({ text: this.normalizer })
+        this.TextView({ text: this.mDirection })
       }
       .width('95%')
       .padding({ bottom: 20, left: 10, right: 10 })
@@ -106,8 +107,4 @@ struct Examples {
 
 class Data {
   text: string = '';
-
-  constructor(text: string) {
-    this.text = text;
-  }
 }
