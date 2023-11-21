@@ -1,0 +1,10 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/Page_CollaborateAbility",
+    "pages/Page_ColdStartUp",
+    "pages/Page_FromStageModel",
+    "pages/Page_HotStartUp",
+    "pages/Page_CalleeAbility"
+  ]
+}

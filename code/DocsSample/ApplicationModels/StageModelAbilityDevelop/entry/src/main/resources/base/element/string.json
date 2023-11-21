@@ -1,0 +1,388 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "EntryAbility description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "SA Model Develop"
+    },
+    {
+      "name": "Logger_desc",
+      "value": "Logger description"
+    },
+    {
+      "name": "Logger_label",
+      "value": "label"
+    },
+    {
+      "name": "MainTitle",
+      "value": "MainTitle"
+    },
+    {
+      "name": "ComponentStartupAbility_desc",
+      "value": "Component startup mode description"
+    },
+    {
+      "name": "ComponentStartupAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "singleton",
+      "value": "singleton"
+    },
+    {
+      "name": "multiton",
+      "value": "multiton"
+    },
+    {
+      "name": "SingletonAbility_desc",
+      "value": "Component startup singleton mode"
+    },
+    {
+      "name": "SingletonAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "Newpage",
+      "value": "New Page"
+    },
+    {
+      "name": "Savedpage",
+      "value": "Saved Page"
+    },
+    {
+      "name": "MyAbilityStage_desc",
+      "value": "Ability corresponding to the AbilityStage component container"
+    },
+    {
+      "name": "MyAbilityStage_label",
+      "value": "label"
+    },
+    {
+      "name": "SpecifiedA",
+      "value": "SpecifiedA"
+    },
+    {
+      "name": "SpecifiedB",
+      "value": "SpecifiedB"
+    },
+    {
+      "name": "Page_UIAbilityFourth",
+      "value": "Page_UIAbilityFourth"
+    },
+    {
+      "name": "EventAbility_desc",
+      "value": "Ability corresponding to data synchronization between UIAbility components and UI"
+    },
+    {
+      "name": "EventAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "EventHubFuncA",
+      "value": "EventHubFuncA"
+    },
+    {
+      "name": "EventHubFuncB",
+      "value": "EventHubFuncB"
+    },
+    {
+      "name": "UIAbilityComponentsInteractionA",
+      "value": "UIAbilityComponentsInteractionA"
+    },
+    {
+      "name": "UIAbilityComponentsInteractionB",
+      "value": "UIAbilityComponentsInteractionB"
+    },
+    {
+      "name": "UIAbilityComponentsInteractionC",
+      "value": "UIAbilityComponentsInteractionC"
+    },
+    {
+      "name": "UIAbilityComponentsInteractionD",
+      "value": "UIAbilityComponentsInteractionD"
+    },
+    {
+      "name": "UIAbilityComponentsInteractionE",
+      "value": "UIAbilityComponentsInteractionE"
+    },
+    {
+      "name": "UIAbilityComponentsInteractionF",
+      "value": "UIAbilityComponentsInteractionF"
+    },
+    {
+      "name": "FuncAbility_desc",
+      "value": "Ability corresponding to the interaction between UIAbility components (within the device)"
+    },
+    {
+      "name": "FuncAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "SpecifiedPageA",
+      "value": "SpecifiedPageA"
+    },
+    {
+      "name": "CloseSpecifiedPageA",
+      "value": "CloseSpecifiedPageA"
+    },
+    {
+      "name": "SpecifiedPageB",
+      "value": "SpecifiedPageB"
+    },
+    {
+      "name": "CloseSpecifiedPageB",
+      "value": "CloseSpecifiedPageB"
+    },
+    {
+      "name": "UIAbilityComponentsInteractionOnCreate",
+      "value": "UIAbilityComponentsInteractionOnCreate"
+    },
+    {
+      "name": "UIAbilityComponentsInteractionOnNewWant",
+      "value": "UIAbilityComponentsInteractionOnNewWant"
+    },
+    {
+      "name": "Context",
+      "value": "Context"
+    },
+    {
+      "name": "Context01",
+      "value": "Context01"
+    },
+    {
+      "name": "Context02",
+      "value": "Context02"
+    },
+    {
+      "name": "Context03",
+      "value": "Context03"
+    },
+    {
+      "name": "Context04",
+      "value": "Context04"
+    },
+    {
+      "name": "Context05",
+      "value": "Context05"
+    },
+    {
+      "name": "GET_BUNDLE_INFO_PRIVILEGED",
+      "value": "GET_BUNDLE_INFO_PRIVILEGED"
+    },
+    {
+      "name": "LifecycleAbility_desc",
+      "value": "Ability corresponding to changes in UIAbility lifecycle during subscription process"
+    },
+    {
+      "name": "LifecycleAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "ContextAbility_desc",
+      "value": "Create an Ability corresponding to the Context of other applications or modules"
+    },
+    {
+      "name": "ContextAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "DeviceCrossMigration",
+      "value": "DeviceCrossMigration"
+    },
+    {
+      "name": "MultiDeviceCollaboration",
+      "value": "MultiDeviceCollaboration"
+    },
+    {
+      "name": "MigrationAbility_desc",
+      "value": "Ability corresponding to cross end migration"
+    },
+    {
+      "name": "MigrationAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "Page_MigrationAbilityFirst",
+      "value": "Page_MigrationAbilityFirst"
+    },
+    {
+      "name": "Page_MigrationAbilitySecond",
+      "value": "Page_MigrationAbilitySecond"
+    },
+    {
+      "name": "Page_MigrationAbilityThird",
+      "value": "Page_MigrationAbilityThird"
+    },
+    {
+      "name": "DISTRIBUTED_DATASYNC",
+      "value": "DISTRIBUTED_DATASYNC"
+    },
+    {
+      "name": "READ_CALENDAR",
+      "value": "READ_CALENDAR"
+    },
+    {
+      "name": "CollaborateAbility_desc",
+      "value": "Ability of multi end collaboration correspondence"
+    },
+    {
+      "name": "CollaborateAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "SpecifiedPageC",
+      "value": "SpecifiedPageC"
+    },
+    {
+      "name": "CollaborativeInitialization",
+      "value": "CollaborativeInitialization"
+    },
+    {
+      "name": "MultiDeviceCollaborationWithoutReturningData",
+      "value": "MultiDeviceCollaborationWithoutReturningData"
+    },
+    {
+      "name": "MultiDeviceCollaborationWithReturningData",
+      "value": "MultiDeviceCollaborationWithReturningData"
+    },
+    {
+      "name": "Page_MigrationAbilityFourth",
+      "value": "Page_MigrationAbilityFourth"
+    },
+    {
+      "name": "StartFAModel",
+      "value": "StartFAModel"
+    },
+    {
+      "name": "StartFAModelWithResult",
+      "value": "StartFAModelWithResult"
+    },
+    {
+      "name": "ServiceAbility",
+      "value": "ServiceAbility"
+    },
+    {
+      "name": "ServiceAbility_desc",
+      "value": "Stage model binding FA model ServiceAbility corresponding to Ability"
+    },
+    {
+      "name": "ServiceAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "Success",
+      "value": "Success"
+    },
+    {
+      "name": "MethodOneForObtainingApplicationFilePath",
+      "value": "MethodOneForObtainingApplicationFilePath"
+    },
+    {
+      "name": "MethodOneTwoObtainingApplicationFilePath",
+      "value": "MethodOneTwoObtainingApplicationFilePath"
+    },
+    {
+      "name": "CreateContextMethodOne",
+      "value": "CreateContextMethodOne"
+    },
+    {
+      "name": "CreateContextMethodTwo",
+      "value": "CreateContextMethodTwo"
+    },
+    {
+      "name": "CreateContextMethodThree",
+      "value": "CreateContextMethodThree"
+    },
+    {
+      "name": "NoContentAvailable",
+      "value": "NoContentAvailable"
+    },
+    {
+      "name": "SingleDevice",
+      "value": "SingleDevice"
+    },
+    {
+      "name": "MultipleDevices",
+      "value": "MultipleDevices"
+    },
+    {
+      "name": "UIAbilityComponentsInteractive",
+      "value": "UIAbilityComponentsInteractive"
+    },
+    {
+      "name": "UIAbilityComponentsBasicUsage",
+      "value": "UIAbilityComponentsBasicUsage"
+    },
+    {
+      "name": "UIAbilityComponentsStartModel",
+      "value": "UIAbilityComponentsStartModel"
+    },
+    {
+      "name": "InDevice",
+      "value": "InDevice"
+    },
+    {
+      "name": "DataSynchronization",
+      "value": "DataSynchronization"
+    },
+    {
+      "name": "SwitchToEL1",
+      "value": "SwitchToEL1"
+    },
+    {
+      "name": "SwitchToEL2",
+      "value": "SwitchToEL2"
+    },
+    {
+      "name": "InitializedSuccessfully",
+      "value": "InitializedSuccessfully"
+    },
+    {
+      "name": "SuccessfulCollaboration",
+      "value": "SuccessfulCollaboration"
+    },
+    {
+      "name": "CloseSpecifiedPage",
+      "value": "CloseSpecifiedPage"
+    },
+    {
+      "name": "StageModelinteractiveWithFAModel",
+      "value": "StageModelinteractiveWithFAModel"
+    },
+    {
+      "name": "Caller",
+      "value": "Caller"
+    },
+    {
+      "name": "CallerSuccess",
+      "value": "CallerSuccess"
+    },
+    {
+      "name": "CallerWithReturnData",
+      "value": "CallerWithReturnData"
+    },
+    {
+      "name": "CallerRelease",
+      "value": "CallerRelease"
+    },
+    {
+      "name": "CallerCommunication",
+      "value": "CallerCommunication"
+    },
+    {
+      "name": "CallerCommunicationSuccess",
+      "value": "CallerCommunicationSuccess"
+    },
+    {
+      "name": "CallerReleaseSuccess",
+      "value": "CallerReleaseSuccess"
+    }
+  ]
+}

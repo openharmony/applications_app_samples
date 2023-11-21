@@ -1,0 +1,113 @@
+/*
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the 'License');
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an 'AS IS' BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    "description": "$string:module_desc",
+    "mainElement": "EntryAbility",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        "srcEntry": "./ets/entryability/EntryAbility.ts",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "FuncAbility",
+        "srcEntry": "./ets/funcability/FuncAbility.ts",
+        "description": "$string:FuncAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:FuncAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.default"
+            ],
+            "actions": [
+              "ohos.want.action.viewData"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "CollaborateAbility",
+        "srcEntry": "./ets/collaborateability/CollaborateAbility.ts",
+        "description": "$string:CollaborateAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:CollaborateAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true
+      },
+      {
+        "name": "CalleeAbility",
+        "srcEntry": "./ets/calleeability/CalleeAbility.ts",
+        "description": "$string:CalleeAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:CalleeAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "singleton",
+        "exported": true
+      },
+            {
+        "name": "FuncBAbility",
+        "srcEntry": "./ets/funcbability/FuncBAbility.ts",
+        "description": "$string:FuncBAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:FuncBAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.default"
+            ],
+            "actions": [
+              "ohos.want.action.editData"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
