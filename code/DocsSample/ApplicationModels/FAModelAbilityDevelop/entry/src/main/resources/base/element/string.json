@@ -1,0 +1,312 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "PageAbilitySingleton_desc",
+      "value": "description"
+    },
+    {
+      "name": "PageAbilitySingleton_label",
+      "value": "label"
+    },
+    {
+      "name": "PageAbilityStandard_desc",
+      "value": "description"
+    },
+    {
+      "name": "PageAbilityStandard_label",
+      "value": "label"
+    },
+    {
+      "name": "ServiceAbility_desc",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "DataAbility_desc",
+      "value": "hap sample empty provider"
+    },
+    {
+      "name": "FormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "FormAbility_label",
+      "value": "form_label"
+    },
+    {
+      "name": "ServiceAbilityStartUIAbility_desc",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "main_title",
+      "value": "main_title"
+    },
+    {
+      "name": "getDirectory_button",
+      "value": "getDirectory_button"
+    },
+    {
+      "name": "start_singleton_button",
+      "value": "start_singleton_button"
+    },
+    {
+      "name": "start_standard_first_button",
+      "value": "start_standard_first_button"
+    },
+    {
+      "name": "start_standard_second_button",
+      "value": "start_standard_second_button"
+    },
+    {
+      "name": "restart_singleton_button",
+      "value": "restart_singleton_button"
+    },
+    {
+      "name": "stop_pageAbility_button",
+      "value": "stop_pageAbility_button"
+    },
+    {
+      "name": "singleton_first_title",
+      "value": "singleton_first_title"
+    },
+    {
+      "name": "singleton_second_title",
+      "value": "singleton_second_title"
+    },
+    {
+      "name": "standard_default_title",
+      "value": "standard_default_title"
+    },
+    {
+      "name": "standard_first_title",
+      "value": "standard_first_title"
+    },
+    {
+      "name": "standard_second_title",
+      "value": "standard_second_title"
+    },
+    {
+      "name": "pageAbility_first_button",
+      "value": "pageAbility_first_button"
+    },
+    {
+      "name": "pageAbility_second_button",
+      "value": "pageAbility_second_button"
+    },
+    {
+      "name": "serviceAbility_button",
+      "value": "serviceAbility_button"
+    },
+    {
+      "name": "dataAbility_button",
+      "value": "dataAbility_button"
+    },
+    {
+      "name": "interflow_fa_and_stage_button",
+      "value": "interflow_fa_and_stage_button"
+    },
+    {
+      "name": "insert_cb_button",
+      "value": "insert_cb_button"
+    },
+    {
+      "name": "insert_pm_button",
+      "value": "insert_pm_button"
+    },
+    {
+      "name": "delete_cb_button",
+      "value": "delete_cb_button"
+    },
+    {
+      "name": "delete_pm_button",
+      "value": "delete_pm_button"
+    },
+    {
+      "name": "update_cb_button",
+      "value": "update_cb_button"
+    },
+    {
+      "name": "update_pm_button",
+      "value": "update_pm_button"
+    },
+    {
+      "name": "query_cb_button",
+      "value": "query_cb_button"
+    },
+    {
+      "name": "query_pm_button",
+      "value": "query_pm_button"
+    },
+    {
+      "name": "batchInsert_cb_button",
+      "value": "batchInsert_cb_button"
+    },
+    {
+      "name": "batchInsert_pm_button",
+      "value": "batchInsert_pm_button"
+    },
+    {
+      "name": "executeBatch_cb_button",
+      "value": "executeBatch_cb_button"
+    },
+    {
+      "name": "executeBatch_pm_button",
+      "value": "executeBatch_pm_button"
+    },
+    {
+      "name": "start_stage_noResult_button",
+      "value": "start_stage_noResult_button"
+    },
+    {
+      "name": "start_stage_withResult_button",
+      "value": "start_stage_withResult_button"
+    },
+    {
+      "name": "start_stage_service_button",
+      "value": "start_stage_service_button"
+    },
+    {
+      "name": "worker_button",
+      "value": "worker_button"
+    },
+    {
+      "name": "create_service_button",
+      "value": "create_service_button"
+    },
+    {
+      "name": "connect_service_button",
+      "value": "connect_service_button"
+    },
+    {
+      "name": "connect_wrong_service_button",
+      "value": "connect_wrong_service_button"
+    },
+    {
+      "name": "reserve_title",
+      "value": "reserve_title"
+    },
+    {
+      "name": "insert_success_toast",
+      "value": "insert_success_toast"
+    },
+    {
+      "name": "insert_failed_toast",
+      "value": "insert_failed_toast"
+    },
+    {
+      "name": "delete_success_toast",
+      "value": "delete_success_toast"
+    },
+    {
+      "name": "delete_failed_toast",
+      "value": "delete_failed_toast"
+    },
+    {
+      "name": "update_success_toast",
+      "value": "update_success_toast"
+    },
+    {
+      "name": "update_failed_toast",
+      "value": "update_failed_toast"
+    },
+    {
+      "name": "query_success_toast",
+      "value": "query_success_toast"
+    },
+    {
+      "name": "query_failed_toast",
+      "value": "query_failed_toast"
+    },
+    {
+      "name": "batchInsert_success_toast",
+      "value": "batchInsert_success_toast"
+    },
+    {
+      "name": "batchInsert_failed_toast",
+      "value": "batchInsert_failed_toast"
+    },
+    {
+      "name": "executeBatch_success_toast",
+      "value": "executeBatch_success_toast"
+    },
+    {
+      "name": "executeBatch_failed_toast",
+      "value": "executeBatch_failed_toast"
+    },
+    {
+      "name": "start_service_success_toast",
+      "value": "start_service_success_toast"
+    },
+    {
+      "name": "connect_service_success_toast",
+      "value": "connect_service_success_toast"
+    },
+    {
+      "name": "connect_service_failed_toast",
+      "value": "connect_service_failed_toast"
+    },
+    {
+      "name": "disconnect_service_success_toast",
+      "value": "disconnect_service_success_toast"
+    },
+    {
+      "name": "PageAbility_Component_Develop",
+      "value": "page ability component develop"
+    },
+    {
+      "name": "SingleDevice",
+      "value": "single device"
+    },
+    {
+      "name": "multi_device",
+      "value": "multi device"
+    },
+    {
+      "name": "insertData",
+      "value": "insert data"
+    },
+    {
+      "name": "method_callback",
+      "value": "method callback"
+    },
+    {
+      "name": "method_promise",
+      "value": "method promise"
+    },
+    {
+      "name": "delete_data",
+      "value": "delete data"
+    },
+    {
+      "name": "no_content",
+      "value": "no content"
+    },
+    {
+      "name": "update_data",
+      "value": "update_data"
+    },
+    {
+      "name": "query_data",
+      "value": "query_data"
+    },
+    {
+      "name": "batchInsert_data",
+      "value": "batchInsert_data"
+    },
+    {
+      "name": "executeBatch_data",
+      "value": "executeBatch_data"
+    }
+  ]
+}
