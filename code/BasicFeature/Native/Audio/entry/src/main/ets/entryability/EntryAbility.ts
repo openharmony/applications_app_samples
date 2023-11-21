@@ -19,6 +19,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import window from '@ohos.window';
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -37,7 +38,7 @@ export default class EntryAbility extends UIAbility {
       console.info('data:' + JSON.stringify(data));
       console.info('data permissions:' + data.permissions);
       console.info('data authResults:' + data.authResults);
-    }).catch((err) => {
+    }).catch((err:BusinessError) => {
       console.info('data:' + JSON.stringify(err));
     });
     windowStage.loadContent('pages/Index', (err, data) => {

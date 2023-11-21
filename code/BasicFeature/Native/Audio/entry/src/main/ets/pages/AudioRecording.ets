@@ -16,11 +16,18 @@
 import audio from '@ohos.multimedia.audio';
 import router from '@ohos.router';
 import { BusinessError } from '@ohos.base';
-import testNapi from 'libentry.so'
+import testNapi from 'libentry.so';
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import common from '@ohos.app.ability.common';
+import deviceInfo from '@ohos.deviceInfo';
 
 const MIN_RECORD_SECOND = 5;
 const TOTAL_SECOND = 30;
 const INTERVAL_TIME = 1000;
+const RK_SERIAL = '1234567890';
+
+let context = getContext(this) as common.UIAbilityContext;
+let atManager = abilityAccessCtrl.createAtManager();
 
 @Entry
 @Component
@@ -101,8 +108,6 @@ struct AudioRecording {
   }
 
   async renderStart() {
-    console.log(`audioRenderer start..........`)
-
     try {
       testNapi.audioRendererStart();
       this.renderState = testNapi.getRendererState();
@@ -139,6 +144,7 @@ struct AudioRecording {
       this.interval = setInterval(async () => {
         if (this.recordSec >= TOTAL_SECOND) {
           clearInterval(this.interval);
+          await this.capturerStop();
           return;
         }
         this.recordSec++;
@@ -161,7 +167,7 @@ struct AudioRecording {
     } catch (err) {
       let error = err as BusinessError;
       this.recordState = 'stopped';
-      console.log(`AudioRecording:audioCapturer stop err=${JSON.stringify(error)}`);
+      console.error(`AudioRecording:audioCapturer stop err=${JSON.stringify(error)}`);
     }
     this.isRecordOver = true;
     await this.renderCreate();
@@ -174,7 +180,7 @@ struct AudioRecording {
       clearInterval(this.interval);
     } catch (err) {
       let error = err as BusinessError;
-      console.log(`AudioRecording:audioCapturer stop err=${JSON.stringify(error)}`);
+      console.error(`AudioRecording:audioCapturer stop err=${JSON.stringify(error)}`);
       return;
     }
   }
@@ -216,7 +222,15 @@ struct AudioRecording {
     .position({ y: 60 })
     .id('start_record_btn')
     .onClick(() => {
-      this.capturerStart();
+      atManager.requestPermissionsFromUser(context, ['ohos.permission.MICROPHONE']).then((data) => {
+        console.info('data:' + JSON.stringify(data));
+        if (data.authResults[0] !== 0) {
+          return;
+        }
+        this.capturerStart();
+      }).catch((err: BusinessError) => {
+        console.error('data:' + JSON.stringify(err));
+      });
     })
   }
 
@@ -335,7 +349,12 @@ struct AudioRecording {
             .id('capturer_low_latency_btn')
             .onChange((isOn: boolean) => {
               if (isOn) {
-                testNapi.audioCapturerLowLatencyInit();
+                let serial = deviceInfo.serial;
+                if (RK_SERIAL !== serial) {
+                  testNapi.audioCapturerLowLatencyInit();
+                } else {
+                  testNapi.audioCapturerInit();
+                }
                 this.audioCapturerLowLatency = true;
               } else {
                 testNapi.audioCapturerInit();
@@ -367,7 +386,12 @@ struct AudioRecording {
               .id('renderer_low_latency_btn')
               .onChange((isOn: boolean) => {
                 if (isOn) {
-                  testNapi.audioRendererLowLatencyInit();
+                  let serial = deviceInfo.serial;
+                  if (RK_SERIAL !== serial) {
+                    testNapi.audioRendererLowLatencyInit();
+                  } else {
+                    testNapi.audioRendererInit();
+                  }
                   this.audioRendererLowLatency = true;
                 } else {
                   testNapi.audioRendererInit();
