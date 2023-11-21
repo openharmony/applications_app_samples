@@ -16,7 +16,7 @@
 import Contact from '../model/Contact'
 
 export default class ContactDataSource implements IDataSource {
-  private dataArray: Array<Contact> = new Array<Contact>();
+  public dataArray: Array<Contact> = new Array<Contact>();
   private listeners: Array<DataChangeListener> = [];
 
   constructor(dataArray: Array<Contact>) {

@@ -18,8 +18,8 @@ import router from '@ohos.router';
 @Component
 export struct TitleBar {
   private title: string | Resource = $r('app.string.module_desc');
-  private rightBtn: Resource = null;
-  private handleRightBtn: () => void = null;
+  private rightBtn: Resource | null = null;
+  private handleRightBtn: () => void = () => {};
   private hasBackPress: boolean = false;
 
   build() {

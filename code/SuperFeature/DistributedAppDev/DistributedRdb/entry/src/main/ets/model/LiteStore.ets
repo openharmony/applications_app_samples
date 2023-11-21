@@ -19,13 +19,13 @@ import Logger from '../model/Logger'
 
 const TAG: string = 'LiteStore'
 
-export const SyncState = {
-  AutomaticSync: 'AutomaticSync',
-  ManualSync: 'ManualSync'
+export enum SyncState {
+  AutomaticSync = 'AutomaticSync',
+  ManualSync = 'ManualSync'
 }
 
 class LiteStore {
-  private store: preferences.Preferences = undefined
+  private store: preferences.Preferences | undefined = undefined
   private key: string = ''
   private context: common.UIAbilityContext
 
@@ -34,24 +34,29 @@ class LiteStore {
     this.context = context
   }
 
-  async setValue(value) {
+  async setValue(value: preferences.ValueType) {
     if (this.store === undefined) {
       await this.getStore()
     }
     Logger.info(TAG, `setValue: ${value}`)
-    await this.store.put(this.key, value)
-    await this.store.flush()
+    if(this.store != undefined) {
+      await this.store.put(this.key, value)
+      await this.store.flush()
+    }
   }
 
-  async getValue() {
+  async getValue(): Promise<preferences.ValueType | undefined> {
     if (this.store === undefined) {
       // 读取Preferences对象
       await this.getStore()
     }
     // 获取Preferences对象中的数据
-    let result = await this.store.get(this.key, 'ManualSync')
-    Logger.info(TAG, `getValue: ${result}`)
-    return result
+    if(this.store != undefined) {
+      let result = await this.store.get(this.key, 'ManualSync')
+      Logger.info(TAG, `getValue: ${result}`)
+      return result
+    }
+    return undefined
   }
 
   async getStore() {

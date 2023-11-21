@@ -17,9 +17,9 @@ import deviceManager from '@ohos.distributedDeviceManager';
 
 @CustomDialog
 export struct DeviceDialog {
-  private controller: CustomDialogController
-  private selectedIndex: number = 0
-  private onSelectedIndexChange: (selectedIndex: number) => void
+  private controller?: CustomDialogController;
+  private selectedIndex: number = 0;
+  private onSelectedIndexChange: (selectedIndex: number) => void = (selectedIndex: number) => {}
   @State deviceList: Array<deviceManager.DeviceBasicInfo> = [];
 
   build() {
@@ -31,7 +31,7 @@ export struct DeviceDialog {
         .fontColor(Color.Black)
         .fontWeight(FontWeight.Bold)
       List() {
-        ForEach(this.deviceList, (item, index) => {
+        ForEach(this.deviceList, (item: deviceManager.DeviceBasicInfo, index: number) => {
           ListItem() {
             Row() {
               Text(item.deviceName)
@@ -54,7 +54,7 @@ export struct DeviceDialog {
               this.onSelectedIndexChange(index)
             })
           }
-        }, item => item.deviceName)
+        }, (item: deviceManager.DeviceBasicInfo) => item.deviceName)
       }
       .width('80%')
       .height(150)
@@ -70,7 +70,9 @@ export struct DeviceDialog {
       .type(ButtonType.Capsule)
       .backgroundColor(Color.White)
       .onClick(() => {
-        this.controller.close()
+        if (this.controller != null) {
+          this.controller.close()
+        }
       })
     }
     .backgroundColor(Color.White)
