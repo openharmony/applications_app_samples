@@ -1,0 +1,100 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "Managment of process and persistent data"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "UI entry ability of shared data"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "shared data"
+    },
+    {
+      "name": "EntryFormAbility_desc",
+      "value": "Form extension ability"
+    },
+    {
+      "name": "EntryFormAbility_label",
+      "value": "shared data"
+    },
+    {
+      "name": "title_immersive",
+      "value": "Today's delicious food"
+    },
+    {
+      "name": "detail_immersive",
+      "value": "A bowl of fragrant fried noodles, back to childhood memories"
+    },
+    {
+      "name": "DataShareExtAbility_desc",
+      "value": "Stage module of data share"
+    },
+    {
+      "name": "DataShareExtAbility_label",
+      "value": "data share"
+    },
+    {
+      "name": "PersisEntryAbility_desc",
+      "value": "Persistent data update module"
+    },
+    {
+      "name": "PersisEntryAbility_label",
+      "value": "persistent data"
+    },
+    {
+      "name": "PersisEntryAbility",
+      "value": "update persistent data"
+    },
+    {
+      "name": "description_datashareextability",
+      "value": "DataShareExtension"
+    },
+    {
+      "name": "persistent_widget_update",
+      "value": "Update by proxy of persistent data:"
+    },
+    {
+      "name": "process_widget_update",
+      "value": "Update by proxy of process data:"
+    },
+    {
+      "name": "ProcessEntryAbility",
+      "value": "update process data"
+    },
+    {
+      "name": "ProcessEntryAbility_desc",
+      "value": "Update process data"
+    },
+    {
+      "name": "ProcessEntryAbility_label",
+      "value": "process entry ability"
+    },
+    {
+      "name": "ProcessFormAbility_desc",
+      "value": "Update persistent data"
+    },
+    {
+      "name": "ProcessFormAbility_label",
+      "value": "persistent data"
+    },
+    {
+      "name": "update_processdata_success",
+      "value": "update process data success"
+    },
+    {
+      "name": "update_persisdata_success",
+      "value": "update persistent data success"
+    },
+    {
+      "name": "update_process_data_error",
+      "value": "update process data error"
+    },
+    {
+      "name": "update_persisdata_error",
+      "value": "update persistent data error"
+    }
+  ]
+}

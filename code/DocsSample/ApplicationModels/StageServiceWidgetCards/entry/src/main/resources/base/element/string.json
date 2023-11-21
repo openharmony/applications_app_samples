@@ -1,0 +1,252 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "Samples of stage service widget"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "UI entry ability of service widget"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "cards"
+    },
+    {
+      "name": "EntryFormAbility_desc",
+      "value": "Form extension ability"
+    },
+    {
+      "name": "EntryFormAbility_label",
+      "value": "cards"
+    },
+    {
+      "name": "title_immersive",
+      "value": "Today's delicious food"
+    },
+    {
+      "name": "detail_immersive",
+      "value": "A bowl of fragrant fried noodles, back to childhood memories"
+    },
+    {
+      "name": "ButtonA_label",
+      "value": "FunA"
+    },
+    {
+      "name": "ButtonB_label",
+      "value": "FunB"
+    },
+    {
+      "name": "ChangeRotateAngle",
+      "value": "change rotate angle"
+    },
+    {
+      "name": "ChangeSize",
+      "value": "change size"
+    },
+    {
+      "name": "JumpLabel",
+      "value": "router jump"
+    },
+    {
+      "name": "CallToBackground",
+      "value": "call to background"
+    },
+    {
+      "name": "WidgetEventEntryAbility_desc",
+      "value": "Update by router action"
+    },
+    {
+      "name": "WidgetEventEntryAbility_label",
+      "value": "update by router"
+    },
+    {
+      "name": "WgtImgUpdateEntryFormAbility_desc",
+      "value": "Widget image update"
+    },
+    {
+      "name": "WgtImgUpdateEntryFormAbility_label",
+      "value": "image update"
+    },
+    {
+      "name": "UpdateByTimeFormAbility_desc",
+      "value": "This is a service widget of auto update"
+    },
+    {
+      "name": "UpdateByTimeFormAbility_label",
+      "value": "widget update by time"
+    },
+    {
+      "name": "UpdateByStatusFormAbility_desc",
+      "value": "Widget update by status"
+    },
+    {
+      "name": "UpdateByStatusFormAbility_label",
+      "value": "widget update by status"
+    },
+    {
+      "name": "content_update",
+      "value": "FormAbility update from click"
+    },
+    {
+      "name": "JSCardFormAbility_desc",
+      "value": "JS UI widget development"
+    },
+    {
+      "name": "JSCardFormAbility_label",
+      "value": "JS card"
+    },
+    {
+      "name": "JSCardEntryAbility_desc",
+      "value": "JS UI widget development"
+    },
+    {
+      "name": "JSCardEntryAbility_label",
+      "value": "JS card"
+    },
+    {
+      "name": "ProcessDataEntryAbility_desc",
+      "value": "Widget update by proxy with process data"
+    },
+    {
+      "name": "ProcessDataEntryAbility_label",
+      "value": "process card"
+    },
+    {
+      "name": "PersistentDataFormAbility_desc",
+      "value": "Widget update by proxy with persistent data"
+    },
+    {
+      "name": "PersistentDataFormAbility_label",
+      "value": "persistent card"
+    },
+    {
+      "name": "default_page",
+      "value": "Default page"
+    },
+    {
+      "name": "hide",
+      "value": "hide"
+    },
+    {
+      "name": "show",
+      "value": "show"
+    },
+    {
+      "name": "update",
+      "value": "update"
+    },
+    {
+      "name": "status_a",
+      "value": "status A "
+    },
+    {
+      "name": "status_b",
+      "value": "status B "
+    },
+    {
+      "name": "change_rotate_angle",
+      "value": "change rotate angle"
+    },
+    {
+      "name": "loading",
+      "value": "loading"
+    },
+    {
+      "name": "Title_Update",
+      "value": "Title update."
+    },
+    {
+      "name": "widget_explicit_desc",
+      "value": "This is a service widget with explicit animation."
+    },
+    {
+      "name": "widget_animation_desc",
+      "value": "This is a service widget with animation property."
+    },
+    {
+      "name": "widget_transition_desc",
+      "value": "This is a service widget with transition animation component."
+    },
+    {
+      "name": "widget_custom_desc",
+      "value": "This is a service widget with page custom drawing."
+    },
+    {
+      "name": "widget_eventrouter_desc",
+      "value": "This is a service widget for router event."
+    },
+    {
+      "name": "widget_updatebymsg_desc",
+      "value": "This is a service widget update by message."
+    },
+    {
+      "name": "widget_updateduration_desc",
+      "value": "Update duration"
+    },
+    {
+      "name": "widget_scheupdatetime_desc",
+      "value": "Scheduled update time"
+    },
+    {
+      "name": "widget_nextrefreshtime_desc",
+      "value": "Next refresh time"
+    },
+    {
+      "name": "WidgetCalleeFormAbility_desc",
+      "value": "This is a service widget update by callee"
+    },
+    {
+      "name": "WidgetCalleeFormAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "WidgetCalleeEntryAbility_desc",
+      "value": "This is a service widget update by callee"
+    },
+    {
+      "name": "WidgetCalleeEntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "WidgetEventCallEntryAbility_desc",
+      "value": "This is a service widget using callee to pull UIAbility"
+    },
+    {
+      "name": "WidgetEventCallEntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "CalleeJumpLabel",
+      "value": "callee jump"
+    },
+    {
+      "name": "UpdateCardByRouterCall_desc",
+      "value": "Update Card By Router or Call"
+    },
+    {
+      "name": "NoContentAvailable",
+      "value": "NoContentAvailable"
+    },
+    {
+      "name": "default_title",
+      "value": "Title default"
+    },
+    {
+      "name": "DescriptionDefault",
+      "value": "Description default"
+    },
+    {
+      "name": "init",
+      "value": "init"
+    },
+    {
+      "name": "imgName",
+      "value": "imgName"
+    },
+    {
+      "name": "to_be_refreshed",
+      "value": "to be refreshed"
+    }
+  ]
+}

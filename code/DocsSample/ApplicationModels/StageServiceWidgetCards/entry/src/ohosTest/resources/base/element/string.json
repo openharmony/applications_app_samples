@@ -1,0 +1,180 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "cards"
+    },
+    {
+      "name": "add_to_desktop",
+      "value": "Add to desktop"
+    },
+    {
+      "name": "service_card",
+      "value": "service card"
+    },
+    {
+      "name": "module_desc",
+      "value": "Samples of stage service widget"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "UI entry ability of service widget"
+    },
+    {
+      "name": "EntryFormAbility_desc",
+      "value": "Form extension ability"
+    },
+    {
+      "name": "EntryFormAbility_label",
+      "value": "cards"
+    },
+    {
+      "name": "title_immersive",
+      "value": "Today's delicious food"
+    },
+    {
+      "name": "detail_immersive",
+      "value": "A bowl of fragrant fried noodles, back to childhood memories"
+    },
+    {
+      "name": "ButtonA_label",
+      "value": "FunA"
+    },
+    {
+      "name": "ButtonB_label",
+      "value": "FunB"
+    },
+    {
+      "name": "ChangeSize",
+      "value": "change size"
+    },
+    {
+      "name": "JumpLabel",
+      "value": "jump"
+    },
+    {
+      "name": "CallToBackground",
+      "value": "call to background"
+    },
+    {
+      "name": "WidgetEventEntryAbility_desc",
+      "value": "Update by router action"
+    },
+    {
+      "name": "WidgetEventEntryAbility_label",
+      "value": "update by router"
+    },
+    {
+      "name": "WgtImgUpdateEntryFormAbility_desc",
+      "value": "Widget image update"
+    },
+    {
+      "name": "WgtImgUpdateEntryFormAbility_label",
+      "value": "image update"
+    },
+    {
+      "name": "UpdateByTimeFormAbility_desc",
+      "value": "This is a service widget of auto update"
+    },
+    {
+      "name": "UpdateByTimeFormAbility_label",
+      "value": "widget update by time"
+    },
+    {
+      "name": "UpdateByStatusFormAbility_desc",
+      "value": "Widget update by status"
+    },
+    {
+      "name": "UpdateByStatusFormAbility_label",
+      "value": "widget update by status"
+    },
+    {
+      "name": "content_update",
+      "value": "FormAbility update from click"
+    },
+    {
+      "name": "JSCardFormAbility_desc",
+      "value": "JS UI widget development"
+    },
+    {
+      "name": "JSCardFormAbility_label",
+      "value": "JS card"
+    },
+    {
+      "name": "JSCardEntryAbility_desc",
+      "value": "JS UI widget development"
+    },
+    {
+      "name": "JSCardEntryAbility_label",
+      "value": "JS card"
+    },
+    {
+      "name": "ProcessDataEntryAbility_desc",
+      "value": "Widget update by proxy with process data"
+    },
+    {
+      "name": "ProcessDataEntryAbility_label",
+      "value": "process card"
+    },
+    {
+      "name": "PersistentDataFormAbility_desc",
+      "value": "Widget update by proxy with persistent data"
+    },
+    {
+      "name": "PersistentDataFormAbility_label",
+      "value": "persistent card"
+    },
+    {
+      "name": "default_page",
+      "value": "Default page"
+    },
+    {
+      "name": "hide",
+      "value": "hide"
+    },
+    {
+      "name": "show",
+      "value": "show"
+    },
+    {
+      "name": "update",
+      "value": "update"
+    },
+    {
+      "name": "status_a",
+      "value": "status A "
+    },
+    {
+      "name": "status_b",
+      "value": "status B "
+    },
+    {
+      "name": "change_rotate_angle",
+      "value": "change rotate angle"
+    },
+    {
+      "name": "loading",
+      "value": "loading"
+    },
+    {
+      "name": "Title_Update",
+      "value": "Title update."
+    },
+    {
+      "name": "remove",
+      "value": "remove"
+    }
+  ]
+}

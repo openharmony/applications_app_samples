@@ -1,0 +1,100 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "卡片数据提供方共享数据管理"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "共享数据管理的UIAbility组件实例"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "共享数据"
+    },
+    {
+      "name": "EntryFormAbility_desc",
+      "value": "共享数据扩展业务逻辑模块"
+    },
+    {
+      "name": "EntryFormAbility_label",
+      "value": "共享数据"
+    },
+    {
+      "name": "title_immersive",
+      "value": "今日美食推荐"
+    },
+    {
+      "name": "detail_immersive",
+      "value": "一碗香喷喷的炸酱面，回到儿时的青涩回忆"
+    },
+    {
+      "name": "DataShareExtAbility_desc",
+      "value": "数据共享Stage模型"
+    },
+    {
+      "name": "DataShareExtAbility_label",
+      "value": "数据共享"
+    },
+    {
+      "name": "PersisEntryAbility_desc",
+      "value": "更新持久化数据"
+    },
+    {
+      "name": "PersisEntryAbility_label",
+      "value": "持久化数据"
+    },
+    {
+      "name": "description_datashareextability",
+      "value": "共享数据管理"
+    },
+    {
+      "name": "PersisEntryAbility",
+      "value": "更新持久化数据"
+    },
+    {
+      "name": "process_widget_update",
+      "value": "基于过程数据的卡片代理刷新："
+    },
+    {
+      "name": "persistent_widget_update",
+      "value": "基于持久化数据的卡片代理刷新："
+    },
+    {
+      "name": "ProcessEntryAbility",
+      "value": "更新过程数据"
+    },
+    {
+      "name": "ProcessEntryAbility_desc",
+      "value": "更新过程数据"
+    },
+    {
+      "name": "ProcessEntryAbility_label",
+      "value": "过程数据"
+    },
+    {
+      "name": "ProcessFormAbility_desc",
+      "value": "基于持久化数据的卡片代理刷新"
+    },
+    {
+      "name": "ProcessFormAbility_label",
+      "value": "持久化数据"
+    },
+    {
+      "name": "update_processdata_success",
+      "value": "更新过程数据成功"
+    },
+    {
+      "name": "update_persisdata_success",
+      "value": "更新持久化数据成功"
+    },
+    {
+      "name": "update_process_data_error",
+      "value": "更新过程数据失败"
+    },
+    {
+      "name": "update_persisdata_error",
+      "value": "更新持久化数据失败"
+    }
+  ]
+}
