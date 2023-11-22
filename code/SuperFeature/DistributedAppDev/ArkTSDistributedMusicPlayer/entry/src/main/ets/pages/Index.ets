@@ -348,7 +348,7 @@ interface Params {
 
   selectDevice() {
     Logger.info(TAG, 'start ability ......');
-    if (this.remoteDeviceModel === null || this.remoteDeviceModel.discoverLists.length >= 0) {
+    if (this.remoteDeviceModel === null || this.remoteDeviceModel.discoverLists.length <= 0) {
       Logger.info(TAG, `start ability device:${JSON.stringify(this.deviceLists)}`);
       this.startAbilityContinuation(this.deviceLists[this.selectedIndex].networkId as string);
       this.clearSelectState();
