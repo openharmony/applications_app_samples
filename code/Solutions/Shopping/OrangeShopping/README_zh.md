@@ -84,6 +84,10 @@ OrangeShopping
 │   │   └── shoppingCart                        // 商品购物车模块
 ```
 
+### 相关概念
+
+动效能力：动画应该尽可能减少冗余刷新，合理地使用[动效](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/performance/animation_practice.md/)开发效率更高，可以获得更好的性能。
+
 ### 具体实现
 
 1.应用创建时进行必要的权限判断：在[app.json5](entry/src/main/ets/MainAbility/MainAbility.ts )
