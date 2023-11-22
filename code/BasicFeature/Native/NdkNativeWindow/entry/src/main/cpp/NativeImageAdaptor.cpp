@@ -25,7 +25,7 @@ constexpr char CHARACTER_WHITESPACE = ' ';
 constexpr const char *CHARACTER_STRING_WHITESPACE = " ";
 constexpr const char *EGL_GET_PLATFORM_DISPLAY_EXT = "eglGetPlatformDisplayEXT";
 NativeImageAdaptor *NativeImageAdaptor::GetInstance()
-{ 
+{
     static NativeImageAdaptor imageAdaptor;
     return &imageAdaptor;
 };
