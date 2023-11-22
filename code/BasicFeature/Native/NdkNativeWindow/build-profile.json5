@@ -1,0 +1,46 @@
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "material": {
+          "certpath": "C:\\Users\\NoBugPLZ\\.ohos\\config\\openharmony\\auto_ohos_default_NdkNativeWindow_com.samples.nativewindow.cer",
+          "storePassword": "0000001B154729D424C3F48157D80BDF7260AD23FF8457AC56BABCD4A6D0790C3612764711D082149893B5",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B7943A853200CAE36E25418EC20AA3C592D7CBE2F8B80E2DFB9F47C0C8D1B6DE11750DA17412CA0",
+          "profile": "C:\\Users\\NoBugPLZ\\.ohos\\config\\openharmony\\auto_ohos_default_NdkNativeWindow_com.samples.nativewindow.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\NoBugPLZ\\.ohos\\config\\openharmony\\auto_ohos_default_NdkNativeWindow_com.samples.nativewindow.p12"
+        }
+      }
+    ],
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+        "compileSdkVersion": 11,
+        //指定OpenHarmony应用/服务编译时的版本
+        "compatibleSdkVersion": 11,
+        //指定OpenHarmony应用/服务兼容的最低版本。
+        "targetSdkVersion": 11,
+        //指定OpenHarmony应用/服务目标版本。若没有设置，默认为compatibleSdkVersion
+        "runtimeOS": "OpenHarmony",
+        //指定为OpenHarmony
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}
