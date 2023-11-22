@@ -53,7 +53,7 @@ export default function abilityTest() {
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
         await abilityDelegator.startAbility({
-          bundleName: 'com.example.ndknativewindow',
+          bundleName: 'com.samples.nativewindow',
           abilityName: 'EntryAbility'
         });
       } catch (exception) {
