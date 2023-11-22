@@ -14,7 +14,7 @@
  */
 export const APPLICATION_BUNDLE_NAME = 'ohos.samples.distributedmusicplayer'
 export const APPLICATION_SERVICE_NAME = 'ServiceAbility'
-export const APPLICATION_ABILITY_NAME = 'MainAbility'
+export const APPLICATION_ABILITY_NAME = 'ohos.samples.distributedmusicplayer.MainAbility'
 
 export const enum MusicSharedEventCode {
   START_DISTRIBUTED_MUSIC_SERVICE = 1,
