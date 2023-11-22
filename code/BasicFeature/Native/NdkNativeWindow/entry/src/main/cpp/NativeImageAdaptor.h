@@ -15,43 +15,44 @@
 
 #ifndef NdkNativeWindow_NativeImageAdaptor_H
 #define NdkNativeWindow_NativeImageAdaptor_H
-#include <napi/native_api.h>
+
 #include <ace/xcomponent/native_interface_xcomponent.h>
+#include <bits/alltypes.h>
+#include <napi/native_api.h>
 #include <native_buffer/native_buffer.h>
 #include <native_image/native_image.h>
 #include <native_window/external_window.h>
 #include <EGL/egl.h>
 #include <EGL/eglext.h>
+#include <GLES3/gl3.h>
+#include <sys/mman.h>
 #include <mutex>
 
+namespace NativeWindowSample {
 class NativeImageAdaptor {
 public:
     ~NativeImageAdaptor();
-    static NativeImageAdaptor *GetInstance()
-    { 
-        return &NativeImageAdaptor::imageAdaptor_; 
-    };
-    static bool Export(napi_env env, napi_value exports);
-    static void ProduceBuffer(uint32_t value);
-    static void OnFrameAvailable(void *context);
-    static void InitEGLEnv();
-    static EGLDisplay GetPlatformEglDisplay(EGLenum platform, void *native_display, const EGLint *attrib_list);
-    static bool CheckEglExtension(const char *extensions, const char *extension);
+    static NativeImageAdaptor *GetInstance();
     static napi_value GetAvailableCount(napi_env env, napi_callback_info info);
     static napi_value NapiOnProduceBuffer(napi_env env, napi_callback_info info);
-
+    static void OnFrameAvailable(void *context);
+    void DealCallback(void *context);
+    bool Export(napi_env env, napi_value exports);
+    void ProduceBuffer(uint32_t value);
+    void InitEGLEnv();
+    EGLDisplay GetPlatformEglDisplay(EGLenum platform, void *native_display, const EGLint *attrib_list);
+    bool CheckEglExtension(const char *extensions, const char *extension);
+    int32_t GetCount();
 private:
-    static NativeImageAdaptor imageAdaptor_;
-    static OH_NativeXComponent_Callback callback_;
-    static OHNativeWindow *nativeWindow_;
-    static OH_NativeImage *image_;
-    static int32_t height_;
-    static int32_t width_;
-    static int32_t availableBufferCount_;
-    static EGLConfig config_;
-    static EGLContext eglContext_;
-    static EGLDisplay eglDisplay_;
-    static std::mutex opMutex_;
-    };
-
+    OHNativeWindow *nativeWindow_;
+    OH_NativeImage *image_;
+    int32_t height_;
+    int32_t width_;
+    int32_t availableBufferCount_;
+    EGLConfig config_;
+    EGLContext eglContext_;
+    EGLDisplay eglDisplay_;
+    std::mutex opMutex_;
+};
+}
 #endif // NdkNativeWindow_NativeImageAdaptor_H

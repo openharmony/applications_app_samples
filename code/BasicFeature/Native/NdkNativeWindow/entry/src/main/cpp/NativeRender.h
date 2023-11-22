@@ -18,30 +18,25 @@
 #include <napi/native_api.h>
 #include <ace/xcomponent/native_interface_xcomponent.h>
 #include <native_buffer/native_buffer.h>
-#include <native_image/native_image.h>
 #include <native_window/external_window.h>
 
+namespace NativeWindowSample {
 class NativeRender {
 public:
     ~NativeRender() {}
-    static NativeRender* GetInstance()
-    {
-        return &NativeRender::render_;
-    }
+    static NativeRender* GetInstance();
     static napi_value GetNativeRender(napi_env env, napi_callback_info info);
-    static bool Export(napi_env env, napi_value exports);
-    void SetNativeWindow(OHNativeWindow* nativeWindow, uint64_t width,  uint64_t height);
-    static void DrawBaseColor(uint32_t value);
-private:
-    static NativeRender render_;
-    static OH_NativeXComponent_Callback callback_;
     static napi_value NapiOnDraw(napi_env env, napi_callback_info info);
-    static napi_value NapiDrawLastFlushedBuffer(napi_env env, napi_callback_info info);
-    
-    static bool flag_;
-    static OHNativeWindow* nativeWindow_;
-    static uint64_t height_ ;
-    static uint64_t width_ ;
-};
+    bool Export(napi_env env, napi_value exports);
+    void DrawBaseColor();
+    void SetNativeWindow(OHNativeWindow* nativeWindow, uint64_t width,  uint64_t height);
 
-#endif //NdkNativeWindow_NativeRender_H
+private:
+    OH_NativeXComponent_Callback callback_;
+    bool flag_ = false;
+    OHNativeWindow* nativeWindow_ = nullptr;
+    uint64_t height_;
+    uint64_t width_;
+};
+}
+#endif // NdkNativeWindow_NativeRender_H

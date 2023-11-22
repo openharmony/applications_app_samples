@@ -18,10 +18,10 @@
 
 #include <hilog/log.h>
 #define APP_LOG_DOMAIN 0x0001
-#define APP_LOG_TAG "XComponent_Native"
+constexpr const char *APP_LOG_TAG = "NativeWindowSample";
 #define LOGI(...) ((void)OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN, APP_LOG_TAG, __VA_ARGS__))
 #define LOGD(...) ((void)OH_LOG_Print(LOG_APP, LOG_DEBUG, LOG_DOMAIN, APP_LOG_TAG, __VA_ARGS__))
 #define LOGW(...) ((void)OH_LOG_Print(LOG_APP, LOG_WARN, LOG_DOMAIN, APP_LOG_TAG, __VA_ARGS__))
 #define LOGE(...) ((void)OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_DOMAIN, APP_LOG_TAG, __VA_ARGS__))
 
-#endif //_LOGGER_COMMON_H_
+#endif // _LOGGER_COMMON_H_

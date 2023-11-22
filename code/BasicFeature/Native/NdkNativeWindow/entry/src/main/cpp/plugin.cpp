@@ -12,13 +12,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#include "NativeRender.h"
-#include "NativeImageAdaptor.h"
+
 #include <hilog/log.h>
 #include <js_native_api.h>
 #include <js_native_api_types.h>
 #include <ace/xcomponent/native_interface_xcomponent.h>
 #include <napi/native_api.h>
+#include "NativeRender.h"
+#include "NativeImageAdaptor.h"
+
+using namespace NativeWindowSample;
 
 static napi_value Init(napi_env env, napi_value exports)
 {
