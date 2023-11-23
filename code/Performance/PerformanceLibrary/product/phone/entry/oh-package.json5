@@ -10,6 +10,7 @@
     "@ohos/staticImport": "file:../../../feature/staticImport",
     "@ohos/dynamicImport": "file:../../../feature/dynamicImport",
     "@ohos/ifOrVisibility": "file:../../../feature/ifOrVisibility",
-    "@ohos/hiDumper": "file:../../../feature/hiDumper"
+    "@ohos/hiDumper": "file:../../../feature/hiDumper",
+    "@ohos/smartPerfHost": "file:../../../feature/smartPerfHost"
   }
 }

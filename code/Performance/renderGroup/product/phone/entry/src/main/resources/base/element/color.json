@@ -1,0 +1,16 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "performance_message_item_backgroundColor",
+      "value": "#0091FF"
+    },
+    {
+      "name": "RenderGroup_scene_button_backgroundColor",
+      "value": "#317aff"
+    }
+  ]
+}

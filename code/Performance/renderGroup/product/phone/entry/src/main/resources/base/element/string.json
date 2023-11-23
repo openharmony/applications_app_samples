@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "layout_100_percent",
+      "value": "100%"
+    },
+    {
+      "name": "layout_80_percent",
+      "value": "80%"
+    },
+    {
+      "name": "RenderGroupHomePage_title",
+      "value": "RenderGroup合理使用场景示例"
+    },
+    {
+      "name": "RenderGroup_profit_scene_button_title",
+      "value": "正例场景示例"
+    },
+    {
+      "name": "RenderGroup_nonProfit_scene_button_title",
+      "value": "反例场景示例"
+    }
+  ]
+}

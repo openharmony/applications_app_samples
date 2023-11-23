@@ -61,6 +61,10 @@
     {
       "name": "ifOrVisibility",
       "srcPath": "./feature/ifOrVisibility"
+    },
+    {
+      "name": "smartPerfHost",
+      "srcPath": "./feature/smartPerfHost"
     }
   ]
 }
