@@ -11,6 +11,8 @@
     "@ohos/dynamicImport": "file:../../../feature/dynamicImport",
     "@ohos/ifOrVisibility": "file:../../../feature/ifOrVisibility",
     "@ohos/hiDumper": "file:../../../feature/hiDumper",
-    "@ohos/smartPerfHost": "file:../../../feature/smartPerfHost"
+    "@ohos/smartPerfHost": "file:../../../feature/smartPerfHost",
+    "@ohos/grid": "file:../../../feature/grid",
+    "@ohos/smartPerfEditor": "file:../../../feature/smartPerfEditor"
   }
 }

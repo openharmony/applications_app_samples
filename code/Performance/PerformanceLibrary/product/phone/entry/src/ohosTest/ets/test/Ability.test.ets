@@ -448,5 +448,88 @@ export default function abilityTest() {
       Logger.info(TAG, `${BUNDLE}IfOrVisibilityFunction_005 end`);
       done();
     })
+
+     /**
+     * Grid的使用
+     */
+    it(BUNDLE + "GridFunction_001", 5, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}GridFunction_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      // 点击进入grid首页
+      let gridBtn: Component = await driver.findComponent(ON.text('Grid'));
+      await driver.delayMs(500);
+      await gridBtn.click();
+      await driver.delayMs(500);
+      // 点击进入懒加载页面
+      let lazyForEachBtn: Component = await driver.findComponent(ON.id('buttonOne'));
+      await driver.delayMs(500);
+      await lazyForEachBtn.click();
+      await driver.delayMs(500);
+      // 验证是否进入懒加载页面
+      await driver.assertComponentExist(ON.text('图片1'));
+      // 退出懒加载页面
+      await driver.delayMs(500);
+      await driver.pressBack();
+      await driver.delayMs(1000);
+      // 点击进入columnStart页面
+      let columnStartBtn: Component = await driver.findComponent(ON.id('buttonTwo'));
+      await driver.delayMs(500);
+      await columnStartBtn.click();
+      await driver.delayMs(500);
+      // 点击滑动位置
+      let scrollToIndexBtn: Component = await driver.findComponent(ON.id('scrollToIndexBtn'));
+      await driver.delayMs(500);
+      await scrollToIndexBtn.click();
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.text('1900'));
+      // 退出columnStart页面
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.delayMs(1000);
+      // 点击进入smartPerf页面
+      let smartPerfEditorBtn: Component = await driver.findComponent(ON.id('buttonThree'));
+      await driver.delayMs(1000);
+      await smartPerfEditorBtn.click();
+      await driver.delayMs(500);
+      // 点击滑动位置
+      let scrollToIndexTwoBtn: Component = await driver.findComponent(ON.id('scrollToIndexTwoBtn'));
+      await driver.delayMs(500);
+      await scrollToIndexTwoBtn.click();
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.text('1900'));
+      // 退出columnStart页面
+      await driver.delayMs(500);
+      await driver.pressBack();
+      // 退出到首页
+      await driver.delayMs(500);
+      await driver.pressBack();
+      Logger.info(TAG, `${BUNDLE}GridFunction_001 end`);
+      done();
+    })
+    
+    /**
+     * SmartPerf Editor的使用
+     */
+    it(BUNDLE + "SmartPerf_001", 5, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}SmartPerf_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      // 点击进入SmartPerf Editor首页
+      let smartPerfBtn: Component = await driver.findComponent(ON.text('SmartPerf Editor'));
+      await driver.delayMs(500);
+      await smartPerfBtn.click();
+      await driver.delayMs(500);
+      // 点击展示图片
+      let showImageBtn: Component = await driver.findComponent(ON.id('showImageBtn'));
+      await driver.delayMs(500);
+      await showImageBtn.click();
+      await driver.delayMs(500);
+      // 退出到首页面
+      await driver.delayMs(500);
+      await driver.pressBack();
+      Logger.info(TAG, `${BUNDLE}SmartPerf_001 end`);
+      done();
+    })
   })
 }
