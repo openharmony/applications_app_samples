@@ -1,0 +1,20 @@
+{
+  "color": [
+    {
+      "name": "hint_txt_color",
+      "value": "#CCCCCC"
+    },
+    {
+      "name": "txt_background_color1",
+      "value": "#F5DEB3"
+    },
+    {
+      "name": "txt_background_color2",
+      "value": "#D2B48C"
+    },
+    {
+      "name": "flex_background_color",
+      "value": "#AFEEEE"
+    }
+  ]
+}

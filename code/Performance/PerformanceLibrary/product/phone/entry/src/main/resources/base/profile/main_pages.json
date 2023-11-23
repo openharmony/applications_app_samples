@@ -4,6 +4,15 @@
     "pages/hiDumper/ConditionPage",
     "pages/hiDumper/GridPage",
     "pages/hiDumper/HiDumperPage",
-    "pages/hiDumper/VisibilityPage"
+    "pages/hiDumper/VisibilityPage",
+    "pages/ifOrVisibility/IfOrVisibilityPage",
+    "pages/ifOrVisibility/AnimateBetterUseVisibility",
+    "pages/ifOrVisibility/AnimateWorseUseIf",
+    "pages/ifOrVisibility/StartBetterUseIf",
+    "pages/ifOrVisibility/StartWorseUseVisibility",
+    "pages/ifOrVisibility/RenderControlBetterWithStack",
+    "pages/ifOrVisibility/RenderControlWorseWithoutStack",
+    "pages/ifOrVisibility/IfBetterWithReusable",
+    "pages/ifOrVisibility/IfWorseWithoutReusable"
   ]
 }

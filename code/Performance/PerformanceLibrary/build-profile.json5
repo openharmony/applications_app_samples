@@ -49,6 +49,10 @@
     {
       "name": "HiDumper",
       "srcPath": "./feature/hiDumper"
+    },
+    {
+      "name": "ifOrVisibility",
+      "srcPath": "./feature/ifOrVisibility"
     }
   ]
 }

@@ -1,0 +1,10 @@
+{
+  "module": {
+    "name": "ifOrVisibility",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ]
+  }
+}
