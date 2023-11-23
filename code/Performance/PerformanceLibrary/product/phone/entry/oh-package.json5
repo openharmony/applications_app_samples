@@ -7,7 +7,7 @@
   "main": "",
   "version": "1.0.0",
   "dependencies": {
-    "@ohos/hiDumper": "file:../../../feature/hiDumper",
-    "@ohos/smartPerfHost": "file:../../../feature/smartPerfHost"
+    "@ohos/smartPerfHost": "file:../../../feature/smartPerfHost",
+    "@ohos/hiDumper": "file:../../../feature/hiDumper"
   }
 }
