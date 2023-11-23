@@ -51,6 +51,10 @@
       "srcPath": "./feature/hiDumper"
     },
     {
+      "name": "ifOrVisibility",
+      "srcPath": "./feature/ifOrVisibility"
+    },
+    {
       "name": "smartPerfHost",
       "srcPath": "./feature/smartPerfHost"
     }

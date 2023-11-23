@@ -1,0 +1,40 @@
+{
+  "integer": [
+    {
+      "name": "layout_240",
+      "value": 240
+    },
+    {
+      "name": "layout_30",
+      "value": 30
+    },
+    {
+      "name": "layout_20",
+      "value": 20
+    },
+    {
+      "name": "layout_10",
+      "value": 10
+    },
+    {
+      "name": "font_size_30",
+      "value": 30
+    },
+    {
+      "name": "font_size_20",
+      "value": 20
+    },
+    {
+      "name": "font_size_18",
+      "value": 18
+    },
+    {
+      "name": "font_size_9",
+      "value": 9
+    },
+    {
+      "name": "column_space_5",
+      "value": 5
+    }
+  ]
+}
