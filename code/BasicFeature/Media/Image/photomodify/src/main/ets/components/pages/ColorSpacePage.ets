@@ -21,11 +21,11 @@ const SCALE_COUNT: number = 3;
 
 @Component
 export struct ColorSpacePage {
-  @Link pixelMap: PixelMap | null;
   @State scaleCount: number = SCALE_COUNT; // 缩小次数
   @State amplificationCount: number = 0; // 放大次数
   @State canClick: boolean = true;
   @Link dpi: string;
+  @Link pixelMap: PixelMap | null;
   private tempPixelMap: PixelMap | undefined | null = undefined;
 
   async computeDpi() {
@@ -57,7 +57,7 @@ export struct ColorSpacePage {
               this.canClick = false
               let colorSpaceName = colorSpaceManager.ColorSpace.ADOBE_RGB_1998;
               let csm : colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
-              this.pixelMap.setColorSpace(csm);
+              this.pixelMap!.setColorSpace(csm);
               setTimeout(() => {
                 this.canClick = true;
               }, 300);
@@ -67,8 +67,7 @@ export struct ColorSpacePage {
               this.canClick = false;
               let colorSpaceName = colorSpaceManager.ColorSpace.DCI_P3;
               let csm : colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
-              this.pixelMap.setColorSpace(csm);
-              await this.pixelMap?.scale(0.8, 0.8);
+              this.pixelMap!.setColorSpace(csm);
               setTimeout(() => {
                 this.canClick = true;
               }, 300);
@@ -78,7 +77,7 @@ export struct ColorSpacePage {
               this.canClick = false;
               let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
               let csm : colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
-              this.pixelMap.setColorSpace(csm);
+              this.pixelMap!.setColorSpace(csm);
               setTimeout(() => {
                 this.canClick = true;
               }, 300);
@@ -88,7 +87,7 @@ export struct ColorSpacePage {
               this.canClick = false;
               let colorSpaceName = colorSpaceManager.ColorSpace.DISPLAY_P3;
               let csm : colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
-              this.pixelMap.setColorSpace(csm);
+              this.pixelMap!.setColorSpace(csm);
               setTimeout(() => {
                 this.canClick = true;
               }, 300);

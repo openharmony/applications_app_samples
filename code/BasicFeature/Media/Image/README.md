@@ -20,7 +20,7 @@ In this sample, [\<TextArea>](https://gitee.com/openharmony/docs/blob/master/en/
 
 ### Preview
 
-![](screenshots/devices/scale.jpeg) ![](screenshots/devices/crop.jpeg) ![](screenshots/devices/rotato.jpeg)
+![](screenshots/devices/scale.jpeg) ![](screenshots/devices/crop.jpeg) ![](screenshots/devices/rotato.jpeg)![](screenshots/devices/colorSpace.jpeg)
 
 ### Required Permissions
 
@@ -34,6 +34,6 @@ N/A
 
 1. This sample can only be run on standard-system devices that use the Rockchip RK3568 chip.
 
-2. This sample is based on the stage model, which is supported from API version 10 (API Version 10 Release). 
+2. This sample is based on the stage model, which is supported from API version 11 (API Version 11 4.1.3.3). 
 
 3. DevEco Studio (4.0Release) must be used.
