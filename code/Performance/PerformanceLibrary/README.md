@@ -28,6 +28,17 @@ features
 |   |   |---GridView.ets                       // 查看组件树模块
 |   |   |---HidumperHomeView.ets               // 场景主页面模块           
 |   |   |---VisibilityView.ets                 // 查看Visibility属性模块
+|---/staticImport/src/main/ets      // 常规加载HAR共享包
+|---|---/pages    
+|   |   |---StaticContentPageOne.ets           // 常规加载子页面     
+|   |   |---StaticContentPageTwo.ets           // 常规加载子页面
+|   |   |---StaticEntryView.ets                // 常规加载入口页面           
+|   |   |---StaticHome.ets                     // 常规加载主页
+|---/dynamicImport/src/main/ets     // 动态加载HAR共享包
+|---|---/pages    
+|   |   |---DynamicContentPageOne.ets          // 动态加载子页面     
+|   |   |---DynamicEntryView.ets               // 动态加载入口页面           
+|   |   |---DynaHome.ets                       // 动态加载主页
 |---/ifOrVisibility/src/main/ets    // 列表类功能HAR共享包
 |   |---/util                                                              
 |   |   |---/Constants.ets                          // 常量
@@ -72,8 +83,11 @@ products/phone/entry/src/main/ets
 |   |   |---RenderControlBetterWithStack.ets   // 部分修改：条件渲染+容器限制页面               
 |   |   |---RenderControlWorseWithoutStack.ets // 部分修改：条件渲染页面
 |   |   |---StartBetterUseIf.ets               // 复杂子树：条件渲染+组件复用页面               
-|   |   |---StartWorseUseVisibility.ets        // 复杂子树：条件渲染页面
-|   |---/Index                                 // 性能示例首页                             
+|   |   |---StartWorseUseVisibility.ets        // 复杂子树：条件渲染页面                            
+|   |---/staticImport
+|   |   |---StaticEntryView.ets            // 常规加载入口页面              
+|   |   |---StaticHome.ets                 // 常规加载主页
+|   |---/Index                             // 性能示例首页                              
 |---/utils
 |   |---Logger.ets                          // 封装整个日志
 
@@ -94,9 +108,17 @@ products/phone/entry/src/main/ets
   * 查看visibility属性
     * 在页面上添加**Visible**、**Hidden**、**None**按钮，添加一张图片，点击按钮后通过HiDumper抓取组件树信息。
     * 源码链接：[VisibilityView.ets](feature/hiDumper/src/main/ets/view/VisibilityView.ets)
-    
-    * 在IconView的Image上添加动画，在NonIconView上使用到renderGroup接口(renderGroup(value: boolean): T)得到负收益。  
-    * 源码链接：[NonProfitScene.ets](renderGroup/src/main/ets/pages/NonProfitScene.ets)，[NonIconView.ts](renderGroup/src/main/ets/view/NonIconView.ets)  
+
+* Navigation常规加载页面模块
+
+  * 在Navigation组件加载内容页时，使用`import`常规加载子页面。
+  * 源码链接：[StaticHome.ets](feature/staticImport/src/main/ets/pages/StaticHome.ets)
+
+* Navigation动态加载页面模块
+
+  * 在Navigation组件加载内容页时，使用`await import`实现动态按需加载。
+  * 源码链接：[DynamicHome.ets](feature/dynamicImport/src/main/ets/pages/DynamicHome.ets)
+
 * ifOrVisibility四个场景，分别正反例，八个页面：
   * 针对显示和隐藏间频繁切换的场景
     * 反例：使用条件循环实现显示和隐藏间的切换； [WorseUseIf.ets](feature\ifOrVisibility\src\main\ets\view\VisibilityForAnimate\WorseUseIf.ets) 

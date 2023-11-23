@@ -135,6 +135,79 @@ export default function abilityTest() {
       done();
     })
     /**
+     * 点击"点击跳转静态加载案例"按钮，进入静态加载场景页面
+     */
+    it(BUNDLE + "DynamicImportFunction_001", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}DynamicImportFunction_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let staticEntry: Component = await driver.findComponent(ON.text("StaticImport"));
+      await driver.delayMs(500);
+      await staticEntry.click();
+      await driver.delayMs(500);
+      let staticImport: Component = await driver.findComponent(ON.text("点击跳转静态加载案例"));
+      await driver.delayMs(500);
+      await staticImport.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text("主页"));
+      await driver.assertComponentExist(ON.text("返回"));
+      await driver.assertComponentExist(ON.text("pageOne"));
+      await driver.assertComponentExist(ON.text("pageTwo"));
+      await driver.delayMs(500);
+      let pageOneDynamic: Component = await driver.findComponent(ON.text("pageOne"));
+      await driver.delayMs(500);
+      await pageOneDynamic.click();
+      await driver.delayMs(2000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      let pageTwoDynamic: Component = await driver.findComponent(ON.text("pageTwo"));
+      await driver.delayMs(500);
+      await pageTwoDynamic.click();
+      await driver.delayMs(2000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      let back: Component = await driver.findComponent(ON.text("返回"));
+      await driver.delayMs(500);
+      await back.click();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      Logger.info(TAG, `${BUNDLE}DynamicImportFunction_001 end`);
+      done();
+    })
+    /**
+     * 点击"点击跳转动态加载案例"按钮，进入动态加载场景页面
+     */
+    it(BUNDLE + "DynamicImportFunction_001", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}DynamicImportFunction_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let dynamicEntry: Component = await driver.findComponent(ON.text("DynamicImport"));
+      await driver.delayMs(500);
+      await dynamicEntry.click();
+      await driver.delayMs(500);
+      let dynamicImport: Component = await driver.findComponent(ON.text("点击跳转动态加载案例"));
+      await driver.delayMs(500);
+      await dynamicImport.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text("主页"));
+      await driver.assertComponentExist(ON.text("返回"));
+      await driver.assertComponentExist(ON.text("pageOne"));
+      await driver.delayMs(500);
+      let pageOneDynamic: Component = await driver.findComponent(ON.text("pageOne"));
+      await driver.delayMs(500);
+      await pageOneDynamic.click();
+      await driver.delayMs(2000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      let back: Component = await driver.findComponent(ON.text("返回"));
+      await driver.delayMs(500);
+      await back.click();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      Logger.info(TAG, `${BUNDLE}DynamicImportFunction_001 end`);
+    /**
      * 进入查看SmartPerfHostFrameTimeline优化前页面，查看页面是否在正常显示
      */
     it(BUNDLE + "SmartPerfHostFrameTimeline01", 555, async (done: Function) => {

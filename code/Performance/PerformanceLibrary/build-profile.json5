@@ -51,6 +51,14 @@
       "srcPath": "./feature/hiDumper"
     },
     {
+      "name": "staticImport",
+      "srcPath": "./feature/staticImport"
+    },
+    {
+      "name": "dynamicImport",
+      "srcPath": "./feature/dynamicImport"
+    },
+    {
       "name": "ifOrVisibility",
       "srcPath": "./feature/ifOrVisibility"
     },
