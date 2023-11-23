@@ -19,6 +19,7 @@ export struct CountdownPage {
   @Link countdownNum: number; // Countdown value
   private countdownListData: Array<string> = ['2', '5', '10']; // Loop rendering
   @State countdownBol: boolean = true;
+  @State colorItem: number = 0;
 
   build() {
     Row() {
@@ -53,15 +54,15 @@ export struct CountdownPage {
       if (!this.countdownBol) {
         Row() {
           Image($r('app.media.icon_camera_setting_timer_on_balk')).width('60px').height('60px').margin({ left: 5 });
-          ForEach(this.countdownListData, (item) => {
+          ForEach(this.countdownListData, (item: string) => {
             Text(item).fontSize(21).fontWeight(500).margin({
               left: 10
             })
-              .fontColor(this.countdownNum == item ? $r('app.color.theme_color') : '#182431').onClick(() => {
-              this.countdownNum = item
+              .fontColor(this.countdownNum == this.colorItem ? $r('app.color.theme_color') : '#182431').onClick(() => {
+              this.countdownNum = this.colorItem
               this.countdownBol = true
             })
-          }, item => item)
+          }, (item: string) => item)
           Text('OFF').fontSize(21).fontWeight(500).margin({
             left: 10
           })

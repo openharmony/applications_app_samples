@@ -13,45 +13,64 @@
  * limitations under the License.
  */
 
-// Reverse camera_ Multiple workstations_ Take photos_ Video
+// Reverse camera_ Multiple workstations_ Take photos Video
 
 import DateTimeUtil from '../model/DateTimeUtil';
 import Logger from '../model/Logger';
 import cameraDemo from 'libentry.so';
-
 import mediaLibrary from '@ohos.multimedia.mediaLibrary';
-
 import image from '@ohos.multimedia.image';
 import media from '@ohos.multimedia.media';
 import MediaUtils from '../model/MediaUtils';
 import deviceInfo from '@ohos.deviceInfo';
-import AVRecorder from '@ohos.multimedia.media';
 import fileio from '@ohos.fileio';
+import { SettingDataObj } from '../common/Constants'
+import common from '@ohos.app.ability.common'
+let context = getContext(this) as common.UIAbilityContext;
 
-const CameraSize = {
-  WIDTH: 1280,
-  HEIGHT: 720
+interface CameraSize {
+  WIDTH: number,
+  HEIGHT: number
 };
 
-globalThis.photoSettings = {
-  quality: 0,          // Photo quality
-  rotation: 0,         // Photo direction
-  mirror: false,       // Mirror Enable
-  latitude: 12.9698,   // geographic location
-  longitude: 77.7500,  // geographic location
-  altitude: 1000       // geographic location
+interface PhotoSettings {
+  quality: number, // Photo quality
+  rotation: number, // Photo direction
+  mirror: boolean, // Mirror Enable
+  latitude: number, // geographic location
+  longitude: number, // geographic location
+  altitude: number // geographic location
+};
+
+interface PhotoRotationMap {
+  rotation0: number,
+  rotation90: number,
+  rotation180: number,
+  rotation270: number,
 };
 
 @Component
 export struct modeSwitchPage {
-  private tag: string = 'CAIHF modeSwitchPage:';
+  private tag: string = 'sample modeSwitchPage:';
   private mediaUtil = MediaUtils.getInstance();
-  private fileAsset: mediaLibrary.FileAsset = undefined;
+  private fileAsset?: mediaLibrary.FileAsset;
   private fd: number = -1;
   @State videoId: string = '';
   @State mSurfaceId: string = '';
-  private mReceiver: image.ImageReceiver = undefined;
-  private videoRecorder: media.AVRecorder = undefined;
+  private cameraSize: CameraSize = {
+    WIDTH: 1280,
+    HEIGHT: 720
+  };
+  private photoSettings: PhotoSettings = {
+    quality: 0,
+    rotation: 0,
+    mirror: false,
+    latitude: 12.9698,
+    longitude: 77.7500,
+    altitude: 1000
+  };
+  private mReceiver?: image.ImageReceiver;
+  private videoRecorder?: media.AVRecorder;
   private videoConfig: media.AVRecorderConfig = {
     audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
     videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
@@ -70,7 +89,7 @@ export struct modeSwitchPage {
     url: '',
     rotation: 0
   };
-  private photoRotationMap = {
+  private photoRotationMap: PhotoRotationMap = {
     rotation0: 0,
     rotation90: 90,
     rotation180: 180,
@@ -86,11 +105,11 @@ export struct modeSwitchPage {
   @State countTimerInt: number = -1;
   @State countTimerOut: number = -1;
   // Photo Thumbnails
-  @State imgThumbnail: string = undefined;
+  @State imgThumbnail: string = '';
   // Recording time
   @State videoRecodeTime: number = 0;
   // Recording time timer
-  @State timer: number = undefined;
+  @State timer: number = -1;
   // Time Manager
   @State dateTimeUtil: DateTimeUtil = new DateTimeUtil();
   // Select mode
@@ -98,37 +117,55 @@ export struct modeSwitchPage {
   // Choose camera or capture
   @State @Watch('onChangeIsModeBol') isModeBol: boolean = true;
   // Video Thumbnails
-  @State videoThumbnail: image.PixelMap = undefined;
+  // private videoThumbnail?: image.PixelMap;
+  @State videoThumbnail: image.PixelMap | undefined | null = undefined;
+  private settingDataObj: SettingDataObj = {
+    mirrorBol: false,
+    videoStabilizationMode: 0,
+    exposureMode: 1,
+    focusMode: 2,
+    photoQuality: 1,
+    locationBol: false,
+    photoFormat: 1,
+    photoOrientation: 0,
+    photoResolution: 0,
+    videoResolution: 0,
+    videoFrame: 0,
+    referenceLineBol: false
+  };
+
   // After pausing, click 'stop' to reset the pause to default
   onChangeIsModeBol() {
   }
-   // Countdown capture and video
-   countTakeVideoFn() {
-     if (this.countdownNum) {
-       // Clear Countdown
-       if (this.countTimerOut) {
-         clearTimeout(this.countTimerOut);
-       }
-       if (this.countTimerInt) {
-         clearInterval(this.countTimerInt);
-       }
-       // Turn on timer
-       this.countTimerOut = setTimeout(() => {
-         // Determine whether it is in video or photo mode
-         this.isVideoPhotoFn();
-       }, this.countdownNum * 1000)
-       // Turn on timer
-       this.countTimerInt = setInterval(() => {
-         this.countdownNum--;
-         if (this.countdownNum === 0) {
-           clearInterval(this.countTimerInt);
-         }
-       }, 1000)
-     } else {
-       this.isVideoPhotoFn();
-     }
-   }
-  async getVideoSurfaceID(){
+
+  // Countdown capture and video
+  countTakeVideoFn() {
+    if (this.countdownNum) {
+      // Clear Countdown
+      if (this.countTimerOut) {
+        clearTimeout(this.countTimerOut);
+      }
+      if (this.countTimerInt) {
+        clearInterval(this.countTimerInt);
+      }
+      // Turn on timer
+      this.countTimerOut = setTimeout(() => {
+        // Determine whether it is in video or photo mode
+        this.isVideoPhotoFn();
+      }, this.countdownNum * 1000)
+      // Turn on timer
+      this.countTimerInt = setInterval(() => {
+        this.countdownNum--;
+        if (this.countdownNum === 0) {
+          clearInterval(this.countTimerInt);
+        }
+      }, 1000)
+    } else {
+      this.isVideoPhotoFn();
+    }
+  }
+
+  async getVideoSurfaceID() {
     Logger.info(this.tag, `getVideoSurfaceID`);
     this.videoRecorder = await media.createAVRecorder();
     Logger.info(this.tag, `getVideoSurfaceID videoRecorder: ${this.videoRecorder}`);
@@ -140,7 +177,7 @@ export struct modeSwitchPage {
     Logger.info(this.tag, `getVideoSurfaceID fd: ${this.fd}`);
 
     this.videoConfig.url = `fd://${this.fd}`;
-    Logger.info(this.tag, `getVideoSurfaceID videoConfig.url : ${this.videoConfig.url }`);
+    Logger.info(this.tag, `getVideoSurfaceID videoConfig.url : ${this.videoConfig.url}`);
 
     if (deviceInfo.deviceType == 'default') {
       Logger.info(this.tag, `deviceType = default`);
@@ -172,31 +209,33 @@ export struct modeSwitchPage {
 
   createImageReceiver() {
     try {
-      this.mReceiver = image.createImageReceiver(CameraSize.WIDTH, CameraSize.HEIGHT, 2000, 8)
+      this.mReceiver = image.createImageReceiver(this.cameraSize.WIDTH, this.cameraSize.HEIGHT, 2000, 8);
       Logger.info(this.tag, `createImageReceiver value: ${this.mReceiver} `);
       this.mReceiver.on('imageArrival', () => {
         Logger.info(this.tag, 'imageArrival start');
-        this.mReceiver.readNextImage((err, image) => {
-          Logger.info(this.tag, 'readNextImage start');
-          if (err || image === undefined) {
-            Logger.error(this.tag, 'readNextImage failed ');
-            return;
-          }
-          image.getComponent(4, (errMsg, img) => {
-            Logger.info(this.tag, 'getComponent start');
-            if (errMsg || img === undefined) {
-              Logger.info(this.tag, 'getComponent failed ');
+        if (this.mReceiver) {
+          this.mReceiver.readNextImage((err, image) => {
+            Logger.info(this.tag, 'readNextImage start');
+            if (err || image === undefined) {
+              Logger.error(this.tag, 'readNextImage failed ');
               return;
             }
-            let buffer
-            if (img.byteBuffer) {
-              buffer = img.byteBuffer;
-            } else {
-              Logger.error(this.tag, 'img.byteBuffer is undefined');
-            }
-            this.savePicture(buffer, image);
+            image.getComponent(4, (errMsg, img) => {
+              Logger.info(this.tag, 'getComponent start');
+              if (errMsg || img === undefined) {
+                Logger.info(this.tag, 'getComponent failed ');
+                return;
+              }
+              let buffer = new ArrayBuffer(2048);
+              if (img.byteBuffer) {
+                buffer = img.byteBuffer;
+              } else {
+                Logger.error(this.tag, 'img.byteBuffer is undefined');
+              }
+              this.savePicture(buffer, image);
+            })
           })
-        })
+        }
       })
     } catch {
       Logger.info(this.tag, 'savePicture err');
@@ -216,6 +255,7 @@ export struct modeSwitchPage {
       await imgFileAsset.close(imgFd);
       await img.release();
       Logger.info(this.tag, 'save image End');
+      // problem
       if (this.handleTakePicture) {
         this.handleTakePicture(imgPhotoUri);
       }
@@ -225,37 +265,41 @@ export struct modeSwitchPage {
   }
 
   async getPhotoSurfaceID() {
-    if(this.mReceiver) {
+    if (this.mReceiver) {
       Logger.info(this.tag, 'imageReceiver has been created');
     } else {
       this.createImageReceiver();
     }
-    this.mSurfaceId = await this.mReceiver.getReceivingSurfaceId();
-    if(this.mSurfaceId) {
+    if (this.mReceiver) {
+      this.mSurfaceId = await this.mReceiver.getReceivingSurfaceId();
+    }
+    if (this.mSurfaceId) {
       Logger.info(this.tag, `createImageReceiver mSurfaceId: ${this.mSurfaceId} `);
     } else {
       Logger.info(this.tag, `Get mSurfaceId failed `);
     }
   }
 
-   // Determine the video or photo mode
-   async  isVideoPhotoFn() {
-     await this.getPhotoSurfaceID();
+  // Determine the video or photo mode
+  async isVideoPhotoFn() {
+    await this.getPhotoSurfaceID();
 
-     if (this.modelBagCol == 'photo') {
-       cameraDemo.startPhotoOrVideo(this.modelBagCol, this.videoId, this.mSurfaceId);
-     } else if (this.modelBagCol == 'video') {
-       this.isModeBol = false;
-       if (this.timer) {
-         clearInterval(this.timer);
-       }
-       // Start record
-       await this.getVideoSurfaceID();
-       cameraDemo.startPhotoOrVideo(this.modelBagCol, this.videoId, this.mSurfaceId);
-       cameraDemo.videoOutputStart();
-       this.videoRecorder.start();
-     }
-   }
+    if (this.modelBagCol == 'photo') {
+      cameraDemo.startPhotoOrVideo(this.modelBagCol, this.videoId, this.mSurfaceId);
+    } else if (this.modelBagCol == 'video') {
+      this.isModeBol = false;
+      if (this.timer) {
+        clearInterval(this.timer);
+      }
+      // Start record
+      await this.getVideoSurfaceID();
+      cameraDemo.startPhotoOrVideo(this.modelBagCol, this.videoId, this.mSurfaceId);
+      cameraDemo.videoOutputStart();
+      if (this.videoRecorder) {
+        this.videoRecorder.start();
+      }
+    }
+  }
 
   aboutToAppear() {
   }
@@ -311,12 +355,12 @@ export struct modeSwitchPage {
           }
         }.onClick(() => {
           if (deviceInfo.deviceType == 'default') {
-              globalThis.abilityContext.startAbility({
+            context.startAbility({
               bundleName: 'com.ohos.photos',
               abilityName: 'com.ohos.photos.MainAbility'
             })
           } else if (deviceInfo.deviceType == 'phone') {
-              globalThis.abilityContext.startAbility({
+            context.startAbility({
               bundleName: 'com.huawei.hmos.photos',
               abilityName: 'com.huawei.hmos.photos.MainAbility'
             })
@@ -348,89 +392,89 @@ export struct modeSwitchPage {
 
       // Front and rear camera switching
       Column() {
-          Row() {
-            Button() {
-              Image($r('app.media.switch_camera'))
-                .width('120px').height('120px')
-            }
-            .width('200px')
-            .height('200px')
-            .backgroundColor('rgba(255,255,255,0.20)')
-            .borderRadius('40px')
-            .onClick(async () => {
-              // Switching Cameras
-              this.cameraDeviceIndex ? this.cameraDeviceIndex = 0 : this.cameraDeviceIndex = 1;
-              // Clear configuration
-              cameraDemo.releaseSession();
-              // Start preview
-              cameraDemo.initCamera(this.surfaceId, globalThis.settingDataObj.focusMode, this.cameraDeviceIndex);
-            })
+        Row() {
+          Button() {
+            Image($r('app.media.switch_camera'))
+              .width('120px').height('120px')
           }
+          .width('200px')
+          .height('200px')
+          .backgroundColor('rgba(255,255,255,0.20)')
+          .borderRadius('40px')
+          .onClick(async () => {
+            // Switching Cameras
+            this.cameraDeviceIndex ? this.cameraDeviceIndex = 0 : this.cameraDeviceIndex = 1;
+            // Clear configuration
+            cameraDemo.releaseSession();
+            // Start preview
+            cameraDemo.initCamera(this.surfaceId, this.settingDataObj.focusMode, this.cameraDeviceIndex);
+          })
+        }
       }.position({ x: '70%', y: '82%' })
     } else {
-       Column() {
-         Row() {
-           Text().size({ width: 12, height: 12 }).backgroundColor($r('app.color.theme_color')).borderRadius(6)
-           Text(this.dateTimeUtil.getVideoTime(this.videoRecodeTime))
-             .fontSize(30)
-             .fontColor(Color.White)
-             .margin({ left: 8 })
-         }.offset({ x: -580, y: -180 })
-       }.position({ x: 120, y: 450 })
+      Column() {
+        Row() {
+          Text().size({ width: 12, height: 12 }).backgroundColor($r('app.color.theme_color')).borderRadius(6)
+          Text(this.dateTimeUtil.getVideoTime(this.videoRecodeTime))
+            .fontSize(30)
+            .fontColor(Color.White)
+            .margin({ left: 8 })
+        }.offset({ x: -580, y: -180 })
+      }.position({ x: 120, y: 450 })
 
-       Column() {
-         // Video capture button
-         Button() {
-           Text().width('120px').height('120px').borderRadius('35px').backgroundColor(Color.White)
-         }
-         .border({ width: 2, color: 0xFFFFFF, radius: 45 })
-         .width('200px')
-         .height('200px')
-         .backgroundColor('rgba(255,255,255,0.20)')
-         .onClick(() => {
-           cameraDemo.takePictureWithSettings(globalThis.photoSettings);
-         })
-       }.position({ x: '10%', y: '82%' })
+      Column() {
+        // Video capture button
+        Button() {
+          Text().width('120px').height('120px').borderRadius('35px').backgroundColor(Color.White)
+        }
+        .border({ width: 2, color: 0xFFFFFF, radius: 45 })
+        .width('200px')
+        .height('200px')
+        .backgroundColor('rgba(255,255,255,0.20)')
+        .onClick(() => {
+          cameraDemo.takePictureWithSettings(this.photoSettings);
+        })
+      }.position({ x: '10%', y: '82%' })
 
-       Column() {
-         Row() {
-           Column() {
-             // 录像停止键
-             Button() {
-               Image($r('app.media.ic_camera_video_close')).size({ width: 25, height: 25 });
-             }
-             .width('120px')
-             .height('120px')
-             .backgroundColor($r('app.color.theme_color'))
-             .onClick(() => {
-               if (this.timer) {
-                 clearInterval(this.timer);
-               }
-                 // Stop video
-                 this.stopVideo().then(async (fileAsset) => {
-                 this.videoRecodeTime = 0;
-                 this.isModeBol = true;
-                 try {
-                   // Get video thumbnail
-                   this.videoThumbnail = await fileAsset.getThumbnail();
-                 } catch (err) {
-                   Logger.info(this.tag, 'videoThumbnail err----------:' + JSON.stringify(err.message));
-                 }
-               })
-             })
-           }
-           .width('180px')
-           .height('180px')
-           .borderRadius('60px')
-           .backgroundColor($r('app.color.theme_color'))
-           .justifyContent(FlexAlign.SpaceAround)
-         }
-         .justifyContent(FlexAlign.Center)
-         .border({ width: 3, color: 0xFFFFFF, radius: 70 })
-         .width('200px')
-         .height('200px')
-         .backgroundColor('rgba(255,255,255,0.20)')
-       }.position({ x: '40%', y: '82%' })
+      Column() {
+        Row() {
+          Column() {
+            // video stop button
+            Button() {
+              Image($r('app.media.ic_camera_video_close')).size({ width: 25, height: 25 });
+            }
+            .width('120px')
+            .height('120px')
+            .backgroundColor($r('app.color.theme_color'))
+            .onClick(() => {
+              if (this.timer) {
+                clearInterval(this.timer);
+              }
+              // Stop video
+              this.stopVideo().then(async (fileAsset: mediaLibrary.FileAsset) => {
+                this.videoRecodeTime = 0;
+                this.isModeBol = true;
+                try {
+                  // Get video thumbnail
+                  this.videoThumbnail = await fileAsset.getThumbnail();
+                } catch (err) {
+                  Logger.info(this.tag, 'videoThumbnail err----------:' + JSON.stringify(err.message));
+                }
+              })
+            })
+          }
+          .width('180px')
+          .height('180px')
+          .borderRadius('60px')
+          .backgroundColor($r('app.color.theme_color'))
+          .justifyContent(FlexAlign.SpaceAround)
+        }
+        .justifyContent(FlexAlign.Center)
+        .border({ width: 3, color: 0xFFFFFF, radius: 70 })
+        .width('200px')
+        .height('200px')
+        .backgroundColor('rgba(255,255,255,0.20)')
+      }.position({ x: '40%', y: '82%' })
     }
   }
 
@@ -449,5 +493,6 @@ export struct modeSwitchPage {
     } catch (err) {
       Logger.info(this.tag, 'stopVideo err: ' + JSON.stringify(err));
     }
+    return;
   }
 }

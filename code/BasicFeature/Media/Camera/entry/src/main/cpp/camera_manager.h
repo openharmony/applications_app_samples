@@ -38,19 +38,19 @@
 #include "napi/native_api.h"
 #include "multimedia/camera_framework/camera_manager.h"
 
+namespace OHOS_NDK_CAMERA {
 class NDKCamera {
 public:
     ~NDKCamera();
     NDKCamera(char *str, uint32_t focusMode, uint32_t cameraDeviceIndex);
 
-    static void Destroy()
-    {
+    static void Destroy() {
         if (ndkCamera_ != nullptr) {
             delete ndkCamera_;
             ndkCamera_ = nullptr;
         }
     }
-    
+
     Camera_ErrorCode CreateCameraInput(void);
     Camera_ErrorCode CameraInputOpen(void);
     Camera_ErrorCode CameraInputClose(void);
@@ -58,8 +58,8 @@ public:
     Camera_ErrorCode GetSupportedCameras(void);
     Camera_ErrorCode GetSupportedOutputCapability(void);
     Camera_ErrorCode CreatePreviewOutput(void);
-    Camera_ErrorCode CreatePhotoOutput(char* photoId);
-    Camera_ErrorCode CreateVideoOutput(char* videoId);
+    Camera_ErrorCode CreatePhotoOutput(char *photoId);
+    Camera_ErrorCode CreateVideoOutput(char *videoId);
     Camera_ErrorCode CreateMetadataOutput(void);
     Camera_ErrorCode IsCameraMuted(void);
     Camera_ErrorCode PreviewOutputStop(void);
@@ -73,11 +73,11 @@ public:
     Camera_ErrorCode SessionCommitConfig(void);
     Camera_ErrorCode SessionStart(void);
     Camera_ErrorCode SessionStop(void);
-    Camera_ErrorCode StartVideo(char* videoId, char* photoId);
+    Camera_ErrorCode StartVideo(char *videoId, char *photoId);
     Camera_ErrorCode AddVideoOutput(void);
     Camera_ErrorCode AddPhotoOutput();
     Camera_ErrorCode VideoOutputStart(void);
-    Camera_ErrorCode StartPhoto(char* mSurfaceId);
+    Camera_ErrorCode StartPhoto(char *mSurfaceId);
     Camera_ErrorCode IsExposureModeSupportedFn(uint32_t mode);
     Camera_ErrorCode IsMeteringPoint(int x, int y);
     Camera_ErrorCode IsExposureBiasRange(int exposureBias);
@@ -102,38 +102,38 @@ public:
     Camera_ErrorCode VideoOutputRegisterCallback(void);
     Camera_ErrorCode MetadataOutputRegisterCallback(void);
     Camera_ErrorCode CaptureSessionRegisterCallback(void);
-    
+
     // Get callback
-    CameraManager_Callbacks* GetCameraManagerListener(void);
-    CameraInput_Callbacks* GetCameraInputListener(void);
-    PreviewOutput_Callbacks* GetPreviewOutputListener(void);
-    PhotoOutput_Callbacks* GetPhotoOutputListener(void);
-    VideoOutput_Callbacks* GetVideoOutputListener(void);
-    MetadataOutput_Callbacks* GetMetadataOutputListener(void);
-    CaptureSession_Callbacks* GetCaptureSessionRegister(void);
+    CameraManager_Callbacks *GetCameraManagerListener(void);
+    CameraInput_Callbacks *GetCameraInputListener(void);
+    PreviewOutput_Callbacks *GetPreviewOutputListener(void);
+    PhotoOutput_Callbacks *GetPhotoOutputListener(void);
+    VideoOutput_Callbacks *GetVideoOutputListener(void);
+    MetadataOutput_Callbacks *GetMetadataOutputListener(void);
+    CaptureSession_Callbacks *GetCaptureSessionRegister(void);
 
 private:
-    NDKCamera(const NDKCamera&) = delete;
-    NDKCamera& operator = (const NDKCamera&) = delete;
+    NDKCamera(const NDKCamera &) = delete;
+    NDKCamera &operator=(const NDKCamera &) = delete;
     uint32_t cameraDeviceIndex_;
-    Camera_Manager* cameraManager_;
-    Camera_CaptureSession* captureSession_;
-    Camera_Device* cameras_;
+    Camera_Manager *cameraManager_;
+    Camera_CaptureSession *captureSession_;
+    Camera_Device *cameras_;
     uint32_t size_;
-    Camera_OutputCapability* cameraOutputCapability_;
-    const Camera_Profile* profile_;
-    const Camera_VideoProfile* videoProfile_;
-    Camera_PreviewOutput* previewOutput_;
-    Camera_PhotoOutput* photoOutput_;
-    Camera_VideoOutput* videoOutput_;
-    const Camera_MetadataObjectType* metaDataObjectType_;
-    Camera_MetadataOutput* metadataOutput_;
-    Camera_Input* cameraInput_;
-    bool* isCameraMuted_;
+    Camera_OutputCapability *cameraOutputCapability_;
+    const Camera_Profile *profile_;
+    const Camera_VideoProfile *videoProfile_;
+    Camera_PreviewOutput *previewOutput_;
+    Camera_PhotoOutput *photoOutput_;
+    Camera_VideoOutput *videoOutput_;
+    const Camera_MetadataObjectType *metaDataObjectType_;
+    Camera_MetadataOutput *metadataOutput_;
+    Camera_Input *cameraInput_;
+    bool *isCameraMuted_;
     Camera_Position position_;
     Camera_Type type_;
-    char* previewSurfaceId_;
-    char* photoSurfaceId_;
+    char *previewSurfaceId_;
+    char *photoSurfaceId_;
     Camera_ErrorCode ret_;
     uint32_t takePictureTimes = 0;
     Camera_ExposureMode exposureMode_;
@@ -143,10 +143,10 @@ private:
     float maxExposureBias_;
     float step_;
     uint32_t focusMode_;
-    
-    static NDKCamera* ndkCamera_;
+
+    static NDKCamera *ndkCamera_;
     static std::mutex mtx_;
     volatile bool valid_;
 };
-
+} // namespace OHOS_NDK_CAMERA
 #endif  // CAMERA_NDK_CAMERA_H

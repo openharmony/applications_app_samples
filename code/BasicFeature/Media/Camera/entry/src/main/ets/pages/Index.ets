@@ -28,23 +28,10 @@ import { FocusAreaPage } from '../views/FocusAreaPage';
 import { Constants } from '../common/Constants';
 import DisplayCalculator from '../common/DisplayCalculator';
 import display from '@ohos.display';
-
+import * as Common from '../common/Constants'
+import { SettingDataObj } from '../common/Constants'
+import common from '@ohos.app.ability.common'
 const TAG: string = 'UI indexPage';
-
-globalThis.settingDataObj = {
-  mirrorBol: false, // Mirror Enable -> Off
-  videoStabilizationMode: 0, // Video Anti Shake -> Off
-  exposureMode: 1, // Exposure mode -> Automatic
-  focusMode: 2, // Focus mode -> Automatic
-  photoQuality: 1, // Photo quality -> medium
-  locationBol: false, // Show Geographic Location -> Off
-  photoFormat: 1, // Photo Format -> JPG
-  photoOrientation: 0, // Photo direction -> 0
-  photoResolution: 0, // Photo resolution -> 1920 * 1080
-  videoResolution: 0, // Photo resolution -> 1920 * 1080
-  videoFrame: 0, // Recording frame rate -> 15
-  referenceLineBol: false // Divider -> Off
-};
 
 @Entry
 @Component
@@ -76,9 +63,24 @@ struct Index {
   @State cameraDeviceIndex: number = 0;
   @State xComponentWidth: number = 384;
   @State xComponentHeight: number = 450;
-  private deviceType: string;
-  private screenHeight: number;
-  private screenWidth: number;
+  private deviceType: string = '';
+  private screenHeight: number = 0;
+  private screenWidth: number = 0;
+  private settingDataObj: SettingDataObj = {
+    mirrorBol: false,
+    videoStabilizationMode: 0,
+    exposureMode: 1,
+    focusMode: 2,
+    photoQuality: 1,
+    locationBol: false,
+    photoFormat: 1,
+    photoOrientation: 0,
+    photoResolution: 0,
+    videoResolution: 0,
+    videoFrame: 0,
+    referenceLineBol: false
+  };
+  private appContext: common.Context = getContext(this);
 
   // Set Popup Box
   private settingDialogController: CustomDialogController = new CustomDialogController({
@@ -102,11 +104,6 @@ struct Index {
     let mDisplay = display.getDefaultDisplaySync();
     this.screenWidth = px2vp(mDisplay.width);
     this.screenHeight = px2vp(mDisplay.height);
-    // @ts-ignore
-    this.deviceType = AppStorage.get<string>('deviceType');
-    if (this.deviceType === Constants.TABLET) {
-      this.defaultAspectRatio = Constants.MAX_ASPECT_RATIO;
-    }
     this.initXComponentSize();
   }
 
@@ -123,7 +120,7 @@ struct Index {
   async requestPermissionsFn() {
     Logger.info(TAG, `requestPermissionsFn entry`);
     try {
-      this.atManager.requestPermissionsFromUser(globalThis.abilityContext, [
+      this.atManager.requestPermissionsFromUser(this.appContext, [
         'ohos.permission.CAMERA',
         'ohos.permission.MICROPHONE',
         'ohos.permission.READ_MEDIA',
@@ -132,9 +129,6 @@ struct Index {
         Logger.info(TAG, `request Permissions success!`);
         this.onShow = true;
       })
-        .catch((error) => {
-          Logger.info(TAG, `requestPermissionsFromUser call Failed! error: ${error.code}`);
-        })
     } catch (err) {
       Logger.info(TAG, `requestPermissionsFromUser call Failed! error: ${err.code}`);
     }
@@ -144,14 +138,14 @@ struct Index {
     Logger.info(TAG, `onPageShow App`);
     if (this.surfaceId && this.onShow) {
       Logger.error(TAG, `initCamera start`);
-      cameraDemo.initCamera(this.surfaceId, globalThis.settingDataObj.focusMode, this.cameraDeviceIndex);
+      cameraDemo.initCamera(this.surfaceId, this.settingDataObj.focusMode, this.cameraDeviceIndex);
       Logger.error(TAG, `initCamera end`);
     }
   }
 
   onPageHide() {
     Logger.info(TAG, `onPageHide App`);
-     cameraDemo.releaseCamera();
+    cameraDemo.releaseCamera();
   }
 
   build() {
@@ -168,8 +162,10 @@ struct Index {
             this.surfaceId = this.mXComponentController.getXComponentSurfaceId();
             Logger.info(TAG, `onLoad surfaceId: ${this.surfaceId}`);
             Logger.error(TAG, `initCamera start`);
-            cameraDemo.initCamera(this.surfaceId, globalThis.settingDataObj.focusMode, this.cameraDeviceIndex);
-            globalThis.cameraDeviceIndex = this.cameraDeviceIndex;
+            cameraDemo.initCamera(this.surfaceId, this.settingDataObj.focusMode, this.cameraDeviceIndex);
+            let device = Common.cameraDeviceIndex;
+            device = this.cameraDeviceIndex;
+            // globalThis.cameraDeviceIndex = this.cameraDeviceIndex;
             Logger.error(TAG, `initCamera end`);
           })
           .backgroundColor(Color.Blue)

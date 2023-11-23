@@ -14,55 +14,76 @@
  */
 
 import cameraDemo from 'libentry.so';
+import { SettingDataObj } from '../common/Constants'
+import * as Common from '../common/Constants'
 
 @Component
 export struct settingItem {
-  private itemData: string; // The name of the selected mode
+  private itemData: string = ''; // The name of the selected mode
   @Prop settingMessageNum: number; // Incoming click settings
-  private index: number; // Index value of the selected mode
+  private index: number = 0; // Index value of the selected mode
   @Link @Watch('onChangeFn') isIndex: number; // Which icon is selected by default
   @State isBol: boolean = false; // Hide Display Icons
+  private settingDataObj: SettingDataObj = {
+    mirrorBol: false,
+    videoStabilizationMode: 0,
+    exposureMode: 1,
+    focusMode: 2,
+    photoQuality: 1,
+    locationBol: false,
+    photoFormat: 1,
+    photoOrientation: 0,
+    photoResolution: 0,
+    videoResolution: 0,
+    videoFrame: 0,
+    referenceLineBol: false
+  };
   // Corresponding to the selected setting parameters in the click mode setting
   selectMode() {
     switch (this.settingMessageNum) {
       case 2:
-        globalThis.settingDataObj.videoStabilizationMode = this.index;
-        cameraDemo.isVideoStabilizationModeSupported(globalThis.settingDataObj.videoStabilizationMode);
+        this.settingDataObj.videoStabilizationMode = this.index;
+        cameraDemo.isVideoStabilizationModeSupported(this.settingDataObj.videoStabilizationMode);
         break
       case 3:
-        globalThis.settingDataObj.exposureMode = this.index;
-        cameraDemo.isExposureModeSupported(globalThis.settingDataObj.exposureMode);
+        this.settingDataObj.exposureMode = this.index;
+        cameraDemo.isExposureModeSupported(this.settingDataObj.exposureMode);
         break;
       case 4:
-        globalThis.settingDataObj.focusMode = this.index;
-        cameraDemo.isFocusModeSupported(globalThis.settingDataObj.focusMode);
+        this.settingDataObj.focusMode = this.index;
+        cameraDemo.isFocusModeSupported(this.settingDataObj.focusMode);
         break;
       case 5:
-        globalThis.settingDataObj.photoQuality = this.index;
+        this.settingDataObj.photoQuality = this.index;
         break;
       case 7:
-        globalThis.settingDataObj.photoFormat = this.index;
+        this.settingDataObj.photoFormat = this.index;
         break;
       case 8:
-        globalThis.settingDataObj.photoOrientation = this.index;
+        this.settingDataObj.photoOrientation = this.index;
         break;
       case 9:
         // Photo resolution
-        globalThis.settingDataObj.photoResolution = this.index;
+        this.settingDataObj.photoResolution = this.index;
         let ind = this.itemData.indexOf('*');
-        globalThis.photoResolutionWidth = Number(this.itemData.substring(0, ind));
-        globalThis.photoResolutionHeight = Number(this.itemData.substring(ind + 1));
+        let photoResolutionWidth = Common.photoResolutionWidth;
+        let photoResolutionHeight = Common.photoResolutionHeight;
+        photoResolutionWidth = Number(this.itemData.substring(0, ind));
+        photoResolutionHeight = Number(this.itemData.substring(ind + 1));
         break;
       case 10:
         // Video resolution
-        globalThis.settingDataObj.videoResolution = this.index;
+        this.settingDataObj.videoResolution = this.index;
         let index = this.itemData.indexOf('*');
-        globalThis.videoResolutionWidth = Number(this.itemData.substring(0, index));
-        globalThis.videoResolutionHeight = Number(this.itemData.substring(index + 1));
+        let videoResolutionWidth = Common.videoResolutionWidth;
+        let videoResolutionHeight = Common.videoResolutionHeight;
+        videoResolutionWidth = Number(this.itemData.substring(0, index));
+        videoResolutionHeight = Number(this.itemData.substring(index + 1));
         break;
       case 11:
-        globalThis.settingDataObj.videoFrame = this.index;
-        globalThis.videoFrame = this.itemData;
+        this.settingDataObj.videoFrame = this.index;
+        let videoFrame = Common.videoFrame;
+        videoFrame = this.itemData;
         break;
     }
   }

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
  
-// 曝光选择
+// Exposure selection
 @Component
 export struct focusPage {
   @Link focusPointBol: boolean;

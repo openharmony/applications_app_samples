@@ -15,26 +15,41 @@
 
 // Flash page
 import cameraDemo from 'libentry.so';
+
+interface FlashPic {
+  iconOff: Resource;
+  iconOn: Resource;
+  iconAuto: Resource;
+  iconAlwaysOn: Resource;
+}
+
 @Component
 export struct FlashingLightPage {
   // Page judgment
   @State flashingBol: boolean = true;
   // Flash mode
   @State flashingNum: number = 0;
+  private flashIcon: FlashPic = {
+    iconOff: $r('app.media.ic_camera_public_flash_off'),
+    iconOn: $r('app.media.ic_camera_public_flash_on'),
+    iconAuto: $r('app.media.ic_camera_public_flash_auto'),
+    iconAlwaysOn: $r('app.media.flash_always_on')
+  };
   // Return to selected image
   getImageDefault() {
     if (this.flashingNum == 0) {
-      return $r('app.media.ic_camera_public_flash_off');
+      return this.flashIcon.iconOff;
     }
     if (this.flashingNum == 1) {
-      return $r('app.media.ic_camera_public_flash_on');
+      return this.flashIcon.iconOn;
     }
     if (this.flashingNum == 2) {
-      return $r('app.media.ic_camera_public_flash_auto');
+      return this.flashIcon.iconAuto;
     }
     if (this.flashingNum == 3) {
-      return $r('app.media.flash_always_on');
+      return this.flashIcon.iconAlwaysOn;
     }
+    return;
   }
 
   build() {

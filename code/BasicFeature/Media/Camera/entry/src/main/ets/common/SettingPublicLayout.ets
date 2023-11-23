@@ -12,13 +12,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
+interface BorderBoleTrue {
+  topLeft: number;
+  topRight: number;
+};
+
+interface BorderBoleFalse {
+  bottomLeft: number;
+  bottomRight: number;
+};
+
+interface Length {
+  topLeft: number;
+  topRight: number;
+  bottomLeft: number;
+  bottomRight: number;
+};
+
 @Component
 export struct settingPublicLayout {
-  private icon: Resource;
-  private modeMessage: string;
-  private getModeBol: (mirrorBol: boolean) => void;
-  private setModeBol: boolean;
+  private icon: Resource = $r('app.string.CONTENT_TYPE_UNKNOWN');
+  private modeMessage: Resource = $r('app.string.CONTENT_TYPE_UNKNOWN');
+  private getModeBol: (mirrorBol: boolean) => void = (mirrorBol: boolean) => {};
+  private setModeBol: boolean = false;
   private isModeBol: boolean = false;
   private borderBol: boolean = false;
   private borderBole: boolean = false;
@@ -26,6 +43,20 @@ export struct settingPublicLayout {
   private backNum: number = 1;
   @State backClBol: boolean = false;
   @Link @Watch('leftSliderChange') leftSliderIndex: number;
+  private borderBoleTrue: BorderBoleTrue = {
+    topLeft: 16,
+    topRight: 16
+  };
+  private borderBoleFalse: BorderBoleFalse = {
+    bottomLeft: 16,
+    bottomRight: 16
+  };
+  private length: Length = {
+    topLeft: 16,
+    topRight: 16,
+    bottomLeft: 16,
+    bottomRight: 16
+  };
 
   leftSliderChange() {
     if (this.backNum == this.leftSliderIndex) {
@@ -43,15 +74,15 @@ export struct settingPublicLayout {
     if (this.isModeBol) {
       if (this.borderBol) {
         if (this.borderBole) {
-          return { topLeft: 16, topRight: 16 };
+          return this.borderBoleTrue;
         } else {
-          return { bottomLeft: 16, bottomRight: 16 };
+          return this.borderBoleFalse;
         }
       } else {
-        return { topLeft: 16, topRight: 16, bottomLeft: 16, bottomRight: 16 };
+        return this.length;
       }
     } else {
-      return {};
+      return null;
     }
   }
 

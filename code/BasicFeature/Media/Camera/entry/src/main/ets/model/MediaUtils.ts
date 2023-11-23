@@ -18,12 +18,29 @@
 import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 import DateTimeUtil from '../model/DateTimeUtil';
 import Logger from '../model/Logger';
+import { SettingDataObj } from '../common/Constants'
+import common from '@ohos.app.ability.common'
+let context = getContext(this) as common.Context;
 
 export default class MediaUtils {
     private tag: string = 'MediaUtils';
-    private mediaTest: mediaLibrary.MediaLibrary = mediaLibrary.getMediaLibrary(globalThis.abilityContext);
+    private mediaTest: mediaLibrary.MediaLibrary = mediaLibrary.getMediaLibrary(context);
     private static instance: MediaUtils = new MediaUtils();
     private num: number = 0;
+    private settingDataObj: SettingDataObj = {
+        mirrorBol: false,
+        videoStabilizationMode: 0,
+        exposureMode: 1,
+        focusMode: 2,
+        photoQuality: 1,
+        locationBol: false,
+        photoFormat: 1,
+        photoOrientation: 0,
+        photoResolution: 0,
+        videoResolution: 0,
+        videoFrame: 0,
+        referenceLineBol: false
+    };
 
     public static getInstance() {
         if (this.instance === undefined) {
@@ -64,7 +81,7 @@ export default class MediaUtils {
         }
     }
 
-    async getFdPath(fileAsset: any) {
+    async getFdPath(fileAsset: mediaLibrary.FileAsset) {
         let fd = await fileAsset.open('Rw');
         Logger.info(this.tag, `fd = ${fd}`);
         return fd;
@@ -159,19 +176,19 @@ export default class MediaUtils {
     }
     // Photo Format
     onChangePhotoFormat() {
-        if (globalThis.settingDataObj.photoFormat == 0) {
+        if (this.settingDataObj.photoFormat == 0) {
             return 'png';
         }
-        if (globalThis.settingDataObj.photoFormat == 1) {
+        if (this.settingDataObj.photoFormat == 1) {
             return 'jpg';
         }
-        if (globalThis.settingDataObj.photoFormat == 2) {
+        if (this.settingDataObj.photoFormat == 2) {
             return 'bmp';
         }
-        if (globalThis.settingDataObj.photoFormat == 3) {
+        if (this.settingDataObj.photoFormat == 3) {
             return 'webp';
         }
-        if (globalThis.settingDataObj.photoFormat == 4) {
+        if (this.settingDataObj.photoFormat == 4) {
             return 'jpeg';
         }
     }

@@ -48,12 +48,10 @@ export struct FocusAreaPage {
         this.focusPointVal[0] = e.touches[0].screenX;
         this.focusPointVal[1] = e.touches[0].screenY;
         // Focus point
-        // @ts-ignore
         cameraDemo.isFocusPoint(
           e.touches[0].screenX / this.xComponentWidth,
           e.touches[0].screenY / this.xComponentHeight
         );
-        // @ts-ignore
         cameraDemo.isMeteringPoint(
           e.touches[0].screenX / this.xComponentWidth,
           e.touches[0].screenY / this.xComponentHeight + 50

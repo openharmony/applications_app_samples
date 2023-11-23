@@ -25,14 +25,14 @@ export struct mainDialog {
   build() {
     Column() {
       Column() {
-        Text('允许“相机”使用无线数据？')
+        Text($r('app.string.ALLOW_WLAN'))
           .fontSize(16)
           .fontFamily('HarmonyHeiTi')
           .fontColor('#182431')
           .width('100%')
           .fontWeight(500)
           .textAlign(TextAlign.Start)
-        Text('关闭无线数据时，部分功能可能无法使用。')
+        Text($r('app.string.CLOSE_WLAN'))
           .fontSize(10)
           .opacity(0.6)
           .textAlign(TextAlign.Start)
@@ -45,7 +45,7 @@ export struct mainDialog {
 
       Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.SpaceEvenly, alignItems: ItemAlign.Auto }) {
         Button() {
-          Text('无线局域网与蜂窝网络')
+          Text($r('app.string.WLAN_AND_CELLULAR'))
             .fontColor($r('app.color.theme_color'))
             .fontSize(14)
             .width('100%')
@@ -59,7 +59,7 @@ export struct mainDialog {
         })
 
         Button() {
-          Text('仅限无限局域网')
+          Text($r('app.string.ONLY_WLAN'))
             .fontColor($r('app.color.theme_color'))
             .fontSize(14)
             .fontWeight(500)
@@ -73,7 +73,7 @@ export struct mainDialog {
         })
 
         Button() {
-          Text('不允许')
+          Text($r('app.string.NOT_ALLOW'))
             .fontColor($r('app.color.theme_color'))
             .fontSize(14)
             .fontWeight(500)

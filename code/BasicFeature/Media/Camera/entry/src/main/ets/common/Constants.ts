@@ -30,5 +30,26 @@ export class Constants {
   // video frame
   static readonly VIDEO_FRAME_30 = 30;
   static readonly VIDEO_FRAME_15 = 15;
-}
+};
 
+export class SettingDataObj {
+  mirrorBol = false; // Mirror Enable -> Off
+  videoStabilizationMode = 0; // Video Anti Shake -> Off
+  exposureMode = 1; // Exposure mode -> Automatic
+  focusMode = 2; // Focus mode -> Automatic
+  photoQuality = 1; // Photo quality -> medium
+  locationBol = false; // Show Geographic Location -> Off
+  photoFormat = 1; // Photo Format -> JPG
+  photoOrientation = 0; // Photo direction -> 0
+  photoResolution = 0; // Photo resolution -> 1920 * 1080
+  videoResolution = 0; // Photo resolution -> 1920 * 1080
+  videoFrame = 0; // Recording frame rate -> 15
+  referenceLineBol = false; // Divider -> Off
+};
+
+export let cameraDeviceIndex: number = 0;
+export let photoResolutionWidth: number = 0;
+export let photoResolutionHeight: number = 0;
+export let videoResolutionWidth: number = 0;
+export let videoResolutionHeight: number = 0;
+export let videoFrame: string = '';

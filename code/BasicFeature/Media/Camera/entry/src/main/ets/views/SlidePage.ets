@@ -27,7 +27,7 @@ export struct SlidePage {
   // Slide slider movement value
   @State sliderTextPos: string = '-10';
 
-  slideChange(value) {
+  slideChange(value: number) {
     cameraDemo.setZoomRatio(value);
     switch (value) {
       case 1:
