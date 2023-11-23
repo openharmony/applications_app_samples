@@ -209,5 +209,176 @@ export default function abilityTest() {
       Logger.info(TAG, `${BUNDLE}DynamicImportFunction_001 end`);
       done();
     })
+
+    /**
+     * 点击IfOrVisibility按钮，进入合理渲染信息页面
+     */
+    it(BUNDLE + "IfOrVisibilityFunction_001", 3, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}IfOrVisibilityFunction_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(5000);
+      let hiDumper: Component = await driver.findComponent(ON.text("IfOrVisibility"));
+      await driver.delayMs(500);
+      await hiDumper.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text("合理选择条件渲染和显隐控制"));
+      await driver.assertComponentExist(ON.text("频繁切换：显隐控制"));
+      await driver.assertComponentExist(ON.text("频繁切换：条件渲染"));
+      await driver.assertComponentExist(ON.text("首页渲染：条件渲染"));
+      await driver.assertComponentExist(ON.text("首页渲染：显隐控制"));
+      await driver.assertComponentExist(ON.text("部分修改：条件渲染+容器限制"));
+      await driver.assertComponentExist(ON.text("部分修改：仅条件渲染"));
+      await driver.assertComponentExist(ON.text("复杂子树：条件渲染+组件复用"));
+      await driver.assertComponentExist(ON.text("复杂子树：仅条件渲染"));
+      await driver.delayMs(500);
+      Logger.info(TAG, `${BUNDLE}HiDumperFunction_001 end`);
+      done();
+    })
+
+    /**
+     * 进入频繁切换场景，查看页面是否在正常显示
+     */
+    it(BUNDLE + "IfOrVisibilityFunction_002", 4, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}IfOrVisibilityFunction_002 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let animateComponent: Component = await driver.findComponent(ON.text("频繁切换：显隐控制"));
+      await driver.delayMs(500);
+      await animateComponent.click();
+      await driver.delayMs(1000);
+      let showChange: Component = await driver.findComponent(ON.text("Switch visible and hidden"));
+      await driver.delayMs(500);
+      await showChange.click();
+      await driver.delayMs(2000);
+      await showChange.click();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      await driver.delayMs(500);
+
+      animateComponent = await driver.findComponent(ON.text("频繁切换：显隐控制"));
+      await driver.delayMs(500);
+      await animateComponent.click();
+      await driver.delayMs(1000);
+      showChange = await driver.findComponent(ON.text("Switch visible and hidden"));
+      await driver.delayMs(500);
+      await showChange.click();
+      await driver.delayMs(2000);
+      await showChange.click();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      Logger.info(TAG, `${BUNDLE}IfOrVisibilityFunction_002 end`);
+      done();
+    })
+
+    /**
+     * 进入首页渲染场景，查看页面是否在正常显示
+     */
+    it(BUNDLE + "IfOrVisibilityFunction_003", 4, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}IfOrVisibilityFunction_003 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let animateComponent: Component = await driver.findComponent(ON.text("首页渲染：条件渲染"));
+      await driver.delayMs(500);
+      await animateComponent.click();
+      await driver.delayMs(1000);
+      let showChange: Component = await driver.findComponent(ON.text("Show the Hidden on start"));
+      await driver.delayMs(500);
+      await showChange.click();
+      await driver.delayMs(1000);
+      await showChange.click();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      await driver.delayMs(500);
+
+      animateComponent = await driver.findComponent(ON.text("首页渲染：显隐控制"));
+      await driver.delayMs(500);
+      await animateComponent.click();
+      await driver.delayMs(1000);
+      showChange = await driver.findComponent(ON.text("Show the Hidden on start"));
+      await driver.delayMs(500);
+      await showChange.click();
+      await driver.delayMs(1000);
+      await showChange.click();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      Logger.info(TAG, `${BUNDLE}IfOrVisibilityFunction_003 end`);
+      done();
+    })
+
+    /**
+     * 进入部分修改场景，查看页面是否在正常显示
+     */
+    it(BUNDLE + "IfOrVisibilityFunction_004", 4, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}IfOrVisibilityFunction_004 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let animateComponent: Component = await driver.findComponent(ON.text("部分修改：条件渲染+容器限制"));
+      await driver.delayMs(500);
+      await animateComponent.click();
+      await driver.delayMs(1000);
+      let showChange: Component = await driver.findComponent(ON.text("Switch Hidden and Show"));
+      await driver.delayMs(500);
+      await showChange.click();
+      await driver.delayMs(1000);
+      await showChange.click();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      await driver.delayMs(500);
+
+      animateComponent = await driver.findComponent(ON.text("部分修改：仅条件渲染"));
+      await driver.delayMs(500);
+      await animateComponent.click();
+      await driver.delayMs(1000);
+      showChange = await driver.findComponent(ON.text("Switch Hidden and Show"));
+      await driver.delayMs(500);
+      await showChange.click();
+      await driver.delayMs(1000);
+      await showChange.click();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      Logger.info(TAG, `${BUNDLE}IfOrVisibilityFunction_004 end`);
+      done();
+    })
+
+    /**
+     * 进入复杂子树场景，查看页面是否在正常显示
+     */
+    it(BUNDLE + "IfOrVisibilityFunction_005", 4, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}IfOrVisibilityFunction_005 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let animateComponent: Component = await driver.findComponent(ON.text("复杂子树：条件渲染+组件复用"));
+      await driver.delayMs(500);
+      await animateComponent.click();
+      await driver.delayMs(1000);
+      let showChange: Component = await driver.findComponent(ON.text("Change FlexAlign"));
+      await driver.delayMs(500);
+      await showChange.click();
+      await driver.delayMs(1000);
+      await showChange.click();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      await driver.delayMs(500);
+
+      animateComponent = await driver.findComponent(ON.text("复杂子树：仅条件渲染"));
+      await driver.delayMs(500);
+      await animateComponent.click();
+      await driver.delayMs(1000);
+      showChange = await driver.findComponent(ON.text("Change FlexAlign"));
+      await driver.delayMs(500);
+      await showChange.click();
+      await driver.delayMs(1000);
+      await showChange.click();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      Logger.info(TAG, `${BUNDLE}IfOrVisibilityFunction_005 end`);
+      done();
+    })
   })
 }

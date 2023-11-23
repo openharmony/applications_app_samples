@@ -27,5 +27,9 @@ export let performanceTypeArray: Array<PerformanceMsg> = [
   {
     name: 'DynamicImport',
     uri: 'pages/dynamicImport/DynamicEntryView'
+  },
+  {
+    name: 'IfOrVisibility',
+    uri: 'pages/ifOrVisibility/IfOrVisibilityPage'
   }
 ]

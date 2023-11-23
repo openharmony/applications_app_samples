@@ -9,6 +9,7 @@
   "dependencies": {
     "@ohos/staticImport": "file:../../../feature/staticImport",
     "@ohos/dynamicImport": "file:../../../feature/dynamicImport",
+    "@ohos/ifOrVisibility": "file:../../../feature/ifOrVisibility",
     "@ohos/hiDumper": "file:../../../feature/hiDumper"
   }
 }

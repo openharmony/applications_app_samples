@@ -9,6 +9,16 @@
     "pages/dynamicImport/DynamicEntryView",
     "pages/dynamicImport/DynamicHome",
     "pages/staticImport/StaticEntryView",
-    "pages/staticImport/StaticHome"
+    "pages/staticImport/StaticHome",
+    "pages/hiDumper/VisibilityPage",
+    "pages/ifOrVisibility/IfOrVisibilityPage",
+    "pages/ifOrVisibility/AnimateBetterUseVisibility",
+    "pages/ifOrVisibility/AnimateWorseUseIf",
+    "pages/ifOrVisibility/StartBetterUseIf",
+    "pages/ifOrVisibility/StartWorseUseVisibility",
+    "pages/ifOrVisibility/RenderControlBetterWithStack",
+    "pages/ifOrVisibility/RenderControlWorseWithoutStack",
+    "pages/ifOrVisibility/IfBetterWithReusable",
+    "pages/ifOrVisibility/IfWorseWithoutReusable"
   ]
 }

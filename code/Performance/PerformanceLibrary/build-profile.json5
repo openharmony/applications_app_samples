@@ -57,6 +57,10 @@
     {
       "name": "dynamicImport",
       "srcPath": "./feature/dynamicImport"
+    },
+    {
+      "name": "ifOrVisibility",
+      "srcPath": "./feature/ifOrVisibility"
     }
   ]
 }
