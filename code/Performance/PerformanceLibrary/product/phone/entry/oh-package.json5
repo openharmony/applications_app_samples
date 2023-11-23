@@ -8,6 +8,7 @@
   "version": "1.0.0",
   "dependencies": {
     "@ohos/ifOrVisibility": "file:../../../feature/ifOrVisibility",
-    "@ohos/hiDumper": "file:../../../feature/hiDumper"
+    "@ohos/hiDumper": "file:../../../feature/hiDumper",
+    "@ohos/smartPerfHost": "file:../../../feature/smartPerfHost"
   }
 }

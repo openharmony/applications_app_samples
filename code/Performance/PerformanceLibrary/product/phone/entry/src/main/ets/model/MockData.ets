@@ -23,5 +23,9 @@ export let performanceTypeArray: Array<PerformanceMsg> = [
   {
     name: 'IfOrVisibility',
     uri: 'pages/ifOrVisibility/IfOrVisibilityPage'
+  },
+  {
+    name: 'SmartPerfHost',
+    uri: 'pages/smartPerfHost/SmartPerfHostPage'
   }
 ]

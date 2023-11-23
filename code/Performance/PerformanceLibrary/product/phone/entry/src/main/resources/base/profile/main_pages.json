@@ -13,6 +13,12 @@
     "pages/ifOrVisibility/RenderControlBetterWithStack",
     "pages/ifOrVisibility/RenderControlWorseWithoutStack",
     "pages/ifOrVisibility/IfBetterWithReusable",
-    "pages/ifOrVisibility/IfWorseWithoutReusable"
+    "pages/ifOrVisibility/IfWorseWithoutReusable",
+    "pages/hiDumper/VisibilityPage",
+    "pages/smartPerfHost/SmartPerfHostPage",
+    "pages/smartPerfHost/AppStartupAfterOptimizationPage",
+    "pages/smartPerfHost/AppStartupBeforeOptimizationPage",
+    "pages/smartPerfHost/FrameTimelineAfterOptimizationPage",
+    "pages/smartPerfHost/FrameTimelineBeforeOptimizationPage"
   ]
 }

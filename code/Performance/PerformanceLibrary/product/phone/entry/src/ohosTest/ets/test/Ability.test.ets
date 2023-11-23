@@ -44,7 +44,7 @@ export default function abilityTest() {
     /**
      * 点击HiDumper按钮，进入HiDumper查看组件信息页面
      */
-    it(BUNDLE + "HiDumperFunction_001", 3, async (done: Function) => {
+    it(BUNDLE + "HiDumperFunction_001", 2, async (done: Function) => {
       Logger.info(TAG, `${BUNDLE}HiDumperFunction_001 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(5000);
@@ -64,7 +64,7 @@ export default function abilityTest() {
     /**
      * 进入查看应用组件树页面，查看页面是否在正常显示
      */
-    it(BUNDLE + "HiDumperFunction_002", 4, async (done: Function) => {
+    it(BUNDLE + "HiDumperFunction_002", 3, async (done: Function) => {
       Logger.info(TAG, `${BUNDLE}HiDumperFunction_002 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
@@ -132,6 +132,76 @@ export default function abilityTest() {
       await driver.pressBack();
       await driver.delayMs(500);
       Logger.info(TAG, `${BUNDLE}HiDumperFunction_004 end`);
+      done();
+    })
+    /**
+     * 进入查看SmartPerfHostFrameTimeline优化前页面，查看页面是否在正常显示
+     */
+    it(BUNDLE + "SmartPerfHostFrameTimeline01", 555, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}SmartPerfHostFrameTimeline01 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let ifElseComponent: Component = await driver.findComponent(ON.text("SmartPerfHost"));
+      await driver.delayMs(500);
+      await ifElseComponent.click();
+      await driver.delayMs(1000);
+      let showChange: Component = await driver.findComponent(ON.text("FrameTimeline优化前代码"));
+      await driver.delayMs(500);
+      await showChange.click();
+      await driver.delayMs(10000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      Logger.info(TAG, `${BUNDLE}SmartPerfHostFrameTimeline01 end`);
+      done();
+    })
+    /**
+     * 进入查看SmartPerfHostFrameTimeline优化后页面，查看页面是否在正常显示
+     */
+    it(BUNDLE + "SmartPerfHostFrameTimeline02", 556, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}SmartPerfHostFrameTimeline00 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let showChange: Component = await driver.findComponent(ON.text("FrameTimeline优化后代码"));
+      await driver.delayMs(500);
+      await showChange.click();
+      await driver.delayMs(5000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      Logger.info(TAG, `${BUNDLE}SmartPerfHostFrameTimeline02 end`);
+      done();
+    })
+    /**
+     * 进入查看SmartPerfHostAPPStartup优化前页面，查看页面是否在正常显示
+     */
+    it(BUNDLE + "SmartPerfHostAPPStartup01", 557, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}SmartPerfHostAPPStartup01 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let showChange: Component = await driver.findComponent(ON.text("AppStartup优化前代码"));
+      await driver.delayMs(500);
+      await showChange.click();
+      await driver.delayMs(5000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      Logger.info(TAG, `${BUNDLE}SmartPerfHostAPPStartup01 end`);
+      done();
+    })
+    /**
+     * 进入查看SmartPerfHostAPPStartup优化后页面，查看页面是否在正常显示
+     */
+    it(BUNDLE + "SmartPerfHostAPPStartup02", 558, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}SmartPerfHostAPPStartup02 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let showChange: Component = await driver.findComponent(ON.text("AppStartup优化后代码"));
+      await driver.delayMs(500);
+      await showChange.click();
+      await driver.delayMs(5000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      Logger.info(TAG, `${BUNDLE}SmartPerfHostAPPStartup02 end`);
       done();
     })
 
