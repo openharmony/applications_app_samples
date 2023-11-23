@@ -31,7 +31,7 @@ export default function abilityTest() {
     it(BUNDLE + '_startAbility', 0, async (done: Function) => {
       Logger.info(TAG, BUNDLE + '_startAbility start')
       let want: Want = {
-        bundleName: 'com.example.performancelibrary',
+        bundleName: 'com.samples.performancelibrary',
         abilityName: 'EntryAbility'
       }
       delegator.startAbility(want, (err) => {
