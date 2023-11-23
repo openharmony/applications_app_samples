@@ -23,7 +23,9 @@ export default function abilityTest() {
 
   describe('ActsAbilityTest', () => {
     /**
-     * 打开应用
+     * @tc.number: StartAbility_001
+     * @tc.name: StartAbility_001
+     * @tc.desc: open the hap
      */
     it('StartAbility_001', 0, async (done: Function) => {
       console.info(TAG, 'StartAbility_001 begin');
@@ -45,7 +47,9 @@ export default function abilityTest() {
     })
 
     /**
-     * 点击按钮，改变窗口颜色
+     * @tc.number: NativeWindow_001
+     * @tc.name: NativeWindow_001
+     * @tc.desc: detect and click the button to change the window color
      */
     it('NativeWindow_001', 2, async () => {
       console.info(TAG, 'NativeWindow_001 begin');
