@@ -111,14 +111,18 @@ struct AudioRecording {
     try {
       testNapi.audioRendererStart();
       this.renderState = testNapi.getRendererState();
+      if (this.playSec === this.recordSec) {
+        this.playSec = 0;
+      }
       this.interval = setInterval(async () => {
-        this.playSec = Math.round(testNapi.getFramesWritten() * 4 / testNapi.getFileSize() * this.recordSec);
+        let playNumber = Math.round(testNapi.getFramesWritten() * 4 / testNapi.getFileSize() * this.recordSec);
+        this.playSec = (playNumber < 0 || this.playSec === this.recordSec) ? this.recordSec : playNumber;
         if (testNapi.getFileState()) {
-          this.renderState = testNapi.getRendererState();
           clearInterval(this.interval);
+          this.renderState = testNapi.getRendererState();
           return;
         }
-      }, 10);
+      }, 50);
     } catch (err) {
       let error = err as BusinessError;
       console.error(`write err:${JSON.stringify(error)}`);
