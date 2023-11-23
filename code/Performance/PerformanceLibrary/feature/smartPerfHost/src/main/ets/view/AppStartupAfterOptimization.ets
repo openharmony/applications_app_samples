@@ -12,6 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+const COUNT_NUMBER: number = 10000000;
+
 @Component
 export struct AppStartupAfterOptimization {
   @State private text: string = "hello world";
@@ -34,7 +37,7 @@ export struct AppStartupAfterOptimization {
 
   computeTask() {
     this.count = 0;
-    while (this.count < 10000000) {
+    while (this.count < COUNT_NUMBER) {
       this.count++;
     }
   }

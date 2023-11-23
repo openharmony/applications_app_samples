@@ -141,10 +141,6 @@ export default function abilityTest() {
       Logger.info(TAG, `${BUNDLE}SmartPerfHostFrameTimeline01 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
-      await driver.pressBack()
-      await driver.delayMs(500);
-      await driver.pressBack()
-      await driver.delayMs(500);
       let ifElseComponent: Component = await driver.findComponent(ON.text("SmartPerfHost"));
       await driver.delayMs(500);
       await ifElseComponent.click();
@@ -201,6 +197,8 @@ export default function abilityTest() {
       await driver.delayMs(500);
       await showChange.click();
       await driver.delayMs(5000);
+      await driver.pressBack();
+      await driver.delayMs(500);
       await driver.pressBack();
       await driver.delayMs(500);
       Logger.info(TAG, `${BUNDLE}SmartPerfHostAPPStartup02 end`);

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-class MyDataSource implements IDataSource {
+class ChildDataSource implements IDataSource {
   private list: string[] = [];
 
   constructor(list: string[]) {
@@ -38,7 +38,7 @@ class MyDataSource implements IDataSource {
 @Component
 export struct FrameTimelineAfterOptimization {
   @State children: string[] = Array.from<undefined, string>(Array(2000).fill(undefined), (_v: undefined, k) => k.toString());
-  @State data: MyDataSource = new MyDataSource(this.children)
+  @State data: ChildDataSource = new ChildDataSource(this.children)
   build() {
     Scroll() {
       Grid() {
