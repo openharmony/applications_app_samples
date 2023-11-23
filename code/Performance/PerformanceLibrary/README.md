@@ -10,8 +10,13 @@
 | ![](screenshots/device/PerformanceHomePage.jpeg) | ![](screenshots/device/RenderGroupHomePage.jpeg) | ![](screenshots/device/ProfitScenePage.jpeg) | ![](screenshots/device/NonProfitScenePage.jpeg) |
 
 HiDumper使用说明：  
+1.点击性能示例主页的**HiDumper**按钮，进入**HiDumper查看组件信息**场景页。
 
+1.点击HiDumper查看组件信息场景页的**查看应用组件树**进入场景页。
 
+2.点击HiDumper查看组件信息场景页的**查看if/else组件**按钮，在场景中点击**显隐切换**按钮，查看图片显示隐藏。
+
+3.点击HiDumper查看组件信息场景页的**查看visibility属性**按钮，在场景中依次点击**Visible**、**Hidden**、**Visible**、**None**，查看图片显示和隐藏。
 
 ### 工程目录
 
@@ -42,18 +47,20 @@ products/phone/entry/src/main/ets
 
 ### 具体实现
 
-* HiDumper正例场景与反例场景两个模块:  
-  
-  * 正例场景  
-    
-    * 在ProfitScene的IconItem上添加动画，在IconView上使用到renderGroup接口(renderGroup(value: boolean): T)得到收益。  
-    * 源码链接：[ProfitScene.ets](feature/renderGroup/src/main/ets/pages/ProfitScene.ets)，[IconView.ts](renderGroup/src/main/ets/view/IconView.ets)
-  
-  * 反例场景  
-    
-    * 在IconView的Image上添加动画，在NonIconView上使用到renderGroup接口(renderGroup(value: boolean): T)得到负收益。  
-    * 源码链接：[NonProfitScene.ets](renderGroup/src/main/ets/pages/NonProfitScene.ets)，[NonIconView.ts](renderGroup/src/main/ets/view/NonIconView.ets)  
+* HiDumper场景模块
 
+  * 查看组件树
+    * 在页面上添加Grid，每个GridItem嵌套多个Stack，然后通过HiDumper抓取组件树信息。
+    * 源码链接：[GridView.ets](feature/hiDumper/src/main/ets/view/GridView.ets)
+    
+  * 查看if/else组件
+    * 在页面上添加**显隐切换**按钮，添加一张图片，点击按钮后通过HiDumper抓取组件树信息。
+    * 源码链接：[ConditionView.ets](feature/hiDumper/src/main/ets/view/ConditionView.ets)
+    
+  * 查看visibility属性
+    * 在页面上添加**Visible**、**Hidden**、**None**按钮，添加一张图片，点击按钮后通过HiDumper抓取组件树信息。
+    * 源码链接：[VisibilityView.ets](feature/hiDumper/src/main/ets/view/VisibilityView.ets)
+    
 ### 相关权限
 
 不涉及。  
@@ -73,5 +80,11 @@ products/phone/entry/src/main/ets
 如需单独下载本工程，执行如下命令：  
 
 ```
+
+ git init
+ git config core.sparsecheckout true
+ echo code/Performance/PerformanceLibrary/ > .git/info/sparse-checkout
+ git remote add origin https://gitee.com/openharmony/applications_app_samples.git
+ git pull origin master
 
 ```
