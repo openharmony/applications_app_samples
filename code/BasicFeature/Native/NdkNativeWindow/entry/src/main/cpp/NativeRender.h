@@ -27,6 +27,7 @@ public:
     static NativeRender* GetInstance();
     static napi_value GetNativeRender(napi_env env, napi_callback_info info);
     static napi_value NapiOnDraw(napi_env env, napi_callback_info info);
+    static void Release();
     bool Export(napi_env env, napi_value exports);
     void DrawBaseColor();
     void SetNativeWindow(OHNativeWindow* nativeWindow, uint64_t width,  uint64_t height);

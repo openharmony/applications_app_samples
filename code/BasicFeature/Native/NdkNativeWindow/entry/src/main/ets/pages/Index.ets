@@ -47,11 +47,9 @@ struct Index {
             .onLoad((nativeWindowContext) => {
               this.nativeWindowContext = nativeWindowContext as NativeWindowContext;
             })
-            .onDestroy(() => {
-            })
         }
       }
-      .width('65%')
+      .width('512px')
       .height('50%')
       Button(`produce buffer count=${this.frameFlushedCount}`)
         .fontSize('14fp')

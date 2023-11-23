@@ -38,14 +38,23 @@ void OnSurfaceChangedCB(OH_NativeXComponent* component, void* window)
 
 void OnSurfaceDestroyedCB(OH_NativeXComponent* component, void* window)
 {
-    (void)component;
-    (void)window;
+    if ((component == nullptr) || (window == nullptr)) {
+        LOGE("OnSurfaceDestroyedCB: component or window is null");
+        return;
+    }
+    NativeRender::Release();
 }
 
 NativeRender* NativeRender::GetInstance()
 {
     static NativeRender nativeRender;
     return &nativeRender;
+}
+
+void NativeRender::Release()
+{
+    NativeRender *render = NativeRender::GetInstance();
+    OH_NativeWindow_DestroyNativeWindow(render->nativeWindow_);
 }
 
 napi_value NativeRender::GetNativeRender(napi_env env, napi_callback_info info)
