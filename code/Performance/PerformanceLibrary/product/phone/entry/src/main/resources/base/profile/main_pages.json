@@ -10,7 +10,6 @@
     "pages/dynamicImport/DynamicHome",
     "pages/staticImport/StaticEntryView",
     "pages/staticImport/StaticHome",
-    "pages/hiDumper/VisibilityPage",
     "pages/ifOrVisibility/IfOrVisibilityPage",
     "pages/ifOrVisibility/AnimateBetterUseVisibility",
     "pages/ifOrVisibility/AnimateWorseUseIf",
