@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "layout_100_percent",
+      "value": "100%"
+    },
+    {
+      "name": "layout_17_percent",
+      "value": "17%"
+    },
+    {
+      "name": "RenderGroup_button_on",
+      "value": "renderGroup已开启"
+    },
+    {
+      "name": "RenderGroup_button_off",
+      "value": "renderGroup已关闭"
+    },
+    {
+      "name": "RenderGroup_profit_scene_title",
+      "value": "正例场景示例"
+    },
+    {
+      "name": "RenderGroup_nonProfit_scene_title",
+      "value": "反例场景示例"
+    }
+  ]
+}

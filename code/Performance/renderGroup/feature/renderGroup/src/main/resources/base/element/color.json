@@ -1,0 +1,16 @@
+{
+  "color": [
+    {
+      "name": "RenderGroup_item_text_fontColor",
+      "value": "#182431"
+    },
+    {
+      "name": "RenderGroup_item_backgroundColor",
+      "value": "#e3e3e3"
+    },
+    {
+      "name": "RenderGroup_scene_button_backgroundColor",
+      "value": "#317aff"
+    }
+  ]
+}

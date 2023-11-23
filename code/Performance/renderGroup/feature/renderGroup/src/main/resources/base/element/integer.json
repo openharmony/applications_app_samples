@@ -1,0 +1,88 @@
+{
+  "integer": [
+    {
+      "name": "RenderGroup_item_image_height",
+      "value": 20
+    },
+    {
+    "name": "RenderGroup_item_image_width",
+    "value": 20
+    },
+    {
+    "name": "RenderGroup_item_image_margin",
+    "value": 15
+    },
+    {
+      "name": "RenderGroup_item_text_font",
+      "value": 10
+    },
+    {
+      "name": "RenderGroup_item_text_margin_top",
+      "value": 5
+    },
+    {
+      "name": "RenderGroup_item_text_width",
+      "value": 50
+    },
+    {
+      "name": "RenderGroup_item_width",
+      "value": 50
+    },
+    {
+      "name": "RenderGroup_item_height",
+      "value": 50
+    },
+    {
+      "name": "RenderGroup_item_borderRadius",
+      "value": 25
+    },
+    {
+      "name": "RenderGroup_scene_back_image_size",
+      "value": 24
+    },
+    {
+      "name": "RenderGroup_scene_title_font",
+      "value": 24
+    },
+    {
+      "name": "RenderGroup_scene_title_lineHeight",
+      "value": 30
+    },
+    {
+      "name": "RenderGroup_scene_title_margin_left",
+      "value": 16
+    },
+    {
+      "name": "RenderGroup_scene_row_margin_left",
+      "value": 24
+    },
+    {
+      "name": "RenderGroup_scene_button_fontSize",
+      "value": 13
+    },
+    {
+      "name": "RenderGroup_scene_button_borderRadius",
+      "value": 8
+    },
+    {
+      "name": "RenderGroup_scene_title_button_width",
+      "value": 160
+    },
+    {
+      "name": "RenderGroup_scene_title_button_height",
+      "value": 30
+    },
+    {
+      "name": "RenderGroup_scene_button_margin_right",
+      "value": 24
+    },
+    {
+      "name": "RenderGroup_scene_title_row_height",
+      "value": 56
+    },
+    {
+      "name": "RenderGroup_scene_GridCol_height",
+      "value": 70
+    }
+  ]
+}
