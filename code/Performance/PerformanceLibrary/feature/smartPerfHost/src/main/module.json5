@@ -1,0 +1,10 @@
+{
+  "module": {
+    "name": "smartPerfHost",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ]
+  }
+}

@@ -1,0 +1,5 @@
+export { AppStartupAfterOptimization } from './src/main/ets/view/AppStartupAfterOptimization'
+export { AppStartupBeforeOptimization } from './src/main/ets/view/AppStartupBeforeOptimization'
+export { FrameTimelineAfterOptimization } from './src/main/ets/view/FrameTimelineAfterOptimization'
+export { FrameTimelineBeforeOptimization } from './src/main/ets/view/FrameTimelineBeforeOptimization'
+export { SmartPerfHostHomeView } from './src/main/ets/view/SmartPerfHostHomeView'

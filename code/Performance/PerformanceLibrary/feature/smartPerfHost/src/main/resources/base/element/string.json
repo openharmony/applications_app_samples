@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "smart_perf_host",
+      "value": "SmartPerfHost"
+    },
+    {
+      "name": "app_startup_before_optimization",
+      "value": "AppStartup优化前代码"
+    },
+    {
+      "name": "app_startup_after_optimization",
+      "value": "AppStartup优化后代码"
+    },
+    {
+      "name": "frame_timeline_before_optimization",
+      "value": "FrameTimeline优化前代码"
+    },
+    {
+      "name": "frame_timeline_after_optimization",
+      "value": "FrameTimeline优化后代码"
+    }
+  ]
+}
