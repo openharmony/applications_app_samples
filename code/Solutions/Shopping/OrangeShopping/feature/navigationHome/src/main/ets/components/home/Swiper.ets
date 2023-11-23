@@ -22,6 +22,7 @@ const isNewSlide: boolean = true;
 export struct SwiperComponent {
   @StorageProp('curBp') curBp: string = 'md';
   @State currentIndex: number = 2;
+  @State breakPoints: string | undefined = AppStorage.get('breakPoint');
 
   /**
    * Get the image offset coefficients.
@@ -105,7 +106,9 @@ export struct SwiperComponent {
               Image(item.img)
                 .objectFit(ImageFit.Fill)
                 .borderRadius(8)
-                .aspectRatio(48 / 25)
+                .width(this.breakPoints === 'sm' ? 340 : 260)
+                .height(index !== this.currentIndex ?
+                  "65%" : `${95 - 13 * Math.abs(this.getImgCoefficients(index))}%`)
                 .opacity(1 - 0.2 * Math.min(2, Math.abs(this.getImgCoefficients(index))))
             }
             .borderRadius(8)
@@ -116,11 +119,8 @@ export struct SwiperComponent {
             .blur(10 * Math.abs(this.getImgCoefficients(index)))
             .zIndex(index !== this.currentIndex && this.getImgCoefficients(index) === 0 ?
               0 : 2 - Math.abs(this.getImgCoefficients(index)))
-            .height(index !== this.currentIndex && this.getImgCoefficients(index) === 0 ?
-              "78%" : `${100 - 14 * Math.abs(this.getImgCoefficients(index))}%`)
           }, (item: SwiperModel) => JSON.stringify(item))
         }
-        .height(157)
         .alignContent(Alignment.Center)
         .gesture(
           PanGesture({ direction: PanDirection.Horizontal })
