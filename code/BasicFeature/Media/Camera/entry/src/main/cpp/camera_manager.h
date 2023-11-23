@@ -44,7 +44,8 @@ public:
     ~NDKCamera();
     NDKCamera(char *str, uint32_t focusMode, uint32_t cameraDeviceIndex);
 
-    static void Destroy() {
+    static void Destroy()
+    {
         if (ndkCamera_ != nullptr) {
             delete ndkCamera_;
             ndkCamera_ = nullptr;
