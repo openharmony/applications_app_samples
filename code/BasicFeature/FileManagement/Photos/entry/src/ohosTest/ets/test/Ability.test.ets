@@ -38,6 +38,30 @@ export default function abilityTest() {
     afterAll(async () => {
     })
     /**
+     * 拉起相机拍照
+     */
+    it(BUNDLE + 'TakePhoto_001', 0, async (done: Function) => {
+      HiLog.info(DOMAIN, TAG, BUNDLE + 'TakePhoto_001 begin');
+      let driver = Driver.create();
+      let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
+      try {
+        await abilityDelegatorRegistry.startAbility({
+          bundleName: 'com.ohos.camera',
+          abilityName: 'com.ohos.camera.MainAbility'
+        });
+        await driver.delayMs(4000);
+        // 坐标基于rk3568
+        await driver.click(360, 1090);
+        await driver.delayMs(1000);
+        done();
+      } catch (err) {
+        expect(0).assertEqual(err.code);
+        done();
+      }
+      HiLog.info(DOMAIN, TAG, BUNDLE + 'TakePhoto_001 end');
+    })
+
+    /**
      * 打开应用
      */
     it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
@@ -117,21 +141,15 @@ export default function abilityTest() {
       let btnAlbum = await driver.findComponent(ON.text(await getResourceString($r('app.string.album_camera'))));
       await btnAlbum.click();
       await driver.delayMs(3000);
-      let btnItem = await driver.findComponents(ON.type('GridItem'));
-      if (btnItem == null || btnItem.length == 0 || btnItem == undefined) {
-        await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.no_photo'))));
-      } else {
-        await driver.assertComponentExist(ON.type('GridItem'));
-        // 点击图片
-        await driver.click(100, 200);
-        await driver.delayMs(1000);
-        HiLog.info(DOMAIN, TAG, BUNDLE + 'check text' + await getResourceString($r('app.string.btn_favor')));
-        await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.btn_favor'))));
-        HiLog.info(DOMAIN, TAG, BUNDLE + 'check text' + await getResourceString($r('app.string.btn_rename')));
-        await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.btn_rename'))));
-        HiLog.info(DOMAIN, TAG, BUNDLE + 'check text' + await getResourceString($r('app.string.btn_delete')));
-        await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.btn_delete'))));
-      }
+      // 点击图片
+      await driver.click(100, 200);
+      await driver.delayMs(1000);
+      HiLog.info(DOMAIN, TAG, BUNDLE + 'check text' + await getResourceString($r('app.string.btn_favor')));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.btn_favor'))));
+      HiLog.info(DOMAIN, TAG, BUNDLE + 'check text' + await getResourceString($r('app.string.btn_rename')));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.btn_rename'))));
+      HiLog.info(DOMAIN, TAG, BUNDLE + 'check text' + await getResourceString($r('app.string.btn_delete')));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.btn_delete'))));
     })
     /**
      * 重命名文件

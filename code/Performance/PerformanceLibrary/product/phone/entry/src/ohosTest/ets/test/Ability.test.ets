@@ -31,7 +31,7 @@ export default function abilityTest() {
     it(BUNDLE + '_startAbility', 0, async (done: Function) => {
       Logger.info(TAG, BUNDLE + '_startAbility start')
       let want: Want = {
-        bundleName: 'com.example.performancelibrary',
+        bundleName: 'com.samples.performancelibrary',
         abilityName: 'EntryAbility'
       }
       delegator.startAbility(want, (err) => {
@@ -297,6 +297,8 @@ export default function abilityTest() {
       await showChange.click();
       await driver.delayMs(1000);
       await showChange.click();
+      await driver.delayMs(500);
+      await driver.pressBack();
       await driver.delayMs(500);
       await driver.pressBack();
       await driver.delayMs(500);
