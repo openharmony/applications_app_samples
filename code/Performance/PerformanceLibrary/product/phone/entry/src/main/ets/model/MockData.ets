@@ -19,5 +19,13 @@ export let performanceTypeArray: Array<PerformanceMsg> = [
   {
     name: 'HiDumper',
     uri: 'pages/hiDumper/HiDumperPage'
+  },
+  {
+    name: 'StaticImport',
+    uri: 'pages/staticImport/StaticEntryView'
+  },
+  {
+    name: 'DynamicImport',
+    uri: 'pages/dynamicImport/DynamicEntryView'
   }
 ]

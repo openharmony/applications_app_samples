@@ -12,11 +12,25 @@
 HiDumper使用说明：  
 1.点击性能示例主页的**HiDumper**按钮，进入**HiDumper查看组件信息**场景页。
 
-1.点击HiDumper查看组件信息场景页的**查看应用组件树**进入场景页。
+2.点击HiDumper查看组件信息场景页的**查看应用组件树**进入场景页。
 
-2.点击HiDumper查看组件信息场景页的**查看if/else组件**按钮，在场景中点击**显隐切换**按钮，查看图片显示隐藏。
+3.点击HiDumper查看组件信息场景页的**查看if/else组件**按钮，在场景中点击**显隐切换**按钮，查看图片显示隐藏。
 
-3.点击HiDumper查看组件信息场景页的**查看visibility属性**按钮，在场景中依次点击**Visible**、**Hidden**、**Visible**、**None**，查看图片显示和隐藏。
+4.点击HiDumper查看组件信息场景页的**查看visibility属性**按钮，在场景中依次点击**Visible**、**Hidden**、**Visible**、**None**，查看图片显示和隐藏。
+
+常规加载页面使用说明：
+1.点击性能示例主页的**StaticImport**按钮，进入**常规加载入口**场景页。
+
+2.点击常规加载入口的**点击跳转常规加载案例**按钮，进入**常规加载主页**。
+
+3.点击常规加载主页的**pageOne**按钮，进入**常规加载子页面**。
+
+动态加载页面使用说明：
+1.点击性能示例主页的**DynamicImport**按钮，进入**动态加载入口**场景页。
+
+2.点击动态加载入口页的**点击跳转动态加载案例**按钮，进入**动态加载主页**。
+
+3.点击动态加载主页的**pageOne**按钮，进入**动态加载子页面**。
 
 ### 工程目录
 
@@ -27,6 +41,17 @@ features/hiDumper/src/main/ets          // 列表类功能HAR共享包
 |   |---GridView.ets                       // 查看组件树模块
 |   |---HidumperHomeView.ets               // 场景主页面模块           
 |   |---VisibilityView.ets                 // 查看Visibility属性模块
+features/staticImport/src/main/ets      // 常规加载HAR共享包
+|---/pages    
+|   |---StaticContentPageOne.ets           // 常规加载子页面     
+|   |---StaticContentPageTwo.ets           // 常规加载子页面
+|   |---StaticEntryView.ets                // 常规加载入口页面           
+|   |---StaticHome.ets                     // 常规加载主页
+features/dynamicImport/src/main/ets     // 动态加载HAR共享包
+|---/pages    
+|   |---DynamicContentPageOne.ets          // 动态加载子页面     
+|   |---DynamicEntryView.ets               // 动态加载入口页面           
+|   |---DynaHome.ets                       // 动态加载主页
 products/phone/entry/src/main/ets
 |---/entryability
 |   |---EntryAbility.ts                    // 封装整个模块启用，监听Ability对应的窗口等逻辑
@@ -39,6 +64,9 @@ products/phone/entry/src/main/ets
 |   |   |---GridPage.ets                   // 查看组件树页面
 |   |   |---HidumperHomePage.ets           // 场景主页面                   
 |   |   |---VisibilityPage.ets             // 查看Visibility属性页面
+|   |---/staticImport
+|   |   |---StaticEntryView.ets            // 常规加载入口页面              
+|   |   |---StaticHome.ets                 // 常规加载主页
 |   |---/Index                             // 性能示例首页                              
 |---/utils
 |   |---Logger.ets                         // 封装整个日志
@@ -60,7 +88,18 @@ products/phone/entry/src/main/ets
   * 查看visibility属性
     * 在页面上添加**Visible**、**Hidden**、**None**按钮，添加一张图片，点击按钮后通过HiDumper抓取组件树信息。
     * 源码链接：[VisibilityView.ets](feature/hiDumper/src/main/ets/view/VisibilityView.ets)
-    
+
+* Navigation常规加载页面模块
+
+  * 在Navigation组件加载内容页时，使用`import`常规加载子页面。
+  * 源码链接：[StaticHome.ets](feature/staticImport/src/main/ets/pages/StaticHome.ets)
+
+* Navigation动态加载页面模块
+
+  * 在Navigation组件加载内容页时，使用`await import`实现动态按需加载。
+  * 源码链接：[DynamicHome.ets](feature/dynamicImport/src/main/ets/pages/DynamicHome.ets)
+
+
 ### 相关权限
 
 不涉及。  

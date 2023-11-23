@@ -49,6 +49,14 @@
     {
       "name": "HiDumper",
       "srcPath": "./feature/hiDumper"
+    },
+    {
+      "name": "staticImport",
+      "srcPath": "./feature/staticImport"
+    },
+    {
+      "name": "dynamicImport",
+      "srcPath": "./feature/dynamicImport"
     }
   ]
 }

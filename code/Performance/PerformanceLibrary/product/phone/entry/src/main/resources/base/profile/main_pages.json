@@ -4,6 +4,11 @@
     "pages/hiDumper/ConditionPage",
     "pages/hiDumper/GridPage",
     "pages/hiDumper/HiDumperPage",
-    "pages/hiDumper/VisibilityPage"
+    "pages/hiDumper/VisibilityPage",
+    "pages/dynamicImport/DynamicContentPageOne",
+    "pages/dynamicImport/DynamicEntryView",
+    "pages/dynamicImport/DynamicHome",
+    "pages/staticImport/StaticEntryView",
+    "pages/staticImport/StaticHome"
   ]
 }
