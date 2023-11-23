@@ -41,7 +41,7 @@ public:
     void ProduceBuffer(uint32_t value);
     void InitEGLEnv();
     EGLDisplay GetPlatformEglDisplay(EGLenum platform, void *native_display, const EGLint *attrib_list);
-    bool CheckEglExtension(const char *extensions, const char *extension);
+    bool CheckEglExtension(const char *eglExtensions, const char *eglExtension);
     int32_t GetCount();
 private:
     OHNativeWindow *nativeWindow_;

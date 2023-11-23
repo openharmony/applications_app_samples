@@ -30,23 +30,23 @@ NativeImageAdaptor *NativeImageAdaptor::GetInstance()
     return &imageAdaptor;
 };
 
-bool NativeImageAdaptor::CheckEglExtension(const char *extensions, const char *extension)
+bool NativeImageAdaptor::CheckEglExtension(const char *eglExtensions, const char *eglExtension)
 {
     // Check egl extension
-    size_t extlen = strlen(extension);
-    const char *end = extensions + strlen(extensions);
+    size_t extLenth = strlen(eglExtension);
+    const char *endPos = eglExtensions + strlen(eglExtensions);
 
-    while (extensions < end) {
-        size_t n = 0;
-        if (*extensions == CHARACTER_WHITESPACE) {
-            extensions++;
+    while (eglExtensions < endPos) {
+        size_t len = 0;
+        if (*eglExtensions == CHARACTER_WHITESPACE) {
+            eglExtensions++;
             continue;
         }
-        n = strcspn(extensions, CHARACTER_STRING_WHITESPACE);
-        if (n == extlen && strncmp(extension, extensions, n) == 0) {
+        len = strcspn(eglExtensions, CHARACTER_STRING_WHITESPACE);
+        if (len == extLenth && strncmp(eglExtension, eglExtensions, len) == 0) {
             return true;
         }
-        extensions += n;
+        eglExtensions += len;
     }
     return false;
 }
