@@ -1,0 +1,56 @@
+{
+  "integer": [
+    {
+      "name": "performance_message_font",
+      "value": 20
+    },
+    {
+      "name": "performance_message_margin",
+      "value": 20
+    },
+    {
+      "name": "performance_message_padding",
+      "value": 16
+    },
+    {
+      "name": "RenderGroupHomePage_title_font",
+      "value": 24
+    },
+    {
+      "name": "RenderGroupHomePage_title_lineHeight",
+      "value": 30
+    },
+    {
+      "name": "RenderGroupHomePage_title_height",
+      "value": 30
+    },
+    {
+      "name": "RenderGroupHomePage_row_height",
+      "value": 56
+    },
+    {
+      "name": "RenderGroup_scene_button_font",
+      "value": 18
+    },
+    {
+      "name": "RenderGroup_scene_button_borderRadius",
+      "value": 8
+    },
+    {
+      "name": "RenderGroup_scene_button_width",
+      "value": 250
+    },
+    {
+      "name": "RenderGroup_scene_button_height",
+      "value": 60
+    },
+    {
+      "name": "RenderGroup_scene_button_margin_top",
+      "value": 30
+    },
+    {
+      "name": "RenderGroup_scene_row_height",
+      "value": 200
+    }
+  ]
+}

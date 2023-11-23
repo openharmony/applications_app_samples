@@ -1,0 +1,9 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/hiDumper/ConditionPage",
+    "pages/hiDumper/GridPage",
+    "pages/hiDumper/HiDumperPage",
+    "pages/hiDumper/VisibilityPage"
+  ]
+}
