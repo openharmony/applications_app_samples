@@ -33,6 +33,14 @@ export let performanceTypeArray: Array<PerformanceMsg> = [
     uri: 'pages/ifOrVisibility/IfOrVisibilityPage'
   },
   {
+    name: 'Grid',
+    uri: 'pages/grid/GridPage'
+  },
+  {
+    name: 'SmartPerf Editor',
+    uri: 'pages/smartPerfEditor/SmartPerfEditorPage'
+  },
+  {
     name: 'SmartPerfHost',
     uri: 'pages/smartPerfHost/SmartPerfHostPage'
   }
