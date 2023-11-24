@@ -114,7 +114,7 @@ class RemoteDeviceModel {
   }
 
   static getInstance(): RemoteDeviceModel {
-    if (RemoteDeviceModel.getInstance == undefined) {
+    if (RemoteDeviceModel.dmInstance === undefined) {
       RemoteDeviceModel.dmInstance = new RemoteDeviceModel();
     }
     return RemoteDeviceModel.dmInstance!;
