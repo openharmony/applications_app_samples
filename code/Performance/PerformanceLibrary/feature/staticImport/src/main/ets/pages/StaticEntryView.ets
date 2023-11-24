@@ -22,6 +22,7 @@ export struct StaticEntryView {
       Column() {
         Button($r('app.string.static_entry_button'))
           .fontSize(30)
+          .id('conventionExample')
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
             router.pushUrl({
