@@ -4,7 +4,11 @@
 
 本示例中主要介绍开发者在利用Native XComponent来获取NativeWindow实例，通过数据填充改变矩形框颜色。并提供从NativeImage中获取NativeWindow进行buffer轮转的案例，通过NativeWindow生产buffer来触发NativeImage的可用帧回调。
 
+### 效果预览
 
+| 主页                                 | 改变矩形框颜色                               | 生产buffer | 获取可用帧回调次数                                         |
+| ------------------------------------ | ------------------------------------------------ | --------------------------------------------------------- | --------------------------------------------------------- |
+| ![main](screenshots/device/Main.jpg) | ![Draw Path](screenshots/device/ChangeColor.jpg) | ![change color](screenshots/device/ProduceBuffer.jpg) |![change color](screenshots/device/GetAvailableCount.jpg)|
 
 使用说明
 
@@ -12,12 +16,6 @@
 2. 点击页面底部“Chaneg Color”按钮，矩形框填充区域将改变颜色，黄蓝切换；
 3. 点击页面底部“produce buffer”按钮，NativeWindow将生产数据并发送给NativeImage，页面展示了生产buffer的次数。
 4. 点击页面底部“update available buffer count”按钮，将展示NativeImage收到的可用帧回调次数。
-
-### 效果预览
-
-| 主页                                 | 改变矩形框颜色                               | 生产buffer | 获取可用帧回调次数                                         |
-| ------------------------------------ | ------------------------------------------------ | --------------------------------------------------------- | --------------------------------------------------------- |
-| ![main](screenshots/device/Main.jpg) | ![Draw Path](screenshots/device/ChangeColor.jpg) | ![change color](screenshots/device/ProduceBuffer.jpg) |![change color](screenshots/device/GetAvailableCount.jpg)|
 
 ### 工程目录
 
