@@ -21,16 +21,23 @@ import OpenHarmonyTestRunner from '../../../ohosTest/ets/TestRunner/OpenHarmonyT
 import { Logger, sleep } from '../common/Common';
 import prompt from '@ohos.prompt'
 
-let params = router.getParams() as Record<string , string | number>;
+interface paramsTape {
+  fileSize: number,
+  fileName: string,
+  fileContent: string ,
+  text: string,
+  data: object
+}
+
 @Entry
 @Component
 struct EditFile {
   @State myContext: Context = getContext(this) as common.UIAbilityContext;
-  @State myFileSize: number = params.fileSize as number;
-  @State myFileName: string = params.fileName as string;
-  @State myFileContent: string = params.fileContent as string;
-  @State text: string = params.text as string;
-  @State data: Object = params ['data'];
+  @State myFileSize: number = (router.getParams() as paramsTape).fileSize;
+  @State myFileName: string = (router.getParams() as paramsTape).fileName;
+  @State myFileContent: string = (router.getParams() as paramsTape).fileContent;
+  @State text: string = (router.getParams() as paramsTape).text;
+  @State data: object = (router.getParams() as paramsTape).data;
   @State newFileSize: number = 0;
   @State newFileName: string = '';
   @State newFileContent: string = '';
