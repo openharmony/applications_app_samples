@@ -48,7 +48,6 @@ async function fileAssertEqual(firstFile: mediaLibrary.FileAsset, secondFile: me
 // 检查页面是否正常显示
 async function checkPage(library: mediaLibrary.MediaLibrary, driver: Driver, type: mediaLibrary.MediaType) {
   Logger.info(TAG, 'checkPage begin ')
-  //let fileKeyObj = await new mediaLibrary.FileKey()
   let fileFetchOption: mediaLibrary.MediaFetchOptions = {
     selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
     selectionArgs: [type.toString()],
@@ -817,7 +816,6 @@ export default function abilityTest() {
       await driver.delayMs(1000)
       // 跳转图片
       let library = await mediaLibrary.getMediaLibrary(getContext())
-      //let fileKeyObj = await mediaLibrary.FileKey
       let imagesFetchOption: mediaLibrary.MediaFetchOptions = {
         selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
         selectionArgs: [mediaLibrary.MediaType.IMAGE.toString()],
@@ -882,7 +880,6 @@ export default function abilityTest() {
       await driver.delayMs(1000)
       // 跳转视频文件管理页
       let library = await mediaLibrary.getMediaLibrary(getContext())
-      //let fileKeyObj = await mediaLibrary.FileKey
       let videoFetchOption: mediaLibrary.MediaFetchOptions = {
         selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
         selectionArgs: [mediaLibrary.MediaType.VIDEO.toString()],
@@ -943,7 +940,6 @@ export default function abilityTest() {
       await driver.delayMs(1000)
       // 跳转文档文件管理页
       let library = await mediaLibrary.getMediaLibrary(getContext())
-      //let fileKeyObj = await mediaLibrary.FileKey
       let fileFetchOption: mediaLibrary.MediaFetchOptions = {
         selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
         selectionArgs: [mediaLibrary.MediaType.FILE.toString()],
@@ -1011,7 +1007,6 @@ export default function abilityTest() {
       await driver.delayMs(1000)
       // 跳转音频文件管理页
       let library = await mediaLibrary.getMediaLibrary(getContext())
-    //  let fileKeyObj = await mediaLibrary.FileKey
       let audioFetchOption: mediaLibrary.MediaFetchOptions = {
         selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
         selectionArgs: [mediaLibrary.MediaType.AUDIO.toString()],
