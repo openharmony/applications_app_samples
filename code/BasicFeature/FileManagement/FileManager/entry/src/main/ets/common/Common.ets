@@ -15,7 +15,7 @@
 import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
 import { describe, it, expect } from '@ohos/hypium';
 import util from '@ohos.util';
-import Logger, { a } from '../common/Logger';
+import Logger, { myparseInt } from '../common/Logger';
 
 const INDEX: number = 2;
 const SLEEP_TIME: number = 10;
@@ -28,7 +28,7 @@ export function strToUtf8Bytes(content: string): Array<number> {
     const char = code.charAt(i);
     if (char === '%') {
       const hex = code.charAt(i + 1) + code.charAt(i + INDEX);
-      const hexValue: number = a(hex, RADIX);
+      const hexValue: number = myparseInt(hex, RADIX);
       bytes.push(hexValue);
       i += INDEX;
     } else {
@@ -44,7 +44,7 @@ export function strToArrayBuffer(text: string): ArrayBuffer {
   const bufView = new DataView(buffer);
   for (let i = 0; i < bytes.length; i++) {
     bufView.setUint8(i, bytes[i]);
-  }
+  } 
   return buffer;
 }
 
