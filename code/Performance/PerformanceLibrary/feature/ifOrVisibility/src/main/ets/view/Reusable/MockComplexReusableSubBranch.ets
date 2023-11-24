@@ -21,7 +21,7 @@ import { AlignContentFlex } from './AlignContentFlex';
 export struct MockComplexReusableSubBranch {
   @State alignStyle: FlexAlign = FlexAlign.Center;
 
-  aboutToReuse(params): void { // 从缓存复用组件前，更新组件的状态变量
+  aboutToReuse(params: ESObject): void { // 从缓存复用组件前，更新组件的状态变量
     this.alignStyle = params.alignStyle;
   }
 

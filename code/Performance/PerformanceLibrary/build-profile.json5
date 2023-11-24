@@ -65,6 +65,14 @@
     {
       "name": "smartPerfHost",
       "srcPath": "./feature/smartPerfHost"
+    },
+    {
+      "name": "grid",
+      "srcPath": "./feature/grid"
+    },
+    {
+      "name": "smartPerfEditor",
+      "srcPath": "./feature/smartPerfEditor"
     }
   ]
 }
