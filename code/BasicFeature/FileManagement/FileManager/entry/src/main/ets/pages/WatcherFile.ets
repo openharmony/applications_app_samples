@@ -179,7 +179,7 @@ struct Watcher {
     builder: DeleteDialog({
       hitText: $currentDelFileName,
       cancel: this.onCancel,
-      confirm: this.onDelete,
+      confirm: (index: number): void => this.onDelete(index),
       currentIndex: $currentIndex,
     }),
     cancel: () => {},
