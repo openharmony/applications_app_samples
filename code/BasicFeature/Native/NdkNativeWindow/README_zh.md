@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例中主要介绍开发者在利用Native XComponent来获取NativeWindow实例，通过数据填充改变矩形框颜色。并提供从NativeImage中获取NativeWindow进行buffer轮转的案例，通过NativeWindow生产buffer来触发NativeImage的可用帧回调。
+本示例中主要介绍开发者在利用[Native XComponent](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/native-apis/native__interface__xcomponent_8h.md)来获取[NativeWindow](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/native-apis/_native_window.md)实例，通过数据填充改变矩形框颜色。并提供从[NativeImage](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/native-apis/_o_h___native_image.md)中获取NativeWindow进行buffer轮转的案例，通过NativeWindow生产buffer来触发NativeImage的可用帧回调。
 
 ### 效果预览
 
@@ -12,9 +12,9 @@
 
 使用说明
 
-1. 安装编译生成的hap包，并打开应用。
+1. 安装编译生成的hap包，并打开应用；
 2. 点击页面底部“Chaneg Color”按钮，矩形框填充区域将改变颜色，黄蓝切换；
-3. 点击页面底部“produce buffer”按钮，NativeWindow将生产数据并发送给NativeImage，页面展示了生产buffer的次数。
+3. 点击页面底部“produce buffer”按钮，NativeWindow将生产数据并发送给NativeImage，页面展示了生产buffer的次数；
 4. 点击页面底部“update available buffer count”按钮，将展示NativeImage收到的可用帧回调次数。
 
 ### 工程目录
@@ -73,9 +73,9 @@ XComponent NativeWindow NativeImage EGL。
 
 ### 约束与限制
 
-1. 本示例仅支持标准系统上运行。
-2. 本示例为Stage模型，已适配API version 11版本SDK，SDK版本号4.1.3.3,镜像版本号(4.1.3.3);
-3. 本示例需要使用DevEco Studio 版本号(4.1.3.113)及以上版本才可编译运行。
+1. 本示例仅支持标准系统上运行；
+2. 本示例为Stage模型，已适配API version 10版本SDK，SDK版本号4.1.3.3及以上版本,镜像版本号支持4.1.3.3及以上版本;
+3. 本示例需要使用DevEco Studio 版本号(4.0 Release)及以上版本才可编译运行。
 ### 下载
 
 如需单独下载本工程，执行如下命令：
