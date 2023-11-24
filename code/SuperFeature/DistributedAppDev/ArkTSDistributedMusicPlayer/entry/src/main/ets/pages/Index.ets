@@ -73,6 +73,10 @@ interface Params {
   @State selectedIndex: number = 0;
   @State imageArrays: Array<Resource> = [$r('app.media.ic_hop'), $r('app.media.ic_play_previous'), $r('app.media.ic_play'), $r('app.media.ic_play_next')];
   private dialogController: CustomDialogController | null = null;
+  @StorageLink('exitMusicApp') @Watch('exitMusicApp') isExitMusicApp: boolean = false;
+  @StorageLink('remoteServiceExtensionConnectEvent') @Watch('remoteServiceExtensionConnectEvent') isRemoteServiceExtensionConnectEvent: boolean = false;
+  @StorageLink('musicPlay') @Watch('musicPlay') isMusicPlay: boolean = false;
+  @StorageLink('musicPause') @Watch('musicPause') isMusicPause: boolean = false;
   private remoteDeviceModel: RemoteDeviceModel = new RemoteDeviceModel();
   private context: common.UIAbilityContext | null = null;
   private deviceId: string | null = null;
@@ -565,11 +569,7 @@ interface Params {
       this.restoreFromWant();
     });
 
-    AppStorage.SetOrCreate('viewThis', this);
-    AppStorage.SetOrCreate('exitMusicApp', this.exitMusicApp);
-    AppStorage.SetOrCreate('remoteServiceExtensionConnectEvent', this.remoteServiceExtensionConnectEvent);
-    AppStorage.SetOrCreate('musicPlay', this.musicPlay);
-    AppStorage.SetOrCreate('musicPause', this.musicPause);
+    AppStorage.setOrCreate('viewThis', this);
 
     this.connectLocalExtension();
   };
