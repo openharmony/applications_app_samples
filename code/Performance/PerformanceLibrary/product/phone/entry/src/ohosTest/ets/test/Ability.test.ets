@@ -145,7 +145,7 @@ export default function abilityTest() {
       await driver.delayMs(500);
       await staticEntry.click();
       await driver.delayMs(500);
-      let staticImport: Component = await driver.findComponent(ON.text("点击跳转静态加载案例"));
+      let staticImport: Component = await driver.findComponent(ON.id("conventionExample"));
       await driver.delayMs(500);
       await staticImport.click();
       await driver.delayMs(1000);
@@ -205,15 +205,17 @@ export default function abilityTest() {
       await back.click();
       await driver.delayMs(500);
       await driver.pressBack();
-      await driver.delayMs(500);
-      Logger.info(TAG, `${BUNDLE}DynamicImportFunction_001 end`);
+      Logger.info(TAG, `${BUNDLE}DynamicImportFunction_001 end`)
+    })
+
     /**
      * 进入查看SmartPerfHostFrameTimeline优化前页面，查看页面是否在正常显示
      */
     it(BUNDLE + "SmartPerfHostFrameTimeline01", 555, async (done: Function) => {
       Logger.info(TAG, `${BUNDLE}SmartPerfHostFrameTimeline01 begin`);
       let driver: Driver = Driver.create();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text("SmartPerfHost"))
       let ifElseComponent: Component = await driver.findComponent(ON.text("SmartPerfHost"));
       await driver.delayMs(500);
       await ifElseComponent.click();
@@ -322,7 +324,6 @@ export default function abilityTest() {
       await driver.delayMs(500);
       await driver.pressBack();
       await driver.delayMs(500);
-
       animateComponent = await driver.findComponent(ON.text("频繁切换：显隐控制"));
       await driver.delayMs(500);
       await animateComponent.click();
@@ -358,7 +359,6 @@ export default function abilityTest() {
       await driver.delayMs(500);
       await driver.pressBack();
       await driver.delayMs(500);
-
       animateComponent = await driver.findComponent(ON.text("首页渲染：显隐控制"));
       await driver.delayMs(500);
       await animateComponent.click();
@@ -385,9 +385,9 @@ export default function abilityTest() {
       let animateComponent: Component = await driver.findComponent(ON.text("部分修改：条件渲染+容器限制"));
       await driver.delayMs(500);
       await animateComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(5000);
       let showChange: Component = await driver.findComponent(ON.text("Switch Hidden and Show"));
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       await showChange.click();
       await driver.delayMs(1000);
       await showChange.click();
@@ -396,7 +396,7 @@ export default function abilityTest() {
       await driver.delayMs(500);
 
       animateComponent = await driver.findComponent(ON.text("部分修改：仅条件渲染"));
-      await driver.delayMs(500);
+      await driver.delayMs(5000);
       await animateComponent.click();
       await driver.delayMs(1000);
       showChange = await driver.findComponent(ON.text("Switch Hidden and Show"));
@@ -419,7 +419,7 @@ export default function abilityTest() {
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
       let animateComponent: Component = await driver.findComponent(ON.text("复杂子树：条件渲染+组件复用"));
-      await driver.delayMs(500);
+      await driver.delayMs(3000);
       await animateComponent.click();
       await driver.delayMs(1000);
       let showChange: Component = await driver.findComponent(ON.text("Change FlexAlign"));
@@ -432,7 +432,7 @@ export default function abilityTest() {
       await driver.delayMs(500);
 
       animateComponent = await driver.findComponent(ON.text("复杂子树：仅条件渲染"));
-      await driver.delayMs(500);
+      await driver.delayMs(3000);
       await animateComponent.click();
       await driver.delayMs(1000);
       showChange = await driver.findComponent(ON.text("Change FlexAlign"));
@@ -448,8 +448,7 @@ export default function abilityTest() {
       Logger.info(TAG, `${BUNDLE}IfOrVisibilityFunction_005 end`);
       done();
     })
-
-     /**
+    /**
      * Grid的使用
      */
     it(BUNDLE + "GridFunction_001", 5, async (done: Function) => {
@@ -507,7 +506,6 @@ export default function abilityTest() {
       Logger.info(TAG, `${BUNDLE}GridFunction_001 end`);
       done();
     })
-    
     /**
      * SmartPerf Editor的使用
      */
