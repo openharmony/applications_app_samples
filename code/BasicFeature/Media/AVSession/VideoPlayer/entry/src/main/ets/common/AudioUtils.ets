@@ -26,7 +26,7 @@ export default class AudioUtils {
 
   constructor() {
     Log.info(`AVPlayer seek succeede in `);
-    this.playState = AppStorage.SetAndLink('IsPlaying', -1);
+    this.playState = AppStorage.SetAndLink('playState', -1);
   }
 
   public async init() {
