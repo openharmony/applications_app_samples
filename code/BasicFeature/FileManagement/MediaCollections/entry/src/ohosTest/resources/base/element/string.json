@@ -39,6 +39,10 @@
     {
       "name": "phoneMain_videoTitle",
       "value": "phoneMain_videoTitle"
+    },
+    {
+      "name": "record_video",
+      "value": "record_video"
     }
   ]
 }

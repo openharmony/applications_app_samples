@@ -36,6 +36,8 @@ export default function SliderTest() {
       await driver.assertComponentExist(ON.id('Video'));
       let stack = await driver.findComponent(ON.id('Video'));
       await stack.click();
+      await driver.delayMs(1000);
+      await stack.click();
       // 滑动滑块
       await driver.assertComponentExist(ON.id('Slider'));
       let Slider = await driver.findComponent(ON.id('Slider'));
