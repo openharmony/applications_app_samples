@@ -43,7 +43,6 @@ struct Index {
   @State controller: avSession.AVSessionController | undefined = undefined;
   @State albumImage: image.PixelMap | undefined = undefined;
   @State playType: 'local' | 'cast' = 'local';
-  // @State playState: number = -1;
   @StorageLink('playState') playState: number = -1;
   @State isFavorMap: Map<string, boolean> = new Map();
   @State volume: number = 0 ;
@@ -770,9 +769,9 @@ struct Index {
                   .fillColor(Color.White)
                   .backgroundColor(Color.Black)
               } else {
-                AVCastPicker()
+                AVCastPicker({ normalColor:Color.White, activeColor:Color.White })
                   .size({ height: '100%', width: '100%' })
-                  .backgroundColor(Color.White)
+                  .backgroundColor(Color.Black)
                   .align(Alignment.Center);
               }
             }
