@@ -15,6 +15,7 @@
 
 import router from '@ohos.router'
 import prompt from '@ohos.promptAction'
+import { BusinessError } from '@ohos.base';
 import { FileSystem, NewFileSystem } from '@ohos/feature-file-manager'
 import { FileStructure, FileType } from '@ohos/feature-file-manager/src/main/ets/mock/local/FileData'
 // 添加文件的弹窗
@@ -32,14 +33,14 @@ function str2TimeStamp(time: string): number {
   let timeString = time.slice(11,19);
 
   let dateParts = dateString.split('/');
-  let year = parseInt(dateParts[0],10);
-  let month = parseInt(dateParts[1],10);
-  let day = parseInt(dateParts[2],10);
+  let year = Number(dateParts[0]);
+  let month = Number(dateParts[1]);
+  let day = Number(dateParts[2]);
 
   let timeParts = timeString.split(':');
-  let hour = parseInt(timeParts[0],10);
-  let minites = parseInt(timeParts[1],10);
-  let seconds = parseInt(timeParts[2],10);
+  let hour = Number(timeParts[0]);
+  let minites = Number(timeParts[1]);
+  let seconds = Number(timeParts[2]);
 
   let date = new Date(year,month-1,day,hour,minites,seconds,0);
   let tt = date.getTime();
@@ -184,6 +185,42 @@ export struct MyPhone {
       }
     })
   })
+
+  @Builder MenuBuilder() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
+      Text($r('app.string.label_change_time'))
+        .fontSize(16)
+        .height(48)
+        .fontWeight(400)
+        .margin({ left: 16, top: 4 })
+        .onClick(()=>{
+          if (this.selectedFiles.length == 1) {
+            this.changeTimeDialog.open()
+          } else {
+            prompt.showToast({
+              message: $r('app.string.tip_choose_can_onlyone')
+            })
+          }
+        })
+      Divider().strokeWidth(0.5).margin({ left: 16, right: 16 }).color('#182431').opacity(0.05)
+      Text($r('app.string.label_delete'))
+        .fontSize(16)
+        .height(48)
+        .fontWeight(400)
+        .margin({ left: 16, bottom: 4 })
+        .onClick(()=>{
+          if (this.selectedFiles.length > 0) {
+            this.deleteDialog.open()
+          } else {
+            prompt.showToast({
+              message: $r('app.string.tip_choose_one')
+            })
+          }
+        })
+    }
+    .borderRadius(32)
+    .width(200)
+  }
 
   build() {
     Column() {
@@ -390,9 +427,9 @@ export struct MyPhone {
                           fileContent: content,
                         }
                       }, router.RouterMode.Standard);
-                    }).catch(error => {
-                      console.error(error.message);
-                    })
+                    }).catch((err: BusinessError) => {
+                      console.info("open file failed with error message: " + err.message + ", error code: " + err.code);
+                    });
                   }
                 }
               })
@@ -505,33 +542,12 @@ export struct MyPhone {
             Text($r('app.string.label_more'))
               .id('more')
               .fontSize(16)
+              .bindMenu(this.MenuBuilder, {
+                enableArrow: true,
+                placement: Placement.TopRight,
+                offset: ({ x: 24, y: 36 })
+              })
           }
-          .bindMenu([
-            {
-              value: $r('app.string.label_change_time'),
-              action: () => {
-                if (this.selectedFiles.length == 1) {
-                  this.changeTimeDialog.open()
-                } else {
-                  prompt.showToast({
-                    message: $r('app.string.tip_choose_can_onlyone')
-                  })
-                }
-              }
-            },
-            {
-              value: $r('app.string.label_delete'),
-              action: () => {
-                if (this.selectedFiles.length > 0) {
-                  this.deleteDialog.open()
-                } else {
-                  prompt.showToast({
-                    message: $r('app.string.tip_choose_one')
-                  })
-                }
-              }
-            },
-          ])
         }
         .width('100%')
         .borderRadius(18)

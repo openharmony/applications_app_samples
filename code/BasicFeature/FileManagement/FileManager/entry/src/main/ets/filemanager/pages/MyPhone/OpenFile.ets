@@ -14,14 +14,19 @@
  */
 
 import router from '@ohos.router';
-import prompt from '@ohos.prompt'
+
+interface paramsTape {
+  fileName: string,
+  fileSize: string,
+  fileContent: string
+}
 
 @Entry
 @Component
 struct OpenFile {
-  @State myFileName: string = router.getParams()['fileName'];
-  @State myFileContent: string = router.getParams()['fileContent'];
-  @State text: string = router.getParams()['text'];
+  @State myFileName: string = (router.getParams() as paramsTape).fileName;
+  @State myFileSize: string = (router.getParams() as paramsTape).fileSize;
+  @State myFileContent: string = (router.getParams() as paramsTape).fileContent;
   @State showFileName: string = this.myFileName;
   @State showFileContent: string = this.myFileContent;
   scroller: Scroller = new Scroller();
@@ -29,67 +34,60 @@ struct OpenFile {
   controllerInput: TextInputController = new TextInputController();
 
   build() {
-    Scroll(this.scroller) {
-      Row() {
-        Column() {
+    Row() {
+      Column() {
+        Row() {
           Row() {
-            Row() {
-              Image($r('app.media.ic_back'))
-                .width(24)
-                .height(24)
-                .align(Alignment.Start)
-                .id('back')
-                .onClick(() => {
-                  router.back();
-                })
-            }
-            .width('100%')
-          }
-          .height(26)
-          .margin({ top: 19, left: 26, right: 24 })
-          .align(Alignment.Center)
-
-          Column() {
-            Row() {
-              TextInput({ text: this.showFileName, controller: this.controllerInput })
-                .fontSize(30)
-                .fontColor('#182431')
-                .textAlign(TextAlign.Start)
-                .id('fileName')
-                .borderRadius(0)
-                .fontWeight(500)
-                .margin({ left: 8, right: 8 })
-                .backgroundColor('#f1f3f5')
-                .maxLength(30)
-            }
-            .width('100%')
-            .align(Alignment.Start)
-            .margin({ top: 8 })
-          }
-          .margin({ top: 11 })
-          .height(81)
-
-          Row() {
-            TextArea({ text: this.showFileContent, controller: this.controllerArea })
-              .fontSize(16)
-              .fontColor('#182431')
-              .height(560)
-              .id('fileContent')
-              .borderRadius(0)
-              .fontWeight(400)
+            Image($r('app.media.ic_back'))
+              .height("18vp")
+              .width("20vp")
               .align(Alignment.TopStart)
+              .id('openFileBack')
+              .margin({ left: "26vp" })
+              .onClick(() => {
+                router.back();
+              })
+            Text(this.showFileName)
+              .fontSize("20vp")
+              .fontColor('#182431')
+              .textAlign(TextAlign.Start)
+              .id('openFileName')
+              .borderRadius(0)
+              .fontWeight(700)
+              .margin({ left: "18vp", right: "26vp" })
               .backgroundColor('#f1f3f5')
-              .opacity(0.6)
-              .margin({ left: 8, right: 8 })
           }
-          .margin({ top: 11 })
+          .width('100%')
+          .height('100%')
         }
         .width('100%')
-        .height('100%')
+        .height(56)
+        .align(Alignment.TopStart)
+
+        Column() {
+          Scroll(this.scroller) {
+            Text(this.showFileContent)
+              .fontSize("16vp")
+              .fontColor('#182431')
+              .id('openFileContent')
+              .fontWeight(500)
+              .backgroundColor('#f1f3f5')
+              .opacity(0.6)
+              .width('100%')
+              .padding({ top: 10, bottom: 32,right: 2 })
+          }
+        }
+        .width('100%')
+        .padding({ top: "4vp", left: "28vp", right: "72vp" })
+        .height(660)
+        .align(Alignment.TopStart)
       }
-      .height('100%')
       .width('100%')
-      .backgroundColor('#f1f3f5')
+      .height(720)
+      .align(Alignment.TopStart)
     }
+    .height('100%')
+    .width('100%')
+    .backgroundColor('#f1f3f5')
   }
 }

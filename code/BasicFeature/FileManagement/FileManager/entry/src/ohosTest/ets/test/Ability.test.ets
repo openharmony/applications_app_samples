@@ -1325,7 +1325,7 @@ export default function abilityTest() {
      * @tc.level Level 0
      * @tc.require
      */
-    it('MobileFunction_001', 0, async function () {
+    it('MobileFunction_001', 0, async () => {
       Logger.info(TAG, 'MobileFunction_001 begin');
       let driver = Driver.create();
       await driver.delayMs(500);
@@ -1361,8 +1361,8 @@ export default function abilityTest() {
       let testFile = await driver.findComponent(ON.text('testFile'));
       await testFile.click();
       await driver.delayMs(200);
-      await driver.assertComponentExist(ON.id('fileName'));
-      let back = await driver.findComponent(ON.id('back'));
+      await driver.assertComponentExist(ON.id('openFileName'));
+      let back = await driver.findComponent(ON.id('openFileBack'));
       await back.click();
       await driver.delayMs(200);
       Logger.info(TAG, BUNDLE + 'MobileFunction_001 end');
@@ -1377,7 +1377,7 @@ export default function abilityTest() {
      * @tc.level Level 0
      * @tc.require
      */
-    it('MobileFunction_002', 0, async function () {
+    it('MobileFunction_002', 0, async () => {
       Logger.info(TAG, 'MobileFunction_002 begin');
       let driver = Driver.create();
       await driver.delayMs(200);
@@ -1418,7 +1418,7 @@ export default function abilityTest() {
      * @tc.level Level 0
      * @tc.require
      */
-    it('MobileFunction_003', 0, async function () {
+    it('MobileFunction_003', 0, async () => {
       Logger.info(TAG, 'MobileFunction_003 begin');
       let driver = Driver.create();
       await driver.delayMs(200);
@@ -1446,7 +1446,6 @@ export default function abilityTest() {
       await btnMove.click();
       await driver.delayMs(200);
       await driver.assertComponentExist(ON.text('testFile'));
-      let copyFile = await driver.findComponent(ON.text('testFile'));
       // 返回
       await driver.pressBack();
       await driver.delayMs(500);
@@ -1462,7 +1461,7 @@ export default function abilityTest() {
      * @tc.level Level 0
      * @tc.require
      */
-    it('MobileFunction_004', 0, async function () {
+    it('MobileFunction_004', 0, async () => {
       Logger.info(TAG, 'MobileFunction_004 begin');
       let driver = Driver.create();
       await driver.delayMs(200);
@@ -1493,7 +1492,7 @@ export default function abilityTest() {
      * @tc.level Level 0
      * @tc.require
      */
-    it('MobileFunction_005', 0, async function () {
+    it('MobileFunction_005', 0, async () => {
       Logger.info(TAG, 'MobileFunction_005 begin');
       let driver = Driver.create();
       await driver.delayMs(200);
@@ -1509,11 +1508,11 @@ export default function abilityTest() {
       let newMore = await driver.findComponent(ON.type('Text').id('more'));
       await newMore.click();
       await driver.delayMs(200);
-      await driver.click(500, 983);
-      await driver.assertComponentExist(ON.id('promise'));
-      let inputTimeNew = await driver.findComponent(ON.id('input'));
+      await driver.click(513, 933);
+      await driver.assertComponentExist(ON.id('changeTimePromise'));
+      let inputTimeNew = await driver.findComponent(ON.id('changeTimeInput'));
       await inputTimeNew.inputText('2023/10/10 10:10:10');
-      let changeTime = await driver.findComponent(ON.type('Text').id('promise'));
+      let changeTime = await driver.findComponent(ON.type('Text').id('changeTimePromise'));
       await changeTime.click();
       await driver.delayMs(200);
       await driver.assertComponentExist(ON.text('2023/10/10 10:10:10'));
@@ -1529,7 +1528,7 @@ export default function abilityTest() {
      * @tc.level Level 0
      * @tc.require
      */
-    it('MobileFunction_006', 0, async function () {
+    it('MobileFunction_006', 0, async () => {
       Logger.info(TAG, 'MobileFunction_006 begin');
       let driver = Driver.create();
       await driver.delayMs(200);
@@ -1544,7 +1543,7 @@ export default function abilityTest() {
       let newMore = await driver.findComponent(ON.type('Text').id('more'));
       await newMore.click();
       await driver.delayMs(200);
-      await driver.click(452, 1074);
+      await driver.click(453, 1022);
       await driver.delayMs(200);
       await driver.assertComponentExist(ON.id('checkDelete'));
       let btnCheckDelete = await driver.findComponent(ON.id('checkDelete'));

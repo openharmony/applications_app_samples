@@ -41,7 +41,7 @@ export struct ChangeTimeDialog {
         text: this.time ? this.time : '',
         controller: this.textController
       })
-        .id('input')
+        .id('changeTimeInput')
         .placeholderColor(Color.Grey)
         .placeholderFont({ size: 14, weight: 400 })
         .caretColor(Color.Blue)
@@ -57,7 +57,7 @@ export struct ChangeTimeDialog {
 
       Row() {
         Text($r('app.string.label_confirm'))
-          .id('promise')
+          .id('changeTimePromise')
           .fontColor($r('app.color.text_color'))
           .fontSize(20)
           .letterSpacing(2)
@@ -76,7 +76,7 @@ export struct ChangeTimeDialog {
       })
 
       Text($r('app.string.label_cancel'))
-        .id('cancel')
+        .id('changeTimeCancel')
         .fontSize(20)
         .onClick(() => {
           this.controller?.close()
