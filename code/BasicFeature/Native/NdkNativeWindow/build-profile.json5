@@ -20,11 +20,11 @@
       {
         "name": "default",
         "signingConfig": "default",
-        "compileSdkVersion": 10,
+        "compileSdkVersion": 11,
         // 指定OpenHarmony应用/服务编译时的版本
-        "compatibleSdkVersion": 10,
+        "compatibleSdkVersion": 11,
         // 指定OpenHarmony应用/服务兼容的最低版本。
-        "targetSdkVersion": 10,
+        "targetSdkVersion": 11,
         // 指定OpenHarmony应用/服务目标版本。若没有设置，默认为compatibleSdkVersion
         "runtimeOS": "OpenHarmony",
         // 指定为OpenHarmony
