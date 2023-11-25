@@ -319,6 +319,8 @@ export struct modeSwitchPage {
           .fontSize(14)
           .fontColor(Color.White)
           .onClick(() => {
+            cameraDemo.releaseSession()
+            cameraDemo.initCamera(this.surfaceId, this.settingDataObj.focusMode, this.cameraDeviceIndex)
             this.modelBagCol = 'photo'
           })
       }.position({ x: '20%', y: '75%' })
@@ -331,11 +333,13 @@ export struct modeSwitchPage {
           .size({ width: 64, height: 28 })
           .backgroundColor(this.modelBagCol === 'video' ? $r('app.color.theme_color') : '')
           .onClick(() => {
+            cameraDemo.releaseSession()
+            cameraDemo.initCamera(this.surfaceId, this.settingDataObj.focusMode, this.cameraDeviceIndex)
             this.modelBagCol = 'video'
           })
       }.position({ x: '40%', y: '75%' })
 
-      // 图库
+      // album
       Column() {
         Row() {
           if (this.modelBagCol === 'photo') {

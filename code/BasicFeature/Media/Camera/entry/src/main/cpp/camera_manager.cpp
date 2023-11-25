@@ -18,7 +18,7 @@
 #define LOG_TAG "DEMO:"
 #define LOG_DOMAIN 0x3200
 
-namespace OHOS_NDK_CAMERA {
+namespace OHOS_CAMERA_SAMPLE {
 NDKCamera *NDKCamera::ndkCamera_ = nullptr;
 std::mutex NDKCamera::mtx_;
 
@@ -459,7 +459,7 @@ Camera_ErrorCode NDKCamera::AddPhotoOutput()
 
 Camera_ErrorCode NDKCamera::CreateMetadataOutput(void)
 {
-    metaDataObjectType_ = cameraOutputCapability_->supportedMetadataObjectTypes[2]; // 2:camera metedata types
+    metaDataObjectType_ = cameraOutputCapability_->supportedMetadataObjectTypes[0];
     if (metaDataObjectType_ == nullptr) {
         OH_LOG_ERROR(LOG_APP, "Get metaDataObjectType failed.");
         return CAMERA_INVALID_ARGUMENT;
@@ -1014,4 +1014,4 @@ Camera_ErrorCode NDKCamera::CaptureSessionRegisterCallback(void)
     }
     return ret_;
 }
-} // namespace OHOS_NDK_CAMERA
+} // namespace OHOS_CAMERA_SAMPLE

@@ -38,7 +38,7 @@
 #include "napi/native_api.h"
 #include "multimedia/camera_framework/camera_manager.h"
 
-namespace OHOS_NDK_CAMERA {
+namespace OHOS_CAMERA_SAMPLE {
 class NDKCamera {
 public:
     ~NDKCamera();
@@ -149,5 +149,5 @@ private:
     static std::mutex mtx_;
     volatile bool valid_;
 };
-} // namespace OHOS_NDK_CAMERA
+} // namespace OHOS_CAMERA_SAMPLE
 #endif  // CAMERA_NDK_CAMERA_H
