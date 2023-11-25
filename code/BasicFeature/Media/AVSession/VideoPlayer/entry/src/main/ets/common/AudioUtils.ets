@@ -15,17 +15,18 @@
 
 import media from '@ohos.multimedia.media';
 import common from  '@ohos.app.ability.common';
-
-const TAG = 'AVCastDemo';
+import Log from './Log';
 
 export default class AudioUtils {
   public avPlayer: media.AVPlayer | null = null;
   public state: string = '';
   public surfaceId: string = '';
   private callbackMap: Map<string, Function> = new Map();
+  private playState: SubscribedAbstractProperty<number>;
 
   constructor() {
-    console.log(TAG, `AVPlayer seek succeede in `);
+    Log.info(`AVPlayer seek succeede in `);
+    this.playState = AppStorage.SetAndLink('IsPlaying', -1);
   }
 
   public async init() {
@@ -36,65 +37,62 @@ export default class AudioUtils {
 
   setAVPlayerCallback() {
     if (!this.avPlayer) {
-      console.log(TAG, 'no acPlayer');
+      Log.info('no acPlayer');
       return;
     }
     this.avPlayer.on('seekDone', (seekDOneTime) => {
-      console.log(TAG, `AVPlayer seek succeeded, seek time is ${seekDOneTime}`);
+      Log.info(`AVPlayer seek succeeded, seek time is ${seekDOneTime}`);
     })
     this.avPlayer.on('error', (err) => {
-      console.error(TAG, `Invoke avPlayer failed, code is ${err.code}, message is ${err.message}`);
+      Log.error(`Invoke avPlayer failed, code is ${err.code}, message is ${err.message}`);
       this.avPlayer?.reset();
     })
     this.avPlayer.on('stateChange', async (state) => {
       this.state = state;
       switch (state) {
         case 'idle':
-          console.log(TAG, 'AVPlayer state idle called.');
+          Log.info('AVPlayer state idle called.');
           this.callbackMap = new Map();
           break;
         case 'initialized':
-          console.log(TAG, 'AVPlayer state initialized called.');
+          Log.info('AVPlayer state initialized called.');
           if (this.avPlayer && this.surfaceId) {
             this.avPlayer.surfaceId = this.surfaceId;
           }
           try {
             this.avPlayer?.prepare().then(() => {
-              console.log(TAG, 'AVPlayer prepare succeeded.');
+              Log.info('AVPlayer prepare succeeded.');
             });
           } catch(err) {
-            console.log(TAG, `Invoke prepare failed, err : ${JSON.stringify(err)}`)
+            Log.info(`Invoke prepare failed, err : ${JSON.stringify(err)}`)
           }
           break;
         case 'prepared':
-          console.log(TAG, 'AVPlayer state prepare called.');
+          Log.info('AVPlayer state prepare called.');
           if (this.callbackMap.get('prepared')) {
             this.callbackMap.get('prepared');
-            console.log(TAG, 'AVPlayer state prepare start.');
+            Log.info('AVPlayer state prepare start.');
             this.callbackMap.set('prepared', null);
           }
           break;
         case 'playing':
-          console.log(TAG, 'AVPlayer state playing called.');
+          Log.info('AVPlayer state playing called.');
           break;
         case 'paused':
-          console.log(TAG, 'AVPlayer state paused called.');
+          Log.info('AVPlayer state paused called.');
           break;
         case 'completed':
-          console.log(TAG, 'AVPlayer state completed called.');
-          if (this.callbackMap.get('completed')) {
-            this.callbackMap.get('completed');
-            console.log(TAG, 'AVPlayer state completed start.');
-          }
+          Log.info('AVPlayer state completed called.');
+          this.playState.set(-1);
           break;
         case 'stopped':
-          console.log(TAG, 'AVPlayer state stopped called.');
+          Log.info('AVPlayer state stopped called.');
           break;
         case 'released':
-          console.log(TAG, 'AVPlayer state released called.');
+          Log.info('AVPlayer state released called.');
           break;
         default:
-          console.log(TAG, 'AVPlayer state unknown called.');
+          Log.info('AVPlayer state unknown called.');
           break;
       }
     })
@@ -105,9 +103,9 @@ export default class AudioUtils {
   }
 
   public async loadFromSrcFd(fileDescriptor: media.AVFileDescriptor) {
-    console.log(TAG, 'loadFromSrcFd: ' + JSON.stringify(fileDescriptor));
+    Log.info('loadFromSrcFd: ' + JSON.stringify(fileDescriptor));
     if (!this.avPlayer) {
-      console.log(TAG, 'no acPlayer');
+      Log.info('no acPlayer');
       return;
     }
     if (this.state !== 'idle') {
@@ -118,9 +116,9 @@ export default class AudioUtils {
   }
 
   public async loadFromRawFile(fileName: string) {
-    console.log(TAG, 'loadFromRawFile: ' + fileName);
+    Log.info('loadFromRawFile: ' + fileName);
     if (!this.avPlayer) {
-      console.log(TAG, 'no avplayer');
+      Log.info('no avplayer');
       return;
     }
     if (this.state !== 'idle') {
@@ -128,15 +126,15 @@ export default class AudioUtils {
     }
     const context = getContext(this) as common.UIAbilityContext;
     const fileDescriptor = await context.resourceManager.getRawFd(fileName);
-    console.log(TAG, 'fileDescriptor: ' + fileDescriptor);
+    Log.info('fileDescriptor: ' + fileDescriptor);
     this.avPlayer.fdSrc = fileDescriptor;
     return this.avPlayer;
   }
 
   public async loadFromNetwork(url: string) {
-    console.log(TAG, 'loadFromNetwork: ' + url);
+    Log.info('loadFromNetwork: ' + url);
     if (!this.avPlayer) {
-      console.log(TAG, 'no avplayer');
+      Log.info('no avplayer');
       return;
     }
     if (this.state !== 'idle') {

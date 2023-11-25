@@ -14,13 +14,13 @@
 */
 
 import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
+import Log from './Log';
 
-const TAG = 'AVPlayer';
 const permissions: Array<Permissions> = ['ohos.permission.READ_AUDIO'];
 
 export default class PermissionUtils {
   public static init(context: Context, callback: Function) {
-    console.log(TAG, 'start init permission');
+    Log.info('start init permission');
     let atManager = abilityAccessCtrl.createAtManager();
     // requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
 
@@ -29,15 +29,15 @@ export default class PermissionUtils {
       let length: number = grantStatus.length;
       for (let i = 0; i < length; i ++) {
         if(grantStatus[i] !== 0) {
-          console.info(TAG, `User reject permission: ${grantStatus[i]}`);
+          Log.info(`User reject permission: ${grantStatus[i]}`);
           callback(false);
           return;
         }
       }
-      console.info(TAG, `get permission succeed`);
+      Log.info(`get permission succeed`);
       callback(true);
     }).catch((err: Error) => {
-      console.error(TAG, `Failed to request permissions from user. err : ${JSON.stringify(err)}`);
+      Log.info(`Failed to request permissions from user. err : ${JSON.stringify(err)}`);
     })
   }
 }
