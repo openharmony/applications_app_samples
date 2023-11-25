@@ -578,6 +578,7 @@ struct Index {
     if (needStart) {
       Log.info('start play local');
       setTimeout(() => {
+        promptAction.showToast({ message: 'auto start done' });
         this.localPlayOrPause();
       }, 100);
     }
@@ -594,7 +595,6 @@ struct Index {
     }).then((agent) => {
       this.session?.setLaunchAbility(agent);
     })
-    promptAction.showToast({ message: 'auto start done' });
   }
 
   async switchToPreviousByLoopMode(){
