@@ -21,15 +21,23 @@ import OpenHarmonyTestRunner from '../../../ohosTest/ets/TestRunner/OpenHarmonyT
 import { Logger, sleep } from '../common/Common';
 import prompt from '@ohos.prompt'
 
+interface paramsTape {
+  fileSize: number,
+  fileName: string,
+  fileContent: string ,
+  text: string,
+  data: object
+}
+
 @Entry
 @Component
 struct EditFile {
   @State myContext: Context = getContext(this) as common.UIAbilityContext;
-  @State myFileSize: number = router.getParams()['fileSize'];
-  @State myFileName: string = router.getParams()['fileName'];
-  @State myFileContent: string = router.getParams()['fileContent'];
-  @State text: string = router.getParams()['text'];
-  @State data: object = router.getParams()['data'];
+  @State myFileSize: number = (router.getParams() as paramsTape).fileSize;
+  @State myFileName: string = (router.getParams() as paramsTape).fileName;
+  @State myFileContent: string = (router.getParams() as paramsTape).fileContent;
+  @State text: string = (router.getParams() as paramsTape).text;
+  @State data: object = (router.getParams() as paramsTape).data;
   @State newFileSize: number = 0;
   @State newFileName: string = '';
   @State newFileContent: string = '';
@@ -48,7 +56,7 @@ struct EditFile {
   @State flagBackContent: boolean = false;
   myWatcher: MyWatcher = new MyWatcher();
   scroller: Scroller = new Scroller();
-  public baseDir: string = AppStorage.Get('sanBoxFileDir');
+  public baseDir: string = AppStorage.Get<string>('sanBoxFileDir') as string;
   controllerArea: TextAreaController = new TextAreaController();
   controllerInput: TextInputController = new TextInputController()
 

@@ -15,10 +15,16 @@
 
 import Ability from '@ohos.app.ability.UIAbility';
 import hilog from '@ohos.hilog';
+import businessAbilityRouter from '@ohos.app.businessAbilityRouter';
+import { BusinessError } from '@ohos.base';
+import window from '@ohos.window';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
+import common from '@ohos.app.ability.common';
 
-let myContext = null;
+let myContext: common.UIAbilityContext | null = null ;
 export default class MainAbility extends Ability {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     AppStorage.SetOrCreate('context', this.context);
     hilog.info(0x0000, 'Sample', '%{public}s', 'onCreate');
   }
@@ -27,7 +33,7 @@ export default class MainAbility extends Ability {
     hilog.info(0x0000, 'Sample', '%{public}s', 'onDestroy');
   }
 
-  onWindowStageCreate(windowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
     hilog.info(0x0000, 'Sample', '%{public}s', 'onWindowStageCreate');
 
@@ -38,7 +44,7 @@ export default class MainAbility extends Ability {
 
     this.getResourceStr();
 
-    windowStage.loadContent('pages/Index', (err, data) => {
+    windowStage.loadContent('pages/Index', (err: BusinessError, data: void) => {
       if (err.code) {
         hilog.error(0x0000, 'Sample', '%{public}s', 'Failed to load the content. Cause:' + JSON.stringify(err));
         return;
@@ -49,48 +55,48 @@ export default class MainAbility extends Ability {
 
   getResourceStr(): void {
     try {
-      myContext.resourceManager.getStringValue($r('app.string.isDelFile').id)
-        .then(value => {
+      myContext?.resourceManager.getStringValue($r('app.string.isDelFile').id)
+        .then((value: Object) => {
           AppStorage.SetOrCreate('isDelFile', value);
           hilog.info(0x0000, 'testTag', '%{public}s', 'getStringValue value' + value);
         })
-        .catch(error => {
+        .catch((error: BusinessError) => {
           hilog.error(0x0000, 'testTag', 'Failed to getStringValue. Cause: %{public}s', error ?? '');
         });
 
-      myContext.resourceManager.getStringValue($r('app.string.fileContent1').id)
-        .then(value => {
+      myContext?.resourceManager.getStringValue($r('app.string.fileContent1').id)
+        .then((value: Object) => {
           AppStorage.SetOrCreate('fileContent1', value);
           hilog.info(0x0000, 'testTag', '%{public}s', 'getStringValue value' + value);
         })
-        .catch(error => {
+        .catch((error: BusinessError) => {
           hilog.error(0x0000, 'testTag', 'Failed to getStringValue. Cause: %{public}s', error ?? '');
         });
 
-      myContext.resourceManager.getStringValue($r('app.string.fileContent2').id)
-        .then(value => {
+      myContext?.resourceManager.getStringValue($r('app.string.fileContent2').id)
+        .then((value: Object) => {
           AppStorage.SetOrCreate('fileContent2', value);
           hilog.info(0x0000, 'testTag', '%{public}s', 'getStringValue value' + value);
         })
-        .catch(error => {
+        .catch((error: BusinessError) => {
           hilog.error(0x0000, 'testTag', 'Failed to getStringValue. Cause: %{public}s', error ?? '');
         });
 
-      myContext.resourceManager.getStringValue($r('app.string.fileContent3').id)
-        .then(value => {
+      myContext?.resourceManager.getStringValue($r('app.string.fileContent3').id)
+        .then((value: Object) => {
           AppStorage.SetOrCreate('fileContent3', value);
           hilog.info(0x0000, 'testTag', '%{public}s', 'getStringValue value' + value);
         })
-        .catch(error => {
+        .catch((error: BusinessError) => {
           hilog.error(0x0000, 'testTag', 'Failed to getStringValue. Cause: %{public}s', error ?? '');
         });
 
-      myContext.resourceManager.getStringValue($r('app.string.fileContent4').id)
-        .then(value => {
+      myContext?.resourceManager.getStringValue($r('app.string.fileContent4').id)
+        .then((value: Object) => {
           AppStorage.SetOrCreate('fileContent4', value);
           hilog.info(0x0000, 'testTag', '%{public}s', 'getStringValue value' + value);
         })
-        .catch(error => {
+        .catch((error: BusinessError) => {
           hilog.error(0x0000, 'testTag', 'Failed to getStringValue. Cause: %{public}s', error ?? '');
         });
     } catch (error) {

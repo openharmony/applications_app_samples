@@ -19,6 +19,7 @@ import { Logger, FileManager, ThumbnailImage } from '@ohos/feature-file-manager'
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import UIAbility from '@ohos.app.ability.UIAbility'
+import fileAccess from '@ohos.file.fileAccess'
 
 
 const TAG = '[Sample_FileManager]'
@@ -35,7 +36,7 @@ const TYPE: [mediaLibrary.MediaType, string, mediaLibrary.DirectoryType][] = [
 const MOCK: string = 'mock_'
 const TEST_NUM = 5
 const TIME_OUT = 10000
-let ability: UIAbility = undefined
+let ability: UIAbility = new UIAbility()
 let file: mediaLibrary.FileAsset[] = [];
 
 // 判断文件是否相同
@@ -47,26 +48,25 @@ async function fileAssertEqual(firstFile: mediaLibrary.FileAsset, secondFile: me
 // 检查页面是否正常显示
 async function checkPage(library: mediaLibrary.MediaLibrary, driver: Driver, type: mediaLibrary.MediaType) {
   Logger.info(TAG, 'checkPage begin ')
-  let fileKeyObj = await mediaLibrary.FileKey
-  let fileFetchOption = {
-    selections: fileKeyObj.MEDIA_TYPE + '= ?',
+  let fileFetchOption: mediaLibrary.MediaFetchOptions = {
+    selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
     selectionArgs: [type.toString()],
   }
-  let fetchFileResult: mediaLibrary.FetchFileResult = undefined
+  let fetchFileResult: mediaLibrary.FetchFileResult | undefined = undefined
   try {
     fetchFileResult = await library.getFileAssets(fileFetchOption)
   } catch (error) {
     expect().assertFail()
   }
-  if (fetchFileResult.getCount() === 0) {
+  if (fetchFileResult?.getCount() === 0) {
     await driver.assertComponentExist(ON.id('no_file'))
     await driver.delayMs(1000)
   } else {
     await driver.assertComponentExist(ON.type('ListItem'))
     let btnItem = await driver.findComponents(ON.type('ListItem'))
-    Logger.info(TAG, 'item length = ' + btnItem.length + ' and file count =' + fetchFileResult.getCount())
-    if (fetchFileResult.getCount() <= MAX_NUM) {
-      await expect(btnItem.length).assertEqual(fetchFileResult.getCount())
+    Logger.info(TAG, 'item length = ' + btnItem.length + ' and file count =' + fetchFileResult?.getCount())
+    if (fetchFileResult!.getCount() <= MAX_NUM) {
+      await expect(btnItem.length).assertEqual(fetchFileResult?.getCount())
     } else {
       await expect(btnItem.length).assertEqual(MAX_NUM)
     }
@@ -82,19 +82,29 @@ async function getResourceString(resource: Resource): Promise<string> {
   return text
 }
 
+async function onAbilityCreateCallback() {
+  Logger.info(TAG, "onAbilityCreateCallback")
+}
+
 export default function abilityTest() {
   // 删除测试过程中创建的文件
-  afterAll(async function () {
+  afterAll(async () => {
     for (let i = 0; i < file.length; i++) {
       await FileManager.deleteFileAsset(file[i]);
     }
   })
 
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
     /**
-     * 打开应用
+     * @tc.number StartAbility_001
+     * @tc.name StartAbility_001
+     * @tc.desc Test StartAbility_001
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+    it(BUNDLE + 'StartAbility_001', 0, async (done : () => void) => {
       Logger.info(TAG, BUNDLE + 'StartAbility_001 begin')
       try {
         await abilityDelegator.startAbility({
@@ -106,10 +116,7 @@ export default function abilityTest() {
         Logger.info(TAG, `StartAbility_001 exception = ${JSON.stringify(exception)}`)
         expect().assertFail()
       }
-      function onAbilityCreateCallback() {
-        Logger.info(TAG, "onAbilityCreateCallback")
-      }
-      var monitor = {
+      let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
         abilityName: "MainAbility",
         onAbilityCreate: onAbilityCreateCallback
       }
@@ -118,9 +125,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 获取权限
+     * @tc.number RequestPermissionFunction_001
+     * @tc.name RequestPermissionFunction_001
+     * @tc.desc Test RequestPermissionFunction_001
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it(BUNDLE + 'RequestPermissionFunction_001', 0, async function () {
+    it(BUNDLE + 'RequestPermissionFunction_001', 0, async () => {
       Logger.info(TAG, BUNDLE + 'RequestPermissionFunction begin')
       let driver = Driver.create()
       await driver.delayMs(2000)
@@ -133,9 +146,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 点击主页中监听文件
+     * @tc.number WatcherCopyFunction_001
+     * @tc.name WatcherCopyFunction_001
+     * @tc.desc 点击主页中监听文件
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it(BUNDLE + 'WatcherCopyFunction_001', 0, async function () {
+    it(BUNDLE + 'WatcherCopyFunction_001', 0, async () => {
       Logger.info(TAG, BUNDLE + 'WatcherCopyFunction_001 begin')
       let driver = await Driver.create()
       await driver.delayMs(1000)
@@ -149,9 +168,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 添加监听之前添加文件
+     * @tc.number File_Fs_addFile_001
+     * @tc.name File_Fs_addFile_001
+     * @tc.desc 添加监听之前添加文件
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it('File_Fs_addFile_001', 1, async function () {
+    it('File_Fs_addFile_001', 1, async () => {
       Logger.info(TAG, 'File_Fs_addFile_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -170,9 +195,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 添加监听之前修改文件
+     * @tc.number File_Fs_modifyFile_001
+     * @tc.name File_Fs_modifyFile_001
+     * @tc.desc 添加监听之前修改文件
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it('File_Fs_modifyFile_001', 1, async function () {
+    it('File_Fs_modifyFile_001', 1, async () => {
       Logger.info(TAG, 'File_Fs_modifyFile_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -190,9 +221,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 修改文件名
+     * @tc.number File_Fs_modifyFileName_001
+     * @tc.name File_Fs_modifyFileName_001
+     * @tc.desc 修改文件名
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it('File_Fs_modifyFileName_001', 1, async function () {
+    it('File_Fs_modifyFileName_001', 1, async () => {
       Logger.info(TAG, 'File_Fs_modifyFileName_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -211,9 +248,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 查看已修改文件名
+     * @tc.number File_Fs_modifyFile_002
+     * @tc.name File_Fs_modifyFile_002
+     * @tc.desc 查看已修改文件名
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it('File_Fs_modifyFile_002', 1, async function () {
+    it('File_Fs_modifyFile_002', 1, async () => {
       Logger.info(TAG, 'File_Fs_modifyFile_002 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -232,9 +275,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 修改文件内容
+     * @tc.number File_Fs_modifyFileContent_001
+     * @tc.name File_Fs_modifyFileContent_001
+     * @tc.desc 修改文件内容
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it('File_Fs_modifyFileContent_001', 1, async function () {
+    it('File_Fs_modifyFileContent_001', 1, async () => {
       Logger.info(TAG, 'File_Fs_modifyFileContent_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -252,9 +301,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 添加监听之前删除文件
+     * @tc.number File_Fs_deleteFile_001
+     * @tc.name File_Fs_deleteFile_001
+     * @tc.desc 添加监听之前删除文件
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it('File_Fs_deleteFile_001', 1, async function () {
+    it('File_Fs_deleteFile_001', 1, async () => {
       Logger.info(TAG, 'File_Fs_deleteFile_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -273,9 +328,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 准备待修改的文件
+     * @tc.number backward_001
+     * @tc.name backward_001
+     * @tc.desc 准备待修改的文件
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it('backward_001', 1, async function () {
+    it('backward_001', 1, async () => {
       Logger.info(TAG, 'backward_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -293,9 +354,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 修改文件后撤销
+     * @tc.number File_Fs_backward_001
+     * @tc.name File_Fs_backward_001
+     * @tc.desc 修改文件后撤销
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it('File_Fs_backward_001', 1, async function () {
+    it('File_Fs_backward_001', 1, async () => {
       Logger.info(TAG, 'File_Fs_backward_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -310,9 +377,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 修改文件名后撤销
+     * @tc.number File_Fs_backward_002
+     * @tc.name File_Fs_backward_002
+     * @tc.desc 修改文件名后撤销
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it('File_Fs_backward_002', 1, async function () {
+    it('File_Fs_backward_002', 1, async () => {
       Logger.info(TAG, 'File_Fs_backward_002 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -332,9 +405,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 修改文件内容后撤销
+     * @tc.number File_Fs_backward_003
+     * @tc.name File_Fs_backward_003
+     * @tc.desc 修改文件内容后撤销
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it('File_Fs_backward_003', 1, async function () {
+    it('File_Fs_backward_003', 1, async () => {
       Logger.info(TAG, 'File_Fs_backward_003 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -350,9 +429,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 修改文件内容后撤销
+     * @tc.number File_Fs_backward_004
+     * @tc.name File_Fs_backward_004
+     * @tc.desc 修改文件内容后撤销
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it('File_Fs_backward_004', 1, async function () {
+    it('File_Fs_backward_004', 1, async () => {
       Logger.info(TAG, 'File_Fs_backward_004 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -368,9 +453,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 点击添加监听后停止监听,测试停止监听页面是否出现弹窗白屏
+     * @tc.number StopWatcherFunction_001
+     * @tc.name StopWatcherFunction_001
+     * @tc.desc 点击添加监听后停止监听,测试停止监听页面是否出现弹窗白屏
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it(BUNDLE + 'StopWatcherFunction_001', 0, async function () {
+    it(BUNDLE + 'StopWatcherFunction_001', 0, async () => {
       Logger.info(TAG, BUNDLE + 'StopWatcherFunction_001 begin')
       let driver = await Driver.create()
       await driver.delayMs(1000)
@@ -412,9 +503,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 添加IN_CREATE监听
+     * @tc.number File_Fs_addCreateWatcher_001
+     * @tc.name File_Fs_addCreateWatcher_001
+     * @tc.desc 添加IN_CREATE监听
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it('File_Fs_addCreateWatcher_001', 1, async function () {
+    it('File_Fs_addCreateWatcher_001', 1, async () => {
       Logger.info(TAG, 'File_Fs_addCreateWatcher_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -430,9 +527,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 添加IN_CREATE监听
+     * @tc.number File_Fs_addCreateWatcher_002
+     * @tc.name File_Fs_addCreateWatcher_002
+     * @tc.desc 添加IN_CREATE监听
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it('File_Fs_addCreateWatcher_002', 1, async function () {
+    it('File_Fs_addCreateWatcher_002', 1, async () => {
       Logger.info(TAG, 'File_Fs_addCreateWatcher_002 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -451,9 +554,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 添加IN_CREATE监听之后添加文件
+     * @tc.number File_Fs_afterAddCreateWatcher_addFile_001
+     * @tc.name File_Fs_afterAddCreateWatcher_addFile_001
+     * @tc.desc 添加IN_CREATE监听之后添加文件
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it('File_Fs_afterAddCreateWatcher_addFile_001', 1, async function () {
+    it('File_Fs_afterAddCreateWatcher_addFile_001', 1, async () => {
       Logger.info(TAG, 'File_Fs_afterAddCreateWatcher_addFile_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -471,9 +580,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 添加IN_DELETE监听
+     * @tc.number File_Fs_addDelWatcher_001
+     * @tc.name File_Fs_addDelWatcher_001
+     * @tc.desc 添加IN_DELETE监听
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it('File_Fs_addDelWatcher_001', 1, async function () {
+    it('File_Fs_addDelWatcher_001', 1, async () => {
       Logger.info(TAG, 'File_Fs_addDelWatcher_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -493,9 +608,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 添加监听之后删除文件
+     * @tc.number File_Fs_afterAddDelWatcher_delFile_001
+     * @tc.name File_Fs_afterAddDelWatcher_delFile_001
+     * @tc.desc 添加监听之后删除文件
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it('File_Fs_afterAddDelWatcher_delFile_001', 1, async function () {
+    it('File_Fs_afterAddDelWatcher_delFile_001', 1, async () => {
       Logger.info(TAG, 'File_Fs_afterAddDelWatcher_delFile_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -512,9 +633,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 添加监听之后删除文件
+     * @tc.number File_Fs_afterAddDelWatcher_delFile_002
+     * @tc.name File_Fs_afterAddDelWatcher_delFile_002
+     * @tc.desc 添加监听之后删除文件
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it('File_Fs_afterAddDelWatcher_delFile_002', 1, async function () {
+    it('File_Fs_afterAddDelWatcher_delFile_002', 1, async () => {
       Logger.info(TAG, 'File_Fs_afterAddDelWatcher_delFile_002 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -528,9 +655,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 停止IN_CREATE监听
+     * @tc.number File_Fs_stopCreateWatcher_001
+     * @tc.name File_Fs_stopCreateWatcher_001
+     * @tc.desc 停止IN_CREATE监听
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it('File_Fs_stopCreateWatcher_001', 1, async function () {
+    it('File_Fs_stopCreateWatcher_001', 1, async () => {
       Logger.info(TAG, 'File_Fs_stopCreateWatcher_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -550,9 +683,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 停止监听之后添加文件
+     * @tc.number File_Fs_afterStopCreateWatcher_addFile001
+     * @tc.name File_Fs_afterStopCreateWatcher_addFile001
+     * @tc.desc 停止监听之后添加文件
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it('File_Fs_afterStopCreateWatcher_addFile001', 1, async function () {
+    it('File_Fs_afterStopCreateWatcher_addFile001', 1, async () => {
       Logger.info(TAG, 'File_Fs_afterStopCreateWatcher_addFile001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -568,9 +707,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 停止IN_DELETE监听
+     * @tc.number File_Fs_stopDelWatcher_001
+     * @tc.name File_Fs_stopDelWatcher_001
+     * @tc.desc 停止IN_DELETE监听
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it('File_Fs_stopDelWatcher_001', 1, async function () {
+    it('File_Fs_stopDelWatcher_001', 1, async () => {
       Logger.info(TAG, 'File_Fs_stopDelWatcher_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -590,9 +735,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 停止监听之后删除文件
+     * @tc.number File_Fs_afterStopDelWatcher_delFile002
+     * @tc.name File_Fs_afterStopDelWatcher_delFile002
+     * @tc.desc 停止监听之后删除文件
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it('File_Fs_afterStopDelWatcher_delFile002', 1, async function () {
+    it('File_Fs_afterStopDelWatcher_delFile002', 1, async () => {
       Logger.info(TAG, 'File_Fs_afterStopDelWatcher_delFile002 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -606,9 +757,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 停止监听之后删除文件
+     * @tc.number File_Fs_afterStopDelWatcher_delFile001
+     * @tc.name File_Fs_afterStopDelWatcher_delFile001
+     * @tc.desc 停止监听之后删除文件
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it('File_Fs_afterStopDelWatcher_delFile001', 1, async function () {
+    it('File_Fs_afterStopDelWatcher_delFile001', 1, async () => {
       Logger.info(TAG, 'File_Fs_afterStopDelWatcher_delFile001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -623,9 +780,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 添加IN_MODIFY监听
+     * @tc.number File_Fs_addModifyWatcher_001
+     * @tc.name File_Fs_addModifyWatcher_001
+     * @tc.desc 添加IN_MODIFY监听
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it('File_Fs_addModifyWatcher_001', 1, async function () {
+    it('File_Fs_addModifyWatcher_001', 1, async () => {
       Logger.info(TAG, 'File_Fs_addModifyWatcher_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -641,9 +804,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 添加IN_MODIFY监听
+     * @tc.number File_Fs_addModifyWatcher_002
+     * @tc.name File_Fs_addModifyWatcher_002
+     * @tc.desc 添加IN_MODIFY监听
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it('File_Fs_addModifyWatcher_002', 1, async function () {
+    it('File_Fs_addModifyWatcher_002', 1, async () => {
       Logger.info(TAG, 'File_Fs_addModifyWatcher_002 begin');
       let driver = Driver.create();
       await driver.assertComponentExist(ON.text('IN_MODIFY'));
@@ -658,9 +827,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 添加监听后修改文件
+     * @tc.number File_Fs_afterAddModifyWatcher_editFile001
+     * @tc.name File_Fs_afterAddModifyWatcher_editFile001
+     * @tc.desc 添加监听后修改文件
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it('File_Fs_afterAddModifyWatcher_editFile001', 1, async function () {
+    it('File_Fs_afterAddModifyWatcher_editFile001', 1, async () => {
       Logger.info(TAG, 'File_Fs_afterAddModifyWatcher_editFile001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -676,9 +851,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 添加监听后修改文件内容
+     * @tc.number File_Fs_afterAddModifyWatcher_editFile002
+     * @tc.name File_Fs_afterAddModifyWatcher_editFile002
+     * @tc.desc 添加监听后修改文件内容
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it('File_Fs_afterAddModifyWatcher_editFile002', 1, async function () {
+    it('File_Fs_afterAddModifyWatcher_editFile002', 1, async () => {
       Logger.info(TAG, 'File_Fs_afterAddModifyWatcher_editFile002 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -697,9 +878,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 查看修改文件后监听日志
+     * @tc.number File_Fs_afterAddModifyWatcher_editFile003
+     * @tc.name File_Fs_afterAddModifyWatcher_editFile003
+     * @tc.desc 查看修改文件后监听日志
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it('File_Fs_afterAddModifyWatcher_editFile003', 1, async function () {
+    it('File_Fs_afterAddModifyWatcher_editFile003', 1, async () => {
       Logger.info(TAG, 'File_Fs_afterAddModifyWatcher_editFile003 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -713,9 +900,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 停止IN_MODIFY监听
+     * @tc.number File_Fs_stopModifyWatcher_001
+     * @tc.name File_Fs_stopModifyWatcher_001
+     * @tc.desc 停止IN_MODIFY监听
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it('File_Fs_stopModifyWatcher_001', 1, async function () {
+    it('File_Fs_stopModifyWatcher_001', 1, async () => {
       Logger.info(TAG, 'File_Fs_stopModifyWatcher_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -735,9 +928,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 停止监听后修改文件
+     * @tc.number afterStopModifyWatcher_editFile001
+     * @tc.name afterStopModifyWatcher_editFile001
+     * @tc.desc 停止监听后修改文件
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it('afterStopModifyWatcher_editFile001', 1, async function () {
+    it('afterStopModifyWatcher_editFile001', 1, async () => {
       Logger.info(TAG, 'afterStopModifyWatcher_editFile001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -753,9 +952,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 停止监听后修改文件内容
+     * @tc.number File_Fs_afterStopModifyWatcher_editFile002
+     * @tc.name File_Fs_afterStopModifyWatcher_editFile002
+     * @tc.desc 停止监听后修改文件内容
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it('File_Fs_afterStopModifyWatcher_editFile002', 1, async function () {
+    it('File_Fs_afterStopModifyWatcher_editFile002', 1, async () => {
       Logger.info(TAG, 'File_Fs_afterStopModifyWatcher_editFile002 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -771,9 +976,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 停止监听后修改文件内容
+     * @tc.number File_Fs_afterStopModifyWatcher_editFile003
+     * @tc.name File_Fs_afterStopModifyWatcher_editFile003
+     * @tc.desc 停止监听后修改文件内容
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it('File_Fs_afterStopModifyWatcher_editFile003', 1, async function () {
+    it('File_Fs_afterStopModifyWatcher_editFile003', 1, async () => {
       Logger.info(TAG, 'File_Fs_afterStopModifyWatcher_editFile003 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -787,9 +998,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 返回首页
+     * @tc.number backIndex_001
+     * @tc.name backIndex_001
+     * @tc.desc 返回首页
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it('backIndex_001', 1, async function () {
+    it('backIndex_001', 1, async () => {
       Logger.info(TAG, 'backIndex_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -801,9 +1018,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 点击主页中图片
+     * @tc.number ImageFunction_001
+     * @tc.name ImageFunction_001
+     * @tc.desc 点击主页中图片
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it(BUNDLE + 'ImageFunction_001', 0, async function () {
+    it(BUNDLE + 'ImageFunction_001', 0, async () => {
       Logger.info(TAG, BUNDLE + 'ImageFunction_001 begin')
       let driver = await Driver.create()
       await driver.delayMs(1000)
@@ -815,28 +1038,27 @@ export default function abilityTest() {
       await driver.delayMs(1000)
       // 跳转图片
       let library = await mediaLibrary.getMediaLibrary(getContext())
-      let fileKeyObj = await mediaLibrary.FileKey
-      let imagesFetchOption = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
+      let imagesFetchOption: mediaLibrary.MediaFetchOptions = {
+        selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
         selectionArgs: [mediaLibrary.MediaType.IMAGE.toString()],
       }
-      let fetchFileResult: mediaLibrary.FetchFileResult = undefined
+      let fetchFileResult: mediaLibrary.FetchFileResult | undefined = undefined
       try {
         fetchFileResult = await library.getFileAssets(imagesFetchOption)
       } catch (error) {
         expect().assertFail()
       }
       // 图片数量为0，则显示没有相关文件
-      if (fetchFileResult.getCount() === 0) {
+      if (fetchFileResult?.getCount() === 0) {
         await driver.assertComponentExist(ON.id('no_file'))
         await driver.delayMs(1000)
       } else {
         // 否则显示图片文件
         await driver.assertComponentExist(ON.type('ListItem'))
         let btnItem = await driver.findComponents(ON.type('ListItem'))
-        Logger.info(TAG, 'image item length = ' + btnItem.length + ' and image file count =' + fetchFileResult.getCount())
-        if (fetchFileResult.getCount() < MAX_NUM) {
-          expect(btnItem.length).assertEqual(fetchFileResult.getCount())
+        Logger.info(TAG, 'image item length = ' + btnItem.length + ' and image file count =' + fetchFileResult?.getCount())
+        if (fetchFileResult!.getCount() < MAX_NUM) {
+          expect(btnItem.length).assertEqual(fetchFileResult?.getCount())
         } else {
           expect(btnItem.length).assertEqual(MAX_NUM)
         }
@@ -866,9 +1088,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 点击主页中视频
+     * @tc.number VideoFunction_001
+     * @tc.name VideoFunction_001
+     * @tc.desc 点击主页中视频
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it(BUNDLE + 'VideoFunction_001', 0, async function () {
+    it(BUNDLE + 'VideoFunction_001', 0, async () => {
       Logger.info(TAG, BUNDLE + 'VideoFunction_001 begin')
       let driver = await Driver.create()
       await driver.delayMs(1000)
@@ -880,28 +1108,27 @@ export default function abilityTest() {
       await driver.delayMs(1000)
       // 跳转视频文件管理页
       let library = await mediaLibrary.getMediaLibrary(getContext())
-      let fileKeyObj = await mediaLibrary.FileKey
-      let videoFetchOption = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
+      let videoFetchOption: mediaLibrary.MediaFetchOptions = {
+        selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
         selectionArgs: [mediaLibrary.MediaType.VIDEO.toString()],
       }
-      let fetchFileResult: mediaLibrary.FetchFileResult = undefined
+      let fetchFileResult: mediaLibrary.FetchFileResult | undefined = undefined
       try {
         fetchFileResult = await library.getFileAssets(videoFetchOption)
       } catch (error) {
         expect().assertFail()
       }
       // 视频数量为0，则显示没有相关文件
-      if (fetchFileResult.getCount() === 0) {
+      if (fetchFileResult?.getCount() === 0) {
         await driver.assertComponentExist(ON.id('no_file'))
         await driver.delayMs(1000)
       } else {
         // 否则显示全部视频文件
         await driver.assertComponentExist(ON.type('ListItem'))
         let btnItem = await driver.findComponents(ON.type('ListItem'))
-        Logger.info(TAG, 'video item length = ' + btnItem.length + ' and video file count =' + fetchFileResult.getCount())
-        if (fetchFileResult.getCount() < MAX_NUM) {
-          expect(btnItem.length).assertEqual(fetchFileResult.getCount())
+        Logger.info(TAG, 'video item length = ' + btnItem.length + ' and video file count =' + fetchFileResult?.getCount())
+        if (fetchFileResult!.getCount() < MAX_NUM) {
+          expect(btnItem.length).assertEqual(fetchFileResult?.getCount())
         } else {
           expect(btnItem.length).assertEqual(MAX_NUM)
         }
@@ -927,9 +1154,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 点击主页中文档
+     * @tc.number DocumentFunction_001
+     * @tc.name DocumentFunction_001
+     * @tc.desc 点击主页中文档
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it(BUNDLE + 'DocumentFunction_001', 0, async function () {
+    it(BUNDLE + 'DocumentFunction_001', 0, async () => {
       Logger.info(TAG, BUNDLE + 'DocumentFunction_001 begin')
       let driver = await Driver.create()
       await driver.delayMs(1000)
@@ -941,28 +1174,27 @@ export default function abilityTest() {
       await driver.delayMs(1000)
       // 跳转文档文件管理页
       let library = await mediaLibrary.getMediaLibrary(getContext())
-      let fileKeyObj = await mediaLibrary.FileKey
-      let fileFetchOption = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
+      let fileFetchOption: mediaLibrary.MediaFetchOptions = {
+        selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
         selectionArgs: [mediaLibrary.MediaType.FILE.toString()],
       }
-      let fetchFileResult: mediaLibrary.FetchFileResult = undefined
+      let fetchFileResult: mediaLibrary.FetchFileResult | undefined = undefined
       try {
         fetchFileResult = await library.getFileAssets(fileFetchOption)
       } catch (error) {
         expect().assertFail()
       }
       // 文档数量为0，则显示没有相关文件
-      if (fetchFileResult.getCount() === 0) {
+      if (fetchFileResult?.getCount() === 0) {
         await driver.assertComponentExist(ON.id('no_file'))
         await driver.delayMs(1000)
       } else {
         // 否则显示全部文档文件
         await driver.assertComponentExist(ON.type('ListItem'))
         let btnItem = await driver.findComponents(ON.type('ListItem'))
-        Logger.info(TAG, 'document item length = ' + btnItem.length + ' and document file count =' + fetchFileResult.getCount())
-        if (fetchFileResult.getCount() < MAX_NUM) {
-          expect(btnItem.length).assertEqual(fetchFileResult.getCount())
+        Logger.info(TAG, 'document item length = ' + btnItem.length + ' and document file count =' + fetchFileResult?.getCount())
+        if (fetchFileResult!.getCount() < MAX_NUM) {
+          expect(btnItem.length).assertEqual(fetchFileResult?.getCount())
         } else {
           expect(btnItem.length).assertEqual(MAX_NUM)
         }
@@ -995,9 +1227,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 点击主页中音频
+     * @tc.number AudioFunction_001
+     * @tc.name AudioFunction_001
+     * @tc.desc 点击主页中音频
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it(BUNDLE + 'AudioFunction_001', 0, async function () {
+    it(BUNDLE + 'AudioFunction_001', 0, async () => {
       Logger.info(TAG, BUNDLE + 'AudioFunction_001 begin')
       let driver = await Driver.create()
       await driver.delayMs(1000)
@@ -1009,28 +1247,27 @@ export default function abilityTest() {
       await driver.delayMs(1000)
       // 跳转音频文件管理页
       let library = await mediaLibrary.getMediaLibrary(getContext())
-      let fileKeyObj = await mediaLibrary.FileKey
-      let audioFetchOption = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
+      let audioFetchOption: mediaLibrary.MediaFetchOptions = {
+        selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
         selectionArgs: [mediaLibrary.MediaType.AUDIO.toString()],
       }
-      let fetchFileResult: mediaLibrary.FetchFileResult = undefined
+      let fetchFileResult: mediaLibrary.FetchFileResult | undefined = undefined
       try {
         fetchFileResult = await library.getFileAssets(audioFetchOption)
       } catch (error) {
         expect().assertFail()
       }
       // 音频数量为0，则显示没有相关文件
-      if (fetchFileResult.getCount() === 0) {
+      if (fetchFileResult?.getCount() === 0) {
         await driver.assertComponentExist(ON.id('no_file'))
         await driver.delayMs(1000)
       } else {
         // 否则显示全部音频文件
         await driver.assertComponentExist(ON.type('ListItem'))
         let btnItem = await driver.findComponents(ON.type('ListItem'))
-        Logger.info(TAG, 'audio item length = ' + btnItem.length + ' and audio file count =' + fetchFileResult.getCount())
-        if (fetchFileResult.getCount() < MAX_NUM) {
-          expect(btnItem.length).assertEqual(fetchFileResult.getCount())
+        Logger.info(TAG, 'audio item length = ' + btnItem.length + ' and audio file count =' + fetchFileResult?.getCount())
+        if (fetchFileResult!.getCount() < MAX_NUM) {
+          expect(btnItem.length).assertEqual(fetchFileResult?.getCount())
         } else {
           expect(btnItem.length).assertEqual(MAX_NUM)
         }
@@ -1057,9 +1294,15 @@ export default function abilityTest() {
     })
 
     /**
-     * 点击主页中压缩包
+     * @tc.number ZipFunction_001
+     * @tc.name ZipFunction_001
+     * @tc.desc 点击主页中压缩包
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it(BUNDLE + 'ZipFunction_001', 0, async function () {
+    it(BUNDLE + 'ZipFunction_001', 0, async () => {
       Logger.info(TAG, BUNDLE + 'ZipFunction_001 begin')
       let driver = await Driver.create()
       await driver.delayMs(1000)
@@ -1074,7 +1317,13 @@ export default function abilityTest() {
     })
 
     /**
-     * 点击主页中我的手机
+     * @tc.number MobileFunction_001
+     * @tc.name MobileFunction_001
+     * @tc.desc 点击主页中我的手机
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
     it('MobileFunction_001', 0, async function () {
       Logger.info(TAG, 'MobileFunction_001 begin');
@@ -1118,6 +1367,16 @@ export default function abilityTest() {
       await driver.delayMs(200);
       Logger.info(TAG, BUNDLE + 'MobileFunction_001 end');
     });
+
+    /**
+     * @tc.number MobileFunction_002
+     * @tc.name MobileFunction_002
+     * @tc.desc 测试新建文件夹功能
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
+     */
     it('MobileFunction_002', 0, async function () {
       Logger.info(TAG, 'MobileFunction_002 begin');
       let driver = Driver.create();
@@ -1149,6 +1408,16 @@ export default function abilityTest() {
       await driver.delayMs(500);
       Logger.info(TAG, BUNDLE + 'MobileFunction_002 end');
     });
+    
+    /**
+     * @tc.number MobileFunction_003
+     * @tc.name MobileFunction_003
+     * @tc.desc 测试复制
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
+     */
     it('MobileFunction_003', 0, async function () {
       Logger.info(TAG, 'MobileFunction_003 begin');
       let driver = Driver.create();
@@ -1183,6 +1452,16 @@ export default function abilityTest() {
       await driver.delayMs(500);
       Logger.info(TAG, 'MobileFunction_003 end');
     });
+
+    /**
+     * @tc.number MobileFunction_004
+     * @tc.name MobileFunction_004
+     * @tc.desc 测试重命名
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
+     */
     it('MobileFunction_004', 0, async function () {
       Logger.info(TAG, 'MobileFunction_004 begin');
       let driver = Driver.create();
@@ -1204,6 +1483,16 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text('testFileNew'));
       Logger.info(TAG, BUNDLE + 'MobileFunction_004 end');
     });
+
+    /**
+     * @tc.number MobileFunction_005
+     * @tc.name MobileFunction_005
+     * @tc.desc 测试更多--修改时间
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
+     */
     it('MobileFunction_005', 0, async function () {
       Logger.info(TAG, 'MobileFunction_005 begin');
       let driver = Driver.create();
@@ -1230,6 +1519,16 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text('2023/10/10 10:10:10'));
       Logger.info(TAG, 'MobileFunction_005 end');
     });
+
+    /**
+     * @tc.number MobileFunction_006
+     * @tc.name MobileFunction_006
+     * @tc.desc 测试更多--删除
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
+     */
     it('MobileFunction_006', 0, async function () {
       Logger.info(TAG, 'MobileFunction_006 begin');
       let driver = Driver.create();
@@ -1256,12 +1555,20 @@ export default function abilityTest() {
       await driver.delayMs(200);
       Logger.info(TAG, 'MobileFunction_006 end');
     });
-    /** 场景：检验FileManager获取权限功能
-     *  输入：调用requestPermission
-     *  预期输出：点击允许后能够成功调用createFileAsset，getFileAssets
-     *  检验接口：FileManager.requestPermission
+
+    /**
+     * @tc.number RequestPermissionFunction_002
+     * @tc.name RequestPermissionFunction_002
+     * @tc.desc 场景：检验FileManager获取权限功能
+     *          输入：调用requestPermission
+     *          预期输出：点击允许后能够成功调用createFileAsset，getFileAssets
+     *          检验接口：FileManager.requestPermission
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it(BUNDLE + 'RequestPermissionFunction_002', 0, async function () {
+    it(BUNDLE + 'RequestPermissionFunction_002', 0, async () => {
       Logger.info(TAG, BUNDLE + 'Function_requestPermission_002 begin')
       let driver = await Driver.create()
       // 获取文件读写权限
@@ -1293,23 +1600,29 @@ export default function abilityTest() {
     })
 
     /**
-     *  场景：检验FileManager获取文件列表信息，创建文件能力
-     *  输入：分四种文件类型,依次插入5个文件
-     *  预期输出：检测所得结果数量正确，新增文件与创建文件一致
-     *  检验接口：FileManager.getFileAssets，FileManager.createFileAsset
+     * @tc.number GetFileAssetsFunction_001
+     * @tc.name GetFileAssetsFunction_001
+     * @tc.desc 场景：检验FileManager获取文件列表信息，创建文件能力
+     *          输入：分四种文件类型,依次插入5个文件
+     *          预期输出：检测所得结果数量正确，新增文件与创建文件一致
+     *          检验接口：FileManager.getFileAssets，FileManager.createFileAsset
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it(BUNDLE + 'GetFileAssetsFunction_001', 0, async function () {
+    it(BUNDLE + 'GetFileAssetsFunction_001', 0, async () => {
       Logger.info(TAG, BUNDLE + 'GetFileAssetsFunction_001 begin')
       let files = await FileManager.getFileAssets(ability.context, mediaLibrary.MediaType.IMAGE)
       // 删除原有文件
       for (let i = 0; i < files.getCount(); i++) {
         let fileAsset: mediaLibrary.FileAsset = await files.getNextObject()
-        if (fileAsset == undefined) {
+        if (fileAsset == null) {
           Logger.error(TAG, 'fileAsset undefined')
           continue
         }
         Logger.info(TAG, 'getFileAssetsByType success, fileAsset.displayName ' + i + ': ' + fileAsset.displayName +
-        ' data:' + fileAsset.dateAdded, +', ' + fileAsset.dateModified)
+        ' data:' + fileAsset.dateAdded + ', ' + fileAsset.dateModified)
         await FileManager.deleteFileAsset(fileAsset)
       }
       for (let i = 0; i < TYPE.length; i++) {
@@ -1319,20 +1632,20 @@ export default function abilityTest() {
         // 依次插入5个文件
         for (let j = 0; j < TEST_NUM; j++) {
           let name = 'newFile' + Date.now().toString() + TYPE[i][1]
-          let curFile = undefined
+          let curFile: mediaLibrary.FileAsset | undefined = undefined
           try {
             curFile = await FileManager.createFileAsset(ability.context, TYPE[i][0], TYPE[i][2], name)
           } catch (error) {
             Logger.error(TAG, 'GetFileAssetsFunction_001:createFileAsset failed')
           }
-          file.push(curFile);
+          file.push(curFile as mediaLibrary.FileAsset);
           await addNum++
           let result = await FileManager.getFileAssets(ability.context, TYPE[i][0])
           let num = await result.getCount()
           Logger.info(TAG, 'GetFileAssetsFunction_001:expect num is ' + (originalNum + addNum) + 'and result is ' + num)
           expect(num).assertEqual(originalNum + addNum)
           let lastObject = await result.getLastObject()
-          let isEqual = await fileAssertEqual(lastObject, curFile)
+          let isEqual = await fileAssertEqual(lastObject, curFile as mediaLibrary.FileAsset)
           expect(isEqual).assertTrue()
         }
       }
@@ -1340,14 +1653,20 @@ export default function abilityTest() {
     })
 
     /**
-     *  场景：验证文件是否支持预览函数功能
-     *  输入：分别输入未定义对象,mock对象，正常对象
-     *  预期输出：检测所得结果数量正确，新增文件与创建文件一致
-     *  检验接口：FileManager.isSupportPreview
+     * @tc.number IsSupportPreviewFunction_001
+     * @tc.name IsSupportPreviewFunction_001
+     * @tc.desc 场景：验证文件是否支持预览函数功能
+     *          输入：分别输入未定义对象,mock对象，正常对象
+     *          预期输出：检测所得结果数量正确，新增文件与创建文件一致
+     *          检验接口：FileManager.isSupportPreview
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it(BUNDLE + 'IsSupportPreviewFunction_001', 0, async function () {
+    it(BUNDLE + 'IsSupportPreviewFunction_001', 0, async () => {
       Logger.info(TAG, BUNDLE + 'IsSupportPreviewFunction_001 begin')
-      let name: string = undefined
+      let name: string = ''
       expect(FileManager.isSupportPreview(name)).assertFalse()
       name = MOCK + Date.now() + '.txt'
       expect(FileManager.isSupportPreview(name)).assertFalse()
@@ -1357,12 +1676,18 @@ export default function abilityTest() {
     })
 
     /**
-     *  场景：验证通过文件名称获取文件对象功能
-     *  输入：通过name创建四种类型文件
-     *  预期输出：getFileAssetsByName获取文件与创建相同
-     *  检验接口：FileManager.getFileAssetsByName
+     * @tc.number GetFileAssetsByNameFunction_001
+     * @tc.name GetFileAssetsByNameFunction_001
+     * @tc.desc 场景：验证通过文件名称获取文件对象功能
+     *          输入：通过name创建四种类型文件
+     *          预期输出：getFileAssetsByName获取文件与创建相同
+     *          检验接口：FileManager.getFileAssetsByName
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it(BUNDLE + 'GetFileAssetsByNameFunction_001', 0, async function () {
+    it(BUNDLE + 'GetFileAssetsByNameFunction_001', 0, async () => {
       Logger.info(TAG, BUNDLE + 'GetFileAssetsByNameFunction_001 begin')
       for (let i = 0; i < TYPE.length; i++) {
         let name = 'newFile' + Date.now().toString() + TYPE[i][1]
@@ -1375,12 +1700,18 @@ export default function abilityTest() {
     })
 
     /**
-     *  场景：验证创建模拟文件功能
-     *  输入：调用5次FileManager.createTxtFileAsset
-     *  预期输出：成功创建五个模拟文档对象
-     *  检验接口：FileManager.createTxtFileAsset
+     * @tc.number CreateTxtFileAssetFunction_001
+     * @tc.name CreateTxtFileAssetFunction_001
+     * @tc.desc 场景：验证创建模拟文件功能
+     *          输入：调用5次FileManager.createTxtFileAsset
+     *          预期输出：成功创建五个模拟文档对象
+     *          检验接口：FileManager.createTxtFileAsset
+     * @tc.size MEDIUM
+     * @tc.type Function
+     * @tc.level Level 0
+     * @tc.require
      */
-    it(BUNDLE + 'CreateTxtFileAssetFunction_001', 0, async function () {
+    it(BUNDLE + 'CreateTxtFileAssetFunction_001', 0, async () => {
       Logger.info(TAG, BUNDLE + 'CreateTxtFileAssetFunction_001 begin')
       let result = await FileManager.getFileAssets(ability.context, TYPE[2][0])
       let num = await result.getCount()

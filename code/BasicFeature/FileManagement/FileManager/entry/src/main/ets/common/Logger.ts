@@ -54,3 +54,6 @@ export class Logger {
 
 export default new Logger('[Sample_FileManager]');
 
+export function myparseInt(s: string, n: number) {
+  return parseInt(s, n)
+}

@@ -17,7 +17,7 @@ import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import { Logger } from '@ohos/feature-file-manager'
 
 export default class FileDataSource implements IDataSource {
-  private listener: DataChangeListener
+  private listener: DataChangeListener | undefined = undefined
   private fileList: Array<mediaLibrary.FileAsset> = new Array<mediaLibrary.FileAsset>()
 
   totalCount(): number {
@@ -41,7 +41,7 @@ export default class FileDataSource implements IDataSource {
     fileAssets.forEach(element => {
       this.fileList.push(element)
     })
-    this.listener.onDataReloaded()
+    this.listener?.onDataReloaded()
   }
 
   deleteData(id: number): void {
@@ -58,6 +58,6 @@ export default class FileDataSource implements IDataSource {
   }
 
   unregisterDataChangeListener(listener: DataChangeListener): void {
-    this.listener = undefined
+    this.listener = listener
   }
 }
