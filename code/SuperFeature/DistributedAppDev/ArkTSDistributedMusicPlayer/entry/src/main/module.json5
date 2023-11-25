@@ -30,7 +30,7 @@
     "uiSyntax": "ets",
     "abilities": [
       {
-        "name": "MainAbility",
+        "name": "ohos.samples.distributedmusicplayer.MainAbility",
         "srcEntrance": "./ets/MainAbility/MainAbility.ts",
         "description": "$string:MainAbility_desc",
         "icon": "$media:icon",
@@ -56,7 +56,7 @@
         "srcEntrance": "./ets/serviceability/ServiceAbility.ts",
         "label": "$string:ServiceAbility_label",
         "description": "$string:ServiceAbility_desc",
-        "type": "form"
+        "type": "service"
       }
     ],
     "requestPermissions": [
@@ -68,6 +68,9 @@
       },
       {
         "name": "ohos.permission.START_INVISIBLE_ABILITY"
+      },
+      {
+        "name": "ohos.permission.ACCESS_SERVICE_DM"
       }
     ]
   }

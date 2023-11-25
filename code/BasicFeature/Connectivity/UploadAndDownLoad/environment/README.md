@@ -1,10 +1,14 @@
 ## 上传下载应用服务器使用说明
 
+### HFS下载地址：
+
+https://nchc.dl.sourceforge.net/project/hfs/HFS/2.3m/hfs.exe
+
 ### 服务器配置：
 
 1.测试设备和电脑连接同一个局域网。
 
-2.电脑打开本目录下`hfs.exe`可执行文件。
+2.电脑打开下载好的`hfs.exe`可执行文件。
 
 3.hfs客户端配置：
 

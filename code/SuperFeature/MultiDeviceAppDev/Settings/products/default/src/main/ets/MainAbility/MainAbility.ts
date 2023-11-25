@@ -22,7 +22,7 @@ import { Logger } from '@ohos/common'
 const TAG: string = 'MainAbility'
 
 export default class MainAbility extends UIAbility {
-  storage: LocalStorage
+  storage: LocalStorage = new LocalStorage();
 
   onCreate(want, launchParam) {
     Logger.info(TAG, 'MainAbility onCreate')

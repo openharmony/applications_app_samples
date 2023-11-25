@@ -1,0 +1,33 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/hiDumper/ConditionPage",
+    "pages/hiDumper/GridPage",
+    "pages/hiDumper/HiDumperPage",
+    "pages/hiDumper/VisibilityPage",
+    "pages/dynamicImport/DynamicContentPageOne",
+    "pages/dynamicImport/DynamicEntryView",
+    "pages/dynamicImport/DynamicHome",
+    "pages/staticImport/StaticEntryView",
+    "pages/staticImport/StaticHome",
+    "pages/ifOrVisibility/IfOrVisibilityPage",
+    "pages/ifOrVisibility/AnimateBetterUseVisibility",
+    "pages/ifOrVisibility/AnimateWorseUseIf",
+    "pages/ifOrVisibility/StartBetterUseIf",
+    "pages/ifOrVisibility/StartWorseUseVisibility",
+    "pages/ifOrVisibility/RenderControlBetterWithStack",
+    "pages/ifOrVisibility/RenderControlWorseWithoutStack",
+    "pages/ifOrVisibility/IfBetterWithReusable",
+    "pages/ifOrVisibility/IfWorseWithoutReusable",
+    "pages/smartPerfHost/SmartPerfHostPage",
+    "pages/smartPerfHost/AppStartupAfterOptimizationPage",
+    "pages/smartPerfHost/AppStartupBeforeOptimizationPage",
+    "pages/smartPerfHost/FrameTimelineAfterOptimizationPage",
+    "pages/smartPerfHost/FrameTimelineBeforeOptimizationPage",
+    "pages/grid/GridColumnStartPage",
+    "pages/grid/GridLayoutOptionsPage",
+    "pages/grid/GridLazyForEachPage",
+    "pages/grid/GridPage",
+    "pages/smartPerfEditor/SmartPerfEditorPage"
+  ]
+}

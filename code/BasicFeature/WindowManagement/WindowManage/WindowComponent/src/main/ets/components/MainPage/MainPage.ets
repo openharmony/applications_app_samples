@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
-import window from '@ohos.window'
-import WindowManger from '../feature/WindowManger'
-import { WindowEventId, WindowType } from "../util/WindowConst"
-import common from '@ohos.app.ability.common'
-import Logger from '../util/Logger'
+import window from '@ohos.window';
+import common from '@ohos.app.ability.common';
+import WindowManger from '../feature/WindowManger';
+import { WindowEventId, WindowType } from "../util/WindowConst";
+import Logger from '../util/Logger';
 
 const windowAttribute: WindowType = {
   moveToWidth: 50, // 窗口移动X坐标
@@ -27,13 +27,13 @@ const windowAttribute: WindowType = {
   resetSizeHeight: 300, // 窗口高
   setPrivacyMode: true, // 窗口是否为隐私模式
   setBrightness: 1 // 窗口亮度
-}
+};
 
 @Component
 export struct WindowComponent {
-  @StorageLink("topHeight") topHeight: number = 0 // 窗口规避区域高
-  @StorageLink("topWidth") topWidth: number = 0 // 窗口规避区域宽
-  @Link videoSrc: Resource
+  @StorageLink("topHeight") topHeight: number = 0; // 窗口规避区域高
+  @StorageLink("topWidth") topWidth: number = 0; // 窗口规避区域宽
+  @Link videoSrc: Resource;
 
   build() {
     Column() {
@@ -51,24 +51,24 @@ export struct WindowComponent {
 
 @Component
 struct VideoWindow {
-  @State isPlaying: boolean = false
-  @Link videoSrc: Resource
+  @State isPlaying: boolean = false;
+  @Link videoSrc: Resource;
   @StorageLink('focusText') focusText: string = 'unknown';
-  videoController: VideoController = new VideoController()
-  private context: common.UIAbilityContext
-  private subWindow: window.WindowStage
-  private isPortrait: Boolean = true
-  private showSubWindow: Boolean = false
+  videoController: VideoController = new VideoController();
+  private context: common.UIAbilityContext;
+  private subWindow: window.WindowStage;
+  private isPortrait: Boolean = true;
+  private showSubWindow: Boolean = false;
 
   aboutToAppear() {
-    this.context = getContext(this) as common.UIAbilityContext
+    this.context = getContext(this) as common.UIAbilityContext;
     let data = {
       context: null,
       launchWant: null,
       subWindow: null
-    }
-    this.context.eventHub.emit("createWindow", data)
-    this.subWindow = data.subWindow
+    };
+    this.context.eventHub.emit("createWindow", data);
+    this.subWindow = data.subWindow;
   }
 
   build() {
@@ -89,40 +89,42 @@ struct VideoWindow {
           .controls(true)
           .autoPlay(true)
           .onClick(async () => {
-            Logger.info('onClick')
+            Logger.info('onClick');
             if (this.showSubWindow) {
-              this.videoController.start()
-              let windows = await this.subWindow?.getSubWindow()
-              windows[0]?.destroyWindow()
-              this.showSubWindow = false
+              this.videoController.start();
+              let windows = await this.subWindow?.getSubWindow();
+              windows[0]?.destroyWindow();
+              this.showSubWindow = false;
+              WindowManger.destorySubWindowCallback();
             } else {
-              this.videoController.pause()
-              WindowManger.initSubWindow(this.subWindow, windowAttribute)
-              this.showSubWindow = true
-            }
+              this.videoController.pause();
+              WindowManger.initSubWindow(this.subWindow, windowAttribute);
+              this.showSubWindow = true;
+            };
           })
           .onStart(() => {
-            this.isPlaying = true
+            this.isPlaying = true;
           })
           .onPause(() => {
-            this.isPlaying = false
+            this.isPlaying = false;
           })
 
-      Button($r("app.string.pages_textTwo"))
-        .id('windowBtn')
-        .onClick(() => {
-          if (this.isPortrait) {
-            this.videoController.requestFullscreen(true)
-            WindowManger.changeWindowDirection(this.subWindow, window.Orientation.LANDSCAPE)
-            this.isPortrait = false
-          } else {
-            this.videoController.requestFullscreen(true)
-            WindowManger.changeWindowDirection(this.subWindow, window.Orientation.PORTRAIT)
-            this.isPortrait = true
-          }
-        })
+        Button($r("app.string.pages_textTwo"))
+          .id('windowBtn')
+          .onClick(() => {
+            if (this.isPortrait) {
+              this.videoController.requestFullscreen(true);
+              WindowManger.changeWindowDirection(this.subWindow, window.Orientation.LANDSCAPE);
+              this.isPortrait = false;
+            } else {
+              this.videoController.requestFullscreen(true);
+              WindowManger.changeWindowDirection(this.subWindow, window.Orientation.PORTRAIT);
+              this.isPortrait = true;
+            };
+          })
       }
       .height('75%')
+
       Column() {
         Text(this.focusText)
           .id('focus')

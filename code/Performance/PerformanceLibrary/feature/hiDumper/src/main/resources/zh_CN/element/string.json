@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "showChange",
+      "value": "显隐切换"
+    },
+    {
+      "name": "visible",
+      "value": "Visible"
+    },
+    {
+      "name": "hidden",
+      "value": "Hidden"
+    },
+    {
+      "name": "none",
+      "value": "None"
+    },
+    {
+      "name": "title",
+      "value": "HiDumper查看组件信息"
+    },
+    {
+      "name": "check_component_tree",
+      "value": "查看应用组件树"
+    },
+    {
+      "name": "check_if_else_component",
+      "value": "查看if/else组件"
+    },
+    {
+      "name": "check_visibility",
+      "value": "查看visibility属性"
+    }
+  ]
+}

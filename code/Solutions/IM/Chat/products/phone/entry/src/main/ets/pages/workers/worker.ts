@@ -59,7 +59,7 @@ workerPort.onmessage = (e: MessageEvents): void => {
       // 下载完成之后执行解压操作
       zlib.decompressFile(inFilePath, filesDir, options).then(() => {
         let videoPath: string = `${filesDir}/${fileName}.mp4`;
-        workerPort.postMessage({ 'isComplete': true, 'filePath': videoPath });
+        workerPort.postMessage({ isComplete: true, filePath: videoPath });
         Logger.info('complete end');
       });
     });

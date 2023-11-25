@@ -23,7 +23,7 @@ import { Url } from '../../main/NavigationHomePage';
 export struct ShopCart {
   private url: string = '';
   @StorageLink('goodsListHeight') goodsListHeight: number = 100;
-  @State shoppingCartGoodsList: ProductDataModel[] | undefined = AppStorage.get('shoppingCartGoodsList');
+  @State shoppingCartGoodsList: number[] | undefined = AppStorage.get('shoppingCartGoodsList');
 
   build() {
     Column() {

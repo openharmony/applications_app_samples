@@ -23,6 +23,7 @@ import { KvStoreModel } from '../model/KvStoreModel'
 import { RemoteDeviceModel } from '../model/RemoteDeviceModel'
 import { transStrToNoteModel } from '../model/NoteDataModel'
 import Logger from '../util/Logger'
+import Want from '@ohos.app.ability.Want';
 
 const NOTES_CHANGE = 'notesChange'
 const EXIT = 'exit'
@@ -33,7 +34,7 @@ const TAG = 'KvstoreIndexPage'
 @Entry
 @Component
 struct Index {
-  private noteDataSource: NoteDataSource = new NoteDataSource([{ title: '', content: '' }])
+  private noteDataSource: NoteDataSource = new NoteDataSource([new NoteModel('', '')]);
   @State isDistributed: boolean = false
   private remoteDeviceModel: RemoteDeviceModel = new RemoteDeviceModel()
 
@@ -43,16 +44,18 @@ struct Index {
     try {
       atManager.requestPermissionsFromUser(context,['ohos.permission.DISTRIBUTED_DATASYNC']).then((data) => {
         Logger.info(TAG, `data: ${JSON.stringify(data)}`)
-      }).catch((err) => {
+      }).catch((err: object) => {
         Logger.info(TAG, `err: ${JSON.stringify(err)}`)
       })
     } catch (err) {
       Logger.info(TAG, `catch err->${JSON.stringify(err)}`);
     }
-    let want = JSON.parse(AppStorage.Get('wantMsg'))
+    let want = JSON.parse(AppStorage.Get('wantMsg')) as Want;
     Logger.info(TAG,`getWant =${JSON.stringify(want)}`);
-    if (want.parameters.isStage === 'Stage') {
-      this.isDistributed = true
+    if(want.parameters != undefined) {
+      if (want.parameters.isStage === 'Stage') {
+        this.isDistributed = true
+      }
     }
     kvStoreModel.setOnMessageReceivedListener(NOTES_CHANGE, (value) => {
       Logger.info(TAG,`NOTES_CHANGE${value}`)
@@ -63,10 +66,10 @@ struct Index {
             Logger.info(TAG,`terminateSelf finished, error=${error}`)
           })
         } else {
-          let str = value.substring(0, value.lastIndexOf('}]') + 2)
-          this.noteDataSource['dataArray'] = transStrToNoteModel(str)
+          let str: string = value.substring(0, value.lastIndexOf('}]') + 2);
+          this.noteDataSource.dataArray = transStrToNoteModel(str);
           this.noteDataSource.notifyDataReload()
-          let strNum = value.substring(value.lastIndexOf('numBegin') + 'numBegin'.length, value.lastIndexOf('numEnd'))
+          let strNum: string = value.substring(value.lastIndexOf('numBegin') + 'numBegin'.length, value.lastIndexOf('numEnd'));
           notesNum = Number(strNum)
         }
       }
@@ -75,22 +78,22 @@ struct Index {
 
   deleteNoteCallBack = (item: NoteModel) => {
     Logger.info(TAG, `deleteNote${JSON.stringify(item)}`);
-    let dataArray: NoteModel[] = this.noteDataSource['dataArray']
-    for (let i = 0;i < dataArray.length; i++) {
+    let dataArray: NoteModel[] = this.noteDataSource.dataArray;
+    for (let i = 0; i < dataArray.length; i++) {
       Logger.info(TAG, `i = ${i} and dataArray = ${JSON.stringify(dataArray[i])}`)
       if (dataArray[i].title === item.title) {
         Logger.info(TAG, `deleteNote index` + i);
-        this.noteDataSource['dataArray'].splice(i, 1)
+        this.noteDataSource.dataArray.splice(i, 1);
         break
       }
     }
     this.noteDataSource.notifyDataReload()
-    kvStoreModel.put(NOTES_CHANGE, JSON.stringify(this.noteDataSource['dataArray']) + 'numBegin' + notesNum + 'numEnd')
+    kvStoreModel.put(NOTES_CHANGE, JSON.stringify(this.noteDataSource.dataArray) + 'numBegin' + notesNum + 'numEnd');
   }
-  startAbilityCallBack = (key) => {
+  startAbilityCallBack = (key: string) => {
     Logger.info(TAG,`startAbilityCallBack${key}`);
     if (NOTES_CHANGE === key) {
-      kvStoreModel.put(NOTES_CHANGE, `${JSON.stringify(this.noteDataSource['dataArray'])}numBegin${notesNum}numEnd`)
+      kvStoreModel.put(NOTES_CHANGE, `${JSON.stringify(this.noteDataSource.dataArray)}numBegin${notesNum}numEnd`);
     }
     if (EXIT === key) {
       kvStoreModel.put(NOTES_CHANGE, EXIT)
@@ -100,13 +103,13 @@ struct Index {
   build() {
     Column() {
       TitleBar({
-        startAbilityCallBack: this.startAbilityCallBack.bind(this),
+        startAbilityCallBack: this.startAbilityCallBack,
         remoteDeviceModel: this.remoteDeviceModel,
         isDistributed: $isDistributed
       })
 
       Grid() {
-        LazyForEach(this.noteDataSource, (item, index) => {
+        LazyForEach(this.noteDataSource, (item: NoteModel, index) => {
           GridItem() {
             NoteListItem({
               note: item,
@@ -118,18 +121,15 @@ struct Index {
             Logger.info(TAG,`GridItem.click${item.title}`);
             if (item.title === '' && item.content === '') {
               notesNum += 1
-              this.noteDataSource['dataArray'][this.noteDataSource['dataArray'].length-1] = {
-                title: `note ${notesNum}`,
-                content: 'noteContent'
-              }
-              this.noteDataSource['dataArray'].push({ title: '', content: '' })
+              this.noteDataSource.dataArray[this.noteDataSource.dataArray.length-1] = new NoteModel(`note ${notesNum}`, 'noteContent');
+              this.noteDataSource.dataArray.push(new NoteModel('', ''));
               this.noteDataSource.notifyDataReload()
               if (this.isDistributed) {
-                kvStoreModel.put(NOTES_CHANGE, `${JSON.stringify(this.noteDataSource['dataArray'])}numBegin${notesNum}numEnd`)
+                kvStoreModel.put(NOTES_CHANGE, `${JSON.stringify(this.noteDataSource.dataArray)}numBegin${notesNum}numEnd`);
               }
             }
           })
-        }, item => item.title)
+        }, (item: NoteModel) => item.title)
       }
       .columnsTemplate('1fr 1fr 1fr')
       .columnsGap(10)

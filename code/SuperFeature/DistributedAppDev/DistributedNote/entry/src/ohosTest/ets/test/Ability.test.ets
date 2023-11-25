@@ -17,6 +17,7 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON } from '@ohos.UiTest';
 import hilog from '@ohos.hilog';
+import inputMethod from '@ohos.inputMethod';
 
 const TAG = '[Sample_DistributedNote]';
 const DOMAIN = 0xF811;
@@ -24,12 +25,12 @@ const BUNDLE = 'DistributedNote_';
 const DRIVER = Driver.create();
 
 export default function appTest() {
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
 
     /**
      * 拉起应用
      */
-    it(BUNDLE + 'StartAbilityFunction_001', 0, async function (done) {
+    it(BUNDLE + 'StartAbilityFunction_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbilityFunction_001 begin');
       let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
       try {
@@ -47,7 +48,7 @@ export default function appTest() {
     /**
      * 点击允许进行授权
      */
-    it(BUNDLE + 'ClickAcceptFunction_001', 0, async function (done) {
+    it(BUNDLE + 'ClickAcceptFunction_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickAcceptFunction_001 begin');
       await DRIVER.delayMs(1000);
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickAcceptFunction_001 clickAccept');
@@ -63,7 +64,7 @@ export default function appTest() {
     /**
      * 点击canvas item 进入分布式canvas界面
      */
-    it(BUNDLE + 'ChosenFunction_001', 0, async function () {
+    it(BUNDLE + 'ChosenFunction_001', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ChosenFunction_001 begin');
       // 点击note的listitem进入note界面
       await DRIVER.assertComponentExist(ON.id('chose0'));
@@ -77,7 +78,7 @@ export default function appTest() {
     /**
      * canvas界面点击按钮绘制ellipse，rect，点击delete删除与点击back回到主界面
      */
-    it(BUNDLE + 'CanvasFunction_001', 0, async function () {
+    it(BUNDLE + 'CanvasFunction_001', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'CanvasFunction_001 begin');
       // ellipse
       hilog.info(DOMAIN, TAG, BUNDLE + 'CanvasFunction_001 ellipse');
@@ -114,7 +115,7 @@ export default function appTest() {
     /**
      * 点击note item 进入分布式note界面
      */
-    it(BUNDLE + 'ChosenFunction_002', 0, async function () {
+    it(BUNDLE + 'ChosenFunction_002', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ChosenFunction_002 begin');
       // 点击note的listitem进入note界面
       await DRIVER.assertComponentExist(ON.id('chose1'));
@@ -128,7 +129,7 @@ export default function appTest() {
     /**
      * 点击添加按钮进入添加界面
      */
-    it(BUNDLE + 'AddFunction_001', 0, async function () {
+    it(BUNDLE + 'AddFunction_001', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'AddFunction_001 begin');
       // 点击添加按钮
       await DRIVER.assertComponentExist(ON.id('addNote'));
@@ -142,17 +143,21 @@ export default function appTest() {
     /**
      * 编辑标题、内容、标记颜色，点击提交按钮添加备忘录
      */
-    it(BUNDLE + 'EditFunction_001', 0, async function () {
+    it(BUNDLE + 'EditFunction_001', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'EditFunction_001 begin');
       // 输入标题
+      let inputMethodController = inputMethod.getController();
       await DRIVER.assertComponentExist(ON.id('titleInput'));
       let title = await DRIVER.findComponent(ON.id('titleInput'));
       await title.inputText('music');
+      inputMethodController.stopInputSession();
       hilog.info(DOMAIN, TAG, BUNDLE + 'EditFunction_001 inputContent');
       // 输入内容
       await DRIVER.assertComponentExist(ON.id('contentInput'));
       let content = await DRIVER.findComponent(ON.id('contentInput'));
       await content.inputText('this is a folk music');
+      inputMethodController.stopInputSession();
+      await DRIVER.delayMs(1000);
       hilog.info(DOMAIN, TAG, BUNDLE + 'EditFunction_001 clickSaveNote');
       // 点击保存
       await DRIVER.assertComponentExist(ON.id('saveNote'));
@@ -166,19 +171,23 @@ export default function appTest() {
     /**
      * 修改备忘录
      */
-    it(BUNDLE + 'UpdateNoteFunction_001', 0, async function () {
+    it(BUNDLE + 'UpdateNoteFunction_001', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'UpdateNoteFunction_001 begin');
       let noteData = await DRIVER.findComponent(ON.id('music'));
       await noteData.click();
       // 输入标题
+      let inputMethodController = inputMethod.getController();
       await DRIVER.assertComponentExist(ON.id('titleInput'));
       let title = await DRIVER.findComponent(ON.id('titleInput'));
       await title.inputText('book');
+      inputMethodController.stopInputSession();
       hilog.info(DOMAIN, TAG, BUNDLE + 'SaveNoteFunction_001 inputContent');
       // 输入内容
       await DRIVER.assertComponentExist(ON.id('contentInput'));
       let content = await DRIVER.findComponent(ON.id('contentInput'));
       await content.inputText('this is a history book');
+      inputMethodController.stopInputSession();
+      await DRIVER.delayMs(1000);
       hilog.info(DOMAIN, TAG, BUNDLE + 'SaveNoteFunction_001 clickSaveNote');
       // 点击保存
       await DRIVER.assertComponentExist(ON.id('saveNote'));
@@ -193,7 +202,7 @@ export default function appTest() {
     /**
      * 点击清除可以清除备忘录
      */
-    it(BUNDLE + 'ClearNoteFunction_001', 0, async function () {
+    it(BUNDLE + 'ClearNoteFunction_001', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClearNoteFunction_001 begin');
       // 点击清除
       await DRIVER.assertComponentExist(ON.id('clearNote'));

@@ -13,17 +13,17 @@
  * limitations under the License.
  */
 
-import image from '@ohos.multimedia.image'
-import CommonEvent from '@ohos.commonEvent'
-import MissionInfo from '../bean/MisssionInfo'
-import MissionModel from '../model/MissionModel'
-import { EventConstants, LauncherAbilityManager, Logger, ResourceManager } from '@ohos/base'
+import image from '@ohos.multimedia.image';
+import CommonEvent from '@ohos.commonEvent';
+import MissionInfo from '../../../../../../base/src/main/ets/default/bean/MisssionInfo';
+import MissionModel from '../model/MissionModel';
+import { EventConstants, LauncherAbilityManager, Logger, ResourceManager } from '@ohos/base';
 
 
 const TAG: string = 'MissionItem'
-const MISSION_OPERATE : ESObject = {
-  CHANGE_LOCK: 0,
-  CLEAR: 1
+enum MISSION_OPERATE {
+  CHANGE_LOCK = 0,
+  CLEAR = 1
 }
 
 @Component

@@ -45,6 +45,10 @@ export { FormModel } from './src/main/ets/default/model/FormModel'
 
 export { MyDataSource } from './src/main/ets/default/model/BasicDataSource'
 
+export { LauncherDataSource } from './src/main/ets/default/model/BasicDataSource'
+
 export { CheckEmptyUtils } from './src/main/ets/default/utils/CheckEmptyUtils'
 
 export { Logger } from './src/main/ets/default/utils/Logger'
+
+export { FormCardItem } from './src/main/ets/default/bean/FormCardItem'

@@ -17,13 +17,13 @@ import { NoteModel } from '../model/NoteDataModel'
 
 @Component
 export struct NoteListItem {
-  private note: NoteModel = null
-  private noteID:number = null
-  private deleteNoteCallBack = null
+  private note?: NoteModel = undefined;
+  private noteID?: number = undefined;
+  private deleteNoteCallBack: (note: NoteModel) => void = (note: NoteModel) => {};
 
   build() {
     Column() {
-      if (this.note.title === '' && this.note.content === '') {
+      if (this.note!.title === '' && this.note!.content === '') {
         Image($r('app.media.add'))
           .id('add')
           .objectFit(ImageFit.Contain)
@@ -31,14 +31,14 @@ export struct NoteListItem {
       } else {
         Stack({ alignContent: Alignment.TopEnd }) {
           Column() {
-            Text(this.note.title)
+            Text(this.note!.title)
               .fontColor(Color.Black)
               .fontSize(20)
               .height('50%')
               .width('100%')
               .textAlign(TextAlign.Center)
               .margin({ top: 20 })
-            Text(this.note.content)
+            Text(this.note!.content)
               .fontColor(Color.Gray)
               .fontSize(18)
               .width('100%')

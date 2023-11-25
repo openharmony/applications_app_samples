@@ -324,7 +324,7 @@ interface Params {
   selectedIndexChange = (selectedIndex: number) => {
     if (this.context !== null && selectedIndex === 0) {
       this.context.startAbility({ bundleName: 'ohos.samples.distributedmusicplayer',
-        abilityName: 'MainAbility',
+        abilityName: 'ohos.samples.distributedmusicplayer.MainAbility',
         deviceId: this.deviceLists[selectedIndex].deviceId,
         parameters: {
           isFA: 'EXIT'
@@ -607,7 +607,7 @@ interface Params {
         .selectedColor('#ff0c4ae7')
         .onChange((value: number, mode: SliderChangeMode) => {
           this.currentProgress = value;
-          if (typeof (this.totalMs) === 'number') {
+          if (typeof (this.totalMs) !== 'number') {
             this.currentProgress = 0;
             Logger.info(TAG, `setProgress ignored, totalMs= ${this.totalMs}`);
             return;

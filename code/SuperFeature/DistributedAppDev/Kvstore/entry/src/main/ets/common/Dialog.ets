@@ -20,7 +20,7 @@ export struct DeviceDialog {
   controller: CustomDialogController
   private deviceList: Array<DeviceDataModel> = []
   private selectedIndex: number = 0
-  private handleSelectDevice: (selectedIndex: number) => void
+  private handleSelectDevice: (selectedIndex: number) => void = (selectedIndex: number)=>{};
 
   build() {
     Column() {
@@ -31,7 +31,7 @@ export struct DeviceDialog {
         .fontColor(Color.Black)
         .fontWeight(FontWeight.Bold)
       List() {
-        ForEach(this.deviceList, (item, index) => {
+        ForEach(this.deviceList, (item: DeviceDataModel, index: number) => {
           ListItem() {
             Row() {
               Text(item.deviceName)
@@ -53,7 +53,7 @@ export struct DeviceDialog {
               this.handleSelectDevice(index)
             })
           }
-        }, item => item.deviceName)
+        }, (item: DeviceDataModel) => item.deviceName)
       }
       .layoutWeight(1)
 

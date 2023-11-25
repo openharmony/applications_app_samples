@@ -13,21 +13,24 @@
  * limitations under the License.
  */
 
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
-import UIAbility from '@ohos.app.ability.UIAbility'
-import Window from '@ohos.window'
-import { Hypium } from '@ohos/hypium'
-import testsuite from '../test/List.test'
-import Logger from '../util/Logger'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Window from '@ohos.window';
+import { Hypium } from '@ohos/hypium';
+import testsuite from '../test/List.test';
+import Logger from '../util/Logger';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { BusinessError } from '@ohos.base';
 
 export default class TestAbility extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     Logger.info(`TestAbility onCreate.`);
     Logger.info(`launchParam:${JSON.stringify(launchParam)} want param: ${JSON.stringify(want)}`);
-    var abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-    var abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
+    let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+    let abilityDelegatorArguments: AbilityDelegatorRegistry.AbilityDelegatorArgs = AbilityDelegatorRegistry.getArguments();
     Logger.info('start run testcase!!!');
-    Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
+    Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
   }
 
   onDestroy() {
@@ -36,7 +39,7 @@ export default class TestAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: Window.WindowStage) {
     Logger.info('TestAbility onWindowStageCreate');
-    windowStage.loadContent('testability/pages/Index', (err, data) => {
+    windowStage.loadContent('testability/pages/Index', (err: BusinessError, data) => {
       if (err.code) {
         Logger.info('Failed to load the content. Cause: ', JSON.stringify(err) ?? '');
         return;

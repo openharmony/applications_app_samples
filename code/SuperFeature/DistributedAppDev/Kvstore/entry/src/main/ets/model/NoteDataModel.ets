@@ -25,9 +25,10 @@ export class NoteModel {
 
 export function transStrToNoteModel(str: string): Array<NoteModel> {
   let noteList: Array<NoteModel> = []
-  var notes = JSON.parse(str)
-  for (var note in notes) {
-    noteList.push({ title: notes[note].title, content: notes[note].content })
+  let notes: Array<NoteModel> = [];
+  notes = JSON.parse(str);
+  for (let note = 0; note < notes.length; ++note ) {
+    noteList.push(new NoteModel(notes[note].title, notes[note].content));
   }
   return noteList
 }

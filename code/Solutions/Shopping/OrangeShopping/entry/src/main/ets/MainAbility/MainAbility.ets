@@ -18,7 +18,11 @@ import { logger } from '@ohos/details-page-component';
 import { notificationUtil } from '@ohos/notification';
 import { QRCodeScanConst } from '@ohos/scan-component';
 import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
-import  Want from '@ohos.app.ability.Want';
+import Want from '@ohos.app.ability.Want';
+import window from '@ohos.window';
+import common from '@ohos.app.ability.common';
+import { EventData } from '../utils/TypeClass';
+import display from '@ohos.display';
 
 const TAG: string = 'MainAbility';
 const EVENT: string = 'getAbilityData';
@@ -37,7 +41,16 @@ const CAMERA_STATUS_STR: string = 'cameraStatus';
 export default class MainAbility extends UIAbility {
   onCreate(want: Want): void {
     logger.info(TAG, 'onCreate');
-    this.context.eventHub.on(EVENT, (data: ESObject) => {
+
+    AppStorage.setOrCreate('context', this.context);
+    window.getLastWindow(this.context, (err, data) => {
+      if (data && data.getWindowProperties()) {
+        let windowWidth = data.getWindowProperties().windowRect.width;
+        this.screenBreakPoints(windowWidth);
+      }
+    })
+
+    this.context.eventHub.on(EVENT, (data: EventData) => {
       data.context = this.context;
       data.launchWant = want;
     });
@@ -61,16 +74,27 @@ export default class MainAbility extends UIAbility {
     logger.info(TAG, 'onDestroy');
   }
 
-  onWindowStageCreate(windowStage: ESObject): void {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability
     logger.info(TAG, 'onWindowStageCreate');
+    windowStage.getMainWindow((err, data) => {
+      let windowClass = data;
+      try {
+        windowClass.on('windowSizeChange', (data) => {
+          this.screenBreakPoints(data.width);
+        })
+      } catch (exception) {
+        logger.info(TAG, 'onWindowStageCreateFail');
+      }
+    })
 
-    windowStage.setUIContent(this.context, INDEX_UIL, null);
+    windowStage.loadContent(INDEX_UIL);
   }
 
   onWindowStageDestroy(): void {
     // Main window is destroyed, release UI related resources
     logger.info(TAG, 'onWindowStageDestroy');
+
   }
 
   onForeground(): void {
@@ -82,5 +106,21 @@ export default class MainAbility extends UIAbility {
   onBackground(): void {
     // Ability has back to background
     logger.info(TAG, 'onBackground');
+  }
+
+  screenBreakPoints(data: number) {
+    let displayClass: display.Display | undefined = undefined;
+    let screenDpi: number = 0;
+    displayClass = display.getDefaultDisplaySync();
+    screenDpi = displayClass.densityDPI;
+    AppStorage.setOrCreate('dpi', screenDpi);
+    let windowWidth = data / (screenDpi / 160);
+    if (windowWidth >= 320 && windowWidth < 520 || windowWidth < 320) {
+      AppStorage.setOrCreate('breakPoint', 'sm');
+    } else if (windowWidth >= 520 && windowWidth < 840) {
+      AppStorage.setOrCreate('breakPoint', 'md');
+    } else if (windowWidth >= 840) {
+      AppStorage.setOrCreate('breakPoint', 'lg');
+    }
   }
 }

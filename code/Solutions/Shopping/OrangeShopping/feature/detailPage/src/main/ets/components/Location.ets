@@ -24,10 +24,10 @@ export struct Location {
   @Link currentLocation: string;
 
   @Builder
-  cityList(city: ESObject) {
+  cityList(city: CityType) {
     if (this.currentLocation === city.name) {
       List() {
-        ForEach(city.city, (twoCity: ESObject) => {
+        ForEach(city.city, (twoCity: CityType) => {
           ListItem() {
             Column() {
               Text(`${twoCity}`)
@@ -135,19 +135,19 @@ export struct Location {
                       .fontColor($r('app.color.blank'))
                       .width('100%')
 
-                    ForEach(index.city, (item: ESObject) => {
-                      Text(`${item.name === undefined ? item : item.name}`)
+                    ForEach(index.city, (item: CityType|string) => {
+                      Text(`${(item as CityType).name === undefined ? item : (item as CityType).name}`)
                         .height(30)
                         .fontSize(14)
                         .width('100%')
                         .onClick(() => {
-                          if (item.name === undefined) {
-                            this.currentLocation = item;
+                          if ((item as CityType).name === undefined) {
+                            this.currentLocation = item as string;
                           } else {
-                            this.currentLocation = item.name;
+                            this.currentLocation = (item as CityType).name;
                           }
                         })
-                      this.cityList(item)
+                      this.cityList(item as CityType)
                     })
                   }
                 }

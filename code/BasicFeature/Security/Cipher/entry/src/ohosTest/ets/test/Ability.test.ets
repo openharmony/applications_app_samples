@@ -17,6 +17,7 @@ import { describe, it, expect } from '@ohos/hypium'
 import { Driver, ON } from '@ohos.UiTest'
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 import Logger from '../../../main/ets/model/Logger'
+import inputMethod from '@ohos.inputMethod'
 
 const TAG = '[Sample_Cipher]'
 const BUNDLE = 'Cipher_'
@@ -98,6 +99,8 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('encryptionInput'))
       let encryptionInput = await driver.findComponent(ON.id('encryptionInput'))
       await encryptionInput.inputText('a')
+      let inputMethodController = inputMethod.getController()
+      inputMethodController.stopInputSession()
       let encryptionContent = await encryptionInput.getText()
       Logger.info(TAG, BUNDLE + `EncryptionFunction_001 select encryptionContent:${encryptionContent}`)
       expect(encryptionContent).assertEqual('a')
@@ -157,6 +160,8 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('decryptInput'))
       let decryptInput = await driver.findComponent(ON.id('decryptInput'))
       await decryptInput.inputText('ZtJpi1Z5BwPPXqXYRHGthQ==')
+      let inputMethodController = inputMethod.getController()
+      inputMethodController.stopInputSession()
       let decryptContent = await decryptInput.getText()
       Logger.info(TAG, BUNDLE + `EncryptionFunction_001 select decryptContent:${decryptContent}`)
       expect(decryptContent).assertEqual('ZtJpi1Z5BwPPXqXYRHGthQ==')

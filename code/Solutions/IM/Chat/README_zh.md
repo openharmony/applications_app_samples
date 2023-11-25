@@ -68,6 +68,8 @@ products/phone/entry/src/main/ets
 
 懒加载：开发框架提供数据懒加载（LazyForEach组件）从提供的数据源中按需迭代数据，并在每次迭代过程中创建相应的组件。
 
+多线程：开发框架提供[多线程并发能力](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/performance/multi_thread_capability.md/)，允许在同一时间段内同时执行多段代码，进行大量或调度点较分散的任务开发和处理。
+
 ### 具体实现
 
 1、定义要跳转子页面：在products/phone/entry/pages/index.ets中通过TabContent()

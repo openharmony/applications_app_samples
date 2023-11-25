@@ -20,7 +20,7 @@ const TAG = 'BasicDataSource'
 
 
 export default class NoteDataSource {
-  private dataArray: NoteModel[] = []
+  public dataArray: NoteModel[] = []
 
   constructor(data: NoteModel[]) {
     this.dataArray = data

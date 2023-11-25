@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon_play</title>
+    <defs>
+        <path d="M3,3.04407579 L3,12.9559242 C3,13.6923039 3.59695367,14.2892575 4.33333333,14.2892575 C4.57867301,14.2892575 4.81925613,14.2215657 5.02860001,14.0936333 L13.1382942,9.13770911 C13.7666336,8.75372393 13.9647218,7.93307271 13.5807366,7.30473332 C13.4704385,7.12424546 13.318782,6.97258902 13.1382942,6.86229089 L5.02860001,1.90636667 C4.40026062,1.52238149 3.57960941,1.72046971 3.19562422,2.34880911 C3.06769185,2.55815299 3,2.79873611 3,3.04407579 Z" id="path-1"></path>
+    </defs>
+    <g id="icon_play" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="矩形" x="0" y="0" width="28" height="28"></rect>
+        <path d="M14,2 C7.372583,2 2,7.372583 2,14 C2,20.627417 7.372583,26 14,26 C20.627417,26 26,20.627417 26,14 C26,7.372583 20.627417,2 14,2 Z M13.875,4 C19.4668831,4 24,8.53311691 24,14.125 C24,19.7168831 19.4668831,24.25 13.875,24.25 C8.28311691,24.25 3.75,19.7168831 3.75,14.125 C3.75,8.53311691 8.28311691,4 13.875,4 Z" id="椭圆形" fill-opacity="0.2" fill="#FF1949" fill-rule="nonzero"></path>
+        <path d="M3,14 C3,20.0751322 7.92486775,25 14,25 C20.0751322,25 25,20.0751322 25,14 C25,7.92486775 20.0751322,3 14,3" id="路径" stroke="#FF1949" stroke-width="2" stroke-linecap="round"></path>
+        <g id="ic/play/ic_play" transform="translate(7.500000, 6.000000)">
+            <g id="symbol/frame/symbol_grid24-copy-2"></g>
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Path-46" fill="#FF1949" xlink:href="#path-1"></use>
+            <g id="color/light/#000000" mask="url(#mask-2)" fill="#FF1949">
+                <g transform="translate(-5.333333, -5.333333)" id="color/#000000">
+                    <rect x="0" y="0" width="26.6666667" height="26.6666667"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

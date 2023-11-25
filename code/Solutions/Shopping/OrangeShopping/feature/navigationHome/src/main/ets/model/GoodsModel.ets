@@ -161,13 +161,13 @@ export class TitleBarModel {
 
 export class ProductDataModel {
   id: number;
-  uri: Resource | undefined = undefined;
-  title: Resource | undefined = undefined;
-  info: Resource | undefined = undefined;
-  labels: Resource | undefined = undefined;
-  price: Resource | undefined = undefined;
+  uri: ResourceStr;
+  title: ResourceStr;
+  info: ResourceStr;
+  labels: ResourceStr;
+  price: ResourceStr;
 
-  constructor(id: number, uri: Resource, title: Resource, info: Resource, labels: Resource, price: Resource) {
+  constructor(id: number, uri: ResourceStr, title: ResourceStr, info: ResourceStr, labels: ResourceStr, price: ResourceStr) {
     this.id = id;
     this.uri = uri;
     this.info = info;

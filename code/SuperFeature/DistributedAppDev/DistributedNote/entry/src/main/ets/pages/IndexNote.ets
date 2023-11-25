@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+import deviceManager from '@ohos.distributedDeviceManager';
 import router from '@ohos.router';
 import common from '@ohos.app.ability.common';
 import { BUNDLE, ABILITY } from '../model/Const';
@@ -36,13 +36,13 @@ struct IndexNote {
   private sessionId: string = '';
   @StorageLink('sessionId') globalSessionId: string = '';
   @StorageLink('objectModel') globalObject: DistributedObjectModel = new DistributedObjectModel();
-  @State devices: Array<deviceManager.DeviceInfo> = [];
+  @State devices: Array<deviceManager.DeviceBasicInfo> = [];
   @State isOnline: boolean = false;
   @State notes: Array<Note> = [];
   private noteDataSource : NoteDataSource = new NoteDataSource();
 
   onPageShow() {
-    this.noteDataSource['dataArray'] = this.globalObject.distributedObject.documents;
+    this.noteDataSource.dataArray = this.globalObject.distributedObject.documents;
     this.noteDataSource.notifyDataReload();
     Logger.info(TAG, `this.sessionId = ${this.sessionId}`);
     Logger.info(TAG, `globalSessionId = ${this.globalSessionId}`);
@@ -55,7 +55,7 @@ struct IndexNote {
   share() {
     Logger.info(TAG, `sessionId = ${this.sessionId}`);
     this.globalObject.setChangeCallback(() => {
-      this.noteDataSource['dataArray'] = this.globalObject.distributedObject.documents;
+      this.noteDataSource.dataArray = this.globalObject.distributedObject.documents;
       this.noteDataSource.notifyDataReload();
     })
     this.globalObject.setStatusCallback((session, networkId, status) => {
@@ -72,21 +72,21 @@ struct IndexNote {
 
   clearSelectState() {
     this.devices = [];
-    this.dialogController.close();
+    this.dialogController?.close();
     this.dialogController = undefined;
   }
 
-  onSelectedDevice = (selectedIndex) => {
+  onSelectedDevice = (selectedIndex: number) => {
     this.selectedIndex = selectedIndex;
     Logger.info(TAG, 'start ability ......');
     if (RemoteDeviceModel === null || RemoteDeviceModel.discoverDevices.length <= 0) {
       Logger.info(TAG, `start ability device:${JSON.stringify(this.devices)}`);
-      this.startAbility(this.devices[this.selectedIndex].networkId);
+      this.startAbility(this.devices[this.selectedIndex].networkId as string);
       this.clearSelectState();
       return;
     }
     Logger.info(TAG, 'start ability, needAuth');
-    RemoteDeviceModel.authenticateDevice(this.devices[this.selectedIndex], (device) => {
+    RemoteDeviceModel.authenticateDevice(this.devices[this.selectedIndex], (device: deviceManager.DeviceBasicInfo) => {
       Logger.info(TAG, 'auth and online finished');
       this.startAbility(device.networkId);
     })
@@ -94,11 +94,11 @@ struct IndexNote {
     this.clearSelectState();
   }
 
-  startAbility(deviceId) {
+  startAbility(deviceId: string) {
     this.globalObject = new DistributedObjectModel();
     this.sessionId = this.globalObject.genSessionId();
     AppStorage.SetOrCreate('sessionId', this.sessionId);
-    this.noteDataSource['dataArray'] = [];
+    this.noteDataSource.dataArray = [];
     this.noteDataSource.notifyDataReload();
     this.globalObject.off();
     this.share();
@@ -154,7 +154,7 @@ struct IndexNote {
             NoteItem({ note: item, index: index })
               .id(`${item.title}`)
           }
-        }, item => JSON.stringify(item))
+        }, (item: Note) => JSON.stringify(item))
       }
       .width('95%')
       .margin(10)
@@ -171,7 +171,7 @@ struct IndexNote {
         .id('clearNote')
         .onClick(() => {
           Logger.info(TAG, 'clear notes');
-          this.noteDataSource['dataArray'] = [];
+          this.noteDataSource.dataArray = [];
           this.noteDataSource.notifyDataReload();
           this.globalObject.clear();
           AppStorage.SetOrCreate('sessionId', this.sessionId);

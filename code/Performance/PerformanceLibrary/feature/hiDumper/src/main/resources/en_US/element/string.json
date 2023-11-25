@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "showChange",
+      "value": "showChange"
+    },
+    {
+      "name": "visible",
+      "value": "Visible"
+    },
+    {
+      "name": "hidden",
+      "value": "Hidden"
+    },
+    {
+      "name": "none",
+      "value": "None"
+    },
+    {
+      "name": "title",
+      "value": "HiDumper check component info"
+    },
+    {
+      "name": "check_component_tree",
+      "value": "Check component tree"
+    },
+    {
+      "name": "check_if_else_component",
+      "value": "Check if/else component"
+    },
+    {
+      "name": "check_visibility",
+      "value": "Check visibility"
+    }
+  ]
+}

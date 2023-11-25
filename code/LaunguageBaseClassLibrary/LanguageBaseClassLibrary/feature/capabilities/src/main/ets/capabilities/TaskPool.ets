@@ -83,7 +83,7 @@ export struct TaskPool {
                 this.clickAble = false;
                 this.msg = 'task is running';
                 await taskpool.execute(this.task)
-                  .then((res: ESObject) => {
+                  .then((res: Object) => {
                     this.numberOfExecutions = Number(JSON.parse(JSON.stringify(res)));
                   });
               }

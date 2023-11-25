@@ -14,7 +14,7 @@
  */
 
 import router from '@ohos.router';
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+import deviceManager from '@ohos.distributedDeviceManager';
 import common from '@ohos.app.ability.common';
 import { BUNDLE, ABILITY } from '../model/Const';
 import DistributedCanvasModel from '../model/DistributedCanvasModel';
@@ -42,11 +42,11 @@ struct IndexCanvas {
   @StorageLink('sessionId') globalSessionId: string = '';
   @StorageLink('canvasModel') globalObject: DistributedCanvasModel = new DistributedCanvasModel();
   @StorageLink('isOnline') globalIsOnline: boolean = false;
-  @State devices: Array<deviceManager.DeviceInfo> = [];
+  @State devices: Array<deviceManager.DeviceBasicInfo> = [];
   private canvasDataSource: CanvasDataSource = new CanvasDataSource();
 
   onPageShow() {
-    this.canvasDataSource['pathArray'] = this.globalObject.distributedCanvas.pathArray;
+    this.canvasDataSource.pathArray = this.globalObject.distributedCanvas.pathArray;
     this.canvasDataSource.notifyDataReload();
     Logger.info(TAG, `this.sessionId = ${this.sessionId}`);
     Logger.info(TAG, `globalSessionId = ${this.globalSessionId}`);
@@ -79,7 +79,7 @@ struct IndexCanvas {
   share() {
     Logger.info(TAG, `sessionId = ${this.sessionId}`)
     this.globalObject.setChangeCallback(() => {
-      this.canvasDataSource['pathArray'] = this.globalObject.distributedCanvas.pathArray;
+      this.canvasDataSource.pathArray = this.globalObject.distributedCanvas.pathArray;
       this.canvasDataSource.notifyDataReload();
     })
     this.globalObject.setStatusCallback((session, networkId, status) => {
@@ -97,21 +97,21 @@ struct IndexCanvas {
 
   clearSelectState() {
     this.devices = [];
-    this.dialogController.close();
+    this.dialogController?.close();
     this.dialogController = undefined;
   }
 
-  onSelectedDevice = (selectedIndex) => {
+  onSelectedDevice = (selectedIndex: number) => {
     this.selectedIndex = selectedIndex;
     Logger.info(TAG, 'start ability ......');
     if (RemoteDeviceModel === null || RemoteDeviceModel.discoverDevices.length <= 0) {
       Logger.info(TAG, `start ability device:${JSON.stringify(this.devices)}`);
-      this.startAbility(this.devices[this.selectedIndex].networkId);
+      this.startAbility(this.devices[this.selectedIndex].networkId as string);
       this.clearSelectState();
       return;
     }
     Logger.info(TAG, 'start ability, needAuth');
-    RemoteDeviceModel.authenticateDevice(this.devices[this.selectedIndex], (device) => {
+    RemoteDeviceModel.authenticateDevice(this.devices[this.selectedIndex], (device: deviceManager.DeviceBasicInfo) => {
       Logger.info(TAG, 'auth and online finished');
       this.startAbility(device.networkId);
     })
@@ -119,11 +119,11 @@ struct IndexCanvas {
     this.clearSelectState();
   }
 
-  startAbility(deviceId) {
+  startAbility(deviceId: string) {
     this.globalObject = new DistributedCanvasModel();
     this.sessionId = this.globalObject.genSessionId();
     AppStorage.SetOrCreate('sessionId', this.sessionId);
-    this.canvasDataSource['pathArray'] = [];
+    this.canvasDataSource.pathArray = [];
     this.canvasDataSource.notifyDataReload();
     this.globalObject.off();
     this.share();
@@ -202,7 +202,7 @@ struct IndexCanvas {
                 .id(item.path + 'ready')
             }
           }
-        }, item => JSON.stringify(item))
+        }, (item: CanvasPath) => JSON.stringify(item))
       }
 
       Row() {
@@ -238,7 +238,7 @@ struct IndexCanvas {
           .backgroundColor(Color.Orange)
           .onClick(() => {
             this.globalObject.clear();
-            this.canvasDataSource['pathArray'] = [];
+            this.canvasDataSource.pathArray = [];
             this.canvasDataSource.notifyDataReload();
             this.context.clearRect(0, 0, 950, 950);
             router.back()
@@ -249,7 +249,7 @@ struct IndexCanvas {
           .key('delete')
           .onClick(() => {
             this.globalObject.clear();
-            this.canvasDataSource['pathArray'] = [];
+            this.canvasDataSource.pathArray = [];
             this.canvasDataSource.notifyDataReload();
             this.context.clearRect(0, 0, 950, 950);
           })

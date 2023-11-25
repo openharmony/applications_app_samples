@@ -17,6 +17,7 @@ import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Component, Driver, ON } from '@ohos.UiTest';
 import hilog from '@ohos.hilog';
+import inputMethod from '@ohos.inputMethod';
 
 const BUNDLE = 'WebSocket'
 const TAG = '[Sample_WebSocket]'
@@ -92,6 +93,9 @@ export default function appTest() {
       let btnBind = await driver.findComponent(ON.id('btn_send'))
       await btnBind.click()
       await driver.delayMs(500)
+      // 停止会话,关闭键盘
+      let inputMethodController = inputMethod.getController();
+      inputMethodController.stopInputSession();
 
       // 校验内容
       hilog.info(DOMAIN, TAG, BUNDLE + ' sendMessage_001 check message')
@@ -147,6 +151,9 @@ export default function appTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + ' sendMessage_002 send')
       await btnBind.click()
       await driver.delayMs(500)
+      // 停止会话,关闭键盘
+      let inputMethodController = inputMethod.getController();
+      inputMethodController.stopInputSession();
 
       // 校验内容
       hilog.info(DOMAIN, TAG, BUNDLE + ' sendMessage_002 check message')
@@ -193,6 +200,9 @@ export default function appTest() {
       let btnBind = await driver.findComponent(ON.id('btn_send'))
       await btnBind.click()
       await driver.delayMs(500)
+      // 停止会话,关闭键盘
+      let inputMethodController = inputMethod.getController();
+      inputMethodController.stopInputSession();
 
       // 校验内容
       hilog.info(DOMAIN, TAG, BUNDLE + ' sendMessage_003 check message')
