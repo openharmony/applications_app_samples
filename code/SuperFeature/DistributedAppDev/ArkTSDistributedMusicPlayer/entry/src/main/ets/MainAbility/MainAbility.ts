@@ -23,6 +23,10 @@ export default class MainAbility extends UIAbility {
     Logger.info(TAG, '[Demo] MainAbility onCreate')
     let status = want.parameters
     AppStorage.setOrCreate('status', status)
+    AppStorage.setOrCreate('exitMusicApp', false);
+    AppStorage.setOrCreate('remoteServiceExtensionConnectEvent', false);
+    AppStorage.setOrCreate('musicPlay', false);
+    AppStorage.setOrCreate('musicPause', false);
     try {
       let promise = window.getLastWindow(this.context);
       promise.then((data) => {
@@ -49,9 +53,9 @@ export default class MainAbility extends UIAbility {
 
   onDestroy() {
     Logger.info(TAG, '[Demo] MainAbility onDestroy')
-    let exitMusicApp = AppStorage.Get<() => void>('exitMusicApp');
+    let exitMusicApp = AppStorage.get('exitMusicApp');
     if (exitMusicApp !== undefined) {
-      exitMusicApp();
+      AppStorage.setOrCreate('exitMusicApp', !exitMusicApp);
     }
   }
 
