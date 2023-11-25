@@ -96,6 +96,7 @@ class FileSystem {
         // 如果是文件夹，就读取文件夹中文件的数量
         if (dirent.isDirectory()) {
           subdirectoryNum = this.getSubdirectoryNum(filePath + `${dirent.name}`);
+          time = this.getFileTime(filePath + `${dirent.name}`);
         } else {
           // 如果不是文件夹，就读取文件大小和时间
           fileSize = this.getFileSize(filePath + `${dirent.name}`);
@@ -131,7 +132,7 @@ class FileSystem {
   // 获取文件修改时间
   getFileTime(filePath: string): Date {
     try {
-      let fileTime = fileio.statSync(filePath).ctime;
+      let fileTime = fileio.statSync(filePath).mtime;
       return new Date(fileTime * 1000);
     } catch (err) {
       Logger.error(`getFileTime failed, code is ${err.code}, message is ${err.message}`);

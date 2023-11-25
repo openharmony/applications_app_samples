@@ -15,14 +15,37 @@
 
 import router from '@ohos.router'
 import prompt from '@ohos.promptAction'
-import { FileSystem } from '@ohos/feature-file-manager'
+import { FileSystem, NewFileSystem } from '@ohos/feature-file-manager'
 import { FileStructure, FileType } from '@ohos/feature-file-manager/src/main/ets/mock/local/FileData'
 // 添加文件的弹窗
 import { InputNameDialog } from './InputNameDialog'
 // 删除文件的弹窗
 import { DeleteDialog } from './DeleteDialog'
+//修改文件(夹)时间的弹窗
+import { ChangeTimeDialog } from './ChangeTimeDialog'
 // 基础沙箱路径---固定路径
 const BASE_PATH = '/data/storage/el2/base/haps/'
+
+// 处理日期格式
+function str2TimeStamp(time: string): number {
+  let dateString = time.slice(0, 10);
+  let timeString = time.slice(11,19);
+
+  let dateParts = dateString.split('/');
+  let year = parseInt(dateParts[0],10);
+  let month = parseInt(dateParts[1],10);
+  let day = parseInt(dateParts[2],10);
+
+  let timeParts = timeString.split(':');
+  let hour = parseInt(timeParts[0],10);
+  let minites = parseInt(timeParts[1],10);
+  let seconds = parseInt(timeParts[2],10);
+
+  let date = new Date(year,month-1,day,hour,minites,seconds,0);
+  let tt = date.getTime();
+
+  return tt;
+}
 
 @Entry
 @Component
@@ -37,6 +60,7 @@ export struct MyPhone {
   @State @Watch('clearTempData') isSelect: boolean = false
   // 被选中的数组---样式判断
   @State selectedFiles: Array<string> = []
+  @State selectedFilesTime: string = ''
   // 读取的文件结构
   @State fileData: Array<FileStructure> = []
   // 命名弹窗的类型---默认是文件夹
@@ -84,6 +108,7 @@ export struct MyPhone {
   clearTempData() {
     if (this.isSelect) {
       this.selectedFiles = []
+      this.selectedFilesTime = ''
       this.needDeleteFiles.clear()
       this.needMoveFiles = []
     }
@@ -99,7 +124,7 @@ export struct MyPhone {
           return prompt.showToast({ message: $r('app.string.tip_input_name') });
         }
         if (this.fileDialogType === 1) {
-          FileSystem.createDirectory(this.directoryPath + name);
+          NewFileSystem.createDirectory(this.directoryPath + name);
         } else {
           // 创建文件
           FileSystem.createFile(this.directoryPath + name);
@@ -139,6 +164,23 @@ export struct MyPhone {
         this.isSelect = false
         this.updateFileData()
         this.deleteDialog.close()
+      }
+    })
+  })
+  //修改文件(夹)时间的弹窗
+  changeTimeDialog: CustomDialogController = new CustomDialogController({
+    builder: ChangeTimeDialog({
+      time: this.selectedFilesTime,
+      confirm: () => {
+        const time: string | undefined = AppStorage.Get('time');
+        if (!time) {
+          return prompt.showToast({ message: $r('app.string.tip_input_name') });
+        }
+        let timeStamp = str2TimeStamp(time);
+        NewFileSystem.setFileTime(this.directoryPath + this.selectedFiles[0],timeStamp);
+        this.isSelect = false;
+        this.updateFileData();
+        this.changeTimeDialog.close();
       }
     })
   })
@@ -233,7 +275,7 @@ export struct MyPhone {
       if (this.fileData.length > 0) {
         // 目录列表
         List({ space: 16 }) {
-          ForEach(this.fileData, (file: FileStructure) => {
+          ForEach(this.fileData, (file: FileStructure, index: number) => {
             ListItem() {
               Row() {
                 if (this.isSelect) {
@@ -302,6 +344,7 @@ export struct MyPhone {
                     this.needMoveFiles.splice(index, 1)
                   } else {
                     this.selectedFiles.push(file.name)
+                    this.selectedFilesTime = file.time
                     // 处理需要删除的数据格式
                     this.needDeleteFiles.set(this.directoryPath + file.name, file.type)
                     // 需要移动的文件的格式
@@ -334,10 +377,27 @@ export struct MyPhone {
                         directoryPath: `${this.directoryPath}${file.name}/`
                       }
                     })
+                  } else{
+                    //如果是文件就打开文件
+                    let filePath = this.directoryPath + file.name;
+                    console.log(filePath);
+                    NewFileSystem.ReadFile(filePath).then(content => {
+                      router.pushUrl({
+                        url: 'filemanager/pages/MyPhone/OpenFile',
+                        params: {
+                          fileName: file.name,
+                          fileSize: file.size,
+                          fileContent: content,
+                        }
+                      }, router.RouterMode.Standard);
+                    }).catch(error => {
+                      console.error(error.message);
+                    })
                   }
                 }
               })
             }
+            .id("ListItem"+index)
             .width('100%')
           })
         }
@@ -442,23 +502,36 @@ export struct MyPhone {
           })
 
           Column({ space: 8 }) {
-            Image($r('app.media.delete'))
-              .width(30)
-              .height(30)
-
-            Text($r('app.string.label_delete'))
-              .id('delete')
+            Text($r('app.string.label_more'))
+              .id('more')
               .fontSize(16)
           }
-          .onClick(() => {
-            if (this.selectedFiles.length > 0) {
-              this.deleteDialog.open()
-            } else {
-              prompt.showToast({
-                message: $r('app.string.tip_choose_one')
-              })
-            }
-          })
+          .bindMenu([
+            {
+              value: $r('app.string.label_change_time'),
+              action: () => {
+                if (this.selectedFiles.length == 1) {
+                  this.changeTimeDialog.open()
+                } else {
+                  prompt.showToast({
+                    message: $r('app.string.tip_choose_can_onlyone')
+                  })
+                }
+              }
+            },
+            {
+              value: $r('app.string.label_delete'),
+              action: () => {
+                if (this.selectedFiles.length > 0) {
+                  this.deleteDialog.open()
+                } else {
+                  prompt.showToast({
+                    message: $r('app.string.tip_choose_one')
+                  })
+                }
+              }
+            },
+          ])
         }
         .width('100%')
         .borderRadius(18)

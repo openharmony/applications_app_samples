@@ -1076,120 +1076,186 @@ export default function abilityTest() {
     /**
      * 点击主页中我的手机
      */
-    it(BUNDLE + 'MobileFunction_001', 0, async function () {
-      Logger.info(TAG, BUNDLE + 'MobileFunction_001 begin')
-      let driver = await Driver.create()
-      await driver.delayMs(500)
+    it('MobileFunction_001', 0, async function () {
+      Logger.info(TAG, 'MobileFunction_001 begin');
+      let driver = Driver.create();
+      await driver.delayMs(500);
       // 主页能够显示List中内容，点击手机
-      await driver.assertComponentExist(ON.type('List'))
-      await driver.assertComponentExist(ON.type('ListItem').id('ListItem5'))
-      let btnStart = await driver.findComponent(ON.type('ListItem').id('ListItem5'))
-      await btnStart.click()
-      await driver.delayMs(500)
+      await driver.assertComponentExist(ON.type('List'));
+      await driver.assertComponentExist(ON.type('ListItem').id('ListItem5'));
+      let btnStart = await driver.findComponent(ON.type('ListItem').id('ListItem5'));
+      await btnStart.click();
+      await driver.delayMs(500);
       // 跳转我的手机界面
-      await driver.assertComponentExist(ON.type('Text').id('makeFile'))
-      await driver.assertComponentExist(ON.type('Text').id('makeDirectory'))
-      await driver.assertComponentExist(ON.type('Text').id('sort'))
-      await driver.assertComponentExist(ON.type('Text').id('clean'))
-      // 测试新建文件功能
-      let btnFile = await driver.findComponent(ON.type('Text').id('makeFile'))
-      await btnFile.click()
-      await driver.delayMs(500)
-      await driver.assertComponentExist(ON.id('cancel'))
-      let btnCancel = await driver.findComponent(ON.id('cancel'))
-      await btnCancel.click()
-      await driver.delayMs(500)
-      await btnFile.click()
-      await driver.delayMs(500)
-      await driver.assertComponentExist(ON.id('input'))
-      let input = await driver.findComponent(ON.id('input'))
-      await input.inputText('testFile')
-      await driver.assertComponentExist(ON.id('promise'))
-      let btnPromise = await driver.findComponent(ON.id('promise'))
-      await btnPromise.click()
-      await driver.delayMs(500)
-      await driver.assertComponentExist(ON.text('testFile'))
-      let testFile = await driver.findComponent(ON.text('testFile'))
+      await driver.assertComponentExist(ON.type('Text').id('makeFile'));
+      await driver.assertComponentExist(ON.type('Text').id('makeDirectory'));
+      await driver.assertComponentExist(ON.type('Text').id('sort'));
+      await driver.assertComponentExist(ON.type('Text').id('clean'));
+      // 测试新建文件及打开功能
+      let btnFile = await driver.findComponent(ON.type('Text').id('makeFile'));
+      await btnFile.click();
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.id('cancel'));
+      let btnCancel = await driver.findComponent(ON.id('cancel'));
+      await btnCancel.click();
+      await driver.delayMs(500);
+      await btnFile.click();
+      await driver.delayMs(200);
+      await driver.assertComponentExist(ON.id('input'));
+      let input = await driver.findComponent(ON.id('input'));
+      await input.inputText('testFile');
+      await driver.assertComponentExist(ON.id('promise'));
+      let btnPromise = await driver.findComponent(ON.id('promise'));
+      await btnPromise.click();
+      await driver.delayMs(200);
+      await driver.assertComponentExist(ON.text('testFile'));
+      let testFile = await driver.findComponent(ON.text('testFile'));
+      await testFile.click();
+      await driver.delayMs(200);
+      await driver.assertComponentExist(ON.id('fileName'));
+      let back = await driver.findComponent(ON.id('back'));
+      await back.click();
+      await driver.delayMs(200);
+      Logger.info(TAG, BUNDLE + 'MobileFunction_001 end');
+    });
+    it('MobileFunction_002', 0, async function () {
+      Logger.info(TAG, 'MobileFunction_002 begin');
+      let driver = Driver.create();
+      await driver.delayMs(200);
       // 测试新建文件夹功能
-      let btnDirectory = await driver.findComponent(ON.type('Text').id('makeDirectory'))
-      await btnDirectory.click()
-      await driver.delayMs(500)
-      await driver.assertComponentExist(ON.id('cancel'))
-      let directoryCancel = await driver.findComponent(ON.id('cancel'))
-      await directoryCancel.click()
-      await driver.delayMs(500)
-      await btnDirectory.click()
-      await driver.delayMs(500)
-      await driver.assertComponentExist(ON.id('input'))
-      let inputDirectory = await driver.findComponent(ON.id('input'))
-      await inputDirectory.inputText('testDirectory')
-      await driver.assertComponentExist(ON.id('promise'))
-      let directoryPromise = await driver.findComponent(ON.id('promise'))
-      await directoryPromise.click()
-      await driver.delayMs(500)
-      await driver.assertComponentExist(ON.text('testDirectory'))
-      let testDirectory = await driver.findComponent(ON.text('testDirectory'))
-      // 点击select图片
-      await driver.assertComponentExist(ON.id('select'))
-      let selectImage = await driver.findComponent(ON.id('select'))
-      await selectImage.click()
-      await driver.delayMs(500)
-      await driver.assertComponentExist(ON.type('Text').id('copy'))
-      let btnCopy = await driver.findComponent(ON.type('Text').id('copy'))
-      await driver.assertComponentExist(ON.type('Text').id('rename'))
-      let btnRename = await driver.findComponent(ON.type('Text').id('rename'))
-      await driver.assertComponentExist(ON.type('Text').id('share'))
-      await driver.assertComponentExist(ON.type('Text').id('delete'))
-      let btnDelete = await driver.findComponent(ON.type('Text').id('delete'))
-      // 测试复制
-      await testFile.click()
-      await btnCopy.click()
-      await testDirectory.click()
-      await driver.delayMs(500)
-      await driver.assertComponentExist(ON.id('move'))
-      let btnMove = await driver.findComponent(ON.id('move'))
-      await btnMove.click()
-      await driver.delayMs(500)
-      await driver.assertComponentExist(ON.text('testFile'))
-      let copyFile = await driver.findComponent(ON.text('testFile'))
-      // 测试删除
-      await driver.assertComponentExist(ON.id('secondarySelect'))
-      let btnSecondarySelect = await driver.findComponent(ON.id('secondarySelect'))
-      await btnSecondarySelect.click()
-      await driver.delayMs(500)
-      await copyFile.click()
-      await driver.assertComponentExist(ON.type('Text').id('delete'))
-      let newDelete = await driver.findComponent(ON.type('Text').id('delete'))
-      await newDelete.click()
-      await driver.delayMs(500)
-      await driver.assertComponentExist(ON.id('checkDelete'))
-      let btnCheckDelete = await driver.findComponent(ON.id('checkDelete'))
-      await btnCheckDelete.click()
-      await driver.delayMs(500)
-      await driver.assertComponentExist(ON.id('blank'))
-      // 测试重命名
-      await driver.assertComponentExist(ON.id('left'))
-      let btnLeft = await driver.findComponent(ON.id('left'))
-      await btnLeft.click()
-      await driver.delayMs(500)
-      let btnSelect = await driver.findComponent(ON.id('select'))
-      await btnSelect.click()
-      await testFile.click()
-      let btnRenameNew = await driver.findComponent(ON.type('Text').id('rename'))
-      await btnRenameNew.click()
-      await driver.delayMs(500)
-      let inputDirectoryNew = await driver.findComponent(ON.id('input'))
-      await inputDirectoryNew.inputText('testFileNew')
-      let btnPromiseNew = await driver.findComponent(ON.id('promise'))
-      await btnPromiseNew.click()
-      await driver.delayMs(500)
-      await driver.assertComponentExist(ON.text('testFileNew'))
+      let btnDirectory = await driver.findComponent(ON.type('Text').id('makeDirectory'));
+      await btnDirectory.click();
+      await driver.delayMs(200);
+      await driver.assertComponentExist(ON.id('cancel'));
+      let directoryCancel = await driver.findComponent(ON.id('cancel'));
+      await directoryCancel.click();
+      await driver.delayMs(200);
+      await btnDirectory.click();
+      await driver.delayMs(200);
+      await driver.assertComponentExist(ON.id('input'));
+      let inputDirectory = await driver.findComponent(ON.id('input'));
+      await inputDirectory.inputText('testDirectory/testSubDirectory');
+      await driver.assertComponentExist(ON.id('promise'));
+      let directoryPromise = await driver.findComponent(ON.id('promise'));
+      await directoryPromise.click();
+      await driver.delayMs(200);
+      await driver.assertComponentExist(ON.text('testDirectory'));
+      let testDirectory = await driver.findComponent(ON.text('testDirectory'));
+      await testDirectory.click();
+      await driver.delayMs(200);
+      await driver.assertComponentExist(ON.text('testSubDirectory'));
       // 返回
-      await driver.pressBack()
-      await driver.delayMs(500)
-      Logger.info(TAG, BUNDLE + 'MobileFunction_001 end')
-    })
-
+      await driver.pressBack();
+      await driver.delayMs(500);
+      Logger.info(TAG, BUNDLE + 'MobileFunction_002 end');
+    });
+    it('MobileFunction_003', 0, async function () {
+      Logger.info(TAG, 'MobileFunction_003 begin');
+      let driver = Driver.create();
+      await driver.delayMs(200);
+      // 点击select图片
+      await driver.assertComponentExist(ON.id('select'));
+      let selectImage = await driver.findComponent(ON.id('select'));
+      await selectImage.click();
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.type('Text').id('copy'));
+      let btnCopy = await driver.findComponent(ON.type('Text').id('copy'));
+      await driver.assertComponentExist(ON.type('Text').id('rename'));
+      let btnRename = await driver.findComponent(ON.type('Text').id('rename'));
+      await driver.assertComponentExist(ON.type('Text').id('share'));
+      await driver.assertComponentExist(ON.type('Text').id('more'));
+      let btnDelete = await driver.findComponent(ON.type('Text').id('delete'));
+      // 测试复制
+      let testFile = await driver.findComponent(ON.text('testFile'));
+      let testDirectory = await driver.findComponent(ON.text('testDirectory'));
+      await testFile.click();
+      await btnCopy.click();
+      await testDirectory.click();
+      await driver.delayMs(200);
+      await driver.assertComponentExist(ON.id('move'));
+      let btnMove = await driver.findComponent(ON.id('move'));
+      await btnMove.click();
+      await driver.delayMs(200);
+      await driver.assertComponentExist(ON.text('testFile'));
+      let copyFile = await driver.findComponent(ON.text('testFile'));
+      // 返回
+      await driver.pressBack();
+      await driver.delayMs(500);
+      Logger.info(TAG, 'MobileFunction_003 end');
+    });
+    it('MobileFunction_004', 0, async function () {
+      Logger.info(TAG, 'MobileFunction_004 begin');
+      let driver = Driver.create();
+      await driver.delayMs(200);
+      // 测试重命名
+      await driver.assertComponentExist(ON.id('select'));
+      let btnSelect = await driver.findComponent(ON.id('select'));
+      let testFile = await driver.findComponent(ON.text('testFile'));
+      await btnSelect.click();
+      await testFile.click();
+      let btnRenameNew = await driver.findComponent(ON.type('Text').id('rename'));
+      await btnRenameNew.click();
+      await driver.delayMs(500);
+      let inputDirectoryNew = await driver.findComponent(ON.id('input'));
+      await inputDirectoryNew.inputText('testFileNew');
+      let btnPromiseNew = await driver.findComponent(ON.id('promise'));
+      await btnPromiseNew.click();
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.text('testFileNew'));
+      Logger.info(TAG, BUNDLE + 'MobileFunction_004 end');
+    });
+    it('MobileFunction_005', 0, async function () {
+      Logger.info(TAG, 'MobileFunction_005 begin');
+      let driver = Driver.create();
+      await driver.delayMs(200);
+      // 点击select图片
+      await driver.assertComponentExist(ON.id('select'));
+      let selectImage = await driver.findComponent(ON.id('select'));
+      await selectImage.click();
+      await driver.delayMs(200);
+      //测试更多--修改时间
+      let testFile = await driver.findComponent(ON.text('testFileNew'));
+      await testFile.click();
+      await driver.assertComponentExist(ON.type('Text').id('more'));
+      let newMore = await driver.findComponent(ON.type('Text').id('more'));
+      await newMore.click();
+      await driver.delayMs(200);
+      await driver.click(500, 983);
+      await driver.assertComponentExist(ON.id('promise'));
+      let inputTimeNew = await driver.findComponent(ON.id('input'));
+      await inputTimeNew.inputText('2023/10/10 10:10:10');
+      let changeTime = await driver.findComponent(ON.type('Text').id('promise'));
+      await changeTime.click();
+      await driver.delayMs(200);
+      await driver.assertComponentExist(ON.text('2023/10/10 10:10:10'));
+      Logger.info(TAG, 'MobileFunction_005 end');
+    });
+    it('MobileFunction_006', 0, async function () {
+      Logger.info(TAG, 'MobileFunction_006 begin');
+      let driver = Driver.create();
+      await driver.delayMs(200);
+      //测试更多--删除
+      await driver.assertComponentExist(ON.id('select'));
+      let selectImage = await driver.findComponent(ON.id('select'));
+      await selectImage.click();
+      await driver.delayMs(200);
+      let testFile = await driver.findComponent(ON.text('testFileNew'));
+      await testFile.click();
+      await driver.assertComponentExist(ON.type('Text').id('more'));
+      let newMore = await driver.findComponent(ON.type('Text').id('more'));
+      await newMore.click();
+      await driver.delayMs(200);
+      await driver.click(452, 1074);
+      await driver.delayMs(200);
+      await driver.assertComponentExist(ON.id('checkDelete'));
+      let btnCheckDelete = await driver.findComponent(ON.id('checkDelete'));
+      await btnCheckDelete.click();
+      await driver.delayMs(200);
+      // 返回
+      await driver.pressBack();
+      await driver.delayMs(200);
+      Logger.info(TAG, 'MobileFunction_006 end');
+    });
     /** 场景：检验FileManager获取权限功能
      *  输入：调用requestPermission
      *  预期输出：点击允许后能够成功调用createFileAsset，getFileAssets
