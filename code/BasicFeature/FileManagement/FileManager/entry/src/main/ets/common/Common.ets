@@ -15,20 +15,20 @@
 import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
 import { describe, it, expect } from '@ohos/hypium';
 import util from '@ohos.util';
-import Logger from '../common/Logger';
+import Logger, { myparseInt } from '../common/Logger';
 
 const INDEX: number = 2;
 const SLEEP_TIME: number = 10;
 const RADIX: number = 16;
 
-export function strToUtf8Bytes(content): Array<number> {
+export function strToUtf8Bytes(content: string): Array<number> {
   const code = encodeURIComponent(content);
-  let bytes = [];
+  let bytes: Array<number> = [];
   for (let i = 0; i < code.length; i++) {
     const char = code.charAt(i);
     if (char === '%') {
       const hex = code.charAt(i + 1) + code.charAt(i + INDEX);
-      const hexValue = parseInt(hex, RADIX);
+      const hexValue: number = myparseInt(hex, RADIX);
       bytes.push(hexValue);
       i += INDEX;
     } else {
@@ -38,21 +38,21 @@ export function strToUtf8Bytes(content): Array<number> {
   return bytes;
 }
 
-export function strToArrayBuffer(text): ArrayBuffer {
-  const bytes = this.strToUtf8Bytes(text);
+export function strToArrayBuffer(text: string): ArrayBuffer {
+  const bytes: number[] = strToUtf8Bytes(text);
   const buffer = new ArrayBuffer(bytes.length);
   const bufView = new DataView(buffer);
   for (let i = 0; i < bytes.length; i++) {
     bufView.setUint8(i, bytes[i]);
-  }
+  } 
   return buffer;
 }
 
-export async function sleep(times): Promise<void> {
+export async function sleep(times: number): Promise<void> {
   if (!times) {
     times = SLEEP_TIME;
   }
-  await new Promise((res) => setTimeout(res, times));
+  await new Promise<number>((res) => setTimeout(res, times));
 }
 
 export function randomString(num: number, chars: string): string {
