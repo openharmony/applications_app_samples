@@ -16,7 +16,7 @@
 import batteryStats from '@ohos.batteryStatistics';
 import { BatteryStatsModel } from '../model/BatteryStatsModel';
 import bundleManager from '@ohos.bundle.bundleManager';
-import { logger } from '@ohos/common';
+import { logger } from '@ohos/common/src/main/ets/util/Logger';
 import { GlobalContext } from '../../../../../../entry/src/main/ets/pages/GlobalContext';
 import resourceManager from '@ohos.resourceManager';
 
@@ -228,4 +228,5 @@ export class BatteryStatsUtil {
 }
 
 let batteryListModel = new BatteryStatsUtil();
+
 export default batteryListModel as BatteryStatsUtil

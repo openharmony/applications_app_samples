@@ -16,7 +16,7 @@
 import { ListModel } from '../model/ListModel'
 import { DeviceUtil } from '../util/DeviceUtil'
 import { RadiusColumn } from '../components/RadiusColumn'
-import { getString } from '@ohos/common'
+import { getString } from '@ohos/common/src/main/ets/util/ResourceUtil';
 
 @Extend(Text) function fancy() {
   .textAlign(TextAlign.Start)

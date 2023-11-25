@@ -14,7 +14,8 @@
  */
 import batteryInfo from '@ohos.batteryInfo'
 import commonEventManager from '@ohos.commonEventManager'
-import { logger, getString } from '@ohos/common'
+import { logger } from '@ohos/common/src/main/ets/util/Logger';
+import { getString } from '@ohos/common/src/main/ets/util/ResourceUtil';
 import { BusinessError } from '@ohos.base'
 
 let mBatteryPresent: SubscribedAbstractProperty<boolean>; // 是否支持电池或电池是否在位

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 import { InputDeviceInfo } from '../model/InputDeviceInfo'
-import { logger } from '@ohos/common'
+import { logger } from '@ohos/common/src/main/ets/util/Logger';
 import inputDevice from '@ohos.multimodalInput.inputDevice'
 
 const TAG: string = '[Sample_InputDeviceUtil]'
@@ -197,8 +197,8 @@ class InputDevice {
       // 检查缓存中是否已经存在
       if (newArr.find((cur: InputDeviceInfo) =>
       cur.id === item.id &&
-        cur.name === item.name &&
-        cur.connect === item.connect)
+      cur.name === item.name &&
+      cur.connect === item.connect)
       ) {
         // 已经存在说明以前记录过，现在这个就是多余的，直接忽略
         continue;

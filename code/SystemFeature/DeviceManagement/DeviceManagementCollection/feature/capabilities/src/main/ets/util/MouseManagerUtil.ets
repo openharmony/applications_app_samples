@@ -14,7 +14,8 @@
  */
 import inputMonitor from '@ohos.multimodalInput.inputMonitor'
 import pointer from '@ohos.multimodalInput.pointer'
-import { logger, formatJson } from '@ohos/common'
+import { formatJson } from '@ohos/common/src/main/ets/util/JSONUtils';
+import { logger } from '@ohos/common/src/main/ets/util/Logger';
 import { MouseEvent } from '@ohos.multimodalInput.mouseEvent'
 import common from '@ohos.app.ability.common'
 import window from '@ohos.window'
@@ -145,7 +146,7 @@ class MouseManagerUtil {
 
   }
 
-  private onMouseCallback(event: MouseEvent) : boolean {
+  private onMouseCallback(event: MouseEvent): boolean {
     logger.info(`${TAG} onMouseCallback event: ${JSON.stringify(event)}`)
     if (this.callback && this.callback !== null && this.callback !== undefined) {
       this.callback(formatJson(JSON.stringify(event)))

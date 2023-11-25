@@ -16,8 +16,8 @@
 import display from '@ohos.display';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
-import { logger } from '@ohos/common';
-import { GlobalContext }  from '../pages/GlobalContext'
+import { logger } from '@ohos/common/src/main/ets/util/Logger';
+import { GlobalContext } from '../pages/GlobalContext'
 import Want from '@ohos.app.ability.Want';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
@@ -30,7 +30,7 @@ export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     logger.info(TAG, 'Ability onCreate');
     AppStorage.SetOrCreate('selectedLabel', '');
-    GlobalContext.getContext().setValue('abilityContext',this.context);
+    GlobalContext.getContext().setValue('abilityContext', this.context);
   }
 
   updateBreakpoint(windowWidth: number): void {
