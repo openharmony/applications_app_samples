@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { getStringArray } from '@ohos/common';
+import { getStringArray } from '@ohos/commons/src/main/ets/util/ResourceUtil';
 import { MenuNavRouter } from '../components/MenuNavRouter';
 
 @Component

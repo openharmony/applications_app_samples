@@ -16,7 +16,7 @@
   "license": "ISC",
   "types": "",
   "devDependencies": {},
-  "name": "@ohos/common",
+  "name": "@ohos/commons",
   "description": "a npm package which contains arkUI2.0 page",
   "main": "Index.ts",
   "repository": {},

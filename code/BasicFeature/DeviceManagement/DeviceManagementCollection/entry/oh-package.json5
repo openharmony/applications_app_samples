@@ -21,7 +21,7 @@
   "version": "1.0.0",
   "dependencies": {
     "@ohos/capabilities": "file:../feature/capabilities",
-    "@ohos/menuitems": "../feature/menuitems",
-    "@ohos/common": "../common"
+    "@ohos/commons": "file:../common",
+    "@ohos/menuitems": "file:../feature/menuitems"
   }
 }
