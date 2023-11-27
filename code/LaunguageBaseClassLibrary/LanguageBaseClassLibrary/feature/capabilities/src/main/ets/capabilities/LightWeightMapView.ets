@@ -15,7 +15,8 @@
 
 import LightWeightMap from '@ohos.util.LightWeightMap';
 import emitter from '@ohos.events.emitter';
-import { EmptyPage, logger } from '@ohos/common';
+import { EmptyPage } from '@ohos/common/src/main/ets/components/EmptyPage';
+import { logger } from '@ohos/common/src/main/ets/util/Logger';
 import { KeyValueItemView } from '../components/KeyValueItemView';
 import { KeyValuePair } from '../model/KeyValuePair';
 import { LightWeightMapDataSource } from '../components/lightweightmapcomponents/LightWeightMapDataSource';

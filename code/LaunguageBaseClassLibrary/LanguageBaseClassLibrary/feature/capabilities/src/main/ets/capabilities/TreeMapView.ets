@@ -14,7 +14,7 @@
 */
 
 import emitter from '@ohos.events.emitter';
-import { EmptyPage } from '@ohos/common';
+import { EmptyPage } from '@ohos/common/src/main/ets/components/EmptyPage';
 import { KeyValuePair } from '../model/KeyValuePair';
 import { TreeMapDataSource } from '../components/treemapcomponents/TreeMapDataSource';
 import { KeyValueItemView } from '../components/KeyValueItemView';

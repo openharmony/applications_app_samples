@@ -14,7 +14,8 @@
 */
 
 import emitter from '@ohos.events.emitter';
-import { EmptyPage, logger } from '@ohos/common';
+import { EmptyPage } from '@ohos/common/src/main/ets/components/EmptyPage';
+import { logger } from '@ohos/common/src/main/ets/util/Logger';
 import { Information } from '../model/Information'
 import { InformationItemView } from '../components/InformationItemView';
 import { LinkedListDataSource } from '../components/linkedlistcomponents/LinkedListDataSource'

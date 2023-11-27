@@ -15,7 +15,7 @@
 
 
 import emitter from '@ohos.events.emitter';
-import { EmptyPage } from '@ohos/common';
+import { EmptyPage } from '@ohos/common/src/main/ets/components/EmptyPage';
 import { TreeSetDataSource } from '../components/treesetcomponents/TreeSetDataSource';
 import { ValueItemView } from '../components/ValueItemView';
 import { Constant } from '../Constant';

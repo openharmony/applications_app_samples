@@ -17,8 +17,7 @@ import ArrayList from '@ohos.util.ArrayList';
 import { AddDialog } from '../components/arraylistcomponents/AddDialog';
 import { ArrayListItem } from '../components/arraylistcomponents/ArrayListItem';
 import { Information } from '../model/Information';
-import { logger } from '@ohos/common';
-import { MyDataSource } from '../components/arraylistcomponents/MyDataSource';
+import { logger } from '@ohos/common/src/main/ets/util/Logger';
 
 const TAG: string = 'ArrayListView';
 

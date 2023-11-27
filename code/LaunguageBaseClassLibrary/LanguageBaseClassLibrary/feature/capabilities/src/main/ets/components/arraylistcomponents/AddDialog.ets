@@ -15,14 +15,15 @@
 
 import prompt from '@ohos.promptAction';
 import { Information } from '../../model/Information';
-import { logger } from '@ohos/common';
+import { logger } from '@ohos/common/src/main/ets/util/Logger';
 
 const TAG: string = 'AddDialog';
 
 @CustomDialog
 export struct AddDialog {
   @State writeInformation: Information = new Information('', Number.NaN, '')
-  private saveData: (information: Information) => void = () => {};
+  private saveData: (information: Information) => void = () => {
+  };
   private controller?: CustomDialogController;
 
   build() {

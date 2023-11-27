@@ -14,7 +14,7 @@
 */
 
 import Stack from '@ohos.util.Stack';
-import { BaseDataSource } from '@ohos/common';
+import { BaseDataSource } from '@ohos/common/src/main/ets/components/BaseDataSource';
 import { Information } from '../../model/Information';
 
 export class StackDataSource extends BaseDataSource {

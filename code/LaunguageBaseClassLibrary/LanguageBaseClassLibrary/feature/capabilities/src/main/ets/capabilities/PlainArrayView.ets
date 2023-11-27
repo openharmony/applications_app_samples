@@ -15,7 +15,7 @@
 
 import emitter from '@ohos.events.emitter';
 import promptAction from '@ohos.promptAction';
-import { EmptyPage } from '@ohos/common';
+import { EmptyPage } from '@ohos/common/src/main/ets/components/EmptyPage';
 import { KeyValuePair } from '../model/KeyValuePair';
 import { PlainArrayDataSource } from '../components/plainarraycomponents/PlainArrayDataSource';
 import { KeyValueItemView } from '../components/KeyValueItemView';

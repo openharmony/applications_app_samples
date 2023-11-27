@@ -15,7 +15,8 @@
 
 import LightWeightSet from '@ohos.util.LightWeightSet';
 import emitter from '@ohos.events.emitter';
-import { EmptyPage, logger } from '@ohos/common';
+import { EmptyPage } from '@ohos/common/src/main/ets/components/EmptyPage';
+import { logger } from '@ohos/common/src/main/ets/util/Logger';
 import { ValueItemView } from '../components/ValueItemView';
 import { LightWeightSetDataSource } from '../components/lightweightsetcomponents/LightWeightSetDataSource';
 import { Constant } from '../Constant';

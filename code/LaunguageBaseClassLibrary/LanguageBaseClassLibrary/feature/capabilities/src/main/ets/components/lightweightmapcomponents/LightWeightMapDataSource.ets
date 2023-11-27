@@ -13,7 +13,7 @@
 * limitations under the License.
 */
 
-import { BaseDataSource } from '@ohos/common';
+import { BaseDataSource } from '@ohos/common/src/main/ets/components/BaseDataSource';
 import { KeyValuePair } from '../../model/KeyValuePair';
 
 export class LightWeightMapDataSource extends BaseDataSource {

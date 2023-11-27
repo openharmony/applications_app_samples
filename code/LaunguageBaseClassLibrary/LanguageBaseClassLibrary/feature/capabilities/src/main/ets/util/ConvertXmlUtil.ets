@@ -15,7 +15,7 @@
 
 import ConvertXML from '@ohos.convertxml';
 import xml from '@ohos.xml';
-import { logger } from '@ohos/common';
+import { logger } from '@ohos/common/src/main/ets/util/Logger';
 
 const TAG: string = 'ConvertXmlUtil';
 
@@ -53,8 +53,8 @@ export function parserNode(input: string): string {
 
   let func = (key: xml.EventType, info: xml.ParseInfo) => {
     arr[i] = `key:${key}, value:${info.getDepth()} ${info.getColumnNumber()} ` +
-      `${info.getLineNumber()} ${info.getAttributeCount()} ${info.getName()} ` +
-      `${info.getText()} ${info.isEmptyElementTag()} ${info.isWhitespace()}\n`;
+    `${info.getLineNumber()} ${info.getAttributeCount()} ${info.getName()} ` +
+    `${info.getText()} ${info.isEmptyElementTag()} ${info.isWhitespace()}\n`;
     i++;
     return true;
   }

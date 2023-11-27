@@ -14,7 +14,7 @@
 */
 
 import Deque from '@ohos.util.Deque';
-import { BaseDataSource } from '@ohos/common';
+import { BaseDataSource } from '@ohos/common/src/main/ets/components/BaseDataSource';
 import { Information } from '../../model/Information';
 
 export class DequeDataSource extends BaseDataSource {

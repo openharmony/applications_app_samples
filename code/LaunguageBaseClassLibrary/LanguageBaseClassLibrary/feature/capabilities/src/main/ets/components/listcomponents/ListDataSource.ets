@@ -14,7 +14,7 @@
 */
 
 import ListUtil from '@ohos.util.List';
-import { BaseDataSource } from '@ohos/common';
+import { BaseDataSource } from '@ohos/common/src/main/ets/components/BaseDataSource';
 import { Information } from '../../model/Information';
 
 export class ListDateSource extends BaseDataSource {

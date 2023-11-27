@@ -15,7 +15,8 @@
 
 import common from '@ohos.app.ability.common';
 import { ItemGroup } from './ItemGroup';
-import { getString, logger } from '@ohos/common';
+import { logger } from '@ohos/common/src/main/ets/util/Logger';
+import { getString } from '@ohos/common/src/main/ets/util/ResourceUtil';
 import { MainItem } from './MainItem';
 
 const TAG: string = 'MenuNavRouter';
@@ -26,7 +27,7 @@ export struct MenuNavRouter {
   @StorageLink('selectedSecondLabel') selectedSecondLabel: string = '';
   @BuilderParam navDestination: () => void;
   private childList: Array<string> = [];
-  private addAction?: (title:string) => void;
+  private addAction?: (title: string) => void;
 
   @Builder CustomDivider() {
     Divider()
