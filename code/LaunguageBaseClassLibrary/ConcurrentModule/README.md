@@ -29,15 +29,17 @@ taskpool:
 
 1. Select the Taskpool tab and enter the string to be sorted, separated by commas.
 
-2. Click the **Execute Immediately** button to execute the task immediately, and the sorted string will be displayed after the task completes.
+2.Click the * * String Sort * * button will send the pre sorted string to the worker thread, where string sorting is implemented. Then, the sorted string will be sent to the main thread, which will display the sorted string.
 
-3. Click the **Execute After 3s** button to delay the task execution by 3 seconds, and the sorted string will be displayed after the task completes.
+3. Click the **Execute Immediately** button to execute the task immediately, and the sorted string will be displayed after the task completes.
 
-4. Click the **Function Task** button to execute the operation directly, and the sorted string will be displayed after the task completes. Note that the task created using Function Task cannot be cancelled.
+4. Click the **Execute After 3s** button to delay the task execution by 3 seconds, and the sorted string will be displayed after the task completes.
 
-5. Click the **Cancel Task** button to cancel the last unexecuted task. Note that cancellation can only be successful if the number of tasks is greater than the maximum number of threads and the task has started executing.
+5. Click the **Function Task** button to execute the operation directly, and the sorted string will be displayed after the task completes. Note that the task created using Function Task cannot be cancelled.
 
-6. Click the **Clear** button to clear the string.
+6. Click the **Cancel Task** button to cancel the last unexecuted task. Note that cancellation can only be successful if the number of tasks is greater than the maximum number of threads and the task has started executing.
+
+7. Click the **Clear** button to clear the string.
 
 ### Constraints and Limitations
 

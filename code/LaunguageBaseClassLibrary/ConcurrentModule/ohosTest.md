@@ -7,3 +7,4 @@
 |字符串排序| 进入字符串吧排序界面 | 点击字符串排序按钮 |进入字符串排序界面|是|Pass|
 |Worker页签功能测试| 进入字符串排序界面 |	输入排序字符串“dses,ssdf,add”|	输出排序字符串“add,dses,ssdf”|是|Pass|
 |Taskpool页签功能测试| 进入字符串排序界面 |	输入排序字符串“dses,ssdf,add”|	输出排序字符串“add,dses,ssdf”|是|Pass|
+|Taskpool页签TaskGroup功能测试| 进入字符串排序界面 |  输入排序字符串“dses,ssdf,add”，“mnf,csfg,brsf”，“rkg,abhg,ungb”|	输出排序字符串“add,dses,ssdf,brsf,csfg,mnf,abhg,rkg,ungb”|是|Pass|

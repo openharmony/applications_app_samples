@@ -17,6 +17,14 @@
       "value": "enter the string to be sorted, separated by commas"
     },
     {
+      "name": "Default_desc",
+      "value": "enter the string to be sorted"
+    },
+    {
+      "name": "Add_task",
+      "value": "add task to taskGroup"
+    },
+    {
       "name": "Result_desc",
       "value": "execution result"
     },
