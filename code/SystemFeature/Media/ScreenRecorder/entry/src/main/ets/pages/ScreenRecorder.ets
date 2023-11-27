@@ -13,15 +13,15 @@
  * limitations under the License.
  */
 
-import screenManager from '@ohos.screen'
-import media from '@ohos.multimedia.media'
+import screenManager from '@ohos.screen';
+import media from '@ohos.multimedia.media';
 import mediaLibrary from '@ohos.multimedia.mediaLibrary';
-import Logger from '../common/Logger'
-import display from '@ohos.display'
+import Logger from '../common/Logger';
+import display from '@ohos.display';
 import emitter from '@ohos.events.emitter';
-import { DESTROY_FLOAT_WINDOW } from '../common/Constants'
+import { DESTROY_FLOAT_WINDOW } from '../common/Constants';
 
-const TAG: string = '[ScreenRecorder]'
+const TAG: string = '[ScreenRecorder]';
 
 const DEFAULT_VIDEO_PROFILE = {
   audioBitrate: 48000,
@@ -30,29 +30,30 @@ const DEFAULT_VIDEO_PROFILE = {
   audioSampleRate: 48000,
   fileFormat: media.ContainerFormatType.CFT_MPEG_4,
   videoBitrate: 2000000,
-  videoCodec: media.CodecMimeType.VIDEO_AVC,
+  videoCodec: media.CodecMimeType.VIDEO_MPEG4,
   videoFrameWidth: 0,
   videoFrameHeight: 0,
-  videoFrameRate: 0,
-}
+  videoFrameRate: 30
+};
 
 enum RecordingState {
   Idle = 0,
   Recording,
   Stopped,
   Error
-}
+};
 
-const VIDEO_SOURCE_RGB = 2
-const AUDIO_SOURCE_MIC = 1
-const FD_PREFIX = 'fd://'
-const TIME_LENGTH = 2
-const TIME_PREFIX = '0'
-const SCREEN_RECORD_PREFIX = 'REC'
-const VIDEO_TYPE = '.mp4'
-const CONNECTOR = '_'
-const VIRTUAL_SCREEN_NAME = 'screenRecorder'
-type MediaManager = ReturnType<typeof mediaLibrary.getMediaLibrary>
+const VIDEO_SOURCE_RGB = 2;
+const AUDIO_SOURCE_MIC = 1;
+const FD_PREFIX = 'fd://';
+const TIME_LENGTH = 2;
+const TIME_PREFIX = '0';
+const SCREEN_RECORD_PREFIX = 'REC';
+const VIDEO_TYPE = '.mp4';
+const CONNECTOR = '_';
+const VIRTUAL_SCREEN_NAME = 'screenRecorder';
+const DEVICE_RATE = 0.6;
+type MediaManager = ReturnType<typeof mediaLibrary.getMediaLibrary>;
 
 @Entry
 @Component
@@ -130,10 +131,9 @@ struct ScreenRecorder {
     const dftDisplay = display.getDefaultDisplaySync()
     const videoProfile: media.VideoRecorderProfile = {
       ...DEFAULT_VIDEO_PROFILE,
-      videoFrameWidth: Number(dftDisplay.width)*3/5,
-      videoFrameHeight: Number(dftDisplay.height)*3/5,
-      videoFrameRate: Number(dftDisplay.refreshRate)*3/5,
-    }
+      videoFrameWidth: Number(dftDisplay.width) * DEVICE_RATE,
+      videoFrameHeight: Number(dftDisplay.height) * DEVICE_RATE
+    };
     return {
       audioSourceType: AUDIO_SOURCE_MIC,
       videoSourceType: VIDEO_SOURCE_RGB,
@@ -184,9 +184,9 @@ struct ScreenRecorder {
       const dftDisplay = display.getDefaultDisplaySync();
       return await screenManager.createVirtualScreen({
         name: VIRTUAL_SCREEN_NAME,
-        width: Number(dftDisplay.width)*3/5,
-        height: Number(dftDisplay.height)*3/5,
-        density: Number(dftDisplay.densityDPI)*3/5,
+        width: Number(dftDisplay.width) * DEVICE_RATE,
+        height: Number(dftDisplay.height) * DEVICE_RATE,
+        density: Number(dftDisplay.densityDPI) * DEVICE_RATE,
         surfaceId,
       })
     } catch (err) {
