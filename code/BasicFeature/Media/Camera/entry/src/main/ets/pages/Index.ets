@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 import cameraDemo from 'libentry.so';
 import Logger from '../model/Logger';
@@ -31,6 +31,7 @@ import display from '@ohos.display';
 import * as Common from '../common/Constants'
 import { SettingDataObj } from '../common/Constants'
 import common from '@ohos.app.ability.common'
+
 const TAG: string = 'UI indexPage';
 
 @Entry
@@ -46,7 +47,6 @@ struct Index {
     autoCancel: false,
     customStyle: true
   });
-
   // Select mode
   @State modelBagCol: string = 'photo';
   // Exposure area
@@ -81,7 +81,6 @@ struct Index {
     referenceLineBol: false
   };
   private appContext: common.Context = getContext(this);
-
   // Set Popup Box
   private settingDialogController: CustomDialogController = new CustomDialogController({
     builder: settingDialog({
@@ -92,12 +91,12 @@ struct Index {
     autoCancel: false,
     customStyle: true
   });
-
   // REFERENCE LINE
   @State referenceLineBol: boolean = false;
   @StorageLink('defaultAspectRatio') @Watch('initXComponentSize') defaultAspectRatio: number = Constants.MIN_ASPECT_RATIO;
   @State onShow: boolean = false;
   atManager = abilityAccessCtrl.createAtManager();
+
   // Entry initialization function
   async aboutToAppear() {
     await this.requestPermissionsFn();
@@ -116,6 +115,7 @@ struct Index {
   async aboutToDisAppear() {
     await cameraDemo.releaseCamera();
   }
+
   // Obtain permissions
   async requestPermissionsFn() {
     Logger.info(TAG, `requestPermissionsFn entry`);
@@ -165,7 +165,6 @@ struct Index {
             cameraDemo.initCamera(this.surfaceId, this.settingDataObj.focusMode, this.cameraDeviceIndex);
             let device = Common.cameraDeviceIndex;
             device = this.cameraDeviceIndex;
-            // globalThis.cameraDeviceIndex = this.cameraDeviceIndex;
             Logger.error(TAG, `initCamera end`);
           })
           .backgroundColor(Color.Blue)

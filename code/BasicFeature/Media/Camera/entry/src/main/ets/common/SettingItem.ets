@@ -38,6 +38,7 @@ export struct settingItem {
     videoFrame: 0,
     referenceLineBol: false
   };
+
   // Corresponding to the selected setting parameters in the click mode setting
   selectMode() {
     switch (this.settingMessageNum) {
@@ -63,7 +64,7 @@ export struct settingItem {
         this.settingDataObj.photoOrientation = this.index;
         break;
       case 9:
-        // Photo resolution
+      // Photo resolution
         this.settingDataObj.photoResolution = this.index;
         let ind = this.itemData.indexOf('*');
         let photoResolutionWidth = Common.photoResolutionWidth;
@@ -72,7 +73,7 @@ export struct settingItem {
         photoResolutionHeight = Number(this.itemData.substring(ind + 1));
         break;
       case 10:
-        // Video resolution
+      // Video resolution
         this.settingDataObj.videoResolution = this.index;
         let index = this.itemData.indexOf('*');
         let videoResolutionWidth = Common.videoResolutionWidth;

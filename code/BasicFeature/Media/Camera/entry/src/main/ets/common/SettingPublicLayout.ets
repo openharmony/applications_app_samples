@@ -34,7 +34,8 @@ interface Length {
 export struct settingPublicLayout {
   private icon: Resource = $r('app.string.CONTENT_TYPE_UNKNOWN');
   private modeMessage: Resource = $r('app.string.CONTENT_TYPE_UNKNOWN');
-  private getModeBol: (mirrorBol: boolean) => void = (mirrorBol: boolean) => {};
+  private getModeBol: (mirrorBol: boolean) => void = (mirrorBol: boolean) => {
+  };
   private setModeBol: boolean = false;
   private isModeBol: boolean = false;
   private borderBol: boolean = false;

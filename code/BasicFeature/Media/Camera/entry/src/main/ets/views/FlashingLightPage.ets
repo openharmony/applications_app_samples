@@ -35,6 +35,7 @@ export struct FlashingLightPage {
     iconAuto: $r('app.media.ic_camera_public_flash_auto'),
     iconAlwaysOn: $r('app.media.flash_always_on')
   };
+
   // Return to selected image
   getImageDefault() {
     if (this.flashingNum == 0) {

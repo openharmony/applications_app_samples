@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 import { settingItem } from './SettingItem'
 import { SettingDataObj } from '../common/Constants'
 
@@ -48,7 +48,7 @@ export struct settingRightLayout {
     [$r('app.string.VIDEO_RATE_15'), $r('app.string.VIDEO_RATE_30')],
   ];
   @State isIndex: number = 0;
-  private settingItemNumberArray = [2,3,4,5,7,8,9,10,11];
+  private settingItemNumberArray = [2, 3, 4, 5, 7, 8, 9, 10, 11];
   private settingDataObj: SettingDataObj = {
     mirrorBol: false,
     videoStabilizationMode: 0,

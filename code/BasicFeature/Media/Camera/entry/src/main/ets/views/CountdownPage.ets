@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 // Countdown page
 @Component
 export struct CountdownPage {
@@ -55,21 +55,29 @@ export struct CountdownPage {
         Row() {
           Image($r('app.media.icon_camera_setting_timer_on_balk')).width('60px').height('60px').margin({ left: 5 });
           ForEach(this.countdownListData, (item: string) => {
-            Text(item).fontSize(21).fontWeight(500).margin({
+            Text(item)
+              .fontSize(21)
+              .fontWeight(500)
+              .margin({
+                left: 10
+              })
+              .fontColor(this.countdownNum == this.colorItem ? $r('app.color.theme_color') : '#182431')
+              .onClick(() => {
+                this.countdownNum = this.colorItem
+                this.countdownBol = true
+              })
+          }, (item: string) => item)
+          Text('OFF')
+            .fontSize(21)
+            .fontWeight(500)
+            .margin({
               left: 10
             })
-              .fontColor(this.countdownNum == this.colorItem ? $r('app.color.theme_color') : '#182431').onClick(() => {
-              this.countdownNum = this.colorItem
-              this.countdownBol = true
+            .fontColor(this.countdownNum == 0 ? $r('app.color.theme_color') : '#182431')
+            .onClick(() => {
+              this.countdownNum = 0;
+              this.countdownBol = true;
             })
-          }, (item: string) => item)
-          Text('OFF').fontSize(21).fontWeight(500).margin({
-            left: 10
-          })
-            .fontColor(this.countdownNum == 0 ? $r('app.color.theme_color') : '#182431').onClick(() => {
-            this.countdownNum = 0;
-            this.countdownBol = true;
-          })
         }
         .backgroundColor('#FFFFFF')
         .borderRadius('40px')

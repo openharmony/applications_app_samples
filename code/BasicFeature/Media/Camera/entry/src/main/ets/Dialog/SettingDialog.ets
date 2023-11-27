@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 import { settingPublicLayout } from '../common/SettingPublicLayout';
 import { settingRightLayout } from '../common/SettingRightLayout';
 import { SettingDataObj } from '../common/Constants'
@@ -44,10 +44,12 @@ export struct settingDialog {
   getMirrorBol(bol: boolean) {
     this.settingDataObj.mirrorBol = bol;
   }
+
   // Persistent geographical location, re-enter to determine if the switch is turned on
   getLocationBol(bol: boolean) {
     this.settingDataObj.locationBol = bol;
   }
+
   // Persist the reference line, enter again to determine if the switch is turned on
   getReferenceLineBol(bol: boolean) {
     this.settingDataObj.referenceLineBol = bol;

@@ -23,7 +23,6 @@ import hilog from '@ohos.hilog';
 const TAG: string = "EntryAbility";
 
 export default class EntryAbility extends UIAbility {
-
   onCreate(want, launchParam) {
     hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');

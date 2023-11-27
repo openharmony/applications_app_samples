@@ -38,7 +38,8 @@ export struct FocusAreaPage {
   });
 
   build() {
-    Row() {}
+    Row() {
+    }
     .width(this.xComponentWidth)
     .height(this.xComponentHeight)
     .opacity(1)

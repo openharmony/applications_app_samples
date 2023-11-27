@@ -26,6 +26,7 @@ import deviceInfo from '@ohos.deviceInfo';
 import fileio from '@ohos.fileio';
 import { SettingDataObj } from '../common/Constants'
 import common from '@ohos.app.ability.common'
+
 let context = getContext(this) as common.UIAbilityContext;
 
 interface CameraSize {
