@@ -48,12 +48,28 @@ async function saveEdit() {
   hilog.info(DOMAIN, TAG, BUNDLE + 'Save_001 end');
 }
 
+async function showColorSpace() {
+  hilog.info(DOMAIN, TAG, BUNDLE + 'ShowColorSpace_001 begin');
+  let driver = Driver.create();
+  await driver.delayMs(1000);
+  let tip: string = getString($r('app.string.toning'));
+  await driver.assertComponentExist(ON.text(tip));
+  let stack = await driver.findComponent(ON.text(tip));
+  let point = await stack.getBoundsCenter();
+  // 拖动滑动条，固定坐标只支持RK3568，其他设备需要调整
+  await driver.drag(point.x + 200, point.y, point.x - 200, point.y, 800);
+  await driver.delayMs(1000);
+  hilog.info(DOMAIN, TAG, BUNDLE + 'ShowColorSpace_001 end');
+}
+
 export default function ActsAbilityTest() {
   describe('ActsAbilityTest', () => {
     /**
-     * 启动Ability
+     * @tc.number  StartAbility_001
+     * @tc.name StartAbility_001
+     * @tc.desc 启动Ability
      */
-    it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
+    it('StartAbility_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin');
       let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
       await abilityDelegatorRegistry.executeShellCommand('aa start -a MainAbility -b ohos.samples.image');
@@ -62,9 +78,11 @@ export default function ActsAbilityTest() {
     })
 
     /**
-     * 获取权限
+     * @tc.number  RequestPermissionFunction_001
+     * @tc.name RequestPermissionFunction_001
+     * @tc.desc 获取权限
      */
-    it(BUNDLE + 'RequestPermissionFunction_001', 0, async (done: Function) => {
+    it('RequestPermissionFunction_001', 1, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'RequestPermissionFunction_001 begin');
       let driver: Driver = Driver.create();
       await driver.delayMs(1000);
@@ -79,30 +97,32 @@ export default function ActsAbilityTest() {
     })
 
     /**
-     * 选择图片
+     * @tc.number  ChoosePhoto_001
+     * @tc.name ChoosePhoto_001
+     * @tc.desc 选择图片
      */
-    it(BUNDLE + 'ChoosePhoto_001', 0, async (done: Function) => {
+    it('ChoosePhoto_001', 2, async (done: Function) => {
       // 从相册中选择
       hilog.info(DOMAIN, TAG, BUNDLE + 'ChoosePhoto_001 begin');
       let driver = Driver.create();
-      await driver.delayMs(2000);
+      await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('add'));
       let stack = await driver.findComponent(ON.id('add'));
       await stack.click();
-      await driver.delayMs(2000);
+      await driver.delayMs(3000);
       // 拍照,坐标选择,固定坐标只支持RK3568，其他设备需要调整
       let takePhoto: string = getString($r('app.string.takePhoto'));
       await driver.assertComponentExist(ON.text(takePhoto));
       let take_photo = await driver.findComponent(ON.text(takePhoto));
       // 点击拍照唤起相机
       await take_photo.click();
-      await driver.delayMs(3000);
+      await driver.delayMs(2500);
       // 点击拍照按钮，拍下一张照片
       await driver.click(362, 1100);
-      await driver.delayMs(3000);
+      await driver.delayMs(1500);
       // 点击确定存储照片
       await driver.click(663, 83);
-      await driver.delayMs(3000);
+      await driver.delayMs(1500);
       // 点击照片，选中一张照片
       let gridItems = await driver.findComponents(ON.type('GridItem'));
       await gridItems[4].click();
@@ -111,6 +131,7 @@ export default function ActsAbilityTest() {
       let tipCompleted: string = getString($r('app.string.completed'));
       await driver.assertComponentExist(ON.text(tipCompleted));
       let finish = await driver.findComponent(ON.text(tipCompleted));
+      await driver.delayMs(1000);
       await finish.click();
       await driver.delayMs(1000);
       done();
@@ -118,11 +139,13 @@ export default function ActsAbilityTest() {
     })
 
     /**
-     * 点击裁剪
+     * @tc.number  CropPhoto_001
+     * @tc.name CropPhoto_001
+     * @tc.desc 点击裁剪
      */
-    it(BUNDLE + 'CropPhoto_001', 0, async (done: Function) => {
+    it('CropPhoto_001', 3, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'CropPhoto_001 begin');
-      let driver = Driver.create();
+      let driver = await Driver.create();
       await driver.delayMs(1000);
       // 进入编辑
       await enterEdit();
@@ -136,9 +159,11 @@ export default function ActsAbilityTest() {
     })
 
     /**
-     * 点击4:3
+     * @tc.number  Crop4_3_001
+     * @tc.name Crop4_3_001
+     * @tc.desc 点击4:3
      */
-    it(BUNDLE + 'Crop4:3_001', 0, async (done: Function) => {
+    it('Crop4_3_001', 4, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'Crop4:3_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -156,9 +181,11 @@ export default function ActsAbilityTest() {
     })
 
     /**
-     * 点击16:9
+     * @tc.number  Crop16_9_001
+     * @tc.name Crop16_9_001
+     * @tc.desc 点击16:9
      */
-    it(BUNDLE + 'Crop16:9_001', 0, async (done: Function) => {
+    it('Crop16_9_001', 5, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'Crop16:9 begin');
       let driver = Driver.create();
       let tipCrop = getString($r('app.string.crop'));
@@ -180,9 +207,11 @@ export default function ActsAbilityTest() {
     })
 
     /**
-     * 点击1:1
+     * @tc.number  Crop1_1_001
+     * @tc.name Crop1_1_001
+     * @tc.desc 点击1:1
      */
-    it(BUNDLE + 'Crop1:1_001', 0, async (done: Function) => {
+    it('Crop1_1_001', 6, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'Crop1:1 begin');
       let driver = Driver.create();
       let tipCrop = getString($r('app.string.crop'));
@@ -204,9 +233,11 @@ export default function ActsAbilityTest() {
     })
 
     /**
-     * 点击原图
+     * @tc.number  CropOrigin_001
+     * @tc.name CropOrigin_001
+     * @tc.desc 点击原图
      */
-    it(BUNDLE + 'CropOrigin_001', 0, async (done: Function) => {
+    it('CropOrigin_001', 7, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'CropOrigin begin');
       let driver = Driver.create();
       let tipCrop = getString($r('app.string.crop'));
@@ -231,9 +262,11 @@ export default function ActsAbilityTest() {
     })
 
     /**
-     * 点击缩放
+     * @tc.number  ScalePhoto_001
+     * @tc.name ScalePhoto_001
+     * @tc.desc 点击缩放
      */
-    it(BUNDLE + 'ScalePhoto_001', 0, async (done: Function) => {
+    it('ScalePhoto_001', 8, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ScalePhoto_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -249,9 +282,11 @@ export default function ActsAbilityTest() {
     })
 
     /**
-     * 点击缩小
+     * @tc.number  Scale_001
+     * @tc.name Scale_001
+     * @tc.desc 点击缩小
      */
-    it(BUNDLE + 'Scale_001', 0, async (done: Function) => {
+    it('Scale_001', 9, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'Scale_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -269,9 +304,11 @@ export default function ActsAbilityTest() {
     })
 
     /**
-     * 点击放大
+     * @tc.number  Scale_002
+     * @tc.name Scale_002
+     * @tc.desc 点击放大
      */
-    it(BUNDLE + 'Scale_002', 0, async (done: Function) => {
+    it('Scale_002', 10, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'Scale_002 begin');
       let driver = Driver.create();
       let tip = getString($r('app.string.scale'));
@@ -295,9 +332,11 @@ export default function ActsAbilityTest() {
     })
 
     /**
-     * 点击旋转
+     * @tc.number  RotatePhoto_001
+     * @tc.name RotatePhoto_001
+     * @tc.desc 点击旋转
      */
-    it(BUNDLE + 'RotatePhoto_001', 0, async (done: Function) => {
+    it('RotatePhoto_001', 11, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'RotatePhoto_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -313,9 +352,11 @@ export default function ActsAbilityTest() {
     })
 
     /**
-     * 旋转-90度
+     * @tc.number  Rotate_001
+     * @tc.name Rotate_001
+     * @tc.desc 旋转-90度
      */
-    it(BUNDLE + 'Rotate_001', 0, async (done: Function) => {
+    it('Rotate_001', 12, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'Rotate_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -332,9 +373,11 @@ export default function ActsAbilityTest() {
     })
 
     /**
-     * 旋转90度
+     * @tc.number  Rotate_002
+     * @tc.name Rotate_002
+     * @tc.desc 旋转90度
      */
-    it(BUNDLE + 'Rotate_002', 0, async (done: Function) => {
+    it('Rotate_002', 13, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'Rotate_002 begin');
       let driver = Driver.create();
       let tip = getString($r('app.string.rotate'));
@@ -357,9 +400,11 @@ export default function ActsAbilityTest() {
     })
 
     /**
-     * 点击调色
+     * @tc.number  ToningPhoto_001
+     * @tc.name ToningPhoto_001
+     * @tc.desc 点击调色
      */
-    it(BUNDLE + 'ToningPhoto_001', 0, async (done: Function) => {
+    it('ToningPhoto_001', 14, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ToningPhoto_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -375,9 +420,11 @@ export default function ActsAbilityTest() {
     })
 
     /**
-     * 拖动滑动条
+     * @tc.number  Toning_001
+     * @tc.name Toning_001
+     * @tc.desc 拖动滑动条
      */
-    it(BUNDLE + 'Toning_001', 0, async (done: Function) => {
+    it('Toning_001', 15, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'Toning_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -399,9 +446,11 @@ export default function ActsAbilityTest() {
     })
 
     /**
-     * 点击标记
+     * @tc.number  Mark_001
+     * @tc.name Mark_001
+     * @tc.desc 点击标记
      */
-    it(BUNDLE + 'Mark_001', 0, async (done: Function) => {
+    it('Mark_001', 16, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'Mark_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -417,9 +466,11 @@ export default function ActsAbilityTest() {
     })
 
     /**
-     * 点击文字
+     * @tc.number  Text_001
+     * @tc.name Text_001
+     * @tc.desc 点击文字
      */
-    it(BUNDLE + 'Text_001', 0, async (done: Function) => {
+    it('Text_001', 17, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'Text_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -433,9 +484,11 @@ export default function ActsAbilityTest() {
     })
 
     /**
-     * 输入文字
+     * @tc.number  TextInput_001
+     * @tc.name TextInput_001
+     * @tc.desc 输入文字
      */
-    it(BUNDLE + 'TextInput_001', 0, async (done: Function) => {
+    it('TextInput_001', 18, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'TextInput_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -456,9 +509,11 @@ export default function ActsAbilityTest() {
     })
 
     /**
-     * 点击撤销
+     * @tc.number  Repeal_001
+     * @tc.name Repeal_001
+     * @tc.desc 点击撤销
      */
-    it(BUNDLE + 'Repeal_001', 0, async (done: Function) => {
+    it('Repeal_001', 19, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'Repeal_001 begin');
       let driver = Driver.create();
       await driver.assertComponentExist(ON.id('Repeal'));
@@ -472,10 +527,12 @@ export default function ActsAbilityTest() {
     })
 
     /**
-     * 点击标记
+     * @tc.number  Mark_002
+     * @tc.name Mark_002
+     * @tc.desc 点击标记
      */
-    it(BUNDLE + 'Mark_001', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Mark_001 begin');
+    it('Mark_002', 20, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'Mark_002 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
       // 进入编辑
@@ -486,13 +543,15 @@ export default function ActsAbilityTest() {
       await stack.click();
       await driver.delayMs(1000);
       done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Mark_001 end');
+      hilog.info(DOMAIN, TAG, BUNDLE + 'Mark_002 end');
     })
 
     /**
-     * 添加贴纸
+     * @tc.number  AddSticker_001
+     * @tc.name AddSticker_001
+     * @tc.desc 添加贴纸
      */
-    it(BUNDLE + 'AddSticker_001', 0, async (done: Function) => {
+    it('AddSticker_001', 21, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'AddSticker_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -510,5 +569,131 @@ export default function ActsAbilityTest() {
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'AddSticker_001 end');
     })
+
+    /**
+     * @tc.number  ColorSpace_001
+     * @tc.name ColorSpace_001
+     * @tc.desc 点击色域
+     */
+    it('ColorSpace_001', 22, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'ColorSpace_001 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      // 进入编辑
+      await enterEdit();
+      await showColorSpace();
+      let tip = getString($r('app.string.colorSpace'));
+      await driver.assertComponentExist(ON.text(tip));
+      let colorSpace = await driver.findComponent(ON.text(tip));
+      await colorSpace.click();
+      await driver.delayMs(1000);
+      done();
+      hilog.info(DOMAIN, TAG, BUNDLE + 'ColorSpace_001 end');
+    })
+
+    /**
+     * @tc.number  ColorSpacePhoto_001
+     * @tc.name ColorSpacePhoto_001
+     * @tc.desc 点击调整色域 SRGB
+     */
+    it('ColorSpacePhoto_001', 23, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'ColorSpacePhoto_001 begin');
+      let driver = Driver.create();
+      let colorSpace = getString($r('app.string.colorSpaceSRGB'));
+      await driver.assertComponentExist(ON.text(colorSpace));
+      let stack = await driver.findComponent(ON.text(colorSpace));
+      await stack.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('Ok'));
+      let ok = await driver.findComponent(ON.id('Ok'));
+      await ok.click();
+      await driver.delayMs(1000);
+      done();
+      hilog.info(DOMAIN, TAG, BUNDLE + 'ColorSpacePhoto_001 end');
+    })
+
+    /**
+     * @tc.number  ColorSpacePhoto_002
+     * @tc.name ColorSpacePhoto_002
+     * @tc.desc 点击调整色域 AdobeRGB
+     */
+    it('ColorSpacePhoto_002', 24, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'ColorSpacePhoto_002 begin');
+      let driver = Driver.create();
+      await showColorSpace();
+      let tip = getString($r('app.string.colorSpace'));
+      await driver.assertComponentExist(ON.text(tip));
+      let colorSpaceBtn = await driver.findComponent(ON.text(tip));
+      await colorSpaceBtn.click();
+      await driver.delayMs(1000);
+      let colorSpace = getString($r('app.string.colorSpaceAdobeRGB'));
+      await driver.assertComponentExist(ON.text(colorSpace));
+      let stack = await driver.findComponent(ON.text(colorSpace));
+      await stack.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('Ok'));
+      let ok = await driver.findComponent(ON.id('Ok'));
+      await ok.click();
+      await driver.delayMs(1000);
+      done();
+      hilog.info(DOMAIN, TAG, BUNDLE + 'ColorSpacePhoto_002 end');
+    })
+
+    /**
+     * @tc.number  ColorSpacePhoto_003
+     * @tc.name ColorSpacePhoto_003
+     * @tc.desc 点击调整色域 DCIP3
+     */
+    it('ColorSpacePhoto_003', 25, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'ColorSpacePhoto_003 begin');
+      let driver = Driver.create();
+      await showColorSpace();
+      let tip = getString($r('app.string.colorSpace'));
+      await driver.assertComponentExist(ON.text(tip));
+      let colorSpaceBtn = await driver.findComponent(ON.text(tip));
+      await colorSpaceBtn.click();
+      await driver.delayMs(1000);
+      let colorSpace = getString($r('app.string.colorSpaceDCIP3'));
+      await driver.assertComponentExist(ON.text(colorSpace));
+      let stack = await driver.findComponent(ON.text(colorSpace));
+      await stack.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('Ok'));
+      let ok = await driver.findComponent(ON.id('Ok'));
+      await ok.click();
+      await driver.delayMs(1000);
+      done();
+      hilog.info(DOMAIN, TAG, BUNDLE + 'ColorSpacePhoto_003 end');
+    })
+
+    /**
+     * @tc.number  ColorSpacePhoto_004
+     * @tc.name ColorSpacePhoto_004
+     * @tc.desc 点击调整色域 DisplayP3
+     */
+    it('ColorSpacePhoto_004', 26, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'ColorSpacePhoto_004 begin');
+      let driver = Driver.create();
+      await showColorSpace();
+      let tip = getString($r('app.string.colorSpace'));
+      await driver.assertComponentExist(ON.text(tip));
+      let scale = await driver.findComponent(ON.text(tip));
+      await scale.click();
+      await driver.delayMs(1000);
+      let colorSpace = getString($r('app.string.colorSpaceDisplayP3'));
+      await driver.assertComponentExist(ON.text(colorSpace));
+      let stack = await driver.findComponent(ON.text(colorSpace));
+      await stack.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('Ok'));
+      let ok = await driver.findComponent(ON.id('Ok'));
+      await ok.click();
+      await driver.delayMs(1000);
+      // 保存当前编辑
+      await saveEdit();
+      done();
+      hilog.info(DOMAIN, TAG, BUNDLE + 'ColorSpacePhoto_004 end');
+    })
+
   })
 }
