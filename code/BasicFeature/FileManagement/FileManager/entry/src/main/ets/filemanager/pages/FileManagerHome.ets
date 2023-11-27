@@ -21,9 +21,9 @@ import MyWatcher from '../fileFs/MyWatcher';
 import fs from '@ohos.file.fs';
 
 class MainListItemModel {
-  image: Resource
-  title: Resource
-  routerUrl: string
+  image: Resource | null = null
+  title: Resource | null = null
+  routerUrl: string = ''
   isReady?: boolean = true
   isFileWatcher?: boolean = false
 }
@@ -70,7 +70,7 @@ const MAIN_LIST_ITEMS: MainListItemModel[] = [
 
 @Component
 export default struct FileManagerHome {
-  private baseDir: string = AppStorage.Get('sanBoxFileDir');
+  private baseDir: string = AppStorage.Get<string>('sanBoxFileDir') as string;
 
   aboutToAppear() {
     FileManager.requestPermission(getContext(this));
@@ -117,10 +117,10 @@ export default struct FileManagerHome {
 
 @Component
 struct MainListItemComponent {
-  private mainListItem: MainListItemModel;
+  private mainListItem: MainListItemModel = new MainListItemModel();
   myWatcher: MyWatcher = new MyWatcher();
   private filePathDir: string = '';
-  private baseDir: string = AppStorage.Get('sanBoxFileDir');
+  private baseDir: string = AppStorage.Get<string>('sanBoxFileDir') as string;
 
   @Styles itemPressedStyles() {
     .backgroundColor($r('app.color.item_pressed'))

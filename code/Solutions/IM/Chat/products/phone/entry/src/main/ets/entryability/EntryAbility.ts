@@ -15,15 +15,15 @@
 
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
-import router from '@ohos.router';
 import Logger from '../utils/Logger';
 import Want from '@ohos.app.ability.Want';
 
 const TAG: string = 'EntryAbility';
+let currentWindowStage = null;
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want): void {
-    Logger.info(TAG, 'MainAbility onCreate');
+    Logger.info(TAG, 'MainAbility onCreate' + JSON.stringify(want));
     AppStorage.setOrCreate<Want>('want', want);
     PersistentStorage.persistProp('lazy_for_each', true); // 懒加载初始化
     PersistentStorage.persistProp('reusable', true); // 复用初始化
@@ -40,10 +40,24 @@ export default class EntryAbility extends UIAbility {
     Logger.info(TAG, 'MainAbility onDestroy');
   }
 
+  onNewWant(want: Want): void {
+    if (want.parameters.kindId === undefined) {
+      return;
+    }
+    Logger.info(TAG, "onNewWant want:" + JSON.stringify(want));
+    AppStorage.setOrCreate('want', want);
+    if (currentWindowStage != null) {
+      this.onWindowStageCreate(currentWindowStage);
+    }
+  }
+
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability
     Logger.info(TAG, 'MainAbility onWindowStageCreate');
 
+    if (currentWindowStage === null) {
+      currentWindowStage = windowStage;
+    }
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
         Logger.error(TAG, `Failed to load the content. Cause: ${JSON.stringify(err)}`);
@@ -84,12 +98,5 @@ export default class EntryAbility extends UIAbility {
   onBackground(): void {
     // Ability has back to background
     Logger.info(TAG, `MainAbility onBackground`);
-  }
-
-  onNewWant(want: Want): void {
-    AppStorage.setOrCreate('want', want);
-    router.pushUrl({
-      url: 'pages/Index'
-    });
   }
 }

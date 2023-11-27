@@ -146,6 +146,10 @@ Note:If the text contains special characters, please escape them according to th
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkDrawing/screenshots/device/Index.jpg" desc="Provided by code/BasicFeature/Native/NdkDrawing"/>
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkDrawing/screenshots/device/DrawPath.jpg" desc="Provided by code/BasicFeature/Native/NdkDrawing"/>
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkDrawing/screenshots/device/DrawText.jpg" desc="Provided by code/BasicFeature/Native/NdkDrawing"/>
+		<filteritem type="filepath" name="code/BasicFeature/Native/NdkNativeWindow/screenshots/device/ChangeColor.jpg" desc="Provided by code/BasicFeature/Native/NdkNativeWindow"/>
+		<filteritem type="filepath" name="code/BasicFeature/Native/NdkNativeWindow/screenshots/device/GetAvailableCount.jpg" desc="Provided by code/BasicFeature/Native/NdkNativeWindow"/>
+		<filteritem type="filepath" name="code/BasicFeature/Native/NdkNativeWindow/screenshots/device/Main.jpg" desc="Provided by code/BasicFeature/Native/NdkNativeWindow"/>
+		<filteritem type="filepath" name="code/BasicFeature/Native/NdkNativeWindow/screenshots/device/ProduceBuffer.jpg" desc="Provided by code/BasicFeature/Native/NdkNativeWindow"/>
             </filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加License头"/>

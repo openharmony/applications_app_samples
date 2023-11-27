@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "grid_title",
+      "value": "Grid高性能应用"
+    },
+    {
+      "name": "use_grid_column_start",
+      "value": "使用columnStart"
+    },
+    {
+      "name": "use_grid_layout_options",
+      "value": "使用GridLayoutOptions"
+    },
+    {
+      "name": "use_lazy_foreach",
+      "value": "使用LazyFoEach,cachedCount,组件复用"
+    },
+    {
+      "name": "use_column_start",
+      "value": "使用columnStart，columnEnd设置GridItem大小"
+    },
+    {
+      "name": "use_layout_options",
+      "value": "使用GridLayoutOptions设置GridItem大小"
+    }
+  ]
+}

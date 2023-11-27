@@ -105,7 +105,7 @@ struct TimeDialogSample {
   }
 
   setTime(isUseMilitaryTime: boolean, value: TimePickerResult) {
-    if (value.hour && value.minute) {
+    if (value.hour !== undefined && value.minute !== undefined) {
       this.selectTime.setHours(value.hour, value.minute);
       let hour: string = `${value.hour}`;
       let minute: string = `${value.minute}`;
@@ -124,7 +124,7 @@ struct TimeDialogSample {
   }
 
   ShowToastTime(value: TimePickerResult) {
-    if (value.hour && value.minute) {
+    if (value.hour !== undefined && value.minute !== undefined) {
       let hour: string = `${value.hour}`;
       let minute: string = `${value.minute}`;
       if (value.hour < 10) {

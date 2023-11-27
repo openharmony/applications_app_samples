@@ -60,7 +60,8 @@ struct DateAndTime {
     this.time = timeInfo[1];
   }
 
-  @Builder Hours24View() {
+  @Builder
+  Hours24View() {
     Row() {
       Text($r('app.string.hours_24'))
         .fontSize(22)
@@ -113,39 +114,55 @@ struct DateAndTime {
         Column() {
           this.Hours24View()
           Column() {
-            this.TimeView(new Data($r('app.string.date'), this.date, false, () => {
-              DatePickerDialog.show({
-                lunar: false,
-                onAccept: (result: DatePickerResult) => {
-                  Logger.info(TAG, `DatePicker onAccept,year：${result.year}`);
-                  let date = new Date();
-                  date.setFullYear(result.year, result.month, result.day);
-                  systemTime.setDate(date, () => {
-                    Logger.info(TAG, `setDate finish`)
-                    this.getTimeDisplay()
-                  });
-                }
-              })
-            }))
-            this.TimeView(new Data($r('app.string.time'), this.time, true, () => {
-              TimePickerDialog.show({
-                useMilitaryTime: this.is24Hours,
-                onAccept: (result: TimePickerResult) => {
-                  Logger.info(TAG, 'DatePicker onAccept');
-                  let date = new Date();
-                  date.setHours(result.hour, result.minute);
-                  systemTime.setTime(date.getTime(), () => {
-                    Logger.info(TAG, `setTime finish`)
-                    this.getTimeDisplay()
-                  });
-                }
-              })
-            }))
-            this.TimeView(new Data($r('app.string.time_zone'), this.timeZone, true, () => {
-              router.pushUrl({
-                url: 'international/pages/TimeZone'
-              });
-            }))
+            this.TimeView({
+              key: $r('app.string.date'),
+              value: this.date,
+              isDivider: false,
+              handleClick: () => {
+                DatePickerDialog
+                  .show({
+                    lunar: false,
+                    onAccept: (result: DatePickerResult) => {
+                      Logger.info(TAG, `DatePicker onAccept,year：${result.year}`);
+                      let date = new Date();
+                      date.setFullYear(result.year, result.month, result.day);
+                      systemTime.setDate(date, () => {
+                        Logger.info(TAG, `setDate finish`)
+                        this.getTimeDisplay()
+                      });
+                    }
+                  })
+              }
+            })
+            this.TimeView({
+              key: $r('app.string.time'),
+              value: this.time,
+              isDivider: true,
+              handleClick: () => {
+                TimePickerDialog.show({
+                  useMilitaryTime: this.is24Hours,
+                  onAccept: (result: TimePickerResult) => {
+                    Logger.info(TAG, 'DatePicker onAccept');
+                    let date = new Date();
+                    date.setHours(result.hour, result.minute);
+                    systemTime.setTime(date.getTime(), () => {
+                      Logger.info(TAG, `setTime finish`)
+                      this.getTimeDisplay()
+                    });
+                  }
+                })
+              }
+            })
+            this.TimeView({
+              key: $r('app.string.time_zone'),
+              value: this.timeZone,
+              isDivider: true,
+              handleClick: () => {
+                router.pushUrl({
+                  url: 'international/pages/TimeZone'
+                });
+              }
+            })
           }
           .width('95%')
           .padding(10)
@@ -165,12 +182,5 @@ class Data {
   key: Resource | undefined = undefined;
   value: string = '';
   isDivider: boolean = false;
-  handleClick: (event: ClickEvent) => void;
-
-  constructor(key: Resource | undefined, value: string, isDivider: boolean, handleClick: (event: ClickEvent) => void) {
-    this.key = key;
-    this.value = value;
-    this.isDivider = isDivider;
-    this.handleClick = handleClick;
-  }
+  handleClick: (event: ClickEvent) => void = () => {};
 }

@@ -124,8 +124,9 @@ export default function ActsAbilityTest() {
       await driver.click(663, 83);
       await driver.delayMs(1500);
       // 点击照片，选中一张照片
-      await driver.click(540, 260);
-      await driver.delayMs(1500);
+      let gridItems = await driver.findComponents(ON.type('GridItem'));
+      await gridItems[4].click();
+      await driver.delayMs(3000);
       // 点击完成
       let tipCompleted: string = getString($r('app.string.completed'));
       await driver.assertComponentExist(ON.text(tipCompleted));

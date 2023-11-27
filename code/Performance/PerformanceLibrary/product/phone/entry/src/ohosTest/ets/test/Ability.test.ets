@@ -1,0 +1,533 @@
+/*
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { describe, it, expect } from '@ohos/hypium'
+import { Component, Driver, ON } from '@ohos.UiTest';
+import Logger from '../util/Logger';
+import Want from '@ohos.app.ability.Want';
+
+const BUNDLE: string = 'Performance';
+const TAG: string = '[Sample_Performance_Test]';
+const delegator: AbilityDelegatorRegistry.AbilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+
+export default function abilityTest() {
+  describe('ActsAbilityTest', () => {
+    /**
+     * 打开应用
+     */
+    it(BUNDLE + '_startAbility', 0, async (done: Function) => {
+      Logger.info(TAG, BUNDLE + '_startAbility start')
+      let want: Want = {
+        bundleName: 'com.samples.performancelibrary',
+        abilityName: 'EntryAbility'
+      }
+      delegator.startAbility(want, (err) => {
+        Logger.info(TAG, 'StartAbility get err ' + JSON.stringify(err))
+        expect(err).assertNull()
+      })
+      Logger.info(TAG, BUNDLE + '_startAbility end')
+      done()
+    })
+    /**
+     * 点击HiDumper按钮，进入HiDumper查看组件信息页面
+     */
+    it(BUNDLE + "HiDumperFunction_001", 2, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}HiDumperFunction_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(5000);
+      let hiDumper: Component = await driver.findComponent(ON.text("HiDumper"));
+      await driver.delayMs(500);
+      await hiDumper.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text("HiDumper查看组件信息"));
+      await driver.assertComponentExist(ON.text("查看应用组件树"));
+      await driver.assertComponentExist(ON.text("查看if/else组件"));
+      await driver.assertComponentExist(ON.text("查看visibility属性"));
+      await driver.delayMs(500);
+      Logger.info(TAG, `${BUNDLE}HiDumperFunction_001 end`);
+      done();
+    })
+
+    /**
+     * 进入查看应用组件树页面，查看页面是否在正常显示
+     */
+    it(BUNDLE + "HiDumperFunction_002", 3, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}HiDumperFunction_002 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let componentTree: Component = await driver.findComponent(ON.text("查看应用组件树"));
+      await driver.delayMs(500);
+      await componentTree.click();
+      await driver.delayMs(2000);
+      await driver.assertComponentExist(ON.id("ID_GRID"));
+      await driver.delayMs(500);
+      await driver.pressBack()
+      await driver.delayMs(500);
+      Logger.info(TAG, `${BUNDLE}HiDumperFunction_002 end`);
+      done();
+    })
+
+    /**
+     * 进入查看if/else组件页面，查看页面是否在正常显示
+     */
+    it(BUNDLE + "HiDumperFunction_003", 4, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}HiDumperFunction_003 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let ifElseComponent: Component = await driver.findComponent(ON.text("查看if/else组件"));
+      await driver.delayMs(500);
+      await ifElseComponent.click();
+      await driver.delayMs(1000);
+      let showChange: Component = await driver.findComponent(ON.text("显隐切换"));
+      await driver.delayMs(500);
+      await showChange.click();
+      await driver.delayMs(1000);
+      await showChange.click();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      Logger.info(TAG, `${BUNDLE}HiDumperFunction_003 end`);
+      done();
+    })
+    /**
+     * 进入查看visibility属性页面，查看页面是否在正常显示
+     */
+    it(BUNDLE + "HiDumperFunction_004", 5, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}HiDumperFunction_004 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let checkVisibleComponent: Component = await driver.findComponent(ON.text("查看visibility属性"));
+      await driver.delayMs(500);
+      await checkVisibleComponent.click();
+      await driver.delayMs(500);
+      let visibleComponent: Component = await driver.findComponent(ON.text("Visible"));
+      await driver.delayMs(500);
+      let hiddenComponent: Component = await driver.findComponent(ON.text("Hidden"));
+      await driver.delayMs(500);
+      let noneComponent: Component = await driver.findComponent(ON.text("None"));
+      await driver.delayMs(500);
+      await visibleComponent.click();
+      await driver.delayMs(1000);
+      await hiddenComponent.click();
+      await driver.delayMs(1000);
+      await visibleComponent.click();
+      await driver.delayMs(1000);
+      await noneComponent.click();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      Logger.info(TAG, `${BUNDLE}HiDumperFunction_004 end`);
+      done();
+    })
+    /**
+     * 点击"点击跳转静态加载案例"按钮，进入静态加载场景页面
+     */
+    it(BUNDLE + "DynamicImportFunction_001", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}DynamicImportFunction_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let staticEntry: Component = await driver.findComponent(ON.text("StaticImport"));
+      await driver.delayMs(500);
+      await staticEntry.click();
+      await driver.delayMs(500);
+      let staticImport: Component = await driver.findComponent(ON.id("conventionExample"));
+      await driver.delayMs(500);
+      await staticImport.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text("主页"));
+      await driver.assertComponentExist(ON.text("返回"));
+      await driver.assertComponentExist(ON.text("pageOne"));
+      await driver.assertComponentExist(ON.text("pageTwo"));
+      await driver.delayMs(500);
+      let pageOneDynamic: Component = await driver.findComponent(ON.text("pageOne"));
+      await driver.delayMs(500);
+      await pageOneDynamic.click();
+      await driver.delayMs(2000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      let pageTwoDynamic: Component = await driver.findComponent(ON.text("pageTwo"));
+      await driver.delayMs(500);
+      await pageTwoDynamic.click();
+      await driver.delayMs(2000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      let back: Component = await driver.findComponent(ON.text("返回"));
+      await driver.delayMs(500);
+      await back.click();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      Logger.info(TAG, `${BUNDLE}DynamicImportFunction_001 end`);
+      done();
+    })
+    /**
+     * 点击"点击跳转动态加载案例"按钮，进入动态加载场景页面
+     */
+    it(BUNDLE + "DynamicImportFunction_001", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}DynamicImportFunction_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let dynamicEntry: Component = await driver.findComponent(ON.text("DynamicImport"));
+      await driver.delayMs(500);
+      await dynamicEntry.click();
+      await driver.delayMs(500);
+      let dynamicImport: Component = await driver.findComponent(ON.text("点击跳转动态加载案例"));
+      await driver.delayMs(500);
+      await dynamicImport.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text("主页"));
+      await driver.assertComponentExist(ON.text("返回"));
+      await driver.assertComponentExist(ON.text("pageOne"));
+      await driver.delayMs(500);
+      let pageOneDynamic: Component = await driver.findComponent(ON.text("pageOne"));
+      await driver.delayMs(500);
+      await pageOneDynamic.click();
+      await driver.delayMs(2000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      let back: Component = await driver.findComponent(ON.text("返回"));
+      await driver.delayMs(500);
+      await back.click();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      Logger.info(TAG, `${BUNDLE}DynamicImportFunction_001 end`)
+    })
+
+    /**
+     * 进入查看SmartPerfHostFrameTimeline优化前页面，查看页面是否在正常显示
+     */
+    it(BUNDLE + "SmartPerfHostFrameTimeline01", 555, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}SmartPerfHostFrameTimeline01 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text("SmartPerfHost"))
+      let ifElseComponent: Component = await driver.findComponent(ON.text("SmartPerfHost"));
+      await driver.delayMs(500);
+      await ifElseComponent.click();
+      await driver.delayMs(1000);
+      let showChange: Component = await driver.findComponent(ON.text("FrameTimeline优化前代码"));
+      await driver.delayMs(500);
+      await showChange.click();
+      await driver.delayMs(10000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      Logger.info(TAG, `${BUNDLE}SmartPerfHostFrameTimeline01 end`);
+      done();
+    })
+    /**
+     * 进入查看SmartPerfHostFrameTimeline优化后页面，查看页面是否在正常显示
+     */
+    it(BUNDLE + "SmartPerfHostFrameTimeline02", 556, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}SmartPerfHostFrameTimeline00 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let showChange: Component = await driver.findComponent(ON.text("FrameTimeline优化后代码"));
+      await driver.delayMs(500);
+      await showChange.click();
+      await driver.delayMs(5000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      Logger.info(TAG, `${BUNDLE}SmartPerfHostFrameTimeline02 end`);
+      done();
+    })
+    /**
+     * 进入查看SmartPerfHostAPPStartup优化前页面，查看页面是否在正常显示
+     */
+    it(BUNDLE + "SmartPerfHostAPPStartup01", 557, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}SmartPerfHostAPPStartup01 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let showChange: Component = await driver.findComponent(ON.text("AppStartup优化前代码"));
+      await driver.delayMs(500);
+      await showChange.click();
+      await driver.delayMs(5000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      Logger.info(TAG, `${BUNDLE}SmartPerfHostAPPStartup01 end`);
+      done();
+    })
+    /**
+     * 进入查看SmartPerfHostAPPStartup优化后页面，查看页面是否在正常显示
+     */
+    it(BUNDLE + "SmartPerfHostAPPStartup02", 558, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}SmartPerfHostAPPStartup02 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let showChange: Component = await driver.findComponent(ON.text("AppStartup优化后代码"));
+      await driver.delayMs(500);
+      await showChange.click();
+      await driver.delayMs(5000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      Logger.info(TAG, `${BUNDLE}SmartPerfHostAPPStartup02 end`);
+      done();
+    })
+
+    /**
+     * 点击IfOrVisibility按钮，进入合理渲染信息页面
+     */
+    it(BUNDLE + "IfOrVisibilityFunction_001", 3, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}IfOrVisibilityFunction_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(5000);
+      let hiDumper: Component = await driver.findComponent(ON.text("IfOrVisibility"));
+      await driver.delayMs(500);
+      await hiDumper.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text("合理选择条件渲染和显隐控制"));
+      await driver.assertComponentExist(ON.text("频繁切换：显隐控制"));
+      await driver.assertComponentExist(ON.text("频繁切换：条件渲染"));
+      await driver.assertComponentExist(ON.text("首页渲染：条件渲染"));
+      await driver.assertComponentExist(ON.text("首页渲染：显隐控制"));
+      await driver.assertComponentExist(ON.text("部分修改：条件渲染+容器限制"));
+      await driver.assertComponentExist(ON.text("部分修改：仅条件渲染"));
+      await driver.assertComponentExist(ON.text("复杂子树：条件渲染+组件复用"));
+      await driver.assertComponentExist(ON.text("复杂子树：仅条件渲染"));
+      await driver.delayMs(500);
+      Logger.info(TAG, `${BUNDLE}HiDumperFunction_001 end`);
+      done();
+    })
+
+    /**
+     * 进入频繁切换场景，查看页面是否在正常显示
+     */
+    it(BUNDLE + "IfOrVisibilityFunction_002", 4, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}IfOrVisibilityFunction_002 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let animateComponent: Component = await driver.findComponent(ON.text("频繁切换：显隐控制"));
+      await driver.delayMs(500);
+      await animateComponent.click();
+      await driver.delayMs(1000);
+      let showChange: Component = await driver.findComponent(ON.text("Switch visible and hidden"));
+      await driver.delayMs(500);
+      await showChange.click();
+      await driver.delayMs(2000);
+      await showChange.click();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      animateComponent = await driver.findComponent(ON.text("频繁切换：显隐控制"));
+      await driver.delayMs(500);
+      await animateComponent.click();
+      await driver.delayMs(1000);
+      showChange = await driver.findComponent(ON.text("Switch visible and hidden"));
+      await driver.delayMs(500);
+      await showChange.click();
+      await driver.delayMs(2000);
+      await showChange.click();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      Logger.info(TAG, `${BUNDLE}IfOrVisibilityFunction_002 end`);
+      done();
+    })
+
+    /**
+     * 进入首页渲染场景，查看页面是否在正常显示
+     */
+    it(BUNDLE + "IfOrVisibilityFunction_003", 4, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}IfOrVisibilityFunction_003 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let animateComponent: Component = await driver.findComponent(ON.text("首页渲染：条件渲染"));
+      await driver.delayMs(500);
+      await animateComponent.click();
+      await driver.delayMs(1000);
+      let showChange: Component = await driver.findComponent(ON.text("Show the Hidden on start"));
+      await driver.delayMs(500);
+      await showChange.click();
+      await driver.delayMs(1000);
+      await showChange.click();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      animateComponent = await driver.findComponent(ON.text("首页渲染：显隐控制"));
+      await driver.delayMs(500);
+      await animateComponent.click();
+      await driver.delayMs(1000);
+      showChange = await driver.findComponent(ON.text("Show the Hidden on start"));
+      await driver.delayMs(500);
+      await showChange.click();
+      await driver.delayMs(1000);
+      await showChange.click();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      Logger.info(TAG, `${BUNDLE}IfOrVisibilityFunction_003 end`);
+      done();
+    })
+
+    /**
+     * 进入部分修改场景，查看页面是否在正常显示
+     */
+    it(BUNDLE + "IfOrVisibilityFunction_004", 4, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}IfOrVisibilityFunction_004 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let animateComponent: Component = await driver.findComponent(ON.text("部分修改：条件渲染+容器限制"));
+      await driver.delayMs(500);
+      await animateComponent.click();
+      await driver.delayMs(5000);
+      let showChange: Component = await driver.findComponent(ON.text("Switch Hidden and Show"));
+      await driver.delayMs(1000);
+      await showChange.click();
+      await driver.delayMs(1000);
+      await showChange.click();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      await driver.delayMs(500);
+
+      animateComponent = await driver.findComponent(ON.text("部分修改：仅条件渲染"));
+      await driver.delayMs(5000);
+      await animateComponent.click();
+      await driver.delayMs(1000);
+      showChange = await driver.findComponent(ON.text("Switch Hidden and Show"));
+      await driver.delayMs(500);
+      await showChange.click();
+      await driver.delayMs(1000);
+      await showChange.click();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      Logger.info(TAG, `${BUNDLE}IfOrVisibilityFunction_004 end`);
+      done();
+    })
+
+    /**
+     * 进入复杂子树场景，查看页面是否在正常显示
+     */
+    it(BUNDLE + "IfOrVisibilityFunction_005", 4, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}IfOrVisibilityFunction_005 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let animateComponent: Component = await driver.findComponent(ON.text("复杂子树：条件渲染+组件复用"));
+      await driver.delayMs(3000);
+      await animateComponent.click();
+      await driver.delayMs(1000);
+      let showChange: Component = await driver.findComponent(ON.text("Change FlexAlign"));
+      await driver.delayMs(500);
+      await showChange.click();
+      await driver.delayMs(1000);
+      await showChange.click();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      await driver.delayMs(500);
+
+      animateComponent = await driver.findComponent(ON.text("复杂子树：仅条件渲染"));
+      await driver.delayMs(3000);
+      await animateComponent.click();
+      await driver.delayMs(1000);
+      showChange = await driver.findComponent(ON.text("Change FlexAlign"));
+      await driver.delayMs(500);
+      await showChange.click();
+      await driver.delayMs(1000);
+      await showChange.click();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      Logger.info(TAG, `${BUNDLE}IfOrVisibilityFunction_005 end`);
+      done();
+    })
+    /**
+     * Grid的使用
+     */
+    it(BUNDLE + "GridFunction_001", 5, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}GridFunction_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      // 点击进入grid首页
+      let gridBtn: Component = await driver.findComponent(ON.text('Grid'));
+      await driver.delayMs(500);
+      await gridBtn.click();
+      await driver.delayMs(500);
+      // 点击进入懒加载页面
+      let lazyForEachBtn: Component = await driver.findComponent(ON.id('buttonOne'));
+      await driver.delayMs(500);
+      await lazyForEachBtn.click();
+      await driver.delayMs(500);
+      // 验证是否进入懒加载页面
+      await driver.assertComponentExist(ON.text('图片1'));
+      // 退出懒加载页面
+      await driver.delayMs(500);
+      await driver.pressBack();
+      await driver.delayMs(1000);
+      // 点击进入columnStart页面
+      let columnStartBtn: Component = await driver.findComponent(ON.id('buttonTwo'));
+      await driver.delayMs(500);
+      await columnStartBtn.click();
+      await driver.delayMs(500);
+      // 点击滑动位置
+      let scrollToIndexBtn: Component = await driver.findComponent(ON.id('scrollToIndexBtn'));
+      await driver.delayMs(500);
+      await scrollToIndexBtn.click();
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.text('1900'));
+      // 退出columnStart页面
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.delayMs(1000);
+      // 点击进入smartPerf页面
+      let smartPerfEditorBtn: Component = await driver.findComponent(ON.id('buttonThree'));
+      await driver.delayMs(1000);
+      await smartPerfEditorBtn.click();
+      await driver.delayMs(500);
+      // 点击滑动位置
+      let scrollToIndexTwoBtn: Component = await driver.findComponent(ON.id('scrollToIndexTwoBtn'));
+      await driver.delayMs(500);
+      await scrollToIndexTwoBtn.click();
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.text('1900'));
+      // 退出columnStart页面
+      await driver.delayMs(500);
+      await driver.pressBack();
+      // 退出到首页
+      await driver.delayMs(500);
+      await driver.pressBack();
+      Logger.info(TAG, `${BUNDLE}GridFunction_001 end`);
+      done();
+    })
+    /**
+     * SmartPerf Editor的使用
+     */
+    it(BUNDLE + "SmartPerf_001", 5, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}SmartPerf_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      // 点击进入SmartPerf Editor首页
+      let smartPerfBtn: Component = await driver.findComponent(ON.text('SmartPerf Editor'));
+      await driver.delayMs(500);
+      await smartPerfBtn.click();
+      await driver.delayMs(500);
+      // 点击展示图片
+      let showImageBtn: Component = await driver.findComponent(ON.id('showImageBtn'));
+      await driver.delayMs(500);
+      await showImageBtn.click();
+      await driver.delayMs(500);
+      // 退出到首页面
+      await driver.delayMs(500);
+      await driver.pressBack();
+      Logger.info(TAG, `${BUNDLE}SmartPerf_001 end`);
+      done();
+    })
+  })
+}

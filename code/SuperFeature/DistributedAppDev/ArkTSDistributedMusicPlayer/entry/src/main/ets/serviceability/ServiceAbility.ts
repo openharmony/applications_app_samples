@@ -46,46 +46,46 @@ class DistributedMusicServiceExtension extends rpc.RemoteObject {
           }
           remoteProxy = remote as rpc.RemoteProxy;
           clearTimeout(timeoutId)
-          let remoteServiceExtensionConnectEvent = AppStorage.Get<(event: string) => void>('remoteServiceExtensionConnectEvent');
+          let remoteServiceExtensionConnectEvent = AppStorage.get('remoteServiceExtensionConnectEvent');
           if (remoteServiceExtensionConnectEvent === undefined) {
             Logger.info(TAG, `Connect remote service callback is ${JSON.stringify(remoteServiceExtensionConnectEvent)}`);
             return;
           }
-          remoteServiceExtensionConnectEvent(MusicConnectEvent.EVENT_CONNECT);
+          AppStorage.setOrCreate('remoteServiceExtensionConnectEvent', !remoteServiceExtensionConnectEvent);
         },
         onDisconnect(elementName): void {
           Logger.info(TAG, `ServiceExtension has onDisconnected,elementName= ${JSON.stringify(elementName)}`)
           clearTimeout(timeoutId)
           remoteProxy = null;
-          let remoteServiceExtensionConnectEvent = AppStorage.Get<(event: string) => void>('remoteServiceExtensionConnectEvent');
+          let remoteServiceExtensionConnectEvent = AppStorage.get('remoteServiceExtensionConnectEvent');
           if (remoteServiceExtensionConnectEvent === undefined) {
             Logger.info(TAG, `Disconnect remote service callback is ${JSON.stringify(remoteServiceExtensionConnectEvent)}`);
             return;
           }
-          remoteServiceExtensionConnectEvent(MusicConnectEvent.EVENT_DISCONNECT);
+          AppStorage.setOrCreate('remoteServiceExtensionConnectEvent', !remoteServiceExtensionConnectEvent);
         },
         onFailed(code): void {
           Logger.info(TAG, `ServiceExtension has onFailed, code= ${JSON.stringify(code)}`)
           clearTimeout(timeoutId)
           remoteProxy = null;
-          let remoteServiceExtensionConnectEvent = AppStorage.Get<(event: string) => void>('remoteServiceExtensionConnectEvent');
+          let remoteServiceExtensionConnectEvent = AppStorage.get('remoteServiceExtensionConnectEvent');
           if (remoteServiceExtensionConnectEvent === undefined) {
             Logger.info(TAG, `Failed remote service callback is ${JSON.stringify(remoteServiceExtensionConnectEvent)}`);
             return;
           }
-          remoteServiceExtensionConnectEvent(MusicConnectEvent.EVENT_FAILED);
+          AppStorage.setOrCreate('remoteServiceExtensionConnectEvent', !remoteServiceExtensionConnectEvent);
         }
       }
 
       this.context.connectServiceExtensionAbility(want, connectOptions)
       let timeoutId = setTimeout(() => {
         Logger.info(TAG, 'Connect remote service extension timeout')
-        let remoteServiceExtensionConnectEvent = AppStorage.Get<(event: string) => void>('remoteServiceExtensionConnectEvent');
+        let remoteServiceExtensionConnectEvent = AppStorage.get('remoteServiceExtensionConnectEvent');
         if (remoteServiceExtensionConnectEvent === undefined) {
           Logger.info(TAG, `Timeout remote service callback is ${JSON.stringify(remoteServiceExtensionConnectEvent)}`);
           return;
         }
-        remoteServiceExtensionConnectEvent(MusicConnectEvent.EVENT_TIMEOUT);
+        AppStorage.setOrCreate('remoteServiceExtensionConnectEvent', !remoteServiceExtensionConnectEvent);
       }, CONNECT_REMOTE_TIMEOUT)
     } catch (err) {
       Logger.info(TAG, `ConnectServiceExtensionAbility has failed, want= ${JSON.stringify(want)}, err= ${JSON.stringify(err)}`)
@@ -145,19 +145,19 @@ class DistributedMusicServiceExtension extends rpc.RemoteObject {
       let reply = new rpc.MessageParcel()
       remoteProxy.sendRequest(MusicSharedEventCode.PAUSE_MUSIC_SERVICE_REMOTE, data, reply, option);
     } else if (code === MusicSharedEventCode.PLAY_MUSIC_SERVICE_REMOTE) {
-      let musicPlay = AppStorage.Get<() => void>('musicPlay');
+      let musicPlay = AppStorage.get('musicPlay');
       if (musicPlay === undefined) {
         Logger.error(TAG, 'get play callback form app storage falied');
         return false;
       }
-      musicPlay();
+      AppStorage.setOrCreate('musicPlay', !musicPlay);
     } else if (code === MusicSharedEventCode.PAUSE_MUSIC_SERVICE_REMOTE) {
-      let musicPause = AppStorage.Get<() => void>('musicPause');
+      let musicPause = AppStorage.get('musicPause');
       if (musicPause === undefined) {
         Logger.error(TAG, 'get pause callback form app storage falied');
         return false;
       }
-      musicPause();
+      AppStorage.setOrCreate('musicPause', !musicPause);
     } else if (code === MusicSharedEventCode.STOP_LOCAL_SERIVCE) {
       this.context.terminateSelf().then(() => {
         Logger.info(TAG, 'TerminateSelf service extension has been succeeded')
