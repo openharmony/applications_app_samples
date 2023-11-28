@@ -1,0 +1,12 @@
+{
+  "license": "",
+  "devDependencies": {
+    "@ohos/hypium": "1.0.11"
+  },
+  "author": "",
+  "name": "startup",
+  "description": "Application launch example.",
+  "main": "",
+  "version": "1.0.0",
+  "dependencies": {}
+}

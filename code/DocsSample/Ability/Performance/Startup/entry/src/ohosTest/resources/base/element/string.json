@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test startup of the application"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "test startup of the application"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test startup of the application"
+    }
+  ]
+}
