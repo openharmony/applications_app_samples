@@ -15,14 +15,14 @@
 
 import Contact from '../model/Contact'
 
-const Gender = {
-  MALE: 0,
-  FEMALE: 1
-}
+const enum Gender {
+  MALE,
+  FEMALE
+};
 
 @Component
 export struct QueryItem {
-  private contact: Contact = undefined
+  private contact: Contact | undefined = undefined;
 
   aboutToAppear() {
     if (this.contact) {
@@ -33,49 +33,51 @@ export struct QueryItem {
   }
 
   build() {
-    Row() {
-      Image(this.contact.gender === Gender.MALE ? $r('app.media.contact_photo_male') : $r('app.media.contact_photo_female'))
-        .height(80).width(80)
-        .objectFit(ImageFit.Fill)
-      Column() {
+    if (this.contact != undefined) {
+      Row() {
+        Image(this.contact.gender === Gender.MALE ? $r('app.media.contact_photo_male') : $r('app.media.contact_photo_female'))
+          .height(80).width(80)
+          .objectFit(ImageFit.Fill)
+        Column() {
 
-        Row() {
-          Text($r("app.string.contact_name"))
-            .fontSize(25)
-            .fontColor($r("app.color.grey"))
-          Text(this.contact.name)
-            .fontSize(30)
-            .margin({ left: 16 })
-            .fontColor($r("app.color.grey"))
-        }.width('100%')
+          Row() {
+            Text($r("app.string.contact_name"))
+              .fontSize(25)
+              .fontColor($r("app.color.grey"))
+            Text(this.contact.name)
+              .fontSize(30)
+              .margin({ left: 16 })
+              .fontColor($r("app.color.grey"))
+          }.width('100%')
 
-        Row() {
-          Text($r("app.string.phone"))
-            .fontSize(25)
-            .fontColor($r("app.color.grey"))
+          Row() {
+            Text($r("app.string.phone"))
+              .fontSize(25)
+              .fontColor($r("app.color.grey"))
 
-          Text(this.contact.phone)
-            .fontSize(25)
-            .margin({ left: 16 })
-            .fontColor($r("app.color.grey"))
-        }.width('100%')
+            Text(this.contact.phone)
+              .fontSize(25)
+              .margin({ left: 16 })
+              .fontColor($r("app.color.grey"))
+          }.width('100%')
 
-        Row() {
-          Text($r("app.string.age"))
-            .fontSize(25)
-            .fontColor($r("app.color.grey"))
+          Row() {
+            Text($r("app.string.age"))
+              .fontSize(25)
+              .fontColor($r("app.color.grey"))
 
-          Text(this.contact.age == 0 ? "--" : this.contact.age + "")
-            .fontSize(25)
-            .margin({ left: 16 })
-            .fontColor($r("app.color.grey"))
-        }.width('100%')
+            Text(this.contact.age == 0 ? "--" : this.contact.age + "")
+              .fontSize(25)
+              .margin({ left: 16 })
+              .fontColor($r("app.color.grey"))
+          }.width('100%')
+        }
+        .layoutWeight(1)
       }
-      .layoutWeight(1)
+      .width('100%')
+      .padding(16)
+      .backgroundColor($r("app.color.white"))
+      .borderRadius(16)
     }
-    .width('100%')
-    .padding(16)
-    .backgroundColor($r("app.color.white"))
-    .borderRadius(16)
   }
 }

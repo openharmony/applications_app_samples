@@ -40,7 +40,7 @@ struct SearchPage {
 
 @Component
 struct ConditionOption {
-  private model: SearchModel;
+  private model: SearchModel = new SearchModel();
 
   async getData(): Promise<void> {
     await this.model.getData();
@@ -111,7 +111,7 @@ struct ConditionOption {
 
 @Component
 struct InputArea {
-  private model: SearchModel;
+  private model: SearchModel = new SearchModel();
   @State isDoubleInput: boolean = false;
   @State searchPlaceholder: Resource = $r('app.string.search_placeholder_start');
   @State searchText: string = "";
@@ -119,7 +119,7 @@ struct InputArea {
   @State inputType: InputType = InputType.Normal
 
   aboutToAppear() {
-    this.model.onSelectCallback = this.onSelectCallback.bind(this);
+    this.model.onSelectCallback =()=> this.onSelectCallback;
   }
 
   onSelectCallback() {
@@ -131,7 +131,7 @@ struct InputArea {
   }
 
   aboutToDisappear() {
-    this.model.onSelectCallback = undefined;
+    this.model.onSelectCallback = () => {};
   }
 
   build() {
@@ -208,13 +208,13 @@ struct InputArea {
 
 @Component
 struct DataAndTips {
-  private model: SearchModel;
+  private model: SearchModel = new SearchModel();
   @State searchTips: Array<string> = [];
   @State contacts: Array<Contact> = new Array<Contact>();
   @State otherContacts: Array<Contact> = new Array<Contact>();
 
   aboutToAppear() {
-    this.model.onDataCallback = this.onDataCallback.bind(this);
+    this.model.onDataCallback =()=> this.onDataCallback();
   }
 
   onDataCallback(): void {
@@ -224,7 +224,7 @@ struct DataAndTips {
   }
 
   aboutToDisappear() {
-    this.model.onDataCallback = undefined
+    this.model.onDataCallback = () => {};
   }
 
   build() {
@@ -253,11 +253,11 @@ struct DataAndTips {
             .padding({ left: 16 })
           }
         } else {
-          ForEach(this.contacts, item => {
+          ForEach(this.contacts, (item: Contact) => {
             ListItem() {
               QueryItem({ contact: item })
             }
-          }, item => JSON.stringify(item))
+          }, (item: Contact) => JSON.stringify(item))
         }
       }
 
@@ -286,11 +286,11 @@ struct DataAndTips {
             .padding({ left: 16 })
           }
         } else {
-          ForEach(this.otherContacts, item => {
+          ForEach(this.otherContacts, (item: Contact) => {
             ListItem() {
               QueryItem({ contact: item })
             }
-          }, item => JSON.stringify(item))
+          }, (item: Contact) => JSON.stringify(item))
         }
       }
     }

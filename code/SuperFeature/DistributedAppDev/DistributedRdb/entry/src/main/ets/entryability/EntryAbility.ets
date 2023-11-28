@@ -19,10 +19,11 @@ import Logger from '../model/Logger';
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 import Want from '@ohos.app.ability.Want';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { GlobalContext } from '../model/GlobalContext';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    globalThis.context = this.context;
+    GlobalContext.getContext().setObject('context', this.context);
     AppStorage.SetOrCreate('want', want);
   }
 

@@ -32,23 +32,24 @@ import { TABLE_NAME, BUNDLE, ABILITY, SQL_CREATE_TABLE, COLUMNS } from '../model
 
 const TAG: string = 'Index'
 
+export interface statetype {
+  popupMenu: boolean,
+  isDistributed: boolean,
+  isStage: boolean,
+  selectedIndex: number,
+  syncState: string,
+  distributedDevice: string
+}
 @Entry
 @Component
 struct Index {
   private liteStore = new LiteStore("sync_state", getContext(this) as common.UIAbilityContext)
   private rdbModel = new RdbModel(TABLE_NAME, SQL_CREATE_TABLE, COLUMNS, getContext(this) as common.UIAbilityContext)
-  private intervalId: number = undefined
+  private intervalId: number = 0
   @State contacts: ContactDataSource = new ContactDataSource([])
   @State isMultiCheck: boolean = false
   @State isSelectedAll: boolean = false
-  @State state: {
-    popupMenu: boolean,
-    isDistributed: boolean,
-    isStage: boolean,
-    selectedIndex: number,
-    syncState: string,
-    distributedDevice: string
-  } = {
+  @State state: statetype = {
     popupMenu: false,
     isDistributed: false,
     isStage: false,
@@ -65,34 +66,36 @@ struct Index {
 
   // 拉起应用后读取数据，暂定为分布式功能
   getWant() {
-    let want: Want = AppStorage.Get('want')
-    if (this.state.isDistributed && want.parameters.isStage === 'EXIT') {
-      Logger.info(TAG, 'isStage = EXIT')
-      this.state.isStage = false
-      this.state.isDistributed = false
-      this.state.selectedIndex = 0
-      this.state.distributedDevice = ''
-      this.rdbModel.offDataChange()
-    }
-    if (!this.state.isDistributed && want.parameters.isStage === 'Stage') {
-      Logger.info(TAG, 'isStage = Stage')
-      this.state.isStage = true
-      this.state.isDistributed = true
-      this.state.distributedDevice = want.parameters.dmsSrcNetworkId as string;
-      let context = getContext(this) as common.UIAbilityContext
-      context.startAbility({
-        bundleName: BUNDLE,
-        abilityName: ABILITY,
-        deviceId: this.state.distributedDevice,
-        parameters: {
-          isStage: 'CONNECT'
-        }
-      })
-      Logger.info(TAG, 'onDataChange')
-      this.rdbModel.onDataChange(this.state.distributedDevice, (result) => {
-        this.contacts['dataArray'] = result
-        this.contacts.notifyDataReload()
-      })
+    let want = AppStorage.Get<Want>('want') as Want
+    if(want.parameters != undefined) {
+      if (this.state.isDistributed && want.parameters.isStage === 'EXIT') {
+        Logger.info(TAG, 'isStage = EXIT')
+        this.state.isStage = false
+        this.state.isDistributed = false
+        this.state.selectedIndex = 0
+        this.state.distributedDevice = ''
+        this.rdbModel.offDataChange()
+      }
+      if (!this.state.isDistributed && want.parameters.isStage === 'Stage') {
+        Logger.info(TAG, 'isStage = Stage')
+        this.state.isStage = true
+        this.state.isDistributed = true
+        this.state.distributedDevice = want.parameters.dmsSrcNetworkId as string;
+        let context = getContext(this) as common.UIAbilityContext
+        context.startAbility({
+          bundleName: BUNDLE,
+          abilityName: ABILITY,
+          deviceId: this.state.distributedDevice,
+          parameters: {
+            isStage: 'CONNECT'
+          }
+        })
+        Logger.info(TAG, 'onDataChange')
+        this.rdbModel.onDataChange(this.state.distributedDevice, (result: Array<Contact>)=> {
+        this.contacts.dataArray = result
+          this.contacts.notifyDataReload()
+        })
+      }
     }
   }
 
@@ -119,7 +122,7 @@ struct Index {
     this.contacts.replaceDataArray(await this.rdbModel.query(predicates));
     // 通知懒加载数据变更
     this.contacts.notifyDataReload()
-    Logger.info(TAG, 'getData contacts count' + this.contacts['dataArray'].length)
+    Logger.info(TAG, 'getData contacts count' + this.contacts.dataArray.length)
     // 读取Preferences中的数据
     let syncState = await this.liteStore.getValue()
     this.state.syncState = `${syncState}`
@@ -129,8 +132,8 @@ struct Index {
   }
 
   showDeleteDialog() {
-    let deleteContacts = []
-    this.contacts['dataArray'].forEach((contact) => {
+    let deleteContacts: Contact[] = []
+    this.contacts.dataArray.forEach((contact) => {
       if (contact.isSelected) {
         deleteContacts.push(contact)
       }
@@ -158,13 +161,13 @@ struct Index {
     })
   }
 
-  handleClickContact(item, index) {
+  handleClickContact(item: Contact, index: number) {
     Logger.info(TAG, `handleClickContact, item = ${JSON.stringify(item)}`)
     if (this.isMultiCheck) {
-      let tempContacts = this.contacts['dataArray']
-      this.contacts['dataArray'] = []
+      let tempContacts = this.contacts.dataArray
+      this.contacts.dataArray = []
       tempContacts[index].isSelected = !item.isSelected
-      this.contacts['dataArray'] = tempContacts
+      this.contacts.dataArray = tempContacts
       this.contacts.notifyDataReload()
     } else {
       router.pushUrl({
@@ -174,8 +177,8 @@ struct Index {
     }
   }
 
-  refreshSelectState(isSelect) {
-    this.contacts['dataArray'].forEach((contact) => {
+  refreshSelectState(isSelect: boolean) {
+    this.contacts.dataArray.forEach((contact) => {
       contact.isSelected = isSelect
     })
     this.contacts.notifyDataReload()
@@ -187,7 +190,7 @@ struct Index {
     this.isMultiCheck = false
   }
 
-  handleBottomBtnClick = (index) => {
+  handleBottomBtnClick = (index: number) => {
     switch (index) {
       case 0:
         this.isSelectedAll = !this.isSelectedAll
@@ -242,7 +245,7 @@ struct Index {
             .onClick(() => {
               this.handleClickContact(item, index)
             })
-          }, item => JSON.stringify(item))
+          }, (item: Contact) => JSON.stringify(item))
         }
         .width('100%')
         .layoutWeight(1)

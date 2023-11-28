@@ -20,48 +20,47 @@ import Logger from '../model/Logger'
 import RemoteDeviceModel from '../model/RemoteDeviceModel'
 import { BUNDLE, ABILITY } from '../model/RdbConst'
 import { DeviceDialog } from '../common/DeviceDialog'
+import { statetype } from '../pages/Index';
 
 const TAG: string = 'PopupMenu'
 
+
+interface menuResourceItem {
+  text: Resource,
+  icon: Resource
+}
 @Component
 export struct PopupMenu {
-  private menuResource: Array<{
-    icon: Resource,
-    text: Resource
-  }> = [
+  private menuResource: Array<menuResourceItem> = [
     { icon: $r('app.media.setting'), text: $r('app.string.setting') },
     { icon: $r('app.media.connect'), text: $r('app.string.connect') }]
-  private handleStartAbility: () => void = null
+  private handleStartAbility: () => void = () => {};
   private deviceList: Array<deviceManager.DeviceBasicInfo> = [];
-  private dialogController: CustomDialogController = null
-  @Link state: {
-    popupMenu: boolean,
-    isDistributed: boolean,
-    isStage: boolean,
-    selectedIndex: number,
-    syncState: string,
-    connected: boolean
-    distributedDevice: ''
-  }
+  private dialogController: CustomDialogController | null = null;
+  @Link state: statetype
 
   selectDevice() {
     Logger.info(TAG, 'start ability ......')
     if (RemoteDeviceModel === null || RemoteDeviceModel.discoverList.length <= 0) {
       Logger.info(TAG, `start ability device:${JSON.stringify(this.deviceList)}`)
-      this.startAbility(this.deviceList[this.state.selectedIndex].networkId)
-      this.clearSelectState()
+      if (this.deviceList[this.state.selectedIndex].networkId != undefined) {
+        this.startAbility(this.deviceList[this.state.selectedIndex].networkId as string)
+        this.clearSelectState()
+      }
       return
     }
     Logger.info(TAG, 'start ability, needAuth')
-    RemoteDeviceModel.authenticateDevice(this.deviceList[this.state.selectedIndex], (device) => {
+    RemoteDeviceModel.authenticateDevice(this.deviceList[this.state.selectedIndex], (device: deviceManager.DeviceBasicInfo) => {
       Logger.info(TAG, 'auth and online finished')
-      this.startAbility(device.networkId)
+      if (device.networkId != undefined) {
+        this.startAbility(device.networkId)
+      }
     })
     Logger.info(TAG, 'start ability2 ......')
     this.clearSelectState()
   }
 
-  onSelectedIndexChange = (selectedIndex) => {
+  onSelectedIndexChange = (selectedIndex: number) => {
     Logger.info(TAG, `selectedIndexChange,selectedIndex=${selectedIndex}`)
     if (selectedIndex === 0) {
       Logger.info(TAG, 'stop sync')
@@ -77,7 +76,9 @@ export struct PopupMenu {
       this.state.isDistributed = false
       this.state.selectedIndex = 0
       this.state.distributedDevice = ''
-      this.dialogController.close()
+      if(this.dialogController != undefined) {
+        this.dialogController.close()
+      }
       this.deviceList = []
       return
     }
@@ -85,7 +86,7 @@ export struct PopupMenu {
     this.selectDevice()
   }
 
-  async startAbility(deviceId) {
+  async startAbility(deviceId: string) {
     Logger.info(TAG, `startAbility deviceId:${deviceId}`)
     let localDevice = RemoteDeviceModel.getLocalDevice()
     Logger.info(TAG, `startAbility localDevice:${localDevice}`)
@@ -140,14 +141,16 @@ export struct PopupMenu {
 
   clearSelectState() {
     this.deviceList = []
-    this.dialogController.close()
-    this.dialogController = null
+    if (this.dialogController !== null) {
+      this.dialogController.close()
+      this.dialogController = null
+    }
   }
 
   build() {
     Stack({ alignContent: Alignment.TopEnd }) {
       Column() {
-        ForEach(this.menuResource, (item, index) => {
+        ForEach(this.menuResource, (item: menuResourceItem, index: number) => {
           Row() {
             Image(item.icon)
               .size({ width: 40, height: 40 })
@@ -174,7 +177,7 @@ export struct PopupMenu {
           if (index === 0) {
             Divider().color(Color.Black).height(1)
           }
-        }, item => JSON.stringify(item))
+        }, (item: menuResourceItem) => JSON.stringify(item))
       }
       .width('40%')
       .border({ width: 1, color: Color.Black, radius: 10 })

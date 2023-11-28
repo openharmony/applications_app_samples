@@ -21,7 +21,7 @@ export const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS contact(id INTEGER P
 
 export const COLUMNS = ['id', 'name', 'gender', 'phone', 'remark', 'age'];
 
-export const STORE_CONFIG = { name: 'contact.db', securityLevel: data_rdb.SecurityLevel.S1 };
+export const STORE_CONFIG: data_rdb.StoreConfig = { name: 'contact.db', securityLevel: data_rdb.SecurityLevel.S1 };
 
 export const BUNDLE = 'ohos.samples.distributedrdb';
 
