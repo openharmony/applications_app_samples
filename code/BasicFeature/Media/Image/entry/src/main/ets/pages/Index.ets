@@ -16,6 +16,7 @@ import { logger, readImage } from '@ohos/photomodify';
 import router from '@ohos.router';
 import GetPictures from '../pages/GetPictures';
 import common from '@ohos.app.ability.common';
+import image from '@ohos.multimedia.image';
 
 const TAG: string = '[Sample_Index]';
 
@@ -26,6 +27,7 @@ struct Index {
   @State isShowCamera: boolean = false;
   @State isLand: boolean = false;
   @State pixelMaps: Array<PixelMap|undefined> = [];
+  @State commodityPixelMap: PixelMap | null = null;
   @State imageArr: Array<PixelMap | null> = [];
   @StorageLink('imageList') imageList: Array<string> = [];
   @StorageLink('fileFd') fileSrc: string = '';
@@ -42,6 +44,11 @@ struct Index {
     if (AppStorage.Get<string[]>('pixelMaps')) {
       this.pixelMaps.push(undefined);
     }
+    let rawFile = getContext().resourceManager.getRawFdSync("commodity.png");
+    let imageSourceApi = image.createImageSource(rawFile);
+    imageSourceApi.createPixelMap().then((pixelMap) => {
+      this.commodityPixelMap = pixelMap;
+    })
   }
 
   async onPageShow(): Promise<void> {
@@ -170,7 +177,7 @@ struct Index {
             .borderRadius($r('app.float.size_20'))
             .backgroundColor('#fffffff')
 
-            Image($r('app.media.commodity'))
+            Image(this.commodityPixelMap)
               .width($r('app.float.size_44'))
               .height($r('app.float.size_44'))
           }

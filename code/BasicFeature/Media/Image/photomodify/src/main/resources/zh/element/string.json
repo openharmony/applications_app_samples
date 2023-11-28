@@ -81,6 +81,26 @@
       "value": "放大"
     },
     {
+      "name": "colorSpaceAdobeRGB",
+      "value": "ADOBE_RGB"
+    },
+    {
+      "name": "colorSpaceDCIP3",
+      "value": "DCI_P3"
+    },
+    {
+      "name": "colorSpaceDisplayP3",
+      "value": "DisplayP3"
+    },
+    {
+      "name": "colorSpaceSRGB",
+      "value": "SRGB"
+    },
+    {
+      "name": "colorSpace",
+      "value": "色域"
+    },
+    {
       "name": "filter",
       "value": "滤镜"
     },

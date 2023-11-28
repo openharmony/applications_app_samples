@@ -31,12 +31,23 @@ export async function savePixelMap(context: Context, pm: PixelMap): Promise<stri
   const imagePackerApi: image.ImagePacker = image.createImagePacker();
   let packOpts: image.PackingOption = { format: 'image/jpeg', quality: 30 };
   try {
+    packToFile(context, pm);
     const data: ArrayBuffer = await imagePackerApi.packing(pm, packOpts);
     return await saveFile(context, data);
   } catch (err) {
     logger.error(TAG, '保存文件失败，err=' + JSON.stringify(err));
     return '';
   }
+}
+
+async function packToFile(context: Context, pixelMap: PixelMap) {
+  let fPath: string = context.cacheDir + '/' + getTimeStr() + '.jpg';
+  let writeFd: fs.File = await fs.open(fPath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+
+  let opts : image.PackingOption = { format: "image/jpeg", quality: 100};
+  const imagePacker = image.createImagePacker();
+  await imagePacker.packToFile(pixelMap, writeFd.fd, opts);
+  fs.closeSync(writeFd.fd);
 }
 
 async function saveFile(context: Context, data: ArrayBuffer): Promise<string> {

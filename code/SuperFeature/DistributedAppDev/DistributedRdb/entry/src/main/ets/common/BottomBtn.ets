@@ -13,27 +13,30 @@
  * limitations under the License.
  */
 
+interface BottomBtnItem {
+  text: Resource,
+  icon: Resource
+}
+
 @Component
 export struct BottomBtn {
   @Prop isMultiCheck: boolean
   @Prop isSelectedAll: boolean
-  private bottomBtn: Array<{
-    icon: Resource,
-    text: Resource
-  }> = [
+  private bottomBtn: Array<BottomBtnItem> = [
     { icon: $r('app.media.select_all'), text: $r('app.string.select_all') },
     { icon: $r('app.media.delete'), text: $r('app.string.delete') },
     { icon: $r('app.media.close'), text: $r('app.string.quit') }]
-  private handleBottomBtnClick: (index: number) => void
+  private handleBottomBtnClick: (index: number) => void = (index: number) => {}
 
-  getIcon(item, index) {
+  getIcon(item: BottomBtnItem, index: Number): Resource {
     if (index === 0 && this.isSelectedAll) {
+
       return $r('app.media.unselect_all')
     }
     return item.icon
   }
 
-  getText(item, index) {
+  getText(item: BottomBtnItem, index: Number): Resource {
     if (index === 0 && this.isSelectedAll) {
       return $r('app.string.cancel')
     }
@@ -43,7 +46,7 @@ export struct BottomBtn {
   build() {
     if (this.isMultiCheck) {
       Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceEvenly }) {
-        ForEach(this.bottomBtn, (item, index) => {
+        ForEach(this.bottomBtn, (item: BottomBtnItem, index) => {
           Column() {
             Image(this.getIcon(item, index))
               .size({ width: 40, height: 40 })
@@ -56,7 +59,7 @@ export struct BottomBtn {
           .onClick(() => {
             this.handleBottomBtnClick(index)
           })
-        }, item => JSON.stringify(item))
+        }, (item: BottomBtnItem) => JSON.stringify(item))
       }
       .height('8%')
     }
