@@ -37,6 +37,8 @@ export default function ExitTest() {
       await driver.assertComponentExist(ON.id('Video'));
       let stack = await driver.findComponent(ON.id('Video'));
       await stack.click();
+      await driver.delayMs(1000);
+      await stack.click();
       // 点击退出
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('Exit'));

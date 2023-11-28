@@ -15,9 +15,14 @@
 
 import Contact from '../model/Contact'
 
-const Gender = {
-  MALE: 0,
-  FEMALE: 1
+const enum Gender {
+  MALE,
+  FEMALE
+};
+
+export enum SyncState {
+  AutomaticSync = 'AutomaticSync',
+  ManualSync = 'ManualSync'
 }
 
 @Component

@@ -81,6 +81,26 @@
       "value": "amplification"
     },
     {
+      "name": "colorSpaceAdobeRGB",
+      "value": "ADOBE_RGB"
+    },
+    {
+      "name": "colorSpaceDCIP3",
+      "value": "DCI_P3"
+    },
+    {
+      "name": "colorSpaceDisplayP3",
+      "value": "DisplayP3"
+    },
+    {
+      "name": "colorSpaceSRGB",
+      "value": "SRGB"
+    },
+    {
+      "name": "colorSpace",
+      "value": "colorSpace"
+    },
+    {
       "name": "filter",
       "value": "filter"
     },

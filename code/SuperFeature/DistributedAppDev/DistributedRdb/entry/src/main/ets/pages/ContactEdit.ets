@@ -26,12 +26,16 @@ import { TABLE_NAME, SQL_CREATE_TABLE, COLUMNS } from '../model/RdbConst'
 const TAG = 'ContactEdit'
 let rdbModel = new RdbModel(TABLE_NAME, SQL_CREATE_TABLE, COLUMNS, getContext(this) as common.UIAbilityContext)
 
+interface paramstype {
+  isInsert: boolean,
+  contact: Contact
+}
 @Entry
 @Component
 struct ContactEdit {
-  private params: any = router.getParams()
-  private isInsert: boolean = <boolean> this.params.isInsert
-  @State contact: Contact = <Contact> this.params.contact
+  private params = router.getParams() as paramstype
+  private isInsert: boolean = this.params.isInsert
+  @State contact: Contact = this.params.contact
 
   @Builder InputText(icon: Resource, placeHolder: Resource, key: string, text: string, filter: string, maxLength: number, type: InputType, onChange: (value: string) => void) {
     Row() {

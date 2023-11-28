@@ -13,13 +13,15 @@
  * limitations under the License.
  */
 
-import { CropTasks, ScaleTasks, TaskData, Tasks } from '../model/AdjustData';
+import { ColorSpaceTasks,CropTasks, ScaleTasks, TaskData, Tasks } from '../model/AdjustData';
 
 export const adjustDatas: TaskData [] = [
   new TaskData(Tasks.CROP, $r('app.media.ic_screen'), $r('app.string.crop')),
   new TaskData(Tasks.SCALE, $r('app.media.ic_scale'), $r('app.string.scale')),
   new TaskData(Tasks.ROTATE, $r('app.media.ic_rotate'), $r('app.string.rotate')),
-  new TaskData(Tasks.TONING, $r('app.media.ic_brightness_small'), $r('app.string.toning'))
+  new TaskData(Tasks.TONING, $r('app.media.ic_brightness_small'), $r('app.string.toning')),
+  new TaskData(Tasks.COLORSPACE, $r('app.media.ic_brightness_small'), $r('app.string.colorSpace'))
+
 ];
 
 export const markDatas: TaskData [] = [
@@ -38,4 +40,11 @@ export const cropTaskDatas: TaskData[] = [
 export const scaleTaskDatas: TaskData[] = [
   new TaskData(ScaleTasks.AMPLIFICARION, $r('app.media.scale_big'), $r('app.string.amplification')),
   new TaskData(ScaleTasks.NARROW, $r('app.media.scale_small'), $r('app.string.narrow'))
+];
+
+export const colorSpaceTaskDatas: TaskData[] = [
+  new TaskData(ColorSpaceTasks.SRGB, $r('app.media.ic_image'), $r('app.string.colorSpaceSRGB')),
+  new TaskData(ColorSpaceTasks.ADOBERGB, $r('app.media.ic_image'), $r('app.string.colorSpaceAdobeRGB')),
+  new TaskData(ColorSpaceTasks.DCIP3, $r('app.media.ic_image'), $r('app.string.colorSpaceDCIP3')),
+  new TaskData(ColorSpaceTasks.DISPLAYP3, $r('app.media.ic_image'), $r('app.string.colorSpaceDisplayP3'))
 ];

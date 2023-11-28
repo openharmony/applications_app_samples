@@ -34,7 +34,7 @@ struct Settings {
     })
   }
 
-  @Builder SwitchBar(key, text, switchOn, onChange) {
+  @Builder SwitchBar(key: string, text: Resource, switchOn: string, onChange: (isOn: boolean) => void) {
     Row() {
       Text(text)
         .fontSize(22)

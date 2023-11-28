@@ -20,7 +20,7 @@ import RdbModel from '../model/RdbModel';
 import { TABLE_NAME, SQL_CREATE_TABLE, COLUMNS } from '../model/RdbConst';
 import Logger from '../model/Logger';
 import Contact from '../model/Contact';
-
+import { GlobalContext } from '../model/GlobalContext';
 
 const TAG = 'SearchModel';
 
@@ -51,12 +51,12 @@ class SearchData {
 }
 
 export default class SearchModel {
-  private rdbModel = new RdbModel(TABLE_NAME, SQL_CREATE_TABLE, COLUMNS, globalThis.context as common.UIAbilityContext);
+  private rdbModel = new RdbModel(TABLE_NAME, SQL_CREATE_TABLE, COLUMNS, getContext(this) as common.UIAbilityContext);
   searchData: SearchData = new SearchData();
   queryData: Array<Contact> = [];
   queryOtherData: Array<Contact> = [];
-  onSelectCallback: () => void;
-  onDataCallback: () => void;
+  onSelectCallback: () => void = () => {};
+  onDataCallback: () => void = () => {};
 
   public onSelect(index: number): void {
     this.searchData.clear();
@@ -237,7 +237,7 @@ export default class SearchModel {
     Logger.info(TAG, `query predicates ${JSON.stringify(this.queryData)}`);
 
     if (this.searchData.selectIndex === 7) {
-      let ids = [];
+      let ids: number[] = [];
       this.queryData.forEach((value) => {
         ids.push(value.id);
       });

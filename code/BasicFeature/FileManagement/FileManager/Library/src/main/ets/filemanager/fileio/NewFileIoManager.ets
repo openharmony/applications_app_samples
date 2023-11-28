@@ -41,6 +41,7 @@ class NewFileSystem {
       throw new Error(`setFileTime failed, code is ${err.code}, message is ${err.message}`);
     }
   }
+
   // 读取文件内容
   async ReadFile(filePath: string):Promise<string> {
     try{

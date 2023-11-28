@@ -25,6 +25,33 @@ let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppConte
 export default function abilityTest() {
   describe('ActsAbilityTest', function () {
     /**
+     * 拉起相机录制视频
+     */
+    it(BUNDLE + 'RecordVideo_001', 0, async (done: Function) => {
+      Logger.info(TAG, BUNDLE + 'RecordVideo_001 begin');
+      let driver = Driver.create();
+      let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
+      try {
+        await abilityDelegatorRegistry.startAbility({
+          bundleName: 'com.ohos.camera',
+          abilityName: 'com.ohos.camera.MainAbility'
+        });
+        await driver.delayMs(4000);
+        await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.record_video'))));
+        let btnVideo = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.record_video'))));
+        await btnVideo.click();
+        await driver.delayMs(1000);
+        // 点击录像按钮录制视频,坐标基于rk3568
+        await driver.click(360, 1090);
+        await driver.delayMs(1000);
+        done();
+      } catch (err) {
+        expect(0).assertEqual(err.code);
+        done();
+      }
+      Logger.info(TAG, BUNDLE + 'RecordVideo_001 end');
+    })
+    /**
      * 拉起一个ability
      */
     it(BUNDLE + 'startAbility_001', 0, async (done) => {
@@ -188,7 +215,7 @@ export default function abilityTest() {
     })
 
     /**
-     * 点击音频进行删除操作
+     * 点击视频进行删除操作
      */
     it(`${BUNDLE} videoDelete_001`, 0, async () => {
       Logger.info(TAG, `${BUNDLE} videoDelete_001 begin`);

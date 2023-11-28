@@ -39,6 +39,10 @@
     {
       "name": "phoneMain_videoTitle",
       "value": "视频名称"
+    },
+    {
+      "name": "record_video",
+      "value": "录像"
     }
   ]
 }

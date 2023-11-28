@@ -109,7 +109,7 @@ struct DataDialogSample {
   }
 
   setDate(isLunar: boolean, value: DatePickerResult) {
-    if (value.year && value.month && value.day) {
+    if (value.year !== undefined && value.month !== undefined && value.day !== undefined) {
       this.selectedDate.setFullYear(value.year, value.month, value.day);
       let month: string = `${value.month + 1}`;
       let day: string = `${value.day}`;
@@ -128,7 +128,7 @@ struct DataDialogSample {
   }
 
   ShowToastDate(value: DatePickerResult) {
-    if (value.year && value.month && value.day) {
+    if (value.year !== undefined && value.month !== undefined && value.day !== undefined) {
       let month: string = `${value.month + 1}`;
       let day: string = `${value.day}`;
       if (value.month < 9) {

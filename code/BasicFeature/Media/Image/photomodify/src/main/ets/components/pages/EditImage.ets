@@ -30,6 +30,7 @@ import { fontColors, stickers } from '../model/MaterialModels';
 import { getContainSize, Size } from '../util/ImageUtil';
 import { savePixelMap } from '../util/FileUtil';
 import { BusinessError } from '@ohos.base';
+import { ColorSpacePage } from './ColorSpacePage';
 
 const TAG: string = '[Sample_EditImage]';
 
@@ -116,7 +117,7 @@ export struct EditImage {
 
   async onEditCancel(): Promise<void> {
     if (this.currentTask === Tasks.CROP || this.currentTask === Tasks.SCALE ||
-    this.currentTask === Tasks.ROTATE || this.currentTask === Tasks.TONING) {
+    this.currentTask === Tasks.ROTATE || this.currentTask === Tasks.TONING || this.currentTask === Tasks.COLORSPACE) {
       this.currentTask = Tasks.ADJUST;
       this.cropIndex = 0;
     }
@@ -330,7 +331,7 @@ export struct EditImage {
           .margin({ right: '10%' })
           .onClick(() => {
             if (this.currentTask === Tasks.CROP || this.currentTask === Tasks.SCALE ||
-            this.currentTask === Tasks.ROTATE || this.currentTask === Tasks.TONING) {
+            this.currentTask === Tasks.ROTATE || this.currentTask === Tasks.TONING || this.currentTask === Tasks.COLORSPACE) {
               this.currentTask = Tasks.ADJUST;
               this.cropIndex = 0;
             }
@@ -484,6 +485,15 @@ export struct EditImage {
   @Builder
   getScaleTool() {
     ScalePhotoPage({ pixelMap: $pixelMap, dpi: $dpi })
+      .backgroundColor($r('app.color.edit_image_public_background'))
+      .height('14%')
+      .width('100%')
+      .padding({ top: $r('app.float.size_10') })
+  }
+
+  @Builder
+  getColorSpaceTool() {
+    ColorSpacePage({ pixelMap: $pixelMap, dpi: $dpi })
       .backgroundColor($r('app.color.edit_image_public_background'))
       .height('14%')
       .width('100%')
@@ -774,6 +784,8 @@ export struct EditImage {
           this.getRotateTool();
         } else if (this.currentTask === Tasks.TONING) {
           this.getToningTool();
+        } else if (this.currentTask === Tasks.COLORSPACE) {
+          this.getColorSpaceTool();
         } else if (this.currentTask === Tasks.TEXT) {
           this.getMaterialTool(fontColors);
         } else if (this.currentTask === Tasks.STICKER) {

@@ -22,6 +22,7 @@ export enum Tasks {
   STICKER,
   ADJUST,
   MARK,
+  COLORSPACE,
   NONE = 99
 }
 
@@ -36,6 +37,14 @@ export enum CropTasks {
 export enum ScaleTasks {
   AMPLIFICARION,
   NARROW,
+  NONE = 99
+}
+
+export enum ColorSpaceTasks {
+  ADOBERGB,
+  SRGB,
+  DCIP3,
+  DISPLAYP3,
   NONE = 99
 }
 

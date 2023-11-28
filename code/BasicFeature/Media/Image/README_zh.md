@@ -20,9 +20,10 @@
 |-------------------------------------------------|---------------------------------------------------|-----------------------------------------------------|
 | ![crop.jpeg](screenshots%2Fdevices%2Fcrop.jpeg) | ![scale.jpeg](screenshots%2Fdevices%2Fscale.jpeg) | ![rotato.jpeg](screenshots%2Fdevices%2Frotato.jpeg) |
 
-| 图片亮度调节                                              | 图片添加贴纸                                                | 图片添加文字                                          | 
-|-----------------------------------------------------|-------------------------------------------------------|-------------------------------------------------|
-| ![toning.jpeg](screenshots%2Fdevices%2Ftoning.jpeg) | ![sticker.jpeg](screenshots%2Fdevices%2Fsticker.jpeg) | ![text.jpeg](screenshots%2Fdevices%2Ftext.jpeg) |
+| 图片亮度调节                                              | 图片添加贴纸                                                | 图片添加文字                                          |  图片色域调节                                              |
+|-----------------------------------------------------|-------------------------------------------------------|-------------------------------------------------|-----------------------------------------------------|
+| ![toning.jpeg](screenshots%2Fdevices%2Ftoning.jpeg) | ![sticker.jpeg](screenshots%2Fdevices%2Fsticker.jpeg) | ![text.jpeg](screenshots%2Fdevices%2Ftext.jpeg) | ![colorSpace.jpeg](screenshots%2Fdevices%2FcolorSpace.jpeg) |
+
 
 使用说明：
 
@@ -58,6 +59,7 @@ photomodify/src/main/ets/components
 |   |---InputTextDialog.ets                  // 输入框弹窗
 |   |---MaterialEdit.ets                     // 素材编辑组件
 |   |---ScalePhotoPage.ets                   // 图片缩放
+|   |---ColorSpacePage.ets                   // 色域修改
 |   |---UpdatePage.ets                       // 编辑删除界面
 |---util     
 |   |---CoordinatesUtil.ets                  // 转换坐标系    
@@ -93,7 +95,7 @@ photomodify/src/main/ets/components
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568;
-2. 本示例为Stage模型，已适配API version 10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0Release);
+2. 本示例为Stage模型，已适配API version 11版本SDK，SDK版本号(API Version 11 4.1.3.3),镜像版本号(4.1.3.3);
 3. 本示例需要使用DevEco Studio 版本号(4.0Release)及以上版本才可编译运行。
 
 ### 下载
