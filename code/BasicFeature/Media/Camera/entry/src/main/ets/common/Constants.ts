@@ -33,18 +33,18 @@ export class Constants {
 };
 
 export class SettingDataObj {
-  mirrorBol = false; // Mirror Enable -> Off
-  videoStabilizationMode = 0; // Video Anti Shake -> Off
-  exposureMode = 1; // Exposure mode -> Automatic
-  focusMode = 2; // Focus mode -> Automatic
-  photoQuality = 1; // Photo quality -> medium
-  locationBol = false; // Show Geographic Location -> Off
-  photoFormat = 1; // Photo Format -> JPG
-  photoOrientation = 0; // Photo direction -> 0
-  photoResolution = 0; // Photo resolution -> 1920 * 1080
-  videoResolution = 0; // Photo resolution -> 1920 * 1080
-  videoFrame = 0; // Recording frame rate -> 15
-  referenceLineBol = false; // Divider -> Off
+  MIRRORBOL = false;            // Mirror Enable -> Off
+  VIDEO_STABILIZATION_MODE = 0; // Video Anti Shake -> Off
+  EXPOSURE_MODE = 1;            // Exposure mode -> Automatic
+  FOCUS_MODE = 2;               // Focus mode -> Automatic
+  PHOTO_QUALITY = 1;            // Photo quality -> medium
+  LOCATION_BOL = false;         // Show Geographic Location -> Off
+  PHOTO_FORMAT = 1;             // Photo Format -> JPG
+  PHOTO_ORIENTATION = 0;        // Photo direction -> 0
+  PHOTO_RESOLUTION = 0;         // Photo resolution -> 1920 * 1080
+  VIDEO_RESOLUTION = 0;         // Photo resolution -> 1920 * 1080
+  VIDEO_FRAME = 0;              // Recording frame rate -> 15
+  REFERENCElINE_BOL = false;    // Divider -> Off
 };
 
 export let cameraDeviceIndex: number = 0;

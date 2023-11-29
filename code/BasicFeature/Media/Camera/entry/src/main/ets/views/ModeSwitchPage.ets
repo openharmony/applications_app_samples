@@ -121,18 +121,18 @@ export struct modeSwitchPage {
   // private videoThumbnail?: image.PixelMap;
   @State videoThumbnail: image.PixelMap | undefined | null = undefined;
   private settingDataObj: SettingDataObj = {
-    mirrorBol: false,
-    videoStabilizationMode: 0,
-    exposureMode: 1,
-    focusMode: 2,
-    photoQuality: 1,
-    locationBol: false,
-    photoFormat: 1,
-    photoOrientation: 0,
-    photoResolution: 0,
-    videoResolution: 0,
-    videoFrame: 0,
-    referenceLineBol: false
+    MIRRORBOL: false,
+    VIDEO_STABILIZATION_MODE: 0,
+    EXPOSURE_MODE: 1,
+    FOCUS_MODE: 2,
+    PHOTO_QUALITY: 1,
+    LOCATION_BOL: false,
+    PHOTO_FORMAT: 1,
+    PHOTO_ORIENTATION: 0,
+    PHOTO_RESOLUTION: 0,
+    VIDEO_RESOLUTION: 0,
+    VIDEO_FRAME: 0,
+    REFERENCElINE_BOL: false
   };
 
   // After pausing, click 'stop' to reset the pause to default
@@ -321,7 +321,7 @@ export struct modeSwitchPage {
           .fontColor(Color.White)
           .onClick(() => {
             cameraDemo.releaseSession()
-            cameraDemo.initCamera(this.surfaceId, this.settingDataObj.focusMode, this.cameraDeviceIndex)
+            cameraDemo.initCamera(this.surfaceId, this.settingDataObj.FOCUS_MODE, this.cameraDeviceIndex)
             this.modelBagCol = 'photo'
           })
       }.position({ x: '20%', y: '75%' })
@@ -335,7 +335,7 @@ export struct modeSwitchPage {
           .backgroundColor(this.modelBagCol === 'video' ? $r('app.color.theme_color') : '')
           .onClick(() => {
             cameraDemo.releaseSession()
-            cameraDemo.initCamera(this.surfaceId, this.settingDataObj.focusMode, this.cameraDeviceIndex)
+            cameraDemo.initCamera(this.surfaceId, this.settingDataObj.FOCUS_MODE, this.cameraDeviceIndex)
             this.modelBagCol = 'video'
           })
       }.position({ x: '40%', y: '75%' })
@@ -412,7 +412,7 @@ export struct modeSwitchPage {
             // Clear configuration
             cameraDemo.releaseSession();
             // Start preview
-            cameraDemo.initCamera(this.surfaceId, this.settingDataObj.focusMode, this.cameraDeviceIndex);
+            cameraDemo.initCamera(this.surfaceId, this.settingDataObj.FOCUS_MODE, this.cameraDeviceIndex);
           })
         }
       }.position({ x: '70%', y: '82%' })

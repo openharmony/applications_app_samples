@@ -18,8 +18,8 @@
 import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 import DateTimeUtil from '../model/DateTimeUtil';
 import Logger from '../model/Logger';
-import { SettingDataObj } from '../common/Constants'
-import common from '@ohos.app.ability.common'
+import { SettingDataObj } from '../common/Constants';
+import common from '@ohos.app.ability.common';
 
 let context = getContext(this) as common.Context;
 
@@ -29,18 +29,18 @@ export default class MediaUtils {
   private static instance: MediaUtils = new MediaUtils();
   private num: number = 0;
   private settingDataObj: SettingDataObj = {
-    mirrorBol: false,
-    videoStabilizationMode: 0,
-    exposureMode: 1,
-    focusMode: 2,
-    photoQuality: 1,
-    locationBol: false,
-    photoFormat: 1,
-    photoOrientation: 0,
-    photoResolution: 0,
-    videoResolution: 0,
-    videoFrame: 0,
-    referenceLineBol: false
+    MIRRORBOL: false,
+    VIDEO_STABILIZATION_MODE: 0,
+    EXPOSURE_MODE: 1,
+    FOCUS_MODE: 2,
+    PHOTO_QUALITY: 1,
+    LOCATION_BOL: false,
+    PHOTO_FORMAT: 1,
+    PHOTO_ORIENTATION: 0,
+    PHOTO_RESOLUTION: 0,
+    VIDEO_RESOLUTION: 0,
+    VIDEO_FRAME: 0,
+    REFERENCElINE_BOL: false
   };
 
   public static getInstance() {
@@ -178,19 +178,19 @@ export default class MediaUtils {
 
   // Photo Format
   onChangePhotoFormat() {
-    if (this.settingDataObj.photoFormat == 0) {
+    if (this.settingDataObj.PHOTO_FORMAT === 0) {
       return 'png';
     }
-    if (this.settingDataObj.photoFormat == 1) {
+    if (this.settingDataObj.PHOTO_FORMAT === 1) {
       return 'jpg';
     }
-    if (this.settingDataObj.photoFormat == 2) {
+    if (this.settingDataObj.PHOTO_FORMAT === 2) {
       return 'bmp';
     }
-    if (this.settingDataObj.photoFormat == 3) {
+    if (this.settingDataObj.PHOTO_FORMAT === 3) {
       return 'webp';
     }
-    if (this.settingDataObj.photoFormat == 4) {
+    if (this.settingDataObj.PHOTO_FORMAT === 4) {
       return 'jpeg';
     }
   }
