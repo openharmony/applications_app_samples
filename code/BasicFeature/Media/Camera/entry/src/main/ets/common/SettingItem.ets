@@ -25,47 +25,47 @@ export struct settingItem {
   @Link @Watch('onChangeFn') isIndex: number; // Which icon is selected by default
   @State isBol: boolean = false; // Hide Display Icons
   private settingDataObj: SettingDataObj = {
-    MIRRORBOL: false,
-    VIDEO_STABILIZATION_MODE: 0,
-    EXPOSURE_MODE: 1,
-    FOCUS_MODE: 2,
-    PHOTO_QUALITY: 1,
-    LOCATION_BOL: false,
-    PHOTO_FORMAT: 1,
-    PHOTO_ORIENTATION: 0,
-    PHOTO_RESOLUTION: 0,
-    VIDEO_RESOLUTION: 0,
-    VIDEO_FRAME: 0,
-    REFERENCElINE_BOL: false
+    mirrorBol: false,
+    videoStabilizationMode: 0,
+    exposureMode: 1,
+    focusMode: 2,
+    photoQuality: 1,
+    locationBol: false,
+    photoFormat: 1,
+    photoOrientation: 0,
+    photoResolution: 0,
+    videoResolution: 0,
+    videoFrame: 0,
+    referenceLineBol: false
   };
 
   // Corresponding to the selected setting parameters in the click mode setting
   selectMode() {
     switch (this.settingMessageNum) {
       case 2:
-        this.settingDataObj.VIDEO_STABILIZATION_MODE = this.index;
-        cameraDemo.isVideoStabilizationModeSupported(this.settingDataObj.VIDEO_STABILIZATION_MODE);
+        this.settingDataObj.videoStabilizationMode = this.index;
+        cameraDemo.isVideoStabilizationModeSupported(this.settingDataObj.videoStabilizationMode);
         break
       case 3:
-        this.settingDataObj.EXPOSURE_MODE = this.index;
-        cameraDemo.isExposureModeSupported(this.settingDataObj.EXPOSURE_MODE);
+        this.settingDataObj.exposureMode = this.index;
+        cameraDemo.isExposureModeSupported(this.settingDataObj.exposureMode);
         break;
       case 4:
-        this.settingDataObj.FOCUS_MODE = this.index;
-        cameraDemo.isFocusModeSupported(this.settingDataObj.FOCUS_MODE);
+        this.settingDataObj.focusMode = this.index;
+        cameraDemo.isFocusModeSupported(this.settingDataObj.focusMode);
         break;
       case 5:
-        this.settingDataObj.PHOTO_QUALITY = this.index;
+        this.settingDataObj.photoQuality = this.index;
         break;
       case 7:
-        this.settingDataObj.PHOTO_FORMAT = this.index;
+        this.settingDataObj.photoFormat = this.index;
         break;
       case 8:
-        this.settingDataObj.PHOTO_ORIENTATION = this.index;
+        this.settingDataObj.photoOrientation = this.index;
         break;
       case 9:
       // Photo resolution
-        this.settingDataObj.PHOTO_RESOLUTION = this.index;
+        this.settingDataObj.photoResolution = this.index;
         let ind = this.itemData.indexOf('*');
         let photoResolutionWidth = Common.photoResolutionWidth;
         let photoResolutionHeight = Common.photoResolutionHeight;
@@ -74,7 +74,7 @@ export struct settingItem {
         break;
       case 10:
       // Video resolution
-        this.settingDataObj.VIDEO_RESOLUTION = this.index;
+        this.settingDataObj.videoResolution = this.index;
         let index = this.itemData.indexOf('*');
         let videoResolutionWidth = Common.videoResolutionWidth;
         let videoResolutionHeight = Common.videoResolutionHeight;
@@ -82,7 +82,7 @@ export struct settingItem {
         videoResolutionHeight = Number(this.itemData.substring(index + 1));
         break;
       case 11:
-        this.settingDataObj.VIDEO_FRAME = this.index;
+        this.settingDataObj.videoFrame = this.index;
         let videoFrame = Common.videoFrame;
         videoFrame = this.itemData;
         break;

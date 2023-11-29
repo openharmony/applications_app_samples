@@ -50,18 +50,18 @@ export struct settingRightLayout {
   @State isIndex: number = 0;
   private settingItemNumberArray = [2, 3, 4, 5, 7, 8, 9, 10, 11];
   private settingDataObj: SettingDataObj = {
-    MIRRORBOL: false,
-    VIDEO_STABILIZATION_MODE: 0,
-    EXPOSURE_MODE: 1,
-    FOCUS_MODE: 2,
-    PHOTO_QUALITY: 1,
-    LOCATION_BOL: false,
-    PHOTO_FORMAT: 1,
-    PHOTO_ORIENTATION: 0,
-    PHOTO_RESOLUTION: 0,
-    VIDEO_RESOLUTION: 0,
-    VIDEO_FRAME: 0,
-    REFERENCElINE_BOL: false
+    mirrorBol: false,
+    videoStabilizationMode: 0,
+    exposureMode: 1,
+    focusMode: 2,
+    photoQuality: 1,
+    locationBol: false,
+    photoFormat: 1,
+    photoOrientation: 0,
+    photoResolution: 0,
+    videoResolution: 0,
+    videoFrame: 0,
+    referenceLineBol: false
   };
   private getModeIcon1: GetModeIcon = new GetModeIcon($r('app.media.pic_camera_mirror'), $r('app.string.SELF_IMAGE_FUNC_ONLY_FRONT_CAMERA_OPEN_USE'))
   private getModeIcon6: GetModeIcon = new GetModeIcon($r('app.media.pic_camera_mirror'), $r('app.string.DISPLAY_LOCATION_RECORD_PHOTO_OR_VIDEO_INFO'))
@@ -70,31 +70,31 @@ export struct settingRightLayout {
   onSettingMessageFn() {
     switch (this.settingMessageNum) {
       case 2:
-        this.isIndex = this.settingDataObj.VIDEO_STABILIZATION_MODE;
+        this.isIndex = this.settingDataObj.videoStabilizationMode;
         break;
       case 3:
-        this.isIndex = this.settingDataObj.EXPOSURE_MODE;
+        this.isIndex = this.settingDataObj.exposureMode;
         break;
       case 4:
-        this.isIndex = this.settingDataObj.FOCUS_MODE;
+        this.isIndex = this.settingDataObj.focusMode;
         break;
       case 5:
-        this.isIndex = this.settingDataObj.PHOTO_QUALITY;
+        this.isIndex = this.settingDataObj.photoQuality;
         break;
       case 7:
-        this.isIndex = this.settingDataObj.PHOTO_FORMAT;
+        this.isIndex = this.settingDataObj.photoFormat;
         break;
       case 8:
-        this.isIndex = this.settingDataObj.PHOTO_ORIENTATION;
+        this.isIndex = this.settingDataObj.photoOrientation;
         break;
       case 9:
-        this.isIndex = this.settingDataObj.PHOTO_RESOLUTION;
+        this.isIndex = this.settingDataObj.photoResolution;
         break;
       case 10:
-        this.isIndex = this.settingDataObj.VIDEO_RESOLUTION;
+        this.isIndex = this.settingDataObj.videoResolution;
         break;
       case 11:
-        this.isIndex = this.settingDataObj.VIDEO_FRAME;
+        this.isIndex = this.settingDataObj.videoFrame;
         break;
     }
   }

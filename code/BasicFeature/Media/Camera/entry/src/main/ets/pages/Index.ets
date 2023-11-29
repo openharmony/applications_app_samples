@@ -67,18 +67,18 @@ struct Index {
   private screenHeight: number = 0;
   private screenWidth: number = 0;
   private settingDataObj: SettingDataObj = {
-    MIRRORBOL: false,
-    VIDEO_STABILIZATION_MODE: 0,
-    EXPOSURE_MODE: 1,
-    FOCUS_MODE: 2,
-    PHOTO_QUALITY: 1,
-    LOCATION_BOL: false,
-    PHOTO_FORMAT: 1,
-    PHOTO_ORIENTATION: 0,
-    PHOTO_RESOLUTION: 0,
-    VIDEO_RESOLUTION: 0,
-    VIDEO_FRAME: 0,
-    REFERENCElINE_BOL: false
+    mirrorBol: false,
+    videoStabilizationMode: 0,
+    exposureMode: 1,
+    focusMode: 2,
+    photoQuality: 1,
+    locationBol: false,
+    photoFormat: 1,
+    photoOrientation: 0,
+    photoResolution: 0,
+    videoResolution: 0,
+    videoFrame: 0,
+    referenceLineBol: false
   };
   private appContext: common.Context = getContext(this);
   // Set Popup Box
@@ -138,7 +138,7 @@ struct Index {
     Logger.info(TAG, `onPageShow App`);
     if (this.surfaceId && this.onShow) {
       Logger.error(TAG, `initCamera start`);
-      cameraDemo.initCamera(this.surfaceId, this.settingDataObj.FOCUS_MODE, this.cameraDeviceIndex);
+      cameraDemo.initCamera(this.surfaceId, this.settingDataObj.focusMode, this.cameraDeviceIndex);
       Logger.error(TAG, `initCamera end`);
     }
   }
@@ -162,7 +162,7 @@ struct Index {
             this.surfaceId = this.mXComponentController.getXComponentSurfaceId();
             Logger.info(TAG, `onLoad surfaceId: ${this.surfaceId}`);
             Logger.error(TAG, `initCamera start`);
-            cameraDemo.initCamera(this.surfaceId, this.settingDataObj.FOCUS_MODE, this.cameraDeviceIndex);
+            cameraDemo.initCamera(this.surfaceId, this.settingDataObj.focusMode, this.cameraDeviceIndex);
             let device = Common.cameraDeviceIndex;
             device = this.cameraDeviceIndex;
             Logger.error(TAG, `initCamera end`);

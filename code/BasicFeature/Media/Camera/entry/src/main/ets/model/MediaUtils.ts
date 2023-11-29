@@ -29,18 +29,18 @@ export default class MediaUtils {
   private static instance: MediaUtils = new MediaUtils();
   private num: number = 0;
   private settingDataObj: SettingDataObj = {
-    MIRRORBOL: false,
-    VIDEO_STABILIZATION_MODE: 0,
-    EXPOSURE_MODE: 1,
-    FOCUS_MODE: 2,
-    PHOTO_QUALITY: 1,
-    LOCATION_BOL: false,
-    PHOTO_FORMAT: 1,
-    PHOTO_ORIENTATION: 0,
-    PHOTO_RESOLUTION: 0,
-    VIDEO_RESOLUTION: 0,
-    VIDEO_FRAME: 0,
-    REFERENCElINE_BOL: false
+    mirrorBol: false,
+    videoStabilizationMode: 0,
+    exposureMode: 1,
+    focusMode: 2,
+    photoQuality: 1,
+    locationBol: false,
+    photoFormat: 1,
+    photoOrientation: 0,
+    photoResolution: 0,
+    videoResolution: 0,
+    videoFrame: 0,
+    referenceLineBol: false
   };
 
   public static getInstance() {
@@ -67,130 +67,27 @@ export default class MediaUtils {
     }
   }
 
-  async queryFile(dataUri: any) {
-    let fileKeyObj = mediaLibrary.FileKey;
-    if (dataUri !== undefined) {
-      let args = dataUri.id.toString();
-      let fetchOp = {
-        selections: `${fileKeyObj.ID}=?`,
-        selectionArgs: [args],
-      }
-      const fetchFileResult = await this.mediaTest.getFileAssets(fetchOp);
-      Logger.info(this.tag, `fetchFileResult.getCount() = ${fetchFileResult.getCount()}`);
-      const fileAsset = await fetchFileResult.getAllObject();
-      return fileAsset[0];
-    }
-  }
-
   async getFdPath(fileAsset: mediaLibrary.FileAsset) {
     let fd = await fileAsset.open('Rw');
     Logger.info(this.tag, `fd = ${fd}`);
     return fd;
   }
 
-  async createFile(mediaType: number) {
-    let dataUri = await this.createAndGetUri(mediaType);
-    if (dataUri) {
-      let fileAsset = await this.queryFile(dataUri);
-      if (fileAsset) {
-        let fd = await this.getFdPath(fileAsset);
-        return fd;
-      }
-    }
-  }
-
-  async getFileAssetsFromType(mediaType: number) {
-    Logger.info(this.tag, `getFileAssetsFromType,mediaType = ${mediaType}`);
-    let fileKeyObj = mediaLibrary.FileKey;
-    let fetchOp = {
-      selections: `${fileKeyObj.MEDIA_TYPE}=?`,
-      selectionArgs: [`${mediaType}`],
-    }
-    const fetchFileResult = await this.mediaTest.getFileAssets(fetchOp);
-    Logger.info(this.tag, `getFileAssetsFromType,fetchFileResult.count = ${fetchFileResult.getCount()}`);
-    let fileAssets = [];
-    if (fetchFileResult.getCount() > 0) {
-      fileAssets = await fetchFileResult.getAllObject();
-    }
-    return fileAssets;
-  }
-
-  async getAlbums() {
-    Logger.info(this.tag, 'getAlbums begin');
-    let albums = [];
-    const [files, images, videos, audios] = await Promise.all([
-      this.getFileAssetsFromType(mediaLibrary.MediaType.FILE),
-      this.getFileAssetsFromType(mediaLibrary.MediaType.IMAGE),
-      this.getFileAssetsFromType(mediaLibrary.MediaType.VIDEO),
-      this.getFileAssetsFromType(mediaLibrary.MediaType.AUDIO)
-    ]);
-    albums.push({
-      albumName: 'Documents', count: files.length, mediaType: mediaLibrary.MediaType.FILE
-    });
-    albums.push({
-      albumName: 'Pictures', count: images.length, mediaType: mediaLibrary.MediaType.IMAGE
-    });
-    albums.push({
-      albumName: 'Camera', count: videos.length, mediaType: mediaLibrary.MediaType.VIDEO
-    });
-    albums.push({
-      albumName: 'Audios', count: audios.length, mediaType: mediaLibrary.MediaType.AUDIO
-    });
-    return albums;
-  }
-
-  deleteFile(media: any) {
-    let uri = media.uri;
-    Logger.info(this.tag, `deleteFile,uri = ${uri}`);
-    return this.mediaTest.deleteAsset(uri);
-  }
-
-  onDateChange(callback: () => void) {
-    this.mediaTest.on('albumChange', () => {
-      Logger.info(this.tag, 'albumChange called');
-      callback();
-    })
-    this.mediaTest.on('imageChange', () => {
-      Logger.info(this.tag, 'imageChange called');
-      callback();
-    })
-    this.mediaTest.on('audioChange', () => {
-      Logger.info(this.tag, 'audioChange called');
-      callback();
-    })
-    this.mediaTest.on('videoChange', () => {
-      Logger.info(this.tag, 'videoChange called');
-      callback();
-    })
-    this.mediaTest.on('fileChange', () => {
-      Logger.info(this.tag, 'fileChange called');
-      callback();
-    })
-  }
-
-  offDateChange() {
-    this.mediaTest.off('albumChange');
-    this.mediaTest.off('imageChange');
-    this.mediaTest.off('audioChange');
-    this.mediaTest.off('videoChange');
-    this.mediaTest.off('fileChange');
-  }
-
   // Photo Format
   onChangePhotoFormat() {
-    if (this.settingDataObj.PHOTO_FORMAT === 0) {
+    if (this.settingDataObj.photoFormat === 0) {
       return 'png';
     }
-    if (this.settingDataObj.PHOTO_FORMAT === 1) {
+    if (this.settingDataObj.photoFormat === 1) {
       return 'jpg';
     }
-    if (this.settingDataObj.PHOTO_FORMAT === 2) {
+    if (this.settingDataObj.photoFormat === 2) { // 2:photoFormat
       return 'bmp';
     }
-    if (this.settingDataObj.PHOTO_FORMAT === 3) {
+    if (this.settingDataObj.photoFormat === 3) { // 3:photoFormat
       return 'webp';
     }
-    if (this.settingDataObj.PHOTO_FORMAT === 4) {
+    if (this.settingDataObj.photoFormat === 4) { // 4:photoFormat
       return 'jpeg';
     }
   }

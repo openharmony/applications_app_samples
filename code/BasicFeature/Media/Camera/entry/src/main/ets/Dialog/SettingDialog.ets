@@ -26,33 +26,33 @@ export struct settingDialog {
   // Index of a certain setting clicked on
   @State leftSliderIndex: number = 1;
   private settingDataObj: SettingDataObj = {
-  MIRRORBOL: false,
-  VIDEO_STABILIZATION_MODE: 0,
-  EXPOSURE_MODE: 1,
-  FOCUS_MODE: 2,
-  PHOTO_QUALITY: 1,
-  LOCATION_BOL: false,
-  PHOTO_FORMAT: 1,
-  PHOTO_ORIENTATION: 0,
-  PHOTO_RESOLUTION: 0,
-  VIDEO_RESOLUTION: 0,
-  VIDEO_FRAME: 0,
-  REFERENCElINE_BOL: false
+    mirrorBol: false,
+    videoStabilizationMode: 0,
+    exposureMode: 1,
+    focusMode: 2,
+    photoQuality: 1,
+    locationBol: false,
+    photoFormat: 1,
+    photoOrientation: 0,
+    photoResolution: 0,
+    videoResolution: 0,
+    videoFrame: 0,
+    referenceLineBol: false
   };
 
   // Mirror persistence, enter again, confirm if the switch is turned on
   getMirrorBol(bol: boolean) {
-    this.settingDataObj.MIRRORBOL = bol;
+    this.settingDataObj.mirrorBol = bol;
   }
 
   // Persistent geographical location, re-enter to determine if the switch is turned on
   getLocationBol(bol: boolean) {
-    this.settingDataObj.LOCATION_BOL = bol;
+    this.settingDataObj.locationBol = bol;
   }
 
   // Persist the reference line, enter again to determine if the switch is turned on
   getReferenceLineBol(bol: boolean) {
-    this.settingDataObj.REFERENCElINE_BOL = bol;
+    this.settingDataObj.referenceLineBol = bol;
     this.referenceLineBol = bol;
   }
 
@@ -87,7 +87,7 @@ export struct settingDialog {
             modeMessage: $r('app.string.SELFIE_IMAGE'),
             backNum: 1,
             leftSliderIndex: $leftSliderIndex,
-            setModeBol: this.settingDataObj.MIRRORBOL,
+            setModeBol: this.settingDataObj.mirrorBol,
           })
           Column() {
             settingPublicLayout({
@@ -130,7 +130,7 @@ export struct settingDialog {
               borderBole: false,
               iconModeBol: true,
               modeMessage: $r('app.string.DISPLAY_LOCATION'),
-              setModeBol: this.settingDataObj.LOCATION_BOL,
+              setModeBol: this.settingDataObj.locationBol,
             })
 
           }
@@ -192,7 +192,7 @@ export struct settingDialog {
             isModeBol: true,
             borderBol: false,
             iconModeBol: true,
-            setModeBol: this.settingDataObj.REFERENCElINE_BOL,
+            setModeBol: this.settingDataObj.referenceLineBol,
           })
             .margin({ top: 15 })
         }

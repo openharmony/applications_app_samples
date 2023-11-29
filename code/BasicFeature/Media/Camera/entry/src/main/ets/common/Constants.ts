@@ -15,12 +15,12 @@
 
 export class Constants {
   // aspect ratio: width/height
-  static readonly MIN_ASPECT_RATIO = 4 / 3;
-  static readonly MAX_ASPECT_RATIO = 16 / 9;
+  static readonly MIN_ASPECT_RATIO = 4 / 3; // 4:MIN_ASPECT_RATIO, 3:MIN_ASPECT_RATIO
+  static readonly MAX_ASPECT_RATIO = 16 / 9; // 16:MAX_ASPECT_RATIO, 9:MAX_ASPECT_RATIO
 
-  static readonly VIDEO_MAX_WIDTH = 2048;
-  static readonly PHOTO_MAX_WIDTH = 2048;
-  static readonly SURFACE_BOTTOM_MARGIN = 50;
+  static readonly VIDEO_MAX_WIDTH = 2048; // 2048: VIDEO_MAX_WIDTH
+  static readonly PHOTO_MAX_WIDTH = 2048; // 2048: PHOTO_MAX_WIDTH
+  static readonly SURFACE_BOTTOM_MARGIN = 50; // 50: SURFACE_BOTTOM_MARGIN
 
   // device type
   static readonly TABLET = 'tablet';
@@ -28,23 +28,23 @@ export class Constants {
   static readonly PHONE = 'phone';
 
   // video frame
-  static readonly VIDEO_FRAME_30 = 30;
-  static readonly VIDEO_FRAME_15 = 15;
+  static readonly VIDEO_FRAME_30 = 30; // 30: VIDEO_FRAME_30
+  static readonly VIDEO_FRAME_15 = 15; // 15: VIDEO_FRAME_15
 };
 
 export class SettingDataObj {
-  MIRRORBOL = false;            // Mirror Enable -> Off
-  VIDEO_STABILIZATION_MODE = 0; // Video Anti Shake -> Off
-  EXPOSURE_MODE = 1;            // Exposure mode -> Automatic
-  FOCUS_MODE = 2;               // Focus mode -> Automatic
-  PHOTO_QUALITY = 1;            // Photo quality -> medium
-  LOCATION_BOL = false;         // Show Geographic Location -> Off
-  PHOTO_FORMAT = 1;             // Photo Format -> JPG
-  PHOTO_ORIENTATION = 0;        // Photo direction -> 0
-  PHOTO_RESOLUTION = 0;         // Photo resolution -> 1920 * 1080
-  VIDEO_RESOLUTION = 0;         // Photo resolution -> 1920 * 1080
-  VIDEO_FRAME = 0;              // Recording frame rate -> 15
-  REFERENCElINE_BOL = false;    // Divider -> Off
+  mirrorBol = false; // Mirror Enable -> Off
+  videoStabilizationMode = 0; // Video Anti Shake -> Off
+  exposureMode = 1; // Exposure mode -> Automatic
+  focusMode = 2; // 2:Focus mode -> Automatic
+  photoQuality = 1; // Photo quality -> medium
+  locationBol = false; // Show Geographic Location -> Off
+  photoFormat = 1; // Photo Format -> JPG
+  photoOrientation = 0; // Photo direction -> 0
+  photoResolution = 0; // Photo resolution -> 1920 * 1080
+  videoResolution = 0; // Photo resolution -> 1920 * 1080
+  videoFrame = 0; // Recording frame rate -> 15
+  referenceLineBol = false; // Divider -> Off
 };
 
 export let cameraDeviceIndex: number = 0;
