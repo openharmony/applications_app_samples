@@ -96,13 +96,7 @@ export default function abilityTest() {
 
   describe('ActsAbilityTest', () => {
     /**
-     * @tc.number StartAbility_001
-     * @tc.name StartAbility_001
-     * @tc.desc Test StartAbility_001
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 打开应用
      */
     it(BUNDLE + 'StartAbility_001', 0, async (done : () => void) => {
       Logger.info(TAG, BUNDLE + 'StartAbility_001 begin')
@@ -125,13 +119,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number RequestPermissionFunction_001
-     * @tc.name RequestPermissionFunction_001
-     * @tc.desc Test RequestPermissionFunction_001
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 获取权限
      */
     it(BUNDLE + 'RequestPermissionFunction_001', 0, async () => {
       Logger.info(TAG, BUNDLE + 'RequestPermissionFunction begin')
@@ -146,13 +134,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number WatcherCopyFunction_001
-     * @tc.name WatcherCopyFunction_001
-     * @tc.desc 点击主页中监听文件
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 点击主页中监听文件
      */
     it(BUNDLE + 'WatcherCopyFunction_001', 0, async () => {
       Logger.info(TAG, BUNDLE + 'WatcherCopyFunction_001 begin')
@@ -168,13 +150,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number File_Fs_addFile_001
-     * @tc.name File_Fs_addFile_001
-     * @tc.desc 添加监听之前添加文件
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 添加监听之前添加文件
      */
     it('File_Fs_addFile_001', 1, async () => {
       Logger.info(TAG, 'File_Fs_addFile_001 begin');
@@ -195,13 +171,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number File_Fs_modifyFile_001
-     * @tc.name File_Fs_modifyFile_001
-     * @tc.desc 添加监听之前修改文件
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 添加监听之前修改文件
      */
     it('File_Fs_modifyFile_001', 1, async () => {
       Logger.info(TAG, 'File_Fs_modifyFile_001 begin');
@@ -221,13 +191,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number File_Fs_modifyFileName_001
-     * @tc.name File_Fs_modifyFileName_001
-     * @tc.desc 修改文件名
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 修改文件名
      */
     it('File_Fs_modifyFileName_001', 1, async () => {
       Logger.info(TAG, 'File_Fs_modifyFileName_001 begin');
@@ -248,13 +212,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number File_Fs_modifyFile_002
-     * @tc.name File_Fs_modifyFile_002
-     * @tc.desc 查看已修改文件名
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 查看已修改文件名
      */
     it('File_Fs_modifyFile_002', 1, async () => {
       Logger.info(TAG, 'File_Fs_modifyFile_002 begin');
@@ -275,13 +233,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number File_Fs_modifyFileContent_001
-     * @tc.name File_Fs_modifyFileContent_001
-     * @tc.desc 修改文件内容
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 修改文件内容
      */
     it('File_Fs_modifyFileContent_001', 1, async () => {
       Logger.info(TAG, 'File_Fs_modifyFileContent_001 begin');
@@ -301,13 +253,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number File_Fs_deleteFile_001
-     * @tc.name File_Fs_deleteFile_001
-     * @tc.desc 添加监听之前删除文件
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 添加监听之前删除文件
      */
     it('File_Fs_deleteFile_001', 1, async () => {
       Logger.info(TAG, 'File_Fs_deleteFile_001 begin');
@@ -328,13 +274,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number backward_001
-     * @tc.name backward_001
-     * @tc.desc 准备待修改的文件
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 准备待修改的文件
      */
     it('backward_001', 1, async () => {
       Logger.info(TAG, 'backward_001 begin');
@@ -354,13 +294,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number File_Fs_backward_001
-     * @tc.name File_Fs_backward_001
-     * @tc.desc 修改文件后撤销
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 修改文件后撤销
      */
     it('File_Fs_backward_001', 1, async () => {
       Logger.info(TAG, 'File_Fs_backward_001 begin');
@@ -377,13 +311,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number File_Fs_backward_002
-     * @tc.name File_Fs_backward_002
-     * @tc.desc 修改文件名后撤销
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 修改文件名后撤销
      */
     it('File_Fs_backward_002', 1, async () => {
       Logger.info(TAG, 'File_Fs_backward_002 begin');
@@ -405,13 +333,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number File_Fs_backward_003
-     * @tc.name File_Fs_backward_003
-     * @tc.desc 修改文件内容后撤销
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 修改文件内容后撤销
      */
     it('File_Fs_backward_003', 1, async () => {
       Logger.info(TAG, 'File_Fs_backward_003 begin');
@@ -429,13 +351,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number File_Fs_backward_004
-     * @tc.name File_Fs_backward_004
-     * @tc.desc 修改文件内容后撤销
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 修改文件内容后撤销
      */
     it('File_Fs_backward_004', 1, async () => {
       Logger.info(TAG, 'File_Fs_backward_004 begin');
@@ -453,13 +369,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number StopWatcherFunction_001
-     * @tc.name StopWatcherFunction_001
-     * @tc.desc 点击添加监听后停止监听,测试停止监听页面是否出现弹窗白屏
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 点击添加监听后停止监听,测试停止监听页面是否出现弹窗白屏
      */
     it(BUNDLE + 'StopWatcherFunction_001', 0, async () => {
       Logger.info(TAG, BUNDLE + 'StopWatcherFunction_001 begin')
@@ -503,13 +413,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number File_Fs_addCreateWatcher_001
-     * @tc.name File_Fs_addCreateWatcher_001
-     * @tc.desc 添加IN_CREATE监听
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 添加IN_CREATE监听
      */
     it('File_Fs_addCreateWatcher_001', 1, async () => {
       Logger.info(TAG, 'File_Fs_addCreateWatcher_001 begin');
@@ -527,13 +431,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number File_Fs_addCreateWatcher_002
-     * @tc.name File_Fs_addCreateWatcher_002
-     * @tc.desc 添加IN_CREATE监听
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 添加IN_CREATE监听
      */
     it('File_Fs_addCreateWatcher_002', 1, async () => {
       Logger.info(TAG, 'File_Fs_addCreateWatcher_002 begin');
@@ -554,13 +452,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number File_Fs_afterAddCreateWatcher_addFile_001
-     * @tc.name File_Fs_afterAddCreateWatcher_addFile_001
-     * @tc.desc 添加IN_CREATE监听之后添加文件
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 添加IN_CREATE监听之后添加文件
      */
     it('File_Fs_afterAddCreateWatcher_addFile_001', 1, async () => {
       Logger.info(TAG, 'File_Fs_afterAddCreateWatcher_addFile_001 begin');
@@ -580,13 +472,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number File_Fs_addDelWatcher_001
-     * @tc.name File_Fs_addDelWatcher_001
-     * @tc.desc 添加IN_DELETE监听
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 添加IN_DELETE监听
      */
     it('File_Fs_addDelWatcher_001', 1, async () => {
       Logger.info(TAG, 'File_Fs_addDelWatcher_001 begin');
@@ -608,13 +494,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number File_Fs_afterAddDelWatcher_delFile_001
-     * @tc.name File_Fs_afterAddDelWatcher_delFile_001
-     * @tc.desc 添加监听之后删除文件
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 添加监听之后删除文件
      */
     it('File_Fs_afterAddDelWatcher_delFile_001', 1, async () => {
       Logger.info(TAG, 'File_Fs_afterAddDelWatcher_delFile_001 begin');
@@ -633,13 +513,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number File_Fs_afterAddDelWatcher_delFile_002
-     * @tc.name File_Fs_afterAddDelWatcher_delFile_002
-     * @tc.desc 添加监听之后删除文件
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 添加监听之后删除文件
      */
     it('File_Fs_afterAddDelWatcher_delFile_002', 1, async () => {
       Logger.info(TAG, 'File_Fs_afterAddDelWatcher_delFile_002 begin');
@@ -655,13 +529,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number File_Fs_stopCreateWatcher_001
-     * @tc.name File_Fs_stopCreateWatcher_001
-     * @tc.desc 停止IN_CREATE监听
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 停止IN_CREATE监听
      */
     it('File_Fs_stopCreateWatcher_001', 1, async () => {
       Logger.info(TAG, 'File_Fs_stopCreateWatcher_001 begin');
@@ -683,13 +551,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number File_Fs_afterStopCreateWatcher_addFile001
-     * @tc.name File_Fs_afterStopCreateWatcher_addFile001
-     * @tc.desc 停止监听之后添加文件
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 停止监听之后添加文件
      */
     it('File_Fs_afterStopCreateWatcher_addFile001', 1, async () => {
       Logger.info(TAG, 'File_Fs_afterStopCreateWatcher_addFile001 begin');
@@ -707,13 +569,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number File_Fs_stopDelWatcher_001
-     * @tc.name File_Fs_stopDelWatcher_001
-     * @tc.desc 停止IN_DELETE监听
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 停止IN_DELETE监听
      */
     it('File_Fs_stopDelWatcher_001', 1, async () => {
       Logger.info(TAG, 'File_Fs_stopDelWatcher_001 begin');
@@ -735,13 +591,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number File_Fs_afterStopDelWatcher_delFile002
-     * @tc.name File_Fs_afterStopDelWatcher_delFile002
-     * @tc.desc 停止监听之后删除文件
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 停止监听之后删除文件
      */
     it('File_Fs_afterStopDelWatcher_delFile002', 1, async () => {
       Logger.info(TAG, 'File_Fs_afterStopDelWatcher_delFile002 begin');
@@ -757,13 +607,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number File_Fs_afterStopDelWatcher_delFile001
-     * @tc.name File_Fs_afterStopDelWatcher_delFile001
-     * @tc.desc 停止监听之后删除文件
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 停止监听之后删除文件
      */
     it('File_Fs_afterStopDelWatcher_delFile001', 1, async () => {
       Logger.info(TAG, 'File_Fs_afterStopDelWatcher_delFile001 begin');
@@ -780,13 +624,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number File_Fs_addModifyWatcher_001
-     * @tc.name File_Fs_addModifyWatcher_001
-     * @tc.desc 添加IN_MODIFY监听
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 添加IN_MODIFY监听
      */
     it('File_Fs_addModifyWatcher_001', 1, async () => {
       Logger.info(TAG, 'File_Fs_addModifyWatcher_001 begin');
@@ -804,13 +642,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number File_Fs_addModifyWatcher_002
-     * @tc.name File_Fs_addModifyWatcher_002
-     * @tc.desc 添加IN_MODIFY监听
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 添加IN_MODIFY监听
      */
     it('File_Fs_addModifyWatcher_002', 1, async () => {
       Logger.info(TAG, 'File_Fs_addModifyWatcher_002 begin');
@@ -827,13 +659,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number File_Fs_afterAddModifyWatcher_editFile001
-     * @tc.name File_Fs_afterAddModifyWatcher_editFile001
-     * @tc.desc 添加监听后修改文件
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 添加监听后修改文件
      */
     it('File_Fs_afterAddModifyWatcher_editFile001', 1, async () => {
       Logger.info(TAG, 'File_Fs_afterAddModifyWatcher_editFile001 begin');
@@ -851,13 +677,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number File_Fs_afterAddModifyWatcher_editFile002
-     * @tc.name File_Fs_afterAddModifyWatcher_editFile002
-     * @tc.desc 添加监听后修改文件内容
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 添加监听后修改文件内容
      */
     it('File_Fs_afterAddModifyWatcher_editFile002', 1, async () => {
       Logger.info(TAG, 'File_Fs_afterAddModifyWatcher_editFile002 begin');
@@ -878,13 +698,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number File_Fs_afterAddModifyWatcher_editFile003
-     * @tc.name File_Fs_afterAddModifyWatcher_editFile003
-     * @tc.desc 查看修改文件后监听日志
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 查看修改文件后监听日志
      */
     it('File_Fs_afterAddModifyWatcher_editFile003', 1, async () => {
       Logger.info(TAG, 'File_Fs_afterAddModifyWatcher_editFile003 begin');
@@ -900,13 +714,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number File_Fs_stopModifyWatcher_001
-     * @tc.name File_Fs_stopModifyWatcher_001
-     * @tc.desc 停止IN_MODIFY监听
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 停止IN_MODIFY监听
      */
     it('File_Fs_stopModifyWatcher_001', 1, async () => {
       Logger.info(TAG, 'File_Fs_stopModifyWatcher_001 begin');
@@ -928,13 +736,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number afterStopModifyWatcher_editFile001
-     * @tc.name afterStopModifyWatcher_editFile001
-     * @tc.desc 停止监听后修改文件
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 停止监听后修改文件
      */
     it('afterStopModifyWatcher_editFile001', 1, async () => {
       Logger.info(TAG, 'afterStopModifyWatcher_editFile001 begin');
@@ -952,13 +754,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number File_Fs_afterStopModifyWatcher_editFile002
-     * @tc.name File_Fs_afterStopModifyWatcher_editFile002
-     * @tc.desc 停止监听后修改文件内容
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 停止监听后修改文件内容
      */
     it('File_Fs_afterStopModifyWatcher_editFile002', 1, async () => {
       Logger.info(TAG, 'File_Fs_afterStopModifyWatcher_editFile002 begin');
@@ -976,13 +772,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number File_Fs_afterStopModifyWatcher_editFile003
-     * @tc.name File_Fs_afterStopModifyWatcher_editFile003
-     * @tc.desc 停止监听后修改文件内容
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 停止监听后修改文件内容
      */
     it('File_Fs_afterStopModifyWatcher_editFile003', 1, async () => {
       Logger.info(TAG, 'File_Fs_afterStopModifyWatcher_editFile003 begin');
@@ -998,13 +788,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number backIndex_001
-     * @tc.name backIndex_001
-     * @tc.desc 返回首页
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 返回首页
      */
     it('backIndex_001', 1, async () => {
       Logger.info(TAG, 'backIndex_001 begin');
@@ -1018,13 +802,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number ImageFunction_001
-     * @tc.name ImageFunction_001
-     * @tc.desc 点击主页中图片
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 点击主页中图片
      */
     it(BUNDLE + 'ImageFunction_001', 0, async () => {
       Logger.info(TAG, BUNDLE + 'ImageFunction_001 begin')
@@ -1088,13 +866,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number VideoFunction_001
-     * @tc.name VideoFunction_001
-     * @tc.desc 点击主页中视频
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 点击主页中视频
      */
     it(BUNDLE + 'VideoFunction_001', 0, async () => {
       Logger.info(TAG, BUNDLE + 'VideoFunction_001 begin')
@@ -1154,13 +926,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number DocumentFunction_001
-     * @tc.name DocumentFunction_001
-     * @tc.desc 点击主页中文档
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 点击主页中文档
      */
     it(BUNDLE + 'DocumentFunction_001', 0, async () => {
       Logger.info(TAG, BUNDLE + 'DocumentFunction_001 begin')
@@ -1227,13 +993,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number AudioFunction_001
-     * @tc.name AudioFunction_001
-     * @tc.desc 点击主页中音频
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 点击主页中音频
      */
     it(BUNDLE + 'AudioFunction_001', 0, async () => {
       Logger.info(TAG, BUNDLE + 'AudioFunction_001 begin')
@@ -1294,13 +1054,7 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number ZipFunction_001
-     * @tc.name ZipFunction_001
-     * @tc.desc 点击主页中压缩包
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 点击主页中压缩包
      */
     it(BUNDLE + 'ZipFunction_001', 0, async () => {
       Logger.info(TAG, BUNDLE + 'ZipFunction_001 begin')
@@ -1317,255 +1071,237 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number MobileFunction_001
-     * @tc.name MobileFunction_001
-     * @tc.desc 点击主页中我的手机
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 点击主页中我的手机
      */
     it('MobileFunction_001', 0, async () => {
-      Logger.info(TAG, 'MobileFunction_001 begin');
-      let driver = Driver.create();
-      await driver.delayMs(500);
-      // 主页能够显示List中内容，点击手机
-      await driver.assertComponentExist(ON.type('List'));
-      await driver.assertComponentExist(ON.type('ListItem').id('ListItem5'));
-      let btnStart = await driver.findComponent(ON.type('ListItem').id('ListItem5'));
-      await btnStart.click();
-      await driver.delayMs(500);
-      // 跳转我的手机界面
-      await driver.assertComponentExist(ON.type('Text').id('makeFile'));
-      await driver.assertComponentExist(ON.type('Text').id('makeDirectory'));
-      await driver.assertComponentExist(ON.type('Text').id('sort'));
-      await driver.assertComponentExist(ON.type('Text').id('clean'));
-      // 测试新建文件及打开功能
-      let btnFile = await driver.findComponent(ON.type('Text').id('makeFile'));
-      await btnFile.click();
-      await driver.delayMs(500);
-      await driver.assertComponentExist(ON.id('cancel'));
-      let btnCancel = await driver.findComponent(ON.id('cancel'));
-      await btnCancel.click();
-      await driver.delayMs(500);
-      await btnFile.click();
-      await driver.delayMs(200);
-      await driver.assertComponentExist(ON.id('input'));
-      let input = await driver.findComponent(ON.id('input'));
-      await input.inputText('testFile');
-      await driver.assertComponentExist(ON.id('promise'));
-      let btnPromise = await driver.findComponent(ON.id('promise'));
-      await btnPromise.click();
-      await driver.delayMs(200);
-      await driver.assertComponentExist(ON.text('testFile'));
-      let testFile = await driver.findComponent(ON.text('testFile'));
-      await testFile.click();
-      await driver.delayMs(200);
-      await driver.assertComponentExist(ON.id('openFileName'));
-      let back = await driver.findComponent(ON.id('openFileBack'));
-      await back.click();
-      await driver.delayMs(200);
-      Logger.info(TAG, BUNDLE + 'MobileFunction_001 end');
+      try{
+        Logger.info(TAG, 'MobileFunction_001 begin');
+        let driver = Driver.create();
+        await driver.delayMs(500);
+        // 主页能够显示List中内容，点击手机
+        await driver.assertComponentExist(ON.type('List'));
+        await driver.assertComponentExist(ON.type('ListItem').id('ListItem5'));
+        let btnStart = await driver.findComponent(ON.type('ListItem').id('ListItem5'));
+        await btnStart.click();
+        await driver.delayMs(500);
+        // 跳转我的手机界面
+        await driver.assertComponentExist(ON.type('Text').id('makeFile'));
+        await driver.assertComponentExist(ON.type('Text').id('makeDirectory'));
+        await driver.assertComponentExist(ON.type('Text').id('sort'));
+        await driver.assertComponentExist(ON.type('Text').id('clean'));
+        // 测试新建文件及打开功能
+        let btnFile = await driver.findComponent(ON.type('Text').id('makeFile'));
+        await btnFile.click();
+        await driver.delayMs(500);
+        await driver.assertComponentExist(ON.id('cancel'));
+        let btnCancel = await driver.findComponent(ON.id('cancel'));
+        await btnCancel.click();
+        await driver.delayMs(500);
+        await btnFile.click();
+        await driver.delayMs(200);
+        await driver.assertComponentExist(ON.id('input'));
+        let input = await driver.findComponent(ON.id('input'));
+        await input.inputText('testFile');
+        await driver.assertComponentExist(ON.id('promise'));
+        let btnPromise = await driver.findComponent(ON.id('promise'));
+        await btnPromise.click();
+        await driver.delayMs(200);
+        await driver.assertComponentExist(ON.text('testFile'));
+        let testFile = await driver.findComponent(ON.text('testFile'));
+        await testFile.click();
+        await driver.delayMs(200);
+        await driver.assertComponentExist(ON.id('openFileName'));
+        let back = await driver.findComponent(ON.id('openFileBack'));
+        await back.click();
+        await driver.delayMs(200);
+        Logger.info(TAG, BUNDLE + 'MobileFunction_001 end');
+      }catch(error){
+        expect().assertFail();
+      }
     });
 
     /**
-     * @tc.number MobileFunction_002
-     * @tc.name MobileFunction_002
-     * @tc.desc 测试新建文件夹功能
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 测试新建文件夹功能
      */
     it('MobileFunction_002', 0, async () => {
-      Logger.info(TAG, 'MobileFunction_002 begin');
-      let driver = Driver.create();
-      await driver.delayMs(200);
-      // 测试新建文件夹功能
-      let btnDirectory = await driver.findComponent(ON.type('Text').id('makeDirectory'));
-      await btnDirectory.click();
-      await driver.delayMs(200);
-      await driver.assertComponentExist(ON.id('cancel'));
-      let directoryCancel = await driver.findComponent(ON.id('cancel'));
-      await directoryCancel.click();
-      await driver.delayMs(200);
-      await btnDirectory.click();
-      await driver.delayMs(200);
-      await driver.assertComponentExist(ON.id('input'));
-      let inputDirectory = await driver.findComponent(ON.id('input'));
-      await inputDirectory.inputText('testDirectory/testSubDirectory');
-      await driver.assertComponentExist(ON.id('promise'));
-      let directoryPromise = await driver.findComponent(ON.id('promise'));
-      await directoryPromise.click();
-      await driver.delayMs(200);
-      await driver.assertComponentExist(ON.text('testDirectory'));
-      let testDirectory = await driver.findComponent(ON.text('testDirectory'));
-      await testDirectory.click();
-      await driver.delayMs(200);
-      await driver.assertComponentExist(ON.text('testSubDirectory'));
-      // 返回
-      await driver.pressBack();
-      await driver.delayMs(500);
-      Logger.info(TAG, BUNDLE + 'MobileFunction_002 end');
+      try{
+        Logger.info(TAG, 'MobileFunction_002 begin');
+        let driver = Driver.create();
+        await driver.delayMs(200);
+        // 测试新建文件夹功能
+        let btnDirectory = await driver.findComponent(ON.type('Text').id('makeDirectory'));
+        await btnDirectory.click();
+        await driver.delayMs(200);
+        await driver.assertComponentExist(ON.id('cancel'));
+        let directoryCancel = await driver.findComponent(ON.id('cancel'));
+        await directoryCancel.click();
+        await driver.delayMs(200);
+        await btnDirectory.click();
+        await driver.delayMs(200);
+        await driver.assertComponentExist(ON.id('input'));
+        let inputDirectory = await driver.findComponent(ON.id('input'));
+        await inputDirectory.inputText('testDirectory/testSubDirectory');
+        await driver.assertComponentExist(ON.id('promise'));
+        let directoryPromise = await driver.findComponent(ON.id('promise'));
+        await directoryPromise.click();
+        await driver.delayMs(200);
+        await driver.assertComponentExist(ON.text('testDirectory'));
+        let testDirectory = await driver.findComponent(ON.text('testDirectory'));
+        await testDirectory.click();
+        await driver.delayMs(200);
+        await driver.assertComponentExist(ON.text('testSubDirectory'));
+        // 返回
+        await driver.pressBack();
+        await driver.delayMs(500);
+        Logger.info(TAG, BUNDLE + 'MobileFunction_002 end');
+      }catch(error){
+        expect().assertFail();
+      }
     });
-    
+
     /**
-     * @tc.number MobileFunction_003
-     * @tc.name MobileFunction_003
-     * @tc.desc 测试复制
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 测试复制
      */
     it('MobileFunction_003', 0, async () => {
-      Logger.info(TAG, 'MobileFunction_003 begin');
-      let driver = Driver.create();
-      await driver.delayMs(200);
-      // 点击select图片
-      await driver.assertComponentExist(ON.id('select'));
-      let selectImage = await driver.findComponent(ON.id('select'));
-      await selectImage.click();
-      await driver.delayMs(500);
-      await driver.assertComponentExist(ON.type('Text').id('copy'));
-      let btnCopy = await driver.findComponent(ON.type('Text').id('copy'));
-      await driver.assertComponentExist(ON.type('Text').id('rename'));
-      let btnRename = await driver.findComponent(ON.type('Text').id('rename'));
-      await driver.assertComponentExist(ON.type('Text').id('share'));
-      await driver.assertComponentExist(ON.type('Text').id('more'));
-      let btnDelete = await driver.findComponent(ON.type('Text').id('delete'));
-      // 测试复制
-      let testFile = await driver.findComponent(ON.text('testFile'));
-      let testDirectory = await driver.findComponent(ON.text('testDirectory'));
-      await testFile.click();
-      await btnCopy.click();
-      await testDirectory.click();
-      await driver.delayMs(200);
-      await driver.assertComponentExist(ON.id('move'));
-      let btnMove = await driver.findComponent(ON.id('move'));
-      await btnMove.click();
-      await driver.delayMs(200);
-      await driver.assertComponentExist(ON.text('testFile'));
-      // 返回
-      await driver.pressBack();
-      await driver.delayMs(500);
-      Logger.info(TAG, 'MobileFunction_003 end');
+      try{
+        Logger.info(TAG, 'MobileFunction_003 begin');
+        let driver = Driver.create();
+        await driver.delayMs(200);
+        // 点击select图片
+        await driver.assertComponentExist(ON.id('select'));
+        let selectImage = await driver.findComponent(ON.id('select'));
+        await selectImage.click();
+        await driver.delayMs(500);
+        await driver.assertComponentExist(ON.type('Text').id('copy'));
+        let btnCopy = await driver.findComponent(ON.type('Text').id('copy'));
+        await driver.assertComponentExist(ON.type('Text').id('rename'));
+        let btnRename = await driver.findComponent(ON.type('Text').id('rename'));
+        await driver.assertComponentExist(ON.type('Text').id('share'));
+        await driver.assertComponentExist(ON.type('Text').id('more'));
+        let btnDelete = await driver.findComponent(ON.type('Text').id('delete'));
+        // 测试复制
+        let testFile = await driver.findComponent(ON.text('testFile'));
+        let testDirectory = await driver.findComponent(ON.text('testDirectory'));
+        await testFile.click();
+        await btnCopy.click();
+        await testDirectory.click();
+        await driver.delayMs(200);
+        await driver.assertComponentExist(ON.id('move'));
+        let btnMove = await driver.findComponent(ON.id('move'));
+        await btnMove.click();
+        await driver.delayMs(200);
+        await driver.assertComponentExist(ON.text('testFile'));
+        // 返回
+        await driver.pressBack();
+        await driver.delayMs(500);
+        Logger.info(TAG, 'MobileFunction_003 end');
+      }catch(error){
+        expect().assertFail();
+      }
     });
 
     /**
-     * @tc.number MobileFunction_004
-     * @tc.name MobileFunction_004
-     * @tc.desc 测试重命名
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 测试重命名
      */
     it('MobileFunction_004', 0, async () => {
-      Logger.info(TAG, 'MobileFunction_004 begin');
-      let driver = Driver.create();
-      await driver.delayMs(200);
-      // 测试重命名
-      await driver.assertComponentExist(ON.id('select'));
-      let btnSelect = await driver.findComponent(ON.id('select'));
-      let testFile = await driver.findComponent(ON.text('testFile'));
-      await btnSelect.click();
-      await testFile.click();
-      let btnRenameNew = await driver.findComponent(ON.type('Text').id('rename'));
-      await btnRenameNew.click();
-      await driver.delayMs(500);
-      let inputDirectoryNew = await driver.findComponent(ON.id('input'));
-      await inputDirectoryNew.inputText('testFileNew');
-      let btnPromiseNew = await driver.findComponent(ON.id('promise'));
-      await btnPromiseNew.click();
-      await driver.delayMs(500);
-      await driver.assertComponentExist(ON.text('testFileNew'));
-      Logger.info(TAG, BUNDLE + 'MobileFunction_004 end');
+      try{
+        Logger.info(TAG, 'MobileFunction_004 begin');
+        let driver = Driver.create();
+        await driver.delayMs(200);
+        // 测试重命名
+        await driver.assertComponentExist(ON.id('select'));
+        let btnSelect = await driver.findComponent(ON.id('select'));
+        let testFile = await driver.findComponent(ON.text('testFile'));
+        await btnSelect.click();
+        await testFile.click();
+        let btnRenameNew = await driver.findComponent(ON.type('Text').id('rename'));
+        await btnRenameNew.click();
+        await driver.delayMs(500);
+        let inputDirectoryNew = await driver.findComponent(ON.id('input'));
+        await inputDirectoryNew.inputText('testFileNew');
+        let btnPromiseNew = await driver.findComponent(ON.id('promise'));
+        await btnPromiseNew.click();
+        await driver.delayMs(500);
+        await driver.assertComponentExist(ON.text('testFileNew'));
+        Logger.info(TAG, BUNDLE + 'MobileFunction_004 end');
+      }catch(error){
+        expect().assertFail();
+      }
     });
 
     /**
-     * @tc.number MobileFunction_005
-     * @tc.name MobileFunction_005
-     * @tc.desc 测试更多--修改时间
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 测试更多--修改时间
      */
     it('MobileFunction_005', 0, async () => {
-      Logger.info(TAG, 'MobileFunction_005 begin');
-      let driver = Driver.create();
-      await driver.delayMs(200);
-      // 点击select图片
-      await driver.assertComponentExist(ON.id('select'));
-      let selectImage = await driver.findComponent(ON.id('select'));
-      await selectImage.click();
-      await driver.delayMs(200);
-      //测试更多--修改时间
-      let testFile = await driver.findComponent(ON.text('testFileNew'));
-      await testFile.click();
-      await driver.assertComponentExist(ON.type('Text').id('more'));
-      let newMore = await driver.findComponent(ON.type('Text').id('more'));
-      await newMore.click();
-      await driver.delayMs(200);
-      await driver.click(513, 933);
-      await driver.assertComponentExist(ON.id('changeTimePromise'));
-      let inputTimeNew = await driver.findComponent(ON.id('changeTimeInput'));
-      await inputTimeNew.inputText('2023/10/10 10:10:10');
-      let changeTime = await driver.findComponent(ON.type('Text').id('changeTimePromise'));
-      await changeTime.click();
-      await driver.delayMs(200);
-      await driver.assertComponentExist(ON.text('2023/10/10 10:10:10'));
-      Logger.info(TAG, 'MobileFunction_005 end');
+      try{
+        Logger.info(TAG, 'MobileFunction_005 begin');
+        let driver = Driver.create();
+        await driver.delayMs(200);
+        // 点击select图片
+        await driver.assertComponentExist(ON.id('select'));
+        let selectImage = await driver.findComponent(ON.id('select'));
+        await selectImage.click();
+        await driver.delayMs(200);
+        //测试更多--修改时间
+        let testFile = await driver.findComponent(ON.text('testFileNew'));
+        await testFile.click();
+        await driver.assertComponentExist(ON.type('Text').id('more'));
+        let newMore = await driver.findComponent(ON.type('Text').id('more'));
+        await newMore.click();
+        await driver.delayMs(200);
+        await driver.click(513, 933);
+        await driver.assertComponentExist(ON.id('changeTimePromise'));
+        let inputTimeNew = await driver.findComponent(ON.id('changeTimeInput'));
+        await inputTimeNew.inputText('2023/10/10 10:10:10');
+        let changeTime = await driver.findComponent(ON.type('Text').id('changeTimePromise'));
+        await changeTime.click();
+        await driver.delayMs(200);
+        await driver.assertComponentExist(ON.text('2023/10/10 10:10:10'));
+        Logger.info(TAG, 'MobileFunction_005 end');
+      }catch(error){
+        expect().assertFail();
+      }
     });
 
     /**
-     * @tc.number MobileFunction_006
-     * @tc.name MobileFunction_006
-     * @tc.desc 测试更多--删除
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     * 测试更多--删除
      */
     it('MobileFunction_006', 0, async () => {
-      Logger.info(TAG, 'MobileFunction_006 begin');
-      let driver = Driver.create();
-      await driver.delayMs(200);
-      //测试更多--删除
-      await driver.assertComponentExist(ON.id('select'));
-      let selectImage = await driver.findComponent(ON.id('select'));
-      await selectImage.click();
-      await driver.delayMs(200);
-      let testFile = await driver.findComponent(ON.text('testFileNew'));
-      await testFile.click();
-      await driver.assertComponentExist(ON.type('Text').id('more'));
-      let newMore = await driver.findComponent(ON.type('Text').id('more'));
-      await newMore.click();
-      await driver.delayMs(200);
-      await driver.click(453, 1022);
-      await driver.delayMs(200);
-      await driver.assertComponentExist(ON.id('checkDelete'));
-      let btnCheckDelete = await driver.findComponent(ON.id('checkDelete'));
-      await btnCheckDelete.click();
-      await driver.delayMs(200);
-      // 返回
-      await driver.pressBack();
-      await driver.delayMs(200);
-      Logger.info(TAG, 'MobileFunction_006 end');
+      try{
+        Logger.info(TAG, 'MobileFunction_006 begin');
+        let driver = Driver.create();
+        await driver.delayMs(200);
+        //测试更多--删除
+        await driver.assertComponentExist(ON.id('select'));
+        let selectImage = await driver.findComponent(ON.id('select'));
+        await selectImage.click();
+        await driver.delayMs(200);
+        let testFile = await driver.findComponent(ON.text('testFileNew'));
+        await testFile.click();
+        await driver.assertComponentExist(ON.type('Text').id('more'));
+        let newMore = await driver.findComponent(ON.type('Text').id('more'));
+        await newMore.click();
+        await driver.delayMs(200);
+        await driver.click(453, 1022);
+        await driver.delayMs(200);
+        await driver.assertComponentExist(ON.id('checkDelete'));
+        let btnCheckDelete = await driver.findComponent(ON.id('checkDelete'));
+        await btnCheckDelete.click();
+        await driver.delayMs(200);
+        // 返回
+        await driver.pressBack();
+        await driver.delayMs(200);
+        Logger.info(TAG, 'MobileFunction_006 end');
+      }catch(error){
+        expect().assertFail();
+      }
+
     });
 
-    /**
-     * @tc.number RequestPermissionFunction_002
-     * @tc.name RequestPermissionFunction_002
-     * @tc.desc 场景：检验FileManager获取权限功能
-     *          输入：调用requestPermission
-     *          预期输出：点击允许后能够成功调用createFileAsset，getFileAssets
-     *          检验接口：FileManager.requestPermission
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+    /** 场景：检验FileManager获取权限功能
+     *  输入：调用requestPermission
+     *  预期输出：点击允许后能够成功调用createFileAsset，getFileAssets
+     *  检验接口：FileManager.requestPermission
      */
     it(BUNDLE + 'RequestPermissionFunction_002', 0, async () => {
       Logger.info(TAG, BUNDLE + 'Function_requestPermission_002 begin')
@@ -1599,16 +1335,10 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number GetFileAssetsFunction_001
-     * @tc.name GetFileAssetsFunction_001
-     * @tc.desc 场景：检验FileManager获取文件列表信息，创建文件能力
-     *          输入：分四种文件类型,依次插入5个文件
-     *          预期输出：检测所得结果数量正确，新增文件与创建文件一致
-     *          检验接口：FileManager.getFileAssets，FileManager.createFileAsset
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     *  场景：检验FileManager获取文件列表信息，创建文件能力
+     *  输入：分四种文件类型,依次插入5个文件
+     *  预期输出：检测所得结果数量正确，新增文件与创建文件一致
+     *  检验接口：FileManager.getFileAssets，FileManager.createFileAsset
      */
     it(BUNDLE + 'GetFileAssetsFunction_001', 0, async () => {
       Logger.info(TAG, BUNDLE + 'GetFileAssetsFunction_001 begin')
@@ -1652,16 +1382,10 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number IsSupportPreviewFunction_001
-     * @tc.name IsSupportPreviewFunction_001
-     * @tc.desc 场景：验证文件是否支持预览函数功能
-     *          输入：分别输入未定义对象,mock对象，正常对象
-     *          预期输出：检测所得结果数量正确，新增文件与创建文件一致
-     *          检验接口：FileManager.isSupportPreview
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     *  场景：验证文件是否支持预览函数功能
+     *  输入：分别输入未定义对象,mock对象，正常对象
+     *  预期输出：检测所得结果数量正确，新增文件与创建文件一致
+     *  检验接口：FileManager.isSupportPreview
      */
     it(BUNDLE + 'IsSupportPreviewFunction_001', 0, async () => {
       Logger.info(TAG, BUNDLE + 'IsSupportPreviewFunction_001 begin')
@@ -1675,16 +1399,10 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number GetFileAssetsByNameFunction_001
-     * @tc.name GetFileAssetsByNameFunction_001
-     * @tc.desc 场景：验证通过文件名称获取文件对象功能
-     *          输入：通过name创建四种类型文件
-     *          预期输出：getFileAssetsByName获取文件与创建相同
-     *          检验接口：FileManager.getFileAssetsByName
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     *  场景：验证通过文件名称获取文件对象功能
+     *  输入：通过name创建四种类型文件
+     *  预期输出：getFileAssetsByName获取文件与创建相同
+     *  检验接口：FileManager.getFileAssetsByName
      */
     it(BUNDLE + 'GetFileAssetsByNameFunction_001', 0, async () => {
       Logger.info(TAG, BUNDLE + 'GetFileAssetsByNameFunction_001 begin')
@@ -1699,16 +1417,10 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number CreateTxtFileAssetFunction_001
-     * @tc.name CreateTxtFileAssetFunction_001
-     * @tc.desc 场景：验证创建模拟文件功能
-     *          输入：调用5次FileManager.createTxtFileAsset
-     *          预期输出：成功创建五个模拟文档对象
-     *          检验接口：FileManager.createTxtFileAsset
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 0
-     * @tc.require
+     *  场景：验证创建模拟文件功能
+     *  输入：调用5次FileManager.createTxtFileAsset
+     *  预期输出：成功创建五个模拟文档对象
+     *  检验接口：FileManager.createTxtFileAsset
      */
     it(BUNDLE + 'CreateTxtFileAssetFunction_001', 0, async () => {
       Logger.info(TAG, BUNDLE + 'CreateTxtFileAssetFunction_001 begin')
