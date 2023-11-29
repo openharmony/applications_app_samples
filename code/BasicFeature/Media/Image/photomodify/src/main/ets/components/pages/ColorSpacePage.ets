@@ -57,7 +57,9 @@ export struct ColorSpacePage {
               this.canClick = false
               let colorSpaceName = colorSpaceManager.ColorSpace.ADOBE_RGB_1998;
               let csm : colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
-              this.pixelMap!.setColorSpace(csm);
+              this.pixelMap!.applyColorSpace(csm).then(() => {
+                this.flushPage();
+              });
               setTimeout(() => {
                 this.canClick = true;
               }, 300);
@@ -67,7 +69,9 @@ export struct ColorSpacePage {
               this.canClick = false;
               let colorSpaceName = colorSpaceManager.ColorSpace.DCI_P3;
               let csm : colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
-              this.pixelMap!.setColorSpace(csm);
+              this.pixelMap!.applyColorSpace(csm,()=>{
+                this.flushPage();
+              });
               setTimeout(() => {
                 this.canClick = true;
               }, 300);
@@ -77,7 +81,7 @@ export struct ColorSpacePage {
               this.canClick = false;
               let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
               let csm : colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
-              this.pixelMap!.setColorSpace(csm);
+              await this.pixelMap!.applyColorSpace(csm);
               setTimeout(() => {
                 this.canClick = true;
               }, 300);
@@ -87,7 +91,7 @@ export struct ColorSpacePage {
               this.canClick = false;
               let colorSpaceName = colorSpaceManager.ColorSpace.DISPLAY_P3;
               let csm : colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
-              this.pixelMap!.setColorSpace(csm);
+              await this.pixelMap!.applyColorSpace(csm);
               setTimeout(() => {
                 this.canClick = true;
               }, 300);
