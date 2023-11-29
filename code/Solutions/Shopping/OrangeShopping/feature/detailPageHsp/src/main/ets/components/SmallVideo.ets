@@ -12,14 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { logger } from '../utils/Logger';
 
 @Component
 export struct SmallVideo {
-  @State smallVideoSrc: Resource = $r('app.media.videos');
+  @State smallVideoSrc: Resource = $rawfile('video_4.mp4');
   @Link @Watch("onChanged") isHidden: boolean;
   @Link isCancel: boolean;
   @Consume('playTime') updateTime: number;
-  smallVideoController: VideoController = new VideoController();
+  private smallVideoController: VideoController = new VideoController();
 
   onChanged(): void {
     if (this.isHidden) {

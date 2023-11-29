@@ -15,7 +15,7 @@
 
 import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
 import { notificationUtil, notificationContentUtil, notificationRequestUtil, wantAgentUtil } from '@ohos/notification';
-import { logger } from '@ohos/details-page-component';
+import { logger } from '@ohos/details-page-hsp';
 import workScheduler from '@ohos.resourceschedule.workScheduler';
 import notification from '@ohos.notificationManager'
 import { ParametersObject } from '../utils/TypeClass';

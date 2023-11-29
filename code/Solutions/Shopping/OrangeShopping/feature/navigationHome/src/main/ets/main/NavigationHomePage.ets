@@ -18,6 +18,7 @@ import { MainPage } from '../components/home/MainPage';
 import { NewProduct } from '../components/home/NewProduct';
 import { ShopCart } from '../components/home/ShopCart';
 import { User } from '../components/user/User';
+import url from '@ohos.url';
 
 AppStorage.link<boolean>('isUpdateDialogOpen') || AppStorage.setOrCreate<boolean>('isUpdateDialogOpen', false);
 
@@ -71,25 +72,38 @@ export struct NavigationHomePage {
         controller: this.controller
       }) {
         TabContent() {
-          MainPage(new Url(this.url));
+          NavDestination() {
+            MainPage(new Url(this.url));
+          }.title('MainPage')
+          .hideTitleBar(true)
         }.tabBar(
           this.TabBarBuilder(0)
         )
 
         TabContent() {
-          NewProduct(new Url(this.url));
+          NavDestination() {
+            NewProduct(new Url(this.url));
+          }.title('NewProductPage')
+          .hideTitleBar(true)
         }.tabBar(
           this.TabBarBuilder(1)
         )
 
         TabContent() {
-          ShopCart(new Url(this.url));
+          NavDestination() {
+            ShopCart(new Url(this.url));
+          }.title('ShopCartPage')
+          .hideTitleBar(true)
+
         }.tabBar(
           this.TabBarBuilder(2)
         )
 
         TabContent() {
-          User();
+          NavDestination() {
+            User();
+          }.title('UserPage')
+          .hideTitleBar(true)
         }.tabBar(
           this.TabBarBuilder(3)
         )

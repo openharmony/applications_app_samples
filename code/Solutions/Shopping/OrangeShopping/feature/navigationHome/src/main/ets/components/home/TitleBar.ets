@@ -19,6 +19,8 @@ import { SearchTextModel } from '../../model/GoodsModel';
 
 @Component
 export struct TitleBarComponent {
+  @Consume('pageStack') pageStack: NavPathStack;
+
   build() {
     Column() {
       Flex({
@@ -36,9 +38,7 @@ export struct TitleBarComponent {
             .aspectRatio(1)
             .objectFit(ImageFit.Contain)
             .onClick(() => {
-              router.pushUrl({
-                url: 'pages/ScanPage'
-              });
+              this.pageStack.pushPath({ name: 'QRCodeScanPage' })
             })
         }
         .width('100%')
