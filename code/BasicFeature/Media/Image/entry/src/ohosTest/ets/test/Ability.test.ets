@@ -85,12 +85,12 @@ export default function ActsAbilityTest() {
     it('RequestPermissionFunction_001', 1, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'RequestPermissionFunction_001 begin');
       let driver: Driver = Driver.create();
-      await driver.delayMs(1000);
+      await driver.delayMs(4000);
       let tipAllow: string = getString($r('app.string.allow'));
       await driver.assertComponentExist(ON.text(tipAllow));
       let stack = await driver.findComponent(ON.text(tipAllow));
       await stack.click();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       await stack.click();
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'RequestPermissionFunction_001 end');
@@ -119,10 +119,10 @@ export default function ActsAbilityTest() {
       await driver.delayMs(2500);
       // 点击拍照按钮，拍下一张照片
       await driver.click(362, 1100);
-      await driver.delayMs(1500);
+      await driver.delayMs(3000);
       // 点击确定存储照片
       await driver.click(663, 83);
-      await driver.delayMs(1500);
+      await driver.delayMs(3000);
       // 点击照片，选中一张照片
       let gridItems = await driver.findComponents(ON.type('GridItem'));
       await gridItems[4].click();
@@ -131,7 +131,7 @@ export default function ActsAbilityTest() {
       let tipCompleted: string = getString($r('app.string.completed'));
       await driver.assertComponentExist(ON.text(tipCompleted));
       let finish = await driver.findComponent(ON.text(tipCompleted));
-      await driver.delayMs(1000);
+      await driver.delayMs(3000);
       await finish.click();
       await driver.delayMs(1000);
       done();
