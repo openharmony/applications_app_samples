@@ -13,6 +13,10 @@
       "value": "Debug调试"
     },
     {
+      "name": "vss",
+      "value": "应用进程VSS内存："
+    },
+    {
       "name": "pss",
       "value": "应用进程PSS内存："
     },
