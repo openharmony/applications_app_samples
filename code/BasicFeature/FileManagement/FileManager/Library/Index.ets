@@ -17,5 +17,6 @@ import Logger from './src/main/ets/utils/Logger'
 import FileManager from './src/main/ets/filemanager/FileManager'
 import ThumbnailImage from './src/main/ets/filemanager/components/ThumbnailImage'
 import FileSystem from './src/main/ets/filemanager/fileio/FileIoManager'
+import NewFileSystem from './src/main/ets/filemanager/fileio/NewFileIoManager'
 
-export { Logger, FileManager, ThumbnailImage, FileSystem }
+export { Logger, FileManager, ThumbnailImage, FileSystem , NewFileSystem }

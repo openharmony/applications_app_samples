@@ -24,20 +24,22 @@ export class FileStructure {
   // 数据类型 1：文件夹、2：文件
   public type: number = 0;
   // 文件大小
-  public size?: string
+  public size?: string;
   // 处理日期格式
   private dateFormat(time: Date): string {
-    let date = time
-    let year = date.getFullYear()
-    let month: string | number = date.getMonth() + 1
-    month = month >= 10 ? month : ('0' + month)
-    let day: string | number = date.getDate()
-    day = day >= 10 ? day : ('0' + day)
-    let hours: string | number = date.getHours()
-    hours = hours >= 10 ? hours : ('0' + hours)
-    let minutes: string | number = date.getMinutes()
-    minutes = minutes >= 10 ? minutes : ('0' + minutes)
-    return `${year}/${month}/${day} ${hours}:${minutes}`
+    let date = time;
+    let year = date.getFullYear();
+    let month: string | number = date.getMonth() + 1;
+    month = month >= 10 ? month : ('0' + month);
+    let day: string | number = date.getDate();
+    day = day >= 10 ? day : ('0' + day);
+    let hours: string | number = date.getHours();
+    hours = hours >= 10 ? hours : ('0' + hours);
+    let minutes: string | number = date.getMinutes();
+    minutes = minutes >= 10 ? minutes : ('0' + minutes);
+    let seconds: string | number = date.getSeconds();
+    seconds = seconds >= 10 ? seconds : ('0' + seconds);
+    return `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
   }
 
   constructor(name: string, type: number, time: Date, childrenNum?: number, size?: string) {

@@ -113,8 +113,20 @@
       "value": "请至少选中一项"
     },
     {
+      "name": "tip_choose_can_onlyone",
+      "value": "请选择且只能选择一项进行时间修改"
+    },
+    {
       "name": "label_rename",
       "value": "重命名"
+    },
+    {
+      "name": "label_change_time",
+      "value": "修改文件(夹)时间"
+    },
+    {
+      "name": "label_file_end",
+      "value": "文件到底了"
     },
     {
       "name": "label_share",
@@ -159,6 +171,10 @@
     {
       "name": "label_delete_success",
       "value": "删除成功"
+    },
+    {
+      "name": "label_more",
+      "value": "更多"
     },
     {
       "name": "label_input",

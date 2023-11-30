@@ -113,8 +113,20 @@
       "value": "tip_choose_one"
     },
     {
+      "name": "tip_choose_can_onlyone",
+      "value": "tip_choose_can_onlyone"
+    },
+    {
       "name": "label_rename",
       "value": "label_rename"
+    },
+    {
+      "name": "label_change_time",
+      "value": "label_change_time"
+    },
+    {
+      "name": "label_file_end",
+      "value": "label_file_end"
     },
     {
       "name": "label_share",
@@ -159,6 +171,10 @@
     {
       "name": "label_delete_success",
       "value": "label_delete_success"
+    },
+    {
+    "name": "label_more",
+    "value": "label_more"
     },
     {
       "name": "label_input",

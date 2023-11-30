@@ -49,7 +49,9 @@
 |我的手机模块功能|	位于我的手机页|		|显示新建文件夹,新建文件,排序,清理|是|Pass|
 |我的手机模块功能|	位于我的手机页|	点击select图片|	显示复制，重命名，分享，删除| 是 |Pass|
 |我的手机模块功能|	位于我的手机页	|点击新建文件，输入testFile,点击确认|	成功创建testFile| 是 |Pass|
-|我的手机模块功能|	位于我的手机页	|点击新建文件夹，输入testDirectory，点击确认|	成功创建testDirectory| 是 |Pass|
-|我的手机模块功能|	位于我的手机页，点击select图片|	依次点击testFile,复制,testDirectory,移动按钮|	在testDirectory成功创建testFile| 是 |Pass|
-|我的手机模块功能|	位于我的手机页，点击select图片|	选择testFile，重命名，输入新文件名，确认|	成功重命名| 是 |Pass|
-|我的手机模块功能|	位于testDirectory|	选择复制的testFile,点击删除|	成功删除后，显示空图片| 是 |Pass|
+|我的手机模块功能|	位于我的手机页|  点击上一步新建的文件|	跳转至文件内容显示页面|否|Pass|
+|我的手机模块功能|	位于我的手机页|  点击新建文件夹，输入testDirectory/testSubDirectory，点击确认|	成功创建多级目录|否|Pass|
+|我的手机模块功能|	位于我的手机页，点击select图片|	依次点击testFile,复制,testDirectory,移动按钮|	在testDirectory成功创建testFile|否|Pass|
+|我的手机模块功能|	位于我的手机页，点击select图片|	选择testFile，重命名，输入新文件名，确认|	成功重命名|否|Pass|
+|我的手机模块功能|	位于我的手机页，点击select图片|	选择要修改时间的的testFileNew,点击更多，选择修改文件(夹)时间，弹框中输入修改时间，点击确定|	成功修改文件时间|否|Pass|
+|我的手机模块功能|	位于我的手机页，点击select图片|	选择要删除的testFileNew,点击更多，选择删除|	成功删除后，显示空图片|否|Pass|
