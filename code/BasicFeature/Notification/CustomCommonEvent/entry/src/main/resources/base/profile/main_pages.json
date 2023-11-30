@@ -5,6 +5,7 @@
     "pages/Detail",
     "pages/History",
     "pages/Setting",
-    "pages/About"
+    "pages/About",
+    "pages/jumpToCommonEvent"
   ]
 }

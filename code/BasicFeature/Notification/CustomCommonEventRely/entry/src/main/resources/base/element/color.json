@@ -1,0 +1,24 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "item_title_font",
+      "value": "#E6000000"
+    },
+    {
+      "name": "fount_color",
+      "value": "#FF182431"
+    },
+    {
+      "name": "subscribe_events_background",
+      "value": "#FF007DFF"
+    },
+    {
+      "name": "subscribe_events_fount",
+      "value": "#FFFFFFFF"
+    }
+  ]
+}

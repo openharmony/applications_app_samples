@@ -1,0 +1,116 @@
+{
+  "float": [
+    {
+      "name": "font_size",
+      "value": "14fp"
+    },
+    {
+      "name": "subtext_size",
+      "value": "12fp"
+    },
+    {
+      "name": "title_size",
+      "value": "20fp"
+    },
+    {
+      "name": "button_fount_size",
+      "value": "12fp"
+    },
+    {
+      "name": "button_card_fount_size",
+      "value": "12fp"
+    },
+    {
+      "name": "button_margin",
+      "value": "15"
+    },
+    {
+      "name": "button_width",
+      "value": "200"
+    },
+    {
+      "name": "2vp",
+      "value": "2px"
+    },
+    {
+      "name": "22vp",
+      "value": "44px"
+    },
+    {
+      "name": "19vp",
+      "value": "38px"
+    },
+    {
+      "name": "14fp",
+      "value": "14fp"
+    },
+    {
+      "name": "16fp",
+      "value": "16fp"
+    },
+    {
+      "name": "312vp",
+      "value": "624px"
+    },
+    {
+      "name": "336vp",
+      "value": "672px"
+    },
+    {
+      "name": "72vp",
+      "value": "144px"
+    },
+    {
+      "name": "12vp",
+      "value": "24px"
+    },
+    {
+      "name": "14vp",
+      "value": "28px"
+    },
+    {
+      "name": "15vp",
+      "value": "30px"
+    },
+    {
+      "name": "33vp",
+      "value": "66px"
+    },
+    {
+      "name": "4vp",
+      "value": "8px"
+    },
+    {
+      "name": "240vp",
+      "value": "480px"
+    },
+    {
+      "name": "64vp",
+      "value": "128px"
+    },
+    {
+      "name": "28vp",
+      "value": "56px"
+    },
+    {
+      "name": "6vp",
+      "value": "12px"
+    },
+    {
+      "name": "8vp",
+      "value": "16px"
+    },
+    {
+      "name": "24vp",
+      "value": "48px"
+    },
+    {
+      "name": "24fp",
+      "value": "24fp"
+    },
+    {
+      "name": "11vp",
+      "value": "22px"
+    }
+  ]
+}

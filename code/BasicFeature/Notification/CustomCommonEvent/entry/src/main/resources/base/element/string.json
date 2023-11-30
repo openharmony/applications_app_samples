@@ -2,11 +2,11 @@
   "string": [
     {
       "name": "entry_desc",
-      "value": "description"
+      "value": "CustomCommonEvent"
     },
     {
       "name": "MainAbility_desc",
-      "value": "description"
+      "value": "CustomCommonEvent"
     },
     {
       "name": "MainAbility_label",
@@ -115,6 +115,90 @@
     {
       "name": "total_interrupt",
       "value": "干扰次数："
+    },
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "FeatureAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "FeatureAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "SubscribeEvent",
+      "value": "自定义事件定向订阅"
+    },
+    {
+      "name": "EventReceive",
+      "value": "接收非指定应用事件成功"
+    },
+    {
+      "name": "BundleNameEventReceive",
+      "value": "接收非指定应用事件/指定应用事件成功"
+    },
+    {
+      "name": "Text_First",
+      "value": "订阅事件"
+    },
+    {
+      "name": "Text_Second",
+      "value": "非指定应用事件/指定应用事件"
+    },
+    {
+      "name": "SubscribeEventText",
+      "value": "订阅非指定应用事件/指定应用事件成功"
+    },
+    {
+      "name": "UnSubscribeEventText",
+      "value": "取消订阅成功"
+    },
+    {
+      "name": "FormTitle",
+      "value": "PublishCard (应用内)"
+    },
+    {
+      "name": "FormThemes",
+      "value": "customcommonevent"
+    },
+    {
+      "name": "Topic",
+      "value": "发布事件"
+    },
+    {
+      "name": "Topic_Again",
+      "value": "再次发布"
+    },
+    {
+      "name": "UnSubscribeEvent",
+      "value": "取消订阅"
+    },
+    {
+      "name": "SubscribeEventOn",
+      "value": "订阅"
+    },
+    {
+      "name": "SecondAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "SecondAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "EntryFormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "EntryFormAbility_label",
+      "value": "form_label"
+    },
+    {
+      "name": "EventText",
+      "value": "自定义事件定向订阅"
     }
   ]
 }

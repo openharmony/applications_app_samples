@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import common from '@ohos.app.ability.common';
 import commonEvent from '@ohos.commonEventManager';
 import consts from '../module/Consts';
@@ -125,7 +126,7 @@ export default class LaunchFeature {
         ],
         priority: 1 // 1 indicates low priority subscriber
       };
-      commonEvent.createSubscriber(lowSubscriberInfo, (err, subscriber) => {
+      commonEvent.createSubscriber(lowSubscriberInfo, (updaerr, subscriber) => {
         this.subscriberLow = subscriber
         if (subscriber != null) {
           commonEvent.subscribe(subscriber, this.callbackLowFunc)
@@ -162,4 +163,12 @@ export default class LaunchFeature {
       params: {}
     });
   }
+
+  jumpToCommonEvent = (): void => {
+    Logger.info('ready to jump to commonEvent page');
+    router.pushUrl({
+      url: 'pages/jumpToCommonEvent',
+      params: {}
+    });
+  };
 }
