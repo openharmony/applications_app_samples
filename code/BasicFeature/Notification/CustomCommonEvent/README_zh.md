@@ -1,4 +1,4 @@
-# 公共事件的订阅和发布
+# 事件的订阅和发布
 
 ### 介绍
 
@@ -8,19 +8,25 @@
 
 2.通过在用户主动停止监测行为时发布自定义有序公共事件，实现对用户主动触发监听行为的持久化记录；
 
-3.通过在用户设置对某一事件的监听状态时发布粘性事件，记录下本次应用运行期间允许监听的事件列表，同时在应用退出时将临时允许的修改为不允许。
+3.通过在用户设置对某一事件的监听状态时发布粘性事件，记录下本次应用运行期间允许监听的事件列表，同时在应用退出时将临时允许的修改为不允许；
+
+4.通过订阅指定应用事件，实现用户对指定卡片发送事件的监听。
 
 ### 效果预览
 
-| 主页                                 | 监控页面                           | 设置页面                               | 历史记录页面                          |
-| ------------------------------------ | ---------------------------------- | -------------------------------------- | ------------------------------------- |
-| <img src="screenshots/launch.jpg" /> | <img src="screenshots/main.jpg" /> | <img src="screenshots/settings.jpg" /> | <img src="screenshots/history.jpg" /> |
+##### 订阅系统公共事件，主动停止监听行为及对某一事件的监听状态时发布粘性事件
+
+| 主页                                 | 监控页面                           | 设置页面                               | 自定义订阅事件页面                  |
+| ------------------------------------ | ---------------------------------- | -------------------------------------- | ----------------------------------- |
+| <img src="screenshots/launch.jpg" /> | <img src="screenshots/main.jpg" /> | <img src="screenshots/settings.jpg" /> | <img src="screenshots/event.jpg" /> |
 
 使用说明：
 
-1.安装编译生成的hap包，桌面上显示应用图标如下，点击图标即可进入应用。
+1.安装编译生成的hap包，依赖包hap，桌面上显示应用图标如下，点击图标即可进入应用。
 
 <img src="screenshots/icon.png" style="zoom:80%;" />
+
+<img src="screenshots/relyicon.png" style="zoom:80%;" />
 
 2.进入应用显示菜单页，可选择“进入”，“历史”，“设置”及“关于”几个选项。
 
@@ -30,15 +36,30 @@
 
 5.返回至应用菜单页面，点击“设置”可进行具体系统事件的监听配置，应用提供了“一直”、“仅本次”及“从不”三个选项，其中“仅本次”选项是指本次应用运行期间将监听特定系统公共事件，应用退出后该选项将自动调整为“从不”。
 
-6.返回至应用菜单页面，点击“关于”可查看应用版本信息及本示例的说明。
+6.在设置页面，点击“自定义事件定向订阅”进入订阅页面，
+
+- 点击”订阅“按钮进行订阅事件，同时订阅指定本应用事件和订阅非指定应用事件。
+
+- 点击应用内卡片发送事件或点击应用外卡片发送事件。
+
+- 点击应用内卡片发送事件后，指定应用事件和非指定应用事件均会接收到卡片所发送的事件 ；点击应用外卡片发送事件后，非指定应用事件会被接收，指定应用事件不会被接收。
+
+- 点击”取消订阅“ 页面中会提示当前事件取消订阅。
+
+7.返回至应用菜单页面，点击“关于”可查看应用版本信息及本示例的说明。
 
 ### 工程目录
+
+**CustomCommonEvent**
+
 ```
 entry/src/main/ets/
 |---Application
 |   |---MyAbilityStage.ts                    
 |---component
-|   |---Header.ets                            // 头部组件
+|   |---Header.ets                           // 头部组件
+|---entryformability
+|   |---EntryFormAbility.ts                  // 卡片提供方  
 |---feature
 |   |---HistoryFeature.ts                    
 |   |---LaunchFeature.ts                    
@@ -57,14 +78,33 @@ entry/src/main/ets/
 |   |---About.ets                            // 关于页面
 |   |---Detail.ets                           // 详情页面
 |   |---History.ets                          // 历史页面
+|   |---jumpToCommonEvent.ets                // 自定义订阅事件页面
 |   |---Launch.ets                           // 发起页面
 |   |---Main.ets                             // 进入页面
 |   |---Setting.ets                          // 设置页面
+|---publishcard
+|   |---pages
+|   |	|---PublishCard.ets              	 // 卡片页面
 ```
-   
+
+**CustomCommonEventRely**
+
+```
+entry/src/main/ets/
+|---entryformability
+|   |---EntryFormAbility.ts					// 发布事件
+|---pages
+|   |---Index.ets
+|---widget
+|   |---pages
+|   |	|---PublishCard.ets 				// 发布事件的卡片
+```
+
+
+
 ### 具体实现
 
-* 该示例分为四个模块：
+* 该示例entry部分分为五个模块：
   * 进入模块
     * 使用到应用文上下文，createSubscriber方法创建订阅者，getCurrentTime获取获取自Unix纪元以来经过的时间进行对用户操作行为的监测功能页面开发。
     * 源码链接：[Consts.ts](entry/src/main/ets/module/Consts.ts)，[LaunchFeature.ts](entry/src/main/ets/feature/LaunchFeature.ts)，[LauncherAbility.ts](entry/src/main/ets/LauncherAbility/LauncherAbility.ts)，[SurveillanceEventsManager.ts](entry/src/main/ets/module/SurveillanceEventsManager.ts)
@@ -82,26 +122,39 @@ entry/src/main/ets/
   
   * 关于模块
     * 该模块开发主要介绍了本示例的功能作用以及说明了什么情况下不能使用。
-    * 源码链接：[Header.ets](entry/src/main/ets/component/Header.ets)，[Consts.ts](entry/src/main/ets/module/Consts.ts)
-    
+    * 源码链接：[Header.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Notification/CustomCommonEvent/entry/src/main/ets/component/Header.ets)，[Consts.ts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Notification/CustomCommonEvent/entry/src/main/ets/module/Consts.ts)
+  
+  - 设置中订阅事件模块
+    - 本模块主要支持指定应用订阅自定义事件。subScribeInfo新增可选属性publisherBundleName,创建订阅对象时可指定PublisherBundlerName，事件发布时，获取订阅者信息，增加校验bundleName是否等于publisherBundlerName，相等则加入事件回调方，达成只接收指定发布方发布的事件的效果。
+    - 源码链接：[EntryFormAbility.ts](feature/src/main/ets/EntryFormAbility.ts)，[Index.ets](src/main/ets/pages/Index.ets)，[PublishCard.ets](src/main/ets/widget/pages/PublishCard.ets)
+    - 参考接口：[@ohos.commonEventManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/commonEventManager-definitions.md)，[@ohos.hilog](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-hilog.md)，[@ohos.app.form.formInfo](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-form-formInfo.md)，[@ohos.app.form.formBindingData](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-form-formBindingData.md)，[@ohos.app.form.FormExtensionAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-form-formExtensionAbility.md)
+  
+  
+
 ### 相关权限
 
 [ohos.permission.COMMONEVENT_STICKY](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissioncommonevent_sticky)
 
+[ohos.permission.REQUIRE_FORM](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionrequire_form)
+
+[ohos.permission.GET_BUNDLE_INFO_PRIVILEGED](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionget_bundle_info_privileged)
+
 ### 依赖
 
-不涉及。
+本应用依赖[CustomCommonEventRely](../CustomCommonEventRely)应用进行运行。
 
 
 ### 约束与限制
 
 1.本示例仅支持标准系统上运行，支持设备：RK3568。
 
-2.本示例为Stage模型，支持API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0 Release)
+2.本示例为Stage模型，支持API11版本SDK，版本号：4.1.3.1；
 
-3.本示例需要使用DevEco Studio 版本号(4.0 Release)及以上版本才可编译运行。
+3.本示例涉及使用系统接口：FormComponent  ，需要手动替换Full SDK才能编译通过；
 
-4.本示例运行需要具有系统应用签名，因此需要手动配置系统应用的权限签名(具体操作可查看[自动化签名方案](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-auto-configuring-signature-information-0000001271659465))，需要注意的是，在修改签名json文件时，不需要调整“apl”字段，需要调整“app-feature”字段为“hos_system_app”。
+4.本示例需要使用DevEco Studio 3.1.1 Release (Build Version: 3.1.0.501, built on June 20, 2023)才可编译运行；
+
+5.本示例涉及[ohos.permission.REQUIRE_FORM](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionrequire_form)和[ohos.permission.GET_BUNDLE_INFO_PRIVILEGED](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionget_bundle_info_privileged)权限为system_basic级别，需要配置高权限签名；
 
 ### 下载
 

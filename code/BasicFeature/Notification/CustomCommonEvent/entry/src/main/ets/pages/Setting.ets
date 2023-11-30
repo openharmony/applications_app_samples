@@ -17,6 +17,7 @@ import commonEvent from '@ohos.commonEventManager';
 import common from '@ohos.app.ability.common';
 import settingFeature from '../feature/SettingFeature';
 import { Header } from '../component/Header';
+import launchFeature from '../feature/LaunchFeature';
 
 class EventData {
   event: string = '';
@@ -26,6 +27,7 @@ class EventData {
 @Entry
 @Component
 struct Setting {
+  private featureLaunch: launchFeature = new launchFeature(getContext() as common.UIAbilityContext);
   private feature: settingFeature = new settingFeature(getContext() as common.UIAbilityContext);
   private dataSource: Array<EventData> = [
     { event: commonEvent.Support.COMMON_EVENT_WIFI_POWER_STATE, title: $r('app.string.enable_wifi') },
@@ -103,6 +105,15 @@ struct Setting {
           .height('15%')
           .width('100%')
         })
+        Button($r('app.string.SubscribeEvent'))
+          .backgroundColor($r('app.color.subscribe_events_background'))
+          .fontSize($r('app.float.button_fount_size'))
+          .fontColor($r('app.color.subscribe_events_fount'))
+          .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+          .onClick(this.featureLaunch.jumpToCommonEvent)
+          .width('624px')
+          .id('jumpToCommonEvent')
+          .margin({top:25})
       }.width('90%')
       .height('100%')
       .position({ x: '5%', y: '10%' })

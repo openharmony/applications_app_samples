@@ -27,7 +27,6 @@
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:test_pages",
-    "uiSyntax": "ets",
     "abilities": [
       {
         "name": "TestAbility",

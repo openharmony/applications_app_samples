@@ -2,15 +2,71 @@
   "string": [
     {
       "name": "entry_test_desc",
-      "value": "test ability description"
+      "value": "CustomCommonEvent ability description"
     },
     {
       "name": "TestAbility_desc",
-      "value": "the test ability"
+      "value": "CustomCommonEvent ability"
     },
     {
       "name": "TestAbility_label",
-      "value": "test label"
+      "value": "CustomCommonEvent label"
+    },
+    {
+      "name": "FormTitle",
+      "value": "PublishCard (应用内)"
+    },
+    {
+      "name": "SubscribeEventOn",
+      "value": "订阅"
+    },
+    {
+      "name": "EventCreated",
+      "value": "订阅非指定应用事件成功！"
+    },
+    {
+      "name": "EventReceive",
+      "value": "接收非指定应用事件成功！"
+    },
+    {
+      "name": "BundleNameEventWaitSubscription",
+      "value": "请点击订阅事件按钮订阅指定应用事件"
+    },
+    {
+      "name": "BundleNameEventCreated",
+      "value": "订阅指定应用事件成功！"
+    },
+    {
+      "name": "BundleNameEventReceive",
+      "value": "接收指定应用事件成功！"
+    },
+    {
+      "name": "UnSubscribeEventText",
+      "value": "取消订阅事件成功！"
+    },
+    {
+      "name": "Topic",
+      "value": "发布事件"
+    },
+    {
+      "name": "UnSubscribeEvent",
+      "value": "取消订阅"
+    },
+    {
+      "name": "SubScribeSuccess",
+      "value": "订阅非指定应用事件/指定应用事件成功"
+    },
+    {
+      "name": "UnSubscribeSuccess",
+      "value": "取消订阅成功"
+    },
+    {
+      "name": "InAppSendSubmitEventSuccess",
+      "value": "接收非指定应用事件/指定应用事件成功"
+    },
+    {
+      "name": "OutAppSendSubmitEventSuccess",
+      "value": "接收非指定应用事件成功"
     }
   ]
 }

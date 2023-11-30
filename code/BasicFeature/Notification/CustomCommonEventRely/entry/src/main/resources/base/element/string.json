@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "CustomCommonEventRely"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "CustomCommonEventRely"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "CustomCommonEventRely"
+    },
+    {
+      "name": "EntryFormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "EntryFormAbility_label",
+      "value": "form_label"
+    },
+    {
+      "name": "FormTitle",
+      "value": "PublishCard (应用外)"
+    },
+    {
+      "name": "FormThemes",
+      "value": "customcommoneventrely"
+    },
+    {
+      "name": "Topic_Again",
+      "value": "再次发布"
+    },
+    {
+      "name": "Topic",
+      "value": "发布事件"
+    }
+  ]
+}
