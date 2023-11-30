@@ -1,47 +1,83 @@
 {
-	"Channels" : 
-	[
+	"MetaData": {
+		"Create": "2022-04-13",
+		"Discription": "A json file effect",
+		"ChannelNumber": 1,
+		"Version": 1.0
+	},
+	"Channels": [
 		{
-			"Parameters" : 
-			{
-				"Index" : 1
+			"Parameters": {
+				"Index": 0
 			},
-			"Pattern" : 
-			[
+			"Pattern": [
 				{
-					"Event" : 
-					{
-						"Duration" : 41,
-						"Parameters" : 
-						{
-							"Frequency" : 68,
-							"Intensity" : 54
-						},
-						"StartTime" : 130,
-						"Type" : "continuous"
+					"Event": {
+						"Type": "continuous",
+						"Duration": 41,
+						"StartTime": 130,
+						"Parameters": {
+							"Intensity": 56,
+							"Frequency": 37,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 0
+								},
+								{
+									"Time": 1,
+									"Intensity": 1,
+									"Frequency": 0
+								},
+								{
+									"Time": 40,
+									"Intensity": 1,
+									"Frequency": 0
+								},
+								{
+									"Time": 41,
+									"Intensity": 0,
+									"Frequency": 0
+								}
+							]
+						}
 					}
 				},
 				{
-					"Event" : 
-					{
-						"Duration" : 55,
-						"Parameters" : 
-						{
-							"Frequency" : 90,
-							"Intensity" : 78
-						},
-						"StartTime" : 202,
-						"Type" : "continuous"
+					"Event": {
+						"Type": "continuous",
+						"Duration": 55,
+						"StartTime": 202,
+						"Parameters": {
+							"Intensity": 80,
+							"Frequency": 80,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 0
+								},
+								{
+									"Time": 1,
+									"Intensity": 1,
+									"Frequency": 0
+								},
+								{
+									"Time": 54,
+									"Intensity": 1,
+									"Frequency": 0
+								},
+								{
+									"Time": 55,
+									"Intensity": 0,
+									"Frequency": 0
+								}
+							]
+						}
 					}
 				}
 			]
 		}
-	],
-	"MetaData" : 
-	{
-		"ChannelNumber" : 1,
-		"Create" : "2023-03-17",
-		"Discription" : "A json file format demo",
-		"Version" : 1.0
-	}
+	]
 }

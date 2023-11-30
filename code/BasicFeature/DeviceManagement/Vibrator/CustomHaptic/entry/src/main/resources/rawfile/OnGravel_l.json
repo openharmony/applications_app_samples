@@ -1,333 +1,585 @@
 {
-	"Channels" : 
-	[
+	"MetaData": {
+		"Create": "2023-11-29",
+		"Discription": "A json file effect",
+		"ChannelNumber": 1,
+		"Version": 1.0
+	},
+	"Channels": [
 		{
-			"Parameters" : 
-			{
-				"Index" : 1
+			"Parameters": {
+				"Index": 0
 			},
-			"Pattern" : 
-			[
+			"Pattern": [
 				{
-					"Event" : 
-					{
-						"Duration" : 50,
-						"Parameters" : 
-						{
-							"Frequency" : 69,
-							"Intensity" : 47
-						},
-						"StartTime" : 39,
-						"Type" : "continuous"
+					"Event": {
+						"Type": "continuous",
+						"Duration": 150,
+						"StartTime": 39,
+						"Parameters": {
+							"Intensity": 60,
+							"Frequency": 45,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 0
+								},
+								{
+									"Time": 18,
+									"Intensity": 1,
+									"Frequency": 0
+								},
+								{
+									"Time": 87,
+									"Intensity": 0.74,
+									"Frequency": 0
+								},
+								{
+									"Time": 150,
+									"Intensity": 0,
+									"Frequency": 0
+								}
+							]
+						}
 					}
 				},
 				{
-					"Event" : 
-					{
-						"Duration" : 50,
-						"Parameters" : 
-						{
-							"Frequency" : 70,
-							"Intensity" : 59
-						},
-						"StartTime" : 89,
-						"Type" : "continuous"
+					"Event": {
+						"Type": "continuous",
+						"Duration": 136,
+						"StartTime": 75,
+						"Parameters": {
+							"Intensity": 55,
+							"Frequency": 25,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 0
+								},
+								{
+									"Time": 27,
+									"Intensity": 1,
+									"Frequency": 18
+								},
+								{
+									"Time": 79,
+									"Intensity": 1,
+									"Frequency": 13
+								},
+								{
+									"Time": 83,
+									"Intensity": 0.51,
+									"Frequency": 0
+								},
+								{
+									"Time": 136,
+									"Intensity": 0,
+									"Frequency": 0
+								}
+							]
+						}
 					}
 				},
 				{
-					"Event" : 
-					{
-						"Duration" : 72,
-						"Parameters" : 
-						{
-							"Frequency" : 66,
-							"Intensity" : 30
-						},
-						"StartTime" : 139,
-						"Type" : "continuous"
+					"Event": {
+						"Type": "continuous",
+						"Duration": 150,
+						"StartTime": 346,
+						"Parameters": {
+							"Intensity": 60,
+							"Frequency": 45,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 0
+								},
+								{
+									"Time": 18,
+									"Intensity": 1,
+									"Frequency": 0
+								},
+								{
+									"Time": 87,
+									"Intensity": 0.74,
+									"Frequency": 0
+								},
+								{
+									"Time": 150,
+									"Intensity": 0,
+									"Frequency": 0
+								}
+							]
+						}
 					}
 				},
 				{
-					"Event" : 
-					{
-						"Duration" : 50,
-						"Parameters" : 
-						{
-							"Frequency" : 69,
-							"Intensity" : 48
-						},
-						"StartTime" : 346,
-						"Type" : "continuous"
+					"Event": {
+						"Type": "continuous",
+						"Duration": 136,
+						"StartTime": 371,
+						"Parameters": {
+							"Intensity": 53,
+							"Frequency": 25,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 0
+								},
+								{
+									"Time": 27,
+									"Intensity": 1,
+									"Frequency": 18
+								},
+								{
+									"Time": 79,
+									"Intensity": 1,
+									"Frequency": 13
+								},
+								{
+									"Time": 83,
+									"Intensity": 0.51,
+									"Frequency": 0
+								},
+								{
+									"Time": 136,
+									"Intensity": 0,
+									"Frequency": 0
+								}
+							]
+						}
 					}
 				},
 				{
-					"Event" : 
-					{
-						"Duration" : 50,
-						"Parameters" : 
-						{
-							"Frequency" : 70,
-							"Intensity" : 59
-						},
-						"StartTime" : 396,
-						"Type" : "continuous"
+					"Event": {
+						"Type": "continuous",
+						"Duration": 150,
+						"StartTime": 620,
+						"Parameters": {
+							"Intensity": 60,
+							"Frequency": 45,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 0
+								},
+								{
+									"Time": 18,
+									"Intensity": 1,
+									"Frequency": 0
+								},
+								{
+									"Time": 87,
+									"Intensity": 0.74,
+									"Frequency": 0
+								},
+								{
+									"Time": 150,
+									"Intensity": 0,
+									"Frequency": 0
+								}
+							]
+						}
 					}
 				},
 				{
-					"Event" : 
-					{
-						"Duration" : 61,
-						"Parameters" : 
-						{
-							"Frequency" : 66,
-							"Intensity" : 29
-						},
-						"StartTime" : 446,
-						"Type" : "continuous"
+					"Event": {
+						"Type": "continuous",
+						"Duration": 136,
+						"StartTime": 649,
+						"Parameters": {
+							"Intensity": 53,
+							"Frequency": 25,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 0
+								},
+								{
+									"Time": 27,
+									"Intensity": 1,
+									"Frequency": 18
+								},
+								{
+									"Time": 79,
+									"Intensity": 1,
+									"Frequency": 13
+								},
+								{
+									"Time": 83,
+									"Intensity": 0.51,
+									"Frequency": 0
+								},
+								{
+									"Time": 136,
+									"Intensity": 0,
+									"Frequency": 0
+								}
+							]
+						}
 					}
 				},
 				{
-					"Event" : 
-					{
-						"Duration" : 50,
-						"Parameters" : 
-						{
-							"Frequency" : 69,
-							"Intensity" : 47
-						},
-						"StartTime" : 620,
-						"Type" : "continuous"
+					"Event": {
+						"Type": "continuous",
+						"Duration": 150,
+						"StartTime": 888,
+						"Parameters": {
+							"Intensity": 60,
+							"Frequency": 45,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 0
+								},
+								{
+									"Time": 18,
+									"Intensity": 1,
+									"Frequency": 0
+								},
+								{
+									"Time": 87,
+									"Intensity": 0.74,
+									"Frequency": 0
+								},
+								{
+									"Time": 150,
+									"Intensity": 0,
+									"Frequency": 0
+								}
+							]
+						}
 					}
 				},
 				{
-					"Event" : 
-					{
-						"Duration" : 50,
-						"Parameters" : 
-						{
-							"Frequency" : 70,
-							"Intensity" : 59
-						},
-						"StartTime" : 670,
-						"Type" : "continuous"
+					"Event": {
+						"Type": "continuous",
+						"Duration": 136,
+						"StartTime": 896,
+						"Parameters": {
+							"Intensity": 53,
+							"Frequency": 25,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 0
+								},
+								{
+									"Time": 27,
+									"Intensity": 1,
+									"Frequency": 18
+								},
+								{
+									"Time": 79,
+									"Intensity": 1,
+									"Frequency": 13
+								},
+								{
+									"Time": 83,
+									"Intensity": 0.51,
+									"Frequency": 0
+								},
+								{
+									"Time": 136,
+									"Intensity": 0,
+									"Frequency": 0
+								}
+							]
+						}
 					}
 				},
 				{
-					"Event" : 
-					{
-						"Duration" : 65,
-						"Parameters" : 
-						{
-							"Frequency" : 66,
-							"Intensity" : 29
-						},
-						"StartTime" : 720,
-						"Type" : "continuous"
+					"Event": {
+						"Type": "continuous",
+						"Duration": 150,
+						"StartTime": 1163,
+						"Parameters": {
+							"Intensity": 60,
+							"Frequency": 45,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 0
+								},
+								{
+									"Time": 18,
+									"Intensity": 1,
+									"Frequency": 0
+								},
+								{
+									"Time": 87,
+									"Intensity": 0.74,
+									"Frequency": 0
+								},
+								{
+									"Time": 150,
+									"Intensity": 0,
+									"Frequency": 0
+								}
+							]
+						}
 					}
 				},
 				{
-					"Event" : 
-					{
-						"Duration" : 50,
-						"Parameters" : 
-						{
-							"Frequency" : 69,
-							"Intensity" : 48
-						},
-						"StartTime" : 888,
-						"Type" : "continuous"
+					"Event": {
+						"Type": "continuous",
+						"Duration": 136,
+						"StartTime": 1204,
+						"Parameters": {
+							"Intensity": 53,
+							"Frequency": 25,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 0
+								},
+								{
+									"Time": 27,
+									"Intensity": 1,
+									"Frequency": 18
+								},
+								{
+									"Time": 79,
+									"Intensity": 1,
+									"Frequency": 13
+								},
+								{
+									"Time": 83,
+									"Intensity": 0.51,
+									"Frequency": 0
+								},
+								{
+									"Time": 136,
+									"Intensity": 0,
+									"Frequency": 0
+								}
+							]
+						}
 					}
 				},
 				{
-					"Event" : 
-					{
-						"Duration" : 50,
-						"Parameters" : 
-						{
-							"Frequency" : 69,
-							"Intensity" : 58
-						},
-						"StartTime" : 938,
-						"Type" : "continuous"
+					"Event": {
+						"Type": "continuous",
+						"Duration": 150,
+						"StartTime": 1430,
+						"Parameters": {
+							"Intensity": 60,
+							"Frequency": 45,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 0
+								},
+								{
+									"Time": 18,
+									"Intensity": 1,
+									"Frequency": 0
+								},
+								{
+									"Time": 87,
+									"Intensity": 0.74,
+									"Frequency": 0
+								},
+								{
+									"Time": 150,
+									"Intensity": 0,
+									"Frequency": 0
+								}
+							]
+						}
 					}
 				},
 				{
-					"Event" : 
-					{
-						"Duration" : 50,
-						"Parameters" : 
-						{
-							"Frequency" : 67,
-							"Intensity" : 24
-						},
-						"StartTime" : 988,
-						"Type" : "continuous"
+					"Event": {
+						"Type": "continuous",
+						"Duration": 136,
+						"StartTime": 1471,
+						"Parameters": {
+							"Intensity": 53,
+							"Frequency": 25,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 0
+								},
+								{
+									"Time": 27,
+									"Intensity": 1,
+									"Frequency": 18
+								},
+								{
+									"Time": 79,
+									"Intensity": 1,
+									"Frequency": 13
+								},
+								{
+									"Time": 83,
+									"Intensity": 0.51,
+									"Frequency": 0
+								},
+								{
+									"Time": 136,
+									"Intensity": 0,
+									"Frequency": 0
+								}
+							]
+						}
 					}
 				},
 				{
-					"Event" : 
-					{
-						"Duration" : 50,
-						"Parameters" : 
-						{
-							"Frequency" : 70,
-							"Intensity" : 46
-						},
-						"StartTime" : 1163,
-						"Type" : "continuous"
+					"Event": {
+						"Type": "continuous",
+						"Duration": 150,
+						"StartTime": 1685,
+						"Parameters": {
+							"Intensity": 60,
+							"Frequency": 45,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 0
+								},
+								{
+									"Time": 18,
+									"Intensity": 1,
+									"Frequency": 0
+								},
+								{
+									"Time": 87,
+									"Intensity": 0.74,
+									"Frequency": 0
+								},
+								{
+									"Time": 150,
+									"Intensity": 0,
+									"Frequency": 0
+								}
+							]
+						}
 					}
 				},
 				{
-					"Event" : 
-					{
-						"Duration" : 50,
-						"Parameters" : 
-						{
-							"Frequency" : 70,
-							"Intensity" : 58
-						},
-						"StartTime" : 1213,
-						"Type" : "continuous"
+					"Event": {
+						"Type": "continuous",
+						"Duration": 136,
+						"StartTime": 1718,
+						"Parameters": {
+							"Intensity": 53,
+							"Frequency": 25,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 0
+								},
+								{
+									"Time": 27,
+									"Intensity": 1,
+									"Frequency": 18
+								},
+								{
+									"Time": 79,
+									"Intensity": 1,
+									"Frequency": 13
+								},
+								{
+									"Time": 83,
+									"Intensity": 0.51,
+									"Frequency": 0
+								},
+								{
+									"Time": 136,
+									"Intensity": 0,
+									"Frequency": 0
+								}
+							]
+						}
 					}
 				},
 				{
-					"Event" : 
-					{
-						"Duration" : 77,
-						"Parameters" : 
-						{
-							"Frequency" : 66,
-							"Intensity" : 30
-						},
-						"StartTime" : 1263,
-						"Type" : "continuous"
+					"Event": {
+						"Type": "continuous",
+						"Duration": 150,
+						"StartTime": 1957,
+						"Parameters": {
+							"Intensity": 60,
+							"Frequency": 45,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 0
+								},
+								{
+									"Time": 18,
+									"Intensity": 1,
+									"Frequency": 0
+								},
+								{
+									"Time": 87,
+									"Intensity": 0.74,
+									"Frequency": 0
+								},
+								{
+									"Time": 150,
+									"Intensity": 0,
+									"Frequency": 0
+								}
+							]
+						}
 					}
 				},
 				{
-					"Event" : 
-					{
-						"Duration" : 50,
-						"Parameters" : 
-						{
-							"Frequency" : 70,
-							"Intensity" : 46
-						},
-						"StartTime" : 1430,
-						"Type" : "continuous"
-					}
-				},
-				{
-					"Event" : 
-					{
-						"Duration" : 50,
-						"Parameters" : 
-						{
-							"Frequency" : 70,
-							"Intensity" : 58
-						},
-						"StartTime" : 1480,
-						"Type" : "continuous"
-					}
-				},
-				{
-					"Event" : 
-					{
-						"Duration" : 77,
-						"Parameters" : 
-						{
-							"Frequency" : 66,
-							"Intensity" : 30
-						},
-						"StartTime" : 1530,
-						"Type" : "continuous"
-					}
-				},
-				{
-					"Event" : 
-					{
-						"Duration" : 50,
-						"Parameters" : 
-						{
-							"Frequency" : 69,
-							"Intensity" : 47
-						},
-						"StartTime" : 1685,
-						"Type" : "continuous"
-					}
-				},
-				{
-					"Event" : 
-					{
-						"Duration" : 50,
-						"Parameters" : 
-						{
-							"Frequency" : 70,
-							"Intensity" : 59
-						},
-						"StartTime" : 1735,
-						"Type" : "continuous"
-					}
-				},
-				{
-					"Event" : 
-					{
-						"Duration" : 69,
-						"Parameters" : 
-						{
-							"Frequency" : 66,
-							"Intensity" : 29
-						},
-						"StartTime" : 1785,
-						"Type" : "continuous"
-					}
-				},
-				{
-					"Event" : 
-					{
-						"Duration" : 50,
-						"Parameters" : 
-						{
-							"Frequency" : 69,
-							"Intensity" : 48
-						},
-						"StartTime" : 1957,
-						"Type" : "continuous"
-					}
-				},
-				{
-					"Event" : 
-					{
-						"Duration" : 50,
-						"Parameters" : 
-						{
-							"Frequency" : 70,
-							"Intensity" : 59
-						},
-						"StartTime" : 2007,
-						"Type" : "continuous"
-					}
-				},
-				{
-					"Event" : 
-					{
-						"Duration" : 67,
-						"Parameters" : 
-						{
-							"Frequency" : 66,
-							"Intensity" : 29
-						},
-						"StartTime" : 2057,
-						"Type" : "continuous"
+					"Event": {
+						"Type": "continuous",
+						"Duration": 136,
+						"StartTime": 1988,
+						"Parameters": {
+							"Intensity": 53,
+							"Frequency": 25,
+							"Curve": [
+								{
+									"Time": 0,
+									"Intensity": 0,
+									"Frequency": 0
+								},
+								{
+									"Time": 27,
+									"Intensity": 1,
+									"Frequency": 18
+								},
+								{
+									"Time": 79,
+									"Intensity": 1,
+									"Frequency": 13
+								},
+								{
+									"Time": 83,
+									"Intensity": 0.51,
+									"Frequency": 0
+								},
+								{
+									"Time": 136,
+									"Intensity": 0,
+									"Frequency": 0
+								}
+							]
+						}
 					}
 				}
 			]
 		}
-	],
-	"MetaData" : 
-	{
-		"ChannelNumber" : 1,
-		"Create" : "2023-03-31",
-		"Discription" : "A json file format demo",
-		"Version" : 1.0
-	}
+	]
 }
