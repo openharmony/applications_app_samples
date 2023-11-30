@@ -18,6 +18,7 @@ import Window from '@ohos.window'
 import Logger from './Logger'
 import resourceManager from '@ohos.resourceManager'
 import { BusinessError } from '@ohos.base'
+import { StartCustom }  from 'library';
 
 const TAG = '[Util]'
 
@@ -29,28 +30,34 @@ export function getDynamicStates(dis: boolean[], id: number): boolean[] {
   return dis
 }
 
-export async function playVibrateCustom(fileName: string) {
+export async function playVibrateCustom(fileName: string, mode: string) {
   let rawFd: resourceManager.RawFileDescriptor | undefined = undefined
   await getContext().resourceManager.getRawFd(fileName).then(value => {
     rawFd = value
     Logger.info(TAG, "rawFd of vibration:" + " fd:" + rawFd.fd + ", offset:" + rawFd.offset + ", length: " + rawFd.length)
   })
-  try {
-    vibrator.startVibration({
-      type: "file",
-      hapticFd: { fd: rawFd!.fd, offset: rawFd!.offset, length: rawFd!.length }
-    }, {
-      usage: "unknown"
-    }, (error: BusinessError) => {
-      if (error) {
-        Logger.info(TAG, 'startVibration failed, type is file, in callback');
-      } else {
-        Logger.info(TAG, 'startVibration successful, type is file, in callback');
-      }
-    });
-  } catch (error) {
-    let err: BusinessError = error as BusinessError;
-    Logger.info(TAG, 'startVibration failed, type is file, in catch, err code:' + err.code + ' err msg:' + err.message)
+  if (mode === "ets") {
+    try {
+      vibrator.startVibration({
+        type: "file",
+        hapticFd: { fd: rawFd!.fd, offset: rawFd!.offset, length: rawFd!.length }
+      }, {
+        usage: "unknown"
+      }, (error: BusinessError) => {
+        if (error) {
+          Logger.info(TAG, 'startVibration failed, type is file, in callback');
+        } else {
+          Logger.info(TAG, 'startVibration successful, type is file, in callback');
+        }
+      });
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      Logger.info(TAG, 'startVibration failed, type is file, in catch, err code:' + err.code + ' err msg:' + err.message)
+    }
+  } else if (mode === "capi"){
+      let ret: number
+      ret = StartCustom(rawFd!.fd, rawFd!.offset, rawFd!.length)
+      console.info('StartCustom ret', ret);
   }
 }
 

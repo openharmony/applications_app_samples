@@ -21,12 +21,14 @@ export default struct FootstepLayout {
   @State footstepList: ImageDataSource = new ImageDataSource(getImageFootstepList())
   @State status: boolean[] = [false, false, false, false, false, false, false]
   @Link vibrationIntensity: string
+  @Link php: string
 
   build() {
     CommonLayout({
       dataList: $footstepList,
       status: $status,
-      vibrationIntensity: $vibrationIntensity
+      vibrationIntensity: $vibrationIntensity,
+      php: $php
     })
   }
 }

@@ -375,6 +375,26 @@
       "value": "Version:               "
     },
     {
+      "name": "my_php",
+      "value": "php:"
+    },
+    {
+      "name": "my_php_select",
+      "value": "php_select:"
+    },
+    {
+      "name": "my_linguistic_type",
+      "value": "type"
+    },
+    {
+      "name": "my_ets",
+      "value": "ets"
+    },
+    {
+      "name": "my_capi",
+      "value": "capi"
+    },
+    {
       "name": "my_help",
       "value": "Help:    "
     },

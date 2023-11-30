@@ -18,6 +18,7 @@ import router from '@ohos.router'
 @Entry
 @Component
 struct VideoListModule {
+  private php: string = (router.getParams() as Record<string, string>)['php']
   build() {
     Column({ space: 20 }) {
       Row() {
@@ -74,7 +75,8 @@ struct VideoListModule {
                   videoName: 'HapticVideo',
                   videoSrc: $r("app.media.HapticVideo"),
                   previewUri: $r("app.media.HapticVideoPreview"),
-                  pages: "VideoListPage"
+                  pages: "VideoListPage",
+                  php: this.php
                 }
               })
             })
