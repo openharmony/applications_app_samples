@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router';
 import { FAVOR_LIVE_LIST_DATA } from '../../mock/ProductsData';
 import { FavorLiveListsModel } from '../../model/GoodsModel';
 import { MyOrderComponent } from '../user/MyOrders';
@@ -23,6 +22,7 @@ import { ServiceSectionComponent } from '../user/ServiceSection';
 @Component
 export struct User {
   @StorageProp('curBp') curBp: string = 'sm';
+  @Consume('pageStack') pageStack: NavPathStack;
 
   build() {
     Column() {
@@ -55,9 +55,7 @@ export struct User {
                     right: 16
                   })
                   .onClick(() => {
-                    router.replaceUrl({
-                      url: 'pages/Setting'
-                    })
+                    this.pageStack.pushPath({ name: 'SetPage' })
                   })
                 Image($r('app.media.scan_code'))
                   .width(24)

@@ -17,11 +17,12 @@ import Http from '@ohos/http';
 import { PRODUCT_DATA } from '../../mock/ProductsData';
 import { GoodResponse, Info, ProductDataModel } from '../../model/GoodsModel';
 import { Products_Data } from '../../mock/ProductsData';
-import router from '@ohos.router';
+import { DynamicLoader } from '../../common/DynamicLoader';
 
 @Component
 export struct GoodsList {
   @State getDataFromHttp: boolean = false;
+  @Consume('pageStack') pageStack: NavPathStack;
   private url: string = '';
   private option: Object = new Object();
   @State productsData: GoodResponse = Products_Data;
@@ -113,10 +114,10 @@ export struct GoodsList {
 
           // 方案二：使用正常router跳转，配合共享元素动画
           .onClick(() => {
-            this.active = true;
-            router.pushUrl({
-              url: 'pages/Detail',
-              params: { goodId: item.id, goodItem: item }
+            // 动态加载组件
+            DynamicLoader.getInstance().fire('DetailPage').then(()=>{
+              this.active = true;
+              this.pageStack.pushPathByName('DetailPage', item);
             })
           })
         }

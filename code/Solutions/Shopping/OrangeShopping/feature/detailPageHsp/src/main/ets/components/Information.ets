@@ -26,7 +26,7 @@ const TAG: string = 'Information';
 @Component
 export struct Information {
   @State collected: boolean = false;
-  private data: ProductDataModel = (router.getParams() as Record<string, ProductDataModel>)['goodItem'];
+  @Link goodDetailData: ProductDataModel;
   @State recommend: string = '';
   @State commodity: string = '';
 
@@ -43,13 +43,13 @@ export struct Information {
   build() {
     Column() {
       Text() {
-        Span(this.data.price)
+        Span(this.goodDetailData.price)
           .fontSize(20)
           .fontColor($r('app.color.pink'))
       }
       .fontWeight(500)
 
-      Text(this.data.title)
+      Text(this.goodDetailData.title)
         .fontSize(16)
         .margin({ top: 4 })
       Row() {

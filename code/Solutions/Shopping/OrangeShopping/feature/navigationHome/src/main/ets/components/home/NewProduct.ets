@@ -31,7 +31,7 @@ export struct NewProduct {
         Column() {
           Swiper() {
             ForEach(SWIPER_DATA, (item: SwiperModel) => {
-              Navigator({ target: 'pages/detail' }) {
+              Column() {
                 Image(item.img)
                   .objectFit(ImageFit.Cover)
                   .width('100%')

@@ -16,3 +16,12 @@
 export { NavigationHomePage } from './src/main/ets/main/NavigationHomePage'
 
 export { ProductDataModel } from './src/main/ets/model/GoodsModel'
+
+export { MainPage } from './src/main/ets/components/home/MainPage';
+
+export { NewProduct } from './src/main/ets/components/home/NewProduct';
+
+export { ShopCart } from './src/main/ets/components/home/ShopCart';
+
+export { User } from './src/main/ets/components/user/User';
+export { DynamicLoader } from './src/main/ets/common/DynamicLoader';

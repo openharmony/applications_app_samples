@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,11 +15,16 @@
 
 import mediaquery from '@ohos.mediaquery';
 import window from '@ohos.window';
-import { NavigationHomePage } from '@ohos/navigation-component';
+import { NavigationHomePage, MainPage, NewProduct, ShopCart, User } from '@ohos/navigation-component';
 import { UpdateDialog } from '@ohos/updatedialog';
-import { EventsDialog } from '@ohos/details-page-component';
+import { EventsDialog } from '@ohos/details-page-hsp';
 import { EmitterClass, EventsData } from '@ohos/emitter';
 import { Url } from '@ohos/navigation-component/src/main/ets/main/NavigationHomePage';
+import { Scan } from './ScanPage';
+import { SetPage } from './Setting';
+import { Detail } from './Detail';
+import { Live } from './LivePage';
+import { DynamicLoader } from '@ohos/navigation-component';
 
 const NOW_INDEX: string = 'nowIndex';
 const SHOPPING_CART_COODS_LIST: string = 'shoppingCartGoodsList';
@@ -34,14 +39,16 @@ const LARGE_WIDTH: string = '(840vp<=width)';
 @Entry
 @Component
 struct HomePage {
+  @Provide('pageStack') pageStack: NavPathStack = new NavPathStack();
   @State url: string = '';
-  @State option: object|undefined = undefined;
+  @State option: object | undefined = undefined;
   @State curBp: string = MID_SCREEN; // curBp指当前窗口断点，sm代表小屏，md代表中屏，lg代表大屏
   private smListener: mediaquery.MediaQueryListener | undefined = undefined;
   private mdListener: mediaquery.MediaQueryListener | undefined = undefined;
   private lgListener: mediaquery.MediaQueryListener | undefined = undefined;
   @StorageLink(SHOPPING_CART_COODS_LIST) shoppingCartGoodsList: number[] = [];
   private emitterClass: EmitterClass = new EmitterClass();
+  @BuilderParam  detailPageLoader:()=> void;
   EventsDialogController: CustomDialogController = new CustomDialogController({
     builder: EventsDialog(),
     customStyle: true
@@ -51,13 +58,43 @@ struct HomePage {
     customStyle: true
   });
 
-  build() {
-    Column() {
-      NavigationHomePage(new Url(this.url));
+  @Builder
+  PageMap(name: string, param: NavPathStack) {
+    if (name === 'QRCodeScanPage') {
+      Scan();
+    } else if (name === 'SetPage') {
+      SetPage();
+    } else if (name === 'DetailPage') {
+      this.detailPageLoader();
+    } else if (name === 'LivePage') {
+      Live();
+    } else if (name === 'MainPage') {
+      MainPage();
+    } else if (name === 'NewProductPage') {
+      NewProduct();
+    } else if (name === 'ShopCartPage') {
+      ShopCart();
+    } else if (name === 'UserPage') {
+      User();
     }
   }
 
+  build() {
+    Navigation(this.pageStack) {
+      NavigationHomePage(new Url(this.url));
+    }.navDestination(this.PageMap)
+  }
+
   aboutToAppear() {
+    // 注册组件
+    DynamicLoader.getInstance().register(
+      async (key: string) => {
+        if (key === "DetailPage") {
+          let obj = await import("./DetailPageLoader");
+          this.detailPageLoader = obj.DetailPageLoader;
+        }
+      }
+    )
     if (AppStorage.get<number>(NOW_INDEX) === undefined || AppStorage.get<number>(NOW_INDEX) === 0) {
       this.UpdateDialogController.open();
     }

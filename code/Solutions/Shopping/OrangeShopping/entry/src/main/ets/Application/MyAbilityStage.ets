@@ -14,7 +14,7 @@
  */
 
 import AbilityStage from '@ohos.app.ability.AbilityStage';
-import { logger } from '@ohos/details-page-component';
+import { logger } from '@ohos/details-page-hsp';
 
 const TAG: string = 'MyAbilityStage';
 

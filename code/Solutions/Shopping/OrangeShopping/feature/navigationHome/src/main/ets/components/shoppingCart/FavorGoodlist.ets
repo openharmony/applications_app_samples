@@ -24,6 +24,7 @@ export struct FavorGoodList {
   private url: string = '';
   private option: Object = new Object();
   @State productsData: GoodResponse = Products_Data;
+  @Consume('pageStack') pageStack: NavPathStack;
 
   async aboutToAppear() {
     Http.setUrl(this.url);
@@ -84,13 +85,7 @@ export struct FavorGoodList {
     .padding(12)
     .backgroundColor($r('app.color.white'))
     .onClick(() => {
-      router.pushUrl({
-        url: 'pages/Detail',
-        params: {
-          goodId: shopItem.id,
-          goodItem: shopItem
-        }
-      })
+      this.pageStack.pushPathByName('DetailPage', shopItem);
     })
   }
 

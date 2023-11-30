@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,13 +14,22 @@
  */
 
 import { LivePage } from '@ohos/video-component';
+import { logger } from '@ohos/details-page-hsp/src/main/ets/utils/Logger';
 
-@Entry
 @Component
-struct Live {
+export struct Live {
+  @Consume('pageStack') pageStack: NavPathStack;
+
   build() {
-    Column() {
+    NavDestination() {
       LivePage();
     }
+    .title('LivePage')
+    .hideTitleBar(true)
+    .onBackPressed(() => {
+      this.pageStack.clear();
+      logger.info(`SetPage onBackPressed pageStack:${JSON.stringify(this.pageStack)}`);
+      return true;
+    })
   }
 }

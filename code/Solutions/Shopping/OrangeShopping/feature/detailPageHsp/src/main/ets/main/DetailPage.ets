@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+* Copyright (c) 2023 Huawei Device Co., Ltd.
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -13,7 +13,7 @@
 * limitations under the License.
 */
 
-import router from '@ohos.router';
+import common from '@ohos.app.ability.common';
 import { Location } from '../components/Location';
 import { Information } from '../components/Information';
 import { Choice } from '../components/Choice';
@@ -25,14 +25,23 @@ import { SmallVideo } from '../components/SmallVideo';
 import { SWIPER_PICTURE_DATA } from '../mock/DetailData';
 import { ButtonDialogBuilder } from '@ohos/sharecomponent';
 import { ProductDataModel } from '../../../../../navigationHome/src/main/ets/model/GoodsModel'
+import { logger } from '../utils/Logger';
 
 const SRC_IMG: string = 'https://res5.vmallres.com/pimages/uomcdn/CN/pms/202207/gbom/6941487270880/428_428_1142FAB7EA4DCBDD8C64BF54486A7D4Bmp.png';
+let context = getContext(this) as common.UIAbilityContext;
+
+function getResourceString(resourceData: Resource): string {
+  let stringData: string = context.resourceManager.getStringSync(resourceData.id);
+  logger.info(`getResourceString start`);
+  logger.info(`getResourceString stringData ${stringData}`);
+  return stringData;
+}
 
 @Component
 export struct DetailPage {
   @State sOpacity: number = 1;
   @State isPanel: boolean = false;
-  @State goodDetailData: ProductDataModel = (router.getParams() as Record<string, ProductDataModel>)['goodItem'];
+  @State goodDetailData: ProductDataModel = new ProductDataModel(0, '', '', '', '', '');
   @State currentLocation: string = '';
   @State recommend: string = '';
   @State commodity: string = '';
@@ -52,6 +61,7 @@ export struct DetailPage {
   @State animateScale: boolean = false;
   @State animatePath: boolean = false;
   @State breakPoints: string | undefined = AppStorage.get('breakPoint');
+  @Consume('pageStack') pageStack: NavPathStack;
 
   build() {
     Stack({ alignContent: Alignment.Top }) {
@@ -96,7 +106,7 @@ export struct DetailPage {
             .backgroundColor($r('app.color.white'));
 
             Column() {
-              Information()
+              Information({ goodDetailData: $goodDetailData })
                 .margin({ top: 12 });
               Choice()
                 .margin({ top: 12 });
@@ -133,7 +143,7 @@ export struct DetailPage {
           .aspectRatio(1)
           .position({ x: 20, y: 20 })
           .onClick(() => {
-            router.back();
+            this.pageStack.pop();
           });
 
         Image($r("app.media.share"))
@@ -178,7 +188,7 @@ export struct DetailPage {
         .position({ x: '100%', y: 160 })
         .translate({ x: -82, y: 0 })
         .onClick(() => {
-          router.pushUrl({ url: 'pages/LivePage' });
+          this.pageStack.pushPath({ name: 'LivePage' })
         });
 
         BottomNavigation({
@@ -251,6 +261,13 @@ export struct DetailPage {
   }
 
   aboutToAppear() {
+    this.goodDetailData = this.pageStack.getParamByName('DetailPage')[0] as ProductDataModel;
+    logger.info('-------------------');
+    logger.info(`Get AllPathName: ${JSON.stringify(this.pageStack.getAllPathName())}`);
+    logger.info(`Get params by Index:${JSON.stringify(this.pageStack.getParamByIndex(0))}`);
+    logger.info(`Get params by Name: ${JSON.stringify(this.pageStack.getParamByName('DetailPage'))}`);
+    logger.info(`Get index by Name: ${JSON.stringify(this.pageStack.getIndexByName('DetailPage'))}`);
+    logger.info(`Get stack size: ${JSON.stringify(this.pageStack.size())}`);
     let context: Context = getContext(this);
     this.currentLocation = context.resourceManager.getStringSync($r('app.string.address').id);
     this.recommend = context.resourceManager.getStringSync($r('app.string.recommend').id);

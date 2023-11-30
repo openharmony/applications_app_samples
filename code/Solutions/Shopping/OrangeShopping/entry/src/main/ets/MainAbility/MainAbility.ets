@@ -14,7 +14,7 @@
  */
 
 import UIAbility from '@ohos.app.ability.UIAbility';
-import { logger } from '@ohos/details-page-component';
+import { logger } from '@ohos/details-page-hsp';
 import { notificationUtil } from '@ohos/notification';
 import { QRCodeScanConst } from '@ohos/scan-component';
 import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
