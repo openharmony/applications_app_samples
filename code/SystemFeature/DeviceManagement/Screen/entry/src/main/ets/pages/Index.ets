@@ -12,29 +12,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
+import { DisplayDevice } from '../common/DisplayDevice';
+import Logger from '../model/Logger';
 
-import { DisplayDevice } from '../common/DisplayDevice'
+const TAG: string = 'IndexPage';
 
 @Entry
 @Component
 struct Index {
   aboutToAppear(){
     try {
-      globalThis.mainContext.resourceManager.getStringValue($r('app.string.yes').id).then(value => {
-        globalThis.yes = value;
-        console.log("getStringValue globalThis.yes" + globalThis.yes);
-      }).catch(error => {
-        console.log("getStringValue promise error is " + error);
+      let mainContext: common.UIAbilityContext | undefined = AppStorage.get<common.UIAbilityContext>('mainContext');
+      mainContext!.resourceManager.getStringValue($r('app.string.yes').id).then((value: string) => {
+        AppStorage.setOrCreate('yes', value);
+        Logger.info(TAG, "getStringValue value" + value);
+      }).catch((error: BusinessError) => {
+        Logger.info(TAG, "getStringValue promise error is " + error);
       });
 
-      globalThis.mainContext.resourceManager.getStringValue($r('app.string.no').id).then(value => {
-        globalThis.no = value;
-        console.log("getStringValue globalThis.no " + globalThis.no);
-      }).catch(error => {
-        console.log("getStringValue promise error is " + error);
+      mainContext!.resourceManager.getStringValue($r('app.string.no').id).then((value: string) => {
+        AppStorage.setOrCreate('no', value);
+        Logger.info(TAG, "getStringValue value " + value);
+      }).catch((error: BusinessError) => {
+        Logger.info(TAG, "getStringValue promise error is " + error);
       });
     } catch (error) {
-      console.error(`callback getStringValue failed, error code: ${error.code}, message: ${error.message}.`)
+      Logger.error(TAG, `callback getStringValue failed, error code: ${error.code}, message: ${error.message}.`)
     }
   }
   build() {
