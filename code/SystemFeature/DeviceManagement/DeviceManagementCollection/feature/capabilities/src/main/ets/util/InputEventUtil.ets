@@ -15,10 +15,11 @@
 import { logger, formatJson } from '@ohos/common'
 import inputMonitor from '@ohos.multimodalInput.inputMonitor'
 import inputEventClient from '@ohos.multimodalInput.inputEventClient'
+import { TouchEvent } from '@ohos.multimodalInput.touchEvent'
 
 const TAG: string = '[Sample_InputEventUtil]'
 
-interface KeyEventType{
+interface KeyEventType {
   KeyEvent: inputEventClient.KeyEvent
 }
 
@@ -28,7 +29,7 @@ interface KeyEventType{
 export function injectBackEvent(): void {
   try {
     let backKeyDown: KeyEventType = {
-      KeyEvent:{
+      KeyEvent: {
         isPressed: true,
         keyCode: 2,
         keyDownDuration: 0,
@@ -58,7 +59,7 @@ class TouchManagerUtil {
     logger.info(`${TAG} registerTouch`)
     try {
       this.callback = callback
-      inputMonitor.on('touch', (touchEvent: TouchEvent): Boolean => this.onTouchCallback(touchEvent));
+      inputMonitor.on('touch', (touchEvent: TouchEvent) => this.onTouchCallback(touchEvent));
     } catch (error) {
       logger.error(`${TAG} register touch on failed, error: ${JSON.stringify(error, [`code`, `message`])}`)
     }
