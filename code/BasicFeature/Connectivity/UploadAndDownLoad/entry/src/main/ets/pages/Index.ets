@@ -54,7 +54,7 @@ struct Index {
               .height(24)
               .onChange((isOn: boolean) => {
                 this.isBackground = isOn;
-                AppStorage.SetOrCreate('isBackground', isOn);
+                AppStorage.setOrCreate('isBackground', isOn);
               })
           }
           .itemStyle()
