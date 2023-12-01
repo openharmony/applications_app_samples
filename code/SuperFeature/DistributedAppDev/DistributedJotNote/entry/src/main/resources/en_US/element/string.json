@@ -1,0 +1,120 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "JotNote"
+    },
+    {
+      "name": "HOME_TITLE",
+      "value": "Jot Note"
+    },
+    {
+      "name": "IMG_WALL_TITLE",
+      "value": "Picture Wall"
+    },
+    {
+      "name": "HELLO",
+      "value": "Hello,"
+    },
+    {
+      "name": "WELCOME_USE_JOT",
+      "value": "welcome to the Jot Note"
+    },
+    {
+      "name": "ENTER_IN",
+      "value": "Enter the Jot Note"
+    },
+    {
+      "name": "NOTES_TITLE",
+      "value": "Notes"
+    },
+    {
+      "name": "PLEASE_INPUT_NOTE_TITLE",
+      "value": "Please enter the title of your note"
+    },
+    {
+      "name": "NOTES_TIME",
+      "value": "16:60:22 am"
+    },
+    {
+      "name": "PLEASE_INPUT_NOTE_CONTENT",
+      "value": "Please enter the notes"
+    },
+    {
+      "name": "MIGRATION_SETTINGS",
+      "value": "Migration Settings"
+    },
+    {
+      "name": "MIGRATION_ABILITY",
+      "value": "Migration ability"
+    },
+    {
+      "name": "MIGRATION_PAGE_STACK",
+      "value": "Migrating page stack"
+    },
+    {
+      "name": "MIGRATION_SOURCE_END",
+      "value": "The source end exits after the migration"
+    },
+    {
+      "name": "TO_DO_LIST",
+      "value": "To-do list"
+    },
+    {
+      "name": "LIST_ITEM_ONE",
+      "value": "8:00 Go to the gym"
+    },
+    {
+      "name": "LIST_ITEM_TWO",
+      "value": "9:00 work"
+    },
+    {
+      "name": "LIST_ITEM_THREE",
+      "value": "Make lunch at 12:30"
+    },
+    {
+      "name": "LIST_ITEM_FOUR",
+      "value": "See Hua Xiaoyi at 16:00"
+    },
+    {
+      "name": "LIST_ITEM_FIVE",
+      "value": "7:30 Do yoga"
+    },
+    {
+      "name": "LIST_ITEM_SIX",
+      "value": "14:30 to play tennis"
+    },
+    {
+      "name": "LIST_ITEM_SEVEN",
+      "value": "18:00 basketball"
+    },
+    {
+      "name": "LIST_ITEM_EIGHT",
+      "value": "17:30 Cook dinner"
+    },
+    {
+      "name": "PICTURE_ONE",
+      "value": "picture 1"
+    },
+    {
+      "name": "PICTURE_TWO",
+      "value": "picture 2"
+    },
+    {
+      "name": "pick_photo_one",
+      "value": "pick photo 1"
+    },
+    {
+      "name": "pick_photo_two",
+      "value": "pick photo 2"
+    }
+  ]
+}
