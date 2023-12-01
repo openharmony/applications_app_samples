@@ -1,0 +1,20 @@
+{
+  "color": [
+    {
+      "name": "white",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "page_background",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "text_color",
+      "value": "#182431"
+    },
+    {
+      "name": "button_background",
+      "value": "#007DFF"
+    }
+  ]
+}

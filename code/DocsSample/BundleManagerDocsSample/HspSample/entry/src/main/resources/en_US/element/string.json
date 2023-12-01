@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "HspSample"
+    },
+    {
+      "name": "add",
+      "value": "Reference the classes and methods of HSP"
+    },
+    {
+      "name": "get_string_value",
+      "value": "Reference the resources of HSP"
+    },
+    {
+      "name": "native_multi",
+      "value": "Reference the native methods of HSP"
+    },
+    {
+      "name": "click_to_menu",
+      "value": "page routing jump"
+    },
+    {
+      "name": "click_to_index",
+      "value": "Access resources in HSP"
+    },
+    {
+      "name": "back",
+      "value": "page routing returns"
+    }
+  ]
+}

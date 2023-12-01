@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "HarSample"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "HarSample"
+    },
+    {
+      "name": "main_page",
+      "value": "Reference the ArkUI component of HAR"
+    },
+    {
+      "name": "button",
+      "value": "Reference the classes and methods of HAR"
+    },
+    {
+      "name": "native_add",
+      "value": "Reference the native methods of HAR"
+    }
+  ]
+}

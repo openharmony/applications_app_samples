@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "HSP_message",
+      "value": "动态分享包"
+    },
+    {
+      "name": "HSP_value",
+      "value": "getStringValue is 动态分享"
+    }
+  ]
+}
