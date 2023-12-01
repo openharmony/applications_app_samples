@@ -56,7 +56,7 @@ export struct FavorGoodList {
     .padding(12)
     .backgroundColor($r('app.color.white'))
     .onClick(() => {
-      router.push({
+      router.pushUrl({
         url: 'pages/Detail',
         params: { goodId: shopItem.id, goodItem: shopItem }
       });
@@ -72,7 +72,7 @@ export struct FavorGoodList {
       }, (item: ShopCartItemDataModel, index: number) => item.toString() + index)
     }
     .onAreaChange((oldArea: Area, newArea: Area) => {
-      AppStorage.SetOrCreate('goodsListHeight', newArea.height as number);
+      AppStorage.setOrCreate('goodsListHeight', newArea.height as number);
     })
   }
 }

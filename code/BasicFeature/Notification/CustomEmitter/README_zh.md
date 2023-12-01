@@ -6,14 +6,15 @@
 
 ### 效果预览
 
-|首页|列表页|详情|购物车|
+|首页|列表页|详情内购买页面|购物车|
 |-------|-------|-------|-------|
-|![ads_dialog](screenshots/device/ads_dialog.png)|![goods_list](screenshots/device/goods_list.png)|![good_detail](screenshots/device/good_detail.png)|![shopping_cart](screenshots/device/shopping_cart.png)|
+|![ads_dialog](screenshots/device/ads_dialog.png)|![goods_list](screenshots/device/goods_list.png)|![good_detail](screenshots/device/good_detail.png)|<img src="screenshots/device/shopping_cart.png" alt="shopping_cart"  />|
 
 使用说明
 1. 进入首页后弹出广告弹窗，点击即可关闭。
 2. 点击商品列表中的一个商品可以跳转到商品详情页。
-3. 在商品详情页点击首页可以返回到商品列表页，点击购物车可以跳转到购物车页面，点击加入购物车可以在购物车页面添加一条商品信息。
+3. 在商品详情页点击首页可以返回到商品列表页，点击购物车可以跳转到购物车页面，点击加入购物车可以在购物车页面添加一条商品信息，点击立即购买可以增加一次已购物数量显示在购物车页面。
+4. 在购物车页面点击购物车列表内商品的减号图标，可以将此商品信息从购物车列表内删除，点击清空购买数量可以将已购物数量清空、显示为0。
 
 ### 工程目录
 ```
@@ -49,8 +50,11 @@ feature/emitter/src/main/ets/
 
 ### 具体实现
 + 订阅事件通知在CustomEmitter中实现，源码参考[CustomEmitter.ets](feature/emitter/src/main/ets/components/feature/CustomEmitter.ets)
-  + 广告弹窗：使用Emitter的事件单次订阅emitter.once(eventId,call)，单次订阅CustomDialogController弹窗事件，弹窗触发后自动取消订阅。
-  + 购物车添加商品：使用Emitter.on持续订阅商品添加事件，添加商品时更新购物车商品列表。
+  + 广告弹窗：使用Emitter的事件单次订阅emitter.once(eventId,call)，eventId为number类型，单次订阅CustomDialogController弹窗事件，弹窗触发后自动取消订阅。
+  + 关闭广告弹窗：使用Emitter的事件单次订阅emitter.once(eventId,call)，eventId为string类型，单次订阅CustomDialogController弹窗事件，弹窗关闭后自动取消订阅。
+  + 购物车添加商品：使用Emitter.on持续订阅商品添加事件，eventId为number类型，添加商品时更新购物车商品列表。
+  + 购物车删除商品：使用Emitter.on持续订阅商品删除事件，eventId为string类型，删除商品时更新购物车商品列表。
+  + 购物数量：使用Emitter.getListenerCount获取购买事件订阅者数量，进入购物车页面显示数量结果，清空时取消订阅，结果为0。
 
 ### 相关权限
 
@@ -62,9 +66,11 @@ feature/emitter/src/main/ets/
 
 ### 约束与限制
 
-1. 本示例仅支持标准系统上运行，支持设备：RK3568。
-2. 本示例为Stage模型，支持API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0 Release)
-3. 本示例需要使用DevEco Studio 版本号(4.0 Release)及以上版本才可编译运行。
+1.本示例仅支持标准系统上运行，支持设备：RK3568;
+
+2.本示例为Stage模型，支持API11版本SDK，版本号：4.1.3.5；
+
+3.本示例需要使用DevEco Studio 3.1.1 Release (Build Version: 3.1.0.501, built on June 20, 2023)才可编译运行；
 
 ### 下载
 如需单独下载本工程，执行如下命令：

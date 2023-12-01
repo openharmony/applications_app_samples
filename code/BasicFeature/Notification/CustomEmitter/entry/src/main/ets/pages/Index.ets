@@ -47,7 +47,13 @@ struct Index {
     this.emitterClass.setShoppingCartGoodsList((eventData: emitter.EventData) => {
       if (eventData.data) {
         this.shoppingCartGoodsList.push(eventData.data.id);
-        AppStorage.SetOrCreate('shoppingCartGoodsList', this.shoppingCartGoodsList);
+        AppStorage.setOrCreate('shoppingCartGoodsList', this.shoppingCartGoodsList);
+      }
+    });
+    this.emitterClass.deleteShoppingCartGoodsList((eventData: emitter.EventData) => {
+      if (eventData.data) {
+        this.shoppingCartGoodsList.splice(eventData.data.id, 1);
+        AppStorage.setOrCreate('shoppingCartGoodsList', this.shoppingCartGoodsList);
       }
     });
   }
@@ -99,7 +105,7 @@ struct Index {
               .padding(12)
               .backgroundColor($r('app.color.white'))
               .onClick(() => {
-                router.push({
+                router.pushUrl({
                   url: 'pages/Detail',
                   params: { goodId: item.id, goodItem: item }
                 })
@@ -109,7 +115,7 @@ struct Index {
         }
         .margin({ left: 12, right: 12 })
         .onAreaChange((oldArea: Area, newArea: Area) => {
-          AppStorage.SetOrCreate('listHeight', newArea.height as number);
+          AppStorage.setOrCreate('listHeight', newArea.height as number);
         })
       }
     }

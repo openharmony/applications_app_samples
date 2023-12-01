@@ -16,23 +16,29 @@
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import { Driver, ON, MatchPattern } from '@ohos.UiTest';
-import Logger from '../util/Logger';
 import Want from '@ohos.app.ability.Want';
 import Base from '@ohos.base';
+import Logger from '../util/Logger';
 
 const BUNDLE = 'CustomEmitter';
 const TAG = '[Sample_CustomEmitter]';
 
 export default function abilityTest() {
   describe('ActsAbilityTest', () => {
+
     /**
-     * 拉起一个ability
+     * @tc.number CustomEmitterStartAbility
+     * @tc.name   Customize Emitter
+     * @tc.desc   Pull up an ability
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  Level 0
      */
     it(BUNDLE + 'StartAbility', 0, async () => {
       Logger.info(TAG, 'StartAbility start');
       let driver = Driver.create();
       let want: Want = {
-        bundleName: 'ohos.samples.customemitter',
+        bundleName: 'com.samples.customemitter',
         abilityName: 'MainAbility'
       };
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -45,7 +51,12 @@ export default function abilityTest() {
     })
 
     /**
-     * 检查Dialog是否显示，是否能正常关闭
+     * @tc.number CustomEmitterOpenDialog
+     * @tc.name   Customize Emitter
+     * @tc.desc   Check if the dialog is displayed and can be closed normally
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  Level 1
      */
     it(BUNDLE + 'OpenDialog', 1, async (done: Function) => {
       Logger.info(TAG, 'OpenDialog start');
@@ -67,18 +78,23 @@ export default function abilityTest() {
     })
 
     /**
-     * 点击某商品，检查是否跳转
-     * 本示例运行时间较长，请将Time Out调整为120s，确保用例正常执行
+     * @tc.number CustomEmitterOpenDetail
+     * @tc.name   Customize Emitter
+     * @tc.desc   Click on a certain product to check if it is redirected,This example takes a long time to run.
+     *            Please adjust the Time Out to 120s to ensure the normal execution of the use case
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  Level 2
      */
     it(BUNDLE + 'OpenDetail', 2, async (done: Function) => {
       Logger.info(TAG, 'OpenDetail start');
       let driver = Driver.create();
       let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager;
-
       let idList = ['0', '1', '2'];  // 商品id列表
       for (let i: number = 0; i < idList.length; i++) {
         let goods = await driver.findComponent(ON.id(idList[i]));
         // 点击商品
+        await expect(goods != null).assertTrue();
         await goods.click();
         await driver.delayMs(500);
         // 检查跳转后商品是否一致
@@ -93,8 +109,13 @@ export default function abilityTest() {
     })
 
     /**
-     * 添加某商品到购物车界面
-     * 本示例运行时间较长，请将Time Out调整为120s，确保用例正常执行
+     * @tc.number CustomEmitterAddGoodsToCart
+     * @tc.name   Customize Emitter
+     * @tc.desc   Add a certain product to the shopping cart interface,This example takes a long time to run.
+     *            Please adjust the Time Out to 120s to ensure the normal execution of the use case
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  Level 3
      */
     it(BUNDLE + 'AddGoodsToCart', 3, async (done: Function) => {
       Logger.info(TAG, 'AddGoodsToCart start');
@@ -105,6 +126,7 @@ export default function abilityTest() {
       for (let i: number = 0; i < idList.length; i++) {
         let goods = await driver.findComponent(ON.id(idList[i]));
         // 点击商品
+        await expect(goods != null).assertTrue();
         await goods.click();
         await driver.delayMs(500);
         // 检查跳转后商品是否一致
@@ -130,6 +152,105 @@ export default function abilityTest() {
         await driver.delayMs(500);
       }
       Logger.info(TAG, 'AddGoodsToCart end');
+      done();
+    })
+
+    /**
+     * @tc.number CustomEmitterDeleteGoodsToCart
+     * @tc.name   Customize Emitter
+     * @tc.desc   Delete a product to the shopping cart interface,This example takes a long time to run.
+     *            Please adjust the Time Out to 120s to ensure the normal execution of the use case
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  Level 1
+     */
+    it(BUNDLE + 'DeleteGoodsToCart', 1, async (done: Function) => {
+      Logger.info(TAG, 'DeleteGoodsToCart start');
+      let driver = Driver.create();
+      let cartTag = 'cart';
+      let idList = ['0', '1', '2'];  // 商品id列表
+      let deleteButton = 'reduceMedia';
+      let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager;
+      let goods = await driver.findComponent(ON.id(idList[0]));
+      // 点击商品
+      await goods.click();
+      await driver.delayMs(500);
+      // 进入购物车
+      let cartBtn = await driver.findComponent(
+        ON.text(await resourceManager.getStringValue($r('app.string.shop_cart'))));
+      await cartBtn.click();
+      await driver.delayMs(500);
+      for (let i: number = 0; i < idList.length; i++) {
+        // 删除商品
+        let deleteBtn = await driver.findComponent(ON.id(cartTag + idList[i] + deleteButton));
+        await deleteBtn.click();
+        await driver.delayMs(500);
+        //检查商品是否已经删除
+        let btn = await driver.findComponent(ON.id(cartTag + idList[i] + deleteButton));
+        await expect(btn).assertNull();
+      }
+      // 退回首页
+      await driver.pressBack();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      Logger.info(TAG, 'DeleteGoodsToCart end');
+      done();
+    })
+
+    /**
+     * @tc.number CustomEmitterPurchaseGoods
+     * @tc.name   Customize Emitter
+     * @tc.desc   Purchase a certain product and record the purchase quantity on the shopping cart interface,
+     *            This example takes a long time to run.Please adjust the Time Out to 120s to ensure the normal
+     *            execution of the use case
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  Level 1
+     */
+    it(BUNDLE + 'PurchaseGoods', 1, async (done: Function) => {
+      Logger.info(TAG, 'PurchaseGoods start');
+      let driver = Driver.create();
+      let idList = ['0', '1', '2'];  // 商品id列表
+      let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager;
+      let goods = await driver.findComponent(ON.id(idList[0]));
+      // 点击商品
+      await goods.click();
+      await driver.delayMs(500);
+      for (let i: number = 0; i < idList.length; i++) {
+        // 多次点击购买
+        let buy = await driver.findComponent(
+          ON.text(await resourceManager.getStringValue($r('app.string.buy_now'))));
+        await buy.click();
+        await driver.delayMs(500);
+        await driver.assertComponentExist(
+          ON.text(await resourceManager.getStringValue($r('app.string.purchase_successful'))));
+        // 关闭弹窗
+        let close = await driver.findComponent(
+          ON.text(await resourceManager.getStringValue($r('app.string.determine_popup'))));
+        await close.click();
+        await driver.delayMs(500);
+      }
+      // 进入购物车
+      let cartBtn = await driver.findComponent(
+        ON.text(await resourceManager.getStringValue($r('app.string.shop_cart'))));
+      await cartBtn.click();
+      await driver.delayMs(500);
+      //检查购买数量
+      await driver.assertComponentExist(
+        ON.text((await resourceManager.getStringValue(
+          $r('app.string.number_of_purchases'))).concat(idList.length.toString())));
+      // 清空购买数量
+      let clearPurchaseGoods = await driver.findComponent(
+        ON.text(await resourceManager.getStringValue($r('app.string.clear_purchase_quantity'))));
+      await expect(clearPurchaseGoods != null).assertTrue();
+      await clearPurchaseGoods.click();
+      await driver.delayMs(500);
+      //检查购买数量是否清空
+      await driver.assertComponentExist(
+        ON.text((await resourceManager.getStringValue(
+          $r('app.string.number_of_purchases'))).concat('0')));
+      Logger.info(TAG, 'PurchaseGoods end');
       done();
     })
   })

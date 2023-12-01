@@ -14,6 +14,8 @@
  */
 
 import router from '@ohos.router';
+import common from '@ohos.app.ability.common';
+import { CustomEmitter } from '@ohos/emitter';
 import { Cart } from '../shoppingCart/Cart';
 import { FavorGoodList } from '../shoppingCart/FavorGoodlist';
 import { ProductDataModel } from '../model/GoodsModel';
@@ -25,6 +27,10 @@ struct ShopCart {
   @State shoppingCartGoodsList: ProductDataModel[]
     = AppStorage.get('shoppingCartGoodsList') as ProductDataModel[];
   @StorageLink('goodsListHeight') goodsListHeight: number = 100;
+  private emitterClass: CustomEmitter = new CustomEmitter();
+  @State counts: number = 0;
+  @State purchase: string = '';
+  private context = getContext(this) as common.UIAbilityContext;
 
   build() {
     Column() {
@@ -42,7 +48,7 @@ struct ShopCart {
                 .fontFamily('HarmonyHeiTi')
                 .fontColor($r('app.color.blank'))
                 .opacity(0.6)
-                .onClick(()=>{
+                .onClick(() => {
                   router.back()
                 })
             }
@@ -54,11 +60,35 @@ struct ShopCart {
           .width('100%')
           .backgroundColor($r('app.color.divider'))
 
+          Column() {
+            Row() {
+              Text(`${this.purchase}${this.counts.toString()}`)
+                .fontSize(12)
+                .fontColor($r('app.color.blank'))
+                .fontFamily('HarmonyHeiTi')
+              Blank()
+              Text($r('app.string.clear_purchase_quantity'))
+                .fontSize(12)
+                .fontFamily('HarmonyHeiTi')
+                .fontColor($r('app.color.blank'))
+                .opacity(0.6)
+                .onClick(() => {
+                  this.emitterClass.clearListenerCounts((counts: number) => {
+                    this.counts = counts;
+                  })
+                })
+            }
+            .width('100%')
+            .padding(12)
+          }
+          .width('100%')
+          .backgroundColor($r('app.color.divider'))
+
           Text($r('app.string.guess_you_like'))
             .fontSize(20)
             .fontColor($r('app.color.blank'))
             .padding({ top: 24, bottom: 20, left: 12 })
-            
+
           FavorGoodList({ url: this.url })
         }
         .padding({ bottom: 12 })
@@ -75,5 +105,14 @@ struct ShopCart {
     .width('100%')
     .height('100%')
     .backgroundColor($r('app.color.divider'))
+  }
+
+  aboutToAppear() {
+    this.emitterClass.getListenerCounts((counts: number) => {
+      this.counts = counts;
+    })
+    this.context.resourceManager.getStringValue($r('app.string.number_of_purchases')).then((value) => {
+      this.purchase = value.toString();
+    })
   }
 }

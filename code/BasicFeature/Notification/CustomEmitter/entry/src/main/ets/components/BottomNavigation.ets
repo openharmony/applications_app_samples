@@ -17,11 +17,48 @@ import router from '@ohos.router';
 import { CustomEmitter } from '@ohos/emitter';
 import { ProductDataModel } from '../model/GoodsModel';
 
+@CustomDialog
+struct HasSubscriberDialog {
+  hasSubscriber?: CustomDialogController;
+
+  build() {
+    Column() {
+      Text($r('app.string.purchase_successful'))
+        .fontSize(16)
+        .textAlign(TextAlign.Center)
+        .fontColor($r('app.color.blank'))
+        .fontFamily('HarmonyHeiTi')
+        .fontWeight(500)
+        .height('6.8%')
+        .margin('1.3%')
+      Text($r('app.string.determine_popup'))
+        .fontSize(16)
+        .fontColor($r('app.color.blue'))
+        .textAlign(TextAlign.Center)
+        .fontFamily('HarmonyHeiTi')
+        .fontWeight(500)
+        .onClick(() => {
+          if (this.hasSubscriber != undefined) {
+            this.hasSubscriber.close();
+          }
+        })
+        .padding('1.3%')
+    }
+    .margin('2.1%')
+  }
+}
+
 @Component
 export struct BottomNavigation {
   @StorageProp('curBp') curBp: string = 'md';
   @Link goodItemData: ProductDataModel;
   private emitterClass: CustomEmitter = new CustomEmitter();
+  hasSubscriberForEvent: CustomDialogController | null = new CustomDialogController({
+    builder: HasSubscriberDialog(),
+    alignment: DialogAlignment.Bottom,
+    offset: { dx: 0, dy: -15 },
+    cornerRadius: 24
+  })
 
   build() {
     Row() {
@@ -38,7 +75,7 @@ export struct BottomNavigation {
         }
         .width(74)
         .onClick(() => {
-          router.push({
+          router.pushUrl({
             url: 'pages/Index'
           })
         })
@@ -55,7 +92,7 @@ export struct BottomNavigation {
         }
         .width(74)
         .onClick(() => {
-          router.push({
+          router.pushUrl({
             url: 'pages/ShopCart'
           })
         })
@@ -79,6 +116,12 @@ export struct BottomNavigation {
           Text($r('app.string.buy_now'))
             .fontColor($r('app.color.white'))
             .fontSize(this.curBp === 'sm' ? 16 : 20)
+            .onClick(() => {
+              if (this.hasSubscriberForEvent != null) {
+                this.emitterClass.listenerEvents();
+                this.hasSubscriberForEvent.open();
+              }
+            })
         }
         .alignItems(VerticalAlign.Center)
         .padding({ left: 20, right: 20 })
