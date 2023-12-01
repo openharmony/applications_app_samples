@@ -19,7 +19,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import Logger from '../utils/Logger';
 import CommonConstants from '../common/constants/CommonConstants';
 
-const TAG = 'TestTag_Setting: '
+const TAG = 'TestTag_Setting: ';
 
 @Entry
 @Component

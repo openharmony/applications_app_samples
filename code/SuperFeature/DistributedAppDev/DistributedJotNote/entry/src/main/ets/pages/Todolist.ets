@@ -56,7 +56,7 @@ struct Todolist {
           Scroll(this.scroller) {
             Column() {
 
-              ForEach(CommonConstants.LIST_ARRAY, (item: string, index: number | undefined) => {
+              ForEach(CommonConstants.LIST_ARRAY, (item: Resource, index: number | undefined) => {
 
                 if (index != undefined) {
                   Row() {
@@ -73,7 +73,7 @@ struct Todolist {
                         .height(30)
                         .margin({ 'top': '14.00px', 'right': '18.00vp', 'bottom': '14.00px', 'left': '6.00vp' })
 
-                      Text(item.toString()).fontSize(16).fontWeight(500)
+                      Text(item).fontSize(16).fontWeight(500)
 
                     }
                   }

@@ -13,8 +13,108 @@
       "value": "随手记"
     },
     {
-      "name": "pick_photo",
-      "value": "select from Gallery"
+      "name": "HOME_TITLE",
+      "value": "随手记"
+    },
+    {
+      "name": "IMG_WALL_TITLE",
+      "value": "图片墙"
+    },
+    {
+      "name": "HELLO",
+      "value": "你好，"
+    },
+    {
+      "name": "WELCOME_USE_JOT",
+      "value": "欢迎使用随手记。"
+    },
+    {
+      "name": "ENTER_IN",
+      "value": "进入随手记"
+    },
+    {
+      "name": "NOTES_TITLE",
+      "value": "笔记页"
+    },
+    {
+      "name": "PLEASE_INPUT_NOTE_TITLE",
+      "value": "请输入笔记标题"
+    },
+    {
+      "name": "NOTES_TIME",
+      "value": "16:60:22 上午"
+    },
+    {
+      "name": "PLEASE_INPUT_NOTE_CONTENT",
+      "value": "请输入笔记内容"
+    },
+    {
+      "name": "MIGRATION_SETTINGS",
+      "value": "迁移设置"
+    },
+    {
+      "name": "MIGRATION_ABILITY",
+      "value": "迁移能力"
+    },
+    {
+      "name": "MIGRATION_PAGE_STACK",
+      "value": "迁移页面栈"
+    },
+    {
+      "name": "MIGRATION_SOURCE_END",
+      "value": "迁移后源端退出"
+    },
+    {
+      "name": "TO_DO_LIST",
+      "value": "待办事项"
+    },
+    {
+      "name": "LIST_ITEM_ONE",
+      "value": "8:00去健身房"
+    },
+    {
+      "name": "LIST_ITEM_TWO",
+      "value": "9:00工作"
+    },
+    {
+      "name": "LIST_ITEM_THREE",
+      "value": "12:30做午餐"
+    },
+    {
+      "name": "LIST_ITEM_FOUR",
+      "value": "16:00见华小艺"
+    },
+    {
+      "name": "LIST_ITEM_FIVE",
+      "value": "7:30做瑜伽"
+    },
+    {
+      "name": "LIST_ITEM_SIX",
+      "value": "14:30打网球"
+    },
+    {
+      "name": "LIST_ITEM_SEVEN",
+      "value": "18:00打篮球"
+    },
+    {
+      "name": "LIST_ITEM_EIGHT",
+      "value": "17:30做晚餐"
+    },
+    {
+      "name": "PICTURE_ONE",
+      "value": "图片1"
+    },
+    {
+      "name": "PICTURE_TWO",
+      "value": "图片2"
+    },
+    {
+      "name": "pick_photo_one",
+      "value": "选择图片1"
+    },
+    {
+      "name": "pick_photo_two",
+      "value": "选择图片2"
     }
   ]
 }

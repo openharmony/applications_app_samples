@@ -104,7 +104,7 @@ struct Home {
               .width(18)
               .height(22)
 
-            Text('笔记页')
+            Text($r('app.string.NOTES_TITLE'))
               .width(244)
               .height(22)
               .fontSize(16)
@@ -145,7 +145,7 @@ struct Home {
               .height(22)
               .margin({ left: 12 })
 
-            Text('待办事项')
+            Text($r('app.string.TO_DO_LIST'))
               .width(244)
               .height(22)
               .fontSize(16)
@@ -185,7 +185,7 @@ struct Home {
               .height(24)
               .margin({ left: 12 })
 
-            Text('图片墙')
+            Text($r('app.string.IMG_WALL_TITLE'))
               .width(244)
               .height(22)
               .fontSize(16)

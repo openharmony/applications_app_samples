@@ -56,16 +56,6 @@ struct Notes {
   $r('app.media.img_07')
   ]
 
-  @Builder
-  MenuBuilder() {
-    Menu() {
-      MenuItem({ startIcon: $r('app.media.ic_image'), content: $r('app.string.pick_photo') })
-        .onClick(() => {
-          Logger.info(TAG, 'pick_photo menu clicked');
-        })
-    }
-  }
-
   // 从图库中选择图片
   async chosePicture() {
     try {
@@ -299,7 +289,7 @@ struct Notes {
             .borderRadius(24)
             .margin({ top: 12 })
 
-            Text('图片1')
+            Text($r('app.string.PICTURE_ONE'))
               .fontSize(12)
               .fontColor('#182431')
               .height(16)
@@ -333,7 +323,7 @@ struct Notes {
             .borderRadius(24)
             .margin({ top: 12 })
 
-            Text('图片2')
+            Text($r('app.string.PICTURE_TWO'))
               .fontSize(12)
               .fontColor('#182431')
               .height(16)
@@ -341,7 +331,7 @@ struct Notes {
               .margin({ top: 8, left: 152, bottom: 32 })
 
             Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-              Button('选择图片1', { type: ButtonType.Capsule, stateEffect: true })
+              Button($r('app.string.pick_photo_one'), { type: ButtonType.Capsule, stateEffect: true })
                 .backgroundColor('rgba(24,36,49,0.05)')
                 .width(150)
                 .height(40)
@@ -353,7 +343,7 @@ struct Notes {
                 .id('button_select_picture_One')
 
 
-              Button('选择图片2', { type: ButtonType.Capsule, stateEffect: true })
+              Button($r('app.string.pick_photo_two'), { type: ButtonType.Capsule, stateEffect: true })
                 .backgroundColor('rgba(24,36,49,0.05)')
                 .width(150)
                 .height(40)
