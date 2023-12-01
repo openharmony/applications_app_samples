@@ -1,0 +1,100 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "Notification"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "Notification"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "enable_notification",
+      "value": "使能通知"
+    },
+    {
+      "name": "set_badge_number",
+      "value": "设置角标"
+    },
+    {
+      "name": "basic_notification",
+      "value": "普通文本通知"
+    },
+    {
+      "name": "long_notification",
+      "value": "长文本通知"
+    },
+    {
+      "name": "multi_line_notification",
+      "value": "多行文本通知"
+    },
+    {
+      "name": "picture_notification",
+      "value": "图片通知"
+    },
+    {
+      "name": "progress_bar_notification",
+      "value": "进度条通知"
+    },
+    {
+      "name": "want_agent_start_ability",
+      "value": "通知启动Ability"
+    },
+    {
+      "name": "want_agent_common_event",
+      "value": "通知公共事件"
+    },
+    {
+      "name": "SecondAbility_desc",
+      "value": "SecondAbility_Notification"
+    },
+    {
+      "name": "allow_button",
+      "value": "允许"
+    },
+    {
+      "name": "module_test_desc",
+      "value": "test_ability_Notification"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "development_guide_example",
+      "value": "开发指南示例"
+    },
+    {
+      "name": "test_text",
+      "value": "test_text"
+    },
+    {
+      "name": "test_longText",
+      "value": "test_longText"
+    },
+    {
+      "name": "line_01",
+      "value": "line_01"
+    },
+    {
+      "name": "test_briefText",
+      "value": "test_briefText"
+    },
+    {
+      "name": "Second_Page",
+      "value": "Second Page"
+    },
+    {
+      "name": "Test_Text",
+      "value": "Test_Text"
+    }
+  ]
+}

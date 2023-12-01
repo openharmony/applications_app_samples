@@ -1,0 +1,100 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "Notification"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "Notification"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "enable_notification",
+      "value": "Enable notification"
+    },
+    {
+      "name": "set_badge_number",
+      "value": "Set badge number"
+    },
+    {
+      "name": "basic_notification",
+      "value": "Basic notification"
+    },
+    {
+      "name": "long_notification",
+      "value": "Long notification"
+    },
+    {
+      "name": "multi_line_notification",
+      "value": "Multi line notification"
+    },
+    {
+      "name": "picture_notification",
+      "value": "Picture notification"
+    },
+    {
+      "name": "progress_bar_notification",
+      "value": "Progress bar notification"
+    },
+    {
+      "name": "want_agent_start_ability",
+      "value": "WantAgent start ability notification"
+    },
+    {
+      "name": "want_agent_common_event",
+      "value": "WantAgent start common event"
+    },
+    {
+      "name": "SecondAbility_desc",
+      "value": "SecondAnility_Notification"
+    },
+    {
+      "name": "allow_button",
+      "value": "allow_button"
+    },
+    {
+      "name": "module_test_desc",
+      "value": "test_ability_Notification"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "development_guide_example",
+      "value": "development_guide_example"
+    },
+    {
+      "name": "test_text",
+      "value": "test_text"
+    },
+    {
+      "name": "test_longText",
+      "value": "test_longText"
+    },
+    {
+      "name": "line_01",
+      "value": "line_01"
+    },
+    {
+      "name": "test_briefText",
+      "value": "test_briefText"
+    },
+    {
+      "name": "Second_Page",
+      "value": "Second Page"
+    },
+    {
+      "name": "Test_Text",
+      "value": "Test_Text"
+    }
+  ]
+}

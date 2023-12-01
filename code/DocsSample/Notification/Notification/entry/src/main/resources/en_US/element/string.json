@@ -1,0 +1,136 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "Notification"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "Notification"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Notification"
+    },
+    {
+      "name": "enable_notification",
+      "value": "Enable notification"
+    },
+    {
+      "name": "set_badge_number",
+      "value": "Set badge number"
+    },
+    {
+      "name": "basic_notification",
+      "value": "Basic notification"
+    },
+    {
+      "name": "long_notification",
+      "value": "Long notification"
+    },
+    {
+      "name": "multi_line_notification",
+      "value": "Multi line notification"
+    },
+    {
+      "name": "picture_notification",
+      "value": "Picture notification"
+    },
+    {
+      "name": "progress_bar_notification",
+      "value": "Progress bar notification"
+    },
+    {
+      "name": "want_agent_start_ability",
+      "value": "WantAgent start ability notification"
+    },
+    {
+      "name": "want_agent_common_event",
+      "value": "WantAgent start common event"
+    },
+    {
+      "name": "SecondAbility_desc",
+      "value": "Notification"
+    },
+    {
+      "name": "SecondAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "thirdAbility_desc",
+      "value": "Notification"
+    },
+    {
+      "name": "thirdAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "clickable_notification",
+      "value": "Clickable notification"
+    },
+    {
+      "name": "notification_title",
+      "value": "Title"
+    },
+    {
+      "name": "notification_content",
+      "value": "Notification content"
+    },
+    {
+      "name": "notification_additional",
+      "value": "Notification additional content"
+    },
+    {
+      "name": "notification_long_text",
+      "value": "Notification long text"
+    },
+    {
+      "name": "notification_brief_text",
+      "value": "Notification brief text,it is a summary of the contents of the notice."
+    },
+    {
+      "name": "notification_expanded_title",
+      "value": "Notification expanded title"
+    },
+    {
+      "name": "EntryAbility1_desc",
+      "value": "EntryAbility1_Notification"
+    },
+    {
+      "name": "EntryAbility1_label",
+      "value": "label"
+    },
+    {
+      "name": "webfont_text",
+      "value": "Text_notification"
+    },
+    {
+      "name": "allow_button",
+      "value": "allow"
+    },
+    {
+      "name": "development_guide_example",
+      "value": "development_guide_example"
+    },
+    {
+      "name": "kong_wu",
+      "value": " "
+    },
+    {
+      "name": "EntryAbility666_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility666_label",
+      "value": "label"
+    },
+    {
+      "name": "SecondPage",
+      "value": "Second Page"
+    },
+    {
+      "name": "empty",
+      "value": "empty"
+    }
+  ]
+}
