@@ -1,0 +1,136 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "EntryAbility1"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Notification"
+    },
+    {
+      "name": "enable_notification",
+      "value": "使能通知"
+    },
+    {
+      "name": "set_badge_number",
+      "value": "设置角标"
+    },
+    {
+      "name": "basic_notification",
+      "value": "普通文本通知"
+    },
+    {
+      "name": "long_notification",
+      "value": "长文本通知"
+    },
+    {
+      "name": "multi_line_notification",
+      "value": "多行文本通知"
+    },
+    {
+      "name": "picture_notification",
+      "value": "图片通知"
+    },
+    {
+      "name": "progress_bar_notification",
+      "value": "进度条通知"
+    },
+    {
+      "name": "want_agent_start_ability",
+      "value": "通知启动Ability"
+    },
+    {
+      "name": "want_agent_common_event",
+      "value": "通知公共事件"
+    },
+    {
+      "name": "SecondAbility_desc",
+      "value": "SecondAbility_Notification"
+    },
+    {
+      "name": "SecondAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "thirdAbility_desc",
+      "value": "thirdAbiility_Notification"
+    },
+    {
+      "name": "thirdAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "clickable_notification",
+      "value": "点击可跳转的通知"
+    },
+    {
+      "name": "notification_title",
+      "value": "标题"
+    },
+    {
+      "name": "notification_content",
+      "value": "通知内容"
+    },
+    {
+      "name": "notification_additional",
+      "value": "通知次要内容"
+    },
+    {
+      "name": "notification_long_text",
+      "value": "通知的长文本"
+    },
+    {
+      "name": "notification_brief_text",
+      "value": "通知概要内容，是对通知内容的总结。"
+    },
+    {
+      "name": "notification_expanded_title",
+      "value": "通知展开时的标题"
+    },
+    {
+      "name": "EntryAbility1_desc",
+      "value": "EntryAbility1_Notification"
+    },
+    {
+      "name": "EntryAbility1_label",
+      "value": "label"
+    },
+    {
+      "name": "webfont_text",
+      "value": "文本通知"
+    },
+    {
+      "name": "allow_button",
+      "value": "允许"
+    },
+    {
+      "name": "development_guide_example",
+      "value": "通知"
+    },
+    {
+      "name": "kong_wu",
+      "value": " "
+    },
+    {
+      "name": "EntryAbility666_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility666_label",
+      "value": "label"
+    },
+    {
+      "name": "SecondPage",
+      "value": "Second Page"
+    },
+    {
+      "name": "empty",
+      "value": "暂无内容"
+    }
+  ]
+}
