@@ -37,13 +37,26 @@ export class CustomEmitter {
     };
     let dialogShowEventsData: emitter.EventData = {
       data: {
-        id: EmitterConst.DIALOG_EVENT_ID
+        id: EmitterConst.DIALOG_EVENT_ID,
       }
     };
     // 单次订阅事件--广告
     emitter.once(dialogShowEventsId, callback);
     // 事件发布
     emitter.emit(dialogShowEventsId, dialogShowEventsData);
+  }
+
+  // 单次订阅回调(eventId为string类型)
+  public closeEventsDialog(callback: Base.Callback<emitter.EventData>) {
+    let dialogCloseEventsData: emitter.EventData = {
+      data: {
+        id: EmitterConst.CLOSE_DIALOG_EVENT_ID
+      }
+    };
+    // 单次订阅事件--关闭广告
+    emitter.once(EmitterConst.CLOSE_DIALOG_EVENT_ID, callback);
+    // 事件发布
+    emitter.emit(EmitterConst.CLOSE_DIALOG_EVENT_ID, dialogCloseEventsData);
   }
 
   // 持久化订阅的事件回调
@@ -53,7 +66,17 @@ export class CustomEmitter {
     };
     // 以持久化方式订阅购物车添加事件并接收事件回调
     emitter.off(EmitterConst.ADD_EVENT_ID);
+
     emitter.on(addGoodDataId, (eventData: emitter.EventData) => {
+      callback(eventData);
+    });
+  }
+
+  // 持久化订阅的事件回调(eventId为string类型)
+  public deleteShoppingCartGoodsList(callback: (eventData: emitter.EventData) => void) {
+    // 以持久化方式订阅购物车删除事件并接收事件回调
+    emitter.off(EmitterConst.DELETE_EVENT_ID);
+    emitter.on(EmitterConst.DELETE_EVENT_ID, (eventData: emitter.EventData) => {
       callback(eventData);
     });
   }
@@ -69,5 +92,33 @@ export class CustomEmitter {
     };
     // 持续订阅发布事件
     emitter.emit(addToShoppingCartId, shoppingCartData);
+  }
+
+  public deleteGoods(listItemId: number) {
+    console.info("setShoppingCartGoodsList goodId" + JSON.stringify(listItemId))
+    let shoppingCartData: emitter.EventData = {
+      data: {
+        id: listItemId,
+      }
+    };
+    // 持续订阅发布事件
+    emitter.emit(EmitterConst.DELETE_EVENT_ID, shoppingCartData);
+  }
+
+  // 以持久化方式订阅购物车购买事件
+  public listenerEvents() {
+    emitter.on(EmitterConst.BUY_EVENT_ID, (eventData: emitter.EventData) => {
+    });
+  }
+
+  // 获取购买事件订阅者数量并将结果返回
+  public getListenerCounts(callback: (counts: number) => void) {
+    callback(emitter.getListenerCount(EmitterConst.BUY_EVENT_ID));
+  }
+
+  // 取消订阅购买事件后将购买事件订阅者数量结果返回
+  public clearListenerCounts(callback: (counts: number) => void) {
+    emitter.off(EmitterConst.BUY_EVENT_ID);
+    callback(emitter.getListenerCount(EmitterConst.BUY_EVENT_ID));
   }
 }

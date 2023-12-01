@@ -13,33 +13,33 @@
  * limitations under the License.
  */
 
-import hilog from '@ohos.hilog'
+import hilog from '@ohos.hilog';
 
 class Logger {
-  private domain: number = 0xF811
-  private prefix: string = ''
-  private format: string = '%{public}s, %{public}s'
+  private domain: number;
+  private prefix: string = '';
+  private format: string = '%{public}s, %{public}s';
 
   constructor(prefix: string) {
-    this.prefix = prefix
-    this.domain = 0xF811
+    this.prefix = prefix;
+    this.domain = 0xF811;
   }
 
   debug(...args: string[]): void {
-    hilog.debug(this.domain, this.prefix, this.format, args)
+    hilog.debug(this.domain, this.prefix, this.format, args);
   }
 
   info(...args: string[]): void {
-    hilog.info(this.domain, this.prefix, this.format, args)
+    hilog.info(this.domain, this.prefix, this.format, args);
   }
 
   warn(...args: string[]): void {
-    hilog.warn(this.domain, this.prefix, this.format, args)
+    hilog.warn(this.domain, this.prefix, this.format, args);
   }
 
   error(...args: string[]): void {
-    hilog.error(this.domain, this.prefix, this.format, args)
+    hilog.error(this.domain, this.prefix, this.format, args);
   }
 }
 
-export default new Logger('[Sample_CustomEmitter]')
+export default new Logger('[Sample_CustomEmitter]');

@@ -31,6 +31,26 @@
     {
       "name": "shop_cart",
       "value": "购物车"
+    },
+    {
+      "name": "buy_now",
+      "value": "立即购买"
+    },
+    {
+      "name": "determine_popup",
+      "value": "确定"
+    },
+    {
+      "name": "purchase_successful",
+      "value": "购买成功!"
+    },
+    {
+      "name": "number_of_purchases",
+      "value": "已购物数量: "
+    },
+    {
+      "name": "clear_purchase_quantity",
+      "value": "清空购买数量"
     }
   ]
 }

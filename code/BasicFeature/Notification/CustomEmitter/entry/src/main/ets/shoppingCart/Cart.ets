@@ -13,13 +13,15 @@
  * limitations under the License.
  */
 
+import { CustomEmitter } from '@ohos/emitter';
 import { ProductDataModel } from '../model/GoodsModel';
 import { PRODUCT_DATA } from '../mock/ProductsData';
 
 @Component
 export struct Cart {
-  @StorageProp('curBp') curBp: string = 'sm'
-  @Link shoppingCartGoodsListToCart: ProductDataModel[]
+  @StorageProp('curBp') curBp: string = 'sm';
+  @Link shoppingCartGoodsListToCart: ProductDataModel[];
+  private emitterClass: CustomEmitter = new CustomEmitter();
 
   build() {
     Column() {
@@ -41,7 +43,7 @@ export struct Cart {
       }
       .width('100%')
 
-      ForEach(this.shoppingCartGoodsListToCart ? this.shoppingCartGoodsListToCart : [], (item: number) => {
+      ForEach(this.shoppingCartGoodsListToCart ? this.shoppingCartGoodsListToCart : [], (item: number, index: number) => {
         Row() {
           Toggle({ type: ToggleType.Checkbox })
             .width(20)
@@ -77,6 +79,10 @@ export struct Cart {
                   .width(24)
                   .height(24)
                   .objectFit(ImageFit.Contain)
+                  .id('cart' + PRODUCT_DATA[item].id + 'reduceMedia')
+                  .onClick(() => {
+                    this.emitterClass.deleteGoods(index);
+                  })
                 Text(`${1}`)
                   .margin({ left: 10, right: 10 })
                   .fontSize(12)

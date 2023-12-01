@@ -13,9 +13,12 @@
 * limitations under the License.
 */
 
+import { CustomEmitter } from '@ohos/emitter';
+
 @CustomDialog
 export struct EventsDialog {
-  private customDialogController?: CustomDialogController
+  private customDialogController?: CustomDialogController;
+  private emitterClass: CustomEmitter = new CustomEmitter();
 
   build() {
     Column() {
@@ -50,9 +53,11 @@ export struct EventsDialog {
       .backgroundColor('rgba(0,0,0,0.3)')
       .borderRadius('18vp')
       .onClick(() => {
-        if (this.customDialogController) {
-          this.customDialogController.close();
-        }
+        this.emitterClass.closeEventsDialog(() => {
+          if (this.customDialogController) {
+            this.customDialogController.close();
+          }
+        })
       })
     }
     .backgroundColor('#F1F3F5')

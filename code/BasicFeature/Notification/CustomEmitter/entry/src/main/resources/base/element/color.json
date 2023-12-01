@@ -39,6 +39,10 @@
     {
       "name": "red2",
       "value": "#EA314D"
+    },
+    {
+      "name": "blue",
+      "value": "#0A59F7"
     }
   ]
 }
