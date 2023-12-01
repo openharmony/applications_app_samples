@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "shared_desc",
+      "value": "动态分享"
+    },
+    {
+      "name": "library_title",
+      "value": "动态分享包"
+    },
+    {
+      "name": "back_to_HAP",
+      "value": "返回至HAP页面"
+    },
+    {
+      "name": "back_to_HSP",
+      "value": "返回至HSP页面"
+    },
+    {
+      "name": "router_to_HSP",
+      "value": "跳转至HSP页面"
+    }
+  ]
+}

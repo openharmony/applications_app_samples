@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "静态共享包"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "静态共享包"
+    },
+    {
+      "name": "main_page",
+      "value": "引用HAR的ArkUI组件"
+    },
+    {
+      "name": "button",
+      "value": "引用HAR的类和方法"
+    },
+    {
+      "name": "native_add",
+      "value": "引用HAR的native方法"
+    }
+  ]
+}
