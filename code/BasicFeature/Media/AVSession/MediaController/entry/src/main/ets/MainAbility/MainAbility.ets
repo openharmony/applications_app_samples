@@ -16,10 +16,11 @@
 import UIAbility from '@ohos.app.ability.UIAbility';
 import hilog from '@ohos.hilog';
 import window from '@ohos.window';
+import Want from '@ohos.app.ability.Want';
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want, launchParam) {
-    globalThis.context = this.context;
+  onCreate(want: Want) {
+    AppStorage.setOrCreate('context', this.context);
     hilog.info(0x0000, '[Sample_MediaController]', '%{public}s', 'Ability onCreate');
   }
 

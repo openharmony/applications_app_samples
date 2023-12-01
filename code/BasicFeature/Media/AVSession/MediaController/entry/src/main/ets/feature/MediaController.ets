@@ -14,8 +14,8 @@
 */
 
 import AVSessionManager from '@ohos.multimedia.avsession';
-import Log from '../common/Logger';
 import bundle from '@ohos.bundle';
+import Log from '../common/Logger';
 
 const TAG = "ControllerComponent";
 
@@ -30,15 +30,15 @@ export default class control {
   private queueItemsMap: Map<string, Array<AVSessionManager.AVQueueItem>> = new Map();
   private lyricMap: Map<string, string> = new Map();
   private sessionArray: Array<string> = new Array();
-  private isPlayingLink = undefined;
-  private isLyricLink = undefined;
-  private bundleNameMapLink = undefined;
-  private metaDataMapLink = undefined;
-  private playStateMapLink = undefined;
-  private queueTitleMapLink = undefined;
-  private queueItemsMapLink = undefined;
-  private lyricMapLink = undefined;
-  private sessionArrayLink = undefined;
+  private isPlayingLink: SubscribedAbstractProperty<undefined | boolean> | undefined = undefined;
+  private isLyricLink: SubscribedAbstractProperty<undefined | boolean> | undefined = undefined;
+  private bundleNameMapLink: SubscribedAbstractProperty<undefined | Map<string, string>> | undefined = undefined;
+  private metaDataMapLink: SubscribedAbstractProperty<undefined | Map<string, AVSessionManager.AVMetadata>> | undefined = undefined;
+  private playStateMapLink: SubscribedAbstractProperty<undefined | Map<string, AVSessionManager.AVMetadata>> | undefined = undefined;
+  private queueTitleMapLink: SubscribedAbstractProperty<undefined | Map<string, string>> | undefined = undefined;
+  private queueItemsMapLink: SubscribedAbstractProperty<undefined | Map<string, AVSessionManager.AVQueueItem[]>> | undefined = undefined;
+  private lyricMapLink: SubscribedAbstractProperty<undefined | Map<string, string>> | undefined = undefined;
+  private sessionArrayLink: SubscribedAbstractProperty<undefined | string[]> | undefined = undefined;
 
   constructor() {
     Log.info(TAG, 'constructor');
@@ -49,15 +49,15 @@ export default class control {
 
   async initLink(): Promise<void> {
     Log.info(TAG, 'initLink');
-    this.isPlayingLink = AppStorage.SetAndLink('isPlaying', undefined);
-    this.isLyricLink = AppStorage.SetAndLink('isLyric', undefined);
-    this.bundleNameMapLink = AppStorage.SetAndLink('bundleNameMap', undefined);
-    this.metaDataMapLink = AppStorage.SetAndLink('metaDataMap', undefined);
-    this.playStateMapLink = AppStorage.SetAndLink('playStateMap', undefined);
-    this.queueItemsMapLink = AppStorage.SetAndLink('queueItemsMap', undefined);
-    this.queueTitleMapLink = AppStorage.SetAndLink('queueTitleMap', undefined);
-    this.lyricMapLink = AppStorage.SetAndLink('lyricMap', undefined);
-    this.sessionArrayLink = AppStorage.SetAndLink('sessionArray', undefined);
+    this.isPlayingLink = AppStorage.setAndLink<undefined | boolean>('isPlaying', undefined);
+    this.isLyricLink = AppStorage.setAndLink<undefined | boolean>('isLyric', undefined);
+    this.bundleNameMapLink = AppStorage.setAndLink<undefined | Map<string, string>>('bundleNameMap', undefined);
+    this.metaDataMapLink = AppStorage.setAndLink<undefined | Map<string, AVSessionManager.AVMetadata>>('metaDataMap', undefined);
+    this.playStateMapLink = AppStorage.setAndLink<undefined | Map<string, AVSessionManager.AVMetadata>>('playStateMap', undefined);
+    this.queueItemsMapLink = AppStorage.setAndLink<undefined | Map<string, AVSessionManager.AVQueueItem[]>>('queueItemsMap', undefined);
+    this.queueTitleMapLink = AppStorage.setAndLink<undefined | Map<string, string>>('queueTitleMap', undefined);
+    this.lyricMapLink = AppStorage.setAndLink<undefined | Map<string, string>>('lyricMap', undefined);
+    this.sessionArrayLink = AppStorage.setAndLink<undefined | string[]>('sessionArray', undefined);
     Log.info(TAG, 'initLink done');
   }
 
@@ -98,21 +98,21 @@ export default class control {
         assetId: ''
       }
     }
-    this.isPlayingLink.set(this.isPlaying);
+    this.isPlayingLink!.set(this.isPlaying);
     Log.info(TAG, 'session info done to link isPlaying');
-    this.metaDataMapLink.set(this.metaDataMap);
+    this.metaDataMapLink!.set(this.metaDataMap);
     Log.info(TAG, 'session info done to link metaDataMap');
-    this.playStateMapLink.set(this.playStateMap);
+    this.playStateMapLink!.set(this.playStateMap);
     Log.info(TAG, 'session info done to link playStateMap');
-    this.queueItemsMapLink.set(this.queueItemsMap);
+    this.queueItemsMapLink!.set(this.queueItemsMap);
     Log.info(TAG, 'session info done to link queueItemsMap');
-    this.queueTitleMapLink.set(this.queueTitleMap);
+    this.queueTitleMapLink!.set(this.queueTitleMap);
     Log.info(TAG, 'session info done to link queueTitleMap');
-    this.bundleNameMapLink.set(this.bundleNameMap);
+    this.bundleNameMapLink!.set(this.bundleNameMap);
     Log.info(TAG, 'session info done to link bundleNameMap');
-    this.lyricMapLink.set(this.lyricMap);
+    this.lyricMapLink!.set(this.lyricMap);
     Log.info(TAG, 'session info done to link lyricMap');
-    this.sessionArrayLink.set(this.sessionArray);
+    this.sessionArrayLink!.set(this.sessionArray);
     Log.info(TAG, 'session info done to link sessionArray');
     Log.info(TAG, 'startControl done ');
   }
@@ -139,7 +139,7 @@ export default class control {
     Log.info(TAG, 'get queue items  : ' + queueItems.length);
     that.queueItemsMap[sessionId] = queueItems;
     let avPlayState: AVSessionManager.AVPlaybackState = await controller.getAVPlaybackState();
-    let playState: AVSessionManager.PlaybackState = avPlayState.state;
+    let playState: AVSessionManager.PlaybackState | undefined = avPlayState.state;
     that.playStateMap[sessionId] = playState;
     that.isPlaying = (playState == AVSessionManager.PlaybackState.PLAYBACK_STATE_PLAY);
     Log.info(TAG, 'get playState  : ' + that.isPlaying);
@@ -150,32 +150,32 @@ export default class control {
     let sessionId: string = controller.sessionId;
     controller.on('metadataChange', 'all', (metadata: AVSessionManager.AVMetadata) => {
       Log.info(TAG, 'get metadata: ' + metadata.title + ' for session :' + sessionId);
-      let dataMap = that.metaDataMapLink.get();
-      dataMap[sessionId] = metadata;
-      that.metaDataMapLink.set(dataMap);
+      let dataMap: Map<string, AVSessionManager.AVMetadata> | undefined = that.metaDataMapLink!.get();
+      dataMap!.set(sessionId, metadata);
+      that.metaDataMapLink!.set(dataMap);
     });
     controller.on('playbackStateChange', 'all', async (playState: AVSessionManager.AVPlaybackState) => {
       Log.info(TAG, 'get playbackState: ' + playState.state + ' for session:' + sessionId);
       that.playStateMap[sessionId] = playState.state;
       that.isPlaying = (playState.state == AVSessionManager.PlaybackState.PLAYBACK_STATE_PLAY);
-      that.isPlayingLink.set(that.isPlaying);
-      that.playStateMapLink.set(that.playStateMap);
+      that.isPlayingLink!.set(that.isPlaying);
+      that.playStateMapLink!.set(that.playStateMap);
     });
     controller.on('queueItemsChange', (items: Array<AVSessionManager.AVQueueItem>) => {
       Log.info(TAG, 'get queueItems: ' + items.length + ' for session :' + sessionId);
       that.queueItemsMap[sessionId] = items;
-      that.queueItemsMapLink.set(that.queueItemsMap);
+      that.queueItemsMapLink!.set(that.queueItemsMap);
     });
     controller.on('queueTitleChange', (title: string) => {
       Log.info(TAG, 'get queueTitle  : ' + title + ' for session :' + sessionId);
       that.queueTitleMap[sessionId] = title;
-      that.queueTitleMapLink.set(that.queueTitleMap);
+      that.queueTitleMapLink!.set(that.queueTitleMap);
     });
-    controller.on('sessionEvent', async (sessionEvent: string, args: { [key: string]: Object }) => {
+    controller.on('sessionEvent', async (sessionEvent: string, args) => {
       let lyricStruct = await controller.getExtras();
       let lyricLineNum: number = Number(lyricStruct.lyricsLineNumber);
-      that.lyricMap[sessionId] = String(lyricLineNum + ' : ' + args.lyrics);
-      that.lyricMapLink.set(that.lyricMap);
+      that.lyricMap[sessionId] = String(lyricLineNum + ' : ' + args!.lyrics);
+      that.lyricMapLink!.set(that.lyricMap);
     });
   }
 
@@ -224,19 +224,17 @@ export default class control {
   async getLyric(sessionId: string): Promise<void> {
     let controller: AVSessionManager.AVSessionController = this.controllerMap[sessionId];
     this.isLyric = !this.isLyric;
-    this.isLyricLink.set(this.isLyric);
-    let paramStruct = {
+    this.isLyricLink!.set(this.isLyric);
+    await controller.sendCommonCommand('lyrics', {
       'lyrics': this.isLyric
-    };
-    await controller.sendCommonCommand('lyrics', paramStruct);
+    });
   }
 
   async interval(): Promise<void> {
     setInterval(async () => {
-      let paramStruct = {
+      await this.controllerMap[this.sessionArray[0]].sendCommonCommand('lyrics', {
         'lyrics': this.isLyric
-      };
-      await this.controllerMap[this.sessionArray[0]].sendCommonCommand('lyrics', paramStruct);
+      });
     }, 1000)
   }
 }
