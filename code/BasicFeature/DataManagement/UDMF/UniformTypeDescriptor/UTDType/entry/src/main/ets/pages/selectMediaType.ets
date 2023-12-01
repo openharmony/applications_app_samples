@@ -22,7 +22,7 @@ import { BusinessError } from '@ohos.base';
 // 获取应用文件路径
 let context = getContext(this) as common.UIAbilityContext;
 let baseDir = context.filesDir;
-let filesDir = baseDir + '/udmf_test'
+let filesDir = baseDir + '/udmf_test';
 
 let class2UTD = new Map([
   ["All", "All"],
@@ -34,7 +34,8 @@ let class2UTD = new Map([
 class FileInfo {
   filename: string;
   iconFile: string;
-  constructor(fileName:string, iconFile:string) {
+
+  constructor(fileName: string, iconFile: string) {
     this.filename = fileName;
     this.iconFile = iconFile;
   }
@@ -43,10 +44,10 @@ class FileInfo {
 @Entry
 @Component
 struct selectMediaType {
-  @State text: string = "Images"
-  @State index: number = 1
-  @State space: number = 12
-  @State arrowPosition: ArrowPosition = ArrowPosition.END
+  @State text: string = "Images";
+  @State index: number = 1;
+  @State space: number = 12;
+  @State arrowPosition: ArrowPosition = ArrowPosition.END;
   @State fileNames: string[] = [];
   @State selectedFilesInfos: FileInfo[] = [];
   private routerBackUrl: string = 'pages/Index';
@@ -60,7 +61,7 @@ struct selectMediaType {
     return files;
   }
 
-  UpdateSelectedFiles() : void{
+  UpdateSelectedFiles(): void {
     this.fileNames = this.getListFile();
     for (let i = this.selectedFilesInfos.length - 1; i >= 0; i--) {
       this.selectedFilesInfos.pop();
@@ -109,21 +110,23 @@ struct selectMediaType {
         catch (e) {
           let error: BusinessError = e as BusinessError;
           console.error(`belongsTo throws an exception. code is ${error.code}, message is ${error.message} `);
-          console.info(`exception file name: ${fileName}`)
+          console.info(`exception file name: ${fileName}`);
         }
       }
     }
   }
 
   aboutToAppear() {
-    console.info('filesDir: '+ filesDir);
+    console.info('filesDir: ' + filesDir);
     this.UpdateSelectedFiles();
   }
+
   aboutToDisappear() {
     for (let i = this.selectedFilesInfos.length - 1; i >= 0; i--) {
       this.selectedFilesInfos.pop();
     }
   }
+
   build() {
     Column() {
       Column() {
@@ -135,8 +138,8 @@ struct selectMediaType {
             .objectFit(ImageFit.Fill)
             .visibility(Visibility.Visible)
             .alignSelf(ItemAlign.Auto)
-            .margin({left: 24, right: 12})
-            .onClick(()=>{
+            .margin({ left: 24, right: 12 })
+            .onClick(() => {
               router.pushUrl({ url: this.routerBackUrl })
             })
           Text('选择媒体类型')
@@ -168,19 +171,19 @@ struct selectMediaType {
           .optionFont({ size: 16, weight: 500 })
           .space(this.space)
           .arrowPosition(this.arrowPosition)
-          .menuAlign(MenuAlignType.START, {dx:0, dy:0})
+          .menuAlign(MenuAlignType.START, { dx: 0, dy: 0 })
           .backgroundColor($r('app.color.background_shallow_grey'))
-          .onSelect((index:number, text?: string | undefined)=>{
+          .onSelect((index: number, text?: string | undefined) => {
             console.info('Select:' + index);
             this.index = index;
-            if(text){
+            if (text) {
               this.text = text;
               console.info('Select type:' + text);
               this.UpdateSelectedFiles();
             }
           })
       }
-      .margin({left: 12, right: 12})
+      .margin({ left: 12, right: 12 })
       .height(48)
       .width(160)
       .alignItems(HorizontalAlign.Start)
@@ -207,8 +210,8 @@ struct selectMediaType {
                           src: item.filename,
                           selectIconFile: item.iconFile
                         }
-                      })
-                      console.info("select file " + item.filename)
+                      });
+                      console.info("select file " + item.filename);
                     })
                   Divider()
                     .vertical(false)
@@ -232,16 +235,16 @@ struct selectMediaType {
         .listDirection(Axis.Vertical) // 排列方向
         .scrollBar(BarState.Auto)
         .friction(0.6)
-        .margin({left: 12, right: 12})
+        .margin({ left: 12, right: 12 })
         .borderRadius(24)
         .edgeEffect(EdgeEffect.Spring) // 边缘效果设置为Spring
         .onScrollIndex((firstIndex: number, lastIndex: number, centerIndex: number) => {
-          console.info('first' + firstIndex)
-          console.info('last' + lastIndex)
-          console.info('center' + centerIndex)
+          console.info('first' + firstIndex);
+          console.info('last' + lastIndex);
+          console.info('center' + centerIndex);
         })
         .onScroll((scrollOffset: number, scrollState: ScrollState) => {
-          console.info(`onScroll scrollState = ScrollState` + scrollState + `, scrollOffset = ` + scrollOffset)
+          console.info(`onScroll scrollState = ScrollState` + scrollState + `, scrollOffset = ` + scrollOffset);
         })
         .backgroundColor(0xFFFFFF)
       }

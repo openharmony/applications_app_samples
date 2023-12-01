@@ -22,7 +22,7 @@ import { BusinessError } from '@ohos.base';
 // 获取应用文件路径
 let context = getContext(this) as common.UIAbilityContext;
 let baseDir = context.filesDir;
-let filesDir = baseDir + '/udmf_test'
+let filesDir = baseDir + '/udmf_test';
 let precastFiles: string[] = [
   "imagePng1.png",
   "imagePng2.png",
@@ -62,7 +62,7 @@ function CreatePrecastFile(): void {
       console.info(`file path: ${filesDir} not exists`);
       fs.mkdirSync(filesDir);
     }
-  } catch(error) {
+  } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error("accessSync failed with error message: " + err.message + ", error code: " + err.code);
   }
@@ -80,7 +80,7 @@ function CreatePrecastFile(): void {
         console.info("file fd: " + file.fd);
         fs.closeSync(file);
       }
-    } catch(error) {
+    } catch (error) {
       let err: BusinessError = error as BusinessError;
       console.error("accessSync failed with error message: " + err.message + ", error code: " + err.code);
     }
@@ -91,10 +91,12 @@ function CreatePrecastFile(): void {
 @Component
 struct Index {
   private routerUrl: string = 'pages/selectMediaType'
+
   aboutToAppear() {
-    console.info('filesDir: '+ filesDir);
+    console.info('filesDir: ' + filesDir);
     CreatePrecastFile();
   }
+
   build() {
     Column() {
       Row() {

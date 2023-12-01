@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -23,38 +23,38 @@ import Want from '@ohos.app.ability.Want';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 export default class TestAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        console.log('TestAbility onCreate');
-        let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-        let abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
-        console.info('start run testcase!!!');
-        Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
-    }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log('TestAbility onCreate');
+    let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+    let abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
+    console.info('start run testcase!!!');
+    Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
+  }
 
-    onDestroy() {
-        console.log('TestAbility onDestroy');
-    }
+  onDestroy() {
+    console.log('TestAbility onDestroy');
+  }
 
-    onWindowStageCreate(windowStage: window.WindowStage) {
-        console.log('TestAbility onWindowStageCreate');
-        windowStage.loadContent('testability/pages/Index', (err: BusinessError, data: void) => {
-            if (err.code) {
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                return;
-            }
-            console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
-        });
-    }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('TestAbility onWindowStageCreate');
+    windowStage.loadContent('testability/pages/Index', (err: BusinessError, data: void) => {
+      if (err.code) {
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
+    });
+  }
 
-    onWindowStageDestroy() {
-        console.log('TestAbility onWindowStageDestroy');
-    }
+  onWindowStageDestroy() {
+    console.log('TestAbility onWindowStageDestroy');
+  }
 
-    onForeground() {
-        console.log('TestAbility onForeground');
-    }
+  onForeground() {
+    console.log('TestAbility onForeground');
+  }
 
-    onBackground() {
-        console.log('TestAbility onBackground');
-    }
+  onBackground() {
+    console.log('TestAbility onBackground');
+  }
 };
