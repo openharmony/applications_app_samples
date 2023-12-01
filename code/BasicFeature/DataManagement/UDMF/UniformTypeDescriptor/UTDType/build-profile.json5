@@ -23,7 +23,20 @@
         "compatibleSdkVersion": 9
       }
     ],
-    "signingConfigs": []
+    "signingConfigs": [
+      {
+        "name": "default",
+        "material": {
+          "certpath": "C:\\Users\\shouz\\.ohos\\config\\openharmony\\auto_ohos_default_UTDType_com.example.UTDType.cer",
+          "storePassword": "0000001B671A3ED58272A2F73045DF2D4500B49FD3F2BC742CC01E1CBA54F8FF2A0F50895F00650698E7A1",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001BFAF979A9E9B8F4EB0B4781BE56B30877B0560033231AD321C494247CCED90C2593760B665A609C",
+          "profile": "C:\\Users\\shouz\\.ohos\\config\\openharmony\\auto_ohos_default_UTDType_com.example.UTDType.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\shouz\\.ohos\\config\\openharmony\\auto_ohos_default_UTDType_com.example.UTDType.p12"
+        }
+      }
+    ]
   },
   "modules": [
     {
