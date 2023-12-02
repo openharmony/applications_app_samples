@@ -1,0 +1,192 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "用于测试进程线程模型及任务管理相关功能"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "进程线程模型及任务管理"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "StageProcessThread"
+    },
+    {
+      "name": "StaticSubscriber_desc",
+      "value": "静态订阅"
+    },
+    {
+      "name": "StaticSubscriber_label",
+      "value": "StaticSubscription"
+    },
+    {
+      "name": "main_title",
+      "value": "进程线程模型及任务管理开发指导"
+    },
+    {
+      "name": "process_button",
+      "value": "进程模型开发指导"
+    },
+    {
+      "name": "taskmanager_button",
+      "value": "任务管理开发指导"
+    },
+    {
+      "name": "thread_button",
+      "value": "线程模型开发指导"
+    },
+    {
+      "name": "subscribe_button",
+      "value": "订阅灭屏公共事件"
+    },
+    {
+      "name": "unsubscribe_button",
+      "value": "取消订阅灭屏公共事件"
+    },
+    {
+      "name": "publish_noinfo_button",
+      "value": "发布灭屏公共事件-不携带信息"
+    },
+    {
+      "name": "publish_haveinfo_button",
+      "value": "发布灭屏公共事件-携带信息"
+    },
+    {
+      "name": "publish_sticky_button",
+      "value": "发布灭屏粘性公共事件"
+    },
+    {
+      "name": "remove_sticky_button",
+      "value": "移除灭屏粘性公共事件"
+    },
+    {
+      "name": "worker_button",
+      "value": "使用worker进行线程间通信"
+    },
+    {
+      "name": "register_button",
+      "value": "注册任务变化通知"
+    },
+    {
+      "name": "obtain_button",
+      "value": "获取系统最近20个任务"
+    },
+    {
+      "name": "obtain_one_button",
+      "value": "获取单个任务的详细信息"
+    },
+    {
+      "name": "obtain_snapshot_button",
+      "value": "获取单个任务的任务快照"
+    },
+    {
+      "name": "obtain_low_snapshot_button",
+      "value": "获取单个任务的低分辨任务快照"
+    },
+    {
+      "name": "lock_button",
+      "value": "单个任务加锁"
+    },
+    {
+      "name": "unlock_button",
+      "value": "单个任务解锁"
+    },
+    {
+      "name": "front_button",
+      "value": "把单个任务切到前台"
+    },
+    {
+      "name": "delete_button",
+      "value": "删除单个任务"
+    },
+    {
+      "name": "delete_all_button",
+      "value": "删除全部任务"
+    },
+    {
+      "name": "unregister_button",
+      "value": "解注册任务变化通知"
+    },
+    {
+      "name": "emitter_subscribe_button",
+      "value": "使用Emitter进行线程间通信-订阅事件"
+    },
+    {
+      "name": "emitter_sending_button",
+      "value": "使用Emitter进行线程间通信-发送事件"
+    },
+    {
+      "name": "subscribe_success_toast",
+      "value": "成功订阅灭屏公共事件"
+    },
+    {
+      "name": "subscribe_failed_toast",
+      "value": "请勿重复订阅灭屏公共事件"
+    },
+    {
+      "name": "unsubscribe_success_toast",
+      "value": "成功取消订阅灭屏公共事件"
+    },
+    {
+      "name": "unsubscribe_failed_toast",
+      "value": "当前未订阅灭屏公共事件"
+    },
+    {
+      "name": "publish_noinfo_success_toast",
+      "value": "成功发布灭屏公共事件-不携带信息"
+    },
+    {
+      "name": "publish_haveinfo_success_toast",
+      "value": "成功发布灭屏公共事件-携带信息"
+    },
+    {
+      "name": "publish_sticky_success_toast",
+      "value": "成功发布灭屏粘性公共事件"
+    },
+    {
+      "name": "remove_sticky_success_toast",
+      "value": "成功移除灭屏粘性公共事件"
+    },
+    {
+      "name": "register_success_toast",
+      "value": "成功注册任务变化通知"
+    },
+    {
+      "name": "obtain_success_toast",
+      "value": "成功获取系统最近任务"
+    },
+    {
+      "name": "obtain_failed_toast",
+      "value": "成功获取系统最近任务, 但未找到时钟任务"
+    },
+    {
+      "name": "obtain_snapshot_success_toast",
+      "value": "获取任务快照成功"
+    },
+    {
+      "name": "obtain_low_snapshot_success_toast",
+      "value": "获取低分辨任务快照成功"
+    },
+    {
+      "name": "lock_success_toast",
+      "value": "加锁成功"
+    },
+    {
+      "name": "unlock_success_toast",
+      "value": "解锁成功"
+    },
+    {
+      "name": "delete_success_toast",
+      "value": "删除单个任务成功"
+    },
+    {
+      "name": "unregister_success_toast",
+      "value": "解注册任务变化通知成功"
+    },
+    {
+      "name": "emitter_subscribe_success_toast",
+      "value": "成功使用Emitter订阅事件"
+    }
+  ]
+}

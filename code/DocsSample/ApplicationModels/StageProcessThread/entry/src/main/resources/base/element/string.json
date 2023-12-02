@@ -1,0 +1,192 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "StaticSubscriber_desc",
+      "value": "description"
+    },
+    {
+      "name": "StaticSubscriber_label",
+      "value": "label"
+    },
+    {
+      "name": "main_title",
+      "value": "main_title"
+    },
+    {
+      "name": "process_button",
+      "value": "process_button"
+    },
+    {
+      "name": "taskmanager_button",
+      "value": "taskmanager_button"
+    },
+    {
+      "name": "thread_button",
+      "value": "thread_button"
+    },
+    {
+      "name": "subscribe_button",
+      "value": "subscribe_button"
+    },
+    {
+      "name": "unsubscribe_button",
+      "value": "unsubscribe_button"
+    },
+    {
+      "name": "publish_noinfo_button",
+      "value": "publish_noinfo_button"
+    },
+    {
+      "name": "publish_haveinfo_button",
+      "value": "publish_haveinfo_button"
+    },
+    {
+      "name": "publish_sticky_button",
+      "value": "publish_sticky_button"
+    },
+    {
+      "name": "remove_sticky_button",
+      "value": "remove_sticky_button"
+    },
+    {
+      "name": "worker_button",
+      "value": "worker_button"
+    },
+    {
+      "name": "register_button",
+      "value": "register_button"
+    },
+    {
+      "name": "obtain_button",
+      "value": "obtain_button"
+    },
+    {
+      "name": "obtain_one_button",
+      "value": "obtain_one_button"
+    },
+    {
+      "name": "obtain_snapshot_button",
+      "value": "obtain_snapshot_button"
+    },
+    {
+      "name": "obtain_low_snapshot_button",
+      "value": "obtain_low_snapshot_button"
+    },
+    {
+      "name": "lock_button",
+      "value": "lock_button"
+    },
+    {
+      "name": "unlock_button",
+      "value": "unlock_button"
+    },
+    {
+      "name": "front_button",
+      "value": "front_button"
+    },
+    {
+      "name": "delete_button",
+      "value": "delete_button"
+    },
+    {
+      "name": "delete_all_button",
+      "value": "delete_all_button"
+    },
+    {
+      "name": "unregister_button",
+      "value": "unregister_button"
+    },
+    {
+      "name": "emitter_subscribe_button",
+      "value": "emitter_subscribe_button"
+    },
+    {
+      "name": "emitter_sending_button",
+      "value": "emitter_sending_button"
+    },
+    {
+      "name": "subscribe_success_toast",
+      "value": "subscribe_success_toast"
+    },
+    {
+      "name": "subscribe_failed_toast",
+      "value": "subscribe_failed_toast"
+    },
+    {
+      "name": "unsubscribe_success_toast",
+      "value": "unsubscribe_success_toast"
+    },
+    {
+      "name": "unsubscribe_failed_toast",
+      "value": "unsubscribe_failed_toast"
+    },
+    {
+      "name": "publish_noinfo_success_toast",
+      "value": "publish_noinfo_success_toast"
+    },
+    {
+      "name": "publish_haveinfo_success_toast",
+      "value": "publish_haveinfo_success_toast"
+    },
+    {
+      "name": "publish_sticky_success_toast",
+      "value": "publish_sticky_success_toast"
+    },
+    {
+      "name": "remove_sticky_success_toast",
+      "value": "remove_sticky_success_toast"
+    },
+    {
+      "name": "register_success_toast",
+      "value": "register_success_toast"
+    },
+    {
+      "name": "obtain_success_toast",
+      "value": "obtain_success_toast"
+    },
+    {
+      "name": "obtain_failed_toast",
+      "value": "obtain_failed_toast"
+    },
+    {
+      "name": "obtain_snapshot_success_toast",
+      "value": "obtain_snapshot_success_toast"
+    },
+    {
+      "name": "obtain_low_snapshot_success_toast",
+      "value": "obtain_low_snapshot_success_toast"
+    },
+    {
+      "name": "lock_success_toast",
+      "value": "lock_success_toast"
+    },
+    {
+      "name": "unlock_success_toast",
+      "value": "unlock_success_toast"
+    },
+    {
+      "name": "delete_success_toast",
+      "value": "delete_success_toast"
+    },
+    {
+      "name": "unregister_success_toast",
+      "value": "unregister_success_toast"
+    },
+    {
+      "name": "emitter_subscribe_success_toast",
+      "value": "emitter_subscribe_success_toast"
+    }
+  ]
+}
