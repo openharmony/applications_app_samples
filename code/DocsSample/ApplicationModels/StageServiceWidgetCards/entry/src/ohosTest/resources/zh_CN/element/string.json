@@ -1,0 +1,164 @@
+{
+  "string": [
+    {
+      "name": "EntryAbility_desc",
+      "value": "服务卡片的UIAbility组件实例"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "卡片"
+    },
+    {
+      "name": "EntryFormAbility_desc",
+      "value": "卡片扩展业务逻辑模块"
+    },
+    {
+      "name": "EntryFormAbility_label",
+      "value": "卡片"
+    },
+    {
+      "name": "title_immersive",
+      "value": "今日美食推荐"
+    },
+    {
+      "name": "detail_immersive",
+      "value": "一碗香喷喷的炸酱面，回到儿时的青涩回忆"
+    },
+    {
+      "name": "ButtonA_label",
+      "value": "功能A"
+    },
+    {
+      "name": "ButtonB_label",
+      "value": "功能B"
+    },
+    {
+      "name": "ChangeSize",
+      "value": "改变大小"
+    },
+    {
+      "name": "JumpLabel",
+      "value": "跳转"
+    },
+    {
+      "name": "CallToBackground",
+      "value": "拉至后台"
+    },
+    {
+      "name": "WidgetEventEntryAbility_desc",
+      "value": "通过router事件刷新卡片内容"
+    },
+    {
+      "name": "WgtImgUpdateEntryFormAbility_desc",
+      "value": "刷新本地图片和网络图片"
+    },
+    {
+      "name": "WgtImgUpdateEntryFormAbility_label",
+      "value": "刷新图片"
+    },
+    {
+      "name": "UpdateByTimeFormAbility_desc",
+      "value": "卡片定时刷新和定点刷新"
+    },
+    {
+      "name": "UpdateByTimeFormAbility_label",
+      "value": "根据时间刷新"
+    },
+    {
+      "name": "UpdateByStatusFormAbility_desc",
+      "value": "根据卡片状态刷新不同内容"
+    },
+    {
+      "name": "UpdateByStatusFormAbility_label",
+      "value": "根据状态刷新"
+    },
+    {
+      "name": "content_update",
+      "value": "使用方主动刷新卡片"
+    },
+    {
+      "name": "JSCardFormAbility_desc",
+      "value": "开发基于JS UI的卡片"
+    },
+    {
+      "name": "JSCardFormAbility_label",
+      "value": "JS卡片"
+    },
+    {
+      "name": "JSCardEntryAbility_desc",
+      "value": "开发基于JS UI的卡片"
+    },
+    {
+      "name": "JSCardEntryAbility_label",
+      "value": "JS 卡片"
+    },
+    {
+      "name": "ProcessDataEntryAbility_desc",
+      "value": "基于过程数据的卡片代理刷新"
+    },
+    {
+      "name": "ProcessDataEntryAbility_label",
+      "value": "过程数据"
+    },
+    {
+      "name": "PersistentDataFormAbility_desc",
+      "value": "基于持久化数据的卡片代理刷新"
+    },
+    {
+      "name": "PersistentDataFormAbility_label",
+      "value": "持久化数据"
+    },
+    {
+      "name": "WidgetEventEntryAbility_label",
+      "value": "router刷新"
+    },
+    {
+      "name": "default_page",
+      "value": "默认页面"
+    },
+    {
+      "name": "hide",
+      "value": "隐藏"
+    },
+    {
+      "name": "show",
+      "value": "显示"
+    },
+    {
+      "name": "update",
+      "value": "刷新"
+    },
+    {
+      "name": "status_a",
+      "value": "状态A  "
+    },
+    {
+      "name": "status_b",
+      "value": "状态B  "
+    },
+    {
+      "name": "change_rotate_angle",
+      "value": "改变旋转角度"
+    },
+    {
+      "name": "loading",
+      "value": "加载中"
+    },
+    {
+      "name": "module_desc",
+      "value": "Stage服务卡片开发示例"
+    },
+    {
+      "name": "Title_Update",
+      "value": "更新标题完成"
+    },
+    {
+      "name": "add_to_desktop",
+      "value": "添加到桌面"
+    },
+    {
+      "name": "remove",
+      "value": "移除"
+    }
+  ]
+}

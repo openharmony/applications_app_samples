@@ -1,0 +1,23 @@
+{
+  "forms": [
+    {
+      "name": "WidgetProcessData",
+      "description": "$string:ProcessDataEntryAbility_desc",
+      "src": "./ets/widgetprocessdata/pages/WidgetProcessDataCard.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": true,
+      "updateEnabled": true,
+      "scheduledUpdateTime": "10:30",
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "2*2"
+      ],
+      "dataProxyEnabled": true
+    }
+  ]
+}

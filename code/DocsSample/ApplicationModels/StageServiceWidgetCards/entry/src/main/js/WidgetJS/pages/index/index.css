@@ -1,0 +1,38 @@
+.container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.bg-img {
+    flex-shrink: 0;
+    height: 100%;
+}
+
+.container-inner {
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    height: 100%;
+    width: 100%;
+    padding: 12px;
+}
+
+.title {
+    font-family: HarmonyHeiTi-Medium;
+    font-size: 14px;
+    color: rgba(255,255,255,0.90);
+    letter-spacing: 0.6px;
+    width: 100%;
+}
+
+.detail_text {
+    ffont-family: HarmonyHeiTi;
+    font-size: 12px;
+    color: rgba(255,255,255,0.60);
+    letter-spacing: 0.51px;
+    text-overflow: ellipsis;
+    max-lines: 1;
+    margin-top: 6px;
+    width: 100%;
+}

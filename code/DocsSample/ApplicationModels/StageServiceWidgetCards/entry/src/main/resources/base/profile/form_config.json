@@ -1,0 +1,80 @@
+{
+  "forms": [
+    {
+      "name": "AttrAnimation",
+      "description": "$string:widget_animation_desc",
+      "src": "./ets/attranimation/pages/AttrAnimationCard.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": false,
+      "updateEnabled": false,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 1,
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "2*2"
+      ]
+    },
+    {
+      "name": "CustomCanvasDrawing",
+      "description": "$string:widget_custom_desc",
+      "src": "./ets/customcanvasdrawing/pages/CustomCanvasDrawingCard.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": false,
+      "updateEnabled": false,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 1,
+      "defaultDimension": "4*4",
+      "supportDimensions": [
+        "4*4"
+      ]
+    },
+    {
+      "name": "WidgetEventRouter",
+      "description": "$string:widget_eventrouter_desc",
+      "src": "./ets/widgeteventrouter/pages/WidgetEventRouterCard.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": false,
+      "updateEnabled": false,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 1,
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "2*2"
+      ]
+    },
+    {
+      "name": "UpdateByMessage",
+      "description": "$string:widget_updatebymsg_desc",
+      "src": "./ets/updatebymessage/pages/UpdateByMessageCard.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": false,
+      "updateEnabled": false,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 1,
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "2*2"
+      ]
+    }
+  ]
+}

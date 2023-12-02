@@ -1,0 +1,16 @@
+{
+  "tableConfig": [
+    {
+      "uri": "*",
+      "crossUserMode": 1
+    },
+    {
+      "uri": "datashareproxy://com.samples.widgetupdatebyproxy/entry/DB00",
+      "crossUserMode": 1
+    },
+    {
+      "uri": "datashareproxy://com.samples.widgetupdatebyproxy/entry/DB00/TBL00",
+      "crossUserMode": 2
+    }
+  ]
+}
