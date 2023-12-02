@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "ServiceExtAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "ServiceExtAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "IntentInUIAbilityForeground",
+      "value": "Intent To UIAbility Foreground"
+    },
+    {
+      "name": "IntentInServiceExtension",
+      "value": "Intent To ServiceExtension"
+    },
+    {
+      "name": "intent_execute_title",
+      "value": "Intent Execute"
+    },
+    {
+      "name": "Back",
+      "value": "Back"
+    }
+  ]
+}
