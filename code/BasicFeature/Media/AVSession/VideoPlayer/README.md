@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例主要展示了网络视频播放的相关功能。使用[@ohos.multimedia.avsession]等接口实现视频播放的功能。
+本示例主要展示了网络视频播放的相关功能。使用[@ohos.multimedia.avsession](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-avsession.md)等接口实现视频播放的功能。
 
 ### 效果预览
 
@@ -23,18 +23,19 @@
 
 ```
 entry/src/main/ets/
-|---common                                // 方法封装
+|---common                             // 方法封装
 |---|---AudioFrameworkTest.ets
 |---|---AudioUtils.ets                 // 控制器封装
 |---|---CommonUtils.ets                // 格式化时间封装
 |---|---Constants.ets                  // 媒体资源信息
+|---|---Log.ets                        // 日志封装
 |---|---PermissionUtils.ets            // 权限封装
 |---entryability              
 |---|---EntryAbility.ets               
 |---pages
-|---|---Index.ets                        // 界面实现
+|---|---Index.ets                      // 界面实现
 |---|---components
-|---|---|---SongItem.ets                // 视频列表组件
+|---|---|---SongItem.ets               // 视频列表组件
 ```
 
 ### 具体实现
@@ -114,3 +115,5 @@ entry/src/main/ets/
 2. 本示例为Stage模型，支持API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0 Release)
 
 3. 本示例需要使用DevEco Studio 版本号(4.0 Release)及以上版本才可编译运行。
+
+4. 本示例需全程联网。

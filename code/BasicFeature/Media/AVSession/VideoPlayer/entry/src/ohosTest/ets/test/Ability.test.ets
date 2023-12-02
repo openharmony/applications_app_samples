@@ -18,9 +18,9 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 import {Driver, ON, MatchPattern} from '@ohos.UiTest';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 
-const TAG: string = 'SampleText';
+const TAG: string = 'VideoPlayer';
 const abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-const BUNDLE = 'Sample_';
+const BUNDLE = 'VideoPlayer_';
 
 export default function abilityTest() {
 

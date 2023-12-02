@@ -14,23 +14,22 @@
 */
 
 import fs from '@ohos.file.fs';
-
-const TAG = "AVCastDemo";
+import Log from './Log';
 
 export default class AudioFrameworkTest {
   public constructor() {
-    console.log(TAG, 'start audio framework test init');
+    Log.info('start audio framework test init');
     let context = getContext(this);
     let path = context.filesDir;
     // 使用沙箱路径获取文件，实际路径为/data/app/el2/100/base/com.samples.videoplayer/haps/entry/files/sample_3s.wav
     const filePath = path + '/sample_3s.wav';
-    console.log(TAG, 'file path: ' + filePath);
+    Log.info('file path: ' + filePath);
     fs.stat(filePath, (err, state) => {
-      console.log(TAG, 'get file state succeed: size = ' + state?.size + ', err = ' + err);
+      Log.info('get file state succeed: size = ' + state?.size + ', err = ' + err);
     })
-    console.log(TAG, 'try open file: ' + filePath);
+    Log.info('try open file: ' + filePath);
     let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-    console.log(TAG, 'try open file succeed: ' + file.fd);
+    Log.info('try open file succeed: ' + file.fd);
     fs.close(file);
   }
 }

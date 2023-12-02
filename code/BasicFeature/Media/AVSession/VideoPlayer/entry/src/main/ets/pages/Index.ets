@@ -28,8 +28,8 @@ import fs from '@ohos.file.fs';
 import util from '@ohos.util';
 import image from '@ohos.multimedia.image';
 import { BusinessError } from '@ohos.base';
-
-const TAG = 'AVCastDemo';
+import Log from '../common/Log';
+import deviceInfo from '@ohos.deviceInfo';
 
 @Entry
 @Component
@@ -43,7 +43,7 @@ struct Index {
   @State controller: avSession.AVSessionController | undefined = undefined;
   @State albumImage: image.PixelMap | undefined = undefined;
   @State playType: 'local' | 'cast' = 'local';
-  @State playState: number = -1;
+  @StorageLink('playState') playState: number = -1;
   @State isFavorMap: Map<string, boolean> = new Map();
   @State volume: number = 0 ;
   @State seedPosition: number = 0;
@@ -67,22 +67,22 @@ struct Index {
   private urlVideoList: Array<avSession.AVMediaDescription> = Constants.URL_VIDEO_LIST;
 
   async aboutToAppear() {
-    console.log(TAG, 'about to appear');
+    Log.info('about to appear');
     this.songList = this.urlVideoList;
     this.audioType = 'video';
     this.currentPlayInfo = this.urlVideoList[0];
     this.avPlayer = await this.audioUtils.init();
     this.avPlayer?.on('audioInterrupt', (info: audio.InterruptEvent) => {
-      console.info(TAG, 'audioInterrupt success, and InterruptEvent info is: ' + info);
+      Log.info('audioInterrupt success, and InterruptEvent info is: ' + info);
       if (this.avPlayer?.state === 'playing') {
-        console.info(TAG, 'audio interrupt, start pause');
+        Log.info('audio interrupt, start pause');
         this.avPlayer?.pause();
         this.setPlayState(avSession.PlaybackState.PLAYBACK_STATE_PAUSE);
         promptAction.showToast({ message: 'audio interrupt, pause done' });
       }
     })
     this.avPlayer?.on('timeUpdate', (time: number) => {
-      console.info(TAG, 'timeUpdate time: ' + time);
+      Log.info('timeUpdate time: ' + time);
       if (!this.isProgressSliding) {
         if (this.duration == 0) {
           this.seedPosition = 0;
@@ -99,7 +99,7 @@ struct Index {
       }
     })
     this.avPlayer?.on('durationUpdate', (duration: number) => {
-      console.info(TAG, 'durationUpdate duration: ' + duration);
+      Log.info('durationUpdate duration: ' + duration);
       this.duration = duration;
       if (this.duration !== 0) {
         const playMetaData: avSession.AVMetadata = {
@@ -115,58 +115,58 @@ struct Index {
 
     })
     this.avPlayer?.on('videoSizeChange', (width: number, height: number) => {
-      console.info(TAG, 'videoSizeChange success, and width is: ' + width + ', height is: ' + height);
+      Log.info('videoSizeChange success, and width is: ' + width + ', height is: ' + height);
     })
     await this.setAudioManager();
     await this.autoStartAll(false);
     this.addNetworkListener();
     this.readLRCFile();
-    console.info(TAG, 'about to appear done: ' + !!this.avPlayer);
+    Log.info('about to appear done: ' + !!this.avPlayer);
   }
 
   readLRCFile(): void {
     const context = getContext(this) as common.UIAbilityContext;
     context.resourceManager.getRawFileContent('test.lrc', (error: BusinessError, value: Uint8Array) => {
       if (error != null) {
-        console.log(TAG, 'error is: ' + error);
+        Log.info('error is: ' + error);
       } else {
         let rawFile = value;
         let textDecoder = util.TextDecoder.create('utf-8', { ignoreBOM: true });
         let retStr = textDecoder.decodeWithStream(rawFile, { stream: false });
-        console.log(TAG, 'get lrc file: ' + retStr);
+        Log.info('get lrc file: ' + retStr);
       }
     });
   }
 
   addNetworkListener(): void {
-    console.log(TAG, 'start add Network Listener');
+    Log.info('start add Network Listener');
     this.netCon = connection.createNetConnection();
     this.netCon?.register((error: BusinessError) => {
-      console.error(TAG, 'network error: ' + JSON.stringify(error));
+      Log.error('network error: ' + JSON.stringify(error));
     })
     connection.getAllNets().then(data => {
-      console.log(TAG, 'get all network: ' + JSON.stringify(data));
+      Log.info('get all network: ' + JSON.stringify(data));
       this.hasNetwork = data?.length > 0;
     })
     this.netCon?.on('netAvailable', data => {
-      console.log(TAG, 'network Available: ' + JSON.stringify(data));
+      Log.info('network Available: ' + JSON.stringify(data));
       this.hasNetwork = true;
     })
     this.netCon?.on('netLost', data => {
-      console.log(TAG, 'network Lost: ' + JSON.stringify(data));
+      Log.info('network Lost: ' + JSON.stringify(data));
       connection.getAllNets().then(data => {
-        console.log(TAG, 'get all network: ' + JSON.stringify(data));
+        Log.info('get all network: ' + JSON.stringify(data));
         this.hasNetwork = data?.length > 0;
       });
     })
   }
 
   onPageHide() {
-    console.log(TAG, 'indexPage onPAgeHide in.');
+    Log.info('indexPage onPAgeHide in.');
   }
 
   async playInfoUpdated() {
-    console.log(TAG, 'playInfoUpdated: ' + JSON.stringify(this.currentPlayInfo));
+    Log.info('playInfoUpdated: ' + JSON.stringify(this.currentPlayInfo));
     this.currentMediaId = this.currentPlayInfo?.assetId as string;
     this.albumImage = this.currentPlayInfo?.mediaImage as image.PixelMap
     if (this.playType === 'local') {
@@ -174,11 +174,11 @@ struct Index {
     } else {
       await this.setRemoteMediaInfo();
     }
-    console.log(TAG, 'playInfoUpdate: done')
+    Log.info('playInfoUpdate: done')
   }
 
   async setRemoteMediaInfo() {
-    console.log(TAG, 'set remote media info: ' + JSON.stringify(this.currentPlayInfo) + ', ' + this.currentIndex);
+    Log.info('set remote media info: ' + JSON.stringify(this.currentPlayInfo) + ', ' + this.currentIndex);
     let queueItem: avSession.AVQueueItem = {
       itemId: this.currentIndex,
       description: this.currentPlayInfo
@@ -199,23 +199,23 @@ struct Index {
         album: this.currentPlayInfo?.albumTitle as string,
         duration: this.duration,
       };
-      console.log(TAG, 'try set AV Metadata while cast for scan: ' + JSON.stringify(playMetaData));
+      Log.info('try set AV Metadata while cast for scan: ' + JSON.stringify(playMetaData));
       this.session?.setAVMetadata(playMetaData);
     }
-    console.log(TAG, 'set remote media info done');
+    Log.info('set remote media info done');
   }
 
   async setLocalMediaInfo() {
-    console.log(TAG, 'set local media info: ' + JSON.stringify(this.currentPlayInfo));
+    Log.info('set local media info: ' + JSON.stringify(this.currentPlayInfo));
     if (!this.session) {
-      console.log(TAG, 'set local media info: no session');
+      Log.info('set local media info: no session');
       return;
     }
     if (this.audioUtils) {
       const isPlaying = this.playState === avSession.PlaybackState.PLAYBACK_STATE_PLAY;
       this.setPlayState(avSession.PlaybackState.PLAYBACK_STATE_PAUSE, this.currentPlayInfo?.assetId,
         !!this.isFavorMap[this.currentPlayInfo?.assetId as string]);
-      console.log(TAG, 'set play state pause');
+      Log.info('set play state pause');
       if (this.audioType === 'url' || this.audioType === 'video') {
         await this.audioUtils.loadFromNetwork(this.currentPlayInfo?.mediaUri as string);
       } else if (this.audioType === 'rawfile') {
@@ -223,10 +223,10 @@ struct Index {
       } else if (this.audioType === 'scan') {
         await this.audioUtils.loadFromSrcFd(this.currentPlayInfo?.fdSrc as media.AVFileDescriptor);
       }
-      console.log(TAG, 'local local audio done: ' + isPlaying + ', ' + this.playType + ', ' + this.avPlayer?.state);
+      Log.info('local local audio done: ' + isPlaying + ', ' + this.playType + ', ' + this.avPlayer?.state);
       if (isPlaying) {
         this.audioUtils.on('prepared', () => {
-          console.log(TAG, 'AVPlayer state prepare, state play');
+          Log.info('AVPlayer state prepare, state play');
           if (this.playType === 'local') {
             this.localPlayOrPause();
           } else {
@@ -234,12 +234,8 @@ struct Index {
           }
         });
       }
-      this.audioUtils.on('completed', () => {
-        console.log(TAG, 'AVPlayer state completed, state to stop');
-        this.setPlayState(avSession.PlaybackState.PLAYBACK_STATE_PAUSE);
-      });
     } else {
-      console.log(TAG, 'set local media fail: no audioUtils');
+      Log.info('set local media fail: no audioUtils');
     }
     this.albumImage = this.currentPlayInfo?.mediaImage as image.PixelMap;
     const playMetaData: avSession.AVMetadata = {
@@ -250,13 +246,13 @@ struct Index {
       album: this.currentPlayInfo?.albumTitle as string,
       duration: this.duration,
     };
-    console.log(TAG, 'try set AV Metadata: ' + JSON.stringify(playMetaData));
+    Log.info('try set AV Metadata: ' + JSON.stringify(playMetaData));
     this.session?.setAVMetadata(playMetaData);
-    console.log(TAG, 'set AV Metadata: ');
+    Log.info('set AV Metadata: ');
   }
 
   aboutToDisappear() {
-    console.log(TAG, 'about to disappear');
+    Log.info('about to disappear');
     if (this.controller) {
       this.controller.off('outputDeviceChange');
       this.controller.destroy();
@@ -273,32 +269,32 @@ struct Index {
         this.session?.destroy();
       }
     } catch (err) {
-      console.log(TAG, err);
+      Log.info( `err is: ${JSON.stringify(err)}`);
     }
     if (this.avPlayer) {
       this.avPlayer?.release();
     }
     // 使用unregister接口取消订阅
     this.netCon?.unregister((error) => {
-      console.log(JSON.stringify(error));
+      Log.info('error is: ' + JSON.stringify(error));
     })
   }
 
   async setAudioManager() {
-    console.log(TAG, 'try get audio manger');
+    Log.info('try get audio manger');
     const audioManager = audio.getAudioManager();
     if (!audioManager) {
-      console.error(TAG, 'get audio manager fail: fail get audioManager');
+      Log.error('get audio manager fail: fail get audioManager');
       return;
     }
     this.audioManager = audioManager;
     const volumeManager = audioManager.getVolumeManager();
     if (!volumeManager) {
-      console.error(TAG, 'get audio manager fail: fail get volumeManager');
+      Log.error('get audio manager fail: fail get volumeManager');
       return;
     }
     volumeManager.on('volumeChange', (volumeEvent) => {
-      console.info(`VolumeType of stream : ${JSON.stringify(volumeEvent)}`);
+      Log.info(`VolumeType of stream : ${JSON.stringify(volumeEvent)}`);
       let type: audio.AudioVolumeType = volumeEvent.volumeType;
       let num: number = volumeEvent.volume;
       if(type == audio.AudioVolumeType.MEDIA && this.playType === 'local') {
@@ -307,7 +303,7 @@ struct Index {
     });
     this.audioVolumeGroupManager = await volumeManager.getVolumeGroupManager(audio.DEFAULT_VOLUME_GROUP_ID);
     if (!this.audioVolumeGroupManager) {
-      console.error(TAG, 'get audio manager fail: fail get audioVolumeGroupManager');
+      Log.error('get audio manager fail: fail get audioVolumeGroupManager');
       return;
     }
     const maxVolume = await this.audioVolumeGroupManager.getVolume(audio.AudioVolumeType.MEDIA);
@@ -315,12 +311,12 @@ struct Index {
     const volume = await this.audioVolumeGroupManager.getVolume(audio.AudioVolumeType.MEDIA);
     this.localAudioRation = (maxVolume - minVolume) / 100;
     this.volume = volume / this.localAudioRation;
-    console.log(TAG, 'get audio manager done, ' + maxVolume + ', ' + minVolume + ', ' + this.localAudioRation);
+    Log.info('get audio manager done, ' + maxVolume + ', ' + minVolume + ', ' + this.localAudioRation);
   }
 
   async setPlayState(state?: number, id?: string, favor?: boolean, elapsedTime?: number) {
     if (!this.session) {
-      console.log(TAG, 'fail set state, session undefined');
+      Log.info('fail set state, session undefined');
       promptAction.showToast({ message: 'No Session' });
       return null;
     }
@@ -341,44 +337,44 @@ struct Index {
       }
     }
     this.session?.setAVPlaybackState(params);
-    console.log(TAG, 'params test ' + JSON.stringify(params));
-    console.log(TAG, 'isFavorMap test, ' + id + ', ' + JSON.stringify(this.isFavorMap));
+    Log.info('params test ' + JSON.stringify(params));
+    Log.info('isFavorMap test, ' + id + ', ' + JSON.stringify(this.isFavorMap));
     return this.session?.setAVPlaybackState(params);
   }
 
   async setListenerForMesFromController() {
-    console.info(TAG, 'setListenerForMesFromController');
+    Log.info('setListenerForMesFromController');
     this.session?.on('play', () => {
-      console.info(TAG, 'on play, do play test');
+      Log.info('on play, do play test');
       if (this.avPlayer) {
         this.avPlayer?.play();
         this.setPlayState(avSession.PlaybackState.PLAYBACK_STATE_PLAY);
       }
     });
     this.session?.on('pause', () => {
-      console.info(TAG, 'on pause, do pause test');
+      Log.info('on pause, do pause test');
       if (this.avPlayer) {
         this.avPlayer?.pause();
         this.setPlayState(avSession.PlaybackState.PLAYBACK_STATE_PAUSE);
       }
     });
     this.session?.on('stop', () => {
-      console.info(TAG, 'on stop, do stop test');
+      Log.info('on stop, do stop test');
       if (this.avPlayer) {
         this.avPlayer?.stop();
         this.setPlayState(avSession.PlaybackState.PLAYBACK_STATE_STOP);
       }
     });
     this.session?.on('playPrevious', () => {
-      console.info(TAG, 'on playPrevious, do playPrevious test');
+      Log.info('on playPrevious, do playPrevious test');
       this.switchToPreviousByLoopMode();
     });
     this.session?.on('playNext', () => {
-      console.info(TAG, 'on playNext, do playNext test');
+      Log.info('on playNext, do playNext test');
       this.switchToNextByLoopMode();
     });
     this.session?.on('toggleFavorite', (id) => {
-      console.info(TAG, 'on toggleFavorite session, do toggleFavorite test: ' + id);
+      Log.info('on toggleFavorite session, do toggleFavorite test: ' + id);
       this.setPlayState(undefined, id, !this.isFavorMap[id]);
     });
     // 注册播放快退命令监听
@@ -387,7 +383,7 @@ struct Index {
       let currentTime = this.avPlayer ? this.avPlayer.currentTime : 0;
       let timeMs: number = currentTime - time * 1000 <= 0 ? 0 : currentTime - time *1000;
       this.avPlayer?.seek(timeMs);
-      console.info(TAG, 'rewind currentTime ' + timeMs);
+      Log.info('rewind currentTime ' + timeMs);
       this.setPlayState(avSession.PlaybackState.PLAYBACK_STATE_PLAY);
     });
     // 注册播放快进命令监听
@@ -403,7 +399,7 @@ struct Index {
       }
     });
     this.session?.on('seek', (position) => {
-      console.info(TAG, 'on seek: seek test: ' + position);
+      Log.info('on seek: seek test: ' + position);
       // 修改播放进度
       this.avPlayer?.seek(position);
       // 重新设置播放进度
@@ -428,18 +424,18 @@ struct Index {
       // 主动销毁已创建的session
       this.session?.destroy((err) => {
         if (err) {
-          console.info(TAG, `Destroy BusinessError: code: ${err.code}, message: ${err.message}`);
+          Log.info(`Destroy BusinessError: code: ${err.code}, message: ${err.message}`);
         } else {
-        console.info(TAG, 'Destroy: SUCCESS ');
+          Log.info('Destroy: SUCCESS ');
         }
       });
     }
   }
 
   updateVolume(value: number) {
-    console.info(TAG, 'update volume: ' + this.playType + ', ' + value);
+    Log.info('update volume: ' + this.playType + ', ' + value);
     if (this.volume === value) {
-      console.info(TAG, 'update volume: volume not change');
+      Log.info('update volume: volume not change');
       return;
     }
     this.volume = value;
@@ -450,46 +446,46 @@ struct Index {
       });
     }
     if (this.playType === 'local' && this.audioManager) {
-      console.info(TAG, 'update local volume: ' + value);
+      Log.info('update local volume: ' + value);
       this.audioManager.setVolume(audio.AudioVolumeType.MEDIA, value * this.localAudioRation);
     }
   }
 
   async localPlayOrPause() {
-    console.info(TAG, 'start local play or pause', this.avPlayer?.state);
+    Log.info('start local play or pause' + this.avPlayer?.state);
     if (!this.avPlayer) {
-      console.error(TAG, 'no avplayer');
+      Log.error('no avplayer');
       return;
     }
     if (this.avPlayer?.state === 'playing') {
-      console.info(TAG, 'start pause');
+      Log.info('start pause');
       await this.avPlayer?.pause();
       await this.setPlayState(avSession.PlaybackState.PLAYBACK_STATE_PAUSE);
       promptAction.showToast({message: 'pause done'});
     } else if (this.avPlayer?.state === 'stopped') {
-      console.info(TAG, 'start play from stopped');
+      Log.info('start play from stopped');
       await this.avPlayer?.prepare();
       await this.avPlayer?.play();
       await this.setPlayState(avSession.PlaybackState.PLAYBACK_STATE_PLAY);
       promptAction.showToast({message: 'play done'});
     } else {
-      console.info(TAG, 'start play from stopped');
+      Log.info('start play from stopped');
       await this.avPlayer?.play();
       await this.setPlayState(avSession.PlaybackState.PLAYBACK_STATE_PLAY);
       promptAction.showToast({message: 'play done'});
-      console.info(TAG, 'start play done');
+      Log.info('start play done');
     }
   }
 
   async remotePlayOrPause() {
-    console.info(TAG, 'start remote play or pause', this.playState);
+    Log.info('start remote play or pause' + this.playState);
     if (!this.castController) {
-      console.error(TAG, 'no castController found');
+      Log.error('no castController found');
       return;
     }
     if (this.playState === avSession.PlaybackState.PLAYBACK_STATE_INITIAL
       || this.playState === avSession.PlaybackState.PLAYBACK_STATE_PREPARE) {
-      console.info(TAG, 'start');
+      Log.info('start');
       let queueItem: avSession.AVQueueItem = {
         itemId: 0,
         description: this.currentPlayInfo
@@ -498,13 +494,13 @@ struct Index {
       await this.castController?.start(queueItem);
       this.playState = avSession.PlaybackState.PLAYBACK_STATE_PLAY;
     } else if (this.playState === avSession.PlaybackState.PLAYBACK_STATE_PLAY) {
-      console.info(TAG, 'pause');
+      Log.info('pause');
       this.castController?.sendControlCommand({
         command: 'pause',
       })
       this.playState = avSession.PlaybackState.PLAYBACK_STATE_PAUSE;
     } else {
-      console.info(TAG, 'play');
+      Log.info('play');
       this.castController?.sendControlCommand({
         command: 'play',
       })
@@ -513,8 +509,8 @@ struct Index {
   }
 
   async autoStartAll(needStart: boolean){
-    console.info(TAG, 'try auto start all');
-    console.info(TAG, 'create session');
+    Log.info('try auto start all');
+    Log.info('create session');
     this.session = await avSession.createAVSession(getContext(), 'audiotestr', 'video');
     this.session?.setExtras({
       requireAbilityList: ['url-cast'],
@@ -525,41 +521,41 @@ struct Index {
         updateTime: new Date().getTime()
       },
     };
-    console.info(TAG, 'try SET SESSION PLAYSTATE');
+    Log.info('try SET SESSION PLAYSTATE');
     this.session?.setAVPlaybackState(params);
-    console.info(TAG, 'create session res: ' + JSON.stringify(this.session));
+    Log.info('create session res: ' + JSON.stringify(this.session));
     if (!this.session) {
-      console.error(TAG, 'fail to create session');
+      Log.error('fail to create session');
       return;
     }
-    console.info(TAG, 'create controller: ' + this.session?.sessionId);
+    Log.info('create controller: ' + this.session?.sessionId);
     this.controller = await this.session?.getController();
     if (!this.controller) {
-      console.error(TAG, 'fail to create controller');
+      Log.error('fail to create controller');
       return;
     }
-    console.info(TAG, 'create controller done: ' + this.controller.sessionId);
+    Log.info('create controller done: ' + this.controller.sessionId);
 
-    console.info(TAG, 'add outputDeviceChange listener');
+    Log.info('add outputDeviceChange listener');
     this.controller.on('outputDeviceChange', async (connectState: avSession.ConnectionState,
                                                     device: avSession.OutputDeviceInfo) => {
       this.outputDeviceInfo = device;
       promptAction.showToast({ message: 'output device changed: ' + connectState });
       if (connectState === avSession.ConnectionState.STATE_CONNECTING) {
-        console.info(TAG, 'connecting');
+        Log.info('connecting');
         return;
       }
       const isPlaying = this.avPlayer && this.avPlayer?.state === 'playing';
-      console.info(TAG, 'outputDeviceChange res: ' + JSON.stringify(device) + '|' + connectState + ',' + isPlaying);
+      Log.info('outputDeviceChange res: ' + JSON.stringify(device) + '|' + connectState + ',' + isPlaying);
       await this.processDeviceChange(connectState, device);
-      console.info(TAG, `process Device Change done, ${this.playType}, ${!!this.castController}`);
+      Log.info(`process Device Change done, ${this.playType}, ${!!this.castController}`);
       if (this.playType === 'cast' && this.castController) {
-        console.info(TAG, 'prepare remote audio info ' + ', ' + isPlaying);
+        Log.info('prepare remote audio info ' + ', ' + isPlaying);
         const queueItem: avSession.AVQueueItem = {
           itemId: this.currentIndex,
           description: this.currentPlayInfo
         };
-        console.info(TAG, `try prepare info, ${JSON.stringify(queueItem)}`);
+        Log.info(`try prepare info, ${JSON.stringify(queueItem)}`);
 
         await this.castController?.prepare(queueItem);
         if (isPlaying) {
@@ -571,17 +567,18 @@ struct Index {
           parameter: this.currentLoopMode,
         });
       }
-      console.info(TAG, 'output device change processing finished');
+      Log.info('output device change processing finished');
     })
-    console.info(TAG, 'add outputDeviceChange Listener done');
-    console.info(TAG, 'try prepare local audio: ' + this.session?.sessionId);
+    Log.info('add outputDeviceChange Listener done');
+    Log.info('try prepare local audio: ' + this.session?.sessionId);
     this.setListenerForMesFromController();
     await this.session?.activate();
     await this.setLocalMediaInfo();
     await this.setPlayState(avSession.PlaybackState.PLAYBACK_STATE_PAUSE);
     if (needStart) {
-      console.info(TAG, 'start play local');
+      Log.info('start play local');
       setTimeout(() => {
+        promptAction.showToast({ message: 'auto start done' });
         this.localPlayOrPause();
       }, 100);
     }
@@ -598,11 +595,10 @@ struct Index {
     }).then((agent) => {
       this.session?.setLaunchAbility(agent);
     })
-    promptAction.showToast({ message: 'auto start done' });
   }
 
   async switchToPreviousByLoopMode(){
-    console.info(TAG, 'switch to previous by loop mode: ' + this.currentLoopMode);
+    Log.info('switch to previous by loop mode: ' + this.currentLoopMode);
     if (this.currentLoopMode === avSession.LoopMode.LOOP_MODE_SINGLE) {
       this.playInfoUpdated();
       return;
@@ -623,7 +619,7 @@ struct Index {
   }
 
   async switchToNextByLoopMode(){
-    console.info(TAG, 'switch to next by loop mode: ' + this.currentLoopMode);
+    Log.info('switch to next by loop mode: ' + this.currentLoopMode);
     if (this.currentLoopMode === avSession.LoopMode.LOOP_MODE_SINGLE) {
       this.playInfoUpdated();
       return;
@@ -659,16 +655,16 @@ struct Index {
     if (audioType === 'scan') {
       let fd = 0;
       await fs.open(item.mediaUri).then(async (file) => {
-        console.info(TAG, 'fs res: ' + file?.fd);
+        Log.info('fs res: ' + file?.fd);
         fd = file?.fd
         if (fd != -1 && fd) {
-          console.info(TAG, 'open fd suc: '+ fd);
+          Log.info('open fd suc: '+ fd);
           temp.fdSrc = {
             fd,
           };
         }
       }).catch((err: BusinessError) => {
-        console.error(TAG, 'start local file cast: ' + JSON.stringify(err));
+        Log.error('start local file cast: ' + JSON.stringify(err));
       })
     } else {
       temp.mediaUri = item.mediaUri;
@@ -691,7 +687,7 @@ struct Index {
     const isRefresh = !!this.castController;
     this.castController = await this.session?.getAVCastController();
     if (!this.castController) {
-      console.error(TAG, 'fail to get cast controller');
+      Log.error('fail to get cast controller');
       return;
     }
     let avPlaybackState = await this.castController?.getAVPlaybackState();
@@ -702,14 +698,14 @@ struct Index {
     if (typeof avPlaybackState?.loopMode !== 'undefined') {
       this.currentLoopMode = avPlaybackState?.loopMode;
     }
-    console.info(TAG, 'get AVPlaybackState res: ' + JSON.stringify(avPlaybackState) + ', ' + isRefresh);
+    Log.info('get AVPlaybackState res: ' + JSON.stringify(avPlaybackState) + ', ' + isRefresh);
     if (this.avPlayer && this.avPlayer?.state === 'playing') {
-      console.info(TAG, 'stop avplayer');
+      Log.info('stop avplayer');
       this.avPlayer?.stop();
     }
-    console.info(TAG, 'set on playbackStateChange listener: ' + connectState);
+    Log.info('set on playbackStateChange listener: ' + connectState);
     this.castController?.on('playbackStateChange', 'all', (state) => {
-      console.info(TAG, 'play state change: ' + JSON.stringify(state));
+      Log.info('play state change: ' + JSON.stringify(state));
       if (typeof state?.state !== 'undefined') {
         this.playState = state?.state;
       }
@@ -727,18 +723,18 @@ struct Index {
       }
     });
     this.castController?.on('playPrevious', async (state) => {
-      console.info(TAG, 'playPrevious: ' + JSON.stringify(state));
+      Log.info('playPrevious: ' + JSON.stringify(state));
       this.switchToPreviousByLoopMode()
     });
     this.castController?.on('playNext', async (state) => {
-      console.info(TAG, 'playNext: ' + JSON.stringify(state));
+      Log.info('playNext: ' + JSON.stringify(state));
       this.switchToNextByLoopMode()
     });
     this.castController?.on('error', (err) => {
-      console.info(TAG, 'on command error: ' + JSON.stringify(err));
+      Log.info('on command error: ' + JSON.stringify(err));
       promptAction.showToast({ message: 'error: ' + JSON.stringify(err) });
     });
-    console.info(TAG, 'set on playbackStateChange listener done')
+    Log.info('set on playbackStateChange listener done')
   }
 
   build() {
@@ -767,10 +763,17 @@ struct Index {
             .height(24)
 
             Button() {
-              AVCastPicker()
-                .size({ height: '100%', width: '100%' })
-                .backgroundColor(Color.White)
-                .align(Alignment.Center);
+              if (deviceInfo.productModel === 'ohos') {
+                Image($r('app.media.ohos_ic_public_cast_stream'))
+                  .size({ width: '100%', height: '100%' })
+                  .fillColor(Color.White)
+                  .backgroundColor(Color.Black)
+              } else {
+                AVCastPicker({ normalColor:Color.White, activeColor:Color.White })
+                  .size({ height: '100%', width: '100%' })
+                  .backgroundColor(Color.Black)
+                  .align(Alignment.Center);
+              }
             }
             .width(24)
             .height(24)
@@ -788,7 +791,7 @@ struct Index {
               XComponent({ id: '', type: 'surface', controller: this.mXComponentController })
                 .onLoad(() => {
                   const surfaceId = this.mXComponentController.getXComponentSurfaceId();
-                  console.log(TAG, 'XComponent onLoad, surfaceId = ' + surfaceId);
+                  Log.info('XComponent onLoad, surfaceId = ' + surfaceId);
                   this.audioUtils.surfaceId = surfaceId;
                 })
             }
@@ -837,7 +840,7 @@ struct Index {
               })
               .backgroundColor(Color.Black)
               .onClick(() => {
-                console.info(TAG, 'click play next');
+                Log.info('click play next');
                 this.switchToPreviousByLoopMode();
               })
               .key('music_last')
@@ -854,7 +857,7 @@ struct Index {
               })
               .backgroundColor(Color.Transparent)
               .onClick(() => {
-                console.info(TAG, `click play/pause:  ${this.playType} ,${this.session}, ${this.controller}`);
+                Log.info(`click play/pause:  ${this.playType} ,${this.session}, ${this.controller}`);
                 if (!this.session && !this.controller) {
                   this.autoStartAll(true);
                 } else if (this.playType === 'local') {
@@ -877,7 +880,7 @@ struct Index {
               })
               .backgroundColor(Color.Transparent)
               .onClick(() => {
-                console.info(TAG, 'click play next');
+                Log.info('click play next');
                 this.switchToNextByLoopMode();
               })
               .key('music_next')
@@ -908,7 +911,7 @@ struct Index {
                 .showSteps(false)
                 .showTips(false)
                 .onChange((value: number, mode: SliderChangeMode) => {
-                  console.info(TAG, 'value: ' + value + 'mode: ' + mode.toString() )
+                  Log.info('value: ' + value + 'mode: ' + mode.toString() )
                   if (mode === SliderChangeMode.End) {
                     if (this.playType === 'local') {
                       this.avPlayer?.seek(value / 100 * this.duration);
@@ -919,7 +922,7 @@ struct Index {
                         },
                       };
                       this.session?.setAVPlaybackState(params);
-                      console.info(TAG, 'params.position + ' + JSON.stringify((params.position)))
+                      Log.info('params.position + ' + JSON.stringify((params.position)))
                     } else {
                       this.castController?.sendControlCommand({
                         command: 'seek',
@@ -933,7 +936,7 @@ struct Index {
                 .height(2)
                 .opacity(1)
                 .onTouch((event: TouchEvent) => {
-                  console.info(TAG, 'progress touch: ' + event.type)
+                  Log.info('progress touch: ' + event.type)
                   if (event.type === TouchType.Up) {
                     this.sliderTimer = setTimeout(() => {
                       this.isProgressSliding = false;
