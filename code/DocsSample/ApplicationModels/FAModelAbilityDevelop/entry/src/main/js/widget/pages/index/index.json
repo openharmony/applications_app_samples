@@ -1,0 +1,21 @@
+{
+  "data": {
+    "title": "TitleDefault",
+    "detail": "TextDefault"
+  },
+  "actions": {
+    "routerEvent": {
+      "action": "router",
+      "abilityName": "com.samples.famodelabilitydevelop.MainAbility",
+      "params": {
+        "message": "add detail"
+      }
+    },
+    "messageEvent": {
+      "action": "message",
+      "params": {
+        "message": "add detail"
+      }
+    }
+  }
+}

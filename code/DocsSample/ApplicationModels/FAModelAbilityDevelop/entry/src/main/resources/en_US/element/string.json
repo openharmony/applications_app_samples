@@ -1,0 +1,312 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "Test the functions of each component of the FA model"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "Development guidance for FA model components"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "FAModel"
+    },
+    {
+      "name": "PageAbilitySingleton_desc",
+      "value": "PageAbilitySingleton"
+    },
+    {
+      "name": "PageAbilitySingleton_label",
+      "value": "PageAbilitySingleton"
+    },
+    {
+      "name": "PageAbilityStandard_desc",
+      "value": "PageAbilityStandard"
+    },
+    {
+      "name": "PageAbilityStandard_label",
+      "value": "PageAbilityStandard"
+    },
+    {
+      "name": "ServiceAbility_desc",
+      "value": "Ability based on Service Template"
+    },
+    {
+      "name": "DataAbility_desc",
+      "value": "Ability to use Data templates"
+    },
+    {
+      "name": "FormAbility_desc",
+      "value": "FA Service Card"
+    },
+    {
+      "name": "FormAbility_label",
+      "value": "FA Service Card"
+    },
+    {
+      "name": "ServiceAbilityStartUIAbility_desc",
+      "value": "ServiceAbility interworking with Stage"
+    },
+    {
+      "name": "main_title",
+      "value": "FA Model Component Development Guidance"
+    },
+    {
+      "name": "getDirectory_button",
+      "value": "Get Distributed Directory"
+    },
+    {
+      "name": "start_singleton_button",
+      "value": "Start PageAbilitySingleton"
+    },
+    {
+      "name": "start_standard_first_button",
+      "value": "Start PageAbilityStandard First"
+    },
+    {
+      "name": "start_standard_second_button",
+      "value": "Start PageAbilityStandard Second"
+    },
+    {
+      "name": "restart_singleton_button",
+      "value": "Restart PageAbilitySingleton"
+    },
+    {
+      "name": "stop_pageAbility_button",
+      "value": "Stop PageAbility"
+    },
+    {
+      "name": "singleton_first_title",
+      "value": "PageAbilitySingleton first page"
+    },
+    {
+      "name": "singleton_second_title",
+      "value": "PageAbilitySingleton second page"
+    },
+    {
+      "name": "standard_default_title",
+      "value": "PageAbilityStandard default page"
+    },
+    {
+      "name": "standard_first_title",
+      "value": "PageAbilityStandard first page"
+    },
+    {
+      "name": "standard_second_title",
+      "value": "PageAbilityStandard second page"
+    },
+    {
+      "name": "pageAbility_first_button",
+      "value": "PageAbility Component Development Guide First"
+    },
+    {
+      "name": "pageAbility_second_button",
+      "value": "PageAbility Component Development Guide Second"
+    },
+    {
+      "name": "serviceAbility_button",
+      "value": "ServiceAbility Component Development Guide"
+    },
+    {
+      "name": "dataAbility_button",
+      "value": "DataAbility Component Development Guide"
+    },
+    {
+      "name": "interflow_fa_and_stage_button",
+      "value": "Guidelines for interworking between FA model and Stage model application components"
+    },
+    {
+      "name": "insert_cb_button",
+      "value": "Insert data using callback method"
+    },
+    {
+      "name": "insert_pm_button",
+      "value": "Insert data using promise method"
+    },
+    {
+      "name": "delete_cb_button",
+      "value": "Delete data using callback method"
+    },
+    {
+      "name": "delete_pm_button",
+      "value": "Delete data using promise method"
+    },
+    {
+      "name": "update_cb_button",
+      "value": "Update data using callback method"
+    },
+    {
+      "name": "update_pm_button",
+      "value": "Update data using promise method"
+    },
+    {
+      "name": "query_cb_button",
+      "value": "Query data using callback method"
+    },
+    {
+      "name": "query_pm_button",
+      "value": "Query data using promise method"
+    },
+    {
+      "name": "batchInsert_cb_button",
+      "value": "BatchInsert data using callback method"
+    },
+    {
+      "name": "batchInsert_pm_button",
+      "value": "BatchInsert data using promise method"
+    },
+    {
+      "name": "executeBatch_cb_button",
+      "value": "ExcuteBatch data using callback method"
+    },
+    {
+      "name": "executeBatch_pm_button",
+      "value": "ExcuteBatch data using promise method"
+    },
+    {
+      "name": "start_stage_noResult_button",
+      "value": "Launching UIAbility through PageAbility - No need to return results"
+    },
+    {
+      "name": "start_stage_withResult_button",
+      "value": "Launch UIAbility through PageAbility - return execution results"
+    },
+    {
+      "name": "start_stage_service_button",
+      "value": "Starting UIAbility through ServiceAbilityStarting UIAbility through ServiceAbility"
+    },
+    {
+      "name": "worker_button",
+      "value": "Using Worker for inter thread communication"
+    },
+    {
+      "name": "create_service_button",
+      "value": "Start ServiceAbility"
+    },
+    {
+      "name": "connect_service_button",
+      "value": "Connecting to ServiceAbility"
+    },
+    {
+      "name": "connect_wrong_service_button",
+      "value": "Connecting to wrong ServiceAbility"
+    },
+    {
+      "name": "reserve_title",
+      "value": "Reserved page"
+    },
+    {
+      "name": "insert_success_toast",
+      "value": "Insert data success"
+    },
+    {
+      "name": "insert_failed_toast",
+      "value": "Insert data failed"
+    },
+    {
+      "name": "delete_success_toast",
+      "value": "Delete data success"
+    },
+    {
+      "name": "update_success_toast",
+      "value": "Update data success"
+    },
+    {
+      "name": "query_success_toast",
+      "value": "Query data success"
+    },
+    {
+      "name": "batchInsert_success_toast",
+      "value": "BatchInsert data success"
+    },
+    {
+      "name": "executeBatch_success_toast",
+      "value": "ExecuteBatch data success"
+    },
+    {
+      "name": "delete_failed_toast",
+      "value": "Delete data failed"
+    },
+    {
+      "name": "update_failed_toast",
+      "value": "Update data failed"
+    },
+    {
+      "name": "query_failed_toast",
+      "value": "Query data failed"
+    },
+    {
+      "name": "batchInsert_failed_toast",
+      "value": "BatchInsert data failed"
+    },
+    {
+      "name": "executeBatch_failed_toast",
+      "value": "ExecuteBatch data failed"
+    },
+    {
+      "name": "start_service_success_toast",
+      "value": "Start serviceAbility succeed"
+    },
+    {
+      "name": "connect_service_failed_toast",
+      "value": "Connect service failed"
+    },
+    {
+      "name": "connect_service_success_toast",
+      "value": "Connect service success"
+    },
+    {
+      "name": "disconnect_service_success_toast",
+      "value": "Disconnect service success"
+    },
+    {
+      "name": "PageAbility_Component_Develop",
+      "value": "page ability component develop"
+    },
+    {
+      "name": "SingleDevice",
+      "value": "single device"
+    },
+    {
+      "name": "multi_device",
+      "value": "multi device"
+    },
+    {
+      "name": "insertData",
+      "value": "insert data"
+    },
+    {
+      "name": "method_callback",
+      "value": "method callback"
+    },
+    {
+      "name": "method_promise",
+      "value": "method promise"
+    },
+    {
+      "name": "delete_data",
+      "value": "delete data"
+    },
+    {
+      "name": "no_content",
+      "value": "no content"
+    },
+    {
+      "name": "update_data",
+      "value": "update data"
+    },
+    {
+      "name": "query_data",
+      "value": "query data"
+    },
+    {
+      "name": "batchInsert_data",
+      "value": "batchInsert data"
+    },
+    {
+      "name": "executeBatch_data",
+      "value": "executeBatch data"
+    }
+  ]
+}

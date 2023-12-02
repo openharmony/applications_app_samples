@@ -1,0 +1,214 @@
+{
+  "app": {
+    "bundleName": "com.samples.famodelabilitydevelop",
+    "vendor": "samples",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.samples.famodelabilitydevelop",
+    "name": ".entry",
+    "mainAbility": ".MainAbility",
+    "deviceType": [
+      "default",
+      "tablet"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry",
+      "installationFree": false
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "orientation": "unspecified",
+        "formsEnabled": false,
+        "name": ".MainAbility",
+        "srcLanguage": "ets",
+        "srcPath": "MainAbility",
+        "icon": "$media:icon",
+        "description": "$string:MainAbility_desc",
+        "label": "$string:MainAbility_label",
+        "type": "page",
+        "visible": true,
+        "launchType": "singleton"
+      },
+      {
+        "orientation": "unspecified",
+        "formsEnabled": false,
+        "name": ".PageAbilitySingleton",
+        "srcLanguage": "ets",
+        "srcPath": "PageAbilitySingleton",
+        "icon": "$media:icon",
+        "description": "$string:PageAbilitySingleton_desc",
+        "label": "$string:PageAbilitySingleton_label",
+        "type": "page",
+        "launchType": "singleton"
+      },
+      {
+        "orientation": "unspecified",
+        "formsEnabled": false,
+        "name": ".PageAbilityStandard",
+        "srcLanguage": "ets",
+        "srcPath": "PageAbilityStandard",
+        "icon": "$media:icon",
+        "description": "$string:PageAbilityStandard_desc",
+        "label": "$string:PageAbilityStandard_label",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "name": ".ServiceAbility",
+        "srcLanguage": "ets",
+        "srcPath": "ServiceAbility",
+        "icon": "$media:icon",
+        "description": "$string:ServiceAbility_desc",
+        "type": "service",
+        "visible": true
+      },
+      {
+        "name": ".DataAbility",
+        "srcLanguage": "ets",
+        "srcPath": "DataAbility",
+        "icon": "$media:icon",
+        "description": "$string:DataAbility_desc",
+        "type": "data",
+        "visible": true,
+        "uri": "dataability://com.samples.famodelabilitydevelop.DataAbility",
+        "readPermission": "ohos.permission.READ_CONTACTS",
+        "writePermission": "ohos.permission.WRITE_CONTACTS"
+      },
+      {
+        "name": ".FormAbility",
+        "srcPath": "FormAbility",
+        "description": "$string:FormAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:FormAbility_label",
+        "type": "service",
+        "formsEnabled": true,
+        "srcLanguage": "ets",
+        "forms": [
+          {
+            "jsComponentName": "widget",
+            "isDefault": true,
+            "scheduledUpdateTime": "10:30",
+            "defaultDimension": "2*2",
+            "name": "widget",
+            "description": "This is a service widget.",
+            "colorMode": "auto",
+            "type": "JS",
+            "formVisibleNotify": true,
+            "supportDimensions": [
+              "2*2"
+            ],
+            "updateEnabled": true,
+            "updateDuration": 1
+          }
+        ]
+      },
+      {
+        "name": ".ServiceAbilityStartUIAbility",
+        "srcLanguage": "ets",
+        "srcPath": "ServiceAbilityStartUIAbility",
+        "icon": "$media:icon",
+        "description": "$string:ServiceAbilityStartUIAbility_desc",
+        "type": "service"
+      }
+    ],
+    "js": [
+      {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
+        "pages": [
+          "pages/index",
+          "pages/pageDataAbility",
+          "pages/pagePageAbilityFirst",
+          "pages/pagePageAbilitySecond",
+          "pages/pageServiceAbility",
+          "pages/pageInterflowFaAndStage"
+        ],
+        "name": ".MainAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      },
+      {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
+        "pages": [
+          "pages/first",
+          "pages/second"
+        ],
+        "name": ".PageAbilitySingleton",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      },
+      {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
+        "pages": [
+          "pages/default",
+          "pages/first",
+          "pages/second"
+        ],
+        "name": ".PageAbilityStandard",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      },
+      {
+        "name": "widget",
+        "pages": [
+          "pages/index/index"
+        ],
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": true
+        },
+        "type": "form"
+      }
+    ],
+    "reqPermissions": [
+      {
+        "name": "ohos.permission.READ_CONTACTS"
+      },
+      {
+        "name": "ohos.permission.WRITE_CONTACTS"
+      },
+      {
+        "name": "ohos.permission.DISTRIBUTED_DATASYNC"
+      },
+      {
+        "name": "ohos.permission.ACCESS_SERVICE_DM"
+      }
+    ],
+    "defPermissions": [
+      {
+        "name": "com.samples.famodelabilitydevelop.DataAbilityShellProvider.PROVIDER"
+      }
+    ]
+  }
+}
