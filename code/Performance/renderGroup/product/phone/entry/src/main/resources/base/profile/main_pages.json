@@ -1,8 +1,0 @@
-{
-  "src": [
-    "pages/Index",
-    "pages/renderGroup/RenderGroupHomePage",
-    "pages/renderGroup/ProfitScenePage",
-    "pages/renderGroup/NonProfitScenePage"
-  ]
-}
