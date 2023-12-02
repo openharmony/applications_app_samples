@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "葡萄广场"
+    },
+    {
+      "name": "home",
+      "value": "主页"
+    },
+    {
+      "name": "square",
+      "value": "发现"
+    },
+    {
+      "name": "mine",
+      "value": "我的"
+    },
+    {
+      "name": "layout_100",
+      "value": "100%"
+    },
+    {
+      "name": "skip",
+      "value": "跳过"
+    }
+  ]
+}
