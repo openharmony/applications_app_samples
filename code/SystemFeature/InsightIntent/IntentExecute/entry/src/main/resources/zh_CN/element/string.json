@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "ServiceExtAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "ServiceExtAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "IntentInUIAbilityForeground",
+      "value": "意图绑定到UIAbility前台"
+    },
+    {
+      "name": "IntentInServiceExtension",
+      "value": "意图绑定到ServiceExtension"
+    },
+    {
+      "name": "intent_execute_title",
+      "value": "意图执行"
+    },
+    {
+      "name": "Back",
+      "value": "返回"
+    }
+  ]
+}
