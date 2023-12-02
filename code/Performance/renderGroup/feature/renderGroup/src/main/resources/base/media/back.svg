@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="18px" viewBox="0 0 20 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>public/ic_back</title>
+    <defs>
+        <path d="M3.81079777,10.7499686 L9.78033009,16.7196699 L9.81407138,16.7556673 C10.0727547,17.0502619 10.0615076,17.4991526 9.78033009,17.7803301 C9.4991526,18.0615076 9.05026186,18.0727547 8.75566731,17.8140714 L8.71966991,17.7803301 L1.68929777,10.7499686 L3.81079777,10.7499686 Z M9.78033009,0.219669914 C10.0615076,0.500847404 10.0727547,0.949738137 9.81407138,1.24433269 L9.78033009,1.28033009 L2.8105,8.25 L19.5,8.25 C19.8994202,8.25 20.2259152,8.56222999 20.2487268,8.9559318 L20.25,9 C20.25,9.39942022 19.93777,9.72591522 19.5440682,9.74872683 L19.5,9.75 L1,9.75 C0.346037929,9.75 0.0115866314,8.97615472 0.440603566,8.50027227 L0.469669914,8.46966991 L8.71966991,0.219669914 C9.01256313,-0.0732233047 9.48743687,-0.0732233047 9.78033009,0.219669914 Z" id="path-1"></path>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="朋友圈" transform="translate(-26.000000, -43.000000)">
+            <g id="AppBar/Regular/basic+actions" transform="translate(24.000000, 37.000000)">
+                <g id="public/ic_back" transform="translate(0.000000, 3.000000)">
+                    <g id="symbol/frame/symbol_grid24-copy"></g>
+                    <g id="编组" transform="translate(1.750000, 3.000000)">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <g id="形状结合" fill-rule="nonzero"></g>
+                        <rect id="color/#000000" fill="#182431" mask="url(#mask-2)" x="-1.75" y="-3" width="24" height="24"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
