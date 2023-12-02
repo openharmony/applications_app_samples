@@ -1,0 +1,452 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "module_desc",
+      "value": "Stage模型开发指导相关内容"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "本hap启动后先执行的Ability"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Stage模型开发指导"
+    },
+    {
+      "name": "Logger_desc",
+      "value": "Log输出"
+    },
+    {
+      "name": "Logger_label",
+      "value": "label"
+    },
+    {
+      "name": "Page_UIAbilityFirst",
+      "value": "UIAbility组件启动模式"
+    },
+    {
+      "name": "Page_UIAbilitySecond",
+      "value": "UIAbility组件基本用法"
+    },
+    {
+      "name": "Page_UIAbilityThird",
+      "value": "UIAbility组件间交互（设备内）"
+    },
+    {
+      "name": "MainTitle",
+      "value": "Stage模型开发指导"
+    },
+    {
+      "name": "ComponentStartupAbility_desc",
+      "value": "组件启动模式"
+    },
+    {
+      "name": "ComponentStartupAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "singleton",
+      "value": "单实例模式"
+    },
+    {
+      "name": "multiton",
+      "value": "多实例模式"
+    },
+    {
+      "name": "SingletonAbility_desc",
+      "value": "组件单实例启动模式"
+    },
+    {
+      "name": "SingletonAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "Newpage",
+      "value": "新界面"
+    },
+    {
+      "name": "Savedpage",
+      "value": "已保存界面"
+    },
+    {
+      "name": "MyAbilityStage_desc",
+      "value": " AbilityStage组件容器对应的Ability"
+    },
+    {
+      "name": "MyAbilityStage_label",
+      "value": "label"
+    },
+    {
+      "name": "SpecifiedA",
+      "value": "指定实例模式A"
+    },
+    {
+      "name": "SpecifiedB",
+      "value": "指定实例模式B"
+    },
+    {
+      "name": "Page_UIAbilityFourth",
+      "value": "UIAbility组件与UI的数据同步"
+    },
+    {
+      "name": "EventAbility_desc",
+      "value": "UIAbility组件与UI的数据同步对应的Ability"
+    },
+    {
+      "name": "EventAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "EventHubFuncA",
+      "value": "订阅事件"
+    },
+    {
+      "name": "EventHubFuncB",
+      "value": "取消订阅"
+    },
+    {
+      "name": "UIAbilityComponentsInteractionA",
+      "value": "启动应用内的UIAbility"
+    },
+    {
+      "name": "UIAbilityComponentsInteractionB",
+      "value": "启动应用内的UIAbility并获取返回结果"
+    },
+    {
+      "name": "UIAbilityComponentsInteractionC",
+      "value": "启动其它应用的UIAbility"
+    },
+    {
+      "name": "UIAbilityComponentsInteractionD",
+      "value": "启动其它应用的UIAbility并获取返回结果"
+    },
+    {
+      "name": "UIAbilityComponentsInteractionE",
+      "value": "启动UIAbility指定窗口模式"
+    },
+    {
+      "name": "UIAbilityComponentsInteractionF",
+      "value": "启动UIAbility的指定页面"
+    },
+    {
+      "name": "FuncAbility_desc",
+      "value": "被其它Ability启动的Ability"
+    },
+    {
+      "name": "SpecifiedPageA",
+      "value": "指定界面A"
+    },
+    {
+      "name": "CloseSpecifiedPageA",
+      "value": "关闭指定界面A"
+    },
+    {
+      "name": "SpecifiedPageB",
+      "value": "指定界面B"
+    },
+    {
+      "name": "CloseSpecifiedPageB",
+      "value": "关闭指定界面B"
+    },
+    {
+      "name": "UIAbilityComponentsInteractionOnCreate",
+      "value": "冷启动"
+    },
+    {
+      "name": "UIAbilityComponentsInteractionOnNewWant",
+      "value": "热启动"
+    },
+    {
+      "name": "Context",
+      "value": "应用上下文Context"
+    },
+    {
+      "name": "Context01",
+      "value": "Context的典型使用场景"
+    },
+    {
+      "name": "Context02",
+      "value": "获取应用文件路径"
+    },
+    {
+      "name": "Context03",
+      "value": "获取和修改加密分区"
+    },
+    {
+      "name": "Context04",
+      "value": "创建其它应用或其它Module的Context"
+    },
+    {
+      "name": "Context05",
+      "value": "订阅进程内UIAbility生命周期变化"
+    },
+    {
+      "name": "GET_BUNDLE_INFO_PRIVILEGED",
+      "value": "申请ohos.permission.GET_BUNDLE_INFO_PRIVILEGED权限"
+    },
+    {
+      "name": "LifecycleAbility_desc",
+      "value": "订阅进程内UIAbility生命周期变化对应的Ability"
+    },
+    {
+      "name": "LifecycleAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "ContextAbility_desc",
+      "value": "创建其它应用或其它Module的Context对应的Ability"
+    },
+    {
+      "name": "ContextAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "DeviceCrossMigration",
+      "value": "跨端迁移"
+    },
+    {
+      "name": "MultiDeviceCollaboration",
+      "value": "多设备协同"
+    },
+    {
+      "name": "MigrationAbility_desc",
+      "value": "跨端迁移对应的Ability"
+    },
+    {
+      "name": "MigrationAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "Page_MigrationAbilityFirst",
+      "value": "跨端迁移第一页"
+    },
+    {
+      "name": "Page_MigrationAbilitySecond",
+      "value": "跨端迁移第二页"
+    },
+    {
+      "name": "Page_MigrationAbilityThird",
+      "value": "跨端迁移第三页"
+    },
+    {
+      "name": "DISTRIBUTED_DATASYNC",
+      "value": "申请DISTRIBUTED_DATASYNC权限"
+    },
+    {
+      "name": "READ_CALENDAR",
+      "value": "申请READ_CALENDAR权限"
+    },
+    {
+      "name": "CollaborateAbility_desc",
+      "value": "多端协同对应的Ability"
+    },
+    {
+      "name": "SpecifiedPageC",
+      "value": "指定界面C"
+    },
+    {
+      "name": "CollaborativeInitialization",
+      "value": "多端协同初始化"
+    },
+    {
+      "name": "MultiDeviceCollaborationWithoutReturningData",
+      "value": "多端协同无返回数据"
+    },
+    {
+      "name": "MultiDeviceCollaborationWithReturningData",
+      "value": "多端协同有返回数据"
+    },
+    {
+      "name": "Page_MigrationAbilityFourth",
+      "value": "将应用设置为可迁移状态"
+    },
+    {
+      "name": "StartFAModel",
+      "value": "打开FA模型文件无返回值"
+    },
+    {
+      "name": "StartFAModelWithResult",
+      "value": "打开FA模型文件有返回值"
+    },
+    {
+      "name": "ServiceAbility",
+      "value": "Stage模型绑定FA模型ServiceAbility"
+    },
+    {
+      "name": "ServiceAbility_desc",
+      "value": "Stage模型绑定FA模型ServiceAbility对应的Ability"
+    },
+    {
+      "name": "ServiceAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "Success",
+      "value": "成功！"
+    },
+    {
+      "name": "FuncAbilityA",
+      "value": "被启动的应用界面"
+    },
+    {
+      "name": "FuncAbilityB",
+      "value": "关闭此界面且无返回数据"
+    },
+    {
+      "name": "FuncAbilityC",
+      "value": "被启动的应用界面并获取返回值"
+    },
+    {
+      "name": "FuncAbilityD",
+      "value": "关闭此界面并返回数据"
+    },
+    {
+      "name": "FuncAbilityA_desc",
+      "value": "被其他Ability启动且需要返回值的的Ability"
+    },
+    {
+      "name": "FuncAbilityA_label",
+      "value": "label"
+    },
+    {
+      "name": "FunctionA",
+      "value": "冷启动界面"
+    },
+    {
+      "name": "FunctionB",
+      "value": "热启动界面"
+    },
+    {
+      "name": "FuncAbility",
+      "value": "可进行交互的App的Index界面"
+    },
+    {
+      "name": "Page_CollaborateAbility",
+      "value": "多设备协同页面"
+    },
+    {
+      "name": "ClosePage_CollaborateAbility",
+      "value": "关闭多设备协同界面并返回数据"
+    },
+    {
+      "name": "permit",
+      "value": "允许"
+    },
+    {
+      "name": "MethodOneTwoObtainingApplicationFilePath",
+      "value": "获取应用文件路径方式二"
+    },
+    {
+      "name": "MethodOneForObtainingApplicationFilePath",
+      "value": "获取应用文件路径方式一"
+    },
+    {
+      "name": "CreateContextMethodTwo",
+      "value": "创建Context方式二"
+    },
+    {
+      "name": "CreateContextMethodOne",
+      "value": "创建Context方式一"
+    },
+    {
+      "name": "CreateContextMethodThree",
+      "value": "创建Context方式三"
+    },
+    {
+      "name": "NoContentAvailable",
+      "value": "暂无内容"
+    },
+    {
+      "name": "SingleDevice",
+      "value": "单设备"
+    },
+    {
+      "name": "MultipleDevices",
+      "value": "多设备"
+    },
+    {
+      "name": "UIAbilityComponentsInteractive",
+      "value": "UIAbility组件间交互"
+    },
+    {
+      "name": "UIAbilityComponentsBasicUsage",
+      "value": "UIAbility组件基本用法"
+    },
+    {
+      "name": "UIAbilityComponentsStartModel",
+      "value": "UIAbility组件启动模式"
+    },
+    {
+      "name": "InDevice",
+      "value": "设备内"
+    },
+    {
+      "name": "DataSynchronization",
+      "value": "UIAbility组件与UI的数据同步"
+    },
+    {
+      "name": "SwitchToEL1",
+      "value": "切换到EL1设备级加密"
+    },
+    {
+      "name": "SwitchToEL2",
+      "value": "切换到EL2用户级加密"
+    },
+    {
+      "name": "InitializedSuccessfully",
+      "value": "初始化成功"
+    },
+    {
+      "name": "SuccessfulCollaboration",
+      "value": "多端协同成功"
+    },
+    {
+      "name": "StartServiceAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "StartServiceAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "filePath01",
+      "value": "/data/storage/el2/base/temptest.txt"
+    },
+    {
+      "name": "filePath02",
+      "value": "/data/storage/el2/base/haps/entry/temptest.txt"
+    },
+    {
+      "name": "SuccessfullyObtainedContext",
+      "value": "成功获取Context"
+    },
+    {
+      "name": "CloseSpecifiedPage",
+      "value": "关闭此界面且无返回数据"
+    },
+    {
+      "name": "StageModelinteractiveWithFAModel",
+      "value": "Stage模型和FA模型交互"
+    },
+    {
+      "name": "Caller",
+      "value": "Caller交互"
+    },
+    {
+      "name": "CallerSuccess",
+      "value": "Caller交互成功"
+    }
+  ]
+}

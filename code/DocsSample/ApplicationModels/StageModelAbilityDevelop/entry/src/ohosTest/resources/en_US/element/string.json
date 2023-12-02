@@ -1,0 +1,452 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "module_desc",
+      "value": "Stage model development guidance related content"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "Ability to execute first after starting this hap"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Stage Model Ability Develop"
+    },
+    {
+      "name": "Logger_desc",
+      "value": "log output"
+    },
+    {
+      "name": "Logger_label",
+      "value": "label"
+    },
+    {
+      "name": "Page_UIAbilityFirst",
+      "value": "UIAbility component startup mode"
+    },
+    {
+      "name": "Page_UIAbilitySecond",
+      "value": "Basic usage of UIAbility components"
+    },
+    {
+      "name": "Page_UIAbilityThird",
+      "value": "Interaction between UIAbility components (within the device)"
+    },
+    {
+      "name": "MainTitle",
+      "value": " SA Model Component Development Guidance"
+    },
+    {
+      "name": "ComponentStartupAbility_desc",
+      "value": "Component startup mode"
+    },
+    {
+      "name": "ComponentStartupAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "singleton",
+      "value": "singleton"
+    },
+    {
+      "name": "multiton",
+      "value": "multiton"
+    },
+    {
+      "name": "SingletonAbility_desc",
+      "value": "Component startup singleton mode"
+    },
+    {
+      "name": "SingletonAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "Newpage",
+      "value": "New Page"
+    },
+    {
+      "name": "Savedpage",
+      "value": "Saved Page"
+    },
+    {
+      "name": "MyAbilityStage_desc",
+      "value": "Ability corresponding to the AbilityStage component container"
+    },
+    {
+      "name": "MyAbilityStage_label",
+      "value": "label"
+    },
+    {
+      "name": "SpecifiedA",
+      "value": "SpecifiedA"
+    },
+    {
+      "name": "SpecifiedB",
+      "value": "SpecifiedB"
+    },
+    {
+      "name": "Page_UIAbilityFourth",
+      "value": "Data synchronization"
+    },
+    {
+      "name": "EventAbility_desc",
+      "value": "Ability corresponding to data synchronization between UIAbility components and UI"
+    },
+    {
+      "name": "EventAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "EventHubFuncA",
+      "value": "Subscribe Event"
+    },
+    {
+      "name": "EventHubFuncB",
+      "value": "Cancel Subscribe"
+    },
+    {
+      "name": "UIAbilityComponentsInteractionA",
+      "value": "Launch UIAbility within the application"
+    },
+    {
+      "name": "UIAbilityComponentsInteractionB",
+      "value": "Launch UIAbility within the application and obtain the returned results"
+    },
+    {
+      "name": "UIAbilityComponentsInteractionC",
+      "value": "Launch UIAbility for other applications"
+    },
+    {
+      "name": "UIAbilityComponentsInteractionD",
+      "value": "Launch UIAbility for other applications and obtain the returned results"
+    },
+    {
+      "name": "UIAbilityComponentsInteractionE",
+      "value": "Start UIAbility to specify window mode"
+    },
+    {
+      "name": "UIAbilityComponentsInteractionF",
+      "value": "Launch the specified page of UIAbility"
+    },
+    {
+      "name": "FuncAbility_desc",
+      "value": "Ability corresponding to the interaction between UIAbility components (within the device)"
+    },
+    {
+      "name": "SpecifiedPageA",
+      "value": "Launch the specified pageA of UIAbility"
+    },
+    {
+      "name": "CloseSpecifiedPageA",
+      "value": "Close the specified pageA of UIAbility"
+    },
+    {
+      "name": "SpecifiedPageB",
+      "value": "Launch the specified pageB of UIAbility"
+    },
+    {
+      "name": "CloseSpecifiedPageB",
+      "value": "Close the specified pageB of UIAbility"
+    },
+    {
+      "name": "UIAbilityComponentsInteractionOnCreate",
+      "value": "Cold Starting UIAbility"
+    },
+    {
+      "name": "UIAbilityComponentsInteractionOnNewWant",
+      "value": "Hot Starting UIAbility"
+    },
+    {
+      "name": "Context",
+      "value": "Application Context"
+    },
+    {
+      "name": "Context01",
+      "value": "Typical usage scenarios of Context"
+    },
+    {
+      "name": "Context05",
+      "value": "Changes in the UIAbility lifecycle within the subscription process"
+    },
+    {
+      "name": "Context04",
+      "value": "Create Context for Other Applications or Modules"
+    },
+    {
+      "name": "Context03",
+      "value": "Obtain and modify encrypted partitions"
+    },
+    {
+      "name": "Context02",
+      "value": "Obtain application file path"
+    },
+    {
+      "name": "GET_BUNDLE_INFO_PRIVILEGED",
+      "value": "Apply for ohos.permission.GET_ BUNDLE_ INFO_ PRIVILEGED permission"
+    },
+    {
+      "name": "LifecycleAbility_desc",
+      "value": "Ability corresponding to changes in UIAbility lifecycle during subscription process"
+    },
+    {
+      "name": "LifecycleAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "ContextAbility_desc",
+      "value": "Create an Ability corresponding to the Context of other applications or modules"
+    },
+    {
+      "name": "ContextAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "DeviceCrossMigration",
+      "value": "DeviceCrossMigration"
+    },
+    {
+      "name": "MultiDeviceCollaboration",
+      "value": "MultiDeviceCollaboration"
+    },
+    {
+      "name": "MigrationAbility_desc",
+      "value": "Ability corresponding to cross end migration"
+    },
+    {
+      "name": "MigrationAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "Page_MigrationAbilityFirst",
+      "value": "First Page"
+    },
+    {
+      "name": "Page_MigrationAbilitySecond",
+      "value": "Second Page"
+    },
+    {
+      "name": "Page_MigrationAbilityThird",
+      "value": "Third Page"
+    },
+    {
+      "name": "DISTRIBUTED_DATASYNC",
+      "value": "申请DISTRIBUTED_DATASYNC权限"
+    },
+    {
+      "name": "READ_CALENDAR",
+      "value": "申请READ_CALENDAR权限"
+    },
+    {
+      "name": "CollaborateAbility_desc",
+      "value": "Ability of multi end collaboration correspondence"
+    },
+    {
+      "name": "SpecifiedPageC",
+      "value": "Launch the specified pageC of UIAbility"
+    },
+    {
+      "name": "CollaborativeInitialization",
+      "value": "MultiDeviceCollaborativeInitialization"
+    },
+    {
+      "name": "MultiDeviceCollaborationWithoutReturningData",
+      "value": "MultiDeviceCollaborationWithoutReturningData"
+    },
+    {
+      "name": "MultiDeviceCollaborationWithReturningData",
+      "value": "MultiDeviceCollaborationWithReturningData"
+    },
+    {
+      "name": "Page_MigrationAbilityFourth",
+      "value": "Set the app to a migratable state"
+    },
+    {
+      "name": "StartFAModel",
+      "value": "StartFAModel"
+    },
+    {
+      "name": "StartFAModelWithResult",
+      "value": "StartFAModelWithResult"
+    },
+    {
+      "name": "ServiceAbility",
+      "value": "Stage model binding FA model ServiceAbility"
+    },
+    {
+      "name": "ServiceAbility_desc",
+      "value": "Stage model binding FA model ServiceAbility corresponding to Ability"
+    },
+    {
+      "name": "ServiceAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "Success",
+      "value": "Success"
+    },
+    {
+      "name": "FuncAbilityA",
+      "value": "Launched application interface"
+    },
+    {
+      "name": "FuncAbilityB",
+      "value": "Close the page(no return value)"
+    },
+    {
+      "name": "FuncAbilityC",
+      "value": "Launched application interface and obtain return value"
+    },
+    {
+      "name": "FuncAbilityD",
+      "value": "Close the page(return value)"
+    },
+    {
+      "name": "FuncAbilityA_desc",
+      "value": "An ability that is initiated by another ability and requires a return value"
+    },
+    {
+      "name": "FuncAbilityA_label",
+      "value": "label"
+    },
+    {
+      "name": "FunctionA",
+      "value": "Cold Start Page"
+    },
+    {
+      "name": "FunctionB",
+      "value": "Hot Start Page"
+    },
+    {
+      "name": "FuncAbility",
+      "value": "Index"
+    },
+    {
+      "name": "Page_CollaborateAbility",
+      "value": "Page_CollaborateAbility"
+    },
+    {
+      "name": "ClosePage_CollaborateAbility",
+      "value": "ClosePage_CollaborateAbility"
+    },
+    {
+      "name": "permit",
+      "value": "permit"
+    },
+    {
+      "name": "MethodOneForObtainingApplicationFilePath",
+      "value": "MethodOneForObtainingApplicationFilePath"
+    },
+    {
+      "name": "MethodOneTwoObtainingApplicationFilePath",
+      "value": "MethodOneTwoObtainingApplicationFilePath"
+    },
+    {
+      "name": "CreateContextMethodTwo",
+      "value": "CreateContextMethodTwo"
+    },
+    {
+      "name": "CreateContextMethodOne",
+      "value": "CreateContextMethodOne"
+    },
+    {
+      "name": "CreateContextMethodThree",
+      "value": "CreateContextMethodThree"
+    },
+    {
+      "name": "NoContentAvailable",
+      "value": "There is currently no content available"
+    },
+    {
+      "name": "SingleDevice",
+      "value": "Single Device"
+    },
+    {
+      "name": "MultipleDevices",
+      "value": "Multiple Devices"
+    },
+    {
+      "name": "UIAbilityComponentsInteractive",
+      "value": "UIAbility components interactive"
+    },
+    {
+      "name": "UIAbilityComponentsBasicUsage",
+      "value": "UIAbility components basic usage"
+    },
+    {
+      "name": "UIAbilityComponentsStartModel",
+      "value": "UIAbility components start model"
+    },
+    {
+      "name": "InDevice",
+      "value": "In Device"
+    },
+    {
+      "name": "DataSynchronization",
+      "value": "Data synchronization between UIAbility components and UI"
+    },
+    {
+      "name": "StartServiceAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "StartServiceAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "filePath01",
+      "value": "/data/storage/el2/base/temptest.txt"
+    },
+    {
+      "name": "filePath02",
+      "value": "/data/storage/el2/base/haps/entry/temptest.txt"
+    },
+    {
+      "name": "SuccessfullyObtainedContext",
+      "value": "Successfully obtained Context"
+    },
+    {
+      "name": "SwitchToEL1",
+      "value": "SwitchToEL1"
+    },
+    {
+      "name": "SwitchToEL2",
+      "value": "SwitchToEL2"
+    },
+    {
+      "name": "InitializedSuccessfully",
+      "value": "InitializedSuccessfully"
+    },
+    {
+      "name": "SuccessfulCollaboration",
+      "value": "SuccessfulCollaboration"
+    },
+    {
+      "name": "CloseSpecifiedPage",
+      "value": "CloseSpecifiedPage"
+    },
+    {
+      "name": "StageModelinteractiveWithFAModel",
+      "value": "StageModelinteractiveWithFAModel"
+    },
+    {
+      "name": "Caller",
+      "value": "Caller"
+    },
+    {
+      "name": "CallerSuccess",
+      "value": "CallerSuccess"
+    }
+  ]
+}

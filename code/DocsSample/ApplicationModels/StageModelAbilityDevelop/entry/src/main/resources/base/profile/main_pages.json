@@ -1,0 +1,23 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/Page_EventHub",
+    "pages/Page_UIAbilityComponentsBasicUsage",
+    "pages/Page_UIAbilityComponentsInteractive",
+    "pages/page_startupability/Page_Multiton",
+    "pages/page_startupability/Page_Singleton",
+    "pages/page_startupability/Page_Specified_First",
+    "pages/page_startupability/Page_Specified_Second",
+    "pages/Page_StartModel",
+    "pages/page_funcability/Page_FuncAbilityA",
+    "pages/page_funcability/Page_FuncAbilityB",
+    "pages/Page_Context",
+    "pages/page_lifecycleability/Page_LifecycleAbility",
+    "pages/page_contextability/Page_ContextAbility",
+    "pages/page_migrationability/Page_MigrationAbilityFirst",
+    "pages/page_migrationability/Page_MigrationAbilityThird",
+    "pages/page_collaborateability/Page_CollaborateAbility",
+    "pages/Page_StartFAModel",
+    "pages/page_migrationability/Page_MigrationAbilitySecond"
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "进行交互协同的应用模块"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "进行交互协同的应用"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "交互协同"
+    },
+    {
+      "name": "FuncAbility_desc",
+      "value": "被其他Ability启动的Ability"
+    },
+    {
+      "name": "FuncAbility_label",
+      "value": "交互协同"
+    },
+    {
+      "name": "FuncAbilityA",
+      "value": "被启动的应用界面"
+    },
+    {
+      "name": "FuncAbilityB",
+      "value": "关闭此界面且无返回数据"
+    },
+    {
+      "name": "FuncAbilityC",
+      "value": "被启动的应用界面并获取返回值"
+    },
+    {
+      "name": "FuncAbilityD",
+      "value": "关闭此界面并返回数据"
+    },
+    {
+      "name": "FuncAbilityA_desc",
+      "value": "被其他Ability启动且需要返回值的的Ability"
+    },
+    {
+      "name": "FuncAbilityA_label",
+      "value": "label"
+    },
+    {
+      "name": "FunctionA",
+      "value": "冷启动界面"
+    },
+    {
+      "name": "FunctionB",
+      "value": "热启动界面"
+    },
+    {
+      "name": "FuncAbility",
+      "value": "可进行交互的App的Index界面"
+    },
+    {
+      "name": "CollaborateAbility_desc",
+      "value": "进行多设备协同的Ability"
+    },
+    {
+      "name": "CollaborateAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "Page_CollaborateAbility",
+      "value": "多设备协同页面"
+    },
+    {
+      "name": "ClosePage_CollaborateAbility",
+      "value": "关闭多设备协同界面并返回数据"
+    },
+    {
+      "name": "CalleeAbility_desc",
+      "value": "Callee相关Ability"
+    },
+    {
+      "name": "CalleeAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "NoContentAvailable",
+      "value": "暂无内容"
+    },
+    {
+      "name": "FuncBAbility_desc",
+      "value": "隐式启动相关Ability"
+    },
+    {
+      "name": "FuncBAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "CalleePage",
+      "value": "Callee页面"
+    }
+  ]
+}

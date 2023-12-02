@@ -1,0 +1,100 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "Application modules for interactive collaboration"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "Application for interactive collaboration"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "交互协同"
+    },
+    {
+      "name": "FuncAbility_desc",
+      "value": "Ability initiated by other abilities"
+    },
+    {
+      "name": "FuncAbility_label",
+      "value": "交互协同"
+    },
+    {
+      "name": "FuncAbilityA",
+      "value": "Launched application interface"
+    },
+    {
+      "name": "FuncAbilityB",
+      "value": "Close the page(no return value)"
+    },
+    {
+      "name": "FuncAbilityC",
+      "value": "Launched application interface and obtain return value"
+    },
+    {
+      "name": "FuncAbilityD",
+      "value": "Close the page(return value)"
+    },
+    {
+      "name": "FuncAbilityA_desc",
+      "value": "An ability that is initiated by another ability and requires a return value"
+    },
+    {
+      "name": "FuncAbilityA_label",
+      "value": "label"
+    },
+    {
+      "name": "FunctionA",
+      "value": "FunctionA"
+    },
+    {
+      "name": "FunctionB",
+      "value": "FunctionB"
+    },
+    {
+      "name": "FuncAbility",
+      "value": "FuncAbility"
+    },
+    {
+      "name": "CollaborateAbility_desc",
+      "value": "Ability to collaborate with multiple devices"
+    },
+    {
+      "name": "CollaborateAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "Page_CollaborateAbility",
+      "value": "Page_CollaborateAbility"
+    },
+    {
+      "name": "ClosePage_CollaborateAbility",
+      "value": "ClosePage_CollaborateAbility"
+    },
+    {
+      "name": "CalleeAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "CalleeAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "FuncBAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "FuncBAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "NoContentAvailable",
+      "value": "NoContentAvailable"
+    },
+    {
+      "name": "CalleePage",
+      "value": "CalleePage"
+    }
+  ]
+}
