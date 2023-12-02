@@ -1,0 +1,56 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "notionContent",
+      "value": "notionContent"
+    },
+    {
+      "name": "notificationTitle",
+      "value": "notificationTitle"
+    },
+    {
+      "name": "pullNotification",
+      "value": "pullNotification"
+    },
+    {
+      "name": "subscribeNotification",
+      "value": "subscribeNotification"
+    },
+    {
+      "name": "pullSuccess",
+      "value": "pullSuccess"
+    },
+    {
+      "name": "subscribeSuccess",
+      "value": "subscribeSuccess"
+    },
+    {
+      "name": "subscribeTip",
+      "value": "subscribeTip"
+    },
+    {
+      "name": "publishNotification",
+      "value": "publishNotification"
+    },
+    {
+      "name": "subscribeButton",
+      "value": "subscribeButton"
+    },
+    {
+      "name": "allow",
+      "value": "allow"
+    }
+  ]
+}

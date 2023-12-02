@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Publish"
+    },
+    {
+      "name": "notionContent",
+      "value": "实况通知"
+    },
+    {
+      "name": "notificationTitle",
+      "value": "通知标题"
+    },
+    {
+      "name": "subscribeButtonContent",
+      "value": "订阅按钮"
+    },
+    {
+      "name": "publishNotification",
+      "value": "发布通知"
+    },
+    {
+      "name": "pullNotification",
+      "value": "推送通知"
+    },
+    {
+      "name": "publishSuccess",
+      "value": "发布成功"
+    },
+    {
+      "name": "subscribeSuccess",
+      "value": "订阅成功"
+    },
+    {
+      "name": "subscribeTip",
+      "value": "通知内容"
+    }
+  ]
+}

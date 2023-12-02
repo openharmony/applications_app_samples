@@ -1,0 +1,56 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "notionContent",
+      "value": "实况通知"
+    },
+    {
+      "name": "notificationTitle",
+      "value": "通知标题"
+    },
+    {
+      "name": "pullNotification",
+      "value": "推送通知"
+    },
+    {
+      "name": "subscribeNotification",
+      "value": "订阅通知"
+    },
+    {
+      "name": "pullSuccess",
+      "value": "推送成功"
+    },
+    {
+      "name": "subscribeSuccess",
+      "value": "订阅成功"
+    },
+    {
+      "name": "subscribeTip",
+      "value": "通知内容"
+    },
+    {
+      "name": "publishNotification",
+      "value": "发布通知"
+    },
+    {
+      "name": "subscribeButton",
+      "value": "订阅按钮"
+    },
+    {
+      "name": "allow",
+      "value": "允许"
+    }
+  ]
+}
