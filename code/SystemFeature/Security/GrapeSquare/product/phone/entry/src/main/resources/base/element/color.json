@@ -1,0 +1,16 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "tabbar_background",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "tab_bar_separator_line_color",
+      "value": "#182431"
+    }
+  ]
+}

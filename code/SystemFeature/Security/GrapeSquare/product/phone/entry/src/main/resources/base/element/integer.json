@@ -1,0 +1,40 @@
+{
+  "integer": [
+    {
+      "name": "tabbar_image_width",
+      "value": 28
+    },
+    {
+      "name": "tabbar_image_height",
+      "value": 28
+    },
+    {
+      "name": "tabbar_image_margin",
+      "value": 6
+    },
+    {
+      "name": "tabbar_height",
+      "value": 56
+    },
+    {
+      "name": "tabbar_item_font_size",
+      "value": 12
+    },
+    {
+      "name": "layout_size_30",
+      "value": 30
+    },
+    {
+      "name": "layout_size_10",
+      "value": 10
+    },
+    {
+      "name": "layout_size_15",
+      "value": 15
+    },
+    {
+      "name": "layout_size_6",
+      "value": 6
+    }
+  ]
+}
