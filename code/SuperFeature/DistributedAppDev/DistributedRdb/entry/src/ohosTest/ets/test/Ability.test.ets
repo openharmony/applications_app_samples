@@ -18,6 +18,7 @@ import { describe, it, expect } from '@ohos/hypium';
 import { Driver, ON, Component, MatchPattern } from '@ohos.UiTest';
 import { logger } from '../util/Logger';
 import inputMethod from '@ohos.inputMethod';
+import Want from '@ohos.app.ability.Want';
 
 const TAG = '[Sample_DistributedRdb]';
 const BUNDLE = 'DistributedRdb_';
@@ -25,10 +26,10 @@ const BUNDLE = 'DistributedRdb_';
 export default function abilityTest() {
   let driver = Driver.create();
   let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
-  describe('ActsAbilityTest', function () {
-    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+  describe('ActsAbilityTest', () => {
+    it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}StartAbility_001 begin`);
-      let want = {
+      let want: Want = {
         bundleName: "ohos.samples.distributedrdb",
         abilityName: "EntryAbility"
       };
@@ -43,7 +44,7 @@ export default function abilityTest() {
     /**
      * 点击允许授权
      */
-    it(BUNDLE + 'ClickAcceptFunction_001', 0, async function (done) {
+    it(BUNDLE + 'ClickAcceptFunction_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}ClickAcceptFunction_001 begin`);
       await driver.delayMs(1000);
       logger.info(TAG, `${BUNDLE}ClickAcceptFunction_001 clickAccept`);
@@ -63,7 +64,7 @@ export default function abilityTest() {
     /**
      * 设置页面
      */
-    it(BUNDLE + 'Settings_001', 0, async function (done) {
+    it(BUNDLE + 'Settings_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}Settings_001 begin`);
       await driver.delayMs(1000);
       // 点击右上角更多按钮、弹出菜单
@@ -98,7 +99,7 @@ export default function abilityTest() {
     /**
      * 连接设备弹窗
      */
-    it(BUNDLE + 'SelectDeviceDialog_001', 0, async function (done) {
+    it(BUNDLE + 'SelectDeviceDialog_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}SelectDeviceDialog_001 begin`);
       await driver.delayMs(1000)
       // 点击右上角更多按钮、弹出菜单
@@ -124,7 +125,7 @@ export default function abilityTest() {
     /**
      * 添加联系人
      */
-    it(BUNDLE + 'AddContactFunction_001', 0, async function (done) {
+    it(BUNDLE + 'AddContactFunction_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}AddContactFunction_001 begin`);
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('btnAdd'));
@@ -168,7 +169,7 @@ export default function abilityTest() {
     /**
      * 搜索联系人
      */
-    it(BUNDLE + 'SearchContactFunction_001', 0, async function (done) {
+    it(BUNDLE + 'SearchContactFunction_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}SearchContactFunction_001 begin`);
       await driver.delayMs(1000)
       // 点击搜索框
@@ -197,7 +198,7 @@ export default function abilityTest() {
     /**
      * 添加联系人并解决联系人冲突（电话号码一样，联系人名称不一样）
      */
-    it(BUNDLE + 'AddContactConflictFunction_001', 0, async function (done) {
+    it(BUNDLE + 'AddContactConflictFunction_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}AddContactConflictFunction_001 begin`);
       await driver.delayMs(500);
       await driver.assertComponentExist(ON.id('btnAdd'));
@@ -297,7 +298,7 @@ export default function abilityTest() {
     /**
      * 长按联系人进入多选、退出多选
      */
-    it(BUNDLE + 'LongClickFunction_001', 0, async function (done) {
+    it(BUNDLE + 'LongClickFunction_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}LongClickFunction_001 begin`);
       await driver.delayMs(1000)
       // 长按第一条，进入多选
@@ -317,7 +318,7 @@ export default function abilityTest() {
     /**
      * 进入多选后全选、删除
      */
-    it(BUNDLE + 'DeleteContactFunction_001', 0, async function (done) {
+    it(BUNDLE + 'DeleteContactFunction_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}DeleteContactFunction_001 begin`);
       await driver.delayMs(1000)
       // 长按第一条，进入多选
