@@ -116,5 +116,6 @@ export struct FlashingLightPage {
       }
     }
     .position({ x: 30, y: 408 })
+    .id('FlashLightButton')
   }
 }
