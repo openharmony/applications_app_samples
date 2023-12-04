@@ -9,7 +9,7 @@
 
 | 首页                              | 拷贝文件                             | worker页面                            | 任务池页面                           |
 | --------------------------------- | ------------------------------------ | ------------------------------------- | ------------------------------------ |
-| ![](screenshots/device/index.jpg) | ![](screenshots/device/copyFile.jpg) | ![](screenshots/device/workerTab.jpg) | ![](screenshots/device/taskpool.jpg) |
+| ![](screenshots/device/index.jpg) | ![](screenshots/device/copyFile.jpg) | ![](screenshots/device/workerTab.jpg) | ![](screenshots/device/taskpoolTab.jpg) |
 
 使用说明
 
@@ -29,15 +29,17 @@
 
    1. 选择**TaskPool**页签，输入待排序的字符串，并以逗号分割。
 
-   2. 点击**立即执行**按钮，任务执行完成后将排序后的字符串显示出来。
+   2. 选择**添加至任务组**按钮，将当前字符串的排序任务添加至任务组。
 
-   3. 点击**超时3s执行**按钮，任务延迟3s后执行，执行完成后将排序后的字符串显示出来。
+   3. 点击**立即执行**按钮，如之前有添加至任务组操作则任务组执行完成后将排序后的字符串显示出来；如没有上述操作则执行当前任务完成，将排序后的字符串显示出来。
 
-   4. 点击**函数任务**按钮，直接调用执行操作，执行完成后将排序后的字符串显示出来。需要注意的是，通过**函数任务**创建的task任务不支持取消。
+   4. 点击**超时3s执行**按钮，任务延迟3s后执行，执行完成后将排序后的字符串显示出来。
 
-   5. 点击**取消任务**按钮，会取消最后一个未执行的task任务。需要注意的是，只有当任务数大于最大线程数且任务未开始执行时才可以取消成功。
+   5. 点击**函数任务**按钮，直接调用执行操作，执行完成后将排序后的字符串显示出来。需要注意的是，通过**函数任务**创建的task任务不支持取消。
 
-   6. 点击**清除**按钮，清除字符串。
+   6. 点击**取消任务**按钮，会取消最后一个未执行的task任务。需要注意的是，只有当任务数大于最大线程数且任务未开始执行时才可以取消成功。
+
+   7. 点击**清除**按钮，清除字符串。
 
 3. 点击**拷贝文件**按钮进入文件拷贝界面：
 
@@ -70,12 +72,13 @@ entry/src/main/ets/
   * 清除：把字符串输入框和结果都清除。
 
 * taskpool页签的实现在字符串排序页面调用，源码参考[StrSort.ets](entry/src/main/ets/pages/StrSort.ets)
-  * 立即执行：通过调用executeImmediately()创建一个task任务，这个任务是立即执行字符串排序。
+  * 立即执行：如没有添加至任务组操作，通过调用executeImmediately()创建一个task任务，这个任务是立即执行字符串排序；如先进行了添加至任务组操作，则通过调用executeImmediately()将任务组执行完毕。
   * 超时3s执行：通过调用executeDelay()创建一个task任务，这个任务是延迟3s后执行字符串排序。
   * 函数任务：调用executeFunc()接口，不创建task任务，直接调用taskpool.execute()执行字符串排序。
   * 取消任务：调用cancelTask()接口，取消最后一个未执行的task任务。
   * 清除：把字符串输入框和结果都清除。
-  
+  * 添加至任务组：调用addTask()接口，将当前任务添加至任务组。
+
 * 批量拷贝文件的功能封装在MyWorker，源码参考：[MyWorker.ts](ets/src/main/ets/fileFs/MyWorker.ts)
 
   * 拷贝文件：在[CopyFile.ets](entry/src/main/ets/pages/CopyFile.ets)
