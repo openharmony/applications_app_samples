@@ -111,7 +111,7 @@ export struct focusPage {
             y: this.focusPointVal[1] - 30
           });
       }.zIndex(99)
-      }.id('FocusPage')
     }
+    }.id('FocusPage')
   }
 }
