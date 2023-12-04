@@ -1,45 +1,37 @@
 {
-	"Channels" : 
-	[
+	"MetaData": {
+		"Create": "2022-04-13",
+		"Discription": "A json file effect",
+		"ChannelNumber": 1,
+		"Version": 1.0
+	},
+	"Channels": [
 		{
-			"Parameters" : 
-			{
-				"Index" : 1
+			"Parameters": {
+				"Index": 0
 			},
-			"Pattern" : 
-			[
+			"Pattern": [
 				{
-					"Event" : 
-					{
-						"Parameters" : 
-						{
-							"Frequency" : 60,
-							"Intensity" : 48
-						},
-						"StartTime" : 107,
-						"Type" : "transient"
+					"Event": {
+						"Type": "transient",
+						"StartTime": 107,
+						"Parameters": {
+							"Intensity": 48,
+							"Frequency": 21
+						}
 					}
 				},
 				{
-					"Event" : 
-					{
-						"Parameters" : 
-						{
-							"Frequency" : 60,
-							"Intensity" : 60
-						},
-						"StartTime" : 161,
-						"Type" : "transient"
+					"Event": {
+						"Type": "transient",
+						"StartTime": 161,
+						"Parameters": {
+							"Intensity": 60,
+							"Frequency": 21
+						}
 					}
 				}
 			]
 		}
-	],
-	"MetaData" : 
-	{
-		"ChannelNumber" : 1,
-		"Create" : "2023-03-31",
-		"Discription" : "A json file format demo",
-		"Version" : 1.0
-	}
+	]
 }
