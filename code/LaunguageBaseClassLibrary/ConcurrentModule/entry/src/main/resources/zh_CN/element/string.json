@@ -14,11 +14,19 @@
     },
     {
       "name": "Text_desc",
+      "value": "请输入待排序字符串"
+    },
+    {
+      "name": "Default_desc",
       "value": "请输入待排序字符串，并以逗号分割"
     },
     {
       "name": "Result_desc",
       "value": "执行结果"
+    },
+    {
+      "name": "Add_task",
+      "value": "添加至任务组"
     },
     {
       "name": "SortString_desc",

@@ -203,6 +203,7 @@ struct Watcher {
                       .width('100%')
                     Text(this.copyFileShowLog)
                       .fontSize(16)
+                      .id("copyFileLog")
                       .fontColor('#182431')
                       .fontWeight(400)
                       .width('100%')
