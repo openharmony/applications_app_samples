@@ -12,10 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-import { settingPublicLayout } from '../common/SettingPublicLayout';
 
+import { settingPublicLayout } from '../common/SettingPublicLayout';
 import { settingRightLayout } from '../common/SettingRightLayout';
+import { SettingDataObj } from '../common/Constants'
 
 @CustomDialog
 export struct settingDialog {
@@ -25,27 +25,43 @@ export struct settingDialog {
   @Link referenceLineBol: boolean;
   // Index of a certain setting clicked on
   @State leftSliderIndex: number = 1;
+  private settingDataObj: SettingDataObj = {
+    mirrorBol: false,
+    videoStabilizationMode: 0,
+    exposureMode: 1,
+    focusMode: 2,
+    photoQuality: 1,
+    locationBol: false,
+    photoFormat: 1,
+    photoOrientation: 0,
+    photoResolution: 0,
+    videoResolution: 0,
+    videoFrame: 0,
+    referenceLineBol: false
+  };
 
   // Mirror persistence, enter again, confirm if the switch is turned on
-  getMirrorBol(bol) {
-    globalThis.settingDataObj.mirrorBol = bol;
+  getMirrorBol(bol: boolean) {
+    this.settingDataObj.mirrorBol = bol;
   }
+
   // Persistent geographical location, re-enter to determine if the switch is turned on
-  getLocationBol(bol) {
-    globalThis.settingDataObj.locationBol = bol;
+  getLocationBol(bol: boolean) {
+    this.settingDataObj.locationBol = bol;
   }
+
   // Persist the reference line, enter again to determine if the switch is turned on
-  getReferenceLineBol(bol) {
-    globalThis.settingDataObj.referenceLineBol = bol;
+  getReferenceLineBol(bol: boolean) {
+    this.settingDataObj.referenceLineBol = bol;
     this.referenceLineBol = bol;
   }
 
   onPageShow() {
-    console.info('globalThis onPageShow:' + JSON.stringify(globalThis.settingDataObj));
+    console.info('globalThis onPageShow:' + JSON.stringify(this.settingDataObj));
   }
 
   onPageHide() {
-    console.info('globalThis onPageHide:' + JSON.stringify(globalThis.settingDataObj));
+    console.info('globalThis onPageHide:' + JSON.stringify(this.settingDataObj));
   }
 
   build() {
@@ -53,7 +69,7 @@ export struct settingDialog {
       Flex({ justifyContent: FlexAlign.SpaceBetween }) {
         Column() {
           Row() {
-            Text('设置')
+            Text($r('app.string.SETTING'))
               .fontSize(26)
               .fontWeight(FontWeight.Bold)
               .textAlign(TextAlign.Start)
@@ -68,11 +84,10 @@ export struct settingDialog {
             isModeBol: true,
             borderBol: false,
             iconModeBol: true,
-            modeMessage: '自拍镜像',
+            modeMessage: $r('app.string.SELFIE_IMAGE'),
             backNum: 1,
             leftSliderIndex: $leftSliderIndex,
-            setModeBol: globalThis.settingDataObj.mirrorBol,
-            getModeBol: this.getMirrorBol.bind(this)
+            setModeBol: this.settingDataObj.mirrorBol,
           })
           Column() {
             settingPublicLayout({
@@ -82,28 +97,28 @@ export struct settingDialog {
               borderBole: true,
               backNum: 2,
               leftSliderIndex: $leftSliderIndex,
-              modeMessage: '视频防抖'
+              modeMessage: $r('app.string.STEADY_VIDEO')
             })
             Divider().width(420).margin({ left: 20 })
             settingPublicLayout({
               backNum: 3,
               leftSliderIndex: $leftSliderIndex,
               icon: $r('app.media.ic_camera_set_exposure'),
-              modeMessage: '曝光模式'
+              modeMessage: $r('app.string.EXPOSURE_MODE')
             })
             Divider().width(420).margin({ left: 20 })
             settingPublicLayout({
               backNum: 4,
               leftSliderIndex: $leftSliderIndex,
               icon: $r('app.media.ic_camera_set_af'),
-              modeMessage: '对焦模式'
+              modeMessage: $r('app.string.FOCUS_MODE')
             })
             Divider().width(420).margin({ left: 20 })
             settingPublicLayout({
               backNum: 5,
               leftSliderIndex: $leftSliderIndex,
               icon: $r('app.media.ic_camera_set_quality'),
-              modeMessage: '拍摄质量'
+              modeMessage: $r('app.string.CAPTURE_QUALITY')
             })
             Divider().width(420).margin({ left: 20 })
             settingPublicLayout({
@@ -114,9 +129,8 @@ export struct settingDialog {
               borderBol: true,
               borderBole: false,
               iconModeBol: true,
-              modeMessage: '拍摄时显示地理位置',
-              setModeBol: globalThis.settingDataObj.locationBol,
-              getModeBol: this.getLocationBol.bind(this)
+              modeMessage: $r('app.string.DISPLAY_LOCATION'),
+              setModeBol: this.settingDataObj.locationBol,
             })
 
           }
@@ -129,7 +143,7 @@ export struct settingDialog {
               backNum: 7,
               leftSliderIndex: $leftSliderIndex,
               icon: $r('app.media.ic_camera_set_format'),
-              modeMessage: '照片格式',
+              modeMessage: $r('app.string.PHOTO_FORMAT'),
               isModeBol: true,
               borderBol: true,
               borderBole: true,
@@ -139,28 +153,28 @@ export struct settingDialog {
               backNum: 8,
               leftSliderIndex: $leftSliderIndex,
               icon: $r('app.media.ic_camera_set_class'),
-              modeMessage: '照片方向配置'
+              modeMessage: $r('app.string.PHOTO_DIRECTION_CONFIGURATION')
             })
             Divider().width(420).margin({ left: 20 })
             settingPublicLayout({
               backNum: 9,
               leftSliderIndex: $leftSliderIndex,
               icon: $r('app.media.ic_camera_set_pic_resolution'),
-              modeMessage: '照片分辨率'
+              modeMessage: $r('app.string.PHOTO_RESOLUTION')
             })
             Divider().width(420).margin({ left: 20 })
             settingPublicLayout({
               backNum: 10,
               leftSliderIndex: $leftSliderIndex,
               icon: $r('app.media.ic_camera_set_video_resolution'),
-              modeMessage: '视频分辨率'
+              modeMessage: $r('app.string.VIDEO_RESOLUTION')
             })
             Divider().width(420).margin({ left: 20 })
             settingPublicLayout({
               backNum: 11,
               leftSliderIndex: $leftSliderIndex,
               icon: $r('app.media.ic_camera_set_video_rate'),
-              modeMessage: '录像帧率',
+              modeMessage: $r('app.string.VIDEO_RATE'),
               isModeBol: true,
               borderBol: true,
               borderBole: false,
@@ -174,12 +188,11 @@ export struct settingDialog {
             backNum: 12,
             leftSliderIndex: $leftSliderIndex,
             icon: $r('app.media.ic_camera_set_line'),
-            modeMessage: '参考线',
+            modeMessage: $r('app.string.REFERENCE_LINE'),
             isModeBol: true,
             borderBol: false,
             iconModeBol: true,
-            setModeBol: globalThis.settingDataObj.referenceLineBol,
-            getModeBol: this.getReferenceLineBol.bind(this)
+            setModeBol: this.settingDataObj.referenceLineBol,
           })
             .margin({ top: 15 })
         }
@@ -200,7 +213,7 @@ export struct settingDialog {
     })
     // Page disappears
     .onDisAppear(async () => {
-      console.info('globalThis onPageHide:' + JSON.stringify(globalThis.settingDataObj));
+      console.info('globalThis onPageHide:' + JSON.stringify(this.settingDataObj));
     })
     .width('100%')
     .height('100%')

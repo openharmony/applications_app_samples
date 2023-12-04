@@ -18,6 +18,8 @@
 
 #define LOG_TAG "DEMO:"
 #define LOG_DOMAIN 0x3200
+
+using namespace OHOS_CAMERA_SAMPLE;
 static NDKCamera* ndkCamera_ = nullptr;
 const int32_t ARGS_TWO = 2;
 struct Capture_Setting {

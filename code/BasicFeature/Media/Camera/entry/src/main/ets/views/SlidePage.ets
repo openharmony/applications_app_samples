@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 // Zoom component
 // For changes in components - can only be integers 1 to 6
 import cameraDemo from 'libentry.so'
@@ -27,7 +27,7 @@ export struct SlidePage {
   // Slide slider movement value
   @State sliderTextPos: string = '-10';
 
-  slideChange(value) {
+  slideChange(value: number) {
     cameraDemo.setZoomRatio(value);
     switch (value) {
       case 1:

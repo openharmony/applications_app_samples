@@ -26,7 +26,7 @@
 10. 进入预览界面，预览正常，切换到录像模式，点击录像，开始录像，再点击停止录像按钮，录像成功，左下角会生成视频缩略图，点击左下角缩略图，能够跳转到图库，录像文件保存正常，播放录像文件正常
 11. 进入预览界面，预览正常，切换到前置摄像头，点击拍照按钮，拍照正常，左下角会生成照片缩略图，点击左下角缩略图，能够跳转到图库，图片保存正常，打开图片显示正常
 12. 进入预览界面，预览正常，切换到前置摄像头，切换到录像模式，点击录像，开始录像，再点击停止录像按钮，录像成功，左下角会生成视频缩略图，点击左下角缩略图，能够跳转到图库，录像文件保存正常，播放录像文件正常
-13. 点击设置按钮，会弹出设置页面。
+13. 点击设置按钮，会弹出设置页面，仅验证UI。
 
 ### 工程目录
 
@@ -39,20 +39,20 @@ entry/src/main
 |   |-- main.cpp					        // NAPI实现JS与C++通信的接口
 |   |-- types
 |       `-- libentry
-|           |-- index.d.ts      			        // 导入NAPI接口供JS调用
-|           `-- oh-package.json5			        // 接口注册配置文件
+|           |-- index.d.ts      			// 导入NAPI接口供JS调用
+|           `-- oh-package.json5			// 接口注册配置文件
 |-- ets
 |   |-- Dialog
 |   |   |-- mainDialog.ets					// 打开相机APP弹出的网络权限设置
-|   |   `-- settingDialog.ets			                // 相机APP设置界面布局
+|   |   `-- settingDialog.ets			    // 相机APP设置界面布局
 |   |-- MainAbility
 |   |   `-- MainAbility.ts					// 对Ability生命周期管理
 |   |-- common
 |   |   |-- Constants.ts					// 基本参数枚举：纵横比、设备类型、视频帧数
-|   |   |-- DisplayCalculator.ts			        // 计算界面宽高显示数值
+|   |   |-- DisplayCalculator.ts			// 计算界面宽高显示数值
 |   |   |-- settingItem.ets					// 设置栏
-|   |   |-- settingPublicLayout.ets			        // 设置栏公共区域
-|   |   `-- settingRightLayout.ets			        // 设置栏右边区域
+|   |   |-- settingPublicLayout.ets			// 设置栏公共区域
+|   |   `-- settingRightLayout.ets			// 设置栏右边区域
 |   |-- entryability
 |   |   `-- EntryAbility.ts					// Ability的生命周期回调内容
 |   |-- model
@@ -62,13 +62,13 @@ entry/src/main
 |   |-- pages
 |   |   `-- Index.ets						// Ability实现的应用的入口页面，相机APP首页
 |   `-- views
-|       |-- CountdownPage.ets				        // 倒计时UI页面布局
-|       |-- FlashingLightPage.ets			        // 闪光灯UI界面布局
+|       |-- CountdownPage.ets				// 倒计时UI页面布局
+|       |-- FlashingLightPage.ets			// 闪光灯UI界面布局
 |       |-- SlidePage.ets					// 滑动滑块UI界面布局
 |       |-- dividerPage.ets					// 分割线UI布局
-|       |-- focusAreaPage.ets				        // 对焦区域设置（焦点、侧光点）、单指竖直方向拖动触发曝光补偿设置
+|       |-- focusAreaPage.ets				// 对焦区域设置（焦点、侧光点）、单指竖直方向拖动触发曝光补偿设置
 |       |-- focusPage.ets					// 变焦、对焦、曝光、刻度的图标设置、值的设置
-|       `-- modeSwitchPage.ets				        // 相机功能模式切换，开启预览、拍照、录像
+|       `-- modeSwitchPage.ets				// 相机功能模式切换，开启预览、拍照、录像
 
 ```
 
@@ -124,8 +124,8 @@ entry/src/main
 ### 约束与限制
 
 1. 本示例支持标准系统上运行，支持设备：RK3568；
-2. 本示例为Stage模型，已适配API version 9版本SDK，SDK版本号(API Version 9 Release)，镜像版本号(4.0Release)；
-3. 本示例需要使用DevEco Studio 版本号(3.1Release)及以上版本才可编译运行。
+2. 本示例为Stage模型，已适配API version 10版本SDK，SDK版本号(API Version 10 Release)，镜像版本号(4.0Release)；
+3. 本示例需要使用DevEco Studio 版本号(4.0.0.600)及以上版本才可编译运行。
 
 ### 下载
 

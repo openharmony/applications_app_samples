@@ -23,8 +23,7 @@ export default class DisplayCalculator {
     const displaySize = {
       width: 1920, height: 1080
     };
-    // @ts-ignore
-    if (AppStorage.get<string>('deviceType') === Constants.TABLET || screenWidth > screenHeight) {
+    if (AppStorage.Get<string>('deviceType') === Constants.TABLET || screenWidth > screenHeight) {
       if (screenWidth / screenHeight > defaultAspectRatio) {
         displaySize.width = Math.floor(screenHeight * defaultAspectRatio);
         displaySize.height = Math.floor(screenHeight);

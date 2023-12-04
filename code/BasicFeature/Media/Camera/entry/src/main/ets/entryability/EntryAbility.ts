@@ -23,14 +23,11 @@ import hilog from '@ohos.hilog';
 const TAG: string = "EntryAbility";
 
 export default class EntryAbility extends UIAbility {
-
   onCreate(want, launchParam) {
     hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
     hilog.info(0x0000, 'testTag', '%{public}s', 'want param:' + JSON.stringify(want) ?? '');
     hilog.info(0x0000, 'testTag', '%{public}s', 'launchParam:' + JSON.stringify(launchParam) ?? '');
-    // @ts-ignore
-    globalThis.abilityContext = this.context;
   }
 
   onDestroy() {
