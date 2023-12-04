@@ -13,7 +13,8 @@
  * limitations under the License.
  */
 
-import { CustomDataSource, getStringArray } from '@ohos/common';
+import { getStringArray } from '@ohos/commons/src/main/ets/util/ResourceUtil';
+import { CustomDataSource } from '@ohos/commons/src/main/ets/components/CustomDataSource';
 
 @Component
 export struct ColumnOperation {
@@ -25,7 +26,7 @@ export struct ColumnOperation {
   build() {
     List() {
       LazyForEach(this.operationSource, (item: string, index: number) => {
-        ListItem(){
+        ListItem() {
           Row() {
             Button() {
               Text(item)
@@ -58,7 +59,7 @@ export struct ColumnOperation {
 
   async aboutToAppear() {
     if (this.operationRes) {
-      let menuList = await getStringArray(this.operationRes);
+      let menuList: Array<string> = await getStringArray(this.operationRes);
       this.operationSource.dataArray = menuList;
       this.operationSource.notifyDataReload();
     }

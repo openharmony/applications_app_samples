@@ -14,7 +14,7 @@
  */
 
 import power from '@ohos.power';
-import { getStringArray } from '@ohos/common';
+import { getStringArray } from '@ohos/common/src/main/ets/util/ResourceUtil';
 
 export class PowerManagerUtil {
   static powerModes: Array<power.DevicePowerMode> = [
@@ -47,7 +47,7 @@ export class PowerManagerUtil {
    MODE_EXTREME_POWER_SAVE  603  表示超级省电模式。
    */
   static async getPowerModeName(): Promise<string> {
-    let powerModeNames = await getStringArray($r('app.strarray.power_mode'))
+    let powerModeNames: Array<string> = await getStringArray($r('app.strarray.power_mode'))
     switch (power.getPowerMode()) {
       case PowerManagerUtil.powerModes[0]:
         return powerModeNames[0];

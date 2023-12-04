@@ -15,7 +15,7 @@
 
 
 import { ItemGroup } from './ItemGroup';
-import { logger } from '@ohos/common';
+import { logger } from '@ohos/common/src/main/ets/util/Logger';
 import { MainItem } from './MainItem';
 
 const TAG: string = '[Sample_MenuNavRouter]';

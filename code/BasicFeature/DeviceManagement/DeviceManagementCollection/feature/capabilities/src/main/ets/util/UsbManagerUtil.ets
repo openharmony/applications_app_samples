@@ -19,10 +19,10 @@ import usbManager from '@ohos.usbManager';
 import { BusinessError } from '@ohos.base';
 import CheckEmptyUtils from './CheckEmptyUtils';
 import { DeviceAttribute } from '../model/DeviceAttribute';
-import { logger } from '@ohos/common';
+import { logger } from '@ohos/commons/src/main/ets/util/Logger';
 
 const TAG: string = 'UsbManagerUtil';
-let commonEventSubscriber : commonEventManager.CommonEventSubscriber | undefined = undefined;
+let commonEventSubscriber: commonEventManager.CommonEventSubscriber | undefined = undefined;
 
 export function getDeviceList(): DeviceAttribute[] {
   let usbDevices: usbManager.USBDevice[] = usbManager.getDevices();

@@ -13,13 +13,14 @@
  * limitations under the License.
  */
 
-import { CustomDataSource, getStringArray } from '@ohos/common';
+import { getStringArray } from '@ohos/common/src/main/ets/util/ResourceUtil';
 
 @Component
 export struct ColumnOperation {
   private operationRes: Resource | undefined = undefined;
   @State operationSource: string[] = [];
-  private doOperation: (index: number) => void = () => {};
+  private doOperation: (index: number) => void = () => {
+  };
 
   build() {
     Column() {

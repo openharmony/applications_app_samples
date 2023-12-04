@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { getString } from '@ohos/common';
+import { getString } from '@ohos/common/src/main/ets/util/ResourceUtil';
 import {
   BatteryStats,
   BrightnessManager,

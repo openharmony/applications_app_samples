@@ -15,8 +15,7 @@
 
 import settings from '@ohos.settings';
 import { ColumnOperation } from '../components/ColumnOperation';
-import { getString } from '@ohos/common';
-
+import { getString } from '@ohos/commons/src/main/ets/util/ResourceUtil';
 @Component
 export struct SettingsManager {
   @State result: string = '';

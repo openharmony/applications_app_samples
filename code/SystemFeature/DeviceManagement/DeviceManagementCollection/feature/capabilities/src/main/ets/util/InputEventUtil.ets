@@ -12,13 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { logger, formatJson } from '@ohos/common'
+import { formatJson } from '@ohos/common/src/main/ets/util/JSONUtils';
+import { logger } from '@ohos/common/src/main/ets/util/Logger';
 import inputMonitor from '@ohos.multimodalInput.inputMonitor'
 import inputEventClient from '@ohos.multimodalInput.inputEventClient'
 
 const TAG: string = '[Sample_InputEventUtil]'
 
-interface KeyEventType{
+interface KeyEventType {
   KeyEvent: inputEventClient.KeyEvent
 }
 
@@ -28,7 +29,7 @@ interface KeyEventType{
 export function injectBackEvent(): void {
   try {
     let backKeyDown: KeyEventType = {
-      KeyEvent:{
+      KeyEvent: {
         isPressed: true,
         keyCode: 2,
         keyDownDuration: 0,

@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { formatJson } from '@ohos/common'
+import { formatJson } from '@ohos/common/src/main/ets/util/JSONUtils';
 /**
  * 输入按键事件管理
  */

@@ -15,7 +15,7 @@
 
 import runningLock from '@ohos.runningLock';
 import { ColumnOperation } from '../components/ColumnOperation';
-import { getString } from '@ohos/common';
+import { getString } from '@ohos/commons/src/main/ets/util/ResourceUtil';
 
 @Component
 export struct RunningLockManager {
@@ -43,6 +43,7 @@ export struct RunningLockManager {
         .padding(16)
         .borderRadius(20)
         .margin({ top: 16 })
+
         ColumnOperation({ operationRes: $r('app.strarray.running_lock_operations'), doOperation: this.doOperation })
       }
       .width('100%')

@@ -18,7 +18,7 @@ import { ColumnOperation } from '../components/ColumnOperation';
 import { showAlertDialog } from '../util/AlertDialogUtil';
 import { PowerManagerUtil } from '../util/PowerManagerUtil';
 import { SelectDialog } from '../components/SelectDialog';
-import { getString, getStringArray } from '@ohos/common';
+import { getString, getStringArray } from '@ohos/common/src/main/ets/util/ResourceUtil';
 import power from '@ohos.power';
 
 @Preview
@@ -54,6 +54,7 @@ export struct PowerManager {
         .padding(16)
         .borderRadius(20)
         .margin({ top: 16 })
+
         ColumnOperation({ operationRes: $r('app.strarray.power_operations'), doOperation: this.doOperation })
       }
       .width('100%')

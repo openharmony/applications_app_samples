@@ -21,6 +21,6 @@
   "main": "index.ets",
   "version": "1.0.0",
   "dependencies": {
-    "@ohos/common": "file:../../common"
+    "@ohos/commons": "file:../../common"
   }
 }

@@ -15,7 +15,7 @@
 
 import InputConsumerUtil from '../util/InputConsumerUtil'
 import keyCode from '@ohos.multimodalInput.keyCode'
-import { formatJson } from '@ohos/common'
+import { formatJson } from '@ohos/common/src/main/ets/util/JSONUtils';
 import inputConsumer from '@ohos.multimodalInput.inputConsumer'
 
 /**
@@ -100,6 +100,7 @@ export struct InputConsumer {
             .id('textInputConsumerInfo')
         }
       }
+
       if (this.mIsShowImage) {
         Image($r('app.media.img_openatom'))
           .height('10%')

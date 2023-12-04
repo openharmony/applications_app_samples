@@ -21,7 +21,7 @@ import {
   getPointerStyle
 } from '../util/MouseManagerUtil'
 import { pointerStyleArr, PointerStyleData } from '../model/PointerStyleData'
-import { getString } from '@ohos/common'
+import { getString } from '@ohos/common/src/main/ets/util/ResourceUtil';
 import pointer from '@ohos.multimodalInput.pointer'
 
 /**

@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 import pointer from '@ohos.multimodalInput.pointer'
-import { getString } from '@ohos/common'
+import { getString } from '@ohos/common/src/main/ets/util/ResourceUtil';
 /**
  * 鼠标指针样式
  */
-export interface PointerStyleData {
-  icon: Resource | string,
-  name: string,
-  style: pointer.PointerStyle
+export class PointerStyleData {
+  icon: Resource | string = '';
+  name: string = '';
+  style: pointer.PointerStyle = pointer.PointerStyle.DEFAULT
 }
 
 export let pointerStyleArr: PointerStyleData[] = [
