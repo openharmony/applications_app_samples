@@ -93,7 +93,7 @@ export default function abilityTest() {
           hilog.info(DOMAIN, TAG, '%{public}s', 'can not find contentTitle exist:' + err.code);
           expect().assertFail()
         })
-      await driver.assertComponentExist(ON.text('pullNot"content"')).catch((err: BusinessError) => {
+      await driver.assertComponentExist(ON.text('pullNot："content"')).catch((err: BusinessError) => {
         hilog.info(DOMAIN, TAG, '%{public}s', 'can not find content exist:' + err.code);
         expect().assertFail()
       })
