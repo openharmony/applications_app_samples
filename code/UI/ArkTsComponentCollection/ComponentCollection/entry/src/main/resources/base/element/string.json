@@ -1888,6 +1888,18 @@
       "value": "Shadow Effect"
     },
     {
+      "name": "shadow_effects_content",
+      "value": "Shadow Effect Shadow Effect Shadow Effect Shadow Effect Shadow Effect Shadow Effect Shadow Effect Shadow Effect"
+    },
+    {
+      "name": "offset_min",
+      "value": "-40"
+    },
+    {
+      "name": "offset_max",
+      "value": "40"
+    },
+    {
       "name": "x_offset",
       "value": "X Offset"
     },

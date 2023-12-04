@@ -1576,6 +1576,18 @@
       "value": "阴影效果"
     },
     {
+      "name": "shadow_effects_content",
+      "value": "阴影效果阴影效果阴影效果阴影效果阴影效果阴影效果阴影效果阴影效果"
+    },
+    {
+      "name": "offset_min",
+      "value": "-40"
+    },
+    {
+      "name": "offset_max",
+      "value": "40"
+    },
+    {
       "name": "x_offset",
       "value": "X偏移调整"
     },

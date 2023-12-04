@@ -13,10 +13,14 @@
  * limitations under the License.
  */
 
-import { TitleBar } from '../../../../common/TitleBar'
-import { BackgroundBlurChangePanel, ShadowChangePanel } from './ChangePanel'
+import { TitleBar } from '../../../../common/TitleBar';
+import { BackgroundBlurChangePanel, ShadowChangePanel } from './ChangePanel';
 
-@Extend(Column) function cardStyle() {
+const OFFSET_MIN = -40;
+const OFFSET_MAX = 40;
+
+@Extend(Column)
+function cardStyle() {
   .backgroundColor($r('app.color.white'))
   .borderRadius(24)
   .width('100%')
@@ -24,13 +28,15 @@ import { BackgroundBlurChangePanel, ShadowChangePanel } from './ChangePanel'
   .margin({ bottom: 12 })
 }
 
-@Extend(Text) function subTitleStyle() {
+@Extend(Text)
+function subTitleStyle() {
   .fontColor($r('app.color.sub_title_color'))
   .fontSize(14)
   .height(22)
 }
 
-@Extend(Circle) function colorPicker(color: Color | string, callback: () => void) {
+@Extend(Circle)
+function colorPicker(color: Color | string, callback: () => void) {
   .fill(color)
   .height(20)
   .width(20)
@@ -39,13 +45,15 @@ import { BackgroundBlurChangePanel, ShadowChangePanel } from './ChangePanel'
   })
 }
 
-@Styles function pressedStyle() {
+@Styles
+function pressedStyle() {
   .opacity(0.7)
   .borderWidth(1)
   .borderRadius(20)
 }
 
-@Extend(Text) function leftTitleStyle() {
+@Extend(Text)
+function leftTitleStyle() {
   .fontSize(18)
   .width('100%')
   .direction(Direction.Ltr)
@@ -56,29 +64,30 @@ import { BackgroundBlurChangePanel, ShadowChangePanel } from './ChangePanel'
 @Entry
 @Component
 struct Effects {
-  @State mTabIndex: number = 0
-  @State mBlur: number = 1
-  @State mBackgroundBlur: number = 1
-  @State mShadowRadius: number = 0
-  @State mShadowColor: Color = Color.Red
-  @State mShadowOffsetX: number = 0
-  @State mShadowOffsetY: number = 0
-  @State mGrayscale: number = 0
-  @State mBrighthness: number = 1
-  @State mSaturate: number = 1
-  @State mConstrast: number = 1
-  @State mInvert: number = 0
-  @State mColorBlend: Color | string = '#00ffffff'
-  @State mSepia: number = 0
-  @State mHueRotate: number = 0
-  @State mSphericalEffect: number = 0
-  @State mPixelStretchBottomEffect: number = 0
-  @State mColorMode: ThemeColorMode = ThemeColorMode.SYSTEM
-  @State mAdaptiveColor: AdaptiveColor = AdaptiveColor.DEFAULT
-  @State mShadowType: ShadowType = ShadowType.COLOR
-  @State mLightUpEffect: number = 1
+  @State mTabIndex: number = 0;
+  @State mBlur: number = 1;
+  @State mBackgroundBlur: number = 1;
+  @State mShadowRadius: number = 0;
+  @State mShadowColor: Color = Color.Red;
+  @State mShadowOffsetX: number = -40;
+  @State mShadowOffsetY: number = -40;
+  @State mGrayscale: number = 0;
+  @State mBrighthness: number = 1;
+  @State mSaturate: number = 1;
+  @State mConstrast: number = 1;
+  @State mInvert: number = 0;
+  @State mColorBlend: Color | string = '#00ffffff';
+  @State mSepia: number = 0;
+  @State mHueRotate: number = 0;
+  @State mSphericalEffect: number = 0;
+  @State mPixelStretchBottomEffect: number = 0;
+  @State mColorMode: ThemeColorMode = ThemeColorMode.SYSTEM;
+  @State mAdaptiveColor: AdaptiveColor = AdaptiveColor.DEFAULT;
+  @State mShadowType: ShadowType = ShadowType.COLOR;
+  @State mLightUpEffect: number = 1;
 
-  @Builder tabbarTitle(name: Resource, index: number) {
+  @Builder
+  tabbarTitle(name: Resource, index: number) {
     Stack() {
       Text(name)
         .fontSize(22)
@@ -201,7 +210,7 @@ struct Effects {
                 .leftTitleStyle()
               Column({ space: 5 }) {
                 Stack() {
-                  Text($r('app.string.shadow_effects'))
+                  Text($r('app.string.shadow_effects_content'))
                     .fontSize(20)
                 }
                 .width('100%')
@@ -236,13 +245,13 @@ struct Effects {
                   .fontSize(15)
                   .alignSelf(ItemAlign.Start)
                 Row({ space: 5 }) {
-                  Text('0')
-                  Slider({ value: this.mShadowOffsetX, min: 0, max: 20 })
+                  Text($r('app.string.offset_min'))
+                  Slider({ value: this.mShadowOffsetX, min: OFFSET_MIN, max: OFFSET_MAX })
                     .onChange((value) => {
                       this.mShadowOffsetX = value
                     })
-                    .width('90%')
-                  Text('20')
+                    .width('80%')
+                  Text($r('app.string.offset_max'))
                 }.width('100%')
 
                 Text($r('app.string.y_offset'))
@@ -250,13 +259,13 @@ struct Effects {
                   .fontSize(15)
                   .alignSelf(ItemAlign.Start)
                 Row({ space: 5 }) {
-                  Text('0')
-                  Slider({ value: this.mShadowOffsetY, min: 0, max: 20 })
+                  Text($r('app.string.offset_min'))
+                  Slider({ value: this.mShadowOffsetY, min: OFFSET_MIN, max: OFFSET_MAX })
                     .onChange((value) => {
                       this.mShadowOffsetY = value
                     })
-                    .width('90%')
-                  Text('20')
+                    .width('80%')
+                  Text($r('app.string.offset_max'))
                 }.width('100%')
 
                 Row({ space: 5 }) {
@@ -264,7 +273,7 @@ struct Effects {
                     mShadowType: $mShadowType
                   })
                 }
-                }.width('100%').cardStyle()
+              }.width('100%').cardStyle()
               .width('100%')
             }
             .constraintSize({ minHeight: '100%' })
