@@ -15,7 +15,8 @@
 
 import HashMap from '@ohos.util.HashMap';
 import emitter from '@ohos.events.emitter';
-import { EmptyPage, logger } from '@ohos/common';
+import { EmptyPage } from '@ohos/common/src/main/ets/components/EmptyPage';
+import { logger } from '@ohos/common/src/main/ets/util/Logger';
 import { KeyValueItemView } from '../components/KeyValueItemView';
 import { KeyValuePair } from '../model/KeyValuePair';
 import { HashMapDataSource } from '../components/hashmapcomponents/HashMapDataSource';

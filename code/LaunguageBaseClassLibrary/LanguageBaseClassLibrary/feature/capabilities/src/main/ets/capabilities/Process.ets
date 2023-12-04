@@ -15,7 +15,8 @@
 
 import process from '@ohos.process';
 import { ColumnOperation } from '../components/ColumnOperation';
-import { getString, logger } from '@ohos/common';
+import { getString } from '@ohos/common/src/main/ets/util/ResourceUtil';
+import { logger } from '@ohos/common/src/main/ets/util/Logger';
 
 let child: process.ChildProcess | undefined = undefined;
 const TAG: string = 'Process';

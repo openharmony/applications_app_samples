@@ -15,7 +15,7 @@
 
 import promptAction from '@ohos.promptAction';
 import util from '@ohos.util';
-import { getString } from '@ohos/common';
+import { getString } from '@ohos/common/src/main/ets/util/ResourceUtil';
 import { InputItem } from './InputItem';
 import { ScopeNumber } from '../../../model/ScopeNumber';
 

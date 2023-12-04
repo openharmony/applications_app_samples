@@ -14,7 +14,7 @@
 */
 
 import emitter from '@ohos.events.emitter';
-import { EmptyPage } from '@ohos/common';
+import { EmptyPage } from '@ohos/common/src/main/ets/components/EmptyPage';
 import { Information } from '../model/Information';
 import { QueueDataSource } from '../components/queuecomponents/QueueDataSource';
 import { InformationItemView } from '../components/InformationItemView';

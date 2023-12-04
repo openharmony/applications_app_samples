@@ -14,7 +14,7 @@
 */
 
 import Queue from '@ohos.util.Queue';
-import { BaseDataSource } from '@ohos/common';
+import { BaseDataSource } from '@ohos/common/src/main/ets/components/BaseDataSource';
 import { Information } from '../../model/Information';
 
 export class QueueDataSource extends BaseDataSource {

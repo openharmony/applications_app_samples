@@ -16,7 +16,7 @@
 import router from '@ohos.router';
 import emitter from '@ohos.events.emitter';
 import { Constant, KeyValuePair } from '@ohos/capabilities';
-import { getString } from '@ohos/common';
+import { getString } from '@ohos/common/src/main/ets/util/ResourceUtil';
 
 @Entry
 @Component

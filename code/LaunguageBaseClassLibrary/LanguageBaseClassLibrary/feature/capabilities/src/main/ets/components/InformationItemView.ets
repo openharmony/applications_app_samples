@@ -15,12 +15,13 @@
 
 import { Information } from '../model/Information';
 import { DeleteView } from './DeleteView';
-import { getString } from '@ohos/common';
+import { getString } from '@ohos/common/src/main/ets/util/ResourceUtil';
 
 @Component
 export struct InformationItemView {
   @ObjectLink information: Information;
-  private deleteAction: (event?: ClickEvent) => void = () => {};
+  private deleteAction: (event?: ClickEvent) => void = () => {
+  };
   private index: number = 0;
 
   build() {

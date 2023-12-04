@@ -14,7 +14,7 @@
  */
 
 import util from '@ohos.util';
-import { getString } from '@ohos/common';
+import { getString } from '@ohos/common/src/main/ets/util/ResourceUtil';
 
 const NUMERATOR1: number = 1;
 const DENOMINATOR1: number = 2;

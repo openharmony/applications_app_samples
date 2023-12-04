@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { getString } from '@ohos/common';
+import { getString } from '@ohos/common/src/main/ets/util/ResourceUtil';
 import { LRUCache } from '../components/utilcomponents/LRUCache';
 import { Base64Helper } from '../components/utilcomponents/Base64Helper';
 import { MenuList } from '@ohos/menuitems';

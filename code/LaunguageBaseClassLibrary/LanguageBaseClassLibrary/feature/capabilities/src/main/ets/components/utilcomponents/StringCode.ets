@@ -14,7 +14,7 @@
  */
 
 import util from '@ohos.util';
-import { getString } from '@ohos/common';
+import { getString } from '@ohos/common/src/main/ets/util/ResourceUtil';
 import { SpecInput } from './stringcode/SpecInput';
 
 @Preview
@@ -184,7 +184,7 @@ export struct StringCode {
   }
 
   textDecode() {
-    let textDecoder = util.TextDecoder.create('utf-8', { ignoreBOM : true });
+    let textDecoder = util.TextDecoder.create('utf-8', { ignoreBOM: true });
     if (this.resArray === undefined) {
       return;
     }

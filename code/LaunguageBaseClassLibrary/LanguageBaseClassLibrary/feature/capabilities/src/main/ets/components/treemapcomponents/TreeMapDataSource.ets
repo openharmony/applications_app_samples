@@ -15,7 +15,7 @@
 
 import TreeMap from '@ohos.util.TreeMap';
 import ArrayList from '@ohos.util.ArrayList';
-import { BaseDataSource } from '@ohos/common';
+import { BaseDataSource } from '@ohos/common/src/main/ets/components/BaseDataSource';
 import { KeyValuePair } from '../../model/KeyValuePair';
 
 export class TreeMapDataSource extends BaseDataSource {

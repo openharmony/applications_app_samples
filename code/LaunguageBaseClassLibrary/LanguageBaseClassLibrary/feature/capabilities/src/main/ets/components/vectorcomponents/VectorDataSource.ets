@@ -14,7 +14,7 @@
 */
 
 import Vector from '@ohos.util.Vector';
-import { BaseDataSource } from '@ohos/common';
+import { BaseDataSource } from '@ohos/common/src/main/ets/components/BaseDataSource';
 import { Information } from '../../model/Information';
 
 export class VectorDataSource extends BaseDataSource {

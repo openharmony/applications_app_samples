@@ -16,7 +16,8 @@
 import router from '@ohos.router';
 import { Capabilities } from './components/Capabilities';
 import { MenuList } from '@ohos/menuitems';
-import { getString, logger } from '@ohos/common';
+import { logger } from '@ohos/common/src/main/ets/util/Logger';
+import { getString } from '@ohos/common/src/main/ets/util/ResourceUtil';
 
 const TAG: string = 'Index';
 

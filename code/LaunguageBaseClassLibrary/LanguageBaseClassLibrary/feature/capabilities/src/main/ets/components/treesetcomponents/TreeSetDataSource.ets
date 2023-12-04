@@ -15,7 +15,7 @@
 
 import TreeSet from '@ohos.util.TreeSet';
 import ArrayList from '@ohos.util.ArrayList';
-import { BaseDataSource } from '@ohos/common';
+import { BaseDataSource } from '@ohos/common/src/main/ets/components/BaseDataSource';
 
 export class TreeSetDataSource extends BaseDataSource {
   private dataArr: TreeSet<string> = new TreeSet();

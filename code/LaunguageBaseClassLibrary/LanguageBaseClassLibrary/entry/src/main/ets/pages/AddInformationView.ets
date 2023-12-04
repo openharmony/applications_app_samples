@@ -16,7 +16,7 @@
 import router from '@ohos.router';
 import emitter from '@ohos.events.emitter';
 import { Constant, Information } from '@ohos/capabilities';
-import { getString } from '@ohos/common';
+import { getString } from '@ohos/common/src/main/ets/util/ResourceUtil';
 
 const MIN_AGE = 1;
 const AGE_RANGE = 9;
@@ -29,7 +29,8 @@ const arr = Array(AGE_RANGE)
 @CustomDialog
 struct AgePickDialog {
   private controller?: CustomDialogController;
-  private sure: (age: number) => void = () => {};
+  private sure: (age: number) => void = () => {
+  };
   @State select: number = AGE_DEFAULT;
 
   build() {

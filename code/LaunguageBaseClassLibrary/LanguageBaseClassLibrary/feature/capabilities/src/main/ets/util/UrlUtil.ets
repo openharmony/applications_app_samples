@@ -14,7 +14,7 @@
 */
 
 import url from '@ohos.url';
-import { getString } from '@ohos/common';
+import { getString } from '@ohos/common/src/main/ets/util/ResourceUtil';
 
 let urlObject = url.URL.parseURL('https://gitee.com/openharmony/');
 let paramsObject = new url.URLParams(urlObject.search.slice(1));

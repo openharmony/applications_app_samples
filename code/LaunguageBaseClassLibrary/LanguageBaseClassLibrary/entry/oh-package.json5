@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 {
   "license": "ISC",
   "devDependencies": {},
@@ -22,7 +21,7 @@
   "version": "1.0.0",
   "dependencies": {
     "@ohos/capabilities": "file:../feature/capabilities",
-    "@ohos/menuitems": "../feature/menuitems",
-    "@ohos/common": "../common"
+    "@ohos/menuitems": "file:../feature/menuitems",
+    "@ohos/common": "file:../common"
   }
 }
