@@ -1,8 +1,8 @@
-# 统一数据标准化
+#  标准化数据定义与描述 
 
 ### 介绍
 
-本示例主要展示了统一数据标准化相关的功能，使用[@ohos.data.uniformTypeDescriptor](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-uniformTypeDescriptor.md) 、[@ohos.file.fs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-fs.md) 、[@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-router.md)等接口，实现了增添预制媒体文件、媒体文件的utd标准类型获取、utd类型归属类型查询、获取文件对应的utd类型的默认图标、支持自定义数据类型等功能。
+ 本示例主要展示了标准化数据定义与描述的功能 ，使用[@ohos.data.uniformTypeDescriptor](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-uniformTypeDescriptor.md) 、[@ohos.file.fs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-fs.md) 、[@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-router.md)等接口，实现了增添预制媒体文件、媒体文件的utd标准类型获取、utd类型归属类型查询、获取文件对应的utd类型的默认图标、支持自定义数据类型等功能。
 
 ### 效果预览
 
@@ -48,14 +48,13 @@ entry/src/main/ets/
 * 自定义数据类型的支持。
     * 在dev_eco开发时的资源配置目录中添加自定义数据类型配置文件utd-adt.json，路径：entry/src/main/resources/rawfile/arkdata/utd;
     * utd-adt.json中新建自定义数据类型数组UniformDataTypeDeclarations；
-    * 数组中每个对象包含"typeId"，"belongingToTypes"，"FilenameExtensions"，"mimeTypes"，"description"，"referenceURL"，"iconFile"7个属性字段；
+    * 数组中每个对象包含"typeId"，"belongingToTypes"，"FilenameExtensions"，"mimeTypes"，"description"，"referenceURL"6个属性字段；
     * typeId，自定义的统一数据类型，其前缀必须是当前hap包名，例如，"com.example.UDMF.image"，其中"com.example.UDMF"是包名；
     * belongingToTypes，typeId归属的类型数组，可以是自定义的其它数据类型，也可以是标准数据类型，例如，["general.image"]；
     * FilenameExtensions，属于typeId的文件的后缀数组，例如，[".myImage", ".khImage"]；
     * mimeTypes，模仿类型数组，可不填;
     * description，类型描述;
     * referenceURL，参考链接地址，可不填;
-    * iconFile，类型图标路径，可不填。
 
 ### 相关权限
 

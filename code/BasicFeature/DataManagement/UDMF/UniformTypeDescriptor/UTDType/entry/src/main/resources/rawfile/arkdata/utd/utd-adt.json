@@ -5,8 +5,7 @@
     "FilenameExtensions": [".myImage", ".khImage"],
     "mimeTypes": ["application/my-document", "application/my-doc"],
     "description": "My Image.",
-    "referenceURL": "",
-    "iconFile": "resources/base/media/image.png"
+    "referenceURL": ""
   },
   {
     "typeId": "com.example.UTDType.audio",
@@ -14,8 +13,7 @@
     "FilenameExtensions": [".myAudio", ".khAudio"],
     "mimeTypes": ["application/my-document", "application/my-doc"],
     "description": "My audio.",
-    "referenceURL": "",
-    "iconFile": "resources/base/media/myAudio.png"
+    "referenceURL": ""
   },
   {
     "typeId": "com.example.UTDType.video",
@@ -23,8 +21,7 @@
     "FilenameExtensions": [".myVideo", ".khVideo"],
     "mimeTypes": ["application/my-document", "application/my-doc"],
     "description": "My video.",
-    "referenceURL": "",
-    "iconFile": "resources/base/media/video.png"
+    "referenceURL": ""
   }
   ]
 }
