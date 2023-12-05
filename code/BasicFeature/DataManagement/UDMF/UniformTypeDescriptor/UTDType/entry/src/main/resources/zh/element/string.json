@@ -5,6 +5,14 @@
       "value": "入口描述"
     },
     {
+      "name": "selectMediaType_title",
+      "value": "选择媒体类型"
+    },
+    {
+      "name": "displayMediaFile_title",
+      "value": "媒体文件信息"
+    },
+    {
       "name": "buttonPrompt",
       "value": "Please select a media file"
     },
