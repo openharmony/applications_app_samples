@@ -18,7 +18,9 @@ import fs from '@ohos.file.fs';
 import common from '@ohos.app.ability.common';
 import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 import { BusinessError } from '@ohos.base';
+import { logger } from '../util/Logger';
 
+const TAG: string = 'FirstPage';
 // 获取应用文件路径
 let context = getContext(this) as common.UIAbilityContext;
 let baseDir = context.filesDir;
@@ -57,32 +59,32 @@ function CreatePrecastFile(): void {
   try {
     let res = fs.accessSync(filesDir);
     if (res) {
-      console.info(`file path: ${filesDir} exists`);
+      logger.info(TAG, `file path: ${filesDir} exists`);
     } else {
-      console.info(`file path: ${filesDir} not exists`);
+      logger.info(TAG, `file path: ${filesDir} not exists`);
       fs.mkdirSync(filesDir);
     }
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error("accessSync failed with error message: " + err.message + ", error code: " + err.code);
+    logger.error(TAG, "accessSync failed with error message: " + err.message + ", error code: " + err.code);
   }
 
   for (let i = 0; i < precastFiles.length; i++) {
     let fileName = filesDir + "/" + precastFiles[i];
-    console.info(`The file name: ${fileName}`);
+    logger.info(TAG, `The file name: ${fileName}`);
     try {
       let res = fs.accessSync(fileName);
       if (res) {
-        console.info(`file: ${fileName} exists!.`);
+        logger.info(TAG, `file: ${fileName} exists!.`);
       } else {
-        console.info(`file: ${fileName} not exists, will create it!.`);
+        logger.info(TAG, `file: ${fileName} not exists, will create it!.`);
         let file = fs.openSync(fileName, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-        console.info("file fd: " + file.fd);
+        logger.info(TAG, "file fd: " + file.fd);
         fs.closeSync(file);
       }
     } catch (error) {
       let err: BusinessError = error as BusinessError;
-      console.error("accessSync failed with error message: " + err.message + ", error code: " + err.code);
+      logger.error(TAG, "accessSync failed with error message: " + err.message + ", error code: " + err.code);
     }
   }
 }
@@ -93,7 +95,7 @@ struct Index {
   private routerUrl: string = 'pages/selectMediaType'
 
   aboutToAppear() {
-    console.info('filesDir: ' + filesDir);
+    logger.info(TAG, 'filesDir: ' + filesDir);
     CreatePrecastFile();
   }
 

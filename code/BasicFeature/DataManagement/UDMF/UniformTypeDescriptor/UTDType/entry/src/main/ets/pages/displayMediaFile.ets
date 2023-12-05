@@ -14,6 +14,9 @@
  */
 
 import router from '@ohos.router';
+import { logger } from '../util/Logger';
+
+const TAG: string = 'DisplayMediaFile';
 
 interface paramsTape {
   src: string,
@@ -79,12 +82,12 @@ struct selectMediaType {
         .borderRadius(24)
         .edgeEffect(EdgeEffect.Spring) // 边缘效果设置为Spring
         .onScrollIndex((firstIndex: number, lastIndex: number, centerIndex: number) => {
-          console.info('first' + firstIndex)
-          console.info('last' + lastIndex)
-          console.info('center' + centerIndex)
+          logger.info(TAG, 'first' + firstIndex)
+          logger.info(TAG, 'last' + lastIndex)
+          logger.info(TAG, 'center' + centerIndex)
         })
         .onScroll((scrollOffset: number, scrollState: ScrollState) => {
-          console.info(`onScroll scrollState = ScrollState` + scrollState + `, scrollOffset = ` + scrollOffset)
+          logger.info(TAG, `onScroll scrollState = ScrollState` + scrollState + `, scrollOffset = ` + scrollOffset)
         })
         .backgroundColor(0xFFFFFF)
         .alignListItem(ListItemAlign.Center)

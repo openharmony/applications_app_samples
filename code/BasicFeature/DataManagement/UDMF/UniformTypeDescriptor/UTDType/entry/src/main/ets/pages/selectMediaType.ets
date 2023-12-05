@@ -18,7 +18,9 @@ import fs from '@ohos.file.fs';
 import common from '@ohos.app.ability.common';
 import utdDesc from '@ohos.data.uniformTypeDescriptor';
 import { BusinessError } from '@ohos.base';
+import { logger } from '../util/Logger';
 
+const TAG: string = 'SelectMediaType';
 // 获取应用文件路径
 let context = getContext(this) as common.UIAbilityContext;
 let baseDir = context.filesDir;
@@ -56,7 +58,7 @@ struct selectMediaType {
   getListFile(): string[] {
     let files = fs.listFileSync(filesDir);
     for (let i = 0; i < files.length; i++) {
-      console.info(`The name of file: ${files[i]}`);
+      logger.info(TAG, `The name of file: ${files[i]}`);
     }
     return files;
   }
@@ -67,10 +69,10 @@ struct selectMediaType {
       this.selectedFilesInfos.pop();
     }
     this.selectedFilesInfos = [];
-    console.info("selectText: " + this.text)
+    logger.info(TAG, "selectText: " + this.text)
     for (let i = 0; i < this.fileNames.length; i++) {
       let fileName = this.fileNames[i];
-      console.info(`fileNames file: ${fileName}`);
+      logger.info(TAG, `fileNames file: ${fileName}`);
       let index = fileName.lastIndexOf('.');
       if (index < 0) {
         if (this.text == "All") {
@@ -80,22 +82,22 @@ struct selectMediaType {
         continue;
       } else {
         let fileExtension = fileName.substring(index);
-        console.info(`fileNames file extension: ${fileExtension}`);
+        logger.info(TAG, `fileNames file extension: ${fileExtension}`);
         let utd = utdDesc.getUniformDataTypeByFilenameExtension(fileExtension);
-        console.info(`fileNames file utd: ${utd}`);
+        logger.info(TAG, `fileNames file utd: ${utd}`);
         try {
           if (utd != null) {
             let typeObj: utdDesc.TypeDescriptor = utdDesc.getTypeDescriptor(utd);
             if (class2UTD.get(this.text) == "All") {
               let fileInfo = new FileInfo(fileName, typeObj.iconFile);
               this.selectedFilesInfos.push(fileInfo);
-              console.info(`All type: ${fileInfo.filename}, utd: ${utd}, iconFile: ${fileInfo.iconFile}}`);
+              logger.info(TAG, `All type: ${fileInfo.filename}, utd: ${utd}, iconFile: ${fileInfo.iconFile}}`);
             } else {
               let ret = typeObj.belongsTo(class2UTD.get(this.text));
-              console.info(`typeObj.belongsTo: ${fileName}, utd: ${class2UTD.get(this.text)}, ret: ${ret}}`);
+              logger.info(TAG, `typeObj.belongsTo: ${fileName}, utd: ${class2UTD.get(this.text)}, ret: ${ret}}`);
               if (ret) {
                 let fileInfo = new FileInfo(fileName, typeObj.iconFile);
-                console.info(`fileInfo file name: ${fileInfo.filename}, iconfile: ${fileInfo.iconFile}}`);
+                logger.info(TAG, `fileInfo file name: ${fileInfo.filename}, iconfile: ${fileInfo.iconFile}}`);
                 this.selectedFilesInfos.push(fileInfo);
               }
             }
@@ -103,21 +105,20 @@ struct selectMediaType {
             if (class2UTD.get(this.text) == "All") {
               let fileInfo = new FileInfo(fileName, "");
               this.selectedFilesInfos.push(fileInfo);
-              console.info(`utd null All type: ${fileInfo.filename}, utd: ${utd}, iconFile: ${fileInfo.iconFile}}`);
+              logger.info(TAG, `utd null All type: ${fileInfo.filename}, utd: ${utd}, iconFile: ${fileInfo.iconFile}}`);
             }
           }
         }
         catch (e) {
           let error: BusinessError = e as BusinessError;
-          console.error(`belongsTo throws an exception. code is ${error.code}, message is ${error.message} `);
-          console.info(`exception file name: ${fileName}`);
+          logger.error(TAG, `belongsTo throws an exception. code is ${error.code}, message is ${error.message} `);
         }
       }
     }
   }
 
   aboutToAppear() {
-    console.info('filesDir: ' + filesDir);
+    logger.info(TAG, 'filesDir: ' + filesDir);
     this.UpdateSelectedFiles();
   }
 
@@ -174,11 +175,10 @@ struct selectMediaType {
           .menuAlign(MenuAlignType.START, { dx: 0, dy: 0 })
           .backgroundColor($r('app.color.background_shallow_grey'))
           .onSelect((index: number, text?: string | undefined) => {
-            console.info('Select:' + index);
             this.index = index;
             if (text) {
               this.text = text;
-              console.info('Select type:' + text);
+              logger.info(TAG, 'Select type:' + text);
               this.UpdateSelectedFiles();
             }
           })
@@ -211,7 +211,6 @@ struct selectMediaType {
                           selectIconFile: item.iconFile
                         }
                       });
-                      console.info("select file " + item.filename);
                     })
                   Divider()
                     .vertical(false)
@@ -239,12 +238,12 @@ struct selectMediaType {
         .borderRadius(24)
         .edgeEffect(EdgeEffect.Spring) // 边缘效果设置为Spring
         .onScrollIndex((firstIndex: number, lastIndex: number, centerIndex: number) => {
-          console.info('first' + firstIndex);
-          console.info('last' + lastIndex);
-          console.info('center' + centerIndex);
+          logger.info(TAG, 'first' + firstIndex);
+          logger.info(TAG, 'last' + lastIndex);
+          logger.info(TAG, 'center' + centerIndex);
         })
         .onScroll((scrollOffset: number, scrollState: ScrollState) => {
-          console.info(`onScroll scrollState = ScrollState` + scrollState + `, scrollOffset = ` + scrollOffset);
+          logger.info(TAG, `onScroll scrollState = ScrollState` + scrollState + `, scrollOffset = ` + scrollOffset);
         })
         .backgroundColor(0xFFFFFF)
       }

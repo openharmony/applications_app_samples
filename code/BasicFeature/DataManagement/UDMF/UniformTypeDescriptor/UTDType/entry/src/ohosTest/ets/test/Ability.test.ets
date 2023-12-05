@@ -17,8 +17,10 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 import { Driver, ON, MatchPattern } from '@ohos.UiTest'
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 import UIAbility from '@ohos.app.ability.UIAbility'
+import { logger } from '../util/Logger';
 
 const TIME_OUT = 60000;
+const TAG: string = 'Sample_UTDType';
 let ability: UIAbility | undefined = undefined;
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
@@ -35,7 +37,7 @@ export default function abilityTest() {
      * @tc.require
      */
     it('UDMF_StartAbility_001', 0, async (done : () => void) => {
-      console.info('UDMF_StartAbility_001 begin');
+      logger.info(TAG, 'UDMF_StartAbility_001 begin');
       try {
         await abilityDelegator.startAbility({
           bundleName: 'com.example.UTDType',
@@ -43,21 +45,18 @@ export default function abilityTest() {
         })
         done();
       } catch (exception) {
-        console.info(`StartAbility_001 exception = ${JSON.stringify(exception)}`);
+        logger.info(TAG, `StartAbility_001 exception = ${JSON.stringify(exception)}`);
         expect().assertFail();
       }
       let onAbilityCreateCallback: () => void = (): void => {
-        console.info("onAbilityCreateCallback");
+        logger.info(TAG, "onAbilityCreateCallback");
       }
-      // function onAbilityCreateCallback() {
-      //   console.info("onAbilityCreateCallback");
-      // }
       let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
         abilityName: "EntryAbility",
         onAbilityCreate: onAbilityCreateCallback
       };
       ability = await abilityDelegator.waitAbilityMonitor(monitor, TIME_OUT);
-      console.info('UDMF_StartAbility_001 end');
+      logger.info(TAG, 'UDMF_StartAbility_001 end');
     })
 
     /**
@@ -70,14 +69,14 @@ export default function abilityTest() {
      * @tc.require
      */
     it('UDMF_EnterMainPage_001', 0, async () => {
-      console.info('UDMF_EnterMainPage_001 begin');
+      logger.info(TAG, 'UDMF_EnterMainPage_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.type('Button'));
       let btnStart = await driver.findComponent(ON.type('Button').id('EnterMainPage'));
       await btnStart.click();
       await driver.delayMs(1000);
-      console.info('UDMF_EnterMainPage_001 end');
+      logger.info(TAG, 'UDMF_EnterMainPage_001 end');
     })
 
     /**
@@ -90,7 +89,7 @@ export default function abilityTest() {
      * @tc.require
      */
     it('UDMF_select_type_001', 1, async () => {
-      console.info('UDMF_select_type_001 begin');
+      logger.info(TAG, 'UDMF_select_type_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
       // 检查是否有按键
@@ -102,7 +101,7 @@ export default function abilityTest() {
       await driver.delayMs(500);
       await driver.click(166, 509);
       await driver.delayMs(500);
-      console.info('UDMF_select_type_001 end');
+      logger.info(TAG, 'UDMF_select_type_001 end');
     })
 
     /**
@@ -115,7 +114,7 @@ export default function abilityTest() {
      * @tc.require
      */
     it('UDMF_select_file_001', 1, async () => {
-      console.info('UDMF_select_file_001 begin');
+      logger.info(TAG, 'UDMF_select_file_001 begin');
       let driver = Driver.create();
       await driver.delayMs(2000);
       await driver.assertComponentExist(ON.type('List'));
@@ -125,7 +124,7 @@ export default function abilityTest() {
       let selectFile = await driver.findComponent(ON.type('Text').id('textFilename_1'));
       await selectFile.click();
       await driver.delayMs(1000);
-      console.info('UDMF_select_file_001 end');
+      logger.info(TAG, 'UDMF_select_file_001 end');
     })
 
     /**
@@ -138,14 +137,14 @@ export default function abilityTest() {
      * @tc.require
      */
     it('UDMF_back_to_main_001', 1, async () => {
-      console.info('UDMF_back_to_main_001 begin');
+      logger.info(TAG, 'UDMF_back_to_main_001 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('thirdPageBack'));
       let routerBack = await driver.findComponent(ON.id('thirdPageBack'));
       await routerBack.click();
       await driver.delayMs(1000);
-      console.info('UDMF_back_to_main_001 end');
+      logger.info(TAG, 'UDMF_back_to_main_001 end');
     })
 
   })
