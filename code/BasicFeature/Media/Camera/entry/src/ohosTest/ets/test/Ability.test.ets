@@ -73,6 +73,7 @@ export default function abilityTest() {
         Logger.info(TAG, `${BUNDLE}Failed to start ability, error info: ${JSON.stringify(exception)}`);
         expect().assertFail();
       }
+      await driver.delayMs(1000);
       Logger.info(TAG, `${BUNDLE}CameraAbility_StartAbility_001 end`);
       done();
     })
@@ -98,6 +99,7 @@ export default function abilityTest() {
         expect(Ability.context.abilityInfo.name).assertEqual('EntryAbility');
       });
       Logger.info(TAG, '${BUNDLE}RequestPermissionFunction_002 end');
+      done();
     })
 
     /**
