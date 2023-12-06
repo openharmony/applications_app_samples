@@ -14,9 +14,12 @@
  */
 
 import AbilityStage from '@ohos.app.ability.AbilityStage'
+import { logger } from '../util/Logger';
+
+const TAG: string = 'TestAbilityStage';
 
 export default class TestAbilityStage extends AbilityStage {
   onCreate() {
-    console.log("[Demo] TestAbilityStage onCreate");
+    logger.info(TAG, "[Demo] TestAbilityStage onCreate");
   }
 }

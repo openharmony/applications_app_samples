@@ -14,12 +14,15 @@
  */
 
 import router from '@ohos.router';
+import { logger } from '../../util/Logger';
+
+const TAG: string = 'TestAbilityPageIndex';
 
 @Entry
 @Component
 struct Index {
   aboutToAppear() {
-    console.info('TestAbility index aboutToAppear');
+    logger.info(TAG, 'TestAbility index aboutToAppear');
   }
 
   @State message: string = 'Hello World'

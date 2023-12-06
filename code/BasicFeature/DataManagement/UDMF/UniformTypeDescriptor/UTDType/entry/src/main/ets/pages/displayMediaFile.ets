@@ -28,7 +28,8 @@ interface paramsTape {
 struct selectMediaType {
   @State src: string = (router.getParams() as paramsTape).src;
   @State selectIconFile: string = (router.getParams() as paramsTape).selectIconFile;
-  private routerBackUrl: string = 'pages/selectMediaType'
+  private routerBackUrl: string = 'pages/selectMediaType';
+
   build() {
     Column() {
       Column() {
@@ -39,6 +40,7 @@ struct selectMediaType {
             .height(24)
             .visibility(Visibility.Visible)
             .objectFit(ImageFit.Fill)
+            .alignSelf(ItemAlign.Auto)
             .margin({left: 24, right: 12})
             .onClick(() => {
               router.pushUrl({url: this.routerBackUrl})
@@ -66,7 +68,7 @@ struct selectMediaType {
                 .width(24)
                 .height(24)
                 .objectFit(ImageFit.Fill)
-                  //.alignSelf(ItemAlign.Start)
+                .alignSelf(ItemAlign.Auto)
                 .margin({ left: 12, right: 12 })
               Text(this.src)
                 .fontSize(16)

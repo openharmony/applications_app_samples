@@ -15,6 +15,9 @@
 
 import TestRunner from '@ohos.application.testRunner'
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
+import { logger } from '../util/Logger';
+
+const TAG: string = 'TestRunner';
 
 let abilityDelegator = undefined;
 let abilityDelegatorArguments = undefined;
@@ -35,11 +38,11 @@ function translateParamsToString(parameters) {
 }
 
 async function onAbilityCreateCallback() {
-  console.log("onAbilityCreateCallback");
+  logger.info(TAG, "onAbilityCreateCallback");
 }
 
 async function addAbilityMonitorCallback(err: any) {
-  console.info("addAbilityMonitorCallback : " + JSON.stringify(err));
+  logger.info(TAG, "addAbilityMonitorCallback : " + JSON.stringify(err));
 }
 
 export default class OpenHarmonyTestRunner implements TestRunner {
@@ -47,11 +50,11 @@ export default class OpenHarmonyTestRunner implements TestRunner {
   }
 
   onPrepare() {
-    console.info("OpenHarmonyTestRunner OnPrepare ");
+    logger.info(TAG, "OpenHarmonyTestRunner OnPrepare ");
   }
 
   async onRun() {
-    console.log('OpenHarmonyTestRunner onRun run');
+    logger.info(TAG, 'OpenHarmonyTestRunner onRun run');
     abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
     abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
     let testAbilityName = abilityDelegatorArguments.bundleName + '.TestAbility';
@@ -66,13 +69,13 @@ export default class OpenHarmonyTestRunner implements TestRunner {
     if (debug == 'true') {
       cmd += ' -D';
     }
-    console.info('cmd : ' + cmd);
+    logger.info(TAG, 'cmd : ' + cmd);
     abilityDelegator.executeShellCommand(cmd,
       (err: any, d: any) => {
-        console.info('executeShellCommand : err : ' + JSON.stringify(err));
-        console.info('executeShellCommand : data : ' + d.stdResult);
-        console.info('executeShellCommand : data : ' + d.exitCode);
+        logger.info(TAG, 'executeShellCommand : err : ' + JSON.stringify(err));
+        logger.info(TAG, 'executeShellCommand : data : ' + d.stdResult);
+        logger.info(TAG, 'executeShellCommand : data : ' + d.exitCode);
       });
-    console.info('OpenHarmonyTestRunner onRun end');
+    logger.info(TAG, 'OpenHarmonyTestRunner onRun end');
   }
 };
