@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "Audio"
+    },
+    {
+      "name": "SPATIAL_AUDIO",
+      "value": "空间音频"
+    },
+    {
+      "name": "2P0_MUSIC",
+      "value": "2.0音乐示例"
+    },
+    {
+      "name": "5P1_MUSIC",
+      "value": "5.1音乐示例"
+    },
+    {
+      "name": "CLOSE_TEXT",
+      "value": "关闭"
+    },
+    {
+      "name": "OPEN_TEXT",
+      "value": "固定"
+    },
+    {
+      "name": "TRACKING_TEXT",
+      "value": "头部跟踪"
+    }
+  ]
+}

@@ -1,0 +1,635 @@
+
+/*
+* Copyright (C) 2023 Huawei Device Co., Ltd.
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+import common from '@ohos.app.ability.common'
+import fs from '@ohos.file.fs'
+import router from '@ohos.router'
+import audio from '@ohos.multimedia.audio'
+import { BusinessError } from '@ohos.base'
+import resourceManager from '@ohos.resourceManager'
+
+const CLOSE_MODE = 0
+const OPEN_MODE = 1
+const TRACKING_MODE = 2
+
+@Entry
+@Component
+struct SpatialAudio {
+  private audioRenderers: audio.AudioRenderer[] = []
+  private audioRendererOptions: audio.AudioRendererOptions[] = [
+    {
+      streamInfo: {
+        samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+        channels: audio.AudioChannel.CHANNEL_2,
+        sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+        encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW,
+        channelLayout: 3 //CH_LAYOUT_STEREO currently not available in SDK, so use number instead.
+      },
+
+      rendererInfo: {
+        usage: audio.StreamUsage.STREAM_USAGE_GAME,
+        rendererFlags: 0
+      }
+    },
+    {
+      streamInfo: {
+        samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+        channels: 6, //CHANNEL_6 currently not available in SDK, so use number instead.
+        sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+        encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW,
+        channelLayout: 63 //CH_LAYOUT_5POINT1 currently not available in SDK, so use number instead.
+      },
+      rendererInfo: {
+        usage: audio.StreamUsage.STREAM_USAGE_MOVIE,
+        rendererFlags: 0
+      }
+    }
+  ]
+  private fileDescriptors: resourceManager.RawFileDescriptor[] = []
+  private appContext?: common.Context
+  private audioSources = ['/2p0.pcm', '/TheCharm30.pcm']
+  private audioSpatializationManager?: audio.AudioSpatializationManager
+  private audioRoutingManager?: audio.AudioRoutingManager
+  @State supportState: number = 1
+  @State spatializationEnabled: boolean = false
+  @State trackingEnabled: boolean = false
+  @State musicState1: boolean = false
+  @State musicState2: boolean = false
+
+  @Builder Press2PlayDemo1() {
+    Image($r("app.media.ic_pause_spa"))
+      .height(36)
+      .width(36)
+      .margin({right: 16})
+      .id("2P0_play_btn")
+      .onClick(async ()=>{
+        this.musicState1 = !this.musicState1
+        await this.playAudio(0)
+      })
+  }
+
+  @Builder Press2PauseDemo1() {
+    Image($r("app.media.ic_play_spa"))
+      .height(36)
+      .width(36)
+      .margin({right: 16})
+      .id("2P0_pause_btn")
+      .onClick(async ()=>{
+        this.musicState1 = !this.musicState1
+        await this.pauseAudio(0)
+      })
+  }
+
+  @Builder Press2PlayDemo2() {
+    Image($r("app.media.ic_pause_spa"))
+      .height(36)
+      .width(36)
+      .margin({right: 16})
+      .id("5P1_play_btn")
+      .onClick(async ()=>{
+        this.musicState2 = !this.musicState2
+        await this.playAudio(1)
+      })
+  }
+
+  @Builder Press2PauseDemo2() {
+    Image($r("app.media.ic_play_spa"))
+      .height(36)
+      .width(36)
+      .margin({right: 16})
+      .id("5P1_pause_btn")
+      .onClick(async ()=>{
+        this.musicState2 = !this.musicState2
+        await this.pauseAudio(1)
+      })
+
+  }
+
+  @Builder CloseModeOn() {
+    Image($r("app.media.ic_audio_close_on"))
+      .height(48)
+      .width(48)
+      .margin({left: 8})
+      .id("close_mode_on")
+  }
+
+  @Builder CloseModeOff() {
+    Image($r("app.media.ic_audio_close_normal"))
+      .height(48)
+      .width(48)
+      .margin({left: 8})
+      .id("close_mode_off")
+      .onClick(async ()=>{
+        if (this.supportState !== CLOSE_MODE && this.audioSpatializationManager) {
+          try {
+            this.audioSpatializationManager.setSpatializationEnabled(false, () => {
+              this.spatializationEnabled = false
+            })
+            this.audioSpatializationManager.setHeadTrackingEnabled(false, () => {
+              this.trackingEnabled = false
+            })
+          } catch (err) {
+            console.error(`Set Spatialization or Head Tracking disabled failed, ${JSON.stringify(err)}`)
+            return
+          }
+        }
+      })
+  }
+
+  @Builder OpenModeDisabled() {
+    Image($r("app.media.ic_audio_open_disable"))
+      .height(48)
+      .width(48)
+  }
+
+  @Builder OpenModeOn() {
+    Image($r("app.media.ic_audio_open_on"))
+      .height(48)
+      .width(48)
+      .id("open_mode_on")
+  }
+
+  @Builder OpenModeOff() {
+    Image($r("app.media.ic_audio_open_normal"))
+      .height(48)
+      .width(48)
+      .id("open_mode_off")
+      .onClick(async ()=>{
+        if (this.audioSpatializationManager) {
+          try {
+            this.audioSpatializationManager.setSpatializationEnabled(true, () => {
+              this.spatializationEnabled = true
+            })
+            this.audioSpatializationManager.setHeadTrackingEnabled(false, () => {
+              this.trackingEnabled = false
+            })
+          } catch (err) {
+            console.error(`Set open mode failed, ${JSON.stringify(err)}`)
+            return
+          }
+        }
+
+      })
+  }
+
+  @Builder TrackingModeOn() {
+    Image($r("app.media.ic_audio_track_on"))
+      .height(48)
+      .width(48)
+      .margin({right: 8})
+      .id("tracking_mode_on")
+  }
+
+  @Builder TrackingModeOff() {
+    Image($r("app.media.ic_audio_track_normal"))
+      .height(48)
+      .width(48)
+      .margin({right: 8})
+      .id("tracking_mode_off")
+      .onClick(async ()=>{
+        if (this.audioSpatializationManager) {
+          try {
+            this.audioSpatializationManager.setSpatializationEnabled(true, () => {
+              this.spatializationEnabled = true
+            })
+            this.audioSpatializationManager.setHeadTrackingEnabled(true, () => {
+              this.trackingEnabled = true
+            })
+          } catch (err) {
+            console.error(`Set HeadTracking enabled failed, ${JSON.stringify(err)}`)
+            return
+          }
+        }
+      })
+  }
+  @Builder TrackingModeDisabled() {
+    Image($r("app.media.ic_audio_track_disable"))
+      .height(48)
+      .width(48)
+      .margin({right: 8})
+      .fillColor("#182431")
+  }
+  @Builder UIForClose() {
+    this.CloseModeOn()
+    this.OpenModeDisabled()
+    this.TrackingModeDisabled()
+  }
+
+  @Builder UIForOpen() {
+    if (this.spatializationEnabled === true) {
+      this.CloseModeOff()
+      this.OpenModeOn()
+    } else {
+      this.CloseModeOn()
+      this.OpenModeOff()
+    }
+    this.TrackingModeDisabled()
+  }
+
+  @Builder UIForTracking() {
+    if (this.spatializationEnabled === true && this.trackingEnabled === true) {
+      this.CloseModeOff()
+      this.OpenModeOff()
+      this.TrackingModeOn()
+    } else if (this.spatializationEnabled === true && this.trackingEnabled === false) {
+      this.CloseModeOff()
+      this.OpenModeOn()
+      this.TrackingModeOff()
+    } else {
+      this.CloseModeOn()
+      this.OpenModeOff()
+      this.TrackingModeOff()
+    }
+  }
+
+  @Builder OpenTextEnable() {
+    Text($r("app.string.OPEN_TEXT"))
+      .height("100%")
+      .width(64)
+      .fontSize(12)
+      .fontWeight(500)
+      .margin({right:68})
+      .fontColor("#182431")
+      .textAlign(TextAlign.Center)
+  }
+
+  @Builder OpenTextDisable() {
+    Text($r("app.string.OPEN_TEXT"))
+      .height("100%")
+      .width(64)
+      .fontSize(12)
+      .fontWeight(500)
+      .margin({right:68})
+      .fontColor(Color.Grey)
+      .textAlign(TextAlign.Center)
+  }
+
+  @Builder TrackingTextEnable() {
+    Text($r("app.string.TRACKING_TEXT"))
+      .height(16)
+      .width(48)
+      .fontSize(12)
+      .fontWeight(500)
+      .fontColor("#182431")
+      .textAlign(TextAlign.Center)
+  }
+
+  @Builder TrackingTextDisable() {
+    Text($r("app.string.TRACKING_TEXT"))
+      .height(16)
+      .width(48)
+      .fontSize(12)
+      .fontWeight(500)
+      .fontColor(Color.Grey)
+      .textAlign(TextAlign.Center)
+  }
+
+  @Builder DIYTitle() {
+    Row(){
+      Text($r('app.string.SPATIAL_AUDIO'))
+        .fontWeight(700)
+        .fontSize(20)
+    }
+    .height("100%")
+    .justifyContent(FlexAlign.Center)
+
+  }
+
+  async closeResource(fileName: string): Promise<void> {
+    if (this.appContext) {
+      let mgr = this.appContext.resourceManager
+      await mgr.closeRawFd(fileName).then(() => {
+        console.log('case closeRawFd success fileName: ' + fileName)
+      }).catch((error: BusinessError) => {
+        console.log('case closeRawFd err: ' + error)
+      })
+    }
+  }
+
+  updateSupportStateUI(): void {
+    this.supportState = this.supportStateQuery()
+    if (this.audioSpatializationManager) {
+      try {
+        this.spatializationEnabled = this.audioSpatializationManager.isSpatializationEnabled()
+        this.trackingEnabled = this.audioSpatializationManager.isHeadTrackingEnabled()
+      } catch (err) {
+        console.error(`update Support State UI failed ,Error: ${JSON.stringify(err)}`)
+        return
+      }
+    }
+  }
+
+  supportStateQuery(): number {
+    let audioDeviceDescriptors: audio.AudioDeviceDescriptors = this.audioRenderers[0].getCurrentOutputDevicesSync()
+    audioDeviceDescriptors.forEach(audioDeviceDescriptor => {
+      console.info("Device Role:" + audioDeviceDescriptor.deviceRole + ", device Type:" +
+      audioDeviceDescriptor.deviceType + ", Macaddress:" + audioDeviceDescriptor.address)
+    })
+
+    let isSpaSupported: boolean = false
+    let isSpaSupportedForDevice: boolean = false
+    let isTraSupported: boolean =  false
+    let isTraSupportedForDevice: boolean = false
+    if (this.audioSpatializationManager) {
+      isSpaSupported =  this.audioSpatializationManager.isSpatializationSupported()
+      isSpaSupportedForDevice =
+      this.audioSpatializationManager.isSpatializationSupportedForDevice(audioDeviceDescriptors[0])
+      isTraSupported =  this.audioSpatializationManager.isHeadTrackingSupported()
+      isTraSupportedForDevice =
+      this.audioSpatializationManager.isHeadTrackingSupportedForDevice(audioDeviceDescriptors[0])
+    } else {
+      console.info("Get manager failed.")
+    }
+    let isSpatializationSupportedBoth: boolean = isSpaSupported && isSpaSupportedForDevice
+    let isHeadTrackingSupportedBoth: boolean = isTraSupported && isTraSupportedForDevice
+    if (isSpatializationSupportedBoth && isHeadTrackingSupportedBoth) {
+      return TRACKING_MODE
+    } else if (isSpatializationSupportedBoth) {
+      return OPEN_MODE
+    } else {
+      return CLOSE_MODE
+    }
+  }
+
+  async init(): Promise<void> {
+    if (this.appContext) {
+      return
+    }
+    this.appContext = getContext(this)
+
+    for (let index = 0; index < 2; index++) {
+      try {
+        let renderer = await audio.createAudioRenderer(this.audioRendererOptions[index])
+        console.info("Create renderer success")
+        this.audioRenderers.push(renderer)
+      } catch (err) {
+        console.error(`audioRenderer_${index} create ,Error: ${JSON.stringify(err)}`)
+        return
+      }
+    }
+
+    let audioManager = audio.getAudioManager()
+    try {
+      this.audioSpatializationManager = audioManager.getSpatializationManager()
+    } catch (err) {
+      console.error(`Get Spatialization Manager failed, Error: ${JSON.stringify(err)}`)
+      return
+    }
+
+    this.audioRoutingManager = audioManager.getRoutingManager()
+    this.updateSupportStateUI()
+    if (this.audioRoutingManager) {
+      this.audioRoutingManager.on("deviceChange", audio.DeviceFlag.OUTPUT_DEVICES_FLAG, () => {
+        console.info("Output device changed")
+        this.updateSupportStateUI()
+      })
+    }
+  }
+
+  async over(): Promise<void> {
+    this.appContext = undefined
+    this.audioRenderers.forEach(async audioRenderer => {
+      await audioRenderer.stop()
+      await audioRenderer.release()
+    })
+    this.audioRenderers = []
+    this.audioSources.forEach(async audioSource => {
+      await this.closeResource(audioSource)
+    })
+
+    this.fileDescriptors = []
+    if (this.audioRoutingManager) {
+      this.audioRoutingManager.off("deviceChange")
+    }
+  }
+
+  async playAudio(index: number): Promise<void> {
+    if (this.audioRenderers[index] === null) {
+      return
+    }
+
+    if (this.audioRenderers[index].state === audio.AudioState.STATE_PAUSED) {
+      await this.audioRenderers[index].start()
+    } else {
+      let bufferSize: number = 0
+      try {
+        bufferSize = await this.audioRenderers[index].getBufferSize()
+        await this.audioRenderers[index].start()
+      } catch (err) {
+        let error = err as BusinessError
+        console.error(`AudioRenderer start : Error: ${JSON.stringify(error)}`)
+        return
+      }
+
+      let buf = new ArrayBuffer(bufferSize)
+      // let startOffset : number = this.fileDescriptors[index].offset
+      // let cur = startOffset
+
+      let filePath:string = ""
+      if (this.appContext) {
+        filePath = this.appContext.filesDir + this.audioSources[index]
+      }
+      let stat = await fs.stat(filePath)
+      let len = stat.size %  bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1)
+      let file = await fs.open(filePath, 0o0)
+      while (true) {
+        // when render released,state is changed to STATE_RELEASED
+        if (!this.audioRenderers[index]) {
+          break
+        }
+
+        if (this.audioRenderers[index].state === audio.AudioState.STATE_RELEASED) {
+          break
+        }
+
+        console.info("start write")
+        for (let i = 0; i < len; i++) {
+          class options {
+            offset: number = 0
+            length: number = 0
+          }
+          let readOptions: options = {
+            offset: i * bufferSize,
+            length: bufferSize
+          }
+          await fs.read(file.fd, buf, readOptions)
+          await this.audioRenderers[index].write(buf)
+        }
+      }
+    }
+  }
+
+  async pauseAudio(index: number): Promise<void> {
+    try {
+      if (this.audioRenderers[index]) {
+        await this.audioRenderers[index].pause()
+      }
+    } catch (err) {
+      console.error(`Pause Error: ${JSON.stringify(err)}`)
+      return
+    }
+  }
+
+  async aboutToAppear(): Promise<void> {
+    await this.init()
+  }
+
+  aboutToDisappear(): void {
+    this.over()
+  }
+
+  onPageShow(): void {
+    if (this.audioSpatializationManager === undefined){
+      return
+    }
+    this.updateSupportStateUI()
+    console.info("Page show")
+  }
+
+  onPageHide(): void {
+    console.info("Page Hide")
+    if (this.audioRenderers[0] && this.audioRenderers[0].state === audio.AudioState.STATE_RUNNING) {
+      this.audioRenderers[0].pause()
+      this.musicState1 = false
+    }
+    if (this.audioRenderers[1] && this.audioRenderers[1].state === audio.AudioState.STATE_RUNNING) {
+      this.audioRenderers[1].pause()
+      this.musicState2 = false
+    }
+  }
+
+  build() {
+    Column() {
+      Column() {
+        Row() {
+          Navigation() {
+          }
+          .hideBackButton(false)
+          .titleMode(NavigationTitleMode.Mini)
+          .title(this.DIYTitle())
+          .height("100%")
+          .mode(NavigationMode.Stack)
+          .backgroundColor('#F1F3F5')
+        }
+        .height(56)
+        .width('100%')
+        .id('spatial_audio_back_btn')
+        .onClick(async () => {
+          await router.replaceUrl({ url: 'pages/Index' })
+        })
+
+        Row() {
+          Row() {
+            Text($r("app.string.2P0_MUSIC"))
+              .fontSize(20)
+              .fontWeight(500)
+              .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
+              .margin({top: 21, bottom: 21, left: 16.5})
+            if (!this.musicState1) {
+              this.Press2PlayDemo1()
+            } else {
+              this.Press2PauseDemo1()
+            }
+          }
+          .height("100%")
+          .width(336)
+          .backgroundColor('#FFFFFF')
+          .justifyContent(FlexAlign.SpaceBetween)
+          .borderRadius(24)
+        }
+        .justifyContent(FlexAlign.SpaceAround)
+        .height(68)
+        .width('100%')
+        .margin({ top: 8 })
+
+        Row() {
+          Row() {
+            Text($r("app.string.5P1_MUSIC"))
+              .fontSize(20)
+              .fontWeight(500)
+              .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
+              .margin({top: 21, bottom: 21, left: 16.5})
+
+            if (!this.musicState2) {
+              this.Press2PlayDemo2()
+            } else {
+              this.Press2PauseDemo2()
+            }
+          }
+          .height("100%")
+          .width(336)
+          .backgroundColor('#FFFFFF')
+          .justifyContent(FlexAlign.SpaceBetween)
+          .borderRadius(24)
+        }
+        .justifyContent(FlexAlign.SpaceAround)
+        .height(68)
+        .width('100%')
+        .margin({ top: 12 })
+      }
+      .height(212)
+      .width('100%')
+
+      Column() {
+        Row() {
+          if (this.supportState === 2) {
+            this.UIForTracking()
+          } else if (this.supportState === 1) {
+            this.UIForOpen()
+          } else {
+            this.UIForClose()
+          }
+        }
+        .height(64)
+        .width(336)
+        .borderRadius(100)
+        .backgroundColor('#FFFFFF')
+        .justifyContent(FlexAlign.SpaceBetween)
+
+        Row() {
+          Text($r("app.string.CLOSE_TEXT"))
+            .height("100%")
+            .width(64)
+            .fontSize(12)
+            .fontWeight(500)
+            .margin({right:60})
+            .fontColor(Color.Black)
+            .textAlign(TextAlign.Center)
+
+          if (this.supportState === 0) {
+            this.OpenTextDisable()
+            this.TrackingTextDisable()
+          } else if (this.supportState === 1) {
+            this.OpenTextEnable()
+            this.TrackingTextDisable()
+          } else {
+            this.OpenTextEnable()
+            this.TrackingTextEnable()
+          }
+        }
+        .height(16)
+        .width(304)
+        .margin({left: 24, right: 32, top: 8})
+      }
+      .height(112)
+      .width('100%')
+    }
+    .height('100%')
+    .width('100%')
+    .backgroundColor('#f1f3f5')
+    .justifyContent(FlexAlign.SpaceBetween)
+  }
+}
