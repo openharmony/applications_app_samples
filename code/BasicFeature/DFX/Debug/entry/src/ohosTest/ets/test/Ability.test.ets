@@ -26,7 +26,6 @@ export default function abilityTest() {
     /**
      * 拉起应用
      */
-    // it(BUNDLE + 'StartAbility_001', 0 , async (done : () => void) => {
     it('StartAbility_001', 0 , async (done : () => void) => {
     Logger.info(TAG, BUNDLE + 'StartAbility_001 begin')
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
@@ -46,7 +45,6 @@ export default function abilityTest() {
     /**
      * debug信息界面显示
      */
-    // it(BUNDLE + 'ShowInfoFunction_001', 0, async () => {
     it('ShowInfoFunction_001', 0, async () => {
       Logger.info(TAG, BUNDLE + 'ShowInfoFunction_001 begin')
       let driver = await Driver.create()
@@ -64,7 +62,6 @@ export default function abilityTest() {
     /**
      * debug信息界面隐藏
      */
-    // it(BUNDLE + 'ShowInfoFunction_002', 0, async () => {
     it('ShowInfoFunction_002', 0, async () => {
       Logger.info(TAG, BUNDLE + 'ShowInfoFunction_002 begin')
       let driver = await Driver.create()
