@@ -40,7 +40,7 @@ export default function abilityTest() {
       logger.info(TAG, 'UDMF_StartAbility_001 begin');
       try {
         await abilityDelegator.startAbility({
-          bundleName: 'com.example.UTDType',
+          bundleName: 'ohos.samples.UTDType',
           abilityName: 'EntryAbility'
         })
         done();

@@ -76,8 +76,6 @@ entry/src/main/ets/
 2. 本示例为Stage模型，仅支持API11版本SDK，SDK版本号(API Version 11 Release),镜像版本号(4.0Release)。
 3. 本示例涉及使用系统接口：@ohos.file.fs中的openSync接口，需要手动替换Full SDK才能编译通过，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/) 。
 4. 本示例需要使用DevEco Studio 版本号(4.0Release)及以上版本才可编译运行。
-5. 本示例涉及系统接口，需要配置系统应用签名，可以参考[特殊权限配置方法](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/) ，把配置文件中的“app-feature”字段信息改为“ohos_system_app”，再将“apl”字段信息改为“system_basic”。
-
 ### 下载
 
 如需单独下载本工程，执行如下命令：
