@@ -16,7 +16,7 @@
 import UIAbility from '@ohos.app.ability.UIAbility';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Hypium } from '@ohos/hypium';
-import testsuite from "../test/List.test";
+import testsuite from '../test/List.test';
 import Logger from '../utils/Logger';
 
 export default class TestAbility extends UIAbility {
