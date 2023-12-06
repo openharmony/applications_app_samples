@@ -27,7 +27,7 @@ export default function abilityTest() {
      * 拉起应用
      */
     it('StartAbility_001', 0 , async (done : () => void) => {
-    Logger.info(TAG, BUNDLE + 'StartAbility_001 begin')
+      Logger.info(TAG, BUNDLE + 'StartAbility_001 begin')
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
       try {
         await abilityDelegator.startAbility({

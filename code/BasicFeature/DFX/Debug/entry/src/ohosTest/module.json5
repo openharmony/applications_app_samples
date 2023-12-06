@@ -20,7 +20,7 @@
     "description": "$string:module_test_desc",
     "mainElement": "TestAbility",
     "deviceTypes": [
-      "default"
+      "phone"
     ],
     "deliveryWithInstall": true,
     "installationFree": false,
