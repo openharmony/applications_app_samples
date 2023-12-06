@@ -20,7 +20,7 @@
     "description": "$string:module_test_desc",
     "mainElement": "TestAbility",
     "deviceTypes": [
-      "phone"
+      "default"
     ],
     "deliveryWithInstall": true,
     "installationFree": false,
@@ -28,7 +28,7 @@
     "abilities": [
       {
         "name": "TestAbility",
-        "srcEntry": "./ets/testability/TestAbility.ts",
+        "srcEntry": "./ets/testability/TestAbility.ets",
         "description": "$string:TestAbility_desc",
         "icon": "$media:icon",
         "label": "$string:TestAbility_label",
