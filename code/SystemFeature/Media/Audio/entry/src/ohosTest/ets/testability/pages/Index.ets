@@ -20,29 +20,29 @@ struct Index {
   aboutToAppear() {
     hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility index aboutToAppear');
   }
- @State message: string = 'TEST CASE'
-   build() {
-         Row() {
-           Column() {
-             Text(this.message)
-               .fontSize(60)
-               .fontWeight(FontWeight.Bold)
-             Button() {
-               Text('next page')
-                 .fontSize(25)
-                 .fontWeight(FontWeight.Bold)
-             }.type(ButtonType.Capsule)
-             .margin({
-               top: 30
-             })
-             .backgroundColor('#0D9FFB')
-             .width('35%')
-             .height('5%')
-             .onClick(()=>{
-             })
-           }
-             .width(360)
-         }
-             .height('100%')
-   }
- }
+  @State message: string = 'TEST CASE'
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(60)
+          .fontWeight(FontWeight.Bold)
+        Button() {
+          Text('next page')
+            .fontSize(25)
+            .fontWeight(FontWeight.Bold)
+        }.type(ButtonType.Capsule)
+        .margin({
+          top: 30
+        })
+        .backgroundColor('#0D9FFB')
+        .width('35%')
+        .height('5%')
+        .onClick(()=>{
+        })
+      }
+      .width(360)
+    }
+    .height('100%')
+  }
+}

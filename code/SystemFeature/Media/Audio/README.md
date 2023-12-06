@@ -42,7 +42,7 @@ entry/src/main/ets/
 
 2.本示例仅支持标准系统上运行。
 
-3.本示例为Stage模型，仅支持API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0Release)。
+3.本示例为Stage模型，仅支持API11版本SDK。
 
 4.本示例需要使用DevEco Studio 版本号(4.0Release)及以上版本才可编译运行。
 
