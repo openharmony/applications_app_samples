@@ -20,20 +20,20 @@ struct Index {
   aboutToAppear() {
     hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility index aboutToAppear');
   }
- @State message: string = 'Hello World'
+ @State message: string = 'TEST CASE'
    build() {
          Row() {
            Column() {
              Text(this.message)
-               .fontSize(50)
+               .fontSize(60)
                .fontWeight(FontWeight.Bold)
              Button() {
                Text('next page')
-                 .fontSize(20)
+                 .fontSize(25)
                  .fontWeight(FontWeight.Bold)
              }.type(ButtonType.Capsule)
              .margin({
-               top: 20
+               top: 30
              })
              .backgroundColor('#0D9FFB')
              .width('35%')
@@ -41,7 +41,7 @@ struct Index {
              .onClick(()=>{
              })
            }
-             .width('100%')
+             .width(360)
          }
              .height('100%')
    }
