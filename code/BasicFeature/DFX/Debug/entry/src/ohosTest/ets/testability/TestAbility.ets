@@ -16,42 +16,47 @@
 import UIAbility from '@ohos.app.ability.UIAbility';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Hypium } from '@ohos/hypium';
-import testsuite from '../test/List.test';
-import Logger from '../utils/Logger';
+import testsuite from "../test/List.test";
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import hilog from '@ohos.hilog';
+import window from '@ohos.window';
 
 export default class TestAbility extends UIAbility {
-  onCreate(want, launchParam) {
-    Logger.info('TestAbility onCreate');
+  onCreate( want : Want , launchParam : AbilityConstant.LaunchParam ) {
+    hilog.info( 0x0000 , 'testTag' , 'TestAbility onCreate' );
   }
 
   onDestroy() {
-    Logger.info('TestAbility onDestroy');
+    hilog.info( 0x0000 , 'testTag' , 'TestAbility onDestroy' );
   }
 
-  onWindowStageCreate(windowStage) {
-    Logger.info('TestAbility onWindowStageCreate');
-    windowStage.loadContent('testability/pages/Index', (err, data) => {
-      if (err.code) {
-        Logger.error('Failed to load the content. Cause:' + JSON.stringify(err));
+  onWindowStageCreate( windowStage : window.WindowStage ) {
+    hilog.info( 0x0000 , 'testTag' , 'TestAbility onWindowStageCreate' );
+    windowStage.loadContent( 'testability/pages/Index' , ( err , data ) => {
+      if( err.code ) {
+        hilog.info( 0x0000 , 'testTag' , 'Failed to load the content. Cause:' + JSON.stringify( err ) );
         return;
       }
-      Logger.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
-    });
-    let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-    let abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
-    Logger.info('start run testcase!!!');
-    Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
+      hilog.info( 0x0000 , 'testTag' , 'Succeeded in loading the content. Data: ' + JSON.stringify( data ) );
+    } );
+    let abilityDelegator : AbilityDelegatorRegistry.AbilityDelegator;
+    abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+    let abilityDelegatorArguments : AbilityDelegatorRegistry.AbilityDelegatorArgs;
+    abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
+    hilog.info( 0x0000 , 'testTag' , 'start run testcase!!!' );
+    Hypium.hypiumTest( abilityDelegator , abilityDelegatorArguments , testsuite );
   }
 
   onWindowStageDestroy() {
-    Logger.info('TestAbility onWindowStageDestroy');
+    hilog.info( 0x0000 , 'testTag' , 'TestAbility onWindowStageDestroy' );
   }
 
   onForeground() {
-    Logger.info('TestAbility onForeground');
+    hilog.info( 0x0000 , 'testTag' , 'TestAbility onForeground' );
   }
 
   onBackground() {
-    Logger.info('TestAbility onBackground');
+    hilog.info( 0x0000 , 'testTag' , 'TestAbility onBackground' );
   }
 }
