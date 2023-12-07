@@ -21,12 +21,14 @@ export default struct InstrumentLayout {
   @State instrumentList: ImageDataSource = new ImageDataSource(getImageInstrumentsList())
   @State status: boolean[] = [false, false, false, false, false, false, false, false, false, false]
   @Link vibrationIntensity: string
+  @Link php: string
 
   build() {
     CommonLayout({
       dataList: $instrumentList,
       status: $status,
-      vibrationIntensity: $vibrationIntensity
+      vibrationIntensity: $vibrationIntensity,
+      php: $php
     })
   }
 }

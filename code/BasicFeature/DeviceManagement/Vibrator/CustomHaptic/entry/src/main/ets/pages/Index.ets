@@ -22,6 +22,7 @@ struct Index {
   private controller: TabsController = new TabsController()
   @State barIndex: number = 0
   @State vibrationIntensity: string = 'L'
+  @State php: string = 'ets'
 
   @Builder
   Discover() {
@@ -65,7 +66,8 @@ struct Index {
     }) {
       TabContent() {
         DisplayModule({
-          vibrationIntensity: $vibrationIntensity
+          vibrationIntensity: $vibrationIntensity,
+          php: $php
         })
       }
       .tabBar(this.Discover())
@@ -90,7 +92,8 @@ struct Index {
 
           Column({ space: 20 }) {
             MyInfoModule({
-              vibrationIntensity: $vibrationIntensity
+              vibrationIntensity: $vibrationIntensity,
+              php: $php
             })
           }
           .height("5%")

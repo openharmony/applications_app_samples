@@ -53,6 +53,7 @@ export default struct DisplayModule {
   private tabHeight = 50
   @State playDis: boolean = false
   @Link vibrationIntensity: string
+  @Link php: string
   private controller: TabsController = new TabsController();
 
   build() {
@@ -75,13 +76,14 @@ export default struct DisplayModule {
           .onClick(() => {
             Logger.info(TAG, 'Show more pressed')
             router.pushUrl({
-              url: 'module/VideoListModule'
+              url: 'module/VideoListModule',
+              params: {php: this.php}
             })
           })
       }
       .padding({ top: 5 })
 
-      VideoListLayout()
+      VideoListLayout({php: $php})
 
       Text($r("app.string.display_haptic_library"))
         .width('100%')
@@ -113,38 +115,48 @@ export default struct DisplayModule {
               Column() {
                 if (this.currentIndex === TabIndex.RACING) {
                   RacingLayout({
-                    vibrationIntensity: $vibrationIntensity
+                    vibrationIntensity: $vibrationIntensity,
+                    php: $php
                   })
                 } else if (this.currentIndex === TabIndex.BATTLE) {
                   BattleLayout({
-                    vibrationIntensity: $vibrationIntensity
+                    vibrationIntensity: $vibrationIntensity,
+                    php: $php
                   })
                 } else if (this.currentIndex === TabIndex.SHOOT) {
                   ShootLayout({
-                    vibrationIntensity: $vibrationIntensity
+                    vibrationIntensity: $vibrationIntensity,
+                    php: $php
                   })
                 } else if (this.currentIndex === TabIndex.INSTRUMENT) {
                   InstrumentLayout({
-                    vibrationIntensity: $vibrationIntensity
+                    vibrationIntensity: $vibrationIntensity,
+                    php: $php
                   })
                 } else if (this.currentIndex === TabIndex.REALISTIC) {
                   RealisticLayout({
-                    vibrationIntensity: $vibrationIntensity
+                    vibrationIntensity: $vibrationIntensity,
+                    php: $php
                   })
                 } else if (this.currentIndex === TabIndex.FOOTSTEP) {
                   FootstepLayout({
-                    vibrationIntensity: $vibrationIntensity
+                    vibrationIntensity: $vibrationIntensity,
+                    php: $php
                   })
                 } else if (this.currentIndex === TabIndex.ENVIRONMENT) {
                   EnvironmentLayout({
-                    vibrationIntensity: $vibrationIntensity
+                    vibrationIntensity: $vibrationIntensity,
+                    php: $php
                   })
                 } else if (this.currentIndex === TabIndex.EXERCISE) {
                   ExerciseLayout({
-                    vibrationIntensity: $vibrationIntensity
+                    vibrationIntensity: $vibrationIntensity,
+                    php: $php
                   })
                 } else if (this.currentIndex === TabIndex.INTERACTION) {
-                  InteractionLayout()
+                  InteractionLayout({
+                    php: $php
+                  })
                 } else {
                   Text('Please Waiting！')
                     .fontSize(48)

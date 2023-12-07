@@ -21,12 +21,14 @@ export default struct RacingLayout {
   @State carList: ImageDataSource = new ImageDataSource(getImageRacingList())
   @State status: boolean[] = [false, false, false, false, false, false, false]
   @Link vibrationIntensity: string
+  @Link php: string
 
   build() {
     CommonLayout({
       dataList: $carList,
       status: $status,
-      vibrationIntensity: $vibrationIntensity
+      vibrationIntensity: $vibrationIntensity,
+      php: $php
     })
   }
 }

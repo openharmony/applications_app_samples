@@ -20,7 +20,10 @@ const TAG = '[MyInfoModule]'
 @Component
 export default struct MyInfoModule {
   @State selectContent: Resource = $r("app.string.my_low_mode")
+  @State selectContent1: Resource = $r("app.string.my_ets")
+
   @Link vibrationIntensity: string
+  @Link php: string
 
   build() {
     Column({ space: 30 }) {
@@ -81,6 +84,66 @@ export default struct MyInfoModule {
                   this.selectContent = $r("app.string.my_low_mode")
                   this.vibrationIntensity = 'L'
                   Logger.info(TAG, 'Vibration intensity is low')
+                }
+              }
+            ]
+          })
+        })
+        .width("80%")
+
+        Row() {
+        }
+        .height(1)
+        .width("85%")
+        .backgroundColor('#ff404048')
+      }
+
+      Column({ space: 10 }) {
+        Row({ space: 10 }) {
+          Image($r("app.media.select"))
+            .height(20)
+            .width(20)
+          Text($r("app.string.my_php"))
+            .fontColor(Color.White)
+            .fontSize(20)
+          Text(this.selectContent1)
+            .fontSize(16)
+            .fontColor("#ffcbc2c2")
+        }
+        .id('phpSelect1')
+        .height("100%")
+        .width("80%")
+        .onClick(() => {
+          ActionSheet.show({
+            title: $r("app.string.my_php_select"),
+            message: $r("app.string.my_linguistic_type"),
+            autoCancel: true,
+            confirm: {
+              value: $r("app.string.cancel"),
+              action: () => {
+                Logger.info(TAG, 'Get Alert Dialog handled')
+              }
+            },
+            cancel: () => {
+              Logger.info(TAG, 'actionSheet canceled')
+            },
+            alignment: DialogAlignment.Bottom,
+            offset: { dx: 0, dy: -10 },
+            sheets: [
+              {
+                icon: $r("app.media.app_icon"),
+                title: $r("app.string.my_ets"),
+                action: () => {
+                  this.selectContent1 = $r("app.string.my_ets")
+                  this.php = 'ets'
+                }
+              },
+              {
+                icon: $r("app.media.app_icon"),
+                title: $r("app.string.my_capi"),
+                action: () => {
+                  this.selectContent1 = $r("app.string.my_capi")
+                  this.php = 'capi'
                 }
               }
             ]

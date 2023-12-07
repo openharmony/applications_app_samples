@@ -21,12 +21,14 @@ export default struct ExerciseLayout {
   @State exerciseList: ImageDataSource = new ImageDataSource(getImageExerciseList())
   @State status: boolean[] = [false, false, false, false, false, false, false]
   @Link vibrationIntensity: string
+  @Link php: string
 
   build() {
     CommonLayout({
       dataList: $exerciseList,
       status: $status,
-      vibrationIntensity: $vibrationIntensity
+      vibrationIntensity: $vibrationIntensity,
+      php: $php
     })
   }
 }
