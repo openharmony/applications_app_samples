@@ -29,6 +29,10 @@ const TAG: string = 'AddPictures';
 @Component
 export struct AddPictures {
   @Consume imageList: Array<string>;
+  @Consume chunkCheckBoxVisible: boolean
+  @Consume chunkCheckBoxVisibility: Visibility
+  @Consume gridsOpacity: number
+  @Consume chunkImgIndex: number
 
   build() {
     Column() {
@@ -41,11 +45,22 @@ export struct AddPictures {
         .margin({ top: 16, bottom: 48 })
         .width('100%')
       GridRow({ columns: { sm: 3, md: 6, lg: 8 }, gutter: 12 }) {
-        ForEach(this.imageList, (item: string) => {
+        ForEach(this.imageList, (item: string, index: number) => {
           GridCol({ span: 1 }) {
             Image(item)
               .imageStyle()
           }
+          .borderWidth(2)
+          .borderColor(index === this.chunkImgIndex ? $r('app.color.button_blue') : $r('app.color.light_gray'))
+          .onClick(() => {
+            console.debug(`onclick: this.chunkImgIndex=${this.chunkImgIndex}, curindex:${index}`)
+            if (this.chunkImgIndex == -1) {
+              this.chunkImgIndex = index
+              this.chunkCheckBoxVisible = true
+            } else if (this.chunkImgIndex != index) {
+              this.chunkCheckBoxVisible = false
+            }
+          })
         })
         GridCol({ span: 1 }) {
           Row() {
@@ -62,11 +77,13 @@ export struct AddPictures {
         .backgroundColor($r('app.color.white'))
         .borderRadius(12)
         .onClick(() => {
+          this.chunkCheckBoxVisible = false
           this.showDialog();
         })
       }
     }
     .width('100%')
+    .opacity(this.gridsOpacity)
   }
 
   addImages = (images: Array<string>) => {

@@ -14,6 +14,7 @@
  */
 
 import common from '@ohos.app.ability.common';
+import fs from '@ohos.file.fs';
 import promptAction from '@ohos.promptAction';
 import { AddPictures } from '../components/AddPictures';
 import { BackgroundTaskState, requestUpload, TOAST_BOTTOM } from '@ohos/uploaddownload';
@@ -29,6 +30,13 @@ struct Upload {
   @Provide imageList: Array<string> = [];
   @State progress: number = 0;
   @State countdown: number = 0;
+  @Provide @Watch('onChunkBoxVisible') chunkCheckBoxVisible: boolean = false
+  @Provide chunkCheckBoxVisibility: Visibility = Visibility.None
+  @Provide gridsOpacity: number = 1
+  @Provide chunkImgIndex: number = -1
+  @State chunkInputEnable: boolean = false
+  chunkParaBegins = 0
+  chunkParaEnds = -1
 
   build() {
     Navigation() {
@@ -41,6 +49,73 @@ struct Upload {
       .align(Alignment.Top)
 
       Column() {
+        Row() {
+          Column() {
+            Row() {
+              Checkbox()
+                .backgroundColor($r('app.color.light_gray'))
+                .selectedColor($r('app.color.light_gray'))
+                .onChange((checked: boolean) => {
+                  this.chunkInputEnable = checked
+                })
+
+              Text($r('app.string.chunk_checkbox_tips'))
+                .fontColor($r('app.color.white'))
+                .fontSize(16)
+                .fontWeight(500)
+            }
+            .borderRadius(10)
+            .width('100%')
+            .backgroundColor($r('app.color.button_blue'))
+            .justifyContent(FlexAlign.Center)
+            .margin({ bottom: 16 })
+
+            Row() {
+              TextInput({ placeholder: $r('app.string.chunk_begins') })
+                .type(InputType.Number)
+                .onChange((value: string) => {
+                  this.chunkParaBegins = Number(value) || 0
+                  let uri = this.imageList[this.chunkImgIndex]
+
+                  let file = fs.openSync(uri)
+                  let stat = fs.statSync(file.fd)
+                  let size = stat.size
+                  fs.closeSync(file.fd)
+                  console.debug(`img:${uri},size:${size},chunkbegin:${this.chunkParaBegins}`)
+
+                  if (this.chunkParaBegins >= (size - 1)) {
+                    promptAction.showToast({ message: $r('app.string.chunk_para_invalid'), bottom: TOAST_BOTTOM })
+                  }
+                })
+            }
+            .margin({ bottom: 16 })
+            .enabled(this.chunkInputEnable)
+
+            Row() {
+              TextInput({ placeholder: $r('app.string.chunk_begins') })
+                .type(InputType.Number)
+                .onChange((value: string) => {
+                  this.chunkParaEnds = Number(value) || -1
+                  let uri = this.imageList[this.chunkImgIndex]
+                  let file = fs.openSync(uri)
+                  let stat = fs.statSync(file.fd)
+                  let size = stat.size
+                  fs.closeSync(file.fd)
+
+                  console.debug(`img:${uri},size:${size},chunkbegin:${this.chunkParaEnds}`)
+                  if (this.chunkParaEnds != -1
+                    && (this.chunkParaEnds >= size || this.chunkParaEnds <= this.chunkParaBegins)) {
+                    promptAction.showToast({ message: $r('app.string.chunk_para_invalid'), bottom: TOAST_BOTTOM })
+                  }
+                })
+            }
+            .margin({ bottom: 16 })
+            .enabled(this.chunkInputEnable)
+          }
+        }
+        .visibility(this.chunkCheckBoxVisibility)
+        .id('chunkcheckbox')
+
         Button() {
           if (this.isBackground && this.backTaskState !== BackgroundTaskState.NONE) {
             if (this.backTaskState === BackgroundTaskState.RUNNING) {
@@ -94,6 +169,7 @@ struct Upload {
           } else {
             this.uploadFiles();
           }
+          this.chunkCheckBoxVisible = false
         })
 
         if (this.isBegin) {
@@ -143,6 +219,36 @@ struct Upload {
     if (this.imageList.length == 0) {
       return;
     }
+
+    if (this.chunkInputEnable) { // 选中checkbox，从该文件分段上传
+      this.isBegin = true
+      this.progress = 0
+      let index = this.chunkImgIndex
+      let fileUris = this.imageList.slice(index)
+      requestUpload.uploadFileChunk(fileUris, this.chunkParaBegins, this.chunkParaEnds, (progress: number, isSucceed: boolean) => {
+        this.progress = progress
+        if (this.progress === 100 && isSucceed) {
+          this.isBegin = false
+          this.imageList = this.imageList.slice(0, index)
+          promptAction.showToast({ message: $r('app.string.upload_success'), bottom: TOAST_BOTTOM })
+        }
+        if (this.progress === 100 && isSucceed === false) {
+          this.isBegin = false
+          this.countdown = TIME_MAX
+          let interval = setInterval(() => {
+            if (this.countdown > 0) {
+              this.countdown--
+            } else {
+              clearInterval(interval)
+            }
+          }, 1000)
+          promptAction.showToast({ message: $r('app.string.upload_fail'), bottom: TOAST_BOTTOM })
+        }
+      })
+
+      return
+    }
+
     if (this.isBackground) {
       AppStorage.SetOrCreate('backTaskState', BackgroundTaskState.RUNNING)
       requestUpload.uploadFilesBackground(this.imageList);
@@ -176,5 +282,19 @@ struct Upload {
   getResourceString(resource: Resource) {
     let context = getContext(this) as common.UIAbilityContext;
     return context.resourceManager.getStringSync(resource.id);
+  }
+
+  onChunkBoxVisible(propName: string) {
+    console.debug(`this.chunkCheckBoxVisible=${this.chunkCheckBoxVisible}`)
+
+    if (this.chunkCheckBoxVisible) {
+      this.chunkCheckBoxVisibility = Visibility.Visible
+      this.gridsOpacity = 0.5
+    } else {
+      this.chunkCheckBoxVisibility = Visibility.None
+      this.gridsOpacity = 1
+      this.chunkImgIndex = -1
+      this.chunkInputEnable = false
+    }
   }
 }

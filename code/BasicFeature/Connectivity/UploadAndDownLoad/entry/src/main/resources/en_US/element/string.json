@@ -115,6 +115,22 @@
     {
       "name": "background_task_start",
       "value": "The background task has started, and you can check the download status in the notification bar"
+    },
+    {
+      "name": "chunk_checkbox_tips",
+      "value": "Upload from this file's chunk"
+    },
+    {
+      "name": "chunk_begins",
+      "value": "Null, input the value which uploading from the certain byte"
+    },
+    {
+      "name": "chunk_ends",
+      "value": "Null, input the value which uploading to the certain byte"
+    },
+    {
+      "name": "chunk_para_invalid",
+      "value": "Begins or Ends is invalid"
     }
   ]
 }
