@@ -36,7 +36,7 @@ struct SpatialAudio {
         channels: audio.AudioChannel.CHANNEL_2,
         sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
         encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW,
-        channelLayout: 3
+        channelLayout: 3 // currently available to use the new enum param.
       },
 
       rendererInfo: {
@@ -47,10 +47,10 @@ struct SpatialAudio {
     {
       streamInfo: {
         samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
-        channels: 6,
+        channels: 6, // currently available to use the new enum param.
         sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
         encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW,
-        channelLayout: 63
+        channelLayout: 63 // currently available to use the new enum param.
       },
       rendererInfo: {
         usage: audio.StreamUsage.STREAM_USAGE_RINGTONE,
@@ -435,9 +435,6 @@ struct SpatialAudio {
       }
 
       let buf = new ArrayBuffer(bufferSize)
-      // let startOffset : number = this.fileDescriptors[index].offset
-      // let cur = startOffset
-
       let filePath:string = ""
       if (this.appContext) {
         filePath = this.appContext.filesDir + this.audioSources[index]
@@ -446,15 +443,12 @@ struct SpatialAudio {
       let len = stat.size %  bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1)
       let file = await fs.open(filePath, 0o0)
       while (true) {
-        // when render released,state is changed to STATE_RELEASED
         if (!this.audioRenderers[index]) {
           break
         }
-
         if (this.audioRenderers[index].state === audio.AudioState.STATE_RELEASED) {
           break
         }
-
         console.info("start write")
         for (let i = 0; i < len; i++) {
           class options {
