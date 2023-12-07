@@ -36,7 +36,7 @@ struct SpatialAudio {
         channels: audio.AudioChannel.CHANNEL_2,
         sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
         encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW,
-        channelLayout: audio.AudioChannelLayout.CH_LAYOUT_STEREO
+        channelLayout: 3
       },
 
       rendererInfo: {
@@ -47,10 +47,10 @@ struct SpatialAudio {
     {
       streamInfo: {
         samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
-        channels: audio.AudioChannel.CHANNEL_6,
+        channels: 6,
         sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
         encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW,
-        channelLayout: audio.AudioChannelLayout.CH_LAYOUT_5POINT1_BACK
+        channelLayout: 63
       },
       rendererInfo: {
         usage: audio.StreamUsage.STREAM_USAGE_RINGTONE,

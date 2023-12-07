@@ -19,21 +19,12 @@
     "products": [
       {
         "name": "default",
-        "compileSdkVersion": 11,
-        "compatibleSdkVersion": 11,
-        "targetSdkVersion": 11,
-        "runtimeOS": "OpenHarmony",
-        "signingConfig": "default",
+        "signingConfig": "default"
       }
     ],
-    "buildModeSet": [
-      {
-        "name": "debug",
-      },
-      {
-        "name": "release"
-      }
-    ]
+
+    "compileSdkVersion": 11,
+    "compatibleSdkVersion": 11
   },
   "modules": [
     {
