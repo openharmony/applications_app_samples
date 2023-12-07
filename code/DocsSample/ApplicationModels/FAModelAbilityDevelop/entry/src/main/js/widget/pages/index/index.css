@@ -22,6 +22,17 @@
 .bg-img {
     flex-shrink: 0;
     height: 100%;
+    z-index: 1;
+}
+
+.bottom-img {
+    position: absolute;
+    width: 150px;
+    height: 56px;
+    top: 63%;
+    background-color: rgba(216, 216, 216, 0.15);
+    filter: blur(20px);
+    z-index: 2;
 }
 
 .container-inner {

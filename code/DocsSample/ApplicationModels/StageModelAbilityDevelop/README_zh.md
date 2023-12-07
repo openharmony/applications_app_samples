@@ -78,15 +78,23 @@
 
 7）点击list[多设备协同有返回数据]，另一设备打开’多设备协同页面‘，点击button[关闭多设备协同界面并返回数据]，返回’多设备协同‘页面；
 
-8)  点击list[Caller交互]，弹出toast[[{"Caller交互成功"}]；
+8）点击list[启动ServiceExtensionAbility]，弹出toast[[{"启动成功"}]；
 
-9）根据坐标点击屏幕上的返回按钮，返回APP主页面；
+9）点击list[退出ServiceExtensionAbility]，弹出toast[[{"退出成功"}]；
+
+10)  点击list[Caller交互]，弹出toast[[{"Caller交互成功"}]；
+
+11）点击list[连接后台服务]，弹出toast[[{"sendRequest msg:100"}]；
+
+12) 点击list[断连后台服务]，弹出toast[[{"成功断连后台服务"}]；
+
+13) 根据坐标点击屏幕上的返回按钮，返回APP主页面。
 
 
 
 3. Stage模型与FA模型交互
 
-1）在本设备安装[【指南优化】【元能力】开发指南示例代码增加完整工程sample开发-FA模型开发指导 · Pull Request !3761 · OpenHarmony/applications_app_samples - Gitee.com](https://gitee.com/openharmony/applications_app_samples/pulls/3761)所包含工程
+1）在本设备安装[【指南优化】【元能力】开发指南示例代码增加完整工程sample开发-FA模型开发指导 · Pull Request !3761 · OpenHarmony/applications_app_samples - Gitee.com](https://gitee.com/openharmony/applications_app_samples/pulls/3761)所包含工程；
 
 2）进入APP主页，点击list进入Stage模型和FA模型交互页面；
 
@@ -94,67 +102,93 @@
 
 4）点击list[打开FA模型文件有返回值]，进入’FA模型组件开发指导界面‘，根据坐标点击屏幕上的返回按钮并返回数据，返回Stage模型和FA模型交互页面；
 
-5）点击返回按钮，返回APP主页
+5）点击list[Stage模型绑定FA模型ServiceAbility]，弹出toast[[{"已连接ServiceAbility"}]；
+
+6）点击返回按钮，返回APP主页；
+
+4. 扩展服务
+
+1）安装交互协同应用（对应工程：StageModelAbilityInteraction ）；
+
+2）点击list[扩展服务]，进入扩展服务页面；
+
+3）点击list[启动后台服务]，弹出toast[[{"成功启动后台服务"}]；
+
+4）点击list[停止已启动的后台服务]，弹出toast[[{"成功停止已启动的后台服务"}]；
+
+5）点击list[连接后台服务]，弹出toast[[{"成功连接后台服务"}]；
+
+6）点击list[断连后台服务]，弹出toast[[{"成功断连后台服务"}]；
+
+7）点击list[停止当前后台服务]，返回系统桌面。
 
 ### 工程目录
 ```
 entry/src/main/ets/       
 ├── collaborateability
-│   └── CollaborateAbility.ts													// 跨端迁移
-├── componentstartupability														// 启动模式
-│   ├── MultitonAbility.ts														// 多实例模式
-│   ├── SingletonAbility.ts														// 单实例模式
-│   ├── SpecifiedFirstAbility.ts											// 指定实例模式
-│   └── SpecifiedSecondAbility.ts											// 指定实例模式
+│   └── CollaborateAbility.ts											// 跨端迁移
+├── componentstartupability												// 启动模式
+│   ├── MultitonAbility.ts												// 多实例模式
+│   ├── SingletonAbility.ts												// 单实例模式
+│   ├── SpecifiedFirstAbility.ts										// 指定实例模式
+│   └── SpecifiedSecondAbility.ts										// 指定实例模式
 ├── contextability
-│   └── ContextAbility.ts												  		// 应用上下文Context
+│   └── ContextAbility.ts												// 应用上下文Context
 ├── entryability
-│   └── EntryAbility.ts													  		// 主Ability
+│   └── EntryAbility.ts													// 主Ability
 ├── eventability
-│   └── EventAbility.ts													  		// 数据同步
+│   └── EventAbility.ts													// 数据同步
 ├── funcability
-│   ├── FuncAbilityA.ts												    		// UIAbility内交互
-│   └── FuncAbilityB.ts												    		// 指定启动模式
+│   ├── FuncAbilityA.ts												    // UIAbility内交互
+│   └── FuncAbilityB.ts												    // 指定启动模式
+├── IdlServiceExt
+│   ├── i_idl_service_ext.ts											// 生成文件
+│   ├── idl_service_ext_proxy.ts										// 生成文件
+│   ├── idl_service_ext_stub.ts											// 生成文件
+│   └── idl_service_ext_impl.ts											// 开发者自定义文件，对idl接口的具体实现
 ├── lifecycleability
-│   └── LifecycleAbility.ts														// 生命周期
-├── logger				
-│   └── Logger.ts														      		// 输出Log
+│   └── LifecycleAbility.ts												// 生命周期
+├── utils				
+│   └── Logger.ts														// 输出Log
 ├── migrationability
-│   └── MigrationAbility.ts														// 多设备协同
+│   └── MigrationAbility.ts												// 多设备协同
 ├── myabilitystage
-│   └── MyAbilityStage.ts										       	 	// AbilityStage
+│   └── MyAbilityStage.ts										       	// AbilityStage
+├── serviceextability
+│   └── ServiceExtAbility.ts										   	// ServiceExtAbility
 └── pages
-    ├── Index.ets														        	// 应用主界面
+    ├── Index.ets														// 应用主界面
     ├── page_collaborateability	
-    │   └── Page_CollaborateAbilityFirst.ets					// 多设备协同界面
+    │   └── Page_CollaborateAbilityFirst.ets							// 多设备协同界面
     ├── page_contextability
     │   └── Page_ContextAbility.ets										// 应用Context界面
     ├── Page_Context.ets
     ├── page_funcability
-    │   ├── Page_FuncAbilityA.ets											// UIAbility内交互界面
-    │   └── Page_FuncAbilityB.ets											// 指定启动模式界面
+    │   ├── Page_FuncAbilityA.ets										// UIAbility内交互界面
+    │   └── Page_FuncAbilityB.ets										// 指定启动模式界面
     ├── page_lifecycleability
     │   └── Page_LifecycleAbility.ets									// 生命周期界面
     ├── page_migrationability
-    │   ├── Page_MigrationAbilityFirst.ets						// 跨设备协同界面
-    │   ├── Page_MigrationAbilitySecond.ets						// 跨设备协同界面
-    │   └── Page_MigrationAbilityThird.ets						// 跨设备协同界面
+    │   ├── Page_MigrationAbilityFirst.ets								// 跨设备协同界面
+    │   ├── Page_MigrationAbilitySecond.ets								// 跨设备协同界面
+    │   └── Page_MigrationAbilityThird.ets								// 跨设备协同界面
     ├── page_startupability
-    │   ├── Page_Multiton.ets													// 多实例模式界面
-    │   ├── Page_Singleton.ets												// 单实例模式界面
+    │   ├── Page_Multiton.ets											// 多实例模式界面
+    │   ├── Page_Singleton.ets											// 单实例模式界面
     │   ├── Page_Specified_First.ets									// 指定实例模式界面
     │   └── Page_Specified_Second.ets									// 指定实例模式界面
-    ├── Page_Context.ets															// 应用Context界面
-    ├── Page_EventHub.ets															// 数据同步界面
-    ├── Page_StartFAModel.ets													// Stage模型与FA模型交互
-    ├── Page_StartModel.ets														// 启动模式界面
-    ├── Page_UIAbilityComponentsBasicUsage.ets				// UIAbility基本用法界面
-    └── Page_UIAbilityComponentsInteractive.ets				// UIAbility组件交互界面
+    ├── Page_Context.ets												// 应用Context界面
+    ├── Page_EventHub.ets												// 数据同步界面
+    ├── Page_ServiceExtensionAbility.ets								// ServiceExtension界面
+    ├── Page_StartFAModel.ets											// Stage模型与FA模型交互
+    ├── Page_StartModel.ets												// 启动模式界面
+    ├── Page_UIAbilityComponentsBasicUsage.ets							// UIAbility基本用法界面
+    └── Page_UIAbilityComponentsInteractive.ets							// UIAbility组件交互界面
 
 ```
 ### 具体实现
 
-* 本示例分为UIAbility组件、应用组件跨设备交互（流转）和Stage模型启动FA模型三个模块。
+* 本示例分为UIAbility组件、应用组件跨设备交互（流转）和Stage模型启动FA模型和扩展服务四个模块。
   * UIAbility组件内交互：
 
     * 调用相关方法来实现UIAbility组件内启动，UIAbility组件间启动，获取对应的界面及返回值等。
@@ -170,11 +204,15 @@ entry/src/main/ets/
 
   * Stage模型启动FA模型
 
-    源码链接： [Index.ets](entry\src\main\ets\pages\Index.ets)  
+    源码链接： [Index.ets](entry\src\main\ets\pages\Index.ets)   [Page_StartFAModel.ets](entry\src\main\ets\pages\Page_StartFAModel.ets) 
 
   * Stage模型启动FA模型并获取返回值
 
-    源码链接： [Index.ets](entry\src\main\ets\pages\Index.ets)  
+    源码链接： [Index.ets](entry\src\main\ets\pages\Index.ets)   [Page_StartFAModel.ets](entry\src\main\ets\pages\Page_StartFAModel.ets) 
+    
+    Stage模型绑定FA模型ServiceAbility
+    
+    源码链接： [Index.ets](entry\src\main\ets\pages\Index.ets)   [Page_StartFAModel.ets](entry\src\main\ets\pages\Page_StartFAModel.ets) 
 
 ### 相关权限
 
@@ -190,7 +228,40 @@ entry/src/main/ets/
 
 ### 依赖
 
-无。
+Stage模型绑定FA模型ServiceAbility功能和扩展服务功能需要修改设备的[预置配置文件](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_capability.json)，该配置文件在设备上的路为`/system/etc/app/install_list_capability.json`。
+
+设备开机启动时会读取该配置文件，在应用安装会对在文件中配置的associatedWakeUp和allowAppUsePrivilegeExtension公共事件类型进行授权。
+
+预授权配置文件字段内容包括`bundleName`，`app_signature`和`allowCommonEvent`。
+
+- `bundleName`字段配置为本应用涉及的bundleName。
+
+- `app_signature`字段配置为应用的指纹信息，指纹信息的配置请参见[应用特权配置指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-app-privilege-config-guide.md#install_list_capabilityjson中配置)。
+
+- `allowCommonEvent`字段配置为允许静态广播拉起的公共事件项。
+
+  ```
+  [
+    ...
+    {
+      "bundleName": "com.samples.stagemodelabilitydevelop",
+      "app_signature": ["****"], // 指纹信息
+      "allowAppUsePrivilegeExtension": true
+    },
+    {
+      "bundleName": "com.samples.stagemodelabilityinteraction",
+      "app_signature": ["****"], // 指纹信息
+      "allowAppUsePrivilegeExtension": true
+    },
+    {
+      "bundleName": "com.samples.famodelabilitydevelop",
+      "app_signature": ["****"], // 指纹信息
+      "associatedWakeUp": true
+    }
+  ]
+  ```
+
+
 
 ### 约束与限制
 
@@ -200,9 +271,13 @@ entry/src/main/ets/
 
 3.本示例需要使用DevEco Studio 3.1.1 Release (Build Version: 3.1.0.501, built on June 20, 2023)及以上版本才可编译运行。
 
-4.本示例涉及相关权限为system_core级别(相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)查看)，需要手动配置对应级别的权限签名(具体操作可查看[自动化签名方案](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Fsecurity%2Fhapsigntool-overview.md%2F))。
+4.本示例涉及实现ServiceExtensionAbility功能，需要手动替换Full SDK才能编译通过，具体操作可参考[替换指南](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Fquick-start%2Ffull-sdk-switch-guide.md%2F)。
 
-5.本示例类型为系统应用，需要手动配置对应级别的应用类型("app-feature": "hos_system_app")。具体可参考profile配置文件[bundle-info对象内部结构]( https://gitee.com/openharmony/docs/blob/eb73c9e9dcdd421131f33bb8ed6ddc030881d06f/zh-cn/application-dev/security/app-provision-structure.md#bundle-info%E5%AF%B9%E8%B1%A1%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84 )
+5.本示例涉及申请AllowAppUsePrivilegeExtension特权和AssociatedWakeUp特权，只有具有AllowAppUsePrivilegeExtension特权的应用才允许开发ServiceExtensionAbility，只有具有AssociatedWakeUp特权的FA模型应用才可被关联唤醒，具体申请方式可参考[应用特权配置指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-app-privilege-config-guide.md)。
+
+6.本示例涉及相关权限为system_core级别(相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)查看)，需要手动配置对应级别的权限签名(具体操作可查看[自动化签名方案](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Fsecurity%2Fhapsigntool-overview.md%2F))。
+
+7.本示例类型为系统应用，需要手动配置对应级别的应用类型("app-feature": "hos_system_app")。具体可参考profile配置文件[bundle-info对象内部结构]( https://gitee.com/openharmony/docs/blob/eb73c9e9dcdd421131f33bb8ed6ddc030881d06f/zh-cn/application-dev/security/app-provision-structure.md#bundle-info%E5%AF%B9%E8%B1%A1%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84 )
 
 ### 下载
 

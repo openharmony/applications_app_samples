@@ -88,7 +88,7 @@
         "launchType": "singleton",
         "exported": true
       },
-            {
+      {
         "name": "FuncBAbility",
         "srcEntry": "./ets/funcbability/FuncBAbility.ts",
         "description": "$string:FuncBAbility_desc",
@@ -105,6 +105,36 @@
             "actions": [
               "ohos.want.action.editData"
             ]
+          }
+        ]
+      }
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED",
+      },
+      {
+        "name": "ohos.permission.START_INVISIBLE_ABILITY",
+      },
+      {
+        "name": "ohos.permission.START_ABILITIES_FROM_BACKGROUND",
+      },
+      {
+        "name": "ohos.permission.ABILITY_BACKGROUND_COMMUNICATION",
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "ServiceExtAbility",
+        "srcEntry": "./ets/serviceextability/ServiceExtAbility.ts",
+        "description": "$string:ServiceExtAbility_desc",
+        "label": "$string:ServiceExtAbility_label",
+        "type": "service",
+        "exported": true,
+        "metadata": [
+          {
+            "name": "ohos.extension.service",
+            "resource": "$profile:serviceextability"
           }
         ]
       }

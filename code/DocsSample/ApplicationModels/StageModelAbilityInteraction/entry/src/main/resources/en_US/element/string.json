@@ -74,7 +74,7 @@
     },
     {
       "name": "CalleeAbility_desc",
-      "value": "description"
+      "value": "About CalleeAbility"
     },
     {
       "name": "CalleeAbility_label",
@@ -95,6 +95,14 @@
     {
       "name": "CalleePage",
       "value": "Callee Page"
+    },
+    {
+      "name": "ServiceExtAbility_desc",
+      "value": "Background Ability"
+    },
+    {
+      "name": "ServiceExtAbility_label",
+      "value": "label"
     }
   ]
 }

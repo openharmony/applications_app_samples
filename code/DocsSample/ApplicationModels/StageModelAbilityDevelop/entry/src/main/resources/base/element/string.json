@@ -383,6 +383,82 @@
     {
       "name": "CallerReleaseSuccess",
       "value": "CallerReleaseSuccess"
+    },
+    {
+      "name": "ConnectFAServiceAbility",
+      "value": "ConnectFAServiceAbility"
+    },
+    {
+      "name": "ServiceExtension",
+      "value": "ServiceExtension"
+    },
+    {
+      "name": "ServiceExtAbility_desc",
+      "value": "service"
+    },
+    {
+      "name": "ServiceExtAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "StartBackendService",
+      "value": "Start Backend Service"
+    },
+    {
+      "name": "StopStartedBackendService",
+      "value": "Stop Started Backend Service"
+    },
+    {
+      "name": "BackendServices",
+      "value": "Backend Services"
+    },
+    {
+      "name": "StopBackendServices",
+      "value": "Stop Backend Services"
+    },
+    {
+      "name": "SuccessfullyStoppedAStartedBackendService",
+      "value": "Successfully stopped a started backend service"
+    },
+    {
+      "name": "SuccessfullyStartBackendService",
+      "value": "Successfully Start Backend Service"
+    },
+    {
+      "name": "SuccessfullyStopStartedBackendService",
+      "value": "Successfully Stop Backend Service"
+    },
+    {
+      "name": "ConnectBackendService",
+      "value": "Connect Backend Service"
+    },
+    {
+      "name": "SuccessfullyConnectBackendService",
+      "value": "SuccessfullyConnectBackendService"
+    },
+    {
+      "name": "DisconnectBackendService",
+      "value": "Disconnect Backend Service"
+    },
+    {
+      "name": "SuccessfullyDisconnectBackendService",
+      "value": "Successfully Disconnect Backend Service"
+    },
+    {
+      "name": "StartServiceExtensionAbility",
+      "value": "Start ServiceExtensionAbility"
+    },
+    {
+      "name": "StopServiceExtensionAbility",
+      "value": "Stop ServiceExtensionAbility"
+    },
+    {
+      "name": "SuccessfullyStart",
+      "value": "Successfully Start"
+    },
+    {
+      "name": "SuccessfullyStop",
+      "value": "Successfully Stop"
     }
   ]
 }

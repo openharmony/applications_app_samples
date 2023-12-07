@@ -40,7 +40,6 @@ struct Page_CollaborateAbility {
       .justifyContent(FlexAlign.Start)
 
       Button($r('app.string.ClosePage_CollaborateAbility'))
-        .id('backToHAP')
         .fontFamily('HarmonyHeiTi')
         .height(48)
         .width('624px')

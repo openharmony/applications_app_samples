@@ -7,6 +7,17 @@
 .bg-img {
     flex-shrink: 0;
     height: 100%;
+    z-index: 1;
+}
+
+.bottom-img {
+    position: absolute;
+    width: 150px;
+    height: 56px;
+    top: 63%;
+    background-color: rgba(216, 216, 216, 0.15);
+    filter: blur(20px);
+    z-index: 2;
 }
 
 .container-inner {
@@ -21,16 +32,19 @@
 .title {
     font-family: HarmonyHeiTi-Medium;
     font-size: 14px;
-    color: rgba(255,255,255,0.90);
+    color: rgba(255, 255, 255, 0.90);
     letter-spacing: 0.6px;
+    font-weight: 500;
     width: 100%;
+    text-overflow: ellipsis;
+    max-lines: 1;
 }
 
 .detail_text {
-    ffont-family: HarmonyHeiTi;
     font-size: 12px;
-    color: rgba(255,255,255,0.60);
+    color: rgba(255, 255, 255, 0.60);
     letter-spacing: 0.51px;
+    font-weight: 400;
     text-overflow: ellipsis;
     max-lines: 1;
     margin-top: 6px;
