@@ -24,6 +24,7 @@ export struct focusPage {
   @Link exposureNum: number;
 
   build() {
+    Row() {
     if (this.focusPointBol) {
       Row() {
         if (this.exposureBol) {
@@ -111,5 +112,6 @@ export struct focusPage {
           });
       }.zIndex(99)
     }
+    }.id('FocusPage')
   }
 }
