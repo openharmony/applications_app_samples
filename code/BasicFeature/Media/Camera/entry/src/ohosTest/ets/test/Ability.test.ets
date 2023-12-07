@@ -12,12 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import resourceManager from '@ohos.resourceManager';
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import { Driver, ON } from '@ohos.UiTest'
-import Logger from './Logger'
-import Ability from '@ohos.app.ability.Ability'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import { Driver, ON } from '@ohos.UiTest';
+import Logger from './Logger';
+import Ability from '@ohos.app.ability.Ability';
 
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 const TAG = '[Sample_CameraAbility]';
@@ -161,6 +161,7 @@ export default function abilityTest() {
     it(BUNDLE + 'JudgementComponentFocus_005', 0,  async (done: Function) => {
       Logger.info(TAG, '${BUNDLE}JudgementComponentFocus_005 begin');
       await driver.delayMs(1000);
+      // 预览框的任意坐标点
       await driver.longClick(695,1475);
       await driver.delayMs(300);
       await driver.assertComponentExist(ON.id('FocusArea'));
