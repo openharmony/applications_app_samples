@@ -16,7 +16,7 @@
 import formInfo from '@ohos.app.form.formInfo';
 import formBindingData from '@ohos.app.form.formBindingData';
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import Want from '@ohos.app.ability.Want';
+import type Want from '@ohos.app.ability.Want';
 
 export default class EntryFormAbility extends FormExtensionAbility {
   onAddForm(want: Want): formBindingData.FormBindingData {
