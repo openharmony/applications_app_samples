@@ -22,11 +22,11 @@ const BUNDLE = "Debug"
 const TAG: string = '[Sample_Debug]'
 
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
     /**
      * 拉起应用
      */
-    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+    it('StartAbility_001', 0 , async (done : () => void) => {
       Logger.info(TAG, BUNDLE + 'StartAbility_001 begin')
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
       try {
@@ -35,9 +35,9 @@ export default function abilityTest() {
           abilityName: 'MainAbility'
         })
         done()
-      } catch (expection) {
-        expect(0).assertEqual(expection.code)
-        Logger.info(TAG, `StartAbility end ${JSON.stringify(expection)}`)
+      } catch (exception) {
+        expect(0).assertEqual(exception.code)
+        Logger.info(TAG, `StartAbility end ${JSON.stringify(exception)}`)
         done()
       }
       Logger.info(TAG, BUNDLE + 'StartAbility_001 end')
@@ -45,7 +45,7 @@ export default function abilityTest() {
     /**
      * debug信息界面显示
      */
-    it(BUNDLE + 'ShowInfoFunction_001', 0, async () => {
+    it('ShowInfoFunction_001', 0, async () => {
       Logger.info(TAG, BUNDLE + 'ShowInfoFunction_001 begin')
       let driver = await Driver.create()
       await driver.delayMs(1000)
@@ -62,8 +62,8 @@ export default function abilityTest() {
     /**
      * debug信息界面隐藏
      */
-    it(BUNDLE + 'ShowInfoFunction_001', 0, async () => {
-      Logger.info(TAG, BUNDLE + 'ShowInfoFunction_001 begin')
+    it('ShowInfoFunction_002', 0, async () => {
+      Logger.info(TAG, BUNDLE + 'ShowInfoFunction_002 begin')
       let driver = await Driver.create()
       await driver.delayMs(1000)
       // 点击Debug按钮，隐藏Debug信息界面
@@ -71,7 +71,7 @@ export default function abilityTest() {
       let btnDebug = await driver.findComponent(ON.id('btnDebug'))
       await btnDebug.click()
       await driver.delayMs(1000)
-      Logger.info(TAG, BUNDLE + 'ShowInfoFunction_001 end')
+      Logger.info(TAG, BUNDLE + 'ShowInfoFunction_002 end')
     })
   })
 }
