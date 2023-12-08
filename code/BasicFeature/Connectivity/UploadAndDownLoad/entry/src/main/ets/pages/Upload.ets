@@ -81,7 +81,6 @@ struct Upload {
                   let stat = fs.statSync(file.fd)
                   let size = stat.size
                   fs.closeSync(file.fd)
-                  console.debug(`img:${uri},size:${size},chunkbegin:${this.chunkParaBegins}`)
 
                   if (this.chunkParaBegins >= (size - 1)) {
                     promptAction.showToast({ message: $r('app.string.chunk_para_invalid'), bottom: TOAST_BOTTOM })
@@ -102,7 +101,6 @@ struct Upload {
                   let size = stat.size
                   fs.closeSync(file.fd)
 
-                  console.debug(`img:${uri},size:${size},chunkbegin:${this.chunkParaEnds}`)
                   if (this.chunkParaEnds != -1
                     && (this.chunkParaEnds >= size || this.chunkParaEnds <= this.chunkParaBegins)) {
                     promptAction.showToast({ message: $r('app.string.chunk_para_invalid'), bottom: TOAST_BOTTOM })
@@ -285,8 +283,6 @@ struct Upload {
   }
 
   onChunkBoxVisible(propName: string) {
-    console.debug(`this.chunkCheckBoxVisible=${this.chunkCheckBoxVisible}`)
-
     if (this.chunkCheckBoxVisible) {
       this.chunkCheckBoxVisibility = Visibility.Visible
       this.gridsOpacity = 0.5

@@ -53,7 +53,7 @@ export struct AddPictures {
           .borderWidth(2)
           .borderColor(index === this.chunkImgIndex ? $r('app.color.button_blue') : $r('app.color.light_gray'))
           .onClick(() => {
-            console.debug(`onclick: this.chunkImgIndex=${this.chunkImgIndex}, curindex:${index}`)
+            logger.debug(`onclick: this.chunkImgIndex=${this.chunkImgIndex}, curindex:${index}`)
             if (this.chunkImgIndex == -1) {
               this.chunkImgIndex = index
               this.chunkCheckBoxVisible = true
