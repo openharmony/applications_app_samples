@@ -1,0 +1,268 @@
+{
+  "integer": [
+    {
+      "name": "integer_1",
+      "value": 100
+    },
+    {
+      "name": "tabBar_font_size",
+      "value": 18
+    },
+    {
+      "name": "tabbar_height",
+      "value": 56
+    },
+    {
+      "name": "layout_size_21",
+      "value": 21
+    },
+    {
+      "name": "layout_size_10",
+      "value": 10
+    },
+    {
+      "name": "layout_size_12",
+      "value": 12
+    },
+    {
+      "name": "layout_size_20",
+      "value": 20
+    },
+    {
+      "name": "layout_size_42",
+      "value": 42
+    },
+    {
+      "name": "layout_size_18",
+      "value": 18
+    },
+    {
+      "name": "layout_size_236",
+      "value": 236
+    },
+    {
+      "name": "layout_size_260",
+      "value": 260
+    },
+    {
+      "name": "layout_size_24",
+      "value": 24
+    },
+    {
+      "name": "layout_size_2",
+      "value": 2
+    },
+    {
+      "name": "layout_size_38",
+      "value": 38
+    },
+    {
+      "name": "layout_size_26",
+      "value": 26
+    },
+    {
+      "name": "layout_size_32",
+      "value": 32
+    },
+    {
+      "name": "layout_size_16",
+      "value": 16
+    },
+    {
+      "name": "layout_size_6",
+      "value": 6
+    },
+    {
+      "name": "layout_size_134",
+      "value": 134
+    },
+    {
+      "name": "layout_size_144",
+      "value": 144
+    },
+    {
+      "name": "layout_size_8",
+      "value": 8
+    },
+    {
+      "name": "layout_size_245",
+      "value": 245
+    },
+    {
+      "name": "layout_size_150",
+      "value": 150
+    },
+    {
+      "name": "layout_size_54",
+      "value": 54
+    },
+    {
+      "name": "layout_size_224",
+      "value": 224
+    },
+    {
+      "name": "layout_size_11",
+      "value": 11
+    },
+    {
+      "name": "layout_size_96",
+      "value": 96
+    },
+    {
+      "name": "layout_size_37",
+      "value": 37
+    },
+    {
+      "name": "layout_size_52",
+      "value": 52
+    },
+    {
+      "name": "layout_size_4",
+      "value": 4
+    },
+    {
+      "name": "layout_size_27",
+      "value": 27
+    },
+    {
+      "name": "layout_size_354",
+      "value": 354
+    },
+    {
+      "name": "layout_size_364",
+      "value": 364
+    },
+    {
+      "name": "font_weight_500",
+      "value": 500
+    },
+    {
+      "name": "font_weight_700",
+      "value": 700
+    },
+    {
+      "name": "layout_size_64",
+      "value": 64
+    },
+    {
+      "name": "layout_size_120",
+      "value": 120
+    },
+    {
+      "name": "layout_size_60",
+      "value": 60
+    },
+    {
+      "name": "layout_size_50",
+      "value": 50
+    },
+    {
+      "name": "layout_size_40",
+      "value": 40
+    },
+    {
+      "name": "layout_size_400",
+      "value": 400
+    },
+    {
+      "name": "layout_size_28",
+      "value": 28
+    },
+    {
+      "name": "layout_size_122",
+      "value": 122
+    },
+    {
+      "name": "layout_size_14",
+      "value": 14
+    },
+    {
+      "name": "layout_size_3",
+      "value": 3
+    },
+    {
+      "name": "layout_size_22",
+      "value": 22
+    },
+    {
+      "name": "layout_size_48",
+      "value": 48
+    },
+    {
+      "name": "layout_size_19",
+      "value": 19
+    },
+    {
+      "name": "layout_size_1",
+      "value": 1
+    },
+    {
+      "name": "layout_size_33",
+      "value": 33
+    },
+    {
+      "name": "layout_size_5",
+      "value": 5
+    },
+    {
+      "name": "layout_size_87",
+      "value": 87
+    },
+    {
+      "name": "layout_size_46",
+      "value": 46
+    },
+    {
+      "name": "layout_size_15",
+      "value": 15
+    },
+    {
+      "name": "layout_size_88",
+      "value": 88
+    },
+    {
+      "name": "layout_size_240",
+      "value": 240
+    },
+    {
+      "name": "layout_size_30",
+      "value": 30
+    },
+    {
+      "name": "layout_size_147",
+      "value": 147
+    },
+    {
+      "name": "layout_size_114",
+      "value": 114
+    },
+    {
+      "name": "layout_size_45",
+      "value": 45
+    },
+    {
+      "name": "layout_size_200",
+      "value": 200
+    },
+    {
+      "name": "layout_size_130",
+      "value": 130
+    },
+    {
+      "name": "layout_size_95",
+      "value": 95
+    },
+    {
+      "name": "layout_size_7",
+      "value": 7
+    },
+    {
+      "name": "layout_size_0",
+      "value": 0
+    },
+    {
+      "name": "layout_size_23",
+      "value": 23
+    }
+  ]
+}

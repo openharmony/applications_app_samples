@@ -351,7 +351,7 @@
   <td></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td height="90" align="center" rowspan="6" style='height:67.50pt' x:str><strong>行业解决方案</strong></td>
+  <td height="90" align="center" rowspan="7" style='height:67.50pt' x:str><strong>行业解决方案</strong></td>
   <td x:str><strong>即时通信</strong></td>
   <td x:str><a href="code/Solutions/IM/Chat">聊天实例应用（API 10）</a></td>
   <td ></td>
@@ -385,6 +385,13 @@
   <td x:str><a href="code/Solutions/Game/Game2048">游戏2048</a></td>
   <td x:str><a href="code/Solutions/Game/Lottie">Lottie</a></td>
   <td x:str><a href="code/Solutions/Game/DistributedDataGobang">分布式五子棋</a></td>
+  <td ></td>
+ </tr>
+<tr height="18" style='height:13.50pt;'>
+  <td x:str><strong>社交</strong></td>
+  <td x:str><a href="code/Solutions/Social/GrapeSquare">葡萄广场</a></td>
+  <td ></td>
+  <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
@@ -489,7 +496,8 @@ code
   |---InputMethod                  # 输入法
   |---Shopping                     # 电商
   |---Media                        # 媒体
-  |---Game                         # 游戏	
+  |---Game                         # 游戏
+  |---Social                       # 社交	
   |---Tools                        # 工具
 |---Project                    # 工程能力
   |---ResourceAllocation           # 资源配置

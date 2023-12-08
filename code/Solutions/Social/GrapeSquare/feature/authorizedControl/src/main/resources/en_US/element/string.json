@@ -1,0 +1,344 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from npm package"
+    },
+    {
+      "name": "layout_50",
+      "value": "50%"
+    },
+    {
+      "name": "hot",
+      "value": "Hot"
+    },
+    {
+      "name": "recommend",
+      "value": "recommend"
+    },
+    {
+      "name": "care_title",
+      "value": "care"
+    },
+    {
+      "name": "add_care",
+      "value": "+ care"
+    },
+    {
+      "name": "share",
+      "value": "share"
+    },
+    {
+      "name": "comment",
+      "value": "comment"
+    },
+    {
+      "name": "share_count",
+      "value": "share 1000"
+    },
+    {
+      "name": "comment_count",
+      "value": "comment 100"
+    },
+    {
+      "name": "like_count",
+      "value": "like 126"
+    },
+    {
+      "name": "like",
+      "value": "like"
+    },
+    {
+      "name": "copy_succeed",
+      "value": "copy succeed"
+    },
+    {
+      "name": "copy",
+      "value": "copy"
+    },
+    {
+      "name": "paste",
+      "value": "paste"
+    },
+    {
+      "name": "paste_succeed",
+      "value": "paste succeed"
+    },
+    {
+      "name": "add_comment",
+      "value": "Add comment"
+    },
+    {
+      "name": "save_succeed",
+      "value": "save succeed"
+    },
+    {
+      "name": "save_failed",
+      "value": "save failed"
+    },
+    {
+      "name": "comments",
+      "value": "comments"
+    },
+    {
+      "name": "feature_development",
+      "value": "Functional development in progress"
+    },
+    {
+      "name": "vipcenter",
+      "value": "vipcenter"
+    },
+    {
+      "name": "setting",
+      "value": "setting"
+    },
+    {
+      "name": "vipownsetting",
+      "value": "vipownsetting"
+    },
+    {
+      "name": "deppcolormode",
+      "value": "deppcolormode"
+    },
+    {
+      "name": "mycollection",
+      "value": "mycollection"
+    },
+    {
+      "name": "mylike",
+      "value": "mylike"
+    },
+    {
+      "name": "browsinghistory",
+      "value": "browsinghistory"
+    },
+    {
+      "name": "followinghypertalk",
+      "value": "browsinghistory"
+    },
+    {
+      "name": "shieldsetting",
+      "value": "shieldsetting"
+    },
+    {
+      "name": "void",
+      "value": " "
+    },
+    {
+      "name": "after_vipcenter",
+      "value": "after_vipcenter"
+    },
+    {
+      "name": "settingbackground",
+      "value": "settingbackground"
+    },
+    {
+      "name": "after_settingBackground",
+      "value": "after_settingBackground"
+    },
+    {
+      "name": "hot_search_list",
+      "value": "hot_search_list"
+    },
+    {
+      "name": "same_city_list",
+      "value": "same_city_list"
+    },
+    {
+      "name": "user_name",
+      "value": "User_name"
+    },
+    {
+      "name": "following",
+      "value": "Folowing"
+    },
+    {
+      "name": "fans",
+      "value": "Fans"
+    },
+    {
+      "name": "my",
+      "value": "My"
+    },
+    {
+      "name": "explore",
+      "value": "Explore"
+    },
+    {
+      "name": "trend",
+      "value": "Trend"
+    },
+    {
+      "name": "hot_tab",
+      "value": "Hot_tab"
+    },
+    {
+      "name": "honorable_vip",
+      "value": "Honorable_vip"
+    },
+    {
+      "name": "same_city",
+      "value": "Same_city"
+    },
+    {
+      "name": "list",
+      "value": "List"
+    },
+    {
+      "name": "super_talk",
+      "value": "Super_talk"
+    },
+    {
+      "name": "hot_search",
+      "value": "Hot_search"
+    },
+    {
+      "name": "all",
+      "value": "All"
+    },
+    {
+      "name": "anonymous_story",
+      "value": "Anonymous_story"
+    },
+    {
+      "name": "story_des",
+      "value": "Story_des"
+    },
+    {
+      "name": "story_dess",
+      "value": "Story_dess"
+    },
+    {
+      "name": "hot_first_item",
+      "value": "Hot_first_item"
+    },
+    {
+      "name": "hot_second_item",
+      "value": "Hot_second_item"
+    },
+    {
+      "name": "hot_third_item",
+      "value": "Hot_third_item"
+    },
+    {
+      "name": "hot_fourth_item",
+      "value": "Hot_fourth_item"
+    },
+    {
+      "name": "hot_fifth_item",
+      "value": "Hot_fifth_item"
+    },
+    {
+      "name": "hot_sixth_item",
+      "value": "Hot_sixth_item"
+    },
+    {
+      "name": "hot_seventh_item",
+      "value": "Hot_seventh_item"
+    },
+    {
+      "name": "hot_eighth_item",
+      "value": "Hot_eighth_item"
+    },
+    {
+      "name": "hot_ninth_item",
+      "value": "Hot_ninth_item"
+    },
+    {
+      "name": "hot_tenth_item",
+      "value": "Hot_tenth_item"
+    },
+    {
+      "name": "current_hot_point",
+      "value": "Current_hot_point"
+    },
+    {
+      "name": "current_city",
+      "value": "Current_city"
+    },
+    {
+      "name": "number_one",
+      "value": "Number_one"
+    },
+    {
+      "name": "number_two",
+      "value": "Number_two"
+    },
+    {
+      "name": "number_three",
+      "value": "Number_three"
+    },
+    {
+      "name": "number_four",
+      "value": "Number_four"
+    },
+    {
+      "name": "number_five",
+      "value": "Number_five"
+    },
+    {
+      "name": "number_six",
+      "value": "Number_six"
+    },
+    {
+      "name": "number_seven",
+      "value": "Number_seven"
+    },
+    {
+      "name": "number_eight",
+      "value": "Number_eight"
+    },
+    {
+      "name": "number_nine",
+      "value": "Number_nine"
+    },
+    {
+      "name": "number_ten",
+      "value": "Number_ten"
+    },
+    {
+      "name": "hot_item_one",
+      "value": "Hot_item_one"
+    },
+    {
+      "name": "hot_item_two",
+      "value": "Hot_item_two"
+    },
+    {
+      "name": "hot_item_three",
+      "value": "Hot_item_three"
+    },
+    {
+      "name": "hot_item_four",
+      "value": "Hot_item_four"
+    },
+    {
+      "name": "hot_item_five",
+      "value": "Hot_item_five"
+    },
+    {
+      "name": "hot_item_six",
+      "value": "Hot_item_six"
+    },
+    {
+      "name": "hot_item_seven",
+      "value": "Hot_item_seven"
+    },
+    {
+      "name": "hot_item_eight",
+      "value": "Hot_item_eight"
+    },
+    {
+      "name": "hot_item_nine",
+      "value": "Hot_item_nine"
+    },
+    {
+      "name": "hot_item_ten",
+      "value": "Hot_item_ten"
+    },
+    {
+      "name": "hot_item_ones",
+      "value": "Hot_item_ones"
+    }
+  ]
+}

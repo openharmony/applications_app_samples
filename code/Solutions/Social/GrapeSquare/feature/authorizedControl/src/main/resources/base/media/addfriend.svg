@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>appbar_add</title>
+    <defs>
+        <path d="M10.75,19.25 C10.75,19.6642136 10.4142136,20 10,20 C9.58578644,20 9.25,19.6642136 9.25,19.25 L9.25,10.75 L0.75,10.75 C0.335786438,10.75 0,10.4142136 0,10 C0,9.58578644 0.335786438,9.25 0.75,9.25 L9.25,9.25 L9.25,0.75 C9.25,0.335786438 9.58578644,7.6089797e-17 10,0 C10.4142136,-7.6089797e-17 10.75,0.335786438 10.75,0.75 L10.75,19.25 Z M19.25,9.25 C19.6642136,9.25 20,9.58578644 20,10 C20,10.4142136 19.6642136,10.75 19.25,10.75 L11.75,10.75 L11.75,9.25 L19.25,9.25 Z" id="path-1"></path>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="发现" transform="translate(-266.000000, -42.000000)">
+            <g id="AppBar/single-line/title+3ic" transform="translate(0.000000, 24.000000)">
+                <g id="AppBar/Item/action-area/ic_3" transform="translate(216.000000, 16.000000)">
+                    <g id="ic/public/add" transform="translate(48.000000, 0.000000)">
+                        <g id="symbol/frame/symbol_grid24-copy"></g>
+                        <g id="编组-2" transform="translate(2.000000, 2.000000)">
+                            <mask id="mask-2" fill="white">
+                                <use xlink:href="#path-1"></use>
+                            </mask>
+                            <g id="形状结合"></g>
+                            <rect id="color/#000000" fill="#182431" mask="url(#mask-2)" x="-2" y="-2" width="24" height="24"></rect>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
