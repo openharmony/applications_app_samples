@@ -1,0 +1,11 @@
+{
+  "src": [
+    "pages/FormDeepLink",
+    "pages/Music",
+    "pages/Book",
+    "pages/Weather",
+    "pages/MainPage",
+    "pages/LockPage",
+    "pages/UnlockPage"
+  ]
+}
