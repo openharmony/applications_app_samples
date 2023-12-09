@@ -2,7 +2,18 @@
 
 ### 介绍
 
-此Sample展示如何在eTS中调用空间音频相关API。实现效果如下：
+此Sample展示如何在eTS中调用空间音频相关API。相关API包括:
+isSpatializationSupported(): 查询系统是否支持空间音频，
+isHeadTrackingSupported()：查询系统是否支持头动跟踪，
+isSpatializationSupportedForDevice(deviceDescriptor: AudioDeviceDescriptor)：查询设备是否支持空间音频，
+isHeadTrackingSupportedForDevice(deviceDescriptor: AudioDeviceDescriptor)：查询设备是否支持头动跟踪，
+isSpatializationEnabled()：查询空间音频是否开启，
+isHeadTrackingEnabled(): 查询头动跟踪是否开启，
+setSpatializationEnabled(enable: boolean)：设置空间音频开启状态，
+setHeadTrackingEnabled(enable: boolean)：设置头动跟踪开启状态，
+API链接：https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.multimedia.audio.d.ts
+
+实现效果如下：
 
 ### 效果预览
 | 主页                                     | 空间音频界面                                  |
