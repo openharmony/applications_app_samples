@@ -23,6 +23,7 @@ import {
   logger,
   requestFiles,
   requestDownload,
+  BackgroundTaskState,
   TOAST_BOTTOM
 } from '@ohos/uploaddownload';
 import { SelectFolderDialog } from '../components/SelectFolderDialog';
@@ -34,6 +35,7 @@ const TAG: string = 'Download';
 struct Download {
   private fileData: CustomDataSource = new CustomDataSource([]);
   @StorageLink('isBackground') isBackground: boolean = false;
+  @StorageLink('backDownTaskState') backDownTaskState: BackgroundTaskState = BackgroundTaskState.NONE;
   @Provide downloadFolder: Array<string> = [];
   @State isGetData: boolean = false;
   @State checkFile: Array<string> = [];
@@ -146,6 +148,38 @@ struct Download {
   @Builder
   BottomView() {
     Column({ space: 12 }) {
+      if (this.isBackground && this.backDownTaskState !== BackgroundTaskState.NONE) {
+        Button() {
+          Row() {
+            Text(this.backDownTaskState === BackgroundTaskState.PAUSE ? $r('app.string.continue') : $r('app.string.pause'))
+              .fontColor(Color.White)
+              .fontSize(16)
+          }
+        }
+        .id('download_to')
+        .type(ButtonType.Capsule)
+        .height(45)
+        .width('100%')
+        .backgroundColor($r('app.color.button_blue'))
+        .onClick(() => {
+          requestDownload.pauseOrResume();
+        })
+        Button() {
+          Row() {
+            Text($r('app.string.cancel'))
+              .fontColor(Color.White)
+              .fontSize(16)
+          }
+        }
+        .id('download_to')
+        .type(ButtonType.Capsule)
+        .height(45)
+        .width('100%')
+        .backgroundColor($r('app.color.button_blue'))
+        .onClick(() => {
+          requestDownload.deleteAllBackTasks();
+        })
+      }
       Button() {
         Row() {
           if (!this.isBackground && this.isRunning) {
@@ -248,6 +282,7 @@ struct Download {
     this.progress = 0;
     if (this.isBackground) {
       this.isRunning = false;
+      this.backDownTaskState = BackgroundTaskState.RUNNING;
       requestDownload.downloadFilesBackground(folder, this.checkFile);
       this.checkFile = [];
       this.checkList = [];

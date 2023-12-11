@@ -39,6 +39,7 @@ struct Upload {
       .width('100%')
       .layoutWeight(1)
       .align(Alignment.Top)
+      .margin({ bottom: 24 })
 
       Column() {
         Button() {
@@ -144,7 +145,7 @@ struct Upload {
       return;
     }
     if (this.isBackground) {
-      AppStorage.SetOrCreate('backTaskState', BackgroundTaskState.RUNNING)
+      AppStorage.setOrCreate('backTaskState', BackgroundTaskState.RUNNING);
       requestUpload.uploadFilesBackground(this.imageList);
       promptAction.showToast({ message: $r('app.string.background_task_start'), bottom: TOAST_BOTTOM });
     } else {
