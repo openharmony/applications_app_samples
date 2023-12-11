@@ -18,8 +18,8 @@ import router from '@ohos.router';
 @Component
 export struct Information {
   @State collected: boolean = false;
-  private data: string | number | boolean | object | null[]
-    = (router.getParams() as Record<string, string | number | boolean | object | null[]>)['goodItem'];
+  private data: string | Resource
+    = (router.getParams() as Record<string, string | Resource>)['goodItem'];
   @State recommend: string = '';
   @State commodity: string = '';
 
