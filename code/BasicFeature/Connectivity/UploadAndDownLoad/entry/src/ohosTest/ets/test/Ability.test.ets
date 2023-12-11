@@ -127,10 +127,9 @@ export default function abilityTest() {
       await pickAlbum.click()
       await driver.delayMs(2000)
 
-      // 选择最后一张图片，必须有一张图片;参考BasicFeature\FileManagement\FileShare\Picker\entry\src\ohosTest\ets\test\Ability.test.ets
       await driver.assertComponentExist(ON.type('GridItem'))
       let pictures = await driver.findComponents(ON.type('GridItem'))
-      if (pictures.length < 5) { // 没有照片，直接返回
+      if (pictures.length < 5) {
         await driver.pressBack()
       } else {
         await pictures[4].click()
@@ -144,13 +143,13 @@ export default function abilityTest() {
         gridItems = await driver.findComponents(ON.type('GridCol'))
         await gridItems[0].click()
         await driver.delayMs(1000)
-        await driver.assertComponentExist(ON.id('chunkcheckbox')) // NONE时控件不存在，显示时才能找到
+        await driver.assertComponentExist(ON.id('chunkcheckbox'))
 
         let txtinput = await driver.findComponent(ON.type('TextInput'))
         await txtinput.click()
         let focus = await txtinput.isFocused()
         logger.info(TAG, `${BUNDLE}UploadChunk_001 unchecked focus ${focus}`)
-        expect(focus).assertFalse() // txtinput.isEnabled())始终为true，所以用focus判断
+        expect(focus).assertFalse()
 
         let checkbox = await driver.findComponent(ON.type('Checkbox'))
         await checkbox.click()
@@ -161,11 +160,12 @@ export default function abilityTest() {
         logger.info(TAG, `${BUNDLE}UploadChunk_001 checked focus ${focus}`)
         expect(focus).assertTrue()
 
-        await driver.pressBack() // 退出键盘状态
+        await driver.pressBack()
+        await driver.delayMs(1000)
+        await driver.pressBack()
       }
 
       await driver.delayMs(1000)
-      // await driver.assertComponentExist(ON.id('publish'))
       await driver.pressBack()
       await driver.delayMs(1000)
       logger.info(TAG, `${BUNDLE}UploadChunk_001 end`)

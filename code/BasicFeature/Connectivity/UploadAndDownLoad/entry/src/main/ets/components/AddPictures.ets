@@ -14,7 +14,7 @@
  */
 
 import picker from '@ohos.file.picker';
-import { logger } from '@ohos/uploaddownload';
+import { logger, NO_IMAGE_SELECTED } from '@ohos/uploaddownload';
 
 const TAG: string = 'AddPictures';
 
@@ -29,9 +29,6 @@ const TAG: string = 'AddPictures';
 @Component
 export struct AddPictures {
   @Consume imageList: Array<string>;
-  @Consume chunkCheckBoxVisible: boolean
-  @Consume chunkCheckBoxVisibility: Visibility
-  @Consume gridsOpacity: number
   @Consume chunkImgIndex: number
 
   build() {
@@ -54,11 +51,8 @@ export struct AddPictures {
           .borderColor(index === this.chunkImgIndex ? $r('app.color.button_blue') : $r('app.color.light_gray'))
           .onClick(() => {
             logger.debug(`onclick: this.chunkImgIndex=${this.chunkImgIndex}, curindex:${index}`)
-            if (this.chunkImgIndex == -1) {
+            if (this.chunkImgIndex === NO_IMAGE_SELECTED) {
               this.chunkImgIndex = index
-              this.chunkCheckBoxVisible = true
-            } else if (this.chunkImgIndex != index) {
-              this.chunkCheckBoxVisible = false
             }
           })
         })
@@ -77,13 +71,11 @@ export struct AddPictures {
         .backgroundColor($r('app.color.white'))
         .borderRadius(12)
         .onClick(() => {
-          this.chunkCheckBoxVisible = false
           this.showDialog();
         })
       }
     }
     .width('100%')
-    .opacity(this.gridsOpacity)
   }
 
   addImages = (images: Array<string>) => {
