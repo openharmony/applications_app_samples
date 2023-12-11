@@ -12,13 +12,13 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-import hilog from '@ohos.hilog';
 
+import Logger from '../../utils/Logger'
 @Entry
 @Component
 struct Index {
   aboutToAppear() {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility index aboutToAppear');
+    Logger.info('testTag', '%{public}s', 'TestAbility index aboutToAppear')
   }
   @State message: string = 'TEST CASE'
   build() {

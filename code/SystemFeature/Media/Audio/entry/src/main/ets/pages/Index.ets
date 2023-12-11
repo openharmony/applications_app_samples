@@ -12,7 +12,7 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-import router from '@ohos.router';
+import router from '@ohos.router'
 
 @Entry
 @Component
@@ -22,8 +22,8 @@ struct Index {
       Row(){
         Row() {
           Column() {
-            Image($r('app.media.ic_spatialaudio')).width(72).height(72).margin({ top: 36 });
-            Text($r('app.string.SPATIAL_AUDIO')).fontColor(Color.Black).fontSize(16).margin({ top: 12 });
+            Image($r('app.media.ic_spatialaudio')).width(72).height(72).margin({ top: 36 })
+            Text($r('app.string.SPATIAL_AUDIO')).fontColor(Color.Black).fontSize(16).margin({ top: 12 })
           }
           .id('spatial_audio_card')
           .backgroundColor(Color.White)
@@ -32,7 +32,7 @@ struct Index {
           .height(188)
           .margin({right: 6})
           .onClick(async () => {
-            await router.pushUrl({ url: 'pages/SpatialAudio'});
+            await router.pushUrl({ url: 'pages/SpatialAudio'})
           })
         }
         .width('50%')
@@ -42,6 +42,6 @@ struct Index {
       .width('100%')
 
     }
-    .height('100%').width('100%').backgroundColor('#F1F3F5');
+    .height('100%').width('100%').backgroundColor('#F1F3F5')
   }
 }

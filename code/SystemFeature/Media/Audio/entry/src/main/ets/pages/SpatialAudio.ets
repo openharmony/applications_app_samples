@@ -14,12 +14,12 @@
 * limitations under the License.
 */
 
+import Logger from '../../../ohosTest/ets/utils/Logger'
 import common from '@ohos.app.ability.common'
 import fs from '@ohos.file.fs'
 import router from '@ohos.router'
 import audio from '@ohos.multimedia.audio'
 import { BusinessError } from '@ohos.base'
-import resourceManager from '@ohos.resourceManager'
 
 const CLOSE_MODE = 0
 const OPEN_MODE = 1
@@ -58,7 +58,7 @@ struct SpatialAudio {
       }
     }
   ]
-  private fileDescriptors: resourceManager.RawFileDescriptor[] = []
+
   private appContext?: common.Context
   private audioSources = ['/2p0.pcm', '/5p1.pcm']
   private audioSpatializationManager?: audio.AudioSpatializationManager
@@ -142,7 +142,7 @@ struct SpatialAudio {
               this.trackingEnabled = false
             })
           } catch (err) {
-            console.error(`Set Spatialization or Head Tracking disabled failed, ${JSON.stringify(err)}`)
+            Logger.error(`Set Spatialization or Head Tracking disabled failed, ${JSON.stringify(err)}`)
             return
           }
         }
@@ -177,7 +177,7 @@ struct SpatialAudio {
               this.trackingEnabled = false
             })
           } catch (err) {
-            console.error(`Set open mode failed, ${JSON.stringify(err)}`)
+            Logger.error(`Set open mode failed, ${JSON.stringify(err)}`)
             return
           }
         }
@@ -209,7 +209,7 @@ struct SpatialAudio {
               this.trackingEnabled = true
             })
           } catch (err) {
-            console.error(`Set HeadTracking enabled failed, ${JSON.stringify(err)}`)
+            Logger.error(`Set HeadTracking enabled failed, ${JSON.stringify(err)}`)
             return
           }
         }
@@ -308,17 +308,6 @@ struct SpatialAudio {
 
   }
 
-  async closeResource(fileName: string): Promise<void> {
-    if (this.appContext) {
-      let mgr = this.appContext.resourceManager
-      await mgr.closeRawFd(fileName).then(() => {
-        console.log('case closeRawFd success fileName: ' + fileName)
-      }).catch((error: BusinessError) => {
-        console.log('case closeRawFd err: ' + error)
-      })
-    }
-  }
-
   updateSupportStateUI(): void {
     this.supportState = this.supportStateQuery()
     if (this.audioSpatializationManager) {
@@ -326,7 +315,7 @@ struct SpatialAudio {
         this.spatializationEnabled = this.audioSpatializationManager.isSpatializationEnabled()
         this.trackingEnabled = this.audioSpatializationManager.isHeadTrackingEnabled()
       } catch (err) {
-        console.error(`update Support State UI failed ,Error: ${JSON.stringify(err)}`)
+        Logger.error(`update Support State UI failed ,Error: ${JSON.stringify(err)}`)
         return
       }
     }
@@ -335,7 +324,7 @@ struct SpatialAudio {
   supportStateQuery(): number {
     let audioDeviceDescriptors: audio.AudioDeviceDescriptors = this.audioRenderers[0].getCurrentOutputDevicesSync()
     audioDeviceDescriptors.forEach(audioDeviceDescriptor => {
-      console.info("Device Role:" + audioDeviceDescriptor.deviceRole + ", device Type:" +
+      Logger.info("Device Role:" + audioDeviceDescriptor.deviceRole + ", device Type:" +
       audioDeviceDescriptor.deviceType + ", Macaddress:" + audioDeviceDescriptor.address)
     })
 
@@ -351,7 +340,7 @@ struct SpatialAudio {
       isTraSupportedForDevice =
       this.audioSpatializationManager.isHeadTrackingSupportedForDevice(audioDeviceDescriptors[0])
     } else {
-      console.info("Get manager failed.")
+      Logger.info("Get manager failed.")
     }
     let isSpatializationSupportedBoth: boolean = isSpaSupported && isSpaSupportedForDevice
     let isHeadTrackingSupportedBoth: boolean = isTraSupported && isTraSupportedForDevice
@@ -373,10 +362,10 @@ struct SpatialAudio {
     for (let index = 0; index < 2; index++) {
       try {
         let renderer = await audio.createAudioRenderer(this.audioRendererOptions[index])
-        console.info("Create renderer success")
+        Logger.info("Create renderer success")
         this.audioRenderers.push(renderer)
       } catch (err) {
-        console.error(`audioRenderer_${index} create ,Error: ${JSON.stringify(err)}`)
+        Logger.error(`audioRenderer_${index} create ,Error: ${JSON.stringify(err)}`)
         return
       }
     }
@@ -385,7 +374,7 @@ struct SpatialAudio {
     try {
       this.audioSpatializationManager = audioManager.getSpatializationManager()
     } catch (err) {
-      console.error(`Get Spatialization Manager failed, Error: ${JSON.stringify(err)}`)
+      Logger.error(`Get Spatialization Manager failed, Error: ${JSON.stringify(err)}`)
       return
     }
 
@@ -393,7 +382,7 @@ struct SpatialAudio {
     this.updateSupportStateUI()
     if (this.audioRoutingManager) {
       this.audioRoutingManager.on("deviceChange", audio.DeviceFlag.OUTPUT_DEVICES_FLAG, () => {
-        console.info("Output device changed")
+        Logger.info("Output device changed")
         this.updateSupportStateUI()
       })
     }
@@ -406,11 +395,7 @@ struct SpatialAudio {
       await audioRenderer.release()
     })
     this.audioRenderers = []
-    this.audioSources.forEach(async audioSource => {
-      await this.closeResource(audioSource)
-    })
 
-    this.fileDescriptors = []
     if (this.audioRoutingManager) {
       this.audioRoutingManager.off("deviceChange")
     }
@@ -430,7 +415,7 @@ struct SpatialAudio {
         await this.audioRenderers[index].start()
       } catch (err) {
         let error = err as BusinessError
-        console.error(`AudioRenderer start : Error: ${JSON.stringify(error)}`)
+        Logger.error(`AudioRenderer start : Error: ${JSON.stringify(error)}`)
         return
       }
 
@@ -449,7 +434,7 @@ struct SpatialAudio {
         if (this.audioRenderers[index].state === audio.AudioState.STATE_RELEASED) {
           break
         }
-        console.info("start write")
+        Logger.info("start write")
         for (let i = 0; i < len; i++) {
           class options {
             offset: number = 0
@@ -472,7 +457,7 @@ struct SpatialAudio {
         await this.audioRenderers[index].pause()
       }
     } catch (err) {
-      console.error(`Pause Error: ${JSON.stringify(err)}`)
+      Logger.error(`Pause Error: ${JSON.stringify(err)}`)
       return
     }
   }
@@ -490,11 +475,11 @@ struct SpatialAudio {
       return
     }
     this.updateSupportStateUI()
-    console.info("Page show")
+    Logger.info("Page show")
   }
 
   onPageHide(): void {
-    console.info("Page Hide")
+    Logger.info("Page Hide")
     if (this.audioRenderers[0] && this.audioRenderers[0].state === audio.AudioState.STATE_RUNNING) {
       this.audioRenderers[0].pause()
       this.musicState1 = false
