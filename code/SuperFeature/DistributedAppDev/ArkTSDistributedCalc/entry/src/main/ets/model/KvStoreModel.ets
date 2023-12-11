@@ -63,11 +63,11 @@ export class KvStoreModel {
   deleteKvStore() {
     try {
       if (this.kvManager !== undefined) {
-        Logger.info(TAG,'deleteKvStore success')
-        this.kvManager.deleteKVStore(BUNDLE_NAME,STORE_ID)
+        Logger.info(TAG, 'deleteKvStore success')
+        this.kvManager.deleteKVStore(BUNDLE_NAME, STORE_ID)
       }
-    }catch (err){
-      Logger.error(TAG,'deleteKvStore error error is:'+JSON.stringify(err))
+    } catch (err) {
+      Logger.error(TAG, 'deleteKvStore error error is:' + JSON.stringify(err))
     }
   }
 
@@ -89,19 +89,23 @@ export class KvStoreModel {
     Logger.info(TAG, `setOnMessageReceivedListener: ${msg}`);
     this.createKvStore(context, () => {
       Logger.info(TAG, `kvStore.on(dataChange) begin`);
-      if (this.kvStore !== null) {
-        this.kvStore!.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (data) => {
-          Logger.debug(TAG, `dataChange, ${JSON.stringify(data)}`);
-          let entries = data.insertEntries.length > 0 ? data.insertEntries : data.updateEntries;
-          for (let i = 0; i < entries.length; i++) {
-            if (entries[i].key === msg) {
-              let value = entries[i].value.value.toString();
-              Logger.debug(TAG, `Entries receive msg :${msg}, value：${value}`);
-              callback(value);
-              return;
+      if (this.kvStore !== undefined && this.kvStore !== null) {
+        try {
+          this.kvStore!.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (data) => {
+            Logger.debug(TAG, `dataChange, ${JSON.stringify(data)}`);
+            let entries = data.insertEntries.length > 0 ? data.insertEntries : data.updateEntries;
+            for (let i = 0; i < entries.length; i++) {
+              if (entries[i].key === msg) {
+                let value = entries[i].value.value.toString();
+                Logger.debug(TAG, `Entries receive msg :${msg}, value：${value}`);
+                callback(value);
+                return;
+              }
             }
-          }
-        })
+          })
+        } catch (err) {
+          Logger.error(TAG, `kvStore.on(dataChange) err :` + err);
+        }
       }
       Logger.info(TAG, `kvStore.on(dataChange) end`);
     })
