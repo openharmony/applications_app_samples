@@ -53,7 +53,7 @@ export default class OpenHarmonyTestRunner implements TestRunner {
     abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
     abilityDelegator.startAbility(want, (err : any, data : any) => {
       Logger.info('testTag', 'startAbility : err : %{public}s', JSON.stringify(err) ?? '')
-      Logger.info('testTag', 'startAbility : data : %{public}s',JSON.stringify(data) ?? '')
+      Logger.info('testTag', 'startAbility : data : %{public}s', JSON.stringify(data) ?? '')
     })
     Logger.info('testTag', '%{public}s', 'OpenHarmonyTestRunner onRun end')
   }
