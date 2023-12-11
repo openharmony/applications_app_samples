@@ -84,8 +84,8 @@ export default function abilityTest() {
         await driver.delayMs(1000);
         Logger.info(TAG, BUNDLE + '2P0_play_btn');
         await driver.assertComponentExist(ON.id('2P0_play_btn'));
-        let PlayBtn2P0 = await driver.findComponent(ON.id('2P0_play_btn'));
-        await PlayBtn2P0.click();
+        let playBtn2P0 = await driver.findComponent(ON.id('2P0_play_btn'));
+        await playBtn2P0.click();
         await driver.delayMs(500);
         await driver.assertComponentExist(ON.id('2P0_pause_btn'));
       } catch (err) {
@@ -118,8 +118,8 @@ export default function abilityTest() {
         await driver.delayMs(1000);
         Logger.info(TAG, BUNDLE + '5P1_play_btn');
         await driver.assertComponentExist(ON.id('5P1_play_btn'));
-        let PlayBtn2P0 = await driver.findComponent(ON.id('5P1_play_btn'));
-        await PlayBtn2P0.click();
+        let playBtn2P0 = await driver.findComponent(ON.id('5P1_play_btn'));
+        await playBtn2P0.click();
         await driver.delayMs(500);
         await driver.assertComponentExist(ON.id('5P1_pause_btn'));
       } catch (err) {

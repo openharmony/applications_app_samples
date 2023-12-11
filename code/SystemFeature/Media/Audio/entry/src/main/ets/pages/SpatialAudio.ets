@@ -36,7 +36,7 @@ struct SpatialAudio {
         channels: audio.AudioChannel.CHANNEL_2,
         sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
         encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW,
-        channelLayout: 3 // currently available to use the new enum param.
+        channelLayout: audio.AudioChannelLayout.CH_LAYOUT_STEREO
       },
 
       rendererInfo: {
@@ -47,10 +47,10 @@ struct SpatialAudio {
     {
       streamInfo: {
         samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
-        channels: 6, // currently available to use the new enum param.
+        channels: audio.AudioChannel.CHANNEL_6,
         sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
         encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW,
-        channelLayout: 63 // currently available to use the new enum param.
+        channelLayout: audio.AudioChannelLayout.CH_LAYOUT_5POINT1_BACK
       },
       rendererInfo: {
         usage: audio.StreamUsage.STREAM_USAGE_RINGTONE,
@@ -60,7 +60,7 @@ struct SpatialAudio {
   ]
   private fileDescriptors: resourceManager.RawFileDescriptor[] = []
   private appContext?: common.Context
-  private audioSources = ['/2p0.pcm', '/TheCharm30.pcm']
+  private audioSources = ['/2p0.pcm', '/5p1.pcm']
   private audioSpatializationManager?: audio.AudioSpatializationManager
   private audioRoutingManager?: audio.AudioRoutingManager
   @State supportState: number = 1

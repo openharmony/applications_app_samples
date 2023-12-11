@@ -2,7 +2,8 @@
 
 ### 介绍
 
-此Sample展示如何在eTS中调用空间音频相关API。相关API包括:
+此Sample展示如何在eTS中调用
+[空间音频API](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.multimedia.audio.d.ts)。相关API包括:
 isSpatializationSupported(): 查询系统是否支持空间音频，
 isHeadTrackingSupported()：查询系统是否支持头动跟踪，
 isSpatializationSupportedForDevice(deviceDescriptor: AudioDeviceDescriptor)：查询设备是否支持空间音频，
@@ -11,7 +12,6 @@ isSpatializationEnabled()：查询空间音频是否开启，
 isHeadTrackingEnabled(): 查询头动跟踪是否开启，
 setSpatializationEnabled(enable: boolean)：设置空间音频开启状态，
 setHeadTrackingEnabled(enable: boolean)：设置头动跟踪开启状态，
-API链接：https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.multimedia.audio.d.ts
 
 实现效果如下：
 
@@ -30,6 +30,8 @@ API链接：https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos
 
 4. 点击三个按钮，分别会启用”关闭空间音频“，”启用空间音频固定模式“，”启用空间音频头动追踪模式“
 
+5. 当前版本对是否支持空间音频的判断仍简单，即当前发声设备具备不为空的mac地址就会显示三态按钮UX。
+
 ### 工程目录
 
 ```
@@ -45,21 +47,23 @@ entry/src/main/ets/
 
 ### 具体实现
 
-1.使用@ohos.multimedia.audio接口实现空间音频的主要功能：查询空间音频状态/系统支持能力，设置空间音频状态等。
+* 播放立体声多声道音频文件，调用空间音频API查询设置开关状态的内容在[SpatialAudio.ets](entry/src/main/ets/pages/SpatialAudio.ets)
+    * 在createAudioRenderer(options: AudioRendererOptions)入参AudioRendererOptions中增加AudioChannelLayout字段指明音频文件声道布局，以辅助多声道音频文件播放
+    * 使用isSpatializationSupported(), isHeadTrackingSupported(), isSpatializationSupportedForDevice(AudioDeviceDescriptor), isHeadTrackingSupportedForDevice(AudioDeviceDescriptor)四个接口查询系统和设备是否支持空间音频和头动跟踪，根据查询结果设置用户UX界面状态:只有系统和设备全都支持某功能，其按钮状态才不会被置灰。
+    * 使用isSpatializationEnabled(), isHeadTrackingEnabled()在每次UX界面出现时查询当前空间音频和头动跟踪是否开启，同步在其他app对开关状态的改动
+    * 使用setSpatializationEnabled(enable: boolean), setHeadTrackingEnabled(enable: boolean)，在点击UX按钮时设置空间音频和头动跟踪状态。
 
 ### 约束与限制
 
-1.当前版本对是否支持空间音频的判断仍简单，即当前发声设备具备不为空的mac地址就会显示三态按钮UX。
+1.本示例仅支持标准系统上运行。
 
-2.本示例仅支持标准系统上运行。
+2.本示例为Stage模型，仅支持API11版本SDK。
 
-3.本示例为Stage模型，仅支持API11版本SDK。
+3.本示例需要使用DevEco Studio 版本号(3.1.1Release)版本才可编译运行。
 
-4.本示例需要使用DevEco Studio 版本号(3.1.1Release)版本才可编译运行。
+4.本示例需要使用系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。
 
-5.本示例需要使用系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。
-
-6.本示例想要调用空间音频API需要被赋权，因为非系统APP调用接口无法生效。
+5.本示例涉及系统接口，需要配置系统应用签名，可以参考[特殊权限配置方法](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/) ，把配置文件中的“app-feature”字段信息改为“ohos_system_app”，再将“apl”字段信息改为“system_core”。
 
 ### 下载
 

@@ -14,7 +14,7 @@
  */
 {
   "app": {
-    "bundleName": "com.system.audio",
+    "bundleName": "com.samples.audio",
     "vendor": "example",
     "versionCode": 1000000,
     "versionName": "1.0.0",

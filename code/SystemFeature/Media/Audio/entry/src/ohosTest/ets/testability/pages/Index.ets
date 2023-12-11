@@ -38,8 +38,6 @@ struct Index {
         .backgroundColor('#0D9FFB')
         .width('35%')
         .height('5%')
-        .onClick(()=>{
-        })
       }
       .width(360)
     }
