@@ -14,8 +14,8 @@
  */-->
 
 <div class="container">
-  <div show="{{ hasInitialized }}" style="width : {{ risw }} px; height : {{ rish }} px; flex-direction : column;">
-    <text class="title" id="music_name" style="font-size : {{ riscale * 48 }} px;">
+  <div style="width : 100%; height : 100%; flex-direction : column; flex-direction : column;">
+    <text class="title" id="music_name" style="font-size : 24fp;">
       {{ title }}
     </text>
     <div class="album_section">
@@ -24,9 +24,9 @@
     </div>
     <div class="progress_section">
       <div class="timer">
-        <text class="progress_time" id="cur_time" style="font-size : {{ riscale * 32 }} px;">{{ currentTimeText }}
+        <text class="progress_time" id="cur_time" style="font-size : 16fp;">{{ currentTimeText }}
         </text>
-        <text class="total_time" id="total_time" style="font-size : {{ riscale * 32 }} px;">{{ totalTimeText }}
+        <text class="total_time" id="total_time" style="font-size : 16fp;">{{ totalTimeText }}
         </text>
       </div>
       <slider id="slider" value="{{ currentProgress }}" onchange="setProgress"
