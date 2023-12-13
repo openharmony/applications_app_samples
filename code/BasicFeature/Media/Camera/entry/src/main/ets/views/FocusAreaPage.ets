@@ -43,6 +43,7 @@ export struct FocusAreaPage {
     .width(this.xComponentWidth)
     .height(this.xComponentHeight)
     .opacity(1)
+    .id('FocusArea')
     .onTouch((e: TouchEvent) => {
       if (e.type === TouchType.Down) {
         this.focusPointBol = true;

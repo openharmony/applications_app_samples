@@ -16,6 +16,7 @@
 @Component
 export default struct DebugInfo {
   @Prop debugWindow: boolean
+  @Link vssMemory: number
   @Link pssMemory: number
   @Link sharedMemory: number
   @Link privateMemory: number
@@ -31,6 +32,7 @@ export default struct DebugInfo {
 
       if (this.debugWindow) {
         Column() {
+          this.showDebug($r('app.string.vss'), this.vssMemory)
           this.showDebug($r('app.string.pss'), this.pssMemory)
           this.showDebug($r('app.string.sharedDirty'), this.sharedMemory)
           this.showDebug($r('app.string.privateDirty'), this.privateMemory)

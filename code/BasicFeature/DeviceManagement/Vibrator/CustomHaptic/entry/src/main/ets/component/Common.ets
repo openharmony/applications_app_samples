@@ -25,6 +25,7 @@ export default struct CommonLayout {
   @Link dataList: ImageDataSource
   @Link status: boolean[]
   @Link vibrationIntensity: string
+  @Link php: string
 
   build() {
     Column({ space: 10 }) {
@@ -68,13 +69,13 @@ export default struct CommonLayout {
               AudioPlayer.playAudio(item.audioName!)
               if (this.vibrationIntensity === 'H') {
                 Logger.info(TAG, "High intensity mode")
-                playVibrateCustom(item.vibratorFileH!)
+                playVibrateCustom(item.vibratorFileH!, this.php)
               } else if (this.vibrationIntensity === 'M') {
                 Logger.info(TAG, "Middle intensity mode")
-                playVibrateCustom(item.vibratorFileM!)
+                playVibrateCustom(item.vibratorFileM!, this.php)
               } else if (this.vibrationIntensity === 'L') {
                 Logger.info(TAG, "Low intensity mode")
-                playVibrateCustom(item.vibratorFileL!)
+                playVibrateCustom(item.vibratorFileL!, this.php)
               } else {
                 Logger.info(TAG, "Vibration mode error")
               }

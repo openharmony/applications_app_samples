@@ -314,47 +314,46 @@ export struct modeSwitchPage {
     if (this.isModeBol) {
       Column() {
         Text('拍照')
-          .backgroundColor(this.modelBagCol === 'photo' ? $r('app.color.theme_color') : '')
           .size({ width: 64, height: 28 })
           .borderRadius(14)
-          .fontSize(14)
+          .fontSize(15)
           .fontColor(Color.White)
           .onClick(() => {
             cameraDemo.releaseSession()
             cameraDemo.initCamera(this.surfaceId, this.settingDataObj.focusMode, this.cameraDeviceIndex)
             this.modelBagCol = 'photo'
           })
-      }.position({ x: '20%', y: '75%' })
+      }.position({ x: '45%', y: '77%' })
 
       Column() {
         Text('录像')
-          .fontSize(14)
+          .fontSize(15)
           .fontColor(Color.White)
           .borderRadius(14)
           .size({ width: 64, height: 28 })
-          .backgroundColor(this.modelBagCol === 'video' ? $r('app.color.theme_color') : '')
           .onClick(() => {
             cameraDemo.releaseSession()
             cameraDemo.initCamera(this.surfaceId, this.settingDataObj.focusMode, this.cameraDeviceIndex)
             this.modelBagCol = 'video'
           })
-      }.position({ x: '40%', y: '75%' })
+      }.position({ x: '60%', y: '77%' })
 
       // album
       Column() {
         Row() {
           if (this.modelBagCol === 'photo') {
-            Image(this.imgThumbnail || $r('app.media.pic_avatar_radio02'))
-              .aspectRatio(1)
+            Text(this.imgThumbnail || 'app.media.camera_thumbnail_4x')
+            .width('1px')
+            .height('1px')
+            .borderRadius('1px')
+            .id('ThumbnailText')
+            Image(this.imgThumbnail || $r('app.media.camera_thumbnail_4x'))
               .objectFit(ImageFit.Fill)
-              .border({ width: 2, color: 0xFFFFFF, radius: 40 })
               .width('200px')
               .height('200px')
           } else {
-            Image(this.videoThumbnail || $r('app.media.pic_avatar_radio02'))
-              .aspectRatio(1)
+            Image(this.videoThumbnail || $r('app.media.camera_thumbnail_4x'))
               .objectFit(ImageFit.Fill)
-              .border({ width: 2, color: 0xFFFFFF, radius: 40 })
               .width('200px')
               .height('200px')
           }
@@ -372,40 +371,39 @@ export struct modeSwitchPage {
           }
 
         })
-      }.position({ x: '10%', y: '82%' })
+      }.position({ x: '10%', y: '85%' })
+      .id('Thumbnail')
 
       // capture video icon
       Column() {
         Row() {
-          Button() {
-            Text()
-              .width('120px')
-              .height('120px')
-              .borderRadius('40px')
-              .backgroundColor(this.modelBagCol == 'video' ? $r('app.color.theme_color') : Color.White)
+          if (this.modelBagCol === 'photo') {
+            Image($r('app.media.camera_take_photo_4x'))
+              .width('200px')
+              .height('200px')
+              .onClick(() => {
+                // Countdown camera recording - default camera recording
+                this.countTakeVideoFn();
+              })
+          } else {
+            Image($r('app.media.camera_take_video_4x'))
+              .width('200px')
+              .height('200px')
+              .onClick(() => {
+                // Countdown camera recording - default camera recording
+                this.countTakeVideoFn();
+              })
           }
-          .border({ width: 3, color: 0xFFFFFF, radius: 70 })
-          .width('200px')
-          .height('200px')
-          .backgroundColor('rgba(255,255,255,0.20)')
-          .onClick(() => {
-            // Countdown camera recording - default camera recording
-            this.countTakeVideoFn();
-          })
         }
-      }.position({ x: '40%', y: '82%' })
+      }.position({ x: '40%', y: '85%' })
+      .id('CaptureOrVideoButton')
 
       // Front and rear camera switching
       Column() {
         Row() {
-          Button() {
-            Image($r('app.media.switch_camera'))
-              .width('120px').height('120px')
-          }
+          Image($r('app.media.camera_switch_4x'))
           .width('200px')
           .height('200px')
-          .backgroundColor('rgba(255,255,255,0.20)')
-          .borderRadius('40px')
           .onClick(async () => {
             // Switching Cameras
             this.cameraDeviceIndex ? this.cameraDeviceIndex = 0 : this.cameraDeviceIndex = 1;
@@ -415,7 +413,8 @@ export struct modeSwitchPage {
             cameraDemo.initCamera(this.surfaceId, this.settingDataObj.focusMode, this.cameraDeviceIndex);
           })
         }
-      }.position({ x: '70%', y: '82%' })
+      }.position({ x: '70%', y: '85%' })
+      .id('SwitchCameraButton')
     } else {
       Column() {
         Row() {
@@ -429,28 +428,23 @@ export struct modeSwitchPage {
 
       Column() {
         // Video capture button
-        Button() {
-          Text().width('120px').height('120px').borderRadius('35px').backgroundColor(Color.White)
-        }
-        .border({ width: 2, color: 0xFFFFFF, radius: 45 })
+        Image($r('app.media.camera_take_photo_4x'))
         .width('200px')
         .height('200px')
-        .backgroundColor('rgba(255,255,255,0.20)')
         .onClick(() => {
           cameraDemo.takePictureWithSettings(this.photoSettings);
         })
-      }.position({ x: '10%', y: '82%' })
+      }.position({ x: '10%', y: '85%' })
+      .id('VideoCaptureButton')
 
       Column() {
         Row() {
           Column() {
             // video stop button
-            Button() {
-              Image($r('app.media.ic_camera_video_close')).size({ width: 25, height: 25 });
-            }
-            .width('120px')
-            .height('120px')
-            .backgroundColor($r('app.color.theme_color'))
+            Image($r('app.media.camera_pause_video_4x')).size({ width: 25, height: 25 })
+            .width('200px')
+            .height('200px')
+            .id('StopVideo')
             .onClick(() => {
               if (this.timer) {
                 clearInterval(this.timer);
@@ -470,16 +464,10 @@ export struct modeSwitchPage {
           }
           .width('180px')
           .height('180px')
-          .borderRadius('60px')
-          .backgroundColor($r('app.color.theme_color'))
-          .justifyContent(FlexAlign.SpaceAround)
         }
-        .justifyContent(FlexAlign.Center)
-        .border({ width: 3, color: 0xFFFFFF, radius: 70 })
         .width('200px')
         .height('200px')
-        .backgroundColor('rgba(255,255,255,0.20)')
-      }.position({ x: '40%', y: '82%' })
+      }.position({ x: '40%', y: '85%' })
     }
   }
 

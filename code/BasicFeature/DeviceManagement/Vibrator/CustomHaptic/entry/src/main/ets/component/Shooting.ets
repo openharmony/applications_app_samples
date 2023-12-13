@@ -21,12 +21,14 @@ export default struct ShootLayout {
   @State shootList: ImageDataSource = new ImageDataSource(getImageShootList())
   @State status: boolean[] = [false, false, false, false, false, false, false, false, false, false, false, false, false]
   @Link vibrationIntensity: string
+  @Link php: string
 
   build() {
     CommonLayout({
       dataList: $shootList,
       status: $status,
-      vibrationIntensity: $vibrationIntensity
+      vibrationIntensity: $vibrationIntensity,
+      php: $php
     })
   }
 }

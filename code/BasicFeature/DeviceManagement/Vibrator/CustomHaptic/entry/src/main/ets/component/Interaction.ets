@@ -23,6 +23,7 @@ export default struct InteractionLayout {
   @State stateSwitchApp: AnimationStatus = AnimationStatus.Initial
   @State stateUpSlideStop: AnimationStatus = AnimationStatus.Initial
   @State iterations: number = 1
+  @Link php: string
 
   build() {
     Column() {
@@ -63,7 +64,7 @@ export default struct InteractionLayout {
               .height("60%")
               .onClick(() => {
                 this.stateSlideLeftRight = AnimationStatus.Running
-                playVibrateCustom("Slide_LeftRight.json")
+                playVibrateCustom("Slide_LeftRight.json", this.php)
               })
 
               Text($r("app.string.interaction_slide_left_right"))
@@ -102,7 +103,7 @@ export default struct InteractionLayout {
               .height("60%")
               .onClick(() => {
                 this.stateSlideUp = AnimationStatus.Running
-                playVibrateCustom("Slide_Up.json")
+                playVibrateCustom("Slide_Up.json", this.php)
               })
 
               Text($r("app.string.interaction_slide_up"))
@@ -153,7 +154,7 @@ export default struct InteractionLayout {
               .height("60%")
               .onClick(() => {
                 this.stateSwitchApp = AnimationStatus.Running
-                playVibrateCustom("Switch_App.json")
+                playVibrateCustom("Switch_App.json", this.php)
               })
 
               Text($r("app.string.interaction_switch_app"))
@@ -195,7 +196,7 @@ export default struct InteractionLayout {
               .height("60%")
               .onClick(() => {
                 this.stateUpSlideStop = AnimationStatus.Running
-                playVibrateCustom("UpSlide_Stop.json")
+                playVibrateCustom("UpSlide_Stop.json", this.php)
               })
 
               Text($r("app.string.interaction_slide_stop"))

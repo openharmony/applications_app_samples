@@ -19,6 +19,7 @@ import DebugInfo from '../component/DebugInfo'
 @Entry
 @Component
 struct Index {
+  @State vssMemory: number = 0
   @State pssMemory: number = 0
   @State sharedMemory: number = 0
   @State privateMemory: number = 0
@@ -43,6 +44,8 @@ struct Index {
           .onClick(() => {
             this.debugWindow = !this.debugWindow
             if (this.debugWindow) {
+              let vss = hidebug.getVss()
+              this.vssMemory = Number(vss !== null ? vss : -1) // -1代表getVss()接口返回值错误
               let pss = hidebug.getPss()
               this.pssMemory = Number(pss !== null ? pss : -1) // -1代表getPss()接口返回值错误
               let sharedDirty = hidebug.getSharedDirty()
@@ -60,6 +63,7 @@ struct Index {
 
       // 显示Debug信息窗口
       DebugInfo({
+        vssMemory: $vssMemory,
         pssMemory: $pssMemory,
         sharedMemory: $sharedMemory,
         debugWindow: this.debugWindow,

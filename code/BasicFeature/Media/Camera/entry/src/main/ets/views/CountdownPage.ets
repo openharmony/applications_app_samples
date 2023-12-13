@@ -87,5 +87,6 @@ export struct CountdownPage {
       }
     }
     .position({ x: 30, y: 352 })
+    .id('CountdownCapture')
   }
 }

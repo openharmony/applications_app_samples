@@ -17,7 +17,7 @@ import common from '@ohos.app.ability.common';
 import request from '@ohos.request';
 import promptAction from '@ohos.promptAction';
 import { logger } from '../utils/Logger';
-import { TOAST_BOTTOM, TASK_MAX } from '../utils/Constants';
+import { BackgroundTaskState, TASK_MAX, TOAST_BOTTOM } from '../utils/Constants';
 
 const TAG: string = 'RequestDownload';
 
@@ -25,6 +25,7 @@ class RequestDownload {
   private context: common.UIAbilityContext | undefined = undefined;
   private waitList: Array<string[]> = [];
   private downloadTask: request.agent.Task | undefined = undefined;
+  private backgroundDownloadTaskList: Array<request.agent.Task> = [];
 
   constructor() {
     setInterval(() => {
@@ -55,6 +56,15 @@ class RequestDownload {
       }
       logger.info(TAG, `this.waitList = ${JSON.stringify(this.waitList)}`);
       this.createBackgroundTask(downloadList);
+    } else {
+      let state = AppStorage.get<number>('backDownTaskState');
+      logger.info(TAG, `backLists  = ${this.backgroundDownloadTaskList.map(i => i.tid)}`);
+      if (state === BackgroundTaskState.RUNNING) {
+        if (tasks.length === 0) {
+          AppStorage.setOrCreate('backDownTaskState', BackgroundTaskState.NONE);
+          this.backgroundDownloadTaskList = [];
+        }
+      }
     }
   }
 
@@ -77,6 +87,9 @@ class RequestDownload {
           gauge: true
         }
         let downTask = await request.agent.create(this.context, downloadConfig);
+        if (this.backgroundDownloadTaskList.findIndex(task => task.config.url === downTask.config.url) === -1) {
+          this.backgroundDownloadTaskList.push(downTask);
+        }
         await downTask.start();
       } catch (err) {
         logger.error(TAG, `task  err, err  = ${JSON.stringify(err)}`);
@@ -141,6 +154,47 @@ class RequestDownload {
     }
   }
 
+  async pauseOrResume() {
+    let state = AppStorage.get<number>('backDownTaskState');
+    if (state === BackgroundTaskState.RUNNING) {
+      await this.pause();
+      AppStorage.setOrCreate('backDownTaskState', BackgroundTaskState.PAUSE);
+    } else if (state === BackgroundTaskState.PAUSE) {
+      await this.resume();
+      AppStorage.setOrCreate('backDownTaskState', BackgroundTaskState.RUNNING);
+    } else {
+      logger.info(TAG, 'this task state is error');
+    }
+  }
+
+  async pause() {
+    logger.info(TAG, 'pause');
+    if (this.backgroundDownloadTaskList.length === 0) {
+      return;
+    }
+    try {
+      this.backgroundDownloadTaskList.forEach(async task => {
+        await task.pause();
+      })
+    } catch (err) {
+      logger.info(TAG, `pause fail,err= ${JSON.stringify(err)}`);
+    }
+  }
+
+  async resume() {
+    logger.info(TAG, 'resume');
+    if (this.backgroundDownloadTaskList.length === 0) {
+      return;
+    }
+    try {
+      this.backgroundDownloadTaskList.forEach(async task => {
+        await task.resume();
+      })
+    } catch (err) {
+      logger.info(TAG, `resume fail,err= ${JSON.stringify(err)}`);
+    }
+  }
+
   async deleteTask() {
     if (this.downloadTask) {
       try {
@@ -154,6 +208,19 @@ class RequestDownload {
     }
 
     this.downloadTask = undefined;
+  }
+
+  async deleteAllBackTasks() {
+    if (this.backgroundDownloadTaskList.length > 0) {
+      try {
+        this.backgroundDownloadTaskList.forEach(async task => {
+          await request.agent.remove(task.tid);
+        })
+        this.backgroundDownloadTaskList = [];
+      } catch (err) {
+        logger.info(TAG, `deleteAllTask fail, err= ${JSON.stringify(err)}`);
+      }
+    }
   }
 }
 

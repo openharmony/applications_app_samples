@@ -21,12 +21,14 @@ export default struct EnvironmentLayout {
   @State environmentList: ImageDataSource = new ImageDataSource(getImageEnvironmentList())
   @State status: boolean[] = [false, false, false, false, false, false, false]
   @Link vibrationIntensity: string
+  @Link php: string
 
   build() {
     CommonLayout({
       dataList: $environmentList,
       status: $status,
-      vibrationIntensity: $vibrationIntensity
+      vibrationIntensity: $vibrationIntensity,
+      php: $php
     })
   }
 }
