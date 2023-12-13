@@ -1,0 +1,116 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "Basic capabilities are enhanced"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "Home Ability"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Basic capabilities are enhanced use SystemApi"
+    },
+    {
+      "name": "UIExtAbility_desc",
+      "value": "UIExtensionAbility used startAbilityByType And startAbilityAsCaller"
+    },
+    {
+      "name": "UIExtAbility_label",
+      "value": "UIExtensionAbility"
+    },
+    {
+      "name": "NewAbility_desc",
+      "value": "Ability used by start"
+    },
+    {
+      "name": "NewAbility_label",
+      "value": "NewAbility"
+    },
+    {
+      "name": "SendSyncUIExtAbility_label",
+      "value": "SendSyncPage"
+    },
+    {
+      "name": "SendSyncUIExtAbility_desc",
+      "value": "SendSync UIExtensionAbility used by sendSync"
+    },
+    {
+      "name": "StartAbilityByType",
+      "value": "StartAbilityByType"
+    },
+    {
+      "name": "StartAbilityAsCaller",
+      "value": "StartAbilityAsCaller"
+    },
+    {
+      "name": "extStartAbilityByType",
+      "value": "StartAbilityByType"
+    },
+    {
+      "name": "extStartAbilityAsCaller",
+      "value": "StartAbilityAsCaller"
+    },
+    {
+      "name": "StartAbilityByCall",
+      "value": "StartAbilityByCall"
+    },
+    {
+      "name": "Query_App_Status",
+      "value": "QueryAppStatus"
+    },
+    {
+      "name": "Create_Modal_UIExtension",
+      "value": "CreateModalUIExtension"
+    },
+    {
+      "name": "system_BasicCharacter_Demo",
+      "value": "Basic capabilities are enhanced Use SystemApi"
+    },
+    {
+      "name": "toggle",
+      "value": "toggle"
+    },
+    {
+      "name": "arrow",
+      "value": "arrow"
+    },
+    {
+      "name": "isNotRunning",
+      "value": "isNotRunning"
+    },
+    {
+      "name": "isRunning",
+      "value": "Application isRunning"
+    },
+    {
+      "name": "sendSyncData",
+      "value": "SendSyncData"
+    },
+    {
+      "name": "empty",
+      "value": "empty"
+    },
+    {
+      "name": "NewUIExtAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "NewUIExtAbility_label",
+      "value": "NewUIExtAbility"
+    },
+    {
+      "name": "switchDarkSuccess",
+      "value": "switch DarkMode Success"
+    },
+    {
+      "name": "switchLightSuccess",
+      "value": "switch LightMode Success"
+    },
+    {
+      "name": "startUIExtensionAbility",
+      "value": "startUIExtensionAbility"
+    }
+  ]
+}
