@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例主要展示了国际化模块的相关功能，使用[@ohos.i18n](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/internationalization/i18n-guidelines.md/)
+本示例主要展示了国际化模块的相关功能，使用[@ohos.i18n](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/internationalization/i18n-guidelines.md/)
 接口，实现简单日历展示、字符类型判断、文本断点处理功能;
 
 ### 效果预览
@@ -34,9 +34,9 @@ entry/src/main/ets/
 ```
 
 ### 具体实现
-1. 日历功能使用[@ohos.i18n](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/internationalization/i18n-guidelines.md/)模块中Calendar实现，全部逻辑处于Calendar，源码参考：[Calendar.ets](entry/src/main/ets/pages/Calendar.ets)。
-2. 字符类型判断功能使用[@ohos.i18n](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/internationalization/i18n-guidelines.md/)模块中Unicode实现，全部逻辑处于TextProcessing，源码参考：[TextProcessing.ets](entry/src/main/ets/pages/TextProcessing.ets)。
-3. 文本断点功能使用[@ohos.i18n](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/internationalization/i18n-guidelines.md/)模块中breakIterator实现，全部逻辑处于TextProcessing，源码参考：[TextProcessing.ets](entry/src/main/ets/pages/TextProcessing.ets)。
+1. 日历功能使用[@ohos.i18n](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/internationalization/i18n-guidelines.md/)模块中Calendar实现，全部逻辑处于Calendar，源码参考：[Calendar.ets](entry/src/main/ets/pages/Calendar.ets)。
+2. 字符类型判断功能使用[@ohos.i18n](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/internationalization/i18n-guidelines.md/)模块中Unicode实现，全部逻辑处于TextProcessing，源码参考：[TextProcessing.ets](entry/src/main/ets/pages/TextProcessing.ets)。
+3. 文本断点功能使用[@ohos.i18n](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/internationalization/i18n-guidelines.md/)模块中breakIterator实现，全部逻辑处于TextProcessing，源码参考：[TextProcessing.ets](entry/src/main/ets/pages/TextProcessing.ets)。
 
 ### 相关权限
 
@@ -49,8 +49,8 @@ entry/src/main/ets/
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568；
-2. 本示例已适配API version 9版本SDK，版本号：3.2.11.10，镜像版本号：OpenHarmony 4.0.7.2；
-3. 本示例需要使用DevEco Studio 3.1 Release (Build Version: 3.1.0.500)及以上版本才可编译运行；
+2. 本示例已适配API version 10版本SDK，版本号：4.0.10.11，镜像版本号：OpenHarmony 4.0.10.13；
+3. 本示例需要使用DevEco Studio 4.0 Release (Build Version: 4.0.0.600, built on October 17, 2023)及以上版本才可编译运行；
 
 ### 下载
 
