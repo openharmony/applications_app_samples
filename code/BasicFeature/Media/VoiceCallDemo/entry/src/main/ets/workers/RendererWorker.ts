@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
 import AudioRendererHelper from '../audio/AudioRendererHelper';
 import Constants from '../Constants';
 import Logger from '../utils/Logger';
@@ -21,7 +21,7 @@ let parent = worker.workerPort;
 let mRenderer: AudioRendererHelper = new AudioRendererHelper();
 
 // 处理来自主线程的消息
-parent.onmessage = function (message): void {
+parent.onmessage = (message:MessageEvents) => {
   Logger.info(`mAudioRenderer onmessage: ${message.data.code}`);
   let messageId: number = message.data.code;
   if (messageId === Constants.WORK_MESSAGE_RENDERER_START) {
@@ -36,7 +36,6 @@ parent.onmessage = function (message): void {
     mRenderer.write(buffer);
   }
 };
-
 
 async function start(): Promise<void> {
   await mRenderer.init();

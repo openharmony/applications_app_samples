@@ -81,11 +81,11 @@
     + 3s一次检查网络状态和尝试连接，实现网络异常时的处理逻辑
 + 音频录制：
     + [CapturerWorker](entry/src/main/ets/workers/CapturerWorker.ts)创建音频采集的子线程
-    + [AudioCapturerHelper](./entry/src/main/ets/audio/AudioCapturerHelper.ets)
+    + [AudioCapturerHelper](./entry/src/main/ets/audio/AudioCapturerHelper.ts)
       使用@ohos.multimedia.audio.AudioCapturer完成音频采集 [具体使用参考](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/media/using-audiocapturer-for-recording.md/)
 + 音频播放：
     + [RendererWorker](entry/src/main/ets/workers/RendererWorker.ts)创建音频播放的子线程
-    + [AudioRendererHelper](./entry/src/main/ets/audio/AudioCapturerHelper.ets)
+    + [AudioRendererHelper](./entry/src/main/ets/audio/AudioCapturerHelper.ts)
       使用@ohos.multimedia.audio.AudioRenderer完成音频播放 [具体使用参考](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/media/using-audiorenderer-for-playback.md/)
 + 麦克风与扬声器以及通话场景控制：
     + 代码[AudioManagerModel](entry/src/main/ets/model/AudioManagerModel.ets)
@@ -112,11 +112,11 @@
 
 ### 约束与限制
 
-1.本示例仅支持标准系统上运行
+1.本示例仅支持标准系统上运行，支持设备：RK3568,DAYU200。
 
-2.本示例仅支持API9版本SDK，版本号：3.2.11.10 Release
+2.本示例为Stage模型，支持API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0 Release)
 
-3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version： 3.1.0.400, built on April 7, 2023)才可编译运行
+3.本示例需要使用DevEco Studio 版本号(4.0 Release)及以上版本才可编译运行。
 
 4.本示例涉及使用系统接口@ohos.multimedia.audio：setAudioScene，需要手动替换Full
   SDK才能编译通过，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)

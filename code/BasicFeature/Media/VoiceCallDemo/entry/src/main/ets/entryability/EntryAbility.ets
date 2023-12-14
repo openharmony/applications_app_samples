@@ -14,49 +14,51 @@
  */
 import UIAbility from '@ohos.app.ability.UIAbility';
 import Logger from '../utils/Logger';
-import type window from '@ohos.window';
+import window from '@ohos.window';
 import FloatWindowController from '../controller/FloatWindowController';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import IndexController from '../controller/IndexController';
 
 
 const TAG = 'VoiceCallDemoAbility';
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want, launchParam): void {
-    Logger.info(`${TAG} Ability onCreate`);
-    globalThis.abilityContext = this.context;
-    globalThis.abilityWant = want;
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    Logger.info(TAG,`Ability onCreate`);
+    IndexController.getInstance().beforeInit(want,this.context);
   }
 
   onDestroy() {
-    Logger.info(`${TAG} Ability onDestroy`);
+    Logger.info(TAG,`Ability onDestroy`);
   }
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
-    FloatWindowController.initWindowStage(this.context, windowStage);
+    FloatWindowController.getInstance().initWindowStage(this.context, windowStage);
     // Main window is created, set main page for this ability
-    Logger.info(`${TAG} Ability onWindowStageCreate`);
+    Logger.info(TAG,`Ability onWindowStageCreate`);
 
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
-        Logger.error(`${TAG} Failed to load the content. Cause: ${JSON.stringify(err)} ?? `);
+        Logger.error(TAG,`Failed to load the content. Cause: ${JSON.stringify(err)} ?? `);
         return;
       }
-      Logger.info(`${TAG} Succeeded in loading the content. Data: ${JSON.stringify(data)}?? `);
+      Logger.info(TAG,`Succeeded in loading the content. Data: ${JSON.stringify(data)}?? `);
     });
   }
 
   onWindowStageDestroy(): void {
     // Main window is destroyed, release UI related resources
-    Logger.info(`${TAG} Ability onWindowStageDestroy`);
+    Logger.info(TAG,`Ability onWindowStageDestroy`);
   }
 
   onForeground(): void {
     // Ability has brought to foreground
-    Logger.info(`${TAG} Ability onForeground`);
+    Logger.info(TAG,`Ability onForeground`);
   }
 
   onBackground(): void {
     // Ability has back to background
-    Logger.info(`${TAG} Ability onBackground`);
+    Logger.info(TAG,`Ability onBackground`);
   }
 }

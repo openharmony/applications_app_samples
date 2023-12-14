@@ -48,7 +48,7 @@ export default struct ComponentVoiceBg {
           .type(ButtonType.Circle)
           .backgroundColor($r('app.color.color_transparent'))
           .onClick(() => {
-            FloatWindowController.hideMain()
+            FloatWindowController.getInstance().hideMain();
           })
         }.width('80%')
         .height(64)

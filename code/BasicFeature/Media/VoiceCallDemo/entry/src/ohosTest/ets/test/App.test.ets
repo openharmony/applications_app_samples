@@ -15,7 +15,7 @@
 import hilog from '@ohos.hilog';
 import { Driver, ON, MatchPattern } from '@ohos.UiTest';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import type resourceManager from '@ohos.resourceManager';
+import resourceManager from '@ohos.resourceManager';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 
 const BUNDLE_NAME = 'com.samples.voicecalldemo';
@@ -24,29 +24,29 @@ const TAG = 'appTest';
 const DOMAIN = 0xF811;
 
 export default function AppTest() {
-  describe('appTest', function () {
+  describe('appTest', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
-    beforeAll(function () {
+    beforeAll(() => {
       // Presets an action, which is performed only once before all test cases of the test suite start.
       // This API supports only one parameter: preset action function.
     });
-    beforeEach(function () {
+    beforeEach(() => {
       // Presets an action, which is performed before each unit test case starts.
       // The number of execution times is the same as the number of test cases defined by **it**.
       // This API supports only one parameter: preset action function.
     });
-    afterEach(function () {
+    afterEach(() => {
       // Presets a clear action, which is performed after each unit test case ends.
       // The number of execution times is the same as the number of test cases defined by **it**.
       // This API supports only one parameter: clear action function.
     });
-    afterAll(function () {
+    afterAll(() => {
       // Presets a clear action, which is performed after all test cases of the test suite end.
       // This API supports only one parameter: clear action function.
     });
 
     // 启动呼叫页，确认权限弹窗
-    it(BUNDLE_NAME + ' StartAbility_001', 0, async function (done) {
+    it(BUNDLE_NAME + ' StartAbility_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, '%{public}s', BUNDLE_NAME + ' StartAbility_001 begin');
 
       try {
@@ -62,10 +62,10 @@ export default function AppTest() {
         });
         hilog.info(DOMAIN, TAG, '%{public}s', BUNDLE_NAME + ' StartAbility_001 startAbility success');
 
-        let remgr: resourceManager.ResourceManager =  abilityDelegator.getAppContext().resourceManager;
-        let isAllow:string = remgr.getStringSync($r("app.string.is_allow"));
-        let allow:string = remgr.getStringSync($r("app.string.allow"));
-        let call:string = remgr.getStringSync($r("app.string.tips_call"));
+        let remgr: resourceManager.ResourceManager = abilityDelegator.getAppContext().resourceManager;
+        let isAllow: string = remgr.getStringSync($r("app.string.is_allow"));
+        let allow: string = remgr.getStringSync($r("app.string.allow"));
+        let call: string = remgr.getStringSync($r("app.string.tips_call"));
 
         // 点掉权限弹窗
         await driver.delayMs(2000);
@@ -88,7 +88,7 @@ export default function AppTest() {
     })
 
     // 切换悬浮窗
-    it('Switch_window_001', 0, async function (done) {
+    it('Switch_window_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, '%{public}s', 'Switch_window_001 begin');
 
       try {
@@ -125,7 +125,7 @@ export default function AppTest() {
     });
 
     // 启动被呼叫页，确认权限弹窗
-    it(BUNDLE_NAME + ' StartAbility_002', 0, async function (done) {
+    it(BUNDLE_NAME + ' StartAbility_002', 0, async (done: Function) => {
 
       hilog.info(DOMAIN, TAG, '%{public}s', BUNDLE_NAME + ' StartAbility_002 begin');
       try {
@@ -142,8 +142,8 @@ export default function AppTest() {
         });
         hilog.info(DOMAIN, TAG, '%{public}s', BUNDLE_NAME + ' StartAbility_002 startAbility success');
 
-        let remgr: resourceManager.ResourceManager =  abilityDelegator.getAppContext().resourceManager;
-        let answer:string = remgr.getStringSync($r("app.string.tips_answer"));
+        let remgr: resourceManager.ResourceManager = abilityDelegator.getAppContext().resourceManager;
+        let answer: string = remgr.getStringSync($r("app.string.tips_answer"));
 
         // 判断页面元素是否正常出现
         await driver.delayMs(500);
@@ -159,7 +159,7 @@ export default function AppTest() {
     });
 
     // 接听
-    it('Answer_001', 0, async function (done) {
+    it('Answer_001', 0, async (done: Function) => {
 
       hilog.info(DOMAIN, TAG, '%{public}s', 'Answer_001 begin');
       try {
@@ -187,7 +187,7 @@ export default function AppTest() {
     });
 
     // 挂断
-    it('Hangup_001', 0, async function (done) {
+    it('Hangup_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, '%{public}s', 'Hangup_001 begin');
 
       try {
