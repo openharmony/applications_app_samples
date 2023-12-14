@@ -25,4 +25,4 @@ export enum BackgroundTaskState {
   PAUSE = 2
 }
 
-export const NO_IMAGE_SELECTED: number = -1
+export const NO_IMAGE_SELECTED: number = -1;

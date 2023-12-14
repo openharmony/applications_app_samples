@@ -117,59 +117,55 @@ export default function abilityTest() {
 
     // 从图库选择照片，点击缩略图，片段上传
     it('UploadChunk_001', 0, async (done: Function) => {
-      logger.info(TAG, `${BUNDLE}UploadChunk_001 begin`)
+      logger.info(TAG, `${BUNDLE}UploadChunk_001 begin`);
 
-      let gridItems = await driver.findComponents(ON.type('GridCol'))
-      await gridItems[gridItems.length-1].click()
-      await driver.delayMs(1000)
-      await driver.assertComponentExist(ON.text(getResourceString($r('app.string.ok'))))
-      let pickAlbum = await driver.findComponent(ON.text(getResourceString($r('app.string.ok'))))
-      await pickAlbum.click()
-      await driver.delayMs(2000)
+      let gridItems = await driver.findComponents(ON.type('GridCol'));
+      await gridItems[gridItems.length-1].click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text(getResourceString($r('app.string.ok'))));
+      let pickAlbum = await driver.findComponent(ON.text(getResourceString($r('app.string.ok'))));
+      await pickAlbum.click();
+      await driver.delayMs(2000);
 
-      await driver.assertComponentExist(ON.type('GridItem'))
-      let pictures = await driver.findComponents(ON.type('GridItem'))
+      let pictures = await driver.findComponents(ON.type('GridItem'));
       if (pictures.length < 5) {
-        await driver.pressBack()
+        await driver.pressBack();
       } else {
-        await pictures[4].click()
-        await driver.delayMs(1000)
+        await pictures[4].click();
+        let finish = await driver.findComponent(ON.type('Button'));
+        await finish.click();
+        await driver.delayMs(1000);
 
-        await driver.assertComponentExist(ON.type('Button'))
-        let finish = await driver.findComponent(ON.type('Button'))
-        await finish.click()
-        await driver.delayMs(1000)
+        gridItems = await driver.findComponents(ON.type('GridCol'));
+        await gridItems[0].click();
+        await driver.delayMs(500);
+        await driver.assertComponentExist(ON.id('chunkcheckbox'));
 
-        gridItems = await driver.findComponents(ON.type('GridCol'))
-        await gridItems[0].click()
-        await driver.delayMs(1000)
-        await driver.assertComponentExist(ON.id('chunkcheckbox'))
+        let txtinput = await driver.findComponent(ON.type('TextInput'));
+        await txtinput.click();
+        let focus = await txtinput.isFocused();
+        logger.info(TAG, `${BUNDLE}UploadChunk_001 unchecked focus ${focus}`);
+        expect(focus).assertFalse();
 
-        let txtinput = await driver.findComponent(ON.type('TextInput'))
-        await txtinput.click()
-        let focus = await txtinput.isFocused()
-        logger.info(TAG, `${BUNDLE}UploadChunk_001 unchecked focus ${focus}`)
-        expect(focus).assertFalse()
+        let checkbox = await driver.findComponent(ON.type('Checkbox'));
+        await checkbox.click();
+        await txtinput.click();
+        await driver.delayMs(500);
 
-        let checkbox = await driver.findComponent(ON.type('Checkbox'))
-        await checkbox.click()
-        await txtinput.click()
-        await driver.delayMs(1000)
+        focus = await txtinput.isFocused();
+        logger.info(TAG, `${BUNDLE}UploadChunk_001 checked focus ${focus}`);
+        expect(focus).assertTrue();
 
-        focus = await txtinput.isFocused()
-        logger.info(TAG, `${BUNDLE}UploadChunk_001 checked focus ${focus}`)
-        expect(focus).assertTrue()
-
-        await driver.pressBack()
-        await driver.delayMs(1000)
-        await driver.pressBack()
+        await driver.pressBack();
+        await driver.delayMs(500);
+        await driver.pressBack();
       }
 
-      await driver.delayMs(1000)
-      await driver.pressBack()
-      await driver.delayMs(1000)
-      logger.info(TAG, `${BUNDLE}UploadChunk_001 end`)
-      done()
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.delayMs(1000);
+      logger.info(TAG, `${BUNDLE}UploadChunk_001 end`);
+      done();
     })
 
     // 下载页面

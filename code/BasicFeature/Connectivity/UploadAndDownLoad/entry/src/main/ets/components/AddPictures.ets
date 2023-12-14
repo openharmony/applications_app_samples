@@ -29,7 +29,7 @@ const TAG: string = 'AddPictures';
 @Component
 export struct AddPictures {
   @Consume imageList: Array<string>;
-  @Consume chunkImgIndex: number
+  @Consume chunkImgIndex: number;
 
   build() {
     Column() {
@@ -50,9 +50,9 @@ export struct AddPictures {
           .borderWidth(2)
           .borderColor(index === this.chunkImgIndex ? $r('app.color.button_blue') : $r('app.color.light_gray'))
           .onClick(() => {
-            logger.debug(`onclick: this.chunkImgIndex=${this.chunkImgIndex}, curindex:${index}`)
+            logger.debug(TAG, `onclick: this.chunkImgIndex=${this.chunkImgIndex}, curindex:${index}`);
             if (this.chunkImgIndex === NO_IMAGE_SELECTED) {
-              this.chunkImgIndex = index
+              this.chunkImgIndex = index;
             }
           })
         })

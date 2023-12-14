@@ -13,38 +13,37 @@
  * limitations under the License.
  */
 
-import fs from '@ohos.file.fs'
-import promptAction from '@ohos.promptAction'
-import { logger, TOAST_BOTTOM, NO_IMAGE_SELECTED } from '@ohos/uploaddownload'
+import fs from '@ohos.file.fs';
+import promptAction from '@ohos.promptAction';
+import { logger, TOAST_BOTTOM, NO_IMAGE_SELECTED } from '@ohos/uploaddownload';
 
-const TAG: string = 'ConfigFileChunkDialog'
+const TAG: string = 'ConfigFileChunkDialog';
 
 @CustomDialog
 export struct ConfigFileChunkDialog {
-  private controller: CustomDialogController = new CustomDialogController({ builder: null })
-  @Consume imageList: Array<string>
-  @Consume chunkImgIndex: number
-  @Consume chunkInputEnable: boolean
-  @Consume chunkParaBegins: number
-  @Consume chunkParaEnds: number
+  private controller: CustomDialogController = new CustomDialogController({ builder: null });
+  @Consume imageList: Array<string>;
+  @Consume chunkImgIndex: number;
+  @Consume chunkInputEnable: boolean;
+  @Consume chunkParaBegins: number;
+  @Consume chunkParaEnds: number;
   upload: () => void = () => {
-  }
+  };
 
   build() {
     Column() {
       TextInput({ placeholder: $r('app.string.chunk_begins') })
         .type(InputType.Number)
         .onChange((value: string) => {
-          this.chunkParaBegins = Number(value) || 0
-          let uri = this.imageList[this.chunkImgIndex]
-
-          let file = fs.openSync(uri)
-          let stat = fs.statSync(file.fd)
-          let size = stat.size
-          fs.closeSync(file.fd)
+          this.chunkParaBegins = Number(value) || 0;
+          let uri = this.imageList[this.chunkImgIndex];
+          let file = fs.openSync(uri);
+          let stat = fs.statSync(file.fd);
+          let size = stat.size;
+          fs.closeSync(file.fd);
 
           if (this.chunkParaBegins >= (size - 1)) {
-            promptAction.showToast({ message: $r('app.string.chunk_para_invalid'), bottom: TOAST_BOTTOM })
+            promptAction.showToast({ message: $r('app.string.chunk_para_invalid'), bottom: TOAST_BOTTOM });
           }
         })
         .enabled(this.chunkInputEnable)
@@ -52,20 +51,20 @@ export struct ConfigFileChunkDialog {
       TextInput({ placeholder: $r('app.string.chunk_ends') })
         .type(InputType.Number)
         .onChange((value: string) => {
-          this.chunkParaEnds = -1
+          this.chunkParaEnds = -1;
           if (value != "") {
-            this.chunkParaEnds = Number(value).valueOf()
+            this.chunkParaEnds = Number(value).valueOf();
           }
-          let uri = this.imageList[this.chunkImgIndex]
-          let file = fs.openSync(uri)
-          let stat = fs.statSync(file.fd)
-          let size = stat.size
-          fs.closeSync(file.fd)
+          let uri = this.imageList[this.chunkImgIndex];
+          let file = fs.openSync(uri);
+          let stat = fs.statSync(file.fd);
+          let size = stat.size;
+          fs.closeSync(file.fd);
 
-          logger.debug(`this.chunkParaEnds:${this.chunkParaEnds}`)
+          logger.debug(TAG, `this.chunkParaEnds:${this.chunkParaEnds}`);
           if (this.chunkParaEnds != -1
             && (this.chunkParaEnds >= size || this.chunkParaEnds <= this.chunkParaBegins)) {
-            promptAction.showToast({ message: $r('app.string.chunk_para_invalid'), bottom: TOAST_BOTTOM })
+            promptAction.showToast({ message: $r('app.string.chunk_para_invalid'), bottom: TOAST_BOTTOM });
           }
         })
         .margin({ top: 16 })
@@ -74,7 +73,7 @@ export struct ConfigFileChunkDialog {
       Row() {
         Checkbox()
           .onChange((checked: boolean) => {
-            this.chunkInputEnable = checked
+            this.chunkInputEnable = checked;
           })
           .id('chunkcheckbox')
 
@@ -96,9 +95,9 @@ export struct ConfigFileChunkDialog {
       .backgroundColor($r('app.color.button_blue'))
       .margin({ top: 16 })
       .onClick(() => {
-        this.controller.close()
-        this.upload()
-        this.chunkImgIndex = NO_IMAGE_SELECTED
+        this.controller.close();
+        this.upload();
+        this.chunkImgIndex = NO_IMAGE_SELECTED;
       })
     }
     .width('100%')

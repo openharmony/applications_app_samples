@@ -31,10 +31,10 @@ struct Upload {
   @Provide imageList: Array<string> = [];
   @State progress: number = 0;
   @State countdown: number = 0;
-  @Provide @Watch('onChunkImgIndexChange') chunkImgIndex: number = NO_IMAGE_SELECTED
-  @Provide chunkInputEnable: boolean = false
-  @Provide chunkParaBegins: number = 0
-  @Provide chunkParaEnds: number = -1
+  @Provide @Watch('onChunkImgIndexChange') chunkImgIndex: number = NO_IMAGE_SELECTED;
+  @Provide chunkInputEnable: boolean = false;
+  @Provide chunkParaBegins: number = 0;
+  @Provide chunkParaEnds: number = -1;
   chunkDialog: CustomDialogController = new CustomDialogController({
     builder: ConfigFileChunkDialog({
       upload: this.uploadFiles
@@ -42,7 +42,7 @@ struct Upload {
     alignment: DialogAlignment.Bottom,
     offset: { dx: 0, dy: -12 },
     cancel: this.onChunkDiaglogCancel
-  })
+  });
 
   build() {
     Navigation() {
@@ -159,32 +159,32 @@ struct Upload {
     }
 
     if (this.chunkInputEnable) { // 选中checkbox，从该文件分段上传
-      this.isBegin = true
-      this.progress = 0
-      let index = this.chunkImgIndex
-      let fileUris = this.imageList.slice(index)
+      this.isBegin = true;
+      this.progress = 0;
+      let index = this.chunkImgIndex;
+      let fileUris = this.imageList.slice(index);
       requestUpload.uploadFileChunk(fileUris, this.chunkParaBegins, this.chunkParaEnds, (progress: number, isSucceed: boolean) => {
-        this.progress = progress
+        this.progress = progress;
         if (this.progress === 100 && isSucceed) {
-          this.isBegin = false
-          this.imageList = this.imageList.slice(0, index)
-          promptAction.showToast({ message: $r('app.string.upload_success'), bottom: TOAST_BOTTOM })
+          this.isBegin = false;
+          this.imageList = this.imageList.slice(0, index);
+          promptAction.showToast({ message: $r('app.string.upload_success'), bottom: TOAST_BOTTOM });
         }
         if (this.progress === 100 && isSucceed === false) {
-          this.isBegin = false
-          this.countdown = TIME_MAX
+          this.isBegin = false;
+          this.countdown = TIME_MAX;
           let interval = setInterval(() => {
             if (this.countdown > 0) {
-              this.countdown--
+              this.countdown--;
             } else {
-              clearInterval(interval)
+              clearInterval(interval);
             }
-          }, 1000)
-          promptAction.showToast({ message: $r('app.string.upload_fail'), bottom: TOAST_BOTTOM })
+          }, 1000);
+          promptAction.showToast({ message: $r('app.string.upload_fail'), bottom: TOAST_BOTTOM });
         }
-      })
+      });
 
-      return
+      return;
     }
 
     if (this.isBackground) {
@@ -224,15 +224,15 @@ struct Upload {
 
   onChunkImgIndexChange(propName: string) {
     if (this.chunkImgIndex != NO_IMAGE_SELECTED) {
-      this.chunkDialog.open()
+      this.chunkDialog.open();
     }
 
-    this.chunkInputEnable = false
-    this.chunkParaBegins = 0
-    this.chunkParaEnds = -1
+    this.chunkInputEnable = false;
+    this.chunkParaBegins = 0;
+    this.chunkParaEnds = -1;
   }
 
   onChunkDiaglogCancel() {
-    this.chunkImgIndex = NO_IMAGE_SELECTED
+    this.chunkImgIndex = NO_IMAGE_SELECTED;
   }
 }
