@@ -57,9 +57,6 @@ struct selectMediaType {
 
   getListFile(): string[] {
     let files = fs.listFileSync(filesDir);
-    for (let i = 0; i < files.length; i++) {
-      logger.info(TAG, `The name of file: ${files[i]}`);
-    }
     return files;
   }
 
@@ -72,9 +69,9 @@ struct selectMediaType {
     logger.info(TAG, "selectText: " + this.text)
     for (let i = 0; i < this.fileNames.length; i++) {
       let fileName = this.fileNames[i];
-      logger.info(TAG, `fileNames file: ${fileName}`);
       let index = fileName.lastIndexOf('.');
       if (index < 0) {
+        logger.info(TAG, `fileNames file: ${fileName}`);
         if (this.text == "All") {
           let fileInfo = new FileInfo(fileName, "");
           this.selectedFilesInfos.push(fileInfo);
@@ -82,22 +79,20 @@ struct selectMediaType {
         continue;
       } else {
         let fileExtension = fileName.substring(index);
-        logger.info(TAG, `fileNames file extension: ${fileExtension}`);
         let utd = utdDesc.getUniformDataTypeByFilenameExtension(fileExtension);
-        logger.info(TAG, `fileNames file utd: ${utd}`);
+        logger.info(TAG, `fileNames file: ${fileName}, extension: ${fileExtension}, utd: ${utd}`);
         try {
           if (utd != null) {
             let typeObj: utdDesc.TypeDescriptor = utdDesc.getTypeDescriptor(utd);
             if (class2UTD.get(this.text) == "All") {
               let fileInfo = new FileInfo(fileName, typeObj.iconFile);
               this.selectedFilesInfos.push(fileInfo);
-              logger.info(TAG, `All type: ${fileInfo.filename}, utd: ${utd}, iconFile: ${fileInfo.iconFile}}`);
+              logger.info(TAG, `All type: ${fileInfo.filename}, utd: ${utd}, iconFile: ${fileInfo.iconFile}`);
             } else {
               let ret = typeObj.belongsTo(class2UTD.get(this.text));
-              logger.info(TAG, `typeObj.belongsTo: ${fileName}, utd: ${class2UTD.get(this.text)}, ret: ${ret}}`);
+              logger.info(TAG, `typeObj.belongsTo: ${fileName}, utd: ${class2UTD.get(this.text)}, ret: ${ret} iconFile: ${typeObj.iconFile}`);
               if (ret) {
                 let fileInfo = new FileInfo(fileName, typeObj.iconFile);
-                logger.info(TAG, `fileInfo file name: ${fileInfo.filename}, iconfile: ${fileInfo.iconFile}}`);
                 this.selectedFilesInfos.push(fileInfo);
               }
             }
@@ -105,13 +100,13 @@ struct selectMediaType {
             if (class2UTD.get(this.text) == "All") {
               let fileInfo = new FileInfo(fileName, "");
               this.selectedFilesInfos.push(fileInfo);
-              logger.info(TAG, `utd null All type: ${fileInfo.filename}, utd: ${utd}, iconFile: ${fileInfo.iconFile}}`);
+              logger.info(TAG, `utd null All type: ${fileInfo.filename}, utd: ${utd}, iconFile: ${fileInfo.iconFile}`);
             }
           }
         }
         catch (e) {
           let error: BusinessError = e as BusinessError;
-          logger.error(TAG, `belongsTo throws an exception. code is ${error.code}, message is ${error.message} `);
+          logger.error(TAG, `belongsTo throws an exception. code is ${error.code}, message is ${error.message}`);
         }
       }
     }
@@ -204,6 +199,7 @@ struct selectMediaType {
                     .id("textFilename_" + no)
                     .visibility(Visibility.Visible)
                     .onClick(() => {
+                      logger.info(TAG, `selected file：` + item.filename + `and clicked`);
                       router.pushUrl({
                         url: this.routerNextUrl,
                         params: {
@@ -238,9 +234,9 @@ struct selectMediaType {
         .borderRadius(24)
         .edgeEffect(EdgeEffect.Spring) // 边缘效果设置为Spring
         .onScrollIndex((firstIndex: number, lastIndex: number, centerIndex: number) => {
-          logger.info(TAG, 'first' + firstIndex);
-          logger.info(TAG, 'last' + lastIndex);
-          logger.info(TAG, 'center' + centerIndex);
+          logger.info(TAG, 'first: ' + firstIndex);
+          logger.info(TAG, 'last: ' + lastIndex);
+          logger.info(TAG, 'center: ' + centerIndex);
         })
         .onScroll((scrollOffset: number, scrollState: ScrollState) => {
           logger.info(TAG, `onScroll scrollState = ScrollState` + scrollState + `, scrollOffset = ` + scrollOffset);
