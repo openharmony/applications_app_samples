@@ -14,7 +14,7 @@
  */
 
 import picker from '@ohos.file.picker';
-import { logger } from '@ohos/uploaddownload';
+import { logger, NO_IMAGE_SELECTED } from '@ohos/uploaddownload';
 
 const TAG: string = 'AddPictures';
 
@@ -29,6 +29,7 @@ const TAG: string = 'AddPictures';
 @Component
 export struct AddPictures {
   @Consume imageList: Array<string>;
+  @Consume chunkImgIndex: number;
 
   build() {
     Column() {
@@ -41,11 +42,19 @@ export struct AddPictures {
         .margin({ top: 16, bottom: 48 })
         .width('100%')
       GridRow({ columns: { sm: 3, md: 6, lg: 8 }, gutter: 12 }) {
-        ForEach(this.imageList, (item: string) => {
+        ForEach(this.imageList, (item: string, index: number) => {
           GridCol({ span: 1 }) {
             Image(item)
               .imageStyle()
           }
+          .borderWidth(2)
+          .borderColor(index === this.chunkImgIndex ? $r('app.color.button_blue') : $r('app.color.light_gray'))
+          .onClick(() => {
+            logger.debug(TAG, `onclick: this.chunkImgIndex=${this.chunkImgIndex}, curindex:${index}`);
+            if (this.chunkImgIndex === NO_IMAGE_SELECTED) {
+              this.chunkImgIndex = index;
+            }
+          })
         })
         GridCol({ span: 1 }) {
           Row() {
