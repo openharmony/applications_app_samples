@@ -1,0 +1,10 @@
+{
+  "src": [
+    "pages/Index",
+    "autofillpages/AutoFillControl",
+    "autofillpages/SavePage",
+    "autofillpages/RegisterPage",
+    "autofillpages/LoginSuccessPage",
+    "autofillpages/AutoFillNewPassWord"
+  ]
+}
