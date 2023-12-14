@@ -19,7 +19,7 @@ export default class Constants {
   // 使用懒加载时，缓存数据的数量
   public static readonly CACHED_COUNT: number = 10;
   // 从json中读取数据的数量
-  public static readonly DATA_MOCK_COUNT: number = 10000;
+  public static readonly DATA_MOCK_COUNT: number = 5000;
   // 聊天页面中，模拟数据的限制数量
   public static readonly MOCK_ELEMENT_COUNT: number = 120;
   // 朋友圈模拟数据的数量
