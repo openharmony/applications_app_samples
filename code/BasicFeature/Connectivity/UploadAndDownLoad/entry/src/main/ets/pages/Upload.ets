@@ -17,7 +17,7 @@ import common from '@ohos.app.ability.common';
 import fs from '@ohos.file.fs';
 import promptAction from '@ohos.promptAction';
 import { AddPictures } from '../components/AddPictures';
-import { ConfigFileChunkDialog } from '../components/ConfigFileChunkDialog'
+import { ConfigFileChunkDialog } from '../components/ConfigFileChunkDialog';
 import { BackgroundTaskState, requestUpload, TOAST_BOTTOM, NO_IMAGE_SELECTED } from '@ohos/uploaddownload';
 
 const TIME_MAX: number = 5;
