@@ -15,21 +15,20 @@
 import { describe, it } from '@ohos/hypium';
 import { Driver, ON } from '@ohos.UiTest';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import { getString } from '../../../main/ets/utils/ResourceUtil';
+import { getString } from '../utils/ResourceUtil';
+import hilog from '@ohos.hilog';
 
 const TAG = '[Sample_VideoPlay]';
 const DOMAIN = 0xF811;
-const BUNDLE = 'VideoPlay_';
-import hilog from '@ohos.hilog';
 
 export default function ChooseTest() {
-  describe('ChooseTest', function () {
+  describe('ChooseTest', () => {
     /**
      * 切换test2.mp4视频
      */
-    it(BUNDLE + 'Choose_001', 0, async function (done) {
+    it('Choose_001', 0, async (done: Function) => {
       // 启动Ability
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Choose_001 begin');
+      hilog.info(DOMAIN, TAG, 'Choose_001 begin');
       let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
       await abilityDelegatorRegistry.executeShellCommand('aa start -a EntryAbility -b net.openvally.videoplay');
 
@@ -38,7 +37,7 @@ export default function ChooseTest() {
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('Video'));
       let stack = await driver.findComponent(ON.id('Video'));
-      await driver.delayMs(5000);
+      await driver.delayMs(1000);
       await stack.click();
       // 点击视频列表
       await driver.assertComponentExist(ON.id('Choose'));
@@ -52,20 +51,20 @@ export default function ChooseTest() {
       await button.click();
       await driver.delayMs(1000);
       done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Choose_001 end');
+      hilog.info(DOMAIN, TAG, 'Choose_001 end');
     })
 
     /**
      * 切换network.mp4视频
      */
-    it(BUNDLE + 'Choose_002', 0, async function (done) {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Choose_002 begin');
+    it('Choose_002', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, 'Choose_002 begin');
       let driver = await Driver.create();
       await driver.delayMs(1000);
       // 拉起操作界面
       await driver.assertComponentExist(ON.id('Video'));
       let stack = await driver.findComponent(ON.id('Video'));
-      await driver.delayMs(5000);
+      await driver.delayMs(1000);
       await stack.click();
       // 点击视频列表
       await driver.assertComponentExist(ON.id('Choose'));
@@ -76,22 +75,22 @@ export default function ChooseTest() {
       await driver.assertComponentExist(ON.text(str));
       let button = await driver.findComponent(ON.text(str));
       await button.click();
-      await driver.delayMs(3000);
+      await driver.delayMs(1000);
       done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Choose_002 end');
+      hilog.info(DOMAIN, TAG, 'Choose_002 end');
     })
 
     /**
      * 切换test1.mp4视频
      */
-    it(BUNDLE + 'Choose_003', 0, async function (done) {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Choose_003 begin');
+    it('Choose_003', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, 'Choose_003 begin');
       let driver = await Driver.create();
       await driver.delayMs(1000);
       // 拉起操作界面
       await driver.assertComponentExist(ON.id('Video'));
       let stack = await driver.findComponent(ON.id('Video'));
-      await driver.delayMs(5000);
+      await driver.delayMs(1000);
       await stack.click();
       // 点击视频列表
       await driver.assertComponentExist(ON.id('Choose'));
@@ -105,7 +104,7 @@ export default function ChooseTest() {
       await button.click();
       await driver.delayMs(1000);
       done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Choose_003 end');
+      hilog.info(DOMAIN, TAG, 'Choose_003 end');
     })
   })
 }

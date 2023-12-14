@@ -15,19 +15,18 @@
 import { describe, it } from '@ohos/hypium';
 import { Driver, ON } from '@ohos.UiTest';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import hilog from '@ohos.hilog';
 
 const TAG = '[Sample_VideoPlay]';
 const DOMAIN = 0xF811;
-const BUNDLE = 'VideoPlay_';
-import hilog from '@ohos.hilog';
 
 export default function SliderTest() {
-  describe('SliderTest', function () {
+  describe('SliderTest', () => {
     /**
      * 进度条测试
      */
-    it(BUNDLE + 'Slider_001', 0, async function (done) {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Slider_001 begin');
+    it('Slider_001', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, 'Slider_001 begin');
       let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
       await abilityDelegatorRegistry.executeShellCommand('aa start -a EntryAbility -b net.openvally.videoplay');
       // 拉起操作界面
@@ -37,7 +36,6 @@ export default function SliderTest() {
       let stack = await driver.findComponent(ON.id('Video'));
       await stack.click();
       await driver.delayMs(1000);
-      await stack.click();
       // 滑动滑块
       await driver.assertComponentExist(ON.id('Slider'));
       let Slider = await driver.findComponent(ON.id('Slider'));
@@ -45,7 +43,7 @@ export default function SliderTest() {
       await driver.drag(point.x - 50, point.y, point.x + 50, point.y, 800);
       await driver.delayMs(2000);
       done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Slider_001 end');
+      hilog.info(DOMAIN, TAG, 'Slider_001 end');
     })
   })
 }

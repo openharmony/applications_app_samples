@@ -99,7 +99,7 @@
  <tr height="18" style='height:13.50pt;'>
   <td x:str><a href="code/BasicFeature/Media/AVRecorder">音视频录制</a></td>
   <td x:str><a href="code/BasicFeature/Media/Audio">音频管理（API 10）</a></td>
-  <td x:str><a href="code/BasicFeature/Media/VideoPlay">视频播放</a></td>
+  <td x:str><a href="code/BasicFeature/Media/VideoPlay">视频播放（API 10）</a></td>
   <td x:str><a href="code/BasicFeature/Media/VoiceCallDemo">音频通话示例</td>
  </tr>
  <tr height="18" style='height:13.50pt;'>

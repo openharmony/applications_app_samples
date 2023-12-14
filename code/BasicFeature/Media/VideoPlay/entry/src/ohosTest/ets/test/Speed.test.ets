@@ -15,20 +15,20 @@
 import { describe, it } from '@ohos/hypium';
 import { Driver, ON } from '@ohos.UiTest';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import { getString } from '../../../main/ets/utils/ResourceUtil';
-const TAG = '[Sample_VideoPlay]';
-const DOMAIN = 0xF811;
-const BUNDLE = 'VideoPlay_';
+import { getString } from '../utils/ResourceUtil';
 import hilog from '@ohos.hilog';
 
+const TAG = '[Sample_VideoPlay]';
+const DOMAIN = 0xF811;
+
 export default function SpeedTest() {
-  describe('SpeedTest', function () {
+  describe('SpeedTest', () => {
     /**
      * 调节倍速2.0X
      */
-    it(BUNDLE + 'Speed_001', 0, async function (done) {
+    it('Speed_001', 0, async (done: Function) => {
       // 启动Ability
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Speed_001 begin');
+      hilog.info(DOMAIN, TAG, 'Speed_001 begin');
       let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
       await abilityDelegatorRegistry.executeShellCommand('aa start -a EntryAbility -b net.openvally.videoplay');
 
@@ -52,14 +52,14 @@ export default function SpeedTest() {
       await button.click();
       await driver.delayMs(1000);
       done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Speed_001 end');
+      hilog.info(DOMAIN, TAG, 'Speed_001 end');
     })
 
     /**
      * 调节倍速1.75X
      */
-    it(BUNDLE + 'Speed_002', 0, async function (done) {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Speed_002 begin');
+    it('Speed_002', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, 'Speed_002 begin');
       let driver = await Driver.create();
       await driver.assertComponentExist(ON.id('Video'));
       let stack = await driver.findComponent(ON.id('Video'));
@@ -78,14 +78,14 @@ export default function SpeedTest() {
       await button.click();
       await driver.delayMs(1000);
       done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Speed_002 end');
+      hilog.info(DOMAIN, TAG, 'Speed_002 end');
     })
 
     /**
      * 调节倍速1.25X
      */
-    it(BUNDLE + 'Speed_003', 0, async function (done) {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Speed_003 begin');
+    it('Speed_003', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, 'Speed_003 begin');
       let driver = await Driver.create();
       await driver.assertComponentExist(ON.id('Video'));
       let stack = await driver.findComponent(ON.id('Video'));
@@ -105,14 +105,14 @@ export default function SpeedTest() {
       await button.click();
       await driver.delayMs(1000);
       done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Speed_003 end');
+      hilog.info(DOMAIN, TAG, 'Speed_003 end');
     })
 
     /**
      * 调节倍速1.0X
      */
-    it(BUNDLE + 'Speed_004', 0, async function (done) {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Speed_004 begin');
+    it('Speed_004', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, 'Speed_004 begin');
       let driver = await Driver.create();
       await driver.assertComponentExist(ON.id('Video'));
       let stack = await driver.findComponent(ON.id('Video'));
@@ -131,7 +131,7 @@ export default function SpeedTest() {
       let button = await driver.findComponent(ON.text(str));
       await button.click();
       await driver.delayMs(1000);
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Speed_004 end');
+      hilog.info(DOMAIN, TAG, 'Speed_004 end');
       done();
     })
   })

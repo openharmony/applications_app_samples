@@ -24,7 +24,7 @@ const THREE = 3; // 倍速列表索引
 export struct SpeedDialog {
   @State speedList: Resource[] = [$r('app.string.video_speed_1_0X'), $r('app.string.video_speed_1_25X'), $r('app.string.video_speed_1_75X'), $r('app.string.video_speed_2_0X')];
   @Link speedSelect: number; // 当前选择项的索引
-  @StorageLink('avPlayManage') avPlayManage: avPlayManage = null;
+  @StorageLink('avPlayManage') avPlayManage: avPlayManage | null = null;
   private controller: CustomDialogController;
 
   build() {
@@ -37,7 +37,7 @@ export struct SpeedDialog {
         .margin({ top: $r('app.float.size_20'), bottom: $r('app.float.size_12') })
 
       List() {
-        ForEach(this.speedList, (item, index) => {
+        ForEach(this.speedList, (item: Resource, index: number) => {
           ListItem() {
             Column() {
               Row() {
@@ -69,9 +69,12 @@ export struct SpeedDialog {
           .height($r('app.float.size_48'))
           .onClick(() => {
             this.speedSelect = index;
-            AppStorage.SetOrCreate('speedName', this.speedList[this.speedSelect]);
-            AppStorage.SetOrCreate('speedIndex', this.speedSelect);
+            AppStorage.setOrCreate('speedName', this.speedList[this.speedSelect]);
+            AppStorage.setOrCreate('speedIndex', this.speedSelect);
             this.controller.close();
+            if (this.avPlayManage == null) {
+              return;
+            }
             switch (this.speedSelect) {
               case ZERO:
                 this.avPlayManage.videoSpeedOne();

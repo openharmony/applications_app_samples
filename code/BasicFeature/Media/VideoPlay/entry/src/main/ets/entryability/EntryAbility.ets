@@ -17,20 +17,13 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import hilog from '@ohos.hilog';
 import window from '@ohos.window';
 import emitter from '@ohos.events.emitter';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 export default class EntryAbility extends UIAbility {
   private tag = 'entryAbility';
 
-  onCreate(want, launchParam) {
-    globalThis.abilityWant = want;
-    globalThis.context = this.context;
-    globalThis.currentTime = 0;
-    if (want.hasOwnProperty('parameters')) {
-      if (want.parameters.hasOwnProperty('currentTime')) {
-        globalThis.currentTime = want.parameters.currentTime;
-        console.info(this.tag, 'time: ' + want.parameters.currentTime);
-      }
-    }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
   }
 
@@ -46,13 +39,13 @@ export default class EntryAbility extends UIAbility {
         statusBarColor: '#000000'
       });
       win.on('windowSizeChange', (newSize: window.Size) => {
-        let eventWHData = {
+        let eventWHData: emitter.EventData = {
           data: {
             'width': newSize.width,
             'height': newSize.height
           }
         };
-        let innerEventWH = {
+        let innerEventWH: emitter.InnerEvent = {
           eventId: 3,
           priority: emitter.EventPriority.HIGH
         };

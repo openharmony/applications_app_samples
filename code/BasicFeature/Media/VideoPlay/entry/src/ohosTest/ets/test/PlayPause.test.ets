@@ -15,22 +15,21 @@
 import { describe, it } from '@ohos/hypium';
 import { Driver, ON } from '@ohos.UiTest';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import hilog from '@ohos.hilog';
 
 const TAG = '[Sample_VideoPlay]';
 const DOMAIN = 0xF811;
-const BUNDLE = 'VideoPlay_';
-import hilog from '@ohos.hilog';
 
 export default function PlayPauseTest() {
   /**
    * 暂停、播放
    */
-  describe('PlayPauseTest', function () {
+  describe('PlayPauseTest', () => {
     /**
      * 点击暂停
      */
-    it(BUNDLE + 'PlayPause_001', 0, async function (done) {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'PlayPause_001 begin');
+    it('PlayPause_001', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, 'PlayPause_001 begin');
       let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
       await abilityDelegatorRegistry.executeShellCommand('aa start -a EntryAbility -b net.openvally.videoplay');
       let driver = Driver.create();
@@ -45,13 +44,13 @@ export default function PlayPauseTest() {
       await btnPlay.click();
       await driver.delayMs(2000);
       done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'PlayPause_001 end');
+      hilog.info(DOMAIN, TAG, 'PlayPause_001 end');
     })
     /**
      * 点击播放
      */
-    it(BUNDLE + 'PlayPause_002', 0, async function (done) {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'PlayPause_002 begin');
+    it('PlayPause_002', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, 'PlayPause_002 begin');
       let driver = Driver.create();
       await driver.delayMs(6000);
       // 拉起操作界面
@@ -64,7 +63,7 @@ export default function PlayPauseTest() {
       await btnPlay.click();
       await driver.delayMs(2000);
       done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'PlayPause_002 end');
+      hilog.info(DOMAIN, TAG, 'PlayPause_002 end');
     })
   })
 }

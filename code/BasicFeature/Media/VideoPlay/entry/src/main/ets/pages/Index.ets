@@ -21,24 +21,25 @@ import { ExitVideo } from '../components/ExitVideo';
 import { timeConvert } from '../utils/TimeUtils';
 import emitter from '@ohos.events.emitter';
 import { VideoPanel } from '../components/VideoPanel';
+import common from '@ohos.app.ability.common';
 
 const PROPORTION = 0.99; // 占屏幕比例
 const SURFACEW = 0.9; // 表面宽比例
 const SURFACEH = 1.78; // 表面高比例
 const TIMEOUT = 0; // 定时器编号
-const SET_TIME_OUT = 8000; // 间隔8s
+const SET_TIME_OUT = 10*1000; // 间隔10s
 const SET_INTERVAL = 100; // interval间隔时间
-let innerEventFalse = {
+let innerEventFalse: emitter.InnerEvent = {
   eventId: 1,
   priority: emitter.EventPriority.HIGH
 };
 
-let innerEventTrue = {
+let innerEventTrue: emitter.InnerEvent = {
   eventId: 2,
   priority: emitter.EventPriority.HIGH
 };
 
-let innerEventWH = {
+let innerEventWH: emitter.InnerEvent = {
   eventId: 3,
   priority: emitter.EventPriority.HIGH
 };
@@ -46,7 +47,7 @@ let innerEventWH = {
 @Entry
 @Component
 struct Index {
-  private surfaceId: string = ''; 
+  private surfaceId: string = '';
   private timeout: number = 0; // 定时器编号
   private xComponentController: XComponentController = new XComponentController();
   @State avPlayManage: avPlayManage = new avPlayManage();
@@ -58,8 +59,8 @@ struct Index {
   @State videoListSelect: number = 0; // 视频列表选择
   @State durationTime: number = 0; // 视频总时长
   @State currentTime: number = 0; // 视频当前时间
-  @State surfaceW: number = undefined;
-  @State surfaceH: number = undefined;
+  @State surfaceW: number | null = null;
+  @State surfaceH: number | null = null;
   @State show: boolean = false; // videoPanel组件是否弹出
   @State videoSelect: number = 0; // 视频列表选择
   @State percent: number = 0;
@@ -67,11 +68,12 @@ struct Index {
   @State windowHeight: number = 300;
   @StorageLink('videoName') videoName: Resource = $r('app.string.video_res_1');
   @StorageLink('videoIndex') videoIndex: number = 0; // 视频索引
+
   setTimer(): void {
     let that = this;
-    this.timeout = setTimeout(function () {
+    this.timeout = setTimeout(() => {
       that.isClickScreen = false; // 隐藏操作面板
-    }, SET_TIME_OUT); // 8秒后隐藏
+    }, SET_TIME_OUT);
   }
 
   clearTimer(): void {
@@ -84,10 +86,10 @@ struct Index {
   aboutToAppear() {
     this.windowWidth = display.getDefaultDisplaySync().width;
     this.windowHeight = display.getDefaultDisplaySync().height;
-    this.surfaceW = globalThis.windowWidth * SURFACEW;
+    this.surfaceW = this.windowWidth * SURFACEW;
     this.surfaceH = this.surfaceW / SURFACEH;
     this.flag = true;
-    AppStorage.SetOrCreate('avPlayManage', this.avPlayManage);
+    AppStorage.setOrCreate('avPlayManage', this.avPlayManage);
   }
 
   aboutToDisappear() {
@@ -101,17 +103,23 @@ struct Index {
   }
 
   onPageShow() {
-    emitter.on(innerEventTrue, (res) => {
-      this.flag = res.data.flag;
-      this.XComponentFlag = res.data.flag;
+    emitter.on(innerEventTrue, (res: emitter.EventData) => {
+      if (res.data) {
+        this.flag = res.data.flag;
+        this.XComponentFlag = res.data.flag;
+      }
     });
-    emitter.on(innerEventFalse, (res) => {
-      this.flag = res.data.flag;
+    emitter.on(innerEventFalse, (res: emitter.EventData) => {
+      if (res.data) {
+        this.flag = res.data.flag;
+      }
     });
-    emitter.on(innerEventWH, (res) => {
-      this.windowWidth = res.data.width;
-      this.windowHeight = res.data.height;
-      this.setVideoWH();
+    emitter.on(innerEventWH, (res: emitter.EventData) => {
+      if (res.data) {
+        this.windowWidth = res.data.width;
+        this.windowHeight = res.data.height;
+        this.setVideoWH();
+      }
     });
 
     if (this.flag == false) {
@@ -139,7 +147,7 @@ struct Index {
       .visibility(this.XComponentFlag ? Visibility.Visible : Visibility.Hidden)
       .onLoad(() => {
         this.surfaceId = this.xComponentController.getXComponentSurfaceId();
-        this.avPlayManage.initPlayer(this.surfaceId, (avPlayer: media.AVPlayer) => {
+        this.avPlayManage.initPlayer(getContext(this) as common.UIAbilityContext, this.surfaceId, (avPlayer: media.AVPlayer) => {
           this.percent = avPlayer.width / avPlayer.height;
           this.setVideoWH();
           this.durationTime = this.avPlayManage.getDurationTime();

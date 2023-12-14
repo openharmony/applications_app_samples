@@ -15,21 +15,20 @@
 import { describe, it } from '@ohos/hypium';
 import { Driver, ON } from '@ohos.UiTest';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import hilog from '@ohos.hilog';
 
 const TAG = '[Sample_VideoPlay]';
 const DOMAIN = 0xF811;
-const BUNDLE = 'VideoPlay_';
-import hilog from '@ohos.hilog';
 
 const delegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
 export default function ExitTest() {
-  describe('ExitTest', function () {
+  describe('ExitTest', () => {
     /**
      * 退出测试
      */
-    it(BUNDLE + 'Exit_001', 0, async function (done) {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Exit_001 begin');
+    it('Exit_001', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, 'Exit_001 begin');
       await delegator.executeShellCommand('aa start -a EntryAbility -b net.openvally.videoplay');
       // 拉起操作界面
       let driver = Driver.create();
@@ -38,14 +37,13 @@ export default function ExitTest() {
       let stack = await driver.findComponent(ON.id('Video'));
       await stack.click();
       await driver.delayMs(1000);
-      await stack.click();
       // 点击退出
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('Exit'));
       let Exit = await driver.findComponent(ON.id('Exit'));
       await Exit.click();
       done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Exit_001 end');
+      hilog.info(DOMAIN, TAG, 'Exit_001 end');
     })
   })
 }
