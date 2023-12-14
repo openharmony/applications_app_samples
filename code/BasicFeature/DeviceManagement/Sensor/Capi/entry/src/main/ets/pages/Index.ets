@@ -15,7 +15,7 @@
 
 import sensor from '@ohos.sensor';
 import mediaQuery from '@ohos.mediaquery';
-import { SubscribeSensor } from 'library';
+import { SubscribeSensor, UnsubscribeSensor } from 'library';
 import Logger from '../moudle/Logger'
 
 const TAG = '[sensor]'
