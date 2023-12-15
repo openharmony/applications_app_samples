@@ -48,7 +48,7 @@ struct selectMediaType {
             .alignSelf(ItemAlign.Auto)
             .margin({left: 24, right: 12})
             .onClick(() => {
-              router.pushUrl({url: this.routerBackUrl}, router.RouterMode.Single)
+              router.pushUrl({url: this.routerBackUrl}, router.RouterMode.Single);
             })
           Text($r('app.string.displayMediaFile_title'))
             .fontStyle(FontStyle.Normal)
