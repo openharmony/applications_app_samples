@@ -136,7 +136,7 @@ struct selectMediaType {
             .alignSelf(ItemAlign.Auto)
             .margin({ left: 24, right: 12 })
             .onClick(() => {
-              router.pushUrl({ url: this.routerBackUrl })
+              router.pushUrl({ url: this.routerBackUrl }, router.RouterMode.Single)
             })
           Text($r('app.string.selectMediaType_title'))
             .fontStyle(FontStyle.Normal)
@@ -200,13 +200,19 @@ struct selectMediaType {
                     .visibility(Visibility.Visible)
                     .onClick(() => {
                       logger.info(TAG, `selected file：` + item.filename + `and clicked`);
-                      router.pushUrl({
-                        url: this.routerNextUrl,
-                        params: {
-                          src: item.filename,
-                          selectIconFile: item.iconFile
-                        }
-                      });
+                      try {
+                        router.pushUrl({
+                          url: this.routerNextUrl,
+                          params: {
+                            src: item.filename,
+                            selectIconFile: item.iconFile
+                          }
+                        }, router.RouterMode.Single);
+                      }
+                      catch (e) {
+                        let error: BusinessError = e as BusinessError;
+                        logger.error(TAG, `select file and router exception. code is ${error.code}, message is ${error.message}`);
+                      }
                     })
                   Divider()
                     .vertical(false)

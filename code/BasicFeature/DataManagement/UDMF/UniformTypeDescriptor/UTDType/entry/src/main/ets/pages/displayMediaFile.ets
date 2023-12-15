@@ -30,6 +30,11 @@ struct selectMediaType {
   @State selectIconFile: string = (router.getParams() as paramsTape).selectIconFile;
   private routerBackUrl: string = 'pages/selectMediaType';
 
+  onPageShow() {
+    this.src = (router.getParams() as paramsTape).src;
+    this.selectIconFile = (router.getParams() as paramsTape).selectIconFile;
+  }
+
   build() {
     Column() {
       Column() {
@@ -43,7 +48,7 @@ struct selectMediaType {
             .alignSelf(ItemAlign.Auto)
             .margin({left: 24, right: 12})
             .onClick(() => {
-              router.pushUrl({url: this.routerBackUrl})
+              router.pushUrl({url: this.routerBackUrl}, router.RouterMode.Single)
             })
           Text($r('app.string.displayMediaFile_title'))
             .fontStyle(FontStyle.Normal)
