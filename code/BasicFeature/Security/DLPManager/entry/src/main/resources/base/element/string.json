@@ -1,0 +1,72 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "dlp管理"
+    },
+    {
+      "name": "file_manager",
+      "value": "记事本"
+    },
+    {
+      "name": "file",
+      "value": "最近文件"
+    },
+    {
+      "name": "set_sandbox_retention",
+      "value": "设置沙箱保留"
+    },
+    {
+      "name": "cancel_sandbox_retention",
+      "value": "取消沙箱保留"
+    },
+    {
+      "name": "obtain_sandbox_retention_information",
+      "value": "获取沙箱保留信息"
+    },
+    {
+      "name": "edit",
+      "value": "编辑"
+    },
+    {
+      "name": "save",
+      "value": "保存"
+    },
+    {
+      "name": "more",
+      "value": "更多"
+    },
+    {
+      "name": "editable",
+      "value": "进入编辑状态"
+    },
+    {
+      "name": "saved",
+      "value": "已保存"
+    },
+    {
+      "name": "read_permission",
+      "value": "user read file permission"
+    },
+    {
+      "name": "write_permission",
+      "value": "user write file permission"
+    },
+    {
+      "name": "edit_file_permission",
+      "value": "user edit file permission"
+    },
+    {
+      "name": "dlp_file_permission",
+      "value": "user dlp file permission"
+    }
+  ]
+}

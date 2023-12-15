@@ -1,0 +1,72 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "dlpmanager"
+    },
+    {
+      "name": "file_manager",
+      "value": "notepad"
+    },
+    {
+      "name": "file",
+      "value": "file"
+    },
+    {
+      "name": "set_sandbox_retention",
+      "value": "set_sandbox_retention"
+    },
+    {
+      "name": "cancel_sandbox_retention",
+      "value": "cancel_sandbox_retention"
+    },
+    {
+      "name": "obtain_sandbox_retention_information",
+      "value": "obtain_sandbox_retention_information"
+    },
+    {
+      "name": "edit",
+      "value": "edit"
+    },
+    {
+      "name": "save",
+      "value": "save"
+    },
+    {
+      "name": "more",
+      "value": "more"
+    },
+    {
+      "name": "editable",
+      "value": "Editable"
+    },
+    {
+      "name": "saved",
+      "value": "Saved"
+    },
+    {
+      "name": "read_permission",
+      "value": "user read file permission"
+    },
+    {
+      "name": "write_permission",
+      "value": "user write file permission"
+    },
+    {
+      "name": "edit_file_permission",
+      "value": "user edit file permission"
+    },
+    {
+      "name": "dlp_file_permission",
+      "value": "user dlp file permission"
+    }
+  ]
+}

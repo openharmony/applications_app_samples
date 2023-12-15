@@ -1,0 +1,63 @@
+/**
+ * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "material": {
+          "certpath": "C:\\Users\\kaihong\\.ohos\\config\\openharmony\\auto_ohos_default_dlpSample_kaihong.sample.dlpmanager.cer",
+          "storePassword": "0000001AE9A00935F41374BCEB3A06523ABD3D26C6EF99CBA97A47F46A206C602F15D3149A56B39921DD",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001A3756BEDD19835743F6F2F310504FA62BFB6FDB15F15A44ADA7EFCBE445F986B9061A3B933DCF",
+          "profile": "C:\\Users\\kaihong\\.ohos\\config\\openharmony\\auto_ohos_default_dlpSample_kaihong.sample.dlpmanager.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\kaihong\\.ohos\\config\\openharmony\\auto_ohos_default_dlpSample_kaihong.sample.dlpmanager.p12"
+        }
+      }
+    ],
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+        "compileSdkVersion": 11,
+        "compatibleSdkVersion": 11,
+        "runtimeOS": "OpenHarmony",
+      }
+    ],
+    "buildModeSet": [
+      {
+        "name": "debug",
+      },
+      {
+        "name": "release"
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}
