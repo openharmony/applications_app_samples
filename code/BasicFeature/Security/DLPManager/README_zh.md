@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例主要展示了DLP文件管理相关的功能，使用[@ohos.dlpPermission](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-dlppermission.md)、[@ohos.file.fs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-fs.md)、[ @ohos.file.fileAccess](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-fileAccess.md)等接口，实现了生成和打开DLP文件、查看原始应用沙箱目录的原始文件打开列表、编辑保存文件、拉取文件夹、查看文件权限和监听DLP文件的功能;
+本示例主要展示了DLP文件管理相关的功能，使用@ohos.dlpPermission、@ohos.file.fs、@ohos.file.fileAccess等接口，实现了生成和打开DLP文件、查看原始应用沙箱目录的原始文件打开列表、编辑保存文件、拉取文件夹、查看文件权限和监听DLP文件的功能;
 
 ### 效果预览
 
@@ -49,7 +49,7 @@ entry/src/main/ets/
 | ohos.permission.READ_MEDIA                 | 允许应用读取用户外部存储中的媒体文件信息      | normal       |
 | ohos.permission.WRITE_MEDIA                | 允许应用读写用户外部存储中的媒体文件信息      | normal       |
 | ohos.permission.FILE_ACCESS_MANAGER        | 允许文件管理类应用通过FAF框架访问公共数据文件 | system_basic |
-| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | 允许查询应用的基本信息和其他敏感信息          | system_basic |
+| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | 允许查询应用的基本信息和敏感信息              | system_basic |
 | ohos.permission.ACCESS_DLP_FILE            | 允许对DLP文件进行权限配置和管理               | system_core  |
 | ohos.permission.START_INVISIBLE_ABILITY    | 无论Ability是否可见，都允许应用进行调用       | system_core  |
 
