@@ -15,6 +15,8 @@
 
 import emitter from '@ohos.events.emitter';
 import common from '@ohos.app.ability.common';
+import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
 
 @Entry
 @Component
@@ -24,7 +26,7 @@ struct SubWindowPage {
 
   async startNewAbility() {
     let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-    let want = {
+    let want: Want = {
       bundleName: 'com.samples.windowratio',
       abilityName: 'MainAbility',
     };
@@ -33,7 +35,7 @@ struct SubWindowPage {
         .then((data) => {
           console.log('startAbility succeed');
         })
-        .catch((error) => {
+        .catch((error: BusinessError) => {
           console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
             ' error.message: ' + JSON.stringify(error.message));
         });
@@ -68,18 +70,20 @@ struct SubWindowPage {
         .muted(false)
         .controls(true)
         .autoPlay(true)
-        .onTouch((event: TouchEvent) => {
-          let eventData = {
-            data: {
-              "x": event.touches[0].displayX,
-              "y": event.touches[0].displayY,
-              "type": event.type
-            } };
-          let innerEvent = {
-            eventId: this.SUB_WINDOW_INNER_EVENT_ID,
-            priority: emitter.EventPriority.HIGH
-          };
-          emitter.emit(innerEvent, eventData);
+        .onTouch((event: TouchEvent | undefined) => {
+          if (event !== undefined) {
+            let eventData: emitter.EventData = {
+              data: {
+                x: event.touches[0].displayX,
+                y: event.touches[0].displayY,
+                type: event.type
+              } };
+            let innerEvent: emitter.InnerEvent = {
+              eventId: this.SUB_WINDOW_INNER_EVENT_ID,
+              priority: emitter.EventPriority.HIGH
+            };
+            emitter.emit(innerEvent, eventData);
+          }
         })
     }
     .width('100%').height('100%')

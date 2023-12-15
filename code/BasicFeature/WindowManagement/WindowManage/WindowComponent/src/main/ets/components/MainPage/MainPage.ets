@@ -29,6 +29,12 @@ const windowAttribute: WindowType = {
   setBrightness: 1 // 窗口亮度
 };
 
+interface Datastring {
+  context: common.UIAbilityContext | null,
+  launchWant: string | null,
+  subWindow: window.WindowStage | null
+}
+
 @Component
 export struct WindowComponent {
   @StorageLink("topHeight") topHeight: number = 0; // 窗口规避区域高
@@ -55,17 +61,17 @@ struct VideoWindow {
   @Link videoSrc: Resource;
   @StorageLink('focusText') focusText: string = 'unknown';
   videoController: VideoController = new VideoController();
-  private context: common.UIAbilityContext;
-  private subWindow: window.WindowStage;
+  private context: common.UIAbilityContext | null = null;
+  private subWindow: window.WindowStage | null = null;
   private isPortrait: Boolean = true;
   private showSubWindow: Boolean = false;
 
   aboutToAppear() {
     this.context = getContext(this) as common.UIAbilityContext;
-    let data = {
-      context: null,
-      launchWant: null,
-      subWindow: null
+    let data: Datastring = {
+      context: this.context,
+      launchWant: ' ',
+      subWindow: this.subWindow
     };
     this.context.eventHub.emit("createWindow", data);
     this.subWindow = data.subWindow;
@@ -88,19 +94,22 @@ struct VideoWindow {
           .muted(false)
           .controls(true)
           .autoPlay(true)
-          .onClick(async () => {
+          .onClick(() => {
             Logger.info('onClick');
             if (this.showSubWindow) {
               this.videoController.start();
-              let windows = await this.subWindow?.getSubWindow();
-              windows[0]?.destroyWindow();
-              this.showSubWindow = false;
-              WindowManger.destorySubWindowCallback();
+              let windows = this.subWindow?.getSubWindow();
+              if (windows !== undefined) {
+                windows[0].destroyWindow();
+                this.showSubWindow = false;
+                WindowManger.destorySubWindowCallback();
+              }
             } else {
               this.videoController.pause();
               WindowManger.initSubWindow(this.subWindow, windowAttribute);
               this.showSubWindow = true;
-            };
+            }
+            ;
           })
           .onStart(() => {
             this.isPlaying = true;
@@ -120,7 +129,8 @@ struct VideoWindow {
               this.videoController.requestFullscreen(true);
               WindowManger.changeWindowDirection(this.subWindow, window.Orientation.PORTRAIT);
               this.isPortrait = true;
-            };
+            }
+            ;
           })
       }
       .height('75%')

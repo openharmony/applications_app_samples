@@ -88,7 +88,7 @@ class WindowManger {
     };
   }
 
-  async initSubWindow(windowStage: window.WindowStage, windowAttribute: WindowType) {
+  async initSubWindow(windowStage, windowAttribute) {
     // 创建应用子窗口
     let subWindow = await windowStage.createSubWindow('mySubWindow');
     subWindow.on('avoidAreaChange', ({type, area}) => {
