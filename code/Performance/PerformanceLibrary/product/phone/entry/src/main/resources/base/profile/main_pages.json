@@ -28,6 +28,7 @@
     "pages/grid/GridLayoutOptionsPage",
     "pages/grid/GridLazyForEachPage",
     "pages/grid/GridPage",
-    "pages/smartPerfEditor/SmartPerfEditorPage"
+    "pages/smartPerfEditor/SmartPerfEditorPage",
+    "pages/trace/TracePage"
   ]
 }

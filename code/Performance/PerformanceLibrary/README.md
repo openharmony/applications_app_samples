@@ -70,6 +70,10 @@ SmartPerfHost使用说明：
 
 5.点击SmartPerfHost查看AppStartup优化前场景页的**AppStartup优化后代码**按钮进入场景页。
 
+Trace使用说明：
+
+1.点击性能示例主页的**Trace**按钮，进入**懒加载示例**场景页。
+
 ### 工程目录
 
 ```
@@ -130,6 +134,13 @@ features
 |   |   |---StaticContentPageTwo.ets                  // 常规加载子页面
 |   |   |---StaticEntryView.ets                       // 常规加载入口页面           
 |   |   |---StaticHome.ets                            // 常规加载主页
+|---/trace/src/main/ets                               // Trace功能HAR共享包
+|---|---/pages    
+|   |   |---LazyForEachPage.ets                       // 懒加载示例场景页面     
+|---|---/view                
+|   |   |---IconView.ets                              // 懒加载示例场景子页面 
+|---|---/viewmodel          
+|   |   |---BasicDataSource.ets                       // 封装列表数据方法
 products/phone/entry/src/main/ets
 |---/entryability
 |   |---EntryAbility.ts                               // 封装整个模块启用，监听Ability对应的窗口等逻辑
@@ -138,9 +149,9 @@ products/phone/entry/src/main/ets
 |   |---/MockData.ets                                 // 本地数据
 |---pages 
 |   |---/dynamicImport
-|   |   |---DynamicEntryView.ets           // 动态加载入口页面
-|   |   |---DynamicHome.ets                // 动态加载主页
-|   |   |---DynamicContentPageOne.ets      // 动态加载内容页 
+|   |   |---DynamicEntryView.ets                      // 动态加载入口页面
+|   |   |---DynamicHome.ets                           // 动态加载主页
+|   |   |---DynamicContentPageOne.ets                 // 动态加载内容页 
 |   |---/grid
 |   |   |---GridPage.ets                              // 场景主页面                 
 |   |   |---GridLazyForEachPage.etss                  // 懒加载+cachedCount+组件复用页面
@@ -172,7 +183,9 @@ products/phone/entry/src/main/ets
 |   |---/staticImport
 |   |   |---StaticEntryView.ets                       // 常规加载入口页面              
 |   |   |---StaticHome.ets                            // 常规加载主页
-|   |---/Index                                        // 性能示例首页                              
+|   |---/trace
+|   |   |---TracePage.ets                             // 懒加载示例首页              
+|   |---/Index                                                                     
 |---/utils
 |   |---Logger.ets                                    // 封装整个日志
 
