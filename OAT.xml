@@ -161,6 +161,13 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filename" name="hvigorw.bat" desc="OpenHarmony工程编译配置文件，无需添加License头"/>
                 <filteritem type="filename" name="hvigor-config.json5" desc="OpenHarmony工程编译配置文件，无需添加License头"/>
                 <filteritem type="filename" name="hvigor-wrapper.js" desc="OpenHarmony工程编译配置文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-enter-animation-1.0.1.tgz" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-http-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-feature-qr-code-scan-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-sharecomponent-1.0.1.tgz" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-updatedialog-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-video-component-1.0.5.tgz" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-notification-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
             </filefilter>
             <filefilter name="copyrightPolicyFilter" desc="Copyright文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加版权头"/>
@@ -168,6 +175,13 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filename" name="hvigorw.bat" desc="OpenHarmony工程编译配置文件，无需添加版权头"/>
                 <filteritem type="filename" name="hvigor-config.json5" desc="OpenHarmony工程编译配置文件，无需添加版权头"/>
                 <filteritem type="filename" name="hvigor-wrapper.js" desc="OpenHarmony工程编译配置文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-enter-animation-1.0.1.tgz" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-http-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-notification-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-feature-qr-code-scan-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-sharecomponent-1.0.1.tgz" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-updatedialog-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-video-component-1.0.5.tgz" desc="二进制文件，无需添加版权头"/>
             </filefilter>
         </filefilterlist>
     </oatconfig>
