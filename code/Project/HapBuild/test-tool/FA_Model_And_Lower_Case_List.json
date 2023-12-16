@@ -1,0 +1,6 @@
+{
+    "ohos.samples.socket":"code_BasicFeature_Connectivity_Socket",
+    "ohos.samples.etsvibrator":"code_BasicFeature_DeviceManagement_Vibrator_BasicVibration",
+    "ohos.samples.etsdefiningpagelayoutandconnection":"code_UI_ArkTsComponentCollection_DefiningPageLayoutAndConnection",
+    "com.example.nbody":"code_Performance_ArkRuntime_NBody"
+}
