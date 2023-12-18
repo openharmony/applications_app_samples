@@ -30,6 +30,7 @@ interface myParams extends Object {
   fileName : string
   isDlpFile : boolean
 }
+
 let storage = LocalStorage.getShared();
 
 @Entry(storage)
@@ -38,7 +39,6 @@ struct FilePage {
   @State inSandbox : boolean = false
   @State opacityValue : number = OPACITY_VALUE;
   @State myFileName : string = '';
-  @State myFileName1 : string = '';
   @State myUri : string = '';
   @State isDlpFIle : boolean = false
   @StorageLink( 'editable' ) editable : Boolean = false;
@@ -130,10 +130,10 @@ struct FilePage {
   /**
    * 另存为
    */
-  async callFilePickerSaveFile() : Promise<void> {
+  async callFilePickerSaveFile( fileName : string ) : Promise<void> {
     try {
       let DocumentSaveOptions = new picker.DocumentSaveOptions();
-      DocumentSaveOptions.newFileNames = [ 'MyDocument_01.txt' ];
+      DocumentSaveOptions.newFileNames = [ fileName ];
       let documentPicker = new picker.DocumentViewPicker();
       documentPicker.save( DocumentSaveOptions ).then( ( DocumentSaveResult ) => {
         Logger.info( TAG , 'DocumentViewPicker.save successfully, DocumentSaveResult uri: ' + JSON.stringify( DocumentSaveResult ) );
@@ -323,7 +323,7 @@ struct FilePage {
         .height( '48vp' )
         .margin( { left : '16vp' , right : '16vp' } )
         .onClick( () => {
-          this.callFilePickerSaveFile();
+          this.callFilePickerSaveFile( this.myFileName );
         } )
 
       MenuItem( this.filePageDivider )

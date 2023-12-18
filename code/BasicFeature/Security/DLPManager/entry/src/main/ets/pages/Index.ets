@@ -40,6 +40,7 @@ class ListFileOption {
   public listNum : number = 0;
   public filter : Filter = {};
 }
+
 let storage = LocalStorage.getShared();
 const RECENT_MAX = 10; // 最近打开最大文件数
 const TAG = '[dlpHomePage]'
@@ -203,38 +204,27 @@ struct Index {
    */
   async onEncrypt() {
     Logger.info( TAG + 'new file and encrypt' );
-    let context = getContext( this ) as common.UIAbilityContext;
     try {
+
+      // Logger.info( TAG , '沙箱路径为: ' + this.pathDir )
+      // let uri = "file://docs/storage/Users/currentUser/Desktop/a.txt"
+      // let path ="/data/storage/el2/base/haps/entry/files/a.txt"
+      // let file = fs.openSync( path , fs.OpenMode.READ_ONLY | fs.OpenMode.CREATE );
+      // Logger.info( TAG , "file fd: " + file.fd );
+
+      let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext
       let want : Want = {
-        "bundleName" : "kaihong.sample.dlpmanager" ,
-        "abilityName" : "EntryAbility" ,
-        "type" : "text/plain" ,
-        "action" : "ohos.want.action.editData" ,
-        "entities" : [] ,
-        "uri" : "file://docs/storage/Users/currentUser/Download/a.txt" ,
+        "uri" : "file://docs/storage/Users/currentUser/Desktop/a.txt" ,
         "parameters" : {
-          "displayName" : 'a.txt' ,
-          "fileName" : {
-            "name" : 'a.txt'
-          } ,
+          "displayName" : "a.txt"
         }
-      }
-      Logger.info( TAG , "context:" + context + ";typeof:" + typeof ( context ) )
-      Logger.info( TAG , "want:" + want )
-      context.startAbility( want , ( err : BusinessError ) => {
-        if( err.code ) {
-          // 处理业务逻辑错误
-          Logger.error( TAG , `startAbility failed, code is ${ err.code }, message is ${ err.message }` );
-          return;
-        }
-        // 执行正常业务
-        Logger.info( TAG , 'startAbility succeed' );
-      } );
+      }; // 请求参数
+      dlpPermission.startDLPManagerForResult( context , want ).then( ( res : dlpPermission.DLPManagerResult ) => {
+        Logger.info( TAG , 'startDLPManagerForResult res.resultCode:' + res.resultCode );
+        Logger.info( TAG , 'startDLPManagerForResult res.want:' + JSON.stringify( res.want ) );
+      } ); // 打开DLP权限管理应用
     } catch( err ) {
-      // 处理入参错误异常
-      let code = (err as BusinessError).code;
-      let message = (err as BusinessError).message;
-      Logger.error( TAG , `startAbility failed, code is ${ code }, message is ${ message }` );
+      Logger.error( TAG , 'startDLPManagerForResult error:' + (err as BusinessError).code + (err as BusinessError).message ); // 失败报错
     }
   }
 
@@ -375,54 +365,63 @@ struct Index {
         List() {
           ForEach( this.fileInfoList , ( item : FileInfo , index : number ) => {
             ListItem() {
-              Row() {
-                Image( item.icon )
-                  .width( '30vp' )
-                  .height( '34vp' )
-                  .margin( { left : '20vp' , right : '18vp' , top : '12vp' , bottom : '8vp' } )
-                Column() {
-                  Text( item.name )
-                    .fontSize( '14vp' )
-                    .fontFamily( 'HarmonyHeiTi-Medium' )
-                    .fontColor( $r( 'app.color.font_color_182431' ) )
-                    .textAlign( TextAlign.Start )
-                    .fontWeight( 500 )
-                    .width( '135vp' )
-                    .height( '19vp' )
-                    .margin( { right : '157vp' , top : '7vp' , bottom : '4vp' } )
-                  Text( item.time )
-                    .fontSize( '12vp' )
-                    .fontFamily( 'HarmonyHeiTi-Medium' )
-                    .fontColor( $r( 'app.color.font_color_66182431' ) )
-                    .textAlign( TextAlign.Start )
-                    .fontWeight( 500 )
-                    .width( '149vp' )
-                    .height( '16vp' )
-                    .margin( { right : '143vp' , bottom : '8vp' } )
-                }
-                .id( 'file' + index )
-                .onClick( () => {
-                  let fd : number = fs.openSync( this.pathDir + '/' + item.name ).fd;
-                  Logger.info( TAG , "path:" + this.pathDir + '/' + item.name + ";fd:" + fd )
-                  let uri = fileuri.getUriFromPath( this.pathDir + '/' + item.name );
-                  Logger.info( TAG , "uri:" + uri )
-                  this.OpenDlpFile( uri , item.name , fd )
-                  let isDlpFile = this.isDlpFile( fd )
+              Column() {
+                Row() {
+                  Image( item.icon )
+                    .width( '30vp' )
+                    .height( '34vp' )
+                    .margin( { left : '20vp' , right : '18vp' , top : '12vp' , bottom : '8vp' } )
+                  Column() {
+                    Text( item.name )
+                      .fontSize( '14vp' )
+                      .fontFamily( 'HarmonyHeiTi-Medium' )
+                      .fontColor( $r( 'app.color.font_color_182431' ) )
+                      .textAlign( TextAlign.Start )
+                      .fontWeight( 500 )
+                      .width( '135vp' )
+                      .height( '19vp' )
+                      .margin( { right : '157vp' , top : '7vp' , bottom : '4vp' } )
+                    Text( item.time )
+                      .fontSize( '12vp' )
+                      .fontFamily( 'HarmonyHeiTi-Medium' )
+                      .fontColor( $r( 'app.color.font_color_66182431' ) )
+                      .textAlign( TextAlign.Start )
+                      .fontWeight( 500 )
+                      .width( '149vp' )
+                      .height( '16vp' )
+                      .margin( { right : '143vp' , bottom : '8vp' } )
+                  }
+                  .id( 'file' + index )
+                  .onClick( () => {
+                    let fd : number = fs.openSync( this.pathDir + '/' + item.name ).fd;
+                    Logger.info( TAG , "path:" + this.pathDir + '/' + item.name + ";fd:" + fd )
+                    let uri = fileuri.getUriFromPath( this.pathDir + '/' + item.name );
+                    Logger.info( TAG , "uri:" + uri )
+                    this.OpenDlpFile( uri , item.name , fd )
+                    let isDlpFile = this.isDlpFile( fd )
 
-                  router.pushUrl( {
-                    url : 'pages/filePage' ,
-                    params : {
-                      fileName : item.name ,
-                      myUri : this.filePathList[ index ] ,
-                      isDlpFile : isDlpFile
-                    }
-                  } , router.RouterMode.Standard ).then( () => {
-                    Logger.info( TAG , 'Succeeded in jumping to the second page.' )
-                  } ).catch( ( err : BusinessError ) => {
-                    Logger.error( TAG , `Failed to jump to the second page.Code is ${ err.code }, message is ${ err.message }` )
+                    router.pushUrl( {
+                      url : 'pages/filePage' ,
+                      params : {
+                        fileName : item.name ,
+                        myUri : this.filePathList[ index ] ,
+                        isDlpFile : isDlpFile
+                      }
+                    } , router.RouterMode.Standard ).then( () => {
+                      Logger.info( TAG , 'Succeeded in jumping to the second page.' )
+                    } ).catch( ( err : BusinessError ) => {
+                      Logger.error( TAG , `Failed to jump to the second page.Code is ${ err.code }, message is ${ err.message }` )
+                    } )
                   } )
-                } )
-              }.width( '100%' )
+                }.width( '100%' )
+
+                Divider()
+                  .width( '448vp' )
+                  .height( '0.5vp' )
+                  .opacity( 0.05 )
+                  .backgroundColor( $r( 'app.color.divider_color_182431' ) )
+                  .margin( { left : '16vp' , right : '16vp' } )
+              }.width( '100%' ).height( '54vp' )
             }.width( '100%' ).height( '54vp' )
           } , ( item : FileInfo ) => item.uuid )
         }
@@ -441,6 +440,7 @@ struct Index {
           .id( 'add' )
           .onClick( () => {
             this.callFilePickerSelectFile();
+            // this.onEncrypt()
           } )
       }
       .height( '100%' )
