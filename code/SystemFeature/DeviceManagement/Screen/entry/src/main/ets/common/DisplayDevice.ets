@@ -87,7 +87,7 @@ export struct DisplayDevice {
           })
 
 
-        ForEach(this.devices, (item: number[], index) => {
+        ForEach(this.devices, (item: number, index) => {
           Rect({ width: '40%', height: '23%' })
             .margin({ top: '56px', left: '5%', right: '1%' })
             .fill('#007dff')
