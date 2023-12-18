@@ -1,0 +1,8 @@
+{
+  "code_SystemFeature_DataManagement_CrossAppDataShare_dataUser_signed.hap": ["code_SystemFeature_DataManagement_CrossAppDataShare_dataProvider_signed.hap"],
+  "code_SystemFeature_ApplicationModels_StaticSubscriber_entry_signed.hap": ["code_SystemFeature_ApplicationModels_StaticSubscriber_publish_signed.hap"],
+  "code_BasicFeature_ApplicationModels_CustomShare_entry_signed.hap": ["code_Solutions_IM_Chat_entry_signed.hap"],
+  "code_Project_ApplicationHap_MultiHap_entry_signed.hap": ["code_Project_ApplicationHap_MultiHap_audioFeature_signed.hap","code_Project_ApplicationHap_MultiHap_videoFeature_signed.hap"],
+  "code_BasicFeature_Media_AVSession_MediaController_entry_signed.hap": ["code_BasicFeature_Media_AVSession_MediaProvider_entry_signed.hap"],
+  "code_BasicFeature_Security_PaySecurely_entry_signed.hap":["code_BasicFeature_Security_PaySecurely_paySDK_signed.hap"]
+}
