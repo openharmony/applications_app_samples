@@ -27,7 +27,7 @@ entry/src/main/ets/
 |   |---selectMediaType.ets        // 主页面，提供媒体类型下拉列表，显示选中的媒体类型的所有文件
 ```
 
-### 具体实现：
+### 具体实现
 
 * 为本示例新增文件夹和媒体文件功能封装在createPrecastFile，源码参考：[index.ets](entry/src/main/ets/pages/Index.ets)。
     * 使用fs.accessSync来检查文件或文件夹是否已存在;
@@ -76,6 +76,7 @@ entry/src/main/ets/
 2. 本示例为Stage模型，仅支持API11版本SDK，SDK版本号(API Version 11 Release),镜像版本号(4.0Release)。
 3. 本示例涉及使用系统接口：@ohos.file.fs中的openSync接口，需要手动替换Full SDK才能编译通过，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/) 。
 4. 本示例需要使用DevEco Studio 版本号(4.0Release)及以上版本才可编译运行。
+5. 本示例涉及调用系统权限的接口，需要配置允许权限列表，可以参考[特殊权限配置方法](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/) ，在配置文件中的“allowed-acls”字段中增加"ohos.permission.READ_MEDIA", "ohos.permission.WRITE_MEDIA", "ohos.permission.FILE_ACCESS_MANAGER", "ohos.permission.STORAGE_MANAGER"四个权限。
 ### 下载
 
 如需单独下载本工程，执行如下命令：
