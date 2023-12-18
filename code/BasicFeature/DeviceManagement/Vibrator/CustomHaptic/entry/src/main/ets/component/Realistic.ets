@@ -21,12 +21,14 @@ export default struct RealisticLayout {
   @State realisticList: ImageDataSource = new ImageDataSource(getImageRealisticList())
   @State status: boolean[] = [false, false, false, false, false, false, false, false, false, false, false, false, false]
   @Link vibrationIntensity: string
+  @Link php: string
 
   build() {
     CommonLayout({
       dataList: $realisticList,
       status: $status,
-      vibrationIntensity: $vibrationIntensity
+      vibrationIntensity: $vibrationIntensity,
+      php: $php
     })
   }
 }

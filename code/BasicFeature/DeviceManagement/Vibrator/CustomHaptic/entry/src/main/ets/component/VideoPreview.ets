@@ -18,6 +18,7 @@ import router from '@ohos.router'
 @Component
 export default struct VideoListLayout {
   @State playDis: boolean = false
+  @Link php: string
 
   build() {
     Scroll() {
@@ -44,7 +45,8 @@ export default struct VideoListLayout {
               videoName: 'HapticVideo',
               videoSrc: $r("app.media.HapticVideo"),
               previewUri: $r("app.media.HapticVideoPreview"),
-              pages: "Index"
+              pages: "Index",
+              php: this.php
             }
           })
         })

@@ -376,6 +376,26 @@
       "value": "版本:               "
     },
     {
+      "name": "my_php",
+      "value": "编程语言:        "
+    },
+    {
+      "name": "my_php_select",
+      "value": "选择编程语言:"
+    },
+    {
+      "name": "my_linguistic_type",
+      "value": "语言类型"
+    },
+    {
+      "name": "my_ets",
+      "value": "ets"
+    },
+    {
+      "name": "my_capi",
+      "value": "capi"
+    },
+    {
       "name": "my_help",
       "value": "帮助与支持:    "
     },

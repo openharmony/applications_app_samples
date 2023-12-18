@@ -1,0 +1,104 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "empty",
+      "value": "暂无内容"
+    },
+    {
+      "name": "book",
+      "value": "书籍页面"
+    },
+    {
+      "name": "weather",
+      "value": "天气页面"
+    },
+    {
+      "name": "music",
+      "value": "音乐页面"
+    },
+    {
+      "name": "static",
+      "value": "静态卡片"
+    },
+    {
+      "name": "dynamic",
+      "value": "动态卡片"
+    },
+    {
+      "name": "lock",
+      "value": "锁屏卡片"
+    },
+    {
+      "name": "ark_text",
+      "value": "ArkTS卡片能力增强"
+    },
+    {
+      "name": "unlock_text",
+      "value": "请点击解锁"
+    },
+    {
+      "name": "unlock_button",
+      "value": "点击解锁"
+    },
+    {
+      "name": "FeatureAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "FeatureAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "EntryFormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "EntryFormAbility_label",
+      "value": "form_label"
+    },
+    {
+      "name": "thirdability_desc",
+      "value": "description"
+    },
+    {
+      "name": "thirdability_label",
+      "value": "label"
+    },
+    {
+      "name": "bookAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "bookAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "LockScreenAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "LockScreenAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "label"
+    }
+  ]
+}

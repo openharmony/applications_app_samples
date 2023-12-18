@@ -1,0 +1,40 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "userPassWord_title",
+      "value": "#000000"
+    },
+    {
+      "name": "user",
+      "value": "#182431"
+    },
+    {
+      "name": "controlBackColor",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "pageBackColor",
+      "value": "#f1f3f5"
+    },
+    {
+      "name": "cancelBackColor",
+      "value": "#1824310c"
+    },
+    {
+      "name": "cancelBtnColor",
+      "value": "#007DFF"
+    },
+    {
+      "name": "enableColor",
+      "value": "#bfdbf9"
+    },
+    {
+      "name": "NoAccountColor",
+      "value": "#6f7780"
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "系统的基础新特性示例"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "首页Ability"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "基础能力增强使用SystemApi"
+    },
+    {
+      "name": "UIExtAbility_desc",
+      "value": "UIExtensionAbility用于startAbilityByType和startAbilityAsCaller"
+    },
+    {
+      "name": "UIExtAbility_label",
+      "value": "UIExtensionAbility"
+    },
+    {
+      "name": "NewAbility_desc",
+      "value": "Ability用于被启动"
+    },
+    {
+      "name": "NewAbility_label",
+      "value": "NewAbility"
+    },
+    {
+      "name": "SendSyncUIExtAbility_label",
+      "value": "同步发送数据页面"
+    },
+    {
+      "name": "SendSyncUIExtAbility_desc",
+      "value": "SendSync UIExtensionAbility used by sendSync"
+    },
+    {
+      "name": "StartAbilityByType",
+      "value": "启动AbilityByType"
+    },
+    {
+      "name": "StartAbilityAsCaller",
+      "value": "启动AbilityAsCaller"
+    },
+    {
+      "name": "extStartAbilityByType",
+      "value": "启动AbilityByType"
+    },
+    {
+      "name": "extStartAbilityAsCaller",
+      "value": "启动AbilityAsCaller"
+    },
+    {
+      "name": "StartAbilityByCall",
+      "value": "启动AbilityByCall"
+    },
+    {
+      "name": "Query_App_Status",
+      "value": "查询应用状态"
+    },
+    {
+      "name": "Create_Modal_UIExtension",
+      "value": "创建模应用"
+    },
+    {
+      "name": "system_BasicCharacter_Demo",
+      "value": "基础能力增强使用SystemApi"
+    },
+    {
+      "name": "toggle",
+      "value": "toggle"
+    },
+    {
+      "name": "arrow",
+      "value": "arrow"
+    },
+    {
+      "name": "isNotRunning",
+      "value": "当前应用未运行"
+    },
+    {
+      "name": "isRunning",
+      "value": "当前应用运行中"
+    },
+    {
+      "name": "sendSyncData",
+      "value": "同步发送数据"
+    },
+    {
+      "name": "empty",
+      "value": "暂无内容"
+    },
+    {
+      "name": "NewUIExtAbility_desc",
+      "value": "NewUIExtAbility_desc"
+    },
+    {
+      "name": "NewUIExtAbility_label",
+      "value": "NewUIExtAbility"
+    },
+    {
+      "name": "switchDarkSuccess",
+      "value": "切换深色模式成功"
+    },
+    {
+      "name": "switchLightSuccess",
+      "value": "切换浅色模式成功"
+    },
+    {
+      "name": "startUIExtensionAbility",
+      "value": "启动UIExtensionAbility"
+    }
+  ]
+}

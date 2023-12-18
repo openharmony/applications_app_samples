@@ -169,7 +169,7 @@ struct Index {
           })
           .backgroundColor(Color.Blue)
           .width('100%')
-          .height('100%')
+          .height('70%')
 
         // REFERENCE LINE
         dividerPage({ referenceLineBol: this.referenceLineBol });
@@ -183,6 +183,7 @@ struct Index {
         .backgroundColor('rgba(255,255,255,0.20)')
         .borderRadius('40px')
         .position({ x: '80%', y: '3%' })
+        .id('CameraSettings')
         .onClick(() => {
           // Open the settings pop-up box
           this.settingDialogController.open()
@@ -219,5 +220,6 @@ struct Index {
     }
     .height('100%')
     .width('100%')
+    .backgroundColor(Color.Black)
   }
 }

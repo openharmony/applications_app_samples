@@ -34,60 +34,43 @@ struct CardCalc {
       .height('20%')
 
       Row() {
-        ForEach(calcButton1(), (item: ImageList, index: number) => {
-          Button({ type: ButtonType.Normal }) {
-            Image(item.image)
-              .height('100%')
-              .aspectRatio(1)
-              .objectFit(ImageFit.Contain)
+        ForEach(calcButton1(), (item: ImageList, index: number | undefined) => {
+          if (index !== undefined) {
+            Button({ type: ButtonType.Normal }) {
+              Image(item.image)
+                .height('100%')
+                .aspectRatio(1)
+                .objectFit(ImageFit.Contain)
+            }
+            .width('25%')
+            .borderRadius(20)
+            .backgroundColor(index < 3 ? '#33007DFF' : '#F0F0F0')
+            .onClick(() => {
+              this.onInputValue(item.value);
+            })
           }
-          .width('25%')
-          .borderRadius(20)
-          .backgroundColor(index < 3 ? '#33007DFF' : '#F0F0F0')
-          .onClick(() => {
-            this.onInputValue(item.value);
-          })
         })
       }
       .height('16%')
       .width('100%')
 
       Row() {
-        ForEach(calcButton2(), (item: ImageList, index: number) => {
-          Button({ type: ButtonType.Normal }) {
-            Image(item.image)
-              .height('100%')
-              .aspectRatio(item.value === '0' ? 2.5 : 1)
-              .objectFit(ImageFit.Contain)
+        ForEach(calcButton2(), (item: ImageList, index: number | undefined) => {
+          if (index !== undefined) {
+            Button({ type: ButtonType.Normal }) {
+              Image(item.image)
+                .height('100%')
+                .aspectRatio(item.value === '0' ? 2.5 : 1)
+                .objectFit(ImageFit.Contain)
+            }
+            .width('25%')
+            .height('100%')
+            .borderRadius(20)
+            .backgroundColor(index < 3 ? '#33007DFF' : '#F0F0F0')
+            .onClick(() => {
+              this.onInputValue(item.value);
+            })
           }
-          .width('25%')
-          .height('100%')
-          .borderRadius(20)
-          .backgroundColor(index < 3 ? '#33007DFF' : '#F0F0F0')
-          .onClick(() => {
-            this.onInputValue(item.value);
-          })
-        })
-      }
-      .padding(1)
-      .width('100%')
-      .height('16%')
-
-      Row() {
-        ForEach(calcButton3(), (item: ImageList, index: number) => {
-          Button({ type: ButtonType.Normal }) {
-            Image(item.image)
-              .height('100%')
-              .aspectRatio(item.value === '0' ? 2.5 : 1)
-              .objectFit(ImageFit.Contain)
-          }
-          .width('25%')
-          .height('100%')
-          .borderRadius(20)
-          .backgroundColor(index < 3 ? '#33007DFF' : '#F0F0F0')
-          .onClick(() => {
-            this.onInputValue(item.value);
-          })
         })
       }
       .padding(1)
@@ -95,20 +78,22 @@ struct CardCalc {
       .height('16%')
 
       Row() {
-        ForEach(calcButton4(), (item: ImageList, index: number) => {
-          Button({ type: ButtonType.Normal }) {
-            Image(item.image)
-              .height('100%')
-              .aspectRatio(1)
-              .objectFit(ImageFit.Contain)
+        ForEach(calcButton3(), (item: ImageList, index: number | undefined) => {
+          if (index !== undefined) {
+            Button({ type: ButtonType.Normal }) {
+              Image(item.image)
+                .height('100%')
+                .aspectRatio(item.value === '0' ? 2.5 : 1)
+                .objectFit(ImageFit.Contain)
+            }
+            .width('25%')
+            .height('100%')
+            .borderRadius(20)
+            .backgroundColor(index < 3 ? '#33007DFF' : '#F0F0F0')
+            .onClick(() => {
+              this.onInputValue(item.value);
+            })
           }
-          .width('25%')
-          .height('100%')
-          .borderRadius(20)
-          .backgroundColor(index < 3 ? '#33007DFF' : '#F0F0F0')
-          .onClick(() => {
-            this.onInputValue(item.value);
-          })
         })
       }
       .padding(1)
@@ -116,21 +101,46 @@ struct CardCalc {
       .height('16%')
 
       Row() {
-        ForEach(calcButton5(), (item: ImageList, index: number) => {
-          Button({ type: ButtonType.Normal }) {
-            Image(item.image)
-              .height('100%')
-              .aspectRatio(1)
-              .objectFit(ImageFit.Contain)
+        ForEach(calcButton4(), (item: ImageList, index: number | undefined) => {
+          if (index !== undefined) {
+            Button({ type: ButtonType.Normal }) {
+              Image(item.image)
+                .height('100%')
+                .aspectRatio(1)
+                .objectFit(ImageFit.Contain)
+            }
+            .width('25%')
+            .height('100%')
+            .borderRadius(20)
+            .backgroundColor(index < 3 ? '#33007DFF' : '#F0F0F0')
+            .onClick(() => {
+              this.onInputValue(item.value);
+            })
           }
-          .width('100%')
-          .height('100%')
-          .borderRadius(20)
-          .backgroundColor(index < 3 ? '#33007DFF' : '#F0F0F0')
-          .align(Alignment.Center)
-          .onClick(() => {
-            this.onInputValue(item.value);
-          })
+        })
+      }
+      .padding(1)
+      .width('100%')
+      .height('16%')
+
+      Row() {
+        ForEach(calcButton5(), (item: ImageList, index: number | undefined) => {
+          if (index !== undefined) {
+            Button({ type: ButtonType.Normal }) {
+              Image(item.image)
+                .height('100%')
+                .aspectRatio(1)
+                .objectFit(ImageFit.Contain)
+            }
+            .width('100%')
+            .height('100%')
+            .borderRadius(20)
+            .backgroundColor(index < 3 ? '#33007DFF' : '#F0F0F0')
+            .align(Alignment.Center)
+            .onClick(() => {
+              this.onInputValue(item.value);
+            })
+          }
         })
       }
       .padding(1)
@@ -307,7 +317,7 @@ function toSuffixExpression(expression: string[]) {
     if (element === ')') {
       if (operatorStack.length) {
         let operator: string | undefined = operatorStack.pop();
-        while (operator !== '(') {
+        while (operator !== '(' && operator !== undefined) {
           suffixExpression.push(operator);
           operator = operatorStack.pop();
         }
@@ -319,9 +329,10 @@ function toSuffixExpression(expression: string[]) {
         operatorStack.push(element);
       } else {
         topOperator = operatorStack[operatorStack.length - 1];
-        if (!isGrouping(topOperator) && !isPrioritized(element, topOperator)) {
+        let pop: string | undefined = operatorStack.pop()
+        if (!isGrouping(topOperator) && !isPrioritized(element, topOperator) && pop !== undefined) {
           while (operatorStack.length) {
-            suffixExpression.push(operatorStack.pop());
+            suffixExpression.push(pop);
           }
         }
         operatorStack.push(element);
@@ -331,7 +342,10 @@ function toSuffixExpression(expression: string[]) {
     suffixExpression.push(element);
   }
   while (operatorStack.length) {
-    suffixExpression.push(operatorStack.pop());
+    let pop: string | undefined = operatorStack.pop();
+    if (pop !== undefined) {
+      suffixExpression.push(pop);
+    }
   }
   return suffixExpression;
 }
@@ -340,16 +354,18 @@ function calcSuffixExpression(expression: string[]) {
   const numberStack: string[] = [];
   while (expression.length) {
     let element: string | undefined = expression.shift();
-    if (!isOperator(element as string)) {
-      numberStack.push(element);
-    } else {
-      const firstStackElement: string | undefined = numberStack.pop();
-      const secondStackElement: string | undefined = numberStack.pop();
-      const result: string = OPERATORHANDLERS[element as string](secondStackElement, firstStackElement);
-      if (result.length > 15) {
-        numberStack.push((Number.parseFloat(result).toExponential()) as string);
+    if (element !== undefined) {
+      if (!isOperator(element as string)) {
+        numberStack.push(element);
       } else {
-        numberStack.push(result);
+        const firstStackElement: string | undefined = numberStack.pop();
+        const secondStackElement: string | undefined = numberStack.pop();
+        const result: string = OPERATORHANDLERS[element as string](secondStackElement, firstStackElement);
+        if (result.length > 15) {
+          numberStack.push((Number.parseFloat(result).toExponential()) as string);
+        } else {
+          numberStack.push(result);
+        }
       }
     }
   }

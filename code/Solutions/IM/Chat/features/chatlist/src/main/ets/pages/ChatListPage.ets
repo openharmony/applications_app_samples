@@ -21,6 +21,7 @@ import { ChatListData } from '../viewmodel/ChatListDataSource';
 import { ChatView, ReusableChatView } from '../view/ChatView';
 import { OptLayoutChatView, ReusableOptLayoutChatView } from '../view/OptLayoutChatView';
 import Logger from '../utils/Logger';
+import ChatListJsonData from '../utils/ChatListJsonData';
 
 const TAG: string = 'ChatListDisplayView';
 // 搜索框中搜索栏的ID
@@ -114,7 +115,7 @@ export struct ChatListDisplayView {
           .placeholderColor($r('app.string.search_inline_border_color'))
           .backgroundColor(Color.White)
           .height($r('app.integer.search_inline_height'))
-          .margin({left: $r('app.integer.search_inline_margin'), right: $r('app.integer.search_inline_margin')})
+          .margin({ left: $r('app.integer.search_inline_margin'), right: $r('app.integer.search_inline_margin') })
           .textFont({ size: $r('app.integer.search_font_size') })
           .border({
             width: $r('app.integer.search_inline_border_width'),
@@ -183,8 +184,11 @@ export struct ChatListDisplayView {
     Logger.info(TAG, "ChatListPage aboutToAppear");
     hiTraceMeter.startTrace(ABOUT_TO_APPEAR_TRACE, ABOUT_TO_APPEAR_TRACE_ID);
     this.controller.stopEditing();
-    await makeDataLocal(this.chatListLazy);
-    await makeDataList(this.chatListArray);
+    // 循环获取两个json文件，如若单个文件可能导致过大无法读取
+    for (let i = 0; i < ChatListJsonData.CHAT_LIST_JSON_DATA.length; i++) {
+      await makeDataLocal(this.chatListLazy, ChatListJsonData.CHAT_LIST_JSON_DATA[i]);
+      await makeDataList(this.chatListArray, ChatListJsonData.CHAT_LIST_JSON_DATA[i]);
+    }
     hiTraceMeter.finishTrace(ABOUT_TO_APPEAR_TRACE, ABOUT_TO_APPEAR_TRACE_ID);
   }
 }

@@ -14,9 +14,11 @@
  */
 
 import common from '@ohos.app.ability.common';
+import fs from '@ohos.file.fs';
 import promptAction from '@ohos.promptAction';
 import { AddPictures } from '../components/AddPictures';
-import { BackgroundTaskState, requestUpload, TOAST_BOTTOM } from '@ohos/uploaddownload';
+import { ConfigFileChunkDialog } from '../components/ConfigFileChunkDialog';
+import { BackgroundTaskState, requestUpload, TOAST_BOTTOM, NO_IMAGE_SELECTED } from '@ohos/uploaddownload';
 
 const TIME_MAX: number = 5;
 
@@ -29,6 +31,18 @@ struct Upload {
   @Provide imageList: Array<string> = [];
   @State progress: number = 0;
   @State countdown: number = 0;
+  @Provide @Watch('onChunkImgIndexChange') chunkImgIndex: number = NO_IMAGE_SELECTED;
+  @Provide chunkInputEnable: boolean = false;
+  @Provide chunkParaBegins: number = 0;
+  @Provide chunkParaEnds: number = -1;
+  chunkDialog: CustomDialogController = new CustomDialogController({
+    builder: ConfigFileChunkDialog({
+      upload: this.uploadFiles
+    }),
+    alignment: DialogAlignment.Bottom,
+    offset: { dx: 0, dy: -12 },
+    cancel: this.onChunkDiaglogCancel
+  });
 
   build() {
     Navigation() {
@@ -39,6 +53,7 @@ struct Upload {
       .width('100%')
       .layoutWeight(1)
       .align(Alignment.Top)
+      .margin({ bottom: 24 })
 
       Column() {
         Button() {
@@ -143,8 +158,38 @@ struct Upload {
     if (this.imageList.length == 0) {
       return;
     }
+
+    if (this.chunkInputEnable) { // 选中checkbox，从该文件分段上传
+      this.isBegin = true;
+      this.progress = 0;
+      let index = this.chunkImgIndex;
+      let fileUris = this.imageList.slice(index);
+      requestUpload.uploadFileChunk(fileUris, this.chunkParaBegins, this.chunkParaEnds, (progress: number, isSucceed: boolean) => {
+        this.progress = progress;
+        if (this.progress === 100 && isSucceed) {
+          this.isBegin = false;
+          this.imageList = this.imageList.slice(0, index);
+          promptAction.showToast({ message: $r('app.string.upload_success'), bottom: TOAST_BOTTOM });
+        }
+        if (this.progress === 100 && isSucceed === false) {
+          this.isBegin = false;
+          this.countdown = TIME_MAX;
+          let interval = setInterval(() => {
+            if (this.countdown > 0) {
+              this.countdown--;
+            } else {
+              clearInterval(interval);
+            }
+          }, 1000);
+          promptAction.showToast({ message: $r('app.string.upload_fail'), bottom: TOAST_BOTTOM });
+        }
+      });
+
+      return;
+    }
+
     if (this.isBackground) {
-      AppStorage.SetOrCreate('backTaskState', BackgroundTaskState.RUNNING)
+      AppStorage.setOrCreate('backTaskState', BackgroundTaskState.RUNNING);
       requestUpload.uploadFilesBackground(this.imageList);
       promptAction.showToast({ message: $r('app.string.background_task_start'), bottom: TOAST_BOTTOM });
     } else {
@@ -176,5 +221,19 @@ struct Upload {
   getResourceString(resource: Resource) {
     let context = getContext(this) as common.UIAbilityContext;
     return context.resourceManager.getStringSync(resource.id);
+  }
+
+  onChunkImgIndexChange(propName: string) {
+    if (this.chunkImgIndex != NO_IMAGE_SELECTED) {
+      this.chunkDialog.open();
+    }
+
+    this.chunkInputEnable = false;
+    this.chunkParaBegins = 0;
+    this.chunkParaEnds = -1;
+  }
+
+  onChunkDiaglogCancel() {
+    this.chunkImgIndex = NO_IMAGE_SELECTED;
   }
 }

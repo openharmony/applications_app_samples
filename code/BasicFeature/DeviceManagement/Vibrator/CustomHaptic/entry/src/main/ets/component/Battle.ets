@@ -21,12 +21,14 @@ export default struct BattleLayout {
   @State battleList: ImageDataSource = new ImageDataSource(getImageBattleList())
   @State status: boolean[] = [false, false, false, false, false, false]
   @Link vibrationIntensity: string
+  @Link php: string
 
   build() {
     CommonLayout({
       dataList: $battleList,
       status: $status,
-      vibrationIntensity: $vibrationIntensity
+      vibrationIntensity: $vibrationIntensity,
+      php: $php
     })
   }
 }

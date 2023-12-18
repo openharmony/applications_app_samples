@@ -20,6 +20,7 @@ import PageConstants from '@ohos/chatlist/src/main/ets/utils/PageConstants';
 import { getChatModelObjFromJSON } from '@ohos/chatlist/src/main/ets/utils/DataFactory';
 import Logger from '@ohos/chatlist/src/main/ets/utils/Logger';
 import hiTraceMeter from '@ohos.hiTraceMeter';
+import ChatListJsonData from '@ohos/chatlist/src/main/ets/utils/ChatListJsonData';
 
 const TAG: string = 'entry_FriendsPage';
 const LIST_SPACE: number = 0; // 列表默认间隔
@@ -150,9 +151,12 @@ export struct FriendsPage {
   async makeDataLocal(): Promise<void> {
     Logger.info(TAG, 'makeDataLocal');
     hiTraceMeter.startTrace(MAKE_DATA_LOCAL_TRACE, MAKE_DATA_LOCAL_TRACE_ID);
-    let chatModelMockData = await getChatModelObjFromJSON();
-    for (let i = 0; i < Constants.DATA_MOCK_COUNT; i++) {
-      this.friendsListData.pushData(chatModelMockData[i].user);
+    // 循环获取两个json文件，如若单个文件可能导致过大无法读取
+    for (let i = 0; i < ChatListJsonData.CHAT_LIST_JSON_DATA.length; i++) {
+      let chatModelMockData = await getChatModelObjFromJSON(ChatListJsonData.CHAT_LIST_JSON_DATA[i]);
+      for (let j = 0; j < Constants.DATA_MOCK_COUNT; j++) {
+        this.friendsListData.pushData(chatModelMockData[j].user);
+      }
     }
     hiTraceMeter.finishTrace(MAKE_DATA_LOCAL_TRACE, MAKE_DATA_LOCAL_TRACE_ID);
   }

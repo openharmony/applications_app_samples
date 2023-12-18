@@ -1,0 +1,120 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "Basic capabilities are enhanced"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "Home Ability"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Basic capabilities are enhanced"
+    },
+    {
+      "name": "NewAbility_desc",
+      "value": "Ability used by start"
+    },
+    {
+      "name": "NewAbility_label",
+      "value": "NewAbility"
+    },
+    {
+      "name": "Set_Chinese_language",
+      "value": "Set Chinese language"
+    },
+    {
+      "name": "Set_English_Language",
+      "value": "Set English Language"
+    },
+    {
+      "name": "Set_Dark_Mode",
+      "value": "Set Dark Mode"
+    },
+    {
+      "name": "Set_Light_Mode",
+      "value": "Set Light Mode"
+    },
+    {
+      "name": "Implicit_Launch_not_Popup",
+      "value": "Implicit Launch not Popup"
+    },
+    {
+      "name": "Implicit_Launch_Popup",
+      "value": "Implicit Launch Popup"
+    },
+    {
+      "name": "CreateStorageData",
+      "value": "Create Storage Data"
+    },
+    {
+      "name": "CheckStorageData",
+      "value": "Check Storage Data"
+    },
+    {
+      "name": "ClearStorageData",
+      "value": "Clear Storage Data"
+    },
+    {
+      "name": "system_BasicCharacter_Demo",
+      "value": "Basic capabilities are enhanced"
+    },
+    {
+      "name": "toggle",
+      "value": "toggle"
+    },
+    {
+      "name": "arrow",
+      "value": "arrow"
+    },
+    {
+      "name": "create_File_Success",
+      "value": "createFileSuccess"
+    },
+    {
+      "name": "search_File_Success",
+      "value": "searchFileSuccess"
+    },
+    {
+      "name": "search_File_Failed",
+      "value": "searchFileFailed"
+    },
+    {
+      "name": "clean_Data_Success",
+      "value": "cleanDataSuccess"
+    },
+    {
+      "name": "clean_Data_Failed",
+      "value": "cleanDataFailed"
+    },
+    {
+      "name": "start_animation",
+      "value": "start animation"
+    },
+    {
+      "name": "setStartOptionsPage",
+      "value": "Set StartOptions StartAbility"
+    },
+    {
+      "name": "empty",
+      "value": "empty"
+    },
+    {
+      "name": "switchDarkSuccess",
+      "value": "switch DarkMode Success"
+    },
+    {
+      "name": "switchLightSuccess",
+      "value": "switch LightMode Success"
+    },
+    {
+      "name": "open",
+      "value": "open"
+    },
+    {
+      "name": "close",
+      "value": "close"
+    }
+  ]
+}

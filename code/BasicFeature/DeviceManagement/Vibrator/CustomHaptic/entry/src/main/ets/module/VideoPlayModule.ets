@@ -26,6 +26,7 @@ struct VideoPlayModule {
   @State previewUri: Resource = (router.getParams() as Record<string, Resource>)['previewUri']
   private vibrateFileName: string = (router.getParams() as Record<string, string>)['vibrateFileName']
   @State portrait: boolean = true
+  private php: string = (router.getParams() as Record<string, string>)['php']
   videoController: VideoController = new VideoController()
 
   build() {
@@ -42,7 +43,7 @@ struct VideoPlayModule {
         .onStart(() => {
           changeOrientation(false)
           hideTitleBar()
-          playVibrateCustom(this.vibrateFileName)
+          playVibrateCustom(this.vibrateFileName, this.php)
         })
         .onClick(() => {
           this.portrait = !this.portrait
