@@ -15,7 +15,7 @@
 
 import UIAbility from '@ohos.app.ability.UIAbility'
 import commonEvent from '@ohos.commonEvent'
-import notification from '@ohos.notificationManager'
+import notification from '@ohos.notification';
 import Logger from '../util/Logger'
 
 const TAG: string = '[SecondAbility]'
