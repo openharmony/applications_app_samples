@@ -1,0 +1,68 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "file_list",
+      "value": "文件列表"
+    },
+    {
+      "name": "date",
+      "value": "今天 9:00"
+    },
+    {
+      "name": "document_type",
+      "value": "工作"
+    },
+    {
+      "name": "encryption_reminder",
+      "value": "此文件已是加密文件，请选择未加密文件进行加密!"
+    },
+    {
+      "name": "encryption_protection",
+      "value": "加密保护"
+    },
+    {
+      "name": "authorization_description",
+      "value": "授权用户访问权限，同时限制其只读、编辑等权限"
+    },
+    {
+      "name": "user_access_rights",
+      "value": "用户访问权限:"
+    },
+    {
+      "name": "read_only",
+      "value": "只读"
+    },
+    {
+      "name": "edit_only",
+      "value": "编辑"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "confirm",
+      "value": "确定"
+    },
+    {
+      "name": "init_file_name",
+      "value": "xxx合同.txt"
+    },
+    {
+      "name": "authorization_reminder",
+      "value": "请选择权限"
+    }
+  ]
+}
