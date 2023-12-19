@@ -16,10 +16,13 @@
 import UIAbility from '@ohos.app.ability.UIAbility';
 import hilog from '@ohos.hilog';
 import window from '@ohos.window';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { GlobalContext } from '../common/Utils';
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want, launchParam) {
-    globalThis.context = this.context;
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    GlobalContext.getContext().setObject('context', this.context);
     hilog.info(0x0000, '[Sample_MediaProvider]', '%{public}s', 'Ability onCreate');
   }
 

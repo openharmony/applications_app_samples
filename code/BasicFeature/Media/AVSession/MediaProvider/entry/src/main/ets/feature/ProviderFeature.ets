@@ -20,23 +20,26 @@ import MediaData from '../common/MediaData';
 import resourceManager from '@ohos.resourceManager';
 import WantAgent from '@ohos.app.ability.wantAgent';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
+import { BusinessError } from '@ohos.base';
+
+interface Type {lyrics: boolean }
 
 export class ProviderFeature {
   private constants = new MediaData();
-  private session: avSession.AVSession = null;
-  private isPlayLink: SubscribedAbstractProperty<boolean> = null;
-  private currentPlayItemLink: SubscribedAbstractProperty<avSession.AVQueueItem> = null;
-  private currentAVMetadataLink: SubscribedAbstractProperty<avSession.AVMetadata> = null;
-  private currentImageLink: SubscribedAbstractProperty<PixelMap> = null;
-  private currentLyricLink: SubscribedAbstractProperty<string> = null;
+  private session: avSession.AVSession | null = null;
+  private isPlayLink: SubscribedAbstractProperty<boolean> | null = null;
+  private currentPlayItemLink: SubscribedAbstractProperty<avSession.AVQueueItem> | undefined = undefined;
+  private currentAVMetadataLink: SubscribedAbstractProperty<avSession.AVMetadata> | undefined = undefined;
+  private currentImageLink: SubscribedAbstractProperty<PixelMap> | undefined = undefined;
+  private currentLyricLink: SubscribedAbstractProperty<string> | null = null;
   private queueItems: Array<avSession.AVQueueItem> = [this.constants.queueItemFirst, this.constants.queueItemSecond, this.constants.queueItemThird];
   private lyrics: Array<string> = this.constants.lyricsForDemo;
   private currentLyricLine: number = 0;
   private isSendLyrics: boolean = false;
-  private pixelMap: PixelMap = null;
+  private pixelMap: PixelMap | null = null;
   private queueItemPixelMapArray: Array<PixelMap> = [];
   private MetadataPixelMapArray: Array<PixelMap> = [];
-  private resourceManager: resourceManager.ResourceManager = globalThis.context.resourceManager;
+  private resourceManager: resourceManager.ResourceManager = getContext(this).resourceManager;
   private avMetadataList: Array<avSession.AVMetadata> = [this.constants.avMetadataFirst, this.constants.avMetadataSecond, this.constants.avMetadataThird];
   private currentState: avSession.AVPlaybackState = {
     state: avSession.PlaybackState.PLAYBACK_STATE_PAUSE
@@ -45,12 +48,12 @@ export class ProviderFeature {
 
   constructor() {
     this.isPlayLink = AppStorage.SetAndLink('IsPlaying', false);
-    this.currentPlayItemLink = AppStorage.SetAndLink('CurrentPlayItem', undefined);
-    this.currentAVMetadataLink = AppStorage.SetAndLink('CurrentAVMetadata', undefined);
-    this.currentImageLink = AppStorage.SetAndLink('CurrentImage', undefined);
+    this.currentPlayItemLink = AppStorage.SetAndLink<avSession.AVQueueItem>('CurrentPlayItem', undefined);
+    this.currentAVMetadataLink = AppStorage.SetAndLink<avSession.AVMetadata>('CurrentAVMetadata', undefined);
+    this.currentImageLink = AppStorage.SetAndLink<PixelMap>('CurrentImage', undefined);
     this.currentLyricLink = AppStorage.SetAndLink('CurrentLyric', 'No lyric');
-    this.currentImageLink.set(null);
-    this.currentAVMetadataLink.set(this.avMetadataList[0]);
+    this.currentImageLink!.set(null);
+    this.currentAVMetadataLink!.set(this.avMetadataList[0]);
     this.Init();
 
   }
@@ -63,7 +66,7 @@ export class ProviderFeature {
   }
 
   async startContinuousTask(): Promise<void> {
-    let wantAgentInfo = {
+    let wantAgentInfo: WantAgent.WantAgentInfo = {
       wants: [
         {
           bundleName: "com.samples.mediaprovider",
@@ -75,7 +78,7 @@ export class ProviderFeature {
       wantAgentFlags: [WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
     };
     let want = await WantAgent.getWantAgent(wantAgentInfo);
-    await backgroundTaskManager.startBackgroundRunning(globalThis.context, backgroundTaskManager.BackgroundMode.AUDIO_PLAYBACK, want);
+    await backgroundTaskManager.startBackgroundRunning(getContext(this), backgroundTaskManager.BackgroundMode.AUDIO_PLAYBACK, want);
   }
 
   async CreateAVSession(): Promise<boolean> {
@@ -83,20 +86,20 @@ export class ProviderFeature {
 
     Log.info(`Start create AVSession`)
     let ret: boolean = true;
-    this.session = await avSession.createAVSession(globalThis.context, "AVSessionDemo", 'audio').catch((err) => {
+    this.session = await avSession.createAVSession(getContext(this), "AVSessionDemo", 'audio').catch((err: BusinessError) => {
       Log.error(`Failed to create AVSession, error info: ${JSON.stringify(err)}`);
       ret = false;
       return null;
     });
-    await this.session.activate().catch((err) => {
+    await this.session!.activate().catch((err: BusinessError) => {
       Log.error(`Failed to activate AVSession, error info: ${JSON.stringify(err)}`);
       ret = false;
     });
-    await this.session.setAVQueueItems(this.queueItems).catch((err) => {
+    await this.session!.setAVQueueItems(this.queueItems).catch((err: BusinessError) => {
       Log.error(`Failed to set AVQueue items, error info: ${JSON.stringify(err)}`);
       ret = false;
     });
-    await this.session.setAVQueueTitle('Queue title').catch((err) => {
+    await this.session!.setAVQueueTitle('Queue title').catch((err: BusinessError) => {
       Log.error(`Failed to set AVQueue title, error info: ${JSON.stringify(err)}`);
       ret = false;
     });
@@ -105,79 +108,79 @@ export class ProviderFeature {
 
   async InitFirstMusicState(): Promise<void> {
     let that = this;
-    that.isPlayLink.set(false);
+    that.isPlayLink!.set(false);
     that.currentLyricLine = 0;
-    that.currentImageLink.set(that.MetadataPixelMapArray[0]);
+    that.currentImageLink!.set(that.MetadataPixelMapArray[0]);
     that.currentState.state = avSession.PlaybackState.PLAYBACK_STATE_PAUSE;
-    await that.session.setAVPlaybackState(that.currentState);
+    await that.session!.setAVPlaybackState(that.currentState);
 
     await that.setAVMetadataToController(0);
-    that.currentPlayItemLink.set(that.queueItems[0]);
-    that.currentAVMetadataLink.set(that.avMetadataList[0]);
+    that.currentPlayItemLink!.set(that.queueItems![0]);
+    that.currentAVMetadataLink!.set(that.avMetadataList[0]);
   }
 
   async RegisterListener(): Promise<void> {
     let that = this;
-    this.session.on('play', async () => {
+    this.session!.on('play', async () => {
       console.info(`on play , do play task`);
       let that = this;
-      that.isPlayLink.set(true);
+      that.isPlayLink!.set(true);
       that.currentState.state = avSession.PlaybackState.PLAYBACK_STATE_PLAY;
-      await that.session.setAVPlaybackState(that.currentState);
+      await that.session!.setAVPlaybackState(that.currentState);
     });
-    this.session.on('pause', async () => {
+    this.session!.on('pause', async () => {
       console.info(`on pause , do pause task`);
-      that.isPlayLink.set(false);
+      that.isPlayLink!.set(false);
       that.currentState.state = avSession.PlaybackState.PLAYBACK_STATE_PAUSE;
-      await that.session.setAVPlaybackState(that.currentState);
+      await that.session!.setAVPlaybackState(that.currentState);
     });
-    this.session.on('stop', async () => {
+    this.session!.on('stop', async () => {
       console.info(`on stop , do stop task`);
-      that.isPlayLink.set(false);
+      that.isPlayLink!.set(false);
       that.currentState.state = avSession.PlaybackState.PLAYBACK_STATE_PAUSE;
-      await that.session.setAVPlaybackState(that.currentState);
+      await that.session!.setAVPlaybackState(that.currentState);
     });
-    this.session.on('playNext', async () => {
+    this.session!.on('playNext', async () => {
       console.info(`on playNext , do playNext task`);
-      let nextId: number = that.currentPlayItemLink.get().itemId + 1;
-      nextId = that.queueItems.length > nextId ? nextId : nextId - that.queueItems.length;
+      let nextId: number = that.currentPlayItemLink!.get().itemId + 1;
+      nextId = that.queueItems!.length > nextId ? nextId : nextId - that.queueItems!.length;
       await that.handleNewItem(nextId);
     });
-    this.session.on('playPrevious', async () => {
+    this.session!.on('playPrevious', async () => {
       console.info(`on playPrevious , do playPrevious task`);
-      let previousId: number = that.currentPlayItemLink.get().itemId - 1;
-      previousId = previousId < 0 ? previousId + that.queueItems.length : previousId;
+      let previousId: number = that.currentPlayItemLink!.get().itemId - 1;
+      previousId = previousId < 0 ? previousId + that.queueItems!.length : previousId;
       await that.handleNewItem(previousId);
     });
-    this.session.on('skipToQueueItem', async (itemId) => {
+    this.session!.on('skipToQueueItem', async (itemId) => {
       console.info(`on skipToQueueItem , do skip task`);
       await that.handleNewItem(itemId);
     });
-    this.session.on('commonCommand', (commandString, args) => {
+    this.session!.on('commonCommand', (commandString, args: object) => {
       console.info(`on commonCommand , command is ${commandString}, args are ${JSON.stringify(args)}`);
-      that.handleCommonCommand(commandString, args);
+      that.handleCommonCommand(commandString, args as Type);
     });
   }
 
   async play(): Promise<void> {
     console.info(`Start do play task`);
     let that = this;
-    that.isPlayLink.set(true);
+    that.isPlayLink!.set(true);
     that.currentState.state = avSession.PlaybackState.PLAYBACK_STATE_PLAY;
-    await that.session.setAVPlaybackState(that.currentState);
+    await that.session!.setAVPlaybackState(that.currentState);
   }
 
-  async setAVMetadataToController(itemId): Promise<void> {
+  async setAVMetadataToController(itemId: number): Promise<void> {
     let that = this;
     switch (itemId) {
       case 0:
-        await that.session.setAVMetadata(that.constantsForControl.avMetadataList[0]);
+        await that.session!.setAVMetadata(that.constantsForControl.avMetadataList[0]);
         break;
       case 1:
-        await that.session.setAVMetadata(that.constantsForControl.avMetadataList[1]);
+        await that.session!.setAVMetadata(that.constantsForControl.avMetadataList[1]);
         break;
       case 2:
-        await that.session.setAVMetadata(that.constantsForControl.avMetadataList[2]);
+        await that.session!.setAVMetadata(that.constantsForControl.avMetadataList[2]);
         break;
     }
   }
@@ -185,49 +188,49 @@ export class ProviderFeature {
   async pause(): Promise<void> {
     console.info(`on pause , do pause task`);
     let that = this;
-    that.isPlayLink.set(false);
+    that.isPlayLink!.set(false);
     that.currentState.state = avSession.PlaybackState.PLAYBACK_STATE_PAUSE;
-    await that.session.setAVPlaybackState(that.currentState);
+    await that.session!.setAVPlaybackState(that.currentState);
   }
 
   async previous(): Promise<void> {
     console.info(`on playPrevious , do playPrevious task`);
     let that = this;
-    let previousId: number = that.currentPlayItemLink.get().itemId - 1;
-    previousId = previousId < 0 ? previousId + that.queueItems.length : previousId;
+    let previousId: number = that.currentPlayItemLink!.get().itemId - 1;
+    previousId = previousId < 0 ? previousId + that.queueItems!.length : previousId;
     await that.handleNewItem(previousId);
   }
 
   async next(): Promise<void> {
     console.info(`on playNext , do playNext task`);
     let that = this;
-    let nextId: number = that.currentPlayItemLink.get().itemId + 1;
-    nextId = that.queueItems.length > nextId ? nextId : nextId - that.queueItems.length;
+    let nextId: number = that.currentPlayItemLink!.get().itemId + 1;
+    nextId = that.queueItems!.length > nextId ? nextId : nextId - that.queueItems!.length;
     await that.handleNewItem(nextId);
   }
 
-  async handleNewItem(itemId): Promise<void> {
+  async handleNewItem(itemId: number): Promise<void> {
     let that = this;
-    that.isPlayLink.set(true);
+    that.isPlayLink!.set(true);
     that.currentLyricLine = 0;
-    that.currentLyricLink.set(that.lyrics[that.currentLyricLine]);
-    that.currentImageLink.set(that.MetadataPixelMapArray[itemId]);
+    that.currentLyricLink!.set(that.lyrics[that.currentLyricLine]);
+    that.currentImageLink!.set(that.MetadataPixelMapArray[itemId]);
     that.currentState.state = avSession.PlaybackState.PLAYBACK_STATE_PLAY;
-    await that.session.setAVPlaybackState(that.currentState);
+    await that.session!.setAVPlaybackState(that.currentState);
     await that.setAVMetadataToController(itemId);
-    that.currentPlayItemLink.set(that.queueItems[itemId]);
-    that.currentAVMetadataLink.set(that.avMetadataList[that.currentPlayItemLink.get().itemId]);
+    that.currentPlayItemLink!.set(that.queueItems![itemId]);
+    that.currentAVMetadataLink!.set(that.avMetadataList[that.currentPlayItemLink!.get().itemId]);
   }
 
-  async handleCommonCommand(commandString, args): Promise<void> {
+  async handleCommonCommand(commandString: string, args: Type): Promise<void> {
     let that = this;
     switch (commandString) {
       case 'lyrics':
-        that.isSendLyrics = args.lyrics;
-        await that.session.setAVMetadata(that.constantsForControl.avMetadataList[that.currentPlayItemLink.get()
+        that.isSendLyrics = args!.lyrics;
+        await that.session!.setAVMetadata(that.constantsForControl.avMetadataList[that.currentPlayItemLink!.get()
           .itemId]);
-        await that.session.setExtras({ lyricsLineNumber: that.currentLyricLine });
-        await that.session.dispatchSessionEvent('lyrics', { lyrics: that.lyrics[that.currentLyricLine] });
+        await that.session!.setExtras({ lyricsLineNumber: that.currentLyricLine });
+        await that.session!.dispatchSessionEvent('lyrics', { lyrics: that.lyrics[that.currentLyricLine] });
         break;
       case 'updateQueueItems':
         that.updateQueueItems();
@@ -240,13 +243,13 @@ export class ProviderFeature {
 
   async handleLyrics(): Promise<void> {
     let that = this;
-    that.currentLyricLink.set(that.lyrics[that.currentLyricLine]);
-    setInterval(async function () {
-      if (that.isPlayLink.get()) {
+    that.currentLyricLink!.set(that.lyrics[that.currentLyricLine]);
+    setInterval(async () => {
+      if (that.isPlayLink!.get()) {
         Log.info('Switch lyrics line for every 10s.' + that.isSendLyrics);
         if (that.isSendLyrics) {
-          await that.session.setExtras({ lyricsLineNumber: that.currentLyricLine });
-          await that.session.dispatchSessionEvent('lyrics', { lyrics: that.lyrics[that.currentLyricLine] });
+          await that.session!.setExtras({ lyricsLineNumber: that.currentLyricLine });
+          await that.session!.dispatchSessionEvent('lyrics', { lyrics: that.lyrics[that.currentLyricLine] });
         }
         that.currentLyricLine++;
         if (that.currentLyricLine > 20) {
@@ -254,13 +257,13 @@ export class ProviderFeature {
           that.currentLyricLine = 0;
         }
       }
-      that.currentLyricLink.set(that.lyrics[that.currentLyricLine]);
+      that.currentLyricLink!.set(that.lyrics[that.currentLyricLine]);
     }, 2000);
   }
 
   async updateQueueItems(): Promise<void> {
     let that = this;
-    await that.session.setAVQueueItems(that.queueItems).catch((err) => {
+    await that.session!.setAVQueueItems(that.queueItems).catch((err: BusinessError) => {
       Log.error(`Failed to set AVQueueItems, error info: ${JSON.stringify(err)}`);
     });
   }
@@ -274,15 +277,15 @@ export class ProviderFeature {
     that.MetadataPixelMapArray.push(await that.saveRawFileToPixelMap('second_with_background.png'));
     that.MetadataPixelMapArray.push(await that.saveRawFileToPixelMap('third_with_background.png'));
     for (let i = 0;i < that.queueItemPixelMapArray.length; i++) {
-      that.queueItems[i].description.mediaImage = that.queueItemPixelMapArray[i];
+      that.queueItems[i].description!.mediaImage = that.queueItemPixelMapArray[i];
       that.avMetadataList[i].mediaImage = that.MetadataPixelMapArray[i];
     }
-    this.currentPlayItemLink.set(this.queueItems[0]);
-    that.currentImageLink.set(that.MetadataPixelMapArray[0]);
-    this.currentAVMetadataLink.set(this.avMetadataList[0]);
+    this.currentPlayItemLink!.set(this.queueItems![0]);
+    that.currentImageLink!.set(that.MetadataPixelMapArray[0]);
+    this.currentAVMetadataLink!.set(this.avMetadataList[0]);
   }
 
-  async saveRawFileToPixelMap(rawFilePath): Promise<image.PixelMap> {
+  async saveRawFileToPixelMap(rawFilePath: string): Promise<image.PixelMap> {
     let that = this;
     let value: Uint8Array = await that.resourceManager.getRawFileContent(rawFilePath);
     let imageBuffer: ArrayBuffer = value.buffer;
