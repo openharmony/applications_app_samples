@@ -200,6 +200,7 @@ export default class ServiceAbility extends ServiceExtensionAbility {
     Logger.info(TAG, 'ServiceAbility onConnect')
     if (this.context !== null && this.context !== undefined) {
       Logger.error(TAG, 'ServiceAbility context does not exist or is empty')
+      return
     }
     return new DistributedMusicServiceExtension('ohos.samples.distributedMusicServiceExtension', this.context)
   }

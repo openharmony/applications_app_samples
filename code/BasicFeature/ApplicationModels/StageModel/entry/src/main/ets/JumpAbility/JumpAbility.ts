@@ -15,8 +15,8 @@
 
 import UIAbility from '@ohos.app.ability.UIAbility'
 import commonEvent from '@ohos.commonEvent'
+import notification from '@ohos.notificationManager'
 import Logger from '../util/Logger'
-import notification from '@ohos.notification';
 
 const TAG: string = '[SecondAbility]'
 const windowCreateContent = {

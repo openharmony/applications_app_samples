@@ -14,14 +14,14 @@
  */
 
 import Extension from '@ohos.app.ability.ServiceExtensionAbility'
+import Notification from '@ohos.notificationManager'
 import rpc from '@ohos.rpc'
 import Logger from '../util/Logger'
-import notification from '@ohos.notification';
 
 const TAG: string = 'ServiceExtAbility'
 let notificationRequest = {
   content: {
-    contentType: notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+    contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
     normal: {
       title: 'data insert',
       text: ''
@@ -61,7 +61,7 @@ export default class ServiceExtAbility extends Extension {
   onRequest(want, startId) {
     Logger.info(TAG, `onRequest, want: ${want.abilityName}`)
     notificationRequest.content.normal.text = want.parameters.isInsert
-    notification.publish(notificationRequest).then(() => {
+    Notification.publish(notificationRequest).then(() => {
       Logger.info(TAG, `publishCallback success`)
     })
   }
