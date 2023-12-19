@@ -49,7 +49,7 @@ export default function appTest() {
       Logger.info(TAG, BUNDLE + "_IndexPage_btnAgree start");
       let driver = Driver.create();
       let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager;
-      await driver.delayMs(1000);
+      await driver.delayMs(3000);
       // 相机权限点击允许
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.allow'))));
       let btnCameraAgree = await driver.findComponent(
