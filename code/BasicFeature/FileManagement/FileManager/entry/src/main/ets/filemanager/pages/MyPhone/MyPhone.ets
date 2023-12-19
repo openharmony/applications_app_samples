@@ -27,27 +27,6 @@ import { ChangeTimeDialog } from './ChangeTimeDialog'
 // 基础沙箱路径---固定路径
 const BASE_PATH = '/data/storage/el2/base/haps/'
 
-// 处理日期格式
-function str2TimeStamp(time: string): number {
-  let dateString = time.slice(0, 10);
-  let timeString = time.slice(11,19);
-
-  let dateParts = dateString.split('/');
-  let year = Number(dateParts[0]);
-  let month = Number(dateParts[1]);
-  let day = Number(dateParts[2]);
-
-  let timeParts = timeString.split(':');
-  let hour = Number(timeParts[0]);
-  let minites = Number(timeParts[1]);
-  let seconds = Number(timeParts[2]);
-
-  let date = new Date(year,month-1,day,hour,minites,seconds,0);
-  let tt = date.getTime();
-
-  return tt;
-}
-
 @Entry
 @Component
 export struct MyPhone {
@@ -177,8 +156,7 @@ export struct MyPhone {
         if (!time) {
           return prompt.showToast({ message: $r('app.string.tip_input_name') });
         }
-        let timeStamp = str2TimeStamp(time);
-        NewFileSystem.setFileTime(this.directoryPath + this.selectedFiles[0],timeStamp);
+        NewFileSystem.setFileTime(this.directoryPath + this.selectedFiles[0], time);
         this.isSelect = false;
         this.updateFileData();
         this.changeTimeDialog.close();
