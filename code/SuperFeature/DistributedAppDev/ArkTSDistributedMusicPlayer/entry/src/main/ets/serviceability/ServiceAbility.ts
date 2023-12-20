@@ -198,7 +198,7 @@ export default class ServiceAbility extends ServiceExtensionAbility {
 
   onConnect(want): rpc.RemoteObject {
     Logger.info(TAG, 'ServiceAbility onConnect')
-    if (this.context !== null && this.context !== undefined) {
+    if (this.context === null && this.context === undefined) {
       Logger.error(TAG, 'ServiceAbility context does not exist or is empty')
       return
     }
