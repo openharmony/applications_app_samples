@@ -17,18 +17,17 @@ import router from '@ohos.router';
 import fs from '@ohos.file.fs';
 import common from '@ohos.app.ability.common';
 import picker from '@ohos.file.picker';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import image from '@ohos.multimedia.image';
 import Logger from '../utils/Logger';
 import CommonConstants from '../common/constants/CommonConstants';
+import { BusinessError } from '@ohos.base';
 
 const TAG = 'testTag_Notes: ';
 let context = getContext(this) as common.UIAbilityContext; //获取设备A&B UIAbilityContext信息
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context); //Returns an instance of photoAccessHelper
-let pathDir: string = context.distributedFilesDir;
+let disPath: string = context.distributedFilesDir;
 //获取分布式目录的文件路径
-let filePath: string = pathDir + '/picture.jpg';
+let filePath: string = disPath + '/picture.jpg';
 
 @Entry
 @Component
@@ -36,18 +35,19 @@ struct Notes {
   @State text: string = '';
   @State img: string = 'app.media.pic_image';
   @StorageLink('isContinuation') isContinuation: boolean = false;
+  @StorageLink('isSelectImg') isSelectImg: boolean = false;
   @StorageLink('inputText') inputText: string = '';
   @StorageLink('inputTextArea') inputTextArea: string = '';
   @StorageLink('imgStr') imgStr: string = 'app.media.pic_image';
   @StorageLink('ability_isON') stoLink_ability_isON: boolean = true;
   controller: TextAreaController = new TextAreaController();
   @State num: number = 0;
-  @State image: PixelMap | null = null; // 图一展示照片(选择或流转)
+  @State image1: PixelMap | null = null; // 图一展示照片(选择或流转)
   @StorageLink('imgIsVisible1') imgIsVisible1: boolean = true;
   @StorageLink('imgIsVisible2') imgIsVisible2: boolean = true;
   @State showSubMenus: boolean = false;
   @State jpgStr: string = '';
-  @State uris: Array<string> = []; // 用于接受 PhotoViewPicker选择图片的返回的url
+  @State uris: Array<string> = []; // 用于接受 PhotoViewPicker选择图片的返回的uri(分布式文件方式)
   @State fileName: string = '';
   @State readLenAtSink: number = 0;
   private imgArray: Resource[] = [
@@ -57,7 +57,7 @@ struct Notes {
   ]
 
   // 从图库中选择图片
-  async chosePicture() {
+  async choosePictureFile() {
     try {
       let photoSelectOptions = new picker.PhotoSelectOptions();
       photoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
@@ -72,54 +72,32 @@ struct Notes {
 
         if (this.writeSrcToDistributedFile(this.uris)) {
           Logger.info(TAG + 'copy file success');
+          // 成功写入图片后将标志设为true
+          AppStorage.set('isisSelectImg', true);
+          this.isSelectImg = true;
+          Logger.info(TAG + "AppStorage.get<boolean>('isisSelectImg')" + AppStorage.get<boolean>('isisSelectImg'));
         } else {
           Logger.error(TAG + 'copy file failed');
         }
 
-        this.getImage();
+        // 获取图库中清晰图片PixelMap
+        // 1.通过uri打开文件得到fd
+        let file = fs.openSync(this.uris[0], fs.OpenMode.READ_ONLY);
+        Logger.info(TAG + 'file.fd:' + file.fd);
+        // 2.通过imageSourceApi来创建pixelMap并直接显示
+        let imageSourceApi = image.createImageSource(file.fd);
+        if (imageSourceApi) {
+          imageSourceApi.createPixelMap().then((pixelMap) => {
+            this.image1 = pixelMap;
+            this.imgIsVisible1 = false;
+          });
+        } else {
+          Logger.info(TAG + 'imageSourceApi is undefined');
+        }
       })
     } catch (error) {
       Logger.error(TAG + 'photoPicker failed with error: ' + JSON.stringify(error));
     }
-  }
-
-  async getImage() {
-    Logger.info(TAG + 'getImage in');
-    // 向分布式文件写数据
-    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-    if (this.uris.length <= 0) {
-      Logger.error(TAG + 'getImage size = 0');
-      return;
-    }
-    predicates.equalTo('uri', this.uris[0]);
-    let fetchOptions: photoAccessHelper.FetchOptions = {
-      fetchColumns: [],
-      predicates: predicates
-    };
-    phAccessHelper.getAssets(fetchOptions, async (err, fetchResult) => {
-
-      if (err || fetchResult == undefined) {
-        Logger.info(TAG + 'getAssets fail with error: ' + JSON.stringify(err));
-        return;
-      }
-      if (fetchResult != undefined) {
-        Logger.info(TAG + 'fetchOptions success');
-        let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-        if (photoAsset != undefined) {
-          Logger.info(TAG + 'photoAsset.displayName = ' + photoAsset.displayName);
-          this.jpgStr = photoAsset.displayName;
-        }
-        // 获取缩略图
-        photoAsset.getThumbnail((err, pixelMap) => {
-          if (err != undefined) {
-            Logger.info(TAG + 'getThumbnail fail with error: ' + JSON.stringify(err));
-            return;
-          }
-          this.image = pixelMap;
-          this.imgIsVisible1 = false;
-        })
-      }
-    })
   }
 
   writeSrcToDistributedFile(uris: string[]) {
@@ -163,9 +141,9 @@ struct Notes {
         return;
       }
       // 通过imageSourceApi来创建pixelMap 并负责流转后展示
-      const imageSourceApi = image.createImageSource(filePath);
+      let imageSourceApi = image.createImageSource(filePath);
       imageSourceApi.createPixelMap().then((pixelMap) => {
-        this.image = pixelMap;
+        this.image1 = pixelMap;
         this.imgIsVisible1 = false;
       });
       Logger.info(TAG + 'readFromDistributedFile is ready');
@@ -177,7 +155,28 @@ struct Notes {
   aboutToAppear() {
     Logger.info(TAG + 'aboutToAppear in');
     if (this.isContinuation) {
-      this.readFromDistributedFile();
+      if (this.isSelectImg) {
+        this.readFromDistributedFile();
+      }
+      setTimeout(() => {
+        if (!this.isSelectImg) {
+          try {
+            let res = fs.accessSync(filePath);
+            if (res) {
+              // 删除文件
+              fs.unlink(filePath);
+              Logger.info(TAG + 'aboutToAppear: remove file succeed');
+            } else {
+              Logger.info(TAG + 'aboutToAppear:  file not exists');
+            }
+          } catch (error) {
+            let err: BusinessError = error as BusinessError;
+            Logger.error(TAG + 'aboutToAppear:  accessSync failed with error message + err.code: ' + err.code);
+          }
+        }
+      }, 1000)
+
+      this.imgIsVisible1 = true;
     }
   }
 
@@ -270,7 +269,7 @@ struct Notes {
                 .margin({ left: 144 })
                 .visibility(this.imgIsVisible1 ? Visibility.Visible : Visibility.None)
               //大图
-              Image(this.image)
+              Image(this.image1)
                 .width('100%')
                 .height('100%')
                 .borderRadius(24)
@@ -338,7 +337,7 @@ struct Notes {
                 .fontColor('#007DFF')
                 .margin({ right: 12 })
                 .onClick(() => {
-                  this.chosePicture();
+                  this.choosePictureFile();
                 })
                 .id('button_select_picture_One')
 

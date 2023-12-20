@@ -37,7 +37,7 @@ class SourceObject {
 export default class EntryAbility extends UIAbility {
   contentStorage?: LocalStorage;
   sessionId?: string;
-  g_object: distributedObject.DataObject | null = null;
+  d_object: distributedObject.DataObject | null = null;
 
   //获取当前应用的权限的授予状态：grantStatus（授予返回：0，未授予：-1）
   async checkAccessToken(permission: Permissions): Promise<abilityAccessCtrl.GrantStatus> {
@@ -99,26 +99,28 @@ export default class EntryAbility extends UIAbility {
     // 迁移应用启动时（onCreate）&应用热启动时（onNewWant）:恢复保存的迁移数据
     if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
       // 从want中恢复迁移数据
-      let isContinuation = want?.parameters?.isContinuation; // 对端变化后的notes标题文本
+      let isContinuation = want?.parameters?.isContinuation; // 是否迁移的标志
+      let isSelectImg = want?.parameters?.isContinuation; // 是否从图库中选择图片并写入到分布式文件路径中
       let swiperIndex = want?.parameters?.swiperIndex; // 对端变化后的swiper的index
       let inputTextArea = want?.parameters?.inputTextArea; // 对端变化后的notes多行文本
       let ability_isON = want?.parameters?.ability_isON; // 对端变化后的toggle：迁移能力的isON状态信息
       let pageStack_isON = want?.parameters?.pageStack_isON; // 对端变化后的toggle：迁移页面栈的 isON 状态信息
       let sourceEnd_isON = want?.parameters?.sourceEnd_isON; // 对端变化后的toggle：迁移后源端退出的isON状态信息
       AppStorage.setOrCreate<boolean>('isContinuation', isContinuation as boolean);
+      AppStorage.setOrCreate<boolean>('isSelectImg', isSelectImg as boolean);
       AppStorage.setOrCreate<number>('swiperIndex', swiperIndex as number);
       AppStorage.setOrCreate<string>('inputTextArea', inputTextArea as string);
       AppStorage.setOrCreate<boolean>('ability_isON', ability_isON as boolean);
       AppStorage.setOrCreate<boolean>('pageStack_isON', pageStack_isON as boolean);
       AppStorage.setOrCreate<boolean>('sourceEnd_isON', sourceEnd_isON as boolean);
 
-      // 从分布式对象中恢复迁移数据
-      this.getDistributedObject(want);
-
       //显式调用页面恢复
       this.contentStorage = new LocalStorage();
       Logger.info(TAG + 'handleContinueParam() ： ready to restore');
       this.context.restoreWindowStage(this.contentStorage);
+
+      // 从分布式对象中恢复迁移数据
+      this.getDistributedObject(want);
     }
   }
 
@@ -128,21 +130,32 @@ export default class EntryAbility extends UIAbility {
    * @param want 发起方传入的want参数
    */
   async getDistributedObject(want: Want) {
+    if (!want.parameters) {
+      return;
+    }
     // 从want中恢复sessionId
     this.sessionId = want?.parameters?.session as string;
     Logger.info(TAG + `etDistributedObject() : continuation sessionId: ${this.sessionId},
       version = ${want?.parameters?.version}`);
-    if (this.g_object != null) {
-      Logger.info(TAG + 'getDistributedObject() :this.g_object != null');
+    // 每次创建分布式对象时，先将上一次的对象置空
+    if (this.d_object) {
+      this.d_object = null;
+    }
+    // 创建分布式对象
+    let source: SourceObject = new SourceObject('');
+    this.d_object = distributedObject.create(this.context, source);
 
-      this.g_object['notesTitle'] = undefined;
+    if (this.d_object != null) {
+      Logger.info(TAG + 'getDistributedObject() :this.d_object != null');
+
+      this.d_object['notesTitle'] = undefined;
 
       // 设置同步的sessionID,从want中获取同一个sessionID(可信组网中的多个设备间的对象如果设置为同一个sessionId，就能自动同步数据到远端设备)
-      await this.g_object.setSessionId(this.sessionId);
+      await this.d_object.setSessionId(this.sessionId);
 
       // 应用冷启动时先给组件属性赋初值\热启动时恢复分布式数据对象的值到双向绑定的'inputText'中
-      AppStorage.setOrCreate<string>('inputText', this.g_object['notesTitle']);
-      Logger.info(TAG + `getDistributedObject() : g_object_notesTitle: ${this.g_object['notesTitle']}`);
+      AppStorage.setOrCreate<string>('inputText', this.d_object['notesTitle']);
+      Logger.info(TAG + `getDistributedObject() : d_object_notesTitle: ${this.d_object['notesTitle']}`);
     }
   }
 
@@ -164,9 +177,7 @@ export default class EntryAbility extends UIAbility {
         Logger.info(`setMissionContinueState ACTIVE result: ${JSON.stringify(result)}`);
       });
     }
-    // 创建分布式对象
-    let source: SourceObject = new SourceObject('');
-    this.g_object = distributedObject.create(this.context, source);
+
     // 迁移应用启动时恢复保存的迁移数据
     this.handleContinueParam(want, launchParam);
 
@@ -181,6 +192,7 @@ export default class EntryAbility extends UIAbility {
     AppStorage.setOrCreate('isContinuation', true);
     //准备迁移数据
     let isContinuation: boolean = true;
+    let isSelectImg: boolean = AppStorage.get<boolean>('isSelectImg') as boolean;
     let swiperIndex: number = AppStorage.get<number>('swiperIndex') as number;
     let inputTextArea: string = AppStorage.get<string>('inputTextArea') as string;
     let ability_isON: boolean = AppStorage.get<boolean>('ability_isON') as boolean;
@@ -189,12 +201,12 @@ export default class EntryAbility extends UIAbility {
 
     // 将要迁移的数据保存在wantParam的``指定字段中
     wantParam['isContinuation'] = isContinuation;
+    wantParam['isSelectImg'] = isSelectImg;
     wantParam['swiperIndex'] = swiperIndex;
     wantParam['inputTextArea'] = inputTextArea;
     wantParam['ability_isON'] = ability_isON;
     wantParam['pageStack_isON'] = pageStack_isON;
     wantParam['sourceEnd_isON'] = sourceEnd_isON;
-    // 将要迁移的数据保存在wantParam的自定义字段（例如data）中
 
     Logger.info(TAG + `onContinue isContinuation ${isContinuation}`);
     Logger.info(TAG + `onContinue swiperIndex ${swiperIndex}`);
@@ -203,22 +215,36 @@ export default class EntryAbility extends UIAbility {
     Logger.info(TAG + `onContinue pageStack_isON ${pageStack_isON}`);
     Logger.info(TAG + `onContinue sourceEnd_isON ${sourceEnd_isON}`);
 
+    // 用isSelectImg标志来判断：如果应用初始化，同样重置分布式对象
+    if (!isSelectImg && this.d_object != null) {
+      this.d_object.setSessionId(() => {
+        Logger.info(TAG + 'onContinue : ' + 'leave all session');
+      })
+    }
+    // 每次创建分布式对象时，先将上一次的对象置空
+    if (this.d_object) {
+      this.d_object = null;
+    }
+    // 创建分布式对象
+    let source: SourceObject = new SourceObject('');
+    this.d_object = distributedObject.create(this.context, source);
+
     // 随机创建一个sessionID
     this.sessionId = distributedObject.genSessionId();
     wantParam['session'] = this.sessionId;
-    if (this.g_object != null) {
-      // 分布式对象g_object加入分布式组网：设置同步的sessionId
-      this.g_object.setSessionId(this.sessionId, () => {
+    if (this.d_object != null) {
+      // 分布式对象d_object加入分布式组网：设置同步的sessionId
+      this.d_object.setSessionId(this.sessionId, () => {
         Logger.info(TAG + 'join session');
       })
     }
     // 获取迁移的分布式数据对象
-    if (this.g_object) {
-      this.g_object['notesTitle'] = AppStorage.get<string>('inputText');
-      Logger.info(TAG + `on Continue sessionId = ${this.sessionId}, inputText = ${this.g_object['notesTitle']}`);
+    if (this.d_object) {
+      this.d_object['notesTitle'] = AppStorage.get<string>('inputText');
+      Logger.info(TAG + `on Continue sessionId = ${this.sessionId}, inputText = ${this.d_object['notesTitle']}`);
 
       // 保存分布式数据对象
-      this.g_object.save(wantParam.targetDevice as string,
+      this.d_object.save(wantParam.targetDevice as string,
         (err: BusinessError, result: distributedObject.SaveSuccessResponse) => {
           if (err) {
             Logger.info(TAG + ' save failed, err: ' + JSON.stringify(err));
