@@ -46,7 +46,7 @@ export default function AppTest() {
     });
 
     // 启动呼叫页，确认权限弹窗
-    it(BUNDLE_NAME + ' StartAbility_001', 0, async (done: Function) => {
+    it(BUNDLE_NAME + 'StartAbility_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, '%{public}s', BUNDLE_NAME + ' StartAbility_001 begin');
 
       try {
@@ -125,7 +125,7 @@ export default function AppTest() {
     });
 
     // 启动被呼叫页，确认权限弹窗
-    it(BUNDLE_NAME + ' StartAbility_002', 0, async (done: Function) => {
+    it(BUNDLE_NAME + 'StartAbility_002', 0, async (done: Function) => {
 
       hilog.info(DOMAIN, TAG, '%{public}s', BUNDLE_NAME + ' StartAbility_002 begin');
       try {
