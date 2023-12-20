@@ -1,6 +1,14 @@
 {
   "string": [
     {
+      "name": "tab_certframework",
+      "value": "Certificate Framework"
+    },
+    {
+      "name": "tab_certchain",
+      "value": "Certificate Chain"
+    },
+    {
       "name": "module_desc",
       "value": "Certificate Framework"
     },
@@ -30,7 +38,7 @@
     },
     {
       "name": "verify",
-      "value": "Verify"
+      "value": "CertChain Verify"
     },
     {
       "name": "modify_origin_data",
@@ -47,6 +55,26 @@
     {
       "name": "verify_fail",
       "value": "Verify Fail"
+    },
+    {
+      "name": "certchain_title",
+      "value": "CertChain Verify"
+    },
+    {
+      "name": "certchain_data",
+      "value": "CertChain Data"
+    },
+    {
+      "name": "certchain_root",
+      "value": "CertChain Root"
+    },
+    {
+      "name": "certchain_crl",
+      "value": "CertChain CRL"
+    },
+    {
+      "name": "certchain_verify_crl",
+      "value": "Verify CRL"
     }
   ]
 }

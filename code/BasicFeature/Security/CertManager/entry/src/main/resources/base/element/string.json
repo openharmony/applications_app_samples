@@ -1,0 +1,76 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "Certificate Manager"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "Certificate Manager"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Certificate Manager"
+    },
+    {
+      "name": "certificate_data",
+      "value": "Certificate Data"
+    },
+    {
+      "name": "origin_data",
+      "value": "Sign Data"
+    },
+    {
+      "name": "signature_data",
+      "value": "Signature Data"
+    },
+    {
+      "name": "cert_install",
+      "value": "Install Certificate"
+    },
+    {
+      "name": "install_success",
+      "value": "Install Success"
+    },
+    {
+      "name": "install_fail",
+      "value": "Install Fail"
+    },
+    {
+      "name": "display_data",
+      "value": "Display Data"
+    },
+    {
+      "name": "sign",
+      "value": "Sign"
+    },
+    {
+      "name": "sign_success",
+      "value": "Sign Success"
+    },
+    {
+      "name": "sign_fail",
+      "value": "Sign Fail"
+    },
+    {
+      "name": "verify",
+      "value": "Sign Verify"
+    },
+    {
+      "name": "modify_origin_data",
+      "value": "Modify Origin Data"
+    },
+    {
+      "name": "modify_signature_data",
+      "value": "Modify Signature Data"
+    },
+    {
+      "name": "verify_success",
+      "value": "Verify Success"
+    },
+    {
+      "name": "verify_fail",
+      "value": "Verify Fail"
+    }
+  ]
+}
