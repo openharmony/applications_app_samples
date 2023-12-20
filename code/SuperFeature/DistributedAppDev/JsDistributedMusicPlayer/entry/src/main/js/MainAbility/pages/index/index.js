@@ -18,8 +18,6 @@ import RemoteDeviceModel from '../../model/RemoteDeviceModel.js'
 import PlayerModel from '../../model/PlayerModel.js'
 import KvStoreModel from '../../model/KvStoreModel.js'
 import { logger } from '../../model/Logger'
-import display from '@ohos.display'
-import window from '@ohos.window';
 
 function getShownTimer(ms) {
   var seconds = Math.floor(ms / 1000)
@@ -36,9 +34,6 @@ function getShownTimer(ms) {
 
 const REMOTE_ABILITY_STARTED = 'remoteAbilityStarted'
 var DEVICE_LIST_LOCALHOST
-const SYSTEM_UI_HEIGHT = 134
-const DESIGN_WIDTH = 720.0
-const DESIGN_RATIO = 16 / 9
 const TAG = 'Index'
 let lastTime = -1
 
@@ -57,35 +52,10 @@ export default {
     kvStoreModel: new KvStoreModel(),
     isDialogShowing: false,
     isSwitching: false,
-    riscale: 1, // ratio independent scale ratio
-    risw: 720, // ratio independent screen width
-    rish: 1280, // ratio independent screen height
-    hasInitialized: false,
   },
   onInit() {
     logger.info(TAG, `onInit begin`)
     this.grantPermission()
-    logger.info(TAG, `getDefaultDisplay begin`)
-    display.getDefaultDisplay().then(dis => {
-      logger.debug(TAG, `getDefaultDisplay dis= ${JSON.stringify(dis)}`)
-      var proportion = DESIGN_WIDTH / dis.width
-      var screenWidth = DESIGN_WIDTH
-      var screenHeight = (dis.height - SYSTEM_UI_HEIGHT) * proportion
-      this.riscale = (screenHeight / screenWidth) / DESIGN_RATIO
-      if (this.riscale < 1) {
-        // The screen ratio is shorter than design ratio
-        this.risw = screenWidth * this.riscale
-        this.rish = screenHeight
-      } else {
-        // The screen ratio is longer than design ratio
-        this.risw = screenWidth
-        this.rish = screenHeight / this.riscale
-      }
-      this.hasInitialized = true
-      logger.debug(TAG, `proportion=${proportion} screenWidth=${screenWidth} screenHeight=${screenHeight}
-      riscale=${this.riscale} risw=${this.risw}  rish=${this.rish}`)
-    })
-    logger.info(TAG, `getDefaultDisplay end`)
     DEVICE_LIST_LOCALHOST = {
       name: this.$t('strings.localhost'),
       id: 'localhost',
