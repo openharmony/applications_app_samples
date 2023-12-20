@@ -45,4 +45,4 @@ taskpool:
 
 1. This example only supports running on a standard system.
 
-2. This example requires DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023) to compile and run.
+2. This example requires DevEco Studio 4.0 Release (Build Version: 4.0.0.600, built on October 17, 2023) to compile and run.

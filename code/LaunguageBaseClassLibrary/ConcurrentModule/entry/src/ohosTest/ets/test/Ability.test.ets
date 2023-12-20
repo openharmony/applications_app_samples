@@ -24,6 +24,7 @@ const DOMAIN = 0xF811;
 const BUNDLE = 'JSConcurrent_';
 
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+let resourceManager = abilityDelegator.getAppContext().resourceManager;
 // 资源本地化
 async function getResourceString(resource: Resource): Promise<string> {
   let manage = abilityDelegator.getAppContext().resourceManager
@@ -32,7 +33,7 @@ async function getResourceString(resource: Resource): Promise<string> {
 }
 
 export default function abilityTest() {
-  describe('abilityTest', function () {
+  describe('abilityTest', () => {
     /**
      * @tc.number    : StartAbilityFunction_001
      * @tc.name      : Start ability
@@ -41,7 +42,7 @@ export default function abilityTest() {
      * @tc.type      : Function
      * @tc.level     : Level 0
      */
-    it('StartAbilityFunction_001', 0, async function (done) {
+    it('StartAbilityFunction_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbilityFunction_001 begin');
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
@@ -66,7 +67,7 @@ export default function abilityTest() {
      * @tc.level     : Level 0
      */
     // 点击拷贝文件按钮
-    it('WorkerCopyFileFunction_001', 0, async function (done) {
+    it('WorkerCopyFileFunction_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerCopyFileFunction_001 begin');
       let driver = Driver.create();
       await driver.delayMs(500);
@@ -74,7 +75,7 @@ export default function abilityTest() {
       let fileCopy = await driver.findComponent(ON.id('fileCopy'));
       await fileCopy.click();
       let copyFileLog1 = await getResourceString($r('app.string.copyFileLog1'))
-      expect(copyFileLog1).assertEqual("1、沙箱目录文件个数3个");
+      expect(copyFileLog1).assertEqual(await resourceManager.getStringValue($r('app.string.copyFileLog1')));
       await driver.delayMs(200);
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerCopyFileFunction_001 end');
@@ -89,7 +90,7 @@ export default function abilityTest() {
      * @tc.level     : Level 0
      */
     // 进入页面直接点击拷贝文件按钮
-    it('WorkerCopyFileButtonFunction_001', 0, async function (done) {
+    it('WorkerCopyFileButtonFunction_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerCopyFileButtonFunction_001 begin');
       let driver = await Driver.create();
       await driver.delayMs(1000);
@@ -99,7 +100,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('copyFile'));
       let copyFileLog = await driver.findComponent(ON.id('copyFileLog'));
       let strValue = await copyFileLog.getText();
-      expect(strValue).assertEqual("2、请选择文件");
+      expect(strValue).assertEqual(await resourceManager.getStringValue($r('app.string.workerLogChooseFile')));
       await driver.delayMs(1000);
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerCopyFileButtonFunction_001 end');
@@ -114,7 +115,7 @@ export default function abilityTest() {
      * @tc.level     : Level 0
      */
     // 选择文件拷贝
-    it('WorkerCopyFileFunction_002', 0, async function (done) {
+    it('WorkerCopyFileFunction_002', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerCopyFileFunction_002 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -124,7 +125,7 @@ export default function abilityTest() {
       await driver.click(630, 472);
       let copyFileLog = await driver.findComponent(ON.id('copyFileLog'));
       let strValue = await copyFileLog.getText();
-      expect(strValue).assertEqual("2、请选择文件");
+      expect(strValue).assertEqual(await resourceManager.getStringValue($r('app.string.workerLogChooseFile')));
       await driver.delayMs(200);
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerCopyFileFunction_002 end');
@@ -139,7 +140,7 @@ export default function abilityTest() {
      * @tc.level     : Level 0
      */
     // 拷贝文件
-    it('WorkerCopyFileFunction_003', 0, async function (done) {
+    it('WorkerCopyFileFunction_003', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerCopyFileFunction_003 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -148,8 +149,8 @@ export default function abilityTest() {
       await copyFile.click();
       let copyFileLog1 = await getResourceString($r('app.string.copyFileLog1'))
       let copyFileLog2 = await getResourceString($r('app.string.copyFileLog2'))
-      expect(copyFileLog1).assertEqual("1、沙箱目录文件个数3个");
-      expect(copyFileLog2).assertEqual("2、TestFile01.txt、TestFile02.txt等文件copy完成");
+      expect(copyFileLog1).assertEqual(await resourceManager.getStringValue($r('app.string.copyFileLog1')));
+      expect(copyFileLog2).assertEqual(await resourceManager.getStringValue($r('app.string.copyFileLog2')));
       await driver.assertComponentExist(ON.text(copyFileLog1));
       await driver.assertComponentExist(ON.text(copyFileLog2));
       await driver.assertComponentExist(ON.id('backIndex2'));
@@ -169,7 +170,7 @@ export default function abilityTest() {
      * @tc.level     : Level 0
      */
     // 点击字符串排序按钮
-    it('WorkerFunction_000', 0, async function (done) {
+    it('WorkerFunction_000', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerFunction_000 begin');
       let driver = Driver.create();
       await driver.delayMs(500);
@@ -194,7 +195,7 @@ export default function abilityTest() {
      * @tc.level     : Level 0
      */
     // 输入待排序字符串
-    it('WorkerFunction_001', 0, async function (done) {
+    it('WorkerFunction_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerFunction_001 begin');
       let driver = Driver.create();
       await driver.delayMs(500);
@@ -219,7 +220,7 @@ export default function abilityTest() {
      * @tc.level     : Level 0
      */
     // 点击字符串排序按钮
-    it('WorkerFunction_002', 0, async function (done) {
+    it('WorkerFunction_002', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerFunction_002 begin');
       let driver = Driver.create();
       await driver.delayMs(500);
@@ -246,7 +247,7 @@ export default function abilityTest() {
      * @tc.level     : Level 0
      */
     // 获取排序结果并检查
-    it('WorkerFunction_003', 0, async function (done) {
+    it('WorkerFunction_003', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerFunction_003 begin');
       let driver = Driver.create();
       await driver.delayMs(500);
@@ -270,7 +271,7 @@ export default function abilityTest() {
      * @tc.level     : Level 0
      */
     // 点击清空按钮
-    it('WorkerFunction_004', 0, async function (done) {
+    it('WorkerFunction_004', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'WorkerFunction_004 begin');
       let driver = Driver.create();
       await driver.delayMs(500);
@@ -296,7 +297,7 @@ export default function abilityTest() {
      * @tc.level     : Level 0
      */
     // 点击TaskPool页签
-    it('TaskPoolFunction_001', 0, async function (done) {
+    it('TaskPoolFunction_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'TaskPoolFunction_001 begin');
       let driver = Driver.create();
       await driver.delayMs(500);
@@ -322,7 +323,7 @@ export default function abilityTest() {
      * @tc.level     : Level 0
      */
     // 输入待排序字符串
-    it('TaskPoolFunction_002', 0, async function (done) {
+    it('TaskPoolFunction_002', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'TaskPoolFunction_002 begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -347,7 +348,7 @@ export default function abilityTest() {
      * @tc.level     : Level 0
      */
     // 点击立即执行
-    it('TaskPoolFunction_003', 0, async function (done) {
+    it('TaskPoolFunction_003', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'TaskPoolFunction_003 begin');
       let driver = Driver.create();
       await driver.delayMs(500);
@@ -373,7 +374,7 @@ export default function abilityTest() {
      * @tc.level     : Level 0
      */
     // 验证检查结果
-    it('TaskPoolFunction_004', 0, async function (done) {
+    it('TaskPoolFunction_004', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'TaskPoolFunction_004 begin');
       let driver = Driver.create();
       await driver.delayMs(500);
@@ -397,7 +398,7 @@ export default function abilityTest() {
      * @tc.level     : Level 0
      */
     // 输入第一组待排序字符串
-    it('TaskPoolGroup_000', 0, async function (done) {
+    it('TaskPoolGroup_000', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'TaskPoolGroup_000 begin');
       let driver = Driver.create();
       await driver.delayMs(500);
@@ -422,7 +423,7 @@ export default function abilityTest() {
      * @tc.level     : Level 0
      */
     // 添加至任务组
-    it('TaskPoolGroup_001', 0, async function (done) {
+    it('TaskPoolGroup_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'TaskPoolGroup_001 begin');
       let driver = Driver.create();
       await driver.delayMs(500);
@@ -447,7 +448,7 @@ export default function abilityTest() {
      * @tc.level     : Level 0
      */
     // 清除
-    it('TaskPoolGroup_002', 0, async function (done) {
+    it('TaskPoolGroup_002', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'TaskPoolGroup_002 begin');
       let driver = Driver.create();
       await driver.delayMs(500);
@@ -472,7 +473,7 @@ export default function abilityTest() {
      * @tc.level     : Level 0
      */
     // 输入第二组待排序字符串
-    it('TaskPoolGroup_003', 0, async function (done) {
+    it('TaskPoolGroup_003', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'TaskPoolGroup_003 begin');
       let driver = Driver.create();
       await driver.delayMs(500);
@@ -497,7 +498,7 @@ export default function abilityTest() {
      * @tc.level     : Level 0
      */
     // 添加第二个任务至任务组
-    it('TaskPoolGroup_004', 0, async function (done) {
+    it('TaskPoolGroup_004', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'TaskPoolGroup_004 begin');
       let driver = Driver.create();
       await driver.delayMs(500);
@@ -522,7 +523,7 @@ export default function abilityTest() {
      * @tc.level     : Level 0
      */
     // 第二次清除
-    it('TaskPoolGroup_005', 0, async function (done) {
+    it('TaskPoolGroup_005', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'TaskPoolGroup_005 begin');
       let driver = Driver.create();
       await driver.delayMs(500);
@@ -547,7 +548,7 @@ export default function abilityTest() {
      * @tc.level     : Level 0
      */
     // 输入第三组待排序字符串
-    it('TaskPoolGroup_006', 0, async function (done) {
+    it('TaskPoolGroup_006', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'TaskPoolGroup_006 begin');
       let driver = Driver.create();
       await driver.delayMs(500);
@@ -572,7 +573,7 @@ export default function abilityTest() {
      * @tc.level     : Level 0
      */
     // 添加第三个任务至任务组
-    it('TaskPoolGroup_007', 0, async function (done) {
+    it('TaskPoolGroup_007', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'TaskPoolGroup_007 begin');
       let driver = Driver.create();
       await driver.delayMs(500);
@@ -597,7 +598,7 @@ export default function abilityTest() {
      * @tc.level     : Level 0
      */
     // 第三次清除
-    it('TaskPoolGroup_008', 0, async function (done) {
+    it('TaskPoolGroup_008', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'TaskPoolGroup_008 begin');
       let driver = Driver.create();
       await driver.delayMs(500);
@@ -622,7 +623,7 @@ export default function abilityTest() {
      * @tc.level     : Level 0
      */
     // 执行任务组
-    it('TaskPoolGroup_009', 0, async function (done) {
+    it('TaskPoolGroup_009', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'TaskPoolGroup_009 begin');
       let driver = Driver.create();
       await driver.delayMs(500);
@@ -648,7 +649,7 @@ export default function abilityTest() {
      * @tc.level     : Level 0
      */
     // 检查结果
-    it('TaskPoolGroup_010', 0, async function (done) {
+    it('TaskPoolGroup_010', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'TaskPoolGroup_010 begin');
       let driver = Driver.create();
       await driver.delayMs(500);
