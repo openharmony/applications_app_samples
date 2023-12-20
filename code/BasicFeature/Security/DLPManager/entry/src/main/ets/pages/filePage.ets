@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.application.Want';
 import MediaFileUri from '../media/MediaFileUri';
 import promptAction from '@ohos.promptAction';
 import router from '@ohos.router';
@@ -26,21 +28,28 @@ const TAG = '[dlpPage]'
 const OPACITY_VALUE = 0.6; // 透明度
 
 interface myParams extends Object {
-  myUri : string
   fileName : string
+  myPath : string,
+  fd : number,
+  myUri : string
   isDlpFile : boolean
+  fileSuffix : string
 }
 
 let storage = LocalStorage.getShared();
 
-@Entry(storage)
+@Entry( storage )
 @Component
 struct FilePage {
   @State inSandbox : boolean = false
   @State opacityValue : number = OPACITY_VALUE;
   @State myFileName : string = '';
   @State myUri : string = '';
-  @State isDlpFIle : boolean = false
+  @State fd : number = 0;
+  @State myPath : string = '';
+  @State isDLPFile : boolean = false
+  @State fileSuffix : string = ''
+  @State fileSuffixIncludes : boolean = false
   @StorageLink( 'editable' ) editable : Boolean = false;
   @StorageLink( 'myFileContent' ) myFileContent : string = '';
   @StorageLink( 'myFileSize' ) myFileSize : number = 0;
@@ -57,18 +66,15 @@ struct FilePage {
   scroller : Scroller = new Scroller();
 
   getFileInfo() : void {
-    this.myUri = (router.getParams() as myParams).myUri;
     this.myFileName = (router.getParams() as myParams).fileName;
-    this.isDlpFIle = (router.getParams() as myParams).isDlpFile;
-    if( this.isDlpFIle ) {
-      Logger.info( TAG , "是dlp文件" )
-      promptAction.showToast( { message : "是dlp文件" } )
-    } else {
-      this.getDLPSupported()
-    }
+    this.myPath = (router.getParams() as myParams).myPath;
+    this.myUri = (router.getParams() as myParams).myUri;
+    this.fd = (router.getParams() as myParams).fd;
+    this.isDLPFile = (router.getParams() as myParams).isDlpFile;
+    this.fileSuffix = (router.getParams() as myParams).fileSuffix;
     this.myFileContent = this.mediaFileUri.readFileContent( this.myUri );
     this.myFileSize = this.mediaFileUri.myGetFileSize( this.myUri , fs.OpenMode.READ_ONLY );
-
+    this.isDlpFileFunc( this.fd , this.fileSuffix )
     Logger.info( TAG , 'The count of getFileInfo is myUri is: ' + JSON.stringify( this.myUri ) );
     Logger.info( TAG , 'The count of getFileInfo is myFileName is: ' + JSON.stringify( this.myFileName ) );
     Logger.info( TAG , 'The count of getFileInfo is myFileContent ' + this.myFileContent );
@@ -81,10 +87,11 @@ struct FilePage {
   /**
    * 是否为沙箱应用
    */
-  async isSandbox() : Promise<void> {
+  async isSandboxFunc() : Promise<void> {
     try {
       this.inSandbox = await dlpPermission.isInSandbox() // 是否在沙箱内
       Logger.info( TAG , 'inSandbox:' + this.inSandbox );
+      promptAction.showToast( { message : '是否为沙箱应用:' + this.inSandbox , duration : 2000 } )
     } catch( err ) {
       Logger.error( TAG , 'error' + (err as BusinessError).code + (err as BusinessError).message ); // 失败报错
     }
@@ -96,7 +103,7 @@ struct FilePage {
   async getDlpPermission() : Promise<void> {
     dlpPermission.getDLPPermissionInfo().then( ( data : dlpPermission.DLPPermissionInfo ) => {
       Logger.info( TAG , 'getDLPPermissionInfo, result: ' + JSON.stringify( data ) );
-      promptAction.showToast( { message : "当前权限为：" + JSON.stringify( data ) } )
+      promptAction.showToast( { message : "当前权限为：" + JSON.stringify( data ) , duration : 2000 } )
     } ).catch( ( err : BusinessError ) => {
       Logger.info( TAG , "getDLPPermissionInfo: " + JSON.stringify( err ) );
     } );
@@ -105,23 +112,42 @@ struct FilePage {
   /**
    * 是否为dlp文件
    */
-  async isDlpFile() : Promise<void> {
+  async isDlpFileFunc( fd : number , fileSuffix : string ) : Promise<boolean> {
     try {
-      let res : boolean = await dlpPermission.isDLPFile( 50 ); // 是否加密DLP文件
-      Logger.info( TAG , 'isDLPFile:' + res );
+      this.isDLPFile = await dlpPermission.isDLPFile( fd ); // 是否加密DLP文件
+      Logger.info( TAG , 'isDlpFile:' + this.isDLPFile );
+      promptAction.showToast( { message : '是否为dlp文件:' + this.isDLPFile , duration : 2000 } )
+      if( this.isDLPFile ) {
+        Logger.info( TAG , "是dlp文件" )
+        this.isSandboxFunc()
+      } else {
+        Logger.info( TAG , "不是dlp文件" )
+        this.getDLPSupported( fileSuffix )
+      }
     } catch( err ) {
-      Logger.error( TAG , 'isDLPFile error' + (err as BusinessError).code + (err as BusinessError).message ); // 失败报错
+      Logger.error( TAG , 'isDLPFile error:' + (err as BusinessError).code + (err as BusinessError).message ); // 失败报错
     }
+    return this.isDLPFile
   }
 
   /**
    * 查询当前可支持权限设置和校验的文件扩展名类型列表
    */
-  async getDLPSupported() : Promise<void> {
+  async getDLPSupported( fileSuffix : string ) : Promise<void> {
     try {
       let res : Array<string> = await dlpPermission.getDLPSupportedFileTypes(); // 获取支持DLP的文件类型
       Logger.info( TAG , '当前可支持权限设置和校验的文件扩展名:' + JSON.stringify( res ) );
-      promptAction.showToast( { message : '当前可支持权限设置和校验的文件扩展名:' + JSON.stringify( res ) } )
+      promptAction.showToast( {
+        message : '当前可支持权限设置和校验的文件扩展名:' + JSON.stringify( res ) ,
+        duration : 2000
+      } )
+      console.info( TAG , '该文件拓展名：' + fileSuffix )
+      this.fileSuffixIncludes = res.includes( fileSuffix )
+      console.info( TAG , '该文件拓展名是否在列表中：' + this.fileSuffixIncludes )
+      promptAction.showToast( {
+        message : '该文件拓展名：' + fileSuffix + ',是否在列表中：' + this.fileSuffixIncludes ,
+        duration : 2000
+      } )
     } catch( err ) {
       Logger.error( TAG , 'getDLPSupportedFileTypes error' + (err as BusinessError).code + (err as BusinessError).message ); // 失败报错
     }
@@ -159,12 +185,42 @@ struct FilePage {
     }
   }
 
+  /**
+   * 生成dlp文件
+   */
+  async onEncrypt() {
+    Logger.info( TAG + 'new file and encrypt' );
+    try {
+
+      // Logger.info( TAG , '沙箱路径为: ' + this.pathDir )
+      // let uri = "file://docs/storage/Users/currentUser/Desktop/a.txt"
+      // let path ="/data/storage/el2/base/haps/entry/files/a.txt"
+      // let file = fs.openSync( path , fs.OpenMode.READ_ONLY | fs.OpenMode.CREATE );
+      // Logger.info( TAG , "file fd: " + file.fd );
+
+      let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext
+      let want : Want = {
+        // "uri" : "file://docs/storage/Users/currentUser/Desktop/" + this.myFileName ,
+        "uri" : this.myUri,
+        "parameters" : {
+          "displayName" : this.myFileName
+        }
+      }; // 请求参数
+      Logger.info( TAG, "onEncrypt:" + JSON.stringify( want ) );
+      dlpPermission.startDLPManagerForResult( context , want ).then( ( res : dlpPermission.DLPManagerResult ) => {
+        Logger.info( TAG , 'startDLPManagerForResult res.resultCode:' + res.resultCode );
+        Logger.info( TAG , 'startDLPManagerForResult res.want:' + JSON.stringify( res.want ) );
+      } ); // 打开DLP权限管理应用
+    } catch( err ) {
+      Logger.error( TAG , 'startDLPManagerForResult error:' + (err as BusinessError).code + (err as BusinessError).message ); // 失败报错
+    }
+  }
+
   aboutToAppear() {
   }
 
   onPageShow() : void {
     this.getFileInfo();
-    this.isSandbox()
   }
 
   build() {
@@ -245,7 +301,7 @@ struct FilePage {
               AppStorage.setOrCreate( 'editable' , this.editable );
               Logger.info( TAG , 'EditFile caretPosition length = ' + this.myFileContent.length );
               this.controller.caretPosition( this.myFileContent.length );
-              promptAction.showToast( { message : $r( 'app.string.editable' ) } );
+              promptAction.showToast( { message : $r( 'app.string.editable' ) , duration : 2000 } );
             } )
 
           Text( $r( 'app.string.edit' ) )
@@ -273,7 +329,7 @@ struct FilePage {
               this.mediaFileUri.writeFileContent( this.myUri , this.myFileContent );
               this.editable = false;
               AppStorage.setOrCreate( 'editable' , this.editable );
-              promptAction.showToast( { message : $r( 'app.string.saved' ) } );
+              promptAction.showToast( { message : $r( 'app.string.saved' ) , duration : 2000 } );
             } )
           Text( $r( 'app.string.save' ) )
             .fontSize( '10vp' )
@@ -333,9 +389,9 @@ struct FilePage {
         .height( '48vp' )
         .margin( { left : '16vp' , right : '16vp' } )
         .onClick( () => {
-
+          this.onEncrypt()
         } )
-        .enabled( this.isDlpFIle ? true : false )
+        .enabled( this.isDLPFile ? true : ( this.fileSuffixIncludes ? true : false ) )
 
       MenuItem( this.filePageDivider )
 
@@ -375,8 +431,7 @@ struct FilePage {
       .fontSize( '16vp' )
       .fontFamily( 'HarmonyHeiTi' )
       .fontWeight( 400 )
-      .fontColor( $r( 'app.color.font_color_66182431' ) )
-      .enabled( false )
+      .fontColor( this.isDLPFile ? $r( 'app.color.font_color_182431' ) : ( this.fileSuffixIncludes ? $r( 'app.color.font_color_182431' ) : $r( 'app.color.font_color_66182431' ) ) )
       .align( Alignment.Start )
       .margin( { top : '13vp' , bottom : '14vp' , right : '2vp' } )
   }
