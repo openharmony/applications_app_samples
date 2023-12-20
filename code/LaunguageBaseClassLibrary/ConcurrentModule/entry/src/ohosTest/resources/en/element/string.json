@@ -7,6 +7,10 @@
     {
       "name": "copyFileLog2",
       "value": "2. File TestFile01.txt, TestFile02.txt and other files are copied"
+    },
+    {
+      "name": "workerLogChooseFile",
+      "value": "2.Please select a file"
     }
   ]
 }
