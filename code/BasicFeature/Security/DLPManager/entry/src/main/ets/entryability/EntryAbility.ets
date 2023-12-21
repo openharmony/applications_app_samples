@@ -23,10 +23,13 @@ import abilityAccessCtrl , { Permissions } from '@ohos.abilityAccessCtrl';
 import MediaFileUri from '../media/MediaFileUri';
 import Logger from '../utils/Logger';
 
-const TAG = '[EntryAbility] ';
+let wantInfo: Want;
+const TAG = '[dlpmanager_EntryAbility]';
 
 export default class EntryAbility extends UIAbility {
-  private mediaFileUri : MediaFileUri = new MediaFileUri();
+  private mediaFileUri: MediaFileUri = new MediaFileUri();
+  private storage: LocalStorage = new LocalStorage();
+  // private windowStage: window.WindowStage;
 
   onCreate( want : Want , launchParam : AbilityConstant.LaunchParam ) : void {
     Logger.info( TAG , '%{public}s' , 'Ability onCreate' );
