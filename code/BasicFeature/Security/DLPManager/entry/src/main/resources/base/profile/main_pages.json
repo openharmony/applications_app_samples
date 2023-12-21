@@ -1,6 +1,7 @@
 {
   "src": [
     "pages/Index",
-    "pages/filePage"
+    "pages/filePage",
+    "pages/dlpPage"
   ]
 }

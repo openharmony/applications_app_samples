@@ -14,20 +14,7 @@
  */
 {
   "app": {
-    "signingConfigs": [
-      {
-        "name": "default",
-        "material": {
-          "certpath": "C:\\Users\\kaihong\\.ohos\\config\\openharmony\\auto_ohos_default_dlpSample_kaihong.sample.dlpmanager.cer",
-          "storePassword": "0000001AE9A00935F41374BCEB3A06523ABD3D26C6EF99CBA97A47F46A206C602F15D3149A56B39921DD",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001A3756BEDD19835743F6F2F310504FA62BFB6FDB15F15A44ADA7EFCBE445F986B9061A3B933DCF",
-          "profile": "C:\\Users\\kaihong\\.ohos\\config\\openharmony\\auto_ohos_default_dlpSample_kaihong.sample.dlpmanager.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\kaihong\\.ohos\\config\\openharmony\\auto_ohos_default_dlpSample_kaihong.sample.dlpmanager.p12"
-        }
-      }
-    ],
+    "signingConfigs": [],
     "products": [
       {
         "name": "default",

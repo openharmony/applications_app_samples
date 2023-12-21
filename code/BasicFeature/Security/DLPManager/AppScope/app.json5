@@ -14,7 +14,7 @@
  */
 {
   "app": {
-    "bundleName": "kaihong.sample.dlpmanager",
+    "bundleName": "com.sample.dlpmanager",
     "vendor": "example",
     "versionCode": 1000000,
     "versionName": "1.0.0",

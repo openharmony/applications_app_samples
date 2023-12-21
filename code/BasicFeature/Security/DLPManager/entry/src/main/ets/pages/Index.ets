@@ -23,7 +23,7 @@ import common from '@ohos.app.ability.common';
 import Logger from '../utils/Logger'
 import MediaFileUri from '../media/MediaFileUri';
 import dlpPermission from '@ohos.dlpPermission';
-import Want from '@ohos.application.Want';
+import Want from '@ohos.app.ability.Want';
 import fileuri from '@ohos.file.fileuri';
 import account from '@ohos.account.distributedAccount'
 import account_osAccount from '@ohos.account.osAccount';
@@ -58,7 +58,7 @@ const RECENT_MAX = 10; // 最近打开最大文件数
 const TAG = '[dlpHomePage]'
 
 
-@Entry( storage )
+@Entry
 @Component
 export struct Index {
   mediaFileUri : MediaFileUri = new MediaFileUri();
@@ -95,11 +95,9 @@ export struct Index {
   async callFilePickerSelectFile() : Promise<void> {
     try {
       let DocumentSelectOptions = new picker.DocumentSelectOptions();
-      DocumentSelectOptions.defaultFilePathUri = 'file://kaihong.sample.dlpmanager/data/storage/el2/base/haps/entry/files'
-      ///data/app/el2/100/base/kaihong.sample.dlpmanager/haps/entry/files"
+      DocumentSelectOptions.defaultFilePathUri = 'file://com.sample.dlpmanager/data/storage/el2/base/haps/entry/files'
       DocumentSelectOptions.maxSelectNumber = 20
       let documentPicker = new picker.DocumentViewPicker();
-      // Logger.info( TAG , 'DocumentViewPicker.select successfully, DocumentSelectOptions1111 : ' + JSON.stringify( DocumentSelectOptions ) );
       documentPicker.select( DocumentSelectOptions ).then( ( DocumentSelectResult ) => {
         Logger.info( TAG , 'DocumentViewPicker.select successfully, DocumentSelectOptions : ' + JSON.stringify( DocumentSelectOptions ) );
         Logger.info( TAG , 'DocumentViewPicker.select successfully, DocumentSelectResult uri: ' + JSON.stringify( DocumentSelectResult ) );
@@ -125,14 +123,6 @@ export struct Index {
   async getFilenameByUri( myUri : string ) : Promise<void> {
     // 获取文件名称
     this.filename = ( myUri.split( '/' ).pop() ) as string;
-    // router.pushUrl( {
-    //   url : 'pages/filePage' ,
-    //   params : {
-    //     fileName : this.filename ,
-    //     myUri : myUri
-    //   }
-    // } , router.RouterMode.Standard );
-
     let fd : number = fs.openSync( myUri ).fd;
     Logger.info( TAG , myUri + ";fd:" + fd )
     let fileUriObject = new fileuri.FileUri(myUri);
@@ -145,7 +135,8 @@ export struct Index {
     await sleep( 2 )
 
     if( this.isDLPFile ) {
-      await this.OpenDlpFile( myUri , this.filename , fd )
+      let dlpContent = await this.mediaFileUri.readFileContent( myUri )
+      await this.OpenDlpFile( myUri , this.filename , fd , dlpContent )
     } else {
       await this.routerUri( this.filename , path , fd , myUri , this.isDLPFile , fileSuffix )
     }
@@ -246,13 +237,13 @@ export struct Index {
   /**
    * 打开dlp文件
    */
-  async OpenDlpFile( dlpUri : string , fileName : string , fd : number ) {
+  async OpenDlpFile( dlpUri : string , fileName : string , fd : number , dlpContent : string ) {
     let context = getContext( this ) as common.UIAbilityContext;
     let want : Want = {
       "action" : "ohos.want.action.viewData" ,
-      "bundleName" : "kaihong.sample.dlpmanager" ,
+      "bundleName" : "com.sample.dlpmanager" ,
       "type" : "text/plain" ,
-      "abilityName" : "EntryAbility" ,
+      "abilityName" : "FuncAbility" ,
       "uri" : dlpUri ,
       "parameters" : {
         "fileName" : {
@@ -261,8 +252,10 @@ export struct Index {
         "keyFd" : {
           "type" : "FD" ,
           "value" : fd
-        },
-        page: "pages/filePage"
+        } ,
+        "content" : {
+          dlpContent
+        } ,
       }
     }
     try {
@@ -496,29 +489,14 @@ export struct Index {
                     Logger.info( TAG , "uri:" + uri )
                     let fileSuffix = "." + ( item.name.split( "." ).pop() ) as string;
                     await this.isDlpFileFunc( fd )
-
+                    let myFileContent = this.mediaFileUri.readFileContent( uri );
                     await sleep( 2 )
 
                     if( this.isDLPFile ) {
-                      await this.OpenDlpFile( uri , item.name , fd )
+                      await this.OpenDlpFile( uri , item.name , fd, myFileContent)
                     } else {
                       await this.routerUri( item.name , this.filePathList[ index ] , fd , uri , this.isDLPFile , fileSuffix )
                     }
-
-                    // router.pushUrl( {
-                    //   url : 'pages/filePage' ,
-                    //   params : {
-                    //     fileName : item.name ,
-                    //     myPath : this.filePathList[ index ] ,
-                    //     fd : fd ,
-                    //     myUri : uri ,
-                    //     isDlpFile : this.isDLPFile ,
-                    //   }
-                    // } , router.RouterMode.Standard ).then( () => {
-                    //   Logger.info( TAG , 'Succeeded in jumping to the second page.' )
-                    // } ).catch( ( err : BusinessError ) => {
-                    //   Logger.error( TAG , `Failed to jump to the second page.Code is ${ err.code }, message is ${ err.message }` )
-                    // } )
                   } )
                 }.width( '100%' )
 
@@ -547,7 +525,6 @@ export struct Index {
           .id( 'add' )
           .onClick( () => {
             this.callFilePickerSelectFile();
-            // this.onEncrypt()
           } )
       }
       .height( '100%' )

@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例主要展示了DLP文件管理相关的功能，使用@ohos.dlpPermission、@ohos.file.fs、@ohos.file.fileAccess等接口，实现了生成和打开DLP文件、查看原始应用沙箱目录的原始文件打开列表、编辑保存文件、拉取文件夹、查看文件权限和监听DLP文件的功能;
+本示例主要展示了DLP文件管理相关的功能，使用[@ohos.dlpPermission](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.0-Release/zh-cn/application-dev/reference/apis/js-apis-dlppermission.md)、[@ohos.file.fs](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.0-Release/zh-cn/application-dev/reference/apis/js-apis-file-fs.md)、[@ohos.file.fileAccess](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.0-Release/zh-cn/application-dev/reference/apis/js-apis-fileAccess.md)、[@ohos.file.picker](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.0-Release/zh-cn/application-dev/reference/apis/js-apis-file-picker.md)、[@ohos.app.ability.Want](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.0-Release/zh-cn/application-dev/reference/apis/js-apis-app-ability-want.md)等接口，实现了生成和打开DLP文件、查看原始应用沙箱目录的原始文件打开列表、编辑保存文件、拉取文件夹、查看文件权限和监听DLP文件的功能;
 
 ### 效果预览
 

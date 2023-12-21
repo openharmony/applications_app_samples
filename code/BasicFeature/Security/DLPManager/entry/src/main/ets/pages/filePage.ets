@@ -14,7 +14,7 @@
  */
 
 import common from '@ohos.app.ability.common';
-import Want from '@ohos.application.Want';
+import Want from '@ohos.app.ability.Want';
 import MediaFileUri from '../media/MediaFileUri';
 import promptAction from '@ohos.promptAction';
 import router from '@ohos.router';
@@ -24,7 +24,7 @@ import Logger from '../utils/Logger'
 import dlpPermission from '@ohos.dlpPermission';
 import picker from '@ohos.file.picker';
 
-const TAG = '[dlpPage]'
+const TAG = '[filePage]'
 const OPACITY_VALUE = 0.6; // 透明度
 
 interface myParams extends Object {
@@ -55,12 +55,6 @@ struct FilePage {
   @StorageLink( 'myFileSize' ) myFileSize : number = 0;
   controller : TextAreaController = new TextAreaController();
   newFileContent : string = '';
-  @LocalStorageLink( 'loadFlag' ) loadFlag : Boolean = false;
-  @LocalStorageLink( 'loadFileSize' ) loadFileSize : number = 0;
-  @LocalStorageLink( 'loadFileName' ) loadFileName : string = '';
-  @LocalStorageLink( 'loadFileContent' ) loadFileContent : string = '';
-  @LocalStorageLink( 'loadUri' ) loadUri : string = '';
-  @LocalStorageLink( 'fd' ) loadFd : number = 0;
   @State uriSave : string = '';
   mediaFileUri : MediaFileUri = new MediaFileUri();
   scroller : Scroller = new Scroller();
@@ -249,7 +243,7 @@ struct FilePage {
       .height( '56vp' )
       .width( '480vp' )
 
-      Scroll( this.scroller ) {
+      Scroll(this.scroller) {
         Column() {
           TextArea( { text : this.myFileContent , placeholder : 'Input text here...' , controller : this.controller } )
             .width( '372vp' )
@@ -260,7 +254,7 @@ struct FilePage {
             .textAlign( TextAlign.Start )
             .fontWeight( 500 )
             .margin( { top : '10vp' , bottom : '32vp' , right : '8vp' } )
-            .id( 'textArea' )
+            .id( 'fileTextArea' )
             .padding( {
               top : 0 ,
               right : 0 ,
@@ -314,7 +308,7 @@ struct FilePage {
             .width( '136vp' )
             .height( '14vp' )
             .margin( { left : '4vp' , right : '4vp' , bottom : '7vp' } )
-            .id( 'edit' )
+            .id( 'fileEdit' )
 
         }.width( '144vp' ).height( '56vp' )
 
@@ -341,7 +335,7 @@ struct FilePage {
             .width( '136vp' )
             .height( '14vp' )
             .margin( { left : '4vp' , right : '4vp' , bottom : '7vp' } )
-            .id( 'save' )
+            .id( 'fileSave' )
         }.width( '144vp' ).height( '56vp' )
 
         Column() {
@@ -360,7 +354,7 @@ struct FilePage {
             .width( '136vp' )
             .height( '14vp' )
             .margin( { left : '4vp' , right : '4vp' , bottom : '7vp' } )
-            .id( 'more' )
+            .id( 'fileMore' )
         }.width( '144vp' ).height( '56vp' )
       }
       .align( Alignment.Bottom )
