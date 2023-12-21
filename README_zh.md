@@ -434,7 +434,7 @@
  <tr height="18" style='height:13.50pt;'>
   <td rowspan="1" align="center" x:str><strong>性能</strong></td>
   <td rowspan="1" x:str><strong>方舟运行时</strong></td>
-  <td x:str><a href="code/Performance/ArkRuntime"> N-Body模拟程序（API 10）</a></td>
+  <td x:str><a href="code/Performance/ArkRuntime/NBody"> N-Body模拟程序（API 10）</a></td>
   <td ></td>
   <td ></td>
   <td ></td>
