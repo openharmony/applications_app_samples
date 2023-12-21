@@ -81,7 +81,7 @@ export default function abilityTest() {
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
         await abilityDelegator.startAbility( {
-          bundleName : 'kaihong.sample.dlpmanager' ,
+          bundleName : 'com.sample.dlpmanager' ,
           abilityName : 'EntryAbility'
         } );
         done();

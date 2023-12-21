@@ -24,7 +24,7 @@ import Logger from '../utils/Logger'
 import dlpPermission from '@ohos.dlpPermission';
 import picker from '@ohos.file.picker';
 
-const TAG = '[filePage]'
+const TAG = '[dlpmanager_filePage]'
 const OPACITY_VALUE = 0.6; // 透明度
 
 interface myParams extends Object {

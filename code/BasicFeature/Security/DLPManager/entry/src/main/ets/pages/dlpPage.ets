@@ -24,197 +24,40 @@ import Logger from '../utils/Logger'
 import dlpPermission from '@ohos.dlpPermission';
 import picker from '@ohos.file.picker';
 
-const TAG = '[dlpPage]'
+const TAG = '[dlpmanager_dlpPage]'
 const OPACITY_VALUE = 0.6; // 透明度
-
-interface myParams extends Object {
-  fileName : string
-  myPath : string,
-  fd : number,
-  myUri : string
-  isDlpFile : boolean
-  fileSuffix : string
-}
 
 let storage = LocalStorage.getShared();
 
 @Entry( storage )
 @Component
-struct FilePage {
-  @State inSandbox : boolean = false
-  @State opacityValue : number = OPACITY_VALUE;
-  @State myFileName : string = '';
-  @State myUri : string = '';
-  @State fd : number = 0;
-  @State myPath : string = '';
-  @State isDLPFile : boolean = false
-  @State fileSuffix : string = ''
-  @State fileSuffixIncludes : boolean = false
-  @StorageLink( 'editable' ) editable : Boolean = false;
-  @StorageLink( 'myFileContent' ) myFileContent : string = '';
-  @StorageLink( 'myFileSize' ) myFileSize : number = 0;
-  controller : TextAreaController = new TextAreaController();
-  newFileContent : string = '';
-  @State uriSave : string = '';
-  mediaFileUri : MediaFileUri = new MediaFileUri();
-  scroller : Scroller = new Scroller();
-
-  getFileInfo() : void {
-    this.myFileName = (router.getParams() as myParams).fileName;
-    this.myPath = (router.getParams() as myParams).myPath;
-    this.myUri = (router.getParams() as myParams).myUri;
-    this.fd = (router.getParams() as myParams).fd;
-    this.isDLPFile = (router.getParams() as myParams).isDlpFile;
-    this.fileSuffix = (router.getParams() as myParams).fileSuffix;
-    this.myFileContent = this.mediaFileUri.readFileContent( this.myUri );
-    this.myFileSize = this.mediaFileUri.myGetFileSize( this.myUri , fs.OpenMode.READ_ONLY );
-    this.isDlpFileFunc( this.fd , this.fileSuffix )
-    Logger.info( TAG , 'The count of getFileInfo is myUri is: ' + JSON.stringify( this.myUri ) );
-    Logger.info( TAG , 'The count of getFileInfo is myFileName is: ' + JSON.stringify( this.myFileName ) );
-    Logger.info( TAG , 'The count of getFileInfo is myFileContent ' + this.myFileContent );
-    Logger.info( TAG , 'The count of getFileInfo is myFileSize ' + this.myFileSize );
-
-    AppStorage.setOrCreate( 'myFileContent' , this.myFileContent );
-    AppStorage.setOrCreate( 'myFileSize' , this.myFileSize );
-  }
-
-  /**
-   * 是否为沙箱应用
-   */
-  async isSandboxFunc() : Promise<void> {
-    try {
-      this.inSandbox = await dlpPermission.isInSandbox() // 是否在沙箱内
-      Logger.info( TAG , 'inSandbox:' + this.inSandbox );
-      promptAction.showToast( { message : '是否为沙箱应用:' + this.inSandbox , duration : 2000 } )
-    } catch( err ) {
-      Logger.error( TAG , 'error' + (err as BusinessError).code + (err as BusinessError).message ); // 失败报错
-    }
-  }
-
-  /**
-   * 获取沙箱权限
-   */
-  async getDlpPermission() : Promise<void> {
-    dlpPermission.getDLPPermissionInfo().then( ( data : dlpPermission.DLPPermissionInfo ) => {
-      Logger.info( TAG , 'getDLPPermissionInfo, result: ' + JSON.stringify( data ) );
-      promptAction.showToast( { message : "当前权限为：" + JSON.stringify( data ) , duration : 2000 } )
-    } ).catch( ( err : BusinessError ) => {
-      Logger.info( TAG , "getDLPPermissionInfo: " + JSON.stringify( err ) );
-    } );
-  }
-
-  /**
-   * 是否为dlp文件
-   */
-  async isDlpFileFunc( fd : number , fileSuffix : string ) : Promise<boolean> {
-    try {
-      this.isDLPFile = await dlpPermission.isDLPFile( fd ); // 是否加密DLP文件
-      Logger.info( TAG , 'isDlpFile:' + this.isDLPFile );
-      promptAction.showToast( { message : '是否为dlp文件:' + this.isDLPFile , duration : 2000 } )
-      if( this.isDLPFile ) {
-        Logger.info( TAG , "是dlp文件" )
-        this.isSandboxFunc()
-      } else {
-        Logger.info( TAG , "不是dlp文件" )
-        this.getDLPSupported( fileSuffix )
-      }
-    } catch( err ) {
-      Logger.error( TAG , 'isDLPFile error:' + (err as BusinessError).code + (err as BusinessError).message ); // 失败报错
-    }
-    return this.isDLPFile
-  }
-
-  /**
-   * 查询当前可支持权限设置和校验的文件扩展名类型列表
-   */
-  async getDLPSupported( fileSuffix : string ) : Promise<void> {
-    try {
-      let res : Array<string> = await dlpPermission.getDLPSupportedFileTypes(); // 获取支持DLP的文件类型
-      Logger.info( TAG , '当前可支持权限设置和校验的文件扩展名:' + JSON.stringify( res ) );
-      promptAction.showToast( {
-        message : '当前可支持权限设置和校验的文件扩展名:' + JSON.stringify( res ) ,
-        duration : 2000
-      } )
-      console.info( TAG , '该文件拓展名：' + fileSuffix )
-      this.fileSuffixIncludes = res.includes( fileSuffix )
-      console.info( TAG , '该文件拓展名是否在列表中：' + this.fileSuffixIncludes )
-      promptAction.showToast( {
-        message : '该文件拓展名：' + fileSuffix + ',是否在列表中：' + this.fileSuffixIncludes ,
-        duration : 2000
-      } )
-    } catch( err ) {
-      Logger.error( TAG , 'getDLPSupportedFileTypes error' + (err as BusinessError).code + (err as BusinessError).message ); // 失败报错
-    }
-  }
-
-  /**
-   * 另存为
-   */
-  async callFilePickerSaveFile( fileName : string ) : Promise<void> {
-    try {
-      let DocumentSaveOptions = new picker.DocumentSaveOptions();
-      DocumentSaveOptions.newFileNames = [ fileName ];
-      let documentPicker = new picker.DocumentViewPicker();
-      documentPicker.save( DocumentSaveOptions ).then( ( DocumentSaveResult ) => {
-        Logger.info( TAG , 'DocumentViewPicker.save successfully, DocumentSaveResult uri: ' + JSON.stringify( DocumentSaveResult ) );
-        if( DocumentSaveResult !== null && DocumentSaveResult !== undefined ) {
-          this.uriSave = DocumentSaveResult[ 0 ];
-          Logger.info( TAG , `save callFilePickerSaveFile file this.uriSave: ${ this.uriSave }` );
-        }
-        Logger.info( TAG , 'fileAsset.displayName wrFlag myFileContent :' + this.myFileContent );
-        this.writeContentForSaveAsFile( this.uriSave , true ); // 用 medialibrary 重新获取uri，进行写入操作
-      } ).catch( ( err : BusinessError ) => {
-        Logger.error( TAG , 'DocumentViewPicker.save failed with err: ' + JSON.stringify( err ) );
-      } );
-    } catch( err ) {
-      Logger.error( TAG , 'DocumentViewPicker failed with err: ' + err );
-    }
-  }
-
-  async writeContentForSaveAsFile( myUri : string , wrFlag : Boolean = false ) : Promise<void> {
-    if( wrFlag ) {
-      Logger.info( TAG , 'fileAsset.displayName wrFlag is true' );
-      Logger.info( TAG , 'fileAsset.displayName wrFlag myFileContent :' + this.myFileContent );
-      this.mediaFileUri.writeFileContent( myUri , this.myFileContent );
-    }
-  }
-
-  /**
-   * 生成dlp文件
-   */
-  async onEncrypt() {
-    Logger.info( TAG + 'new file and encrypt' );
-    try {
-
-      // Logger.info( TAG , '沙箱路径为: ' + this.pathDir )
-      // let uri = "file://docs/storage/Users/currentUser/Desktop/a.txt"
-      // let path ="/data/storage/el2/base/haps/entry/files/a.txt"
-      // let file = fs.openSync( path , fs.OpenMode.READ_ONLY | fs.OpenMode.CREATE );
-      // Logger.info( TAG , "file fd: " + file.fd );
-
-      let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext
-      let want : Want = {
-        // "uri" : "file://docs/storage/Users/currentUser/Desktop/" + this.myFileName ,
-        "uri" : this.myUri ,
-        "parameters" : {
-          "displayName" : this.myFileName
-        }
-      }; // 请求参数
-      Logger.info( TAG , "onEncrypt:" + JSON.stringify( want ) );
-      dlpPermission.startDLPManagerForResult( context , want ).then( ( res : dlpPermission.DLPManagerResult ) => {
-        Logger.info( TAG , 'startDLPManagerForResult res.resultCode:' + res.resultCode );
-        Logger.info( TAG , 'startDLPManagerForResult res.want:' + JSON.stringify( res.want ) );
-      } ); // 打开DLP权限管理应用
-    } catch( err ) {
-      Logger.error( TAG , 'startDLPManagerForResult error:' + (err as BusinessError).code + (err as BusinessError).message ); // 失败报错
-    }
-  }
+struct DlpPage {
+  @State inSandbox: boolean = false
+  @State opacityValue: number = OPACITY_VALUE;
+  @State myFileName: string = '';
+  @State myUri: string = '';
+  @State fd: number = 0;
+  @State myPath: string = '';
+  @State isDLPFile: boolean = false
+  @State fileSuffix: string = ''
+  @State fileSuffixIncludes: boolean = false
+  @StorageLink( 'editable' ) editable: Boolean = false;
+  @StorageLink( 'myFileContent' ) myFileContent: string = '';
+  @StorageLink( 'myFileSize' ) myFileSize: number = 0;
+  controller: TextAreaController = new TextAreaController();
+  newFileContent: string = '';
+  @State uriSave: string = '';
+  mediaFileUri: MediaFileUri = new MediaFileUri();
+  wantInfo: Want = new Want()
+  scroller: Scroller = new Scroller();
 
   aboutToAppear() {
   }
 
-  onPageShow() : void {
-
+  onPageShow(): void {
+    this.wantInfo = AppStorage.get( "funcAbilityWant" ) as Want
+    console.info( TAG , "funcAbilityWant:" + JSON.stringify( this.wantInfo ) )
+    // let name = this.wantInfo.parameters.fileName
   }
 
   build() {
@@ -243,7 +86,7 @@ struct FilePage {
       .height( '56vp' )
       .width( '480vp' )
 
-      Scroll(this.scroller) {
+      Scroll( this.scroller ) {
         Column() {
           TextArea( { text : this.myFileContent , placeholder : 'Input text here...' , controller : this.controller } )
             .width( '372vp' )
@@ -270,7 +113,7 @@ struct FilePage {
             .onBlur( () => {
               this.opacityValue = OPACITY_VALUE;
             } )
-            .onChange( ( value : string ) => {
+            .onChange( ( value: string ) => {
               this.myFileContent = value;
             } )
             .backgroundColor( '#FFFFFF' )
@@ -373,7 +216,6 @@ struct FilePage {
         .height( '48vp' )
         .margin( { left : '16vp' , right : '16vp' } )
         .onClick( () => {
-          this.callFilePickerSaveFile( this.myFileName );
         } )
 
       MenuItem( this.filePageDivider )
@@ -383,7 +225,6 @@ struct FilePage {
         .height( '48vp' )
         .margin( { left : '16vp' , right : '16vp' } )
         .onClick( () => {
-          this.onEncrypt()
         } )
         .enabled( this.isDLPFile ? true : ( this.fileSuffixIncludes ? true : false ) )
 
@@ -394,7 +235,6 @@ struct FilePage {
         .height( '48vp' )
         .margin( { left : '16vp' , right : '16vp' } )
         .onClick( () => {
-          this.getDlpPermission()
         } )
         .enabled( this.inSandbox ? true : false )
 

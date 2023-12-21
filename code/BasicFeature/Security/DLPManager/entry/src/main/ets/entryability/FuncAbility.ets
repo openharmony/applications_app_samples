@@ -23,25 +23,26 @@ import MediaFileUri from '../media/MediaFileUri';
 import Logger from '../utils/Logger';
 
 
-const TAG = '[FuncAbility] ';
+const TAG = '[dlpmanager_FuncAbility]';
 
 export default class FuncAbility extends UIAbility {
-  private storage : LocalStorage = new LocalStorage();
+  private storage: LocalStorage = new LocalStorage();
 
-  onCreate( want : Want , launchParam : AbilityConstant.LaunchParam ) {
+  onCreate( want: Want , launchParam: AbilityConstant.LaunchParam ) {
     // 接收调用方UIAbility传过来的参数
     Logger.info( TAG , '%{public}s' , 'Ability onCreate' );
     let funcAbilityWant = want;
-    let info = funcAbilityWant?.parameters?.info;
-    Logger.info( TAG , 'funcAbilityWant:' + funcAbilityWant + ";info" + info );
+    let info = funcAbilityWant.parameters
+    Logger.info( TAG , 'funcAbilityWant:' + typeof ( funcAbilityWant ) + ";parameters:" + typeof ( info ) );
+    Logger.info( TAG , 'funcAbilityWant:' + JSON.stringify( funcAbilityWant ) + ";parameters:" + JSON.stringify( info ) );
     AppStorage.setOrCreate( "funcAbilityWant" , funcAbilityWant )
     this.getWantInfo( want );
   }
 
-  onWindowStageCreate( windowStage : window.WindowStage ) : void {
+  onWindowStageCreate( windowStage: window.WindowStage ): void {
     Logger.info( TAG , 'testTag' , '%{public}s' , 'Ability onWindowStageCreate' );
     windowStage.loadContent( 'pages/dlpPage' , this.storage , ( err , data ) => {
-      if( err.code ) {
+      if ( err.code ) {
         Logger.error( TAG , 'Failed to load the content. Cause: ' + JSON.stringify( err ) ?? '' );
         return;
       }
@@ -53,25 +54,25 @@ export default class FuncAbility extends UIAbility {
     Logger.info( TAG , 'context type:' + typeof ( this.context ) );
   }
 
-  onWindowStageDestroy() : void {
+  onWindowStageDestroy(): void {
     // Main window is destroyed, release UI related resources
     Logger.info( TAG , 'testTag' , '%{public}s' , 'Ability onWindowStageDestroy' );
   }
 
-  getWantInfo( want : Want ) : void {
-    if( want === null || want === undefined ) {
+  getWantInfo( want: Want ): void {
+    if ( want === null || want === undefined ) {
       Logger.info( TAG , 'getWantInfo want is null' );
       return;
     }
 
     let srcUri = want.uri;
-    if( srcUri === null || srcUri === undefined ) {
+    if ( srcUri === null || srcUri === undefined ) {
       Logger.info( TAG , 'getWantInfo srcUri is null' );
       return;
     }
 
     let parameters = want.parameters;
-    if( parameters === null || parameters === undefined ) {
+    if ( parameters === null || parameters === undefined ) {
       Logger.info( TAG , 'getWantInfo parameters is null' );
       return;
     }

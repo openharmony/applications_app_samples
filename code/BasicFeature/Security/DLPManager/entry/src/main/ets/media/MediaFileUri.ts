@@ -20,7 +20,7 @@ import util from '@ohos.util';
 import { BusinessError } from '@ohos.base';
 import fs, { Filter } from '@ohos.file.fs';
 
-const TAG = 'MediaFileUri';
+const TAG = '[dlpmanager_MediaFileUri]';
 const RECENT_MAX = 10; // 最近打开最大文件数
 const BUFFER_SIZE = 4096; // 文件读写缓冲区大小
 const COMMON_FD = -1; // 文件fd默认值

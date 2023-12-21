@@ -15,21 +15,12 @@
 {
   "app": {
     "signingConfigs": [],
+    "compileSdkVersion": 11,
+    "compatibleSdkVersion": 11,
     "products": [
       {
         "name": "default",
-        "signingConfig": "default",
-        "compileSdkVersion": 11,
-        "compatibleSdkVersion": 11,
-        "runtimeOS": "OpenHarmony",
-      }
-    ],
-    "buildModeSet": [
-      {
-        "name": "debug",
-      },
-      {
-        "name": "release"
+        "signingConfig": "default"
       }
     ]
   },

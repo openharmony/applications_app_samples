@@ -55,7 +55,7 @@ class ListFileOption {
 
 let storage = LocalStorage.getShared();
 const RECENT_MAX = 10; // 最近打开最大文件数
-const TAG = '[dlpHomePage]'
+const TAG = '[dlpmanager_index]'
 
 
 @Entry
