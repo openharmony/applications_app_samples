@@ -1,0 +1,40 @@
+{
+  "integer": [
+    {
+      "name": "LazyForEachPage_title_font",
+      "value": 24
+    },
+    {
+      "name": "LazyForEachPage_title_height",
+      "value": 50
+    },
+    {
+      "name": "LazyForEachPage_item_image_height",
+      "value": 40
+    },
+    {
+      "name": "LazyForEachPage_item_image_width",
+      "value": 40
+    },
+    {
+      "name": "LazyForEachPage_item_image_margin_left",
+      "value": 15
+    },
+    {
+      "name": "LazyForEachPage_text_font",
+      "value": 20
+    },
+    {
+      "name": "LazyForEachPage_text_width",
+      "value": 100
+    },
+    {
+      "name": "LazyForEachPage_text_height",
+      "value": 50
+    },
+    {
+      "name": "LazyForEachPage_item_height",
+      "value": 50
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from npm package"
+    },
+    {
+      "name": "layout_100_percent",
+      "value": "100%"
+    },
+    {
+      "name": "layout_90_percent",
+      "value": "90%"
+    }
+  ]
+}

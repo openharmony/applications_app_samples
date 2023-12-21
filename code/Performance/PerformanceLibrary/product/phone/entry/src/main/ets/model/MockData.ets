@@ -43,5 +43,9 @@ export let performanceTypeArray: Array<PerformanceMsg> = [
   {
     name: 'SmartPerfHost',
     uri: 'pages/smartPerfHost/SmartPerfHostPage'
+  },
+  {
+    name: 'Trace',
+    uri: 'pages/trace/TracePage'
   }
 ]
