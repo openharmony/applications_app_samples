@@ -180,8 +180,8 @@ export default {
     // update duration
     this.totalMs = this.playerModel.getDuration()
     this.totalTimeText = getShownTimer(this.totalMs)
-    this.currentTimeText = getShownTimer(this.playerModel.getCurrentMs())
-    this.currentProgress = Math.floor(this.playerModel.getCurrentMs() / this.totalMs * 100)
+    this.currentTimeText = getShownTimer(0)
+    this.currentProgress = 0
 
     logger.debug(TAG, `refreshSongInfo this.title=${this.title} this.totalMs=${this.totalMs}`
     + ` this.totalTimeText=${this.totalTimeText}this.currentTimeText=${this.currentTimeText}`)
