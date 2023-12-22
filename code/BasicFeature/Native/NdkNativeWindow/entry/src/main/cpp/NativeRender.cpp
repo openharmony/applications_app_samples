@@ -179,6 +179,7 @@ void NativeRender::DrawBaseColor()
     ret = OH_NativeWindow_GetLastFlushedBuffer(nativeWindow_, &lastFlushedBuffer, &lastFlushedFenceFd, matrix);
     if (ret != 0) {
         LOGE("OH_NativeWindow_GetLastFlushedBuffer fail, ret = %{public}d", ret);
+        return;
     }
     BufferHandle *lastHandle = OH_NativeWindow_GetBufferHandleFromNative(lastFlushedBuffer);
     if (lastHandle != nullptr && bufferHandle != nullptr && lastHandle->virAddr != bufferHandle->virAddr) {
