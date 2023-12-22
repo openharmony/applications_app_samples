@@ -16,6 +16,7 @@
 import worker from '@ohos.worker';
 import fs from '@ohos.file.fs';
 import { Logger, sleep } from '../common/Common';
+import { BusinessError } from '@ohos.base';
 
 const CONTENT = 'hello world';
 const TAG: string = '[ConcurrentModule].[MyWorker]';
@@ -24,11 +25,11 @@ const FILE_NUMBER: number = 9; // 文件1-9命名时加上0
 const LIST_FILE_TWO: number = 2; // 显示拷贝成功后的第二个文件名
 const SLEEP_TIME: number = 100; // 睡眠时间
 
-let workerInstance = null;
-let fileFlag = false;
+let workerInstance: worker.ThreadWorker | null = null;
+let fileFlag: boolean = false;
 
 export default class MyFile {
-  public baseDir: string = '';
+  public baseDir: string | undefined = '';
   public filesCount: number = 0;
   private flag: boolean = false;
   public realFileNames: Array<string> = [];
@@ -45,7 +46,7 @@ export default class MyFile {
       }
       Logger.info(TAG, 'readyFileToFileFs successful');
     } catch (e) {
-      Logger.error(TAG, `readyFileToFileFs has failed for: {message: ${e.message}, code: ${e.code}}`);
+      Logger.error(TAG, `readyFileToFileFs has failed for: {message: ${(e as BusinessError).message}, code: ${(e as BusinessError).code}}`);
     }
   }
 
@@ -73,7 +74,7 @@ export default class MyFile {
       }
       Logger.info(TAG, 'readyFilesToWorker successful');
     } catch (e) {
-      Logger.error(TAG, `readyFilesToWorker has failed for: {message: ${e.message}, code: ${e.code}}`);
+      Logger.error(TAG, `readyFilesToWorker has failed for: {message: ${(e as BusinessError).message}, code: ${(e as BusinessError).code}}`);
     }
   }
 
@@ -91,7 +92,7 @@ export default class MyFile {
           for (let i = 0; i < filenames.length; i++) {
             Logger.info(TAG, 'Workerets fileName: ' + filenames[i]);
           }
-        }).catch((err) => {
+        }).catch((err: BusinessError) => {
           Logger.info(TAG, 'list file failed with error message: ' + err.message + ', error code: ' + err.code);
         });
       }
@@ -118,43 +119,42 @@ export default class MyFile {
         });
       }
 
-      workerInstance.onexit = function (code): void {
+      workerInstance.onexit = (code): void => {
         Logger.info(TAG, `workerInstance::onexit has been exit ${code}`);
       };
-      workerInstance.onerror = function (err): void {
+      workerInstance.onerror = (err): void => {
         Logger.info(TAG, `workerInstance::onerror has errors: ${JSON.stringify(err)}`);
       };
-      workerInstance.onmessageerror = function (event): void {
+      workerInstance.onmessageerror = (event): void => {
         Logger.info(TAG, `workerInstance::onmessageerror has errors: ${JSON.stringify(event)}`);
       };
-      workerInstance.onmessage = function (message): void {
-        let data = message.data;
-        Logger.info(TAG, `workerInstance::onmessage receive data: ${JSON.stringify(data)}`);
-        if (data.hasOwnProperty('count')) {
-          Logger.info(TAG, `workerInstance::onmessage receive data length = ${data.count}`);
-          this.filesCount = data.count;
-          fileFlag = data.strFlag;
+      workerInstance.onmessage = (message): void => {
+        Logger.info(TAG, `workerInstance::onmessage receive data: ${JSON.stringify(message.data)}`);
+        if (message.data.hasOwnProperty('count')) {
+          Logger.info(TAG, `workerInstance::onmessage receive data length = ${message.data.count}`);
+          this.filesCount = message.data.count;
+          fileFlag = message.data.strFlag;
           this.flag = true;
-          let fileName1 = null;
-          let fileName2 = null;
-          for (let i = 0; i < data.listFileNames.length; i++) {
-            Logger.info(TAG, `Worker workerInstance::onmessage receive listFileNames: ${data.listFileNames[i]}`);
+          let fileName1: string | null = null;
+          let fileName2: string | null = null;
+          for (let i: number = 0; i < message.data.listFileNames.length; i++) {
+            Logger.info(TAG, `Worker workerInstance::onmessage receive listFileNames: ${message.data.listFileNames[i]}`);
           }
-          if (data.listFileNames[0] !== undefined && data.listFileNames[1] !== undefined && data.listFileNames[LIST_FILE_TWO] === undefined) {
-            fileName1 = data.listFileNames[0] + '、';
-            fileName2 = data.listFileNames[1];
-          } else if (data.listFileNames[0] !== undefined && data.listFileNames[1] === undefined) {
-            fileName1 = data.listFileNames[0];
+          if (message.data.listFileNames[0] !== undefined && message.data.listFileNames[1] !== undefined && message.data.listFileNames[LIST_FILE_TWO] === undefined) {
+            fileName1 = message.data.listFileNames[0] + '、';
+            fileName2 = message.data.listFileNames[1];
+          } else if (message.data.listFileNames[0] !== undefined && message.data.listFileNames[1] === undefined) {
+            fileName1 = message.data.listFileNames[0];
             fileName2 = '';
           } else {
-            fileName1 = data.listFileNames[0] + '、';
-            let copyFileLog = AppStorage.Get('copyFileLog5');
-            fileName2 = data.listFileNames[1] + copyFileLog;
+            fileName1 = message.data.listFileNames[0] + '、';
+            let copyFileLog: string | undefined = AppStorage.Get('copyFileLog5');
+            fileName2 = message.data.listFileNames[1] + copyFileLog;
           }
           AppStorage.SetOrCreate('fileListName1', fileName1);
           AppStorage.SetOrCreate('fileListName2', fileName2);
-          let copyFileLog3 = AppStorage.Get('copyFileLog3');
-          let copyFileLog4 = AppStorage.Get('copyFileLog4');
+          let copyFileLog3: string | undefined = AppStorage.Get('copyFileLog3');
+          let copyFileLog4: string | undefined = AppStorage.Get('copyFileLog4');
           let copyFileLog = '2、' + fileName1 + fileName2 + copyFileLog3 + 'copy' + copyFileLog4;
           if (fileName1 !== 'undefined、') {
             AppStorage.SetOrCreate('copyFileShowLog', copyFileLog);
@@ -163,7 +163,7 @@ export default class MyFile {
           }
           Logger.info(TAG, `Worker workerInstance::onmessage receive count: ${JSON.stringify(this.filesCount)}`);
         }
-        if (this.fileNames !== 0) {
+        if (this.filesCount !== 0) {
           AppStorage.SetOrCreate('fileNumber', JSON.stringify(this.filesCount));
         } else {
           AppStorage.SetOrCreate('fileNumber', '0');
@@ -171,13 +171,13 @@ export default class MyFile {
           AppStorage.SetOrCreate('fileListName2', '');
         }
         Logger.info(TAG, 'workerInstance::onmessage Finish to process data from WorkerCopy.ts');
-        workerInstance.terminate();
+        workerInstance?.terminate();
       };
       while (!fileFlag) {
         await sleep(SLEEP_TIME);
       }
     } catch (e) {
-      Logger.error(TAG, `Worker WorkCreator error package: message: ${e.message}, code: ${e.code}`);
+      Logger.error(TAG, `Worker WorkCreator error package: message: ${(e as BusinessError).message}, code: ${(e as BusinessError).code}`);
     }
   }
 
@@ -192,7 +192,7 @@ export default class MyFile {
         }
       }
     } catch (e) {
-      Logger.error(TAG, `delete workerCopyFile error package: message: ${e.message}, code: ${e.code}`);
+      Logger.error(TAG, `delete workerCopyFile error package: message: ${(e as BusinessError).message}, code: ${(e as BusinessError).code}`);
     }
   }
 }
