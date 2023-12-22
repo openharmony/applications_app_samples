@@ -1,0 +1,224 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "entry_desc"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "MainAbility_desc"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "MainAbility_label"
+    },
+    {
+      "name": "file_manager",
+      "value": "file_manager"
+    },
+    {
+      "name": "image",
+      "value": "image"
+    },
+    {
+      "name": "image_preview",
+      "value": "image_preview"
+    },
+    {
+      "name": "video",
+      "value": "video"
+    },
+    {
+      "name": "document",
+      "value": "document"
+    },
+    {
+      "name": "audio",
+      "value": "audio"
+    },
+    {
+      "name": "compressed_package",
+      "value": "compressed_package"
+    },
+    {
+      "name": "my_phone",
+      "value": "my_phone"
+    },
+    {
+      "name": "read_reason",
+      "value": "read_reason"
+    },
+    {
+      "name": "write_reason",
+      "value": "write_reason"
+    },
+    {
+      "name": "storage_reason",
+      "value": "storage_reason"
+    },
+    {
+      "name": "file_access_reason",
+      "value": "file_access_reason"
+    },
+    {
+      "name": "no_file",
+      "value": "no_file"
+    },
+    {
+      "name": "not_supported_tip",
+      "value": "not_supported_tip"
+    },
+    {
+      "name": "test_tip",
+      "value": "test_tip"
+    },
+    {
+      "name": "mock_tip",
+      "value": "mock_tip"
+    },
+    {
+      "name": "tip_input_name",
+      "value": "tip_input_name"
+    },
+    {
+      "name": "title",
+      "value": "title"
+    },
+    {
+      "name": "label_memory",
+      "value": "label_memory"
+    },
+    {
+      "name": "label_current_directory",
+      "value": "label_current_directory"
+    },
+    {
+      "name": "label_cancel",
+      "value": "label_cancel"
+    },
+    {
+      "name": "label_item",
+      "value": "label_item"
+    },
+    {
+      "name": "label_move_to",
+      "value": "label_move_to"
+    },
+    {
+      "name": "label_copy_move",
+      "value": "label_copy_move"
+    },
+    {
+      "name": "tip_choose_one",
+      "value": "tip_choose_one"
+    },
+    {
+      "name": "label_rename",
+      "value": "label_rename"
+    },
+    {
+      "name": "label_share",
+      "value": "label_share"
+    },
+    {
+      "name": "tip_develop",
+      "value": "tip_develop"
+    },
+    {
+      "name": "label_make_directory",
+      "value": "label_make_directory"
+    },
+    {
+      "name": "label_make_file",
+      "value": "label_make_file"
+    },
+    {
+      "name": "label_sort",
+      "value": "label_sort"
+    },
+    {
+      "name": "label_clean",
+      "value": "label_clean"
+    },
+    {
+      "name": "label_nothing",
+      "value": "label_nothing"
+    },
+    {
+      "name": "label_no_move",
+      "value": "label_no_move"
+    },
+    {
+      "name": "label_is_delete",
+      "value": "label_is_delete"
+    },
+    {
+      "name": "label_delete",
+      "value": "label_delete"
+    },
+    {
+      "name": "label_delete_success",
+      "value": "label_delete_success"
+    },
+    {
+      "name": "label_input",
+      "value": "label_input"
+    },
+    {
+      "name": "label_confirm",
+      "value": "label_confirm"
+    },
+    {
+      "name": "watcherFileText",
+      "value": "watcherFileText"
+    },
+    {
+      "name": "watcherTitleText",
+      "value": "watcherTitleText"
+    },
+    {
+      "name": "addFile",
+      "value": "addFile"
+    },
+    {
+      "name": "logTitle",
+      "value": "logTitle"
+    },
+    {
+      "name": "addWatcher",
+      "value": "addWatcher"
+    },
+    {
+      "name": "stopWatcher",
+      "value": "stopWatcher"
+    },
+    {
+      "name": "isDelFile",
+      "value": "delFile"
+    },
+    {
+      "name": "deleteFile",
+      "value": "deleteFile"
+    },
+    {
+      "name": "cancel",
+      "value": "cancel"
+    },
+    {
+      "name": "fileContent1",
+      "value": "File Content1"
+    },
+    {
+      "name": "fileContent2",
+      "value": "File Content2"
+    },
+    {
+      "name": "fileContent3",
+      "value": "File Content3"
+    },
+    {
+      "name": "fileContent4",
+      "value": "File Content4"
+    }
+  ]
+}
