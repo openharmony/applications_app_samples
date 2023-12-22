@@ -90,7 +90,7 @@ class FileSystem {
 
   // 获取目录中的子目录个数
   getSubdirectoryNum(filePath: string): number {
-    console.log("----getSubdirectoryNum filePath="+filePath);
+    Logger.info("----getSubdirectoryNum filePath="+filePath);
     let dir = fileio.opendirSync(filePath);
     // 读取的结果
     let dirent: fileio.Dirent;
