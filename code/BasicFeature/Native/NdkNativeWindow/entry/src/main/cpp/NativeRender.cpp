@@ -174,7 +174,9 @@ void NativeRender::DrawBaseColor()
         LOGE("munmap failed");
     }
     OHNativeWindowBuffer* lastFlushedBuffer;
-    ret = OH_NativeWindow_GetLastFlushedBuffer(nativeWindow_, &lastFlushedBuffer);
+    int lastFlushedFenceFd;
+    float matrix[16];
+    ret = OH_NativeWindow_GetLastFlushedBuffer(nativeWindow_, &lastFlushedBuffer, &lastFlushedFenceFd, matrix);
     if (ret != 0) {
         LOGE("OH_NativeWindow_GetLastFlushedBuffer fail, ret = %{public}d", ret);
     }
