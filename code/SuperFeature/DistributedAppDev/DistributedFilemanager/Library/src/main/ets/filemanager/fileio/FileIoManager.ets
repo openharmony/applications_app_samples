@@ -62,7 +62,7 @@ class FileSystem {
         this.time = time
       }
     }
-    let subdirectory: Array<SubDirectory> = []
+    let subdirectory: Array<SubDirectory> = [];
     do {
       dirent = dir.readSync();
       if (dirent) {

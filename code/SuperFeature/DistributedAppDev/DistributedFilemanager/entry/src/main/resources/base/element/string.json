@@ -157,6 +157,18 @@
       "value": "正在粘贴"
     },
     {
+      "name": "label_copyfailed",
+      "value": "粘贴失败"
+    },
+    {
+      "name": "label_dirupdate",
+      "value": "文件目录已更新"
+    },
+    {
+      "name": "label_copyfile",
+      "value": "-副本"
+    },
+    {
       "name": "label_no_move",
       "value": "label_no_move"
     },

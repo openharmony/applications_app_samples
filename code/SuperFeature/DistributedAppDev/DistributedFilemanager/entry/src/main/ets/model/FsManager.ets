@@ -115,7 +115,7 @@ class FsManager {
         Logger.info("Succeeded in copying. ");
       }).catch((err: BusinessError)=>{
         Logger.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
-        return prompt.showToast({ message: "粘贴失败" });
+        return prompt.showToast({ message: $r('app.string.label_copyfailed') });
       })
     } catch (error) {
       let err: BusinessError = error as BusinessError;
@@ -162,12 +162,12 @@ class FsManager {
         isCopying = false;
         AppStorage.SetOrCreate('isCopying',false);
         Logger.info("Succeeded in copying. ");
-        return prompt.showToast({ message: "文件目录已更新" });
+        return prompt.showToast({ message: $r('app.string.label_dirupdate') });
       }).catch((err: BusinessError) => {
         isCopying = false;
         AppStorage.SetOrCreate('isCopying',false);
         Logger.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
-        return prompt.showToast({ message: "粘贴失败" });
+        return prompt.showToast({ message: $r('app.string.label_copyfailed') });
       })
     } catch(err) {
       Logger.error(`Failed to getData. Code: ${err.code}, message: ${err.message}`);

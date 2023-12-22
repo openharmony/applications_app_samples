@@ -71,7 +71,7 @@ class DataObject {
     if (deviceId == this.distributedObject["from"]) {
       this.distributedObject["localFileUriList"].forEach( item => {
         //判断uri前缀是否有“file+”，如果是文件类型，去掉“file+”前缀，在localDstUri后面加上文件名称
-        if(item.includes("file+")){
+        if (item.includes("file+")) {
           item = item.substring(5, item.length);
           let fileName : string = item.split('/').pop();
           //判断本地是否有同名文件，有则重命名
@@ -82,9 +82,9 @@ class DataObject {
               let extension :string = fileName.slice((fileName.lastIndexOf(".") - 1 >>> 0) + 2);
               if(extension){
                 let fileParts = fileName.split('.');
-                fileName = fileParts[0]+"-副本."+fileParts[1];
+                fileName = fileParts[0] + $r('app.string.label_copyfile') + fileParts[1];
               } else {
-                fileName = fileName+"-副本";
+                fileName = fileName + $r('app.string.label_copyfile');
               }
             }
           })
@@ -95,7 +95,7 @@ class DataObject {
       })
     } else { //跨设备拷贝
       this.distributedObject["disFileUriList"].forEach( item => {
-        if(item.includes("file+")) {
+        if (item.includes("file+")) {
           item = item.substring(5, item.length);
           let fileName : string = item.split('/').pop();
           FsManager.pasteFromDistributedDir(firstCopy,item,localDstUri+fileName);

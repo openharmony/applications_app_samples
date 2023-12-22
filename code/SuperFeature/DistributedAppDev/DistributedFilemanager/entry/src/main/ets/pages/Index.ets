@@ -126,8 +126,8 @@ export struct Index {
           Row(){
             Image($r('app.media.ic_paste'))
               .id('copy')
-              .width(20)
-              .height(20)
+              .width(24)
+              .height(24)
               .onClick(() => {
                 DataObject.pasteFromDistributedDir(this.deviceId,this.directoryPath,this.fileData);
                 DataObject.clear();
@@ -170,8 +170,8 @@ export struct Index {
           Row(){
             Image($r('app.media.ic_paste'))
               .id('copy')
-              .width(20)
-              .height(20)
+              .width(24)
+              .height(24)
               .onClick(() => {
                 DataObject.pasteFromDistributedDir(this.deviceId,this.directoryPath,this.fileData);
                 DataObject.clear();
@@ -198,18 +198,19 @@ export struct Index {
                 }
                 if (file.type === 1) {
                   Image($r('app.media.ic_folder'))
-                    .width(30)
-                    .height(30)
+                    .width(24)
+                    .height(24)
                     .margin({ left: 12 })
                 } else {
                   Image($r('app.media.ic_docs'))
-                    .width(30)
-                    .height(30)
+                    .width(24)
+                    .height(24)
                     .margin({ left: 12 })
                 }
                 Text(file.name)
                   .fontSize(16)
-                  .margin({ left: 12 })
+                  .margin({ left: 12, right:24 })
+                  .padding({ right:24 })
                 Blank()
               }
               .height(56)
@@ -217,6 +218,7 @@ export struct Index {
               .justifyContent(FlexAlign.Start)
               .borderRadius(24)
               .backgroundColor($r('app.color.white'))
+              .margin({ right :12 })
               .onClick(() => {
                 // 点击过后判断是否是选中模式
                 if (this.isSelect) {

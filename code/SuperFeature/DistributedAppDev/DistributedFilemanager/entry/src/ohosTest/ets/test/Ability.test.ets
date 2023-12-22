@@ -56,15 +56,15 @@ export default function abilityTest() {
      * 获取权限
      */
     it('RequestPermissionFunction_001', 0, async () => {
-      Logger.info(TAG, 'RequestPermissionFunction begin')
-      let driver = Driver.create()
-      await driver.delayMs(2000)
+      Logger.info(TAG, 'RequestPermissionFunction begin');
+      let driver = Driver.create();
+      await driver.delayMs(2000);
       // 获取文件读写权限
-      Logger.info(TAG, 'RequestPermissionFunction requestPermission')
-      await driver.assertComponentExist(ON.text("允许"))
-      let btnStart = await driver.findComponent(ON.text("允许"))
-      await btnStart.click()
-      Logger.info(TAG, 'RequestPermissionFunction end')
+      Logger.info(TAG, 'RequestPermissionFunction requestPermission');
+      await driver.assertComponentExist(ON.text("允许"));
+      let btnStart = await driver.findComponent(ON.text("允许"));
+      await btnStart.click();
+      Logger.info(TAG, 'RequestPermissionFunction end');
     })
 
     //测试文件夹的拷贝 test2拷贝至test1
