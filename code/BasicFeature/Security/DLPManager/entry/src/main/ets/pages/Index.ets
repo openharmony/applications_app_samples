@@ -20,15 +20,15 @@ import router from '@ohos.router';
 import fs , { Filter } from '@ohos.file.fs';
 import { BusinessError } from '@ohos.base';
 import common from '@ohos.app.ability.common';
-import Logger from '../utils/Logger'
+import Logger from '../utils/Logger';
 import MediaFileUri from '../media/MediaFileUri';
 import dlpPermission from '@ohos.dlpPermission';
 import Want from '@ohos.app.ability.Want';
-import fileuri from '@ohos.file.fileuri';
-import account from '@ohos.account.distributedAccount'
+import fileUri from '@ohos.file.fileuri';
+import account from '@ohos.account.distributedAccount';
 import account_osAccount from '@ohos.account.osAccount';
 
-const accountAbility = account.getDistributedAccountAbility()
+const accountAbility = account.getDistributedAccountAbility();
 
 interface FileInfo {
   uuid: string;
@@ -53,10 +53,8 @@ class ListFileOption {
   public filter: Filter = {};
 }
 
-let storage = LocalStorage.getShared();
 const RECENT_MAX = 10; // 最近打开最大文件数
-const TAG = '[dlpmanager_index]'
-
+const TAG = '[dlpmanager_index]';
 
 @Entry
 @Component
@@ -64,15 +62,11 @@ export struct Index {
   mediaFileUri: MediaFileUri = new MediaFileUri();
   @State uri: string = 'Hello World';
   @State filename: string = '';
-  @State fileData: string = '';
-  @State filePath: string = ''
-  @State fileTime: string = '';
   @State accountName: string = '';
-  @State isDLPFile: boolean = false
-  @StorageLink( 'pathDir' ) pathDir: string = ''
-  @State fileInfoList: Array<FileInfo> = []
+  @State isDLPFile: boolean = false;
+  @StorageLink( 'pathDir' ) pathDir: string = '';
+  @State fileInfoList: Array<FileInfo> = [];
   @StorageLink( 'fileUriList' ) fileUriList: Array<string> = [];
-  @StorageLink( 'fileSizeList' ) fileSizeList: Array<number> = [];
   @StorageLink( 'fileNameList' ) fileNameList: Array<string> = [];
   @StorageLink( 'filePathList' ) filePathList: Array<string> = [];
   @StorageLink( 'fileTimeList' ) fileTimeList: Array<string> = [];
@@ -83,8 +77,8 @@ export struct Index {
   async callFilePickerSelectFile(): Promise<void> {
     try {
       let DocumentSelectOptions = new picker.DocumentSelectOptions();
-      DocumentSelectOptions.defaultFilePathUri = 'file://com.sample.dlpmanager/data/storage/el2/base/haps/entry/files'
-      DocumentSelectOptions.maxSelectNumber = 20
+      DocumentSelectOptions.defaultFilePathUri = 'file://com.sample.dlpmanager/data/storage/el2/base/haps/entry/files';
+      DocumentSelectOptions.maxSelectNumber = 20;
       let documentPicker = new picker.DocumentViewPicker();
       documentPicker.select( DocumentSelectOptions ).then( ( DocumentSelectResult ) => {
         Logger.info( TAG , 'DocumentViewPicker.select successfully, DocumentSelectOptions : ' + JSON.stringify( DocumentSelectOptions ) );
@@ -109,24 +103,20 @@ export struct Index {
   }
 
   async getFilenameByUri( myUri: string ): Promise<void> {
-    // 获取文件名称
     this.filename = ( myUri.split( '/' ).pop() ) as string;
     let fd: number = fs.openSync( myUri ).fd;
-    Logger.info( TAG , myUri + ";fd:" + fd )
-    let fileUriObject = new fileuri.FileUri(myUri);
-    let name = fileUriObject.name
-    let path = fileUriObject.path
-    console.info( TAG , "The name of FileUri is " + name + ";The path is " + path );
-    let fileSuffix = "." + ( this.filename.split( "." ).pop() ) as string;
-    await this.isDlpFileFunc( fd )
-
-    await sleep( 2 )
-
+    Logger.info( TAG , myUri + ';fd:' + fd );
+    let fileUriObject = new fileUri.FileUri(myUri);
+    let name = fileUriObject.name;
+    let path = fileUriObject.path;
+    Logger.info( TAG , 'The name of FileUri is ' + name + ';The path is ' + path );
+    let fileSuffix = '.' + ( this.filename.split( '.' ).pop() ) as string;
+    await this.isDlpFileFunc( fd );
+    await sleep( 2 );
     if ( this.isDLPFile ) {
-      let dlpContent = await this.mediaFileUri.readFileContent( myUri )
-      await this.OpenDlpFile( myUri , this.filename , fd , dlpContent , path )
+      await this.OpenDlpFile( myUri , this.filename , fd );
     } else {
-      await this.routerUri( this.filename , path , fd , myUri , this.isDLPFile , fileSuffix )
+      await this.routerUri( this.filename , path , fd , myUri , this.isDLPFile , fileSuffix );
     }
   }
 
@@ -135,22 +125,22 @@ export struct Index {
    */
   async getListFileName(): Promise<void> {
     let option = new ListFileOption();
-    let uuidList: string[] = []
-    option.filter.suffix = [ ".txt", ".doc", ".docx", ".dlp" ];
+    let uuidList: string[] = [];
+    option.filter.suffix = [ '.txt', '.doc', '.docx', '.dlp' ];
     fs.listFile( this.pathDir , option ).then( ( filenames: Array<string> ) => {
-      Logger.info( TAG , "listFile succeed" );
+      Logger.info( TAG , 'listFile succeed' );
       for ( let i = 0 ; i < filenames.length && this.fileInfoList.length < filenames.length && i < RECENT_MAX ; i ++ ) {
-        uuidList[ i ] = util.generateRandomUUID( true )
+        uuidList[ i ] = util.generateRandomUUID( true );
         Logger.info( TAG , 'filename: ' , filenames[ i ] );
-        this.fileNameList[ i ] = filenames[ i ]
-        this.filePathList[ i ] = this.pathDir + "/" + this.fileNameList[ i ]
-        this.fileUriList[ i ] = fileuri.getUriFromPath( this.filePathList[ i ] );
+        this.fileNameList[ i ] = filenames[ i ];
+        this.filePathList[ i ] = this.pathDir + '/' + this.fileNameList[ i ];
+        this.fileUriList[ i ] = fileUri.getUriFromPath( this.filePathList[ i ] );
         fs.stat( this.filePathList[ i ] ).then( ( stat: fs.Stat ) => {
-          Logger.info( TAG , "get file info succeed, the size of file is " + stat.mode );
-          Logger.info( TAG , "get file info succeed, the size of file is " + stat.atime );
-          this.fileTimeList[ i ] = timestampToDate( stat.atime )
-          Logger.info( TAG , "get file info succeed, the size of fileTimeList: " + this.fileTimeList[ i ] );
-          let fileSuffix = ( this.fileNameList[ i ].split( "." ).pop() ) as string;
+          Logger.info( TAG , 'get file info succeed, the size of file is ' + stat.mode );
+          Logger.info( TAG , 'get file info succeed, the size of file is ' + stat.atime );
+          this.fileTimeList[ i ] = timestampToDate( stat.atime );
+          Logger.info( TAG , 'get file info succeed, the size of fileTimeList: ' + this.fileTimeList[ i ] );
+          let fileSuffix = ( this.fileNameList[ i ].split( '.' ).pop() ) as string;
           this.fileInfoList.push(
             {
               uuid : uuidList[ i ] ,
@@ -158,20 +148,67 @@ export struct Index {
               path : this.filePathList[ i ] ,
               uri : this.fileUriList[ i ] ,
               time : this.fileTimeList[ i ] ,
-              icon : fileSuffix == "txt" ? $r( "app.media.ic_normal_white_grid_txt" ) : $r( "app.media.ic_normal_dark_grid_dlp" )
+              icon : fileSuffix == 'txt' ? $r( 'app.media.ic_normal_white_grid_txt' ) : $r( 'app.media.ic_normal_dark_grid_dlp' )
             } );
         } ).catch( ( err: BusinessError ) => {
-          Logger.info( TAG , "get file info failed with error message: " + err.message + ", error code: " + err.code );
+          Logger.info( TAG , 'get file info failed with error message: ' + err.message + ', error code: ' + err.code );
         } );
-
       }
       AppStorage.setOrCreate( 'fileNameList' , this.fileNameList );
       AppStorage.setOrCreate( 'filePathList' , this.filePathList );
       AppStorage.setOrCreate( 'fileUriList' , this.fileUriList );
       AppStorage.setOrCreate( 'fileTimeList' , this.fileTimeList );
     } ).catch( ( err: BusinessError ) => {
-      Logger.info( TAG , "list file failed with error message: " + err.message + ", error code: " + err.code );
+      Logger.info( TAG , 'list file failed with error message: ' + err.message + ', error code: ' + err.code );
     } );
+  }
+
+  /**
+   * 获取文件夹下所有文件的文件名和访问时间
+   */
+  async getRecentFileName(): Promise<void> {
+    let option = new ListFileOption();
+    let uuidList: string[] = [];
+    option.filter.suffix = ['.txt', '.doc', '.docx', '.dlp'];
+    try {
+      let info: Array<dlpPermission.AccessedDLPFileInfo> = await dlpPermission.getDLPFileAccessRecords();
+      Logger.info(TAG,'getRecentFile：'+JSON.stringify(info));
+      if (info.length === 0) {
+        return;
+      }
+      for (let i = 0; i < info.length; i++) {
+        uuidList[i] = util.generateRandomUUID(true);
+        Logger.info(TAG, 'filename: ', info[i].uri);
+        let file = fs.openSync(info[i].uri);
+        this.fileNameList[i] = file.name;
+        this.filePathList[i] = file.path;
+        this.fileUriList[i] = info[i].uri;
+        fs.stat(this.filePathList[i]).then((stat: fs.Stat) => {
+          Logger.info(TAG, 'get file info succeed, the size of file is ' + stat.mode);
+          Logger.info(TAG, 'get file info succeed, the size of file is ' + stat.atime);
+          this.fileTimeList[i] = timestampToDate(stat.atime);
+          Logger.info(TAG, 'get file info succeed, the size of fileTimeList: ' + this.fileTimeList[i]);
+          this.fileInfoList.push(
+            {
+              uuid: uuidList[i],
+              name: this.fileNameList[i],
+              path: this.filePathList[i],
+              uri: this.fileUriList[i],
+              time: this.fileTimeList[i],
+              icon: $r('app.media.ic_normal_dark_grid_dlp')
+            });
+        }).catch((err: BusinessError) => {
+          Logger.info(TAG, "get file info failed with error message: " + err.message + ", error code: " + err.code);
+        });
+
+        AppStorage.setOrCreate('fileNameList', this.fileNameList);
+        AppStorage.setOrCreate('filePathList', this.filePathList);
+        AppStorage.setOrCreate('fileUriList', this.fileUriList);
+        AppStorage.setOrCreate('fileTimeList', this.fileTimeList);
+      }
+    } catch (err) {
+      Logger.info(TAG, "list file failed with error message: ", err);
+    }
   }
 
   /**
@@ -180,7 +217,7 @@ export struct Index {
   async getDLPFile(): Promise<void> {
     try {
       let info: Array<dlpPermission.AccessedDLPFileInfo> = await dlpPermission.getDLPFileAccessRecords(); // 获取DLP访问列表
-
+      promptAction.showToast( { message : "getDLPFile：" + JSON.stringify( info ) , duration : 2000 } );
       Logger.info( TAG , 'getDLPFile:' , JSON.stringify( info ) );
     } catch( err ) {
       Logger.error( TAG , 'getDLPFileAccessRecords error:' + (err as BusinessError).code + (err as BusinessError).message );
@@ -194,7 +231,7 @@ export struct Index {
     try {
       dlpPermission.setRetentionState( docUris ); // 设置沙箱保留
     } catch( err ) {
-      Logger.error( TAG , 'setRetentionState error' + (err as BusinessError).code + (err as BusinessError).message ); // 失败报错
+      Logger.error( TAG , 'setRetentionState error:' + (err as BusinessError).code + (err as BusinessError).message );
     }
   }
 
@@ -203,9 +240,9 @@ export struct Index {
    */
   async cancelSandboxFile( docUris: Array<string> ): Promise<void> {
     try {
-      dlpPermission.cancelRetentionState( docUris ) // 取消沙箱保留
+      dlpPermission.cancelRetentionState( docUris ); // 取消沙箱保留
     } catch( err ) {
-      Logger.error( TAG , 'cancelRetentionState error' + (err as BusinessError).code + (err as BusinessError).message ); // 失败报错
+      Logger.error( TAG , 'cancelRetentionState error:' + (err as BusinessError).code + (err as BusinessError).message );
     }
   }
 
@@ -215,35 +252,37 @@ export struct Index {
   async getSandboxList(): Promise<void> {
     try {
       let res: Array<dlpPermission.RetentionSandboxInfo> = await dlpPermission.getRetentionSandboxList(); // 获取沙箱保留列表
-      Logger.info( TAG , 'res' , JSON.stringify( res ) )
-      promptAction.showToast( { message : "DLP文件保留沙箱记录:" + JSON.stringify( res ) , duration : 2000 } );
+      Logger.info( TAG , 'getRetentionSandboxList:' + JSON.stringify( res ) );
+      promptAction.showToast( { message : 'getRetentionSandboxList:' + JSON.stringify( res ) , duration : 2000 } );
     } catch( err ) {
-      Logger.error( TAG , 'getRetentionSandboxList error:' + (err as BusinessError).code + (err as BusinessError).message ); // 失败报错
+      Logger.error( TAG , 'getRetentionSandboxList error:' + (err as BusinessError).code + (err as BusinessError).message );
     }
   }
 
   /**
    * 打开dlp文件
    */
-  async OpenDlpFile( dlpUri: string , dlpName: string , fd: number , dlpContent: string , dlpPath: string ) {
+  async OpenDlpFile( dlpUri: string , dlpName: string , fd: number ) {
     let context = getContext( this ) as common.UIAbilityContext;
     let want: Want = {
-      "action" : "ohos.want.action.viewData" ,
-      "bundleName" : "com.sample.dlpmanager" ,
-      "type" : "text/plain" ,
-      "abilityName" : "FuncAbility" ,
-      "uri" : dlpUri ,
-      "parameters" : {
-        dlpName ,
-        fd ,
-        dlpContent ,
-        dlpPath
+      'action' : 'ohos.want.action.viewData' ,
+      'bundleName' : 'com.sample.dlpmanager' ,
+      'type' : 'text/plain' ,
+      'abilityName' : 'FuncAbility' ,
+      'uri' : dlpUri ,
+      'parameters' : {
+        'fileName' : {
+          'name' : dlpName ,
+        } ,
+        'keyFd' : {
+          'type' : 'FD' ,
+          'value' : fd ,
+        }
       }
-    }
+    };
     try {
-      Logger.info( TAG , "openDLPFile:" + JSON.stringify( want ) );
+      Logger.info( TAG , 'openDLPFile:' + JSON.stringify( want ) );
       context.startAbility( want , ( error: BusinessError ) => {
-        // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
         Logger.error( TAG , 'want error.code =' + error.code + ',error.message =' + error.message );
       } );
     } catch( err ) {
@@ -258,11 +297,11 @@ export struct Index {
   async onOpenDlpFile() {
     try {
       dlpPermission.on( 'openDLPFile' , ( info: dlpPermission.AccessedDLPFileInfo ) => {
-        Logger.info( TAG , 'openDlpFile event:' + info.uri + info.lastOpenTime )
-        promptAction.showToast( { message : 'openDlpFile event:' + info.uri + info.lastOpenTime , duration : 2000 } )
-      } ); // 订阅
+        Logger.info( TAG , 'openDlpFile event:' + info.uri + info.lastOpenTime );
+        promptAction.showToast( { message : 'openDlpFile event:' + info.uri + info.lastOpenTime , duration : 2000 } );
+      } );
     } catch( err ) {
-      Logger.error( TAG , 'onOpenDLPFile error:' + (err as BusinessError).code + (err as BusinessError).message ); // 失败报错
+      Logger.error( TAG , 'onOpenDLPFile error:' + (err as BusinessError).code + (err as BusinessError).message );
     }
   }
 
@@ -273,23 +312,23 @@ export struct Index {
     try {
       this.isDLPFile = await dlpPermission.isDLPFile( fd ); // 是否加密DLP文件
       Logger.info( TAG , 'isDlpFile:' + this.isDLPFile );
-      promptAction.showToast( { message : '是否为dlp文件:' + this.isDLPFile , duration : 2000 } )
-      return this.isDLPFile
+      promptAction.showToast( { message : 'isDlpFile:' + this.isDLPFile , duration : 2000 } );
+      return this.isDLPFile;
     } catch( err ) {
-      Logger.error( TAG , 'isDLPFile error:' + (err as BusinessError).code + (err as BusinessError).message ); // 失败报错
+      Logger.error( TAG , 'isDLPFile error:' + (err as BusinessError).code + (err as BusinessError).message );
     }
-    return this.isDLPFile
+    return this.isDLPFile;
   }
 
   // 获取帐号信息
   async getOsAccountInfo() {
-    let accountMgr: account_osAccount.AccountManager
+    let accountMgr: account_osAccount.AccountManager;
     try {
-      accountMgr = account_osAccount.getAccountManager()
-      let user = await accountMgr.getCurrentOsAccount()
-      console.info( TAG , "accountLogin user:" + JSON.stringify( user ) )
+      accountMgr = account_osAccount.getAccountManager();
+      let user = await accountMgr.getCurrentOsAccount();
+      Logger.info( TAG , "accountLogin user:" + JSON.stringify( user ) );
     } catch( err ) {
-      console.error( TAG , 'getCurrentOsAccount failed:' + err.code + err.message );
+      Logger.error( TAG , 'getCurrentOsAccount failed:' + err.code + err.message );
     }
   }
 
@@ -300,23 +339,23 @@ export struct Index {
       id : "1234" ,
       event : "Ohos.account.event.LOGIN" ,
       nickname : "nickname" ,
-      avatar : "avatar"
-    }
+      avatar : "avatar" ,
+    };
     if ( accountName ) {
-      info.name = accountName
-      console.info( TAG , "info.name:" + accountName )
+      info.name = accountName;
+      Logger.info( TAG , "info.name:" + accountName );
     } else {
-      console.info( TAG , "info.name:aa" )
+      Logger.info( TAG , "info.name:aa" );
     }
-    info.event = "Ohos.account.event.LOGIN"
+    info.event = "Ohos.account.event.LOGIN";
     try {
-      await accountAbility.setOsAccountDistributedInfo( info )
+      await accountAbility.setOsAccountDistributedInfo( info );
     } catch( err ) {
-      console.error( TAG , "setOsAccountDistributedInfo LOGIN failed：" + err.code + err.message );
+      Logger.error( TAG , "setOsAccountDistributedInfo LOGIN failed：" + err.code + err.message );
       return
     }
-    let user = await accountAbility.getOsAccountDistributedInfo()
-    console.info( TAG , "accountLogin user:" + JSON.stringify( user ) )
+    let user = await accountAbility.getOsAccountDistributedInfo();
+    Logger.info( TAG , "accountLogin user:" + JSON.stringify( user ) );
   }
 
   //跳转页面
@@ -332,27 +371,27 @@ export struct Index {
         fileSuffix : fileSuffix ,
       }
     } , router.RouterMode.Standard ).then( () => {
-      Logger.info( TAG , 'Succeeded in jumping to the second page.' )
+      Logger.info( TAG , 'Succeeded in jumping to the second page' );
     } ).catch( ( err: BusinessError ) => {
-      Logger.error( TAG , `Failed to jump to the second page.Code is ${ err.code }, message is ${ err.message }` )
+      Logger.error( TAG , `Failed to jump to the second page.Code is ${ err.code }, message is ${ err.message }` );
     } )
   }
 
   aboutToDisappear(): void {
     this.fileNameList = [];
-    this.fileSizeList = [];
     this.fileUriList = [];
     this.filePathList = [];
     this.fileTimeList = [];
     dlpPermission.off( 'openDLPFile' , ( info: dlpPermission.AccessedDLPFileInfo ) => {
-      Logger.info( TAG , 'openDlpFile event' + info.uri + info.lastOpenTime )
-    } ); // 取消订阅
+      Logger.info( TAG , 'openDlpFile event' + info.uri + info.lastOpenTime );
+    } );
   }
 
   onPageShow(): void {
-    this.getListFileName()
-    Logger.info( TAG , '沙箱路径为: ' + this.pathDir )
-    this.accountLogin( this.accountName )
+    this.getListFileName();
+    this.getRecentFileName();
+    Logger.info( TAG , 'sandbox path is:' + this.pathDir );
+    this.accountLogin( this.accountName );
   }
 
   aboutToAppear() {
@@ -393,9 +432,7 @@ export struct Index {
           .zIndex( 2 )
           .bindMenu( this.homePageMenu , { placement : Placement.BottomRight , offset : { y : '16vp' } } )
           .id( 'moreIcon' )
-
       }.width( '100%' ).height( '84vp' )
-
 
       Stack( { alignContent : Alignment.TopEnd } ) {
         List() {
@@ -429,20 +466,18 @@ export struct Index {
                   }
                   .id( 'file' + index )
                   .onClick( async() => {
-                    let path = this.pathDir + '/' + item.name
+                    let path = this.pathDir + '/' + item.name;
                     let fd: number = fs.openSync( path ).fd;
-                    Logger.info( TAG , "path:" + path + ";fd:" + fd )
-                    let uri = fileuri.getUriFromPath( path );
-                    Logger.info( TAG , "uri:" + uri )
+                    Logger.info( TAG , "path:" + path + ";fd:" + fd );
+                    let uri = fileUri.getUriFromPath( path );
+                    Logger.info( TAG , "uri:" + uri );
                     let fileSuffix = "." + ( item.name.split( "." ).pop() ) as string;
-                    await this.isDlpFileFunc( fd )
-                    let myFileContent = this.mediaFileUri.readFileContent( uri );
-                    await sleep( 2 )
-
+                    await this.isDlpFileFunc( fd );
+                    await sleep( 2 );
                     if ( this.isDLPFile ) {
-                      await this.OpenDlpFile( uri , item.name , fd , myFileContent , path )
+                      await this.OpenDlpFile( uri , item.name , fd );
                     } else {
-                      await this.routerUri( item.name , this.filePathList[ index ] , fd , uri , this.isDLPFile , fileSuffix )
+                      await this.routerUri( item.name , this.filePathList[ index ] , fd , uri , this.isDLPFile , fileSuffix );
                     }
                   } )
                 }.width( '100%' )
@@ -476,7 +511,6 @@ export struct Index {
       }
       .height( '100%' )
       .width( '100%' )
-
     }
     .height( '100%' )
     .width( '100%' )
@@ -490,38 +524,28 @@ export struct Index {
         .height( '48vp' )
         .margin( { left : '16vp' , right : '16vp' } )
         .onClick( () => {
-          this.setSandboxFile( this.fileUriList )
+          this.getDLPFile();
         } )
 
       MenuItem( this.homePageDivider )
 
       MenuItem( this.homePageTextMenu2 )
-        .width( '128vp' )
-        .height( '48vp' )
-        .margin( { left : '16vp' , right : '16vp' } )
-        .onClick( () => {
-          this.cancelSandboxFile( this.fileUriList )
-        } )
-
-      MenuItem( this.homePageDivider )
-
-      MenuItem( this.homePageTextMenu3 )
         .width( '160vp' )
         .height( '48vp' )
         .onClick( () => {
-          this.getSandboxList()
+          this.getSandboxList();
         } )
 
     }
     .width( '160vp' )
-    .height( '152vp' )
+    .height( '102vp' )
     .backgroundColor( '#FFFFFF' )
     .borderRadius( '16.00vp' )
   }
 
   @Builder
   homePageTextMenu1() {
-    Text( $r( 'app.string.set_sandbox_retention' ) )
+    Text( $r( 'app.string.obtain_visit_record' ) )
       .width( '99vp' )
       .height( '21vp' )
       .fontSize( '16vp' )
@@ -535,20 +559,6 @@ export struct Index {
 
   @Builder
   homePageTextMenu2() {
-    Text( $r( 'app.string.cancel_sandbox_retention' ) )
-      .width( '99vp' )
-      .height( '21vp' )
-      .fontSize( '16vp' )
-      .fontFamily( 'HarmonyHeiTi' )
-      .fontWeight( 400 )
-      .fontColor( $r( 'app.color.font_color_182431' ) )
-      .align( Alignment.Start )
-      .margin( { top : '13vp' , bottom : '14vp' , right : '29vp' } )
-      .id( 'cancelSandbox' )
-  }
-
-  @Builder
-  homePageTextMenu3() {
     Text( $r( 'app.string.obtain_sandbox_retention_information' ) )
       .width( '128vp' )
       .height( '21vp' )
@@ -590,6 +600,6 @@ export function timestampToDate( timestamp: number ): string {
 
 export function sleep( time: number ) {
   setTimeout( () => {
-    console.log( 'delay ' + time );
+    Logger.info( 'delay ' + time );
   } , time * 1000 )
 }

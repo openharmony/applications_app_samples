@@ -17,11 +17,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import Want from '@ohos.app.ability.Want';
 import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
-import abilityAccessCtrl , { Permissions } from '@ohos.abilityAccessCtrl';
-import MediaFileUri from '../media/MediaFileUri';
 import Logger from '../utils/Logger';
-
 
 const TAG = '[dlpmanager_FuncAbility]';
 
@@ -32,10 +28,10 @@ export default class FuncAbility extends UIAbility {
     // 接收调用方UIAbility传过来的参数
     Logger.info( TAG , '%{public}s' , 'Ability onCreate' );
     let funcAbilityWant = want;
-    let info = funcAbilityWant.parameters
-    Logger.info( TAG , 'funcAbilityWant:' + typeof ( funcAbilityWant ) + ";parameters:" + typeof ( info ) );
-    Logger.info( TAG , 'funcAbilityWant:' + JSON.stringify( funcAbilityWant ) + ";parameters:" + JSON.stringify( info ) );
-    AppStorage.setOrCreate( "funcAbilityWant" , funcAbilityWant )
+    let info = funcAbilityWant.parameters;
+    Logger.info( TAG , 'funcAbilityWant:' + typeof ( funcAbilityWant ) + ';parameters:' + typeof ( info ) );
+    Logger.info( TAG , 'funcAbilityWant:' + JSON.stringify( funcAbilityWant ) + ';parameters:' + JSON.stringify( info ) );
+    AppStorage.setOrCreate( 'funcAbilityWant' , funcAbilityWant );
     this.getWantInfo( want );
   }
 
@@ -77,13 +73,4 @@ export default class FuncAbility extends UIAbility {
       return;
     }
   }
-
-  // onNewWant( want : Want , launchParam : AbilityConstant.LaunchParam ) : void {
-  //   Logger.info( TAG , 'Ability onNewWant' );
-  //   // 接收调用方UIAbility传过来的参数
-  //   wantInfo = want;
-  //   let info = wantInfo?.parameters?.info;
-  //   Logger.info( TAG , 'funcAbilityWant:' + wantInfo + ";info:" + info );
-  //   this.getWantInfo( want );
-  // }
 }

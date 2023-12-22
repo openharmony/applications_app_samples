@@ -24,9 +24,6 @@ const TAG = '[dlpmanager_MediaFileUri]';
 const RECENT_MAX = 10; // 最近打开最大文件数
 const BUFFER_SIZE = 4096; // 文件读写缓冲区大小
 const COMMON_FD = -1; // 文件fd默认值
-const MODE_READ_ONLY = 0;
-const MODE_WRITE_ONLY = 1;
-const MODE_READ_WRITE = 2;
 
 class ListFileOption {
   public recursion: boolean = false;
@@ -37,30 +34,12 @@ class ListFileOption {
 export default class MediaFileUri {
   content: string = '';
   private commonFd: number = COMMON_FD;
-  private fileSizeList: Array<number> = [];
   private fileNameList: Array<string> = [];
   private fileUriList: Array<string> = [];
   private fileAccessHelper: fileAccess.FileAccessHelper;
   private fileInfos: Array<fileAccess.FileInfo> = [];
 
   constructor() {
-
-  }
-
-  getMode(openFlag: number): number {
-    let mode;
-    switch (openFlag) {
-      case MODE_READ_ONLY:
-        mode = fs.OpenMode.READ_ONLY; // r
-        break;
-      case MODE_WRITE_ONLY:
-        mode = fs.OpenMode.WRITE_ONLY; // w
-        break;
-      case MODE_READ_WRITE:
-        mode = fs.OpenMode.READ_WRITE; // rw
-        break;
-    }
-    return mode;
   }
 
   myWriteSync(fd: number, content: string, isClose: boolean): void {
@@ -94,9 +73,9 @@ export default class MediaFileUri {
     let file;
     if (isClose || this.commonFd === COMMON_FD) {
       try {
-        Logger.info(TAG, 'uri: ' + uri)
+        Logger.info(TAG, 'uri: ' + uri);
         file = fs.openSync(uri, fs.OpenMode.READ_ONLY);
-        Logger.info(TAG, 'openReadSync: get fd success. file = ' + file);
+        Logger.info(TAG, 'openReadSync: get fd success. file = ' + JSON.stringify(file));
         Logger.info(TAG, 'openReadSync: get fd success. fd = ' + file.fd);
         this.commonFd = file.fd;
       } catch (err) {
@@ -129,14 +108,6 @@ export default class MediaFileUri {
       }
     }
     return content;
-  }
-
-  myGetFileSize(uri: string, mode: number): number {
-    let file = fs.openSync(uri, mode); // fs.OpenMode.READ_ONLY
-    Logger.info(TAG, 'file fd: ' + file.fd);
-    let stat = fs.statSync(file.fd);
-    Logger.info(TAG, 'get file info succeed, the size of file is ' + stat.size);
-    return stat.size;
   }
 
   writeFileContent(uri: string, content: string): void {
@@ -175,29 +146,26 @@ export default class MediaFileUri {
     this.fileInfos = [];
     this.fileAccessHelper = fileAccess.createFileAccessHelper(context);
     let rootIterator = await this.fileAccessHelper.getRoots();
-    // 获取目录url
     let catalogueUrl: string = rootIterator.next().value.uri;
     await this.getFileData(catalogueUrl);
     for (let index = 0; index < this.fileInfos.length && index < RECENT_MAX; index++) {
       this.fileNameList[index] = this.fileInfos[index].fileName;
-      // this.fileSizeList[index] = this.fileInfos[index].size;
       this.fileUriList[index] = this.fileInfos[index].uri;
     }
     AppStorage.setOrCreate('fileNameList', this.fileNameList);
-    AppStorage.setOrCreate('fileSizeList', this.fileSizeList);
     AppStorage.setOrCreate('fileUriList', this.fileUriList);
   }
 
   async getListFile(pathDir): Promise<void> {
     let option = new ListFileOption();
-    option.filter.suffix = ['.txt', '.doc', '.docx', ".dlp"];
+    option.filter.suffix = ['.txt', '.doc', '.docx', '.dlp'];
     fs.listFile(pathDir, option, (err: BusinessError, filenames: Array<string>) => {
       if (err) {
-        Logger.info(TAG, "list file failed with error message: " + err.message + ", error code: " + err.code);
+        Logger.info(TAG, 'list file failed with error message: ' + err.message + ', error code: ' + err.code);
       } else {
-        Logger.info(TAG, "listFile succeed");
+        Logger.info(TAG, 'listFile succeed');
         for (let i = 0; i < filenames.length; i++) {
-          Logger.info(TAG, "filename: %s", filenames[i]);
+          Logger.info(TAG, 'filename: %s', filenames[i]);
         }
       }
     });

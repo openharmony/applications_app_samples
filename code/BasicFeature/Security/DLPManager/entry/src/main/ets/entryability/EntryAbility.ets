@@ -14,7 +14,6 @@
  */
 
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import window from '@ohos.window';
@@ -23,28 +22,25 @@ import abilityAccessCtrl , { Permissions } from '@ohos.abilityAccessCtrl';
 import MediaFileUri from '../media/MediaFileUri';
 import Logger from '../utils/Logger';
 
-let wantInfo: Want;
 const TAG = '[dlpmanager_EntryAbility]';
 
 export default class EntryAbility extends UIAbility {
   private mediaFileUri: MediaFileUri = new MediaFileUri();
-  private storage: LocalStorage = new LocalStorage();
-  // private windowStage: window.WindowStage;
 
   onCreate( want : Want , launchParam : AbilityConstant.LaunchParam ) : void {
     Logger.info( TAG , '%{public}s' , 'Ability onCreate' );
     this.getPermission( want );
   }
 
-  onDestroy() : void {
+  onDestroy(): void {
     Logger.info( TAG , '%{public}s' , 'Ability onDestroy' );
   }
 
-  onWindowStageCreate( windowStage : window.WindowStage ) : void {
+  onWindowStageCreate( windowStage: window.WindowStage ): void {
     // Main window is created, set main page for this ability
     Logger.info( TAG , 'testTag' , '%{public}s' , 'Ability onWindowStageCreate' );
     windowStage.loadContent( 'pages/Index' , ( err , data ) => {
-      if( err.code ) {
+      if ( err.code ) {
         Logger.error( TAG , 'testTag' , 'Failed to load the content. Cause: %{public}s' , JSON.stringify( err ) ?? '' );
         return;
       }
@@ -52,29 +48,29 @@ export default class EntryAbility extends UIAbility {
     } );
     let context = this.context;
     let pathDir = context.filesDir;
-    AppStorage.setOrCreate( 'pathDir' , pathDir )
-    AppStorage.setOrCreate( 'context' , context )
+    AppStorage.setOrCreate( 'pathDir' , pathDir );
+    AppStorage.setOrCreate( 'context' , context );
     Logger.info( TAG , 'context type:' + typeof ( this.context ) );
 
   }
 
-  onWindowStageDestroy() : void {
+  onWindowStageDestroy(): void {
     // Main window is destroyed, release UI related resources
     Logger.info( TAG , 'testTag' , '%{public}s' , 'Ability onWindowStageDestroy' );
   }
 
-  onForeground() : void {
+  onForeground(): void {
     // Ability has brought to foreground
     Logger.info( TAG , 'testTag' , '%{public}s' , 'Ability onForeground' );
   }
 
-  onBackground() : void {
+  onBackground(): void {
     // Ability has back to background
     Logger.info( TAG , 'testTag' , '%{public}s' , 'Ability onBackground' );
   }
-
-  getPermission( want : Want ) : void {
-    let array : Array<Permissions> = [
+  
+  getPermission( want: Want ): void {
+    let array: Array<Permissions> = [
       'ohos.permission.READ_MEDIA',
       'ohos.permission.WRITE_MEDIA',
       'ohos.permission.ACCESS_DLP_FILE',
@@ -84,7 +80,6 @@ export default class EntryAbility extends UIAbility {
     ];
     let context = this.context;
     let atManager = abilityAccessCtrl.createAtManager();
-    // requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
     atManager.requestPermissionsFromUser( context , array ).then( ( data ) => {
       Logger.info( TAG , 'data type:' + typeof ( data ) );
       Logger.info( TAG , 'data:' + JSON.stringify( data ) );
@@ -93,7 +88,7 @@ export default class EntryAbility extends UIAbility {
 
       this.mediaFileUri.getAllFiles( context );
       Logger.info( TAG , 'getPermission getWantInfo' );
-    } ).catch( ( err : BusinessError ) => {
+    } ).catch( ( err: BusinessError ) => {
       Logger.error( TAG , 'Failed to start ability' + err.code );
     } );
   }

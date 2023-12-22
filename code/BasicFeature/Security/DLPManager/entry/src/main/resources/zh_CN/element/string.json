@@ -21,14 +21,6 @@
       "value": "最近文件"
     },
     {
-      "name": "set_sandbox_retention",
-      "value": "设置沙箱保留"
-    },
-    {
-      "name": "cancel_sandbox_retention",
-      "value": "取消沙箱保留"
-    },
-    {
       "name": "obtain_sandbox_retention_information",
       "value": "获取沙箱保留信息"
     },
@@ -53,6 +45,10 @@
       "value": "已保存"
     },
     {
+      "name": "obtain_visit_record",
+      "value": "获取访问列表"
+    },
+    {
       "name": "read_permission",
       "value": "用户读取文件权限"
     },
@@ -67,6 +63,30 @@
     {
       "name": "dlp_file_permission",
       "value": "用户dlp文件权限"
+    },
+    {
+      "name": "save_as",
+      "value": "另存为"
+    },
+    {
+      "name": "set_permissions",
+      "value": "设置权限"
+    },
+    {
+      "name": "query_AccessList",
+      "value": "查询访问列表"
+    },
+    {
+      "name": "query_retentionList",
+      "value": "查询保留列表"
+    },
+    {
+      "name": "Set_retention_sandbox",
+      "value": "设置沙箱保留"
+    },
+    {
+      "name": "cancel_retention_sandbox",
+      "value": "取消沙箱保留"
     }
   ]
 }

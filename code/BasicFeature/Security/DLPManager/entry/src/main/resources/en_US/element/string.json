@@ -21,12 +21,8 @@
       "value": "file"
     },
     {
-      "name": "set_sandbox_retention",
-      "value": "set_sandbox_retention"
-    },
-    {
-      "name": "cancel_sandbox_retention",
-      "value": "cancel_sandbox_retention"
+      "name": "obtain_visit_record",
+      "value": "obtain_visit_record"
     },
     {
       "name": "obtain_sandbox_retention_information",
@@ -67,6 +63,30 @@
     {
       "name": "dlp_file_permission",
       "value": "user dlp file permission"
+    },
+    {
+      "name": "save_as",
+      "value": "save as"
+    },
+    {
+      "name": "set_permissions",
+      "value": "set_permissions"
+    },
+    {
+      "name": "query_AccessList",
+      "value": "query_AccessList"
+    },
+    {
+      "name": "query_retentionList",
+      "value": "query_retentionList"
+    },
+    {
+      "name": "Set_retention_sandbox",
+      "value": "Set_retention_sandbox"
+    },
+    {
+      "name": "cancel_retention_sandbox",
+      "value": "cancel_retention_sandbox"
     }
   ]
 }

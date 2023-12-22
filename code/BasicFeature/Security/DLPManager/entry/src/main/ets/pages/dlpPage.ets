@@ -20,11 +20,11 @@ import promptAction from '@ohos.promptAction';
 import router from '@ohos.router';
 import { BusinessError } from '@ohos.base';
 import fs from '@ohos.file.fs';
-import Logger from '../utils/Logger'
+import Logger from '../utils/Logger';
 import dlpPermission from '@ohos.dlpPermission';
 import picker from '@ohos.file.picker';
 
-const TAG = '[dlpmanager_dlpPage]'
+const TAG = '[dlpmanager_dlpPage]';
 const OPACITY_VALUE = 0.6; // 透明度
 
 let storage = LocalStorage.getShared();
@@ -35,7 +35,9 @@ struct DlpPage {
   @State inSandbox: boolean = false;
   @State opacityValue: number = OPACITY_VALUE;
   @State dlpName: string = '';
+  @State dlpLinkName: string = '';
   @State dlpUri: string = '';
+  @State dlpLinkUri: string = '';
   @State fd: number = 0;
   @State dlpPath: string = '';
   @State isDLPFile: boolean = false;
@@ -53,11 +55,11 @@ struct DlpPage {
    */
   async isSandboxFunc(): Promise<void> {
     try {
-      this.inSandbox = await dlpPermission.isInSandbox() // 是否在沙箱内
+      this.inSandbox = await dlpPermission.isInSandbox(); // 是否在沙箱内
       Logger.info( TAG , 'inSandbox:' + this.inSandbox );
-      promptAction.showToast( { message : '是否为沙箱应用:' + this.inSandbox , duration : 2000 } )
+      promptAction.showToast( { message : 'inSandbox:' + this.inSandbox , duration : 2000 } );
     } catch( err ) {
-      Logger.error( TAG , 'error' + (err as BusinessError).code + (err as BusinessError).message ); // 失败报错
+      Logger.error( TAG , 'error' + (err as BusinessError).code + (err as BusinessError).message );
     }
   }
 
@@ -67,9 +69,9 @@ struct DlpPage {
   async getDlpPermission(): Promise<void> {
     dlpPermission.getDLPPermissionInfo().then( ( data: dlpPermission.DLPPermissionInfo ) => {
       Logger.info( TAG , 'getDLPPermissionInfo, result: ' + JSON.stringify( data ) );
-      promptAction.showToast( { message : "当前权限为：" + JSON.stringify( data ) , duration : 2000 } )
+      promptAction.showToast( { message : 'permission：' + JSON.stringify( data ) , duration : 2000 } );
     } ).catch( ( err: BusinessError ) => {
-      Logger.info( TAG , "getDLPPermissionInfo: " + JSON.stringify( err ) );
+      Logger.info( TAG , 'getDLPPermissionInfo: ' + JSON.stringify( err ) );
     } );
   }
 
@@ -80,17 +82,18 @@ struct DlpPage {
     try {
       this.isDLPFile = await dlpPermission.isDLPFile( fd ); // 是否加密DLP文件
       Logger.info( TAG , 'isDlpFile:' + this.isDLPFile );
-      promptAction.showToast( { message : '是否为dlp文件:' + this.isDLPFile , duration : 2000 } )
-      if ( this.isDLPFile ) {
-        Logger.info( TAG , "是dlp文件" )
-        this.isSandboxFunc()
-      } else {
-        Logger.info( TAG , "不是dlp文件" )
-      }
+      this.inSandbox = await dlpPermission.isInSandbox();
+      let msg = 'isDlpFile:' + true + ';inSandbox:' + this.inSandbox;
+      dlpPermission.getDLPPermissionInfo().then( ( data: dlpPermission.DLPPermissionInfo ) => {
+        Logger.info( TAG , 'getDLPPermissionInfo, result: ' + JSON.stringify( data ) );
+        promptAction.showToast( { message : msg + ' permission：' + JSON.stringify( data ) , duration : 2000 } );
+      } ).catch( ( err: BusinessError ) => {
+        Logger.info( TAG , 'getDLPPermissionInfo: ' + JSON.stringify( err ) );
+      } );
     } catch( err ) {
-      Logger.error( TAG , 'isDLPFile error:' + (err as BusinessError).code + (err as BusinessError).message ); // 失败报错
+      Logger.error( TAG , 'isDLPFile error:' + (err as BusinessError).code + (err as BusinessError).message );
     }
-    return this.isDLPFile
+    return this.isDLPFile;
   }
 
   /**
@@ -101,7 +104,7 @@ struct DlpPage {
       let DocumentSaveOptions = new picker.DocumentSaveOptions();
       DocumentSaveOptions.newFileNames = [ fileName ];
       let documentPicker = new picker.DocumentViewPicker();
-      documentPicker.save( DocumentSaveOptions ).then( ( DocumentSaveResult ) => {
+      documentPicker.save( DocumentSaveOptions ).then( async( DocumentSaveResult ) => {
         Logger.info( TAG , 'DocumentViewPicker.save successfully, DocumentSaveResult uri: ' + JSON.stringify( DocumentSaveResult ) );
         if ( DocumentSaveResult !== null && DocumentSaveResult !== undefined ) {
           this.uriSave = DocumentSaveResult[ 0 ];
@@ -130,75 +133,102 @@ struct DlpPage {
    */
   async onEncrypt() {
     Logger.info( TAG + 'new file and encrypt' );
+    let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext
+    let want: Want = {
+      "action" : "ohos.want.action.editData" ,
+      "bundleName" : "com.ohos.dlpmanager" ,
+      "type" : "text/plain" ,
+      "abilityName" : "MainAbility" ,
+      "uri" : this.dlpUri ,
+      "parameters" : {
+        "displayName" : this.dlpName ,
+        "fileName" : { "name" : this.dlpName } ,
+        "linkFileName" : { "name" : this.dlpLinkName } ,
+      }
+    };
     try {
-
-      // Logger.info( TAG , '沙箱路径为: ' + this.pathDir )
-      // let uri = "file://docs/storage/Users/currentUser/Desktop/a.txt"
-      // let path ="/data/storage/el2/base/haps/entry/files/a.txt"
-      // let file = fs.openSync( path , fs.OpenMode.READ_ONLY | fs.OpenMode.CREATE );
-      // Logger.info( TAG , "file fd: " + file.fd );
-
-      let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext
-      let want: Want = {
-        // "uri" : "file://docs/storage/Users/currentUser/Desktop/" + this.myFileName ,
-        "uri" : this.dlpUri ,
-        "parameters" : {
-          "displayName" : this.dlpName
-        }
-      }; // 请求参数
-      Logger.info( TAG , "onEncrypt:" + JSON.stringify( want ) );
-      dlpPermission.startDLPManagerForResult( context , want ).then( ( res: dlpPermission.DLPManagerResult ) => {
-        Logger.info( TAG , 'startDLPManagerForResult res.resultCode:' + res.resultCode );
-        Logger.info( TAG , 'startDLPManagerForResult res.want:' + JSON.stringify( res.want ) );
-      } ); // 打开DLP权限管理应用
+      Logger.info( TAG , "openDLPFile:" + JSON.stringify( want ) );
+      context.startAbility( want , ( error: BusinessError ) => {
+        Logger.error( TAG , 'want error.code =' + error.code + ',error.message =' + error.message );
+      } );
     } catch( err ) {
-      Logger.error( TAG , 'startDLPManagerForResult error:' + (err as BusinessError).code + (err as BusinessError).message ); // 失败报错
+      Logger.error( 'openDLPFile startAbility failed' + (err as BusinessError).code + (err as BusinessError).message );
+      return;
     }
   }
 
   async getOriginalFileNameFunc( fileName: string ) {
     try {
       let res = dlpPermission.getOriginalFileName( fileName ); // 获取原始文件名
-      console.info( TAG , '原始文件名:' + res );
-      promptAction.showToast( { message : '原始文件名:' + res , duration : 2000 } )
+      Logger.info( TAG , 'OriginalFileName:' + res );
+      promptAction.showToast( { message : 'OriginalFileName:' + res , duration : 2000 } );
     } catch( err ) {
-      console.error( TAG , 'getOriginalFileNameFunc error' , (err as BusinessError).code , (err as BusinessError).message ); // 失败报错
+      Logger.error( TAG , 'getOriginalFileNameFunc error:' + (err as BusinessError).code + (err as BusinessError).message );
     }
   }
 
   async getDLPSuffixFunc() {
     try {
       let res = dlpPermission.getDLPSuffix(); // 获取DLP拓展名
-      console.info( TAG , '拓展名:' + res );
-      promptAction.showToast( { message : '拓展名:' + res , duration : 2000 } )
+      Logger.info( TAG , 'Extension name:' + res );
+      promptAction.showToast( { message : 'Extension name:' + res , duration : 2000 } );
     } catch( err ) {
-      console.error( TAG , 'getDLPSuffix error' , (err as BusinessError).code , (err as BusinessError).message ); // 失败报错
+      Logger.error( TAG , 'getDLPSuffix error:' + (err as BusinessError).code + (err as BusinessError).message );
+    }
+  }
+
+
+  /**
+   * 设置沙箱保留
+   */
+  async setSandboxFile(): Promise<void> {
+    try {
+      let docUris: Array<string> = [ this.dlpUri ];
+      dlpPermission.setRetentionState( docUris ); // 设置沙箱保留
+      promptAction.showToast( { message : 'set success' , duration : 2000 } );
+    } catch( err ) {
+      Logger.error( TAG , 'setRetentionState error' + (err as BusinessError).code + (err as BusinessError).message ); // 失败报错
+    }
+  }
+
+  /**
+   * 取消沙箱保留
+   */
+  async cancelSandboxFile(): Promise<void> {
+    try {
+      let docUris: Array<string> = [ this.dlpUri ];
+      dlpPermission.cancelRetentionState( docUris ); // 设置沙箱保留
+      promptAction.showToast( { message : 'cancel success' , duration : 2000 } );
+    } catch( err ) {
+      Logger.error( TAG , 'setRetentionState error' + (err as BusinessError).code + (err as BusinessError).message ); // 失败报错
     }
   }
 
   aboutToAppear() {
-    console.log( TAG , "aboutToAppear ------" )
+    Logger.info( TAG , 'aboutToAppear ------' );
   }
 
   onPageShow(): void {
-    console.info( TAG , "onPageShow begin ------" );
+    Logger.info( TAG , "onPageShow begin ------" );
     let wantInfo: Want = AppStorage.get( "funcAbilityWant" ) as Want;
-    console.info( TAG , "funcAbilityWant:" + JSON.stringify( wantInfo ) );
-    this.dlpUri = wantInfo.uri as string;
-    this.dlpName = wantInfo.parameters?.["dlpName"] as string
-    this.fd = wantInfo.parameters?.["fd"] as number
-    this.dlpContent = this.mediaFileUri.readFileContent( this.dlpUri );
-    // this.dlpContent = JSON.stringify(wantInfo.parameters?.["dlpContent"]) as string
-    this.dlpPath = JSON.stringify( wantInfo.parameters?.["dlpPath"] ) as string
-    console.info( TAG , "funcAbilityWant dlpUri:" + this.dlpUri );
-    console.info( TAG , "funcAbilityWant dlpName:" + this.dlpName );
-    console.info( TAG , "funcAbilityWant fd:" + this.fd );
-    console.info( TAG , "funcAbilityWant dlpContent:" + this.dlpContent );
-    console.info( TAG , "funcAbilityWant dlpPath:" + this.dlpPath );
-    this.isDlpFileFunc( this.fd )
-    this.getOriginalFileNameFunc(this.dlpName)
-    this.getDLPSuffixFunc()
-    console.info( TAG , "onPageShow end ------" );
+    Logger.info( TAG , "funcAbilityWant:" + JSON.stringify( wantInfo ) );
+    this.dlpLinkUri = wantInfo.uri as string;
+    this.dlpUri = wantInfo.parameters?.["dlpUri"]?.["name"] as string;
+    this.dlpName = wantInfo.parameters?.["fileAsset"]?.["displayName"] as string;
+    this.dlpLinkName = wantInfo.parameters?.["linkFileName"]?.["name"] as string;
+    Logger.info( TAG , "displayName" + this.dlpName );
+    this.dlpContent = this.mediaFileUri.readFileContent( this.dlpLinkUri );
+    this.dlpPath = JSON.stringify( wantInfo.parameters?.["dlpPath"] ) as string;
+    Logger.info( TAG , "funcAbilityWant dlpUri:" + this.dlpLinkUri );
+    Logger.info( TAG , "funcAbilityWant dlpName:" + this.dlpName );
+    Logger.info( TAG , "funcAbilityWant fd:" + this.fd );
+    Logger.info( TAG , "funcAbilityWant dlpContent:" + this.dlpContent );
+    Logger.info( TAG , "funcAbilityWant dlpPath:" + this.dlpPath );
+    this.fd = fs.openSync( this.dlpLinkUri ).fd;
+    this.isDlpFileFunc( this.fd );
+    this.getOriginalFileNameFunc( this.dlpName );
+    this.getDLPSuffixFunc();
+    Logger.info( TAG , "onPageShow end ------" );
   }
 
   build() {
@@ -211,7 +241,7 @@ struct DlpPage {
           .objectFit( ImageFit.Contain )
           .id( 'dlpPageBack' )
           .onClick( () => {
-            router.back()
+            router.back();
           } )
         Text( this.dlpName )
           .width( '296vp' )
@@ -258,12 +288,10 @@ struct DlpPage {
               this.dlpContent = value;
             } )
             .backgroundColor( '#FFFFFF' )
-
         }
         .width( '380vp' )
         .height( '64vp' )
         .margin( { left : '28vp' , right : '72vp' , top : '4vp' , bottom : '576vp' } )
-
       }
 
       Blank()
@@ -303,8 +331,8 @@ struct DlpPage {
             .margin( { top : '8vp' , bottom : '3vp' , left : '40vp' , right : '40vp' } )
             .onClick( () => {
               Logger.info( TAG , 'save onClick dlpContent is: ' + this.dlpContent );
-              Logger.info( TAG , 'save onClick this.myUri: ' + this.dlpUri )
-              this.mediaFileUri.writeFileContent( this.dlpUri , this.dlpContent );
+              Logger.info( TAG , 'save onClick this.myUri: ' + this.dlpLinkUri );
+              this.mediaFileUri.writeFileContent( this.dlpLinkUri , this.dlpContent );
               this.editable = false;
               AppStorage.setOrCreate( 'editable' , this.editable );
               promptAction.showToast( { message : $r( 'app.string.saved' ) , duration : 2000 } );
@@ -367,9 +395,9 @@ struct DlpPage {
         .height( '48vp' )
         .margin( { left : '16vp' , right : '16vp' } )
         .onClick( () => {
-          this.onEncrypt()
+          this.onEncrypt();
         } )
-        .enabled( this.isDLPFile ? true : ( this.dlpSuffixIncludes ? true : false ) )
+        .enabled( true )
 
       MenuItem( this.filePageDivider )
 
@@ -378,19 +406,30 @@ struct DlpPage {
         .height( '48vp' )
         .margin( { left : '16vp' , right : '16vp' } )
         .onClick( () => {
-          this.getDlpPermission()
+          this.setSandboxFile();
         } )
-        .enabled( this.inSandbox ? true : false )
+        .enabled( true )
+
+      MenuItem( this.filePageDivider )
+
+      MenuItem( this.filePageTextMenu4 )
+        .width( '124vp' )
+        .height( '48vp' )
+        .margin( { left : '16vp' , right : '16vp' } )
+        .onClick( () => {
+          this.cancelSandboxFile();
+        } )
+        .enabled( true )
 
     }
-    .width( '156vp' ).height( '152vp' )
+    .width( '156vp' ).height( '202vp' )
     .backgroundColor( '#FFFFFF' )
     .borderRadius( '16vp' )
   }
 
   @Builder
   filePageTextMenu1() {
-    Text( '另存为' )
+    Text( $r( 'app.string.save_as' ) )
       .width( '91vp' )
       .height( '22vp' )
       .fontSize( '16vp' )
@@ -403,26 +442,39 @@ struct DlpPage {
 
   @Builder
   filePageTextMenu2() {
-    Text( '设置权限' )
+    Text( $r( 'app.string.set_permissions' ) )
       .width( '122vp' )
       .height( '21vp' )
       .fontSize( '16vp' )
       .fontFamily( 'HarmonyHeiTi' )
       .fontWeight( 400 )
-      .fontColor( this.isDLPFile ? $r( 'app.color.font_color_182431' ) : ( this.dlpSuffixIncludes ? $r( 'app.color.font_color_182431' ) : $r( 'app.color.font_color_66182431' ) ) )
+      .fontColor( $r( 'app.color.font_color_182431' ) )
       .align( Alignment.Start )
       .margin( { top : '13vp' , bottom : '14vp' , right : '2vp' } )
   }
 
   @Builder
   filePageTextMenu3() {
-    Text( '沙箱权限' )
+    Text( $r('app.string.Set_retention_sandbox'))
       .width( '122vp' )
       .height( '21vp' )
       .fontSize( '16vp' )
       .fontFamily( 'HarmonyHeiTi' )
       .fontWeight( 400 )
-      .fontColor( this.inSandbox ? $r( 'app.color.font_color_182431' ) : $r( 'app.color.font_color_66182431' ) )
+      .fontColor( $r( 'app.color.font_color_182431' ) )
+      .align( Alignment.Start )
+      .margin( { top : '13vp' , bottom : '14vp' , right : '2vp' } )
+  }
+
+  @Builder
+  filePageTextMenu4() {
+    Text( $r('app.string.cancel_retention_sandbox') )
+      .width( '122vp' )
+      .height( '21vp' )
+      .fontSize( '16vp' )
+      .fontFamily( 'HarmonyHeiTi' )
+      .fontWeight( 400 )
+      .fontColor( $r( 'app.color.font_color_182431' ) )
       .align( Alignment.Start )
       .margin( { top : '13vp' , bottom : '14vp' , right : '2vp' } )
   }
