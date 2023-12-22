@@ -7,6 +7,10 @@
     {
       "name": "copyFileLog2",
       "value": "2、TestFile01.txt、TestFile02.txt等文件copy完成"
+    },
+    {
+      "name": "workerLogChooseFile",
+      "value": "2、请选择文件"
     }
   ]
 }

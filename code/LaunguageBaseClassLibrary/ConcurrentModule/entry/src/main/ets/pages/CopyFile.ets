@@ -23,7 +23,7 @@ const TAG: string = '[ConcurrentModule].[CopyFile]';
 @Component
 struct Watcher {
   @State message: Resource = $r('app.string.copyFileText');
-  @State myContext: Context = getContext(this) as common.UIAbilityContext;
+  @State myContext: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
   @State filePathSize: Array<number> = [];
   @State showFilePath: Array<string> = [];
   @State eventFilePath: Array<string> = [];
@@ -39,7 +39,7 @@ struct Watcher {
   myWorker: MyWorker = new MyWorker();
   scroller: Scroller = new Scroller();
   public dirPath: string = '';
-  public baseDir: string = AppStorage.Get('sanBoxFileDir');
+  public baseDir: string | undefined = AppStorage.Get('sanBoxFileDir');
 
   onPageShow() {
     this.myWorker.readyFilesToWorker();
@@ -125,7 +125,7 @@ struct Watcher {
 
               Column() {
                 List({ space: 12, initialIndex: 0 }) {
-                  ForEach(this.showFilePath, (item, index) => {
+                  ForEach(this.showFilePath, (item: string, index: number) => {
                     ListItem() {
                       Row() {
                         Text(item)
@@ -153,7 +153,7 @@ struct Watcher {
                                 Logger.info(TAG, 'Workerets Checkbox1 index ' + index + ' is true');
                                 this.eventFilePath.push(this.showFilePath[index]);
                               } else {
-                                for (let i = 0; i < this.eventFilePath.length; i++) {
+                                for (let i: number = 0; i < this.eventFilePath.length; i++) {
                                   if (this.eventFilePath[i] === this.showFilePath[index]) {
                                     this.eventFilePath[i] = 'deletedTag';
                                   }
@@ -170,7 +170,7 @@ struct Watcher {
                       .backgroundColor(0xFFFFFF)
                     }
                     .id('listItem')
-                  }, item => item)
+                  }, (item: string) => item)
                 }
                 .id('listWorkerFile')
                 .alignListItem(ListItemAlign.Center)
@@ -203,6 +203,7 @@ struct Watcher {
                       .width('100%')
                     Text(this.copyFileShowLog)
                       .fontSize(16)
+                      .id("copyFileLog")
                       .fontColor('#182431')
                       .fontWeight(400)
                       .width('100%')
