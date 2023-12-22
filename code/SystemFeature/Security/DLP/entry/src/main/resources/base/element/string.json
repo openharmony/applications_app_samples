@@ -1,0 +1,64 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "file_list",
+      "value": "File List"
+    },
+    {
+      "name": "date",
+      "value": "Today 9:00"
+    },
+    {
+      "name": "document_type",
+      "value": "work"
+    },
+    {
+      "name": "authorization_reminder",
+      "value": "Please select authorization."
+    },
+    {
+      "name": "encryption_protection",
+      "value": "Encryption protection."
+    },
+    {
+      "name": "authorization_description",
+      "value": "Authorize users to access permissions while restricting their permissions such as no file permissions, read-only, and editing."
+    },
+    {
+      "name": "user_access_rights",
+      "value": "User Access Rights."
+    },
+    {
+      "name": "read_only",
+      "value": "Read only"
+    },
+    {
+      "name": "edit_only",
+      "value": "Edit only"
+    },
+    {
+      "name": "cancel",
+      "value": "cancel"
+    },
+    {
+      "name": "confirm",
+      "value": "confirm"
+    },
+    {
+      "name": "init_file_name",
+      "value": "xxx_contract.txt"
+    }
+  ]
+}
