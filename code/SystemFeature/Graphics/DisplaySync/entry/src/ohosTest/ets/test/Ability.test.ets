@@ -16,6 +16,7 @@
 import { describe, it, beforeAll, expect } from '@ohos/hypium';
 import { Driver, ON } from '@ohos.UiTest';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import Logger from '../utils/Logger';
 
 const TAG = '[Sample_DisplaySync]';
 const DELAYMS_1S = 1000;
@@ -25,18 +26,18 @@ const DELAYMS_5S = 5000;
 export default function abilityTest() {
   describe('ActsAbilityTest', () => {
     beforeAll(async (done: Function) => {
-      console.info(TAG, 'beforeAll begin');
+      Logger.info(TAG, 'beforeAll begin');
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
         await abilityDelegator.startAbility({
-          bundleName: 'com.sample.displaySync',
+          bundleName: 'com.samples.displaySync',
           abilityName: 'EntryAbility'
         });
       } catch (err) {
-        console.info(TAG, `beforeAll exception = ${JSON.stringify(err)}`);
+        Logger.info(TAG, `beforeAll exception = ${JSON.stringify(err)}`);
       }
 
-      console.info(TAG, 'beforeAll end');
+      Logger.info(TAG, 'beforeAll end');
       done();
     });
 
@@ -50,7 +51,7 @@ export default function abilityTest() {
      */
     it('CustomDraw_001', 0, async (done: Function) => {
       try {
-        console.info(TAG, 'CustomDraw_001 begin');
+        Logger.info(TAG, 'CustomDraw_001 begin');
 
         let driver = Driver.create();
         await driver.delayMs(DELAYMS_2S);
@@ -75,7 +76,7 @@ export default function abilityTest() {
         await backButton.click();
         await driver.delayMs(DELAYMS_1S);
 
-        console.info(TAG, 'CustomDraw_001 end');
+        Logger.info(TAG, 'CustomDraw_001 end');
         done();
       } catch (error) {
         expect().assertFail();
@@ -93,7 +94,7 @@ export default function abilityTest() {
      */
     it('PropertyAnimation_001', 0, async (done: Function) => {
       try {
-        console.info(TAG, 'PropertyAnimation_001 begin');
+        Logger.info(TAG, 'PropertyAnimation_001 begin');
 
         let driver = Driver.create();
         await driver.delayMs(DELAYMS_2S);
@@ -113,7 +114,7 @@ export default function abilityTest() {
         await backButton.click();
         await driver.delayMs(DELAYMS_1S);
 
-        console.info(TAG, 'PropertyAnimation_001 end');
+        Logger.info(TAG, 'PropertyAnimation_001 end');
         done();
       } catch (error) {
         expect().assertFail();
@@ -131,7 +132,7 @@ export default function abilityTest() {
      */
     it('XComponent_001', 0, async (done: Function) => {
       try {
-        console.info(TAG, 'XComponent_001 begin');
+        Logger.info(TAG, 'XComponent_001 begin');
 
         let driver = Driver.create();
         await driver.delayMs(DELAYMS_2S);
@@ -156,7 +157,7 @@ export default function abilityTest() {
         await backButton.click();
         await driver.delayMs(DELAYMS_1S);
 
-        console.info(TAG, 'XComponent_001 end');
+        Logger.info(TAG, 'XComponent_001 end');
         done();
       } catch (error) {
         expect().assertFail();

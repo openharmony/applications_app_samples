@@ -14,13 +14,14 @@
  */
 
 import router from '@ohos.router';
+import Logger from '../utils/Logger';
 
 @Entry
 @Component
 struct Index {
   build() {
     Column({ space: 20 }) {
-      Button('自绘制')
+      Button('CustomDraw')
         .id('CustomDraw')
         .fontSize(16)
         .fontWeight(500)
@@ -30,17 +31,17 @@ struct Index {
             url: 'pages/CustomDrawDisplaySync' // 目标url
           }, router.RouterMode.Standard, (err) => {
             if (err) {
-              console.error(`Invoke replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+              Logger.error(`Invoke replaceUrl failed, code is ${err.code}, message is ${err.message}`);
               return;
             }
-            console.info('Invoke replaceUrl succeeded.');
+            Logger.info('Invoke replaceUrl succeeded.');
           });
         })
         .width('50%')
         .height(40)
         .shadow(ShadowStyle.OUTER_DEFAULT_LG)
 
-      Button('属性动画')
+      Button('PropertyAnimation')
         .id('PropertyAnimation')
         .fontSize(16)
         .fontWeight(500)
@@ -50,10 +51,10 @@ struct Index {
             url: 'pages/PropertyAnimationDisplaySync' // 目标url
           }, router.RouterMode.Standard, (err) => {
             if (err) {
-              console.error(`Invoke replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+              Logger.error(`Invoke replaceUrl failed, code is ${err.code}, message is ${err.message}`);
               return;
             }
-            console.info('Invoke replaceUrl succeeded.');
+            Logger.info('Invoke replaceUrl succeeded.');
           });
         })
         .width('50%')
@@ -70,10 +71,10 @@ struct Index {
             url: 'pages/XComponentDisplaySync' // 目标url
           }, router.RouterMode.Single, (err) => {
             if (err) {
-              console.error(`Invoke replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+              Logger.error(`Invoke replaceUrl failed, code is ${err.code}, message is ${err.message}`);
               return;
             }
-            console.info('Invoke replaceUrl succeeded.');
+            Logger.info('Invoke replaceUrl succeeded.');
           });
         })
         .width('50%')

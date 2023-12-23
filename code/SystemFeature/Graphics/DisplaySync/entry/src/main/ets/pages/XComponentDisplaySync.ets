@@ -13,8 +13,9 @@
  * limitations under the License.
  */
 
-import XComponentContext from "../interface/XComponentContext";
+import XComponentContext from '../interface/XComponentContext';
 import router from '@ohos.router';
+import Logger from '../utils/Logger';
 const TAG = '[XComponentDisplaySync]';
 
 @Entry
@@ -62,13 +63,13 @@ struct Index {
           .fontWeight(500)
           .margin({ bottom: 20, right: 6, left: 6 })
           .onClick(() => {
-            console.log(TAG, "Start click");
+            Logger.info(TAG, "Start click");
             if (this.xComponentContext1) {
-              console.log(TAG, "Register1");
+              Logger.info(TAG, "Register1");
               this.xComponentContext1.register();
             }
             if (this.xComponentContext2) {
-              console.log(TAG, "Register2");
+              Logger.info(TAG, "Register2");
               this.xComponentContext2.register();
             }
           })
@@ -82,13 +83,13 @@ struct Index {
           .fontWeight(500)
           .margin({ bottom: 20, left: 6 })
           .onClick(() => {
-            console.log(TAG, "Stop click");
+            Logger.info(TAG, "Stop click");
             if (this.xComponentContext1) {
-              console.log(TAG, "Unregister1");
+              Logger.info(TAG, "Unregister1");
               this.xComponentContext1.unregister();
             }
             if (this.xComponentContext2) {
-              console.log(TAG, "Unregister2");
+              Logger.info(TAG, "Unregister2");
               this.xComponentContext2.unregister();
             }
           })
@@ -104,11 +105,11 @@ struct Index {
           .margin({ bottom: 20, left: 6 })
           .onClick((): void => {
             if (this.xComponentContext1) {
-              console.log(TAG, "Unregister1");
+              Logger.info(TAG, "Unregister1");
               this.xComponentContext1.unregister();
             }
             if (this.xComponentContext2) {
-              console.log(TAG, "Unregister2");
+              Logger.info(TAG, "Unregister2");
               this.xComponentContext2.unregister();
             }
             router.back();

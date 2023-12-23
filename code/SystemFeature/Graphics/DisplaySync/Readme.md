@@ -2,12 +2,12 @@
 
 ### 介绍
 
-本示例通过DisplaySync的接口对自绘制、属性动画、XComponent的绘制内容设置开发者所期望的帧率
+本示例通过DisplaySync分级管控功能对自绘制、属性动画、XComponent的绘制内容设置开发者所期望的帧率
 ### 效果预览
 
 |初始页|自绘制|属性动画|XComponent|
 |--------------------------------|--------------------------------|--------------------------------|--------------------------------|
-|![](./screenshots/device/initPage.jpg)|![](./screenshots/device/customDraw.jpg)|![](./screenshots/device/propertyAnimation.jpg)|![](./screenshots/device/xcomponent.jpg)|
+| <img src="./screenshots/device/initPage.jpg" width="100%" /> | <img src="./screenshots/device/customDraw.jpg" width="100%"/> | <img src="./screenshots/device/propertyAnimation.jpg" width="100%" /> | <img src="./screenshots/device/xcomponent.jpg" width="80%"/> |
 
 使用说明
 
@@ -37,20 +37,21 @@
 |  |  |  └──EntryAbility.ets
 |  |  ├──interface
 │  │  │  └──XComponentContext.ts                // XComponentContext
-│  │  └──pages                                  // 页面文件
-│  │     ├──Index.ets                           // 初始页面
-│  │     ├──CustomDrawDisplaySync.ets           // 自绘制页面
-│  │     ├──PropertyAnimationDisplaySync.ets    // 属性动画页面
-│  │     └──XComponentDisplaySync.ets           // XComponent页面
-|  ├──resources         			            // 资源文件目录
+│  │  ├──pages                                  // 页面文件
+│  │  |  ├──Index.ets                           // 初始页面
+│  │  |  ├──CustomDrawDisplaySync.ets           // 自绘制页面
+│  │  |  ├──PropertyAnimationDisplaySync.ets    // 属性动画页面
+│  │  |  └──XComponentDisplaySync.ets           // XComponent页面
+│  │  ├──utils                                  // 工具类
+|  ├──resources         			                  // 资源文件目录
 ```
 
 ### 具体实现
 
-* 自绘制：通过调用@ohos.graphics.displaySync接口，通过注册回调和设置刷新了区间控制回调周期
+* 自绘制：通过调用[@ohos.graphics.displaySync](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.graphics.displaySync.d.ts)接口，通过注册回调和设置刷新了区间控制回调周期
     * 涉及到的相关接口：
       
-      通过`import displaySync from '@ohos.graphics.displaySync'`引入相关接口
+      通过`import displaySync from '@ohos.graphics.displaySync'`引入
       
       | 接口名 | 描述 |
       | -------- | -------- |
@@ -61,14 +62,14 @@
       | start(): void | DisplaySync使能 |
       | stop(): void | DisplaySync失能 |
     
-* 属性动画：通过新增的参数expectedFrameRateRange，设置动画刷新率的区间，预期设置的刷新率，作为动画的属性之一，作用于动画场景
+* 属性动画：通过[animation和animateTo](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@internal/component/ets/common.d.ts)接口新增的参数expectedFrameRateRange，设置动画刷新率的区间，预期设置的刷新率，作为动画的属性之一，作用于动画场景
     * 涉及到的相关接口：
       
       | 新增动画属性 | 描述 |
       | -------- | -------- |
       | expectedFrameRateRange | animation和animateTo接口的动画属性参数中可选配置expectedFrameRateRange参数 |
-* XComponet：通过在IDE中的Native c++ 工程，在c++代码中定义对外接口为register和unregister，通过新增的CAPI接口在js侧调用该接口,可在页面上使用drawing根据设定的期望帧率来绘制
-    * 涉及到的相关接口：
+* XComponet：通过在IDE中的Native c++ 工程，在c++代码中定义对外接口为register和unregister，并调用新增的CAPI接口,可在页面上使用drawing根据设定的期望帧率来绘制
+    * 涉及到的相关接口([CAPI接口链接](https://gitee.com/openharmony/interface_sdk_c/blob/master/arkui/ace_engine/native/native_interface_xcomponent.h))：
 
       | 接口名 | 描述 | 
       | -------- | -------- |
@@ -87,11 +88,11 @@
 
 ### 约束与限制
 
-1.本示例仅支持在标准系统上运行。
+1.本示例仅支持在标准系统上运行，支持设备：RK3568。
 
-2.本示例已适配API version 11版本SDK，本示例涉及使用系统接口：@ohos.graphics.displaySync,以及XComponent的CAPI接口需要手动替换SDK中的接口文件才能编译通过。
+2.本示例已适配API version 11版本SDK，本示例涉及使用系统接口：@ohos.graphics.displaySync,以及XComponent的CAPI接口需要手动替换Full SDK才能编译通过。
 
-3.本示例需要使用DevEco Studio 4.1 (Build Version: 4.1.1.300, built on November 19, 2023)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 3.1.1 Release（Build Version: 3.1.0.501, built on June 20, 2023）才可编译运行。
 
 
 ### 下载

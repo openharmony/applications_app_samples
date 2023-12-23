@@ -15,15 +15,16 @@
 
 import displaySync from '@ohos.graphics.displaySync';
 import router from '@ohos.router';
+import Logger from '../utils/Logger';
 const TAG = '[CustomDrawDisplaySync]';
 
 @Entry
 @Component
 struct Index {
-  @State drawFirstSize: number = 25
-  @State drawSecondSize: number = 25
-  private backDisplaySyncSlow: displaySync.DisplaySync | undefined = undefined
-  private backDisplaySyncFast: displaySync.DisplaySync | undefined = undefined
+  @State drawFirstSize: number = 25;
+  @State drawSecondSize: number = 25;
+  private backDisplaySyncSlow: displaySync.DisplaySync | undefined = undefined;
+  private backDisplaySyncFast: displaySync.DisplaySync | undefined = undefined;
   private isBigger_30:boolean = true;
   private isBigger_60:boolean = true;
 
@@ -56,7 +57,7 @@ struct Index {
           this.isBigger_30 = true;
         }
       }
-      console.info(TAG, '[Draw30] Timestamp:' + ii.timestamp + ' TargetTimeStamp: ' + ii.targetTimestamp);
+      Logger.info(TAG, '[Draw30] Timestamp:' + ii.timestamp + ' TargetTimeStamp: ' + ii.targetTimestamp);
     };
 
     this.backDisplaySyncSlow = displaySync.create();
@@ -84,7 +85,7 @@ struct Index {
         }
       }
 
-      console.info(TAG, '[Draw60] Timestamp:' + ii.timestamp + ' TargetTimeStamp: ' + ii.targetTimestamp);
+      Logger.info(TAG, '[Draw60] Timestamp:' + ii.timestamp + ' TargetTimeStamp: ' + ii.targetTimestamp);
     };
 
     this.backDisplaySyncFast= displaySync.create();
@@ -102,7 +103,7 @@ struct Index {
       this.backDisplaySyncFast = undefined;
     }
 
-    console.info(TAG, 'DisplaySyncDestructor set all displaySync null');
+    Logger.info(TAG, 'DisplaySyncDestructor set all displaySync null');
   }
 
   build() {
