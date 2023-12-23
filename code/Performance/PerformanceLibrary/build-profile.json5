@@ -73,6 +73,14 @@
     {
       "name": "smartPerfEditor",
       "srcPath": "./feature/smartPerfEditor"
+    },
+    {
+      "name": "trace",
+      "srcPath": "./feature/trace"
+    },
+    {
+      "name": "backgroundTask",
+      "srcPath": "./feature/backgroundTask"
     }
   ]
 }

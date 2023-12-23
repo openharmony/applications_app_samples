@@ -21,6 +21,7 @@
   "main": "",
   "version": "1.0.0",
   "dependencies": {
+    "@ohos/backgroundTask": "file:../../../feature/backgroundTask",
     "@ohos/grid": "file:../../../feature/grid",
     "@ohos/smartPerfHost": "file:../../../feature/smartPerfHost",
     "@ohos/staticImport": "file:../../../feature/staticImport",
