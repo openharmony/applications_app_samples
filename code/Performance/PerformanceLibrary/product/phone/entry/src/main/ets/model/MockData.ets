@@ -47,5 +47,9 @@ export let performanceTypeArray: Array<PerformanceMsg> = [
   {
     name: 'Trace',
     uri: 'pages/trace/TracePage'
+  },
+  {
+    name: 'BackgroundTask',
+    uri: 'pages/backgroundTask/BackgroundTaskPage'
   }
 ]
