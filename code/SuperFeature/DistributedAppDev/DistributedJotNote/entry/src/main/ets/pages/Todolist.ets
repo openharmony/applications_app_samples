@@ -71,7 +71,7 @@ struct Todolist {
                         .unselectedColor('rgba(24,36,49,0.40);')
                         .width(30)
                         .height(30)
-                        .margin({ 'top': '14.00px', 'right': '18.00vp', 'bottom': '14.00px', 'left': '6.00vp' })
+                        .margin({ top: '14.00px', right: '18.00vp', bottom: '14.00px', left: '6.00vp' })
 
                       Text(item).fontSize(16).fontWeight(500)
 

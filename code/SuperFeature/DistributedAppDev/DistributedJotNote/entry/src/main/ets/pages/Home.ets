@@ -88,7 +88,7 @@ struct Home {
           .index(1)
           .restoreId(1)
           .onChange((index: number) => {
-            Logger.info(TAG + 'index: ' + index)
+            Logger.info(TAG, 'index: ' + index)
             this.swiperIndex = index;
             AppStorage.set('swiperIndex', index);
           })

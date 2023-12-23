@@ -71,14 +71,14 @@ struct Settings {
                     this.stoLink_ability_isON = isOn;
                     AppStorage.set('ability_isON', isOn);
                     this.context.setMissionContinueState(AbilityConstant.ContinueState.ACTIVE, (result) => {
-                      Logger.info(TAG + `setMissionContinueState ACTIVE result: ${JSON.stringify(result)}`);
+                      Logger.info(TAG, `setMissionContinueState ACTIVE result: ${JSON.stringify(result)}`);
                     })
                   } else {
                     Logger.info('testTag: ' + 'isOn :' + isOn)
                     this.stoLink_ability_isON = isOn;
                     AppStorage.set('ability_isON', isOn);
                     this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result) => {
-                      Logger.info(TAG + `setMissionContinueState INACTIVE result: ${JSON.stringify(result)}`);
+                      Logger.info(TAG, `setMissionContinueState INACTIVE result: ${JSON.stringify(result)}`);
                     })
                   }
                 })
@@ -102,7 +102,7 @@ struct Settings {
                 .onChange((isOn: boolean) => {
                   this.stoLink_pageStack_isON = isOn;
                   AppStorage.setAndLink('pageStack_isON', isOn)
-                  Logger.info(TAG + 'AppStorage.get<boolean>(pageStack_isON) :' +
+                  Logger.info(TAG, 'AppStorage.get<boolean>(pageStack_isON) :' +
                   AppStorage.get<boolean>('pageStack_isON'));
                 })
                 .restoreId(5)
@@ -124,7 +124,7 @@ struct Settings {
                 .onChange((isOn: boolean) => {
                   this.stoLink_sourceEnd_isON = isOn;
                   AppStorage.set('sourceEnd_isON', isOn);
-                  Logger.info(TAG + 'AppStorage.get(sourceEnd_isON) ' + JSON.stringify(AppStorage.get<string>('sourceEnd_isON')));
+                  Logger.info(TAG, 'AppStorage.get(sourceEnd_isON) ' + JSON.stringify(AppStorage.get<string>('sourceEnd_isON')));
                 })
                 .restoreId(6)
                 .id('toggle_sourceEnd_isOn')

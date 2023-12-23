@@ -71,7 +71,7 @@ entry/src/main/ets/
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568;
 2. 本示例完整功能必须双端授予允许使用分布式协同能力
-3. 本示例为stage模型，已适配API version 10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0Release)。
+3. 本示例为stage模型，已适配API version 11版本SDK，SDK版本号(API Version 11 Release),镜像版本号(4.1.5.5)。
 4. 本示例需要使用DevEco Studio 版本号(4.0Release)才可编译运行。
 5. 本示例需要使用 ohos.permission.READ_IMAGEVIDEO权限级别为system_basic的系统接口。
 6. 本示例涉及系统接口，需要配置系统应用签名，可以参考[特殊权限配置方法](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Fsecurity%2Fhapsigntool-overview.md%2F) ，把配置文件中的“app-feature”字段信息改为“hos_system_app”。

@@ -22,6 +22,7 @@ import image from '@ohos.multimedia.image';
 import Logger from '../utils/Logger';
 import CommonConstants from '../common/constants/CommonConstants';
 import { BusinessError } from '@ohos.base';
+import { LooperUtil } from '../utils/LooperUtil';
 
 const TAG = 'testTag_Notes: ';
 let context = getContext(this) as common.UIAbilityContext; //获取设备A&B UIAbilityContext信息
@@ -43,11 +44,13 @@ struct Notes {
   controller: TextAreaController = new TextAreaController();
   @State num: number = 0;
   @State image1: PixelMap | null = null; // 图一展示照片(选择或流转)
+  @State image2: Object = new Object; // 图二展示照片(选择或流转)
   @StorageLink('imgIsVisible1') imgIsVisible1: boolean = true;
   @StorageLink('imgIsVisible2') imgIsVisible2: boolean = true;
   @State showSubMenus: boolean = false;
   @State jpgStr: string = '';
-  @State uris: Array<string> = []; // 用于接受 PhotoViewPicker选择图片的返回的uri(分布式文件方式)
+  @State uris: Array<string> = []; // 用于接受 PhotoViewPicker选择图片1的返回的uri(分布式文件方式)
+  @State uris2: Array<string> = []; // 用于接受 PhotoViewPicker选择图片2的返回的uri(分布式文件方式)
   @State fileName: string = '';
   @State readLenAtSink: number = 0;
   private imgArray: Resource[] = [
@@ -65,25 +68,25 @@ struct Notes {
       let photoPicker = new picker.PhotoViewPicker();
       photoPicker.select(photoSelectOptions).then((photoSelectResult) => {
         if (!photoSelectResult) {
-          Logger.error(TAG + 'photoSelectResult = null');
+          Logger.error(TAG, 'photoSelectResult = null');
           return;
         }
         this.uris = photoSelectResult.photoUris;
 
         if (this.writeSrcToDistributedFile(this.uris)) {
-          Logger.info(TAG + 'copy file success');
+          Logger.info(TAG, 'copy file success');
           // 成功写入图片后将标志设为true
-          AppStorage.set('isisSelectImg', true);
+          AppStorage.set('isSelectImg', true);
           this.isSelectImg = true;
-          Logger.info(TAG + "AppStorage.get<boolean>('isisSelectImg')" + AppStorage.get<boolean>('isisSelectImg'));
+          Logger.info(TAG, "AppStorage.get<boolean>('isSelectImg') :" + AppStorage.get<boolean>('isSelectImg'));
         } else {
-          Logger.error(TAG + 'copy file failed');
+          Logger.error(TAG, 'copy file failed');
         }
 
         // 获取图库中清晰图片PixelMap
         // 1.通过uri打开文件得到fd
         let file = fs.openSync(this.uris[0], fs.OpenMode.READ_ONLY);
-        Logger.info(TAG + 'file.fd:' + file.fd);
+        Logger.info(TAG, 'file.fd:' + file.fd);
         // 2.通过imageSourceApi来创建pixelMap并直接显示
         let imageSourceApi = image.createImageSource(file.fd);
         if (imageSourceApi) {
@@ -92,21 +95,30 @@ struct Notes {
             this.imgIsVisible1 = false;
           });
         } else {
-          Logger.info(TAG + 'imageSourceApi is undefined');
+          Logger.info(TAG, 'imageSourceApi is undefined');
         }
       })
     } catch (error) {
-      Logger.error(TAG + 'photoPicker failed with error: ' + JSON.stringify(error));
+      Logger.error(TAG, 'photoPicker failed with error: ' + JSON.stringify(error));
     }
   }
 
-  writeSrcToDistributedFile(uris: string[]) {
+  writeSrcToDistributedFile(uris: string[]): boolean {
     if (!uris.length) {
-      Logger.error(TAG + 'uri length is empty');
+      Logger.error(TAG, 'uri length is empty');
       return false;
     }
-    Logger.info(TAG + 'uri length = ' + uris.length);
+    Logger.info(TAG, 'uri length = ' + uris.length);
+    // 选中后先删除之前的文件
     try {
+      let res = fs.accessSync(filePath);
+      if (res) {
+        fs.unlink(filePath);
+        Logger.info(TAG, ' delete file successfully');
+      } else {
+        Logger.info(TAG, 'delete file failed');
+      }
+      // 重新写文件
       let srcFile = fs.openSync(uris[0], fs.OpenMode.READ_ONLY);
       let dstFile = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
       Logger.info(TAG, 'open srcFile dstFile success!');
@@ -119,7 +131,7 @@ struct Notes {
         fs.writeSync(dstFile.fd as number, buf, { length: readLen });
         readLen = fs.readSync(srcFile.fd as number, buf, { offset: readSize });
       }
-      Logger.info(TAG + 'copy file success size： ' + readSize);
+      Logger.info(TAG, 'copy file success size： ' + readSize);
       fs.close(srcFile);
       fs.close(dstFile);
       return true;
@@ -129,15 +141,15 @@ struct Notes {
     }
   }
 
-  readFromDistributedFile() {
-    Logger.info(TAG + 'readFromDistributedFile: filePath: ' + filePath);
+  readFromDistributedFile(): void {
+    Logger.info(TAG, 'readFromDistributedFile: filePath: ' + filePath);
     try {
-      Logger.info(TAG + 'readFromDistributedFile try to read');
+      Logger.info(TAG, 'readFromDistributedFile try to read');
       // 查看并打开分布式目录下的文件
       if (fs.accessSync(filePath)) {
-        Logger.info(TAG + filePath + ' exists');
+        Logger.info(TAG, filePath + ' exists');
       } else {
-        Logger.error(TAG + filePath + 'not exists');
+        Logger.error(TAG, filePath + 'not exists');
         return;
       }
       // 通过imageSourceApi来创建pixelMap 并负责流转后展示
@@ -146,38 +158,129 @@ struct Notes {
         this.image1 = pixelMap;
         this.imgIsVisible1 = false;
       });
-      Logger.info(TAG + 'readFromDistributedFile is ready');
+      Logger.info(TAG, 'readFromDistributedFile is ready');
     } catch (error) {
-      Logger.error(TAG + 'readFromDistributedFile failed with error :' + JSON.stringify(error));
+      Logger.error(TAG, 'readFromDistributedFile failed with error :' + JSON.stringify(error));
+    }
+  }
+
+  choosePictureFileForImage2(): void {
+    try {
+      let photoSelectOptions = new picker.PhotoSelectOptions();
+      photoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
+      photoSelectOptions.maxSelectNumber = 1;
+      let photoPicker = new picker.PhotoViewPicker();
+      photoPicker.select(photoSelectOptions).then((photoSelectResult) => {
+        if (!photoSelectResult) {
+          Logger.error(TAG, 'choosePicture2 photoSelectResult = null');
+          return;
+        }
+        this.uris2 = photoSelectResult.photoUris;
+
+        if (this.writeDistributedAsset()) {
+          Logger.info(TAG, "choosePicture2 success");
+        } else {
+          Logger.error(TAG, 'choosePicture2 failed');
+        }
+
+        // 获取图库中清晰图片PixelMap
+        // 1.通过uri打开文件得到fd
+        let file = fs.openSync(this.uris2[0], fs.OpenMode.READ_ONLY);
+        // 2.通过imageSourceApi来创建pixelMap并直接显示
+        let imageSourceApi = image.createImageSource(file.fd);
+        if (imageSourceApi) {
+          imageSourceApi.createPixelMap().then((pixelMap) => {
+            this.image2 = pixelMap;
+            this.imgIsVisible2 = false;
+          });
+          AppStorage.setOrCreate<string>('image2Path', CommonConstants.DISTRIBUTED_ASSET_SAVE_PATH);
+        } else {
+          Logger.info(TAG, 'choosePicture2 imageSourceApi is undefined');
+        }
+      })
+    } catch (error) {
+      Logger.error(TAG, 'choosePicture2 photoPicker failed with error: ' + JSON.stringify(error));
+    }
+  }
+
+  writeDistributedAsset(): boolean {
+    Logger.info(TAG, 'writeDistributedAsset in');
+    // 删除目录
+    try {
+      fs.rmdirSync(CommonConstants.DISTRIBUTED_ASSET_DIR);
+      Logger.info(TAG, 'remove dir successful');
+    } catch (error) {
+      Logger.info(TAG, `remove dir failed, cause: ${JSON.stringify(error)}`);
+    }
+    try {
+      fs.mkdirSync(CommonConstants.DISTRIBUTED_ASSET_DIR, true);
+      let srcFile = fs.openSync(this.uris2[0], fs.OpenMode.READ_ONLY);
+      let dstFile = fs.openSync(CommonConstants.DISTRIBUTED_ASSET_SAVE_PATH, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+      Logger.info(TAG, 'writeDistributedAsset open srcFile dstFile success!');
+      const bufSize = 4096;
+      let readSize = 0;
+      let buf = new ArrayBuffer(bufSize);
+      let readLen = fs.readSync(srcFile.fd as number, buf, { offset: readSize });
+      while (readLen > 0) {
+        readSize += readLen;
+        fs.writeSync(dstFile.fd as number, buf, { length: readLen });
+        readLen = fs.readSync(srcFile.fd as number, buf, { offset: readSize });
+      }
+      Logger.info(TAG, 'copy file success size： ' + readSize);
+      fs.close(srcFile);
+      fs.close(dstFile);
+      return true;
+    } catch (error) {
+      Logger.error(TAG, `writeDistributedAsset error, cause: ${JSON.stringify(error)}`);
+    }
+    return false;
+  }
+
+  readDistributedAsset(): void {
+    Logger.info(TAG, 'readDistributedAsset in');
+    try {
+      let image2Path = AppStorage.get<string>('image2Path');
+      if (image2Path == undefined || image2Path == '') {
+        Logger.info(TAG, `image2Path error, cause: $JSON.stringify(image2Path)`);
+        return;
+      }
+      if (fs.accessSync(image2Path)) {
+        Logger.info(TAG, 'open distributed asset successfully');
+      } else {
+        Logger.error(TAG, 'distributed asset does not exists');
+        return;
+      }
+      let imageSource = image.createImageSource(image2Path);
+      imageSource.createPixelMap().then((pixelMap) => {
+        Logger.info(TAG, 'createPixelMap successfully')
+        this.image2 = pixelMap;
+        this.imgIsVisible2 = false;
+      })
+      Logger.info(TAG, 'readDistributedAsset successfully');
+    } catch (error) {
+      Logger.error(TAG, `readDistributedAsset error, cause: ${JSON.stringify(error)}`);
     }
   }
 
   aboutToAppear() {
-    Logger.info(TAG + 'aboutToAppear in');
+    Logger.info(TAG, 'aboutToAppear in');
+    LooperUtil.on(CommonConstants.EVENT_DATA_RESTORE, () => {
+      this.readDistributedAsset();
+    });
     if (this.isContinuation) {
       if (this.isSelectImg) {
         this.readFromDistributedFile();
       }
-      setTimeout(() => {
-        if (!this.isSelectImg) {
-          try {
-            let res = fs.accessSync(filePath);
-            if (res) {
-              // 删除文件
-              fs.unlink(filePath);
-              Logger.info(TAG + 'aboutToAppear: remove file succeed');
-            } else {
-              Logger.info(TAG + 'aboutToAppear:  file not exists');
-            }
-          } catch (error) {
-            let err: BusinessError = error as BusinessError;
-            Logger.error(TAG + 'aboutToAppear:  accessSync failed with error message + err.code: ' + err.code);
-          }
-        }
-      }, 1000)
-
-      this.imgIsVisible1 = true;
     }
+  }
+
+  aboutToDisappear(): void {
+    Logger.info(TAG, 'aboutToDisappear in');
+    LooperUtil.off(CommonConstants.EVENT_DATA_RESTORE);
+    AppStorage.set<string>('image2Path', '');
+    this.isSelectImg = false;
+    this.imgIsVisible1 = true;
+    this.imgIsVisible2 = true;
   }
 
   build() {
@@ -223,7 +326,7 @@ struct Notes {
               .onChange((value: string) => {
                 this.inputText = value;
                 AppStorage.set('inputText', value);
-                Logger.info(TAG + 'this.inputText: ' + this.inputText);
+                Logger.info(TAG, 'this.inputText: ' + this.inputText);
               })
               .type(InputType.Normal)
               .backgroundColor(Color.Transparent)
@@ -275,10 +378,10 @@ struct Notes {
                 .borderRadius(24)
                 .syncLoad(true)
                 .onComplete((msg) => {
-                  Logger.info(TAG + 'load image success 01');
+                  Logger.info(TAG, 'load image success 01');
                 })// 图片获取失败打印结果
                 .onError(() => {
-                  Logger.info(TAG + 'load image fail 01');
+                  Logger.info(TAG, 'load image fail 01');
                 })
                 .visibility(this.imgIsVisible1 ? Visibility.None : Visibility.Visible)
             }
@@ -303,16 +406,16 @@ struct Notes {
                 .margin({ left: 144 })
                 .visibility(this.imgIsVisible2 ? Visibility.Visible : Visibility.None)
               // 大图
-              Image(this.imgArray[2])
+              Image(this.image2 as PixelMap)
                 .width('100%')
                 .height('100%')
                 .borderRadius(24)
                 .syncLoad(true)
                 .onComplete((msg) => {
-                  Logger.info(TAG + 'load image success 03');
+                  Logger.info(TAG, 'load image success 03');
                 })// 图片获取失败打印结果
                 .onError(() => {
-                  Logger.info(TAG + 'load image fail 03')
+                  Logger.info(TAG, 'load image fail 03')
                 })
                 .visibility(this.imgIsVisible2 ? Visibility.None : Visibility.Visible)
             }
@@ -348,9 +451,7 @@ struct Notes {
                 .height(40)
                 .fontColor('#007DFF')
                 .onClick(() => {
-                  this.imgIsVisible2 = false;
-                  AppStorage.set('imgIsVisible2', false);
-                  Logger.info(TAG + 'onClick: imgIsVisible2 = ' + this.imgIsVisible2);
+                  this.choosePictureFileForImage2();
                 })
                 .id('button_select_picture_two')
 
