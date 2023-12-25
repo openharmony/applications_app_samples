@@ -30,14 +30,23 @@ const MODIFIED_ORIGIN_TEXT = 'on Monday at the lakeside garden';
 const CORRECT_SIGNATURE = 'd7mi/';
 const MODIFIED_SIGNATURE = 'AAAREleX';
 
+const CHAIN_DATA = 'TCbf9g==';
+const CHAIN_ROOT = 'QroAR2mV';
+const CHAIN_CRL = 'hg==';
+
 export default function abilityTest() {
   let driver = Driver.create();
   let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
     /**
-     * 拉起应用
+     * @tc.number StartAbility_001
+     * @tc.name Pull up the app
+     * @tc.desc StartAbility
+     * @tc.size SmallTest
+     * @tc.level Level1
+     * @tc.type Function
      */
-    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+    it('StartAbility_001', 0, async (done: Function) => {
       Logger.info(TAG, BUNDLE + 'StartAbility_001 begin');
       try {
         await abilityDelegator.startAbility({
@@ -46,22 +55,26 @@ export default function abilityTest() {
         });
         Logger.info(TAG, BUNDLE + 'Start certframework');
         done();
-      } catch (expection) {
+      }
+      catch (expection) {
         Logger.info(TAG, BUNDLE + 'Start certframework00000');
         expect(0).assertEqual(expection.code);
         done();
       }
       Logger.info(TAG, 'StartAbility_001 end');
       done();
-    })
-
+    });
     /**
-     * 数据展示
+     * @tc.number DisplayData_001
+     * @tc.name Display data
+     * @tc.desc DisplayData
+     * @tc.size SmallTest
+     * @tc.level Level1
+     * @tc.type Function
      */
-    it(BUNDLE + 'DisplayData_001', 0, async function (done) {
+    it('DisplayData_001', 0, async (done: Function) => {
       Logger.info(TAG, BUNDLE + 'DisplayData_001 begin');
       await driver.delayMs(COMMON_DELAY_TIME);
-
       // 点击数据展示按钮，页面分别显示正确的证书、原始、签名数据
       await driver.assertComponentExist(ON.id('dataDispalyButton'));
       let displayData = await driver.findComponent(ON.id('dataDispalyButton'));
@@ -70,40 +83,44 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text(CORRECT_CERTIFICATION, MatchPattern.CONTAINS));
       await driver.assertComponentExist(ON.text(CORRECT_ORIGIN_TEXT, MatchPattern.CONTAINS));
       await driver.assertComponentExist(ON.text(CORRECT_SIGNATURE, MatchPattern.CONTAINS));
-
       Logger.info(TAG, BUNDLE + 'DisplayData_001 end');
       done();
-    })
-
+    });
     /**
-     * 签名校验
+     * @tc.number Verify_001
+     * @tc.name Verify sign
+     * @tc.desc Verify
+     * @tc.size SmallTest
+     * @tc.level Level1
+     * @tc.type Function
      */
-    it(BUNDLE + 'Verify_001', 0, async function (done) {
+    it('Verify_001', 0, async (done: Function) => {
       Logger.info(TAG, BUNDLE + 'Verify_001 begin');
       await driver.delayMs(COMMON_DELAY_TIME);
       // 获取ability
-      let ability = await abilityDelegator.getCurrentTopAbility()
+      let ability = await abilityDelegator.getCurrentTopAbility();
       //获取manager
-      let manager = ability.context.resourceManager
-
+      let manager = ability.context.resourceManager;
       // 点击签名校验按钮，页面弹出toast弹窗提示：校验通过
       await driver.assertComponentExist(ON.id('verifyButton'));
       let verify = await driver.findComponent(ON.id('verifyButton'));
       await verify.click();
       await driver.delayMs(VERIFY_DELAY_TIME);
       await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.verify_success'))));
-
       Logger.info(TAG, BUNDLE + 'Verify_001 end');
       done();
-    })
-
+    });
     /**
-     * 修改原始数据并保持签名数据不变
+     * @tc.number ModifyOriginData_001
+     * @tc.name Modify the original data and keep the signature data intact
+     * @tc.desc Verify
+     * @tc.size SmallTest
+     * @tc.level Level1
+     * @tc.type Function
      */
-    it(BUNDLE + 'ModifyOriginData_001', 0, async function (done) {
+    it('ModifyOriginData_001', 0, async (done: Function) => {
       Logger.info(TAG, BUNDLE + 'ModifyOriginData_001 begin');
       await driver.delayMs(COMMON_DELAY_TIME);
-
       // 点击修改原始数据按钮，页面分别显示正确的证书数据和签名数据，以及错误的原始数据
       await driver.assertComponentExist(ON.id('modifyOriginDataButton'));
       let modify = await driver.findComponent(ON.id('modifyOriginDataButton'));
@@ -112,18 +129,20 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text(CORRECT_CERTIFICATION, MatchPattern.CONTAINS));
       await driver.assertComponentExist(ON.text(MODIFIED_ORIGIN_TEXT, MatchPattern.CONTAINS));
       await driver.assertComponentExist(ON.text(CORRECT_SIGNATURE, MatchPattern.CONTAINS));
-
       Logger.info(TAG, BUNDLE + 'ModifyOriginData_001 begin');
       done();
-    })
-
+    });
     /**
-     * 修改签名数据并保持原始数据不变
+     * @tc.number ModifySignatureData_001
+     * @tc.name Modify the signature data and keep the original data intact
+     * @tc.desc ModifySignatureData
+     * @tc.size SmallTest
+     * @tc.level Level1
+     * @tc.type Function
      */
-    it(BUNDLE + 'ModifySignatureData_001', 0, async function (done) {
+    it('ModifySignatureData_001', 0, async (done: Function) => {
       Logger.info(TAG, BUNDLE + 'ModifySignatureData_001 begin');
       await driver.delayMs(COMMON_DELAY_TIME);
-
       // 点击修改签名数据按钮，页面分别显示正确的证书数据和原始数据，以及错误的签名数据
       await driver.assertComponentExist(ON.id('modifySignatureDataButton'));
       let modify = await driver.findComponent(ON.id('modifySignatureDataButton'));
@@ -132,22 +151,24 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text(CORRECT_CERTIFICATION, MatchPattern.CONTAINS));
       await driver.assertComponentExist(ON.text(CORRECT_ORIGIN_TEXT, MatchPattern.CONTAINS));
       await driver.assertComponentExist(ON.text(MODIFIED_SIGNATURE, MatchPattern.CONTAINS));
-
       Logger.info(TAG, BUNDLE + 'ModifySignatureData_001 begin');
       done();
-    })
-
+    });
     /**
-     * 恢复初始数据，修改原始数据并保持签名数据不变，重新进行签名校验
+     * @tc.number Verify_002
+     * @tc.name Restore the initial data, modify the original data and keep the signature data unchanged, and perform signature verification again
+     * @tc.desc Verify
+     * @tc.size SmallTest
+     * @tc.level Level1
+     * @tc.type Function
      */
-    it(BUNDLE + 'Verify_002', 0, async function (done) {
+    it('Verify_002', 0, async (done: Function) => {
       Logger.info(TAG, BUNDLE + 'Verify_002 begin');
       await driver.delayMs(COMMON_DELAY_TIME);
       // 获取ability
       let ability = await abilityDelegator.getCurrentTopAbility();
       //获取manager
       let manager = ability.context.resourceManager;
-
       // 点击数据展示按钮恢复正确的数据，页面分别显示正确的证书、签名、原始数据
       Logger.info(TAG, 'display data');
       await driver.assertComponentExist(ON.id('dataDispalyButton'));
@@ -165,22 +186,24 @@ export default function abilityTest() {
       await verify.click();
       await driver.delayMs(VERIFY_DELAY_TIME);
       await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.verify_fail'))));
-
       Logger.info(TAG, BUNDLE + 'Verify_002 end');
       done();
-    })
-
+    });
     /**
-     * 恢复初始数据，修改签名数据并保持原始数据不变，重新进行签名校验
+     * @tc.number Verify_003
+     * @tc.name Restore the initial data, modify the signature data and keep the original data unchanged, and perform signature verification again
+     * @tc.desc Verify
+     * @tc.size SmallTest
+     * @tc.level Level1
+     * @tc.type Function
      */
-    it(BUNDLE + 'Verify_003', 0, async function (done) {
+    it('Verify_003', 0, async (done: Function) => {
       Logger.info(TAG, BUNDLE + 'Verify_003 begin');
       await driver.delayMs(COMMON_DELAY_TIME);
       // 获取ability
       let ability = await abilityDelegator.getCurrentTopAbility();
       //获取manager
       let manager = ability.context.resourceManager;
-
       // 点击数据展示按钮恢复正确的数据，页面分别显示正确的证书、签名、原始数据
       Logger.info(TAG, 'display data');
       await driver.assertComponentExist(ON.id('dataDispalyButton'));
@@ -198,22 +221,24 @@ export default function abilityTest() {
       await verify.click();
       await driver.delayMs(VERIFY_DELAY_TIME);
       await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.verify_fail'))));
-
       Logger.info(TAG, BUNDLE + 'Verify_003 end');
       done();
-    })
-
+    });
     /**
-     * 恢复正确的签名数据和原始数据，重新进行签名校验
+     * @tc.number Verify_004
+     * @tc.name Restore the correct signature data and original data, and perform signature verification again
+     * @tc.desc Verify
+     * @tc.size SmallTest
+     * @tc.level Level1
+     * @tc.type Function
      */
-    it(BUNDLE + 'Verify_004', 0, async function (done) {
+    it('Verify_004', 0, async (done: Function) => {
       Logger.info(TAG, BUNDLE + 'Verify_004 begin');
       await driver.delayMs(COMMON_DELAY_TIME);
       // 获取ability
       let ability = await abilityDelegator.getCurrentTopAbility();
       //获取manager
       let manager = ability.context.resourceManager;
-
       // 点击数据展示按钮恢复正确的数据，页面分别显示正确的证书、签名、原始数据
       Logger.info(TAG, 'display data');
       await driver.assertComponentExist(ON.id('dataDispalyButton'));
@@ -226,9 +251,84 @@ export default function abilityTest() {
       await verify.click();
       await driver.delayMs(VERIFY_DELAY_TIME);
       await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.verify_success'))));
-
       Logger.info(TAG, BUNDLE + 'Verify_004 end');
       done();
-    })
+    });
+    /**
+     * @tc.number CertChain_001
+     * @tc.name CertChain validation
+     * @tc.desc CertChain
+     * @tc.size SmallTest
+     * @tc.level Level1
+     * @tc.type Function
+     */
+    it('CertChain_001', 0, async (done: Function) => {
+      Logger.info(TAG, BUNDLE + 'CertChain_001 begin');
+      await driver.delayMs(COMMON_DELAY_TIME);
+      // 获取ability
+      let ability = await abilityDelegator.getCurrentTopAbility();
+      //获取manager
+      let manager = ability.context.resourceManager;
+      // 点击数据展示按钮恢复正确的数据，页面分别显示正确的证书、签名、原始数据
+      Logger.info(TAG, 'display data');
+
+      // 切换到记录tab
+      await driver.assertComponentExist(ON.id('tab_certchain'));
+      let tabCertchain = await driver.findComponent(ON.id('tab_certchain'));
+      await tabCertchain.click();
+      await driver.delayMs(1000);
+
+      await driver.assertComponentExist(ON.id('certchainDataButton'));
+      let display = await driver.findComponent(ON.id('certchainDataButton'));
+      await display.click();
+
+      await driver.delayMs(DISPLAY_DELAY_TIME);
+      await driver.assertComponentExist(ON.text(CHAIN_DATA, MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text(CHAIN_ROOT, MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text(CHAIN_CRL, MatchPattern.CONTAINS));
+
+      Logger.info(TAG, 'show');
+      await driver.assertComponentExist(ON.id('certchainValidateButton'));
+      let verify = await driver.findComponent(ON.id('certchainValidateButton'));
+      await verify.click();
+      await driver.delayMs(VERIFY_DELAY_TIME);
+
+      await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.verify_success'))));
+      Logger.info(TAG, BUNDLE + 'CertChain_001 end');
+      done();
+    });
+    /**
+     * @tc.number CertChain_002
+     * @tc.name CertChain validation
+     * @tc.desc CertChain
+     * @tc.size SmallTest
+     * @tc.level Level1
+     * @tc.type Function
+     */
+    it('CertChain_002', 0, async (done: Function) => {
+      Logger.info(TAG, BUNDLE + 'CertChain_001 begin');
+      await driver.delayMs(COMMON_DELAY_TIME);
+      // 获取ability
+      let ability = await abilityDelegator.getCurrentTopAbility();
+      //获取manager
+      let manager = ability.context.resourceManager;
+      // 点击数据展示按钮恢复正确的数据，页面分别显示正确的证书、签名、原始数据
+      Logger.info(TAG, 'display data');
+
+      await driver.assertComponentExist(ON.id('toggleSwitchCrl'));
+      const switchs = await driver.findComponent(ON.id('toggleSwitchCrl'));
+      await switchs.click();
+      await driver.delayMs(VERIFY_DELAY_TIME);
+
+      Logger.info(TAG, 'show');
+      await driver.assertComponentExist(ON.id('certchainValidateButton'));
+      let verify = await driver.findComponent(ON.id('certchainValidateButton'));
+      await verify.click();
+      await driver.delayMs(VERIFY_DELAY_TIME);
+
+      await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.verify_fail'))));
+      Logger.info(TAG, BUNDLE + 'CertChain_001 end');
+      done();
+    });
   })
 }
