@@ -29,6 +29,9 @@
     "pages/grid/GridLazyForEachPage",
     "pages/grid/GridPage",
     "pages/smartPerfEditor/SmartPerfEditorPage",
-    "pages/trace/TracePage"
+    "pages/trace/TracePage",
+    "pages/backgroundTask/BackgroundTaskPage",
+    "pages/backgroundTask/TransientTask",
+    "pages/backgroundTask/LongTermTask"
   ]
 }

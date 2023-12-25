@@ -564,5 +564,59 @@ export default function abilityTest() {
       Logger.info(TAG, `${BUNDLE}Trace_001 end`);
       done();
     })
+
+    /**
+     * 合理使用后台任务场景
+     */
+    it(BUNDLE + "BackgroundTask_001", 6, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}BackgroundTask_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.swipe(0, 800, 0, 100, 600);
+      await driver.delayMs(1000);
+      // 点击进入后台任务首页
+      let backgroundTaskBtn: Component = await driver.findComponent(ON.text('BackgroundTask'));
+      await driver.delayMs(1000);
+      await backgroundTaskBtn.click();
+      await driver.delayMs(1000);
+      // 点击进入短时任务场景
+      let transientTaskBtn: Component = await driver.findComponent(ON.text('短时任务'));
+      await driver.delayMs(1000);
+      await transientTaskBtn.click();
+      await driver.delayMs(1000);
+      // 返回上一级进入长时任务场景
+      await driver.pressBack();
+      await driver.delayMs(1000);
+      let longTermTaskBtn: Component = await driver.findComponent(ON.text('长时任务'));
+      await driver.delayMs(1000);
+      await longTermTaskBtn.click();
+      await driver.delayMs(3000);
+      // 获取通知权限
+      await driver.assertComponentExist(ON.text('允许'));
+      let btnAccept = await driver.findComponent(ON.text('允许'));
+      await btnAccept.click();
+      await driver.delayMs(3000);
+      // 获取定位权限
+      await driver.assertComponentExist(ON.text('允许'));
+      let locAcceptBtn = await driver.findComponent(ON.text('允许'));
+      await locAcceptBtn.click();
+      await driver.delayMs(1000);
+      // 点击开启定位服务
+      let startLocationBtn: Component = await driver.findComponent(ON.text('开启定位服务'));
+      await driver.delayMs(500);
+      await startLocationBtn.click();
+      await driver.delayMs(3000);
+      // 点击关闭定位服务
+      let stopLocationBtn: Component = await driver.findComponent(ON.text('关闭定位服务'));
+      await driver.delayMs(1000);
+      await stopLocationBtn.click();
+      await driver.delayMs(1000);
+      // 退出到首页面
+      await driver.pressBack();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      Logger.info(TAG, `${BUNDLE}BackgroundTask_001 end`);
+      done();
+    })
   })
 }
