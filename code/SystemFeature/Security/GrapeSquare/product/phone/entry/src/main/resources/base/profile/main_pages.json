@@ -1,8 +1,0 @@
-{
-  "src": [
-    "pages/HomePage",
-    "pages/AdvertisingPage",
-    "pages/CommentDetailPage",
-    "pages/SameCityListPage"
-  ]
-}
