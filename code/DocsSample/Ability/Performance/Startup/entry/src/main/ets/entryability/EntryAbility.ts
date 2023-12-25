@@ -63,6 +63,10 @@ export default class EntryAbility extends UIAbility {
       }
       logger.info('Succeeded in loading the content. Data: ' + JSON.stringify(data) ?? '');
     });
+
+    // 耗时操作
+    // this.computeTask();
+    this.computeTaskAsync(); // 异步任务
   }
 
   onWindowStageDestroy(): void {
@@ -73,6 +77,9 @@ export default class EntryAbility extends UIAbility {
   onForeground(): void {
     // Ability has brought to foreground
     logger.info('Ability onForeground');
+    // 耗时操作
+    // this.computeTask();
+    this.computeTaskAsync(); // 异步任务
   }
 
   onBackground(): void {
