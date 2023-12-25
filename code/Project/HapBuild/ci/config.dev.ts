@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 export const ACCESS_TOKEN = 'accessToken';
-export const PROJECT_PATH = '/home/userName/HapBuild/compile-tool/projects/ut_samples_master';
-export const CONFIG_PATH = '/home/userName/HapBuild/compile-tool/config/ut_samples_master.config';
-export const COMPILE_SH_PATH = '/home/userName/HapBuild/compile-tool/bin/compile-ohpm-ci.sh';
-export const SIGN_HAP_PATH = '/home/userName/HapBuild/compile-tool/out/ut_samples_master/full-sdk/hap-out-with-signed';
-export const TEST_TOOL_PATH = '/home/userName/HapBuild/test-tool/InstallAndTestSpecial_ci.py';
-export const CONTAINS_PATH = '/home/userName/HapBuild/test-tool/LinuxContains.py';
-export const SIGN_FULL_PATH = '/home/userName/HapBuild/compile-tool/out/ut_samples_master/full-sdk/hap-out-with-signed/';
-export const SIGN_PUBLIC_PATH = '/home/userName/HapBuild/compile-tool/out/ut_samples_master/public-sdk/hap-out-with-signed/';
+export const PROJECT_PATH = '/home/userName/code/Project/HapBuild/compile-tool/projects/ut_samples_master';
+export const CONFIG_PATH = '/home/userName/code/Project/HapBuild/compile-tool/config/ut_samples_master.config';
+export const COMPILE_SH_PATH = '/home/userName/code/Project/HapBuild/compile-tool/bin/compile-ohpm-ci.sh';
+export const SIGN_HAP_PATH = '/home/userName/code/Project/HapBuild/compile-tool/out/ut_samples_master/full-sdk/hap-out-with-signed';
+export const TEST_TOOL_PATH = '/home/userName/code/Project/HapBuild/test-tool/InstallAndTestSpecial_ci.py';
+export const CONTAINS_PATH = '/home/userName/code/Project/HapBuild/test-tool/LinuxContains.py';
+export const SIGN_FULL_PATH = '/home/userName/code/Project/HapBuild/compile-tool/out/ut_samples_master/full-sdk/hap-out-with-signed/';
+export const SIGN_PUBLIC_PATH = '/home/userName/code/Project/HapBuild/compile-tool/out/ut_samples_master/public-sdk/hap-out-with-signed/';

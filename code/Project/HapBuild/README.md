@@ -23,34 +23,44 @@
 ## 工程目录
 
 ```
-|-- ci
-|   |-- config.dev.ts
-|   `-- src
-|       |-- app.controller.ts                 // /sn接口
-|       |-- hap-build
-|       |   |-- hap-build.controller.ts       // /hap-build/{PRId}接口
-|       |   `-- utils
-|       |       |-- buildListProject.ts       // 安装测试应用
-|       |       |-- checkProjectIfInFull.ts   // 判断涉及项目使用SDk类型
-|       |       |-- editLinuxContains.ts      // 修改配置文件
-|       |       |-- getModifyFileList.ts      // 下载PR修改文件
-|       |       `-- getProjectPath.ts         // 获取PR修改项目路径
-|       |-- main.ts
-|       `-- util
-|           `-- index.ts                      // 发送评论、执行脚本工具函数
+|-- HapBuild
+|   |--ci                                         // PR修改文件处理模块
+|       |-- config.dev.ts
+|       `-- src
+|           |-- app.controller.ts                 // /sn接口
+|           |-- hap-build
+|           |   |-- hap-build.controller.ts       // /hap-build/{PRId}接口
+|           |   `-- utils
+|           |       |-- buildListProject.ts       // 安装测试应用
+|           |       |-- checkProjectIfInFull.ts   // 判断涉及项目使用SDk类型
+|           |       |-- editLinuxContains.ts      // 修改配置文件
+|           |       |-- getModifyFileList.ts      // 下载PR修改文件
+|           |       `-- getProjectPath.ts         // 获取PR修改项目路径
+|           |-- main.ts
+|           `-- util
+|               `-- index.ts                      // 发送评论、执行脚本工具函数
+|   |--compile-tool                               // 编译工具
+|       |-- bin   
+|           |-- compile-ohpm-ci.sh                // 编译脚本        
+|           |-- compile-ut-ohpm.sh                // 初始化目录结构以及拉取代码脚本  
+|           |-- init-sdk.sh                       // 初始化SDK脚本
+|           |-- update-sdk.sh                     // 更新SDK脚本
+|       |-- config                                // 配置文件
+|           |-- init_sdk.config                     
+|           |-- samples_master.config            
+|           |-- ut_samples_master.config               
+|           |-- ut_samples_master_ohpm.config    
+|       `-- tool   
+|           |-- sign-tool                         // 签名工具                        
 |-- deplydoc.md                               // 部署文档
 |-- screenshots                               // 文档截图
-|-- test-tool
-|   |-- CombinationConfig.json                // 联合测试应用列表
-|   |-- FA_Model_And_Lower_Case_List.json     // FA模型应用列表
-|   |-- InstallAndTestSpecial_ci.py           // 安装测试应用脚本
-|   |-- LinuxContains.py                      // 安装测试配置文件
-|   |-- install_list_capability.json          // 特殊安装配置文件
-|   `-- special_list.json                     // 特殊安装应用列表
-`-- compile-tool                              // 编译工具
-    |-- bin                                   // 编译脚本
-    |-- config                                // 编译配置文件
-    `-- tool                                  // 签名工具
+`-- test-tool
+    |-- CombinationConfig.json                // 联合测试应用列表
+    |-- FA_Model_And_Lower_Case_List.json     // FA模型应用列表
+    |-- InstallAndTestSpecial_ci.py           // 安装测试应用脚本
+    |-- LinuxContains.py                      // 安装测试配置文件
+    |-- install_list_capability.json          // 特殊安装配置文件
+    `-- special_list.json                     // 特殊安装应用列表
 ```
 
 ## 具体实现
