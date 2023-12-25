@@ -274,7 +274,7 @@ class Upload {
       let imagePath = await this.mediaUtils.copyFileToCache(cacheDir, fileUris[i]);
       logger.info(TAG, `getFilesAndData ${JSON.stringify(imagePath)}`);
       let file: request.agent.FormItem = {
-        name: imagePath.split('cache/')[1],
+        name: imagePath.split('cache/')[1].split('.')[0],
         value: {
           path: './' + imagePath.split('cache/')[1]
         }
