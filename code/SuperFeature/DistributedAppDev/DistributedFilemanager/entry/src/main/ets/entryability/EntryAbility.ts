@@ -24,8 +24,6 @@ const sessionId : string = "123456";
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
     Logger.info("0x0000", 'testTag', '%{public}s', 'Ability onCreate');
-    let sessionId = want.parameters.sessionId ? want.parameters.sessionId : '';
-    AppStorage.SetOrCreate('sessionId', sessionId);
     //user grant
     let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
     try {

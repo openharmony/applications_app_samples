@@ -24,10 +24,20 @@ import { Logger } from '@ohos/feature-file-manager';
 const TAG: string = 'DataObjectModel';
 
 class DataObject {
-  public distributedObject: distributedDataObject.DataObject;
+  public distributedObject: distributedDataObject.DistributedObject;
+
+
+  constructor() {
+    this.distributedObject = distributedDataObject.createDistributedObject(  {
+      from: '',
+      localFileUriList: [],
+      disFileUriList: [],
+      disFileList: [],
+    })
+  }
   setSessionId(context: common.UIAbilityContext, sessionId: string): void {
     Logger.info(TAG, `setSessionId`)
-    this.distributedObject = distributedDataObject.create(context, {
+    this.distributedObject = distributedDataObject.createDistributedObject( {
       from: '',
       localFileUriList: [],
       disFileUriList: [],
@@ -46,7 +56,7 @@ class DataObject {
 
   clear() {
     try{
-      this.distributedObject["disFileList"].forEach( item => {
+      this.distributedObject["disFileList"].forEach( item  => {
         //判断uri前缀是否有“file+”，如果有则为文件
         if(item.includes("file+")){
           item = item.substring(5, item.length);
@@ -67,7 +77,6 @@ class DataObject {
   pasteFromDistributedDir(deviceId: string, directoryPath:string, fileData: Array<FileStructure>) {
     let localDstUri = fileuri.getUriFromPath(directoryPath);
     //本地拷贝:文件需进行重命名操作
-    let firstCopy = true;
     if (deviceId == this.distributedObject["from"]) {
       this.distributedObject["localFileUriList"].forEach( item => {
         //判断uri前缀是否有“file+”，如果是文件类型，去掉“file+”前缀，在localDstUri后面加上文件名称
@@ -90,19 +99,17 @@ class DataObject {
           })
           localDstUri = localDstUri+fileName;
         }
-        FsManager.pasteFromDistributedDir(firstCopy,item,localDstUri);
-        firstCopy = false;
+        FsManager.pasteFromDistributedDir(item,localDstUri);
       })
     } else { //跨设备拷贝
       this.distributedObject["disFileUriList"].forEach( item => {
         if (item.includes("file+")) {
           item = item.substring(5, item.length);
           let fileName : string = item.split('/').pop();
-          FsManager.pasteFromDistributedDir(firstCopy,item,localDstUri+fileName);
+          FsManager.pasteFromDistributedDir(item,localDstUri+fileName);
         } else {
-          FsManager.pasteFromDistributedDir(firstCopy,item,localDstUri);
+          FsManager.pasteFromDistributedDir(item,localDstUri);
         }
-        firstCopy = false;
       })
     }
   }

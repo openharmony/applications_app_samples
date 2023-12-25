@@ -79,10 +79,10 @@ export struct Index {
   }
 
   updateProgress(){
-    this.progress = AppStorage.Get<number>('progress');
+    this.progress = AppStorage.Get<number>('progress') as number;
   }
   updateCopyStatus(){
-    this.isCopying = AppStorage.Get<boolean>('isCopying');
+    this.isCopying = AppStorage.Get<boolean>('isCopying') as boolean;
   }
   // 每次退出选择状态就降临时数据清空
   clearTempData() {
@@ -96,7 +96,7 @@ export struct Index {
         return;
       }
       this.dmClass = dm;
-      let deviceInfo:deviceManager.DeviceInfo = null;
+      let deviceInfo:deviceManager.DeviceInfo | null = null;
       deviceInfo = this.dmClass.getLocalDeviceInfoSync();
       this.deviceId = deviceInfo.deviceId;
     })

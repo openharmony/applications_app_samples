@@ -30,46 +30,43 @@ let precastFiles: string[] = [
 ];
 
 let isCopying: boolean = false;
-let totalProgress: number = 0;
-let totalCopySize: number = 0;
-let copiedSize: number = 0;
 
 class FsManager {
   initFiles(): void {
     try {
       let res = fs.accessSync(filesDir1);
       if (res) {
-        Logger.info(`file path: ${filesDir1} exists`);
+        Logger.info(TAG, `file path: ${filesDir1} exists`);
       } else {
-        Logger.info(`file path: ${filesDir1} not exists`);
+        Logger.info(TAG, `file path: ${filesDir1} not exists`);
         fs.mkdirSync(filesDir1);
       }
     } catch(error) {
       let err: BusinessError = error as BusinessError;
-      Logger.error("accessSync failed with error message: " + err.message + ", error code: " + err.code);
+      Logger.error(TAG, "accessSync failed with error message: " + err.message + ", error code: " + err.code);
     }
     try {
       let res = fs.accessSync(filesDir2);
       if (res) {
-        Logger.info(`file path: ${filesDir2} exists`);
+        Logger.info(TAG, `file path: ${filesDir2} exists`);
       } else {
-        Logger.info(`file path: ${filesDir2} not exists`);
+        Logger.info(TAG, `file path: ${filesDir2} not exists`);
         fs.mkdirSync(filesDir2);
       }
     } catch(error) {
       let err: BusinessError = error as BusinessError;
-      Logger.error("accessSync failed with error message: " + err.message + ", error code: " + err.code);
+      Logger.error(TAG, "accessSync failed with error message: " + err.message + ", error code: " + err.code);
     }
 
   for (let i = 0; i < precastFiles.length; i++) {
     let fileName = filesDir1 + "/" + precastFiles[i];
-    Logger.info(`The file name: ${fileName}`);
+    Logger.info(TAG, `The file name: ${fileName}`);
     try {
       let res = fs.accessSync(fileName);
       if (res) {
-        Logger.info(`file: ${fileName} exists!.`);
+        Logger.info(TAG, `file: ${fileName} exists!.`);
       } else {
-        Logger.info(`file: ${fileName} not exists, will create it!.`);
+        Logger.info(TAG, `file: ${fileName} not exists, will create it!.`);
         let file = fs.openSync(fileName, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
         fs.write(file.fd, 'test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1' +
           'test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test' +
@@ -81,7 +78,7 @@ class FsManager {
       }
     } catch(error) {
       let err: BusinessError = error as BusinessError;
-      Logger.error("accessSync failed with error message: " + err.message + ", error code: " + err.code);
+      Logger.error(TAG, "accessSync failed with error message: " + err.message + ", error code: " + err.code);
     }
   }
 }
@@ -105,7 +102,7 @@ class FsManager {
     try {
       // copy
       let progressListener: fs.ProgressListener = (progress: fs.Progress) => {
-        Logger.info("progressSize: " + progress.processedSize + ", totalSize: " + progress.totalSize);
+        Logger.info(TAG ,"progressSize: " + progress.processedSize + ", totalSize: " + progress.totalSize);
       };
       let options: fs.CopyOptions = {
         "progressListener" : progressListener
@@ -119,22 +116,28 @@ class FsManager {
       })
     } catch (error) {
       let err: BusinessError = error as BusinessError;
-      Logger.error(`Failed to set paste data. Code: ${err.code}, message: ${err.message}`);
+      Logger.error(TAG, `Failed to set paste data. Code: ${err.code}, message: ${err.message}`);
     }
   }
 
   //粘贴，弹进度条
-  pasteFromDistributedDir(firstCopy:boolean,from:string,to:string) {
+  pasteFromDistributedDir(from:string,to:string) {
     try {
       // 定义拷贝回调
-      let lastCopiedSize:number = 0;
+      let totalProgress: number = 0;
+      let totalCopySize: number = 0;
+      let copiedSize: number = 0;
+      let lastCopiedSize: number = 0;
+      let firstCopy = true;
       let progressListener: fs.ProgressListener = (progress: fs.Progress) => {
-        Logger.info("progressSize: " + progress.processedSize + ", totalSize: " + progress.totalSize);
+        Logger.info(TAG, "progressSize: " + progress.processedSize + ", totalSize: " + progress.totalSize);
         //第一次进入回调
-        if(firstCopy) {
+        if(firstCopy === true) {
+          Logger.info(TAG, "firstCopy");
           totalCopySize += progress.totalSize;
           copiedSize += progress.processedSize;
           lastCopiedSize = progress.processedSize;
+          firstCopy = false;
         } else {
           copiedSize -= lastCopiedSize;
           copiedSize += progress.processedSize;
@@ -143,15 +146,16 @@ class FsManager {
 
         totalProgress = Number(((copiedSize/totalCopySize)*100).toFixed(0));
         AppStorage.SetOrCreate('progress',totalProgress);
-
+        Logger.info(TAG, "totalCopySize: " + totalCopySize + ", copiedSize: " + copiedSize);
         if(totalCopySize != copiedSize) {
-          Logger.info("to set isCopying true");
           isCopying = true;
           AppStorage.SetOrCreate('isCopying',true);
         } else {
+          Logger.info(TAG, "totalCopySize == copiedSize,Successfully coppied");
           isCopying = false;
           AppStorage.SetOrCreate('isCopying',false);
           AppStorage.SetOrCreate('flashPage',!AppStorage.Get<string>('flashPage'));
+          return prompt.showToast({ message: $r('app.string.label_dirupdate') });
         }
       };
       let options: fs.CopyOptions = {
@@ -161,16 +165,15 @@ class FsManager {
       fs.copy(from, to, options).then(() => {
         isCopying = false;
         AppStorage.SetOrCreate('isCopying',false);
-        Logger.info("Succeeded in copying. ");
-        return prompt.showToast({ message: $r('app.string.label_dirupdate') });
+        Logger.info(TAG, "Succeeded in copying. ");
       }).catch((err: BusinessError) => {
         isCopying = false;
         AppStorage.SetOrCreate('isCopying',false);
-        Logger.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
+        Logger.info(TAG, `Failed to copy. Code: ${err.code}, message: ${err.message}`);
         return prompt.showToast({ message: $r('app.string.label_copyfailed') });
       })
     } catch(err) {
-      Logger.error(`Failed to getData. Code: ${err.code}, message: ${err.message}`);
+      Logger.error(TAG, `Failed to getData. Code: ${err.code}, message: ${err.message}`);
     }
   }
 }
