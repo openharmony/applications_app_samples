@@ -29,6 +29,7 @@
     "@ohos/dynamicImport": "file:../../../feature/dynamicImport",
     "@ohos/smartPerfEditor": "file:../../../feature/smartPerfEditor",
     "@ohos/hiDumper": "file:../../../feature/hiDumper",
-    "@ohos/trace": "file:../../../feature/trace"
+    "@ohos/trace": "file:../../../feature/trace",
+    "@ohos/backgroundTask": "file:../../../feature/backgroundTask"
   }
 }
