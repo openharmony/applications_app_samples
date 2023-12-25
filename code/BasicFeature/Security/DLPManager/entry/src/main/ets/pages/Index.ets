@@ -350,6 +350,8 @@ export struct Index {
     info.event = "Ohos.account.event.LOGIN";
     try {
       await accountAbility.setOsAccountDistributedInfo( info );
+      Logger.info( TAG , "login success;info:" + JSON.stringify( info ) )
+      promptAction.showToast( { message : "login success;info:" + JSON.stringify( info ) , duration : 2000 } )
     } catch( err ) {
       Logger.error( TAG , "setOsAccountDistributedInfo LOGIN failed：" + err.code + err.message );
       return
@@ -390,6 +392,7 @@ export struct Index {
   onPageShow(): void {
     this.getListFileName();
     this.getRecentFileName();
+    this.onOpenDlpFile();
     Logger.info( TAG , 'sandbox path is:' + this.pathDir );
     this.accountLogin( this.accountName );
   }
@@ -554,7 +557,7 @@ export struct Index {
       .fontColor( $r( 'app.color.font_color_182431' ) )
       .align( Alignment.Start )
       .margin( { top : '13vp' , bottom : '14vp' , right : '29vp' } )
-      .id( 'setSandbox' )
+      .id( 'obtain_visit_record' )
   }
 
   @Builder
@@ -568,7 +571,7 @@ export struct Index {
       .fontColor( $r( 'app.color.font_color_182431' ) )
       .align( Alignment.Start )
       .margin( { top : '13vp' , bottom : '14vp' , left : '16vp' , right : '16vp' } )
-      .id( 'getInfo' )
+      .id( 'obtain_sandbox_retention_information' )
   }
 
   @Builder

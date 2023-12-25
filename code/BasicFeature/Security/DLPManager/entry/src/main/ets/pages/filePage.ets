@@ -292,6 +292,7 @@ struct FilePage {
             .width( '24vp' )
             .height( '24vp' )
             .margin( { top : '8vp' , bottom : '3vp' , left : '40vp' , right : '40vp' } )
+            .id( 'fileEdit' )
             .onClick( () => {
               this.editable = true;
               AppStorage.setOrCreate( 'editable' , this.editable );
@@ -310,7 +311,6 @@ struct FilePage {
             .width( '136vp' )
             .height( '14vp' )
             .margin( { left : '4vp' , right : '4vp' , bottom : '7vp' } )
-            .id( 'fileEdit' )
         }.width( '144vp' ).height( '56vp' )
 
         Column() {
@@ -318,6 +318,7 @@ struct FilePage {
             .width( '24vp' )
             .height( '24vp' )
             .margin( { top : '8vp' , bottom : '3vp' , left : '40vp' , right : '40vp' } )
+            .id( 'fileSave' )
             .onClick( () => {
               Logger.info( TAG , 'save onClick myFileContent is: ' + this.myFileContent );
               Logger.info( TAG , 'save onClick this.myUri: ' + this.myUri );
@@ -336,7 +337,6 @@ struct FilePage {
             .width( '136vp' )
             .height( '14vp' )
             .margin( { left : '4vp' , right : '4vp' , bottom : '7vp' } )
-            .id( 'fileSave' )
         }.width( '144vp' ).height( '56vp' )
 
         Column() {
@@ -344,6 +344,7 @@ struct FilePage {
             .width( '24vp' )
             .height( '24vp' )
             .margin( { top : '8vp' , bottom : '3vp' , left : '40vp' , right : '40vp' } )
+            .id( 'fileMore' )
             .bindMenu( this.filePageMenu , { placement : Placement.TopRight , offset : { x : '52vp' , y : '12vp' } } )
           Text( $r( 'app.string.more' ) )
             .fontSize( '10vp' )
@@ -355,7 +356,6 @@ struct FilePage {
             .width( '136vp' )
             .height( '14vp' )
             .margin( { left : '4vp' , right : '4vp' , bottom : '7vp' } )
-            .id( 'fileMore' )
         }.width( '144vp' ).height( '56vp' )
       }
       .align( Alignment.Bottom )
@@ -425,6 +425,7 @@ struct FilePage {
       .fontColor( $r( 'app.color.font_color_182431' ) )
       .align( Alignment.Start )
       .margin( { top : '13vp' , bottom : '13vp' , right : '33vp' } )
+      .id('file_save_as')
   }
 
   @Builder
@@ -438,6 +439,7 @@ struct FilePage {
       .fontColor( this.fileSuffixIncludes ? $r( 'app.color.font_color_182431' ) : $r( 'app.color.font_color_66182431' ) )
       .align( Alignment.Start )
       .margin( { top : '13vp' , bottom : '14vp' , right : '2vp' } )
+      .id('file_set_permissions')
   }
 
   @Builder
@@ -451,6 +453,7 @@ struct FilePage {
       .fontColor( $r( 'app.color.font_color_182431' ) )
       .align( Alignment.Start )
       .margin( { top : '13vp' , bottom : '14vp' , right : '2vp' } )
+      .id('file_query_AccessList')
   }
 
   @Builder
@@ -464,6 +467,7 @@ struct FilePage {
       .fontColor( $r( 'app.color.font_color_182431' ) )
       .align( Alignment.Start )
       .margin( { top : '13vp' , bottom : '14vp' , right : '2vp' } )
+      .id('file_query_retentionList')
   }
 
   @Builder

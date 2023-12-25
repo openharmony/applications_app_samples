@@ -86,8 +86,8 @@ export default function abilityTest() {
         } );
         done();
       } catch( exception ) {
-        hilog.info( DOMAIN , TAG , `StartAbility_001 exception = ${ JSON.stringify( exception ) }` )
-        expect().assertFail()
+        hilog.info( DOMAIN , TAG , `StartAbility_001 exception = ${ JSON.stringify( exception ) }` );
+        expect().assertFail();
       }
       hilog.info( DOMAIN , TAG , BUNDLE + 'StartAbility_001 end' );
     } )
@@ -95,155 +95,173 @@ export default function abilityTest() {
     /**
      * 获取权限
      */
-    it( BUNDLE + 'RequestPermissionFunction_001' , 0 , async( done : () => void ) => {
-      hilog.info( DOMAIN , TAG , BUNDLE + 'RequestPermissionFunction begin' )
+    it( 'RequestPermissionFunction_001' , 0 , async( done : () => void ) => {
+      hilog.info( DOMAIN , TAG , BUNDLE + 'RequestPermissionFunction begin' );
       let driver = await Driver.create();
-      await driver.delayMs( 2000 );
-      let permit = await getResourceString( $r( 'app.string.permit' ) );
-      await driver.assertComponentExist( ON.text( permit ) );
-      let permit1 = await driver.findComponent( ON.text( permit ) );
+      await driver.delayMs(2000);
+      let permit = await getResourceString($r('app.string.permit'));
+      await driver.assertComponentExist(ON.text(permit));
+      let permit1 = await driver.findComponent(ON.text(permit));
       await permit1.click();
-      await driver.delayMs( 1000 );
-      let permit2 = await driver.findComponent( ON.text( permit ) );
+      await driver.delayMs(1000);
+      let permit2 = await driver.findComponent(ON.text(permit));
       await permit2.click();
-      await driver.delayMs( 1000 );
+      await driver.delayMs(1000);
       done();
       hilog.info( DOMAIN , TAG , BUNDLE + 'RequestPermissionFunction_001 end' );
     } )
 
     /**
-     * 点击主页中文件列表
+     * 点击主页中更多图标
      */
-    it( BUNDLE + 'WatcherCopyFunction_001' , 0 , async() => {
-      hilog.info( DOMAIN , TAG , BUNDLE + 'WatcherCopyFunction_001 begin' )
-      let driver = await Driver.create()
-      await driver.delayMs( 1000 )
-      // 打开应用能够显示List中内容，点击图片
-      await driver.assertComponentExist( ON.type( 'List' ) )
-      await driver.assertComponentExist( ON.type( 'ListItem' ).id( 'ListItem6' ) )
-      let btnStart = await driver.findComponent( ON.type( 'ListItem' ).id( 'ListItem6' ) )
+    it( 'IndexMoreIcon' , 0 , async( done : () => void ) => {
+      hilog.info( DOMAIN , TAG , BUNDLE + 'Function_001 begin' );
+      let driver = await Driver.create();
+      await driver.delayMs( 2000 );
+      let btnStart = await driver.findComponent( ON.type( 'Image' ).id( 'moreIcon' ) );
       await btnStart.click()
-      await driver.delayMs( 1000 )
-      hilog.info( DOMAIN , TAG , BUNDLE + 'WatcherCopyFunction_001 end' )
-    } )
-
-    /**
-     * 点击List列表文件  仅作用例参考
-     */
-    it( '_001' , 0 , async() => {
-      // hilog.info(TAG, BUNDLE + 'RequestPermission_001 begin')
-      let driver = Driver.create()
-      await driver.delayMs( 2000 )
-      // hilog.info(TAG, BUNDLE + 'RequestPermission_001 requestPermission')
-      await driver.assertComponentExist( ON.id( 'file0' ) )
-      let file0 = await driver.findComponent( ON.id( 'file0' ) )
-      await file0.click()
-      await driver.delayMs( 200 )
-      // 编辑按钮  根据情况修改
-      await driver.assertComponentExist( ON.id( 'edit' ) )
-      let edit = await driver.findComponent( ON.id( 'edit' ) )
-      await edit.click()
-      await driver.delayMs( 200 )
-      // 保存按钮  根据情况修改
-      await driver.assertComponentExist( ON.id( 'save' ) )
-      let save = await driver.findComponent( ON.id( 'save' ) )
-      await save.click()
-      await driver.delayMs( 200 )
-      // 更多按钮  根据情况修改
-      await driver.assertComponentExist( ON.id( 'more' ) )
-      let more = await driver.findComponent( ON.id( 'more' ) )
-      await more.click()
-      await driver.delayMs( 200 )
-
-      // 返回homePage
-      await driver.assertComponentExist( ON.id( 'backBtn' ) )
-      let back = await driver.findComponent( ON.id( 'backBtn' ) )
-      await back.click()
-      await driver.delayMs( 200 )
-      // hilog.info(TAG, BUNDLE + 'RequestPermission_001 end')
-    } )
-
-    /**
-     * 修改文件内容
-     */
-    it( 'File_Fs_modifyFileContent_001' , 1 , async() => {
-      hilog.info( DOMAIN , TAG , 'File_Fs_modifyFileContent_001 begin' );
-      let driver = Driver.create();
       await driver.delayMs( 1000 );
-      await driver.assertComponentExist( ON.id( 'fileContent' ) );
-      let fileContent = await driver.findComponent( ON.id( 'fileContent' ) );
-      await fileContent.clearText();
-      await fileContent.inputText( 'newFileContent' );
-      await driver.assertComponentExist( ON.id( 'save' ) );
-      let save = await driver.findComponent( ON.id( 'save' ) );
-      await save.click();
-      await driver.assertComponentExist( ON.id( 'backWatcherFile' ) );
-      let back = await driver.findComponent( ON.id( 'backWatcherFile' ) );
-      await back.click();
-      hilog.info( DOMAIN , TAG , 'File_Fs_modifyFileContent_001 end' );
+      done();
+      hilog.info( DOMAIN , TAG , BUNDLE + 'IndexMoreIcon end' );
+    } )
+
+    /**
+     * 点击主页中更多图标的菜单1
+     */
+    it( 'IndexMoreIcon_Menu1' , 0 , async( done : () => void ) => {
+      hilog.info( DOMAIN , TAG , BUNDLE + 'IndexMoreIcon_Menu1 begin' );
+      let driver = await Driver.create();
+      await driver.delayMs( 2000 );
+      let btnStart1 = await driver.findComponent( ON.type( 'Text' ).id( 'obtain_visit_record' ) );
+      await btnStart1.click()
+      await driver.delayMs( 1000 );
+      done();
+      hilog.info( DOMAIN , TAG , BUNDLE + 'IndexMoreIcon_Menu1 end' );
+    } )
+
+    /**
+     * 点击主页中更多图标的菜单2
+     */
+    it( 'IndexMoreIcon_Menu2' , 0 , async( done : () => void ) => {
+      hilog.info( DOMAIN , TAG , BUNDLE + 'IndexMoreIcon_Menu2 begin' );
+      let driver = await Driver.create();
+      await driver.delayMs( 2000 );
+      let btnStart = await driver.findComponent( ON.type( 'Image' ).id( 'moreIcon' ) );
+      await btnStart.click()
+      await driver.delayMs( 2000 );
+      let btnStart2 = await driver.findComponent( ON.type( 'Text' ).id( 'obtain_sandbox_retention_information' ) );
+      await btnStart2.click();
+      await driver.delayMs( 1000 );
+      done();
+      hilog.info( DOMAIN , TAG , BUNDLE + 'IndexMoreIcon_Menu2 end' );
+    } )
+
+    /**
+     * 点击add图标 拉取picker
+     */
+    it( 'IndexIcon_add' , 0 , async( done : () => void ) => {
+      hilog.info( DOMAIN , TAG , BUNDLE + 'IndexIcon_add begin' );
+      let driver = await Driver.create();
+      await driver.delayMs( 2000 );
+      let btnStart = await driver.findComponent( ON.type( 'Image' ).id( 'add' ) );
+      await btnStart.click()
+      await driver.delayMs( 3000 );
+      done();
+      hilog.info( DOMAIN , TAG , BUNDLE + 'IndexIcon_add end' );
+    } )
+
+    /**
+     * picker中选取txt文件
+     */
+    it( 'picker_txt' , 0 , async( done : () => void ) => {
+      hilog.info( DOMAIN , TAG , BUNDLE + 'picker_txt begin' );
+      let driver = await Driver.create();
+      await driver.delayMs( 1000 );
+      await driver.click(100,100);
+      await driver.delayMs( 2000 );
+      done();
+      hilog.info( DOMAIN , TAG , BUNDLE + 'picker_txt end' );
     } )
 
     /**
      * Picker 编辑文件
      */
     // 编辑文件并保存
-    it( 'EditFileFunction_001' , 0 , async( done : () => void ) => {
-      hilog.info( DOMAIN , TAG , BUNDLE + 'EditFileFunction_001 begin' );
+    it('EditFileFunction_001', 0,  async( done: () => void )=> {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'EditFileFunction_001 begin');
       let driver = await Driver.create();
-      await driver.delayMs( 500 );
-      await driver.assertComponentExist( ON.id( 'editable' ) );
-      let editable = await driver.findComponent( ON.id( 'editable' ) );
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('fileEdit'));
+      let editable = await driver.findComponent( ON.type( 'Image' ).id( 'fileEdit' ) );
       await editable.click();
-      await driver.delayMs( 1000 );
-      await driver.assertComponentExist( ON.id( 'textArea' ) );
-      let textArea = await driver.findComponent( ON.id( 'textArea' ) );
-      await textArea.inputText( 'File Content' );
-      await driver.delayMs( 500 );
-      await driver.assertComponentExist( ON.id( 'save' ) );
-      let save = await driver.findComponent( ON.id( 'save' ) );
+      await driver.delayMs(2000);
+      await driver.assertComponentExist(ON.id('fileTextArea'));
+      let textArea = await driver.findComponent(ON.id('fileTextArea'));
+      await textArea.inputText('File Content test');
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('fileSave'));
+      let save = await driver.findComponent( ON.type( 'Image' ).id( 'fileSave' ) );
       await save.click();
-      await driver.delayMs( 1000 );
-      await driver.assertComponentExist( ON.id( 'backIndex' ) );
-      let backIndex = await driver.findComponent( ON.id( 'backIndex' ) );
-      await backIndex.click();
-      await driver.delayMs( 1000 );
+      await driver.delayMs(2000);
       done();
-      hilog.info( DOMAIN , TAG , BUNDLE + 'EditFileFunction_001 end' );
+      hilog.info(DOMAIN, TAG, BUNDLE + 'EditFileFunction_001 end');
+    })
+
+    /**
+     * txt文件更多按钮
+     */
+    it( 'txt_more' , 0 , async( done: () => void ) => {
+      hilog.info( DOMAIN , TAG , BUNDLE + 'txt_more begin' );
+      let driver = await Driver.create();
+      await driver.delayMs( 2000 );
+      let btnStart = await driver.findComponent( ON.type( 'Image' ).id( 'fileMore' ) );
+      await btnStart.click()
+      await driver.delayMs( 2000 );
+      done();
+      hilog.info( DOMAIN , TAG , BUNDLE + 'txt_more end' );
     } )
 
     /**
-     * Picker 另存为
+     * txt文件更多按钮菜单1:另存为
      */
-    // 点击文件另存为
-    it( 'SaveAsFunction_001' , 0 , async( done : () => void ) => {
-      hilog.info( DOMAIN , TAG , BUNDLE + 'SaveAsFunction_001 begin' );
+    it( 'txt_more_save_as' , 0 , async( done: () => void ) => {
+      hilog.info( DOMAIN , TAG , BUNDLE + 'begin begin' );
       let driver = await Driver.create();
-      await driver.delayMs( 1000 );
-      await driver.assertComponentExist( ON.type( 'ListItem' ) );
-      let files = await driver.findComponents( ON.type( 'ListItem' ) );
-      await files[ 0 ].click();
       await driver.delayMs( 2000 );
-      await driver.assertComponentExist( ON.id( 'saveAs' ) );
-      let editable = await driver.findComponent( ON.id( 'saveAs' ) );
-      await editable.click();
-      await driver.delayMs( 2000 );
-      await driver.assertComponentExist( ON.type( 'Image' ) )
-      let imgs = await driver.findComponents( ON.type( 'Image' ) );
-      await imgs[ 9 ].click(); // 新建文件夹
-      await driver.delayMs( 1000 );
-      let newDir = await getResourceString( $r( 'app.string.new_dir' ) );
-      let confirm = await getResourceString( $r( 'app.string.label_confirm' ) );
-      await driver.assertComponentExist( ON.text( newDir ) );
-      await driver.assertComponentExist( ON.text( confirm ) );
-      await driver.delayMs( 2000 );
-      let createDir = await driver.findComponent( ON.text( confirm ) );
+      let btnStart = await driver.findComponent( ON.type( 'Text' ).id( 'file_save_as' ) );
+      await btnStart.click()
+      await driver.delayMs(2000);
+      await driver.assertComponentExist(ON.type('Image'))
+      let imgs = await driver.findComponents(ON.type('Image'));
+      await imgs[9].click(); // 新建文件夹
+      await driver.delayMs(1000);
+      let newDir = await getResourceString($r('app.string.new_dir'));
+      let confirm = await getResourceString($r('app.string.label_confirm'));
+      await driver.assertComponentExist(ON.text(newDir));
+      await driver.assertComponentExist(ON.text(confirm));
+      await driver.delayMs(2000);
+      let createDir = await driver.findComponent(ON.text(confirm));
       await createDir.click(); // 新建文件夹-点击确定图标
-      await driver.delayMs( 2000 );
-      await imgs[ 10 ].click(); // 新建文件并保存-点击保存图标
+      await driver.delayMs(2000);
+      await imgs[10].click(); // 新建文件并保存-点击保存图标
       await driver.pressBack();
-      await driver.delayMs( 1000 );
+      await driver.delayMs(1000);
       done();
-      hilog.info( DOMAIN , TAG , BUNDLE + 'SaveAsFunction_001 end' );
+      hilog.info(DOMAIN, TAG, BUNDLE + 'txt_more_save_as end');
+    } )
+
+    /**
+     * txt文件更多按钮菜单2:设置权限
+     */
+    it( 'txt_set_permissions' , 0 , async( done: () => void ) => {
+      hilog.info( DOMAIN , TAG , BUNDLE + 'txt_set_permissions begin' );
+      let driver = await Driver.create();
+      await driver.delayMs( 2000 );
+      let btnStart = await driver.findComponent( ON.type( 'Image' ).id( 'fileMore' ) );
+      await btnStart.click()
+      await driver.delayMs( 2000 );
+      done();
+      hilog.info( DOMAIN , TAG , BUNDLE + 'txt_set_permissions end' );
     } )
 
     /**
