@@ -51,5 +51,9 @@ export let performanceTypeArray: Array<PerformanceMsg> = [
   {
     name: 'BackgroundTask',
     uri: 'pages/backgroundTask/BackgroundTaskPage'
+  },
+  {
+    name: 'MemoryShared',
+    uri: 'pages/memoryShared/MemorySharedHomePage'
   }
 ]
