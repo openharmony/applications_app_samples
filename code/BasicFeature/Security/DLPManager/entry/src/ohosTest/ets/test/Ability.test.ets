@@ -327,7 +327,7 @@ export default function abilityTest() {
       hilog.info( DOMAIN , TAG , BUNDLE + 'Picker_dlp begin' );
       let driver = await Driver.create();
       await driver.delayMs( 1000 );
-      await driver.click(200,400);
+      await driver.click(200,500);
       await driver.delayMs( 2000 );
       done();
       hilog.info( DOMAIN , TAG , BUNDLE + 'Picker_dlp end' );
@@ -344,10 +344,10 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('dlpEdit'));
       let editable = await driver.findComponent( ON.type( 'Image' ).id( 'dlpEdit' ) );
       await editable.click();
-      await driver.delayMs(2000);
+      await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('dlpTextArea'));
       let textArea = await driver.findComponent(ON.id('dlpTextArea'));
-      await textArea.inputText('File Content test');
+      await textArea.inputText('test');
       await driver.delayMs(1000);
       await driver.pressBack()
       await driver.delayMs(1000);
