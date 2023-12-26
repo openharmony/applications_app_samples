@@ -13,7 +13,9 @@
  * limitations under the License.
  */
 
-@Entry
+let storageEventCall = new LocalStorage();
+
+@Entry(storageEventCall)
 @Component
 struct WidgetEventCallCard {
   @LocalStorageProp('formId') formId: string = '12400633174999288';

@@ -18,7 +18,7 @@
 struct WidgetEventRouterCard {
   build() {
     Column() {
-      Text($r('app.string.widget_eventrouter_desc'))
+      Text($r('app.string.JumpLabel'))
         .fontColor('#FFFFFF')
         .opacity(0.9)
         .fontSize(14)

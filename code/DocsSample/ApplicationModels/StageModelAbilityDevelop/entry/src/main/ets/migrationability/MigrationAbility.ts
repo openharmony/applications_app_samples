@@ -14,7 +14,9 @@
  */
 
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import distributedObject from '@ohos.data.distributedDataObject';
 import hilog from '@ohos.hilog';
+import Logger from '../utils/Logger';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import type Want from '@ohos.app.ability.Want';
 import wantConstant from '@ohos.app.ability.wantConstant';
@@ -26,15 +28,44 @@ import type { Permissions } from '@ohos.abilityAccessCtrl';
 import type { BusinessError } from '@ohos.base';
 
 const permissions: Array<Permissions> = ['ohos.permission.DISTRIBUTED_DATASYNC'];
-
 const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
+const AGE_NUMBER_18: number = 18;
+
+class SourceObject {
+  name: string;
+  age: number;
+  isVis: boolean;
+
+  constructor(name: string, age: number, isVis: boolean) {
+    this.name = name;
+    this.age = age;
+    this.isVis = isVis;
+  };
+};
 
 export default class MigrationAbility extends UIAbility {
-  storage : LocalStorage = new LocalStorage();
-
+  storage: LocalStorage = new LocalStorage();
+  // 定义分布式数据对象
+  gObject: distributedObject.DataObject | null = null;
+  // 对端恢复
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
+
+    // 示例中，在onCreate阶段初始化分布式数据对象
+    let source: SourceObject = new SourceObject('amy', AGE_NUMBER_18, false);
+    this.gObject = distributedObject.create(this.context, source);
+
+    // 例如，在onCreate()中恢复数据
+    // 获取源端传入的sessionId
+    let sessionId: string = want?.parameters?.session as string;
+
+    // 加入数据传输session
+    this.gObject.setSessionId(sessionId, () => {
+      Logger.info('join session');
+    });
+
+    // 获取分布式数据
     if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
       // 将上述的保存的数据取出恢复
       let continueInput = '';
@@ -45,9 +76,6 @@ export default class MigrationAbility extends UIAbility {
       // 将数据显示当前页面
       this.context.restoreWindowStage(this.storage);
     }
-    this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result) => {
-      hilog.info(DOMAIN_NUMBER, TAG, `setMissionContinueState: ${JSON.stringify(result)}`);
-    });
     // 调用原因为迁移时，设置状态为可迁移，应对冷启动情况
     this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result) => {
       hilog.info(DOMAIN_NUMBER, TAG, `setMissionContinueState INACTIVE result: ${JSON.stringify(result)}`);
@@ -79,14 +107,15 @@ export default class MigrationAbility extends UIAbility {
           // 用户拒绝授权，提示用户必须授权才能访问当前页面的功能，并引导用户到系统设置中打开相应的权限
           return;
         }
-      }
+      };
       // 授权成功
     }).catch((err: BusinessError) => {
       hilog.info(DOMAIN_NUMBER, TAG, `Failed to request permissions from user. Code is ${err.code}, message is ${err.message}`);
     });
   }
 
-  onContinue(wantParam: Record<string, Object>):AbilityConstant.OnContinueResult {
+  // 源端保存
+  onContinue(wantParam: Record<string, Object>): AbilityConstant.OnContinueResult {
     let version = wantParam.version;
     let targetDevice = wantParam.targetDevice;
     hilog.info(DOMAIN_NUMBER, TAG, `onContinue version = ${version}, targetDevice: ${targetDevice}`); // 准备迁移数据
@@ -103,6 +132,29 @@ export default class MigrationAbility extends UIAbility {
     // 将要迁移的数据保存在wantParam的自定义字段（例如data）中
     const continueInput = '迁移的数据';
     wantParam.data = continueInput;
+
+    // 生成sessionId
+    let sessionId: string = distributedObject.genSessionId();
+
+    // 使用该sessionId开启数据同步
+    this.gObject.setSessionId(sessionId, () => {
+      Logger.info('join session');
+    });
+    // 将sessionId传递到对端
+    wantParam.session = sessionId;
+
+    // 向分布式数据对象中写入数据，并保存
+    this.gObject.save(wantParam.targetDevice as string, (err: BusinessError, result: distributedObject.SaveSuccessResponse) => {
+      if (err) {
+        Logger.info('save failed, error code = ' + err.code);
+        Logger.info('save failed, error message: ' + err.message);
+        return;
+      }
+      Logger.info('save callback');
+      Logger.info('save sessionId: ' + result.sessionId);
+      Logger.info('save version: ' + result.version);
+      Logger.info('save deviceId:  ' + result.deviceId);
+    });
 
     hilog.info(DOMAIN_NUMBER, TAG, `onContinue version = ${wantParam.version}, targetDevice: ${wantParam.targetDevice}`);
     wantParam[wantConstant.Params.SUPPORT_CONTINUE_PAGE_STACK_KEY] = false;
@@ -121,7 +173,7 @@ export default class MigrationAbility extends UIAbility {
       let continueInput = '';
       if (want.parameters !== undefined) {
         continueInput = JSON.stringify(want.parameters.data);
-        hilog.info(DOMAIN_NUMBER, TAG, `continue input ${continueInput}`);
+        hilog.info(DOMAIN_NUMBER, TAG, `continue input ${JSON.stringify(continueInput)}`);
       }
       this.context.restoreWindowStage(this.storage);
     }
@@ -134,7 +186,7 @@ export default class MigrationAbility extends UIAbility {
     }
   }
 
-  onWindowStageRestore(windowStage: window.WindowStage) : void {
+  onWindowStageRestore(windowStage: window.WindowStage): void {
     // 若不需要自动迁移页面栈信息，则需要在此处设置应用迁移后进入的页面
     windowStage.loadContent('pages/page_migrationability/Page_MigrationAbilityThird', (err, data) => {
       if (err.code) {

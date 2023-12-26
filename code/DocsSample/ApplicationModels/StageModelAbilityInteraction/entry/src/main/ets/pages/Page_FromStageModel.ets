@@ -37,7 +37,6 @@ struct Page_FromStageModel {
       .justifyContent(FlexAlign.Start)
 
       Button($r('app.string.FuncAbilityB'))
-        .id('backToHAP')
         .fontFamily('HarmonyHeiTi')
         .height(48)
         .width('624px')

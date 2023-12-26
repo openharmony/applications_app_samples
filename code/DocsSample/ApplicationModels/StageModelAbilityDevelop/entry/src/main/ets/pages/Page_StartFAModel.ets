@@ -118,6 +118,50 @@ struct Page_StartFAModel {
         .backgroundColor($r('app.color.start_window_background'))
         .borderRadius(24)
         .margin({ top: 12, right: 12, left: 12 })
+
+        ListItem() {
+          Row() {
+            Row(){
+              Text($r('app.string.ServiceAbility'))
+                .textAlign(TextAlign.Start)
+                .fontWeight(500)
+                .margin({ top: 13, bottom: 13, left: 0, right: 8 })
+                .fontSize(16)
+                .width(304)
+                .height(22)
+                .fontColor($r('app.color.text_color'))
+            }
+            .height(48)
+            .width('100%')
+            .margin({ top: 4, bottom: 4, left: 12, right: 84 })
+          }
+          .onClick(() => {
+            let want: Want = {
+              bundleName: 'com.samples.famodelabilitydevelop',
+              abilityName: 'com.samples.famodelabilitydevelop.ServiceAbility',
+            }
+            let options: common.ConnectOptions = {
+              onConnect: (elementName, proxy) => {
+                Logger.info('onConnect called.');
+                promptAction.showToast({
+                  message: $r('app.string.ConnectFAServiceAbility')
+                });
+              },
+              onDisconnect: (elementName) => {
+                Logger.info('onDisconnect called.');
+              },
+              onFailed: (code) => {
+                Logger.info('onFailed code is: ' + code);
+              }
+            };
+            let connectionId = this.context.connectServiceExtensionAbility(want, options);
+            hilog.info(DOMAIN_NUMBER, TAG, 'connectionId is ' + JSON.stringify(connectionId));
+          })
+        }
+        .height(56)
+        .backgroundColor($r('app.color.start_window_background'))
+        .borderRadius(24)
+        .margin({ top: 12, right: 12, left: 12 })
       }
       .height('100%')
       .backgroundColor($r('app.color.backGrounding'))

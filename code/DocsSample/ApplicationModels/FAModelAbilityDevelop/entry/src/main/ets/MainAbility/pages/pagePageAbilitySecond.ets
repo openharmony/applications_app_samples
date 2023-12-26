@@ -13,35 +13,202 @@
  * limitations under the License.
  */
 
+import featureAbility from '@ohos.ability.featureAbility'
+import Want from '@ohos.app.ability.Want';
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import bundle from '@ohos.bundle.bundleManager';
+import deviceManager from '@ohos.distributedDeviceManager';
+import promptAction from '@ohos.promptAction';
+import { BusinessError } from '@ohos.base';
+import Logger from '../../utils/Logger';
+
+const TAG: string = 'PagePageAbilitySecond'
+
 @Entry
 @Component
 struct PagePageAbilitySecond {
+  @State deviceID: string = '';
+
+  async requestPermission(): Promise<void> {
+    Logger.info(TAG, 'RequestPermission begin');
+    let array: Array<string> = ['ohos.permission.DISTRIBUTED_DATASYNC'];
+    let bundleFlag = 0;
+    let tokenID: number | undefined = undefined;
+    let userID = 100;
+    let appInfo: bundle.ApplicationInfo = await bundle.getApplicationInfo('com.samples.famodelabilitydevelop', bundleFlag, userID);
+    tokenID = appInfo.accessTokenId;
+    let atManager = abilityAccessCtrl.createAtManager();
+    let requestPermissions: Array<string> = [];
+    for (let i = 0;i < array.length; i++) {
+      let result = await atManager.verifyAccessToken(tokenID, array[i]);
+      Logger.info(TAG, 'checkAccessToken result:' + JSON.stringify(result));
+      if (result != abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED) {
+        requestPermissions.push(array[i]);
+      }
+    }
+    Logger.info(TAG, 'requestPermissions:' + JSON.stringify(requestPermissions));
+    if (requestPermissions.length == 0) {
+      return;
+    }
+    let context = featureAbility.getContext();
+    context.requestPermissionsFromUser(requestPermissions, 1, (error, data) => {
+      Logger.info(TAG, 'error:' + error.message + ',data:' + JSON.stringify(data));
+      Logger.info(TAG, 'data requestCode:' + data.requestCode);
+      Logger.info(TAG, 'data permissions:' + data.permissions);
+      Logger.info(TAG, 'data authResults:' + data.authResults);
+    });
+    Logger.info(TAG, 'RequestPermission end');
+  }
+
+  getRemoteDeviceId(): void {
+    let dmClass: deviceManager.DeviceManager;
+    dmClass = deviceManager.createDeviceManager('com.samples.famodelabilitydevelop');
+    try {
+      if (typeof dmClass === 'object' && dmClass !== null) {
+        let list = dmClass.getAvailableDeviceListSync();
+        if (typeof (list) == undefined || list.length == 0) {
+          Logger.info(TAG, 'EntryAbility onButtonClick getRemoteDeviceId err: list is null');
+          return;
+        }
+        Logger.info(TAG, `EntryAbility onButtonClick getRemoteDeviceId success[${list.length}]:` + JSON.stringify(list[0]));
+        if (list[0].networkId != undefined) {
+          this.deviceID = list[0].networkId;
+        }
+        promptAction.showToast({
+          message: this.deviceID
+        });
+      } else {
+        Logger.info(TAG, 'EntryAbility onButtonClick getRemoteDeviceId err: dmClass is null');
+      }
+    } catch (error) {
+      Logger.info(TAG, `getRemoteDeviceId error, error=${error}, message=${error.message}`);
+    }
+  }
+
+  onStartRemoteAbility(): void {
+    Logger.info(TAG, 'onStartRemoteAbility begin');
+    let wantValue: Want = {
+      bundleName: 'ohos.samples.distributedmusicplayer',
+      abilityName: 'ohos.samples.distributedmusicplayer.MainAbility',
+      deviceId: this.deviceID, // this.deviceID的获取方式在前面的示例代码中
+    };
+    Logger.info(TAG, 'onStartRemoteAbility want=' + JSON.stringify(wantValue));
+    featureAbility.startAbility({
+      want: wantValue
+    }).then((data) => {
+      promptAction.showToast({
+        message: $r('app.string.start_remote_success_toast')
+      });
+      Logger.info(TAG, 'onStartRemoteAbility finished, ' + JSON.stringify(data));
+    }).catch((error: BusinessError) => {
+      promptAction.showToast({
+        message: JSON.stringify(error)
+      });
+      Logger.error(TAG, 'onStartRemoteAbility failed: ' + JSON.stringify(error));
+    });
+    Logger.info(TAG, 'onStartRemoteAbility end');
+  }
+
   build() {
     Column() {
       Row() {
-        Text($r('app.string.reserve_title'))
-          .fontSize(24)
-          .fontWeight(FontWeight.Bold)
-          .textAlign(TextAlign.Start)
-          .margin({ top: 12, bottom: 11, right: 24, left: 24 })
+        Flex({ justifyContent: FlexAlign.Start, alignContent: FlexAlign.Center }) {
+          Text($r('app.string.pageAbility_second_button'))
+            .fontSize(24)
+            .fontWeight(FontWeight.Bold)
+            .textAlign(TextAlign.Start)
+            .margin({ top: 12, bottom: 11, right: 24, left: 24 })
+        }
       }
       .width('100%')
       .height(56)
       .justifyContent(FlexAlign.Start)
+      .backgroundColor($r('app.color.backGrounding'))
 
-      Image($r('app.media.pic_empty'))
-        .width(120)
-        .height(120)
-        .margin({ top: 224 })
+      List({ initialIndex: 0 }) {
+        ListItem() {
+          Row() {
+            Row() {
+              Text($r('app.string.obtain_permissions_button'))
+                .textAlign(TextAlign.Start)
+                .fontWeight(FontWeight.Medium)
+                .margin({ top: 13, bottom: 13, left: 0, right: 8 })
+                .fontSize(16)
+                .width(232)
+                .height(22)
+                .fontColor($r('app.color.text_color'))
+            }
+            .height(48)
+            .width('100%')
+            .borderRadius(24)
+            .margin({ top: 4, bottom: 4, left: 12, right: 84 })
+          }
+          .onClick(() => {
+            this.requestPermission();
+          })
+        }
+        .height(56)
+        .backgroundColor($r('app.color.start_window_background'))
+        .borderRadius(24)
+        .margin({ top: 8, right: 12, left: 12 })
 
-      Text($r('app.string.no_content'))
-        .fontSize(14)
-        .margin({ top: 8, bottom: 317, right: 152, left: 152 })
-        .fontColor($r('app.color.text_color'))
-        .opacity(0.4)
+        ListItem() {
+          Row() {
+            Row() {
+              Text($r('app.string.obtain_device_id_button'))
+                .textAlign(TextAlign.Start)
+                .fontWeight(FontWeight.Medium)
+                .margin({ top: 13, bottom: 13, left: 0, right: 8 })
+                .fontSize(16)
+                .width(232)
+                .height(22)
+                .fontColor($r('app.color.text_color'))
+            }
+            .height(48)
+            .width('100%')
+            .borderRadius(24)
+            .margin({ top: 4, bottom: 4, left: 12, right: 84 })
+          }
+          .onClick(() => {
+            this.getRemoteDeviceId();
+          })
+        }
+        .height(56)
+        .backgroundColor($r('app.color.start_window_background'))
+        .borderRadius(24)
+        .margin({ top: 12, right: 12, left: 12 })
+
+        ListItem() {
+          Row() {
+            Row() {
+              Text($r('app.string.start_remote_ability_button'))
+                .textAlign(TextAlign.Start)
+                .fontWeight(FontWeight.Medium)
+                .margin({ top: 13, bottom: 13, left: 0, right: 8 })
+                .fontSize(16)
+                .width(232)
+                .height(22)
+                .fontColor($r('app.color.text_color'))
+            }
+            .height(48)
+            .width('100%')
+            .borderRadius(24)
+            .margin({ top: 4, bottom: 4, left: 12, right: 84 })
+          }
+          .onClick(() => {
+            this.onStartRemoteAbility();
+          })
+        }
+        .height(56)
+        .backgroundColor($r('app.color.start_window_background'))
+        .borderRadius(24)
+        .margin({ top: 12, right: 12, left: 12 })
+      }
+      .height('100%')
+      .backgroundColor($r('app.color.backGrounding'))
     }
     .width('100%')
-    .height('100%')
+    .margin({ top: 8 })
     .backgroundColor($r('app.color.backGrounding'))
   }
 }

@@ -37,7 +37,6 @@ struct Page_ColdStartUp {
       .justifyContent(FlexAlign.Start)
 
       Button($r('app.string.FuncAbilityD'))
-        .id('backToHAP')
         .fontFamily('HarmonyHeiTi')
         .height(48)
         .width('624px')

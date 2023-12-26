@@ -24,7 +24,17 @@ const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class JsCardEntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
+    if (want.parameters) {
+      let params: Record<string, Object> = JSON.parse(JSON.stringify(want.parameters.params));
+      if (params.info === 'router info') {
+        // do something
+        hilog.info(DOMAIN_NUMBER, TAG, `router info: ${params.info}`);
+      }
+      if (params.message === 'router message') {
+        // do something
+        hilog.info(DOMAIN_NUMBER, TAG, `router message: ${params.message}`);
+      }
+    }
   }
 
   onWindowStageCreate(windowStage: window.WindowStage): void {

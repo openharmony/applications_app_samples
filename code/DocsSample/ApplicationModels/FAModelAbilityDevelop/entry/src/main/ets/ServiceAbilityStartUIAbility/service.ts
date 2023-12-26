@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+import type common from '@ohos.app.ability.common';
 import particleAbility from '@ohos.ability.particleAbility';
 import type Want from '@ohos.app.ability.Want';
 import type { BusinessError } from '@ohos.base';
@@ -23,6 +24,7 @@ const domain: number = 0xFF00;
 
 class ServiceAbilityStartUiAbility {
   onStart(): void {
+    // 启动UIAbility
     let want: Want = {
       bundleName: 'ohos.samples.etsclock',
       abilityName: 'MainAbility'
@@ -32,6 +34,24 @@ class ServiceAbilityStartUiAbility {
     }).catch((error: BusinessError) => {
       hilog.info(domain, TAG, 'ServiceAbilityStartUIAbility Ability failed: ' + JSON.stringify(error));
     });
+
+    // 访问ServiceExtensionAbility
+    let serviceWant: Want = {
+      bundleName: 'com.samples.stagemodelabilityinteraction',
+      abilityName: 'ServiceExtAbility'
+    };
+    let faConnect: common.ConnectOptions = {
+      onConnect: (elementName, proxy) => {
+        hilog.info(domain, TAG, 'FaConnection onConnect called.');
+      },
+      onDisconnect: (elementName) => {
+        hilog.info(domain, TAG, 'FaConnection onDisconnect called.');
+      },
+      onFailed: (code) => {
+        hilog.info(domain, TAG, 'FaConnection onFailed code is: ' + code);
+      }
+    };
+    let connectionId = particleAbility.connectAbility(serviceWant, faConnect);
     hilog.info(domain, TAG, 'ServiceAbilityStartUIAbility ServiceAbility onStart');
   }
 };

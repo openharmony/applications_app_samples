@@ -51,7 +51,7 @@ struct Page_UIAbilityComponentsInteractive {
       let message = (err as BusinessError).message;
       hilog.error(DOMAIN_NUMBER, TAG, `Failed to caller register on release. Code is ${code}, message is ${message}`);
     };
-  }
+  };
 
   build() {
     Column() {
@@ -411,6 +411,12 @@ struct Page_UIAbilityComponentsInteractive {
                 promptAction.showToast({
                   message: $r('app.string.CallerSuccess')
                 });
+                try {
+                  caller.release();
+                } catch (releaseErr) {
+                  console.log('Caller.release catch error, error.code: ' + JSON.stringify(releaseErr.code) +
+                  ' error.message: ' + JSON.stringify(releaseErr.message));
+                }
               }
             }).catch((err: BusinessError) => {
               hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ability. Code is ${err.code}, message is ${err.message}`);

@@ -49,7 +49,7 @@ struct Index {
     try {
       dataShare.createDataShareHelper(context, uri, {
         isProxy: true
-      }, (err, data) => {
+      }, (err: BusinessError, data: dataShare.DataShareHelper) => {
         if (err !== undefined) {
           hilog.error(DOMAIN_NUMBER, TAG, `createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
           return;
@@ -102,9 +102,9 @@ struct Index {
 
   updateRDB(): void {
     dataShare.createDataShareHelper(context, 'datashareproxy://com.samples.widgetupdatebyproxy', { isProxy: true })
-      .then((data) => {
+      .then((data: dataShare.DataShareHelper) => {
         hilog.info(DOMAIN_NUMBER, TAG, `createDataShareHelper succeed, data :  ${JSON.stringify(data)}`);
-        let dataShareHelper = data;
+        let dataShareHelper: dataShare.DataShareHelper = data;
         let da: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
         da.equalTo('cityId', conditionID);
         let va: ValuesBucket = {
@@ -114,7 +114,7 @@ struct Index {
 
         try {
           let uri = 'datashareproxy://com.samples.widgetupdatebyproxy/test';
-          dataShareHelper.update(uri, da, va, (err, data) => {
+          dataShareHelper.update(uri, da, va, (err: BusinessError, data: number) => {
             if (err !== undefined) {
               hilog.info(DOMAIN_NUMBER, TAG, `update error1: code: ${err.code}, message: ${err.message} `);
               promptAction.showToast({

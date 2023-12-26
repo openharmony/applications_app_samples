@@ -51,7 +51,7 @@ export default class CollaborateAbility extends UIAbility {
     }).catch((err: BusinessError) => {
       hilog.error(DOMAIN_NUMBER, TAG, `Failed to request permissions from user. Code is ${err.code}, message is ${err.message}`);
     });
-  }
+  };
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability
@@ -63,5 +63,5 @@ export default class CollaborateAbility extends UIAbility {
       }
       hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
     });
-  }
-}
+  };
+};
