@@ -25,11 +25,11 @@
     "@ohos/grid": "file:../../../feature/grid",
     "@ohos/smartPerfHost": "file:../../../feature/smartPerfHost",
     "@ohos/staticImport": "file:../../../feature/staticImport",
+    "@ohos/DFXStateManagement": "file:../../../feature/DFXStateManagement",
     "@ohos/ifOrVisibility": "file:../../../feature/ifOrVisibility",
     "@ohos/dynamicImport": "file:../../../feature/dynamicImport",
     "@ohos/smartPerfEditor": "file:../../../feature/smartPerfEditor",
     "@ohos/hiDumper": "file:../../../feature/hiDumper",
-    "@ohos/trace": "file:../../../feature/trace",
-    "@ohos/backgroundTask": "file:../../../feature/backgroundTask"
+    "@ohos/trace": "file:../../../feature/trace"
   }
 }
