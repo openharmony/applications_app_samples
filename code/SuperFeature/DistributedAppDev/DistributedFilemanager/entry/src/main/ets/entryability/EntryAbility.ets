@@ -14,15 +14,18 @@
  */
 
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import AbilityConstant from './@ohos.app.ability.AbilityConstant';
 import DataObject from '../model/DataObject';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 import { Logger } from '@ohos/feature-file-manager';
 
 const sessionId : string = "123456";
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     Logger.info("0x0000", 'testTag', '%{public}s', 'Ability onCreate');
     //user grant
     let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
@@ -30,7 +33,7 @@ export default class EntryAbility extends UIAbility {
       atManager.requestPermissionsFromUser(this.context, ['ohos.permission.DISTRIBUTED_DATASYNC']).then((data) => {
         DataObject.setSessionId(this.context, sessionId);
         Logger.info(`data:${JSON.stringify(data)}`);
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         Logger.info(`err:${JSON.stringify(err)}`);
       })
     } catch (err) {

@@ -19,7 +19,7 @@ import Logger from '../../../../../Library/src/main/ets/utils/Logger';
 import prompt from '@ohos.promptAction';
 import { BusinessError } from '@ohos.base';
 
-const TAG: string = 'DistributedFileManager';
+const TAG: string = 'FsManager';
 const BASE_PATH = "/data/storage/el2/base/haps/entry/files";
 let filesDir1 = BASE_PATH + '/test1';
 let filesDir2 = BASE_PATH + '/test2';
@@ -99,6 +99,8 @@ class FsManager {
 
   //复制到剪切板，不弹进度条
   copyFilesToDistributedDir(from:string,to:string) {
+    Logger.info(TAG, `copyFilesToDistributedDir--from: ${from}`);
+    Logger.info(TAG, `copyFilesToDistributedDir--to: ${to}`);
     try {
       // copy
       let progressListener: fs.ProgressListener = (progress: fs.Progress) => {
@@ -122,6 +124,8 @@ class FsManager {
 
   //粘贴，弹进度条
   pasteFromDistributedDir(from:string,to:string) {
+    Logger.info(TAG, `pasteFromDistributedDir--from: ${from}`);
+    Logger.info(TAG, `pasteFromDistributedDir--to: ${to}`);
     try {
       // 定义拷贝回调
       let totalProgress: number = 0;

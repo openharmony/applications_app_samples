@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,34 +12,48 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import hilog from '@ohos.hilog';
 
-import hilog from '@ohos.hilog'
-
-class Logger {
-  private domain: number
-  private prefix: string
-  private format: string = '%{public}s, %{public}s'
+/**
+ * Common log for all features.
+ */
+export class Logger {
+  private domain: number;
+  private prefix: string;
+  private format: string = '%{public}s, %{public}s';
 
   constructor(prefix: string) {
-    this.prefix = prefix
-    this.domain = 0xFF00
+    this.prefix = prefix;
+    this.domain = 0xFF00;
   }
 
-  debug(...args: any[]) {
-    hilog.debug(this.domain, this.prefix, this.format, args)
+  debug(...args: string[]): void {
+    hilog.debug(this.domain, this.prefix, this.format, args);
   }
 
-  info(...args: any[]) {
-    hilog.info(this.domain, this.prefix, this.format, args)
+  info(...args: string[]): void {
+    hilog.info(this.domain, this.prefix, this.format, args);
   }
 
-  warn(...args: any[]) {
-    hilog.warn(this.domain, this.prefix, this.format, args)
+  warn(...args: string[]): void {
+    hilog.warn(this.domain, this.prefix, this.format, args);
   }
 
-  error(...args: any[]) {
-    hilog.error(this.domain, this.prefix, this.format, args)
+  error(...args: string[]): void {
+    hilog.error(this.domain, this.prefix, this.format, args);
+  }
+
+  fatal(...args: string[]): void {
+    hilog.fatal(this.domain, this.prefix, this.format, args);
+  }
+
+  isLoggable(level: number): void {
+    hilog.isLoggable(this.domain, this.prefix, level);
   }
 }
 
-export default new Logger('Sample_FileManager')
+export default new Logger('[Sample_FileManager]');
+
+export function myparseInt(s: string, n: number) {
+  return parseInt(s, n)
+}

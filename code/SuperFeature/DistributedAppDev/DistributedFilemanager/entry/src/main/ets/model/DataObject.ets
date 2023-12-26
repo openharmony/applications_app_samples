@@ -18,17 +18,17 @@ import common from '@ohos.app.ability.common';
 import FsManager from './FsManager';
 import fs from '@ohos.file.fs';
 import fileuri from '@ohos.file.fileuri';
+import prompt from '@ohos.promptAction';
 import { FileStructure, FileType } from '@ohos/feature-file-manager/src/main/ets/mock/local/FileData';
 import { Logger } from '@ohos/feature-file-manager';
 
 const TAG: string = 'DataObjectModel';
+const fileCopy: string = '-副本';
 
 class DataObject {
   public distributedObject: distributedDataObject.DistributedObject;
-
-
   constructor() {
-    this.distributedObject = distributedDataObject.createDistributedObject(  {
+    this.distributedObject = distributedDataObject.createDistributedObject( {
       from: '',
       localFileUriList: [],
       disFileUriList: [],
@@ -37,12 +37,6 @@ class DataObject {
   }
   setSessionId(context: common.UIAbilityContext, sessionId: string): void {
     Logger.info(TAG, `setSessionId`)
-    this.distributedObject = distributedDataObject.createDistributedObject( {
-      from: '',
-      localFileUriList: [],
-      disFileUriList: [],
-      disFileList: [],
-    })
     this.distributedObject.setSessionId(sessionId)
   }
 
@@ -56,7 +50,8 @@ class DataObject {
 
   clear() {
     try{
-      this.distributedObject["disFileList"].forEach( item  => {
+      let disFileArray: Array<string> = this.distributedObject["disFileList"];
+      disFileArray.forEach( item  => {
         //判断uri前缀是否有“file+”，如果有则为文件
         if(item.includes("file+")){
           item = item.substring(5, item.length);
@@ -76,37 +71,55 @@ class DataObject {
 
   pasteFromDistributedDir(deviceId: string, directoryPath:string, fileData: Array<FileStructure>) {
     let localDstUri = fileuri.getUriFromPath(directoryPath);
+    if (this.distributedObject["disFileUriList"].length === 0) {
+      return prompt.showToast({ message: $r('app.string.label_nodata') });
+    }
     //本地拷贝:文件需进行重命名操作
     if (deviceId == this.distributedObject["from"]) {
-      this.distributedObject["localFileUriList"].forEach( item => {
+      let localFileArray: Array<string> = this.distributedObject["localFileUriList"];
+      let newFileName:string = '';
+      localFileArray.forEach( item  => {
         //判断uri前缀是否有“file+”，如果是文件类型，去掉“file+”前缀，在localDstUri后面加上文件名称
         if (item.includes("file+")) {
           item = item.substring(5, item.length);
-          let fileName : string = item.split('/').pop();
+          let fileName: string | undefined = item.split('/').pop();
+          if(fileName)
+          {
+            newFileName = fileName;
+          } else {
+            return;
+          }
           //判断本地是否有同名文件，有则重命名
           fileData.forEach(file => {
             //有同名文件
-            if(file.name.includes(fileName)){
+            if(file.name.includes(newFileName)){
               //extension 文件后缀
-              let extension :string = fileName.slice((fileName.lastIndexOf(".") - 1 >>> 0) + 2);
+              let extension :string = newFileName.slice((newFileName.lastIndexOf(".") - 1 >>> 0) + 2);
               if(extension){
-                let fileParts = fileName.split('.');
-                fileName = fileParts[0] + $r('app.string.label_copyfile') + fileParts[1];
+                let fileParts = newFileName.split('.');
+                newFileName = fileParts[0] + fileCopy + '.' + fileParts[1];
               } else {
-                fileName = fileName + $r('app.string.label_copyfile');
+                newFileName = newFileName + fileCopy;
               }
             }
           })
-          localDstUri = localDstUri+fileName;
         }
-        FsManager.pasteFromDistributedDir(item,localDstUri);
+        FsManager.pasteFromDistributedDir(item,localDstUri+newFileName);
       })
     } else { //跨设备拷贝
-      this.distributedObject["disFileUriList"].forEach( item => {
+      let disFileUriArray: Array<string> = this.distributedObject["disFileUriList"];
+      disFileUriArray.forEach( item  => {
         if (item.includes("file+")) {
           item = item.substring(5, item.length);
-          let fileName : string = item.split('/').pop();
-          FsManager.pasteFromDistributedDir(item,localDstUri+fileName);
+          let fileName: string | undefined = item.split('/').pop();
+          let newFileName: string = '';
+          if(fileName)
+          {
+            newFileName = fileName;
+          } else {
+            return;
+          }
+          FsManager.pasteFromDistributedDir(item,localDstUri+newFileName);
         } else {
           FsManager.pasteFromDistributedDir(item,localDstUri);
         }
@@ -115,10 +128,11 @@ class DataObject {
   }
 
   copyFilesToDistributedDir(deviceId: string, needMoveFiles: Array<FileType>, disPathInSandbox: string) {
-    let distributedUri = fileuri.getUriFromPath(disPathInSandbox);
+    let distributedUri0 = fileuri.getUriFromPath(disPathInSandbox);
     let localFileUriList: Array<string> = [];
     let disFileUriList: Array<string> = [];
     let disFileList: Array<string> = [];
+    let distributedUri = '';
     needMoveFiles.forEach((file: FileType) => {
       //用于粘贴完后的clear动作中
       let disFilePath = disPathInSandbox + "/" + file.fileName;
@@ -126,18 +140,18 @@ class DataObject {
       let localSrcUri = fileuri.getUriFromPath(file.filePath);
       //如果是文件夹
       if (file.type === 1) {
-        distributedUri = distributedUri+ "/" + file.fileName;
+        distributedUri = distributedUri0+ "/" + file.fileName;
         FsManager.copyFilesToDistributedDir(localSrcUri,distributedUri);
       }
       //处理Uri，如果是文件类型，需另外处理，前缀增加"file+"，用分布式对象进行传输
       else if (file.type === 2) {
         const fileName = localSrcUri.split('/').pop();
-        distributedUri = distributedUri +"/"+fileName;
+        distributedUri = distributedUri0 +"/"+fileName;
         FsManager.copyFilesToDistributedDir(localSrcUri,distributedUri);
         localSrcUri = "file+" + localSrcUri;
         distributedUri = "file+" + distributedUri;
       } else {
-        console.log("this is not file or directory");
+        Logger.error(TAG, `this is not file or directory`);
       }
       // to update DataObject
       localFileUriList.push(localSrcUri);

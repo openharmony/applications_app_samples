@@ -1,4 +1,4 @@
-@if "%DEBUG%" == "" @echo off
+@echo off @if "%DEBUG%" == "" @echo off
 @rem ##########################################################################
 @rem
 @rem  Hvigor startup script for Windows

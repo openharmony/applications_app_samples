@@ -161,6 +161,10 @@
       "value": "粘贴失败"
     },
     {
+      "name": "label_nodata",
+      "value": "无数据"
+    },
+    {
       "name": "label_dirupdate",
       "value": "文件目录已更新"
     },

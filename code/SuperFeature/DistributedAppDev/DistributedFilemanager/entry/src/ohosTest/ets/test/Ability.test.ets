@@ -20,6 +20,7 @@ import { Driver, ON, MatchPattern } from '@ohos.UiTest'
 import { Logger } from '@ohos/feature-file-manager'
 
 const TIME_OUT = 60000
+const fileCopy: string = '-副本';
 let ability: UIAbility | undefined = undefined
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
 
@@ -229,7 +230,7 @@ export default function abilityTest() {
       let inTest1 = await driver.findComponent(ON.type('ListItem').id('ListItem1'));
       await inTest1.click();
       await driver.delayMs(200);
-      await driver.assertComponentExist(ON.text('file1-副本.txt'));
+      await driver.assertComponentExist(ON.text('file1'+fileCopy+'.txt'));
     })
   })
 }
