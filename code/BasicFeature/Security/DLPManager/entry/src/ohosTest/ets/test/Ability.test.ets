@@ -67,10 +67,6 @@ async function getResourceString( resource : Resource ) : Promise<string> {
   return text
 }
 
-async function onAbilityCreateCallback() {
-  hilog.info( DOMAIN , TAG , "onAbilityCreateCallback" )
-}
-
 export default function abilityTest() {
   describe( 'ActsAbilityTest' , () => {
     /**
@@ -95,7 +91,7 @@ export default function abilityTest() {
     /**
      * 获取权限
      */
-    it( 'RequestPermissionFunction_001' , 0 , async( done : () => void ) => {
+    it( 'RequestPermissionFunction' , 0 , async( done : () => void ) => {
       hilog.info( DOMAIN , TAG , BUNDLE + 'RequestPermissionFunction begin' );
       let driver = await Driver.create();
       await driver.delayMs(2000);
@@ -108,14 +104,14 @@ export default function abilityTest() {
       await permit2.click();
       await driver.delayMs(1000);
       done();
-      hilog.info( DOMAIN , TAG , BUNDLE + 'RequestPermissionFunction_001 end' );
+      hilog.info( DOMAIN , TAG , BUNDLE + 'RequestPermissionFunction end' );
     } )
 
     /**
      * 点击主页中更多图标
      */
     it( 'IndexMoreIcon' , 0 , async( done : () => void ) => {
-      hilog.info( DOMAIN , TAG , BUNDLE + 'Function_001 begin' );
+      hilog.info( DOMAIN , TAG , BUNDLE + 'IndexMoreIcon begin' );
       let driver = await Driver.create();
       await driver.delayMs( 2000 );
       let btnStart = await driver.findComponent( ON.type( 'Image' ).id( 'moreIcon' ) );
@@ -159,25 +155,25 @@ export default function abilityTest() {
     /**
      * 点击add图标 拉取picker
      */
-    it( 'IndexIcon_add' , 0 , async( done : () => void ) => {
-      hilog.info( DOMAIN , TAG , BUNDLE + 'IndexIcon_add begin' );
+    it( 'IndexIcon_add_001' , 0 , async( done : () => void ) => {
+      hilog.info( DOMAIN , TAG , BUNDLE + 'IndexIcon_add_001 begin' );
       let driver = await Driver.create();
       await driver.delayMs( 2000 );
       let btnStart = await driver.findComponent( ON.type( 'Image' ).id( 'add' ) );
       await btnStart.click()
       await driver.delayMs( 3000 );
       done();
-      hilog.info( DOMAIN , TAG , BUNDLE + 'IndexIcon_add end' );
+      hilog.info( DOMAIN , TAG , BUNDLE + 'IndexIcon_add_001 end' );
     } )
 
     /**
      * picker中选取txt文件
      */
-    it( 'picker_txt' , 0 , async( done : () => void ) => {
+    it( 'Picker_txt' , 0 , async( done : () => void ) => {
       hilog.info( DOMAIN , TAG , BUNDLE + 'picker_txt begin' );
       let driver = await Driver.create();
       await driver.delayMs( 1000 );
-      await driver.click(100,100);
+      await driver.click(200,300);
       await driver.delayMs( 2000 );
       done();
       hilog.info( DOMAIN , TAG , BUNDLE + 'picker_txt end' );
@@ -199,6 +195,8 @@ export default function abilityTest() {
       let textArea = await driver.findComponent(ON.id('fileTextArea'));
       await textArea.inputText('File Content test');
       await driver.delayMs(1000);
+      await driver.pressBack()
+      await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('fileSave'));
       let save = await driver.findComponent( ON.type( 'Image' ).id( 'fileSave' ) );
       await save.click();
@@ -210,22 +208,22 @@ export default function abilityTest() {
     /**
      * txt文件更多按钮
      */
-    it( 'txt_more' , 0 , async( done: () => void ) => {
-      hilog.info( DOMAIN , TAG , BUNDLE + 'txt_more begin' );
+    it( 'FilePage_more' , 0 , async( done: () => void ) => {
+      hilog.info( DOMAIN , TAG , BUNDLE + 'FilePage_more begin' );
       let driver = await Driver.create();
       await driver.delayMs( 2000 );
       let btnStart = await driver.findComponent( ON.type( 'Image' ).id( 'fileMore' ) );
       await btnStart.click()
       await driver.delayMs( 2000 );
       done();
-      hilog.info( DOMAIN , TAG , BUNDLE + 'txt_more end' );
+      hilog.info( DOMAIN , TAG , BUNDLE + 'FilePage_more end' );
     } )
 
     /**
      * txt文件更多按钮菜单1:另存为
      */
-    it( 'txt_more_save_as' , 0 , async( done: () => void ) => {
-      hilog.info( DOMAIN , TAG , BUNDLE + 'begin begin' );
+    it( 'FilePage_more_save_as' , 0 , async( done: () => void ) => {
+      hilog.info( DOMAIN , TAG , BUNDLE + 'FilePage_more_save_as begin' );
       let driver = await Driver.create();
       await driver.delayMs( 2000 );
       let btnStart = await driver.findComponent( ON.type( 'Text' ).id( 'file_save_as' ) );
@@ -233,50 +231,233 @@ export default function abilityTest() {
       await driver.delayMs(2000);
       await driver.assertComponentExist(ON.type('Image'))
       let imgs = await driver.findComponents(ON.type('Image'));
-      await imgs[9].click(); // 新建文件夹
+      await imgs[11].click();
       await driver.delayMs(1000);
-      let newDir = await getResourceString($r('app.string.new_dir'));
-      let confirm = await getResourceString($r('app.string.label_confirm'));
-      await driver.assertComponentExist(ON.text(newDir));
-      await driver.assertComponentExist(ON.text(confirm));
-      await driver.delayMs(2000);
-      let createDir = await driver.findComponent(ON.text(confirm));
-      await createDir.click(); // 新建文件夹-点击确定图标
-      await driver.delayMs(2000);
-      await imgs[10].click(); // 新建文件并保存-点击保存图标
-      await driver.pressBack();
+      await imgs[6].click();
       await driver.delayMs(1000);
       done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'txt_more_save_as end');
+      hilog.info(DOMAIN, TAG, BUNDLE + 'FilePage_more_save_as end');
     } )
 
     /**
      * txt文件更多按钮菜单2:设置权限
      */
-    it( 'txt_set_permissions' , 0 , async( done: () => void ) => {
-      hilog.info( DOMAIN , TAG , BUNDLE + 'txt_set_permissions begin' );
+    it( 'FilePage_more_set_permissions' , 0 , async( done: () => void ) => {
+      hilog.info( DOMAIN , TAG , BUNDLE + 'FilePage_more_set_permissions begin' );
       let driver = await Driver.create();
       await driver.delayMs( 2000 );
       let btnStart = await driver.findComponent( ON.type( 'Image' ).id( 'fileMore' ) );
       await btnStart.click()
       await driver.delayMs( 2000 );
+      let btnStart1 = await driver.findComponent( ON.type( 'Text' ).id( 'file_set_permissions' ) );
+      await btnStart1.click()
+      await driver.delayMs( 2000 );
+      await driver.pressBack()
+      await driver.delayMs(1000);
       done();
-      hilog.info( DOMAIN , TAG , BUNDLE + 'txt_set_permissions end' );
+      hilog.info( DOMAIN , TAG , BUNDLE + 'FilePage_more_set_permissions end' );
+    } )
+
+    /**
+     * txt文件更多按钮菜单3:查询访问列表
+     */
+    it( 'FilePage_more_query_AccessList' , 0 , async( done: () => void ) => {
+      hilog.info( DOMAIN , TAG , BUNDLE + 'FilePage_more_query_AccessList begin' );
+      let driver = await Driver.create();
+      await driver.delayMs( 2000 );
+      let btnStart = await driver.findComponent( ON.type( 'Image' ).id( 'fileMore' ) );
+      await btnStart.click()
+      await driver.delayMs( 2000 );
+      let btnStart1 = await driver.findComponent( ON.type( 'Text' ).id( 'file_query_AccessList' ) );
+      await btnStart1.click()
+      await driver.delayMs( 2000 );
+      done();
+      hilog.info( DOMAIN , TAG , BUNDLE + 'FilePage_more_query_AccessList end' );
+    } )
+
+    /**
+     * txt文件更多按钮菜单4:查询保留列表
+     */
+    it( 'FilePage_more_query_retentionList' , 0 , async( done: () => void ) => {
+      hilog.info( DOMAIN , TAG , BUNDLE + 'FilePage_more_query_retentionList begin' );
+      let driver = await Driver.create();
+      await driver.delayMs( 2000 );
+      let btnStart = await driver.findComponent( ON.type( 'Image' ).id( 'fileMore' ) );
+      await btnStart.click()
+      await driver.delayMs( 2000 );
+      let btnStart1 = await driver.findComponent( ON.type( 'Text' ).id( 'file_query_retentionList' ) );
+      await btnStart1.click()
+      await driver.delayMs( 2000 );
+      done();
+      hilog.info( DOMAIN , TAG , BUNDLE + 'FilePage_more_query_retentionList end' );
     } )
 
     /**
      * 返回首页
      */
-    it( 'backIndex_001' , 1 , async() => {
-      hilog.info( DOMAIN , TAG , 'backIndex_001 begin' );
+    it( 'BackIndex_001' , 1 , async() => {
+      hilog.info( DOMAIN , TAG , 'BackIndex_001 begin' );
       let driver = Driver.create();
       await driver.delayMs( 1000 );
-      await driver.assertComponentExist( ON.id( 'backIndex' ) );
-      let backIndex = await driver.findComponent( ON.id( 'backIndex' ) );
+      await driver.assertComponentExist( ON.id( 'filePageBack' ) );
+      let backIndex = await driver.findComponent( ON.type( 'Image' ).id( 'filePageBack' ) );
       await backIndex.click();
       await driver.delayMs( 1000 );
-      hilog.info( DOMAIN , TAG , 'backIndex_001 end' );
+      hilog.info( DOMAIN , TAG , 'BackIndex_001 end' );
     } )
 
+    /**
+     * 点击add图标 拉取picker
+     */
+    it( 'IndexIcon_add_002' , 0 , async( done : () => void ) => {
+      hilog.info( DOMAIN , TAG , BUNDLE + 'IndexIcon_add_002 begin' );
+      let driver = await Driver.create();
+      await driver.delayMs( 2000 );
+      let btnStart = await driver.findComponent( ON.type( 'Image' ).id( 'add' ) );
+      await btnStart.click()
+      await driver.delayMs( 3000 );
+      done();
+      hilog.info( DOMAIN , TAG , BUNDLE + 'IndexIcon_add_002 end' );
+    } )
+
+    /**
+     * picker中选取dlp文件
+     */
+    it( 'Picker_dlp' , 0 , async( done : () => void ) => {
+      hilog.info( DOMAIN , TAG , BUNDLE + 'Picker_dlp begin' );
+      let driver = await Driver.create();
+      await driver.delayMs( 1000 );
+      await driver.click(200,400);
+      await driver.delayMs( 2000 );
+      done();
+      hilog.info( DOMAIN , TAG , BUNDLE + 'Picker_dlp end' );
+    } )
+
+    /**
+     * Picker 编辑文件
+     */
+    // 编辑文件并保存
+    it('EditFileFunction_002', 0,  async( done: () => void )=> {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'EditFileFunction_002 begin');
+      let driver = await Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('dlpEdit'));
+      let editable = await driver.findComponent( ON.type( 'Image' ).id( 'dlpEdit' ) );
+      await editable.click();
+      await driver.delayMs(2000);
+      await driver.assertComponentExist(ON.id('dlpTextArea'));
+      let textArea = await driver.findComponent(ON.id('dlpTextArea'));
+      await textArea.inputText('File Content test');
+      await driver.delayMs(1000);
+      await driver.pressBack()
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('dlpSave'));
+      let save = await driver.findComponent( ON.type( 'Image' ).id( 'dlpSave' ) );
+      await save.click();
+      await driver.delayMs(2000);
+      done();
+      hilog.info(DOMAIN, TAG, BUNDLE + 'EditFileFunction_002 end');
+    })
+
+    /**
+     * dlp文件更多按钮
+     */
+    it( 'DLPPage_more' , 0 , async( done: () => void ) => {
+      hilog.info( DOMAIN , TAG , BUNDLE + 'DLPPage_more begin' );
+      let driver = await Driver.create();
+      await driver.delayMs( 2000 );
+      let btnStart = await driver.findComponent( ON.type( 'Image' ).id( 'dlpMore' ) );
+      await btnStart.click()
+      await driver.delayMs( 2000 );
+      done();
+      hilog.info( DOMAIN , TAG , BUNDLE + 'DLPPage_more end' );
+    } )
+
+    /**
+     * dlp文件更多按钮菜单1:另存为
+     */
+    it( 'DLPPage_more_save_as' , 0 , async( done: () => void ) => {
+      hilog.info( DOMAIN , TAG , BUNDLE + 'DLPPage_more_save_as begin' );
+      let driver = await Driver.create();
+      await driver.delayMs( 2000 );
+      let btnStart = await driver.findComponent( ON.type( 'Text' ).id( 'dlp_save_as' ) );
+      await btnStart.click()
+      await driver.delayMs(2000);
+      await driver.assertComponentExist(ON.type('Image'))
+      let imgs = await driver.findComponents(ON.type('Image'));
+      await imgs[11].click();
+      await driver.delayMs(1000);
+      await imgs[6].click();
+      await driver.delayMs(1000);
+      done();
+      hilog.info(DOMAIN, TAG, BUNDLE + 'DLPPage_more_save_as end');
+    } )
+
+    /**
+     * dlp文件更多按钮菜单2:设置权限
+     */
+    it( 'DLPPage_more_set_permissions' , 0 , async( done: () => void ) => {
+      hilog.info( DOMAIN , TAG , BUNDLE + 'DLPPage_more_set_permissions begin' );
+      let driver = await Driver.create();
+      await driver.delayMs( 2000 );
+      let btnStart = await driver.findComponent( ON.type( 'Image' ).id( 'dlpMore' ) );
+      await btnStart.click()
+      await driver.delayMs( 2000 );
+      let btnStart1 = await driver.findComponent( ON.type( 'Text' ).id( 'dlp_set_permissions' ) );
+      await btnStart1.click()
+      await driver.delayMs( 2000 );
+      await driver.pressBack()
+      await driver.delayMs(1000);
+      done();
+      hilog.info( DOMAIN , TAG , BUNDLE + 'DLPPage_more_set_permissions end' );
+    } )
+
+    /**
+     * dlp文件更多按钮菜单3:设置沙箱保留
+     */
+    it( 'DLPPage_more_query_AccessList' , 0 , async( done: () => void ) => {
+      hilog.info( DOMAIN , TAG , BUNDLE + 'DLPPage_more_query_AccessList begin' );
+      let driver = await Driver.create();
+      await driver.delayMs( 2000 );
+      let btnStart = await driver.findComponent( ON.type( 'Image' ).id( 'dlpMore' ) );
+      await btnStart.click()
+      await driver.delayMs( 2000 );
+      let btnStart1 = await driver.findComponent( ON.type( 'Text' ).id( 'set_retention_sandbox' ) );
+      await btnStart1.click()
+      await driver.delayMs( 2000 );
+      done();
+      hilog.info( DOMAIN , TAG , BUNDLE + 'DLPPage_more_query_AccessList end' );
+    } )
+
+    /**
+     * dlp文件更多按钮菜单4:取消沙箱保留
+     */
+    it( 'DLPPage_more_query_retentionList' , 0 , async( done: () => void ) => {
+      hilog.info( DOMAIN , TAG , BUNDLE + 'DLPPage_more_query_retentionList begin' );
+      let driver = await Driver.create();
+      await driver.delayMs( 2000 );
+      let btnStart = await driver.findComponent( ON.type( 'Image' ).id( 'dlpMore' ) );
+      await btnStart.click()
+      await driver.delayMs( 2000 );
+      let btnStart1 = await driver.findComponent( ON.type( 'Text' ).id( 'cancel_retention_sandbox' ) );
+      await btnStart1.click()
+      await driver.delayMs( 2000 );
+      done();
+      hilog.info( DOMAIN , TAG , BUNDLE + 'DLPPage_more_query_retentionList end' );
+    } )
+
+    /**
+     * 返回
+     */
+    it( 'BackIndex_002' , 1 , async() => {
+      hilog.info( DOMAIN , TAG , 'BackIndex_002 begin' );
+      let driver = Driver.create();
+      await driver.delayMs( 1000 );
+      await driver.assertComponentExist( ON.id( 'dlpPageBack' ) );
+      let backIndex = await driver.findComponent( ON.type( 'Image' ).id( 'dlpPageBack' ) );
+      await backIndex.click();
+      await driver.delayMs( 1000 );
+      hilog.info( DOMAIN , TAG , 'BackIndex_002 end' );
+    } )
   } )
 }

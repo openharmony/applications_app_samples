@@ -302,6 +302,7 @@ struct DlpPage {
             .width( '24vp' )
             .height( '24vp' )
             .margin( { top : '8vp' , bottom : '3vp' , left : '40vp' , right : '40vp' } )
+            .id( 'dlpEdit' )
             .onClick( () => {
               this.editable = true;
               AppStorage.setOrCreate( 'editable' , this.editable );
@@ -320,7 +321,6 @@ struct DlpPage {
             .width( '136vp' )
             .height( '14vp' )
             .margin( { left : '4vp' , right : '4vp' , bottom : '7vp' } )
-            .id( 'dlpEdit' )
 
         }.width( '144vp' ).height( '56vp' )
 
@@ -329,6 +329,7 @@ struct DlpPage {
             .width( '24vp' )
             .height( '24vp' )
             .margin( { top : '8vp' , bottom : '3vp' , left : '40vp' , right : '40vp' } )
+            .id( 'dlpSave' )
             .onClick( () => {
               Logger.info( TAG , 'save onClick dlpContent is: ' + this.dlpContent );
               Logger.info( TAG , 'save onClick this.myUri: ' + this.dlpLinkUri );
@@ -347,7 +348,6 @@ struct DlpPage {
             .width( '136vp' )
             .height( '14vp' )
             .margin( { left : '4vp' , right : '4vp' , bottom : '7vp' } )
-            .id( 'dlpSave' )
         }.width( '144vp' ).height( '56vp' )
 
         Column() {
@@ -356,6 +356,7 @@ struct DlpPage {
             .height( '24vp' )
             .margin( { top : '8vp' , bottom : '3vp' , left : '40vp' , right : '40vp' } )
             .bindMenu( this.filePageMenu , { placement : Placement.TopRight , offset : { x : '52vp' , y : '12vp' } } )
+            .id( 'dlpMore' )
           Text( $r( 'app.string.more' ) )
             .fontSize( '10vp' )
             .fontFamily( 'HarmonyHeiTi-Medium' )
@@ -366,7 +367,6 @@ struct DlpPage {
             .width( '136vp' )
             .height( '14vp' )
             .margin( { left : '4vp' , right : '4vp' , bottom : '7vp' } )
-            .id( 'dlpMore' )
         }.width( '144vp' ).height( '56vp' )
       }
       .align( Alignment.Bottom )
@@ -438,6 +438,7 @@ struct DlpPage {
       .fontColor( $r( 'app.color.font_color_182431' ) )
       .align( Alignment.Start )
       .margin( { top : '13vp' , bottom : '13vp' , right : '33vp' } )
+      .id('dlp_save_as')
   }
 
   @Builder
@@ -451,6 +452,7 @@ struct DlpPage {
       .fontColor( $r( 'app.color.font_color_182431' ) )
       .align( Alignment.Start )
       .margin( { top : '13vp' , bottom : '14vp' , right : '2vp' } )
+      .id('dlp_set_permissions')
   }
 
   @Builder
@@ -464,6 +466,7 @@ struct DlpPage {
       .fontColor( $r( 'app.color.font_color_182431' ) )
       .align( Alignment.Start )
       .margin( { top : '13vp' , bottom : '14vp' , right : '2vp' } )
+      .id('set_retention_sandbox')
   }
 
   @Builder
@@ -477,6 +480,7 @@ struct DlpPage {
       .fontColor( $r( 'app.color.font_color_182431' ) )
       .align( Alignment.Start )
       .margin( { top : '13vp' , bottom : '14vp' , right : '2vp' } )
+      .id('cancel_retention_sandbox')
   }
 
   @Builder

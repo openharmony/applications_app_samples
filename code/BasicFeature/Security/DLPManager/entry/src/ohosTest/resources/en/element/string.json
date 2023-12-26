@@ -15,6 +15,14 @@
     {
       "name": "permit",
       "value": "permit"
+    },
+    {
+      "name": "new_dir",
+      "value": "New Dir"
+    },
+    {
+      "name": "label_confirm",
+      "value": "Label Confirm"
     }
   ]
 }
