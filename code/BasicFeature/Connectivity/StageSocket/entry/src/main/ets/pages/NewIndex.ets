@@ -23,15 +23,16 @@ import ToolData from '../data/ToolData';
 import { SocketType } from '../model/Socket';
 import ChatComponent from '../components/ChatComponent';
 import Constants from '../Constants';
+import Want from '@ohos.app.ability.Want';
 
 const TAG: string = '[NewIndex] ';
 
 @Entry
 @Component
 struct NewIndex {
-  private userId: number = <number> router.getParams()['userId'];
+  private userId: number = (router.getParams() as Record<string, number | Object>).userId as number;
   private oppositeId: number = this.userId === 1 ? 2 : 1;
-  private socketType: SocketType = <SocketType> router.getParams()['socketType'];
+  private socketType?: SocketType = (router.getParams() as Record<string, number | Object>).socketType as SocketType;
   @State chats: ChatSource = new ChatSource();
   @State onlineState: boolean = true;
   @StorageLink('receiveMsg') @Watch('decodeMsg') receiveMsg: string = '';
@@ -39,7 +40,6 @@ struct NewIndex {
   @State isPanelShow: boolean = false; // 下拉面板是否拉出
 
   @State toolArray: Array<ToolData> = [];
-
 
   /**
    * 解析收到的消息数据
@@ -58,18 +58,17 @@ struct NewIndex {
     }
     else if (this.receiveMsg === 'offline') {
       this.onlineState = false;
-      AppStorage.SetOrCreate('sendMsg', 'closeSocket');
+      AppStorage.setOrCreate('sendMsg', 'closeSocket');
     } else if (this.receiveMsg === 'exit') {
-      AppStorage.SetOrCreate('sendMsg', 'closeSocket');
-      this.chats['chatsArray'] = [];
-      this.chats.notifyDataReload();
+      AppStorage.setOrCreate('sendMsg', 'closeSocket');
+      this.chats.cleanData()
       router.back();
     } else {
       Logger.info(TAG, `receive in Chat sucess`);
       let date = (new Date().getMonth() + 1) + '.' + new Date().getDate() + '-' + new Date().getHours() + ':' + new Date().getMinutes();
-      Logger.info(TAG, `pre:this.chats=${JSON.stringify(this.chats['chatsArray'])}`);
+      Logger.info(TAG, `pre:this.chats=${JSON.stringify(this.chats)}`);
       this.chats.pushData(new ChatBox(false, this.receiveMsg, date));
-      Logger.info(TAG, `after:this.chats=${JSON.stringify(this.chats['chatsArray'])}`);
+      Logger.info(TAG, `after:this.chats=${JSON.stringify(this.chats)}`);
     }
     this.receiveMsg = '';
   }
@@ -83,7 +82,7 @@ struct NewIndex {
           .height(24)
           .objectFit(ImageFit.Contain)
           .margin({ left: 26 })
-          .onClick(e => {
+          .onClick(() => {
             router.back();
           })
 
@@ -117,14 +116,14 @@ struct NewIndex {
         // 消息面板
         Scroll() {
           Column() {
-            LazyForEach(this.chats, (item, index) => {
+            LazyForEach(this.chats, (item: ChatBox, index) => {
               Row() {
                 ChatComponent({ item: item, userId: this.userId })
                   .margin({ top: 24 })
               }
               .margin({ top: 5, bottom: 10 })
               .alignSelf(item.isSend ? ItemAlign.End : ItemAlign.Start)
-            }, item => item.message)
+            }, (item: ChatBox) => item.message)
           }
           .width('100%')
           .padding(5)
@@ -147,21 +146,21 @@ struct NewIndex {
             .height(20)
             .margin({ left: 14, top: 18, bottom: 18 })
             .objectFit(ImageFit.Contain)
-            .onClick(e => {
+            .onClick(() => {
 
-              let parameters = {
+              let parameters: Record<string, Object> = {
                 'START_ABILITY_EVENT_KEY': Constants.START_ABILITY_EVENT_CALL,
                 'START_ABILITY_DATA_KEY': this.oppositeId
               };
 
-              let want = {
+              let want: Want = {
                 bundleName: Constants.BUNDLE_NAME,
                 abilityName: Constants.ABILITY_NAME,
                 parameters: parameters
               };
 
-              AppStorage.SetOrCreate('sendMsg', Constants.START_ABILITY_EVENT_ANSWER);
-              AppStorage.SetOrCreate('sendMsg', 'clear');
+              AppStorage.setOrCreate('sendMsg', Constants.START_ABILITY_EVENT_ANSWER);
+              AppStorage.setOrCreate('sendMsg', 'clear');
               startAbility(want);
             })
         }
@@ -187,14 +186,14 @@ struct NewIndex {
           .height(40)
           .margin({ right: 12 })
           .backgroundColor($r('app.color.COLOR_5BA854'))
-          .onClick(e => {
+          .onClick(() => {
             Logger.info(TAG, `send message: ${this.message}`);
             if (this.message) {
-              let date = (new Date().getMonth() + 1) + '.' + new Date().getDate() + '-' + new Date().getHours() + ':' + new Date().getMinutes();
-              let sendMessage = new ChatBox(true, this.message, date);
+              let date: string = (new Date().getMonth() + 1) + '.' + new Date().getDate() + '-' + new Date().getHours() + ':' + new Date().getMinutes();
+              let sendMessage: ChatBox = new ChatBox(true, this.message, date);
               this.chats.pushData(sendMessage);
-              let bool1 = AppStorage.Set('sendMsg', this.message);
-              let bool2 = AppStorage.Set('sendMsg', 'clear');
+              let bool1: boolean = AppStorage.set('sendMsg', this.message);
+              let bool2: boolean = AppStorage.set('sendMsg', 'clear');
               Logger.info(TAG, `send message bool1: ${bool1}`);
               Logger.info(TAG, `send message bool2: ${bool2}`);
             }

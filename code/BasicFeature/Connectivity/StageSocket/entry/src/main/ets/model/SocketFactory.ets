@@ -12,8 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { SocketType } from '../model/Socket';
-import type Socket from '../model/Socket';
+import { SocketType } from './Socket';
+import Socket from './Socket';
 
 import TcpSocket from '../socket/TcpSocket';
 import TlsSocket from '../socket/TlsSocket';
@@ -36,6 +36,5 @@ export default class SocketFactory {
       case SocketType.TLS:
         return new TlsSocket();
     }
-    return null;
   }
 }

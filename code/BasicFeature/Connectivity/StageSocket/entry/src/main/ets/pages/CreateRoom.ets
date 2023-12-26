@@ -28,8 +28,8 @@ export default struct CreateRoom {
   @State roomNumber: string = '';
   @State roomTip: boolean = false;
   @State invitation: Resource = $r('app.string.invitation_detail');
-  private userId: number = <number> router.getParams()['userId'];
-  private socketType: SocketType = <SocketType> router.getParams()['socketType'];
+  private userId: number = (router.getParams() as Record<string, number | Object>).userId as number;
+  private socketType: SocketType = (router.getParams() as Record<string, number | Object>).socketType as SocketType;;
   @StorageLink('invitationNumber') @Watch('invitationNumberChange') invitationNumber: string = '';
 
   invitationNumberChange(): void {

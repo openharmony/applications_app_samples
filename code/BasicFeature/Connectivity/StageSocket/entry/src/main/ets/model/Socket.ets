@@ -36,7 +36,7 @@ export default interface Socket {
 
   isConnected(): Promise<boolean>;
 
-  setOnMessageReceivedListener(callback): void;
+  setOnMessageReceivedListener(callback: (buffer: ArrayBuffer) => void): void;
 
-  setOnCloseListener(callback): void;
+  setOnCloseListener(callback: () => void): void;
 }

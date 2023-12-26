@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 import socket from '@ohos.net.socket';
-import type Socket from '../model/Socket';
+import Socket from '../model/Socket';
 import Logger from '../utils/Logger';
 
 const TAG = 'Socket TlsSocket';
@@ -91,7 +91,7 @@ const ca =
   '-----END CERTIFICATE-----\r\n';
 
 export default class TlsSocket implements Socket {
-  private tlsSocket: socket.TLSSocket = null;
+  private tlsSocket?: socket.TLSSocket;
 
   /**
    * 创建Socket
@@ -137,7 +137,7 @@ export default class TlsSocket implements Socket {
         return true;
       }
 
-      let options = {
+      let options: socket.TLSConnectOptions = {
         address: {
           address: address,
           port: port,
@@ -173,7 +173,7 @@ export default class TlsSocket implements Socket {
     await this.tlsSocket.close();
     this.tlsSocket.off('connect');
     this.tlsSocket.off('message');
-    this.tlsSocket = null;
+    this.tlsSocket = undefined;
   }
 
   /**
@@ -215,7 +215,7 @@ export default class TlsSocket implements Socket {
    * 订阅消息
    * @param callback
    */
-  setOnMessageReceivedListener(callback): void {
+  setOnMessageReceivedListener(callback: (buffer: ArrayBuffer) => void): void {
     if (!this.tlsSocket) {
       return;
     }
@@ -231,15 +231,15 @@ export default class TlsSocket implements Socket {
    * TLS 关闭事件订阅
    * @param callback
    */
-  setOnCloseListener(callback): void {
+  setOnCloseListener(callback: () => void): void {
     Logger.info(`${TAG} TLS setOnCloseListener into`);
-    this.tlsSocket.on('close', () => {
+    this.tlsSocket?.on('close', () => {
       Logger.info(`${TAG} TLS setOnCloseListener onClose：`);
       callback();
       this.closeSocket();
     });
 
-    this.tlsSocket.on('error', (data) => {
+    this.tlsSocket?.on('error', (data) => {
       Logger.info(
         `${TAG} TLS setOnCloseListener onClose：` + JSON.stringify(data)
       );

@@ -20,9 +20,9 @@ export default class ToolData {
   private imgResource: Resource;
   private bundleName: string;
   private abilityName: string;
-  private parameters: { [key: string]: Object };
+  private parameters?: Record<string, Object>;
 
-  constructor(imgResource: Resource, bundleName: string, abilityName: string, parameters?: { [key: string]: Object }) {
+  constructor(imgResource: Resource, bundleName: string, abilityName: string, parameters?: Record<string, Object>) {
     this.imgResource = imgResource;
     this.bundleName = bundleName;
     this.abilityName = abilityName;
@@ -55,11 +55,11 @@ export default class ToolData {
     return this.abilityName;
   }
 
-  public setParameters(parameters: { [key: string]: Object }): void {
+  public setParameters(parameters: Record<string, Object>): void {
     this.parameters = parameters;
   }
 
-  public getParameters(): { [key: string]: Object } {
-    return this.parameters;
+  public getParameters(): Record<string, Object> {
+    return this.parameters as Record<string, Object>;
   }
 }

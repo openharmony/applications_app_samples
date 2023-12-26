@@ -18,18 +18,21 @@ import hilog from '@ohos.hilog';
 import CommonEvent from '@ohos.commonEventManager';
 import Logger from '../utils/Logger';
 import Constants from '../Constants';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { BusinessError } from '@ohos.base';
 
 const TAG: string = '[EntryAbility] ';
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    globalThis.abilityContext = this.context;
+    AppStorage.setOrCreate('abilityContext', this.context)
 
-    let subscriber; // 用于保存创建成功的订阅者对象
+    let subscriber: CommonEvent.CommonEventSubscriber; // 用于保存创建成功的订阅者对象
 
     // 订阅者信息
-    let subscribeInfo = {
+    let subscribeInfo: CommonEvent.CommonEventSubscribeInfo = {
       events: [
         Constants.COMM_EVENT_ANSWER_FROM_VOICE,
         Constants.COMM_EVENT_HANGUP_FROM_VOICE
@@ -37,9 +40,10 @@ export default class EntryAbility extends UIAbility {
     };
 
     // 订阅公共事件回调
-    function subscribeCallBack(err, data): void {
+    let subscribeCallBack: (err: BusinessError, data: CommonEvent.CommonEventData) => void
+      = (err, data) => {
       Logger.info(TAG, 'subscribeCallBack into ' + JSON.stringify(err));
-      let sendEvent = ''; // 发送的事件
+      let sendEvent: string = ''; // 发送的事件
       if (err !== null && err.code) {
         Logger.error(TAG, 'subscribeCallBack failed ' + JSON.stringify(err));
       } else {
@@ -51,8 +55,8 @@ export default class EntryAbility extends UIAbility {
           'subscribeCallBack data sendEvent 1:' + JSON.stringify(sendEvent)
         );
         // 触发sendMsg发送消息
-        AppStorage.SetOrCreate('sendMsg', sendEvent);
-        AppStorage.SetOrCreate('sendMsg', 'clear');
+        AppStorage.setOrCreate('sendMsg', sendEvent);
+        AppStorage.setOrCreate('sendMsg', 'clear');
         Logger.info(
           TAG,
           'subscribeCallBack data sendEvent 2:' + JSON.stringify(sendEvent)
@@ -62,7 +66,8 @@ export default class EntryAbility extends UIAbility {
     }
 
     // 创建订阅者回调
-    function createSubscriberCallBack(err, commonEventSubscriber): void {
+    let createSubscriberCallBack: (err: BusinessError, commonEventSubscriber: CommonEvent.CommonEventSubscriber) => void
+      = (err, commonEventSubscriber) => {
       Logger.info(TAG, 'createSubscriber into ' + JSON.stringify(err));
       if (err !== null && err.code) {
         Logger.error(TAG, 'createSubscriber failed ' + JSON.stringify(err));

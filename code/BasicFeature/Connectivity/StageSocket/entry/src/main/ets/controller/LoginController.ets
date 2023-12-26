@@ -13,16 +13,17 @@
  * limitations under the License.
  */
 import Logger from '../utils/Logger';
-import type { SocketType } from '../model/Socket';
-import type Socket from '../model/Socket';
+import { SocketType } from '../model/Socket';
+import Socket from '../model/Socket';
 import SocketFactory from '../model/SocketFactory';
 import wifiManager from '@ohos.wifiManager';
+import { BusinessError } from '@ohos.base';
 
 const TAG = '[SocketController_] ';
 
 
 export default class SocketController {
-  private mSocket: Socket = null;
+  private mSocket?: Socket;
 
   constructor(socketType: SocketType, localIp: string, port: number) {
     Logger.info(TAG, ` mSocket constructor ${JSON.stringify(socketType)}`);
@@ -37,15 +38,15 @@ export default class SocketController {
    * @param oppositePort
    * @param callback
    */
-  public connectSocket(oppositeAddress: string, oppositePort: number, callback): void {
+  public connectSocket(oppositeAddress: string, oppositePort: number, callback: (data: string) => void): void {
     Logger.info(TAG, ` mSocket connect ing ${JSON.stringify(this.mSocket)}`);
-    this.mSocket.connectSocket(oppositeAddress, oppositePort).then(res => {
+    this.mSocket?.connectSocket(oppositeAddress, oppositePort).then(res => {
       Logger.info(TAG, ` mSocket connect success ${JSON.stringify(res)}`);
       // 连接成功订阅消息回调
       this.onMessage(callback);
       // 连接成功首先发送一条消息
       this.sendData('connect success');
-    }).catch(rej => {
+    }).catch((rej: BusinessError) => {
       Logger.info(TAG, ` mSocket connect fail ${JSON.stringify(rej)}`);
     });
   }
@@ -54,8 +55,8 @@ export default class SocketController {
    * 订阅消息
    * @param callback
    */
-  public onMessage(callback): void {
-    this.mSocket.setOnMessageReceivedListener((buffer: ArrayBuffer) => {
+  public onMessage(callback: (data: string) => void): void {
+    this.mSocket?.setOnMessageReceivedListener((buffer: ArrayBuffer) => {
       // 获取数据 解析
       let data = this.decodeMsg(buffer);
       callback(data);
@@ -66,13 +67,13 @@ export default class SocketController {
    * 关闭事件订阅
    * @param callback
    */
-  public onClose(callback): void {
-    this.mSocket.setOnCloseListener(callback);
+  public onClose(callback: () => void): void {
+    this.mSocket?.setOnCloseListener(callback);
 
     this.onWifiDisconnect(callback);
   }
 
-  public onWifiDisconnect(callback): void {
+  public onWifiDisconnect(callback: () => void): void {
     Logger.info(TAG, 'onWifiDisconnect begin ');
     wifiManager.on('wifiConnectionChange', (data) => {
       Logger.info(TAG, `onWifiDisconnect wifiConnectionChange data = ${data}}`);
@@ -93,7 +94,7 @@ export default class SocketController {
    * @param data
    */
   public sendData(data: string): void {
-    this.mSocket.sendData(data);
+    this.mSocket?.sendData(data);
   }
 
   /**
@@ -103,18 +104,18 @@ export default class SocketController {
    * @param oppositePort
    */
   public udpSendData(data: string, oppositeAddress: string, oppositePort: number): void {
-    this.mSocket.sendData(data, oppositeAddress, oppositePort);
+    this.mSocket?.sendData(data, oppositeAddress, oppositePort);
   }
 
   /**
    * 关闭Socket
    */
   public closeSocket(): void {
-    this.mSocket.closeSocket();
+    this.mSocket?.closeSocket();
   }
 
   public async isConnected(): Promise<boolean> {
-    return await this.mSocket.isConnected();
+    return await this.mSocket?.isConnected() as boolean;
   }
 
   /**

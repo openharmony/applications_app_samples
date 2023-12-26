@@ -14,6 +14,7 @@
  */
 
 import router from '@ohos.router';
+import { SocketType } from '../model/Socket';
 
 const TAG: string = '[InvitationDialog]';
 
@@ -21,8 +22,8 @@ const TAG: string = '[InvitationDialog]';
 export struct InvitationDialog {
   controller: CustomDialogController;
   private title: Resource = $r('app.string.invitation');
-  private userId: number;
-  private socketType;
+  private userId: number = 0;
+  private socketType?: SocketType;
   @Link invitation: Resource;
 
   build() {
@@ -73,7 +74,7 @@ export struct InvitationDialog {
           .layoutWeight(1)
           .textAlign(TextAlign.Center)
           .onClick(() => {
-            AppStorage.SetOrCreate('sendMsg', 'ok');
+            AppStorage.setOrCreate('sendMsg', 'ok');
             router.pushUrl({
               url: 'pages/NewIndex',
               params: {
