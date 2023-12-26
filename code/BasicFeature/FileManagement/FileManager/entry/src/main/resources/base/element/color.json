@@ -31,6 +31,10 @@
     {
       "name": "text_color",
       "value": "#5aabf9"
+    },
+    {
+      "name": "background_shallow_grey",
+      "value": "#F1F3F5"
     }
   ]
 }

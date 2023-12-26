@@ -1298,6 +1298,629 @@ export default function abilityTest() {
 
     });
 
+    /**
+     * 切换到el3分区，新建文件，浏览
+     */
+    it('MobileFunction_el3_001', 0, async () => {
+      try{
+        Logger.info(TAG, 'MobileFunction_el3_001 begin');
+        let driver = Driver.create();
+        await driver.delayMs(200);
+        // 主页能够显示List中内容，点击手机
+        await driver.assertComponentExist(ON.type('List'));
+        await driver.assertComponentExist(ON.type('ListItem').id('ListItem5'));
+        let btnStart = await driver.findComponent(ON.type('ListItem').id('ListItem5'));
+        await btnStart.click();
+        await driver.delayMs(100);
+        // 我的手机主页，切换到el3
+        await driver.assertComponentExist(ON.type('Text').id('el3'));
+        let btnEl3 = await driver.findComponent(ON.type('Text').id('el3'));
+        await btnEl3.click();
+        await driver.delayMs(100);
+        // 测试新建文件及打开功能
+        let btnFile = await driver.findComponent(ON.type('Text').id('makeFile'));
+        await btnFile.click();
+        await driver.delayMs(100);
+        await driver.assertComponentExist(ON.id('cancel'));
+        let btnCancel = await driver.findComponent(ON.id('cancel'));
+        await btnCancel.click();
+        await driver.delayMs(100);
+
+        await btnFile.click();
+        await driver.delayMs(100);
+        await driver.assertComponentExist(ON.id('input'));
+        let input = await driver.findComponent(ON.id('input'));
+        await input.inputText('el3TestFile');
+        await driver.assertComponentExist(ON.id('promise'));
+        let btnPromise = await driver.findComponent(ON.id('promise'));
+        await btnPromise.click();
+        await driver.delayMs(100);
+
+        // await driver.assertComponentExist(ON.text('el3TestFile'));
+        // let testFile = await driver.findComponent(ON.text('el3TestFile'));
+        // await testFile.click();
+        // await driver.delayMs(200);
+        //
+        // await driver.assertComponentExist(ON.id('openFileBack'));
+        // let back = await driver.findComponent(ON.id('openFileBack'));
+        // await back.click();
+        // await driver.delayMs(200);
+        Logger.info(TAG, 'MobileFunction_el3_001 end');
+      }catch(error){
+        expect().assertFail();
+      }
+    });
+
+    /**
+     * 测试el3新建文件夹功能
+     */
+    it('MobileFunction_el3_002', 0, async () => {
+      try{
+        Logger.info(TAG, 'MobileFunction_el3_002 begin');
+        let driver = Driver.create();
+        await driver.delayMs(200);
+        // 测试新建文件夹功能
+        await driver.findComponent(ON.type('Text').id('makeDirectory'));
+        let btnDirectory = await driver.findComponent(ON.type('Text').id('makeDirectory'));
+        await btnDirectory.click();
+        await driver.delayMs(200);
+        await driver.assertComponentExist(ON.id('cancel'));
+        let directoryCancel = await driver.findComponent(ON.id('cancel'));
+        await directoryCancel.click();
+        await driver.delayMs(200);
+
+        await btnDirectory.click();
+        await driver.delayMs(200);
+        await driver.assertComponentExist(ON.id('input'));
+        let inputDirectory = await driver.findComponent(ON.id('input'));
+        await inputDirectory.inputText('el3TestDirectory/testSubDirectory');
+        await driver.assertComponentExist(ON.id('promise'));
+        let directoryPromise = await driver.findComponent(ON.id('promise'));
+        await directoryPromise.click();
+        await driver.delayMs(200);
+
+        await driver.assertComponentExist(ON.text('el3TestDirectory'));
+        let testDirectory = await driver.findComponent(ON.text('el3TestDirectory'));
+        await testDirectory.click();
+        await driver.delayMs(200);
+        await driver.assertComponentExist(ON.text('testSubDirectory'));
+        // 返回
+        await driver.assertComponentExist(ON.id('left'));
+        let btnBack = await driver.findComponent(ON.id('left'));
+        await btnBack.click();
+        //await driver.pressBack();
+        await driver.delayMs(500);
+        Logger.info(TAG, 'MobileFunction_el3_002 end');
+      }catch(error){
+        expect().assertFail();
+      }
+    });
+
+    /**
+     * 测试el3复制
+     */
+    it('MobileFunction_el3_003', 0, async () => {
+      try{
+        Logger.info(TAG, 'MobileFunction_el3_003 begin');
+        let driver = Driver.create();
+        await driver.delayMs(200);
+        // 点击select图片
+        await driver.assertComponentExist(ON.id('secondarySelect'));
+        let selectImage = await driver.findComponent(ON.id('secondarySelect'));
+        await selectImage.click();
+        await driver.delayMs(500);
+
+        await driver.assertComponentExist(ON.type('Text').id('copy'));
+        let btnCopy = await driver.findComponent(ON.type('Text').id('copy'));
+        await driver.assertComponentExist(ON.type('Text').id('rename'));
+        let btnRename = await driver.findComponent(ON.type('Text').id('rename'));
+        await driver.assertComponentExist(ON.type('Text').id('share'));
+        await driver.assertComponentExist(ON.type('Text').id('more'));
+        // 测试复制
+        let testFile = await driver.findComponent(ON.text('el3TestFile'));
+        let testDirectory = await driver.findComponent(ON.text('el3TestDirectory'));
+        await testFile.click();
+        await btnCopy.click();
+        await testDirectory.click();
+        await driver.delayMs(200);
+
+        await driver.assertComponentExist(ON.id('move'));
+        let btnMove = await driver.findComponent(ON.id('move'));
+        await btnMove.click();
+        await driver.delayMs(200);
+
+        await driver.assertComponentExist(ON.text('el3TestFile'));
+        // 返回
+        await driver.pressBack();
+        await driver.delayMs(500);
+        Logger.info(TAG, 'MobileFunction_el3_003 end');
+      }catch(error){
+        expect().assertFail();
+      }
+    });
+
+    /**
+     * 测试el3重命名
+     */
+    it('MobileFunction_el3_004', 0, async () => {
+      try{
+        Logger.info(TAG, 'MobileFunction_el3_004 begin');
+        let driver = Driver.create();
+        await driver.delayMs(200);
+        // 测试重命名
+        await driver.assertComponentExist(ON.id('secondarySelect'));
+        let btnSelect = await driver.findComponent(ON.id('secondarySelect'));
+
+        await driver.assertComponentExist(ON.text('el3TestFile'));
+        let testFile = await driver.findComponent(ON.text('el3TestFile'));
+        await btnSelect.click();
+        await testFile.click();
+
+        let btnRenameNew = await driver.findComponent(ON.type('Text').id('rename'));
+        await btnRenameNew.click();
+        await driver.delayMs(500);
+        let inputDirectoryNew = await driver.findComponent(ON.id('input'));
+        await inputDirectoryNew.inputText('el3TestFileNew');
+        let btnPromiseNew = await driver.findComponent(ON.id('promise'));
+        await btnPromiseNew.click();
+        await driver.delayMs(500);
+        //await driver.assertComponentExist(ON.text('el3TestFileNew'));
+        Logger.info(TAG, 'MobileFunction_el3_004 end');
+      }catch(error){
+        expect().assertFail();
+      }
+    });
+
+    /**
+     * 测试el3更多--修改时间
+     */
+    it('MobileFunction_el3_005', 0, async () => {
+      try{
+        Logger.info(TAG, 'MobileFunction_el3_005 begin');
+        let driver = Driver.create();
+        await driver.delayMs(200);
+        // 点击select图片
+        await driver.assertComponentExist(ON.id('secondarySelect'));
+        let selectImage = await driver.findComponent(ON.id('secondarySelect'));
+        await selectImage.click();
+        await driver.delayMs(200);
+        //测试更多--修改时间
+        let testFile = await driver.findComponent(ON.text('el3TestFileNew'));
+        await testFile.click();
+        await driver.assertComponentExist(ON.type('Text').id('more'));
+        let newMore = await driver.findComponent(ON.type('Text').id('more'));
+        await newMore.click();
+        await driver.delayMs(200);
+        await driver.click(542, 996);
+
+        await driver.assertComponentExist(ON.id('changeTimePromise'));
+        let inputTimeNew = await driver.findComponent(ON.id('changeTimeInput'));
+        await inputTimeNew.inputText('2023/12/12 10:10:10');
+        await driver.delayMs(200);
+
+        await driver.assertComponentExist(ON.text('2023/12/12 10:10:10'));
+        let changeTime = await driver.findComponent(ON.type('Text').id('changeTimePromise'));
+        await changeTime.click();
+        await driver.delayMs(200);
+        Logger.info(TAG, 'MobileFunction_el3_005 end');
+      }catch(error){
+        expect().assertFail();
+      }
+    });
+
+    /**
+     * 测试el3更多--删除
+     */
+    it('MobileFunction_el3_006', 0, async () => {
+      try{
+        Logger.info(TAG, 'MobileFunction_el3_006 begin');
+        let driver = Driver.create();
+        await driver.delayMs(200);
+        //测试更多--删除
+        await driver.assertComponentExist(ON.id('secondarySelect'));
+        let selectImage = await driver.findComponent(ON.id('secondarySelect'));
+        await selectImage.click();
+        await driver.delayMs(200);
+        let testFile = await driver.findComponent(ON.text('el3TestFileNew'));
+        await testFile.click();
+        await driver.assertComponentExist(ON.type('Text').id('more'));
+        let newMore = await driver.findComponent(ON.type('Text').id('more'));
+        await newMore.click();
+        await driver.delayMs(200);
+        await driver.click(461, 1064);
+        await driver.delayMs(200);
+        await driver.assertComponentExist(ON.id('checkDelete'));
+        let btnCheckDelete = await driver.findComponent(ON.id('checkDelete'));
+        await btnCheckDelete.click();
+        await driver.delayMs(200);
+        // 返回
+        // await driver.pressBack();
+        // await driver.delayMs(200);
+        Logger.info(TAG, 'MobileFunction_el3_006 end');
+      }catch(error){
+        expect().assertFail();
+      }
+    });
+
+    /**
+     * 测试el3文件编辑
+     */
+    it('MobileFunction_el3_007', 0, async () => {
+      try{
+        Logger.info(TAG, 'MobileFunction_el3_007 begin');
+        let driver = Driver.create();
+        await driver.delayMs(200);
+        // 测试新建文件、文件编辑、保存功能
+        let btnFile = await driver.findComponent(ON.type('Text').id('makeFile'));
+        await btnFile.click();
+        await driver.delayMs(200);
+        await driver.assertComponentExist(ON.id('input'));
+        let input = await driver.findComponent(ON.id('input'));
+        await input.inputText('testEl3FileEdit');
+        await driver.assertComponentExist(ON.id('promise'));
+        let btnPromise = await driver.findComponent(ON.id('promise'));
+        await btnPromise.click();
+        await driver.delayMs(200);
+        await driver.assertComponentExist(ON.text('testEl3FileEdit'));
+        //进入文件浏览编辑页面
+        let testFile = await driver.findComponent(ON.text('testEl3FileEdit'));
+        await testFile.click();
+        await driver.delayMs(200);
+        await driver.assertComponentExist(ON.id('openFileName'));
+        //进入编辑模式
+        await driver.assertComponentExist(ON.id('switch2Edit'));
+        let btnEdit = await driver.findComponent(ON.id('switch2Edit'));
+        await btnEdit.click();
+        await driver.delayMs(200);
+        //输入字符到文件编辑区
+        // await driver.assertComponentExist(ON.id('editFileContent'));
+        // let inputTextContent = await driver.findComponent(ON.id('editFileContent'));
+        // await inputTextContent.inputText('el3 file edit');
+        // await driver.delayMs(500);
+
+        //保存内容并退出编辑模式
+        await driver.assertComponentExist(ON.id('saveFileContent'));
+        let btnSave = await driver.findComponent(ON.id('saveFileContent'));
+        await btnSave.click();
+        await driver.delayMs(200);
+        await driver.assertComponentExist(ON.id('switch2View'));
+        let btnView = await driver.findComponent(ON.id('switch2View'));
+        await btnView.click();
+        await driver.delayMs(200);
+
+        //回到上一页
+        let back = await driver.findComponent(ON.id('openFileBack'));
+        await back.click();
+        await driver.delayMs(200);
+
+        //再次进入文件页面，检查文件内容
+        // await driver.assertComponentExist(ON.text('testEl3FileEdit'));
+        // let fileEnter = await driver.findComponent(ON.text('testEl3FileEdit'));
+        // await fileEnter.click();
+        // await driver.delayMs(200);
+        // //await driver.assertComponentExist(ON.text('el3 file edit'));
+        //
+        // let btnBack = await driver.findComponent(ON.id('openFileBack'));
+        // await btnBack.click();
+        // await driver.delayMs(200);
+
+        // 返回我的手机主页
+        let btnBackMyPhone = await driver.findComponent(ON.id('left'));
+        await btnBackMyPhone.click();
+        await driver.delayMs(200);
+        // await driver.pressBack();
+        // await driver.delayMs(500);
+        Logger.info(TAG, BUNDLE + 'MobileFunction_el3_007 end');
+      }catch(error){
+        expect().assertFail();
+      }
+    });
+
+    /**
+     * 切换到el4分区，新建文件
+     */
+    it('MobileFunction_el4_001', 0, async () => {
+      try{
+        Logger.info(TAG, 'MobileFunction_el4_001 begin');
+        let driver = Driver.create();
+        await driver.delayMs(200);
+        // 我的手机主页，切换到el4
+        await driver.assertComponentExist(ON.type('Text').id('el4'));
+        let btnEl3 = await driver.findComponent(ON.type('Text').id('el4'));
+        await btnEl3.click();
+        await driver.delayMs(100);
+        // 测试新建文件及打开功能
+        let btnFile = await driver.findComponent(ON.type('Text').id('makeFile'));
+        await btnFile.click();
+        await driver.delayMs(100);
+        await driver.assertComponentExist(ON.id('cancel'));
+        let btnCancel = await driver.findComponent(ON.id('cancel'));
+        await btnCancel.click();
+        await driver.delayMs(100);
+
+        await btnFile.click();
+        await driver.delayMs(100);
+        await driver.assertComponentExist(ON.id('input'));
+        let input = await driver.findComponent(ON.id('input'));
+        await input.inputText('el4TestFile');
+        await driver.assertComponentExist(ON.id('promise'));
+        let btnPromise = await driver.findComponent(ON.id('promise'));
+        await btnPromise.click();
+        await driver.delayMs(100);
+
+        await driver.assertComponentExist(ON.text('el4TestFile'));
+        let testFile = await driver.findComponent(ON.text('el4TestFile'));
+        await testFile.click();
+        await driver.delayMs(200);
+
+        await driver.assertComponentExist(ON.id('openFileBack'));
+        let back = await driver.findComponent(ON.id('openFileBack'));
+        await back.click();
+        await driver.delayMs(200);
+        Logger.info(TAG, 'MobileFunction_el4_001 end');
+      }catch(error){
+        expect().assertFail();
+      }
+    });
+    /**
+     * 测试el4新建文件夹功能
+     */
+    it('MobileFunction_el4_002', 0, async () => {
+      try{
+        Logger.info(TAG, 'MobileFunction_el4_002 begin');
+        let driver = Driver.create();
+        await driver.delayMs(200);
+        // 测试新建文件夹功能
+        await driver.findComponent(ON.type('Text').id('makeDirectory'));
+        let btnDirectory = await driver.findComponent(ON.type('Text').id('makeDirectory'));
+        await btnDirectory.click();
+        await driver.delayMs(200);
+        await driver.assertComponentExist(ON.id('cancel'));
+        let directoryCancel = await driver.findComponent(ON.id('cancel'));
+        await directoryCancel.click();
+        await driver.delayMs(200);
+
+        await btnDirectory.click();
+        await driver.delayMs(200);
+        await driver.assertComponentExist(ON.id('input'));
+        let inputDirectory = await driver.findComponent(ON.id('input'));
+        await inputDirectory.inputText('el4TestDirectory/testSubDirectory');
+        await driver.assertComponentExist(ON.id('promise'));
+        let directoryPromise = await driver.findComponent(ON.id('promise'));
+        await directoryPromise.click();
+        await driver.delayMs(200);
+
+        await driver.assertComponentExist(ON.text('el4TestDirectory'));
+        let testDirectory = await driver.findComponent(ON.text('el4TestDirectory'));
+        await testDirectory.click();
+        await driver.delayMs(200);
+        await driver.assertComponentExist(ON.text('testSubDirectory'));
+        // 返回
+        await driver.assertComponentExist(ON.id('left'));
+        let btnBack = await driver.findComponent(ON.id('left'));
+        await btnBack.click();
+        //await driver.pressBack();
+        await driver.delayMs(500);
+        Logger.info(TAG, 'MobileFunction_el4_002 end');
+      }catch(error){
+        expect().assertFail();
+      }
+    });
+    /**
+     * 测试el4复制
+     */
+    it('MobileFunction_el4_003', 0, async () => {
+      try{
+        Logger.info(TAG, 'MobileFunction_el4_003 begin');
+        let driver = Driver.create();
+        await driver.delayMs(200);
+        // 点击select图片
+        await driver.assertComponentExist(ON.id('secondarySelect'));
+        let selectImage = await driver.findComponent(ON.id('secondarySelect'));
+        await selectImage.click();
+        await driver.delayMs(500);
+
+        await driver.assertComponentExist(ON.type('Text').id('copy'));
+        let btnCopy = await driver.findComponent(ON.type('Text').id('copy'));
+        await driver.assertComponentExist(ON.type('Text').id('rename'));
+        let btnRename = await driver.findComponent(ON.type('Text').id('rename'));
+        await driver.assertComponentExist(ON.type('Text').id('share'));
+        await driver.assertComponentExist(ON.type('Text').id('more'));
+        // 测试复制
+        let testFile = await driver.findComponent(ON.text('el4TestFile'));
+        let testDirectory = await driver.findComponent(ON.text('el4TestDirectory'));
+        await testFile.click();
+        await btnCopy.click();
+        await testDirectory.click();
+        await driver.delayMs(200);
+
+        await driver.assertComponentExist(ON.id('move'));
+        let btnMove = await driver.findComponent(ON.id('move'));
+        await btnMove.click();
+        await driver.delayMs(200);
+
+        await driver.assertComponentExist(ON.text('el4TestFile'));
+        // 返回
+        await driver.pressBack();
+        await driver.delayMs(500);
+        Logger.info(TAG, 'MobileFunction_el4_003 end');
+      }catch(error){
+        expect().assertFail();
+      }
+    });
+
+    /**
+     * 测试el4重命名
+     */
+    it('MobileFunction_el4_004', 0, async () => {
+      try{
+        Logger.info(TAG, 'MobileFunction_el4_004 begin');
+        let driver = Driver.create();
+        await driver.delayMs(200);
+        // 测试重命名
+        await driver.assertComponentExist(ON.id('secondarySelect'));
+        let btnSelect = await driver.findComponent(ON.id('secondarySelect'));
+
+        await driver.assertComponentExist(ON.text('el4TestFile'));
+        let testFile = await driver.findComponent(ON.text('el4TestFile'));
+        await btnSelect.click();
+        await testFile.click();
+
+        let btnRenameNew = await driver.findComponent(ON.type('Text').id('rename'));
+        await btnRenameNew.click();
+        await driver.delayMs(200);
+        let inputDirectoryNew = await driver.findComponent(ON.id('input'));
+        await inputDirectoryNew.inputText('el4TestFileNew');
+        let btnPromiseNew = await driver.findComponent(ON.id('promise'));
+        await btnPromiseNew.click();
+        await driver.delayMs(200);
+        await driver.assertComponentExist(ON.text('el4TestFileNew'));
+        Logger.info(TAG, 'MobileFunction_el4_004 end');
+      }catch(error){
+        expect().assertFail();
+      }
+    });
+
+    /**
+     * 测试el4更多--修改时间
+     */
+    it('MobileFunction_el4_005', 0, async () => {
+      try{
+        Logger.info(TAG, 'MobileFunction_el4_005 begin');
+        let driver = Driver.create();
+        await driver.delayMs(200);
+        // 点击select图片
+        await driver.assertComponentExist(ON.id('secondarySelect'));
+        let selectImage = await driver.findComponent(ON.id('secondarySelect'));
+        await selectImage.click();
+        await driver.delayMs(200);
+        //测试更多--修改时间
+        let testFile = await driver.findComponent(ON.text('el4TestFileNew'));
+        await testFile.click();
+        await driver.assertComponentExist(ON.type('Text').id('more'));
+        let newMore = await driver.findComponent(ON.type('Text').id('more'));
+        await newMore.click();
+        await driver.delayMs(200);
+        await driver.click(542, 996);
+        await driver.assertComponentExist(ON.id('changeTimePromise'));
+        let inputTimeNew = await driver.findComponent(ON.id('changeTimeInput'));
+        await inputTimeNew.inputText('2023/12/12 10:10:10');
+        await driver.delayMs(200);
+        await driver.assertComponentExist(ON.text('2023/12/12 10:10:10'));
+        let changeTime = await driver.findComponent(ON.type('Text').id('changeTimePromise'));
+        await changeTime.click();
+        await driver.delayMs(200);
+        Logger.info(TAG, 'MobileFunction_el4_005 end');
+      }catch(error){
+        expect().assertFail();
+      }
+    });
+
+    /**
+     * 测试el4更多--删除
+     */
+    it('MobileFunction_el4_006', 0, async () => {
+      try{
+        Logger.info(TAG, 'MobileFunction_el4_006 begin');
+        let driver = Driver.create();
+        await driver.delayMs(200);
+        //测试更多--删除
+        await driver.assertComponentExist(ON.id('secondarySelect'));
+        let selectImage = await driver.findComponent(ON.id('secondarySelect'));
+        await selectImage.click();
+        await driver.delayMs(200);
+        let testFile = await driver.findComponent(ON.text('el4TestFileNew'));
+        await testFile.click();
+        await driver.assertComponentExist(ON.type('Text').id('more'));
+        let newMore = await driver.findComponent(ON.type('Text').id('more'));
+        await newMore.click();
+        await driver.delayMs(200);
+        await driver.click(461, 1064);
+        await driver.delayMs(200);
+        await driver.assertComponentExist(ON.id('checkDelete'));
+        let btnCheckDelete = await driver.findComponent(ON.id('checkDelete'));
+        await btnCheckDelete.click();
+        await driver.delayMs(200);
+        Logger.info(TAG, 'MobileFunction_el3_006 end');
+      }catch(error){
+        expect().assertFail();
+      }
+    });
+
+    /**
+     * 测试el4编辑文件
+     */
+    it('MobileFunction_el4_007', 0, async () => {
+      try{
+        Logger.info(TAG, 'MobileFunction_el4_007 begin');
+        let driver = Driver.create();
+        await driver.delayMs(200);
+        // 测试新建文件、文件编辑、保存功能
+        let btnFile = await driver.findComponent(ON.type('Text').id('makeFile'));
+        await btnFile.click();
+        await driver.delayMs(200);
+        await driver.assertComponentExist(ON.id('input'));
+        let input = await driver.findComponent(ON.id('input'));
+        await input.inputText('testEl4FileEdit');
+        await driver.assertComponentExist(ON.id('promise'));
+        let btnPromise = await driver.findComponent(ON.id('promise'));
+        await btnPromise.click();
+        await driver.delayMs(200);
+        await driver.assertComponentExist(ON.text('testEl4FileEdit'));
+        //进入文件浏览编辑页面
+        let testFile = await driver.findComponent(ON.text('testEl4FileEdit'));
+        await testFile.click();
+        await driver.delayMs(200);
+        await driver.assertComponentExist(ON.id('openFileName'));
+        //进入编辑模式
+        await driver.assertComponentExist(ON.id('switch2Edit'));
+        let btnEdit = await driver.findComponent(ON.id('switch2Edit'));
+        await btnEdit.click();
+        await driver.delayMs(200);
+        //输入字符到文件编辑区
+        // await driver.assertComponentExist(ON.id('editFileContent'));
+        // let inputTextContent = await driver.findComponent(ON.id('editFileContent'));
+        // await inputTextContent.inputText('el4 file edit');
+        // await driver.delayMs(500);
+
+        //保存内容并退出编辑模式
+        await driver.assertComponentExist(ON.id('saveFileContent'));
+        let btnSave = await driver.findComponent(ON.id('saveFileContent'));
+        await btnSave.click();
+        await driver.delayMs(200);
+        await driver.assertComponentExist(ON.id('switch2View'));
+        let btnView = await driver.findComponent(ON.id('switch2View'));
+        await btnView.click();
+        await driver.delayMs(200);
+
+        //回到上一页
+        let back = await driver.findComponent(ON.id('openFileBack'));
+        await back.click();
+        await driver.delayMs(200);
+
+        //再次进入文件页面，检查文件内容
+        // await driver.assertComponentExist(ON.text('testEl4FileEdit'));
+        // let fileEnter = await driver.findComponent(ON.text('testEl4FileEdit'));
+        // await fileEnter.click();
+        // await driver.delayMs(200);
+        // //await driver.assertComponentExist(ON.text('el4 file edit'));
+        //
+        // let btnBack = await driver.findComponent(ON.id('openFileBack'));
+        // await btnBack.click();
+        // await driver.delayMs(200);
+
+        // 返回我的手机主页
+        let btnBackMyPhone = await driver.findComponent(ON.id('left'));
+        await btnBackMyPhone.click();
+        await driver.delayMs(200);
+
+        Logger.info(TAG, BUNDLE + 'MobileFunction_el4_007 end');
+      }catch(error){
+        expect().assertFail();
+      }
+    });
+
+
     /** 场景：检验FileManager获取权限功能
      *  输入：调用requestPermission
      *  预期输出：点击允许后能够成功调用createFileAsset，getFileAssets
