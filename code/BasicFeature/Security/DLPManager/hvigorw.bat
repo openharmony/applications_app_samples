@@ -11,7 +11,7 @@
 :: See the License for the specific language governing permissions and
 :: limitations under the License.
 
-@if "%DEBUG%" == "" @echo off
+@Echo off @if "%DEBUG%" == "" @echo off
 @rem ##########################################################################
 @rem
 @rem  Hvigor startup script for Windows

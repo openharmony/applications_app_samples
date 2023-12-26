@@ -37,7 +37,7 @@ export default class FuncAbility extends UIAbility {
 
   onWindowStageCreate( windowStage: window.WindowStage ): void {
     Logger.info( TAG , 'testTag' , '%{public}s' , 'Ability onWindowStageCreate' );
-    windowStage.loadContent( 'pages/dlpPage' , this.storage , ( err , data ) => {
+    windowStage.loadContent( 'media/dlpPage' , this.storage , ( err , data ) => {
       if ( err.code ) {
         Logger.error( TAG , 'Failed to load the content. Cause: ' + JSON.stringify( err ) ?? '' );
         return;

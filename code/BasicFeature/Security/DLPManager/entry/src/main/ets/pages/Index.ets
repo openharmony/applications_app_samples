@@ -363,7 +363,7 @@ export struct Index {
   //跳转页面
   async routerUri( name: string , path: string , fd: number , uri: string , isDlpFile: boolean , fileSuffix: string ) {
     router.pushUrl( {
-      url : 'pages/filePage' ,
+      url : 'media/filePage' ,
       params : {
         fileName : name ,
         myPath : path ,

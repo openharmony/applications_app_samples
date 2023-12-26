@@ -52,9 +52,6 @@ export class Logger {
   }
 }
 
-export default new Logger('[Sample_Paste]');
+export default new Logger('dlpmanager');
 
-export function a(s, n) {
-  return parseInt(s, n)
-}
 
