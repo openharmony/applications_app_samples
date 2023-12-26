@@ -81,6 +81,10 @@
     {
       "name": "backgroundTask",
       "srcPath": "./feature/backgroundTask"
+    },
+    {
+      "name": "DFXStateManagement",
+      "srcPath": "./feature/DFXStateManagement"
     }
   ]
 }

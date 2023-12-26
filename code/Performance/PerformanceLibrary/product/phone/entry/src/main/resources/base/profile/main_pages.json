@@ -32,6 +32,9 @@
     "pages/trace/TracePage",
     "pages/backgroundTask/BackgroundTaskPage",
     "pages/backgroundTask/TransientTask",
-    "pages/backgroundTask/LongTermTask"
+    "pages/backgroundTask/LongTermTask",
+    "pages/DFXStateManagement/DFXStateManagementPage",
+    "pages/DFXStateManagement/DFXStateBeforeOptimizationPage",
+    "pages/DFXStateManagement/DFXStateAfterOptimizationPage"
   ]
 }

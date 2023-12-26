@@ -51,5 +51,9 @@ export let performanceTypeArray: Array<PerformanceMsg> = [
   {
     name: 'BackgroundTask',
     uri: 'pages/backgroundTask/BackgroundTaskPage'
+  },
+  {
+    name: 'DFX StateManagement',
+    uri: 'pages/DFXStateManagement/DFXStateManagementPage'
   }
 ]
