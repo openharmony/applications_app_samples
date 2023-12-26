@@ -1,0 +1,46 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "MemorySharedAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MemorySharedAbility_label",
+      "value": "label"
+    },{
+      "name": "use_lock",
+      "value": "使用锁"
+    },{
+      "name": "not_use_lock",
+      "value": "不使用锁"
+    },{
+      "name": "not_use_atomics",
+      "value": "非原子操作"
+    },{
+      "name": "use_atomics",
+      "value": "原子操作"
+    },{
+      "name": "write_file_start",
+      "value": "写入文件开始"
+    },{
+      "name": "write_file_success",
+      "value": "写入文件成功"
+    },{
+      "name": "write_file_failed",
+      "value": "写入文件失败"
+    },{
+      "name": "lock_usage",
+      "value": "锁的使用"
+    },{
+      "name": "atomics_action",
+      "value": "原子操作对比"
+    },{
+      "name": "result",
+      "value": "计算结果："
+    }
+  ]
+}

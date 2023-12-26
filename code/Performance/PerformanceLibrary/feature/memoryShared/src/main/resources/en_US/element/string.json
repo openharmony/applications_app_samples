@@ -1,0 +1,47 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "MemorySharedAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MemorySharedAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "use_lock",
+      "value": "UseLock"
+    },{
+      "name": "not_use_lock",
+      "value": "NotUseLock"
+    },{
+      "name": "not_use_atomics",
+      "value": "NotUseAtomics"
+    },{
+      "name": "use_atomics",
+      "value": "UseAtomics"
+    },{
+      "name": "write_file_start",
+      "value": "WriteFileStart"
+    },{
+      "name": "write_file_success",
+      "value": "WriteFileSuccess"
+    },{
+      "name": "write_file_failed",
+      "value": "WriteFileFailed"
+    },{
+      "name": "lock_usage",
+      "value": "LockUsage"
+    },{
+      "name": "atomics_action",
+      "value": "AtomicsAction"
+    },{
+      "name": "result",
+      "value": "Result:"
+    }
+  ]
+}

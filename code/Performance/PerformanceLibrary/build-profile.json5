@@ -21,12 +21,13 @@
         "name": "default",
         "signingConfig": "default",
         "compileSdkVersion": 10,
-        "compatibleSdkVersion": 10
+        "compatibleSdkVersion": 10,
+        "targetSdkVersion": 10
       }
     ],
     "buildModeSet": [
       {
-        "name": "debug",
+        "name": "debug"
       },
       {
         "name": "release"
@@ -81,6 +82,18 @@
     {
       "name": "backgroundTask",
       "srcPath": "./feature/backgroundTask"
+    },
+    {
+      "name": "memoryShared",
+      "srcPath": "./feature/memoryShared",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
     }
   ]
 }
