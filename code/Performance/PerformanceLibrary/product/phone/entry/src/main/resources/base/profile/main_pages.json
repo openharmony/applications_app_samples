@@ -33,6 +33,9 @@
     "pages/backgroundTask/BackgroundTaskPage",
     "pages/backgroundTask/TransientTask",
     "pages/backgroundTask/LongTermTask",
+    "pages/memoryShared/MemorySharedHomePage",
+    "pages/memoryShared/AtomicsUsagePage",
+    "pages/memoryShared/LockUsagePage",
     "pages/DFXStateManagement/DFXStateManagementPage",
     "pages/DFXStateManagement/DFXStateBeforeOptimizationPage",
     "pages/DFXStateManagement/DFXStateAfterOptimizationPage"
