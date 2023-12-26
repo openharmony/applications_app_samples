@@ -15,7 +15,20 @@
 
 {
   "app": {
-    "signingConfigs": [],
+    "signingConfigs": [
+      {
+        "name": "default",
+        "material": {
+          "certpath": "C:\\Users\\ZhuHaoKun\\.ohos\\config\\openharmony\\auto_ohos_default_PerformanceLibrary_com.samples.performancelibrary.cer",
+          "storePassword": "0000001B6BF880497A5545242EA62D2CCE90B3437D266A5251929939D9825F5A810BE596E58F021CBDB640",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001BD771E126F0E9C4C416D89AC4622C10DD326A8D04C92C96AE5947C3BE727F57C5AF7C19C658CD61",
+          "profile": "C:\\Users\\ZhuHaoKun\\.ohos\\config\\openharmony\\auto_ohos_default_PerformanceLibrary_com.samples.performancelibrary.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\ZhuHaoKun\\.ohos\\config\\openharmony\\auto_ohos_default_PerformanceLibrary_com.samples.performancelibrary.p12"
+        }
+      }
+    ],
     "products": [
       {
         "name": "default",
