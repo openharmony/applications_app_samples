@@ -147,6 +147,72 @@ class Upload {
     }
   }
 
+  async uploadFileChunk(fileUris: Array<string>, begin: number, end: number, callback: (progress: number, isSucceed: boolean) => void): Promise<void> {
+    logger.info(TAG, `uploadFileChunk begin,${fileUris}, begin:${begin}, end:${end}`);
+    // 查询到存在正在执行的上传任务，提示并返回
+    let tasks = await request.agent.search({
+      state: request.agent.State.RUNNING,
+      action: request.agent.Action.UPLOAD,
+      mode: request.agent.Mode.FOREGROUND
+    });
+    if (tasks.length > 0) {
+      promptAction.showToast({ message: $r('app.string.have_upload_task_tips'), bottom: TOAST_BOTTOM });
+      return;
+    }
+    let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+    let config: request.agent.Config = {
+      action: request.agent.Action.UPLOAD,
+      headers: HEADER,
+      url: await urlUtils.getUrl(context),
+      mode: request.agent.Mode.FOREGROUND,
+      method: 'POST',
+      title: 'upload',
+      network: request.agent.Network.ANY,
+      data: await this.getFilesAndData(context.cacheDir, fileUris),
+      token: UPLOAD_TOKEN,
+      index: 0, // 指定片段上传的文件
+      begins: begin,
+      ends: end
+    };
+
+    try {
+      this.uploadTask = await request.agent.create(context, config);
+      this.uploadTask.on('progress', (progress: request.agent.Progress) => {
+        let processed = Number(progress.processed.toString()).valueOf();
+        let size = progress.sizes[progress.index];
+        if (progress.index === 0) {
+          if (end === -1) {
+            size -= begin;
+          } else {
+            size = end - begin + 1;
+          }
+        }
+        logger.info(TAG, `progress,  index:${progress.index}, progressed = ${progress.processed}, size=${size}`);
+        let process: number = Math.floor(processed / size * 100);
+        if (process < 100) {
+          callback(process, false);
+        }
+      });
+      this.uploadTask.on('completed', (progress: request.agent.Progress) => {
+        logger.info(TAG, `complete,  progress = ${progress.processed} ${progress.state}`);
+        callback(100, true);
+        this.cancelTask();
+      });
+      this.uploadTask.on('failed', async (progress: request.agent.Progress) => {
+        if (this.uploadTask) {
+          let taskInfo = await request.agent.touch(this.uploadTask.tid, UPLOAD_TOKEN);
+          logger.info(TAG, `fail,  resean = ${taskInfo.reason}, faults = ${JSON.stringify(taskInfo.faults)}`);
+        }
+        callback(100, false);
+        this.cancelTask();
+      })
+      await this.uploadTask.start();
+    } catch (err) {
+      logger.error(TAG, `task  err, err  = ${JSON.stringify(err)}`);
+      callback(100, false);
+    }
+  }
+
   async cancelTask() {
     if (this.uploadTask === undefined) {
       return;

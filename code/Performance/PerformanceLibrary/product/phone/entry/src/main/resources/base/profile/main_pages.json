@@ -28,6 +28,13 @@
     "pages/grid/GridLayoutOptionsPage",
     "pages/grid/GridLazyForEachPage",
     "pages/grid/GridPage",
-    "pages/smartPerfEditor/SmartPerfEditorPage"
+    "pages/smartPerfEditor/SmartPerfEditorPage",
+    "pages/trace/TracePage",
+    "pages/backgroundTask/BackgroundTaskPage",
+    "pages/backgroundTask/TransientTask",
+    "pages/backgroundTask/LongTermTask",
+    "pages/memoryShared/MemorySharedHomePage",
+    "pages/memoryShared/AtomicsUsagePage",
+    "pages/memoryShared/LockUsagePage"
   ]
 }

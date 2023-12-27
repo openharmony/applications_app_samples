@@ -14,6 +14,8 @@
  */
 
 import Want from '@ohos.app.ability.Want';
+import featureAbility from '@ohos.ability.featureAbility';
+import bundle from '@ohos.bundle';
 import { GlobalContext } from '../utils/GlobalContext';
 import Logger from '../utils/Logger';
 
@@ -21,6 +23,11 @@ const TAG: string = 'PageAbilitySingleton';
 
 class PageAbilitySingleton {
   onCreate() {
+    // 获取context并调用相关方法
+    let context = featureAbility.getContext();
+    context.setDisplayOrientation(bundle.DisplayOrientation.PORTRAIT).then(() => {
+      Logger.info(TAG, 'Set display orientation.')
+    })
     Logger.info(TAG, 'Application onCreate');
   }
 
@@ -29,7 +36,9 @@ class PageAbilitySingleton {
   }
 
   onNewWant(want: Want) {
-    GlobalContext.getContext().setObject('newWant', want);
+    featureAbility.getWant().then((want) => {
+      GlobalContext.getContext().setObject('newWant', want);
+    })
   }
 }
 

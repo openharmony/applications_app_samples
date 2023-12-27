@@ -20,19 +20,18 @@ import fs from '@ohos.file.fs';
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 const TAG: string = '[ConcurrentModule].[WorkerCopy]';
 
-workerPort.onmessage = function (message): void {
-  let data = message.data;
-  let srcPath = null;
-  let destPath = null;
-  let fileNames = data.fileNames;
+workerPort.onmessage = (message): void => {
+  let srcPath: string = null;
+  let destPath: string = null;
+  let fileNames: string = message.data.fileNames;
   for (let i = 0; i < fileNames.length; i++) {
-    srcPath = data.srcDir + '/' + fileNames[i];
+    srcPath = message.data.srcDir + '/' + fileNames[i];
     Logger.info(TAG, ' srcPath ' + srcPath);
-    destPath = data.destDir + '/' + fileNames[i];
+    destPath = message.data.destDir + '/' + fileNames[i];
     Logger.info(TAG, ' destPath ' + destPath);
     try {
       fs.copyFileSync(srcPath, destPath);
-      let countTest = fs.listFileSync(data.destDir).length;
+      let countTest = fs.listFileSync(message.data.destDir).length;
       Logger.info(TAG, `Worker workerInstance::onmessage receive countTest: ${countTest}`);
     } catch (e) {
       Logger.error(TAG, 'WorkerCopy::copyFile has failed for: ' + JSON.stringify(e));
@@ -41,8 +40,8 @@ workerPort.onmessage = function (message): void {
   let listFileNames = [];
   listFileNames.length = 0;
   try {
-    let count = fs.listFileSync(data.destDir).length;
-    let listFiles = fs.listFileSync(data.destDir);
+    let count = fs.listFileSync(message.data.destDir).length;
+    let listFiles = fs.listFileSync(message.data.destDir);
     Logger.info(TAG, 'listFile succeed');
     for (let i = 0; i < listFiles.length; i++) {
       listFileNames[i] = listFiles[i];
@@ -59,10 +58,10 @@ workerPort.onmessage = function (message): void {
   }
 };
 
-workerPort.onmessageerror = async function (message): Promise<void> {
+workerPort.onmessageerror = async (message): Promise<void> => {
   Logger.error(TAG, 'WorkerCopy::onmessageerror : ' + JSON.stringify(message));
 };
 
-workerPort.onerror = function (e): void {
+workerPort.onerror = (e): void => {
   Logger.error(TAG, 'WorkerCopy::onerror : ' + JSON.stringify(e));
 };

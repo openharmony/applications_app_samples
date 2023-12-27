@@ -221,10 +221,6 @@
       "value": "callee拉至后台"
     },
     {
-      "name": "UpdateCardByRouterCall_desc",
-      "value": "通过router或call事件刷新卡片内容"
-    },
-    {
       "name": "NoContentAvailable",
       "value": "暂无内容"
     },

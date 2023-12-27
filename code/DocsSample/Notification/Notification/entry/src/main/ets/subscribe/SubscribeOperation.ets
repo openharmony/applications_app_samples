@@ -15,19 +15,24 @@
 import Base from '@ohos.base';
 import notificationSubscribe from '@ohos.notificationSubscribe';
 import { logger } from '../util/Logger';
+import notificationManager from '@ohos.notificationManager';
+
+interface NotificationSortingMap {
+  readonly sortedHashCode: Array<string>;
+}
 
 class SubscribeOperations {
   createSubscriber = async () => {
     let subscriber: notificationSubscribe.NotificationSubscriber = {
       onConsume: (data: notificationSubscribe.SubscribeCallbackData) => {
-        let req = data.request;
+        let req: notificationManager.NotificationRequest = data.request;
         logger.info(`onConsume callback. req.id: ${req.id}`);
       },
       onCancel: (data: notificationSubscribe.SubscribeCallbackData) => {
-        let req = data.request;
+        let req: notificationManager.NotificationRequest = data.request;
         logger.info(`onCancel callback. req.id: ${req.id}`);
       },
-      onUpdate: (data) => {
+      onUpdate: (data: NotificationSortingMap) => {
         logger.info(`onUpdate callback. req.id: ${data.sortedHashCode}`);
       },
       onConnect: () => {

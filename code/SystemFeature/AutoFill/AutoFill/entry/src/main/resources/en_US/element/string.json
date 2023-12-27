@@ -1,0 +1,244 @@
+{
+  "string": [
+    {
+      "name": "EntryAbility_label",
+      "value": "PasswordBox"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "PasswordBox"
+    },
+    {
+      "name": "module_desc",
+      "value": "PasswordBox"
+    },
+    {
+      "name": "exit",
+      "value": "exit"
+    },
+    {
+      "name": "username",
+      "value": "*username: "
+    },
+    {
+      "name": "password",
+      "value": "*password: "
+    },
+    {
+      "name": "create_password",
+      "value": "create password: "
+    },
+    {
+      "name": "register",
+      "value": "register"
+    },
+    {
+      "name": "login",
+      "value": "Login"
+    },
+    {
+      "name": "save",
+      "value": "save"
+    },
+    {
+      "name": "register_login",
+      "value": "Register or Login"
+    },
+    {
+      "name": "password_mismatch",
+      "value": "Account or password does not match"
+    },
+    {
+      "name": "password_error",
+      "value": "The passwords entered twice inconsistent "
+    },
+    {
+      "name": "close",
+      "value": "Close"
+    },
+    {
+      "name": "email",
+      "value": "Email: "
+    },
+    {
+      "name": "signature",
+      "value": "Signature: "
+    },
+    {
+      "name": "confirm_password",
+      "value": "*Confirm Password: "
+    },
+    {
+      "name": "setting",
+      "value": "Setup is complete"
+    },
+    {
+      "name": "account",
+      "value": "Account Info"
+    },
+    {
+      "name": "modify",
+      "value": "Modify Info"
+    },
+    {
+      "name": "application",
+      "value": "Switch APP"
+    },
+    {
+      "name": "delete",
+      "value": "Delete Account"
+    },
+    {
+      "name": "warning",
+      "value": "Warning"
+    },
+    {
+      "name": "confirm",
+      "value": "Confirm"
+    },
+    {
+      "name": "delete_account",
+      "value": "You are deleting your account"
+    },
+    {
+      "name": "cancel",
+      "value": "Cancel"
+    },
+    {
+      "name": "blank",
+      "value": "Username is null"
+    },
+    {
+      "name": "password_blank",
+      "value": "Password is null"
+    },
+    {
+      "name": "switch_app",
+      "value": "Switch app"
+    },
+    {
+      "name": "has",
+      "value": "Username already exists"
+    },
+    {
+      "name": "prompt_username",
+      "value": "Input numbers, letters or underscores, 15 digits"
+    },
+    {
+      "name": "prompt_email",
+      "value": "Input mailbox format, 18 bits"
+    },
+    {
+      "name": "prompt_signature",
+      "value": "Input signature, 18 bits"
+    },
+    {
+      "name": "prompt_password",
+      "value": "Input password, 6-18 digits"
+    },
+    {
+      "name": "prompt_confirm_password",
+      "value": "Input the password again, 6-18 digits"
+    },
+    {
+      "name": "min_password",
+      "value": "Password length is less than 6 characters"
+    },
+    {
+      "name": "register_info",
+      "value": "Successful account registration"
+    },
+    {
+      "name": "modify_info",
+      "value": "Modify information successfully"
+    },
+    {
+      "name": "AutofillAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "AutofillAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "userPassWord_title",
+      "value": "Select a saved account password"
+    },
+    {
+      "name": "user1",
+      "value": "user1"
+    },
+    {
+      "name": "user2",
+      "value": "user2"
+    },
+    {
+      "name": "user3",
+      "value": "user3"
+    },
+    {
+      "name": "newPassword_title",
+      "value": "请确认是否生成密码？"
+    },
+    {
+      "name": "loginSuccess",
+      "value": "Login Success!"
+    },
+    {
+      "name": "backToLoginPage",
+      "value": "Back to Login Page"
+    },
+    {
+      "name": "saveInfo",
+      "value": "Please confirm to save the current account password？"
+    },
+    {
+      "name": "phoneNumber",
+      "value": "Please enter your phone number"
+    },
+    {
+      "name": "codeNumber",
+      "value": "请输入验证码"
+    },
+    {
+      "name": "getCodeNumber",
+      "value": "Please enter the verification code"
+    },
+    {
+      "name": "register_now",
+      "value": "Register now"
+    },
+    {
+      "name": "registerSuccess",
+      "value": "Registered Success!"
+    },
+    {
+      "name": "account_number",
+      "value": "Please enter your account number"
+    },
+    {
+      "name": "password_number",
+      "value": "Please enter password"
+    },
+    {
+      "name": "no_account",
+      "value": "No account yet？"
+    },
+    {
+      "name": "new_Password",
+      "value": "****************"
+    },
+    {
+      "name": "Welcome",
+      "value": "Welcome!"
+    },
+    {
+      "name": "passWord",
+      "value": "passWord"
+    },
+    {
+      "name": "resetGetCode",
+      "value": "resetGetCode(    )"
+    }
+  ]
+}

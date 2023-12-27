@@ -1,0 +1,68 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "homepage_bg_color",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "text_title_color",
+      "value": "#99182431"
+    },
+    {
+      "name": "text_bg_color",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "button_display_title_color",
+      "value": "#007DFF"
+    },
+    {
+      "name": "button_display_bg_color",
+      "value": "#1824310D"
+    },
+    {
+      "name": "button_sign_title_color",
+      "value": "#007DFF"
+    },
+    {
+      "name": "button_sign_bg_color",
+      "value": "#1824310D"
+    },
+    {
+      "name": "button_install_title_color",
+      "value": "#007DFF"
+    },
+    {
+      "name": "button_install_bg_color",
+      "value": "#1824310D"
+    },
+    {
+      "name": "button_verify_title_color",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "button_verify_bg_color",
+      "value": "#007DFF"
+    },
+    {
+      "name": "button_modify_origin_data_title_color",
+      "value": "#007DFF"
+    },
+    {
+      "name": "button_modify_origin_data_bg_color",
+      "value": "#1824310D"
+    },
+    {
+      "name": "button_modify_signature_data_title_color",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "button_modify_signature_data_bg_color",
+      "value": "#007DFF"
+    }
+  ]
+}

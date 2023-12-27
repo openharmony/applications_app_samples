@@ -13,16 +13,19 @@
  * limitations under the License.
  */
 
-import display from '@ohos.display'
-import UIAbility from '@ohos.app.ability.UIAbility'
-import Logger from '../model/Logger'
+import display from '@ohos.display';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Logger from '../model/Logger';
+import common from '@ohos.app.ability.common';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
 
-const TAG: string = '[MainAbility]'
+const TAG: string = '[MainAbility]';
 
 export default class MainAbility extends UIAbility {
-  onCreate(want, launchParam) {
-    globalThis.mainContext = this.context
-    Logger.info(TAG, `[Demo] MainAbility onCreate`)
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    AppStorage.setOrCreate<common.UIAbilityContext>('mainContext', this.context);
+    Logger.info(TAG, `[Demo] MainAbility onCreate`);
   }
 
   onDestroy() {

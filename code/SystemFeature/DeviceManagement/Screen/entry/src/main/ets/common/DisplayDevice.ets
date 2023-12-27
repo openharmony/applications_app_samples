@@ -24,7 +24,7 @@ export struct DisplayDevice {
   @State devices: number[] = []
   private screenIds: number[] = []
   private allScreens: display.Display[] = []
-  private defaultScreens: display.Display = undefined
+  private defaultScreens: display.Display | undefined = undefined
   private defaultOrAllScreen: boolean = false
   private displayModel: DisplayModel = new DisplayModel()
   dialogController: CustomDialogController = new CustomDialogController({
@@ -87,7 +87,7 @@ export struct DisplayDevice {
           })
 
 
-        ForEach(this.devices, (item, index) => {
+        ForEach(this.devices, (item: number, index) => {
           Rect({ width: '40%', height: '23%' })
             .margin({ top: '56px', left: '5%', right: '1%' })
             .fill('#007dff')

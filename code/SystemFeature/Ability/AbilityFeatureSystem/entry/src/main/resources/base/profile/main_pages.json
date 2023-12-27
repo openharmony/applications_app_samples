@@ -1,0 +1,11 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/Ext",
+    "pages/New",
+    "pages/NewExt",
+    "pages/Transit",
+    "pages/SendSync",
+    "pages/SendSyncExt"
+  ]
+}

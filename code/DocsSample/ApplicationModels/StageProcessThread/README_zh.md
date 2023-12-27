@@ -100,7 +100,7 @@ entry/src/main/ets/
   * 了解线程模型：
 
     * 调用相关接口函数来实现使用Emitter和Worker进行线程间通信的功能。
-    * 源码链接： [pageThreadModel.ets](entry\src\main\ets\pages\pageThreadModel.ets)   [worker.ts](entry\src\main\ets\workers\worker.ts) 
+    * 源码链接： [pageThreadModel.ets](entry\src\main\ets\pages\pageThreadModel.ets)   [Worker.ts](entry\src\main\ets\workers\Worker.ts) 
 
     * 参考接口：[@ohos.events.emitter](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-emitter.md)   [@ohos.worker](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-worker.md)
 
@@ -121,9 +121,9 @@ entry/src/main/ets/
 
 ### 依赖
 
-本示例依赖系统默认自带的[ArkTSClock](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Tools/ArkTSClock)应用。
+本示例依赖系统默认自带的[时钟](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Tools/ArkTSClock)应用。
 
-静态订阅公共事件需要修改设备的[预置配置文件](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_capability.json)，该配置文件在设备上的路径为`/system/etc/app/install_list_capability.json`。
+静态订阅公共事件需要修改设备的[预置配置文件](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_capability.json)，该配置文件在设备上的路为`/system/etc/app/install_list_capability.json`。
 
 设备开机启动时会读取该配置文件，在应用安装会对在文件中配置的`allowCommonEvent`公共事件类型进行授权。
 

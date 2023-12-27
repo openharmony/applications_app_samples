@@ -14,6 +14,7 @@
 */
 
 import AVSessionManager from '@ohos.multimedia.avsession';
+import common from '@ohos.app.ability.common';
 import control from '../feature/MediaController';
 import Log from '../common/Logger';
 
@@ -59,9 +60,10 @@ struct PresentPage {
         .width('100%')
         .height('100%')
         .onTouch((event?: TouchEvent) => {
-          if (event.type == TouchType.Down) {
+          if (event !== undefined && event.type == TouchType.Down) {
             Log.info(TAG, 'touch down img, terminate self sss');
-            globalThis.context.terminateSelf()
+            let context: common.UIAbilityContext | undefined = AppStorage.get<common.UIAbilityContext>('context')
+            context!.terminateSelf()
           }
         })
       Column() {
@@ -185,7 +187,7 @@ struct PresentPage {
               .visibility(this.sessionArray.length > 1 ? Visibility.Visible : Visibility.None)
             Row() {
               Image(this.sessionArray[1] && this.metaDataMap[this.sessionArray[1]]
-                    && this.metaDataMap[this.sessionArray[1]].mediaImage
+                && this.metaDataMap[this.sessionArray[1]].mediaImage
                 ? (this.metaDataMap[this.sessionArray[1]]).mediaImage : $r('app.media.no_music'))
                 .width('48vp')
                 .height('48vp')
@@ -225,7 +227,7 @@ struct PresentPage {
 
             Row() {
               Image(this.sessionArray[2] && this.metaDataMap[this.sessionArray[2]]
-                    && this.metaDataMap[this.sessionArray[2]].mediaImage
+                && this.metaDataMap[this.sessionArray[2]].mediaImage
                 ? (this.metaDataMap[this.sessionArray[2]]).mediaImage : $r('app.media.no_music'))
                 .width('48vp')
                 .height('48vp')
@@ -276,8 +278,8 @@ struct PresentPage {
           Column() {
             Column() {
               Text(this.sessionArray[0]
-                   && this.queueItemsMap[this.sessionArray[0]]
-                   && this.queueItemsMap[this.sessionArray[0]][0]
+                && this.queueItemsMap[this.sessionArray[0]]
+                && this.queueItemsMap[this.sessionArray[0]][0]
                 ? this.queueItemsMap[this.sessionArray[0]][0].description.title : 'queue null')
                 .fontSize('16fp')
                 .fontColor('#182431')
@@ -291,7 +293,7 @@ struct PresentPage {
             .id('FirstMusicInQueue')
             .onClick(() => {
               if (this.sessionArray[0] &&
-                this.queueItemsMap[this.sessionArray[0]] &&
+              this.queueItemsMap[this.sessionArray[0]] &&
                 this.queueItemsMap[this.sessionArray[0]][0] !== undefined) {
                 Log.info(TAG, 'pre skip :' + this.queueItemsMap[this.sessionArray[0]][0].itemId);
                 this.controller.skip(this.sessionArray[0], this.queueItemsMap[this.sessionArray[0]][0].itemId);
@@ -306,8 +308,8 @@ struct PresentPage {
 
             Column() {
               Text(this.sessionArray[0]
-                   && this.queueItemsMap[this.sessionArray[0]]
-                   && this.queueItemsMap[this.sessionArray[0]][1]
+                && this.queueItemsMap[this.sessionArray[0]]
+                && this.queueItemsMap[this.sessionArray[0]][1]
                 ? this.queueItemsMap[this.sessionArray[0]][1].description.title : 'queue null')
                 .fontSize('16fp')
                 .fontColor('#182431')
@@ -321,7 +323,7 @@ struct PresentPage {
             .id('SecondMusicInQueue')
             .onClick(() => {
               if (this.sessionArray[0] &&
-                this.queueItemsMap[this.sessionArray[0]] &&
+              this.queueItemsMap[this.sessionArray[0]] &&
                 this.queueItemsMap[this.sessionArray[0]][1] !== undefined) {
                 Log.info(TAG, 'pre skip :' + this.queueItemsMap[this.sessionArray[0]][1].itemId);
                 this.controller.skip(this.sessionArray[0], this.queueItemsMap[this.sessionArray[0]][1].itemId);
@@ -336,8 +338,8 @@ struct PresentPage {
 
             Column() {
               Text(this.sessionArray[0]
-                   && this.queueItemsMap[this.sessionArray[0]]
-                   && this.queueItemsMap[this.sessionArray[0]][2]
+                && this.queueItemsMap[this.sessionArray[0]]
+                && this.queueItemsMap[this.sessionArray[0]][2]
                 ? this.queueItemsMap[this.sessionArray[0]][2].description.title : 'queue null')
                 .fontSize('16fp')
                 .fontColor('#182431')
@@ -351,7 +353,7 @@ struct PresentPage {
             .id('ThirdMusicInQueue')
             .onClick(() => {
               if (this.sessionArray[0] &&
-                this.queueItemsMap[this.sessionArray[0]] &&
+              this.queueItemsMap[this.sessionArray[0]] &&
                 this.queueItemsMap[this.sessionArray[0]][2] !== undefined) {
                 this.controller.skip(this.sessionArray[0], this.queueItemsMap[this.sessionArray[0]][2].itemId);
               }

@@ -39,6 +39,7 @@ struct Index {
         .margin({ top: 8, bottom: 317, right: 152, left: 152 })
         .fontColor($r('app.color.text_color'))
         .opacity(0.4)
+        .fontWeight(400)
     }
     .width('100%')
     .height('100%')

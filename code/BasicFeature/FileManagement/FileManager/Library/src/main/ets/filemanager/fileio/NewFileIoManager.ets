@@ -33,8 +33,12 @@ class NewFileSystem {
   }
 
   // 修改文件时间
-  setFileTime(filePath: string, time: number): void {
+  setFileTime(filePath: string, timeStr: string): void {
     try {
+      let time = new Date(timeStr).getTime();
+      if (Number.isNaN(time)) {
+        return prompt.showToast({ message: $r('app.string.tip_invalid_time') });
+      }
       fs.utimes(filePath,time);
     } catch (err) {
       Logger.error(`setFileTime failed, code is ${err.code}, message is ${err.message}`);

@@ -15,8 +15,8 @@
 
 import { describe, it, expect } from '@ohos/hypium';
 import { Driver, ON, Component } from '@ohos.UiTest';
-import UIAbility from '@ohos.app.ability.UIAbility';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import deviceInfo from '@ohos.deviceInfo';
 import Logger from '../util/Logger';
 
 const BUNDLE = 'Brower_';
@@ -109,8 +109,18 @@ export default function appTest() {
     /**
      * 验证新增网页
      */
-    it(`${BUNDLE}AddWenPage_001`, 0, async () => {
-      Logger.info(TAG, `${BUNDLE}AddWenPage_001 begin`);
+    it(`${BUNDLE}AddWebPage_001`, 0, async () => {
+      Logger.info(TAG, `${BUNDLE}AddWebPage_001 begin`);
+      try {
+        let deviceType = deviceInfo.deviceType;
+        Logger.info(TAG, `deviceType: ${deviceType}`)
+        if (deviceType === 'default') {
+          Logger.info(TAG, 'This device does not support adding webpage');
+          return;
+        }
+      } catch (error) {
+        Logger.error(TAG, `Get device type failed error: ${JSON.stringify(error)}`);
+      }
       let driver: Driver = Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('inputUrl'));
@@ -142,7 +152,7 @@ export default function appTest() {
         return;
       }
       await driver.delayMs(1000);
-      Logger.info(TAG, `${BUNDLE}AddWenPage_001 end`);
+      Logger.info(TAG, `${BUNDLE}AddWebPage_001 end`);
     });
   });
 }

@@ -48,7 +48,7 @@ export default class EntryAbility extends Ability {
     let AuthFormItemList: Array<string> = [
     this.context.resourceManager.getStringSync($r('app.string.no_filter')),
     this.context.resourceManager.getStringSync($r('app.string.identical_account')),
-    this.context.resourceManager.getStringSync($r('app.string.identical_account')),
+    this.context.resourceManager.getStringSync($r('app.string.across_account')),
     this.context.resourceManager.getStringSync($r('app.string.no_account')),
     ];
     setGlobalObject('AuthFormItemList', AuthFormItemList);

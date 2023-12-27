@@ -70,6 +70,18 @@ SmartPerfHost使用说明：
 
 5.点击SmartPerfHost查看AppStartup优化前场景页的**AppStartup优化后代码**按钮进入场景页。
 
+Trace使用说明：
+
+1.点击性能示例主页的**Trace**按钮，进入**懒加载示例**场景页。
+
+BackgroundTask使用说明：
+
+1.点击性能示例主页的**BackgroundTask**按钮，进入**后台任务**场景页，包括**短时任务**和**长时任务**两个子页面，同意授予通知权限。
+
+2.点击**短时任务**按钮进入场景页，点击**开始计算**按钮执行任务。
+
+3.点击**长时任务**按钮进入场景页，授予通知权限和定位权限，和点击**开启定位服务**按钮开启定位，点击**关闭定位服务**关闭定位。
+
 ### 工程目录
 
 ```
@@ -130,6 +142,18 @@ features
 |   |   |---StaticContentPageTwo.ets                  // 常规加载子页面
 |   |   |---StaticEntryView.ets                       // 常规加载入口页面           
 |   |   |---StaticHome.ets                            // 常规加载主页
+|---/trace/src/main/ets                               // Trace功能HAR共享包
+|---|---/pages    
+|   |   |---LazyForEachPage.ets                       // 懒加载示例场景页面     
+|---|---/view                
+|   |   |---IconView.ets                              // 懒加载示例场景子页面 
+|---|---/viewmodel          
+|   |   |---BasicDataSource.ets                       // 封装列表数据方法
+|---/backgroundTask/src/main/ets                      // backgroundTask类功能HAR共享包
+|   |---/view    
+|   |   |---BackgroundTaskHomeView.ets                // 场景主页面模块       
+|   |   |---TransientTaskView.ets                     // 短时任务页面
+|   |   |---LongTermTaskView.ets                      // 长时任务页面
 products/phone/entry/src/main/ets
 |---/entryability
 |   |---EntryAbility.ts                               // 封装整个模块启用，监听Ability对应的窗口等逻辑
@@ -138,9 +162,9 @@ products/phone/entry/src/main/ets
 |   |---/MockData.ets                                 // 本地数据
 |---pages 
 |   |---/dynamicImport
-|   |   |---DynamicEntryView.ets           // 动态加载入口页面
-|   |   |---DynamicHome.ets                // 动态加载主页
-|   |   |---DynamicContentPageOne.ets      // 动态加载内容页 
+|   |   |---DynamicEntryView.ets                      // 动态加载入口页面
+|   |   |---DynamicHome.ets                           // 动态加载主页
+|   |   |---DynamicContentPageOne.ets                 // 动态加载内容页 
 |   |---/grid
 |   |   |---GridPage.ets                              // 场景主页面                 
 |   |   |---GridLazyForEachPage.etss                  // 懒加载+cachedCount+组件复用页面
@@ -172,7 +196,13 @@ products/phone/entry/src/main/ets
 |   |---/staticImport
 |   |   |---StaticEntryView.ets                       // 常规加载入口页面              
 |   |   |---StaticHome.ets                            // 常规加载主页
-|   |---/Index                                        // 性能示例首页                              
+|   |---/backgroundTask
+|   |   |---BackgroundTaskPage.ets                    // 后台任务入口页面              
+|   |   |---TransientTask.ets                         // 短时任务页面
+|   |   |---LongTermTask.ets                          // 长时任务页面
+|   |---/trace
+|   |   |---TracePage.ets                             // 懒加载示例首页              
+|   |---/Index                                                                     
 |---/utils
 |   |---Logger.ets                                    // 封装整个日志
 
@@ -240,9 +270,21 @@ products/phone/entry/src/main/ets
     * 应用优化前[FrameTimelineBeforeOptimization.ets](feature/smartPerfEditor/src/main/ets/view/FrameTimelineBeforeOptimization.ets)
     * 应用优化后[FrameTimelineAfterOptimization.ets](feature/smartPerfEditor/src/main/ets/view/FrameTimelineAfterOptimization.ets)
 
+* 后台任务页面模块
+  * 短时任务
+    * 申请短时任务，应用后台执行耗时计算任务
+    * 源码链接：[TransientTaskView.ets](feature/backgroundTask/src/main/ets/view/TransientTaskView.ets)
+  * 长时任务
+    * 模拟后台导航定位场景，申请定位类型长时任务，使用@ohos.geoLocationManager实现位置定位功能，必须在联网环境才能获取定位数据
+    * 源码链接：[LongTermTaskView.ets](feature/backgroundTask/src/main/ets/view/LongTermTaskView.ets)
+
 ### 相关权限
 
-不涉及。  
+ohos.permission.INTERNET
+ohos.permission.LOCATION
+ohos.permission.LOCATION_IN_BACKGROUND
+ohos.permission.APPROXIMATELY_LOCATION
+ohos.permission.KEEP_BACKGROUND_RUNNING
 
 ### 依赖
 

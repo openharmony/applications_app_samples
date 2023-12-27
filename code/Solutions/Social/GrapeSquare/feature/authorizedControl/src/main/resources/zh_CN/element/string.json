@@ -1,0 +1,344 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from npm package"
+    },
+    {
+      "name": "layout_50",
+      "value": "50%"
+    },
+    {
+      "name": "hot",
+      "value": "按最热"
+    },
+    {
+      "name": "recommend",
+      "value": "推荐"
+    },
+    {
+      "name": "care_title",
+      "value": "关注"
+    },
+    {
+      "name": "add_care",
+      "value": "+ 关注"
+    },
+    {
+      "name": "share",
+      "value": "转发"
+    },
+    {
+      "name": "comment",
+      "value": "评论"
+    },
+    {
+      "name": "like",
+      "value": "赞"
+    },
+    {
+      "name": "share_count",
+      "value": "转发 1000"
+    },
+    {
+      "name": "comment_count",
+      "value": "评论 100"
+    },
+    {
+      "name": "like_count",
+      "value": "赞 126"
+    },
+    {
+      "name": "copy_succeed",
+      "value": "复制成功"
+    },
+    {
+      "name": "copy",
+      "value": "复制"
+    },
+    {
+      "name": "paste",
+      "value": "粘贴"
+    },
+    {
+      "name": "paste_succeed",
+      "value": "粘贴成功"
+    },
+    {
+      "name": "add_comment",
+      "value": "添加评论..."
+    },
+    {
+      "name": "save_succeed",
+      "value": "保存成功"
+    },
+    {
+      "name": "save_failed",
+      "value": "保存失败"
+    },
+    {
+      "name": "comments",
+      "value": "Demon: 嘿嘿~"
+    },
+    {
+      "name": "feature_development",
+      "value": "功能开发中..."
+    },
+    {
+      "name": "vipcenter",
+      "value": "会员中心"
+    },
+    {
+      "name": "setting",
+      "value": "设置"
+    },
+    {
+      "name": "vipownsetting",
+      "value": "会员专属设置"
+    },
+    {
+      "name": "deppcolormode",
+      "value": "深色模式"
+    },
+    {
+      "name": "mycollection",
+      "value": "我的收藏"
+    },
+    {
+      "name": "mylike",
+      "value": "我的赞"
+    },
+    {
+      "name": "browsinghistory",
+      "value": "浏览历史"
+    },
+    {
+      "name": "followinghypertalk",
+      "value": "关注的超话"
+    },
+    {
+      "name": "shieldsetting",
+      "value": "屏蔽设置"
+    },
+    {
+      "name": "void",
+      "value": " "
+    },
+    {
+      "name": "after_vipcenter",
+      "value": "独享极简模式"
+    },
+    {
+      "name": "settingbackground",
+      "value": "设置首页背景图"
+    },
+    {
+      "name": "after_settingBackground",
+      "value": "尊享专属"
+    },
+    {
+      "name": "hot_search_list",
+      "value": "热搜榜"
+    },
+    {
+      "name": "same_city_list",
+      "value": "同城榜"
+    },
+    {
+      "name": "user_name",
+      "value": "这里是昵称"
+    },
+    {
+      "name": "following",
+      "value": "关注8"
+    },
+    {
+      "name": "fans",
+      "value": "粉丝6"
+    },
+    {
+      "name": "my",
+      "value": "我的"
+    },
+    {
+      "name": "explore",
+      "value": "探索"
+    },
+    {
+      "name": "trend",
+      "value": "趋势"
+    },
+    {
+      "name": "hot_tab",
+      "value": "热门"
+    },
+    {
+      "name": "honorable_vip",
+      "value": "尊享会员"
+    },
+    {
+      "name": "same_city",
+      "value": "同城"
+    },
+    {
+      "name": "list",
+      "value": "榜单"
+    },
+    {
+      "name": "super_talk",
+      "value": "超话社区"
+    },
+    {
+      "name": "hot_search",
+      "value": "热搜"
+    },
+    {
+      "name": "all",
+      "value": "全部"
+    },
+    {
+      "name": "anonymous_story",
+      "value": "匿名故事"
+    },
+    {
+      "name": "story_des",
+      "value": "我也来问问"
+    },
+    {
+      "name": "story_dess",
+      "value": "白头如新，倾盖如故"
+    },
+    {
+      "name": "hot_first_item",
+      "value": "秒回消息的原因"
+    },
+    {
+      "name": "hot_second_item",
+      "value": "双十一拼单"
+    },
+    {
+      "name": "hot_third_item",
+      "value": "XXXXHOLIC绝"
+    },
+    {
+      "name": "hot_fourth_item",
+      "value": "匪我思存又要开始"
+    },
+    {
+      "name": "hot_fifth_item",
+      "value": "金牛座真的不抠门"
+    },
+    {
+      "name": "hot_sixth_item",
+      "value": "为什么人们不再相信爱情"
+    },
+    {
+      "name": "hot_seventh_item",
+      "value": "路额尽头究竟是什么"
+    },
+    {
+      "name": "hot_eighth_item",
+      "value": "早八懒人遮瑕盘"
+    },
+    {
+      "name": "hot_ninth_item",
+      "value": "复古千金妆"
+    },
+    {
+      "name": "hot_tenth_item",
+      "value": "小猫咪又菜又爱玩"
+    },
+    {
+      "name": "current_hot_point",
+      "value": "实时热点，每分钟更新"
+    },
+    {
+      "name": "current_city",
+      "value": "当前城市:"
+    },
+    {
+      "name": "number_one",
+      "value": "1"
+    },
+    {
+      "name": "number_two",
+      "value": "2"
+    },
+    {
+      "name": "number_three",
+      "value": "3"
+    },
+    {
+      "name": "number_four",
+      "value": "4"
+    },
+    {
+      "name": "number_five",
+      "value": "5"
+    },
+    {
+      "name": "number_six",
+      "value": "6"
+    },
+    {
+      "name": "number_seven",
+      "value": "7"
+    },
+    {
+      "name": "number_eight",
+      "value": "8"
+    },
+    {
+      "name": "number_nine",
+      "value": "9"
+    },
+    {
+      "name": "number_ten",
+      "value": "10"
+    },
+    {
+      "name": "hot_item_one",
+      "value": "今日杭州xxxxxx"
+    },
+    {
+      "name": "hot_item_two",
+      "value": "这是第二条微博热搜然后需要看一看如果字符超长的话会产生什么效果"
+    },
+    {
+      "name": "hot_item_three",
+      "value": "双十一拼单"
+    },
+    {
+      "name": "hot_item_four",
+      "value": "XXXXHOLIC绝美原画"
+    },
+    {
+      "name": "hot_item_five",
+      "value": "匪我思存又要开大了我真的会谢"
+    },
+    {
+      "name": "hot_item_six",
+      "value": "金牛座真的不抠门"
+    },
+    {
+      "name": "hot_item_seven",
+      "value": "为什么人们不再喝一点点了"
+    },
+    {
+      "name": "hot_item_eight",
+      "value": "路的尽头究竟是什么"
+    },
+    {
+      "name": "hot_item_nine",
+      "value": "早八懒人遮瑕盘"
+    },
+    {
+      "name": "hot_item_ten",
+      "value": "复古千金妆"
+    },
+    {
+      "name": "hot_item_ones",
+      "value": "热搜榜第一条"
+    }
+  ]
+}

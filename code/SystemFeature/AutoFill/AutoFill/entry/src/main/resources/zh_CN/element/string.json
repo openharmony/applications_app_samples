@@ -1,0 +1,244 @@
+{
+  "string": [
+    {
+      "name": "EntryAbility_label",
+      "value": "PasswordBox"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "PasswordBox"
+    },
+    {
+      "name": "module_desc",
+      "value": "账号管理"
+    },
+    {
+      "name": "exit",
+      "value": "退出"
+    },
+    {
+      "name": "username",
+      "value": "*用户名: "
+    },
+    {
+      "name": "password",
+      "value": "*密码: "
+    },
+    {
+      "name": "create_password",
+      "value": "生成密码"
+    },
+    {
+      "name": "register",
+      "value": "注册"
+    },
+    {
+      "name": "login",
+      "value": "登录"
+    },
+    {
+      "name": "save",
+      "value": "保存"
+    },
+    {
+      "name": "register_login",
+      "value": "注册/登录"
+    },
+    {
+      "name": "password_mismatch",
+      "value": "账号或者密码不符"
+    },
+    {
+      "name": "password_error",
+      "value": "两次输入密码不一致"
+    },
+    {
+      "name": "close",
+      "value": "关闭"
+    },
+    {
+      "name": "email",
+      "value": "邮箱: "
+    },
+    {
+      "name": "signature",
+      "value": "个性签名: "
+    },
+    {
+      "name": "confirm_password",
+      "value": "*确认密码: "
+    },
+    {
+      "name": "setting",
+      "value": "设置完成"
+    },
+    {
+      "name": "account",
+      "value": "账户信息"
+    },
+    {
+      "name": "modify",
+      "value": "修改信息"
+    },
+    {
+      "name": "application",
+      "value": "切换应用"
+    },
+    {
+      "name": "delete",
+      "value": "删除账号"
+    },
+    {
+      "name": "warning",
+      "value": "警告"
+    },
+    {
+      "name": "confirm",
+      "value": "确认"
+    },
+    {
+      "name": "delete_account",
+      "value": "您正在删除账号"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "blank",
+      "value": "用户名为空"
+    },
+    {
+      "name": "password_blank",
+      "value": "密码为空"
+    },
+    {
+      "name": "switch_app",
+      "value": "切换应用"
+    },
+    {
+      "name": "has",
+      "value": "用户名已存在"
+    },
+    {
+      "name": "prompt_username",
+      "value": "输入数字、字母或下划线，15位"
+    },
+    {
+      "name": "prompt_email",
+      "value": "输入邮箱格式，18位"
+    },
+    {
+      "name": "prompt_signature",
+      "value": "输入签名，18位"
+    },
+    {
+      "name": "prompt_password",
+      "value": "输入密码，6-18位"
+    },
+    {
+      "name": "prompt_confirm_password",
+      "value": "再次输入密码，6-18位"
+    },
+    {
+      "name": "min_password",
+      "value": "密码长度小于6位"
+    },
+    {
+      "name": "register_info",
+      "value": "注册账号成功"
+    },
+    {
+      "name": "modify_info",
+      "value": "修改信息成功"
+    },
+    {
+      "name": "AutofillAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "AutofillAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "userPassWord_title",
+      "value": "选择已保存的账号密码"
+    },
+    {
+      "name": "user1",
+      "value": "user1"
+    },
+    {
+      "name": "user2",
+      "value": "user2"
+    },
+    {
+      "name": "user3",
+      "value": "user3"
+    },
+    {
+      "name": "newPassword_title",
+      "value": "请确认是否生成密码？"
+    },
+    {
+      "name": "loginSuccess",
+      "value": "登录成功!"
+    },
+    {
+      "name": "backToLoginPage",
+      "value": "返回登录页面"
+    },
+    {
+      "name": "saveInfo",
+      "value": "请确认保存当前账号密码？"
+    },
+    {
+      "name": "phoneNumber",
+      "value": "请输入手机号"
+    },
+    {
+      "name": "codeNumber",
+      "value": "请输入验证码"
+    },
+    {
+      "name": "getCodeNumber",
+      "value": "获取验证码"
+    },
+    {
+      "name": "register_now",
+      "value": "立即注册"
+    },
+    {
+      "name": "registerSuccess",
+      "value": "注册成功!"
+    },
+    {
+      "name": "account_number",
+      "value": "请输入账号"
+    },
+    {
+      "name": "password_number",
+      "value": "请输入密码"
+    },
+    {
+      "name": "no_account",
+      "value": "还没有账号？"
+    },
+    {
+      "name": "new_Password",
+      "value": "****************"
+    },
+    {
+      "name": "Welcome",
+      "value": "Welcome!"
+    },
+    {
+      "name": "passWord",
+      "value": "密码"
+    },
+    {
+      "name": "resetGetCode",
+      "value": "重新获取(    )"
+    }
+  ]
+}

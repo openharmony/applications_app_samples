@@ -49,22 +49,24 @@ export struct ShowInfo {
   screenInfo(types: string) {
     Logger.info(TAG, `defaultOrAllScreen = ${this.defaultOrAllScreen}`)
     let info: string = ''
+    let yes: string | undefined = AppStorage.get<string>('yes');
+    let no: string | undefined = AppStorage.get<string>('no');
     if (this.defaultOrAllScreen) {
-      const SCREEN_INFO = {
-        id: `${this.defaultScreens.id}`,
-        name: `${this.defaultScreens.name}`,
-        refreshRate: `${this.defaultScreens.refreshRate}`,
-        width: `${this.defaultScreens.width}`,
-        height: `${this.defaultScreens.height}`,
-        alive: `${this.defaultScreens.alive? globalThis.yes: globalThis.no}`,
-        state: `${this.defaultScreens.state}`,
-        rotation: `${this.defaultScreens.rotation}`,
-        densityDPI: `${this.defaultScreens.densityDPI}`,
-        orientation: `${this.defaultScreens.orientation}`,
-        densityPixels: `${this.defaultScreens.densityPixels}`,
-        scaledDensity: `${this.defaultScreens.scaledDensity}`,
-        xDPI: `${this.defaultScreens.xDPI}`,
-        yDPI: `${this.defaultScreens.yDPI}`
+      const SCREEN_INFO: Record<string, string> = {
+        "id": `${this.defaultScreens!.id}`,
+        "name": `${this.defaultScreens!.name}`,
+        "refreshRate": `${this.defaultScreens!.refreshRate}`,
+        "width": `${this.defaultScreens!.width}`,
+        "height": `${this.defaultScreens!.height}`,
+        "alive": `${this.defaultScreens!.alive ? yes : no}`,
+        "state": `${this.defaultScreens!.state}`,
+        "rotation": `${this.defaultScreens!.rotation}`,
+        "densityDPI": `${this.defaultScreens!.densityDPI}`,
+        "orientation": `${this.defaultScreens!.orientation}`,
+        "densityPixels": `${this.defaultScreens!.densityPixels}`,
+        "scaledDensity": `${this.defaultScreens!.scaledDensity}`,
+        "xDPI": `${this.defaultScreens!.xDPI}`,
+        "yDPI": `${this.defaultScreens!.yDPI}`
       }
       info = SCREEN_INFO[types]
     } else {
@@ -83,37 +85,38 @@ export struct ShowInfo {
       let xDPIs: string = '';
       let yDPIs: string = '';
 
-      for (let i = 0; i < this.allScreens.length; i++) {
-        ids = `${ids} ${this.allScreens[i].id}`;
-        refreshRates = `${refreshRates} ${this.allScreens[i].refreshRate}`;
-        widths = `${widths} ${this.allScreens[i].width}`;
-        heights = `${heights} ${this.allScreens[i].height}`;
-        names = `${names} ${this.allScreens[i].name}`;
-        alives = `${alives} ${this.allScreens[i].alive ? globalThis.yes: globalThis.no}`;
-        states = `${states} ${this.allScreens[i].state}`;
-        rotations = `${rotations} ${this.allScreens[i].rotation}`;
-        densityDPIs = `${densityDPIs} ${this.allScreens[i].densityDPI}`;
-        orientations = `${orientations} ${this.allScreens[i].orientation}`;
-        densityPixelszs = `${densityPixelszs} ${this.allScreens[i].densityPixels}`;
-        scaledDensitys = `${scaledDensitys} ${this.allScreens[i].scaledDensity}`;
-        xDPIs = `${xDPIs} ${this.allScreens[i].xDPI}`;
-        yDPIs = `${yDPIs} ${this.allScreens[i].yDPI}`;
+
+      for (let i = 0; i < this.allScreens!.length; i++) {
+        ids = `${ids} ${this.allScreens![i].id}`;
+        refreshRates = `${refreshRates} ${this.allScreens![i].refreshRate}`;
+        widths = `${widths} ${this.allScreens![i].width}`;
+        heights = `${heights} ${this.allScreens![i].height}`;
+        names = `${names} ${this.allScreens![i].name}`;
+        alives = `${alives} ${this.allScreens![i].alive ? yes : no}`;
+        states = `${states} ${this.allScreens![i].state}`;
+        rotations = `${rotations} ${this.allScreens![i].rotation}`;
+        densityDPIs = `${densityDPIs} ${this.allScreens![i].densityDPI}`;
+        orientations = `${orientations} ${this.allScreens![i].orientation}`;
+        densityPixelszs = `${densityPixelszs} ${this.allScreens![i].densityPixels}`;
+        scaledDensitys = `${scaledDensitys} ${this.allScreens![i].scaledDensity}`;
+        xDPIs = `${xDPIs} ${this.allScreens![i].xDPI}`;
+        yDPIs = `${yDPIs} ${this.allScreens![i].yDPI}`;
       }
-      const SCREENS_INFO = {
-        id: ids,
-        name: names,
-        refreshRate: refreshRates,
-        width: widths,
-        height: heights,
-        alive: alives,
-        state: states,
-        rotation: rotations,
-        densityDPI: densityDPIs,
-        orientation: orientations,
-        densityPixels: densityPixelszs,
-        scaledDensity: scaledDensitys,
-        xDPI: xDPIs,
-        yDPI: yDPIs
+      const SCREENS_INFO: Record<string, string> = {
+        "id": ids,
+        "name": names,
+        "refreshRate": refreshRates,
+        "width": widths,
+        "height": heights,
+        "alive": alives,
+        "state": states,
+        "rotation": rotations,
+        "densityDPI": densityDPIs,
+        "orientation": orientations,
+        "densityPixels": densityPixelszs,
+        "scaledDensity": scaledDensitys,
+        "xDPI": xDPIs,
+        "yDPI": yDPIs
       }
       info = SCREENS_INFO[types]
     }
@@ -168,7 +171,7 @@ export struct ShowInfo {
           .backgroundColor('#ffffff')
           .margin({ top: '12px', left: '20%', right: '20%', bottom: '5%'})
           .onClick(() => {
-            this.dialogController.close();
+            this.dialogController!.close();
           })
       }
       .alignItems(HorizontalAlign.Center)
@@ -181,7 +184,7 @@ export struct ShowInfo {
     .height('100%')
     .backgroundColor("#ffffff")
     .onClick(() => {
-      this.dialogController.close();
+      this.dialogController!.close();
     })
   }
 }

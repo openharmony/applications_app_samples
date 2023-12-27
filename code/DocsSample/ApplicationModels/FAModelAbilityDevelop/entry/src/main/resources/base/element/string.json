@@ -307,6 +307,34 @@
     {
       "name": "executeBatch_data",
       "value": "executeBatch_data"
+    },
+    {
+      "name": "start_remote_success_toast",
+      "value": "start_remote_success_toast"
+    },
+    {
+      "name": "obtain_permissions_button",
+      "value": "obtain_permissions_button"
+    },
+    {
+      "name": "obtain_device_id_button",
+      "value": "obtain_device_id_button"
+    },
+    {
+      "name": "start_remote_ability_button",
+      "value": "start_remote_ability_button"
+    },
+    {
+      "name": "start_stage_service_extension_button",
+      "value": "start_stage_service_extension_button"
+    },
+    {
+      "name": "connect_service_extension_success_toast",
+      "value": "connect_service_extension_success_toast"
+    },
+    {
+      "name": "connect_service_extension_failed_toast",
+      "value": "connect_service_extension_failed_toast"
     }
   ]
 }

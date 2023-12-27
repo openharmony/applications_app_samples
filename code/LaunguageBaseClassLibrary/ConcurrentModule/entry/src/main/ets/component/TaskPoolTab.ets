@@ -15,6 +15,7 @@
 
 import taskpool from '@ohos.taskpool';
 import stack from '@ohos.util.Stack';
+import { BusinessError } from '@ohos.base';
 
 @Component
 export struct TaskPoolTab {
@@ -250,10 +251,10 @@ export struct TaskPoolTab {
     let task = new taskpool.Task(strSort,this.taskPoolInPutArr);
     this.gStack.push(task);
     try {
-      let result: Object = await taskpool.execute(task);
+      let result: taskpool.Task = await taskpool.execute(task) as taskpool.Task;
       this.taskPoolOutPutStr += "Task executed successfully: "+ result.toString()+ "\n";
     } catch(e) {
-      this.taskPoolOutPutStr += "Task executed failed: "+ e.toString()+ "\n";
+      this.taskPoolOutPutStr += "Task executed failed: "+ (e as BusinessError).toString()+ "\n";
     }
     this.gStack.pop();
   }
@@ -266,10 +267,10 @@ export struct TaskPoolTab {
     let task = new taskpool.Task(strSortDelay,this.taskPoolInPutArr);
     this.gStack.push(task);
     try {
-      let result = await taskpool.execute(task);
+      let result: string[] = await taskpool.execute(task) as string[];
       this.taskPoolOutPutStr += "Task executed successfully: "+ result.toString()+ "\n";
     } catch(e) {
-      this.taskPoolOutPutStr += "Task executed failed: "+ e.toString()+ "\n";
+      this.taskPoolOutPutStr += "Task executed failed: "+ (e as BusinessError).toString()+ "\n";
     }
     this.gStack.pop();
   }
@@ -280,10 +281,10 @@ export struct TaskPoolTab {
       return;
     }
     try {
-      let result = await taskpool.execute(strSort,this.taskPoolInPutArr);
+      let result: string[] = await taskpool.execute(strSort,this.taskPoolInPutArr) as string[];
       this.taskPoolOutPutStr += "Task executed successfully: "+ result.toString()+ "\n";
     } catch(e) {
-      this.taskPoolOutPutStr += "Task executed failed: "+ e.toString()+ "\n";
+      this.taskPoolOutPutStr += "Task executed failed: "+ (e as BusinessError).toString()+ "\n";
     }
   }
 
@@ -293,12 +294,12 @@ export struct TaskPoolTab {
       return;
     }
     try {
-      let task = new taskpool.Task(strSort, this.taskPoolInPutArr);
+      let task: taskpool.Task = new taskpool.Task(strSort, this.taskPoolInPutArr);
       this.taskGroup.addTask(task);
       this.isTaskGroup = true;
       this.taskPoolOutPutStr += "TaskGroup addTask successfully.\n";
     } catch (e) {
-      this.taskPoolOutPutStr += "TaskGroup addTask failed: "+ e.toString()+ "\n";
+      this.taskPoolOutPutStr += "TaskGroup addTask failed: "+ (e as BusinessError).toString()+ "\n";
     }
   }
 
@@ -310,10 +311,10 @@ export struct TaskPoolTab {
 
   async TaskGroupExec(): Promise<void> {
     try {
-      let res = await taskpool.execute(this.taskGroup);
+      let res: string[] = await taskpool.execute(this.taskGroup) as string[];
       this.taskPoolOutPutStr += "TaskGroup executed successfully: "+ res.toString()+ "\n";
     } catch(e) {
-      this.taskPoolOutPutStr += "TaskGroup executed failed: "+ e.toString()+ "\n";
+      this.taskPoolOutPutStr += "TaskGroup executed failed: "+ (e as BusinessError).toString()+ "\n";
     }
     this.isTaskGroup = false;
   }
@@ -328,7 +329,7 @@ export struct TaskPoolTab {
         this.taskPoolOutPutStr += "Task canceled successfully."+ "\n";
         this.gStack.pop();
       } catch(e) {
-        this.taskPoolOutPutStr += "Task canceled failed: "+ e.toString()+ "\n";
+        this.taskPoolOutPutStr += "Task canceled failed: "+ (e as BusinessError).toString()+ "\n";
       }
     }
   }

@@ -54,15 +54,15 @@
     },
     {
       "name": "WidgetEventEntryAbility_desc",
-      "value": "Update by router action"
+      "value": "This is a service widget update by router action"
     },
     {
       "name": "WidgetEventEntryAbility_label",
-      "value": "update by router"
+      "value": "This is a service widget update by router"
     },
     {
       "name": "WgtImgUpdateEntryFormAbility_desc",
-      "value": "Widget image update"
+      "value": "This a service widget of image update"
     },
     {
       "name": "WgtImgUpdateEntryFormAbility_label",
@@ -78,7 +78,7 @@
     },
     {
       "name": "UpdateByStatusFormAbility_desc",
-      "value": "Widget update by status"
+      "value": "This is a service widget update by status"
     },
     {
       "name": "UpdateByStatusFormAbility_label",
@@ -106,7 +106,7 @@
     },
     {
       "name": "ProcessDataEntryAbility_desc",
-      "value": "Widget update by proxy with process data"
+      "value": "This is a service widget update by proxy using process data"
     },
     {
       "name": "ProcessDataEntryAbility_label",
@@ -114,7 +114,7 @@
     },
     {
       "name": "PersistentDataFormAbility_desc",
-      "value": "Widget update by proxy with persistent data"
+      "value": "This is a service widget update by proxy using persistent data"
     },
     {
       "name": "PersistentDataFormAbility_label",
@@ -219,10 +219,6 @@
     {
       "name": "CalleeJumpLabel",
       "value": "callee jump"
-    },
-    {
-      "name": "UpdateCardByRouterCall_desc",
-      "value": "Update Card By Router or Call"
     },
     {
       "name": "NoContentAvailable",

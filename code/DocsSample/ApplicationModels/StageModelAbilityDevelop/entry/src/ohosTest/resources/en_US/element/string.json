@@ -447,6 +447,114 @@
     {
       "name": "CallerSuccess",
       "value": "CallerSuccess"
+    },
+    {
+      "name": "CallerWithReturnData",
+      "value": "Caller With Return Data"
+    },
+    {
+      "name": "CallerRelease",
+      "value": "CallerRelease"
+    },
+    {
+      "name": "CallerCommunication",
+      "value": "Caller Communication"
+    },
+    {
+      "name": "CallerCommunicationSuccess",
+      "value": "Caller Communication Success"
+    },
+    {
+      "name": "CallerReleaseSuccess",
+      "value": "Caller Release Success"
+    },
+    {
+      "name": "AccessibilityExtAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "AccessibilityExtAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "ConnectFAServiceAbility",
+      "value": "Connect FA ServiceAbility"
+    },
+    {
+      "name": "ServiceExtension",
+      "value": "Extension Service"
+    },
+    {
+      "name": "ServiceExtAbility_desc",
+      "value": "service"
+    },
+    {
+      "name": "ServiceExtAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "StartBackendService",
+      "value": "StartBackendService"
+    },
+    {
+      "name": "StopStartedBackendService",
+      "value": "Stop a started backend service"
+    },
+    {
+      "name": "BackendServices",
+      "value": "Backend Services"
+    },
+    {
+      "name": "StopBackendServices",
+      "value": "Stop Backend Services"
+    },
+    {
+      "name": "SuccessfullyStoppedAStartedBackendService",
+      "value": "Successfully stopped a started backend service"
+    },
+    {
+      "name": "SuccessfullyStartBackendService",
+      "value": "Successfully Start Backend Service"
+    },
+    {
+      "name": "SuccessfullyStopStartedBackendService",
+      "value": "Successfully Stop Started Backend Service"
+    },
+    {
+      "name": "ConnectBackendService",
+      "value": "Connect Backend Service"
+    },
+    {
+      "name": "SuccessfullyConnectBackendService",
+      "value": "Successfully Connect Backend Service"
+    },
+    {
+      "name": "DisconnectBackendService",
+      "value": "Disconnect Backend Service"
+    },
+    {
+      "name": "SuccessfullyDisconnectBackendService",
+      "value": "Successfully Disconnect Backend Service"
+    },
+    {
+      "name": "sendRequest",
+      "value": "sendRequest msg:100"
+    },
+    {
+      "name": "StopServiceExtensionAbility",
+      "value": "StopServiceExtensionAbility"
+    },
+    {
+      "name": "StartServiceExtensionAbility",
+      "value": "Start ServiceExtensionAbility"
+    },
+    {
+      "name": "SuccessfullyStart",
+      "value": "Successfully Start"
+    },
+    {
+      "name": "SuccessfullyStop",
+      "value": "Successfully Stop"
     }
   ]
 }

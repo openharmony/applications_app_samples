@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 {
   "license": "",
   "devDependencies": {},
@@ -21,12 +22,15 @@
   "main": "",
   "version": "1.0.0",
   "dependencies": {
+    "@ohos/backgroundTask": "file:../../../feature/backgroundTask",
     "@ohos/grid": "file:../../../feature/grid",
     "@ohos/smartPerfHost": "file:../../../feature/smartPerfHost",
     "@ohos/staticImport": "file:../../../feature/staticImport",
     "@ohos/ifOrVisibility": "file:../../../feature/ifOrVisibility",
     "@ohos/dynamicImport": "file:../../../feature/dynamicImport",
     "@ohos/smartPerfEditor": "file:../../../feature/smartPerfEditor",
+    "@ohos/trace": "file:../../../feature/trace",
+    "@ohos/memoryShared": "file:../../../feature/memoryShared",
     "@ohos/hiDumper": "file:../../../feature/hiDumper"
   }
 }

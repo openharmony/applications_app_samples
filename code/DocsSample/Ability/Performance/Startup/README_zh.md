@@ -2,12 +2,13 @@
 
 ### 介绍
 
-本示例展示了[提升应用冷启动速度](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/performance/improve-application-cold-start-speed.md)的四种方式：
+本示例展示了[提升应用冷启动速度](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/performance/improve-application-cold-start-speed.md)的五种方式：
 
 1. 缩短应用进程创建&初始化阶段耗时；
 2. 缩短Application&Ability初始化阶段耗时；
-3. 缩短Ability生命周期阶段耗时；
-4. 缩短加载绘制首页阶段耗时。
+3. 缩短AbilityStage生命周期阶段耗时；
+4. 缩短Ability生命周期阶段耗时；
+5. 缩短加载绘制首页阶段耗时。
 
 ### 效果预览
 
@@ -26,7 +27,9 @@ entry/src/main/
 │   ├── common
 │   │   └── Logger.ts                     // 日志工具
 │   ├── entryability
-│   │   └── EntryAbility.ts               // Ability类
+│   │   └── EntryAbility.ts               // UIAbility类
+│   ├── myabilitystage
+│   │   └── MyAbilityStage.ts             // AbilityStage类
 │   └── pages
 │       └── Index.ets                     // 首页
 ├── module.json5
@@ -44,7 +47,6 @@ entry/src/main/
     ├── en_US
     │   └── element
     │       └── string.json
-    ├── rawfile
     └── zh_CN
         └── element
             └── string.json
@@ -63,6 +65,7 @@ entry/src/main/module.json5
   "module": {
     "name": "entry",
     "type": "entry",
+    "srcEntry": "./ets/myabilitystage/MyAbilityStage.ts",
     "description": "$string:module_desc",
     "mainElement": "EntryAbility",
     "deviceTypes": [
@@ -132,9 +135,31 @@ import logger from '../common/Logger';
 
 详情可参见：[减少import的模块](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/performance/improve-application-cold-start-speed.md/#减少import的模块)
 
-#### 3. 缩短Ability生命周期阶段耗时
+#### 3. 缩短AbilityStage生命周期阶段耗时
+
+通过将AbilityStage生命周期回调接口中的耗时操作改为异步延迟执行，可以缩短AbilityStage生命周期阶段耗时，进而提升应用冷启动速度。
+
+entry/src/main/ets/myabilitystage/MyAbilityStage.ts
+
+```ts
+export default class MyAbilityStage extends AbilityStage {
+  onCreate() {
+    // 应用的HAP在首次加载的时，为该Module初始化操作
+    // 耗时操作
+    // this.computeTask();
+    this.computeTaskAsync(); // 异步任务
+  }
+  // ...
+}
+```
+
+详情可参见：[避免在AbilityStage生命周期回调接口进行耗时操作](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/performance/improve-application-cold-start-speed.md/#避免在abilitystage生命周期回调接口进行耗时操作)
+
+#### 4. 缩短Ability生命周期阶段耗时
 
 通过将Ability生命周期回调接口中的耗时操作改为异步延迟执行，可以缩短Ability生命周期阶段耗时，进而提升应用冷启动速度。
+
+通常与应用冷启动速度相关的生命周期回调为onCreate、onWindowStageCreate和onForeground，以下以onCreate为例进行说明。
 
 entry/src/main/ets/entryability/EntryAbility.ts
 
@@ -152,7 +177,7 @@ export default class EntryAbility extends UIAbility {
 
 详情可参见：[避免在Ability生命周期回调接口进行耗时操作](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/performance/improve-application-cold-start-speed.md/#避免在ability生命周期回调接口进行耗时操作)
 
-#### 4. 缩短加载绘制首页阶段耗时
+#### 5. 缩短加载绘制首页阶段耗时
 
 通过将自定义组件的生命周期回调接口中的耗时操作改为异步延迟执行，可以缩短加载绘制首页阶段耗时，进而提升应用冷启动速度。
 
@@ -167,8 +192,8 @@ struct Index {
     // 耗时操作
     // this.computeTask();
     this.computeTaskAsync(); // 异步任务
-    let context = getContext(this) as Context
-    this.text = context.resourceManager.getStringSync($r('app.string.startup_text'))
+    let context = getContext(this) as Context;
+    this.text = context.resourceManager.getStringSync($r('app.string.startup_text'));
   }
   // ...
 }
@@ -186,7 +211,7 @@ struct Index {
 
 ### 约束与限制
 
-1.本示例仅支持标准系统上运行,支持设备：RK3568。
+1.本示例仅支持标准系统上运行，支持设备：RK3568。
 
 2.本示例已适配API version 10版本SDK，版本号：4.0.10.13。
 
@@ -199,7 +224,7 @@ struct Index {
 ```
 git init
 git config core.sparsecheckout true
-echo code/Performance/StartupAndResponse/Startup/ > .git/info/sparse-checkout
+echo code/DocsSample/Ability/Performance/Startup/ > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

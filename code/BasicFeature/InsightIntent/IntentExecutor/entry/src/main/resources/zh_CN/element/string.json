@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "EntryAbility"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "EntryAbility"
+    },
+    {
+      "name": "ServiceExtAbility_desc",
+      "value": "ServiceExtAbility"
+    },
+    {
+      "name": "ServiceExtAbility_label",
+      "value": "ServiceExtAbility"
+    },
+    {
+      "name": "intent_executor_title",
+      "value": "意图执行"
+    },
+    {
+      "name": "Back",
+      "value": "返回"
+    }
+  ]
+}

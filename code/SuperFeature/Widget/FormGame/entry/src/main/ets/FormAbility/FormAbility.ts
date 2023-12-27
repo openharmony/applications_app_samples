@@ -78,7 +78,7 @@ export default class FormAbility extends FormExtensionAbility {
   }
 
   updateWordStr(index) {
-    if (index === NaN || index < 0 || index > TARGET_MAX_LENGTH) {
+    if (typeof (index) === 'number' || index < 0 || index > TARGET_MAX_LENGTH) {
       Logger.info('FormAbility updateWordStr failed for invalid eventIndex:' + index);
       return;
     }
@@ -218,7 +218,7 @@ export default class FormAbility extends FormExtensionAbility {
     Logger.info('FormAbility sourceWord:[' + this.sourceWordStr + ']');
     Logger.info('FormAbility targetWord:[' + this.targetWordStr + ']');
     let eventIndex = Number(JSON.parse(message).params.message.charAt(0));
-    if (eventIndex === NaN || eventIndex < 0 || eventIndex > TARGET_MAX_LENGTH) {
+    if (typeof (eventIndex) === 'number' || eventIndex < 0 || eventIndex > TARGET_MAX_LENGTH) {
       Logger.info('FormAbility onEvent failed for invalid eventIndex:' + eventIndex);
       return;
     }

@@ -1,0 +1,29 @@
+{
+  "float": [
+    {
+      "name": "float_1",
+      "value": "30.6"
+    },
+    {
+      "name": "stroke_width",
+      "value": "0.5"
+    },
+
+    {
+      "name": "opacity",
+      "value": "0.6"
+    },
+    {
+      "name": "opacity_3",
+      "value": "0.38"
+    },
+    {
+      "name": "stroke_width_2",
+      "value": "0.3"
+    },
+    {
+      "name": "icon",
+      "value": "0.8"
+    }
+  ]
+}

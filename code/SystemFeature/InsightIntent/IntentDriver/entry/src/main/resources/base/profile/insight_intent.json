@@ -1,0 +1,14 @@
+{
+  "insightIntents": [
+    {
+      "intentName": "PlayMusic",
+      "domain": "MusicDomain",
+      "intentVersion": "1.0.1",
+      "srcEntry": "./ets/intents/PlayMusicIntentExecutorImpl.ets",
+      "serviceExtension": {
+        "ability": "ServiceExtAbility"
+      }
+    }
+  ]
+}
+

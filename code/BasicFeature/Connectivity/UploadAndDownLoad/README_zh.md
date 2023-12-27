@@ -5,9 +5,9 @@
 
 ### 效果预览
 
-|               主页               |             上传             |                 下载                 |
-| :---------------------------------------: | :---------------------------------------: | :--------------------------------------: |
-|    ![home](screenshots/devices/zh/home.jpg)    | ![util](screenshots/devices/zh/upload.jpg) | ![convertxml](screenshots/devices/zh/download.jpg) |
+|               主页               |             上传             |             片段上传             |                 下载                 |
+| :---------------------------------------: | :---------------------------------------: | :--------------------------------------: | :--------------------------------------: |
+|    ![home](screenshots/devices/zh/home.jpg)    | ![util](screenshots/devices/zh/upload.jpg) | ![util](screenshots/devices/zh/uploadchunk.jpg) | ![convertxml](screenshots/devices/zh/download.jpg) |
 
 使用说明
 
@@ -17,7 +17,11 @@
 
 3.上传页面：
 
-​    点击**+**，**从相册选择**拉起图库选择照片，图片选择页面支持拍照，选择照片后点击发表进行上传。
+​    点击**+**，**从相册选择**拉起图库选择照片，图片选择页面支持拍照，选择照片后点击**上传**进行上传。
+
+​    可选的，点击缩略图，显示文件片段上传配置选项弹窗，可以配置上传起点和终点，取值为闭区间；起点默认为0，终点默认为文件结尾。点击**上传**进行选中文件片段以及后续文件全部内容上传。
+
+​    点击**返回**键或片段上传配置选项弹窗外区域，取消片段上传。
 
 ​    在首页中打开后台任务开关后，上传页面开启的是后台上传任务，后台任务在应用退出到后台时可以在通知栏看到任务状态。
 
@@ -63,7 +67,7 @@ UploadAndDownload
 
 * 该示例分为两个模块：
   * 上传模块
-    * 使用[@ohos.request](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-request.md)中API 10接口agent.create创建上传任务，调用@ohos.request中的Task相关接口实现上传任务的创建、取消、进度加载，失败的任务会调用查询接口获取失败原因并打印在日志中，支持多个文件上传。
+    * 使用[@ohos.request](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-request.md)中API 10接口agent.create创建上传任务，调用@ohos.request中的Task相关接口实现上传任务的创建、取消、进度加载，失败的任务会调用查询接口获取失败原因并打印在日志中，支持多个文件上传及片段上传。
     * 源码链接：[RequestUpload.ets](./features/uploadanddownload/src/main/ets/upload/RequestUpload.ets)，[AddPictures.ets](./entry/src/main/ets/components/AddPictures.ets)，[Upload.ets](./entry/src/main/ets/pages/Upload.ets)
     * 参考接口：[@ohos.request](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-request.md)，[@ohos.file.picker](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-picker.md)
   * 下载模块
