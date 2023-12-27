@@ -151,6 +151,7 @@ Note:If the text contains special characters, please escape them according to th
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkNativeWindow/screenshots/device/GetAvailableCount.jpg" desc="Provided by code/BasicFeature/Native/NdkNativeWindow"/>
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkNativeWindow/screenshots/device/Main.jpg" desc="Provided by code/BasicFeature/Native/NdkNativeWindow"/>
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkNativeWindow/screenshots/device/ProduceBuffer.jpg" desc="Provided by code/BasicFeature/Native/NdkNativeWindow"/>
+		<filteritem type="filepath" name="code/BasicFeature/ArkTSCard/ArkTSCard/libs/ArkTSUser.hap" desc="Provided by code/BasicFeature/ArkTSCard/ArkTSCard"/>
         <filteritem type="filepath" name=" code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic/entry/src/main/resources/base/media/select.png" desc="Provided by code/BasicFeature/DeviceManagement/Vibrator"/>
             </filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
