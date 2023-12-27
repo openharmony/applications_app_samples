@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { LockUsage } from '@ohos/memoryShared';
+import { LockUsage } from '@ohos/memoryShared/src/main/ets/pages/LockUsage';
 
 @Entry
 @Component

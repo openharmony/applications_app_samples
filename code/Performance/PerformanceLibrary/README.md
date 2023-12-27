@@ -82,6 +82,14 @@ BackgroundTask使用说明：
 
 3.点击**长时任务**按钮进入场景页，授予通知权限和定位权限，和点击**开启定位服务**按钮开启定位，点击**关闭定位服务**关闭定位。
 
+多线程共享内存页面使用说明：
+
+1.点击性能示例主页的**MemoryShared**按钮，进入**多线程共享内存入口**场景页。
+
+2.点击多线程共享内存入口页的**原子操作对比**按钮，进入**原子操作主页**。
+
+3.点击多线程共享内存入口页的**锁的使用**按钮，进入**锁的使用子页面**。
+
 ### 工程目录
 
 ```
@@ -201,7 +209,11 @@ products/phone/entry/src/main/ets
 |   |   |---TransientTask.ets                         // 短时任务页面
 |   |   |---LongTermTask.ets                          // 长时任务页面
 |   |---/trace
-|   |   |---TracePage.ets                             // 懒加载示例首页              
+|   |   |---TracePage.ets                             // 懒加载示例首页
+|   |---/memoryShared
+|   |   |---AtomicsUsage.ets                          // 原子操作页面              
+|   |   |---LockUsage.ets                             // 锁应用页面 
+|   |   |---MemorySharedHome.ets                      // 多线程共享内存入口页面              
 |   |---/Index                                                                     
 |---/utils
 |   |---Logger.ets                                    // 封装整个日志
@@ -278,6 +290,14 @@ products/phone/entry/src/main/ets
     * 模拟后台导航定位场景，申请定位类型长时任务，使用@ohos.geoLocationManager实现位置定位功能，必须在联网环境才能获取定位数据
     * 源码链接：[LongTermTaskView.ets](feature/backgroundTask/src/main/ets/view/LongTermTaskView.ets)
 
+* 多线程共享内存页面模块
+  * 原子操作场景
+    * 使用原子或非原子操作，实现多线程操作累加器
+    * 源码链接：[AtomicsUsage.ets](feature/memoryShared/src/main/ets/pages/AtomicsUsage.ets)
+  * 锁应用场景
+    * 使用或不适用锁，实现多线程写入文件
+    * 源码链接：[LockUsage.ets](feature/memoryShared/src/main/ets/pages/LockUsage.ets)
+    
 ### 相关权限
 
 ohos.permission.INTERNET

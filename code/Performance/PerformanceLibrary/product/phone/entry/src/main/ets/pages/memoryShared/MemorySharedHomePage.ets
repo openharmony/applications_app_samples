@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { MemorySharedHome } from '@ohos/memoryShared';
+import { MemorySharedHome } from '@ohos/memoryShared/src/main/ets/pages/MemorySharedHome';
 
 @Entry
 @Component
