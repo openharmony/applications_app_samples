@@ -211,7 +211,7 @@ struct OpenFile {
               .fontFamily('HarmonyHeiTi')
               .backgroundColor('#f1f3f5')
               .opacity(0.6)
-              .width('100%')//.height(512)
+              .width('100%')
               .textAlign(TextAlign.Start)
               .align(Alignment.TopStart)
           }
