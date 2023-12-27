@@ -1249,14 +1249,15 @@ export default function abilityTest() {
         let newMore = await driver.findComponent(ON.type('Text').id('more'));
         await newMore.click();
         await driver.delayMs(200);
-        await driver.click(513, 933);
+        await driver.click(542, 996);
         await driver.assertComponentExist(ON.id('changeTimePromise'));
         let inputTimeNew = await driver.findComponent(ON.id('changeTimeInput'));
         await inputTimeNew.inputText('2023/10/10 10:10:10');
+        await driver.delayMs(200);
+        await driver.assertComponentExist(ON.text('2023/10/10 10:10:10'));
         let changeTime = await driver.findComponent(ON.type('Text').id('changeTimePromise'));
         await changeTime.click();
         await driver.delayMs(200);
-        await driver.assertComponentExist(ON.text('2023/10/10 10:10:10'));
         Logger.info(TAG, 'MobileFunction_005 end');
       }catch(error){
         expect().assertFail();
@@ -1282,20 +1283,19 @@ export default function abilityTest() {
         let newMore = await driver.findComponent(ON.type('Text').id('more'));
         await newMore.click();
         await driver.delayMs(200);
-        await driver.click(453, 1022);
+        await driver.click(461, 1064);
         await driver.delayMs(200);
         await driver.assertComponentExist(ON.id('checkDelete'));
         let btnCheckDelete = await driver.findComponent(ON.id('checkDelete'));
         await btnCheckDelete.click();
         await driver.delayMs(200);
-        // 返回
+        // 返回首页
         await driver.pressBack();
         await driver.delayMs(200);
         Logger.info(TAG, 'MobileFunction_006 end');
       }catch(error){
         expect().assertFail();
       }
-
     });
 
     /**
@@ -1533,9 +1533,6 @@ export default function abilityTest() {
         let btnCheckDelete = await driver.findComponent(ON.id('checkDelete'));
         await btnCheckDelete.click();
         await driver.delayMs(200);
-        // 返回
-        // await driver.pressBack();
-        // await driver.delayMs(200);
         Logger.info(TAG, 'MobileFunction_el3_006 end');
       }catch(error){
         expect().assertFail();
@@ -1919,7 +1916,6 @@ export default function abilityTest() {
         expect().assertFail();
       }
     });
-
 
     /** 场景：检验FileManager获取权限功能
      *  输入：调用requestPermission
