@@ -55,5 +55,9 @@ export let performanceTypeArray: Array<PerformanceMsg> = [
   {
     name: 'MemoryShared',
     uri: 'pages/memoryShared/MemorySharedHomePage'
+  },
+  {
+    name: 'DFX StateManagement',
+    uri: 'pages/DFXStateManagement/DFXStateManagementPage'
   }
 ]
