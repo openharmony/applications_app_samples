@@ -23,6 +23,14 @@
     {
       "name": "label_confirm",
       "value": "确定"
+    },
+    {
+      "name": "test_txt",
+      "value": "a.txt"
+    },
+    {
+      "name": "test_dlp",
+      "value": "test.txt.dlp"
     }
   ]
 }

@@ -91,8 +91,8 @@ export default function abilityTest() {
     /**
      * 获取权限
      */
-    it( 'RequestPermissionFunction' , 0 , async( done: () => void ) => {
-      hilog.info( DOMAIN , TAG , BUNDLE + 'RequestPermissionFunction begin' );
+    it( 'RequestPermissionFunction_001' , 0 , async( done: () => void ) => {
+      hilog.info( DOMAIN , TAG , BUNDLE + 'RequestPermissionFunction_001 begin' );
       let driver = await Driver.create();
       await driver.delayMs( 2000 );
       let permit = await getResourceString( $r( 'app.string.permit' ) );
@@ -104,7 +104,7 @@ export default function abilityTest() {
       await permit2.click();
       await driver.delayMs( 1000 );
       done();
-      hilog.info( DOMAIN , TAG , BUNDLE + 'RequestPermissionFunction end' );
+      hilog.info( DOMAIN , TAG , BUNDLE + 'RequestPermissionFunction_001 end' );
     } )
 
     /**
@@ -173,7 +173,10 @@ export default function abilityTest() {
       hilog.info( DOMAIN , TAG , BUNDLE + 'Picker_Txt begin' );
       let driver = await Driver.create();
       await driver.delayMs( 1000 );
-      await driver.click( 200 , 300 );
+      let txt = await getResourceString($r('app.string.test_txt'));
+      await driver.assertComponentExist( ON.text( txt ) );
+      let txt1 = await driver.findComponent( ON.text( txt ) );
+      await txt1.click();
       await driver.delayMs( 2000 );
       done();
       hilog.info( DOMAIN , TAG , BUNDLE + 'Picker_Txt end' );
@@ -228,12 +231,8 @@ export default function abilityTest() {
       await driver.delayMs( 2000 );
       let btnStart = await driver.findComponent( ON.type( 'Text' ).id( 'file_save_as' ) );
       await btnStart.click();
-      await driver.delayMs( 2000 );
-      await driver.assertComponentExist( ON.type( 'Image' ) );
-      let imgs = await driver.findComponents( ON.type( 'Image' ) );
-      await imgs[ 11 ].click();
       await driver.delayMs( 1000 );
-      await imgs[ 6 ].click();
+      await driver.pressBack();
       await driver.delayMs( 1000 );
       done();
       hilog.info( DOMAIN , TAG , BUNDLE + 'FilePage_More_SaveAs end' );
@@ -251,9 +250,9 @@ export default function abilityTest() {
       await driver.delayMs( 2000 );
       let btnStart1 = await driver.findComponent( ON.type( 'Text' ).id( 'file_set_permissions' ) );
       await btnStart1.click()
+      await driver.delayMs( 3000 );
+      await driver.pressBack();
       await driver.delayMs( 2000 );
-      await driver.pressBack()
-      await driver.delayMs( 1000 );
       done();
       hilog.info( DOMAIN , TAG , BUNDLE + 'FilePage_More_SetPermissions end' );
     } )
@@ -327,7 +326,10 @@ export default function abilityTest() {
       hilog.info( DOMAIN , TAG , BUNDLE + 'Picker_DLP begin' );
       let driver = await Driver.create();
       await driver.delayMs( 1000 );
-      await driver.click( 200 , 500 );
+      let dlp = await getResourceString($r('app.string.test_dlp'));
+      await driver.assertComponentExist( ON.text( dlp ) );
+      let dlp1 = await driver.findComponent( ON.text( dlp ) );
+      await dlp1.click();
       await driver.delayMs( 2000 );
       done();
       hilog.info( DOMAIN , TAG , BUNDLE + 'Picker_DLP end' );
@@ -374,40 +376,17 @@ export default function abilityTest() {
     } )
 
     /**
-     * dlp文件更多按钮菜单1:另存为
-     */
-    it( 'DLPPage_More_saveAs' , 0 , async( done: () => void ) => {
-      hilog.info( DOMAIN , TAG , BUNDLE + 'DLPPage_More_saveAs begin' );
-      let driver = await Driver.create();
-      await driver.delayMs( 2000 );
-      let btnStart = await driver.findComponent( ON.type( 'Text' ).id( 'dlp_save_as' ) );
-      await btnStart.click();
-      await driver.delayMs( 2000 );
-      await driver.assertComponentExist( ON.type( 'Image' ) );
-      let imgs = await driver.findComponents( ON.type( 'Image' ) );
-      await imgs[ 11 ].click();
-      await driver.delayMs( 1000 );
-      await imgs[ 6 ].click();
-      await driver.delayMs( 1000 );
-      done();
-      hilog.info( DOMAIN , TAG , BUNDLE + 'DLPPage_More_saveAs end' );
-    } )
-
-    /**
      * dlp文件更多按钮菜单2:设置权限
      */
     it( 'DLPPage_More_SetPermissions' , 0 , async( done: () => void ) => {
       hilog.info( DOMAIN , TAG , BUNDLE + 'DLPPage_More_SetPermissions begin' );
       let driver = await Driver.create();
       await driver.delayMs( 2000 );
-      let btnStart = await driver.findComponent( ON.type( 'Image' ).id( 'dlpMore' ) );
-      await btnStart.click();
-      await driver.delayMs( 2000 );
       let btnStart1 = await driver.findComponent( ON.type( 'Text' ).id( 'dlp_set_permissions' ) );
       await btnStart1.click();
-      await driver.delayMs( 2000 );
+      await driver.delayMs( 3000 );
       await driver.pressBack();
-      await driver.delayMs( 1000 );
+      await driver.delayMs( 2000 );
       done();
       hilog.info( DOMAIN , TAG , BUNDLE + 'DLPPage_More_SetPermissions end' );
     } )
@@ -447,17 +426,23 @@ export default function abilityTest() {
     } )
 
     /**
-     * 返回
+     * dlp文件更多按钮菜单1:另存为
      */
-    it( 'BackIndex_002' , 1 , async() => {
-      hilog.info( DOMAIN , TAG , 'BackIndex_002 begin' );
-      let driver = Driver.create();
-      await driver.delayMs( 1000 );
-      await driver.assertComponentExist( ON.id( 'dlpPageBack' ) );
-      let backIndex = await driver.findComponent( ON.type( 'Image' ).id( 'dlpPageBack' ) );
-      await backIndex.click();
-      await driver.delayMs( 1000 );
-      hilog.info( DOMAIN , TAG , 'BackIndex_002 end' );
+    it( 'DLPPage_More_SaveAs' , 0 , async( done: () => void ) => {
+      hilog.info( DOMAIN , TAG , BUNDLE + 'DLPPage_More_SaveAs begin' );
+      let driver = await Driver.create();
+      await driver.delayMs( 2000 );
+      let btnStart = await driver.findComponent( ON.type( 'Image' ).id( 'dlpMore' ) );
+      await btnStart.click();
+      await driver.delayMs( 2000 );
+      let btnStart1 = await driver.findComponent( ON.type( 'Text' ).id( 'dlp_save_as' ) );
+      await btnStart1.click();
+      await driver.delayMs( 2000 );
+      await driver.pressBack(); //返回时 返回至设备主页面;
+      await driver.delayMs( 2000 );
+      done();
+      hilog.info( DOMAIN , TAG , BUNDLE + 'DLPPage_More_SaveAs end' );
     } )
+
   } )
 }

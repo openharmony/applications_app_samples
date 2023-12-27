@@ -29,6 +29,20 @@ const OPACITY_VALUE = 0.6; // 透明度
 
 let storage = LocalStorage.getShared();
 
+interface DLPUriObj {
+  name: string
+};
+
+interface DLPNameObj {
+  dateModified: string,
+  displayName: string,
+  relativePath: string,
+};
+
+interface DLPLinkNameObj {
+  name: string
+}
+
 @Entry( storage )
 @Component
 struct DlpPage {
@@ -39,7 +53,6 @@ struct DlpPage {
   @State dlpUri: string = '';
   @State dlpLinkUri: string = '';
   @State fd: number = 0;
-  @State dlpPath: string = '';
   @State isDLPFile: boolean = false;
   @State dlpSuffix: string = '';
   @State dlpSuffixIncludes: boolean = false;
@@ -213,17 +226,21 @@ struct DlpPage {
     let wantInfo: Want = AppStorage.get( "funcAbilityWant" ) as Want;
     Logger.info( TAG , "funcAbilityWant:" + JSON.stringify( wantInfo ) );
     this.dlpLinkUri = wantInfo.uri as string;
-    this.dlpUri = wantInfo.parameters?.["dlpUri"]?.["name"] as string;
-    this.dlpName = wantInfo.parameters?.["fileAsset"]?.["displayName"] as string;
-    this.dlpLinkName = wantInfo.parameters?.["linkFileName"]?.["name"] as string;
-    Logger.info( TAG , "displayName" + this.dlpName );
+    // this.dlpUri = wantInfo.parameters?.["dlpUri"]?.["name"] as string;
+    // this.dlpName = wantInfo.parameters?.["fileAsset"]?.["displayName"] as string;
+    // this.dlpLinkName = wantInfo.parameters?.["linkFileName"]?.["name"] as string;
+
+    this.dlpUri = (wantInfo.parameters?.dlpUri as DLPUriObj).name;
+    this.dlpName = (wantInfo.parameters?.fileAsset as DLPNameObj).displayName;
+    this.dlpLinkName = (wantInfo.parameters?.linkFileName as DLPLinkNameObj).name;
+
     this.dlpContent = this.mediaFileUri.readFileContent( this.dlpLinkUri );
-    this.dlpPath = JSON.stringify( wantInfo.parameters?.["dlpPath"] ) as string;
-    Logger.info( TAG , "funcAbilityWant dlpUri:" + this.dlpLinkUri );
+    Logger.info( TAG , "funcAbilityWant dlpLinkUri:" + this.dlpLinkUri );
+    Logger.info( TAG , "funcAbilityWant dlpUri:" + this.dlpUri );
     Logger.info( TAG , "funcAbilityWant dlpName:" + this.dlpName );
+    Logger.info( TAG , "funcAbilityWant dlpLinkName:" + this.dlpLinkName );
     Logger.info( TAG , "funcAbilityWant fd:" + this.fd );
     Logger.info( TAG , "funcAbilityWant dlpContent:" + this.dlpContent );
-    Logger.info( TAG , "funcAbilityWant dlpPath:" + this.dlpPath );
     this.fd = fs.openSync( this.dlpLinkUri ).fd;
     this.isDlpFileFunc( this.fd );
     this.getOriginalFileNameFunc( this.dlpName );
@@ -457,7 +474,7 @@ struct DlpPage {
 
   @Builder
   filePageTextMenu3() {
-    Text( $r('app.string.Set_retention_sandbox'))
+    Text( $r('app.string.Set_retention_sandbox') )
       .width( '122vp' )
       .height( '21vp' )
       .fontSize( '16vp' )
@@ -466,12 +483,12 @@ struct DlpPage {
       .fontColor( $r( 'app.color.font_color_182431' ) )
       .align( Alignment.Start )
       .margin( { top : '13vp' , bottom : '14vp' , right : '2vp' } )
-      .id('set_retention_sandbox')
+      .id( 'set_retention_sandbox' )
   }
 
   @Builder
   filePageTextMenu4() {
-    Text( $r('app.string.cancel_retention_sandbox') )
+    Text( $r('app.string.cancel_retention_sandbox'))
       .width( '122vp' )
       .height( '21vp' )
       .fontSize( '16vp' )
