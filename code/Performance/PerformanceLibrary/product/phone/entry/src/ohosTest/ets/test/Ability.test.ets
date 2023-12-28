@@ -23,6 +23,12 @@ const BUNDLE: string = 'Performance';
 const TAG: string = '[Sample_Performance_Test]';
 const delegator: AbilityDelegatorRegistry.AbilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
+async function getResourceString<T extends Resource>(resource: T): Promise<string> {
+  let manage = delegator.getAppContext().resourceManager
+  let text = await manage.getStringValue(resource)
+  return text
+}
+
 export default function abilityTest() {
   describe('ActsAbilityTest', () => {
     /**
@@ -597,8 +603,8 @@ export default function abilityTest() {
       await btnAccept.click();
       await driver.delayMs(3000);
       // 获取定位权限
-      await driver.assertComponentExist(ON.text('允许'));
-      let locAcceptBtn = await driver.findComponent(ON.text('允许'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.permission_while_use'))));
+      let locAcceptBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.permission_while_use'))));
       await locAcceptBtn.click();
       await driver.delayMs(1000);
       // 点击开启定位服务
@@ -641,6 +647,60 @@ export default function abilityTest() {
       await driver.delayMs(500);
       await driver.pressBack();
       Logger.info(TAG, `${BUNDLE}WaterFlow_001 end`);
+     * 多线程共享内存页面场景
+     */
+    it(BUNDLE + "memoryShared_001", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}memoryShared_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.swipe(0, 800, 0, 100, 600);
+      await driver.delayMs(1000);
+      // 点击进入多线程共享内存页面
+      let backgroundTaskBtn: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.MemoryShared'))));
+      await driver.delayMs(1000);
+      await backgroundTaskBtn.click();
+      await driver.delayMs(1000);
+      // 点击进入原子操作场景
+      let AtomicSceneBtn: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.atomic_operation'))));
+      await driver.delayMs(1000);
+      await AtomicSceneBtn.click();
+      await driver.delayMs(1000);
+      // 点击进入原子操作场景
+      let AtomicTaskBtn: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.use_atomic'))));
+      await driver.delayMs(1000);
+      await AtomicTaskBtn.click();
+      await driver.delayMs(1000);
+      // 点击进入原子操作场景
+      let NonAtomicTaskBtn: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.not_use_atomic'))));
+      await driver.delayMs(1000);
+      await NonAtomicTaskBtn.click();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.delayMs(1000);
+
+      // 点击进入锁的使用任务场景
+      let LockSceneBtn: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.lock_operation'))));
+      await driver.delayMs(1000);
+      await LockSceneBtn.click();
+      await driver.delayMs(1000);
+      // 点击进入锁的使用任务场景
+      let LockTaskBtn: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.use_lock'))));
+      await driver.delayMs(1000);
+      await LockTaskBtn.click();
+      await driver.delayMs(2000);
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.write_success'))));
+      // 点击进入锁的使用任务场景
+      let NonLockTaskBtn: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.not_use_lock'))));
+      await driver.delayMs(1000);
+      await NonLockTaskBtn.click();
+      await driver.delayMs(2000);
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.write_success'))));
+
+      // 退出到首页面
+      await driver.pressBack();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      Logger.info(TAG, `${BUNDLE}memoryShared_001 end`);
       done();
     })
   })

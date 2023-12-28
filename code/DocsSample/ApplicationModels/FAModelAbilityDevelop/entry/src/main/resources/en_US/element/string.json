@@ -166,15 +166,15 @@
     },
     {
       "name": "start_stage_noResult_button",
-      "value": "Launching UIAbility through PageAbility - No need to return results"
+      "value": "Interworking with Stage model through PageAbility - no need to return results"
     },
     {
       "name": "start_stage_withResult_button",
-      "value": "Launch UIAbility through PageAbility - return execution results"
+      "value": "Interworking with Stage model through PageAbility - returning execution results"
     },
     {
       "name": "start_stage_service_button",
-      "value": "Starting UIAbility through ServiceAbilityStarting UIAbility through ServiceAbility"
+      "value": "Interworking with the Stage model through ServiceAbility"
     },
     {
       "name": "worker_button",
@@ -307,6 +307,34 @@
     {
       "name": "executeBatch_data",
       "value": "executeBatch data"
+    },
+    {
+      "name": "start_remote_success_toast",
+      "value": "Successfully started remote Ability"
+    },
+    {
+      "name": "obtain_permissions_button",
+      "value": "Obtain distributed data sync permissions"
+    },
+    {
+      "name": "obtain_device_id_button",
+      "value": "Obtain device id"
+    },
+    {
+      "name": "start_remote_ability_button",
+      "value": "Starting Remote Device PageAbility"
+    },
+    {
+      "name": "start_stage_service_extension_button",
+      "value": "Interworking with Stage model through PageAbility - ServiceExtensionAbility"
+    },
+    {
+      "name": "connect_service_extension_success_toast",
+      "value": "Successfully connected to ServiceExtensionAbility"
+    },
+    {
+      "name": "connect_service_extension_failed_toast",
+      "value": "Failed connected to ServiceExtensionAbility"
     }
   ]
 }

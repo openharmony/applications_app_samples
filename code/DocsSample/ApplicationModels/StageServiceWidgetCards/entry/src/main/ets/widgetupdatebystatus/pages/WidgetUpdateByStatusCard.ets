@@ -71,7 +71,7 @@ struct WidgetUpdateByStatusCard {
             .margin({ left: 8 })
         }
         .width('100%')
-        .position({ y: 30 })
+        .position({ y: 32 })
         .padding(0)
         .justifyContent(FlexAlign.Start)
       }

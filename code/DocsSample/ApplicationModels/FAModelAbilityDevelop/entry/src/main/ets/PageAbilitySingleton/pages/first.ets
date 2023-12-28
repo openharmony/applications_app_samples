@@ -24,7 +24,10 @@ struct First {
     let newWant = GlobalContext.getContext().getObject('newWant') as Want;
     if (newWant) {
       if (newWant.parameters) {
-        router.push({ url: 'pages/second' });
+        if (newWant.parameters.page) {
+          router.push({ url: newWant.parameters.page as string});
+          GlobalContext.getContext().setObject("newWant", undefined);
+        }
       }
     }
   }

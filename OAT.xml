@@ -154,6 +154,7 @@ Note:If the text contains special characters, please escape them according to th
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkNativeWindow/screenshots/device/GetAvailableCount.jpg" desc="Provided by code/BasicFeature/Native/NdkNativeWindow"/>
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkNativeWindow/screenshots/device/Main.jpg" desc="Provided by code/BasicFeature/Native/NdkNativeWindow"/>
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkNativeWindow/screenshots/device/ProduceBuffer.jpg" desc="Provided by code/BasicFeature/Native/NdkNativeWindow"/>
+		<filteritem type="filepath" name="code/BasicFeature/ArkTSCard/ArkTSCard/libs/ArkTSUser.hap" desc="Provided by code/BasicFeature/ArkTSCard/ArkTSCard"/>
         <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmonyProfileDebug.pem" desc="Provided by code/Project/HapBuild"/>
                 <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmonyApplication.pem" desc="Provided by code/Project/HapBuild"/>
                 <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmonyProfileRelease.pem" desc="Provided by code/Project/HapBuild"/>

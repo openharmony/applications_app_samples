@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 
-import storageStatistics from '@ohos.file.storageStatistics'
-import fs from '@ohos.file.fs'
+import storageStatistics from '@ohos.file.storageStatistics';
+import fs from '@ohos.file.fs';
 import { Options } from '@ohos.file.fs';
 import { BusinessError } from '@ohos.base';
-import Logger from '../../utils/Logger'
-import { FileType, SubDirectoryType } from '../../mock/local/FileData'
-import prompt from '@ohos.promptAction'
+import Logger from '../../utils/Logger';
+import { FileType, SubDirectoryType } from '../../mock/local/FileData';
+import prompt from '@ohos.promptAction';
 
 class NewFileSystem {
   // 创建多级目录
@@ -69,4 +69,4 @@ class NewFileSystem {
   }
 }
 
-export default new NewFileSystem()
+export default new NewFileSystem();

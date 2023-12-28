@@ -32,6 +32,7 @@ export default class WgtImgUpdateEntryFormAbility extends FormExtensionAbility {
   onAddForm(want: Want): formBindingData.FormBindingData {
     // 假设在当前卡片应用的tmp目录下有一个本地图片：head.PNG
     let tempDir = this.context.getApplicationContext().tempDir;
+    hilog.info(DOMAIN_NUMBER, TAG, `tempDir: ${tempDir}`);
     // 打开本地图片并获取其打开后的fd
     let file: fileFs.File;
     let imgBear: Record<string, number>;
@@ -41,7 +42,7 @@ export default class WgtImgUpdateEntryFormAbility extends FormExtensionAbility {
         'imgBear': file.fd
       };
     } catch (e) {
-      console.error(`openSync failed: ${JSON.stringify(e as Base.BusinessError)}`);
+      hilog.error(DOMAIN_NUMBER, TAG, `openSync failed: ${JSON.stringify(e as Base.BusinessError)}`);
     };
 
     class FormDataClass {
@@ -80,7 +81,7 @@ export default class WgtImgUpdateEntryFormAbility extends FormExtensionAbility {
           file = fs.openSync(tmpFile);
           fileInfo[fileName] = file.fd;
         } catch (e) {
-          console.error(`openSync failed: ${JSON.stringify(e as Base.BusinessError)}`);
+          hilog.error(DOMAIN_NUMBER, TAG, `openSync failed: ${JSON.stringify(e as Base.BusinessError)}`);
         };
 
         class FormDataClass {

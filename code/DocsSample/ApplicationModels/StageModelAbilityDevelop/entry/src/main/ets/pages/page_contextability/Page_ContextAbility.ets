@@ -60,9 +60,9 @@ struct Page_ContextAbility {
             .margin({ top: 4, bottom: 4, left: 12, right: 12 })
           }
           .onClick(() => {
-            let bundleName2 = 'com.samples.stagemodelabilityinteraction';
-            let bundleContext = this.context.createBundleContext(bundleName2);
-            let label2 = bundleContext.applicationInfo.label;
+            let bundleName2: string = 'com.samples.stagemodelabilityinteraction';
+            let bundleContext: Context = this.context.createBundleContext(bundleName2);
+            let label2: string = bundleContext.applicationInfo.label;
             hilog.info(DOMAIN_NUMBER, TAG, `bundleContext is : ${JSON.stringify(bundleContext.createBundleContext(bundleName2))}`);
             hilog.info(DOMAIN_NUMBER, TAG, `label2 is : ${JSON.stringify(label2)}`);
             if (bundleContext && label2 !== null) {
@@ -97,7 +97,7 @@ struct Page_ContextAbility {
           .onClick(() => {
             let bundleName2: string = 'com.samples.stagemodelabilityinteraction';
             let moduleName2: string = 'entry';
-            let moduleContext = this.context.createModuleContext(bundleName2, moduleName2);
+            let moduleContext: Context  = this.context.createModuleContext(bundleName2, moduleName2);
             if (moduleContext !== null) {
               promptAction.showToast({
                 message: ('成功获取Context')
@@ -128,8 +128,8 @@ struct Page_ContextAbility {
             .margin({ top: 4, bottom: 4, left: 12, right: 12 })
           }
           .onClick(() => {
-            let moduleName2 = 'entry';
-            let moduleContext = this.context.createModuleContext(moduleName2);
+            let moduleName2: string = 'entry';
+            let moduleContext: Context = this.context.createModuleContext(moduleName2);
             if (moduleContext !== null) {
               promptAction.showToast({
                 message: ('成功获取Context')

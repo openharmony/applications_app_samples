@@ -15,7 +15,7 @@
 
 export default class Constants {
   // 用于列表中图片总数
-  public static readonly IMAGE_TOTAL_NUM: number = 1000;
+  public static readonly IMAGE_TOTAL_NUM: number = 100;
   // 用于Flex中Text总数
   public static readonly TEXT_TOTAL_NUM: number = 200;
   // 用于text数字循环取模

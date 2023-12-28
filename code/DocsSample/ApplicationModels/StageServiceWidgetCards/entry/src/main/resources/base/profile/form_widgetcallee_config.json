@@ -1,9 +1,47 @@
 {
   "forms": [
     {
+      "name": "WidgetUpdateRouter",
+      "description": "$string:WidgetEventEntryAbility_desc",
+      "src": "./ets/widgetupdaterouter/pages/WidgetUpdateRouterCard.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": true,
+      "updateEnabled": true,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 1,
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "2*2"
+      ]
+    },
+    {
       "name": "WidgetEventCall",
-      "description": "This is a service widget using callee to pull UIAbility.",
+      "description": "$string:WidgetEventCallEntryAbility_desc",
       "src": "./ets/widgeteventcall/pages/WidgetEventCallCard.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": true,
+      "updateEnabled": true,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 1,
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "2*2"
+      ]
+    },
+    {
+      "name": "WidgetUpdateCall",
+      "description": "$string:WidgetCalleeEntryAbility_desc",
+      "src": "./ets/widgetupdatecall/pages/WidgetUpdateCallCard.ets",
       "uiSyntax": "arkts",
       "window": {
         "designWidth": 720,

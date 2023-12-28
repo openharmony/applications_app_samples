@@ -18,6 +18,7 @@
     "pages/page_migrationability/Page_MigrationAbilityThird",
     "pages/page_collaborateability/Page_CollaborateAbility",
     "pages/Page_StartFAModel",
-    "pages/page_migrationability/Page_MigrationAbilitySecond"
+    "pages/page_migrationability/Page_MigrationAbilitySecond",
+    "pages/Page_ServiceExtensionAbility"
   ]
 }

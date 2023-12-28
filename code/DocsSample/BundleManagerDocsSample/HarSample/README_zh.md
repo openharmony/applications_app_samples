@@ -42,13 +42,13 @@ library
 |       |---ets
 |       |   |---components
 |       |   |   └---MyTitleBar.ets		// ArkUI组件页面
-|       |   |---utils
-|       |   |   └---nativeTest.ts		// native方法页面
-|       |   |---resources				// 资源文件
-|       |   └---ts
-|       |       └---tset.ts				// ts类和方法页面
+|       |   └---utils
+|       |       └---nativeTest.ts		// native方法页面
+|       |---resources				// 资源文件
+|       |---ts
+|       |   └---tset.ts				// ts类和方法页面
 |       └---module.json5
-|---Index.ets
+|---index.ets
 └---oh-package.json5
 ```
 
@@ -56,8 +56,8 @@ library
 
 * 本示例为HarSample(静态共享包)应用，提供导出及引用HAR的ArkUI组件、接口、资源功能：
   * 导出HAR的ArkUI组件、接口、资源
-    * Index.ets文件是HAR导出声明文件的入口，HAR需要导出的接口，统一在Index.ets文件中导出。Index.ets文件是DevEco Studio默认自动生成的，用户也可以自定义，在模块的oh-package.json5文件中的main字段配置入口声明文件。源码链接：[Index.ets](library/src/index.ets)，[oh-package.json5](library/src/oh-package.json5)
-    * HAR中MainPage.ets文件的ArkUI组件，源码链接：[MainPage.ets](library/src/main/ets/components/MainPage/MainPage.ets)
+    * Index.ets文件是HAR导出声明文件的入口，HAR需要导出的接口，统一在Index.ets文件中导出。Index.ets文件是DevEco Studio默认自动生成的，用户也可以自定义，在模块的oh-package.json5文件中的main字段配置入口声明文件。源码链接：[Index.ets](library/index.ets)，[oh-package.json5](library/oh-package.json5)
+    * HAR中MainPage.ets文件的ArkUI组件，源码链接：[MainPage.ets](library/src/main/ets/components/mainpage/MainPage.ets)
     * HAR中test.ets文件的ts类和方法，源码链接：[test.ets](library/src/main/ts/test.ets)
     * HAR中可以包含C++编写的so，so中的native方法，HAR通过import方式导出，nativeTest.ts文件导出liblibrary.so的加法接口add，链接： [nativeTest.ts](library/src/main/ets/utils/nativeTest.ts)
   * 引用HAR的ArkUI组件、接口、资源
@@ -76,9 +76,9 @@ library
 
 1.本示例仅支持标准系统上运行，支持设备：RK3568。
 
-2.本示例为Stage模型，支持API11版本SDK，SDK版本号(API Version 11 Canary1)
+2.本示例为Stage模型，支持API11版本SDK，SDK版本号（API Version 11 Canary1）。
 
-3.本示例需要使用DevEco Studio 版本号(3.1 Release)及以上版本才可编译运行
+3.本示例需要使用DevEco Studio版本号（3.1 Release）及以上版本才可编译运行。
 
 ### 下载
 
@@ -87,7 +87,7 @@ library
 ```
 git init
 git config core.sparsecheckout true
-echo code/DocsSample/Form/BundleManagerDocsSample/HarSample/ > .git/info/sparse-checkout
+echo code/DocsSample/BundleManagerDocsSample/HarSample/ > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

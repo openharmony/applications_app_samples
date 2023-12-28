@@ -48,6 +48,15 @@
         ]
       },
       {
+        "name": "WidgetEventRouterEntryAbility",
+        "srcEntry": "./ets/widgetevententryability/WidgetEventRouterEntryAbility.ts",
+        "description": "$string:WidgetEventEntryAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:WidgetEventEntryAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background"
+      },
+      {
         "name": "JsCardEntryAbility",
         "srcEntry": "./ets/jscardentryability/JsCardEntryAbility.ts",
         "description": "$string:JSCardEntryAbility_desc",
@@ -190,9 +199,6 @@
       },
       {
         "name": "ohos.permission.GET_BUNDLE_INFO",
-      },
-      {
-        "name": "ohos.permission.START_INVISIBLE_ABILITY"
       },
       {
         "name": "ohos.permission.INTERNET",
