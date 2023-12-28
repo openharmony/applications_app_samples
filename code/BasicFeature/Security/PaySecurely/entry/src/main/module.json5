@@ -20,7 +20,8 @@
     "description": "$string:module_desc",
     "mainElement": "EntryAbility",
     "deviceTypes": [
-      "default"
+      "default",
+      "tablet"
     ],
     "deliveryWithInstall": true,
     "installationFree": false,

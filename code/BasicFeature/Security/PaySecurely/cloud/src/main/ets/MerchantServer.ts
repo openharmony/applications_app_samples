@@ -13,9 +13,8 @@
 * limitations under the License.
 */
 
-import CreateOrGet from './SingleInstanceHelper';
 import cryptoFramework from '@ohos.security.cryptoFramework';
-import payServer from './PayServer';
+import { PayServer } from './PayServer';
 import util from '@ohos.util';
 import resourceManager from '@ohos.resourceManager';
 
@@ -47,9 +46,20 @@ const TEST_PRODUCTS: ProductInfo[] = Array.from({ length: 10 }, (_, i) => ({
 }));
 
 
-class MerchantServer {
+export class MerchantServer {
   private merchantKey: cryptoFramework.KeyPair;
   private payKey: cryptoFramework.KeyPair;
+  private static instance: MerchantServer;
+
+  private constructor() {
+  }
+
+  public static getInstance(): MerchantServer {
+    if (!MerchantServer.instance) {
+      MerchantServer.instance = new MerchantServer();
+    }
+    return MerchantServer.instance;
+  }
 
   public async placeAnOrder(body: ProductInfo): Promise<string> {
     if (!body.id || !body.name || !body.price) {
@@ -79,7 +89,8 @@ class MerchantServer {
     await cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, this.payKey.pubKey, null);
     let dataBlob = await cipher.doFinal({ data: TEXT_ENCODER.encodeInto(temStr) });
     let str: string = BASE64.encodeToStringSync(dataBlob.data);
-    let order = await payServer.generatePayOrder(str);
+    let order = await PayServer.getInstance().generatePayOrder(str);
+    AppStorage.setOrCreate("PayServer", PayServer.getInstance());
     if (!this.merchantKey) {
       let eccGenerator = cryptoFramework.createAsyKeyGenerator('ECC256');
       this.merchantKey = await eccGenerator.convertKey(null, { data: BASE64.decodeSync(MERCHANT_PRI_KEY) });
@@ -95,8 +106,3 @@ class MerchantServer {
     return TEST_PRODUCTS;
   }
 }
-
-
-let mMerchantServer = CreateOrGet(MerchantServer, TAG);
-
-export default mMerchantServer as MerchantServer;

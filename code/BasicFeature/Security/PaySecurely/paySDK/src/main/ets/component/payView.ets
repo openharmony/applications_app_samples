@@ -15,7 +15,7 @@
 
 import cryptoFramework from '@ohos.security.cryptoFramework';
 import util from '@ohos.util';
-import { payServer, PayResult } from '@ohos/cloud';
+import { PayServer, PayResult } from '@ohos/cloud';
 
 const USER_NAME = 'test';
 const TEXT_ENCODER = new util.TextEncoder();
@@ -32,8 +32,9 @@ export default struct PayView {
   @StorageLink('platformName') platformName: string = '';
   @StorageLink('totalPrice') totalPrice: string = '';
   private controller: CustomDialogController;
-  private payComplete: (result: PayResult) => void;
-  private payClientKey;
+  private payComplete: (result: PayResult) => void = () => {
+  };
+  private payClientKey: cryptoFramework.KeyPair | null = null;
 
   private async pay() {
     if (!this.payClientKey) {
@@ -44,24 +45,29 @@ export default struct PayView {
     await cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, this.payClientKey.pubKey, null);
     let userNameBlob = await cipher.doFinal({ data: TEXT_ENCODER.encodeInto(USER_NAME) });
     let passwordBlob = await cipher.doFinal({ data: TEXT_ENCODER.encodeInto(this.passWord) });
-    let result: PayResult = await payServer.pay(globalThis.orderString, BASE64.encodeToStringSync(userNameBlob.data), BASE64.encodeToStringSync(passwordBlob.data))
+    let payServer: PayServer | undefined = AppStorage.get("PayServer");
+    if (!payServer) {
+      this.payComplete(PayResult.ERROR);
+      return;
+    }
+    let result: PayResult = await payServer.pay(AppStorage.get("orderString"), BASE64.encodeToStringSync(userNameBlob.data), BASE64.encodeToStringSync(passwordBlob.data));
     if (PayResult.FAIL === result) {
       this.passWord = '';
       this.passwordBoxArr.fill(false);
     }
-    this.payComplete(result)
+    this.payComplete(result);
   }
 
   build() {
     Column() {
-      Stack({alignContent: Alignment.Start}){
+      Stack({ alignContent: Alignment.Start }) {
         Text($r('app.string.enter_password'))
           .fontColor($r('app.color.normal_font_color'))
           .fontWeight(500)
           .fontSize(14)
           .width('100%')
           .textAlign(TextAlign.Center)
-          .margin({top: 14})
+          .margin({ top: 14 })
         Row() {
           Image($r('app.media.ic_public_back'))
             .id('btnBack')
@@ -77,6 +83,7 @@ export default struct PayView {
       }
       .height(38)
       .width('100%')
+
       Text() {
         Span($r('app.string.pay_to'))
           .fontColor($r('app.color.normal_font_color'))
@@ -88,7 +95,8 @@ export default struct PayView {
           .fontColor($r('app.color.normal_font_color'))
           .fontSize(16)
       }
-        .margin({ top: 26 })
+      .margin({ top: 26 })
+
       Text(`${this.totalPrice}`)
         .margin({ top: 8 })
         .fontWeight(500)
