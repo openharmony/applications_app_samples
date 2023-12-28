@@ -226,10 +226,6 @@ struct DlpPage {
     let wantInfo: Want = AppStorage.get( "funcAbilityWant" ) as Want;
     Logger.info( TAG , "funcAbilityWant:" + JSON.stringify( wantInfo ) );
     this.dlpLinkUri = wantInfo.uri as string;
-    // this.dlpUri = wantInfo.parameters?.["dlpUri"]?.["name"] as string;
-    // this.dlpName = wantInfo.parameters?.["fileAsset"]?.["displayName"] as string;
-    // this.dlpLinkName = wantInfo.parameters?.["linkFileName"]?.["name"] as string;
-
     this.dlpUri = (wantInfo.parameters?.dlpUri as DLPUriObj).name;
     this.dlpName = (wantInfo.parameters?.fileAsset as DLPNameObj).displayName;
     this.dlpLinkName = (wantInfo.parameters?.linkFileName as DLPLinkNameObj).name;
