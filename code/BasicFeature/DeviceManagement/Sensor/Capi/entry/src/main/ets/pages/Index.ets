@@ -45,6 +45,9 @@ struct Index {
       Logger.info(`${TAG} X-coordinate component: ${data.data[1]}`);
       Logger.info(`${TAG} Y-coordinate component: ${data.data[2]}`);
       this.angle = Math.round(data.data[0]);
+      if (this.angle == 360) {
+        this.angle = 0;
+      }
       this.angleTest = this.angle + '°';
     }.bind(this));
   }
