@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { AtomicsUsage } from '@ohos/memoryShared';
+import { AtomicsUsage } from '@ohos/memoryShared/src/main/ets/pages/AtomicsUsage';
 
 @Entry
 @Component
