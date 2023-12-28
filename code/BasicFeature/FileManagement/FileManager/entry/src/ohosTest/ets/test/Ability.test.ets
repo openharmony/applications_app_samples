@@ -1335,16 +1335,6 @@ export default function abilityTest() {
         let btnPromise = await driver.findComponent(ON.id('promise'));
         await btnPromise.click();
         await driver.delayMs(100);
-
-        // await driver.assertComponentExist(ON.text('el3TestFile'));
-        // let testFile = await driver.findComponent(ON.text('el3TestFile'));
-        // await testFile.click();
-        // await driver.delayMs(200);
-        //
-        // await driver.assertComponentExist(ON.id('openFileBack'));
-        // let back = await driver.findComponent(ON.id('openFileBack'));
-        // await back.click();
-        // await driver.delayMs(200);
         Logger.info(TAG, 'MobileFunction_el3_001 end');
       }catch(error){
         expect().assertFail();
@@ -1464,7 +1454,6 @@ export default function abilityTest() {
         let btnPromiseNew = await driver.findComponent(ON.id('promise'));
         await btnPromiseNew.click();
         await driver.delayMs(500);
-        //await driver.assertComponentExist(ON.text('el3TestFileNew'));
         Logger.info(TAG, 'MobileFunction_el3_004 end');
       }catch(error){
         expect().assertFail();
@@ -1570,10 +1559,10 @@ export default function abilityTest() {
         await btnEdit.click();
         await driver.delayMs(200);
         //输入字符到文件编辑区
-        // await driver.assertComponentExist(ON.id('editFileContent'));
-        // let inputTextContent = await driver.findComponent(ON.id('editFileContent'));
-        // await inputTextContent.inputText('el3 file edit');
-        // await driver.delayMs(500);
+        await driver.assertComponentExist(ON.id('editFileContent'));
+        let inputTextContent = await driver.findComponent(ON.id('editFileContent'));
+        await inputTextContent.inputText('el3 file edit');
+        await driver.delayMs(500);
 
         //保存内容并退出编辑模式
         await driver.assertComponentExist(ON.id('saveFileContent'));
@@ -1591,22 +1580,20 @@ export default function abilityTest() {
         await driver.delayMs(200);
 
         //再次进入文件页面，检查文件内容
-        // await driver.assertComponentExist(ON.text('testEl3FileEdit'));
-        // let fileEnter = await driver.findComponent(ON.text('testEl3FileEdit'));
-        // await fileEnter.click();
-        // await driver.delayMs(200);
-        // //await driver.assertComponentExist(ON.text('el3 file edit'));
-        //
-        // let btnBack = await driver.findComponent(ON.id('openFileBack'));
-        // await btnBack.click();
-        // await driver.delayMs(200);
+        await driver.assertComponentExist(ON.text('testEl3FileEdit'));
+        let fileEnter = await driver.findComponent(ON.text('testEl3FileEdit'));
+        await fileEnter.click();
+        await driver.delayMs(200);
+        await driver.assertComponentExist(ON.text('el3 file edit'));
+
+        let btnBack = await driver.findComponent(ON.id('openFileBack'));
+        await btnBack.click();
+        await driver.delayMs(200);
 
         // 返回我的手机主页
         let btnBackMyPhone = await driver.findComponent(ON.id('left'));
         await btnBackMyPhone.click();
         await driver.delayMs(200);
-        // await driver.pressBack();
-        // await driver.delayMs(500);
         Logger.info(TAG, BUNDLE + 'MobileFunction_el3_007 end');
       }catch(error){
         expect().assertFail();
@@ -1875,10 +1862,10 @@ export default function abilityTest() {
         await btnEdit.click();
         await driver.delayMs(200);
         //输入字符到文件编辑区
-        // await driver.assertComponentExist(ON.id('editFileContent'));
-        // let inputTextContent = await driver.findComponent(ON.id('editFileContent'));
-        // await inputTextContent.inputText('el4 file edit');
-        // await driver.delayMs(500);
+        await driver.assertComponentExist(ON.id('editFileContent'));
+        let inputTextContent = await driver.findComponent(ON.id('editFileContent'));
+        await inputTextContent.inputText('el4 file edit');
+        await driver.delayMs(500);
 
         //保存内容并退出编辑模式
         await driver.assertComponentExist(ON.id('saveFileContent'));
@@ -1896,15 +1883,15 @@ export default function abilityTest() {
         await driver.delayMs(200);
 
         //再次进入文件页面，检查文件内容
-        // await driver.assertComponentExist(ON.text('testEl4FileEdit'));
-        // let fileEnter = await driver.findComponent(ON.text('testEl4FileEdit'));
-        // await fileEnter.click();
-        // await driver.delayMs(200);
-        // //await driver.assertComponentExist(ON.text('el4 file edit'));
-        //
-        // let btnBack = await driver.findComponent(ON.id('openFileBack'));
-        // await btnBack.click();
-        // await driver.delayMs(200);
+        await driver.assertComponentExist(ON.text('testEl4FileEdit'));
+        let fileEnter = await driver.findComponent(ON.text('testEl4FileEdit'));
+        await fileEnter.click();
+        await driver.delayMs(200);
+        await driver.assertComponentExist(ON.text('el4 file edit'));
+
+        let btnBack = await driver.findComponent(ON.id('openFileBack'));
+        await btnBack.click();
+        await driver.delayMs(200);
 
         // 返回我的手机主页
         let btnBackMyPhone = await driver.findComponent(ON.id('left'));
