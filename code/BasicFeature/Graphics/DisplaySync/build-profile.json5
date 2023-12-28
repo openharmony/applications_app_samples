@@ -17,7 +17,7 @@
   "app": {
     "signingConfigs": [],
     "compileSdkVersion": 11,
-    //指定OpenHarmony应用/服务编译时的版本
+    // 指定OpenHarmony应用/服务编译时的版本
     "compatibleSdkVersion": 11,
     "products": [
       {

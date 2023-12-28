@@ -48,7 +48,7 @@
 
 ### 具体实现
 
-* 自绘制：通过调用[@ohos.graphics.displaySync](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.graphics.displaySync.d.ts)接口，通过注册回调和设置刷新了区间控制回调周期
+* 自绘制：通过调用[@ohos.graphics.displaySync](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-graphics-displaySync.md)接口，通过注册回调和设置刷新了区间控制回调周期
     * 涉及到的相关接口：
       
       通过`import displaySync from '@ohos.graphics.displaySync'`引入
@@ -62,14 +62,14 @@
       | start(): void | DisplaySync使能 |
       | stop(): void | DisplaySync失能 |
     
-* 属性动画：通过[animation和animateTo](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@internal/component/ets/common.d.ts)接口新增的参数expectedFrameRateRange，设置动画刷新率的区间，预期设置的刷新率，作为动画的属性之一，作用于动画场景
+* 属性动画：通过[animation](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-explicit-animation.md)和[animateTo](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-animatorproperty.md)接口新增的参数expectedFrameRateRange，设置动画刷新率的区间，预期设置的刷新率，作为动画的属性之一，作用于动画场景
     * 涉及到的相关接口：
       
       | 新增动画属性 | 描述 |
       | -------- | -------- |
       | expectedFrameRateRange | animation和animateTo接口的动画属性参数中可选配置expectedFrameRateRange参数 |
 * XComponet：通过在IDE中的Native c++ 工程，在c++代码中定义对外接口为register和unregister，并调用新增的CAPI接口,可在页面上使用drawing根据设定的期望帧率来绘制
-    * 涉及到的相关接口([CAPI接口链接](https://gitee.com/openharmony/interface_sdk_c/blob/master/arkui/ace_engine/native/native_interface_xcomponent.h))：
+    * 涉及到的相关接口([CAPI接口链接](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/native-apis/_o_h___native_x_component.md))：
 
       | 接口名 | 描述 | 
       | -------- | -------- |
@@ -90,9 +90,9 @@
 
 1.本示例仅支持在标准系统上运行，支持设备：RK3568。
 
-2.本示例已适配API version 11版本SDK，本示例涉及使用系统接口：@ohos.graphics.displaySync,以及XComponent的CAPI接口需要手动替换Full SDK才能编译通过。
+2.本示例为Stage模型，已适配API version 11版本SDK，SDK版本号(API Version 11 4.1.5.2),镜像版本号(4.1.5.2)。
 
-3.本示例需要使用DevEco Studio 3.1.1 Release（Build Version: 3.1.0.501, built on June 20, 2023）才可编译运行。
+3.本示例需要使用DevEco Studio 版本号(3.1.0.501)及以上版本才可编译运行。
 
 
 ### 下载
