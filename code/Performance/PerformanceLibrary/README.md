@@ -219,7 +219,6 @@ products/phone/entry/src/main/ets
 |   |   |---TracePage.ets                             // 懒加载示例首页              
 |   |---/waterFlow
 |   |   |---WaterFlowPage.ets                         // WaterFlow示例首页                                                                                                                                       
-|   |   |---TracePage.ets                             // 懒加载示例首页
 |   |---/memoryShared
 |   |   |---AtomicsUsage.ets                          // 原子操作页面              
 |   |   |---LockUsage.ets                             // 锁应用页面 
