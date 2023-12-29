@@ -155,6 +155,9 @@ export struct FilterOption {
       ' title = ' + title);
     setGlobalObject("title", index)
     let filterOptions = getGlobalObject('filterOptions') as Map<string, number>;
+    filterOptions.set(title, index)
+    setGlobalObject('filterOptions', filterOptions)
+    filterOptions = getGlobalObject('filterOptions') as Map<string, number>;
     let DeviceTypeItemList = getGlobalObject('DeviceTypeItemList') as string[];
     let deviceTypeName = getGlobalObject("deviceTypeName") as string;
     let AuthFormItemList = getGlobalObject('AuthFormItemList') as string[];
@@ -165,7 +168,7 @@ export struct FilterOption {
     let isTrustedName = getGlobalObject("isTrustedName") as string;
     let RangeItemList = getGlobalObject('RangeItemList') as string[];
     let rangeName = getGlobalObject("rangeName") as string;
-    this.deviceType = this.deviceType = DeviceTypeItemList[filterOptions.get(deviceTypeName)!]
+    this.deviceType  = DeviceTypeItemList[filterOptions.get(deviceTypeName)!]
     this.authForm = AuthFormItemList[filterOptions.get(authFormName)!]
     this.isOnline = IsOnlineItemList[filterOptions.get(isOnlineName)!]
     this.isTrusted = IsTrustedItemList[filterOptions.get(isTrustedName)!]
