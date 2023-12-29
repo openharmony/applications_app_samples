@@ -647,7 +647,9 @@ export default function abilityTest() {
       await driver.delayMs(500);
       await driver.pressBack();
       Logger.info(TAG, `${BUNDLE}WaterFlow_001 end`);
-     * 多线程共享内存页面场景
+      done();
+    })
+    /** 多线程共享内存页面场景
      */
     it(BUNDLE + "memoryShared_001", 1, async (done: Function) => {
       Logger.info(TAG, `${BUNDLE}memoryShared_001 begin`);
@@ -677,7 +679,6 @@ export default function abilityTest() {
       await driver.delayMs(1000);
       await driver.pressBack();
       await driver.delayMs(1000);
-
       // 点击进入锁的使用任务场景
       let LockSceneBtn: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.lock_operation'))));
       await driver.delayMs(1000);
