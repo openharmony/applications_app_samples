@@ -30,7 +30,7 @@ struct PagePageAbilityFirst {
     Column() {
       Row() {
         Flex({ justifyContent: FlexAlign.Start, alignContent: FlexAlign.Center }) {
-          Text($r('app.string.PageAbility_Component_Develop'))
+          Text($r('app.string.pageAbility_first_button'))
             .fontSize(24)
             .fontWeight(FontWeight.Bold)
             .textAlign(TextAlign.Start)

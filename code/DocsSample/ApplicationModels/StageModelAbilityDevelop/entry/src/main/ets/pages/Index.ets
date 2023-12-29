@@ -288,6 +288,34 @@ struct Index {
         .backgroundColor($r('app.color.start_window_background'))
         .borderRadius(24)
         .margin({ top: 12, right: 12, left: 12 })
+
+        ListItem() {
+          Row() {
+            Row(){
+              Text($r('app.string.ServiceExtension'))
+                .textAlign(TextAlign.Start)
+                .fontWeight(500)
+                .margin({ top: 13, bottom: 13, left: 0, right: 8 })
+                .fontSize(16)
+                .width(232)
+                .height(22)
+                .fontColor($r('app.color.text_color'))
+            }
+            .height(48)
+            .width('100%')
+            .borderRadius(24)
+            .margin({ top: 4, bottom: 4, left: 12, right: 12 })
+          }
+          .onClick(() => {
+            router.pushUrl({
+              url:'pages/Page_ServiceExtensionAbility'
+            });
+          })
+        }
+        .height(56)
+        .backgroundColor($r('app.color.start_window_background'))
+        .borderRadius(24)
+        .margin({ top: 12, right: 12, left: 12 })
       }
       .height('100%')
       .backgroundColor($r('app.color.backGrounding'))

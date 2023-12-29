@@ -142,6 +142,8 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/Solutions/IM/Chat/products/phone/entry/src/main/resources/rawfile/video_2.zip" desc="Provided by code/Solutions/IM/Chat"/>
                 <filteritem type="filepath" name="code/Solutions/IM/Chat/products/phone/entry/src/main/resources/rawfile/video_3.zip" desc="Provided by code/Solutions/IM/Chat"/>
                 <filteritem type="filepath" name="code/Solutions/IM/Chat/products/phone/entry/src/main/resources/rawfile/video_4.zip" desc="Provided by code/Solutions/IM/Chat"/>
+                <filteritem type="filepath" name="code/SystemFeature/Security/DLP/screenshots/haps/DlpManager.hap" desc="Provided by DlpManager"/>
+                <filteritem type="filepath" name="code/SystemFeature/Security/DLP/screenshots/haps/FileEdit.hap" desc="Provided by FileEdit"/>
                 <filteritem type="filepath" name="code/BasicFeature/DeviceManagement/Sensor/Capi/libs/library.har" desc="Provided by code/BasicFeature/DeviceManagement/Sensor"/>
                 <filteritem type="filepath" name="code/BasicFeature/Connectivity/VPN/server/server.zip" desc="Provided by code/BasicFeature/Connectivity/VPN"/>
 		<filteritem type="filepath" name="code/BasicFeature/Connectivity/StageSocket/certificate_file.zip" desc="Provided by code/BasicFeature/Connectivity/StageSocket"/>
@@ -152,6 +154,7 @@ Note:If the text contains special characters, please escape them according to th
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkNativeWindow/screenshots/device/GetAvailableCount.jpg" desc="Provided by code/BasicFeature/Native/NdkNativeWindow"/>
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkNativeWindow/screenshots/device/Main.jpg" desc="Provided by code/BasicFeature/Native/NdkNativeWindow"/>
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkNativeWindow/screenshots/device/ProduceBuffer.jpg" desc="Provided by code/BasicFeature/Native/NdkNativeWindow"/>
+		<filteritem type="filepath" name="code/BasicFeature/ArkTSCard/ArkTSCard/libs/ArkTSUser.hap" desc="Provided by code/BasicFeature/ArkTSCard/ArkTSCard"/>
         <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmonyProfileDebug.pem" desc="Provided by code/Project/HapBuild"/>
                 <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmonyApplication.pem" desc="Provided by code/Project/HapBuild"/>
                 <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmonyProfileRelease.pem" desc="Provided by code/Project/HapBuild"/>

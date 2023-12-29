@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "background_task",
+      "value": "后台任务"
+    },
+    {
+      "name": "transient_task",
+      "value": "短时任务"
+    },
+    {
+      "name": "long_term_task",
+      "value": "长时任务"
+    }
+  ]
+}

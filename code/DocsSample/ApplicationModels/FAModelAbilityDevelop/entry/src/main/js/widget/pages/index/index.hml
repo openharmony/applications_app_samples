@@ -2,6 +2,7 @@
     <stack>
         <div class="container-img">
             <image src="/common/widget.png" class="bg-img"></image>
+            <image src="/common/rect.png" class="bottom-img"></image>
         </div>
         <div class="container-inner">
             <text class="title" onclick="routerEvent">{{title}}</text>

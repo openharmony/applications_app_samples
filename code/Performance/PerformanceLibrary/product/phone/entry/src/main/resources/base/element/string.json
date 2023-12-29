@@ -31,6 +31,26 @@
     {
       "name": "RenderGroup_nonProfit_scene_button_title",
       "value": "反例场景示例"
+    },
+    {
+      "name": "internet_permission",
+      "value": "允许使用网络"
+    },
+    {
+      "name": "location_permission",
+      "value": "允许应用在前台运行时获取位置信息"
+    },
+    {
+      "name": "background_location_permission",
+      "value": "允许应用在后台运行时获取位置信息"
+    },
+    {
+      "name": "fuzzy_location_permission",
+      "value": "允许应用获取设备模糊位置信息"
+    },
+    {
+      "name": "keep_running",
+      "value": "允许应用使用长时任务"
     }
   ]
 }

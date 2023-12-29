@@ -1,7 +1,9 @@
 <div class="container">
     <stack>
         <div class="container-img">
-            <image src="/common/JsWidget.png" class="bg-img"></image>
+            <image src="/common/CardWebImg.png" class="bg-img"></image>
+            <image src="/common/CardWebImgMatrix.png"
+                   class="bottom-img"/>
         </div>
         <div class="container-inner">
             <text class="title" onclick="routerEvent">{{ title }}</text>

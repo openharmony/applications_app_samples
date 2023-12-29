@@ -21,12 +21,13 @@
         "name": "default",
         "signingConfig": "default",
         "compileSdkVersion": 10,
-        "compatibleSdkVersion": 10
+        "compatibleSdkVersion": 10,
+        "targetSdkVersion": 10
       }
     ],
     "buildModeSet": [
       {
-        "name": "debug",
+        "name": "debug"
       },
       {
         "name": "release"
@@ -73,6 +74,30 @@
     {
       "name": "smartPerfEditor",
       "srcPath": "./feature/smartPerfEditor"
+    },
+    {
+      "name": "trace",
+      "srcPath": "./feature/trace"
+    },
+    {
+      "name": "backgroundTask",
+      "srcPath": "./feature/backgroundTask"
+    },
+    {
+      "name": "DFXStateManagement",
+      "srcPath": "./feature/DFXStateManagement"
+    },
+    {
+      "name": "memoryShared",
+      "srcPath": "./feature/memoryShared",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
     }
   ]
 }

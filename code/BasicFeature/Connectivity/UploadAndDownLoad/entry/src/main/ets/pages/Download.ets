@@ -180,34 +180,35 @@ struct Download {
           requestDownload.deleteAllBackTasks();
         })
       }
-      Button() {
-        Row() {
-          if (!this.isBackground && this.isRunning) {
-            Text(`${this.progress}%`)
-              .fontColor(Color.White)
-              .fontSize(16)
-            Text($r('app.string.downloading'))
-              .fontColor(Color.White)
-              .fontSize(16)
-              .margin({ left: 12 })
-          } else {
-            Text($r('app.string.download'))
-              .fontColor(Color.White)
-              .fontSize(16)
+      if (!this.isBackground || this.isBackground && this.backDownTaskState === BackgroundTaskState.NONE) {
+        Button() {
+          Row() {
+            if (!this.isBackground && this.isRunning) {
+              Text(`${this.progress}%`)
+                .fontColor(Color.White)
+                .fontSize(16)
+              Text($r('app.string.downloading'))
+                .fontColor(Color.White)
+                .fontSize(16)
+                .margin({ left: 12 })
+            } else {
+              Text($r('app.string.download'))
+                .fontColor(Color.White)
+                .fontSize(16)
+            }
           }
         }
+        .id('download_to')
+        .type(ButtonType.Capsule)
+        .height(45)
+        .width('100%')
+        .backgroundColor($r('app.color.button_blue'))
+        .onClick(() => {
+          if (!this.isRunning) {
+            this.folderDialogController.open();
+          }
+        })
       }
-      .id('download_to')
-      .type(ButtonType.Capsule)
-      .height(45)
-      .width('100%')
-      .backgroundColor($r('app.color.button_blue'))
-      .onClick(() => {
-        if (!this.isRunning) {
-          this.folderDialogController.open();
-        }
-      })
-
       Button($r('app.string.view_download_files'))
         .id('view_download_files')
         .type(ButtonType.Capsule)
@@ -280,6 +281,7 @@ struct Download {
       return;
     }
     this.progress = 0;
+    logger.info(TAG, `this.isBackground = ${JSON.stringify(this.isBackground)}`);
     if (this.isBackground) {
       this.isRunning = false;
       this.backDownTaskState = BackgroundTaskState.RUNNING;

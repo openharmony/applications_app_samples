@@ -56,21 +56,24 @@ export default function abilityTest() {
       //点击进入微博展示页
       await driver.assertComponentExist(ON.id('textDetail'))
       let viewList = await driver.findComponent(ON.id('textDetail'))
+      await driver.delayMs(500);
       await viewList.click()
       Logger.info(TAG, BUNDLE + 'Save_001 displayDetails')
       //长按图片保存
       await driver.delayMs(DELAY_TIME)
       await driver.assertComponentExist(ON.type('Image').isAfter(ON.id('textDetail')))
       let imageButton = await driver.findComponent(ON.type('Image').isAfter(ON.id('textDetail')))
+      await driver.delayMs(500);
       await imageButton.longClick()
       //点击保存按钮
-      await driver.assertComponentExist(ON.text('保存'))
-      let saveButton = await driver.findComponent(ON.text('保存'))
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.save'))));
+      let saveButton = await driver.findComponent(ON.text(await getResourceString($r('app.string.save'))));
+      await driver.delayMs(500);
       await saveButton.click()
       Logger.info(TAG, BUNDLE + 'Save_001 imageSaveSuccess')
       await driver.delayMs(DELAY_TIME)
-      await driver.assertComponentExist(ON.text('知道了'))
-      let know = await driver.findComponent(ON.text('知道了'))
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.known'))));
+      let know = await driver.findComponent(ON.text(await getResourceString($r('app.string.known'))));
       await know.click();
       //返回
       let backBtn = await driver.findComponent(ON.id('backBtn'));
@@ -91,7 +94,8 @@ export default function abilityTest() {
       await viewList.click()
       Logger.info(TAG, BUNDLE + 'GetPasteContent_001 displayDetails')
       //点击评论按钮
-      let paste = await driver.findComponent(ON.id('commentButton').text('评论'))
+      let paste = await driver.findComponent(ON.id('commentButton').text(await getResourceString($r('app.string.comment'))));
+      await driver.delayMs(500);
       await paste.click();
       Logger.info(TAG, BUNDLE + 'SendMessageFunction_001 addComment')
       //点击输入框，调起输入法
@@ -105,14 +109,14 @@ export default function abilityTest() {
       //长按输入框调起复制
       await textInput.click()
       await textInput.longClick()
-      await driver.assertComponentExist(ON.text('复制'))
-      let copyButton = await driver.findComponent(ON.text('复制'))
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.copy'))));
+      let copyButton = await driver.findComponent(ON.text(await getResourceString($r('app.string.copy'))));
       await copyButton.click()
       Logger.info(TAG, BUNDLE + 'SendMessageFunction_001 copySuccess')
       //长按输入框调起粘贴
       await textInput.longClick()
-      await driver.assertComponentExist(ON.text('粘贴'))
-      let pasteButton = await driver.findComponent(ON.text('粘贴'))
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.paste'))));
+      let pasteButton = await driver.findComponent(ON.text(await getResourceString($r('app.string.paste'))));
       await pasteButton.click()
       await driver.delayMs(DELAY_TIME)
       let pasteValue = await textInput.getText()
@@ -129,8 +133,8 @@ export default function abilityTest() {
     it("GetLocation_001", 0, async (done: Function) => {
       await driver.delayMs(DELAY_TIME)
       Logger.info(TAG, BUNDLE + 'GetLocation_001 begin')
-      await driver.assertComponentExist(ON.text("发现"))
-      let square = await driver.findComponent(ON.text("发现"))
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.discover'))));
+      let square = await driver.findComponent(ON.text(await getResourceString($r('app.string.discover'))));
       await square.click()
       Logger.info(TAG,BUNDLE + 'GetLocation_001 squareView')
       //点击"同城"获取定位信息
@@ -141,8 +145,8 @@ export default function abilityTest() {
       Logger.info(TAG,BUNDLE + 'GetLocation_001 clickLocationButton')
       // 点击确定
       await driver.delayMs(DELAY_TIME)
-      await driver.assertComponentExist(ON.text('知道了'))
-      let Button = await driver.findComponent(ON.text('知道了'))
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.known'))));
+      let Button = await driver.findComponent(ON.text(await getResourceString($r('app.string.known'))));
       await Button.click();
       //获取定位城市信息
       await driver.assertComponentExist(ON.id('locationDisplay'))

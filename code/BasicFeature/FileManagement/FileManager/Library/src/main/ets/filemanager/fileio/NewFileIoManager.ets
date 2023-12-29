@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 
-import storageStatistics from '@ohos.file.storageStatistics'
-import fs from '@ohos.file.fs'
+import storageStatistics from '@ohos.file.storageStatistics';
+import fs from '@ohos.file.fs';
 import { Options } from '@ohos.file.fs';
 import { BusinessError } from '@ohos.base';
-import Logger from '../../utils/Logger'
-import { FileType, SubDirectoryType } from '../../mock/local/FileData'
-import prompt from '@ohos.promptAction'
+import Logger from '../../utils/Logger';
+import { FileType, SubDirectoryType } from '../../mock/local/FileData';
+import prompt from '@ohos.promptAction';
 
 class NewFileSystem {
   // 创建多级目录
@@ -33,8 +33,12 @@ class NewFileSystem {
   }
 
   // 修改文件时间
-  setFileTime(filePath: string, time: number): void {
+  setFileTime(filePath: string, timeStr: string): void {
     try {
+      let time = new Date(timeStr).getTime();
+      if (Number.isNaN(time)) {
+        return prompt.showToast({ message: $r('app.string.tip_invalid_time') });
+      }
       fs.utimes(filePath,time);
     } catch (err) {
       Logger.error(`setFileTime failed, code is ${err.code}, message is ${err.message}`);
@@ -65,4 +69,4 @@ class NewFileSystem {
   }
 }
 
-export default new NewFileSystem()
+export default new NewFileSystem();

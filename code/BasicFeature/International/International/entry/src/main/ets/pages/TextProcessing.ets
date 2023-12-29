@@ -17,7 +17,7 @@
 import TitleBar from '../component/TitleBar';
 import ResourceUtil from '../util/ResourceUtil';
 import I18n from '@ohos.i18n';
-import type common from '@ohos.app.ability.common';
+import common from '@ohos.app.ability.common';
 
 const types = ['U_UNASSIGNED', 'U_GENERAL_OTHER_TYPES', 'U_UPPERCASE_LETTER',
   'U_LOWERCASE_LETTER', 'U_TITLECASE_LETTER', 'U_MODIFIER_LETTER',
@@ -131,7 +131,7 @@ struct TextProcessing {
           .margin({ left: 12, right: 12 })
           .backgroundColor(Color.Black)
         Text() {
-          ForEach(this.areaTextResult, (str, index) => {
+          ForEach(this.areaTextResult, (str: string, index) => {
             Span(str)
               .fontColor(Color.Black)
               .fontSize(16)
@@ -158,7 +158,7 @@ struct TextProcessing {
         .height(36)
         .margin({ top: 12 })
         .onClick(() => {
-          let tem = []
+          let tem: string[] = []
           this.breakIterator.setLineBreakText(this.areaTextValue);
           this.breakIterator.first();
           let pos = this.breakIterator.next();

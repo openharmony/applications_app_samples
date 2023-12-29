@@ -1,0 +1,8 @@
+{
+  "src": [
+    "pages/Music",
+    "pages/Book",
+    "pages/Weather",
+    "pages/Index"
+  ]
+}

@@ -11,6 +11,38 @@
     {
       "name": "TestAbility_label",
       "value": "test label"
+    },
+    {
+      "name": "MemoryShared",
+      "value": "MemoryShared"
+    },
+    {
+      "name": "atomic_operation",
+      "value": "原子操作对比"
+    },
+    {
+      "name": "use_atomic",
+      "value": "原子操作"
+    },
+    {
+      "name": "not_use_atomic",
+      "value": "非原子操作"
+    },
+    {
+      "name": "lock_operation",
+      "value": "锁的使用"
+    },
+    {
+      "name": "use_lock",
+      "value": "使用锁"
+    },
+    {
+      "name": "not_use_lock",
+      "value": "不使用锁"
+    },
+    {
+      "name": "write_success",
+      "value": "写入文件成功"
     }
   ]
 }

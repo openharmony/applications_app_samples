@@ -61,6 +61,9 @@ export class KvStoreModel {
   }
 
   deleteKvStore() {
+    if (this.kvStore !== undefined && this.kvStore !== null) {
+      return;
+    }
     try {
       if (this.kvManager !== undefined) {
         Logger.info(TAG, 'deleteKvStore success')

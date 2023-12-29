@@ -95,6 +95,14 @@
     {
       "name": "CalleePage",
       "value": "Callee页面"
+    },
+    {
+      "name": "ServiceExtAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "ServiceExtAbility_label",
+      "value": "label"
     }
   ]
 }

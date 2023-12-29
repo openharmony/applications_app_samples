@@ -217,6 +217,7 @@ class RequestDownload {
           await request.agent.remove(task.tid);
         })
         this.backgroundDownloadTaskList = [];
+        AppStorage.setOrCreate('backDownTaskState', BackgroundTaskState.NONE);
       } catch (err) {
         logger.info(TAG, `deleteAllTask fail, err= ${JSON.stringify(err)}`);
       }

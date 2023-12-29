@@ -5,6 +5,26 @@
       "value": "入口描述"
     },
     {
+      "name": "get_el3",
+      "value": "data/app/el3"
+    },
+    {
+      "name": "get_el4",
+      "value": "data/app/el4"
+    },
+    {
+      "name": "selectPromt",
+      "value": "选取路径"
+    },
+    {
+      "name": "file_save_success",
+      "value": "保存成功"
+    },
+    {
+      "name": "file_save_faile",
+      "value": "保存失败"
+    },
+    {
       "name": "MainAbility_desc",
       "value": "描述"
     },

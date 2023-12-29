@@ -11,6 +11,30 @@
     {
       "name": "TestAbility_label",
       "value": "test label"
+    },
+    {
+      "name": "save",
+      "value": "保存"
+    },
+    {
+      "name": "known",
+      "value": "知道了"
+    },
+    {
+      "name": "comment",
+      "value": "评论"
+    },
+    {
+      "name": "copy",
+      "value": "复制"
+    },
+    {
+      "name": "paste",
+      "value": "粘贴"
+    },
+    {
+      "name": "discover",
+      "value": "发现"
     }
   ]
 }
