@@ -205,7 +205,7 @@ export struct CertChain {
           })
 
           Button({ type: ButtonType.Capsule, stateEffect: false }) {
-            Text($r('app.string.verify'))
+            Text($r('app.string.certchain_title'))
               .fontSize($r('sys.float.ohos_id_text_size_body1'))
               .fontColor($r('app.color.button_verify_title_color'))
               .height('40vp')
