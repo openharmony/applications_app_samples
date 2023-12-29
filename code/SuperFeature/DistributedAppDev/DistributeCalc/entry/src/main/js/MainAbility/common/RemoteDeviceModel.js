@@ -226,7 +226,7 @@ export default class RemoteDeviceModel {
           return
         }
         try {
-          this.deviceManager.authenticateDevice(device.deviceId, bindParam, (err, data) => {
+          this.deviceManager.bindTarget(device.deviceId, bindParam, (err, data) => {
             if (err) {
               logger.error(TAG, `authenticateDevice error.code=${JSON.stringify(err.code)} , errorMessage=${err.message}`)
               this.authCallback = null
