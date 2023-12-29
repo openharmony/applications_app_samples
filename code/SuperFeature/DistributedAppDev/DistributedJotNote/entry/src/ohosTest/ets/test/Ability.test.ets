@@ -54,7 +54,7 @@ export default function appTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickAccept_001 clickAccept');
       // 点击允许
       let arr = await driver.findComponents(ON.type('允许'));
-      console.log(TAG + 'arr : ' + arr);
+      hilog.info(DOMAIN, TAG, 'arr : ' + arr);
       await driver.assertComponentExist(ON.text('允许'));
       let btnAccept = await driver.findComponent(ON.text('允许'));
       await btnAccept.click();
@@ -86,9 +86,9 @@ export default function appTest() {
       let swiper = await driver.findComponent(ON.id('swiper'));
       await swiper.isScrollable();
       if (await swiper.isScrollable()) {
-        console.info(TAG + 'This scrollBar can be operated');
+        hilog.info(DOMAIN, TAG, 'This scrollBar can be operated');
       } else {
-        console.info(TAG + 'This scrollBar can not be operated');
+        hilog.info(DOMAIN, TAG, 'This scrollBar can not be operated');
       }
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('swiper'));
