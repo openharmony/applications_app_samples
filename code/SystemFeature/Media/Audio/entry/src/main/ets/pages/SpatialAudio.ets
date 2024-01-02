@@ -335,10 +335,10 @@ struct SpatialAudio {
       try {
         isSpaSupported =  this.audioSpatializationManager.isSpatializationSupported()
         isSpaSupportedForDevice =
-        this.audioSpatializationManager.isSpatializationSupportedForDevice(audioDeviceDescriptors[0])
+          this.audioSpatializationManager.isSpatializationSupportedForDevice(audioDeviceDescriptors[0])
         isTraSupported =  this.audioSpatializationManager.isHeadTrackingSupported()
         isTraSupportedForDevice =
-        this.audioSpatializationManager.isHeadTrackingSupportedForDevice(audioDeviceDescriptors[0])
+          this.audioSpatializationManager.isHeadTrackingSupportedForDevice(audioDeviceDescriptors[0])
       } catch (err) {
         Logger.error(`supportStateQuery ,Error: ${JSON.stringify(err)}`)
       }
