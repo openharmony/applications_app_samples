@@ -10,6 +10,7 @@
     "@ohos/backgroundTask": "file:../../../feature/backgroundTask",
     "@ohos/grid": "file:../../../feature/grid",
     "@ohos/smartPerfHost": "file:../../../feature/smartPerfHost",
+    "@ohos/WaterFlow": "file:../../../feature/WaterFlow",
     "@ohos/staticImport": "file:../../../feature/staticImport",
     "@ohos/DFXStateManagement": "file:../../../feature/DFXStateManagement",
     "@ohos/ifOrVisibility": "file:../../../feature/ifOrVisibility",

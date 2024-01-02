@@ -59,5 +59,9 @@ export let performanceTypeArray: Array<PerformanceMsg> = [
   {
     name: 'DFX StateManagement',
     uri: 'pages/DFXStateManagement/DFXStateManagementPage'
+  },
+  {
+    name: 'WaterFlow',
+    uri: 'pages/waterFlow/WaterFlowPage'
   }
 ]

@@ -82,6 +82,9 @@ BackgroundTask使用说明：
 
 3.点击**长时任务**按钮进入场景页，授予通知权限和定位权限，和点击**开启定位服务**按钮开启定位，点击**关闭定位服务**关闭定位。
 
+WaterFlow使用说明：
+
+1.点击性能示例主页的**WaterFlow**按钮，进入**WaterFlow**场景页
 多线程共享内存页面使用说明：
 
 1.点击性能示例主页的**MemoryShared**按钮，进入**多线程共享内存入口**场景页。
@@ -162,6 +165,10 @@ features
 |   |   |---BackgroundTaskHomeView.ets                // 场景主页面模块       
 |   |   |---TransientTaskView.ets                     // 短时任务页面
 |   |   |---LongTermTaskView.ets                      // 长时任务页面
+---/waterFlow/src/main/ets                            // waterFlow功能HAR共享包
+|   |---/pages    
+|   |   |---Index.ets                                 // 场景主页面模块       
+|   |   |---WaterFlowDataSource.ets                   // 数据源
 products/phone/entry/src/main/ets
 |---/entryability
 |   |---EntryAbility.ts                               // 封装整个模块启用，监听Ability对应的窗口等逻辑
@@ -209,7 +216,9 @@ products/phone/entry/src/main/ets
 |   |   |---TransientTask.ets                         // 短时任务页面
 |   |   |---LongTermTask.ets                          // 长时任务页面
 |   |---/trace
-|   |   |---TracePage.ets                             // 懒加载示例首页
+|   |   |---TracePage.ets                             // 懒加载示例首页              
+|   |---/waterFlow
+|   |   |---WaterFlowPage.ets                         // WaterFlow示例首页                                                                                                                                       
 |   |---/memoryShared
 |   |   |---AtomicsUsage.ets                          // 原子操作页面              
 |   |   |---LockUsage.ets                             // 锁应用页面 

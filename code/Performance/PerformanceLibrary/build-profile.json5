@@ -98,6 +98,10 @@
           ]
         }
       ]
+    },
+    {
+      "name": "WaterFlow",
+      "srcPath": "./feature/WaterFlow"
     }
   ]
 }

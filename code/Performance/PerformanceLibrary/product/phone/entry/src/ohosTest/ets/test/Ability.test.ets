@@ -626,7 +626,30 @@ export default function abilityTest() {
     })
 
     /**
-     * 多线程共享内存页面场景
+     * WaterFlow高性能开发指导
+     */
+    it(BUNDLE + "WaterFlow_001", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}WaterFlow_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      await driver.swipe(10, 800, 10, 100, 600);
+      // 点击进入WaterFlow的使用首页
+      let waterBtn: Component = await driver.findComponent(ON.text('WaterFlow'));
+      await driver.delayMs(500);
+      await waterBtn.click();
+      await driver.delayMs(500);
+      // 滑动页面 循环连续向上滑动4次
+
+      for (let index = 0; index < 4; index++) {
+        await driver.swipe(10, 1000, 10, 0, 15000);
+      }
+      // 退出到首页面
+      await driver.delayMs(500);
+      await driver.pressBack();
+      Logger.info(TAG, `${BUNDLE}WaterFlow_001 end`);
+      done();
+    })
+    /** 多线程共享内存页面场景
      */
     it(BUNDLE + "memoryShared_001", 1, async (done: Function) => {
       Logger.info(TAG, `${BUNDLE}memoryShared_001 begin`);
@@ -656,7 +679,6 @@ export default function abilityTest() {
       await driver.delayMs(1000);
       await driver.pressBack();
       await driver.delayMs(1000);
-
       // 点击进入锁的使用任务场景
       let LockSceneBtn: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.lock_operation'))));
       await driver.delayMs(1000);
