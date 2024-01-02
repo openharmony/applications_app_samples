@@ -38,7 +38,7 @@
     },
     {
       "name": "verify",
-      "value": "证书链校验"
+      "value": "签名校验"
     },
     {
       "name": "modify_origin_data",
