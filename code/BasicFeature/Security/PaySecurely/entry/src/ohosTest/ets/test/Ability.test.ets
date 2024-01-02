@@ -26,9 +26,9 @@ let driver: Driver = Driver.create();
 
 // 资源本地化
 async function getResourceString(resource: Resource): Promise<string> {
-  let manage = DELEGATOR.getAppContext().resourceManager
-  let text = await manage.getStringValue(resource)
-  return text
+  let manage = DELEGATOR.getAppContext().resourceManager;
+  let text = await manage.getStringValue(resource);
+  return text;
 }
 
 // 通过id验证有没有这个组件 有的话点击一下
@@ -41,12 +41,12 @@ async function checkButtonAndClickWithID(text: string) {
 }
 
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest',  ()=> {
 
     /**
      * 拉起应用
      */
-    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+    it(BUNDLE + 'StartAbility_001', 0, async (done:Function)=> {
       Logger.info(TAG, BUNDLE + 'StartAbility_001 begin');
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
@@ -66,10 +66,10 @@ export default function abilityTest() {
     /**
      * 选择商品进入支付hap
      */
-    it(BUNDLE + 'PaySecurely_001', 0, async (done) => {
+    it(BUNDLE + 'PaySecurely_001', 0, async (done:Function) => {
       Logger.info(TAG, BUNDLE + 'PaySecurely_001 begin');
       let driver: Driver = Driver.create();
-      await driver.delayMs(1000);
+      await driver.delayMs(3000);
       await checkButtonAndClickWithID('main_list_item_0');
       await driver.delayMs(3000);
       done();
@@ -79,8 +79,8 @@ export default function abilityTest() {
     /**
      * 点击立即支付
      */
-    it(BUNDLE + 'PaySecurely_001', 0, async (done) => {
-      Logger.info(TAG, BUNDLE + 'PaySecurely_001 begin');
+    it(BUNDLE + 'PaySecurely_002', 0, async (done:Function) => {
+      Logger.info(TAG, BUNDLE + 'PaySecurely_002 begin');
       let driver: Driver = Driver.create();
       await driver.delayMs(1000);
       let payButton = await driver.findComponent(ON.text(await getResourceString($r('app.string.pay_now'))));
@@ -107,7 +107,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('main_list_item_0'));
       await driver.delayMs(6000);
       done();
-      Logger.info(TAG, BUNDLE + 'PaySecurely_001 end');
+      Logger.info(TAG, BUNDLE + 'PaySecurely_002 end');
     })
 
 

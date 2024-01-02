@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例主要展示了加解密算法库框架的相关功能，使用[@ohos.security.cryptoFramework](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/reference/apis/js-apis-cryptoFramework.md/)
+本示例主要展示了加解密算法库框架的相关功能，使用[@ohos.security.cryptoFramework](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/apis/js-apis-cryptoFramework.md/)
 接口，利用RSA非对称加密、ECC数字签名模拟选购支付功能;
 
 ### 效果预览
@@ -64,8 +64,8 @@ paySDK/src/main/ets/
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568；
-2. 本示例已适配API version 9版本SDK，版本号：3.2.11.10，镜像版本号：OpenHarmony 4.0.7.2；
-3. 本示例需要使用DevEco Studio 3.1 Release (Build Version: 3.1.0.500)及以上版本才可编译运行；
+2. 本示例已适配API version 10版本SDK，版本号：4.0.10.11，镜像版本号：OpenHarmony 4.0.10.13；
+3. 本示例需要使用DevEco Studio 4.0 Release (Build Version: 4.0.0.600, built on October 17, 2023)及以上版本才可编译运行；
 
 ### 下载
 

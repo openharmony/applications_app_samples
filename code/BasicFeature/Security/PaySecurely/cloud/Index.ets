@@ -13,8 +13,8 @@
 * limitations under the License.
 */
 
-export { default as merchantServer } from './src/main/ets/MerchantServer'
+export { MerchantServer } from './src/main/ets/MerchantServer'
 
 export { PayResult } from './src/main/ets/PayServer'
 
-export { default as payServer } from './src/main/ets/PayServer'
+export { PayServer } from './src/main/ets/PayServer'
