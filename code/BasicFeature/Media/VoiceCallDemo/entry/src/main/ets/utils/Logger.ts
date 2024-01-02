@@ -14,39 +14,42 @@
 */
 import hilog from '@ohos.hilog';
 
+// 是否使用@ohos.hilog记录日志
 const USE_HILOG = false;
 const DOMAIN: number = 0xFF00;
 
 export default class Logger {
   private static domain: number = DOMAIN;
+  // 日志前缀
   private static prefix: string = '[Sample_VoiceCallDemo]';
+  //日志格式，暂时支持两个字符串
   private static format: string = '%{public}, %{public}';
 
   static debug(...args: string[]): void {
     if (USE_HILOG) {
-      hilog.debug(this.domain, this.prefix, this.format, args);
+      hilog.debug(Logger.domain, Logger.prefix, Logger.format, args);
     } else {
-      console.debug(this.prefix, args);
+      console.debug(Logger.prefix, args);
     }
   }
 
   static error(...args: string[]): void {
     if (USE_HILOG) {
-      hilog.error(this.domain, this.prefix, this.format, args);
+      hilog.error(Logger.domain, Logger.prefix, Logger.format, args);
     } else {
-      console.error(this.prefix, args);
+      console.error(Logger.prefix, args);
     }
   }
 
   static info(...args: string[]): void {
     if (USE_HILOG) {
-      hilog.info(this.domain, this.prefix, this.format, args);
+      hilog.info(Logger.domain, Logger.prefix, Logger.format, args);
     } else {
-      console.info(this.prefix, args);
+      console.info(Logger.prefix, args);
     }
   }
 
   static log(...args: string[]): void {
-    this.info(...args);
+    Logger.info(...args);
   }
 }

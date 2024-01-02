@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 import Logger from '../utils/Logger';
-import createOrGet from '../utils/SingleInstanceUtil';
 import window from '@ohos.window';
 import common from '@ohos.app.ability.common';
 import display from '@ohos.display';
@@ -24,42 +23,59 @@ const FLOAT_SIZE = vp2px(120);
 /**
  * 悬浮窗控制类
  */
-class FloatWindowController {
-  private floatWindow: window.Window;
-  private windowStage: window.WindowStage;
+export default class FloatWindowController {
+
+  // 创建单例模式
+  private static mInstance: FloatWindowController | null = null;
+
+  public static getInstance(): FloatWindowController {
+    if (FloatWindowController.mInstance == null) {
+      FloatWindowController.mInstance = new FloatWindowController();
+    }
+    return FloatWindowController.mInstance;
+  }
+
+  private constructor() {
+    // 私有化构造函数
+  }
+
+  private floatWindow: window.Window | null = null;
+  private windowStage: window.WindowStage | null = null;
 
   //ability调用，监听windowStage状态变化
-  async initWindowStage(context:common.UIAbilityContext,windowStage: window.WindowStage) {
+  async initWindowStage(context: common.UIAbilityContext, windowStage: window.WindowStage) {
     this.windowStage = windowStage;
-    let mainWin = await this.windowStage.getMainWindow();
+    let mainWin = await windowStage.getMainWindow();
 
     await mainWin.setWindowSystemBarProperties({
       statusBarColor: '#182431',
       navigationBarColor: '#182431'
     });
 
-    let that = this;
-    this.windowStage.on('windowStageEvent', (event: window.WindowStageEventType) => {
+    windowStage.on('windowStageEvent', (event: window.WindowStageEventType) => {
       if (event === window.WindowStageEventType.SHOWN) {
-        that.destroyFloatWindow();
+        this.destroyFloatWindow();
       } else if (event === window.WindowStageEventType.HIDDEN) {
-        that.createAndShowFloatWindow(context);
+        this.createAndShowFloatWindow(context);
       }
     });
   }
+
   //此处有一个bug，当前ability调用windowStage.getMainWindow().hide()方法，会与上一个ability一起hide
   async hideMain() {
-    let mainWin: window.Window = await  this.windowStage.getMainWindow();
-    mainWin.hide();
+    if(this.windowStage){
+      let mainWin: window.Window = await this.windowStage.getMainWindow();
+      mainWin.hide();
+    }
   }
 
   //创建悬浮窗
-  private async createAndShowFloatWindow(context:common.UIAbilityContext) {
+  private async createAndShowFloatWindow(context: common.UIAbilityContext) {
     if (context.isTerminating()) {
       return;
     }
 
-    Logger.info(`${TAG}  createAndShowWindow`);
+    Logger.info(TAG,` createAndShowWindow`);
     try {
       let w = display.getDefaultDisplaySync().width;
       // 创建应用子窗口
@@ -72,22 +88,17 @@ class FloatWindowController {
       await this.floatWindow.resize(FLOAT_SIZE, FLOAT_SIZE);
       await this.floatWindow.setUIContent('pages/Float');
       this.floatWindow.setWindowBackgroundColor('#00000000');
-      await  this.floatWindow.showWindow();
+      await this.floatWindow.showWindow();
     } catch (err) {
-      Logger.error(`${TAG}: createSubWindow failed, code is ${err.code}, message is ${err.message}`);
+      Logger.error(TAG,`createSubWindow failed, code is ${err.code}, message is ${err.message}`);
     }
   }
 
   // 销毁悬浮窗
   public async destroyFloatWindow() {
-    Logger.info(`${TAG}  destroyWindow`);
+    Logger.info(TAG,` destroyWindow`);
     if (this.floatWindow) {
       await this.floatWindow.destroyWindow();
     }
   }
 }
-
-// 使用单例，方便管理
-let mModel = createOrGet(FloatWindowController, TAG);
-
-export default mModel as FloatWindowController;

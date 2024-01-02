@@ -36,29 +36,29 @@ const DEFAULT_EVENT = Constants.EVENT_UI_ANSWER;
 export declare interface OptCallback {
   //对端接听
   onRemoteAnswer();
+
   //对端挂断/拒绝
   onRemoteHangUp();
 }
 
 
 class OptionModel {
-  private mSubscriber;
-  private mCallback: OptCallback;
+  private mSubscriber: commonEvent.CommonEventSubscriber | null = null;
+  private mCallback: OptCallback | null = null;
   private caller: Caller = callData[0]; // 配合测试，默认用户
 
   getCaller(): Caller {
     return this.caller;
   }
 
-  public readWant(): number {
-    let want: Want = globalThis.abilityWant;
+  public readWant(want: Want): number {
     if (!want.parameters) {
       return DEFAULT_EVENT;
     }
     let event = want.parameters[Constants.START_ABILITY_EVENT_KEY];
     let data: number = want.parameters[Constants.START_ABILITY_DATA_KEY] as number;
     if ((!event) || !data) {
-      Logger.log(`${TAG}  readWant param empty`);
+      Logger.log(TAG, `readWant param empty`);
       return DEFAULT_EVENT;
     }
     this.caller = callData[data-1];
@@ -74,20 +74,19 @@ class OptionModel {
 
     this.mSubscriber = await commonEvent.createSubscriber({
       events: [
-      Constants.COMM_EVENT_ANSWER_FROM_HOST,
-      Constants.COMM_EVENT_HANGUP_FROM_HOST,
+        Constants.COMM_EVENT_ANSWER_FROM_HOST,
+        Constants.COMM_EVENT_HANGUP_FROM_HOST,
       ]
     });
 
     commonEvent.subscribe(this.mSubscriber, (err, data) => {
       if (err) {
-        Logger.error(`${TAG}: subscribe common event failed, code is ${err.code}, message is ${err.message}`);
+        Logger.error(TAG, `subscribe common event failed ${JSON.stringify(err)}`);
         return;
       }
       this.onRemoteEvent(data.event);
     });
   }
-
 
   // 注册监听
   public registerCallback(callback: OptCallback): void {
@@ -95,7 +94,10 @@ class OptionModel {
   }
 
   private onRemoteEvent(event: string) {
-    Logger.log(`${TAG}  onRemoteEvent ${event}`);
+    Logger.log(TAG,` onRemoteEvent ${event}`);
+    if (this.mCallback == null) {
+      return;
+    }
     switch (event) {
       case Constants.COMM_EVENT_ANSWER_FROM_HOST: //接听
         this.mCallback.onRemoteAnswer();
@@ -106,23 +108,22 @@ class OptionModel {
     }
   }
 
-
   // 发送事件
   public async answer(): Promise<void> {
-    Logger.info(`${TAG} answer`);
+    Logger.info(TAG,`answer`);
     commonEvent.publish(Constants.COMM_EVENT_ANSWER_FROM_VOICE, (err) => {
       if (err) {
-        Logger.error(`${TAG}: publish common event failed, code is ${err.code}, message is ${err.message}`);
+        Logger.error(TAG,`publish common event failed ${JSON.stringify(err)}`);
         return;
       }
     });
   }
 
   public async hangUp(): Promise<void> {
-    Logger.info(`${TAG} hangUp`);
+    Logger.info(TAG,`hangUp`);
     commonEvent.publish(Constants.COMM_EVENT_HANGUP_FROM_VOICE, (err) => {
       if (err) {
-        Logger.error(`${TAG}: publish common event failed, code is ${err.code}, message is ${err.message}`);
+        Logger.error(TAG,`publish common event failed ${JSON.stringify(err)}`);
         return;
       }
     });
@@ -131,9 +132,11 @@ class OptionModel {
   //销毁
   public destroy(): void {
     try {
-      commonEvent.unsubscribe(this.mSubscriber);
+      if (this.mSubscriber) {
+        commonEvent.unsubscribe(this.mSubscriber);
+      }
     } catch (err) {
-
+      Logger.error(TAG,`destroy common event failed ${JSON.stringify(err)}`);
     }
     this.mCallback = null;
   }

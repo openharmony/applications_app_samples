@@ -51,16 +51,18 @@ struct Float {
 
 @Component
 struct FloatComponent {
-  private res: Resource;
+  private res?: Resource;
   private tips?: Resource;
 
   build() {
 
     Column() {
-      Image(this.res)
-        .objectFit(ImageFit.Contain)
-        .width('40%')
-        .height('40%')
+      if (this.res) {
+        Image(this.res)
+          .objectFit(ImageFit.Contain)
+          .width('40%')
+          .height('40%')
+      }
 
       if (this.tips) {
         Text(this.tips)

@@ -23,6 +23,8 @@ import TimerUtil, { Observer } from '../utils/TimerUtil';
 import common from '@ohos.app.ability.common';
 import FloatWindowController from './FloatWindowController';
 import SoundUtil from '../utils/SoundUtil';
+import Want from '@ohos.app.ability.Want';
+import resourceManager from '@ohos.resourceManager';
 
 const TAG = 'IndexController';
 
@@ -30,15 +32,30 @@ const TAG = 'IndexController';
  * Controller for ui
  */
 export default class IndexController implements OptCallback {
-  private observer: Observer;
-  private ctx: common.UIAbilityContext;
+  // 创建单例模式
+  private static mInstance: IndexController | null = null;
+
+  public static getInstance(): IndexController {
+    if (IndexController.mInstance == null) {
+      IndexController.mInstance = new IndexController();
+    }
+    return IndexController.mInstance;
+  }
+
+  private constructor() {
+    // 私有化构造函数
+  }
+
+  private observer: Observer | null = null;
+  private ctx: common.UIAbilityContext | null = null;
 
   // -----------------初始化和销毁---------------------
-  beforeInit(ctx: common.UIAbilityContext): boolean {
-    Logger.info(`${TAG} beforeInit`);
+  beforeInit(want: Want, ctx: common.UIAbilityContext): boolean {
+    Logger.info(TAG, `beforeInit`);
     this.ctx = ctx;
-    let event = OptionModel.readWant();
+    let event = OptionModel.readWant(want);
     if (event > 0) {
+      AppStorage.setOrCreate('UI_EVENT', event);
       emitter.emit({
         eventId: event
       });
@@ -50,8 +67,8 @@ export default class IndexController implements OptCallback {
   }
 
   init(): void {
-    Logger.info(`${TAG} init`);
-    TimerUtil.startTimer();
+    Logger.info(TAG, `init`);
+    TimerUtil.getInstance().startTimer();
     OptionModel.registerCallback(this);
     OptionModel.subscriber();
     BufferModel.init(() => {
@@ -65,13 +82,13 @@ export default class IndexController implements OptCallback {
     this.setSpeaker(false);
     this.setMicrophoneMute(false);
     this.playSound();
-    this.observer = TimerUtil.registerObserver((count: number) => {
+    this.observer = TimerUtil.getInstance().registerObserver((count: number) => {
       this.timeoutCallback(count);
     });
   }
 
   timeoutCallback(count: number): void {
-    Logger.info(`${TAG} timeoutCallback count : ${count}`);
+    Logger.info(TAG, `timeoutCallback count : ${count}`);
     if (count > 30) {
       this.exit();
     }
@@ -79,14 +96,16 @@ export default class IndexController implements OptCallback {
 
   // 主动退出
   exit(): void {
-    Logger.info(`${TAG} exit`);
+    Logger.info(TAG, `exit`);
     this.clearSound();
     this.exitVoiceCall(); // 停止录音和播放，切换音频场景
-    TimerUtil.stopTimer(); // 停掉计时器
+    TimerUtil.getInstance().stopTimer(); // 停掉计时器
     OptionModel.destroy();
     setTimeout(() => {
       BufferModel.destroy(); // 停止线程延迟200ms，给stop执行一些时间
-      this.ctx.terminateSelf(); // 停止应用
+      if (this.ctx) {
+        this.ctx.terminateSelf(); // 停止应用
+      }
     }, 400);
   }
 
@@ -100,26 +119,27 @@ export default class IndexController implements OptCallback {
   }
 
   answer(): void {
-    Logger.info(`${TAG} answer`);
+    Logger.info(TAG, `answer`);
     OptionModel.answer();
     this.enterVoiceCall();
   }
 
   hangUp(): void {
-    Logger.info(`${TAG} hangUp`);
+    Logger.info(TAG, `hangUp`);
     OptionModel.hangUp();
     this.exit();
   }
 
   //对端接听
   onRemoteAnswer(): void {
-    Logger.info(`${TAG} onRemoteAnswer`);
+    Logger.info(TAG, `onRemoteAnswer`);
     this.enterVoiceCall();
   }
+
   //对端挂断/拒接
   onRemoteHangUp(): void {
-    Logger.info(`${TAG} onRemoteHangUp`);
-    FloatWindowController.destroyFloatWindow();
+    Logger.info(TAG, `onRemoteHangUp`);
+    FloatWindowController.getInstance().destroyFloatWindow();
     this.exit();
   }
 
@@ -148,8 +168,10 @@ export default class IndexController implements OptCallback {
   }
 
   async playSound(): Promise<void> {
-    let fd = await this.ctx.resourceManager.getRawFd('wechat_voice_ring.mp3');
-    SoundUtil.playFd(fd);
+    if (this.ctx) {
+      let fd: resourceManager.RawFileDescriptor = await this.ctx.resourceManager.getRawFd('wechat_voice_ring.mp3');
+      SoundUtil.playFd(fd);
+    }
   }
 
   // 清除铃声
@@ -159,28 +181,31 @@ export default class IndexController implements OptCallback {
 
 
   // 开启录音，切换mic 录音成绩
-  private enterVoiceCall(){
-    Logger.info(`${TAG} enterVoiceCall`);
+  private enterVoiceCall() {
+    Logger.info(TAG, `enterVoiceCall`);
     try {
-      TimerUtil.clearCount();
-      TimerUtil.removeObserver(this.observer);
+      TimerUtil.getInstance().clearCount();
+      if (this.observer) {
+        TimerUtil.getInstance().removeObserver(this.observer);
+      }
 
       this.clearSound();
 
       AudioManagerModel.setVoiceScene(true);
     } catch (err) {
-      Logger.error(`${TAG}: enterVoiceCall failed, code is ${err.code}, message is ${err.message}`);
+      Logger.error(TAG, `enterVoiceCall failed ${JSON.stringify(err)}`);
     } finally {
-      Logger.info(`${TAG} enterVoiceCall emit ui`);
+      Logger.info(TAG, `enterVoiceCall emit ui`);
       emitter.emit({
         eventId: Constants.EVENT_UI_VOICE
       })
       BufferModel.startWorkTask();
     }
   }
+
   // 停止录音，切换声音模式
   private exitVoiceCall() {
-    Logger.info(`${TAG} exitVoiceCall`);
+    Logger.info(TAG, `exitVoiceCall`);
     AudioManagerModel.setVoiceScene(false);
     BufferModel.stopWorkTask();
   }

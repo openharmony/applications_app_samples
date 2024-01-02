@@ -31,9 +31,9 @@ import common from '@ohos.app.ability.common';
 @Entry
 @Component
 struct Index {
-  private controller: IndexController = new IndexController();
+  private controller: IndexController = IndexController.getInstance();
   @State mRemote: Caller = { index: -1, name: $r('app.string.name_default'), head: $r('app.media.icon') };
-  @State mUIEvent: number = -1;
+  @StorageLink('UI_EVENT') mUIEvent: number = -1;
 
   aboutToAppear() {
     emitter.on({ eventId: Constants.EVENT_UI_CALL }, (data: emitter.EventData) => {
@@ -46,10 +46,6 @@ struct Index {
       this.onUIEvent(Constants.EVENT_UI_VOICE);
     });
 
-    if (!this.controller.beforeInit(getContext(this) as common.UIAbilityContext)) {
-      return;
-    }
-
     grantPermission(getContext(this) as common.UIAbilityContext).then(result => {
       if (!result) {
         promptAction.showToast({ message: $r('app.string.tips_no_permission'), duration: 2000 });
@@ -58,7 +54,6 @@ struct Index {
 
     this.controller.init();
     this.mRemote = this.controller.getCaller();
-    AppStorage.SetOrCreate('UI_EVENT', this.mUIEvent);
   }
 
   aboutToDisappear() {
@@ -71,10 +66,10 @@ struct Index {
     }
   }
 
-  onUIEvent(eventId: number, data?: { [key: string]: number }) {
+  onUIEvent(eventId: number, data?:emitter.EventData) {
     Logger.info(`Index onUIEvent ${eventId} : ${JSON.stringify(data)}`);
     this.mUIEvent = eventId; //切换UI
-    AppStorage.SetOrCreate('UI_EVENT', this.mUIEvent);
+    AppStorage.setOrCreate('UI_EVENT', this.mUIEvent);
   }
 
   build() {

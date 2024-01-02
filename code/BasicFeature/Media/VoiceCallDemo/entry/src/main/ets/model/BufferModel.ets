@@ -15,10 +15,10 @@
 import Logger from '../utils/Logger';
 import IpUtils from '../utils/IpUtils';
 import TimerUtil from '../utils/TimerUtil';
-import type { Observer } from '../utils/TimerUtil';
+import { Observer } from '../utils/TimerUtil';
 import SocketImpl from '../net/SocketImpl';
 import wifiManager from '@ohos.wifiManager';
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
 import Constants from '../Constants';
 
 const TAG = 'BufferModel';
@@ -31,28 +31,29 @@ const RETRY_INTERVAL = 3; // 重试间隔s
  * 负责socket服务器的连接与数据传输
  */
 class BufferModel {
-  private mSocketImpl: SocketImpl = new SocketImpl();
-  private mCapturerWorker: worker.ThreadWorker;
-  private mRendererWorker: worker.ThreadWorker;
+  private mSocketImpl: SocketImpl | null = null;
+  private mCapturerWorker: worker.ThreadWorker | null = null;
+  private mRendererWorker: worker.ThreadWorker | null = null;
   private lastConnected = false;
-  private onDisconnectedCallback: () => void;
+  private onDisconnectedCallback: (() => void) | null = null;
+  private observer: Observer | null = null;
 
-  private observer: Observer;
-
-  public init(callback): void {
+  public init(callback: () => void): void {
     this.connect();
     try {
       this.mCapturerWorker = new worker.ThreadWorker('entry/ets/workers/CapturerWorker.ts');
       this.mRendererWorker = new worker.ThreadWorker('entry/ets/workers/RendererWorker.ts');
       // 处理来自worker线程的消息
-      this.mCapturerWorker.onmessage = this.onMessage.bind(this);
+      this.mCapturerWorker.onmessage = (message: MessageEvents) => {
+        this.onMessage(message);
+      };
       this.onDisconnectedCallback = callback;
     } catch (err) {
-      Logger.error(`${TAG}: init failed, code is ${err.code}, message is ${err.message}`);
+      Logger.error(TAG, `init failed ${JSON.stringify(err)}`);
     }
   }
 
-  private onMessage(message): void {
+  private onMessage(message: MessageEvents): void {
     let messageId: number = message.data.code;
     if (messageId === Constants.WORK_MESSAGE_CAPTURER_SEND) {
       let buffer: ArrayBuffer = message.data.buffer;
@@ -65,19 +66,25 @@ class BufferModel {
    */
   public startWorkTask(): void {
     try {
-      this.mCapturerWorker.postMessage({ 'code': Constants.WORK_MESSAGE_CAPTURER_START });
-      this.mRendererWorker.postMessage({ 'code': Constants.WORK_MESSAGE_RENDERER_START });
+      if (this.mCapturerWorker && this.mRendererWorker) {
+        this.mCapturerWorker.postMessage({ 'code': Constants.WORK_MESSAGE_CAPTURER_START });
+        this.mRendererWorker.postMessage({ 'code': Constants.WORK_MESSAGE_RENDERER_START });
+      }
     } catch (err) {
-      Logger.error(`${TAG}: startWorkTask failed, code is ${err.code}, message is ${err.message}`);
+      Logger.error(TAG, `startWorkTask failed ${JSON.stringify(err)}`);
     }
   }
 
   public stopWorkTask(): void {
     try {
-      this.mCapturerWorker.postMessage({ 'code': Constants.WORK_MESSAGE_CAPTURER_STOP });
-      this.mRendererWorker.postMessage({ 'code': Constants.WORK_MESSAGE_RENDERER_STOP });
+      if (this.mCapturerWorker) {
+        this.mCapturerWorker.postMessage({ 'code': Constants.WORK_MESSAGE_CAPTURER_STOP });
+      }
+      if (this.mRendererWorker) {
+        this.mRendererWorker.postMessage({ 'code': Constants.WORK_MESSAGE_RENDERER_STOP });
+      }
     } catch (err) {
-      Logger.error(`${TAG}: stopWorkTask failed, code is ${err.code}, message is ${err.message}`);
+      Logger.error(TAG, `stopWorkTask failed ${JSON.stringify(err)}`);
     }
   }
 
@@ -88,16 +95,22 @@ class BufferModel {
     }
     //停止线程
     try {
-      this.mCapturerWorker.terminate();
+      if (this.mCapturerWorker) {
+        this.mCapturerWorker.terminate();
+      }
     } catch (err) {
 
     }
     try {
-      this.mRendererWorker.terminate();
+      if (this.mRendererWorker) {
+        this.mRendererWorker.terminate();
+      }
     } catch (err) {
 
     }
-    TimerUtil.removeObserver(this.observer);
+    if (this.observer) {
+      TimerUtil.getInstance().removeObserver(this.observer);
+    }
   }
 
   // TimerUtil回调，大概3秒一次检查socket连接
@@ -109,16 +122,16 @@ class BufferModel {
 
   // 使用 TimerUtil 全程序共用一个setInterval
   private connect(): void {
-    Logger.log(`${TAG} >>>>>>>>>>>>>>>>>>>>>> start connect `);
+    Logger.log(TAG, ` >>>>>>>>>>>>>>>>>>>>>> start connect `);
     this.socketConnTask();
-    this.observer = TimerUtil.registerObserver((count: number) => {
+    this.observer = TimerUtil.getInstance().registerObserver((count: number) => {
       this.timerCallback(count);
     });
   }
 
   //连接断开时的回调，返回控制层处理断连逻辑
   private onDisconnected(): void {
-    Logger.log(`${TAG} <<<<<<<<<<<<<<<<<<<<<< onDisconnected `);
+    Logger.log(TAG, ` <<<<<<<<<<<<<<<<<<<<<< onDisconnected `);
     if (this.onDisconnectedCallback) {
       this.onDisconnectedCallback();
     }
@@ -133,9 +146,12 @@ class BufferModel {
    * 这些逻辑是为了解决 网络断开后 socket onError或onClose 方法无回调或getState状态错误的问题
    */
   private async socketConnTask(): Promise<void> {
+    if (this.mSocketImpl == null) {
+      this.mSocketImpl = new SocketImpl();
+    }
     let wifiState: boolean = await this.checkWifiState();
     let socketConnected: boolean = await this.isConnected();
-    Logger.log(`${TAG}  socketConnTask wifiState = ${wifiState}  socketConnected = ${socketConnected} lastConnected = ${this.lastConnected}`);
+    Logger.log(TAG, `socketConnTask wifiState = ${wifiState}  socketConnected = ${socketConnected} lastConnected = ${this.lastConnected}`);
     if (!wifiState) {
       if (this.lastConnected) { //已连接，wifi断开了
         this.onDisconnected();
@@ -150,7 +166,7 @@ class BufferModel {
     if (!socketConnected) { // 尝试首次
       // 首次连接
       let ret: boolean = await this.connectToAp();
-      Logger.log(`${TAG}  socketConnTask connectToAp ${ret}`);
+      Logger.log(TAG, `socketConnTask connectToAp ${ret}`);
       if (ret) {
         this.setSocketListener();
       }
@@ -160,18 +176,19 @@ class BufferModel {
     this.lastConnected = socketConnected;
   }
 
-
   async checkWifiState(): Promise<boolean> {
     let linkInfo = await wifiManager.getLinkedInfo();
-    console.log(`${TAG} checkWifiState ${linkInfo.ssid} : state=${linkInfo.connState}`);
+    Logger.log(TAG, `checkWifiState ${linkInfo.ssid} : state=${linkInfo.connState}`);
     if (linkInfo.connState !== wifiManager.ConnState.CONNECTED) {
       return false;
     }
     return true;
   }
 
-
   private async setSocketListener(): Promise<void> {
+    if (this.mSocketImpl == null) {
+      return;
+    }
     this.mSocketImpl.setOnMessageReceivedListener((result: ArrayBuffer) => {
       this.receiveData(result);
     });
@@ -190,12 +207,18 @@ class BufferModel {
   }
 
   private async isConnected(): Promise<boolean> {
+    if (this.mSocketImpl == null) {
+      return false;
+    }
     return await this.mSocketImpl.isConnected();
   }
 
   // 发起连接
   private async connectToAp(): Promise<boolean> {
     try {
+      if (this.mSocketImpl == null) {
+        return false;
+      }
       let ipInfo: wifiManager.IpInfo = wifiManager.getIpInfo();
       let ipAddress: number = ipInfo.ipAddress;
       let gateway: number = ipInfo.gateway;
@@ -222,20 +245,23 @@ class BufferModel {
     return false;
   }
 
-
   // 收到音频流后直接送到 renderer 进行播放
   private async receiveData(buffer: ArrayBuffer): Promise<void> {
-    Logger.log(`${TAG} TCP onReceive: `);
-    this.mRendererWorker.postMessage({
-      'code': Constants.WORK_MESSAGE_RENDERER_RECV,
-      'buffer': buffer
-    }, [buffer]);
+    Logger.log(TAG, `TCP onReceive: `);
+    if (this.mRendererWorker) {
+      this.mRendererWorker.postMessage({
+        'code': Constants.WORK_MESSAGE_RENDERER_RECV,
+        'buffer': buffer
+      }, [buffer]);
+    }
   }
 
   // 采集到的音频流直接发送到socket服务端
   private async send(buffer: ArrayBuffer): Promise<void> {
-    Logger.info(`${TAG} send buffer`);
-    await this.mSocketImpl.sendData(buffer);
+    Logger.info(TAG, `send buffer`);
+    if (this.mSocketImpl) {
+      await this.mSocketImpl.sendData(buffer);
+    }
   }
 }
 

@@ -21,9 +21,9 @@ import TimeUtil from '../utils/TimeUtil';
 @Component
 export default struct ComponentSingletonTimer {
   @State time: string = '00:00';
-  private mTextColor: ResourceColor;
-  private mTextSize: Length;
-  private observer: Observer;
+  private mTextColor: ResourceColor = $r('app.color.color_fff');
+  private mTextSize: Length = 18;
+  private observer: Observer | null = null;
 
   build() {
     Text(this.time)
@@ -36,17 +36,19 @@ export default struct ComponentSingletonTimer {
 
   aboutToAppear() {
     this.timerCallback();
-    this.observer = TimerUtil.registerObserver((count: number) => {
+    this.observer = TimerUtil.getInstance().registerObserver((count: number) => {
       this.timerCallback();
     })
   }
 
   aboutToDisappear() {
-    TimerUtil.removeObserver(this.observer);
+    if(this.observer){
+      TimerUtil.getInstance().removeObserver(this.observer);
+    }
   }
 
   private timerCallback() {
-    TimerUtil.getTimestamp().then((data) => {
+    TimerUtil.getInstance().getTimestamp().then((data) => {
       this.time = TimeUtil.getTimeStr(data);
     });
   }

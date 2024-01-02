@@ -18,14 +18,14 @@
  */
 @Component
 export default struct ComponentOption {
-  private useResource: Resource;
-  private unUseResource: Resource;
+  private useResource: Resource = $r('app.media.icon_openvalley_hangup');
+  private unUseResource: Resource = $r('app.media.icon_openvalley_hangup');
   private useBgColorResource?: Resource = $r('app.color.color_fff');
   @Link use: boolean;
-  private callback: (use: boolean) => void;
-  private canChange: () => boolean;
+  private callback: ((use: boolean) => void) | null = null;
+  private canChange: (() => boolean) | null = null;
   private mSize = 72;
-  private btnId? = 'btnId';
+  private btnId = 'btnId';
 
   build() {
     Button() {
@@ -41,7 +41,7 @@ export default struct ComponentOption {
     .type(ButtonType.Circle)
     .backgroundColor(this.use ? this.useBgColorResource : $r('app.color.color_01_fff'))
     .onClick(() => {
-      if (this.canChange()) {
+      if (this.canChange && this.canChange()) {
         this.use = !this.use
       }
       if (this.callback) {
