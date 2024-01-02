@@ -65,7 +65,7 @@ export default function abilityTest() {
       await driver.delayMs(1000);
       await addBtn.click();
       await driver.delayMs(1000);
-      let timestamp = new Date().getDate();
+      let timestamp = new Date().getTime();
       let textInput = await driver.findComponent(ON.type('TextInput'));
       await driver.delayMs(1000);
       await textInput.inputText(`xxx合同${timestamp}.txt`);
@@ -128,7 +128,7 @@ export default function abilityTest() {
       await driver.delayMs(1000);
       // 返回Home页面
       let want: Want = {
-        bundleName: 'com.example.dlp',
+        bundleName: 'com.samples.dlp',
         abilityName: "EntryAbility"
       }
       await delegator.startAbility(want);
