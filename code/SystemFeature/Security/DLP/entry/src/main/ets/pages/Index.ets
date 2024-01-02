@@ -225,7 +225,7 @@ struct FilePicker {
               }
 
               if (!this.itemShowDeleteButton) {
-                Text(`Size: ${item.size}B`)
+                Text(`Size: 0B`)
                   .fontSize(14)
                   .fontFamily('HarmonyHeiTi-Medium')
                   .lineHeight(19)

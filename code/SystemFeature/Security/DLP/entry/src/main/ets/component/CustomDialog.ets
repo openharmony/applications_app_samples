@@ -93,10 +93,15 @@ export struct CustomDialogExample {
                 let ciphertextFd: number = await this.mediaFileUri.createFile(sourceUri, displayName);
                 await this.dlpManager.genTestDlpFile(this.currentSelectedFileUri, ciphertextFd, displayName, this.currentPerssion, this.dlpFileInfos);
                 await this.mediaFileUri.getAllFiles(context, this.dlpFileInfos);
+                await this.mediaFileUri.getAllFiles(context, this.dlpFileInfos);
+                let time: number = new Date().getTime();
+                // 切换用户
+                await this.dlpManager.AccountLogin(`lisi${time}`);
                 this.controller.close();
               }
-            }).backgroundColor(0xffffff).
-          fontColor(Color.Red)
+            })
+            .backgroundColor(0xffffff)
+            .fontColor(Color.Red)
         }.margin({ bottom: 10 })
       }
     }.width('100%')

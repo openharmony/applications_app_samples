@@ -78,7 +78,13 @@ export class MediaFileUri {
         let result = fileIterator.next();
         isDone = result.done;
         if (!isDone) {
-          let fileMsg: FileInfoType = new FileInfoType(result.value.uri, result.value.fileName, result.value.size)
+          let fileMsg: FileInfoType = new FileInfoType(result.value.uri, result.value.fileName, result.value.size);
+           let filterArray: Array<FileInfoType> = this.fileInfos.filter((item) => {
+            return item.fileName === fileMsg.fileName;
+          })
+          if (filterArray.length > 0) {
+            return;
+          }
           this.fileInfos.push(fileMsg);
         }
       }
