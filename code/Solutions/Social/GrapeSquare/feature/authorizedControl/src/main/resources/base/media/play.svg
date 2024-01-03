@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="41px" viewBox="0 0 40 41" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>play</title>
+    <defs>
+        <path d="M24.4178985,14.1496938 L30.7241113,25.1299232 C31.4117482,26.3272204 30.9985869,27.8552615 29.8012896,28.5428985 C29.4224145,28.7604957 28.9931281,28.875 28.5562128,28.875 L15.9437872,28.875 C14.5630753,28.875 13.4437872,27.7557119 13.4437872,26.375 C13.4437872,25.9380847 13.5582915,25.5087984 13.7758887,25.1299232 L20.0821015,14.1496938 C20.7697385,12.9523965 22.2977796,12.5392352 23.4950768,13.2268721 C23.8789642,13.447348 24.1974226,13.7658064 24.4178985,14.1496938 Z" id="path-1"></path>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="首页" transform="translate(-76.000000, -781.000000)">
+            <g id="Bitmap" transform="translate(12.000000, 718.000000)">
+                <g id="play" transform="translate(64.000000, 63.500000)">
+                    <circle id="椭圆形" fill-opacity="0.4" fill="#182431" cx="20" cy="20" r="20"></circle>
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="多边形备份-5" fill="#FFFFFF" transform="translate(22.250000, 19.625000) rotate(-270.000000) translate(-22.250000, -19.625000) " xlink:href="#path-1"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

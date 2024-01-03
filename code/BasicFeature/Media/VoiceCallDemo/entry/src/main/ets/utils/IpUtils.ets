@@ -1,4 +1,3 @@
-// @ts-nocheck
 /*
  * Copyright (c) 2023 Hunan OpenValley Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,7 +21,7 @@ const IP_RIGHT_SHIFT_24 = 24;
 export class IpUtils {
   getIpAddress(number: number): string {
     if (number <= 0) {
-      return undefined;
+      return "";
     }
     let ip3 = (number << IP_RIGHT_SHIFT_0) >>> IP_RIGHT_SHIFT_24;
     let ip2 = (number << IP_RIGHT_SHIFT_8) >>> IP_RIGHT_SHIFT_24;

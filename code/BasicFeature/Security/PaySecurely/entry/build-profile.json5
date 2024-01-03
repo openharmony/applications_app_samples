@@ -19,11 +19,7 @@
   },
   "targets": [
     {
-      "name": "default",
-      "runtimeOS": "OpenHarmony"
-    },
-    {
-      "name": "ohosTest",
+      "name": "ohosTest"
     }
   ]
 }

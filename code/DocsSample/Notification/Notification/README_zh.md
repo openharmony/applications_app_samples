@@ -39,7 +39,7 @@ entry/src/main/ets/
 
 ### 具体实现
 
-- 允许发送通知、发送通知的功能接口封装在PublishOperation，源码参考：[PublishOperation.ets](entry\src\main\ets\publish\PublishOperation.ets)
+- 允许发送通知、发送通知的功能接口封装在PublishOperation，源码参考：[PublishOperation.ets](entry/src/main/ets/publish/PublishOperation.ets)
   * 允许发送通知：
     通过publishOperation.enableNotification()调用notificationManager.requestEnableNotification()接口向用户请求发送通知；
     
@@ -48,7 +48,7 @@ entry/src/main/ets/
     通过publishOperation.setBadgeNumberForBasic()调用notificationManager.setBadgeNumber()接口设置角标；
   
   * 发送通知：通过notificationManager.publish发布通知的接口，通知类型包括基本类型、长文本类型、多行文本类型、图片类型、带进度条的通知、点击可跳转到应用以及公共事件通知；
-- 订阅通知功能接口封装在SubscribeOperation，源码参考：[PublishOperation.ets](entry\src\main\ets\subscribe\SubscribeOperation.ets)
+- 订阅通知功能接口封装在SubscribeOperation，源码参考：[PublishOperation.ets](entry/src/main/ets/subscribe/SubscribeOperation.ets)
 
 ### 相关权限
 

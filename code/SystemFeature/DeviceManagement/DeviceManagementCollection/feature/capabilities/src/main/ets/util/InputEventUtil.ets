@@ -16,6 +16,7 @@ import { formatJson } from '@ohos/common/src/main/ets/util/JSONUtils';
 import { logger } from '@ohos/common/src/main/ets/util/Logger';
 import inputMonitor from '@ohos.multimodalInput.inputMonitor'
 import inputEventClient from '@ohos.multimodalInput.inputEventClient'
+import { TouchEvent } from '@ohos.multimodalInput.touchEvent'
 
 const TAG: string = '[Sample_InputEventUtil]'
 
@@ -59,7 +60,7 @@ class TouchManagerUtil {
     logger.info(`${TAG} registerTouch`)
     try {
       this.callback = callback
-      inputMonitor.on('touch', (touchEvent: TouchEvent): Boolean => this.onTouchCallback(touchEvent));
+      inputMonitor.on('touch', (touchEvent: TouchEvent) => this.onTouchCallback(touchEvent));
     } catch (error) {
       logger.error(`${TAG} register touch on failed, error: ${JSON.stringify(error, [`code`, `message`])}`)
     }

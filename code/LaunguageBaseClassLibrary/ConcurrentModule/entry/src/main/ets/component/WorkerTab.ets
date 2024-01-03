@@ -138,15 +138,15 @@ export struct WorkerTab {
     .justifyContent(FlexAlign.Center)
   }
 
-  async executeWorkerFunc(inPutArr) {
+  async executeWorkerFunc(inPutArr: string[]): Promise<void> {
     if (!this.jsWorkerInPutStr.length) {
       this.jsWorkerOutPutStr = "No input for the string to be sorted.\n";
       return;
     }
     this.myWorker.postMessage(inPutArr);
-    var strFlag = false;
-    var outPutStr = '';
-    this.myWorker.onmessage = function(e) {
+    let strFlag = false;
+    let outPutStr = '';
+    this.myWorker.onmessage = (e) => {
       outPutStr = e.data.toString();
       strFlag = true;
     }
@@ -157,12 +157,12 @@ export struct WorkerTab {
   }
 }
 
-function promiseCase() : Promise<Object> {
-  let p = new Promise(function (resolve, reject) {
-    setTimeout(function () {
+function promiseCase() : Promise<Object | void> {
+  let p: Promise<Object | void> = new Promise<Object>((resolve: Function, reject: Function) => {
+    setTimeout(() => {
       resolve(1)
     }, 100)
-  }).then(undefined, (error) => {
+  }).then(undefined, () => {
   })
   return p;
 }

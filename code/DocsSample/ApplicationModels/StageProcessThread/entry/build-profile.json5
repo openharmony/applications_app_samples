@@ -17,7 +17,7 @@
   "buildOption": {
     "sourceOption": {
       "workers": [
-        "./src/main/ets/workers/worker.ts"
+        "./src/main/ets/workers/Worker.ts"
       ]
     }
   },

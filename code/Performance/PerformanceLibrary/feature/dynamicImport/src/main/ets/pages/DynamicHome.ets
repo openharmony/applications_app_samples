@@ -52,7 +52,7 @@ export struct DynamicHome {
 
   async loadPageOne(key: String): Promise<void> {
     if (key === "pageOne") {
-      let PageObj = await import("../model/PageOneLoader");
+      let PageObj: Record<string, () => void> = await import("../model/PageOneLoader");
       this.PageOneLoader = PageObj.PageOneLoader;
     }
   }

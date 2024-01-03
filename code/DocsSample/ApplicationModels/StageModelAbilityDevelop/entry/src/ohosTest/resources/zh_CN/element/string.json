@@ -447,6 +447,114 @@
     {
       "name": "CallerSuccess",
       "value": "Caller交互成功"
+    },
+    {
+      "name": "CallerWithReturnData",
+      "value": "Caller通信有返回数据"
+    },
+    {
+      "name": "CallerRelease",
+      "value": "Caller释放"
+    },
+    {
+      "name": "CallerCommunication",
+      "value": "Caller通信"
+    },
+    {
+      "name": "CallerCommunicationSuccess",
+      "value": "Caller通信成功"
+    },
+    {
+      "name": "CallerReleaseSuccess",
+      "value": "Caller释放成功"
+    },
+    {
+      "name": "AccessibilityExtAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "AccessibilityExtAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "ConnectFAServiceAbility",
+      "value": "已连接ServiceAbility"
+    },
+    {
+      "name": "ServiceExtension",
+      "value": "扩展服务"
+    },
+    {
+      "name": "ServiceExtAbility_desc",
+      "value": "service"
+    },
+    {
+      "name": "ServiceExtAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "StartBackendService",
+      "value": "启动后台服务"
+    },
+    {
+      "name": "StopStartedBackendService",
+      "value": "停止已启动的后台服务"
+    },
+    {
+      "name": "BackendServices",
+      "value": "后台服务"
+    },
+    {
+      "name": "StopBackendServices",
+      "value": "停止当前后台服务"
+    },
+    {
+      "name": "SuccessfullyStoppedAStartedBackendService",
+      "value": "成功停止已启动的后台服务"
+    },
+    {
+      "name": "SuccessfullyStartBackendService",
+      "value": "成功启动后台服务"
+    },
+    {
+      "name": "SuccessfullyStopStartedBackendService",
+      "value": "成功停止当前后台服务"
+    },
+    {
+      "name": "ConnectBackendService",
+      "value": "连接后台服务"
+    },
+    {
+      "name": "SuccessfullyConnectBackendService",
+      "value": "成功连接后台服务"
+    },
+    {
+      "name": "DisconnectBackendService",
+      "value": "断连后台服务"
+    },
+    {
+      "name": "SuccessfullyDisconnectBackendService",
+      "value": "成功断连后台服务"
+    },
+    {
+      "name": "sendRequest",
+      "value": "sendRequest msg:100"
+    },
+    {
+      "name": "StopServiceExtensionAbility",
+      "value": "退出ServiceExtensionAbility"
+    },
+    {
+      "name": "StartServiceExtensionAbility",
+      "value": "启动ServiceExtensionAbility"
+    },
+    {
+      "name": "SuccessfullyStart",
+      "value": "启动成功"
+    },
+    {
+      "name": "SuccessfullyStop",
+      "value": "退出成功"
     }
   ]
 }

@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "execute insight intent"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "EntryAbility"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "EntryAbility"
+    },
+    {
+      "name": "ServiceExtAbility_desc",
+      "value": "ServiceExtAbility"
+    },
+    {
+      "name": "ServiceExtAbility_label",
+      "value": "ServiceExtAbility"
+    },
+    {
+      "name": "intent_executor_title",
+      "value": "Intent Executor"
+    },
+    {
+      "name": "Back",
+      "value": "Back"
+    }
+  ]
+}

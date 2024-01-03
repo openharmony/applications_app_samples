@@ -13,8 +13,7 @@
  * limitations under the License.
  */
 
-@Observed
-export default class Caller {
+export default interface  Caller {
   //通话人id
   index: number
   //通话人名

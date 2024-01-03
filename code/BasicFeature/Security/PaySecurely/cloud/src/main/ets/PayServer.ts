@@ -13,7 +13,6 @@
 * limitations under the License.
 */
 
-import CreateOrGet from './SingleInstanceHelper';
 import cryptoFramework from '@ohos.security.cryptoFramework';
 import util from '@ohos.util';
 
@@ -48,11 +47,22 @@ const CONTAINS_LETTERS = 2;
 const MIN_LENGTH = 2;
 const INDEX_ZERO = 0;
 
-class PayServer {
+export class PayServer {
   private orderString: string;
   private merchantKey: cryptoFramework.KeyPair;
   private payKey: cryptoFramework.KeyPair;
   private payClientKey: cryptoFramework.KeyPair;
+  private static instance: PayServer;
+
+  private constructor() {
+  }
+
+  public static getInstance(): PayServer {
+    if (!PayServer.instance) {
+      PayServer.instance = new PayServer();
+    }
+    return PayServer.instance;
+  }
 
   public async generatePayOrder(body: string): Promise<string> {
     if (!this.payKey) {
@@ -101,7 +111,3 @@ class PayServer {
     return PayResult.SUCCESS;
   }
 }
-
-let mPayServer = CreateOrGet(PayServer, TAG);
-
-export default mPayServer as PayServer;

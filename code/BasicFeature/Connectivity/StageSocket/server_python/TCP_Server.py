@@ -55,7 +55,7 @@ if __name__ == '__main__':
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     # 绑定IP地址和端口号，此处IP地址与运行服务端的本机一致，端口号与客户端端口一致
-    server_socket.bind(('192.168.76.57', 9090))
+    server_socket.bind(('192.168.18.57', 9090))
 
     # 监听客户端连接
     server_socket.listen(5)

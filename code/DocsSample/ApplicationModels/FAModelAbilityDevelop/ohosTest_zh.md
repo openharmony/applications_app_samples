@@ -11,6 +11,7 @@
 |启动多例PageAbility指定页面|进入’PageAbility组件开发指导-单设备‘界面|点击[启动多例PageAbility页面一]<br />再点击Home键回到桌面<br />再点击应用图标回到’PageAbility组件开发指导-单设备‘界面<br />点击[启动多例PageAbility页面二]|点击[启动多例PageAbility页面一]后跳转至Title为’PageAbilityStandard页面一‘的页面<br />点击[启动多例PageAbility页面二]后跳转至Title为’PageAbilityStandard页面二‘的页面<br />|是|Pass|
 |使用worker进行线程间通信|进入’PageAbility组件开发指导-单设备‘界面|点击[使用Worker进行线程间通信]|弹出toast[{"data":"message from worker thread."}]|是|Pass|
 | 停止PageAbility | 进入’PageAbility组件开发指导-单设备‘界面 | 点击[停止PageAbility]                                  | 退出当前应用返回桌面                                         |是|Pass|
+| PageAbility组件开发指导-多设备 | 进入首页且已设置README中依赖项内容 | 点击[PageAbility组件开发指导-多设备]<br />再点击[获取分布式数据同步权限]，并在弹出的申请权限对话框中点击’允许‘，再点击[获取设备id]<br />再点击[启动远程设备PageAbility] | 'PageAbility组件开发指导-多设备’界面正常展示<br />弹出toast，内容为对端设备的deviceId<br />弹出toast[启动远程Ability成功]，同时打开对端设备音乐应用 |否|Pass|
 | ServiceAbility组件开发指导                | 进入首页                                                     | 点击[ServiceAbility组件开发指导]                       | ’ServiceAbility组件开发指导‘界面正常展示                     |是|Pass|
 | 创建ServiceAbility                        | 进入’ServiceAbility组件开发指导‘界面                         | 点击[启动ServiceAbility]                             | 弹出toast[启动serviceAbility成功] |是|Pass|
 | 连接ServiceAbility                        | 进入’ServiceAbility组件开发指导‘界面                         | 点击[连接ServiceAbility]                               | 弹出toast[连接serviceAbility成功]          |是|Pass|

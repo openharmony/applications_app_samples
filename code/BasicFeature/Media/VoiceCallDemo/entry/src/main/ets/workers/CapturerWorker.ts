@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
 import AudioCapturerHelper from '../audio/AudioCapturerHelper';
 import Constants from '../Constants';
 import Logger from '../utils/Logger';
@@ -21,7 +21,7 @@ let parent = worker.workerPort;
 let mCapturer: AudioCapturerHelper = new AudioCapturerHelper();
 
 // 处理来自主线程的消息
-parent.onmessage = function (message): void {
+parent.onmessage = (message: MessageEvents) => {
   Logger.info(`mAudioCapturer message from worker: ${message.data.code}`);
 
   let messageId: number = message.data.code;
@@ -33,7 +33,6 @@ parent.onmessage = function (message): void {
     stop();
   }
 };
-
 
 async function start(): Promise<void> {
   await mCapturer.init();

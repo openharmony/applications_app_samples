@@ -14,12 +14,15 @@
  */
 
 import Logger from './Logger';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
 
 const TAG = 'Socket AbilityUtil';
 
-export default function startAbility(want) {
+export default function startAbility(want: Want) {
   try {
-    globalThis.abilityContext.startAbility(want, () => {
+    const abilityContext: common.UIAbilityContext = AppStorage.get('abilityContext')!
+    abilityContext.startAbility(want, () => {
       Logger.info(TAG, 'startAbility callback ');
     });
   } catch (error) {

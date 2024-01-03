@@ -36,10 +36,10 @@ export default class PaySdkAbility extends UIAbility {
   }
 
   private verifyParameters(want): void {
-    globalThis.orderString = '';
+    AppStorage.setOrCreate("orderString", "");
     if (want.hasOwnProperty('parameters') && want.parameters.hasOwnProperty('orderString')) {
       let orderString: string = want.parameters.orderString;
-      globalThis.orderString = orderString;
+      AppStorage.setOrCreate("orderString", orderString);
       let temArr = orderString.split('&');
       if (temArr.length < PARAM_LENGTH) {
         return;

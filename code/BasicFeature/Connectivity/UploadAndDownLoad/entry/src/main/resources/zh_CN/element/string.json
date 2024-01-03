@@ -115,6 +115,22 @@
     {
       "name": "background_task_start",
       "value": "后台任务已开始，可在通知栏查看下载状态"
+    },
+    {
+      "name": "chunk_checkbox_tips",
+      "value": "从当前文件开始片段上传"
+    },
+    {
+      "name": "chunk_begins",
+      "value": "空，填入任意数值，表示从某字节开始上传该文件"
+    },
+    {
+      "name": "chunk_ends",
+      "value": "空，填入任意数值，表示从某字节结束上传该文件"
+    },
+    {
+      "name": "chunk_para_invalid",
+      "value": "Begins 或 Ends 无效"
     }
   ]
 }

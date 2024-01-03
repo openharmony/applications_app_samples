@@ -58,7 +58,7 @@ let funACall = (data: rpc.MessageSequence): MyParcelable => {
     let message: string = params.calleeDetail;
     hilog.info(DOMAIN_NUMBER, TAG, `UpdateForm formId: ${curFormId}, message: ${message}`);
     let formData: Record<string, string> = {
-      'calleeDetail': message
+      calleeDetail: message
     };
     let formMsg: formBindingData.FormBindingData = formBindingData.createFormBindingData(formData);
     formProvider.updateForm(curFormId, formMsg).then((data) => {

@@ -14,7 +14,7 @@
 */
 
 import router from '@ohos.router';
-import type common from '@ohos.app.ability.common';
+import common from '@ohos.app.ability.common';
 import TitleBar from '../component/TitleBar';
 import OperationView from '../component/OperationView';
 import ResourceUtil from '../util/ResourceUtil';
@@ -27,7 +27,7 @@ const operationUrls: Array<string> = ['pages/Calendar', 'pages/TextProcessing'];
 @Component
 struct Index {
   @State operations: Array<string> = [];
-  private context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+  private context: common.Context = getContext(this) as common.UIAbilityContext;
 
   aboutToAppear() {
     this.getOperation();
@@ -40,7 +40,7 @@ struct Index {
   build() {
     Column() {
       TitleBar()
-      ForEach(this.operations, (item, index) => {
+      ForEach(this.operations, (item: string, index) => {
         Row() {
           OperationView({ operationKey: item, handleClick: () => {
             router.pushUrl({
@@ -51,7 +51,7 @@ struct Index {
             .id(`operationView_${index}`)
             .margin({ left: 12, right: 12, top: 12 })
         }
-      }, item => item)
+      }, (item: string) => item)
     }
     .width('100%')
     .height('100%')

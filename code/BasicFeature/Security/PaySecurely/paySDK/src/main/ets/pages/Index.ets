@@ -27,7 +27,7 @@ struct Index {
   @StorageLink('orderId') orderId: string = '';
   @State isPaySuccess: boolean = false;
   @State countdownNum: number = 3;
-  private timeOut;
+  private timeOut: number = 0;
   private context = getContext(this) as common.UIAbilityContext;
   private dialogController: CustomDialogController = new CustomDialogController({
     builder: PayView({ payComplete: (result: PayResult) => {
@@ -38,7 +38,7 @@ struct Index {
           this.timeOut = setInterval(() => {
             this.countdownNum--;
             if (this.countdownNum === 0) {
-              this.timeOut = undefined;
+              this.timeOut = 0;
               this.context.terminateSelf();
             }
           }, 1000);
@@ -63,7 +63,7 @@ struct Index {
 
   aboutToDisappear() {
     if (this.timeOut) {
-      this.timeOut = undefined
+      this.timeOut = 0;
     }
   }
 
@@ -112,7 +112,7 @@ struct Index {
             .width(180)
             .margin({ top: 101 })
             .onClick(() => {
-              this.timeOut = undefined;
+              this.timeOut = 0;
               this.context.terminateSelf();
             })
           }

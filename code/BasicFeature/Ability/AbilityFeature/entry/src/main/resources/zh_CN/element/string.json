@@ -1,0 +1,120 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "系统的基础新特性示例"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "首页Ability"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "基础能力增强"
+    },
+    {
+      "name": "NewAbility_desc",
+      "value": "Ability用于被启动"
+    },
+    {
+      "name": "NewAbility_label",
+      "value": "NewAbility"
+    },
+    {
+      "name": "Set_Chinese_language",
+      "value": "设置中文语言"
+    },
+    {
+      "name": "Set_English_Language",
+      "value": "设置英文语言"
+    },
+    {
+      "name": "Set_Dark_Mode",
+      "value": "设置深色模式"
+    },
+    {
+      "name": "Set_Light_Mode",
+      "value": "设置浅色模式"
+    },
+    {
+      "name": "Implicit_Launch_not_Popup",
+      "value": "隐式启动不弹窗"
+    },
+    {
+      "name": "Implicit_Launch_Popup",
+      "value": "隐式启动弹窗"
+    },
+    {
+      "name": "CreateStorageData",
+      "value": "创建数据"
+    },
+    {
+      "name": "CheckStorageData",
+      "value": "检查数据"
+    },
+    {
+      "name": "ClearStorageData",
+      "value": "清理数据"
+    },
+    {
+      "name": "system_BasicCharacter_Demo",
+      "value": "基础能力增强"
+    },
+    {
+      "name": "toggle",
+      "value": "toggle"
+    },
+    {
+      "name": "arrow",
+      "value": "arrow"
+    },
+    {
+      "name": "create_File_Success",
+      "value": "创建缓存文件成功"
+    },
+    {
+      "name": "search_File_Success",
+      "value": "查询到缓存文件"
+    },
+    {
+      "name": "search_File_Failed",
+      "value": "未找到缓存文件"
+    },
+    {
+      "name": "clean_Data_Success",
+      "value": "清理数据成功"
+    },
+    {
+      "name": "clean_Data_Failed",
+      "value": "未找到缓存文件，"
+    },
+    {
+      "name": "start_animation",
+      "value": "启动动画"
+    },
+    {
+      "name": "setStartOptionsPage",
+      "value": "设置StartOptions启动Ability"
+    },
+    {
+      "name": "empty",
+      "value": "暂无内容"
+    },
+    {
+      "name": "switchDarkSuccess",
+      "value": "切换深色模式成功"
+    },
+    {
+      "name": "switchLightSuccess",
+      "value": "切换浅色模式成功"
+    },
+    {
+      "name": "open",
+      "value": "开启"
+    },
+    {
+      "name": "close",
+      "value": "关闭"
+    }
+  ]
+}

@@ -16,6 +16,7 @@
 import startAbility from '../utils/AbilityUtil';
 import ToolData from '../data/ToolData';
 import Constants from '../Constants';
+import Want from '@ohos.app.ability.Want';
 
 @Component
 export default struct ToolComponent {
@@ -36,17 +37,17 @@ export default struct ToolComponent {
         .type(ButtonType.Normal)
         .backgroundColor(Color.White)
         .margin({ left: 10 })
-        .onClick(e => {
-          let want = {
+        .onClick(() => {
+          let want: Want = {
             bundleName: item.getBundleName(),
             abilityName: item.getAbilityName(),
             parameters: item.getParameters()
           };
-          AppStorage.SetOrCreate('indexMsg', Constants.START_ABILITY_EVENT_ANSWER);
-          AppStorage.SetOrCreate('indexMsg', 'clear');
+          AppStorage.setOrCreate('indexMsg', Constants.START_ABILITY_EVENT_ANSWER);
+          AppStorage.setOrCreate('indexMsg', 'clear');
           startAbility(want);
         })
-      }, item => item.id)
+      }, (item: ToolData) => JSON.stringify(item))
     }
     .width('100%')
     .height('99%')

@@ -25,7 +25,7 @@ import ComponentOption from '../components/ComponentOption';
  */
 @Component
 export default struct UIAnswer {
-  private controller: IndexController;
+  private controller: IndexController | null = null;
   @Link mRemote: Caller;
   @State use: boolean = true;
 
@@ -44,6 +44,9 @@ export default struct UIAnswer {
               return false;
             },
             callback: (use: boolean) => {
+              if (this.controller == null) {
+                return;
+              }
               this.controller.hangUp();
             }
           })
@@ -59,6 +62,9 @@ export default struct UIAnswer {
               return false;
             },
             callback: (use: boolean) => {
+              if (this.controller == null) {
+                return;
+              }
               this.controller.answer();
             }
           })

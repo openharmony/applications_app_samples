@@ -18,6 +18,7 @@ import { Driver, ON } from '@ohos.UiTest';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import Logger from '../util/Logger';
+import inputMethod from '@ohos.inputMethod';
 
 const TAG = 'AppTest';
 const BUNDLE = 'CrossAppDataShare_';
@@ -52,6 +53,7 @@ export default function appTest() {
     });
     // 新增联系人
     it(`${BUNDLE}AddContact_001`, 0, async () => {
+      let inputMethodController = inputMethod.getController();
       Logger.info(TAG, BUNDLE + 'AddContact_001 begin');
       await driver.delayMs(1000);
       // 点击+按钮进入创建联系人页面
@@ -63,6 +65,7 @@ export default function appTest() {
       let nameInput = await driver.findComponent(ON.id('contactMsg0'));
       await driver.delayMs(1000);
       await nameInput.inputText('mst');
+      inputMethodController.stopInputSession();
       await driver.delayMs(1000);
       let nameText = await nameInput.getText();
       await driver.delayMs(1000);
@@ -71,6 +74,8 @@ export default function appTest() {
       let inputPhone = await driver.findComponent(ON.id('phoneInput'));
       await driver.delayMs(1000);
       await inputPhone.inputText('18837982616');
+      inputMethodController.stopInputSession();
+      await driver.delayMs(1000);
       let phoneText = await inputPhone.getText();
       await driver.delayMs(1000);
       expect('18837982616').assertEqual(phoneText);
@@ -91,6 +96,7 @@ export default function appTest() {
       nameInput = await driver.findComponent(ON.id('contactMsg0'));
       await driver.delayMs(1000);
       await nameInput.inputText('ash');
+      inputMethodController.stopInputSession();
       await driver.delayMs(1000);
       nameText = await nameInput.getText();
       await driver.delayMs(1000);
@@ -101,6 +107,7 @@ export default function appTest() {
       inputPhone = await driver.findComponent(ON.id('phoneInput'));
       await driver.delayMs(1000);
       await inputPhone.inputText('13393527802');
+      inputMethodController.stopInputSession();
       await driver.delayMs(1000);
       phoneText = await inputPhone.getText();
       await driver.delayMs(1000);
@@ -159,6 +166,7 @@ export default function appTest() {
     });
     // 编辑联系人
     it(`${BUNDLE}EditContact_001`, 0, async () => {
+      let inputMethodController = inputMethod.getController();
       Logger.info(TAG, BUNDLE + 'EditContact_001 begin');
       await driver.delayMs(1000);
       // 进入联系人详情页面
@@ -180,6 +188,8 @@ export default function appTest() {
       await driver.delayMs(1000);
       // 输入文本
       await nameInput.inputText('msw');
+      inputMethodController.stopInputSession();
+      await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('finish'));
       let finish = await driver.findComponent(ON.id('finish'));
       await driver.delayMs(1000);
@@ -216,6 +226,7 @@ export default function appTest() {
     });
     // 内置联系人应用创建联系人
     it(`${BUNDLE}AddInsertContact_001`, 0, async () => {
+      let inputMethodController = inputMethod.getController();
       Logger.info(TAG, BUNDLE + 'AddInsertContact_001 begin');
       await driver.delayMs(1000);
       // 点击+按钮进入创建联系人页面
@@ -227,6 +238,7 @@ export default function appTest() {
       let nameInput = await driver.findComponent(ON.id('contactMsg0'));
       await driver.delayMs(1000);
       await nameInput.inputText('msg');
+      inputMethodController.stopInputSession();
       await driver.delayMs(1000);
       // 获取内容
       let nameText = await nameInput.getText();
@@ -238,6 +250,8 @@ export default function appTest() {
       let inputPhone = await driver.findComponent(ON.id('phoneInput'));
       await driver.delayMs(1000);
       await inputPhone.inputText('18837982616');
+      inputMethodController.stopInputSession();
+      await driver.delayMs(1000);
       // 获取电话输入框内容
       let phoneText = await inputPhone.getText();
       await driver.delayMs(1000);
@@ -263,6 +277,7 @@ export default function appTest() {
       nameInput = await driver.findComponent(ON.id('contactMsg0'));
       await driver.delayMs(1000);
       await nameInput.inputText('msq');
+      inputMethodController.stopInputSession();
       await driver.delayMs(1000);
       nameText = await nameInput.getText();
       await driver.delayMs(1000);
@@ -273,6 +288,7 @@ export default function appTest() {
       inputPhone = await driver.findComponent(ON.id('phoneInput'));
       await driver.delayMs(1000);
       await inputPhone.inputText('13393527802');
+      inputMethodController.stopInputSession();
       await driver.delayMs(1000);
       phoneText = await inputPhone.getText();
       await driver.delayMs(1000);

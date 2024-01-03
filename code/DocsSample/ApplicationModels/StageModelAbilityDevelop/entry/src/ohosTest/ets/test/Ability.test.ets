@@ -664,6 +664,36 @@ export default function abilityTest() {
       await driver.delayMs(1000);
       Logger.info(TAG, 'MultiDeviceCollaborationWithReturningDataTest end');
 
+      // 启动
+      Logger.info(TAG, 'StartServiceExtensionAbilityTest start');
+      driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.StartServiceExtensionAbility'))));
+      let StartServiceExtensionAbility = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.StartServiceExtensionAbility'))));
+      if (StartServiceExtensionAbility !== null) {
+        observer.once('toastShow', callback);
+        await StartServiceExtensionAbility.click();
+        await driver.delayMs(500);
+        expect(toastText).assertEqual(await resourceManager.getStringValue($r('app.string.SuccessfullyStart')));
+      }
+      Logger.info(TAG, 'StartServiceExtensionAbilityTest end');
+      await driver.delayMs(1000);
+
+      // 退出
+      Logger.info(TAG, 'StopServiceExtensionAbilityTest start');
+      driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.StopServiceExtensionAbility'))));
+      let StopServiceExtensionAbility = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.StopServiceExtensionAbility'))));
+      if (StopServiceExtensionAbility !== null) {
+        observer.once('toastShow', callback);
+        await StopServiceExtensionAbility.click();
+        await driver.delayMs(500);
+        expect(toastText).assertEqual(await resourceManager.getStringValue($r('app.string.SuccessfullyStop')));
+      }
+      Logger.info(TAG, 'StopServiceExtensionAbilitySuccessTest end');
+      await driver.delayMs(1000);
+
       // Caller交互
       Logger.info(TAG, 'CallerTest start');
       driver = Driver.create();
@@ -677,6 +707,36 @@ export default function abilityTest() {
         expect(toastText).assertEqual(await resourceManager.getStringValue($r('app.string.CallerSuccess')));
       }
       Logger.info(TAG, 'CallerSuccessTest end');
+      await driver.delayMs(1000);
+
+      // 跨设备连接后台服务
+      Logger.info(TAG, 'ConnectBackendService start');
+      driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.ConnectBackendService'))));
+      let ConnectBackendService = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.ConnectBackendService'))));
+      if (ConnectBackendService !== null) {
+        observer.once('toastShow', callback);
+        await ConnectBackendService.click();
+        await driver.delayMs(500);
+        expect(toastText).assertEqual(await resourceManager.getStringValue($r('app.string.sendRequest')));
+      }
+      Logger.info(TAG, 'ConnectBackendService end');
+      await driver.delayMs(1000);
+
+      // 跨设备断联后台服务
+      Logger.info(TAG, 'DisconnectBackendService start');
+      driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.DisconnectBackendService'))));
+      let DisconnectBackendService = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.DisconnectBackendService'))));
+      if (DisconnectBackendService !== null) {
+        observer.once('toastShow', callback);
+        await DisconnectBackendService.click();
+        await driver.delayMs(500);
+        expect(toastText).assertEqual(await resourceManager.getStringValue($r('app.string.SuccessfullyDisconnectBackendService')));
+      }
+      Logger.info(TAG, 'DisconnectBackendService end');
       await driver.delayMs(1000);
 
       await driver.pressBack();
@@ -695,6 +755,13 @@ export default function abilityTest() {
      */
     it(BUNDLE + 'StartFAModelTest', 5, async (done: Function) => {
       Logger.info(TAG, BUNDLE + 'StageModelAbilityDevelopTest_009, begin');
+
+      let observer: UIEventObserver = await driver.createUIEventObserver();
+      let toastText: String = '';
+      let callback = (UIElementInfo: UIElementInfo) => {
+        Logger.info(TAG, 'toast:' + UIElementInfo.text);
+        toastText = UIElementInfo.text;
+      }
 
       // 跳转到Stage模型和FA模型交互
       driver = Driver.create();
@@ -726,9 +793,124 @@ export default function abilityTest() {
       await driver.pressBack();
       Logger.info(TAG, 'StartFAModelWithResultTest end');
 
+      // Stage模型绑定FA模型Service
+      Logger.info(TAG, 'ConnectFAServiceAbility start');
+      driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.ServiceAbility'))));
+      let ServiceAbility = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.ServiceAbility'))));
+      if (ServiceAbility !== null) {
+        observer.once('toastShow', callback);
+        await ServiceAbility.click();
+        await driver.delayMs(500);
+        expect(toastText).assertEqual(await resourceManager.getStringValue($r('app.string.ConnectFAServiceAbility')));
+      }
+      Logger.info(TAG, 'ConnectFAServiceAbility end');
+      await driver.delayMs(1000);
+
       await driver.pressBack();
       await driver.delayMs(3000);
       Logger.info(TAG, BUNDLE + 'StageModelAbilityDevelopTest_009, end');
+      done();
+    })
+
+    /*
+     * @tc.number: StageModelAbilityDevelopTest_010
+     * @tc.name: Collaborate Ability
+     * @tc.desc: Collaborate Ability
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it(BUNDLE + 'ServiceExtensionAbilityTest', 5, async (done: Function) => {
+      Logger.info(TAG, BUNDLE + 'StageModelAbilityDevelopTest_010, begin');
+      let observer: UIEventObserver = await driver.createUIEventObserver();
+      let toastText: String = '';
+      let callback = (UIElementInfo: UIElementInfo) => {
+        Logger.info(TAG, 'toast:' + UIElementInfo.text);
+        toastText = UIElementInfo.text;
+      }
+
+      // 跳转到扩展服务界面
+      Logger.info(TAG, 'ServiceExtensionTest start');
+      driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.ServiceExtension'))));
+      let ServiceExtension = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.ServiceExtension'))));
+      await ServiceExtension.click();
+      await driver.delayMs(1000);
+      Logger.info(TAG, 'ServiceExtensionTest end');
+
+      // 启动后台服务
+      Logger.info(TAG, 'StartBackendServiceTest start');
+      driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.StartBackendService'))));
+      let StartBackendService = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.StartBackendService'))));
+      if (StartBackendService !== null) {
+        observer.once('toastShow', callback);
+        await StartBackendService.click();
+        await driver.delayMs(500);
+        expect(toastText).assertEqual(await resourceManager.getStringValue($r('app.string.SuccessfullyStartBackendService')));
+      }
+      Logger.info(TAG, 'StartBackendServiceTest end');
+
+      // 停止已启动的后台服务
+      Logger.info(TAG, 'StopStartedBackendServiceTest start');
+      driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.StopStartedBackendService'))));
+      let StopStartedBackendService = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.StopStartedBackendService'))));
+      if (StopStartedBackendService !== null) {
+        observer.once('toastShow', callback);
+        await StopStartedBackendService.click();
+        await driver.delayMs(500);
+        expect(toastText).assertEqual(await resourceManager.getStringValue($r('app.string.SuccessfullyStoppedAStartedBackendService')));
+      }
+      Logger.info(TAG, 'CStopStartedBackendServiceSuccessTest end');
+      await driver.delayMs(1000);
+
+      // 跨设备连接后台服务
+      Logger.info(TAG, 'ConnectBackendService start');
+      driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.ConnectBackendService'))));
+      let ConnectBackendService = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.ConnectBackendService'))));
+      if (ConnectBackendService !== null) {
+        observer.once('toastShow', callback);
+        await ConnectBackendService.click();
+        await driver.delayMs(500);
+        expect(toastText).assertEqual(await resourceManager.getStringValue($r('app.string.SuccessfullyConnectBackendService')));
+      }
+      Logger.info(TAG, 'ConnectBackendService end');
+      await driver.delayMs(1000);
+
+      // 跨设备断联后台服务
+      Logger.info(TAG, 'DisconnectBackendService start');
+      driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.DisconnectBackendService'))));
+      let DisconnectBackendService = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.DisconnectBackendService'))));
+      if (DisconnectBackendService !== null) {
+        observer.once('toastShow', callback);
+        await DisconnectBackendService.click();
+        await driver.delayMs(500);
+        expect(toastText).assertEqual(await resourceManager.getStringValue($r('app.string.SuccessfullyDisconnectBackendService')));
+      }
+      Logger.info(TAG, 'DisconnectBackendService end');
+      await driver.delayMs(1000);
+
+      // 停止当前后台服务
+      Logger.info(TAG, 'StopBackendServicesTest start');
+      driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.StopBackendServices'))));
+      let StopBackendServices = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.StopBackendServices'))));
+      await StopBackendServices.click();
+      await driver.delayMs(1000);
+      Logger.info(TAG, 'StopBackendServicesTest end');
+
+      Logger.info(TAG, BUNDLE + 'StageModelAbilityDevelopTest_010, end');
       done();
     })
   })

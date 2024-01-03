@@ -1,0 +1,45 @@
+{
+  "color": [
+    {
+      "name": "color_1",
+      "value": "#ff0000"
+    },
+    {
+      "name": "tabbar_background",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "border_color",
+      "value": "#fffffbfb"
+    },
+    {
+      "name": "font_color_datetime",
+      "value": "#ffaeadad"
+    },
+    {
+      "name": "font_color_blue",
+      "value": "#007DFF"
+    },
+    {
+     "name": "font_color_D94838",
+      "value": "#D94838"
+    },
+    {
+      "name": "font_color_182431",
+      "value": "#182431"
+    },
+    {
+      "name": "font_color_FFFFFF",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "font_color_00000",
+      "value": "#0c000000"
+    },
+    {
+      "name": "font_color_007DFF",
+      "value": "#007DFF"
+    }
+
+  ]
+}

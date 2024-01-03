@@ -33,12 +33,12 @@ class MyParcelable {
   constructor(num: number, string: string) {
     this.num = num;
     this.str = string;
-  }
+  };
 
   mySequenceable(num, string): void {
     this.num = num;
     this.str = string;
-  }
+  };
 
   marshalling(messageSequence: rpc.MessageSequence): boolean {
     messageSequence.writeInt(this.num);
@@ -65,7 +65,7 @@ function sendMsgCallback(data: rpc.MessageSequence): rpc.Parcelable {
   // 作相应处理
   // 返回序列化数据result给Caller
   return new MyParcelable(num + 1, `send ${receivedData.str} succeed`) as rpc.Parcelable;
-}
+};
 
 export default class CalleeAbility extends UIAbility {
   caller: Caller | undefined;
@@ -75,9 +75,8 @@ export default class CalleeAbility extends UIAbility {
       this.callee.on(MSG_SEND_METHOD, sendMsgCallback);
     } catch (error) {
       hilog.error(DOMAIN_NUMBER, TAG, '%{public}s', `Failed to register. Error is ${error}`);
-    }
-    ;
-  }
+    };
+  };
 
   async onButtonCall(): Promise<void> {
     try {
@@ -87,9 +86,8 @@ export default class CalleeAbility extends UIAbility {
       }
     } catch (error) {
       Logger.info(`caller call failed with ${error}`);
-    }
-    ;
-  }
+    };
+  };
 
   async onButtonCallWithResult(originMsg: string, backMsg: string): Promise<void> {
     try {
@@ -104,8 +102,8 @@ export default class CalleeAbility extends UIAbility {
       }
     } catch (error) {
       Logger.info(`caller callWithResult failed with ${error}`);
-    }
-  }
+    };
+  };
 
   releaseCall(): void {
     try {
@@ -116,15 +114,14 @@ export default class CalleeAbility extends UIAbility {
       Logger.info('caller release succeed');
     } catch (error) {
       Logger.info(`caller release failed with ${error}`);
-    }
-    ;
-  }
+    };
+  };
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // 设置UI加载
     windowStage.loadContent('pages/Page_CalleeAbility', (err, data) => {
     });
-  }
+  };
 
   onDestroy(): void {
     try {
@@ -133,7 +130,6 @@ export default class CalleeAbility extends UIAbility {
       this.releaseCall();
     } catch (error) {
       hilog.error(DOMAIN_NUMBER, TAG, '%{public}s', `Failed to register. Error is ${error}`);
-    }
-    ;
-  }
-}
+    };
+  };
+};

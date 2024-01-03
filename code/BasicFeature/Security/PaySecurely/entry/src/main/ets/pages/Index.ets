@@ -13,7 +13,7 @@
 * limitations under the License.
 */
 
-import { merchantServer } from '@ohos/cloud';
+import { MerchantServer } from '@ohos/cloud';
 import common from '@ohos.app.ability.common';
 
 interface ProductInfo {
@@ -31,7 +31,7 @@ struct Index {
   private context = getContext(this) as common.UIAbilityContext;
 
   aboutToAppear() {
-    this.products = merchantServer.getProducts();
+    this.products = MerchantServer.getInstance().getProducts();
   }
 
   build() {
@@ -71,7 +71,7 @@ struct Index {
         }
         .id(`main_list_item_${index}`)
         .onClick(async () => {
-          let orderString = await merchantServer.placeAnOrder(item);
+          let orderString = await MerchantServer.getInstance().placeAnOrder(item);
           this.context.startAbility({
             bundleName: 'com.samples.pay',
             moduleName: 'paySDK',
@@ -82,7 +82,7 @@ struct Index {
           });
         })
 
-      }, item => item)
+      }, (item: ProductInfo, index: number) => JSON.stringify(item) + index)
     }
     .backgroundColor($r('app.color.normal_background'))
     .borderRadius(16)

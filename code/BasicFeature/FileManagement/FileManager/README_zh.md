@@ -2,15 +2,15 @@
 
 ### 介绍
 
-本示例主要展示了文件管理相关的功能，使用[@ohos.multimedia.medialibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md) 、[@ohos.filemanagement.userFileManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-userFileManager.md) 、[@ohos.fileio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-fileio.md) 、[@ohos.file.fs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-fs.md)
+本示例主要展示了文件管理相关的功能，使用[@ohos.multimedia.medialibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md) 、[@ohos.filemanagement.userFileManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-userFileManager.md) 、[@ohos.fileio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-fileio.md) 、[@ohos.file.fs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-fs.md)、[@ohos.app.ability.contextConstant](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/application-context-stage.md)
 
-等接口，实现了增添文件、删除文件、查找指定类型文件文件、复制并移动文件和预览图片、监听文件的功能;
+等接口，实现了增添文件、删除文件、查找指定类型文件文件、复制并移动文件、切换加密分区和预览图片、监听文件的功能;
 
 ### 效果预览
 
-|首页|图片列表|图片预览|文档删除|
-|--------------------------------|--------------------------------|--------------------------------|--------------------------------|
-|![image](screenshots/main.png)|![image](screenshots/image_file_list.png)|![image](screenshots/image_preview.png)|![image](screenshots/document_list.png)|
+|首页|图片列表|图片预览|文档删除|加密分区|
+|--------------------------------|--------------------------------|--------------------------------|--------------------------------|--------------------------------|
+|![image](screenshots/main.png)|![image](screenshots/image_file_list.png)|![image](screenshots/image_preview.png)|![image](screenshots/document_list.png)|![image](screenshots/myPhone_home.png)|
 
 使用说明
 1. 在主界面，可以点击图片、视频、文档、音频等按钮进入对应目录的文件列表浏览界面；
@@ -18,19 +18,20 @@
 3. 在文件列表浏览界面，长按列表项会出现删除图片，点击删除图标可以删除文件；
 4. 在图片文件列表界面，点击图片可以进入图片预览界面。
 5. 在主页点击“我的手机”，进入应用沙箱目录下。
-   1. 点击左下角“新建文件夹”按钮，在弹窗中输入文件夹名称，点击弹窗中的“确定”按钮，完成创建。
+   1. 列表的上方是默认的EL2加密分区的应用根目录下文件列表，点击下方两个按钮“data/app/el3”和“data/app/el4”分别进入EL3和EL4加密分区应用根目录，进入后对文件或文件夹操作与EL2加密分区相同。
+   2. 点击左下角“新建文件夹”按钮，在弹窗中输入文件夹名称，点击弹窗中的“确定”按钮，完成创建。
 
-   2. 点击新建的文件夹，进入目录，在新目录中点击左下角的“新建文件”，在弹窗的窗口中填写文件名称，然后点击确定，完成创建。
+   3. 点击新建的文件夹，进入目录，在新目录中点击左下角的“新建文件”，在弹窗的窗口中填写文件名称，然后点击确定，完成创建。
 
-   3. 点击右上角多选按钮，选择需要重命名的文件（仅选中一个文件时可用），点击重命名，在弹窗中修改文件名称，点击“确定”，完成修改。
+   4. 点击右上角多选按钮，选择需要重命名的文件（仅选中一个文件时可用），点击重命名，在弹窗中修改文件名称，点击“确定”，完成修改。
 
-   4. 点击右上角多选按钮，选择需要复制和移动的文件（可多选，并且不可移动到本身的子目录下），选中后点击左下角“复制和移动”按钮，在页面中点击目标目录会进入该目录，在目标目录下点击“移动到这”按钮，完成文件复制和移动。
+   5. 点击右上角多选按钮，选择需要复制和移动的文件（可多选，并且不可移动到本身的子目录下），选中后点击左下角“复制和移动”按钮，在页面中点击目标目录会进入该目录，在目标目录下点击“移动到这”按钮，完成文件复制和移动。
 
-   5. 点击右上角多选按钮，选择需要删除的文件，选中后点击右下角“更多”按钮，弹出的菜单中选择“删除”，在弹窗中点击“删除”，即可删除文件。
+   6. 点击右上角多选按钮，选择需要删除的文件，选中后点击右下角“更多”按钮，弹出的菜单中选择“删除”，在弹窗中点击“删除”，即可删除文件。
    
-   6. 点击右上角多选按钮，选择一项需要修改时间的文件，选中后点击右下角“更多”按钮，弹出的菜单中选择“修改文件(夹)时间”，在弹窗的文本框中输入要修改的时间，点击“确定”，即可修改文件(夹)时间。
+   7. 点击右上角多选按钮，选择一项需要修改时间的文件，选中后点击右下角“更多”按钮，弹出的菜单中选择“修改文件(夹)时间”，在弹窗的文本框中输入要修改的时间，点击“确定”，即可修改文件(夹)时间。
    
-   7. 点击单个文件，可进入文件内容查看页面。
+   8. 点击单个文件，可进入文件内容页面，点击右上角编辑按钮，进入编辑模式编辑、修改文件内容，然后点击右上角的保存按钮保存对文件的修改，点击左上角"X"按钮退出编辑模式，点击返回按钮返回上一页。
 6. 在主页点击“监听文件”，进入文件监听页面。
    1.  点击**添加监听**按钮，选择**IN_CREATE**监听，然后点击**确定**按钮，成功添加IN_CREATE监听。
    2. 点击**添加**按钮，成功添加一个文件，触发事件后日志显示为相应日志：event：256，fileName为新增文件的路径。
@@ -69,9 +70,11 @@ entry/src/main/ets/
 |   |   |   |---ImageFileList.ets          // 图片列表页面
 |   |   |   |---ImagePreview.ets           // 图片预览页面
 |   |   |---MyPhone
+|   |   |   |---ChangeTimeDialog.ets       //修改时间的弹窗
 |   |   |   |---DeleteDialog.ets           // 删除时的询问弹窗
 |   |   |   |---InputNameDialog.ets        // 新增文件时的输入框
 |   |   |   |---MyPhone.ets                // MyPhone主页
+|   |   |   |---OpenFile.ets               // 文件内容查看编辑页面
 |   |   |---video
 |   |   |   |---VideoFileList.ets          // 视频列表页面
 |   |   |---FileManagerHome.ets            // 首页主体内容
@@ -111,6 +114,7 @@ Library/src/main/ets/
   * 删除选中内容：使用fileio.rmdirSync()删除文件夹，使用fileio.unlinkSync()删除文件；
   * 复制文件：使用fileio.copyFileSync()复制目标文件；
   * 移动文件：使用fileio.mkdirSync()创建指定目录，再递归选中目录中的文件，将内部的文件创建到指定的位置。
+  * 修改加密分区：修改应用上下文Context的area，实现当前加密分区的修改。
 
 * 在Library模块中通过封装FileManager向外提供功能接口，如MediaLibraryManager.getPixelMapByFileAsset()，源码参考：[FileManager.ts](Library/src/main/ets/filemanager/FileManager.ts)
     * 如效果预览中的**图片列表**，读取指定类型的文件：在[FileList.ets](entry/src/main/ets/filemanager/pages/common/FileList.ets)
@@ -148,10 +152,10 @@ Library/src/main/ets/
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568;
-2. 本示例为Stage模型，仅支持API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0Release)   。
+2. 本示例为Stage模型，仅支持API11版本SDK，SDK版本号(API Version 11 Release),镜像版本号(4.0Release)   。
 3. 本示例涉及使用系统接口：@ohos.multimedia.mediaLibrary中的deleteAsset接口，需要手动替换Full SDK才能编译通过，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/) ；
 4. 本示例需要使用DevEco Studio 版本号(4.0Release)及以上版本才可编译运行。
-5. 本示例涉及系统接口，需要配置系统应用签名，可以参考[特殊权限配置方法](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/) ，把配置文件中的“app-feature”字段信息改为“ohos_system_app”，再将“apl”字段信息改为“system_core”。
+5. 本示例涉及调用系统权限的接口，需要配置允许权限列表，可以参考[特殊权限配置方法](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/) ，在配置文件中的“allowed-acls”字段中增加"ohos.permission.READ_MEDIA", "ohos.permission.WRITE_MEDIA", "ohos.permission.FILE_ACCESS_MANAGER", "ohos.permission.STORAGE_MANAGER"四个权限。
 
 ### 下载
 

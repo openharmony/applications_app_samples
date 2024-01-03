@@ -22,9 +22,9 @@ import avSession from '@ohos.multimedia.avsession';
 struct Index {
   @State message: string = 'Hello World'
   @StorageLink('IsPlaying') isPlaying: boolean = false;
-  @StorageLink('CurrentPlayItem') currentPlayItem: avSession.AVQueueItem = null;
-  @StorageLink('CurrentAVMetadata') currentAVMetadata: avSession.AVMetadata = null;
-  @StorageLink('CurrentImage') currentImage: PixelMap = null;
+  @StorageLink('CurrentPlayItem') currentPlayItem: avSession.AVQueueItem | null = null;
+  @StorageLink('CurrentAVMetadata') currentAVMetadata: avSession.AVMetadata | null = null;
+  @StorageLink('CurrentImage') currentImage: PixelMap | null = null;
   @StorageLink('CurrentLyric') currentLyric: string = '';
   private providerFeature: ProviderFeature = new ProviderFeature();
 
@@ -53,14 +53,14 @@ struct Index {
             .margin({ top: '15vp' })
             .id('CurrentImage')
 
-          Text(this.currentAVMetadata.title ? this.currentAVMetadata.title : 'No title')
+          Text(this.currentAVMetadata!.title ? this.currentAVMetadata!.title : 'No title')
             .width('100%')
             .height('32vp')
             .fontSize('24fp')
             .fontColor('#556B89')
             .id('Title')
 
-          Text(this.currentAVMetadata.artist ? this.currentAVMetadata.artist : 'No artist')
+          Text(this.currentAVMetadata!.artist ? this.currentAVMetadata!.artist : 'No artist')
             .width('100%')
             .height('19vp')
             .margin({ top: '12vp' })

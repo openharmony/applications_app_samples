@@ -22,7 +22,7 @@
 
 2）选择卡片属性动画示例并点击添加到桌面；
 
-3）单击"改变大小"按钮可实现正向播放动画，EaseOut方式低速结束时长2s的大小渐变动画效果；
+3）点击“改变旋转角度”按钮，按钮产生旋转动画效果；
 
 4）回到主页，长按应用图标并点击<服务卡片>，选择卡片使用自定义绘制能力示例并点击添加到桌面；
 
@@ -40,15 +40,17 @@
 
 5）在卡片页面点击“Update”按钮，观察卡片页面，其中title信息更新为'Title Update.'文字信息更新为'Description update success.'；
 
-6）回到主页，长按应用图标并点击<服务卡片>，选择通过router或call事件刷新卡片内容示例并点击添加到桌面；
+6）回到主页，长按应用图标并点击<服务卡片>，选择通过router事件刷新卡片内容示例并点击添加到桌面；
 
-7）点击“router事件跳转”按钮；点击Home键返回桌面，查看卡片内容从“init”更新为“RouterFromCard”:UIAbility；
+7）点击“router事件跳转”按钮；点击Home键返回桌面，查看卡片内容从“init”更新为“RouterFromCard”:UIAbility；当按home键的方式回到卡片界面点击按钮时，内容则更新为“RouterFromCard”:onNewWant UIAbility.；
 
-8）点击“callee拉至后台”按钮，查看卡片文字，内容从“init”更新为“CallFrom”；
+8）回到主页，长按应用图标并点击<服务卡片>，选择通过call事件刷新卡片内容示例并点击添加到桌面；
 
-9）回到主页，长按应用图标并点击<服务卡片>，选择使用call事件拉起指定UIAbility到后台卡片示例并点击添加到桌面；
+9）点击“callee拉至后台”按钮，查看卡片文字，内容从“init”更新为“CallFrom”；
 
-10）先后点击“功能A”，“功能B”按钮，先后分别后台打印FunACall param及FunBCall param信息；
+10）回到主页，长按应用图标并点击<服务卡片>，选择使用call事件拉起指定UIAbility到后台卡片示例并点击添加到桌面；
+
+11）先后点击“功能A”，“功能B”按钮，先后分别后台打印FunACall param及FunBCall param信息；
 
 3.卡片数据交互
 
@@ -149,13 +151,10 @@ entry/src/main/ets/
 ├── widgeteventcallentryability
 │   └── WidgetEventCallEntryAbility.ts		//使用call事件拉起指定UIAbility到后台订阅逻辑
 ├── widgetevententryability
-│   └── WidgetEventRouterEntryAbility.ts	//router事件刷新卡片内容逻辑入口
+│   └── WidgetEventRouterEntryAbility.ts	//通过router事件刷新卡片内容逻辑入口
 ├── widgeteventrouter
 │   └── pages
-│       └── WidgetEventRouterCard.ets		//router事件跳转到指定UIAbility示例页面
-├── widgeteventuicall
-│   └── pages
-│       └── WidgetUpdtRouterCallCard.ets	//通过router或call事件刷新卡片内容示例
+│       └── WidgetEventRouterCard.ets		//使用router事件跳转到指定UIAbility示例页面
 ├── widgetimageupdate
 │   └── pages
 │       └── WidgetImageUpdateCard.ets		//本地图片和网络图片更新示例页面
@@ -165,9 +164,15 @@ entry/src/main/ets/
 ├── widgetprocessdata
 │   └── pages
 │       └── WidgetProcessDataCard.ets		//基于过程数据的卡片代理刷新示例页面
-└── widgetupdatebystatus
+├── widgetupdatebystatus
+│   └── pages
+│       └── WidgetUpdateByStatusCard.ets	//根据卡片状态刷新不同内容示例页面
+├── widgetupdatecall
+│   └── pages
+│       └── WidgetUpdateCallCard.ets		//通过call事件刷新卡片内容示例页面
+└── widgetupdaterouter
     └── pages
-        └── WidgetUpdateByStatusCard.ets	//根据卡片状态刷新不同内容示例页面
+        └── WidgetUpdateRouterCard.ets		//通过router事件刷新卡片内容示例页面
 ```
 ### 具体实现
 
@@ -222,10 +227,6 @@ entry/src/main/ets/
 2.本示例为Stage模型，已适配API version 11版本SDK，版本号：4.1.3.1
 
 3.本示例需要使用DevEco Studio 3.1.1 Release (Build Version: 3.1.0.501, built on June 20, 2023)及以上版本才可编译运行。
-
-4.本示例涉及相关权限为system_core级别(相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)查看)，需要手动配置对应级别的权限签名(具体操作可查看[自动化签名方案](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Fsecurity%2Fhapsigntool-overview.md%2F))。
-
-5.本示例类型为系统应用，需要手动配置对应级别的应用类型("app-feature": "hos_system_app")。具体可参考profile配置文件[bundle-info对象内部结构]( https://gitee.com/openharmony/docs/blob/eb73c9e9dcdd421131f33bb8ed6ddc030881d06f/zh-cn/application-dev/security/app-provision-structure.md#bundle-info%E5%AF%B9%E8%B1%A1%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84 )
 
 ### 下载
 

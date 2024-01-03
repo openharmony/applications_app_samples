@@ -166,15 +166,15 @@
     },
     {
       "name": "start_stage_noResult_button",
-      "value": "通过PageAbility启动UIAbility-无需返回结果"
+      "value": "通过PageAbility与Stage模型互通-无需返回结果"
     },
     {
       "name": "start_stage_withResult_button",
-      "value": "通过PageAbility启动UIAbility-返回执行结果"
+      "value": "通过PageAbility与Stage模型互通-返回执行结果"
     },
     {
       "name": "start_stage_service_button",
-      "value": "通过ServiceAbility启动UIAbility"
+      "value": "通过ServiceAbility与Stage模型互通"
     },
     {
       "name": "worker_button",
@@ -307,6 +307,34 @@
     {
       "name": "executeBatch_data",
       "value": "批量处理数据"
+    },
+    {
+      "name": "start_remote_success_toast",
+      "value": "启动远程Ability成功"
+    },
+    {
+      "name": "obtain_permissions_button",
+      "value": "获取分布式数据同步权限"
+    },
+    {
+      "name": "obtain_device_id_button",
+      "value": "获取设备id"
+    },
+    {
+      "name": "start_remote_ability_button",
+      "value": "启动远程设备PageAbility"
+    },
+    {
+      "name": "start_stage_service_extension_button",
+      "value": "通过PageAbility与Stage模型互通-ServiceExtensionAbility"
+    },
+    {
+      "name": "connect_service_extension_success_toast",
+      "value": "连接ServiceExtensionAbility成功"
+    },
+    {
+      "name": "connect_service_extension_failed_toast",
+      "value": "连接ServiceExtensionAbility失败"
     }
   ]
 }

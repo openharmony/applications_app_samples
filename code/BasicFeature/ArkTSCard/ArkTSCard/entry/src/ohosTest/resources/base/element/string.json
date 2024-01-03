@@ -1,0 +1,49 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "ArkTSCardTest"
+    },
+    {
+      "name": "MusicPage",
+      "value": "音乐页面"
+    },
+    {
+      "name": "BookPage",
+      "value": "书籍页面"
+    },
+    {
+      "name": "WeatherPage",
+      "value": "天气页面"
+    },
+    {
+      "name": "DeepLink",
+      "value": "DeepLink"
+    },
+    {
+      "name": "StaticCard",
+      "value": "静态卡片"
+    }
+    ,
+    {
+      "name": "DynamicCard",
+      "value": "动态卡片"
+    },
+    {
+      "name": "unLockPage",
+      "value": "锁屏卡片"
+    },
+    {
+      "name": "unLock",
+      "value": "点击解锁"
+    }
+  ]
+}

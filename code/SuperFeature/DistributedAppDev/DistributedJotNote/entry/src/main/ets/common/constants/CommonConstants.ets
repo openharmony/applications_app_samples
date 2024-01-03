@@ -29,4 +29,20 @@ export default class CommonConstants {
   static readonly MIGRATION_SOURCE_END: Resource = $r('app.string.MIGRATION_SOURCE_END');
   static readonly TO_DO_LIST: Resource = $r('app.string.TO_DO_LIST');
   static readonly LIST_ARRAY: Array<Resource> = [$r('app.string.LIST_ITEM_ONE'), $r('app.string.LIST_ITEM_TWO'), $r('app.string.LIST_ITEM_THREE'), $r('app.string.LIST_ITEM_FOUR'), $r('app.string.LIST_ITEM_FIVE'), $r('app.string.LIST_ITEM_SIX'), $r('app.string.LIST_ITEM_SEVEN'), $r('app.string.LIST_ITEM_EIGHT'), $r('app.string.LIST_ITEM_ONE'), $r('app.string.LIST_ITEM_TWO'), $r('app.string.LIST_ITEM_THREE')];
+
+  // Distributed asset use
+  static readonly BUNDLE_NAME = 'com.samples.distributedjotnote';
+  static readonly DISTRIBUTED_ASSET_NAME: string = 'test.jpg';
+  static readonly DISTRIBUTED_ASSET_URI: string = 'file://' + CommonConstants.BUNDLE_NAME + '/data/storage/el2/distributedfiles/dir/test.jpg';
+  static readonly DISTRIBUTED_ASSET_PATH: string = '/dir/test.jpg';
+  static readonly DISTRIBUTED_ASSET_CREATE_TIME: string = '2023/11/30 19:48:00';
+  static readonly DISTRIBUTED_ASSET_MODIFY_TIME: string = '2023/11/30 19:48:00';
+  static readonly DISTRIBUTED_ASSET_SIZE: string = '1';
+
+  static readonly DISTRIBUTED_ASSET_SAVE_PATH: string = '/mnt/hmdfs/100/account/device_view/local/data/' + CommonConstants.BUNDLE_NAME + '/dir/test.jpg';
+  static readonly DISTRIBUTED_ASSET_DIR: string = '/mnt/hmdfs/100/account/device_view/local/data/' + CommonConstants.BUNDLE_NAME + '/dir';
+
+  // event need
+  static readonly EVENT_COMMON_BASE: number = 1000;
+  static readonly EVENT_DATA_RESTORE: number = CommonConstants.EVENT_COMMON_BASE + 1;
 }

@@ -23,6 +23,12 @@ const BUNDLE: string = 'Performance';
 const TAG: string = '[Sample_Performance_Test]';
 const delegator: AbilityDelegatorRegistry.AbilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
+async function getResourceString<T extends Resource>(resource: T): Promise<string> {
+  let manage = delegator.getAppContext().resourceManager
+  let text = await manage.getStringValue(resource)
+  return text
+}
+
 export default function abilityTest() {
   describe('ActsAbilityTest', () => {
     /**
@@ -41,10 +47,11 @@ export default function abilityTest() {
       Logger.info(TAG, BUNDLE + '_startAbility end')
       done()
     })
+
     /**
      * 点击HiDumper按钮，进入HiDumper查看组件信息页面
      */
-    it(BUNDLE + "HiDumperFunction_001", 2, async (done: Function) => {
+    it(BUNDLE + "HiDumperFunction_001", 1, async (done: Function) => {
       Logger.info(TAG, `${BUNDLE}HiDumperFunction_001 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(5000);
@@ -64,7 +71,7 @@ export default function abilityTest() {
     /**
      * 进入查看应用组件树页面，查看页面是否在正常显示
      */
-    it(BUNDLE + "HiDumperFunction_002", 3, async (done: Function) => {
+    it(BUNDLE + "HiDumperFunction_002", 2, async (done: Function) => {
       Logger.info(TAG, `${BUNDLE}HiDumperFunction_002 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
@@ -83,7 +90,7 @@ export default function abilityTest() {
     /**
      * 进入查看if/else组件页面，查看页面是否在正常显示
      */
-    it(BUNDLE + "HiDumperFunction_003", 4, async (done: Function) => {
+    it(BUNDLE + "HiDumperFunction_003", 3, async (done: Function) => {
       Logger.info(TAG, `${BUNDLE}HiDumperFunction_003 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
@@ -102,10 +109,11 @@ export default function abilityTest() {
       Logger.info(TAG, `${BUNDLE}HiDumperFunction_003 end`);
       done();
     })
+
     /**
      * 进入查看visibility属性页面，查看页面是否在正常显示
      */
-    it(BUNDLE + "HiDumperFunction_004", 5, async (done: Function) => {
+    it(BUNDLE + "HiDumperFunction_004", 4, async (done: Function) => {
       Logger.info(TAG, `${BUNDLE}HiDumperFunction_004 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
@@ -134,6 +142,7 @@ export default function abilityTest() {
       Logger.info(TAG, `${BUNDLE}HiDumperFunction_004 end`);
       done();
     })
+
     /**
      * 点击"点击跳转静态加载案例"按钮，进入静态加载场景页面
      */
@@ -175,6 +184,7 @@ export default function abilityTest() {
       Logger.info(TAG, `${BUNDLE}DynamicImportFunction_001 end`);
       done();
     })
+
     /**
      * 点击"点击跳转动态加载案例"按钮，进入动态加载场景页面
      */
@@ -205,91 +215,20 @@ export default function abilityTest() {
       await back.click();
       await driver.delayMs(500);
       await driver.pressBack();
-      Logger.info(TAG, `${BUNDLE}DynamicImportFunction_001 end`)
-    })
-
-    /**
-     * 进入查看SmartPerfHostFrameTimeline优化前页面，查看页面是否在正常显示
-     */
-    it(BUNDLE + "SmartPerfHostFrameTimeline01", 555, async (done: Function) => {
-      Logger.info(TAG, `${BUNDLE}SmartPerfHostFrameTimeline01 begin`);
-      let driver: Driver = Driver.create();
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text("SmartPerfHost"))
-      let ifElseComponent: Component = await driver.findComponent(ON.text("SmartPerfHost"));
-      await driver.delayMs(500);
-      await ifElseComponent.click();
-      await driver.delayMs(1000);
-      let showChange: Component = await driver.findComponent(ON.text("FrameTimeline优化前代码"));
-      await driver.delayMs(500);
-      await showChange.click();
-      await driver.delayMs(10000);
-      await driver.pressBack();
-      await driver.delayMs(500);
-      Logger.info(TAG, `${BUNDLE}SmartPerfHostFrameTimeline01 end`);
-      done();
-    })
-    /**
-     * 进入查看SmartPerfHostFrameTimeline优化后页面，查看页面是否在正常显示
-     */
-    it(BUNDLE + "SmartPerfHostFrameTimeline02", 556, async (done: Function) => {
-      Logger.info(TAG, `${BUNDLE}SmartPerfHostFrameTimeline00 begin`);
-      let driver: Driver = Driver.create();
-      await driver.delayMs(500);
-      let showChange: Component = await driver.findComponent(ON.text("FrameTimeline优化后代码"));
-      await driver.delayMs(500);
-      await showChange.click();
-      await driver.delayMs(5000);
-      await driver.pressBack();
-      await driver.delayMs(500);
-      Logger.info(TAG, `${BUNDLE}SmartPerfHostFrameTimeline02 end`);
-      done();
-    })
-    /**
-     * 进入查看SmartPerfHostAPPStartup优化前页面，查看页面是否在正常显示
-     */
-    it(BUNDLE + "SmartPerfHostAPPStartup01", 557, async (done: Function) => {
-      Logger.info(TAG, `${BUNDLE}SmartPerfHostAPPStartup01 begin`);
-      let driver: Driver = Driver.create();
-      await driver.delayMs(500);
-      let showChange: Component = await driver.findComponent(ON.text("AppStartup优化前代码"));
-      await driver.delayMs(500);
-      await showChange.click();
-      await driver.delayMs(5000);
-      await driver.pressBack();
-      await driver.delayMs(500);
-      Logger.info(TAG, `${BUNDLE}SmartPerfHostAPPStartup01 end`);
-      done();
-    })
-    /**
-     * 进入查看SmartPerfHostAPPStartup优化后页面，查看页面是否在正常显示
-     */
-    it(BUNDLE + "SmartPerfHostAPPStartup02", 558, async (done: Function) => {
-      Logger.info(TAG, `${BUNDLE}SmartPerfHostAPPStartup02 begin`);
-      let driver: Driver = Driver.create();
-      await driver.delayMs(500);
-      let showChange: Component = await driver.findComponent(ON.text("AppStartup优化后代码"));
-      await driver.delayMs(500);
-      await showChange.click();
-      await driver.delayMs(5000);
-      await driver.pressBack();
-      await driver.delayMs(500);
-      await driver.pressBack();
-      await driver.delayMs(500);
-      Logger.info(TAG, `${BUNDLE}SmartPerfHostAPPStartup02 end`);
+      Logger.info(TAG, `${BUNDLE}DynamicImportFunction_001 end`);
       done();
     })
 
     /**
      * 点击IfOrVisibility按钮，进入合理渲染信息页面
      */
-    it(BUNDLE + "IfOrVisibilityFunction_001", 3, async (done: Function) => {
+    it(BUNDLE + "IfOrVisibilityFunction_001", 1, async (done: Function) => {
       Logger.info(TAG, `${BUNDLE}IfOrVisibilityFunction_001 begin`);
       let driver: Driver = Driver.create();
-      await driver.delayMs(5000);
-      let hiDumper: Component = await driver.findComponent(ON.text("IfOrVisibility"));
+      await driver.delayMs(1000);
+      let IfOrVisibility: Component = await driver.findComponent(ON.text("IfOrVisibility"));
       await driver.delayMs(500);
-      await hiDumper.click();
+      await IfOrVisibility.click();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text("合理选择条件渲染和显隐控制"));
       await driver.assertComponentExist(ON.text("频繁切换：显隐控制"));
@@ -301,17 +240,17 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text("复杂子树：条件渲染+组件复用"));
       await driver.assertComponentExist(ON.text("复杂子树：仅条件渲染"));
       await driver.delayMs(500);
-      Logger.info(TAG, `${BUNDLE}HiDumperFunction_001 end`);
+      Logger.info(TAG, `${BUNDLE}IfOrVisibilityFunction_001 end`);
       done();
     })
 
     /**
      * 进入频繁切换场景，查看页面是否在正常显示
      */
-    it(BUNDLE + "IfOrVisibilityFunction_002", 4, async (done: Function) => {
+    it(BUNDLE + "IfOrVisibilityFunction_002", 2, async (done: Function) => {
       Logger.info(TAG, `${BUNDLE}IfOrVisibilityFunction_002 begin`);
       let driver: Driver = Driver.create();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       let animateComponent: Component = await driver.findComponent(ON.text("频繁切换：显隐控制"));
       await driver.delayMs(500);
       await animateComponent.click();
@@ -324,7 +263,7 @@ export default function abilityTest() {
       await driver.delayMs(500);
       await driver.pressBack();
       await driver.delayMs(500);
-      animateComponent = await driver.findComponent(ON.text("频繁切换：显隐控制"));
+      animateComponent = await driver.findComponent(ON.text("频繁切换：条件渲染"));
       await driver.delayMs(500);
       await animateComponent.click();
       await driver.delayMs(1000);
@@ -343,10 +282,10 @@ export default function abilityTest() {
     /**
      * 进入首页渲染场景，查看页面是否在正常显示
      */
-    it(BUNDLE + "IfOrVisibilityFunction_003", 4, async (done: Function) => {
+    it(BUNDLE + "IfOrVisibilityFunction_003", 3, async (done: Function) => {
       Logger.info(TAG, `${BUNDLE}IfOrVisibilityFunction_003 begin`);
       let driver: Driver = Driver.create();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       let animateComponent: Component = await driver.findComponent(ON.text("首页渲染：条件渲染"));
       await driver.delayMs(500);
       await animateComponent.click();
@@ -381,30 +320,30 @@ export default function abilityTest() {
     it(BUNDLE + "IfOrVisibilityFunction_004", 4, async (done: Function) => {
       Logger.info(TAG, `${BUNDLE}IfOrVisibilityFunction_004 begin`);
       let driver: Driver = Driver.create();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       let animateComponent: Component = await driver.findComponent(ON.text("部分修改：条件渲染+容器限制"));
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       await animateComponent.click();
-      await driver.delayMs(5000);
+      await driver.delayMs(1000);
       let showChange: Component = await driver.findComponent(ON.text("Switch Hidden and Show"));
-      await driver.delayMs(1000);
-      await showChange.click();
-      await driver.delayMs(1000);
-      await showChange.click();
       await driver.delayMs(500);
+      await showChange.click();
+      await driver.delayMs(1000);
+      await showChange.click();
+      await driver.delayMs(1000);
       await driver.pressBack();
       await driver.delayMs(500);
 
       animateComponent = await driver.findComponent(ON.text("部分修改：仅条件渲染"));
-      await driver.delayMs(5000);
+      await driver.delayMs(3000);
       await animateComponent.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(15000);
       showChange = await driver.findComponent(ON.text("Switch Hidden and Show"));
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       await showChange.click();
       await driver.delayMs(1000);
       await showChange.click();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       await driver.pressBack();
       await driver.delayMs(500);
       Logger.info(TAG, `${BUNDLE}IfOrVisibilityFunction_004 end`);
@@ -414,12 +353,12 @@ export default function abilityTest() {
     /**
      * 进入复杂子树场景，查看页面是否在正常显示
      */
-    it(BUNDLE + "IfOrVisibilityFunction_005", 4, async (done: Function) => {
+    it(BUNDLE + "IfOrVisibilityFunction_005", 5, async (done: Function) => {
       Logger.info(TAG, `${BUNDLE}IfOrVisibilityFunction_005 begin`);
       let driver: Driver = Driver.create();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       let animateComponent: Component = await driver.findComponent(ON.text("复杂子树：条件渲染+组件复用"));
-      await driver.delayMs(3000);
+      await driver.delayMs(1000);
       await animateComponent.click();
       await driver.delayMs(1000);
       let showChange: Component = await driver.findComponent(ON.text("Change FlexAlign"));
@@ -427,31 +366,32 @@ export default function abilityTest() {
       await showChange.click();
       await driver.delayMs(1000);
       await showChange.click();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       await driver.pressBack();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
 
       animateComponent = await driver.findComponent(ON.text("复杂子树：仅条件渲染"));
       await driver.delayMs(3000);
       await animateComponent.click();
       await driver.delayMs(1000);
       showChange = await driver.findComponent(ON.text("Change FlexAlign"));
-      await driver.delayMs(500);
+      await driver.delayMs(5000);
       await showChange.click();
       await driver.delayMs(1000);
       await showChange.click();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       await driver.pressBack();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       await driver.pressBack();
       await driver.delayMs(500);
       Logger.info(TAG, `${BUNDLE}IfOrVisibilityFunction_005 end`);
       done();
     })
+
     /**
      * Grid的使用
      */
-    it(BUNDLE + "GridFunction_001", 5, async (done: Function) => {
+    it(BUNDLE + "GridFunction_001", 1, async (done: Function) => {
       Logger.info(TAG, `${BUNDLE}GridFunction_001 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
@@ -506,10 +446,11 @@ export default function abilityTest() {
       Logger.info(TAG, `${BUNDLE}GridFunction_001 end`);
       done();
     })
+
     /**
      * SmartPerf Editor的使用
      */
-    it(BUNDLE + "SmartPerf_001", 5, async (done: Function) => {
+    it(BUNDLE + "SmartPerf_001", 1, async (done: Function) => {
       Logger.info(TAG, `${BUNDLE}SmartPerf_001 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
@@ -527,6 +468,240 @@ export default function abilityTest() {
       await driver.delayMs(500);
       await driver.pressBack();
       Logger.info(TAG, `${BUNDLE}SmartPerf_001 end`);
+      done();
+    })
+
+    /**
+     * 进入查看SmartPerfHostFrameTimeline优化前页面，查看页面是否在正常显示
+     */
+    it(BUNDLE + "SmartPerfHostFrameTimeline01", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}SmartPerfHostFrameTimeline01 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text("SmartPerfHost"))
+      let ifElseComponent: Component = await driver.findComponent(ON.text("SmartPerfHost"));
+      await driver.delayMs(500);
+      await ifElseComponent.click();
+      await driver.delayMs(1000);
+      let showChange: Component = await driver.findComponent(ON.text("FrameTimeline优化前代码"));
+      await driver.delayMs(500);
+      await showChange.click();
+      await driver.delayMs(10000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      Logger.info(TAG, `${BUNDLE}SmartPerfHostFrameTimeline01 end`);
+      done();
+    })
+
+    /**
+     * 进入查看SmartPerfHostFrameTimeline优化后页面，查看页面是否在正常显示
+     */
+    it(BUNDLE + "SmartPerfHostFrameTimeline02", 2, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}SmartPerfHostFrameTimeline00 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let showChange: Component = await driver.findComponent(ON.text("FrameTimeline优化后代码"));
+      await driver.delayMs(500);
+      await showChange.click();
+      await driver.delayMs(5000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      Logger.info(TAG, `${BUNDLE}SmartPerfHostFrameTimeline02 end`);
+      done();
+    })
+
+    /**
+     * 进入查看SmartPerfHostAPPStartup优化前页面，查看页面是否在正常显示
+     */
+    it(BUNDLE + "SmartPerfHostAPPStartup01", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}SmartPerfHostAPPStartup01 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let showChange: Component = await driver.findComponent(ON.text("AppStartup优化前代码"));
+      await driver.delayMs(500);
+      await showChange.click();
+      await driver.delayMs(5000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      Logger.info(TAG, `${BUNDLE}SmartPerfHostAPPStartup01 end`);
+      done();
+    })
+
+    /**
+     * 进入查看SmartPerfHostAPPStartup优化后页面，查看页面是否在正常显示
+     */
+    it(BUNDLE + "SmartPerfHostAPPStartup02", 2, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}SmartPerfHostAPPStartup02 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let showChange: Component = await driver.findComponent(ON.text("AppStartup优化后代码"));
+      await driver.delayMs(500);
+      await showChange.click();
+      await driver.delayMs(5000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      Logger.info(TAG, `${BUNDLE}SmartPerfHostAPPStartup02 end`);
+      done();
+    })
+
+    /**
+     * Trace的使用
+     */
+    it(BUNDLE + "Trace_001", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}Trace_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      // 点击进入Trace首页
+      let traceBtn: Component = await driver.findComponent(ON.text('Trace'));
+      await driver.delayMs(500);
+      await traceBtn.click();
+      await driver.delayMs(500);
+      // 滑动页面 循环连续向上滑动3次
+      for (let index = 0; index < 3; index++) {
+        await driver.swipe(0, 800, 0, 100, 600);
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.id('itemImage'));
+      }
+      // 退出到首页面
+      await driver.delayMs(500);
+      await driver.pressBack();
+      Logger.info(TAG, `${BUNDLE}Trace_001 end`);
+      done();
+    })
+
+    /**
+     * 合理使用后台任务场景
+     */
+    it(BUNDLE + "BackgroundTask_001", 6, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}BackgroundTask_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.swipe(0, 800, 0, 100, 600);
+      await driver.delayMs(1000);
+      // 点击进入后台任务首页
+      let backgroundTaskBtn: Component = await driver.findComponent(ON.text('BackgroundTask'));
+      await driver.delayMs(1000);
+      await backgroundTaskBtn.click();
+      await driver.delayMs(1000);
+      // 点击进入短时任务场景
+      let transientTaskBtn: Component = await driver.findComponent(ON.text('短时任务'));
+      await driver.delayMs(1000);
+      await transientTaskBtn.click();
+      await driver.delayMs(1000);
+      // 返回上一级进入长时任务场景
+      await driver.pressBack();
+      await driver.delayMs(1000);
+      let longTermTaskBtn: Component = await driver.findComponent(ON.text('长时任务'));
+      await driver.delayMs(1000);
+      await longTermTaskBtn.click();
+      await driver.delayMs(3000);
+      // 获取通知权限
+      await driver.assertComponentExist(ON.text('允许'));
+      let btnAccept = await driver.findComponent(ON.text('允许'));
+      await btnAccept.click();
+      await driver.delayMs(3000);
+      // 获取定位权限
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.permission_while_use'))));
+      let locAcceptBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.permission_while_use'))));
+      await locAcceptBtn.click();
+      await driver.delayMs(1000);
+      // 点击开启定位服务
+      let startLocationBtn: Component = await driver.findComponent(ON.text('开启定位服务'));
+      await driver.delayMs(500);
+      await startLocationBtn.click();
+      await driver.delayMs(3000);
+      // 点击关闭定位服务
+      let stopLocationBtn: Component = await driver.findComponent(ON.text('关闭定位服务'));
+      await driver.delayMs(1000);
+      await stopLocationBtn.click();
+      await driver.delayMs(1000);
+      // 退出到首页面
+      await driver.pressBack();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      Logger.info(TAG, `${BUNDLE}BackgroundTask_001 end`);
+      done();
+    })
+
+    /**
+     * WaterFlow高性能开发指导
+     */
+    it(BUNDLE + "WaterFlow_001", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}WaterFlow_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      await driver.swipe(10, 800, 10, 100, 600);
+      // 点击进入WaterFlow的使用首页
+      let waterBtn: Component = await driver.findComponent(ON.text('WaterFlow'));
+      await driver.delayMs(500);
+      await waterBtn.click();
+      await driver.delayMs(500);
+      // 滑动页面 循环连续向上滑动4次
+
+      for (let index = 0; index < 4; index++) {
+        await driver.swipe(10, 1000, 10, 0, 15000);
+      }
+      // 退出到首页面
+      await driver.delayMs(500);
+      await driver.pressBack();
+      Logger.info(TAG, `${BUNDLE}WaterFlow_001 end`);
+      done();
+    })
+    /** 多线程共享内存页面场景
+     */
+    it(BUNDLE + "memoryShared_001", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}memoryShared_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.swipe(0, 800, 0, 100, 600);
+      await driver.delayMs(1000);
+      // 点击进入多线程共享内存页面
+      let backgroundTaskBtn: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.MemoryShared'))));
+      await driver.delayMs(1000);
+      await backgroundTaskBtn.click();
+      await driver.delayMs(1000);
+      // 点击进入原子操作场景
+      let AtomicSceneBtn: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.atomic_operation'))));
+      await driver.delayMs(1000);
+      await AtomicSceneBtn.click();
+      await driver.delayMs(1000);
+      // 点击进入原子操作场景
+      let AtomicTaskBtn: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.use_atomic'))));
+      await driver.delayMs(1000);
+      await AtomicTaskBtn.click();
+      await driver.delayMs(1000);
+      // 点击进入原子操作场景
+      let NonAtomicTaskBtn: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.not_use_atomic'))));
+      await driver.delayMs(1000);
+      await NonAtomicTaskBtn.click();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.delayMs(1000);
+      // 点击进入锁的使用任务场景
+      let LockSceneBtn: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.lock_operation'))));
+      await driver.delayMs(1000);
+      await LockSceneBtn.click();
+      await driver.delayMs(1000);
+      // 点击进入锁的使用任务场景
+      let LockTaskBtn: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.use_lock'))));
+      await driver.delayMs(1000);
+      await LockTaskBtn.click();
+      await driver.delayMs(2000);
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.write_success'))));
+      // 点击进入锁的使用任务场景
+      let NonLockTaskBtn: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.not_use_lock'))));
+      await driver.delayMs(1000);
+      await NonLockTaskBtn.click();
+      await driver.delayMs(2000);
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.write_success'))));
+
+      // 退出到首页面
+      await driver.pressBack();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      Logger.info(TAG, `${BUNDLE}memoryShared_001 end`);
       done();
     })
   })

@@ -1,6 +1,14 @@
 {
   "string": [
     {
+      "name": "tab_certframework",
+      "value": "证书校验"
+    },
+    {
+      "name": "tab_certchain",
+      "value": "证书链校验"
+    },
+    {
       "name": "module_desc",
       "value": "证书算法库框架"
     },
@@ -47,6 +55,26 @@
     {
       "name": "verify_fail",
       "value": "校验失败"
+    },
+    {
+      "name": "certchain_title",
+      "value": "证书链校验"
+    },
+    {
+      "name": "certchain_data",
+      "value": "证书链数据"
+    },
+    {
+      "name": "certchain_root",
+      "value": "根证书数据"
+    },
+    {
+      "name": "certchain_crl",
+      "value": "证书吊销列表数据"
+    },
+    {
+      "name": "certchain_verify_crl",
+      "value": "校验证书吊销列表"
     }
   ]
 }

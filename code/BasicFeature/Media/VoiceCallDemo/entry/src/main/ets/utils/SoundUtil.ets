@@ -14,29 +14,33 @@
  */
 
 import media from '@ohos.multimedia.media';
+import resourceManager from '@ohos.resourceManager';
 import Logger from './Logger';
 
 const TAG = 'mSoundUtil';
+
 // 使用 AVPlayer 播放铃声
 class SoundUtil {
-  private avPlayer: media.AVPlayer = undefined;
+  private avPlayer: media.AVPlayer | null = null;
 
   // 初始化，创建实例
-  async playFd(fd): Promise<void> {
-    Logger.info(`${TAG}: create AVPlayer playFd ${fd.fd}`);
+  async playFd(fd: resourceManager.RawFileDescriptor): Promise<void> {
+    Logger.info(TAG,`create AVPlayer playFd ${fd.fd}`);
     try {
       this.release();
       this.avPlayer = await media.createAVPlayer();
-      this.avPlayer.on('stateChange', this.onStateChange.bind(this));
+      this.avPlayer.on('stateChange', (state: media.AVPlayerState, reason: media.StateChangeReason) => {
+        this.onStateChange(state, reason);
+      });
       this.avPlayer.fdSrc = fd;
-      Logger.info(`${TAG}: create AVPlayer success`);
+      Logger.info(TAG, `create AVPlayer success`);
     } catch (err) {
-      Logger.error(`${TAG}: Invoke AVPlayer failed, code is ${err.code}, message is ${err.message}`);
+      Logger.error(TAG, `Invoke AVPlayer failed, code is ${err.code}, message is ${err.message}`);
     }
   }
 
   async release(): Promise<void> {
-    Logger.info(`${TAG}: avPlayer release`);
+    Logger.info(TAG, `avPlayer release`);
     try {
       if (this.avPlayer) {
         this.avPlayer.off('stateChange');
@@ -44,28 +48,33 @@ class SoundUtil {
           await this.avPlayer.stop();
         }
         await this.avPlayer.release();
-        this.avPlayer = undefined;
+        this.avPlayer = null;
       }
     } catch (err) {
-      Logger.error(`${TAG}: release AVPlayer failed, code is ${err.code}, message is ${err.message}`);
+      Logger.error(TAG, `release AVPlayer failed, code is ${err.code}, message is ${err.message}`);
     }
   }
 
-
   private async onStateChange(state: media.AVPlayerState, reason: media.StateChangeReason): Promise<void> {
-    Logger.info(`${TAG}:  AVPlayer stateChange  ${reason}  :  ${state}`);
+    Logger.info(TAG, `AVPlayer stateChange  ${reason}  :  ${state}`);
     try {
       switch (state) {
         case 'initialized': // avplayer 设置播放源后触发该状态上报
-          await this.avPlayer.prepare();
-          console.info('AVPlayer prepare succeeded.');
+          if (this.avPlayer) {
+            await this.avPlayer.prepare();
+            Logger.info(TAG, 'AVPlayer prepare succeeded.');
+          }
           break;
         case 'prepared': // prepare调用成功后上报该状态机
-          await this.avPlayer.play(); // 调用播放接口开始播放
-          console.info('AVPlayer play succeeded.');
+          if (this.avPlayer) {
+            await this.avPlayer.play(); // 调用播放接口开始播放
+            Logger.info(TAG, 'AVPlayer play succeeded.');
+          }
           break;
         case 'completed': // 播放结束后触发该状态机上报
-          await this.avPlayer.play(); // 调用播放接口开始播放
+          if (this.avPlayer) {
+            await this.avPlayer.play(); // 调用播放接口开始播放
+          }
           break;
         case 'paused': // 播放结束后触发该状态机上报
         case 'stopped': // 播放结束后触发该状态机上报
@@ -74,7 +83,7 @@ class SoundUtil {
           break;
       }
     } catch (err) {
-      Logger.error(`${TAG}:  AVPlayer onStateChange failed, code is ${err.code}, message is ${err.message}`);
+      Logger.error(TAG, `AVPlayer onStateChange failed ${JSON.stringify(err)}`);
     }
   }
 }

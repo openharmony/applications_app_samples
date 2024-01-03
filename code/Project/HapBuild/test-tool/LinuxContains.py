@@ -1,0 +1,8 @@
+SIGN_HAP_PATH = r'/home/userName/HapBuild/compile-tool/out/ut_samples_master/full-sdk/hap-out-with-signed/'
+FA_MODAL_AND_LOWER_CASE_LIST = r'/home/userName/HapBuild/test-tool/FA_Model_And_Lower_Case_List.json'
+INSTALL_LIST_CAPABILITY = r'/home/userName/HapBuild/test-tool/install_list_capability.json'
+SAVE_XML_PATH = r'/home/userName/HapBuild/test-tool'
+COMBIN_CONFIG = r'/home/userName/HapBuild/test-tool/CombinationConfig.json'
+SPECIAL_LIST = r'/home/userName/HapBuild/test-tool/special_list.json'
+SPECIAL_HAP = r'code_UI_JsComponentCollection_JsComponentCollection;code_SuperFeature_MultiDeviceAppDev_JsAdaptiveCapabilities;code_BasicFeature_FileManagement_FileShare_SandboxShare;code_SystemFeature_DeviceManagement_DeviceManagementCollection;code_BasicFeature_Security_PaySecurely_paySDK;code_SystemFeature_ApplicationModels_Launcher;code_SuperFeature_DistributedAppDev_JsDistributedMusicPlayer;code_SuperFeature_DistributedAppDev_DistributeCalc;code_Solutions_Tools_JsClock;code_BasicFeature_Notification_CustomNotificationBadge'
+TARGET_PATH = r'code_Solutions_Game_DistributedDataGobang'

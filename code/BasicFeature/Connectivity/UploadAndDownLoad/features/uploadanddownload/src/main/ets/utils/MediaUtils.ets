@@ -24,6 +24,9 @@ export class MediaUtils {
   async copyFileToCache(cacheDir: string, uri: string): Promise<string> {
     let id = uri.split('/').pop();
     let imagePath = `${cacheDir}/${id}`;
+    if(fs.accessSync(imagePath)){
+      return imagePath;
+    }
     let file = await fs.open(uri);
     try {
       fs.copyFileSync(file.fd, imagePath);

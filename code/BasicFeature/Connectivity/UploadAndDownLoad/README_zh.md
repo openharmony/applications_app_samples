@@ -5,9 +5,9 @@
 
 ### 效果预览
 
-|               主页               |             上传             |                 下载                 |
-| :---------------------------------------: | :---------------------------------------: | :--------------------------------------: |
-|    ![home](screenshots/devices/zh/home.jpg)    | ![util](screenshots/devices/zh/upload.jpg) | ![convertxml](screenshots/devices/zh/download.jpg) |
+|               主页               |             上传             |             片段上传             |                 下载                 |
+| :---------------------------------------: | :---------------------------------------: | :--------------------------------------: | :--------------------------------------: |
+|    ![home](screenshots/devices/zh/home.jpg)    | ![util](screenshots/devices/zh/upload.jpg) | ![util](screenshots/devices/zh/uploadchunk.jpg) | ![convertxml](screenshots/devices/zh/download.jpg) |
 
 使用说明
 
@@ -17,20 +17,27 @@
 
 3.上传页面：
 
-​    点击**+**，**从相册选择**拉起图库选择照片，图片选择页面支持拍照，选择照片后点击发表进行上传。
+点击 **+**，**从相册选择**拉起图库选择照片，图片选择页面支持拍照，选择照片后点击**上传**进行上传。
 
-​    在首页中打开后台任务开关后，上传页面开启的是后台上传任务，后台任务在应用退出到后台时可以在通知栏看到任务状态。
+可选的，点击缩略图，显示文件片段上传配置选项弹窗，可以配置上传起点和终点，取值为闭区间；起点默认为0，终点默认为文件结尾。点击**上传**进行选中文件片段以及后续文件全部内容上传。
+
+点击**返回**键或片段上传配置选项弹窗外区域，取消片段上传。
+
+在首页中打开后台任务开关后，上传页面开启的是后台上传任务，后台任务在应用退出到后台时可以在通知栏看到任务状态。
+
+后台上传**暂停**时，需要服务器支持上传暂停服务（HFS暂不支持此操作）。如仍然使用HFS作为服务器，此时HFS服务将中断文件写入，立即将当前传输的数据保存为文件片段。点击**继续**时则会重新生成一份文件，并在新文件中开始写入。
 
 4.下载页面：
 
-​    点击文件列表选择要下载的文件后，点击**下载**选择指定路径后开始下载。
+点击文件列表选择要下载的文件后，点击**下载**选择指定路径后开始下载。
 
-​    点击**查看下载文件**进入下载文件页面，点击文件夹查看文件夹内的文件。
+点击**查看下载文件**进入下载文件页面，点击文件夹查看文件夹内的文件。
 
-​    在首页中打开后台任务开关后，下载页面开启的是后台下载任务，后台任务在应用退出到后台时可以在通知栏看到任务状态。
+在首页中打开后台任务开关后，下载页面开启的是后台下载任务，后台任务在应用退出到后台时可以在通知栏看到任务状态。
 
-​    前台下载时只支持单文件下载，后台下载时支持选择多个文件下载。
+前台下载时只支持单文件下载，后台下载时支持选择多个文件下载。
 
+后台下载**暂停**时，本示例功能将自动记录断点。此时HFS服务仍会进行一定时间的传输，但是传输的数据并不会被接受。点击**继续**后将会从上次暂停的断点继续下载。
 ### 工程目录
 
 ```
@@ -63,7 +70,7 @@ UploadAndDownload
 
 * 该示例分为两个模块：
   * 上传模块
-    * 使用[@ohos.request](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-request.md)中API 10接口agent.create创建上传任务，调用@ohos.request中的Task相关接口实现上传任务的创建、取消、进度加载，失败的任务会调用查询接口获取失败原因并打印在日志中，支持多个文件上传。
+    * 使用[@ohos.request](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-request.md)中API 10接口agent.create创建上传任务，调用@ohos.request中的Task相关接口实现上传任务的创建、取消、进度加载，失败的任务会调用查询接口获取失败原因并打印在日志中，支持多个文件上传及片段上传。
     * 源码链接：[RequestUpload.ets](./features/uploadanddownload/src/main/ets/upload/RequestUpload.ets)，[AddPictures.ets](./entry/src/main/ets/components/AddPictures.ets)，[Upload.ets](./entry/src/main/ets/pages/Upload.ets)
     * 参考接口：[@ohos.request](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-request.md)，[@ohos.file.picker](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-picker.md)
   * 下载模块
@@ -95,7 +102,7 @@ UploadAndDownload
 
 如需单独下载本工程，执行如下命令：
 
-```
+```bash
 git init
 git config core.sparsecheckout true
 echo code/BasicFeature/Connectivity/UploadAndDownload/ > .git/info/sparse-checkout

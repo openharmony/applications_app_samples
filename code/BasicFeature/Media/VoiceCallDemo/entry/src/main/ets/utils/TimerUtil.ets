@@ -1,4 +1,3 @@
-// @ts-nocheck
 /*
  * Copyright (c) 2023 Hunan OpenValley Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License")
@@ -13,9 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import createOrGet from './SingleInstanceUtil';
 import Logger from './Logger';
 import systemTime from '@ohos.systemDateTime';
+import base from '@ohos.base';
 
 const TAG = 'TimerUtil';
 const ONE_SECOND = 1000; // 1s
@@ -26,12 +25,25 @@ export declare type Observer = (count: number) => void;
 /**
  *  一个线程启动多个setInterval可能会发生一些问题
  */
-class TimerUtil {
-  private observers: Observer[] = [];
+export default class TimerUtil {
+  // 创建单例模式
+  private static mInstance: TimerUtil | null = null;
 
-  private taskId: number;
+  public static getInstance(): TimerUtil {
+    if (TimerUtil.mInstance == null) {
+      TimerUtil.mInstance = new TimerUtil();
+    }
+    return TimerUtil.mInstance;
+  }
+
+  private constructor() {
+    // 私有化构造函数
+  }
+
+  private observers: Observer[] = [];
+  private taskId: number = -1;
   private count: number = 0;
-  private startTimestamp: number;
+  private startTimestamp: number = -1;
 
   startTimer(): void {
     this.clearObservers();
@@ -69,13 +81,12 @@ class TimerUtil {
     this.count = 0;
   }
 
-
   registerObserver(observer: Observer): Observer {
     const index = this.observers.findIndex(val => val === observer);
     if (index < 0) {
       this.observers.push(observer);
     }
-    Logger.info(`${TAG}  registerCallback ${this.observers.length}`);
+    Logger.info(TAG,` registerCallback ${this.observers.length}`);
     return observer;
   }
 
@@ -84,11 +95,11 @@ class TimerUtil {
     if (index > -1) {
       this.observers.splice(index, 1);
     }
-    Logger.info(`${TAG}  removeObserver ${this.observers.length}`);
+    Logger.info(TAG,` removeObserver ${this.observers.length}`);
   }
 
   notifyObservers(count: number): void {
-    Logger.info(`${TAG}  notifyObserver size ${this.observers.length}  ${count}`);
+    Logger.info(TAG,` notifyObserver size ${this.observers.length}  ${count}`);
     this.observers.forEach((ob) => {
       ob(count);
     });
@@ -106,13 +117,9 @@ class TimerUtil {
     return new Promise((resolve, reject) => {
       systemTime.getCurrentTime(false).then((data) => {
         resolve(data - this.startTimestamp);
-      }).catch((err) => {
+      }).catch((err: base.BusinessError) => {
         reject(err);
       });
     });
   }
 }
-
-let mUtil = createOrGet(TimerUtil, TAG);
-
-export default mUtil as TimerUtil;

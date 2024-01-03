@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "verify_success",
+      "value": "校验通过"
+    },
+    {
+      "name": "verify_fail",
+      "value": "校验失败"
+    },
+    {
+      "name": "install_success",
+      "value": "安装成功"
+    },
+    {
+      "name": "install_fail",
+      "value": "安装失败"
+    },
+    {
+      "name": "sign_success",
+      "value": "签名通过"
+    },
+    {
+      "name": "sign_fail",
+      "value": "签名失败"
+    }
+  ]
+}

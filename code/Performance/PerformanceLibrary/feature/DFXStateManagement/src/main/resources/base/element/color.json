@@ -1,0 +1,20 @@
+{
+  "color": [
+    {
+      "name": "text_color",
+      "value": "#182431"
+    },
+    {
+      "name": "stack_color",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "button_color",
+      "value": "#FF007DFF"
+    },
+    {
+      "name": "stack_background",
+      "value": "#F1F3F5"
+    }
+  ]
+}

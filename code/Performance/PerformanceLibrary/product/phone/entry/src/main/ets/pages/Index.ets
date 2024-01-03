@@ -23,25 +23,30 @@ struct Index {
   @State performanceTypeArray: Array<PerformanceMsg> = performanceTypeArray;
 
   build() {
-    Column() {
-      ForEach(this.performanceTypeArray, (item: PerformanceMsg, index: number) => {
-        Button() {
-          Text(item.name)
-            .id('RenderGroup')
-            .fontSize($r('app.integer.performance_message_font'))
-            .fontColor(Color.White)
-        }
-        .width($r('app.string.layout_80_percent'))
-        .margin($r('app.integer.performance_message_margin'))
+    Scroll() {
+      Column() {
 
-        .padding($r('app.integer.performance_message_padding'))
-        .backgroundColor($r('app.color.performance_message_item_backgroundColor'))
-        .onClick(() => {
-          router.pushUrl({ url: item.uri });
-        })
-      }, (item: PerformanceMsg) => JSON.stringify(item))
+        ForEach(this.performanceTypeArray, (item: PerformanceMsg, index: number) => {
+          Button() {
+            Text(item.name)
+              .id('RenderGroup')
+              .fontSize($r('app.integer.performance_message_font'))
+              .fontColor(Color.White)
+          }
+          .width($r('app.string.layout_80_percent'))
+          .margin($r('app.integer.performance_message_margin'))
+
+          .padding($r('app.integer.performance_message_padding'))
+          .backgroundColor($r('app.color.performance_message_item_backgroundColor'))
+          .onClick(() => {
+            router.pushUrl({ url: item.uri });
+          })
+        }, (item: PerformanceMsg) => JSON.stringify(item))
+      }
+      .justifyContent(FlexAlign.Center)
     }.width($r('app.string.layout_100_percent'))
     .height($r('app.string.layout_100_percent'))
-    .justifyContent(FlexAlign.Center)
+
+    // .justifyContent(FlexAlign.Center)
   }
 }

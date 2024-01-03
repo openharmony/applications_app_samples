@@ -112,7 +112,7 @@ struct Index {
           .onClick(() => {
             router.pushUrl({
               url: this.routerUrl
-            });
+            }, router.RouterMode.Single);
           })
       }
       .margin({ left: 24, right: 24 })

@@ -313,7 +313,7 @@ export default function abilityTest() {
       await driver.click(300.000000, 1166.000000);
       let searchPromiseResult = await driver.findComponent(ON.text('查找数据成功'));
       expect(searchPromiseResult != null).assertTrue();
-      await sleep(1000);
+      await sleep(1500);
 
       //滑动屏幕
       await driver.swipe(400, 900, 400, 500);
@@ -362,7 +362,7 @@ export default function abilityTest() {
       }
 
       // 测试通过PageAbility启动UIAbility-无需返回结果
-      button = await driver.findComponent(ON.text('通过PageAbility启动UIAbility-无需返回结果'));
+      button = await driver.findComponent(ON.text('通过PageAbility与Stage模型互通-无需返回结果'));
       if (button !== null) {
         await button.click();
         await sleep(500);
@@ -374,7 +374,7 @@ export default function abilityTest() {
       await sleep(500);
 
       // 测试通过PageAbility启动UIAbility-返回执行结果
-      button = await driver.findComponent(ON.text('通过PageAbility启动UIAbility-返回执行结果'));
+      button = await driver.findComponent(ON.text('通过PageAbility与Stage模型互通-返回执行结果'));
       if (button !== null) {
         await button.click();
         await sleep(500);
@@ -386,7 +386,7 @@ export default function abilityTest() {
       await sleep(500);
 
       // 测试通过ServiceAbility启动UIAbility
-      button = await driver.findComponent(ON.text('通过ServiceAbility启动UIAbility'));
+      button = await driver.findComponent(ON.text('通过ServiceAbility与Stage模型互通'));
       if (button !== null) {
         await button.click();
         await sleep(500);
@@ -439,7 +439,7 @@ export default function abilityTest() {
       await driver.click(point.x, point.y - 80);
       Logger.info(TAG, BUNDLE + `FAServiceCard_001 click:${point.x} : ${point.y - 80}`);
       await sleep(1000);
-      await driver.assertComponentExist(ON.text('通过ServiceAbility启动UIAbility'));
+      await driver.assertComponentExist(ON.text('FA模型与Stage模型应用组件互通指导'));
 
       // 返回至桌面
       await driver.pressHome();

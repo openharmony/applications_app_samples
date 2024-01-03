@@ -43,5 +43,25 @@ export let performanceTypeArray: Array<PerformanceMsg> = [
   {
     name: 'SmartPerfHost',
     uri: 'pages/smartPerfHost/SmartPerfHostPage'
+  },
+  {
+    name: 'Trace',
+    uri: 'pages/trace/TracePage'
+  },
+  {
+    name: 'BackgroundTask',
+    uri: 'pages/backgroundTask/BackgroundTaskPage'
+  },
+  {
+    name: 'MemoryShared',
+    uri: 'pages/memoryShared/MemorySharedHomePage'
+  },
+  {
+    name: 'DFX StateManagement',
+    uri: 'pages/DFXStateManagement/DFXStateManagementPage'
+  },
+  {
+    name: 'WaterFlow',
+    uri: 'pages/waterFlow/WaterFlowPage'
   }
 ]

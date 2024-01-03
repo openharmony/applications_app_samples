@@ -16,12 +16,12 @@ import { ChatBox } from '../data/ChatBox';
 
 @Component
 export default struct ChatComponent {
-  private item: ChatBox = undefined;
-  private userId: number;
+  private item?: ChatBox;
+  private userId: number = 0;
 
   build() {
     Row() {
-      if (!this.item.isSend) {
+      if (!this.item?.isSend) {
         Text(this.userId === 1 ? $r('app.string.wen') : $r('app.string.feng'))
           .width(32)
           .height(32)
@@ -34,18 +34,18 @@ export default struct ChatComponent {
           .margin({ left: 24, right: 8 })
       }
       Column() {
-        Text(this.item.message)
+        Text(this.item?.message)
           .maxLines(5)
           .padding(10)
           .fontSize(20)
           .borderRadius(10)
-          .alignSelf(this.item.isSend ? ItemAlign.End : ItemAlign.Start)
-          .backgroundColor(this.item.isSend ? $r('app.color.COLOR_5BA854') : $r('app.color.COLOR_FFFFFF'))
+          .alignSelf(this.item?.isSend ? ItemAlign.End : ItemAlign.Start)
+          .backgroundColor(this.item?.isSend ? $r('app.color.COLOR_5BA854') : $r('app.color.COLOR_FFFFFF'))
       }
       .width('70%')
       .margin({ right: 5 })
 
-      if (this.item.isSend) {
+      if (this.item?.isSend) {
         Text(this.userId === 1 ? $r('app.string.feng') : $r('app.string.wen'))
           .width(32)
           .height(32)

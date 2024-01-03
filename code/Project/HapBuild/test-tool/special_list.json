@@ -1,0 +1,10 @@
+{
+"Flybird":["ohos.samples.flybird"],
+"AbilityConnectServiceExtension":["com.example.abilityconnectserviceextension"],
+"Launcher":["ohos.samples.launcher"],
+"ArkTSDistributedMusicPlayer":["ohos.samples.etsdistributedmusicplayer"],
+"AppMarket":["ohos.samples.appmarket"],
+"MusicAlbum":["ohos.samples.MusicAlbum"],
+"StageModel":["ohos.samples.stagemodel"],
+"Provider":["ohos.samples.crossappdatashare"]
+}

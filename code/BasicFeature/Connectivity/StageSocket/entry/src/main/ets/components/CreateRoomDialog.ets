@@ -12,9 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import Logger from '../utils/Logger';
 
 const TAG: string = '[CreateRoomDialog]';
-import Logger from '../utils/Logger';
 
 @CustomDialog
 export struct CreateRoomDialog {
@@ -93,8 +93,8 @@ export struct CreateRoomDialog {
         .justifyContent(FlexAlign.Center)
         .onClick(() => {
           Logger.info(TAG, `onClick begin: ${this.roomNumber}`);
-          AppStorage.Set('sendMsg', 'invitationNumber&' + this.roomNumber);
-          AppStorage.Set('sendMsg', 'clear');
+          AppStorage.set('sendMsg', 'invitationNumber&' + this.roomNumber);
+          AppStorage.set('sendMsg', 'clear');
           this.controller.close();
         });
 

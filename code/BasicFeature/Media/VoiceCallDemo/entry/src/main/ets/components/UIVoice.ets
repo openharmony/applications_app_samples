@@ -25,21 +25,30 @@ import ComponentOption from '../components/ComponentOption';
  */
 @Component
 export default struct UIVoice {
-  private controller: IndexController;
+  private controller: IndexController | null = null;
   @Link mRemote: Caller;
   @State use: boolean = true;
   @State useMic: boolean = true;
   @State useSpeaker: boolean = false;
 
-  async changeMic(open: boolean) {
+  async changeMic(open: boolean): Promise<void> {
+    if (this.controller == null) {
+      return;
+    }
     this.controller.setMicrophoneMute(!open);
   }
 
-  async changeSpeaker(use: boolean) {
+  async changeSpeaker(use: boolean): Promise<void> {
+    if (this.controller == null) {
+      return;
+    }
     this.controller.setSpeaker(use);
   }
 
   aboutToAppear() {
+    if (this.controller == null) {
+      return;
+    }
     this.controller.isSpeakerActive().then(result => {
       this.useSpeaker = result;
     });
@@ -75,6 +84,9 @@ export default struct UIVoice {
               return false;
             },
             callback: (use: boolean) => {
+              if (this.controller == null) {
+                return;
+              }
               this.controller.hangUp();
             }
           })

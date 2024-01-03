@@ -99,7 +99,7 @@ struct CalendarView {
       })
 
       Flex({ wrap: FlexWrap.Wrap }) {
-        ForEach(WEEK_TITLE, (item, index) => {
+        ForEach(WEEK_TITLE, (item: Resource, index) => {
           Flex({ justifyContent: FlexAlign.SpaceBetween }) {
             ForEach(this.daysData.slice(index * WEEK_TITLE.length, (index + 1) * WEEK_TITLE.length), (day: Day) => {
               Text(`${day.date}`)
@@ -129,7 +129,7 @@ struct CalendarView {
 struct Title {
   @Link currentYear: number;
   @Link currentMonth: number;
-  private goToday: () => void
+  private goToday: () => void = ()=>{};
 
   build() {
     Column() {
@@ -184,7 +184,7 @@ struct Title {
       .height(56)
 
       Flex({ justifyContent: FlexAlign.SpaceBetween }) {
-        ForEach(WEEK_TITLE, (str) => {
+        ForEach(WEEK_TITLE, (str: string) => {
           Text(str)
             .fontSize(14)
             .fontColor(Color.Black)

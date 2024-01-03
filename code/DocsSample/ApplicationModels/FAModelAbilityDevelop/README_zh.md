@@ -8,9 +8,9 @@
 
 ### 效果预览
 
-|PageAbility组件开发指导-单设备|ServiceAbility&DataAbility组件开发指导|FA模型与Stage模型应用组件互通指导|FA模型服务卡片开发指导|
+|PageAbility组件开发指导|ServiceAbility&DataAbility组件开发指导|FA模型与Stage模型应用组件互通指导|FA模型服务卡片开发指导|
 |--------------------------------|--------------------------------|--------------------------------|--------------------------------|
-|![PageAbility组件开发指导-单设备](screenshots/PageAbility组件开发指导-单设备.gif)|![ServiceAbility&DataAbility组件开发指导](screenshots/ServiceAbility&DataAbility组件开发指导.gif)| ![FA模型与Stage模型应用组件互通指导](screenshots/FA模型与Stage模型应用组件互通指导.gif) | ![FA模型服务卡片开发指导](screenshots/FA模型服务卡片开发指导.gif) |
+|![PageAbility组件开发指导](screenshots/PageAbility组件开发指导.gif)|![ServiceAbility&DataAbility组件开发指导](screenshots/ServiceAbility&DataAbility组件开发指导.gif)| ![FA模型与Stage模型应用组件互通指导](screenshots/FA模型与Stage模型应用组件互通指导.gif) | ![FA模型服务卡片开发指导](screenshots/FA模型服务卡片开发指导.gif) |
 
 #### 使用说明
 
@@ -26,7 +26,15 @@
 
 5）点击[使用Worker进行线程间通信]，弹出toast[{"data":"message from worker thread."}]；
 
-6）点击[停止PageAbility]，退出当前应用返回桌面。
+6）点击[停止PageAbility]，退出当前应用返回桌面；
+
+7）回到主页，点击[PageAbility组件开发指导-多设备]，进入’PageAbility组件开发指导-多设备’界面；
+
+8）点击[获取分布式数据同步权限]，并在弹出的申请权限对话框中点击’允许‘；
+
+9）点击[获取设备id]，弹出对端设备的deviceId；
+
+10）点击[启动远程设备PageAbility]，弹出toast[启动远程Ability成功]，同时打开对端设备音乐应用。
 
 ##### 2.ServiceAbility组件开发指导
 
@@ -60,11 +68,11 @@
 
 1）回到主页，点击[FA模型与Stage模型应用组件互通指导]，进入’FA模型与Stage模型应用组件互通指导’界面；
 
-2）点击[通过PageAbility启动UIAbility-无需返回结果]，成功启动时钟应用；
+2）点击[通过PageAbility与Stage模型互通-无需返回结果]，成功启动时钟应用；
 
-3）回到’FA模型与Stage模型应用组件互通指导’界面，点击[通过PageAbility启动UIAbility-返回执行结果]，成功启动时钟应用；
+3）回到’FA模型与Stage模型应用组件互通指导’界面，点击[通过PageAbility与Stage模型互通-返回执行结果]，成功启动时钟应用；
 
-4）回到’FA模型与Stage模型应用组件互通指导’界面，点击[通过ServiceAbility启动UIAbility]，成功启动时钟应用(仅生效一次)。
+4）回到’FA模型与Stage模型应用组件互通指导’界面，点击[通过ServiceAbility与Stage模型互通]，成功启动时钟应用(仅生效一次)。
 
 ##### 5. FA模型服务卡片开发指导
 
@@ -118,9 +126,9 @@ entry/src/main/ets/
 * 本示例分为PageAbility组件开发指导,ServiceAbility组件开发指导,DataAbility组件开发指导和FA模型与Stage模型应用组件互通指导四个模块。
   * PageAbility组件开发指导：
 
-    * 调用相关接口函数来实现FA模型中单例PageAbility/多例PageAbility的启动以及停止等功能，以及还实现了使用worker进行线程间通信的功能。
+    * 调用相关接口函数来实现FA模型中单例PageAbility/多例PageAbility的启动停止以及启动远程PageAbility等功能，以及还实现了使用worker进行线程间通信的功能。
 
-    * 源码链接：[pagePageAbilityFirst.ets](entry\src\main\ets\MainAbility\pages\pagePageAbilityFirst.ets)  [first.ets](entry\src\main\ets\PageAbilitySingleton\pages\first.ets)  [second.ets](entry\src\main\ets\PageAbilitySingleton\pages\second.ets)   [first.ets](entry\src\main\ets\PageAbilityStandard\pages\first.ets)  [second.ets](entry\src\main\ets\PageAbilityStandard\pages\second.ets)  [worker.ts](entry\src\main\ets\workers\worker.ts) 
+    * 源码链接：[pagePageAbilityFirst.ets](entry\src\main\ets\MainAbility\pages\pagePageAbilityFirst.ets) [pagePageAbilitySecond.ets](entry\src\main\ets\MainAbility\pages\pagePageAbilitySecond.ets) [first.ets](entry\src\main\ets\PageAbilitySingleton\pages\first.ets)  [second.ets](entry\src\main\ets\PageAbilitySingleton\pages\second.ets)   [first.ets](entry\src\main\ets\PageAbilityStandard\pages\first.ets)  [second.ets](entry\src\main\ets\PageAbilityStandard\pages\second.ets)  [worker.ts](entry\src\main\ets\workers\worker.ts)  
 
     * 参考接口：[@ohos.ability.featureAbility](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/apis/js-apis-ability-featureAbility.md/)  [@ohos.worker](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-worker.md)
   * ServiceAbility组件开发指导：
@@ -154,8 +162,19 @@ entry/src/main/ets/
 
 ### 依赖
 
-本示例依赖系统默认自带的[ArkTSClock](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Tools/ArkTSClock)应用。
+本示例依赖系统默认自带的[时钟](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Tools/ArkTSClock)应用和[音乐](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/JsDistributedMusicPlayer)应用。
 
+本示例依赖带有ServiceExtensionAbility的Stage模型应用:[StageModelAbilityInteraction](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ApplicationModels/StageModelAbilityInteraction)。
+
+在测试PgaeAbility组件开发指导相关功能前，需要准备两台RK3568设备，并将设备组网，步骤如下：
+```
+1.使两台设备处于同一网络下。
+2.打开A，B两设备的音乐。
+3.点击A设备音乐应用左下角箭头选择B设备。
+4.在B设备选择信任设备，弹出PIN码。
+5.在A设备输入PIN码。
+6.已组网成功，验证方法：在A设备播放音乐，B设备同步播放则证明组网成功。
+```
 ### 约束与限制
 
 1.本示例仅支持标准系统上运行,支持设备:RK3568。
@@ -175,7 +194,7 @@ entry/src/main/ets/
 ```
 git init
 git config core.sparsecheckout true
-echo code/BasicFeature/ApplicationModels/FAModelAbilityDevelop/ > .git/info/sparse-checkout
+echo code/DocsSample/ApplicationModels/FAModelAbilityDevelop/ > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

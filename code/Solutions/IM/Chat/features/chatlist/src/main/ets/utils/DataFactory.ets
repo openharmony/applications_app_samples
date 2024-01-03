@@ -21,7 +21,7 @@ import { ChatListData } from '../viewmodel/ChatListDataSource';
 import Constants from './Constants';
 
 const TAG: string = 'ChatList_DataFactory';
-const MOCK_DATA_FILE_DIR: string = 'mockChatModelData.json';
+const MOCK_DATA_FILE_DIR: string = 'mockChatOneModelData.json';
 const MAKE_DATA_LOCAL_TRACE: string = 'ChatList_MakeDataLocal_HiTrace';
 const MAKE_DATA_LOCAL_TRACE_ID: number = 1; // makeDataLocal 中使用的 taskId
 const MAKE_DATA_LIST_TRACE: string = 'ChatList_MakeDataList_HiTrace';
@@ -37,13 +37,14 @@ class JsonObjType {
  * 加载聊天列表数据，到参数传入的懒加载数据列表中
  * @param listData 懒加载数据列表
  */
-export async function makeDataLocal(listData: ChatListData): Promise<void> {
+export async function makeDataLocal(listData: ChatListData, MockDataFileDir: string): Promise<void> {
   Logger.info(TAG, 'makeDataLocal');
   hiTraceMeter.startTrace(MAKE_DATA_LOCAL_TRACE, MAKE_DATA_LOCAL_TRACE_ID);
-  let chatModelMockData = await getChatModelObjFromJSON();
+  let chatModelMockData = await getChatModelObjFromJSON(MockDataFileDir);
   for (let i = 0; i < Constants.DATA_MOCK_COUNT; i++) {
     listData.pushData(chatModelMockData[i]);
   }
+  Logger.info(TAG, 'makeDataLocal'+JSON.stringify(listData.totalCount()));
   hiTraceMeter.finishTrace(MAKE_DATA_LOCAL_TRACE, MAKE_DATA_LOCAL_TRACE_ID);
 }
 
@@ -51,10 +52,10 @@ export async function makeDataLocal(listData: ChatListData): Promise<void> {
  * 加载聊天列表数据，到参数传入的数据列表中
  * @param listData 普通数据列表
  */
-export async function makeDataList(listData: Array<ChatModel>): Promise<void> {
+export async function makeDataList(listData: Array<ChatModel>, MockDataFileDir: string): Promise<void> {
   Logger.info(TAG, 'makeDataList');
   hiTraceMeter.startTrace(MAKE_DATA_LIST_TRACE, MAKE_DATA_LIST_TRACE_ID);
-  let chatModelMockData = await getChatModelObjFromJSON();
+  let chatModelMockData = await getChatModelObjFromJSON(MockDataFileDir);
   for (let i = 0; i < Constants.DATA_MOCK_COUNT; i++) {
     listData.push(chatModelMockData[i]);
   }
@@ -64,10 +65,10 @@ export async function makeDataList(listData: Array<ChatModel>): Promise<void> {
 /**
  * 获取ChatModel的模拟数据列表
  */
-export async function getChatModelObjFromJSON(): Promise<Array<ChatModel>> {
+export async function getChatModelObjFromJSON(MockDataFileDir: string): Promise<Array<ChatModel>> {
   Logger.info(TAG, 'getChatModelObjFromJSON');
-  let jsonObj: JsonObject = new JsonObject(MOCK_DATA_FILE_DIR);
-  return await jsonObj.getChatModelObj();
+  let jsonObj: JsonObject = new JsonObject(MockDataFileDir);
+  return await jsonObj.getChatModelObj(MockDataFileDir);
 }
 
 /**
@@ -115,8 +116,8 @@ class JsonObject {
     return friendMomentBuckets;
   }
 
-  async getChatModelObj(): Promise<Array<ChatModel>> {
-    let value = await getContext().resourceManager.getRawFileContent(this.jsonFileDir);
+  async getChatModelObj(MockDataFileDir: string): Promise<Array<ChatModel>> {
+    let value = await getContext().resourceManager.getRawFileContent(MockDataFileDir);
     let jsonObj: JsonObjType = JSON.parse(this.bufferToString(value.buffer)) as JsonObjType;
     let chatModelBuckets: Array<ChatModel> = new Array<ChatModel>();
     if (jsonObj.ChatModel === undefined) {
