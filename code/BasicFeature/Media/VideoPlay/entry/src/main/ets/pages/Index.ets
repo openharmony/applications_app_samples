@@ -27,7 +27,7 @@ const PROPORTION = 0.99; // 占屏幕比例
 const SURFACEW = 0.9; // 表面宽比例
 const SURFACEH = 1.78; // 表面高比例
 const TIMEOUT = 0; // 定时器编号
-const SET_TIME_OUT = 10*1000; // 间隔10s
+const SET_TIME_OUT = 8*1000; // 间隔8s
 const SET_INTERVAL = 100; // interval间隔时间
 let innerEventFalse: emitter.InnerEvent = {
   eventId: 1,
