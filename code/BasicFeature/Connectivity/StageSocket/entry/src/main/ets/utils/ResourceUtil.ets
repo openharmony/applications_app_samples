@@ -12,13 +12,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-const TAG = 'ResourceUtil';
+import common from '@ohos.app.ability.common';
 import Logger from './Logger';
+
+const TAG = 'ResourceUtil';
 
 export default function getStringValue(id: number): string {
   let result = '';
   try {
-    globalThis.abilityContext.resourceManager.getStringValue(id, (error, value) => {
+    const abilityContext: common.UIAbilityContext = AppStorage.get('abilityContext')!
+    abilityContext.resourceManager.getStringValue(id, (error, value) => {
       if (error !== null) {
         Logger.info(TAG, 'error is ' + error);
       } else {

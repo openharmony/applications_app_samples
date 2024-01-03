@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import type { ChatBox } from './ChatBox';
+import { ChatBox } from './ChatBox';
 import Logger from '../utils/Logger';
 
 class BasicDataSource implements IDataSource {
@@ -23,7 +23,7 @@ class BasicDataSource implements IDataSource {
     return 0;
   }
 
-  public getData(index: number): ChatBox {
+  public getData(index: number): ChatBox | undefined {
     return undefined;
   }
 
@@ -92,5 +92,10 @@ export class ChatSource extends BasicDataSource {
   public pushData(data: ChatBox): void {
     this.chatsArray.push(data);
     this.notifyDataAdd(this.chatsArray.length - 1);
+  }
+
+  public cleanData(): void {
+    this.chatsArray = []
+    this.notifyDataReload()
   }
 }

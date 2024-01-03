@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 import socket from '@ohos.net.socket';
-import type Socket from '../model/Socket';
+import Socket from '../model/Socket';
 import Logger from '../utils/Logger';
 
 const TAG = 'Socket UdpSocket';
 
 export default class UdpSocket implements Socket {
-  private udpSocket: socket.UDPSocket = null;
+  private udpSocket?: socket.UDPSocket;
 
   /**
    * 创建Socket
@@ -57,7 +57,7 @@ export default class UdpSocket implements Socket {
     }
     await this.udpSocket.close();
     this.udpSocket.off('message');
-    this.udpSocket = null;
+    this.udpSocket = undefined;
   }
 
   /**
@@ -67,7 +67,7 @@ export default class UdpSocket implements Socket {
    * @param port
    */
   async sendData(data: string, address: string, port: number): Promise<void> {
-    let options = {
+    let options: socket.UDPSendOptions = {
       address: {
         address: address,
         port: port,
@@ -91,7 +91,7 @@ export default class UdpSocket implements Socket {
    * 订阅消息
    * @param callback
    */
-  setOnMessageReceivedListener(callback): void {
+  setOnMessageReceivedListener(callback: (buffer: ArrayBuffer) => void): void {
     if (!this.udpSocket) {
       return;
     }

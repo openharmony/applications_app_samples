@@ -15,12 +15,12 @@
 
 export function resolveIP(ip: number): string {
   if (ip < 0 || ip > 0xFFFFFFFF) {
-    throw ('The number is not normal!');
+    throw new Error('The number is not normal!');
   }
   return (ip >>> 24) + '.' + (ip >> 16 & 0xFF) + '.' + (ip >> 8 & 0xFF) + '.' + (ip & 0xFF);
 }
 
 export function checkIp(ip: string): boolean {
-  let ipRegex = /^((2[0-4]\d|25[0-5]|[01]?\d\d?)\.){3}(2[0-4]\d|25[0-5]|[01]?\d\d?)$/;
+  let ipRegex = new RegExp("^((2[0-4]\\d|25[0-5]|[01]?\\d\\d?)\\.){3}(2[0-4]\\d|25[0-5]|[01]?\\d\\d?)$");
   return ipRegex.test(ip);
 }

@@ -14,12 +14,12 @@
  */
 import socket from '@ohos.net.socket';
 import Logger from '../utils/Logger';
-import type Socket from '../model/Socket';
+import Socket from '../model/Socket';
 
 const TAG = 'Socket TcpSocket';
 
 export default class TcpSocket implements Socket {
-  private tcpSocket: socket.TCPSocket = null;
+  private tcpSocket: socket.TCPSocket | null = null;
 
   /**
    * 创建Socket
@@ -136,7 +136,7 @@ export default class TcpSocket implements Socket {
    * 订阅消息
    * @param callback
    */
-  setOnMessageReceivedListener(callback): void {
+  setOnMessageReceivedListener(callback: (buffer: ArrayBuffer) => void): void {
     if (!this.tcpSocket) {
       return;
     }
@@ -152,15 +152,15 @@ export default class TcpSocket implements Socket {
    * TCP 关闭事件订阅
    * @param callback
    */
-  setOnCloseListener(callback): void {
+  setOnCloseListener(callback: () => void): void {
     Logger.info(`${TAG} TCP setOnCloseListener into`);
-    this.tcpSocket.on('close', () => {
+    this.tcpSocket?.on('close', () => {
       Logger.info(`${TAG} TCP setOnCloseListener onClose：`);
       callback();
       this.closeSocket();
     });
 
-    this.tcpSocket.on('error', (data) => {
+    this.tcpSocket?.on('error', (data) => {
       Logger.info(
         `${TAG} TCP setOnCloseListener onClose：` + JSON.stringify(data)
       );

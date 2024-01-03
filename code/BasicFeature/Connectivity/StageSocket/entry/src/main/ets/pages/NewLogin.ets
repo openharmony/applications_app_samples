@@ -13,10 +13,12 @@
  * limitations under the License.
  */
 
-import wifi from '@ohos.wifi';
+import wifi from '@ohos.wifiManager';
 import router from '@ohos.router';
 import CommonEvent from '@ohos.commonEventManager';
 import promptAction from '@ohos.promptAction';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
 import { SelectUserDialog } from '../components/SelectUserDialog';
 import { SelectAgreementDialog } from '../components/SelectAgreementDialog';
@@ -44,11 +46,11 @@ export default struct NewLogin {
   @State receiveMsg: string = '';
   private socketType: Array<SocketType> = [SocketType.UDP, SocketType.TCP, SocketType.TLS];
   private socketTypeResource: Array<Resource> = [$r('app.string.udp'), $r('app.string.tcp'), $r('app.string.tls')];
-  private socketController: SocketController = null;
+  private socketController?: SocketController;
   @StorageLink('sendMsg') @Watch('action') sendMsg: string = '';
 
   // 发送公共事件的回调
-  private publishCallback = (err) => {
+  private publishCallback = (err: BusinessError) => {
     if (err !== null && err.code) {
       Logger.info(TAG, `publishCallback publish failed :${JSON.stringify(err)}`);
     } else {
@@ -80,7 +82,7 @@ export default struct NewLogin {
   action(): void {
     Logger.info(TAG, `action_sendMsg:${this.sendMsg}`);
     if (this.sendMsg === 'closeSocket') {
-      this.socketController.closeSocket();
+      this.socketController?.closeSocket();
     } else if (this.sendMsg === 'clear') {
 
     } else {
@@ -95,9 +97,10 @@ export default struct NewLogin {
    */
   sendData(message: string): void {
     if (this.socketType[this.selectAgreementIndex] !== SocketType.UDP) {
-      this.socketController.sendData(message);
+      this.socketController?.sendData(message);
     } else {
-      this.socketController.udpSendData(message, oppositeAddress, oppositePort);
+      oppositePort = this.userId === 1 ? 8082 : 8081;
+      this.socketController?.udpSendData(message, oppositeAddress, oppositePort);
     }
   }
 
@@ -105,12 +108,12 @@ export default struct NewLogin {
    * TCP或TLS连接 服务端或对端
    */
   connectSocketAndOnClose(): void {
-    this.socketController.connectSocket(oppositeAddress, oppositePort, (data: string) => {
+    this.socketController?.connectSocket(oppositeAddress, oppositePort, (data: string) => {
       this.receiveMessage(data);
     })
 
     // 连接同时订阅关闭连接回调
-    this.socketController.onClose(() => {
+    this.socketController?.onClose(() => {
       CommonEvent.publish(Constants.COMM_EVENT_HANGUP_FROM_HOST, this.publishCallback);
     })
 
@@ -120,7 +123,7 @@ export default struct NewLogin {
    * UDP直接订阅消息
    */
   onUdpMessage(): void {
-    this.socketController.onMessage((data: string) => {
+    this.socketController?.onMessage((data: string) => {
       this.receiveMessage(data);
     })
     this.sendData('connect success');
@@ -133,7 +136,7 @@ export default struct NewLogin {
   receiveMessage(data: string): void {
     Logger.info(TAG, 'receiveMessage begin data ' + JSON.stringify(data));
     if (data.split('&')[0] && data.split('&')[0] === 'invitationNumber') {
-      AppStorage.SetOrCreate('invitationNumber', data.split('&')[1]);
+      AppStorage.setOrCreate('invitationNumber', data.split('&')[1]);
       return;
     }
 
@@ -143,9 +146,9 @@ export default struct NewLogin {
     } else if (data === Constants.START_ABILITY_EVENT_ANSWER) {
       // 如果是通话请求，则拉起语音通话应用
       Logger.info(TAG, 'receiveMessage data userId ' + JSON.stringify(data));
-      let oppositeId = this.userId === 1 ? 2 : 1
+      let oppositeId: number = this.userId === 1 ? 2 : 1
       Logger.info(TAG, 'receiveMessage data oppositeId ' + JSON.stringify(data));
-      let want = {
+      let want: Want = {
         bundleName: Constants.BUNDLE_NAME,
         abilityName: Constants.ABILITY_NAME,
         parameters: {
@@ -164,8 +167,8 @@ export default struct NewLogin {
       CommonEvent.publish(Constants.COMM_EVENT_HANGUP_FROM_HOST, this.publishCallback);
       Logger.info(TAG, 'receiveMessage data COMM_EVENT_HANGUP' + JSON.stringify(data));
     } else {
-      AppStorage.SetOrCreate('receiveMsg', data);
-      AppStorage.SetOrCreate('sendMsg', 'clear');
+      AppStorage.setOrCreate('receiveMsg', data);
+      AppStorage.setOrCreate('sendMsg', 'clear');
       this.receiveMsg = data;
     }
   }
@@ -235,7 +238,7 @@ export default struct NewLogin {
         .width('100%')
         .margin({ left: 8, top: 16, bottom: 4 })
         .justifyContent(FlexAlign.Center)
-        .onClick(e => {
+        .onClick(() => {
           this.selectUserDialog.open();
         })
 
@@ -260,7 +263,7 @@ export default struct NewLogin {
           .id('selectAgreement')
           .width('86%')
           .height(55)
-          .onClick(e => {
+          .onClick(() => {
             this.selectAgreementDialog.open();
           })
 
@@ -306,7 +309,7 @@ export default struct NewLogin {
           .width('86%')
           .height(40)
           .backgroundColor($r('app.color.COLOR_007DFF'))
-          .onClick(e => {
+          .onClick(() => {
             localPort = this.userId === 1 ? 8081 : 8082;
             this.socketController = new SocketController(this.socketType[this.selectAgreementIndex], localAddress, localPort);
 
