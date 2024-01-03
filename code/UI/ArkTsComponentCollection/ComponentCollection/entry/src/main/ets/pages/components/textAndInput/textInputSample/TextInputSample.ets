@@ -201,16 +201,6 @@ struct TextInputSample {
 
           IntroductionTitle({ introduction: $r('app.string.text_input_set_text_selection') })
           Column() {
-            TextInput({ controller: this.inputSelectController })
-              .enableKeyboardOnFocus(false)
-              .id('test_input_to_select')
-              .onChange((value: string) => {
-                this.inputSelectContent = value
-                this.maxSelect = value.length
-                for (let i = 0;i < this.maxSelect; i++) {
-                  this.selects[i] = i.toString()
-                }
-              })
             Row() {
               Text($r('app.string.text_input_set_text_selection_start_select'))
               Column() {
@@ -248,6 +238,17 @@ struct TextInputSample {
             }
             .justifyContent(FlexAlign.SpaceAround)
             .width('100%')
+            TextInput({ controller: this.inputSelectController })
+              .defaultFocus(true)
+              .enableKeyboardOnFocus(false)
+              .id('test_input_to_select')
+              .onChange((value: string) => {
+                this.inputSelectContent = value
+                this.maxSelect = value.length
+                for (let i = 0;i <= this.maxSelect; i++) {
+                  this.selects[i] = i.toString()
+                }
+              })
           }
           .backgroundStyle()
           .margin({ bottom: 70 })
