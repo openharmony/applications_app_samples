@@ -28,6 +28,7 @@ struct PageTransitionSampleTo {
   @State rightX: number = 0
   @State bottomY: number = 0
   @State progress: number = 0
+  @State animationType: number = 0
   @State transitionType: SlideEffect = SlideEffect.Left
 
   build() {
@@ -55,8 +56,13 @@ struct PageTransitionSampleTo {
     .backgroundColor($r('app.color.background_shallow_grey'))
     .justifyContent(FlexAlign.Center)
     .alignItems(HorizontalAlign.Center)
-    .rotate({ z: 1, angle: this.progress * this.angle })
-    .scale({ x: this.progress * this.zoom / 2, y: this.progress * this.zoom / 2, centerY: '50%', centerX: '50%' })
+    .rotate(this.animationType === 3 ? { z: 1, angle: this.progress * this.angle } : { z: 1, angle: 0 })
+    .scale(this.animationType === 2 ? {
+      x: this.progress * this.zoom / 2,
+      y: this.progress * this.zoom / 2,
+      centerY: '50%',
+      centerX: '50%'
+    } : { x: 1, y: 1 })
   }
 
   aboutToAppear() {
@@ -64,6 +70,7 @@ struct PageTransitionSampleTo {
     this.transitionType = params.type as SlideEffect;
     this.angle = params.angle as number;
     this.zoom = params.zoom as number;
+    this.animationType = params.animationType as number;
   }
 
   pageTransition() {

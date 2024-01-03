@@ -18,7 +18,8 @@ import { TitleBar } from '../../../../common/TitleBar'
 
 const ANIMATION_URL: string = 'pages/animations/TransitionAnimations/pageTransitionSample/PageTransitionSampleTo'
 
-@Extend(Text) function textStyle() {
+@Extend(Text)
+function textStyle() {
   .height(60)
   .fontSize(20)
   .width('100%')
@@ -47,7 +48,7 @@ struct PageTransitionSample {
             .onClick(() => {
               router.push({
                 url: ANIMATION_URL,
-                params: { type: SlideEffect.Top }
+                params: { type: SlideEffect.Top, animationType: 1 }
               })
             })
           Text($r('app.string.page_transition_bottom'))
@@ -55,7 +56,7 @@ struct PageTransitionSample {
             .onClick(() => {
               router.push({
                 url: ANIMATION_URL,
-                params: { type: SlideEffect.Bottom }
+                params: { type: SlideEffect.Bottom, animationType: 1 }
               })
             })
           Text($r('app.string.page_transition_left'))
@@ -63,7 +64,7 @@ struct PageTransitionSample {
             .onClick(() => {
               router.push({
                 url: ANIMATION_URL,
-                params: { type: SlideEffect.Left }
+                params: { type: SlideEffect.Left, animationType: 1 }
               })
             })
           Text($r('app.string.page_transition_right'))
@@ -71,7 +72,7 @@ struct PageTransitionSample {
             .onClick(() => {
               router.push({
                 url: ANIMATION_URL,
-                params: { type: SlideEffect.Right }
+                params: { type: SlideEffect.Right, animationType: 1 }
               })
             })
           Text($r('app.string.page_transition_scale'))
@@ -79,7 +80,7 @@ struct PageTransitionSample {
             .onClick(() => {
               router.push({
                 url: ANIMATION_URL,
-                params: { type: SlideEffect.Bottom, zoom: this.zoom }
+                params: { type: SlideEffect.Bottom, zoom: this.zoom, animationType: 2 }
               })
             })
           Text($r('app.string.page_transition_rotate'))
@@ -87,7 +88,7 @@ struct PageTransitionSample {
             .onClick(() => {
               router.push({
                 url: ANIMATION_URL,
-                params: { type: SlideEffect.Bottom, angle: this.angle }
+                params: { type: SlideEffect.Bottom, angle: this.angle, animationType: 3 }
               })
             })
         }
