@@ -13,10 +13,13 @@
  * limitations under the License.
  */
 
+import router from '@ohos.router'
 import { AVPlayer } from '../model/AVPlayer'
 import { getTimeString } from '../model/TimeTools'
 import Logger from '../model/Logger'
+
 const TAG = 'AVPlayerSample:'
+
 @Component
 export struct BroadcastControl {
   @State isInformation: boolean = false
@@ -40,6 +43,19 @@ export struct BroadcastControl {
     Column() {
       Column() {
         Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          // 返回按钮
+          Column() {
+            Image($r('app.media.icon_back'))
+              .id('icon_back')
+              .height('80%')
+          }
+          .justifyContent(FlexAlign.Center)
+          .height('100%')
+          .padding(10)
+          .onClick(() => {
+            router.back()
+          })
+
           Text(this.myMedia.fileName || $r('app.string.phoneMain_title'))
             .fontColor('rgba(255,255,255,0.90)')
             .fontSize(18)
@@ -47,6 +63,13 @@ export struct BroadcastControl {
             .margin({ left: 15 })
             .fontFamily('HarmonyHeiTi-Medium')
             .layoutWeight(1)
+            .onClick(() => {
+              if (this.isPlaying) {
+                this.timer = setInterval(() => {
+                  this.currentTime = this.myMedia.getCurrentTime()
+                }, 1000)
+              }
+            })
           Row() {
             Image($r('app.media.icon_freeplay'))
               .width(24)

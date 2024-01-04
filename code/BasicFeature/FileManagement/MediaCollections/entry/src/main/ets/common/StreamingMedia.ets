@@ -13,7 +13,11 @@
  * limitations under the License.
  */
 
-import { AVPlayer }  from '../model/AVPlayer'
+import { AVPlayer } from '../model/AVPlayer'
+import Logger from '../model/Logger'
+
+const TAG: string = 'StreamingMedia'
+
 @Component
 export struct StreamingMedia {
   @State httpUrl: string = ''
@@ -82,7 +86,7 @@ export struct StreamingMedia {
         if (this.timerOut !== undefined) {
           clearTimeout(this.timerOut)
         }
-        console.info('zyk' + 'http' + this.httpUrl)
+        Logger.info(TAG, 'zyk' + 'http' + this.httpUrl)
         this.timerOut = setTimeout(() => {
           let surfaceId = this.mXComponentController.getXComponentSurfaceId()
           this.myMedia.httpInit(this.httpUrl, surfaceId)

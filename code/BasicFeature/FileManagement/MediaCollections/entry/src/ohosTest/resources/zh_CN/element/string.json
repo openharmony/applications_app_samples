@@ -41,8 +41,12 @@
       "value": "视频名称"
     },
     {
-      "name": "record_video",
-      "value": "录像"
+      "name": "homePage_online",
+      "value": "drm在线播放"
+    },
+    {
+      "name": "homePage_offline",
+      "value": "离线"
     }
   ]
 }

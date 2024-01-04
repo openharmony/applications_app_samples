@@ -13,16 +13,16 @@
  * limitations under the License.
  */
 
-import { promptShowToast } from '../model/Prompt'
 import display from '@ohos.display'
-import MediaUtils from '../model/MediaUtils'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
+import { promptShowToast } from '../model/Prompt'
+import MediaUtils from '../model/MediaUtils'
 
 @CustomDialog
 export struct DeleteDialog {
   @State displayWidth: number = 0
   private index: number = 0
-  private mediaData: Array<mediaLibrary.FileAsset> = []
+  private mediaData: mediaLibrary.FileAsset[] = []
   private controller: CustomDialogController = {} as CustomDialogController
   private mediaType: mediaLibrary.MediaType = 0
 

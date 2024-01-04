@@ -19,8 +19,12 @@ export struct LoadingDialog {
 
   build() {
     Row() {
-      Text($r('app.string.phoneMain_loading')).width('50%').fontSize(14)
-      Image($r('app.media.icon_loading')).width(50).height(50).backgroundColor(Color.White)
+      Text($r('app.string.phoneMain_loading')).width('50%')
+        .fontSize(14)
+      Image($r('app.media.icon_loading'))
+        .width(50)
+        .height(50)
+        .backgroundColor(Color.White)
     }
     .justifyContent(FlexAlign.SpaceAround)
     .width('66%')

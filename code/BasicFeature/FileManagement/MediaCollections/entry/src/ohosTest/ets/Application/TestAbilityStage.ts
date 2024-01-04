@@ -13,10 +13,11 @@
  * limitations under the License.
  */
 
-import AbilityStage from "@ohos.app.ability.AbilityStage"
+import AbilityStage from '@ohos.app.ability.AbilityStage';
+import Logger from '../utils/Logger';
 
 export default class TestAbilityStage extends AbilityStage {
-	onCreate() {
-		console.log("[Demo] TestAbilityStage onCreate")
-	}
+  onCreate() {
+    Logger.info('TestAbilityStage', '[Demo] TestAbilityStage onCreate');
+  }
 }

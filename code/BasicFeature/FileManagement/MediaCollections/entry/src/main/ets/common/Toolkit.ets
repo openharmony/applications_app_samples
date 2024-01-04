@@ -16,14 +16,12 @@
 
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import { gridData } from '../model/GridData'
-import { AVPlayer }  from '../model/AVPlayer'
+import { AVPlayer } from '../model/AVPlayer'
 import { MediaItem } from './MediaItem'
 import { ToolKitItem } from '../common/ToolkitItem'
 
 @Component
 export struct Toolkit {
-  @State isBom: boolean = true
-  @State leftSliderIndex: number = -1
   @Link myMedia: AVPlayer
   @Link isOpacity: number
   @Link isSurface: boolean
@@ -35,22 +33,25 @@ export struct Toolkit {
   @Link isXComponent: boolean
   @Link isStreamShow: boolean
   @Link streamBtnText: Resource
-  @State isTitle: string = ''
   @Link itemData: mediaLibrary.FileAsset
-  @Link audioData: Array<mediaLibrary.FileAsset>
-  @Link videoData: Array<mediaLibrary.FileAsset>
+  @Link audioData: mediaLibrary.FileAsset[]
+  @Link videoData: mediaLibrary.FileAsset[]
   @Link fileIndex: number
   @Link fileType: number
+  @State isBom: boolean = true
+  @State leftSliderIndex: number = -1
+  @State isTitle: string = ''
+  @State audioText: string = ''
+  @State videoText: string = ''
   private timer: number = 0
   private timerOut: number = 0
   private scroller: Scroller = new Scroller()
   private mXComponentController: XComponentController = {} as XComponentController
-  private deleteDialogShow: () => void = () => {}
-  private renameDialogShow: () => void = () => {}
+  private deleteDialogShow: () => void = () => {
+  }
+  private renameDialogShow: () => void = () => {
+  }
   private context: Context = getContext(this)
-  @State audioText: string = ''
-  @State videoText: string = ''
-
   private GridData: gridData[] = [
     { icon: $r('app.media.icon_color_music'), textStr: '音频' },
     { icon: $r('app.media.icon_color_video'), textStr: '视频' },
@@ -59,19 +60,23 @@ export struct Toolkit {
     { icon: $r('app.media.icon_color_me'), textStr: '我的' },
     { icon: $r('app.media.icon_color_setting'), textStr: '设置' }
   ]
+
   clearVideoPlayer() {
     this.currentTime = 0
     clearInterval(this.timer)
     this.myMedia.stop()
     this.myMedia.release()
   }
-  async aboutToAppear(){
+
+  async aboutToAppear() {
     this.audioText = await this.convertResourceToString($r('app.string.phoneMain_audio'))
     this.videoText = await this.convertResourceToString($r('app.string.phoneMain_video'))
   }
-  async convertResourceToString(resource: Resource){
+
+  async convertResourceToString(resource: Resource) {
     return await this.context.resourceManager.getString(resource.id)
   }
+
   build() {
     Flex({ direction: FlexDirection.Column }) {
       if (!this.isBom) {

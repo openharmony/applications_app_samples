@@ -19,10 +19,6 @@ import { filterSize, getTimeString, getDateTime } from '../model/TimeTools'
 @CustomDialog
 export struct isInformationDialog {
   @Link myMedia: myMedia
-  private controller: CustomDialogController = {} as CustomDialogController
-  private scroller: Scroller = new Scroller()
-  private isInformation: mediaLibrary.FileAsset = {} as mediaLibrary.FileAsset
-  private context: Context = getContext(this)
   @State isInformation_id: string = ''
   @State isInformation_uri: string = ''
   @State isInformation_mimeType: string = ''
@@ -44,6 +40,11 @@ export struct isInformationDialog {
   @State isInformation_albumId: string = ''
   @State isInformation_albumUri: string = ''
   @State isInformation_albumName: string = ''
+  private controller: CustomDialogController = {} as CustomDialogController
+  private isInformation: mediaLibrary.FileAsset = {} as mediaLibrary.FileAsset
+  private scroller: Scroller = new Scroller()
+  private context: Context = getContext(this)
+
   async aboutToAppear() {
     this.myMedia.getPause()
     this.isInformation = this.myMedia.getResourceAddress()
@@ -69,9 +70,11 @@ export struct isInformationDialog {
     this.isInformation_albumUri = await this.convertResourceToString($r('app.string.index_formation_albumUri'))
     this.isInformation_albumName = await this.convertResourceToString($r('app.string.index_formation_albumName'))
   }
-  async convertResourceToString(resource: Resource): Promise<string>{
+
+  async convertResourceToString(resource: Resource): Promise<string> {
     return await this.context.resourceManager.getString(resource.id)
   }
+
   build() {
     Scroll(this.scroller) {
       Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.SpaceEvenly }) {
@@ -89,7 +92,7 @@ export struct isInformationDialog {
         Text(`${this.isInformation_dateModified + getDateTime(this.isInformation.dateModified)}`).fontColor('#FFFFFF')
         Text(`${this.isInformation_dateTaken + getDateTime(this.isInformation.dateTaken)}`).fontColor('#FFFFFF')
         Text(`${this.isInformation_artist + this.isInformation.artist}`).fontColor('#FFFFFF')
-        Text(`${this.isInformation_audioAlbum  + this.isInformation.audioAlbum}`).fontColor('#FFFFFF')
+        Text(`${this.isInformation_audioAlbum + this.isInformation.audioAlbum}`).fontColor('#FFFFFF')
         Text(`${this.isInformation_width + this.isInformation.width}`).fontColor('#FFFFFF')
         Text(`${this.isInformation_height + this.isInformation.height}`).fontColor('#FFFFFF')
         Text(`${this.isInformation_orientation + this.isInformation.orientation}`).fontColor('#FFFFFF')

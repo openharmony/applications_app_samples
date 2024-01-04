@@ -14,73 +14,68 @@
  */
 
 // @ts-nocheck
-import mediaLibrary from '@ohos.multimedia.mediaLibrary'
-import Logger from '../model/Logger'
+import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+import Logger from '../model/Logger';
+
+const TAG: string = 'MediaUtils';
 
 class MediaUtils {
-  private tag: string = 'MediaUtils'
-  private mediaList: Array<mediaLibrary.FileAsset> = []
-  public mediaLib: mediaLibrary.MediaLibrary = undefined
+  private mediaList: mediaLibrary.FileAsset[] = [];
+  public mediaLib: mediaLibrary.MediaLibrary = undefined;
 
-  async queryFile(id) {
-    Logger.info(this.tag, `queryFile,id = ${id}`)
-    let fileKeyObj = mediaLibrary.FileKey
-    if (!id) {
-      return
-    }
-    let args = id.toString()
-    let fetchOp = {
-      selections: `${fileKeyObj.ID}=?`,
-      selectionArgs: [args],
-    }
-    const fetchFileResult = await this.mediaLib.getFileAssets(fetchOp)
-    Logger.info(this.tag, `fetchFileResult.getCount() = ${fetchFileResult.getCount()}`)
-    const fileAsset = await fetchFileResult.getAllObject()
-    return fileAsset[0]
-
+  async queryFile(id: string): Promise<mediaLibrary.FileAsset> {
+    Logger.info(TAG, `queryFile,id = ${id}`);
+    const fetchOp: mediaLibrary.MediaFetchOptions = {
+      selections: `${mediaLibrary.FileKey.ID}=?`,
+      selectionArgs: [id],
+    };
+    const fetchFileResult = await this.mediaLib.getFileAssets(fetchOp);
+    Logger.info(TAG, `fetchFileResult.getCount() = ${fetchFileResult.getCount()}`);
+    const fileAsset = await fetchFileResult.getAllObject();
+    return fileAsset[0];
   }
 
   async getFdPath(fileAsset: any) {
-    let fd = await fileAsset.open('Rw')
-    Logger.info(this.tag, `fd = ${fd}`)
-    return fd
+    let fd = await fileAsset.open('Rw');
+    Logger.info(TAG, `fd = ${fd}`);
+    return fd;
   }
 
   async getFileAssetsFromType(mediaType: number) {
-    Logger.info(this.tag, `getFileAssetsFromType,mediaType = ${mediaType}`)
-    let fileKeyObj = mediaLibrary.FileKey
+    Logger.info(TAG, `getFileAssetsFromType,mediaType = ${mediaType}`);
+    let fileKeyObj = mediaLibrary.FileKey;
     let fetchOp = {
       selections: `${fileKeyObj.MEDIA_TYPE}=?`,
       selectionArgs: [`${mediaType}`],
-    }
-    let fetchFileResult = await this.mediaLib.getFileAssets(fetchOp)
-    Logger.info(this.tag, `getFileAssetsFromType,fetchFileResult.count = ${fetchFileResult.getCount()}`)
+    };
+    let fetchFileResult = await this.mediaLib.getFileAssets(fetchOp);
+    Logger.info(TAG, `getFileAssetsFromType,fetchFileResult.count = ${fetchFileResult.getCount()}`);
     if (fetchFileResult.getCount() > 0) {
-      this.mediaList = await fetchFileResult.getAllObject()
+      this.mediaList = await fetchFileResult.getAllObject();
     }
-    return this.mediaList
+    return this.mediaList;
   }
 
   deleteFile(fileAsset: mediaLibrary.FileAsset): Promise<void> {
-    Logger.info(this.tag, `deleteFile,displayName=${fileAsset.displayName},uri = ${fileAsset.uri}`);
+    Logger.info(TAG, `deleteFile,displayName=${fileAsset.displayName},uri = ${fileAsset.uri}`);
     return fileAsset.trash(true);
   }
 
   onDateChange(audioCallback: () => void, videoCallback: () => void) {
     this.mediaLib.on('audioChange', () => {
-      Logger.info(this.tag, 'videoChange called')
-      audioCallback()
-    })
+      Logger.info(TAG, 'videoChange called');
+      audioCallback();
+    });
     this.mediaLib.on('videoChange', () => {
-      Logger.info(this.tag, 'videoChange called')
-      videoCallback()
-    })
+      Logger.info(TAG, 'videoChange called');
+      videoCallback();
+    });
   }
 
   offDateChange() {
-    this.mediaLib.off('videoChange')
-    this.mediaLib.off('audioChange')
+    this.mediaLib.off('videoChange');
+    this.mediaLib.off('audioChange');
   }
 }
 
-export default new MediaUtils()
+export default new MediaUtils();

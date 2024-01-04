@@ -14,8 +14,9 @@
  */
 
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
+import common from '@ohos.app.ability.common'
 import Logger from '../model/Logger'
-import { AVPlayer }  from '../model/AVPlayer'
+import { AVPlayer } from '../model/AVPlayer'
 import MediaUtils from '../model/MediaUtils'
 import { promptShowToast } from '../model/Prompt'
 import { DeleteDialog } from '../common/DeleteDialog'
@@ -23,7 +24,6 @@ import { RenameDialog } from '../common/RenameDialog'
 import { TitleBar } from '../phoneView/TitleBar'
 import { Toolkit } from '../phoneView/Toolkit'
 import { BroadcastControl } from '../phoneView/BroadcastControl'
-import common from '@ohos.app.ability.common'
 import { MediaUtiles } from '../common/utils'
 
 const TAG = 'PhoneIndex: '
@@ -33,8 +33,8 @@ const TAG = 'PhoneIndex: '
 struct Send {
   @State surfaceId: number = -1
   @State myMedia: AVPlayer = new AVPlayer()
-  @State audioData: Array<mediaLibrary.FileAsset> = []
-  @State videoData: Array<mediaLibrary.FileAsset> = []
+  @State audioData: mediaLibrary.FileAsset[] = []
+  @State videoData: mediaLibrary.FileAsset[] = []
   @State fillIndex: number = -1
   @State fillMediaType: number = -1
   @State currentTime: number = 0
@@ -49,7 +49,7 @@ struct Send {
   private renameDialogController: CustomDialogController = {} as CustomDialogController
   private deleteDialogController: CustomDialogController = {} as CustomDialogController
   private mXComponentController: XComponentController = new XComponentController()
-  private context: Context = getContext(this) as common.UIAbilityContext;
+  private context: Context = getContext(this) as common.UIAbilityContext
 
   async aboutToAppear() {
     MediaUtils.mediaLib = mediaLibrary.getMediaLibrary(this.context)
@@ -61,10 +61,14 @@ struct Send {
     })
   }
 
+  aboutToDisappear() {
+    this.myMedia.release()
+  }
+
   async getAudioData() {
     this.audioData = []
     let fileAsset = MediaUtils.getFileAssetsFromType(mediaLibrary.MediaType.AUDIO)
-    fileAsset.then((fileList: Array<mediaLibrary.FileAsset>) => {
+    fileAsset.then((fileList: mediaLibrary.FileAsset[]) => {
       Logger.info(TAG, 'getFileList callback')
       this.audioData = fileList
       this.myMedia.getAudioData(this.audioData)
@@ -76,7 +80,7 @@ struct Send {
   async getVideoData() {
     this.videoData = []
     let fileAsset = MediaUtils.getFileAssetsFromType(mediaLibrary.MediaType.VIDEO)
-    fileAsset.then((fileList: Array<mediaLibrary.FileAsset>) => {
+    fileAsset.then((fileList: mediaLibrary.FileAsset[]) => {
       Logger.info(TAG, 'getFileList callback')
       this.videoData = fileList
       this.myMedia.getVideoData(this.videoData)
@@ -90,7 +94,7 @@ struct Send {
   }
 
   onChangePlay() {
-      this.isPlaying ? this.myMedia.getPlay() : this.myMedia.getPause()
+    this.isPlaying ? this.myMedia.getPlay() : this.myMedia.getPause()
   }
 
   async convertResourceToString(resource: Resource): Promise<string> {
@@ -112,7 +116,12 @@ struct Send {
       disPlayType = video
     }
     this.renameDialogController = new CustomDialogController({
-      builder: RenameDialog({ title: disPlayName, disPlayType: disPlayType, testUtile: this.testUtile, setRename: () => this.setRename() }),
+      builder: RenameDialog({
+        title: disPlayName,
+        disPlayType: disPlayType,
+        testUtile: this.testUtile,
+        setRename: () => this.setRename()
+      }),
       autoCancel: true,
       customStyle: true,
     })
@@ -125,7 +134,7 @@ struct Send {
       this.audioData[this.fileIndex].displayName = this.newName
       this.audioData[this.fileIndex].commitModify((err) => {
         if (err !== undefined) {
-          console.info(`commitModify, err: ${err}`)
+          Logger.info(TAG, `commitModify, err: ${err}`)
           promptShowToast($r('app.string.phoneMain_legitimateStr'))
           return
         }
@@ -136,7 +145,7 @@ struct Send {
       this.videoData[this.fileIndex].displayName = this.newName
       this.videoData[this.fileIndex].commitModify((err) => {
         if (err !== undefined) {
-          console.info(`commitModify, err: ${err}`)
+          Logger.info(TAG, `commitModify, err: ${err}`)
           promptShowToast($r('app.string.phoneMain_legitimateStr'))
           return
         }
@@ -147,14 +156,14 @@ struct Send {
   }
 
   deleteDialogShow(): void {
-    let mediaData: Array<mediaLibrary.FileAsset>
+    let mediaData: mediaLibrary.FileAsset[]
     if (this.fileType == mediaLibrary.MediaType.AUDIO) {
       mediaData = this.audioData
     } else {
       mediaData = this.videoData
     }
     this.deleteDialogController = new CustomDialogController({
-      builder: DeleteDialog({ index: this.fileIndex, mediaData: mediaData, mediaType: this.fileType  }),
+      builder: DeleteDialog({ index: this.fileIndex, mediaData: mediaData, mediaType: this.fileType }),
       autoCancel: true,
       customStyle: true,
     })

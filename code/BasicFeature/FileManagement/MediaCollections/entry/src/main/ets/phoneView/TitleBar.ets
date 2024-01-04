@@ -14,14 +14,14 @@
  */
 
 import { LoadingDialog } from '../phoneView/LoadingDialog'
-import { AVPlayer }  from '../model/AVPlayer'
+import { AVPlayer } from '../model/AVPlayer'
 import Logger from '../model/Logger'
 
 const TAG = 'InputDialog: '
-const TITLE_HTTP: string= 'http'
-const TITLE_HTTPS: string= 'https'
-const TITLE_DATA: string= 'dataSource'
-const TITLE_FILE: string= 'file'
+const TITLE_HTTP: string = 'http'
+const TITLE_HTTPS: string = 'https'
+const TITLE_DATA: string = 'dataSource'
+const TITLE_FILE: string = 'file'
 
 @Component
 export struct TitleBar {
@@ -40,7 +40,6 @@ export struct TitleBar {
     alignment: DialogAlignment.Center,
     customStyle: true
   })
-
 
   build() {
     Row() {

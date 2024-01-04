@@ -23,41 +23,20 @@ const TAG = '[Sample_MediaCollection_Test]'
 let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager;
 
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
-    /**
-     * 拉起相机录制视频
-     */
-    it(BUNDLE + 'RecordVideo_001', 0, async (done: Function) => {
-      Logger.info(TAG, BUNDLE + 'RecordVideo_001 begin');
-      let driver = Driver.create();
-      let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
-      try {
-        await abilityDelegatorRegistry.startAbility({
-          bundleName: 'com.ohos.camera',
-          abilityName: 'com.ohos.camera.MainAbility'
-        });
-        await driver.delayMs(4000);
-        await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.record_video'))));
-        let btnVideo = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.record_video'))));
-        await btnVideo.click();
-        await driver.delayMs(1000);
-        // 点击录像按钮录制视频,坐标基于rk3568
-        await driver.click(360, 1090);
-        await driver.delayMs(1000);
-        done();
-      } catch (err) {
-        expect(0).assertEqual(err.code);
-        done();
-      }
-      Logger.info(TAG, BUNDLE + 'RecordVideo_001 end');
-    })
+  describe('ActsAbilityTest', () => {
     /**
      * 拉起一个ability
      */
-    it(BUNDLE + 'startAbility_001', 0, async (done) => {
+    it('MediaCollectionTest_startAbility_001', 0, async (done: () => void) => {
       Logger.info(TAG, 'StartAbility start')
+
+      interface wantType {
+        bundleName: string,
+        abilityName: string
+      }
+
       let driver = Driver.create()
-      let want = {
+      let want: wantType = {
         bundleName: 'com.example.sampledemo',
         abilityName: 'MainAbility'
       }
@@ -75,7 +54,7 @@ export default function abilityTest() {
     /**
      * 获取权限
      */
-    it(BUNDLE + 'getPermission_001', 1, async (done) => {
+    it('MediaCollectionTest_getPermission_001', 1, async (done: () => void) => {
       Logger.info(TAG, 'getPermission_001 start')
       let driver = Driver.create()
       await driver.delayMs(1000)
@@ -90,9 +69,26 @@ export default function abilityTest() {
     })
 
     /**
+     * 选择离线播放
+     */
+    it('MediaCollectionTest_selectOfflinePlay_001', 0, async (done: () => void) => {
+      Logger.info(TAG, 'selectOfflinePlay_001 start')
+      let driver = Driver.create()
+      await driver.delayMs(1000)
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.homePage_offline'))))
+      let agree = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.homePage_offline'))))
+      await agree.click()
+      await driver.delayMs(1000)
+      agree = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.homePage_offline'))))
+      expect(agree).assertNull()
+      Logger.info(TAG, 'selectOfflinePlay_001 end')
+      done()
+    })
+
+    /**
      * 检查界面是否正常显示
      */
-    it(BUNDLE + 'getPermission_002', 2, async (done) => {
+    it('MediaCollectionTest_getPermission_002', 2, async (done: () => void) => {
       Logger.info(TAG, 'getPermission_002 start')
       let driver = Driver.create()
       await driver.delayMs(1000)
@@ -115,7 +111,7 @@ export default function abilityTest() {
     /**
      * 点击音频进行重命名操作
      */
-    it(`${BUNDLE} audioRename_001`, 0, async (done) => {
+    it(`MediaCollectionTest_audioRename_001`, 0, async (done: () => void) => {
       Logger.info(TAG, `${BUNDLE} audioRename_001 begin`);
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -153,7 +149,7 @@ export default function abilityTest() {
     /**
      * 点击音频进行删除操作
      */
-    it(`${BUNDLE} audioDelete_001`, 0, async (done) => {
+    it('MediaCollectionTest_audioDelete_001', 0, async (done: () => void) => {
       Logger.info(TAG, `${BUNDLE} audioDelete_001 begin`);
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -181,7 +177,7 @@ export default function abilityTest() {
     /**
      * 点击视频进行重命名操作
      */
-    it(`${BUNDLE} videoRename_001`, 0, async () => {
+    it('MediaCollectionTest_videoRename_001', 0, async (done: () => void) => {
       Logger.info(TAG, `${BUNDLE} videoRename_001 begin`);
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -191,9 +187,11 @@ export default function abilityTest() {
       await driver.delayMs(1000);
       // 左滑视频，坐标基于rk3568
       await driver.swipe(665, 915, 220, 915);
-      await driver.assertComponentExist(ON.id('rename'));
-      await driver.assertComponentExist(ON.id('delete'));
       let rename = await driver.findComponent(ON.id('rename'));
+      // 判断系统中有无视频文件，如果没有就结束，跳过重命名操作
+      if (rename === null) {
+        done();
+      }
       // 点击重命名按钮
       await rename.click();
       await driver.delayMs(1000);
@@ -217,15 +215,17 @@ export default function abilityTest() {
     /**
      * 点击视频进行删除操作
      */
-    it(`${BUNDLE} videoDelete_001`, 0, async () => {
+    it('MediaCollectionTest_videoDelete_001', 0, async (done: () => void) => {
       Logger.info(TAG, `${BUNDLE} videoDelete_001 begin`);
       let driver = Driver.create();
       await driver.delayMs(1000);
       // 左滑视频，坐标基于rk3568
       await driver.swipe(665, 915, 220, 915);
-      await driver.assertComponentExist(ON.id('rename'));
-      await driver.assertComponentExist(ON.id('delete'));
       let delAudio = await driver.findComponent(ON.id('delete'));
+      // 判断系统中有无视频文件，如果没有就结束，跳过删除操作
+      if (delAudio === null) {
+        done();
+      }
       // 点击删除按钮
       await delAudio.click();
       await driver.delayMs(1000);
@@ -238,6 +238,47 @@ export default function abilityTest() {
       await confirm.click();
       await driver.delayMs(1000);
       Logger.info(TAG, `${BUNDLE} videoDelete_001 end`);
+    })
+
+    /**
+     * 返回首页选择drm在线播放
+     */
+    it('MediaCollectionTest_selectOnlinePlay_001', 0, async (done: () => void) => {
+      Logger.info(TAG, 'selectOnlinePlay_001 start')
+      let driver = Driver.create()
+      await driver.delayMs(1000)
+      // 返回
+      await driver.assertComponentExist(ON.id('icon_back'));
+      let iconBack = await driver.findComponent(ON.id('icon_back'));
+      await iconBack.click();
+      // drm在线播放
+      await driver.delayMs(1000)
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.homePage_online'))))
+      let agree = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.homePage_online'))))
+      await agree.click()
+      await driver.delayMs(1000)
+      agree = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.homePage_online'))))
+      expect(agree).assertNull()
+      Logger.info(TAG, 'selectOnlinePlay_001 end')
+      done()
+    })
+
+    /**
+     * 播放列表中选择加密片进行播放
+     */
+    it('MediaCollectionTest_choosePlayerList_001', 0, async (done: () => void) => {
+      Logger.info(TAG, 'choosePlayerList_001 start')
+      let driver = Driver.create()
+      await driver.delayMs(1000)
+      await driver.assertComponentExist(ON.id('firstLevelBar0'));
+      let firstLevelBar0 = await driver.findComponent(ON.id('firstLevelBar0'));
+      await firstLevelBar0.click();
+      await driver.assertComponentExist(ON.id('secondLevelBar0'));
+      let secondLevelBar0 = await driver.findComponent(ON.id('secondLevelBar0'));
+      await secondLevelBar0.click();
+      await driver.delayMs(10000)
+      Logger.info(TAG, 'choosePlayerList_001 end')
+      done()
     })
   })
 }

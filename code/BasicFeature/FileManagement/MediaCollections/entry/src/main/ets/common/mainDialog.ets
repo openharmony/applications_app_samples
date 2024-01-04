@@ -35,7 +35,6 @@ export struct mainDialog {
         .onClick(() => {
           this.controller.close()
         })
-
       }
       .width('100%')
       .margin({ top: '2%' })
