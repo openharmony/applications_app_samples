@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -269,8 +269,8 @@ export class AVPlayer {
     })
     // 时间上报函数
     this.media.on('timeUpdate', (time: number) => {
-      // Logger.info(TAG, 'timeUpdate called: time is :' + time)
-      // Logger.info(TAG, 'timeUpdate called: currentTime is :' + this.media.currentTime)
+      Logger.info(TAG, 'timeUpdate called: time is :' + time)
+      Logger.info(TAG, 'timeUpdate called: currentTime is :' + this.media.currentTime)
       this.callbackTimeUpdate(time)
     })
     // 音量变化回调函数
@@ -283,7 +283,7 @@ export class AVPlayer {
     })
     // seek操作回调函数
     this.media.on('seekDone', (seekDoneTime: number) => {
-      // Logger.info(TAG, 'seekDone success,and seek time is:' + seekDoneTime)
+      Logger.info(TAG, 'seekDone success,and seek time is:' + seekDoneTime)
     })
     // 视频总时长上报函数
     this.media.on('durationUpdate', (duration: number) => {
@@ -299,7 +299,7 @@ export class AVPlayer {
     })
     // 缓冲上报回调函数
     this.media.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: number) => {
-      // Logger.info(TAG, 'bufferingUpdate success,and infoType value is:' + infoType + ', value is :' + value)
+      Logger.info(TAG, 'bufferingUpdate success,and infoType value is:' + infoType + ', value is :' + value)
     })
     // 首帧上报回调函数
     this.media.on('startRenderFrame', () => {
@@ -331,7 +331,7 @@ export class AVPlayer {
   // 状态机上报回调函数
   async setStateChangeCallback(): Promise<void> {
     this.media.on('stateChange', async (state: string, reason: media.StateChangeReason) => {
-      // Logger.info(TAG, 'stateChange callback function is triggered,state is:' + state + ',reason is :' + reason)
+      Logger.info(TAG, 'stateChange callback function is triggered,state is:' + state + ',reason is :' + reason)
       switch (state) {
         case 'idle':
           this.release()

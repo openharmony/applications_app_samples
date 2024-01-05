@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -132,7 +132,6 @@ export default class DrmController {
 
     // Provision Response
     try {
-      // let provisionResponseStr: string = await getHttpData("https://provision.dev.trustdta.com:8217/provision/v1", provisionRequestStr)
       let provisionResponseStr: string = await HttpUtil.getDrmResponse("https://drmkit.hwcloudtest.cn:8080/provision/v1/wiseplay", provisionRequestStr)
       Logger.info(this.TAG, 'provisionResponse[' + provisionResponseStr.length + ']:' + provisionResponseStr)
       let provisionRequestByte: Uint8Array = TypeConversion.stringToByte(provisionResponseStr)
@@ -166,7 +165,7 @@ export default class DrmController {
       Logger.info(this.TAG, 'drmInfoArr - uuid: ' + drmInfoArr[i].uuid)
       Logger.info(this.TAG, 'drmInfoArr - pssh: ' + drmInfoArr[i].pssh)
       const uint8pssh: Uint8Array = new Uint8Array(drmInfoArr[i].pssh)
-      const licenseRequestData = this.mediaKeySession.generateLicenseRequest('video/mp4', uint8pssh, licenseType, optionalData)
+      const licenseRequestData: drm.LicenseRequest = this.mediaKeySession.generateLicenseRequest('video/mp4', uint8pssh, licenseType, optionalData)
       let licenseRequestStr: string = TypeConversion.byteToString(licenseRequestData.mData)
       Logger.info(this.TAG, 'licenseRequestStr[' + licenseRequestStr.length + ']:' + licenseRequestStr)
 
@@ -241,7 +240,7 @@ export default class DrmController {
     Logger.info(this.TAG, 'KeyId to be delete is: ' + keyId);
     if (keyId) {
       let offlineLicenseId = new Uint8Array(TypeConversion.stringToByte(keyId));
-      let offlineLicenseStatus = this.mediaKeySystem.getOfflineLicenseStatus(offlineLicenseId);
+      let offlineLicenseStatus: drm.OfflineLicenseStatus = this.mediaKeySystem.getOfflineLicenseStatus(offlineLicenseId);
       Logger.info(this.TAG, 'Get offlineLicense Status is: ' + offlineLicenseStatus);
 
       this.mediaKeySystem.removeOfflineLicense(offlineLicenseId);

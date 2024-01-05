@@ -28,6 +28,9 @@ entry/src/main/ets/
 |---Application
 |   |---MyAbilityStage.ts
 |---common
+|   |---constants
+|   |   |---AVplayerConstants.ets               // AVplayer常量
+|   |   |---DrmConstants.ets                    // Drm常量
 |   |---BroadcastControl.ets                    // 窗口
 |   |---DeleteDialog.ets                        // 删除弹窗
 |   |---IsInformationDialog.ets                 // 信息弹窗
@@ -41,16 +44,30 @@ entry/src/main/ets/
 |---MainAbility
 |   |---MainAbility.ts
 |---model
+|   |---AVPleyer.ets                            // AVPlayer控制器
+|   |---DrmController.ets                       // Drm控制器
 |   |---GridData.ts                             // 数据
+|   |---HttpUtil.ets                            // 网络请求方法
+|   |---JsonListData.ets                        // 播放列表JSON类型
+|   |---KVManagerUtil.ets                       // 持久化工具
 |   |---Logger.ts                               // 日志工具
 |   |---MediaUtils.ts                           // 音频方法
 |   |---myMedia.ts                              // 我的
 |   |---Prompt.ts                               // 弹窗
 |   |---TimeTools.ts                            // 时间工具
+|   |---TypeConversion.ets                      // 类型转换工具
 |---pages
+|   |---online
+|   |   |---OnlineList.ets                      // Drm播放列表页
+|   |   |---OnlinePlayer.ets                    // Drm播放页
+|   |---HomePage.ets                            // 切换页
 |   |---index.ets                               // 首页
 |   |---phoneMain.ets                           // 主页面
 |---phoneView
+|   |---online
+|   |   |---OnlineListItemView.ets              // Drm播放列表项
+|   |   |---OnlineListView.ets                  // Drm播放列表
+|   |   |---OnlinePlayerView.ets                // Drm播放窗口
 |   |---BroadcastControl.ets                    // 窗口
 |   |---GridDataItem.ets                        // 每项数据
 |   |---LoadingDialog.ets                       // 加载

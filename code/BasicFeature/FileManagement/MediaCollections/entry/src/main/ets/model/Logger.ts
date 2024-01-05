@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,7 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import hiLog from '@ohos.hilog';
+
+import hilog from '@ohos.hilog';
 
 type ArgsType = string | number;
 const DEFAULT_DOMAIN_VALUE: number = 0xFF00;
@@ -29,12 +30,12 @@ class Logger {
   }
 
   /**
-   * ݴ޸ format
+   * 根据传参修改 format
    * @param args
    * @returns
    */
   changeFormat(args: ArgsType[]): boolean {
-    if (!args?.length) { // δ
+    if (!args?.length) { // 未传参数
       args = ['[No Parameter]'];
       hilog.warn(this.domain, this.prefix, this.format, args);
       return false;
