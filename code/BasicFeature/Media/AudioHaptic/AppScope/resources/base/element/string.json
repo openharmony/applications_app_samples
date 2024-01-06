@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "AudioHaptic"
+    },
+    {
+      "name": "AudioHaptic",
+      "value": "音振协同"
+    },
+    {
+      "name": "NotificationType",
+      "value": "通知类型"
+    },
+    {
+      "name": "RingtoneType",
+      "value": "铃声类型"
+    },
+    {
+      "name": "AlarmType",
+      "value": "闹钟类型"
+    },
+    {
+      "name": "MUTE_AUDIO",
+      "value": "音频静音"
+    },
+    {
+      "name": "MUTE_HAPTICS",
+      "value": "震动静音"
+    },
+    {
+      "name": "allow",
+      "value": "允许"
+    }
+  ]
+}
