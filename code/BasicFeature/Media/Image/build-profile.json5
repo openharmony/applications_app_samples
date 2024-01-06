@@ -15,10 +15,10 @@
 
 {
   "app": {
-    "compileSdkVersion": 11,
-    "compatibleSdkVersion": 11,
     "products": [
       {
+        "compileSdkVersion": 11,
+        "compatibleSdkVersion": 11,
         "name": "default",
         "signingConfig": "default",
       }
