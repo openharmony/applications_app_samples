@@ -65,7 +65,7 @@ export struct InfoView {
         .id('arrow' + (index + 1))
         .onClick(() => {
           Logger.info(`${TAG}, PanelView`)
-          this.show = !this.show
+          this.show = true
           this.slotId = item.slotId
           this.title = item.title
         })

@@ -32,7 +32,7 @@ struct Index {
   @State radioStatus: RadioStatus = new RadioStatus()
 
   aboutToAppear() {
-    let networkState = this.radioStatus.getNetworkState().then((networkState) => {
+    this.radioStatus.getNetworkState().then((networkState) => {
       Logger.info(`${TAG}, aboutToAppear networkState = ${JSON.stringify(networkState)}`)
       let result = new ResultModel('NetworkState', networkState)
       this.networks.push(result)
@@ -83,7 +83,7 @@ struct Index {
         }
       }
 
-      PanelView({ show: $show, slotId: this.slotId, title: this.title })
+      PanelView({ show: $show, slotId: $slotId, title: $title })
     }
     .width('100%')
     .height('100%')
