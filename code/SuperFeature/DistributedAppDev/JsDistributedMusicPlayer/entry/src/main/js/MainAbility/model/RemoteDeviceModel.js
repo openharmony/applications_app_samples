@@ -146,11 +146,12 @@ export default class RemoteDeviceModel {
 
   authDevice(deviceId, callback) {
     logger.debug(TAG, `authDevice ${deviceId}`)
-    for (let i = 0; i < this.discoverDevices.length; i++) {
-      if (this.discoverDevices[i].deviceId !== deviceId) {
+    for (let i = 0; i < this.discoverList.length; i++) {
+      if (this.discoverList[i].deviceId !== deviceId) {
         continue
       }
       if (this.#deviceManager === undefined) {
+        logger.info(TAG, 'this.#deviceManager is undefinded')
         return
       }
       logger.debug(TAG, `authenticateDevice ${JSON.stringify(this.discoverList[i])}`)
