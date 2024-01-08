@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例主要展示了音振协同功能，使用[@ohos.multimedia.audioHaptic](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-audioHaptic.md)等接口提供播放音频，伴随振动效果的功能，可用于同时需要音频声音与振动效果的场景。
+本示例主要展示了音振协同功能，使用[@ohos.multimedia.audioHaptic](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-audioHaptic.md)等接口提供播放音频同时伴随振动的功能，可用于同时需要声音与振动的场景。
 
 ### 效果预览
 
@@ -12,19 +12,19 @@
 
 使用说明
 
-注意：当开始播放铃声类型/通知类型/闹钟类型任一类型时，其他类型不可点击选择，同时“音频静音”和“振动静音”也不点击可选择；铃声类型/通知类型/闹钟类型播放自动结束或手动结束播放，所有类型恢复成可点击状态
+注意：当开始播放铃声类型时，其它类型不可点击选择，同时“音频静音”和“振动静音”也不点击可选择；铃声类型播放结束，所有类型恢复成可点击状态
 
-1.在主界面点击“音振协同”按钮，进入音振协同播放类型选择页面
-2.在音振协同播放类型选择页面，展示音振协同播放类型
-3.在音振协同播放类型选择页面，点击通知类型播放器，通知类型开始播放并振动
-3.在音振协同播放类型选择页面，点击铃声类型播放器，铃声类型开始播放并振动
-3.在音振协同播放类型选择页面，点击闹钟类型播放器，闹钟类型开始播放并振动
-4.在音振协同播放类型选择页面，点击“音频静音”（未点击振动静音），选择铃声类型播放器进行播放，铃声类型开始音频静音同时振动播放，直至播放自动结束，恢复暂停状态
-5.在音振协同播放类型选择页面，点击“振动静音”（未点击音频静音），选择铃声类型播放器进行播放，铃声类型开始无振动同时有声播放，直至播放自动结束，恢复暂停状态
-5.在音振协同播放类型选择页面，点击“振动静音”，点击“音频静音”，选择铃声类型播放器进行播放，铃声类型开始无振动同时无声播放，直至播放自动结束，恢复暂停状态
-6.在音振协同播放类型选择页面，点击铃声类型播放器，点击铃声类型停止播放，开始振动播放
-7.在音振协同播放类型选择页面，点击闹钟类型播放器，闹钟类型开始振动播放
-8.振协同播放选择页面，点击“返回”按钮，可返回主页
+1.在主界面点击“音振协同”按钮，进入音振协同播放类型选择页面</br>
+2.在音振协同播放类型选择页面，展示音振协同播放类型</br>
+3.在音振协同播放类型选择页面，点击通知类型播放器，通知类型开始播放并振动</br>
+4.在音振协同播放类型选择页面，点击铃声类型播放器，铃声类型开始播放并振动</br>
+5.在音振协同播放类型选择页面，点击闹钟类型播放器，闹钟类型开始播放并振动</br>
+6.在音振协同播放类型选择页面，点击“音频静音”（未点击振动静音），选择铃声类型播放器进行播放，铃声类型开始音频静音同时振动播放，直至播放自动结束，恢复暂停状态</br>
+7.在音振协同播放类型选择页面，点击“振动静音”（未点击音频静音），选择铃声类型播放器进行播放，铃声类型开始无振动同时有声播放，直至播放自动结束，恢复暂停状态</br>
+8.在音振协同播放类型选择页面，点击“振动静音”，点击“音频静音”，选择铃声类型播放器进行播放，铃声类型开始无振动同时无声播放，直至播放自动结束，恢复暂停状态</br>
+9.在音振协同播放类型选择页面，点击铃声类型播放器，点击铃声类型停止播放，开始振动播放</br>
+10.在音振协同播放类型选择页面，点击闹钟类型播放器，闹钟类型开始振动播放</br>
+11.振协同播放选择页面，点击“返回”按钮，可返回主页</br>
 
 ### 工程目录
 entry/src/main/ets/
@@ -40,12 +40,12 @@ library/
 ### 具体实现
 * 音振协同功能都封装AudioHaptics，源码参考：[AudioHaptic.ets](entry/src/main/ets/pages/AudioHaptic.ets)
     * 使用audioHaptic.getAudioHapticManager()接口获取音振管理器。
-	* 使用audioHapticManager.registerSource(audioUri, hapticUri)接口注册音频和振动资源的Uri，返回注册资源的source id。
-	* 使用使用audioHapticManager.setStreamUsage()接口给指定source id设置音频使用类型。
-	* 使用audioHapticManager.createPlayer(id, options)创建不同类型资源的音振播放器。
-	* 使用audioHapticManager.setStreamUsage(id, streamUsage )分别设置通知类型、铃声类型和闹钟类型的使用类型。
-	* 对每个player对象都监听AudioHapticPlayer .on('endOfStream'),收到回调时,说明当前类型资源播放结束，恢复暂停播放状态，据此跟新UI状态。
-	* 使用audioHapticManager.start()方法进行对指定类型音频开始播放处理。
+    * 使用audioHapticManager.registerSource(audioUri, hapticUri)接口注册音频和振动资源的Uri，返回注册资源的source id。
+    * 使用使用audioHapticManager.setStreamUsage()接口给指定source id设置音频使用类型。
+    * 使用audioHapticManager.createPlayer(id, options)创建不同类型资源的音振播放器。
+    * 使用audioHapticManager.setStreamUsage(id, streamUsage )分别设置通知类型、铃声类型和闹钟类型的使用类型。
+    * 对每个player对象都监听AudioHapticPlayer .on('endOfStream'),收到回调时,说明当前类型资源播放结束，恢复暂停播放状态，据此跟新UI状态。
+    * 使用audioHapticManager.start()方法进行对指定类型音频开始播放处理。
     * 使用audioHapticManager.stop()进行指定类型音频的停止播放处理。
 
 ### 相关权限
