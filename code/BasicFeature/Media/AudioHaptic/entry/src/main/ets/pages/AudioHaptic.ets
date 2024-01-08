@@ -43,14 +43,13 @@ struct AudioHaptic {
   @State isSync: boolean = false;
   @State isMuteAudio: boolean = false;
   @State isMuteHaptics : boolean = false;
-  @State opacity2: Array<number> = [1, 1, 1, 1, 1];
+  @State iconOpacity: Array<number> = [1, 1, 1, 1, 1];
   @State idList: Array<number> = [0, 0, 0];
-  @State opacity1: Array<number> = [1, 1];
+  @State fillColor: Array<Color> = [Color.Black, Color.Black]
   private audioUri = 'file://data/notification.wav'; // 需更改为目标音频资源的Uri
   private hapticUri = 'file://data/notification.wav'; // 需更改为目标振动资源的Uri
 
   aboutToAppear(): void {
-    this.init();
     console.log(`aboutToAppear`)
   }
 
@@ -230,7 +229,7 @@ struct AudioHaptic {
   async changeState(index: number): Promise<void> {
     console.log(`current stateText: ${this.stateText.toString()}`)
     console.log(`current playState: ${this.playState.toString()}`)
-    this.opacity2[index] = 1;
+    this.iconOpacity[index] = 1;
     if (this.playState[index] == 'pause') {
       await this.syncCreateTypePlayer();
       this.stateImg[index] = $r('app.media.ic_play_norm');
@@ -248,32 +247,30 @@ struct AudioHaptic {
     })
     result.forEach(item =>{
       if (this.playState[index] == 'pause') {
-        this.opacity2[item] = 0.2;
+        this.iconOpacity[item] = 0.2;
         this.clickState[item] = false;
         this.stateText[item] = 'ic_play_no';
       } else {
-        if (item < 3) {
-          this.opacity2[item] = 1;
-        }
+        this.iconOpacity[item] = 1;
         this.clickState[item] = true;
         this.stateText[item] = 'ic_pause';
-        this.updateMuteOpacity();
+        this.updateMuteColor();
       }
     })
     this.playState[index] = this.playState[index]  == 'play' ? 'pause' : 'play'
     this.clickState[index] = true;
   }
 
-  updateMuteOpacity(): void {
+  updateMuteColor(): void {
     if (this.isMuteAudio == true) {
-      this.opacity2[AUDIO_MUTE_INDEX] = 0.6;
+      this.fillColor[0] = Color.Blue;
     } else {
-      this.opacity2[AUDIO_MUTE_INDEX] = 1;
+      this.fillColor[0] = Color.Black;
     }
     if (this.isMuteHaptics == true) {
-      this.opacity2[HAPTICS_MUTE_INDEX] = 0.6;
+      this.fillColor[1] = Color.Blue;
     } else {
-      this.opacity2[HAPTICS_MUTE_INDEX] = 1;
+      this.fillColor[1] = Color.Black;
     }
   }
 
@@ -327,7 +324,7 @@ struct AudioHaptic {
                 } else {
                   console.error("无法操作")
                 }
-              }).opacity(this.opacity2[NOTIFICATION_INDEX])
+              }).opacity(this.iconOpacity[NOTIFICATION_INDEX])
           }
         }
         .backgroundColor(Color.White)
@@ -355,8 +352,8 @@ struct AudioHaptic {
               .height(1);
             Image(this.stateImg[RINGTONE_INDEX])
               .width('10%')
-              .height('5%')
-              .margin({top:'1.8%', bottom:'1.8%', left:'8.9%',right: '4.4%' })
+              .height('4.6%')
+              .margin({left:'8.9%',right: '4.4%' })
               .id('play_ringtone_type')
               .onClick(() => {
                 if (this.clickState[RINGTONE_INDEX]) {
@@ -365,13 +362,13 @@ struct AudioHaptic {
                   this.stateText[RINGTONE_INDEX] = 'ic_play_no';
                   console.error("无法操作")
                 }
-              }).opacity(this.opacity2[RINGTONE_INDEX]);
+              }).opacity(this.iconOpacity[RINGTONE_INDEX]);
           }
         }
         .backgroundColor(Color.White)
         .borderRadius(16)
         .margin({bottom:'1.5%'}) // RINGTONE
-        //3
+
         Column() {
           Row() {
             Row() {
@@ -403,10 +400,9 @@ struct AudioHaptic {
                   this.stateText[ALARM_INDEX] = 'ic_play_no';
                   console.error("无法操作")
                 }
-              }).opacity(this.opacity2[ALARM_INDEX]);
+              }).opacity(this.iconOpacity[ALARM_INDEX]);
           }
         }
-
         .backgroundColor(Color.White)
         .borderRadius(16)
         .margin({bottom:'1.5%'}) // ALARM
@@ -418,7 +414,7 @@ struct AudioHaptic {
             .width(24)
             .height(24)
             .margin({top: '1%', left:'18.3%', right:'18.3%'})
-
+            .fillColor(this.fillColor[0])
           Text($r('app.string.MUTE_AUDIO'))
             .fontSize(10)
             .width('94.8%')
@@ -431,7 +427,7 @@ struct AudioHaptic {
         }
         .width('50%')
         .height('100%')
-        .opacity(this.opacity2[AUDIO_MUTE_INDEX])
+        .opacity(this.iconOpacity[AUDIO_MUTE_INDEX])
         .id('btn_audio_mute')
         .onClick(async () => {
           if (this.clickState[AUDIO_MUTE_INDEX]) {
@@ -439,7 +435,7 @@ struct AudioHaptic {
             this.isMuteAudio = !(this.isMuteAudio);
             console.error(`isMuteAudio ${this.isMuteAudio}`)
             this.isSync = false;
-            this.updateMuteOpacity();
+            this.updateMuteColor();
             if (this.stateText[AUDIO_MUTE_INDEX] == 'ic_play') {
               this.stateText[AUDIO_MUTE_INDEX] = 'ic_pause';
             } else {
@@ -457,6 +453,7 @@ struct AudioHaptic {
             .width(24)
             .height(24)
             .margin({top: '1%', left:'18.3%', right:'18.3%'})
+            .fillColor(this.fillColor[1])
           Text($r('app.string.MUTE_HAPTICS'))
             .fontSize(10)
             .width('94.8%')
@@ -470,7 +467,7 @@ struct AudioHaptic {
         }
         .width('50%')
         .height('100%')
-        .opacity(this.opacity2[HAPTICS_MUTE_INDEX])
+        .opacity(this.iconOpacity[HAPTICS_MUTE_INDEX])
         .id('btn_haptic_mute')
         .onClick(async () => {
           if (this.clickState[HAPTICS_MUTE_INDEX]) {
@@ -478,7 +475,7 @@ struct AudioHaptic {
             this.isMuteHaptics = !(this.isMuteHaptics);
             console.error(`isMuteHaptics ${this.isMuteHaptics}`)
             this.isSync = false;
-            this.updateMuteOpacity();
+            this.updateMuteColor();
             if (this.stateText[HAPTICS_MUTE_INDEX] == 'ic_play') {
               this.stateText[HAPTICS_MUTE_INDEX] = 'ic_pause';
             } else {

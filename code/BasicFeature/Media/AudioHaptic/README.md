@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例主要展示了音振协同功能，使用[@ohos.multimedia.audioHaptic](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-audioHaptic.md)接口提供播放声音并同步发起振动的功能，可用于同时需要声音与振动的场景。
+本示例主要展示了音振协同功能，使用[@ohos.multimedia.audioHaptic](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-audioHaptic.md)等接口提供播放音频，伴随振动效果的功能，可用于同时需要音频声音与振动效果的场景。
 
 ### 效果预览
 
@@ -12,7 +12,7 @@
 
 使用说明
 
-注意：当铃声类型/通知类型/闹钟类型开始播放时，其他类型不可选择，同时“音频静音”和“振动静音”也不可选择；铃声类型/通知类型/闹钟类型播放自动结束或手动暂停播放，所有类型恢复成可播放状态
+注意：当开始播放铃声类型/通知类型/闹钟类型任一类型时，其他类型不可点击选择，同时“音频静音”和“振动静音”也不点击可选择；铃声类型/通知类型/闹钟类型播放自动结束或手动结束播放，所有类型恢复成可点击状态
 
 1.在主界面点击“音振协同”按钮，进入音振协同播放类型选择页面
 2.在音振协同播放类型选择页面，展示音振协同播放类型
