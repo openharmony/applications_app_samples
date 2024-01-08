@@ -1,19 +1,6 @@
-#  Copyright (c) 2023 Huawei Device Co., Ltd.
-#  Licensed under the Apache License, Version 2.0 (the "License");
-#  you may not use this file except in compliance with the License.
-#  You may obtain a copy of the License at
-
-#      http://www.apache.org/licenses/LICENSE-2.0
-
-#  Unless required by applicable law or agreed to in writing, software
-#  distributed under the License is distributed on an "AS IS" BASIS,
-#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#  See the License for the specific language governing permissions and
-#  limitations under the License.
-
 #!/bin/bash
 
-CUR_PATH=$(cd $(dirname ${BASH_SOURCE[0]}) && pwd)
+CUR_PATH=$(cd $(dirname $0) && pwd)
 BASE_PATH=$(dirname ${CUR_PATH})
 
 #时间统计
@@ -49,10 +36,10 @@ name=""
 tag_name='name='
 branch=""
 tag_branch='branch='
-full_list=()
 tag_full_list='fullSdkAssembleList='
-basic_list=()
 tag_basic_list='basicSignList='
+basic_list=()
+full_list=()
 core_list=()
 tag_core_list='coreSignList='
 system_app_list=()
@@ -689,7 +676,7 @@ sumTime=$[ $endTime_s - $startTime_s ]
 #         done
 # echo "|-------------|-------------|-------------|-------------|-------------"
 # echo "compile completed..."
-if (( $(ls -l ${BASE_PATH}/out/${name}/public-sdk/compile-error-log|grep "^-"|wc -l) > 0 ) || ( $(ls -l ${BASE_PATH}/out/${name}/full-sdk/compile-error-log|grep "^-"|wc -l) > 0 ));then
+if [[ $(ls -l ${BASE_PATH}/out/${name}/public-sdk/compile-error-log|grep "^-"|wc -l) -gt 0 ]] || [[ $(ls -l ${BASE_PATH}/out/${name}/full-sdk/compile-error-log|grep "^-"|wc -l) -gt 0 ]];then
         echo  "hap_build fail"
 else
         echo "hap_build success"

@@ -171,6 +171,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filename" name="hvigorw.bat" desc="OpenHarmony工程编译配置文件，无需添加License头"/>
                 <filteritem type="filename" name="hvigor-config.json5" desc="OpenHarmony工程编译配置文件，无需添加License头"/>
                 <filteritem type="filename" name="hvigor-wrapper.js" desc="OpenHarmony工程编译配置文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/bin/compile-ohpm-ci.sh" desc="预测试工具脚本文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/Project/HapBuild/test-tool/LinuxContains.py" desc="预测试工具配置文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/resources/echoHilog.bat" desc="预测试工具配置文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-enter-animation-1.0.1.tgz" desc="二进制文件，无需添加License头"/>
@@ -187,6 +188,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filename" name="hvigorw.bat" desc="OpenHarmony工程编译配置文件，无需添加版权头"/>
                 <filteritem type="filename" name="hvigor-config.json5" desc="OpenHarmony工程编译配置文件，无需添加版权头"/>
                 <filteritem type="filename" name="hvigor-wrapper.js" desc="OpenHarmony工程编译配置文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/bin/compile-ohpm-ci.sh" desc="预测试工具脚本文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/Project/HapBuild/test-tool/LinuxContains.py" desc="预测试工具配置文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/resources/echoHilog.bat" desc="预测试工具配置文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-enter-animation-1.0.1.tgz" desc="二进制文件，无需添加版权头"/>

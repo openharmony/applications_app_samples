@@ -147,26 +147,25 @@ git pull origin master
 ### 下载SDK
 
 ```
-cd ~
-cd HapBuild/compile-tool
-cd bin
+cd ~/code/Project/HapBuild/compile-tool/bin
+sudo chmod +x init-sdk.sh
 ./init-sdk.sh
 ```
 
 ![image](./screenshots/compiletooldownload.png)
 
-执行完以上命令后开始下载SDK,一共要下8个SDK耗时较长。
+执行完以上命令后开始下载SDK,一共要下6个SDK耗时较长。
 
 下载完SDK后手动添加hdc的目录到环境变量。
 
 ```
-cd ~
-cd /home/userName/HapBuild/compile-tool/sdk/10/toolchains
+cd ~/code/Project/HapBuild/compile-tool/sdk-full/10/toolchains
 pwd
 vim ~/.bashrc
 
-// 添加以下内容
-export HDC_HOME=/home/userName/HapBuild/compile-tool/sdk/10/toolchains
+// 把pwd输出的路径添加到下面
+#hdc
+export HDC_HOME=/home/userName/code/Project/HapBuild/compile-tool/sdk-full/10/toolchains
 export PATH=$HDC_HOME:$PATH
 ```
 
@@ -182,14 +181,21 @@ hdc
 
 ![image](./screenshots/hdcversion.png)
 
+### 给shell脚本增加权限
+
+```
+cd ~/code/Project/HapBuild/compile-tool/bin
+sudo chmod +x compile-ut-ohpm.sh compile-ohpm-ci.sh init-sdk.sh update-sdk.sh
+```
+
 ### 初始化本地sample仓
 
 ```
-Cd ~
-$PWD/HapBuild/compile-tool/bin/compile-ut-ohpm.sh --p=$PWD/HapBuild/compile-tool/config/ut_samples_master.config --compile_dir=code
+cd ~
+$PWD/code/Project/HapBuild/compile-tool/bin/compile-ut-ohpm.sh --p=$PWD/code/Project/HapBuild/compile-tool/config/ut_samples_master.config --compile_dir=code
 ```
 
-仓库克隆完毕即可退出。
+注意：这一步是为了让本地存有代码,所以仓库克隆完毕即可Ctrl + C退出。
 
 ### 修改项目配置文件
 
@@ -198,18 +204,18 @@ $PWD/HapBuild/compile-tool/bin/compile-ut-ohpm.sh --p=$PWD/HapBuild/compile-tool
 打开gitee官网[申请私人令牌](https://gitee.com/profile/personal_access_tokens)，将申请到的私人令牌复制，替换 `accessToken`。
 
 ```
-vim ~/HapBuild/ci/config.dev.ts
+vim ~/code/Project/HapBuild/ci/config.dev.ts
 
 // 将accessToken替换成从gitee上申请的私人令牌，将userName改为真实用户名
 export const ACCESS_TOKEN = 'accessToken';
-export const PROJECT_PATH = '/home/userName/HapBuild/compile-tool/projects/ut_samples_master';
-export const CONFIG_PATH = '/home/userName/HapBuild/compile-tool/config/ut_samples_master.config';
-export const COMPILE_SH_PATH = '/home/userName/HapBuild/compile-tool/bin/compile-ohpm-ci.sh';
-export const SIGN_HAP_PATH = '/home/userName/HapBuild/compile-tool/out/ut_samples_master/full-sdk/hap-out-with-signed';
-export const TEST_TOOL_PATH = '/home/userName/HapBuild/test-tool/InstallAndTestSpecial_ci.py';
-export const CONTAINS_PATH = '/home/userName/HapBuild/test-tool/LinuxContains.py';
-export const SIGN_FULL_PATH = '/home/userName/HapBuild/compile-tool/out/ut_samples_master/full-sdk/hap-out-with-signed/';
-export const SIGN_PUBLIC_PATH = '/home/userName/HapBuild/compile-tool/out/ut_samples_master/public-sdk/hap-out-with-signed/';
+export const PROJECT_PATH = '/home/userName/code/Project/HapBuild/compile-tool/projects/ut_samples_master';
+export const CONFIG_PATH = '/home/userName/code/Project/HapBuild/compile-tool/config/ut_samples_master.config';
+export const COMPILE_SH_PATH = '/home/userName/code/Project/HapBuild/compile-tool/bin/compile-ohpm-ci.sh';
+export const SIGN_HAP_PATH = '/home/userName/code/Project/HapBuild/compile-tool/out/ut_samples_master/full-sdk/hap-out-with-signed';
+export const TEST_TOOL_PATH = '/home/userName/code/Project/HapBuild/test-tool/InstallAndTestSpecial_ci.py';
+export const CONTAINS_PATH = '/home/userName/code/Project/HapBuild/test-tool/LinuxContains.py';
+export const SIGN_FULL_PATH = '/home/userName/code/Project/HapBuild/compile-tool/out/ut_samples_master/full-sdk/hap-out-with-signed/';
+export const SIGN_PUBLIC_PATH = '/home/userName/code/Project/HapBuild/compile-tool/out/ut_samples_master/public-sdk/hap-out-with-signed/';
 ```
 
 修改完成后保存退出。
@@ -217,15 +223,16 @@ export const SIGN_PUBLIC_PATH = '/home/userName/HapBuild/compile-tool/out/ut_sam
 打开项目路径下的 `test-tool/LinuxContains.py`编辑测试脚本配置文件。
 
 ```
-vim ~/HapBuild/test-tool/LinuxContains.py
+sudo chmod +x ~/code/Project/HapBuild/test-tool/LinuxContains.py
+vim ~/code/Project/HapBuild/test-tool/LinuxContains.py
 
 // 将userName改为真实用户名
-SIGN_HAP_PATH = r'/home/userName/HapBuild/compile-tool/out/ut_samples_master/full-sdk/hap-out-with-signed/'
-FA_MODAL_AND_LOWER_CASE_LIST = r'/home/userName/HapBuild/test-tool/FA_Model_And_Lower_Case_List.json'
-INSTALL_LIST_CAPABILITY = r'/home/userName/HapBuild/test-tool/install_list_capability.json'
-SAVE_XML_PATH = r'/home/userName/HapBuild/test-tool'
-COMBIN_CONFIG = r'/home/userName/HapBuild/test-tool/CombinationConfig.json'
-SPECIAL_LIST = r'/home/userName/HapBuild/test-tool/special_list.json'
+SIGN_HAP_PATH = r'/home/userName/code/Project/HapBuild/compile-tool/out/ut_samples_master/full-sdk/hap-out-with-signed/'
+FA_MODAL_AND_LOWER_CASE_LIST = r'/home/userName/code/Project/HapBuild/test-tool/FA_Model_And_Lower_Case_List.json'
+INSTALL_LIST_CAPABILITY = r'/home/userName/code/Project/HapBuild/ci/install_list_capability.json'
+SAVE_XML_PATH = r'/home/userName/code/Project/HapBuild/test-tool'
+COMBIN_CONFIG = r'/home/userName/code/Project/HapBuild/test-tool/CombinationConfig.json'
+SPECIAL_LIST = r'/home/userName/code/Project/HapBuild/test-tool/special_list.json'
 SPECIAL_HAP = r'code_UI_JsComponentCollection_JsComponentCollection;code_SuperFeature_MultiDeviceAppDev_JsAdaptiveCapabilities;code_BasicFeature_FileManagement_FileShare_SandboxShare;code_SystemFeature_DeviceManagement_DeviceManagementCollection;code_BasicFeature_Security_PaySecurely_paySDK;code_SystemFeature_ApplicationModels_Launcher;code_SuperFeature_DistributedAppDev_JsDistributedMusicPlayer;code_SuperFeature_DistributedAppDev_DistributeCalc;code_Solutions_Tools_JsClock;code_BasicFeature_Notification_CustomNotificationBadge'
 TARGET_PATH = r'code_Solutions_Game_DistributedDataGobang'
 ```
@@ -261,7 +268,7 @@ pip install paramiko
 初始化ci，下载依赖。
 
 ```
-cd ~/HapBuild/ci
+cd ~/code/Project/HapBuild/ci
 npm i -g @nestjs/cli
 npm i
 npm run build
@@ -273,7 +280,7 @@ npm install pm2 -g
 运行项目。
 
 ```
-cd ~/HapBuild/ci
+cd ~/code/Project/HapBuild/ci
 pm2 start dist/src/main.js
 ```
 
@@ -294,3 +301,7 @@ pm2 stop dist/src/main.js
 ```
 
 ![image](./screenshots/cistop.png)
+
+## 浏览器访问验证
+
+在浏览器上输入网址：http://127.0.0.1:3000/swagger
