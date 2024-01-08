@@ -46,8 +46,13 @@ export default function abilityTest() {
       // This API supports only one parameter: clear action function.
     })
 
-    /**
-     * StartAbility
+    /*
+     * @tc.number: audioHaptic_StartAbility_001
+     * @tc.name: StartAbility
+     * @tc.desc: StartAbility
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
      */
     it('audioHaptic_StartAbility_001', 0, async (done: Function) => {
       Logger.info(TAG, 'audioHaptic_StartAbility_001 begin');
@@ -65,10 +70,13 @@ export default function abilityTest() {
       Logger.info(TAG, 'audioHaptic_StartAbility_001 end');
     })
 
-    /**
-     * [Index]
-     * Display two entry card
-     * Click audio_haptic_card
+    /*
+     * @tc.number: audioHaptic_IndexShow_001
+     * @tc.name: Display two entry card
+     * @tc.desc: show index
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
      */
     it('audioHaptic_IndexShow_001', 0, async (done: Function) => {
       Logger.info(TAG, 'audioHaptic_IndexShow_001 begin')
@@ -86,10 +94,13 @@ export default function abilityTest() {
       done();
     })
 
-    /**
-     * [AudioHaptic]
-     * Click 'audio_haptic_card'
-     * Display AudioHaptic Page
+    /*
+     * @tc.number: audioHaptic_IndexShow_001
+     * @tc.name: Click 'audio_haptic_card'
+     * @tc.desc: Display AudioHaptic Page
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
      */
     it('audioHaptic_AudioHaptic_001', 0, async (done: Function) => {
       Logger.info(TAG, 'audioHaptic_AudioHaptic_001 begin');
@@ -115,10 +126,14 @@ export default function abilityTest() {
       done();
     })
 
-    /**
-     * [AudioHaptic] Click notification item
-     * Click musicplayer item, expect it's state is playing
-     * Click musicplayer item, expect it's state is pause
+    /*
+     * @tc.number: audioHaptic_AudioHaptic_002
+     * @tc.name: Click play notification
+     * @tc.desc: Click notification item, expect it's state is playing_state
+     *           Click notification item, expect it's state is pause
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
      */
     it('audioHaptic_AudioHaptic_002', 0, async (done: Function) => {
       Logger.info(TAG, 'audioHaptic_AudioHaptic_002 begin');
@@ -154,10 +169,14 @@ export default function abilityTest() {
       done();
     })
 
-    /**
-     * [AudioHaptic] Click ringtone item
-     * Click ringtone item, expect it's state is playing
-     * Click ringtone item, expect it's state is pause
+    /*
+     * @tc.number: audioHaptic_AudioHaptic_003
+     * @tc.name: Click play ringtone
+     * @tc.desc: Click ringtone item, expect it's state is playing_state
+     *           Click ringtone item, expect it's state is pause
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
      */
     it('audioHaptic_AudioHaptic_003', 0, async (done: Function) => {
       try {
@@ -186,10 +205,14 @@ export default function abilityTest() {
         done();
       })
 
-    /**
-     * [AudioHaptic] Click alarm item
-     * Click alarm item, expect it's state is playing
-     * Click alarm item, expect it's state is pause
+    /*
+     * @tc.number: audioHaptic_AudioHaptic_004
+     * @tc.name: Click alarm ringtone
+     * @tc.desc: Click alarm item, expect it's state is playing_state
+     *           Click alarm item, expect it's state is pause
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
      */
     it('audioHaptic_AudioHaptic_004', 0, async (done: Function) => {
       try {
@@ -218,10 +241,14 @@ export default function abilityTest() {
       done();
     })
 
-    /**
-     * [AudioHaptic] Click audioMute item
-     * Click audioMute item, expect it's state is playing
-     * Click audioMute item, expect it's state is pause
+    /*
+     * @tc.number: audioHaptic_AudioHaptic_005
+     * @tc.name: Click audio Mute
+     * @tc.desc: Click audioMute item, expect it's state is playing_state and audio mute
+     *           Click audioMute item, expect it's state is pause
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
      */
     it('audioHaptic_AudioHaptic_005', 0, async (done: Function) => {
       try {
@@ -249,10 +276,14 @@ export default function abilityTest() {
       done();
     })
 
-    /**
-     * [AudioHaptic] Click hapticMute item
-     * Click hapticMute item, expect it's state is playing
-     * Click hapticMute item, expect it's state is pause
+    /*
+     * @tc.number: audioHaptic_AudioHaptic_006
+     * @tc.name: Click haptic Mute
+     * @tc.desc: Click hapticMute item, expect it's state is playing_state and haptic mute
+     *           Click hapticMute item, expect it's state is pause
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
      */
     it('audioHaptic_AudioHaptic_006', 0, async (done: Function) => {
       try {
