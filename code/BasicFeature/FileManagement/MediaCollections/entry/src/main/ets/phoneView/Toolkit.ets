@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,7 +14,7 @@
  */
 
 import { MediaItem } from '../common/MediaItem'
-import { AVPlayer }  from '../model/AVPlayer'
+import { AVPlayer } from '../model/AVPlayer'
 import { gridData } from '../model/GridData'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import { GridDataItem } from '../phoneView/GridDataItem'
@@ -26,19 +26,23 @@ export struct Toolkit {
   @State leftSliderIndex: number = -1
   @State clickIndex: number = -1
   @State itemData: mediaLibrary.FileAsset = {} as mediaLibrary.FileAsset
+  @State audioText: string = ''
+  @State videoText: string = ''
   @Link myMedia: AVPlayer
   @Link currentTime: number
   @Link isXComponent: boolean
-  @Link audioData: Array<mediaLibrary.FileAsset>
-  @Link videoData: Array<mediaLibrary.FileAsset>
+  @Link audioData: mediaLibrary.FileAsset[]
+  @Link videoData: mediaLibrary.FileAsset[]
   @Link isPlaying: boolean
   @Link surfaceId: number
   @Link fileIndex: number
   @Link fileType: number
   private timer: number = 0
   private scroller: Scroller = new Scroller()
-  private deleteDialogShow: () => void = () => {}
-  private renameDialogShow: () => void = () => {}
+  private deleteDialogShow: () => void = () => {
+  }
+  private renameDialogShow: () => void = () => {
+  }
   private GridData: gridData[] = [
     { icon: $r('app.media.icon_color_music'), textStr: '音频', id: 'music' },
     { icon: $r('app.media.icon_color_video'), textStr: '视频', id: 'video' },
@@ -46,15 +50,16 @@ export struct Toolkit {
     { icon: $r('app.media.icon_color_me'), textStr: '我的', id: 'me' },
   ]
   private context: Context = getContext(this)
-  @State audioText: string = ''
-  @State videoText: string = ''
-  async aboutToAppear(){
+
+  async aboutToAppear() {
     this.audioText = await this.convertResourceToString($r('app.string.phoneMain_audio'))
     this.videoText = await this.convertResourceToString($r('app.string.phoneMain_video'))
   }
-  async convertResourceToString(resource: Resource){
+
+  async convertResourceToString(resource: Resource) {
     return await this.context.resourceManager.getStringValue(resource.id)
   }
+
   build() {
     Flex({ direction: FlexDirection.Column }) {
       Flex({ justifyContent: FlexAlign.SpaceAround }) {

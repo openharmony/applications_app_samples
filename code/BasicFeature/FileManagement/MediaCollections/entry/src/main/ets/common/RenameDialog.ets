@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { promptShowToast } from '../model/Prompt'
 import display from '@ohos.display'
+import { promptShowToast } from '../model/Prompt'
 import { MediaUtiles } from './utils'
 
 @CustomDialog
@@ -24,13 +24,16 @@ export struct RenameDialog {
   @State testUtile: MediaUtiles = new MediaUtiles()
   private suffix: string = ''
   private disPlayType: string = ''
-  private setRename: () => void = () => {}
   private controller: CustomDialogController = {} as CustomDialogController
+  private setRename: () => void = () => {
+  }
+
   async aboutToAppear() {
     this.suffix = this.title.substring(this.title.lastIndexOf('.'))
     let abilityDisplay = await display.getDefaultDisplay()
     this.displayWidth = abilityDisplay.width
   }
+
   build() {
     Column() {
       Text(`${this.disPlayType}`)
@@ -53,22 +56,34 @@ export struct RenameDialog {
         .onChange((value: string) => {
           this.title = value + this.suffix
         })
+
       Text()
         .width(this.displayWidth > 2500 ? 270 : 320)
         .height(1)
         .backgroundColor(this.displayWidth > 2500 ? '#8F8F8F' : '#cccccc')
+
       Row() {
         Button() {
           Text($r('app.string.index_cel')).fontColor(this.displayWidth > 2500 ? '#5291FF' : '#254FF7').fontSize(17)
-        }.layoutWeight(5).backgroundColor(this.displayWidth > 2500 ? '#1C1D1F' : '#FFFFFF').onClick(() => {
+        }
+        .layoutWeight(5)
+        .backgroundColor(this.displayWidth > 2500 ? '#1C1D1F' : '#FFFFFF')
+        .onClick(() => {
           promptShowToast($r('app.string.index_celOk'))
           this.controller.close()
         })
 
-        Text().width(1).height(30).backgroundColor(this.displayWidth > 2500 ? '#8F8F8F' : '#cccccc')
+        Text()
+          .width(1)
+          .height(30)
+          .backgroundColor(this.displayWidth > 2500 ? '#8F8F8F' : '#cccccc')
+        
         Button() {
           Text($r('app.string.index_sure')).fontColor(this.displayWidth > 2500 ? '#5291FF' : '#254FF7').fontSize(17)
-        }.layoutWeight(5).backgroundColor(this.displayWidth > 2500 ? '#1C1D1F' : '#FFFFFF').onClick(() => {
+        }
+        .layoutWeight(5)
+        .backgroundColor(this.displayWidth > 2500 ? '#1C1D1F' : '#FFFFFF')
+        .onClick(() => {
           if (this.title == this.suffix) {
             promptShowToast($r('app.string.renameDialog_inputName'))
             return
@@ -78,7 +93,10 @@ export struct RenameDialog {
           promptShowToast($r('app.string.renameDialog_inputNameOk'))
           this.controller.close()
         })
-      }.justifyContent(FlexAlign.SpaceAround).width('100%').margin({ top: '5%' })
+      }
+      .justifyContent(FlexAlign.SpaceAround)
+      .width('100%')
+      .margin({ top: '5%' })
     }
     .width(this.displayWidth > 2500 ? '26%' : '90%')
     .padding('3%')

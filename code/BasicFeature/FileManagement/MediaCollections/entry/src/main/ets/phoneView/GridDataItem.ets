@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -25,13 +25,16 @@ export struct GridDataItem {
   private context: Context = getContext(this)
   private item: gridData = {} as gridData
   private index: number = -1
-  @State videoText:string = ''
+  @State videoText: string = ''
+
   async aboutToAppear() {
     this.videoText = await this.convertResourceToString($r('app.string.phoneMain_video'))
   }
-  async convertResourceToString(resource: Resource){
+
+  async convertResourceToString(resource: Resource) {
     return await this.context.resourceManager.getStringValue(resource.id)
   }
+
   clickSetBgrColor() {
     if (this.index !== this.clickIndex) {
       this.bgrColor = '#222324'
@@ -63,7 +66,7 @@ export struct GridDataItem {
       this.clickIndex = this.index
       this.isBom = !this.isBom
       this.isTitle = this.item.textStr
-      if (this.isTitle == this.videoText ) {
+      if (this.isTitle == this.videoText) {
         this.isXComponent = true
       }
     })

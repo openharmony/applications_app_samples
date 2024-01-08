@@ -41,8 +41,12 @@
       "value": "phoneMain_videoTitle"
     },
     {
-      "name": "record_video",
-      "value": "record_video"
+      "name": "homePage_online",
+      "value": "homePage_online"
+    },
+    {
+      "name": "homePage_offline",
+      "value": "homePage_offline"
     }
   ]
 }

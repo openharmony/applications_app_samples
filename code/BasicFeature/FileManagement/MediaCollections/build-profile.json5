@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,12 +16,18 @@
 {
   "app": {
     "signingConfigs": [],
-    "compileSdkVersion": 9,
-    "compatibleSdkVersion": 9,
     "products": [
       {
         "name": "default",
         "signingConfig": "default",
+        //指定OpenHarmony应用/服务编译时的版本
+        "compileSdkVersion": 10,
+        //指定OpenHarmony应用/服务兼容的最低版本。版本号需改为10，注意使用英文.和()
+        "compatibleSdkVersion": 10,
+        //指定OpenHarmony应用/服务目标版本。若没有设置，默认为compatibleSdkVersion
+        "targetSdkVersion": 10,
+        //指定为OpenHarmony
+        "runtimeOS": "OpenHarmony"
       }
     ]
   },

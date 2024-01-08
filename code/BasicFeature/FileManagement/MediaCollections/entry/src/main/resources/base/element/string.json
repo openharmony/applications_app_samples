@@ -215,6 +215,22 @@
     {
       "name": "toolKit_speed",
       "value": "倍速"
+    },
+    {
+      "name": "homePage_online",
+      "value": "drm在线播放"
+    },
+    {
+      "name": "homePage_offline",
+      "value": "离线"
+    },
+    {
+      "name": "onlinePlayerView_bitrate",
+      "value": "码率"
+    },
+    {
+      "name": "onlinePlayerView_speed",
+      "value": "倍速"
     }
   ]
 }

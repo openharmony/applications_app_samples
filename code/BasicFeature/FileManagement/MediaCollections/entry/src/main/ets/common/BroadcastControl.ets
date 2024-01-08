@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -19,9 +19,10 @@ import { AVPlayer } from '../model/AVPlayer'
 import { getTimeString } from '../model/TimeTools'
 import { isInformationDialog } from '../common/IsInformationDialog'
 import Logger from '../model/Logger'
-let audioManager = audio.getAudioManager()
 
+let audioManager = audio.getAudioManager()
 const TAG: string = 'AVPlayerSample'
+
 @Component
 export struct BroadcastControl {
   @Link isLoop: boolean
@@ -38,12 +39,13 @@ export struct BroadcastControl {
   @State mediaVolumeValue: number = -1
   @State isInformation: boolean = false
   @State isInformationObj: mediaLibrary.FileAsset = {} as mediaLibrary.FileAsset
+  @State selectText: string = ''
   private timerOut: number = 0
   private scroller: Scroller = new Scroller()
   private mXComponentController: XComponentController = {} as XComponentController
   private dialogController: CustomDialogController = {} as CustomDialogController
   private context: Context = getContext(this)
-  @State selectText: string = ''
+
   clearVideoPlayer() {
     this.currentTime = 0
     this.myMedia.stop()
@@ -65,9 +67,11 @@ export struct BroadcastControl {
       this.currentTime = time
     })
   }
-  async convertResourceToString(resource: Resource){
+
+  async convertResourceToString(resource: Resource) {
     return await this.context.resourceManager.getString(resource.id)
   }
+
   build() {
     Stack({ alignContent: Alignment.Center }) {
       if (this.isShowMenu) {
@@ -107,7 +111,8 @@ export struct BroadcastControl {
               .fontWeight(500)
               .opacity(0.6)
           }
-          .width('98%').height(25)
+          .width('98%')
+          .height(25)
 
           Flex({
             justifyContent: FlexAlign.SpaceBetween,
@@ -182,7 +187,7 @@ export struct BroadcastControl {
                   if (this.isInformation) {
                     if (this.myMedia.getResourceAddress()) {
                       this.dialogController = new CustomDialogController({
-                        builder: isInformationDialog({ myMedia: $myMedia , context: this.context }),
+                        builder: isInformationDialog({ myMedia: $myMedia, context: this.context }),
                         autoCancel: true,
                         cancel: () => {
                           this.myMedia.getPlay()
