@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,59 +14,48 @@
  */
 
 import UIAbility from '@ohos.app.ability.UIAbility';
-import display from '@ohos.display';
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 import type { Permissions } from '@ohos.abilityAccessCtrl';
+import Logger from '../model/Logger';
+
+const TAG: string = 'MainAbility';
 
 export default class MainAbility extends UIAbility {
   async onCreate(want, launchParam) {
-    console.log('[Demo] MainAbility onCreate');
+    Logger.info(TAG, '[Demo] MainAbility onCreate');
   }
 
   onDestroy() {
-    console.log('[Demo] MainAbility onDestroy');
+    Logger.info(TAG, '[Demo] MainAbility onDestroy');
   }
 
   async onWindowStageCreate(windowStage) {
-    console.log('[Demo] MainAbility onWindowStageCreate');
+    Logger.info(TAG, '[Demo] MainAbility onWindowStageCreate');
     let context = this.context;
-    let permissionNames: Array<Permissions> = ['ohos.permission.MEDIA_LOCATION', 'ohos.permission.READ_MEDIA',
+    let permissionNames: Permissions[] = ['ohos.permission.MEDIA_LOCATION', 'ohos.permission.READ_MEDIA',
       'ohos.permission.WRITE_MEDIA'];
     let atManager = abilityAccessCtrl.createAtManager();
     await atManager.requestPermissionsFromUser(context, permissionNames).then((data) => {
-      console.info('getPermission success');
+      Logger.info(TAG, 'getPermission success');
     });
-    let abilityDisplay = display.getDefaultDisplaySync();
-    let abilityDisplayWidth = abilityDisplay.width;
-    const displayWidth: number = 2500;
-    if (abilityDisplayWidth > displayWidth) {
-      windowStage.loadContent('pages/index', (err, data) => {
-        if (err.code) {
-          console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-          return;
-        }
-        console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
-      });
-    } else {
-      windowStage.loadContent('pages/phoneMain', (err, data) => {
-        if (err.code) {
-          console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-          return;
-        }
-        console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
-      });
-    }
+    windowStage.loadContent('pages/HomePage', (err, data) => {
+      if (err.code) {
+        Logger.info(TAG, 'Failed to load the content. Cause:' + JSON.stringify(err));
+        return;
+      }
+      Logger.info(TAG, 'Succeeded in loading the content. index: ' + JSON.stringify(data));
+    });
   }
 
   onWindowStageDestroy() {
-    console.log('[Demo] MainAbility onWindowStageDestroy');
+    Logger.info(TAG, '[Demo] MainAbility onWindowStageDestroy');
   }
 
   onForeground() {
-    console.log('[Demo] MainAbility onForeground');
+    Logger.info(TAG, '[Demo] MainAbility onForeground');
   }
 
   onBackground() {
-    console.log('[Demo] MainAbility onBackground');
+    Logger.info(TAG, '[Demo] MainAbility onBackground');
   }
 }

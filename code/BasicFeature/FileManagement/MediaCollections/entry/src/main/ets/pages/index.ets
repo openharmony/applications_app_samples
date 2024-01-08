@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,20 +14,18 @@
  */
 
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
-
 import Logger from '../model/Logger'
-import { AVPlayer }  from '../model/AVPlayer'
+import { AVPlayer } from '../model/AVPlayer'
 import MediaUtils from '../model/MediaUtils'
 import { promptShowToast } from '../model/Prompt'
-
-import { mainDialog } from '../common/mainDialog'
-import { RenameDialog } from '../common/RenameDialog'
 import { DeleteDialog } from '../common/DeleteDialog'
+import { RenameDialog } from '../common/RenameDialog'
 import { TitleBar } from '../common/TitleBar'
-import { BroadcastControl } from '../common/BroadcastControl'
 import { Toolkit } from '../common/Toolkit'
+import { BroadcastControl } from '../common/BroadcastControl'
 import { StreamingMedia } from '../common/StreamingMedia'
 import { MediaUtiles } from '../common/utils'
+import { mainDialog } from '../common/mainDialog'
 
 const TAG: string = 'IndexMain'
 
@@ -51,8 +49,8 @@ struct Index {
   @State fileIndex: number = 0
   @State fileType: number = 0
   @State itemDate: mediaLibrary.FileAsset = {} as mediaLibrary.FileAsset
-  @State audioData: Array<mediaLibrary.FileAsset> = []
-  @State videoData: Array<mediaLibrary.FileAsset> = []
+  @State audioData: mediaLibrary.FileAsset[] = []
+  @State videoData: mediaLibrary.FileAsset[] = []
   @State @Watch('onChangeLoop') isLoop: boolean = false
   @State @Watch('onChangePlay') isPlaying: boolean = false
   @State streamBackgroundColor: string = '#99B9F8'
@@ -78,9 +76,11 @@ struct Index {
       this.isPlaying = !this.isPlaying
     })
   }
-  async convertResourceToString(resource: Resource){
+
+  async convertResourceToString(resource: Resource) {
     return await this.context.resourceManager.getString(resource.id)
   }
+
   onPageShow() {
     MediaUtils.onDateChange(this.getAudioData, this.getVideoData)
   }
@@ -122,7 +122,6 @@ struct Index {
     this.myMedia.setIsLoopCallBack(this.isLoop)
   }
 
-
   async renameDialogShow(): Promise<void> {
     this.fillIndex = this.fileIndex
     this.fillMediaType = this.fileType
@@ -150,14 +149,13 @@ struct Index {
     this.renameDialogController.open()
   }
 
-
   setRename(): void {
     this.newName = this.testUtile.getName()
     if (this.fillMediaType == mediaLibrary.MediaType.AUDIO) {
       this.audioData[this.fileIndex].displayName = this.newName
       this.audioData[this.fileIndex].commitModify((err) => {
         if (err !== undefined) {
-          console.info(`commitModify, err: ${err}`)
+          Logger.info(TAG, `commitModify, err: ${err}`)
           promptShowToast($r('app.string.phoneMain_legitimateStr'))
           return
         }
@@ -168,7 +166,7 @@ struct Index {
       this.videoData[this.fileIndex].displayName = this.newName
       this.videoData[this.fileIndex].commitModify((err) => {
         if (err !== undefined) {
-          console.info(`commitModify, err: ${err}`)
+          Logger.info(TAG, `commitModify, err: ${err}`)
           promptShowToast($r('app.string.phoneMain_legitimateStr'))
           return
         }
@@ -179,7 +177,7 @@ struct Index {
   }
 
   deleteDialogShow(): void {
-    let mediaData: Array<mediaLibrary.FileAsset> = []
+    let mediaData: mediaLibrary.FileAsset[] = []
     if (this.fileType == mediaLibrary.MediaType.AUDIO) {
       mediaData = this.audioData
     } else {
@@ -234,13 +232,13 @@ struct Index {
           isShowMenu: $isShowMenu,
           currentTime: $currentTime,
           isXComponent: $isXComponent,
-          context:this.context,
+          context: this.context,
           mXComponentController: this.mXComponentController
         })
         Toolkit({
           myMedia: $myMedia,
           itemData: $itemDate,
-          context:this.context,
+          context: this.context,
           audioData: $audioData,
           videoData: $videoData,
           isSurface: $isSurface,

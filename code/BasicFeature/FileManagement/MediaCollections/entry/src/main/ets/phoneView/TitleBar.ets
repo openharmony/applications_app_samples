@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,14 +14,14 @@
  */
 
 import { LoadingDialog } from '../phoneView/LoadingDialog'
-import { AVPlayer }  from '../model/AVPlayer'
+import { AVPlayer } from '../model/AVPlayer'
 import Logger from '../model/Logger'
 
 const TAG = 'InputDialog: '
-const TITLE_HTTP: string= 'http'
-const TITLE_HTTPS: string= 'https'
-const TITLE_DATA: string= 'dataSource'
-const TITLE_FILE: string= 'file'
+const TITLE_HTTP: string = 'http'
+const TITLE_HTTPS: string = 'https'
+const TITLE_DATA: string = 'dataSource'
+const TITLE_FILE: string = 'file'
 
 @Component
 export struct TitleBar {
@@ -40,7 +40,6 @@ export struct TitleBar {
     alignment: DialogAlignment.Center,
     customStyle: true
   })
-
 
   build() {
     Row() {

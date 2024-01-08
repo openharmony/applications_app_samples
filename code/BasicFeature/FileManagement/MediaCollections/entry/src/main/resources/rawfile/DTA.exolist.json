@@ -1,0 +1,471 @@
+[
+  {
+    "name": "DTA 264 HLS",
+    "samples": [
+      {
+        "name": "ChinaDRMLab-264-30-480P-2000K-TS-SM4C",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense"
+      },
+      {
+        "name": "ChinaDRMLab-264-30-720P-5000K-TS-SM4C",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-720P-5000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense"
+      },
+      {
+        "name": "ChinaDRMLab-264-30-1080P-10000K-Clear HLS",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-1080P-10000K-Clear/index.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense"
+      },
+      {
+        "name": "ChinaDRMLab-264-30-1080P-10000K-TS-CBC1",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-1080P-10000K-TS-CBC1/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense"
+      },
+      {
+        "name": "ChinaDRMLab-264-30-1080P-10000K-TS-SM4C",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-1080P-10000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense"
+      },
+      {
+        "name": "ChinaDRMLab-264-30-1080P-10000K-TS-SM4S",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-1080P-10000K-TS-SM4S/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense"
+      },
+      {
+        "name": "错误license地址",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-1080P-10000K-TS-SM4S/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8081/drmproxy/v3/getLicense"
+      },
+      {
+        "name": "H265 HLS clear",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/LaunchEvent/DASH_MP4_H265_clear/hls.m3u8"
+      }
+    ]
+  },
+  {
+    "name": "wiseplay policy test (OBS桶片源+DTAlicense)",
+    "samples": [
+      {
+        "name": "test-nocontent security level 1 no HDCP",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policy111101ibL"
+      },
+      {
+        "name": "test-ChinaDRMLab-264-30-480P-2000K-TS-SM4C",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense"
+      },
+      {
+        "name": "security level 1 no HDCP",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest01ibL"
+      },
+      {
+        "name": "security level 2 no HDCP",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest02ibL"
+      },
+      {
+        "name": "security level 3 no HDCP",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest03ibL"
+      },
+      {
+        "name": "security level 0",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest04ibL"
+      },
+      {
+        "name": "without security level",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest05ibL"
+      },
+      {
+        "name": "NONPERSISTENT",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest06ibL"
+      },
+      {
+        "name": "without PERSISTENT",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest13ibL"
+      },
+      {
+        "name": "wrong PERSISTENT",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest06ib1"
+      },
+      {
+        "name": "playbackduration 70",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest07ibL"
+      },
+      {
+        "name": "rentalduration 80",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest08ibL"
+      },
+      {
+        "name": "playbackduration 100 rentalduration 70",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytestpribL"
+      },
+      {
+        "name": "playbackduration 70 rentalduration 100",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytestrpibL"
+      },
+      {
+        "name": "playbackduration 700000 rentalduration 800000",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest25ibL"
+      },
+      {
+        "name": "playbackduration 4294967296",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest07ib1"
+      },
+      {
+        "name": "playbackduration -1",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest07ib2"
+      },
+      {
+        "name": "playbackduration 0",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest07ib3"
+      },
+      {
+        "name": "playbackduration 4294967295",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest07ib4"
+      },
+      {
+        "name": "playbackduration 4294967294",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest07ib5"
+      },
+      {
+        "name": "playbackduration 1",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest07ib6"
+      },
+      {
+        "name": "rentalDuration 4294967296",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest08ib1"
+      },
+      {
+        "name": "rentalDuration -1",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest08ib2"
+      },
+      {
+        "name": "rentalDuration 0",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest08ib3"
+      },
+      {
+        "name": "rentalDuration 4294967295",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest08ib4"
+      },
+      {
+        "name": "rentalDuration 4294967294",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest08ib5"
+      },
+      {
+        "name": "rentalDuration 1",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest08ib6"
+      },
+      {
+        "name": "start endtime 0",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest091bL"
+      },
+      {
+        "name": "start 2003-11-22 09:33:25 endtime 0",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest092bL"
+      },
+      {
+        "name": "start 0 endtime 2030-11-22 09:33:25",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest093bL"
+      },
+      {
+        "name": "starttime 20200720 endtime 20300122",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest10ibL"
+      },
+      {
+        "name": "未开始",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest11ibL"
+      },
+      {
+        "name": "已失效",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest12ibL"
+      },
+      {
+        "name": "canrenew false",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest14ibL"
+      },
+      {
+        "name": "without canrenew",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest17ibL"
+      },
+      {
+        "name": "no renewdelayseconds",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest151bL"
+      },
+      {
+        "name": "renew every 20s",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest15ibL"
+      },
+      {
+        "name": "retry every 15s",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest16ibL"
+      },
+      {
+        "name": "renew every 20s 15s",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest15ib1"
+      },
+      {
+        "name": "renew every 15s wrong key",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest31ibL"
+      },
+      {
+        "name": "no renewurl",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest26ibL"
+      },
+      {
+        "name": "endtime is earlier than starttime没配置，后续和产线的一起测",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest24ibL"
+      },
+      {
+        "name": "Expired during playback需要测试时配置",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest25ibL"
+      },
+      {
+        "name": "Audio only暂无调通片源",
+        "uri": "http://10.33.105.159:8080/rem/yqd/yinpin/yinpin_dash.mpd",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=audioonlyefmABc"
+      },
+      {
+        "name": "多分辨率SL SD1 HD2 UHD3",
+        "uri": "http://10.33.105.159:8080/rem/LaunchEvent/DASH_MP4_H265_SD&HD/dash.mpd",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest23ibL"
+      },
+      {
+        "name": "多分辨率SL SD1 HD2 UHD3",
+        "uri": "http://10.33.105.159:8080/rem/LaunchEvent/DASH_MP4_H265_SD&HD/dash.mpd",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest233bL"
+      },
+      {
+        "name": "多分辨率HDCP SD1 HD2 UHD3 SL2",
+        "uri": "http://10.33.105.159:8080/rem/LaunchEvent/DASH_MP4_H265_SD&HD/dash.mpd",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policytest22ibL"
+      },
+      {
+        "name": "no HDCP",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policyhdcpnoibL"
+      },
+      {
+        "name": "HDCP 0 HW EH",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policyhdcp00ibL"
+      },
+      {
+        "name": "HDCP 1 HW EH",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policyhdcp01ibL"
+      },
+      {
+        "name": "HDCP 2 HW EH",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policyhdcp02ibL"
+      },
+      {
+        "name": "HDCP 3 HW EH",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policyhdcp03ibL"
+      },
+      {
+        "name": "HDCP 0 SW",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policyhdcp00sbL"
+      },
+      {
+        "name": "HDCP 1 SW",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policyhdcp01sbL"
+      },
+      {
+        "name": "HDCP 2 SW",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policyhdcp02sbL"
+      },
+      {
+        "name": "HDCP 3 SW",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense?contentId=policyhdcp03sbL"
+      }
+    ]
+  },
+  {
+    "name": "DTA HLS+TS 264 new",
+    "samples": [
+      {
+        "name": "sm4c ChinaDRMLab_Promo_210525-264-30-1080P-10000K",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/SM_xin/h264-sm4c-hls/ChinaDRMLab_Promo_210525-264-30-1080P-10000K/sm4c.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense"
+      },
+      {
+        "name": "sm4c ChinaDRMLab_Promo_210525-264-30-720P-5000K",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/SM_xin/h264-sm4c-hls/ChinaDRMLab_Promo_210525-264-30-720P-5000K/sm4c.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense"
+      },
+      {
+        "name": "sm4c ChinaDRMLab_Promo_210525-264-30-480P-2000K",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/SM_xin/h264-sm4c-hls/ChinaDRMLab_Promo_210525-264-30-480P-2000K/sm4c.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense"
+      },
+      {
+        "name": "sm4r ChinaDRMLab_Promo_210525-264-30-1080P-10000K",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/SM_xin/h264-sm4r-hls/ChinaDRMLab_Promo_210525-264-30-1080P-10000K/sm4r.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense"
+      },
+      {
+        "name": "sm4r ChinaDRMLab_Promo_210525-264-30-720P-5000K",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/SM_xin/h264-sm4r-hls/ChinaDRMLab_Promo_210525-264-30-720P-5000K/sm4r.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense"
+      },
+      {
+        "name": "sm4r ChinaDRMLab_Promo_210525-264-30-480P-2000K",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/SM_xin/h264-sm4r-hls/ChinaDRMLab_Promo_210525-264-30-480P-2000K/sm4r.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense"
+      },
+      {
+        "name": "sm4s ChinaDRMLab_Promo_210525-264-30-1080P-10000K",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/SM_xin/h264-sm4s-hls/ChinaDRMLab_Promo_210525-264-30-1080P-10000K/sm4s.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense"
+      },
+      {
+        "name": "sm4s ChinaDRMLab_Promo_210525-264-30-720P-5000K",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/SM_xin/h264-sm4s-hls/ChinaDRMLab_Promo_210525-264-30-480P-2000K/sm4s.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense"
+      },
+      {
+        "name": "sm4s ChinaDRMLab_Promo_210525-264-30-480P-2000K",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/SM_xin/h264-sm4s-hls/ChinaDRMLab_Promo_210525-264-30-480P-2000K/sm4s.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense"
+      },
+      {
+        "name": "sm4t ChinaDRMLab_Promo_210525-264-30-1080P-10000K",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/SM_xin/h264-sm4t-hls/ChinaDRMLab_Promo_210525-264-30-1080P-10000K/sm4t.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense"
+      },
+      {
+        "name": "sm4t ChinaDRMLab_Promo_210525-264-30-720P-5000K",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/SM_xin/h264-sm4t-hls/ChinaDRMLab_Promo_210525-264-30-720P-5000K/sm4t.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense"
+      },
+      {
+        "name": "sm4t ChinaDRMLab_Promo_210525-264-30-480P-2000K",
+        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/SM_xin/h264-sm4t-hls/ChinaDRMLab_Promo_210525-264-30-480P-2000K/sm4t.m3u8",
+        "drm_scheme": "chinadrm",
+        "drm_license_url": "http://120.46.155.105:8080/drmproxy/v3/getLicense"
+      }
+    ]
+  }
+]

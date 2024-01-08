@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -23,16 +23,19 @@ const TAG: string = 'MediaItem:'
 
 @Component
 export struct MediaItem {
+  @Link fileIndex: number
+  @Link fileType: number
+  @Link @Watch('leftSliderChange') leftSliderIndex: number
   @State translateLeft: number = 0
   @State translateRight: number = TRANSLATE
   @State pixelMap: iaImage.PixelMap = {} as iaImage.PixelMap
   @State mediaItem: mediaLibrary.FileAsset = {} as mediaLibrary.FileAsset
-  @Link @Watch('leftSliderChange') leftSliderIndex: number
   private index: number = -1
-  private deleteDialogShow: () => void = () => {}
-  private renameDialogShow: () => void = () => {}
-  @Link fileIndex: number
-  @Link fileType: number
+  private deleteDialogShow: () => void = () => {
+  }
+  private renameDialogShow: () => void = () => {
+  }
+
   leftSliderChange() {
     animateTo({ duration: 500, curve: Curve.Linear }, () => {
       if (this.index !== this.leftSliderIndex) {
@@ -172,24 +175,24 @@ export struct MediaItem {
     .width('120%')
     .translate({ x: this.translateLeft, y: 0 })
     .priorityGesture(
-    GestureGroup(
-      GestureMode.Parallel,
-    PanGesture({
-      fingers: 1,
-      direction: PanDirection.Right,
-      distance: 20
-    })
-      .onActionEnd(() => {
-        this.leftSliderIndex = -1
-      }),
-    PanGesture({
-      fingers: 1,
-      direction: PanDirection.Left,
-      distance: 20
-    })
-      .onActionEnd(() => {
-        this.leftSliderIndex = this.index
-      }))
+      GestureGroup(
+        GestureMode.Parallel,
+        PanGesture({
+          fingers: 1,
+          direction: PanDirection.Right,
+          distance: 20
+        })
+          .onActionEnd(() => {
+            this.leftSliderIndex = -1
+          }),
+        PanGesture({
+          fingers: 1,
+          direction: PanDirection.Left,
+          distance: 20
+        })
+          .onActionEnd(() => {
+            this.leftSliderIndex = this.index
+          }))
     )
   }
 }

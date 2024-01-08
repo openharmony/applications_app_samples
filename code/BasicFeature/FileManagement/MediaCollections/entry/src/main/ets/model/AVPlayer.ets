@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,13 +14,14 @@
  */
 
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
+import { BusinessError } from '@ohos.base'
 import media from '@ohos.multimedia.media'
-import Logger from '../model/Logger'
 import audio from '@ohos.multimedia.audio'
 import common from '@ohos.app.ability.common'
-import fileio from '@ohos.fileio'
+import Logger from '../model/Logger'
+import DrmController, { drmInfo } from './DrmController'
 
-const TAG = 'AVPlayerSample:'
+const TAG = 'AVPlayer'
 
 export class AVPlayer {
   resourceAddress: mediaLibrary.FileAsset = {} as mediaLibrary.FileAsset
@@ -28,29 +29,41 @@ export class AVPlayer {
   totalDuration: number = 0
   format: string = ''
   mediaType: number = 0
+  ratio: number = 1.0
+  isProgressMoving: boolean = false
+  isLoading: boolean = false
   private media: media.AVPlayer = {} as media.AVPlayer
   private surfaceId: string = ''
   private isLoop: boolean = true
-  private audioData: Array<mediaLibrary.FileAsset> = []
-  private videoData: Array<mediaLibrary.FileAsset> = []
+  private audioData: mediaLibrary.FileAsset[] = []
+  private videoData: mediaLibrary.FileAsset[] = []
   private fileIndex: number = 0
   private mediaDataLen: number = 0
-  private isVideo:boolean = true
-  private isHttp:boolean = false
-  private callbackComplete: () => void = () => {}
-  private callbackTimeUpdate: (nol: number) => void = (nol: number) => {}
-  private fd:number = 0
+  private isVideo: boolean = true
+  private isHttp: boolean = false
+  private callbackComplete: () => void = () => {
+  }
+  private callbackTimeUpdate: (nol: number) => void = (nol: number) => {
+  }
+  private callbackBitrateUpdate: (bitrateList: number[]) => void = (bitrateList: number[]) => {
+  }
+  private callbackErrorUpdate: (error: string) => void = (error: string) => {
+  }
+  private fd: number = 0
   private fileDescriptor: media.AVFileDescriptor = {} as media.AVFileDescriptor
-  private fileSize: number = -1
   private isCreate: boolean = false
-  ratio: number = 1.0
   private context: Context = getContext(this) as common.UIAbilityContext
+  // drm variable
+  private drmController: DrmController = new DrmController()
+  private drmUrl: string = ''
+  private drmLicenseUrl: string = ''
+  private drmInfoFirstUpdate: boolean = false
 
-  getAudioData(audioData: Array<mediaLibrary.FileAsset>) {
+  getAudioData(audioData: mediaLibrary.FileAsset[]) {
     this.audioData = audioData
   }
 
-  getVideoData(videoData: Array<mediaLibrary.FileAsset>) {
+  getVideoData(videoData: mediaLibrary.FileAsset[]) {
     this.videoData = videoData
   }
 
@@ -60,6 +73,14 @@ export class AVPlayer {
 
   setTimeUpdateCallback(func: (nol: number) => void) {
     this.callbackTimeUpdate = func
+  }
+
+  setBitrateUpdateCallback(func: (bitrateList: number[]) => void) {
+    this.callbackBitrateUpdate = func
+  }
+
+  setErrorCallback(func: (error: string) => void) {
+    this.callbackErrorUpdate = func
   }
 
   async prev(surfaceId: string) {
@@ -102,19 +123,19 @@ export class AVPlayer {
     }
   }
 
-  async playNext(fileAsset:mediaLibrary.FileAsset) {
+  async playNext(fileAsset: mediaLibrary.FileAsset) {
     this.resourceAddress = fileAsset
     this.fileName = fileAsset.displayName
     this.totalDuration = fileAsset.duration
     this.fd = await this.resourceAddress.open('r')
     if (this.getPlayStatus() === 'idle') {
-      this.media.url = 'fd://' + this.fd
+      this.media.url = `fd://${this.fd}`
     } else {
       Logger.info(TAG, 'this state is noe idle')
     }
   }
 
-  getFileIndex(data: Array<mediaLibrary.FileAsset>) {
+  getFileIndex(data: mediaLibrary.FileAsset[]) {
     data.forEach((file: mediaLibrary.FileAsset, index: number) => {
       if (file.id === this.resourceAddress.id) {
         this.fileIndex = index
@@ -124,6 +145,20 @@ export class AVPlayer {
 
   getResourceAddress() {
     return this.resourceAddress
+  }
+
+  async drmInit(surfaceId: string, drmTitle: string, drmUrl: string, drmLicenseUrl: string) {
+    this.isHttp = true
+    this.surfaceId = surfaceId.toString()
+    await this.release()
+    this.media = await media.createAVPlayer()
+    this.isCreate = true
+    this.setSourceInfo()
+    this.setStateChangeCallback()
+    this.media.url = drmUrl
+    this.drmUrl = drmUrl
+    this.drmLicenseUrl = drmLicenseUrl
+    this.fileName = drmTitle
   }
 
   async httpInit(url: string, surfaceId?: string) {
@@ -140,10 +175,10 @@ export class AVPlayer {
     this.media.url = url
   }
 
-  async openFileDescriptor(name:string): Promise<media.AVFileDescriptor> {
-    let fileDescriptor : media.AVFileDescriptor
+  async openFileDescriptor(name: string): Promise<media.AVFileDescriptor> {
+    let fileDescriptor: media.AVFileDescriptor
     let rawFileDes = await this.context.resourceManager.getRawFd(name)
-    fileDescriptor = {fd: rawFileDes.fd, offset: rawFileDes.offset, length: rawFileDes.length}
+    fileDescriptor = { fd: rawFileDes.fd, offset: rawFileDes.offset, length: rawFileDes.length }
     Logger.info(TAG, 'getRawFileDescriptor success fileName: ' + name)
     Logger.info(TAG, 'getRawFileDescriptor success fd: ' + fileDescriptor.fd)
     Logger.info(TAG, 'getRawFileDescriptor success offset: ' + fileDescriptor.offset)
@@ -151,7 +186,7 @@ export class AVPlayer {
     return fileDescriptor
   }
 
-  async fdSrcInit(url:string, surfaceId?: string) : Promise<void> {
+  async fdSrcInit(url: string, surfaceId?: string): Promise<void> {
     Logger.info(TAG, 'play fdSrc,source is:' + url)
     this.isHttp = false
     this.isVideo = false
@@ -207,13 +242,13 @@ export class AVPlayer {
       this.setStateChangeCallback()
       this.ratio = this.resourceAddress.width / this.resourceAddress.height
       Logger.info(TAG, `VIDEO success this.ratio` + this.ratio)
-      this.media.url = 'fd://' + this.fd
+      this.media.url = `fd://${this.fd}`
     })
   }
 
   // 获取轨道信息接口
   async getTrackDescription(): Promise<void> {
-    await this.media.getTrackDescription().then((arrayList: Array<media.MediaDescription>) => {
+    await this.media.getTrackDescription().then((arrayList: media.MediaDescription[]) => {
       for (let i = 0; i < arrayList.length; i++) {
         for (let j = 0; j < arrayList[i].length; j++) {
           let property = arrayList[i][j]
@@ -227,6 +262,11 @@ export class AVPlayer {
 
   // 视频信息上报函数
   async setSourceInfo(): Promise<void> {
+    // drmInfo 更新回调
+    this.media.on('drmInfoUpdate', (drmInfo: Object[]) => {
+      const drmInfoArr: drmInfo[] = drmInfo as drmInfo[]
+      this.drmPlayProcess(drmInfoArr)
+    })
     // 时间上报函数
     this.media.on('timeUpdate', (time: number) => {
       Logger.info(TAG, 'timeUpdate called: time is :' + time)
@@ -275,12 +315,14 @@ export class AVPlayer {
       Logger.info(TAG, 'audioInterrupt success,and InterruptEvent info is:' + JSON.stringify(info))
     })
     // HLS上报所有支持的比特率
-    this.media.on('availableBitrates', (bitrates: Array<number>) => {
+    this.media.on('availableBitrates', (bitrates: number[]) => {
       Logger.info(TAG, 'availableBitrates success,and availableBitrates length is:' + bitrates.length)
+      this.callbackBitrateUpdate(bitrates)
     })
     // 设置错误监听
-    this.media.on('error', (error) => {
+    this.media.on('error', (error: BusinessError) => {
       Logger.error(TAG, 'error happened,message is :' + error.message)
+      this.callbackErrorUpdate('Error ' + error.code + ' - ' + error.message)
       // 当error上报时自动播放下一个视频或者音频
       this.next(this.surfaceId)
     })
@@ -292,28 +334,28 @@ export class AVPlayer {
       Logger.info(TAG, 'stateChange callback function is triggered,state is:' + state + ',reason is :' + reason)
       switch (state) {
         case 'idle':
+          this.release()
           Logger.info(TAG, 'state idle called')
           break
         case 'initialized':
+          this.isLoading = true
           Logger.info(TAG, 'state initialized called')
           this.setSurfaceID()
           this.media.prepare()
           break
         case 'prepared':
           Logger.info(TAG, 'state prepared called')
-          if (this.isHttp) {
-            this.totalDuration = this.media.duration
-            this.fileName = 'Http'
-          }
-          // 获取轨道信息并打印
+          this.isLoading = true
+        // 获取轨道信息并打印
           this.getTrackDescription()
-          // 设置焦点上报类型
+        // 设置焦点上报类型
           this.totalDuration = this.media.duration
           this.media.audioInterruptMode = audio.InterruptMode.INDEPENDENT_MODE
           this.getPlay()
           break
         case 'playing':
           Logger.info(TAG, 'state playing called')
+          this.isLoading = false
           break
         case 'paused':
           Logger.info(TAG, 'state paused called')
@@ -327,6 +369,8 @@ export class AVPlayer {
           break
         case 'released':
           Logger.info(TAG, 'state released called')
+          this.isLoading = false
+          this.drmController.releaseDrm()
           break
         case 'error':
           Logger.info(TAG, 'state error called')
@@ -346,7 +390,7 @@ export class AVPlayer {
     return this.media.state
   }
 
-  setSurfaceID():void {
+  setSurfaceID(): void {
     if (this.isVideo) {
       Logger.info(TAG, 'play video: surfaceID is:' + this.surfaceId)
       this.media.surfaceId = this.surfaceId
@@ -366,7 +410,6 @@ export class AVPlayer {
 
   getPlay() {
     if (this.isCreate) {
-      Logger.info(TAG, `getPlay success`)
       this.media.play()
     }
   }
@@ -403,6 +446,12 @@ export class AVPlayer {
     return 0
   }
 
+  setBitrate(bitrate: number) {
+    if (this.isCreate) {
+      this.media.setBitrate(bitrate)
+    }
+  }
+
   setSpeed(speed: number) {
     if (this.isCreate) {
       this.media.setSpeed(speed)
@@ -411,11 +460,52 @@ export class AVPlayer {
 
   async seek(time: number) {
     if (this.isCreate) {
-      await this.media.seek(time)
+      Logger.info(TAG, 'seek time is ' + time)
+      this.media.seek(time)
     }
   }
 
   getFormat() {
     return this.resourceAddress.mimeType
+  }
+
+  /**
+   * DRM播放流程启动
+   * @param drmInfoArr
+   */
+  async drmPlayProcess(drmInfoArr: drmInfo[]) {
+    if (this.drmInfoFirstUpdate === false) {
+      this.drmInfoFirstUpdate = true
+      Logger.info(TAG, 'player has received drmInfo signal: ' + JSON.stringify(drmInfoArr))
+
+      // --- 1 --- 判断系统是否支持drm能力
+      let isSupported = this.drmController.isDrmSupported()
+      if (!isSupported) {
+        Logger.error(TAG, 'The system does not support the DRM.')
+        return
+      }
+      Logger.info(TAG, 'The system supports the DRM.')
+
+      // --- 2 --- 创建drm实例及会话
+      this.drmController.createDrmSystem()
+
+      // --- 3 --- 生成license请求；发送license到云端获取响应，将响应交给底层
+      let isSuccess: boolean = await this.drmController.executeLicenseProcess(this.drmUrl, this.drmLicenseUrl, drmInfoArr, AppStorage.get('licenseType'))
+      if (!isSuccess) {
+        this.release()
+        return
+      }
+
+      // --- 4 --- 设置加密配置
+      this.drmController.bindInstance(this.media)
+    }
+  }
+
+  /**
+   * 删除离线license
+   * @param drmUrl
+   */
+  deleteOfflineLicense(drmUrl: string) {
+    this.drmController.deleteOfflineLicense(drmUrl)
   }
 }

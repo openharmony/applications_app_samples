@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,15 +15,18 @@
 
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 import UIAbility from '@ohos.app.ability.UIAbility'
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import window from '@ohos.window'
 import { Hypium } from '@ohos/hypium'
 import testsuite from '../test/List.test'
 import Logger from '../utils/Logger'
 
 export default class TestAbility extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     Logger.info('TestAbility onCreate')
-    let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-    let abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
+    let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+    let abilityDelegatorArguments: AbilityDelegatorRegistry.AbilityDelegatorArgs = AbilityDelegatorRegistry.getArguments()
     Logger.info('start run testcase!!!')
     Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
   }
@@ -32,7 +35,7 @@ export default class TestAbility extends UIAbility {
     Logger.info('TestAbility onDestroy')
   }
 
-  onWindowStageCreate(windowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage) {
     Logger.info('TestAbility onWindowStageCreate')
     windowStage.loadContent('testability/pages/Index', (err, data) => {
       if (err.code) {
