@@ -61,14 +61,14 @@ struct MountUnmountEventSample {
         Column() {
           Row({ space: 18 }) {
             Button($r('app.string.general_mount_toast'))
-              .buttonStyle()
+              // .buttonStyle()
               .margin({ left: 24 })
               .onClick(() => {
                 this.isShow = true;
               })
               .id('mount')
             Button($r('app.string.general_unmount_toast'))
-              .buttonStyle()
+              // .buttonStyle()
               .margin({ right: 24 })
               .onClick(() => {
                 this.isShow = false;

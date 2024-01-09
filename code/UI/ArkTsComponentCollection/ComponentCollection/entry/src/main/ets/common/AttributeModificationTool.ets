@@ -21,6 +21,10 @@ class ResourceObjectType {
   value!: Resource;
 }
 
+class ColorObjectType {
+  value!: Color;
+}
+
 /**
  * Slider in item style
  *
@@ -138,7 +142,8 @@ export struct CommonItemSelect {
       Select(this.selectOption)
         .id(this.testId)
         .value(this.text)
-        .backgroundColor($r('app.color.background_shallow_grey'))
+        // .backgroundColor($r('app.color.background_shallow_grey'))
+        .backgroundColor(Color.White)
         .borderRadius(19)
         .constraintSize({ minWidth: 150 })
         .selected(this.selectIndex)
@@ -211,6 +216,72 @@ export struct CommonItemColorSelect {
               break
             default:
               this.selectColor = $r('app.color.background_dark')
+          }
+        })
+        .id(this.testId)
+    }
+    .margin({ bottom: 6 })
+    .borderRadius(this.isItemStyle ? 0 : 24)
+    .size({ width: '100%', height: this.isItemStyle ? 42 : 70 })
+    .padding({ left: this.isItemStyle ? 0 : 12, right: this.isItemStyle ? 0 : 12 })
+    .backgroundColor(this.isItemStyle ? Color.Transparent : Color.White)
+  }
+}
+
+/**
+ * Select Color
+ *
+ * @param color change color
+ */
+@Component
+export struct CommonItemColorSelectDef {
+  @Link selectColor: Color;
+  @State selectIndex: number = 0;
+  private testId: string = 'test_colorSelect_def';
+  private name!: Resource;
+  private isItemStyle: boolean = true;
+  private colorNames: Array<ResourceObjectType> = [{ value: $r('app.string.divider_color_blue') }, {
+    value: $r('app.string.divider_color_green')
+  }, { value: $r('app.string.divider_color_orange') }, { value: $r('app.string.divider_color_pink') }];
+
+  changeResourceToString(resourceData: Resource) {
+    let context = getContext(this) as common.UIAbilityContext
+    return context.resourceManager.getStringSync(resourceData.id)
+  }
+
+  build() {
+    Row() {
+      Text(this.name)
+        .margin({ left: this.isItemStyle ? 0 : 12, right: this.isItemStyle ? 0 : 12 })
+      Blank()
+      Select(this.colorNames)
+        .value(this.changeResourceToString(this.colorNames[this.selectIndex].value))
+        .borderRadius(19)
+        .font({ size: 20 })
+        .optionFont({ size: 20 })
+        .constraintSize({ minWidth: 150 })
+        .selected(this.selectIndex)
+        .selectedOptionFont({ size: 20 })
+        .backgroundColor($r('app.color.background_shallow_grey'))
+        .padding({ left: 20, right: 20, top: 8, bottom: 8 })
+        .onSelect((index) => {
+          console.log("selectColor index : " + index)
+          this.selectIndex = index
+          switch (index) {
+            case 0:
+              this.selectColor = Color.Blue
+              break
+            case 1:
+              this.selectColor = Color.Green
+              break
+            case 2:
+              this.selectColor = Color.Orange
+              break
+            case 3:
+              this.selectColor = Color.Pink
+              break
+            default:
+              this.selectColor = Color.Black
           }
         })
         .id(this.testId)

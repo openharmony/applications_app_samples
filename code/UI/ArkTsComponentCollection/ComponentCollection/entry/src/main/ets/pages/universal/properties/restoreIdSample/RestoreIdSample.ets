@@ -75,7 +75,7 @@ struct RestoreIdExample {
               ForEach(this.fruits, (item: string) => {
                 ListItem() {
                   Button(item)
-                    .buttonStyle()
+                    // .buttonStyle()
                 }
               }, (item: string) => item)
             }

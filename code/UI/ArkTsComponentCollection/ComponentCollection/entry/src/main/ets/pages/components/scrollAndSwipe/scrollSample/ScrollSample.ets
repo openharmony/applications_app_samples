@@ -14,6 +14,7 @@
  */
 
 import { TitleBar } from '../../../../common/TitleBar'
+import promptAction from '@ohos.promptAction'
 
 @Extend(Text) function leftTitleStyle() {
   .fontColor($r('app.color.sub_title_color'))
@@ -107,6 +108,13 @@ struct ScrollSample {
       .backgroundColor($r('app.color.background_light_gray'))
       .width('100%')
       .padding({ left: 20, right: 20 })
+      .onReachStart(() => {
+        promptAction.showToast({ message: '纵向滚动onReachStart'})
+      })
+      .onReachEnd(() => {
+        promptAction.showToast({ message: '纵向滚动onReachEnd'})
+      })
+
     }
   }
 }

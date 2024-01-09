@@ -53,7 +53,7 @@ struct TextDialogSample {
           IntroductionTitle({ introduction: $r('app.string.text_picker_show') })
           Row({ space: 16 }) {
             Button($r('app.string.text_picker_click_text'))
-              .buttonStyle()
+              // .buttonStyle()
               .id('text_pickerButton')
               .onClick(() => {
                 TextPickerDialog.show({

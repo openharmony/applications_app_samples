@@ -102,7 +102,7 @@ struct PanExample {
 
       Button($r('app.string.pan_button'))
         .id('pan_change')
-        .buttonStyle()
+        // .buttonStyle()
         .onClick(() => {
           this.flag = !this.flag;
           // 将PanGesture手势事件触发条件改为双指以任意方向拖动

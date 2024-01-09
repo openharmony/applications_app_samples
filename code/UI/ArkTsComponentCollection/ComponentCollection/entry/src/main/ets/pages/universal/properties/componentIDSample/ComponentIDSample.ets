@@ -78,13 +78,13 @@ struct ComponentIDSample {
           .width('100%')
 
           Button($r('app.string.component_id_onKeyTab'))
-            .buttonStyle()
+            // .buttonStyle()
             .onKeyEvent(() => {
               this.text = getStringData($r('app.string.component_id_onKeyTab'));
             })
 
           Button($r('app.string.component_id_click'))
-            .buttonStyle()
+            // .buttonStyle()
             .onClick(() => {
               this.text = getStringData($r('app.string.component_id_click_text'));
               setTimeout(() => {
@@ -95,7 +95,7 @@ struct ComponentIDSample {
             .id('click')
 
           Button($r('app.string.component_id_longClick'))
-            .buttonStyle()
+            // .buttonStyle()
             .gesture(
               LongPressGesture().onActionEnd(() => {
                 this.text = getStringData($r('app.string.component_id_longClick_text'));
@@ -122,7 +122,7 @@ struct ComponentIDSample {
             .id('longClick')
 
           Button($r('app.string.component_id_onTouch'))
-            .buttonStyle()
+            // .buttonStyle()
             .onClick(() => {
               this.text = getStringData($r('app.string.component_id_onTouch_text'))
               setTimeout(() => {
@@ -168,7 +168,7 @@ struct ComponentIDSample {
             .id('onTouch')
 
           Button($r('app.string.component_id_onMouse'))
-            .buttonStyle()
+            // .buttonStyle()
             .onMouse(() => {
               this.text = getStringData($r('app.string.component_id_onMouse_text'));
               setTimeout(() => {

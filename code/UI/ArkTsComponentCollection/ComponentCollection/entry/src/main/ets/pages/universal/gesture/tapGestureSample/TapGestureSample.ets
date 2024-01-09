@@ -57,7 +57,7 @@ struct TapGestureExample {
         .rowStyle()
         // 单指双击文本触发手势事件
         Button($r('app.string.double_click'))
-          .buttonStyle()
+          // .buttonStyle()
           .id('tap_click')
           .gesture(
             TapGesture({ count: 2, fingers: 1 })

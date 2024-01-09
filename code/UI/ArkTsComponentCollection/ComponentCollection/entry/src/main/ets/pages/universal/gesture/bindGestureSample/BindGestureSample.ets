@@ -62,7 +62,7 @@ struct BindExample {
               .onAction((event: GestureEvent) => {
                 this.priorityTestValue += getStringData($r('app.string.bind_gesture_column'));
               }), GestureMask.IgnoreInternal)
-          .buttonStyle()
+          // .buttonStyle()
 
         IntroductionTitle({ introduction: $r('app.string.bind_gesture_parallelGesture') })
         Scroll() {
@@ -81,7 +81,7 @@ struct BindExample {
 
         Row() {
           Button($r('app.string.bind_click'))
-            .buttonStyle()
+            // .buttonStyle()
               // 设置为parallelGesture时，点击文本会同时触发子组件Text与父组件Column的TapGesture手势事件
             .gesture(
               TapGesture()
