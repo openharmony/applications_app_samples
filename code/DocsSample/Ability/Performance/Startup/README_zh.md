@@ -143,7 +143,7 @@ entry/src/main/ets/myabilitystage/MyAbilityStage.ts
 
 ```ts
 export default class MyAbilityStage extends AbilityStage {
-  onCreate() {
+  onCreate(): void {
     // 应用的HAP在首次加载的时，为该Module初始化操作
     // 耗时操作
     // this.computeTask();
