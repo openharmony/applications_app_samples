@@ -1,7 +1,17 @@
 /*
- * * Copyright (c) TD Tdch Communication Technologies Ltd.2023-2023.All rights reserved.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
-
 #ifndef MY_X_COMPONENT_MATRIX4X4_H
 #define MY_X_COMPONENT_MATRIX4X4_H
 
@@ -14,14 +24,14 @@ public:
     static Matrix4x4 Identity()
     {
         Matrix4x4 mat;
-        for (int i = 0; i < MATRIX_COMPONENT_COUNT; i++) {
-            mat.values[i] = IDENTITY_VALUES[i];
+        for (int i = 0; i < matrixComponentCount; i++) {
+            mat.values[i] = identityValues[i];
         }
         return mat;
     }
     void Set(float dataIn[], int offset)
     {
-        for (int i = 0; i < MATRIX_COMPONENT_COUNT; i++) {
+        for (int i = 0; i < matrixComponentCount; i++) {
             values[i] = dataIn[offset + i];
         }
     }
@@ -88,35 +98,8 @@ public:
     float GetValue(int index) { return values[index]; }
 private:
     float values[16] = {0};
-    static constexpr int MATRIX_ROW_COUNT = 4;
-    static constexpr int MATRIX_COLUMN_COUNT = 4;
-    static constexpr int MATRIX_COMPONENT_COUNT = 16;
-    static constexpr int MATRIX_TRANSLATION_COMPONENT_X = 12;
-    static constexpr int MATRIX_TRANSLATION_COMPONENT_Y = 13;
-    static constexpr int MATRIX_TRANSLATION_COMPONENT_Z = 14;
-    static constexpr int MATRIX_TRANSLATION_COMPONENT_W = 15;
-    static constexpr int MATRIX_SCALE_COMPONENT_X = 0;
-    static constexpr int MATRIX_SCALE_COMPONENT_Y = 5;
-    static constexpr int MATRIX_SCALE_COMPONENT_Z = 10;
-    static constexpr int M00 = 0;
-    static constexpr int M10 = 1;
-    static constexpr int M20 = 2;
-    static constexpr int M30 = 3;
-    static constexpr int M01 = 4;
-    static constexpr int M11 = 5;
-    static constexpr int M21 = 6;
-    static constexpr int M31 = 7;
-    static constexpr int M02 = 8;
-    static constexpr int M12 = 9;
-    static constexpr int M22 = 10;
-    static constexpr int M32 = 11;
-    static constexpr int M03 = 12;
-    static constexpr int M13 = 13;
-    static constexpr int M23 = 14;
-    static constexpr int M33 = 15;
-    static constexpr float QUAT_CONVERSION_MULTIPLIER = 2.0F;
-    static constexpr float EPSILON = 1.0E-6F;
-    static constexpr float IDENTITY_VALUES[16] = {1.0F, 0.0F, 0.0F, 0.0F, 0.0F, 1.0F, 0.0F, 0.0F,
+    static constexpr int matrixComponentCount = 16;
+    static constexpr float identityValues[16] = {1.0F, 0.0F, 0.0F, 0.0F, 0.0F, 1.0F, 0.0F, 0.0F,
                                                   0.0F, 0.0F, 1.0F, 0.0F, 0.0F, 0.0F, 0.0F, 1.0F};
 };
 
