@@ -28,6 +28,7 @@
 
 ### 工程目录
 
+```
 entry/src/main/ets/
 |---pages
 |---|---Index.ets                           //首页
