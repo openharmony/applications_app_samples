@@ -328,7 +328,6 @@ const LIST_AND_GRID: ThirdLevelCategory =
       {
         title: $r('app.string.water_flow_title'),
         url: 'pages/components/listAndGrid/waterFlowSample/WaterFlowSample'
-                //'pages/components/listAndGrid/waterFlowSample/WaterFlowSample'
       }
     ]
   }

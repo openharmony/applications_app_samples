@@ -28,13 +28,6 @@ import { ArgumentsSpaceControlPanel, ArgumentsInitIndexControlPanel,
   PropertiesMultiControlPanel,
   PropertiesLanesControlPanel,
   PropertiesAlignListItemControlPanel
-
-
-
-
-
-
-
 } from './ListControlPanel';
 
 @Extend(Column)
@@ -61,12 +54,9 @@ struct ListSample {
   @State space: number = 10;
   @State strokeWidth: number = 0;
   @State color: Resource = $r('app.color.background_blue');
-  @State barState: BarState = BarState.On;
+  @State barState: BarState = BarState.Auto;
   @State scrollBarWidth: number = 0;
-  @State scrollBarColor: Color = Color.Blue; // $r('app.color.background_blue') Color.Black
-  // @State scrollBarColor: Color = Color.Blue; // $r('app.color.background_blue') Color.Black
-//app.color.background_pink  app.color.background_orange  app.color.background_green
-
+  @State scrollBarColor: Color = Color.Blue;
 
   @State initIndex: number = AppStorage.get<number>('listSampleInitIndex') || 0;
   @State edgeEffect: EdgeEffect = EdgeEffect.Spring;
@@ -124,12 +114,6 @@ struct ListSample {
       .width('100%')
       .flexGrow(0)
       // .backgroundColor(Color.Blue)
-
-      // 状态栏
-      // IntroductionTitle({ introduction: $r('app.string.list_introduction_state') })
-      // .height('10%')
-      // .width('100%')
-      // .padding({top:12, bottom:12 })
 
       Column() {
         Text(`当前 initialIndex 为:${this.initIndex}
@@ -250,20 +234,6 @@ struct ListSample {
                       .borderRadius(16)
                       .padding({left:12,right:12,top:12})
                       .margin({bottom:12})
-
-                    // PropertiesControlPanel({
-                    //   listDirection: $listDirection,
-                    //   strokeWidth: $strokeWidth,
-                    //   lineColor: $color,
-                    //   barState: $barState,
-                    //   scrollBarColor: $scrollBarColor, // $color  scrollBarColor
-                    //   scrollBarWidth: $scrollBarWidth,
-                    //   edgeEffect: $edgeEffect,
-                    //   isChainAnimation: $isChainAnimation,
-                    //   multiSelectable: $multiSelectable,
-                    //   lanes: $lanes,
-                    //   alignListItem: $alignListItem
-                    // })
                   }
                   .width('100%')
                   // .backgroundStyle()

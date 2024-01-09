@@ -21,10 +21,6 @@ class ResourceObjectType {
   value!: Resource;
 }
 
-class ColorObjectType {
-  value!: Color;
-}
-
 /**
  * Slider in item style
  *
