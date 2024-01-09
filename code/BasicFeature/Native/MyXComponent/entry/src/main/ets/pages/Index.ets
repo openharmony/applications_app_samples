@@ -1,0 +1,100 @@
+import { Animate, ChangeShape } from "libnativerender.so"
+
+@Entry
+@Component
+struct Index {
+  @State xcOpacity: number = 1
+  @State xcRotate: number = 0
+  @State currentIndex: number = 0
+  private intervalID: number = 0
+
+  onPageShow() {
+    this.intervalID = setInterval(() => {
+      Animate();
+    }, 40)
+  }
+
+  onPageHide() {
+    clearInterval(this.intervalID);
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Row() {
+        Column() {
+          Text("MyXComponent")
+            .fontSize(30)
+            .fontColor(0x182431)
+            .fontWeight('bold')
+            .textAlign(TextAlign.Start)
+        }
+        .margin({
+          left: '6.7%'
+        })
+      }
+      .width('100%')
+      .height('7.2%')
+
+      Flex() {
+        this.TabBuilder("DrawCube", 0)
+        this.TabBuilder("DrawTransform", 1)
+      }
+      .width('100%')
+      .height('7.2%')
+
+      XComponent({ id: 'xcomponentId-0', type: 'surface', libraryname: 'nativerender' })
+        .width("90%")
+        .height("100%")
+        .borderRadius('24vp')
+        .margin({
+          top: 4
+        })
+        .opacity(this.xcOpacity)
+        .rotate({ angle: this.xcRotate })
+        .backgroundColor(Color.Blue)
+    }
+    .width('100%')
+    .height('100%')
+  }
+
+  @Builder
+  TabBuilder(title: string, targetIndex: number) {
+    Column() {
+      Text(title)
+        .fontWeight(this.currentIndex === targetIndex ? "bold" : "normal")
+        .fontSize(16)
+        .id(title)
+        .fontColor(this.currentIndex === targetIndex ? 0x007DFF : 0x182431)
+        .padding({
+          left: targetIndex === 0 ? "22.6%" : "2.2%",
+          right: targetIndex === 0 ? "2.2%" : "48.2%",
+        })
+        .opacity(this.currentIndex === targetIndex ? 1 : 0.6)
+        .onClick(() => {
+          console.log("Button Click")
+          this.currentIndex = targetIndex
+          ChangeShape(targetIndex)
+        })
+
+      Divider()
+        .strokeWidth(2)
+        .color('#007DFF')
+        .opacity(this.currentIndex === targetIndex ? 1 : 0)
+        .padding({
+          left: targetIndex === 0 ? "28%" : "6%",
+          right: targetIndex === 0 ? "7%" : "51%",
+        })
+        .margin({
+          top: 8
+        })
+    }
+    .width('100%')
+    .height(50)
+    .justifyContent(FlexAlign.Center)
+    .onClick(() => {
+      console.log("Button Click")
+      this.currentIndex = targetIndex
+      ChangeShape(targetIndex)
+    })
+  }
+}

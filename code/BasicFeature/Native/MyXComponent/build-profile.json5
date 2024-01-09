@@ -1,0 +1,49 @@
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "material": {
+          "certpath": "C:\\Users\\td-tech\\.ohos\\config\\openharmony\\auto_ohos_default_MyXComponent_com.example.myxcompoent.cer",
+          "storePassword": "0000001AC2B73817678706D4A902088706E5FC6A79F62A5185756B04A51E7AA60BEF576E6679F4E6DABA",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001AFE369B88607C7AEAAFD2CF23E20CC0E8686C7D3F6DFEBE9F85FDAB65840EB0B200942877439E",
+          "profile": "C:\\Users\\td-tech\\.ohos\\config\\openharmony\\auto_ohos_default_MyXComponent_com.example.myxcompoent.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\td-tech\\.ohos\\config\\openharmony\\auto_ohos_default_MyXComponent_com.example.myxcompoent.p12"
+        }
+      }
+    ],
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+        "compileSdkVersion": 10,
+        "compatibleSdkVersion": 10,
+        "runtimeOS": "OpenHarmony"
+      }
+    ],
+    "buildModeSet": [
+      {
+        "name": "debug",
+      },
+      {
+        "name": "release"
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}
