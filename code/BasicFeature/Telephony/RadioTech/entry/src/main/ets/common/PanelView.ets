@@ -22,34 +22,55 @@ const TAG = '[PanelView]'
 @Component
 export struct PanelView {
   @Link show: boolean
-  private slotId: number
-  private title: string
+  @Link slotId: number
+  @Link title: string
   @State statusArray: Array<ResultModel> = []
   @State radioStatus: RadioStatus = new RadioStatus()
+  @State slotIdArray: Array<number> = [0, 1]
+  @State statusFirstArray: Array<ResultModel> = []
+  @State statusSecondArray: Array<ResultModel> = []
 
   async aboutToAppear() {
-    this.radioStatus.getRadioTech(this.slotId).then((radioTech) => {
-      Logger.info(`${TAG}, aboutToAppear radioTech = ${JSON.stringify(radioTech)}`)
-      let result = new ResultModel('RadioTech', JSON.stringify(radioTech))
-      this.statusArray.push(result)
-    })
+    this.slotIdArray.forEach((slotId) => {
+      this.radioStatus.getRadioTech(slotId).then((radioTech) => {
+        Logger.info(`${TAG}, aboutToAppear radioTech = ${JSON.stringify(radioTech)}`)
+        let result = new ResultModel('RadioTech', JSON.stringify(radioTech))
+        if (slotId === 0) {
+          this.statusFirstArray.push(result)
+        } else if (slotId === 1) {
+          this.statusSecondArray.push(result)
+        }
+      })
 
-    this.radioStatus.getSignalInformation(this.slotId).then((signalInformation) => {
-      Logger.info(`${TAG}, aboutToAppear signalInformation = ${JSON.stringify(signalInformation)}`)
-      let result = new ResultModel('SignalInformation', JSON.stringify(signalInformation))
-      this.statusArray.push(result)
-    })
+      this.radioStatus.getSignalInformation(slotId).then((signalInformation) => {
+        Logger.info(`${TAG}, aboutToAppear signalInformation = ${JSON.stringify(signalInformation)}`)
+        let result = new ResultModel('SignalInformation', JSON.stringify(signalInformation))
+        if (slotId === 0) {
+          this.statusFirstArray.push(result)
+        } else if (slotId === 1) {
+          this.statusSecondArray.push(result)
+        }
+      })
 
-    this.radioStatus.getNetworkSelectionMode(this.slotId).then((networkSelectionMode) => {
-      Logger.info(`${TAG}, aboutToAppear networkSelectionMode = ${JSON.stringify(networkSelectionMode)}`)
-      let result = new ResultModel('NetworkSelectionMode', JSON.stringify(networkSelectionMode))
-      this.statusArray.push(result)
-    })
+      this.radioStatus.getNetworkSelectionMode(slotId).then((networkSelectionMode) => {
+        Logger.info(`${TAG}, aboutToAppear networkSelectionMode = ${JSON.stringify(networkSelectionMode)}`)
+        let result = new ResultModel('NetworkSelectionMode', JSON.stringify(networkSelectionMode))
+        if (slotId === 0) {
+          this.statusFirstArray.push(result)
+        } else if (slotId === 1) {
+          this.statusSecondArray.push(result)
+        }
+      })
 
-    this.radioStatus.getISOCountryCodeForNetwork(this.slotId).then((iSOCountryCode) => {
-      Logger.info(`${TAG}, aboutToAppear iSOCountryCode = ${JSON.stringify(iSOCountryCode)}`)
-      let result = new ResultModel('ISOCountryCodeForNetwork', JSON.stringify(iSOCountryCode))
-      this.statusArray.push(result)
+      this.radioStatus.getISOCountryCodeForNetwork(slotId).then((iSOCountryCode) => {
+        Logger.info(`${TAG}, aboutToAppear iSOCountryCode = ${JSON.stringify(iSOCountryCode)}`)
+        let result = new ResultModel('ISOCountryCodeForNetwork', JSON.stringify(iSOCountryCode))
+        if (slotId === 0) {
+          this.statusFirstArray.push(result)
+        } else if (slotId === 1) {
+          this.statusSecondArray.push(result)
+        }
+      })
     })
   }
 
@@ -61,7 +82,7 @@ export struct PanelView {
           .fontWeight(FontWeight.Bold)
           .margin({ bottom: 10 })
         Divider()
-        ForEach(this.statusArray, item => {
+        ForEach(this.slotId === 0 ? this.statusFirstArray : this.statusSecondArray, item => {
           Column() {
             Text(item.title)
               .fontSize(20)
@@ -82,7 +103,7 @@ export struct PanelView {
       Logger.info(`${TAG}, onChange`)
     })
     .onClick(() => {
-      this.show = !this.show
+      this.show = false
     })
   }
 }
