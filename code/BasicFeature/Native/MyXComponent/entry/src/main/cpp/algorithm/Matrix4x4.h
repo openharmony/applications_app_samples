@@ -100,7 +100,7 @@ private:
     float values[16] = {0};
     static constexpr int matrixComponentCount = 16;
     static constexpr float identityValues[16] = {1.0F, 0.0F, 0.0F, 0.0F, 0.0F, 1.0F, 0.0F, 0.0F,
-                                                  0.0F, 0.0F, 1.0F, 0.0F, 0.0F, 0.0F, 0.0F, 1.0F};
+                                                 0.0F, 0.0F, 1.0F, 0.0F, 0.0F, 0.0F, 0.0F, 1.0F};
 };
 
 #endif // MY_X_COMPONENT_MATRIX4X4_H

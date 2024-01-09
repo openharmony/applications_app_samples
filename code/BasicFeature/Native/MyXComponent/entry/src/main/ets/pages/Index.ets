@@ -57,7 +57,7 @@ struct Index {
       .width('100%')
       .height('7.2%')
 
-      XComponent({ id: 'xcomponentId-0', type: 'surface', libraryname: 'nativerender' })
+      XComponent({ id: 'xComponentId', type: 'surface', libraryname: 'nativerender' })
         .width("90%")
         .height("100%")
         .borderRadius('24vp')
