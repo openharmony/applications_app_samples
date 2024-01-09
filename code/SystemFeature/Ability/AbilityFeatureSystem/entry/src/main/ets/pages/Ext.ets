@@ -38,7 +38,7 @@ struct Ext {
           logger.error(`${TAG} session undefined`);
           return;
         }
-        this.session.startAbilityByType("photoEditor", {}, {
+        this.session.startAbilityByType("share", {}, {
           onError: (code: number, name: string, message: string) => {
             logger.error(`${TAG} code:${code} name:${name} message:${message}`);
           }

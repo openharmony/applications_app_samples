@@ -86,54 +86,39 @@ entry/src/main/ets/
 
 ### 相关权限
 
-[ohos.permission.GET_RUNNING_INFO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionget_running_info)
+[ohos.permission.GET_RUNNING_INFO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionget_running_info)
 
 ### 依赖
 
 以下依赖主要针对UIExtension提供隐式启动startAbilityByType的功能使用
 
-1.将ams_service_config.json配置文件导出到本地
+1.将uiextension_picker_config.json配置文件导出到本地
 
 ```
-hdc_std file recv system/etc/ams_service_config.json
+hdc_std file recv system/etc/uiextension_picker_config.json
 ```
 
-2.修改ams_service_config.json配置文件
+2.修改uiextension_picker_config.json配置文件
 
 json中需要配置的字段内容：
 
 ```
 {
-    "service_startup_config":{
-        "mission_save_time" : 43200000,
-        "root_launcher_restart_max":15,
-        "resident_restart_max": 3,
-        "restart_interval_time": 120000,
-        "app_not_response_process_timeout_time" : 1000,
-        "ams_timeout_time" : 180,
-        "device_type" : "phone",
-        "boot_animation_timeout_time" : 3,
-        "timeout_unit_time" : 1000
-    },
-    "system_configuration":{
-        "system_orientation": "vertical"
-    },
-	"picker_configuration":{
-		"photoEditor":{
-			"bundle_name": "com.samples.abilityFeature",
-			"ability_name": "NewUIExtAbility",
-			"picker_type": "sys/commonUI"
-		}
-	}
+    "uiextension":[
+        {
+            "type": "share",
+            "typePicker": "sysPicker/share"
+        }
+    ]
 }
 ```
 
-3.将ams_service_config.json文件导入到 /system/etc路径下
+3.将uiextension_picker_config.json文件导入到 /system/etc路径下
 
 ```
 hdc_std shell mount -o rw,remount /
 
-hdc_std file send ams_service_config.json /system/etc
+hdc_std file send uiextension_picker_config.json /system/etc
 
 hdc_std shell sync
 
@@ -152,7 +137,7 @@ UIAbilityContext.startAbilityAsCaller,UIExtensionContentSession.startAbilityAsCa
 
 4.本示例需要使用DevEco Studio 3.1.1 Release (Build Version: 3.1.0.501, built on June 20, 2023)才可编译运行；
 
-5.本示例涉及[ohos.permission.GET_RUNNING_INFO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionget_running_info)权限为 system_basic级别，需要配置高权限签名；
+5.本示例涉及[ohos.permission.GET_RUNNING_INFO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionget_running_info)权限为 system_basic级别，需要配置高权限签名；
 
 ### 下载
 
