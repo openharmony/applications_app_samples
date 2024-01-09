@@ -116,7 +116,8 @@ void SampleBitMap::DisPlay()
         DRAWING_LOGE("value is null");
         return;
     }
-    for (uint32_t x = 0; x < width_; x++) {
+    uint32_t width = static_cast<uint32_t>(bufferHandle_->stride / 4);
+    for (uint32_t x = 0; x < width; x++) {
         for (uint32_t y = 0; y < height_; y++) {
             *pixel++ = *value++;
         }
