@@ -128,10 +128,8 @@ struct ListSample {
       .alignItems(HorizontalAlign.Start)
       .justifyContent(FlexAlign.Center)
       .flexGrow(0)
-      // .backgroundColor(Color.Green)
 
-      // 控制面板
-      // Scroll() {
+      // tab页签
         Column() {
           ///////
           Tabs({ barPosition: BarPosition.Start }) {
@@ -150,17 +148,9 @@ struct ListSample {
                   .borderRadius(16)
                   .padding({left:12,right:12,top:12})
                   .margin({bottom:12})
-
-                // ArgumentsControlPanel({
-                //   space: $space,
-                //   initIndex: $initIndex
-                // })
               }
               .height('100%')
-              // .backgroundStyle()
             }.tabBar(new SubTabBarStyle($r('app.string.list_introduction_arguments')))
-            // .backgroundColor(Color.Black)
-
 
             // 子页签：WaterFlow属性
             TabContent() {
@@ -171,7 +161,6 @@ struct ListSample {
                       .borderRadius(16)
                       .padding({left:12,right:12,top:12})
                       .margin({bottom:12})
-
 
                     PropertiesStrokeWidthControlPanel({strokeWidth: $strokeWidth})
                       .backgroundColor(Color.White)
@@ -236,14 +225,12 @@ struct ListSample {
                       .margin({bottom:12})
                   }
                   .width('100%')
-                  // .backgroundStyle()
                 }
                 .flexGrow(1)
                 .flexBasis(100)
                 .margin({ bottom: 10 })
                 .background()
             }.tabBar(new SubTabBarStyle($r('app.string.list_introduction_properties')))
-            // .backgroundColor(Color.Brown)
           }
           .vertical(false)
           .scrollable(true)
@@ -255,14 +242,9 @@ struct ListSample {
           .width('100%')
           .backgroundColor(0xF1F3F5)
         }
-        // .backgroundColor(Color.Green)
         .height('40%')
         .width('100%')
       }
-      // .flexGrow(1)
-      // .flexBasis(100)
-      // .margin({ bottom: 10 })
-    // }
     .padding({ left: LEFT_PADDING, right: RIGHT_PADDING })
     .height('100%')
     .width('100%')

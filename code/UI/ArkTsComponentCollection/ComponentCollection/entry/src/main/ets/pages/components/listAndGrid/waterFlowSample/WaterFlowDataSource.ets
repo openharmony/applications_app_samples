@@ -23,7 +23,6 @@ export struct WaterFlowScrollByControlPanel {
     .margin({bottom:12})
     .padding({left:12,right:12, top:17, bottom:17})
     .borderRadius(16)
-    // .margin({bottom:12})
   }
 }
 
