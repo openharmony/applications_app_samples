@@ -42,4 +42,4 @@ class Logger {
   }
 }
 
-export default new Logger('[Sample_ArkTSDistributedMusicPlayer]');
+export default new Logger('[Sample_ArkTSAudioHaptic]');
