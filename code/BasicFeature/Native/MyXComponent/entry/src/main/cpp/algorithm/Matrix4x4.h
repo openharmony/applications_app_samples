@@ -24,14 +24,14 @@ public:
     static Matrix4x4 Identity()
     {
         Matrix4x4 mat;
-        for (int i = 0; i < MATRIX_COMPONENT_COUNT; i++) {
-            mat.values[i] = IDENTITY_VALUES[i];
+        for (int i = 0; i < matrixComponentCount; i++) {
+            mat.values[i] = identityValues[i];
         }
         return mat;
     }
     void Set(float dataIn[], int offset)
     {
-        for (int i = 0; i < MATRIX_COMPONENT_COUNT; i++) {
+        for (int i = 0; i < matrixComponentCount; i++) {
             values[i] = dataIn[offset + i];
         }
     }
@@ -96,10 +96,11 @@ public:
     void SetValue(int index, float value) { values[index] = value; }
 
     float GetValue(int index) { return values[index]; }
+
 private:
     float values[16] = {0};
-    static constexpr int MATRIX_COMPONENT_COUNT = 16;
-    static constexpr float IDENTITY_VALUES[16] = {1.0F, 0.0F, 0.0F, 0.0F, 0.0F, 1.0F, 0.0F, 0.0F,
+    static constexpr int matrixComponentCount = 16;
+    static constexpr float identityValues[16] = {1.0F, 0.0F, 0.0F, 0.0F, 0.0F, 1.0F, 0.0F, 0.0F,
                                                  0.0F, 0.0F, 1.0F, 0.0F, 0.0F, 0.0F, 0.0F, 1.0F};
 };
 
