@@ -33,6 +33,15 @@ export default function abilityTest() {
   let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
   describe('ActsAbilityTest', () => {
 
+    /**
+     * @tc.name: ActsAbilityTest_StartAbility_001
+     * @tc.desc: 跳转到EntryAbility
+     * @tc.type: FUNC
+     * @tc.require: 成功跳转到EntryAbility
+     * @tc.level: normal
+     * @tc.size: 1
+     * @tc.number: 1
+     */
     it('ActsAbilityTest_StartAbility_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, `${BUNDLE_NAME} StartAbility_001 begin`);
       let want = {
@@ -48,7 +57,13 @@ export default function abilityTest() {
     })
 
     /**
-     * 点击1
+     * @tc.name: ActsAbilityTest_StartAbility_Click_001
+     * @tc.desc: 点击界面上的DrawTransform按钮
+     * @tc.type: FUNC
+     * @tc.require: 点击成功， 并切换到矩形旋转界面
+     * @tc.level: normal
+     * @tc.size: 1
+     * @tc.number: 1
      */
     it('ActsAbilityTest_StartAbility_Click_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, '%{public}s', BUNDLE_NAME + ' click_001 begin');
@@ -68,7 +83,13 @@ export default function abilityTest() {
     });
 
     /**
-     * 点击2
+     * @tc.name: ActsAbilityTest_StartAbility_Click_002
+     * @tc.desc: 点击界面上的DrawCube按钮
+     * @tc.type: FUNC
+     * @tc.require: 点击成功， 并切换到立体矩形界面
+     * @tc.level: normal
+     * @tc.size: 1
+     * @tc.number: 1
      */
     it('ActsAbilityTest_StartAbility_Click_002', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, '%{public}s', BUNDLE_NAME + ' click_002 begin');
@@ -88,7 +109,13 @@ export default function abilityTest() {
     });
 
     /**
-     * 点击3
+     * @tc.name: ActsAbilityTest_StartAbility_Click_003
+     * @tc.desc: 点击界面上的DrawTransform按钮
+     * @tc.type: FUNC
+     * @tc.require: 点击成功， 并切换到矩形旋转界面
+     * @tc.level: normal
+     * @tc.size: 1
+     * @tc.number: 1
      */
     it('ActsAbilityTest_StartAbility_Click_003', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, '%{public}s', BUNDLE_NAME + ' click_003 begin');
