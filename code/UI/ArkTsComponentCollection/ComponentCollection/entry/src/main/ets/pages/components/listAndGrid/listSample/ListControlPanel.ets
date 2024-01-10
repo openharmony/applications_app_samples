@@ -192,13 +192,13 @@ export struct PropertiesEdgeEffectControlPanel {
         callback : (index)=>{
           switch (index) {
             case 1:
-              this.edgeEffect = EdgeEffect.Fade;
+              this.edgeEffect = EdgeEffect.Spring;
               break;
             case 2:
-              this.edgeEffect = EdgeEffect.None;
+              this.edgeEffect = EdgeEffect.Fade;
               break;
             default:
-              this.edgeEffect = EdgeEffect.Spring;
+              this.edgeEffect = EdgeEffect.None;
               break;
           }
         },
