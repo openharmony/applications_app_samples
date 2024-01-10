@@ -36,7 +36,7 @@ struct Index {
             .height(22)
             .margin({ top:12, left:33, right:33 });
         }
-        .id('select_output_device_card')
+        .id('audio_haptic_card')
         .backgroundColor(Color.White)
         .margin({ left: 12 })
         .width(162)
