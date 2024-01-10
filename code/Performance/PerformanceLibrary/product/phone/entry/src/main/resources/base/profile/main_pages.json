@@ -34,6 +34,7 @@
     "pages/backgroundTask/TransientTask",
     "pages/backgroundTask/LongTermTask",
     "pages/waterFlow/WaterFlowPage",
+    "pages/nativeThreadsCallJS/NativeThreadsCallJS",
     "pages/memoryShared/MemorySharedHomePage",
     "pages/memoryShared/AtomicsUsagePage",
     "pages/memoryShared/LockUsagePage",

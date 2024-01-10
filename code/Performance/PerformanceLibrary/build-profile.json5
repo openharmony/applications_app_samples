@@ -102,6 +102,10 @@
     {
       "name": "WaterFlow",
       "srcPath": "./feature/WaterFlow"
+    },
+    {
+      "name": "nativeThreadsCallJS",
+      "srcPath": "./feature/nativeThreadsCallJS"
     }
   ]
 }
