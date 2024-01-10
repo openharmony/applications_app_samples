@@ -45,7 +45,8 @@ struct AudioHaptic {
   @State isMuteHaptics : boolean = false;
   @State iconOpacity: Array<number> = [1, 1, 1, 1, 1];
   @State idList: Array<number> = [0, 0, 0];
-  @State fillColor: Array<Color> = [Color.Black, Color.Black]
+  @State fillColor:Array<string> = ['#182431', '#182431'];
+  @State vibrationImg: Resource = $r("app.media.ic_vibrations");
   private audioUri = 'file://data/notification.wav'; // 需更改为目标音频资源的Uri
   private hapticUri = 'file://data/notification.wav'; // 需更改为目标振动资源的Uri
 
@@ -263,14 +264,14 @@ struct AudioHaptic {
 
   updateMuteColor(): void {
     if (this.isMuteAudio == true) {
-      this.fillColor[0] = Color.Blue;
+      this.fillColor[0] = '#007DFF';
     } else {
-      this.fillColor[0] = Color.Black;
+      this.fillColor[0] = '#182431';
     }
     if (this.isMuteHaptics == true) {
-      this.fillColor[1] = Color.Blue;
+      this.fillColor[1] = '#007DFF';
     } else {
-      this.fillColor[1] = Color.Black;
+      this.fillColor[1] = '#182431';
     }
   }
 
@@ -420,7 +421,7 @@ struct AudioHaptic {
             .width('94.8%')
             .height('25%')
             .textAlign(TextAlign.Center)
-            .fontColor('#182431')
+            .fontColor(this.fillColor[0])
             .margin({ top: '0.4%', right: '1.10%', bottom: '0.00vp', left: '1.10%' });
           Text(this.stateText[AUDIO_MUTE_INDEX])
             .id('audio_mute_state_text').fontSize(10).fontColor(Color.White).opacity(0);
@@ -449,17 +450,16 @@ struct AudioHaptic {
         }) // AUDIO_MUTE
 
         Column() {
-          Image($r('app.media.ic_vibrations'))
+          Image(this.vibrationImg)
             .width(24)
             .height(24)
             .margin({top: '1%', left:'18.3%', right:'18.3%'})
-            .fillColor(this.fillColor[1])
           Text($r('app.string.MUTE_HAPTICS'))
             .fontSize(10)
             .width('94.8%')
             .height('25%')
             .textAlign(TextAlign.Center)
-            .fontColor('#182431')
+            .fontColor(this.fillColor[1])
             .padding({ top: '0', right: '0.00vp', bottom: '0.00vp', left: '0.00vp' })
             .margin({ top: '0.4%', right: '1.10%', bottom: '0.00vp', left: '1.10%' });
           Text(this.stateText[HAPTICS_MUTE_INDEX])
@@ -478,8 +478,10 @@ struct AudioHaptic {
             this.updateMuteColor();
             if (this.stateText[HAPTICS_MUTE_INDEX] == 'ic_play') {
               this.stateText[HAPTICS_MUTE_INDEX] = 'ic_pause';
+              this.vibrationImg = $r("app.media.ic_vibrations");
             } else {
               this.stateText[HAPTICS_MUTE_INDEX] = 'ic_play'
+              this.vibrationImg = $r("app.media.ic_vibrations_blue");
             }
             console.log(`end current stateText: ${this.stateText.toString()}`)
           } else {
