@@ -58,7 +58,7 @@ export default function abilityTest() {
       Logger.info(TAG, 'audioHaptic_StartAbility_001 begin');
       try {
         await abilityDelegator.startAbility({
-          bundleName: 'com.example.audiohaptic',
+          bundleName: 'com.samples.audiohaptic',
           abilityName: 'EntryAbility'
         });
         done();
