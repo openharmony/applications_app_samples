@@ -15,6 +15,12 @@
 
 import { Capabilities } from './components/Capabilities';
 import { MenuList } from '@ohos/menuitems';
+import abilityAccessCtrl, { PermissionRequestResult } from '@ohos.abilityAccessCtrl';
+import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
+import { logger } from '../../../../../common/src/main/ets/util/Logger';
+
+const TAG: string = 'IndexPage';
 
 @Entry
 @Component
@@ -25,6 +31,24 @@ struct Index {
 
   aboutToAppear() {
     this.title = getContext().resourceManager.getStringSync($r('app.string.device_management').id);
+    let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+    try {
+      let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+      atManager.requestPermissionsFromUser(context, ['ohos.permission.GET_INSTALLED_BUNDLE_LIST'])
+        .then((data: PermissionRequestResult) => {
+          logger.info(TAG, 'data:' + JSON.stringify(data));
+          if (data.authResults[0] == 0) {
+            logger.info(TAG, `request permission success`)
+          } else {
+            logger.info(TAG, `user reject`)
+          }
+        })
+        .catch((err: BusinessError) => {
+          logger.error(TAG, `request permission failed, code:${err.code},message:${err.message}`);
+        })
+    } catch (err) {
+      logger.error(TAG, `catch err->${JSON.stringify(err)}`);
+    }
   }
 
   build() {
