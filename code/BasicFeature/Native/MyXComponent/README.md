@@ -86,7 +86,9 @@ entry/src/main/cpp/
 
 #### 约束与限制
 本示例仅支持标准系统上运行，支持设备：RK3568;
+
 本示例已适配API version 10版本SDK，版本号：4.0.10.13
+
 本示例需要使用Build Version: 4.0.0.600 (Build Version: 4.0.0.600, built on October 17, 2023)及以上版本才可编译运行；
 
 
@@ -96,7 +98,7 @@ entry/src/main/cpp/
 ```
 git init
 git config core.sparsecheckout true
-echo code/BasicFeature/MyXComponent > .git/info/sparse-checkout
+echo code/BasicFeature/Native/MyXComponent > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
