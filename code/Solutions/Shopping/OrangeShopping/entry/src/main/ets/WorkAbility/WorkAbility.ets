@@ -43,7 +43,7 @@ export default class WorkAbility extends WorkSchedulerExtensionAbility {
     logger.info(TAG, `publishNotification parametersObject= ${parametersObject}`);
     let basicContent: notification.NotificationBasicContent = {
       title: parametersObject.title,
-      text: ''
+      text: 'content'
     };
     let actionButtons: notification.NotificationActionButton[] = [
       {
