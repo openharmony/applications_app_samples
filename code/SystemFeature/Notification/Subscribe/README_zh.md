@@ -68,7 +68,7 @@ entry/src/ohosTest/ets/
 ```
 git init
 git config core.sparsecheckout true
-echo code/BasicFeature/Notification/LiveViewNotification/ > .git/info/sparse-checkout
+echo code/SystemFeature/Notification/Subscribe/ > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin ***(分支名)
 ```
