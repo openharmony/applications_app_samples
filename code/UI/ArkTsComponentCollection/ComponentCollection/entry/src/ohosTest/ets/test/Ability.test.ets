@@ -1826,52 +1826,8 @@ export default function abilityTest() {
         let testName = 'ListFunction';
         Logger.info(BUNDLE + testName + ' begin ------------------------------');
         await driver.delayMs(DELAY_TIME);
-        let atom = await manager.getStringValue($r('app.string.list_title'));
-        let button = await driver.findComponent(ON.text(atom));
-        if (!button) {
-          // 如果没展开 就展开
-          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.list_and_grid')));
-        }
-        await checkButtonAndClickWithText(atom);
-        await driver.delayMs(DELAY_TIME);
-
-        await drawSliderWithId(`list_001`);
-        await checkButtonAndClickWithID(`list_002`);
-        await checkButtonAndClickWithText(`5`);
-        await checkButtonAndClickWithID(`list_003`);
-        await checkButtonAndClickWithText(`Horizontal`);
-        await drawSliderWithId(`list_004`);
-        await checkButtonAndClickWithID(`list_005`);
-        await checkButtonAndClickWithText(`Pink`);
-        await driver.drag(200, 900, 200, 200, 800);
-        await checkButtonAndClickWithID(`list_006`);
-        await checkButtonAndClickWithText(`On`);
-        await checkButtonAndClickWithID(`list_007`);
-        await checkButtonAndClickWithText(`Spring`);
-        await checkButtonAndClickWithID(`list_008`);
-        await checkButtonAndClickWithID(`list_009`);
-        await checkButtonAndClickWithID(`list_010`);
-        await checkButtonAndClickWithText(`4`);
-        await checkButtonAndClickWithID(`list_011`);
-        await checkButtonAndClickWithText(`Start`);
-
-        // 返回
-        await checkButtonAndClickWithID('backBtn');
-        await driver.delayMs(DELAY_TIME_FiVE);
-
-        Logger.info(BUNDLE + testName + ' end');
-      })
-
-      it(BUNDLE + 'ListFunction_001', 0, async () => {
-        let testName = 'ListFunction';
-        Logger.info(BUNDLE + testName + ' begin ------------------------------');
-        await driver.delayMs(DELAY_TIME);
 
         await driver.drag(200, 500, 200, 200, 800)
-
-        // // 向下滑动 固定坐标只支持RK3568，其他设备需要调整
-        // let scrollBar = await driver.findComponent(ON.type('Scroll'));
-        // await scrollBar.scrollToBottom();
 
         let atom = await manager.getStringValue($r('app.string.list_title'));
         let button = await driver.findComponent(ON.text(atom));
