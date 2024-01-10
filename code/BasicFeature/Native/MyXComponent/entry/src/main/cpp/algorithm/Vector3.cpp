@@ -36,7 +36,7 @@ void Vector3::SetDataZ(float zData) { this->dataZ = zData; }
 
 float Vector3::Length(Vector3 lhs)
 {
-    return (float)std::sqrt(lhs.dataX * lhs.dataX + lhs.dataY * lhs.dataY + lhs.dataZ * lhs.dataZ);
+    return static_cast<float>(std::sqrt(lhs.dataX * lhs.dataX + lhs.dataY * lhs.dataY + lhs.dataZ * lhs.dataZ));
 }
 
 Vector3 Vector3::Normalize(Vector3 lhs)

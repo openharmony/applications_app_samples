@@ -29,8 +29,8 @@ static napi_value Init(napi_env env, napi_value exports)
 {
     LOGE("Init");
     napi_property_descriptor desc[] = {DECLARE_NAPI_FUNCTION("GetContext", NapiManager::GetContext),
-                                       DECLARE_NAPI_STATIC_FUNCTION("Animate", AppNapi::Animate),
-                                       DECLARE_NAPI_STATIC_FUNCTION("ChangeShape", AppNapi::ChangeShape)};
+                                       DECLARE_NAPI_STATIC_FUNCTION("animate", AppNapi::Animate),
+                                       DECLARE_NAPI_STATIC_FUNCTION("changeShape", AppNapi::ChangeShape)};
 
     NAPI_CALL(env, napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc));
 

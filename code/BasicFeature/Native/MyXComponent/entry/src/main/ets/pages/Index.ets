@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { Animate, ChangeShape } from "libnativerender.so"
+import { animate, changeShape } from "libnativerender.so"
 
 @Entry
 @Component
@@ -25,7 +25,7 @@ struct Index {
 
   onPageShow() {
     this.intervalID = setInterval(() => {
-      Animate();
+      animate();
     }, 40)
   }
 
@@ -88,7 +88,7 @@ struct Index {
         .onClick(() => {
           console.log("Button Click")
           this.currentIndex = targetIndex
-          ChangeShape(targetIndex)
+          changeShape(targetIndex)
         })
 
       Divider()
@@ -109,7 +109,7 @@ struct Index {
     .onClick(() => {
       console.log("Button Click")
       this.currentIndex = targetIndex
-      ChangeShape(targetIndex)
+      changeShape(targetIndex)
     })
   }
 }

@@ -13,6 +13,6 @@
  * limitations under the License.
  */
 
-export function Animate(): void;
+export function animate(): void;
 
-export function ChangeShape(shapeIndex: number): void;
+export function changeShape(shapeIndex: number): void;
