@@ -14,7 +14,7 @@
  */
 
 import entry from 'libentry.so';
-import hilog from '@ohos.hilog';
+import logger from '../utils/Logger';
 
 @Component
 export struct NativeThreadsCallJSDemo {
@@ -32,11 +32,12 @@ export struct NativeThreadsCallJSDemo {
           .width('40%')
           .fontSize(20)
           .onClick(()=> {
+            // native使用线程安全函数实现跨线程调用
             entry.ThreadSafeTest((values: number) => {
-              values += 10
-              hilog.info(0x0000, 'testTag', 'ThreadSafeTest js callback value =' + values)
-              this.value = values
-              return values
+              values += 10;
+              logger.info('ThreadSafeTest js callback value = ', values.toString());
+              this.value = values;
+              return values;
             }
             )
           }).margin(20)
@@ -45,11 +46,12 @@ export struct NativeThreadsCallJSDemo {
           .width('40%')
           .fontSize(20)
           .onClick(()=> {
+            // native使用libuv实现跨线程调用
             entry.UvWorkTest((values: number) => {
-              values += 10
-              hilog.info(0x0000, 'testTag', 'UvWorkTest js callback value =' + values)
-              this.value = values
-              return values
+              values += 10;
+              logger.info('UvWorkTest js callback value = ', values.toString());
+              this.value = values;
+              return values;
             }
             )
           }).margin(10)
