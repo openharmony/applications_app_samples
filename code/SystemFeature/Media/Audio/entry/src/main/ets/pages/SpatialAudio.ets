@@ -31,7 +31,7 @@ struct SpatialAudio {
   private audioRendererOptions: audio.AudioRendererOptions[] = [
     {
       streamInfo: {
-        samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+        samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
         channels: audio.AudioChannel.CHANNEL_2,
         sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
         encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW,
@@ -39,20 +39,20 @@ struct SpatialAudio {
       },
 
       rendererInfo: {
-        usage: audio.StreamUsage.STREAM_USAGE_MOVIE,
+        usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
         rendererFlags: 0
       }
     },
     {
       streamInfo: {
-        samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+        samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
         channels: audio.AudioChannel.CHANNEL_6,
         sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
         encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW,
         channelLayout: audio.AudioChannelLayout.CH_LAYOUT_5POINT1_BACK
       },
       rendererInfo: {
-        usage: audio.StreamUsage.STREAM_USAGE_RINGTONE,
+        usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
         rendererFlags: 0
       }
     }
@@ -135,10 +135,8 @@ struct SpatialAudio {
         if (this.supportState !== CLOSE_MODE && this.audioSpatializationManager) {
           try {
             this.audioSpatializationManager.setSpatializationEnabled(false, () => {
-              this.spatializationEnabled = false
             })
             this.audioSpatializationManager.setHeadTrackingEnabled(false, () => {
-              this.trackingEnabled = false
             })
           } catch (err) {
             Logger.error(`Set Spatialization or Head Tracking disabled failed, ${JSON.stringify(err)}`)
@@ -170,10 +168,8 @@ struct SpatialAudio {
         if (this.audioSpatializationManager) {
           try {
             this.audioSpatializationManager.setSpatializationEnabled(true, () => {
-              this.spatializationEnabled = true
             })
             this.audioSpatializationManager.setHeadTrackingEnabled(false, () => {
-              this.trackingEnabled = false
             })
           } catch (err) {
             Logger.error(`Set open mode failed, ${JSON.stringify(err)}`)
@@ -202,10 +198,8 @@ struct SpatialAudio {
         if (this.audioSpatializationManager) {
           try {
             this.audioSpatializationManager.setSpatializationEnabled(true, () => {
-              this.spatializationEnabled = true
             })
             this.audioSpatializationManager.setHeadTrackingEnabled(true, () => {
-              this.trackingEnabled = true
             })
           } catch (err) {
             Logger.error(`Set HeadTracking enabled failed, ${JSON.stringify(err)}`)
@@ -321,40 +315,44 @@ struct SpatialAudio {
   }
 
   supportStateQuery(): number {
-    let audioDeviceDescriptors: audio.AudioDeviceDescriptors = this.audioRenderers[0].getCurrentOutputDevicesSync()
-    audioDeviceDescriptors.forEach(audioDeviceDescriptor => {
-      Logger.info("Device Role:" + audioDeviceDescriptor.deviceRole + ", device Type:" +
-      audioDeviceDescriptor.deviceType + ", Macaddress:" + audioDeviceDescriptor.address)
-    })
+    if (this.audioRoutingManager) {
+      let audioDeviceDescriptors: audio.AudioDeviceDescriptors =
+      this.audioRoutingManager.getPreferredOutputDeviceForRendererInfoSync(this.audioRendererOptions[0].rendererInfo)
+      audioDeviceDescriptors.forEach(audioDeviceDescriptor => {
+        Logger.info("Device Role:" + audioDeviceDescriptor.deviceRole + ", device Type:" +
+        audioDeviceDescriptor.deviceType + ", Macaddress:" + audioDeviceDescriptor.address)
+      })
 
-    let isSpaSupported: boolean = false
-    let isSpaSupportedForDevice: boolean = false
-    let isTraSupported: boolean =  false
-    let isTraSupportedForDevice: boolean = false
-    if (this.audioSpatializationManager) {
-      try {
-        isSpaSupported =  this.audioSpatializationManager.isSpatializationSupported()
-        isSpaSupportedForDevice =
+      let isSpaSupported: boolean = false
+      let isSpaSupportedForDevice: boolean = false
+      let isTraSupported: boolean =  false
+      let isTraSupportedForDevice: boolean = false
+      if (this.audioSpatializationManager) {
+        try {
+          isSpaSupported =  this.audioSpatializationManager.isSpatializationSupported()
+          isSpaSupportedForDevice =
           this.audioSpatializationManager.isSpatializationSupportedForDevice(audioDeviceDescriptors[0])
-        isTraSupported =  this.audioSpatializationManager.isHeadTrackingSupported()
-        isTraSupportedForDevice =
+          isTraSupported =  this.audioSpatializationManager.isHeadTrackingSupported()
+          isTraSupportedForDevice =
           this.audioSpatializationManager.isHeadTrackingSupportedForDevice(audioDeviceDescriptors[0])
-      } catch (err) {
-        Logger.error(`supportStateQuery ,Error: ${JSON.stringify(err)}`)
-      }
+        } catch (err) {
+          Logger.error(`supportStateQuery ,Error: ${JSON.stringify(err)}`)
+        }
 
-    } else {
-      Logger.info("Get manager failed.")
+      } else {
+        Logger.info("Get manager failed.")
+      }
+      let isSpatializationSupportedBoth: boolean = isSpaSupported && isSpaSupportedForDevice
+      let isHeadTrackingSupportedBoth: boolean = isTraSupported && isTraSupportedForDevice
+      if (isSpatializationSupportedBoth && isHeadTrackingSupportedBoth) {
+        return TRACKING_MODE
+      } else if (isSpatializationSupportedBoth) {
+        return OPEN_MODE
+      } else {
+        return CLOSE_MODE
+      }
     }
-    let isSpatializationSupportedBoth: boolean = isSpaSupported && isSpaSupportedForDevice
-    let isHeadTrackingSupportedBoth: boolean = isTraSupported && isTraSupportedForDevice
-    if (isSpatializationSupportedBoth && isHeadTrackingSupportedBoth) {
-      return TRACKING_MODE
-    } else if (isSpatializationSupportedBoth) {
-      return OPEN_MODE
-    } else {
-      return CLOSE_MODE
-    }
+    return CLOSE_MODE
   }
 
   async init(): Promise<void> {
@@ -384,10 +382,25 @@ struct SpatialAudio {
 
     this.audioRoutingManager = audioManager.getRoutingManager()
     this.updateSupportStateUI()
+    let t_audioRendererInfo:audio.AudioRendererInfo = {
+      usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+      rendererFlags: 0
+    }
     if (this.audioRoutingManager) {
-      this.audioRoutingManager.on("deviceChange", audio.DeviceFlag.OUTPUT_DEVICES_FLAG, () => {
+      this.audioRoutingManager.on("preferOutputDeviceChangeForRendererInfo", t_audioRendererInfo, () => {
         Logger.info("Output device changed")
         this.updateSupportStateUI()
+      })
+    }
+    if (this.audioSpatializationManager) {
+      this.audioSpatializationManager.on("spatializationEnabledChange", (res) => {
+        this.spatializationEnabled = res
+      })
+    }
+
+    if (this.audioSpatializationManager) {
+      this.audioSpatializationManager.on("headTrackingEnabledChange", (res) => {
+        this.trackingEnabled = res
       })
     }
   }
@@ -402,6 +415,14 @@ struct SpatialAudio {
 
     if (this.audioRoutingManager) {
       this.audioRoutingManager.off("deviceChange")
+    }
+
+    if (this.audioSpatializationManager) {
+      this.audioSpatializationManager.off("spatializationEnabledChange")
+    }
+
+    if (this.audioSpatializationManager) {
+      this.audioSpatializationManager.off("headTrackingEnabledChange")
     }
   }
 
