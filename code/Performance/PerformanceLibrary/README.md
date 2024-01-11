@@ -85,6 +85,7 @@ BackgroundTask使用说明：
 WaterFlow使用说明：
 
 1.点击性能示例主页的**WaterFlow**按钮，进入**WaterFlow**场景页
+
 多线程共享内存页面使用说明：
 
 1.点击性能示例主页的**MemoryShared**按钮，进入**多线程共享内存入口**场景页。
@@ -92,6 +93,14 @@ WaterFlow使用说明：
 2.点击多线程共享内存入口页的**原子操作对比**按钮，进入**原子操作主页**。
 
 3.点击多线程共享内存入口页的**锁的使用**按钮，进入**锁的使用子页面**。
+
+Native跨线程调用使用说明：
+
+1.点击性能示例主页的**NativeThreadsCallJS**按钮，进入**Native跨线程调用**场景页
+
+2.点击Native跨线程调用页的**threadSafeTest**按钮，验证使用安全函数跨线程调用。
+
+3.点击Native跨线程调用页的**libuvTest**按钮，验证使用libuv跨线程调用。
 
 ### 工程目录
 
@@ -169,6 +178,12 @@ features
 |   |---/pages    
 |   |   |---Index.ets                                 // 场景主页面模块       
 |   |   |---WaterFlowDataSource.ets                   // 数据源
+---/nativeThreadsCallJS/src/main/ets                  // native跨线程调用功能HAR共享包
+|   |---/pages    
+|   |   |---Index.ets                                 // 场景主页面模块
+---/nativeThreadsCallJS/src/main/cpp                  // native跨线程调用功能native功能模块
+|   |---/types 
+|   |   |---hello.cpp                                 // 场景native功能代码
 products/phone/entry/src/main/ets
 |---/entryability
 |   |---EntryAbility.ts                               // 封装整个模块启用，监听Ability对应的窗口等逻辑
@@ -222,7 +237,9 @@ products/phone/entry/src/main/ets
 |   |---/memoryShared
 |   |   |---AtomicsUsage.ets                          // 原子操作页面              
 |   |   |---LockUsage.ets                             // 锁应用页面 
-|   |   |---MemorySharedHome.ets                      // 多线程共享内存入口页面              
+|   |   |---MemorySharedHome.ets                      // 多线程共享内存入口页面           
+|   |---/nativeThreadsCallJS
+|   |   |---NativeThreadsCallJS.ets                   // native跨线程调用示例首页               
 |   |---/Index                                                                     
 |---/utils
 |   |---Logger.ets                                    // 封装整个日志

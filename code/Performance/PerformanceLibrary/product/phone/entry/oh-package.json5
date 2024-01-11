@@ -18,6 +18,7 @@
     "@ohos/smartPerfEditor": "file:../../../feature/smartPerfEditor",
     "@ohos/memoryShared": "file:../../../feature/memoryShared",
     "@ohos/trace": "file:../../../feature/trace",
-    "@ohos/hiDumper": "file:../../../feature/hiDumper"
+    "@ohos/hiDumper": "file:../../../feature/hiDumper",
+    "@ohos/nativethreadscalljs": "file:../../../feature/nativeThreadsCallJS"
   }
 }

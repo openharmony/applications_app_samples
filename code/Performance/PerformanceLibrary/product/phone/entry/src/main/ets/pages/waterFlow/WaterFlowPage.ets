@@ -31,7 +31,7 @@ import { WaterflowDemo } from '@ohos/WaterFlow';
 
 @Entry
 @Component
-struct TracePage {
+struct WaterflowPage {
   build() {
     Column() {
       WaterflowDemo()
