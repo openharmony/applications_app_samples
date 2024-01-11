@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2024 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,10 +13,8 @@
  * limitations under the License.
  */
 
-import { IntroductionTitle } from '../../../../common/IntroductionTitle';
 import { TitleBar } from '../../../../common/TitleBar';
 import { LEFT_PADDING, RIGHT_PADDING } from '../../ComponentData';
-// import { ArgumentsSpaceControlPanel, PropertiesControlPanel } from '../listSample/ListControlPanel';
 import { WaterFlowScrollByControlPanel, WaterFlowScrollEdgeControlPanel, WaterFlowDataSource,
   WaterFlowPropertiesScrollBarControlPanel,
   WaterFlowPropertiesScrollBarColorControlPanel,
