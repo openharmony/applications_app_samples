@@ -48,10 +48,10 @@ Vector3 Vector3::Normalize(Vector3 lhs)
 
 Vector3 Vector3::Cross(Vector3 lhs, Vector3 rhs)
 {
-    float newX = lhs.dataY * rhs.dataZ - lhs.dataZ * rhs.dataY;
-    float newY = lhs.dataZ * rhs.dataX - lhs.dataX * rhs.dataZ;
-    float newZ = lhs.dataX * rhs.dataY - lhs.dataY * rhs.dataX;
-    return Vector3(newX, newY, newZ);
+    float newDataX = lhs.dataY * rhs.dataZ - lhs.dataZ * rhs.dataY;
+    float newDataY = lhs.dataZ * rhs.dataX - lhs.dataX * rhs.dataZ;
+    float newDataZ = lhs.dataX * rhs.dataY - lhs.dataY * rhs.dataX;
+    return Vector3(newDataX, newDataY, newDataZ);
 }
 
 float Vector3::Dot(Vector3 lhs, Vector3 rhs)
