@@ -25,7 +25,7 @@ import Logger from 'ets/util/Logger';
 const TAG = '{Sample_AppXComponent3D]'
 const BUNDLE_NAME = 'com.example.xcomponent3d';
 const ABILITY_NAME = 'EntryAbility';
-const DOMAIN = 0xE629;
+const DOMAIN = '0xE629';
 let ability: UIAbility | null = null;
 
 interface wantType {
