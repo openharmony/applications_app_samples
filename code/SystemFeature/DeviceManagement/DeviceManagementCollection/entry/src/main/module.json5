@@ -63,6 +63,9 @@
       },
       {
         "name": "ohos.permission.INPUT_MONITORING"
+      },
+      {
+        "name": "ohos.permission.GET_INSTALLED_BUNDLE_LIST"
       }
     ]
   }
