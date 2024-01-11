@@ -42,7 +42,7 @@ function listItemTextStyle() {
   .width('100%')
   .padding(12)
   .borderRadius(16)
-  // .backgroundColor(Color.White)
+  .backgroundColor(Color.White)
   .justifyContent(FlexAlign.SpaceAround)
 }
 
@@ -122,16 +122,6 @@ struct WaterFlowSample {
           .borderRadius(16)
           .height(this.itemHeightArray[item % 4])
         }
-        .onAppear(() => {
-          console.log("WaterFlowControlPanel onAppear test")
-
-          // 即将触底时提前增加数据
-          if (item + 20 == this.dataSource.totalCount()) {
-            for (let i = 0; i < 40; i++) {
-              // this.dataSource.addLastItem()
-            }
-          }
-        })
         .width('100%')
         .backgroundColor(Color.White)
       }, (item: string) => item)

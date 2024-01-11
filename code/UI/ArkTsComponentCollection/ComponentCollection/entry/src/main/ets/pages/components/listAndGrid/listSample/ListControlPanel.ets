@@ -30,11 +30,6 @@ export struct ArgumentsSpaceControlPanel {
         testId: `list_001`
       })
     }
-    // .backgroundColor(Color.White)
-    // .height(96)
-    // .margin({bottom:12})
-    // .padding({left:12,right:12, top:17, bottom:17})
-    // .borderRadius(16)
   }
 }
 

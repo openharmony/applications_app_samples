@@ -100,7 +100,6 @@ struct ListSample {
         .multiSelectable(this.multiSelectable)
         .chainAnimation(this.isChainAnimation)
         .lanes(this.lanes)
-        // .backgroundColor(Color.Yellow)
         .divider(
           {
             strokeWidth: this.strokeWidth,
@@ -113,7 +112,6 @@ struct ListSample {
       .height('32%')
       .width('100%')
       .flexGrow(0)
-      // .backgroundColor(Color.Blue)
 
       Column() {
         Text(`当前 initialIndex 为:${this.initIndex}
@@ -121,7 +119,6 @@ struct ListSample {
           .textAlign(TextAlign.Start)
           .fontColor(Color.Gray)
       }
-      // .backgroundStyle()
       .height('16%')
       .width('100%')
       .padding({left:12})

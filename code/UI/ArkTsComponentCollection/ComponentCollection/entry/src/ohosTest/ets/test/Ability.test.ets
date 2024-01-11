@@ -1838,33 +1838,22 @@ export default function abilityTest() {
         await checkButtonAndClickWithText(atom);
         await driver.delayMs(DELAY_TIME);
 
-        Logger.info(BUNDLE + testName + ' middle ------------------------------');
         await drawSliderWithId(`list_001`);
         await checkButtonAndClickWithID(`list_002`);
         await checkButtonAndClickWithText(`5`);
-
 
         atom = await manager.getStringValue($r('app.string.list_introduction_properties'));
         await driver.findComponent(ON.text(atom));
         await checkButtonAndClickWithText(atom);
         await driver.delayMs(DELAY_TIME);
 
-        // await checkButtonAndClickWithID(`list_003`);
-        // await checkButtonAndClickWithText(`Horizontal`);
-        // await drawSliderWithId(`list_004`);
-        // await checkButtonAndClickWithID(`list_005`);
-        // await checkButtonAndClickWithText(`Pink`);
-        //
         await driver.drag(200, 900, 200, 700, 800);
-        // await checkButtonAndClickWithID(`list_006`);
-        // await checkButtonAndClickWithText(`On`);
-
         await driver.drag(200, 900, 200, 660, 800);
-        // await checkButtonAndClickWithID(`list_007`);
-        // await checkButtonAndClickWithText(`Spring`);
-        //
-        await driver.drag(200, 900, 200, 640, 800);
-        await checkButtonAndClickWithID(`list_008`); // ChainAnimation
+
+        await driver.drag(200, 900, 200, 640, 800)
+
+        // ChainAnimation
+        await checkButtonAndClickWithID(`list_008`);
         await checkButtonAndClickWithID(`list_009`);
 
         // await driver.drag(200, 900, 200, 450, 800);
@@ -1874,23 +1863,21 @@ export default function abilityTest() {
         await checkButtonAndClickWithText(`Start`);
 
         // 返回
-        Logger.info(BUNDLE + testName + ' middle ff ------------------------------');
         await checkButtonAndClickWithID('backBtn');
         await driver.delayMs(DELAY_TIME_FiVE);
 
         Logger.info(BUNDLE + testName + ' end');
       })
 
+      /**
+       * WaterFlow
+       */
       it(BUNDLE + 'WaterFlowFunction_001', 0, async () => {
         let testName = 'WaterFlowFunction';
         Logger.info(BUNDLE + testName + ' begin ------------------------------');
         await driver.delayMs(DELAY_TIME);
 
         await driver.drag(200, 500, 200, 200, 800)
-
-        // // 向下滑动 固定坐标只支持RK3568，其他设备需要调整
-        // let scrollBar = await driver.findComponent(ON.type('Scroll'));
-        // await scrollBar.scrollToBottom();
 
         let atom = await manager.getStringValue($r('app.string.waterFlow'));
         let button = await driver.findComponent(ON.text(atom));
@@ -1903,7 +1890,6 @@ export default function abilityTest() {
 
         Logger.info(BUNDLE + testName + ' middle ------------------------------');
         await drawSliderWithId(`waterFlow_001`);
-        // await checkButtonAndClickWithText(`100`);
         await checkButtonAndClickWithID(`waterFlow_002`);
         await checkButtonAndClickWithText(`Bottom`);
 
@@ -1914,19 +1900,13 @@ export default function abilityTest() {
 
         await checkButtonAndClickWithID(`waterFlow_003`);
         await checkButtonAndClickWithText(`On`);
-        // await drawSliderWithId(`list_004`);
-        // await checkButtonAndClickWithID(`list_005`);
-        // await checkButtonAndClickWithText(`Pink`);
-        //
 
         // 返回
-        Logger.info(BUNDLE + testName + ' middle ff ------------------------------');
         await checkButtonAndClickWithID('backBtn');
         await driver.delayMs(DELAY_TIME_FiVE);
 
         Logger.info(BUNDLE + testName + ' end');
       })
-
 
       /**
        * ListItem

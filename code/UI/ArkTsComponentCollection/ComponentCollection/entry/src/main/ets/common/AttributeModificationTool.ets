@@ -138,7 +138,6 @@ export struct CommonItemSelect {
       Select(this.selectOption)
         .id(this.testId)
         .value(this.text)
-        // .backgroundColor($r('app.color.background_shallow_grey'))
         .backgroundColor(Color.White)
         .borderRadius(19)
         .constraintSize({ minWidth: 150 })
