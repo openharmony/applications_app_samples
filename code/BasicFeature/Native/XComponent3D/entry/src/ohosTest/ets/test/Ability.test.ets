@@ -23,7 +23,7 @@ import Want from '@ohos.app.ability.Want';
 import Logger from 'ets/util/Logger';
 
 const TAG = '{Sample_AppXComponent3D]'
-const BUNDLE_NAME = 'com.example.xcomponent3d';
+const BUNDLE_NAME = 'com.samples.xcomponent3d';
 const ABILITY_NAME = 'EntryAbility';
 const DOMAIN = '0xE629';
 let ability: UIAbility | null = null;
@@ -57,7 +57,7 @@ export default function abilityTest() {
 
     afterAll(async (lockAbilityTerminateSelf: Function) => {
       let abilityDelegator = delegatorRegistry.getAbilityDelegator();
-      let pkillCmd = 'aa force-stop com.example.xcomponent3d';
+      let pkillCmd = 'aa force-stop com.samples.xcomponent3d';
       abilityDelegator.executeShellCommand(pkillCmd, (err, data) => {
         console.log('Acts_CleanTempFiles pkillCmd err: '
           + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
