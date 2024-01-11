@@ -41,8 +41,7 @@ export struct TrendsItem {
   @Builder
   ButtonComp(image: Resource, count: number) {
     Row() {
-      Image(image)
-        .width($r('app.integer.layout_size_22'))
+git         .width($r('app.integer.layout_size_22'))
         .height($r('app.integer.layout_size_22'))
         .opacity($r('app.float.icon'))
         .objectFit(ImageFit.Contain)
@@ -119,6 +118,7 @@ export struct TrendsItem {
           // 媒体视频
           Stack({ alignContent: Alignment.Center }) {
             Image($r('app.media.photo25'))
+              .draggable(false)
               .width($r('app.integer.layout_size_224'))
               .height($r('app.integer.layout_size_224'))
               .borderRadius($r('app.integer.layout_size_20'))
@@ -140,6 +140,7 @@ export struct TrendsItem {
           // 单张图
           Stack({ alignContent: Alignment.Center }) {
             Image(this.trendsItemData.contents.imageList[0])
+              .draggable(false)
               .width($r('app.integer.layout_size_245'))
               .height($r('app.integer.layout_size_150'))
               .borderRadius($r('app.integer.layout_size_20'))
@@ -160,6 +161,7 @@ export struct TrendsItem {
             ForEach(this.trendsItemData.contents.imageList, (image: Resource, index: number) => {
               Stack() {
                 Image(image)
+                  .draggable(false)
                   .width(this.currentBreakpoint === 'sm' ? $r('app.integer.layout_size_134') : $r('app.integer.layout_size_144'))
                   .height(this.currentBreakpoint === 'sm' ? $r('app.integer.layout_size_134') : $r('app.integer.layout_size_144'))
                   .margin({ top: $r('app.integer.layout_size_8') })
