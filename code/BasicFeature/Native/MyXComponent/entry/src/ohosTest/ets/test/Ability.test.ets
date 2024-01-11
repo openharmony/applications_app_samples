@@ -20,6 +20,7 @@ import delegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import hilog from '@ohos.hilog';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
+import Logger from 'ets/util/Logger';
 
 const TAG = '{Sample_AppMyXComponent]'
 const BUNDLE_NAME = 'com.example.myxcompoent';
@@ -44,14 +45,13 @@ export default function abilityTest() {
         abilityName: ABILITY_NAME
       };
       delegator.startAbility(want, (err) => {
-        hilog.info(DOMAIN, TAG, `${BUNDLE_NAME} startAbility end err ${JSON.stringify(err)}`);
+        Logger.info(TAG, `${BUNDLE_NAME} startAbility end err ${JSON.stringify(err)}`)
       });
       await driver.delayMs(5000);
       await delegator.getCurrentTopAbility().then((Ability) => {
         ability = Ability;
         expect(Ability.context.abilityInfo.name).assertEqual('EntryAbility');
       });
-      hilog.info(DOMAIN, TAG, `${BUNDLE_NAME} StartAbility_001 end`);
       startAbility();
     })
 
@@ -75,7 +75,6 @@ export default function abilityTest() {
      * @tc.number: ActsAbilityTest_StartAbility_Click_001
      */
     it('ActsAbilityTest_StartAbility_Click_001', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, '%{public}s', BUNDLE_NAME + ' click_001 begin');
 
       try {
         await driver.delayMs(1000);
@@ -85,10 +84,9 @@ export default function abilityTest() {
         await driver.delayMs(1000);
         done();
       } catch (err) {
-        hilog.error(DOMAIN, TAG, '%{public}s', `click_001 err ${err.code}  msg ${err.message}`);
+        Logger.error(DOMAIN, TAG, '%{public}s', `click_001 err ${err.code}  msg ${err.message}`);
         expect().assertFail();
       }
-      hilog.info(DOMAIN, TAG, '%{public}s', BUNDLE_NAME + ' click_001 end');
     });
 
     /**
@@ -101,7 +99,6 @@ export default function abilityTest() {
      * @tc.number: ActsAbilityTest_StartAbility_Click_002
      */
     it('ActsAbilityTest_StartAbility_Click_002', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, '%{public}s', BUNDLE_NAME + ' click_002 begin');
 
       try {
         await driver.delayMs(1000);
@@ -111,10 +108,9 @@ export default function abilityTest() {
         await driver.delayMs(1000);
         done();
       } catch (err) {
-        hilog.error(DOMAIN, TAG, '%{public}s', `click_001 err ${err.code}  msg ${err.message}`);
+        Logger.error(DOMAIN, TAG, '%{public}s', `click_001 err ${err.code}  msg ${err.message}`);
         expect().assertFail();
       }
-      hilog.info(DOMAIN, TAG, '%{public}s', BUNDLE_NAME + ' click_002 end');
     });
 
     /**
@@ -127,7 +123,6 @@ export default function abilityTest() {
      * @tc.number: ActsAbilityTest_StartAbility_Click_003
      */
     it('ActsAbilityTest_StartAbility_Click_003', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, '%{public}s', BUNDLE_NAME + ' click_003 begin');
 
       try {
         await driver.delayMs(1000);
@@ -137,10 +132,9 @@ export default function abilityTest() {
         await driver.delayMs(1000);
         done();
       } catch (err) {
-        hilog.error(DOMAIN, TAG, '%{public}s', `click_003 err ${err.code}  msg ${err.message}`);
+        Logger.error(DOMAIN, TAG, '%{public}s', `click_003 err ${err.code}  msg ${err.message}`);
         expect().assertFail();
       }
-      hilog.info(DOMAIN, TAG, '%{public}s', BUNDLE_NAME + ' click_003 end');
     });
   });
 }
