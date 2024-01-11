@@ -24,7 +24,7 @@ import { getStringData } from '../../../../data/ResourceDataHandle';
   .width('100%')
   .backgroundColor(Color.White)
 }
-@Extend(Button) function buttonStyle() {
+@Extend(Button) function commonButtonStyle() {
   .margin(8)
   .fontSize(16)
   .width('90%')
@@ -57,7 +57,7 @@ struct TapGestureExample {
         .rowStyle()
         // 单指双击文本触发手势事件
         Button($r('app.string.double_click'))
-          // .buttonStyle()
+          .commonButtonStyle()
           .id('tap_click')
           .gesture(
             TapGesture({ count: 2, fingers: 1 })

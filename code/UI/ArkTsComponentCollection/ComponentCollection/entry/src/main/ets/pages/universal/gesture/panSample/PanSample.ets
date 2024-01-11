@@ -23,7 +23,7 @@ const RIGHT_UP_X = 110;
 const LEFT_UP_Y = -118;
 const RIGHT_UP_Y = 118;
 
-@Extend(Button) function buttonStyle() {
+@Extend(Button) function commonButtonStyle() {
   .margin(8)
   .fontSize(16)
   .width('90%')
@@ -102,7 +102,7 @@ struct PanExample {
 
       Button($r('app.string.pan_button'))
         .id('pan_change')
-        // .buttonStyle()
+        .commonButtonStyle()
         .onClick(() => {
           this.flag = !this.flag;
           // 将PanGesture手势事件触发条件改为双指以任意方向拖动

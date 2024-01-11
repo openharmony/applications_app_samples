@@ -25,7 +25,7 @@ import { TitleBar } from '../../../../common/TitleBar';
   .margin({ top: 12, bottom: 12 })
 }
 
-@Extend(Button) function buttonStyle() {
+@Extend(Button) function commonButtonStyle() {
   .margin(8)
   .fontSize(16)
   .layoutWeight(1)
@@ -62,12 +62,12 @@ struct MenuSample {
           IntroductionTitle({ introduction: $r('app.string.global_menu_create_way') })
           Row({ space: 16 }) {
             Button($r('app.string.global_menu_click_right'))
-              // .buttonStyle()
+              .commonButtonStyle()
               .bindContextMenu(this.MenuBuilder(), ResponseType.RightClick)
               .id('right_clickButton')
 
             Button($r('app.string.global_menu_long_press'))
-              // .buttonStyle()
+              .commonButtonStyle()
               .bindContextMenu(this.MenuBuilder(), ResponseType.LongPress)
               .id('long_pressButton')
           }

@@ -16,7 +16,7 @@
 import { TitleBar } from '../../../../common/TitleBar';
 import ShowToast from '../../../../util/ShowToast';
 
-@Extend(Button) function buttonStyle() {
+@Extend(Button) function commonButtonStyle() {
   .margin(8)
   .fontSize(16)
   .layoutWeight(1)
@@ -61,14 +61,14 @@ struct MountUnmountEventSample {
         Column() {
           Row({ space: 18 }) {
             Button($r('app.string.general_mount_toast'))
-              // .buttonStyle()
+              .commonButtonStyle()
               .margin({ left: 24 })
               .onClick(() => {
                 this.isShow = true;
               })
               .id('mount')
             Button($r('app.string.general_unmount_toast'))
-              // .buttonStyle()
+              .commonButtonStyle()
               .margin({ right: 24 })
               .onClick(() => {
                 this.isShow = false;
