@@ -12,8 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef XComponent3D_BASE_SHAPE_H
-#define XComponent3D_BASE_SHAPE_H
+#ifndef XCOMPONENT3D_BASE_SHAPE_H
+#define XCOMPONENT3D_BASE_SHAPE_H
 
 #include <cstdint>
 
@@ -25,4 +25,4 @@ public:
     virtual void Animate(void) = 0;
 };
 
-#endif // XComponent3D_base_shape_H
+#endif // XCOMPONENT3D_BASE_SHAPE_H
