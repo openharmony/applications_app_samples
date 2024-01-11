@@ -18,7 +18,7 @@ import { TitleBar } from '../../../../common/TitleBar';
 import ShowToast from '../../../../util/ShowToast';
 import { getStringData } from '../../../../data/ResourceDataHandle';
 
-@Extend(Button) function buttonStyle() {
+@Extend(Button) function commonButtonStyle() {
   .margin(8)
   .fontSize(16)
   .width('100%')
@@ -55,7 +55,7 @@ struct TapGestureExample {
         .width('100%')
 
         Button($r('app.string.long_press_text'))
-          .buttonStyle()
+          .commonButtonStyle()
             // 单指长按文本触发该手势事件
           .gesture(
             LongPressGesture({ fingers: 1, duration: 500, repeat: true })

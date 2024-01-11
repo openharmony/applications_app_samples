@@ -3116,6 +3116,44 @@ export default function abilityTest() {
       });
 
       /**
+       * outline 外边框
+       */
+      it(BUNDLE + 'OutlineFunction_001', 0, async () => {
+        let testName = 'OutlineFunction';
+        Logger.info(BUNDLE + testName + ' begin');
+        // 进入页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.prop_outline')))
+        // 正常显示
+        await driver.delayMs(DELAY_TIME_FiVE);
+        // 输入文本1
+        let input1 = await driver.findComponent(ON.id('testInput1'));
+        await input1.inputText('test1');
+        // 退出输入框
+        await driver.pressBack();
+        await driver.delayMs( DELAY_TIME_FiVE );
+        // 输入文本1
+        let input2 = await driver.findComponent(ON.id('testInput2'));
+        await input2.inputText('test2');
+        // 退出输入框
+        await driver.pressBack();
+        await driver.delayMs( DELAY_TIME_FiVE );
+        // 鼠标悬停小按钮1
+        await driver.mouseMoveTo({x:160, y:1120})
+        await driver.delayMs( DELAY_TIME );
+        // 鼠标悬停小按钮2
+        await driver.mouseMoveTo({x:360, y:1120})
+        await driver.delayMs( DELAY_TIME );
+        // 鼠标悬停小按钮3
+        await driver.mouseMoveTo({x:560, y:1120})
+        await driver.delayMs( DELAY_TIME );
+        // 返回
+        await checkButtonAndClickWithID('backBtn');
+        await driver.delayMs(DELAY_TIME_FiVE);
+
+        Logger.info(BUNDLE + testName + ' end');
+      });
+
+      /**
        * font 字体
        */
       it(BUNDLE + 'FontFunction_001', 0, async () => {

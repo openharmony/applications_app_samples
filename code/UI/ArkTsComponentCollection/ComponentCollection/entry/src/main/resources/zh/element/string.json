@@ -45,6 +45,10 @@
       "value": "border 边框"
     },
     {
+      "name": "prop_outline",
+      "value": "描边效果"
+    },
+    {
       "name": "prop_font",
       "value": "font 字体"
     },
@@ -514,6 +518,18 @@
     {
       "name": "border_3D",
       "value": "设置3D边框"
+    },
+    {
+      "name": "outline_text",
+      "value": ".outline"
+    },
+    {
+      "name": "outline_effect",
+      "value": "双描边效果"
+    },
+    {
+      "name": "outline_button",
+      "value": "小按钮"
     },
     // Button
     {

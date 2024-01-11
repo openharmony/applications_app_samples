@@ -33,7 +33,7 @@ import { TitleBar } from '../../../../common/TitleBar'
   .padding(15)
 }
 
-@Extend(Button) function buttonStyle() {
+@Extend(Button) function commonButtonStyle() {
   .margin(8)
   .fontSize(16)
   .layoutWeight(1)
@@ -55,7 +55,7 @@ struct WarningDialogSample {
           IntroductionTitle({ introduction: $r('app.string.alert_dialog_type') })
           Row() {
             Button($r('app.string.alert_dialog_type_one'))
-              .buttonStyle()
+              .commonButtonStyle()
               .onClick(() => {
                 AlertDialog.show(
                   {
@@ -75,7 +75,7 @@ struct WarningDialogSample {
                 )
               }).id('test_oneButton')
             Button($r('app.string.alert_dialog_type_two'))
-              .buttonStyle()
+              .commonButtonStyle()
               .onClick(() => {
                 AlertDialog.show(
                   {
@@ -108,7 +108,7 @@ struct WarningDialogSample {
           IntroductionTitle({ introduction: $r('app.string.alert_dialog_location') })
           Row() {
             Button($r('app.string.alert_dialog_top'))
-              .buttonStyle()
+              .commonButtonStyle()
               .onClick(() => {
                 AlertDialog.show(
                   {
@@ -129,7 +129,7 @@ struct WarningDialogSample {
                 )
               }).id('test_topButton')
             Button($r('app.string.alert_dialog_center'))
-              .buttonStyle()
+              .commonButtonStyle()
               .onClick(() => {
                 AlertDialog.show(
                   {
@@ -150,7 +150,7 @@ struct WarningDialogSample {
                 )
               }).id('test_centerButton')
             Button($r('app.string.alert_dialog_bottom'))
-              .buttonStyle()
+              .commonButtonStyle()
               .onClick(() => {
                 AlertDialog.show(
                   {
@@ -176,7 +176,7 @@ struct WarningDialogSample {
           IntroductionTitle({ introduction: $r('app.string.alert_dialog_auto_cancel') })
           Row() {
             Button($r('app.string.alert_dialog_true'))
-              .buttonStyle()
+              .commonButtonStyle()
               .onClick(() => {
                 AlertDialog.show(
                   {
@@ -197,7 +197,7 @@ struct WarningDialogSample {
                 )
               }).id('test_closeableButton')
             Button($r('app.string.alert_dialog_false'))
-              .buttonStyle()
+              .commonButtonStyle()
               .onClick(() => {
                 AlertDialog.show(
                   {
@@ -223,7 +223,7 @@ struct WarningDialogSample {
           IntroductionTitle({ introduction: $r('app.string.alert_dialog_offset') })
           Row() {
             Button($r('app.string.alert_dialog_left'))
-              .buttonStyle()
+              .commonButtonStyle()
               .onClick(() => {
                 AlertDialog.show(
                   {
@@ -244,7 +244,7 @@ struct WarningDialogSample {
                 )
               }).id('test_upperLeftButton')
             Button($r('app.string.alert_dialog_right'))
-              .buttonStyle()
+              .commonButtonStyle()
               .onClick(() => {
                 AlertDialog.show(
                   {
@@ -270,7 +270,7 @@ struct WarningDialogSample {
           IntroductionTitle({ introduction: $r('app.string.alert_dialog_grid') })
           Row() {
             Button($r('app.string.alert_dialog_grid_two'))
-              .buttonStyle()
+              .commonButtonStyle()
               .onClick(() => {
                 AlertDialog.show(
                   {
@@ -291,7 +291,7 @@ struct WarningDialogSample {
                 )
               }).id('test_2GridButton')
             Button($r('app.string.alert_dialog_grid_three'))
-              .buttonStyle()
+              .commonButtonStyle()
               .onClick(() => {
                 AlertDialog.show(
                   {
@@ -312,7 +312,7 @@ struct WarningDialogSample {
                 )
               }).id('test_3GridButton')
             Button($r('app.string.alert_dialog_grid_four'))
-              .buttonStyle()
+              .commonButtonStyle()
               .onClick(() => {
                 AlertDialog.show(
                   {
@@ -347,7 +347,7 @@ struct WarningDialogSample {
 
             Row() {
               Button($r('app.string.alert_dialog_bottom'))
-                .buttonStyle()
+                .commonButtonStyle()
                 .onClick(() => {
                   this.mTextInputController.setTextSelection(1, 2)
                   AlertDialog.show(
