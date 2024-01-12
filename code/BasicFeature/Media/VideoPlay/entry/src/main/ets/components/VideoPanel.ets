@@ -17,6 +17,7 @@ import avPlayManage from '../videomanager/AvPlayManager';
 import media from '@ohos.multimedia.media';
 import wf from '@ohos.wifiManager';
 import promptAction from '@ohos.promptAction';
+import common from '@ohos.app.ability.common';
 
 const VIDEOSELECT = 2; // 网络视频索引
 
@@ -26,7 +27,7 @@ export struct VideoPanel {
   @State selectColor: boolean = true;
   @Link show: boolean;
   @Link videoSelect: number; // 当前选择项的索引
-  @StorageLink('avPlayManage') avPlayManage: avPlayManage = null;
+  @StorageLink('avPlayManage') avPlayManage: avPlayManage | null = null;
   @State linkSpeed: number = 0;
 
   // 判断是否联网
@@ -50,7 +51,7 @@ export struct VideoPanel {
       duration: 2000,
     });
     setTimeout(() => {
-      globalThis.context.terminateSelf();
+      (getContext(this) as common.UIAbilityContext).terminateSelf();
     }, 1000)
   }
 
@@ -92,7 +93,7 @@ export struct VideoPanel {
         .margin({ top: $r('app.float.size_20'), bottom: $r('app.float.size_20') })
 
         List() {
-          ForEach(this.videoList, (item, index) => {
+          ForEach(this.videoList, (item: Resource, index: number) => {
             ListItem() {
               Column() {
                 Row() {
@@ -122,12 +123,14 @@ export struct VideoPanel {
             .height($r('app.float.size_64'))
             .onClick(async () => {
               this.videoSelect = index;
-              AppStorage.SetOrCreate('videoName', this.videoList[this.videoSelect]);
-              AppStorage.SetOrCreate('videoIndex', this.videoSelect);
+              AppStorage.setOrCreate('videoName', this.videoList[this.videoSelect]);
+              AppStorage.setOrCreate('videoIndex', this.videoSelect);
               this.show = false;
-              let str = await globalThis.context.resourceManager.getStringValue(this.videoList[this.videoSelect]);
-              this.avPlayManage.videoChoose(str, this.videoSelect, (avPlayer: media.AVPlayer) => {
-              });
+              let str: string = await getContext(this).resourceManager.getStringValue(this.videoList[this.videoSelect]);
+              if(this.avPlayManage){
+                this.avPlayManage.videoChoose(str, this.videoSelect, (avPlayer: media.AVPlayer) => {
+                });
+              }
             })
           })
         }

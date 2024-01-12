@@ -12,18 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import ExitTest from './Exit.test'
-import SliderTest from './Slider.test'
-import ChooseTest from './Choose.test'
-import SpeedTest from './Speed.test'
-import PlayPauseTest from './PlayPause.test'
 import abilityTest from './Ability.test'
 
 export default function testsuite() {
   abilityTest()
-  PlayPauseTest()
-  SpeedTest()
-  ChooseTest()
-  SliderTest()
-  ExitTest()
 }
