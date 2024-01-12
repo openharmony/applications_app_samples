@@ -69,6 +69,12 @@ struct ScrollSample {
             .scrollable(this.scroll_direction)
             .width('100%')
             .height(200)
+            .onReachStart(() => {
+              promptAction.showToast({ message: $r('app.string.horizontal_reach_start')}) // '横向滚动onReachStart'
+            })
+            .onReachEnd(() => {
+              promptAction.showToast({ message: $r('app.string.horizontal_reach_end')}) // '横向滚动onReachEnd'
+            })
           }.cardStyle()
 
           Text($r('app.string.scroll_vertical'))
@@ -83,6 +89,12 @@ struct ScrollSample {
             .scrollable(ScrollDirection.Vertical)
             .width('100%')
             .height(200)
+            .onReachStart(() => {
+              promptAction.showToast({ message: $r('app.string.vertical_reach_start')})
+            })
+            .onReachEnd(() => {
+              promptAction.showToast({ message: $r('app.string.vertical_reach_end')})
+            })
           }.cardStyle()
 
           Text($r('app.string.avoiding_input_method_testing'))
@@ -108,13 +120,6 @@ struct ScrollSample {
       .backgroundColor($r('app.color.background_light_gray'))
       .width('100%')
       .padding({ left: 20, right: 20 })
-      .onReachStart(() => {
-        promptAction.showToast({ message: '纵向滚动onReachStart'})
-      })
-      .onReachEnd(() => {
-        promptAction.showToast({ message: '纵向滚动onReachEnd'})
-      })
-
     }
   }
 }

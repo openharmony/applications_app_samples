@@ -5471,6 +5471,22 @@
     {
       "name":"water_flow_properties_edge_effect_none",
       "value":"None"
+    },
+    {
+      "name":"horizontal_reach_start",
+      "value":"Horizontal scroll onReachStart"
+    },
+    {
+      "name":"horizontal_reach_end",
+      "value":"Horizontal scroll onReachEnd"
+    },
+    {
+      "name":"vertical_reach_start",
+      "value":"Vertical scroll onReachStart"
+    },
+    {
+      "name":"vertical_reach_end",
+      "value":"Vertical scroll onReachEnd"
     }
   ]
 }

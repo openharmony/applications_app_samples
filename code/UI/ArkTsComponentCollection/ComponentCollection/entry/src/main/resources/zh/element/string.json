@@ -4572,6 +4572,22 @@
     {
       "name":"water_flow_properties_edge_effect_none",
       "value":"None"
+    },
+    {
+      "name":"horizontal_reach_start",
+      "value":"横向滚动onReachStart"
+    },
+    {
+      "name":"horizontal_reach_end",
+      "value":"横向滚动onReachEnd"
+    },
+    {
+      "name":"vertical_reach_start",
+      "value":"纵向滚动onReachStart"
+    },
+    {
+      "name":"vertical_reach_end",
+      "value":"纵向滚动onReachEnd"
     }
   ]
 }
