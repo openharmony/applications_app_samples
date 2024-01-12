@@ -41,7 +41,8 @@ export struct TrendsItem {
   @Builder
   ButtonComp(image: Resource, count: number) {
     Row() {
-git         .width($r('app.integer.layout_size_22'))
+      Image(image)
+        .width($r('app.integer.layout_size_22'))
         .height($r('app.integer.layout_size_22'))
         .opacity($r('app.float.icon'))
         .objectFit(ImageFit.Contain)
