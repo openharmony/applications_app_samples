@@ -15,6 +15,7 @@
 
 export const DESTROY_FLOAT_WINDOW = 1
 
-export const PHONE_WIDTH = 180
-
-export const PHONE_HEIGHT = 160
+export default class PhoneConstants {
+  public static PHONE_WIDTH: number = 180;
+  public static PHONE_HEIGHT: number = 160;
+}
