@@ -14,3 +14,7 @@
  */
 
 export const DESTROY_FLOAT_WINDOW = 1
+
+export const PHONE_WIDTH = 180
+
+export const PHONE_HEIGHT = 160
