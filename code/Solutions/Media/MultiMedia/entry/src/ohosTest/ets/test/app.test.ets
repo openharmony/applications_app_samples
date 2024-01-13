@@ -169,6 +169,25 @@ export default function appTest() {
       await driver.delayMs(1000);
       await driver.pressBack();
       await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('mediaType2'));
+      let mediaType: Component = await driver.findComponent(ON.id('mediaType2'));
+      await mediaType.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('mediaId0'));
+      let medieItem: Component = await driver.findComponent(ON.id('mediaId0'));
+      await medieItem.click();
+      await driver.delayMs(2000);
+      let resourceManager = ability.context.resourceManager;
+      for (let i = 0;i < 2; i++) {
+        await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.allow'))));
+        let agreeNotication: Component = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.allow'))));
+        await agreeNotication.click();
+        await driver.delayMs(1000);
+      }
+      await driver.delayMs(2000);
+      await driver.pressBack();
+      await driver.delayMs(1000);
+      await driver.pressBack();
       Logger.info(TAG, BUNDLE + 'Video_001 end');
     });
     /**

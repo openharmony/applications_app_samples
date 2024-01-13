@@ -120,6 +120,7 @@ struct AlbumPage {
           ListItem() {
             MediaItem({ media: item, index: index, btnAction: this.btnAction.bind(this) })
           }
+          .id(`mediaId${index}`)
           .onClick(() => {
             if (item.mediaType === mediaLibrary.MediaType.VIDEO) {
               Logger.info(this.tag, `onClick,item.id=${item.id}`)
