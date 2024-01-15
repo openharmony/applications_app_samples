@@ -2474,6 +2474,10 @@
     {
       "name": "safe_area",
       "value": "SafeArea"
+    },
+    {
+      "name": "attribute_modifier",
+      "value": "AttributeModifier"
     }
   ]
 }

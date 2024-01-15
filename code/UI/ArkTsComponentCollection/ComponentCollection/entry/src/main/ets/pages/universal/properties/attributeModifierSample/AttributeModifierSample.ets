@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023-2024 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2024 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -99,7 +99,7 @@ class MyButtonFocusModifier implements AttributeModifier<ButtonAttribute> {
 
 @Entry
 @Component
-struct ComponentIDSample {
+struct AttributeModifierSample {
   @State normalModifier: MyButtonNormalModifier = new MyButtonNormalModifier();
   @State buttonPressModifier: MyButtonPressedModifier = new MyButtonPressedModifier();
   @State listItemPressModifier: MyListItemPressedModifier = new MyListItemPressedModifier();
@@ -122,6 +122,7 @@ struct ComponentIDSample {
               .width(40)
               .borderWidth(0)
               .borderRadius(30)
+              .id('radio1')
               .attributeModifier(this.selectModifier)
               .onClick(() => {
                 this.selectValue = !this.selectValue;
@@ -141,13 +142,14 @@ struct ComponentIDSample {
                 .margin({ left: 12 })
               Checkbox()
                 .select(this.buttonIsDisabled)
+                .id('checkbox1')
                 .onChange((value: boolean) => {
                   this.buttonIsDisabled = value;
-                }).id('test_checkbox1')
+                })
               Button($r('app.string.component_id_disable_to_see_attributeModifier'))
                 .attributeModifier(this.disableModifier)
                 .enabled(!this.buttonIsDisabled)
-                .id('longClick')
+                .id('disableButton')
                 .width('65%')
                 .margin({ right: 12, top: 8, bottom: 8 })
                 .onClick(() => {
@@ -164,11 +166,11 @@ struct ComponentIDSample {
           Row({ space: 10 }) {
             Button($r('app.string.component_id_click_to_see_attributeModifier'))
               .MyButtonStyle()
+              .id('clickButton')
               .attributeModifier(this.normalModifier)
               .onClick(() => {
                 this.normalModifier.isBlue = !this.normalModifier.isBlue;
               })
-              .id('click')
           }
           .justifyContent(FlexAlign.Center)
           .borderRadius(24)
@@ -181,7 +183,7 @@ struct ComponentIDSample {
             Button($r('app.string.component_id_press_to_see_attributeModifier'))
               .MyButtonStyle()
               .attributeModifier(this.buttonPressModifier)
-              .id('longClick')
+              .id('longClickButton')
 
             Row(){
               Text($r('app.string.component_id_press_list_to_see_attributeModifier'))
@@ -195,7 +197,9 @@ struct ComponentIDSample {
                     .width('100%')
                     .fontSize(18)
                     .textAlign(TextAlign.Center)
-                }.width('100%')
+                }
+                .id('ListItem'+item)
+                .width('100%')
                 .itemCardStyle()
                 .attributeModifier(this.listItemPressModifier)
               })
@@ -216,6 +220,7 @@ struct ComponentIDSample {
           Row({ space: 20 }) {
             Column({ space: 5 }) {
               Button($r('app.string.focus_control_group1'))
+                .id('focusButton1')
                 .width(195)
                 .height(40)
                 .fontColor(Color.White)
@@ -223,11 +228,13 @@ struct ComponentIDSample {
                 .focusOnTouch(true) // 该Button组件点击后可获焦
               Row({ space: 5 }) {
                 Button()
+                  .id('focusButton2')
                   .width(95)
                   .height(40)
                   .attributeModifier(this.focusedModifier)
                   .fontColor(Color.White)
                 Button()
+                  .id('focusButton3')
                   .width(95)
                   .height(40)
                   .attributeModifier(this.focusedModifier)

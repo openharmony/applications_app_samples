@@ -3622,6 +3622,29 @@ export default function abilityTest() {
       });
 
       /**
+       * 动态属性设置
+       */
+      it(BUNDLE + 'AttributeModifierFunction_001', 0, async () => {
+        let testName = 'AttributeModifier';
+        Logger.info(BUNDLE + testName + ' begin');
+        // 从下往上滑动列表
+        await driver.drag(200, 300, 200, 50, 800);
+        // 进入页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.attribute_modifier')));
+        // 点击
+        await checkButtonAndClickWithID('radio1');
+        await checkButtonAndClickWithID('checkbox1');
+        await checkButtonAndClickWithID('clickButton');
+        await checkButtonAndClickWithID('longClickButton');
+        await checkButtonAndClickWithID('ListItem2');
+        // 返回
+        await checkButtonAndClickWithID('backBtn');
+        await driver.delayMs(DELAY_TIME_FiVE);
+
+        Logger.info(BUNDLE + testName + ' end');
+      });
+
+      /**
        * 绑定手势方法
        */
       it(BUNDLE + 'BindFunction_001', 0, async () => {
