@@ -3625,6 +3625,14 @@
     {
       "name":"water_flow_properties",
       "value":"WaterFlow properties"
+    },
+    {
+      "name":"water_flow_properties_scroll_bar_color",
+      "value":"scrollBarColor"
+    },
+    {
+      "name": "list_properties_edge_effect",
+      "value": "edgeEffect"
     }
   ]
 }

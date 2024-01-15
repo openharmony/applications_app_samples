@@ -222,11 +222,13 @@ struct ListSample {
                       .margin({bottom:12})
                   }
                   .width('100%')
+                  // .height('100%')
                 }
                 .flexGrow(1)
                 .flexBasis(100)
                 .margin({ bottom: 10 })
                 .background()
+              .id('list_properties_scroll')
             }.tabBar(new SubTabBarStyle($r('app.string.list_introduction_properties')))
           }
           .vertical(false)
