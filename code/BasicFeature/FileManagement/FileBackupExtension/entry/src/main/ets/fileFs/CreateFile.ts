@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023-2024 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -24,7 +24,7 @@ const FILE_NUM_MAX: number = 10;
 const FILE_NUM_MIN: number = 1;
 
 export default class CreatFile {
-  baseDir: string = AppStorage.Get('sanBoxFileDir') + '/TextDir';
+  baseDir: string = AppStorage.get('sanBoxFileDir') + '/TextDir';
 
   constructor() {
   }

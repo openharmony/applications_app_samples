@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023-2024 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -23,7 +23,7 @@ const TAG: string = '[Sample_FileBackDemo]';
 @Component
 struct BackupExample {
   createFile = new CreateFile();
-  baseDir: string = AppStorage.Get<string>('sanBoxFileDir') + '/TextDir';
+  baseDir: string = AppStorage.get<string>('sanBoxFileDir') + '/TextDir';
   @State filePathSize: Array<string> = [];
   @State showFilePath: Array<string> = [];
 
