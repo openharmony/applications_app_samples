@@ -37,13 +37,13 @@
 
 8.访问成功后返回主页面，关闭vpn按钮，断开vpn连接
 
-9.以上演示系统vpn，如果使用三方vpn，点击启动vpnExtension按钮，弹窗提示vpn使用许可，同意后三方vpn启动并自动连接，尝试用浏览器等hap包访问百度
+9.以上演示系统vpn，如果使用三方vpn，点击启动vpnExt按钮，弹窗提示vpn使用许可，同意后三方vpn启动并自动连接，尝试用浏览器等hap包访问百度
 
 | 三方vpn弹窗                             |
 | ------------------------------ |
 | ![vpnextension.jpeg](sceenshots%2Fvpnextension.jpeg)|
 
-10.访问成功后返回主页面，点击关闭vpnExtension按钮，断开三方vpn连接
+10.访问成功后返回主页面，点击关闭vpnExt按钮，断开三方vpn连接
 
 ### 工程目录
 

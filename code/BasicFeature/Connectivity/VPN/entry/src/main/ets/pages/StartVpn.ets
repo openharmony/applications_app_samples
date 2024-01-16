@@ -149,16 +149,16 @@ struct StartVpn {
           }).width('60%').margin(2)
         }.width('90%')
 
-        Button('创建对象').onClick(() => {
+        Button($r('app.string.btn_create_tunnel')).onClick(() => {
           this.CreateTunnel();
         }).fontSize(50)
-        Button('隧道保护').onClick(() => {
+        Button($r('app.string.btn_protect')).onClick(() => {
           this.Protect();
         }).fontSize(50)
-        Button('启动vpn').onClick(() => {
+        Button($r('app.string.btn_start_vpn')).onClick(() => {
           this.SetupVpn();
         }).fontSize(50)
-        Button('start vpnExtension').onClick(() => {
+        Button($r('app.string.btn_start_vpnExt')).onClick(() => {
           vpnext.startVpnExtensionAbility(want);
         }).fontSize(50)
       }

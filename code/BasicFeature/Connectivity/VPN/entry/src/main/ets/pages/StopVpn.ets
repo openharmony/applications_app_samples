@@ -60,7 +60,7 @@ struct StopVpn {
           .onClick(() => {
             hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Client');
           })
-        Button('关闭vpn').onClick(() => {
+        Button('stop vpn').onClick(() => {
           this.Destroy();
         }).fontSize(50).margin(16)
         Button('stop vpnExtension').onClick(() => {
