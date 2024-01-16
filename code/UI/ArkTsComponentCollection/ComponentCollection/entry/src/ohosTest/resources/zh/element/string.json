@@ -2167,6 +2167,42 @@
     {
       "name": "safe_area",
       "value": "SafeArea 安全区域"
+    },
+    {
+      "name": "text_input_limit",
+      "value": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    {
+      "name": "text_clock_monovolume_numbers",
+      "value": "变宽数字"
+    },
+    {
+      "name": "global_popUp_menu",
+      "value": "Popup"
+    },
+    {
+      "name": "text_copy",
+      "value": "复制"
+    },
+    {
+      "name": "copy_success",
+      "value": "复制成功"
+    },
+    {
+      "name": "text_paste",
+      "value": "粘贴"
+    },
+    {
+      "name": "paste_success",
+      "value": "粘贴成功"
+    },
+    {
+      "name": "text_get",
+      "value": "获取"
+    },
+    {
+      "name": "global_bindSheet_menu",
+      "value": "BindSheet半模态"
     }
   ]
 }
