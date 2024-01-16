@@ -22,9 +22,6 @@ import { WaterFlowScrollByControlPanel, WaterFlowScrollEdgeControlPanel, WaterFl
   WaterFlowPropertiesEdgeEffectControlPanel,
 } from './WaterFlowDataSource'
 
-import common from '@ohos.app.ability.common';
-import { BusinessError } from '@ohos.base';
-
 @Extend(Column)
 function backgroundStyle() {
   .width('100%')
@@ -138,20 +135,20 @@ struct WaterFlowSample {
         .scrollBarWidth(this.scrollBarWidth)
         .edgeEffect(this.edgeEffect)
         .onScroll((scrollOffset: number, scrollState: ScrollState) => {
-          this.curScrollEvent = "onScroll"; // $r('app.string.current_event_on_scroll')
+          this.curScrollEvent = "onScroll";
           this.scrollOffset = scrollOffset;
           this.scrollState = scrollState;
         })
         .onScrollIndex((first: number, last: number) => {
-          this.curScrollEvent = "onScrollIndex"; // $r('app.string.current_event_on_scroll_index')
+          this.curScrollEvent = "onScrollIndex";
           this.firstIndex = first;
           this.lastIndex = last;
         })
         .onScrollStart(() => {
-          this.curScrollEvent = "onScrollStart"; // $r('app.string.current_event_on_scroll_start')
+          this.curScrollEvent = "onScrollStart";
         })
         .onScrollStop(() => {
-          this.curScrollEvent = "onScrollStop"; // $r('app.string.current_event_on_scroll_stop')
+          this.curScrollEvent = "onScrollStop";
         })
       }
       .padding({ left: LEFT_PADDING, right: RIGHT_PADDING })
