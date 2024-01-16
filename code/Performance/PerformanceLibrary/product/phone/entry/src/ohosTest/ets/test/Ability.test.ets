@@ -649,6 +649,7 @@ export default function abilityTest() {
       Logger.info(TAG, `${BUNDLE}WaterFlow_001 end`);
       done();
     })
+
     /** 多线程共享内存页面场景
      */
     it(BUNDLE + "memoryShared_001", 1, async (done: Function) => {
@@ -688,13 +689,13 @@ export default function abilityTest() {
       let LockTaskBtn: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.use_lock'))));
       await driver.delayMs(1000);
       await LockTaskBtn.click();
-      await driver.delayMs(2000);
+      await driver.delayMs(3000);
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.write_success'))));
       // 点击进入锁的使用任务场景
       let NonLockTaskBtn: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.not_use_lock'))));
       await driver.delayMs(1000);
       await NonLockTaskBtn.click();
-      await driver.delayMs(2000);
+      await driver.delayMs(3000);
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.write_success'))));
 
       // 退出到首页面
