@@ -30,7 +30,6 @@ import { PropertiesControlPanel } from './GridItemControlPanel';
   .width('100%')
   .height('100%')
   .textAlign(TextAlign.Center)
-  .backgroundColor($r('app.color.background_blue'))
 }
 
 @Entry
@@ -40,6 +39,7 @@ struct GridItemSample {
   @State rowEnd: number = 0;
   @State columnStart: number = 0;
   @State columnEnd: number = 0;
+  @State gridItemStyle: number = 0;
   private itemsText: string[] = [];
 
   aboutToAppear() {
@@ -57,19 +57,33 @@ struct GridItemSample {
         Grid() {
           ForEach(this.itemsText, (item: string, index: number) => {
             if (index === 0) {
-              GridItem() {
-                Text(item)
-                  .itemStyle()
+              if (this.gridItemStyle === 0) {
+                GridItem({ style: GridItemStyle.NONE }) {
+                  Text(item)
+                    .itemStyle()
+                }
+                .rowStart(this.rowStart)
+                .rowEnd(this.rowEnd)
+                .columnStart(this.columnStart)
+                .columnEnd(this.columnEnd)
+                .backgroundColor($r('app.color.background_blue'))
+              } else {
+                GridItem({ style: GridItemStyle.PLAIN }) {
+                  Text(item)
+                    .itemStyle()
+                }
+                .rowStart(this.rowStart)
+                .rowEnd(this.rowEnd)
+                .columnStart(this.columnStart)
+                .columnEnd(this.columnEnd)
+                .backgroundColor($r('app.color.background_blue'))
               }
-              .rowStart(this.rowStart)
-              .rowEnd(this.rowEnd)
-              .columnStart(this.columnStart)
-              .columnEnd(this.columnEnd)
             } else {
-              GridItem() {
+              GridItem({ style: GridItemStyle.NONE }) {
                 Text(item)
                   .itemStyle()
               }
+              .backgroundColor($r('app.color.background_blue'))
             }
           })
         }
@@ -94,7 +108,8 @@ struct GridItemSample {
               rowStart: $rowStart,
               rowEnd: $rowEnd,
               columnStart: $columnStart,
-              columnEnd: $columnEnd
+              columnEnd: $columnEnd,
+              gridItemStyle: $gridItemStyle
             })
           }
           .backgroundStyle()

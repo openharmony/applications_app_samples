@@ -4508,6 +4508,166 @@
     {
       "name": "navigator_return_message",
       "value": "hello! 这是第一个页面传过来的参数"
+    },
+    {
+      "name": "global_bindSheet_menu",
+      "value": "BindSheet半模态"
+    },
+    {
+      "name": "global_bindSheet_text_allow_interaction",
+      "value": "允许页面交互"
+    },
+    {
+      "name": "global_bindSheet_text_desc",
+      "value": "设置弹出的半模态所在页面是否允许交互"
+    },
+    {
+      "name": "bindSheet_popup_style",
+      "value": "弹出样式"
+    },
+    {
+      "name": "bindSheet_default_popup",
+      "value": "默认弹出"
+    },
+    {
+      "name": "bindSheet_centered_popup",
+      "value": "居中弹出"
+    },
+    {
+      "name": "bindSheet_popup_appears",
+      "value": "popup弹出"
+    },
+    {
+      "name": "bindSheet_icon",
+      "value": "图标"
+    },
+    {
+      "name": "bindSheet_blurred_background_texture",
+      "value": "模糊背景材质"
+    },
+    {
+      "name": "bindSheet_popup_modal_interface",
+      "value": "弹出半模态"
+    },
+    {
+      "name": "pop_height",
+      "value": "弹出高度"
+    },
+    {
+      "name": "bindSheet_close_modal",
+      "value": "是否关闭半模态？"
+    },
+    {
+      "name": "bindSheet_close_confirm",
+      "value": "确定"
+    },
+    {
+      "name": "bindSheet_close_cancel",
+      "value": "取消"
+    },
+    {
+      "name": "global_popUp_menu",
+      "value": "Popup"
+    },
+    {
+      "name": "popUp_width",
+      "value": "宽度"
+    },
+    {
+      "name": "placement",
+      "value": "Placement"
+    },
+    {
+      "name": "popUp_advanced_component",
+      "value": "Popup高级组件"
+    },
+    {
+      "name": "global_menu_avoid_rule",
+      "value": "菜单避让规则"
+    },
+    {
+      "name": "global_menu_layout",
+      "value": "菜单布局"
+    },
+    {
+      "name": "global_menu_width",
+      "value": "菜单宽度设置"
+    },
+    {
+      "name": "menu_option",
+      "value": "菜单选项"
+    },
+    {
+      "name": "vertical_layout",
+      "value": "纵向布局"
+    },
+    {
+      "name": "horizontal_layout",
+      "value": "横向布局"
+    },
+    {
+      "name": "menu_width",
+      "value": "宽度"
+    },
+    {
+      "name": "textclock_style",
+      "value": "样式"
+    },
+    {
+      "name": "text_clock_textShadow",
+      "value": "文字阴影"
+    },
+    {
+      "name": "text_clock_fontSetting",
+      "value": "字体设置"
+    },
+    {
+      "name": "text_clock_select_button",
+      "value": "下拉按钮"
+    },
+    {
+      "name": "text_clock_monospaced_numbers",
+      "value": "等宽数字"
+    },
+    {
+      "name": "text_clock_monovolume_numbers",
+      "value": "变宽数字"
+    },
+    {
+      "name": "text_input_text_selection_menu",
+      "value": "文本选择菜单"
+    },
+    {
+      "name": "text_input_text_copy",
+      "value": "复制"
+    },
+    {
+      "name": "text_input_text_copy_success",
+      "value": "复制成功"
+    },
+    {
+      "name": "text_input_text_paste",
+      "value": "粘贴"
+    },
+    {
+      "name": "text_input_text_paste_success",
+      "value": "粘贴成功"
+    },
+    {
+      "name": "text_input_text_get",
+      "value": "获取"
+    },
+    {
+      "name": "text_input_text_delete",
+      "value": "文本删除"
+    },
+    {
+      "name": "textarea_character_limit",
+      "value": "限制字数"
+    },
+    {
+      "name": "grid_item_polymorphic_styles",
+      "value": "多态样式"
     }
   ]
 }

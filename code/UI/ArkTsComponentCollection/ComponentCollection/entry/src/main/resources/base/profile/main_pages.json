@@ -147,6 +147,8 @@
     "pages/components/canvasAndGraphicDrawing/polygonSample/PolygonSample",
     "pages/components/canvasAndGraphicDrawing/polylineSample/PolylineSample",
     "pages/components/canvasAndGraphicDrawing/rectSample/RectSample",
-    "pages/components/canvasAndGraphicDrawing/shapeSample/ShapeSample"
+    "pages/components/canvasAndGraphicDrawing/shapeSample/ShapeSample",
+    "pages/globalMethods/dialogs/bindSheetSample/BindSheetSample",
+    "pages/globalMethods/dialogs/popUpSample/PopUpSample"
   ]
 }
