@@ -48,7 +48,7 @@ struct SwiperSample {
   private controller: SwiperController = new SwiperController();
   private data: number[] = [];
 
-  @Styles buttonStyle(){
+  @Styles commonButtonStyle(){
     .backgroundColor($r('app.color.background_blue'))
     .padding(12)
     .borderRadius(10)

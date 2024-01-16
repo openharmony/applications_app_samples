@@ -18,7 +18,7 @@ import { TitleBar } from '../../../../common/TitleBar';
 import { getStringData } from '../../../../data/ResourceDataHandle';
 import Logger from '../../../../util/Logger';
 
-@Extend(Button) function buttonStyle() {
+@Extend(Button) function commonButtonStyle() {
   .margin(8)
   .fontSize(16)
   .width('100%')
@@ -75,7 +75,7 @@ struct RestoreIdExample {
               ForEach(this.fruits, (item: string) => {
                 ListItem() {
                   Button(item)
-                    .buttonStyle()
+                    .commonButtonStyle()
                 }
               }, (item: string) => item)
             }
