@@ -46,6 +46,10 @@
       "value": "Border"
     },
     {
+      "name": "prop_outline",
+      "value": "Outline"
+    },
+    {
       "name": "prop_font",
       "value": "Font"
     },
@@ -638,6 +642,18 @@
     {
       "name": "border_radius_right_bottom",
       "value": "Bottom right border"
+    },
+    {
+      "name": "outline_text",
+      "value": ".outline"
+    },
+    {
+      "name": "outline_effect",
+      "value": "outline_effect"
+    },
+    {
+      "name": "outline_button",
+      "value": "button"
     },
     // Button
     {

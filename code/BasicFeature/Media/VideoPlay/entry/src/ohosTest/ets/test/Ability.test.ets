@@ -12,38 +12,176 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import hilog from '@ohos.hilog';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import { Driver, ON } from '@ohos.UiTest';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { getString } from '../utils/ResourceUtil';
+import hilog from '@ohos.hilog';
+
+const TAG = '[Sample_VideoPlay]';
+const DOMAIN = 0xF811;
 
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
-    beforeAll(function () {
+    beforeAll(() => {
       // Presets an action, which is performed only once before all test cases of the test suite start.
       // This API supports only one parameter: preset action function.
     })
-    beforeEach(function () {
+    beforeEach(() => {
       // Presets an action, which is performed before each unit test case starts.
       // The number of execution times is the same as the number of test cases defined by **it**.
       // This API supports only one parameter: preset action function.
     })
-    afterEach(function () {
+    afterEach(() => {
       // Presets a clear action, which is performed after each unit test case ends.
       // The number of execution times is the same as the number of test cases defined by **it**.
       // This API supports only one parameter: clear action function.
     })
-    afterAll(function () {
+    afterAll(() => {
       // Presets a clear action, which is performed after all test cases of the test suite end.
       // This API supports only one parameter: clear action function.
     })
-    it('assertContain', 0, function () {
-      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      hilog.info(0x0000, 'testTag', '%{public}s', 'it begin');
-      let a = 'abc';
-      let b = 'b';
-      // Defines a variety of assertion methods, which are used to declare expected boolean conditions.
-      expect(a).assertContain(b);
-      expect(a).assertEqual(a);
+    /**
+     * 切换test2.mp4视频
+     */
+    it('Choose_001', 0, async (done: Function) => {
+      // 启动Ability
+      hilog.info(DOMAIN, TAG, 'Choose_001 begin');
+      let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
+      await abilityDelegatorRegistry.executeShellCommand('aa start -a EntryAbility -b net.openvally.videoplay');
+
+      // 拉起操作界面
+      let driver = await Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('Video'));
+      let stack = await driver.findComponent(ON.id('Video'));
+      await driver.delayMs(1000);
+      await stack.click();
+      // 点击视频列表
+      await driver.assertComponentExist(ON.id('Choose'));
+      let btnPlay = await driver.findComponent(ON.id('Choose'));
+      await btnPlay.click();
+
+      // 点击test2.mp4
+      const str = await getString($r('app.string.video_res_2'));
+      await driver.assertComponentExist(ON.text(str));
+      let button = await driver.findComponent(ON.text(str));
+      await button.click();
+      await driver.delayMs(1000);
+      done();
+      hilog.info(DOMAIN, TAG, 'Choose_001 end');
+    })
+
+    /**
+     * 调节倍速2.0X
+     */
+    it('Speed_001', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, 'Speed_001 begin');
+
+      // 拉起操作界面
+      let driver = await Driver.create();
+      // 等待倒计时介绍
+      await driver.delayMs(8000);
+      await driver.assertComponentExist(ON.id('Video'));
+      let stack = await driver.findComponent(ON.id('Video'));
+      await driver.delayMs(1000);
+      await stack.click();
+
+      // 点击倍速
+      await driver.assertComponentExist(ON.id('Speed'));
+      let btnPlay = await driver.findComponent(ON.id('Speed'));
+      await btnPlay.click();
+
+      // 点击2.0X
+      const str = await getString($r('app.string.video_speed_2_0X'));
+      await driver.assertComponentExist(ON.text(str));
+      let button = await driver.findComponent(ON.text(str));
+      await button.click();
+      await driver.delayMs(1000);
+      done();
+      hilog.info(DOMAIN, TAG, 'Speed_001 end');
+    })
+
+    /**
+     * 进度条测试
+     */
+    it('Slider_001', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, 'Slider_001 begin');
+      // 拉起操作界面
+      let driver = Driver.create();
+      await driver.delayMs(8000);
+      await driver.assertComponentExist(ON.id('Video'));
+      let stack = await driver.findComponent(ON.id('Video'));
+      await stack.click();
+      await driver.delayMs(1000);
+      // 滑动滑块
+      await driver.assertComponentExist(ON.id('Slider'));
+      let Slider = await driver.findComponent(ON.id('Slider'));
+      let point = await Slider.getBoundsCenter();
+      await driver.drag(point.x - 50, point.y, point.x + 50, point.y, 800);
+      await driver.delayMs(2000);
+      done();
+      hilog.info(DOMAIN, TAG, 'Slider_001 end');
+    })
+
+    /**
+     * 点击暂停
+     */
+    it('PlayPause_001', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, 'PlayPause_001 begin');
+      let driver = Driver.create();
+      await driver.delayMs(8000);
+      // 拉起操作界面
+      await driver.assertComponentExist(ON.id('Video'));
+      let stack = await driver.findComponent(ON.id('Video'));
+      await stack.click();
+      // 点击暂停
+      await driver.assertComponentExist(ON.id('play'));
+      let btnPlay = await driver.findComponent(ON.id('play'));
+      await btnPlay.click();
+      await driver.delayMs(2000);
+      done();
+      hilog.info(DOMAIN, TAG, 'PlayPause_001 end');
+    })
+    /**
+     * 点击播放
+     */
+    it('PlayPause_002', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, 'PlayPause_002 begin');
+      let driver = Driver.create();
+      await driver.delayMs(8000);
+      // 拉起操作界面
+      await driver.assertComponentExist(ON.id('Video'));
+      let stack = await driver.findComponent(ON.id('Video'));
+      await stack.click();
+      // 点击播放
+      await driver.assertComponentExist(ON.id('play'));
+      let btnPlay = await driver.findComponent(ON.id('play'));
+      await btnPlay.click();
+      await driver.delayMs(2000);
+      done();
+      hilog.info(DOMAIN, TAG, 'PlayPause_002 end');
+    })
+    /**
+     * 退出测试
+     */
+    it('Exit_001', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, 'Exit_001 begin');
+      // 拉起操作界面
+      let driver = Driver.create();
+      await driver.delayMs(8000);
+      await driver.assertComponentExist(ON.id('Video'));
+      let stack = await driver.findComponent(ON.id('Video'));
+      await stack.click();
+      await driver.delayMs(1000);
+      // 点击退出
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('Exit'));
+      let Exit = await driver.findComponent(ON.id('Exit'));
+      await Exit.click();
+      done();
+      hilog.info(DOMAIN, TAG, 'Exit_001 end');
     })
   })
 }

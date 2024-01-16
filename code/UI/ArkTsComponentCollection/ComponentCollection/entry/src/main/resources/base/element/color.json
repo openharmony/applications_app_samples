@@ -17,6 +17,10 @@
       "value": "#182431"
     },
     {
+      "name": "font_color_black",
+      "value": "#E6000000"
+    },
+    {
       "name": "font_color_dark",
       "value": "#000000"
     },
@@ -228,6 +232,22 @@
     {
       "name": "scroll_grid_item_color",
       "value": "#F9CF93"
+    },
+    {
+      "name": "font_blue",
+      "value": "#007DFF"
+    },
+    {
+      "name": "column_blue",
+      "value": "#52007DFF"
+    },
+    {
+      "name": "border_color",
+      "value": "#FF007DFF"
+    },
+    {
+      "name": "outline_color",
+      "value": "#FFF9BC64"
     }
   ]
 }

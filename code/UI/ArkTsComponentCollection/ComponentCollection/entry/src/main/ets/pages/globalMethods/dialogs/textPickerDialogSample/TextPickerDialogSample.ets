@@ -26,7 +26,7 @@ import { getStringData } from '../../../../data/ResourceDataHandle';
   .margin({ top: 12, bottom: 12 })
 }
 
-@Extend(Button) function buttonStyle() {
+@Extend(Button) function commonButtonStyle() {
   .margin(8)
   .fontSize(16)
   .layoutWeight(1)
@@ -53,7 +53,7 @@ struct TextDialogSample {
           IntroductionTitle({ introduction: $r('app.string.text_picker_show') })
           Row({ space: 16 }) {
             Button($r('app.string.text_picker_click_text'))
-              .buttonStyle()
+              .commonButtonStyle()
               .id('text_pickerButton')
               .onClick(() => {
                 TextPickerDialog.show({

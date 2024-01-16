@@ -148,6 +148,7 @@
     "pages/components/canvasAndGraphicDrawing/polylineSample/PolylineSample",
     "pages/components/canvasAndGraphicDrawing/rectSample/RectSample",
     "pages/components/canvasAndGraphicDrawing/shapeSample/ShapeSample",
-    "pages/universal/properties/attributeModifierSample/AttributeModifierSample"
+    "pages/universal/properties/attributeModifierSample/AttributeModifierSample",
+    "pages/universal/properties/outlineSample/OutlineSample"
   ]
 }

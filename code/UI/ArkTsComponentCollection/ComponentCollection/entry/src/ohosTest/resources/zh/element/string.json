@@ -41,6 +41,10 @@
       "value": "border 边框"
     },
     {
+      "name": "prop_outline",
+      "value": "描边效果"
+    },
+    {
       "name": "prop_font",
       "value": "font 字体"
     },
