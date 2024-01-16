@@ -17,6 +17,14 @@ import hilog from '@ohos.hilog';
 import vpn_client from "libvpn_client.so";
 import vpn from '@ohos.net.vpn';
 import common from '@ohos.app.ability.common';
+import vpnext from '@ohos.net.vpnExtension';
+import Want from '@ohos.app.ability.Want';
+
+let want: Want = {
+  deviceId: "",
+  bundleName: "com.example.myvpndemo",
+  abilityName: "MyVpnExtAbility",
+};
 
 let g_tunnelFd = -1;
 
@@ -54,6 +62,9 @@ struct StopVpn {
           })
         Button('关闭vpn').onClick(() => {
           this.Destroy();
+        }).fontSize(50).margin(16)
+        Button('stop vpnExtension').onClick(() => {
+          vpnext.stopVpnExtensionAbility(want);
         }).fontSize(50)
       }.width('100%')
     }.height('100%')

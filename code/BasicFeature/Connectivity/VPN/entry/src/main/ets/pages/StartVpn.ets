@@ -18,6 +18,14 @@ import vpn from '@ohos.net.vpn';
 import vpn_client from 'libvpn_client.so';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import common from '@ohos.app.ability.common';
+import vpnext from '@ohos.net.vpnExtension';
+import Want from '@ohos.app.ability.Want';
+
+let want: Want = {
+  deviceId: "",
+  bundleName: "com.example.myvpndemo",
+  abilityName: "MyVpnExtAbility",
+};
 
 let g_tunFd = -1;
 let g_tunnelFd = -1;
@@ -149,6 +157,9 @@ struct StartVpn {
         }).fontSize(50)
         Button('启动vpn').onClick(() => {
           this.SetupVpn();
+        }).fontSize(50)
+        Button('start vpnExtension').onClick(() => {
+          vpnext.startVpnExtensionAbility(want);
         }).fontSize(50)
       }
       .width('100%')
