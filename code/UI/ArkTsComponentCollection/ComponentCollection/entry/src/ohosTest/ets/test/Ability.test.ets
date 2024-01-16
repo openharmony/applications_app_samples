@@ -4560,7 +4560,6 @@ export default function abilityTest() {
         let image2 = await driver.findComponent(ON.id('menu_image2'));
         await image2.longClick();
         await driver.delayMs(DELAY_TIME);
-        // await image2.dragTo(image1);
         await driver.click(200, 300);
 
         // 点击横向布局
@@ -4575,7 +4574,6 @@ export default function abilityTest() {
         // 长按图片2
         await image2.longClick();
         await driver.delayMs(DELAY_TIME);
-        // await image2.dragTo(image1);
         await driver.click(200, 300);
         await driver.delayMs(DELAY_TIME);
 

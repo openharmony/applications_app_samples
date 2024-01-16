@@ -54,22 +54,18 @@ const MENU: ThirdLevelCategory =
     url: 'pages/globalMethods/dialogs/menuSample/MenuSample',
   }
 
-// 新增bindsheet菜单
 const BINDSHEET: ThirdLevelCategory =
   {
-    image: $r('app.media.ic_bindSheet'),   // 需要ux
-    title: $r('app.string.global_bindSheet_menu'),     // 需要ux
+    image: $r('app.media.ic_bindSheet'),
+    title: $r('app.string.global_bindSheet_menu'),
     url: 'pages/globalMethods/dialogs/bindSheetSample/BindSheetSample',
   }
 
-// 新增popup菜单
 const POPUP: ThirdLevelCategory =
   {
-    image: $r('app.media.ic_popUp'),   // 需要ux
-    title: $r('app.string.global_popUp_menu'),     // 需要ux
+    image: $r('app.media.ic_popUp'),
+    title: $r('app.string.global_popUp_menu'),
     url: 'pages/globalMethods/dialogs/popUpSample/PopUpSample',
-   // url: "pages/globalMethods/dialogs/popUpSample/PopUpSampleTest",
-   //  url: 'pages/globalMethods/dialogs/popUpSample/gridItemTest',
   }
 
 // The global method categorizes data, second menu data

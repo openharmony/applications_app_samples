@@ -15,8 +15,7 @@
 
 {
   "app": {
-    "signingConfigs": [git 
-    ],
+    "signingConfigs": [stat],
     "compileSdkVersion": 11,
     "compatibleSdkVersion": 11,
     "products": [

@@ -427,18 +427,18 @@ struct PopUpSample {
             .myButtonStyle()
             .width('86.7%')
             .margin({ left: 24, right: 24, bottom: 96 })
-            // .bindPopup(this.customPopup, {
-            //   builder: this.popupBuilder,
-            //   popupColor: '#4D4D4D',
-            //   radius: POPUPRADIUS,
-            //   enableArrow: true,
-            //   shadow: ShadowStyle.OUTER_DEFAULT_XS,
-            //   onStateChange: (e) => {
-            //     if (!e.isVisible) {
-            //       this.customPopup = false;
-            //     }
-            //   }
-            // })
+            .bindPopup(this.customPopup, {
+              builder: this.popupBuilder,
+              popupColor: '#4D4D4D',
+              radius: POPUPRADIUS,
+              enableArrow: true,
+              shadow: ShadowStyle.OUTER_DEFAULT_XS,
+              onStateChange: (e) => {
+                if (!e.isVisible) {
+                  this.customPopup = false;
+                }
+              }
+            })
             .onClick(async () => {
               this.customPopup = !this.customPopup;
             })
