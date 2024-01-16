@@ -22,6 +22,9 @@ import { WaterFlowScrollByControlPanel, WaterFlowScrollEdgeControlPanel, WaterFl
   WaterFlowPropertiesEdgeEffectControlPanel,
 } from './WaterFlowDataSource'
 
+import common from '@ohos.app.ability.common';
+import { BusinessError } from '@ohos.base';
+
 @Extend(Column)
 function backgroundStyle() {
   .width('100%')
@@ -52,7 +55,7 @@ struct WaterFlowSample {
   @State listDirection: Axis = Axis.Vertical;
 
   @State initIndex: number = AppStorage.get<number>('listSampleInitIndex') || 0;
-  @State curScrollEvent: String = '无事件';
+  @State curScrollEvent: string = ""; // $r('app.string.current_event_value')
   @State scrollState: ScrollState = ScrollState.Idle
   @State scrollOffset: number = 10;
   @State firstIndex: number = 0;
@@ -72,36 +75,36 @@ struct WaterFlowSample {
   @State scrollBarColor: Color = Color.Blue;
   @State scrollBar: BarState = BarState.On;
 
-  private itemHeightArray: number[] = []
+  private itemHeightArray: number[] = [];
 
-  scroller: Scroller = new Scroller()
-  dataSource: WaterFlowDataSource = new WaterFlowDataSource()
+  scroller: Scroller = new Scroller();
+  dataSource: WaterFlowDataSource = new WaterFlowDataSource();
 
   onScrollByChange() {
-    this.scroller.scrollBy(0, this.scrollBy)
+    this.scroller.scrollBy(0, this.scrollBy);
   }
 
   onChange(){
-    this.scroller.scrollEdge(this.scrollEdge)
+    this.scroller.scrollEdge(this.scrollEdge);
   }
 
     // 保存flow item宽/高
     getItemSizeArray() {
       for (let i = 0; i < 100; i++) {
        if (i % 4 == 0) {
-         this.itemHeightArray.push(102)
+         this.itemHeightArray.push(102);
        } else if (i % 4 == 1) {
-         this.itemHeightArray.push(136)
+         this.itemHeightArray.push(136);
        } else if (i % 4 == 2) {
-         this.itemHeightArray.push(136)
+         this.itemHeightArray.push(136);
        }  else if (i % 4 == 3) {
-         this.itemHeightArray.push(102)
+         this.itemHeightArray.push(102);
        }
       }
     }
 
     aboutToAppear() {
-      this.getItemSizeArray()
+      this.getItemSizeArray();
     }
 
   build() {
@@ -135,20 +138,20 @@ struct WaterFlowSample {
         .scrollBarWidth(this.scrollBarWidth)
         .edgeEffect(this.edgeEffect)
         .onScroll((scrollOffset: number, scrollState: ScrollState) => {
-          this.curScrollEvent = "onScroll";
+          this.curScrollEvent = "onScroll"; // $r('app.string.current_event_on_scroll')
           this.scrollOffset = scrollOffset;
           this.scrollState = scrollState;
         })
         .onScrollIndex((first: number, last: number) => {
-          this.curScrollEvent = "onScrollIndex";
+          this.curScrollEvent = "onScrollIndex"; // $r('app.string.current_event_on_scroll_index')
           this.firstIndex = first;
           this.lastIndex = last;
         })
         .onScrollStart(() => {
-          this.curScrollEvent = "onScrollStart";
+          this.curScrollEvent = "onScrollStart"; // $r('app.string.current_event_on_scroll_start')
         })
         .onScrollStop(() => {
-          this.curScrollEvent = "onScrollStop";
+          this.curScrollEvent = "onScrollStop"; // $r('app.string.current_event_on_scroll_stop')
         })
       }
       .padding({ left: LEFT_PADDING, right: RIGHT_PADDING })
@@ -159,12 +162,27 @@ struct WaterFlowSample {
 
       // 状态栏
       Column() {
-        Text(`当前滚动事件为：${this.curScrollEvent}
-当前滚动状态为：${this.scrollState}
-本次滚动距离为：${this.scrollOffset}
-当前index,first:${this.firstIndex}, last:${this.lastIndex}`)
-          .textAlign(TextAlign.Start)
-          .fontColor(Color.Gray)
+        Text() {
+          Span($r('app.string.current_scroll_event'));
+          Span(this.curScrollEvent);
+        }
+
+        Text() {
+          Span($r('app.string.current_scroll_state'));
+          Span(this.scrollState.toString());
+        }
+
+        Text() {
+          Span($r('app.string.current_scroll_distance'));
+          Span(this.scrollOffset.toString());
+        }
+
+        Text() {
+          Span($r('app.string.current_scroll_index_first'));
+          Span(this.firstIndex.toString());
+          Span($r('app.string.current_scroll_index_last'));
+          Span(this.lastIndex.toString());
+        }
       }
       .height('16%')
       .width('100%')
@@ -175,7 +193,6 @@ struct WaterFlowSample {
 
       // tab 页签
         Column() {
-
           Tabs({ barPosition: BarPosition.Start }) {
             // 子页签：WaterFlow控制
             TabContent() {

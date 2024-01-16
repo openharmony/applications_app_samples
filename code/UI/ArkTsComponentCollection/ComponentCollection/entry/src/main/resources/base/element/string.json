@@ -5487,6 +5487,54 @@
     {
       "name":"vertical_reach_end",
       "value":"Vertical scroll onReachEnd"
+    },
+    {
+      "name":"current_initialIndex",
+      "value":"current initialIndex is:"
+    },
+    {
+      "name":"modify_initialIndex_tips",
+      "value":"After initialIndex changed, reenter this page"
+    },
+    {
+      "name":"current_scroll_event",
+      "value":"current scroll event："
+    },
+    {
+      "name":"current_scroll_state",
+      "value":"current scroll state："
+    },
+    {
+      "name":"current_scroll_distance",
+      "value":"current scroll distance："
+    },
+    {
+      "name":"current_scroll_index_first",
+      "value":"current scroll index, first："
+    },
+    {
+      "name":"current_scroll_index_last",
+      "value":", last："
+    },
+    {
+      "name":"current_event_value",
+      "value":"no event"
+    },
+    {
+      "name":"current_event_on_scroll",
+      "value":"onScroll"
+    },
+    {
+      "name":"current_event_on_scroll_index",
+      "value":"onScrollIndex"
+    },
+    {
+      "name":"current_event_on_scroll_start",
+      "value":"onScrollStart"
+    },
+    {
+      "name":"current_event_on_scroll_stop",
+      "value":"onScrollStop"
     }
   ]
 }

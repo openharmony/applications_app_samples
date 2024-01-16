@@ -4588,6 +4588,54 @@
     {
       "name":"vertical_reach_end",
       "value":"纵向滚动onReachEnd"
+    },
+    {
+      "name":"current_initialIndex",
+      "value":"当前initialIndex为:"
+    },
+    {
+      "name":"modify_initialIndex_tips",
+      "value":"修改 initialIndex 后请再次进入本页面查看效果"
+    },
+    {
+      "name":"current_scroll_event",
+      "value":"当前滚动事件为："
+    },
+    {
+      "name":"current_scroll_state",
+      "value":"当前滚动状态为："
+    },
+    {
+      "name":"current_scroll_distance",
+      "value":"本次滚动距离为："
+    },
+    {
+      "name":"current_scroll_index_first",
+      "value":"当前index, first："
+    },
+    {
+      "name":"current_scroll_index_last",
+      "value":", last："
+    },
+    {
+      "name":"current_event_value",
+      "value":"无事件"
+    },
+    {
+      "name":"current_event_on_scroll",
+      "value":"onScroll"
+    },
+    {
+      "name":"current_event_on_scroll_index",
+      "value":"onScrollIndex"
+    },
+    {
+      "name":"current_event_on_scroll_start",
+      "value":"onScrollStart"
+    },
+    {
+      "name":"current_event_on_scroll_stop",
+      "value":"onScrollStop"
     }
   ]
 }

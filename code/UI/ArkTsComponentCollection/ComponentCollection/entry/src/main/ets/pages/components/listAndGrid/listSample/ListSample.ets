@@ -114,8 +114,12 @@ struct ListSample {
       .flexGrow(0)
 
       Column() {
-        Text(`当前 initialIndex 为:${this.initIndex}
-修改 initialIndex 后请再次进入本页面查看效果`)
+        Text() {
+          Span($r('app.string.current_initialIndex'))
+          Span(this.initIndex.toString())
+        }
+
+        Text($r('app.string.modify_initialIndex_tips'))
           .textAlign(TextAlign.Start)
           .fontColor(Color.Gray)
       }
@@ -222,7 +226,6 @@ struct ListSample {
                       .margin({bottom:12})
                   }
                   .width('100%')
-                  // .height('100%')
                 }
                 .flexGrow(1)
                 .flexBasis(100)
