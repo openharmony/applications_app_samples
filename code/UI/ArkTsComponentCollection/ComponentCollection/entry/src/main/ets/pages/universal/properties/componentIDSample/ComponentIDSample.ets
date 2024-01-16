@@ -17,7 +17,7 @@ import { getStringData } from '../../../../data/ResourceDataHandle';
 import { TitleBar } from '../../../../common/TitleBar';
 
 @Extend(Button)
-function buttonStyle() {
+function commonButtonStyle() {
   .fontSize(16)
   .height(40)
   .width('100%')
@@ -78,13 +78,13 @@ struct ComponentIDSample {
           .width('100%')
 
           Button($r('app.string.component_id_onKeyTab'))
-            .buttonStyle()
+            .commonButtonStyle()
             .onKeyEvent(() => {
               this.text = getStringData($r('app.string.component_id_onKeyTab'));
             })
 
           Button($r('app.string.component_id_click'))
-            .buttonStyle()
+            .commonButtonStyle()
             .onClick(() => {
               this.text = getStringData($r('app.string.component_id_click_text'));
               setTimeout(() => {
@@ -95,7 +95,7 @@ struct ComponentIDSample {
             .id('click')
 
           Button($r('app.string.component_id_longClick'))
-            .buttonStyle()
+            .commonButtonStyle()
             .gesture(
               LongPressGesture().onActionEnd(() => {
                 this.text = getStringData($r('app.string.component_id_longClick_text'));
@@ -122,7 +122,7 @@ struct ComponentIDSample {
             .id('longClick')
 
           Button($r('app.string.component_id_onTouch'))
-            .buttonStyle()
+            .commonButtonStyle()
             .onClick(() => {
               this.text = getStringData($r('app.string.component_id_onTouch_text'))
               setTimeout(() => {
@@ -168,7 +168,7 @@ struct ComponentIDSample {
             .id('onTouch')
 
           Button($r('app.string.component_id_onMouse'))
-            .buttonStyle()
+            .commonButtonStyle()
             .onMouse(() => {
               this.text = getStringData($r('app.string.component_id_onMouse_text'));
               setTimeout(() => {

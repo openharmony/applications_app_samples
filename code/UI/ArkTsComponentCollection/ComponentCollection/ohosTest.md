@@ -48,6 +48,7 @@
 | 验证foreground 前景                    |                                       | 进入foreground 前景                                   | 正确显示背景  | 是    | Pass |
 | 验证background 背景                    |                                       | 进入background 背景                                                     | 正确显示背景            | 是    | Pass |
 | 验证border 边框                        |                                       | 进入border 边框页面                                                       | 正确显示边框            | 是    | Pass |
+| 验证outline 外边框 | | 进入outline 外边框页面，输入框输入信息和悬停在text组件时，有突出显示的外描边效果。 | 正确显示外边框 | 是 | Pass |
 | 验证font 字体                          |                                       | 进入font 字体页面                                                         | 正确显示字体            | 是    | Pass |
 | 验证size 尺寸                          |                                       | 进入size 尺寸页面                                                         | 正确显示尺寸            | 是    | Pass |
 | 验证rotate 旋转                        | 展开图形变换                                | 调整图片平移和容器平移的X轴、y轴                                                   | 正确响应调整            | 是    | Pass |
