@@ -94,10 +94,6 @@ export default function abilityTest() {
       let savePage = await driver.findComponent(ON.id('Save'));
       await driver.delayMs(1000);
       await expect(savePage != null).assertTrue();
-      await driver.delayMs(1000);
-      await driver.pressBack();
-      await driver.delayMs(500);
-      await driver.pressBack();
       done();
     })
 
@@ -163,6 +159,8 @@ export default function abilityTest() {
       Logger.info(TAG, 'AutoFill_UserNameTextInput_001_userNameInfo', userNameInfo);
       expect(userNameInfo).assertEqual('user2');
       Logger.info(TAG, 'AutoFill_UserNameTextInput_001 end');
+      await driver.pressBack();
+      await driver.delayMs(500);
       await driver.pressBack();
       done();
     })
