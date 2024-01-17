@@ -12,6 +12,7 @@
     "@ohos/smartPerfHost": "file:../../../feature/smartPerfHost",
     "@ohos/WaterFlow": "file:../../../feature/WaterFlow",
     "@ohos/staticImport": "file:../../../feature/staticImport",
+    "@ohos/ThreadDataTransfer": "file:../../../feature/ThreadDataTransfer",
     "@ohos/DFXStateManagement": "file:../../../feature/DFXStateManagement",
     "@ohos/ifOrVisibility": "file:../../../feature/ifOrVisibility",
     "@ohos/dynamicImport": "file:../../../feature/dynamicImport",

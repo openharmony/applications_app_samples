@@ -17,6 +17,10 @@
       "value": "MemoryShared"
     },
     {
+      "name": "permission_while_use",
+      "value": "仅使用期间允许"
+    },
+    {
       "name": "atomic_operation",
       "value": "原子操作对比"
     },
