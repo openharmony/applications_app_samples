@@ -41,6 +41,10 @@
       "value": "SafeArea"
     },
     {
+      "name": "attribute_modifier",
+      "value": "AttributeModifier"
+    },
+    {
       "name": "prop_foreground",
       "value": "Foreground"
     },

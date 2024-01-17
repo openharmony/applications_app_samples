@@ -148,6 +148,11 @@ const GRAPHIC_TRANSFORMATION: ThirdLevelCategory[] =
       image: $r('app.media.ic_prop_background'),
       title: $r('app.string.safe_area'),
       url: 'pages/universal/properties/safeAreaSample/SafeAreaSample'
+    },
+    {
+      image: $r('app.media.ic_screenshot_arbitrarygraphics'),
+      title: $r('app.string.attribute_modifier'),
+      url: 'pages/universal/properties/attributeModifierSample/AttributeModifierSample'
     }
   ];
 
