@@ -1895,6 +1895,7 @@
       "name": "list_title",
       "value": "List 列表容器"
     },
+
     {
       "name": "list_item_title",
       "value": "ListItem"
@@ -2175,6 +2176,22 @@
     {
       "name": "attribute_modifier",
       "value": "动态属性设置"
+    },
+    {
+      "name": "list_introduction_properties",
+      "value": "List 属性"
+    },
+    {
+      "name":"water_flow_properties",
+      "value":"WaterFlow 属性"
+    },
+    {
+      "name":"water_flow_properties_scroll_bar_color",
+      "value":"scrollBarColor"
+    },
+    {
+      "name": "list_properties_edge_effect",
+      "value": "edgeEffect"
     }
   ]
 }

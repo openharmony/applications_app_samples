@@ -43,7 +43,7 @@ export default class StaticSubscriber extends StaticSubscriberExtensionAbility {
     let notificationRequest: Notification.NotificationRequest = {
       id: 1, // 通知ID
       content: {
-        notificationContentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
           title: event.data,
           text: 'content',

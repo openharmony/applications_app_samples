@@ -220,6 +220,9 @@ entry/src/main/ets/
 |   |   |   |---listSample
 |   |   |   |   |---ListControlPanel.ets
 |   |   |   |   |---ListSample.ets                       // 列表容器
+|   |   |   |---waterFlowSample
+|   |   |   |   |---WaterFlowDataSource.ets
+|   |   |   |   |---WaterFlowSample.ets                  // WaterFlow
 |   |   |---navigation
 |   |   |   |---navigatorSample
 |   |   |   |   |---NavigatorSample.ets                  // 路由

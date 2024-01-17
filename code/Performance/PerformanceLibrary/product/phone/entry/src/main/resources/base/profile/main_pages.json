@@ -36,6 +36,7 @@
     "pages/waterFlow/WaterFlowPage",
     "pages/nativeThreadsCallJS/NativeThreadsCallJS",
     "pages/memoryShared/MemorySharedHomePage",
+    "pages/ThreadDataTransfer/ThreadDataTransferPage",
     "pages/memoryShared/AtomicsUsagePage",
     "pages/memoryShared/LockUsagePage",
     "pages/DFXStateManagement/DFXStateManagementPage",

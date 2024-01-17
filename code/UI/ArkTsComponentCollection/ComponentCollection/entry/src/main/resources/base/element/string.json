@@ -4406,11 +4406,11 @@
     },
     {
       "name": "list_introduction_arguments",
-      "value": "Modifying List arguments"
+      "value": "List arguments"
     },
     {
       "name": "list_introduction_properties",
-      "value": "Modifying List properties"
+      "value": "List properties"
     },
     {
       "name": "list_introduction_state",
@@ -4435,6 +4435,14 @@
     {
       "name": "list_properties_divider_stroke_width",
       "value": "divider - strokeWidth"
+    },
+    {
+      "name": "list_properties_scroll_bar_width",
+      "value": "scrollBar - width"
+    },
+    {
+      "name": "list_properties_scroll_bar_color",
+      "value": "scrollBar - color"
     },
     {
       "name": "list_properties_divider_color",
@@ -5447,6 +5455,126 @@
     {
       "name": "component_id_press_list_to_see_attributeModifier",
       "value": "按压列表选项查看状态变化"
+    },
+    {
+      "name":"water_flow_title",
+      "value":"WaterFlow"
+    },
+    {
+      "name":"water_flow_controller",
+      "value":"WaterFlow controller"
+    },
+    {
+      "name":"water_flow_properties",
+      "value":"WaterFlow properties"
+    },
+    {
+      "name":"water_flow_controller_scrollEdge",
+      "value":"scrollEdge"
+    },
+    {
+      "name":"water_flow_controller_scrollBy",
+      "value":"scrollBy"
+    },
+    {
+      "name":"water_flow_controller_top",
+      "value":"Top"
+    },
+    {
+      "name":"water_flow_controller_bottom",
+      "value":"Bottom"
+    },
+    {
+      "name":"water_flow_properties_scroll_bar_width",
+      "value":"scrollBarWidth"
+    },
+    {
+      "name":"water_flow_properties_scroll_bar_color",
+      "value":"scrollBarColor"
+    },
+    {
+      "name":"water_flow_properties_scroll_bar",
+      "value":"scrollBar"
+    },
+    {
+      "name":"water_flow_properties_edge_effect",
+      "value":"edgeEffect"
+    },
+    {
+      "name":"water_flow_properties_edge_effect_spring",
+      "value":"Spring"
+    },
+    {
+      "name":"water_flow_properties_edge_effect_fade",
+      "value":"Fade"
+    },
+    {
+      "name":"water_flow_properties_edge_effect_none",
+      "value":"None"
+    },
+    {
+      "name":"horizontal_reach_start",
+      "value":"Horizontal scroll onReachStart"
+    },
+    {
+      "name":"horizontal_reach_end",
+      "value":"Horizontal scroll onReachEnd"
+    },
+    {
+      "name":"vertical_reach_start",
+      "value":"Vertical scroll onReachStart"
+    },
+    {
+      "name":"vertical_reach_end",
+      "value":"Vertical scroll onReachEnd"
+    },
+    {
+      "name":"current_initialIndex",
+      "value":"current initialIndex is:"
+    },
+    {
+      "name":"modify_initialIndex_tips",
+      "value":"After initialIndex changed, reenter this page"
+    },
+    {
+      "name":"current_scroll_event",
+      "value":"current scroll event："
+    },
+    {
+      "name":"current_scroll_state",
+      "value":"current scroll state："
+    },
+    {
+      "name":"current_scroll_distance",
+      "value":"current scroll distance："
+    },
+    {
+      "name":"current_scroll_index_first",
+      "value":"current scroll index, first："
+    },
+    {
+      "name":"current_scroll_index_last",
+      "value":", last："
+    },
+    {
+      "name":"current_event_value",
+      "value":"no event"
+    },
+    {
+      "name":"current_event_on_scroll",
+      "value":"onScroll"
+    },
+    {
+      "name":"current_event_on_scroll_index",
+      "value":"onScrollIndex"
+    },
+    {
+      "name":"current_event_on_scroll_start",
+      "value":"onScrollStart"
+    },
+    {
+      "name":"current_event_on_scroll_stop",
+      "value":"onScrollStop"
     }
   ]
 }

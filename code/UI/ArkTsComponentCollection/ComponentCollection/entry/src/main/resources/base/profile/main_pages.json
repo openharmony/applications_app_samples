@@ -149,6 +149,7 @@
     "pages/components/canvasAndGraphicDrawing/rectSample/RectSample",
     "pages/components/canvasAndGraphicDrawing/shapeSample/ShapeSample",
     "pages/universal/properties/attributeModifierSample/AttributeModifierSample",
+    "pages/components/listAndGrid/waterFlowSample/WaterFlowSample",
     "pages/universal/properties/outlineSample/OutlineSample"
   ]
 }

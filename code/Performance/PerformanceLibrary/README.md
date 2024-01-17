@@ -102,6 +102,14 @@ Native跨线程调用使用说明：
 
 3.点击Native跨线程调用页的**libuvTest**按钮，验证使用libuv跨线程调用。
 
+多线程间大数据传输使用说明：
+
+1.点击性能示例主页的**ThreadDataTransfer**按钮，进入**多线程数据传输入口**场景页。
+
+2.拖动**任务数**滑动条调整线程任务数，点击**传参方式**按钮，改变线程传参方式。
+
+3.拖动**饱和度**滑动条，调整图片饱和度。
+
 ### 工程目录
 
 ```
@@ -231,7 +239,9 @@ products/phone/entry/src/main/ets
 |   |   |---TransientTask.ets                         // 短时任务页面
 |   |   |---LongTermTask.ets                          // 长时任务页面
 |   |---/trace
-|   |   |---TracePage.ets                             // 懒加载示例首页              
+|   |   |---TracePage.ets                             // 懒加载示例首页     
+|   |---/ThreadDataTransfer
+|   |   |---ThreadDataTransferHomePage.ets            // 线程间大数据传输首页              
 |   |---/waterFlow
 |   |   |---WaterFlowPage.ets                         // WaterFlow示例首页                                                                                                                                       
 |   |---/memoryShared
@@ -323,6 +333,11 @@ products/phone/entry/src/main/ets
   * 锁应用场景
     * 使用或不适用锁，实现多线程写入文件
     * 源码链接：[LockUsage.ets](feature/memoryShared/src/main/ets/pages/LockUsage.ets)
+    
+* 多线程间大数据传输页面模块
+  * 图片调整饱和度
+    * 通过不同参数，实现多线程修改图片
+    * 源码链接：[TreadUtil.ets](feature/ThreadDataTransfer/src/main/ets/utils/TreadUtil.ets)
     
 ### 相关权限
 
