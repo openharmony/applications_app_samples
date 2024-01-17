@@ -112,6 +112,7 @@ export default function abilityTest() {
       let currentAudioNum = await getAudioNum();
       logger.info(TAG, BUNDLE + 'RecordePage_001 start Audio Num = ' + currentAudioNum);
       // 首页，非多选状态，点击录音按钮进入录音界面
+      await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('btnRecord'));
       let btnRecord = await driver.findComponent(ON.id('btnRecord'));
       await btnRecord.click();
@@ -322,6 +323,7 @@ export default function abilityTest() {
         await driver.assertComponentExist(ON.text('确定', MatchPattern.CONTAINS));
         let sure = await driver.findComponent(ON.text('确定', MatchPattern.CONTAINS));
         await sure.click();
+        await driver.delayMs(1000);
         await driver.assertComponentExist(ON.text('renamed', MatchPattern.CONTAINS));
       }
       logger.info(TAG, BUNDLE + 'SlideAudioItem_001 end');

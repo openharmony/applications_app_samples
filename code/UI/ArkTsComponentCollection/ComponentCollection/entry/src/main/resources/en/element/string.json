@@ -49,6 +49,10 @@
       "value": "Border"
     },
     {
+      "name": "prop_outline",
+      "value": "Outline"
+    },
+    {
       "name": "prop_font",
       "value": "Font"
     },
@@ -554,6 +558,18 @@
     {
       "name": "border_3D",
       "value": "Set the border 3D"
+    },
+    {
+      "name": "outline_text",
+      "value": ".outline"
+    },
+    {
+      "name": "outline_effect",
+      "value": "outline_effect"
+    },
+    {
+      "name": "outline_button",
+      "value": "button"
     },
     // Button
     {

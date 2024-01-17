@@ -148,7 +148,12 @@
     "pages/components/canvasAndGraphicDrawing/polylineSample/PolylineSample",
     "pages/components/canvasAndGraphicDrawing/rectSample/RectSample",
     "pages/components/canvasAndGraphicDrawing/shapeSample/ShapeSample",
+<<<<<<< HEAD
     "pages/globalMethods/dialogs/bindSheetSample/BindSheetSample",
     "pages/globalMethods/dialogs/popUpSample/PopUpSample"
+=======
+    "pages/components/listAndGrid/waterFlowSample/WaterFlowSample",
+    "pages/universal/properties/outlineSample/OutlineSample"
+>>>>>>> b1930f00ba79ed9a846da4d99ccf763557d15a15
   ]
 }

@@ -1,0 +1,32 @@
+{
+  "float": [
+    {
+      "name": "adjust_font_size",
+      "value": "12fp"
+    },
+    {
+      "name": "slider_font_size",
+      "value": "16fp"
+    },
+    {
+      "name": "result_font_size",
+      "value": "20fp"
+    },
+    {
+      "name": "adjust_icon_width",
+      "value": "20vp"
+    },
+    {
+      "name": "adjust_icon_height",
+      "value": "20vp"
+    },
+    {
+      "name": "slider_margin_top",
+      "value": "12vp"
+    },
+    {
+      "name": "adjust_margin_top",
+      "value": "8vp"
+    }
+  ]
+}

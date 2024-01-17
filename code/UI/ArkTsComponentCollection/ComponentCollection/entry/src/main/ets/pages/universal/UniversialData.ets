@@ -43,6 +43,11 @@ const GRAPHIC_TRANSFORMATION: ThirdLevelCategory[] =
       url: 'pages/universal/properties/borderSample/BorderSample'
     },
     {
+      image: $r('app.media.ic_prop_border'),
+      title: $r('app.string.prop_outline'),
+      url: 'pages/universal/properties/outlineSample/OutlineSample'
+    },
+    {
       image: $r('app.media.ic_prop_font'),
       title: $r('app.string.prop_font'),
       url: 'pages/universal/properties/fontSample/FontSample'

@@ -37,6 +37,10 @@
       "value": "Border"
     },
     {
+      "name": "prop_outline",
+      "value": "Outline"
+    },
+    {
       "name": "prop_font",
       "value": "Font"
     },
@@ -3134,11 +3138,11 @@
     },
     {
       "name": "list_and_grid",
-      "value": "列表与宫格"
+      "value": "List and grid"
     },
     {
       "name": "list_title",
-      "value": "List 列表容器"
+      "value": "List"
     },
     {
       "name": "list_item_title",
@@ -3619,6 +3623,7 @@
       "value": "Navigator"
     },
     {
+<<<<<<< HEAD
       "name": "text_input_limit",
       "value": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
     },
@@ -3653,6 +3658,22 @@
     {
       "name": "global_bindSheet_menu",
       "value": "BindSheet半模态"
+    },
+    {
+      "name": "list_introduction_properties",
+      "value": "List properties"
+    },
+    {
+      "name":"water_flow_properties",
+      "value":"WaterFlow properties"
+    },
+    {
+      "name":"water_flow_properties_scroll_bar_color",
+      "value":"scrollBarColor"
+    },
+    {
+      "name": "list_properties_edge_effect",
+      "value": "edgeEffect"
     }
   ]
 }

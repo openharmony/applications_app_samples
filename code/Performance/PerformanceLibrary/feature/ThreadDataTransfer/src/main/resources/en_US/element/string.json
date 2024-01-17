@@ -1,0 +1,56 @@
+{
+  "string": [
+    {
+      "name": "saturation",
+      "value": "saturation"
+    },
+    {
+      "name": "task_num",
+      "value": "Task Number"
+    },
+    {
+      "name": "pass_params",
+      "value": "Pass Params"
+    },
+    {
+      "name": "start_transfer",
+      "value": "Pass parameters by transferring"
+    },
+    {
+      "name": "running_time",
+      "value": "Running time:"
+    },
+    {
+      "name": "layout_100_percent",
+      "value": "100%"
+    },
+    {
+      "name": "layout_80_percent",
+      "value": "80%"
+    },
+    {
+      "name": "layout_60_percent",
+      "value": "60%"
+    },
+    {
+      "name": "layout_30_percent",
+      "value": "30%"
+    },
+    {
+      "name": "layout_26_percent",
+      "value": "26%"
+    },
+    {
+      "name": "layout_20_percent",
+      "value": "20%"
+    },
+    {
+      "name": "layout_15_percent",
+      "value": "15%"
+    },
+    {
+      "name": "layout_10_percent",
+      "value": "10%"
+    }
+  ]
+}
