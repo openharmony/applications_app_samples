@@ -1886,6 +1886,14 @@
       "value": "ScrollBar 滚动条"
     },
     {
+      "name": "list_properties_scroll_bar_width",
+      "value": "scrollBar - width"
+    },
+    {
+      "name": "list_properties_scroll_bar_color",
+      "value": "scrollBar - color"
+    },
+    {
       "name": "scroll_vertical_title",
       "value": "纵向滚动"
     },
@@ -3771,11 +3779,11 @@
     },
     {
       "name": "list_introduction_arguments",
-      "value": "修改 List 参数"
+      "value": "List 参数"
     },
     {
       "name": "list_introduction_properties",
-      "value": "修改 List 属性"
+      "value": "List 属性"
     },
     {
       "name": "list_introduction_state",
@@ -4524,6 +4532,126 @@
     {
       "name": "navigator_return_message",
       "value": "hello! 这是第一个页面传过来的参数"
+    },
+    {
+      "name": "water_flow_title",
+      "value": "WaterFlow"
+    },
+    {
+      "name":"water_flow_controller",
+      "value":"WaterFlow 控制"
+    },
+    {
+      "name":"water_flow_properties",
+      "value":"WaterFlow 属性"
+    },
+    {
+      "name":"water_flow_controller_scrollEdge",
+      "value":"scrollEdge"
+    },
+    {
+      "name":"water_flow_controller_scrollBy",
+      "value":"scrollBy"
+    },
+    {
+      "name":"water_flow_controller_top",
+      "value":"Top"
+    },
+    {
+      "name":"water_flow_controller_bottom",
+      "value":"Bottom"
+    },
+    {
+      "name":"water_flow_properties_scroll_bar_width",
+      "value":"scrollBarWidth"
+    },
+    {
+      "name":"water_flow_properties_scroll_bar_color",
+      "value":"scrollBarColor"
+    },
+    {
+      "name":"water_flow_properties_scroll_bar",
+      "value":"scrollBar"
+    },
+    {
+      "name":"water_flow_properties_edge_effect",
+      "value":"edgeEffect"
+    },
+    {
+      "name":"water_flow_properties_edge_effect_spring",
+      "value":"Spring"
+    },
+    {
+      "name":"water_flow_properties_edge_effect_fade",
+      "value":"Fade"
+    },
+    {
+      "name":"water_flow_properties_edge_effect_none",
+      "value":"None"
+    },
+    {
+      "name":"horizontal_reach_start",
+      "value":"横向滚动onReachStart"
+    },
+    {
+      "name":"horizontal_reach_end",
+      "value":"横向滚动onReachEnd"
+    },
+    {
+      "name":"vertical_reach_start",
+      "value":"纵向滚动onReachStart"
+    },
+    {
+      "name":"vertical_reach_end",
+      "value":"纵向滚动onReachEnd"
+    },
+    {
+      "name":"current_initialIndex",
+      "value":"当前initialIndex为:"
+    },
+    {
+      "name":"modify_initialIndex_tips",
+      "value":"修改 initialIndex 后请再次进入本页面查看效果"
+    },
+    {
+      "name":"current_scroll_event",
+      "value":"当前滚动事件为："
+    },
+    {
+      "name":"current_scroll_state",
+      "value":"当前滚动状态为："
+    },
+    {
+      "name":"current_scroll_distance",
+      "value":"本次滚动距离为："
+    },
+    {
+      "name":"current_scroll_index_first",
+      "value":"当前index, first："
+    },
+    {
+      "name":"current_scroll_index_last",
+      "value":", last："
+    },
+    {
+      "name":"current_event_value",
+      "value":"无事件"
+    },
+    {
+      "name":"current_event_on_scroll",
+      "value":"onScroll"
+    },
+    {
+      "name":"current_event_on_scroll_index",
+      "value":"onScrollIndex"
+    },
+    {
+      "name":"current_event_on_scroll_start",
+      "value":"onScrollStart"
+    },
+    {
+      "name":"current_event_on_scroll_stop",
+      "value":"onScrollStop"
     }
   ]
 }
