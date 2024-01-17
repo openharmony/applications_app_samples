@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -3663,9 +3663,12 @@ export default function abilityTest() {
        * 绑定手势方法
        */
       it(BUNDLE + 'BindFunction_001', 0, async () => {
-        // 从下往上滑动列表
-        await driver.drag(200, 1000, 200, 100, 800);
+        // 从下往上滑动列表,需滑动两次才能到手势处理区域
+        await driver.drag(200, 800, 200, 50, 1000);
+        await driver.delayMs(DELAY_TIME_FiVE);
+        await driver.drag(200, 800, 200, 50, 1000);
         await driver.delayMs(DELAY_TIME);
+
         let testName = 'BindFunction';
         Logger.info(BUNDLE + testName + 'begin');
         // 进入页面
@@ -3770,6 +3773,47 @@ export default function abilityTest() {
         let point = await text.getBoundsCenter();
         await driver.drag(point.x - 50, point.y - 50, point.x + 50, point.y + 50, 8000);
         await driver.delayMs(DELAY_TIME_FiVE);
+        // 返回
+        await checkButtonAndClickWithID('backBtn');
+        await driver.delayMs(DELAY_TIME_FiVE);
+        Logger.info(BUNDLE + testName + ' end');
+      });
+
+      /**
+       * 自定义手势判定,长按区域进行长按
+       */
+      it(BUNDLE + 'CustomGestureFunction_001', 0, async () => {
+        let testName = 'CustomGestureFunction';
+        Logger.info(BUNDLE + testName + ' begin');
+
+        // 进入自定义手势判定页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.custom_gesture')));
+        //长按长按区域
+        await driver.assertComponentExist(ON.id('longPressArea'));
+        let longBtn = await driver.findComponent(ON.id('longPressArea'));
+        await longBtn.longClick();
+        await driver.delayMs(DELAY_TIME);
+
+        await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.custom_long_press_prompt'))));
+        await driver.delayMs(DELAY_TIME_FiVE);
+        Logger.info(BUNDLE + testName + ' end');
+      });
+
+      /**
+       * 自定义手势判定,点击区域进行点击
+       */
+      it(BUNDLE + 'CustomGestureFunction_001', 0, async () => {
+        let testName = 'CustomGestureFunction';
+        Logger.info(BUNDLE + testName + ' begin');
+        //点击点击区域
+        await driver.assertComponentExist(ON.id('clickArea'));
+        let clickBtn = await driver.findComponent(ON.id('clickArea'));
+        await clickBtn.click();
+        await driver.delayMs(DELAY_TIME);
+
+        await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.custom_tap_prompt'))));
+        await driver.delayMs(DELAY_TIME_FiVE);
+
         // 返回
         await checkButtonAndClickWithID('backBtn');
         await driver.delayMs(DELAY_TIME_FiVE);

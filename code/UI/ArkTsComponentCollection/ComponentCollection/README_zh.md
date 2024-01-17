@@ -356,6 +356,8 @@ entry/src/main/ets/
 |   |   |   |   |---SwipeSample.ets                      // 滑动手势
 |   |   |   |---tapGestureSample
 |   |   |   |   |---TapGestureSample.ets                 // Tap手势
+|   |   |   |---customGesture
+|   |   |   |   |---CustomGestureJudge.ets               // 自定义手势判定
 |   |   |---properties
 |   |   |   |---foregroundSample
 |   |   |   |   |---ForegroundSample.ets                 // 前景
@@ -405,7 +407,7 @@ entry/src/main/ets/
 |   |   |   |   |---TransformSample.ets                  // 变换矩阵
 |   |   |   |---translateSample
 |   |   |   |   |---TranslateSample.ets                  // 图像变换
-``` 
+```
 
 ### 具体实现
 
@@ -483,11 +485,12 @@ entry/src/main/ets/
 
 ### 相关权限
 
-[ohos.permission.GET_BUNDLE_INFO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionget_bundle_info)
+[ohos.permission.GET_BUNDLE_INFO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionget_bundle_info)
 
-[ohos.permission.GET_BUNDLE_INFO_PRIVILEGED](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionget_bundle_info_privileged)
+[ohos.permission.GET_BUNDLE_INFO_PRIVILEGED](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionget_bundle_info_privileged)
 
-[ohos.permission.REQUIRE_FORM](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionrequire_form)
+[ohos.permission.REQUIRE_FORM](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionrequire_form)
+[ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohos.permission.INTERNET)
 
 ### 依赖
 
@@ -497,18 +500,14 @@ entry/src/main/ets/
 
 1.本示例仅支持标准系统上运行，支持设备：RK3568。
 
-2.本示例仅支持API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0Release)
+2.本示例仅支持API11版本SDK，SDK版本号(API Version 11 Release),镜像版本号(4.0Release)
 
 3.本示例涉及使用系统接口，FormComponent组件相关接口，需要手动替换Full
 SDK才能编译通过，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)。
 
 4.本示例需要使用DevEco Studio 版本号(4.0Release)及以上版本才可编译运行。
 
-5.本示例涉及ohos.permission.GET_BUNDLE_INFO_PRIVILEGED、ohos.permission.REQUIRE_FORM为system_basic级别（相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
-查看），需要配置高权限签名，可参考[应用apl等级说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/accesstoken-overview.md#应用apl等级说明)。
-
-6.本示例涉及系统接口，需要配置系统应用签名，可以参考[修改harmonyappprovision配置文件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/app-provision-structure.md#修改harmonyappprovision配置文件)
-，把配置文件中的“app-feature”字段信息改为“hos_system_app”。
+5.本示例涉及调用系统权限的接口，需要配置允许权限列表，可以参考[特殊权限配置方法](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/) ，在配置文件中的“allowed-acls”字段中增加"ohos.permission.GET_BUNDLE_INFO", "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED", "ohos.permission.REQUIRE_FORM", "ohos.permission.INTERNET"四个权限。
 
 ### 下载
 
