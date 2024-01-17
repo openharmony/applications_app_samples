@@ -14,6 +14,7 @@
  */
 
 import { TitleBar } from '../../../../common/TitleBar'
+import promptAction from '@ohos.promptAction'
 
 @Extend(Text) function leftTitleStyle() {
   .fontColor($r('app.color.sub_title_color'))
@@ -68,6 +69,12 @@ struct ScrollSample {
             .scrollable(this.scroll_direction)
             .width('100%')
             .height(200)
+            .onReachStart(() => {
+              promptAction.showToast({ message: $r('app.string.horizontal_reach_start')}) // '横向滚动onReachStart'
+            })
+            .onReachEnd(() => {
+              promptAction.showToast({ message: $r('app.string.horizontal_reach_end')}) // '横向滚动onReachEnd'
+            })
           }.cardStyle()
 
           Text($r('app.string.scroll_vertical'))
@@ -82,6 +89,12 @@ struct ScrollSample {
             .scrollable(ScrollDirection.Vertical)
             .width('100%')
             .height(200)
+            .onReachStart(() => {
+              promptAction.showToast({ message: $r('app.string.vertical_reach_start')})
+            })
+            .onReachEnd(() => {
+              promptAction.showToast({ message: $r('app.string.vertical_reach_end')})
+            })
           }.cardStyle()
 
           Text($r('app.string.avoiding_input_method_testing'))

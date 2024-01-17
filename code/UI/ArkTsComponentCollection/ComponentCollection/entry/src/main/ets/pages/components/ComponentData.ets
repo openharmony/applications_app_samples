@@ -324,6 +324,10 @@ const LIST_AND_GRID: ThirdLevelCategory =
       {
         title: $r('app.string.grid_item_title'),
         url: 'pages/components/listAndGrid/gridItemSample/GridItemSample'
+      },
+      {
+        title: $r('app.string.water_flow_title'),
+        url: 'pages/components/listAndGrid/waterFlowSample/WaterFlowSample'
       }
     ]
   }
@@ -541,3 +545,7 @@ export const TABS_BAR_MODE_SELECT : Resource[] = [$r('app.string.tabs_properties
 //画布与图形绘制/PathSelectCommands
 export const PATH_SELECT_COMMANDS: Resource[] = [$r('app.string.path_line'),$r('app.string.path_triangle'),$r('app.string.path_square'),$r('app.string.path_polygon')
   ,$r('app.string.path_camber_first'),$r('app.string.path_camber_second'),$r('app.string.path_camber_third')]
+// 列表与宫格/waterFlowScrollEdgeSelectData
+export const WATER_FLOW_SCROLL_EDGE_SELECT_DATA : Resource[] = [$r('app.string.water_flow_controller_top'),$r('app.string.water_flow_controller_bottom')]
+// 列表与宫格/waterFlowEdgeEffectSelectData
+export const WATER_FLOW_EDGE_EFFECT_SELECT_DATA : Resource[] = [$r('app.string.water_flow_properties_edge_effect_spring'),$r('app.string.water_flow_properties_edge_effect_fade'),$r('app.string.water_flow_properties_edge_effect_none')]

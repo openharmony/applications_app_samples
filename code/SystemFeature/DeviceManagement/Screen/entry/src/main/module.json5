@@ -55,6 +55,11 @@
           }
         ]
       }
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.CAPTURE_SCREEN"
+      }
     ]
   }
 }

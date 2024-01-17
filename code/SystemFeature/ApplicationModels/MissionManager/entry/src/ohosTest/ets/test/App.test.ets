@@ -45,14 +45,14 @@ export default function appTest() {
       await driver.delayMs(2000);
       // 为了任务列表不为空，需要先启动两个应用，保证任务列表>2
       let want = {
-        bundleName: 'ohos.samples.clock',
-        abilityName: 'ohos.samples.clock.default'
+        bundleName: 'ohos.samples.etsclock',
+        abilityName: 'MainAbility'
       };
       delegator.startAbility(want, (err) => {
         logger.info(TAG, `${BUNDLE}startAbility end err ${JSON.stringify(err)}`);
       });
       await driver.delayMs(2000);
-      await driver.pressBack();
+      await driver.pressHome();
       await driver.delayMs(1000);
       let want1 = {
         bundleName: 'com.ohos.note',
@@ -62,7 +62,7 @@ export default function appTest() {
         logger.info(TAG, `${BUNDLE}startAbility end err ${JSON.stringify(err)}`);
       });
       await driver.delayMs(2000);
-      await driver.pressBack();
+      await driver.pressHome();
       await driver.delayMs(1000);
     })
 
