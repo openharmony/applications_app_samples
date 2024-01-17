@@ -2435,6 +2435,14 @@
       "value": "RichText"
     },
     {
+      "name": "rich_editor",
+      "value": "RichEditor 富文本编辑"
+    },
+    {
+      "name": "rich_editor_title",
+      "value": "RichEditor"
+    },
+    {
       "name": "scroll_swiper",
       "value": "Scroll and Swipe"
     },
