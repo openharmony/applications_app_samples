@@ -1071,6 +1071,10 @@
       "value": "SafeArea"
     },
     {
+      "name": "attribute_modifier",
+      "value": "AttributeModifier"
+    },
+    {
       "name": "save_area_input_text",
       "value": "input your word ..."
     },
@@ -5591,6 +5595,26 @@
     {
       "name": "grid_item_polymorphic_styles",
       "value": "Polymorphic Styles"
+    },
+    {
+      "name": "component_id_press_to_see_attributeModifier",
+      "value": "按压按钮查看状态变化"
+    },
+    {
+      "name": "component_id_click_to_see_attributeModifier",
+      "value": "点击按钮查看状态变化"
+    },
+    {
+      "name": "component_id_disable_to_see_attributeModifier",
+      "value": "禁用按钮查看状态变化"
+    },
+    {
+      "name": "component_id_disable_radio",
+      "value": "禁用"
+    },
+    {
+      "name": "component_id_press_list_to_see_attributeModifier",
+      "value": "按压列表选项查看状态变化"
     },
     {
       "name":"water_flow_title",

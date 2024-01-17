@@ -907,6 +907,10 @@
       "value": "SafeArea 安全区域"
     },
     {
+      "name": "attribute_modifier",
+      "value": "动态属性设置"
+    },
+    {
       "name": "safe_area_type",
       "value": "扩展类型"
     },
@@ -4534,7 +4538,6 @@
       "value": "hello! 这是第一个页面传过来的参数"
     },
     {
-<<<<<<< HEAD
       "name": "global_bindSheet_menu",
       "value": "BindSheet半模态"
     },
@@ -4693,6 +4696,26 @@
     {
       "name": "grid_item_polymorphic_styles",
       "value": "多态样式"
+    },
+    {
+      "name": "focus_control_tab_status",
+      "value": "获焦状态样式切换：外接键盘Tab键切换焦点查看状态变化"
+    },
+    {
+      "name": "select_to_see_status",
+      "value": "选中状态样式切换"
+    },
+    {
+      "name": "disable_to_see_status",
+      "value": "禁用状态样式切换"
+    },
+    {
+      "name": "press_to_see_status",
+      "value": "按压状态样式切换"
+    },
+    {
+      "name": "click_to_see_status",
+      "value": "正常状态样式切换"
     },
     {
       "name": "water_flow_title",

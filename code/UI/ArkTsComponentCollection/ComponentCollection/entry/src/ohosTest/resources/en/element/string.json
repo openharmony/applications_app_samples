@@ -2514,6 +2514,10 @@
     {
       "name": "global_bindSheet_menu",
       "value": "BindSheet半模态"
+    },
+    {
+      "name": "attribute_modifier",
+      "value": "AttributeModifier"
     }
   ]
 }

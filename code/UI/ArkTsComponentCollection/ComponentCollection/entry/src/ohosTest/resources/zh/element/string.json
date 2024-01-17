@@ -2174,7 +2174,6 @@
       "value": "SafeArea 安全区域"
     },
     {
-<<<<<<< HEAD
       "name": "text_input_limit",
       "value": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
     },
@@ -2209,6 +2208,10 @@
     {
       "name": "global_bindSheet_menu",
       "value": "BindSheet半模态"
+    },
+    {
+      "name": "attribute_modifier",
+      "value": "动态属性设置"
     },
     {
       "name": "list_introduction_properties",

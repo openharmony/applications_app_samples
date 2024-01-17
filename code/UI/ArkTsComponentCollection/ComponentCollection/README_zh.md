@@ -364,6 +364,8 @@ entry/src/main/ets/
 |   |   |   |---tapGestureSample
 |   |   |   |   |---TapGestureSample.ets                 // Tap手势
 |   |   |---properties
+|   |   |   |---attributeModifierSample
+|   |   |   |   |---AttributeModifierSample.ets          // 动态属性设置
 |   |   |   |---foregroundSample
 |   |   |   |   |---ForegroundSample.ets                 // 前景
 |   |   |   |---backgroundSample
@@ -524,8 +526,8 @@ SDK才能编译通过，具体操作可参考[替换指南](https://gitee.com/op
 
 4.本示例需要使用DevEco Studio 版本号(3.1.1 Release)及以上版本才可编译运行。
 
-5.本示例涉及ohos.permission.GET_BUNDLE_INFO_PRIVILEGED、ohos.permission.REQUIRE_FORM为system_basic级别（相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
-查看），需要配置高权限签名，可参考[应用apl等级说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/accesstoken-overview.md#应用apl等级说明)。
+5.本示例涉及ohos.permission.GET_BUNDLE_INFO_PRIVILEGED、ohos.permission.REQUIRE_FORM为system_basic级别（相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md)
+查看），需要配置高权限签名，可参考[应用apl等级说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/app-permission-mgmt-overview.md#apl等级)。
 
 6.本示例涉及系统接口，需要配置系统应用签名，可以参考[修改harmonyappprovision配置文件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/app-provision-structure.md#修改harmonyappprovision配置文件)
 ，把配置文件中的“app-feature”字段信息改为“hos_system_app”。
