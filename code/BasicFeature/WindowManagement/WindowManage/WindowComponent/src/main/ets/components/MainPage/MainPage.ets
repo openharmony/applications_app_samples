@@ -94,11 +94,11 @@ struct VideoWindow {
           .muted(false)
           .controls(true)
           .autoPlay(true)
-          .onClick(() => {
+          .onClick(async () => {
             Logger.info('onClick');
             if (this.showSubWindow) {
               this.videoController.start();
-              let windows = this.subWindow?.getSubWindow();
+              let windows = await this.subWindow?.getSubWindow();
               if (windows !== undefined) {
                 windows[0].destroyWindow();
                 this.showSubWindow = false;

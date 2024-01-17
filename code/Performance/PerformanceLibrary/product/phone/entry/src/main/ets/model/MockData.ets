@@ -53,6 +53,10 @@ export let performanceTypeArray: Array<PerformanceMsg> = [
     uri: 'pages/backgroundTask/BackgroundTaskPage'
   },
   {
+    name: 'ThreadDataTransfer',
+    uri: 'pages/ThreadDataTransfer/ThreadDataTransferPage'
+  },
+  {
     name: 'MemoryShared',
     uri: 'pages/memoryShared/MemorySharedHomePage'
   },
@@ -63,5 +67,9 @@ export let performanceTypeArray: Array<PerformanceMsg> = [
   {
     name: 'WaterFlow',
     uri: 'pages/waterFlow/WaterFlowPage'
+  },
+  {
+    name: 'NativeThreadsCallJS',
+    uri: 'pages/nativeThreadsCallJS/NativeThreadsCallJS'
   }
 ]

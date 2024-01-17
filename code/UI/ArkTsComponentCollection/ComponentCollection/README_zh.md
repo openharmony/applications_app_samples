@@ -366,6 +366,8 @@ entry/src/main/ets/
 |   |   |   |   |---BackgroundSample.ets                 // 背景
 |   |   |   |---borderSample
 |   |   |   |   |---BorderSample.ets                     // 边框
+|   |   |   |---outlineSample
+|   |   |   |   |---OutlineSample.ets                    // 外边框
 |   |   |   |---componentBlurredSample
 |   |   |   |   |---ComponentBlurredSample.ets           // 分布式迁移标识
 |   |   |   |---componentIDSample

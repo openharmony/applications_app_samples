@@ -45,15 +45,16 @@
 | 验证拖拽事件                             |                                       | 依次拖拽应用图标、GridItem、ListItem、Hyperlink、Text、Image、Video、FormComponent                                | 正确响应拖动            | 是    | Pass |
 | 验证组件区域变化事件                         |                                       | 调整宽度，高度                                                                                            | 正确约束小球运动范围        | 是    | Pass |
 | 验证SafeArea 安全区域                    |  进入SafeArea 安全区域           | 调整安全区域扩展的类型和方向                                                                                     | 正确显示效果            | 是    | Pass |
-| 验证foreground 前景                    |                                       | 进入foreground 前景                                                                                    | 正确显示背景  | 是    | Pass |
-| 验证background 背景                    |                                       | 进入background 背景                                                                                    | 正确显示背景            | 是    | Pass |
-| 验证border 边框                        |                                       | 进入border 边框页面                                                                                      | 正确显示边框            | 是    | Pass |
-| 验证font 字体                          |                                       | 进入font 字体页面                                                                                        | 正确显示字体            | 是    | Pass |
-| 验证size 尺寸                          |                                       | 进入size 尺寸页面                                                                                        | 正确显示尺寸            | 是    | Pass |
-| 验证rotate 旋转                        | 展开图形变换                                | 调整图片平移和容器平移的X轴、y轴                                                                                  | 正确响应调整            | 是    | Pass |
-| 验证translate 平移                     | 展开图形变化                                | 调整图片平移和容器平移的X轴、y轴                                                                                  | 正确响应调整            | 是    | Pass |
-| 验证显示                               |                                       | 依次测试Z序，浮层，显隐，透明，测试响应属性                                                                             | 正确显示组件，并按调整改变     | 是    | Pass |
-| 验证图像效果                             |                                       | 依次测试图像模糊，阴影，特效显示效果                                                                                 | 正确显示效果            | 是    | Pass |
+| 验证foreground 前景                    |                                       | 进入foreground 前景                                   | 正确显示背景  | 是    | Pass |
+| 验证background 背景                    |                                       | 进入background 背景                                                     | 正确显示背景            | 是    | Pass |
+| 验证border 边框                        |                                       | 进入border 边框页面                                                       | 正确显示边框            | 是    | Pass |
+| 验证outline 外边框 | | 进入outline 外边框页面，输入框输入信息和悬停在text组件时，有突出显示的外描边效果。 | 正确显示外边框 | 是 | Pass |
+| 验证font 字体                          |                                       | 进入font 字体页面                                                         | 正确显示字体            | 是    | Pass |
+| 验证size 尺寸                          |                                       | 进入size 尺寸页面                                                         | 正确显示尺寸            | 是    | Pass |
+| 验证rotate 旋转                        | 展开图形变换                                | 调整图片平移和容器平移的X轴、y轴                                                   | 正确响应调整            | 是    | Pass |
+| 验证translate 平移                     | 展开图形变化                                | 调整图片平移和容器平移的X轴、y轴                                                   | 正确响应调整            | 是    | Pass |
+| 验证显示                               |                                       | 依次测试Z序，浮层，显隐，透明，测试响应属性                                              | 正确显示组件，并按调整改变     | 是    | Pass |
+| 验证图像效果                             |                                       | 依次测试图像模糊，阴影，特效显示效果                                                  | 正确显示效果            | 是    | Pass |
 | 验证互动                               |                                       | 依次测试禁用、弹窗、点击、热区、悬停、菜单、多态 、多模输入                                                                     | 正确显示组件，并按调整改变     | 是    | Pass |
 | 验证TarBar 进入动画                      | 在通用页面                                 | 点击下方tab动画                                                                                          | 跳转到动画页面           | 是    | Pass |
 | 验证pageTransition 页面间转场             | 展开转场动画，进入pageTransition 页面间转场         | 依次测试顶部进场/底部退场，左侧进场/右侧退场，缩放进场/退场等                                                                   | 正确展示动画            | 是    | Pass |

@@ -32,14 +32,14 @@ struct DialogExample {
   async getPixmap() {
     let resourceMgr = EntryAbility.entryAbility.resourceManager;
     try {
-      let fileData = await resourceMgr.getRawFileContent('notification.png');
-      const buffer = fileData.buffer;
+      let fileData: Uint8Array = await resourceMgr.getRawFileContent('notification.png');
+      const buffer: ArrayBuffer = fileData.buffer as ArrayBuffer;
       const imageSource = image.createImageSource(buffer);
       const pixelMap = await imageSource.createPixelMap();
       return pixelMap;
     } catch (e) {
-      let fileData = await resourceMgr.getRawFileContent('notification.png');
-      const buffer = fileData.buffer;
+      let fileData: Uint8Array = await resourceMgr.getRawFileContent('notification.png');
+      const buffer: ArrayBuffer = fileData.buffer as ArrayBuffer;
       const imageSource = image.createImageSource(buffer);
       const pixelMap = await imageSource.createPixelMap();
       return pixelMap;

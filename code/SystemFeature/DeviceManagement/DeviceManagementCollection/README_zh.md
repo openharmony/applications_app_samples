@@ -175,6 +175,8 @@ DeviceManagementCollection
 4.允许系统应用获取UDID权限：[ohos.permission.sec.ACCESS_UDID](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionsecaccess_udid)
 
 5.允许应用监听输入事件权限：[ohos.permission.INPUT_MONITORING](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissioninput_monitoring)
+
+6.允许应用读取已安装应用列表：[ohos.permission.GET_INSTALLED_BUNDLE_LIST](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionget_installed_bundle_list)
 ### 依赖
 
 不涉及。

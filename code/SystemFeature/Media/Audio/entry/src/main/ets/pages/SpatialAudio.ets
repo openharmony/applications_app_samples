@@ -1,6 +1,5 @@
-
 /*
-* Copyright (C) 2023 Huawei Device Co., Ltd.
+* Copyright (C) 2023-2024 Huawei Device Co., Ltd.
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -333,12 +332,17 @@ struct SpatialAudio {
     let isTraSupported: boolean =  false
     let isTraSupportedForDevice: boolean = false
     if (this.audioSpatializationManager) {
-      isSpaSupported =  this.audioSpatializationManager.isSpatializationSupported()
-      isSpaSupportedForDevice =
-      this.audioSpatializationManager.isSpatializationSupportedForDevice(audioDeviceDescriptors[0])
-      isTraSupported =  this.audioSpatializationManager.isHeadTrackingSupported()
-      isTraSupportedForDevice =
-      this.audioSpatializationManager.isHeadTrackingSupportedForDevice(audioDeviceDescriptors[0])
+      try {
+        isSpaSupported =  this.audioSpatializationManager.isSpatializationSupported()
+        isSpaSupportedForDevice =
+          this.audioSpatializationManager.isSpatializationSupportedForDevice(audioDeviceDescriptors[0])
+        isTraSupported =  this.audioSpatializationManager.isHeadTrackingSupported()
+        isTraSupportedForDevice =
+          this.audioSpatializationManager.isHeadTrackingSupportedForDevice(audioDeviceDescriptors[0])
+      } catch (err) {
+        Logger.error(`supportStateQuery ,Error: ${JSON.stringify(err)}`)
+      }
+
     } else {
       Logger.info("Get manager failed.")
     }

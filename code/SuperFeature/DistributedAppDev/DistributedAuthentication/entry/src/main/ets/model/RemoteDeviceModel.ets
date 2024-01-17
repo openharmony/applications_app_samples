@@ -305,31 +305,43 @@ class RemoteDeviceModel {
 
   private getFilterOptions(): Object {
     let filterOptions = new filterOptionsType();
-    if (getGlobalObject('isOnlineName') !== 0) {
+    logger.info('currentFilterOptions' + JSON.stringify(getGlobalObject('filterOptions')));
+    let currentFilterOptions = getGlobalObject('filterOptions') as Map<string, number>;
+    let deviceTypeName = getGlobalObject("deviceTypeName") as string;
+    let authFormName = getGlobalObject("authFormName") as string;
+    let isOnlineName = getGlobalObject("isOnlineName") as string;
+    let isTrustedName = getGlobalObject("isTrustedName") as string;
+    let rangeName = getGlobalObject("rangeName") as string;
+    let deviceType = currentFilterOptions.get(deviceTypeName)
+    let authForm = currentFilterOptions.get(authFormName)
+    let isOnline = currentFilterOptions.get(isOnlineName)
+    let isTrusted = currentFilterOptions.get(isTrustedName)
+    let range = currentFilterOptions.get(rangeName)
+    if (isOnline !== 0) {
       filterOptions.filters.push({
         type: "credible",
-        value: getGlobalObject('isOnlineName') == 1 ? 1 : 0
+        value: isOnline == 1 ? 1 : 0
       });
     }
 
-    if (getGlobalObject('isTrustedName') != 0) {
+    if (isTrusted != 0) {
       filterOptions.filters.push({
         type: "isTrusted",
-        value: getGlobalObject('isTrustedName') == 1 ? 1 : 0
+        value: isTrusted == 1 ? 1 : 0
       });
     }
 
-    if (getGlobalObject('deviceTypeName') != 0) {
+    if (deviceType != 0) {
       let deviceType = 0;
-      if (getGlobalObject('deviceTypeName') == 1) {
+      if (deviceType == 1) {
         deviceType = deviceManager.DeviceType.TABLET;
       }
       ;
-      if (getGlobalObject('deviceTypeName') == 2) {
+      if (deviceType == 2) {
         deviceType = deviceManager.DeviceType.PHONE;
       }
       ;
-      if (getGlobalObject('deviceTypeName') == 3) {
+      if (deviceType == 3) {
         deviceType = deviceManager.DeviceType.UNKNOWN_TYPE;
       }
       ;
@@ -339,15 +351,15 @@ class RemoteDeviceModel {
       });
     }
 
-    if (getGlobalObject('authFormName') != 0) {
+    if (authForm != 0) {
       let authForm = -1;
-      if (getGlobalObject('authFormName') == 1) {
+      if (authForm == 1) {
         authForm = 1;
       }
-      if (getGlobalObject('authFormName') == 2) {
+      if (authForm == 2) {
         authForm = 2;
       }
-      if (getGlobalObject('authFormName') == 3) {
+      if (authForm == 3) {
         authForm = 0;
       }
       filterOptions.filters.push({
@@ -356,15 +368,15 @@ class RemoteDeviceModel {
       });
     }
 
-    if (getGlobalObject('rangeName') != 0) {
+    if (range != 0) {
       let range = 0;
-      if (getGlobalObject('rangeName') == 1) {
+      if (range == 1) {
         range = 50;
       }
-      if (getGlobalObject('rangeName') == 2) {
+      if (range == 2) {
         range = 80;
       }
-      if (getGlobalObject('rangeName') == 3) {
+      if (range == 3) {
         range = 100;
       }
       filterOptions.filters.push({
@@ -400,14 +412,14 @@ class RemoteDeviceModel {
     })
 
     SUBSCRIBE_ID = Math.floor(65536 * Math.random())
+    this.infoObj.subscribeId = SUBSCRIBE_ID
     let info = this.infoObj;
     logger.info('[DeviceManager.RemoteDeviceModel] startDeviceDiscovery ' + SUBSCRIBE_ID);
     this.discoverList = [];
     AppStorage.SetOrCreate('discoverDeviceList', this.discoverList);
 
     let filterOptions = this.getFilterOptions();
-    logger.info('[DeviceManager.RemoteDeviceModel] startDeviceDiscovery filterOptions = ' +
-    JSON.stringify(filterOptions));
+    logger.info('[DeviceManager.RemoteDeviceModel] startDeviceDiscovery filterOptions = ' + JSON.stringify(filterOptions));
     try {
       if (filterOptions == '') {
         this.deviceManager.startDeviceDiscovery(info);

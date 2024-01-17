@@ -85,6 +85,7 @@ BackgroundTask使用说明：
 WaterFlow使用说明：
 
 1.点击性能示例主页的**WaterFlow**按钮，进入**WaterFlow**场景页
+
 多线程共享内存页面使用说明：
 
 1.点击性能示例主页的**MemoryShared**按钮，进入**多线程共享内存入口**场景页。
@@ -92,6 +93,22 @@ WaterFlow使用说明：
 2.点击多线程共享内存入口页的**原子操作对比**按钮，进入**原子操作主页**。
 
 3.点击多线程共享内存入口页的**锁的使用**按钮，进入**锁的使用子页面**。
+
+Native跨线程调用使用说明：
+
+1.点击性能示例主页的**NativeThreadsCallJS**按钮，进入**Native跨线程调用**场景页
+
+2.点击Native跨线程调用页的**threadSafeTest**按钮，验证使用安全函数跨线程调用。
+
+3.点击Native跨线程调用页的**libuvTest**按钮，验证使用libuv跨线程调用。
+
+多线程间大数据传输使用说明：
+
+1.点击性能示例主页的**ThreadDataTransfer**按钮，进入**多线程数据传输入口**场景页。
+
+2.拖动**任务数**滑动条调整线程任务数，点击**传参方式**按钮，改变线程传参方式。
+
+3.拖动**饱和度**滑动条，调整图片饱和度。
 
 ### 工程目录
 
@@ -169,6 +186,12 @@ features
 |   |---/pages    
 |   |   |---Index.ets                                 // 场景主页面模块       
 |   |   |---WaterFlowDataSource.ets                   // 数据源
+---/nativeThreadsCallJS/src/main/ets                  // native跨线程调用功能HAR共享包
+|   |---/pages    
+|   |   |---Index.ets                                 // 场景主页面模块
+---/nativeThreadsCallJS/src/main/cpp                  // native跨线程调用功能native功能模块
+|   |---/types 
+|   |   |---hello.cpp                                 // 场景native功能代码
 products/phone/entry/src/main/ets
 |---/entryability
 |   |---EntryAbility.ts                               // 封装整个模块启用，监听Ability对应的窗口等逻辑
@@ -216,13 +239,17 @@ products/phone/entry/src/main/ets
 |   |   |---TransientTask.ets                         // 短时任务页面
 |   |   |---LongTermTask.ets                          // 长时任务页面
 |   |---/trace
-|   |   |---TracePage.ets                             // 懒加载示例首页              
+|   |   |---TracePage.ets                             // 懒加载示例首页     
+|   |---/ThreadDataTransfer
+|   |   |---ThreadDataTransferHomePage.ets            // 线程间大数据传输首页              
 |   |---/waterFlow
 |   |   |---WaterFlowPage.ets                         // WaterFlow示例首页                                                                                                                                       
 |   |---/memoryShared
 |   |   |---AtomicsUsage.ets                          // 原子操作页面              
 |   |   |---LockUsage.ets                             // 锁应用页面 
-|   |   |---MemorySharedHome.ets                      // 多线程共享内存入口页面              
+|   |   |---MemorySharedHome.ets                      // 多线程共享内存入口页面           
+|   |---/nativeThreadsCallJS
+|   |   |---NativeThreadsCallJS.ets                   // native跨线程调用示例首页               
 |   |---/Index                                                                     
 |---/utils
 |   |---Logger.ets                                    // 封装整个日志
@@ -306,6 +333,11 @@ products/phone/entry/src/main/ets
   * 锁应用场景
     * 使用或不适用锁，实现多线程写入文件
     * 源码链接：[LockUsage.ets](feature/memoryShared/src/main/ets/pages/LockUsage.ets)
+    
+* 多线程间大数据传输页面模块
+  * 图片调整饱和度
+    * 通过不同参数，实现多线程修改图片
+    * 源码链接：[TreadUtil.ets](feature/ThreadDataTransfer/src/main/ets/utils/TreadUtil.ets)
     
 ### 相关权限
 
