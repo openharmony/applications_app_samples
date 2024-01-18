@@ -18,33 +18,33 @@ import {RouterModule} from "RouterModule/src/main/ets/components/mainpage/Router
 @Entry
 @Component
 struct HapA {
-  @State HapA_Router: NavPathStack = new NavPathStack()
+  @State hapARouter: NavPathStack = new NavPathStack()
   aboutToAppear() {
-    if(!this.HapA_Router){
-      this.HapA_Router = new NavPathStack()
+    if(!this.hapARouter){
+      this.hapARouter = new NavPathStack()
     }
-    RouterModule.createRouter('HapA_Router', this.HapA_Router)
+    RouterModule.createRouter('HapA_Router', this.hapARouter)
   }
 
   @Builder
-  routerMap(name: string, param:object) {
-    RouterModule.getBuilder(name).builder(param)
+  routerMap(routerName: string, param:object) {
+    RouterModule.getBuilder(routerName).builder(param)
   }
 
   build() {
-    Navigation(this.HapA_Router) {
+    Navigation(this.hapARouter) {
       Button('ToIndex', { stateEffect: true, type: ButtonType.Capsule})
         .width('80%')
         .height(40)
         .margin(20)
-        .onClick(()=>{
+        .onClick(() => {
           RouterModule.push("harA/src/main/ets/components/mainpage/HarA-HapA_Router-HarA_Builder")
         })
       Button('ToHarB', { stateEffect: true, type: ButtonType.Capsule})
         .width('80%')
         .height(40)
         .margin(20)
-        .onClick(()=>{
+        .onClick(() => {
           RouterModule.push("harB/src/main/ets/components/mainpage/HarB-HapA_Router-HarB_Builder")
         })
     }

@@ -15,37 +15,37 @@
 import {RouterModule} from "RouterModule/src/main/ets/components/mainpage/RouterModule"
 
 @Builder
-export function HarA_Builder(value: object) {
+export function harBuilder(value: object) {
   NavDestination(){
     Column(){
-      Button('ToIndex', { stateEffect: true, type: ButtonType.Capsule})
+      Button('ToIndex', { stateEffect: true, type: ButtonType.Capsule })
         .width('80%')
         .height(40)
         .margin(20)
-        .onClick(()=>{
+        .onClick(() => {
           RouterModule.clear("HapA_Router")
         })
-      Button('ToHarB', { stateEffect: true, type: ButtonType.Capsule})
+      Button('ToHarB', { stateEffect: true, type: ButtonType.Capsule })
         .width('80%')
         .height(40)
         .margin(20)
-        .onClick(()=>{
+        .onClick(() => {
           RouterModule.push("harB/src/main/ets/components/mainpage/HarB-HapA_Router-HarB_Builder")
         })
     }.width('100%').height('100%')
   }.title('HarA')
-  .onBackPressed(() =>{
+  .onBackPressed(() => {
     RouterModule.pop("HapA_Router")
     return true
   })
 }
 
-export function HarA_Init(){
+export function harInit(){
   if(!RouterModule.getBuilder('HarA_Builder')){
-    let builder: WarppedBuider<[object]> = warpperBuider(HarA_Builder)
+    let builder: WarppedBuilder<[object]> = warpperBuilder(harBuilder)
     RouterModule.registerBuilder('HarA_Builder', builder)
   }
 }
 
-//自执行函数，在首次引用时出发，将builder注册到RouterModule中
-HarA_Init()
+// 自执行函数，在首次引用时出发，将builder注册到RouterModule中
+harInit()
