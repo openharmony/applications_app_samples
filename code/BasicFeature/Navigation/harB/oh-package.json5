@@ -13,12 +13,13 @@
 * limitations under the License.
 */
 {
+  "license": "Apache-2.0",
+  "devDependencies": {},
+  "author": "",
   "name": "harb",
-  "version": "1.0.0",
   "description": "Please describe the basic information.",
   "main": "Index.ets",
-  "author": "",
-  "license": "Apache-2.0",
+  "version": "1.0.0",
   "dependencies": {
     "RouterModule": "file:../RouterModule"
   }

@@ -14,21 +14,13 @@
 */
 {
   "app": {
-    "signingConfigs": [],
-    "compileSdkVersion": 9,
-    "compatibleSdkVersion": 9,
     "products": [
       {
         "name": "default",
         "signingConfig": "default",
-      }
-    ],
-    "buildModeSet": [
-      {
-        "name": "debug",
-      },
-      {
-        "name": "release"
+        "runtimeOS": "OpenHarmony",
+        "compileSdkVersion": 11,
+        "compatibleSdkVersion": 11
       }
     ]
   },

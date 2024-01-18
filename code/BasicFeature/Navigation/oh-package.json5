@@ -13,15 +13,14 @@
 * limitations under the License.
 */
 {
-  "name": "navigation",
-  "version": "1.0.0",
-  "description": "Please describe the basic information.",
-  "main": "",
-  "author": "",
   "license": "",
-  "dependencies": {
-  },
   "devDependencies": {
     "@ohos/hypium": "1.0.11"
-  }
+  },
+  "author": "",
+  "name": "navigation",
+  "description": "Please describe the basic information.",
+  "main": "",
+  "version": "1.0.0",
+  "dependencies": {}
 }
