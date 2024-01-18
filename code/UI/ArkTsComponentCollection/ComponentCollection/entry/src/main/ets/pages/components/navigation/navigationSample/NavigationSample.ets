@@ -21,12 +21,12 @@ import router from '@ohos.router';
 @Component
 struct NavigationSample {
   private pages: PageInfo[] = [
-    { name: 'Navigation»ù±¾¹¦ÄÜ', url: 'pages/components/navigation/navigationSample/NavigationBasic' },
-    { name: '¹ö¶¯×é¼şÑÓÉìµ×²¿µ¼º½Ìõ', url: 'pages/components/navigation/navigationSample/ListExpandSafeArea' },
-    { name: 'SplitÄ£Ê½¶¯»­ÑİÊ¾', url: 'pages/components/navigation/navigationSample/NavigationSplit' },
-    { name: 'Bindsheet±ÜÈÃ¼üÅÌ', url: 'pages/components/navigation/navigationSample/BindSheetSafeArea' },
-    { name: '·ÖÀ¸µÄÊó±êÑùÊ½', url: 'pages/components/navigation/navigationSample/NavigationSideBar' },
-    { name: '±ÜÈÃµ×²¿µ¼º½Ìõ', url: 'pages/components/navigation/navigationSample/NavigationExpandSafeArea' }
+    { name: 'NavigationåŸºæœ¬åŠŸèƒ½', url: 'pages/components/navigation/navigationSample/NavigationBasic' },
+    { name: 'æ»šåŠ¨ç»„ä»¶å»¶ä¼¸åº•éƒ¨å¯¼èˆªæ¡', url: 'pages/components/navigation/navigationSample/ListExpandSafeArea' },
+    { name: 'Splitæ¨¡å¼åŠ¨ç”»æ¼”ç¤º', url: 'pages/components/navigation/navigationSample/NavigationSplit' },
+    { name: 'Bindsheeté¿è®©é”®ç›˜', url: 'pages/components/navigation/navigationSample/BindSheetSafeArea' },
+    { name: 'åˆ†æ çš„é¼ æ ‡æ ·å¼', url: 'pages/components/navigation/navigationSample/NavigationSideBar' },
+    { name: 'é¿è®©åº•éƒ¨å¯¼èˆªæ¡', url: 'pages/components/navigation/navigationSample/NavigationExpandSafeArea' }
   ];
 
   build() {
