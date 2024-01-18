@@ -53,6 +53,7 @@ struct MenuSample {
   @State menuWidth: number = MINWIDTH;
   @State realMenuWidth: number = 0;
   @State menuDirection: number = Placement.Bottom;
+  @State vpText: string = 'vp';
 
   @Builder MenuBuilder() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -142,7 +143,6 @@ struct MenuSample {
 
           // 菜单布局
           IntroductionTitle({ introduction: $r('app.string.global_menu_layout') })
-          // .margin({top: 19.5, bottom: 9.5})
           Column() {
             Row() {
               Text($r('app.string.vertical_layout'))
@@ -190,13 +190,12 @@ struct MenuSample {
 
           // 菜单宽度设置
           IntroductionTitle({ introduction: $r('app.string.global_menu_width') })
-          // .margin({top: 19.5, bottom: 9.5})
           Column() {
             Row() {
               Text($r('app.string.menu_width'))
                 .margin({ left: 12, top: 18, bottom: 8.5 })
               Blank()
-              Text(Math.trunc(this.menuWidth) + 'vp')
+              Text(Math.trunc(this.menuWidth) + this.vpText)
                 .margin({ right: 12, top: 18, bottom: 8.5 })
             }
             .width('100%')

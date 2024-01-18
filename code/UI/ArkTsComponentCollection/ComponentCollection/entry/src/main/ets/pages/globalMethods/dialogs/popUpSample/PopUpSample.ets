@@ -57,10 +57,24 @@ struct PopUpSample {
   @State customPopupLeftTop: boolean = false;
   @State customPopupRightBottom: boolean = false;
   @State customPopupLeftBottom: boolean = false;
+  @State popUpText: string = 'AAAAAAAAAAAAAAAA';
+  @State vpText: string = 'vp';
+  @State topText: string = 'Top';
+  @State bottomText: string = 'Bottom';
+  @State rightText: string = 'Right';
+  @State leftText: string = 'Left';
+  @State topRightText: string = 'TopRight';
+  @State topLeftText: string = 'TopLeft';
+  @State bottomRightText: string = 'BottomRight';
+  @State bottomLeftText: string = 'BottomLeft';
+  @State rightTopText: string = 'RightTop';
+  @State leftTopText: string = 'LeftTop';
+  @State rightBottomText: string = 'RightBottom';
+  @State leftBottomText: string = 'LeftBottom';
 
   // popup构造器定义弹框内容
   @Builder popupBuilder() {
-    Text('AAAAAAAAAAAAAAAA')
+    Text(this.popUpText)
       .fontFamily('HarmonyHeiTi')
       .fontSize(14)
       .fontColor('#FFFFFF')
@@ -87,7 +101,7 @@ struct PopUpSample {
 
               Blank()
 
-              Text(Math.trunc(this.popupWidth) + 'vp')
+              Text(Math.trunc(this.popupWidth) + this.vpText)
                 .textStyle()
                 .textAlign(TextAlign.End)
                 .margin({ right: 12, top: 12 })
@@ -118,7 +132,7 @@ struct PopUpSample {
 
           Column() {
             Row() {
-              Button('Top')
+              Button(this.topText)
                 .id('popup_top')
                 .width('41.7%')
                 .myButtonStyle()
@@ -139,7 +153,7 @@ struct PopUpSample {
                   this.customPopupTop = !this.customPopupTop;
                 })
               Blank()
-              Button('Bottom')
+              Button(this.bottomText)
                 .id('popup_bottom')
                 .width('41.7%')
                 .myButtonStyle()
@@ -166,7 +180,7 @@ struct PopUpSample {
             .margin({ left: 12, right: 12, top: 16, bottom: 12 })
 
             Row() {
-              Button('Right')
+              Button(this.rightText)
                 .id('popup_right')
                 .width('41.7%')
                 .myButtonStyle()
@@ -189,7 +203,7 @@ struct PopUpSample {
                   this.customPopupRight = !this.customPopupRight;
                 })
               Blank()
-              Button('Left')
+              Button(this.leftText)
                 .id('popup_left')
                 .width('41.7%')
                 .myButtonStyle()
@@ -216,7 +230,7 @@ struct PopUpSample {
             .margin({ left: 12, right: 12, bottom: 12 })
 
             Row() {
-              Button('TopRight')
+              Button(this.topRightText)
                 .id('popup_topRight')
                 .width('41.7%')
                 .myButtonStyle()
@@ -239,7 +253,7 @@ struct PopUpSample {
                   this.customPopupTopRight = !this.customPopupTopRight;
                 })
               Blank()
-              Button('TopLeft')
+              Button(this.topLeftText)
                 .id('popup_topLeft')
                 .width('41.7%')
                 .myButtonStyle()
@@ -266,7 +280,7 @@ struct PopUpSample {
             .margin({ left: 12, right: 12, bottom: 12 })
 
             Row() {
-              Button('BottomRight')
+              Button(this.bottomRightText)
                 .id('popup_bottomRight')
                 .width('41.7%')
                 .myButtonStyle()
@@ -289,7 +303,7 @@ struct PopUpSample {
                   this.customPopupBottomRight = !this.customPopupBottomRight;
                 })
               Blank()
-              Button('BottomLeft')
+              Button(this.bottomLeftText)
                 .id('popup_bottomLeft')
                 .width('41.7%')
                 .myButtonStyle()
@@ -316,7 +330,7 @@ struct PopUpSample {
             .margin({ left: 12, right: 12, bottom: 12 })
 
             Row() {
-              Button('RightTop')
+              Button(this.rightTopText)
                 .id('popup_rightTop')
                 .width('41.7%')
                 .myButtonStyle()
@@ -340,7 +354,7 @@ struct PopUpSample {
                 })
 
               Blank()
-              Button('LeftTop')
+              Button(this.leftTopText)
                 .id('popup_leftTop')
                 .width('41.7%')
                 .myButtonStyle()
@@ -367,7 +381,7 @@ struct PopUpSample {
             .margin({ left: 12, right: 12, bottom: 12 })
 
             Row() {
-              Button('RightBottom')
+              Button(this.rightBottomText)
                 .id('popup_rightBottom')
                 .width('41.7%')
                 .myButtonStyle()
@@ -390,7 +404,7 @@ struct PopUpSample {
                   this.customPopupRightBottom = !this.customPopupRightBottom;
                 })
               Blank()
-              Button('LeftBottom')
+              Button(this.leftBottomText)
                 .id('popup_leftBottom')
                 .width('41.7%')
                 .myButtonStyle()

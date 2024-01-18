@@ -51,6 +51,9 @@ struct BindSheetSample {
   @State mediumSelected: boolean = true;
   @State largeSelected: boolean = false;
   @State size200Selected: boolean = true;
+  @State mediumText: string = 'Medium';
+  @State largeText: string = 'Large';
+  @State size200Text: string = '200';
   private sheetSizes: SheetSizes = { medium: true, large: false, size200: true };
 
   @Builder myBuilder() {
@@ -114,7 +117,7 @@ struct BindSheetSample {
 
           Column() {
             Row() {
-              Text('Medium')
+              Text(this.mediumText)
                 .textStyle()
                 .margin({ left: 12, top: 8, bottom: 8 })
               Blank()
@@ -140,7 +143,7 @@ struct BindSheetSample {
               .opacity(0.05)
 
             Row() {
-              Text('Large')
+              Text(this.largeText)
                 .textStyle()
                 .margin({ left: 12, top: 8, bottom: 8 })
               Blank()
@@ -166,7 +169,7 @@ struct BindSheetSample {
               .opacity(0.05)
 
             Row() {
-              Text('200')
+              Text(this.size200Text)
                 .textStyle()
                 .margin({ left: 12, top: 8, bottom: 8 })
               Blank()

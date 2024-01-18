@@ -53,7 +53,7 @@ struct TextClockSample {
   @State accumulateTime: number = 0
   @State fontFeature: string = 'ss01';
   @State textShadows: ShadowOptions | Array<ShadowOptions> = [];
-  controller: TextClockController = new TextClockController()
+  controller: TextClockController = new TextClockController();
 
   build() {
     Column() {
@@ -149,9 +149,9 @@ struct TextClockSample {
             .id('text_shadow')
             .onChange((isOn: boolean) => {
               if (isOn) {
-                this.textShadows = [{ radius: 10, color: Color.Green, offsetX: 10, offsetY: 0 }]
+                this.textShadows = [{ radius: 10, color: Color.Green, offsetX: 10, offsetY: 0 }];
               } else {
-                this.textShadows = [{ radius: 0, color: Color.White, offsetX: 0, offsetY: 0 }]
+                this.textShadows = [{ radius: 0, color: Color.White, offsetX: 0, offsetY: 0 }];
               }
             })
         }
@@ -170,9 +170,9 @@ struct TextClockSample {
             .value($r('app.string.text_clock_select_button'))
             .onSelect((index: number) => {
               if (index === 0) {
-                this.fontFeature = 'ss01'
+                this.fontFeature = 'ss01';
               } else if (index === 1) {
-                this.fontFeature = 'ss02'
+                this.fontFeature = 'ss02';
               }
             })
 

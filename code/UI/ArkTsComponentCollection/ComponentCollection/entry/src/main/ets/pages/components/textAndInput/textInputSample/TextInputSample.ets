@@ -95,7 +95,7 @@ struct TextInputSample {
             let plainText: string = result.getPrimaryText();
 
             this.message = this.message.substring(0, this.selectedStart) + plainText +
-            this.message.substring(this.selectedEnd, this.message.length);
+              this.message.substring(this.selectedEnd, this.message.length);
 
           } catch (err) {
             Logger.error('Failed to get PasteData. Cause:' + err.message);
