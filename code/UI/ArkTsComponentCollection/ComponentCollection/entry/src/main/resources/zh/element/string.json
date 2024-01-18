@@ -4073,6 +4073,18 @@
       "name": "navigation_sidebar_title",
       "value": "分栏的鼠标样式"
     },
+    {
+      "name": "navigation_navbar_list_nopara",
+      "value": "列表"
+    },
+    {
+      "name": "navigation_navbar_list",
+      "value": "列表%d"
+    },
+    {
+      "name": "navigation_navcontent_list",
+      "value": "内容%d"
+    },
     // Tab
     {
       "name": "tabs_title",

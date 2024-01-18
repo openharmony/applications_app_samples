@@ -4704,6 +4704,18 @@
       "name": "navigation_sidebar_title",
       "value": "Navigation SideBar"
     },
+    {
+      "name": "navigation_navbar_list_nopara",
+      "value": "List"
+    },
+    {
+      "name": "navigation_navbar_list",
+      "value": "List%d"
+    },
+    {
+      "name": "navigation_navcontent_list",
+      "value": "Content%d"
+    },
     // Tabs
     {
       "name": "tabs_title",

@@ -31,7 +31,7 @@ struct NavigationSideBar {
           ForEach(this.navarray, (navidx: number) => {
             NavRouter() {
               Row() {
-                Text(`列表${navidx}`)
+                Text($r('app.string.navigation_navbar_list', navidx))
                   .fontSize(16)
                 Blank()
                 Image($r('app.media.ic_right_arrow'))
@@ -54,7 +54,7 @@ struct NavigationSideBar {
                     .onClick(() => {
                       router.back()
                     })
-                  Text(`列表${navidx}`)
+                  Text($r('app.string.navigation_navbar_list', navidx))
                     .fontSize(20)
                     .layoutWeight(1)
                     .margin({ left: 16 })
@@ -68,7 +68,7 @@ struct NavigationSideBar {
                   ForEach(this.contentarray, (contentidx: number) => {
                     ListItem() {
                       Row() {
-                        Text(`内容${navidx}${contentidx}`)
+                        Text($r('app.string.navigation_navcontent_list', contentidx))
                           .fontSize(16)
                         Blank()
                         Image($r('app.media.ic_right_arrow'))

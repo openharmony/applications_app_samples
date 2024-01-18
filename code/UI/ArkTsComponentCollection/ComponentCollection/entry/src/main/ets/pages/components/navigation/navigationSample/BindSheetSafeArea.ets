@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-import { TitleBar } from '../../../../common/TitleBar'
+import { TitleBar } from '../../../../common/TitleBar';
 
 @Entry
 @Component
 struct BindSheetSafeArea {
-  @State isShow: boolean = true
+  @State isShow: boolean = true;
 
   @Builder myBuilder() {
     Column() {

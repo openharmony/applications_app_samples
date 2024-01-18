@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 import { TitleBar } from '../../../../common/TitleBar';
-import router from '@ohos.router';
 
 @Entry
 @Component
@@ -23,6 +22,7 @@ struct NavigationSplit {
   @State expand: boolean = false;
   @State selectnav: number = -1;
   @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack();
+  private context: Context = getContext(this);
 
   @Builder
   PageMap(name: string, listIndex: number) {
@@ -36,7 +36,7 @@ struct NavigationSplit {
         ForEach(this.contentarray, (contentidx: number) => {
           ListItem() {
             Row() {
-              Text(`内容${contentidx}`)
+              Text($r('app.string.navigation_navcontent_list', contentidx))
                 .fontSize(16)
               Blank()
               Image($r('app.media.ic_right_arrow'))
@@ -54,7 +54,7 @@ struct NavigationSplit {
       .width('95%')
       .padding(12)
     }
-    .title(`列表${info.listIndex}`)
+    .title(this.context.resourceManager.getStringSync($r('app.string.navigation_navbar_list_nopara')) + info.listIndex)
     .backgroundColor($r('app.color.background_shallow_grey'))
     .onBackPressed(() => {
       (info.values as NavPathStack).pop();
@@ -69,7 +69,7 @@ struct NavigationSplit {
         Column() {
           ForEach(this.navarray, (navidx: number) => {
             Row() {
-              Text(`列表${navidx}`)
+              Text($r('app.string.navigation_navbar_list', navidx))
                 .fontSize(16)
               Blank()
               Image($r('app.media.ic_right_arrow'))
