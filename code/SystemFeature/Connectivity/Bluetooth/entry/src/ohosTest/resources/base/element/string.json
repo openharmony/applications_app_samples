@@ -25,8 +25,8 @@
       "value": "Match request"
     },
     {
-      "name": "agree",
-      "value": "agree"
+      "name": "only_accept_during_use",
+      "value": "only_accept_during_use"
     }
   ]
 }

@@ -48,8 +48,8 @@ export default function appTest() {
       await driver.delayMs(3000);
       // 点击允许，应用获取设备位置
       let resourceManager = ability.context.resourceManager;
-      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.agree'))));
-      let addBtn = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.agree'))));
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.only_accept_during_use'))));
+      let addBtn = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.only_accept_during_use'))));
       await driver.delayMs(1000);
       await addBtn.click();
       await driver.delayMs(1000);
