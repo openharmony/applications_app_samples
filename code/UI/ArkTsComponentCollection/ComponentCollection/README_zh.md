@@ -282,6 +282,9 @@ entry/src/main/ets/
 |   |   |   |---textAreaSample
 |   |   |   |   |---ChangePanel.ets
 |   |   |   |   |---TextAreaSample.ets                   // 文本域
+|   |   |   |---richTextEditorSample
+|   |   |   |   |---RichTextEditorSample.ets             // 富文本编辑
+|   |   |   |   |---Title.ets
 |   |   |   |---richTextSample
 |   |   |   |   |---RichTextSample.ets                   // 富文本
 |   |   |   |---spanSample

@@ -50,7 +50,8 @@ struct RichTextSample {
           RichEditor({ controller: this.controller })
             .onReady(() => {
               this.controller.addTextSpan("Hello World。\n" +
-                "熟悉的图像会自动给人一种平静和怀旧的感觉。早期的网页设计师喜欢80年代的元素，但在今天，90年代美学。\n",
+                "Familiar images automatically give people a sense of calm and nostalgia. " +
+                "Early web designers liked the elements of the 1980s, but today, the aesthetics of the 1990s.\n",
                 {
                   style:
                   {
