@@ -114,7 +114,7 @@ class FsManager {
         Logger.info("Succeeded in copying. ");
       }).catch((err: BusinessError)=>{
         Logger.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
-        return prompt.showToast({ message: $r('app.string.label_copyfailed') });
+        return prompt.showToast({ message: $r('app.string.label_copy2disfailed') });
       })
     } catch (error) {
       let err: BusinessError = error as BusinessError;
