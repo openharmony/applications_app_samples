@@ -4688,6 +4688,46 @@
       "name": "navigation_third_page_back",
       "value": "Go back to the first page"
     },
+    {
+      "name": "navigation_expand",
+      "value": "Expand"
+    },
+    {
+      "name": "navigation_list_expand_title",
+      "value": "Navigation List Expand Safe Area"
+    },
+    {
+      "name": "navigation_bindsheet_title",
+      "value": "BindSheet Safe Area"
+    },
+    {
+      "name": "navigation_expand_title",
+      "value": "Navigation Expand Safe Area"
+    },
+    {
+      "name": "navigation_unexpand",
+      "value": "Unexpand"
+    },
+    {
+      "name": "navigation_split_title",
+      "value": "Navigation Split"
+    },
+    {
+      "name": "navigation_sidebar_title",
+      "value": "Navigation SideBar"
+    },
+    {
+      "name": "navigation_navbar_list_nopara",
+      "value": "List"
+    },
+    {
+      "name": "navigation_navbar_list",
+      "value": "List%d"
+    },
+    {
+      "name": "navigation_navcontent_list",
+      "value": "Content%d"
+    },
     // Tabs
     {
       "name": "tabs_title",

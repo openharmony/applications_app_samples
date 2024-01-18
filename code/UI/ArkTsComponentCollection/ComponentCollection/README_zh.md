@@ -230,6 +230,12 @@ entry/src/main/ets/
 |   |   |   |   |---NavigatorThirdPage.ets
 |   |   |   |---navigationSample
 |   |   |   |   |---NavigationSample.ets                 // 导航根容器
+|   |   |   |   |---NavigationBasic.ets                  // 导航基础属性展示
+|   |   |   |   |---ListExpandSafeArea.ets               // 滚动组件避让导航条
+|   |   |   |   |---NavigationSplit.ets               	 // 导航分栏模式
+|   |   |   |   |---BindSheetSafeArea.ets                // BindSheet键盘避让
+|   |   |   |   |---NavigationSideBar.ets                // 导航分栏鼠标样式
+|   |   |   |   |---NavigationExpandSafeArea.ets         // 导航组件避让导航条
 |   |   |   |---navRouterSample
 |   |   |   |   |---NavRouterSample.ets                  // 导航
 |   |   |   |---stepperAndStepperItemSample
@@ -410,7 +416,7 @@ entry/src/main/ets/
 |   |   |   |   |---TransformSample.ets                  // 变换矩阵
 |   |   |   |---translateSample
 |   |   |   |   |---TranslateSample.ets                  // 图像变换
-``` 
+```
 
 ### 具体实现
 
