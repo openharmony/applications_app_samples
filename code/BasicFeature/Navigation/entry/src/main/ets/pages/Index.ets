@@ -33,14 +33,14 @@ struct HapA {
 
   build() {
     Navigation(this.hapARouter) {
-      Button('ToIndex', { stateEffect: true, type: ButtonType.Capsule})
+      Button('ToIndex', { stateEffect: true, type: ButtonType.Capsule })
         .width('80%')
         .height(40)
         .margin(20)
         .onClick(() => {
           RouterModule.push("harA/src/main/ets/components/mainpage/HarA-HapA_Router-HarA_Builder")
         })
-      Button('ToHarB', { stateEffect: true, type: ButtonType.Capsule})
+      Button('ToHarB', { stateEffect: true, type: ButtonType.Capsule })
         .width('80%')
         .height(40)
         .margin(20)
