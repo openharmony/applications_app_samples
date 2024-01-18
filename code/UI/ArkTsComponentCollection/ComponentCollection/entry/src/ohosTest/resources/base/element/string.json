@@ -3616,6 +3616,10 @@
       "value": "SafeArea"
     },
     {
+      "name": "attribute_modifier",
+      "value": "AttributeModifier"
+    },
+    {
       "name": "list_name",
       "value": "List"
     },{

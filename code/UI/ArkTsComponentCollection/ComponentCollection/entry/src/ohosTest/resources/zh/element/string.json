@@ -2206,6 +2206,10 @@
       "value": "SafeArea 安全区域"
     },
     {
+      "name": "attribute_modifier",
+      "value": "动态属性设置"
+    },
+    {
       "name": "list_introduction_properties",
       "value": "List 属性"
     },
