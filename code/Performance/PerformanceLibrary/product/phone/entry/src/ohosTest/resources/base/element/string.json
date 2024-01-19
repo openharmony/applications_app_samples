@@ -13,6 +13,10 @@
       "value": "test label"
     },
     {
+      "name": "permission_while_use",
+      "value": "仅使用期间允许"
+    },
+    {
       "name": "MemoryShared",
       "value": "MemoryShared"
     },
