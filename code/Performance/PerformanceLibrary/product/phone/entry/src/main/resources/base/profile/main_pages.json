@@ -41,6 +41,12 @@
     "pages/memoryShared/LockUsagePage",
     "pages/DFXStateManagement/DFXStateManagementPage",
     "pages/DFXStateManagement/DFXStateBeforeOptimizationPage",
-    "pages/DFXStateManagement/DFXStateAfterOptimizationPage"
+    "pages/DFXStateManagement/DFXStateAfterOptimizationPage",
+    "pages/ThreadCommunication/ThreadCommunicationHomePage",
+    "pages/ThreadCommunication/Scenario_1",
+    "pages/ThreadCommunication/Scenario_2",
+    "pages/ThreadCommunication/Scenario_3",
+    "pages/ThreadCommunication/Scenario_4",
+    "pages/ThreadCommunication/Scenario_5"
   ]
 }

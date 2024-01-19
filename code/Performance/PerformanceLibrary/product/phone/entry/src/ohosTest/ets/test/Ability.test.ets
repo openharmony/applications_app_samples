@@ -765,5 +765,159 @@ export default function abilityTest() {
       await driver.pressBack();
       done();
     })
+
+    it(BUNDLE + "ThreadCommunication_001", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}ThreadCommunication_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      await driver.swipe(10, 800, 10, 0, 600);
+      await driver.delayMs(500);
+      let threadHome: Component = await driver.findComponent(ON.text('ThreadCommunication'));
+      await driver.delayMs(500);
+      await threadHome.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text(getContext().resourceManager.getStringSync($r('app.string.thread_communication'))));
+      await driver.delayMs(200);
+      await driver.assertComponentExist(ON.text(getContext().resourceManager.getStringSync($r('app.string.scenario_1'))));
+      await driver.delayMs(200);
+      await driver.assertComponentExist(ON.text(getContext().resourceManager.getStringSync($r('app.string.scenario_2'))));
+      await driver.delayMs(200);
+      await driver.assertComponentExist(ON.text(getContext().resourceManager.getStringSync($r('app.string.scenario_3'))));
+      await driver.delayMs(200);
+      await driver.assertComponentExist(ON.text(getContext().resourceManager.getStringSync($r('app.string.scenario_4'))));
+      await driver.delayMs(200);
+      await driver.assertComponentExist(ON.text(getContext().resourceManager.getStringSync($r('app.string.scenario_5'))));
+      await driver.delayMs(200);
+      Logger.info(TAG, `${BUNDLE}ThreadCommunication_001 end`);
+      done();
+    })
+
+    it(BUNDLE + "ThreadCommunication_002", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}ThreadCommunication_002 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let scenario: Component = await driver.findComponent(ON.text(getContext().resourceManager.getStringSync($r('app.string.scenario_1'))));
+      await driver.delayMs(500);
+      await scenario.click();
+      await driver.delayMs(1000);
+      let loadImage: Component = await driver.findComponent(ON.text(getContext().resourceManager.getStringSync($r('app.string.load_image'))));
+      await driver.delayMs(500);
+      await loadImage.click();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      Logger.info(TAG, `${BUNDLE}ThreadCommunication_002 end`);
+      done();
+    })
+
+    it(BUNDLE + "ThreadCommunication_003", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}ThreadCommunication_003 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let scenario: Component = await driver.findComponent(ON.text(getContext().resourceManager.getStringSync($r('app.string.scenario_2'))));
+      await driver.delayMs(500);
+      await scenario.click();
+      await driver.delayMs(1000);
+      let loadImage: Component = await driver.findComponent(ON.text(getContext().resourceManager.getStringSync($r('app.string.load_image'))));
+      await driver.delayMs(500);
+      await loadImage.click();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      Logger.info(TAG, `${BUNDLE}ThreadCommunication_003 end`);
+      done();
+    })
+
+    it(BUNDLE + "ThreadCommunication_004", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}ThreadCommunication_004 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let scenario: Component = await driver.findComponent(ON.text(getContext().resourceManager.getStringSync($r('app.string.scenario_3'))));
+      await driver.delayMs(500);
+      await scenario.click();
+      await driver.delayMs(1000);
+      let loadImage: Component = await driver.findComponent(ON.text(getContext().resourceManager.getStringSync($r('app.string.load_image'))));
+      await driver.delayMs(500);
+      await loadImage.click();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      Logger.info(TAG, `${BUNDLE}ThreadCommunication_004 end`);
+      done();
+    })
+
+    it(BUNDLE + "ThreadCommunication_005", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}ThreadCommunication_005 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let scenario: Component = await driver.findComponent(ON.text(getContext().resourceManager.getStringSync($r('app.string.scenario_4'))));
+      await driver.delayMs(500);
+      await scenario.click();
+      await driver.delayMs(1000);
+      let loadImage: Component = await driver.findComponent(ON.text(getContext().resourceManager.getStringSync($r('app.string.change_image_number'))));
+      await driver.delayMs(500);
+      await loadImage.click();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      Logger.info(TAG, `${BUNDLE}ThreadCommunication_005 end`);
+      done();
+    })
+
+    it(BUNDLE + "ThreadCommunication_006", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}ThreadCommunication_006 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let scenario: Component = await driver.findComponent(ON.text(getContext().resourceManager.getStringSync($r('app.string.scenario_5'))));
+      await driver.delayMs(500);
+      await scenario.click();
+      await driver.delayMs(1000);
+      let loadImage: Component = await driver.findComponent(ON.text(getContext().resourceManager.getStringSync($r('app.string.load_image'))));
+      await driver.delayMs(500);
+      await loadImage.click();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      Logger.info(TAG, `${BUNDLE}ThreadCommunication_006 end`);
+      done();
+    })
+
+    it(BUNDLE + "ThreadDataTransfer_001", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}ThreadDataTransfer_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      await driver.swipe(10, 800, 10, 0, 600);
+      await driver.delayMs(500);
+      let threadDataTransfer: Component = await driver.findComponent(ON.text('ThreadDataTransfer'));
+      await driver.delayMs(500);
+      await threadDataTransfer.click();
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.saturation'))));
+      await driver.delayMs(200);
+      await driver.assertComponentExist(ON.text(getContext().resourceManager.getStringSync($r('app.string.task_num'))));
+      await driver.delayMs(200);
+      await driver.assertComponentExist(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.pass_params'))));
+      await driver.delayMs(200);
+      let transferData: Component = await driver.findComponent(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.start_transfer'))));
+      await driver.delayMs(200);
+      await driver.assertComponentExist(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.running_time'))));
+      await driver.delayMs(200);
+      await transferData.click();
+      await driver.delayMs(500);
+      let slider: Component = await driver.findComponent(ON.id('thread_transfer_data_slider'));
+      await driver.delayMs(500);
+      await slider.click();
+      await driver.delayMs(5000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      Logger.info(TAG, `${BUNDLE}ThreadDataTransfer_001 end`);
+      done();
+    })
+
   })
 }

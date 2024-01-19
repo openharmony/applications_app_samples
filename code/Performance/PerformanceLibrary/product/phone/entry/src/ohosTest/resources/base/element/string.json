@@ -47,6 +47,58 @@
     {
       "name": "write_success",
       "value": "写入文件成功"
+    },
+    {
+      "name": "thread_communication",
+      "value": "主线程和子线程的通信"
+    },
+    {
+      "name": "scenario_1",
+      "value": "场景一：独立的耗时任务"
+    },
+    {
+      "name": "scenario_2",
+      "value": "场景二：多个任务执行结果统一返回"
+    },
+    {
+      "name": "scenario_3",
+      "value": "场景三：TaskPool和主线程的即时通信"
+    },
+    {
+      "name": "scenario_4",
+      "value": "场景四：Worker和主线程的即时通信"
+    },
+    {
+      "name": "scenario_5",
+      "value": "场景五：子线程同步调用主线程的接口"
+    },
+    {
+      "name": "load_image",
+      "value": "加载图片"
+    },
+    {
+      "name": "change_image_number",
+      "value": "将图片变成4个"
+    },
+    {
+      "name": "saturation",
+      "value": "饱和度"
+    },
+    {
+      "name": "task_num",
+      "value": "任务数"
+    },
+    {
+      "name": "pass_params",
+      "value": "传参方式"
+    },
+    {
+      "name": "start_transfer",
+      "value": "通过转移方式传参"
+    },
+    {
+      "name": "running_time",
+      "value": "运行时间:"
     }
   ]
 }
