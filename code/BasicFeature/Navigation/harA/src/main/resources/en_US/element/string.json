@@ -3,6 +3,14 @@
     {
       "name": "page_show",
       "value": "page from package"
+    },
+    {
+      "name": "to_index",
+      "value": "ToIndex"
+    },
+    {
+      "name": "to_harb",
+      "value": "ToHarB"
     }
   ]
 }

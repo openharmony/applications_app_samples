@@ -13,67 +13,69 @@
 * limitations under the License.
 */
 export class RouterModule {
-  static builderMap: Map<string, WrappedBuilder<[object]>> = new Map<string, WrappedBuilder<[object]>>()
-  static routerMap: Map<string, NavPathStack> = new Map<string, NavPathStack>()
+  static builderMap: Map<string, WrappedBuilder<[object]>> = new Map<string, WrappedBuilder<[object]>>();
+  static routerMap: Map<string, NavPathStack> = new Map<string, NavPathStack>();
 
   // 通过名称注册builder
   public static registerBuilder(builderName: string, builder: WrappedBuilder<[object]>): void{
-    RouterModule.builderMap.set(builderName, builder)
+    RouterModule.builderMap.set(builderName, builder);
   }
 
   // 通过名称获取builder
   public static getBuilder(builderName: string): WrappedBuilder<[object]>{
-    let builder = RouterModule.builderMap.get(builderName)
+    let builder = RouterModule.builderMap.get(builderName);
     if(!builder){
-      console.info("未获取到builder" + builderName)
+      let msg = "not found builder";
+      console.info(msg + builderName);
     }
-    return builder as WrappedBuilder<[object]>
+    return builder as WrappedBuilder<[object]>;
   }
 
   // 通过名称注册router
   public static createRouter(routerName: string, router: NavPathStack): void{
-    RouterModule.routerMap.set(routerName, router)
+    RouterModule.routerMap.set(routerName, router);
   }
 
   // 通过名称获取router
   public static getRouter(routerName: string): NavPathStack{
-    let router = RouterModule.routerMap.get(routerName)
+    let router = RouterModule.routerMap.get(routerName);
     if(!router){
-      console.info("未获取到router" + routerName)
+      let msg = "not found router";
+      console.info(msg + routerName);
     }
-    return router as NavPathStack
+    return router as NavPathStack;
   }
 
   // 通过获取页面栈跳转到指定页面
   public static push(url:string): void{
     // 分解url
-    let params = url.split("-")
-    const path = params[0]
-    const routerName = params[1]
-    const pageName = params[2]
+    let params = url.split("-");
+    const path = params[0];
+    const routerName = params[1];
+    const pageName = params[2];
 
     // 动态引入要跳转的页面
     switch (path){
       case "harA/src/main/ets/components/mainpage/HarA":
-        import("harA/src/main/ets/components/mainpage/HarA")
-        break
+        import("harA/src/main/ets/components/mainpage/HarA");
+        break;
       case "harB/src/main/ets/components/mainpage/HarB":
-        import("harB/src/main/ets/components/mainpage/HarB")
-        break
+        import("harB/src/main/ets/components/mainpage/HarB");
+        break;
     }
     // 查找到对应的路由栈进行跳转
-    RouterModule.getRouter(routerName).pushPathByName(pageName, null)
+    RouterModule.getRouter(routerName).pushPathByName(pageName, null);
   }
 
   // 通过获取页面栈并pop
   public static pop(routerName:string): void {
     // 查找到对应的路由栈进行pop
-    RouterModule.getRouter(routerName).pop()
+    RouterModule.getRouter(routerName).pop();
   }
 
   // 通过获取页面栈并将其清空
   public static clear(routerName:string): void {
     // 查找到对应的路由栈进行pop
-    RouterModule.getRouter(routerName).clear()
+    RouterModule.getRouter(routerName).clear();
   }
 }

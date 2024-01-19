@@ -13,42 +13,49 @@
 * limitations under the License.
 */
 
-import {RouterModule} from "RouterModule/src/main/ets/components/mainpage/RouterModule"
+import {RouterModule} from "RouterModule/src/main/ets/components/mainpage/RouterModule";
 
 @Entry
 @Component
 struct HapA {
-  @State hapARouter: NavPathStack = new NavPathStack()
+  @State hapARouter: NavPathStack = new NavPathStack();
+
+  @State buttonNameA: string = "ToHarA";
+  @State buttonNameB: string = "ToHarB";
+
   aboutToAppear() {
     if(!this.hapARouter){
-      this.hapARouter = new NavPathStack()
-    }
-    RouterModule.createRouter('HapA_Router', this.hapARouter)
-  }
+      this.hapARouter = new NavPathStack();
+    };
+    let routerName = "HapA_Router";
+    RouterModule.createRouter(routerName, this.hapARouter);
+  };
 
   @Builder
   routerMap(routerName: string, param:object) {
-    RouterModule.getBuilder(routerName).builder(param)
-  }
+    RouterModule.getBuilder(routerName).builder(param);
+  };
 
   build() {
     Navigation(this.hapARouter) {
-      Button('ToHarA', { stateEffect: true, type: ButtonType.Capsule })
+      Button(this.buttonNameA, { stateEffect: true, type: ButtonType.Capsule })
         .width('80%')
         .height(40)
         .margin(20)
         .onClick(() => {
-          RouterModule.push("harA/src/main/ets/components/mainpage/HarA-HapA_Router-HarA_Builder")
+          let url = "harA/src/main/ets/components/mainpage/HarA-HapA_Router-HarA_Builder";
+          RouterModule.push(url);
         })
-      Button('ToHarB', { stateEffect: true, type: ButtonType.Capsule })
+      Button(this.buttonNameB, { stateEffect: true, type: ButtonType.Capsule })
         .width('80%')
         .height(40)
         .margin(20)
         .onClick(() => {
-          RouterModule.push("harB/src/main/ets/components/mainpage/HarB-HapA_Router-HarB_Builder")
+          let url = "harB/src/main/ets/components/mainpage/HarB-HapA_Router-HarB_Builder";
+          RouterModule.push(url);
         })
     }
     .title('NavIndex')
-    .navDestination(this.routerMap)
+    .navDestination(this.routerMap);
   }
 }

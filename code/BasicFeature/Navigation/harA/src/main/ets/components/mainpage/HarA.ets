@@ -12,40 +12,43 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-import {RouterModule} from "RouterModule/src/main/ets/components/mainpage/RouterModule"
+import {RouterModule} from "RouterModule/src/main/ets/components/mainpage/RouterModule";
 
 @Builder
 export function harBuilder(value: object) {
   NavDestination(){
     Column(){
-      Button('ToIndex', { stateEffect: true, type: ButtonType.Capsule })
+      Button($r("app.string.to_index"), { stateEffect: true, type: ButtonType.Capsule })
         .width('80%')
         .height(40)
         .margin(20)
         .onClick(() => {
-          RouterModule.clear("HapA_Router")
+          let routerName = "HapA_Router";
+          RouterModule.clear(routerName);
         })
-      Button('ToHarB', { stateEffect: true, type: ButtonType.Capsule })
+      Button($r("app.string.to_harb"), { stateEffect: true, type: ButtonType.Capsule })
         .width('80%')
         .height(40)
         .margin(20)
         .onClick(() => {
-          RouterModule.push("harB/src/main/ets/components/mainpage/HarB-HapA_Router-HarB_Builder")
+          let url = "harB/src/main/ets/components/mainpage/HarB-HapA_Router-HarB_Builder";
+          RouterModule.push(url);
         })
     }.width('100%').height('100%')
   }.title('HarA')
   .onBackPressed(() => {
-    RouterModule.pop("HapA_Router")
-    return true
+    RouterModule.pop("HapA_Router");
+    return true;
   })
 }
 
 export function harInit(){
-  if(!RouterModule.getBuilder('HarA_Builder')){
-    let builder: WrappedBuilder<[object]> = wrapBuilder(harBuilder)
-    RouterModule.registerBuilder('HarA_Builder', builder)
+  let builderName = 'HarA_Builder';
+  if(!RouterModule.getBuilder(builderName)){
+    let builder: WrappedBuilder<[object]> = wrapBuilder(harBuilder);
+    RouterModule.registerBuilder(builderName, builder);
   }
 }
 
 // 自执行函数，在首次引用时触发，将builder注册到RouterModule中
-harInit()
+harInit();
