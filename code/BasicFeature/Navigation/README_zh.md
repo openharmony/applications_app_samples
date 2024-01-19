@@ -8,9 +8,9 @@
 由于环境的差异，不建议下载后直接编译，应先当创建项目，参考示例代码进行编写
 
 ### 效果预览
-![](C:\Users\l30052110\Desktop\33ad5868-1b0b-499a-82b1-555770cf1971.jpeg)
-![](C:\Users\l30052110\Desktop\451dc988-961d-4729-b58c-c8b594583d36.jpeg)
-![](C:\Users\l30052110\Desktop\48ff7915-1d22-4a27-9d20-bddd50a60da9.jpeg)
+![image](images/Index.jpeg)
+![image](images/HarA.jpeg)
+![image](images/HarB.jpeg)
 使用说明
 
 1. 主页会提供一个NavIndex的导航页，点击按钮会跳转到不同的来自har包的页面
