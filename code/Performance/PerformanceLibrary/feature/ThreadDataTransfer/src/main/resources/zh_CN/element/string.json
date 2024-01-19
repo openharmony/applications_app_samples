@@ -1,0 +1,56 @@
+{
+  "string": [
+    {
+      "name": "saturation",
+      "value": "饱和度"
+    },
+    {
+      "name": "task_num",
+      "value": "任务数"
+    },
+    {
+      "name": "pass_params",
+      "value": "传参方式"
+    },
+    {
+      "name": "start_transfer",
+      "value": "通过转移方式传参"
+    },
+    {
+      "name": "running_time",
+      "value": "运行时间:"
+    },
+    {
+      "name": "layout_100_percent",
+      "value": "100%"
+    },
+    {
+      "name": "layout_80_percent",
+      "value": "80%"
+    },
+    {
+      "name": "layout_60_percent",
+      "value": "60%"
+    },
+    {
+      "name": "layout_30_percent",
+      "value": "30%"
+    },
+    {
+      "name": "layout_26_percent",
+      "value": "26%"
+    },
+    {
+      "name": "layout_20_percent",
+      "value": "20%"
+    },
+    {
+      "name": "layout_15_percent",
+      "value": "15%"
+    },
+    {
+      "name": "layout_10_percent",
+      "value": "10%"
+    }
+  ]
+}

@@ -12,11 +12,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import { IntroductionTitle } from '../../../../common/IntroductionTitle';
 import { TitleBar } from '../../../../common/TitleBar';
 import { LEFT_PADDING, RIGHT_PADDING } from '../../ComponentData';
-import { ArgumentsControlPanel, PropertiesControlPanel } from './ListControlPanel';
+import { ArgumentsSpaceControlPanel, ArgumentsInitIndexControlPanel,
+  PropertiesListDirectionControlPanel,
+  PropertiesStrokeWidthControlPanel,
+  PropertiesLineColorControlPanel,
+  PropertiesBarStateControlPanel,
+  PropertiesScrollBarColorControlPanel,
+  PropertiesScrollBarWidthControlPanel,
+  PropertiesEdgeEffectControlPanel,
+  PropertiesChainAnimationControlPanel,
+  PropertiesMultiControlPanel,
+  PropertiesLanesControlPanel,
+  PropertiesAlignListItemControlPanel
+} from './ListControlPanel';
 
 @Extend(Column)
 function backgroundStyle() {
@@ -43,6 +53,9 @@ struct ListSample {
   @State strokeWidth: number = 0;
   @State color: Resource = $r('app.color.background_blue');
   @State barState: BarState = BarState.Auto;
+  @State scrollBarWidth: number = 0;
+  @State scrollBarColor: Color = Color.Blue;
+
   @State initIndex: number = AppStorage.get<number>('listSampleInitIndex') || 0;
   @State edgeEffect: EdgeEffect = EdgeEffect.Spring;
   @State isChainAnimation: boolean = false;
@@ -79,6 +92,8 @@ struct ListSample {
         .width('100%')
         .listDirection(this.listDirection)
         .scrollBar(this.barState)
+        .scrollBarColor(this.scrollBarColor)
+        .scrollBarWidth(this.scrollBarWidth)
         .edgeEffect(this.edgeEffect)
         .multiSelectable(this.multiSelectable)
         .chainAnimation(this.isChainAnimation)
@@ -92,61 +107,144 @@ struct ListSample {
       }
       .padding({ left: LEFT_PADDING, right: RIGHT_PADDING })
       .backgroundStyle()
-      .height(200)
+      .height('32%')
       .width('100%')
       .flexGrow(0)
 
-      // 状态栏
-      IntroductionTitle({ introduction: $r('app.string.list_introduction_state') })
       Column() {
-        Text(`当前 initialIndex 为:${this.initIndex}
-修改 initialIndex 后请再次进入本页面查看效果`)
-          .textAlign(TextAlign.Center)
-          .fontColor(Color.Red)
+        Text() {
+          Span($r('app.string.current_initialIndex'))
+          Span(this.initIndex.toString())
+        }
+
+        Text($r('app.string.modify_initialIndex_tips'))
+          .textAlign(TextAlign.Start)
+          .fontColor(Color.Gray)
       }
-      .backgroundStyle()
-      .height(100)
+      .height('16%')
       .width('100%')
-      .alignItems(HorizontalAlign.Center)
+      .padding({left:12})
+      .alignItems(HorizontalAlign.Start)
       .justifyContent(FlexAlign.Center)
       .flexGrow(0)
 
-      // 控制面板
-      Scroll() {
+      // tab页签
         Column() {
-          // 参数
-          IntroductionTitle({ introduction: $r('app.string.list_introduction_arguments') })
-          Column() {
-            ArgumentsControlPanel({
-              space: $space,
-              initIndex: $initIndex
-            })
-          }
-          .backgroundStyle()
+          ///////
+          Tabs({ barPosition: BarPosition.Start }) {
+            // 子页签：WaterFlow控制
+            TabContent() {
+              Column() {
+                ArgumentsSpaceControlPanel({space: $space})
+                  .backgroundColor(Color.White)
+                  .height(96)
+                  .margin({bottom:12})
+                  .padding({left:12,right:12, top:17, bottom:17})
+                  .borderRadius(16)
 
-          // 属性
-          IntroductionTitle({ introduction: $r('app.string.list_introduction_properties') })
-          Column() {
-            PropertiesControlPanel({
-              listDirection: $listDirection,
-              strokeWidth: $strokeWidth,
-              lineColor: $color,
-              barState: $barState,
-              edgeEffect: $edgeEffect,
-              isChainAnimation: $isChainAnimation,
-              multiSelectable: $multiSelectable,
-              lanes: $lanes,
-              alignListItem: $alignListItem
-            })
+                ArgumentsInitIndexControlPanel({initIndex: $initIndex})
+                  .backgroundColor(Color.White)
+                  .borderRadius(16)
+                  .padding({left:12,right:12,top:12})
+                  .margin({bottom:12})
+              }
+              .height('100%')
+            }.tabBar(new SubTabBarStyle($r('app.string.list_introduction_arguments')))
+
+            // 子页签：WaterFlow属性
+            TabContent() {
+                Scroll() {
+                  Column() {
+                    PropertiesListDirectionControlPanel({listDirection: $listDirection})
+                      .backgroundColor(Color.White)
+                      .borderRadius(16)
+                      .padding({left:12,right:12,top:12})
+                      .margin({bottom:12})
+
+                    PropertiesStrokeWidthControlPanel({strokeWidth: $strokeWidth})
+                      .backgroundColor(Color.White)
+                      .borderRadius(16)
+                      .padding({left:12,right:12,top:12})
+                      .margin({bottom:12})
+                      .height(96)
+
+                    PropertiesLineColorControlPanel({lineColor: $color})
+                      .backgroundColor(Color.White)
+                      .borderRadius(16)
+                      .padding({left:12,right:12,top:12})
+                      .margin({bottom:12})
+
+                    PropertiesBarStateControlPanel({barState: $barState})
+                      .backgroundColor(Color.White)
+                      .borderRadius(16)
+                      .padding({left:12,right:12,top:12})
+                      .margin({bottom:12})
+
+                    PropertiesScrollBarColorControlPanel({scrollBarColor: $scrollBarColor})
+                      .backgroundColor(Color.White)
+                      .borderRadius(16)
+                      .padding({left:12,right:12,top:12})
+                      .margin({bottom:12})
+
+                    PropertiesScrollBarWidthControlPanel({scrollBarWidth: $scrollBarWidth})
+                      .backgroundColor(Color.White)
+                      .borderRadius(16)
+                      .padding({left:12,right:12,top:12})
+                      .margin({bottom:12})
+                      .height(96)
+
+                    PropertiesEdgeEffectControlPanel({edgeEffect: $edgeEffect})
+                      .backgroundColor(Color.White)
+                      .borderRadius(16)
+                      .padding({left:12,right:12,top:12})
+                      .margin({bottom:12})
+
+                    PropertiesChainAnimationControlPanel({isChainAnimation: $isChainAnimation})
+                      .backgroundColor(Color.White)
+                      .borderRadius(16)
+                      .padding({left:12,right:12,top:12})
+                      .margin({bottom:12})
+
+                    PropertiesMultiControlPanel({multiSelectable: $multiSelectable})
+                      .backgroundColor(Color.White)
+                      .borderRadius(16)
+                      .padding({left:12,right:12,top:12})
+                      .margin({bottom:12})
+
+                    PropertiesLanesControlPanel({lanes: $lanes})
+                      .backgroundColor(Color.White)
+                      .borderRadius(16)
+                      .padding({left:12,right:12,top:12})
+                      .margin({bottom:12})
+
+                    PropertiesAlignListItemControlPanel({alignListItem: $alignListItem})
+                      .backgroundColor(Color.White)
+                      .borderRadius(16)
+                      .padding({left:12,right:12,top:12})
+                      .margin({bottom:12})
+                  }
+                  .width('100%')
+                }
+                .flexGrow(1)
+                .flexBasis(100)
+                .margin({ bottom: 10 })
+                .background()
+              .id('list_properties_scroll')
+            }.tabBar(new SubTabBarStyle($r('app.string.list_introduction_properties')))
           }
-          .backgroundStyle()
+          .vertical(false)
+          .scrollable(true)
+          .barMode(BarMode.Fixed)
+          .backgroundColor(Color.Pink)
+          .onChange((index: number) => {
+            console.info(index.toString())
+          })
+          .width('100%')
+          .backgroundColor(0xF1F3F5)
         }
+        .height('40%')
         .width('100%')
       }
-      .flexGrow(1)
-      .flexBasis(100)
-      .margin({ bottom: 10 })
-    }
     .padding({ left: LEFT_PADDING, right: RIGHT_PADDING })
     .height('100%')
     .width('100%')

@@ -13,14 +13,13 @@
  * limitations under the License.
  */
 
-import { CommonItemTwoRowSlider, CommonItemSelect, CommonItemColorSelect, CommonSwitcher } from '../../../../common/AttributeModificationTool';
+import { CommonItemTwoRowSlider, CommonItemSelect, CommonItemColorSelect, CommonSwitcher, CommonItemColorSelectDef } from '../../../../common/AttributeModificationTool';
 import { getStringArrayData } from '../../../../data/ResourceDataHandle';
 import { LIST_DIRECTION_SELECT_DATA, LIST_SCROLLBAR_SELECT_DATA,LIST_EDGE_EFFECT_SELECT_DATA, LIST_ALIGN_LIST_ITEM_SELECT_DATA } from '../../ComponentData';
 
 @Component
-export struct ArgumentsControlPanel {
+export struct ArgumentsSpaceControlPanel {
   @Link space : number;
-  @Link initIndex : number;
   build() {
     Column() {
       CommonItemTwoRowSlider({
@@ -30,7 +29,15 @@ export struct ArgumentsControlPanel {
         name: $r('app.string.list_argument_space'),
         testId: `list_001`
       })
+    }
+  }
+}
 
+@Component
+export struct ArgumentsInitIndexControlPanel {
+  @Link initIndex : number;
+  build() {
+    Column() {
       CommonItemSelect({
         name: $r('app.string.list_properties_initial_index'),
         selects : ['0','1','2','3','4','5','6','7','8','9'],
@@ -45,19 +52,11 @@ export struct ArgumentsControlPanel {
 }
 
 @Component
-export struct PropertiesControlPanel {
-  @Link lineColor : Resource;
-  @Link strokeWidth : number;
+export struct PropertiesListDirectionControlPanel {
   @Link listDirection : Axis;
-  @Link barState : BarState;
-  @Link edgeEffect : EdgeEffect;
-  @Link multiSelectable : boolean;
-  @Link isChainAnimation : boolean;
-  @Link lanes : number;
-  @Link alignListItem : ListItemAlign;
+
   build(){
     Column(){
-
       CommonItemSelect({
         name: $r('app.string.list_properties_direction'),
         selects : getStringArrayData(LIST_DIRECTION_SELECT_DATA),
@@ -73,7 +72,17 @@ export struct PropertiesControlPanel {
         },
         testId: `list_003`
       })
+    }
+  }
+}
 
+
+@Component
+export struct PropertiesStrokeWidthControlPanel {
+  @Link strokeWidth : number;
+
+  build(){
+    Column(){
       CommonItemTwoRowSlider({
         changeValue: $strokeWidth,
         min: 0,
@@ -81,13 +90,31 @@ export struct PropertiesControlPanel {
         name: $r('app.string.list_properties_divider_stroke_width'),
         testId: `list_004`
       })
+    }
+  }
+}
 
+@Component
+export struct PropertiesLineColorControlPanel {
+  @Link lineColor : Resource;
+
+  build(){
+    Column(){
       CommonItemColorSelect({
         name: $r('app.string.list_properties_divider_color'),
         selectColor: $lineColor,
         testId: 'list_005',
       })
+    }
+  }
+}
 
+@Component
+export struct PropertiesBarStateControlPanel {
+  @Link barState : BarState;
+
+  build(){
+    Column(){
       CommonItemSelect({
         name: $r('app.string.list_properties_scroll_bar'),
         selects : getStringArrayData(LIST_SCROLLBAR_SELECT_DATA),
@@ -107,36 +134,112 @@ export struct PropertiesControlPanel {
         testId: `list_006`
       })
 
+    }
+  }
+}
+
+
+@Component
+export struct PropertiesScrollBarColorControlPanel {
+  @Link scrollBarColor: Color;
+
+  build(){
+    Column(){
+      CommonItemColorSelectDef({
+        name: $r('app.string.list_properties_scroll_bar_color'),
+        selectColor: $scrollBarColor,
+        testId: 'list_013',
+      })
+    }
+  }
+}
+
+
+
+@Component
+export struct PropertiesScrollBarWidthControlPanel {
+  @Link scrollBarWidth: number;
+
+  build(){
+    Column(){
+      CommonItemTwoRowSlider({
+        changeValue: $scrollBarWidth,
+        min: 0,
+        max: 15,
+        name: $r('app.string.list_properties_scroll_bar_width'),
+        testId: `list_012`
+      })
+    }
+  }
+}
+
+
+
+@Component
+export struct PropertiesEdgeEffectControlPanel {
+  @Link edgeEffect : EdgeEffect;
+
+  build(){
+    Column(){
       CommonItemSelect({
         name: $r('app.string.list_properties_edge_effect'),
         selects : getStringArrayData(LIST_EDGE_EFFECT_SELECT_DATA),
         callback : (index)=>{
           switch (index) {
             case 1:
-              this.edgeEffect = EdgeEffect.Fade;
+              this.edgeEffect = EdgeEffect.Spring;
               break;
             case 2:
-              this.edgeEffect = EdgeEffect.None;
+              this.edgeEffect = EdgeEffect.Fade;
               break;
             default:
-              this.edgeEffect = EdgeEffect.Spring;
+              this.edgeEffect = EdgeEffect.None;
               break;
           }
         },
         testId: `list_007`
       })
+    }
+  }
+}
 
+
+@Component
+export struct PropertiesChainAnimationControlPanel {
+  @Link isChainAnimation : boolean;
+
+  build(){
+    Column(){
       CommonSwitcher({
         name: $r('app.string.list_properties_chain_animation'),
         bool : $isChainAnimation,
         testID: `list_008`
       })
+    }
+  }
+}
 
+@Component
+export struct PropertiesMultiControlPanel {
+  @Link multiSelectable : boolean;
+
+  build(){
+    Column(){
       CommonSwitcher({
         name: $r('app.string.list_properties_multi_selectable'),
         bool : $multiSelectable,
         testID: `list_009`
       })
+    }
+  }
+}
+
+@Component
+export struct PropertiesLanesControlPanel {
+  @Link lanes : number;
+
+  build(){
+    Column(){
 
       CommonItemSelect({
         name: $r('app.string.list_properties_lanes'),
@@ -146,7 +249,16 @@ export struct PropertiesControlPanel {
         },
         testId: `list_010`
       })
+    }
+  }
+}
 
+@Component
+export struct PropertiesAlignListItemControlPanel {
+  @Link alignListItem : ListItemAlign;
+
+  build(){
+    Column(){
       CommonItemSelect({
         name: $r('app.string.list_properties_align_list_item'),
         selects : getStringArrayData(LIST_ALIGN_LIST_ITEM_SELECT_DATA),
@@ -165,6 +277,7 @@ export struct PropertiesControlPanel {
         },
         testId: `list_011`
       })
+
     }
   }
 }

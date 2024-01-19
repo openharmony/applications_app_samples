@@ -20,7 +20,7 @@ import { MissionInfoComponent } from '../common/MissionInfoComponent';
 import { TitleBar } from '../common/TitleBar';
 
 const TAG: string = 'Index';
-const NUMMAX: number = 10;
+const NUMMAX: number = 11;   // 任务信息数量上限
 const CURRENT_BUNDLE: string = 'ohos.samples.missionmanager';
 
 class BasicDataSource implements IDataSource {
