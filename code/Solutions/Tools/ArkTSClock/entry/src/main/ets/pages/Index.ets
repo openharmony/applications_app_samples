@@ -91,6 +91,7 @@ struct Clock {
       let y = Math.sin(rad) * (this.radius - 38)
       this.context.fillText(num, x, y)
     })
+    this.context.restore()
 
     // 绘制刻度
     for (let i = 0; i < 60; i++) {
@@ -114,6 +115,7 @@ struct Clock {
       }
       this.context.stroke()
     }
+    this.context.restore()
   }
 
   // 绘制时针

@@ -13,14 +13,17 @@
  * limitations under the License.
  */
 
-import { Scenario_3 } from '@ohos/ThreadCommunication';
+import { WorkerCallGlobalUsage } from '@ohos/ThreadCommunication';
+import worker from '@ohos.worker';
+
+const workerInstance = new worker.ThreadWorker("entry/ets/pages/ThreadCommunication/workers/Worker.ts");
 
 @Entry
 @Component
-struct Scenario_3_Page {
+struct WorkerCallGlobalUsagePage {
   build() {
     Column() {
-      Scenario_3()
+      WorkerCallGlobalUsage({workerInstance:workerInstance});
     }
   }
 }

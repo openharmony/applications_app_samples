@@ -22,7 +22,7 @@
 | 验证LoadingProgress                  | 展开信息展示与动效，进入LoadingProgress           | 更改LoadingProgress的颜色                                                                               | 正确更改相应的颜色         | 是    | Pass |
 | 验证Marquee 跑马灯                      | 展开信息展示与动效，进入Marquee 跑马灯               | 更改Marquee样式，依次开始，停止跑马灯                                                                             | 正确反馈状态，依次运行，停止跑马灯 | 是    | Pass |
 | 验证TextTimer 文字计时器                  | 展开信息展示与动效，进入TextTimer 文字计时器           | 依次开始、暂停、重置、更换时间格式                                                                                  | 正确运行状态            | 是    | Pass |
-| 验证TextClock 文字时钟                   | 展开信息展示与动效，进入TextClock 文字时钟            | 依次点击开始、暂停、更改时钟样式                                                                                   | 正确运行状态并改变样式       | 是    | Pass |
+| 验证TextClock 文字时钟                   | 展开信息展示与动效，进入TextClock 文字时钟            | 依次点击开始、暂停、更改时钟样式、显示文字阴影、设置字体                                        | 正确运行状态并改变样式       | 是    | Pass |
 | 验证Progress 进度条                     | 展开信息展示与动效，进入Progress 进度条              | 调整进度条的进度                                                                                           | 正确显示进度条的进度        | 是    | Pass |
 | 验证Gauge 仪表盘                        | 展开信息展示与动效，进入Gauge 仪表盘                 | 调整仪表盘的value和strokeWidth                                                                            | 正确改变仪表盘的属性        | 是    | Pass |
 | 验证DataPanel 数据面板                   | 展开信息展示与动效，进入DataPanel 数据面板            |                                                                                                    | 正确显示数据面板动画        | 是    | Pass |
@@ -31,7 +31,7 @@
 | 验证ImageFit 切换                      | 展开信息展示与动效，进入ImageFit 切换         | 依次点击Radius按钮进行ImageFit模式切换                                                                         | ImageFit 模式切换成功   | 是    | Pass |
 | 验证Particle粒子效果                     | 展开信息展示与动效，进入Particle粒子效果         | 点击Particle粒子效果生成按钮                                                                                 | Particle粒子效果生成成功  | 是    | Pass |
 | 验证Span 行内文本                        | 展开文本与输入，进入Span 行内文本                   | 依次调整字符间距，装饰线类型，跨度线高度，颜色                                                                            | 依次改变对于属性          | 是    | Pass |
-| 验证TextInput 文本输入                   | 展开文本与输入，进入TextInput 文本输入              | 在输入框输入文本，可否选择对应文本段选中并高亮                                                                            | 正确显示输入文本          | 是    | Pass |
+| 验证TextInput 文本输入                   | 展开文本与输入，进入TextInput 文本输入              | 在输入框输入文本，可否选择对应文本段选中并高亮，长按文本获取、复制、粘贴文本，验证文本删除                                 | 正确显示输入文本          | 是    | Pass |
 | 验证Text 文本                          | 展开文本与输入，进入Text 文本                     | 依次更改字符间距，行高，对其类型，超长文本显示方式，装饰线，字体颜色，大小写                                                             | 依次更改对应属性          | 是    | Pass |
 | 验证RichText 富文本                     | 展开文本与输入，进入RichText 富文本                |                                                                                                    | 正确显示富文本           | 是    | Pass |
 | 验证ScrollBar 滚动条                    | 展开辅助，进入ScrollBar 滚动条                  | 依次纵向滚动，横向滚动                                                                                        | 正确滚动              | 是    | Pass |
@@ -104,12 +104,14 @@
 | 验证motionPath 路径动画                  | 进入motionPath 路径动画                     | 点击按钮                                                                                               | 按钮按照指定的路径发生改变     | 是    | Pass |
 | 验证ActionSheetDialogSample 列表选择弹框   | 展开弹窗，ActionSheetDialogSample 列表选择弹框   | 依次点击弹窗位置、是否关闭弹窗、偏移量、选项内容                                                                           | 正确展示响应弹窗          | 是    | Pass |
 | 验证TextPickerDialogSample 文本滑动选择器弹框 | 展开弹窗，TextPickerDialogSample 文本滑动选择器弹框 | 点击文字，滑动列表后点确定                                                                                      | 正确展示响应弹窗          | 是    | Pass |
-| 验证MenuSample 菜单                    | 展开弹窗，MenuSample 菜单                    | 鼠标右键点击、手指触摸长按                                                                                      | 正确展示响应弹窗          | 是    | Pass |
+| 验证MenuSample 菜单                    | 展开弹窗，MenuSample 菜单                    | 鼠标右键点击、手指触摸长按、调整menu宽度、选择纵向或者横向布局、长按图片1图片2     | 正确展示响应弹窗          | 是    | Pass |
+| 验证BindSheet半模态 | 进入BindSheet半模态 | 点击弹出样式、模糊背景材质设置属性，然后点击弹出半模态按钮，关闭允许页面交互按钮，下拉半模态界面，然后点击X退出半模态界面 | 正确显示效果 | 是 | Pass |
+| 验证Popup | 进入Popup                                           | 依次点击Popup高级组件按钮以及Placement下方的12个按钮         | 正确显示效果                       | 是       | Pass     |
 | 验证Swiper组件	                        | 展开滚动与滑动，进入swiper翻页	                   | 依次点击下一页、上一页、是否被禁用左右滑动切换功能、是否能纵向滑动、是否首尾循环、是否开启自动循环播放、滑动页面间隙、滑动切换的动画时长、自动播放的时间间隔、上下页边距               | 正确显示效果            | 是    | Pass |
-| 验证TextArea组件                       | 展开文本与输入，进入TextArea多行文本输入框             | 依次点击水平对齐、可否复制、placeholder文本颜色、输入框光标颜色、可否选择对应文本段选中并高亮                                               | 正确显示效果	           | 是    | Pass |
-| 验证PatternLock组件                    | 	展开文本与输入，进入PatternLock图案密码锁           | 依次滑动宫格宽高、圆点半径、连线宽度以及点击圆点未选中状态颜色、圆点激活状态颜色                                                           | 正确显示效果            | 是    | Pass |                            
-| 验证Search组件  	                      | 展开文本与输入，进入Search搜索框	                  | 依次点击水平对齐、可否复制、搜索框本文颜色	                                                                             | 正确显示效果            | 是    | Pass |                                               
-| 验证Row组件	                           | 展开行列与分栏，进入Row水平布局                     | 依次滑动元素间距以及点击交叉轴对齐样式、主轴对齐样式                                                                         | 正确显示效果            | 是    | Pass |                                             
+| 验证TextArea组件                       | 展开文本与输入，进入TextArea多行文本输入框             | 依次点击水平对齐、可否复制、placeholder文本颜色、输入框光标颜色、可否选择对应文本段选中并高亮、限制文本框输入字数                                | 正确显示效果	           | 是    | Pass |
+| 验证PatternLock组件                    | 	展开文本与输入，进入PatternLock图案密码锁           | 依次滑动宫格宽高、圆点半径、连线宽度以及点击圆点未选中状态颜色、圆点激活状态颜色                                                           | 正确显示效果            | 是    | Pass |
+| 验证Search组件  	                      | 展开文本与输入，进入Search搜索框	                  | 依次点击水平对齐、可否复制、搜索框本文颜色	                                                                             | 正确显示效果            | 是    | Pass |
+| 验证Row组件	                           | 展开行列与分栏，进入Row水平布局                     | 依次滑动元素间距以及点击交叉轴对齐样式、主轴对齐样式                                                                         | 正确显示效果            | 是    | Pass |
 | 验证RowSplit组件                       | 	进入RowSplit水平分割布局                     | 	点击拖拽开关                                                                                            | 	正确显示效果           | 是    | Pass |
 | 验证Column组件	                        | 进入Column垂直布局	                         | 依次滑动元素间距以及点击交叉轴对齐样式、主轴对齐样式                                                                         | 	正确显示效果           | 是    | Pass |
 | 验证ColumnSplit组件	                   | 进入ColumnSplit垂直分割布局	                  | 点击拖拽开关	                                                                                            | 正确显示效果            | 是    | Pass |
@@ -120,7 +122,7 @@
 | 验证List组件	                          | 展开列表与宫格，进入List列表容器	                   | 依次点击修改List参数中所有参数设置	                                                                               | 正确显示效果            | 是    | Pass |
 | 验证ListItem组件                       | 	展开列表与宫格，进入Listitem	                  | 依次点击selectable	                                                                                    | 正确显示效果            | 是    | Pass |
 | 验证Grid组件	                          | 展开列表与宫格，进入Grid	                       | 依次点击columnsTemplate、rowsTemplate以及滑动columnGap	                                                     | 正确显示效果            | 是    | Pass |
-| 验证GridItem组件	                      | 展开列表与宫格，进入GridItem	                   | 依次点击修改起始行号、修改终点行号、修改起始列号、修改终点列号	                                                                   | 正确显示效果            | 是    | Pass |
+| 验证GridItem组件	                      | 展开列表与宫格，进入GridItem	                   | 依次点击修改起始行号、修改终点行号、修改起始列号、修改终点列号，选择多态样式	                                                            | 正确显示效果            | 是    | Pass |
 | 验证Navigation组件	                    | 展开导航、进入Navigation                     | 	点击去往第二个页面                                                                                         | 	正确显示效果           | 是    | Pass |
 | 验证Tabs组件                           | 展开导航，进入Tabs	                          | 依次点击修改Tabs的参数中的各个参数设置                                                                              | 正确显示效果            | 是    | Pass |
 | 验证TabContent组件	                    | 展开导航，进入TabContent	                    | 点击子页签/底部页签切换器	                                                                                     | 正确显示效果            | 是    | Pass |
@@ -137,6 +139,6 @@
 | 验证Image组件	                         | 展开图片视频与媒体，进入Image图片	                  | 依次点击缩放类型以及滑动裁剪高度、裁剪宽度以及点击渲染模式、重复样式	                                                                | 正确显示效果            | 是    | Pass |
 | 验证ImageAnimator组件	                 | 展开图片视频与媒体，进入ImageAnimator逐帧播放图片       | 	依次点击start、pause、end、reserve、single、circulate	                                                     | 正确显示效果            | 是    | Pass |
 | 验证Video组件	                         | 展开图片视频与媒体，进入Video视频	                  | 依次点击自动播放、控制栏显示、静音、循环播放、视频显示模式、倍速	                                                                  | 正确显示效果            | 是    | Pass |
-| 验证XComponent组件	                    | 展开图片视频与媒体，进入XComponent绘制组件            | 	无操作	                                                                                              | 正确显示效果            | 是    | Pass |                                                                                    
-| 验证web组件	                           | 展开网页，进入web网页                          | 	无操作                                                                                               | 	正确显示效果           | 是    | Pass |                                                           
+| 验证XComponent组件	                    | 展开图片视频与媒体，进入XComponent绘制组件            | 	无操作	                                                                                              | 正确显示效果            | 是    | Pass |
+| 验证web组件	                           | 展开网页，进入web网页                          | 	无操作                                                                                               | 	正确显示效果           | 是    | Pass |
 | 验证WaterFlow组件	                     | 展开列表与宫格，进入WaterFlow	                   | 依次点击WaterFlow参数、WaterFlow属性的所有设置	                                                                | 正确显示效果            | 是    | Pass |

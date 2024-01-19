@@ -47,6 +47,10 @@
     {
       "name": "change_image_number",
       "value": "将图片变成4个"
+    },
+    {
+      "name": "process_success",
+      "value": "子线程任务已执行完，共加载图片:"
     }
   ]
 }

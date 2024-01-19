@@ -43,10 +43,10 @@
     "pages/DFXStateManagement/DFXStateBeforeOptimizationPage",
     "pages/DFXStateManagement/DFXStateAfterOptimizationPage",
     "pages/ThreadCommunication/ThreadCommunicationHomePage",
-    "pages/ThreadCommunication/Scenario_1",
-    "pages/ThreadCommunication/Scenario_2",
-    "pages/ThreadCommunication/Scenario_3",
-    "pages/ThreadCommunication/Scenario_4",
-    "pages/ThreadCommunication/Scenario_5"
+    "pages/ThreadCommunication/IndependentTaskPage",
+    "pages/ThreadCommunication/MultiTaskPage",
+    "pages/ThreadCommunication/TaskSendDataUsagePage",
+    "pages/ThreadCommunication/WorkerUsagePage",
+    "pages/ThreadCommunication/WorkerCallGlobalUsagePage"
   ]
 }

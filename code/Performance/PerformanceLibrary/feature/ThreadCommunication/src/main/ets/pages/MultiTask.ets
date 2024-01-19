@@ -14,38 +14,30 @@
  */
 
 import router from '@ohos.router';
-import worker from '@ohos.worker';
+import taskpool from '@ohos.taskpool';
 import { IconItem } from './IconView';
 import { IconItemSource } from './IconItemSource';
 
-
-class PicData {
-  public iconItemSourceList: IconItemSource[] = [];
-
-  public setUp(): string {
-    for (let index = 0; index < 20; index++) {
-      const numStart: number = index * 6;
-      // 此处循环使用6张图片资源
-      this.iconItemSourceList.push(new IconItemSource($r('app.media.nearby'), `item${numStart + 1}`));
-      this.iconItemSourceList.push(new IconItemSource($r('app.media.scan'), `item${numStart + 2}`));
-      this.iconItemSourceList.push(new IconItemSource($r('app.media.shop'), `item${numStart + 3}`));
-      this.iconItemSourceList.push(new IconItemSource($r('app.media.cards'), `item${numStart + 4}`));
-      this.iconItemSourceList.push(new IconItemSource($r('app.media.album'), `item${numStart + 5}`));
-      this.iconItemSourceList.push(new IconItemSource($r('app.media.applet'), `item${numStart + 6}`));
-    }
-    return "setUpIconItemSourceList success!";
+@Concurrent
+function loadPicture(count: number): IconItemSource[] {
+  let iconItemSourceList: IconItemSource[] = [];
+  // 遍历添加count*6个IconItem的数据
+  for (let index = 0; index < count; index++) {
+    const numStart: number = index * 6;
+    // 此处循环使用6张图片资源
+    iconItemSourceList.push(new IconItemSource($r('app.media.nearby'), `item${numStart + 1}`));
+    iconItemSourceList.push(new IconItemSource($r('app.media.scan'), `item${numStart + 2}`));
+    iconItemSourceList.push(new IconItemSource($r('app.media.shop'), `item${numStart + 3}`));
+    iconItemSourceList.push(new IconItemSource($r('app.media.cards'), `item${numStart + 4}`));
+    iconItemSourceList.push(new IconItemSource($r('app.media.album'), `item${numStart + 5}`));
+    iconItemSourceList.push(new IconItemSource($r('app.media.applet'), `item${numStart + 6}`));
   }
+  return iconItemSourceList;
 }
 
 @Component
-export struct Scenario_5 {
+export struct MultiTask {
   @State iconItemSourceList: IconItemSource[] = [];
-  private workerInstance: worker.ThreadWorker | undefined = undefined;
-  private message: string = "run setUp in picData";
-
-  aboutToAppear() {
-    this.initWorker();
-  }
 
   build() {
     Column() {
@@ -58,7 +50,7 @@ export struct Scenario_5 {
             router.back();
           })
 
-        Text($r('app.string.scenario_5'))
+        Text($r('app.string.scenario_2'))
           .fontSize(24)
           .lineHeight(30)
           .fontColor(Color.Black)
@@ -85,11 +77,19 @@ export struct Scenario_5 {
           top: 30
         })
         .onClick(() => {
-          if (this.workerInstance !== undefined) {
-            this.workerInstance.postMessage(this.message);
-          }
+          let taskGroup: taskpool.TaskGroup = new taskpool.TaskGroup();
+          taskGroup.addTask(new taskpool.Task(loadPicture, 30));
+          taskGroup.addTask(new taskpool.Task(loadPicture, 20));
+          taskGroup.addTask(new taskpool.Task(loadPicture, 10));
+          taskpool.execute(taskGroup).then((ret: Object[]) => {
+            for (let i = 0; i < ret.length; i++) {
+              let iconItems: IconItemSource[] = (ret[i] as IconItemSource[]);
+              for (let j = 0; j < iconItems.length; j++) {
+                this.iconItemSourceList.push(iconItems[j] as IconItemSource);
+              }
+            }
+          })
         })
-
       if (this.iconItemSourceList.length > 0) {
         List({ space: 20 }) {
           ForEach(this.iconItemSourceList, (item: IconItemSource) => {
@@ -107,13 +107,5 @@ export struct Scenario_5 {
     .width($r('app.string.percent_100'))
     .height($r('app.string.percent_100'))
     .alignItems(HorizontalAlign.Center)
-  }
-
-  initWorker() {
-    if (this.workerInstance !== undefined) {
-      let picData: PicData = new PicData();
-      // 在ThreadWorker实例上注册registerObj
-      this.workerInstance.registerGlobalCallObject("picData", picData);
-    }
   }
 }

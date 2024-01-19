@@ -13,17 +13,14 @@
  * limitations under the License.
  */
 
-import { Scenario_4 } from '@ohos/ThreadCommunication';
-import worker from '@ohos.worker';
-
-const workerInstance = new worker.ThreadWorker("entry/ets/pages/ThreadCommunication/workers/Worker.ts");
+import { MultiTask } from '@ohos/ThreadCommunication';
 
 @Entry
 @Component
-struct Scenario_4_Page {
+struct MultiTaskPage {
   build() {
     Column() {
-      Scenario_4({ workerInstance: workerInstance });
+      MultiTask()
     }
   }
 }

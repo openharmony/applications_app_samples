@@ -19,7 +19,8 @@
     "externalNativeOptions": {
       "path": "./src/main/cpp/CMakeLists.txt",
       "arguments": "",
-      "cppFlags": ""
+      "cppFlags": "",
+      "abiFilters": ["armeabi-v7a"]
     },
   },
   "buildOptionSet": [

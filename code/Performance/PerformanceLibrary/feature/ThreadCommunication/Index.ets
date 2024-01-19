@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-export { Scenario_1 } from './src/main/ets/pages/Scenario_1'
-export { Scenario_2 } from './src/main/ets/pages/Scenario_2'
-export { Scenario_3 } from './src/main/ets/pages/Scenario_3'
-export { Scenario_4 } from './src/main/ets/pages/Scenario_4'
-export { Scenario_5 } from './src/main/ets/pages/Scenario_5'
-export { ThreadCommunicationHomePage } from './src/main/ets/pages/ThreadCommunicationHomePage'
+export { IndependentTask } from './src/main/ets/pages/IndependentTask';
+export { MultiTask } from './src/main/ets/pages/MultiTask';
+export { TaskSendDataUsage } from './src/main/ets/pages/TaskSendDataUsage';
+export { WorkerUsage } from './src/main/ets/pages/WorkerUsage';
+export { WorkerCallGlobalUsage } from './src/main/ets/pages/WorkerCallGlobalUsage';
+export { ThreadCommunicationHomePage } from './src/main/ets/pages/ThreadCommunicationHomePage';

@@ -4688,6 +4688,46 @@
       "name": "navigation_third_page_back",
       "value": "Go back to the first page"
     },
+    {
+      "name": "navigation_expand",
+      "value": "Expand"
+    },
+    {
+      "name": "navigation_list_expand_title",
+      "value": "Navigation List Expand Safe Area"
+    },
+    {
+      "name": "navigation_bindsheet_title",
+      "value": "BindSheet Safe Area"
+    },
+    {
+      "name": "navigation_expand_title",
+      "value": "Navigation Expand Safe Area"
+    },
+    {
+      "name": "navigation_unexpand",
+      "value": "Unexpand"
+    },
+    {
+      "name": "navigation_split_title",
+      "value": "Navigation Split"
+    },
+    {
+      "name": "navigation_sidebar_title",
+      "value": "Navigation SideBar"
+    },
+    {
+      "name": "navigation_navbar_list_nopara",
+      "value": "List"
+    },
+    {
+      "name": "navigation_navbar_list",
+      "value": "List%d"
+    },
+    {
+      "name": "navigation_navcontent_list",
+      "value": "Content%d"
+    },
     // Tabs
     {
       "name": "tabs_title",
@@ -5435,6 +5475,166 @@
     {
       "name": "navigator_return_message",
       "value": "hello! This is a param form the first page"
+    },
+    {
+      "name": "global_bindSheet_menu",
+      "value": "BindSheetMenu"
+    },
+    {
+      "name": "global_bindSheet_text_allow_interaction",
+      "value": "Allow Page Interaction"
+    },
+    {
+      "name": "global_bindSheet_text_desc",
+      "value": "Allow Page Interaction Desc"
+    },
+    {
+      "name": "bindSheet_popup_style",
+      "value": "Popup Style"
+    },
+    {
+      "name": "bindSheet_default_popup",
+      "value": "Default Popup"
+    },
+    {
+      "name": "bindSheet_centered_popup",
+      "value": "Centered Popup"
+    },
+    {
+      "name": "bindSheet_popup_appears",
+      "value": "Popup Appears"
+    },
+    {
+      "name": "bindSheet_icon",
+      "value": "Icon"
+    },
+    {
+      "name": "bindSheet_blurred_background_texture",
+      "value": "Blurred Background Texture"
+    },
+    {
+      "name": "bindSheet_popup_modal_interface",
+      "value": "Popup Modal Interface"
+    },
+    {
+      "name": "pop_height",
+      "value": "PopHeight"
+    },
+    {
+      "name": "bindSheet_close_modal",
+      "value": "Whether to close the modal"
+    },
+    {
+      "name": "bindSheet_close_confirm",
+      "value": "Confirm"
+    },
+    {
+      "name": "bindSheet_close_cancel",
+      "value": "Cancel"
+    },
+    {
+      "name": "global_popUp_menu",
+      "value": "Popup"
+    },
+    {
+      "name": "popUp_width",
+      "value": "Width"
+    },
+    {
+      "name": "placement",
+      "value": "Placement"
+    },
+    {
+      "name": "popUp_advanced_component",
+      "value": "PopUp Advanced Component"
+    },
+    {
+      "name": "global_menu_avoid_rule",
+      "value": "Menu Avoid Rule"
+    },
+    {
+      "name": "global_menu_layout",
+      "value": "Menu Layout"
+    },
+    {
+      "name": "global_menu_width",
+      "value": "Menu Width"
+    },
+    {
+      "name": "menu_option",
+      "value": "Menu Option"
+    },
+    {
+      "name": "vertical_layout",
+      "value": "Vertical Layout"
+    },
+    {
+      "name": "horizontal_layout",
+      "value": "Horizontal Layout"
+    },
+    {
+      "name": "menu_width",
+      "value": "Width"
+    },
+    {
+      "name": "textclock_style",
+      "value": "Style"
+    },
+    {
+      "name": "text_clock_textShadow",
+      "value": "TextShadow"
+    },
+    {
+      "name": "text_clock_fontSetting",
+      "value": "FontSetting"
+    },
+    {
+      "name": "text_clock_select_button",
+      "value": "Select Button"
+    },
+    {
+      "name": "text_clock_monospaced_numbers",
+      "value": "Monospaced Numbers"
+    },
+    {
+      "name": "text_clock_monovolume_numbers",
+      "value": "Monovolume Numbers"
+    },
+    {
+      "name": "text_input_text_selection_menu",
+      "value": "Text Selection Menu"
+    },
+    {
+      "name": "text_input_text_copy",
+      "value": "Copy"
+    },
+    {
+      "name": "text_input_text_copy_success",
+      "value": "Copy Success"
+    },
+    {
+      "name": "text_input_text_paste",
+      "value": "Paste"
+    },
+    {
+      "name": "text_input_text_paste_success",
+      "value": "Paste Success"
+    },
+    {
+      "name": "text_input_text_get",
+      "value": "Get"
+    },
+    {
+      "name": "text_input_text_delete",
+      "value": "Text Delete"
+    },
+    {
+      "name": "textarea_character_limit",
+      "value": "Limit Character"
+    },
+    {
+      "name": "grid_item_polymorphic_styles",
+      "value": "Polymorphic Styles"
     },
     {
       "name": "component_id_press_to_see_attributeModifier",

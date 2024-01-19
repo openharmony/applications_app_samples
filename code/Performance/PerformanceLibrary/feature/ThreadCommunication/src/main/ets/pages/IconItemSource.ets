@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// 图片显示类，用于存储图片和对应的文字数据
 export class IconItemSource {
   image: string | Resource = '';
   text: string | Resource = '';

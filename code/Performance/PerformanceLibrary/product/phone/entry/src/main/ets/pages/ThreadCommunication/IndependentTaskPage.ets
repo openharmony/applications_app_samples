@@ -13,17 +13,14 @@
  * limitations under the License.
  */
 
-import { Scenario_5 } from '@ohos/ThreadCommunication';
-import worker from '@ohos.worker';
-
-const workerInstance = new worker.ThreadWorker("entry/ets/pages/ThreadCommunication/workers/Worker.ts");
+import { IndependentTask } from '@ohos/ThreadCommunication';
 
 @Entry
 @Component
-struct Scenario_5_Page {
+struct IndependentTaskPage {
   build() {
     Column() {
-      Scenario_5({workerInstance:workerInstance});
+      IndependentTask()
     }
   }
 }

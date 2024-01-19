@@ -17,6 +17,9 @@ import router from '@ohos.router';
 import taskpool from '@ohos.taskpool';
 import { IconItem } from './IconView';
 import { IconItemSource } from './IconItemSource';
+import Logger from '../util/Logger';
+
+const LOAD_SUCCESS: string = getContext().resourceManager.getStringSync($r('app.string.process_success'));
 
 @Concurrent
 function loadPicture(count: number): IconItemSource[] {
@@ -32,11 +35,16 @@ function loadPicture(count: number): IconItemSource[] {
     iconItemSourceList.push(new IconItemSource($r('app.media.album'), `item${numStart + 5}`));
     iconItemSourceList.push(new IconItemSource($r('app.media.applet'), `item${numStart + 6}`));
   }
+  taskpool.Task.sendData(iconItemSourceList.length);
   return iconItemSourceList;
 }
 
+function notice(data: number): void {
+  Logger.info(LOAD_SUCCESS + data);
+}
+
 @Component
-export struct Scenario_2 {
+export struct TaskSendDataUsage {
   @State iconItemSourceList: IconItemSource[] = [];
 
   build() {
@@ -50,7 +58,7 @@ export struct Scenario_2 {
             router.back();
           })
 
-        Text($r('app.string.scenario_2'))
+        Text($r('app.string.scenario_3'))
           .fontSize(24)
           .lineHeight(30)
           .fontColor(Color.Black)
@@ -77,16 +85,10 @@ export struct Scenario_2 {
           top: 30
         })
         .onClick(() => {
-          let taskGroup: taskpool.TaskGroup = new taskpool.TaskGroup();
-          taskGroup.addTask(new taskpool.Task(loadPicture, 30));
-          taskGroup.addTask(new taskpool.Task(loadPicture, 20));
-          taskGroup.addTask(new taskpool.Task(loadPicture, 10));
-          taskpool.execute(taskGroup).then((ret: IconItemSource[][]) => {
-            for (let i = 0; i < ret.length; i++) {
-              for (let j = 0; j < ret[i].length; j++) {
-                this.iconItemSourceList.push(ret[i][j]);
-              }
-            }
+          let lodePictureTask: taskpool.Task = new taskpool.Task(loadPicture, 30);
+          lodePictureTask.onReceiveData(notice);
+          taskpool.execute(lodePictureTask).then((res: Object) => {
+            this.iconItemSourceList = res as IconItemSource[];
           })
         })
       if (this.iconItemSourceList.length > 0) {

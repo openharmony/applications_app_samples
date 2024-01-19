@@ -38,7 +38,7 @@ export struct ThreadCommunicationHomePage {
       })
 
       Button($r('app.string.scenario_1'), { type: ButtonType.Normal, stateEffect: true })
-        .id('Scenario 1')
+        .id('Scenario_1')
         .fontSize(14)
         .borderRadius(8)
         .backgroundColor(Color.Blue)
@@ -49,12 +49,12 @@ export struct ThreadCommunicationHomePage {
         })
         .onClick(() => {
           router.pushUrl({
-            url: 'pages/ThreadCommunication/Scenario_1'
+            url: 'pages/ThreadCommunication/IndependentTaskPage'
           })
         })
 
       Button($r('app.string.scenario_2'), { type: ButtonType.Normal, stateEffect: true })
-        .id('Scenario 2')
+        .id('Scenario_2')
         .fontSize(14)
         .borderRadius(8)
         .backgroundColor(Color.Blue)
@@ -65,12 +65,12 @@ export struct ThreadCommunicationHomePage {
         })
         .onClick(() => {
           router.pushUrl({
-            url: 'pages/ThreadCommunication/Scenario_2'
+            url: 'pages/ThreadCommunication/MultiTaskPage'
           })
         })
 
       Button($r('app.string.scenario_3'), { type: ButtonType.Normal, stateEffect: true })
-        .id('Scenario 4')
+        .id('Scenario_3')
         .fontSize(14)
         .borderRadius(8)
         .backgroundColor(Color.Blue)
@@ -81,12 +81,12 @@ export struct ThreadCommunicationHomePage {
         })
         .onClick(() => {
           router.pushUrl({
-            url: 'pages/ThreadCommunication/Scenario_3'
+            url: 'pages/ThreadCommunication/TaskSendDataUsagePage'
           })
         })
 
       Button($r('app.string.scenario_4'), { type: ButtonType.Normal, stateEffect: true })
-        .id('Scenario 5')
+        .id('Scenario_4')
         .fontSize(14)
         .borderRadius(8)
         .backgroundColor(Color.Blue)
@@ -97,12 +97,12 @@ export struct ThreadCommunicationHomePage {
         })
         .onClick(() => {
           router.pushUrl({
-            url: 'pages/ThreadCommunication/Scenario_4'
+            url: 'pages/ThreadCommunication/WorkerUsagePage'
           })
         })
 
       Button($r('app.string.scenario_5'), { type: ButtonType.Normal, stateEffect: true })
-        .id('Scenario 3')
+        .id('Scenario_5')
         .fontSize(14)
         .borderRadius(8)
         .backgroundColor(Color.Blue)
@@ -113,7 +113,7 @@ export struct ThreadCommunicationHomePage {
         })
         .onClick(() => {
           router.pushUrl({
-            url: 'pages/ThreadCommunication/Scenario_5'
+            url: 'pages/ThreadCommunication/WorkerCallGlobalUsagePage'
           })
         })
     }

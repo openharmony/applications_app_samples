@@ -51,7 +51,9 @@ import { getStringData } from '../../../../data/ResourceDataHandle'
 struct TextClockSample {
   @State format: string = 'HH:mm:ss'
   @State accumulateTime: number = 0
-  controller: TextClockController = new TextClockController()
+  @State fontFeature: string = 'ss01';
+  @State textShadows: ShadowOptions | Array<ShadowOptions> = [];
+  controller: TextClockController = new TextClockController();
 
   build() {
     Column() {
@@ -63,6 +65,8 @@ struct TextClockSample {
           .format(this.format)
           .margin(20)
           .fontSize(30)
+          .textShadow(this.textShadows)
+          .fontFeature(this.fontFeature)
         Row() {
           Button($r('app.string.text_clock_start')).onClick(() => {
             this.controller.start()
@@ -133,7 +137,52 @@ struct TextClockSample {
       .cardStyle()
       .width('100%')
 
-    }.height('100%')
+      Text($r('app.string.textclock_style'))
+        .leftTitleStyle()
+      Column() {
+        Row() {
+          Text($r('app.string.text_clock_textShadow'))
+            .leftTitleStyle()
+            .width('50%')
+          Blank()
+          Toggle({ type: ToggleType.Switch, isOn: false })
+            .id('text_shadow')
+            .onChange((isOn: boolean) => {
+              if (isOn) {
+                this.textShadows = [{ radius: 10, color: Color.Green, offsetX: 10, offsetY: 0 }];
+              } else {
+                this.textShadows = [{ radius: 0, color: Color.White, offsetX: 0, offsetY: 0 }];
+              }
+            })
+        }
+        .width('100%')
+        .height(50)
+
+        Row() {
+          Text($r('app.string.text_clock_fontSetting'))
+            .leftTitleStyle()
+            .width('50%')
+          Blank()
+          Select([{ value: $r('app.string.text_clock_monospaced_numbers') },
+            { value: $r('app.string.text_clock_monovolume_numbers') }])
+            .id('font_setting')
+            .selected(0)
+            .value($r('app.string.text_clock_select_button'))
+            .onSelect((index: number) => {
+              if (index === 0) {
+                this.fontFeature = 'ss01';
+              } else if (index === 1) {
+                this.fontFeature = 'ss02';
+              }
+            })
+
+        }.width('100%')
+        .height(50)
+      }
+      .cardStyle()
+      .width('100%')
+    }
+    .height('100%')
     .width('100%')
     .backgroundColor($r('app.color.background_light_gray'))
     .padding({ left: 20, right: 20 })

@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-import { Scenario_1 } from '@ohos/ThreadCommunication';
+import { TaskSendDataUsage } from '@ohos/ThreadCommunication';
 
 @Entry
 @Component
-struct Scenario_1_Page {
+struct TaskSendDataUsagePage {
   build() {
     Column() {
-      Scenario_1()
+      TaskSendDataUsage()
     }
   }
 }

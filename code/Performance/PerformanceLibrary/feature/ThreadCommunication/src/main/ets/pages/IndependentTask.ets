@@ -14,35 +14,30 @@
  */
 
 import router from '@ohos.router';
-import worker, { MessageEvents } from '@ohos.worker';
+import taskpool from '@ohos.taskpool';
 import { IconItem } from './IconView';
 import { IconItemSource } from './IconItemSource';
 
-@Component
-export struct Scenario_4 {
-  @State iconItemSourceList: IconItemSource[] = [];
-  private workerInstance: worker.ThreadWorker | undefined = undefined;
-
-  aboutToAppear() {
-    for (let index = 0; index < 20; index++) {
-      const numStart: number = index * 6;
-      // 此处循环使用6张图片资源
-      this.iconItemSourceList.push(new IconItemSource($r('app.media.nearby'), `item${numStart + 1}`));
-      this.iconItemSourceList.push(new IconItemSource($r('app.media.scan'), `item${numStart + 2}`));
-      this.iconItemSourceList.push(new IconItemSource($r('app.media.shop'), `item${numStart + 3}`));
-      this.iconItemSourceList.push(new IconItemSource($r('app.media.cards'), `item${numStart + 4}`));
-      this.iconItemSourceList.push(new IconItemSource($r('app.media.album'), `item${numStart + 5}`));
-      this.iconItemSourceList.push(new IconItemSource($r('app.media.applet'), `item${numStart + 6}`));
-    }
-    if (this.workerInstance !== undefined) {
-      this.workerInstance.onmessage = (e: MessageEvents): void => {
-        if (e.data instanceof Array) {
-          this.iconItemSourceList = e.data;
-        }
-      }
-    }
-
+@Concurrent
+function loadPicture(count: number): IconItemSource[] {
+  let iconItemSourceList: IconItemSource[] = [];
+  // 遍历添加count*6个IconItem的数据
+  for (let index = 0; index < count; index++) {
+    const numStart: number = index * 6;
+    // 此处循环使用6张图片资源
+    iconItemSourceList.push(new IconItemSource($r('app.media.nearby'), `item${numStart + 1}`));
+    iconItemSourceList.push(new IconItemSource($r('app.media.scan'), `item${numStart + 2}`));
+    iconItemSourceList.push(new IconItemSource($r('app.media.shop'), `item${numStart + 3}`));
+    iconItemSourceList.push(new IconItemSource($r('app.media.cards'), `item${numStart + 4}`));
+    iconItemSourceList.push(new IconItemSource($r('app.media.album'), `item${numStart + 5}`));
+    iconItemSourceList.push(new IconItemSource($r('app.media.applet'), `item${numStart + 6}`));
   }
+  return iconItemSourceList;
+}
+
+@Component
+export struct IndependentTask {
+  @State iconItemSourceList: IconItemSource[] = [];
 
   build() {
     Column() {
@@ -55,7 +50,7 @@ export struct Scenario_4 {
             router.back();
           })
 
-        Text($r('app.string.scenario_4'))
+        Text($r('app.string.scenario_1'))
           .fontSize(24)
           .lineHeight(30)
           .fontColor(Color.Black)
@@ -72,7 +67,7 @@ export struct Scenario_4 {
         left: 24
       })
 
-      Button($r('app.string.change_image_number'), { type: ButtonType.Normal, stateEffect: true })
+      Button($r('app.string.load_image'), { type: ButtonType.Normal, stateEffect: true })
         .fontSize(14)
         .borderRadius(8)
         .backgroundColor(Color.Blue)
@@ -82,9 +77,10 @@ export struct Scenario_4 {
           top: 30
         })
         .onClick(() => {
-          if (this.workerInstance !== undefined) {
-            this.workerInstance.postMessage(this.iconItemSourceList);
-          }
+          let lodePictureTask: taskpool.Task = new taskpool.Task(loadPicture, 30);
+          taskpool.execute(lodePictureTask).then((res: Object) => {
+            this.iconItemSourceList = res as IconItemSource[];
+          })
         })
       if (this.iconItemSourceList.length > 0) {
         List({ space: 20 }) {
