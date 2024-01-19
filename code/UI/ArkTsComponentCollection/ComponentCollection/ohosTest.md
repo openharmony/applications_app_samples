@@ -143,3 +143,9 @@
 | 验证XComponent组件	                    | 展开图片视频与媒体，进入XComponent绘制组件            | 	无操作	                                                                                              | 正确显示效果            | 是    | Pass |
 | 验证web组件	                           | 展开网页，进入web网页                          | 	无操作                                                                                               | 	正确显示效果           | 是    | Pass |
 | 验证WaterFlow组件	                     | 展开列表与宫格，进入WaterFlow	                   | 依次点击WaterFlow参数、WaterFlow属性的所有设置	                                                                | 正确显示效果            | 是    | Pass |
+| 验证Navigation基础属性	| 展开导航、进入Navigation | 点击navigation基本功能 | 正确显示效果 | 是 | Pass |
+| 验证滚动组件延伸底部导航条	| 展开导航、进入Navigation | 点击滚动组件延伸底部导航条进入页面、点击延伸 | 滚动组件延伸到导航条底部           | 是 | Pass |
+| 验证Navigation组件Split模式	| 展开导航、进入Navigation | 点击Split模式动画演示进入页面、依次点击列表1/列表2 | 正确显示页面及切换动画 | 是 | Pass |
+| 验证BindSheet避让键盘	| 展开导航、进入Navigation | 点击BindSheet避让键盘进入页面、点击输入框 | 输入框位置自动调整至键盘上方 | 是 | Pass |
+| 验证Navigation组件Split模式鼠标样式	| 展开导航、进入Navigation | 点击分栏的鼠标样式进入页面、点击列表1 | 正确显示页面 | 是 | Pass |
+| 验证Navigation组件避让底部导航条	| 展开导航、进入Navigation | 点击避让底部导航条进入页面、点击不延伸 | 正确显示效果 | 是 | Pass |

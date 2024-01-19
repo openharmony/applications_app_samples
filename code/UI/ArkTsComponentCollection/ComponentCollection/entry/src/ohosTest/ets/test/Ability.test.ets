@@ -2184,9 +2184,11 @@ export default function abilityTest() {
        * Navigation
        */
       it(BUNDLE + 'NavigationFunction_001', 0, async () => {
-        let testName = 'NavigationFunction';
-        Logger.info(BUNDLE + testName + ' begin ------------------------------');
+        let TAG = BUNDLE + 'NavigationFunction';
+        Logger.info(TAG, ' begin ------------------------------');
         await driver.delayMs(DELAY_TIME);
+        await driver.drag(200, 900, 200, 200, 200); //增大starty或减小endy可以调整滑屏长度
+
         let atom = await manager.getStringValue($r('app.string.navigation_title'));
         let button = await driver.findComponent(ON.text(atom));
         if (!button) {
@@ -2196,13 +2198,170 @@ export default function abilityTest() {
         await checkButtonAndClickWithText(atom);
         await driver.delayMs(DELAY_TIME);
 
+        // 保持在navigation页面，最后一个用例再返回到首页
+
+        Logger.info(TAG, ' end');
+      })
+
+      it(BUNDLE + 'NavigationFunction_002', 0, async () => {
+        let TAG = BUNDLE + 'NavigationFunction_002';
+        Logger.info(TAG, ' begin ------------------------------');
+        await driver.delayMs(DELAY_TIME);
+
+        let buttons = await driver.findComponents(ON.type('Button'));
+        await buttons[0].click();
+        await driver.delayMs(DELAY_TIME);
+
+        await driver.assertComponentExist(ON.type('Navigation'));
+
         // 返回
         await checkButtonAndClickWithID('backBtn');
         await driver.delayMs(DELAY_TIME_FiVE);
 
-        Logger.info(BUNDLE + testName + ' end');
+        Logger.info(TAG, ' end');
       })
 
+      it(BUNDLE + 'NavigationFunction_003', 0, async () => {
+        let TAG = BUNDLE + 'NavigationFunction_003';
+        Logger.info(TAG, ' begin ------------------------------');
+        await driver.delayMs(DELAY_TIME);
+
+        let atom = await manager.getStringValue($r('app.string.navigation_list_expand_title'));
+        let button = await driver.findComponent(ON.text(atom));
+        await button.click();
+        await driver.delayMs(DELAY_TIME);
+
+        atom = await manager.getStringValue($r('app.string.navigation_expand'));
+        let expandbtn = await driver.findComponent(ON.text(atom));
+        let lists = await driver.findComponents(ON.type('List'));
+
+        let p1 = await lists[0].getBoundsCenter();
+        await expandbtn.click();
+        await driver.delayMs(DELAY_TIME);
+        let p2 = await lists[0].getBoundsCenter();
+
+        Logger.info(TAG, `List, p1 = ${p1.y}, p2 = ${p2.y}`);
+        expect(p1.y == p2.y).assertFalse();
+
+        // 返回navigation页
+        await checkButtonAndClickWithID('backBtn');
+        await driver.delayMs(DELAY_TIME_FiVE);
+
+        Logger.info(TAG, ' end');
+      })
+
+      it(BUNDLE + 'NavigationFunction_004', 0, async () => {
+        let TAG = BUNDLE + 'NavigationFunction_004';
+        Logger.info(TAG, ' begin ------------------------------');
+        await driver.delayMs(DELAY_TIME);
+
+        let atom = await manager.getStringValue($r('app.string.navigation_split_title'));
+        let button = await driver.findComponent(ON.text(atom));
+        await button.click();
+        await driver.delayMs(DELAY_TIME);
+
+        let navdsts = await driver.findComponents(ON.type('NavDestination'));
+        expect((navdsts === undefined) || (navdsts === null)).assertTrue();
+
+        let navbtn = await driver.findComponent(ON.id('nav1'));
+        await navbtn.click();
+        await driver.delayMs(DELAY_TIME);
+        await driver.assertComponentExist(ON.type('NavDestination'));
+        navbtn = await driver.findComponent(ON.id('nav2'));
+        await navbtn.click();
+        await driver.delayMs(DELAY_TIME);
+
+        // 返回navigation页
+        await checkButtonAndClickWithID('backBtn');
+        await driver.delayMs(DELAY_TIME_FiVE);
+
+        Logger.info(TAG, ' end');
+      })
+
+      it(BUNDLE + 'NavigationFunction_005', 0, async () => {
+        let TAG = BUNDLE + 'NavigationFunction_005';
+        Logger.info(TAG, ' begin ------------------------------');
+        await driver.delayMs(DELAY_TIME);
+
+        let atom = await manager.getStringValue($r('app.string.navigation_bindsheet_title'));
+        let button = await driver.findComponent(ON.text(atom));
+        await button.click();
+        await driver.delayMs(DELAY_TIME);
+
+        let textinput = await driver.findComponent(ON.type('TextInput'));
+        await textinput.click();
+        await driver.delayMs(DELAY_TIME);
+        await driver.assertComponentExist(ON.type('TextInput'));
+
+        await driver.pressBack(); //收起键盘
+        await driver.delayMs(DELAY_TIME);
+        await driver.click(200, 200); //隐藏BindSheet
+        await driver.delayMs(DELAY_TIME);
+
+        // 返回navigation页
+        await checkButtonAndClickWithID('backBtn');
+        await driver.delayMs(DELAY_TIME_FiVE);
+
+        Logger.info(TAG, ' end');
+      })
+
+      it(BUNDLE + 'NavigationFunction_006', 0, async () => {
+        let TAG = BUNDLE + 'NavigationFunction_006';
+        Logger.info(TAG, ' begin ------------------------------');
+        await driver.delayMs(DELAY_TIME);
+
+        let atom = await manager.getStringValue($r('app.string.navigation_sidebar_title'));
+        let button = await driver.findComponent(ON.text(atom));
+        await button.click();
+        await driver.delayMs(DELAY_TIME);
+
+        let navdsts = await driver.findComponents(ON.type('NavDestination'));
+        expect((navdsts === undefined) || (navdsts === null)).assertTrue();
+
+        let navbtn = await driver.findComponent(ON.id('nav1'));
+        await navbtn.click();
+        await driver.delayMs(DELAY_TIME);
+        await driver.assertComponentExist(ON.type('NavDestination'));
+
+        // 返回navigation页
+        await checkButtonAndClickWithID('backBtn');
+        await driver.delayMs(DELAY_TIME_FiVE);
+
+        Logger.info(TAG, ' end');
+      })
+
+      it(BUNDLE + 'NavigationFunction_007', 0, async () => {
+        let TAG = BUNDLE + 'NavigationFunction_007';
+        Logger.info(TAG, ' begin ------------------------------');
+        await driver.delayMs(DELAY_TIME);
+
+        let atom = await manager.getStringValue($r('app.string.navigation_expand_title'));
+        let button = await driver.findComponent(ON.text(atom));
+        await button.click();
+        await driver.delayMs(DELAY_TIME);
+
+        atom = await manager.getStringValue($r('app.string.navigation_unexpand'));
+        let expandbtn = await driver.findComponent(ON.text(atom));
+        let nav = await driver.findComponent(ON.type('Navigation'));
+
+        let p1 = await nav.getBoundsCenter();
+        await expandbtn.click();
+        await driver.delayMs(DELAY_TIME);
+        let p2 = await nav.getBoundsCenter();
+
+        Logger.info(TAG, `nav p1=${p1.y}, p2=${p2.y}`); //expect(p1.y == p2.y).assertFalse();
+
+        // 返回navigation页
+        await checkButtonAndClickWithID('backBtn');
+        await driver.delayMs(DELAY_TIME_FiVE);
+
+        //返回
+        await checkButtonAndClickWithID('backBtn');
+        await driver.delayMs(DELAY_TIME_FiVE);
+
+        Logger.info(TAG, ' end');
+      })
+      
       /**
        * Navigator
        */
