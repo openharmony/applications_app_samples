@@ -14,9 +14,9 @@
  */
 
 import common from '@ohos.app.ability.common';
-import deviceManager from '@ohos.distributedHardware.deviceManager';
 import distributedObject from '@ohos.data.distributedDataObject';
 import DataObject from '../model/DataObject';
+import distributedDeviceManager from '@ohos.distributedDeviceManager';
 import FsManager from '../model/FsManager';
 import router from '@ohos.router';
 import { FileStructure, FileType } from '@ohos/feature-file-manager/src/main/ets/mock/local/FileData';
@@ -48,7 +48,6 @@ export struct Index {
   // 刷新页面
   @StorageLink('flashPage') @Watch('updateFileData') flashPage: boolean = false;
 
-  @State dmClass:deviceManager.DeviceManager | null = null;
   @StorageLink('g_object') g_object?: distributedObject.DistributedObject|null = null;
 
   // 路由返回后刷新页面
@@ -65,7 +64,6 @@ export struct Index {
     }
     FsManager.initFiles();
     this.updateFileData();
-    this.getLocalDeviceId();
   }
 
   // 刷新当前页面数据
@@ -91,15 +89,8 @@ export struct Index {
   }
 
   getLocalDeviceId() {
-    deviceManager.createDeviceManager('com.samples.distributedfilemanager', (err, dm) => {
-      if (err) {
-        return;
-      }
-      this.dmClass = dm;
-      let deviceInfo:deviceManager.DeviceInfo | null = null;
-      deviceInfo = this.dmClass.getLocalDeviceInfoSync();
-      this.deviceId = deviceInfo.deviceId;
-    })
+    let dm:distributedDeviceManager.DeviceManager = distributedDeviceManager.createDeviceManager('com.samples.distributedfilemanager');
+    this.deviceId = dm.getLocalDeviceId();
  }
 
   build() {
@@ -129,6 +120,9 @@ export struct Index {
               .width(24)
               .height(24)
               .onClick(() => {
+                if (this.deviceId.length === 0) {
+                  this.getLocalDeviceId();
+                }
                 DataObject.pasteFromDistributedDir(this.deviceId,this.directoryPath,this.fileData);
                 DataObject.clear();
               })
@@ -173,6 +167,9 @@ export struct Index {
               .width(24)
               .height(24)
               .onClick(() => {
+                if (this.deviceId.length === 0) {
+                  this.getLocalDeviceId();
+                }
                 DataObject.pasteFromDistributedDir(this.deviceId,this.directoryPath,this.fileData);
                 DataObject.clear();
               })
@@ -291,6 +288,9 @@ export struct Index {
           .width(436)
           .onClick(() => {
             let disPathInSandbox = context.distributedFilesDir;
+            if (this.deviceId.length === 0) {
+              this.getLocalDeviceId();
+            }
             DataObject.copyFilesToDistributedDir(this.deviceId, this.needMoveFiles, disPathInSandbox);
           })
       }
