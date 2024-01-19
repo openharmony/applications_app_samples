@@ -110,6 +110,7 @@
     "pages/universal/gesture/rotationSample/RotationSample",
     "pages/universal/gesture/swipeSample/SwipeSample",
     "pages/universal/gesture/combinedSample/CombinedSample",
+    "pages/universal/gesture/customGesture/CustomGestureJudge",
     "pages/components/rowsAndColumns/rowSample/RowSample",
     "pages/components/rowsAndColumns/rowSplitSample/RowSplitSample",
     "pages/components/rowsAndColumns/columnSample/ColumnSample",

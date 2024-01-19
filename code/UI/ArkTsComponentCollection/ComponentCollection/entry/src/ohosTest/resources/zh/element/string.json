@@ -5,6 +5,38 @@
       "value": "ArkTS组件库"
     },
     {
+      "name": "custom_event",
+      "value": "组件自定义事件分发"
+    },
+    {
+      "name": "custom_gesture",
+      "value": "自定义手势判定"
+    },
+    {
+      "name": "custom_judge_long_press",
+      "value": "长按响应区域"
+    },
+    {
+      "name": "custom_long_press_prompt",
+      "value": "长按上半区蓝色区域，蓝色区域响应"
+    },
+    {
+      "name": "custom_judge_click",
+      "value": "点击响应区域"
+    },
+    {
+      "name": "custom_tap_prompt",
+      "value": "点击下半区黄色区域，黄色区域响应"
+    },
+    {
+      "name": "custom_bigcircle_prompt",
+      "value": "大圈事件已响应"
+    },
+    {
+      "name": "custom_smallcircle_prompt",
+      "value": "小圈事件已响应"
+    },
+    {
       "name": "MainAbility_desc",
       "value": "ArkUI各组件、通用属性、通用方法等分类及描述应用"
     },

@@ -372,6 +372,8 @@ entry/src/main/ets/
 |   |   |   |   |---SwipeSample.ets                      // 滑动手势
 |   |   |   |---tapGestureSample
 |   |   |   |   |---TapGestureSample.ets                 // Tap手势
+|   |   |   |---customGesture
+|   |   |   |   |---CustomGestureJudge.ets               // 自定义手势判定
 |   |   |---properties
 |   |   |   |---attributeModifierSample
 |   |   |   |   |---AttributeModifierSample.ets          // 动态属性设置
@@ -514,11 +516,12 @@ entry/src/main/ets/
 
 ### 相关权限
 
-[ohos.permission.GET_BUNDLE_INFO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionget_bundle_info)
+[ohos.permission.GET_BUNDLE_INFO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionget_bundle_info)
 
-[ohos.permission.GET_BUNDLE_INFO_PRIVILEGED](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionget_bundle_info_privileged)
+[ohos.permission.GET_BUNDLE_INFO_PRIVILEGED](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionget_bundle_info_privileged)
 
-[ohos.permission.REQUIRE_FORM](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionrequire_form)
+[ohos.permission.REQUIRE_FORM](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionrequire_form)
+[ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohos.permission.INTERNET)
 
 ### 依赖
 
