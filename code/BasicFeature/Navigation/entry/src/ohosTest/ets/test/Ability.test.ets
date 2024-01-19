@@ -16,7 +16,7 @@
 import hilog from '@ohos.hilog';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-
+import { Driver, ON, MatchPattern } from '@ohos.UiTest';
 
 let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
 export default function abilityTest() {
@@ -44,7 +44,7 @@ export default function abilityTest() {
       /**
        * 拉起应用
        */
-      it(`StartAbility_001`, 0, async (done: Function) => {
+      it(`TestCase_001`, 0, async (done: Function) => {
         // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
         hilog.info(0xF811, 'testTag', 'StartAbility_001 begin');
         try {
@@ -59,6 +59,51 @@ export default function abilityTest() {
         }
         hilog.info(0xF811, 'testTag', 'StartAbility_001 end');
       })
+    })
+    /**
+     * 从主页跳转到harA
+     */
+    it('TestCase_002', 0, async () => {
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      let btnItem = await driver.findComponent(ON.text("ToHarA"));
+      await btnItem.click();
+      // 获取标题
+      let title = await driver.findComponent(ON.text("HarA"));
+      //检查
+      expect(title != undefined).assertTrue();
+    })
+    /**
+     * 从harA跳转到harB
+     */
+    it('TestCase_003', 0, async () => {
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      let btnItem = await driver.findComponent(ON.text("ToHarA"));
+      await btnItem.click();
+      btnItem = await driver.findComponent(ON.text("ToHarB"));
+      await btnItem.click();
+      // 获取标题
+      let title = await driver.findComponent(ON.text("HarB"));
+      //检查
+      expect(title != undefined).assertTrue();
+    })
+    /**
+     * 从harB跳转到主页
+     */
+    it('TestCase_004', 0, async () => {
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      let btnItem = await driver.findComponent(ON.text("ToHarA"));
+      await btnItem.click();
+      btnItem = await driver.findComponent(ON.text("ToHarB"));
+      await btnItem.click();
+      btnItem = await driver.findComponent(ON.text("ToIndex"));
+      await btnItem.click();
+      // 获取标题
+      let title = await driver.findComponent(ON.text("NavIndex"));
+      //检查
+      expect(title != undefined).assertTrue();
     })
   })
 }
