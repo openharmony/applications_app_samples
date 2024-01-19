@@ -40,30 +40,28 @@ export default function abilityTest() {
       // Presets a clear action, which is performed after all test cases of the test suite end.
       // This API supports only one parameter: clear action function.
     })
-    it('assertContain', 0, () => {
-      /**
-       * 拉起应用
-       */
-      it(`TestCase_001`, 0, async (done: Function) => {
-        // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-        hilog.info(0xF811, 'testTag', 'StartAbility_001 begin');
-        try {
-          await abilityDelegatorRegistry.startAbility({
-            bundleName: 'ohos.samples.http',
-            abilityName: 'MainAbility'
-          });
-          done();
-        } catch (err) {
-          expect(0).assertEqual(err.code);
-          done();
-        }
-        hilog.info(0xF811, 'testTag', 'StartAbility_001 end');
-      })
+    /**
+     * 拉起应用
+     */
+    it(`StartAbility_001`, 0, async (done: Function) => {
+      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
+      hilog.info(0xF811, 'testTag', 'StartAbility_001 begin');
+      try {
+        await abilityDelegatorRegistry.startAbility({
+          bundleName: 'com.samples.navigation',
+          abilityName: 'EntryAbility'
+        });
+        done();
+      } catch (err) {
+        expect(0).assertEqual(err.code);
+        done();
+      }
+      hilog.info(0xF811, 'testTag', 'StartAbility_001 end');
     })
     /**
      * 从主页跳转到harA
      */
-    it('TestCase_002', 0, async () => {
+    it('TestCase_001', 0, async () => {
       let driver = Driver.create();
       await driver.delayMs(1000);
       let btnItem = await driver.findComponent(ON.text("ToHarA"));
@@ -76,7 +74,7 @@ export default function abilityTest() {
     /**
      * 从harA跳转到harB
      */
-    it('TestCase_003', 0, async () => {
+    it('TestCase_002', 0, async () => {
       let driver = Driver.create();
       await driver.delayMs(1000);
       let btnItem = await driver.findComponent(ON.text("ToHarA"));
@@ -91,7 +89,7 @@ export default function abilityTest() {
     /**
      * 从harB跳转到主页
      */
-    it('TestCase_004', 0, async () => {
+    it('TestCase_003', 0, async () => {
       let driver = Driver.create();
       await driver.delayMs(1000);
       let btnItem = await driver.findComponent(ON.text("ToHarA"));
