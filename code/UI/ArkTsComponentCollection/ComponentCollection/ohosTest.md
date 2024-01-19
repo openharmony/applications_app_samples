@@ -14,11 +14,11 @@
 | 验证Toggle 切换按钮                      | 展开按钮与选择，进入Toggle 切换按钮                 | 依次点击Toggle 切换按钮                                                                                    | 正确响应点击事件          | 是    | Pass |
 | 验证勾选框                              | 展开按钮与选择，进入勾选框                         | 依次点击勾选框                                                                                            | 正确选中勾选框           | 是    | Pass |
 | 验证TimePicker 时间选择器                 | 展开按钮与选择，进入TimePicker 时间选择器            | 打开MilitaryTime                                                                                     | 时间选择器变化           | 是    | Pass |
-| 验证Counter 计数器                      | 展开按钮与选择，进入Counter 计数器            | 点击enableInc和enableDec使能按钮查看计数器效果                                                                   | 计数器加减按钮被禁用        | 是    | Pass |
+| 验证Counter 计数器                      | 展开按钮与选择，进入Counter 计数器                 | 点击enableInc和enableDec使能按钮查看计数器效果                                                                   | 计数器加减按钮被禁用        | 是    | Pass |
 | 验证Rating 评分条                       | 展开按钮与选择，进入Rating 评分条                  | 更改样式并打分                                                                                            | 显示打分中间值，正确显示样式    | 是    | Pass |
 | 验证Scroll 滚动                        | 展开滚动与滑动，进入Scroll 滚动                   | 左右滑动，上下滑动                                                                                          | 滚动条正确滑动           | 是    | Pass |
 | 验证QRCode 二维码                       | 展开信息展示与动效，进入QRCode 二维码                | 改变二维码内容，改变颜色                                                                                       | 正确改变二维码图片，改变颜色    | 是    | Pass |
-| 验证List                             | 展开信息展示与动效，进入List               | 长按任一ListItem左划                                                                                     | 呈现正确效果删除该ListItem | 是    | Pass |
+| 验证List                             | 展开信息展示与动效，进入List                      | 长按任一ListItem左划                                                                                     | 呈现正确效果删除该ListItem | 是    | Pass |
 | 验证LoadingProgress                  | 展开信息展示与动效，进入LoadingProgress           | 更改LoadingProgress的颜色                                                                               | 正确更改相应的颜色         | 是    | Pass |
 | 验证Marquee 跑马灯                      | 展开信息展示与动效，进入Marquee 跑马灯               | 更改Marquee样式，依次开始，停止跑马灯                                                                             | 正确反馈状态，依次运行，停止跑马灯 | 是    | Pass |
 | 验证TextTimer 文字计时器                  | 展开信息展示与动效，进入TextTimer 文字计时器           | 依次开始、暂停、重置、更换时间格式                                                                                  | 正确运行状态            | 是    | Pass |
@@ -26,29 +26,30 @@
 | 验证Progress 进度条                     | 展开信息展示与动效，进入Progress 进度条              | 调整进度条的进度                                                                                           | 正确显示进度条的进度        | 是    | Pass |
 | 验证Gauge 仪表盘                        | 展开信息展示与动效，进入Gauge 仪表盘                 | 调整仪表盘的value和strokeWidth                                                                            | 正确改变仪表盘的属性        | 是    | Pass |
 | 验证DataPanel 数据面板                   | 展开信息展示与动效，进入DataPanel 数据面板            |                                                                                                    | 正确显示数据面板动画        | 是    | Pass |
-| 验证ScrollTo 动效                      | 展开信息展示与动效，进入ScrollTo 动效         | 点击ScrollTo动效按钮                                                                                     | ScrollTo动效展示      | 是    | Pass |
-| 验证Tab 模糊切换                         | 展开信息展示与动效，进入Tab 模糊切换         | 点击Tab 进行模糊切换                                                                                       | Tab 模糊切换成功        | 是    | Pass |
-| 验证ImageFit 切换                      | 展开信息展示与动效，进入ImageFit 切换         | 依次点击Radius按钮进行ImageFit模式切换                                                                         | ImageFit 模式切换成功   | 是    | Pass |
-| 验证Particle粒子效果                     | 展开信息展示与动效，进入Particle粒子效果         | 点击Particle粒子效果生成按钮                                                                                 | Particle粒子效果生成成功  | 是    | Pass |
+| 验证ScrollTo 动效                      | 展开信息展示与动效，进入ScrollTo 动效               | 点击ScrollTo动效按钮                                                                                     | ScrollTo动效展示      | 是    | Pass |
+| 验证Tab 模糊切换                         | 展开信息展示与动效，进入Tab 模糊切换                  | 点击Tab 进行模糊切换                                                                                       | Tab 模糊切换成功        | 是    | Pass |
+| 验证ImageFit 切换                      | 展开信息展示与动效，进入ImageFit 切换               | 依次点击Radius按钮进行ImageFit模式切换                                                                         | ImageFit 模式切换成功   | 是    | Pass |
+| 验证Particle粒子效果                     | 展开信息展示与动效，进入Particle粒子效果              | 点击Particle粒子效果生成按钮                                                                                 | Particle粒子效果生成成功  | 是    | Pass |
 | 验证Span 行内文本                        | 展开文本与输入，进入Span 行内文本                   | 依次调整字符间距，装饰线类型，跨度线高度，颜色                                                                            | 依次改变对于属性          | 是    | Pass |
 | 验证TextInput 文本输入                   | 展开文本与输入，进入TextInput 文本输入              | 在输入框输入文本，可否选择对应文本段选中并高亮，长按文本获取、复制、粘贴文本，验证文本删除                                 | 正确显示输入文本          | 是    | Pass |
 | 验证Text 文本                          | 展开文本与输入，进入Text 文本                     | 依次更改字符间距，行高，对其类型，超长文本显示方式，装饰线，字体颜色，大小写                                                             | 依次更改对应属性          | 是    | Pass |
 | 验证RichText 富文本                     | 展开文本与输入，进入RichText 富文本                |                                                                                                    | 正确显示富文本           | 是    | Pass |
+| 验证RichEditorText 富文本编辑             | 展开文本与输入，进入RichEditorText 富文本          |                                                                                                    | 正确显示富文本编辑         | 是    | Pass |
 | 验证ScrollBar 滚动条                    | 展开辅助，进入ScrollBar 滚动条                  | 依次纵向滚动，横向滚动                                                                                        | 正确滚动              | 是    | Pass |
 | 验证下拉刷新                             | 展开辅助，进入下拉刷新                           | 下拉刷新list                                                                                           | 正确响应，2秒后结束刷新      | 是    | Pass |
 | 验证Panel 弹出面板                       | 展开辅助，进入Panel 弹出面板                     | 依次点击minibar，foldable，temporary类型面板，并选择Banana                                                       | 正确弹出面板            | 是    | Pass |
 | 验证AlphabetIndexer 字母索引条            | 展开辅助，进入AlphabetIndexer 字母索引条          | 点击字母索引条                                                                                            | 跳转到中间位置           | 是    | Pass |
-| 验证画布组件的各个功能                        | 展开画布，进入画布各个组件并验证功能              | 点击各个组件中的绘制逻辑                                                                                       | 画布正常显示绘制图形        | 是    | Pass |
+| 验证画布组件的各个功能                        | 展开画布，进入画布各个组件并验证功能                    | 点击各个组件中的绘制逻辑                                                                                       | 画布正常显示绘制图形        | 是    | Pass |
 | 验证TarBar 进入通用                      | 在组件页面                                 | 点击下方tab通用                                                                                          | 跳转到通用页面           | 是    | Pass |
 | 验证onClick 点击事件                     |                                       | 点击200，300的坐标                                                                                       | 正确响应点击，显示点击信息     | 是    | Pass |
 | 验证触摸事件                             |                                       | 拖动区域(100, 300, 300, 280)                                                                           | 正确响应拖动            | 是    | Pass |
 | 验证拖拽事件                             |                                       | 依次拖拽应用图标、GridItem、ListItem、Hyperlink、Text、Image、Video、FormComponent                                | 正确响应拖动            | 是    | Pass |
 | 验证组件区域变化事件                         |                                       | 调整宽度，高度                                                                                            | 正确约束小球运动范围        | 是    | Pass |
-| 验证SafeArea 安全区域                    |  进入SafeArea 安全区域           | 调整安全区域扩展的类型和方向                                                                                     | 正确显示效果            | 是    | Pass |
-| 验证foreground 前景                    |                                       | 进入foreground 前景                                   | 正确显示背景  | 是    | Pass |
+| 验证SafeArea 安全区域                    | 进入SafeArea 安全区域                       | 调整安全区域扩展的类型和方向                                                                                     | 正确显示效果            | 是    | Pass |
+| 验证foreground 前景                    |                                       | 进入foreground 前景                                   | 正确显示背景            | 是    | Pass |
 | 验证background 背景                    |                                       | 进入background 背景                                                     | 正确显示背景            | 是    | Pass |
 | 验证border 边框                        |                                       | 进入border 边框页面                                                       | 正确显示边框            | 是    | Pass |
-| 验证outline 外边框 | | 进入outline 外边框页面，输入框输入信息和悬停在text组件时，有突出显示的外描边效果。 | 正确显示外边框 | 是 | Pass |
+| 验证outline 外边框                      |                                       | 进入outline 外边框页面，输入框输入信息和悬停在text组件时，有突出显示的外描边效果。 | 正确显示外边框           | 是 | Pass |
 | 验证font 字体                          |                                       | 进入font 字体页面                                                         | 正确显示字体            | 是    | Pass |
 | 验证size 尺寸                          |                                       | 进入size 尺寸页面                                                         | 正确显示尺寸            | 是    | Pass |
 | 验证rotate 旋转                        | 展开图形变换                                | 调整图片平移和容器平移的X轴、y轴                                                   | 正确响应调整            | 是    | Pass |
@@ -67,8 +68,8 @@
 | 验证系统图标变化                           | 展开转场动画，进入系统图标                         | 拖动亮度条                                                                                              | 系统图标正常变化          | 是    | Pass |
 | 验证商店卡片展开                           | 展开转场动画，进入商店卡片展开                       | 点击卡片展开，再点击卡片收缩                                                                                     | 卡片展开，收缩，正常展示动画    | 是    | Pass |
 | 验证图库卡片展开                           | 展开转场动画，进入图库卡片展开                       | 点击卡片 ，再点击卡片收缩                                                                                      | 卡片展开，收缩，正常展示动画    | 是    | Pass |
-| 验证布局动效                             | 展开转场动画，进入布局动效                          | 查看显示动效                                                                                             | 正常展示动画            | 是    | Pass |
-| 验证尺寸变换动效                           | 展开转场动画，进入尺寸变换动效                         | 查看显示动效                                                                                             | 正常展示动画            | 是    | Pass |
+| 验证布局动效                             | 展开转场动画，进入布局动效                         | 查看显示动效                                                                                             | 正常展示动画            | 是    | Pass |
+| 验证尺寸变换动效                           | 展开转场动画，进入尺寸变换动效                       | 查看显示动效                                                                                             | 正常展示动画            | 是    | Pass |
 | 验证挂载卸载事件                           | 进入挂载卸载事件                              | 点击挂载图片、卸载图片                                                                                        | 图片能正确展示消失         | 是    | Pass |
 | 验证焦点事件           ·                 | 进入焦点事件                                | 外接键盘按压Tab键，观察按钮效果                                                                                  | 焦点发生改变            | 否    | Pass |
 | 验证按键事件                             | 进入按键事件                                | 外接键盘按压任意键，观察文本变化                                                                                   | 文本发生变化            | 否    | Pass |
@@ -81,7 +82,7 @@
 | 验证flex 布局                          |                                       | 进入flex 布局                                                                                          | 正确显示效果            | 是    | Pass |
 | 验证图片边框设置                           |                                       | 进入图片边框设                                                                                            | 正确显示效果            | 是    | Pass |
 | 验证形状裁剪                             |                                       | 进入形状裁剪                                                                                             | 正确显示效果            | 是    | Pass |
-| 验证栅格设置                             | 进入栅格设置                           | 滑动Gird组件到底部查看回弹效果                                                                                  | 正确显示效果            | 是    | Pass |
+| 验证栅格设置                             | 进入栅格设置                                | 滑动Gird组件到底部查看回弹效果                                                                                  | 正确显示效果            | 是    | Pass |
 | 验证焦点控制                             |                                       | 按压外接键盘Tab键，select选择水果后点击聚焦                                                                         | 正确显示效果            | 是    | Pass |
 | 验证组件标识                             |                                       | 任意点击按钮                                                                                             | 正确显示效果            | 是    | Pass |
 | 验证组件背景模糊                           |                                       | 进入组件背景模糊                                                                                           | 正确显示效果            | 是    | Pass |

@@ -1931,6 +1931,10 @@
       "value": "RichText"
     },
     {
+      "name": "rich_editor",
+      "value": "RichEditor 富文本编辑"
+    },
+    {
       "name": "scroll_name",
       "value": "Scroll"
     },

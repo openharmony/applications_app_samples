@@ -1465,6 +1465,35 @@ export default function abilityTest() {
       })
 
       /**
+       * RichEditorText 富文本编辑
+       */
+      it(BUNDLE + 'RichEditorTextFunction_001', 0, async () => {
+        let testName = 'RichEditorTextFunction';
+        Logger.info(BUNDLE + testName + ' begin');
+
+        let driver: Driver = Driver.create();
+        await driver.delayMs(DELAY_TIME);
+
+        // RichEditorText 富文本编辑
+        let atom = await manager.getStringValue($r('app.string.rich_editor'));
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.text_and_input')));
+        }
+        await checkButtonAndClickWithText(atom);
+
+        // 返回
+        await checkButtonAndClickWithID('backBtn');
+        await driver.delayMs(DELAY_TIME_FiVE);
+
+        // 关闭展开
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.text_and_input')));
+
+        Logger.info(BUNDLE + testName + ' end');
+      })
+
+      /**
        * Badge 标记
        */
       it(BUNDLE + 'BadgeFunction_001', 0, async () => {
