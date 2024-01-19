@@ -31,7 +31,7 @@ const SRC_IMG: string = 'https://res5.vmallres.com/pimages/uomcdn/CN/pms/202207/
 let context = getContext(this) as common.UIAbilityContext;
 
 function getResourceString(resourceData: Resource): string {
-  let stringData: string = context.resourceManager.getStringSync(resourceData.id);
+  let stringData: string = context.resourceManager.getStringSync(resourceData);
   logger.info(`getResourceString start`);
   logger.info(`getResourceString stringData ${stringData}`);
   return stringData;
@@ -269,8 +269,8 @@ export struct DetailPage {
     logger.info(`Get index by Name: ${JSON.stringify(this.pageStack.getIndexByName('DetailPage'))}`);
     logger.info(`Get stack size: ${JSON.stringify(this.pageStack.size())}`);
     let context: Context = getContext(this);
-    this.currentLocation = context.resourceManager.getStringSync($r('app.string.address').id);
-    this.recommend = context.resourceManager.getStringSync($r('app.string.recommend').id);
-    this.commodity = context.resourceManager.getStringSync($r('app.string.commodity').id);
+    this.currentLocation = context.resourceManager.getStringSync($r('app.string.address'));
+    this.recommend = context.resourceManager.getStringSync($r('app.string.recommend'));
+    this.commodity = context.resourceManager.getStringSync($r('app.string.commodity'));
   }
 }
