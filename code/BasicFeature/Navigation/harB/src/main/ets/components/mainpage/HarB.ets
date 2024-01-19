@@ -47,5 +47,5 @@ export function harInit(){
   }
 }
 
-// 自执行函数，在首次引用时出发，将builder注册到RouterModule中
+// 自执行函数，在首次引用时触发，将builder注册到RouterModule中
 harInit()
