@@ -20,7 +20,7 @@ import { Title } from './Title'
   .backgroundColor(Color.White)
   .borderRadius(24)
   .width('100%')
-  .padding(15)
+  .padding(5)
 }
 
 @Entry
@@ -67,12 +67,12 @@ struct RichTextSample {
                   }
                 })
             })
-            .height("60%")
+            .height("50%")
             .width("100%")
           Stack() {
             Column() {
               Row({ space: 250 }) {
-                Text('样式')
+                Text($r('app.string.rich_editor_style'))
                   .fontSize(14)
                 Text('X')
                   .width(25)
@@ -88,11 +88,13 @@ struct RichTextSample {
               }.height(25).margin({bottom:60})
             }.visibility(this.styleDialog)
             .width("100%")
-            .height("70%")
+            .height("80%")
+            .margin({bottom:"70%"})
             .zIndex(1)
             .border({
-              radius: { topLeft: 20, topRight: 20 },
+              radius: { topLeft: 15, topRight: 15 },
             })
+            .backgroundColor($r('app.color.background_light_gray'))
 
             Row({ space: 150 }) {
               Image($r('app.media.menu'))
@@ -114,22 +116,23 @@ struct RichTextSample {
                     })
                 })
             }
+            .margin({bottom:-50})
             .justifyContent(FlexAlign.Center)
             .width("100%")
-            .height("30%")
+            .height("20%")
             .zIndex(3)
-          }.height("30%")
+          }.height("40%")
         }
         .alignItems(HorizontalAlign.Start)
         .cardStyle()
         .constraintSize({ minHeight: '100%' })
       }
-      .width('90%')
+      .width('95%')
       .height('80%')
-      .backgroundColor($r('app.color.background_light_gray'))
+      .backgroundColor($r('app.color.divider_block_color'))
     }.height('100%')
     .width('100%')
-    .backgroundColor($r('app.color.background_light_gray'))
+    .backgroundColor($r('app.color.divider_block_color'))
     .padding({ left: 20, right: 20 })
   }
 }

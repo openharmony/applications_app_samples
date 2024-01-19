@@ -2439,6 +2439,10 @@
       "value": "RichEditor 富文本编辑"
     },
     {
+      "name": "rich_editor_style",
+      "value": "样式"
+    },
+    {
       "name": "rich_editor_title",
       "value": "RichEditor"
     },
