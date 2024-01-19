@@ -68,7 +68,7 @@ export default function abilityTest() {
       await btnItem.click();
       // 获取标题
       let title = await driver.findComponent(ON.text("HarA"));
-      // 检查
+      //检查
       expect(title != undefined).assertTrue();
     })
     /**
@@ -77,13 +77,11 @@ export default function abilityTest() {
     it('TestCase_002', 0, async () => {
       let driver = Driver.create();
       await driver.delayMs(1000);
-      let btnItem = await driver.findComponent(ON.text("ToHarA"));
-      await btnItem.click();
-      btnItem = await driver.findComponent(ON.text("ToHarB"));
+      let btnItem = await driver.findComponent(ON.text("ToHarB"));
       await btnItem.click();
       // 获取标题
       let title = await driver.findComponent(ON.text("HarB"));
-      // 检查
+      //检查
       expect(title != undefined).assertTrue();
     })
     /**
@@ -92,15 +90,11 @@ export default function abilityTest() {
     it('TestCase_003', 0, async () => {
       let driver = Driver.create();
       await driver.delayMs(1000);
-      let btnItem = await driver.findComponent(ON.text("ToHarA"));
-      await btnItem.click();
-      btnItem = await driver.findComponent(ON.text("ToHarB"));
-      await btnItem.click();
-      btnItem = await driver.findComponent(ON.text("ToIndex"));
+      let btnItem = await driver.findComponent(ON.text("ToIndex"));
       await btnItem.click();
       // 获取标题
       let title = await driver.findComponent(ON.text("NavIndex"));
-      // 检查
+      //检查
       expect(title != undefined).assertTrue();
     })
   })
