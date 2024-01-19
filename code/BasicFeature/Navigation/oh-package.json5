@@ -15,7 +15,8 @@
 {
   "license": "",
   "devDependencies": {
-    "@ohos/hypium": "1.0.11"
+    "@ohos/hypium": "1.0.13",
+    "@ohos/hamock": "1.0.0-rc"
   },
   "author": "",
   "name": "navigation",

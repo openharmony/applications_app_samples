@@ -13,21 +13,21 @@
 * limitations under the License.
 */
 export class RouterModule {
-  static builderMap: Map<string, WarppedBuilder<[object]>> = new Map<string, WarppedBuilder<[object]>>()
+  static builderMap: Map<string, WrappedBuilder<[object]>> = new Map<string, WrappedBuilder<[object]>>()
   static routerMap: Map<string, NavPathStack> = new Map<string, NavPathStack>()
 
   // 通过名称注册builder
-  public static registerBuilder(builderName: string, builder: WarppedBuilder<[object]>): void{
+  public static registerBuilder(builderName: string, builder: WrappedBuilder<[object]>): void{
     RouterModule.builderMap.set(builderName, builder)
   }
 
   // 通过名称获取builder
-  public static getBuilder(builderName: string): WarppedBuilder<[object]>{
+  public static getBuilder(builderName: string): WrappedBuilder<[object]>{
     let builder = RouterModule.builderMap.get(builderName)
     if(!builder){
       console.info("未获取到builder" + builderName)
     }
-    return builder as WarppedBuilder<[object]>
+    return builder as WrappedBuilder<[object]>
   }
 
   // 通过名称注册router
@@ -62,7 +62,7 @@ export class RouterModule {
         break
     }
     // 查找到对应的路由栈进行跳转
-    RouterModule.getBuilder(routerName).pushPathByName(pageName, null)
+    RouterModule.getRouter(routerName).pushPathByName(pageName, null)
   }
 
   // 通过获取页面栈并pop

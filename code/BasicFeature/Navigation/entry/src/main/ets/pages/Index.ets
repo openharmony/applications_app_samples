@@ -33,7 +33,7 @@ struct HapA {
 
   build() {
     Navigation(this.hapARouter) {
-      Button('ToIndex', { stateEffect: true, type: ButtonType.Capsule })
+      Button('ToHarA', { stateEffect: true, type: ButtonType.Capsule })
         .width('80%')
         .height(40)
         .margin(20)

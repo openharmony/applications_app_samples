@@ -42,7 +42,7 @@ export function harBuilder(value: object) {
 
 export function harInit(){
   if(!RouterModule.getBuilder('HarB_Builder')){
-    let builder: WarppedBuilder<[object]> = warpperBuilder(harBuilder)
+    let builder: WrappedBuilder<[object]> = wrapBuilder(harBuilder)
     RouterModule.registerBuilder('HarB_Builder', builder)
   }
 }
