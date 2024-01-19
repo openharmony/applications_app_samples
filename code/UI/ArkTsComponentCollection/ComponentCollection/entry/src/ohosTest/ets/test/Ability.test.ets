@@ -942,6 +942,20 @@ export default function abilityTest() {
         // 点击start
         await checkButtonAndClickWithID('test_start');
 
+        // 设置文字阴影
+        await driver.assertComponentExist(ON.id('text_shadow'));
+        let shadow = await driver.findComponent(ON.id('text_shadow'));
+        await shadow.click();
+
+        // 设置字体
+        await driver.assertComponentExist(ON.id('font_setting'));
+        let fontSetting = await driver.findComponent(ON.id('font_setting'));
+        await fontSetting.click();
+        await driver.delayMs(DELAY_TIME_FiVE);
+        // 变宽数字
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.text_clock_monovolume_numbers')));
+        await driver.delayMs(DELAY_TIME_FiVE);
+
         // 返回
         await checkButtonAndClickWithID('backBtn');
         await driver.delayMs(DELAY_TIME_FiVE);
@@ -1314,6 +1328,10 @@ export default function abilityTest() {
         let driver: Driver = Driver.create();
         await driver.delayMs(DELAY_TIME);
 
+        let list = await driver.findComponent(ON.id('list_001'));
+        let on = ON.text(await manager.getStringValue($r('app.string.text_and_input')));
+        await list.scrollSearch(on);
+
         // 进入TextInput 文本输入
         let atom = await manager.getStringValue($r('app.string.text_input_title'));
         let button = await driver.findComponent(ON.text(atom));
@@ -1326,6 +1344,38 @@ export default function abilityTest() {
         // 输入文本
         let input = await driver.findComponent(ON.id('test_input'));
         await input.inputText('test');
+
+        await driver.pressBack();
+        await driver.delayMs(DELAY_TIME_FiVE);
+        // 滑动scroll到最底部
+        await driver.assertComponentExist(ON.id('input_scroll'));
+        let scroll = await driver.findComponent(ON.id('input_scroll'));
+        await scroll.scrollToBottom();
+        await driver.delayMs(DELAY_TIME_FiVE);
+
+        // 用坐标点击选择菜单
+        await driver.longClick(80, 980)
+        // 点击获取
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.text_get')));
+        await driver.assertComponentExist(ON.text('Hint'));
+        // 点击复制
+        await driver.longClick(80, 980)
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.text_copy')));
+        await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.copy_success'))));
+        // 点击粘贴
+        await driver.longClick(80, 980)
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.text_paste')));
+        await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.paste_success'))));
+
+        // 文本删除
+        await driver.assertComponentExist(ON.id('text_delete'));
+        let textDelete = await driver.findComponent(ON.id('text_delete'));
+        await textDelete.inputText('Hint');
+        await driver.pressBack();
+        await driver.delayMs(DELAY_TIME_FiVE);
+        // 点击 清除 的坐标
+        await driver.click(640, 1126)
+        await driver.delayMs(DELAY_TIME);
 
         // 返回
         await checkButtonAndClickWithID('backBtn');
@@ -2061,6 +2111,11 @@ export default function abilityTest() {
         let testName = 'GridItemFunction';
         Logger.info(BUNDLE + testName + ' begin ------------------------------');
         await driver.delayMs(DELAY_TIME);
+
+        let list = await driver.findComponent(ON.id('list_001'));
+        let on = ON.text(await manager.getStringValue($r('app.string.list_and_grid')));
+        await list.scrollSearch(on);
+
         let atom = await manager.getStringValue($r('app.string.grid_item_title'));
         let button = await driver.findComponent(ON.text(atom));
         if (!button) {
@@ -2078,6 +2133,16 @@ export default function abilityTest() {
         await checkButtonAndClickWithText(`3`);
         await checkButtonAndClickWithID(`griditem_004`);
         await checkButtonAndClickWithText(`4`);
+
+        // 多态样式
+        await driver.assertComponentExist(ON.id('gridItem_style'));
+        let gridItemStyle = await driver.findComponent(ON.id('gridItem_style'));
+        await gridItemStyle.click();
+        await driver.delayMs(DELAY_TIME);
+        await driver.assertComponentExist(ON.text('plain'));
+        let plain = await driver.findComponent(ON.text('plain'));
+        await plain.click();
+        await driver.delayMs(DELAY_TIME);
 
         // 返回
         await checkButtonAndClickWithID('backBtn');
@@ -2283,6 +2348,16 @@ export default function abilityTest() {
         await checkButtonAndClickWithID('textarea_color_002');
         await checkButtonAndClickWithText('Blue')
         await driver.delayMs(DELAY_TIME);
+
+        // 限制字数
+        await driver.pressBack();
+        await driver.assertComponentExist(ON.id('textarea_character_limit'));
+        let limit = await driver.findComponent(ON.id('textarea_character_limit'));
+        await limit.click();
+        // 测试输入一百个字符
+        await input.inputText(await manager.getStringValue($r('app.string.text_input_limit')));
+        await driver.delayMs(DELAY_TIME);
+
         // 返回
         await checkButtonAndClickWithID('backBtn');
         await driver.delayMs(DELAY_TIME_FiVE);
@@ -4698,6 +4773,146 @@ export default function abilityTest() {
         await longPress.longClick()
         await driver.delayMs(DELAY_TIME);
         // 点击屏幕
+        await driver.click(200, 300);
+        // 滑动滚动条到底部   滚动条不起作用，待确定
+        await driver.delayMs(DELAY_TIME);
+        await driver.assertComponentExist(ON.id('menu_scroll'));
+        let scroll = await driver.findComponent(ON.id('menu_scroll'));
+        await scroll.scrollToBottom();
+        await driver.delayMs(DELAY_TIME);
+        // 设置菜单宽度
+        await driver.assertComponentExist(ON.id('menu_setWidth'));
+        // 滑动坐标调整宽度
+        await driver.drag(448, 1140, 680, 1140);
+
+        // 点击纵向布局
+        await driver.assertComponentExist(ON.id('menu_vertical'));
+        let vertical = await driver.findComponent(ON.id('menu_vertical'));
+        await vertical.click()
+
+        // 长按图片1
+        await driver.assertComponentExist(ON.id('menu_image1'));
+        let image1 = await driver.findComponent(ON.id('menu_image1'));
+        await image1.longClick();
+        await driver.delayMs(DELAY_TIME);
+        await driver.click(200, 300);
+        // 长按图片2
+        await driver.assertComponentExist(ON.id('menu_image2'));
+        let image2 = await driver.findComponent(ON.id('menu_image2'));
+        await image2.longClick();
+        await driver.delayMs(DELAY_TIME);
+        await driver.click(200, 300);
+
+        // 点击横向布局
+        await driver.assertComponentExist(ON.id('menu_horizontal'));
+        let horizontal = await driver.findComponent(ON.id('menu_horizontal'));
+        await horizontal.click();
+
+        // 长按图片1
+        await image1.longClick();
+        await driver.delayMs(DELAY_TIME);
+        await driver.click(200, 300);
+        // 长按图片2
+        await image2.longClick();
+        await driver.delayMs(DELAY_TIME);
+        await driver.click(200, 300);
+        await driver.delayMs(DELAY_TIME);
+
+        // 返回
+        await checkButtonAndClickWithID('backBtn');
+        await driver.delayMs(DELAY_TIME);
+        Logger.info(BUNDLE + testName + 'end');
+      })
+
+      /**
+       * BindSheetDialog 半模态界面
+       */
+      it(BUNDLE + 'BindSheetDialogFunction_001', 0, async () => {
+        let testName = 'BindSheetDialogFunction';
+        Logger.info(BUNDLE + testName + 'begin');
+        await driver.delayMs(DELAY_TIME);
+        await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.global_bindSheet_menu'))));
+        // 进入页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.global_bindSheet_menu')));
+        // 弹出样式 id: popup_style
+        await checkButtonAndClickWithID('popup_style');
+        await driver.delayMs(DELAY_TIME);
+        await driver.click(200, 300);
+        // 模糊背景材质
+        await driver.assertComponentExist(ON.id('bindSheet_blur'));
+        let blur = await driver.findComponent(ON.id('bindSheet_blur'));
+        await blur.click();
+        // 弹出半模界面
+        await driver.assertComponentExist(ON.id('bindSheet_button'));
+        let button = await driver.findComponent(ON.id('bindSheet_button'));
+        await button.click();
+        await driver.delayMs(DELAY_TIME_FiVE);
+        // 不允许页面交互
+        await checkButtonAndClickWithID('enable_interactive')
+        await driver.delayMs(DELAY_TIME);
+        await driver.drag(352, 556, 352, 1080);
+        await driver.delayMs(DELAY_TIME);
+        // 关闭半模界面
+        await driver.click(664, 1034);
+        await driver.delayMs(DELAY_TIME);
+        // 确定
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_confirm')));
+        // 返回
+        await checkButtonAndClickWithID('backBtn');
+        await driver.delayMs(DELAY_TIME);
+        Logger.info(BUNDLE + testName + 'end');
+      })
+
+      /**
+       * PopupDialog Popup
+       */
+      it(BUNDLE + 'PopupDialogFunction_001', 0, async () => {
+        let testName = 'PopupDialogFunction';
+        Logger.info(BUNDLE + testName + 'begin');
+        await driver.delayMs(DELAY_TIME);
+        await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.global_popUp_menu'))));
+        // 进入页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.global_popUp_menu')));
+        // 调整宽度
+        await driver.drag(214, 252, 546, 252);
+        // 点击Popup高级组件
+        await checkButtonAndClickWithID('popup_advanced')
+        await driver.click(200, 300);
+        // 点击Top
+        await checkButtonAndClickWithID('popup_top')
+        await driver.click(200, 300);
+        // 点击Bottom
+        await checkButtonAndClickWithID('popup_bottom')
+        await driver.click(200, 300);
+        // 点击Right
+        await checkButtonAndClickWithID('popup_right')
+        await driver.click(200, 300);
+        // 点击Left
+        await checkButtonAndClickWithID('popup_left')
+        await driver.click(200, 300);
+        // 点击TopRight
+        await checkButtonAndClickWithID('popup_topRight')
+        await driver.click(200, 300);
+        // 点击TopLeft
+        await checkButtonAndClickWithID('popup_topLeft')
+        await driver.click(200, 300);
+        // 点击BottomRight
+        await checkButtonAndClickWithID('popup_bottomRight')
+        await driver.click(200, 300);
+        // 点击BottomLeft
+        await checkButtonAndClickWithID('popup_bottomLeft')
+        await driver.click(200, 300);
+        // 点击RightTop
+        await checkButtonAndClickWithID('popup_rightTop')
+        await driver.click(200, 300);
+        // 点击LeftTop
+        await checkButtonAndClickWithID('popup_leftTop')
+        await driver.click(200, 300);
+        // 点击RightBottom
+        await checkButtonAndClickWithID('popup_rightBottom')
+        await driver.click(200, 300);
+        // 点击LeftBottom
+        await checkButtonAndClickWithID('popup_leftBottom')
         await driver.click(200, 300);
         // 返回
         await checkButtonAndClickWithID('backBtn');
