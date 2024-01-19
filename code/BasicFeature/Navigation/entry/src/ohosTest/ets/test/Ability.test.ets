@@ -68,7 +68,7 @@ export default function abilityTest() {
       await btnItem.click();
       // 获取标题
       let title = await driver.findComponent(ON.text("HarA"));
-      //检查
+      // 检查
       expect(title != undefined).assertTrue();
     })
     /**
@@ -83,7 +83,7 @@ export default function abilityTest() {
       await btnItem.click();
       // 获取标题
       let title = await driver.findComponent(ON.text("HarB"));
-      //检查
+      // 检查
       expect(title != undefined).assertTrue();
     })
     /**
@@ -100,7 +100,7 @@ export default function abilityTest() {
       await btnItem.click();
       // 获取标题
       let title = await driver.findComponent(ON.text("NavIndex"));
-      //检查
+      // 检查
       expect(title != undefined).assertTrue();
     })
   })
