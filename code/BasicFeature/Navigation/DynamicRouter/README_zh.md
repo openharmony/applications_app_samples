@@ -8,12 +8,13 @@
 由于环境的差异，不建议下载后直接编译，应先当创建项目，参考示例代码进行编写
 
 ### 效果预览
-![image](images/Index.jpeg)
-![image](images/HarA.jpeg)
-![image](images/HarB.jpeg)
+![image](images/Index.jpg)
+![image](images/HarA.jpg)
+![image](images/HarB.jpg)
 使用说明
 
 1. 主页会提供一个NavIndex的导航页，点击按钮会跳转到不同的来自har包的页面
+
 2. 每个har包的页面也存在跳转到别的页面的按钮
 
 ### 工程目录
@@ -46,9 +47,13 @@
 ### 具体实现
 
 1.创建hapA harA harB
+
 2.创建路由框架RouterModule，使用map存储hap包的路由和har包的页面信息
+
 3.在RouterModule中封装get和set方法，并对外开放，允许外部模块引用和调用
+
 4.创建push方法，允许传入一串url，并对其进行解析，通过拆解出路由名称从map中获取到路由栈，并将目标页面压栈
+
 5.在hap和har包中引入RouterModule，将hap包的路由栈和har包的页面信息通过开放的set方法存入RouterModule
 
 ### 相关权限
@@ -61,7 +66,7 @@
 
 2. 本示例为Stage模型，支持API11版本SDK，SDK版本号(API Version 11 Release),镜像版本号(4.1 Release)
 
-3. 本示例需要使用DevEco Studio 版本号(4.0 Release)及以上版本才可编译运行。需要配置"apl":"system_basic"才可安装成功；
+3. 本示例需要使用DevEco Studio 版本号(4.0 Release)及以上版本才可编译运行。
 
 ### 下载
 
