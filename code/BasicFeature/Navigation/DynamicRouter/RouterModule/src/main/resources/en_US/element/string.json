@@ -11,6 +11,10 @@
     {
       "name": "to_hara",
       "value": "ToHarA"
+    },
+    {
+      "name": "to_harb",
+      "value": "ToHarB"
     }
   ]
 }
