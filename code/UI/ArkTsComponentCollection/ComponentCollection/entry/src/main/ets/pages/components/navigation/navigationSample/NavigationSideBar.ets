@@ -43,6 +43,7 @@ struct NavigationSideBar {
               .width('90%')
               .borderRadius(24)
               .backgroundColor(this.selectnav === navidx ? 0x007DFF : Color.Transparent)
+              .id(`nav${navidx}`)
 
               NavDestination() {
                 Row() {

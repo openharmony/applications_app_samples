@@ -24,7 +24,7 @@ struct NavigationSample {
     { name: 'Navigation基本功能', url: 'pages/components/navigation/navigationSample/NavigationBasic' },
     { name: '滚动组件延伸底部导航条', url: 'pages/components/navigation/navigationSample/ListExpandSafeArea' },
     { name: 'Split模式动画演示', url: 'pages/components/navigation/navigationSample/NavigationSplit' },
-    { name: 'Bindsheet避让键盘', url: 'pages/components/navigation/navigationSample/BindSheetSafeArea' },
+    { name: 'BindSheet避让键盘', url: 'pages/components/navigation/navigationSample/BindSheetSafeArea' },
     { name: '分栏的鼠标样式', url: 'pages/components/navigation/navigationSample/NavigationSideBar' },
     { name: '避让底部导航条', url: 'pages/components/navigation/navigationSample/NavigationExpandSafeArea' }
   ];
