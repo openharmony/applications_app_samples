@@ -93,6 +93,7 @@
     "pages/components/buttonAndSelection/textPickerSample/TextPickerSample",
     "pages/components/buttonAndSelection/checkboxSample/CheckboxSample",
     "pages/components/textAndInput/richTextSample/RichTextSample",
+    "pages/components/textAndInput/richTextEditorSample/RichTextEditorSample",
     "pages/components/scrollAndSwipe/scrollSample/ScrollSample",
     "pages/animations/TransitionAnimations/componentTransitionSample/ComponentTransitionSample",
     "pages/animations/animateToSample/AnimateToSample",
@@ -109,6 +110,7 @@
     "pages/universal/gesture/rotationSample/RotationSample",
     "pages/universal/gesture/swipeSample/SwipeSample",
     "pages/universal/gesture/combinedSample/CombinedSample",
+    "pages/universal/gesture/customGesture/CustomGestureJudge",
     "pages/components/rowsAndColumns/rowSample/RowSample",
     "pages/components/rowsAndColumns/rowSplitSample/RowSplitSample",
     "pages/components/rowsAndColumns/columnSample/ColumnSample",
@@ -131,6 +133,12 @@
     "pages/components/listAndGrid/gridItemSample/GridItemSample",
     "pages/components/scrollAndSwipe/swiperSample/SwiperSample",
     "pages/components/navigation/navigationSample/NavigationSample",
+    "pages/components/navigation/navigationSample/NavigationBasic",
+    "pages/components/navigation/navigationSample/ListExpandSafeArea",
+    "pages/components/navigation/navigationSample/NavigationSplit",
+    "pages/components/navigation/navigationSample/NavigationSideBar",
+    "pages/components/navigation/navigationSample/BindSheetSafeArea",
+    "pages/components/navigation/navigationSample/NavigationExpandSafeArea",
     "pages/components/navigation/navRouterSample/NavRouterSample",
     "pages/components/navigation/navigatorSample/NavigatorSample",
     "pages/components/navigation/navigatorSample/NavigatorSecondPage",
@@ -147,6 +155,11 @@
     "pages/components/canvasAndGraphicDrawing/polygonSample/PolygonSample",
     "pages/components/canvasAndGraphicDrawing/polylineSample/PolylineSample",
     "pages/components/canvasAndGraphicDrawing/rectSample/RectSample",
-    "pages/components/canvasAndGraphicDrawing/shapeSample/ShapeSample"
+    "pages/components/canvasAndGraphicDrawing/shapeSample/ShapeSample",
+    "pages/globalMethods/dialogs/bindSheetSample/BindSheetSample",
+    "pages/globalMethods/dialogs/popUpSample/PopUpSample",
+    "pages/universal/properties/attributeModifierSample/AttributeModifierSample",
+    "pages/components/listAndGrid/waterFlowSample/WaterFlowSample",
+    "pages/universal/properties/outlineSample/OutlineSample"
   ]
 }

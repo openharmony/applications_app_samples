@@ -45,6 +45,10 @@
       "value": "border 边框"
     },
     {
+      "name": "prop_outline",
+      "value": "描边效果"
+    },
+    {
       "name": "prop_font",
       "value": "font 字体"
     },
@@ -83,6 +87,38 @@
     {
       "name": "focus_event",
       "value": "焦点事件"
+    },
+    {
+      "name": "send_event",
+      "value": "Sendevent"
+    },
+    {
+      "name": "custom_click_event",
+      "value": "Click"
+    },
+    {
+      "name": "custom_scrolling_event",
+      "value": "Scrolling"
+    },
+    {
+      "name": "custom_scrolling_area",
+      "value": "Scroll Area"
+    },
+    {
+      "name": "custom_click_big_btn",
+      "value": "Big circle"
+    },
+    {
+      "name": "custom_click_small_btn",
+      "value": "Small circle"
+    },
+    {
+      "name": "big_circle_prompt",
+      "value": "蓝色区域对应大圈事件"
+    },
+    {
+      "name": "small_circle_prompt",
+      "value": "黄色区域对应小圈事件"
     },
     {
       "name": "mouse_event",
@@ -126,6 +162,10 @@
     },    {
       "name": "combined_gestures",
       "value": "组合手势"
+    },
+    {
+      "name": "custom_gesture",
+      "value": "自定义手势判定"
     },
     {
       "name": "transition_animation",
@@ -515,6 +555,18 @@
       "name": "border_3D",
       "value": "设置3D边框"
     },
+    {
+      "name": "outline_text",
+      "value": ".outline"
+    },
+    {
+      "name": "outline_effect",
+      "value": "双描边效果"
+    },
+    {
+      "name": "outline_button",
+      "value": "小按钮"
+    },
     // Button
     {
       "name": "button_title",
@@ -889,6 +941,10 @@
     {
       "name": "safe_area",
       "value": "SafeArea 安全区域"
+    },
+    {
+      "name": "attribute_modifier",
+      "value": "动态属性设置"
     },
     {
       "name": "safe_area_type",
@@ -1870,6 +1926,14 @@
       "value": "ScrollBar 滚动条"
     },
     {
+      "name": "list_properties_scroll_bar_width",
+      "value": "scrollBar - width"
+    },
+    {
+      "name": "list_properties_scroll_bar_color",
+      "value": "scrollBar - color"
+    },
+    {
       "name": "scroll_vertical_title",
       "value": "纵向滚动"
     },
@@ -1947,6 +2011,10 @@
     {
       "name": "rich_text",
       "value": "RichText 富文本"
+    },
+    {
+      "name": "rich_editor",
+      "value": "RichEditor 富文本编辑"
     },
     {
       "name": "scroll_swiper",
@@ -2429,6 +2497,42 @@
       "value": "第一个按钮"
     },
     {
+      "name": "custom_click_event_button",
+      "value": "Click"
+    },
+    {
+      "name": "custom_Scrolling_event_button",
+      "value": "Scrolling"
+    },
+    {
+      "name": "custom_judge_title",
+      "value": "Judge"
+    },
+    {
+      "name": "custom_judge_long_press",
+      "value": "长按响应区域"
+    },
+    {
+      "name": "custom_long_press_prompt",
+      "value": "长按上半区蓝色区域，蓝色区域响应"
+    },
+    {
+      "name": "custom_judge_click",
+      "value": "点击响应区域"
+    },
+    {
+      "name": "custom_tap_prompt",
+      "value": "点击下半区黄色区域，黄色区域响应"
+    },
+    {
+      "name": "custom_bigcircle_prompt",
+      "value": "大圈事件已响应"
+    },
+    {
+      "name": "custom_smallcircle_prompt",
+      "value": "小圈事件已响应"
+    },
+    {
       "name": "focus_event_button_two",
       "value": "第二个按钮"
     },
@@ -2511,6 +2615,10 @@
     {
       "name": "scroll_event",
       "value": "组件可见区域变化事件"
+    },
+    {
+      "name": "custom_event",
+      "value": "组件自定义事件分发"
     },
     {
       "name": "scroll_event_description",
@@ -3755,11 +3863,11 @@
     },
     {
       "name": "list_introduction_arguments",
-      "value": "修改 List 参数"
+      "value": "List 参数"
     },
     {
       "name": "list_introduction_properties",
-      "value": "修改 List 属性"
+      "value": "List 属性"
     },
     {
       "name": "list_introduction_state",
@@ -4028,6 +4136,46 @@
     {
       "name": "navigation_third_page_back",
       "value": "返回第一个页面"
+    },
+    {
+      "name": "navigation_expand",
+      "value": "延伸"
+    },
+    {
+      "name": "navigation_list_expand_title",
+      "value": "滚动组件延伸底部导航条"
+    },
+    {
+      "name": "navigation_bindsheet_title",
+      "value": "BindSheet避让键盘"
+    },
+    {
+      "name": "navigation_expand_title",
+      "value": "避让底部导航条"
+    },
+    {
+      "name": "navigation_unexpand",
+      "value": "不延伸"
+    },
+    {
+      "name": "navigation_split_title",
+      "value": "Split模式动画演示"
+    },
+    {
+      "name": "navigation_sidebar_title",
+      "value": "分栏的鼠标样式"
+    },
+    {
+      "name": "navigation_navbar_list_nopara",
+      "value": "列表"
+    },
+    {
+      "name": "navigation_navbar_list",
+      "value": "列表%d"
+    },
+    {
+      "name": "navigation_navcontent_list",
+      "value": "内容%d"
     },
     // Tab
     {
@@ -4508,6 +4656,306 @@
     {
       "name": "navigator_return_message",
       "value": "hello! 这是第一个页面传过来的参数"
+    },
+    {
+      "name": "global_bindSheet_menu",
+      "value": "BindSheet半模态"
+    },
+    {
+      "name": "global_bindSheet_text_allow_interaction",
+      "value": "允许页面交互"
+    },
+    {
+      "name": "global_bindSheet_text_desc",
+      "value": "设置弹出的半模态所在页面是否允许交互"
+    },
+    {
+      "name": "bindSheet_popup_style",
+      "value": "弹出样式"
+    },
+    {
+      "name": "bindSheet_default_popup",
+      "value": "默认弹出"
+    },
+    {
+      "name": "bindSheet_centered_popup",
+      "value": "居中弹出"
+    },
+    {
+      "name": "bindSheet_popup_appears",
+      "value": "popup弹出"
+    },
+    {
+      "name": "bindSheet_icon",
+      "value": "图标"
+    },
+    {
+      "name": "bindSheet_blurred_background_texture",
+      "value": "模糊背景材质"
+    },
+    {
+      "name": "bindSheet_popup_modal_interface",
+      "value": "弹出半模态"
+    },
+    {
+      "name": "pop_height",
+      "value": "弹出高度"
+    },
+    {
+      "name": "bindSheet_close_modal",
+      "value": "是否关闭半模态？"
+    },
+    {
+      "name": "bindSheet_close_confirm",
+      "value": "确定"
+    },
+    {
+      "name": "bindSheet_close_cancel",
+      "value": "取消"
+    },
+    {
+      "name": "global_popUp_menu",
+      "value": "Popup"
+    },
+    {
+      "name": "popUp_width",
+      "value": "宽度"
+    },
+    {
+      "name": "placement",
+      "value": "Placement"
+    },
+    {
+      "name": "popUp_advanced_component",
+      "value": "Popup高级组件"
+    },
+    {
+      "name": "global_menu_avoid_rule",
+      "value": "菜单避让规则"
+    },
+    {
+      "name": "global_menu_layout",
+      "value": "菜单布局"
+    },
+    {
+      "name": "global_menu_width",
+      "value": "菜单宽度设置"
+    },
+    {
+      "name": "menu_option",
+      "value": "菜单选项"
+    },
+    {
+      "name": "vertical_layout",
+      "value": "纵向布局"
+    },
+    {
+      "name": "horizontal_layout",
+      "value": "横向布局"
+    },
+    {
+      "name": "menu_width",
+      "value": "宽度"
+    },
+    {
+      "name": "textclock_style",
+      "value": "样式"
+    },
+    {
+      "name": "text_clock_textShadow",
+      "value": "文字阴影"
+    },
+    {
+      "name": "text_clock_fontSetting",
+      "value": "字体设置"
+    },
+    {
+      "name": "text_clock_select_button",
+      "value": "下拉按钮"
+    },
+    {
+      "name": "text_clock_monospaced_numbers",
+      "value": "等宽数字"
+    },
+    {
+      "name": "text_clock_monovolume_numbers",
+      "value": "变宽数字"
+    },
+    {
+      "name": "text_input_text_selection_menu",
+      "value": "文本选择菜单"
+    },
+    {
+      "name": "text_input_text_copy",
+      "value": "复制"
+    },
+    {
+      "name": "text_input_text_copy_success",
+      "value": "复制成功"
+    },
+    {
+      "name": "text_input_text_paste",
+      "value": "粘贴"
+    },
+    {
+      "name": "text_input_text_paste_success",
+      "value": "粘贴成功"
+    },
+    {
+      "name": "text_input_text_get",
+      "value": "获取"
+    },
+    {
+      "name": "text_input_text_delete",
+      "value": "文本删除"
+    },
+    {
+      "name": "textarea_character_limit",
+      "value": "限制字数"
+    },
+    {
+      "name": "grid_item_polymorphic_styles",
+      "value": "多态样式"
+    },
+    {
+      "name": "focus_control_tab_status",
+      "value": "获焦状态样式切换：外接键盘Tab键切换焦点查看状态变化"
+    },
+    {
+      "name": "select_to_see_status",
+      "value": "选中状态样式切换"
+    },
+    {
+      "name": "disable_to_see_status",
+      "value": "禁用状态样式切换"
+    },
+    {
+      "name": "press_to_see_status",
+      "value": "按压状态样式切换"
+    },
+    {
+      "name": "click_to_see_status",
+      "value": "正常状态样式切换"
+    },
+    {
+      "name": "water_flow_title",
+      "value": "WaterFlow"
+    },
+    {
+      "name":"water_flow_controller",
+      "value":"WaterFlow 控制"
+    },
+    {
+      "name":"water_flow_properties",
+      "value":"WaterFlow 属性"
+    },
+    {
+      "name":"water_flow_controller_scrollEdge",
+      "value":"scrollEdge"
+    },
+    {
+      "name":"water_flow_controller_scrollBy",
+      "value":"scrollBy"
+    },
+    {
+      "name":"water_flow_controller_top",
+      "value":"Top"
+    },
+    {
+      "name":"water_flow_controller_bottom",
+      "value":"Bottom"
+    },
+    {
+      "name":"water_flow_properties_scroll_bar_width",
+      "value":"scrollBarWidth"
+    },
+    {
+      "name":"water_flow_properties_scroll_bar_color",
+      "value":"scrollBarColor"
+    },
+    {
+      "name":"water_flow_properties_scroll_bar",
+      "value":"scrollBar"
+    },
+    {
+      "name":"water_flow_properties_edge_effect",
+      "value":"edgeEffect"
+    },
+    {
+      "name":"water_flow_properties_edge_effect_spring",
+      "value":"Spring"
+    },
+    {
+      "name":"water_flow_properties_edge_effect_fade",
+      "value":"Fade"
+    },
+    {
+      "name":"water_flow_properties_edge_effect_none",
+      "value":"None"
+    },
+    {
+      "name":"horizontal_reach_start",
+      "value":"横向滚动onReachStart"
+    },
+    {
+      "name":"horizontal_reach_end",
+      "value":"横向滚动onReachEnd"
+    },
+    {
+      "name":"vertical_reach_start",
+      "value":"纵向滚动onReachStart"
+    },
+    {
+      "name":"vertical_reach_end",
+      "value":"纵向滚动onReachEnd"
+    },
+    {
+      "name":"current_initialIndex",
+      "value":"当前initialIndex为:"
+    },
+    {
+      "name":"modify_initialIndex_tips",
+      "value":"修改 initialIndex 后请再次进入本页面查看效果"
+    },
+    {
+      "name":"current_scroll_event",
+      "value":"当前滚动事件为："
+    },
+    {
+      "name":"current_scroll_state",
+      "value":"当前滚动状态为："
+    },
+    {
+      "name":"current_scroll_distance",
+      "value":"本次滚动距离为："
+    },
+    {
+      "name":"current_scroll_index_first",
+      "value":"当前index, first："
+    },
+    {
+      "name":"current_scroll_index_last",
+      "value":", last："
+    },
+    {
+      "name":"current_event_value",
+      "value":"无事件"
+    },
+    {
+      "name":"current_event_on_scroll",
+      "value":"onScroll"
+    },
+    {
+      "name":"current_event_on_scroll_index",
+      "value":"onScrollIndex"
+    },
+    {
+      "name":"current_event_on_scroll_start",
+      "value":"onScrollStart"
+    },
+    {
+      "name":"current_event_on_scroll_stop",
+      "value":"onScrollStop"
     }
   ]
 }

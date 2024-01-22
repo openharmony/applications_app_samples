@@ -55,15 +55,15 @@ export default function abilityTest() {
      * 获取权限
      */
     it(BUNDLE + 'RequestPermissionFunction_001', 0, async () => {
-      Logger.info(TAG, BUNDLE + 'RequestPermissionFunction_001 begin')
-      let driver = await Driver.create()
-      await driver.delayMs(2000)
+      Logger.info(TAG, BUNDLE + 'RequestPermissionFunction_001 begin');
+      let driver = Driver.create();
+      await driver.delayMs(2000);
       // 获取访问位置
-      Logger.info(TAG, BUNDLE + 'RequestPermissionFunction_001 requestPermission')
-      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.accept'))))
-      let btnAccept = await driver.findComponent(ON.text(await getResourceString($r('app.string.accept'))))
-      await btnAccept.click()
-      Logger.info(TAG, BUNDLE + 'RequestPermissionFunction_001 end')
+      Logger.info(TAG, BUNDLE + 'RequestPermissionFunction_001 requestPermission');
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.only_accept_during_use'))));
+      let btnAccept = await driver.findComponent(ON.text(await getResourceString($r('app.string.only_accept_during_use'))));
+      await btnAccept.click();
+      Logger.info(TAG, BUNDLE + 'RequestPermissionFunction_001 end');
     })
 
     /**

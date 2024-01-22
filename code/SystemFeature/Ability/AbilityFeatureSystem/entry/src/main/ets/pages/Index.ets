@@ -74,10 +74,10 @@ struct Index {
               bundleName: 'com.samples.abilityFeatureSystem',
               abilityName: 'NewUIExtAbility',
               moduleName: 'entry',
-              type: 'sys/commonUI',
+              type: 'sysPicker/share',
               parameters: {
                 bundleName: 'com.samples.abilityFeatureSystem',
-                'ability.want.params.uiExtensionType': 'sys/commonUI',
+                'ability.want.params.uiExtensionType': 'sysPicker/share',
               }
             };
             try {
@@ -117,7 +117,7 @@ struct Index {
           rType: 'arrow',
           callback: () => {
             logger.info(`${TAG} startAbilityByType`);
-            this.context.startAbilityByType('photoEditor', {}, {
+            this.context.startAbilityByType('share', {}, {
               onError: (code: number, name: string, message: string) => {
                 logger.info(`${TAG} startAbilityByType, code:${code} name:${name} message:${message}`);
               }

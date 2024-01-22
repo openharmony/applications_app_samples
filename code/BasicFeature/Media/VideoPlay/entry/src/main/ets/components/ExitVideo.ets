@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import common from '@ohos.app.ability.common';
 
 @Component
 export struct ExitVideo {
@@ -33,7 +34,7 @@ export struct ExitVideo {
     }
     .margin({ top: $r('app.float.size_20'), left: $r('app.float.size_25') })
     .onClick(() => {
-      globalThis.context.terminateSelf();
+      (getContext(this) as common.UIAbilityContext).terminateSelf();
     })
   }
 }

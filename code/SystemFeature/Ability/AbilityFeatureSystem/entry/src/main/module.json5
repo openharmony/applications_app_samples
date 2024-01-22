@@ -64,25 +64,13 @@
         "icon": "$media:icon",
         "visible": true,
         "type": "sys/commonUI",
-        "metadata": [
-          {
-            "name": "ohos.extension.servicetype",
-            "value": "sys/commonUI"
-          }
-        ]
       },
       {
         "name": "NewUIExtAbility",
         "icon": "$media:icon",
         "description": "$string:UIExtAbility_desc",
         "visible": true,
-        "type": "sys/commonUI",
-        "metadata": [
-          {
-            "name": "ohos.extension.servicetype",
-            "value": "sys/commonUI"
-          }
-        ],
+        "type": "sysPicker/share",
         "srcEntrance": "./ets/newuiextability/NewUIExtAbility.ets",
       },
       {
@@ -91,12 +79,6 @@
         "description": "$string:UIExtAbility_desc",
         "visible": true,
         "type": "sys/commonUI",
-        "metadata": [
-          {
-            "name": "ohos.extension.servicetype",
-            "value": "sys/commonUI"
-          }
-        ],
         "srcEntrance": "./ets/sendsyncuiextability/SendSyncUIExtAbility.ets",
       }
     ],

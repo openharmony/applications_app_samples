@@ -632,7 +632,7 @@ export default function abilityTest() {
       Logger.info(TAG, `${BUNDLE}WaterFlow_001 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
-      await driver.swipe(10, 800, 10, 100, 600);
+      await driver.swipe(0, 800, 0, 100, 600);
       // 点击进入WaterFlow的使用首页
       let waterBtn: Component = await driver.findComponent(ON.text('WaterFlow'));
       await driver.delayMs(500);
@@ -649,6 +649,7 @@ export default function abilityTest() {
       Logger.info(TAG, `${BUNDLE}WaterFlow_001 end`);
       done();
     })
+
     /** 多线程共享内存页面场景
      */
     it(BUNDLE + "memoryShared_001", 1, async (done: Function) => {
@@ -688,13 +689,13 @@ export default function abilityTest() {
       let LockTaskBtn: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.use_lock'))));
       await driver.delayMs(1000);
       await LockTaskBtn.click();
-      await driver.delayMs(2000);
+      await driver.delayMs(3000);
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.write_success'))));
       // 点击进入锁的使用任务场景
       let NonLockTaskBtn: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.not_use_lock'))));
       await driver.delayMs(1000);
       await NonLockTaskBtn.click();
-      await driver.delayMs(2000);
+      await driver.delayMs(3000);
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.write_success'))));
 
       // 退出到首页面
@@ -702,6 +703,66 @@ export default function abilityTest() {
       await driver.delayMs(1000);
       await driver.pressBack();
       Logger.info(TAG, `${BUNDLE}memoryShared_001 end`);
+      done();
+    })
+
+    /**
+     * native跨线程示例
+     */
+    it(BUNDLE + "NativeThreadsCallJS_001", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}NativeThreadsCallJS_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      await driver.swipe(10, 800, 10, 100, 600);
+      // 点击进入NativeThreadsCallJS的使用首页
+      let NativeThreads: Component = await driver.findComponent(ON.text('NativeThreadsCallJS'));
+      await driver.delayMs(500);
+      await NativeThreads.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text("threadSafeTest"));
+      await driver.assertComponentExist(ON.text("libuvTest"));
+      await driver.delayMs(500);
+      Logger.info(TAG, `${BUNDLE}NativeThreadsCallJS_001 end`);
+      done();
+    })
+
+    it(BUNDLE + "NativeThreadsCallJS_002", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}NativeThreadsCallJS_002 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      // 安全函数验证
+      let threadSafeTest: Component = await driver.findComponent(ON.text('threadSafeTest'));
+      let textValue: Component = await driver.findComponent(ON.id('textNativeValue'));
+      for (let index = 0; index < 3; index++) {
+        // 获取点击之前的值
+        let textBefore = await textValue.getText();
+        let vauleBefore = Number(textBefore);
+        await threadSafeTest.click();
+        await driver.delayMs(1000);
+        // 获取点击之后的值
+        let textAfter = await textValue.getText();
+        let vauleAfter = Number(textAfter);
+        expect(vauleBefore + 30).assertEqual(vauleAfter);
+        await driver.delayMs(500);
+      }
+      // libuv验证
+      let libuvTest: Component = await driver.findComponent(ON.text('libuvTest'));
+      for (let index = 0; index < 3; index++) {
+        // 获取点击之前的值
+        let textBefore = await textValue.getText();
+        let vauleBefore = Number(textBefore);
+        await libuvTest.click();
+        await driver.delayMs(1000);
+        // 获取点击之后的值
+        let textAfter = await textValue.getText();
+        let vauleAfter = Number(textAfter);
+        expect(vauleBefore + 30).assertEqual(vauleAfter);
+        await driver.delayMs(500);
+      }
+      Logger.info(TAG, `${BUNDLE}NativeThreadsCallJS_002 end`);
+      // 退出到首页面
+      await driver.delayMs(500);
+      await driver.pressBack();
       done();
     })
   })

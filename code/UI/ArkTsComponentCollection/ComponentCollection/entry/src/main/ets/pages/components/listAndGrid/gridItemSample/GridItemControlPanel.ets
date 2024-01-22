@@ -21,6 +21,7 @@ export struct PropertiesControlPanel {
   @Link rowEnd: number;
   @Link columnStart: number;
   @Link columnEnd: number;
+  @Link gridItemStyle: number;
 
   build() {
     Column() {
@@ -58,6 +59,20 @@ export struct PropertiesControlPanel {
           this.columnEnd = Number.parseInt(value);
         },
         testId: `griditem_004`
+      })
+
+      // polymorphic styles
+      CommonItemSelect({
+        name: $r('app.string.grid_item_polymorphic_styles'),
+        selects: ['plain', 'none'],
+        callback: (index, value) => {
+          if (value === 'plain') {
+            this.gridItemStyle = 1;
+          } else if (value == 'none') {
+            this.gridItemStyle = 0;
+          }
+        },
+        testId: 'gridItem_style'
       })
     }
   }

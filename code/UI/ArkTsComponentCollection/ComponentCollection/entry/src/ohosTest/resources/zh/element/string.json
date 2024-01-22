@@ -5,6 +5,38 @@
       "value": "ArkTS组件库"
     },
     {
+      "name": "custom_event",
+      "value": "组件自定义事件分发"
+    },
+    {
+      "name": "custom_gesture",
+      "value": "自定义手势判定"
+    },
+    {
+      "name": "custom_judge_long_press",
+      "value": "长按响应区域"
+    },
+    {
+      "name": "custom_long_press_prompt",
+      "value": "长按上半区蓝色区域，蓝色区域响应"
+    },
+    {
+      "name": "custom_judge_click",
+      "value": "点击响应区域"
+    },
+    {
+      "name": "custom_tap_prompt",
+      "value": "点击下半区黄色区域，黄色区域响应"
+    },
+    {
+      "name": "custom_bigcircle_prompt",
+      "value": "大圈事件已响应"
+    },
+    {
+      "name": "custom_smallcircle_prompt",
+      "value": "小圈事件已响应"
+    },
+    {
       "name": "MainAbility_desc",
       "value": "ArkUI各组件、通用属性、通用方法等分类及描述应用"
     },
@@ -39,6 +71,10 @@
     {
       "name": "prop_border",
       "value": "border 边框"
+    },
+    {
+      "name": "prop_outline",
+      "value": "描边效果"
     },
     {
       "name": "prop_font",
@@ -1556,6 +1592,10 @@
       "value": "RichText 富文本"
     },
     {
+      "name": "rich_editor",
+      "value": "RichEditor 富文本编辑"
+    },
+    {
       "name": "scroll_name",
       "value": "Scroll 滚动"
     },
@@ -1891,6 +1931,7 @@
       "name": "list_title",
       "value": "List 列表容器"
     },
+
     {
       "name": "list_item_title",
       "value": "ListItem"
@@ -2167,6 +2208,62 @@
     {
       "name": "safe_area",
       "value": "SafeArea 安全区域"
+    },
+    {
+      "name": "text_input_limit",
+      "value": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    {
+      "name": "text_clock_monovolume_numbers",
+      "value": "变宽数字"
+    },
+    {
+      "name": "global_popUp_menu",
+      "value": "Popup"
+    },
+    {
+      "name": "text_copy",
+      "value": "复制"
+    },
+    {
+      "name": "copy_success",
+      "value": "复制成功"
+    },
+    {
+      "name": "text_paste",
+      "value": "粘贴"
+    },
+    {
+      "name": "paste_success",
+      "value": "粘贴成功"
+    },
+    {
+      "name": "text_get",
+      "value": "获取"
+    },
+    {
+      "name": "global_bindSheet_menu",
+      "value": "BindSheet半模态"
+    },
+    {
+      "name": "attribute_modifier",
+      "value": "动态属性设置"
+    },
+    {
+      "name": "list_introduction_properties",
+      "value": "List 属性"
+    },
+    {
+      "name":"water_flow_properties",
+      "value":"WaterFlow 属性"
+    },
+    {
+      "name":"water_flow_properties_scroll_bar_color",
+      "value":"scrollBarColor"
+    },
+    {
+      "name": "list_properties_edge_effect",
+      "value": "edgeEffect"
     }
   ]
 }

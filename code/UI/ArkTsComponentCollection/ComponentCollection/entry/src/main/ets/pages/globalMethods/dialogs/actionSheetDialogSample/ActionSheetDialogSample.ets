@@ -33,7 +33,7 @@ import { TitleBar } from '../../../../common/TitleBar';
   .padding(15)
 }
 
-@Extend(Button) function buttonStyle() {
+@Extend(Button) function commonButtonStyle() {
   .margin(8)
   .fontSize(16)
   .layoutWeight(1)
@@ -53,7 +53,7 @@ struct ListDialogSample {
           IntroductionTitle({ introduction: $r('app.string.alert_dialog_location') })
           Row() {
             Button($r('app.string.alert_dialog_top'))
-              .buttonStyle()
+              .commonButtonStyle()
               .onClick(() => {
                 ActionSheet.show(
                   {
@@ -94,7 +94,7 @@ struct ListDialogSample {
               })
               .id('sheet_topButton')
             Button($r('app.string.alert_dialog_center'))
-              .buttonStyle()
+              .commonButtonStyle()
               .onClick(() => {
                 ActionSheet.show(
                   {
@@ -135,7 +135,7 @@ struct ListDialogSample {
               })
               .id('sheet_centerButton')
             Button($r('app.string.alert_dialog_bottom'))
-              .buttonStyle()
+              .commonButtonStyle()
               .onClick(() => {
                 ActionSheet.show(
                   {
@@ -181,7 +181,7 @@ struct ListDialogSample {
           IntroductionTitle({ introduction: $r('app.string.alert_dialog_auto_cancel') })
           Row() {
             Button($r('app.string.alert_dialog_true'))
-              .buttonStyle()
+              .commonButtonStyle()
               .onClick(() => {
                 ActionSheet.show(
                   {
@@ -222,7 +222,7 @@ struct ListDialogSample {
               })
               .id('sheet_closeableButton')
             Button($r('app.string.alert_dialog_false'))
-              .buttonStyle()
+              .commonButtonStyle()
               .onClick(() => {
                 ActionSheet.show(
                   {
@@ -268,7 +268,7 @@ struct ListDialogSample {
           IntroductionTitle({ introduction: $r('app.string.alert_dialog_offset') })
           Row() {
             Button($r('app.string.alert_dialog_left'))
-              .buttonStyle()
+              .commonButtonStyle()
               .onClick(() => {
                 ActionSheet.show(
                   {
@@ -310,7 +310,7 @@ struct ListDialogSample {
               })
               .id('sheet_upperLeftButton')
             Button($r('app.string.alert_dialog_right'))
-              .buttonStyle()
+              .commonButtonStyle()
               .onClick(() => {
                 ActionSheet.show(
                   {
@@ -356,7 +356,7 @@ struct ListDialogSample {
           IntroductionTitle({ introduction: $r('app.string.action_sheet_click_sheets') })
           Row() {
             Button($r('app.string.action_sheet_dialog_click_content'))
-              .buttonStyle()
+              .commonButtonStyle()
               .onClick(() => {
                 ActionSheet.show(
                   {
@@ -409,7 +409,7 @@ struct ListDialogSample {
             Row() {
               Button($r('app.string.alert_dialog_bottom'))
                 .id('btn_test_input')
-                .buttonStyle()
+                .commonButtonStyle()
                 .onClick(() => {
                   this.mTextInputController.setTextSelection(1, 2)
                   ActionSheet.show(

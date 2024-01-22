@@ -53,5 +53,20 @@ const MENU: ThirdLevelCategory =
     title: $r('app.string.global_menu'),
     url: 'pages/globalMethods/dialogs/menuSample/MenuSample',
   }
+
+const BINDSHEET: ThirdLevelCategory =
+  {
+    image: $r('app.media.ic_bindSheet'),
+    title: $r('app.string.global_bindSheet_menu'),
+    url: 'pages/globalMethods/dialogs/bindSheetSample/BindSheetSample',
+  }
+
+const POPUP: ThirdLevelCategory =
+  {
+    image: $r('app.media.ic_popUp'),
+    title: $r('app.string.global_popUp_menu'),
+    url: 'pages/globalMethods/dialogs/popUpSample/PopUpSample',
+  }
+
 // The global method categorizes data, second menu data
-export const GLOBAL_METHOD_CATEGORIES: ThirdLevelCategory[] = [DIALOG,MENU]
+export const GLOBAL_METHOD_CATEGORIES: ThirdLevelCategory[] = [DIALOG,MENU, BINDSHEET, POPUP]
