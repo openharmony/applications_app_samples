@@ -39,7 +39,7 @@ import { TitleBar } from '../../../../common/TitleBar';
   .fontSize(14)
   .fontWeight(500)
   .fontColor($r('app.color.font_blue'))
-  .margin({ top : 6 , bottom : 6 , left : 8 , right : 8 })
+  .margin({ top : 9 , bottom : 9 , left : 8 , right : 8 })
 }
 
 @Extend(TextInput) function textInputStyle() {
@@ -55,10 +55,10 @@ import { TitleBar } from '../../../../common/TitleBar';
   .type(InputType.Password)
 }
 
-@Extend(Column) function columnStyle(marginLeftValue: number,marginRightValue: number) {
-  .height(32)
+@Extend(Column) function columnStyle(marginLeftValue: number , marginRightValue: number) {
+  .height(36)
   .width(98)
-  .borderRadius(14)
+  .borderRadius(18)
   .backgroundColor($r('app.color.background_shallow_grey'))
   .margin({ top : 24 , left : marginLeftValue , right : marginRightValue , bottom : 24 })
 }
@@ -86,7 +86,7 @@ struct OutLineSample {
               .backgroundColor($r('app.color.column_blue'))
               .border({
                 width : 4 ,
-                radius : { bottomLeft : 20 , topRight : 20 } ,
+                radius : { bottomLeft : 20 , topRight : 20 , bottomRight : 10 , topLeft : 10 } ,
                 color : $r('app.color.border_color') ,
                 style : BorderStyle.Solid
               })
@@ -94,7 +94,7 @@ struct OutLineSample {
                 width : 4 ,
                 radius : 20 ,
                 color : $r('app.color.outline_color') ,
-                style : OutlineStyle.DOTTED
+                style : OutlineStyle.DASHED
               })
 
               Text() {
@@ -293,14 +293,14 @@ struct OutLineSample {
             .columnStyle(48,16)
             .outline(this.mTextIsHover1 ?
               {
-                width : 3 ,
-                radius : 14 ,
+                width : 4 ,
+                radius : 25 ,
                 color : $r('app.color.border_color') ,
                 style : OutlineStyle.SOLID
               } :
               {
                 width : 0 ,
-                radius : 14
+                radius : 25
               })
             .onHover((isHover) => {
               this.mTextIsHover1 = isHover;
@@ -314,14 +314,14 @@ struct OutLineSample {
             .columnStyle(16,16)
             .outline(this.mTextIsHover2 ?
               {
-                width : 3 ,
-                radius : 14 ,
+                width : 4 ,
+                radius : 25 ,
                 color : $r('app.color.border_color') ,
                 style : OutlineStyle.SOLID
               } :
               {
                 width : 0 ,
-                radius : 14
+                radius : 25
               })
             .onHover((isHover) => {
               this.mTextIsHover2 = isHover;
@@ -335,14 +335,14 @@ struct OutLineSample {
             .columnStyle(16,48)
             .outline(this.mTextIsHover3 ?
               {
-                width : 3 ,
-                radius : 14 ,
+                width : 4 ,
+                radius : 25 ,
                 color : $r('app.color.border_color') ,
                 style : OutlineStyle.SOLID
               } :
               {
                 width : 0 ,
-                radius : 14
+                radius : 25
               })
             .onHover((isHover) => {
               this.mTextIsHover3 = isHover;
