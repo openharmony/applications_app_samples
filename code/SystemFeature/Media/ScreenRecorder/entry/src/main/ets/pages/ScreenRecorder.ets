@@ -20,6 +20,7 @@ import Logger from '../common/Logger';
 import display from '@ohos.display';
 import emitter from '@ohos.events.emitter';
 import { DESTROY_FLOAT_WINDOW } from '../common/Constants';
+import PhoneConstants from '../common/Constants';
 
 const TAG: string = '[ScreenRecorder]';
 
@@ -129,6 +130,12 @@ struct ScreenRecorder {
 
   private async getVideoConfig(url: string): Promise<media.VideoRecorderConfig> {
     const dftDisplay = display.getDefaultDisplaySync()
+    if (Number(dftDisplay.width) > 1000) {
+      dftDisplay.width = (dftDisplay.width + PhoneConstants.PHONE_WIDTH) / 2
+      dftDisplay.height = (dftDisplay.height - PhoneConstants.PHONE_HEIGHT) / 2
+    }
+    Logger.info(TAG, 'phoneWidth:' + JSON.stringify(dftDisplay.width));
+    Logger.info(TAG, 'phoneHeight:' + JSON.stringify(dftDisplay.height));
     const videoProfile: media.VideoRecorderProfile = {
       ...DEFAULT_VIDEO_PROFILE,
       videoFrameWidth: Number(dftDisplay.width) * DEVICE_RATE,
@@ -182,6 +189,12 @@ struct ScreenRecorder {
   private async createVirtualScreen(surfaceId: string) {
     try {
       const dftDisplay = display.getDefaultDisplaySync();
+      if (Number(dftDisplay.width) > 1000) {
+        dftDisplay.width = (dftDisplay.width + PhoneConstants.PHONE_WIDTH) / 2
+        dftDisplay.height = (dftDisplay.height - PhoneConstants.PHONE_HEIGHT) / 2
+      }
+      Logger.info(TAG, 'phoneWidth:' + JSON.stringify(dftDisplay.width));
+      Logger.info(TAG, 'phoneHeight:' + JSON.stringify(dftDisplay.height));
       return await screenManager.createVirtualScreen({
         name: VIRTUAL_SCREEN_NAME,
         width: Number(dftDisplay.width) * DEVICE_RATE,

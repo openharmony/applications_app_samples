@@ -102,6 +102,13 @@ deviceManager.createDeviceManager('ohos.samples.distributedmusicplayer') [源码
 
 5.本示例需要使用@ohos.distributedDeviceManager系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。
 
+6.本示例中使用到特殊安装，需要将本示例加入到白名单中再进行安装。详细内容如下
+{
+    "bundleName": "ohos.samples.distributedmusicplayer",
+    "app_signature" : [],
+    "allowAppUsePrivilegeExtension": true
+}
+
 ### 下载
 
 如需单独下载本工程，执行如下命令：
