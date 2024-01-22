@@ -39,11 +39,11 @@ export default class WorkAbility extends WorkSchedulerExtensionAbility {
   }
 
   async publishNotification(parameters: Object): Promise<void> {
-    let parametersObject: ParametersObject = JSON.parse(JSON.stringify(parameters));
+    let parametersObject: ParametersObject = JSON.parse(parameters.toString());
     logger.info(TAG, `publishNotification parametersObject= ${parametersObject}`);
     let basicContent: notification.NotificationBasicContent = {
       title: parametersObject.title,
-      text: 'content'
+      text: parametersObject.title
     };
     let actionButtons: notification.NotificationActionButton[] = [
       {
