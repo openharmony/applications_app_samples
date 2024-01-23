@@ -202,6 +202,11 @@ const COMMON_EVENTS: ThirdLevelCategory[] =
       image: $r('app.media.ic_scroll_event'),
       title: $r('app.string.scroll_event'),
       url: 'pages/universal/events/scrollEventSample/ScrollEventSample'
+    },
+    {
+      image: $r('app.media.ic_gallery_free'),
+      title: $r('app.string.custom_event'),
+      url: 'pages/universal/events/customEventSample/CustomEventHome'
     }
   ];
 
