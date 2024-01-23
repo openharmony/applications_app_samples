@@ -26,7 +26,7 @@ export default function abilityTest() {
     /**
      * 打开应用
      */
-    it(BUNDLE + 'StartAbility_001', 0, async (done) => {
+    it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
       Logger.info(TAG, BUNDLE + 'StartAbility_001 begin');
       let driver = Driver.create();
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
