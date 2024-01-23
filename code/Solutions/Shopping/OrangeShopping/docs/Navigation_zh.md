@@ -1,331 +1,171 @@
 # Navigation开发示例应用
 
-[//]: # (### 介绍)
-
-[//]: # ()
-[//]: # (本示例展示在进场时加载进场动画，整体使用**Tabs**容器设计应用框架，通过**TabContent**组件设置分页面，在子页面中绘制界面。通过Navigation完成页面之间的切换。在详情页中通过)
-
-[//]: # (**Video**组件加载视频资源，使用**CustomDialogController**弹窗选择位置信息，点击首页及购物车返回主页面。)
-
-[//]: # ()
-[//]: # (本示例使用[Tabs容器]&#40;https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-tabs.md&#41;)
-
-[//]: # (实现通过页签进行内容视图切换。使用[Navigation]&#40;https://gitee.com/openharmony/docs/blob/OpenHarmony-4.0-Beta2/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-navigation.md#navigation&#41;实现页面之间的切换。使用[自定义弹窗]&#40;https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-methods-custom-dialog-box.md&#41;)
-
-[//]: # (设置位置信息。使用[Swiper]&#40;https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-swiper.md&#41;)
-
-[//]: # (组件实现页面展示图轮播。使用[Grid]&#40;https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-list.md&#41;)
-
-[//]: # (容器组件设置展示的商品信息。)
-
-[//]: # ()
-[//]: # (本示例用到了延迟任务回调能力接口[@ohos.WorkSchedulerExtensionAbility]&#40;https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-WorkSchedulerExtensionAbility.md&#41; 。)
-
-[//]: # ()
-[//]: # (通知管理的能力接口[@ohos.notification]&#40;https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-notification.md&#41; 。)
-
-[//]: # ()
-[//]: # (HTTP数据请求能力接口[@ohos.net.http]&#40; https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-http.md&#41; 。)
-
-[//]: # ()
-[//]: # (媒体查询接口[@system.mediaquery]&#40;https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-system-mediaquery.md&#41; 。)
-
-[//]: # ()
-[//]: # (管理窗口能力接口[@ohos.window]&#40;https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-window.md&#41; 。)
-
-[//]: # ()
-[//]: # (### 效果预览)
-
-[//]: # ()
-[//]: # (![]&#40;screenshots/device/shopping.gif&#41;)
-
-[//]: # ()
-[//]: # (使用说明：)
-
-[//]: # ()
-[//]: # (1、启动应用进入进场动画，然后进入首页的时候会有升级弹窗的提示，判断应用需不需要升级，整个应用分四部分，首页、新品、购物车、我的。可以点击进行切换。)
-
-[//]: # ()
-[//]: # (2、“首页”页面具有扫一扫功能、搜索框、轮播图、tabs、商品列表。)
-
-[//]: # ()
-[//]: # (3、“首页”页面的扫一扫点击可以进行二维码扫描，点击商品可以跳转到详情页。)
-
-[//]: # ()
-[//]: # (4、“商品详情页”上部分是视频，点击视频进行播放，也可以点击进入全屏模式，向下滑动详情页视频可以变成小窗口模式。点击右侧悬浮的直播按钮，可进入直播页面，直播页面可进行视频播放。)
-
-[//]: # ()
-[//]: # (5.“商品详情页”有个分享功能，点击可进行分享。点击选择收货地址可弹出选择地址的选项，可进行选择地址。)
-
-[//]: # ()
-[//]: # (6.断开网络链接，“商品详情页”中点击降价通知后，重新连接网络后通知栏有降价通知。)
-
-[//]: # ()
-[//]: # (7.新品、购物车、我的目前是静态页面。)
-
-[//]: # ()
-[//]: # (### 工程目录)
-
-[//]: # ()
-[//]: # (```)
-
-[//]: # (OrangeShopping)
-
-[//]: # (├── AppScope                                    )
-
-[//]: # (│   └── app.json5                               // APP信息配置文件)
-
-[//]: # (├── entry/src/main                              // 商品主页)
-
-[//]: # (│   ├── ets)
-
-[//]: # (│   │   ├── Application)
-
-[//]: # (│   │   ├── Mainmability                        // 应用入口，在应用创建时进行必要的权限判断)
-
-[//]: # (│   │   ├── pages)
-
-[//]: # (│   │   │   ├── Index.ets                       // 首页的入口，首页加载页面&#40;可点击跳过&#41;)
-
-[//]: # (│   │   │   ├── Detail.ets                      // 商品详情页)
-
-[//]: # (│   │   │   ├── FullPage.ets                    // 商品详情页内的视频组件)
-
-[//]: # (│   │   │   ├── Home.ets                        // 首页)
-
-[//]: # (│   │   │   ├── LivePage.ets                    // 直播页)
-
-[//]: # (│   │   │   ├── ScanPage.ets                    // 二维码扫描组件)
-
-[//]: # (│   │   │   └── Setting.ets                     // 封装http请求页   )
-
-[//]: # (│   │   ├── utils)
-
-[//]: # (│   │   │   ├── RouterUtil.ets                  // 路由跳转配置)
-
-[//]: # (│   │   └── WorkAbility)
-
-[//]: # (│   │       └── WorkAbility.ts)
-
-[//]: # (│   ├── module.json5                            // Module的基本配置信息,应用运行过程中所需的权限信息。)
-
-[//]: # (│   ├── resources/base)
-
-[//]: # (│   │   ├── element                             // 文字信息列表)
-
-[//]: # (│   │   ├── profile                             // 全局路由配置)
-
-[//]: # (│   │   └── media                               // icon图片)
-
-[//]: # (├── feature/detailPageHsp/src/main              // 商品主页)
-
-[//]: # (│   ├── ets)
-
-[//]: # (│   │   ├── mock                                // mock的数据)
-
-[//]: # (│   │   ├── components                          // 组件模块)
-
-[//]: # (│   │   └── main                                // 商品详情页模块)
-
-[//]: # (├── feature/emitter/src/main                    )
-
-[//]: # (│   ├── ets)
-
-[//]: # (│   │   └── components                          // 订阅购物车模块)
-
-[//]: # (├── feature/navigationHome/src/main             )
-
-[//]: # (│   ├── ets)
-
-[//]: # (│   │   ├── good                                // 商品模块)
-
-[//]: # (│   │   ├── home                                // 首页模块)
-
-[//]: # (│   │   ├── user                                // 用户模块)
-
-[//]: # (│   │   └── shoppingCart                        // 商品购物车模块)
-
-[//]: # (```)
-
-[//]: # ()
-[//]: # (### 相关概念)
-
-[//]: # ()
-[//]: # (动效能力：动画应该尽可能减少冗余刷新，合理地使用[动效]&#40;https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/performance/animation_practice.md/&#41;开发效率更高，可以获得更好的性能。)
-
-[//]: # ()
-[//]: # (### 具体实现)
-
-[//]: # ()
-[//]: # (1.应用创建时进行必要的权限判断：在[app.json5]&#40;entry/src/main/ets/MainAbility/MainAbility.ts &#41;)
-
-[//]: # (文件中对```"requestPermission"```对象进行权限匹配。如果有如果权限列表中有-1，说明用户拒绝了授权。)
-
-[//]: # ()
-[//]: # (2.配置Module信息：)
-
-[//]: # ()
-[//]: # (* 在[module.json5]&#40; entry/src/main/module.json5 &#41;文件中配置```"extensionAbilities"```字段)
-
-[//]: # (* 在```"requestPermissions"```标签中添加需要开的权限，例如使用相机拍摄照片和录制视频权限： "name": ")
-
-[//]: # (  ohos.permission.CAMERA")
-
-**3.Navigation的使用：**
-   [Navigation](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.0-Beta2/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-navigation.md#navigation)组件主要包含主页和内容页。主页由标题栏、内容区和工具栏组成，其中内容区默认首页显示导航内容(Navigation的子组件)
-   或非首页显示(NavDestination的子组件)，首页和非首页通过路由进行切换。Navigation的路由切换的方式有两种，在API Version 9上，首页导航内容需要配合[NavRouter](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.0-Beta2/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-navrouter.md)组件实现页面路由，
-   从API Version 10开始，首页推荐使用[NavPathStack](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.0-Beta2/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-navigation.md#navpathstack10)配合[NavDestination](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.0-Beta2/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-navdestination.md)属性进行页面路由。本次示例主要介绍NavPathStack的使用，如下步骤所示：
-  * NavPathStack有两种路由切换方法，一种是pushPath，如主页---->设置页面，通过使用this.pageStack.pushPath({ name: 'SetPage' })进行跳转，源码参考[TitleBar.ets](feature/navigationHome/src/main/ets/components/home/TitleBar.ets)，
-   另外一种是pushPathByName，如主页---->详情页面，通过使用this.pageStack.pushPathByName('DetailPage', item)进行跳转，其中item为需要传递的参数，源码参考[GoodsList.ets](feature/navigationHome/src/main/ets/components/good/GoodsList.ets)
-
-  * NavPathStack支持pop、move、clear方法的使用；pop方法的作用是弹出路由栈栈顶元素，如首页进入商品详情页面，在详情页面使用this.pageStack.pop()方法返回到首页，clear方法的作用是清除栈中所有页面，
-     如首页跳转到详情页面，详情页面再进入直播页面，在直播页面通过使用this.pageStack.clear()直接返回到首页。除此之外，还有popTo(回退路由栈到第一个名为name的NavDestination页面)、
-     popToIndex(回退路由栈到index指定的NavDestination页面)、moveToTop(将第一个名为name的NavDestination页面移到栈顶)、moveIndexToTop(将index指定的NavDestination页面移到栈顶)方法,
-     由于本示例暂时没有合适的按钮去承载这些功能，所以本示例未体现。
-
-  * 路由栈信息,如下所示，源码参考[DetailPage.ets](feature/detailPageHsp/src/main/ets/main/DetailPage.ets);
-      ```
-      获取栈中所有NavDestination页面的名称：this.pageInfos.getAllPathName()
-      获取index指定的NavDestination页面的参数信息：this.pageInfos.getParamByIndex(1)
-      获取全部名为name的NavDestination页面的参数信息：this.pageInfos.getParamByName('pageTwo')
-      获取全部名为name的NavDestination页面的位置索引：this.pageInfos.getIndexByName('pageOne')
-      获取栈大小：this.pageInfos.size()
-      ```
-**4.动态加载的使用：** 
-
-  * 定义需要被动态加载的组件DetailPage，本示例中组件加载使用搭配Navigation实现。源码参考[DetailPage.ets](feature/detailPageHsp/src/main/ets/main/DetailPage.ets)；
-  * 定义一个DynamicLoader动态回调类作为容器，用来注册和调用动态加载函数。源码参考[DynamicLoader.ets](feature/navigationHome/src/main/ets/common/DynamicLoader.ets)；  
-  * 将DetailPage组件用DetailPageLoader函数封装，当DetailPageLoader被调用时，会渲染DetailPage页面。源码参考[DetailPageLoader.ets](entry/src/main/ets/pages/DetailPageLoader.ets)；  
-  * 在主页实现动态加载DetailPage的步骤如下：
-  由于navDestination无法直接动态import组件（import是函数，组件中无法引用函数），此处采用声明@BuilderParam detailPageLoader函数，在点击时初始化此函数，此时navDestination中可以调用this.detailPageLoader()从而加载组件DetailPage。  
-
-    a)主页Home中定义组件加载函数@BuilderParam detailPageLoader: () => void，用来承接await import异步导入detailPageLoader的结果。源码参考[Home.ets](entry/src/main/ets/pages/Home.ets)，
-     ```
-     @BuilderParam detailPageLoader: () => void
-     ```
-    b)注册异步函数，点击时为detailPageLoader初始化,当满足key为DetailPage时，此时异步的加载DetailPageLoader，渲染DetailPage源码参考[Home.ets](entry/src/main/ets/pages/Home.ets)，
-    ```
-    DynamicLoader.getInstance().register(
-      async (key: string) => {
-        if (key === "DetailPage") {
-          let obj = await import("./DetailPageLoader")
-          this.detailPageLoader = obj.DetailPageLoader;
-        }
-      }
-    ```
-    c) 定义NavDestination中动态加载函数，当存在跳转行为时，会调用此函数,源码参考[Home.ets](entry/src/main/ets/pages/Home.ets)；
-    ```
-     PageMap(name: string, param: NavPathStack) {
-       if (name === 'DetailPage') {
-         this.detailPageLoader();
-     })
-    ```
-    d)按钮触发点击函数，调用detailPageLoader，此时真正的初始化@BuilderParam detailPageLoader，并通过Navigation中PageMap动态加载组件DetailPage。,源码参考[GoodsList.ets](feature/navigationHome/src/main/ets/components/good/GoodsList.ets)，
-    ```
-    Column() // 首页goodsList组件
-      .onClick(() => {
-         // 动态加载组件
-         DynamicLoader.getInstance().fire('DetailPage').then(()=>{
-           this.active = true;
-           this.pageStack.pushPathByName('DetailPage', item);
-         })
-      })
-    ```
-**5.hsp包的创建与使用：**
- 本示例以创建detailPageHsp的hsp包为例，[Hsp包介绍及详细操作步骤](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/quick-start/in-app-hsp.md/)   
-  * 在根目录右键新创建module为Shared Library类型的hsp模块，并将模块命名为detailPageHsp并拖拽至feature文件夹下做包的统一管理；
-  * 定义hsp出口：在创建后的hsp包内编写业务代码，并在index.ets中export组件。[源码参考](feature/detailPageHsp/Index.ets)；
-  * 引用方hap如何使用hsp：通过在oh-package.json5文件中加入定义的hsp依赖。[源码参考](entry/oh-package.json5)；
- ```
-  "dependencies": {
-     "@ohos/details-page-hsp": "file:../feature/detailPageHsp",
-   }
- ```
-  * hap中使用：在组件中引入依赖。[源码参考](entry/src/main/ets/pages/Detail.ets)
- ```
- import { DetailPage } from '@ohos/details-page-hsp';
- ```
-  * 编译时需选中detailPageHsp模块，在ide的工具栏中选择build-Make Module 'detailPageHsp'。  
-  * 运行时，需要在运行模块处配置edit Configuration并勾选Deploy Multi Hap Packages进行混合编译，即可运行。[详细操作步骤](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/quick-start/in-app-hsp.md/)
-
 ## 简介
 
-在应用开发时，我们常常遇到，需要在应用内多页面跳转场景时中使用`Navigation`导航组件做统一的页面跳转管理，它提供了一系列属性方法来设置页面的标题栏、工具栏以及菜单栏的各种展示样式。除此之外还拥有动态加载，navPathStack路由跳转等能力。
+在应用开发时，我们常常遇到，需要在应用内多页面跳转场景时中使用`Navigation`导航组件做统一的页面跳转管理，它提供了一系列属性方法来设置页面的标题栏、工具栏以及菜单栏的各种展示样式。除此之外还拥有动态加载，navPathStack路由跳转，挎包引用Hsp等能力。
 
-本文就以Navigation页面切换范例为例，来展开讲解Navigation以上的技术点，帮助开发者快速学习。
+本文就以Navigation开发示例应用为例，来展开讲解Navigation以上的技术点，帮助开发者快速学习。
 
 ## 场景概述
 
-ArkUI中，应用内导航组件Navigation一般作为Page页面的根容器， Navigation组件主要包含主页和内容页。    
-主页由标题栏、内容区和工具栏组成，其中内容区默认首页显示导航内容(Navigation的子组件) 或非首页显示(NavDestination的子组件)，首页和非首页通过路由进行切换。  
+ArkUI中，应用内导航组件Navigation一般作为Page页面的根容器， Navigation组件主要包含主页和内容页。
+
+主页由标题栏、内容区和工具栏组成，其中内容区默认首页显示导航内容(Navigation的子组件) 或非首页显示(NavDestination的子组件)，首页和非首页通过路由进行切换。
+
 Navigation的路由切换的方式有两种，本次示例主要介绍NavPathStack的使用。
+
 * 在API Version 9上，首页导航内容需要配合NavRouter组件实现页面路由。
 * 从API Version 10开始，首页推荐使用NavPathStack配合NavDestination属性进行页面路由。
 
-> 通过本篇文章的学习，你将学会：    
-1.如何使用**navPathStack路由转场**  
-2.如何在**Navigation中跨包引用hsp**  
-3.如何在**Navigation中使用动态加载**
+> 通过本篇文章的学习，你将学会：
+>
+> 1.如何使用**NavPathStack路由转场**
+>
+> 2.如何在**Navigation中跨包引用hsp**
+>
+> 3.如何在**Navigation中使用动态加载**
 
-## router场景与navigation适用场景对比
+## Router场景与Navigation适用场景对比
+
 | 组件  | 适用场景 | 特点                | 专场动画效果对比 |
 |-----|------|-------------------|----------|
 | Router | 模块间与模块内页面切换  | 通过每个页面的url实现模块间解耦 | 页面平推转场效果 |
 | Navigation | 模块内页面切换  | 通过组件级路由统一路由管理     | 向右折叠转场效果 |
 
-## 使用navPathStack路由转场
-* NavPathStack支持pop、move、clear方法的使用；pop方法的作用是弹出路由栈栈顶元素，如首页进入商品详情页面，在详情页面使用this.pageStack.pop()方法返回到首页，clear方法的作用是清除栈中所有页面，
-      如首页跳转到详情页面，详情页面再进入直播页面，在直播页面通过使用this.pageStack.clear()直接返回到首页。除此之外，还有popTo(回退路由栈到第一个名为name的NavDestination页面)、
-      popToIndex(回退路由栈到index指定的NavDestination页面)、moveToTop(将第一个名为name的NavDestination页面移到栈顶)、moveIndexToTop(将index指定的NavDestination页面移到栈顶)方法,
-      由于本示例暂时没有合适的按钮去承载这些功能，所以本示例未体现。
+## 使用NavPathStack路由转场
+NavPathStack是Navigation路由栈，通过对栈内元素的操作，完成页面的路由转场。详细API如下表：
 
- * 路由栈信息,如下所示，源码参考[DetailPage.ets](feature/detailPageHsp/src/main/ets/main/DetailPage.ets);
-        ```
-        获取栈中所有NavDestination页面的名称：this.pageInfos.getAllPathName()
-        获取index指定的NavDestination页面的参数信息：this.pageInfos.getParamByIndex(1)
-        获取全部名为name的NavDestination页面的参数信息：this.pageInfos.getParamByName('pageTwo')
-        获取全部名为name的NavDestination页面的位置索引：this.pageInfos.getIndexByName('pageOne')
-        获取栈大小：this.pageInfos.size()
-        ```
+| API             | 描述                                                        |
+| --------------- | ----------------------------------------------------------- |
+| pushPath        | 将info指定的NavDestination页面信息入栈。                    |
+| pushPathByName  | 将name指定的NavDestination页面信息入栈，传递的数据为param。 |
+| pop             | 弹出路由栈栈顶元素。                                        |
+| popToName       | 回退路由栈到第一个名为name的NavDestination页面。            |
+| popToIndex      | 回退路由栈到index指定的NavDestination页面。                 |
+| moveToTop       | 将第一个名为name的NavDestination页面移到栈顶。              |
+| moveIndexToTop  | 将index指定的NavDestination页面移到栈顶。                   |
+| clear           | 清除栈中所有页面。                                          |
+| getAllPathName  | 获取栈中所有NavDestination页面的名称。                      |
+| getParamByIndex | 获取index指定的NavDestination页面的参数信息。               |
+| getParamByName  | 获取全部名为name的NavDestination页面的参数信息。            |
+| getIndexByName  | 获取全部名为name的NavDestination页面的位置索引。            |
+
+
 
 ### 实现思路
 
-NavPathStack有两种路由切换方法：  
-1、通过pushPath，如主页---->设置页面，通过使用this.pageStack.pushPath({ name: 'SetPage' })进行跳转，源码参考[TitleBar.ets](feature/navigationHome/src/main/ets/components/home/TitleBar.ets)，  
-2、通过pushPathByName，如主页---->详情页面，通过使用this.pageStack.pushPathByName('DetailPage', item)进行跳转，其中item为需要传递的参数，源码参考[GoodsList.ets](feature/navigationHome/src/main/ets/components/good/GoodsList.ets)
+NavPathStack通过pushPath跳转页面，通过pop返回：  
+1、通过pushPath跳转，如主页—>商品详情页，通过使用源码参考[MainPage.ets](CommonAppDevelopment/feature/navigationhome/src/main/ets/view/MainPage.ets)，
+
+```
+this.pageStack.pushPath({ name: 'GoodsDetailView', param: item })
+```
+
+2、NavPathStack通过pop返回，从详情页—>返回到主页，[GoodsDetailView.ets](CommonAppDevelopment/feature/navigationhome/src/main/ets/view/GoodsDetailView.ets)
+
+```
+.onBackPressed(() => {this.pageStack.pop(); return true;})
+```
 
 ### 开发步骤
 
+1、在pageMap组件中定义需要用到的页面，定义NavPathStack对象，并用provider传递给全部子组件，Product模块的Home页面build中，定义navigation容器并设置navDestination()属性加载PageMap组件，并将需要使用容器的组件引入并调用。
+
+```javascript
+import { NavigationHomePage} from '@ohos/navigation-component';
+
+@Provide('pageStack') pageStack: NavPathStack = new NavPathStack();
+
+@Builder
+PageMap(name: string) {
+  if (name === HomeConstants.GOODS_NAME) {
+    // 商品列表详情页
+    GoodsDetailView()
+  } else if (name === HomeConstants.VIDEO_NAME) {
+    // 商品视频介绍页
+    VideoView()
+  } else if (name === HomeConstants.LIVE_NAME) {
+    // 直播页
+    LiveView()
+  }
+}
+
+build() {
+  Navigation(this.pageStack) {
+    NavigationHomePage();
+  }
+  .hideTitleBar(true)
+  .navDestination(this.PageMap)
+}
+```
+
+
+
+2、NavigationHomePage中定义NavDestination并包括需要被加载的组件。
+
+```javascript
+export struct NavigationHomePage {
+
+NavDestination() {
+  MainPage()
+   }
+}
+```
+
+3、在mainpage中Consume引入pageStack，通过NavPathStack的api触发切换组件。
+
+```javascript
+@Consume('pageStack') pageStack: NavPathStack;
+
+.onClick(() => {
+ this.pageStack.pushPath({ name: 'GoodsDetailView', param: item })
+ })
+```
+
+4、在GoodsDetailView中，通过pop出栈，返回前页。
+
+```javascript
+@Consume('pageStack') pageStack: NavPathStack;
+.onBackPressed(() => {
+  this.pageStack.pop();
+  return true;
+})
+```
+
 ## Navigation中跨包引用hsp
-本示例以创建detailPageHsp的hsp包为例，并介绍如何混合编译工程[Hsp包介绍及详细操作步骤](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/quick-start/in-app-hsp.md/)
+
+本示例以创建Navigationhome的hsp包为例，并介绍如何混合编译工程[Hsp包介绍及详细操作步骤](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/quick-start/in-app-hsp.md/)
 
 ### 实现思路
-* 在根目录右键新创建module为Shared Library类型的hsp模块，并将模块命名为detailPageHsp并拖拽至feature文件夹下做包的统一管理；
-* 定义hsp出口：在创建后的hsp包内编写业务代码，并在index.ets中export组件。[源码参考](feature/detailPageHsp/Index.ets)；
-* 引用方hap如何使用hsp：通过在oh-package.json5文件中加入定义的hsp依赖。[源码参考](entry/oh-package.json5)；
+
+创建navigationhome模块，作为HSP，在product的entry中引用创建的HSP模块。
+
+### 开发步骤
+
+* 在根目录右键新创建module为Shared Library类型的hsp模块，并将模块命名为navigationhome并拖拽至feature文件夹下做包的统一管理；
+* 定义hsp出口：在创建后的hsp包内编写业务代码，并在index.ets中export组件。[源码参考](CommonAppDevelopment/feature/navigationhome/src/main/ets/pages/NavigationHomePage.ets)；
+* 引用方如何使用hsp：product包通过在oh-package.json5文件中加入定义的hsp依赖。[源码参考](CommonAppDevelopment/product/entry/oh-package.json5)；
  ```
   "dependencies": {
-     "@ohos/details-page-hsp": "file:../feature/detailPageHsp",
+     "@ohos/navigation-component": "file:../../feature/navigationhome"
    }
  ```
-* hap中使用：在组件中引入依赖。[源码参考](entry/src/main/ets/pages/Detail.ets)
+* hap中使用：在组件中引入依赖。[源码参考](CommonAppDevelopment/product/entry/src/main/ets/pages/Home.ets)
  ```
- import { DetailPage } from '@ohos/details-page-hsp';
+ import { NavigationHomePage, GoodsDetailView, VideoView, LiveView } from '@ohos/navigation-component';
  ```
 * 编译时需选中detailPageHsp模块，在ide的工具栏中选择build-Make Module 'detailPageHsp'。
 * 运行时，需要在运行模块处配置edit Configuration并勾选Deploy Multi Hap Packages进行混合编译，即可运行。[详细操作步骤](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/quick-start/in-app-hsp.md/)
 
-### 开发步骤
 
 
 ## Navigation中使用动态加载
-* 本示例通过定义一个需要被动态加载的组件DetailPage，配合Navigation，。源码参考[DetailPage.ets](feature/detailPageHsp/src/main/ets/main/DetailPage.ets)；
-
+* 本示例通过定义一个需要被动态加载的组件DetailPage，配合Navigation。源码参考[DetailPage.ets](feature/detailPageHsp/src/main/ets/main/DetailPage.ets)；
 
 
 ### 实现思路
 
- * 定义一个DynamicLoader动态回调类作为容器，用来注册和调用动态加载函数。源码参考[DynamicLoader.ets](feature/navigationHome/src/main/ets/common/DynamicLoader.ets)；
+* 定义一个DynamicLoader动态回调类作为容器，用来注册和调用动态加载函数。源码参考[DynamicLoader.ets](feature/navigationHome/src/main/ets/common/DynamicLoader.ets)；
 * 将DetailPage组件用DetailPageLoader函数封装，当DetailPageLoader被调用时，会渲染DetailPage页面。源码参考[DetailPageLoader.ets](entry/src/main/ets/pages/DetailPageLoader.ets)；
 * 在主页实现动态加载DetailPage的步骤如下：
   由于navDestination无法直接动态import组件（import是函数，组件中无法引用函数），此处采用声明@BuilderParam detailPageLoader函数，在点击时初始化此函数，此时navDestination中可以调用this.detailPageLoader()从而加载组件DetailPage。
@@ -369,17 +209,11 @@ d)按钮触发点击函数，调用detailPageLoader，此时真正的初始化@B
 
 ## 运行效果
 
-| 首页           | 子页面A               |
-|--------------|--------------------|
-| 待补充          | 待补充 |
+ ![shopping.gif](../screenshots/device/shopping.gif) 
 
-
-## 注意事项
-
-> 可选，介绍下需要提醒开发者的内容。
 
 ## 参考文档
 
 [1] [桔子购物sample · OpenHarmony - Gitee.com](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Shopping/OrangeShopping)
 
-[2] [轮播组件(Swiper) · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-layout-development-create-looping.md)
+[2] [Navigation组件 · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-navigation.md)
