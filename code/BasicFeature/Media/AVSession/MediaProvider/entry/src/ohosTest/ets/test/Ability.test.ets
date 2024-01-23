@@ -15,39 +15,18 @@
 
 import Log from './Log'
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from '@ohos/hypium'
-// @ts-ignore
 import { Driver, MatchPattern, ON } from '@ohos.UiTest'
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 
 export default function abilityTest() {
   const BUNDLE = 'MediaProvider_';
-  let driver;
+  let driver = Driver.create();
 
-  describe('ActsAbilityTest', function () {
-    // Defines a test suite. Two parameters are supported: test suite name and test suite function.
-    beforeAll(function () {
-      // Presets an action, which is performed only once before all test cases of the test suite start.
-      // This API supports only one parameter: preset action function.
-    })
-    beforeEach(function () {
-      // Presets an action, which is performed before each unit test case starts.
-      // The number of execution times is the same as the number of test cases defined by **it**.
-      // This API supports only one parameter: preset action function.
-    })
-    afterEach(function () {
-      // Presets a clear action, which is performed after each unit test case ends.
-      // The number of execution times is the same as the number of test cases defined by **it**.
-      // This API supports only one parameter: clear action function.
-    })
-    afterAll(function () {
-      // Presets a clear action, which is performed after all test cases of the test suite end.
-      // This API supports only one parameter: clear action function.
-    })
-
+  describe('ActsAbilityTest', () => {
     /**
      * Start ability
      */
-    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+    it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
       Log.info(BUNDLE + `StartAbility_001 begin`);
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
@@ -68,10 +47,10 @@ export default function abilityTest() {
      * [Index]
      * After start the ability, check if text elements exist
      */
-    it(BUNDLE + 'CheckPageElement_001', 0, async function (done) {
+    it(BUNDLE + 'CheckPageElement_001', 0, async (done: Function) => {
       Log.info(BUNDLE + `CheckPageElement_001 begin`);
       try {
-        driver = await Driver.create();
+        driver = Driver.create();
         await driver.delayMs(1000);
         await driver.assertComponentExist(ON.id('Title'));
         await driver.assertComponentExist(ON.id('Artist'));
@@ -89,7 +68,7 @@ export default function abilityTest() {
      * [Index]
      * After start the ability, check if Button elements exist
      */
-    it(BUNDLE + 'CheckPageElement_002', 0, async function (done) {
+    it(BUNDLE + 'CheckPageElement_002', 0, async (done: Function) => {
       Log.info(BUNDLE + `CheckPageElement_002 begin`);
       try {
         await driver.delayMs(1000);
@@ -109,7 +88,7 @@ export default function abilityTest() {
      * [Index]
      * Click PlayOrPause button
      */
-    it(BUNDLE + 'PlayThenPause_001', 0, async function (done) {
+    it(BUNDLE + 'PlayThenPause_001', 0, async (done: Function) => {
       Log.info(BUNDLE + `PlayThenPause_001 begin`);
       try {
         await driver.delayMs(1000);
@@ -136,7 +115,7 @@ export default function abilityTest() {
      * [Index]
      * Click previous button
      */
-    it(BUNDLE + 'PreviousMusic_001', 0, async function (done) {
+    it(BUNDLE + 'PreviousMusic_001', 0, async (done: Function) => {
       Log.info(BUNDLE + `PreviousMusic_001 begin`);
       try {
         await driver.delayMs(1000);
@@ -162,7 +141,7 @@ export default function abilityTest() {
      * [Index]
      * Click next button
      */
-    it(BUNDLE + 'NextMusic_001', 0, async function (done) {
+    it(BUNDLE + 'NextMusic_001', 0, async (done: Function) => {
       Log.info(BUNDLE + `NextMusic_001 begin`);
       try {
         await driver.delayMs(1000);
