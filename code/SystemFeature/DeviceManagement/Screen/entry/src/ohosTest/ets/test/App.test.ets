@@ -24,16 +24,15 @@ const BUNDLE = 'Screen_';
 const DRIVER = Driver.create();
 
 export default function appTest() {
-  describe('appTest', function () {
-    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+  describe('appTest', () => {
+    it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin');
-      let want = {
-        bundleName: 'ohos.samples.screen',
-        abilityName: 'MainAbility'
-      };
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
-        await abilityDelegator.startAbility(want);
+        await abilityDelegator.startAbility({
+          bundleName: 'ohos.samples.screen',
+          abilityName: 'MainAbility'
+        });
         done();
       } catch (err) {
         expect(0).assertEqual(err.code);
@@ -45,7 +44,7 @@ export default function appTest() {
     /**
      * DeviceInfo
      */
-    it(BUNDLE + 'DeviceInfo_001', 0, async function () {
+    it(BUNDLE + 'DeviceInfo_001', 0, async () => {
       // create UiDriver
       hilog.info(DOMAIN, TAG, BUNDLE + 'DeviceInfo_001 begin');
       await DRIVER.delayMs(1000);
@@ -65,7 +64,7 @@ export default function appTest() {
     /**
      * AddScreen
      */
-    it(BUNDLE + 'AddScreen_001', 0, async function () {
+    it(BUNDLE + 'AddScreen_001', 0, async () => {
       // create UiDriver
       hilog.info(DOMAIN, TAG, BUNDLE + 'AddScreen_001 begin');
       await DRIVER.assertComponentExist(ON.id('addScreen'));
@@ -79,7 +78,7 @@ export default function appTest() {
     /**
      * SmallDeviceInfo
      */
-    it(BUNDLE + 'SmallDeviceInfo_001', 0, async function (done) {
+    it(BUNDLE + 'SmallDeviceInfo_001', 0, async (done: Function) => {
       // create UiDriver
       hilog.info(DOMAIN, TAG, BUNDLE + 'SmallDeviceInfo_001 begin');
       await DRIVER.assertComponentExist(ON.id('smallRect1'));
@@ -98,7 +97,7 @@ export default function appTest() {
     /**
      * DeleteSmallDevice
      */
-    it(BUNDLE + 'DeleteSmallDevice_001', 0, async function () {
+    it(BUNDLE + 'DeleteSmallDevice_001', 0, async () => {
       // create UiDriver
       hilog.info(DOMAIN, TAG, BUNDLE + 'DeleteSmallDevice_001 begin');
       await DRIVER.assertComponentExist(ON.id('removeScreen'));
