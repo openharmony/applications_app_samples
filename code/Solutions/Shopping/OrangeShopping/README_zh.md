@@ -89,7 +89,7 @@ OrangeShopping
 动效能力：动画应该尽可能减少冗余刷新，合理地使用[动效](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/performance/animation_practice.md/)开发效率更高，可以获得更好的性能。
 
 ### 具体实现
-Navigation相关的能力：NavPathStack路由转场，跨包引用hsp等能力[详见文章](docs/Navigation_zh.md) 。  
+Navigation相关的能力：NavPathStack路由转场，跨包引用Hsp,动态加载等能力[详见Navigation开发示例文章](docs/Navigation_zh.md) 。  
 1.应用创建时进行必要的权限判断：在[app.json5](entry/src/main/ets/MainAbility/MainAbility.ts )
 文件中对```"requestPermission"```对象进行权限匹配。如果有如果权限列表中有-1，说明用户拒绝了授权。
 
