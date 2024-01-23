@@ -41,6 +41,10 @@
     "pages/memoryShared/LockUsagePage",
     "pages/DFXStateManagement/DFXStateManagementPage",
     "pages/DFXStateManagement/DFXStateBeforeOptimizationPage",
-    "pages/DFXStateManagement/DFXStateAfterOptimizationPage"
+    "pages/DFXStateManagement/DFXStateAfterOptimizationPage",
+    "pages/webPerformance/WebHomePage",
+    "pages/webPerformance/WebBrowserPage",
+    "pages/webPerformance/WebInitializedPage",
+    "pages/webPerformance/WebUninitializedPage"
   ]
 }

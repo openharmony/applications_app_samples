@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -760,6 +760,71 @@ export default function abilityTest() {
         await driver.delayMs(500);
       }
       Logger.info(TAG, `${BUNDLE}NativeThreadsCallJS_002 end`);
+      // 退出到首页面
+      await driver.delayMs(500);
+      await driver.pressBack();
+      done();
+    })
+
+    /**
+     * 点击WebPerformance按钮，进入Web首页面
+     */
+    it(BUNDLE + "WebPerformance_001", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}WebPerformance_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      await driver.swipe(0, 800, 0, 100, 600);
+      await driver.delayMs(500);
+      // 进入Web应用首页
+      let WebIndexEntry: Component = await driver.findComponent(ON.text((await getResourceString($r('app.string.web_performance')))));
+      await driver.delayMs(500);
+      await WebIndexEntry.click();
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.text((await getResourceString($r('app.string.web_uninitialized')))));
+      await driver.assertComponentExist(ON.text((await getResourceString($r('app.string.web_initialized')))));
+      await driver.delayMs(500);
+      // 进入常规未优化页面
+      let WebUninitializedPage: Component = await driver.findComponent(ON.text((await getResourceString($r('app.string.web_uninitialized')))));
+      await driver.delayMs(500);
+      await WebUninitializedPage.click();
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.text((await getResourceString($r('app.string.web_open_page')))));
+      await driver.assertComponentExist(ON.text((await getResourceString($r('app.string.web_back')))));
+      await driver.delayMs(500);
+      // 进入网页
+      let WebHomeEntry: Component = await driver.findComponent(ON.text((await getResourceString($r('app.string.web_open_page')))));
+      await driver.delayMs(500);
+      await WebHomeEntry.click();
+      // 返回Web页面
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      await driver.delayMs(1000);
+      done();
+    })
+
+    it(BUNDLE + "WebPerformance_002", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}WebPerformance_002 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      // 进入优化Web页面
+      let WebIndexEntry: Component = await driver.findComponent(ON.text((await getResourceString($r('app.string.web_initialized')))));
+      await driver.delayMs(500);
+      await WebIndexEntry.click();
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.text((await getResourceString($r('app.string.web_open_page')))));
+      await driver.assertComponentExist(ON.text((await getResourceString($r('app.string.web_back')))));
+      await driver.delayMs(500);
+      // 进入网页
+      let WebHomeEntry: Component = await driver.findComponent(ON.text((await getResourceString($r('app.string.web_open_page')))));
+      await driver.delayMs(500);
+      await WebHomeEntry.click();
+      // 返回Web页面
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      await driver.pressBack();
       // 退出到首页面
       await driver.delayMs(500);
       await driver.pressBack();
