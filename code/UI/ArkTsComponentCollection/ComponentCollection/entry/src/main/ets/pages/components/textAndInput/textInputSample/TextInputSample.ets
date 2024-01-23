@@ -18,9 +18,13 @@ import { IntroductionTitle } from '../../../../common/IntroductionTitle';
 import ShowToast from '../../../../util/ShowToast';
 import Logger from '../../../../util/Logger';
 import { TitleBar } from '../../../../common/TitleBar';
+import pasteboard from '@ohos.pasteboard';
+import promptAction from '@ohos.promptAction';
+import { BusinessError } from '@ohos.base';
 
-@Extend(Column)
-function backgroundStyle() {
+const DURATION: number = 200000;
+
+@Extend(Column) function backgroundStyle() {
   .width('100%')
   .padding(12)
   .borderRadius(24)
@@ -42,11 +46,94 @@ struct TextInputSample {
   @State endSelect: number = 0;
   @State maxSelect: number = 0;
   @State selects: string[] = ['0'];
+  @State message: string = 'Hint';
+  @State chooseContents: string = '';
+  @State selectedStart: number = 0;
+  @State selectedEnd: number = 0;
   private select: number = 1;
   private maxLength: number = 12;
   private context: Context = getContext(this);
   private inputController: TextInputController = new TextInputController();
   private inputSelectController: TextInputController = new TextInputController();
+  textInputController: TextInputController = new TextInputController();
+  textController: TextController = new TextController();
+  options: TextOptions = { controller: this.textController };
+
+  @Builder LongPressImageCustomMenu() {
+    Row() {
+      Text($r('app.string.text_input_text_copy'))
+        .fontSize(16)
+        .margin({ left: 18, right: 24, top: 10, bottom: 11 })
+        .onClick(() => {
+          let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, this.chooseContents);
+          let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+          try {
+            systemPasteboard.setDataSync(pasteData);
+          } catch (err) {
+            Logger.error('Failed to set PasteData. Cause:' + err.message);
+          };
+
+          try {
+            promptAction.showToast({
+              message: $r('app.string.text_input_text_copy_success'),
+              duration: DURATION
+            });
+          } catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            Logger.error('showToast args error code is ' + code + 'message is' + message);
+          };
+          this.textController.closeSelectionMenu();
+        })
+      Text($r('app.string.text_input_text_paste'))
+        .fontSize(16)
+        .margin({ top: 10, bottom: 11 })
+        .onClick(() => {
+          let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+          try {
+            let result: pasteboard.PasteData = systemPasteboard.getDataSync();
+            let plainText: string = result.getPrimaryText();
+
+            this.message = this.message.substring(0, this.selectedStart) + plainText +
+              this.message.substring(this.selectedEnd, this.message.length);
+
+          } catch (err) {
+            Logger.error('Failed to get PasteData. Cause:' + err.message);
+          };
+
+          try {
+            promptAction.showToast({
+              message: $r('app.string.text_input_text_paste_success'),
+              duration: DURATION
+            });
+          } catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            Logger.error('showToast args error code is ' + code + 'message is' + message);
+          };
+          this.textController.closeSelectionMenu();
+        })
+
+      Text($r('app.string.text_input_text_get'))
+        .fontSize(16)
+        .margin({ left: 24, right: 18, top: 10, bottom: 11 })
+        .onClick(() => {
+          try {
+            promptAction.showToast({
+              message: this.chooseContents,
+              duration: DURATION
+            });
+          } catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            Logger.error('showToast args error code is ' + code + 'message is' + message);
+          };
+          this.textController.closeSelectionMenu();
+        })
+    }
+    .backgroundColor('#FFFFFF')
+    .borderRadius(24)
+  }
 
   build() {
     Column() {
@@ -251,10 +338,47 @@ struct TextInputSample {
               })
           }
           .backgroundStyle()
-          .margin({ bottom: 70 })
+            // 文本选择菜单
+            IntroductionTitle({ introduction: $r('app.string.text_input_text_selection_menu') })
+
+            Column() {
+              Row() {
+                Text(undefined, this.options) {
+                  Span(this.message)
+                }
+                .id('text_hint')
+                .copyOption(CopyOptions.InApp)
+                .bindSelectionMenu(TextSpanType.TEXT, this.LongPressImageCustomMenu, TextResponseType.LONG_PRESS)
+                .onTextSelectionChange((selectionStart: number, selectionEnd: number) => {
+                  this.selectedStart = selectionStart;
+                  this.selectedEnd = selectionEnd;
+                  this.chooseContents = this.message.substring(selectionStart, selectionEnd);
+                })
+                .margin({ left: 12 })
+              }
+              .width(432)
+              .height(40)
+              .backgroundColor($r('app.color.background_shallow_grey'))
+              .borderRadius(20)
+            }
+            .backgroundStyle()
+
+            // 文本删除
+            IntroductionTitle({ introduction: $r('app.string.text_input_text_delete') })
+            Column() {
+              TextInput({ placeholder: 'input ...', controller: this.textInputController })
+                .id('text_delete')
+                .borderRadius(20)
+                .cancelButton({
+                  style: CancelButtonStyle.CONSTANT
+                })
+            }
+            .backgroundStyle()
+            .margin({ bottom: 70 })
         }
         .constraintSize({ minHeight: '100%' }) // Let the minHeight of the component cover screen at least
       }
+      .id('input_scroll')
       .height('100%')
       .padding({ left: 12, right: 12 })
     }

@@ -34,6 +34,7 @@ struct TextAreaSample {
   @State textAlign: TextAlign = TextAlign.Start;
   @State caretColor: Color = Color.Blue;
   @State copyOptions: CopyOptions = CopyOptions.None;
+  @State isLimit: boolean = false;
   controller: TextAreaController = new TextAreaController();
 
   build() {
@@ -59,6 +60,8 @@ struct TextAreaSample {
             .height(80)
             .fontSize(20)
             .enableKeyboardOnFocus(false)
+            .maxLength(100)
+            .showCounter(this.isLimit, { thresholdPercentage: 1, highlightBorder: true })
             .onChange(() => {
               ShowToast.shortToast('The input have changed.')
             })
@@ -77,9 +80,25 @@ struct TextAreaSample {
               placeholderColor: $placeholderColor,
               textAlign: $textAlign,
               caretColor: $caretColor,
-              copyOption: $copyOptions
+              copyOption: $copyOptions,
             })
           }.cardStyle()
+
+          Row() {
+            Text($r('app.string.textarea_character_limit'))
+            Blank()
+            Toggle({ type: ToggleType.Switch, isOn: this.isLimit })
+              .onChange((isOn) => {
+                this.isLimit = isOn;
+              })
+              .id('textarea_character_limit')
+          }
+          .width('100%')
+          .borderRadius(24)
+          .height(56)
+          .backgroundColor(Color.White)
+          .padding({ left: 12, right: 18 })
+          .margin({ left: 12, right: 12, top: 12 })
         }
         .width('100%')
       }

@@ -230,6 +230,12 @@ entry/src/main/ets/
 |   |   |   |   |---NavigatorThirdPage.ets
 |   |   |   |---navigationSample
 |   |   |   |   |---NavigationSample.ets                 // 导航根容器
+|   |   |   |   |---NavigationBasic.ets                  // 导航基础属性展示
+|   |   |   |   |---ListExpandSafeArea.ets               // 滚动组件避让导航条
+|   |   |   |   |---NavigationSplit.ets               	 // 导航分栏模式
+|   |   |   |   |---BindSheetSafeArea.ets                // BindSheet键盘避让
+|   |   |   |   |---NavigationSideBar.ets                // 导航分栏鼠标样式
+|   |   |   |   |---NavigationExpandSafeArea.ets         // 导航组件避让导航条
 |   |   |   |---navRouterSample
 |   |   |   |   |---NavRouterSample.ets                  // 导航
 |   |   |   |---stepperAndStepperItemSample
@@ -316,6 +322,10 @@ entry/src/main/ets/
 |   |   |   |   |---TextPickerDialogSample.ets           // 文本滑动选择器弹窗
 |   |   |   |---menuSample
 |   |   |   |   |---MenuSample.ets                       // 菜单
+|   |   |   |---bindSheetSample
+|   |   |   |   |---BindSheetSample.ets                  // 半模态
+|   |   |   |---popUpSample
+|   |   |   |   |---PopUpSample.ets                      // Popup
 |   |---universal                                        // 详情页面
 |   |   |---UniversialData.ets
 |   |   |---events
@@ -413,7 +423,7 @@ entry/src/main/ets/
 |   |   |   |   |---TransformSample.ets                  // 变换矩阵
 |   |   |   |---translateSample
 |   |   |   |   |---TranslateSample.ets                  // 图像变换
-``` 
+```
 
 ### 具体实现
 
@@ -488,6 +498,19 @@ entry/src/main/ets/
         * 弹窗
             * 使用全局组件ShowToast，TitleBar，IntroductionTitle实现弹窗组件页面
             * 使用getStringArrayData，getStringData获取数据[ResourceDataHandle.ets](entry/src/main/ets/data/ResourceDataHandle.ets)
+            
+        * 半模态
+        
+            * 使用全局组件TitleBar，IntroductionTitle实现半模态组件页面
+            * 接口参考：[bindSheet](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-sheet-transition.md)
+        
+        * Popup
+        
+            * 使用全局组件TitleBar，IntroductionTitle实现Popup组件页面
+        
+            * 接口参考：[bindPopup ](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-popup.md)，[Popup高级组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ohos-arkui-advanced-popup.md)
+        
+              
 
 ### 相关权限
 
