@@ -1,7 +1,7 @@
 # VPN连接
 
 ### 介绍
-本示例主要展示了VPN连接相关功能，使用 [@ohos.net.vpn](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-net-vpn.md)接口，实现了包括创建VPN隧道，建立VPN网络，VPN隧道保护，销毁VPN网络。根据配置的VPN网络参数，实现了VPN服务器连接和发送数据的功能。
+本示例主要展示了VPN连接相关功能，使用 [@ohos.net.vpn](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-net-vpn.md)接口，实现了包括创建VPN隧道，建立VPN网络，VPN隧道保护，销毁VPN网络，根据配置的VPN网络参数，实现了VPN服务器连接和发送数据的功能。
 
 ### 效果预览
 | 主页                             | vpn启动                              | vpn关闭                                     | 
