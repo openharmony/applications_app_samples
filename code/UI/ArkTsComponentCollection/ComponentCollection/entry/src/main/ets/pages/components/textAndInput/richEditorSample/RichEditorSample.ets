@@ -25,7 +25,7 @@ import { Title } from './Title'
 
 @Entry
 @Component
-struct RichTextEditorSample {
+struct RichEditorSample {
   @State setStyle: Boolean = false
   @State setStyle1: Boolean = false
   @State setStyle2: Boolean = false
