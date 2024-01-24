@@ -3466,9 +3466,7 @@ export default function abilityTest() {
         await smallBtn.click();
         await driver.delayMs(DELAY_TIME);
         await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.custom_smallcircle_prompt'))));
-        // // 返回
-        // await checkButtonAndClickWithID('backBtn');
-        // await driver.delayMs(DELAY_TIME_FiVE);
+        
         Logger.info(BUNDLE + testName + ' end');
       });
 
