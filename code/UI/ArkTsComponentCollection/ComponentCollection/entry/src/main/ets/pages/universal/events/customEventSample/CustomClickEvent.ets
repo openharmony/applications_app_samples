@@ -79,7 +79,6 @@ struct CustomClickEvent {
                   .fontWeight(500)
                   .fontFamily('HarmonyHeiTi-Medium')
                   .textAlign(TextAlign.Center)
-                  .id('BigCircle')
                   .padding({ top: 56, bottom: 300 })
               }
               .alignItems(VerticalAlign.Top)
@@ -89,6 +88,7 @@ struct CustomClickEvent {
             .height('100%')
             .fontSize(21)
             .fontWeight(500)
+            .id('BigCircle')
             .fontColor(this.btnFontColor)
             .onClick(() => {
               ShowToast.longToast($r('app.string.custom_bigcircle_prompt'));
