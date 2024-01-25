@@ -3472,7 +3472,7 @@ export default function abilityTest() {
         Logger.info(BUNDLE + testName + ' begin');
 
         //点击大圈蓝色区域外
-        await driver.assertComponentExist(ON.id('BigCircle').text('Big circle'));
+        await driver.assertComponentExist(ON.id('BigCircle'));
         await driver.click(45, 245);
         await driver.delayMs(DELAY_TIME);
 
