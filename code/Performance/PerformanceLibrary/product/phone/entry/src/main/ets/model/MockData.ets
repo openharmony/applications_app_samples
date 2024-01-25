@@ -71,5 +71,9 @@ export let performanceTypeArray: Array<PerformanceMsg> = [
   {
     name: 'NativeThreadsCallJS',
     uri: 'pages/nativeThreadsCallJS/NativeThreadsCallJS'
+  },
+  {
+    name: 'WebPerformance',
+    uri: 'pages/webPerformance/WebHomePage'
   }
 ]
