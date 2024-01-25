@@ -13,8 +13,8 @@
       "value": "蓝牙配对请求"
     },
     {
-      "name": "agree",
-      "value": "允许"
+      "name": "only_accept_during_use",
+      "value": "仅使用期间允许"
     }
   ]
 }
