@@ -21,12 +21,17 @@ import router from '@ohos.router';
 @Component
 struct NavigationSample {
   private pages: PageInfo[] = [
-    { name: 'Navigation基本功能', url: 'pages/components/navigation/navigationSample/NavigationBasic' },
-    { name: '滚动组件延伸底部导航条', url: 'pages/components/navigation/navigationSample/ListExpandSafeArea' },
-    { name: 'Split模式动画演示', url: 'pages/components/navigation/navigationSample/NavigationSplit' },
-    { name: 'BindSheet避让键盘', url: 'pages/components/navigation/navigationSample/BindSheetSafeArea' },
-    { name: '分栏的鼠标样式', url: 'pages/components/navigation/navigationSample/NavigationSideBar' },
-    { name: '避让底部导航条', url: 'pages/components/navigation/navigationSample/NavigationExpandSafeArea' }
+    { name: 'navigation_basic_title', url: 'pages/components/navigation/navigationSample/NavigationBasic' },
+    { name: 'navigation_list_expand_title', url: 'pages/components/navigation/navigationSample/ListExpandSafeArea' },
+    { name: 'navigation_router_title', url: 'pages/components/navigation/navigationSample/NavigationRouter' },
+    { name: 'navigation_split_title', url: 'pages/components/navigation/navigationSample/NavigationSplit' },
+    { name: 'navigation_bindsheet_title', url: 'pages/components/navigation/navigationSample/BindSheetSafeArea' },
+    { name: 'navigation_sidebar_title', url: 'pages/components/navigation/navigationSample/NavigationSideBar' },
+    { name: 'navigation_modechange_title', url: 'pages/components/navigation/navigationSample/NavigationModeChange' },
+    { name: 'navigation_replace_title', url: 'pages/components/navigation/navigationSample/NavigationReplace' },
+    { name: 'navigation_hidebar_title', url: 'pages/components/navigation/navigationSample/NavigationHideBar' },
+    { name: 'navigation_safearea_title', url: 'pages/components/navigation/navigationSample/NavigationFullSafeArea' },
+    { name: 'navigation_expand_title', url: 'pages/components/navigation/navigationSample/NavigationExpandSafeArea' }
   ];
 
   build() {
@@ -34,7 +39,7 @@ struct NavigationSample {
       TitleBar({ title: $r('app.string.navigation_title') });
       Column() {
         ForEach(this.pages, (item: PageInfo) => {
-          Button(item.name)
+          Button($r(`app.string.${item.name}`))
             .width('90%')
             .height(40)
             .backgroundColor('#007DFF')

@@ -1,0 +1,10 @@
+{
+  "module": {
+    "name": "RouterModule",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ]
+  }
+}
