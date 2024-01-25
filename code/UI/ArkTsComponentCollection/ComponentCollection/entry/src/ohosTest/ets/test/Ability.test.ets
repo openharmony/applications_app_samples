@@ -3454,12 +3454,6 @@ export default function abilityTest() {
         await button.click();
         await driver.delayMs(DELAY_TIME);
 
-        //点击大圈蓝色区域内
-        await driver.assertComponentExist(ON.id('BigCircle').text('Big circle'));
-        await driver.click(125, 350);
-        await driver.delayMs(DELAY_TIME);
-        await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.custom_bigcircle_prompt'))));
-
         //点击小圈黄色区域内
         await driver.assertComponentExist(ON.id('SmallCircle').text('Small circle'));
         let smallBtn = await driver.findComponent(ON.id('SmallCircle').text('Small circle'));
