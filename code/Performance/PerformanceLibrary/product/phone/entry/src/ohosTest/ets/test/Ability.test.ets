@@ -765,5 +765,59 @@ export default function abilityTest() {
       await driver.pressBack();
       done();
     })
+
+    /**
+     * DFXStateManagement 查看内容
+     */
+    it(BUNDLE + "DFXStateManagement", 2, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}DFXStateManagement begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(1000);
+      let scrollBar: Component = await driver.findComponent(ON.type("Scroll"));
+      let ifElseComponent = await scrollBar.scrollSearch(ON.text("DFX StateManagement"));
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.text("DFX StateManagement"))
+      await driver.delayMs(500);
+      await ifElseComponent.click();
+      await driver.delayMs(1000);
+      let showChange1: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.before_optimization'))));
+      await driver.delayMs(500);
+      await showChange1.click();
+      await driver.delayMs(1000);
+      let showChange3: Component = await driver.findComponent(ON.text("Move"));
+      await driver.delayMs(500);
+      await showChange3.click();
+      await showChange3.click();
+      await showChange3.click();
+      let showChange4: Component = await driver.findComponent(ON.text("Scale"));
+      await driver.delayMs(500);
+      await showChange4.click();
+      await showChange4.click();
+      await showChange4.click();
+      await driver.delayMs(500);
+      await driver.pressBack();
+
+      await driver.delayMs(1000);
+      let showChange2: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.after_optimization'))));
+      await driver.delayMs(500);
+      await showChange2.click();
+      await driver.delayMs(1000);
+      let showChange6: Component = await driver.findComponent(ON.text("Move"));
+      await driver.delayMs(500);
+      await showChange6.click();
+      await showChange6.click();
+      await showChange6.click();
+      let showChange7: Component = await driver.findComponent(ON.text("Scale"));
+      await driver.delayMs(500);
+      await showChange7.click();
+      await showChange7.click();
+      await showChange7.click();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      Logger.info(TAG, `${BUNDLE}DFXStateManagement end`);
+      await driver.pressBack();
+      done();
+    })
+
   })
 }
