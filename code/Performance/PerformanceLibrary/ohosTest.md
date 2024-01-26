@@ -17,3 +17,13 @@
 | 返回前一个页面            | 位于”MemoryShared“页面 | 点击返回按钮             | 返回到PerformanceLibrary应用主页面                           | 是    | Pass |
 | 进入“常规Web网页”        | 位于“常规Web”页面        | 点击“进入网页”按钮         | 正常跳转到“常规Web网页”                                       | 是    | Pass |
 | 进入“优化Web网页”        | 位于“优化Web”页面        | 点击“进入网页 ”按钮        | 正常跳转到“优化Web网页”                                       | 是    | Pass |
+| 进入"DFXStateManagement"页面 | 应用正常拉起 | 点击”DFXStateManagement“按钮 | 页面正常显示，两个按钮”状态优化前“、”状态优化后“                           |是|Pass|
+| 进入"状态优化前"页面              | 位于“DFXStateManagement”页面 | 点击”状态优化前“按钮              | 页面正常显示，两个按钮”Move“、”Scale“                            |是|Pass|
+| 进行点击任务                   | 位于“状态优化前”页面 | 点击”Move“按钮               | "Hello World"组件位置变化                                  |是|Pass|
+| 进行点击任务                   | 位于“状态优化前”页面 | 点击”Scale“按钮              | "Hello World"组件宽度变化                                  |是|Pass|
+| 返回前一个页面                  | 位于“状态优化前”页面 | 点击返回按钮                   | 返回到”DFXStateManagement“页面                                  |是|Pass|
+| 进入"状态优化后"页面              | 位于“DFXStateManagement”页面 | 点击”状态优化后“按钮              | 页面正常显示，两个按钮”Move“、”Scale“                            |是|Pass|
+| 进行点击任务                   | 位于“状态优化后”页面 | 点击”Move“按钮               | "Hello World"组件位置变化                                  |是|Pass|
+| 进行点击任务                   | 位于“状态优化后”页面 | 点击”Scale“按钮               | "Hello World"组件宽度变化                                        |是|Pass|
+| 返回前一个页面                  | 位于“状态优化后”页面 | 点击返回按钮                   | 返回到”DFXStateManagement“页面                                  |是|Pass|
+| 返回前一个页面                  | 位于”DFXStateManagement“页面 | 点击返回按钮                   | 返回到PerformanceLibrary应用主页面                           |是|Pass|
