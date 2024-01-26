@@ -27,7 +27,6 @@ struct NavigationSample {
     { name: 'navigation_split_title', url: 'pages/components/navigation/navigationSample/NavigationSplit' },
     { name: 'navigation_bindsheet_title', url: 'pages/components/navigation/navigationSample/BindSheetSafeArea' },
     { name: 'navigation_sidebar_title', url: 'pages/components/navigation/navigationSample/NavigationSideBar' },
-    { name: 'navigation_modechange_title', url: 'pages/components/navigation/navigationSample/NavigationModeChange' },
     { name: 'navigation_replace_title', url: 'pages/components/navigation/navigationSample/NavigationReplace' },
     { name: 'navigation_hidebar_title', url: 'pages/components/navigation/navigationSample/NavigationHideBar' },
     { name: 'navigation_safearea_title', url: 'pages/components/navigation/navigationSample/NavigationFullSafeArea' },
