@@ -20,6 +20,7 @@ import Logger from '../model/Logger';
 import { ChatBox } from '../model/ChatBox';
 import { resolveIP } from '../Utils/Util';
 import { ChatSource } from '../model/DataSource';
+import util from '@ohos.util';
 
 let udp = socket.constructUDPSocketInstance()
 const TAG: string = '[Index]'
@@ -73,16 +74,11 @@ struct Index {
       Logger.info(TAG, `udp bind fail ${err}`);
     })
     udp.on('message', data => {
+      let textDecoder = util.TextDecoder.create('utf-8');
       if (data.message instanceof ArrayBuffer) {
-        let dataView = new DataView(data.message);
+        let dataView = new Uint8Array(data.message);
         Logger.info(TAG, `length = ${dataView.byteLength}`);
-        let str = '';
-        for (let i = 0;i < dataView.byteLength; ++i) {
-          let c = String.fromCharCode(dataView.getUint8(i));
-          if (c !== "\n") {
-            str += c
-          }
-        }
+        let str = textDecoder.decodeWithStream(dataView);
         Logger.info(TAG, `message aray buffer:${str}`);
 
         if (str == 'online') {
@@ -223,7 +219,7 @@ struct Index {
               Row() {
                 Column() {
                   Text(item.date)
-                    .fontSize(15) //时间
+                    .fontSize(15)//时间
                     .width('100%')
                     .textAlign(TextAlign.End)
                   Text(item.message)
