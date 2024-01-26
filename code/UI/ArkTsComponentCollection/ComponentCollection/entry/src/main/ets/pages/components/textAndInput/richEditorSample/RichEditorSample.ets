@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { TitleBar } from '../../../../common/TitleBar'
-import { Title } from './Title'
+import { TitleBar } from '../../../../common/TitleBar';
+import { Title } from './Title';
 
 @Extend(Column) function cardStyle() {
   .backgroundColor(Color.White)
