@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 import mediaquery from '@ohos.mediaquery';
-import parameter from '@ohos.systemparameter';
+import deviceInfo from '@ohos.deviceInfo';
 import { TabletTitle, BrowserTabs, WebTab } from '../common/TitleBar';
 import { PhoneLayout } from '../common/PhoneLayout';
 import { Browser, LoadingStatus } from '../model/Browser';
@@ -47,7 +47,7 @@ struct Index {
 
   aboutToAppear() {
     try {
-      let deviceType = parameter.getSync("const.build.characteristics");
+      let deviceType = deviceInfo.deviceType;
       if (deviceType === 'default') {
         this.isPhone = true;
       }
