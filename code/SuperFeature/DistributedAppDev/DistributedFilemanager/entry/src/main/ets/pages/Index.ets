@@ -123,8 +123,7 @@ export struct Index {
                 if (this.deviceId.length === 0) {
                   this.getLocalDeviceId();
                 }
-                DataObject.pasteFromDistributedDir(this.deviceId,this.directoryPath,this.fileData);
-                DataObject.clear();
+                FsManager.pasteFromDistributedDir(this.deviceId,this.directoryPath,this.fileData);
               })
           }.margin({ right: 26 })
           .justifyContent(FlexAlign.End)
@@ -170,8 +169,7 @@ export struct Index {
                 if (this.deviceId.length === 0) {
                   this.getLocalDeviceId();
                 }
-                DataObject.pasteFromDistributedDir(this.deviceId,this.directoryPath,this.fileData);
-                DataObject.clear();
+                FsManager.pasteFromDistributedDir(this.deviceId,this.directoryPath,this.fileData);
               })
           }.margin({ right: 26 })
            .justifyContent(FlexAlign.End)
@@ -291,7 +289,7 @@ export struct Index {
             if (this.deviceId.length === 0) {
               this.getLocalDeviceId();
             }
-            DataObject.copyFilesToDistributedDir(this.deviceId, this.needMoveFiles, disPathInSandbox);
+            FsManager.copyFilesToDistributedDir(this.deviceId, this.needMoveFiles, disPathInSandbox);
           })
       }
       if (this.isCopying) {
