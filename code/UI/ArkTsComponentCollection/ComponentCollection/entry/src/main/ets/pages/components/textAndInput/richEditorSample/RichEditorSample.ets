@@ -26,87 +26,87 @@ import { Title } from './Title'
 @Entry
 @Component
 struct RichEditorSample {
-  @State setStyle: Boolean = false
-  @State setStyle1: Boolean = false
-  @State setStyle2: Boolean = false
-  @State setStyle3: Boolean = false
-  @State setStyle4: Boolean = false
-  @State setStyle5: Boolean = false
-  @State setStyle6: Boolean = false
-  @State styleDialog: Visibility = Visibility.None
-  @State fontWeightSet: FontWeight = FontWeight.Normal
-  @State fontStyleSet: FontStyle = FontStyle.Normal
-  @State fontDecorationSet: TextDecorationType = TextDecorationType.None
-  @State fontAlignLeftSet: TextAlign = TextAlign.Start
-  @State fontAlignMiddleSet: TextAlign = TextAlign.Center
-  @State fontAlignRightSet: TextAlign = TextAlign.End
-  @State tipsValue: number = 32
+  @State setStyle: Boolean = false;
+  @State setStyle1: Boolean = false;
+  @State setStyle2: Boolean = false;
+  @State setStyle3: Boolean = false;
+  @State setStyle4: Boolean = false;
+  @State setStyle5: Boolean = false;
+  @State setStyle6: Boolean = false;
+  @State styleDialog: Visibility = Visibility.None;
+  @State fontWeightSet: FontWeight = FontWeight.Normal;
+  @State fontStyleSet: FontStyle = FontStyle.Normal;
+  @State fontDecorationSet: TextDecorationType = TextDecorationType.None;
+  @State fontAlignLeftSet: TextAlign = TextAlign.Start;
+  @State fontAlignMiddleSet: TextAlign = TextAlign.Center;
+  @State fontAlignRightSet: TextAlign = TextAlign.End;
+  @State tipsValue: number = 32;
   private start: number = -1;
   private end: number = -1;
   private fontColors: string[] = ["#FA2A2D","#FFBF00","#41BA41","#00AAEE","#3F56EA","#8A2BE2","#000000"];
 
-  controller: RichEditorController = new RichEditorController()
+  controller: RichEditorController = new RichEditorController();
 
   updateVisible(){
-    this.setStyle = !this.setStyle
+    this.setStyle = !this.setStyle;
     if(this.setStyle){
-      this.styleDialog = Visibility.Visible
+      this.styleDialog = Visibility.Visible;
     }else{
-      this.styleDialog = Visibility.None
+      this.styleDialog = Visibility.None;
     }
   }
 
   updateFontWeight(){
-    this.setStyle1 = !this.setStyle1
+    this.setStyle1 = !this.setStyle1;
     if(this.setStyle1){
-      this.fontWeightSet = FontWeight.Bolder
+      this.fontWeightSet = FontWeight.Bolder;
     }else{
-      this.fontWeightSet = FontWeight.Normal
+      this.fontWeightSet = FontWeight.Normal;
     }
   }
 
   updateFontStyle(){
-    this.setStyle2 = !this.setStyle2
+    this.setStyle2 = !this.setStyle2;
     if(this.setStyle2){
-      this.fontStyleSet = FontStyle.Italic
+      this.fontStyleSet = FontStyle.Italic;
     }else{
-      this.fontStyleSet = FontStyle.Normal
+      this.fontStyleSet = FontStyle.Normal;
     }
   }
 
   updateFontDecoration(){
-    this.setStyle3 = !this.setStyle3
+    this.setStyle3 = !this.setStyle3;
     if(this.setStyle3){
-      this.fontDecorationSet = TextDecorationType.Underline
+      this.fontDecorationSet = TextDecorationType.Underline;
     }else{
-      this.fontDecorationSet = TextDecorationType.None
+      this.fontDecorationSet = TextDecorationType.None;
     }
   }
 
   updateFontAlignLeft(){
-    this.setStyle4 = !this.setStyle4
+    this.setStyle4 = !this.setStyle4;
     if(this.setStyle4){
-      this.fontAlignLeftSet = TextAlign.Start
+      this.fontAlignLeftSet = TextAlign.Start;
     }else{
-      this.fontAlignLeftSet = TextAlign.JUSTIFY
+      this.fontAlignLeftSet = TextAlign.JUSTIFY;
     }
   }
 
   updateFontAlignMiddle(){
-    this.setStyle5 = !this.setStyle5
+    this.setStyle5 = !this.setStyle5;
     if(this.setStyle5){
-      this.fontAlignMiddleSet = TextAlign.Center
+      this.fontAlignMiddleSet = TextAlign.Center;
     }else{
-      this.fontAlignMiddleSet = TextAlign.JUSTIFY
+      this.fontAlignMiddleSet = TextAlign.JUSTIFY;
     }
   }
 
   updateFontAlignRight(){
-    this.setStyle6 = !this.setStyle6
+    this.setStyle6 = !this.setStyle6;
     if(this.setStyle6){
-      this.fontAlignRightSet = TextAlign.End
+      this.fontAlignRightSet = TextAlign.End;
     }else{
-      this.fontAlignRightSet = TextAlign.JUSTIFY
+      this.fontAlignRightSet = TextAlign.JUSTIFY;
     }
   }
 
