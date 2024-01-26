@@ -85,6 +85,7 @@ struct NavigationSplit {
               this.selectnav = navidx;
               this.pageInfos.pushPath({ name: `List${navidx}`, param: navidx });
             })
+            .id(`nav${navidx}`)
           })
         }
         .backgroundColor(Color.White)

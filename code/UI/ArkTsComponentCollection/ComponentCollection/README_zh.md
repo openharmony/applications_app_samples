@@ -288,6 +288,9 @@ entry/src/main/ets/
 |   |   |   |---textAreaSample
 |   |   |   |   |---ChangePanel.ets
 |   |   |   |   |---TextAreaSample.ets                   // 文本域
+|   |   |   |---richTextEditorSample
+|   |   |   |   |---RichTextEditorSample.ets             // 富文本编辑
+|   |   |   |   |---Title.ets
 |   |   |   |---richTextSample
 |   |   |   |   |---RichTextSample.ets                   // 富文本
 |   |   |   |---spanSample
@@ -352,6 +355,10 @@ entry/src/main/ets/
 |   |   |   |   |---ScrollEventSample.ets                // 滚动事件
 |   |   |   |---touchEventSample
 |   |   |   |   |---TouchEventSample.ets                 // 触摸事件
+|   |   |   |---customEventSample
+|   |   |   |   |---CustomEventHome.ets                  // 自定义事件分发入口
+|   |   |   |   |---CustomClickEvent.ets                 // 自定义click事件分发
+|   |   |   |   |---CustomScrollingEvent.ets             // 自定义scrolling事件分发
 |   |   |---gesture
 |   |   |   |---bindGestureSample 
 |   |   |   |   |---BindGestureSample.ets                // 绑定手势方法
@@ -369,6 +376,8 @@ entry/src/main/ets/
 |   |   |   |   |---SwipeSample.ets                      // 滑动手势
 |   |   |   |---tapGestureSample
 |   |   |   |   |---TapGestureSample.ets                 // Tap手势
+|   |   |   |---customGesture
+|   |   |   |   |---CustomGestureJudge.ets               // 自定义手势判定
 |   |   |---properties
 |   |   |   |---attributeModifierSample
 |   |   |   |   |---AttributeModifierSample.ets          // 动态属性设置
@@ -511,11 +520,12 @@ entry/src/main/ets/
 
 ### 相关权限
 
-[ohos.permission.GET_BUNDLE_INFO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionget_bundle_info)
+[ohos.permission.GET_BUNDLE_INFO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionget_bundle_info)
 
-[ohos.permission.GET_BUNDLE_INFO_PRIVILEGED](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionget_bundle_info_privileged)
+[ohos.permission.GET_BUNDLE_INFO_PRIVILEGED](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionget_bundle_info_privileged)
 
-[ohos.permission.REQUIRE_FORM](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionrequire_form)
+[ohos.permission.REQUIRE_FORM](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionrequire_form)
+[ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohos.permission.INTERNET)
 
 ### 依赖
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -767,6 +767,7 @@ export default function abilityTest() {
       await driver.pressBack();
       done();
     })
+
     /**
      * 主线程和子线程通信
      */
@@ -931,6 +932,71 @@ export default function abilityTest() {
     })
 
     /**
+     * 点击WebPerformance按钮，进入Web首页面
+     */
+    it(BUNDLE + "WebPerformance_001", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}WebPerformance_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      await driver.swipe(0, 800, 0, 100, 600);
+      await driver.delayMs(500);
+      // 进入Web应用首页
+      let WebIndexEntry: Component = await driver.findComponent(ON.text((await getResourceString($r('app.string.web_performance')))));
+      await driver.delayMs(500);
+      await WebIndexEntry.click();
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.text((await getResourceString($r('app.string.web_uninitialized')))));
+      await driver.assertComponentExist(ON.text((await getResourceString($r('app.string.web_initialized')))));
+      await driver.delayMs(500);
+      // 进入常规未优化页面
+      let WebUninitializedPage: Component = await driver.findComponent(ON.text((await getResourceString($r('app.string.web_uninitialized')))));
+      await driver.delayMs(500);
+      await WebUninitializedPage.click();
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.text((await getResourceString($r('app.string.web_open_page')))));
+      await driver.assertComponentExist(ON.text((await getResourceString($r('app.string.web_back')))));
+      await driver.delayMs(500);
+      // 进入网页
+      let WebHomeEntry: Component = await driver.findComponent(ON.text((await getResourceString($r('app.string.web_open_page')))));
+      await driver.delayMs(500);
+      await WebHomeEntry.click();
+      // 返回Web页面
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      await driver.delayMs(1000);
+      done();
+    })
+
+    it(BUNDLE + "WebPerformance_002", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}WebPerformance_002 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      // 进入优化Web页面
+      let WebIndexEntry: Component = await driver.findComponent(ON.text((await getResourceString($r('app.string.web_initialized')))));
+      await driver.delayMs(500);
+      await WebIndexEntry.click();
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.text((await getResourceString($r('app.string.web_open_page')))));
+      await driver.assertComponentExist(ON.text((await getResourceString($r('app.string.web_back')))));
+      await driver.delayMs(500);
+      // 进入网页
+      let WebHomeEntry: Component = await driver.findComponent(ON.text((await getResourceString($r('app.string.web_open_page')))));
+      await driver.delayMs(500);
+      await WebHomeEntry.click();
+      // 返回Web页面
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      // 退出到首页面
+      await driver.delayMs(500);
+      await driver.pressBack();
+      done();
+    })
+
+    /**
      * 线程间大数据传输测试用例
      */
     it(BUNDLE + "ThreadDataTransfer_001", 1, async (done: Function) => {
@@ -970,6 +1036,58 @@ export default function abilityTest() {
       await driver.pressBack();
       await driver.delayMs(500);
       Logger.info(TAG, `${BUNDLE}ThreadDataTransfer_001 end`);
+      done();
+    }
+    
+     * DFXStateManagement 查看内容
+     */
+    it(BUNDLE + "DFXStateManagement", 2, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}DFXStateManagement begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(1000);
+      let scrollBar: Component = await driver.findComponent(ON.type("Scroll"));
+      let ifElseComponent = await scrollBar.scrollSearch(ON.text("DFX StateManagement"));
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.text("DFX StateManagement"))
+      await driver.delayMs(500);
+      await ifElseComponent.click();
+      await driver.delayMs(1000);
+      let showChange1: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.before_optimization'))));
+      await driver.delayMs(500);
+      await showChange1.click();
+      await driver.delayMs(1000);
+      let showChange3: Component = await driver.findComponent(ON.text("Move"));
+      await driver.delayMs(500);
+      await showChange3.click();
+      await showChange3.click();
+      await showChange3.click();
+      let showChange4: Component = await driver.findComponent(ON.text("Scale"));
+      await driver.delayMs(500);
+      await showChange4.click();
+      await showChange4.click();
+      await showChange4.click();
+      await driver.delayMs(500);
+      await driver.pressBack();
+
+      await driver.delayMs(1000);
+      let showChange2: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.after_optimization'))));
+      await driver.delayMs(500);
+      await showChange2.click();
+      await driver.delayMs(1000);
+      let showChange6: Component = await driver.findComponent(ON.text("Move"));
+      await driver.delayMs(500);
+      await showChange6.click();
+      await showChange6.click();
+      await showChange6.click();
+      let showChange7: Component = await driver.findComponent(ON.text("Scale"));
+      await driver.delayMs(500);
+      await showChange7.click();
+      await showChange7.click();
+      await showChange7.click();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      Logger.info(TAG, `${BUNDLE}DFXStateManagement end`);
+      await driver.pressBack();
       done();
     })
 

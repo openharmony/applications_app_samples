@@ -5,6 +5,38 @@
       "value": "ArkTS组件库"
     },
     {
+      "name": "custom_event",
+      "value": "组件自定义事件分发"
+    },
+    {
+      "name": "custom_gesture",
+      "value": "自定义手势判定"
+    },
+    {
+      "name": "custom_judge_long_press",
+      "value": "长按响应区域"
+    },
+    {
+      "name": "custom_long_press_prompt",
+      "value": "长按上半区蓝色区域，蓝色区域响应"
+    },
+    {
+      "name": "custom_judge_click",
+      "value": "点击响应区域"
+    },
+    {
+      "name": "custom_tap_prompt",
+      "value": "点击下半区黄色区域，黄色区域响应"
+    },
+    {
+      "name": "custom_bigcircle_prompt",
+      "value": "大圈事件已响应"
+    },
+    {
+      "name": "custom_smallcircle_prompt",
+      "value": "小圈事件已响应"
+    },
+    {
       "name": "MainAbility_desc",
       "value": "ArkUI各组件、通用属性、通用方法等分类及描述应用"
     },
@@ -1560,6 +1592,10 @@
       "value": "RichText 富文本"
     },
     {
+      "name": "rich_editor",
+      "value": "RichEditor 富文本编辑"
+    },
+    {
       "name": "scroll_name",
       "value": "Scroll 滚动"
     },
@@ -1923,6 +1959,74 @@
     {
       "name": "navigation_title",
       "value": "Navigation"
+    },
+    {
+      "name": "navigation_first_page",
+      "value": "Navigation 第一个页面"
+    },
+    {
+      "name": "navigation_second_page",
+      "value": "Navigation 第二个页面"
+    },
+    {
+      "name": "navigation_third_page",
+      "value": "Navigation 第三个页面"
+    },
+    {
+      "name": "navigation_first_page_push",
+      "value": "去往第二个页面"
+    },
+    {
+      "name": "navigation_first_page_active",
+      "value": "点击切换 activate 状态"
+    },
+    {
+      "name": "navigation_second_page_push",
+      "value": "去往第三个页面"
+    },
+    {
+      "name": "navigation_third_page_back",
+      "value": "返回第一个页面"
+    },
+    {
+      "name": "navigation_expand",
+      "value": "延伸"
+    },
+    {
+      "name": "navigation_list_expand_title",
+      "value": "滚动组件延伸底部导航条"
+    },
+    {
+      "name": "navigation_bindsheet_title",
+      "value": "BindSheet避让键盘"
+    },
+    {
+      "name": "navigation_expand_title",
+      "value": "避让底部导航条"
+    },
+    {
+      "name": "navigation_unexpand",
+      "value": "不延伸"
+    },
+    {
+      "name": "navigation_split_title",
+      "value": "Split模式动画演示"
+    },
+    {
+      "name": "navigation_sidebar_title",
+      "value": "分栏的鼠标样式"
+    },
+    {
+      "name": "navigation_navbar_list_nopara",
+      "value": "列表"
+    },
+    {
+      "name": "navigation_navbar_list",
+      "value": "列表%d"
+    },
+    {
+      "name": "navigation_navcontent_list",
+      "value": "内容%d"
     },
     {
       "name": "tabs_title",

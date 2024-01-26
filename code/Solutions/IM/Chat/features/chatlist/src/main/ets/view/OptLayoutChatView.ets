@@ -44,8 +44,12 @@ struct ReusableOptLayoutChatView {
 @Preview
 @Component
 struct OptLayoutChatView {
-  private chatItem: ChatModel = new ChatModel(new ChatContact('', ''), '', '', 0);
+  @State chatItem: ChatModel = new ChatModel(new ChatContact('', ''), '', '', 0);
   @StorageLink('image_sync_load') imageSyncLoad: boolean | undefined = AppStorage.get('image_sync_load');
+
+  aboutToReuse(params: Record<string, Object>): void {
+    this.chatItem = params.chatItem as ChatModel;
+  }
 
   build() {
     RelativeContainer() {

@@ -55,15 +55,15 @@ export default function abilityTest() {
      * 获取权限
      */
     it(BUNDLE + 'RequestPermissionFunction_001', 0, async function () {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'RequestPermissionFunction_001 begin')
-      let driver = Driver.create()
-      await driver.delayMs(2000)
+      hilog.info(DOMAIN, TAG, BUNDLE + 'RequestPermissionFunction_001 begin');
+      let driver = Driver.create();
+      await driver.delayMs(2000);
       // 获取文件读写权限
-      hilog.info(DOMAIN, TAG, BUNDLE + 'RequestPermissionFunction requestPermission')
-      await driver.assertComponentExist(ON.text('允许'))
-      let btnStart = await driver.findComponent(ON.text('允许'))
-      await btnStart.click()
-      hilog.info(DOMAIN, TAG, BUNDLE + 'RequestPermissionFunction end')
+      hilog.info(DOMAIN, TAG, 'RequestPermissionFunction requestPermission');
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.only_accept_during_use'))));
+      let btnStart = await driver.findComponent(ON.text(await getResourceString($r('app.string.only_accept_during_use'))));
+      await btnStart.click();
+      hilog.info(DOMAIN, TAG, 'RequestPermissionFunction end');
     })
 
     /**
@@ -120,10 +120,11 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('input'))
       let input = await driver.findComponent(ON.id('input'))
       await input.inputText('456');
-      let sureBtn = await driver.findComponent(ON.id('sure'))
-      await sureBtn.click()
+      let sureBtn = await driver.findComponent(ON.id('sure'));
+      await sureBtn.click();
+      await driver.delayMs(1000);
       // 是否弹出提示文本
-      await driver.assertComponentExist(ON.text('connecting'))
+      await driver.assertComponentExist(ON.text('connecting'));
     })
   })
 }

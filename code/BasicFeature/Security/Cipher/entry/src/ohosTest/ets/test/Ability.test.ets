@@ -72,9 +72,9 @@ export default function abilityTest() {
      * 加密
      */
     it(BUNDLE + 'EncryptionFunction_001', 0, async () => {
-      Logger.info(TAG, BUNDLE + 'EncryptionFunction_001 begin')
-      let driver = Driver.create()
-      await driver.delayMs(200)
+      Logger.info(TAG, BUNDLE + 'EncryptionFunction_001 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
       // 点击加密按钮，跳转至加密页面
       Logger.info(TAG, BUNDLE + 'EncryptionFunction_001 encryption')
       await driver.assertComponentExist(ON.id('encryption'))

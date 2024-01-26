@@ -51,7 +51,7 @@ export default function abilityTest() {
 
     it('getPermission_001', 0, async () => {
       Logger.info(TAG, BUNDLE + 'getPermission_001 begin');
-      await DRIVER.delayMs(1000);
+      await DRIVER.delayMs(2000);
       await DRIVER.assertComponentExist(ON.text(await getResourceString($r('app.string.allow'))));
       let allowBtn = await DRIVER.findComponent(ON.text(await getResourceString($r('app.string.allow'))));
       await allowBtn.click();

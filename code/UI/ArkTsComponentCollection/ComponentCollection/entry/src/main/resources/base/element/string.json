@@ -171,7 +171,7 @@
     },
     {
       "name": "text_and_input",
-      "value": "Text and input"
+      "value": "文本与输入"
     },
     {
       "name": "rows_and_columns",
@@ -2433,6 +2433,18 @@
     {
       "name": "rich_text",
       "value": "RichText"
+    },
+    {
+      "name": "rich_editor",
+      "value": "RichEditor 富文本编辑"
+    },
+    {
+      "name": "rich_editor_style",
+      "value": "样式"
+    },
+    {
+      "name": "rich_editor_title",
+      "value": "RichEditor"
     },
     {
       "name": "scroll_swiper",

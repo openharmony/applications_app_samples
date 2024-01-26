@@ -47,6 +47,10 @@
     "pages/ThreadCommunication/MultiTaskPage",
     "pages/ThreadCommunication/TaskSendDataUsagePage",
     "pages/ThreadCommunication/WorkerUsagePage",
-    "pages/ThreadCommunication/WorkerCallGlobalUsagePage"
+    "pages/ThreadCommunication/WorkerCallGlobalUsagePage",
+    "pages/webPerformance/WebHomePage",
+    "pages/webPerformance/WebBrowserPage",
+    "pages/webPerformance/WebInitializedPage",
+    "pages/webPerformance/WebUninitializedPage"
   ]
 }

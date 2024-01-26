@@ -99,6 +99,34 @@
     {
       "name": "running_time",
       "value": "运行时间:"
+    },
+    {
+      "name": "web_uninitialized",
+      "value": "常规Web首页"
+    },
+    {
+      "name": "web_initialized",
+      "value": "优化Web首页"
+    },
+    {
+      "name": "web_open_page",
+      "value": "进入网页"
+    },
+    {
+      "name": "web_back",
+      "value": "返回"
+    },
+    {
+      "name": "web_performance",
+      "value": "WebPerformance"
+    },
+    {
+      "name": "before_optimization",
+      "value": "状态优化前"
+    },
+    {
+      "name": "after_optimization",
+      "value": "状态优化后"
     }
   ]
 }

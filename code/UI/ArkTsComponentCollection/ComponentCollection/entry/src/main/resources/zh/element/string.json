@@ -89,6 +89,38 @@
       "value": "焦点事件"
     },
     {
+      "name": "send_event",
+      "value": "Sendevent"
+    },
+    {
+      "name": "custom_click_event",
+      "value": "Click"
+    },
+    {
+      "name": "custom_scrolling_event",
+      "value": "Scrolling"
+    },
+    {
+      "name": "custom_scrolling_area",
+      "value": "Scroll Area"
+    },
+    {
+      "name": "custom_click_big_btn",
+      "value": "Big circle"
+    },
+    {
+      "name": "custom_click_small_btn",
+      "value": "Small circle"
+    },
+    {
+      "name": "big_circle_prompt",
+      "value": "蓝色区域对应大圈事件"
+    },
+    {
+      "name": "small_circle_prompt",
+      "value": "黄色区域对应小圈事件"
+    },
+    {
       "name": "mouse_event",
       "value": "鼠标事件"
     },
@@ -130,6 +162,10 @@
     },    {
       "name": "combined_gestures",
       "value": "组合手势"
+    },
+    {
+      "name": "custom_gesture",
+      "value": "自定义手势判定"
     },
     {
       "name": "transition_animation",
@@ -1977,6 +2013,10 @@
       "value": "RichText 富文本"
     },
     {
+      "name": "rich_editor",
+      "value": "RichEditor 富文本编辑"
+    },
+    {
       "name": "scroll_swiper",
       "value": "滚动与滑动"
     },
@@ -2457,6 +2497,42 @@
       "value": "第一个按钮"
     },
     {
+      "name": "custom_click_event_button",
+      "value": "Click"
+    },
+    {
+      "name": "custom_Scrolling_event_button",
+      "value": "Scrolling"
+    },
+    {
+      "name": "custom_judge_title",
+      "value": "Judge"
+    },
+    {
+      "name": "custom_judge_long_press",
+      "value": "长按响应区域"
+    },
+    {
+      "name": "custom_long_press_prompt",
+      "value": "长按上半区蓝色区域，蓝色区域响应"
+    },
+    {
+      "name": "custom_judge_click",
+      "value": "点击响应区域"
+    },
+    {
+      "name": "custom_tap_prompt",
+      "value": "点击下半区黄色区域，黄色区域响应"
+    },
+    {
+      "name": "custom_bigcircle_prompt",
+      "value": "大圈事件已响应"
+    },
+    {
+      "name": "custom_smallcircle_prompt",
+      "value": "小圈事件已响应"
+    },
+    {
       "name": "focus_event_button_two",
       "value": "第二个按钮"
     },
@@ -2539,6 +2615,10 @@
     {
       "name": "scroll_event",
       "value": "组件可见区域变化事件"
+    },
+    {
+      "name": "custom_event",
+      "value": "组件自定义事件分发"
     },
     {
       "name": "scroll_event_description",
