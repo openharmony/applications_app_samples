@@ -23,9 +23,10 @@
   "dependencies": {
     "@ohos/backgroundTask": "file:../../../feature/backgroundTask",
     "@ohos/grid": "file:../../../feature/grid",
-    "@ohos/webPerformance": "file:../../../feature/webPerformance",
-    "@ohos/nativethreadscalljs": "file:../../../feature/nativeThreadsCallJS",
     "@ohos/staticImport": "file:../../../feature/staticImport",
+    "@ohos/ThreadCommunication": "file:../../../feature/ThreadCommunication",
+    "@ohos/nativethreadscalljs": "file:../../../feature/nativeThreadsCallJS",
+    "@ohos/webPerformance": "file:../../../feature/webPerformance",
     "@ohos/ifOrVisibility": "file:../../../feature/ifOrVisibility",
     "@ohos/smartPerfEditor": "file:../../../feature/smartPerfEditor",
     "@ohos/hiDumper": "file:../../../feature/hiDumper",

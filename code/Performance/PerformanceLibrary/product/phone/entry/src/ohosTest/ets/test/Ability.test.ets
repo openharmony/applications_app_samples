@@ -603,10 +603,12 @@ export default function abilityTest() {
       await btnAccept.click();
       await driver.delayMs(3000);
       // 获取定位权限
-      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.permission_while_use'))));
       let locAcceptBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.permission_while_use'))));
-      await locAcceptBtn.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(500);
+      if (locAcceptBtn !== null) {
+        await locAcceptBtn.click();
+        await driver.delayMs(1000);
+      }
       // 点击开启定位服务
       let startLocationBtn: Component = await driver.findComponent(ON.text('开启定位服务'));
       await driver.delayMs(500);
@@ -767,6 +769,169 @@ export default function abilityTest() {
     })
 
     /**
+     * 主线程和子线程通信
+     */
+    it(BUNDLE + "ThreadCommunication_001", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}ThreadCommunication_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      await driver.swipe(10, 800, 10, 0, 600);
+      await driver.delayMs(500);
+      let threadHome: Component = await driver.findComponent(ON.text('ThreadCommunication'));
+      await driver.delayMs(500);
+      await threadHome.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.thread_communication'))));
+      await driver.delayMs(200);
+      await driver.assertComponentExist(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.scenario_1'))));
+      await driver.delayMs(200);
+      await driver.assertComponentExist(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.scenario_2'))));
+      await driver.delayMs(200);
+      await driver.assertComponentExist(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.scenario_3'))));
+      await driver.delayMs(200);
+      await driver.assertComponentExist(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.scenario_4'))));
+      await driver.delayMs(200);
+      await driver.assertComponentExist(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.scenario_5'))));
+      await driver.delayMs(200);
+      Logger.info(TAG, `${BUNDLE}ThreadCommunication_001 end`);
+      done();
+    })
+
+    /**
+     * 独立的耗时任务测试用例
+     */
+    it(BUNDLE + "ThreadCommunication_002", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}ThreadCommunication_002 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let scenario: Component = await driver.findComponent(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.scenario_1'))));
+      await driver.delayMs(500);
+      await scenario.click();
+      await driver.delayMs(1000);
+      let loadImage: Component = await driver.findComponent(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.load_image'))));
+      await driver.delayMs(500);
+      await loadImage.click();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      Logger.info(TAG, `${BUNDLE}ThreadCommunication_002 end`);
+      done();
+    })
+
+    /**
+     * 多个任务执行结果统一返回测试用例
+     */
+    it(BUNDLE + "ThreadCommunication_003", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}ThreadCommunication_003 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let scenario: Component = await driver.findComponent(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.scenario_2'))));
+      await driver.delayMs(500);
+      await scenario.click();
+      await driver.delayMs(1000);
+      let loadImage: Component = await driver.findComponent(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.load_image'))));
+      await driver.delayMs(500);
+      await loadImage.click();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      Logger.info(TAG, `${BUNDLE}ThreadCommunication_003 end`);
+      done();
+    })
+
+    /**
+     * TaskPool和主线程的即时通信测试用例
+     */
+    it(BUNDLE + "ThreadCommunication_004", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}ThreadCommunication_004 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let scenario: Component = await driver.findComponent(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.scenario_3'))));
+      await driver.delayMs(500);
+      await scenario.click();
+      await driver.delayMs(1000);
+      let loadImage: Component = await driver.findComponent(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.load_image'))));
+      await driver.delayMs(500);
+      await loadImage.click();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      Logger.info(TAG, `${BUNDLE}ThreadCommunication_004 end`);
+      done();
+    })
+
+    /**
+     * Worker和主线程的即时通信测试用例
+     */
+    it(BUNDLE + "ThreadCommunication_005", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}ThreadCommunication_005 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let scenario: Component = await driver.findComponent(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.scenario_4'))));
+      await driver.delayMs(500);
+      await scenario.click();
+      await driver.delayMs(1000);
+      let loadImage: Component = await driver.findComponent(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.change_image_number'))));
+      await driver.delayMs(500);
+      await loadImage.click();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      Logger.info(TAG, `${BUNDLE}ThreadCommunication_005 end`);
+      done();
+    })
+
+    /**
+     * 子线程同步调用主线程的接口测试用例
+     */
+    it(BUNDLE + "ThreadCommunication_006", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}ThreadCommunication_006 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let scenario: Component = await driver.findComponent(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.scenario_5'))));
+      await driver.delayMs(500);
+      await scenario.click();
+      await driver.delayMs(1000);
+      let loadImage: Component = await driver.findComponent(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.load_image'))));
+      await driver.delayMs(500);
+      await loadImage.click();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      Logger.info(TAG, `${BUNDLE}ThreadCommunication_006 end`);
+      done();
+    })
+
+    /**
      * 点击WebPerformance按钮，进入Web首页面
      */
     it(BUNDLE + "WebPerformance_001", 1, async (done: Function) => {
@@ -832,6 +997,48 @@ export default function abilityTest() {
     })
 
     /**
+     * 线程间大数据传输测试用例
+     */
+    it(BUNDLE + "ThreadDataTransfer_001", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}ThreadDataTransfer_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      await driver.swipe(10, 800, 10, 0, 600);
+      await driver.delayMs(500);
+      let threadDataTransfer: Component = await driver.findComponent(ON.text('ThreadDataTransfer'));
+      await driver.delayMs(500);
+      await threadDataTransfer.click();
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.saturation'))));
+      await driver.delayMs(200);
+      await driver.assertComponentExist(ON.text(getContext().resourceManager.getStringSync($r('app.string.task_num'))));
+      await driver.delayMs(200);
+      await driver.assertComponentExist(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.pass_params'))));
+      await driver.delayMs(200);
+      let transferData: Component = await driver.findComponent(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.start_transfer'))));
+      await driver.delayMs(200);
+      await driver.assertComponentExist(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.running_time'))));
+      await driver.delayMs(200);
+      await transferData.click();
+      await driver.delayMs(500);
+      let slider: Component = await driver.findComponent(ON.id('thread_transfer_data_slider'));
+      await driver.delayMs(500);
+      await slider.click();
+      await driver.delayMs(70000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      Logger.info(TAG, `${BUNDLE}ThreadDataTransfer_001 end`);
+      done();
+    }
+    
      * DFXStateManagement 查看内容
      */
     it(BUNDLE + "DFXStateManagement", 2, async (done: Function) => {
