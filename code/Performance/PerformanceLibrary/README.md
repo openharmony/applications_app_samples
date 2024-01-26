@@ -110,6 +110,22 @@ Native跨线程调用使用说明：
 
 3.拖动**饱和度**滑动条，调整图片饱和度。
 
+Web组件提升性能使用说明：
+
+1.连接网络后点击性能示例主页的**WebPerformance**按钮，进入**Web组件提升性能**场景页。
+
+2.点击**常规Web首页**按钮进入常规加载Web首页。
+
+3.点击**进入网页**按钮进入常规Web组件页。
+
+4.点击**下一页**按钮进入常规Web切换页。
+
+5.点击**优化Web首页**按钮进入优化加载Web首页。
+
+6.点击**进入网页**按钮进入优化Web组件页。
+
+7.点击**下一页**按钮进入优化Web切换页。
+
 ### 工程目录
 
 ```
@@ -249,7 +265,12 @@ products/phone/entry/src/main/ets
 |   |   |---LockUsage.ets                             // 锁应用页面 
 |   |   |---MemorySharedHome.ets                      // 多线程共享内存入口页面           
 |   |---/nativeThreadsCallJS
-|   |   |---NativeThreadsCallJS.ets                   // native跨线程调用示例首页               
+|   |   |---NativeThreadsCallJS.ets                   // native跨线程调用示例首页    
+|   |---/webPerformance
+|   |   |---WebHomePage.ets                           // Web提升性能示例首页
+|   |   |---WebBrowserPage.ets                        // Web组件网页
+|   |   |---WebInitializedPage.ets                    // Web优化性能主页
+|   |   |---WebUninitializedPage.ets                  // Web常规主页
 |   |---/Index                                                                     
 |---/utils
 |   |---Logger.ets                                    // 封装整个日志
@@ -338,7 +359,15 @@ products/phone/entry/src/main/ets
   * 图片调整饱和度
     * 通过不同参数，实现多线程修改图片
     * 源码链接：[TreadUtil.ets](feature/ThreadDataTransfer/src/main/ets/utils/TreadUtil.ets)
-    
+
+* Web提升性能页面模块
+  * 常规场景
+    * 使用Web组件常规实现网页加载
+    * 源码链接：[WebUninitializedPage.ets](feature/webPerformance/src/main/ets/pages/WebUninitialized.ets)
+  * 优化场景
+    * 使用预加载预连接提升web性能
+    * 源码链接：[WebInitializedPage.ets](feature/webPerformance/src/main/ets/pages/WebInitialized.ets)
+
 ### 相关权限
 
 ohos.permission.INTERNET

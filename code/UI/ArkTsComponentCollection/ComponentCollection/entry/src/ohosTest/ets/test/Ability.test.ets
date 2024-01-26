@@ -3440,6 +3440,79 @@ export default function abilityTest() {
       });
 
       /**
+       * 自定义click事件分发，点击区域内
+       */
+      it(BUNDLE + 'customClickFunction_001', 0, async () => {
+        let testName = 'customClickFunction1';
+        Logger.info(BUNDLE + testName + ' begin');
+        // 进入自定义事件分发页面
+        await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.custom_event')));
+        await driver.delayMs(DELAY_TIME);
+        // 进入自定义click事件分发页面
+        await driver.assertComponentExist(ON.id('customClick').text('Click'));
+        let button = await driver.findComponent(ON.id('customClick').text('Click'));
+        await button.click();
+        await driver.delayMs(DELAY_TIME);
+
+        //点击小圈黄色区域内
+        await driver.assertComponentExist(ON.id('SmallCircle').text('Small circle'));
+        let smallBtn = await driver.findComponent(ON.id('SmallCircle').text('Small circle'));
+        await smallBtn.click();
+        await driver.delayMs(DELAY_TIME);
+        await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.custom_smallcircle_prompt'))));
+        
+        Logger.info(BUNDLE + testName + ' end');
+      });
+
+      /**
+       * 自定义click事件分发，点击蓝色区域外
+       */
+      it(BUNDLE + 'customClickFunction_002', 0, async () => {
+        let testName = 'customClickFunction2';
+        Logger.info(BUNDLE + testName + ' begin');
+
+        //点击大圈蓝色区域外
+        await driver.assertComponentExist(ON.id('BigCircle'));
+        await driver.click(45, 245);
+        await driver.delayMs(DELAY_TIME);
+
+        //点击小圈黄色区域外，蓝色区域内
+        await driver.assertComponentExist(ON.id('SmallCircle').text('Small circle'));
+        await driver.click(139, 410);
+        await driver.delayMs(DELAY_TIME);
+        await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.custom_bigcircle_prompt'))));
+        // 返回
+        await checkButtonAndClickWithID('backBtn');
+        await driver.delayMs(DELAY_TIME_FiVE);
+        Logger.info(BUNDLE + testName + ' end');
+      });
+
+      /**
+       * 自定义scrolling事件分发
+       */
+      it(BUNDLE + 'customScrollingFunction_001', 0, async () => {
+        let testName = 'customScrollingFunction';
+        Logger.info(BUNDLE + testName + ' begin');
+        // 进入自定义scrolling事件分发页面
+        await driver.assertComponentExist(ON.id('customScrolling').text('Scrolling'));
+        let button = await driver.findComponent(ON.id('customScrolling').text('Scrolling'));
+        await button.click();
+        await driver.delayMs(DELAY_TIME);
+
+        await driver.assertComponentExist(ON.id('scrollText'));
+        let scrollTarget = await driver.findComponent(ON.id('scrollText'));
+        await driver.assertComponentExist(ON.id('scrollBtn'));
+
+        await checkButtonAndDragToTargetWithID('scrollBtn', scrollTarget);
+        // 返回
+        await checkButtonAndClickWithID('backBtn');
+        // 返回通用首页
+        await checkButtonAndClickWithID('backBtn');
+
+        Logger.info(BUNDLE + testName + ' end');
+      });
+
+      /**
        * foreground 前景
        */
       it(BUNDLE + 'ForegroundFunction_001', 0, async () => {

@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from npm package"
+    },
+    {
+      "name": "web_button_height",
+      "value": "50vp"
+    },
+    {
+      "name": "web_button_width",
+      "value": "200vp"
+    },
+    {
+      "name": "web_button_margin",
+      "value": "20vp"
+    },
+    {
+      "name": "web_entry_button",
+      "value": "进入网页"
+    },
+    {
+      "name": "web_uninitialized_page",
+      "value": "常规Web首页"
+    },
+    {
+      "name": "web_initialized_page",
+      "value": "优化Web首页"
+    },
+    {
+      "name": "web_page_back",
+      "value": "返回"
+    },
+    {
+      "name": "web_page_next",
+      "value": "下一页"
+    }
+  ]
+}

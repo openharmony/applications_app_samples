@@ -355,6 +355,10 @@ entry/src/main/ets/
 |   |   |   |   |---ScrollEventSample.ets                // 滚动事件
 |   |   |   |---touchEventSample
 |   |   |   |   |---TouchEventSample.ets                 // 触摸事件
+|   |   |   |---customEventSample
+|   |   |   |   |---CustomEventHome.ets                  // 自定义事件分发入口
+|   |   |   |   |---CustomClickEvent.ets                 // 自定义click事件分发
+|   |   |   |   |---CustomScrollingEvent.ets             // 自定义scrolling事件分发
 |   |   |---gesture
 |   |   |   |---bindGestureSample 
 |   |   |   |   |---BindGestureSample.ets                // 绑定手势方法

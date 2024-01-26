@@ -126,7 +126,7 @@
   <td x:str><a href="code/BasicFeature/Connectivity/StageSocket">Socket连接</a></td> 
   <td x:str><a href="code/BasicFeature/Connectivity/Bluetooth">蓝牙</a></td>
   <td x:str><a href="code/BasicFeature/Connectivity/UploadAndDownLoad">上传和下载（API 10）</a></td>
-  <td ></td>
+  <td x:str><a href="code/BasicFeature/Connectivity/VPN">VPN连接</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>数据管理</strong></td>
