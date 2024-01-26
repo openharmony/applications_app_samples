@@ -13,4 +13,4 @@
  * limitations under the License.
  */
 
-export { MainPage } from './src/main/ets/components/mainpage/HarA'
+export { MainPage } from './src/main/ets/components/mainpage/HarA';
