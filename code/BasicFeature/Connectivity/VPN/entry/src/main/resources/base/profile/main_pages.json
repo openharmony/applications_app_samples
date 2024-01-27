@@ -1,7 +1,5 @@
 {
   "src": [
-    "pages/Index",
-    "pages/StartVpn",
-    "pages/StopVpn"
+    "pages/Index"
   ]
 }
