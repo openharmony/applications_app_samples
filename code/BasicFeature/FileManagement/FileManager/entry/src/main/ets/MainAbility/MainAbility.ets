@@ -15,7 +15,6 @@
 
 import Ability from '@ohos.app.ability.UIAbility';
 import hilog from '@ohos.hilog';
-import businessAbilityRouter from '@ohos.app.businessAbilityRouter';
 import { BusinessError } from '@ohos.base';
 import window from '@ohos.window';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';

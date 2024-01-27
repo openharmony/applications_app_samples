@@ -17,8 +17,9 @@
 2. 在文档列表浏览界面，点击“+”按钮，可以添加文件；
 3. 在文档列表浏览界面，长按列表项会出现删除图片，点击删除图标可以删除文件；
 4. 在图片文件列表界面，点击图片可以进入图片预览界面。
-5. 在主页点击“我的手机”，进入应用沙箱目录下。
+5. 进入“我的手机”页面前应先安装[MyPhoneFilePage](./lib/MyPhoneFilePage-1.0.0.hap)，在主页点击“我的手机”，进入应用沙箱目录下。
    1. 列表的上方是默认的EL2加密分区的应用根目录下文件列表，点击下方两个按钮“data/app/el3”和“data/app/el4”分别进入EL3和EL4加密分区应用根目录，进入后对文件或文件夹操作与EL2加密分区相同。
+   
    2. 点击左下角“新建文件夹”按钮，在弹窗中输入文件夹名称，点击弹窗中的“确定”按钮，完成创建。
 
    3. 点击新建的文件夹，进入目录，在新目录中点击左下角的“新建文件”，在弹窗的窗口中填写文件名称，然后点击确定，完成创建。
@@ -152,10 +153,9 @@ Library/src/main/ets/
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568;
-2. 本示例为Stage模型，仅支持API11版本SDK，SDK版本号(API Version 11 Release),镜像版本号(4.0Release)   。
-3. 本示例涉及使用系统接口：@ohos.multimedia.mediaLibrary中的deleteAsset接口，需要手动替换Full SDK才能编译通过，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/) ；
-4. 本示例需要使用DevEco Studio 版本号(4.0Release)及以上版本才可编译运行。
-5. 本示例涉及调用系统权限的接口，需要配置允许权限列表，可以参考[特殊权限配置方法](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/) ，在配置文件中的“allowed-acls”字段中增加"ohos.permission.READ_MEDIA", "ohos.permission.WRITE_MEDIA", "ohos.permission.FILE_ACCESS_MANAGER", "ohos.permission.STORAGE_MANAGER"四个权限。
+2. 本示例为Stage模型，仅支持API11版本SDK，SDK版本号(API Version 11 Beta),镜像版本号(4.1Beta)。
+3. 本示例需要使用DevEco Studio 版本号(4.0Release)及以上版本才可编译运行。
+4. 本示例涉及调用系统权限的接口，需要配置允许权限列表，可以参考[特殊权限配置方法](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/) ，在配置文件中的“allowed-acls”字段中增加"ohos.permission.READ_MEDIA", "ohos.permission.WRITE_MEDIA", "ohos.permission.FILE_ACCESS_MANAGER", "ohos.permission.STORAGE_MANAGER"四个权限。
 
 ### 下载
 

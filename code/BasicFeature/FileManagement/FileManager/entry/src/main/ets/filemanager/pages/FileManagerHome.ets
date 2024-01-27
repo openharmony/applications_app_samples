@@ -16,9 +16,12 @@
 import prompt from '@ohos.promptAction';
 import router from '@ohos.router';
 import { FileManager } from '@ohos/feature-file-manager';
+import fs from '@ohos.file.fs';
+import Want from '@ohos.app.ability.Want';
+import common from '@ohos.app.ability.common';
+import { BusinessError } from '@ohos.base';
 import { Logger } from '../../common/Common';
 import MyWatcher from '../fileFs/MyWatcher';
-import fs from '@ohos.file.fs';
 
 class MainListItemModel {
   image: Resource | null = null
@@ -182,7 +185,22 @@ struct MainListItemComponent {
       if (this.mainListItem.isFileWatcher) {
         this.readyForWatcher();
       }
-      router.push({ url: this.mainListItem.routerUrl })
+      if (this.mainListItem.routerUrl === MAIN_LIST_ITEMS[5].routerUrl) {
+        let want: Want = {
+          deviceId: '',
+          bundleName: 'com.samples.my_phone_file',
+          abilityName: 'EntryAbility'
+        };
+        let context: common.UIAbilityContext | undefined = AppStorage.get('context');
+        context && context.startAbility(want, (err: BusinessError) => {
+          if (err.code) {
+            Logger.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+          }
+        }
+        );
+        return;
+      }
+      router.pushUrl({ url: this.mainListItem.routerUrl });
     })
   }
 }
