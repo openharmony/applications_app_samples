@@ -233,8 +233,13 @@ entry/src/main/ets/
 |   |   |   |   |---NavigationBasic.ets                  // 导航基础属性展示
 |   |   |   |   |---ListExpandSafeArea.ets               // 滚动组件避让导航条
 |   |   |   |   |---NavigationSplit.ets               	 // 导航分栏模式
+|   |   |   |   |---NavigationRouter.ets               	 // Navigation动态路由
+|   |   |   |   |---NavigationModeChange.ets             // Navigation模式自动切换
+|   |   |   |   |---NavigationReplace.ets                // 导航页面替换
 |   |   |   |   |---BindSheetSafeArea.ets                // BindSheet键盘避让
 |   |   |   |   |---NavigationSideBar.ets                // 导航分栏鼠标样式
+|   |   |   |   |---NavigationHideBar.ets                // 隐藏Navigation导航条
+|   |   |   |   |---NavigationFullSafeArea.ets           // 导航组件扩展安全区
 |   |   |   |   |---NavigationExpandSafeArea.ets         // 导航组件避让导航条
 |   |   |   |---navRouterSample
 |   |   |   |   |---NavRouterSample.ets                  // 导航

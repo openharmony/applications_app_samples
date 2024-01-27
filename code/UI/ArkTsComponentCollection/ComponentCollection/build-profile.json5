@@ -37,6 +37,18 @@
           ]
         }
       ]
+    },
+    {
+      "name": "harA",
+      "srcPath": "./harA"
+    },
+    {
+      "name": "harB",
+      "srcPath": "./harB"
+    },
+    {
+      "name": "RouterModule",
+      "srcPath": "./RouterModule"
     }
   ]
 }
