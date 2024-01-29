@@ -137,8 +137,9 @@ export default class CharacterOperation {
         });
       });
     } else {
+      // 清理存储数据失败
       prompt.showToast({
-        message: $r('app.string.clean_Data_Success'), duration: TIME
+        message: $r('app.string.clean_Data_Failed'), duration: TIME
       });
     }
   }

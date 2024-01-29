@@ -38,11 +38,11 @@
 4.应用清理自己的数据的能力
 
 点击'创建数据'的ListItem，弹出Toast提示创建'缓存文件成功',点击'检查数据'的ListItem，弹出Toast提示创建'查询到缓存文件'
-,点击'清除数据'的ListItem，应用退出，重新启动应用，点击'检查数据'的ListItem，弹出Toast提示创建'未找到缓存文件'
+,点击'清除数据'的ListItem，应用清理缓存文件后自动退出。手动重新启动应用后，点击'检查数据'的ListItem，弹出Toast提示创建'未找到缓存文件'
 
 5.应用可以设置启动参数启动Ability能力
 
-点击''StartOptions配置'的ListItem,应用启动NewAbility，应用启动HomeAbility，点击''启动动画'的Toggle,在点击''
+点击''StartOptions配置'的ListItem,应用启动NewAbility。返回主界面，点击''启动动画'的Toggle,在点击''
 StartOptions配置'的ListItem，应用启动NewAbility
 
 ### 工程目录
