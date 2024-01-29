@@ -96,7 +96,7 @@
     "pages/components/buttonAndSelection/textPickerSample/TextPickerSample",
     "pages/components/buttonAndSelection/checkboxSample/CheckboxSample",
     "pages/components/textAndInput/richTextSample/RichTextSample",
-    "pages/components/textAndInput/richTextEditorSample/RichTextEditorSample",
+    "pages/components/textAndInput/richEditorSample/RichEditorSample",
     "pages/components/scrollAndSwipe/scrollSample/ScrollSample",
     "pages/animations/TransitionAnimations/componentTransitionSample/ComponentTransitionSample",
     "pages/animations/animateToSample/AnimateToSample",
