@@ -34,6 +34,7 @@ struct NavigationHideBar {
         .backgroundColor('#007DFF')
         .height(40)
         .width('80%')
+        .id('replace')
       }
       .justifyContent(FlexAlign.Center)
       .height('100%')

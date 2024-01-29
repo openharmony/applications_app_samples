@@ -31,6 +31,7 @@ export function harBuilder(values: Object) {
       .width('88%')
       .backgroundColor('#007DFF')
       .borderRadius(20)
+      .id('gotohar2')
     }
     .width('100%')
     .height('100%')
