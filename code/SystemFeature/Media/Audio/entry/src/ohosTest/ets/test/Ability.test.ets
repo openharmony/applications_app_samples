@@ -49,7 +49,7 @@ export default function abilityTest() {
       Logger.info(TAG, BUNDLE + 'StartAbility_001 begin')
       try {
         await abilityDelegator.startAbility({
-          bundleName: 'com.system.audio',
+          bundleName: 'com.samples.audio',
           abilityName: 'EntryAbility'
         })
         done()
@@ -146,17 +146,13 @@ export default function abilityTest() {
       done()
     })
 
-    //   Wearing an output device which supports spatialization and head tracking is a MUST while executing following tests
-    //   Otherwise they would FAIL, OR just annotate following tests
-    //   By default, open mode is on.
-
     it(BUNDLE + 'SpatialAudio_005', 0, async (done: Function) => {
       Logger.info(TAG, BUNDLE + 'SpatialAudio_005 begin')
       try {
         await driver.delayMs(1000)
-        await driver.assertComponentExist(ON.id('close_mode_off'))
-        await driver.assertComponentExist(ON.id('open_mode_on'))
-        await driver.assertComponentExist(ON.id('tracking_mode_off'))
+        await driver.assertComponentExist(ON.id('close_mode_on'))
+        await driver.assertComponentExist(ON.id('open_mode_disabled'))
+        await driver.assertComponentExist(ON.id('tracking_mode_disabled'))
       } catch (err) {
         Logger.error(TAG, BUNDLE + 'SpatialAudio_005 err:' + JSON.stringify(err))
         expect(false).assertTrue()
@@ -169,55 +165,13 @@ export default function abilityTest() {
       Logger.info(TAG, BUNDLE + 'SpatialAudio_006 begin')
       try {
         await driver.delayMs(1000)
-        let OpenModeOff = await driver.findComponent(ON.id('tracking_mode_off'))
-        await OpenModeOff.click()
-        await driver.delayMs(500)
-        await driver.assertComponentExist(ON.id('close_mode_off'))
-        await driver.assertComponentExist(ON.id('open_mode_off'))
-        await driver.assertComponentExist(ON.id('tracking_mode_on'))
+        let SpatialBackBtn = await driver.findComponent(ON.id('spatial_audio_back_btn'))
+        await SpatialBackBtn.click()
       } catch (err) {
         Logger.error(TAG, BUNDLE + 'SpatialAudio_006 err:' + JSON.stringify(err))
         expect(false).assertTrue()
       }
       Logger.info(TAG, BUNDLE + 'SpatialAudio_006 end')
-      done()
-    })
-
-    it(BUNDLE + 'SpatialAudio_007', 0, async (done: Function) => {
-      Logger.info(TAG, BUNDLE + 'SpatialAudio_007 begin')
-      try {
-        await driver.delayMs(1000)
-        let TrackingModeOff = await driver.findComponent(ON.id('close_mode_off'))
-        await TrackingModeOff.click()
-        await driver.delayMs(500)
-        await driver.assertComponentExist(ON.id('close_mode_on'))
-        await driver.assertComponentExist(ON.id('open_mode_off'))
-        await driver.assertComponentExist(ON.id('tracking_mode_off'))
-      } catch (err) {
-        Logger.error(TAG, BUNDLE + 'SpatialAudio_007 err:' + JSON.stringify(err))
-        expect(false).assertTrue()
-      }
-      Logger.info(TAG, BUNDLE + 'SpatialAudio_007 end')
-      done()
-    })
-
-    it(BUNDLE + 'SpatialAudio_008', 0, async (done: Function) => {
-      Logger.info(TAG, BUNDLE + 'SpatialAudio_008 begin')
-      try {
-        await driver.delayMs(1000)
-        let TrackingModeOff = await driver.findComponent(ON.id('open_mode_off'))
-        await TrackingModeOff.click()
-        await driver.delayMs(500)
-        await driver.assertComponentExist(ON.id('close_mode_off'))
-        await driver.assertComponentExist(ON.id('open_mode_on'))
-        await driver.assertComponentExist(ON.id('tracking_mode_off'))
-        let SpatialBackBtn = await driver.findComponent(ON.id('spatial_audio_back_btn'))
-        await SpatialBackBtn.click()
-      } catch (err) {
-        Logger.error(TAG, BUNDLE + 'SpatialAudio_008 err:' + JSON.stringify(err))
-        expect(false).assertTrue()
-      }
-      Logger.info(TAG, BUNDLE + 'SpatialAudio_008 end')
       done()
     })
   })

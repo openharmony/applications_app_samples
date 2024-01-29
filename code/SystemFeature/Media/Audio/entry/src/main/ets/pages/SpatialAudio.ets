@@ -268,6 +268,7 @@ struct SpatialAudio {
       .margin({right:68})
       .fontColor(Color.Grey)
       .textAlign(TextAlign.Center)
+      .id("open_mode_disabled")
   }
 
   @Builder TrackingTextEnable() {
@@ -288,6 +289,7 @@ struct SpatialAudio {
       .fontWeight(500)
       .fontColor(Color.Grey)
       .textAlign(TextAlign.Center)
+      .id("tracking_mode_disabled")
   }
 
   @Builder DIYTitle() {
