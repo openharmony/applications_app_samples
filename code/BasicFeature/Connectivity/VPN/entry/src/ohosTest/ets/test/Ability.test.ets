@@ -18,7 +18,6 @@ import { describe, it, expect } from '@ohos/hypium'
 import { Driver, ON } from '@ohos.UiTest';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
-const BUNDLE = 'VpnConnect_';
 const TAG = '[Sample_VpnConnect]';
 const DOMAIN = 0xF811;
 
@@ -28,6 +27,7 @@ async function getResourceString(resource: Resource): Promise<string> {
   let text = await manage.getStringValue(resource)
   return text
 }
+
 export default function abilityTest() {
   describe('ActsAbilityTest', () => {
     /**
