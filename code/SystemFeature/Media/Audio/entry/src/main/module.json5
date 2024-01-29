@@ -50,6 +50,9 @@
     "requestPermissions": [
       {
         "name": "ohos.permission.USE_BLUETOOTH"
+      },
+      {
+        "name": "ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS"
       }
 
     ]
