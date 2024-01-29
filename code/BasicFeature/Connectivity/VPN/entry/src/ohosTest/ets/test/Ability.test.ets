@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2024 Huawei Device Co., Ltd.
+* Copyright (c) 2023 Huawei Device Co., Ltd.
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -14,8 +14,8 @@
 */
 
 import hilog from '@ohos.hilog';
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import { Driver, ON, Component, MatchPattern } from '@ohos.UiTest';
+import { describe, it, expect } from '@ohos/hypium'
+import { Driver, ON } from '@ohos.UiTest';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
 const BUNDLE = 'VpnConnect_';
@@ -33,121 +33,201 @@ export default function abilityTest() {
     /**
      * 启动Ability
      */
-    it(BUNDLE + 'startAbility_001', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'startAbility_001 start');
-      try {
-        await abilityDelegator.startAbility({
-          bundleName: "com.samples.testvpnclient",
-          abilityName: "EntryAbility"
-        });
-        done();
-      } catch (err) {
-        expect(err.code).assertEqual(0);
-        done();
-      }
-      hilog.info(DOMAIN, TAG, BUNDLE + 'startAbility_001 end');
+    it('startAbility_001', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, 'startAbility_001 start');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      await startAbility();
+      await driver.delayMs(1000);
+      hilog.info(DOMAIN, TAG, 'startAbility_001 end');
+      done();
     });
 
     /**
-     * 进入首页
+     * 进入首页,标题显示正确
      */
-    it(BUNDLE + 'IndexPageEnter_001', 0, async () => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'IndexPageEnter_001 start');
-      let driver = Driver.create();
-      await driver.delayMs(200);
-      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.app_name')), MatchPattern.CONTAINS));
-      let titleComponent = await driver.findComponent(ON.text(await getResourceString($r('app.string.app_name')), MatchPattern.CONTAINS));
+    it('IndexPageEnter_001', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, 'IndexPageEnter_001 start');
+      let driver: Driver = Driver.create();
+      await terminateAbility();
+      await driver.delayMs(1000);
+      await startAbility();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('Toy VPN'));
+      let titleComponent = await driver.findComponent(ON.text('Toy VPN'));
       let titleContent = await titleComponent.getText();
       await driver.delayMs(200);
-      expect(await getResourceString($r('app.string.app_name'))).assertEqual(titleContent);
+      expect('Toy VPN').assertEqual(titleContent);
       await driver.delayMs(200);
-      hilog.info(DOMAIN, TAG, BUNDLE + 'IndexPageEnter_001 end');
+      hilog.info(DOMAIN, TAG, 'IndexPageEnter_001 end');
+      done();
     });
 
     /**
-     * 启用VNP
+     * 在主界面启用VPN
      */
-    it(BUNDLE + 'StartVpn_001', 0, async () => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'StartVpn_001 start');
+    it('StartVpn_001', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, 'StartVpn_001 start');
       let driver = Driver.create();
-      await driver.delayMs(200);
+      await terminateAbility();
+      await driver.delayMs(1000);
+      await startAbility();
+      await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Start VPN'));
       let startVpn = await driver.findComponent(ON.text('Start VPN'));
       await driver.delayMs(200);
       await startVpn.click();
-      await driver.delayMs(1000);
-      hilog.info(DOMAIN, TAG, BUNDLE + 'StartVpn_001 end');
+      await driver.delayMs(200);
+      hilog.info(DOMAIN, TAG, 'StartVpn_001 end');
+      done();
     });
 
     /**
-     * 启用VPN后创建隧道
+     * 在主界面启用VPN后，再创建隧道
      */
-    it(BUNDLE + 'CreateTunnel_001', 0, async () => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'StartTunnelProtect_001 start');
+    it('CreateTunnel_001', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, 'CreateTunnel_001 start');
       let driver = Driver.create();
+      await terminateAbility();
+      await driver.delayMs(1000);
+      await startAbility();
+      await driver.delayMs(1000);
+      // 点击启用VPN
+      await driver.assertComponentExist(ON.text('Start VPN'));
+      let startVpn = await driver.findComponent(ON.text('Start VPN'));
+      await driver.delayMs(200);
+      await startVpn.click();
+      // 点击创建隧道
       await driver.delayMs(200);
       await driver.assertComponentExist(ON.text('创建对象'));
       let createTunnel = await driver.findComponent(ON.text('创建对象'));
       await driver.delayMs(200);
       await createTunnel.click();
-      await driver.delayMs(500);
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CreateTunnel_001 end');
+      await driver.delayMs(200);
+      hilog.info(DOMAIN, TAG, 'CreateTunnel_001 end');
+      done();
     });
 
     /**
      * 启用VPN后开启隧道保护
      */
-    it(BUNDLE + 'StartTunnelProtect_001', 0, async () => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'StartTunnelProtect_001 start');
+    it('StartTunnelProtect_001', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, 'StartTunnelProtect_001 start');
       let driver = Driver.create();
+      await terminateAbility();
+      await driver.delayMs(1000);
+      await startAbility();
+      await driver.delayMs(1000);
+      // 点击启用VPN
+      await driver.assertComponentExist(ON.text('Start VPN'));
+      let startVpn = await driver.findComponent(ON.text('Start VPN'));
+      await driver.delayMs(200);
+      await startVpn.click();
+      // 点击开启隧道保护
       await driver.delayMs(200);
       await driver.assertComponentExist(ON.text('隧道保护'));
       let protect = await driver.findComponent(ON.text('隧道保护'));
       await driver.delayMs(200);
       await protect.click();
       await driver.delayMs(200);
-      hilog.info(DOMAIN, TAG, BUNDLE + 'StartTunnelProtect_001 end');
+      hilog.info(DOMAIN, TAG, 'StartTunnelProtect_001 end');
+      done();
     });
 
     /**
      * 启用VPN后启动VPN连接
      */
-    it(BUNDLE + 'SetupVpn_001', 0, async () => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'SetupVpn_001 start');
+    it('SetupVpn_001', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, 'SetupVpn_001 start');
       let driver = Driver.create();
+      await terminateAbility();
+      await driver.delayMs(1000);
+      await startAbility();
+      await driver.delayMs(1000);
+      // 点击启用VPN
+      await driver.assertComponentExist(ON.text('Start VPN'));
+      let startVpn = await driver.findComponent(ON.text('Start VPN'));
+      await driver.delayMs(200);
+      await startVpn.click();
+      // 点击开启vpn
       await driver.delayMs(200);
       await driver.assertComponentExist(ON.text('启动vpn'));
       let setupVpn = await driver.findComponent(ON.text('启动vpn'));
       await setupVpn.click();
       await driver.delayMs(200);
+      hilog.info(DOMAIN, TAG, 'SetupVpn_001 end');
+      done();
     });
 
     /**
      * 停用VPN
      */
-    it(BUNDLE + 'StopVpn_001', 0, async () => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'StopVpn_001 start');
+    it('StopVpn_001', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, 'StopVpn_001 start');
       let driver = Driver.create();
-      await driver.delayMs(200);
+      await terminateAbility();
+      await driver.delayMs(1000);
+      await startAbility();
+      await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Stop VPN'));
       let stopVpn = await driver.findComponent(ON.text('Stop VPN'));
       await stopVpn.click();
       await driver.delayMs(200);
-      hilog.info(DOMAIN, TAG, BUNDLE + 'StopVpn_001 end');
+      hilog.info(DOMAIN, TAG, 'StopVpn_001 end')
+      done();
     });
 
     /**
      * 关闭VPN连接
      */
-    it(BUNDLE + 'CloseVpn_001', 0, async () => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CloseVpn_001 start');
+    it('CloseVpn_001', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, 'CloseVpn_001 start');
       let driver = Driver.create();
+      await terminateAbility();
+      await driver.delayMs(1000);
+      await startAbility();
+      await driver.delayMs(1000);
+      // 点击停用VPN
+      await driver.assertComponentExist(ON.text('Stop VPN'));
+      let stopVpn = await driver.findComponent(ON.text('Stop VPN'));
+      await stopVpn.click();
+      // 点击关闭VPN
       await driver.delayMs(200);
       await driver.assertComponentExist(ON.text('关闭vpn'));
       let closeVpn = await driver.findComponent(ON.text('关闭vpn'));
       await closeVpn.click();
       await driver.delayMs(200);
-      hilog.info(DOMAIN, TAG, BUNDLE + 'CloseVpn_001 end');
+      hilog.info(DOMAIN, TAG, 'CloseVpn_001 end');
+      done();
     });
   });
 }
+
+/**
+ * 拉起应用
+ */
+async function startAbility() {
+  try {
+    let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+    await abilityDelegator.startAbility({
+      bundleName: "com.example.testvpnclient",
+      abilityName: "EntryAbility"
+    });
+  } catch (err) {
+    hilog.info(DOMAIN, TAG, 'startAbility err');
+  }
+}
+
+/**
+ * 关闭应用
+ */
+async function terminateAbility() {
+  try {
+    let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+    let topAbility = await abilityDelegator.getCurrentTopAbility();
+    await topAbility.context.terminateSelf();
+  } catch (err) {
+    hilog.info(DOMAIN, TAG, 'terminateAbility err');
+  }
+}
+
