@@ -24,9 +24,9 @@ const TAG: string = '[Sample_Performance_Test]';
 const delegator: AbilityDelegatorRegistry.AbilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
 async function getResourceString<T extends Resource>(resource: T): Promise<string> {
-  let manage = delegator.getAppContext().resourceManager
-  let text = await manage.getStringValue(resource)
-  return text
+  let manage = delegator.getAppContext().resourceManager;
+  let text = await manage.getStringValue(resource);
+  return text;
 }
 
 export default function abilityTest() {
@@ -39,13 +39,13 @@ export default function abilityTest() {
       let want: Want = {
         bundleName: 'com.samples.performancelibrary',
         abilityName: 'EntryAbility'
-      }
+      };
       delegator.startAbility(want, (err) => {
-        Logger.info(TAG, 'StartAbility get err ' + JSON.stringify(err))
-        expect(err).assertNull()
+        Logger.info(TAG, 'StartAbility get err ' + JSON.stringify(err));
+        expect(err).assertNull();
       })
-      Logger.info(TAG, BUNDLE + '_startAbility end')
-      done()
+      Logger.info(TAG, BUNDLE + '_startAbility end');
+      done();
     })
 
     /**
@@ -598,14 +598,15 @@ export default function abilityTest() {
       await longTermTaskBtn.click();
       await driver.delayMs(3000);
       // 获取通知权限
-      await driver.assertComponentExist(ON.text('允许'));
-      let btnAccept = await driver.findComponent(ON.text('允许'));
-      await btnAccept.click();
+      let btnAccept: Component = await driver.findComponent(ON.text('允许'));
+      if (btnAccept) {
+        await btnAccept.click();
+      }
       await driver.delayMs(3000);
       // 获取定位权限
-      let locAcceptBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.permission_while_use'))));
+      let locAcceptBtn: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.permission_while_use'))));
       await driver.delayMs(500);
-      if (locAcceptBtn !== null) {
+      if (locAcceptBtn) {
         await locAcceptBtn.click();
         await driver.delayMs(1000);
       }
@@ -940,6 +941,8 @@ export default function abilityTest() {
       await driver.delayMs(500);
       await driver.swipe(0, 800, 0, 100, 600);
       await driver.delayMs(500);
+      await driver.swipe(0, 800, 0, 100, 600);
+      await driver.delayMs(500);
       // 进入Web应用首页
       let WebIndexEntry: Component = await driver.findComponent(ON.text((await getResourceString($r('app.string.web_performance')))));
       await driver.delayMs(500);
@@ -1037,8 +1040,9 @@ export default function abilityTest() {
       await driver.delayMs(500);
       Logger.info(TAG, `${BUNDLE}ThreadDataTransfer_001 end`);
       done();
-    }
-    
+    })
+
+    /**
      * DFXStateManagement 查看内容
      */
     it(BUNDLE + "DFXStateManagement", 2, async (done: Function) => {

@@ -114,6 +114,10 @@
     {
       "name": "ThreadCommunication",
       "srcPath": "./feature/ThreadCommunication"
+    },
+    {
+      "name": "webPerformance",
+      "srcPath": "./feature/webPerformance"
     }
   ]
 }
