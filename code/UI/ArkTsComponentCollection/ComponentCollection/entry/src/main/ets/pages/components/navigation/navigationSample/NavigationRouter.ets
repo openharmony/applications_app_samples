@@ -51,6 +51,7 @@ struct Index {
           .width('88%')
           .backgroundColor('#007DFF')
           .borderRadius(20)
+          .id('gotohar1')
         }
         .height('100%')
         .justifyContent(FlexAlign.Center)

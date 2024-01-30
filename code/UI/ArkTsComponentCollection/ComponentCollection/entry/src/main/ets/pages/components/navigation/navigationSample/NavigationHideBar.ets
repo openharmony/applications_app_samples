@@ -98,6 +98,7 @@ struct NavigationHideBar {
         .backgroundColor(Color.White)
         .borderRadius(24)
         .padding(5)
+        .id('navbar')
       }
       .hideTitleBar(true)
       .navDestination(this.PageMap)
@@ -114,6 +115,7 @@ struct NavigationHideBar {
           .onClick(()=>{
             this.hide = !this.hide;
           })
+          .id('hide')
       }
       .height(56)
       .padding({ right: 26 })

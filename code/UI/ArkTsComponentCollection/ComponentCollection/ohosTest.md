@@ -151,6 +151,10 @@
 | 验证Navigation组件Split模式	| 展开导航、进入Navigation | 点击Split模式动画演示进入页面、依次点击列表1/列表2 | 正确显示页面及切换动画 | 是 | Pass |
 | 验证BindSheet避让键盘	| 展开导航、进入Navigation | 点击BindSheet避让键盘进入页面、点击输入框 | 输入框位置自动调整至键盘上方 | 是 | Pass |
 | 验证Navigation组件Split模式鼠标样式	| 展开导航、进入Navigation | 点击分栏的鼠标样式进入页面、点击列表1 | 正确显示页面 | 是 | Pass |
+| 验证Navigation跳转到Har包页面	| 展开导航、进入Navigation | 点击跳转到Har包按钮 | 正确显示页面 | 是 | Pass |
+| 验证Navigation替换页面接口	| 展开导航、进入Navigation | 点击“Replace当前页面”按钮 | 替换过程中有动画 | 是 | Pass |
+| 验证隐藏NavBar	| 展开导航、进入Navigation | 点击隐藏按钮 | 页面中无NavBar信息 | 是 | Pass |
+| 验证Navigation组件安全区	| 展开导航、进入Navigation | 依次点击扩展安全区、收起安全区 | Navigation安全区发生相应变化 | 是 | Pass |
 | 验证Navigation组件避让底部导航条	| 展开导航、进入Navigation | 点击避让底部导航条进入页面、点击不延伸 | 正确显示效果 | 是 | Pass |
 | 验证组件自定义click事件分发，区域内响应	         | 进入通用tab页，进入组件自定义事件分发页面        | 	点击Click按钮进入Click页面，先蓝色圆圈区域内点击，再黄色圆圈区域内点击                                     | 	按压点在蓝色区域内，弹出提示"大圈事件已响应", 按压黄色区域内，弹出提示"小圈事件已响应"    | 是    | Pass |
 | 验证组件自定义click事件分发，区域外无响应	         | 进入通用tab页，进入组件自定义事件分发页面        | 	点击Click按钮进入Click页面，蓝色圆圈区域外点击                                     | 	无任何响应    | 是    | Pass |

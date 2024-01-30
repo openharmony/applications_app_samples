@@ -3205,6 +3205,10 @@
       "value": "Go back to the first page"
     },
     {
+      "name": "navigation_basic_title",
+      "value": "Navigation Basic"
+    },
+    {
       "name": "navigation_expand",
       "value": "Expand"
     },
@@ -3244,6 +3248,63 @@
       "name": "navigation_navcontent_list",
       "value": "Content%d"
     },
+    {
+      "name": "navigation_hidebar_title",
+      "value": "Navigation Hide NavBar"
+    },
+    {
+      "name": "navigation_replace_title",
+      "value": "Navigation Replace"
+    },
+    {
+      "name": "navigation_replace_page",
+      "value": "Replace Current Page"
+    },
+    {
+      "name": "navigation_modechange_title",
+      "value": "Mode Change"
+    },
+    {
+      "name": "navigation_rotate_screen",
+      "value": "Rotate Screen"
+    },
+    {
+      "name": "navigation_modevalue",
+      "value": "SMode Value"
+    },
+    {
+      "name": "navigation_mode_callback",
+      "value": "Mode CallBack"
+    },
+    {
+      "name": "navigation_safearea_title",
+      "value": "Navigation Safe Area"
+    },
+    {
+      "name": "navigation_safearea_default",
+      "value": "Default"
+    },
+    {
+      "name": "navigation_safearea_expand",
+      "value": "Expand"
+    },
+    {
+      "name": "navigation_safearea_unexpand",
+      "value": "Unexpand"
+    },
+    {
+      "name": "navigation_router_title",
+      "value": "Hap Jump to Har"
+    },
+    {
+      "name": "navigation_router_har1",
+      "value": "Jump to Har1"
+    },
+    {
+      "name": "navigation_router_har2",
+      "value": "Jump to Har2"
+    },
+    // Tabs
     {
       "name": "tabs_title",
       "value": "Tabs"
