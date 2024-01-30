@@ -91,7 +91,7 @@ struct NavigationBasic {
 
   build() {
     Column() {
-      TitleBar({ title: $r('app.string.navigation_title') })
+      TitleBar({ title: $r('app.string.navigation_basic_title') })
       Column() {
         Navigation() {
           TextInput({ placeholder: 'search...' })

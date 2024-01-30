@@ -126,6 +126,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-notification-1.0.0.tgz" desc="Provided by Notification/CustomEmitter"/>
                 <filteritem type="filepath" name="code/Solutions/Media/MultiMedia/lib/VideoPlayer.tgz" desc="Provided by code/Solutions/Media/MultiMedia"/>
                 <filteritem type="filepath" name="code/BasicFeature/FileManagement/FileManager/lib/MyPhoneFilePage-1.0.0.tgz" desc="Provided by code/BasicFeature/FileManagement/FileManager"/>
+                <filteritem type="filepath" name="code/BasicFeature/Connectivity/VPN/lib/VPNFoundation-1.0.0.tgz" desc="Provided by code/BasicFeature/Connectivity/VPN"/>
                 <filteritem type="filepath" name="code/DataMock/QuickFix/entry-signed-release.hqf" desc="Provided by code/BasicFeature/TaskManagement/TransientTask"/>
                 <filteritem type="filepath" name="code/Solutions/Shopping/ASOrangeShopping/data/freeinstall/famanager.hap" desc="Provided by BMS"/>
                 <filteritem type="filepath" name="code/Solutions/Shopping/ASOrangeShopping/data/freeinstall/launcher.hap" desc="Provided by  code/SystemFeature/ApplicationModels/Launcher"/>
@@ -165,6 +166,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmony.p12" desc="Provided by code/Project/HapBuild"/>
                 <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/resources/app1-signed.hap" desc="Provided by code/Project/HapBuild"/>
                 <filteritem type="filepath" name="code/BasicFeature/FileManagement/FileManager/lib/MyPhoneFilePage-1.0.0.hap" desc="Provided by code/BasicFeature/FileManagement/FileManager"/>
+                <filteritem type="filepath" name="code/BasicFeature/Connectivity/VPN/lib/VPNFoundation-1.0.0.hap" desc="Provided by code/BasicFeature/Connectivity/VPN"/>
 
         <filteritem type="filepath" name="code/BasicFeature/DeviceManagement/Sensor/Capi/entry/src/main/resources/base/media/compass.png" desc="Provided by code/BasicFeature/DeviceManagement/Sensor"/>
         <filteritem type="filepath" name=" code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic/entry/src/main/resources/base/media/select.png" desc="Provided by code/BasicFeature/DeviceManagement/Vibrator"/>
@@ -189,6 +191,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-notification-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/Solutions/Media/MultiMedia/lib/VideoPlayer.tgz" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/BasicFeature/FileManagement/FileManager/lib/MyPhoneFilePage-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/BasicFeature/Connectivity/VPN/lib/VPNFoundation-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
             </filefilter>
             <filefilter name="copyrightPolicyFilter" desc="Copyright文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加版权头"/>
@@ -210,6 +213,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-video-component-1.0.5.tgz" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/Solutions/Media/MultiMedia/lib/VideoPlayer.tgz" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/BasicFeature/FileManagement/FileManager/lib/MyPhoneFilePage-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/BasicFeature/Connectivity/VPN/lib/VPNFoundation-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
             </filefilter>
         </filefilterlist>
     </oatconfig>

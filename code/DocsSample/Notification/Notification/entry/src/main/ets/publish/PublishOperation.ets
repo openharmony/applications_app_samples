@@ -107,7 +107,7 @@ export default class PublishOperation {
   }
   publishPicture = async () => {
     let imageArray = await this.context.resourceManager.getMediaContent($r('app.media.pic').id);
-    let imageResource = image.createImageSource(imageArray.buffer);
+    let imageResource = image.createImageSource(imageArray.buffer as ArrayBuffer);
     let imagePixelMap = await imageResource.createPixelMap();
 
     if (imagePixelMap !== undefined) {

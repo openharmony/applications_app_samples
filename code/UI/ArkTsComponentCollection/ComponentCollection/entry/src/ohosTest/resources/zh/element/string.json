@@ -1989,6 +1989,10 @@
       "value": "返回第一个页面"
     },
     {
+      "name": "navigation_basic_title",
+      "value": "Navigation基本功能"
+    },
+    {
       "name": "navigation_expand",
       "value": "延伸"
     },
@@ -2028,6 +2032,63 @@
       "name": "navigation_navcontent_list",
       "value": "内容%d"
     },
+    {
+      "name": "navigation_hidebar_title",
+      "value": "隐藏NavBar主页"
+    },
+    {
+      "name": "navigation_replace_title",
+      "value": "Replace的透明度渐变"
+    },
+    {
+      "name": "navigation_replace_page",
+      "value": "Replace当前页面"
+    },
+    {
+      "name": "navigation_modechange_title",
+      "value": "Mode属性双向绑定"
+    },
+    {
+      "name": "navigation_rotate_screen",
+      "value": "旋转屏幕"
+    },
+    {
+      "name": "navigation_modevalue",
+      "value": "SMode的值"
+    },
+    {
+      "name": "navigation_mode_callback",
+      "value": "Mode的回调通知"
+    },
+    {
+      "name": "navigation_safearea_title",
+      "value": "扩展安全区"
+    },
+    {
+      "name": "navigation_safearea_default",
+      "value": "默认"
+    },
+    {
+      "name": "navigation_safearea_expand",
+      "value": "扩展安全区"
+    },
+    {
+      "name": "navigation_safearea_unexpand",
+      "value": "收起安全区"
+    },
+    {
+      "name": "navigation_router_title",
+      "value": "Hap中跳转到Har包中的页面"
+    },
+    {
+      "name": "navigation_router_har1",
+      "value": "跳转到Har1中的页面"
+    },
+    {
+      "name": "navigation_router_har2",
+      "value": "跳转到Har2中的页面"
+    },
+    // Tab
     {
       "name": "tabs_title",
       "value": "Tabs"

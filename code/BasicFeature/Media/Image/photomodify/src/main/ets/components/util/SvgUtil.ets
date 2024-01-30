@@ -86,13 +86,14 @@ export function transformToSvgObj(text: string): SvgClass {
 function getAllElements(obj: ObjectType): Elements[] {
   const set: Elements[] = [];
   if (obj instanceof Array) {
-    const length: number = obj.length;
+    const arr: Array<ObjectType> = obj as Array<ObjectType>;
+    const length: number = arr.length;
     for (let i: number = 0; i < length; i++) {
-      set.push(...getAllElements(obj[i]));
+      set.push(...getAllElements(arr[i]));
     }
   }
   if (obj._attributes !== undefined && obj?._type !== undefined
-    && obj._type === 'element' && obj._name !== undefined) {
+  && obj._type === 'element' && obj._name !== undefined) {
     const e: Elements = new Elements();
     e.name = obj._name;
     e._attributes = obj._attributes;
@@ -104,11 +105,11 @@ function getAllElements(obj: ObjectType): Elements[] {
   return set;
 }
 
-class ObjectType{
-  _attributes?:AttributesType
-  _type?:string
-  _name?:string
-  _elements?:ObjectType
+class ObjectType {
+  _attributes?: AttributesType
+  _type?: string
+  _name?: string
+  _elements?: ObjectType
 }
 
 
@@ -117,13 +118,12 @@ class Elements {
   _attributes: AttributesType = new AttributesType();
 }
 
-class AttributesType{
-  width:number = 0
-  height:number = 0
-  d:string = ''
-  fill:string = ''
+class AttributesType {
+  width: number = 0
+  height: number = 0
+  d: string = ''
+  fill: string = ''
 }
-
 
 
 export class SvgClass {
