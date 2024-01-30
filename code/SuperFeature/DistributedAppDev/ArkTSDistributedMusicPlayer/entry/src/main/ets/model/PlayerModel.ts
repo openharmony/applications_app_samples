@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 import media from '@ohos.multimedia.media'
-import fileIo from '@ohos.fileio'
+import fs from '@ohos.file.fs';
 import Logger from '../model/Logger'
 
 const TAG: string = 'PlayerModel'
@@ -77,6 +77,7 @@ class PlayerModel {
       Logger.info(TAG, 'player.release begin')
       this.player.release()
       Logger.info(TAG, 'player.release end')
+      this.playlist.audioFiles = []
       this.player = undefined
     }
   }
@@ -158,9 +159,9 @@ class PlayerModel {
     }
     this.index = index
     let uri = this.playlist.audioFiles[index].fileUri
-    fileIo.open(uri, (err, fdNumber) => {
+    fs.open(uri, (err, fdNumber) => {
       let fdPath = 'fd://'
-      let source = fdPath + fdNumber
+      let source = fdPath + fdNumber.fd
       Logger.info(TAG, `preLoad source ${source}`)
       if (typeof (source) === 'undefined') {
         Logger.error(TAG, `preLoad ignored source= ${source}`)

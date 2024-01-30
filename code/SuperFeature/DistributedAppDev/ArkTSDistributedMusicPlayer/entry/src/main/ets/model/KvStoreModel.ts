@@ -18,6 +18,7 @@ import Logger from '../model/Logger'
 
 const STORE_ID: string = 'musicplayer_kvstore'
 const TAG: string = 'KvStoreModel'
+export const BUNDLE_NAME: string = 'ohos.samples.distributedmusicplayer'
 
 class KvStoreModel {
   private kvManager: distributedKVStore.KVManager
@@ -65,6 +66,20 @@ class KvStoreModel {
     this.createKvStore(context, () => {
       this.put(msg, num)
     })
+  }
+
+  deleteKvStore() {
+    if (this.kvStore !== undefined && this.kvStore !== null) {
+      return;
+    }
+    try {
+      if (this.kvManager !== undefined) {
+        Logger.info(TAG, 'deleteKvStore success')
+        this.kvManager.deleteKVStore(BUNDLE_NAME, STORE_ID)
+      }
+    } catch (err) {
+      Logger.error(TAG, 'deleteKvStore error error is:' + JSON.stringify(err))
+    }
   }
 
   async put(key, value) {
