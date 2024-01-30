@@ -13,21 +13,21 @@
 * limitations under the License.
 */
 
-import Logger from '../../../ohosTest/ets/utils/Logger'
-import common from '@ohos.app.ability.common'
-import fs from '@ohos.file.fs'
-import router from '@ohos.router'
-import audio from '@ohos.multimedia.audio'
-import { BusinessError } from '@ohos.base'
+import Logger from '../../../ohosTest/ets/utils/Logger';
+import common from '@ohos.app.ability.common';
+import fs from '@ohos.file.fs';
+import router from '@ohos.router';
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
 
-const CLOSE_MODE = 0
-const OPEN_MODE = 1
-const TRACKING_MODE = 2
+const CLOSE_MODE = 0;
+const OPEN_MODE = 1;
+const TRACKING_MODE = 2;
 
 @Entry
 @Component
 struct SpatialAudio {
-  private audioRenderers: audio.AudioRenderer[] = []
+  private audioRenderers: audio.AudioRenderer[] = [];
   private audioRendererOptions: audio.AudioRendererOptions[] = [
     {
       streamInfo: {
@@ -56,17 +56,17 @@ struct SpatialAudio {
         rendererFlags: 0
       }
     }
-  ]
+  ];
 
-  private appContext?: common.Context
-  private audioSources = ['/2p0.pcm', '/5p1.pcm']
-  private audioSpatializationManager?: audio.AudioSpatializationManager
-  private audioRoutingManager?: audio.AudioRoutingManager
-  @State supportState: number = 1
-  @State spatializationEnabled: boolean = false
-  @State trackingEnabled: boolean = false
-  @State musicState1: boolean = false
-  @State musicState2: boolean = false
+  private appContext?: common.Context;
+  private audioSources = ['/2p0.pcm', '/5p1.pcm'];
+  private audioSpatializationManager?: audio.AudioSpatializationManager;
+  private audioRoutingManager?: audio.AudioRoutingManager;
+  @State supportState: number = 1;
+  @State spatializationEnabled: boolean = false;
+  @State trackingEnabled: boolean = false;
+  @State musicState1: boolean = false;
+  @State musicState2: boolean = false;
 
   @Builder Press2PlayDemo1() {
     Image($r("app.media.ic_pause_spa"))
@@ -75,8 +75,8 @@ struct SpatialAudio {
       .margin({right: 16})
       .id("2P0_play_btn")
       .onClick(async ()=>{
-        this.musicState1 = !this.musicState1
-        await this.playAudio(0)
+        this.musicState1 = !this.musicState1;
+        await this.playAudio(0);
       })
   }
 
@@ -87,8 +87,8 @@ struct SpatialAudio {
       .margin({right: 16})
       .id("2P0_pause_btn")
       .onClick(async ()=>{
-        this.musicState1 = !this.musicState1
-        await this.pauseAudio(0)
+        this.musicState1 = !this.musicState1;
+        await this.pauseAudio(0);
       })
   }
 
@@ -99,8 +99,8 @@ struct SpatialAudio {
       .margin({right: 16})
       .id("5P1_play_btn")
       .onClick(async ()=>{
-        this.musicState2 = !this.musicState2
-        await this.playAudio(1)
+        this.musicState2 = !this.musicState2;
+        await this.playAudio(1);
       })
   }
 
@@ -111,8 +111,8 @@ struct SpatialAudio {
       .margin({right: 16})
       .id("5P1_pause_btn")
       .onClick(async ()=>{
-        this.musicState2 = !this.musicState2
-        await this.pauseAudio(1)
+        this.musicState2 = !this.musicState2;
+        await this.pauseAudio(1);
       })
 
   }
@@ -139,8 +139,8 @@ struct SpatialAudio {
             this.audioSpatializationManager.setHeadTrackingEnabled(false, () => {
             })
           } catch (err) {
-            Logger.error(`Set Spatialization or Head Tracking disabled failed, ${JSON.stringify(err)}`)
-            return
+            Logger.error(`Set Spatialization or Head Tracking disabled failed, ${JSON.stringify(err)}`);
+            return;
           }
         }
       })
@@ -172,8 +172,8 @@ struct SpatialAudio {
             this.audioSpatializationManager.setHeadTrackingEnabled(false, () => {
             })
           } catch (err) {
-            Logger.error(`Set open mode failed, ${JSON.stringify(err)}`)
-            return
+            Logger.error(`Set open mode failed, ${JSON.stringify(err)}`);
+            return;
           }
         }
 
@@ -202,8 +202,8 @@ struct SpatialAudio {
             this.audioSpatializationManager.setHeadTrackingEnabled(true, () => {
             })
           } catch (err) {
-            Logger.error(`Set HeadTracking enabled failed, ${JSON.stringify(err)}`)
-            return
+            Logger.error(`Set HeadTracking enabled failed, ${JSON.stringify(err)}`);
+            return;
           }
         }
       })
@@ -216,35 +216,35 @@ struct SpatialAudio {
       .fillColor("#182431")
   }
   @Builder UIForClose() {
-    this.CloseModeOn()
-    this.OpenModeDisabled()
-    this.TrackingModeDisabled()
+    this.CloseModeOn();
+    this.OpenModeDisabled();
+    this.TrackingModeDisabled();
   }
 
   @Builder UIForOpen() {
     if (this.spatializationEnabled === true) {
-      this.CloseModeOff()
-      this.OpenModeOn()
+      this.CloseModeOff();
+      this.OpenModeOn();
     } else {
-      this.CloseModeOn()
-      this.OpenModeOff()
+      this.CloseModeOn();
+      this.OpenModeOff();
     }
-    this.TrackingModeDisabled()
+    this.TrackingModeDisabled();
   }
 
   @Builder UIForTracking() {
     if (this.spatializationEnabled === true && this.trackingEnabled === true) {
-      this.CloseModeOff()
-      this.OpenModeOff()
-      this.TrackingModeOn()
+      this.CloseModeOff();
+      this.OpenModeOff();
+      this.TrackingModeOn();
     } else if (this.spatializationEnabled === true && this.trackingEnabled === false) {
-      this.CloseModeOff()
-      this.OpenModeOn()
-      this.TrackingModeOff()
+      this.CloseModeOff();
+      this.OpenModeOn();
+      this.TrackingModeOff();
     } else {
-      this.CloseModeOn()
-      this.OpenModeOff()
-      this.TrackingModeOff()
+      this.CloseModeOn();
+      this.OpenModeOff();
+      this.TrackingModeOff();
     }
   }
 
@@ -304,14 +304,14 @@ struct SpatialAudio {
   }
 
   updateSupportStateUI(): void {
-    this.supportState = this.supportStateQuery()
+    this.supportState = this.supportStateQuery();
     if (this.audioSpatializationManager) {
       try {
-        this.spatializationEnabled = this.audioSpatializationManager.isSpatializationEnabled()
-        this.trackingEnabled = this.audioSpatializationManager.isHeadTrackingEnabled()
+        this.spatializationEnabled = this.audioSpatializationManager.isSpatializationEnabled();
+        this.trackingEnabled = this.audioSpatializationManager.isHeadTrackingEnabled();
       } catch (err) {
-        Logger.error(`update Support State UI failed ,Error: ${JSON.stringify(err)}`)
-        return
+        Logger.error(`update Support State UI failed ,Error: ${JSON.stringify(err)}`);
+        return;
       }
     }
   }
@@ -319,149 +319,149 @@ struct SpatialAudio {
   supportStateQuery(): number {
     if (this.audioRoutingManager) {
       let audioDeviceDescriptors: audio.AudioDeviceDescriptors =
-      this.audioRoutingManager.getPreferredOutputDeviceForRendererInfoSync(this.audioRendererOptions[0].rendererInfo)
+      this.audioRoutingManager.getPreferredOutputDeviceForRendererInfoSync(this.audioRendererOptions[0].rendererInfo);
       audioDeviceDescriptors.forEach(audioDeviceDescriptor => {
         Logger.info("Device Role:" + audioDeviceDescriptor.deviceRole + ", device Type:" +
-        audioDeviceDescriptor.deviceType + ", Macaddress:" + audioDeviceDescriptor.address)
+        audioDeviceDescriptor.deviceType + ", Macaddress:" + audioDeviceDescriptor.address);
       })
 
-      let isSpaSupported: boolean = false
-      let isSpaSupportedForDevice: boolean = false
-      let isTraSupported: boolean =  false
-      let isTraSupportedForDevice: boolean = false
+      let isSpaSupported: boolean = false;
+      let isSpaSupportedForDevice: boolean = false;
+      let isTraSupported: boolean =  false;
+      let isTraSupportedForDevice: boolean = false;
       if (this.audioSpatializationManager) {
         try {
-          isSpaSupported =  this.audioSpatializationManager.isSpatializationSupported()
+          isSpaSupported =  this.audioSpatializationManager.isSpatializationSupported();
           isSpaSupportedForDevice =
-          this.audioSpatializationManager.isSpatializationSupportedForDevice(audioDeviceDescriptors[0])
-          isTraSupported =  this.audioSpatializationManager.isHeadTrackingSupported()
+          this.audioSpatializationManager.isSpatializationSupportedForDevice(audioDeviceDescriptors[0]);
+          isTraSupported =  this.audioSpatializationManager.isHeadTrackingSupported();
           isTraSupportedForDevice =
-          this.audioSpatializationManager.isHeadTrackingSupportedForDevice(audioDeviceDescriptors[0])
+          this.audioSpatializationManager.isHeadTrackingSupportedForDevice(audioDeviceDescriptors[0]);
         } catch (err) {
-          Logger.error(`supportStateQuery ,Error: ${JSON.stringify(err)}`)
+          Logger.error(`supportStateQuery ,Error: ${JSON.stringify(err)}`);
         }
 
       } else {
-        Logger.info("Get manager failed.")
+        Logger.info("Get manager failed.");
       }
-      let isSpatializationSupportedBoth: boolean = isSpaSupported && isSpaSupportedForDevice
-      let isHeadTrackingSupportedBoth: boolean = isTraSupported && isTraSupportedForDevice
+      let isSpatializationSupportedBoth: boolean = isSpaSupported && isSpaSupportedForDevice;
+      let isHeadTrackingSupportedBoth: boolean = isTraSupported && isTraSupportedForDevice;
       if (isSpatializationSupportedBoth && isHeadTrackingSupportedBoth) {
-        return TRACKING_MODE
+        return TRACKING_MODE;
       } else if (isSpatializationSupportedBoth) {
-        return OPEN_MODE
+        return OPEN_MODE;
       } else {
-        return CLOSE_MODE
+        return CLOSE_MODE;
       }
     }
-    return CLOSE_MODE
+    return CLOSE_MODE;
   }
 
   async init(): Promise<void> {
     if (this.appContext) {
-      return
+      return;
     }
-    this.appContext = getContext(this)
+    this.appContext = getContext(this);
 
     for (let index = 0; index < 2; index++) {
       try {
-        let renderer = await audio.createAudioRenderer(this.audioRendererOptions[index])
-        Logger.info("Create renderer success")
-        this.audioRenderers.push(renderer)
+        let renderer = await audio.createAudioRenderer(this.audioRendererOptions[index]);
+        Logger.info("Create renderer success");
+        this.audioRenderers.push(renderer);
       } catch (err) {
-        Logger.error(`audioRenderer_${index} create ,Error: ${JSON.stringify(err)}`)
-        return
+        Logger.error(`audioRenderer_${index} create ,Error: ${JSON.stringify(err)}`);
+        return;
       }
     }
 
-    let audioManager = audio.getAudioManager()
+    let audioManager = audio.getAudioManager();
     try {
-      this.audioSpatializationManager = audioManager.getSpatializationManager()
+      this.audioSpatializationManager = audioManager.getSpatializationManager();
     } catch (err) {
-      Logger.error(`Get Spatialization Manager failed, Error: ${JSON.stringify(err)}`)
-      return
+      Logger.error(`Get Spatialization Manager failed, Error: ${JSON.stringify(err)}`);
+      return;
     }
 
-    this.audioRoutingManager = audioManager.getRoutingManager()
-    this.updateSupportStateUI()
+    this.audioRoutingManager = audioManager.getRoutingManager();
+    this.updateSupportStateUI();
     let t_audioRendererInfo:audio.AudioRendererInfo = {
       usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
       rendererFlags: 0
     }
     if (this.audioRoutingManager) {
       this.audioRoutingManager.on("preferOutputDeviceChangeForRendererInfo", t_audioRendererInfo, () => {
-        Logger.info("Output device changed")
-        this.updateSupportStateUI()
+        Logger.info("Output device changed");
+        this.updateSupportStateUI();
       })
     }
     if (this.audioSpatializationManager) {
       this.audioSpatializationManager.on("spatializationEnabledChange", (res) => {
-        this.spatializationEnabled = res
+        this.spatializationEnabled = res;
       })
     }
 
     if (this.audioSpatializationManager) {
       this.audioSpatializationManager.on("headTrackingEnabledChange", (res) => {
-        this.trackingEnabled = res
+        this.trackingEnabled = res;
       })
     }
   }
 
   async over(): Promise<void> {
-    this.appContext = undefined
+    this.appContext = undefined;
     this.audioRenderers.forEach(async audioRenderer => {
-      await audioRenderer.stop()
-      await audioRenderer.release()
+      await audioRenderer.stop();
+      await audioRenderer.release();
     })
-    this.audioRenderers = []
+    this.audioRenderers = [];
 
     if (this.audioRoutingManager) {
-      this.audioRoutingManager.off("deviceChange")
+      this.audioRoutingManager.off("deviceChange");
     }
 
     if (this.audioSpatializationManager) {
-      this.audioSpatializationManager.off("spatializationEnabledChange")
+      this.audioSpatializationManager.off("spatializationEnabledChange");
     }
 
     if (this.audioSpatializationManager) {
-      this.audioSpatializationManager.off("headTrackingEnabledChange")
+      this.audioSpatializationManager.off("headTrackingEnabledChange");
     }
   }
 
   async playAudio(index: number): Promise<void> {
     if (this.audioRenderers[index] === null) {
-      return
+      return;
     }
 
     if (this.audioRenderers[index].state === audio.AudioState.STATE_PAUSED) {
-      await this.audioRenderers[index].start()
+      await this.audioRenderers[index].start();
     } else {
-      let bufferSize: number = 0
+      let bufferSize: number = 0;
       try {
-        bufferSize = await this.audioRenderers[index].getBufferSize()
-        await this.audioRenderers[index].start()
+        bufferSize = await this.audioRenderers[index].getBufferSize();
+        await this.audioRenderers[index].start();
       } catch (err) {
-        let error = err as BusinessError
-        Logger.error(`AudioRenderer start : Error: ${JSON.stringify(error)}`)
-        return
+        let error = err as BusinessError;
+        Logger.error(`AudioRenderer start : Error: ${JSON.stringify(error)}`);
+        return;
       }
 
-      let buf = new ArrayBuffer(bufferSize)
-      let filePath:string = ""
+      let buf = new ArrayBuffer(bufferSize);
+      let filePath:string = "";
       if (this.appContext) {
-        filePath = this.appContext.filesDir + this.audioSources[index]
+        filePath = this.appContext.filesDir + this.audioSources[index];
       }
-      let stat = await fs.stat(filePath)
-      let len = stat.size %  bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1)
-      let file = await fs.open(filePath, 0o0)
+      let stat = await fs.stat(filePath);
+      let len = stat.size %  bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
+      let file = await fs.open(filePath, 0o0);
       while (true) {
         if (!this.audioRenderers[index]) {
-          break
+          break;
         }
         if (this.audioRenderers[index].state === audio.AudioState.STATE_RELEASED) {
-          break
+          break;
         }
-        Logger.info("start write")
+        Logger.info("start write");
         for (let i = 0; i < len; i++) {
           class options {
             offset: number = 0
@@ -471,8 +471,8 @@ struct SpatialAudio {
             offset: i * bufferSize,
             length: bufferSize
           }
-          await fs.read(file.fd, buf, readOptions)
-          await this.audioRenderers[index].write(buf)
+          await fs.read(file.fd, buf, readOptions);
+          await this.audioRenderers[index].write(buf);
         }
       }
     }
@@ -481,39 +481,39 @@ struct SpatialAudio {
   async pauseAudio(index: number): Promise<void> {
     try {
       if (this.audioRenderers[index]) {
-        await this.audioRenderers[index].pause()
+        await this.audioRenderers[index].pause();
       }
     } catch (err) {
-      Logger.error(`Pause Error: ${JSON.stringify(err)}`)
-      return
+      Logger.error(`Pause Error: ${JSON.stringify(err)}`);
+      return;
     }
   }
 
   async aboutToAppear(): Promise<void> {
-    await this.init()
+    await this.init();
   }
 
   aboutToDisappear(): void {
-    this.over()
+    this.over();
   }
 
   onPageShow(): void {
     if (this.audioSpatializationManager === undefined){
-      return
+      return;
     }
     this.updateSupportStateUI()
-    Logger.info("Page show")
+    Logger.info("Page show");
   }
 
   onPageHide(): void {
-    Logger.info("Page Hide")
+    Logger.info("Page Hide");
     if (this.audioRenderers[0] && this.audioRenderers[0].state === audio.AudioState.STATE_RUNNING) {
-      this.audioRenderers[0].pause()
-      this.musicState1 = false
+      this.audioRenderers[0].pause();
+      this.musicState1 = false;
     }
     if (this.audioRenderers[1] && this.audioRenderers[1].state === audio.AudioState.STATE_RUNNING) {
-      this.audioRenderers[1].pause()
-      this.musicState2 = false
+      this.audioRenderers[1].pause();
+      this.musicState2 = false;
     }
   }
 
@@ -534,7 +534,7 @@ struct SpatialAudio {
         .width('100%')
         .id('spatial_audio_back_btn')
         .onClick(async () => {
-          await router.replaceUrl({ url: 'pages/Index' })
+          await router.replaceUrl({ url: 'pages/Index' });
         })
 
         Row() {
@@ -545,9 +545,9 @@ struct SpatialAudio {
               .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
               .margin({top: 21, bottom: 21, left: 16.5})
             if (!this.musicState1) {
-              this.Press2PlayDemo1()
+              this.Press2PlayDemo1();
             } else {
-              this.Press2PauseDemo1()
+              this.Press2PauseDemo1();
             }
           }
           .height("100%")
@@ -570,9 +570,9 @@ struct SpatialAudio {
               .margin({top: 21, bottom: 21, left: 16.5})
 
             if (!this.musicState2) {
-              this.Press2PlayDemo2()
+              this.Press2PlayDemo2();
             } else {
-              this.Press2PauseDemo2()
+              this.Press2PauseDemo2();
             }
           }
           .height("100%")
@@ -592,11 +592,11 @@ struct SpatialAudio {
       Column() {
         Row() {
           if (this.supportState === 2) {
-            this.UIForTracking()
+            this.UIForTracking();
           } else if (this.supportState === 1) {
-            this.UIForOpen()
+            this.UIForOpen();
           } else {
-            this.UIForClose()
+            this.UIForClose();
           }
         }
         .height(64)
@@ -616,14 +616,14 @@ struct SpatialAudio {
             .textAlign(TextAlign.Center)
 
           if (this.supportState === 0) {
-            this.OpenTextDisable()
-            this.TrackingTextDisable()
+            this.OpenTextDisable();
+            this.TrackingTextDisable();
           } else if (this.supportState === 1) {
-            this.OpenTextEnable()
-            this.TrackingTextDisable()
+            this.OpenTextEnable();
+            this.TrackingTextDisable();
           } else {
-            this.OpenTextEnable()
-            this.TrackingTextEnable()
+            this.OpenTextEnable();
+            this.TrackingTextEnable();
           }
         }
         .height(16)

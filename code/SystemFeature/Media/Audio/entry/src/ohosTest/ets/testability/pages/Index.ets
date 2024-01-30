@@ -13,14 +13,14 @@
 * limitations under the License.
 */
 
-import Logger from '../../utils/Logger'
+import Logger from '../../utils/Logger';
 @Entry
 @Component
 struct Index {
   aboutToAppear() {
-    Logger.info('testTag', '%{public}s', 'TestAbility index aboutToAppear')
+    Logger.info('testTag', '%{public}s', 'TestAbility index aboutToAppear');
   }
-  @State message: string = 'TEST CASE'
+  @State message: string = 'TEST CASE';
   build() {
     Row() {
       Column() {

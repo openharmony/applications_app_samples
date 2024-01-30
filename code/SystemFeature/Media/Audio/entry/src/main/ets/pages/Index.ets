@@ -12,7 +12,7 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-import router from '@ohos.router'
+import router from '@ohos.router';
 
 @Entry
 @Component
@@ -32,7 +32,7 @@ struct Index {
           .height(188)
           .margin({right: 6})
           .onClick(async () => {
-            await router.pushUrl({ url: 'pages/SpatialAudio'})
+            await router.pushUrl({ url: 'pages/SpatialAudio'});
           })
         }
         .width('50%')

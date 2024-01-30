@@ -12,19 +12,19 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-import Logger from '../utils/Logger'
-import TestRunner from '@ohos.application.testRunner'
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
+import Logger from '../utils/Logger';
+import TestRunner from '@ohos.application.testRunner';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator | undefined = undefined
-let abilityDelegatorArguments: AbilityDelegatorRegistry.AbilityDelegatorArgs | undefined = undefined
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator | undefined = undefined;
+let abilityDelegatorArguments: AbilityDelegatorRegistry.AbilityDelegatorArgs | undefined = undefined;
 
 async function onAbilityCreateCallback() {
-  Logger.info('testTag', '%{public}s', 'onAbilityCreateCallback')
+  Logger.info('testTag', '%{public}s', 'onAbilityCreateCallback');
 }
 
 async function addAbilityMonitorCallback(err: any) {
-  Logger.info('testTag', 'addAbilityMonitorCallback : %{public}s', JSON.stringify(err) ?? '')
+  Logger.info('testTag', 'addAbilityMonitorCallback : %{public}s', JSON.stringify(err) ?? '');
 }
 
 export default class OpenHarmonyTestRunner implements TestRunner {
@@ -32,29 +32,29 @@ export default class OpenHarmonyTestRunner implements TestRunner {
   }
 
   onPrepare() {
-    Logger.info('testTag', '%{public}s', 'OpenHarmonyTestRunner OnPrepare ')
+    Logger.info('testTag', '%{public}s', 'OpenHarmonyTestRunner OnPrepare ');
   }
 
   async onRun() {
-    Logger.info('testTag', '%{public}s', 'OpenHarmonyTestRunner onRun run')
-    abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
-    abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-    const bundleName = abilityDelegatorArguments.bundleName
-    const testAbilityName = 'TestAbility'
+    Logger.info('testTag', '%{public}s', 'OpenHarmonyTestRunner onRun run');
+    abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
+    abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+    const bundleName = abilityDelegatorArguments.bundleName;
+    const testAbilityName = 'TestAbility';
     let lMonitor = {
       abilityName: testAbilityName,
       onAbilityCreate: onAbilityCreateCallback,
     }
-    abilityDelegator.addAbilityMonitor(lMonitor, addAbilityMonitorCallback)
+    abilityDelegator.addAbilityMonitor(lMonitor, addAbilityMonitorCallback);
     const want = {
       bundleName: bundleName,
       abilityName: testAbilityName
     }
-    abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+    abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
     abilityDelegator.startAbility(want, (err : any, data : any) => {
-      Logger.info('testTag', 'startAbility : err : %{public}s', JSON.stringify(err) ?? '')
-      Logger.info('testTag', 'startAbility : data : %{public}s', JSON.stringify(data) ?? '')
+      Logger.info('testTag', 'startAbility : err : %{public}s', JSON.stringify(err) ?? '');
+      Logger.info('testTag', 'startAbility : data : %{public}s', JSON.stringify(data) ?? '');
     })
-    Logger.info('testTag', '%{public}s', 'OpenHarmonyTestRunner onRun end')
+    Logger.info('testTag', '%{public}s', 'OpenHarmonyTestRunner onRun end');
   }
 }
