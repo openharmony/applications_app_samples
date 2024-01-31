@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023-2024 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -33,7 +33,7 @@ export default function abilityTest() {
     /**
      * 打开应用
      */
-    it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
+    it('StartAbility_001', 0, async (done: Function) => {
       console.info(TAG, BUNDLE + 'StartAbility_001 begin');
       let driver = Driver.create();
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -56,7 +56,7 @@ export default function abilityTest() {
     /**
      * 点击按钮生成文件
      */
-    it(BUNDLE + 'CreateFiles_001', 2, async () => {
+    it('CreateFiles_001', 2, async () => {
       console.info(TAG, BUNDLE + 'CreateFiles_001 begin');
       let driver = Driver.create();
       // 判断是否有按键

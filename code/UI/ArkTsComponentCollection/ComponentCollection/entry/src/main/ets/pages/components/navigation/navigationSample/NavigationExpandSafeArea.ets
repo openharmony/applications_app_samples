@@ -41,7 +41,7 @@ struct NavigationExpandSafeArea {
         .borderRadius(24)
         .height('88%')
         .width('93%')
-        .expandSafeArea(this.expand ? [SafeAreaType.SYSTEM] : [], this.expand ? [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM] : [])
+        .expandSafeArea(this.expand ? [SafeAreaType.SYSTEM] : [], this.expand ? [SafeAreaEdge.BOTTOM] : [])
     }
     .height('100%')
     .width('100%')

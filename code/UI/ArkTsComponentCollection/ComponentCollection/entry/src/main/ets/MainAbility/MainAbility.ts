@@ -16,6 +16,7 @@
 import UIAbility from '@ohos.app.ability.UIAbility'
 import Logger from '../util/Logger'
 import window from '@ohos.window';
+import { KeyboardAvoidMode } from '@ohos.arkui.UIContext';
 
 const TAG: string = 'MainAbility'
 
@@ -55,6 +56,8 @@ export default class MainAbility extends UIAbility {
       Logger.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
     }
     windowStage.loadContent('pages/Index', (err, data) => {
+      let a = windowStage.getMainWindowSync().getUIContext().getKeyboardAvoidMode();
+      windowStage.getMainWindowSync().getUIContext().setKeyboardAvoidMode(KeyboardAvoidMode.OFFSET);
       if (err) {
         Logger.error(TAG, `Failed to load the content. Cause: ${JSON.stringify(err)}`)
         return

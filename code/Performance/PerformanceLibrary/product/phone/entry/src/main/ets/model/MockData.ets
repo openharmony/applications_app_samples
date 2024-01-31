@@ -76,7 +76,7 @@ export let performanceTypeArray: Array<PerformanceMsg> = [
     name: 'ThreadCommunication',
     uri: 'pages/ThreadCommunication/ThreadCommunicationHomePage'
   },
-  }
+  {
     name: 'WebPerformance',
     uri: 'pages/webPerformance/WebHomePage'
   }
