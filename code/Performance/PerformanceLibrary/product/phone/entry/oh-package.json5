@@ -20,6 +20,7 @@
     "@ohos/memoryShared": "file:../../../feature/memoryShared",
     "@ohos/trace": "file:../../../feature/trace",
     "@ohos/hiDumper": "file:../../../feature/hiDumper",
-    "@ohos/nativethreadscalljs": "file:../../../feature/nativeThreadsCallJS"
+    "@ohos/nativethreadscalljs": "file:../../../feature/nativeThreadsCallJS",
+    "@ohos/webPerformance": "file:../../../feature/webPerformance"
   }
 }
