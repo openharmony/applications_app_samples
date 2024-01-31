@@ -141,11 +141,13 @@ export struct MyPhone {
     Logger.info(TAG, "aboutToAppear after get router param test directoryPath: " + this.directoryPath + ", directoryName: " + this.directoryName);
 
     this.subTitle = updateContextArea(this.directoryPath, myContext);
-    // 回到首页就读取当前内存变化
-    if (this.directoryPath === BASE_PATH) {
-      this.totalSize = await FileSystem.getTotalSize();
-      this.freeSize = await FileSystem.getFreeSize();
-    }
+    /*
+      // 回到首页就读取当前内存变化
+      if (this.directoryPath === BASE_PATH) {
+        this.totalSize = await FileSystem.getTotalSize();
+        this.freeSize = await FileSystem.getFreeSize();
+      }
+    */
 
     this.updateFileData();
   }
