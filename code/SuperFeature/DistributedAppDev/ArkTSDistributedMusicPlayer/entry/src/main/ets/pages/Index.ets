@@ -290,6 +290,14 @@ interface Params {
     return false;
   };
 
+  onPageHide() {
+    if (this.isDialogShowing === true) {
+      this.dismissDialog();
+      return true;
+    };
+    return false;
+  };
+
   dismissDialog() {
     if (this.dialogController !== null) {
       this.dialogController.close();
@@ -574,6 +582,18 @@ interface Params {
     AppStorage.setOrCreate('viewThis', this);
 
     this.connectLocalExtension();
+  };
+
+  aboutToDisappear() {
+    Logger.info(TAG, `aboutToDisappear begin`)
+    if (PlayerModel === undefined) {
+      return
+    }
+    PlayerModel.release()
+    this.remoteDeviceModel.unregisterDeviceListCallback()
+    this.dialogController = null
+    KvStoreModel.deleteKvStore()
+    Logger.info(TAG, `aboutToDisappear end`)
   };
 
   build() {
