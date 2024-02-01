@@ -28,7 +28,7 @@ export struct BottomNavigation {
   @Link animateScale: boolean; // 开始缩小动画标识
   @Link animatePath: boolean; // 开始路径动画标识
   @State animateSpring: boolean = false; // 开始弹簧动画标识
-  @State productCount: number = 1;
+  @StorageLink('productCount') productCount: number = 0;
 
   build() {
     Row() {

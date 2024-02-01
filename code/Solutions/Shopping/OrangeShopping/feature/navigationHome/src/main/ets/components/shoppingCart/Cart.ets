@@ -112,8 +112,8 @@ export struct Cart {
           })
         }
         .width('100%')
-      }, (item: number): string => {
-        return item.toString();
+      }, (item: number, index: number): string => {
+        return index.toString();
       })
     }
     .width('100%')
