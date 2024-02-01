@@ -18,14 +18,13 @@ import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
 import vpn_client from 'libvpn_client.so';
 import vpnExt from '@ohos.net.vpnExtension';
 import hilog from '@ohos.hilog';
-import common from '@ohos.app.ability.common';
 
 const TAG: string = "[MyVpnExtAbility]";
 let g_tunFd = -1;
 let g_tunnelFd = -1;
 
 export default class MyVpnExtAbility extends VpnExtensionAbility {
-  private VpnConnection: vpnExt.VpnConnection;
+  private VpnConnection: vpnExt.VpnConnectionExt;
   private vpnServerIp: string = '192.168.31.13';
   private tunIp: string = '10.0.0.5';
   private blockedAppName: string = 'com.example.myvpndemo';
@@ -55,6 +54,7 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
   }
 
   onDestroy() {
+    this.Destroy();
     console.info(TAG, `onDestroy`);
   }
 
@@ -119,7 +119,7 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
     let config = new Config(this.tunIp, this.blockedAppName);
 
     try {
-      this.VpnConnection.create(config).then((data: number) => {
+      this.VpnConnection.create(config, (error, data) => {
         g_tunFd = data;
         hilog.error(0x0000, 'developTag', 'tunfd: %{public}s', JSON.stringify(data) ?? '');
         vpn_client.startVpn(g_tunFd, g_tunnelFd);
@@ -127,5 +127,15 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
     } catch (error) {
       hilog.error(0x0000, 'developTag', 'vpn setUp fail: %{public}s', JSON.stringify(error) ?? '');
     }
+  }
+
+  Destroy() {
+    hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Destroy');
+    vpn_client.stopVpn(g_tunnelFd);
+    this.VpnConnection.destroy().then(() => {
+      hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Destroy Success');
+    }).catch((err : Error) => {
+      hilog.error(0x0000, 'developTag', 'vpn Destroy Failed: %{public}s', JSON.stringify(err) ?? '');
+    })
   }
 }

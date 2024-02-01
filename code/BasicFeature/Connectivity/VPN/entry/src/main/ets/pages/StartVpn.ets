@@ -14,9 +14,7 @@
 */
 
 import hilog from '@ohos.hilog';
-import vpn from '@ohos.net.vpn';
 import vpn_client from 'libvpn_client.so';
-import UIAbility from '@ohos.app.ability.UIAbility';
 import common from '@ohos.app.ability.common';
 import vpnext from '@ohos.net.vpnExtension';
 import Want from '@ohos.app.ability.Want';
@@ -36,12 +34,11 @@ struct StartVpn {
   @State message: string = 'Toy VPN';
   @State vpnServerIp: string = '192.168.31.13';
   @State tunIp: string = '10.0.0.5';
-
   @State prefix: string = '24';
 
   @State blockedAppName: string = 'com.example.baidumyapplication';
-  private context = getContext(this) as common.UIAbilityContext;
-  private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
+  private context = getContext(this) as common.VpnExtensionContext;
+  private VpnConnection: vpnext.VpnConnectionExt = vpnext.createVpnConnection(this.context);
 
   CreateTunnel() {
     g_tunnelFd = vpn_client.tcpConnect(this.vpnServerIp, 8888);
@@ -102,7 +99,7 @@ struct StartVpn {
     let config = new Config(this.tunIp, this.blockedAppName);
 
     try {
-      this.VpnConnection.setUp(config, (error, data) => {
+      this.VpnConnection.create(config, (error, data) => {
         g_tunFd = data;
         hilog.error(0x0000, 'developTag', 'tunfd: %{public}s', JSON.stringify(data) ?? '');
         vpn_client.startVpn(g_tunFd, g_tunnelFd);
@@ -167,4 +164,3 @@ struct StartVpn {
     .height('100%')
   }
 }
-

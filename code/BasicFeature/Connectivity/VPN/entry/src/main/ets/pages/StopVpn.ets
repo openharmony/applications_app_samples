@@ -14,9 +14,6 @@
 */
 
 import hilog from '@ohos.hilog';
-import vpn_client from "libvpn_client.so";
-import vpn from '@ohos.net.vpn';
-import common from '@ohos.app.ability.common';
 import vpnext from '@ohos.net.vpnExtension';
 import Want from '@ohos.app.ability.Want';
 
@@ -26,30 +23,15 @@ let want: Want = {
   abilityName: "MyVpnExtAbility",
 };
 
-let g_tunnelFd = -1;
-
 @Entry
 @Component
 struct StopVpn {
   @State message: string = 'VPN';
   @State vpnServerIp: string = '192.168.31.13';
   @State tunIp: string = '10.0.0.5';
-
   @State routeAddr: string = '192.168.214.0';
   @State prefix: string = '24';
-
   @State blockedAppName: string = 'com.example.baidumyapplication';
-  private context = getContext(this) as common.UIAbilityContext;
-  private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
-  Destroy() {
-    hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Destroy');
-    vpn_client.stopVpn(g_tunnelFd);
-    this.VpnConnection.destroy().then(() => {
-      hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Destroy Success');
-    }).catch((err : Error) => {
-      hilog.error(0x0000, 'developTag', 'vpn Destroy Failed: %{public}s', JSON.stringify(err) ?? '');
-    })
-  }
 
   build() {
     Row() {
@@ -60,10 +42,7 @@ struct StopVpn {
           .onClick(() => {
             hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Client');
           })
-        Button('stop vpn').onClick(() => {
-          this.Destroy();
-        }).fontSize(50).margin(16)
-        Button('stop vpnExtension').onClick(() => {
+        Button('stop vpnExt').onClick(() => {
           vpnext.stopVpnExtensionAbility(want);
         }).fontSize(50)
       }.width('100%')
