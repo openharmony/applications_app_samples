@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,33 +13,33 @@
  * limitations under the License.
  */
 
-import hilog from '@ohos.hilog'
+import hilog from '@ohos.hilog';
 
-const DOMAIN: number = 0xF811
+const DOMAIN: number = 0xF811;
 
 class Logger {
-  private prefix: string
-  private format: string = '%{public}s, %{public}s'
+  private prefix: string;
+  private format: string = '%{public}s, %{public}s';
 
   constructor(prefix: string) {
-    this.prefix = prefix
+    this.prefix = prefix;
   }
 
   debug(...args: string[]): void {
-    hilog.debug(DOMAIN, this.prefix, this.format, args)
+    hilog.debug(DOMAIN, this.prefix, this.format, args);
   }
 
   info(...args: string[]): void {
-    hilog.info(DOMAIN, this.prefix, this.format, args)
+    hilog.info(DOMAIN, this.prefix, this.format, args);
   }
 
   warn(...args: string[]): void {
-    hilog.warn(DOMAIN, this.prefix, this.format, args)
+    hilog.warn(DOMAIN, this.prefix, this.format, args);
   }
 
   error(...args: string[]): void {
-    hilog.error(DOMAIN, this.prefix, this.format, args)
+    hilog.error(DOMAIN, this.prefix, this.format, args);
   }
 }
 
-export default new Logger('[Sample_ArkTSAudio]')
+export default new Logger('[Sample_ArkTSAudio]');

@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2023 Huawei Device Co., Ltd.
+* Copyright (C) 2023-2024 Huawei Device Co., Ltd.
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -13,14 +13,14 @@
 * limitations under the License.
 */
 
-import Logger from '../../utils/Logger'
+import Logger from '../../utils/Logger';
 @Entry
 @Component
 struct Index {
   aboutToAppear() {
-    Logger.info('testTag', '%{public}s', 'TestAbility index aboutToAppear')
+    Logger.info('testTag', '%{public}s', 'TestAbility index aboutToAppear');
   }
-  @State message: string = 'TEST CASE'
+  @State message: string = 'TEST CASE';
   build() {
     Row() {
       Column() {

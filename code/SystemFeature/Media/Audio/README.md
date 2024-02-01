@@ -44,6 +44,7 @@ entry/src/main/ets/
 ### 相关权限
 
 蓝牙使用权限：ohos.permission.USE_BLUETOOTH
+音效管理权限：ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
 
 ### 具体实现
 
