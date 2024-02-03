@@ -14,7 +14,8 @@
  */
 @Component
 export struct FrameTimelineBeforeOptimization {
-  @State children: number[] = Array.from<undefined, number>(Array(2000).fill(undefined), (_v: undefined, k) => k);
+  // 创建长度500的空数组，使用每个元素的索引作为元素的值，生成包含数字0-499的数组
+  @State children: number[] = Array.from<undefined, number>(Array(500).fill(undefined), (item: undefined, index) => index);
   build() {
     Scroll() {
       Grid() {
