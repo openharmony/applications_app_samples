@@ -96,6 +96,7 @@ struct HomePage {
         }
       }
     )
+    DynamicLoader.getInstance().fire("DetailPage");
     if (AppStorage.get<number>(NOW_INDEX) === undefined || AppStorage.get<number>(NOW_INDEX) === 0) {
       this.UpdateDialogController.open();
     }
