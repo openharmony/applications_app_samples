@@ -17,10 +17,6 @@ import hilog from '@ohos.hilog';
 import router from '@ohos.router';
 import { BusinessError } from '@ohos.base';
 
-
-let g_tunFd = -1;
-let g_tunnelFd = -1;
-
 @Entry
 @Component
 struct Index {

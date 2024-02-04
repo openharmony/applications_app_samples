@@ -24,7 +24,7 @@ let g_tunFd = -1;
 let g_tunnelFd = -1;
 
 export default class MyVpnExtAbility extends VpnExtensionAbility {
-  private VpnConnection: vpnExt.VpnConnectionExt;
+  private VpnConnection: vpnExt.VpnConnection;
   private vpnServerIp: string = '192.168.31.13';
   private tunIp: string = '10.0.0.5';
   private blockedAppName: string = 'com.example.myvpndemo';
@@ -119,7 +119,7 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
     let config = new Config(this.tunIp, this.blockedAppName);
 
     try {
-      this.VpnConnection.create(config, (error, data) => {
+      this.VpnConnection.create(config).then((data) => {
         g_tunFd = data;
         hilog.error(0x0000, 'developTag', 'tunfd: %{public}s', JSON.stringify(data) ?? '');
         vpn_client.startVpn(g_tunFd, g_tunnelFd);
