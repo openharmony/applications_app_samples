@@ -125,6 +125,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-video-component-1.0.5.tgz" desc="Provided by media/VideoShow"/>
                 <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-notification-1.0.0.tgz" desc="Provided by Notification/CustomEmitter"/>
                 <filteritem type="filepath" name="code/Solutions/Media/MultiMedia/lib/VideoPlayer.tgz" desc="Provided by code/Solutions/Media/MultiMedia"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/AVRecorder/lib/VideoRecorder-1.0.0.tgz" desc="Provided by code/BasicFeature/Media/AVRecorder"/>
                 <filteritem type="filepath" name="code/BasicFeature/FileManagement/FileManager/lib/MyPhoneFilePage-1.0.0.tgz" desc="Provided by code/BasicFeature/FileManagement/FileManager"/>
                 <filteritem type="filepath" name="code/BasicFeature/Connectivity/VPN/lib/VPNFoundation-1.0.0.tgz" desc="Provided by code/BasicFeature/Connectivity/VPN"/>
                 <filteritem type="filepath" name="code/DataMock/QuickFix/entry-signed-release.hqf" desc="Provided by code/BasicFeature/TaskManagement/TransientTask"/>
@@ -149,6 +150,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/SystemFeature/Security/DLP/screenshots/haps/FileEdit.hap" desc="Provided by FileEdit"/>
                 <filteritem type="filepath" name="code/BasicFeature/DeviceManagement/Sensor/Capi/libs/library.har" desc="Provided by code/BasicFeature/DeviceManagement/Sensor"/>
                 <filteritem type="filepath" name="code/Solutions/Media/MultiMedia/lib/VideoPlayer.hap" desc="Provided by code/Solutions/Media/MultiMedia"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/AVRecorder/lib/VideoRecorder-1.0.0.hap" desc="Provided by code/BasicFeature/Media/AVRecorder"/>
                 <filteritem type="filepath" name="code/BasicFeature/Connectivity/VPN/server/server.zip" desc="Provided by code/BasicFeature/Connectivity/VPN"/>
 		<filteritem type="filepath" name="code/BasicFeature/Connectivity/StageSocket/certificate_file.zip" desc="Provided by code/BasicFeature/Connectivity/StageSocket"/>
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkDrawing/screenshots/device/Index.jpg" desc="Provided by code/BasicFeature/Native/NdkDrawing"/>
@@ -190,6 +192,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-video-component-1.0.5.tgz" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-notification-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/Solutions/Media/MultiMedia/lib/VideoPlayer.tgz" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/AVRecorder/lib/VideoRecorder-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/BasicFeature/FileManagement/FileManager/lib/MyPhoneFilePage-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/BasicFeature/Connectivity/VPN/lib/VPNFoundation-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
             </filefilter>
@@ -212,6 +215,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-updatedialog-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-video-component-1.0.5.tgz" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/Solutions/Media/MultiMedia/lib/VideoPlayer.tgz" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/AVRecorder/lib/VideoRecorder-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/BasicFeature/FileManagement/FileManager/lib/MyPhoneFilePage-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/BasicFeature/Connectivity/VPN/lib/VPNFoundation-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
             </filefilter>

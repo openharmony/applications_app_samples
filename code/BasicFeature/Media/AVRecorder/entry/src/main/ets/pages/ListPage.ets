@@ -14,6 +14,9 @@
  */
 
 import router from '@ohos.router';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+import Logger from '../utils/Logger';
 
 @Entry
 @Component
@@ -41,9 +44,16 @@ struct ListPage {
       .backgroundColor($r('app.color.button_background'))
       .borderRadius(24)
       .onClick(() => {
-        router.push({
-          url: 'recorder/VideoRecorder',
-        })
+        let context: common.UIAbilityContext | undefined = AppStorage.Get('context');
+        let want: Want = {
+          bundleName: "com.samples.video_recorder",
+          abilityName: "EntryAbility",
+        };
+        context && context.startAbility(want,  (err) => {
+          if (err.code) {
+            Logger.error('StartAbility', `Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+          }
+        });
       })
       .margin({ left: 12, right:12, top: 0, bottom:12})
       Button() {
@@ -60,7 +70,7 @@ struct ListPage {
       .backgroundColor($r('app.color.button_background'))
       .borderRadius(24)
       .onClick(() => {
-        router.push({
+        router.pushUrl({
           url: 'recorder/AudioRecorder',
         })
       })

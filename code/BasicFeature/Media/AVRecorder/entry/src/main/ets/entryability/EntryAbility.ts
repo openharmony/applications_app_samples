@@ -33,6 +33,7 @@ export default class EntryAbility extends UIAbility {
     atManager.requestPermissionsFromUser(globalThis.abilityContext, permissionNames).then((data) => {
       Logger.info('testTag', 'requestPermissionsFromUser called');
     });
+    AppStorage.SetOrCreate('context', this.context);
   }
 
   onDestroy() {

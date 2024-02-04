@@ -1,7 +1,6 @@
 {
   "src": [
     "pages/ListPage",
-    "recorder/VideoRecorder",
     "recorder/AudioRecorder"
   ]
 }
