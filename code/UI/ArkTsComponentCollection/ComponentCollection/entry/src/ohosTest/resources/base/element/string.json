@@ -37,6 +37,10 @@
       "value": "Border"
     },
     {
+      "name": "prop_outline",
+      "value": "Outline"
+    },
+    {
       "name": "prop_font",
       "value": "Font"
     },
@@ -1927,6 +1931,10 @@
       "value": "RichText"
     },
     {
+      "name": "rich_editor",
+      "value": "RichEditor 富文本编辑"
+    },
+    {
       "name": "scroll_name",
       "value": "Scroll"
     },
@@ -3134,11 +3142,11 @@
     },
     {
       "name": "list_and_grid",
-      "value": "列表与宫格"
+      "value": "List and grid"
     },
     {
       "name": "list_title",
-      "value": "List 列表容器"
+      "value": "List"
     },
     {
       "name": "list_item_title",
@@ -3168,6 +3176,135 @@
       "name": "navigation_title",
       "value": "Navigation"
     },
+    {
+      "name": "navigation_first_page",
+      "value": "First page of Navigation"
+    },
+    {
+      "name": "navigation_second_page",
+      "value": "Second page of Navigation"
+    },
+    {
+      "name": "navigation_third_page",
+      "value": "Third page of Navigation"
+    },
+    {
+      "name": "navigation_first_page_push",
+      "value": "Go to the second page"
+    },
+    {
+      "name": "navigation_first_page_active",
+      "value": "Click to toggle activate status"
+    },
+    {
+      "name": "navigation_second_page_push",
+      "value": "Go to the third page"
+    },
+    {
+      "name": "navigation_third_page_back",
+      "value": "Go back to the first page"
+    },
+    {
+      "name": "navigation_basic_title",
+      "value": "Navigation Basic"
+    },
+    {
+      "name": "navigation_expand",
+      "value": "Expand"
+    },
+    {
+      "name": "navigation_list_expand_title",
+      "value": "Navigation List Expand Safe Area"
+    },
+    {
+      "name": "navigation_bindsheet_title",
+      "value": "BindSheet Safe Area"
+    },
+    {
+      "name": "navigation_expand_title",
+      "value": "Navigation Expand Safe Area"
+    },
+    {
+      "name": "navigation_unexpand",
+      "value": "Unexpand"
+    },
+    {
+      "name": "navigation_split_title",
+      "value": "Navigation Split"
+    },
+    {
+      "name": "navigation_sidebar_title",
+      "value": "Navigation SideBar"
+    },
+    {
+      "name": "navigation_navbar_list_nopara",
+      "value": "List"
+    },
+    {
+      "name": "navigation_navbar_list",
+      "value": "List%d"
+    },
+    {
+      "name": "navigation_navcontent_list",
+      "value": "Content%d"
+    },
+    {
+      "name": "navigation_hidebar_title",
+      "value": "Navigation Hide NavBar"
+    },
+    {
+      "name": "navigation_replace_title",
+      "value": "Navigation Replace"
+    },
+    {
+      "name": "navigation_replace_page",
+      "value": "Replace Current Page"
+    },
+    {
+      "name": "navigation_modechange_title",
+      "value": "Mode Change"
+    },
+    {
+      "name": "navigation_rotate_screen",
+      "value": "Rotate Screen"
+    },
+    {
+      "name": "navigation_modevalue",
+      "value": "SMode Value"
+    },
+    {
+      "name": "navigation_mode_callback",
+      "value": "Mode CallBack"
+    },
+    {
+      "name": "navigation_safearea_title",
+      "value": "Navigation Safe Area"
+    },
+    {
+      "name": "navigation_safearea_default",
+      "value": "Default"
+    },
+    {
+      "name": "navigation_safearea_expand",
+      "value": "Expand"
+    },
+    {
+      "name": "navigation_safearea_unexpand",
+      "value": "Unexpand"
+    },
+    {
+      "name": "navigation_router_title",
+      "value": "Hap Jump to Har"
+    },
+    {
+      "name": "navigation_router_har1",
+      "value": "Jump to Har1"
+    },
+    {
+      "name": "navigation_router_har2",
+      "value": "Jump to Har2"
+    },
+    // Tabs
     {
       "name": "tabs_title",
       "value": "Tabs"
@@ -3612,11 +3749,67 @@
       "value": "SafeArea"
     },
     {
+      "name": "attribute_modifier",
+      "value": "AttributeModifier"
+    },
+    {
       "name": "list_name",
       "value": "List"
     },{
       "name": "navigator_title",
       "value": "Navigator"
+    },
+    {
+      "name": "text_input_limit",
+      "value": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    {
+      "name": "text_clock_monovolume_numbers",
+      "value": "Monovolume Numbers"
+    },
+    {
+      "name": "global_popUp_menu",
+      "value": "Popup"
+    },
+    {
+      "name": "text_copy",
+      "value": "Copy"
+    },
+    {
+      "name": "copy_success",
+      "value": "Copy Success"
+    },
+    {
+      "name": "text_paste",
+      "value": "Paste"
+    },
+    {
+      "name": "paste_success",
+      "value": "Paste Success"
+    },
+    {
+      "name": "text_get",
+      "value": "Get"
+    },
+    {
+      "name": "global_bindSheet_menu",
+      "value": "BindSheet半模态"
+    },
+    {
+      "name": "list_introduction_properties",
+      "value": "List properties"
+    },
+    {
+      "name":"water_flow_properties",
+      "value":"WaterFlow properties"
+    },
+    {
+      "name":"water_flow_properties_scroll_bar_color",
+      "value":"scrollBarColor"
+    },
+    {
+      "name": "list_properties_edge_effect",
+      "value": "edgeEffect"
     }
   ]
 }

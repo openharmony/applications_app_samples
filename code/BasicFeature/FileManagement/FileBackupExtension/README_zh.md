@@ -56,7 +56,7 @@ BackupExtensionAbility配置文件示例：
                     "resource": "$profile:backup_config"
                 }
             ],
-            "srcEntrance": "",
+            "srcEntrance": "./ets/common/BackupExtension.ts",
         }      
     ]
 }
@@ -72,23 +72,25 @@ BackupExtensionAbility配置文件示例：
 {
   "allowToBackupRestore": true,
     "includes": [
-      "data/storage/el2/database/",
-      "data/storage/el2/base/files/",
-      "data/storage/el2/base/preferences/",
-      "data/storage/el2/base/haps/*/database/",
-      "data/storage/el2/base/haps/*/base/files/",
-      "data/storage/el2/base/haps/*/files/",
-      "data/storage/el2/base/haps/entry/files/TextDir/",
-      "data/storage/el2/base/haps/*/base/preferences/",
-      "/data/storage/el2/base/files/users/*/*.json"
+    "data/storage/el1/database/",
+    "data/storage/el1/base/files/",
+    "data/storage/el1/base/preferences/",
+    "data/storage/el1/base/haps/<module-name>/files/",
+    "data/storage/el1/base/haps/<module-name>/preferences/",
+    "data/storage/el2/database/",
+    "data/storage/el2/base/files/",
+    "data/storage/el2/base/preferences/",
+    "data/storage/el2/base/haps/<module-name>/files/",
+    "data/storage/el2/base/haps/<module-name>/preferences/",
+    "data/storage/el2/distributedfiles/"
     ],
     "excludes": [
-      "/data/storage/el2/base/files/users/*/hidden.json"
+      "/data/storage/el2/base/files/users/"
     ]
 }
 ```
 
-其中includes里面的文件夹是用户需要备份数据的路径，excludes为用户不想备份数据的路径。
+其中includes里面的文件夹是用户需要备份数据的路径，excludes为用户在includes内所需要排除的备份数据目录。includes配置内中<module-name>是应用子Hap名称。
 
 3. 使用应用生成数据：
 
@@ -127,7 +129,7 @@ backup_tool backup --isLocal=true --bundle com.sample.backupextension  --pathCap
 备份成功提示：
 BundleStarted errCode = 0, BundleName = com.example.backupextension
 FileReady owner = com.example.backupextension, fileName = manage.json, sn = 0, fd = 9
-FileReady owner = com.example.backupextension, fileName = 1.tar, sn = 0, fd = 9
+FileReady owner = com.example.backupextension, fileName = part.0.tar, sn = 0, fd = 9
 BundleFinished errCode = 0, BundleName = com.example.backupextension
 backup successful
 
@@ -135,7 +137,7 @@ backup successful
 backup_tool restore --bundle com.sample.backupextension --pathCapFile /data/backup/tmp
 恢复成功提示：
 BundleStarted errCode = 0, BundleName = com.example.backupextension
-FileReady owner = com.example.backupextension, fileName = 1.tar, sn = 0, fd = 8
+FileReady owner = com.example.backupextension, fileName = part.0.tar, sn = 0, fd = 8
 FileReady owner = com.example.backupextension, fileName = manage.json, sn = 0, fd = 8
 BundleFinished errCode = 0, BundleName = com.example.backupextension
 Restore successful
@@ -159,7 +161,7 @@ backup详细说明可以使用backup -help查看。
 
 1.本示例仅支持标准系统上运行，支持设备：RK3568。
 
-2.本示例为Stage模型，支持API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0 Release)
+2.本示例为Stage模型，支持API11版本SDK，SDK版本号(API Version 11 Beta1),镜像版本号(4.1 Beta1)
 
 3.本示例需要使用DevEco Studio 版本号(4.0 Release)及以上版本才可编译运行。
 

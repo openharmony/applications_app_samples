@@ -102,6 +102,44 @@ Native跨线程调用使用说明：
 
 3.点击Native跨线程调用页的**libuvTest**按钮，验证使用libuv跨线程调用。
 
+多线程间大数据传输使用说明：
+
+1.点击性能示例主页的**ThreadDataTransfer**按钮，进入**多线程数据传输入口**场景页。
+
+2.拖动**任务数**滑动条调整线程任务数，点击**传参方式**按钮，改变线程传参方式。
+
+3.拖动**饱和度**滑动条，调整图片饱和度。
+
+主线程和子线程的通信使用说明：
+
+1.点击性能示例主页面的**ThreadCommunication**按钮，进入**主线程和子线程通信**场景页。
+
+2.点击**场景一：独立的耗时任务**按钮，进入**独立的耗时任务**场景页，点击**加载图片**按钮。
+
+3.点击**场景二：多个任务执行结果统一返回**按钮，进入**多个任务执行结果统一返回**场景页，点击**加载图片**按钮。
+
+4.点击**场景三：TaskPool和主线程的即时通信**按钮，进入**TaskPool和主线程的即时通信**场景页，点击**加载图片**按钮。
+
+5.点击**场景四：Worker和主线程的即时通信**按钮，进入**Worker和主线程的即时通信**场景页，点击**将图片变成4个**按钮。
+
+6.点击**场景五：子线程同步调用主线程的接口**按钮，进入**子线程同步调用主线程的接口**场景页，点击**加载图片**按钮。
+
+Web组件提升性能使用说明：
+
+1.连接网络后点击性能示例主页的**WebPerformance**按钮，进入**Web组件提升性能**场景页。
+
+2.点击**常规Web首页**按钮进入常规加载Web首页。
+
+3.点击**进入网页**按钮进入常规Web组件页。
+
+4.点击**下一页**按钮进入常规Web切换页。
+
+5.点击**优化Web首页**按钮进入优化加载Web首页。
+
+6.点击**进入网页**按钮进入优化Web组件页。
+
+7.点击**下一页**按钮进入优化Web切换页。
+
 ### 工程目录
 
 ```
@@ -162,6 +200,16 @@ features
 |   |   |---StaticContentPageTwo.ets                  // 常规加载子页面
 |   |   |---StaticEntryView.ets                       // 常规加载入口页面           
 |   |   |---StaticHome.ets                            // 常规加载主页
+|---/ThreadCommunication/src/main/ets                 // 主线程和子线程通信
+|---|---/pages    
+|   |   |---IconItemSource.ets                        // 图片信息类     
+|   |   |---IconView.ets                              // 图片Item组件     
+|   |   |---IndependentTask.ets                       // 独立的耗时任务页面     
+|   |   |---MultiTask.ets                             // 多任务统一返回页面     
+|   |   |---TaskSendDataUsage.ets                     // TaskPool和主线程的即时通信页面
+|   |   |---ThreadCommunicationHomePage.ets           // 主线程和子线程通信入口页面           
+|   |   |---WorkerCallGlobalUsage.ets                 // 子线程同步调用主线程的接口页面
+|   |   |---WorkerUsage.ets                           // Worker和主线程的即时通信页面
 |---/trace/src/main/ets                               // Trace功能HAR共享包
 |---|---/pages    
 |   |   |---LazyForEachPage.ets                       // 懒加载示例场景页面     
@@ -230,8 +278,19 @@ products/phone/entry/src/main/ets
 |   |   |---BackgroundTaskPage.ets                    // 后台任务入口页面              
 |   |   |---TransientTask.ets                         // 短时任务页面
 |   |   |---LongTermTask.ets                          // 长时任务页面
+|   |---/ThreadCommunication
+|   |---|---/workers
+|   |   |---|---Worker.ts                             // worker子线程   
+|   |   |---IndependentTaskPage.ets                   // 独立的耗时任务页面     
+|   |   |---MultiTaskPage.ets                         // 多任务统一返回页面     
+|   |   |---TaskSendDataUsagePage.ets                 // TaskPool和主线程的即时通信页面     
+|   |   |---ThreadCommunicationHomePage.ets           // 主线程和子线程通信入口页面     
+|   |   |---WorkerCallGlobalUsagePage.ets             // 子线程同步调用主线程的接口页面     
+|   |   |---WorkerUsagePage.ets                       // Worker和主线程的即时通信页面     
 |   |---/trace
-|   |   |---TracePage.ets                             // 懒加载示例首页              
+|   |   |---TracePage.ets                             // 懒加载示例首页     
+|   |---/ThreadDataTransfer
+|   |   |---ThreadDataTransferHomePage.ets            // 线程间大数据传输首页              
 |   |---/waterFlow
 |   |   |---WaterFlowPage.ets                         // WaterFlow示例首页                                                                                                                                       
 |   |---/memoryShared
@@ -239,7 +298,12 @@ products/phone/entry/src/main/ets
 |   |   |---LockUsage.ets                             // 锁应用页面 
 |   |   |---MemorySharedHome.ets                      // 多线程共享内存入口页面           
 |   |---/nativeThreadsCallJS
-|   |   |---NativeThreadsCallJS.ets                   // native跨线程调用示例首页               
+|   |   |---NativeThreadsCallJS.ets                   // native跨线程调用示例首页    
+|   |---/webPerformance
+|   |   |---WebHomePage.ets                           // Web提升性能示例首页
+|   |   |---WebBrowserPage.ets                        // Web组件网页
+|   |   |---WebInitializedPage.ets                    // Web优化性能主页
+|   |   |---WebUninitializedPage.ets                  // Web常规主页
 |   |---/Index                                                                     
 |---/utils
 |   |---Logger.ets                                    // 封装整个日志
@@ -324,6 +388,40 @@ products/phone/entry/src/main/ets
     * 使用或不适用锁，实现多线程写入文件
     * 源码链接：[LockUsage.ets](feature/memoryShared/src/main/ets/pages/LockUsage.ets)
     
+* 多线程间大数据传输页面模块
+  * 图片调整饱和度
+    * 通过不同参数，实现多线程修改图片
+    * 源码链接：[TreadUtil.ets](feature/ThreadDataTransfer/src/main/ets/utils/TreadUtil.ets)
+
+* Web提升性能页面模块
+  * 常规场景
+    * 使用Web组件常规实现网页加载
+    * 源码链接：[WebUninitializedPage.ets](feature/webPerformance/src/main/ets/pages/WebUninitialized.ets)
+  * 优化场景
+    * 使用预加载预连接提升web性能
+    * 源码链接：[WebInitializedPage.ets](feature/webPerformance/src/main/ets/pages/WebInitialized.ets)
+
+* 主线程和子线程间的通信
+  * 将独立的耗时任务放在子线程中执行
+    * 使用TaskPool实现
+    * 源码链接：[IndependentTask.ets](feature/ThreadCommunication/src/main/ets/pages/IndependentTask.ets)
+  * 多个任务一并返回结果
+    * 使用TaskPool+TaskGroup实现
+    * 源码链接：[MultiTask.ets](feature/ThreadCommunication/src/main/ets/pages/MultiTask.ets)
+  * Task和主线程的数据通信
+    * 使用TaskPool中的sendData()和onReceiveData()接口实现
+    * 源码链接：[TaskSendDataUsage.ets](feature/ThreadCommunication/src/main/ets/pages/TaskSendDataUsage.ets)
+  * 子线程同步调用主线程的接口
+    * 在Worker中使用callGlobalCallObjectMethod()接口实现
+    * 源码链接：
+      * [WorkerCallGlobalUsage.ets](feature/ThreadCommunication/src/main/ets/pages/WorkerCallGlobalUsage.ets)
+      * [Worker.ts](product/phone/entry/src/main/ets/pages/ThreadCommunication/workers/Worker.ts)
+  * Worker和主线程的数据通信
+    * 使用Worker的postMessage()和onmessage()接口实现
+    * 源码链接：
+      * [WorkerUsage.ets](feature/ThreadCommunication/src/main/ets/pages/WorkerUsage.ets)
+      * [Worker.ts](product/phone/entry/src/main/ets/pages/ThreadCommunication/workers/Worker.ts)
+
 ### 相关权限
 
 ohos.permission.INTERNET

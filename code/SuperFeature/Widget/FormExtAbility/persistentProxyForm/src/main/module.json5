@@ -97,6 +97,9 @@
       },
       {
         "name": "ohos.permission.START_INVISIBLE_ABILITY"
+      },
+      {
+        "name": "ohos.permission.OBSERVE_FORM_RUNNING"
       }
     ]
   }

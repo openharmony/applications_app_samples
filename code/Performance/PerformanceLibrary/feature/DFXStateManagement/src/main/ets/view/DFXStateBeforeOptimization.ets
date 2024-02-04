@@ -13,198 +13,135 @@
  * limitations under the License.
  */
 
-class NeedRenderImage {
-  public translateImageX: number = 0;
-  public translateImageY: number = 0;
-  public imageWidth: number = 78;
-  public imageHeight: number = 78;
-}
+const animationDuration: number = 500; // move动画时长
+const opacityChangeValue: number = 0.1; // opacity每次变化的值
+const opacityChangeRange: number = 1; // opacity变化的范围
+const translateYChangeValue: number = 180; // translateY每次变化的值
+const translateYChangeRange: number = 250; // translateY变化的范围
+const scaleXChangeValue: number = 0.6; // scaleX每次变化的值
+const scaleXChangeRange: number = 0.8; // scaleX每次变化的值
 
-class NeedRenderScale {
+// 样式属性类
+class UIStyle {
+  public translateX: number = 0;
+  public translateY: number = 0;
   public scaleX: number = 0.3;
   public scaleY: number = 0.3;
 }
 
-class NeedRenderAlpha {
-  public alpha: number = 0.5;
-}
-
-class NeedRenderSize {
-  public width: number = 336;
-  public height: number = 178;
-}
-
-class NeedRenderPos {
-  public posX: number = 10;
-  public posY: number = 50;
-}
-
-class NeedRenderBorderRadius {
-  public borderRadius: number = 24;
-}
-
-class NeedRenderFontSize {
-  public fontSize: number = 20;
-}
-
-class NeedRenderTranslate {
-  public translateX: number = 0;
-  public translateY: number = 0;
-}
-
-class UIStyle {
-  needRenderTranslate: NeedRenderTranslate = new NeedRenderTranslate();
-  needRenderFontSize: NeedRenderFontSize = new NeedRenderFontSize();
-  needRenderBorderRadius: NeedRenderBorderRadius = new NeedRenderBorderRadius();
-  needRenderPos: NeedRenderPos = new NeedRenderPos();
-  needRenderSize: NeedRenderSize = new NeedRenderSize();
-  needRenderAlpha: NeedRenderAlpha = new NeedRenderAlpha();
-  needRenderScale: NeedRenderScale = new NeedRenderScale();
-  needRenderImage: NeedRenderImage = new NeedRenderImage();
-
-  constructor() {
-  }
-}
-
 @Component
 struct SpecialImage {
-  @Link uiStyle: UIStyle;
+  @Link specialImageUiStyle: UIStyle;
+  private opacityNum: number = 0.5; // 默认透明度
 
   private isRenderSpecialImage(): number {
-    console.log("SpecialImage is rendered");
-    return 1;
-  }
-
-  build() {
-    Image($r('app.media.icon'))
-      .width(this.uiStyle.needRenderImage.imageWidth)
-      .height(this.uiStyle.needRenderImage.imageHeight)
-      .margin({ top: 20 })
-      .translate({
-        x: this.uiStyle.needRenderImage.translateImageX,
-        y: this.uiStyle.needRenderImage.translateImageY
-      })
-      .opacity(this.isRenderSpecialImage())
-  }
-}
-
-@Component
-struct CompA {
-  @Prop uiStyle: UIStyle;
-  @Prop needRenderTranslate: NeedRenderTranslate;
-  @Prop needRenderFontSize: NeedRenderFontSize;
-  @Prop needRenderBorderRadius: NeedRenderBorderRadius;
-  @Prop needRenderPos: NeedRenderPos;
-  @Prop needRenderSize: NeedRenderSize;
-  @Prop needRenderAlpha: NeedRenderAlpha;
-  @Prop needRenderScale: NeedRenderScale;
-
-  private isRenderColumn(): number {
-    console.log("Column is rendered");
-    return 1;
-  }
-
-  private isRenderStack(): number {
-    console.log("Stack is rendered");
-    return 1;
-  }
-
-  private isRenderImage(): number {
-    console.log("Image is rendered");
-    return 1;
-  }
-
-  private isRenderText(): number {
-    console.log("Text is rendered");
-    return 1;
+    // Image每次渲染时透明度增加0.1, 在0-1之间循环
+    this.opacityNum = (this.opacityNum + opacityChangeValue) % opacityChangeRange;
+    return this.opacityNum;
   }
 
   build() {
     Column() {
+      Image($r('app.media.icon'))
+        .width($r('app.integer.special_image_width'))
+        .height($r('app.integer.special_image_width'))
+        .margin({ top: $r('app.integer.image_margin_top') })
+        .scale({
+          x: this.specialImageUiStyle.scaleX,
+          y: this.specialImageUiStyle.scaleY
+        })
+        .opacity(this.isRenderSpecialImage())
+      Text("SpecialImage")
+        .fontColor($r('app.color.text_color'))
+        .fontWeight(FontWeight.Medium)
+        .fontSize($r('app.integer.button_font_size'))
+        .margin({ top: $r('app.integer.text_margin_top') })
+    }
+    .backgroundColor($r('app.color.stack_color'))
+    .width($r('app.integer.stack_width'))
+    .height($r('app.integer.stack_height'))
+    .margin({ top: $r('app.integer.stack_margin_top') })
+    .borderRadius($r('app.integer.stack_border_radius'))
+  }
+}
+
+@Component
+struct ComponentA {
+  @Link uiStyle: UIStyle; // uiStyle的属性被多个组件使用
+
+  build() {
+    Column() {
+      // 使用状态变量的组件
       SpecialImage({
-        uiStyle: this.uiStyle
+        specialImageUiStyle: this.uiStyle
       })
       Stack() {
         Column() {
           Image($r('app.media.icon'))
-            .opacity(this.needRenderAlpha.alpha)
+            .opacity($r('app.float.icon_opacity'))
             .scale({
-              x: this.needRenderScale.scaleX,
-              y: this.needRenderScale.scaleY
+              x: this.uiStyle.scaleX,
+              y: this.uiStyle.scaleY
             })
-            .padding(this.isRenderImage())
-            .width(300)
-            .height(300)
+            .width($r('app.integer.stack_icon_width'))
+            .height($r('app.integer.stack_icon_height'))
         }
         .width('100%')
-        .position({ y: -80 })
+        .position({ y: $r('app.integer.stack_column_position_y') })
 
         Stack() {
           Text("Hello World")
             .fontColor($r('app.color.text_color'))
             .fontWeight(FontWeight.Medium)
-            .fontSize(this.needRenderFontSize.fontSize)
-            .opacity(this.isRenderText())
-            .margin({ top: 12 })
+            .fontSize($r('app.integer.button_font_size'))
+            .margin({ top: $r('app.integer.text_margin_top') })
         }
-        .opacity(this.isRenderStack())
         .position({
-          x: this.needRenderPos.posX,
-          y: this.needRenderPos.posY
+          x: $r('app.integer.text_position_x'),
+          y: $r('app.integer.text_position_y')
         })
         .width('100%')
         .height('100%')
       }
-      .margin({ top: 50 })
-      .borderRadius(this.needRenderBorderRadius.borderRadius)
-      .opacity(this.isRenderStack())
+      .margin({ top: $r('app.integer.stack_margin_top') })
+      .borderRadius($r('app.integer.stack_border_radius'))
       .backgroundColor($r('app.color.stack_color'))
-      .width(this.needRenderSize.width)
-      .height(this.needRenderSize.height)
+      .width($r('app.integer.stack_width'))
+      .height($r('app.integer.stack_height'))
       .translate({
-        x: this.needRenderTranslate.translateX,
-        y: this.needRenderTranslate.translateY
+        x: this.uiStyle.translateX,
+        y: this.uiStyle.translateY
       })
 
+      // 通过按钮点击回调修改状态变量的值，引起相应的组件刷新
       Column() {
-        Button("Move")
-          .width(312)
-          .fontSize(20)
+        Button('Move')
+          .width($r('app.integer.button_width'))
+          .fontSize($r('app.integer.button_font_size'))
           .backgroundColor($r('app.color.button_color'))
-          .margin({ bottom: 10 })
+          .margin({ bottom: $r('app.integer.button_margin_bottom') })
           .onClick(() => {
             animateTo({
-              duration: 500
+              duration: animationDuration
             }, () => {
-              this.needRenderTranslate.translateY = (this.needRenderTranslate.translateY + 180) % 250;
+              this.uiStyle.translateY = (this.uiStyle.translateY + translateYChangeValue) % translateYChangeRange;
             })
           })
-        Button("Scale")
-          .borderRadius(20)
+        Button('Scale')
           .backgroundColor($r('app.color.button_color'))
-          .fontSize(20)
-          .width(312)
-          .margin({ bottom: 10 })
+          .fontSize($r('app.integer.button_font_size'))
+          .width($r('app.integer.button_width'))
+          .margin({ bottom: $r('app.integer.button_margin_bottom') })
           .onClick(() => {
-            this.needRenderScale.scaleX = (this.needRenderScale.scaleX + 0.6) % 0.8;
-          })
-        Button("Change Image")
-          .borderRadius(20)
-          .backgroundColor($r('app.color.button_color'))
-          .fontSize(20)
-          .width(312)
-          .onClick(() => {
-            this.uiStyle.needRenderImage.imageWidth = (this.uiStyle.needRenderImage.imageWidth + 30) % 160;
-            this.uiStyle.needRenderImage.imageHeight = (this.uiStyle.needRenderImage.imageHeight + 30) % 160;
+            this.uiStyle.scaleX = (this.uiStyle.scaleX + scaleXChangeValue) % scaleXChangeRange;
           })
       }
       .position({
-        y: 616
+        y: $r('app.integer.button_column_position_y')
       })
       .height('100%')
       .width('100%')
     }
-    .opacity(this.isRenderColumn())
     .width('100%')
     .height('100%')
   }
@@ -216,19 +153,10 @@ export struct DFXStateBeforeOptimization {
 
   build() {
     Stack() {
-      CompA({
-        uiStyle: this.uiStyle,
-        needRenderTranslate: this.uiStyle.needRenderTranslate,
-        needRenderFontSize: this.uiStyle.needRenderFontSize,
-        needRenderBorderRadius: this.uiStyle.needRenderBorderRadius,
-        needRenderPos: this.uiStyle.needRenderPos,
-        needRenderSize: this.uiStyle.needRenderSize,
-        needRenderAlpha: this.uiStyle.needRenderAlpha,
-        needRenderScale: this.uiStyle.needRenderScale
+      ComponentA({
+        uiStyle: this.uiStyle
       })
     }
     .backgroundColor($r('app.color.stack_background'))
   }
 }
-
-

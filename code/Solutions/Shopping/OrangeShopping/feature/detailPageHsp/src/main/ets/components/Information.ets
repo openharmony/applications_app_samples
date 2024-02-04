@@ -32,8 +32,8 @@ export struct Information {
 
   aboutToAppear() {
     let context: Context = getContext(this);
-    this.recommend = context.resourceManager.getStringSync($r('app.string.recommend').id);
-    this.commodity = context.resourceManager.getStringSync($r('app.string.commodity').id);
+    this.recommend = context.resourceManager.getStringSync($r('app.string.recommend'));
+    this.commodity = context.resourceManager.getStringSync($r('app.string.commodity'));
   }
 
   // 分享弹框

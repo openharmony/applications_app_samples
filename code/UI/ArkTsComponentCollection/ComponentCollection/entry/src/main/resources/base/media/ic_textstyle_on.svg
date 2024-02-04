@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>ic_textstyle_on</title>
+    <g id="ic_textstyle_on" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M4.43706751,15.3152174 L5.4314021,12.5578118 L9.85873129,12.5578118 L10.8675817,15.3152174 L12.2973913,15.3152174 L8.2547317,4.75 L7.03540169,4.75 L3,15.3152174 L4.43706751,15.3152174 Z M9.35484983,11.3004348 L5.98161309,11.2929762 L7.65615897,6.44370639 L9.35484983,11.3004348 Z" id="A" stroke="#007DFF" stroke-width="0.5" fill="#007DFF" fill-rule="nonzero" stroke-linejoin="round"></path>
+        <rect id="矩形" fill="#007DFF" x="11" y="4.5" width="11" height="2" rx="1"></rect>
+        <rect id="矩形备份" fill="#007DFF" x="13" y="9" width="9" height="2" rx="1"></rect>
+        <rect id="矩形备份-2" fill="#007DFF" x="15" y="13.5" width="7" height="2" rx="1"></rect>
+        <rect id="矩形备份-3" fill="#007DFF" x="2" y="19.5" width="20" height="2" rx="1"></rect>
+    </g>
+</svg>

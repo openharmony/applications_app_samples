@@ -15,7 +15,7 @@
 
 import UIAbility from '@ohos.app.ability.UIAbility';
 import { logger } from '@ohos/details-page-hsp';
-import { notificationUtil } from '@ohos/notification';
+import notification from '@ohos.notificationManager';
 import { QRCodeScanConst } from '@ohos/scan-component';
 import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
 import Want from '@ohos.app.ability.Want';
@@ -67,7 +67,13 @@ export default class MainAbility extends UIAbility {
       AppStorage.setOrCreate(QRCodeScanConst.HAS_CAMERA_PERMISSION, true);
       logger.info('MainAbility permissionRequestResult success');
     }
-    await notificationUtil.enableNotification();
+    // 应用请求通知使能
+    try {
+      await notification.requestEnableNotification(this.context);
+      logger.info(`requestEnableNotification success`);
+    } catch (e) {
+      logger.error(`requestEnableNotification error ${JSON.stringify(e)}`);
+    }
   }
 
   onDestroy(): void {

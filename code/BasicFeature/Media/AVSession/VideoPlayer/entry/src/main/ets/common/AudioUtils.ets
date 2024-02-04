@@ -72,7 +72,7 @@ export default class AudioUtils {
           if (this.callbackMap.get('prepared')) {
             this.callbackMap.get('prepared');
             Log.info('AVPlayer state prepare start.');
-            this.callbackMap.set('prepared', null);
+            this.callbackMap.set('prepared', ()=>{});
           }
           break;
         case 'playing':

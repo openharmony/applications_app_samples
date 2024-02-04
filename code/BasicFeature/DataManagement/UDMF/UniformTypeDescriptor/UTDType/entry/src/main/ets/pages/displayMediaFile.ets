@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023-2024 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+import utdDesc from '@ohos.data.uniformTypeDescriptor';
 import router from '@ohos.router';
 import { logger } from '../util/Logger';
 
@@ -22,6 +23,30 @@ interface paramsTape {
   src: string,
   selectIconFile: string,
 }
+
+interface FileIconType {
+  type: string,
+  value: string,
+  icon: Resource
+}
+
+const FILE_TYPE_ICON: FileIconType[] = [
+  {
+    type: "Image",
+    value: "general.image",
+    icon: $r("app.media.image")
+  },
+  {
+    type: "Audio",
+    value: "general.audio",
+    icon: $r("app.media.myAudio")
+  },
+  {
+    type: "Video",
+    value: "general.video",
+    icon: $r("app.media.video")
+  }
+]
 
 @Entry
 @Component
@@ -35,6 +60,31 @@ struct selectMediaType {
     this.selectIconFile = (router.getParams() as paramsTape).selectIconFile;
   }
 
+  getFileIcon(fileName: string): Resource {
+    let fileIcon = $r("app.media.file");
+    let index = fileName.lastIndexOf('.');
+    if (index < 0) {
+      return fileIcon;
+    } else {
+      let fileExtension = fileName.substring(index);
+      let utd = utdDesc.getUniformDataTypeByFilenameExtension(fileExtension);
+      let typeObj: utdDesc.TypeDescriptor;
+      try {
+        typeObj = utdDesc.getTypeDescriptor(utd);
+      } catch (e) {
+        logger.info(TAG, `invalid file type`);
+        return fileIcon;
+      }
+      FILE_TYPE_ICON.forEach(DataType => {
+        if(typeObj.belongsTo(DataType.value)) {
+          logger.info(TAG, `file type: ${DataType.type}`);
+          fileIcon = DataType.icon;
+        }
+      })
+      return fileIcon;
+    }
+  }
+
   build() {
     Column() {
       Column() {
@@ -46,9 +96,9 @@ struct selectMediaType {
             .visibility(Visibility.Visible)
             .objectFit(ImageFit.Fill)
             .alignSelf(ItemAlign.Auto)
-            .margin({left: 24, right: 12})
+            .margin({ left: 24, right: 12 })
             .onClick(() => {
-              router.pushUrl({url: this.routerBackUrl}, router.RouterMode.Single);
+              router.pushUrl({ url: this.routerBackUrl }, router.RouterMode.Single);
             })
           Text($r('app.string.displayMediaFile_title'))
             .fontStyle(FontStyle.Normal)
@@ -68,7 +118,7 @@ struct selectMediaType {
         List({ space: 2, initialIndex: 0 }) {
           ListItem() {
             Row() {
-              Image(this.selectIconFile == "" ? $r('app.media.file') : this.selectIconFile)
+              Image(this.getFileIcon(this.src))
                 .id('imageBack')
                 .width(24)
                 .height(24)
@@ -85,7 +135,7 @@ struct selectMediaType {
         .listDirection(Axis.Vertical) // 排列方向
         .scrollBar(BarState.Auto)
         .friction(0.6)
-        .margin({left: 12, right: 12})
+        .margin({ left: 12, right: 12 })
         .borderRadius(24)
         .edgeEffect(EdgeEffect.Spring) // 边缘效果设置为Spring
         .onScrollIndex((firstIndex: number, lastIndex: number, centerIndex: number) => {

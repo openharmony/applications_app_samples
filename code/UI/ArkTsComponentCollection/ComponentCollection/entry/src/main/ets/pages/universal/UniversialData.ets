@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -41,6 +41,11 @@ const GRAPHIC_TRANSFORMATION: ThirdLevelCategory[] =
       image: $r('app.media.ic_prop_border'),
       title: $r('app.string.prop_border'),
       url: 'pages/universal/properties/borderSample/BorderSample'
+    },
+    {
+      image: $r('app.media.ic_prop_border'),
+      title: $r('app.string.prop_outline'),
+      url: 'pages/universal/properties/outlineSample/OutlineSample'
     },
     {
       image: $r('app.media.ic_prop_font'),
@@ -143,6 +148,11 @@ const GRAPHIC_TRANSFORMATION: ThirdLevelCategory[] =
       image: $r('app.media.ic_prop_background'),
       title: $r('app.string.safe_area'),
       url: 'pages/universal/properties/safeAreaSample/SafeAreaSample'
+    },
+    {
+      image: $r('app.media.ic_screenshot_arbitrarygraphics'),
+      title: $r('app.string.attribute_modifier'),
+      url: 'pages/universal/properties/attributeModifierSample/AttributeModifierSample'
     }
   ];
 
@@ -192,6 +202,11 @@ const COMMON_EVENTS: ThirdLevelCategory[] =
       image: $r('app.media.ic_scroll_event'),
       title: $r('app.string.scroll_event'),
       url: 'pages/universal/events/scrollEventSample/ScrollEventSample'
+    },
+    {
+      image: $r('app.media.ic_gallery_free'),
+      title: $r('app.string.custom_event'),
+      url: 'pages/universal/events/customEventSample/CustomEventHome'
     }
   ];
 
@@ -236,6 +251,11 @@ const GESTURE: ThirdLevelCategory[] =
       image: $r('app.media.ic_combined_gestures'),
       title: $r('app.string.combined_gestures'),
       url: 'pages/universal/gesture/combinedSample/CombinedSample'
+    },
+    {
+      image: $r('app.media.ic_customGesture'),
+      title: $r('app.string.custom_gesture'),
+      url: 'pages/universal/gesture/customGesture/CustomGestureJudge'
     }
   ];
 

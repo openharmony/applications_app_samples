@@ -18,9 +18,13 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import { Hypium } from '@ohos/hypium';
 import testsuite from '../test/List.test';
 import Logger from '../utils/Logger';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import window from '@ohos.window';
+import common from '@ohos.app.ability.common';
 
 export default class TestAbility extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     Logger.info('TestAbility onCreate');
     let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
     let abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
@@ -32,7 +36,7 @@ export default class TestAbility extends UIAbility {
     Logger.info('TestAbility onDestroy');
   }
 
-  onWindowStageCreate(windowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage) {
     Logger.info('TestAbility onWindowStageCreate');
     windowStage.loadContent('testability/pages/Index', (err, data) => {
       if (err.code) {
@@ -42,7 +46,7 @@ export default class TestAbility extends UIAbility {
       Logger.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
     });
 
-    globalThis.abilityContext = this.context;
+    AppStorage.setOrCreate<common.UIAbilityContext>('aiblityContext', this.context);
   }
 
   onWindowStageDestroy() {

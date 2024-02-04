@@ -220,6 +220,9 @@ entry/src/main/ets/
 |   |   |   |---listSample
 |   |   |   |   |---ListControlPanel.ets
 |   |   |   |   |---ListSample.ets                       // 列表容器
+|   |   |   |---waterFlowSample
+|   |   |   |   |---WaterFlowDataSource.ets
+|   |   |   |   |---WaterFlowSample.ets                  // WaterFlow
 |   |   |---navigation
 |   |   |   |---navigatorSample
 |   |   |   |   |---NavigatorSample.ets                  // 路由
@@ -227,6 +230,17 @@ entry/src/main/ets/
 |   |   |   |   |---NavigatorThirdPage.ets
 |   |   |   |---navigationSample
 |   |   |   |   |---NavigationSample.ets                 // 导航根容器
+|   |   |   |   |---NavigationBasic.ets                  // 导航基础属性展示
+|   |   |   |   |---ListExpandSafeArea.ets               // 滚动组件避让导航条
+|   |   |   |   |---NavigationSplit.ets               	 // 导航分栏模式
+|   |   |   |   |---NavigationRouter.ets               	 // Navigation动态路由
+|   |   |   |   |---NavigationModeChange.ets             // Navigation模式自动切换
+|   |   |   |   |---NavigationReplace.ets                // 导航页面替换
+|   |   |   |   |---BindSheetSafeArea.ets                // BindSheet键盘避让
+|   |   |   |   |---NavigationSideBar.ets                // 导航分栏鼠标样式
+|   |   |   |   |---NavigationHideBar.ets                // 隐藏Navigation导航条
+|   |   |   |   |---NavigationFullSafeArea.ets           // 导航组件扩展安全区
+|   |   |   |   |---NavigationExpandSafeArea.ets         // 导航组件避让导航条
 |   |   |   |---navRouterSample
 |   |   |   |   |---NavRouterSample.ets                  // 导航
 |   |   |   |---stepperAndStepperItemSample
@@ -279,6 +293,9 @@ entry/src/main/ets/
 |   |   |   |---textAreaSample
 |   |   |   |   |---ChangePanel.ets
 |   |   |   |   |---TextAreaSample.ets                   // 文本域
+|   |   |   |---richEditorSample
+|   |   |   |   |---RichEditorSample.ets             // 富文本编辑
+|   |   |   |   |---Title.ets
 |   |   |   |---richTextSample
 |   |   |   |   |---RichTextSample.ets                   // 富文本
 |   |   |   |---spanSample
@@ -310,6 +327,10 @@ entry/src/main/ets/
 |   |   |   |   |---TextPickerDialogSample.ets           // 文本滑动选择器弹窗
 |   |   |   |---menuSample
 |   |   |   |   |---MenuSample.ets                       // 菜单
+|   |   |   |---bindSheetSample
+|   |   |   |   |---BindSheetSample.ets                  // 半模态
+|   |   |   |---popUpSample
+|   |   |   |   |---PopUpSample.ets                      // Popup
 |   |---universal                                        // 详情页面
 |   |   |---UniversialData.ets
 |   |   |---events
@@ -339,6 +360,10 @@ entry/src/main/ets/
 |   |   |   |   |---ScrollEventSample.ets                // 滚动事件
 |   |   |   |---touchEventSample
 |   |   |   |   |---TouchEventSample.ets                 // 触摸事件
+|   |   |   |---customEventSample
+|   |   |   |   |---CustomEventHome.ets                  // 自定义事件分发入口
+|   |   |   |   |---CustomClickEvent.ets                 // 自定义click事件分发
+|   |   |   |   |---CustomScrollingEvent.ets             // 自定义scrolling事件分发
 |   |   |---gesture
 |   |   |   |---bindGestureSample 
 |   |   |   |   |---BindGestureSample.ets                // 绑定手势方法
@@ -356,13 +381,19 @@ entry/src/main/ets/
 |   |   |   |   |---SwipeSample.ets                      // 滑动手势
 |   |   |   |---tapGestureSample
 |   |   |   |   |---TapGestureSample.ets                 // Tap手势
+|   |   |   |---customGesture
+|   |   |   |   |---CustomGestureJudge.ets               // 自定义手势判定
 |   |   |---properties
+|   |   |   |---attributeModifierSample
+|   |   |   |   |---AttributeModifierSample.ets          // 动态属性设置
 |   |   |   |---foregroundSample
 |   |   |   |   |---ForegroundSample.ets                 // 前景
 |   |   |   |---backgroundSample
 |   |   |   |   |---BackgroundSample.ets                 // 背景
 |   |   |   |---borderSample
 |   |   |   |   |---BorderSample.ets                     // 边框
+|   |   |   |---outlineSample
+|   |   |   |   |---OutlineSample.ets                    // 外边框
 |   |   |   |---componentBlurredSample
 |   |   |   |   |---ComponentBlurredSample.ets           // 分布式迁移标识
 |   |   |   |---componentIDSample
@@ -403,7 +434,7 @@ entry/src/main/ets/
 |   |   |   |   |---TransformSample.ets                  // 变换矩阵
 |   |   |   |---translateSample
 |   |   |   |   |---TranslateSample.ets                  // 图像变换
-``` 
+```
 
 ### 具体实现
 
@@ -478,14 +509,28 @@ entry/src/main/ets/
         * 弹窗
             * 使用全局组件ShowToast，TitleBar，IntroductionTitle实现弹窗组件页面
             * 使用getStringArrayData，getStringData获取数据[ResourceDataHandle.ets](entry/src/main/ets/data/ResourceDataHandle.ets)
+            
+        * 半模态
+        
+            * 使用全局组件TitleBar，IntroductionTitle实现半模态组件页面
+            * 接口参考：[bindSheet](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-sheet-transition.md)
+        
+        * Popup
+        
+            * 使用全局组件TitleBar，IntroductionTitle实现Popup组件页面
+        
+            * 接口参考：[bindPopup ](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-popup.md)，[Popup高级组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ohos-arkui-advanced-popup.md)
+        
+              
 
 ### 相关权限
 
-[ohos.permission.GET_BUNDLE_INFO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionget_bundle_info)
+[ohos.permission.GET_BUNDLE_INFO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionget_bundle_info)
 
-[ohos.permission.GET_BUNDLE_INFO_PRIVILEGED](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionget_bundle_info_privileged)
+[ohos.permission.GET_BUNDLE_INFO_PRIVILEGED](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionget_bundle_info_privileged)
 
-[ohos.permission.REQUIRE_FORM](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionrequire_form)
+[ohos.permission.REQUIRE_FORM](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionrequire_form)
+[ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohos.permission.INTERNET)
 
 ### 依赖
 
@@ -495,15 +540,15 @@ entry/src/main/ets/
 
 1.本示例仅支持标准系统上运行，支持设备：RK3568。
 
-2.本示例仅支持API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0Release)
+2.本示例仅支持API11版本SDK，SDK版本号(4.1.6.1 Beta1),镜像版本号( OpenHarmony 4.1.6.1)。
 
 3.本示例涉及使用系统接口，FormComponent组件相关接口，需要手动替换Full
 SDK才能编译通过，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)。
 
-4.本示例需要使用DevEco Studio 版本号(4.0Release)及以上版本才可编译运行。
+4.本示例需要使用DevEco Studio 版本号(3.1.1 Release)及以上版本才可编译运行。
 
-5.本示例涉及ohos.permission.GET_BUNDLE_INFO_PRIVILEGED、ohos.permission.REQUIRE_FORM为system_basic级别（相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
-查看），需要配置高权限签名，可参考[应用apl等级说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/accesstoken-overview.md#应用apl等级说明)。
+5.本示例涉及ohos.permission.GET_BUNDLE_INFO_PRIVILEGED、ohos.permission.REQUIRE_FORM为system_basic级别（相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md)
+查看），需要配置高权限签名，可参考[应用apl等级说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/app-permission-mgmt-overview.md#apl等级)。
 
 6.本示例涉及系统接口，需要配置系统应用签名，可以参考[修改harmonyappprovision配置文件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/app-provision-structure.md#修改harmonyappprovision配置文件)
 ，把配置文件中的“app-feature”字段信息改为“hos_system_app”。

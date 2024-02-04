@@ -51,6 +51,7 @@ class FileSystem {
     }
   }
 
+/*
   // 总空间---默认GB
   async getTotalSize(): Promise<string> {
     let totalSize: number;
@@ -85,6 +86,7 @@ class FileSystem {
       return `${freeSize}${BYTE_SYMBOL}`;
     }
   }
+*/
 
   // 根据沙箱路径打开目录
   getSubdirectory(filePath: string): Array<SubDirectoryType> {

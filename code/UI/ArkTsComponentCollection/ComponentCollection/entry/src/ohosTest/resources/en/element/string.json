@@ -37,6 +37,10 @@
       "value": "Border"
     },
     {
+      "name": "prop_outline",
+      "value": "Outline"
+    },
+    {
       "name": "prop_font",
       "value": "Font"
     },
@@ -2474,6 +2478,46 @@
     {
       "name": "safe_area",
       "value": "SafeArea"
+    },
+    {
+      "name": "text_input_limit",
+      "value": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    {
+      "name": "text_clock_monovolume_numbers",
+      "value": "Monovolume Numbers"
+    },
+    {
+      "name": "global_popUp_menu",
+      "value": "Popup"
+    },
+    {
+      "name": "text_copy",
+      "value": "Copy"
+    },
+    {
+      "name": "copy_success",
+      "value": "Copy Success"
+    },
+    {
+      "name": "text_paste",
+      "value": "Paste"
+    },
+    {
+      "name": "paste_success",
+      "value": "Paste Success"
+    },
+    {
+      "name": "text_get",
+      "value": "Get"
+    },
+    {
+      "name": "global_bindSheet_menu",
+      "value": "BindSheet半模态"
+    },
+    {
+      "name": "attribute_modifier",
+      "value": "AttributeModifier"
     }
   ]
 }

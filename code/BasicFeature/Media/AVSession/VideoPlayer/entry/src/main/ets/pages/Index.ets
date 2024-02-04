@@ -55,6 +55,7 @@ struct Index {
   @State hasNetwork: boolean = false;
   @State isProgressSliding: boolean = false;
   @State audioType: 'url' | 'rawfile' | 'scan' | 'video' = 'url';
+  @State avCastPickerColor:Color = Color.White;
   private audioUtils: AudioUtils = new AudioUtils();
   private avPlayer: media.AVPlayer | undefined = undefined;
   private audioVolumeGroupManager: audio.AudioVolumeGroupManager | undefined = undefined;
@@ -769,7 +770,7 @@ struct Index {
                   .fillColor(Color.White)
                   .backgroundColor(Color.Black)
               } else {
-                AVCastPicker({ normalColor:Color.White, activeColor:Color.White })
+                AVCastPicker({ normalColor: this.avCastPickerColor, activeColor: this.avCastPickerColor })
                   .size({ height: '100%', width: '100%' })
                   .backgroundColor(Color.Black)
                   .align(Alignment.Center);

@@ -161,6 +161,10 @@
       "value": "粘贴失败"
     },
     {
+      "name": "label_copy2disfailed",
+      "value": "复制失败"
+    },
+    {
       "name": "label_nodata",
       "value": "无数据"
     },

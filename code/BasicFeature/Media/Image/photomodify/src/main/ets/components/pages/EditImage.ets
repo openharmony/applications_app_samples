@@ -134,7 +134,7 @@ export struct EditImage {
       this.pixelMap = await copyPixelMap(this.originBM); // 拷贝
     }
     // 移出一个缓存
-    const pm: image.PixelMap|undefined = this.pixelMapQueue.pop();
+    const pm: image.PixelMap | undefined = this.pixelMapQueue.pop();
     this.releasePm(pm);
   }
 
@@ -297,11 +297,11 @@ export struct EditImage {
   }
 
   releasePm(pm: PixelMap | undefined): void {
-    if(!pm){
+    if (!pm) {
       return
     }
 
-    pm.release().catch((err:BusinessError) => {
+    pm.release().catch((err: BusinessError) => {
       logger.error('pm release异常:' + JSON.stringify(err));
     });
   }
@@ -407,7 +407,7 @@ export struct EditImage {
               if (item.task !== undefined) {
                 this.currentCropTask = item.task;
               }
-              this.pixelMap = await copyPixelMap(this.originBM); // 拷贝
+              this.pixelMap = await copyPixelMap(this.originBM !); // 拷贝
               this.flushPage();
               this.cropIndex = index;
               if (this.currentCropTask === CropTasks.ORIGIN) { // 原图
@@ -463,7 +463,7 @@ export struct EditImage {
               if (item.text !== undefined) {
                 this.cancelOkText = item.text
               }
-              this.originBM = await copyPixelMap(this.pixelMap) // 拷贝
+              this.originBM = await copyPixelMap(this.pixelMap !) // 拷贝
               if (item.task === Tasks.ROTATE) {
                 this.pixelMap = await copyPixelMap(this.originBM);
               }
@@ -607,7 +607,7 @@ export struct EditImage {
     Row() {
       Scroll() {
         List({ scroller: this.scroller }) {
-          ForEach(materials, (item: MaterialData, index:number) => {
+          ForEach(materials, (item: MaterialData, index: number) => {
             ListItem() {
               Column() {
                 if (item instanceof FontColorData) {
@@ -794,7 +794,7 @@ export struct EditImage {
         if (this.currentTask === Tasks.MARK || this.currentTask === Tasks.ADJUST) {
           this.getFirstLvMenu();
         } else {
-          this.CancelOrOk(this.cancelOkText);
+          this.CancelOrOk(this.cancelOkText !);
         }
       }
       .width('100%')

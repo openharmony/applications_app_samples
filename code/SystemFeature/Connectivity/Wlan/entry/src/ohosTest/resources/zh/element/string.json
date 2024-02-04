@@ -19,6 +19,10 @@
     {
       "name": "encrypt",
       "value": "加密"
+    },
+    {
+      "name": "only_accept_during_use",
+      "value": "仅使用期间允许"
     }
   ]
 }

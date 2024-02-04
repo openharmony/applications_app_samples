@@ -9,33 +9,13 @@
 | ------------------------------ | --------------------------------- | --------------------------------------- |
 | ![main.jpeg](sceenshots%2Fmain.jpeg) | ![start.jpeg](sceenshots%2Fstart.jpeg) | ![stop.jpeg](sceenshots%2Fstop.jpeg) |
 
-### 使用说明
-
-1.需要一台Linux系统(推荐使用ubuntu系统)的机器作为服务器 确保此机器连接网络
-
-2.将openharmony设备(如rk3568开发板)与用作服务器的机器通过网线连通
-
-3.搭建服务器环境，配置服务端
-打开linux终端 使用下列指令配置iptables防火墙的网络地址转换（NAT）规则
-其中"eth1"的值为具备网络连通性的以太网端口标识，一般为eno1
-`iptables -t nat -A POSTROUTING -s 10.0.0.0/24 -o "eth1" -j MASQUERADE`
-
-4.在server文件夹打开终端
-`unzip server.zip`
-
-5.运行/server文件夹下的setserver.sh
-`chmod +x setserver.sh`
-`./setserver.sh`
-
-6.运行服务器成功后终端会开始打印log持续监听
-
-7.打开vpn应用。用户先后点击创建对象，隧道保护，启动vpn按钮，vpn启动后尝试用浏览器等hap包访问百度
-
-| 成功                             |
-| ------------------------------ |
-| ![success.jpeg](sceenshots%2Fsuccess.jpeg)|
-
-8.访问成功后返回主页面，关闭vpn按钮，断开vpn连接
+ 使用说明
+1. 进入应用前请先安装[VPNFoundation](./lib/VPNFoundation-1.0.0.hap)。
+2. 进入应用后，主界面有启用VPN和停用VPN的选项。分别对应开启和关闭VPN功能。
+3. 在主界面，可以点击启用VPN来创建VPN连接。
+4. 在VPN启动界面，可以配置VPN服务器IP地址/隧道IP地址/使用VPN的应用程序。
+5. 在VPN启动界面，点击创建对象可以创建VPN隧道，点击隧道保护可以开启隧道保护，点击启动VPN可以进行网络连接。
+6. 在主界面，可以点击停用VPN来断开和关闭VPN连接。
 
 9.以上演示系统vpn，如果使用三方vpn，点击启动vpnExt按钮，弹窗提示vpn使用许可，同意后三方vpn启动并自动连接，尝试用浏览器等hap包访问百度
 
@@ -62,9 +42,17 @@ entry/src/main/ets/
 
 ```
 
+### 具体实现
+
+创建VPN隧道，建立VPN网络，VPN隧道保护，销毁VPN网络，接口封装在StartVpn和StopVpn，源码参考：StartVpn.ets和StopVpn.ets。
+
+    * 创建VPN隧道：调用StartVpn.CreateTunnel()来创建VPN隧道；
+    * 建立VPN网络：调用StartVpn.SetupVpn()来建立VPN网络；
+    * 销毁VPN网络：调用StopVpn.Destroy()来销毁VPN网络;
+    * VPN隧道保护：调用StartVpn.Protect()来开启VPN隧道保护;
+
 ### 相关权限
-网络权限: ohos.permission.INTERNET
-VPN权限: ohos.permission.MANAGE_VPN
+允许系统应用获取网络权限: ohos.permission.INTERNET，允许系统应用获取VPN权限: ohos.permission.MANAGE_VPN。
 
 ### 依赖
 
@@ -82,9 +70,7 @@ VPN权限: ohos.permission.MANAGE_VPN
 
 5.该示例运行测试完成后，再次运行需要重新启动服务端和客户端。
 
-6.本示例需要使用 [@ohos.net.vpn](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-net-vpn.md) 系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEcoStudio中替换，具体操作可参考 [替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/) 。
-
-7.本示例使用了system_basic级别的权限（相关权限级别请查看[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md) ），需要手动配置高级别的权限签名(具体操作可查看[自动化签名方案](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/) ) 。
+6.本示例使用了system_basic级别的权限（相关权限级别请查看[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md) ），需要手动配置高级别的权限签名(具体操作可查看[自动化签名方案](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/) ) 。
 
 ### 下载
 

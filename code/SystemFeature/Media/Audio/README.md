@@ -44,6 +44,7 @@ entry/src/main/ets/
 ### 相关权限
 
 蓝牙使用权限：ohos.permission.USE_BLUETOOTH
+音效管理权限：ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
 
 ### 具体实现
 
@@ -63,7 +64,7 @@ entry/src/main/ets/
 
 4.本示例需要使用系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。
 
-5.本示例涉及系统接口，需要配置系统应用签名，可以参考[特殊权限配置方法](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/) ，把配置文件中的“app-feature”字段信息改为“ohos_system_app”，再将“apl”字段信息改为“system_core”。
+5.本示例涉及系统接口，需要配置系统应用签名，可以参考[特殊权限配置方法](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/) ，把配置文件中的“app-feature”字段信息改为“hos_system_app”，再将“apl”字段信息改为“system_core”。
 
 ### 下载
 

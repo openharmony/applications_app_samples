@@ -83,6 +83,7 @@ struct HomePage {
     Navigation(this.pageStack) {
       NavigationHomePage(new Url(this.url));
     }.navDestination(this.PageMap)
+    .hideTitleBar(true)
   }
 
   aboutToAppear() {

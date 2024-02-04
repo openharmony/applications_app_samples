@@ -35,16 +35,17 @@ struct AudioHaptic {
   private audioHapticManager: audioHaptic.AudioHapticManager = audioHaptic.getAudioHapticManager();
   private audioHapticPlayerInstance: audioHaptic.AudioHapticPlayer | undefined = undefined;
   private audioHapticPlayers: audioHaptic.AudioHapticPlayer[] = [];
+  @State lastState: Array<Boolean> = [false, false];
   @State stateText: Array<string> = ['ic_pause', 'ic_pause', 'ic_pause', 'ic_pause', 'ic_pause'];
   @State stateImg: Array<Resource> = [$r('app.media.ic_pause_norm'), $r('app.media.ic_pause_norm'),
     $r('app.media.ic_pause_norm')];
   @State playState: Array<String> = ['pause', 'pause', 'pause'];
   @State clickState: Array<Boolean> = [true, true, true, true, true];
-  @State isSync: boolean = false;
+  @State isSync: boolean = true;
   @State isMuteAudio: boolean = false;
   @State isMuteHaptics : boolean = false;
   @State iconOpacity: Array<number> = [1, 1, 1, 1, 1];
-  @State idList: Array<number> = [0, 0, 0];
+  @State idList: Array<number> = [];
   @State fillColor:Array<string> = ['#182431', '#182431'];
   @State vibrationImg: Resource = $r("app.media.ic_vibrations");
   private audioUri = 'file://data/notification.wav'; // 需更改为目标音频资源的Uri
@@ -78,16 +79,12 @@ struct AudioHaptic {
   }
 
   async createTypePlayer(): Promise<void> {
-    console.info(`createTypePlayer start`);
+    console.info(`createTypePlayer palyer len: ${this.audioHapticPlayers.length}`);
     if (this.audioHapticPlayers.length > 0) {
-      console.info(`audioHapticPlayers len: ${this.audioHapticPlayers.length}`);
-      for (let tmp = 0; tmp < this.audioHapticPlayers.length; tmp++) {
-        await this.audioHapticPlayers[tmp].off('endOfStream');
-        this.audioHapticPlayers[tmp].release();
-      }
-      this.audioHapticPlayers = [];
+      await this.releaseTypePlayer();
     }
     let options: audioHaptic.AudioHapticPlayerOptions = {muteAudio:this.isMuteAudio, muteHaptics:this.isMuteHaptics};
+    this.lastState = [this.isMuteAudio, this.isMuteHaptics];
     for (let index = 0; index < PLAYER_CONTAINER.length - 2; index++) {
       let id = await this.hapticRegisterSource(index);
       this.idList.push(id);
@@ -106,11 +103,29 @@ struct AudioHaptic {
     console.info(`createTypePlayer end`);
   }
 
+  async releaseTypePlayer(): Promise<void> {
+    console.info(`releaseTypePlayer idList: ${this.idList.toString()}`);
+    for (let tmp = 0; tmp < this.audioHapticPlayers.length; tmp++) {
+      try {
+        await this.audioHapticPlayers[tmp].off('endOfStream');
+        await this.audioHapticPlayers[tmp].release();
+        await this.audioHapticManager.unregisterSource(this.idList[tmp]);
+      } catch (err) {
+        let error = err as BusinessError;
+        console.error(`releaseTypePlayer ${tmp} Error: ${JSON.stringify(error)}`);
+        return;
+      }
+    }
+    this.idList = [];
+    this.audioHapticPlayers = [];
+    console.info(`releaseTypePlayer end`);
+  }
+
   play(index: number): void {
     this.audioHapticPlayers[index].start().then(() => {
       console.info(`Promise returned to indicate that start playing successfully.`);
-      console.log(`current stateText: ${this.stateText.toString()}`)
-      console.log(`current playState: ${this.playState.toString()}`)
+      console.log(`play current stateText: ${this.stateText.toString()}`)
+      console.log(`play current playState: ${this.playState.toString()}`)
     }).catch((err: BusinessError) => {
       console.error(`Failed to start playing. ${err}`);
     });
@@ -119,8 +134,8 @@ struct AudioHaptic {
   stop(index: number): void {
     this.audioHapticPlayers[index].stop().then(() => {
       console.info(`Promise returned to indicate that stop playing successfully.`);
-      console.log(`current stateText: ${this.stateText.toString()}`)
-      console.log(`current playState: ${this.playState.toString()}`)
+      console.log(`stop current stateText: ${this.stateText.toString()}`)
+      console.log(`stop current playState: ${this.playState.toString()}`)
     }).catch((err: BusinessError) => {
       console.error(`Failed to stop playing. ${err}`);
     });
@@ -128,15 +143,10 @@ struct AudioHaptic {
 
   async over(): Promise<void> {
     console.info(`over start`);
-    console.log(`current stateText: ${this.stateText.toString()}`)
-    console.log(`current playState: ${this.playState.toString()}`)
+    console.log(`over current stateText: ${this.stateText.toString()}`)
+    console.log(`over current playState: ${this.playState.toString()}`)
     this.appContext = undefined;
-    for (let index = 0; index < this.audioHapticPlayers.length; index++) {
-      await this.audioHapticManager.unregisterSource(this.idList[index]);
-      await this.audioHapticPlayers[index].off('endOfStream');
-      await this.audioHapticPlayers[index].release();
-    }
-    this.audioHapticPlayers = [];
+    await this.releaseTypePlayer();
     console.info(`over end`);
   }
 
@@ -171,6 +181,7 @@ struct AudioHaptic {
       let error = err as BusinessError;
       console.error(`registerSource Error: ${JSON.stringify(error)}`);
     }
+    console.info(`hapticRegisterSource return id: ${id}`);
     return id;
   }
 
@@ -215,15 +226,17 @@ struct AudioHaptic {
   }
 
   async syncCreateTypePlayer(): Promise<void> {
-    if (!this.isMuteAudio && !this.isMuteHaptics) {
-      console.log(`The status of audio and topic has not changed`)
-    } else {
-      console.log(`this.isMuteAudio: ${this.isMuteAudio} this.isMuteHaptics: ${this.isMuteHaptics}
+    console.log(`this.isMuteAudio: ${this.isMuteAudio} this.isMuteHaptics: ${this.isMuteHaptics}
           this.isSync: ${this.isSync}`)
-      if (!this.isSync) {
-        await this.createTypePlayer();
-        this.isSync = true;
-      }
+    if (this.lastState[0] == this.isMuteAudio && this.lastState[1] == this.isMuteHaptics) {
+      console.log(`The audio and haptic status is the same as last time`);
+      return;
+    }
+    if (!this.isSync) {
+      await this.createTypePlayer();
+      this.isSync = true;
+    } else {
+      console.log(`The status of audio and topic has not changed`)
     }
   }
 
@@ -255,24 +268,10 @@ struct AudioHaptic {
         this.iconOpacity[item] = 1;
         this.clickState[item] = true;
         this.stateText[item] = 'ic_pause';
-        this.updateMuteColor();
       }
     })
     this.playState[index] = this.playState[index]  == 'play' ? 'pause' : 'play'
     this.clickState[index] = true;
-  }
-
-  updateMuteColor(): void {
-    if (this.isMuteAudio == true) {
-      this.fillColor[0] = '#007DFF';
-    } else {
-      this.fillColor[0] = '#182431';
-    }
-    if (this.isMuteHaptics == true) {
-      this.fillColor[1] = '#007DFF';
-    } else {
-      this.fillColor[1] = '#182431';
-    }
   }
 
   build() {
@@ -436,7 +435,7 @@ struct AudioHaptic {
             this.isMuteAudio = !(this.isMuteAudio);
             console.error(`isMuteAudio ${this.isMuteAudio}`)
             this.isSync = false;
-            this.updateMuteColor();
+            this.fillColor[0] = this.fillColor[0] == '#007DFF' ? '#182431' : '#007DFF';
             if (this.stateText[AUDIO_MUTE_INDEX] == 'ic_play') {
               this.stateText[AUDIO_MUTE_INDEX] = 'ic_pause';
             } else {
@@ -475,13 +474,12 @@ struct AudioHaptic {
             this.isMuteHaptics = !(this.isMuteHaptics);
             console.error(`isMuteHaptics ${this.isMuteHaptics}`)
             this.isSync = false;
-            this.updateMuteColor();
+            this.fillColor[1] = this.fillColor[1] == '#007DFF' ? '#182431' : '#007DFF';
+            this.vibrationImg = this.fillColor[1] == '#182431' ? $r("app.media.ic_vibrations") : $r("app.media.ic_vibrations_blue");
             if (this.stateText[HAPTICS_MUTE_INDEX] == 'ic_play') {
               this.stateText[HAPTICS_MUTE_INDEX] = 'ic_pause';
-              this.vibrationImg = $r("app.media.ic_vibrations");
             } else {
               this.stateText[HAPTICS_MUTE_INDEX] = 'ic_play'
-              this.vibrationImg = $r("app.media.ic_vibrations_blue");
             }
             console.log(`end current stateText: ${this.stateText.toString()}`)
           } else {

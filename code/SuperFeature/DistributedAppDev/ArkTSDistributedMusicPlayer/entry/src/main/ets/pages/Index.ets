@@ -290,6 +290,14 @@ interface Params {
     return false;
   };
 
+  onPageHide() {
+    if (this.isDialogShowing === true) {
+      this.dismissDialog();
+      return true;
+    };
+    return false;
+  };
+
   dismissDialog() {
     if (this.dialogController !== null) {
       this.dialogController.close();
@@ -352,17 +360,19 @@ interface Params {
 
   selectDevice() {
     Logger.info(TAG, 'start ability ......');
-    if (this.remoteDeviceModel === null || this.remoteDeviceModel.discoverLists.length <= 0) {
+    if (this.selectedIndex !== undefined && (this.remoteDeviceModel === null || this.remoteDeviceModel.discoverLists.length <= 0)) {
       Logger.info(TAG, `start ability device:${JSON.stringify(this.deviceLists)}`);
       this.startAbilityContinuation(this.deviceLists[this.selectedIndex].networkId as string);
       this.clearSelectState();
       return;
     };
     Logger.info(TAG, 'start ability, needAuth');
-    this.remoteDeviceModel.authDevice(this.deviceLists[this.selectedIndex], (device: deviceManager.DeviceBasicInfo) => {
-      Logger.info(TAG, 'auth and online finished');
-      this.startAbilityContinuation(device.networkId);
-    });
+    if (this.selectedIndex !== undefined){
+      this.remoteDeviceModel.authDevice(this.deviceLists[this.selectedIndex], (device: deviceManager.DeviceBasicInfo) => {
+        Logger.info(TAG, 'auth and online finished');
+        this.startAbilityContinuation(device.networkId);
+      });
+    }
     Logger.info(TAG, 'start ability2 ......');
     this.clearSelectState();
   };
@@ -572,6 +582,18 @@ interface Params {
     AppStorage.setOrCreate('viewThis', this);
 
     this.connectLocalExtension();
+  };
+
+  aboutToDisappear() {
+    Logger.info(TAG, `aboutToDisappear begin`)
+    if (PlayerModel === undefined) {
+      return
+    }
+    PlayerModel.release()
+    this.remoteDeviceModel.unregisterDeviceListCallback()
+    this.dialogController = null
+    KvStoreModel.deleteKvStore()
+    Logger.info(TAG, `aboutToDisappear end`)
   };
 
   build() {

@@ -143,28 +143,30 @@ export class RemoteDeviceModel {
 
   authDevice(device, callback) {
     Logger.info(TAG, `authDevice ${device}`);
-    for (let i = 0; i < this.discoverLists.length; i++) {
-      if (this.discoverLists[i].deviceId === device.deviceId) {
-        Logger.info(TAG, 'device founded, ignored');
-        let bindParam = {
-          bindType: 1,
-          targetPkgName: 'ohos.samples.distributedmusicplayer',
-          appName: 'Music',
-        };
-        Logger.info(TAG, `authenticateDevice ${JSON.stringify(this.discoverLists[i])}`);
-        try {
-          this.deviceManager.bindTarget(device.deviceId, bindParam, (err, data) => {
-            if (err) {
-              Logger.error(TAG, `authenticateDevice error: ${JSON.stringify(err)}`);
-              this.authCallback = () => {
+    if (device !== undefined) {
+      for (let i = 0; i < this.discoverLists.length; i++) {
+        if (this.discoverLists[i].deviceId === device.deviceId) {
+          Logger.info(TAG, 'device founded, ignored');
+          let bindParam = {
+            bindType: 1,
+            targetPkgName: 'ohos.samples.distributedmusicplayer',
+            appName: 'Music',
+          };
+          Logger.info(TAG, `authenticateDevice ${JSON.stringify(this.discoverLists[i])}`);
+          try {
+            this.deviceManager.bindTarget(device.deviceId, bindParam, (err, data) => {
+              if (err) {
+                Logger.error(TAG, `authenticateDevice error: ${JSON.stringify(err)}`);
+                this.authCallback = () => {
+                };
+                return;
               };
-              return;
-            };
-            Logger.info(TAG, `authenticateDevice succeed, data= ${JSON.stringify(data)}`);
-            this.authCallback = callback;
-          });
-        } catch (error) {
-          Logger.error(TAG, `authenticateDevice throw error, error=${JSON.stringify(error)} message=${error.message}`);
+              Logger.info(TAG, `authenticateDevice succeed, data= ${JSON.stringify(data)}`);
+              this.authCallback = callback;
+            });
+          } catch (error) {
+            Logger.error(TAG, `authenticateDevice throw error, error=${JSON.stringify(error)} message=${error.message}`);
+          }
         }
       }
     }

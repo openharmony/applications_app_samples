@@ -19,16 +19,16 @@ import hilog from '@ohos.hilog';
 import { Hypium } from '@ohos/hypium';
 import testsuite from '../test/List.test';
 import window from '@ohos.window';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 export default class TestAbility extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, '[Sample_MediaProvider]', '%{public}s', 'TestAbility onCreate');
     hilog.info(0x0000, '[Sample_MediaProvider]', '%{public}s', 'want param:' + JSON.stringify(want) ?? '');
     hilog.info(0x0000, '[Sample_MediaProvider]', '%{public}s', 'launchParam:' + JSON.stringify(launchParam) ?? '');
-    var abilityDelegator: any
-    abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-    var abilityDelegatorArguments: any
-    abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
+    let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+    let abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
     hilog.info(0x0000, '[Sample_MediaProvider]', '%{public}s', 'start run testcase!!!');
     Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
   }

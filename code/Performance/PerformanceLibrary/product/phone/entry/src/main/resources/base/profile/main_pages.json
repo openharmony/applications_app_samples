@@ -36,10 +36,21 @@
     "pages/waterFlow/WaterFlowPage",
     "pages/nativeThreadsCallJS/NativeThreadsCallJS",
     "pages/memoryShared/MemorySharedHomePage",
+    "pages/ThreadDataTransfer/ThreadDataTransferPage",
     "pages/memoryShared/AtomicsUsagePage",
     "pages/memoryShared/LockUsagePage",
     "pages/DFXStateManagement/DFXStateManagementPage",
     "pages/DFXStateManagement/DFXStateBeforeOptimizationPage",
-    "pages/DFXStateManagement/DFXStateAfterOptimizationPage"
+    "pages/DFXStateManagement/DFXStateAfterOptimizationPage",
+    "pages/ThreadCommunication/ThreadCommunicationHomePage",
+    "pages/ThreadCommunication/IndependentTaskPage",
+    "pages/ThreadCommunication/MultiTaskPage",
+    "pages/ThreadCommunication/TaskSendDataUsagePage",
+    "pages/ThreadCommunication/WorkerUsagePage",
+    "pages/ThreadCommunication/WorkerCallGlobalUsagePage",
+    "pages/webPerformance/WebHomePage",
+    "pages/webPerformance/WebBrowserPage",
+    "pages/webPerformance/WebInitializedPage",
+    "pages/webPerformance/WebUninitializedPage"
   ]
 }
