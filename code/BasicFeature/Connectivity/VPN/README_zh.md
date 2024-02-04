@@ -23,7 +23,7 @@
 | ------------------------------ |
 | ![vpnextension.jpeg](sceenshots%2Fvpnextension.jpeg)|
 
-10.访问成功后返回主页面，点击关闭vpnExt按钮，断开三方vpn连接
+8 .访问成功后返回主页面，点击关闭vpnExt按钮，断开三方vpn连接
 
 ### 工程目录
 
@@ -64,7 +64,7 @@ entry/src/main/ets/
 
 2.本示例为Stage模型，支持API11版本SDK，SDK版本号(API Version 4.1 Beta1),镜像版本号(4.1 Beta1)
 
-3.本示例需要使用DevEco Studio 版本号(4.1 Beta1)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 版本号(4.0 Release)及以上版本才可编译运行。
 
 4.本示例在启动前需搭建服务端环境，成功启动相应服务端后再运行客户端，服务端脚本（server_python）需要在Python 3.8.5版本下运行（需与客户端处于同一局域网）。
 
