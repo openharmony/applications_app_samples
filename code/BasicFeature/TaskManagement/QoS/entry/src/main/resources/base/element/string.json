@@ -1,0 +1,76 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "WorkScheduler"
+    },
+    {
+      "name": "WorkSchedulerAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "WorkSchedulerAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "form_FormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "form_FormAbility_label",
+      "value": "form_label"
+    },
+    {
+      "name": "sampleName",
+      "value": "workScheduler"
+    },
+    {
+      "name": "version",
+      "value": "version"
+    },
+    {
+      "name": "title1",
+      "value": "versionUpdate"
+    },
+    {
+      "name": "isLatest",
+      "value": "It is the latest version"
+    },
+    {
+      "name": "title2",
+      "value": "website"
+    },
+    {
+      "name": "title3",
+      "value": "contact us"
+    },
+    {
+      "name": "dialogText",
+      "value": "Features in development, please look forward to！"
+    },
+    {
+      "name": "dialogTitle",
+      "value": "A new version has been downloaded. Do you want to update it?"
+    },
+    {
+      "name": "btn1",
+      "value": "confirm"
+    },
+    {
+      "name": "btn2",
+      "value": "cancel"
+    },
+    {
+      "name": "is_develop",
+      "value": "Features are still under development"
+    }
+  ]
+}

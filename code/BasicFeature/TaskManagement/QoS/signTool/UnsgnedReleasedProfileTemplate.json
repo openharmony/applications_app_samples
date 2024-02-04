@@ -1,0 +1,30 @@
+{
+	"version-name":"2.0.0",
+	"version-code":2,
+	"app-distribution-type":"os_integration",
+	"uuid":"5027b99e-5f9e-465d-9508-a9e0134ffe18",
+	"validity":{
+		"not-before":1594865258,
+		"not-after":1689473258
+	},
+	"app-privilege-capabilities":[
+		"AllowAppUsePrivilegeExtension"
+	],
+	"type":"release",
+	"bundle-info":{
+		"developer-id":"OpenHarmony",
+		"distribution-certificate":"-----BEGIN CERTIFICATE-----\nMIICFTCCAZmgAwIBAgIEVfoowTAMBggqhkjOPQQDAwUAMGMxCzAJBgNVBAYTAkNO\nMRQwEgYDVQQKEwtPcGVuSGFybW9ueTEZMBcGA1UECxMQT3Blbkhhcm1vbnkgVGVh\nbTEjMCEGA1UEAxMaT3Blbkhhcm1vbnkgQXBwbGljYXRpb24gQ0EwHhcNMjMwNDI1\nMDc1NTE3WhcNMzMwNDIyMDc1NTE3WjBKMRUwEwYDVQQDDAxpZGVfZGVtb19hcHAx\nDTALBgNVBAsTBFVuaXQxFTATBgNVBAoTDE9yZ2FuaXphdGlvbjELMAkGA1UEBhMC\nQ04wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAARWRKE8cPqvBNQuSxJg753sZnEV\nrJgL4bHxCJXUujyYshAm/iDtjZLyYOI7xUElvc0x+yhn1Wt9zNswGvaQHIOZo1Iw\nUDAdBgNVHQ4EFgQUIBZ+TPuPkCDnvz4TsCVELZcPoeUwDgYDVR0PAQH/BAQDAgeA\nMB8GA1UdIwQYMBaAFNuGtyIW1QuhS7fdJXu58QV9oi1HMAwGCCqGSM49BAMDBQAD\naAAwZQIwXrF9+uv+eFqUY8jCumv8aUFHZE1Iifiz1FubIXOTeON8yklNyjsL0J4o\nnL21JyTbAjEAsT3piy1BGEqSTUduFG04W4S5loCm76vnqBATuunRcjTXWQNxdagw\n2L+LPLG0c4+F\n-----END CERTIFICATE-----\n",
+		"bundle-name":"ohos.samples.workschedulerextensionability",
+		"apl":"system_core",
+		"app-feature":"hos_system_app"
+	},
+	"acls":{
+		"allowed-acls":[
+			""
+		]
+	},
+	"permissions":{
+		"restricted-permissions":[]
+	},
+	"issuer":"pki_internal"
+}

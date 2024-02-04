@@ -1,0 +1,76 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "入口描述"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "能力描述"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "延时任务"
+    },
+    {
+      "name": "WorkSchedulerAbility_desc",
+      "value": "描述"
+    },
+    {
+      "name": "WorkSchedulerAbility_label",
+      "value": "标签"
+    },
+    {
+      "name": "form_FormAbility_desc",
+      "value": "表单描述"
+    },
+    {
+      "name": "form_FormAbility_label",
+      "value": "表单标签"
+    },
+    {
+      "name": "sampleName",
+      "value": "延迟任务调度"
+    },
+    {
+      "name": "version",
+      "value": "版本"
+    },
+    {
+      "name": "title1",
+      "value": "版本更新"
+    },
+    {
+      "name": "isLatest",
+      "value": "已经是最新版本"
+    },
+    {
+      "name": "title2",
+      "value": "官网"
+    },
+    {
+      "name": "title3",
+      "value": "联系我们"
+    },
+    {
+      "name": "dialogText",
+      "value": "功能开发中，敬请期待！"
+    },
+    {
+      "name": "dialogTitle",
+      "value": "已下载新版本，是否更新？"
+    },
+    {
+      "name": "btn1",
+      "value": "确定"
+    },
+    {
+      "name": "btn2",
+      "value": "取消"
+    },
+    {
+      "name": "is_develop",
+      "value": "功能尚在开发中"
+    }
+  ]
+}
