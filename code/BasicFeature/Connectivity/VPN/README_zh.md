@@ -1,7 +1,8 @@
 # VPN连接
 
 ### 介绍
-本示例展示了VPN连接相关功能，使用 [@ohos.net.vpn](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-net-vpn.md)接口，实现了包括创建VPN隧道，建立VPN网络，VPN隧道保护，销毁VPN网络，根据配置的VPN网络参数，实现了VPN服务器连接和发送数据的功能。
+本示例使用@ohos.net.vpn接口创建VPN 隧道，建立vpn网络，vpn隧道保护，销毁VPN网络以及使用@ohos.net.vpnExtension接口创建三方vpn等功能。
+实现了VPN的进行服务器连接，发送数据的功能
 
 ### 效果预览
 | 主页                             | vpn启动                              | vpn关闭                                     | 
@@ -16,6 +17,14 @@
 5. 在VPN启动界面，点击创建对象可以创建VPN隧道，点击隧道保护可以开启隧道保护，点击启动VPN可以进行网络连接。
 6. 在主界面，可以点击停用VPN来断开和关闭VPN连接。
 
+7. 以上演示系统vpn，如果使用三方vpn，点击启动vpnExt按钮，弹窗提示vpn使用许可，同意后三方vpn启动并自动连接，尝试用浏览器等hap包访问百度
+
+| 三方vpn弹窗                             |
+| ------------------------------ |
+| ![vpnextension.jpeg](sceenshots%2Fvpnextension.jpeg)|
+
+8 .访问成功后返回主页面，点击关闭vpnExt按钮，断开三方vpn连接
+
 ### 工程目录
 
 ```
@@ -28,6 +37,8 @@ entry/src/main/ets/
 |   |---StopVpn.ets                // 关闭vpn
 |---model
 |   |---Logger.ets                 // 日志
+|---serviceextability
+|   |---MyVpnExtAbility.ts         // 三方vpn能力
 
 ```
 
@@ -51,7 +62,7 @@ entry/src/main/ets/
 
 1.本示例仅支持标准系统上运行，支持设备：RK3568。
 
-2.本示例为Stage模型，支持API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0 Release)。
+2.本示例为Stage模型，支持API11版本SDK，SDK版本号(API Version 4.1 Beta1),镜像版本号(4.1 Beta1)
 
 3.本示例需要使用DevEco Studio 版本号(4.0 Release)及以上版本才可编译运行。
 

@@ -14,36 +14,13 @@
 */
 
 import hilog from '@ohos.hilog';
+import router from '@ohos.router';
 import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-
-
-let g_tunFd = -1;
-let g_tunnelFd = -1;
 
 @Entry
 @Component
 struct Index {
   @State message: string = 'Toy VPN';
-
-  // 拉起vpn_foundation指定页面
-  startVPNFoundation(pagePath: string) {
-    let context: common.UIAbilityContext | undefined = AppStorage.get('context');
-    let want: Want = {
-      bundleName: "com.samples.vpn_foundation",
-      abilityName: "EntryAbility",
-      parameters: {
-        page: pagePath
-      }
-    };
-    context && context.startAbility(want, (err: BusinessError) => {
-        if (err.code) {
-          hilog.error(0x0000, '[Sample_VPN]', '%{public}s', `Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
-        }
-      }
-    );
-  }
 
   build() {
     Row() {
@@ -56,11 +33,21 @@ struct Index {
           })
         Button('Start VPN').onClick(() => {
           hilog.info(0x0000, 'developTag', '%{public}s', 'Succeeded in clicking the button.');
-          this.startVPNFoundation('pages/StartVpn');
+          router.pushUrl({ url: 'pages/StartVpn' }).then(() => {
+            hilog.info(0x0000, 'developTag', '%{public}s', 'Succeeded in jumping to the second page.');
+          }).catch((err: BusinessError) => {
+            hilog.error(0x0000, 'developTag', 'Failed to jump to the second page: %{public}s',
+                        JSON.stringify(err) ?? '');
+          })
         }).width('70%').fontSize(45).margin(16)
         Button('Stop VPN').onClick(() => {
           hilog.info(0x0000, 'developTag', '%{public}s', 'Succeeded in clicking the button.');
-          this.startVPNFoundation('pages/StopVpn');
+          router.pushUrl({ url: 'pages/StopVpn' }).then(() => {
+            hilog.info(0x0000, 'developTag', '%{public}s', 'Succeeded in jumping to the second page.');
+          }).catch((err: BusinessError) => {
+            hilog.error(0x0000, 'developTag', 'Failed to jump to the second page: %{public}s',
+                        JSON.stringify(err) ?? '');
+          })
         }).width('70%').fontSize(45)
       }.width('100%')
     }.height('100%')

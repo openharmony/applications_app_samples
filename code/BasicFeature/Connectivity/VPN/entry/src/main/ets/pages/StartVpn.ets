@@ -14,10 +14,16 @@
 */
 
 import hilog from '@ohos.hilog';
-import vpn from '@ohos.net.vpn';
 import vpn_client from 'libvpn_client.so';
-import UIAbility from '@ohos.app.ability.UIAbility';
 import common from '@ohos.app.ability.common';
+import vpnext from '@ohos.net.vpnExtension';
+import Want from '@ohos.app.ability.Want';
+
+let want: Want = {
+  deviceId: "",
+  bundleName: "com.example.myvpndemo",
+  abilityName: "MyVpnExtAbility",
+};
 
 let g_tunFd = -1;
 let g_tunnelFd = -1;
@@ -28,12 +34,11 @@ struct StartVpn {
   @State message: string = 'Toy VPN';
   @State vpnServerIp: string = '192.168.31.13';
   @State tunIp: string = '10.0.0.5';
-
   @State prefix: string = '24';
 
   @State blockedAppName: string = 'com.example.baidumyapplication';
-  private context = getContext(this) as common.UIAbilityContext;
-  private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
+  private context = getContext(this) as common.VpnExtensionContext;
+  private VpnConnection: vpnext.VpnConnection = vpnext.createVpnConnection(this.context);
 
   CreateTunnel() {
     g_tunnelFd = vpn_client.tcpConnect(this.vpnServerIp, 8888);
@@ -94,7 +99,7 @@ struct StartVpn {
     let config = new Config(this.tunIp, this.blockedAppName);
 
     try {
-      this.VpnConnection.setUp(config, (error, data) => {
+      this.VpnConnection.create(config).then((data) => {
         g_tunFd = data;
         hilog.error(0x0000, 'developTag', 'tunfd: %{public}s', JSON.stringify(data) ?? '');
         vpn_client.startVpn(g_tunFd, g_tunnelFd);
@@ -141,14 +146,17 @@ struct StartVpn {
           }).width('60%').margin(2)
         }.width('90%')
 
-        Button('创建对象').onClick(() => {
+        Button($r('app.string.btn_create_tunnel')).onClick(() => {
           this.CreateTunnel();
         }).fontSize(50)
-        Button('隧道保护').onClick(() => {
+        Button($r('app.string.btn_protect')).onClick(() => {
           this.Protect();
         }).fontSize(50)
-        Button('启动vpn').onClick(() => {
+        Button($r('app.string.btn_start_vpn')).onClick(() => {
           this.SetupVpn();
+        }).fontSize(50)
+        Button($r('app.string.btn_start_vpnExt')).onClick(() => {
+          vpnext.startVpnExtensionAbility(want);
         }).fontSize(50)
       }
       .width('100%')
@@ -156,4 +164,3 @@ struct StartVpn {
     .height('100%')
   }
 }
-
