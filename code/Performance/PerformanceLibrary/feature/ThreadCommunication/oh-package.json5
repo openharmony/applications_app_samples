@@ -19,7 +19,7 @@
   "author": "",
   "name": "threadcommunication",
   "description": "Please describe the basic information.",
-  "main": "ThreadCommunicationHomePage.ets",
+  "main": "Index.ets",
   "version": "1.0.0",
   "dependencies": {}
 }
