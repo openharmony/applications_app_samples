@@ -61,7 +61,7 @@ export class RouterModule {
       path += "/" + params[i];
     }
     // 动态引入要跳转的页面
-    let ns: ESObject = await import(harName);
+    let ns:ESObject = await import(harName);
     ns.harInit(path);
     RouterModule.getRouter(routerName).pushPathByName(builderName, null);
   }
