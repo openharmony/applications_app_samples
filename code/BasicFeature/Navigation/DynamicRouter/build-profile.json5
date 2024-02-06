@@ -22,20 +22,6 @@
         "compileSdkVersion": 11,
         "compatibleSdkVersion": 11
       }
-    ],
-    "signingConfigs": [
-      {
-        "name": "default",
-        "material": {
-          "certpath": "C:/Users/l30052110/.ohos/config/openharmony/default_DynamicRouter_ETJJ3aB4clHk_8G8RqGjFPrNUlgA1nPq9ioLelr0zew=.cer",
-          "storePassword": "0000001B83C597DA402E03D98A108B98094EED0BC833C60194CC46237C4657B986E3F9FC490E96D0C70DA1",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001B1BADD1FCC72BF7BDFB65A470F259C29CC2C66E937E731B9EB4963D07FD0A20ADCABF45AC9D8A92",
-          "profile": "C:/Users/l30052110/.ohos/config/openharmony/default_DynamicRouter_ETJJ3aB4clHk_8G8RqGjFPrNUlgA1nPq9ioLelr0zew=.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:/Users/l30052110/.ohos/config/openharmony/default_DynamicRouter_ETJJ3aB4clHk_8G8RqGjFPrNUlgA1nPq9ioLelr0zew=.p12"
-        }
-      }
     ]
   },
   "modules": [

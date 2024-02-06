@@ -21,7 +21,7 @@ struct HapA {
   @State hapARouter: NavPathStack = new NavPathStack();
 
   aboutToAppear() {
-    if(!this.hapARouter){
+    if (!this.hapARouter) {
       this.hapARouter = new NavPathStack();
     };
     let routerName = "HapA_Router";
@@ -29,7 +29,7 @@ struct HapA {
   };
 
   @Builder
-  routerMap(builderName: string, param:object) {
+  routerMap(builderName: string, param: object) {
     RouterModule.getBuilder(builderName).builder(param);
   };
 

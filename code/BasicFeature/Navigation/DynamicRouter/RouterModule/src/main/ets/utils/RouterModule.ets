@@ -24,7 +24,7 @@ export class RouterModule {
   // 通过名称获取builder
   public static getBuilder(builderName: string): WrappedBuilder<[object]>{
     let builder = RouterModule.builderMap.get(builderName);
-    if(!builder){
+    if (!builder) {
       let msg = "not found builder";
       console.info(msg + builderName);
     }
@@ -39,7 +39,7 @@ export class RouterModule {
   // 通过名称获取router
   public static getRouter(routerName: string): NavPathStack{
     let router = RouterModule.routerMap.get(routerName);
-    if(!router){
+    if (!router) {
       let msg = "not found router";
       console.info(msg + routerName);
     }
@@ -47,7 +47,7 @@ export class RouterModule {
   }
 
   // 通过获取页面栈跳转到指定页面
-  public static async push(url:string): Promise<void>{
+  public static async push(url: string): Promise<void>{
     // 分解url
     // 获取包名、路由名、页面名
     let params = url.split("/");
@@ -57,23 +57,23 @@ export class RouterModule {
     const builderName = context[1];
     // 获取路径
     let path = ".";
-    for(let i = 1; i < params.length - 1; i++){
+    for (let i = 1; i < params.length - 1; i++) {
       path += "/" + params[i];
     }
     // 动态引入要跳转的页面
-    let ns:ESObject = await import(harName);
+    let ns: ESObject = await import(harName);
     ns.harInit(path);
     RouterModule.getRouter(routerName).pushPathByName(builderName, null);
   }
 
   // 通过获取页面栈并pop
-  public static pop(routerName:string): void {
+  public static pop(routerName: string): void {
     // 查找到对应的路由栈进行pop
     RouterModule.getRouter(routerName).pop();
   }
 
   // 通过获取页面栈并将其清空
-  public static clear(routerName:string): void {
+  public static clear(routerName: string): void {
     // 查找到对应的路由栈进行pop
     RouterModule.getRouter(routerName).clear();
   }
