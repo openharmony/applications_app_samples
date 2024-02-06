@@ -24,10 +24,6 @@ export class RouterModule {
   // 通过名称获取builder
   public static getBuilder(builderName: string): WrappedBuilder<[object]>{
     let builder = RouterModule.builderMap.get(builderName);
-    if (!builder) {
-      let msg = "not found builder";
-      console.info(msg + builderName);
-    }
     return builder as WrappedBuilder<[object]>;
   }
 
@@ -39,10 +35,6 @@ export class RouterModule {
   // 通过名称获取router
   public static getRouter(routerName: string): NavPathStack{
     let router = RouterModule.routerMap.get(routerName);
-    if (!router) {
-      let msg = "not found router";
-      console.info(msg + routerName);
-    }
     return router as NavPathStack;
   }
 

@@ -13,7 +13,7 @@
 * limitations under the License.
 */
 
-import {RouterModule} from "RouterModule/src/main/ets/utils/RouterModule";
+import { RouterModule } from "RouterModule/src/main/ets/utils/RouterModule";
 
 @Entry
 @Component

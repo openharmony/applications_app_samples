@@ -12,7 +12,7 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-import {RouterModule} from "RouterModule/src/main/ets/utils/RouterModule";
+import { RouterModule } from "RouterModule/src/main/ets/utils/RouterModule";
 
 @Builder
 export function harBuilder(value: object) {

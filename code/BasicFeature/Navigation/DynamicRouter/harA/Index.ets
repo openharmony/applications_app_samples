@@ -12,9 +12,9 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-export function harInit(path:string): void{
+export function harInit(path: string): void{
   // 动态引入要跳转的页面
-  switch (path){
+  switch (path) {
     case "./src/main/ets/components/mainpage/page1":
       import("./src/main/ets/components/mainpage/page1");
       break;
