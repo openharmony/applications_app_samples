@@ -13,18 +13,15 @@
 * limitations under the License.
 */
 
-import {RouterModule} from "RouterModule/src/main/ets/components/mainpage/RouterModule";
+import { RouterModule } from "RouterModule/src/main/ets/utils/RouterModule";
 
 @Entry
 @Component
 struct HapA {
   @State hapARouter: NavPathStack = new NavPathStack();
 
-  @State buttonNameA: string = "ToHarA";
-  @State buttonNameB: string = "ToHarB";
-
   aboutToAppear() {
-    if(!this.hapARouter){
+    if (!this.hapARouter) {
       this.hapARouter = new NavPathStack();
     };
     let routerName = "HapA_Router";
@@ -32,26 +29,58 @@ struct HapA {
   };
 
   @Builder
-  routerMap(routerName: string, param:object) {
-    RouterModule.getBuilder(routerName).builder(param);
+  routerMap(builderName: string, param: object) {
+    RouterModule.getBuilder(builderName).builder(param);
   };
 
   build() {
     Navigation(this.hapARouter) {
-      Button(this.buttonNameA, { stateEffect: true, type: ButtonType.Capsule })
+      Button($r("app.string.to_hara_page1"), { stateEffect: true, type: ButtonType.Capsule })
         .width('80%')
         .height(40)
         .margin(20)
         .onClick(() => {
-          let url = "harA/src/main/ets/components/mainpage/HarA-HapA_Router-HarA_Builder";
+          let url = "HarA/src/main/ets/components/mainpage/page1/HapA_Router-HarA_Page1_Builder";
           RouterModule.push(url);
         })
-      Button(this.buttonNameB, { stateEffect: true, type: ButtonType.Capsule })
+      Button($r("app.string.to_hara_page2"), { stateEffect: true, type: ButtonType.Capsule })
         .width('80%')
         .height(40)
         .margin(20)
         .onClick(() => {
-          let url = "harB/src/main/ets/components/mainpage/HarB-HapA_Router-HarB_Builder";
+          let url = "HarA/src/main/ets/components/mainpage/page2/HapA_Router-HarA_Page2_Builder";
+          RouterModule.push(url);
+        })
+      Button($r("app.string.to_hara_page3"), { stateEffect: true, type: ButtonType.Capsule })
+        .width('80%')
+        .height(40)
+        .margin(20)
+        .onClick(() => {
+          let url = "HarA/src/main/ets/components/mainpage/page3/HapA_Router-HarA_Page3_Builder";
+          RouterModule.push(url);
+        })
+      Button($r("app.string.to_harb_page1"), { stateEffect: true, type: ButtonType.Capsule })
+        .width('80%')
+        .height(40)
+        .margin(20)
+        .onClick(() => {
+          let url = "HarB/src/main/ets/components/mainpage/page1/HapA_Router-HarB_Page1_Builder";
+          RouterModule.push(url);
+        })
+      Button($r("app.string.to_harb_page2"), { stateEffect: true, type: ButtonType.Capsule })
+        .width('80%')
+        .height(40)
+        .margin(20)
+        .onClick(() => {
+          let url = "HarB/src/main/ets/components/mainpage/page2/HapA_Router-HarB_Page2_Builder";
+          RouterModule.push(url);
+        })
+      Button($r("app.string.to_harb_page3"), { stateEffect: true, type: ButtonType.Capsule })
+        .width('80%')
+        .height(40)
+        .margin(20)
+        .onClick(() => {
+          let url = "HarB/src/main/ets/components/mainpage/page3/HapA_Router-HarB_Page3_Builder";
           RouterModule.push(url);
         })
     }

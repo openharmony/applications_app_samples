@@ -12,4 +12,19 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-export { MainPage } from './src/main/ets/components/mainpage/HarA';
+export function harInit(path: string): void{
+  // 动态引入要跳转的页面
+  switch (path) {
+    case "./src/main/ets/components/mainpage/page1":
+      import("./src/main/ets/components/mainpage/page1");
+      break;
+    case "./src/main/ets/components/mainpage/page2":
+      import("./src/main/ets/components/mainpage/page2");
+      break;
+    case "./src/main/ets/components/mainpage/page3":
+      import("./src/main/ets/components/mainpage/page3");
+      break;
+    default:
+      break;
+  }
+}

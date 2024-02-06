@@ -24,10 +24,6 @@ export class RouterModule {
   // 通过名称获取builder
   public static getBuilder(builderName: string): WrappedBuilder<[object]>{
     let builder = RouterModule.builderMap.get(builderName);
-    if(!builder){
-      let msg = "not found builder";
-      console.info(msg + builderName);
-    }
     return builder as WrappedBuilder<[object]>;
   }
 
@@ -39,42 +35,37 @@ export class RouterModule {
   // 通过名称获取router
   public static getRouter(routerName: string): NavPathStack{
     let router = RouterModule.routerMap.get(routerName);
-    if(!router){
-      let msg = "not found router";
-      console.info(msg + routerName);
-    }
     return router as NavPathStack;
   }
 
   // 通过获取页面栈跳转到指定页面
-  public static push(url:string): void{
+  public static async push(url: string): Promise<void>{
     // 分解url
-    let params = url.split("-");
-    const path = params[0];
-    const routerName = params[1];
-    const pageName = params[2];
-
-    // 动态引入要跳转的页面
-    switch (path){
-      case "harA/src/main/ets/components/mainpage/HarA":
-        import("harA/src/main/ets/components/mainpage/HarA");
-        break;
-      case "harB/src/main/ets/components/mainpage/HarB":
-        import("harB/src/main/ets/components/mainpage/HarB");
-        break;
+    // 获取包名、路由名、页面名
+    let params = url.split("/");
+    const harName = params[0];
+    let context = params[params.length - 1].split("-");
+    const routerName = context[0];
+    const builderName = context[1];
+    // 获取路径
+    let path = ".";
+    for (let i = 1; i < params.length - 1; i++) {
+      path += "/" + params[i];
     }
-    // 查找到对应的路由栈进行跳转
-    RouterModule.getRouter(routerName).pushPathByName(pageName, null);
+    // 动态引入要跳转的页面
+    let ns: ESObject = await import(harName);
+    ns.harInit(path);
+    RouterModule.getRouter(routerName).pushPathByName(builderName, null);
   }
 
   // 通过获取页面栈并pop
-  public static pop(routerName:string): void {
+  public static pop(routerName: string): void {
     // 查找到对应的路由栈进行pop
     RouterModule.getRouter(routerName).pop();
   }
 
   // 通过获取页面栈并将其清空
-  public static clear(routerName:string): void {
+  public static clear(routerName: string): void {
     // 查找到对应的路由栈进行pop
     RouterModule.getRouter(routerName).clear();
   }

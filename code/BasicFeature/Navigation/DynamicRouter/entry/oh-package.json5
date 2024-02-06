@@ -21,6 +21,8 @@
   "main": "",
   "version": "1.0.0",
   "dependencies": {
-    "RouterModule": "file:../RouterModule"
+    "RouterModule": "file:../RouterModule",
+    "HarA": "file:../harA",
+    "HarB": "file:../harB"
   }
 }

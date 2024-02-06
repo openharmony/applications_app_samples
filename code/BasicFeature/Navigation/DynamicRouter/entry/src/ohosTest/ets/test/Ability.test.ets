@@ -64,19 +64,14 @@ export default function abilityTest() {
     it('TestCase_001', 0, async () => {
       let driver = Driver.create();
       await driver.delayMs(1000);
-      let btnItem = await driver.findComponent(ON.text("ToHarA"));
+      let btnItem = await driver.findComponent(ON.text("ToHarAPage1"));
       await btnItem.click();
 
       await driver.delayMs(1000);
       // 获取标题
-      let title = await driver.findComponent(ON.text("HarA"));
+      let title = await driver.findComponent(ON.text("HarA_Page1"));
       // 检查
       expect(title != undefined).assertTrue();
-      await driver.delayMs(1000);
-
-      // 返回
-      let button = await driver.findComponent(ON.text("HarA"));
-      await button.click();
       await driver.delayMs(1000);
     })
     /**
@@ -85,14 +80,15 @@ export default function abilityTest() {
     it('TestCase_002', 0, async () => {
       let driver = Driver.create();
       await driver.delayMs(1000);
-      let btnItem = await driver.findComponent(ON.text("ToHarB"));
+      let btnItem = await driver.findComponent(ON.text("ToHarBPage1"));
       await btnItem.click();
       await driver.delayMs(1000);
 
       // 获取标题
-      let title = await driver.findComponent(ON.text("HarB"));
+      let title = await driver.findComponent(ON.text("HarB_Page1"));
       // 检查
       expect(title != undefined).assertTrue();
+      await driver.delayMs(1000);
     })
     /**
      * 从harB跳转到主页
@@ -108,6 +104,7 @@ export default function abilityTest() {
       let title = await driver.findComponent(ON.text("NavIndex"));
       // 检查
       expect(title != undefined).assertTrue();
+      await driver.delayMs(1000);
     })
   })
 }

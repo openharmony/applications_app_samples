@@ -24,22 +24,26 @@
 .
 ├── entry // 主页面
 │   ├── pages
-│   │   ├── Index.ets   // 主页面
+│   │   ├── Index.ets
 │   ├── entryability
 │   │   ├── EntryAbility.ets
-├── harA // 主页面
+├── harA
 │   ├── pages
-│   │   ├── Index.ets   // harA
+│   │   ├── page1.ets
+│   │   ├── page2.ets
+│   │   ├── page3.ets
 │   ├── entryability
 │   │   ├── EntryAbility.ets
-├── harB // 主页面
+├── harB 
 │   ├── pages
-│   │   ├── Index.ets   // harB
+│   │   ├── page1.ets
+│   │   ├── page2.ets
+│   │   ├── page3.ets
 │   ├── entryability
 │   │   ├── EntryAbility.ets
-├── RouterModule // 主页面
-│   ├── pages
-│   │   ├── Index.ets   // RouterModule
+├── RouterModule
+│   ├── utils
+│   │   ├── RouterModule.ets
 │   ├── entryability
 │   │   ├── EntryAbility.ets 
 .
@@ -65,9 +69,9 @@
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568。
 
-2. 本示例为Stage模型，支持API11版本SDK，SDK版本号(API Version 11 Release),镜像版本号(4.1 Release)
+2. 本示例需要使用DevEco Studio 版本号(Build Version: 4.1.1.500, built on January 21, 2024)及以上版本才可编译运行。
 
-3. 本示例需要使用DevEco Studio 版本号(4.0 Release)及以上版本才可编译运行。
+3. 本示例为Stage模型，支持API11版本SDK，SDK版本号(4.1.6.3以上),镜像版本号(4.1.6.3以上)。
 
 ### 下载
 
