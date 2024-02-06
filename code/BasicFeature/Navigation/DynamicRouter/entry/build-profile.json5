@@ -15,6 +15,16 @@
 {
   "apiType": "stageMode",
   "buildOption": {
+    "arkOptions": {
+      "runtimeOnly": {
+        "sources": [
+        ],
+        "packages": [
+          "HarA",
+          "HarB"
+        ]
+      }
+    }
   },
   "targets": [
     {

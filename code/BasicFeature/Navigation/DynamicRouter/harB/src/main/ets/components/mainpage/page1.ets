@@ -12,7 +12,7 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-import {RouterModule} from "RouterModule/src/main/ets/components/mainpage/RouterModule";
+import {RouterModule} from "RouterModule/src/main/ets/utils/RouterModule";
 
 @Builder
 export function harBuilder(value: object) {
@@ -26,29 +26,40 @@ export function harBuilder(value: object) {
           let routerName = "HapA_Router";
           RouterModule.clear(routerName);
         })
-      Button($r("app.string.to_harb"), { stateEffect: true, type: ButtonType.Capsule })
+      Button($r("app.string.to_hara_page1"), { stateEffect: true, type: ButtonType.Capsule })
         .width('80%')
         .height(40)
         .margin(20)
         .onClick(() => {
-          let url = "harB/src/main/ets/components/mainpage/HarB-HapA_Router-HarB_Builder";
+          let url = "HarA/src/main/ets/components/mainpage/page1/HapA_Router-HarA_Page1_Builder";
+          RouterModule.push(url);
+        })
+      Button($r("app.string.to_hara_page2"), { stateEffect: true, type: ButtonType.Capsule })
+        .width('80%')
+        .height(40)
+        .margin(20)
+        .onClick(() => {
+          let url = "HarA/src/main/ets/components/mainpage/page2/HapA_Router-HarA_Page2_Builder";
+          RouterModule.push(url);
+        })
+      Button($r("app.string.to_hara_page3"), { stateEffect: true, type: ButtonType.Capsule })
+        .width('80%')
+        .height(40)
+        .margin(20)
+        .onClick(() => {
+          let url = "HarA/src/main/ets/components/mainpage/page3/HapA_Router-HarA_Page3_Builder";
           RouterModule.push(url);
         })
     }.width('100%').height('100%')
-  }.title('HarA')
+  }.title('HarB_Page1')
   .onBackPressed(() => {
     RouterModule.pop("HapA_Router");
     return true;
   })
 }
 
-export function harInit(){
-  let builderName = 'HarA_Builder';
-  if(!RouterModule.getBuilder(builderName)){
-    let builder: WrappedBuilder<[object]> = wrapBuilder(harBuilder);
-    RouterModule.registerBuilder(builderName, builder);
-  }
+let builderName = 'HarB_Page1_Builder';
+if(!RouterModule.getBuilder(builderName)){
+  let builder: WrappedBuilder<[object]> = wrapBuilder(harBuilder);
+  RouterModule.registerBuilder(builderName, builder);
 }
-
-// 自执行函数，在首次引用时触发，将builder注册到RouterModule中
-harInit();

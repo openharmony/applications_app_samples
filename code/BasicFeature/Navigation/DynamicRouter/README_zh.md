@@ -24,22 +24,26 @@
 .
 ├── entry // 主页面
 │   ├── pages
-│   │   ├── Index.ets   // 主页面
+│   │   ├── Index.ets
 │   ├── entryability
 │   │   ├── EntryAbility.ets
-├── harA // 主页面
+├── harA
 │   ├── pages
-│   │   ├── Index.ets   // harA
+│   │   ├── page1.ets
+│   │   ├── page2.ets
+│   │   ├── page3.ets
 │   ├── entryability
 │   │   ├── EntryAbility.ets
-├── harB // 主页面
+├── harB 
 │   ├── pages
-│   │   ├── Index.ets   // harB
+│   │   ├── page1.ets
+│   │   ├── page2.ets
+│   │   ├── page3.ets
 │   ├── entryability
 │   │   ├── EntryAbility.ets
-├── RouterModule // 主页面
-│   ├── pages
-│   │   ├── Index.ets   // RouterModule
+├── RouterModule
+│   ├── utils
+│   │   ├── RouterModule.ets
 │   ├── entryability
 │   │   ├── EntryAbility.ets 
 .

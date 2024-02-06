@@ -47,24 +47,23 @@ export class RouterModule {
   }
 
   // 通过获取页面栈跳转到指定页面
-  public static push(url:string): void{
+  public static async push(url:string): Promise<void>{
     // 分解url
-    let params = url.split("-");
-    const path = params[0];
-    const routerName = params[1];
-    const pageName = params[2];
-
-    // 动态引入要跳转的页面
-    switch (path){
-      case "harA/src/main/ets/components/mainpage/HarA":
-        import("harA/src/main/ets/components/mainpage/HarA");
-        break;
-      case "harB/src/main/ets/components/mainpage/HarB":
-        import("harB/src/main/ets/components/mainpage/HarB");
-        break;
+    // 获取包名、路由名、页面名
+    let params = url.split("/");
+    const harName = params[0];
+    let context = params[params.length - 1].split("-");
+    const routerName = context[0];
+    const builderName = context[1];
+    // 获取路径
+    let path = ".";
+    for(let i = 1; i < params.length - 1; i++){
+      path += "/" + params[i];
     }
-    // 查找到对应的路由栈进行跳转
-    RouterModule.getRouter(routerName).pushPathByName(pageName, null);
+    // 动态引入要跳转的页面
+    let ns: ESObject = await import(harName);
+    ns.harInit(path);
+    RouterModule.getRouter(routerName).pushPathByName(builderName, null);
   }
 
   // 通过获取页面栈并pop
