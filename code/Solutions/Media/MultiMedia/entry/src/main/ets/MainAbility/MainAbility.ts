@@ -28,7 +28,8 @@ const PERMISSIONS: Array<Permissions> = [
 
 export default class MainAbility extends UIAbility {
   onCreate(want, launchParam) {
-    Logger.info(TAG, 'MainAbility onCreate')
+    Logger.info(TAG, 'MainAbility onCreate');
+    AppStorage.SetOrCreate('context', this.context);
   }
 
   onDestroy() {
