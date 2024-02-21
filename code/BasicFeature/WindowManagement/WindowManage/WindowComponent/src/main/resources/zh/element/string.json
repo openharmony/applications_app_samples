@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "foreground",
+      "value": "切到前台"
+    },
+    {
+      "name": "get_focus",
+      "value": "获焦状态"
+    },
+    {
+      "name": "lose_focus",
+      "value": "失焦状态"
+    },
+    {
+      "name": "background",
+      "value": "切到后台"
+    },
+    {
+      "name": "unknown",
+      "value": "Unknown"
+    }
+  ]
+}
