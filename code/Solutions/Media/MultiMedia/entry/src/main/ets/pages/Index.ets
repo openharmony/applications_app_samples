@@ -12,11 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import router from '@ohos.router'
-import TitleBar from '../view/TitleBar'
-import MediaUtils from '../model/MediaUtils'
-import { MediaView } from '../view/MediaView'
+
 import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+import router from '@ohos.router';
+import TitleBar from '../view/TitleBar';
+import MediaUtils from '../model/MediaUtils';
+import { MediaView } from '../view/MediaView';
+import Logger from '../model/Logger';
 
 @Observed
 export default class Album {
@@ -107,8 +111,17 @@ struct Index {
         .translate({ x: 0, y: -80 })
         .visibility(this.operateVisible ? Visibility.Visible : Visibility.None)
         .onClick(() => {
-          this.operateVisible = !this.operateVisible
-          router.pushUrl({ url: 'pages/CameraPage' })
+          this.operateVisible = !this.operateVisible;
+          let context: common.UIAbilityContext | undefined = AppStorage.Get('context');
+          let want: Want = {
+            bundleName: "com.samples.camera_page",
+            abilityName: "EntryAbility",
+          };
+          context && context.startAbility(want,  (err) => {
+            if (err.code) {
+              Logger.error('StartAbility', `Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+            }
+          });
         })
 
         Button() {
