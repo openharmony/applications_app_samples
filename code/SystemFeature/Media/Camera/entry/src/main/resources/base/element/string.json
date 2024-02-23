@@ -111,6 +111,26 @@
     {
       "name": "font_family_Regular",
       "value": "HarmonyOS Sans SC-Regular"
+    },
+    {
+      "name": "camera_permission",
+      "value": "Allow app to use camera"
+    },
+    {
+      "name": "microphone_permission",
+      "value": "Allow app to use microphone"
+    },
+    {
+      "name": "media_location_permission",
+      "value": "Allow app to access geographic location information in user media files"
+    },
+    {
+      "name": "write_permission",
+      "value": "Allow app to read and write media file information from external storage of users"
+    },
+    {
+      "name": "read_permission",
+      "value": "Allow app to read media file information from external storage of users"
     }
   ]
 }
