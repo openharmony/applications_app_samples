@@ -17,7 +17,7 @@ export { ArrayListView } from './src/main/ets/capabilities/ArrayListView';
 
 export { ConvertXml } from './src/main/ets/capabilities/ConvertXml';
 
-export { Process } from './src/main/ets/capabilities/Process';
+export { ProcessMessage } from './src/main/ets/capabilities/ProcessMessage';
 
 export { Url } from './src/main/ets/capabilities/Url';
 
