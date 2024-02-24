@@ -133,7 +133,9 @@ class PlayerModel {
               timeMs = 0
             }
             Logger.info(TAG, `player.currentTime= ${timeMs}`)
-            this.playingProgressListener(timeMs)
+            if (timeMs !== -1) {
+              this.playingProgressListener(timeMs)
+            }
           }
         }, 500)
         Logger.info(TAG, `set update interval ${this.intervalID}`)
