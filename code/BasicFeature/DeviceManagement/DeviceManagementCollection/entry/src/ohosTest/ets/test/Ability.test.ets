@@ -30,7 +30,7 @@ export default function abilityTest() {
    */
   beforeAll(async () => {
     logger.info(TAG, `${BUNDLE}StartAbility_001, begin`);
-    let want : Want = {
+    let want: Want = {
       bundleName: "com.samples.devicemanagementcollection",
       abilityName: "EntryAbility"
     };
@@ -71,7 +71,7 @@ export default function abilityTest() {
      */
     it(BUNDLE + 'RunningLock_001', 0, async (done: Function) => {
       let driver: Driver = Driver.create();
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       logger.info(TAG, `${BUNDLE}RunningLock_001, begin`);
       await driver.assertComponentExist(ON.type('List'));
       let list = await driver.findComponent(ON.type('List'));
@@ -79,7 +79,7 @@ export default function abilityTest() {
       let button = await list.scrollSearch(ON.text(getString($r('app.string.running_lock'))));
       logger.info(TAG, `${BUNDLE}RunningLock_001, click ${getString($r('app.string.running_lock'))}`);
       await button.click();
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       logger.info(TAG, `${BUNDLE}RunningLock_001, end`);
 
       let opts = await getStringArray($r('app.strarray.running_lock_operations'))
@@ -89,7 +89,7 @@ export default function abilityTest() {
       let btn1 = await driver.findComponent(ON.text(opts[0]));
       logger.info(TAG, `${BUNDLE}RunningLock_002, click ${opts[0]}`);
       await btn1.click();
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       logger.info(TAG, `${BUNDLE}RunningLock_002, end`);
 
       logger.info(TAG, `${BUNDLE}RunningLock_003, begin`);
@@ -98,7 +98,7 @@ export default function abilityTest() {
       let btn2 = await driver.findComponent(ON.text(opts[1]));
       logger.info(TAG, `${BUNDLE}RunningLock_003, click ${opts[1]}`);
       await btn2.click();
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       logger.info(TAG, `${BUNDLE}RunningLock_003, end`);
 
       logger.info(TAG, `${BUNDLE}RunningLock_004, begin`);
@@ -126,7 +126,7 @@ export default function abilityTest() {
       let button = await list.scrollSearch(ON.text(getString($r('app.string.power_manager'))));
       logger.info(TAG, `${BUNDLE}Power_001, click ${getString($r('app.string.power_manager'))}`);
       await button.click();
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       logger.info(TAG, `${BUNDLE}Power_001, end`);
       let opts = await getStringArray($r('app.strarray.power_operations'))
 
@@ -140,7 +140,7 @@ export default function abilityTest() {
       await driver.delayMs(1000);
       logger.info(TAG, `${BUNDLE}Power_002, find ${getString($r('app.string.screen_state'))}`);
       await driver.assertComponentExist(ON.text(getString($r('app.string.screen_state')), MatchPattern.CONTAINS));
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       logger.info(TAG, `${BUNDLE}Power_002, end`);
 
       logger.info(TAG, `${BUNDLE}Power_003, begin`);
@@ -153,7 +153,7 @@ export default function abilityTest() {
       await driver.delayMs(1000);
       logger.info(TAG, `${BUNDLE}Power_003, find ${getString($r('app.string.power_mode'))}:`);
       await driver.assertComponentExist(ON.text(getString($r('app.string.power_mode')), MatchPattern.CONTAINS));
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       logger.info(TAG, `${BUNDLE}Power_003, end`);
 
       await driver.pressBack();
@@ -165,7 +165,7 @@ export default function abilityTest() {
      */
     it(BUNDLE + 'Settings_001', 0, async (done: Function) => {
       let driver: Driver = Driver.create();
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       logger.info(TAG, `${BUNDLE}Settings_001, begin`);
       await driver.assertComponentExist(ON.type('List'));
       let list = await driver.findComponent(ON.type('List'));
@@ -173,7 +173,7 @@ export default function abilityTest() {
       let button = await list.scrollSearch(ON.text(getString($r('app.string.settings'))));
       logger.info(TAG, `${BUNDLE}Settings_001, click ${getString($r('app.string.settings'))}`);
       await button.click();
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       logger.info(TAG, `${BUNDLE}Settings_001, end`);
 
       let opts = await getStringArray($r('app.strarray.settings_operations'))
@@ -183,9 +183,9 @@ export default function abilityTest() {
       let btn1 = await driver.findComponent(ON.text(opts[0]));
       logger.info(TAG, `${BUNDLE}Settings_002, click ${opts[0]}`);
       await btn1.click();
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       logger.info(TAG, `${BUNDLE}Settings_002, check dataability`);
-      await driver.assertComponentExist(ON.text('dataability://', MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text('datashare://', MatchPattern.CONTAINS));
       logger.info(TAG, `${BUNDLE}Settings_002, end`);
 
       logger.info(TAG, `${BUNDLE}Settings_003, begin`);
@@ -194,7 +194,7 @@ export default function abilityTest() {
       let btn3 = await driver.findComponent(ON.text(opts[1]));
       logger.info(TAG, `${BUNDLE}Settings_003, click ${opts[1]}`);
       await btn3.click();
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       logger.info(TAG, `${BUNDLE}Settings_003, check ${getString($r('app.string.airplane_status'))}`);
       await driver.assertComponentExist(ON.text(getString($r('app.string.airplane_status')), MatchPattern.CONTAINS));
       logger.info(TAG, `${BUNDLE}Settings_003, end`);
@@ -205,7 +205,7 @@ export default function abilityTest() {
       let btn4 = await driver.findComponent(ON.text(opts[2]));
       logger.info(TAG, `${BUNDLE}Settings_004, click ${opts[2]}`);
       await btn4.click();
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       logger.info(TAG, `${BUNDLE}Settings_004, end`);
 
       await driver.pressBack();
@@ -217,7 +217,7 @@ export default function abilityTest() {
      */
     it(BUNDLE + 'Stationary_001', 0, async (done: Function) => {
       let driver: Driver = Driver.create();
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       logger.info(TAG, `${BUNDLE}Stationary_001, begin`);
       await driver.assertComponentExist(ON.type('List'));
       let list = await driver.findComponent(ON.type('List'));
@@ -225,7 +225,7 @@ export default function abilityTest() {
       let button = await list.scrollSearch(ON.text(getString($r('app.string.stationary'))));
       logger.info(TAG, `${BUNDLE}Stationary_001, click ${getString($r('app.string.stationary'))}`);
       await button.click();
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       logger.info(TAG, `${BUNDLE}Stationary_001, end`);
 
       let opts = await getStringArray($r('app.strarray.stationary_operations'))
@@ -235,7 +235,7 @@ export default function abilityTest() {
       let btn1 = await driver.findComponent(ON.text(opts[1]));
       logger.info(TAG, `${BUNDLE}Stationary_002, click ${opts[0]}`);
       await btn1.click();
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       logger.info(TAG, `${BUNDLE}Stationary_002, end`);
 
       logger.info(TAG, `${BUNDLE}Stationary_003, begin`);
@@ -244,7 +244,7 @@ export default function abilityTest() {
       let btn2 = await driver.findComponent(ON.text(opts[1]));
       logger.info(TAG, `${BUNDLE}Stationary_003, click ${opts[1]}`);
       await btn2.click();
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       logger.info(TAG, `${BUNDLE}Stationary_003, end`);
 
       logger.info(TAG, `${BUNDLE}Stationary_004, begin`);
@@ -253,7 +253,7 @@ export default function abilityTest() {
       let btn3 = await driver.findComponent(ON.text(opts[2]));
       logger.info(TAG, `${BUNDLE}Stationary_004, click ${opts[2]}`);
       await btn3.click();
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       logger.info(TAG, `${BUNDLE}Stationary_004, end`);
 
       await driver.pressBack();
@@ -265,7 +265,7 @@ export default function abilityTest() {
      */
     it(BUNDLE + 'Thermal_001', 0, async (done: Function) => {
       let driver: Driver = Driver.create();
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       logger.info(TAG, `${BUNDLE}Thermal_001, begin`);
       await driver.assertComponentExist(ON.type('List'));
       let list = await driver.findComponent(ON.type('List'));
@@ -273,12 +273,12 @@ export default function abilityTest() {
       let button = await list.scrollSearch(ON.text(getString($r('app.string.thermal'))));
       logger.info(TAG, `${BUNDLE}Thermal_001, click ${getString($r('app.string.thermal'))}`);
       await button.click();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
 
       logger.info(TAG, `${BUNDLE}Thermal_001, check Thermal level`);
       await driver.assertComponentExist(ON.text('Thermal level'));
       await driver.assertComponentExist(ON.text('Callback level'));
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       logger.info(TAG, `${BUNDLE}Thermal_001, end`);
 
       await driver.pressBack();
@@ -290,7 +290,7 @@ export default function abilityTest() {
      */
     it(BUNDLE + 'UsbManager_001', 0, async (done: Function) => {
       let driver: Driver = Driver.create();
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       logger.info(TAG, `${BUNDLE}UsbManager_001, begin`);
       await driver.assertComponentExist(ON.type('List'));
       let list = await driver.findComponent(ON.type('List'));
@@ -298,7 +298,7 @@ export default function abilityTest() {
       let button = await list.scrollSearch(ON.text(getString($r('app.string.usb_manager'))));
       logger.info(TAG, `${BUNDLE}UsbManager_001, click ${getString($r('app.string.usb_manager'))}`);
       await button.click();
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       logger.info(TAG, `${BUNDLE}UsbManager_001, end`);
 
       logger.info(TAG, `${BUNDLE}UsbManager_002, begin`);
@@ -319,7 +319,7 @@ export default function abilityTest() {
         logger.info(TAG, `${BUNDLE}UsbManager_003, click device_0`);
         await device_0.click();
       }
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       logger.info(TAG, `${BUNDLE}UsbManager_003, end`);
 
       // 点击详情对话框确定按钮
@@ -330,7 +330,7 @@ export default function abilityTest() {
         logger.info(TAG, `${BUNDLE}UsbManager_004, click dialog`);
         await btn.click();
       }
-      await driver.delayMs(200);
+      await driver.delayMs(1000);
       // 关闭监听开关
       logger.info(TAG, `${BUNDLE}UsbManager_004, close toggle`);
       await toggle.click();
