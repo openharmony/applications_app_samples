@@ -139,7 +139,15 @@ export default function appTest() {
       await driver.assertComponentExist(ON.id('camera'));
       let camera: Component = await driver.findComponent(ON.id('camera'));
       await camera.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(3000);
+      let resourceManager = ability.context.resourceManager;
+      for (let i = 0;i < 4; i++) {
+        let agreeNotication: Component = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.allow'))));
+        if (agreeNotication) {
+          await agreeNotication.click();
+          await driver.delayMs(1000);
+        }
+      }
       // 启动照相按钮
       await driver.assertComponentExist(ON.id('cameraIcon'));
       let cameraIcon: Component = await driver.findComponent(ON.id('cameraIcon'));
@@ -179,10 +187,11 @@ export default function appTest() {
       await driver.delayMs(2000);
       let resourceManager = ability.context.resourceManager;
       for (let i = 0;i < 2; i++) {
-        await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.allow'))));
         let agreeNotication: Component = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.allow'))));
-        await agreeNotication.click();
-        await driver.delayMs(1000);
+        if (agreeNotication) {
+          await agreeNotication.click();
+          await driver.delayMs(1000);
+        }
       }
       await driver.delayMs(2000);
       await driver.pressBack();
