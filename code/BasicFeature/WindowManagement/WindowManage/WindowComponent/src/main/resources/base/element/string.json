@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from npm package"
+    },
+    {
+      "name": "pages_text",
+      "value": "窗口视频"
+    },
+    {
+      "name": "pages_textTwo",
+      "value": "全屏播放并切换窗口方向"
+    },
+    {
+      "name": "foreground",
+      "value": "Foreground"
+    },
+    {
+      "name": "get_focus",
+      "value": "Get Focus"
+    },
+    {
+      "name": "lose_focus",
+      "value": "Lose Focus"
+    },
+    {
+      "name": "background",
+      "value": "Background"
+    },
+    {
+      "name": "unknown",
+      "value": "Unknown"
+    }
+  ]
+}
