@@ -36,7 +36,8 @@ export default function abilityTest() {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       logger.info(TAG, `${BUNDLE}OpenFormList_001 begin`);
       // 点击退出
-      await DRIVER.pressBack();
+      await DRIVER.delayMs(500);
+      await DRIVER.pressHome();
       await DRIVER.delayMs(500);
       // 检查桌面是否存在音乐卡片应用
       await DRIVER.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.EntryAbility_label'))));
