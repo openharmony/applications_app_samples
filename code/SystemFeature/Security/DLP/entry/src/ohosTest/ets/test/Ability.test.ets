@@ -18,6 +18,8 @@ import Logger from './Logger';
 import { Driver, ON } from '@ohos.UiTest';
 import Want from '@ohos.app.ability.Want';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import inputMethod from '@ohos.inputMethod';
+import resourceManager from '@ohos.resourceManager';
 
 const BUNDLE = 'DLP';
 const TAG = '[Sample_DLP_TEST]';
@@ -65,14 +67,29 @@ export default function abilityTest() {
       await driver.delayMs(1000);
       await addBtn.click();
       await driver.delayMs(1000);
+      let authorizateBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.text_content'))));
+      await driver.delayMs(1000);
+      if(authorizateBtn) {
+        await authorizateBtn.click();
+        await driver.delayMs(1000);
+      }
+      let authorizateBtn2 = await driver.findComponent(ON.text(await getResourceString($r('app.string.text_content'))));
+      await driver.delayMs(1000);
+      if(authorizateBtn2) {
+        await authorizateBtn2.click();
+        await driver.delayMs(1000);
+      }
       let timestamp = new Date().getTime();
       let textInput = await driver.findComponent(ON.type('TextInput'));
       await driver.delayMs(1000);
       await textInput.inputText(`xxx合同${timestamp}.txt`);
       await driver.delayMs(1000);
+      let inputMethodController = inputMethod.getController();
+      inputMethodController.hideTextInput();
+      await driver.delayMs(1000);
       let ImageArray = await driver.findComponents(ON.type('Image'));
       Logger.info(TAG, `ImageArray lenth:${ImageArray.length}`);
-      let finishBtn = ImageArray[10];
+      let finishBtn = ImageArray[2];
       await finishBtn.click();
       Logger.info(TAG, BUNDLE + 'AddFiles end');
     })
@@ -114,6 +131,12 @@ export default function abilityTest() {
       let driver = Driver.create();
       await driver.delayMs(1000);
       // 点击进入编辑页面
+      let authorizateBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.text_content'))));
+      await driver.delayMs(1000);
+      if (authorizateBtn) {
+        authorizateBtn.click();
+        await driver.delayMs(1000);
+      }
       let fileItem = await driver.findComponent(ON.id('fileItem'));
       await fileItem.click();
       await driver.delayMs(3000);
