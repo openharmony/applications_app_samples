@@ -19,7 +19,7 @@ import { Driver, ON } from '@ohos.UiTest';
 
 const TAG = '[Sample_BackupExtension]';
 const BUNDLE = 'BackupExtension_';
-let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+const abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
 // 资源本地化
 async function getResourceString(resource: Resource): Promise<string> {
