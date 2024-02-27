@@ -141,6 +141,30 @@ Note:If the text contains special characters, please escape them according to th
 		        <filteritem type="filepath" name="code/BasicFeature/Native/NdkDrawing/screenshots/device/Index.jpg" desc="Provided by code/BasicFeature/Native/NdkDrawing"/>
                 <filteritem type="filepath" name="code/BasicFeature/Native/NdkDrawing/screenshots/device/DrawPath.jpg" desc="Provided by code/BasicFeature/Native/NdkDrawing"/>
                 <filteritem type="filepath" name="code/BasicFeature/Native/NdkDrawing/screenshots/device/DrawText.jpg" desc="Provided by code/BasicFeature/Native/NdkDrawing"/>
+                <filteritem type="filepath" name="code/Performance/ArkRuntime/NBody/entry/build/default/cache/ohosTest/ohosTest@OhosTestCompileArkTS/esmodule/debug/entry/src/ohosTest/ets/test/Ability.test.protoBin" desc="Provided by code/Performance/ArkRuntime/NBody"/>
+                <filteritem type="filepath" name="code/Performance/ArkRuntime/NBody/entry/build/default/cache/ohosTest/ohosTest@OhosTestCompileArkTS/esmodule/debug/entry/src/ohosTest/ets/testability/TestAbility.protoBin" desc="Provided by code/Performance/ArkRuntime/NBody"/>
+                <filteritem type="filepath" name="code/Project/Test/jsunit/entry/build/default/outputs/default/entry-default-signed.hap" desc="Provided by code/Project/Test/jsunit"/>
+                <filteritem type="filepath" name="code/Solutions/IM/Chat/products/phone/entry/src/main/resources/rawfile/video_1.zip" desc="Provided by code/Solutions/IM/Chat"/>
+                <filteritem type="filepath" name="code/Solutions/IM/Chat/products/phone/entry/src/main/resources/rawfile/video_2.zip" desc="Provided by code/Solutions/IM/Chat"/>
+                <filteritem type="filepath" name="code/Solutions/IM/Chat/products/phone/entry/src/main/resources/rawfile/video_3.zip" desc="Provided by code/Solutions/IM/Chat"/>
+                <filteritem type="filepath" name="code/Solutions/IM/Chat/products/phone/entry/src/main/resources/rawfile/video_4.zip" desc="Provided by code/Solutions/IM/Chat"/>
+                <filteritem type="filepath" name="code/Project/Test/jsunit/entry/build/default/intermediates/loader_out/default/ets/modules.abc" desc="Provided by code/Project/Test/jsunit"/>
+                <filteritem type="filepath" name="code/Performance/ArkRuntime/NBody/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/entry/src/main/ets/entryability/EntryAbility.protoBin" desc="Provided by code/Performance/ArkRuntime/NBody"/>
+                <filteritem type="filepath" name="code/BasicFeature/Connectivity/VPN/server/server.zip" desc="Provided by code/BasicFeature/Connectivity/VPN"/>
+                <filteritem type="filepath" name="code/Performance/ArkRuntime/NBody/entry/build/default/cache/ohosTest/ohosTest@OhosTestCompileArkTS/esmodule/debug/entry/src/main/ets/model/NBody_ETS_6.protoBin" desc="Provided by code/Performance/ArkRuntime/NBody"/>
+                <filteritem type="filepath" name="code/Project/Test/jsunit/entry/build/default/intermediates/res/default/resources.index" desc="Provided by code/Project/Test/jsunit"/>
+                <filteritem type="filepath" name="code/Project/Test/jsunit/entry/build/default/outputs/default/entry-default-unsigned.hap" desc="Provided by code/Project/Test/jsunit"/>
+                <filteritem type="filepath" name="code/Performance/ArkRuntime/NBody/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/entry/src/main/ets/workers/CalculateWorker.protoBin" desc="Provided by code/Performance/ArkRuntime/NBody"/>
+                <filteritem type="filepath" name="code/Performance/ArkRuntime/NBody/entry/build/default/cache/ohosTest/ohosTest@OhosTestCompileArkTS/esmodule/debug/entry/src/ohosTest/ets/util/Logger.ts" desc="Provided by code/Performance/ArkRuntime/NBody"/>
+                <filteritem type="filepath" name="code/Performance/ArkRuntime/NBody/entry/build/default/cache/ohosTest/ohosTest@OhosTestCompileArkTS/esmodule/debug/entry/src/main/ets/model/CalculateUtil.protoBin" desc="Provided by code/Performance/ArkRuntime/NBody"/>
+                <filteritem type="filepath" name="code/Performance/ArkRuntime/NBody/entry/build/default/cache/ohosTest/ohosTest@OhosTestCompileArkTS/esmodule/debug/entry/src/main/ets/utils/Logger.protoBin" desc="Provided by code/Performance/ArkRuntime/NBody"/>
+                <filteritem type="filepath" name="code/Performance/ArkRuntime/NBody/entry/build/default/cache/ohosTest/ohosTest@OhosTestCompileArkTS/esmodule/debug/entry/src/ohosTest/ets/test/List.test.protoBin" desc="Provided by code/Performance/ArkRuntime/NBody"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-qr-code-scan-1.0.2.har" desc="Provided by code/Solutions/Shopping/OrangeShopping"/>
+                <filteritem type="filepath" name="code/Performance/ArkRuntime/NBody/entry/build/default/cache/ohosTest/ohosTest@OhosTestCompileArkTS/esmodule/debug/entry/src/main/ets/utils/Constants.protoBin" desc="Provided by code/Performance/ArkRuntime/NBody"/>
+                <filteritem type="filepath" name="code/Project/Test/jsunit/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/npmEntries.protoBin" desc="Provided by code/Project/Test/jsunit"/>
+                <filteritem type="filepath" name="code/Performance/ArkRuntime/NBody/entry/build/default/cache/ohosTest/ohosTest@OhosTestCompileArkTS/esmodule/debug/entry/src/ohosTest/ets/testrunner/OpenHarmonyTestRunner.protoBin" desc="Provided by code/Performance/ArkRuntime/NBody"/>
+                <filteritem type="filepath" name="code/Project/Test/jsunit/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/compiler.cache.msgpack" desc="Provided by code/Project/Test/jsunit"/>
+                <filteritem type="filepath" name="code/Performance/ArkRuntime/NBody/entry/build/default/cache/ohosTest/ohosTest@OhosTestCompileArkTS/esmodule/debug/entry/src/ohosTest/ets/testability/pages/Index.protoBin" desc="Provided by code/Performance/ArkRuntime/NBody"/>
             </filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加License头"/>
@@ -148,6 +172,19 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filename" name="hvigorw.bat" desc="OpenHarmony工程编译配置文件，无需添加License头"/>
                 <filteritem type="filename" name="hvigor-config.json5" desc="OpenHarmony工程编译配置文件，无需添加License头"/>
                 <filteritem type="filename" name="hvigor-wrapper.js" desc="OpenHarmony工程编译配置文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-updatedialog-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/Project/Test/jsunit/entry/build/default/cache/default/default@CompileArkTS/esmodule/.ts_checker_cache" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-notification-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-enter-animation-1.0.1.tgz" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-feature-qr-code-scan-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-http-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-feature-qr-code-scan-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-http-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-notification-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-enter-animation-1.0.1.tgz" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/Performance/ArkRuntime/NBody/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/entry/src/main/ets/model/CalculateUtil.ts" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/Performance/ArkRuntime/NBody/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/entry/src/main/ets/model/NBody_ETS_6.ts" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/Performance/ArkRuntime/NBody/entry/build/default/cache/ohosTest/ohosTest@OhosTestCompileArkTS/esmodule/debug/entry/src/main/ets/model/NBody_ETS_6.ts" desc="二进制文件，无需添加License头"/>
             </filefilter>
             <filefilter name="copyrightPolicyFilter" desc="Copyright文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加版权头"/>
@@ -155,6 +192,19 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filename" name="hvigorw.bat" desc="OpenHarmony工程编译配置文件，无需添加版权头"/>
                 <filteritem type="filename" name="hvigor-config.json5" desc="OpenHarmony工程编译配置文件，无需添加版权头"/>
                 <filteritem type="filename" name="hvigor-wrapper.js" desc="OpenHarmony工程编译配置文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-updatedialog-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/Project/Test/jsunit/entry/build/default/cache/default/default@CompileArkTS/esmodule/.ts_checker_cache" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-notification-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-enter-animation-1.0.1.tgz" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-feature-qr-code-scan-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-http-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-feature-qr-code-scan-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-http-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-notification-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-enter-animation-1.0.1.tgz" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/Performance/ArkRuntime/NBody/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/entry/src/main/ets/model/CalculateUtil.ts" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/Performance/ArkRuntime/NBody/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/entry/src/main/ets/model/NBody_ETS_6.ts" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/Performance/ArkRuntime/NBody/entry/build/default/cache/ohosTest/ohosTest@OhosTestCompileArkTS/esmodule/debug/entry/src/main/ets/model/NBody_ETS_6.ts" desc="二进制文件，无需添加版权头"/>
             </filefilter>
         </filefilterlist>
     </oatconfig>
