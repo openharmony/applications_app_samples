@@ -150,7 +150,23 @@ bool NativeImageAdaptor::Export(napi_env env, napi_value exports)
     ret = OH_NativeImage_GetSurfaceId(image_, &surfaceId);
     if (ret != 0) {
         LOGE("OH_NativeImage_GetSurfaceId fail");
+        return false;
     }
+
+    OHNativeWindow *nativeWindow = nullptr;
+    ret = OH_NativeWindow_CreateNativeWindowFromSurfaceId(surfaceId, &nativeWindow);
+    if (ret != 0 || nativeWindow != nativeWindow_) {
+        LOGE("OH_NativeWindow_CreateNativeWindowFromSurfaceId fail");
+        return false;
+    }
+
+    uint64_t surfaceIdTmp = 0;
+    ret = OH_NativeWindow_GetSurfaceId(nativeWindow, &surfaceIdTmp);
+    if (ret != 0 || surfaceIdTmp != surfaceId) {
+        LOGE("OH_NativeWindow_GetSurfaceId fail");
+    }
+    OH_NativeWindow_DestroyNativeWindow(nativeWindow);
+
     return true;
 }
 

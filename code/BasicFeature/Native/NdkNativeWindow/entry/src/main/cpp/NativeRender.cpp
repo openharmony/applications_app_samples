@@ -133,9 +133,8 @@ napi_value NativeRender::NapiOnDraw(napi_env env, napi_callback_info info)
     return nullptr;
 }
 
-void NativeRender::DrawBaseColor()
+void NativeRender::NativeBufferApi()
 {
-    uint32_t value = (flag_ = !flag_) ? 0xfff0000f : 0xff00ffff;
     OH_NativeBuffer_Config config {
         .width = 0x100,
         .height = 0x100,
@@ -155,9 +154,30 @@ void NativeRender::DrawBaseColor()
     auto ret = OH_NativeBuffer_SetColorSpace(nativeBuffer, OH_COLORSPACE_SRGB_FULL);
     if (ret != 0) {
         LOGE("OH_NativeBuffer_SetColorSpace fail");
+        return;
     }
+}
+
+void NativeRender::DrawBaseColor()
+{
+    NativeBufferApi();
+    uint32_t value = (flag_ = !flag_) ? 0xfff0000f : 0xff00ffff;
+    uint64_t surfaceId = 0;
+    auto ret = OH_NativeWindow_GetSurfaceId(nativeWindow_, &surfaceId);
+    if (ret != 0) {
+        LOGE("OH_NativeWindow_GetSurfaceId fail");
+        return;
+    }
+    OHNativeWindow *nativeWindow = nullptr;
+    ret = OH_NativeWindow_CreateNativeWindowFromSurfaceId(surfaceId, &nativeWindow);
+    if (ret != 0) {
+        LOGE("OH_NativeWindow_CreateNativeWindowFromSurfaceId fail");
+        return;
+    }
+
     int fenceFd = -1;
-    ret = OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow_, &nativeWindowBuffer, &fenceFd);
+    OHNativeWindowBuffer *nativeWindowBuffer = nullptr;
+    ret = OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow, &nativeWindowBuffer, &fenceFd);
     BufferHandle *bufferHandle = OH_NativeWindow_GetBufferHandleFromNative(nativeWindowBuffer);
     void *mappedAddr =
         mmap(bufferHandle->virAddr, bufferHandle->size, PROT_READ | PROT_WRITE, MAP_SHARED, bufferHandle->fd, 0);
@@ -169,15 +189,18 @@ void NativeRender::DrawBaseColor()
         }
     }
     struct Region *region = new Region();
-    OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow_, nativeWindowBuffer, fenceFd, *region);
+    OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow, nativeWindowBuffer, fenceFd, *region);
     if (munmap(mappedAddr, bufferHandle->size) < 0) {
+        OH_NativeWindow_DestroyNativeWindow(nativeWindow);
         LOGE("munmap failed");
+        return;
     }
     OHNativeWindowBuffer* lastFlushedBuffer;
     int lastFlushedFenceFd;
     float matrix[16];
-    ret = OH_NativeWindow_GetLastFlushedBuffer(nativeWindow_, &lastFlushedBuffer, &lastFlushedFenceFd, matrix);
+    ret = OH_NativeWindow_GetLastFlushedBuffer(nativeWindow, &lastFlushedBuffer, &lastFlushedFenceFd, matrix);
     if (ret != 0) {
+        OH_NativeWindow_DestroyNativeWindow(nativeWindow);
         LOGE("OH_NativeWindow_GetLastFlushedBuffer fail, ret = %{public}d", ret);
         return;
     }
@@ -185,5 +208,7 @@ void NativeRender::DrawBaseColor()
     if (lastHandle != nullptr && bufferHandle != nullptr && lastHandle->virAddr != bufferHandle->virAddr) {
         LOGE("OH_NativeWindow_GetLastFlushedBuffer fail, the virAddr is different");
     }
+
+    OH_NativeWindow_DestroyNativeWindow(nativeWindow);
 }
 }
