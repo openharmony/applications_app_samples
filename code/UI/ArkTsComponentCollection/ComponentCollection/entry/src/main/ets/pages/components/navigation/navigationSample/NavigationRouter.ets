@@ -21,8 +21,8 @@ struct Index {
   @State hapARouter: NavPathStack = new NavPathStack();
 
   aboutToAppear() {
-    import("harA/src/main/ets/components/mainpage/HarA");
-    import("harB/src/main/ets/components/mainpage/HarB");
+    import("@ohos/harA");
+    import("@ohos/harB");
     if (!this.hapARouter) {
       this.hapARouter = new NavPathStack();
     }

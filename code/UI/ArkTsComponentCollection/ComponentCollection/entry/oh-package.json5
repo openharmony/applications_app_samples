@@ -6,6 +6,8 @@
   "repository": {},
   "version": "1.0.0",
   "dependencies": {
-    "RouterModule": "file:../RouterModule"
+    "RouterModule": "file:../RouterModule",
+    "@ohos/harA": "file:../harA",
+    "@ohos/harB": "file:../harB"
   }
 }
