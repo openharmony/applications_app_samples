@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,4 +14,4 @@
  */
 
 // Script for compiling build behavior. It is built in the build plug-in and cannot be modified currently.
-module.exports = require('@ohos/hvigor-ohos-plugin').appTasks
+export { appTasks } from '@ohos/hvigor-ohos-plugin';
