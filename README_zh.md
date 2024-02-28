@@ -84,7 +84,7 @@
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td rowspan="3" x:str><strong>媒体</strong></td>
+  <td rowspan="4" x:str><strong>媒体</strong></td>
   <td x:str><a href="code/BasicFeature/Media/Image">图片显示及处理（API 10）</a></td>
   <td x:str><a href="code/BasicFeature/Media/VideoShow">媒体库视频</a></td>
   <td x:str><a href="code/BasicFeature/Media/GamePuzzle">图片裁剪与分割</a></td>
@@ -101,6 +101,12 @@
   <td x:str><a href="code/BasicFeature/Media/Audio">音频管理（API 10）</a></td>
   <td x:str><a href="code/BasicFeature/Media/VideoPlay">视频播放（API 10）</a></td>
   <td x:str><a href="code/BasicFeature/Media/VoiceCallDemo">音频通话示例（API 10）</td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
+  <td x:str><a href="code/BasicFeature/Media/Camera">相机示例</a></td>
+  <td x:str><a href="code/BasicFeature/Media/AudioHaptic">音振</a></td>
+  <td x:str><a href="code/BasicFeature/Media/AVSession/VideoPlayer">视频播放</a></td>
+  <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td rowspan="2"><strong>安全</strong></td>
@@ -131,7 +137,7 @@
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>数据管理</strong></td>
   <td x:str><a href="code/BasicFeature/DataManagement/Preferences">首选项</a></td>
-  <td ></td>
+  <td x:str><a href="code/BasicFeature/DataManagement/UDMF/UniformTypeDescriptor/UTDType">标准化数据定义与描述</a></td>
   <td ></td>
   <td ></td>
  </tr>
@@ -229,10 +235,18 @@
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td x:str><strong>Native</strong></td>
+  <td rowspan="2" x:str><strong>Native</strong></td>
   <td x:str><a href="code/BasicFeature/Native/NdkRawfile">获取Rawfile资源</a></td>
   <td x:str><a href="code/BasicFeature/Native/NdkXComponent">Native XComponent（API 10）</a></td>
   <td x:str><a href="code/BasicFeature/Native/NdkOpenGL">OpenGL三棱椎（API 10）</a></td>
+  <td x:str><a href="code/BasicFeature/Native/Audio">音频管理</a></td>
+  <td x:str><a href="code/BasicFeature/Native/NdkDrawing">Native Drawing</a></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
+  <td x:str><a href="code/BasicFeature/Native/NdkNativeWindow">Native Window</a></td>
+  <td x:str><a href="code/BasicFeature/Native/XComponent3D">XComponent3D</a></td>
+  <td ></td>
+  <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
@@ -254,13 +268,19 @@
   <td x:str><a href="code/SystemFeature/Media/Screenshot">截屏</a></td>
   <td x:str><a href="code/SystemFeature/Media/ScreenRecorder">录屏</a></td>
   <td x:str><a href="code/SystemFeature/Media/Camera">相机和媒体库（API 10）</a></td>
-  <td ></td>
+  <td x:str><a href="code/SystemFeature/Media/Audio">音频管理（仅对系统应用开放）</a></td>
  </tr>
  </tr>
   <tr height="18" style='height:13.50pt;'>
-  <td x:str><strong>安全</strong></td>
+  <td rowspan="2" x:str><strong>安全</strong></td>
   <td x:str><a href="code/SystemFeature/Security/AbilityAccessCtrl">应用访问权限控制</a></td>
   <td x:str><a href="code/SystemFeature/Security/AuthorizedButton">安全控件类型的UI控件（API 10）</a></td>
+  <td x:str><a href="code/SystemFeature/Security/DLPManager">DLPManager</a></td>
+  <td x:str><a href="code/SystemFeature/Security/CertManager">证书管理</a></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
+  <td x:str><a href="code/SystemFeature/Security/DLP">DLP</a></td>
+  <td ></td>
   <td ></td>
   <td ></td>
  </tr>
@@ -313,8 +333,8 @@
   <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/MultiColumns">典型页面场景：一多分栏控件（API 10）</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
- <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/MultiNavBar">典型页面场景：一多导航栏（API 10）</a></td>
-  <td></td>
+  <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/MultiNavBar">典型页面场景：一多导航栏（API 10）</a></td>
+  <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/MultiMusic">典型页面场景：一多音乐典型场景</a></td>
   <td></td>
   <td></td>
  </tr>
@@ -332,9 +352,9 @@
   <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedAuthentication">分布式组网认证（API 10）</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
- <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedAccount">分布式帐号（API 10）</a></td>
-  <td></td>
-  <td></td>
+  <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedAccount">分布式帐号（API 10）</a></td>
+  <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedFilemanager">分布式文件管理</a></td>
+  <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedJotNote">跨端迁移随手记</a></td>
   <td></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
@@ -402,7 +422,7 @@
   <td x:str><a href="code/Solutions/Tools/ArkTSClock">ArkTS时钟</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td height="54" align="center" rowspan="3" style='height:40.50pt' x:str><strong>工程能力</strong></td>
+  <td height="54" align="center" rowspan="4" style='height:40.50pt' x:str><strong>工程能力</strong></td>
   <td x:str><strong>资源配置</strong></td>
   <td x:str><a href="code/Project/ResourceAllocation/ApplicationThemeSwitch">应用主题切换</a></td>
   <td ></td>
@@ -424,6 +444,13 @@
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
+  <td x:str><strong>HapBuild</strong></td>
+  <td x:str><a href="code/Project/HapBuild">流水线预测试工具</a></td>
+  <td ></td>
+  <td ></td>
+  <td ></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
   <td rowspan="1" align="center" x:str><strong>语言基础类库</strong></td>
   <td rowspan="1" x:str><strong>语言基础类库</strong></td>
   <td x:str><a href="code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary">语言基础类库（API 10）</a></td>
@@ -432,10 +459,16 @@
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td rowspan="1" align="center" x:str><strong>性能</strong></td>
+  <td rowspan="2" align="center" x:str><strong>性能</strong></td>
   <td rowspan="1" x:str><strong>方舟运行时</strong></td>
   <td x:str><a href="code/Performance/ArkRuntime/NBody"> N-Body模拟程序（API 10）</a></td>
   <td ></td>
+  <td ></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
+  <td rowspan="1" x:str><strong>性能提升</strong></td>
+  <td x:str><a href="code/Performance/PerformanceLibrary"> 性能示例 </a></td>
+  <td x:str><a href="code/Performance/renderGroup"> 性能示例（renderGroup 接口）</a></td>
   <td ></td>
   <td ></td>
  </tr>
