@@ -74,7 +74,7 @@ struct SliderCustom {
           step: CommonConstants.SLIDER_STEP,
           min: this.min,
           max: this.max
-        })
+        }).id('thread_transfer_data_slider')
           .trackColor(Color.White)
           .width($r('app.string.layout_80_percent'))
           .showSteps(true)

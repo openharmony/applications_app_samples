@@ -20,27 +20,9 @@ const translateYChangeValue: number = 180; // translateY每次变化的值
 const translateYChangeRange: number = 250; // translateY变化的范围
 const scaleXChangeValue: number = 0.6; // scaleX每次变化的值
 const scaleXChangeRange: number = 0.8; // scaleX每次变化的值
-const imageWidthChangeValue: number = 30; // imageWidth每次变化的值
-const imageWidthChangeRange: number = 160; // imageWidth每次变化的值
-const imageHeightChangeValue: number = 30; // imageHeight每次变化的值
-const imageHeightChangeRange: number = 160; // imageHeight每次变化的值
-
-// 图片样式类
-class ImageStyle {
-  public translateImageX: number = 0;
-  public translateImageY: number = 0;
-  public imageWidth: number = 78;
-  public imageHeight: number = 78;
-}
-
-// 嵌套ImageStyle类
-class ImageStyleContainer {
-  imageStyle: ImageStyle = new ImageStyle();
-}
 
 // 样式属性类
 class UIStyle {
-  imageStyle: ImageStyle = new ImageStyle();
   public translateX: number = 0;
   public translateY: number = 0;
   public scaleX: number = 0.3;
@@ -48,9 +30,9 @@ class UIStyle {
 }
 
 @Component
-struct SpecialImageA {
-  @Link specialImageAUiStyle: UIStyle;
-  private opacityNum: number = 1; // 默认透明度
+struct SpecialImage {
+  @Link specialImageUiStyle: UIStyle;
+  private opacityNum: number = 0.5; // 默认透明度
 
   private isRenderSpecialImage(): number {
     // Image每次渲染时透明度增加0.1, 在0-1之间循环
@@ -59,55 +41,39 @@ struct SpecialImageA {
   }
 
   build() {
-    Image($r('app.media.icon'))
-      .width($r('app.integer.special_image_width'))
-      .height($r('app.integer.special_image_width'))
-      .margin({ top: $r('app.integer.image_margin_top') })
-      .scale({
-        x: this.specialImageAUiStyle.scaleX,
-        y: this.specialImageAUiStyle.scaleY
-      })
-      .opacity(this.isRenderSpecialImage())
-  }
-}
-
-@Component
-struct SpecialImageB {
-  @Link specialImageBStyleContainer: ImageStyleContainer;
-  private opacityNum: number = 1; // 默认透明度
-
-  private isRenderSpecialImage(): number {
-    // Image每次渲染时透明度增加0.1, 在0-1之间循环
-    this.opacityNum = (this.opacityNum + opacityChangeValue) % opacityChangeRange;
-    return this.opacityNum;
-  }
-
-  build() {
-    Image($r('app.media.icon'))
-      .width(this.specialImageBStyleContainer.imageStyle.imageWidth)
-      .height(this.specialImageBStyleContainer.imageStyle.imageHeight)
-      .margin({ top: $r('app.integer.image_margin_top') })
-      .translate({
-        x: this.specialImageBStyleContainer.imageStyle.translateImageX,
-        y: this.specialImageBStyleContainer.imageStyle.translateImageY
-      })
-      .opacity(this.isRenderSpecialImage())
+    Column() {
+      Image($r('app.media.icon'))
+        .width($r('app.integer.special_image_width'))
+        .height($r('app.integer.special_image_width'))
+        .margin({ top: $r('app.integer.image_margin_top') })
+        .scale({
+          x: this.specialImageUiStyle.scaleX,
+          y: this.specialImageUiStyle.scaleY
+        })
+        .opacity(this.isRenderSpecialImage())
+      Text("SpecialImage")
+        .fontColor($r('app.color.text_color'))
+        .fontWeight(FontWeight.Medium)
+        .fontSize($r('app.integer.button_font_size'))
+        .margin({ top: $r('app.integer.text_margin_top') })
+    }
+    .backgroundColor($r('app.color.stack_color'))
+    .width($r('app.integer.stack_width'))
+    .height($r('app.integer.stack_height'))
+    .margin({ top: $r('app.integer.stack_margin_top') })
+    .borderRadius($r('app.integer.stack_border_radius'))
   }
 }
 
 @Component
 struct ComponentA {
-  @Prop uiStyle: UIStyle; // uiStyle的属性被多个组件使用
-  @State imageStyleContainer: ImageStyleContainer = new ImageStyleContainer(); // 传递给SpecialImageB中的Image使用
+  @Link uiStyle: UIStyle; // uiStyle的属性被多个组件使用
 
   build() {
     Column() {
       // 使用状态变量的组件
-      SpecialImageA({
-        specialImageAUiStyle: this.uiStyle
-      })
-      SpecialImageB({
-        specialImageBStyleContainer: this.imageStyleContainer
+      SpecialImage({
+        specialImageUiStyle: this.uiStyle
       })
       Stack() {
         Column() {
@@ -168,16 +134,6 @@ struct ComponentA {
           .margin({ bottom: $r('app.integer.button_margin_bottom') })
           .onClick(() => {
             this.uiStyle.scaleX = (this.uiStyle.scaleX + scaleXChangeValue) % scaleXChangeRange;
-          })
-        Button('Change Image')
-          .backgroundColor($r('app.color.button_color'))
-          .fontSize($r('app.integer.button_font_size'))
-          .width($r('app.integer.button_width'))
-          .onClick(() => {
-            this.imageStyleContainer.imageStyle.imageWidth =
-              (this.imageStyleContainer.imageStyle.imageWidth + imageWidthChangeValue) % imageWidthChangeRange;
-            this.imageStyleContainer.imageStyle.imageHeight =
-              (this.imageStyleContainer.imageStyle.imageHeight + imageHeightChangeValue) % imageHeightChangeRange;
           })
       }
       .position({

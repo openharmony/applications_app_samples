@@ -37,11 +37,11 @@ export async function pixelMapProcessByTaskPool(pixelMap: image.PixelMap, lastAd
     taskPoolGroup.addTask(createImageTask(arrayBufferSlice, lastAdjustData, currentAdjustData, isParamsByTransfer));
   }
   let start: number = new Date().getTime();
-  taskpool.execute(taskPoolGroup).then((data: ArrayBuffer[]) => {
+  taskpool.execute(taskPoolGroup).then((data: Object[]) => {
     if (callback !== undefined) {
-      let end : number = new Date().getTime();
-      AppStorage.set<String>('timeCost', util.format('%s s', ((end - start) / 60).toFixed(2).toString()));
-      callback(concatenateArrayBuffers(data));
+      let end: number = new Date().getTime();
+      AppStorage.set<String>('timeCost', util.format('%s s', ((end - start) / 1000).toFixed(2).toString()));
+      callback(concatenateArrayBuffers(data as ArrayBuffer[]));
     }
   }).catch((e: BusinessError) => {
     Logger.error(e.message);

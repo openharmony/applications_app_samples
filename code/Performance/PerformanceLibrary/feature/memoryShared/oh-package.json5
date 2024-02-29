@@ -4,7 +4,7 @@
   "author": "",
   "name": "memoryshared",
   "description": "Please describe the basic information.",
-  "main": "MemorySharedHome.ets",
+  "main": "Index.ets",
   "version": "1.0.0",
   "dependencies": {}
 }

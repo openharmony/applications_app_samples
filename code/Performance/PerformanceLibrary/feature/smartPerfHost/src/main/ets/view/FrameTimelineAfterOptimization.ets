@@ -37,7 +37,8 @@ class ChildDataSource implements IDataSource {
 
 @Component
 export struct FrameTimelineAfterOptimization {
-  @State children: string[] = Array.from<undefined, string>(Array(2000).fill(undefined), (_v: undefined, k) => k.toString());
+  // 创建长度500的空数组，使用每个元素的索引转成的字符串作为元素的值，生成包含字符串0-499的数组
+  @State children: string[] = Array.from<undefined, string>(Array(500).fill(undefined), (item: undefined, index) => index.toString());
   @State data: ChildDataSource = new ChildDataSource(this.children)
   build() {
     Scroll() {
