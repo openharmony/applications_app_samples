@@ -20,9 +20,9 @@
       {
         "name": "default",
         "signingConfig": "default",
-        "compileSdkVersion": 10,
-        "compatibleSdkVersion": 10,
-        "targetSdkVersion": 10
+        "compileSdkVersion": 11,
+        "compatibleSdkVersion": 11,
+        "targetSdkVersion": 11
       }
     ],
     "buildModeSet": [
@@ -110,6 +110,14 @@
     {
       "name": "nativeThreadsCallJS",
       "srcPath": "./feature/nativeThreadsCallJS"
+    },
+    {
+      "name": "ThreadCommunication",
+      "srcPath": "./feature/ThreadCommunication"
+    },
+    {
+      "name": "webPerformance",
+      "srcPath": "./feature/webPerformance"
     }
   ]
 }

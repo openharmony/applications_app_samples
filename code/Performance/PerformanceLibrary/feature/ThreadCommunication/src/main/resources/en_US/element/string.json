@@ -1,0 +1,56 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "thread_communication",
+      "value": "主线程和子线程的通信"
+    },
+    {
+      "name": "scenario_1",
+      "value": "场景一：独立的耗时任务"
+    },
+    {
+      "name": "scenario_2",
+      "value": "场景二：多个任务执行结果统一返回"
+    },
+    {
+      "name": "scenario_3",
+      "value": "场景三：TaskPool和主线程的即时通信"
+    },
+    {
+      "name": "scenario_4",
+      "value": "场景四：Worker和主线程的即时通信"
+    },
+    {
+      "name": "scenario_5",
+      "value": "场景五：子线程同步调用主线程的接口"
+    },
+    {
+      "name": "load_image",
+      "value": "加载图片"
+    },
+    {
+      "name": "percent_100",
+      "value": "100%"
+    },
+    {
+      "name": "change_image_number",
+      "value": "将图片变成4个"
+    },
+    {
+      "name": "process_success",
+      "value": "子线程任务已执行完，共加载图片:"
+    }
+  ]
+}

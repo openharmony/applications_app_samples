@@ -17,6 +17,7 @@ import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager'
 import { BusinessError } from '@ohos.base';
 import util from '@ohos.util';
 import hiTraceMeter from '@ohos.hiTraceMeter';
+import taskpool from '@ohos.taskpool';
 
 const totalTimes: number = 50000000; // 循环次数
 const calculateResult: string = 'Total time costed = %s ms.'; //  文本格式
@@ -46,31 +47,17 @@ export struct TransientTaskView {
     console.info('Request suspension delay cancel.');
   }
 
-  // 计算任务
-  computeTask(times: number): number {
-    let start: number = new Date().getTime();
-    let a: number = 1;
-    let b: number = 1;
-    let c: number = 1;
-
-    for (let i: number = 0; i < times; i++) {
-      a = a * Math.random() + b * Math.random() + c * Math.random();
-      b = a * Math.random() + b * Math.random() + c * Math.random();
-      c = a * Math.random() + b * Math.random() + c * Math.random();
-    }
-    let end: number = new Date().getTime();
-    return end - start;
-  }
-
   // 点击回调
   clickCallback = () => {
     this.requestSuspendDelay();
     this.message = 'calculating';
     hiTraceMeter.startTrace('computerTask', 0);
-    let timeCost = this.computeTask(totalTimes);
-    this.message = util.format(calculateResult, timeCost.toString());
-    hiTraceMeter.finishTrace('computerTask', 0);
-    this.cancelSuspendDelay();
+    let task: taskpool.Task = new taskpool.Task(computeTask, totalTimes);
+    taskpool.execute(task, taskpool.Priority.HIGH).then((res: Object) => {
+      this.message = util.format(calculateResult, res.toString());
+      hiTraceMeter.finishTrace('computerTask', 0);
+      this.cancelSuspendDelay();
+    })
   }
 
   build() {
@@ -90,4 +77,21 @@ export struct TransientTaskView {
     .height('100%')
     .justifyContent(FlexAlign.Center)
   }
+}
+
+// 计算任务
+@Concurrent
+function computeTask(times: number): number {
+  let start: number = new Date().getTime();
+  let a: number = 1;
+  let b: number = 1;
+  let c: number = 1;
+
+  for (let i: number = 0; i < times; i++) {
+    a = a * Math.random() + b * Math.random() + c * Math.random();
+    b = a * Math.random() + b * Math.random() + c * Math.random();
+    c = a * Math.random() + b * Math.random() + c * Math.random();
+  }
+  let end: number = new Date().getTime();
+  return end - start;
 }

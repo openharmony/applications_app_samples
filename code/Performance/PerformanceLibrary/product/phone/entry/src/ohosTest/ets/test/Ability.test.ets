@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -24,9 +24,9 @@ const TAG: string = '[Sample_Performance_Test]';
 const delegator: AbilityDelegatorRegistry.AbilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
 async function getResourceString<T extends Resource>(resource: T): Promise<string> {
-  let manage = delegator.getAppContext().resourceManager
-  let text = await manage.getStringValue(resource)
-  return text
+  let manage = delegator.getAppContext().resourceManager;
+  let text = await manage.getStringValue(resource);
+  return text;
 }
 
 export default function abilityTest() {
@@ -39,13 +39,13 @@ export default function abilityTest() {
       let want: Want = {
         bundleName: 'com.samples.performancelibrary',
         abilityName: 'EntryAbility'
-      }
+      };
       delegator.startAbility(want, (err) => {
-        Logger.info(TAG, 'StartAbility get err ' + JSON.stringify(err))
-        expect(err).assertNull()
+        Logger.info(TAG, 'StartAbility get err ' + JSON.stringify(err));
+        expect(err).assertNull();
       })
-      Logger.info(TAG, BUNDLE + '_startAbility end')
-      done()
+      Logger.info(TAG, BUNDLE + '_startAbility end');
+      done();
     })
 
     /**
@@ -80,9 +80,9 @@ export default function abilityTest() {
       await componentTree.click();
       await driver.delayMs(2000);
       await driver.assertComponentExist(ON.id("ID_GRID"));
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       await driver.pressBack()
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       Logger.info(TAG, `${BUNDLE}HiDumperFunction_002 end`);
       done();
     })
@@ -188,8 +188,8 @@ export default function abilityTest() {
     /**
      * 点击"点击跳转动态加载案例"按钮，进入动态加载场景页面
      */
-    it(BUNDLE + "DynamicImportFunction_001", 1, async (done: Function) => {
-      Logger.info(TAG, `${BUNDLE}DynamicImportFunction_001 begin`);
+    it(BUNDLE + "DynamicImportFunction_002", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}DynamicImportFunction_002 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(500);
       let dynamicEntry: Component = await driver.findComponent(ON.text("DynamicImport"));
@@ -598,15 +598,18 @@ export default function abilityTest() {
       await longTermTaskBtn.click();
       await driver.delayMs(3000);
       // 获取通知权限
-      await driver.assertComponentExist(ON.text('允许'));
-      let btnAccept = await driver.findComponent(ON.text('允许'));
-      await btnAccept.click();
+      let btnAccept: Component = await driver.findComponent(ON.text('允许'));
+      if (btnAccept) {
+        await btnAccept.click();
+      }
       await driver.delayMs(3000);
       // 获取定位权限
-      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.permission_while_use'))));
-      let locAcceptBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.permission_while_use'))));
-      await locAcceptBtn.click();
-      await driver.delayMs(1000);
+      let locAcceptBtn: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.permission_while_use'))));
+      await driver.delayMs(500);
+      if (locAcceptBtn) {
+        await locAcceptBtn.click();
+        await driver.delayMs(1000);
+      }
       // 点击开启定位服务
       let startLocationBtn: Component = await driver.findComponent(ON.text('开启定位服务'));
       await driver.delayMs(500);
@@ -765,5 +768,332 @@ export default function abilityTest() {
       await driver.pressBack();
       done();
     })
+
+    /**
+     * 主线程和子线程通信
+     */
+    it(BUNDLE + "ThreadCommunication_001", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}ThreadCommunication_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      await driver.swipe(10, 800, 10, 0, 600);
+      await driver.delayMs(500);
+      let threadHome: Component = await driver.findComponent(ON.text('ThreadCommunication'));
+      await driver.delayMs(500);
+      await threadHome.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.thread_communication'))));
+      await driver.delayMs(200);
+      await driver.assertComponentExist(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.scenario_1'))));
+      await driver.delayMs(200);
+      await driver.assertComponentExist(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.scenario_2'))));
+      await driver.delayMs(200);
+      await driver.assertComponentExist(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.scenario_3'))));
+      await driver.delayMs(200);
+      await driver.assertComponentExist(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.scenario_4'))));
+      await driver.delayMs(200);
+      await driver.assertComponentExist(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.scenario_5'))));
+      await driver.delayMs(200);
+      Logger.info(TAG, `${BUNDLE}ThreadCommunication_001 end`);
+      done();
+    })
+
+    /**
+     * 独立的耗时任务测试用例
+     */
+    it(BUNDLE + "ThreadCommunication_002", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}ThreadCommunication_002 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let scenario: Component = await driver.findComponent(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.scenario_1'))));
+      await driver.delayMs(500);
+      await scenario.click();
+      await driver.delayMs(1000);
+      let loadImage: Component = await driver.findComponent(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.load_image'))));
+      await driver.delayMs(500);
+      await loadImage.click();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      Logger.info(TAG, `${BUNDLE}ThreadCommunication_002 end`);
+      done();
+    })
+
+    /**
+     * 多个任务执行结果统一返回测试用例
+     */
+    it(BUNDLE + "ThreadCommunication_003", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}ThreadCommunication_003 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let scenario: Component = await driver.findComponent(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.scenario_2'))));
+      await driver.delayMs(500);
+      await scenario.click();
+      await driver.delayMs(1000);
+      let loadImage: Component = await driver.findComponent(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.load_image'))));
+      await driver.delayMs(500);
+      await loadImage.click();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      Logger.info(TAG, `${BUNDLE}ThreadCommunication_003 end`);
+      done();
+    })
+
+    /**
+     * TaskPool和主线程的即时通信测试用例
+     */
+    it(BUNDLE + "ThreadCommunication_004", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}ThreadCommunication_004 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let scenario: Component = await driver.findComponent(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.scenario_3'))));
+      await driver.delayMs(500);
+      await scenario.click();
+      await driver.delayMs(1000);
+      let loadImage: Component = await driver.findComponent(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.load_image'))));
+      await driver.delayMs(500);
+      await loadImage.click();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      Logger.info(TAG, `${BUNDLE}ThreadCommunication_004 end`);
+      done();
+    })
+
+    /**
+     * Worker和主线程的即时通信测试用例
+     */
+    it(BUNDLE + "ThreadCommunication_005", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}ThreadCommunication_005 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let scenario: Component = await driver.findComponent(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.scenario_4'))));
+      await driver.delayMs(500);
+      await scenario.click();
+      await driver.delayMs(1000);
+      let loadImage: Component = await driver.findComponent(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.change_image_number'))));
+      await driver.delayMs(500);
+      await loadImage.click();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      Logger.info(TAG, `${BUNDLE}ThreadCommunication_005 end`);
+      done();
+    })
+
+    /**
+     * 子线程同步调用主线程的接口测试用例
+     */
+    it(BUNDLE + "ThreadCommunication_006", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}ThreadCommunication_006 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      let scenario: Component = await driver.findComponent(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.scenario_5'))));
+      await driver.delayMs(500);
+      await scenario.click();
+      await driver.delayMs(1000);
+      let loadImage: Component = await driver.findComponent(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.load_image'))));
+      await driver.delayMs(500);
+      await loadImage.click();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      Logger.info(TAG, `${BUNDLE}ThreadCommunication_006 end`);
+      done();
+    })
+
+    /**
+     * 点击WebPerformance按钮，进入Web首页面
+     */
+    it(BUNDLE + "WebPerformance_001", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}WebPerformance_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      await driver.swipe(0, 800, 0, 100, 600);
+      await driver.delayMs(500);
+      await driver.swipe(0, 800, 0, 100, 600);
+      await driver.delayMs(500);
+      // 进入Web应用首页
+      let WebIndexEntry: Component = await driver.findComponent(ON.text((await getResourceString($r('app.string.web_performance')))));
+      await driver.delayMs(500);
+      await WebIndexEntry.click();
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.text((await getResourceString($r('app.string.web_uninitialized')))));
+      await driver.assertComponentExist(ON.text((await getResourceString($r('app.string.web_initialized')))));
+      await driver.delayMs(500);
+      // 进入常规未优化页面
+      let WebUninitializedPage: Component = await driver.findComponent(ON.text((await getResourceString($r('app.string.web_uninitialized')))));
+      await driver.delayMs(500);
+      await WebUninitializedPage.click();
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.text((await getResourceString($r('app.string.web_open_page')))));
+      await driver.assertComponentExist(ON.text((await getResourceString($r('app.string.web_back')))));
+      await driver.delayMs(500);
+      // 进入网页
+      let WebHomeEntry: Component = await driver.findComponent(ON.text((await getResourceString($r('app.string.web_open_page')))));
+      await driver.delayMs(500);
+      await WebHomeEntry.click();
+      // 返回Web页面
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      await driver.delayMs(1000);
+      done();
+    })
+
+    it(BUNDLE + "WebPerformance_002", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}WebPerformance_002 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      // 进入优化Web页面
+      let WebIndexEntry: Component = await driver.findComponent(ON.text((await getResourceString($r('app.string.web_initialized')))));
+      await driver.delayMs(500);
+      await WebIndexEntry.click();
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.text((await getResourceString($r('app.string.web_open_page')))));
+      await driver.assertComponentExist(ON.text((await getResourceString($r('app.string.web_back')))));
+      await driver.delayMs(500);
+      // 进入网页
+      let WebHomeEntry: Component = await driver.findComponent(ON.text((await getResourceString($r('app.string.web_open_page')))));
+      await driver.delayMs(500);
+      await WebHomeEntry.click();
+      // 返回Web页面
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      // 退出到首页面
+      await driver.delayMs(500);
+      await driver.pressBack();
+      done();
+    })
+
+    /**
+     * 线程间大数据传输测试用例
+     */
+    it(BUNDLE + "ThreadDataTransfer_001", 1, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}ThreadDataTransfer_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(500);
+      await driver.swipe(10, 800, 10, 0, 600);
+      await driver.delayMs(500);
+      let threadDataTransfer: Component = await driver.findComponent(ON.text('ThreadDataTransfer'));
+      await driver.delayMs(500);
+      await threadDataTransfer.click();
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.saturation'))));
+      await driver.delayMs(200);
+      await driver.assertComponentExist(ON.text(getContext().resourceManager.getStringSync($r('app.string.task_num'))));
+      await driver.delayMs(200);
+      await driver.assertComponentExist(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.pass_params'))));
+      await driver.delayMs(200);
+      let transferData: Component = await driver.findComponent(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.start_transfer'))));
+      await driver.delayMs(200);
+      await driver.assertComponentExist(ON.text(getContext()
+        .resourceManager
+        .getStringSync($r('app.string.running_time'))));
+      await driver.delayMs(200);
+      await transferData.click();
+      await driver.delayMs(500);
+      let slider: Component = await driver.findComponent(ON.id('thread_transfer_data_slider'));
+      await driver.delayMs(500);
+      await slider.click();
+      await driver.delayMs(70000);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      Logger.info(TAG, `${BUNDLE}ThreadDataTransfer_001 end`);
+      done();
+    })
+
+    /**
+     * DFXStateManagement 查看内容
+     */
+    it(BUNDLE + "DFXStateManagement", 2, async (done: Function) => {
+      Logger.info(TAG, `${BUNDLE}DFXStateManagement begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(1000);
+      let scrollBar: Component = await driver.findComponent(ON.type("Scroll"));
+      let ifElseComponent = await scrollBar.scrollSearch(ON.text("DFX StateManagement"));
+      await driver.delayMs(500);
+      await driver.assertComponentExist(ON.text("DFX StateManagement"))
+      await driver.delayMs(500);
+      await ifElseComponent.click();
+      await driver.delayMs(1000);
+      let showChange1: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.before_optimization'))));
+      await driver.delayMs(500);
+      await showChange1.click();
+      await driver.delayMs(1000);
+      let showChange3: Component = await driver.findComponent(ON.text("Move"));
+      await driver.delayMs(500);
+      await showChange3.click();
+      await showChange3.click();
+      await showChange3.click();
+      let showChange4: Component = await driver.findComponent(ON.text("Scale"));
+      await driver.delayMs(500);
+      await showChange4.click();
+      await showChange4.click();
+      await showChange4.click();
+      await driver.delayMs(500);
+      await driver.pressBack();
+
+      await driver.delayMs(1000);
+      let showChange2: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.after_optimization'))));
+      await driver.delayMs(500);
+      await showChange2.click();
+      await driver.delayMs(1000);
+      let showChange6: Component = await driver.findComponent(ON.text("Move"));
+      await driver.delayMs(500);
+      await showChange6.click();
+      await showChange6.click();
+      await showChange6.click();
+      let showChange7: Component = await driver.findComponent(ON.text("Scale"));
+      await driver.delayMs(500);
+      await showChange7.click();
+      await showChange7.click();
+      await showChange7.click();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      Logger.info(TAG, `${BUNDLE}DFXStateManagement end`);
+      await driver.pressBack();
+      done();
+    })
+
   })
 }

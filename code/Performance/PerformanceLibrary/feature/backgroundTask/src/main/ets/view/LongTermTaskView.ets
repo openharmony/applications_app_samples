@@ -30,24 +30,31 @@ export struct LongTermTaskView {
 
   aboutToAppear() {
     notificationManager.requestEnableNotification().then(() => {
-      console.info(`[EntryAbility] requestEnableNotification success`);
+      console.info(`requestEnableNotification success`);
       let atManager = abilityAccessCtrl.createAtManager();
       try {
-        atManager.requestPermissionsFromUser(getContext(this), ['ohos.permission.INTERNET',
-          'ohos.permission.LOCATION',
-          'ohos.permission.LOCATION_IN_BACKGROUND',
-          'ohos.permission.APPROXIMATELY_LOCATION'])
+        // 定位需要先单独申请APPROXIMATELY_LOCATION权限
+        atManager.requestPermissionsFromUser(getContext(this), ['ohos.permission.APPROXIMATELY_LOCATION'])
           .then((data) => {
-            console.info(`[EntryAbility], data: ${JSON.stringify(data)}`);
+            console.info(`data: ${JSON.stringify(data)}`);
+            atManager.requestPermissionsFromUser(getContext(this), ['ohos.permission.INTERNET',
+              'ohos.permission.LOCATION',
+              'ohos.permission.LOCATION_IN_BACKGROUND'])
+              .then((data) => {
+                console.info(`data: ${JSON.stringify(data)}`);
+              })
+              .catch((err: BusinessError) => {
+                console.info(`err: ${JSON.stringify(err)}`);
+              })
           })
           .catch((err: BusinessError) => {
-            console.info(`[EntryAbility], err: ${JSON.stringify(err)}`);
+            console.info(`err: ${JSON.stringify(err)}`);
           })
       } catch (err) {
-        console.info(`[EntryAbility], catch err->${JSON.stringify(err)}`);
+        console.info(`catch err->${JSON.stringify(err)}`);
       }
     }).catch((err: BusinessError) => {
-      console.error(`[EntryAbility] requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
+      console.error(`requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
     });
   }
 
