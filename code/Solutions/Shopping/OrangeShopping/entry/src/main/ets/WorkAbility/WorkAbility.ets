@@ -35,12 +35,11 @@ export default class WorkAbility extends WorkSchedulerExtensionAbility {
 
   onWorkStop(workInfo: workScheduler.WorkInfo): void {
     logger.info(TAG, `onWorkStop ${JSON.stringify(workInfo)}`);
-    notificationUtil.cancelNotificationById(1);
   }
 
   async publishNotification(parameters: Object): Promise<void> {
     let parametersObject: ParametersObject = JSON.parse(parameters.toString());
-    logger.info(TAG, `publishNotification parametersObject= ${parametersObject}`);
+    logger.info(TAG, `publishNotification parametersObject= ${JSON.stringify(parametersObject)}`);
     let basicContent: notification.NotificationBasicContent = {
       title: parametersObject.title,
       text: parametersObject.title
@@ -55,9 +54,12 @@ export default class WorkAbility extends WorkSchedulerExtensionAbility {
         wantAgent: await wantAgentUtil.createWantAgentForStartAbility(BUNDLE_NAME, ABILITY_NAME)
       }
     ];
+    logger.info(TAG, `publishNotification actionButtons= ${JSON.stringify(actionButtons)}`);
     try {
       let notificationContent = notificationContentUtil.initBasicNotificationContent(basicContent);
+      logger.info(TAG, `publishNotification notificationContent= ${JSON.stringify(notificationContent)}`);
       let notificationRequest = notificationRequestUtil.initButtonNotificationRequest(notificationContent, actionButtons);
+      logger.info(TAG, `publishNotification notificationRequest= ${JSON.stringify(notificationRequest)}`);
       notificationUtil.publishNotification(notificationRequest, NOTIFICATION_ID);
     } catch (error) {
       logger.info(TAG, `publish notification error ${JSON.stringify(error)}`);

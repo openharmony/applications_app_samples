@@ -270,7 +270,7 @@ struct DialogLayoutComponent {
   private messages: string = 'It is a shared message';
 
   convertResourceToString(resource: Resource): string | Resource {
-    return this.contextCaller ? this.contextCaller.resourceManager.getStringSync(resource.id) : ''
+    return this.contextCaller ? this.contextCaller.resourceManager.getStringSync(resource) : '';
   }
 
   build() {

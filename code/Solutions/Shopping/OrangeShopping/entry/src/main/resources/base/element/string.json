@@ -19,6 +19,30 @@
     {
       "name": "WorkSchedulerExtensionAbility_desc",
       "value": "system schedules the task execution time"
+    },
+    {
+      "name": "camera_permission",
+      "value": "Allow app to use camera"
+    },
+    {
+      "name": "location_permission",
+      "value": "Allow app to obtain device location information"
+    },
+    {
+      "name": "background_permission",
+      "value": "Allow app to obtain device location information while running in the background"
+    },
+    {
+      "name": "read_permission",
+      "value": "Allow app to read media file information from external storage of users"
+    },
+    {
+      "name": "write_permission",
+      "value": "Allow app to read and write media file information from external storage of users"
+    },
+    {
+      "name": "media_location_permission",
+      "value": "Allow app to access geographic location information in user media files"
     }
   ]
 }
