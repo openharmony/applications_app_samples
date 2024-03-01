@@ -2316,7 +2316,7 @@
     },
     {
       "name": "text_clock_timeformattwo",
-      "value": "YY:MM:dd"
+      "value": "yy:MM:dd"
     },
     {
       "name": "text_clock_timeformatthree",

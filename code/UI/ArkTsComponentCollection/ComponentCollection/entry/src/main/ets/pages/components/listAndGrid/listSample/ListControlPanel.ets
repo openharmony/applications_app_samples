@@ -186,10 +186,11 @@ export struct PropertiesEdgeEffectControlPanel {
         selects : getStringArrayData(LIST_EDGE_EFFECT_SELECT_DATA),
         callback : (index)=>{
           switch (index) {
-            case 1:
+            case 0:
               this.edgeEffect = EdgeEffect.Spring;
               break;
-            case 2:
+            case 1:
+
               this.edgeEffect = EdgeEffect.Fade;
               break;
             default:
