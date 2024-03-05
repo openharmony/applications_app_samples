@@ -19,6 +19,7 @@ import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 import Logger from '../../util/Logger';
 import EntryAbility from '../../../../main/ets/entryability/EntryAbility';
 import Want from '@ohos.app.ability.Want';
+import UIAbility from '@ohos.app.ability.UIAbility';
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const delegator = abilityDelegatorRegistry.getAbilityDelegator()
 const TAG = '[basicExampleTest]'
@@ -44,7 +45,7 @@ export default function basicExampleTest() {
       await delegator.startAbility(want);
       await sleep(1000);
       //check top display ability
-      await delegator.getCurrentTopAbility().then((ability: EntryAbility)=>{
+      await delegator.getCurrentTopAbility().then((ability: UIAbility)=>{
         console.info("get top ability");
         expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
       })

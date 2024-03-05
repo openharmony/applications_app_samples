@@ -16,9 +16,10 @@
 import { describe, it, expect, TestType } from '@ohos/hypium';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import Want from '@ohos.app.ability.Want';
-const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
+import UIAbility from '@ohos.app.ability.UIAbility';
 import EntryAbility from '../../../../main/ets/entryability/EntryAbility'
 const delegator = abilityDelegatorRegistry.getAbilityDelegator()
+const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 function sleep(time: number) {
   return new Promise<void>((resolve:Function) => setTimeout(resolve, time));
 }
@@ -41,12 +42,13 @@ export default function customExampleTest() {
       await delegator.startAbility(want)
       await sleep(1000);
       // check top display ability
-      await delegator.getCurrentTopAbility().then((ability: EntryAbility)=>{
+      await delegator.getCurrentTopAbility().then((ability: UIAbility)=>{
         console.info("get top ability");
         expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
-        let result = ability.customFun();
+        let testAbility: EntryAbility = ability as EntryAbility;
+        let result: string = testAbility.customFun();
         // 验证自定义方法返回值
-        expect(result).assertEqual("custom")
+        expect(result).assertEqual("custom");
       })
       done();
     })
