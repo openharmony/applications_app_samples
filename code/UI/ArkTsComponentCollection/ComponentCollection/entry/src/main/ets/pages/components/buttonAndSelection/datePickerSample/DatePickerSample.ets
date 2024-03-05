@@ -50,7 +50,7 @@ struct DatePickerSample {
           .lunar(this.isLunar)
           .onChange((date: DatePickerResult) => {
             // Get date from value
-            if (date.year && date.month && date.day) {
+            if (date.year !== undefined && date.month !== undefined && date.day !== undefined) {
               let month: string = `${date.month + 1}`;
               let day: string = `${date.day}`;
               if (date.month < 9) {

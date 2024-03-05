@@ -60,7 +60,7 @@ struct TextAreaSample {
             .height(80)
             .fontSize(20)
             .enableKeyboardOnFocus(false)
-            .maxLength(100)
+            .maxLength(this.isLimit ? 100 : undefined)
             .showCounter(this.isLimit, { thresholdPercentage: 1, highlightBorder: true })
             .onChange(() => {
               ShowToast.shortToast('The input have changed.')
