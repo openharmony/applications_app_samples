@@ -1,2 +1,0 @@
-pkg_modules/.ohpm/@ohos+hypium@1.0.6/pkg_modules/@ohos/hypium:pkg_modules/.ohpm/@ohos+hypium@1.0.6/pkg_modules/@ohos/hypium/index
-pkg_modules/@ohos/hypium:pkg_modules/.ohpm/@ohos+hypium@1.0.6/pkg_modules/@ohos/hypium
