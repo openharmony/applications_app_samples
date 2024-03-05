@@ -35,7 +35,6 @@ export default class WorkAbility extends WorkSchedulerExtensionAbility {
 
   onWorkStop(workInfo: workScheduler.WorkInfo): void {
     logger.info(TAG, `onWorkStop ${JSON.stringify(workInfo)}`);
-    notificationUtil.cancelNotificationById(1);
   }
 
   async publishNotification(parameters: Object): Promise<void> {
