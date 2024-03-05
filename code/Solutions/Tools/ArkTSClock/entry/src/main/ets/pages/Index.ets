@@ -204,4 +204,8 @@ struct Clock {
   onPageHide() {
     clearInterval(this.intervalId)
   }
+
+  aboutToDisappear(){
+    clearInterval(this.intervalId)
+  }
 }

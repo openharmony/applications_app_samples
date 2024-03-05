@@ -25,24 +25,32 @@ export default {
     second: 0
   },
   onShow() {
-    this.updateTime();
-    this.timer = setInterval(() => {
-      this.updateTime()
-    }, 1000)
+    try {
+      this.updateTime();
+      this.timer = setInterval(() => {
+        this.updateTime()
+      }, 1000)
+    } catch (err) {
+      logger.info(TAG, "setInterval is error : " + err)
+    }
   },
   updateTime: function () {
-    let nowTime = new Date()
-    this.hour = nowTime.getHours()
-    this.minute = nowTime.getMinutes()
-    this.second = nowTime.getSeconds()
-    if (this.hour < 10) {
-      this.hour = '0' + this.hour
-    }
-    if (this.minute < 10) {
-      this.minute = '0' + this.minute
-    }
-    if (this.second < 10) {
-      this.second = '0' + this.second
+    try {
+      let nowTime = new Date()
+      this.hour = nowTime.getHours()
+      this.minute = nowTime.getMinutes()
+      this.second = nowTime.getSeconds()
+      if (this.hour < 10) {
+        this.hour = '0' + this.hour
+      }
+      if (this.minute < 10) {
+        this.minute = '0' + this.minute
+      }
+      if (this.second < 10) {
+        this.second = '0' + this.second
+      }
+    } catch (err) {
+      logger.info(TAG, "updateTime is error : " + err)
     }
   },
   onHide() {
