@@ -16,29 +16,30 @@
 @import '../../../../common/css/common.css';
 
 .container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  min-height: 100%;
-  background-color: #F1F3F5;
-  overflow: scroll;
-  font-size: 20vp;
-  padding-bottom: 110vp;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    background-color: #F1F3F5;
+    overflow: scroll;
+    font-size: 20vp;
+    padding-bottom: 110vp;
 }
 
 .input-box {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding-left: 12vp;
-  padding-right: 12vp;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-left: 12vp;
+    padding-right: 12vp;
 }
 
 .space-between {
-  justify-content: space-between;
+    justify-content: space-between;
 }
 
 .input-type-input {
+    height: 36vp;
     margin-bottom: 15vp;
     font-size: 16vp;
 }
