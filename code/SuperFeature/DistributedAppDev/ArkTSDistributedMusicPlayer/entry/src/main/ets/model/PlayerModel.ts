@@ -75,7 +75,7 @@ class PlayerModel {
   release() {
     if (typeof (this.player) !== 'undefined') {
       Logger.info(TAG, 'player.release begin')
-      this.player.release()
+      this.player?.release()
       Logger.info(TAG, 'player.release end')
       this.playlist.audioFiles = []
       this.player = undefined
@@ -154,7 +154,7 @@ class PlayerModel {
   }
 
   preLoad(index, callback) {
-    if (this.player === undefined && this.player.state === undefined) {
+    if (this.player === undefined || this.player?.state === undefined) {
       Logger.error(TAG, 'preLoad failed player state is undefined')
       return
     }
@@ -174,23 +174,25 @@ class PlayerModel {
         return
       }
       Logger.info(TAG, `preLoad ${source} begin`)
-      Logger.info(TAG, `state= ${this.player.state}`)
+      Logger.info(TAG, `state= ${this.player?.state}`)
 
-      if (source === this.player.src && this.player.state !== 'idle') {
+      if (source === this.player?.src && this.player?.state !== 'idle') {
         Logger.info(TAG, 'preLoad finished. src not changed')
         callback()
       } else {
         this.notifyPlayingStatus(false)
         this.cancelTimer()
         Logger.info(TAG, 'player.reset')
-        this.player.reset()
-        Logger.info(TAG, `player.reset done, state= ${this.player.state}`)
-        this.player.on('dataLoad', () => {
-          Logger.info(TAG, `dataLoad callback, state= ${this.player.state}`)
+        this.player?.reset()
+        Logger.info(TAG, `player.reset done, state= ${this.player?.state}`)
+        this.player?.on('dataLoad', () => {
+          Logger.info(TAG, `dataLoad callback, state= ${this.player?.state}`)
           callback()
         })
         Logger.info(TAG, `player.src= ${source}`)
-        this.player.src = source
+        if (this.player !== undefined || this.player !== null) {
+          this.player.src = source
+        }
       }
       Logger.info(TAG, `preLoad ${source} end`)
     })
@@ -253,12 +255,14 @@ class PlayerModel {
   }
 
   seek(ms) {
-    this.currentTimeMs = ms
-    if (this.isPlaying) {
-      Logger.info(TAG, `player.seek= ${ms}`)
-      this.player?.seek(ms)
-    } else {
-      Logger.info(TAG, `stash seekTo= ${ms}`)
+    if (this.player !== undefined || this.player !== null) {
+      this.currentTimeMs = ms
+      if (this.isPlaying) {
+        Logger.info(TAG, `player.seek= ${ms}`)
+        this.player?.seek(ms)
+      } else {
+        Logger.info(TAG, `stash seekTo= ${ms}`)
+      }
     }
   }
 
