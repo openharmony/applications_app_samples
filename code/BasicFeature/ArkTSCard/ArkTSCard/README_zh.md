@@ -9,12 +9,16 @@
 |DeepLink页面|锁屏页面|解锁页面|对应Ability页面|
 |-------|-------|-------|-------|
 |![FormDeepLink](screenshots/device/FormDeepLink.jpeg)|![lock](screenshots/device/lock.jpeg)|![unlock](screenshots/device/unlock.jpeg)|![music](screenshots/device/music.jpeg)|
+|使用方自定义使用页面|6x4服务卡片页面|桌面6x4卡片|对应Ability页面|
+|![users](screenshots/device/users.png)|![addCard](screenshots/device/addCard.png)|![desktopCard](screenshots/device/desktopCard.png)|![music](screenshots/device/music2.png)|
 
 使用说明
 1. 执行该工程前，需安装[libs](./libs)路径下的ArkTSUser.hap， 在[libs](./libs)目录下执行hdc install -r ArkTSUser.hap，
 2. 执行工程 首页存在“DeepLink”、“锁屏卡片”两个按钮。
-3. 点击首页“DeepLink”按钮跳转到FormDeepLink页面，点击任意卡片(静态卡片/动态卡片)可跳转到对应ability。
-4. 点击首页“锁屏卡片”按钮跳转到锁屏页面，在锁屏页面点击任意卡片(静态卡片/动态卡片/ 1x1样式 / 1x2样式)跳转到解锁页面，点击解锁按钮跳转回锁屏页面, 再由锁屏页面自动跳转至对应ability。
+3. 点击回退按键到上一级使用方自定义样式调用6x4卡片页面。
+4. 点击首页“DeepLink”按钮跳转到FormDeepLink页面，点击任意卡片(静态卡片/动态卡片)可跳转到对应ability。
+5. 点击首页“锁屏卡片”按钮跳转到锁屏页面，在锁屏页面点击任意卡片(静态卡片/动态卡片/ 1x1样式 / 1x2样式)跳转到解锁页面，点击解锁按钮跳转回锁屏页面, 再由锁屏页面自动跳转至对应ability。
+6. 回退到手机主页面长按app选择服务卡片，可以添加提供方提供的所有卡片。
 
 ### 工程目录
 ```
@@ -30,8 +34,9 @@ entry/src/main/ets/
 |   |---pages
 |   |	|---DynamicMusicCard.ets			// 动态音乐卡片
 |   |	|---DynamicMusicLockCard.ets		// 动态音乐锁屏卡片1*1
-|   |	|---DynamicMusicLockLongCard.ets	// 动态音乐锁屏卡片1*2
-│          
+|   |	|---DynamicMusicLockLongCard.ets       // 动态音乐锁屏卡片1*2
+|   |	|---DynamicMusicLockUltraLongCard.ets  // 动态音乐锁屏卡片6*4
+│
 |---dynamicweathercard
 |   |---pages
 |   |	|---DynamicWeatherCard.ets 			// 动态天气卡片				
@@ -45,9 +50,10 @@ entry/src/main/ets/
 │      
 |---pages
 |   |---Book.ets							// 书籍页面
+|   |---Index.ets                                                       // 使用方自定义页面
 |   |---Music.ets							// 音乐页面
 |   |---Weather.ets							// 天气页面
-│      
+│
 |---secondability
 |   |--- SecondAbility.ts					
 │      
@@ -61,6 +67,7 @@ entry/src/main/ets/
 |	|	|---Index.ets
 |   |	|---StaticMusicLockCard.ets			// 静态音乐锁屏卡片1*1
 |   |	|---StaticMusicLockLongCard.ets		// 静态音乐锁屏卡片1*2
+|   |	|---StaticMusicLockUltraLongCard.ets    // 静态音乐锁屏卡片6*4
 │          
 |---staticweathercard							
 |   |---pages
