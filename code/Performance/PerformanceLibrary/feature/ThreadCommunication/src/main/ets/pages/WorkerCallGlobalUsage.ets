@@ -112,6 +112,7 @@ export struct WorkerCallGlobalUsage {
   initWorker() {
     if (this.workerInstance !== undefined) {
       let picData: PicData = new PicData();
+      picData.iconItemSourceList = this.iconItemSourceList;
       // 在ThreadWorker实例上注册registerObj
       this.workerInstance.registerGlobalCallObject("picData", picData);
     }
