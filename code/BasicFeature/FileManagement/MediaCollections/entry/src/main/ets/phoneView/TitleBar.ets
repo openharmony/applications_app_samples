@@ -41,6 +41,10 @@ export struct TitleBar {
     customStyle: true
   })
 
+  aboutToDisappear() {
+    clearInterval(this.timer);
+  }
+
   build() {
     Row() {
       Button({ stateEffect: false }) {
@@ -74,17 +78,15 @@ export struct TitleBar {
             } else if (playMode === TITLE_FILE) {
               this.myMedia.fdSrcInit(this.httpUrl.substr(index + 1), surfaceId)
             }
-            if (this.timer !== undefined) {
-              clearInterval(this.timer)
-            }
+            clearInterval(this.timer);
+            this.LoadingDialog.open();
             this.timer = setInterval(() => {
-              this.currentTime = this.myMedia.getCurrentTime()
-              if (this.currentTime < 1) {
-                this.LoadingDialog.open()
-              } else {
-                this.LoadingDialog.close()
+              this.currentTime = this.myMedia.getCurrentTime();
+              if (this.currentTime > 0) {
+                this.LoadingDialog.close();
+                clearInterval(this.timer);
               }
-            }, 1000)
+            }, 1000);
           })
       }
       .width('85%')
