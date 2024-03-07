@@ -96,7 +96,10 @@ export struct AddKeyValueView {
           };
 
           let eventData: emitter.EventData = {
-            data: this.keyValuePair
+            data: {
+              'key': this.keyValuePair.key,
+              'value': this.keyValuePair.value
+            }
           };
 
           emitter.emit(event, eventData);

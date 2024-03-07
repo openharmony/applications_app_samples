@@ -173,7 +173,12 @@ export struct AddInformationView {
           };
 
           let eventData: emitter.EventData = {
-            data: this.information
+            data: {
+              'name': this.information.name,
+              'age': this.information.age,
+              'phone': this.information.phone,
+              'clickAble': this.information.clickAble
+            }
           };
 
           emitter.emit(event, eventData);
