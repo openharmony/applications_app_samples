@@ -176,8 +176,55 @@ napi_value NativeImageAdaptor::NapiOnProduceBuffer(napi_env env, napi_callback_i
     return nullptr;
 }
 
+void NativeImageAdaptor::SetConfigAndGetValue()
+{
+    int32_t code = SET_FORMAT;
+    int32_t value = NATIVEBUFFER_PIXEL_FMT_CLUT1;
+    int32_t ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, value);
+    if (ret != 0) {
+        LOGE("SetConfigAndGetValue SET_FORMAT fail");
+    }
+    value = 0;
+    code = GET_FORMAT;
+    ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, &value);
+    if (ret != 0 || value != NATIVEBUFFER_PIXEL_FMT_CLUT1) {
+        LOGE("SetConfigAndGetValue GET_FORMAT fail");
+    }
+    code = SET_TRANSFORM;
+    value = NATIVEBUFFER_ROTATE_180;
+    ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, value);
+    if (ret != 0) {
+        LOGE("SetConfigAndGetValue SET_TRANSFORM fail");
+    }
+    code = GET_TRANSFORM;
+    value = 0;
+    ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, &value);
+    if (ret != 0 || value != NATIVEBUFFER_ROTATE_180) {
+        LOGE("SetConfigAndGetValue GET_TRANSFORM fail");
+    }
+    code = SET_COLOR_GAMUT;
+    value = NATIVEBUFFER_COLOR_GAMUT_STANDARD_BT709;
+    ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, value);
+    if (ret != 0) {
+        LOGE("SetConfigAndGetValue SET_COLOR_GAMUT fail");
+    }
+    code = GET_COLOR_GAMUT;
+    value = 0;
+    ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, &value);
+    if (ret != 0 || value != NATIVEBUFFER_COLOR_GAMUT_STANDARD_BT709) {
+        LOGE("SetConfigAndGetValue GET_COLOR_GAMUT fail");
+    }
+    code = SET_FORMAT;
+    OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, NATIVEBUFFER_PIXEL_FMT_RGBA_8888);
+    code = SET_TRANSFORM;
+    OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, NATIVEBUFFER_ROTATE_NONE);
+    code = SET_COLOR_GAMUT;
+    OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, NATIVEBUFFER_COLOR_GAMUT_SRGB);
+}
+
 void NativeImageAdaptor::ProduceBuffer(uint32_t value)
 {
+    SetConfigAndGetValue();
     NativeWindowBuffer *buffer = nullptr;
     int fenceFd = -1;
     int ret = OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow_, &buffer, &fenceFd);
