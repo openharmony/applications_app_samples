@@ -44,6 +44,7 @@ public:
     bool CheckEglExtension(const char *eglExtensions, const char *eglExtension);
     int32_t GetCount();
 private:
+    void SetConfigAndGetValue();
     OHNativeWindow *nativeWindow_;
     OH_NativeImage *image_;
     int32_t height_;
