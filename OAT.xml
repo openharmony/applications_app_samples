@@ -184,6 +184,18 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-http-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-notification-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-enter-animation-1.0.1.tgz" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/feature/detailPage/src/main/resources/rawfile/video_2.mp4" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/UI/ArkTsComponentCollection/ComponentCollection/entry/src/main/resources/base/media/video_test.mp4" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/feature/detailPage/src/main/resources/rawfile/video_1.mp4" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/feature/detailPage/src/main/resources/base/media/videos.mp4" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/UI/ArkTsComponentCollection/ComponentCollection/entry/src/main/resources/base/media/video_test.mp4" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/VideoPlay/entry/src/main/resources/rawfile/test1.mp4" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/VideoPlay/entry/src/main/resources/rawfile/test2.mp4" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic/entry/src/main/resources/base/media/HapticVideo.mp4" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/VideoShow/VideoComponent/src/main/resources/rawfile/video_3.mp4" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/feature/detailPage/src/main/resources/rawfile/video_4.mp4" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/BasicFeature/WindowManagement/WindowManage/WindowComponent/src/main/resources/rawfile/video.mp4" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/Project/ApplicationHap/MultiHap/videoFeature/src/main/resources/rawfile/movie.mp4" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/Performance/ArkRuntime/NBody/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/entry/src/main/ets/model/CalculateUtil.ts" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/Performance/ArkRuntime/NBody/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/entry/src/main/ets/model/NBody_ETS_6.ts" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/Performance/ArkRuntime/NBody/entry/build/default/cache/ohosTest/ohosTest@OhosTestCompileArkTS/esmodule/debug/entry/src/main/ets/model/NBody_ETS_6.ts" desc="二进制文件，无需添加License头"/>
@@ -206,6 +218,18 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-http-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-notification-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-enter-animation-1.0.1.tgz" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/feature/detailPage/src/main/resources/rawfile/video_2.mp4" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/UI/ArkTsComponentCollection/ComponentCollection/entry/src/main/resources/base/media/video_test.mp4" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/feature/detailPage/src/main/resources/rawfile/video_1.mp4" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/feature/detailPage/src/main/resources/base/media/videos.mp4" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/UI/ArkTsComponentCollection/ComponentCollection/entry/src/main/resources/base/media/video_test.mp4" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/VideoPlay/entry/src/main/resources/rawfile/test1.mp4" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/VideoPlay/entry/src/main/resources/rawfile/test2.mp4" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic/entry/src/main/resources/base/media/HapticVideo.mp4" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/VideoShow/VideoComponent/src/main/resources/rawfile/video_3.mp4" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/feature/detailPage/src/main/resources/rawfile/video_4.mp4" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/BasicFeature/WindowManagement/WindowManage/WindowComponent/src/main/resources/rawfile/video.mp4" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/Project/ApplicationHap/MultiHap/videoFeature/src/main/resources/rawfile/movie.mp4" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/Performance/ArkRuntime/NBody/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/entry/src/main/ets/model/CalculateUtil.ts" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/Performance/ArkRuntime/NBody/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/entry/src/main/ets/model/NBody_ETS_6.ts" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/Performance/ArkRuntime/NBody/entry/build/default/cache/ohosTest/ohosTest@OhosTestCompileArkTS/esmodule/debug/entry/src/main/ets/model/NBody_ETS_6.ts" desc="二进制文件，无需添加版权头"/>
