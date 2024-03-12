@@ -115,6 +115,10 @@
     {
       "name": "pick_photo_two",
       "value": "选择图片2"
+    },
+    {
+      "name": "PLEASE_INPUT_ASYNC_TEXT",
+      "value": "请输入异步保存的文本"
     }
   ]
 }

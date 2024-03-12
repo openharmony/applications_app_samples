@@ -115,6 +115,10 @@
     {
       "name": "pick_photo_two",
       "value": "pick photo 2"
+    },
+    {
+      "name": "PLEASE_INPUT_ASYNC_TEXT",
+      "value": "please enter the text to be saved asynchronously"
     }
   ]
 }

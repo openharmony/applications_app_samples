@@ -28,6 +28,7 @@ struct Home {
   @StorageLink('ability_isON') stoLink_ability_isON: boolean = true;
   @StorageLink('ContinueWork') inputTxt: string = '';
   @StorageLink('swiperIndex') swiperIndex: number = -1;
+  @StorageLink('testDate') testDate: string = '';
   private swiperController: SwiperController = new SwiperController();
   private context = getContext(this) as common.UIAbilityContext;
 
@@ -216,6 +217,25 @@ struct Home {
         .onClick(() => {
           router.pushUrl({ url: 'pages/ImgWall' })
         })
+
+
+        TextInput({ text: this.testDate,
+          placeholder: CommonConstants.PLEASE_INPUT_ASYNC_TEXT
+        })
+          .fontWeight(500)
+          .fontSize(30)
+          .textAlign(TextAlign.JUSTIFY)
+          .align(Alignment.Center)
+          .onChange((value: string) => {
+            this.testDate = value;
+            AppStorage.set('testDate', value);
+            Logger.info(TAG, 'this.testDate: ' + this.testDate);
+          })
+          .type(InputType.Normal)
+          .backgroundColor(Color.Transparent)
+          .width(336)
+          .height(64)
+
       }
       .width('100%')
 

@@ -26,6 +26,7 @@ import commonType from '@ohos.data.commonType';
 import Logger from '../utils/Logger';
 import { LooperUtil } from '../utils/LooperUtil';
 import CommonConstants from '../common/constants/CommonConstants';
+
 const TAG = 'testTag_ability: ';
 
 class SourceObject {
@@ -118,6 +119,8 @@ export default class EntryAbility extends UIAbility {
       let pageStack_isON = want?.parameters?.pageStack_isON; // 对端变化后的toggle：迁移页面栈的 isON 状态信息
       let sourceEnd_isON = want?.parameters?.sourceEnd_isON; // 对端变化后的toggle：迁移后源端退出的isON状态信息
       let image2Path = want?.parameters?.image2Path;
+      let testDate = want?.parameters?.testDate;
+
       AppStorage.setOrCreate<boolean>('isContinuation', isContinuation as boolean);
       AppStorage.setOrCreate<boolean>('isSelectImg', isSelectImg as boolean);
       AppStorage.setOrCreate<number>('swiperIndex', swiperIndex as number);
@@ -126,6 +129,7 @@ export default class EntryAbility extends UIAbility {
       AppStorage.setOrCreate<boolean>('pageStack_isON', pageStack_isON as boolean);
       AppStorage.setOrCreate<boolean>('sourceEnd_isON', sourceEnd_isON as boolean);
       AppStorage.setOrCreate<string>('image2Path', image2Path as string);
+      AppStorage.setOrCreate<string>('testDate', testDate as string);
 
       //显式调用页面恢复
       this.contentStorage = new LocalStorage();
@@ -164,9 +168,10 @@ export default class EntryAbility extends UIAbility {
       this.d_object['notesTitle'] = undefined;
       this.d_object['asset'] = undefined;
 
-      this.d_object.on('status', (sessionId: string, networkId: string, status: "online"|"offline"|"restored") => {
+      this.d_object.on('status', (sessionId: string, networkId: string, status: "online" | "offline" | "restored") => {
         if (status !== 'restored') {
           Logger.info(TAG, `status: ${status}`);
+          return;
         }
         Logger.info(TAG, ` status == restored`);
         let image2Path = AppStorage.get<string>('image2Path');
@@ -187,8 +192,6 @@ export default class EntryAbility extends UIAbility {
       await this.d_object.setSessionId(this.sessionId, (): void => {
         Logger.info(TAG, 'join session');
       });
-
-
     }
   }
 
@@ -219,7 +222,17 @@ export default class EntryAbility extends UIAbility {
     PersistentStorage.persistProp('sourceEnd_isON', true);
   }
 
-  onContinue(wantParam: Record<string, Object>) {
+  async setAsyncWant(wantParam: Record<string, Object>) {
+    Logger.info(TAG, 'setAsyncWant : onContinue setWant start');
+
+    let testDate: string = AppStorage.get<string>('testDate') as string;
+    wantParam['testDate'] = testDate;
+    Logger.info(TAG, `onContinue testDate ${testDate}`);
+
+    Logger.info(TAG, 'setAsyncWant : onContinue setWant end');
+  }
+
+  onContinue(wantParam: Record<string, Object>): Promise<AbilityConstant.OnContinueResult> {
     Logger.info(TAG, 'onContinue : wantParam.version,wantParam.targetDevice : ' + wantParam.version + wantParam.targetDevice);
 
     AppStorage.setOrCreate('isContinuation', true);
@@ -304,8 +317,9 @@ export default class EntryAbility extends UIAbility {
       wantParam[wantConstant.Params.SUPPORT_CONTINUE_SOURCE_EXIT_KEY])
     }
 
-
-    return AbilityConstant.OnContinueResult.AGREE;
+    return this.setAsyncWant(wantParam).then(() => {
+      return AbilityConstant.OnContinueResult.AGREE;
+    });
   }
 
   onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam) {
