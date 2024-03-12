@@ -33,7 +33,7 @@ export class ShareUtils {
   }
 
   convertResourceToString(resource: Resource) {
-    return this.context.resourceManager.getStringSync(resource.id)
+    return this.context.resourceManager.getStringSync(resource);
   }
 
   // 分享图片、链接

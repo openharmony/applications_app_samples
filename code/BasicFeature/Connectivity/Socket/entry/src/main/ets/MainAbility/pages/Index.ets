@@ -187,7 +187,6 @@ struct Index {
           action: () => {
             //设置为在线后，绑定本地的地址和端口，并向对方发送在线指令
             this.onlineState = true;
-            this.bindOption();
             udp.send({
               data: 'online',
               address: oppositeAddr
@@ -196,6 +195,7 @@ struct Index {
             }).catch(function (err) {
               Logger.info(TAG, `TAG,send : ${JSON.stringify(err)}`);
             })
+            this.bindOption();
           }
         },
         {
@@ -289,10 +289,9 @@ struct Index {
         .onClick(() => {
           let date = (new Date().getMonth() + 1) + '.' + new Date().getDate() + '-' + new Date().getHours() + ':' + new Date().getMinutes();
           let sendMessage = new ChatBox(true, this.message, date);
-          this.chats["chatsArray"][this.chats["chatsArray"].length] = sendMessage;
           if (this.message !== '' && this.loginState && this.onlineState) {
+            this.chats.pushData(sendMessage);
             //通过udp发送this.message文本
-            //udp.bind(localAddr)
             this.bindOption();
             udp.send({
               data: this.message,

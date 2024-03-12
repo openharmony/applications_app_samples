@@ -39,6 +39,7 @@
 }
 
 .input-type-input {
+    height: 36vp;
     margin-bottom: 15vp;
     font-size: 16vp;
 }

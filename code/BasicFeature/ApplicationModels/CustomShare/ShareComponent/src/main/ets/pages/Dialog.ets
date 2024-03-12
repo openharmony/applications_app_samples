@@ -148,7 +148,7 @@ export struct ButtonDialogBuilder {
   }
   onShareFriend = () => {
     // 拉起三方应用操作
-    Logger.info(TAG, `onShareChat:  ${JSON.stringify(this)}`)
+    Logger.info(TAG, `onShareChat`)
     this.shareUtils.startAbility(this.contextCaller, this.title, this.srcImage)
   }
   openDialog = () => {
@@ -270,7 +270,7 @@ struct DialogLayoutComponent {
   private messages: string = 'It is a shared message';
 
   convertResourceToString(resource: Resource): string | Resource {
-    return this.contextCaller ? this.contextCaller.resourceManager.getStringSync(resource.id) : ''
+    return this.contextCaller ? this.contextCaller.resourceManager.getStringSync(resource) : '';
   }
 
   build() {
