@@ -219,22 +219,30 @@ struct Home {
         })
 
 
-        TextInput({ text: this.testDate,
-          placeholder: CommonConstants.PLEASE_INPUT_ASYNC_TEXT
-        })
-          .fontWeight(500)
-          .fontSize(30)
-          .textAlign(TextAlign.JUSTIFY)
-          .align(Alignment.Center)
-          .onChange((value: string) => {
-            this.testDate = value;
-            AppStorage.set('testDate', value);
-            Logger.info(TAG, 'this.testDate: ' + this.testDate);
+        Column() {
+          TextInput({ text: this.testDate,
+            placeholder: CommonConstants.PLEASE_INPUT_ASYNC_TEXT
           })
-          .type(InputType.Normal)
-          .backgroundColor(Color.Transparent)
-          .width(336)
-          .height(64)
+            .fontWeight(500)
+            .fontSize(16)
+            .textAlign(TextAlign.JUSTIFY)
+            .align(Alignment.Center)
+            .onChange((value: string) => {
+              this.testDate = value;
+              AppStorage.set('testDate', value);
+              Logger.info(TAG, 'this.testDate: ' + this.testDate);
+            })
+            .type(InputType.Normal)
+            .backgroundColor(Color.Transparent)
+            .width(336)
+            .height(64)
+        }
+        .width(336)
+        .height(64)
+        .backgroundColor('#ffffff')
+        .borderRadius(24)
+        .alignItems(HorizontalAlign.Center)
+        .margin({ top: 16 })
 
       }
       .width('100%')
