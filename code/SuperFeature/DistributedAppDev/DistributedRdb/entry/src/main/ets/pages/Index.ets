@@ -32,13 +32,14 @@ import { TABLE_NAME, BUNDLE, ABILITY, SQL_CREATE_TABLE, COLUMNS } from '../model
 
 const TAG: string = 'Index'
 
-export interface statetype {
+export interface stateType {
   popupMenu: boolean,
   isDistributed: boolean,
   isStage: boolean,
   selectedIndex: number,
   syncState: string,
-  distributedDevice: string
+  distributedDevice: string,
+  opacityValue: number
 }
 @Entry
 @Component
@@ -49,13 +50,14 @@ struct Index {
   @State contacts: ContactDataSource = new ContactDataSource([])
   @State isMultiCheck: boolean = false
   @State isSelectedAll: boolean = false
-  @State state: statetype = {
+  @State state: stateType = {
     popupMenu: false,
     isDistributed: false,
     isStage: false,
     selectedIndex: 0,
     syncState: SyncState.ManualSync,
-    distributedDevice: ''
+    distributedDevice: '',
+    opacityValue: 1
   }
 
   async aboutToAppear() {
@@ -207,7 +209,8 @@ struct Index {
     }
   }
   handleRightBtn = () => {
-    this.state.popupMenu = !this.state.popupMenu
+    this.state.popupMenu = true
+    this.state.opacityValue = 1
   }
   syncData = () => {
     Logger.info(TAG, 'sync data')
