@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -222,17 +222,7 @@ export default class EntryAbility extends UIAbility {
     PersistentStorage.persistProp('sourceEnd_isON', true);
   }
 
-  async setAsyncWant(wantParam: Record<string, Object>) {
-    Logger.info(TAG, 'setAsyncWant : onContinue setWant start');
-
-    let testDate: string = AppStorage.get<string>('testDate') as string;
-    wantParam['testDate'] = testDate;
-    Logger.info(TAG, `onContinue testDate ${testDate}`);
-
-    Logger.info(TAG, 'setAsyncWant : onContinue setWant end');
-  }
-
-  onContinue(wantParam: Record<string, Object>): Promise<AbilityConstant.OnContinueResult> {
+  onContinue(wantParam: Record<string, Object>) {
     Logger.info(TAG, 'onContinue : wantParam.version,wantParam.targetDevice : ' + wantParam.version + wantParam.targetDevice);
 
     AppStorage.setOrCreate('isContinuation', true);
@@ -317,9 +307,7 @@ export default class EntryAbility extends UIAbility {
       wantParam[wantConstant.Params.SUPPORT_CONTINUE_SOURCE_EXIT_KEY])
     }
 
-    return this.setAsyncWant(wantParam).then(() => {
-      return AbilityConstant.OnContinueResult.AGREE;
-    });
+    return AbilityConstant.OnContinueResult.AGREE;
   }
 
   onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam) {

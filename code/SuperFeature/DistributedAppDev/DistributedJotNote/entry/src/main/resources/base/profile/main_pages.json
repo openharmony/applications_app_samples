@@ -5,6 +5,7 @@
     "pages/Settings",
     "pages/Notes",
     "pages/Todolist",
-    "pages/ImgWall"
+    "pages/ImgWall",
+    "pages/Page_AsyncAbility"
   ]
 }

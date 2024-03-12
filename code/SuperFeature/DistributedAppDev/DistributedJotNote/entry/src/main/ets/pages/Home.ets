@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -19,6 +19,8 @@ import mainViewModel from '../viewmodel/MainViewModel';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import Logger from '../utils/Logger';
 import CommonConstants from '../common/constants/CommonConstants';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
 const TAG = 'testTag_Home: ';
 
@@ -43,7 +45,6 @@ struct Home {
   build() {
     Row() {
       Column() {
-
         Column() {
           Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
             Image($r('app.media.ic_set'))
@@ -218,24 +219,19 @@ struct Home {
           router.pushUrl({ url: 'pages/ImgWall' })
         })
 
-
         Column() {
-          TextInput({ text: this.testDate,
-            placeholder: CommonConstants.PLEASE_INPUT_ASYNC_TEXT
-          })
-            .fontWeight(500)
-            .fontSize(16)
-            .textAlign(TextAlign.JUSTIFY)
-            .align(Alignment.Center)
-            .onChange((value: string) => {
-              this.testDate = value;
-              AppStorage.set('testDate', value);
-              Logger.info(TAG, 'this.testDate: ' + this.testDate);
-            })
-            .type(InputType.Normal)
-            .backgroundColor(Color.Transparent)
-            .width(336)
-            .height(64)
+          Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+            Text($r('app.string.USE_ASYNC_SAVE_DATA'))
+              .width(244)
+              .height(22)
+              .fontSize(16)
+              .lineHeight(22)
+              .fontWeight(500)
+              .textAlign(TextAlign.Start)
+              .margin({ left: 19 })
+          }
+          .width(336)
+          .height(64)
         }
         .width(336)
         .height(64)
@@ -243,6 +239,17 @@ struct Home {
         .borderRadius(24)
         .alignItems(HorizontalAlign.Center)
         .margin({ top: 16 })
+        .onClick(() => {
+          let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+          let want: Want = {
+            bundleName: 'com.samples.distributedjotnote',
+            abilityName: 'AsyncAbility'
+          };
+          context.startAbility(want).then(() => {
+          }).catch((err: BusinessError) => {
+            Logger.error(TAG, `Failed to start MigrationAbility. Code is ${err.code}, message is ${err.message}`);
+          });
+        })
 
       }
       .width('100%')

@@ -119,6 +119,18 @@
     {
       "name": "PLEASE_INPUT_ASYNC_TEXT",
       "value": "please enter the text to be saved asynchronously"
+    },
+    {
+      "name": "AsyncAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "AsyncAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "USE_ASYNC_SAVE_DATA",
+      "value": " use an asynchronous func to save data during migration"
     }
   ]
 }
