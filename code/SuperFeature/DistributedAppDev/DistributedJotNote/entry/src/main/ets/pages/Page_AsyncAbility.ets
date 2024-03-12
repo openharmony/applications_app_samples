@@ -54,6 +54,7 @@ struct Page_AsyncAbility {
             .backgroundColor(Color.Transparent)
             .width(336)
             .height(64)
+            .id('asyncTextInput')
         }
         .width(336)
         .height(64)
