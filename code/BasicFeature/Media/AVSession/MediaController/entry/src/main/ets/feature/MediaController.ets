@@ -150,9 +150,29 @@ export default class control {
     let sessionId: string = controller.sessionId;
     controller.on('metadataChange', 'all', (metadata: AVSessionManager.AVMetadata) => {
       Log.info(TAG, 'get metadata: ' + metadata.title + ' for session :' + sessionId);
-      let dataMap: Map<string, AVSessionManager.AVMetadata> | undefined = that.metaDataMapLink!.get();
-      dataMap!.set(sessionId, metadata);
-      that.metaDataMapLink!.set(dataMap);
+      let dataMap: Map<string, AVSessionManager.AVMetadata> | undefined = that.metaDataMapLink?.get();
+      that.metaDataMapLink?.set(null);
+      Log.info(TAG, 'get metadata check link first: ' + JSON.stringify(that.metaDataMapLink?.get()));
+      dataMap?.set(sessionId, metadata);
+      if (that.metaDataMapLink?.get() == null) {
+        Log.info(TAG, 'get metadata check link NULL');
+      } else {
+        Log.info(TAG, 'get metadata check link second: ' +
+          JSON.stringify((that.metaDataMapLink?.get()?.get(sessionId))));
+      }
+      if (dataMap) {
+        Log.info(TAG, 'get metadata check map: ' + JSON.stringify((dataMap)));
+      } else {
+        Log.info(TAG, 'get metadata check map NULL');
+      }
+
+      that.metaDataMapLink?.set(dataMap);
+      if (that.metaDataMapLink?.get() == null) {
+        Log.info(TAG, 'get metadata check link NULL');
+      } else {
+        Log.info(TAG, 'get metadata check link end: ' +
+          JSON.stringify((that.metaDataMapLink?.get()?.get(sessionId))?.title));
+      }
     });
     controller.on('playbackStateChange', 'all', async (playState: AVSessionManager.AVPlaybackState) => {
       Log.info(TAG, 'get playbackState: ' + playState.state + ' for session:' + sessionId);

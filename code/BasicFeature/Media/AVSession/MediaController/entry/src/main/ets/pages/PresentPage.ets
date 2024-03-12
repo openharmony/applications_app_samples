@@ -35,6 +35,7 @@ struct PresentPage {
   isPlaying: boolean = false;
   controller = new control();
   @StorageLink('metaDataMap')
+  @Watch('onMetaDataChangeCallback')
   private metaDataMap: Map<string, AVSessionManager.AVMetadata> = new Map();
   @StorageLink('playStateMap')
   private playStateMap: Map<string, AVSessionManager.AVMetadata> = new Map();
@@ -52,6 +53,11 @@ struct PresentPage {
   async aboutToAppear() {
     await this.controller.initLink();
     await this.controller.startControl();
+  }
+
+  onMetaDataChangeCallback() {
+    Log.info(TAG, 'metadatachange check metadatamap: ' + JSON.stringify(this.metaDataMap));
+    Log.info(TAG, 'metadatachange check sessionarray: ' + JSON.stringify(this.sessionArray![0]));
   }
 
   build() {
@@ -79,22 +85,22 @@ struct PresentPage {
 
           Column() {
             Row() {
-              Image(this.sessionArray[0] && this.metaDataMap[this.sessionArray[0]]
-                ? (this.metaDataMap[this.sessionArray[0]]).mediaImage : $r('app.media.no_music'))
+              Image(this.sessionArray[0] && this.metaDataMap.get(this.sessionArray[0])
+                ? (this.metaDataMap?.get(this.sessionArray[0]))?.mediaImage : $r('app.media.no_music'))
                 .width('48vp')
                 .height('48vp')
                 .id('CurrentImage')
               Column() {
-                Text(this.sessionArray[0] && this.metaDataMap[this.sessionArray[0]]
-                  ? (this.metaDataMap[this.sessionArray[0]]).title : $r('app.string.not_in_play'))
+                Text(this.sessionArray[0] && this.metaDataMap.get(this.sessionArray[0])
+                  ? (this.metaDataMap?.get(this.sessionArray[0]))?.title : $r('app.string.not_in_play'))
                   .fontSize('16fp')
                   .fontColor('#182431')
                   .maxLines(1)
                   .textOverflow({ overflow: TextOverflow.Ellipsis })
                   .width('228vp')
                   .id('Title')
-                Text(this.sessionArray[0] && this.metaDataMap[this.sessionArray[0]]
-                  ? (this.metaDataMap[this.sessionArray[0]]).artist : $r('app.string.not_in_play'))
+                Text(this.sessionArray[0] && this.metaDataMap.get(this.sessionArray[0])
+                  ? (this.metaDataMap?.get(this.sessionArray[0]))?.artist : $r('app.string.not_in_play'))
                   .fontSize('14fp')
                   .fontColor('#182431')
                   .opacity(0.6)
@@ -226,14 +232,14 @@ struct PresentPage {
               .visibility(this.sessionArray.length > 2 ? Visibility.Visible : Visibility.None)
 
             Row() {
-              Image(this.sessionArray[2] && this.metaDataMap[this.sessionArray[2]]
-                && this.metaDataMap[this.sessionArray[2]].mediaImage
-                ? (this.metaDataMap[this.sessionArray[2]]).mediaImage : $r('app.media.no_music'))
+              Image(this.sessionArray[2] && this.metaDataMap?.get(this.sessionArray[2])
+                && this.metaDataMap?.get(this.sessionArray[2])?.mediaImage
+                ? (this.metaDataMap?.get(this.sessionArray[2]))?.mediaImage : $r('app.media.no_music'))
                 .width('48vp')
                 .height('48vp')
               Column() {
-                Text(this.sessionArray[2] && this.metaDataMap[this.sessionArray[2]]
-                  ? (this.metaDataMap[this.sessionArray[2]]).title : $r('app.string.not_in_play'))
+                Text(this.sessionArray[2] && this.metaDataMap?.get(this.sessionArray[2])
+                  ? (this.metaDataMap?.get(this.sessionArray[2]))?.title : $r('app.string.not_in_play'))
                   .fontSize('16fp')
                   .fontColor('#182431')
                   .maxLines(1)
