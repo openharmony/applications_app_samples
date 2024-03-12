@@ -168,12 +168,14 @@ Note:If the text contains special characters, please escape them according to th
             </filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加License头"/>
+                <filteritem type="filename" name="oh-package-lock.json5" desc="OpenHarmony工程编译入口脚本，无需添加License头"/>
                 <filteritem type="filename" name="hvigorw" desc="OpenHarmony工程编译入口脚本，无需添加License头"/>
                 <filteritem type="filename" name="hvigorw.bat" desc="OpenHarmony工程编译配置文件，无需添加License头"/>
                 <filteritem type="filename" name="hvigorfile.js" desc="OpenHarmony工程编译配置文件，无需添加License头"/>
                 <filteritem type="filename" name="hvigorfile.ts" desc="OpenHarmony工程编译配置文件，无需添加License头"/>
                 <filteritem type="filename" name="hvigor-config.json5" desc="OpenHarmony工程编译配置文件，无需添加License头"/>
                 <filteritem type="filename" name="hvigor-wrapper.js" desc="OpenHarmony工程编译配置文件，无需添加License头"/>
+                <filteritem type="filename" name="*.mp4" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-updatedialog-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/Project/Test/jsunit/entry/build/default/cache/default/default@CompileArkTS/esmodule/.ts_checker_cache" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-notification-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
@@ -202,12 +204,14 @@ Note:If the text contains special characters, please escape them according to th
             </filefilter>
             <filefilter name="copyrightPolicyFilter" desc="Copyright文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加版权头"/>
+                <filteritem type="filename" name="oh-package-lock.json5" desc="OpenHarmony工程编译入口脚本，无需添加版权头"/>
                 <filteritem type="filename" name="hvigorw" desc="OpenHarmony工程编译入口脚本，无需添加版权头"/>
                 <filteritem type="filename" name="hvigorw.bat" desc="OpenHarmony工程编译配置文件，无需添加版权头"/>
                 <filteritem type="filename" name="hvigorfile.js" desc="OpenHarmony工程编译配置文件，无需添加版权头"/>
                 <filteritem type="filename" name="hvigorfile.ts" desc="OpenHarmony工程编译配置文件，无需添加版权头"/>
                 <filteritem type="filename" name="hvigor-config.json5" desc="OpenHarmony工程编译配置文件，无需添加版权头"/>
                 <filteritem type="filename" name="hvigor-wrapper.js" desc="OpenHarmony工程编译配置文件，无需添加版权头"/>
+                <filteritem type="filename" name="*.mp4" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-updatedialog-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/Project/Test/jsunit/entry/build/default/cache/default/default@CompileArkTS/esmodule/.ts_checker_cache" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-notification-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
