@@ -20,7 +20,7 @@ import Logger from '../model/Logger'
 import RemoteDeviceModel from '../model/RemoteDeviceModel'
 import { BUNDLE, ABILITY } from '../model/RdbConst'
 import { DeviceDialog } from '../common/DeviceDialog'
-import { statetype } from '../pages/Index';
+import { stateType } from '../pages/Index';
 
 const TAG: string = 'PopupMenu'
 
@@ -37,7 +37,7 @@ export struct PopupMenu {
   private handleStartAbility: () => void = () => {};
   private deviceList: Array<deviceManager.DeviceBasicInfo> = [];
   private dialogController: CustomDialogController | null = null;
-  @Link state: statetype
+  @Link state: stateType;
 
   selectDevice() {
     Logger.info(TAG, 'start ability ......')
@@ -58,6 +58,8 @@ export struct PopupMenu {
     })
     Logger.info(TAG, 'start ability2 ......')
     this.clearSelectState()
+    this.state.popupMenu = false;
+    this.state.opacityValue = 1;
   }
 
   onSelectedIndexChange = (selectedIndex: number) => {
@@ -164,12 +166,13 @@ export struct PopupMenu {
           .width('100%')
           .margin({ top: 6, bottom: 6 })
           .onClick(() => {
-            this.state.popupMenu = false
             if (index === 0) {
+              this.state.popupMenu = false;
               router.pushUrl({
                 url: 'pages/Settings'
               })
             } else {
+              this.state.opacityValue = 0;
               this.showDialog()
             }
           })
@@ -184,6 +187,7 @@ export struct PopupMenu {
       .margin({ right: 16 })
       .backgroundColor(Color.White)
       .padding(6)
+      .opacity(this.state.opacityValue)
     }
     .size({ width: '100%', height: '92%' })
     .margin({ right: 16 })
