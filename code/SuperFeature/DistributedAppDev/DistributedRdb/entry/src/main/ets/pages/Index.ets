@@ -209,8 +209,8 @@ struct Index {
     }
   }
   handleRightBtn = () => {
-    this.state.popupMenu = true
-    this.state.opacityValue = 1
+    this.state.popupMenu = true;
+    this.state.opacityValue = 1;
   }
   syncData = () => {
     Logger.info(TAG, 'sync data')

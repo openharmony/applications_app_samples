@@ -58,8 +58,8 @@ export struct PopupMenu {
     })
     Logger.info(TAG, 'start ability2 ......')
     this.clearSelectState()
-    this.state.popupMenu = false
-    this.state.opacityValue = 1
+    this.state.popupMenu = false;
+    this.state.opacityValue = 1;
   }
 
   onSelectedIndexChange = (selectedIndex: number) => {
@@ -167,12 +167,12 @@ export struct PopupMenu {
           .margin({ top: 6, bottom: 6 })
           .onClick(() => {
             if (index === 0) {
-              this.state.popupMenu = false
+              this.state.popupMenu = false;
               router.pushUrl({
                 url: 'pages/Settings'
               })
             } else {
-              this.state.opacityValue = 0
+              this.state.opacityValue = 0;
               this.showDialog()
             }
           })
