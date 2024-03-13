@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -186,10 +186,10 @@ export struct PropertiesEdgeEffectControlPanel {
         selects : getStringArrayData(LIST_EDGE_EFFECT_SELECT_DATA),
         callback : (index)=>{
           switch (index) {
-            case 1:
+            case 0:
               this.edgeEffect = EdgeEffect.Spring;
               break;
-            case 2:
+            case 1:
               this.edgeEffect = EdgeEffect.Fade;
               break;
             default:
