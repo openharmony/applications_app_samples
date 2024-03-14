@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例使用了[@ohos.faultLogger](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-faultLogger.md)接口，展示了在eTS中如何获取应用故障相关信息。
+本示例使用了[@ohos.faultLogger](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-performance-analysis-kit/js-apis-faultLogger.md)接口，展示了在eTS中如何获取应用故障相关信息。
 
 ### 效果预览
 |首页|
