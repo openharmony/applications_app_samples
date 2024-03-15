@@ -42,7 +42,7 @@ entry/src/main/ets/MainAbility
 
 ### 具体实现
 
-* 所有模块用到接口：[@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-router.md)
+* 所有模块用到接口：[@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-router.md)
 
 * RenderingContext模块，提供了绘制圆弧(arc)，绘制描边文字(strokeText)，绘制一条路径(closePath)，绘制曲线(quadraticCurveTo)，绘制基线(textBaseline)方法属性
 
