@@ -176,7 +176,7 @@ Note:If the text contains special characters, please escape them according to th
         <filteritem type="filepath" name="code/SystemFeature/Telephony/Message/entry/src/main/resources/base/media/back.png" desc="Provided by code/SystemFeature/Telephony/Message"/>
         <filteritem type="filepath" name="code/SystemFeature/Telephony/Message/screenshots/device/send_message.png" desc="Provided by code/SystemFeature/Telephony/Message"/>
         <filteritem type="filepath" name="code/SystemFeature/Telephony/Message/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/Telephony/Message"/>
-        <filteritem type="filepath" name="code/SystemFeature/DistributedAppDev/DistributedAccount/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/DistributedAppDev/DistributedAccount"/>
+        <filteritem type="filepath" name="code/SystemFeature/DistributedAppDev/DistributedAccount/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/DistributedAppDev/DistributedAccount"/>
         <filteritem type="filepath" name="code/SystemFeature/DistributedAppDev/DistributedAccount/screenshots/index.jpeg" desc="Provided by code/SystemFeature/DistributedAppDev/DistributedAccount"/>
         <filteritem type="filepath" name="code/SystemFeature/DistributedAppDev/DistributedAccount/screenshots/DistributedAccountInfo.jpeg" desc="Provided by code/SystemFeature/DistributedAppDev/DistributedAccount"/>
         <filteritem type="filepath" name="code/SystemFeature/DistributedAppDev/DistributedAccount/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/DistributedAppDev/DistributedAccount"/>
