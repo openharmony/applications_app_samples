@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例使用[@ohos.sensor](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-sensor.md) 中的方向传感器相关接口，实现指南针的功能。
+本示例使用[@ohos.sensor](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-sensor.md) 中的方向传感器相关接口，实现指南针的功能。
 
 ### 效果预览
 
@@ -30,7 +30,7 @@ Math.round(alpha)得出他的整数角度，配合Image组件的旋转属性rota
 
 ### 相关权限
 
-[ohos.permission.VIBRATE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionvibrate)
+[ohos.permission.VIBRATE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionvibrate)
 
 ### 依赖
 
