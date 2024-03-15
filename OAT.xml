@@ -164,9 +164,41 @@ Note:If the text contains special characters, please escape them according to th
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkNativeWindow/screenshots/device/GetAvailableCount.jpg" desc="Provided by code/BasicFeature/Native/NdkNativeWindow"/>
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkNativeWindow/screenshots/device/Main.jpg" desc="Provided by code/BasicFeature/Native/NdkNativeWindow"/>
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkNativeWindow/screenshots/device/ProduceBuffer.jpg" desc="Provided by code/BasicFeature/Native/NdkNativeWindow"/>
+        <filteritem type="filepath" name="code/SystemFeature/Telephony/Message/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/Telephony/Message"/>
+        <filteritem type="filepath" name="code/SystemFeature/Telephony/Message/entry/src/main/resources/base/media/call_off.png" desc="Provided by code/SystemFeature/Telephony/Message"/>
+        <filteritem type="filepath" name="code/SystemFeature/Telephony/Message/screenshots/device/create_contact.png" desc="Provided by code/SystemFeature/Telephony/Message"/>
+        <filteritem type="filepath" name="code/SystemFeature/Telephony/Message/entry/src/main/resources/base/media/call_on.png" desc="Provided by code/SystemFeature/Telephony/Message"/>
+        <filteritem type="filepath" name="code/SystemFeature/Telephony/Message/screenshots/device/save_contact.png" desc="Provided by code/SystemFeature/Telephony/Message"/>
+        <filteritem type="filepath" name="code/SystemFeature/Telephony/Message/entry/src/main/resources/base/media/arrow.png" desc="Provided by code/SystemFeature/Telephony/Message"/>
+        <filteritem type="filepath" name="code/SystemFeature/Telephony/Message/entry/src/main/resources/base/media/contact.png" desc="Provided by code/SystemFeature/Telephony/Message"/>
+        <filteritem type="filepath" name="code/SystemFeature/Telephony/Message/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/Telephony/Message"/>
+        <filteritem type="filepath" name="code/SystemFeature/Telephony/Message/entry/src/main/resources/base/media/sms.png" desc="Provided by code/SystemFeature/Telephony/Message"/>
+        <filteritem type="filepath" name="code/SystemFeature/Telephony/Message/entry/src/main/resources/base/media/back.png" desc="Provided by code/SystemFeature/Telephony/Message"/>
+        <filteritem type="filepath" name="code/SystemFeature/Telephony/Message/screenshots/device/send_message.png" desc="Provided by code/SystemFeature/Telephony/Message"/>
+        <filteritem type="filepath" name="code/SystemFeature/Telephony/Message/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/Telephony/Message"/>
+        <filteritem type="filepath" name="code/SystemFeature/DistributedAppDev/DistributedAccount/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/DistributedAppDev/DistributedAccount"/>
+        <filteritem type="filepath" name="code/SystemFeature/DistributedAppDev/DistributedAccount/screenshots/index.jpeg" desc="Provided by code/SystemFeature/DistributedAppDev/DistributedAccount"/>
+        <filteritem type="filepath" name="code/SystemFeature/DistributedAppDev/DistributedAccount/screenshots/DistributedAccountInfo.jpeg" desc="Provided by code/SystemFeature/DistributedAppDev/DistributedAccount"/>
+        <filteritem type="filepath" name="code/SystemFeature/DistributedAppDev/DistributedAccount/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/DistributedAppDev/DistributedAccount"/>
+        <filteritem type="filepath" name="code/SystemFeature/DistributedAppDev/DistributedAccount/screenshots/DistributedAccountList.jpeg" desc="Provided by code/SystemFeature/DistributedAppDev/DistributedAccount"/>
+        <filteritem type="filepath" name="code/SystemFeature/DistributedAppDev/DistributedAccount/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/DistributedAppDev/DistributedAccount"/>
+        <filteritem type="filepath" name="code/SystemFeature/DistributedAppDev/DistributedAuthentication/screenshots/device/delete.jpg" desc="Provided by code/SystemFeature/DistributedAppDev/DistributedAuthentication"/>
+        <filteritem type="filepath" name="code/SystemFeature/DistributedAppDev/DistributedAuthentication/screenshots/device/discover.jpg" desc="Provided by code/SystemFeature/DistributedAppDev/DistributedAuthentication"/>
+        <filteritem type="filepath" name="code/SystemFeature/DistributedAppDev/DistributedAuthentication/screenshots/device/filteroption.jpg" desc="Provided by code/SystemFeature/DistributedAppDev/DistributedAuthentication"/>
+        <filteritem type="filepath" name="code/SystemFeature/DistributedAppDev/DistributedAuthentication/screenshots/device/main.jpg" desc="Provided by code/SystemFeature/DistributedAppDev/DistributedAuthentication"/>
+        <filteritem type="filepath" name="code/SystemFeature/DistributedAppDev/DistributedAuthentication/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/DistributedAppDev/DistributedAuthentication"/>
         <filteritem type="filepath" name="code/SystemFeature/DistributedAppDev/DistributedAuthentication/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/DistributedAppDev/DistributedAuthentication"/>
 		<filteritem type="filepath" name="code/SystemFeature/DistributedAppDev/DistributedAuthentication/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/DistributedAppDev/DistributedAuthentication"/>
-        <filteritem type="filepath" name="code/BasicFeature/ArkTSCard/ArkTSCard/libs/ArkTSUser.hap" desc="Provided by code/BasicFeature/ArkTSCard/ArkTSCard"/>
+        <filteritem type="filepath" name="code/SystemFeature/Security/CertificateFramework/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/Security/CertificateFramework"/>
+        <filteritem type="filepath" name="code/SystemFeature/Security/CertificateFramework/screenshots/device/index.jpeg" desc="Provided by code/SystemFeature/Security/CertificateFramework"/>
+        <filteritem type="filepath" name="code/SystemFeature/Security/CertificateFramework/screenshots/device/chain_index.jpeg" desc="Provided by code/SystemFeature/Security/CertificateFramework"/>
+        <filteritem type="filepath" name="code/SystemFeature/Security/CertificateFramework/screenshots/device/chain_success.jpeg" desc="Provided by code/SystemFeature/Security/CertificateFramework"/>
+        <filteritem type="filepath" name="code/SystemFeature/Security/CertificateFramework/screenshots/device/verify_fail.jpeg" desc="Provided by code/SystemFeature/Security/CertificateFramework"/>
+        <filteritem type="filepath" name="code/SystemFeature/Security/CertificateFramework/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/Security/CertificateFramework"/>
+        <filteritem type="filepath" name="code/SystemFeature/Security/CertificateFramework/screenshots/device/verify_success.jpeg" desc="Provided by code/SystemFeature/Security/CertificateFramework"/>
+        <filteritem type="filepath" name="code/SystemFeature/Security/CertificateFramework/screenshots/device/chain_fail.jpeg" desc="Provided by code/SystemFeature/Security/CertificateFramework"/>
+        <filteritem type="filepath" name="code/SystemFeature/Security/CertificateFramework/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/Security/CertificateFramework"/>
+		<filteritem type="filepath" name="code/BasicFeature/ArkTSCard/ArkTSCard/libs/ArkTSUser.hap" desc="Provided by code/BasicFeature/ArkTSCard/ArkTSCard"/>
         <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmonyProfileDebug.pem" desc="Provided by code/Project/HapBuild"/>
                 <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmonyApplication.pem" desc="Provided by code/Project/HapBuild"/>
                 <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmonyProfileRelease.pem" desc="Provided by code/Project/HapBuild"/>
