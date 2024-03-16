@@ -131,6 +131,10 @@
     {
       "name": "USE_ASYNC_SAVE_DATA",
       "value": "迁移时使用异步接口保存数据"
+    },
+    {
+      "name": "TEST_DATA",
+      "value": "测试数据"
     }
   ]
 }

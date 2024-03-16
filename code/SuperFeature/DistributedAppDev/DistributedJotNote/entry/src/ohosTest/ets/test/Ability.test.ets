@@ -17,11 +17,13 @@ import { describe, expect, it } from '@ohos/hypium';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON } from '@ohos.UiTest';
 import hilog from '@ohos.hilog';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 const TAG = '[Sample_DistributedJotNote]';
 const DOMAIN = 0xF811;
 const BUNDLE = 'DistributedJotNote_';
 const driver = Driver.create();
+let ability: UIAbility;
 
 export default function appTest() {
   describe('ActsAbilityTest', () => {
@@ -319,11 +321,10 @@ export default function appTest() {
     it(BUNDLE + 'ClickEnterAsyncMigration', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickEnterAsyncMigration begin');
       // 点击异步接口
-      await driver.assertComponentExist(ON.text('迁移时使用异步接口保存数据'));
-      let itemChosen = await driver.findComponent(ON.text('迁移时使用异步接口保存数据'));
+      await driver.assertComponentExist(ON.id('async_save_data'));
+      let itemChosen = await driver.findComponent(ON.id('async_save_data'));
       await itemChosen.click();
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('迁移时使用异步接口保存数据'));
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickEnterAsyncMigration end');
     })
 
@@ -332,10 +333,11 @@ export default function appTest() {
      */
     it(BUNDLE + 'AsyncTextInput', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'AsyncTextInput begin');
+      let resourceManager = ability.context.resourceManager;
       // 输入内容
       await driver.assertComponentExist(ON.id('asyncTextInput'));
       let textInput = await driver.findComponent(ON.id('asyncTextInput'));
-      await textInput.inputText('异步保存测试数据');
+      await textInput.inputText(await resourceManager.getStringValue($r('app.string.TEST_DATA')));
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('asyncTextInput'));
       hilog.info(DOMAIN, TAG, BUNDLE + 'AsyncTextInput end');

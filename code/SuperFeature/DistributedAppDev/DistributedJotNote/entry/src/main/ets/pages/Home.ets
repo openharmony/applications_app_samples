@@ -229,6 +229,7 @@ struct Home {
               .fontWeight(500)
               .textAlign(TextAlign.Start)
               .margin({ left: 19 })
+              .id('async_save_data')
           }
           .width(336)
           .height(64)
