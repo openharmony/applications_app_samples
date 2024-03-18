@@ -112,7 +112,6 @@
   <td rowspan="2"><strong>安全</strong></td>
   <td x:str><a href="code/BasicFeature/Security/Cipher">加解密</a></td>
   <td x:str><a href="code/BasicFeature/Security/AppAccountManager">应用帐号管理</a></td>
-  <td x:str><a href="code/BasicFeature/Security/CertificateFramework">证书算法库框架</a></td>
   <td x:str><a href="code/BasicFeature/Security/CryptoFramework">通用密钥库系统（cryptoFramework）</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
@@ -171,13 +170,13 @@
   <td rowspan="2" x:str><strong>电话服务</strong></td>
   <td x:str><a href="code/BasicFeature/Telephony/Call">拨打电话</a></td>
   <td x:str><a href="code/BasicFeature/Telephony/SimManager">SIM卡管理</a></td>
-  <td x:str><a href="code/BasicFeature/Telephony/Message">短信</a></td>
   <td x:str><a href="code/BasicFeature/Telephony/Contact">联系人</a></td>
+  <td x:str><a href="code/BasicFeature/Telephony/Observer">网络和Sim卡状态订阅</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td x:str><a href="code/BasicFeature/Telephony/Observer">网络和Sim卡状态订阅</a></td>
   <td x:str><a href="code/BasicFeature/Telephony/MobileNetwork">蜂窝数据</a></td>
   <td x:str><a href="code/BasicFeature/Telephony/RadioTech">网络搜索</td>
+  <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
@@ -250,7 +249,7 @@
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td height="90" align="center" rowspan="9" style='height:67.50pt;' x:str><strong>系统特性（仅对系统应用开放）</strong></td>
+  <td height="90" align="center" rowspan="11" style='height:67.50pt;' x:str><strong>系统特性（仅对系统应用开放）</strong></td>
   <td rowspan="2" x:str><strong>应用模型</strong></td>
   <td x:str><a href="code/SystemFeature/ApplicationModels/Launcher">仿桌面应用（API 10）</a></td>
   <td x:str><a href="code/SystemFeature/ApplicationModels/MissionManager">任务管理</a></td>
@@ -280,7 +279,7 @@
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><a href="code/SystemFeature/Security/DLP">DLP</a></td>
-  <td ></td>
+  <td x:str><a href="code/SystemFeature/Security/CertificateFramework">证书算法库框架</a></td>
   <td ></td>
   <td ></td>
  </tr>
@@ -311,6 +310,20 @@
   <td x:str><a href="code/SystemFeature/DeviceManagement/Screen">屏幕属性（API 10）</a></td>
   <td x:str><a href="code/SystemFeature/DeviceManagement/DeviceManagementCollection">设备管理合集（API 10）</a></td>
   <td x:str><a href="code/SystemFeature/DeviceManagement/Mouse">鼠标外设（API 10）</a></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
+  <td x:str><strong>分布式</strong></td>
+  <td x:str><a href="code/SystemFeature/DistributedAppDev/DistributedAccount">分布式帐号（API 10）</a></td>
+  <td x:str><a href="code/SystemFeature/DistributedAppDev/DistributedAuthentication">分布式组网认证（API 10）</a></td>
+  <td ></td>
+  <td ></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
+  <td x:str><strong>电话服务</strong></td>
+  <td x:str><a href="code/SystemFeature/Telephony/Message">短信</a></td>
+  <td ></td>
+  <td ></td>
+  <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>国际化</strong></td>
@@ -349,13 +362,13 @@
  <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedNote">分布式对象（API 10）</a></td>
   <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedRdb">分布式关系型数据库（API 10）</a></td>
   <td x:str><a href="code/SuperFeature/DistributedAppDev/Kvstore">分布式数据管理</a></td>
-  <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedAuthentication">分布式组网认证（API 10）</a></td>
+  <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedFilemanager">分布式文件管理</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedAccount">分布式帐号（API 10）</a></td>
-  <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedFilemanager">分布式文件管理</a></td>
   <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedJotNote">跨端迁移随手记</a></td>
-  <td></td>
+  <td ></td>
+  <td ></td>
+  <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td rowspan="2" x:str><strong>卡片</strong></td>
@@ -479,12 +492,6 @@
   <![endif]>
 </table>
 
-
-
-
-
-
-
 ## 目录<a name="sectionMenu"></a>
 
 Sample仓下所展示的组件能力：
@@ -520,6 +527,9 @@ code
   |---DataManagement               # 数据管理
   |---DeviceManagement             # 设备管理
   |---Internationalnation          # 国际化
+  |---Security                     # 安全
+  |---DistributedAppDev            # 分布式
+  |---Telephony                    # 电话服务
 |---SuperFeature               # 关键特性
   |---MultiDeviceAppDev            # 一多
   |---DistributedAppDev            # 分布式
@@ -530,7 +540,7 @@ code
   |---Shopping                     # 电商
   |---Media                        # 媒体
   |---Game                         # 游戏
-  |---Social                       # 社交	
+  |---Social                       # 社交
   |---Tools                        # 工具
 |---Project                    # 工程能力
   |---ResourceAllocation           # 资源配置
@@ -545,12 +555,11 @@ code
 
 安装应用示例之前，请先查看"README_zh.md"文件来确认应用示例是否为stage模型，若为Stage模型需要查看entry/src/main路径下的module.json5文件中的"deviceType"字段来确认该应用支持的设备类型；否则为FA模型，查看entry/src/main路径下的config.json文件中的"deviceType"字段来确认该应用示例支持的设备类型，两种模型都可尝试通过修改该字段使其可以在相应类型的设备上运行。
 
-
 ## 使用方法<a name="section17988202503116"></a>
 
-1.  将独立的应用示例工程导入DevEco Studio进行编译构建及运行调试。
-2.  部分应用示例中含有多个模块，开发者可以选择对单个模块进行编译构建，生成一个HAP应用安装包，也可以对整个工程进行编译构建，生成多个HAP应用安装包。
-3.  安装运行后，即可在设备上查看应用示例运行效果，以及进行相关调试。
+1. 将独立的应用示例工程导入DevEco Studio进行编译构建及运行调试。
+2. 部分应用示例中含有多个模块，开发者可以选择对单个模块进行编译构建，生成一个HAP应用安装包，也可以对整个工程进行编译构建，生成多个HAP应用安装包。
+3. 安装运行后，即可在设备上查看应用示例运行效果，以及进行相关调试。
 
 ## Changlog<a name="section17988202503117"></a>
 
@@ -564,4 +573,3 @@ code
 
 1. [app_sample](https://gitee.com/openharmony/app_samples) 已废弃
 2. [applications_app_sample](https://gitee.com/openharmony/applications_app_samples)
-
