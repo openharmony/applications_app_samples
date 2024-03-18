@@ -75,7 +75,7 @@ entry/src/main/ets/
 ```
 git init
 git config core.sparsecheckout true
-echo Account/DistributedAccount/ > .git/info/sparse-checkout
+echo code/SystemFeature/DistributedAppDev/DistributedAccount > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

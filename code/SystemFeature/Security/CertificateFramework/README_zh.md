@@ -103,7 +103,7 @@ entry/src/main/ets/
 ```
 git init
 git config core.sparsecheckout true
-echo code/BasicFeature/Security/CertificateFramework/ > .git/info/sparse-checkout
+echo code/SystemFeature/Security/CertificateFramework > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
