@@ -338,8 +338,8 @@ struct Page_CollaborateAbility {
 
             context.startAbilityByCall({
               deviceId: getRemoteDeviceId(),
-              bundleName: 'com.samples.stagemodelabilityinteraction',
-              abilityName: 'CalleeAbility'
+              bundleName: 'com.samples.stagemodelabilitydevelop',
+              abilityName: 'CollaborateAbility',
             }).then((data) => {
               if (data !== null) {
                 caller = data;
