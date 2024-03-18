@@ -4,11 +4,11 @@
 
 本示例展示了如何通过Stage模型实现一个简单的游戏卡片。
 
-- 通过卡片支持的[点击事件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/js-service-widget-ui/js-service-widget-common-events.md)进行交互，让用户通过点击的先后顺序把一个乱序的成语排列成正确的成语。
+- 通过卡片支持的[点击事件](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/js-service-widget-ui/js-service-widget-common-events.md)进行交互，让用户通过点击的先后顺序把一个乱序的成语排列成正确的成语。
 
 - 使用了C++和TS的混合编程方式，将获取随机数的能力下沉到C++实现，并通过[NAPI](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/napi/napi-guidelines.md)的能力将C++实现的能力暴露到TS中。
 
-- 用到了卡片扩展模块接口，[@ohos.app.form.FormExtensionAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-form-formExtensionAbility.md) 。
+- 用到了卡片扩展模块接口，[@ohos.app.form.FormExtensionAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md) 。
 
 
 
