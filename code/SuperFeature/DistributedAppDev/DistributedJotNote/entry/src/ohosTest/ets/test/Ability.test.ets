@@ -17,13 +17,19 @@ import { describe, expect, it } from '@ohos/hypium';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON } from '@ohos.UiTest';
 import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
+let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 const TAG = '[Sample_DistributedJotNote]';
 const DOMAIN = 0xF811;
 const BUNDLE = 'DistributedJotNote_';
 const driver = Driver.create();
-let ability: UIAbility;
+
+async function getResourceString(resource: Resource): Promise<string> {
+  let manage = abilityDelegator.getAppContext().resourceManager;
+  let text = await manage.getStringValue(resource);
+  return text;
+}
 
 export default function appTest() {
   describe('ActsAbilityTest', () => {
@@ -31,7 +37,7 @@ export default function appTest() {
     /**
      * 拉起应用
      */
-    it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
+    it('StartAbility_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin');
       let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
       try {
@@ -49,16 +55,16 @@ export default function appTest() {
     /**
      * 点击允许进行授权
      */
-    it(BUNDLE + 'ClickAccept_001', 0, async (done: Function) => {
+    it('ClickAccept_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickAccept_001 begin');
       let driver = Driver.create();
       await driver.delayMs(2000);
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickAccept_001 clickAccept');
       // 点击允许
-      let arr = await driver.findComponents(ON.type('允许'));
+      let arr = await driver.findComponents(ON.type(await getResourceString($r('app.string.accept'))));
       hilog.info(DOMAIN, TAG, 'arr : ' + arr);
-      await driver.assertComponentExist(ON.text('允许'));
-      let btnAccept = await driver.findComponent(ON.text('允许'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.accept'))));
+      let btnAccept = await driver.findComponent(ON.text(await getResourceString($r('app.string.accept'))));
       await btnAccept.click();
       await driver.delayMs(1000);
       done();
@@ -68,7 +74,7 @@ export default function appTest() {
     /**
      * 欢迎页展示，点击按钮，进入主页面
      */
-    it(BUNDLE + 'ClickEnter_001', 0, async () => {
+    it('ClickEnter_001', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickEnter_001 begin');
       // 点击进入按钮
       await driver.assertComponentExist(ON.id('enter_in_jot'));
@@ -81,7 +87,7 @@ export default function appTest() {
     /**
      * 进入主页，滑动轮播图
      */
-    it(BUNDLE + 'ClickEnterSwiper_002', 0, async () => {
+    it('ClickEnterSwiper_002', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickEnterSwiper_002 begin');
       // 滑动轮播图
       await driver.assertComponentExist(ON.id('swiper'));
@@ -100,7 +106,7 @@ export default function appTest() {
     /**
      * 点击主页右上角：设置图标
      */
-    it(BUNDLE + 'ClickSettings_001', 0, async () => {
+    it('ClickSettings_001', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickSettings_001 begin');
       // 点击设置图标
       await driver.assertComponentExist(ON.id('settingsImg'));
@@ -113,7 +119,7 @@ export default function appTest() {
     /**
      * 进入迁移设置页：点击开关(迁移能力)
      */
-    it(BUNDLE + 'ClickToggle_001', 0, async () => {
+    it('ClickToggle_001', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickToggle_001 begin');
       // 点击开关
       await driver.assertComponentExist(ON.id('toggle_ability_isOn'));
@@ -126,7 +132,7 @@ export default function appTest() {
     /**
      * 进入迁移设置页：点击开关(迁移页面栈)
      */
-    it(BUNDLE + 'ClickToggle_002', 0, async () => {
+    it('ClickToggle_002', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickToggle_002 begin');
       // 点击开关
       await driver.assertComponentExist(ON.id('toggle_pageStack_isOn'));
@@ -140,7 +146,7 @@ export default function appTest() {
     /**
      * 进入迁移设置页：点击开关(迁移是否退出源端)
      */
-    it(BUNDLE + 'ClickToggle_003', 0, async () => {
+    it('ClickToggle_003', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickToggle_003 begin');
       // 点击开关
       await driver.assertComponentExist(ON.id('toggle_sourceEnd_isOn'));
@@ -154,7 +160,7 @@ export default function appTest() {
     /**
      * 返回主页
      */
-    it(BUNDLE + 'ClickBackArrow_001', 0, async () => {
+    it('ClickBackArrow_001', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickBackArrow_001 begin');
       // 点击返回箭头
       await driver.assertComponentExist(ON.id('back_arrow_setting'));
@@ -167,26 +173,27 @@ export default function appTest() {
     /**
      * 点击笔记页：进入笔记页界面
      */
-    it(BUNDLE + 'ClickEnterNotes_001', 0, async () => {
+    it('ClickEnterNotes_001', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickEnterNotes_001 begin');
       // 点击笔记页
-      await driver.assertComponentExist(ON.text('笔记页'));
-      let notesBar = await driver.findComponent(ON.text('笔记页'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.NOTE_PAGE'))));
+      let notesBar = await driver.findComponent(ON.text(await getResourceString($r('app.string.NOTE_PAGE'))));
       await notesBar.click();
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('笔记页'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.NOTE_PAGE'))));
+
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickEnterNotes_001 end');
     })
 
     /**
      * 笔记页界面:输入笔记标题
      */
-    it(BUNDLE + 'InputText_001', 0, async () => {
+    it('InputText_001', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'InputText_001 begin');
       // 输入笔记标题
       await driver.assertComponentExist(ON.id('textInput'));
       let textInput = await driver.findComponent(ON.id('textInput'));
-      await textInput.inputText('记第一次夜跑');
+      await textInput.inputText(await getResourceString($r('app.string.TEST_DATA')));
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('textInput'));
       hilog.info(DOMAIN, TAG, BUNDLE + 'InputText_001 end');
@@ -195,12 +202,12 @@ export default function appTest() {
     /**
      * 笔记页界面:输入笔记内容
      */
-    it(BUNDLE + 'TextArea_001', 0, async () => {
+    it('TextArea_001', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'InputText_001 begin');
       // 输入笔记内容
       await driver.assertComponentExist(ON.id('textArea'));
       let textInput = await driver.findComponent(ON.id('textArea'));
-      await textInput.inputText('绕湖跑3公里，拉伸15min');
+      await textInput.inputText(await getResourceString($r('app.string.TEST_DATA')));
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('textArea'));
       hilog.info(DOMAIN, TAG, BUNDLE + 'TextArea_001 end');
@@ -209,7 +216,7 @@ export default function appTest() {
     /**
      * 返回主页
      */
-    it(BUNDLE + 'ClickBackArrow_002', 0, async () => {
+    it('ClickBackArrow_002', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickBackArrow_002 begin');
       // 点击返回箭头
       await driver.assertComponentExist(ON.id('back_arrow_notes'));
@@ -223,21 +230,21 @@ export default function appTest() {
     /**
      * 点击待办事项：进入待办事项页界面
      */
-    it(BUNDLE + 'ClickEnterToDoList_001', 0, async () => {
+    it('ClickEnterToDoList_001', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickEnterToDoList_001 begin');
       // 点击待办事项
-      await driver.assertComponentExist(ON.text('待办事项'));
-      let itemChosen = await driver.findComponent(ON.text('待办事项'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.TODO_LIST'))));
+      let itemChosen = await driver.findComponent(ON.text(await getResourceString($r('app.string.TODO_LIST'))));
       await itemChosen.click();
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('待办事项'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.TODO_LIST'))));
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickEnterToDoList_001 end');
     })
 
     /**
      * 待办事项页：滑动待办事项页list
      */
-    it(BUNDLE + 'ScrollToDoList_001', 0, async () => {
+    it('ScrollToDoList_001', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ScrollToDoList_001 begin');
       // 滑动待办事项页list
       await driver.assertComponentExist(ON.id('Scroll_List'));
@@ -251,7 +258,7 @@ export default function appTest() {
     /**
      * 待办事项页：点击待办事项页勾选框
      */
-    it(BUNDLE + 'ClickCheckBox_001', 0, async () => {
+    it('ClickCheckBox_001', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickCheckBox_001 begin');
       // 点击待办事项页勾选框
       await driver.assertComponentExist(ON.id('Checkbox'));
@@ -265,7 +272,7 @@ export default function appTest() {
     /**
      * 返回主页
      */
-    it(BUNDLE + 'ClickBackArrow_003', 0, async () => {
+    it('ClickBackArrow_003', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickBackArrow_003 begin');
       // 点击返回箭头
       await driver.assertComponentExist(ON.id('back_arrow_todolist'));
@@ -278,21 +285,21 @@ export default function appTest() {
     /**
      * 点击图片墙页：进入图片墙页界面
      */
-    it(BUNDLE + 'ClickEnterImgWall_001', 0, async () => {
+    it('ClickEnterImgWall_001', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickEnterImgWall_001 begin');
       // 点击图片墙
-      await driver.assertComponentExist(ON.text('图片墙'));
-      let itemChosen = await driver.findComponent(ON.text('图片墙'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.IMG_WALL'))));
+      let itemChosen = await driver.findComponent(ON.text(await getResourceString($r('app.string.IMG_WALL'))));
       await itemChosen.click();
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('图片墙'));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.IMG_WALL'))));
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickEnterImgWall_001 end');
     })
 
     /**
      * 图片墙页：滑动瀑布流组件
      */
-    it(BUNDLE + 'ScrollWaterFlow_001', 0, async () => {
+    it('ScrollWaterFlow_001', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ScrollWaterFlow_001 begin');
       // 滑动瀑布流组件
       await driver.assertComponentExist(ON.id('WaterFlow_row'));
@@ -305,7 +312,7 @@ export default function appTest() {
     /**
      * 返回主页
      */
-    it(BUNDLE + 'ClickBackArrow_004', 0, async () => {
+    it('ClickBackArrow_004', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickBackArrow_004 begin');
       // 点击返回箭头
       await driver.assertComponentExist(ON.id('back_arrow_imgWall'));
@@ -318,7 +325,7 @@ export default function appTest() {
     /**
      * 点击迁移时使用异步接口保存数据：进入异步接口保存数据页界面
      */
-    it(BUNDLE + 'ClickEnterAsyncMigration', 0, async () => {
+    it('ClickEnterAsyncMigration', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ClickEnterAsyncMigration begin');
       // 点击异步接口
       await driver.assertComponentExist(ON.id('async_save_data'));
@@ -331,13 +338,12 @@ export default function appTest() {
     /**
      * 异步接口保存数据页界面:输入内容
      */
-    it(BUNDLE + 'AsyncTextInput', 0, async () => {
+    it('AsyncTextInput', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'AsyncTextInput begin');
-      let resourceManager = ability.context.resourceManager;
       // 输入内容
       await driver.assertComponentExist(ON.id('asyncTextInput'));
       let textInput = await driver.findComponent(ON.id('asyncTextInput'));
-      await textInput.inputText(await resourceManager.getStringValue($r('app.string.TEST_DATA')));
+      await textInput.inputText(await getResourceString($r('app.string.TEST_DATA')));
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('asyncTextInput'));
       hilog.info(DOMAIN, TAG, BUNDLE + 'AsyncTextInput end');

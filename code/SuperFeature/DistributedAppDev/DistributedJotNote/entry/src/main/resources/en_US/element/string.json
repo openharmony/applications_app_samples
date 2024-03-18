@@ -131,10 +131,6 @@
     {
       "name": "USE_ASYNC_SAVE_DATA",
       "value": " use an asynchronous func to save data during migration"
-    },
-    {
-      "name": "TEST_DATA",
-      "value": "test data"
     }
   ]
 }

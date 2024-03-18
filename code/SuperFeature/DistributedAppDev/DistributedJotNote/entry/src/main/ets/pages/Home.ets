@@ -105,6 +105,7 @@ struct Home {
               .margin({ left: 12 })
               .width(18)
               .height(22)
+              .id('notePage')
 
             Text($r('app.string.NOTES_TITLE'))
               .width(244)
@@ -115,6 +116,7 @@ struct Home {
               .textAlign(TextAlign.Start)
               .margin({ left: 19 })
               .fontFamily('HarmonyHeiTi')
+
 
             Row() {
               Image($r('app.media.ic_arrow'))
@@ -155,6 +157,7 @@ struct Home {
               .fontWeight(500)
               .textAlign(TextAlign.Start)
               .margin({ left: 19 })
+              .id('todolist_btn')
 
             Row() {
               Image($r('app.media.ic_arrow'))
@@ -195,6 +198,7 @@ struct Home {
               .fontWeight(500)
               .textAlign(TextAlign.Start)
               .margin({ left: 19 })
+              .id('imgWall_btn')
 
             Row() {
               Image($r('app.media.ic_arrow'))
