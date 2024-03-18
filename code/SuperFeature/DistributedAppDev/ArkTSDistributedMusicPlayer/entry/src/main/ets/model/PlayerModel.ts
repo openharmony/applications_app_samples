@@ -190,7 +190,9 @@ class PlayerModel {
           callback()
         })
         Logger.info(TAG, `player.src= ${source}`)
-        if (this.player !== undefined || this.player !== null) {
+        if (this.player === undefined) {
+          Logger.error(TAG, `player= undefined`)
+        } else {
           this.player.src = source
         }
       }
