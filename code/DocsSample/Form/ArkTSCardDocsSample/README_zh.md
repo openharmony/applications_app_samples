@@ -4,9 +4,9 @@
 
 此Sample为开发指南中**服务卡片开发指导（Stage模型）**章节中**开发卡片页面**三小节示例代码的完整工程。
 
-[卡片页面能力说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/arkts-ui-widget-page-overview.md)
-[卡片使用动效能力](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/arkts-ui-widget-page-animation.md)
-[卡片使用自定义绘制能力](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/arkts-ui-widget-page-custom-drawing.md)
+[卡片页面能力说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/form/arkts-ui-widget-page-overview.md)
+[卡片使用动效能力](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/form/arkts-ui-widget-page-animation.md)
+[卡片使用自定义绘制能力](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/form/arkts-ui-widget-page-custom-drawing.md)
 
 ### 效果预览
 |默认卡片|动效卡片|自定义绘制卡片|
@@ -111,11 +111,11 @@
 
 可参考服务卡片开发指南如下三个章节：
 
-[卡片页面能力说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/arkts-ui-widget-page-overview.md)
+[卡片页面能力说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/form/arkts-ui-widget-page-overview.md)
 
-[卡片使用动效能力](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/arkts-ui-widget-page-animation.md)
+[卡片使用动效能力](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/form/arkts-ui-widget-page-animation.md)
 
-[卡片使用自定义绘制能力](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/arkts-ui-widget-page-custom-drawing.md)
+[卡片使用自定义绘制能力](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/form/arkts-ui-widget-page-custom-drawing.md)
 
 ### 相关权限
 
