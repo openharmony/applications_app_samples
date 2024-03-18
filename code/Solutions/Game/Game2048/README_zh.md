@@ -4,9 +4,9 @@
 
 本示例使用Grid组件，实现了2048小游戏功能。
 
-需要系统存储信息，运用了用户首选项接口[ohos.data.preferences](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-preferences.md) ,
+需要系统存储信息，运用了用户首选项接口[ohos.data.preferences](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkdata/js-apis-data-preferences.md) ,
 
-屏幕属性接口[@ohos.display](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-display.md#displaygetdefaultdisplaydeprecated) 。
+屏幕属性接口[@ohos.display](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-display.md#displaygetdefaultdisplaydeprecated) 。
 
 
 ### 效果预览

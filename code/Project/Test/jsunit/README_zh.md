@@ -5,7 +5,7 @@
 
 本实例用到了自动化测试框架代码部件仓arkXtest，测试框架的详细介绍[arkXtest](https://gitee.com/openharmony/testfwk_arkxtest#%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F) 。   
 
-如需日志打印调试，需要引入日志打印接口[@ohos.hilog](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-hilog.md)  。  
+如需日志打印调试，需要引入日志打印接口[@ohos.hilog](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-performance-analysis-kit/js-apis-hilog.md)  。  
 
 单元测试用例相较于UI自动化测试用例而言更偏重于接口返回数据的校验及逻辑处理。
 
