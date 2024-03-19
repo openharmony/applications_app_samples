@@ -46,11 +46,17 @@ entry/src/main/ets/
 - 在module.json5文件中的“requestPermissions”标签中添加需要开的权限，例如应用读取开放匿名设备标识符权限
 ```
 "requestPermissions": [
-  ...
   {
-     "name": "ohos.permission.APP_TRACKING_CONSENT"
+    "name": "ohos.permission.APP_TRACKING_CONSENT",
+    "reason": "$string:reason",
+    "usedScene": {
+      "abilities": [
+        "EntryFormAbility"
+      ],
+      "when": "inuse"
+    }
   }
- ]
+]
 
 ```
 
@@ -65,8 +71,7 @@ entry/src/main/ets/
 ### 相关权限
 
 获取OAID功能需要申请广告跟踪权限：
-**[ohos.permission.APP_TRACKING_CONSENT]**  
-(参考：https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/security/permission-list.md/)。
+[ohos.permission.APP_TRACKING_CONSENT](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/security/permission-list.md/)。
 
 ### 依赖
 
