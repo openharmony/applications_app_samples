@@ -1,0 +1,72 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "Main program entry"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "MultipleWindow"
+    },
+    {
+      "name": "please_set_pwd",
+      "value": "please set screen password"
+    },
+    {
+      "name": "auth_failed",
+      "value": "auth failed"
+    },
+    {
+      "name": "account",
+      "value": "account"
+    },
+    {
+      "name": "please_input_account",
+      "value": "please input account"
+    },
+    {
+      "name": "secret_or_card_num",
+      "value": "secret or card number"
+    },
+    {
+      "name": "please_input_secret_or_card_num",
+      "value": "please input secret or card number"
+    },
+    {
+      "name": "label",
+      "value": "label(max 4, split by ;)"
+    },
+    {
+      "name": "label2",
+      "value": "label"
+    },
+    {
+      "name": "please_input_label",
+      "value": "please input label"
+    },
+    {
+      "name": "save",
+      "value": "save"
+    },
+    {
+      "name": "delete",
+      "value": "delete"
+    },
+    {
+      "name": "search",
+      "value": "search"
+    },
+    {
+      "name": "search_result",
+      "value": "search result"
+    },
+    {
+      "name": "update",
+      "value": "update"
+    }
+  ]
+}

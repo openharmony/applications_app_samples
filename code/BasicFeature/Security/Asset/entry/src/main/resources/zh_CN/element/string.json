@@ -1,0 +1,72 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "please_set_pwd",
+      "value": "请设置锁屏密码"
+    },
+    {
+      "name": "auth_failed",
+      "value": "认证失败"
+    },
+    {
+      "name": "account",
+      "value": "账号"
+    },
+    {
+      "name": "please_input_account",
+      "value": "请输入账号"
+    },
+    {
+      "name": "secret_or_card_num",
+      "value": "密码/信用卡号"
+    },
+    {
+      "name": "please_input_secret_or_card_num",
+      "value": "请输入密码/信用卡号"
+    },
+    {
+      "name": "label",
+      "value": "标签（最多4个，以;分隔）"
+    },
+    {
+      "name": "label2",
+      "value": "标签"
+    },
+    {
+      "name": "please_input_label",
+      "value": "请输入标签名称"
+    },
+    {
+      "name": "save",
+      "value": "保存"
+    },
+    {
+      "name": "delete",
+      "value": "删除"
+    },
+    {
+      "name": "search",
+      "value": "查询"
+    },
+    {
+      "name": "search_result",
+      "value": "查询结果"
+    },
+    {
+      "name": "update",
+      "value": "更新"
+    }
+  ]
+}

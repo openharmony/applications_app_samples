@@ -103,6 +103,17 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="network/Bluetooth/entry/src/main/java/ohos/samples/bluetooth/adapter/" desc="Not contains 3rd code，license file is not required in this subdirectory."/>
             </filefilter>
             <filefilter name="binaryFileTypePolicyFilter" desc="Filters for binary file policies" >
+                <filteritem type="filepath" name="code/BasicFeature/Security/Asset/AppScope/resources/base/media/app_icon.png" desc="Provided by the UX team."/>
+                <filteritem type="filepath" name="code/BasicFeature/Security/Asset/AppScope/resources/base/media/forward.png" desc="Provided by the UX team."/>
+		        <filteritem type="filepath" name="code/BasicFeature/Security/Asset/AppScope/resources/base/media/back.png" desc="Provided by the UX team."/>
+                <filteritem type="filepath" name="code/BasicFeature/Security/Asset/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by the UX team."/>
+                <filteritem type="filepath" name="code/BasicFeature/Security/Asset/screenshots/update_edit.jpeg" desc="screenshot"/>
+		        <filteritem type="filepath" name="code/BasicFeature/Security/Asset/screenshots/single_query_result.jpeg" desc="screenshot"/>
+                <filteritem type="filepath" name="code/BasicFeature/Security/Asset/screenshots/update_list.jpeg" desc="screenshot"/>
+                <filteritem type="filepath" name="code/BasicFeature/Security/Asset/screenshots/delete.jpeg" desc="screenshot"/>
+                <filteritem type="filepath" name="code/BasicFeature/Security/Asset/screenshots/save.jpeg" desc="screenshot"/>
+                <filteritem type="filepath" name="code/BasicFeature/Security/Asset/screenshots/batch_query_result.jpeg" desc="screenshot"/>
+                <filteritem type="filepath" name="code/BasicFeature/Security/Asset/screenshots/query.jpeg" desc="screenshot"/>
                 <filteritem type="filepath" name="ability/DistributedMusicPlayer/entry/src/main/resources/rawfile/Homey.mp3" desc="Provided by the UX team."/>
                 <filteritem type="filepath" name="ability/DistributedMusicPlayer/entry/src/main/resources/rawfile/Technology.mp3" desc="Provided by the UX team."/>
                 <filteritem type="filepath" name="UI/JsAnimation/entry/src/main/js/default/common/animator/show.mp4" desc="Provided by the UX team."/>
