@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例主要展示了通知过滤回调管理的功能，使用[@ohos.notificationManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-notificationManager.md)
+本示例主要展示了通知过滤回调管理的功能，使用[@ohos.notificationManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-notificationManager.md)
 接口，进行通知监听回调，决定应用通知是否发送。
 
 ### 效果预览
@@ -41,9 +41,9 @@ entry/src/main/ets/
       页面中，开启通知过滤后，勾选或取消勾选指定通知类型调用接口setContentTypeEnable()接口设置通知类型是否允许发送；
   
 ### 相关权限
-[ohos.permission.NOTIFICATION_CONTROLLER](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+[ohos.permission.NOTIFICATION_CONTROLLER](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionnotification_controller)
 
-[ohos.permission.NOTIFICATION_AGENT_CONTROLLER](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+[ohos.permission.NOTIFICATION_AGENT_CONTROLLER](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionnotification_agent_controller)
 
 ### 依赖
 
@@ -55,7 +55,7 @@ entry/src/main/ets/
 1. 本示例仅支持标准系统上运行，支持设备：RK3568;
 2. 本示例仅支持API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0Release)。
 3. 本示例需要使用DevEco Studio 版本号(4.0Release)及以上版本才可编译运行。
-4. 本示例涉及系统接口，需要配置系统应用签名，可以参考[特殊权限配置方法](https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/security/hapsigntool-overview.md/) ，把配置文件中的“app-feature”字段信息改为“hos_system_app”,"apl"字段修改为“system_core”。
+4. 本示例涉及系统接口，需要配置系统应用签名，可以参考[特殊权限配置方法](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-overview.md) ，把配置文件中的“app-feature”字段信息改为“hos_system_app”,"apl"字段修改为“system_core”。
 
 ### 下载
 
