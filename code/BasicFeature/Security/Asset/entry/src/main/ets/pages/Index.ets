@@ -137,6 +137,7 @@ struct Page {
               TextInput({ placeholder: $r('app.string.please_input_account') })
                 .fontColor(0x182431)
                 .defaultFocus(false)
+                .id('account_input')
                 .padding({ top: '1.70%', right: '48.00px', bottom: '1.70%', left: '0.00px' })
                 .backgroundColor(Color.Transparent)
                 .borderRadius(0)
@@ -189,6 +190,7 @@ struct Page {
               TextInput({ placeholder: $r('app.string.please_input_secret_or_card_num') })
                 .type(InputType.Password)
                 .defaultFocus(false)
+                .id('secret_input')
                 .fontColor(0x182431)
                 .padding({ top: '1.70%', right: '0', bottom: '1.70%', left: '0.00px' })
                 .backgroundColor(Color.Transparent)
@@ -232,6 +234,7 @@ struct Page {
                 .fontSize(16)
                 .fontColor(0x182431)
                 .fontWeight(500)
+                .id('label')
                 .margin({ top: "2.3%", bottom: "1.1%" })
             }
             .width('86.7%').height('7.14%')
@@ -241,6 +244,7 @@ struct Page {
               TextInput({ placeholder: $r('app.string.please_input_label') })
                 .fontColor(0x182431)
                 .defaultFocus(false)
+                .id('label_input')
                 .padding({ top: '1.70%', right: '48.00px', bottom: '1.70%', left: '0.00px' })
                 .backgroundColor(Color.Transparent)
                 .placeholderFont({ size: 16, weight: 400, family: 'HarmonyHeiTi', style: FontStyle.Normal })
@@ -285,6 +289,7 @@ struct Page {
               .borderRadius(20)
               .width('86.7%')
               .height(40)
+              .id('save')
               .enabled(isReserveClickable(this.reserveAccount, this.reservePassword, this.reserveLabel))
               .onClick(() => {
                 addAssetPromise(this.reserveAccount, this.reservePassword, this.reserveLabel)
@@ -599,6 +604,7 @@ struct Page {
               .borderRadius(20)
               .width('86.7%')
               .height(40)
+              .id('search')
               .onClick(async () => {
                 // 需要执行的操作
                 // 如果查询的时候输入了账号 则表示精确查询 进行二次访问控制

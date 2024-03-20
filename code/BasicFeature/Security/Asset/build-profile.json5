@@ -23,20 +23,6 @@
         "compatibleSdkVersion": 11,
         "runtimeOS": "OpenHarmony"
       }
-    ],
-    "signingConfigs": [
-      {
-        "name": "default",
-        "material": {
-          "certpath": "C:/Users/zengbenchong/.ohos/config/openharmony/default_Asset_WMjW1k3aXdGTv9zVP9gZHS6Q095UiwPg2bW9aR_b0Gw=.cer",
-          "storePassword": "0000001B53993973AD492CF6E3976586BBED74A3A3E4D725B2C0CDC71D63D0522A290CC9E86C861E213C97",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001B5B410B8FCF1DFC802D233B1A0AC012B8294A5BFB3BF3713733C3B5E2B68C890DC235987A625118",
-          "profile": "C:/Users/zengbenchong/.ohos/config/openharmony/default_Asset_WMjW1k3aXdGTv9zVP9gZHS6Q095UiwPg2bW9aR_b0Gw=.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:/Users/zengbenchong/.ohos/config/openharmony/default_Asset_WMjW1k3aXdGTv9zVP9gZHS6Q095UiwPg2bW9aR_b0Gw=.p12"
-        }
-      }
     ]
   },
   "modules": [

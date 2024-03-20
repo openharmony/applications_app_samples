@@ -163,6 +163,7 @@ struct UpdatePage {
             .fontColor(0x182431)
             .padding({ top: '1.70%', right: '48.00px', bottom: '1.70%', left: '0' })
             .backgroundColor(Color.Transparent)
+            .id('label_input')
             .placeholderFont({ size: 16, weight: 400, family: 'HarmonyHeiTi', style: FontStyle.Normal })
             .onChange((value: string) => {
               this.reserveLabel = value;
@@ -205,6 +206,7 @@ struct UpdatePage {
           .borderRadius(20)
           .width('86.7%')
           .height(40)
+          .id('update_button')
           .enabled(isUpdateClickable(this.reservePassword))
           .onClick(() => {
             updateAssetPromise(this.user, this.reservePassword, this.reserveLabel)

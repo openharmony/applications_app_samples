@@ -1,125 +1,225 @@
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
-import { addAssetPromise,
-  postQueryAssetPromise,
-  preQueryAssetPromise,
-  queryAssetPromise,
-  removeAssetPromise,
-  updateAssetPromise } from '../../../main/ets/model/AssetModel';
+/*
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { describe, beforeAll, it, expect } from '@ohos/hypium'
+import { Driver, ON } from '@ohos.UiTest';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import hilog from '@ohos.hilog'
+import inputMethod from '@ohos.inputMethod';
+
+class Logger {
+  private domain: number;
+  private prefix: string;
+  private format: string = '%{public}s, %{public}s';
+
+  constructor(prefix: string) {
+    this.prefix = prefix;
+    this.domain = 0xFF00;
+    hilog.isLoggable(this.domain, prefix, hilog.LogLevel.INFO);
+    hilog.isLoggable(this.domain, prefix, hilog.LogLevel.DEBUG);
+    hilog.isLoggable(this.domain, prefix, hilog.LogLevel.WARN);
+    hilog.isLoggable(this.domain, prefix, hilog.LogLevel.ERROR);
+  }
+
+  debug(...args: string[]) {
+    hilog.debug(this.domain, this.prefix, this.format, args);
+  }
+
+  info(...args: string[]) {
+    hilog.info(this.domain, this.prefix, this.format, args);
+  }
+
+  warn(...args: string[]) {
+    hilog.warn(this.domain, this.prefix, this.format, args);
+  }
+
+  error(...args: string[]) {
+    hilog.error(this.domain, this.prefix, this.format, args);
+  }
+}
+
+export let logger = new Logger('[Basic capabilities are enhanced]');
+
+const BUNDLE: string = 'Asset';
+const BUNDLE_NAME: string = 'com.example.asset_sample';
+const SLEEP_MS: number = 1500;
+
+let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+
+function sleep(time: number) {
+  return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
+}
+
+async function getResourceString(resource: Resource): Promise<string> {
+  let manage = abilityDelegator.getAppContext().resourceManager;
+  let text = await manage.getStringValue(resource);
+  return text;
+}
 
 export default function abilityTest() {
+  let driver: Driver = Driver.create();
   describe('ActsAbilityTest', () => {
-    // Defines a test suite. Two parameters are supported: test suite name and test suite function.
-    beforeAll(() => {
-      // Presets an action, which is performed only once before all test cases of the test suite start.
-      // This API supports only one parameter: preset action function.
-    })
-    beforeEach(() => {
-      // Presets an action, which is performed before each unit test case starts.
-      // The number of execution times is the same as the number of test cases defined by **it**.
-      // This API supports only one parameter: preset action function.
-    })
-    afterEach(() => {
-      // Presets a clear action, which is performed after each unit test case ends.
-      // The number of execution times is the same as the number of test cases defined by **it**.
-      // This API supports only one parameter: clear action function.
-    })
-    afterAll(() => {
-      // Presets a clear action, which is performed after all test cases of the test suite end.
-      // This API supports only one parameter: clear action function.
-    })
-    it('assertContain', 0, () => {
-      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      hilog.info(0x0000, 'testTag', '%{public}s', 'it begin');
-      let a = 'abc';
-      let b = 'b';
-      // Defines a variety of assertion methods, which are used to declare expected boolean conditions.
-      expect(a).assertContain(b);
-      expect(a).assertEqual(a);
-    })
-    it('assertAdd', 0, async () => {
-      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      hilog.info(0x0000, 'testTag', '%{public}s', 'it begin');
-      let account = 'asset_account';
-      let pwd = 'pwd';
-      let label ='label1;label2';
+    beforeAll(async (done: Function) => {
+      logger.info(`${BUNDLE} beforeAll begin`);
       try {
-        await addAssetPromise(account, pwd, label);
-        let delete_label = 'label1';
-        await removeAssetPromise(account, delete_label);
-        expect(0).assertEqual(0);
-      } catch (error)  {
-        expect(0).assertEqual(false);
+        await abilityDelegator.startAbility({
+          bundleName: BUNDLE_NAME,
+          abilityName: "EntryAbility"
+        });
+      } catch (err) {
+        logger.info(`${BUNDLE} beforeAll error: ${JSON.stringify(err)}`);
       }
+      logger.info(`${BUNDLE}  beforeAll end`);
+      done();
+    })
+    /*
+     * @tc.number: AssetAdd001
+     * @tc.name: add asset
+     * @tc.desc: add asset
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it('AssetAdd001', 0, async (done: Function) => {
+      logger.info(`${BUNDLE}_add_001 begin`);
+      await sleep(SLEEP_MS);
+      let nameInput = await driver.findComponent(ON.id('account_input'));
+      await nameInput.inputText('test');
+      let secretInput = await driver.findComponent(ON.id('secret_input'));
+      await secretInput.inputText('test111');
+      let labelInput = await driver.findComponent(ON.id('label_input'));
+      await labelInput.inputText('label1');
+
+      inputMethod.getController().stopInputSession();
+
+      let label = await driver.findComponent(ON.id('label'));
+      await label.scrollToBottom();
+
+      await sleep(SLEEP_MS);
+      let clickAdd = await driver.findComponent(ON.text(
+        await getResourceString($r('app.string.save'))));
+      await clickAdd.getDescription();
+      await clickAdd.click()
+      logger.info(`${BUNDLE}_add_001 end`);
+      await sleep(SLEEP_MS);
+      done();
     })
 
-    it('assertQuery', 0, async () => {
-      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      hilog.info(0x0000, 'testTag', '%{public}s', 'it begin');
-      let account = 'asset_account';
-      let pwd = 'pwd';
-      let label ='label1;label2';
-      try {
-        await addAssetPromise(account, pwd, label);
-        let query_label = 'label1';
-        await queryAssetPromise(account, query_label);
-        let delete_label = 'label1';
-        await removeAssetPromise(account, delete_label);
-        expect(0).assertEqual(0);
-      } catch (error)  {
-        expect(0).assertEqual(false);
+
+    /*
+     * @tc.number: AssetUpdate002
+     * @tc.name: update asset
+     * @tc.desc: update asset
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it('AssetUpdate002', 0, async (done: Function) => {
+      logger.info(`${BUNDLE}_update_002 begin`);
+      await sleep(SLEEP_MS);
+      // let driver: Driver = Driver.create();
+      // switch to update
+      await driver.click(445, 116);
+      await sleep(SLEEP_MS*2);
+      // input password
+      await driver.click(208, 1015);
+      await sleep(SLEEP_MS*2);
+      // switch to input number
+      await driver.click(54, 1147);
+      for (let index = 0; index < 7; index++) {
+        await sleep(SLEEP_MS);
+        await driver.click(38, 812);
       }
+      await sleep(SLEEP_MS*5);
+      inputMethod.getController().stopInputSession();
+
+      await sleep(SLEEP_MS*2);
+
+      // select first result to update
+      await driver.click(330, 191);
+      await sleep(SLEEP_MS*2);
+
+      let label_input = await driver.findComponent(ON.id('label_input'));
+      await label_input.inputText('label_update');
+      inputMethod.getController().stopInputSession();
+      await sleep(SLEEP_MS);
+
+      let clickUpdate = await driver.findComponent(ON.id('update_button'));
+      await clickUpdate.click()
+      logger.info(`${BUNDLE}_update_002 end`);
+
+      await sleep(SLEEP_MS);
+      await driver.click(56, 113);
+      done();
     })
 
-    it('assertUpdate', 0, async () => {
-      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      hilog.info(0x0000, 'testTag', '%{public}s', 'it begin');
-      let account = 'asset_account';
-      let pwd = 'pwd';
-      let label ='label1;label2';
-      try {
-        await addAssetPromise(account, pwd, label);
-        let reserve_label = 'label1';
-        let reserve_password = '123';
-        await updateAssetPromise(account, reserve_password, reserve_label);
-        let delete_label = 'label1';
-        await removeAssetPromise(account, delete_label);
-        expect(0).assertEqual(0);
-      } catch (error)  {
-        expect(0).assertEqual(false);
-      }
+    /*
+     * @tc.number: AssetSearch003
+     * @tc.name: search asset
+     * @tc.desc: search asset
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it('AssetSearch003', 0, async (done: Function) => {
+      logger.info(`${BUNDLE}_search_003 begin`);
+      await sleep(SLEEP_MS);
+      // let driver: Driver = Driver.create();
+      // switch to search
+      let search_tab = await driver.findComponent(ON.text('查询'));
+      search_tab.click();
+      await sleep(SLEEP_MS);
+      inputMethod.getController().stopInputSession();
+      await sleep(SLEEP_MS);
+      let search_button = await driver.findComponent(ON.id('search'));
+      search_button.click();
+      inputMethod.getController().stopInputSession();
+      await sleep(SLEEP_MS);
+      let result = await driver.findComponent(ON.text(
+        await getResourceString($r('app.string.account'))));
+      expect(result != null).assertTrue();
+      await sleep(SLEEP_MS);
+      await driver.click(64, 114);
+      logger.info(`${BUNDLE}_search_003 end`);
+      await sleep(SLEEP_MS);
+      inputMethod.getController().stopInputSession();
+      done();
     })
 
-    it('assertDelete', 0, async () => {
-      hilog.info(0x0000, 'testTag', '%{public}s', 'it begin');
-      let account = 'asset_account';
-      let pwd = 'pwd';
-      let label ='label1;label2';
-      try {
-        await addAssetPromise(account, pwd, label);
-        let delete_label = 'label1';
-        await removeAssetPromise(account, delete_label);
-        expect(0).assertEqual(0);
-      } catch (error)  {
-        expect(0).assertEqual(false);
-      }
-    })
-
-    it('assertPreQuery', 0, async () => {
-      hilog.info(0x0000, 'testTag', '%{public}s', 'it begin');
-      let account = 'asset_account';
-      let pwd = 'pwd';
-      let label ='label1;label2';
-      try {
-        await addAssetPromise(account, pwd, label);
-        let challenge = await preQueryAssetPromise(account);
-        await postQueryAssetPromise(challenge);
-        let delete_label = 'label1';
-        await removeAssetPromise(account, delete_label);
-        expect(0).assertEqual(0);
-      } catch (error)  {
-        expect(0).assertEqual(false);
-      }
+    /*
+     * @tc.number: AssetDelete004
+     * @tc.name: delete asset
+     * @tc.desc: delete asset
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it('AssetDelete004', 0, async (done: Function) => {
+      logger.info(`${BUNDLE}_delete_004 begin`);
+      await sleep(SLEEP_MS);
+      // let driver: Driver = Driver.create();
+      // switch to delete
+      await driver.click(263, 120);
+      inputMethod.getController().stopInputSession();
+      await sleep(SLEEP_MS);
+      let clickUpdate = await driver.findComponent(ON.text(
+        await getResourceString($r('app.string.delete'))));
+      await clickUpdate.click()
+      logger.info(`${BUNDLE}_delete_004 end`);
+      await sleep(SLEEP_MS);
+      done();
     })
 
   })
