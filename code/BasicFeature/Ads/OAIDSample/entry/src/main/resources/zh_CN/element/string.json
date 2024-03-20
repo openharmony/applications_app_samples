@@ -31,6 +31,10 @@
     {
       "name": "oaid_label",
       "value": "OAID:"
+    },
+    {
+      "name": "request_permissions_reason",
+      "value": "应用获知此信息，用于向您推荐可能感兴趣的内容"
     }
   ]
 }

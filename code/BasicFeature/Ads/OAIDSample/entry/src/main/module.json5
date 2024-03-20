@@ -50,7 +50,14 @@
     ],
     "requestPermissions": [
       {
-        "name": "ohos.permission.APP_TRACKING_CONSENT"
+        "name": "ohos.permission.APP_TRACKING_CONSENT",
+        "reason": "$string:request_permissions_reason",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when": "inuse"
+        }
       }
     ]
   }
