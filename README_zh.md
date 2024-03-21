@@ -118,6 +118,7 @@
   <td x:str><a href="code/BasicFeature/Security/Huks">通用密钥库系统（huks）（API 10）</a></td>
   <td x:str><a href="code/BasicFeature/Security/PaySecurely">支付</a></td>
   <td x:str><a href="code/BasicFeature/Security/CertManager">证书管理</a></td>
+  <td x:str><a href="code/BasicFeature/Security/Asset">关键资产存储</a></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
