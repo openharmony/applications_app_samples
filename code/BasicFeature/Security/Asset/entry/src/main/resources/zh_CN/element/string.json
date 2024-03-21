@@ -1,0 +1,120 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "please_set_pwd",
+      "value": "请设置锁屏密码"
+    },
+    {
+      "name": "auth_failed",
+      "value": "认证失败"
+    },
+    {
+      "name": "account",
+      "value": "账号"
+    },
+    {
+      "name": "please_input_account",
+      "value": "请输入账号"
+    },
+    {
+      "name": "secret_or_card_num",
+      "value": "密码/信用卡号"
+    },
+    {
+      "name": "please_input_secret_or_card_num",
+      "value": "请输入密码/信用卡号"
+    },
+    {
+      "name": "label",
+      "value": "标签（最多4个，以;分隔）"
+    },
+    {
+      "name": "label2",
+      "value": "标签"
+    },
+    {
+      "name": "please_input_label",
+      "value": "请输入标签名称"
+    },
+    {
+      "name": "save",
+      "value": "保存"
+    },
+    {
+      "name": "delete",
+      "value": "删除"
+    },
+    {
+      "name": "search",
+      "value": "查询"
+    },
+    {
+      "name": "search_result",
+      "value": "查询结果"
+    },
+    {
+      "name": "update",
+      "value": "更新"
+    },
+    {
+      "name": "save_failed_for_label",
+      "value": "保存失败，标签数量超过4个"
+    },
+    {
+      "name": "save_success",
+      "value": "保存成功"
+    },
+    {
+      "name": "save_failed_for_account_exist",
+      "value": "保存失败，账号已存在"
+    },
+    {
+      "name": "save_failed",
+      "value": "保存失败"
+    },
+    {
+      "name": "remove_success",
+      "value": "删除成功"
+    },
+    {
+      "name": "remove_failed_for_account_not_exist",
+      "value": "删除失败，账号不存在"
+    },
+    {
+      "name": "remove_failed",
+      "value": "删除失败"
+    },
+    {
+      "name": "update_failed",
+      "value": "更新失败"
+    },
+    {
+      "name": "update_success",
+      "value": "更新成功"
+    },
+    {
+      "name": "update_failed_for_label_over_4",
+      "value": "更新失败，标签数量超过4个"
+    },
+    {
+      "name": "query_no_result",
+      "value": "未查询到结果"
+    },
+    {
+      "name": "query_failed",
+      "value": "查询失败"
+    }
+  ]
+}
