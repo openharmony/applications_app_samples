@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,10 +15,11 @@
 
 import common from '@ohos.app.ability.common';
 import commonEvent from '@ohos.commonEventManager';
-import consts from '../module/Consts';
 import dataPreferences from '@ohos.data.preferences';
-import Logger from '../module/Logger';
+import Want from '@ohos.app.ability.Want';
 import router from '@ohos.router';
+import consts from '../module/Consts';
+import Logger from '../module/Logger';
 
 export default class LaunchFeature {
   private innerContext: common.UIAbilityContext = null;
@@ -166,9 +167,15 @@ export default class LaunchFeature {
 
   jumpToCommonEvent = (): void => {
     Logger.info('ready to jump to commonEvent page');
-    router.pushUrl({
-      url: 'pages/jumpToCommonEvent',
-      params: {}
+    let context: common.UIAbilityContext | undefined = AppStorage.get('context');
+    let want: Want = {
+      bundleName: "com.samples.cardevent",
+      abilityName: "EntryAbility",
+    };
+    context && context.startAbility(want,  (err) => {
+      if (err.code) {
+        Logger.error('StartAbility', `Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+      }
     });
   };
 }
