@@ -16,6 +16,10 @@
 import { asset } from '@kit.AssetStoreKit';
 import { promptAction } from '@kit.ArkUI';
 import { util } from '@kit.ArkTS';
+import { logger } from '../common/Logger';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+
+let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
 function removeDuplicateAndSort(arr: string[]): string[] {
   let newArr = new Array<string>();
@@ -27,9 +31,9 @@ function removeDuplicateAndSort(arr: string[]): string[] {
   return newArr.sort();
 }
 
-export function log(str: string) {
-  promptAction.showToast({ message: str })
-  console.log(str);
+export function log(resource: Resource) {
+  promptAction.showToast({ message: resource })
+  logger.info(getContext().resourceManager.getStringSync(resource));
 }
 
 export function stringToArray(str: string): Uint8Array {
@@ -55,7 +59,7 @@ export async function addAssetPromise(account: string, password: string, label: 
   let labelList: Array<string> = label.split(';');
   labelList = removeDuplicateAndSort(labelList);
   if (labelList.length > 4) {
-    log("保存失败，标签数量超过4个")
+    log($r('app.string.save_failed_for_label'))
     return;
   }
   let attr: asset.AssetMap = new Map();
@@ -77,12 +81,12 @@ export async function addAssetPromise(account: string, password: string, label: 
   attr.set(asset.Tag.IS_PERSISTENT, true)
   try {
     await asset.add(attr);
-    log("保存成功")
+    log($r('app.string.save_success'))
   } catch (error)  {
     if (error.code === 24000003) {
-      log('保存失败，账号已存在');
+      log($r('app.string.save_failed_for_account_exist'));
     } else {
-      log('保存失败')
+      log($r('app.string.save_failed'))
     }
   }
 }
@@ -95,12 +99,12 @@ export async function removeAssetPromise(deleteAccount: string, deleteLabel: str
   if (deleteLabel.length == 0) {
     try {
       await asset.remove(attr);
-      log("删除成功")
+      log($r('app.string.remove_success'))
     } catch (error) {
       if (error.code === 24000002) {
-        log('删除失败，账号不存在');
+        log($r('app.string.remove_failed_for_account_not_exist'));
       } else {
-        log('删除失败')
+        log($r('app.string.remove_failed'))
       }
     }
   } else {
@@ -108,7 +112,7 @@ export async function removeAssetPromise(deleteAccount: string, deleteLabel: str
     labelList = removeDuplicateAndSort(labelList);
     let assetList: asset.AssetMap[] = await getArrangedMap(deleteAccount, labelList)
     if (assetList.length == 0) {
-      log('删除失败，账号不存在');
+      log($r('app.string.remove_failed_for_account_not_exist'));
       return;
     }
     let map: Map<asset.Tag, asset.Value> = new Map();
@@ -117,11 +121,11 @@ export async function removeAssetPromise(deleteAccount: string, deleteLabel: str
       try {
         await asset.remove(map)
       } catch (error) {
-        log('删除失败')
+        log($r('app.string.remove_failed'))
         return;
       }
     }
-    log("删除成功")
+    log($r('app.string.remove_success'))
   }
 }
 
@@ -173,7 +177,7 @@ export async function updateAssetPromise(reserveAccount: string, reservePassword
   let labelList = reserveLabel.split(';');
   labelList = removeDuplicateAndSort(labelList);
   if (labelList.length > 4) {
-    log("更新失败，标签数量超过4个")
+    log($r('app.string.update_failed_for_label_over_4'))
     return;
   }
 
@@ -188,9 +192,9 @@ export async function updateAssetPromise(reserveAccount: string, reservePassword
 
   try {
     await asset.update(attr2, attr)
-    log("更新成功")
+    log($r('app.string.update_success'))
   } catch (error) {
-    log('更新失败');
+    log($r('app.string.update_failed'));
   }
 }
 
@@ -262,9 +266,9 @@ export async function queryAssetPromise(checkAccount: string, checkLabel: string
       return convertAssetList(assetList, accountList);
     } catch (error) {
       if (error.code === 24000002) {
-        log('未查询到结果');
+        log($r('app.string.query_no_result'));
       } else {
-        log('查询失败');
+        log($r('app.string.query_failed'));
       }
       return new Array<Map<string, string>>();
     }
@@ -273,7 +277,7 @@ export async function queryAssetPromise(checkAccount: string, checkLabel: string
     labelList = removeDuplicateAndSort(labelList);
     let assetList: asset.AssetMap[] = await getArrangedMap(checkAccount, labelList)
     if (assetList.length == 0) {
-      log('未查询到结果');
+      log($r('app.string.query_no_result'));
       return new Array<Map<string, string>>();
     }
     return convertAssetList(assetList, accountList);
@@ -311,9 +315,9 @@ export async function queryAuthAssetPromise(checkAccount: string, challenge: Uin
     return accountList[0]
   } catch (error) {
     if (error.code === 24000002) {
-      log('未查询到结果');
+      log($r('app.string.query_no_result'));
     } else {
-      log('查询失败');
+      log($r('app.string.query_failed'));
     }
     return account;
   }

@@ -67,6 +67,54 @@
     {
       "name": "update",
       "value": "更新"
+    },
+    {
+      "name": "save_failed_for_label",
+      "value": "保存失败，标签数量超过4个"
+    },
+    {
+      "name": "save_success",
+      "value": "保存成功"
+    },
+    {
+      "name": "save_failed_for_account_exist",
+      "value": "保存失败，账号已存在"
+    },
+    {
+      "name": "save_failed",
+      "value": "保存失败"
+    },
+    {
+      "name": "remove_success",
+      "value": "删除成功"
+    },
+    {
+      "name": "remove_failed_for_account_not_exist",
+      "value": "删除失败，账号不存在"
+    },
+    {
+      "name": "remove_failed",
+      "value": "删除失败"
+    },
+    {
+      "name": "update_failed",
+      "value": "更新失败"
+    },
+    {
+      "name": "update_success",
+      "value": "更新成功"
+    },
+    {
+      "name": "update_failed_for_label_over_4",
+      "value": "更新失败，标签数量超过4个"
+    },
+    {
+      "name": "query_no_result",
+      "value": "未查询到结果"
+    },
+    {
+      "name": "query_failed",
+      "value": "查询失败"
     }
   ]
 }

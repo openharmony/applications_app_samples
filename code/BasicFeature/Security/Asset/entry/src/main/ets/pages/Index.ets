@@ -16,6 +16,7 @@
 import { router } from '@kit.ArkUI';
 import { promptAction } from '@kit.ArkUI';
 import { userAuth } from '@kit.UserAuthenticationKit';
+import { logger } from '../common/Logger';
 import { addAssetPromise, removeAssetPromise, queryAssetPromise, queryAuthAssetPromise, preQueryAssetPromise, log,
   postQueryAssetPromise } from '../model/AssetModel';
 
@@ -43,9 +44,9 @@ async function getAuthTokenCallback(challenge: Uint8Array,
     let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
     userAuthInstance.on('result', {
       onResult(result) {
-        console.log('userAuthInstance callback result = ' + JSON.stringify(result));
+        logger.info('userAuthInstance callback result = ' + JSON.stringify(result));
         if (result.result == 12500000) {
-          console.log('userAuthInstance callback result success');
+          logger.info('userAuthInstance callback result success');
           callback(true, result.token)
         } else if (result.result == 12500010) {
           promptAction.showToast({ message: $r('app.string.please_set_pwd') })
@@ -55,7 +56,7 @@ async function getAuthTokenCallback(challenge: Uint8Array,
     });
     userAuthInstance.start();
   } catch (error) {
-    console.log('auth catch error: ' + JSON.stringify(error));
+    logger.info('auth catch error: ' + JSON.stringify(error));
     promptAction.showToast({ message: $r('app.string.auth_failed') })
     callback(false, new Uint8Array(0))
   }
@@ -464,7 +465,7 @@ struct Page {
                         params: { name: item, pwd: account.get('secret'), label: account.get("label") }
                       }, router.RouterMode.Standard, (err) => {
                         if (err) {
-                          console.error(`Invoke pushUrl failed, code is ${err.code}, message is ${err.message}`);
+                          logger.error(`Invoke pushUrl failed, code is ${err.code}, message is ${err.message}`);
                           return;
                         }
                       });
@@ -611,13 +612,13 @@ struct Page {
                 if (this.checkAccount.length > 0) {
                   let challenge = await preQueryAssetPromise(this.checkAccount);
                   if (challenge.length == 0) {
-                      log("查询失败")
+                      log($r('app.string.query_failed'))
                       return
                   }
                   this.challenge = challenge
                   getAuthTokenCallback(this.challenge, async (isSuccess: boolean, authToken: Uint8Array) => {
                     if (isSuccess) {
-                      console.log('get auth token success!')
+                      logger.info('get auth token success!')
                       this.authToken = authToken
 
                       let account = await queryAuthAssetPromise(this.checkAccount, this.challenge, this.authToken);
@@ -631,7 +632,7 @@ struct Page {
                         }
                       }, router.RouterMode.Standard, (err) => {
                         if (err) {
-                          console.error(`Invoke pushUrl failed, code is ${err.code}, message is ${err.message}`);
+                          logger.error(`Invoke pushUrl failed, code is ${err.code}, message is ${err.message}`);
                           return;
                         }
                       });
@@ -648,10 +649,10 @@ struct Page {
                       }
                     }, router.RouterMode.Standard, (err) => {
                       if (err) {
-                        console.error(`Invoke pushUrl failed, code is ${err.code}, message is ${err.message}`);
+                        logger.error(`Invoke pushUrl failed, code is ${err.code}, message is ${err.message}`);
                         return;
                       }
-                      console.info('Invoke pushUrl succeeded.');
+                      logger.info('Invoke pushUrl succeeded.');
                     });
                   })
                 }
@@ -671,12 +672,12 @@ struct Page {
     .onChange(async (index: number) => {
       if (index == 2 && this.index != 2) {
         let challenge = await preQueryAssetPromise("");
-        console.log('get challenge success!')
+        logger.info('get challenge success!')
         this.challenge = challenge
         // get auth token
         getAuthTokenCallback(this.challenge, async (isSuccess: boolean, authToken: Uint8Array) => {
           if (isSuccess) {
-            console.log('get auth token success!')
+            logger.info('get auth token success!')
             this.authToken = authToken
             let resultList = await queryAssetPromise('', '');
             for (let accountListElement of resultList) {

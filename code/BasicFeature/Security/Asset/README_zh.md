@@ -1,6 +1,6 @@
 # 关键资产存储服务
 ## 介绍
-本示例使用@kit.AssetStoreKit相关接口实现了对敏感数据的保存、更新、查询、删除操作。
+本示例使用[@kit.AssetStoreKit](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/security/AssetStoreKit)相关接口实现了对敏感数据的保存、更新、查询、删除操作。
 
 实现场景如下：
 
@@ -81,9 +81,9 @@ entry/src/main/ets/
     3）调用@kit.AssetStoreKit提供的postQuery接口清理资源。
 
 ## 相关权限
-ohos.permission.ACCESS_BIOMETRIC
+[ohos.permission.ACCESS_BIOMETRIC](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionaccess_biometric)
 
-ohos.permission.STORE_PERSISTENT_DATA
+[ohos.permission.STORE_PERSISTENT_DATA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionstore_persistent_data)
 
 ## 依赖
 不涉及

@@ -67,6 +67,54 @@
     {
       "name": "update",
       "value": "update"
+    },
+    {
+      "name": "save_failed_for_label",
+      "value": "save failed, label num over 4"
+    },
+    {
+      "name": "save_success",
+      "value": "save success"
+    },
+    {
+      "name": "save_failed_for_account_exist",
+      "value": "save failed for account exist"
+    },
+    {
+      "name": "save_failed",
+      "value": "save failed"
+    },
+    {
+      "name": "remove_success",
+      "value": "remove success"
+    },
+    {
+      "name": "remove_failed_for_account_not_exist",
+      "value": "remove failed for account not exist"
+    },
+    {
+      "name": "remove_failed",
+      "value": "remove failed"
+    },
+    {
+      "name": "update_failed",
+      "value": "update failed"
+    },
+    {
+      "name": "update_success",
+      "value": "update success"
+    },
+    {
+      "name": "update_failed_for_label_over_4",
+      "value": "update failed for label over 4"
+    },
+    {
+      "name": "query_no_result",
+      "value": "query no result"
+    },
+    {
+      "name": "query_failed",
+      "value": "query failed"
     }
   ]
 }

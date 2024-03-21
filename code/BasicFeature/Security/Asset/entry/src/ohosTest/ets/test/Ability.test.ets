@@ -16,41 +16,8 @@
 import { describe, beforeAll, it, expect } from '@ohos/hypium'
 import { Driver, ON } from '@ohos.UiTest';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import hilog from '@ohos.hilog'
 import inputMethod from '@ohos.inputMethod';
-
-class Logger {
-  private domain: number;
-  private prefix: string;
-  private format: string = '%{public}s, %{public}s';
-
-  constructor(prefix: string) {
-    this.prefix = prefix;
-    this.domain = 0xFF00;
-    hilog.isLoggable(this.domain, prefix, hilog.LogLevel.INFO);
-    hilog.isLoggable(this.domain, prefix, hilog.LogLevel.DEBUG);
-    hilog.isLoggable(this.domain, prefix, hilog.LogLevel.WARN);
-    hilog.isLoggable(this.domain, prefix, hilog.LogLevel.ERROR);
-  }
-
-  debug(...args: string[]) {
-    hilog.debug(this.domain, this.prefix, this.format, args);
-  }
-
-  info(...args: string[]) {
-    hilog.info(this.domain, this.prefix, this.format, args);
-  }
-
-  warn(...args: string[]) {
-    hilog.warn(this.domain, this.prefix, this.format, args);
-  }
-
-  error(...args: string[]) {
-    hilog.error(this.domain, this.prefix, this.format, args);
-  }
-}
-
-export let logger = new Logger('[Basic capabilities are enhanced]');
+import { logger } from '../../../main/ets/common/Logger';
 
 const BUNDLE: string = 'Asset';
 const BUNDLE_NAME: string = 'com.example.asset_sample';
