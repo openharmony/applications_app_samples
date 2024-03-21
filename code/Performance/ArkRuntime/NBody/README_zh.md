@@ -4,7 +4,7 @@
 
 在本示例中，使用ArkTS编程语言开发了业界编程语言基准测试项目[Benchmarks Game](https://salsa.debian.org/benchmarksgame-team/benchmarksgame/)中的[N体问题模拟程序](https://benchmarksgame-team.pages.debian.net/benchmarksgame/description/nbody.html#nbody)，实现类木星体轨道计算。
 
-本示例用到了[@ohos.taskpool](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-taskpool.md)和[@ohos.worker](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-worker.md) 接口。示例中的程序可以用于AOT(Ahead Of Time)等性能测试。
+本示例用到了[@ohos.taskpool](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkts/js-apis-taskpool.md)和[@ohos.worker](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkts/js-apis-worker.md) 接口。示例中的程序可以用于AOT(Ahead Of Time)等性能测试。
 
 ### 效果预览
 |主页|计算中|重复点击|计算结果|
@@ -47,7 +47,7 @@ AOT(Ahead Of Time)，即预先编译，在应用程序运行前，将代码预�
 - 使用Worker开启子线程运行，计算5000万次时间推计算移天体运行轨道，源码参考[CalculateUtil.ets ](entry/src/main/ets/model/CalculateUtil.ets )
   - 通过调用computeNBodyByWorker()创建一个worker线程，把要计算的时间推移量发送给worker线程。
   - 等待worker线程调用computeTask()计算完成后再把结果返回主线程。
-- computeTask()完成具体计算任务，源码参考[NBody_ETS_6.ets](entry/src/main/ets/model/NBody_ETS_6.ets) 
+- computeTask()完成具体计算任务，源码参考[NBody_ETS_6.ts](entry/src/main/ets/model/NBody_ETS_6.ts) 
   - offsetMomentum() 建立孤立系统的动量守恒。
   - advance() 更新天体在按指定的时间变化后的位置信息。
   - energy() 判断系统计算前后机械能守恒。
