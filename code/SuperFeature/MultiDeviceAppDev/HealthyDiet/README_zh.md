@@ -41,8 +41,8 @@ entry/src/main/ets/
 ### 具体实现
 
 * 本实例使用了路由跳转，比如点击食物，可以跳转至相应的食物详情页面，通过一次开发多端部署，使用其中介绍的自适应布局能力和响应式布局能力进行多设备（或多窗口尺寸）适配，保证应用在不同设备或不同窗口尺寸下可以正常显示，使用MediaQueryListener方法查询媒体，matchMediaSync方法设置媒体查询的查询条件，cubicBezierCurve方法构造三阶贝塞尔曲线对象。
-* 源码链接：[BreakpointSystem.ets](code/SuperFeature/MultiDeviceAppDev/HealthyDiet/entry/src/main/ets/common/BreakpointSystem.ets)，[FoodDetail.ets](code/SuperFeature/MultiDeviceAppDev/HealthyDiet/entry/src/main/ets/pages/FoodDetail.ets)，[Home.ets](code/SuperFeature/MultiDeviceAppDev/HealthyDiet/entry/src/main/ets/pages/Home.ets)
-* 接口参考：[@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-system-router.md)，[一次开发多端部署](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/key-features/multi-device-app-dev)，[@ohos.curves](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-curve.md)，[@ohos.mediaquery](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-mediaquery.md)
+* 源码链接：[BreakpointSystem.ets](entry/src/main/ets/common/BreakpointSystem.ets)，[FoodDetail.ets](entry/src/main/ets/pages/FoodDetail.ets)，[Home.ets](entry/src/main/ets/pages/Home.ets)
+* 接口参考：[@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-system-router.md)，[一次开发多端部署](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/key-features/multi-device-app-dev)，[@ohos.curves](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-curve.md)，[@ohos.mediaquery](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-mediaquery.md)
 
 ### 相关权限
 
@@ -60,7 +60,7 @@ entry/src/main/ets/
 
 3. 本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)才可编译运行。
 
-4. 本示例使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。
+4. 本示例使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/security/hapsigntool-overview.md/)。
 
 ### 下载
 

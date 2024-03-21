@@ -5,7 +5,7 @@
 本示例展示了导航组件在不同设备形态下的样式。
 
 * 在sm设备上，以tabs形式展示，内容、导航为上下样式布局，通过点击底部tabs切换内容；
-* 在md/lg设备上，以[SideBarContainer](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-sidebarcontainer.md)形式展示，内容、导航为左右布局，通过点击侧边一二级菜单进行内容切换。
+* 在md/lg设备上，以[SideBarContainer](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md)形式展示，内容、导航为左右布局，通过点击侧边一二级菜单进行内容切换。
 
 本示例使用[一次开发多端部署](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/key-features/multi-device-app-dev)
 中介绍的自适应布局能力和响应式布局能力进行多设备（或多窗口尺寸）适配，主要通过组件提供窗口断点事件，保证应用在不同设备或不同窗口尺寸下可以正常显示。
@@ -54,7 +54,7 @@ MultiNavBar/entry/src/main/ets/
 
 #### 整体布局
 
-1.通过GridRow组件提供的断点事件，获取到当前窗口的断点，通过visibility属性将[Tabs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-tabs.md)组件与[SideBarContainer](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-sidebarcontainer.md)组件分别在sm/(md、lg)
+1.通过GridRow组件提供的断点事件，获取到当前窗口的断点，通过visibility属性将[Tabs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-tabs.md)组件与[SideBarContainer](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md)组件分别在sm/(md、lg)
 形态下展示/隐藏。
 
 2.同时通过断点，对组件设置不同的样式属性，以最优的效果展示。
