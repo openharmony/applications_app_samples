@@ -286,6 +286,17 @@ export default class AvPlayManager {
   }
 
   /**
+   * 预下载
+   */
+  async preDownload(url: string): Promise<void> {
+    if (this.avPlayer) {
+      let mediaSource : media.MediaSource = media.createMediaSourceWithURL(url,  {"aa" : "bb", "cc" : "dd"});
+      let playStrategy : media.PlayStrategy = {preferedWidth: 1, preferedHeight: 2, preferedBufferDuration: 3, preferHDR: false};
+      this.avPlayer.setMediaSource(mediaSource, playStrategy)
+    }
+  }
+
+  /**
    * 释放视频资源
    */
   async videoRelease(): Promise<void> {
@@ -334,6 +345,8 @@ export default class AvPlayManager {
       Logger.info(this.tag, 'avPlayerChoose setAVPlayerCallback');
       if (this.videoSrc === 'network.mp4') {
         this.fileSrc = 'https:\/\/vd3.bdstatic.com\/mda-pdc2kmwtd2vxhiy4\/cae_h264\/1681502407203843413\/mda-pdc2kmwtd2vxhiy4.mp4';
+      } else if (this.videoSrc === 'pre_download_network.mp4') {
+        this.fileSrc = 'https:\/\/vd3.bdstatic.com\/mda-nmh2004d24kf4bjh\/hd/h264\/1671326683061787710\/mda-nmh2004d24kf4bjh.mp4';
       } else {
         this.fileSrc = this.videoSrc;
       }
@@ -342,7 +355,11 @@ export default class AvPlayManager {
         let bool = regex.test(this.fileSrc);
         if (bool) {
           Logger.info(this.tag, `avPlayerChoose avPlayerChoose fileDescriptor = ${JSON.stringify(this.fileDescriptor)}`);
-          this.avPlayer.url = this.fileSrc;
+          if (this.videoSrc === 'pre_download_network.mp4') {
+            this.preDownload(this.fileSrc);
+          } else {
+            this.avPlayer.url = this.fileSrc;
+          }
         } else {
           if (this.mgr) {
             this.fileDescriptor = await this.mgr.getRawFd(this.fileSrc);
