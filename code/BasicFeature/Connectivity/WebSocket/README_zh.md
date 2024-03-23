@@ -52,16 +52,16 @@ entry/src/main/ets/
   * 客户端与服务端的连接和断开模块
     * BindServiceIP方法输入服务器IP地址，socket.connect方法绑定服务器，进入消息框页面，socket.on方法连接服务器，socket.off方法断开连接
     * 源码链接：[BindServiceIp.ets](entry/src/main/ets/common/BindServiceIp.ets)，[ChatsPage.ets](entry/src/main/ets/common/ChatsPage.ets)
-    * 接口参考：[@ohos.prompt](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-promptAction.md)，[@ohos.net.webSocket](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-webSocket.md)
+    * 接口参考：[@ohos.prompt](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-promptAction.md)，[@ohos.net.webSocket](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-network-kit/js-apis-webSocket.md)
 
   * 客户端数据的接收和发送模块
     * TopBar组件搭建通讯页面，socket.send方法发送信息数据。
     * 源码链接：[TopBar.ets](entry/src/main/ets/common/TopBar.ets)，[SendMessage.ets](entry/src/main/ets/common/SendMessage.ets)，[ChatData.ets](entry/src/main/ets/model/ChatData.ets)，[DataSource.ets](entry/src/main/ets/model/DataSource.ets)
-    * 接口参考：[@ohos.prompt](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-promptAction.md)，[@ohos.net.webSocket](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-webSocket.md)
+    * 接口参考：[@ohos.prompt](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-promptAction.md)，[@ohos.net.webSocket](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-network-kit/js-apis-webSocket.md)
 
 ### 相关权限
 
-[ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissioninternet)
+[ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissioninternet)
 
 ### 依赖
 

@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例使用 [@ohos.notificationManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-notificationManager.md) 等接口， 展示了如何初始化不同类型通知的通知内容以及通知的发布、取消及桌面角标的设置，通知类型包括基本类型、长文本类型、多行文本类型、图片类型、带进度条的通知、点击可跳转到应用以及公共事件通知。 
+本示例使用 [@ohos.notificationManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-notificationManager.md) 等接口， 展示了如何初始化不同类型通知的通知内容以及通知的发布、取消及桌面角标的设置，通知类型包括基本类型、长文本类型、多行文本类型、图片类型、带进度条的通知、点击可跳转到应用以及公共事件通知。 
 
 ### 效果预览		
 
@@ -16,7 +16,7 @@
 
 2.点击主界面中设置角标列表项设置角标，回到仿桌面，可以看到角标数量，对应消息数量（使用前需安装并启动[仿桌面应用](../../../SystemFeature/ApplicationModels/Launcher)）；
 
-3.点主击界面中对应的列表项发布不同类型的通知，下拉状态栏，在通知栏可以看到发布的通知；
+3.点主击界面中对应的列表项发布不同类型的通知，下拉状态栏，在通知栏可以看到发布的通知。
 
 ### 工程目录
 
@@ -52,7 +52,7 @@ entry/src/main/ets/
 
 ### 相关权限
 
-[ohos.permission.NOTIFICATION_CONTROLLER](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionnotification_controller)
+[ohos.permission.NOTIFICATION_CONTROLLER](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionnotification_controller)
 
 ### 依赖
 
@@ -68,7 +68,7 @@ entry/src/main/ets/
 
 4.本示例需要使用DevEco Studio 3.1.1 Release (Build Version: 3.1.0.501, built on June 20, 2023)才可编译运行；
 
-5.本示例涉及[ohos.permission.NOTIFICATION_CONTROLLER](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionnotification_controller)权限为system_core级别，需要配置高权限签名；
+5.本示例涉及[ohos.permission.NOTIFICATION_CONTROLLER](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionnotification_controller)权限为system_core级别，需要配置高权限签名。
 
 ### 下载
 

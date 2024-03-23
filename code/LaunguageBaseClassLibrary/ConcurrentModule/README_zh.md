@@ -2,8 +2,7 @@
 
 ### 介绍
 
-本示例通过[@ohos.taskpool](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-taskpool.md)
-和[@ohos.worker](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-worker.md) 接口，展示了如何启动worker线程和taskpool线程。
+本示例通过[@ohos.taskpool](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkts/js-apis-taskpool.md)和[@ohos.worker](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkts/js-apis-worker.md) 接口，展示了如何启动worker线程和taskpool线程。
 
 ### 效果预览
 
@@ -79,7 +78,7 @@ entry/src/main/ets/
   * 清除：把字符串输入框和结果都清除。
   * 添加至任务组：调用addTask()接口，将当前任务添加至任务组。
 
-* 批量拷贝文件的功能封装在MyWorker，源码参考：[MyWorker.ts](ets/src/main/ets/fileFs/MyWorker.ts)
+* 批量拷贝文件的功能封装在MyWorker，源码参考：[MyWorker.ts](entry/src/main/ets/fileFs/MyWorker.ets)
 
   * 拷贝文件：在[CopyFile.ets](entry/src/main/ets/pages/CopyFile.ets)
 

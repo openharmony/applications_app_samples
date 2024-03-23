@@ -2,9 +2,7 @@
 
 ### 介绍
 
-本示例通过使用[页面级的状态变量](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/arkts-localstorage.md/)
-和[应用级的状态变量](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/arkts-appstorage.md/)
-来实现应用的状态管理。
+本示例通过使用[页面级的状态变量](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/quick-start/arkts-localstorage.md/)和[应用级的状态变量](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/quick-start/arkts-appstorage.md/)来实现应用的状态管理。
 
 ### 效果预览
 

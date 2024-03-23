@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例是一个安全类App，使用[@ohos.dlpPermission](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-dlppermission.md) 接口展示了在eTS中普通文件加密受限的过程。
+本示例是一个安全类App，使用[@ohos.dlpPermission](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-data-loss-prevention-kit/js-apis-dlppermission.md) 接口展示了在eTS中普通文件加密受限的过程。
 
 ### 效果预览
 | Index                                     | Encryption                                           | Encryptied                                       | FileEdit                                           |
@@ -33,32 +33,32 @@ entry/src/main/ets/
 ### 具体实现
 
 + 文件的添加和文件列表的获取分别在Index和MediaFileUri中，源码参考[Index.ets](entry/src/main/ets/pages/Index.ets) 和 [MediaFileUri.ets](entry/src/main/ets/feature/MediaFileUri.ets):
-  + 文件的添加：首先通过[@ohos.file.picker](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-picker.md)接口的DocumentSaveOptions()方法自定一个参数，然后通过new picker.DocumentViewPicker()方法拉起文件管理应用去新建一个普通文件。
-  + 文件列表的获取：首先使用[@ohos.file.fileAccess](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-fileAccess.md) 接口的createFileAccessHelper()方法来创建连接指定wants的helper对象，然后通过getRoots()方法来获取helper对象连接的文件管理服务类的设备根节点信息，并获取到目录url，最后通过getFileInfoFromUri()方法得到文件的信息。
+  + 文件的添加：首先通过[@ohos.file.picker](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-picker.md)接口的DocumentSaveOptions()方法自定一个参数，然后通过new picker.DocumentViewPicker()方法拉起文件管理应用去新建一个普通文件。
+  + 文件列表的获取：首先使用[@ohos.file.fileAccess](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-fileAccess-sys.md) 接口的createFileAccessHelper()方法来创建连接指定wants的helper对象，然后通过getRoots()方法来获取helper对象连接的文件管理服务类的设备根节点信息，并获取到目录url，最后通过getFileInfoFromUri()方法得到文件的信息。
 + 文件的加密操作在DlpManager中，源码参考[DlpManager.ets](entry/src/main/ets/feature/DlpManager.ets):
     + 加密操作：使用dlpPermission接口的generateDLPFile方法获得一个相关的操作型关系数据库RdbStore，将明文文件加密生成权限受控文件。
 
 ### 相关权限
 
-允许应用读取用户外部存储中的媒体文件信息：[ohos.permission.READ_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionread_media)
+允许应用读取用户外部存储中的媒体文件信息：[ohos.permission.READ_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionread_media)
 
-允许应用读写用户外部存储中的媒体文件信息：[ohos.permission.WRITE_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionwrite_media)
+允许应用读写用户外部存储中的媒体文件信息：[ohos.permission.WRITE_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionwrite_media)
 
-允许文件管理类应用通过FAF框架访问公共数据文件：[ohos.permission.FILE_ACCESS_MANAGER](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+允许文件管理类应用通过FAF框架访问公共数据文件：[ohos.permission.FILE_ACCESS_MANAGER](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionfile_access_manager)
 
-允许应用读取用户外部存储中的媒体文件信息：[ohos.permission.STORAGE_MANAGER](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+允许应用读取用户外部存储中的媒体文件信息：[ohos.permission.STORAGE_MANAGER](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionstorage_manager)
 
-允许应用读取用户外部存储中的媒体文件信息：[ohos.permission.GET_BUNDLE_INFO_PRIVILEGED](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+允许应用读取用户外部存储中的媒体文件信息：[ohos.permission.GET_BUNDLE_INFO_PRIVILEGED](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionget_bundle_info_privileged)
 
-允许应用读取用户外部存储中的媒体文件信息：[ohos.permission.ACCESS_DLP_FILE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+允许应用读取用户外部存储中的媒体文件信息：[ohos.permission.ACCESS_DLP_FILE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionaccess_dlp_file)
 
-允许应用读取用户外部存储中的媒体文件信息：[ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+允许应用读取用户外部存储中的媒体文件信息：[ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionmanage_distributed_accounts)
 
-允许应用读取用户外部存储中的媒体文件信息：[ohos.permission.MANAGE_LOCAL_ACCOUNTS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+允许应用读取用户外部存储中的媒体文件信息：[ohos.permission.MANAGE_LOCAL_ACCOUNTS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionmanage_local_accounts)
 
-允许应用读取用户外部存储中的媒体文件信息：[ohos.permission.GET_LOCAL_ACCOUNTS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+允许应用读取用户外部存储中的媒体文件信息：[ohos.permission.GET_LOCAL_ACCOUNTS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionget_local_accounts)
 
-允许应用读取用户外部存储中的媒体文件信息：[ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+允许应用读取用户外部存储中的媒体文件信息：[ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionmanage_distributed_accounts)
 
 ### 依赖
 
@@ -67,9 +67,9 @@ entry/src/main/ets/
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行;
-2. 本示例仅支持API10版本SDK，SDK版本号(4.0.10.10), 镜像版本号(4.0 Release)。
+2. 本示例仅支持API10版本SDK，SDK版本号(4.0.10.10), 镜像版本号(4.0 Release)；
 3. 本示例需要使用DevEco Studio 4.0 Beta2 (Build Version: 4.0.0.400, built on August 2, 2023)才可编译运行;
-4. 本示例需要使用@@ohos.dlpPermission系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。
+4. 本示例需要使用@@ohos.dlpPermission系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)；
 5. 安装DlpManager.hap之前需要卸载系统的dlpManager，并且替换签名信息 "fingerprint": "5E610F2B97D6F27D707C7ADE1091863895E1AD73F5B3EA1F8810ED3E656A9512"，否则安装不上。经过以上操作之后，需要执行此命令hdc_std shell setenforce 0。
 
 ### 下载

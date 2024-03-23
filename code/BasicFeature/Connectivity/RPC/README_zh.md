@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例使用[@ohos.rpc](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-rpc.md) 相关接口，实现了一个前台选择商品和数目，后台计算总价的功能，使用rpc进行前台和后台的通信。
+本示例使用[@ohos.rpc](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ipc-kit/js-apis-rpc.md) 相关接口，实现了一个前台选择商品和数目，后台计算总价的功能，使用rpc进行前台和后台的通信。
 
 ### 效果预览
 
@@ -40,12 +40,9 @@ entry/src/main/ets/
 
 ### 具体实现
 
-* 发送数据：在首页的sortString()中通过rpc.MessageSequence.create()创建MessageSequence对象，然后通过MessageSequence.writeStringArray()将
-  我们的处理过的购物数据写入MessageSequence对象中，通过rpc.RemoteObject.sendMessageRequest()将我们得出总价所需要的参数发送到进程中，
-  源码参考：[Index.ets](entry/src/main/ets/pages/Index.ets) ;
+* 发送数据：在首页的sortString()中通过rpc.MessageSequence.create()创建MessageSequence对象，然后通过MessageSequence.writeStringArray()将我们的处理过的购物数据写入MessageSequence对象中，通过rpc.RemoteObject.sendMessageRequest()将我们得出总价所需要的参数发送到进程中，源码参考：[Index.ets](entry/src/main/ets/pages/Index.ets) ;
 
-* 读取数据：处理MessageRequest请求的接口封装在ReceivedData里面，在这里接收传递来的数据，然后经过处理得出总价，
-  并通过rpc.MessageParcel.writeInt()写入MessageParcel对象，源码参考：[ReceivedData.ets](entry/src/main/ets/model/ReceivedData.ets) 。
+* 读取数据：处理MessageRequest请求的接口封装在ReceivedData里面，在这里接收传递来的数据，然后经过处理得出总价，并通过rpc.MessageParcel.writeInt()写入MessageParcel对象，源码参考：[ReceivedData.ets](entry/src/main/ets/model/ReceivedData.ets)。
 
 ### 相关权限
 

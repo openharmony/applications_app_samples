@@ -65,7 +65,7 @@ entry/src/main/cpp/
 
 在主页面显示了一个XComponent控件，默认显示立方体。通过用户点击，触发ChangeShape事件，opengl_draw收到事件，完成绘制内容变更。首页启动时，会触发一个定时器，每40ms触发一次，当opengl_draw收到事件时，进行动画更新。
 
-在XComponent初始化完成时，OnSurfaceCreated回调里面，会自动开始图形绘制。源码参考[opengl_draw.cpp](.//entry/src/main/cpp/opengl_draw.cpp) 。在opengl_draw.cpp里面Init方法会创建EglWindow和EGLSurface，然后创建上下文EGLContext， 完成baseShape的初始化，默认使用Cube进行初始化。
+在XComponent初始化完成时，OnSurfaceCreated回调里面，会自动开始图形绘制。源码参考[opengl_draw.cpp](./entry/src/main/cpp/opengl_draw.cpp) 。在opengl_draw.cpp里面Init方法会创建EglWindow和EGLSurface，然后创建上下文EGLContext， 完成baseShape的初始化，默认使用Cube进行初始化。
 
 ---绘制2D图形：rectangle.cpp的Init方法，完成Shader的初始化；   Update方法主要是绘制两个图形，一个进行旋转，一个进行缩放
 ---绘制3D物体：cube.cpp的Init方法，完成Shader的初始化，相机的初始化。 Update方法绘制了两个立方体，一个在屏幕中间，另一个会围绕中间的物体进行圆周运动。并且设置运动的物体为发光源，在中间物体展示不同角度的光照效果。

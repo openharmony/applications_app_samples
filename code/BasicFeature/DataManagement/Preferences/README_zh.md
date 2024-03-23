@@ -2,8 +2,7 @@
 
 ### 简介
 
-本示例使用[@ohos.data.preferences](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-preferences.md)
-接口，展示了使用首选项持久化存储数据的功能。
+本示例使用[@ohos.data.preferences](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkdata/js-apis-data-preferences.md)接口，展示了使用首选项持久化存储数据的功能。
 
 ### 效果预览 
 
