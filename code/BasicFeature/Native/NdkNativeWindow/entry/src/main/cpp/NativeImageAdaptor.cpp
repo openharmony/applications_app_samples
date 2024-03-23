@@ -215,11 +215,34 @@ void NativeImageAdaptor::SetConfigAndGetValue()
         LOGE("SetConfigAndGetValue GET_COLOR_GAMUT fail");
     }
     code = SET_FORMAT;
-    OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, NATIVEBUFFER_PIXEL_FMT_RGBA_8888);
+    OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, NATIVEBUFFER_PIXEL_FMT_YCBCR_420_SP);
     code = SET_TRANSFORM;
     OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, NATIVEBUFFER_ROTATE_NONE);
     code = SET_COLOR_GAMUT;
     OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, NATIVEBUFFER_COLOR_GAMUT_SRGB);
+}
+
+void NativeImageAdaptor::GetBufferMapPlanes(NativeWindowBuffer *buffer)
+{
+    void *virAddr = nullptr;
+    OH_NativeBuffer_Planes outPlanes;
+    OH_NativeBuffer *nativeBuffer = nullptr;
+
+    int32_t ret = OH_NativeBuffer_FromNativeWindowBuffer(buffer, &nativeBuffer);
+    if (ret != 0) {
+        LOGE("OH_NativeBuffer_FromNativeWindowBuffer fail");
+        return;
+    }
+    ret = OH_NativeBuffer_MapPlanes(nativeBuffer, &virAddr, &outPlanes);
+    if (ret != 0) {
+        LOGE("OH_NativeBuffer_MapPlanes fail");
+        return;
+    }
+    LOGD("Get planeCount: %{public}d", outPlanes.planeCount);
+    for (int32_t i = 0; i < outPlanes.planeCount; i++) {
+        LOGD("Get offset: %{public}lu rowStride: %{public}d columnStride: %{public}d", outPlanes.planes[i].offset,
+             outPlanes.planes[i].rowStride, outPlanes.planes[i].columnStride);
+    }
 }
 
 void NativeImageAdaptor::ProduceBuffer(uint32_t value)
@@ -232,6 +255,7 @@ void NativeImageAdaptor::ProduceBuffer(uint32_t value)
         LOGE("OH_NativeWindow_NativeWindowRequestBuffer fail");
         return;
     }
+    GetBufferMapPlanes(buffer);
     
     BufferHandle *handle = OH_NativeWindow_GetBufferHandleFromNative(buffer);
     // Obtain the memory virtual address of bufferHandle using the system mmap interface
