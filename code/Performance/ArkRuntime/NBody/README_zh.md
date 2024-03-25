@@ -4,7 +4,7 @@
 
 在本示例中，使用ArkTS编程语言开发了业界编程语言基准测试项目[Benchmarks Game](https://salsa.debian.org/benchmarksgame-team/benchmarksgame/)中的[N体问题模拟程序](https://benchmarksgame-team.pages.debian.net/benchmarksgame/description/nbody.html#nbody)，实现类木星体轨道计算。
 
-本示例用到了[@ohos.taskpool](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-taskpool.md)和[@ohos.worker](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-worker.md) 接口。示例中的程序可以用于AOT(Ahead Of Time)等性能测试。
+本示例用到了[@ohos.taskpool](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkts/js-apis-taskpool.md)和[@ohos.worker](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkts/js-apis-worker.md) 接口。示例中的程序可以用于AOT(Ahead Of Time)等性能测试。
 
 ### 效果预览
 |主页|计算中|重复点击|计算结果|

@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例使用   [ApplicationContext](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-applicationContext.md) ,[ohos.ability.wantConstant](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-ability-wantConstant.md) ,[ohos.app.ability.StartOptions](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-startOptions.md)等接口实现了以下功能：
+本示例使用   [ApplicationContext](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-applicationContext.md) ,[ohos.ability.wantConstant](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-ability-wantConstant.md) ,[ohos.app.ability.StartOptions](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-startOptions.md)等接口实现了以下功能：
 
 1. 支持应用定制系统环境参数;
 
@@ -64,9 +64,9 @@ entry/src/main/ets/
 
 ### 具体实现
 
-- 应用切换语言的功能接口封装在CharacterOperation，使用[ApplicationContext](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-applicationContext.md) 调用setLanguage(language: string): void方法实现，源码参考：[CharacterOperation.ets](entry/src/main/ets/characteroperation/CharacterOperation.ets)
-- 应用切换颜色模式的功能接口封装在CharacterOperation，使用[ApplicationContext](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-applicationContext.md) 调用setColorMode(colorMode: ConfigurationConstant.ColorMode): void方法实现，源码参考：[CharacterOperation.ets](entry/src/main/ets/characteroperation/CharacterOperation.ets)
-- 应用清理自己的数据的功能接口封装在CharacterOperation，使用[ApplicationContext](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-applicationContext.md) 调用clearUpApplicationData(callback: AsyncCallback<void>): void方法实现，源码参考：[CharacterOperation.ets](entry/src/main/ets/characteroperation/CharacterOperation.ets)
+- 应用切换语言的功能接口封装在CharacterOperation，使用[ApplicationContext](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-applicationContext.md) 调用setLanguage(language: string): void方法实现，源码参考：[CharacterOperation.ets](entry/src/main/ets/characteroperation/CharacterOperation.ets)
+- 应用切换颜色模式的功能接口封装在CharacterOperation，使用[ApplicationContext](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-applicationContext.md) 调用setColorMode(colorMode: ConfigurationConstant.ColorMode): void方法实现，源码参考：[CharacterOperation.ets](entry/src/main/ets/characteroperation/CharacterOperation.ets)
+- 应用清理自己的数据的功能接口封装在CharacterOperation，使用[ApplicationContext](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-applicationContext.md) 调用clearUpApplicationData(callback: AsyncCallback<void>): void方法实现，源码参考：[CharacterOperation.ets](entry/src/main/ets/characteroperation/CharacterOperation.ets)
 - 应用隐式启动个数为0时不触发提示弹框的特性，通过给Want的flags设置为FLAG_START_WITHOUT_TIPS,源码参考：[Index.ets](entry/src/main/ets/pages/Index.ets)
 - 应用可以设置启动参数启动Ability能力，通过给startAbility(want: Want, options: StartOptions, callback: AsyncCallback<void>): void;方法传递新增参数StartOptions来设置启动位置，大小以及是否包含动画，源码参考：[Index.ets](entry/src/main/ets/pages/Index.ets)
 

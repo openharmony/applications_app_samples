@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例使用[@ohos.app.ability.InsightIntentExecutor](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-insightIntentExecutor.md)、[@ohos.app.ability.insightIntent](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-insightIntent.md)等接口，展示了意图绑定到UIAbility前台执行，主要包括构造意图配置文件、响应绑定到UIAbility前台执行的意图调用等。
+本示例使用[@ohos.app.ability.InsightIntentExecutor](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-insightIntentExecutor.md)、[@ohos.app.ability.insightIntent](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-insightIntent.md)等接口，展示了意图绑定到UIAbility前台执行，主要包括构造意图配置文件、响应绑定到UIAbility前台执行的意图调用等。
 
 ### 效果预览：
 

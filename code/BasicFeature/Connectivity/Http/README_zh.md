@@ -2,8 +2,7 @@
 
 ### 介绍
 
-本示例通过[@ohos.net.http](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-http.md)
-等接口，实现了根据URL地址和相关配置项发起http请求的功能。
+本示例通过[@ohos.net.http](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-network-kit/js-apis-http.md)等接口，实现了根据URL地址和相关配置项发起http请求的功能。
 
 ### 效果预览
 
@@ -47,7 +46,7 @@ http/src/main/ets/
 
 ### 相关权限
 
-[ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissioninternet)
+[ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissioninternet)
 
 ### 依赖
 

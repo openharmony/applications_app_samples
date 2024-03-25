@@ -1,7 +1,7 @@
 # VPN连接
 
 ### 介绍
-本示例展示了VPN连接相关功能，使用 [@ohos.net.vpn](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-net-vpn.md)接口，实现了包括创建VPN隧道，建立VPN网络，VPN隧道保护，销毁VPN网络，根据配置的VPN网络参数，实现了VPN服务器连接和发送数据的功能。
+本示例展示了VPN连接相关功能，使用 [@ohos.net.vpn](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-network-kit/js-apis-net-vpn-sys.md)接口，实现了包括创建VPN隧道，建立VPN网络，VPN隧道保护，销毁VPN网络，根据配置的VPN网络参数，实现了VPN服务器连接和发送数据的功能。
 
 ### 效果预览
 | 主页                             | vpn启动                              | vpn关闭                                     | 
@@ -58,9 +58,9 @@ entry/src/main/ets/
 
 5.该示例运行测试完成后，再次运行需要重新启动服务端和客户端。
 
-6.本示例需要使用 [@ohos.net.vpn](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-net-vpn.md) 系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEcoStudio中替换，具体操作可参考 [替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/) 。
+6.本示例需要使用 [@ohos.net.vpn](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-network-kit/js-apis-net-vpn-sys.md)系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)。
 
-7.本示例使用了system_basic级别的权限（相关权限级别请查看[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md) ），需要手动配置高级别的权限签名(具体操作可查看[自动化签名方案](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/) ) 。
+7.本示例使用了system_basic级别的权限（相关权限级别请查看[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md)），需要手动配置高级别的权限签名(具体操作可查看[自动化签名方案](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/security/hapsigntool-overview.md/))。
 
 ### 下载
 

@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例使用[@ohos.telephony.sms](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Beta5/zh-cn/application-dev/reference/apis/js-apis-sms.md) 接口展示了电话服务中发送短信的功能。
+本示例使用[@ohos.telephony.sms](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-telephony-kit/js-apis-sms.md) 接口展示了电话服务中发送短信的功能。
 
 ### 效果预览
 |新建联系人|首页|短信页|
@@ -42,9 +42,9 @@ entry/src/main/ets/
 
 ### 相关权限
 
-[ohos.permission.SEND_MESSAGES](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionsend_messages)
+[ohos.permission.SEND_MESSAGES](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionsend_messages)
 
-[ohos.permission.SET_TELEPHONY_STATE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionset_telephony_state)
+[ohos.permission.SET_TELEPHONY_STATE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionset_telephony_state)
 
 ### 依赖
 
@@ -55,9 +55,9 @@ entry/src/main/ets/
 1. 本示例仅支持在标准系统上运行;
 2. 本示例需要插入SIM卡，目前该功能仅支持部分机型;
 3. 本示例已适配API version 9版本SDK，版本号：3.2.11.9;
-4. 本示例涉及使用系统接口：getSmscAddr()，需要手动替换Full SDK 才能编译通过，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/);
+4. 本示例涉及使用系统接口：getSmscAddr()，需要手动替换Full SDK 才能编译通过，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md);
 5. 本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)及以上版本才可编译运行;
-6. 本示例所配置的权限ohos.permission.SEND_MESSAGES、ohos.permission.SET_TELEPHONY_STATE、ohos.permission.GET_TELEPHONY_STATE为system_basic级别(相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md) 查看)，需要手动配置对应级别的权限签名(具体操作可查看[自动化签名方案](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/);
+6. 本示例所配置的权限ohos.permission.SEND_MESSAGES、ohos.permission.SET_TELEPHONY_STATE、ohos.permission.GET_TELEPHONY_STATE为system_basic级别(相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md) 查看)，需要手动配置对应级别的权限签名(具体操作可查看[自动化签名方案](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/security/hapsigntool-overview.md/);
 7. 本示例为预置应用，无需用户授权弹窗，授权方式为预置授权。
 
 ### 下载

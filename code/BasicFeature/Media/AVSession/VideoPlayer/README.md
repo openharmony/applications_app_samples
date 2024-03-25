@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例主要展示了网络视频播放的相关功能。使用[@ohos.multimedia.avsession](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-avsession.md)等接口实现视频播放的功能。
+本示例主要展示了网络视频播放的相关功能。使用[@ohos.multimedia.avsession](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-avsession-kit/js-apis-avsession.md)等接口实现视频播放的功能。
 
 ### 效果预览
 

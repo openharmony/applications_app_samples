@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例使用了[@ohos.security.certManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-certManager.md)相关接口实现了对签名数据进行校验的功能。
+本示例使用了[@ohos.security.certManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-device-certificate-kit/js-apis-certManager.md)相关接口实现了对签名数据进行校验的功能。
 
 实现场景如下：
 
@@ -47,15 +47,15 @@ entry/src/main/ets/
 ### 具体实现 
 
 * 签名校验的功能接口Verify封装在Model中
-    * 安装私有凭据：调用[certManager.installPrivateCertificate](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-certManager.md#certmanagerinstallprivatecertificate)接口安装证书，并获取返回结果cmResult。
-    * 使用凭据进行签名、验签的初始化操作：调用[certManager.init](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-certManager.md#certmanagerinit)接口进行初始化，并获取返回结果signHandle。
-    * 填充源数据：调用[certManager.update](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-certManager.md#certmanagerupdate)接口填充源数据。
-    * 完成签名的操作：调用[certManager.finish](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-certManager.md#certmanagerfinish)接口完成签名，并获取签名结果signResult。
-    * 完成验签的操作：同上，再依次调用[certManager.init](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-certManager.md#certmanagerinit)接口，[certManager.update](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-certManager.md#certmanagerupdate)接口，[certManager.finish](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-certManager.md#certmanagerfinish-1)接口完成验签操作，最终获取验签结果verifyResult。
+    * 安装私有凭据：调用[certManager.installPrivateCertificate](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-device-certificate-kit/js-apis-certManager.md#certmanagerinstallprivatecertificate)接口安装证书，并获取返回结果cmResult。
+    * 使用凭据进行签名、验签的初始化操作：调用[certManager.init](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-device-certificate-kit/js-apis-certManager.md#certmanagerinit)接口进行初始化，并获取返回结果signHandle。
+    * 填充源数据：调用[certManager.update](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-device-certificate-kit/js-apis-certManager.md#certmanagerupdate)接口填充源数据。
+    * 完成签名的操作：调用[certManager.finish](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-device-certificate-kit/js-apis-certManager.md#certmanagerfinish)接口完成签名，并获取签名结果signResult。
+    * 完成验签的操作：同上，再依次调用[certManager.init](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-device-certificate-kit/js-apis-certManager.md#certmanagerinit)接口，[certManager.update](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-device-certificate-kit/js-apis-certManager.md#certmanagerupdate)接口，[certManager.finish](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-device-certificate-kit/js-apis-certManager.md#certmanagerfinish-1)接口完成验签操作，最终获取验签结果verifyResult。
 
 ### 相关权限
 
-[ohos.permission.ACCESS_CERT_MANAGER](https://gitee.com/openharmony/interface_sdk-js/blob/037c3093d760d2a35d1e28d113da331f06716d9e/api/@ohos.security.certManager.d.ts)
+[ohos.permission.ACCESS_CERT_MANAGER](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionaccess_cert_manager)
 
 ### 依赖
 

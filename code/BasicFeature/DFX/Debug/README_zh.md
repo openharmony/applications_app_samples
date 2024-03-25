@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例通过使用[@ohos.hidebug](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-hidebug.md) 接口来获取当前应用内存使用情况。
+本示例通过使用[@ohos.hidebug](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-performance-analysis-kit/js-apis-hidebug.md) 接口来获取当前应用内存使用情况。
 
 ### 效果预览
 

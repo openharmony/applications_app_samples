@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例主要展示了加解密算法库框架的相关功能，使用[@ohos.security.cryptoFramework](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/apis/js-apis-cryptoFramework.md/)
+本示例主要展示了加解密算法库框架的相关功能，使用[@ohos.security.cryptoFramework](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md)
 接口，利用RSA非对称加密、ECC数字签名模拟选购支付功能;
 
 ### 效果预览

@@ -127,7 +127,7 @@ hdc_std shell reboot
 
 ### 约束与限制
 
-1.本示例仅支持标准系统上运行，支持设备：RK3568。
+1.本示例仅支持标准系统上运行，支持设备：RK3568；
 
 2.本示例为Stage模型，支持API11版本SDK，版本号：4.1.5.1；
 
@@ -137,7 +137,7 @@ UIAbilityContext.startAbilityAsCaller,UIExtensionContentSession.startAbilityAsCa
 
 4.本示例需要使用DevEco Studio 3.1.1 Release (Build Version: 3.1.0.501, built on June 20, 2023)才可编译运行；
 
-5.本示例涉及[ohos.permission.GET_RUNNING_INFO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionget_running_info)权限为 system_basic级别，需要配置高权限签名；
+5.本示例涉及[ohos.permission.GET_RUNNING_INFO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionget_running_info)权限为 system_basic级别，需要配置高权限签名。
 
 ### 下载
 

@@ -46,7 +46,7 @@ entry/src/main/ets/
 ```
 git init
 git config core.sparsecheckout true
-echo code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic/ > .git/info/sparse-checkout
+echo code/BasicFeature/DeviceManagement/Sensor/Capi/ > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
