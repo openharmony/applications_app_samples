@@ -49,6 +49,7 @@ VideoPlay/src/main/ets/
 + 暂停、播放：点击暂停、播放时调用avPlayer.pause()、avPlayer.play();
 + 切换视频：在切换视频前要先调用avPlayer.reset()重置资源，再通过avPlayer.fdSrc为fdSrc赋值触发initialized状态机上报;
 + 视频跳转：在拖动滑动条时调用avPlayer.seek()
++ 视频预下载：在prepared状态之前调用avPlayer.setMediaSource()
 
 ### 相关权限
 
@@ -62,9 +63,9 @@ VideoPlay/src/main/ets/
 
 1.本示例仅支持标准系统上运行,需要联网才能够播放网络视频;
 
-2.本示例已适配API9版本SDK,版本号：3.2.11.10,镜像版本号：OpenHarmony4.0.7.5;
+2.本示例已适配API11版本SDK,版本号：5.0.0.15,镜像版本号：OpenHarmony5.0.0.15;
 
-3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)才可编译运行。
+3.本示例需要使用DevEco Studio 4.1 Canary (Build Version: 4.1.3.213, built on October 28, 2023)才可编译运行。
 
 ### 下载
 如需单独下载本工程，执行如下命令：
