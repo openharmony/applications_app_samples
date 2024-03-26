@@ -44,7 +44,7 @@ snapshot = 1
 
 
 def exec_cmd(cmd):
-    f = os.popen("hdc shell " + "\"" + cmd + "\"")
+    f = os.popen(f"hdc shell \"{cmd}\"")
     # print(cmd)
     text = f.read()
     f.close()
@@ -54,7 +54,7 @@ def exec_cmd(cmd):
 
 
 def exec_cmd_path(cmd, path):
-    f = os.popen("hdc shell " + "\"" + cmd + "\" >> " + path)
+    f = os.popen(f"hdc shell \"{cmd}\" >> {path}")
     # print(cmd)
     text = f.read()
     f.close()
@@ -85,13 +85,13 @@ def install_hap(hap, hap_path, base_dir):
     # print("install " + hap_path + "\\" + hap)
     if not exists(os.path.join(hap_path, hap)):
         return
-    install_res = exec_cmd_simple("hdc install -r {}".format(hap_path + "/" + hap))
+    install_res = exec_cmd_simple(f"hdc install -r {hap_path}/{hap}"))
     # print(install_res)
     if not install_res.__contains__("msg:install bundle successfully."):
         install_res = install_res.replace("\nAppMod finish\n\n", "")
         install_fail_dict[hap] = install_res
     else:
-        exec_cmd_simple("echo install {0} success! >> {1}".format(hap, "{0}/auto_test.log".format(base_dir)))
+        exec_cmd_simple(f"echo install {hap} success! >> {base_dir}/auto_test.log")
         install_success_dict[hap] = install_res
     time.sleep(2)
 
@@ -131,7 +131,7 @@ def stop_log():
 def recv_log(local_log):
     # 输出日志结果
     file_path = local_log
-    cmd = "hdc file recv /data/log/hilog/ {}".format(file_path)
+    cmd = f"hdc file recv /data/log/hilog/ {file_path}"
     exec_cmd_simple(cmd)
 
 
@@ -149,7 +149,7 @@ def test_install_hap_with_error_snapshot(uninstall_bundles, base_dir):
                 cmd = r"hdc shell aa test -b {} -p com.example.entry_test -m entry_test -s unittest /ets/TestRunner/OpenHarmonyTestRunner -s timeout 30000000 "
             else:
                 cmd=  r"hdc shell aa test -b {} -p com.example.entry_test -m entry_test -s unittest OpenHarmonyTestRunner -s timeout 30000000 "
-    path = "{0}/auto_test.log".format(base_dir)
+    path = f"{base_dir}/auto_test.log"
     if len(uninstall_bundles) != 1:
         exec_cmd_simple("echo uninstall_bundles:{0}, >> {1}".format(uninstall_bundles, path))
     for bundle in uninstall_bundles:
@@ -164,7 +164,7 @@ def test_install_hap_with_error_snapshot(uninstall_bundles, base_dir):
         p = subprocess.Popen(tmp_cmd, shell=True, close_fds=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                              stderr=subprocess.PIPE, encoding="utf-8")
         current = "-1"
-        auto_log = open("{0}/auto_test.log".format(base_dir), mode='a')
+        auto_log = open(f"{base_dir}/auto_test.log", mode='a')
         while True:
             line = p.stdout.readline()
             auto_log.writelines(line)
@@ -176,10 +176,10 @@ def test_install_hap_with_error_snapshot(uninstall_bundles, base_dir):
                     current = nums[0]
             if line and "stack" in line:
                 exec_cmd_simple(
-                    "hdc shell snapshot_display -f /data/snapshot/{0}_{1}.jpeg".format(bundle, current))
+                    f"hdc shell snapshot_display -f /data/snapshot/{bundle}_{current}.jpeg")
             if line == '' and p.poll() != None:
                 break
-        exec_cmd_simple("hdc file recv /data/snapshot/. {}/snapshot".format(base_dir))
+        exec_cmd_simple(f"hdc file recv /data/snapshot/. {base_dir}/snapshot")
         exec_cmd_simple("hdc shell rm -rf /data/snapshot/*")
         auto_log.flush()
         auto_log.close()
@@ -188,16 +188,13 @@ def test_install_hap_with_error_snapshot(uninstall_bundles, base_dir):
 
 def test_install_hap(test_bundles, base_dir):
     cmd = r"aa test -b {} -p com.example.entry_test -m entry_test -s unittest OpenHarmonyTestRunner -s timeout 30000000"
-    path = "{0}/auto_test.log".format(base_dir)
+    path = f"{base_dir}/auto_test.log"
     for bundle in test_bundles:
         bundle = bundle.strip()
         if bundle == 'ohos.samples.launcher':
             cmd_launcher = 'hdc shell aa start -b ohos.samples.launcher -a MainAbility'
             os.system(cmd_launcher)
-        exec_cmd_simple("echo ================start {0} ui test================{1} >> {2}".format(bundle,
-                                                                                                  datetime.datetime.now().strftime(
-                                                                                                      '%Y-%m-%d %H:%M:%S'),
-                                                                                                  path))
+        exec_cmd_simple(f"echo ================start {bundle} ui test================{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')} >> {path}")
         # print("test " + bundle)
         tmp_cmd = cmd.format(bundle)
         exec_cmd_path(tmp_cmd, path)
@@ -207,7 +204,7 @@ def test_install_hap(test_bundles, base_dir):
 def uninstall_bundles(install_bundles):
     for bundle in install_bundles:
         # print("uninstall " + bundle)
-        uninstall_res = exec_cmd_simple("hdc uninstall {}".format(bundle))
+        uninstall_res = exec_cmd_simple(f"hdc uninstall {bundle}")
 
 
 def clear_dir(dir_path):
@@ -294,7 +291,7 @@ def batch_install(haps, base_dir):
 
 
 def handle_test_log(base_dir):
-    file = open("{0}/auto_test.log".format(base_dir), encoding='utf-8', errors='ignore')
+    file = open(f"{base_dir}/auto_test.log", encoding='utf-8', errors='ignore')
     p_num = 0
     fail_num = 0
     success_num = 0
@@ -339,16 +336,13 @@ def handle_test_log(base_dir):
 
     file.close()
 
-    error_log = open("{0}/auto_test.log".format(base_dir), mode='a')
+    error_log = open(f"{base_dir}/auto_test.log", mode='a')
     error_log.writelines(
-        "共完成测试项目 {0}个,成功{1}个，失败{2}个，异常中止(App died){3}个，特殊应用跳过{4}个\n".format(
-            int(p_num + special_num / 2), success_num, fail_num, died_num, int(special_num / 2)))
+        f"共完成测试项目 {int(p_num + special_num / 2)}个,成功{success_num}个，失败{fail_num}个，异常中止(App died){died_num}个，特殊应用跳过{int(special_num / 2)}个\n")
     
     error_log.writelines(
-        "共完成测试用例 {0}个,成功{1}个，失败{2}个，错误{3}个\n".format(test_exp_num, test_pass_num, test_fail_num,
-                                                                      test_error_num))
-    print("successNum:{0} failNum:{1} diedNum:{2} specialNum:{3} testNum:{4} testSuccessNum:{5} testFailNum:{6} testErrorNum:{7}".format(success_num, 
-        fail_num, died_num, int(special_num / 2), test_exp_num, test_pass_num, test_fail_num, test_error_num))
+        f"共完成测试用例 {test_exp_num}个,成功{test_pass_num}个，失败{test_fail_num}个，错误{test_error_num}个\n")
+    print(f"successNum:{success_num} failNum:{fail_num} diedNum:{died_num} specialNum:{int(special_num / 2)} testNum:{test_exp_num} testSuccessNum:{test_pass_num} testFailNum:{test_fail_num} testErrorNum:{test_error_num}")
     if len(fail_dict) > 0:
         error_log.writelines("失败工程BundleName如下：\n")
         for x in fail_dict:
@@ -357,11 +351,11 @@ def handle_test_log(base_dir):
         error_log.writelines("异常中止(App died)工程BundleName如下：\n")
         for x in died_dict:
             error_log.writelines("     " + x + "\n")
-    error_log.writelines("安装失败项目数量:{0}\n".format(len(install_fail_dict)))
+    error_log.writelines(f"安装失败项目数量:{len(install_fail_dict)}\n")
     for i in install_fail_dict:
-        error_log.writelines('{0} : {1}'.format(i, install_fail_dict[i]))
+        error_log.writelines(f'{i} : {install_fail_dict[i]}')
     if len(special_hap_list) > 0:
-        error_log.writelines("特殊安装跳过Hap数量:{0}\n".format(special_num))
+        error_log.writelines(f"特殊安装跳过Hap数量:{special_num}\n")
         for i in special_hap_list:
             error_log.writelines(i + "\n")
     error_log.flush()
@@ -373,15 +367,11 @@ def handle_test_log(base_dir):
 
 def init_out():
     base_dir = sys.path[0]
-    out_path = "{0}/ui_test_out/{1}".format(base_dir, datetime.datetime.now().strftime('%Y%m%d'))
+    out_path = f"{base_dir}/ui_test_out/{datetime.datetime.now().strftime('%Y%m%d')}")
     print(out_path)
     clear_dir(out_path)
-    clear_dir("{0}/errorLog".format(out_path))
-    clear_dir("{0}/successLog".format(out_path))
-    clear_dir("{0}/SampleSignHap".format(out_path))
-    clear_file("{0}/auto_test.log".format(out_path))
-    clear_dir("{0}/hilog".format(out_path))
-    clear_dir("{0}/snapshot".format(out_path))
+    for log_dir in ['errorLog','successLog','SampleSignHap','auto_test.log','hilog','snapshot']:
+        clear_dir(f"{out_path}/{log_dir}")
     return out_path
 
 
@@ -449,13 +439,12 @@ def replace_enable(file,old_str,new_str):
 
 
 def pull_config():
-    cmd='hdc shell mount -o rw,remount / & hdc file recv system/etc/window/resources/window_manager_config.xml {0}'.format(LinuxContains.SAVE_XML_PATH)
+    cmd=f'hdc shell mount -o rw,remount / & hdc file recv system/etc/window/resources/window_manager_config.xml {LinuxContains.SAVE_XML_PATH}'
     os.system(cmd)
 
 
 def push_config():
-    cmd='hdc file send {0}/window_manager_config.xml system/etc/window/resources/window_manager_config.xml'.format(LinuxContains.SAVE_XML_PATH)
-    os.system(cmd)
+    cmd=f'hdc file send {LinuxContains.SAVE_XML_PATH}/window_manager_config.xml system/etc/window/resources/window_manager_config.xml'
 
 
 if __name__ == '__main__':
