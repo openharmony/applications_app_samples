@@ -215,7 +215,7 @@ void NativeImageAdaptor::SetConfigAndGetValue()
         LOGE("SetConfigAndGetValue GET_COLOR_GAMUT fail");
     }
     code = SET_FORMAT;
-    OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, NATIVEBUFFER_PIXEL_FMT_YCBCR_420_SP);
+    OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, NATIVEBUFFER_PIXEL_FMT_RGBA_8888);
     code = SET_TRANSFORM;
     OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, NATIVEBUFFER_ROTATE_NONE);
     code = SET_COLOR_GAMUT;
