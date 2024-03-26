@@ -13,10 +13,6 @@
  * limitations under the License.
  */
 
-import hilog from '@ohos.hilog';
-import testNapi from 'libentry.so'
-import nativerender from "libnativerender.so";
-
 import NativeWindowContext from "../interface/NativeWindowContext";
 const TAG = '[Sample_NativeWindowAPI]';
 
