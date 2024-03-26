@@ -6,9 +6,12 @@
 
 ### 效果预览
 
-| 主页                                 | 改变矩形框颜色                               | 生产buffer | 获取可用帧回调次数                                         |
-| ------------------------------------ | ------------------------------------------------ | --------------------------------------------------------- | --------------------------------------------------------- |
-| ![main](screenshots/device/Main.jpg) | ![Draw Path](screenshots/device/ChangeColor.jpg) | ![change color](screenshots/device/ProduceBuffer.jpg) |![change color](screenshots/device/GetAvailableCount.jpg)|
+| 主页                                           | 改变矩形框颜色                                           | 生产buffer | 获取可用帧回调次数                                         |
+|----------------------------------------------|---------------------------------------------------| --------------------------------------------------------- | --------------------------------------------------------- |
+| ![main](screenshots/device/Main.jpg)         | ![Draw Path](screenshots/device/ChangeColor.jpg)  | ![change color](screenshots/device/ProduceBuffer.jpg) |![change color](screenshots/device/GetAvailableCount.jpg)|
+| attachbuffer                                 | detachbuffer                                      |
+| ![main](screenshots/device/AttachBuffer.jpg) | ![Draw Path](screenshots/device/DetachBuffer.jpg) |
+
 
 使用说明
 
@@ -16,6 +19,9 @@
 2. 点击页面底部“Chaneg Color”按钮，矩形框填充区域将改变颜色，黄蓝切换；
 3. 点击页面底部“produce buffer”按钮，NativeWindow将生产数据并发送给NativeImage，页面展示了生产buffer的次数；
 4. 点击页面底部“update available buffer count”按钮，将展示NativeImage收到的可用帧回调次数。
+5. 点击页面底部“update bufferqueuesize, attachedbuffer, cachebuffer"按钮，将更新三项数值
+6. 点击页面底部”attachbuffer“,在cachebuffer大于0时将buffer添加到nativewindow中。
+7. 点击页面底部”detachbuffer",在attachedbuffer大于0时将buffer添加到缓存区cachebuffer中。
 
 ### 工程目录
 
