@@ -11,6 +11,10 @@
     {
       "name": "page_background",
       "value": "#F1F3F5"
+    },
+    {
+      "name": "item_title_font",
+      "value": "#E6000000"
     }
   ]
 }
