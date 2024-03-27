@@ -291,8 +291,8 @@ export default class AvPlayManager {
   async preDownload(url: string): Promise<void> {
     if (this.avPlayer) {
       let mediaSource : media.MediaSource = media.createMediaSourceWithUrl(url,  {"aa" : "bb", "cc" : "dd"});
-      let playStrategy : media.PlaybackStrategy = {preferredWidth: 1, preferredHeight: 2, preferredBufferDuration: 3, preferredHdr: false};
-      this.avPlayer.setMediaSource(mediaSource, playStrategy)
+      let playbackStrategy : media.PlaybackStrategy = {preferredWidth: 1, preferredHeight: 2, preferredBufferDuration: 3, preferredHdr: false};
+      this.avPlayer.setMediaSource(mediaSource, playbackStrategy)
     }
   }
 
