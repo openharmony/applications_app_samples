@@ -68,6 +68,8 @@
 | OH_NativeImage_AcquireNativeWindow (OH_NativeImage *image)   | 获取与OH_NativeImage相关联的OHNativeWindow指针。 该OHNativeWindow后续不再需要时需要调用OH_NativeWindow_DestroyNativeWindow释放 |
 | OH_NativeWindow_GetSurfaceId | 获取surfaceId |
 | OH_NativeWindow_CreateNativeWindowFromSurfaceId | 通过surfaceId获取对应的OHNativeWindow |
+| OH_NativeBuffer_MapPlanes | 将OH_NativeBuffer对应的多通道ION内存映射到进程空间 |
+| OH_NativeBuffer_FromNativeWindowBuffer | 将OHNativeWindowBuffer实例转换为OH_NativeBuffer实例 |
 
 详细的接口说明请参考[NativeWindow](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/native-apis/_native_window.md)，[NativeImage](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/native-apis/_o_h___native_image.md)，[NativeBuffer](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/native-apis/_o_h___native_buffer.md)。
 
@@ -82,7 +84,7 @@ XComponent NativeWindow NativeImage EGL。
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行；
-2. 本示例为Stage模型，已适配API version 12版本SDK，SDK版本号5.0.0.12及以上版本,镜像版本号支持5.0.0.12及以上版本;
+2. 本示例为Stage模型，已适配API version 12版本SDK，SDK版本号5.0.0.19及以上版本,镜像版本号支持5.0.0.19及以上版本;
 3. 本示例需要使用DevEco Studio 4.0 Beta2 版本号(4.1.3.400)及以上版本才可编译运行。
 ### 下载
 

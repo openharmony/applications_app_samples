@@ -59,6 +59,7 @@ public:
 
 private:
     void SetConfigAndGetValue();
+    void GetBufferMapPlanes(NativeWindowBuffer *buffer);
     OHNativeWindow *nativeWindow_;
     OHNativeWindow *nativeWindowCache_;
     OH_NativeImage *image_;
