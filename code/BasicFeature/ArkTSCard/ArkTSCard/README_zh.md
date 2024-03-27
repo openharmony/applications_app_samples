@@ -91,7 +91,7 @@ entry/src/main/ets/
 
 ### 相关权限
 
-[ohos.permission.REQUIRE_FORM](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionrequire_form)
+[ohos.permission.REQUIRE_FORM](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionagent_require_form)
 
 ### 依赖
 
@@ -99,11 +99,11 @@ entry/src/main/ets/
 
 ### 约束与限制
 
-1.本示例仅支持标准系统上运行，支持设备：RK3568（卡片设置成单色模式在RK3568不生效）;
+1.本示例仅支持标准系统上运行，支持设备：RK3568（卡片设置成单色模式在RK3568不生效）；
 
-2.本示例为Stage模型，支持API11版本SDK，版本号：4.1.5.2； 
+2.本示例为Stage模型，支持API12版本SDK，版本号：5.0.0.17； 
 
-3.本示例需要使用DevEco Studio 3.1.1 Release (Build Version: 3.1.0.501, built on June 20, 2023)才可编译运行；
+3.本示例需要使用DevEco Studio NEXT Developer Preview1 (Build Version: 4.1.3.500, built on January 20, 2024)才可编译运行；
 
 4.本示例涉及[ohos.permission.REQUIRE_FORM](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionrequire_form)权限为system_basic级别，需要配置高权限签名；
 
