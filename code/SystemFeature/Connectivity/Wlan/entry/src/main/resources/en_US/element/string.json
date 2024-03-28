@@ -107,6 +107,14 @@
     {
       "name": "open",
       "value": "open"
+    },
+    {
+      "name": "location_permission",
+      "value": "Allow app to obtain device location information"
+    },
+    {
+      "name": "approximately_location_permission",
+      "value": "Allow app to obtain device ambiguous location information"
     }
   ]
 }

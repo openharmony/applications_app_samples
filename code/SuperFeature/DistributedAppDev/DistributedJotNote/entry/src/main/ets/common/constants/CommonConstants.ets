@@ -29,6 +29,7 @@ export default class CommonConstants {
   static readonly MIGRATION_SOURCE_END: Resource = $r('app.string.MIGRATION_SOURCE_END');
   static readonly TO_DO_LIST: Resource = $r('app.string.TO_DO_LIST');
   static readonly LIST_ARRAY: Array<Resource> = [$r('app.string.LIST_ITEM_ONE'), $r('app.string.LIST_ITEM_TWO'), $r('app.string.LIST_ITEM_THREE'), $r('app.string.LIST_ITEM_FOUR'), $r('app.string.LIST_ITEM_FIVE'), $r('app.string.LIST_ITEM_SIX'), $r('app.string.LIST_ITEM_SEVEN'), $r('app.string.LIST_ITEM_EIGHT'), $r('app.string.LIST_ITEM_ONE'), $r('app.string.LIST_ITEM_TWO'), $r('app.string.LIST_ITEM_THREE')];
+  static readonly PLEASE_INPUT_ASYNC_TEXT: Resource = $r('app.string.PLEASE_INPUT_ASYNC_TEXT');
 
   // Distributed asset use
   static readonly BUNDLE_NAME = 'com.samples.distributedjotnote';

@@ -33,6 +33,7 @@ public:
     void SetNativeWindow(OHNativeWindow* nativeWindow, uint64_t width,  uint64_t height);
 
 private:
+    void NativeBufferApi();
     OH_NativeXComponent_Callback callback_;
     bool flag_ = false;
     OHNativeWindow* nativeWindow_ = nullptr;

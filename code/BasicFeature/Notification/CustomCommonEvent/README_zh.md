@@ -10,7 +10,7 @@
 
 3.通过在用户设置对某一事件的监听状态时发布粘性事件，记录下本次应用运行期间允许监听的事件列表，同时在应用退出时将临时允许的修改为不允许；
 
-4.通过订阅指定应用事件，实现用户对指定卡片发送事件的监听。
+4.打开自定义订阅事件页面需先安装[CardEvent](lib/CardEvent-1.0.0.hap)应用，通过订阅指定应用事件，实现用户对指定卡片发送事件的监听。
 
 ### 效果预览
 
@@ -150,11 +150,9 @@ entry/src/main/ets/
 
 2.本示例为Stage模型，支持API11版本SDK，版本号：4.1.3.1；
 
-3.本示例涉及使用系统接口：FormComponent  ，需要手动替换Full SDK才能编译通过；
+3.本示例需要使用DevEco Studio 3.1.1 Release (Build Version: 3.1.0.501, built on June 20, 2023)才可编译运行；
 
-4.本示例需要使用DevEco Studio 3.1.1 Release (Build Version: 3.1.0.501, built on June 20, 2023)才可编译运行；
-
-5.本示例涉及[ohos.permission.REQUIRE_FORM](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionrequire_form)和[ohos.permission.GET_BUNDLE_INFO_PRIVILEGED](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionget_bundle_info_privileged)权限为system_basic级别，需要配置高权限签名；
+4.本示例涉及[ohos.permission.REQUIRE_FORM](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionrequire_form)和[ohos.permission.GET_BUNDLE_INFO_PRIVILEGED](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionget_bundle_info_privileged)权限为system_basic级别，需要配置高权限签名；
 
 ### 下载
 

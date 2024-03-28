@@ -31,6 +31,10 @@
     {
       "name": "oaid_label",
       "value": "OAID:"
+    },
+    {
+      "name": "request_permissions_reason",
+      "value": "The app obtains this information to recommend content that you may be interested in."
     }
   ]
 }

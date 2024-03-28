@@ -19,10 +19,8 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import type Want from '@ohos.app.ability.Want';
 import wantConstant from '@ohos.app.ability.wantConstant';
 import type window from '@ohos.window';
+import type { Context, PermissionRequestResult, Permissions } from '@ohos.abilityAccessCtrl';
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-import type { Context } from '@ohos.abilityAccessCtrl';
-import type { PermissionRequestResult } from '@ohos.abilityAccessCtrl';
-import type { Permissions } from '@ohos.abilityAccessCtrl';
 import type { BusinessError } from '@ohos.base';
 
 const permissions: Array<Permissions> = ['ohos.permission.DISTRIBUTED_DATASYNC'];
@@ -78,7 +76,7 @@ export default class MigrationAbility extends UIAbility {
           // 用户拒绝授权，提示用户必须授权才能访问当前页面的功能，并引导用户到系统设置中打开相应的权限
           return;
         }
-      };
+      }
       // 授权成功
     }).catch((err: BusinessError) => {
       hilog.info(DOMAIN_NUMBER, TAG, `Failed to request permissions from user. Code is ${err.code}, message is ${err.message}`);

@@ -72,5 +72,59 @@ export default function abilityTest() {
       await driver.delayMs(1000);
       console.info(TAG, 'NativeWindow_001 end');
     })
+
+    /**
+     * @tc.number: NativeWindow_002
+     * @tc.name: NativeWindow_002
+     * @tc.desc: detect and click the button to change the window color
+     */
+    it('NativeWindow_002', 2, async () => {
+      console.info(TAG, 'NativeWindow_002 begin');
+      let driver = Driver.create();
+      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+      try {
+        await abilityDelegator.startAbility({
+          bundleName: 'com.samples.nativewindow',
+          abilityName: 'EntryAbility'
+        });
+      } catch (exception) {
+        console.info(TAG, `NativeWindow_002 exception = ${JSON.stringify(exception)}`);
+        expect().assertFail();
+      }
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('attach buffer'));
+      let btn = await driver.findComponent(ON.text('attach buffer'));
+      // 点击'attach buffer'按钮
+      await btn.click();
+      await driver.delayMs(1000);
+      console.info(TAG, 'NativeWindow_002 end');
+    })
+
+    /**
+     * @tc.number: NativeWindow_003
+     * @tc.name: NativeWindow_003
+     * @tc.desc: detect and click the button to change the window color
+     */
+    it('NativeWindow_003', 2, async () => {
+      console.info(TAG, 'NativeWindow_003 begin');
+      let driver = Driver.create();
+      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+      try {
+        await abilityDelegator.startAbility({
+          bundleName: 'com.samples.nativewindow',
+          abilityName: 'EntryAbility'
+        });
+      } catch (exception) {
+        console.info(TAG, `NativeWindow_003 exception = ${JSON.stringify(exception)}`);
+        expect().assertFail();
+      }
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('dettach buffer'));
+      let btn = await driver.findComponent(ON.text('dettach buffer'));
+      // 点击'dettach buffer'按钮
+      await btn.click();
+      await driver.delayMs(1000);
+      console.info(TAG, 'NativeWindow_003 end');
+    })
   })
 }

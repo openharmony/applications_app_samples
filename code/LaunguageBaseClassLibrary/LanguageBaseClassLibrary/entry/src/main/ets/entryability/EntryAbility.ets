@@ -28,8 +28,9 @@ const TAG: string = 'EntryAbility';
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     logger.info(TAG, 'Ability onCreate');
-    AppStorage.SetOrCreate('selectedLabel', '');
-    AppStorage.SetOrCreate('selectedSecondLabel', '');
+    AppStorage.setOrCreate('selectedLabel', '');
+    AppStorage.setOrCreate('selectedSecondLabel', '');
+    AppStorage.setOrCreate('context', this.context);
   }
 
   updateBreakpoint(windowWidth: number): void {

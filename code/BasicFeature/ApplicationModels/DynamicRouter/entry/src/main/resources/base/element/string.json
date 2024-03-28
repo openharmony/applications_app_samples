@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "to_hara_page1",
+      "value": "ToHarAPage1"
+    },
+    {
+      "name": "to_hara_page2",
+      "value": "ToHarAPage2"
+    },
+    {
+      "name": "to_hara_page3",
+      "value": "ToHarAPage3"
+    },
+    {
+      "name": "to_harb_page1",
+      "value": "ToHarBPage1"
+    },
+    {
+      "name": "to_harb_page2",
+      "value": "ToHarBPage2"
+    },
+    {
+      "name": "to_harb_page3",
+      "value": "ToHarBPage3"
+    }
+  ]
+}

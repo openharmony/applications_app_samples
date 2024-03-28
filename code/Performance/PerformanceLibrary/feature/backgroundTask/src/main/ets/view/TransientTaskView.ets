@@ -53,7 +53,7 @@ export struct TransientTaskView {
     this.message = 'calculating';
     hiTraceMeter.startTrace('computerTask', 0);
     let task: taskpool.Task = new taskpool.Task(computeTask, totalTimes);
-    taskpool.execute(task, taskpool.Priority.HIGH).then((res: number) => {
+    taskpool.execute(task, taskpool.Priority.HIGH).then((res: Object) => {
       this.message = util.format(calculateResult, res.toString());
       hiTraceMeter.finishTrace('computerTask', 0);
       this.cancelSuspendDelay();

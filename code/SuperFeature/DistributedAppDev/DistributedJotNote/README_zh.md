@@ -20,6 +20,7 @@
 4. 在笔记页，可以编辑笔记标题、笔记内容、选择图片，在打开迁移能力和迁移页面栈的情况下，所编辑的内容和选择的图片可以同步迁移到对端设备；
 5. 在待办事项页，勾选多选框，在打开迁移能力和迁移页面栈的情况下，可以迁移当前的勾选状态；
 6. 在图片墙页，滑动页面到某个位置，在打开迁移能力和迁移页面栈的情况下，可以迁移当前的瀑布流控件索引位置。
+7. 点击“迁移时使用异步接口保存数据”，进入页面输入文本，可以迁移文本数据（RK3568设备不支持）。
 
 ### 工程目录
 
@@ -70,8 +71,8 @@ entry/src/main/ets/
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568;
-2. 本示例完整功能必须双端授予允许使用分布式协同能力
-3. 本示例为stage模型，已适配API version 11版本SDK，SDK版本号(API Version 11 Release),镜像版本号(4.1.5.5)。
+2. 本示例完整功能必须双端授予允许使用分布式协同能力,迁移等功能暂不支持RK3568。
+3. 本示例为stage模型，已适配API version 12版本SDK，SDK版本号(API Version 12 Release),镜像版本号(5.0.0.16)。
 4. 本示例需要使用DevEco Studio 版本号(4.0Release)才可编译运行。
 5. 本示例需要使用 ohos.permission.READ_IMAGEVIDEO权限级别为system_basic的系统接口。
 6. 本示例涉及系统接口，需要配置系统应用签名，可以参考[特殊权限配置方法](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Fsecurity%2Fhapsigntool-overview.md%2F) ，把配置文件中的“app-feature”字段信息改为“hos_system_app”。

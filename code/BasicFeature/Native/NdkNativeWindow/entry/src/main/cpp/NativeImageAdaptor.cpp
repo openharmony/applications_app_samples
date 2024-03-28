@@ -24,6 +24,7 @@ constexpr int32_t EGL_CONTEXT_CLIENT_VERSION_NUM = 2;
 constexpr char CHARACTER_WHITESPACE = ' ';
 constexpr const char *CHARACTER_STRING_WHITESPACE = " ";
 constexpr const char *EGL_GET_PLATFORM_DISPLAY_EXT = "eglGetPlatformDisplayEXT";
+constexpr int32_t NATIVE_CACHE_BUFFER = 3;
 NativeImageAdaptor *NativeImageAdaptor::GetInstance()
 {
     static NativeImageAdaptor imageAdaptor;
@@ -112,7 +113,17 @@ bool NativeImageAdaptor::Export(napi_env env, napi_value exports)
     napi_property_descriptor desc[] = {
         {"GetAvailableCount", nullptr, NativeImageAdaptor::GetAvailableCount, nullptr, nullptr, nullptr, napi_default,
          nullptr},
+        {"GetBufferQueueSize", nullptr, NativeImageAdaptor::NapiOnGetBufferQueueSize, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
+        {"GetAttachBufferCount", nullptr, NativeImageAdaptor::NapiOnGetAttachBufferCount, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
+        {"GetCacheBufferCount", nullptr, NativeImageAdaptor::NapiOnGetCacheBufferCount, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
         {"ProduceBuffer", nullptr, NativeImageAdaptor::NapiOnProduceBuffer, nullptr, nullptr, nullptr, napi_default,
+         nullptr},
+        {"AttachBuffer", nullptr, NativeImageAdaptor::NapiOnAttachBuffer, nullptr, nullptr, nullptr, napi_default,
+         nullptr},
+        {"DettachBuffer", nullptr, NativeImageAdaptor::NapiOnDettachBuffer, nullptr, nullptr, nullptr, napi_default,
          nullptr},
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
@@ -122,6 +133,14 @@ bool NativeImageAdaptor::Export(napi_env env, napi_value exports)
     availableBufferCount_ = 0;
     // Creating OpenGL textures
     InitEGLEnv();
+    bool ret = InitNativeWindow();
+    ret = InitNativeWindowCache() && ret;
+
+    return ret;
+}
+
+bool NativeImageAdaptor::InitNativeWindow()
+{
     GLuint textureId;
     glGenTextures(1, &textureId);
     // Create a NativeImage instance and associate it with OpenGL textures
@@ -150,23 +169,194 @@ bool NativeImageAdaptor::Export(napi_env env, napi_value exports)
     ret = OH_NativeImage_GetSurfaceId(image_, &surfaceId);
     if (ret != 0) {
         LOGE("OH_NativeImage_GetSurfaceId fail");
+        return false;
     }
+
+    OHNativeWindow *nativeWindow = nullptr;
+    ret = OH_NativeWindow_CreateNativeWindowFromSurfaceId(surfaceId, &nativeWindow);
+    if (ret != 0 || nativeWindow != nativeWindow_) {
+        LOGE("OH_NativeWindow_CreateNativeWindowFromSurfaceId fail");
+        return false;
+    }
+
+    uint64_t surfaceIdTmp = 0;
+    ret = OH_NativeWindow_GetSurfaceId(nativeWindow, &surfaceIdTmp);
+    if (ret != 0 || surfaceIdTmp != surfaceId) {
+        LOGE("OH_NativeWindow_GetSurfaceId fail");
+    }
+    OH_NativeWindow_DestroyNativeWindow(nativeWindow);
+
     return true;
+}
+
+bool NativeImageAdaptor::InitNativeWindowCache()
+{
+    GLuint textureId;
+    glGenTextures(1, &textureId);
+    imageCache_ = OH_NativeImage_Create(textureId, GL_TEXTURE_2D);
+    nativeWindowCache_ = OH_NativeImage_AcquireNativeWindow(imageCache_);
+
+    int code = SET_BUFFER_GEOMETRY;
+    width_ = 0x100;
+    height_ = 0x100;
+    int32_t ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindowCache_, code, width_, height_);
+    if (ret != 0) {
+        LOGE("NativeImageAdaptor OH_NativeWindow_NativeWindowHandleOpt fail");
+    }
+
+    code = SET_USAGE;
+    int32_t usage = NATIVEBUFFER_USAGE_CPU_READ | NATIVEBUFFER_USAGE_CPU_WRITE | NATIVEBUFFER_USAGE_MEM_DMA;
+    ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindowCache_, code, usage);
+
+    for (int i = 0; i < NATIVE_CACHE_BUFFER; i++) {
+        ProduceBuffer(0x00, nativeWindowCache_);
+    }
+
+    return true;
+}
+
+napi_value NativeImageAdaptor::NapiOnAttachBuffer(napi_env env, napi_callback_info info)
+{
+    NativeImageAdaptor::GetInstance()->AttachBuffer();
+    return nullptr;
+}
+
+napi_value NativeImageAdaptor::NapiOnDettachBuffer(napi_env env, napi_callback_info info)
+{
+    NativeImageAdaptor::GetInstance()->DettachBuffer();
+    return nullptr;
+}
+
+void NativeImageAdaptor::AttachBuffer()
+{
+    if (bufferCache_.size() == 0) {
+        LOGE("bufferCache_ empty");
+        return;
+    }
+
+    NativeWindowBuffer* buffer = bufferCache_.front();
+    int ret = OH_NativeWindow_NativeWindowDetachBuffer(nativeWindowCache_, buffer);
+    ret = OH_NativeWindow_NativeWindowAttachBuffer(nativeWindow_, buffer);
+    if (ret != 0) {
+        LOGE("OH_NativeWindow_NativeWindowAttachBuffer fail");
+        return;
+    }
+    
+    bufferAttached_.push(buffer);
+    bufferCache_.pop();
+}
+
+void NativeImageAdaptor::DettachBuffer()
+{
+    if (bufferAttached_.size() == 0) {
+        LOGE("bufferAttached_ empty");
+        return;
+    }
+    
+    NativeWindowBuffer *buffer = bufferAttached_.front();
+    int ret = OH_NativeWindow_NativeWindowDetachBuffer(nativeWindow_, buffer);
+    ret = OH_NativeWindow_NativeWindowAttachBuffer(nativeWindowCache_, buffer);
+    if (ret != 0) {
+        LOGE("OH_NativeWindow_NativeWindowDetachBuffer fail");
+        return;
+    }
+
+    bufferCache_.push(buffer);
+    bufferAttached_.pop();
 }
 
 napi_value NativeImageAdaptor::NapiOnProduceBuffer(napi_env env, napi_callback_info info)
 {
-    NativeImageAdaptor::GetInstance()->ProduceBuffer(0x00);
+    NativeImageAdaptor::GetInstance()->ProduceBuffer(0x00, NativeImageAdaptor::GetInstance()->nativeWindow_);
     return nullptr;
 }
 
-void NativeImageAdaptor::ProduceBuffer(uint32_t value)
+void NativeImageAdaptor::SetConfigAndGetValue()
 {
+    int32_t code = SET_FORMAT;
+    int32_t value = NATIVEBUFFER_PIXEL_FMT_CLUT1;
+    int32_t ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, value);
+    if (ret != 0) {
+        LOGE("SetConfigAndGetValue SET_FORMAT fail");
+    }
+    value = 0;
+    code = GET_FORMAT;
+    ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, &value);
+    if (ret != 0 || value != NATIVEBUFFER_PIXEL_FMT_CLUT1) {
+        LOGE("SetConfigAndGetValue GET_FORMAT fail");
+    }
+    code = SET_TRANSFORM;
+    value = NATIVEBUFFER_ROTATE_180;
+    ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, value);
+    if (ret != 0) {
+        LOGE("SetConfigAndGetValue SET_TRANSFORM fail");
+    }
+    code = GET_TRANSFORM;
+    value = 0;
+    ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, &value);
+    if (ret != 0 || value != NATIVEBUFFER_ROTATE_180) {
+        LOGE("SetConfigAndGetValue GET_TRANSFORM fail");
+    }
+    code = SET_COLOR_GAMUT;
+    value = NATIVEBUFFER_COLOR_GAMUT_STANDARD_BT709;
+    ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, value);
+    if (ret != 0) {
+        LOGE("SetConfigAndGetValue SET_COLOR_GAMUT fail");
+    }
+    code = GET_COLOR_GAMUT;
+    value = 0;
+    ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, &value);
+    if (ret != 0 || value != NATIVEBUFFER_COLOR_GAMUT_STANDARD_BT709) {
+        LOGE("SetConfigAndGetValue GET_COLOR_GAMUT fail");
+    }
+    code = SET_FORMAT;
+    OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, NATIVEBUFFER_PIXEL_FMT_RGBA_8888);
+    code = SET_TRANSFORM;
+    OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, NATIVEBUFFER_ROTATE_NONE);
+    code = SET_COLOR_GAMUT;
+    OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, NATIVEBUFFER_COLOR_GAMUT_SRGB);
+}
+
+void NativeImageAdaptor::GetBufferMapPlanes(NativeWindowBuffer *buffer)
+{
+    void *virAddr = nullptr;
+    OH_NativeBuffer_Planes outPlanes;
+    OH_NativeBuffer *nativeBuffer = nullptr;
+
+    int32_t ret = OH_NativeBuffer_FromNativeWindowBuffer(buffer, &nativeBuffer);
+    if (ret != 0) {
+        LOGE("OH_NativeBuffer_FromNativeWindowBuffer fail");
+        return;
+    }
+    ret = OH_NativeBuffer_MapPlanes(nativeBuffer, &virAddr, &outPlanes);
+    if (ret != 0) {
+        LOGE("OH_NativeBuffer_MapPlanes fail");
+        return;
+    }
+    LOGD("Get planeCount: %{public}d", outPlanes.planeCount);
+    for (int32_t i = 0; i < outPlanes.planeCount; i++) {
+        LOGD("Get offset: %{public}lu rowStride: %{public}d columnStride: %{public}d", outPlanes.planes[i].offset,
+             outPlanes.planes[i].rowStride, outPlanes.planes[i].columnStride);
+    }
+}
+
+void NativeImageAdaptor::ProduceBuffer(uint32_t value, OHNativeWindow *InNativeWindow)
+{
+    if (InNativeWindow == nativeWindow_) {
+        SetConfigAndGetValue();
+    }
+    
     NativeWindowBuffer *buffer = nullptr;
     int fenceFd = -1;
-    int ret = OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow_, &buffer, &fenceFd);
+    int ret = OH_NativeWindow_NativeWindowRequestBuffer(InNativeWindow, &buffer, &fenceFd);
     if (ret != 0) {
         LOGE("OH_NativeWindow_NativeWindowRequestBuffer fail");
+        return;
+    }
+    GetBufferMapPlanes(buffer);
+    
+    if (InNativeWindow == nativeWindowCache_) {
+        bufferCache_.push(buffer);
         return;
     }
     
@@ -192,7 +382,7 @@ void NativeImageAdaptor::ProduceBuffer(uint32_t value)
     rect->w = 0x100;
     rect->h = 0x100;
     region->rects = rect;
-    ret = OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow_, buffer, fenceFd, *region);
+    ret = OH_NativeWindow_NativeWindowFlushBuffer(InNativeWindow, buffer, fenceFd, *region);
     if (ret != 0) {
         LOGE("OH_NativeWindow_NativeWindowFlushBuffer fail");
         return;
@@ -224,10 +414,53 @@ int32_t NativeImageAdaptor::GetCount()
     return availableBufferCount_;
 }
 
+int32_t NativeImageAdaptor::GetAttachBufferCount()
+{
+    return bufferAttached_.size();
+}
+
+int32_t NativeImageAdaptor::GetBufferQueueSize()
+{
+    int code = GET_BUFFERQUEUE_SIZE;
+    int bufferQueueSize = 0;
+    int32_t ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, &bufferQueueSize);
+    LOGD("NativeImageAdaptor success GetAttachBufferCount, %{public}d", bufferQueueSize);
+    return bufferQueueSize;
+}
+
+int32_t NativeImageAdaptor::GetCacheBufferCount()
+{
+    return bufferCache_.size();
+}
+
 napi_value NativeImageAdaptor::GetAvailableCount(napi_env env, napi_callback_info info)
 {
     napi_value val = nullptr;
     int32_t count = NativeImageAdaptor::GetInstance()->GetCount();
+    (void)napi_create_int32(env, count, &val);
+    return val;
+}
+
+napi_value NativeImageAdaptor::NapiOnGetBufferQueueSize(napi_env env, napi_callback_info info)
+{
+    napi_value val = nullptr;
+    int32_t count = NativeImageAdaptor::GetInstance()->GetBufferQueueSize();
+    (void)napi_create_int32(env, count, &val);
+    return val;
+}
+
+napi_value NativeImageAdaptor::NapiOnGetAttachBufferCount(napi_env env, napi_callback_info info)
+{
+    napi_value val = nullptr;
+    int32_t count = NativeImageAdaptor::GetInstance()->GetAttachBufferCount();
+    (void)napi_create_int32(env, count, &val);
+    return val;
+}
+
+napi_value NativeImageAdaptor::NapiOnGetCacheBufferCount(napi_env env, napi_callback_info info)
+{
+    napi_value val = nullptr;
+    int32_t count = NativeImageAdaptor::GetInstance()->GetCacheBufferCount();
     (void)napi_create_int32(env, count, &val);
     return val;
 }

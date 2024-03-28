@@ -190,6 +190,7 @@ Note:If the text contains special characters, please escape them according to th
         <filteritem type="filepath" name="code/DocsSample/ApplicationModels/ImplicitStartRely/screenshots/newability.png" desc="Provided by code/DocsSample/ApplicationModels/ImplicitStartRely"/>
         <filteritem type="filepath" name="code/DocsSample/ApplicationModels/StageProcessThread/screenshots/main.png" desc="Provided by code/DocsSample/ApplicationModels/StageProcessThread"/>
         <filteritem type="filepath" name="code/DocsSample/ApplicationModels/ImplicitStartRely/AppScope/resources/base/media/app_icon.png" desc="Provided by code/DocsSample/ApplicationModels/ImplicitStartRely"/>
+        <filteritem type="filepath" name="code/SystemFeature/Telephony/Message/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/Telephony/Message"/>
         <filteritem type="filepath" name="code/SystemFeature/Telephony/Message/entry/src/main/resources/base/media/call_off.png" desc="Provided by code/SystemFeature/Telephony/Message"/>
         <filteritem type="filepath" name="code/SystemFeature/Telephony/Message/screenshots/device/create_contact.png" desc="Provided by code/SystemFeature/Telephony/Message"/>
         <filteritem type="filepath" name="code/SystemFeature/Telephony/Message/entry/src/main/resources/base/media/call_on.png" desc="Provided by code/SystemFeature/Telephony/Message"/>

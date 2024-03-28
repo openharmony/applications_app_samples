@@ -13,10 +13,6 @@
  * limitations under the License.
  */
 
-import hilog from '@ohos.hilog';
-import testNapi from 'libentry.so'
-import nativerender from "libnativerender.so";
-
 import NativeWindowContext from "../interface/NativeWindowContext";
 const TAG = '[Sample_NativeWindowAPI]';
 
@@ -25,6 +21,10 @@ const TAG = '[Sample_NativeWindowAPI]';
 struct Index {
   @State msg: string = 'OnFrameAvailable count:'
   @State frameAvailableCount: number = 0;
+  @State producerCacheBufferCount: number = 0;
+  @State cacheBufferCount: number = 3;
+  @State bufferQueueSize: number = 3;
+  @State attachedBufferCount: number = 0;
   @State frameFlushedCount: number = 0;
   private nativeWindowContext: NativeWindowContext | undefined = undefined;
 
@@ -72,6 +72,38 @@ struct Index {
           if (this.nativeWindowContext) {
             console.log(TAG, "GetAvailableCount");
             this.frameAvailableCount = this.nativeWindowContext.GetAvailableCount();
+          }
+        })
+        .height(40)
+      Button(`update bufferqueuesize =${this.bufferQueueSize},attachedbuffer =${this.attachedBufferCount},cachebuffer=${this.cacheBufferCount}`)
+        .fontSize('14fp')
+        .fontWeight(500)
+        .margin({ bottom: 24 })
+        .onClick(() => {
+          if (this.nativeWindowContext) {
+            this.bufferQueueSize = this.nativeWindowContext.GetBufferQueueSize();
+            this.attachedBufferCount = this.nativeWindowContext.GetAttachBufferCount();
+            this.cacheBufferCount = this.nativeWindowContext.GetCacheBufferCount();
+          }
+        })
+        .height(40)
+      Button(`attach buffer`)
+        .fontSize('14fp')
+        .fontWeight(500)
+        .margin({ bottom: 24 })
+        .onClick(() => {
+          if (this.nativeWindowContext) {
+            this.nativeWindowContext.AttachBuffer();
+          }
+        })
+        .height(40)
+      Button(`dettach buffer`)
+        .fontSize('14fp')
+        .fontWeight(500)
+        .margin({ bottom: 24 })
+        .onClick(() => {
+          if (this.nativeWindowContext) {
+            this.nativeWindowContext.DettachBuffer();
           }
         })
         .height(40)

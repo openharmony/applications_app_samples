@@ -21,6 +21,8 @@ import Base from '@ohos.base';
 import Want from '@ohos.app.ability.Want';
 import delegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import Logger from 'ets/util/Logger';
+import formManagerAbility from '@ohos.app.form.formHost';
+import formInfo from '@ohos.app.form.formInfo';
 
 const TAG = '[Sample_ArkTSCard]';
 const BUNDLE = 'sub_';
@@ -34,7 +36,7 @@ export default function abilityTest() {
       Logger.info(TAG, `${BUNDLE}beforeAll begin`)
       let delegator: AbilityDelegatorRegistry.AbilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       let want: Want = {
-        bundleName: "com.samples.arktscarddemo",
+        bundleName: "com.samples.arktscard",
         abilityName: "EntryAbility"
       };
       delegator.startAbility(want, (err: Base.BusinessError) => {
@@ -52,7 +54,7 @@ export default function abilityTest() {
     afterAll(async (lockAbilityTerminateSelf: Function) => {
       Logger.info(TAG, `${BUNDLE}lockAbilityTerminateSelf begin`)
       let abilityDelegator = delegatorRegistry.getAbilityDelegator();
-      let pkillCmd = 'aa force-stop com.samples.arktscarddemo';
+      let pkillCmd = 'aa force-stop com.samples.arktscard';
       abilityDelegator.executeShellCommand(pkillCmd, (err, data) => {
         console.log('Acts_CleanTempFiles_0201 pkillCmd err: '
         + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
@@ -70,19 +72,19 @@ export default function abilityTest() {
      * @tc.level Level 1
      */
     it('sub_ArkTSCard_FormDeepLink_0100', 0, async (FormDeepLink_0100: Function) => {
-      Logger.info(TAG, `${BUNDLE}ArkTSCard_FormDeepLink_0100 begin`);
+      Logger.info(TAG, `${BUNDLE}ArkTSCard_FormDeepLink_0100 begin 999`);
       let resourceManager = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext().resourceManager;
       let DeepLinkBtn = await driver.findComponent(ON.text(await resourceManager
         .getStringValue($r('app.string.DeepLink'))));
       expect(DeepLinkBtn !== null).assertTrue();
       await DeepLinkBtn.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(2000);
       let JumpCard = await driver.findComponents(
         ON.type('FormComponent')
       );
       expect(JumpCard[0] !== null).assertTrue();
       await JumpCard[0].click();
-      await driver.delayMs(1500);
+      await driver.delayMs(2500);
       await driver.assertComponentExist(
         ON.text((await resourceManager.getStringValue($r('app.string.MusicPage'))))
       );
@@ -90,9 +92,9 @@ export default function abilityTest() {
         ON.text((await resourceManager.getStringValue($r('app.string.StaticCard'))))
       );
       await driver.pressBack();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       await driver.pressBack();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       Logger.info(TAG, `${BUNDLE}ArkTSCard_FormDeepLink_0100 end`);
       FormDeepLink_0100();
     })
@@ -112,13 +114,13 @@ export default function abilityTest() {
         .getStringValue($r('app.string.DeepLink'))));
       expect(DeepLinkBtn !== null).assertTrue();
       await DeepLinkBtn.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(2000);
       let JumpCard = await driver.findComponents(
         ON.type('FormComponent')
       );
       expect(JumpCard[1] !== null).assertTrue();
       await JumpCard[1].click();
-      await driver.delayMs(1500);
+      await driver.delayMs(2500);
       await driver.assertComponentExist(
         ON.text((await resourceManager.getStringValue($r('app.string.MusicPage'))))
       );
@@ -126,9 +128,9 @@ export default function abilityTest() {
         ON.text((await resourceManager.getStringValue($r('app.string.DynamicCard'))))
       );
       await driver.pressBack();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       await driver.pressBack();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       Logger.info(TAG, `${BUNDLE}ArkTSCard_FormDeepLink_0200 end`);
       FormDeepLink_0200();
     })
@@ -148,13 +150,13 @@ export default function abilityTest() {
         .getStringValue($r('app.string.DeepLink'))));
       expect(DeepLinkBtn !== null).assertTrue();
       await DeepLinkBtn.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(2000);
       let JumpCard = await driver.findComponents(
         ON.type('FormComponent')
       );
       expect(JumpCard[2] !== null).assertTrue();
       await JumpCard[2].click();
-      await driver.delayMs(1500);
+      await driver.delayMs(2500);
       await driver.assertComponentExist(
         ON.text((await resourceManager.getStringValue($r('app.string.BookPage'))))
       );
@@ -162,9 +164,9 @@ export default function abilityTest() {
         ON.text((await resourceManager.getStringValue($r('app.string.StaticCard'))))
       );
       await driver.pressBack();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       await driver.pressBack();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       Logger.info(TAG, `${BUNDLE}ArkTSCard_FormDeepLink_0300 end`);
       FormDeepLink_0300();
     })
@@ -184,13 +186,13 @@ export default function abilityTest() {
         .getStringValue($r('app.string.DeepLink'))));
       expect(DeepLinkBtn !== null).assertTrue();
       await DeepLinkBtn.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(2000);
       let JumpCard = await driver.findComponents(
         ON.type('FormComponent')
       );
       expect(JumpCard[3] !== null).assertTrue();
       await JumpCard[3].click();
-      await driver.delayMs(1500);
+      await driver.delayMs(2500);
       await driver.assertComponentExist(
         ON.text((await resourceManager.getStringValue($r('app.string.BookPage'))))
       );
@@ -198,9 +200,9 @@ export default function abilityTest() {
         ON.text((await resourceManager.getStringValue($r('app.string.DynamicCard'))))
       );
       await driver.pressBack();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       await driver.pressBack();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       Logger.info(TAG, `${BUNDLE}ArkTSCard_FormDeepLink_0400 end`);
       FormDeepLink_0400();
     })
@@ -220,13 +222,13 @@ export default function abilityTest() {
         .getStringValue($r('app.string.DeepLink'))));
       expect(DeepLinkBtn !== null).assertTrue();
       await DeepLinkBtn.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(2000);
       let JumpCard = await driver.findComponents(
         ON.type('FormComponent')
       );
       expect(JumpCard[4] !== null).assertTrue();
       await JumpCard[4].click();
-      await driver.delayMs(1500);
+      await driver.delayMs(2500);
       await driver.assertComponentExist(
         ON.text((await resourceManager.getStringValue($r('app.string.WeatherPage'))))
       );
@@ -234,9 +236,9 @@ export default function abilityTest() {
         ON.text((await resourceManager.getStringValue($r('app.string.StaticCard'))))
       );
       await driver.pressBack();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       await driver.pressBack();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       Logger.info(TAG, `${BUNDLE}ArkTSCard_FormDeepLink_0500 end`);
       FormDeepLink_0500();
     })
@@ -256,13 +258,13 @@ export default function abilityTest() {
         .getStringValue($r('app.string.DeepLink'))));
       expect(DeepLinkBtn !== null).assertTrue();
       await DeepLinkBtn.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(2000);
       let JumpCard = await driver.findComponents(
         ON.type('FormComponent')
       );
       expect(JumpCard[5] !== null).assertTrue();
       await JumpCard[5].click();
-      await driver.delayMs(1500);
+      await driver.delayMs(2500);
       await driver.assertComponentExist(
         ON.text((await resourceManager.getStringValue($r('app.string.WeatherPage'))))
       );
@@ -270,9 +272,9 @@ export default function abilityTest() {
         ON.text((await resourceManager.getStringValue($r('app.string.DynamicCard'))))
       );
       await driver.pressBack();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       await driver.pressBack();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       Logger.info(TAG, `${BUNDLE}ArkTSCard_FormDeepLink_0600 end`);
       FormDeepLink_0600();
     })
@@ -293,19 +295,19 @@ export default function abilityTest() {
       )
       expect(ToUnlockBtn !== null).assertTrue();
       await ToUnlockBtn.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(2000);
 
       let UnlockJumpCard = await driver.findComponents(
         ON.type('FormComponent')
       );
       await UnlockJumpCard[0].click();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       let UnlockBtn = await driver.findComponent(
         ON.text(await resourceManager.getStringValue($r('app.string.unLock')))
       )
       expect(UnlockBtn !== null).assertTrue();
       await UnlockBtn.click();
-      await driver.delayMs(1500);
+      await driver.delayMs(2500);
       await driver.assertComponentExist(
         ON.text((await resourceManager.getStringValue($r('app.string.MusicPage'))))
       );
@@ -313,9 +315,9 @@ export default function abilityTest() {
         ON.text((await resourceManager.getStringValue($r('app.string.StaticCard'))))
       );
       await driver.pressBack();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       await driver.pressBack();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       Logger.info(TAG, `${BUNDLE}ArkTSCard_LockCard_0100 end`);
       sub_ArkTSCard_LockCard_0100();
     })
@@ -336,18 +338,18 @@ export default function abilityTest() {
       )
       expect(ToUnlockBtn !== null).assertTrue();
       await ToUnlockBtn.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(2000);
       let UnlockJumpCard = await driver.findComponents(
         ON.type('FormComponent')
       );
       await UnlockJumpCard[3].click();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       let UnlockBtn = await driver.findComponent(
         ON.text(await resourceManager.getStringValue($r('app.string.unLock')))
       )
       expect(UnlockBtn !== null).assertTrue();
       await UnlockBtn.click();
-      await driver.delayMs(1500);
+      await driver.delayMs(2500);
       await driver.assertComponentExist(
         ON.text((await resourceManager.getStringValue($r('app.string.MusicPage'))))
       );
@@ -355,9 +357,9 @@ export default function abilityTest() {
         ON.text((await resourceManager.getStringValue($r('app.string.StaticCard'))))
       );
       await driver.pressBack();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       await driver.pressBack();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       Logger.info(TAG, `${BUNDLE}ArkTSCard_LockCard_0200 end`);
       sub_ArkTSCard_LockCard_0200();
     })
@@ -378,18 +380,18 @@ export default function abilityTest() {
       )
       expect(ToUnlockBtn !== null).assertTrue();
       await ToUnlockBtn.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(2000);
       let UnlockJumpCard = await driver.findComponents(
         ON.type('FormComponent')
       );
       await UnlockJumpCard[2].click();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       let UnlockBtn = await driver.findComponent(
         ON.text(await resourceManager.getStringValue($r('app.string.unLock')))
       )
       expect(UnlockBtn !== null).assertTrue();
       await UnlockBtn.click();
-      await driver.delayMs(1500);
+      await driver.delayMs(2500);
       await driver.assertComponentExist(
         ON.text((await resourceManager.getStringValue($r('app.string.MusicPage'))))
       );
@@ -397,9 +399,9 @@ export default function abilityTest() {
         ON.text((await resourceManager.getStringValue($r('app.string.DynamicCard'))))
       );
       await driver.pressBack();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       await driver.pressBack();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       Logger.info(TAG, `${BUNDLE}ArkTSCard_LockCard_0300 end`);
       sub_ArkTSCard_LockCard_0300();
     })
@@ -420,18 +422,18 @@ export default function abilityTest() {
       )
       expect(ToUnlockBtn !== null).assertTrue();
       await ToUnlockBtn.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(2000);
       let UnlockJumpCard = await driver.findComponents(
         ON.type('FormComponent')
       );
       await UnlockJumpCard[1].click();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       let UnlockBtn = await driver.findComponent(
         ON.text(await resourceManager.getStringValue($r('app.string.unLock')))
       );
       expect(UnlockBtn !== null).assertTrue();
       await UnlockBtn.click();
-      await driver.delayMs(1500);
+      await driver.delayMs(2500);
       await driver.assertComponentExist(
         ON.text((await resourceManager.getStringValue($r('app.string.MusicPage'))))
       );
@@ -439,9 +441,9 @@ export default function abilityTest() {
         ON.text((await resourceManager.getStringValue($r('app.string.DynamicCard'))))
       );
       await driver.pressBack();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       await driver.pressBack();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       Logger.info(TAG, `${BUNDLE}ArkTSCard_LockCard_0400 end`);
       sub_ArkTSCard_LockCard_0400();
     })

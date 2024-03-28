@@ -14,7 +14,7 @@
  */
 
 import { describe, it, expect } from '@ohos/hypium'
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 // @ts-ignore
 import { Driver, ON } from '@ohos.UiTest';
 import { logger } from '../util/Logger';
@@ -22,7 +22,7 @@ import { logger } from '../util/Logger';
 const TAG = '[Sample_AVRecorder]'
 const BUNDLE = 'AVRecorder'
 const driver = Driver.create();
-let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
+const abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
 
 export default function abilityTest() {
   describe('ActsAbilityTest', function () {
@@ -75,6 +75,7 @@ export default function abilityTest() {
       let settingBtn = await driver.findComponent(ON.id('audioSetting'));
       if (settingBtn !== undefined) {
         await settingBtn.click();
+        await driver.delayMs(1000);
       }
       let confirmBtn = await driver.findComponent(ON.id('audioConfirm'));
       if (confirmBtn !== undefined) {
@@ -91,22 +92,21 @@ export default function abilityTest() {
       let startBtn = await driver.findComponent(ON.id('audioStart'));
       if (startBtn !== undefined) {
         await startBtn.click();
+        await driver.delayMs(3000);
       }
-      await driver.delayMs(2000);
       let pauseBtn = await driver.findComponent(ON.id('audioPause'));
       if (pauseBtn !== undefined) {
         await pauseBtn.click();
-        await driver.delayMs(500);
+        await driver.delayMs(3000);
       }
       let resumeBtn = await driver.findComponent(ON.id('audioResume'));
       if (resumeBtn !== undefined) {
         await resumeBtn.click();
+        await driver.delayMs(3000);
       }
-      await driver.delayMs(1000);
       let stopBtn = await driver.findComponent(ON.id('audioStop'));
       if (stopBtn !== undefined) {
         await stopBtn.click();
-        await driver.delayMs(500);
       }
       logger.info(TAG, BUNDLE + '_TestRecorderFunc end');
     })

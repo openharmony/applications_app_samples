@@ -13,4 +13,4 @@
  * limitations under the License.
  */
 
-export { MainPage } from './src/main/ets/components/mainpage/MainPage';
+export { RouterModule } from './src/main/ets/utils/RouterModule';

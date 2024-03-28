@@ -63,16 +63,37 @@
     ],
     "requestPermissions": [
       {
-        "name": "ohos.permission.CAMERA"
+        "name": "ohos.permission.CAMERA",
+        "reason": "$string:camera_permission",
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ],
+          "when": "inuse"
+        }
       },
       {
-        "name": "ohos.permission.LOCATION"
+        "name": "ohos.permission.LOCATION",
+        "reason": "$string:location_permission",
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ],
+          "when": "inuse"
+        }
       },
       {
         "name": "ohos.permission.VIBRATE"
       },
       {
-        "name": "ohos.permission.LOCATION_IN_BACKGROUND"
+        "name": "ohos.permission.LOCATION_IN_BACKGROUND",
+        "reason": "$string:background_permission",
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ],
+          "when": "inuse"
+        }
       },
       {
         "name": "ohos.permission.INTERNET"
@@ -81,13 +102,34 @@
         "name": "ohos.permission.CAPTURE_SCREEN"
       },
       {
-        "name": "ohos.permission.READ_MEDIA"
+        "name": "ohos.permission.READ_MEDIA",
+        "reason": "$string:read_permission",
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ],
+          "when": "inuse"
+        }
       },
       {
-        "name": "ohos.permission.WRITE_MEDIA"
+        "name": "ohos.permission.WRITE_MEDIA",
+        "reason": "$string:write_permission",
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ],
+          "when": "inuse"
+        }
       },
       {
-        "name": "ohos.permission.MEDIA_LOCATION"
+        "name": "ohos.permission.MEDIA_LOCATION",
+        "reason": "$string:media_location_permission",
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ],
+          "when": "inuse"
+        }
       }
     ]
   }
