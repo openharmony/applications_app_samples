@@ -63,7 +63,7 @@ VideoPlay/src/main/ets/
 
 1.本示例仅支持标准系统上运行,需要联网才能够播放网络视频;
 
-2.本示例已适配API11版本SDK,版本号：5.0.0.17,镜像版本号：OpenHarmony5.0.0.18;
+2.本示例已适配API12版本SDK,版本号：5.0.0.17,镜像版本号：OpenHarmony5.0.0.18;
 
 3.本示例需要使用DevEco Studio NEXT Developer Preview1 (Build Version: 4.1.3.500, built on January 20, 2024)才可编译运行。
 
