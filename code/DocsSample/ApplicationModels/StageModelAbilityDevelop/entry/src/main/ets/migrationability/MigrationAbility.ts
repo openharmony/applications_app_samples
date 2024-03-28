@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,9 +14,7 @@
  */
 
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import distributedObject from '@ohos.data.distributedDataObject';
 import hilog from '@ohos.hilog';
-import Logger from '../utils/Logger';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import type Want from '@ohos.app.ability.Want';
 import wantConstant from '@ohos.app.ability.wantConstant';
@@ -30,44 +28,17 @@ import type { BusinessError } from '@ohos.base';
 const permissions: Array<Permissions> = ['ohos.permission.DISTRIBUTED_DATASYNC'];
 const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
-const AGE_NUMBER_18: number = 18;
-
-class SourceObject {
-  name: string;
-  age: number;
-  isVis: boolean;
-
-  constructor(name: string, age: number, isVis: boolean) {
-    this.name = name;
-    this.age = age;
-    this.isVis = isVis;
-  };
-};
 
 export default class MigrationAbility extends UIAbility {
   storage: LocalStorage = new LocalStorage();
-  // 定义分布式数据对象
-  gObject: distributedObject.DataObject | null = null;
+
   // 对端恢复
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
 
-    // 示例中，在onCreate阶段初始化分布式数据对象
-    let source: SourceObject = new SourceObject('amy', AGE_NUMBER_18, false);
-    this.gObject = distributedObject.create(this.context, source);
-
-    // 例如，在onCreate()中恢复数据
-    // 获取源端传入的sessionId
-    let sessionId: string = want?.parameters?.session as string;
-
-    // 加入数据传输session
-    this.gObject.setSessionId(sessionId, () => {
-      Logger.info('join session');
-    });
-
     // 获取分布式数据
     if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
-      // 将上述的保存的数据取出恢复
+      // 将want保存的数据取出恢复
       let continueInput = '';
       if (want.parameters !== undefined) {
         continueInput = JSON.stringify(want.parameters.data);
@@ -77,8 +48,8 @@ export default class MigrationAbility extends UIAbility {
       this.context.restoreWindowStage(this.storage);
     }
     // 调用原因为迁移时，设置状态为可迁移，应对冷启动情况
-    this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result) => {
-      hilog.info(DOMAIN_NUMBER, TAG, `setMissionContinueState INACTIVE result: ${JSON.stringify(result)}`);
+    this.context.setMissionContinueState(AbilityConstant.ContinueState.ACTIVE, (result) => {
+      hilog.info(DOMAIN_NUMBER, TAG, `setMissionContinueState ACTIVE result: ${JSON.stringify(result)}`);
     });
   }
 
@@ -121,7 +92,7 @@ export default class MigrationAbility extends UIAbility {
     hilog.info(DOMAIN_NUMBER, TAG, `onContinue version = ${version}, targetDevice: ${targetDevice}`); // 准备迁移数据
 
     // 获取源端版本号
-    let versionSrc: number = 0; // 请填充具体获取版本号的代码
+    let versionSrc: number = -1; // 请填充具体获取版本号的代码
 
     // 兼容性校验
     if (version !== versionSrc) {
@@ -131,35 +102,10 @@ export default class MigrationAbility extends UIAbility {
 
     // 将要迁移的数据保存在wantParam的自定义字段（例如data）中
     const continueInput = '迁移的数据';
-    wantParam.data = continueInput;
+    wantParam['data'] = continueInput;
 
-    // 生成sessionId
-    let sessionId: string = distributedObject.genSessionId();
-
-    // 使用该sessionId开启数据同步
-    this.gObject.setSessionId(sessionId, () => {
-      Logger.info('join session');
-    });
-    // 将sessionId传递到对端
-    wantParam.session = sessionId;
-
-    // 向分布式数据对象中写入数据，并保存
-    this.gObject.save(wantParam.targetDevice as string, (err: BusinessError, result: distributedObject.SaveSuccessResponse) => {
-      if (err) {
-        Logger.info('save failed, error code = ' + err.code);
-        Logger.info('save failed, error message: ' + err.message);
-        return;
-      }
-      Logger.info('save callback');
-      Logger.info('save sessionId: ' + result.sessionId);
-      Logger.info('save version: ' + result.version);
-      Logger.info('save deviceId:  ' + result.deviceId);
-    });
-
-    hilog.info(DOMAIN_NUMBER, TAG, `onContinue version = ${wantParam.version}, targetDevice: ${wantParam.targetDevice}`);
+    //设置不迁移页面栈&迁移后源端不退出
     wantParam[wantConstant.Params.SUPPORT_CONTINUE_PAGE_STACK_KEY] = false;
-
-    hilog.info(DOMAIN_NUMBER, TAG, `onContinue version = ${wantParam.version}, targetDevice: ${wantParam.targetDevice}`);
     wantParam[wantConstant.Params.SUPPORT_CONTINUE_SOURCE_EXIT_KEY] = false;
 
     return AbilityConstant.OnContinueResult.AGREE;

@@ -116,8 +116,7 @@ entry/src/main/ets/
 ├── ServiceAbilityStartUIAbility
 │   └── service.ts							//FA模型与Stage模型应用组件互通用ServiceAbility
 ├── utils
-│   ├── GlobalContext.ts					//object存储工具类
-│   └── Logger.ts							//log输出工具类
+│   └── GlobalContext.ts					        //object存储工具类
 └── workers
     └── worker.ts							//使用worker进行线程间通信
 ```
@@ -152,13 +151,13 @@ entry/src/main/ets/
 
 ### 相关权限
 
-[ohos.permission.READ_CONTACTS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionread_contacts)
+[ohos.permission.READ_CONTACTS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionread_contacts)
 
-[ohos.permission.WRITE_CONTACTS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionwrite_contacts)
+[ohos.permission.WRITE_CONTACTS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionwrite_contacts)
 
-[ohos.permission.DISTRIBUTED_DATASYNC](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissiondistributed_datasync)
+[ohos.permission.DISTRIBUTED_DATASYNC](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissiondistributed_datasync)
 
-[ohos.permission.ACCESS_SERVICE_DM](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionaccess_service_dm)
+[ohos.permission.ACCESS_SERVICE_DM](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionaccess_service_dm)
 
 ### 依赖
 

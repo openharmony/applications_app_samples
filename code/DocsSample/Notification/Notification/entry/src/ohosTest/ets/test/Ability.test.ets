@@ -13,13 +13,14 @@
  * limitations under the License.
  */
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import { logger } from '../util/Logger';
+import hilog from '@ohos.hilog';
 import { Driver, ON } from '@ohos.UiTest';
 import { describe, it, expect } from '@ohos/hypium';
 
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 const TIME_THOUSAND = 1000;
 const TAG = '[Sample_Notification]';
+const DOMAIN = 0xF811
 
 async function getResourceString(resource: Resource): Promise<string> {
   let manage = abilityDelegator.getAppContext().resourceManager;
@@ -40,7 +41,7 @@ export default function appTest() {
      * @tc.level Level 1
      */
     it('Notification_SetBadgeNumber_001', 0, async (done: Function) => {
-      logger.info(TAG, 'Notification_SetBadgeNumber_001_begin');
+      hilog.info(DOMAIN, TAG, 'Notification_SetBadgeNumber_001_begin');
       try {
         await abilityDelegator.startAbility({
           bundleName: "com.samples.notification",
@@ -60,7 +61,7 @@ export default function appTest() {
       await SetCorner.click();
       await driver.swipe(180, 0, 180, 50, 600);
       await driver.delayMs(TIME_THOUSAND);
-      logger.info(TAG, await getResourceString($r('app.string.test_text')));
+      hilog.info(DOMAIN, TAG, await getResourceString($r('app.string.test_text')));
       let result = await driver.findComponent(ON.text(await getResourceString($r('app.string.test_text'))));
       await driver.delayMs(TIME_THOUSAND);
       await driver.click(344, 1092);
@@ -68,7 +69,7 @@ export default function appTest() {
       await driver.swipe(180, 50, 180, 0, 600);
       await driver.delayMs(TIME_THOUSAND);
       expect(result != null).assertTrue();
-      logger.info(TAG, 'Notification_SetBadgeNumber_001_end');
+      hilog.info(DOMAIN, TAG, 'Notification_SetBadgeNumber_001_end');
       done();
     });
 
@@ -81,7 +82,7 @@ export default function appTest() {
      * @tc.level Level 1
      */
     it('Notification_BasicNotification_002', 0, async (done: Function) => {
-      logger.info(TAG, 'Notification_BasicNotification_002_begin');
+      hilog.info(DOMAIN, TAG, 'Notification_BasicNotification_002_begin');
       await driver.delayMs(TIME_THOUSAND);
       let textBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.basic_notification'))));
       await driver.delayMs(TIME_THOUSAND);
@@ -89,14 +90,14 @@ export default function appTest() {
       await driver.delayMs(TIME_THOUSAND);
       await driver.swipe(180, 0, 180, 50, 600);
       await driver.delayMs(TIME_THOUSAND);
-      logger.info(TAG, await getResourceString($r('app.string.test_text')));
+      hilog.info(DOMAIN, TAG, await getResourceString($r('app.string.test_text')));
       let result = await driver.findComponent(ON.text(await getResourceString($r('app.string.test_text'))));
       await driver.click(344, 1092);
       await driver.delayMs(TIME_THOUSAND);
       await driver.swipe(180, 50, 180, 0, 600);
       await driver.delayMs(TIME_THOUSAND);
       expect(result != null).assertTrue();
-      logger.info(TAG, 'Notification_BasicNotification_002_end');
+      hilog.info(DOMAIN, TAG, 'Notification_BasicNotification_002_end');
       done();
     });
 
@@ -109,7 +110,7 @@ export default function appTest() {
      * @tc.level Level 1
      */
     it('Notification_LongNotification_003', 0, async (done: Function) => {
-      logger.info(TAG, 'Notification_LongNotification_003_begin');
+      hilog.info(DOMAIN, TAG, 'Notification_LongNotification_003_begin');
       await driver.delayMs(TIME_THOUSAND);
       let textBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.long_notification'))));
       await driver.delayMs(TIME_THOUSAND);
@@ -119,13 +120,13 @@ export default function appTest() {
       await driver.delayMs(TIME_THOUSAND);
       await driver.click(682, 159);
       await driver.delayMs(TIME_THOUSAND);
-      logger.info(TAG, await getResourceString($r('app.string.test_longText')));
+      hilog.info(DOMAIN, TAG, await getResourceString($r('app.string.test_longText')));
       let result = await driver.findComponent(ON.text(await getResourceString($r('app.string.test_longText'))))
       await driver.click(344, 1092);
       await driver.swipe(180, 50, 180, 0, 600);
       await driver.delayMs(TIME_THOUSAND);
       expect(result != null).assertTrue();
-      logger.info(TAG, 'Notification_LongNotification_003_end');
+      hilog.info(DOMAIN, TAG, 'Notification_LongNotification_003_end');
       done();
     });
 
@@ -138,7 +139,7 @@ export default function appTest() {
      * @tc.level Level 1
      */
     it('Notification_MultilineNotification_004', 0, async (done: Function) => {
-      logger.info(TAG, 'Notification_MultilineNotification_004_begin');
+      hilog.info(DOMAIN, TAG, 'Notification_MultilineNotification_004_begin');
       await driver.delayMs(TIME_THOUSAND);
       let textBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.multi_line_notification'))));
       await driver.delayMs(TIME_THOUSAND);
@@ -148,7 +149,7 @@ export default function appTest() {
       await driver.delayMs(TIME_THOUSAND);
       await driver.click(667, 166);
       await driver.delayMs(TIME_THOUSAND);
-      logger.info(TAG, await getResourceString($r('app.string.line_01')));
+      hilog.info(DOMAIN, TAG, await getResourceString($r('app.string.line_01')));
       let result = await driver.findComponent(ON.text(await getResourceString($r('app.string.line_01'))))
       await driver.delayMs(TIME_THOUSAND);
       await driver.click(344, 1092);
@@ -156,7 +157,7 @@ export default function appTest() {
       await driver.swipe(180, 50, 180, 0, 600);
       await driver.delayMs(TIME_THOUSAND);
       expect(result != null).assertTrue();
-      logger.info(TAG, 'Notification_MultilineNotification_004_end');
+      hilog.info(DOMAIN, TAG, 'Notification_MultilineNotification_004_end');
       done();
     })
 
@@ -169,7 +170,7 @@ export default function appTest() {
      * @tc.level Level 1
      */
     it('Notification_PictureNotification_005', 0, async (done: Function) => {
-      logger.info(TAG, 'Notification_PictureNotification_005_begin');
+      hilog.info(DOMAIN, TAG, 'Notification_PictureNotification_005_begin');
       await driver.delayMs(TIME_THOUSAND);
       let textBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.picture_notification'))));
       await driver.delayMs(TIME_THOUSAND);
@@ -179,14 +180,14 @@ export default function appTest() {
       await driver.delayMs(TIME_THOUSAND);
       await driver.click(667, 166);
       await driver.delayMs(TIME_THOUSAND);
-      logger.info(TAG, await getResourceString($r('app.string.test_briefText')));
+      hilog.info(DOMAIN, TAG, await getResourceString($r('app.string.test_briefText')));
       let result = await driver.findComponent(ON.text(await getResourceString($r('app.string.test_briefText'))));
       await driver.click(344, 1092);
       await driver.delayMs(TIME_THOUSAND);
       await driver.swipe(180, 50, 180, 0, 600);
       await driver.delayMs(TIME_THOUSAND);
       expect(result != null).assertTrue();
-      logger.info(TAG, 'Notification_PictureNotification_005_end');
+      hilog.info(DOMAIN, TAG, 'Notification_PictureNotification_005_end');
       done();
     })
 
@@ -199,7 +200,7 @@ export default function appTest() {
      * @tc.level Level 1
      */
     it('Notification_WantAgentStartAbility_006', 0, async (done: Function) => {
-      logger.info(TAG, 'Notification_WantAgentStartAbility_006_begin');
+      hilog.info(DOMAIN, TAG, 'Notification_WantAgentStartAbility_006_begin');
       await driver.delayMs(TIME_THOUSAND);
       let textBtn = await driver.findComponent(ON.text(await getResourceString($r('app.string.want_agent_start_ability'))));
       await driver.delayMs(TIME_THOUSAND);
@@ -209,12 +210,12 @@ export default function appTest() {
       await driver.delayMs(TIME_THOUSAND);
       await driver.click(323, 228);
       await driver.delayMs(TIME_THOUSAND);
-      logger.info(TAG, await getResourceString($r('app.string.Second_Page')));
+      hilog.info(DOMAIN, TAG, await getResourceString($r('app.string.Second_Page')));
       let result = await driver.findComponent(ON.text(await getResourceString($r('app.string.Second_Page'))));
       await driver.click(344, 1092);
       await driver.delayMs(TIME_THOUSAND);
       expect(result != null).assertTrue();
-      logger.info(TAG, 'Notification_WantAgentStartAbility_006_end');
+      hilog.info(DOMAIN, TAG, 'Notification_WantAgentStartAbility_006_end');
       done();
     })
 
@@ -227,7 +228,7 @@ export default function appTest() {
      * @tc.level Level 1
      */
     it('Notification_WantAgentCommonEvent_007', 0, async (done: Function) => {
-      logger.info(TAG, 'Notification_WantAgentCommonEvent_007_begin');
+      hilog.info(DOMAIN, TAG, 'Notification_WantAgentCommonEvent_007_begin');
       await driver.delayMs(TIME_THOUSAND);
       try {
         await abilityDelegator.startAbility({
@@ -244,14 +245,14 @@ export default function appTest() {
       await driver.delayMs(TIME_THOUSAND);
       await driver.swipe(180, 0, 180, 50, 600);
       await driver.delayMs(TIME_THOUSAND);
-      logger.info(TAG, await getResourceString($r('app.string.Test_Text')));
+      hilog.info(DOMAIN, TAG, await getResourceString($r('app.string.Test_Text')));
       let result = await driver.findComponent(ON.text(await getResourceString($r('app.string.Test_Text'))))
       await driver.click(344, 1092);
       await driver.delayMs(TIME_THOUSAND);
       await driver.swipe(180, 50, 180, 0, 600);
       await driver.delayMs(TIME_THOUSAND);
       expect(result != null).assertTrue();
-      logger.info(TAG, 'Notification_WantAgentCommonEvent_007_end');
+      hilog.info(DOMAIN, TAG, 'Notification_WantAgentCommonEvent_007_end');
       done();
     })
 

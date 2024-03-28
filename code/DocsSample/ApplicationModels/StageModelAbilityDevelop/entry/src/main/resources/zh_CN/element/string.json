@@ -117,6 +117,14 @@
       "value": "启动UIAbility的指定页面"
     },
     {
+      "name": "UIAbilityComponentsInteractionG",
+      "value": "启动UIAbility的指定应用"
+    },
+    {
+      "name": "UIAbilityComponentsInteractionH",
+      "value": "启动UIAbility的指定类型应用"
+    },
+    {
       "name": "FuncAbility_desc",
       "value": "UIAbility组件间交互（设备内）对应的Ability"
     },
@@ -269,6 +277,10 @@
       "value": "Stage模型绑定FA模型ServiceAbility"
     },
     {
+      "name": "PageAbility",
+      "value": "Stage模型启动FA模型PageAbility"
+    },
+    {
       "name": "ServiceAbility_desc",
       "value": "Stage模型绑定FA模型ServiceAbility对应的Ability"
     },
@@ -387,6 +399,10 @@
     {
       "name": "ConnectFAServiceAbility",
       "value": "已连接ServiceAbility"
+    },
+    {
+      "name": "ConnectStageServiceAbility",
+      "value": "已连接当前Stage的ServiceAbility"
     },
     {
       "name": "ServiceExtension",

@@ -56,6 +56,30 @@
       "supportDimensions": [
         "2*2"
       ]
+    },
+    {
+      "name": "RequestForm",
+      "description": "$string:widget_requestForm_desc",
+      "src": "./ets/requestForm/pages/RequestFormCard.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": true,
+      "updateEnabled": true,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 2,
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "2*2"
+      ],
+      "formConfigAbility": "ability://com.example.entry.EntryAbility",
+      "dataProxyEnabled": false,
+      "isDynamic": true,
+      "transparencyEnabled": false,
+      "metadata": []
     }
   ]
 }

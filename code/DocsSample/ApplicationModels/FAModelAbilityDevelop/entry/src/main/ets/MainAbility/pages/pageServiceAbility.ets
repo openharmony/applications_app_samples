@@ -18,16 +18,17 @@ import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import promptAction from '@ohos.promptAction';
 import rpc from '@ohos.rpc';
-import Logger from '../../utils/Logger';
+import hilog from '@ohos.hilog';
 
 const TAG: string = 'PageServiceAbility';
+const domain: number = 0xFF00;
 
 @Entry
 @Component
 struct PageServiceAbility {
   async startServiceAbility(): Promise<void> {
     try {
-      Logger.info(TAG, 'Begin to start ability');
+      hilog.info(domain, TAG, 'Begin to start ability');
       let want: Want = {
         bundleName: 'com.samples.famodelabilitydevelop',
         abilityName: 'com.samples.famodelabilitydevelop.ServiceAbility'
@@ -36,9 +37,9 @@ struct PageServiceAbility {
       promptAction.showToast({
         message: $r('app.string.start_service_success_toast')
       });
-      Logger.info(TAG, `Start ability succeed`);
+      hilog.info(domain, TAG, `Start ability succeed`);
     } catch (error) {
-      Logger.error(TAG, 'Start ability failed with ' + error);
+      hilog.error(domain, TAG, 'Start ability failed with ' + error);
     }
   }
 
@@ -106,7 +107,7 @@ struct PageServiceAbility {
           .onClick(() => {
             let option: common.ConnectOptions = {
               onConnect: (element, proxy) => {
-                Logger.info(TAG, `onConnectLocalService onConnectDone element:` + JSON.stringify(element));
+                hilog.info(domain, TAG, `onConnectLocalService onConnectDone element:` + JSON.stringify(element));
                 if (proxy === null) {
                   promptAction.showToast({
                     message: $r('app.string.connect_service_failed_toast')
@@ -123,13 +124,13 @@ struct PageServiceAbility {
                 });
               },
               onDisconnect: (element) => {
-                Logger.info(TAG, `onConnectLocalService onDisconnectDone element:${element}`);
+                hilog.info(domain, TAG, `onConnectLocalService onDisconnectDone element:${element}`);
                 promptAction.showToast({
                   message: $r('app.string.disconnect_service_success_toast')
                 });
               },
               onFailed: (code) => {
-                Logger.info(TAG, `onConnectLocalService onFailed errCode:${code}`);
+                hilog.info(domain, TAG, `onConnectLocalService onFailed errCode:${code}`);
                 promptAction.showToast({
                   message: $r('app.string.connect_service_failed_toast')
                 });
@@ -141,7 +142,7 @@ struct PageServiceAbility {
               abilityName: 'com.samples.famodelabilitydevelop.ServiceAbility',
             };
             let connId = featureAbility.connectAbility(request, option);
-            Logger.info(TAG, `onConnectLocalService onFailed errCode:${connId}`);
+            hilog.info(domain, TAG, `onConnectLocalService onFailed errCode:${connId}`);
           })
         }
         .height(56)
@@ -169,7 +170,7 @@ struct PageServiceAbility {
           .onClick(() => {
             let option: common.ConnectOptions = {
               onConnect: (element, proxy) => {
-                Logger.info(TAG, `onConnectLocalService onConnectDone element:` + JSON.stringify(element));
+                hilog.info(domain, TAG, `onConnectLocalService onConnectDone element:` + JSON.stringify(element));
                 if (proxy === null) {
                   promptAction.showToast({
                     message: $r('app.string.connect_service_failed_toast')
@@ -186,13 +187,13 @@ struct PageServiceAbility {
                 });
               },
               onDisconnect: (element) => {
-                Logger.info(TAG, `onConnectLocalService onDisconnectDone element:${element}`)
+                hilog.info(domain, TAG, `onConnectLocalService onDisconnectDone element:${element}`)
                 promptAction.showToast({
                   message: $r('app.string.disconnect_service_success_toast')
                 });
               },
               onFailed: (code) => {
-                Logger.info(TAG, `onConnectLocalService onFailed errCode:${code}`);
+                hilog.info(domain, TAG, `onConnectLocalService onFailed errCode:${code}`);
                 promptAction.showToast({
                   message: $r('app.string.connect_service_failed_toast')
                 });
@@ -204,7 +205,7 @@ struct PageServiceAbility {
               abilityName: 'com.samples.famodelabilitydevelop.UnKnownServiceAbility',
             };
             let connId = featureAbility.connectAbility(request, option);
-            Logger.info(TAG, `onConnectLocalService onFailed errCode:${connId}`);
+            hilog.info(domain, TAG, `onConnectLocalService onFailed errCode:${connId}`);
           })
         }
         .height(56)

@@ -12,5 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+ 
 // Script for compiling build behavior. It is built in the build plug-in and cannot be modified currently.
 export { legacyHapTasks } from '@ohos/hvigor-ohos-plugin';

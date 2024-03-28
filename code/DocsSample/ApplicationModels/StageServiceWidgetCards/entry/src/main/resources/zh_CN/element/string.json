@@ -181,6 +181,10 @@
       "value": "通过message事件刷新卡片内容"
     },
     {
+      "name": "widget_requestForm_desc",
+      "value": "requestForm"
+    },
+    {
       "name": "widget_updateduration_desc",
       "value": "定时刷新"
     },

@@ -18,7 +18,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
-import { logger } from '../util/Logger';
+import hilog from '@ohos.hilog';
 import { Hypium } from '@ohos/hypium';
 import window from '@ohos.window';
 import testsuite from '../test/Ability.test';
@@ -26,21 +26,22 @@ import testsuite from '../test/Ability.test';
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 let abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
 const TAG = '[Sample_Notification]';
+const DOMAIN = 0xF811
 
 export default class TestAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    logger.info(TAG, 'TestAbility onCreate');
-    logger.info(TAG, JSON.stringify(want));
-    logger.info(TAG, JSON.stringify(launchParam));
+    hilog.info(DOMAIN, TAG, 'TestAbility onCreate');
+    hilog.info(DOMAIN, TAG, JSON.stringify(want));
+    hilog.info(DOMAIN, TAG, JSON.stringify(launchParam));
     Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
   }
 
   onDestroy() {
-    logger.info(TAG, 'TestAbility onDestroy');
+    hilog.info(DOMAIN, TAG, 'TestAbility onDestroy');
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    logger.info(TAG, 'TestAbility onWindowStageCreate');
+    hilog.info(DOMAIN, TAG, 'TestAbility onWindowStageCreate');
     windowStage.loadContent('testability/pages/Index', (err) => {
       if (err.code) {
         return;
@@ -49,14 +50,14 @@ export default class TestAbility extends UIAbility {
   }
 
   onWindowStageDestroy() {
-    logger.info(TAG, 'TestAbility onWindowStageDestroy');
+    hilog.info(DOMAIN, TAG, 'TestAbility onWindowStageDestroy');
   }
 
   onForeground() {
-    logger.info(TAG, 'TestAbility onForeground');
+    hilog.info(DOMAIN, TAG, 'TestAbility onForeground');
   }
 
   onBackground() {
-    logger.info(TAG, 'TestAbility onBackground');
+    hilog.info(DOMAIN, TAG, 'TestAbility onBackground');
   }
 }

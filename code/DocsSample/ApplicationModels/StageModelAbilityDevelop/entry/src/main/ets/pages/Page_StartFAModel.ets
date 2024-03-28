@@ -15,7 +15,6 @@
 
 import common from '@ohos.app.ability.common';
 import hilog from '@ohos.hilog';
-import Logger from '../utils/Logger';
 import promptAction from '@ohos.promptAction'
 import Want from '@ohos.app.ability.Want';
 
@@ -142,20 +141,56 @@ struct Page_StartFAModel {
             }
             let options: common.ConnectOptions = {
               onConnect: (elementName, proxy) => {
-                Logger.info('onConnect called.');
+                hilog.info(DOMAIN_NUMBER, TAG, 'onConnect called.');
                 promptAction.showToast({
                   message: $r('app.string.ConnectFAServiceAbility')
                 });
               },
               onDisconnect: (elementName) => {
-                Logger.info('onDisconnect called.');
+                hilog.info(DOMAIN_NUMBER, TAG, 'onDisconnect called.');
               },
               onFailed: (code) => {
-                Logger.info('onFailed code is: ' + code);
+                hilog.info(DOMAIN_NUMBER, TAG, 'onFailed code is: ' + code);
               }
             };
             let connectionId = this.context.connectServiceExtensionAbility(want, options);
             hilog.info(DOMAIN_NUMBER, TAG, 'connectionId is ' + JSON.stringify(connectionId));
+          })
+        }
+        .height(56)
+        .backgroundColor($r('app.color.start_window_background'))
+        .borderRadius(24)
+        .margin({ top: 12, right: 12, left: 12 })
+
+        ListItem() {
+          Row() {
+            Row(){
+              Text($r('app.string.PageAbility'))
+                .textAlign(TextAlign.Start)
+                .fontWeight(500)
+                .margin({ top: 13, bottom: 13, left: 0, right: 8 })
+                .fontSize(16)
+                .width(304)
+                .height(22)
+                .fontColor($r('app.color.text_color'))
+            }
+            .height(48)
+            .width('100%')
+            .margin({ top: 4, bottom: 4, left: 12, right: 84 })
+          }
+          .onClick(() => {
+            let want: Want = {
+              bundleName: 'com.samples.stagemodelabilitydevelop',
+              abilityName: 'ServiceExtAbility',
+              parameters:{
+                key: 'ConnectFaPageAbility'
+              }
+            }
+            this.context.startServiceExtensionAbility(want).then(() => {
+              hilog.info(DOMAIN_NUMBER, TAG, 'startServiceExtensionAbility successfully');
+            }).catch((err: BusinessError) =>{
+              hilog.info(DOMAIN_NUMBER, TAG, 'startServiceExtensionAbility fail, err is: ' + JSON.stringify(err));
+            })
           })
         }
         .height(56)

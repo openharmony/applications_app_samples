@@ -14,13 +14,14 @@
  */
 
 import worker from '@ohos.worker';
-import Logger from '../utils/Logger';
+import hilog from '@ohos.hilog';
 
 let parent = worker.workerPort;
+const DOMAIN_NUMBER: number = 0xFF00;
 
 // 处理来自主线程的消息
 parent.onmessage = (message): void => {
-  Logger.info('Worker', 'onmessage: ' + JSON.stringify(message));
+  hilog.info(DOMAIN_NUMBER, 'Worker', 'onmessage: ' + JSON.stringify(message));
   // 发送消息到主线程
   parent.postMessage('message from worker thread.');
 };

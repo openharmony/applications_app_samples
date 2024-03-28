@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+import type { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import ServiceExtImpl from '../IdlServiceExt/idl_service_ext_impl';
@@ -32,6 +33,17 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
 
   onRequest(want: Want, startId: number): void {
     hilog.info(DOMAIN_NUMBER, TAG, `onRequest, want: ${want.abilityName}`);
+    if (want.parameters.key === 'ConnectFaPageAbility') {
+      let wantFA: Want = {
+        bundleName: 'com.samples.famodelabilitydevelop',
+        abilityName: 'com.samples.famodelabilitydevelop.MainAbility',
+      };
+      this.context.startAbility(wantFA).then(() => {
+        hilog.info(DOMAIN_NUMBER, TAG, 'Start Ability successfully.');
+      }).catch((error: BusinessError) => {
+        hilog.info(DOMAIN_NUMBER, TAG, `Ability failed: ${JSON.stringify(error)}`);
+      });
+    }
   };
 
   onConnect(want: Want): rpc.RemoteObject {

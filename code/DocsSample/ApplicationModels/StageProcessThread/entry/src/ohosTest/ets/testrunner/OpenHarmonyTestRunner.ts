@@ -15,18 +15,19 @@
 
 import TestRunner from '@ohos.application.testRunner';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import Logger from '../utils/Logger';
+import hilog from '@ohos.hilog';
 
 let abilityDelegator = undefined;
 let abilityDelegatorArguments = undefined;
 const TAG = 'TestRunner';
+const DOMAIN_NUMBER: number = 0xFF00;
 
 async function onAbilityCreateCallback() {
-  Logger.info(TAG, 'onAbilityCreateCallback');
+  hilog.info(DOMAIN_NUMBER, TAG, 'onAbilityCreateCallback');
 }
 
 async function addAbilityMonitorCallback(err: any) {
-  Logger.info(TAG, 'addAbilityMonitorCallback : %{public}s', JSON.stringify(err) ?? '');
+  hilog.info(DOMAIN_NUMBER, TAG, 'addAbilityMonitorCallback : %{public}s', JSON.stringify(err) ?? '');
 }
 
 export default class OpenHarmonyTestRunner implements TestRunner {
@@ -34,11 +35,11 @@ export default class OpenHarmonyTestRunner implements TestRunner {
   }
 
   onPrepare() {
-    Logger.info(TAG, 'OpenHarmonyTestRunner OnPrepare ');
+    hilog.info(DOMAIN_NUMBER, TAG, 'OpenHarmonyTestRunner OnPrepare ');
   }
 
   async onRun() {
-    Logger.info(TAG, 'OpenHarmonyTestRunner onRun run');
+    hilog.info(DOMAIN_NUMBER, TAG, 'OpenHarmonyTestRunner onRun run');
     abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
     abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
     let testAbilityName = abilityDelegatorArguments.bundleName + '.TestAbility';
@@ -52,13 +53,13 @@ export default class OpenHarmonyTestRunner implements TestRunner {
     if (debug == 'true') {
       cmd += ' -D'
     }
-    Logger.info(TAG, 'cmd : %{public}s', cmd);
+    hilog.info(DOMAIN_NUMBER, TAG, 'cmd : %{public}s', cmd);
     abilityDelegator.executeShellCommand(cmd,
       (err: any, d: any) => {
-        Logger.info(TAG, 'executeShellCommand : err : %{public}s', JSON.stringify(err) ?? '');
-        Logger.info(TAG, 'executeShellCommand : data : %{public}s', d.stdResult ?? '');
-        Logger.info(TAG, 'executeShellCommand : data : %{public}s', d.exitCode ?? '');
+        hilog.info(DOMAIN_NUMBER, TAG, 'executeShellCommand : err : %{public}s', JSON.stringify(err) ?? '');
+        hilog.info(DOMAIN_NUMBER, TAG, 'executeShellCommand : data : %{public}s', d.stdResult ?? '');
+        hilog.info(DOMAIN_NUMBER, TAG, 'executeShellCommand : data : %{public}s', d.exitCode ?? '');
       })
-    Logger.info(TAG, 'OpenHarmonyTestRunner onRun end');
+    hilog.info(DOMAIN_NUMBER, TAG, 'OpenHarmonyTestRunner onRun end');
   }
 }

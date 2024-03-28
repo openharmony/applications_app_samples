@@ -16,7 +16,6 @@
 import common from '@ohos.app.ability.common';
 import deviceManager from '@ohos.distributedDeviceManager';
 import hilog from '@ohos.hilog';
-import Logger from '../../utils/Logger';
 import promptAction from '@ohos.promptAction';
 import rpc from '@ohos.rpc';
 import Want from '@ohos.app.ability.Want';
@@ -32,7 +31,7 @@ let dmClass: deviceManager.DeviceManager;
 let connectionId: number;
 let options: common.ConnectOptions = {
   onConnect(elementName, remote): void {
-    Logger.info('onConnect callback');
+    hilog.info(DOMAIN_NUMBER, TAG, 'onConnect callback');
     if (remote === null) {
       hilog.info(DOMAIN_NUMBER, TAG, `onConnect remote is null`);
       return;
@@ -301,7 +300,7 @@ struct Page_CollaborateAbility {
             };
             // 退出由startAbility接口启动的ServiceExtensionAbility
             this.context.stopServiceExtensionAbility(want).then(() => {
-              Logger.info("stop service extension ability success")
+              hilog.info(DOMAIN_NUMBER, TAG, "stop service extension ability success")
               promptAction.showToast({
                 message: $r('app.string.SuccessfullyStop')
               });
@@ -343,26 +342,26 @@ struct Page_CollaborateAbility {
             }).then((data) => {
               if (data !== null) {
                 caller = data;
-                Logger.info('get remote caller success');
+                hilog.info(DOMAIN_NUMBER, TAG, 'get remote caller success');
                 // 注册caller的release监听
                 caller.onRelease((msg) => {
-                  Logger.info(`remote caller onRelease is called ${msg}`);
+                  hilog.info(DOMAIN_NUMBER, TAG, `remote caller onRelease is called ${msg}`);
                 });
-                Logger.info('remote caller register OnRelease succeed');
+                hilog.info(DOMAIN_NUMBER, TAG, 'remote caller register OnRelease succeed');
                 promptAction.showToast({
                   message: $r('app.string.CallerSuccess')
                 });
                 // 注册caller的协同场景下跨设备组件状态变化监听通知
                 try {
                   caller.onRemoteStateChange((str) => {
-                    Logger.info('Remote state changed ' + str);
+                    hilog.info(DOMAIN_NUMBER, TAG, 'Remote state changed ' + str);
                   });
                 } catch (error) {
-                  Logger.info(`Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
+                  hilog.info(DOMAIN_NUMBER, TAG, `Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
                 };
               }
             }).catch((error: BusinessError) => {
-              Logger.error(`get remote caller failed with ${error}`);
+              hilog.error(DOMAIN_NUMBER, TAG, `get remote caller failed with ${error}`);
             });
           })
         }
@@ -422,13 +421,13 @@ struct Page_CollaborateAbility {
           }
           .onClick(() => {
             this.context.disconnectServiceExtensionAbility(connectionId).then(() => {
-              Logger.info('disconnectServiceExtensionAbility success');
+              hilog.info(DOMAIN_NUMBER, TAG, 'disconnectServiceExtensionAbility success');
               // 成功断连后台服务
               promptAction.showToast({
                 message: $r('app.string.SuccessfullyDisconnectBackendService')
               })
             }).catch((error: BusinessError) => {
-              Logger.error('disconnectServiceExtensionAbility failed');
+              hilog.error(DOMAIN_NUMBER, TAG, 'disconnectServiceExtensionAbility failed');
             });
           })
         }

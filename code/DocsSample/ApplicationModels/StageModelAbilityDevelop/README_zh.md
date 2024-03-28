@@ -10,7 +10,7 @@
 
 |主页|UIAbility组件|应用组件跨设备交互（流转）|Stage模型启动FA模型|
 |--------------------------------|--------------------------------|--------------------------------|--------------------------------|
-|![主页](screenshots/主页.png)|<img src="screenshots/UI.gif" alt="Stage模型开发指导"  />| <img src="screenshots/Wander.gif" alt="Stage模型开发指导"  /> | <img src="screenshots/FA.gif" alt="Stage模型开发指导"  /> |
+|<img src="screenshots/main.png" style="zoom: 50%;" />|<img src="screenshots/UI.gif" alt="Stage模型开发指导"  />| <img src="screenshots/Wander.gif" alt="Stage模型开发指导"  /> | <img src="screenshots/FA.gif" alt="Stage模型开发指导"  /> |
 
 使用说明
 
@@ -42,23 +42,27 @@
 
 13）点击list[启动UIAbility的指定界面]，进入’被启动的应用‘界面，根据坐标点击屏幕上的返回按钮，返回’UIAbility组件间交互‘界面；
 
-14）点击list[冷启动]，进入’冷启动‘界面，根据坐标点击屏幕上的返回按钮，返回’UIAbility组件间交互‘界面；
+14）点击list[启动UIAbility的指定应用]，进入‘被启动的应用’界面，根据坐标点击屏幕上的返回按钮，返回’UIAbility组件间交互‘界面；
 
-15）返回桌面，启动交互协同应用（对应工程：StageModelAbilityInteraction ），再返回’UIAbility组件间交互‘界面，点击list[热启动]，进入’热启动‘界面，根据坐标点击屏幕上的返回按钮，返回’UIAbility组件间交互‘界面；
+15）点击list[启动UIAbility的指定类型应用]，进入‘被启动的应用’界面，根据坐标点击屏幕上的返回按钮，返回’UIAbility组件间交互‘界面；
 
-16）点击list[Caller交互]，弹出toast[[{"Caller交互成功"}]；
+16）点击list[冷启动]，进入’冷启动‘界面，根据坐标点击屏幕上的返回按钮，返回’UIAbility组件间交互‘界面；
 
-17）返回APP主页，点击list[应用上下文Context]，进入’Context的典型使用场景‘界面；
+17）返回桌面，启动交互协同应用（对应工程：StageModelAbilityInteraction ），再返回’UIAbility组件间交互‘界面，点击list[热启动]，进入’热启动‘界面，根据坐标点击屏幕上的返回按钮，返回’UIAbility组件间交互‘界面；
 
-18）点击list[获取应用文件路径方式一]，弹出toast[[{"/data/storage/el2/base/temptest.txt"}]，点击list[获取应用文件路径方式二]，弹出toast[[{"/data/storage/el2/base/haps/entry/temptest.txt"}]；
+18）点击list[Caller交互]，弹出toast[[{"Caller交互成功"}]；
 
-19）点击list[切换到EL1设备级加密]，弹出toast[[{"切换到EL1设备级加密"}]，点击list[切换到EL2设备级加密]，弹出toast[[{"切换到EL2设备级加密"}]；
+19）返回APP主页，点击list[应用上下文Context]，进入’Context的典型使用场景‘界面；
 
-20）安装交互协同应用（对应工程：StageModelAbilityInteraction ），点击list[创建其他应用或其他Module的Context]，进入’创建其他应用或其他Module的Context‘界面，点击list[创建Context方式一]，弹出toast[[{"成功获取Context"}]，点击list[创建Context方式二]，弹出toast[[{"成功获取Context"}]，点击list[创建Context方式三]，弹出toast[[{"成功获取Context"}]，根据坐标点击屏幕上的返回按钮，返回’Context的典型使用场景‘界面；
+20）点击list[获取应用文件路径方式一]，弹出toast[[{"/data/storage/el2/base/temptest.txt"}]，点击list[获取应用文件路径方式二]，弹出toast[[{"/data/storage/el2/base/haps/entry/temptest.txt"}]；
 
-21）点击list[订阅进程内UIAbility生命周期变化]，进入’指定界面A‘界面，根据坐标点击屏幕上的返回按钮，返回’Context的典型使用场景‘界面；
+21）点击list[切换到EL1设备级加密]，弹出toast[[{"切换到EL1设备级加密"}]，点击list[切换到EL2设备级加密]，弹出toast[[{"切换到EL2设备级加密"}]；
 
-22）根据坐标点击屏幕上的返回按钮，返回APP主界面；
+22）安装交互协同应用（对应工程：StageModelAbilityInteraction ），点击list[创建其他应用或其他Module的Context]，进入’创建其他应用或其他Module的Context‘界面，点击list[创建Context方式一]，弹出toast[[{"成功获取Context"}]，点击list[创建Context方式二]，弹出toast[[{"成功获取Context"}]，点击list[创建Context方式三]，弹出toast[[{"成功获取Context"}]，根据坐标点击屏幕上的返回按钮，返回’Context的典型使用场景‘界面；
+
+23）点击list[订阅进程内UIAbility生命周期变化]，进入’指定界面A‘界面，根据坐标点击屏幕上的返回按钮，返回’Context的典型使用场景‘界面；
+
+24）根据坐标点击屏幕上的返回按钮，返回APP主界面；
 
 
 
@@ -94,7 +98,7 @@
 
 3. Stage模型与FA模型交互
 
-1）在本设备安装[【指南优化】【元能力】开发指南示例代码增加完整工程sample开发-FA模型开发指导 · Pull Request !3761 · OpenHarmony/applications_app_samples - Gitee.com](https://gitee.com/openharmony/applications_app_samples/pulls/3761)所包含工程；
+1）在本设备安装[FA模型](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ApplicationModels/FAModelAbilityDevelop)所包含工程；
 
 2）进入APP主页，点击list进入Stage模型和FA模型交互页面；
 
@@ -104,7 +108,9 @@
 
 5）点击list[Stage模型绑定FA模型ServiceAbility]，弹出toast[[{"已连接ServiceAbility"}]；
 
-6）点击返回按钮，返回APP主页；
+6）点击list[Stage模型启动FA模型PageAbility]，FAModel应用被拉起；
+
+7）点击返回按钮，返回APP主页；
 
 4. 扩展服务
 
@@ -148,8 +154,6 @@ entry/src/main/ets/
 │   └── idl_service_ext_impl.ts											// 开发者自定义文件，对idl接口的具体实现
 ├── lifecycleability
 │   └── LifecycleAbility.ts												// 生命周期
-├── utils				
-│   └── Logger.ts														// 输出Log
 ├── migrationability
 │   └── MigrationAbility.ts												// 多设备协同
 ├── myabilitystage
@@ -192,41 +196,42 @@ entry/src/main/ets/
   * UIAbility组件内交互：
 
     * 调用相关方法来实现UIAbility组件内启动，UIAbility组件间启动，获取对应的界面及返回值等。
-  * 源码链接： [SingletonAbility.ts](entry\src\main\ets\componentstartupability\SingletonAbility.ts)  [SpecifiedFirstAbility.ts](entry\src\main\ets\componentstartupability\SpecifiedFirstAbility.ts)  [SpecifiedSecondAbility.ts](entry\src\main\ets\componentstartupability\SpecifiedSecondAbility.ts)  [MultitonAbility.ts](entry\src\main\ets\componentstartupability\MultitonAbility.ts)  [ContextAbility.ts](entry\src\main\ets\contextability\ContextAbility.ts)  [EntryAbility.ts](entry\src\main\ets\entryability\EntryAbility.ts)  [EventAbility.ts](entry\src\main\ets\eventability\EventAbility.ts)  [FuncAbilityA.ts](entry\src\main\ets\funcability\FuncAbilityA.ts)  [FuncAbilityB.ts](entry\src\main\ets\funcability\FuncAbilityB.ts)  [LifecycleAbility.ts](entry\src\main\ets\lifecycleability\LifecycleAbility.ts)  [MyAbilityStage.ts](entry\src\main\ets\myabilitystage\MyAbilityStage.ts)  [Index.ets](entry\src\main\ets\pages\Index.ets)  [Page_Context.ets](entry\src\main\ets\pages\Page_Context.ets)  [Page_EventHub.ets](entry\src\main\ets\pages\Page_EventHub.ets)  [Page_StartModel.ets](entry\src\main\ets\pages\Page_StartModel.ets)  [Page_UIAbilitySecond.ets](entry\src\main\ets\pages\Page_UIAbilitySecond.ets)  [Page_UIAbilityThird.ets](entry\src\main\ets\pages\Page_UIAbilityThird.ets)  [Page_ContextAbility.ets](entry\src\main\ets\pages\page_contextability\Page_ContextAbility.ets)  [Page_FuncAbilityA.ets](entry\src\main\ets\pages\page_funcability\Page_FuncAbilityA.ets)  [Page_FuncAbilityB.ets](entry\src\main\ets\pages\page_funcability\Page_FuncAbilityB.ets)  [Page_LifecycleAbility.ets](entry\src\main\ets\pages\page_lifecycleability\Page_LifecycleAbility.ets)  [Page_Singleton.ets](entry\src\main\ets\pages\page_startupability\Page_Singleton.ets)  [Page_Specified_First.ets](entry\src\main\ets\pages\page_startupability\Page_Specified_First.ets)  [Page_Specified_Second.ets](entry\src\main\ets\pages\page_startupability\Page_Specified_Second.ets)  [Page_Multiton.ets](entry\src\main\ets\pages\page_startupability\Page_Multiton.ets) 
+  * 源码链接： [SingletonAbility.ts](entry/src/main/ets/componentstartupability/SingletonAbility.ts)  [SpecifiedFirstAbility.ts](entry/src/main/ets/componentstartupability/SpecifiedFirstAbility.ts)  [SpecifiedSecondAbility.ts](entry/src/main/ets/componentstartupability/SpecifiedSecondAbility.ts)  [MultitonAbility.ts](entry/src/main/ets/componentstartupability/MultitonAbility.ts)  [ContextAbility.ts](entry/src/main/ets/contextability/ContextAbility.ts)  [EntryAbility.ts](entry/src/main/ets/entryability/EntryAbility.ts)  [EventAbility.ts](entry/src/main/ets/eventability/EventAbility.ts)  [FuncAbilityA.ts](entry/src/main/ets/funcability/FuncAbilityA.ts)  [FuncAbilityB.ts](entry/src/main/ets/funcability/FuncAbilityB.ts)  [LifecycleAbility.ts](entry/src/main/ets/lifecycleability/LifecycleAbility.ts)  [MyAbilityStage.ts](entry/src/main/ets/myabilitystage/MyAbilityStage.ts)  [Index.ets](entry/src/main/ets/pages/Index.ets)  [Page_Context.ets](entry/src/main/ets/pages/Page_Context.ets)  [Page_EventHub.ets](entry/src/main/ets/pages/Page_EventHub.ets)  [Page_StartModel.ets](entry/src/main/ets/pages/Page_StartModel.ets)  [Page_UIAbilitySecond.ets](entry/src/main/ets/pages/Page_UIAbilitySecond.ets)  [Page_UIAbilityThird.ets](entry/src/main/ets/pages/Page_UIAbilityThird.ets)  [Page_ContextAbility.ets](entry/src/main/ets/pages/page_contextability/Page_ContextAbility.ets)  [Page_FuncAbilityA.ets](entry/src/main/ets/pages/page_funcability/Page_FuncAbilityA.ets)  [Page_FuncAbilityB.ets](entry/src/main/ets/pages/page_funcability/Page_FuncAbilityB.ets)  [Page_LifecycleAbility.ets](entry/src/main/ets/pages/page_lifecycleability/Page_LifecycleAbility.ets)  [Page_Singleton.ets](entry/src/main/ets/pages/page_startupability/Page_Singleton.ets)  [Page_Specified_First.ets](entry/src/main/ets/pages/page_startupability/Page_Specified_First.ets)  [Page_Specified_Second.ets](entry/src/main/ets/pages/page_startupability/Page_Specified_Second.ets)  [Page_Multiton.ets](entry/src/main/ets/pages/page_startupability/Page_Multiton.ets) 
   
 * 应用组件跨设备交互（流转）：
   
   两个设备之间进行跨端迁移以及多端协同
   
-* 源码链接： [Page_MigrationAbilitySecond.ets](entry\src\main\ets\pages\page_migrationability\Page_MigrationAbilitySecond.ets)  [Page_MigrationAbilityThird.ets](entry\src\main\ets\pages\page_migrationability\Page_MigrationAbilityThird.ets)  [Page_MigrationAbilityFirst.ets](entry\src\main\ets\pages\page_migrationability\Page_MigrationAbilityFirst.ets)  [Page_CollaborateAbility.ets](entry\src\main\ets\pages\page_collaborateability\Page_CollaborateAbility.ets)  [MigrationAbility.ts](entry\src\main\ets\migrationability\MigrationAbility.ts)  [CollaborateAbility.ts](entry\src\main\ets\collaborateability\CollaborateAbility.ts)  [Index.ets](entry\src\main\ets\pages\Index.ets) 
+* 源码链接： [Page_MigrationAbilitySecond.ets](entry/src/main/ets/pages/page_migrationability/Page_MigrationAbilitySecond.ets)  [Page_MigrationAbilityThird.ets](entry/src/main/ets/pages/page_migrationability/Page_MigrationAbilityThird.ets)  [Page_MigrationAbilityFirst.ets](entry/src/main/ets/pages/page_migrationability/Page_MigrationAbilityFirst.ets)  [Page_CollaborateAbility.ets](entry/src/main/ets/pages/page_collaborateability/Page_CollaborateAbility.ets)  [MigrationAbility.ts](entry/src/main/ets/migrationability/MigrationAbility.ts)  [CollaborateAbility.ts](entry/src/main/ets/collaborateability/CollaborateAbility.ts)  [Index.ets](entry/src/main/ets/pages/Index.ets) 
   
 * Stage模型与FA模型交互：
 
   * Stage模型启动FA模型
 
-    源码链接： [Index.ets](entry\src\main\ets\pages\Index.ets)   [Page_StartFAModel.ets](entry\src\main\ets\pages\Page_StartFAModel.ets) 
+    源码链接： [Index.ets](entry/src/main/ets/pages/Index.ets)   [Page_StartFAModel.ets](entry/src/main/ets/pages/Page_StartFAModel.ets) 
 
   * Stage模型启动FA模型并获取返回值
 
-    源码链接： [Index.ets](entry\src\main\ets\pages\Index.ets)   [Page_StartFAModel.ets](entry\src\main\ets\pages\Page_StartFAModel.ets) 
+    源码链接： [Index.ets](entry/src/main/ets/pages/Index.ets)   [Page_StartFAModel.ets](entry/src/main/ets/pages/Page_StartFAModel.ets) 
     
     Stage模型绑定FA模型ServiceAbility
     
-    源码链接： [Index.ets](entry\src\main\ets\pages\Index.ets)   [Page_StartFAModel.ets](entry\src\main\ets\pages\Page_StartFAModel.ets) 
+    源码链接： [Index.ets](entry/src/main/ets/pages/Index.ets)   [Page_StartFAModel.ets](entry/src/main/ets/pages/Page_StartFAModel.ets) 
 
 ### 相关权限
 
-[ohos.permission.GET_BUNDLE_INFO_PRIVILEGED]((https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/application-models/application-context-stage.md/))
+[ohos.permission.GET_BUNDLE_INFO_PRIVILEGED](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionget_bundle_info_privileged)
 
-[ohos.permission.DISTRIBUTED_DATASYNC](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+[ohos.permission.DISTRIBUTED_DATASYNC](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissiondistributed_datasync)
 
-[ohos.permission.START_INVISIBLE_ABILITY](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+[ohos.permission.START_INVISIBLE_ABILITY](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionstart_invisible_ability)
 
-[ohos.permission.START_ABILITIES_FROM_BACKGROUND](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+[ohos.permission.START_ABILITIES_FROM_BACKGROUND](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionstart_abilities_from_background)
 
-[ohos.permission.ABILITY_BACKGROUND_COMMUNICATION](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+[ohos.permission.ABILITY_BACKGROUND_COMMUNICATION](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionability_background_communication)
 
 ### 依赖
+执行该工程前，需要安装StageModelAbilityInteraction工程以及FAModelAbilityDevelop工程hap包
 
 Stage模型绑定FA模型ServiceAbility功能和扩展服务功能需要修改设备的[预置配置文件](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_capability.json)，该配置文件在设备上的路为`/system/etc/app/install_list_capability.json`。
 

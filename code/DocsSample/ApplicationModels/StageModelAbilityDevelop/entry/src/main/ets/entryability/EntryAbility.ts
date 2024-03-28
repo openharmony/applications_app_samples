@@ -15,7 +15,6 @@
 
 import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import hilog from '@ohos.hilog';
-import Logger from '../utils/Logger';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import type Want from '@ohos.app.ability.Want';
 import window from '@ohos.window';
@@ -52,23 +51,23 @@ export default class EntryAbility extends UIAbility {
         let stageEventType: window.WindowStageEventType = data;
         switch (stageEventType) {
           case window.WindowStageEventType.SHOWN: // 切到前台
-            Logger.info('windowStage foreground.');
+            hilog.info(DOMAIN_NUMBER, TAG, 'windowStage foreground.');
             break;
           case window.WindowStageEventType.ACTIVE: // 获焦状态
-            Logger.info('windowStage active.');
+            hilog.info(DOMAIN_NUMBER, TAG, 'windowStage active.');
             break;
           case window.WindowStageEventType.INACTIVE: // 失焦状态
-            Logger.info('windowStage inactive.');
+            hilog.info(DOMAIN_NUMBER, TAG, 'windowStage inactive.');
             break;
           case window.WindowStageEventType.HIDDEN: // 切到后台
-            Logger.info('windowStage background.');
+            hilog.info(DOMAIN_NUMBER, TAG, 'windowStage background.');
             break;
           default:
             break;
         }
       });
     } catch (exception) {
-      Logger.error('Failed to enable the listener for window stage event changes. Cause:' + JSON.stringify(exception));
+      hilog.error(DOMAIN_NUMBER, TAG, 'Failed to enable the listener for window stage event changes. Cause:' + JSON.stringify(exception));
     };
     hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onWindowStageCreate');
 
@@ -95,7 +94,7 @@ export default class EntryAbility extends UIAbility {
     } catch (err) {
       let code = (err as BusinessError).code;
       let message = (err as BusinessError).message;
-      Logger.error(`Failed to disable the listener for windowStageEvent. Code is ${code}, message is ${message}`);
+      hilog.error(DOMAIN_NUMBER, TAG, `Failed to disable the listener for windowStageEvent. Code is ${code}, message is ${message}`);
     };
   }
 
