@@ -68,7 +68,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text(str));
       let button = await driver.findComponent(ON.text(str));
       await button.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(5000);
       done();
       hilog.info(DOMAIN, TAG, 'Choose_002 end');
     })
