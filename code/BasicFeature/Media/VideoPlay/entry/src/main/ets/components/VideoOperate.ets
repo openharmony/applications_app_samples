@@ -74,17 +74,7 @@ export struct VideoOperate {
           .selectedColor($r("app.color.slider_selected"))
           .showTips(false)
           .onChange((value: number, mode: SliderChangeMode) => {
-            if (mode == SliderChangeMode.Begin) {
-              this.isSwiping = true;
-              this.avPlayManage.videoPause();
-            }
-            this.avPlayManage.videoSeek(value);
-            this.currentTime = value;
-            if (mode == SliderChangeMode.End) {
-              this.isSwiping = false;
-              this.flag = true;
-              this.avPlayManage.videoPlay();
-            }
+            this.avPlayManage.videoSeek(value, mode);
           })
       }
       .layoutWeight(1)

@@ -263,10 +263,13 @@ export default class AvPlayManager {
   /**
    * 视频跳转
    */
-  videoSeek(seekTime: number): void {
+  async videoSeek(seekTime: number, mode: SliderChangeMode): Promise<void> {
     if (this.avPlayer) {
       try {
-        this.avPlayer.seek(seekTime, media.SeekMode.SEEK_PREV_SYNC);
+        if (mode !== SliderChangeMode.Begin) {
+          this.avPlayer.seek(seekTime, media.SeekMode.SEEK_PREV_SYNC);
+          this.currentTime = seekTime;
+        }
         Logger.info(this.tag, `videoSeek== ${seekTime}`);
       } catch (e) {
         Logger.info(this.tag, `videoSeek== ${JSON.stringify(e)}`);
