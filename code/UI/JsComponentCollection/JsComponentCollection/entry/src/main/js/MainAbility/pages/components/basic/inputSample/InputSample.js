@@ -19,6 +19,7 @@ import { TOPRECTHEIGHT, BOTTOMRECTHEIGHT } from '../../../../util/AttributeData'
 export default {
   data: {
     inputTitle: "",
+    inputValue: "",
     inputType: 'text',
     passwordIconValue: true,
     inputRegularValue: 'aaa',
@@ -33,7 +34,8 @@ export default {
 
   setInputType(inputTypeObj) {
     if (inputTypeObj.detail.value) {
-      this.inputType = inputTypeObj.detail.value
+      this.inputValue = "";
+      this.inputType = inputTypeObj.detail.value;
     }
   },
 
