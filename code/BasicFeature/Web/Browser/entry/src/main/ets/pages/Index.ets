@@ -48,7 +48,7 @@ struct Index {
   aboutToAppear() {
     try {
       let deviceType = deviceInfo.deviceType;
-      if (deviceType === 'default') {
+      if (deviceType !== 'default') {
         this.isPhone = true;
       }
     } catch (e) {
