@@ -164,5 +164,48 @@ export default function abilityTest() {
       }
 
     });
+
+    /**
+     * @tc.number:SUB_GRAPHIC_2D_HGM_DISPLAYSYNC_0400
+     * @tc.name:Animator_001
+     * @tc.desc:Animator
+     * @tc.size:MediumTest
+     * @tc.type:Function
+     * @tc.level:Level 1
+     */
+    it('Animator_001', 0, async (done: Function) => {
+      try {
+        Logger.info(TAG, 'Animator_001 begin');
+
+        let driver = Driver.create();
+        await driver.delayMs(DELAYMS_2S);
+
+        await driver.assertComponentExist(ON.id('Animator'));
+        let animatorButton = await driver.findComponent(ON.id('Animator'));
+        await animatorButton.click();
+        await driver.delayMs(DELAYMS_2S);
+
+        await driver.assertComponentExist(ON.id('AnimatorCreate'));
+        let startButton = await driver.findComponent(ON.id('AnimatorCreate'));
+        await startButton.click();
+        await driver.delayMs(DELAYMS_2S);
+
+        await driver.assertComponentExist(ON.id('AnimatorPlay'));
+        let stopButton = await driver.findComponent(ON.id('AnimatorPlay'));
+        await stopButton.click();
+        await driver.delayMs(DELAYMS_2S);
+
+        await driver.assertComponentExist(ON.id('AnimatorBack'));
+        let backButton = await driver.findComponent(ON.id('AnimatorBack'));
+        await backButton.click();
+        await driver.delayMs(DELAYMS_1S);
+
+        Logger.info(TAG, 'Animator_001 end');
+        done();
+      } catch (error) {
+        expect().assertFail();
+      }
+
+    });
   })
 }
