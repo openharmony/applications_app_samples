@@ -263,10 +263,13 @@ export default class AvPlayManager {
   /**
    * 视频跳转
    */
-  videoSeek(seekTime: number): void {
+  async videoSeek(seekTime: number, mode: SliderChangeMode): Promise<void> {
     if (this.avPlayer) {
       try {
-        this.avPlayer.seek(seekTime, media.SeekMode.SEEK_PREV_SYNC);
+        if (mode !== SliderChangeMode.Begin) {
+          this.avPlayer.seek(seekTime, media.SeekMode.SEEK_PREV_SYNC);
+          this.currentTime = seekTime;
+        }
         Logger.info(this.tag, `videoSeek== ${seekTime}`);
       } catch (e) {
         Logger.info(this.tag, `videoSeek== ${JSON.stringify(e)}`);
@@ -283,6 +286,17 @@ export default class AvPlayManager {
       return;
     }
     this.avPlayer.reset();
+  }
+
+  /**
+   * 视频预下载
+   */
+  async preDownload(url: string): Promise<void> {
+    if (this.avPlayer) {
+      let mediaSource : media.MediaSource = media.createMediaSourceWithUrl(url,  {"aa" : "bb", "cc" : "dd"});
+      let playbackStrategy : media.PlaybackStrategy = {preferredWidth: 1, preferredHeight: 2, preferredBufferDuration: 3, preferredHdr: false};
+      this.avPlayer.setMediaSource(mediaSource, playbackStrategy)
+    }
   }
 
   /**
@@ -334,6 +348,8 @@ export default class AvPlayManager {
       Logger.info(this.tag, 'avPlayerChoose setAVPlayerCallback');
       if (this.videoSrc === 'network.mp4') {
         this.fileSrc = 'https:\/\/vd3.bdstatic.com\/mda-pdc2kmwtd2vxhiy4\/cae_h264\/1681502407203843413\/mda-pdc2kmwtd2vxhiy4.mp4';
+      } else if (this.videoSrc === 'pre_download_network.mp4') {
+        this.fileSrc = 'https:\/\/vd3.bdstatic.com\/mda-nmh2004d24kf4bjh\/hd/h264\/1671326683061787710\/mda-nmh2004d24kf4bjh.mp4';
       } else {
         this.fileSrc = this.videoSrc;
       }
@@ -342,7 +358,11 @@ export default class AvPlayManager {
         let bool = regex.test(this.fileSrc);
         if (bool) {
           Logger.info(this.tag, `avPlayerChoose avPlayerChoose fileDescriptor = ${JSON.stringify(this.fileDescriptor)}`);
-          this.avPlayer.url = this.fileSrc;
+          if (this.videoSrc === 'pre_download_network.mp4') {
+            this.preDownload(this.fileSrc);
+          } else {
+            this.avPlayer.url = this.fileSrc;
+          }
         } else {
           if (this.mgr) {
             this.fileDescriptor = await this.mgr.getRawFd(this.fileSrc);

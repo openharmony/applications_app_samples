@@ -43,6 +43,37 @@ export default function abilityTest() {
       // This API supports only one parameter: clear action function.
     })
     /**
+     * 切换pre_download_network.mp4视频
+     */
+    it('Choose_002', 0, async (done: Function) => {
+      // 启动Ability
+      hilog.info(DOMAIN, TAG, 'Choose_002 begin');
+      let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
+      await abilityDelegatorRegistry.executeShellCommand('aa start -a EntryAbility -b net.openvally.videoplay');
+
+      // 拉起操作界面
+      let driver = await Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('Video'));
+      let stack = await driver.findComponent(ON.id('Video'));
+      await driver.delayMs(1000);
+      await stack.click();
+      // 点击视频列表
+      await driver.assertComponentExist(ON.id('Choose'));
+      let btnPlay = await driver.findComponent(ON.id('Choose'));
+      await btnPlay.click();
+
+      // 点击pre_download_network.mp4
+      const str = await getString($r('app.string.video_res_4'));
+      await driver.assertComponentExist(ON.text(str));
+      let button = await driver.findComponent(ON.text(str));
+      await button.click();
+      await driver.delayMs(5000);
+      done();
+      hilog.info(DOMAIN, TAG, 'Choose_002 end');
+    })
+
+    /**
      * 切换test2.mp4视频
      */
     it('Choose_001', 0, async (done: Function) => {
