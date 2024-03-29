@@ -18,9 +18,11 @@ import type common from '@ohos.app.ability.common';
 import dataPreferences from '@ohos.data.preferences';
 import formBindingData from '@ohos.app.form.formBindingData';
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import formInfo from '@ohos.app.form.formInfo';
 import formProvider from '@ohos.app.form.formProvider';
 import hilog from '@ohos.hilog';
 import type Want from '@ohos.app.ability.Want';
+import { Configuration } from '@ohos.app.ability.Configuration';
 
 const TAG: string = 'JsCardFormAbility';
 const DATA_STORAGE_PATH: string = '/data/storage/el2/base/haps/form_store';
@@ -96,7 +98,7 @@ export default class JsCardFormAbility extends FormExtensionAbility {
     });
   }
 
-  onChangeFormVisibility(newStatus): void {
+  onChangeFormVisibility(newStatus: Record<string, number>): void {
     // 使用方发起可见或者不可见通知触发，提供方需要做相应的处理，仅系统应用生效
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onChangeFormVisibility');
   }
@@ -118,5 +120,16 @@ export default class JsCardFormAbility extends FormExtensionAbility {
     // 删除之前持久化的卡片实例数据
     // 此接口请根据实际情况实现，具体请参考：FormExtAbility Stage模型卡片实例
     deleteFormInfo(formId, this.context);
+  }
+
+  onConfigurationUpdate(config: Configuration) {
+    // 当前formExtensionAbility存活时更新系统配置信息时触发的回调。
+    // 需注意：formExtensionAbility创建后5秒内无操作将会被清理。
+    hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onConfigurationUpdate:' + JSON.stringify(config));
+  }
+
+  onAcquireFormState(want: Want) {
+    // 卡片提供方接收查询卡片状态通知接口，默认返回卡片初始状态。
+    return formInfo.FormState.READY;
   }
 }

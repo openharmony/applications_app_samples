@@ -141,6 +141,14 @@
       "value": "启动UIAbility的指定页面"
     },
     {
+      "name": "UIAbilityComponentsInteractionG",
+      "value": "启动UIAbility的指定应用"
+    },
+    {
+      "name": "UIAbilityComponentsInteractionH",
+      "value": "启动UIAbility的指定类型应用"
+    },
+    {
       "name": "FuncAbility_desc",
       "value": "被其它Ability启动的Ability"
     },
@@ -291,6 +299,10 @@
     {
       "name": "ServiceAbility_label",
       "value": "label"
+    },
+    {
+      "name": "PageAbility",
+      "value": "Stage模型启动FA模型PageAbility"
     },
     {
       "name": "Success",
@@ -555,6 +567,14 @@
     {
       "name": "SuccessfullyStop",
       "value": "退出成功"
+    },
+    {
+      "name": "fa_main_title",
+      "value": "FA模型组件开发指导"
+    },
+    {
+      "name": "Stage",
+      "value": "SA模型开发"
     }
   ]
 }

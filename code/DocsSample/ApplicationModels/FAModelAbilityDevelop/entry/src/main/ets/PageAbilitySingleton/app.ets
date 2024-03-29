@@ -17,22 +17,23 @@ import Want from '@ohos.app.ability.Want';
 import featureAbility from '@ohos.ability.featureAbility';
 import bundle from '@ohos.bundle';
 import { GlobalContext } from '../utils/GlobalContext';
-import Logger from '../utils/Logger';
+import hilog from '@ohos.hilog';
 
 const TAG: string = 'PageAbilitySingleton';
+const domain: number = 0xFF00;
 
 class PageAbilitySingleton {
   onCreate() {
     // 获取context并调用相关方法
     let context = featureAbility.getContext();
     context.setDisplayOrientation(bundle.DisplayOrientation.PORTRAIT).then(() => {
-      Logger.info(TAG, 'Set display orientation.')
+      hilog.info(domain, TAG, 'Set display orientation.')
     })
-    Logger.info(TAG, 'Application onCreate');
+    hilog.info(domain, TAG, 'Application onCreate');
   }
 
   onDestroy() {
-    Logger.info(TAG, 'Application onDestroy');
+    hilog.info(domain, TAG, 'Application onDestroy');
   }
 
   onNewWant(want: Want) {

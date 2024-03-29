@@ -19,9 +19,10 @@ import { BusinessError } from '@ohos.base';
 import ohos_data_ability from '@ohos.data.dataAbility';
 import rdb from '@ohos.data.rdb';
 import promptAction from '@ohos.promptAction';
-import Logger from '../../utils/Logger';
+import hilog from '@ohos.hilog';
 
 const TAG: string = 'PageDataAbility';
+const domain: number = 0xFF00;
 
 @Entry
 @Component
@@ -96,7 +97,7 @@ struct PageDataAbility {
                     message: $r('app.string.insert_success_toast')
                   });
                 }
-                Logger.info(TAG, 'DAHelper insert result: ' + data + ', error: ' + JSON.stringify(error));
+                hilog.info(domain, TAG, 'DAHelper insert result: ' + data + ', error: ' + JSON.stringify(error));
               }
               );
             })
@@ -126,12 +127,12 @@ struct PageDataAbility {
                 promptAction.showToast({
                   message: $r('app.string.insert_success_toast')
                 });
-                Logger.info(TAG, 'DAHelper insert result: ' + datainsert);
+                hilog.info(domain, TAG, 'DAHelper insert result: ' + datainsert);
               }).catch((error: BusinessError) => {
                 promptAction.showToast({
                   message: $r('app.string.insert_failed_toast')
                 });
-                Logger.error(TAG, `DAHelper insert failed. Cause: ${error.message}`);
+                hilog.error(domain, TAG, `DAHelper insert failed. Cause: ${error.message}`);
               });
             })
           }
@@ -189,7 +190,7 @@ struct PageDataAbility {
                     message: $r('app.string.delete_success_toast')
                   });
                 }
-                Logger.info(TAG, 'DAHelper delete result: ' + data + ', error: ' + JSON.stringify(error));
+                hilog.info(domain, TAG, 'DAHelper delete result: ' + data + ', error: ' + JSON.stringify(error));
               }
               );
             })
@@ -219,12 +220,12 @@ struct PageDataAbility {
                 promptAction.showToast({
                   message: $r('app.string.delete_success_toast')
                 });
-                Logger.info(TAG, 'DAHelper delete result: ' + datadelete);
+                hilog.info(domain, TAG, 'DAHelper delete result: ' + datadelete);
               }).catch((error: BusinessError) => {
                 promptAction.showToast({
                   message: $r('app.string.delete_failed_toast')
                 });
-                Logger.error(TAG, `DAHelper delete failed. Cause: ${error.message}`);
+                hilog.error(domain, TAG, `DAHelper delete failed. Cause: ${error.message}`);
               });
             })
           }
@@ -282,7 +283,7 @@ struct PageDataAbility {
                     message: $r('app.string.update_success_toast')
                   });
                 }
-                Logger.info(TAG, 'DAHelper update result: ' + data + ', error: ' + JSON.stringify(error));
+                hilog.info(domain, TAG, 'DAHelper update result: ' + data + ', error: ' + JSON.stringify(error));
               }
               );
             })
@@ -312,12 +313,12 @@ struct PageDataAbility {
                 promptAction.showToast({
                   message: $r('app.string.update_success_toast')
                 });
-                Logger.info(TAG, 'DAHelper update result: ' + dataupdate);
+                hilog.info(domain, TAG, 'DAHelper update result: ' + dataupdate);
               }).catch((error: BusinessError) => {
                 promptAction.showToast({
                   message: $r('app.string.update_failed_toast')
                 });
-                Logger.error(TAG, `DAHelper update failed. Cause: ${error.message}`);
+                hilog.error(domain, TAG, `DAHelper update failed. Cause: ${error.message}`);
               });
             })
           }
@@ -370,7 +371,7 @@ struct PageDataAbility {
                   promptAction.showToast({
                     message: $r('app.string.query_failed_toast')
                   });
-                  Logger.error(TAG, `DAHelper query failed. Cause: ${error.message}`);
+                  hilog.error(domain, TAG, `DAHelper query failed. Cause: ${error.message}`);
                 } else {
                   promptAction.showToast({
                     message: $r('app.string.query_success_toast')
@@ -381,7 +382,7 @@ struct PageDataAbility {
                   const id = data.getLong(data.getColumnIndex('id'));
                   const name = data.getString(data.getColumnIndex('name'));
                   const introduction = data.getString(data.getColumnIndex('introduction'));
-                  Logger.info(TAG, `DAHelper query result:id = [${id}], name = [${name}], introduction = [${introduction}]`);
+                  hilog.info(domain, TAG, `DAHelper query result:id = [${id}], name = [${name}], introduction = [${introduction}]`);
                 }
                 // 释放数据集的内存
                 data.close();
@@ -420,7 +421,7 @@ struct PageDataAbility {
                   const id = dataquery.getLong(dataquery.getColumnIndex('id'));
                   const name = dataquery.getString(dataquery.getColumnIndex('name'));
                   const introduction = dataquery.getString(dataquery.getColumnIndex('introduction'));
-                  Logger.info(TAG, `DAHelper query result:id = [${id}], name = [${name}], introduction = [${introduction}]`);
+                  hilog.info(domain, TAG, `DAHelper query result:id = [${id}], name = [${name}], introduction = [${introduction}]`);
                 }
                 // 释放数据集的内存
                 dataquery.close();
@@ -428,7 +429,7 @@ struct PageDataAbility {
                 promptAction.showToast({
                   message: $r('app.string.query_failed_toast')
                 });
-                Logger.error(TAG, `DAHelper query failed. Cause: ${error.message}`);
+                hilog.error(domain, TAG, `DAHelper query failed. Cause: ${error.message}`);
               });
             })
           }
@@ -485,7 +486,7 @@ struct PageDataAbility {
                     message: $r('app.string.batchInsert_success_toast')
                   });
                 }
-                Logger.info(TAG, 'DAHelper batchInsert result: ' + data + ', error: ' + JSON.stringify(error));
+                hilog.info(domain, TAG, 'DAHelper batchInsert result: ' + data + ', error: ' + JSON.stringify(error));
               }
               );
             })
@@ -515,12 +516,12 @@ struct PageDataAbility {
                 promptAction.showToast({
                   message: $r('app.string.batchInsert_success_toast')
                 });
-                Logger.info(TAG, 'DAHelper batchInsert result: ' + databatchInsert);
+                hilog.info(domain, TAG, 'DAHelper batchInsert result: ' + databatchInsert);
               }).catch((error: BusinessError) => {
                 promptAction.showToast({
                   message: $r('app.string.batchInsert_failed_toast')
                 });
-                Logger.error(TAG, `DAHelper batchInsert failed. Cause: ${error.message}`);
+                hilog.error(domain, TAG, `DAHelper batchInsert failed. Cause: ${error.message}`);
               });
             })
           }
@@ -586,7 +587,7 @@ struct PageDataAbility {
                     message: $r('app.string.executeBatch_success_toast')
                   });
                 }
-                Logger.info(TAG, `DAHelper executeBatch, result: ` + JSON.stringify(data) + ', error: ' + JSON.stringify(error));
+                hilog.info(domain, TAG, `DAHelper executeBatch, result: ` + JSON.stringify(data) + ', error: ' + JSON.stringify(error));
               });
             })
           }
@@ -624,12 +625,12 @@ struct PageDataAbility {
                 promptAction.showToast({
                   message: $r('app.string.executeBatch_success_toast')
                 });
-                Logger.info(TAG, 'DAHelper executeBatch result: ' + JSON.stringify(dataquery));
+                hilog.info(domain, TAG, 'DAHelper executeBatch result: ' + JSON.stringify(dataquery));
               }).catch((error: BusinessError) => {
                 promptAction.showToast({
                   message: $r('app.string.executeBatch_failed_toast')
                 });
-                Logger.error(TAG, `DAHelper executeBatch failed. Cause: ${error.message}`);
+                hilog.error(domain, TAG, `DAHelper executeBatch failed. Cause: ${error.message}`);
               });
             })
           }

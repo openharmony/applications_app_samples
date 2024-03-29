@@ -181,6 +181,10 @@
       "value": "This is a service widget update by message."
     },
     {
+      "name": "widget_requestForm_desc",
+      "value": "requestForm"
+    },
+    {
       "name": "widget_updateduration_desc",
       "value": "Update duration"
     },

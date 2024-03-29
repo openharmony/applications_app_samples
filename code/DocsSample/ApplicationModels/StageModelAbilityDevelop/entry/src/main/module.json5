@@ -50,19 +50,10 @@
               "entity.system.home"
             ],
             "actions": [
-              "action.system.home"
+              "ohos.want.action.home"
             ]
           }
         ]
-      },
-      {
-        "name": "Logger",
-        "srcEntry": "./ets/utils/Logger.ts",
-        "description": "$string:Logger_desc",
-        "icon": "$media:icon",
-        "label": "$string:Logger_label",
-        "startWindowIcon": "$media:icon",
-        "startWindowBackground": "$color:start_window_background"
       },
       {
         "name": "SingletonAbility",

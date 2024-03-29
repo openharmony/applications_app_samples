@@ -17,19 +17,20 @@ import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriber
 import type Base from '@ohos.base';
 import type commonEventManager from '@ohos.commonEventManager';
 import notificationManager from '@ohos.notificationManager';
-import Logger from '../utils/Logger';
+import hilog from '@ohos.hilog';
 
+const DOMAIN_NUMBER: number = 0xFF00;
 const TAG: string = 'StaticSubscriber';
 
 export default class StaticSubscriber extends StaticSubscriberExtensionAbility {
   onReceiveEvent(event: commonEventManager.CommonEventData): void {
-    Logger.info(TAG, 'onReceiveEvent, event: ' + event.event);
+    hilog.info(DOMAIN_NUMBER, TAG, 'onReceiveEvent, event: ' + event.event);
     // 发布通知事件
     let bundle = {
       bundle: 'com.samples.stageprocessthread',
     };
     notificationManager.setNotificationEnable(bundle, true).then(() => {
-      Logger.info(TAG, 'setNotificationEnable success');
+      hilog.info(DOMAIN_NUMBER, TAG, 'setNotificationEnable success');
     });
 
     let notificationRequest: notificationManager.NotificationRequest = {
@@ -45,9 +46,9 @@ export default class StaticSubscriber extends StaticSubscriberExtensionAbility {
       }
     };
     notificationManager.publish(notificationRequest).then(() => {
-      Logger.info(TAG, 'publish success');
+      hilog.info(DOMAIN_NUMBER, TAG, 'publish success');
     }).catch((err: Base.BusinessError) => {
-      Logger.error(TAG, `publish fail: ${JSON.stringify(err)}`);
+      hilog.error(DOMAIN_NUMBER, TAG, `publish fail: ${JSON.stringify(err)}`);
     });
   }
 }

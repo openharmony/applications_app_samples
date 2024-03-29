@@ -19,9 +19,10 @@ import { BusinessError } from '@ohos.base';
 import fs from '@ohos.file.fs';
 import promptAction from '@ohos.promptAction';
 import worker from '@ohos.worker';
-import Logger from '../../utils/Logger';
+import hilog from '@ohos.hilog';
 
 const TAG: string = 'PagePageAbilityFirst';
+const domain: number = 0xFF00;
 
 @Entry
 @Component
@@ -58,18 +59,18 @@ struct PagePageAbilityFirst {
             (async (): Promise<void> => {
               let dir: string;
               try {
-                Logger.info(TAG, 'Begin to getOrCreateDistributedDir');
+                hilog.info(domain, TAG, 'Begin to getOrCreateDistributedDir');
                 dir = await featureAbility.getContext().getOrCreateDistributedDir();
                 promptAction.showToast({
                   message: dir
                 });
-                Logger.info(TAG, 'distribute dir is ' + dir);
+                hilog.info(domain, TAG, 'distribute dir is ' + dir);
                 let fd: number;
                 let path = dir + '/a.txt';
                 fd = fs.openSync(path, fs.OpenMode.READ_WRITE).fd;
                 fs.close(fd);
               } catch (error) {
-                Logger.error(TAG, `getOrCreateDistributedDir failed with : ${error}`);
+                hilog.error(domain, TAG, 'getOrCreateDistributedDir failed with : ' + error);
               }
             })()
           })
@@ -93,17 +94,17 @@ struct PagePageAbilityFirst {
           .onClick(() => {
             (async (): Promise<void> => {
               try {
-                Logger.info(TAG, 'Begin to start ability');
+                hilog.info(domain, TAG, 'Begin to start ability');
                 let want: Want = {
                   bundleName: 'com.samples.famodelabilitydevelop',
                   moduleName: 'entry',
                   abilityName: 'com.samples.famodelabilitydevelop.PageAbilitySingleton'
                 };
                 await featureAbility.startAbility({ want: want });
-                Logger.info(TAG, `Start ability succeed`);
+                hilog.info(domain, TAG, `Start ability succeed`);
               }
               catch (error) {
-                Logger.error(TAG, 'Start ability failed with ' + error);
+                hilog.error(domain, TAG, 'Start ability failed with ' + error);
               }
             })()
           })
@@ -132,7 +133,7 @@ struct PagePageAbilityFirst {
                 parameters: { page: 'pages/second' }
               };
               featureAbility.startAbility({ want: wantInfo }).then((data) => {
-                Logger.debug(TAG, `restartAbility success : ${data}`);
+                hilog.debug(domain, TAG, `restartAbility success : ${data}`);
               });
             })()
           })
@@ -160,9 +161,9 @@ struct PagePageAbilityFirst {
               parameters: { page: 'pages/first' }
             };
             featureAbility.startAbility({ want: want }).then((data) => {
-              Logger.info(TAG, `startAbility finish:${data}`);
+              hilog.info(domain, TAG, `startAbility finish:${data}`);
             }).catch((err: BusinessError) => {
-              Logger.info(TAG, `startAbility failed errcode:${err.code}`);
+              hilog.info(domain, TAG, `startAbility failed errcode:${err.code}`);
             })
           })
         }
@@ -189,9 +190,9 @@ struct PagePageAbilityFirst {
               parameters: { page: 'pages/second' }
             };
             featureAbility.startAbility({ want: want }).then((data) => {
-              Logger.info(TAG, `startAbility finish:${data}`);
+              hilog.info(domain, TAG, `startAbility finish:${data}`);
             }).catch((err: BusinessError) => {
-              Logger.info(TAG, `startAbility failed errcode:${err.code}`);
+              hilog.info(domain, TAG, `startAbility failed errcode:${err.code}`);
             })
           })
         }
@@ -214,11 +215,11 @@ struct PagePageAbilityFirst {
           .onClick(() => {
             (async (): Promise<void> => {
               try {
-                Logger.info(TAG, 'Begin to terminateSelf');
+                hilog.info(domain, TAG, 'Begin to terminateSelf');
                 await featureAbility.terminateSelf();
-                Logger.info(TAG, 'terminateSelf succeed');
+                hilog.info(domain, TAG, 'terminateSelf succeed');
               } catch (error) {
-                Logger.error(TAG, 'terminateSelf failed with ' + error);
+                hilog.error(domain, TAG, 'terminateSelf failed with ' + error);
               }
             })()
           })
@@ -250,7 +251,7 @@ struct PagePageAbilityFirst {
               promptAction.showToast({
                 message: JSON.stringify(message)
               });
-              Logger.info(TAG, 'message from worker: ' + JSON.stringify(message));
+              hilog.info(domain, TAG, 'message from worker: ' + JSON.stringify(message));
 
               // 根据业务按需停止worker线程
               wk.terminate();
