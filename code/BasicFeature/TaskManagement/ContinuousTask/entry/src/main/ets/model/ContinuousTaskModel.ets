@@ -16,6 +16,7 @@
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
 import wantAgent from '@ohos.app.ability.wantAgent';
 import common from '@ohos.app.ability.common'
+import { BusinessError } from '@ohos.base';
 import Logger from '../util/Logger'
 
 const TAG: string = 'ContinuousTaskModel'
@@ -29,7 +30,7 @@ export default class ContinuousTaskModel {
 
   // start continuous task
   startContinuousTask(): void {
-    let wantAgentInfo = {
+    let wantAgentInfo: wantAgent.WantAgentInfo = {
       wants: [
         {
           bundleName: 'ohos.samples.continuoustask',
@@ -46,7 +47,7 @@ export default class ContinuousTaskModel {
         backgroundTaskManager.startBackgroundRunning(this.context,
         backgroundTaskManager.BackgroundMode.AUDIO_PLAYBACK, wantAgentObj).then(() => {
           Logger.info(TAG, 'startBackgroundRunning succeeded');
-        }).catch((err) => {
+        }).catch((err: BusinessError) => {
           Logger.info(TAG, `startBackgroundRunning failed Cause:  ${JSON.stringify(err)}`);
         })
       } catch (error) {
@@ -59,12 +60,12 @@ export default class ContinuousTaskModel {
   stopContinuousTask(): void {
     try {
       backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
-        Logger.info(TAG, `stopBackgroundRunning succeeded`)
-      }).catch((err) => {
-        Logger.info(TAG, `stopBackgroundRunning failed Cause:  ${JSON.stringify(err)}`)
+        Logger.info(TAG, `stopBackgroundRunning succeeded`);
+      }).catch((err: BusinessError) => {
+        Logger.info(TAG, `stopBackgroundRunning failed Cause:  ${JSON.stringify(err)}`);
       })
     } catch (error) {
-      Logger.error(TAG, `stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`)
+      Logger.error(TAG, `stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
     }
   }
 }
