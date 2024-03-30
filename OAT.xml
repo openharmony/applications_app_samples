@@ -143,6 +143,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/UI/ArkTsComponentCollection/ComponentCollection/lib/DragEvent-1.0.0.tgz" desc="Provided by code/UI/ArkTsComponentCollection/ComponentCollection"/>
                 <filteritem type="filepath" name="code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary/lib/ProcessMessage-1.0.0.tgz" desc="Provided by code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary"/>
                 <filteritem type="filepath" name="code/BasicFeature/Notification/CustomCommonEvent/lib/CardEvent-1.0.0.tgz" desc="Provided by code/BasicFeature/Notification/CustomCommonEvent"/>
+                <filteritem type="filepath" name="code/BasicFeature/Ads/OAIDSample/lib/ResetOAID-1.0.0.tgz" desc="Provided by code/BasicFeature/Ads/OAIDSample"/>
                 <filteritem type="filepath" name="code/DataMock/QuickFix/entry-signed-release.hqf" desc="Provided by code/BasicFeature/TaskManagement/TransientTask"/>
                 <filteritem type="filepath" name="code/Solutions/Shopping/ASOrangeShopping/data/freeinstall/famanager.hap" desc="Provided by BMS"/>
                 <filteritem type="filepath" name="code/Solutions/Shopping/ASOrangeShopping/data/freeinstall/launcher.hap" desc="Provided by  code/SystemFeature/ApplicationModels/Launcher"/>
@@ -236,6 +237,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/UI/ArkTsComponentCollection/ComponentCollection/lib/DragEvent-1.0.0.hap" desc="Provided by code/UI/ArkTsComponentCollection/ComponentCollection"/>
                 <filteritem type="filepath" name="code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary/lib/ProcessMessage-1.0.0.hap" desc="Provided by code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary"/>
                 <filteritem type="filepath" name="code/BasicFeature/Notification/CustomCommonEvent/lib/CardEvent-1.0.0.hap" desc="Provided by code/BasicFeature/Notification/CustomCommonEvent"/>
+                <filteritem type="filepath" name="code/BasicFeature/Ads/OAIDSample/lib/ResetOAID-1.0.0.hap" desc="Provided by code/BasicFeature/Ads/OAIDSample"/>
 
         <filteritem type="filepath" name="code/BasicFeature/DeviceManagement/Sensor/Capi/entry/src/main/resources/base/media/compass.png" desc="Provided by code/BasicFeature/DeviceManagement/Sensor"/>
         <filteritem type="filepath" name=" code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic/entry/src/main/resources/base/media/select.png" desc="Provided by code/BasicFeature/DeviceManagement/Vibrator"/>
@@ -267,6 +269,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary/lib/ProcessMessage-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/Solutions/Media/MultiMedia/lib/CameraPage-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/BasicFeature/Notification/CustomCommonEvent/lib/CardEvent-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/BasicFeature/Ads/OAIDSample/lib/ResetOAID-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/BasicFeature/DataManagement/UDMF/UniformTypeDescriptor/UTDType/entry/src/main/resources/rawfile/arkdata/utd/utd.json5" desc="二进制文件，无需添加License头"/>
             </filefilter>
             <filefilter name="copyrightPolicyFilter" desc="Copyright文件头校验策略的过滤条件" >
@@ -295,6 +298,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary/lib/ProcessMessage-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/Solutions/Media/MultiMedia/lib/CameraPage-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/BasicFeature/Notification/CustomCommonEvent/lib/CardEvent-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/BasicFeature/Ads/OAIDSample/lib/ResetOAID-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/BasicFeature/DataManagement/UDMF/UniformTypeDescriptor/UTDType/entry/src/main/resources/rawfile/arkdata/utd/utd.json5" desc="二进制文件，无需添加版权头"/>
             </filefilter>
         </filefilterlist>

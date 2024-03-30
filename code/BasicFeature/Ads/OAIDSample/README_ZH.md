@@ -24,7 +24,7 @@
 
 3.点击“通过异步callback获取OAID”，上方文本框显示OAID。
 
-4.点击“重置OAID”，上方文本框OAID重置。
+4.重置功能需安装[ResetOAID](/lib/ResetOAID-1.0.0.hap)，点击“重置OAID”，上方文本框OAID重置。
 
 
 ### 工程目录
@@ -84,8 +84,6 @@ entry/src/main/ets/
 2.本示例为Stage模型，已适配API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0 Release)。
 
 3.本工程示例需要使用DevEco Studio 版本号(4.0Release)及以上版本才可编译运行。
-
-4.本实例重置OAID接口只允许系统应用调用，三方应用不支持调用。
 
 ### 下载
 
