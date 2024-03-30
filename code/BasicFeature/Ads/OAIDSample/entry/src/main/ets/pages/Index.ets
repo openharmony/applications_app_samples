@@ -17,6 +17,7 @@ import { BusinessError } from '@ohos.base';
 import identifier from '@ohos.identifier.oaid';
 import common from '@ohos.app.ability.common';
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import Want from '@ohos.app.ability.Want';
 import Logger from '../log/Logger';
 
 const TAG = 'OAIDPage';
@@ -93,24 +94,19 @@ struct Index {
           }
         });
 
-        // 3.重置OAID，此接口为系统接口
+        // 3.重置OAID
         CustomButton({
           mText: $r("app.string.oaid_btn_reset"),
           mOnClick: () => {
-            try {
-              identifier.resetOAID();
-              // 重置OAID后，需要再次获取OAID才能刷新到页面
-              identifier.getOAID((err: BusinessError, data: string) => {
-                if (err.code) {
-                  Logger.info(TAG, `getAdsIdentifierInfo failed, message: ${err.message}`);
-                } else {
-                  this.oaid = data;
-                  Logger.info(TAG, `getAdsIdentifierInfo by callback success`);
-                }
-              });
-            } catch (err) {
-              Logger.error(TAG, `catch err->${JSON.stringify(err)}`);
-            }
+            let want: Want = {
+              bundleName: 'com.samples.resetOAID',
+              abilityName: 'EntryAbility',
+            };
+            this.context.startAbility(want,  (err) => {
+              if (err.code) {
+                Logger.error('StartAbility', `Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+              }
+            });
           }
         });
       }
