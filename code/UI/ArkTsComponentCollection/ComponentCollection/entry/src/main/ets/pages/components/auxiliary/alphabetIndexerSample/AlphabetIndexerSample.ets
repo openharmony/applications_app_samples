@@ -202,7 +202,26 @@ struct AlphabetIndexerSample {
             .itemSize(28) // 每一项的尺寸大小
             .alignStyle(IndexerAlign.Right) // 弹出框在索引条左侧弹出
             .onSelect((index: number) => {
-              Logger.info(`${this.value[index]} Selected!`)
+              Logger.info(`${this.value[index]} Selected!`);
+              if (this.value[index] === 'A') {
+                this.currentSelectIndex = 0;
+                this.scroller.scrollToIndex(0);
+                return this.arrayA; // 当选中A时，弹出框里面的提示文本列表显示A对应的列表arrayA，选中B、C、L时也同样
+              } else if (this.value[index] === 'B') {
+                this.currentSelectIndex = 1;
+                this.scroller.scrollToIndex(this.arrayA.length);
+                return this.arrayB;
+              } else if (this.value[index] === 'C') {
+                this.currentSelectIndex = 2;
+                this.scroller.scrollToIndex(this.arrayA.length + this.arrayB.length);
+                return this.arrayC;
+              } else if (this.value[index] === 'L') {
+                this.currentSelectIndex = 3;
+                this.scroller.scrollToIndex(this.arrayA.length + this.arrayB.length + this.arrayC.length);
+                return this.arrayL;
+              } else {
+                return []; // 选中其余子母项时，提示文本列表为空
+              }
             })
             .id('test_alphabet')
             .onRequestPopupData((index: number) => {

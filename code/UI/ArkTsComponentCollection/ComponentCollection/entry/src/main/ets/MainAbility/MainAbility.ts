@@ -22,7 +22,8 @@ const TAG: string = 'MainAbility'
 
 export default class MainAbility extends UIAbility {
   onCreate(want, launchParam) {
-    Logger.info(TAG, 'onCreate')
+    Logger.info(TAG, 'onCreate');
+    AppStorage.setOrCreate('context', this.context);
   }
 
   onDestroy() {

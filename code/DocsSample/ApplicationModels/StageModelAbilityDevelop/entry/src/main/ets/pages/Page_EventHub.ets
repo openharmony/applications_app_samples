@@ -40,6 +40,7 @@ struct Page_EventHub {
     this.context.startAbility(want);
   }
 
+  // 页面展示
   build() {
     Column() {
       Row() {
@@ -104,6 +105,7 @@ struct Page_EventHub {
             .margin({ top: 4, bottom: 4, left: 12, right: 12 })
           }
           .onClick(() => {
+            // context为UIAbility实例的AbilityContext
             this.context.eventHub.off('event1');
             promptAction.showToast({
               message: $r('app.string.EventHubFuncB')

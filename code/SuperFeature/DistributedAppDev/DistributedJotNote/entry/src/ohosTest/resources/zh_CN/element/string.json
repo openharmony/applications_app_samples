@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "accept",
+      "value": "允许"
+    },
+    {
+      "name": "TEST_DATA",
+      "value": "测试数据"
+    },
+    {
+      "name": "NOTE_PAGE",
+      "value": "笔记页"
+    },
+    {
+      "name": "TODO_LIST",
+      "value": "待办事项"
+    },
+    {
+      "name": "IMG_WALL",
+      "value": "图片墙"
+    }
+  ]
+}

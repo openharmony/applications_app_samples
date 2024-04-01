@@ -16,7 +16,6 @@
 import common from '@ohos.app.ability.common';
 import deviceManager from '@ohos.distributedDeviceManager';
 import hilog from '@ohos.hilog';
-import Logger from '../utils/Logger';
 import promptAction from '@ohos.promptAction';
 import rpc from '@ohos.rpc';
 import Want from '@ohos.app.ability.Want';
@@ -39,22 +38,22 @@ let want: Want = {
 
 let options: common.ConnectOptions = {
   onConnect(elementName, remote: rpc.IRemoteObject): void {
-    Logger.info('onConnect callback');
+    hilog.info(DOMAIN_NUMBER, TAG, 'onConnect callback');
     if (remote === null) {
-      Logger.info(`onConnect remote is null`);
+      hilog.info(DOMAIN_NUMBER, TAG, `onConnect remote is null`);
       return;
     }
     let serviceExtProxy: IdlServiceExtProxy = new IdlServiceExtProxy(remote);
     // 通过接口调用的方式进行通信，屏蔽了RPC通信的细节，简洁明了
     serviceExtProxy.processData(1, (errorCode: number, retVal: number) => {
-      Logger.info(`processData, errorCode: ${errorCode}, retVal: ${retVal}`);
+      hilog.info(DOMAIN_NUMBER, TAG, `processData, errorCode: ${errorCode}, retVal: ${retVal}`);
     });
     serviceExtProxy.insertDataToMap('theKey', 1, (errorCode: number) => {
-      Logger.info(`insertDataToMap, errorCode: ${errorCode}`);
+      hilog.info(DOMAIN_NUMBER, TAG, `insertDataToMap, errorCode: ${errorCode}`);
     })
   },
   onDisconnect(elementName): void {
-    Logger.info('onDisconnect callback');
+    hilog.info(DOMAIN_NUMBER, TAG, 'onDisconnect callback');
   },
   onFailed(code: number): void {
     hilog.info(DOMAIN_NUMBER, TAG, 'onFailed callback', JSON.stringify(code));
@@ -127,13 +126,13 @@ struct Page_ServiceExtensionAbility {
               abilityName: 'ServiceExtAbility'
             };
             context.startServiceExtensionAbility(want).then(() => {
-              Logger.info('Succeeded in starting ServiceExtensionAbility.');
+              hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in starting ServiceExtensionAbility.');
               // 成功启动后台服务
               promptAction.showToast({
                 message: $r('app.string.SuccessfullyStartBackendService')
               });
             }).catch((err: BusinessError) => {
-              Logger.error(`Failed to start ServiceExtensionAbility. Code is ${err.code}, message is ${err.message}`);
+              hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ServiceExtensionAbility. Code is ${err.code}, message is ${err.message}`);
             });
           })
         }
@@ -167,12 +166,12 @@ struct Page_ServiceExtensionAbility {
               abilityName: 'ServiceExtAbility'
             };
             context.stopServiceExtensionAbility(want).then(() => {
-              Logger.info('Succeeded in stopping ServiceExtensionAbility.');
+              hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in stopping ServiceExtensionAbility.');
               promptAction.showToast({
                 message: $r('app.string.SuccessfullyStoppedAStartedBackendService')
               });
             }).catch((err: BusinessError) => {
-              Logger.error(`Failed to stop ServiceExtensionAbility. Code is ${err.code}, message is ${err.message}`);
+              hilog.error(DOMAIN_NUMBER, TAG, `Failed to stop ServiceExtensionAbility. Code is ${err.code}, message is ${err.message}`);
             });
           })
         }
@@ -201,13 +200,13 @@ struct Page_ServiceExtensionAbility {
           .onClick(() => {
             let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
             context.terminateSelf().then(() => {
-              Logger.info('Succeeded in terminating self.');
+              hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in terminating self.');
               // 成功停止当前后台服务
               promptAction.showToast({
                 message: $r('app.string.SuccessfullyStopStartedBackendService')
               });
             }).catch((err: BusinessError) => {
-              Logger.error(`Failed to terminate self. Code is ${err.code}, message is ${err.message}`);
+              hilog.error(DOMAIN_NUMBER, TAG, `Failed to terminate self. Code is ${err.code}, message is ${err.message}`);
             });
           })
         }
@@ -271,13 +270,13 @@ struct Page_ServiceExtensionAbility {
             let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
             // connectionId为调用connectServiceExtensionAbility接口时的返回值，需开发者自行维护
             context.disconnectServiceExtensionAbility(connectionId).then(() => {
-              Logger.info('disconnectServiceExtensionAbility success');
+              hilog.info(DOMAIN_NUMBER, TAG, 'disconnectServiceExtensionAbility success');
               // 成功断连后台服务
               promptAction.showToast({
                 message: $r('app.string.SuccessfullyDisconnectBackendService')
               });
             }).catch((error: BusinessError) => {
-              Logger.error('disconnectServiceExtensionAbility failed');
+              hilog.error(DOMAIN_NUMBER, TAG, 'disconnectServiceExtensionAbility failed');
             });
           })
         }

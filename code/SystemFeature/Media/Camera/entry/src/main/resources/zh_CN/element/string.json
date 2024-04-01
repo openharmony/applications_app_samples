@@ -111,6 +111,26 @@
     {
       "name": "font_family_Regular",
       "value": "HarmonyOS Sans SC-Regular"
+    },
+    {
+      "name": "camera_permission",
+      "value": "允许应用使用相机"
+    },
+    {
+      "name": "microphone_permission",
+      "value": "允许应用使用麦克风"
+    },
+    {
+      "name": "media_location_permission",
+      "value": "允许应用访问用户媒体文件中的地理位置信息"
+    },
+    {
+      "name": "write_permission",
+      "value": "允许应用读写用户外部存储中的媒体文件信息"
+    },
+    {
+      "name": "read_permission",
+      "value": "允许应用读取用户外部存储中的媒体文件信息"
     }
   ]
 }

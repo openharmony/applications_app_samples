@@ -84,7 +84,7 @@
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td rowspan="3" x:str><strong>媒体</strong></td>
+  <td rowspan="4" x:str><strong>媒体</strong></td>
   <td x:str><a href="code/BasicFeature/Media/Image">图片显示及处理（API 10）</a></td>
   <td x:str><a href="code/BasicFeature/Media/VideoShow">媒体库视频</a></td>
   <td x:str><a href="code/BasicFeature/Media/GamePuzzle">图片裁剪与分割</a></td>
@@ -103,16 +103,22 @@
   <td x:str><a href="code/BasicFeature/Media/VoiceCallDemo">音频通话示例（API 10）</td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
+  <td x:str><a href="code/BasicFeature/Media/Camera">相机示例</a></td>
+  <td x:str><a href="code/BasicFeature/Media/AudioHaptic">音振</a></td>
+  <td x:str><a href="code/BasicFeature/Media/AVSession/VideoPlayer">视频播放</a></td>
+  <td ></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
   <td rowspan="2"><strong>安全</strong></td>
   <td x:str><a href="code/BasicFeature/Security/Cipher">加解密</a></td>
   <td x:str><a href="code/BasicFeature/Security/AppAccountManager">应用帐号管理</a></td>
-  <td x:str><a href="code/BasicFeature/Security/CertificateFramework">证书算法库框架</a></td>
   <td x:str><a href="code/BasicFeature/Security/CryptoFramework">通用密钥库系统（cryptoFramework）</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><a href="code/BasicFeature/Security/Huks">通用密钥库系统（huks）（API 10）</a></td>
   <td x:str><a href="code/BasicFeature/Security/PaySecurely">支付</a></td>
   <td x:str><a href="code/BasicFeature/Security/CertManager">证书管理</a></td>
+  <td x:str><a href="code/BasicFeature/Security/Asset">关键资产存储</a></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
@@ -131,7 +137,7 @@
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>数据管理</strong></td>
   <td x:str><a href="code/BasicFeature/DataManagement/Preferences">首选项</a></td>
-  <td ></td>
+  <td x:str><a href="code/BasicFeature/DataManagement/UDMF/UniformTypeDescriptor/UTDType">标准化数据定义与描述</a></td>
   <td ></td>
   <td ></td>
  </tr>
@@ -165,13 +171,13 @@
   <td rowspan="2" x:str><strong>电话服务</strong></td>
   <td x:str><a href="code/BasicFeature/Telephony/Call">拨打电话</a></td>
   <td x:str><a href="code/BasicFeature/Telephony/SimManager">SIM卡管理</a></td>
-  <td x:str><a href="code/BasicFeature/Telephony/Message">短信</a></td>
   <td x:str><a href="code/BasicFeature/Telephony/Contact">联系人</a></td>
+  <td x:str><a href="code/BasicFeature/Telephony/Observer">网络和Sim卡状态订阅</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td x:str><a href="code/BasicFeature/Telephony/Observer">网络和Sim卡状态订阅</a></td>
   <td x:str><a href="code/BasicFeature/Telephony/MobileNetwork">蜂窝数据</a></td>
   <td x:str><a href="code/BasicFeature/Telephony/RadioTech">网络搜索</td>
+  <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
@@ -229,14 +235,22 @@
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td x:str><strong>Native</strong></td>
+  <td rowspan="2" x:str><strong>Native</strong></td>
   <td x:str><a href="code/BasicFeature/Native/NdkRawfile">获取Rawfile资源</a></td>
   <td x:str><a href="code/BasicFeature/Native/NdkXComponent">Native XComponent（API 10）</a></td>
   <td x:str><a href="code/BasicFeature/Native/NdkOpenGL">OpenGL三棱椎（API 10）</a></td>
+  <td x:str><a href="code/BasicFeature/Native/Audio">音频管理</a></td>
+  <td x:str><a href="code/BasicFeature/Native/NdkDrawing">Native Drawing</a></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
+  <td x:str><a href="code/BasicFeature/Native/NdkNativeWindow">Native Window</a></td>
+  <td x:str><a href="code/BasicFeature/Native/XComponent3D">XComponent3D</a></td>
+  <td ></td>
+  <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td height="90" align="center" rowspan="9" style='height:67.50pt;' x:str><strong>系统特性（仅对系统应用开放）</strong></td>
+  <td height="90" align="center" rowspan="11" style='height:67.50pt;' x:str><strong>系统特性（仅对系统应用开放）</strong></td>
   <td rowspan="2" x:str><strong>应用模型</strong></td>
   <td x:str><a href="code/SystemFeature/ApplicationModels/Launcher">仿桌面应用（API 10）</a></td>
   <td x:str><a href="code/SystemFeature/ApplicationModels/MissionManager">任务管理</a></td>
@@ -254,13 +268,19 @@
   <td x:str><a href="code/SystemFeature/Media/Screenshot">截屏</a></td>
   <td x:str><a href="code/SystemFeature/Media/ScreenRecorder">录屏</a></td>
   <td x:str><a href="code/SystemFeature/Media/Camera">相机和媒体库（API 10）</a></td>
-  <td ></td>
+  <td x:str><a href="code/SystemFeature/Media/Audio">音频管理（仅对系统应用开放）</a></td>
  </tr>
  </tr>
   <tr height="18" style='height:13.50pt;'>
-  <td x:str><strong>安全</strong></td>
+  <td rowspan="2" x:str><strong>安全</strong></td>
   <td x:str><a href="code/SystemFeature/Security/AbilityAccessCtrl">应用访问权限控制</a></td>
   <td x:str><a href="code/SystemFeature/Security/AuthorizedButton">安全控件类型的UI控件（API 10）</a></td>
+  <td x:str><a href="code/SystemFeature/Security/DLPManager">DLPManager</a></td>
+  <td x:str><a href="code/SystemFeature/Security/CertManager">证书管理</a></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
+  <td x:str><a href="code/SystemFeature/Security/DLP">DLP</a></td>
+  <td x:str><a href="code/SystemFeature/Security/CertificateFramework">证书算法库框架</a></td>
   <td ></td>
   <td ></td>
  </tr>
@@ -293,6 +313,20 @@
   <td x:str><a href="code/SystemFeature/DeviceManagement/Mouse">鼠标外设（API 10）</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
+  <td x:str><strong>分布式</strong></td>
+  <td x:str><a href="code/SystemFeature/DistributedAppDev/DistributedAccount">分布式帐号（API 10）</a></td>
+  <td x:str><a href="code/SystemFeature/DistributedAppDev/DistributedAuthentication">分布式组网认证（API 10）</a></td>
+  <td ></td>
+  <td ></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
+  <td x:str><strong>电话服务</strong></td>
+  <td x:str><a href="code/SystemFeature/Telephony/Message">短信</a></td>
+  <td ></td>
+  <td ></td>
+  <td ></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>国际化</strong></td>
   <td x:str><a href="code/SystemFeature/Internationalnation/International">时区和语言设置（API 10）</a></td>
   <td ></td>
@@ -313,8 +347,8 @@
   <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/MultiColumns">典型页面场景：一多分栏控件（API 10）</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
- <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/MultiNavBar">典型页面场景：一多导航栏（API 10）</a></td>
-  <td></td>
+  <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/MultiNavBar">典型页面场景：一多导航栏（API 10）</a></td>
+  <td x:str><a href="code/SuperFeature/MultiDeviceAppDev/MultiMusic">典型页面场景：一多音乐典型场景</a></td>
   <td></td>
   <td></td>
  </tr>
@@ -329,13 +363,13 @@
  <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedNote">分布式对象（API 10）</a></td>
   <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedRdb">分布式关系型数据库（API 10）</a></td>
   <td x:str><a href="code/SuperFeature/DistributedAppDev/Kvstore">分布式数据管理</a></td>
-  <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedAuthentication">分布式组网认证（API 10）</a></td>
+  <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedFilemanager">分布式文件管理</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
- <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedAccount">分布式帐号（API 10）</a></td>
-  <td></td>
-  <td></td>
-  <td></td>
+  <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributedJotNote">跨端迁移随手记</a></td>
+  <td ></td>
+  <td ></td>
+  <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td rowspan="2" x:str><strong>卡片</strong></td>
@@ -402,7 +436,7 @@
   <td x:str><a href="code/Solutions/Tools/ArkTSClock">ArkTS时钟</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td height="54" align="center" rowspan="3" style='height:40.50pt' x:str><strong>工程能力</strong></td>
+  <td height="54" align="center" rowspan="4" style='height:40.50pt' x:str><strong>工程能力</strong></td>
   <td x:str><strong>资源配置</strong></td>
   <td x:str><a href="code/Project/ResourceAllocation/ApplicationThemeSwitch">应用主题切换</a></td>
   <td ></td>
@@ -424,6 +458,13 @@
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
+  <td x:str><strong>HapBuild</strong></td>
+  <td x:str><a href="code/Project/HapBuild">流水线预测试工具</a></td>
+  <td ></td>
+  <td ></td>
+  <td ></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
   <td rowspan="1" align="center" x:str><strong>语言基础类库</strong></td>
   <td rowspan="1" x:str><strong>语言基础类库</strong></td>
   <td x:str><a href="code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary">语言基础类库（API 10）</a></td>
@@ -432,10 +473,16 @@
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td rowspan="1" align="center" x:str><strong>性能</strong></td>
+  <td rowspan="2" align="center" x:str><strong>性能</strong></td>
   <td rowspan="1" x:str><strong>方舟运行时</strong></td>
   <td x:str><a href="code/Performance/ArkRuntime/NBody"> N-Body模拟程序（API 10）</a></td>
   <td ></td>
+  <td ></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
+  <td rowspan="1" x:str><strong>性能提升</strong></td>
+  <td x:str><a href="code/Performance/PerformanceLibrary"> 性能示例 </a></td>
+  <td x:str><a href="code/Performance/renderGroup"> 性能示例（renderGroup 接口）</a></td>
   <td ></td>
   <td ></td>
  </tr>
@@ -445,12 +492,6 @@
    </tr>
   <![endif]>
 </table>
-
-
-
-
-
-
 
 ## 目录<a name="sectionMenu"></a>
 
@@ -487,6 +528,9 @@ code
   |---DataManagement               # 数据管理
   |---DeviceManagement             # 设备管理
   |---Internationalnation          # 国际化
+  |---Security                     # 安全
+  |---DistributedAppDev            # 分布式
+  |---Telephony                    # 电话服务
 |---SuperFeature               # 关键特性
   |---MultiDeviceAppDev            # 一多
   |---DistributedAppDev            # 分布式
@@ -497,7 +541,7 @@ code
   |---Shopping                     # 电商
   |---Media                        # 媒体
   |---Game                         # 游戏
-  |---Social                       # 社交	
+  |---Social                       # 社交
   |---Tools                        # 工具
 |---Project                    # 工程能力
   |---ResourceAllocation           # 资源配置
@@ -512,12 +556,11 @@ code
 
 安装应用示例之前，请先查看"README_zh.md"文件来确认应用示例是否为stage模型，若为Stage模型需要查看entry/src/main路径下的module.json5文件中的"deviceType"字段来确认该应用支持的设备类型；否则为FA模型，查看entry/src/main路径下的config.json文件中的"deviceType"字段来确认该应用示例支持的设备类型，两种模型都可尝试通过修改该字段使其可以在相应类型的设备上运行。
 
-
 ## 使用方法<a name="section17988202503116"></a>
 
-1.  将独立的应用示例工程导入DevEco Studio进行编译构建及运行调试。
-2.  部分应用示例中含有多个模块，开发者可以选择对单个模块进行编译构建，生成一个HAP应用安装包，也可以对整个工程进行编译构建，生成多个HAP应用安装包。
-3.  安装运行后，即可在设备上查看应用示例运行效果，以及进行相关调试。
+1. 将独立的应用示例工程导入DevEco Studio进行编译构建及运行调试。
+2. 部分应用示例中含有多个模块，开发者可以选择对单个模块进行编译构建，生成一个HAP应用安装包，也可以对整个工程进行编译构建，生成多个HAP应用安装包。
+3. 安装运行后，即可在设备上查看应用示例运行效果，以及进行相关调试。
 
 ## Changlog<a name="section17988202503117"></a>
 
@@ -531,4 +574,3 @@ code
 
 1. [app_sample](https://gitee.com/openharmony/app_samples) 已废弃
 2. [applications_app_sample](https://gitee.com/openharmony/applications_app_samples)
-

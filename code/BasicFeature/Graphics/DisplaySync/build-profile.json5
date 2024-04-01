@@ -16,13 +16,12 @@
 {
   "app": {
     "signingConfigs": [],
-    "compileSdkVersion": 11,
-    // 指定OpenHarmony应用/服务编译时的版本
-    "compatibleSdkVersion": 11,
     "products": [
       {
         "name": "default",
-        "signingConfig": "default"
+        "signingConfig": "default",
+        "compileSdkVersion": 12,
+        "compatibleSdkVersion": 12
       }
     ]
   },

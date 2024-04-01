@@ -12,9 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import media from '@ohos.multimedia.media'
+import media from '@ohos.multimedia.media';
 import fs from '@ohos.file.fs';
-import Logger from '../model/Logger'
+import Logger from '../model/Logger';
 
 const TAG: string = 'PlayerModel'
 
@@ -57,15 +57,15 @@ class PlayerModel {
 
   initAudioPlayer() {
     Logger.info(TAG, 'initAudioPlayer begin')
-    this.player.on('error', () => {
+    this.player?.on('error', () => {
       Logger.error(TAG, `player error`)
     })
-    this.player.on('finish', () => {
+    this.player?.on('finish', () => {
       Logger.info(TAG, 'finish() callback is called')
       this.seek(0)
       this.notifyPlayingStatus(false)
     })
-    this.player.on('timeUpdate', () => {
+    this.player?.on('timeUpdate', () => {
 
       Logger.info(TAG, `timeUpdate() callback is called`)
     })
@@ -75,7 +75,7 @@ class PlayerModel {
   release() {
     if (typeof (this.player) !== 'undefined') {
       Logger.info(TAG, 'player.release begin')
-      this.player.release()
+      this.player?.release()
       Logger.info(TAG, 'player.release end')
       this.playlist.audioFiles = []
       this.player = undefined
@@ -127,13 +127,15 @@ class PlayerModel {
       if (typeof (this.intervalID) === 'undefined') {
         this.intervalID = setInterval(() => {
           if (typeof (this.playingProgressListener) !== 'undefined' && this.playingProgressListener !== null) {
-            let timeMs = this.player.currentTime
+            let timeMs = this.player?.currentTime
             this.currentTimeMs = timeMs
             if (typeof (timeMs) === 'undefined') {
               timeMs = 0
             }
             Logger.info(TAG, `player.currentTime= ${timeMs}`)
-            this.playingProgressListener(timeMs)
+            if (timeMs !== -1) {
+              this.playingProgressListener(timeMs)
+            }
           }
         }, 500)
         Logger.info(TAG, `set update interval ${this.intervalID}`)
@@ -152,6 +154,10 @@ class PlayerModel {
   }
 
   preLoad(index, callback) {
+    if (this.player === undefined || this.player?.state === undefined) {
+      Logger.error(TAG, 'preLoad failed player state is undefined')
+      return
+    }
     Logger.info(TAG, `preLoad ${index}/${this.playlist.audioFiles.length}`)
     if (index < 0 || index >= this.playlist.audioFiles.length) {
       Logger.error(TAG, 'preLoad ignored')
@@ -168,23 +174,27 @@ class PlayerModel {
         return
       }
       Logger.info(TAG, `preLoad ${source} begin`)
-      Logger.info(TAG, `state= ${this.player.state}`)
+      Logger.info(TAG, `state= ${this.player?.state}`)
 
-      if (source === this.player.src && this.player.state !== 'idle') {
+      if (source === this.player?.src && this.player?.state !== 'idle') {
         Logger.info(TAG, 'preLoad finished. src not changed')
         callback()
       } else {
         this.notifyPlayingStatus(false)
         this.cancelTimer()
         Logger.info(TAG, 'player.reset')
-        this.player.reset()
-        Logger.info(TAG, `player.reset done, state= ${this.player.state}`)
-        this.player.on('dataLoad', () => {
-          Logger.info(TAG, `dataLoad callback, state= ${this.player.state}`)
+        this.player?.reset()
+        Logger.info(TAG, `player.reset done, state= ${this.player?.state}`)
+        this.player?.on('dataLoad', () => {
+          Logger.info(TAG, `dataLoad callback, state= ${this.player?.state}`)
           callback()
         })
         Logger.info(TAG, `player.src= ${source}`)
-        this.player.src = source
+        if (this.player === undefined) {
+          Logger.error(TAG, `player= undefined`)
+        } else {
+          this.player.src = source
+        }
       }
       Logger.info(TAG, `preLoad ${source} end`)
     })
@@ -195,9 +205,9 @@ class PlayerModel {
     if (this.playlist.audioFiles[this.index].duration > 0) {
       return this.playlist.audioFiles[this.index].duration
     }
-    Logger.info(TAG, `getDuration state= ${this.player.state}`)
-    this.playlist.audioFiles[this.index].duration = Math.min(this.player.duration, 97615)
-    Logger.info(TAG, `getDuration player.src= ${this.player.src} player.duration= ${this.playlist.audioFiles[this.index].duration} `)
+    Logger.info(TAG, `getDuration state= ${this.player?.state}`)
+    this.playlist.audioFiles[this.index].duration = Math.min(this.player?.duration, 97615)
+    Logger.info(TAG, `getDuration player.src= ${this.player?.src} player.duration= ${this.playlist.audioFiles[this.index].duration} `)
     return this.playlist.audioFiles[this.index].duration
   }
 
@@ -214,15 +224,15 @@ class PlayerModel {
         seekTo = this.currentTimeMs
       }
       let self = this
-      this.player.on('play', () => {
-        Logger.info(TAG, `play() callback entered, player.state= ${self.player.state}`)
+      this.player?.on('play', () => {
+        Logger.info(TAG, `play() callback entered, player.state= ${self.player?.state}`)
         if (seekTo > 0) {
           self.seek(seekTo)
         }
       })
       Logger.info(TAG, 'call player.play')
-      this.player.play()
-      Logger.info(TAG, `player.play called player.state= ${this.player.state}`)
+      this.player?.play()
+      Logger.info(TAG, `player.play called player.state= ${this.player?.state}`)
     } else if (seekTo > 0) {
       this.playingProgressListener(seekTo)
       this.currentTimeMs = seekTo
@@ -231,35 +241,47 @@ class PlayerModel {
   }
 
   pause() {
-    if (!this.isPlaying) {
-      Logger.info(TAG, `pause ignored, isPlaying= ${this.isPlaying}`)
-      return
+    try {
+      if (!this.isPlaying) {
+        Logger.info(TAG, `pause ignored, isPlaying= ${this.isPlaying}`)
+        return
+      }
+      this.notifyPlayingStatus(false)
+      Logger.info(TAG, 'call player.pause')
+      this.player?.pause()
+      Logger.info(TAG, `player.pause called, player.state= ${this.player?.state}`)
+    } catch (error) {
+      Logger.error(TAG, `pause error. error is:${JSON.stringify(error)}`)
     }
-    this.notifyPlayingStatus(false)
-    Logger.info(TAG, 'call player.pause')
-    this.player.pause()
-    Logger.info(TAG, `player.pause called, player.state= ${this.player.state}`)
+
   }
 
   seek(ms) {
-    this.currentTimeMs = ms
-    if (this.isPlaying) {
-      Logger.info(TAG, `player.seek= ${ms}`)
-      this.player.seek(ms)
-    } else {
-      Logger.info(TAG, `stash seekTo= ${ms}`)
+    if (this.player !== undefined || this.player !== null) {
+      this.currentTimeMs = ms
+      if (this.isPlaying) {
+        Logger.info(TAG, `player.seek= ${ms}`)
+        this.player?.seek(ms)
+      } else {
+        Logger.info(TAG, `stash seekTo= ${ms}`)
+      }
     }
   }
 
   stop() {
-    if (!this.isPlaying) {
-      Logger.info(TAG, `stop ignored, isPlaying= ${this.isPlaying}`)
-      return
+    try {
+      if (!this.isPlaying) {
+        Logger.info(TAG, `stop ignored, isPlaying= ${this.isPlaying}`)
+        return
+      }
+      this.notifyPlayingStatus(false)
+      Logger.info(TAG, 'call player.stop')
+      this.player?.stop()
+      Logger.info(TAG, `player.stop called, player.state= ${this.player?.state}`)
+    } catch (error) {
+      Logger.error(TAG, `stop error. error is:${JSON.stringify(error)}`)
     }
-    this.notifyPlayingStatus(false)
-    Logger.info(TAG, 'call player.stop')
-    this.player.stop()
-    Logger.info(TAG, `player.stop called, player.state= ${this.player.state}`)
+
   }
 }
 

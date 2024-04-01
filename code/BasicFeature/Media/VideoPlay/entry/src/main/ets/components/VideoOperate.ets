@@ -19,7 +19,7 @@ import { SpeedDialog } from '../components/SpeedDialog';
 
 @Component
 export struct VideoOperate {
-  @State videoList: Resource[] = [$r('app.string.video_res_1'), $r('app.string.video_res_2'), $r('app.string.video_res_3')];
+  @State videoList: Resource[] = [$r('app.string.video_res_1'), $r('app.string.video_res_2'), $r('app.string.video_res_3'), $r('app.string.video_res_4')];
   @State speedSelect: number = 0; // 倍速选择
   @Link currentTime: number;
   @Link durationTime: number;
@@ -74,17 +74,7 @@ export struct VideoOperate {
           .selectedColor($r("app.color.slider_selected"))
           .showTips(false)
           .onChange((value: number, mode: SliderChangeMode) => {
-            if (mode == SliderChangeMode.Begin) {
-              this.isSwiping = true;
-              this.avPlayManage.videoPause();
-            }
-            this.avPlayManage.videoSeek(value);
-            this.currentTime = value;
-            if (mode == SliderChangeMode.End) {
-              this.isSwiping = false;
-              this.flag = true;
-              this.avPlayManage.videoPlay();
-            }
+            this.avPlayManage.videoSeek(value, mode);
           })
       }
       .layoutWeight(1)

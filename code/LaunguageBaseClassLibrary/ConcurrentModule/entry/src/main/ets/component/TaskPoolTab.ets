@@ -270,7 +270,7 @@ export struct TaskPoolTab {
       let result: string[] = await taskpool.execute(task) as string[];
       this.taskPoolOutPutStr += "Task executed successfully: "+ result.toString()+ "\n";
     } catch(e) {
-      this.taskPoolOutPutStr += "Task executed failed: "+ (e as BusinessError).toString()+ "\n";
+      this.taskPoolOutPutStr += "Task executed failed: "+ e.message + "\n";
     }
     this.gStack.pop();
   }

@@ -17,9 +17,10 @@ import featureAbility from '@ohos.ability.featureAbility';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
-import Logger from '../../utils/Logger';
+import hilog from '@ohos.hilog';
 
 const TAG: string = 'PageInterflowFaAndStage';
+const domain: number = 0xFF00;
 
 @Entry
 @Component
@@ -31,9 +32,9 @@ struct PageInterflowFaAndStage {
         abilityName: 'com.samples.famodelabilitydevelop.ServiceAbilityStartUIAbility'
       };
       await featureAbility.startAbility({ want });
-      Logger.info(TAG, `Start ServiceAbility succeed`);
+      hilog.info(domain, TAG, `Start ServiceAbility succeed`);
     } catch (error) {
-      Logger.error(TAG, 'Start ServiceAbility failed with ' + error);
+      hilog.error(domain, TAG, 'Start ServiceAbility failed with ' + error);
     }
   }
 
@@ -76,9 +77,9 @@ struct PageInterflowFaAndStage {
               abilityName: 'MainAbility'
             };
             featureAbility.startAbility({ want }).then((code) => {
-              Logger.info(TAG, 'Ability verify code: ' + JSON.stringify(code));
+              hilog.info(domain, TAG, 'Ability verify code: ' + JSON.stringify(code));
             }).catch((error: BusinessError) => {
-              Logger.error(TAG, 'Ability failed: ' + JSON.stringify(error));
+              hilog.error(domain, TAG, 'Ability failed: ' + JSON.stringify(error));
             });
 
             let serviceWant: Want = {
@@ -88,13 +89,13 @@ struct PageInterflowFaAndStage {
 
             let faConnect: common.ConnectOptions = {
               onConnect: (elementName, proxy) => {
-                Logger.info(TAG, "FaConnection onConnect called.");
+                hilog.info(domain, TAG, "FaConnection onConnect called.");
               },
               onDisconnect: (elementName) => {
-                Logger.info(TAG, "FaConnection onDisconnect called.");
+                hilog.info(domain, TAG, "FaConnection onDisconnect called.");
               },
               onFailed: (code) => {
-                Logger.info(TAG, "FaConnection onFailed code is: " + code);
+                hilog.info(domain, TAG, "FaConnection onFailed code is: " + code);
               }
             };
             let connectionId = featureAbility.connectAbility(serviceWant, faConnect);
@@ -127,9 +128,9 @@ struct PageInterflowFaAndStage {
               abilityName: 'MainAbility'
             };
             featureAbility.startAbilityForResult({ want }).then((result) => {
-              Logger.info(TAG, 'Ability verify result: ' + JSON.stringify(result));
+              hilog.info(domain, TAG, 'Ability verify result: ' + JSON.stringify(result));
             }).catch((error: BusinessError) => {
-              Logger.error(TAG, 'Ability failed: ' + JSON.stringify(error));
+              hilog.error(domain, TAG, 'Ability failed: ' + JSON.stringify(error));
             });
           })
         }

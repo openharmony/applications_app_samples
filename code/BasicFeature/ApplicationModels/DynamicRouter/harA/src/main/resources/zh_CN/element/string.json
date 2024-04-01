@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "to_harb_page1",
+      "value": "ToHarBPage1"
+    },
+    {
+      "name": "to_harb_page2",
+      "value": "ToHarBPage2"
+    },
+    {
+      "name": "to_harb_page3",
+      "value": "ToHarBPage3"
+    }
+  ]
+}

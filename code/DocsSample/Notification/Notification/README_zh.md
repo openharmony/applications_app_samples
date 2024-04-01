@@ -33,8 +33,6 @@ entry/src/main/ets/
 |   |---SecondAbility.ets				// 通知启动Ability时，被拉起的Ability
 |---subscribe
 |   |---SubscribeOperation.ets			// 订阅通知
-|---utils								
-|   |---Logger.ets						// 日志工具
 ```
 
 ### 具体实现

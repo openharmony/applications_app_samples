@@ -46,8 +46,8 @@ struct Index {
   }
 
   convertResourceToString(resource: Resource): string {
-    let context = getContext(this) as Context
-    return context.resourceManager.getStringSync(resource.id)
+    let context = getContext(this) as Context;
+    return context.resourceManager.getStringSync(resource);
   }
 
   aboutToAppear() {

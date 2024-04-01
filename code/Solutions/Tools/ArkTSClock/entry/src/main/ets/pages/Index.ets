@@ -60,7 +60,6 @@ struct Clock {
   }
 
   drawBackGround() {
-    this.context.save()
 
     // 绘制背景
     let grad = this.context.createRadialGradient(this.radius, this.radius, this.radius - 32, this.radius,
@@ -84,8 +83,8 @@ struct Clock {
     this.context.textAlign = "center"
     this.context.textBaseline = "middle"
     this.context.fillStyle = '#000'
+    this.context.save()
     HOURS.forEach((num, index) => {
-      this.context.save()
       let rad = 2 * Math.PI / 12 * index
       let x = Math.cos(rad) * (this.radius - 38)
       let y = Math.sin(rad) * (this.radius - 38)
@@ -202,6 +201,10 @@ struct Clock {
   }
 
   onPageHide() {
+    clearInterval(this.intervalId)
+  }
+
+  aboutToDisappear(){
     clearInterval(this.intervalId)
   }
 }

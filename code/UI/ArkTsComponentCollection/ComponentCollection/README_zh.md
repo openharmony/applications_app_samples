@@ -14,11 +14,13 @@
 
 使用说明：
 
-1.点击**组件**、**通用**、**动画**、**全局方法**四个按钮或左右滑动切换不同视图。
+1. 点击**组件**、**通用**、**动画**、**全局方法**四个按钮或左右滑动切换不同视图。
 
-2.点击二级导航（如通用属性、通用事件等），若存在三级导航则展开三级导航（如Border 边框、点击事件等）；若不存在三级导航，则跳转至详情页面。
+2. 点击二级导航（如通用属性、通用事件等），若存在三级导航则展开三级导航（如Border 边框、点击事件等）；若不存在三级导航，则跳转至详情页面。
 
-3.若存在三级导航（如Border 边框、点击事件等），点击跳转至详情页面。
+3. 若存在三级导航（如Border 边框、点击事件等），点击跳转至详情页面。
+
+4. 打开通用视图下**拖拽事件**界面需先安装[DragEvent](lib/DragEvent-1.0.0.hap)应用。
 
 ### 工程目录
 
@@ -530,6 +532,7 @@ entry/src/main/ets/
 [ohos.permission.GET_BUNDLE_INFO_PRIVILEGED](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionget_bundle_info_privileged)
 
 [ohos.permission.REQUIRE_FORM](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionrequire_form)
+
 [ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohos.permission.INTERNET)
 
 ### 依赖
@@ -542,16 +545,13 @@ entry/src/main/ets/
 
 2.本示例仅支持API11版本SDK，SDK版本号(4.1.6.1 Beta1),镜像版本号( OpenHarmony 4.1.6.1)。
 
-3.本示例涉及使用系统接口，FormComponent组件相关接口，需要手动替换Full
-SDK才能编译通过，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)。
+3.本示例需要使用DevEco Studio 版本号(3.1.1 Release)及以上版本才可编译运行。
 
-4.本示例需要使用DevEco Studio 版本号(3.1.1 Release)及以上版本才可编译运行。
-
-5.本示例涉及ohos.permission.GET_BUNDLE_INFO_PRIVILEGED、ohos.permission.REQUIRE_FORM为system_basic级别（相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md)
+4.本示例涉及ohos.permission.GET_BUNDLE_INFO_PRIVILEGED、ohos.permission.REQUIRE_FORM为system_basic级别（相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md)
 查看），需要配置高权限签名，可参考[应用apl等级说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/app-permission-mgmt-overview.md#apl等级)。
 
-6.本示例涉及系统接口，需要配置系统应用签名，可以参考[修改harmonyappprovision配置文件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/app-provision-structure.md#修改harmonyappprovision配置文件)
-，把配置文件中的“app-feature”字段信息改为“hos_system_app”。
+5.本示例涉及系统接口，需要配置系统应用签名，可以参考[修改harmonyappprovision配置文件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/app-provision-structure.md#修改harmonyappprovision配置文件)
+，把配置文件中的“app-feature”字段信息改为“hos_system_app”。 
 
 ### 下载
 

@@ -10,7 +10,7 @@
 
 |主页|进程模型开发指导|线程模型开发指导|任务管理开发指导|
 |--------------------------------|--------------------------------|--------------------------------|--------------------------------|
-|![home](screenshots/主页.png)|![进程模型开发指导](screenshots/进程模型开发指导.gif)| ![线程模型开发指导](screenshots/线程模型开发指导.gif) | ![任务管理开发指导](screenshots/任务管理开发指导.gif) |
+|![home](screenshots/main.png)|![进程模型开发指导](screenshots/进程模型开发指导.gif)| ![线程模型开发指导](screenshots/线程模型开发指导.gif) | ![任务管理开发指导](screenshots/任务管理开发指导.gif) |
 
 使用说明
 
@@ -80,8 +80,6 @@ entry/src/main/ets/
 │   └── PageThreadModel.ets					//线程模型开发指导界面
 ├── staticsubscriber
 │   └── StaticSubscriber.ts					//静态订阅公共事件
-├── utils
-│   └── Logger.ts							//Log输出工具类
 └── workers
     └── Worker.ts							//使用worker进行线程间通信
 
@@ -113,11 +111,11 @@ entry/src/main/ets/
 
 ### 相关权限
 
-[ohos.permission.COMMONEVENT_STICKY](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissioncommonevent_sticky)
+[ohos.permission.COMMONEVENT_STICKY](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissioncommonevent_sticky)
 
-[ohos.permission.MANAGE_MISSIONS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionmanage_missions)
+[ohos.permission.MANAGE_MISSIONS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionmanage_missions)
 
-[ohos.permission.NOTIFICATION_CONTROLLER](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionnotification_controller)
+[ohos.permission.NOTIFICATION_CONTROLLER](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionnotification_controller)
 
 ### 依赖
 

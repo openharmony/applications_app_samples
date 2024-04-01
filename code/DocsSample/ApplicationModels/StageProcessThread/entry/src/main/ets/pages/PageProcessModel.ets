@@ -16,8 +16,9 @@
 import Base from '@ohos.base';
 import commonEventManager from '@ohos.commonEventManager';
 import promptAction from '@ohos.promptAction';
-import Logger from '../utils/Logger';
+import hilog from '@ohos.hilog';
 
+const DOMAIN_NUMBER: number = 0xFF00;
 const TAG: string = 'ProcessModel';
 
 @Entry
@@ -78,23 +79,23 @@ struct PageProcessModel {
             // 创建订阅者回调
             commonEventManager.createSubscriber(this.subscribeInfo, (err: Base.BusinessError, data: commonEventManager.CommonEventSubscriber) => {
               if (err) {
-                Logger.error(TAG, `Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
+                hilog.error(DOMAIN_NUMBER, TAG, `Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
                 return;
               }
-              Logger.info(TAG, 'Succeeded in creating subscriber.');
+              hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in creating subscriber.');
               this.subscriber = data;
 
               // 订阅公共事件回调
               if (this.subscriber !== null) {
                 commonEventManager.subscribe(this.subscriber, (err: Base.BusinessError, data: commonEventManager.CommonEventData) => {
                   if (err) {
-                    Logger.error(TAG, `Failed to subscribe common event. Code is ${err.code}, message is ${err.message}`);
+                    hilog.error(DOMAIN_NUMBER, TAG, `Failed to subscribe common event. Code is ${err.code}, message is ${err.message}`);
                     return;
                   }
                   promptAction.showToast({
                     message: JSON.stringify(data)
                   });
-                  Logger.info(TAG, `Receive CommonEventData = ` + JSON.stringify(data));
+                  hilog.info(DOMAIN_NUMBER, TAG, `Receive CommonEventData = ` + JSON.stringify(data));
                 })
                 if (this.ifSendStickyKey === false) {
                   promptAction.showToast({
@@ -102,7 +103,7 @@ struct PageProcessModel {
                   });
                 }
               } else {
-                Logger.error(TAG, `Need create subscriber`);
+                hilog.error(DOMAIN_NUMBER, TAG, `Need create subscriber`);
               }
             })
           })
@@ -135,12 +136,12 @@ struct PageProcessModel {
             if (this.subscriber !== null) {
               commonEventManager.unsubscribe(this.subscriber, (err: Base.BusinessError) => {
                 if (err) {
-                  Logger.error(TAG, `UnsubscribeCallBack err = ${JSON.stringify(err)}`);
+                  hilog.error(DOMAIN_NUMBER, TAG, `UnsubscribeCallBack err = ${JSON.stringify(err)}`);
                 } else {
                   promptAction.showToast({
                     message: $r('app.string.unsubscribe_success_toast')
                   });
-                  Logger.info(TAG, `Unsubscribe success`);
+                  hilog.info(DOMAIN_NUMBER, TAG, `Unsubscribe success`);
                   this.subscriber = null;
                 }
               })
@@ -177,14 +178,14 @@ struct PageProcessModel {
             // 发布公共事件
             commonEventManager.publish('usual.event.SCREEN_OFF', (err: Base.BusinessError) => {
               if (err) {
-                Logger.error(TAG, `PublishCallBack err = ${JSON.stringify(err)}`);
+                hilog.error(DOMAIN_NUMBER, TAG, `PublishCallBack err = ${JSON.stringify(err)}`);
               } else {
                 if (this.subscriber === null) {
                   promptAction.showToast({
                     message: $r('app.string.publish_noinfo_success_toast')
                   });
                 }
-                Logger.info(TAG, `Publish success`);
+                hilog.info(DOMAIN_NUMBER, TAG, `Publish success`);
               }
             });
           })
@@ -221,14 +222,14 @@ struct PageProcessModel {
             // 发布公共事件
             commonEventManager.publish('usual.event.SCREEN_OFF', options, (err: Base.BusinessError) => {
               if (err) {
-                Logger.error(TAG, 'PublishCallBack err = ' + JSON.stringify(err));
+                hilog.error(DOMAIN_NUMBER, TAG, 'PublishCallBack err = ' + JSON.stringify(err));
               } else {
                 if (this.subscriber === null) {
                   promptAction.showToast({
                     message: $r('app.string.publish_haveinfo_success_toast')
                   });
                 }
-                Logger.info(TAG, 'Publish success');
+                hilog.info(DOMAIN_NUMBER, TAG, 'Publish success');
               }
             });
           })
@@ -266,13 +267,13 @@ struct PageProcessModel {
             // 发布公共事件
             commonEventManager.publish('usual.event.SCREEN_OFF', options, (err: Base.BusinessError) => {
               if (err) {
-                Logger.error(TAG, 'PublishCallBack err=' + JSON.stringify(err));
+                hilog.error(DOMAIN_NUMBER, TAG, 'PublishCallBack err=' + JSON.stringify(err));
               } else {
                 promptAction.showToast({
                   message: $r('app.string.publish_sticky_success_toast')
                 });
                 this.ifSendStickyKey = true;
-                Logger.info(TAG, 'Publish success');
+                hilog.info(DOMAIN_NUMBER, TAG, 'Publish success');
               }
             });
           })
@@ -303,14 +304,14 @@ struct PageProcessModel {
             commonEventManager.removeStickyCommonEvent('usual.event.SCREEN_OFF', (err: Base.BusinessError) => {
               // sticky_event粘性公共事件名
               if (err) {
-                Logger.error(TAG, `Failed to remove sticky common event. Code is ${err.code}, message is ${err.message}`);
+                hilog.error(DOMAIN_NUMBER, TAG, `Failed to remove sticky common event. Code is ${err.code}, message is ${err.message}`);
                 return;
               }
               promptAction.showToast({
                 message: $r('app.string.remove_sticky_success_toast')
               });
               this.ifSendStickyKey = false;
-              Logger.info(TAG, `Succeeded in removeing sticky event.`);
+              hilog.info(DOMAIN_NUMBER, TAG, `Succeeded in removeing sticky event.`);
             });
           })
         }

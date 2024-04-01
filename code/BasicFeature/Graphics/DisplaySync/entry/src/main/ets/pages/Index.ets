@@ -80,6 +80,26 @@ struct Index {
         .width('50%')
         .height(40)
         .shadow(ShadowStyle.OUTER_DEFAULT_LG)
+
+      Button('Animator')
+        .id('Animator')
+        .fontSize(16)
+        .fontWeight(500)
+        .margin({ top: 20, left: 6 })
+        .onClick((): void => {
+          router.pushUrl({
+            url: 'pages/AnimatorDisplaySync' // 目标url
+          }, router.RouterMode.Single, (err) => {
+            if (err) {
+              Logger.error(`Invoke replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+              return;
+            }
+            Logger.info('Invoke replaceUrl succeeded.');
+          });
+        })
+        .width('50%')
+        .height(40)
+        .shadow(ShadowStyle.OUTER_DEFAULT_LG)
     }
     .width('100%')
   }

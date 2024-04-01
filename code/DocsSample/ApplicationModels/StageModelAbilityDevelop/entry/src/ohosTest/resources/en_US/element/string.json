@@ -141,6 +141,14 @@
       "value": "Launch the specified page of UIAbility"
     },
     {
+      "name": "UIAbilityComponentsInteractionG",
+      "value": "Launch the specified application of UIAbility"
+    },
+    {
+      "name": "UIAbilityComponentsInteractionH",
+      "value": "Launch the specified type application of UIAbility"
+    },
+    {
       "name": "FuncAbility_desc",
       "value": "Ability corresponding to the interaction between UIAbility components (within the device)"
     },
@@ -291,6 +299,10 @@
     {
       "name": "ServiceAbility_label",
       "value": "label"
+    },
+    {
+      "name": "PageAbility",
+      "value": "PageAbility"
     },
     {
       "name": "Success",
@@ -555,6 +567,14 @@
     {
       "name": "SuccessfullyStop",
       "value": "Successfully Stop"
+    },
+    {
+      "name": "fa_main_title",
+      "value": "main_title"
+    },
+    {
+      "name": "Stage",
+      "value": "SA Model Develop"
     }
   ]
 }

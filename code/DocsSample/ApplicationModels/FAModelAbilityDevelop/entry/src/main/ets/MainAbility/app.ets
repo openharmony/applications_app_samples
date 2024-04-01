@@ -14,42 +14,43 @@
  */
 
 import featureAbility from '@ohos.ability.featureAbility';
-import Logger from '../utils/Logger';
+import hilog from '@ohos.hilog';
 
 const TAG: string = 'MainAbility';
+const domain: number = 0xFF00;
 
 class MainAbility {
   onCreate() {
     // 获取context并调用相关方法
     let context = featureAbility.getContext();
     context.getBundleName((data, bundleName) => {
-      Logger.info(TAG, 'ability bundleName:' + bundleName);
+      hilog.info(domain, TAG, 'ability bundleName:' ,bundleName);
     });
-    Logger.info(TAG, 'Application onCreate');
+    hilog.info(domain, TAG, 'Application onCreate');
   }
 
   onDestroy() {
-    Logger.info(TAG, 'Application onDestroy');
+    hilog.info(domain, TAG, 'Application onDestroy');
   }
 
   onShow(): void {
-    Logger.info(TAG, 'Application onShow');
+    hilog.info(domain, TAG, 'Application onShow');
   }
 
   onHide(): void {
-    Logger.info(TAG, 'Application onHide');
+    hilog.info(domain, TAG, 'Application onHide');
   }
 
   onActive(): void {
-    Logger.info(TAG, 'Application onActive');
+    hilog.info(domain, TAG, 'Application onActive');
   }
 
   onInactive(): void {
-    Logger.info(TAG, 'Application onInactive');
+    hilog.info(domain, TAG, 'Application onInactive');
   }
 
   onNewWant() {
-    Logger.info(TAG, 'Application onNewWant');
+    hilog.info(domain, TAG, 'Application onNewWant');
   }
 }
 

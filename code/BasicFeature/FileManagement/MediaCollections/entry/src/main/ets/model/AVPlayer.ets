@@ -162,7 +162,8 @@ export class AVPlayer {
   }
 
   async httpInit(url: string, surfaceId?: string) {
-    this.isHttp = true
+    this.isHttp = true;
+    this.isVideo = true;
     if (surfaceId) {
       this.surfaceId = surfaceId.toString()
       Logger.info(TAG, `surfaceId success: ${surfaceId}`)
@@ -323,8 +324,6 @@ export class AVPlayer {
     this.media.on('error', (error: BusinessError) => {
       Logger.error(TAG, 'error happened,message is :' + error.message)
       this.callbackErrorUpdate('Error ' + error.code + ' - ' + error.message)
-      // 当error上报时自动播放下一个视频或者音频
-      this.next(this.surfaceId)
     })
   }
 

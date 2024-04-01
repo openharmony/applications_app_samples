@@ -17,8 +17,9 @@ import missionManager from '@ohos.app.ability.missionManager';
 import { BusinessError } from '@ohos.base';
 import image from '@ohos.multimedia.image';
 import promptAction from '@ohos.promptAction';
-import Logger from '../utils/Logger';
+import hilog from '@ohos.hilog';
 
+const DOMAIN_NUMBER: number = 0xFF00;
 const TAG: string = 'TaskManager';
 
 @Entry
@@ -29,31 +30,31 @@ struct PageTaskManager {
   private listener: missionManager.MissionListener = {
     // 任务创建
     onMissionCreated: (mission: number) => {
-      Logger.info(TAG, '--------onMissionCreated-------');
+      hilog.info(DOMAIN_NUMBER, TAG, '--------onMissionCreated-------');
     },
     // 任务销毁
     onMissionDestroyed: (mission: number) => {
-      Logger.info(TAG, '--------onMissionDestroyed-------');
+      hilog.info(DOMAIN_NUMBER, TAG, '--------onMissionDestroyed-------');
     },
     // 任务快照变化
     onMissionSnapshotChanged: (mission: number) => {
-      Logger.info(TAG, '--------onMissionSnapshotChanged-------');
+      hilog.info(DOMAIN_NUMBER, TAG, '--------onMissionSnapshotChanged-------');
     },
     // 任务被移动到前台
     onMissionMovedToFront: (mission: number) => {
-      Logger.info(TAG, '--------onMissionMovedToFront-------');
+      hilog.info(DOMAIN_NUMBER, TAG, '--------onMissionMovedToFront-------');
     },
     // 任务图标变化
     onMissionIconUpdated: (mission: number, icon: image.PixelMap) => {
-      Logger.info(TAG, '--------onMissionIconUpdated-------');
+      hilog.info(DOMAIN_NUMBER, TAG, '--------onMissionIconUpdated-------');
     },
     // 任务名称变化
     onMissionLabelUpdated: (mission: number) => {
-      Logger.info(TAG, '--------onMissionLabelUpdated-------');
+      hilog.info(DOMAIN_NUMBER, TAG, '--------onMissionLabelUpdated-------');
     },
     // 任务实例被关闭
     onMissionClosed: (mission: number) => {
-      Logger.info(TAG, '--------onMissionClosed-------');
+      hilog.info(DOMAIN_NUMBER, TAG, '--------onMissionClosed-------');
     }
   };
 
@@ -99,7 +100,7 @@ struct PageTaskManager {
             promptAction.showToast({
               message: $r('app.string.register_success_toast')
             });
-            Logger.info(TAG, `missionManager.on success, listenerId = ${this.listenerId}`);
+            hilog.info(DOMAIN_NUMBER, TAG, `missionManager.on success, listenerId = ${this.listenerId}`);
           })
         }
         .height(56)
@@ -128,9 +129,9 @@ struct PageTaskManager {
           .onClick(() => {
             // 2.获取系统最近20个任务
             missionManager.getMissionInfos('', 20, (error: BusinessError, missions: Array<missionManager.MissionInfo>) => {
-              Logger.info(TAG, 'getMissionInfos is called, error = ' + JSON.stringify(error));
-              Logger.info(TAG, 'size = ' + missions.length);
-              Logger.info(TAG, 'missions = ' + JSON.stringify(missions));
+              hilog.info(DOMAIN_NUMBER, TAG, 'getMissionInfos is called, error = ' + JSON.stringify(error));
+              hilog.info(DOMAIN_NUMBER, TAG, 'size = ' + missions.length);
+              hilog.info(DOMAIN_NUMBER, TAG, 'missions = ' + JSON.stringify(missions));
 
               // 判断系统最近任务中是否包含etsclock
               for (let i = 0;i < missions.length; i++) {
@@ -138,7 +139,7 @@ struct PageTaskManager {
                   promptAction.showToast({
                     message: $r('app.string.obtain_success_toast')
                   });
-                  Logger.info(TAG, `getMissionInfos.find etsclock, missionId  = ${missions[i].missionId}`);
+                  hilog.info(DOMAIN_NUMBER, TAG, `getMissionInfos.find etsclock, missionId  = ${missions[i].missionId}`);
                   this.missionId = missions[i].missionId;
                   return;
                 }
@@ -177,9 +178,9 @@ struct PageTaskManager {
               promptAction.showToast({
                 message: JSON.stringify(data.want.bundleName)
               });
-              Logger.info(TAG, `getMissionInfo successfully. Data: ${JSON.stringify(data)}`);
+              hilog.info(DOMAIN_NUMBER, TAG, `getMissionInfo successfully. Data: ${JSON.stringify(data)}`);
             }).catch((error: BusinessError) => {
-              Logger.error(TAG, `getMissionInfo failed. Cause: ${error.message}`);
+              hilog.error(DOMAIN_NUMBER, TAG, `getMissionInfo failed. Cause: ${error.message}`);
             });
           })
         }
@@ -214,8 +215,8 @@ struct PageTaskManager {
                   message: $r('app.string.obtain_snapshot_success_toast')
                 });
               }
-              Logger.info(TAG, 'getMissionSnapShot is called, error = ' + JSON.stringify(error));
-              Logger.info(TAG, 'bundleName = ' + snapshot.ability.bundleName);
+              hilog.info(DOMAIN_NUMBER, TAG, 'getMissionSnapShot is called, error = ' + JSON.stringify(error));
+              hilog.info(DOMAIN_NUMBER, TAG, 'bundleName = ' + snapshot.ability.bundleName);
             })
           })
         }
@@ -250,8 +251,8 @@ struct PageTaskManager {
                   message: $r('app.string.obtain_low_snapshot_success_toast')
                 });
               }
-              Logger.info(TAG, 'getLowResolutionMissionSnapShot is called, error = ' + JSON.stringify(error));
-              Logger.info(TAG, 'bundleName = ' + snapshot.ability.bundleName);
+              hilog.info(DOMAIN_NUMBER, TAG, 'getLowResolutionMissionSnapShot is called, error = ' + JSON.stringify(error));
+              hilog.info(DOMAIN_NUMBER, TAG, 'bundleName = ' + snapshot.ability.bundleName);
             })
           })
         }
@@ -283,7 +284,7 @@ struct PageTaskManager {
               promptAction.showToast({
                 message: $r('app.string.lock_success_toast')
               });
-              Logger.info(TAG, 'lockMission is called ');
+              hilog.info(DOMAIN_NUMBER, TAG, 'lockMission is called ');
             });
           })
         }
@@ -316,7 +317,7 @@ struct PageTaskManager {
               promptAction.showToast({
                 message: $r('app.string.unlock_success_toast')
               });
-              Logger.info(TAG, 'unlockMission is called ');
+              hilog.info(DOMAIN_NUMBER, TAG, 'unlockMission is called ');
             });
           })
         }
@@ -346,7 +347,7 @@ struct PageTaskManager {
           .onClick(() => {
             // 7.把任务切到前台
             missionManager.moveMissionToFront(this.missionId).then(() => {
-              Logger.info(TAG, 'moveMissionToFront is called ');
+              hilog.info(DOMAIN_NUMBER, TAG, 'moveMissionToFront is called ');
             });
           })
         }
@@ -378,7 +379,7 @@ struct PageTaskManager {
               promptAction.showToast({
                 message: $r('app.string.delete_success_toast')
               });
-              Logger.info(TAG, 'clearMission is called ');
+              hilog.info(DOMAIN_NUMBER, TAG, 'clearMission is called ');
             });
           })
         }
@@ -407,7 +408,7 @@ struct PageTaskManager {
           .onClick(() => {
             // 9.删除全部任务
             missionManager.clearAllMissions().catch((err: BusinessError) => {
-              Logger.info(TAG, `${err.code}`);
+              hilog.info(DOMAIN_NUMBER, TAG, `${err.code}`);
             });
           })
         }
@@ -441,7 +442,7 @@ struct PageTaskManager {
                   message: $r('app.string.unregister_success_toast')
                 });
               }
-              Logger.info(TAG, 'unregisterMissionListener');
+              hilog.info(DOMAIN_NUMBER, TAG, 'unregisterMissionListener');
             })
           })
         }

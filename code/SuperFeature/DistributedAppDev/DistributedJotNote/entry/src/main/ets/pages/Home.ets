@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -19,6 +19,8 @@ import mainViewModel from '../viewmodel/MainViewModel';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import Logger from '../utils/Logger';
 import CommonConstants from '../common/constants/CommonConstants';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
 const TAG = 'testTag_Home: ';
 
@@ -28,6 +30,7 @@ struct Home {
   @StorageLink('ability_isON') stoLink_ability_isON: boolean = true;
   @StorageLink('ContinueWork') inputTxt: string = '';
   @StorageLink('swiperIndex') swiperIndex: number = -1;
+  @StorageLink('testDate') testDate: string = '';
   private swiperController: SwiperController = new SwiperController();
   private context = getContext(this) as common.UIAbilityContext;
 
@@ -42,7 +45,6 @@ struct Home {
   build() {
     Row() {
       Column() {
-
         Column() {
           Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
             Image($r('app.media.ic_set'))
@@ -103,6 +105,7 @@ struct Home {
               .margin({ left: 12 })
               .width(18)
               .height(22)
+              .id('notePage')
 
             Text($r('app.string.NOTES_TITLE'))
               .width(244)
@@ -113,6 +116,7 @@ struct Home {
               .textAlign(TextAlign.Start)
               .margin({ left: 19 })
               .fontFamily('HarmonyHeiTi')
+
 
             Row() {
               Image($r('app.media.ic_arrow'))
@@ -153,6 +157,7 @@ struct Home {
               .fontWeight(500)
               .textAlign(TextAlign.Start)
               .margin({ left: 19 })
+              .id('todolist_btn')
 
             Row() {
               Image($r('app.media.ic_arrow'))
@@ -193,6 +198,7 @@ struct Home {
               .fontWeight(500)
               .textAlign(TextAlign.Start)
               .margin({ left: 19 })
+              .id('imgWall_btn')
 
             Row() {
               Image($r('app.media.ic_arrow'))
@@ -216,6 +222,40 @@ struct Home {
         .onClick(() => {
           router.pushUrl({ url: 'pages/ImgWall' })
         })
+
+        Column() {
+          Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+            Text($r('app.string.USE_ASYNC_SAVE_DATA'))
+              .width(244)
+              .height(22)
+              .fontSize(16)
+              .lineHeight(22)
+              .fontWeight(500)
+              .textAlign(TextAlign.Start)
+              .margin({ left: 19 })
+              .id('async_save_data')
+          }
+          .width(336)
+          .height(64)
+        }
+        .width(336)
+        .height(64)
+        .backgroundColor('#ffffff')
+        .borderRadius(24)
+        .alignItems(HorizontalAlign.Center)
+        .margin({ top: 16 })
+        .onClick(() => {
+          let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+          let want: Want = {
+            bundleName: 'com.samples.distributedjotnote',
+            abilityName: 'AsyncAbility'
+          };
+          context.startAbility(want).then(() => {
+          }).catch((err: BusinessError) => {
+            Logger.error(TAG, `Failed to start MigrationAbility. Code is ${err.code}, message is ${err.message}`);
+          });
+        })
+
       }
       .width('100%')
 

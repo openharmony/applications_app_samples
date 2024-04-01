@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "to_hara_page1",
+      "value": "ToHarAPage1"
+    },
+    {
+      "name": "to_hara_page2",
+      "value": "ToHarAPage2"
+    },
+    {
+      "name": "to_hara_page3",
+      "value": "ToHarAPage3"
+    }
+  ]
+}

@@ -20,9 +20,10 @@ import bundle from '@ohos.bundle.bundleManager';
 import deviceManager from '@ohos.distributedDeviceManager';
 import promptAction from '@ohos.promptAction';
 import { BusinessError } from '@ohos.base';
-import Logger from '../../utils/Logger';
+import hilog from '@ohos.hilog';
 
 const TAG: string = 'PagePageAbilitySecond'
+const domain: number = 0xFF00;
 
 @Entry
 @Component
@@ -30,7 +31,7 @@ struct PagePageAbilitySecond {
   @State deviceID: string = '';
 
   async requestPermission(): Promise<void> {
-    Logger.info(TAG, 'RequestPermission begin');
+    hilog.info(domain, TAG, 'RequestPermission begin');
     let array: Array<string> = ['ohos.permission.DISTRIBUTED_DATASYNC'];
     let bundleFlag = 0;
     let tokenID: number | undefined = undefined;
@@ -41,23 +42,23 @@ struct PagePageAbilitySecond {
     let requestPermissions: Array<string> = [];
     for (let i = 0;i < array.length; i++) {
       let result = await atManager.verifyAccessToken(tokenID, array[i]);
-      Logger.info(TAG, 'checkAccessToken result:' + JSON.stringify(result));
+      hilog.info(domain, TAG, 'checkAccessToken result:' + JSON.stringify(result));
       if (result != abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED) {
         requestPermissions.push(array[i]);
       }
     }
-    Logger.info(TAG, 'requestPermissions:' + JSON.stringify(requestPermissions));
+    hilog.info(domain, TAG, 'requestPermissions:' + JSON.stringify(requestPermissions));
     if (requestPermissions.length == 0) {
       return;
     }
     let context = featureAbility.getContext();
     context.requestPermissionsFromUser(requestPermissions, 1, (error, data) => {
-      Logger.info(TAG, 'error:' + error.message + ',data:' + JSON.stringify(data));
-      Logger.info(TAG, 'data requestCode:' + data.requestCode);
-      Logger.info(TAG, 'data permissions:' + data.permissions);
-      Logger.info(TAG, 'data authResults:' + data.authResults);
+      hilog.info(domain, TAG, 'error:' + error.message + ',data:' + JSON.stringify(data));
+      hilog.info(domain, TAG, 'data requestCode:' + data.requestCode);
+      hilog.info(domain, TAG, 'data permissions:' + data.permissions);
+      hilog.info(domain, TAG, 'data authResults:' + data.authResults);
     });
-    Logger.info(TAG, 'RequestPermission end');
+    hilog.info(domain, TAG, 'RequestPermission end');
   }
 
   getRemoteDeviceId(): void {
@@ -67,10 +68,10 @@ struct PagePageAbilitySecond {
       if (typeof dmClass === 'object' && dmClass !== null) {
         let list = dmClass.getAvailableDeviceListSync();
         if (typeof (list) == undefined || list.length == 0) {
-          Logger.info(TAG, 'EntryAbility onButtonClick getRemoteDeviceId err: list is null');
+          hilog.info(domain, TAG, 'EntryAbility onButtonClick getRemoteDeviceId err: list is null');
           return;
         }
-        Logger.info(TAG, `EntryAbility onButtonClick getRemoteDeviceId success[${list.length}]:` + JSON.stringify(list[0]));
+        hilog.info(domain, TAG, `EntryAbility onButtonClick getRemoteDeviceId success[${list.length}]:` + JSON.stringify(list[0]));
         if (list[0].networkId != undefined) {
           this.deviceID = list[0].networkId;
         }
@@ -78,35 +79,35 @@ struct PagePageAbilitySecond {
           message: this.deviceID
         });
       } else {
-        Logger.info(TAG, 'EntryAbility onButtonClick getRemoteDeviceId err: dmClass is null');
+        hilog.info(domain, TAG, 'EntryAbility onButtonClick getRemoteDeviceId err: dmClass is null');
       }
     } catch (error) {
-      Logger.info(TAG, `getRemoteDeviceId error, error=${error}, message=${error.message}`);
+      hilog.info(domain, TAG, `getRemoteDeviceId error, error=${error}, message=${error.message}`);
     }
   }
 
   onStartRemoteAbility(): void {
-    Logger.info(TAG, 'onStartRemoteAbility begin');
+    hilog.info(domain, TAG, 'onStartRemoteAbility begin');
     let wantValue: Want = {
       bundleName: 'ohos.samples.distributedmusicplayer',
       abilityName: 'ohos.samples.distributedmusicplayer.MainAbility',
       deviceId: this.deviceID, // this.deviceID的获取方式在前面的示例代码中
     };
-    Logger.info(TAG, 'onStartRemoteAbility want=' + JSON.stringify(wantValue));
+    hilog.info(domain, TAG, 'onStartRemoteAbility want=' + JSON.stringify(wantValue));
     featureAbility.startAbility({
       want: wantValue
     }).then((data) => {
       promptAction.showToast({
         message: $r('app.string.start_remote_success_toast')
       });
-      Logger.info(TAG, 'onStartRemoteAbility finished, ' + JSON.stringify(data));
+      hilog.info(domain, TAG, 'onStartRemoteAbility finished, ' + JSON.stringify(data));
     }).catch((error: BusinessError) => {
       promptAction.showToast({
         message: JSON.stringify(error)
       });
-      Logger.error(TAG, 'onStartRemoteAbility failed: ' + JSON.stringify(error));
+      hilog.error(domain, TAG, 'onStartRemoteAbility failed: ' + JSON.stringify(error));
     });
-    Logger.info(TAG, 'onStartRemoteAbility end');
+    hilog.info(domain, TAG, 'onStartRemoteAbility end');
   }
 
   build() {

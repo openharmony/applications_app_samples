@@ -19,7 +19,7 @@ import {
   ConvertXml,
   Url,
   Util,
-  Process,
+  ProcessMessage,
   TaskPool,
   DequeView,
   HashMapView,
@@ -54,7 +54,7 @@ export struct Capabilities {
           Util()
         }
         if (this.selectedLabel === getString($r('app.string.process'))) {
-          Process()
+          ProcessMessage()
         }
         if (this.selectedLabel === getString($r('app.string.url'))) {
           Url()

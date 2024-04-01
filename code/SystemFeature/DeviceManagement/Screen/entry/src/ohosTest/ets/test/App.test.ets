@@ -100,6 +100,7 @@ export default function appTest() {
     it(BUNDLE + 'DeleteSmallDevice_001', 0, async () => {
       // create UiDriver
       hilog.info(DOMAIN, TAG, BUNDLE + 'DeleteSmallDevice_001 begin');
+      await DRIVER.delayMs(1000);
       await DRIVER.assertComponentExist(ON.id('removeScreen'));
       let removeScreen = await DRIVER.findComponent(ON.id('removeScreen'));
       await removeScreen.click();

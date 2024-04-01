@@ -22,6 +22,10 @@
 
 4）点击<更新持久化数据>，弹出toast标识持久化数据是否发布成功。
 
+5）回到主页，安装<共享数据>应用并点击打开，页面显示有“刷新卡片内容”按钮；
+
+6）点击<刷新卡片内容>，观察页面上的卡片显示，卡片内容刷新，标题从‘Title default’更新为'Title Update.'文字从‘requestForm’更新为'Description update success.'
+
 ### 工程目录
 ```
 entry/src/main/ets/
@@ -30,7 +34,7 @@ entry/src/main/ets/
 ├── entryability
 │   └── EntryAbility.ts						//共享数据应用默认页面
 └── pages
-    └── Index.ets							//更新过程数据及持久化数据页面示例
+    └── Index.ets							//更新过程数据，持久化数据及刷新卡片内容页面示例
 ```
 ### 具体实现
 
@@ -38,11 +42,15 @@ entry/src/main/ets/
 
 ### 相关权限
 
-[ohos.permission.KEEP_BACKGROUND_RUNNING](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionkeep_background_running)
+[ohos.permission.KEEP_BACKGROUND_RUNNING](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionkeep_background_running)
 
-[ohos.permission.GET_BUNDLE_INFO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissiongetbundleinfo)
+[ohos.permission.GET_BUNDLE_INFO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionget_bundle_info)
 
-[ohos.permission.START_ABILITIES_FROM_BACKGROUND](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionstartabilitiesfrombackground)
+[ohos.permission.START_ABILITIES_FROM_BACKGROUND](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionstart_abilities_from_background)
+
+[ohos.permission.REQUIRE_FORM](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionrequire_form)
+
+[ohos.permission.GET_BUNDLE_INFO_PRIVILEGED](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionget_bundle_info_privileged)
 
 ### 依赖
 

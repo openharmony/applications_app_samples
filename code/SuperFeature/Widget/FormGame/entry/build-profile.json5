@@ -17,7 +17,6 @@
   "apiType": 'stageMode',
   "showInServiceCenter": true,
   "buildOption": {
-    "compileMode": "esmodule",
     "externalNativeOptions": {
       "path": "./src/main/cpp/CMakeLists.txt",
       "arguments": "-v -DOHOS_STL=c++_static",

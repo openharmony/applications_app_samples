@@ -29,9 +29,6 @@
     "requestPermissions": [
       {
         "name": "ohos.permission.INTERNET"
-      },
-      {
-        "name": "ohos.permission.MANAGE_VPN"
       }
     ],
     "abilities": [

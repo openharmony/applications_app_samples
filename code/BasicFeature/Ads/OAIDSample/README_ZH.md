@@ -24,7 +24,7 @@
 
 3.点击“通过异步callback获取OAID”，上方文本框显示OAID。
 
-4.点击“重置OAID”，上方文本框OAID重置。
+4.重置功能需安装[ResetOAID](/lib/ResetOAID-1.0.0.hap)，点击“重置OAID”，上方文本框OAID重置。
 
 
 ### 工程目录
@@ -46,11 +46,17 @@ entry/src/main/ets/
 - 在module.json5文件中的“requestPermissions”标签中添加需要开的权限，例如应用读取开放匿名设备标识符权限
 ```
 "requestPermissions": [
-  ...
   {
-     "name": "ohos.permission.APP_TRACKING_CONSENT"
+    "name": "ohos.permission.APP_TRACKING_CONSENT",
+    "reason": "$string:reason",
+    "usedScene": {
+      "abilities": [
+        "EntryFormAbility"
+      ],
+      "when": "inuse"
+    }
   }
- ]
+]
 
 ```
 
@@ -65,8 +71,7 @@ entry/src/main/ets/
 ### 相关权限
 
 获取OAID功能需要申请广告跟踪权限：
-**[ohos.permission.APP_TRACKING_CONSENT]**  
-(参考：https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/security/permission-list.md/)。
+[ohos.permission.APP_TRACKING_CONSENT](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/security/permission-list.md/)。
 
 ### 依赖
 
@@ -79,8 +84,6 @@ entry/src/main/ets/
 2.本示例为Stage模型，已适配API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0 Release)。
 
 3.本工程示例需要使用DevEco Studio 版本号(4.0Release)及以上版本才可编译运行。
-
-4.本实例重置OAID接口只允许系统应用调用，三方应用不支持调用。
 
 ### 下载
 

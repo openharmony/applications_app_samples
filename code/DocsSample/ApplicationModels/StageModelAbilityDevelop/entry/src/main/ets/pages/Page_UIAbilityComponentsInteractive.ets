@@ -288,6 +288,84 @@ struct Page_UIAbilityComponentsInteractive {
         .borderRadius(24)
         .margin({ top: 12, right: 12, left: 12 })
 
+        ListItem() {
+          Row() {
+            Row(){
+              Text($r('app.string.UIAbilityComponentsInteractionG'))
+                .textAlign(TextAlign.Start)
+                .fontWeight(500)
+                .margin({ top: 13, bottom: 13, left: 0, right: 8 })
+                .fontSize(16)
+                .width(232)
+                .height(22)
+                .fontColor($r('app.color.text_color'))
+            }
+            .height(48)
+            .width('100%')
+            .borderRadius(24)
+            .margin({ top: 4, bottom: 4, left: 12, right: 12 })
+          }
+          .onClick(() => {
+            let context = getContext(this) as common.UIAbilityContext;
+            let wantInfo: Want = {
+              // uncomment line below if wish to implicitly query only in the specific bundle.
+              // bundleName: 'com.samples.stagemodelabilityinteraction',
+              action: 'ohos.want.action.viewData',
+              // entities can be omitted.
+              entities: ['entity.system.browsable'],
+              uri: 'https://www.test.com:8080/query/student'
+            };
+            context.startAbility(wantInfo).then(() => {
+              hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in starting TUri.');
+            }).catch((err: BusinessError) => {
+              hilog.error(DOMAIN_NUMBER, TAG, `Failed to start Uri. Code is ${err.code}, message is ${err.message}`);
+            })
+          })
+        }
+        .height(56)
+        .backgroundColor($r('app.color.start_window_background'))
+        .borderRadius(24)
+        .margin({ top: 8, right: 12, left: 12 })
+
+        ListItem() {
+          Row() {
+            Row(){
+              Text($r('app.string.UIAbilityComponentsInteractionH'))
+                .textAlign(TextAlign.Start)
+                .fontWeight(500)
+                .margin({ top: 13, bottom: 13, left: 0, right: 8 })
+                .fontSize(16)
+                .width(232)
+                .height(22)
+                .fontColor($r('app.color.text_color'))
+            }
+            .height(48)
+            .width('100%')
+            .borderRadius(24)
+            .margin({ top: 4, bottom: 4, left: 12, right: 12 })
+          }
+          .onClick(() => {
+            let context = getContext(this) as common.UIAbilityContext;
+            let wantInfo: Want = {
+              // uncomment line below if wish to implicitly query only in the specific bundle.
+              // bundleName: 'com.samples.stagemodelabilityinteraction',
+              action: 'ohos.want.action.search',
+              // entities can be omitted.
+              entities: ['entity.system.browsable'],
+              uri: 'https://www.test.com:8080/query/student',
+              type: 'application/http'
+            };
+            context.startAbility(wantInfo).then(() => {
+              hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in starting tjyUri.');
+            }).catch((err: BusinessError) => {
+              hilog.error(DOMAIN_NUMBER, TAG, `Failed to start Uri. Code is ${err.code}, message is ${err.message}`);
+            })
+          })
+        }
+        .height(56)
+        .backgroundColor($r('app.color.start_window_background'))
+        .borderRadius(24)
+        .margin({ top: 8, right: 12, left: 12 })
 
         ListItem() {
           Row() {

@@ -16,8 +16,11 @@
 import type { ProcessDataCallback } from './i_idl_service_ext';
 import type { InsertDataToMapCallback } from './i_idl_service_ext';
 import type IIdlServiceExt from './i_idl_service_ext';
-import Logger from '../utils/Logger';
 import rpc from '@ohos.rpc';
+import hilog from '@ohos.hilog';
+
+const TAG: string = '[IdlServiceExtStub]';
+const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class IdlServiceExtStub extends rpc.RemoteObject implements IIdlServiceExt {
   constructor(des: string) {
@@ -25,7 +28,7 @@ export default class IdlServiceExtStub extends rpc.RemoteObject implements IIdlS
   };
 
   async onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): Promise<boolean> {
-    Logger.info('onRemoteMessageRequest called, code = ' + code);
+    hilog.info(DOMAIN_NUMBER, TAG, 'onRemoteMessageRequest called, code = ' + code);
     switch (code) {
       case IdlServiceExtStub.COMMAND_PROCESS_DATA: {
         let dataVar = data.readInt();
@@ -54,7 +57,7 @@ export default class IdlServiceExtStub extends rpc.RemoteObject implements IIdlS
         return true;
       };
       default: {
-        Logger.info('invalid request code' + code);
+        hilog.info(DOMAIN_NUMBER, TAG, 'invalid request code' + code);
         break;
       }
     }

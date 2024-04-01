@@ -11,6 +11,22 @@
     {
       "name": "EntryAbility_label",
       "value": "VPN"
+    },
+    {
+      "name": "btn_create_tunnel",
+      "value": "创建隧道"
+    },
+    {
+      "name": "btn_protect",
+      "value": "隧道保护"
+    },
+    {
+      "name": "btn_start_vpn",
+      "value": "启动vpn"
+    },
+    {
+      "name": "btn_start_vpnExt",
+      "value": "启动vpnExt"
     }
   ]
 }

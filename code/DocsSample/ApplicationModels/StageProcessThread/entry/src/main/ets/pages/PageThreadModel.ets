@@ -16,8 +16,9 @@
 import emitter from '@ohos.events.emitter';
 import promptAction from '@ohos.promptAction';
 import worker from '@ohos.worker';
-import Logger from '../utils/Logger';
+import hilog from '@ohos.hilog';
 
+const DOMAIN_NUMBER: number = 0xFF00;
 const TAG: string = 'ThreadModel';
 
 @Entry
@@ -69,7 +70,7 @@ struct PageThreadModel {
               promptAction.showToast({
                 message: JSON.stringify(eventData)
               });
-              Logger.info(TAG, 'event callback:' + JSON.stringify(eventData));
+              hilog.info(DOMAIN_NUMBER, TAG, 'event callback:' + JSON.stringify(eventData));
             };
 
             // 订阅eventId为1的事件
@@ -151,7 +152,7 @@ struct PageThreadModel {
               promptAction.showToast({
                 message: JSON.stringify(message)
               });
-              Logger.info(TAG, 'message from worker: ' + JSON.stringify(message));
+              hilog.info(DOMAIN_NUMBER, TAG, 'message from worker: ' + JSON.stringify(message));
 
               // 根据业务按需停止worker线程
               wk.terminate();

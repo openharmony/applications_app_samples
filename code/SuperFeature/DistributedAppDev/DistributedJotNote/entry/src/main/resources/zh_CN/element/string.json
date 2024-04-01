@@ -115,6 +115,22 @@
     {
       "name": "pick_photo_two",
       "value": "选择图片2"
+    },
+    {
+      "name": "PLEASE_INPUT_ASYNC_TEXT",
+      "value": "请输入异步保存的文本"
+    },
+    {
+      "name": "AsyncAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "AsyncAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "USE_ASYNC_SAVE_DATA",
+      "value": "迁移时使用异步接口保存数据"
     }
   ]
 }

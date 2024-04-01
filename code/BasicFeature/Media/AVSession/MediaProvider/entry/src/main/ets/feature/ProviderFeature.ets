@@ -270,6 +270,7 @@ export class ProviderFeature {
 
   async prepareImageResources(): Promise<void> {
     let that = this;
+    Log.info(`prepareImageResources in`);
     that.queueItemPixelMapArray.push(await that.saveRawFileToPixelMap('first.png'));
     that.queueItemPixelMapArray.push(await that.saveRawFileToPixelMap('second.png'));
     that.queueItemPixelMapArray.push(await that.saveRawFileToPixelMap('third.png'));
@@ -288,7 +289,7 @@ export class ProviderFeature {
   async saveRawFileToPixelMap(rawFilePath: string): Promise<image.PixelMap> {
     let that = this;
     let value: Uint8Array = await that.resourceManager.getRawFileContent(rawFilePath);
-    let imageBuffer: ArrayBuffer = value.buffer;
+    let imageBuffer: ArrayBuffer = value.buffer as ArrayBuffer;
     let imageSource: image.ImageSource = image.createImageSource(imageBuffer);
     let imagePixel: image.PixelMap = await imageSource.createPixelMap({ desiredSize: { width: 900, height: 900 } });
     return imagePixel;
@@ -296,6 +297,7 @@ export class ProviderFeature {
 
   async prepareResourcesForController(): Promise<void> {
     let that = this;
+    Log.info(`prepareResourcesForController in`);
     that.constantsForControl.avMetadataList[0].mediaImage = await that.saveRawFileToPixelMap('first.png');
     that.constantsForControl.avMetadataList[1].mediaImage = await that.saveRawFileToPixelMap('second.png');
     that.constantsForControl.avMetadataList[2].mediaImage = await that.saveRawFileToPixelMap('third.png');

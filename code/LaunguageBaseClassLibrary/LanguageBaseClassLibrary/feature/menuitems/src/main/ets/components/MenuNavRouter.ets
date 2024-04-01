@@ -54,10 +54,18 @@ export struct MenuNavRouter {
             .backgroundColor($r('sys.color.ohos_id_color_sub_background'))
           }
           .onStateChange((isActivated: boolean) => {
+            // 组件激活状态切换时
             if (isActivated) {
-              this.selectedLabel = item;
-              this.selectedSecondLabel = item;
-              logger.info(TAG, `NavRouter isActivated= ${isActivated}, selectedLabel=${item}`);
+              // 点击一级路由菜单进入时
+              if (this.addAction) {
+                this.selectedLabel = item;
+                logger.info(TAG, `NavRouter isActivated= ${isActivated}, selectedLabel=${item}`);
+              }
+              // 点击二级路由菜单进入时
+              else {
+                this.selectedSecondLabel = item;
+                logger.info(TAG, `NavRouter isActivated= ${isActivated}, selectedSecondLabel=${item}`);
+              }
             }
           })
         }, (item: string) => JSON.stringify(item))

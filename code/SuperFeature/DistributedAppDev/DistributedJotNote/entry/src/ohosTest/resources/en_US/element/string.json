@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "accept",
+      "value": "accept"
+    },
+    {
+      "name": "TEST_DATA",
+      "value": "test data"
+    },
+    {
+      "name": "NOTE_PAGE",
+      "value": "note page"
+    },
+    {
+      "name": "TODO_LIST",
+      "value": "to do list"
+    },
+    {
+      "name": "IMG_WALL",
+      "value": "img wall"
+    }
+  ]
+}

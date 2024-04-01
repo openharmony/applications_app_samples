@@ -56,7 +56,7 @@ struct Page_CollaborateAbility {
             {
               resultCode: RESULT_CODE,
               want: {
-                bundleName: 'ohos.samples.stagemodelabilitydevelop',
+                bundleName: 'com.samples.stagemodelabilitydevelop',
                 abilityName: 'CollaborateAbility',
                 moduleName: 'entry',
                 parameters: {

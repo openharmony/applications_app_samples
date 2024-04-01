@@ -1,0 +1,120 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "Main program entry"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "MultipleWindow"
+    },
+    {
+      "name": "please_set_pwd",
+      "value": "please set screen password"
+    },
+    {
+      "name": "auth_failed",
+      "value": "auth failed"
+    },
+    {
+      "name": "account",
+      "value": "account"
+    },
+    {
+      "name": "please_input_account",
+      "value": "please input account"
+    },
+    {
+      "name": "secret_or_card_num",
+      "value": "secret or card number"
+    },
+    {
+      "name": "please_input_secret_or_card_num",
+      "value": "please input secret or card number"
+    },
+    {
+      "name": "label",
+      "value": "label(max 4, split by ;)"
+    },
+    {
+      "name": "label2",
+      "value": "label"
+    },
+    {
+      "name": "please_input_label",
+      "value": "please input label"
+    },
+    {
+      "name": "save",
+      "value": "save"
+    },
+    {
+      "name": "delete",
+      "value": "delete"
+    },
+    {
+      "name": "search",
+      "value": "search"
+    },
+    {
+      "name": "search_result",
+      "value": "search result"
+    },
+    {
+      "name": "update",
+      "value": "update"
+    },
+    {
+      "name": "save_failed_for_label",
+      "value": "save failed, label num over 4"
+    },
+    {
+      "name": "save_success",
+      "value": "save success"
+    },
+    {
+      "name": "save_failed_for_account_exist",
+      "value": "save failed for account exist"
+    },
+    {
+      "name": "save_failed",
+      "value": "save failed"
+    },
+    {
+      "name": "remove_success",
+      "value": "remove success"
+    },
+    {
+      "name": "remove_failed_for_account_not_exist",
+      "value": "remove failed for account not exist"
+    },
+    {
+      "name": "remove_failed",
+      "value": "remove failed"
+    },
+    {
+      "name": "update_failed",
+      "value": "update failed"
+    },
+    {
+      "name": "update_success",
+      "value": "update success"
+    },
+    {
+      "name": "update_failed_for_label_over_4",
+      "value": "update failed for label over 4"
+    },
+    {
+      "name": "query_no_result",
+      "value": "query no result"
+    },
+    {
+      "name": "query_failed",
+      "value": "query failed"
+    }
+  ]
+}

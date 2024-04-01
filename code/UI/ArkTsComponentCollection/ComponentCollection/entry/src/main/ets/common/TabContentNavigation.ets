@@ -14,6 +14,9 @@
  */
 
 import router from '@ohos.router';
+import Want from '@ohos.app.ability.Want';
+import common from '@ohos.app.ability.common';
+import Logger from '../util/Logger';
 import { SecondLevelCategory, ThirdLevelCategory, FourthLevelCategory } from '../model/CategoricalDataType';
 
 @Extend(Column)
@@ -122,13 +125,24 @@ struct ThirdLevelNavigation {
       .onClick(() => {
         if (this.thirdLevelCategory.childNodes === undefined) {
           // Click to jump to the corresponding page
-          if (this.thirdLevelCategory.url) {
+          if (this.thirdLevelCategory.url === 'pages/universal/events/dragEventSample/DragEventSample') {
+            let context: common.UIAbilityContext | undefined = AppStorage.get('context');
+            let want: Want = {
+              bundleName: "com.samples.drag_event",
+              abilityName: "EntryAbility",
+            };
+            context && context.startAbility(want,  (err) => {
+              if (err.code) {
+                Logger.error('StartAbility', `Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+              }
+            });
+          } else {
             router.pushUrl({
               url: this.thirdLevelCategory.url
-            })
+            });
           }
         } else {
-          this.isUnfold = !this.isUnfold
+          this.isUnfold = !this.isUnfold;
         }
       })
 

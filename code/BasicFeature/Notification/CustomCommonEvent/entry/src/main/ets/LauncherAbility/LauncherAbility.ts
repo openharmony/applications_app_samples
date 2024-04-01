@@ -28,6 +28,7 @@ export default class LauncherAbility extends UIAbility {
       settings.set(element, consts.ENABLE_STATE_ALWAYS);
     });
     globalThis.settings = settings;
+    AppStorage.setOrCreate('context', this.context);
     Logger.info(`LauncherAbility onCreate, settings.size = ${globalThis.settings.size}`)
   }
 
