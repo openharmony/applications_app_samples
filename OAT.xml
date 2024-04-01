@@ -186,6 +186,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/BasicFeature/Native/NdkQoS/AppScope/resources/base/media/app_icon.png" desc="Provided by code/BasicFeature/Native/NdkNativeQoS"/>
                 <filteritem type="filepath" name="code/BasicFeature/Native/NdkQoS/screenshots/device/main.jpeg" desc="Provided by code/BasicFeature/Native/NdkNativeQoS"/>
                 <filteritem type="filepath" name="code/BasicFeature/Native/NdkQoS/screenshots/device/showhighQoScomputingTime.jpeg" desc="Provided by code/BasicFeature/Native/NdkNativeQoS"/>
+                <filteritem type="filepath" name="code/BasicFeature/Native/NdkQoS/entry/src/main/resources/base/media/icon.png" desc="Provided by code/BasicFeature/Native/NdkNativeQoS"/>
 	<filteritem type="filepath" name="code/DocsSample/ApplicationModels/ImplicitStartByTypeRely/entry/src/main/resources/base/media/icon.png" desc="Provided by code/DocsSample/ApplicationModels/ImplicitStartByTypeRely"/>
 	<filteritem type="filepath" name="code/DocsSample/ApplicationModels/ImplicitStartByTypeRely/screenshots/newability.png" desc="Provided by code/DocsSample/ApplicationModels/ImplicitStartByTypeRely"/>
 	<filteritem type="filepath" name="code/DocsSample/ApplicationModels/StageModelAbilityInteraction/screenshot/coldstartuppage.png" desc="Provided by code/DocsSample/ApplicationModels/StageModelAbilityInteraction"/>
