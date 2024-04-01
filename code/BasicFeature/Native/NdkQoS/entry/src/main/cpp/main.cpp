@@ -38,6 +38,7 @@ void setQoS(QoS_Level level) {
                          querryLevel);
         } else { // 否则说明查询失败
             OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "get qos level failed.");
+            return;
         }
 
     } else { // ret不等于0说明设置失败
@@ -65,6 +66,7 @@ void setQoS(QoS_Level level) {
     ret = OH_QoS_GetThreadQoS(&querryLevelTwo);
     if (!ret) { // 异常路径
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "the qos level after: %{public}d", querryLevelTwo);
+        return;
     } else { // 正常路径
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "querry qos level failed after reset.");
         return;
