@@ -24,12 +24,12 @@ struct Index {
             let ret: string = testNapi.useHighQos().toString();
             AlertDialog.show({
               title: this.message,
-              message: "High-level QoS calculation time: "+ ret + " ms",
+              message: "High-level QoS calculation time: " + ret + " ms",
               alignment: DialogAlignment.Center,
               confirm: {
                 value: "OK",
                 action: () => {
-                  console.log("done")
+                  console.log("High-QoS done")
                 }
               }
             })
@@ -46,12 +46,12 @@ struct Index {
             let ret: string = testNapi.useLowQos().toString();
             AlertDialog.show({
               title: this.message,
-              message: "Low-level QoS calculation time: "+ ret + " ms",
+              message: "Low-level QoS calculation time: " + ret + " ms",
               alignment: DialogAlignment.Center,
               confirm: {
                 value: "OK",
                 action: () => {
-                  console.log("done")
+                  console.log("Low-QoS done")
                 }
               }
             })
