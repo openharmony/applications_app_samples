@@ -25,6 +25,7 @@ const BUNDLE = 'photos_';
 const TIME_OUT = 10000;
 const DOMAIN = 0xF811;
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+
 // 资源本地化
 async function getResourceString(resource: Resource): Promise<string> {
   let manage = abilityDelegator.getAppContext().resourceManager;
@@ -83,8 +84,25 @@ export default function abilityTest() {
      */
     it('PhotosFunction_001', 0, async () => {
       HiLog.info(DOMAIN, TAG, BUNDLE + 'PhotosFunction_001 begin');
-      let driver = await Driver.create();
-      await driver.delayMs(1000);
+      let driver = Driver.create();
+      await driver.delayMs(2000);
+      await driver.pressBack();
+      await driver.delayMs(2000);
+      // 打开相机拍5张照
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.camera'))));
+      let iconCamera = await driver.findComponent(ON.text(await getResourceString($r('app.string.camera'))));
+      await iconCamera.click();
+      await driver.delayMs(2000);
+      for (let i = 0; i < 5; i++) {
+        await driver.click(360, 1102);
+        await driver.delayMs(2000);
+      }
+      await driver.pressBack();
+      await driver.delayMs(2000);
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.Sample_photo_album'))));
+      let iconPhoto = await driver.findComponent(ON.text(await getResourceString($r('app.string.Sample_photo_album'))));
+      await iconPhoto.click();
+      await driver.delayMs(2000);
       // 打开应用能够显示相册列表
       await driver.assertComponentExist(ON.type('Grid'));
       await driver.assertComponentExist(ON.type('GridItem'));
@@ -139,23 +157,24 @@ export default function abilityTest() {
     it('PhotosFunction_003', 0, async () => {
       HiLog.info(DOMAIN, TAG, BUNDLE + 'PhotosFunction_003 begin');
       let driver = await Driver.create();
-      await driver.delayMs(1000);
+      await driver.delayMs(2000);
       let time: number = await systemDateTime.getCurrentTime();
       let newName = time.toString();
       //点击重命名
       let btnRename = await driver.findComponent(ON.text(await getResourceString($r('app.string.btn_rename'))));
       await btnRename.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(2000);
       let text = await driver.findComponent(ON.type('TextInput'));
       await text.inputText(newName);
+      await driver.delayMs(2000);
       //点击确认
       let btnOK = await driver.findComponent(ON.text(await getResourceString($r('app.string.btn_confirm'))));
       await btnOK.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(2000);
       //点击详情，检查名称
       let btnInfo = await driver.findComponent(ON.id('5'));
       await btnInfo.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(2000);
       HiLog.info(DOMAIN, TAG, BUNDLE + 'check text:' + newName);
       await driver.assertComponentExist(ON.text(newName));
       HiLog.info(DOMAIN, TAG, BUNDLE + 'PhotosFunction_003 end');
@@ -225,6 +244,7 @@ export default function abilityTest() {
       await driver.delayMs(1000);
       let text = await driver.findComponent(ON.type('TextInput'));
       await text.inputText(await getResourceString($r('app.string.album_new')));
+      await driver.delayMs(3000);
       //点击确认
       let btnConfirm = await driver.findComponent(ON.text(await getResourceString($r('app.string.btn_confirm'))));
       await btnConfirm.click();
