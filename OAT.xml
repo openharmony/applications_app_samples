@@ -240,6 +240,7 @@ Note:If the text contains special characters, please escape them according to th
         <filteritem type="filepath" name="code/BasicFeature/DeviceManagement/Sensor/Capi/entry/src/main/resources/base/media/compass.png" desc="Provided by code/BasicFeature/DeviceManagement/Sensor"/>
         <filteritem type="filepath" name=" code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic/entry/src/main/resources/base/media/select.png" desc="Provided by code/BasicFeature/DeviceManagement/Vibrator"/>
         <filteritem type="filepath" name="code/BasicFeature/Graphics/DisplaySync/screenshots/device/animator.jpg" desc="Provided by code/BasicFeature/Graphics/DisplaySync"/>
+		<filteritem type="filepath" name="code/Solutions/Social/GrapeSquare/feature/authorizedControl/src/main/resources/base/media/photo120.jpg" desc="Provided by code/Solutions/Social/GrapeSquare"/>
             </filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加License头"/>
