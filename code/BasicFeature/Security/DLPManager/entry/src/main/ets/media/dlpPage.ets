@@ -82,7 +82,7 @@ struct DlpPage {
   async getDlpPermission(): Promise<void> {
     dlpPermission.getDLPPermissionInfo().then( ( data: dlpPermission.DLPPermissionInfo ) => {
       Logger.info( TAG , 'getDLPPermissionInfo, result: ' + JSON.stringify( data ) );
-      promptAction.showToast( { message : 'permission：' + JSON.stringify( data ) , duration : 2000 } );
+      promptAction.showToast( { message : 'permission：' + decodeURIComponent(JSON.stringify(data)) , duration : 2000 } );
     } ).catch( ( err: BusinessError ) => {
       Logger.info( TAG , 'getDLPPermissionInfo: ' + JSON.stringify( err ) );
     } );
@@ -99,7 +99,7 @@ struct DlpPage {
       let msg = 'isDlpFile:' + true + ';inSandbox:' + this.inSandbox;
       dlpPermission.getDLPPermissionInfo().then( ( data: dlpPermission.DLPPermissionInfo ) => {
         Logger.info( TAG , 'getDLPPermissionInfo, result: ' + JSON.stringify( data ) );
-        promptAction.showToast( { message : msg + ' permission：' + JSON.stringify( data ) , duration : 2000 } );
+        promptAction.showToast( { message : msg + ' permission：' + decodeURIComponent(JSON.stringify(data)) , duration : 2000 } );
       } ).catch( ( err: BusinessError ) => {
         Logger.info( TAG , 'getDLPPermissionInfo: ' + JSON.stringify( err ) );
       } );
@@ -174,7 +174,7 @@ struct DlpPage {
     try {
       let res = dlpPermission.getOriginalFileName( fileName ); // 获取原始文件名
       Logger.info( TAG , 'OriginalFileName:' + res );
-      promptAction.showToast( { message : 'OriginalFileName:' + res , duration : 2000 } );
+      promptAction.showToast( { message : 'OriginalFileName:' + decodeURIComponent(res) , duration : 2000 } );
     } catch( err ) {
       Logger.error( TAG , 'getOriginalFileNameFunc error:' + (err as BusinessError).code + (err as BusinessError).message );
     }
@@ -227,7 +227,7 @@ struct DlpPage {
     Logger.info( TAG , "funcAbilityWant:" + JSON.stringify( wantInfo ) );
     this.dlpLinkUri = wantInfo.uri as string;
     this.dlpUri = (wantInfo.parameters?.dlpUri as DLPUriObj).name;
-    this.dlpName = (wantInfo.parameters?.fileAsset as DLPNameObj).displayName;
+    this.dlpName = decodeURIComponent((wantInfo.parameters?.fileAsset as DLPNameObj).displayName);
     this.dlpLinkName = (wantInfo.parameters?.linkFileName as DLPLinkNameObj).name;
 
     this.dlpContent = this.mediaFileUri.readFileContent( this.dlpLinkUri );

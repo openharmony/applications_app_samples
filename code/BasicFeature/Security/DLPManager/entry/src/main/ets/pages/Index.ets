@@ -217,7 +217,7 @@ export struct Index {
   async getDLPFile(): Promise<void> {
     try {
       let info: Array<dlpPermission.AccessedDLPFileInfo> = await dlpPermission.getDLPFileAccessRecords(); // 获取DLP访问列表
-      promptAction.showToast( { message : "getDLPFile：" + JSON.stringify( info ) , duration : 2000 } );
+      promptAction.showToast( { message : "getDLPFile：" + decodeURIComponent(JSON.stringify(info)) , duration : 2000 } );
       Logger.info( TAG , 'getDLPFile:' , JSON.stringify( info ) );
     } catch( err ) {
       Logger.error( TAG , 'getDLPFileAccessRecords error:' + (err as BusinessError).code + (err as BusinessError).message );
@@ -253,7 +253,7 @@ export struct Index {
     try {
       let res: Array<dlpPermission.RetentionSandboxInfo> = await dlpPermission.getRetentionSandboxList(); // 获取沙箱保留列表
       Logger.info( TAG , 'getRetentionSandboxList:' + JSON.stringify( res ) );
-      promptAction.showToast( { message : 'getRetentionSandboxList:' + JSON.stringify( res ) , duration : 2000 } );
+      promptAction.showToast( { message : 'getRetentionSandboxList:' + decodeURIComponent(JSON.stringify(res)) , duration : 2000 } );
     } catch( err ) {
       Logger.error( TAG , 'getRetentionSandboxList error:' + (err as BusinessError).code + (err as BusinessError).message );
     }
@@ -298,7 +298,7 @@ export struct Index {
     try {
       dlpPermission.on( 'openDLPFile' , ( info: dlpPermission.AccessedDLPFileInfo ) => {
         Logger.info( TAG , 'openDlpFile event:' + info.uri + info.lastOpenTime );
-        promptAction.showToast( { message : 'openDlpFile event:' + info.uri + info.lastOpenTime , duration : 2000 } );
+        promptAction.showToast( { message : 'openDlpFile event:' + decodeURIComponent(info.uri) + info.lastOpenTime , duration : 2000 } );
       } );
     } catch( err ) {
       Logger.error( TAG , 'onOpenDLPFile error:' + (err as BusinessError).code + (err as BusinessError).message );
@@ -351,7 +351,7 @@ export struct Index {
     try {
       await accountAbility.setOsAccountDistributedInfo( info );
       Logger.info( TAG , "login success;info:" + JSON.stringify( info ) )
-      promptAction.showToast( { message : "login success;info:" + JSON.stringify( info ) , duration : 2000 } )
+      promptAction.showToast( { message : "login success;info:" + decodeURIComponent(JSON.stringify(info)) , duration : 2000 } )
     } catch( err ) {
       Logger.error( TAG , "setOsAccountDistributedInfo LOGIN failed：" + err.code + err.message );
       return

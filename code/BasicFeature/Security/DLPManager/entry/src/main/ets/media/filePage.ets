@@ -58,7 +58,7 @@ struct FilePage {
   scroller: Scroller = new Scroller();
 
   getFileInfo(): void {
-    this.myFileName = (router.getParams() as myParams).fileName;
+    this.myFileName = decodeURIComponent((router.getParams() as myParams).fileName);
     this.myPath = (router.getParams() as myParams).myPath;
     this.myUri = (router.getParams() as myParams).myUri;
     this.fd = (router.getParams() as myParams).fd;
@@ -91,7 +91,7 @@ struct FilePage {
   async getDLPFile(): Promise<void> {
     try {
       let info: Array<dlpPermission.AccessedDLPFileInfo> = await dlpPermission.getDLPFileAccessRecords();
-      promptAction.showToast( { message : 'getDLPFile:' + JSON.stringify( info ) , duration : 2000 } );
+      promptAction.showToast( { message : 'getDLPFile:' + decodeURIComponent(JSON.stringify(info)) , duration : 2000 } );
       Logger.info( TAG , 'getDLPFile:' , JSON.stringify( info ) );
     } catch( err ) {
       Logger.error( TAG , 'getDLPFileAccessRecords error:' + (err as BusinessError).code + (err as BusinessError).message );
@@ -105,7 +105,7 @@ struct FilePage {
     try {
       let res: Array<dlpPermission.RetentionSandboxInfo> = await dlpPermission.getRetentionSandboxList(); // 获取沙箱保留列表
       Logger.info( TAG , 'res' , JSON.stringify( res ) );
-      promptAction.showToast( { message : 'getSandboxList:' + JSON.stringify( res ) , duration : 2000 } );
+      promptAction.showToast( { message : 'getSandboxList:' + decodeURIComponent(JSON.stringify(res)) , duration : 2000 } );
     } catch( err ) {
       Logger.error( TAG , 'getRetentionSandboxList error:' + (err as BusinessError).code + (err as BusinessError).message ); // 失败报错
     }
@@ -116,7 +116,7 @@ struct FilePage {
   async getDlpPermission(): Promise<void> {
     dlpPermission.getDLPPermissionInfo().then( ( data: dlpPermission.DLPPermissionInfo ) => {
       Logger.info( TAG , 'getDLPPermissionInfo, result: ' + JSON.stringify( data ) );
-      promptAction.showToast( { message : 'permission：' + JSON.stringify( data ) , duration : 2000 } );
+      promptAction.showToast( { message : 'permission：' + decodeURIComponent(JSON.stringify(data)) , duration : 2000 } );
     } ).catch( ( err: BusinessError ) => {
       Logger.info( TAG , 'getDLPPermissionInfo: ' + JSON.stringify( err ) );
     } );
@@ -131,7 +131,7 @@ struct FilePage {
       Logger.info( TAG , 'isDlpFile:' + this.isDLPFile );
       this.inSandbox = await dlpPermission.isInSandbox();
       let msg = 'isDlpFile:' + this.isDLPFile + ';inSandbox:' + this.inSandbox;
-      promptAction.showToast( { message : msg , duration : 2000 } );
+      promptAction.showToast( { message : decodeURIComponent(msg) , duration : 2000 } );
       this.getDLPSupported( fileSuffix );
     } catch( err ) {
       Logger.error( TAG , 'isDLPFile error:' + (err as BusinessError).code + (err as BusinessError).message );
