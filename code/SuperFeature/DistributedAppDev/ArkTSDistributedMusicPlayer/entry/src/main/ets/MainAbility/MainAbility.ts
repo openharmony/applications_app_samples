@@ -27,6 +27,19 @@ export default class MainAbility extends UIAbility {
     AppStorage.setOrCreate('remoteServiceExtensionConnectEvent', false);
     AppStorage.setOrCreate('musicPlay', false);
     AppStorage.setOrCreate('musicPause', false);
+  }
+
+  onDestroy() {
+    Logger.info(TAG, '[Demo] MainAbility onDestroy')
+    let exitMusicApp = AppStorage.get('exitMusicApp');
+    if (exitMusicApp !== undefined) {
+      AppStorage.setOrCreate('exitMusicApp',!exitMusicApp);
+    }
+  }
+
+  onWindowStageCreate(windowStage) {
+    // Main window is created, set main page for this ability
+    Logger.info(TAG, '[Demo] MainAbility onWindowStageCreate');
     try {
       let promise = window.getLastWindow(this.context);
       promise.then((data) => {
@@ -49,21 +62,7 @@ export default class MainAbility extends UIAbility {
     } catch (exception) {
       Logger.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
     }
-  }
-
-  onDestroy() {
-    Logger.info(TAG, '[Demo] MainAbility onDestroy')
-    let exitMusicApp = AppStorage.get('exitMusicApp');
-    if (exitMusicApp !== undefined) {
-      AppStorage.setOrCreate('exitMusicApp', !exitMusicApp);
-    }
-  }
-
-  onWindowStageCreate(windowStage) {
-    // Main window is created, set main page for this ability
-    Logger.info(TAG, '[Demo] MainAbility onWindowStageCreate')
-
-    windowStage.setUIContent(this.context, 'pages/Index', null)
+    windowStage.setUIContent(this.context, 'pages/Index', null);
   }
 
   onWindowStageDestroy() {
@@ -79,5 +78,10 @@ export default class MainAbility extends UIAbility {
   onBackground() {
     // Ability has back to background
     Logger.info(TAG, '[Demo] MainAbility onBackground')
+  }
+
+  onBackPressed() {
+    Logger.info(TAG, '[Demo] MainAbility onBackPressed');
+    return false;
   }
 };

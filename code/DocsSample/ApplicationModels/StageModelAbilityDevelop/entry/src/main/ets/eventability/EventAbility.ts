@@ -15,7 +15,6 @@
 
 import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import hilog from '@ohos.hilog';
-import Logger from '../utils/Logger';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import type window from '@ohos.window';
 import type Want from '@ohos.app.ability.Want';
@@ -52,7 +51,7 @@ export default class EventAbility extends UIAbility {
   }
 
   eventFunc(argOne: Context, argTwo: Context): void {
-    Logger.info(TAG, '1. ' + `${argOne}, ${argTwo}`);
+    hilog.info(DOMAIN_NUMBER, TAG, '1. ' + `${argOne}, ${argTwo}`);
     return;
   }
 };

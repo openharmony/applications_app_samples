@@ -16,8 +16,11 @@
 import type { ProcessDataCallback } from './i_idl_service_ext';
 import type { InsertDataToMapCallback } from './i_idl_service_ext';
 import type IIdlServiceExt from './i_idl_service_ext';
-import Logger from '../utils/Logger';
 import rpc from '@ohos.rpc';
+import hilog from '@ohos.hilog';
+
+const TAG: string = '[IdlServiceExtProxy]';
+const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class IdlServiceExtProxy implements IIdlServiceExt {
   static readonly COMMAND_PROCESS_DATA = 1;
@@ -45,7 +48,7 @@ export default class IdlServiceExtProxy implements IIdlServiceExt {
           let returnValueVar = result.reply.readInt();
           callback(errCodeVar, returnValueVar);
         } else {
-          Logger.info('sendMessageRequest failed, errCode: ' + result.errCode);
+          hilog.info(DOMAIN_NUMBER, TAG, 'sendMessageRequest failed, errCode: ' + result.errCode);
         }
       });
     } finally {
@@ -66,7 +69,7 @@ export default class IdlServiceExtProxy implements IIdlServiceExt {
           let errCodeVar = result.reply.readInt();
           callback(errCodeVar);
         } else {
-          Logger.info('sendMessageRequest failed, errCode: ' + result.errCode);
+          hilog.info(DOMAIN_NUMBER, TAG, 'sendMessageRequest failed, errCode: ' + result.errCode);
         }
       });
     } finally {

@@ -56,6 +56,7 @@ struct Page_UIAbilityComponentsBasicUsage {
     this.callbackId = applicationContext.on('environment', environmentCallback);
   }
 
+  // 页面展示
   build() {
     Column() {
       Row() {

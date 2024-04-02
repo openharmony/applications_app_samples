@@ -24,7 +24,6 @@ import deviceInfo from '@ohos.deviceInfo';
 const MIN_RECORD_SECOND = 5;
 const TOTAL_SECOND = 30;
 const INTERVAL_TIME = 1000;
-const RK_SERIAL = '1234567890';
 
 let context = getContext(this) as common.UIAbilityContext;
 let atManager = abilityAccessCtrl.createAtManager();
@@ -44,12 +43,12 @@ struct AudioRecording {
   private interval: number = 0;
   @State isRecordOver: boolean = false;
 
-  async aboutToAppear() {
+  aboutToAppear() {
     console.log('AudioRecording aboutToAppear');
-    await this.initResource();
+    this.initResource();
   }
 
-  async initResource() {
+  initResource() {
     try {
       this.recordState = 'init';
       this.date = this.getDate(1);
@@ -60,22 +59,22 @@ struct AudioRecording {
     }
   }
 
-  async releseResource() {
+  releseResource() {
     if (this.interval) {
       clearInterval(this.interval)
     }
-    testNapi.audioCapturerRelease();
+    if (this.recordState == 'started') {
+      this.capturerPause();
+    }
     this.recordState = 'init';
-    clearInterval(this.interval);
     testNapi.audioRendererRelease();
-    testNapi.closeFile();
   }
 
-  async aboutToDisappear() {
-    await this.releseResource();
+  aboutToDisappear() {
+    this.releseResource();
   }
 
-  async capturerStart() {
+  capturerStart() {
     try {
       testNapi.audioCapturerStart();
       this.recordSec = 0;
@@ -84,12 +83,11 @@ struct AudioRecording {
       this.interval = setInterval(async () => {
         if (this.recordSec >= TOTAL_SECOND) {
           clearInterval(this.interval);
-          await this.capturerStop();
+          this.capturerStop();
           return;
         }
         this.recordSec++;
         this.showTime = this.getTimesBySecond(this.recordSec);
-
       }, INTERVAL_TIME);
     } catch (err) {
       let error = err as BusinessError;
@@ -97,7 +95,7 @@ struct AudioRecording {
     }
   }
 
-  async renderCreate() {
+  renderCreate() {
     try {
       testNapi.audioRendererInit();
       this.renderState = testNapi.getRendererState();
@@ -107,7 +105,7 @@ struct AudioRecording {
     }
   }
 
-  async renderStart() {
+  renderStart() {
     try {
       testNapi.audioRendererStart();
       this.renderState = testNapi.getRendererState();
@@ -118,6 +116,14 @@ struct AudioRecording {
         let playNumber = Math.round(testNapi.getFramesWritten() * 4 / testNapi.getFileSize() * this.recordSec);
         this.playSec = (playNumber < 0 || this.playSec === this.recordSec) ? this.recordSec : playNumber;
         if (testNapi.getFileState()) {
+          testNapi.audioRendererStop();
+          testNapi.audioRendererRelease();
+          testNapi.closeFile();
+          if (testNapi.getFastState()) {
+            testNapi.audioRendererLowLatencyInit();
+          } else {
+            testNapi.audioRendererInit();
+          }
           clearInterval(this.interval);
           this.renderState = testNapi.getRendererState();
           return;
@@ -129,7 +135,7 @@ struct AudioRecording {
     }
   }
 
-  async renderPause() {
+  renderPause() {
     try {
       testNapi.audioRendererPause();
       this.renderState = testNapi.getRendererState();
@@ -140,7 +146,7 @@ struct AudioRecording {
     }
   }
 
-  async capturerContinue() {
+  capturerContinue() {
     try {
       testNapi.audioCapturerStart();
       this.recordState = 'continued';
@@ -148,7 +154,7 @@ struct AudioRecording {
       this.interval = setInterval(async () => {
         if (this.recordSec >= TOTAL_SECOND) {
           clearInterval(this.interval);
-          await this.capturerStop();
+          this.capturerStop();
           return;
         }
         this.recordSec++;
@@ -160,7 +166,7 @@ struct AudioRecording {
     }
   }
 
-  async capturerStop() {
+  capturerStop() {
     if (this.recordSec < MIN_RECORD_SECOND) {
       return;
     }
@@ -174,10 +180,10 @@ struct AudioRecording {
       console.error(`AudioRecording:audioCapturer stop err=${JSON.stringify(error)}`);
     }
     this.isRecordOver = true;
-    await this.renderCreate();
+    this.renderCreate();
   }
 
-  async capturerPause() {
+  capturerPause() {
     try {
       testNapi.audioCapturerPause();
       this.recordState = 'paused';
@@ -243,7 +249,6 @@ struct AudioRecording {
     Column() {
       Text(this.showTime).fontSize(21).fontWeight(500).margin({ bottom: 8 })
     }.width('100%').height(66).position({ y: 30 }).id('show_time_txt')
-
 
     Column() {
       Image($r('app.media.ic_recording')).width(56).height(56)
@@ -346,26 +351,21 @@ struct AudioRecording {
               .fontColor('#182431')
               .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
           }
-          Toggle({ type: ToggleType.Switch, isOn: this.audioCapturerLowLatency })
+          Toggle({ type: ToggleType.Switch, isOn: (this.audioCapturerLowLatency) })
             .margin({ right: 0 })
             .width(36)
             .height(20)
             .id('capturer_low_latency_btn')
             .onChange((isOn: boolean) => {
               if (isOn) {
-                let serial = deviceInfo.serial;
-                if (RK_SERIAL !== serial) {
-                  testNapi.audioCapturerLowLatencyInit();
-                } else {
-                  testNapi.audioCapturerInit();
-                }
+                testNapi.audioCapturerLowLatencyInit();
                 this.audioCapturerLowLatency = true;
               } else {
                 testNapi.audioCapturerInit();
                 this.audioCapturerLowLatency = false;
               }
             })
-            .enabled(this.recordState === 'init')
+            .enabled(this.recordState === 'init' && deviceInfo.deviceType === 'phone')
         }.width('100%').height(24).justifyContent(FlexAlign.SpaceBetween).margin({ top: 16 })
       }
       .width('100%')
@@ -383,26 +383,21 @@ struct AudioRecording {
               .fontWeight(500)
               .fontColor('#182431')
               .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
-            Toggle({ type: ToggleType.Switch, isOn: this.audioRendererLowLatency })
+            Toggle({ type: ToggleType.Switch, isOn: (this.audioRendererLowLatency) })
               .margin({ right: 0 })
               .width(36)
               .height(20)
               .id('renderer_low_latency_btn')
               .onChange((isOn: boolean) => {
                 if (isOn) {
-                  let serial = deviceInfo.serial;
-                  if (RK_SERIAL !== serial) {
-                    testNapi.audioRendererLowLatencyInit();
-                  } else {
-                    testNapi.audioRendererInit();
-                  }
+                  testNapi.audioRendererLowLatencyInit();
                   this.audioRendererLowLatency = true;
                 } else {
                   testNapi.audioRendererInit();
                   this.audioRendererLowLatency = false;
                 }
               })
-              .enabled(this.renderState === audio.AudioState.STATE_PREPARED)
+              .enabled(this.renderState === 1 && deviceInfo.deviceType === 'phone')
           }
           .width('100%').height(24).justifyContent(FlexAlign.SpaceBetween).margin({ top: 16 })
         }

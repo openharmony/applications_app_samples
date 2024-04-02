@@ -18,7 +18,11 @@ import image from '@ohos.multimedia.image';
 import notificationManager from '@ohos.notificationManager';
 import wantAgent from '@ohos.app.ability.wantAgent';
 import { WantAgent } from '@ohos.app.ability.wantAgent'
-import { logger } from '../util/Logger';
+import hilog from '@ohos.hilog';
+import resourceManager from '@ohos.resourceManager';
+
+const TAG: string = '[PublishOperation]';
+const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class PublishOperation {
   private context: Context;
@@ -28,10 +32,18 @@ export default class PublishOperation {
   }
 
   enableNotification = async () => {
-    notificationManager.requestEnableNotification().then(() => {
-      logger.info(`[ANS] requestEnableNotification success`);
+    notificationManager.isNotificationEnabled().then((data: boolean) => {
+      hilog.info(DOMAIN_NUMBER, TAG, 'isNotificationEnabled success, data: ' + JSON.stringify(data));
+      if(!data){
+        notificationManager.requestEnableNotification().then(() => {
+          hilog.info(DOMAIN_NUMBER, TAG, `[ANS] requestEnableNotification success`);
+        }).catch((err:Base.BusinessError) => {
+          hilog.error(DOMAIN_NUMBER, TAG,
+            `[ANS] requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
+        });
+      }
     }).catch((err: Base.BusinessError) => {
-      logger.error(`[ANS] requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
+      hilog.error(DOMAIN_NUMBER, TAG, `isNotificationEnabled fail: ${JSON.stringify(err)}`);
     });
   }
   publishBasic = async () => {
@@ -50,10 +62,11 @@ export default class PublishOperation {
     // 发布通知
     notificationManager.publish(notificationRequest, (err: Base.BusinessError) => {
       if (err) {
-        logger.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+        hilog.error(DOMAIN_NUMBER, TAG,
+          `Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
         return;
       }
-      logger.info('Succeeded in publishing notification.');
+      hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in publishing notification.');
     });
   }
   publishLong = async () => {
@@ -75,10 +88,11 @@ export default class PublishOperation {
     // 发布通知
     notificationManager.publish(notificationRequest, (err: Base.BusinessError) => {
       if (err) {
-        logger.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+        hilog.error(DOMAIN_NUMBER, TAG,
+          `Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
         return;
       }
-      logger.info('Succeeded in publishing notification.');
+      hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in publishing notification.');
     });
   }
   publishMultiLine = async () => {
@@ -99,15 +113,19 @@ export default class PublishOperation {
     // 发布通知
     notificationManager.publish(notificationRequest, (err: Base.BusinessError) => {
       if (err) {
-        logger.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+        hilog.error(DOMAIN_NUMBER, TAG,
+          `Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
         return;
       }
-      logger.info('Succeeded in publishing notification.');
+      hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in publishing notification.');
     });
   }
+
   publishPicture = async () => {
-    let imageArray = await this.context.resourceManager.getMediaContent($r('app.media.pic').id);
-    let imageResource = image.createImageSource(imageArray.buffer as ArrayBuffer);
+    const resourceMgr: resourceManager.ResourceManager = this.context.resourceManager;
+    let imageArray: Uint8Array = await resourceMgr.getMediaContent($r('app.media.pic').id);
+    const arraybuffer: ArrayBuffer = imageArray.buffer as ArrayBuffer;
+    let imageResource = image.createImageSource(arraybuffer);
     let imagePixelMap = await imageResource.createPixelMap();
 
     if (imagePixelMap !== undefined) {
@@ -129,17 +147,18 @@ export default class PublishOperation {
       // 发布通知
       notificationManager.publish(notificationRequest, (err: Base.BusinessError) => {
         if (err) {
-          logger.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+          hilog.error(DOMAIN_NUMBER, TAG,
+            `Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
         }
-        logger.info('Succeeded in publishing notification.');
+        hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in publishing notification.');
       });
     }
   }
   publishProgressBar = async () => {
     notificationManager.isSupportTemplate('downloadTemplate').then((data: boolean) => {
-      logger.info(`[ANS] isSupportTemplate success`);
-      logger.info('Succeeded in supporting download template notification.');
+      hilog.info(DOMAIN_NUMBER, TAG, `[ANS] isSupportTemplate success`);
+      hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in supporting download template notification.');
       if (data == true) { // data的值为true表示支持支持downloadTemplate模板类通知，false表示不支持
         let notificationRequest: notificationManager.NotificationRequest = {
           id: 5,
@@ -162,14 +181,16 @@ export default class PublishOperation {
         // 发布通知
         notificationManager.publish(notificationRequest, (err: Base.BusinessError) => {
           if (err) {
-            logger.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+            hilog.error(DOMAIN_NUMBER, TAG,
+              `Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
             return;
           }
-          logger.info('Succeeded in publishing notification.');
+          hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in publishing notification.');
         });
       }
     }).catch((err: Base.BusinessError) => {
-      logger.error(`Failed to support download template notification. Code is ${err.code}, message is ${err.message}`);
+      hilog.error(DOMAIN_NUMBER, TAG,
+        `Failed to support download template notification. Code is ${err.code}, message is ${err.message}`);
     });
   }
   publishWantAgentStartAbility = async () => {
@@ -194,10 +215,10 @@ export default class PublishOperation {
     // 创建WantAgent
     wantAgent.getWantAgent(wantAgentInfo, (err: Base.BusinessError, data: WantAgent) => {
       if (err) {
-        logger.error(`Failed to get want agent. Code is ${err.code}, message is ${err.message}`);
+        hilog.error(DOMAIN_NUMBER, TAG, `Failed to get want agent. Code is ${err.code}, message is ${err.message}`);
         return;
       }
-      logger.info('Succeeded in getting want agent.');
+      hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in getting want agent.');
       wantAgentObj = data;
       this.publishWantAgent(wantAgentObj);
     });
@@ -220,10 +241,10 @@ export default class PublishOperation {
     // 创建WantAgent
     wantAgent.getWantAgent(wantAgentInfo, (err: Base.BusinessError, data: WantAgent) => {
       if (err) {
-        logger.error(`Failed to get want agent. Code is ${err.code}, message is ${err.message}`);
+        hilog.error(DOMAIN_NUMBER, TAG, `Failed to get want agent. Code is ${err.code}, message is ${err.message}`);
         return;
       }
-      logger.info('Succeeded in getting want agent.');
+      hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in getting want agent.');
       wantAgentObj = data;
       this.publishWantAgent(wantAgentObj);
     });
@@ -246,18 +267,19 @@ export default class PublishOperation {
 
     notificationManager.publish(notificationRequest, (err: Base.BusinessError) => {
       if (err) {
-        logger.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+        hilog.error(DOMAIN_NUMBER, TAG,
+          `Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
         return;
       }
-      logger.info('Succeeded in publishing notification.');
+      hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in publishing notification.');
     });
   }
   setBadgeNumberCallback = async (err: Base.BusinessError) => {
     if (err) {
-      logger.error(`Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
+      hilog.error(DOMAIN_NUMBER, TAG, `Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
       return;
     }
-    logger.info(`Succeeded in setting badge number.`);
+    hilog.info(DOMAIN_NUMBER, TAG, `Succeeded in setting badge number.`);
   }
   setBadgeNumber = async () => {
     let badgeNumber = 9;

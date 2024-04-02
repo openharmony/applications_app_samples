@@ -18,26 +18,27 @@ import Base from '@ohos.base';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import window from '@ohos.window';
-import { logger } from '../util/Logger';
+import hilog from '@ohos.hilog';
 import { subscribeOperations } from '../subscribe/SubscribeOperation';
 
 const TAG: string = '[EntryAbility]';
+const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    logger.info(TAG, 'Ability onCreate');
+    hilog.info(DOMAIN_NUMBER, TAG, 'Ability onCreate');
   }
 
   onDestroy() {
-    logger.info(TAG, 'Ability onDestroy');
+    hilog.info(DOMAIN_NUMBER, TAG, 'Ability onDestroy');
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
-    logger.info(TAG, 'Ability onWindowStageCreate');
+    hilog.info(DOMAIN_NUMBER, TAG, 'Ability onWindowStageCreate');
     windowStage.loadContent('pages/Index', (err: Base.BusinessError) => {
       if (err.code) {
-        logger.info(TAG, 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        hilog.info(DOMAIN_NUMBER, TAG, 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
       }
     });
@@ -45,17 +46,17 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageDestroy() {
     // Main window is destroyed, release UI related resources
-    logger.info(TAG, 'Ability onWindowStageDestroy');
+    hilog.info(DOMAIN_NUMBER, TAG, 'Ability onWindowStageDestroy');
   }
 
   onForeground() {
     // Ability has brought to foreground
-    logger.info(TAG, 'Ability onForeground');
+    hilog.info(DOMAIN_NUMBER, TAG, 'Ability onForeground');
     subscribeOperations.createSubscriber();
   }
 
   onBackground() {
     // Ability has back to background
-    logger.info(TAG, 'Ability onBackground');
+    hilog.info(DOMAIN_NUMBER, TAG, 'Ability onBackground');
   }
 }

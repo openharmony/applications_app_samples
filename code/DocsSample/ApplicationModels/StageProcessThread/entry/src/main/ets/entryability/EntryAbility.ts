@@ -21,8 +21,10 @@ import type { BusinessError } from '@ohos.base';
 import image from '@ohos.multimedia.image';
 import type resourceManager from '@ohos.resourceManager';
 import type window from '@ohos.window';
-import Logger from '../utils/Logger';
+import hilog from '@ohos.hilog';
+import commonEventManager from '@ohos.commonEventManager';
 
+const DOMAIN_NUMBER: number = 0xFF00;
 const TAG: string = 'EntryAbility';
 
 export default class EntryAbility extends UIAbility {
@@ -30,45 +32,56 @@ export default class EntryAbility extends UIAbility {
     let context: common.UIAbilityContext = this.context; // UIAbilityContext
     // 设置任务快照的名称
     context.setMissionLabel('test').then(() => {
-      Logger.info(TAG, 'Succeeded in seting mission label.');
+      hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in seting mission label.');
     }).catch((err: BusinessError) => {
-      Logger.error(TAG, `Failed to set mission label. Code is ${err.code}, message is ${err.message}`);
+      hilog.info(DOMAIN_NUMBER, TAG, `Failed to set mission label. Code is ${err.code}, message is ${err.message}`);
     });
 
     // 获取resourceManager资源管理
     const resourceMgr: resourceManager.ResourceManager = this.context.resourceManager;
     resourceMgr.getRawFileContent('test.jpg').then((data) => {
-      Logger.info(TAG, 'data.length = ' + data.byteLength);
+      hilog.info(DOMAIN_NUMBER, TAG, 'data.length = ' + data.byteLength);
       // 获取图片的ArrayBuffer
       const imageSource: image.ImageSource = image.createImageSource(data.buffer);
       imageSource.createPixelMap().then((pixelMap) => {
         // 设置任务快照的图标
         context.setMissionIcon(pixelMap, (err) => {
           if (err.code) {
-            Logger.error(TAG, `Failed to set mission icon. Code is ${err.code}, message is ${err.message}`);
+            hilog.error(DOMAIN_NUMBER, TAG, `Failed to set mission icon. Code is ${err.code}, message is ${err.message}`);
           } else {
-            Logger.info(TAG, 'Success to set mission icon.');
+            hilog.info(DOMAIN_NUMBER, TAG, 'Success to set mission icon.');
           }
         })
         pixelMap.release();
       }).catch((error: BusinessError) => {
-        Logger.error(TAG, 'setMissionIcon failed: ' + JSON.stringify(error));
+        hilog.error(DOMAIN_NUMBER, TAG, 'setMissionIcon failed: ' + JSON.stringify(error));
       });
     }).catch((error: BusinessError) => {
-      Logger.error(TAG, 'getRawFileContent failed: ' + JSON.stringify(error));
+      hilog.error(DOMAIN_NUMBER, TAG, 'getRawFileContent failed: ' + JSON.stringify(error));
     });
-    Logger.info(TAG, 'Ability onCreate');
+    hilog.info(DOMAIN_NUMBER, TAG, 'Ability onCreate');
   }
+
+  // onDestroy():void {
+  //   commonEventManager.removeStickyCommonEvent('usual.event.SCREEN_OFF', (err: Base.BusinessError) => {
+  //     // sticky_event粘性公共事件名
+  //     if (err) {
+  //       hilog.error(DOMAIN_NUMBER, TAG, `Failed to remove sticky common event. Code is ${err.code}, message is ${err.message}`);
+  //       return;
+  //     }
+  //     hilog.info(DOMAIN_NUMBER, TAG, `Succeeded in removeing sticky event.`);
+  //   });
+  // }
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability
-    Logger.info(TAG, 'Ability onWindowStageCreate');
+    hilog.info(DOMAIN_NUMBER, TAG, 'Ability onWindowStageCreate');
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
-        Logger.error(TAG, 'Failed to load the content. Cause:', JSON.stringify(err) ?? '');
+        hilog.error(DOMAIN_NUMBER, TAG, 'Failed to load the content. Cause:', JSON.stringify(err) ?? '');
         return;
       }
-      Logger.info(TAG, 'Succeeded in loading the content. Data:', JSON.stringify(data) ?? '');
+      hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in loading the content. Data:', JSON.stringify(data) ?? '');
     });
   }
 }

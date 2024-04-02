@@ -3,6 +3,7 @@
     "pages/Index",
     "pages/CustomDrawDisplaySync",
     "pages/PropertyAnimationDisplaySync",
-    "pages/XComponentDisplaySync"
+    "pages/XComponentDisplaySync",
+    "pages/AnimatorDisplaySync"
   ]
 }

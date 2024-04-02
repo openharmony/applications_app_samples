@@ -37,7 +37,7 @@ struct Index {
             hilog.info(0x0000, 'developTag', '%{public}s', 'Succeeded in jumping to the second page.');
           }).catch((err: BusinessError) => {
             hilog.error(0x0000, 'developTag', 'Failed to jump to the second page: %{public}s',
-                        JSON.stringify(err) ?? '');
+              JSON.stringify(err) ?? '');
           })
         }).width('70%').fontSize(45).margin(16)
         Button('Stop VPN').onClick(() => {
@@ -46,7 +46,7 @@ struct Index {
             hilog.info(0x0000, 'developTag', '%{public}s', 'Succeeded in jumping to the second page.');
           }).catch((err: BusinessError) => {
             hilog.error(0x0000, 'developTag', 'Failed to jump to the second page: %{public}s',
-                        JSON.stringify(err) ?? '');
+              JSON.stringify(err) ?? '');
           })
         }).width('70%').fontSize(45)
       }.width('100%')

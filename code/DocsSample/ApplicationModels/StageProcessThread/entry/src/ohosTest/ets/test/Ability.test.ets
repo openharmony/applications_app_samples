@@ -18,10 +18,11 @@ import Want from '@ohos.app.ability.Want';
 import Base from '@ohos.base';
 import { describe, it, expect } from '@ohos/hypium';
 import { Driver, ON } from '@ohos.UiTest';
-import Logger from '../utils/Logger';
+import hilog from '@ohos.hilog';
 
 const BUNDLE = 'StageProcessThread_';
 const TAG = 'abilityTest';
+const DOMAIN_NUMBER: number = 0xFF00;
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
 async function getResourceString(resource: Resource): Promise<string> {
@@ -46,7 +47,7 @@ export default function abilityTest() {
      * @tc.desc: 测试Ability是否被成功拉起
      */
     it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
-      Logger.info(TAG, BUNDLE + 'StartAbility_001, begin');
+      hilog.info(DOMAIN_NUMBER, TAG, BUNDLE + 'StartAbility_001, begin');
       // 启动时钟应用
       let want: Want = {
         bundleName: 'ohos.samples.etsclock',
@@ -54,7 +55,7 @@ export default function abilityTest() {
       };
 
       abilityDelegator.startAbility(want, (err: Base.BusinessError) => {
-        Logger.info(TAG, BUNDLE + 'StartAbility_001 get err ' + JSON.stringify(err));
+        hilog.info(DOMAIN_NUMBER, TAG, BUNDLE + 'StartAbility_001 get err ' + JSON.stringify(err));
         expect(err).assertNull();
       });
       await sleep(2000);
@@ -65,11 +66,11 @@ export default function abilityTest() {
         abilityName: 'EntryAbility'
       };
       abilityDelegator.startAbility(stageWant, (err: Base.BusinessError) => {
-        Logger.info(TAG, BUNDLE + 'StartAbility_001 get err ' + JSON.stringify(err));
+        hilog.info(DOMAIN_NUMBER, TAG, BUNDLE + 'StartAbility_001 get err ' + JSON.stringify(err));
         expect(err).assertNull();
       })
       await sleep(2000);
-      Logger.info(TAG, BUNDLE + 'StartAbility_001 end');
+      hilog.info(DOMAIN_NUMBER, TAG, BUNDLE + 'StartAbility_001 end');
       done();
     })
 
@@ -82,7 +83,7 @@ export default function abilityTest() {
      * @tc.desc: 测试进程模型开发指导相关功能
      */
     it(BUNDLE + 'ProcessModelTest_001', 0, async (done: Function) => {
-      Logger.info(TAG, BUNDLE + 'ProcessModelTest_001, begin');
+      hilog.info(DOMAIN_NUMBER, TAG, BUNDLE + 'ProcessModelTest_001, begin');
       // 跳转至‘进程模型开发指导界面’
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.process_button'))));
       let button = await driver.findComponent(ON.text(await getResourceString($r('app.string.process_button'))));
@@ -101,7 +102,7 @@ export default function abilityTest() {
         expect(result != null).assertTrue();
       }
       await sleep(1500);
-
+      
       // 测试发布灭屏公共事件
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.publish_noinfo_button'))));
       button = await driver.findComponent(ON.text(await getResourceString($r('app.string.publish_noinfo_button'))));
@@ -211,7 +212,7 @@ export default function abilityTest() {
       // 返回至主页
       await driver.pressBack();
       await sleep(500);
-      Logger.info(TAG, BUNDLE + 'ProcessModelTest_001, end');
+      hilog.info(DOMAIN_NUMBER, TAG, BUNDLE + 'ProcessModelTest_001, end');
       done();
     })
 
@@ -224,7 +225,7 @@ export default function abilityTest() {
      * @tc.desc: 测试线程模型开发指导相关功能
      */
     it(BUNDLE + 'ThreadModelTest_001', 0, async (done: Function) => {
-      Logger.info(TAG, BUNDLE + 'ThreadModelTest_001, begin');
+      hilog.info(DOMAIN_NUMBER, TAG, BUNDLE + 'ThreadModelTest_001, begin');
 
       // 跳转至‘线程模型开发指导界面’
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.thread_button'))));
@@ -270,7 +271,7 @@ export default function abilityTest() {
       // 返回至主页
       await driver.pressBack();
       await sleep(500);
-      Logger.info(TAG, BUNDLE + 'ThreadModelTest_001, end');
+      hilog.info(DOMAIN_NUMBER, TAG, BUNDLE + 'ThreadModelTest_001, end');
       done();
     })
 
@@ -283,7 +284,7 @@ export default function abilityTest() {
      * @tc.desc: 测试任务管理开发指导相关功能
      */
     it(BUNDLE + 'TaskManagerTest_001', 0, async (done: Function) => {
-      Logger.info(TAG, BUNDLE + 'TaskManagerTest_001, begin');
+      hilog.info(DOMAIN_NUMBER, TAG, BUNDLE + 'TaskManagerTest_001, begin');
 
       // 跳转至‘任务管理开发指导界面’
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.taskmanager_button'))));
@@ -417,7 +418,7 @@ export default function abilityTest() {
         let result = await driver.findComponent(ON.text(await getResourceString($r('app.string.unregister_success_toast'))));
         expect(result != null).assertTrue();
       }
-      Logger.info(TAG, BUNDLE + 'TaskManagerTest_001, end');
+      hilog.info(DOMAIN_NUMBER, TAG, BUNDLE + 'TaskManagerTest_001, end');
       done();
     })
   })

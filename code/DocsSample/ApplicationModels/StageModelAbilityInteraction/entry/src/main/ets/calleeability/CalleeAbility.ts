@@ -17,7 +17,6 @@ import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import type Want from '@ohos.app.ability.Want';
 import hilog from '@ohos.hilog';
-import Logger from '../utils/Logger';
 import type rpc from '@ohos.rpc';
 import type window from '@ohos.window';
 import type { Caller } from '@ohos.app.ability.UIAbility';
@@ -85,7 +84,7 @@ export default class CalleeAbility extends UIAbility {
         await this.caller.call(MSG_SEND_METHOD, msg);
       }
     } catch (error) {
-      Logger.info(`caller call failed with ${error}`);
+      hilog.info(DOMAIN_NUMBER, TAG, `caller call failed with ${error}`);
     };
   };
 
@@ -94,14 +93,14 @@ export default class CalleeAbility extends UIAbility {
       let msg: MyParcelable = new MyParcelable(1, originMsg);
       if (this.caller) {
         const data = await this.caller.callWithResult(MSG_SEND_METHOD, msg);
-        Logger.info('caller callWithResult succeed');
+        hilog.info(DOMAIN_NUMBER, TAG, 'caller callWithResult succeed');
         let result: MyParcelable = new MyParcelable(0, '');
         data.readParcelable(result);
         backMsg = result.str;
-        Logger.info(`caller result is [${result.num}, ${result.str}]`);
+        hilog.info(DOMAIN_NUMBER, TAG, `caller result is [${result.num}, ${result.str}]`);
       }
     } catch (error) {
-      Logger.info(`caller callWithResult failed with ${error}`);
+      hilog.info(DOMAIN_NUMBER, TAG, `caller callWithResult failed with ${error}`);
     };
   };
 
@@ -111,9 +110,9 @@ export default class CalleeAbility extends UIAbility {
         this.caller.release();
         this.caller = undefined;
       }
-      Logger.info('caller release succeed');
+      hilog.info(DOMAIN_NUMBER, TAG, 'caller release succeed');
     } catch (error) {
-      Logger.info(`caller release failed with ${error}`);
+      hilog.info(DOMAIN_NUMBER, TAG, `caller release failed with ${error}`);
     };
   };
 

@@ -22,12 +22,12 @@ import deviceInfo from '@ohos.deviceInfo';
 
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 let manager: resourceManager.ResourceManager;
+const driver = Driver.create();
 
 export default function abilityTest() {
   const TAG = '[Sample_Audio]';
-  const BUNDLE = 'audio_';
-  const RK_SERIAL = '1234567890';
-  let driver: Driver;
+  // const BUNDLE = 'audio_';
+  const DEVICE_TYPE = 'phone';
 
   describe('ActsAbilityTest', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
@@ -53,8 +53,8 @@ export default function abilityTest() {
     /**
      * StartAbility
      */
-    it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
-      Logger.info(TAG, BUNDLE + 'StartAbility_001 begin');
+    it('StartAbility_001', 0, async (done: Function) => {
+      Logger.info(TAG, 'StartAbility_001 begin');
       try {
         await abilityDelegator.startAbility({
           bundleName: 'com.samples.audio',
@@ -65,15 +65,14 @@ export default function abilityTest() {
         Logger.info(TAG, `StartAbility_001 exception = ${JSON.stringify(exception)}`);
         expect().assertFail();
       }
-      Logger.info(TAG, BUNDLE + 'StartAbility_001 end');
+      Logger.info(TAG, 'StartAbility_001 end');
     })
 
     /**
      * Allow Microsoft Permission
      */
-    it(BUNDLE + '_Permission', 0, async () => {
-      driver = Driver.create();
-      Logger.info(TAG, BUNDLE + '_Permission begin');
+    it('_Permission', 0, async () => {
+      Logger.info(TAG, '_Permission begin');
       await driver.delayMs(3000);
       let ability = abilityDelegator.getAppContext();
       manager = ability.resourceManager;
@@ -85,51 +84,51 @@ export default function abilityTest() {
           await driver.delayMs(500);
         }
       }
-      Logger.info(TAG, BUNDLE + '_Permission end');
+      Logger.info(TAG, '_Permission end');
     })
 
     /**
      * [Home] display Home page
      */
-    it(BUNDLE + 'RecordAndPlayHome', 0, async (done: Function) => {
-      Logger.info(TAG, BUNDLE + 'RecordAndPlayHome begin');
+    it('RecordAndPlayHome', 0, async (done: Function) => {
+      Logger.info(TAG, 'RecordAndPlayHome begin');
       try {
         let audioCapturerComponent = await driver.findComponent(ON.id('record_play_card'));
         await audioCapturerComponent.click();
         await driver.delayMs(1000);
       } catch (err) {
-        Logger.error(TAG, BUNDLE + 'RecordAndPlayHome:' + JSON.stringify(err));
+        Logger.error(TAG, 'RecordAndPlayHome:' + JSON.stringify(err));
         expect(false).assertTrue();
       }
-      Logger.info(TAG, BUNDLE + 'RecordAndPlayHome end');
+      Logger.info(TAG, 'RecordAndPlayHome end');
       done();
     })
 
     /**
      * [LowLatencyCapturer] display LowLatencyCapturer page,and click open lowLatency play btn
      */
-    it(BUNDLE + 'OpenLowLatencyPlay', 0, async (done: Function) => {
-      Logger.info(TAG, BUNDLE + 'OpenLowLatencyPlay begin');
-      let serial = deviceInfo.serial;
-      if (RK_SERIAL !== serial) {
+    it('OpenLowLatencyPlay', 0, async (done: Function) => {
+      Logger.info(TAG, 'OpenLowLatencyPlay begin');
+      let deviceType = deviceInfo.deviceType;
+      if (DEVICE_TYPE === deviceType) {
         try {
           let startRecordBtnComponent = await driver.findComponent(ON.id('capturer_low_latency_btn'));
           await startRecordBtnComponent.click();
           await driver.delayMs(2000);
         } catch (err) {
-          Logger.error(TAG, BUNDLE + 'OpenLowLatencyPlay:' + JSON.stringify(err));
+          Logger.error(TAG, 'OpenLowLatencyPlay:' + JSON.stringify(err));
           expect(false).assertTrue();
         }
       }
-      Logger.info(TAG, BUNDLE + 'OpenLowLatencyPlay end');
+      Logger.info(TAG, 'OpenLowLatencyPlay end');
       done();
     })
 
     /**
      * [LowLatencyCapturer] display LowLatencyCapturer page,and click start record btn
      */
-    it(BUNDLE + 'LowLatencyCapturer_001', 0, async (done: Function) => {
-      Logger.info(TAG, BUNDLE + 'LowLatencyCapturer_001 begin');
+    it('LowLatencyCapturer_001', 0, async (done: Function) => {
+      Logger.info(TAG, 'LowLatencyCapturer_001 begin');
       try {
         let startRecordBtnComponent = await driver.findComponent(ON.id('start_record_btn'));
         await startRecordBtnComponent.click();
@@ -140,18 +139,18 @@ export default function abilityTest() {
         startRecordBtnComponent = await driver.findComponent(ON.id('start_record_btn'));
         expect(startRecordBtnComponent === null).assertTrue();
       } catch (err) {
-        Logger.error(TAG, BUNDLE + 'LowLatencyCapturer_001:' + JSON.stringify(err));
+        Logger.error(TAG, 'LowLatencyCapturer_001:' + JSON.stringify(err));
         expect(false).assertTrue();
       }
-      Logger.info(TAG, BUNDLE + 'LowLatencyCapturer_001 end');
+      Logger.info(TAG, 'LowLatencyCapturer_001 end');
       done();
     })
 
     /**
      * [LowLatencyCapturer] display LowLatencyCapturer page,and click pause record btn
      */
-    it(BUNDLE + 'LowLatencyCapturer_002', 0, async (done: Function) => {
-      Logger.info(TAG, BUNDLE + 'LowLatencyCapturer_002 begin');
+    it('LowLatencyCapturer_002', 0, async (done: Function) => {
+      Logger.info(TAG, 'LowLatencyCapturer_002 begin');
       try {
         let pauseRecordBtnComponent = await driver.findComponent(ON.id('pause_record_btn'));
         await pauseRecordBtnComponent.click();
@@ -161,18 +160,18 @@ export default function abilityTest() {
         console.log(`pauseRecordBtnComponent=${JSON.stringify(pauseRecordBtnComponent)}`);
         expect(pauseRecordBtnComponent === null).assertTrue();
       } catch (err) {
-        Logger.error(TAG, BUNDLE + 'LowLatencyCapturer_002:' + JSON.stringify(err));
+        Logger.error(TAG, 'LowLatencyCapturer_002:' + JSON.stringify(err));
         expect(false).assertTrue();
       }
-      Logger.info(TAG, BUNDLE + 'LowLatencyCapturer_002 end');
+      Logger.info(TAG, 'LowLatencyCapturer_002 end');
       done();
     })
 
     /**
      * [LowLatencyCapturer] display LowLatencyCapturer page,and click continue record btn
      */
-    it(BUNDLE + 'LowLatencyCapturer_003', 0, async (done: Function) => {
-      Logger.info(TAG, BUNDLE + 'LowLatencyCapturer_003 begin');
+    it('LowLatencyCapturer_003', 0, async (done: Function) => {
+      Logger.info(TAG, 'LowLatencyCapturer_003 begin');
       try {
         let continueRecordBtnComponent = await driver.findComponent(ON.id('continue_record_btn'));
         await continueRecordBtnComponent.click();
@@ -181,10 +180,10 @@ export default function abilityTest() {
         continueRecordBtnComponent = await driver.findComponent(ON.id('continue_record_btn'));
         expect(continueRecordBtnComponent === null).assertTrue();
       } catch (err) {
-        Logger.error(TAG, BUNDLE + 'LowLatencyCapturer_003:' + JSON.stringify(err));
+        Logger.error(TAG, 'LowLatencyCapturer_003:' + JSON.stringify(err));
         expect(false).assertTrue();
       }
-      Logger.info(TAG, BUNDLE + 'LowLatencyCapturer_003 end');
+      Logger.info(TAG, 'LowLatencyCapturer_003 end');
       done();
     })
 
@@ -192,8 +191,8 @@ export default function abilityTest() {
      * [LowLatencyCapturer] display LowLatencyCapturer page,and click stop record btn
      *  show result
      */
-    it(BUNDLE + 'LowLatencyCapturer_004', 0, async (done: Function) => {
-      Logger.info(TAG, BUNDLE + 'LowLatencyCapturer_004 begin');
+    it('LowLatencyCapturer_004', 0, async (done: Function) => {
+      Logger.info(TAG, 'LowLatencyCapturer_004 begin');
       try {
         let stopRecordBtnComponent = await driver.findComponent(ON.id('stop_record_btn'));
         await stopRecordBtnComponent.click();
@@ -204,30 +203,30 @@ export default function abilityTest() {
         console.log('stopRecordBtnComponent==' + JSON.stringify(stopRecordBtnComponent));
         expect(stopRecordBtnComponent === null).assertTrue();
       } catch (err) {
-        Logger.error(TAG, BUNDLE + 'LowLatencyCapturer_004:' + JSON.stringify(err));
+        Logger.error(TAG, 'LowLatencyCapturer_004:' + JSON.stringify(err));
         expect(false).assertTrue();
       }
-      Logger.info(TAG, BUNDLE + 'LowLatencyCapturer_004 end');
+      Logger.info(TAG, 'LowLatencyCapturer_004 end');
       done();
     })
 
     /**
      * [LowLatencyRendererOpen] display LowLatencyCapturer page,and click open lowLatency renderer btn
      */
-    it(BUNDLE + 'LowLatencyRendererOpen', 0, async (done: Function) => {
-      Logger.info(TAG, BUNDLE + 'LowLatencyRendererOpen begin');
-      let serial = deviceInfo.serial;
-      if (RK_SERIAL !== serial) {
+    it('LowLatencyRendererOpen', 0, async (done: Function) => {
+      Logger.info(TAG, 'LowLatencyRendererOpen begin');
+      let deviceType = deviceInfo.deviceType;
+      if (DEVICE_TYPE === deviceType) {
         try {
           let startRecordBtnComponent = await driver.findComponent(ON.id('renderer_low_latency_btn'));
           await startRecordBtnComponent.click();
           await driver.delayMs(2000);
         } catch (err) {
-          Logger.error(TAG, BUNDLE + 'LowLatencyRendererOpen:' + JSON.stringify(err));
+          Logger.error(TAG, 'LowLatencyRendererOpen:' + JSON.stringify(err));
           expect(false).assertTrue();
         }
       }
-      Logger.info(TAG, BUNDLE + 'LowLatencyRendererOpen end');
+      Logger.info(TAG, 'LowLatencyRendererOpen end');
       done();
     })
 
@@ -235,8 +234,8 @@ export default function abilityTest() {
      * [LowLatencyRenderer] click record_player to play and pause
      *  play->pause->play->pause
      */
-    it(BUNDLE + 'LowLatencyRenderer', 0, async (done: Function) => {
-      Logger.info(TAG, BUNDLE + 'LowLatencyRenderer begin');
+    it('LowLatencyRenderer', 0, async (done: Function) => {
+      Logger.info(TAG, 'LowLatencyRenderer begin');
       try {
         let player_btn = await driver.findComponent(ON.id('player_btn'));
         await player_btn.click();
@@ -249,10 +248,10 @@ export default function abilityTest() {
         await driver.delayMs(2000);
         await driver.assertComponentExist(ON.id('playing_state'));
       } catch (err) {
-        Logger.error(TAG, BUNDLE + 'LowLatencyRenderer:' + JSON.stringify(err));
+        Logger.error(TAG, 'LowLatencyRenderer:' + JSON.stringify(err));
         expect(false).assertTrue();
       }
-      Logger.info(TAG, BUNDLE + 'LowLatencyRenderer end');
+      Logger.info(TAG, 'LowLatencyRenderer end');
       done();
     })
 
@@ -260,18 +259,19 @@ export default function abilityTest() {
      * [Back] click back btn to home
      *  back
      */
-    it(BUNDLE + 'Back', 0, async (done: Function) => {
-      Logger.info(TAG, BUNDLE + 'Back begin');
+    it('Back', 0, async (done: Function) => {
+      Logger.info(TAG, 'Back begin');
       try {
         let parallel_capturer_back_btn = await driver.findComponent(ON.id('capturer_back_btn'));
         await parallel_capturer_back_btn.click();
         await driver.delayMs(1000);
       } catch (err) {
-        Logger.error(TAG, BUNDLE + 'Back:' + JSON.stringify(err));
+        Logger.error(TAG, 'Back:' + JSON.stringify(err));
         expect(false).assertTrue();
       }
-      Logger.info(TAG, BUNDLE + 'Back end');
+      Logger.info(TAG, 'Back end');
       done();
     })
+
   })
 }

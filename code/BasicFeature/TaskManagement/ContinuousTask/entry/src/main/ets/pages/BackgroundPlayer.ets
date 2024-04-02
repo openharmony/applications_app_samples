@@ -64,7 +64,7 @@ struct BackgroundPlayer {
   }
 
   // refresh song
-  refreshSongInfo(index: number): number {
+  refreshSongInfo(index: number): void {
     Logger.info(TAG, `refreshSongInfo ${index}/${PlayerModel.playlist.audioFiles.length}`)
     if (index >= PlayerModel.playlist.audioFiles.length) {
       Logger.warn(TAG, `refreshSongInfo ignored`)
@@ -81,7 +81,7 @@ struct BackgroundPlayer {
   }
 
   // previous
-  onPreviousClick(): boolean {
+  onPreviousClick(): void {
     if (this.isSwitching) {
       Logger.info(TAG, `onPreviousClick ignored, isSwitching`)
       return
@@ -106,7 +106,7 @@ struct BackgroundPlayer {
   }
 
   // next
-  onNextClick(): boolean {
+  onNextClick(): void {
     if (this.isSwitching) {
       Logger.info(TAG, `onNextClick ignored, isSwitching`)
       return
@@ -130,7 +130,7 @@ struct BackgroundPlayer {
   }
 
   // play or pause
-  onPlayClick(): boolean {
+  onPlayClick(): void {
     if (this.isSwitching) {
       Logger.info(TAG, `onPlayClick ignored, isSwitching`)
       return
@@ -204,7 +204,7 @@ struct BackgroundPlayer {
         .selectedColor($r('app.color.select'))
         .onChange((value: number, mode: SliderChangeMode) => {
           this.currentProgress = value
-          if (isNaN(this.totalMs)) {
+          if (Number.isNaN(this.totalMs)) {
             this.currentProgress = 0
             Logger.info(TAG, `setProgress ignored, totalMs= ${this.totalMs}`)
             return
@@ -218,7 +218,7 @@ struct BackgroundPlayer {
         })
 
       Row() {
-        ForEach(this.imageArrays, (item, index) => {
+        ForEach(this.imageArrays, (item: Resource, index: number) => {
           Column() {
             Image(item)
               .size({ width: 72, height: 72 })

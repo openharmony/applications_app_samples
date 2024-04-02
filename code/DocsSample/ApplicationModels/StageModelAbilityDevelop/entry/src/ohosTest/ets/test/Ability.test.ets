@@ -16,12 +16,13 @@
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { describe, it, expect } from '@ohos/hypium';
 import { Driver, ON, UIElementInfo, UIEventObserver } from '@ohos.UiTest';
-import Logger from '../utils/Logger';
+import hilog from '@ohos.hilog';
 import Want from '@ohos.app.ability.Want';
 import Base from '@ohos.base';
 
 const BUNDLE = 'StageModelAbilityDevelop_';
 const TAG = '[Sample_stagemodelabilitydevelop]';
+const DOMAIN_NUMBER: number = 0xFF00;
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 let resourceManager = abilityDelegator.getAppContext().resourceManager;
 
@@ -37,7 +38,7 @@ export default function abilityTest() {
      * @tc.level Level 1
      */
     it(BUNDLE + 'EntryAbility', 0, async (done: Function) => {
-      Logger.info(TAG, BUNDLE + 'StageModelAbilityDevelopTest_001 begin');
+      hilog.info(DOMAIN_NUMBER, TAG, BUNDLE + 'StageModelAbilityDevelopTest_001 begin');
       // 开启Stage模型开发指导
       let want: Want = {
         bundleName: 'com.samples.stagemodelabilitydevelop',
@@ -45,11 +46,11 @@ export default function abilityTest() {
       };
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       abilityDelegator.startAbility(want, (err: Base.BusinessError) => {
-        Logger.info(TAG, 'StartAbility get err ' + JSON.stringify(err));
+        hilog.info(DOMAIN_NUMBER, TAG, 'StartAbility get err ' + JSON.stringify(err));
         expect(err).assertNull();
       })
       await driver.delayMs(3000);
-      Logger.info(TAG, BUNDLE + 'StageModelAbilityDevelopTest_001 end');
+      hilog.info(DOMAIN_NUMBER, TAG, BUNDLE + 'StageModelAbilityDevelopTest_001 end');
       done();
     })
 
@@ -63,55 +64,55 @@ export default function abilityTest() {
      */
     it(BUNDLE + 'StartModelTest', 1, async (done: Function) => {
 
-      Logger.info(TAG, BUNDLE + 'StageModelAbilityDevelopTest_002 begin');
+      hilog.info(DOMAIN_NUMBER, TAG, BUNDLE + 'StageModelAbilityDevelopTest_002 begin');
 
       // 跳转到UIAbility组件启动模式界面
-      Logger.info(TAG, 'StartModel start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'StartModel start');
       let driver = Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.UIAbilityComponentsStartModel'))));
       let StartModel = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.UIAbilityComponentsStartModel'))));
       await StartModel.click();
       await driver.delayMs(1000);
-      Logger.info(TAG, 'StartModel end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'StartModel end');
 
       // 跳转到单实例模式界面
-      Logger.info(TAG, 'SingletonModel start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'SingletonModel start');
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.singleton'))));
       let singleton = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.singleton'))));
       await singleton.click();
       await driver.delayMs(1000);
-      Logger.info(TAG, 'SingletonModel end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'SingletonModel end');
       await driver.pressBack();
 
       // 跳转到多实例模式界面
-      Logger.info(TAG, 'MultitonModel start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'MultitonModel start');
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.multiton'))));
       let multiton = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.multiton'))));
       await multiton.click();
       await driver.delayMs(1000);
-      Logger.info(TAG, 'MultitonModel end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'MultitonModel end');
       await driver.pressBack();
 
       // 跳转到指定实例A模式界面
-      Logger.info(TAG, 'SpecifiedAModel start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'SpecifiedAModel start');
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.SpecifiedA'))));
       let SpecifiedA = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.SpecifiedA'))));
       await SpecifiedA.click();
       await driver.delayMs(1000);
-      Logger.info(TAG, 'SpecifiedAModel end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'SpecifiedAModel end');
       await driver.pressBack();
 
       // 跳转到多实例模式界面
-      Logger.info(TAG, 'SpecifiedBModel start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'SpecifiedBModel start');
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.SpecifiedB'))));
       let SpecifiedB = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.SpecifiedB'))));
       await SpecifiedB.click();
       await driver.delayMs(1000);
-      Logger.info(TAG, 'SpecifiedBModel end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'SpecifiedBModel end');
       await driver.pressBack();
       await driver.pressBack();
-      Logger.info(TAG, BUNDLE + 'StageModelAbilityDevelopTest_002 end');
+      hilog.info(DOMAIN_NUMBER, TAG, BUNDLE + 'StageModelAbilityDevelopTest_002 end');
       done();
     })
 
@@ -125,18 +126,18 @@ export default function abilityTest() {
      */
     it(BUNDLE + 'UIAbilityComponentsBasicUsageTest', 2, async (done: Function) => {
 
-      Logger.info(TAG, BUNDLE + 'StageModelAbilityDevelopTest_003 begin');
+      hilog.info(DOMAIN_NUMBER, TAG, BUNDLE + 'StageModelAbilityDevelopTest_003 begin');
       // 跳转到UIAbility组件的基本用法界面
-      Logger.info(TAG, 'UIAbilityComponentsBasicUsage start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'UIAbilityComponentsBasicUsage start');
       let driver = Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.UIAbilityComponentsBasicUsage'))));
       let StartModel = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.UIAbilityComponentsBasicUsage'))));
       await StartModel.click();
       await driver.delayMs(1000);
-      Logger.info(TAG, 'UIAbilityComponentsBasicUsage end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'UIAbilityComponentsBasicUsage end');
       await driver.pressBack();
-      Logger.info(TAG, BUNDLE + 'StageModelAbilityDevelopTest_003 end');
+      hilog.info(DOMAIN_NUMBER, TAG, BUNDLE + 'StageModelAbilityDevelopTest_003 end');
       done();
     })
 
@@ -150,25 +151,25 @@ export default function abilityTest() {
      */
     it(BUNDLE + 'EventHubTest', 3, async (done: Function) => {
 
-      Logger.info(TAG, BUNDLE + 'StageModelAbilityDevelopTest_004 begin');
+      hilog.info(DOMAIN_NUMBER, TAG, BUNDLE + 'StageModelAbilityDevelopTest_004 begin');
       let observer: UIEventObserver = await driver.createUIEventObserver();
       let toastText: String = '';
       let callback = (UIElementInfo: UIElementInfo) => {
-        Logger.info(TAG, 'toast:' + UIElementInfo.text);
+        hilog.info(DOMAIN_NUMBER, TAG, 'toast:' + UIElementInfo.text);
         toastText = UIElementInfo.text;
       }
 
       // 跳转到UIAbility组件与UI数据同步界面
-      Logger.info(TAG, 'EventHub start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'EventHub start');
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.DataSynchronization'))));
       let StartModel = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.DataSynchronization'))));
       await StartModel.click();
       await driver.delayMs(1000);
-      Logger.info(TAG, 'EventHub end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'EventHub end');
 
       // 订阅事件
-      Logger.info(TAG, 'EventHubFuncATest start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'EventHubFuncATest start');
       driver = Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.EventHubFuncA'))));
@@ -179,10 +180,10 @@ export default function abilityTest() {
         await driver.delayMs(500);
         expect(toastText).assertEqual(await resourceManager.getStringValue($r('app.string.EventHubFuncA')));
       }
-      Logger.info(TAG, 'EventHubFuncATest end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'EventHubFuncATest end');
 
       // 取消订阅
-      Logger.info(TAG, 'EventHubFuncBTest start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'EventHubFuncBTest start');
       driver = Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.EventHubFuncB'))));
@@ -193,12 +194,12 @@ export default function abilityTest() {
         await driver.delayMs(500);
         expect(toastText).assertEqual(await resourceManager.getStringValue($r('app.string.EventHubFuncB')));
       }
-      Logger.info(TAG, 'EventHubFuncBTest end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'EventHubFuncBTest end');
 
       await driver.delayMs(1000);
       await driver.pressBack();
       await driver.delayMs(1000);
-      Logger.info(TAG, BUNDLE + 'StageModelAbilityDevelopTest_004 end');
+      hilog.info(DOMAIN_NUMBER, TAG, BUNDLE + 'StageModelAbilityDevelopTest_004 end');
       done();
     })
 
@@ -212,26 +213,26 @@ export default function abilityTest() {
      */
     it(BUNDLE + 'UIAbilityComponentsInteractionTest', 4, async (done: Function) => {
 
-      Logger.info(TAG, BUNDLE + 'StageModelAbilityDevelopTest_005 begin');
+      hilog.info(DOMAIN_NUMBER, TAG, BUNDLE + 'StageModelAbilityDevelopTest_005 begin');
 
       let observer: UIEventObserver = await driver.createUIEventObserver();
       let toastText: String = '';
       let callback = (UIElementInfo: UIElementInfo) => {
-        Logger.info(TAG, 'toast:' + UIElementInfo.text);
+        hilog.info(DOMAIN_NUMBER, TAG, 'toast:' + UIElementInfo.text);
         toastText = UIElementInfo.text;
       }
 
       // 跳转到UIAbility组件间交互（设备内）界面
-      Logger.info(TAG, 'UIAbilityComponentsInteractionTest start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'UIAbilityComponentsInteractionTest start');
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.UIAbilityComponentsInteractive'))));
       let StartModel = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.UIAbilityComponentsInteractive'))));
       await StartModel.click();
       await driver.delayMs(1000);
-      Logger.info(TAG, 'UIAbilityComponentsInteractionTest end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'UIAbilityComponentsInteractionTest end');
 
       // 冷启动
-      Logger.info(TAG, 'UIAbilityComponentsInteractionOnCreate start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'UIAbilityComponentsInteractionOnCreate start');
       await driver.delayMs(3000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.UIAbilityComponentsInteractionOnCreate'))));
       let UIAbilityComponentsInteractionOnCreate = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.UIAbilityComponentsInteractionOnCreate'))));
@@ -241,7 +242,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.FunctionA'))));
       await driver.pressBack();
       await driver.delayMs(3000);
-      Logger.info(TAG, 'UIAbilityComponentsInteractionOnCreate end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'UIAbilityComponentsInteractionOnCreate end');
 
       // 热启动
       // 启动热启动的Ability
@@ -250,7 +251,7 @@ export default function abilityTest() {
         abilityName: 'EntryAbility'
       };
       abilityDelegator.startAbility(want, (err: Base.BusinessError) => {
-        Logger.info(TAG, 'StartAbility get err ' + JSON.stringify(err));
+        hilog.info(DOMAIN_NUMBER, TAG, 'StartAbility get err ' + JSON.stringify(err));
         expect(err).assertNull();
       });
       await driver.delayMs(5000);
@@ -262,12 +263,12 @@ export default function abilityTest() {
         abilityName: 'EntryAbility'
       };
       abilityDelegator.startAbility(want, (err: Base.BusinessError) => {
-        Logger.info(TAG, 'StartAbility get err ' + JSON.stringify(err));
+        hilog.info(DOMAIN_NUMBER, TAG, 'StartAbility get err ' + JSON.stringify(err));
         expect(err).assertNull();
       })
       await driver.delayMs(3000);
 
-      Logger.info(TAG, 'UIAbilityComponentsInteractionOnNewWant start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'UIAbilityComponentsInteractionOnNewWant start');
       await driver.delayMs(3000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.UIAbilityComponentsInteractionOnNewWant'))));
       let UIAbilityComponentsInteractionOnNewWant = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.UIAbilityComponentsInteractionOnNewWant'))));
@@ -278,23 +279,23 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.FunctionB'))));
       await driver.pressBack();
       await driver.delayMs(3000);
-      Logger.info(TAG, 'UIAbilityComponentsInteractionOnCreate end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'UIAbilityComponentsInteractionOnCreate end');
 
       await driver.pressBack();
       await driver.delayMs(1000);
 
       // 启动应用内的UIAbility
-      Logger.info(TAG, 'UIAbilityComponentsInteractionA start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'UIAbilityComponentsInteractionA start');
       await driver.delayMs(3000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.UIAbilityComponentsInteractionA'))));
       let UIAbilityComponentsInteractionA = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.UIAbilityComponentsInteractionA'))));
       await UIAbilityComponentsInteractionA.click();
       await driver.delayMs(3000);
       await driver.pressBack();
-      Logger.info(TAG, 'UIAbilityComponentsInteractionA end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'UIAbilityComponentsInteractionA end');
 
       // 启动应用内的UIAbility并获取返回值
-      Logger.info(TAG, 'UIAbilityComponentsInteractionB start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'UIAbilityComponentsInteractionB start');
       await driver.delayMs(3000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.UIAbilityComponentsInteractionB'))));
       let UIAbilityComponentsInteractionB = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.UIAbilityComponentsInteractionB'))));
@@ -305,10 +306,10 @@ export default function abilityTest() {
       let CloseSpecifiedPageA = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.CloseSpecifiedPageA'))));
       await CloseSpecifiedPageA.click();
       await driver.delayMs(3000);
-      Logger.info(TAG, 'UIAbilityComponentsInteractionB end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'UIAbilityComponentsInteractionB end');
 
       // 启动其他应用的UIAbility
-      Logger.info(TAG, 'UIAbilityComponentsInteractionC start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'UIAbilityComponentsInteractionC start');
       await driver.delayMs(3000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.UIAbilityComponentsInteractionC'))));
       let UIAbilityComponentsInteractionC = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.UIAbilityComponentsInteractionC'))));
@@ -320,21 +321,21 @@ export default function abilityTest() {
       let CloseSpecifiedPage = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.CloseSpecifiedPage'))));
       await CloseSpecifiedPage.click();
       await driver.delayMs(3000);
-      Logger.info(TAG, 'UIAbilityComponentsInteractionC end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'UIAbilityComponentsInteractionC end');
 
 
       // 启动UIAbility指定窗口模式
-      Logger.info(TAG, 'UIAbilityComponentsInteractionE start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'UIAbilityComponentsInteractionE start');
       await driver.delayMs(3000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.UIAbilityComponentsInteractionE'))));
       let UIAbilityComponentsInteractionE = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.UIAbilityComponentsInteractionE'))));
       await UIAbilityComponentsInteractionE.click();
       await driver.delayMs(3000);
       await driver.pressBack();
-      Logger.info(TAG, 'UIAbilityComponentsInteractionE end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'UIAbilityComponentsInteractionE end');
 
       // 启动UIAbility的指定界面
-      Logger.info(TAG, 'UIAbilityComponentsInteractionF start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'UIAbilityComponentsInteractionF start');
       await driver.delayMs(3000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.UIAbilityComponentsInteractionF'))));
       let UIAbilityComponentsInteractionF = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.UIAbilityComponentsInteractionF'))));
@@ -345,8 +346,28 @@ export default function abilityTest() {
       await driver.pressBack();
       await driver.delayMs(3000);
 
+      // 启动UIAbility的指定应用
+      hilog.info(DOMAIN_NUMBER, TAG, 'UIAbilityComponentsInteractionG start');
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.UIAbilityComponentsInteractionG'))));
+      let UIAbilityComponentsInteractionG = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.UIAbilityComponentsInteractionG'))));
+      await UIAbilityComponentsInteractionG.click();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      hilog.info(DOMAIN_NUMBER, TAG, 'UIAbilityComponentsInteractionG end');
+
+      // 启动UIAbility的指定应用
+      hilog.info(DOMAIN_NUMBER, TAG, 'UIAbilityComponentsInteractionH start');
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.UIAbilityComponentsInteractionH'))));
+      let UIAbilityComponentsInteractionH = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.UIAbilityComponentsInteractionH'))));
+      await UIAbilityComponentsInteractionH.click();
+      await driver.delayMs(1000);
+      await driver.pressBack();
+      hilog.info(DOMAIN_NUMBER, TAG, 'UIAbilityComponentsInteractionH end');
+
       // Caller交互
-      Logger.info(TAG, 'CallerTest start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'CallerTest start');
       driver = Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.Caller'))));
@@ -357,13 +378,13 @@ export default function abilityTest() {
         await driver.delayMs(500);
         expect(toastText).assertEqual(await resourceManager.getStringValue($r('app.string.CallerSuccess')));
       }
-      Logger.info(TAG, 'CallerSuccessTest end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'CallerSuccessTest end');
       await driver.delayMs(1000);
 
 
       await driver.pressBack();
       await driver.delayMs(3000);
-      Logger.info(TAG, BUNDLE + 'StageModelAbilityDevelopTest_005 end');
+      hilog.info(DOMAIN_NUMBER, TAG, BUNDLE + 'StageModelAbilityDevelopTest_005 end');
       done();
     })
 
@@ -376,24 +397,24 @@ export default function abilityTest() {
      * @tc.level Level 1
      */
     it(BUNDLE + 'ContextTest', 5, async (done: Function) => {
-      Logger.info(TAG, BUNDLE + 'StageModelAbilityDevelopTest_006, begin');
+      hilog.info(DOMAIN_NUMBER, TAG, BUNDLE + 'StageModelAbilityDevelopTest_006, begin');
       let observer: UIEventObserver = await driver.createUIEventObserver();
       let toastText: String = '';
       let callback = (UIElementInfo: UIElementInfo) => {
-        Logger.info(TAG, 'toast:' + UIElementInfo.text);
+        hilog.info(DOMAIN_NUMBER, TAG, 'toast:' + UIElementInfo.text);
         toastText = UIElementInfo.text;
       }
       // 跳转到应用上下文Context界面
-      Logger.info(TAG, 'ContextTest start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'ContextTest start');
       driver = Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.Context'))));
       let Context = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.Context'))));
       await Context.click();
       await driver.delayMs(1000);
-      Logger.info(TAG, 'ContextTest end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'ContextTest end');
 
-      Logger.info(TAG, 'MethodOneForObtainingApplicationFilePathTest start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'MethodOneForObtainingApplicationFilePathTest start');
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.MethodOneForObtainingApplicationFilePath'))));
       let MethodOneForObtainingApplicationFilePath = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.MethodOneForObtainingApplicationFilePath'))));
@@ -403,9 +424,9 @@ export default function abilityTest() {
         await driver.delayMs(500);
         expect(toastText).assertEqual(await resourceManager.getStringValue($r('app.string.filePath01')));
       }
-      Logger.info(TAG, 'MethodOneForObtainingApplicationFilePathTest end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'MethodOneForObtainingApplicationFilePathTest end');
 
-      Logger.info(TAG, 'MethodOneTwoObtainingApplicationFilePathTest start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'MethodOneTwoObtainingApplicationFilePathTest start');
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.MethodOneTwoObtainingApplicationFilePath'))));
       let MethodOneTwoObtainingApplicationFilePath = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.MethodOneTwoObtainingApplicationFilePath'))));
@@ -416,10 +437,10 @@ export default function abilityTest() {
         expect(toastText).assertEqual(await resourceManager.getStringValue($r('app.string.filePath02')));
       }
       await driver.delayMs(1000);
-      Logger.info(TAG, 'MethodOneTwoObtainingApplicationFilePathTest end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'MethodOneTwoObtainingApplicationFilePathTest end');
 
       // 切换到E1
-      Logger.info(TAG, 'SwitchToEL1 start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'SwitchToEL1 start');
       driver = Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.SwitchToEL1'))));
@@ -431,10 +452,10 @@ export default function abilityTest() {
         expect(toastText).assertEqual(await resourceManager.getStringValue($r('app.string.SwitchToEL1')));
       }
       await driver.delayMs(1000);
-      Logger.info(TAG, 'SwitchToEL1 end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'SwitchToEL1 end');
 
       // 切换到E2
-      Logger.info(TAG, 'SwitchToEL2 start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'SwitchToEL2 start');
       driver = Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.SwitchToEL2'))));
@@ -446,10 +467,10 @@ export default function abilityTest() {
         expect(toastText).assertEqual(await resourceManager.getStringValue($r('app.string.SwitchToEL2')));
       }
       await driver.delayMs(1000);
-      Logger.info(TAG, 'SwitchToEL2 end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'SwitchToEL2 end');
 
       // 跳转到创建其他应用或其他Module的Context界面
-      Logger.info(TAG, 'CreateContextMethodTest start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'CreateContextMethodTest start');
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.Context04'))));
       let Context04 = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.Context04'))));
@@ -486,11 +507,11 @@ export default function abilityTest() {
       }
       await driver.delayMs(1000);
 
-      Logger.info(TAG, 'CreateContextMethodTest end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'CreateContextMethodTest end');
       await driver.pressBack();
       await driver.delayMs(3000);
 
-      Logger.info(TAG, 'Context05Test start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'Context05Test start');
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.Context05'))));
       let Context05 = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.Context05'))));
@@ -502,10 +523,10 @@ export default function abilityTest() {
       let CloseSpecifiedPageA = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.CloseSpecifiedPageA'))));
       await CloseSpecifiedPageA.click();
       await driver.delayMs(3000);
-      Logger.info(TAG, 'Context05Test end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'Context05Test end');
       await driver.pressBack();
       await driver.delayMs(3000);
-      Logger.info(TAG, BUNDLE + 'StageModelAbilityDevelopTest_006, end');
+      hilog.info(DOMAIN_NUMBER, TAG, BUNDLE + 'StageModelAbilityDevelopTest_006, end');
       done();
     })
 
@@ -518,26 +539,26 @@ export default function abilityTest() {
      * @tc.level Level 1
      */
     it(BUNDLE + 'DeviceCrossMigrationTest', 5, async (done: Function) => {
-      Logger.info(TAG, BUNDLE + 'StageModelAbilityDevelopTest_007, begin');
+      hilog.info(DOMAIN_NUMBER, TAG, BUNDLE + 'StageModelAbilityDevelopTest_007, begin');
       let observer: UIEventObserver = await driver.createUIEventObserver();
       let toastText: String = '';
       let callback = (UIElementInfo: UIElementInfo) => {
-        Logger.info(TAG, 'toast:' + UIElementInfo.text);
+        hilog.info(DOMAIN_NUMBER, TAG, 'toast:' + UIElementInfo.text);
         toastText = UIElementInfo.text;
       }
 
       // 跳转到跨端迁移界面
-      Logger.info(TAG, 'DeviceCrossMigrationTest start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'DeviceCrossMigrationTest start');
       driver = Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.DeviceCrossMigration'))));
       let DeviceCrossMigration = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.DeviceCrossMigration'))));
       await DeviceCrossMigration.click();
       await driver.delayMs(1000);
-      Logger.info(TAG, 'DeviceCrossMigrationTest end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'DeviceCrossMigrationTest end');
 
       // 允许申请权限
-      Logger.info(TAG, 'permitTest start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'permitTest start');
       driver = Driver.create();
       await driver.delayMs(1500);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.permit'))));
@@ -548,10 +569,10 @@ export default function abilityTest() {
         observer.once('toastShow', callback);
         await permit.click();
       }
-      Logger.info(TAG, 'permitTest end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'permitTest end');
 
       // 跳转到跨端迁移第二页
-      Logger.info(TAG, 'Page_MigrationAbilitySecondTest start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'Page_MigrationAbilitySecondTest start');
       driver = Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.Page_MigrationAbilitySecond'))));
@@ -560,10 +581,10 @@ export default function abilityTest() {
       await driver.delayMs(1000);
       await driver.pressBack();
       await driver.delayMs(1000);
-      Logger.info(TAG, 'Page_MigrationAbilitySecondTest end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'Page_MigrationAbilitySecondTest end');
 
       // 跳转到跨端迁移第三页
-      Logger.info(TAG, 'Page_MigrationAbilityThirdTest start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'Page_MigrationAbilityThirdTest start');
       driver = Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.Page_MigrationAbilityThird'))));
@@ -572,10 +593,10 @@ export default function abilityTest() {
       await driver.delayMs(1000);
       await driver.pressBack();
       await driver.delayMs(1000);
-      Logger.info(TAG, 'Page_MigrationAbilityThirdTest end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'Page_MigrationAbilityThirdTest end');
 
       // 将应用设置为可迁移状态
-      Logger.info(TAG, 'Page_MigrationAbilityFourthTest start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'Page_MigrationAbilityFourthTest start');
       driver = Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.Page_MigrationAbilityFourth'))));
@@ -588,11 +609,11 @@ export default function abilityTest() {
         await driver.delayMs(500);
         expect(toastText).assertEqual(await resourceManager.getStringValue($r('app.string.Success')));
       }
-      Logger.info(TAG, 'Page_MigrationAbilityFourthTest end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'Page_MigrationAbilityFourthTest end');
       await driver.delayMs(1000);
       await driver.pressBack();
       await driver.delayMs(3000);
-      Logger.info(TAG, BUNDLE + 'StageModelAbilityDevelopTest_007, end');
+      hilog.info(DOMAIN_NUMBER, TAG, BUNDLE + 'StageModelAbilityDevelopTest_007, end');
       done();
     })
 
@@ -605,26 +626,26 @@ export default function abilityTest() {
      * @tc.level Level 1
      */
     it(BUNDLE + 'CollaborateAbilityTest', 5, async (done: Function) => {
-      Logger.info(TAG, BUNDLE + 'StageModelAbilityDevelopTest_008, begin');
+      hilog.info(DOMAIN_NUMBER, TAG, BUNDLE + 'StageModelAbilityDevelopTest_008, begin');
       let observer: UIEventObserver = await driver.createUIEventObserver();
       let toastText: String = '';
       let callback = (UIElementInfo: UIElementInfo) => {
-        Logger.info(TAG, 'toast:' + UIElementInfo.text);
+        hilog.info(DOMAIN_NUMBER, TAG, 'toast:' + UIElementInfo.text);
         toastText = UIElementInfo.text;
       }
 
       // 跳转到跨端迁移界面
-      Logger.info(TAG, 'CollaborateAbilityTest start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'CollaborateAbilityTest start');
       driver = Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.MultiDeviceCollaboration'))));
       let MultiDeviceCollaboration = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.MultiDeviceCollaboration'))));
       await MultiDeviceCollaboration.click();
       await driver.delayMs(1000);
-      Logger.info(TAG, 'CollaborateAbilityTest end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'CollaborateAbilityTest end');
 
       // 多设备协同初始化
-      Logger.info(TAG, 'CollaborativeInitializationTest start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'CollaborativeInitializationTest start');
       driver = Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.CollaborativeInitialization'))));
@@ -635,10 +656,10 @@ export default function abilityTest() {
         await driver.delayMs(500);
         expect(toastText).assertEqual(await resourceManager.getStringValue($r('app.string.InitializedSuccessfully')));
       }
-      Logger.info(TAG, 'CollaborativeInitializationTest end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'CollaborativeInitializationTest end');
 
       // 多端协同无返回数据
-      Logger.info(TAG, 'MultiDeviceCollaborationWithoutReturningDataTest start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'MultiDeviceCollaborationWithoutReturningDataTest start');
       driver = Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.MultiDeviceCollaborationWithoutReturningData'))));
@@ -646,10 +667,10 @@ export default function abilityTest() {
       await MultiDeviceCollaborationWithoutReturningData.click();
       await driver.delayMs(1000);
       await driver.pressBack();
-      Logger.info(TAG, 'CollaborativeInitializationTest end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'CollaborativeInitializationTest end');
 
       // 多端协同有返回数据
-      Logger.info(TAG, 'MultiDeviceCollaborationWithReturningDataTest start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'MultiDeviceCollaborationWithReturningDataTest start');
       driver = Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.MultiDeviceCollaborationWithReturningData'))));
@@ -662,10 +683,10 @@ export default function abilityTest() {
       let ClosePage_CollaborateAbility = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.ClosePage_CollaborateAbility'))));
       await ClosePage_CollaborateAbility.click();
       await driver.delayMs(1000);
-      Logger.info(TAG, 'MultiDeviceCollaborationWithReturningDataTest end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'MultiDeviceCollaborationWithReturningDataTest end');
 
       // 启动
-      Logger.info(TAG, 'StartServiceExtensionAbilityTest start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'StartServiceExtensionAbilityTest start');
       driver = Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.StartServiceExtensionAbility'))));
@@ -676,11 +697,11 @@ export default function abilityTest() {
         await driver.delayMs(500);
         expect(toastText).assertEqual(await resourceManager.getStringValue($r('app.string.SuccessfullyStart')));
       }
-      Logger.info(TAG, 'StartServiceExtensionAbilityTest end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'StartServiceExtensionAbilityTest end');
       await driver.delayMs(1000);
 
       // 退出
-      Logger.info(TAG, 'StopServiceExtensionAbilityTest start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'StopServiceExtensionAbilityTest start');
       driver = Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.StopServiceExtensionAbility'))));
@@ -691,11 +712,11 @@ export default function abilityTest() {
         await driver.delayMs(500);
         expect(toastText).assertEqual(await resourceManager.getStringValue($r('app.string.SuccessfullyStop')));
       }
-      Logger.info(TAG, 'StopServiceExtensionAbilitySuccessTest end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'StopServiceExtensionAbilitySuccessTest end');
       await driver.delayMs(1000);
 
       // Caller交互
-      Logger.info(TAG, 'CallerTest start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'CallerTest start');
       driver = Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.Caller'))));
@@ -706,11 +727,11 @@ export default function abilityTest() {
         await driver.delayMs(500);
         expect(toastText).assertEqual(await resourceManager.getStringValue($r('app.string.CallerSuccess')));
       }
-      Logger.info(TAG, 'CallerSuccessTest end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'CallerSuccessTest end');
       await driver.delayMs(1000);
 
       // 跨设备连接后台服务
-      Logger.info(TAG, 'ConnectBackendService start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'ConnectBackendService start');
       driver = Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.ConnectBackendService'))));
@@ -721,11 +742,11 @@ export default function abilityTest() {
         await driver.delayMs(500);
         expect(toastText).assertEqual(await resourceManager.getStringValue($r('app.string.sendRequest')));
       }
-      Logger.info(TAG, 'ConnectBackendService end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'ConnectBackendService end');
       await driver.delayMs(1000);
 
       // 跨设备断联后台服务
-      Logger.info(TAG, 'DisconnectBackendService start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'DisconnectBackendService start');
       driver = Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.DisconnectBackendService'))));
@@ -736,12 +757,12 @@ export default function abilityTest() {
         await driver.delayMs(500);
         expect(toastText).assertEqual(await resourceManager.getStringValue($r('app.string.SuccessfullyDisconnectBackendService')));
       }
-      Logger.info(TAG, 'DisconnectBackendService end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'DisconnectBackendService end');
       await driver.delayMs(1000);
 
       await driver.pressBack();
       await driver.delayMs(3000);
-      Logger.info(TAG, BUNDLE + 'StageModelAbilityDevelopTest_008, end');
+      hilog.info(DOMAIN_NUMBER, TAG, BUNDLE + 'StageModelAbilityDevelopTest_008, end');
       done();
     })
 
@@ -754,12 +775,12 @@ export default function abilityTest() {
      * @tc.level Level 1
      */
     it(BUNDLE + 'StartFAModelTest', 5, async (done: Function) => {
-      Logger.info(TAG, BUNDLE + 'StageModelAbilityDevelopTest_009, begin');
+      hilog.info(DOMAIN_NUMBER, TAG, BUNDLE + 'StageModelAbilityDevelopTest_009, begin');
 
       let observer: UIEventObserver = await driver.createUIEventObserver();
       let toastText: String = '';
       let callback = (UIElementInfo: UIElementInfo) => {
-        Logger.info(TAG, 'toast:' + UIElementInfo.text);
+        hilog.info(DOMAIN_NUMBER, TAG, 'toast:' + UIElementInfo.text);
         toastText = UIElementInfo.text;
       }
 
@@ -772,7 +793,7 @@ export default function abilityTest() {
       await driver.delayMs(1000);
 
       // Stage模型启动FA模型无返回值
-      Logger.info(TAG, 'StartFAModelTest start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'StartFAModelTest start');
       driver = Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.StartFAModel'))));
@@ -780,10 +801,10 @@ export default function abilityTest() {
       await StartFAModel.click();
       await driver.delayMs(3000);
       await driver.pressBack();
-      Logger.info(TAG, 'StartFAModelTest end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'StartFAModelTest end');
 
       // Stage模型启动FA模型有返回值
-      Logger.info(TAG, 'StartFAModelWithResultTest start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'StartFAModelWithResultTest start');
       driver = Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.StartFAModelWithResult'))));
@@ -791,10 +812,11 @@ export default function abilityTest() {
       await StartFAModelWithResult.click();
       await driver.delayMs(3000);
       await driver.pressBack();
-      Logger.info(TAG, 'StartFAModelWithResultTest end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'StartFAModelWithResultTest end');
+      await driver.delayMs(1000);
 
       // Stage模型绑定FA模型Service
-      Logger.info(TAG, 'ConnectFAServiceAbility start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'ConnectFAServiceAbility start');
       driver = Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.ServiceAbility'))));
@@ -805,12 +827,35 @@ export default function abilityTest() {
         await driver.delayMs(500);
         expect(toastText).assertEqual(await resourceManager.getStringValue($r('app.string.ConnectFAServiceAbility')));
       }
-      Logger.info(TAG, 'ConnectFAServiceAbility end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'ConnectFAServiceAbility end');
       await driver.delayMs(1000);
+
+      // Stage模型启动FA模型PageAbility
+      hilog.info(DOMAIN_NUMBER, TAG, 'ConnectFAPageAbility start');
+      driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.PageAbility'))));
+      let PageAbility =
+        await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.PageAbility'))));
+      await PageAbility.click();
+      await driver.delayMs(3000);
+      let FAModule =
+        await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.fa_main_title'))));
+      if (FAModule !== null) {
+        await driver.delayMs(1000);
+        await driver.pressBack();
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.Stage'))));
+        let Stage =
+          await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.Stage'))));
+        await Stage.click();
+        await driver.delayMs(1000);
+      }
+      hilog.info(DOMAIN_NUMBER, TAG, 'ConnectFAPageAbility end');
 
       await driver.pressBack();
       await driver.delayMs(3000);
-      Logger.info(TAG, BUNDLE + 'StageModelAbilityDevelopTest_009, end');
+      hilog.info(DOMAIN_NUMBER, TAG, BUNDLE + 'StageModelAbilityDevelopTest_009, end');
       done();
     })
 
@@ -823,26 +868,26 @@ export default function abilityTest() {
      * @tc.level Level 1
      */
     it(BUNDLE + 'ServiceExtensionAbilityTest', 5, async (done: Function) => {
-      Logger.info(TAG, BUNDLE + 'StageModelAbilityDevelopTest_010, begin');
+      hilog.info(DOMAIN_NUMBER, TAG, BUNDLE + 'StageModelAbilityDevelopTest_010, begin');
       let observer: UIEventObserver = await driver.createUIEventObserver();
       let toastText: String = '';
       let callback = (UIElementInfo: UIElementInfo) => {
-        Logger.info(TAG, 'toast:' + UIElementInfo.text);
+        hilog.info(DOMAIN_NUMBER, TAG, 'toast:' + UIElementInfo.text);
         toastText = UIElementInfo.text;
       }
 
       // 跳转到扩展服务界面
-      Logger.info(TAG, 'ServiceExtensionTest start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'ServiceExtensionTest start');
       driver = Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.ServiceExtension'))));
       let ServiceExtension = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.ServiceExtension'))));
       await ServiceExtension.click();
       await driver.delayMs(1000);
-      Logger.info(TAG, 'ServiceExtensionTest end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'ServiceExtensionTest end');
 
       // 启动后台服务
-      Logger.info(TAG, 'StartBackendServiceTest start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'StartBackendServiceTest start');
       driver = Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.StartBackendService'))));
@@ -853,10 +898,10 @@ export default function abilityTest() {
         await driver.delayMs(500);
         expect(toastText).assertEqual(await resourceManager.getStringValue($r('app.string.SuccessfullyStartBackendService')));
       }
-      Logger.info(TAG, 'StartBackendServiceTest end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'StartBackendServiceTest end');
 
       // 停止已启动的后台服务
-      Logger.info(TAG, 'StopStartedBackendServiceTest start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'StopStartedBackendServiceTest start');
       driver = Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.StopStartedBackendService'))));
@@ -867,11 +912,11 @@ export default function abilityTest() {
         await driver.delayMs(500);
         expect(toastText).assertEqual(await resourceManager.getStringValue($r('app.string.SuccessfullyStoppedAStartedBackendService')));
       }
-      Logger.info(TAG, 'CStopStartedBackendServiceSuccessTest end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'CStopStartedBackendServiceSuccessTest end');
       await driver.delayMs(1000);
 
       // 跨设备连接后台服务
-      Logger.info(TAG, 'ConnectBackendService start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'ConnectBackendService start');
       driver = Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.ConnectBackendService'))));
@@ -882,11 +927,11 @@ export default function abilityTest() {
         await driver.delayMs(500);
         expect(toastText).assertEqual(await resourceManager.getStringValue($r('app.string.SuccessfullyConnectBackendService')));
       }
-      Logger.info(TAG, 'ConnectBackendService end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'ConnectBackendService end');
       await driver.delayMs(1000);
 
       // 跨设备断联后台服务
-      Logger.info(TAG, 'DisconnectBackendService start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'DisconnectBackendService start');
       driver = Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.DisconnectBackendService'))));
@@ -897,20 +942,20 @@ export default function abilityTest() {
         await driver.delayMs(500);
         expect(toastText).assertEqual(await resourceManager.getStringValue($r('app.string.SuccessfullyDisconnectBackendService')));
       }
-      Logger.info(TAG, 'DisconnectBackendService end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'DisconnectBackendService end');
       await driver.delayMs(1000);
 
       // 停止当前后台服务
-      Logger.info(TAG, 'StopBackendServicesTest start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'StopBackendServicesTest start');
       driver = Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.StopBackendServices'))));
       let StopBackendServices = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.StopBackendServices'))));
       await StopBackendServices.click();
       await driver.delayMs(1000);
-      Logger.info(TAG, 'StopBackendServicesTest end');
+      hilog.info(DOMAIN_NUMBER, TAG, 'StopBackendServicesTest end');
 
-      Logger.info(TAG, BUNDLE + 'StageModelAbilityDevelopTest_010, end');
+      hilog.info(DOMAIN_NUMBER, TAG, BUNDLE + 'StageModelAbilityDevelopTest_010, end');
       done();
     })
   })
