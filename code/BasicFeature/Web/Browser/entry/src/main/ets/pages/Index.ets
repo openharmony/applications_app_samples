@@ -70,12 +70,16 @@ struct Index {
 
   onBackPress(): boolean{
     Logger.info(TAG, `enter onBackPress`)
-    if (this.browser.webControllerArray[this.browser.tabArrayIndex].controller.accessBackward() ||
-    this.browser.loadingStatus === LoadingStatus.LOADING) {
-      this.browser.webControllerArray[this.browser.tabArrayIndex].controller.backward()
-      return true
+    try {
+      if (this.browser.webControllerArray[this.browser.tabArrayIndex]?.controller?.accessBackward() ||
+        this.browser.loadingStatus === LoadingStatus.LOADING) {
+        this.browser.webControllerArray[this.browser.tabArrayIndex]?.controller?.backward();
+        return true;
+      }
+      return false;
+    } catch (e) {
+      Logger.info(TAG, e)
     }
-    return false
   }
 
   onDeviceChange() {
