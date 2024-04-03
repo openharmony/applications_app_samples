@@ -23,6 +23,10 @@
     {
       "name": "text_normal",
       "value": "#182431"
+    },
+    {
+      "name": "btn_bg",
+      "value": "#d3d4d6"
     }
   ]
 }

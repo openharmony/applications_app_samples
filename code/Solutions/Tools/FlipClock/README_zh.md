@@ -24,7 +24,7 @@
 
 3.倒计时功能。
 
-4.设置里边实现的功能有全屏、调节屏幕亮度和不熄屏。
+4.设置相关功能需安装[Brightness](/lib/Brightness-1.0.0.hap)应用，设置里边实现的功能有全屏、调节屏幕亮度和不熄屏。
 
 ### 工程目录
 ```
@@ -109,8 +109,6 @@ entry/src/main/ets/
 2.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400 , built on April 7, 2023)及以上版本才可编译运行。
 
 3.本示例已适配API version 9版本SDK，版本号：3.2.11.9；
-
-4.本示例需要使用@ohos.brightness和@ohos.notificationManager系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。
 
 ### 下载
 
