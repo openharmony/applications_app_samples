@@ -87,6 +87,14 @@
     {
       "name": "btn_toast",
       "value": "Name already in use."
+    },
+    {
+      "name": "camera",
+      "value": "camera"
+    },
+    {
+      "name": "Sample_photo_album",
+      "value": "Sample photo album"
     }
   ]
 }
