@@ -169,7 +169,7 @@ struct MediaOperationPage {
 
   build() {
     Column() {
-      MediaOperationActionBar({ onMenuClicked: this.onMenuClicked })
+      MediaOperationActionBar({ onMenuClicked: (action: Action): void => this.onMenuClicked(action) })
       List({ scroller: this.scroller }) {
         ListItem() {
           Flex({
