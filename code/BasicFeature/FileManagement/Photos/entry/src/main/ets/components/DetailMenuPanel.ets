@@ -29,7 +29,7 @@ export struct DetailMenuPanel {
         ActionBarButton({
           res: menu.iconRes,
           action: menu,
-          onMenuClicked: this.onMenuClicked,
+          onMenuClicked: (action: Action): void => this.onMenuClicked(action),
           isAutoTint: menu.isAutoTint,
           colorMode: this.actionBarProp.getColorMode()
         }).id(menu.actionID.toString())

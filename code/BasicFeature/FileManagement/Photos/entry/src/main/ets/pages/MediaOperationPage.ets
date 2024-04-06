@@ -108,8 +108,8 @@ struct MediaOperationPage {
     Log.info(TAG, 'createNewAlbum');
     let menuContext = new MenuContext();
     menuContext
-      .withOperationStartCallback(this.onOperationStart)
-      .withOperationEndCallback(this.onOperationEnd)
+      .withOperationStartCallback((): void => this.onOperationStart())
+      .withOperationEndCallback((): void => this.onOperationEnd())
       .withDataSource(this.albumsDataSource)
       .withAlbumInfo(this.albumInfo)
       .withBroadCast(this.broadCast)
@@ -169,7 +169,7 @@ struct MediaOperationPage {
 
   build() {
     Column() {
-      MediaOperationActionBar({ onMenuClicked: this.onMenuClicked })
+      MediaOperationActionBar({ onMenuClicked: (action: Action): void => this.onMenuClicked(action) })
       List({ scroller: this.scroller }) {
         ListItem() {
           Flex({
