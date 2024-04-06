@@ -108,8 +108,8 @@ struct MediaOperationPage {
     Log.info(TAG, 'createNewAlbum');
     let menuContext = new MenuContext();
     menuContext
-      .withOperationStartCallback(this.onOperationStart)
-      .withOperationEndCallback(this.onOperationEnd)
+      .withOperationStartCallback((): void => this.onOperationStart())
+      .withOperationEndCallback((): void => this.onOperationEnd())
       .withDataSource(this.albumsDataSource)
       .withAlbumInfo(this.albumInfo)
       .withBroadCast(this.broadCast)
