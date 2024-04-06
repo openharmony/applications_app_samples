@@ -419,8 +419,8 @@ struct PhotoGridPage {
   private moveOperation(albumInfo: SimpleAlbumDataItem): void {
     let menuContext = new MenuContext();
     menuContext.withDataSource(this.groupDataSource)
-      .withOperationStartCallback(this.onMoveStart)
-      .withOperationEndCallback(this.onMoveEnd)
+      .withOperationStartCallback((): void => this.onMoveStart())
+      .withOperationEndCallback((err: object, count: number, total: number): void => this.onMoveEnd(err, count, total))
       .withBroadCast(this.broadCast)
       .withAlbumInfo(albumInfo);
     let menuOperation = new MoveMenuOperation(menuContext);

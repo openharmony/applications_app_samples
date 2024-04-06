@@ -175,7 +175,7 @@ struct AlbumSelect {
     }) {
       ActionBar({
         actionBarProp: $actionBarProp,
-        onMenuClicked: this.onMenuClicked
+        onMenuClicked: (action: Action): void => this.onMenuClicked(action)
       })
 
       Stack() {
