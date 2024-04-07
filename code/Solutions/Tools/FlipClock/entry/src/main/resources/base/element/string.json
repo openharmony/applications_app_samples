@@ -127,6 +127,10 @@
     {
       "name": "tab3",
       "value": "set"
+    },
+    {
+      "name": "setting",
+      "value": "setting"
     }
   ]
 }

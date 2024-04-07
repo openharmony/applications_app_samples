@@ -13,29 +13,23 @@
  * limitations under the License.
  */
 
-import brightness from '@ohos.brightness'
-import { Setting } from '../common/Setting'
-import { CountDown } from '../common/CountDown'
-import { FlipClock } from '../common/FlipClock'
-import { AlarmClock } from '../common/AlarmClock'
-import { MyDataSource, TabType } from '../common/DataSource'
-import { tabArray } from '../mock/TabData'
-
-const BRIGHTNESS_SCALE: number = 20
+import common from '@ohos.app.ability.common';
+import { SetBrightness } from '../common/SetBrightness';
+import { CountDown } from '../common/CountDown';
+import { FlipClock } from '../common/FlipClock';
+import { AlarmClock } from '../common/AlarmClock';
+import { MyDataSource, TabType } from '../common/DataSource';
+import { tabArray } from '../mock/TabData';
 
 @Entry
 @Component
 struct Index {
-  @State brightnessValue: number = 128
-  @State currentIndex: number = 0
-  private isTabScrollable: boolean = false
-  private controller: TabsController = new TabsController()
-  // 设置屏幕亮度
-  setBrightness(): void {
-    brightness.setValue(this.brightnessValue)
-  }
+  @State currentIndex: number = 0;
+  private isTabScrollable: boolean = false;
+  private controller: TabsController = new TabsController();
 
-  @Builder TabBuilder(item: TabType) {
+  @Builder
+  tabBuilder(item: TabType) {
     Column() {
       Column() {
         Image(this.currentIndex === item.num ? item.icon_after : item.icon)
@@ -70,10 +64,10 @@ struct Index {
               } else if (item.num === 2) {
                 CountDown()
               } else if (item.num === 3) {
-                Setting()
+                SetBrightness()
               }
             }
-            .tabBar(this.TabBuilder(item))
+            .tabBar(this.tabBuilder(item))
           }, item => JSON.stringify(item))
         }
         .zIndex(-1)
@@ -86,7 +80,7 @@ struct Index {
         .backgroundColor($r('app.color.divider_bg'))
         .scrollable(this.isTabScrollable)
         .onChange((index: number) => {
-          this.currentIndex = index
+          this.currentIndex = index;
         })
       }
       .flexGrow(1)
@@ -95,21 +89,6 @@ struct Index {
       .height('100%')
     }
     .justifyContent(FlexAlign.SpaceBetween)
-    .gesture(SwipeGesture({ fingers: 1, direction: SwipeDirection.Vertical })
-      .onAction((event: GestureEvent) => {
-        if (0 <= event.angle) {
-          this.brightnessValue -= BRIGHTNESS_SCALE
-          this.setBrightness()
-        } else {
-          this.brightnessValue += BRIGHTNESS_SCALE
-          this.setBrightness()
-        }
-        if (this.brightnessValue > 255) {
-          this.brightnessValue = 0
-          this.setBrightness()
-        }
-      })
-    )
     .width('100%')
     .height('100%')
   }
