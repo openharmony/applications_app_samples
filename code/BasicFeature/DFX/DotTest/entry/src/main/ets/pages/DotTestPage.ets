@@ -72,7 +72,7 @@ struct DotTestPage {
             .fontSize('15vp')
             .margin({ left: '4vp' })
         }
-        .width('400vp')
+        .width('380vp')
         .height('200vp')
         .border({ width: '2vp' })
         .margin({ bottom: '10vp' })
