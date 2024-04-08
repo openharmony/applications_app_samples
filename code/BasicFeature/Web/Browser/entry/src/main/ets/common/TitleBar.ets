@@ -241,6 +241,11 @@ export struct WebTab {
             .userAgent(this.isPhone ? PHONE_USER_AGENT : PAD_USER_AGENT)
             .onPageBegin((event) => {
               Logger.info(TAG, `onPageBegin= ${JSON.stringify(event)}`)
+              if (event.url.startsWith('http')) {
+                this.browser.inputValue = event.url
+              } else {
+                this.browser.inputValue = ''
+              }
               this.browser.loadingStatus = LoadingStatus.LOADING
             })
             .onPageEnd((event) => {
@@ -249,18 +254,21 @@ export struct WebTab {
                 this.browser.webControllerArray[item.key]?.controller?.runJavaScript({ script: 'adapterDevice()' })
                 this.browser.loadingStatus = LoadingStatus.END
                 this.registerFunc(this.browser.webControllerArray[item.key])
-                if (event.url.startsWith('http')) {
-                  this.browser.inputValue = event.url
-                } else {
-                  this.browser.inputValue = ''
-                }
               }
             })
             .onProgressChange((event) => {
               Logger.info(TAG, `onProgressChange`)
               this.browser.progress = event.newProgress
+              if (!this.browser.inputValue) {
+                if (event.newProgress !== 10) {
+                  this.browser.progress = event.newProgress
+                }
+              } else {
+                this.browser.progress = event.newProgress
+              }
               if (this.browser.progress === 100) {
                 this.browser.hideProgress = true
+                this.browser.progress = 0
               } else {
                 this.browser.hideProgress = false
               }
