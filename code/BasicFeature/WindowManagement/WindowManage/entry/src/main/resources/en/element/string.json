@@ -7,6 +7,34 @@
     {
       "name": "startNewAbility",
       "value": "Start New Ability"
+    },
+    {
+      "name": "get_properties_of_system_bar_page",
+      "value": "get properties of system bar page"
+    },
+    {
+      "name": "set_touchable_area_of_window_page",
+      "value": "set touchable area of window page"
+    },
+    {
+      "name": "GetPropertiesOfSystemBar",
+      "value": "Get properties of system bar"
+    },
+    {
+      "name": "area1",
+      "value": "area1"
+    },
+    {
+      "name": "area2",
+      "value": "area2"
+    },
+    {
+      "name": "area3",
+      "value": "area3"
+    },
+    {
+      "name": "area4",
+      "value": "area4"
     }
   ]
 }

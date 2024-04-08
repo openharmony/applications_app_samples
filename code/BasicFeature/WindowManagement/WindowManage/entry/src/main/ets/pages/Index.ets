@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
+import router from '@ohos.router';
 
 @Entry
 @Component
@@ -26,17 +26,44 @@ struct Index {
 
   build() {
     Column() {
-      Text($r("app.string.pages_text"))
-        .fontSize(50)
+      Button($r("app.string.pages_text"))
+        .standardButton(20, '80%')
+        .margin({ top: 80 })
         .onClick(() => {
           router.pushUrl({
             url: "pages/Video"
           })
           this.isChangeWindow = true
         })
+      Button($r("app.string.get_properties_of_system_bar_page"))
+        .standardButton(20, '80%')
+        .onClick(() => {
+          router.pushUrl({
+            url: "system_bar/pages/GetPropertiesOfSystemBar"
+          })
+        })
+      Button($r("app.string.set_touchable_area_of_window_page"))
+        .standardButton(20, '80%')
+        .onClick(() => {
+          router.pushUrl({
+            url: "touchable/pages/SetTouchableAreas"
+          })
+        })
     }
     .width('100%')
-    .height("100%")
+    .height('100%')
     .justifyContent(this.isChangeWindow ? FlexAlign.Start : FlexAlign.Center)
+    .alignItems(HorizontalAlign.Center)
+    .backgroundColor($r('app.color.light_gray'))
   }
+}
+
+@Extend(Button)
+function standardButton(fontSize: number, value: Length) {
+  .fontSize(fontSize)
+  .fontColor($r('app.color.dark_gray'))
+  .backgroundColor($r('app.color.white'))
+  .padding(15)
+  .margin({ top: 20 })
+  .width(value)
 }

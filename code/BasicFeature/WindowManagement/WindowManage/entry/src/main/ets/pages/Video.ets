@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { WindowComponent } from "@ohos/window-component"
+import { WindowComponent } from "@ohos/window-component";
 
 @Entry
 @Component
