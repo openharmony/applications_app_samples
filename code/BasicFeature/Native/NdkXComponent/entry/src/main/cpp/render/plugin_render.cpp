@@ -304,8 +304,6 @@ void PluginRender::Release(std::string& id)
         render->eglCore_->Release();
         delete render->eglCore_;
         render->eglCore_ = nullptr;
-        delete render;
-        render = nullptr;
         instance_.erase(instance_.find(id));
     }
 }
