@@ -193,7 +193,6 @@
       "name": "canvas_and_graphic_drawing",
       "value": "Canvas and graphic drawing"
     },
-    // layout Animation
     {
       "name": "layout_animation_expansion",
       "value": "Layout animation"
@@ -234,7 +233,6 @@
       "name": "layout_animation_expansion_direction",
       "value": "Direction animation"
     },
-    // size transition
     {
       "name": "size_transition_expansion",
       "value": "Size transition"
@@ -263,7 +261,6 @@
       "name": "size_transition_expansion_tabContent",
       "value": "TabContent"
     },
-    // AlertDialog
     {
       "name": "alert_dialog",
       "value": "Alert dialog"
@@ -364,12 +361,10 @@
       "name": "alert_dialog_grid_four",
       "value": "4 grid width"
     },
-    // Foreground
     {
       "name": "foreground_color",
       "value": "Set foreground color"
     },
-    // Background
     {
       "name": "background_color",
       "value": "Set background color"
@@ -509,7 +504,6 @@
       "name": "background_image_offset",
       "value": "Picture position offset to the right and down"
     },
-    // Badge
     {
       "name": "auxiliary_badge",
       "value": "Badge"
@@ -566,7 +560,6 @@
       "name": "badge_green",
       "value": "Small green marker"
     },
-    // Border
     {
       "name": "border_type",
       "value": "Border type"
@@ -655,7 +648,6 @@
       "name": "outline_button",
       "value": "button"
     },
-    // Button
     {
       "name": "button_title",
       "value": "Button"
@@ -716,7 +708,6 @@
       "name": "button_click",
       "value": "Button is clicked"
     },
-    // Click Event
     {
       "name": "click_action_tips",
       "value": "Click the gray area to change the crosshair position"
@@ -733,7 +724,6 @@
       "name": "get_click_event_detail",
       "value": "Click location information"
     },
-    // Drag Event
     {
       "name": "drag_drop_action_tips",
       "value": "Long press the application icon and drag to different areas"
@@ -770,7 +760,6 @@
       "name": "formcomponent",
       "value": "FormComponent"
     },
-    // CustomDialog
     {
       "name": "custom_dialog",
       "value": "Custom dialog"
@@ -811,7 +800,6 @@
       "name": "custom_dialog_start",
       "value": "One-click opening"
     },
-    // DatePickerDialog
     {
       "name": "date_picker_dialog",
       "value": "DatePickerDialog"
@@ -848,7 +836,6 @@
       "name": "date_picker_dialog_datetimethree",
       "value": "2100-12-31"
     },
-    // DatePicker
     {
       "name": "date_picker_title",
       "value": "DatePicker"
@@ -857,7 +844,6 @@
       "name": "date_picker_lunar",
       "value": "Is lunar"
     },
-    // Divider
     {
       "name": "divider_title",
       "value": "Divider"
@@ -914,7 +900,6 @@
       "name": "divider_line_type_square",
       "value": "Square"
     },
-    // Font
     {
       "name": "font_color",
       "value": "Color"
@@ -931,7 +916,6 @@
       "name": "font_style",
       "value": "Style"
     },
-    // Interpolation Calculation
     {
       "name": "interpolation_calculation_cubic_bezier_curve",
       "value": "Third-order Bézier curve object"
@@ -948,7 +932,6 @@
       "name": "interpolation_calculation_steps_curve",
       "value": "step curve object"
     },
-    // Page Transition
     {
       "name": "page_transition",
       "value": "Transitions between pages"
@@ -981,7 +964,6 @@
       "name": "page_transition_back",
       "value": "Back to page transition between pages"
     },
-    // QRCode
     {
       "name": "qrcode_title",
       "value": "QRCode"
@@ -998,7 +980,6 @@
       "name": "qrcode_enter_content",
       "value": "Enter to change QR code"
     },
-    // Search
     {
       "name": "search_placeholder",
       "value": "Type to search..."
@@ -1007,7 +988,6 @@
       "name": "search_name",
       "value": "search"
     },
-    // Radio
     {
       "name": "radio_title",
       "value": "Radio"
@@ -1036,7 +1016,6 @@
       "name": "radio_guangzhou",
       "value": "Guangzhou"
     },
-    // Rotate
     {
       "name": "graphic_transformation_rotate",
       "value": "Rotate"
@@ -1061,7 +1040,6 @@
       "name": "rotate_image_angle",
       "value": "Rotate 15°"
     },
-    // SaveArea
     {
       "name": "safe_area_type_and_safe_area_edge",
       "value": "SafeAreaType And SafeAreaEdge"
@@ -1114,7 +1092,6 @@
       "name": "safe_area_type_keyboard",
       "value": "KEYBOARD"
     },
-    // Select
     {
       "name": "select_title",
       "value": "Select"
@@ -1155,7 +1132,6 @@
       "name": "select_value",
       "value": "The value of the selected option:"
     },
-    // Shareelement Transition
     {
       "name": "share_element_transition",
       "value": "Shared element transition"
@@ -1200,7 +1176,6 @@
       "name": "Gallery_card_expansion",
       "value": "gallery card expansion"
     },
-    // Size
     {
       "name": "size_width",
       "value": "Width"
@@ -1237,7 +1212,6 @@
       "name": "size_height_fixed_calc",
       "value": "Height is calc(200vp-100vp)"
     },
-    // Slider
     {
       "name": "slider_title",
       "value": "Slider"
@@ -1306,7 +1280,6 @@
       "name": "slider_title_value",
       "value": "Slider slide as a percentage of the total length:"
     },
-    // Span
     {
       "name": "span_title",
       "value": "Span"
@@ -1387,7 +1360,6 @@
       "name": "span_decoration_overline",
       "value": "Overline"
     },
-    //ImageSpan
     {
       "name": "image_span_title",
       "value": "Image Span"
@@ -1448,7 +1420,6 @@
       "name": "image_span_vertical_align_and_object_fit",
       "value": "image span vertical align and object fit"
     },
-    // Text
     {
       "name": "text_title",
       "value": "Text"
@@ -1557,7 +1528,6 @@
       "name": "text_text_case_lowercase",
       "value": "Lowercase"
     },
-    // TextArea
     {
       "name": "text_area_set_text_selection",
       "value": "Set Text Selection"
@@ -1578,7 +1548,6 @@
       "name": "text_input_set_text_selection_end_select",
       "value": "End Select:"
     },
-    // TextInput
     {
       "name": "avoiding_input_method_testing",
       "value": "Avoiding Input Method Testing"
@@ -1687,7 +1656,6 @@
       "name": "text_input_toast_edit",
       "value": "The edited text is:"
     },
-    // TimePickerDialog
     {
       "name": "time_picker_dialog",
       "value": "TimePickerDialog"
@@ -1724,7 +1692,6 @@
       "name": "time_picker_dialog_timetwo",
       "value": "10/01/2022 12:00"
     },
-    // Toggle
     {
       "name": "toggle_title",
       "value": "Toggle"
@@ -1753,7 +1720,6 @@
       "name": "toggle_state",
       "value": "Checked: "
     },
-    // Translate
     {
       "name": "graphic_transformation_translate",
       "value": "Translate"
@@ -1774,7 +1740,6 @@
       "name": "translate_y_axis",
       "value": "Y-axis:"
     },
-    //Display
     {
       "name": "components_display",
       "value": "Display"
@@ -2175,7 +2140,6 @@
       "name": "status_select",
       "value": "Status selection"
     },
-    // 侧边栏
     {
       "name": "side_bar_effects_title",
       "value": "SideBar effects"
@@ -2208,7 +2172,6 @@
       "name": "side_bar_type_auto",
       "value": "Auto"
     },
-    // 辅助
     {
       "name": "scroll_bar",
       "value": "ScrollBar"
@@ -2221,7 +2184,6 @@
       "name": "scroll_horizontal_title",
       "value": "horizontal scroll"
     },
-    // 刷新
     {
       "name": "auxiliary_refresh",
       "value": "Refresh"
@@ -2726,7 +2688,6 @@
       "name": "interaction_mask",
       "value": "isMask:"
     },
-    // ComponentTransitionSample
     {
       "name": "component_transition",
       "value": "Component transition"
@@ -3610,7 +3571,6 @@
       "name": "bind_click",
       "value": "点击我"
     },
-    // ActionSheetDialog
     {
       "name": "action_sheet_dialog",
       "value": "ActionSheetDialog"
@@ -3619,7 +3579,6 @@
       "name": "action_sheet_click_sheets",
       "value": "点击选项内容"
     },
-    // TextPickerDialog
     {
       "name": "text_picker_text_peach",
       "value": "peach"
@@ -3648,7 +3607,6 @@
       "name": "text_picker_show",
       "value": "显示文本弹窗"
     },
-    //Row
     {
       "name": "row_title",
       "value": "Row"
@@ -3717,7 +3675,6 @@
       "name": "row_tips",
       "value": "When the spindle is of type SpaceBetween, SpaceAround, or SpaceEven, the parameter space of the Row component does not take effect"
     },
-    // RowSplit
     {
       "name": "rowsplit_title",
       "value": "RowSplit Indicates the horizontal split layout"
@@ -3734,7 +3691,6 @@
       "name": "rowsplit_drag_divider",
       "value": "Drag the dividers left and right to change position"
     },
-    // Column
     {
       "name": "column_title",
       "value": "Column"
@@ -3803,7 +3759,6 @@
       "name": "column_tips",
       "value": "When the spindle is of type SpaceBetween, SpaceAround, or SpaceEven, the parameter space of the Row component does not take effect"
     },
-    // ColumnSplit
     {
       "name": "columnsplit_title",
       "value": "RowSplit Indicates the vertical split layout"
@@ -3820,7 +3775,6 @@
       "name": "columnsplit_introduction_drag_divider",
       "value": "Drag the split line up and down to change the position"
     },
-    // SideBarContainer
     {
       "name": "sidebarcontainer_title",
       "value": "SideBarContainer"
@@ -3913,7 +3867,6 @@
       "name": "sidebarcontainer__is_show_false",
       "value": "The sidebar is closed"
     },
-    // Stack
     {
       "name": "stack_title",
       "value": "Stack"
@@ -3978,7 +3931,6 @@
       "name": "stack_zindex",
       "value": "ZIndex"
     },
-    // Flex
     {
       "name": "flex_title",
       "value": "Flex"
@@ -4411,7 +4363,6 @@
       "name": "search_change",
       "value": "SearchChange"
     },
-    // List
     {
       "name": "list_title",
       "value": "List"
@@ -4544,7 +4495,6 @@
       "name": "list_item_introduction_properties",
       "value": "修改 ListItem 的属性"
     },
-    // Grid
     {
       "name": "grid_title",
       "value": "Grid"
@@ -4589,7 +4539,6 @@
       "name": "grid_properties_rows_template",
       "value": "rowsTemplate(Control the proportion of the third rows)"
     },
-    // GridItem
     {
       "name": "grid_item_introduction",
       "value": "Change the position of 1"
@@ -4610,7 +4559,6 @@
       "name": "grid_item_column_end",
       "value": "Modify the end column number"
     },
-    // Swiper
     {
       "name": "swiper_title",
       "value": "swiper"
@@ -4663,7 +4611,6 @@
       "name": "swiper_controller_previous",
       "value": "Previous page"
     },
-    // Navigation
     {
       "name": "navRouter_title",
       "value": "NavRouter"
@@ -4800,7 +4747,6 @@
       "name": "navigation_router_har2",
       "value": "Jump to Har2"
     },
-    // Tabs
     {
       "name": "tabs_title",
       "value": "Tabs"
@@ -4853,7 +4799,6 @@
       "name": "tabs_arguments_controller",
       "value": "Switches to the specified index"
     },
-    // TabsContent
     {
       "name": "tab_content_title",
       "value": "TabContent"
@@ -4866,7 +4811,6 @@
       "name": "tab_content_side",
       "value": "Switch sidebar"
     },
-    // Stepper
     {
       "name": "stepper_title",
       "value": "Stepper&StepperItem"
@@ -5471,7 +5415,6 @@
       "name": "canvas_imageSmoothingQuality",
       "value": "imageSmoothingQuality"
     },
-    // scrollTo 动效增强
     {
       "name": "scroll_To_effect",
       "value": "ScrollTo effect"
