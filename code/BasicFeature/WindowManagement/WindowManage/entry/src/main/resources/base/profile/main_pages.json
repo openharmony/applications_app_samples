@@ -2,6 +2,8 @@
   "src": [
     "pages/Index",
     "pages/Video",
-    "pages/SubWindowPage"
+    "pages/SubWindowPage",
+    "system_bar/pages/GetPropertiesOfSystemBar",
+    "touchable/pages/SetTouchableAreas"
   ]
 }

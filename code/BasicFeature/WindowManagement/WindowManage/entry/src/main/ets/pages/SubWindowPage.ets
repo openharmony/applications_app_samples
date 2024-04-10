@@ -77,7 +77,8 @@ struct SubWindowPage {
                 x: event.touches[0].displayX,
                 y: event.touches[0].displayY,
                 type: event.type
-              } };
+              }
+            };
             let innerEvent: emitter.InnerEvent = {
               eventId: this.SUB_WINDOW_INNER_EVENT_ID,
               priority: emitter.EventPriority.HIGH

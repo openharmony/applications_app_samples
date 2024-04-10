@@ -7,6 +7,34 @@
     {
       "name": "startNewAbility",
       "value": "拉起悬浮应用"
+    },
+    {
+      "name": "get_properties_of_system_bar_page",
+      "value": "获取系统状态栏属性页"
+    },
+    {
+      "name": "set_touchable_area_of_window_page",
+      "value": "设置窗口可触摸区域页"
+    },
+    {
+      "name": "GetPropertiesOfSystemBar",
+      "value": "获取系统栏属性"
+    },
+    {
+      "name": "area1",
+      "value": "区域1"
+    },
+    {
+      "name": "area2",
+      "value": "区域2"
+    },
+    {
+      "name": "area3",
+      "value": "区域3"
+    },
+    {
+      "name": "area4",
+      "value": "区域4"
     }
   ]
 }
