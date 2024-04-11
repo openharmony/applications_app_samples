@@ -19,14 +19,11 @@
     "products": [
       {
         "name": "default",
-        "signingConfig": "default",
-        "compileSdkVersion": 10,
-        "compatibleSdkVersion": 10,
-        "targetSdkVersion": 10,
-        //指定OpenHarmony应用/服务目标版本。若没有设置，默认为compatibleSdkVersion
-        "runtimeOS": "OpenHarmony"
+        "signingConfig": "default"
       }
-    ]
+    ],
+    "compileSdkVersion": 12,
+    "compatibleSdkVersion": 12
   },
   "modules": [
     {

@@ -1,6 +1,7 @@
 {
   "src": [
     "pages/Index",
-    "pages/AudioRecording"
+    "pages/AudioRecording",
+    "pages/AudioVividPlayback"
   ]
 }
