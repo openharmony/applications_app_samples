@@ -115,8 +115,8 @@ export class MediaConstants {
   static readonly CAMERA_ALBUM_PATH = 'Camera'
   static readonly REMOTE_ALBUM_PATH = 'FromOtherDevices'
   static readonly SNAPSHOT_ALBUM_PATH = 'Screenshots'
-  static readonly PHOTO_SUBTYPE = 'subtype';
-  static readonly MOVING_PHOTO = 3; // subtype value of moving photo
+  static readonly PHOTO_SUBTYPE = photoAccessHelper.PhotoKeys.PHOTO_SUBTYPE.toString();
+  static readonly MOVING_PHOTO = photoAccessHelper.PhotoSubtype.MOVING_PHOTO;
 
   // 需要过滤的媒体文件类型
   static readonly FILTER_MEDIA_TYPE_ALL: string = 'FILTER_MEDIA_TYPE_ALL';
