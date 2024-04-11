@@ -25,6 +25,7 @@
     <!-- Input type start -->
       <input class="input-type-input"
              type="{{ inputType }}"
+             value="{{ inputValue }}"
              id="inputType"
              showpasswordicon="{{ passwordIconValue }}"
              placeholder="{{ $t('strings.input_type_placeholder') }}">
