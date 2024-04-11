@@ -37,6 +37,10 @@
       "value": "截屏录屏"
     },
     {
+      "name": "album_moving_photo",
+      "value": "动态照片"
+    },
+    {
       "name": "album_recycle",
       "value": "最近删除"
     },

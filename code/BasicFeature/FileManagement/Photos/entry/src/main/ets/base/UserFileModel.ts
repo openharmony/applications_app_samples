@@ -239,6 +239,31 @@ class UserFileModel {
     return fileAssets;
   }
 
+  async getAllMovingPhotoItems(): Promise<photoAccessHelper.PhotoAsset[]> {
+    let fileAssets: photoAccessHelper.PhotoAsset[] = [];
+    let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = null;
+    try {
+      let predicates = new dataSharePredicates.DataSharePredicates();
+      predicates.equalTo(MediaConstants.PHOTO_SUBTYPE, MediaConstants.MOVING_PHOTO);
+      let fetchOptions: photoAccessHelper.FetchOptions = {
+        fetchColumns: MediaConstants.FILE_ASSET_FETCH_COLUMNS,
+        predicates: predicates
+      };
+      photoFetchResult = await this.userFileMgr.getAssets(fetchOptions);
+      Log.info(TAG, 'getAllMovingPhotoItems count: ' + photoFetchResult.getCount());
+      for (let i = 0; i < photoFetchResult.getCount(); i++) {
+        fileAssets.push(await photoFetchResult.getObjectByPosition(i));
+      }
+    } catch (err) {
+      Log.error(TAG, 'getAllMovingPhotoItems failed with err: ' + err);
+    } finally {
+      if (photoFetchResult != null) {
+        photoFetchResult.close();
+      }
+    }
+    return fileAssets;
+  }
+
   async getAllMediaItemsByType(type: number, subType: number, albumFetchOption, fileFetchOption): Promise<photoAccessHelper.PhotoAsset[]> {
     let fileAssets: photoAccessHelper.PhotoAsset[] = [];
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = null;

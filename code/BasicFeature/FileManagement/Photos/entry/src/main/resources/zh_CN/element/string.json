@@ -853,6 +853,10 @@
       "value": "截屏录屏"
     },
     {
+      "name": "album_moving_photo",
+      "value": "动态照片"
+    },
+    {
       "name": "album_remote_device",
       "value": "其他设备保存"
     },

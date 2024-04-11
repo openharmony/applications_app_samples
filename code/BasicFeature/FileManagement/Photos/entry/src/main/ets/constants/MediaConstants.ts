@@ -44,6 +44,7 @@ export class MediaConstants {
   static readonly SELECT_TYPE_IMAGE = 2;
   //album type
   static readonly ALBUM_TYPE_ALL = -1;
+  static readonly ABSTRACT_ALBUM_TYPE_MOVING_PHOTO = -2;
   static readonly ALBUM_TYPE_USER = photoAccessHelper.AlbumType.USER;
   static readonly ALBUM_TYPE_SYSTEM = photoAccessHelper.AlbumType.SYSTEM;
   // album subtype
@@ -66,13 +67,15 @@ export class MediaConstants {
   static readonly ALBUM_ID_FAVOR = 'default_favor';
   static readonly ALBUM_ID_SNAPSHOT = 'default_snapshot';
   static readonly ALBUM_ID_REMOTE = 'default_remote';
+  static readonly ALBUM_ID_MOVING_PHOTO = 'default_moving_photo';
   static readonly ALBUM_DISABLE_COPY_LIST: Set<string> = new Set<string>([
   MediaConstants.ALBUM_ID_ALL,
   MediaConstants.ALBUM_ID_VIDEO,
   MediaConstants.ALBUM_ID_RECYCLE,
   MediaConstants.ALBUM_ID_FAVOR,
   MediaConstants.ALBUM_ID_CAMERA,
-  MediaConstants.ALBUM_ID_SNAPSHOT
+  MediaConstants.ALBUM_ID_SNAPSHOT,
+  MediaConstants.ALBUM_ID_MOVING_PHOTO
   ] as string[]);
   static readonly ALBUM_DISABLE_DELETE_LIST: Set<string> = new Set<string>([
   MediaConstants.ALBUM_ID_ALL,
@@ -80,7 +83,8 @@ export class MediaConstants {
   MediaConstants.ALBUM_ID_VIDEO,
   MediaConstants.ALBUM_ID_RECYCLE,
   MediaConstants.ALBUM_ID_FAVOR,
-  MediaConstants.ALBUM_ID_SNAPSHOT
+  MediaConstants.ALBUM_ID_SNAPSHOT,
+  MediaConstants.ALBUM_ID_MOVING_PHOTO
   ] as string[]);
   static readonly ALBUM_DISABLE_NEW_LIST: Set<string> = new Set<string>([
   MediaConstants.ALBUM_ID_ALL,
@@ -88,7 +92,8 @@ export class MediaConstants {
   MediaConstants.ALBUM_ID_VIDEO,
   MediaConstants.ALBUM_ID_RECYCLE,
   MediaConstants.ALBUM_ID_FAVOR,
-  MediaConstants.ALBUM_ID_SNAPSHOT
+  MediaConstants.ALBUM_ID_SNAPSHOT,
+  MediaConstants.ALBUM_ID_MOVING_PHOTO
   ] as string[]);
   static readonly ALBUM_DISABLE_RENAME_LIST: Set<string> = new Set<string>([
   MediaConstants.ALBUM_ID_ALL,
@@ -96,18 +101,22 @@ export class MediaConstants {
   MediaConstants.ALBUM_ID_VIDEO,
   MediaConstants.ALBUM_ID_RECYCLE,
   MediaConstants.ALBUM_ID_FAVOR,
-  MediaConstants.ALBUM_ID_SNAPSHOT
+  MediaConstants.ALBUM_ID_SNAPSHOT,
+  MediaConstants.ALBUM_ID_MOVING_PHOTO
   ] as string[]);
   static readonly ALBUM_DEFAULT_SORT_LIST: string[] = [
   MediaConstants.ALBUM_ID_ALL,
   MediaConstants.ALBUM_ID_CAMERA,
   MediaConstants.ALBUM_ID_VIDEO,
   MediaConstants.ALBUM_ID_SNAPSHOT,
+  MediaConstants.ALBUM_ID_MOVING_PHOTO,
   MediaConstants.ALBUM_ID_FAVOR
   ];
   static readonly CAMERA_ALBUM_PATH = 'Camera'
   static readonly REMOTE_ALBUM_PATH = 'FromOtherDevices'
   static readonly SNAPSHOT_ALBUM_PATH = 'Screenshots'
+  static readonly PHOTO_SUBTYPE = 'subtype';
+  static readonly MOVING_PHOTO = 3; // subtype value of moving photo
 
   // 需要过滤的媒体文件类型
   static readonly FILTER_MEDIA_TYPE_ALL: string = 'FILTER_MEDIA_TYPE_ALL';
