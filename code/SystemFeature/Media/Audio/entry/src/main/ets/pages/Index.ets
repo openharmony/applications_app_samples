@@ -22,7 +22,7 @@ struct Index {
       Row(){
         Row() {
           Column() {
-            Image($r('app.media.ic_spatialaudio')).width(72).height(72).margin({ top: 36 })
+            Image($r("app.media.ic_index_spatial")).width(72).height(72).margin({ top: 36 })
             Text($r('app.string.SPATIAL_AUDIO')).fontColor(Color.Black).fontSize(16).margin({ top: 12 })
           }
           .id('spatial_audio_card')

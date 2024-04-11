@@ -16,9 +16,9 @@
 实现效果如下：
 
 ### 效果预览
-| 主页                                     | 空间音频界面                                  |
-|----------------------------------------|-----------------------------------------|
-| ![index](screenshot/devices/index.png) | ![main](screenshot/devices/spatial.png) |
+| 主页                                     | 空间音频界面                                  | 空间音频（支持场景化） |
+|----------------------------------------|-----------------------------------------|----------------------|
+| ![index](screenshot/devices/index.png) | ![main](screenshot/devices/spatial.png) |![scene](screenshot/devices/spatialSceneMode.jpg)|
 
 使用说明
 
@@ -30,7 +30,9 @@
 
 4. 点击三个按钮，分别会启用”关闭空间音频“，”启用空间音频固定模式“，”启用空间音频头动追踪模式“
 
-5. 当前版本对是否支持空间音频的判断仍简单，即当前发声设备具备不为空的mac地址就会显示三态按钮UX。
+5. 当前版本,音频管家判断二级支持空间音频会显示三态按钮UX，否则页面只有关闭模式使能。
+
+6. 当空间音频可以使用时，可以通过空间模式卡片选择场景。
 
 ### 工程目录
 
@@ -53,12 +55,14 @@ entry/src/main/ets/
     * 使用isSpatializationSupported(), isHeadTrackingSupported(), isSpatializationSupportedForDevice(AudioDeviceDescriptor), isHeadTrackingSupportedForDevice(AudioDeviceDescriptor)四个接口查询系统和设备是否支持空间音频和头动跟踪，根据查询结果设置用户UX界面状态:只有系统和设备全都支持某功能，其按钮状态才不会被置灰。
     * 使用isSpatializationEnabled(), isHeadTrackingEnabled()在每次UX界面出现时查询当前空间音频和头动跟踪是否开启，同步在其他app对开关状态的改动
     * 使用setSpatializationEnabled(enable: boolean), setHeadTrackingEnabled(enable: boolean)，在点击UX按钮时设置空间音频和头动跟踪状态。
+    * 使用setSpatializationSceneType(spatializationSceneType: AudioSpatializationSceneType)，设置空间模式
+    * 使用getSpatializationSceneType()，查询当前的空间模式
 
 ### 约束与限制
 
 1.本示例仅支持标准系统上运行。
 
-2.本示例为Stage模型，仅支持API11版本SDK。
+2.本示例为Stage模型，仅支持API12版本SDK。
 
 3.本示例需要使用DevEco Studio 版本号(3.1.1Release)版本才可编译运行。
 

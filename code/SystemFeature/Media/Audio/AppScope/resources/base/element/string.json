@@ -27,6 +27,26 @@
     {
       "name": "TRACKING_TEXT",
       "value": "头部跟踪"
+    },
+    {
+      "name": "SPATIAL_SCENE_MODE",
+      "value": "空间模式"
+    },
+    {
+      "name": "SCENE_MODE_DEFAULT",
+      "value": "默认空间模式"
+    },
+    {
+      "name": "SCENE_MODE_AUDIOBOOK",
+      "value": "有声剧场"
+    },
+    {
+      "name": "SCENE_MODE_MOVIE",
+      "value": "电影院"
+    },
+    {
+      "name": "SCENE_MODE_MUSIC",
+      "value": "音乐厅"
     }
   ]
 }
