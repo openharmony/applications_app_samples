@@ -233,8 +233,7 @@ export struct WebTab {
         TabContent() {
           Web({
             src: this.isPhone ? $rawfile('phone.html') : $rawfile('pad.html'),
-            controller: this.browser.webControllerArray[item.key] !== undefined ?
-            this.browser.webControllerArray[item.key].controller : undefined
+            controller: this.browser?.webControllerArray[item.key]?.controller
           })
             .javaScriptAccess(true)
             .fileAccess(true)
@@ -246,8 +245,8 @@ export struct WebTab {
             })
             .onPageEnd((event) => {
               Logger.info(TAG, `onPageEnd= ${JSON.stringify(event)}`)
-              if (item.key < this.browser.webControllerArray.length && this.browser.webControllerArray[item.key].controller) {
-                this.browser.webControllerArray[item.key].controller.runJavaScript({ script: 'adapterDevice()' })
+              if (item.key < this.browser.webControllerArray.length && this.browser.webControllerArray[item.key]?.controller) {
+                this.browser.webControllerArray[item.key]?.controller?.runJavaScript({ script: 'adapterDevice()' })
                 this.browser.loadingStatus = LoadingStatus.END
                 this.registerFunc(this.browser.webControllerArray[item.key])
                 if (event.url.startsWith('http')) {
