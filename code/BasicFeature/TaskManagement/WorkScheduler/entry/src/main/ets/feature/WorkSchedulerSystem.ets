@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,16 +14,17 @@
  */
 
 import fs from '@ohos.file.fs';
-import Notification from '@ohos.notification'
+import notificationManager from '@ohos.notificationManager';
+import Notification from '@ohos.notification';
 import bundle from '@ohos.bundle.installer';
-import account from '@ohos.account.osAccount'
-import workScheduler from '@ohos.resourceschedule.workScheduler'
-import http from '@ohos.net.http'
-import { Logger } from '../utils/Logger'
+import account from '@ohos.account.osAccount';
+import workScheduler from '@ohos.resourceschedule.workScheduler';
+import http from '@ohos.net.http';
+import { Logger } from '../utils/Logger';
 
-const FILE_NAME = '/UpdateWorkScheduler.hap'
-const BUNDLE_NAMES = ['ohos.samples.workschedulerextensionability']
-const INSTALL_PARAMETER = 1
+const FILE_NAME = '/UpdateWorkScheduler.hap';
+const BUNDLE_NAMES = ['ohos.samples.workschedulerextensionability'];
+const INSTALL_PARAMETER = 1;
 
 export namespace WorkSchedulerSystem {
   /**
@@ -34,12 +35,12 @@ export namespace WorkSchedulerSystem {
    */
   export function saveFile(pathDir: string, content: ArrayBuffer): void {
     try {
-      let filePath = pathDir + FILE_NAME
-      let fd = fs.openSync(filePath, 0o2 | 0o100).fd
-      fs.writeSync(fd, content)
-      fs.closeSync(fd)
+      let filePath = pathDir + FILE_NAME;
+      let fd = fs.openSync(filePath, 0o2 | 0o100).fd;
+      fs.writeSync(fd, content);
+      fs.closeSync(fd);
     } catch (err) {
-      Logger.error(`saveFile failed, code is ${err.code}, message is ${err.message}`)
+      Logger.error(`saveFile failed, code is ${err.code}, message is ${err.message}`);
     }
   }
 
@@ -50,18 +51,11 @@ export namespace WorkSchedulerSystem {
    * @permission ohos.permission.NOTIFICATION_CONTROLLER
    */
   export async function handleNotification(bundleName: string): Promise<void> {
-    let isHavePermission = await Notification.isNotificationEnabled({
-      bundle: bundleName
-    })
-    if (!isHavePermission) {
-      await Notification.enableNotification({
-        bundle: bundleName
-      }, true)
-    }
+    await notificationManager.requestEnableNotification();
     Notification.subscribe({
       onConsume: (data) => {
         if (data.request.content.normal.text === 'isReady') {
-          AppStorage.SetOrCreate('isShowDialog', true)
+          AppStorage.SetOrCreate('isShowDialog', true);
         }
       }
     }, {
@@ -78,7 +72,7 @@ export namespace WorkSchedulerSystem {
    * @permission ohos.permission.NOTIFICATION_CONTROLLER
    */
   export function publishNotification(title: string, text: string, additionalText: string): void {
-    Notification.publish({
+    notificationManager.publish({
       content: {
         contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
@@ -98,18 +92,18 @@ export namespace WorkSchedulerSystem {
    */
   export async function installBundle(filePath: Array<string>): Promise<void> {
     try {
-      let bundleInstall = await bundle.getBundleInstaller()
-      let userId = await account.getAccountManager().getOsAccountLocalIdFromProcess()
+      let bundleInstall = await bundle.getBundleInstaller();
+      let userId = await account.getAccountManager().getOsAccountLocalIdFromProcess();
       bundleInstall.install(filePath, {
         userId: userId,
         installFlag: INSTALL_PARAMETER,
         isKeepData: false
       }, (status, statusMessage) => {
-        Logger.info(`installBundle filepath is ${filePath}`)
-        Logger.info(`installBundle code is ${status.code}, message is ${JSON.stringify(statusMessage)}`)
+        Logger.info(`installBundle filepath is ${filePath}`);
+        Logger.info(`installBundle code is ${status.code}, message is ${JSON.stringify(statusMessage)}`);
       })
     } catch (err) {
-      Logger.error(`installBundle failed, code is ${err.code}, message is ${err.message}`)
+      Logger.error(`installBundle failed, code is ${err.code}, message is ${err.message}`);
     }
   }
 
@@ -131,11 +125,11 @@ export namespace WorkSchedulerSystem {
           version: version,
           filePath: filePath
         }
-      }
-      workScheduler.startWork(workInfo)
+      };
+      workScheduler.startWork(workInfo);
     }
     catch (err) {
-      Logger.error(`startWork failed, code is ${err.code}, message is ${err.message}`)
+      Logger.error(`startWork failed, code is ${err.code}, message is ${err.message}`);
     }
   }
 
@@ -151,9 +145,9 @@ export namespace WorkSchedulerSystem {
         url,
         {
           expectDataType: http.HttpDataType.ARRAY_BUFFER
-        })
+        });
     } catch (err) {
-      Logger.error(`get result failed, code is ${err.code}, message is ${err.message}`)
+      Logger.error(`get result failed, code is ${err.code}, message is ${err.message}`);
     }
   }
 }
