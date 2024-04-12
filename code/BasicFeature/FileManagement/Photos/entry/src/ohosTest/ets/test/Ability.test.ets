@@ -116,6 +116,8 @@ export default function abilityTest() {
       await driver.delayMs(3000);
       HiLog.info(DOMAIN, TAG, BUNDLE + 'check text' + await getResourceString($r('app.string.album_screen_shot')));
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.album_screen_shot'))));
+      HiLog.info(DOMAIN, TAG, BUNDLE + 'check text' + await getResourceString($r('app.string.album_moving_photo')));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.album_moving_photo'))));
       HiLog.info(DOMAIN, TAG, BUNDLE + 'check text' + await getResourceString($r('app.string.album_favor')));
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.album_favor'))));
       HiLog.info(DOMAIN, TAG, BUNDLE + 'check text' + await getResourceString($r('app.string.album_recycle')));

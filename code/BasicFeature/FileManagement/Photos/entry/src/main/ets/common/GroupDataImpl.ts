@@ -167,6 +167,8 @@ export class GroupDataImpl {
     Log.info(TAG, 'albumName:' + albumName);
     if (albumType === MediaConstants.ALBUM_TYPE_ALL) {
       return await userFileModel.getAllMediaItems();
+    } else if (albumType === MediaConstants.ABSTRACT_ALBUM_TYPE_MOVING_PHOTO) {
+      return await userFileModel.getAllMovingPhotoItems();
     }
     let emptyPredicates = new dataSharePredicates.DataSharePredicates();
     let emptyFetchOption = {

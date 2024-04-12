@@ -52,7 +52,7 @@ export struct MediaOperationActionBar {
     Column() {
       ActionBar({
         actionBarProp: $actionBarProp,
-        onMenuClicked: (action: Action): void => this.onMenuClicked(action)
+        onMenuClicked: (action: Action): void => this.onMenuClicked?.(action)
       })
     }
   }

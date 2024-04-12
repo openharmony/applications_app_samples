@@ -37,6 +37,10 @@
       "value": "Screenshots"
     },
     {
+      "name": "album_moving_photo",
+      "value": "MovingPhoto"
+    },
+    {
       "name": "album_recycle",
       "value": "Recently deleted"
     },

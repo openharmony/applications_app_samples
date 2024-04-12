@@ -556,7 +556,8 @@ struct PhotoBrowser {
       if (this.entryFromHap === Constants.ENTRY_FROM_FORM_ABILITY) {
         this.isFromCard = true;
         this.pageFrom = Constants.ENTRY_FROM.CARD;
-        this.albumInfo = new SimpleAlbumDataItem(AppStorage.Get<string>(Constants.FROM_ALBUM_ID), '', '', '', '',-1,-1);
+        let albumId = AppStorage.Get<string>(Constants.FROM_ALBUM_ID);
+        this.albumInfo = new SimpleAlbumDataItem(albumId === undefined ? '' : albumId, '', '', '', '', -1, -1);
       } else {
         this.pageFrom = Constants.ENTRY_FROM.CAMERA;
         this.albumInfo = new SimpleAlbumDataItem(MediaConstants.ALBUM_ID_CAMERA, '', '', '', '',-1,-1);
@@ -569,7 +570,8 @@ struct PhotoBrowser {
       this.browserDataSource.reloadGroupItemData(false).then<void, void>((isEmpty: boolean): void => {
         this.isDataChanged = isEmpty;
         if (!Number.isNaN(AppStorage.Get<number>(Constants.FROM_CURRENT_INDEX))) {
-          this.onPhotoChanged(AppStorage.Get<number>(Constants.FROM_CURRENT_INDEX));
+          let currentIndex = AppStorage.Get<number>(Constants.FROM_CURRENT_INDEX);
+          this.onPhotoChanged(currentIndex === undefined ? 0 : currentIndex);
         } else {
           this.onPhotoChanged(0);
         }

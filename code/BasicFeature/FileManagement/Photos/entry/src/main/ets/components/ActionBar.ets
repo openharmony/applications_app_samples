@@ -56,7 +56,7 @@ export struct ActionBar {
           ActionBarButton({
             res: item.getLeftAction().iconRes,
             action: item.getLeftAction(),
-            onMenuClicked: (action: Action): void => this.onMenuClicked(action),
+            onMenuClicked: (action: Action): void => this.onMenuClicked?.(action),
             isAutoTint: item.getLeftAction().isAutoTint,
             colorMode: item.getColorMode(),
             isFirst: true
@@ -77,7 +77,7 @@ export struct ActionBar {
           SingleTitle({ actionBarProp: $actionBarProp })
         }.flexGrow(1)
       }
-      DetailMenuPanel({ actionBarProp: $actionBarProp, onMenuClicked: (action: Action): void => this.onMenuClicked(action) })
+      DetailMenuPanel({ actionBarProp: $actionBarProp, onMenuClicked: (action: Action): void => this.onMenuClicked?.(action) })
     }
     .margin({ top: $r('app.float.actionbar_margin_horizontal') })
     .height(Constants.ActionBarHeight)
