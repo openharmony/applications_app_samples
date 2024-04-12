@@ -233,8 +233,7 @@ export struct WebTab {
         TabContent() {
           Web({
             src: this.isPhone ? $rawfile('phone.html') : $rawfile('pad.html'),
-            controller: this.browser.webControllerArray[item.key] !== undefined ?
-            this.browser.webControllerArray[item.key].controller : undefined
+            controller: this.browser?.webControllerArray[item.key]?.controller
           })
             .javaScriptAccess(true)
             .fileAccess(true)
