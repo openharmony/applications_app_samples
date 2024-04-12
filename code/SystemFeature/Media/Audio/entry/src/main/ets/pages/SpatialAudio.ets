@@ -49,10 +49,10 @@ struct SpatialAudio {
         channels: audio.AudioChannel.CHANNEL_6,
         sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
         encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW,
-        channelLayout: audio.AudioChannelLayout.CH_LAYOUT_5POINT1_BACK
+        channelLayout: audio.AudioChannelLayout.CH_LAYOUT_5POINT1
       },
       rendererInfo: {
-        usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+        usage: audio.StreamUsage.STREAM_USAGE_MOVIE,
         rendererFlags: 0
       }
     }
@@ -308,7 +308,7 @@ struct SpatialAudio {
 
   @Builder ChooseSpatialSceneMode() {
     Row() {
-      Column() {
+      Row() {
         Text($r('app.string.SPATIAL_SCENE_MODE'))
           .fontSize(14)
           .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
@@ -321,7 +321,7 @@ struct SpatialAudio {
       .margin({ top: 28, left: 28 })
       .justifyContent(FlexAlign.Start)
     }
-    .width('100%')
+    .width(360)
     .height(56)
     .justifyContent(FlexAlign.Start)
 
@@ -365,7 +365,9 @@ struct SpatialAudio {
         Column() {
         }
         .width(264)
-        .backgroundColor('#F1F3F5')
+        .height(0.5)
+        .opacity(0.05)
+        .backgroundColor('#000000')
       }
       .justifyContent(FlexAlign.End)
       .width(304)
@@ -410,7 +412,9 @@ struct SpatialAudio {
         Column() {
         }
         .width(264)
-        .backgroundColor('#F1F3F5')
+        .height(0.5)
+        .opacity(0.05)
+        .backgroundColor('#000000')
       }
       .justifyContent(FlexAlign.End)
       .width(304)
@@ -455,7 +459,9 @@ struct SpatialAudio {
         Column() {
         }
         .width(264)
-        .backgroundColor('#F1F3F5')
+        .height(0.5)
+        .opacity(0.05)
+        .backgroundColor('#000000')
       }
       .justifyContent(FlexAlign.End)
       .width(304)
@@ -792,7 +798,7 @@ struct SpatialAudio {
         .width('100%')
         .margin({ top: 12 })
 
-        if (this.spatializationEnabled === true) {
+        if (this.supportState > CLOSE_MODE && this.spatializationEnabled === true) {
           this.ChooseSpatialSceneMode()
         }
       }
