@@ -53,9 +53,9 @@ bool g_readEnd = false;
 bool g_rendererLowLatency = false;
 int32_t g_samplingRate = 48000;
 int32_t g_channelCount = 2;
-int32_t g_samplingRate_avp = 48000;
-int32_t g_channelCount_avp = 2;
-int32_t g_channelCount_avp_vivid = 8;
+int32_t g_avpsamplingRate = 48000;
+int32_t g_avpchannelCount = 2;
+int32_t g_avpvividchannelCount = 8;
 
 std::unique_ptr<std::ifstream> normalPCM;
 std::unique_ptr<std::ifstream> vividPCM;
@@ -365,8 +365,8 @@ static napi_value AvpAudioRendererInit(napi_env env, napi_callback_info info)
     // create builder
     OH_AudioStreamBuilder_Create(&rendererBuilder, AUDIOSTREAM_TYPE_RENDERER);
     // set params and callbacks
-    OH_AudioStreamBuilder_SetSamplingRate(rendererBuilder, g_samplingRate_avp);
-    OH_AudioStreamBuilder_SetChannelCount(rendererBuilder, g_channelCount_avp);
+    OH_AudioStreamBuilder_SetSamplingRate(rendererBuilder, g_avpsamplingRate);
+    OH_AudioStreamBuilder_SetChannelCount(rendererBuilder, g_avpchannelCount);
     OH_AudioStreamBuilder_SetSampleFormat(rendererBuilder, AUDIOSTREAM_SAMPLE_S16LE);
     OH_AudioStreamBuilder_SetEncodingType(rendererBuilder, AUDIOSTREAM_ENCODING_TYPE_RAW);
     OH_AudioStreamBuilder_SetRendererInfo(rendererBuilder, AUDIOSTREAM_USAGE_MOVIE);
@@ -415,7 +415,8 @@ static napi_value AvpAudioRendererRelease(napi_env env, napi_callback_info info)
     return nullptr;
 }
 
-static napi_value AvpGetRendererState(napi_env env, napi_callback_info info) {
+static napi_value AvpGetRendererState(napi_env env, napi_callback_info info)
+{
     OH_AudioStreamBuilder *builder;
     OH_AudioStreamBuilder_Create(&builder, AUDIOSTREAM_TYPE_RENDERER);
     OH_AudioStream_State state;
@@ -457,8 +458,8 @@ static napi_value AvpVividAudioRendererInit(napi_env env, napi_callback_info inf
     // create builder
     OH_AudioStreamBuilder_Create(&rendererBuilder, AUDIOSTREAM_TYPE_RENDERER);
     // set params and callbacks
-    OH_AudioStreamBuilder_SetSamplingRate(rendererBuilder, g_samplingRate_avp);
-    OH_AudioStreamBuilder_SetChannelCount(rendererBuilder, g_channelCount_avp);
+    OH_AudioStreamBuilder_SetSamplingRate(rendererBuilder, g_avpsamplingRate);
+    OH_AudioStreamBuilder_SetChannelCount(rendererBuilder, g_avpvividchannelCount);
     OH_AudioStreamBuilder_SetEncodingType(rendererBuilder, AUDIOSTREAM_ENCODING_TYPE_AUDIOVIVID);
     OH_AudioStreamBuilder_SetRendererInfo(rendererBuilder, AUDIOSTREAM_USAGE_MOVIE);
     OH_AudioRenderer_Callbacks rendererCallbacks;
@@ -547,14 +548,21 @@ EXTERN_C_START static napi_value Init(napi_env env, napi_value exports)
         {"avpAudioRendererStart", nullptr, AvpAudioRendererStart, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"avpAudioRendererPause", nullptr, AvpAudioRendererPause, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"avpAudioRendererStop", nullptr, AvpAudioRendererStop, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"avpAudioRendererRelease", nullptr, AvpAudioRendererRelease, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"avpAudioRendererRelease", nullptr, AvpAudioRendererRelease, nullptr, nullptr, nullptr, napi_default,
+            nullptr},
         {"avpGetRendererState", nullptr, AvpGetRendererState, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"avpVividAudioRendererInit", nullptr, AvpVividAudioRendererInit, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"avpVividAudioRendererStart", nullptr, AvpVividAudioRendererStart, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"avpVividAudioRendererPause", nullptr, AvpVividAudioRendererPause, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"avpVividAudioRendererStop", nullptr, AvpVividAudioRendererStop, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"avpVividAudioRendererRelease", nullptr, AvpVividAudioRendererRelease, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"avpVividGetRendererState", nullptr, AvpVividGetRendererState, nullptr, nullptr, nullptr, napi_default, nullptr}};
+        {"avpVividAudioRendererInit", nullptr, AvpVividAudioRendererInit, nullptr, nullptr, nullptr, napi_default,
+            nullptr},
+        {"avpVividAudioRendererStart", nullptr, AvpVividAudioRendererStart, nullptr, nullptr, nullptr, napi_default,
+            nullptr},
+        {"avpVividAudioRendererPause", nullptr, AvpVividAudioRendererPause, nullptr, nullptr, nullptr, napi_default,
+            nullptr},
+        {"avpVividAudioRendererStop", nullptr, AvpVividAudioRendererStop, nullptr, nullptr, nullptr, napi_default,
+            nullptr},
+        {"avpVividAudioRendererRelease", nullptr, AvpVividAudioRendererRelease, nullptr, nullptr, nullptr,
+            napi_default, nullptr},
+        {"avpVividGetRendererState", nullptr, AvpVividGetRendererState, nullptr, nullptr, nullptr, napi_default,
+            nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }
