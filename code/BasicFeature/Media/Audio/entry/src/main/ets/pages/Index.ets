@@ -78,6 +78,22 @@ struct Index {
           await router.pushUrl({ url: 'pages/NormalCapturer' });
         });
       }
+
+      Row() {
+        Column() {
+          Image($r('app.media.ic_Sound_select')).width(72).height(72).margin({ top: 36 });
+          Text($r('app.string.AVVOLUME_PANEL')).fontColor(Color.Black).fontSize(16).margin({ top: 12 });
+        }
+        .id('audio_volume_card')
+        .backgroundColor(Color.White)
+        .borderRadius(30)
+        .margin({ right: 12 })
+        .width(174)
+        .height(188)
+        .onClick(async () => {
+          await router.pushUrl({ url: 'pages/VolumePanel' });
+        })
+      }
       .margin({ top: 12 })
       .justifyContent(FlexAlign.SpaceBetween);
     }
