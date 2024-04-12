@@ -347,8 +347,14 @@ struct SpatialAudio {
               if (value === true) {
                 this.spatialSceneMode = audio.AudioSpatializationSceneType.DEFAULT;
                 if (this.audioSpatializationManager) {
-                  this.audioSpatializationManager.setSpatializationSceneType(this.spatialSceneMode)
+                  try {
+                    this.audioSpatializationManager.setSpatializationSceneType(this.spatialSceneMode);
+                  } catch (err) {
+                    Logger.error(`setSpatializationSceneType failed ,Error: ${JSON.stringify(err)}`);
+                    return;
+                  }
                 }
+
               }
             })
         }
@@ -394,7 +400,12 @@ struct SpatialAudio {
               if (value === true) {
                 this.spatialSceneMode = audio.AudioSpatializationSceneType.AUDIOBOOK;
                 if (this.audioSpatializationManager) {
-                  this.audioSpatializationManager.setSpatializationSceneType(this.spatialSceneMode)
+                  try {
+                    this.audioSpatializationManager.setSpatializationSceneType(this.spatialSceneMode);
+                  } catch (err) {
+                    Logger.error(`setSpatializationSceneType failed ,Error: ${JSON.stringify(err)}`);
+                    return;
+                  }
                 }
               }
             })
@@ -441,7 +452,12 @@ struct SpatialAudio {
               if (value === true) {
                 this.spatialSceneMode = audio.AudioSpatializationSceneType.MOVIE;
                 if (this.audioSpatializationManager) {
-                  this.audioSpatializationManager.setSpatializationSceneType(this.spatialSceneMode)
+                  try {
+                    this.audioSpatializationManager.setSpatializationSceneType(this.spatialSceneMode);
+                  } catch (err) {
+                    Logger.error(`setSpatializationSceneType failed ,Error: ${JSON.stringify(err)}`);
+                    return;
+                  }
                 }
               }
             })
@@ -488,7 +504,12 @@ struct SpatialAudio {
               if (value === true) {
                 this.spatialSceneMode = audio.AudioSpatializationSceneType.MUSIC;
                 if (this.audioSpatializationManager) {
-                  this.audioSpatializationManager.setSpatializationSceneType(this.spatialSceneMode)
+                  try {
+                    this.audioSpatializationManager.setSpatializationSceneType(this.spatialSceneMode);
+                  } catch (err) {
+                    Logger.error(`setSpatializationSceneType failed ,Error: ${JSON.stringify(err)}`);
+                    return;
+                  }
                 }
               }
             })
