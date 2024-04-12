@@ -187,9 +187,9 @@ export struct ImageGridItemComponent {
           .linearGradient({
             angle: 0,
             colors: [
-              [$r('app.color.album_cover_gradient_start_color'), 0] as object[],
-              [$r('app.color.transparent'), 1.0] as object[]
-            ] as object[]
+              [$r('app.color.album_cover_gradient_start_color'), 0] as [ResourceColor, number],
+              [$r('app.color.transparent'), 1.0] as [ResourceColor, number]
+            ] as [ResourceColor, number][]
           })
         Text(DateUtil.getFormattedDuration(this.mediaItem.duration))
           .fontSize($r('sys.float.ohos_id_text_size_caption'))
