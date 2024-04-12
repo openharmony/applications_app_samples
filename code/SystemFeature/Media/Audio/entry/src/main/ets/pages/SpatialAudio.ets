@@ -615,10 +615,16 @@ struct SpatialAudio {
 
   async over(): Promise<void> {
     this.appContext = undefined;
-    this.audioRenderers.forEach(async audioRenderer => {
-      await audioRenderer.stop();
-      await audioRenderer.release();
-    })
+    try {
+      this.audioRenderers[0].stop();
+      this.audioRenderers[0].release();
+      this.audioRenderers[1].stop();
+      this.audioRenderers[1].release();
+    } catch (err) {
+      let error = err as BusinessError;
+      Logger.error(`AudioRenderer stop or release : Error: ${JSON.stringify(error)}`);
+      return;
+    }
     this.audioRenderers = [];
 
     if (this.audioRoutingManager) {
