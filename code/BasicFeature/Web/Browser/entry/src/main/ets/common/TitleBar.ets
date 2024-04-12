@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,16 +12,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Browser, LoadingStatus, WebObject } from '../model/Browser'
-import Logger from '../model/Logger'
+
+import { Browser, LoadingStatus, WebObject } from '../model/Browser';
+import Logger from '../model/Logger';
 
 const TAG: string = '[TitleBar]';
 const BUTTON_WIDTH: number = 22;
 const BUTTON_RADIUS: number = 4;
 const DOWN_COLOR: string = '#e4e4e4';
 const UP_COLOR: string = '#00000000';
+// 此处可按照需求到浏览器请求里获取（浏览器请求的HEAD部分，字段为USER_AGENT）
 const PAD_USER_AGENT: string = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTMl, like Gecko) Chrome/92.0.4515.105 Safari/537.36';
-const PHONE_USER_AGENT: string = 'Mozilla/5.0 (Linux; Android 9; VRD-AL10; HMSCore 6.3.0.331) AppleWebKit/537.36 (KHTMl, like Gecko) Chrome/92.0.4515.105 HuaweiBrowser/12.0.4.1 Mobile Safari/537.36';
+const PHONE_USER_AGENT: string = 'HuaweiBrowser/12.0.4.1';
 
 @Component
 export struct TabletTitle {
