@@ -227,6 +227,22 @@
     {
       "name": "RECORD_RESULT",
       "value": "录音结果"
+    },
+    {
+      "name": "AVVOLUME_PANEL",
+      "value": "音量组件"
+    },
+    {
+      "name": "AVVOLUME_PANEL_TITLE",
+      "value": "音量面板"
+    },
+    {
+      "name": "VOLUME_DOWN",
+      "value": "音量-"
+    },
+    {
+      "name": "VOLUME_UP",
+      "value": "音量+"
     }
   ]
 }
