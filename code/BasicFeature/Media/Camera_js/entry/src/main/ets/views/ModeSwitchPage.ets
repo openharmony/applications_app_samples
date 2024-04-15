@@ -346,8 +346,8 @@ export struct ModeSwitchPage {
                   GlobalContext.get().getCameraSettingContext().startAbility({
                     parameters: { uri: uri },
                     action: 'ohos.want.action.viewData',
-                    bundleName: 'com.huawei.hmos.photos',
-                    abilityName: 'com.huawei.hmos.photos.MainAbility'
+                    bundleName: 'com.samples.camerajs',
+                    abilityName: 'com.samples.camerajs.MainAbility'
                   });
                 })
               }

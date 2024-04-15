@@ -48,12 +48,6 @@ export struct SettingDialog {
     GlobalContext.get().setObject('cameraConfig', cameraConfig);
   }
 
-  getHdrPhotoBol(bol: boolean): void {
-    let cameraConfig: CameraConfig = GlobalContext.get().getObject('cameraConfig') as CameraConfig;
-    cameraConfig.locationBol = bol;
-    GlobalContext.get().setObject('cameraConfig', cameraConfig);
-  }
-
   /**
    * 参考线持久化，再次进入，确定开关是否开启
    */
