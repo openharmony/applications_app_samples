@@ -80,4 +80,9 @@ export default class MainAbility extends UIAbility {
     // Ability has back to background
     Logger.info(TAG, '[Demo] MainAbility onBackground')
   }
+
+  onBackPressed() {
+    Logger.info(TAG, '[Demo] MainAbility onBackPressed');
+    return false;
+  }
 };
