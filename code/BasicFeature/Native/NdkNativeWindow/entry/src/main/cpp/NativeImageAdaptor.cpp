@@ -273,6 +273,7 @@ napi_value NativeImageAdaptor::NapiOnProduceBuffer(napi_env env, napi_callback_i
 
 void NativeImageAdaptor::SetConfigAndGetValue()
 {
+    static int32_t g_cnt = 0;
     int32_t code = SET_FORMAT;
     int32_t value = NATIVEBUFFER_PIXEL_FMT_CLUT1;
     int32_t ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, value);
@@ -310,11 +311,16 @@ void NativeImageAdaptor::SetConfigAndGetValue()
         LOGE("SetConfigAndGetValue GET_COLOR_GAMUT fail");
     }
     code = SET_FORMAT;
-    OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, NATIVEBUFFER_PIXEL_FMT_RGBA_8888);
+    if (g_cnt % 2 == 0) {  // 2 : 每次执行使用不同的format类型
+        OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, NATIVEBUFFER_PIXEL_FMT_RGBA_8888);
+    } else {
+        OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, NATIVEBUFFER_PIXEL_FMT_YCBCR_420_SP);
+    }
     code = SET_TRANSFORM;
     OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, NATIVEBUFFER_ROTATE_NONE);
     code = SET_COLOR_GAMUT;
     OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, NATIVEBUFFER_COLOR_GAMUT_SRGB);
+    g_cnt++;
 }
 
 void NativeImageAdaptor::GetBufferMapPlanes(NativeWindowBuffer *buffer)
@@ -335,7 +341,7 @@ void NativeImageAdaptor::GetBufferMapPlanes(NativeWindowBuffer *buffer)
     }
     LOGD("Get planeCount: %{public}d", outPlanes.planeCount);
     for (int32_t i = 0; i < outPlanes.planeCount; i++) {
-        LOGD("Get offset: %{public}lu rowStride: %{public}d columnStride: %{public}d", outPlanes.planes[i].offset,
+        LOGD("Get offset: %{public}llu rowStride: %{public}d columnStride: %{public}d", outPlanes.planes[i].offset,
              outPlanes.planes[i].rowStride, outPlanes.planes[i].columnStride);
     }
 }
@@ -359,16 +365,22 @@ void NativeImageAdaptor::ProduceBuffer(uint32_t value, OHNativeWindow *InNativeW
         bufferCache_.push(buffer);
         return;
     }
-    
+    int32_t code = GET_FORMAT;
+    int32_t formatType = NATIVEBUFFER_PIXEL_FMT_CLUT1;
+    OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, &formatType);
+
     BufferHandle *handle = OH_NativeWindow_GetBufferHandleFromNative(buffer);
     // Obtain the memory virtual address of bufferHandle using the system mmap interface
     void *mappedAddr = mmap(handle->virAddr, handle->size, PROT_READ | PROT_WRITE, MAP_SHARED, handle->fd, 0);
-    uint32_t *pixel = static_cast<uint32_t *>(mappedAddr);
-    for (uint32_t x = 0; x < width_; x++) {
-        for (uint32_t y = 0; y < height_; y++) {
-            *pixel++ = value;
+    if (formatType == NATIVEBUFFER_PIXEL_FMT_RGBA_8888) {
+        uint32_t *pixel = static_cast<uint32_t *>(mappedAddr);
+        for (uint32_t x = 0; x < width_; x++) {
+            for (uint32_t y = 0; y < height_; y++) {
+                *pixel++ = value;
+            }
         }
     }
+
     // Remember to remove memory mapping after using memory
     int result = munmap(mappedAddr, handle->size);
     if (result == -1) {
