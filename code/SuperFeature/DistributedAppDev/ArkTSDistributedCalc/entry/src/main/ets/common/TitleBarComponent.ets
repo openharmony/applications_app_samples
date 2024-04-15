@@ -153,7 +153,7 @@ export struct TitleBarComponent {
         },
         autoCancel: true,
         alignment: this.isLand ? DialogAlignment.Center : DialogAlignment.Bottom,
-        customStyle: true
+        customStyle: false
       })
     }
     if (this.dialogController !== null) {
