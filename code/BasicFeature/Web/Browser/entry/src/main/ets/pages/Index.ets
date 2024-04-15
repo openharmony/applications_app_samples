@@ -24,10 +24,10 @@ const TAG = '[index]'
 @Entry
 @Component
 struct Index {
-  @State isPhone: boolean= false
-  @State browser: Browser= new Browser()
-  private isInit: Boolean= false
-  listener= mediaquery.matchMediaSync('(orientation:landscape)')
+  @State isPhone: boolean= true;
+  @State browser: Browser= new Browser();
+  private isInit: Boolean= false;
+  listener= mediaquery.matchMediaSync('(orientation:landscape)');
 
   build() {
     Column() {
