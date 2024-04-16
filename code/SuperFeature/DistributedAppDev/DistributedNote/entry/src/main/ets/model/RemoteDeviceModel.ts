@@ -202,6 +202,7 @@ class RemoteDeviceModel {
       try {
         if (this.deviceManager !== null) {
           this.deviceManager.bindTarget(device.deviceId, {
+            bindLevel: 3,
             bindType: 1,
             targetPkgName: BUNDLE,
             appName: 'Distributed rdb',
