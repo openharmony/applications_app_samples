@@ -146,7 +146,7 @@ Stage模型的设计基于如下三个出发点：
 ```
 git init
 git config core.sparsecheckout true
-echo code/BasicFeature/ApplicationModels/StageModel/ > .git/info/sparse-checkout
+echo code/SystemFeature/ApplicationModels/StageModel/ > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
