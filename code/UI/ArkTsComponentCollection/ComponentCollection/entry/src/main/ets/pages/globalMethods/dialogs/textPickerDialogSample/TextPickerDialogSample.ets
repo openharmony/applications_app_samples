@@ -61,7 +61,7 @@ struct TextDialogSample {
                   selected: this.select,
                   onAccept: (value: TextPickerResult) => {
                     // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
-                    ShowToast.shortToast(String(value.index));
+                    ShowToast.shortToast(value.value.toString());
                   },
                   onCancel: () => {
                     ShowToast.shortToast($r('app.string.date_picker_dialog_cancel'));
