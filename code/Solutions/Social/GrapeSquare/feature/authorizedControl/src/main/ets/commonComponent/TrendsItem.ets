@@ -118,7 +118,7 @@ export struct TrendsItem {
         if (this.trendsItemData.contents.imageList.length === 0) {
           // 媒体视频
           Stack({ alignContent: Alignment.Center }) {
-            Image($r('app.media.photo25'))
+            Image($r('app.media.photo120'))
               .draggable(false)
               .width($r('app.integer.layout_size_224'))
               .height($r('app.integer.layout_size_224'))
