@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,8 +14,11 @@
  */
 
 import taskpool from '@ohos.taskpool';
+import utils from '@arkts.utils';
 import stack from '@ohos.util.Stack';
 import { BusinessError } from '@ohos.base';
+import { SendableClass, a } from './SendableTest';
+import { TestA, TestB } from './test'
 
 @Component
 export struct TaskPoolTab {
@@ -110,7 +113,7 @@ export struct TaskPoolTab {
         .padding({ top: "8vp" , left: "16vp", right: "16vp", bottom: "21vp" })
         .onChange((value: string) => {
           this.taskPoolInPutStr = value;
-          this.taskPoolInPutArr = this.taskPoolInPutStr.trim().split(',');
+          this.taskPoolInPutArr = this.taskPoolInPutStr.trim().split(' ');
           this.taskPoolOutPutStr = '';
         })
 
@@ -232,10 +235,31 @@ export struct TaskPoolTab {
             this.cancelTask();
           })
         }
+
+        GridCol ({ span: 4, offset: 0 }) {
+          Button() {
+            Text($r('app.string.transferSendableClass'))
+              .width("100%")
+              .height("22")
+              .fontFamily("HarmonyHeiTi-Medium")
+              .fontSize("16fp")
+              .fontColor("#007DFF")
+              .textAlign(TextAlign.Center)
+              .lineHeight(22)
+              .fontWeight(500)
+          }
+          .id("sendableButton")
+          .height("40vp")
+          .borderRadius("20vp")
+          .backgroundColor("rgba(24,36,49,0.05)")
+          .onClick(()=>{
+            this.sendableTask();
+          })
+        }
       }
       .width("100%")
       .height("168vp")
-      .position({ x: "0", y: "83%" })
+      .position({ x: "0", y: "73%" })
       .padding({ left: "25vp", right: "25vp" })
     }
     .width("100%")
@@ -333,6 +357,33 @@ export struct TaskPoolTab {
       }
     }
   }
+
+  async sendableTask(): Promise<void> {
+    // 定义主线程异步锁sendableTask_lock
+    let lock: utils.locks.AsyncLock = utils.locks.AsyncLock.request("sendableTask_lock");
+    let count: number = 0;
+    lock.lockAsync(async () => {
+      // 主线程调用实例a.data1的方法setCount、getCount
+      a.data1.setCount(111);
+      count = await a.data1.getCount();
+      console.info("this data1 count is: " + await a.data1.getCount());
+    })
+    let task: taskpool.Task = new taskpool.Task(createSendableData, a);
+    try {
+      await taskpool.execute(task);
+      this.taskPoolOutPutStr += "sendableTask execute successfully."+ "\n";
+      // 访问子线程返回的实例a中的各个属性
+      this.taskPoolOutPutStr += "Sendable data TestA v1 is: " + a.data1.v1 + "\n";
+      this.taskPoolOutPutStr += "Sendable data TestA v2 is: " + a.data1.v2 + "\n";
+      this.taskPoolOutPutStr += "Sendable data TestA v3 is: " + a.data1.v3 + "\n";
+      this.taskPoolOutPutStr += "Sendable data TestA count is: " + count + "\n";
+      this.taskPoolOutPutStr += "Sendable data TestB v1 length is: " + a.data2.v1.length + "\n";
+      this.taskPoolOutPutStr += "Sendable data TestB v2 has key: " + a.data2.v2.has(100) + "\n";
+      this.taskPoolOutPutStr += "Sendable data TestB v3 size is: " + a.data2.v3.size + "\n";
+    } catch(e) {
+      this.taskPoolOutPutStr += "Task execute failed: "+ (e as BusinessError).toString()+ "\n";
+    }
+  }
 }
 
 @Concurrent
@@ -349,4 +400,31 @@ function strSortDelay(inPutArr: string[]) : string[] {
   }
   let newArr: string[] = inPutArr.sort();
   return newArr;
+}
+
+@Concurrent
+async function createSendableData(data: SendableClass): Promise<void> {
+  // 定义taskpool子线程异步锁sendableTask_lock
+  let lock: utils.locks.AsyncLock = utils.locks.AsyncLock.request("sendableTask_lock");
+
+  // 构造TestA、TestB实例，组装SendableClass实例
+  let d1: TestA = new TestA();
+  d1.v1 = 1010;
+  d1.v2 = "aaa";
+  d1.v3 = true;
+  let d2: TestB = new TestB();
+  d2.v2.set(100, "aaa");
+  for(let i = 0;i < 1000;i++) {
+    d2.v1.push(i);
+  }
+  d2.v3.add("hello");
+
+  lock.lockAsync(async () => {
+    // 子线程调用实例方法setCount、getCount
+    await d1.setCount(10);
+    console.info("taskpool: this data1 count is: " + await d1.getCount());
+  })
+
+  data.data1 = d1;
+  data.data2 = d2;
 }
