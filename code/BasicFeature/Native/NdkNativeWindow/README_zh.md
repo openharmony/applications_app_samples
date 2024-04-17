@@ -20,8 +20,8 @@
 3. 点击页面底部“produce buffer”按钮，NativeWindow将生产数据并发送给NativeImage，页面展示了生产buffer的次数；
 4. 点击页面底部“update available buffer count”按钮，将展示NativeImage收到的可用帧回调次数。
 5. 点击页面底部“update bufferqueuesize, attachedbuffer, cachebuffer"按钮，将更新三项数值，分别是NativeWindow的buffer队列容量，attach到NativeWindow的buffer数量，缓存区buffer数量。 
-6. 点击页面底部”attachbuffer“, 在cachebuffer大于0时将buffer添加到nativewindow中，bufferqueuesize和attachedbuffer数值加1，cachebuffer数值减1；cachebuffer为0时不做处理。
-7. 点击页面底部”detachbuffer", 在attachedbuffer大于0时将buffer添加到缓存区cachebuffer中，bufferqueuesize和attachedbuffer数值减1，cachebuffer数值加1； attachedbuffer为0时不做处理。
+6. 点击页面底部”attachbuffer“, 在cachebuffer大于0时将buffer添加到nativewindow中，bufferqueuesize和attachedbuffer数值加1，cachebuffer数值减1；cachebuffer为0时不做处理。(需要点第五步按钮更新数值)
+7. 点击页面底部”detachbuffer", 在attachedbuffer大于0时将buffer添加到缓存区cachebuffer中，bufferqueuesize和attachedbuffer数值减1，cachebuffer数值加1； attachedbuffer为0时不做处理。(需要点第五步按钮更新数值)
 
 ### 工程目录
 
