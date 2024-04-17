@@ -27,8 +27,10 @@ import { GlobalContext } from '../common/GlobalContext';
 import camera from '@ohos.multimedia.camera';
 import { PromptAction } from '@ohos.arkui.UIContext';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 const TAG: string = 'ModeSwitchPage';
+let globalContext: GlobalContext = GlobalContext.get();
 
 @Component
 export struct ModeSwitchPage {
@@ -59,6 +61,7 @@ export struct ModeSwitchPage {
   @State videoThumbnail: image.PixelMap | undefined = undefined;
   private videoUri: string = '';
   private deviceType: string | undefined = '';
+
   // 确定是否停止录制的弹框
   private recodeStopDialogController: CustomDialogController = new CustomDialogController({
     builder: RecodeStopDialog({
@@ -67,12 +70,6 @@ export struct ModeSwitchPage {
       isRecording: $isRecording
     }),
     autoCancel: false,
-    customStyle: true
-  });
-  // 多机位弹框
-  private MultiCameraDialogController: CustomDialogController = new CustomDialogController({
-    builder: MultiCameraDialog({}),
-    autoCancel: true,
     customStyle: true
   });
 
@@ -171,11 +168,40 @@ export struct ModeSwitchPage {
     this.videoRecodeTime = 0;
   }
 
-  aboutToAppear(): void {
+  async initPhotoThumbnail() {
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    predicates.equalTo(photoAccessHelper.PhotoKeys.PHOTO_TYPE, photoAccessHelper.PhotoType.IMAGE)
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(GlobalContext.get().getCameraSettingContext());
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    this.imgThumbnail = await photoAsset.uri;
+  }
+
+  async initVideoThumbnail() {
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    predicates.equalTo(photoAccessHelper.PhotoKeys.PHOTO_TYPE, photoAccessHelper.PhotoType.VIDEO)
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(GlobalContext.get().getCameraSettingContext());
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    this.videoThumbnail = await photoAsset.getThumbnail();
+    this.videoUri = photoAsset.uri;
+  }
+
+  aboutToAppear() {
     Logger.info(TAG, 'aboutToAppear');
     GlobalContext.get().setObject('stopVideoFun', this.stopVideo);
     this.deviceType = AppStorage.get<string>('deviceType');
     CameraService.setTakePictureCallback(this.handleTakePicture);
+    this.initPhotoThumbnail();
+    this.initVideoThumbnail();
   }
 
   handleTakePicture = (thumbnail: string) => {
@@ -295,22 +321,6 @@ export struct ModeSwitchPage {
                 CameraService.setCameraMode(1);
                 await CameraService.initCamera(this.surfaceId, this.cameraDeviceIndex);
               })
-
-              // 多机位
-              Column() {
-                Text('多机位')
-                  .fontSize(14)
-                  .fontColor(Color.White)
-              }
-              .width(50)
-              .backgroundColor(this.modelBagCol === 'multi' ? $r('app.color.theme_color') : '')
-              .borderRadius(14)
-              .onClick(async () => {
-                this.modelBagCol = 'multi';
-                CameraService.setCameraMode(0);
-                await CameraService.initCamera(this.surfaceId, this.cameraDeviceIndex);
-                this.MultiCameraDialogController.open();
-              })
             }
             .height(28)
             .width('100%')
@@ -373,7 +383,6 @@ export struct ModeSwitchPage {
                   })
                 }
               }
-
               // 前后置摄像头切换
               Column() {
                 Row() {
@@ -386,11 +395,19 @@ export struct ModeSwitchPage {
                   .backgroundColor('rgba(255,255,255,0.20)')
                   .borderRadius('40px')
                   .onClick(async () => {
-                    // 切换摄像头
-                    this.cameraDeviceIndex ? this.cameraDeviceIndex = 0 : this.cameraDeviceIndex = 1;
-                    GlobalContext.get().setObject('cameraDeviceIndex', this.cameraDeviceIndex);
-                    // 开始预览
-                    await CameraService.initCamera(this.surfaceId, this.cameraDeviceIndex);
+                    if (CameraService.isCameraSwitchSupportedFn()) {
+                      // 切换摄像头
+                      this.cameraDeviceIndex ? this.cameraDeviceIndex = 0 : this.cameraDeviceIndex = 1;
+                      GlobalContext.get().setObject('cameraDeviceIndex', this.cameraDeviceIndex);
+                      // 开始预览
+                      await CameraService.initCamera(this.surfaceId, this.cameraDeviceIndex);
+                    } else {
+                      (globalContext.getPromptAction() as PromptAction).showToast({
+                        message: '不支持切换摄像头',
+                        duration: 2000,
+                        bottom: '50%'
+                      });
+                    }
                   })
                 }
               }

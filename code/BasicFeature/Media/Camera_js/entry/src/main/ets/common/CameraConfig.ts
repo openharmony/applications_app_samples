@@ -20,10 +20,12 @@ export interface CameraConfig {
   focusMode: number, // 对焦模式
   photoQuality: number, // 拍照质量
   locationBol: boolean, // 显示地理位置
+  hdrPhotoBol:boolean, // HDR 拍摄
   photoFormat: number, // 照片格式
   photoOrientation: number, // 照片方向
   photoResolution: number, // 照片分辨率
   videoResolution: number, // 照片分辨率
   videoFrame: number, // 录像帧率
+  hdrVideoBol:boolean, // HDR 录制
   referenceLineBol: boolean // 分割线
 }

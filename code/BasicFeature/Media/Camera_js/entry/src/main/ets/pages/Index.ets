@@ -42,11 +42,13 @@ let cameraConfig: CameraConfig = {
   focusMode: 2, // 对焦模式 -> 自动
   photoQuality: 1, // 拍照质量 -> 中
   locationBol: false, // 显示地理位置 -> 关闭
+  hdrPhotoBol: false, // HDR 拍摄 -> 关闭
   photoFormat: 1, // 照片格式 -> JPG
   photoOrientation: 0, // 照片方向 -> 0
   photoResolution: 0, // 照片分辨率 -> 1920 * 1080
   videoResolution: 0, // 照片分辨率 -> 1920 * 1080
   videoFrame: 1, // 录像帧率 -> 30
+  hdrVideoBol:false, // HDR 录制 -> 关闭
   referenceLineBol: false // 分割线 -> 关闭
 }
 GlobalContext.get().setObject('cameraConfig', cameraConfig);
@@ -93,8 +95,8 @@ struct Index {
   @StorageLink('defaultAspectRatio') @Watch('initXComponentSize') defaultAspectRatio: number = Constants.MIN_ASPECT_RATIO;
   // 主页面是否显示
   @StorageLink('isShow') isShow: boolean = false;
-  // 变焦条是否隐藏
-  @StorageLink('isHiddenSlide') isHiddenSlide: boolean = false;
+  // 是否支持变焦
+  @StorageLink('isSupportZoom') isSupportZoom: boolean = false;
 
   aboutToAppear(): void {
     let mDisplay = display.getDefaultDisplaySync();
@@ -157,6 +159,7 @@ struct Index {
               await CameraService.initCamera(this.surfaceId, this.cameraDeviceIndex);
               GlobalContext.get().setObject('surfaceId', this.surfaceId);
               GlobalContext.get().setObject('cameraDeviceIndex', this.cameraDeviceIndex);
+              this.isSupportZoom = CameraService.isSupportZoom();
             })
             .size({
               width: this.xComponentWidth.toString(),
@@ -168,6 +171,7 @@ struct Index {
           DividerPage({
             referenceLineBol: this.referenceLineBol
           })
+
 
           // 曝光框和对焦框
           FocusPage({
@@ -188,7 +192,7 @@ struct Index {
           })
 
           // slide
-          if (!this.isHiddenSlide) {
+          if (this.isSupportZoom) {
             SlidePage()
           }
 
@@ -223,10 +227,6 @@ struct Index {
           this.settingDialogController.open();
         })
 
-        // 倒计时
-        CountdownPage({
-          countdownNum: $countdownNum
-        })
         // 闪光灯
         FlashingLightPage()
         // 滤镜
@@ -235,11 +235,11 @@ struct Index {
         // 月亮模式
         MoonCaptureBoostComponent();
 
-        // 分段式拍照
-        DeferredPhotoComponent({
-          surfaceId: this.surfaceId,
-          cameraDeviceIndex: this.cameraDeviceIndex,
-        })
+        // // 分段式拍照
+        // DeferredPhotoComponent({
+        //   surfaceId: this.surfaceId,
+        //   cameraDeviceIndex: this.cameraDeviceIndex,
+        // })
 
       }
       .margin({ left: 24 })

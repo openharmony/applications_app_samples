@@ -20,10 +20,12 @@ export class Setting {
   private focusMode: number; // 对焦模式 -> 自动
   private photoQuality: number; // 拍照质量 -> 中
   private locationBol: boolean; // 显示地理位置 -> 关闭
+  private hdrPhotoBol:boolean; // HDR 拍摄 -> 关闭
   private photoFormat: number; // 照片格式 -> JPG
   private photoOrientation: number; // 照片方向 -> 0
   private photoResolution: number; // 照片分辨率 -> 1920 * 1080
   private videoResolution: number; // 照片分辨率 -> 1920 * 1080
   private videoFrame: number; // 录像帧率 -> 15
+  private hdrVideoBol:boolean; // HDR 录制 -> 关闭
   private dividerBol: boolean; // 分割线 -> 关闭
 }

@@ -58,6 +58,24 @@ export struct SettingDialog {
     this.referenceLineBol = bol;
   }
 
+  /**
+   * HDR拍摄持久化，再次进入，确定开关是否开启
+   */
+  getHdrPhotoBol(bol: boolean): void {
+    let cameraConfig: CameraConfig = GlobalContext.get().getObject('cameraConfig') as CameraConfig;
+    cameraConfig.hdrPhotoBol = bol;
+    GlobalContext.get().setObject('cameraConfig', cameraConfig);
+  }
+
+  /**
+   * HDR录像持久化，再次进入，确定开关是否开启
+   */
+  getHdrVideoBol(bol: boolean): void {
+    let cameraConfig: CameraConfig = GlobalContext.get().getObject('cameraConfig') as CameraConfig;
+    cameraConfig.hdrVideoBol = bol;
+    GlobalContext.get().setObject('cameraConfig', cameraConfig);
+  }
+
   build() {
     Column() {
       Flex({ justifyContent: FlexAlign.SpaceBetween }) {
@@ -156,6 +174,22 @@ export struct SettingDialog {
               setModeBol: (GlobalContext.get().getObject('cameraConfig') as CameraConfig).locationBol,
               getModeBol: this.getLocationBol
             })
+
+            Divider()
+              .width('94%')
+
+            SettingPublicLayout({
+              backNum: 6,
+              leftSliderIndex: $leftSliderIndex,
+              icon: $r('app.media.ic_camera_set_photo_hdr'),
+              isModeBol: true,
+              borderBol: true,
+              borderBole: false,
+              iconModeBol: true,
+              modeMessage: 'HDR Vivid拍摄',
+              setModeBol: (GlobalContext.get().getObject('cameraConfig') as CameraConfig).hdrPhotoBol,
+              getModeBol: this.getHdrPhotoBol
+            })
           }
           .width('97%')
           .backgroundColor(Color.White)
@@ -214,6 +248,22 @@ export struct SettingDialog {
               isModeBol: true,
               borderBol: true,
               borderBole: false,
+            })
+
+            Divider()
+              .width('94%')
+
+            SettingPublicLayout({
+              backNum: 6,
+              leftSliderIndex: $leftSliderIndex,
+              icon: $r('app.media.ic_camera_set_video_hdr'),
+              isModeBol: true,
+              borderBol: true,
+              borderBole: false,
+              iconModeBol: true,
+              modeMessage: 'HDR Vivid录制',
+              setModeBol: (GlobalContext.get().getObject('cameraConfig') as CameraConfig).hdrVideoBol,
+              getModeBol: this.getHdrVideoBol
             })
           }
           .width('97%')
