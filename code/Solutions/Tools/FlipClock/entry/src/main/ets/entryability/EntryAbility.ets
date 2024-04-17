@@ -21,17 +21,10 @@ import Notification from '@ohos.notificationManager'
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: Window.WindowStage) {
     // Main window is created, set main page for this ability
-    AppStorage.Set('context', this.context)
-    let bundle = {
-      bundle: 'ohos.samples.flipclock',
-    }
-    Notification.isNotificationEnabled(bundle).then((data) => {
-      if (!data) {
-        Notification.setNotificationEnable(bundle, true).then(() => {
-          Logger.info('set success')
-        })
-      }
-    })
+    AppStorage.SetOrCreate('context', this.context);
+    Notification.requestEnableNotification(() => {
+      Logger.info(`requestEnableNotification success`);
+    });
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
         Logger.error(`Failed to load the content. Cause: ${JSON.stringify(err)}`)

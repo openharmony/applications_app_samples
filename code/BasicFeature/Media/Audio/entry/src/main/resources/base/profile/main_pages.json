@@ -6,6 +6,7 @@
     "pages/PresetEffect",
     "pages/RealtimeEffect",
     "pages/NormalCapturer",
-    "pages/ParallelCapturer"
+    "pages/ParallelCapturer",
+    "pages/VolumePanel"
   ]
 }

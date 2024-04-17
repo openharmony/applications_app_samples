@@ -382,20 +382,22 @@ struct Index {
     this.session?.on('rewind', (time?: number) => {
       time = time ? time : 0;
       let currentTime = this.avPlayer ? this.avPlayer.currentTime : 0;
-      let timeMs: number = currentTime - time * 1000 <= 0 ? 0 : currentTime - time *1000;
+      let timeMs: number = ((currentTime - time * 1000) <= 0) ? 0 : (currentTime - time *1000);
       this.avPlayer?.seek(timeMs);
       Log.info('rewind currentTime ' + timeMs);
+      this.avPlayer?.play();
       this.setPlayState(avSession.PlaybackState.PLAYBACK_STATE_PLAY);
     });
     // 注册播放快进命令监听
     this.session?.on('fastForward', (time?: number) => {
       time = time ? time : 0;
       let currentTime = this.avPlayer ? this.avPlayer.currentTime : 0;
-      let timeMs: number = time * 1000 + currentTime > this.duration ? this.duration : time *1000 + currentTime;
+      let timeMs: number = ((time * 1000 + currentTime) > this.duration) ? this.duration : (time *1000 + currentTime);
       if (time * 1000 + currentTime > this.duration) {
         this.switchToNextByLoopMode();
       } else {
         this.avPlayer?.seek(timeMs);
+        this.avPlayer?.play();
         this.setPlayState(avSession.PlaybackState.PLAYBACK_STATE_PLAY);
       }
     });
@@ -905,7 +907,7 @@ struct Index {
                 max: 100,
                 style: SliderStyle.OutSet
               })
-                .trackThickness(this.isProgressSliding ? 8 : 4)
+                .trackThickness(4)
                 .blockColor('rgba(255,255,255,1)')
                 .trackColor('rgba(255,255,255,0.3)')
                 .selectedColor('rgba(255,255,255,0.9)')
@@ -934,7 +936,6 @@ struct Index {
                   this.seedPosition = value;
                 })
                 .width('70%')
-                .height(2)
                 .opacity(1)
                 .onTouch((event: TouchEvent) => {
                   Log.info('progress touch: ' + event.type)

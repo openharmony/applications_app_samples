@@ -52,7 +52,7 @@ export class AlbumDataImpl {
   }
 
   private async getAlbumItem(id: string, albumDataItems: AlbumDataItem[]): Promise<void> {
-    Log.info(TAG, 'getAlbumItem：' + id);
+    Log.info(TAG, 'getAlbumItem: ' + id);
     if (this.blackList.indexOf(id) >= 0) {
       Log.debug(TAG, 'no need as in black list');
       return;
@@ -86,6 +86,9 @@ export class AlbumDataImpl {
         albumType = MediaConstants.ALBUM_TYPE_USER;
         albumSubType = MediaConstants.ALBUM_SUBTYPE_USER_GENERIC;
         break;
+      case MediaConstants.ALBUM_ID_MOVING_PHOTO:
+        await this.getMovingPhotoAbstractAlbum(albumDataItems);
+        return;
       default:
         break;
     }
@@ -220,6 +223,37 @@ export class AlbumDataImpl {
       albumDataItems.push(albumItem);
     } catch (err) {
       Log.error(TAG, 'get Album getPhotoAssets failed with err: ' + err);
+    } finally {
+      if (photoFetchResult != null) {
+        photoFetchResult.close();
+      }
+    }
+  }
+
+  async getMovingPhotoAbstractAlbum(albumDataItems: AlbumDataItem[]): Promise<void> {
+    let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = null;
+    try {
+      let predicates = new dataSharePredicates.DataSharePredicates();
+      predicates.equalTo(MediaConstants.PHOTO_SUBTYPE, MediaConstants.MOVING_PHOTO);
+      let fetchOptions: photoAccessHelper.FetchOptions = {
+        fetchColumns: MediaConstants.FILE_ASSET_FETCH_COLUMNS,
+        predicates: predicates
+      };
+      photoFetchResult = await userFileModel.getUserFileMgr().getAssets(fetchOptions);
+      let count = photoFetchResult.getCount();
+      Log.info(TAG, 'getMovingPhotoAbstractAlbum count: ' + count);
+      let id = MediaConstants.ALBUM_ID_MOVING_PHOTO;
+      let albumName = await getAlbumDisplayName(id);
+      let albumItem: AlbumDataItem = new AlbumDataItem(id, count, albumName, this.selectType, this.deviceId,
+        MediaConstants.ABSTRACT_ALBUM_TYPE_MOVING_PHOTO, -1);
+      if (count > 0) {
+        let fileAsset = await photoFetchResult.getFirstObject();
+        await albumItem.update(fileAsset);
+        Log.info(TAG, 'first moving photo displayName: ' + fileAsset.displayName);
+      }
+      albumDataItems.push(albumItem);
+    } catch (err) {
+      Log.error(TAG, 'getMovingPhotoAbstractAlbum failed with err: ' + err);
     } finally {
       if (photoFetchResult != null) {
         photoFetchResult.close();

@@ -3,6 +3,30 @@
     {
       "name": "white",
       "value": "#FFFFFF"
+    },
+    {
+      "name": "black",
+      "value": "#000000"
+    },
+    {
+      "name": "red",
+      "value": "#ff0000"
+    },
+    {
+      "name": "green",
+      "value": "#00ff00"
+    },
+    {
+      "name": "blue",
+      "value": "#0000ff"
+    },
+    {
+      "name":"light_gray",
+      "value": "#F5F5F5"
+    },
+    {
+      "name":"dark_gray",
+      "value": "#555555"
     }
   ]
 }

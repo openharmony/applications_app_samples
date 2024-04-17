@@ -105,7 +105,7 @@ struct VideoBrowser {
         .autoPlay(true)
 
       PhotoBrowserActionBar({
-        onMenuClicked: this.onMenuClicked, isVideoPage: true
+        onMenuClicked: (action: Action): void => this.onMenuClicked(action), isVideoPage: true
       })
     }
     .width('100%')

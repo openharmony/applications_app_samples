@@ -37,6 +37,10 @@
       "value": "Screenshots"
     },
     {
+      "name": "album_moving_photo",
+      "value": "MovingPhoto"
+    },
+    {
       "name": "album_recycle",
       "value": "Recently deleted"
     },
@@ -87,6 +91,14 @@
     {
       "name": "btn_toast",
       "value": "Name already in use."
+    },
+    {
+      "name": "camera",
+      "value": "camera"
+    },
+    {
+      "name": "Sample_photo_album",
+      "value": "Sample photo album"
     }
   ]
 }

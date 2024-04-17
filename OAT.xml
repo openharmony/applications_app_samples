@@ -144,6 +144,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary/lib/ProcessMessage-1.0.0.tgz" desc="Provided by code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary"/>
                 <filteritem type="filepath" name="code/BasicFeature/Notification/CustomCommonEvent/lib/CardEvent-1.0.0.tgz" desc="Provided by code/BasicFeature/Notification/CustomCommonEvent"/>
                 <filteritem type="filepath" name="code/BasicFeature/Ads/OAIDSample/lib/ResetOAID-1.0.0.tgz" desc="Provided by code/BasicFeature/Ads/OAIDSample"/>
+                <filteritem type="filepath" name="code/Solutions/Tools/FlipClock/lib/Brightness-1.0.0.tgz" desc="Provided by code/Solutions/Tools/FlipClock"/>
                 <filteritem type="filepath" name="code/DataMock/QuickFix/entry-signed-release.hqf" desc="Provided by code/BasicFeature/TaskManagement/TransientTask"/>
                 <filteritem type="filepath" name="code/Solutions/Shopping/ASOrangeShopping/data/freeinstall/famanager.hap" desc="Provided by BMS"/>
                 <filteritem type="filepath" name="code/Solutions/Shopping/ASOrangeShopping/data/freeinstall/launcher.hap" desc="Provided by  code/SystemFeature/ApplicationModels/Launcher"/>
@@ -173,6 +174,14 @@ Note:If the text contains special characters, please escape them according to th
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkDrawing/screenshots/device/Index.jpg" desc="Provided by code/BasicFeature/Native/NdkDrawing"/>
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkDrawing/screenshots/device/DrawPath.jpg" desc="Provided by code/BasicFeature/Native/NdkDrawing"/>
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkDrawing/screenshots/device/DrawText.jpg" desc="Provided by code/BasicFeature/Native/NdkDrawing"/>
+        <filteritem type="filepath" name="code/BasicFeature/Native/NdkRenderNodeDrawing/screenshots/Index.jpeg" desc="Provided by code/BasicFeature/Native/NdkRenderNodeDrawing"/>
+		<filteritem type="filepath" name="code/BasicFeature/Native/NdkRenderNodeDrawing/screenshots/DrawPath.jpeg" desc="Provided by code/BasicFeature/Native/NdkRenderNodeDrawing"/>
+        <filteritem type="filepath" name="code/BasicFeature/Native/NdkRenderNodeDrawing/screenshots/DrawRect.jpeg" desc="Provided by code/BasicFeature/Native/NdkRenderNodeDrawing"/>
+		<filteritem type="filepath" name="code/BasicFeature/Native/NdkRenderNodeDrawing/screenshots/DrawText.jpeg" desc="Provided by code/BasicFeature/Native/NdkRenderNodeDrawing"/>
+        <filteritem type="filepath" name="code/BasicFeature/Native/NdkRenderNodeDrawing/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/BasicFeature/Native/NdkRenderNodeDrawing"/>
+        <filteritem type="filepath" name="code/BasicFeature/Native/NdkRenderNodeDrawing/entry/src/main/resources/base/media/icon.png" desc="Provided by code/BasicFeature/Native/NdkRenderNodeDrawing"/>
+        <filteritem type="filepath" name="code/BasicFeature/Native/NdkRenderNodeDrawing/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/BasicFeature/Native/NdkRenderNodeDrawing"/>
+		<filteritem type="filepath" name="code/BasicFeature/Native/NdkRenderNodeDrawing/AppScope/resources/base/media/app_icon.png" desc="Provided by code/BasicFeature/Native/NdkRenderNodeDrawing"/>
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkNativeWindow/screenshots/device/ChangeColor.jpg" desc="Provided by code/BasicFeature/Native/NdkNativeWindow"/>
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkNativeWindow/screenshots/device/GetAvailableCount.jpg" desc="Provided by code/BasicFeature/Native/NdkNativeWindow"/>
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkNativeWindow/screenshots/device/Main.jpg" desc="Provided by code/BasicFeature/Native/NdkNativeWindow"/>
@@ -232,6 +241,7 @@ Note:If the text contains special characters, please escape them according to th
         <filteritem type="filepath" name="code/SystemFeature/Security/CertificateFramework/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/Security/CertificateFramework"/>
         <filteritem type="filepath" name="code/SystemFeature/Security/CertificateFramework/screenshots/device/verify_success.jpeg" desc="Provided by code/SystemFeature/Security/CertificateFramework"/>
         <filteritem type="filepath" name="code/SystemFeature/Security/CertificateFramework/screenshots/device/chain_fail.jpeg" desc="Provided by code/SystemFeature/Security/CertificateFramework"/>
+        <filteritem type="filepath" name="code/BasicFeature/Security/DLPManager/screenshots/device/index.jpeg" desc="Provided by code/BasicFeature/Security/DLPManager"/>
         <filteritem type="filepath" name="code/SystemFeature/Security/CertificateFramework/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/Security/CertificateFramework"/>
 		<filteritem type="filepath" name="code/BasicFeature/ArkTSCard/ArkTSCard/libs/ArkTSUser.hap" desc="Provided by code/BasicFeature/ArkTSCard/ArkTSCard"/>
         <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmonyProfileDebug.pem" desc="Provided by code/Project/HapBuild"/>
@@ -246,10 +256,17 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary/lib/ProcessMessage-1.0.0.hap" desc="Provided by code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary"/>
                 <filteritem type="filepath" name="code/BasicFeature/Notification/CustomCommonEvent/lib/CardEvent-1.0.0.hap" desc="Provided by code/BasicFeature/Notification/CustomCommonEvent"/>
                 <filteritem type="filepath" name="code/BasicFeature/Ads/OAIDSample/lib/ResetOAID-1.0.0.hap" desc="Provided by code/BasicFeature/Ads/OAIDSample"/>
+                <filteritem type="filepath" name="code/Solutions/Tools/FlipClock/lib/Brightness-1.0.0.hap" desc="Provided by code/Solutions/Tools/FlipClock"/>
 
         <filteritem type="filepath" name="code/BasicFeature/DeviceManagement/Sensor/Capi/entry/src/main/resources/base/media/compass.png" desc="Provided by code/BasicFeature/DeviceManagement/Sensor"/>
         <filteritem type="filepath" name=" code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic/entry/src/main/resources/base/media/select.png" desc="Provided by code/BasicFeature/DeviceManagement/Vibrator"/>
         <filteritem type="filepath" name="code/BasicFeature/Graphics/DisplaySync/screenshots/device/animator.jpg" desc="Provided by code/BasicFeature/Graphics/DisplaySync"/>
+		<filteritem type="filepath" name="code/Solutions/Social/GrapeSquare/feature/authorizedControl/src/main/resources/base/media/photo120.jpg" desc="Provided by code/Solutions/Social/GrapeSquare"/>
+                <filteritem type="filepath" name="code/BasicFeature/WindowManagement/WindowManage/screenshots/devices/getPropertiesOfSystemBar.jpg" desc="Provided by code/BasicFeature/WindowManagement/WindowManage"/>
+                <filteritem type="filepath" name="code/BasicFeature/WindowManagement/WindowManage/screenshots/devices/mainWindow.jpg" desc="Provided by code/BasicFeature/WindowManagement/WindowManage"/>
+                <filteritem type="filepath" name="code/BasicFeature/WindowManagement/WindowManage/screenshots/devices/setTouchableAreas.jpg" desc="Provided by code/BasicFeature/WindowManagement/WindowManage"/>
+                <filteritem type="filepath" name="code/BasicFeature/WindowManagement/WindowManage/screenshots/devices/startAbility.png" desc="Provided by code/BasicFeature/WindowManagement/WindowManage"/>
+                <filteritem type="filepath" name="code/BasicFeature/WindowManagement/WindowManage/screenshots/devices/subWindow.png" desc="Provided by code/BasicFeature/WindowManagement/WindowManage"/>
             </filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加License头"/>
@@ -278,6 +295,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/Solutions/Media/MultiMedia/lib/CameraPage-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/BasicFeature/Notification/CustomCommonEvent/lib/CardEvent-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/BasicFeature/Ads/OAIDSample/lib/ResetOAID-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/Solutions/Tools/FlipClock/lib/Brightness-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/BasicFeature/DataManagement/UDMF/UniformTypeDescriptor/UTDType/entry/src/main/resources/rawfile/arkdata/utd/utd.json5" desc="二进制文件，无需添加License头"/>
             </filefilter>
             <filefilter name="copyrightPolicyFilter" desc="Copyright文件头校验策略的过滤条件" >
@@ -307,6 +325,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/Solutions/Media/MultiMedia/lib/CameraPage-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/BasicFeature/Notification/CustomCommonEvent/lib/CardEvent-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/BasicFeature/Ads/OAIDSample/lib/ResetOAID-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/Solutions/Tools/FlipClock/lib/Brightness-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/BasicFeature/DataManagement/UDMF/UniformTypeDescriptor/UTDType/entry/src/main/resources/rawfile/arkdata/utd/utd.json5" desc="二进制文件，无需添加版权头"/>
             </filefilter>
         </filefilterlist>

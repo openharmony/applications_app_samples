@@ -16,54 +16,14 @@
 @Entry
 @Component
 struct Index {
-  @State formId:number = 0;
+  @State message: string = 'Hello World'
+
   build() {
     Row() {
       Column() {
-        Text("6*4StatMusicCard")
-          .fontSize(40)
+        Text(this.message)
+          .fontSize(50)
           .fontWeight(FontWeight.Bold)
-        FormComponent({
-          id: 0,
-          name: "StaticMusicLockUltraLongCard",
-          bundle: "com.samples.arktscard",
-          ability: "EntryFormAbility",
-          module: "entry",
-          dimension: FormDimension.DIMENSION_6_4,
-          temporary: false
-        })
-          .allowUpdate(true)
-          .size({ width: 300, height: 200 })
-          .visibility(Visibility.Visible)
-          .onAcquired((form) => {
-            console.log(`form info : ${JSON.stringify(form)}`);
-            this.formId = form.id;
-          })
-          .onError((err) => {
-            console.log(`fail to add form, err: ${JSON.stringify(err)}`);
-          })
-        Text("6*4DynamicMusicCard")
-          .fontSize(40)
-          .fontWeight(FontWeight.Bold)
-        FormComponent({
-          id: 0,
-          name: "DynamicMusicLockUltraLongCard",
-          bundle: "com.samples.arktscard",
-          ability: "EntryFormAbility",
-          module: "entry",
-          dimension: FormDimension.DIMENSION_6_4,
-          temporary: false
-        })
-          .allowUpdate(true)
-          .size({ width: 300, height: 200 })
-          .visibility(Visibility.Visible)
-          .onAcquired((form) => {
-            console.log(`form info : ${JSON.stringify(form)}`);
-            this.formId = form.id;
-          })
-          .onError((err) => {
-            console.log(`fail to add form, err: ${JSON.stringify(err)}`);
-          })
       }
       .width('100%')
     }

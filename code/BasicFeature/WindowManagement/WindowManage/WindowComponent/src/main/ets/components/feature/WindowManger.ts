@@ -54,27 +54,28 @@ class WindowManger {
       if (err.code) {
         Logger.error(this.tag, 'Failed to obtain the main window. Cause: ' + JSON.stringify(err));
         return;
-      };
+      }
+      ;
       let mainWindow = data;
       // 窗口规避区域
       mainWindow.on('avoidAreaChange', ({type, area}) => {
         if (type === window.AvoidAreaType.TYPE_SYSTEM) {
-          AppStorage.SetOrCreate<number>('topHeight', area.topRect.height);
-          AppStorage.SetOrCreate<number>('topWidth', area.topRect.width);
+          AppStorage.setOrCreate<number>('topHeight', area.topRect.height);
+          AppStorage.setOrCreate<number>('topWidth', area.topRect.width);
         }
       });
-      mainWindow.getAvoidArea(window.AvoidAreaType.TYPE_SYSTEM);
+      mainWindow.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM);
       // 设置主窗口沉浸式
-      mainWindow.setLayoutFullScreen(true);
+      mainWindow.setWindowLayoutFullScreen(true);
       // 设置主窗口导航栏、状态栏、文字颜色等属性
-      let sysBarProps = {
+      const sysBarProps: window.SystemBarProperties = {
         statusBarColor: WindowColor.statusBarColor,
         navigationBarColor: WindowColor.navigationBarColor,
         statusBarContentColor: WindowColor.statusBarContentColor,
         navigationBarContentColor: WindowColor.navigationBarContentColor
       };
       // 加载状态变量
-      mainWindow.setSystemBarProperties(sysBarProps);
+      mainWindow.setWindowSystemBarProperties(sysBarProps);
     });
 
     try {
@@ -85,7 +86,8 @@ class WindowManger {
       this.endY = MOVE_Y;
     } catch (err) {
       Logger.error('Failed to obtain the default display object. Code: ' + JSON.stringify(err));
-    };
+    }
+    ;
   }
 
   async initSubWindow(windowStage, windowAttribute) {
@@ -93,8 +95,8 @@ class WindowManger {
     let subWindow = await windowStage.createSubWindow('mySubWindow');
     subWindow.on('avoidAreaChange', ({type, area}) => {
       if (type === window.AvoidAreaType.TYPE_SYSTEM) {
-        AppStorage.SetOrCreate<number>('topHeight', area.topRect.height);
-        AppStorage.SetOrCreate<number>('bottomHeight', area.bottomRect.height);
+        AppStorage.setOrCreate<number>('topHeight', area.topRect.height);
+        AppStorage.setOrCreate<number>('bottomHeight', area.bottomRect.height);
       }
     });
     try {
@@ -129,7 +131,8 @@ class WindowManger {
       });
     } catch (exception) {
       console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
-    };
+    }
+    ;
 
     try {
       windowStage.on('windowStageEvent', (data) => {
@@ -139,7 +142,8 @@ class WindowManger {
     } catch (exception) {
       console.error('Failed to enable the listener for window stage event changes. Cause:' +
       JSON.stringify(exception));
-    };
+    }
+    ;
 
     Logger.info('show');
     subWindow.resize(vp2px(WIDTH), vp2px(HEIGHT));
@@ -158,7 +162,8 @@ class WindowManger {
         this.startX = eventData.data.x;
         this.startY = eventData.data.y;
         return;
-      };
+      }
+      ;
       this.distanceX = eventData.data.x - this.startX;
       this.distanceY = eventData.data.y - this.startY;
       this.endX += vp2px(this.distanceX);
@@ -168,7 +173,8 @@ class WindowManger {
       if (this.endX > 0 && this.endX < this.windowWidth - vp2px(WIDTH) && this.endY > AppStorage.get('topHeight')
         && this.endY < this.windowHeight - vp2px(HEIGHT)) {
         subWindow.moveWindowTo(this.endX, this.endY);
-      };
+      }
+      ;
     };
     emitter.on(innerEvent, callback);
   }

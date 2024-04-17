@@ -24,7 +24,7 @@ export default struct DebugInfo {
   build() {
     Stack({ alignContent: Alignment.Top }) {
       Text($r('app.string.navigation_information'))
-        .fontSize(25)
+        .fontSize(22)
         .width('80%')
         .lineHeight(40)
         .margin({ top: '5%' })
@@ -56,14 +56,14 @@ export default struct DebugInfo {
     Row() {
       Text(title)
         .id('title')
-        .fontSize(20)
+        .fontSize(18)
         .width('60%')
         .margin({ left: 6 })
-        .textAlign(TextAlign.End)
+        .textAlign(TextAlign.Center)
 
       Text(`${data}KB`)
         .id('storageSize')
-        .fontSize(20)
+        .fontSize(18)
     }
     .width('100%')
     .margin({ top: 10 })

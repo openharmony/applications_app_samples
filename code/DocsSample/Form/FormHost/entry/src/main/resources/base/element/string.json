@@ -1,0 +1,68 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "formHost"
+    },
+    {
+      "name": "deleteForm",
+      "value": "删除卡片"
+    },
+    {
+      "name": "updateForm",
+      "value": "更新卡片"
+    },
+    {
+      "name": "visibleForms",
+      "value": "卡片可见"
+    },
+    {
+      "name": "invisibleForms",
+      "value": "卡片不可见"
+    },
+    {
+      "name": "enableFormsUpdate",
+      "value": "可以更新"
+    },
+    {
+      "name": "disableFormsUpdate",
+      "value": "不可更新"
+    },
+    {
+      "name": "Host",
+      "value": "卡片使用方"
+    },
+    {
+      "name": "formOperation",
+      "value": "卡片操作"
+    },
+    {
+      "name": "inquiryForm",
+      "value": "查询卡片"
+    },
+    {
+      "name": "formType",
+      "value": "卡片类型"
+    },
+    {
+      "name": "selectAddForm",
+      "value": "选择添加卡片"
+    },
+    {
+      "name": "execute",
+      "value": "执行"
+    },
+    {
+      "name": "confirm",
+      "value": "确定"
+    }
+  ]
+}

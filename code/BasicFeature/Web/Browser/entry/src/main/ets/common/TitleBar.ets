@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,23 +12,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Browser, LoadingStatus, WebObject } from '../model/Browser'
-import Logger from '../model/Logger'
 
-const TAG: string = '[TitleBar]'
-const BUTTON_WIDTH: number = 22
-const BUTTON_RADIUS: number = 4
-const DOWN_COLOR: string = '#e4e4e4'
-const UP_COLOR: string = '#00000000'
-const PAD_USER_AGENT: string = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTMl, like Gecko) Chrome/92.0.4515.105 Safari/537.36'
-const PHONE_USER_AGENT: string = 'Mozilla/5.0 (Linux; Android 9; VRD-AL10; HMSCore 6.3.0.331) AppleWebKit/537.36 (KHTMl, like Gecko) Chrome/92.0.4515.105 HuaweiBrowser/12.0.4.1 Mobile Safari/537.36'
+import { Browser, LoadingStatus, WebObject } from '../model/Browser';
+import Logger from '../model/Logger';
+
+const TAG: string = '[TitleBar]';
+const BUTTON_WIDTH: number = 22;
+const BUTTON_RADIUS: number = 4;
+const DOWN_COLOR: string = '#e4e4e4';
+const UP_COLOR: string = '#00000000';
+// 此处可按照需求到浏览器请求里获取（浏览器请求的HEAD部分，字段为USER_AGENT）
+const PAD_USER_AGENT: string = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTMl, like Gecko) Chrome/92.0.4515.105 Safari/537.36';
+const PHONE_USER_AGENT: string = 'HuaweiBrowser/12.0.4.1';
 
 @Component
 export struct TabletTitle {
   @Link browser: Browser;
-  @State inputValue: string = ''
-  @State arrayIndex: number = 0
-  private addr: string = ''
+  @State inputValue: string = '';
+  @State arrayIndex: number = 0;
+  private addr: string = '';
   private navigationButton: Array<{
     imageSrc: Resource,
     id: number
@@ -79,11 +81,11 @@ export struct TabletTitle {
         .flexShrink(0)
         .onTouch((event: TouchEvent) => {
           if (event.type === TouchType.Down) {
-            this.arrayIndex = item.id
+            this.arrayIndex = item.id;
           }
 
           if (event.type === TouchType.Up) {
-            this.arrayIndex = 0
+            this.arrayIndex = 0;
           }
         })
         .onClick((event: ClickEvent) => {
@@ -114,15 +116,15 @@ export struct TabletTitle {
         .width('51%')
         .layoutWeight(1)
         .onChange((value: string) => {
-          this.addr = value
+          this.addr = value;
         })
         .onSubmit((enterKey: EnterKeyType) => {
           Logger.info(TAG, `onSubmit`)
           if (this.addr.length !== 0) {
             this.browser.webControllerArray[this.browser.tabArrayIndex].controller.loadUrl({
               url: `https://${this.addr}`
-            })
-            this.addr = ''
+            });
+            this.addr = '';
           }
         })
 
@@ -139,19 +141,19 @@ export struct TabletTitle {
         .flexShrink(0)
         .onTouch((event: TouchEvent) => {
           if (event.type === TouchType.Down) {
-            this.arrayIndex = item.id
+            this.arrayIndex = item.id;
           }
           if (event.type === TouchType.Up) {
-            this.arrayIndex = 0
+            this.arrayIndex = 0;
           }
         })
         .onClick((event: ClickEvent) => {
           if (item.id === 5) {
-            this.browser.loadUrl(this.addr)
-            this.addr = ''
+            this.browser.loadUrl(this.addr);
+            this.addr = '';
           } else if (item.id === 6) {
-            Logger.info(TAG, `add tab index = ` + this.arrayIndex)
-            this.browser.addTab()
+            Logger.info(TAG, `add tab index = ` + this.arrayIndex);
+            this.browser.addTab();
           }
         })
       }, item => item.id)
@@ -185,26 +187,26 @@ export struct BrowserTabs {
           .borderRadius(5)
           .onTouch((event: TouchEvent) => {
             if (event.type === TouchType.Down) {
-              this.tabButtonIndex = item.key
+              this.tabButtonIndex = item.key;
             } else if (event.type == TouchType.Up) {
-              this.tabButtonIndex = -1
+              this.tabButtonIndex = -1;
             }
           })
           .onClick((event: ClickEvent) => {
             if (this.browser.webArray.length > 1) {
-              this.browser.deleteTab(item.key)
+              this.browser.deleteTab(item.key);
             }
           })
         }.width(180).height('100%').backgroundColor(this.browser.tabArrayIndex == item.key ? '#ffffff' : '#ececec')
         .onClick((event: ClickEvent) => {
-          Logger.info(TAG, `key= ${item.key}`)
-          this.browser.setTabArrayIndex(item.key)
-          this.browser.tabsController.changeIndex(item.key)
+          Logger.info(TAG, `key= ${item.key}`);
+          this.browser.setTabArrayIndex(item.key);
+          this.browser.tabsController.changeIndex(item.key);
         })
 
-        Divider().vertical(true).color('#c6c6c6')
+        Divider().vertical(true).color('#c6c6c6');
       }, item => item.timestamp.toString())
-    }.height(33).flexShrink(0).backgroundColor('#ececec')
+    }.height(33).flexShrink(0).backgroundColor('#ececec');
   }
 }
 
@@ -212,18 +214,18 @@ export struct BrowserTabs {
 export struct WebTab {
   @Link browser: Browser;
   @Link isPhone: boolean;
-  isRegistered: boolean = false
+  isRegistered: boolean = false;
   testObj = {
     test: (addr) => {
-      Logger.info(TAG, `addr= ${this.browser.tabArrayIndex}`)
-      this.browser.webControllerArray[this.browser.tabArrayIndex].controller.loadUrl({ url: `https://${addr}` })
+      Logger.info(TAG, `addr= ${this.browser.tabArrayIndex}`);
+      this.browser.webControllerArray[this.browser.tabArrayIndex].controller.loadUrl({ url: `https://${addr}` });
     },
     searchWord: (word: string) => {
-      Logger.info(`search word= ${word}`)
-      let code = encodeURI(word)
+      Logger.info(`search word= ${word}`);
+      let code = encodeURI(word);
       this.browser.webControllerArray[this.browser.tabArrayIndex].controller.loadUrl({
         url: `https://www.bing.com/search?q=${code}`
-      })
+      });
     }
   }
 
@@ -233,8 +235,7 @@ export struct WebTab {
         TabContent() {
           Web({
             src: this.isPhone ? $rawfile('phone.html') : $rawfile('pad.html'),
-            controller: this.browser.webControllerArray[item.key] !== undefined ?
-            this.browser.webControllerArray[item.key].controller : undefined
+            controller: this.browser?.webControllerArray[item.key]?.controller
           })
             .javaScriptAccess(true)
             .fileAccess(true)
@@ -242,28 +243,36 @@ export struct WebTab {
             .userAgent(this.isPhone ? PHONE_USER_AGENT : PAD_USER_AGENT)
             .onPageBegin((event) => {
               Logger.info(TAG, `onPageBegin= ${JSON.stringify(event)}`)
-              this.browser.loadingStatus = LoadingStatus.LOADING
+              if (event.url.startsWith('http')) {
+                this.browser.inputValue = event.url;
+              } else {
+                this.browser.inputValue = '';
+              }
+              this.browser.loadingStatus = LoadingStatus.LOADING;
             })
             .onPageEnd((event) => {
               Logger.info(TAG, `onPageEnd= ${JSON.stringify(event)}`)
-              if (item.key < this.browser.webControllerArray.length && this.browser.webControllerArray[item.key].controller) {
-                this.browser.webControllerArray[item.key].controller.runJavaScript({ script: 'adapterDevice()' })
-                this.browser.loadingStatus = LoadingStatus.END
-                this.registerFunc(this.browser.webControllerArray[item.key])
-                if (event.url.startsWith('http')) {
-                  this.browser.inputValue = event.url
-                } else {
-                  this.browser.inputValue = ''
-                }
+              if (item.key < this.browser.webControllerArray.length && this.browser.webControllerArray[item.key]?.controller) {
+                this.browser.webControllerArray[item.key]?.controller?.runJavaScript({ script: 'adapterDevice()' });
+                this.browser.loadingStatus = LoadingStatus.END;
+                this.registerFunc(this.browser.webControllerArray[item.key]);
               }
             })
             .onProgressChange((event) => {
-              Logger.info(TAG, `onProgressChange`)
-              this.browser.progress = event.newProgress
-              if (this.browser.progress === 100) {
-                this.browser.hideProgress = true
+              Logger.info(TAG, `onProgressChange`);
+              this.browser.progress = event.newProgress;
+              if (!this.browser.inputValue) {
+                if (event.newProgress !== 10) {
+                  this.browser.progress = event.newProgress;
+                }
               } else {
-                this.browser.hideProgress = false
+                this.browser.progress = event.newProgress;
+              }
+              if (this.browser.progress === 100) {
+                this.browser.hideProgress = true;
+                this.browser.progress = 0;
+              } else {
+                this.browser.hideProgress = false;
               }
             })
         }
@@ -275,12 +284,12 @@ export struct WebTab {
 
   registerFunc(webObject: WebObject) {
     if (!webObject.isRegistered) {
-      Logger.info(TAG, `registerFunc`)
+      Logger.info(TAG, `registerFunc`);
       webObject.controller.registerJavaScriptProxy({
         object: this.testObj, name: 'etsObj', methodList: ['test', 'searchWord']
       })
-      webObject.isRegistered = true
-      webObject.controller.refresh()
+      webObject.isRegistered = true;
+      webObject.controller.refresh();
     }
   }
 }

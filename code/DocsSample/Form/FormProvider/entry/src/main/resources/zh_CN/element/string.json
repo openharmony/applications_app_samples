@@ -1,0 +1,52 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "formProvider"
+    },
+    {
+      "name": "EntryFormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "EntryFormAbility_label",
+      "value": "form_label"
+    },
+    {
+      "name": "widget_1_1_desc",
+      "value": "1 x 1 卡片"
+    },
+    {
+      "name": "widget_1_2_desc",
+      "value": "1 x 2 卡片"
+    },
+    {
+      "name": "widget_2_2_desc",
+      "value": "2 x 2 卡片"
+    },
+    {
+      "name": "widget_2_4_desc",
+      "value": "2 x 4 卡片"
+    },
+    {
+      "name": "widget_4_4_desc",
+      "value": "4 x 4 卡片"
+    },
+    {
+      "name": "widget_6_4_desc",
+      "value": "6 x 4 卡片"
+    },
+    {
+      "name": "FormProvider",
+      "value": "卡片提供方"
+    }
+  ]
+}

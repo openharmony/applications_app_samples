@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,33 +13,35 @@
  * limitations under the License.
  */
 
-import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility'
-import http from '@ohos.net.http'
-import Notification from '@ohos.notification'
-import { WorkSchedulerSystem } from '../feature/WorkSchedulerSystem'
-import { Logger } from '../utils/Logger'
+import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
+import http from '@ohos.net.http';
+import Notification from '@ohos.notification';
+import { WorkSchedulerSystem } from '../feature/WorkSchedulerSystem';
+import { Logger } from '../utils/Logger';
 
-const VERSION: string = '1.0'
-const HTTP_STATUS_CODE: number = 200
+const VERSION: string = '1.0';
+const HTTP_STATUS_CODE: number = 200;
 const URL: string = 'https://gitee.com/openharmony/applications_app_samples/raw/master/code/DataMock/' +
-'WorkScheduler/UpdateWorkScheduler.hap';
+  'WorkScheduler/UpdateWorkScheduler.hap';
 const BUNDLE_NAME = ['ohos.samples.workschedulerextensionability'];
 
 export default class WorkSchedulerAbility extends WorkSchedulerExtensionAbility {
   onWorkStart(workInfo) {
-    let filePath = JSON.parse(workInfo.parameters).filePath
+    Logger.info('WorkScheduler', 'WorkSchedulerAbility start');
+    let filePath = JSON.parse(workInfo.parameters).filePath;
     if (JSON.parse(workInfo.parameters).version === VERSION) {
-      let result: Promise<http.HttpResponse> = WorkSchedulerSystem.getNewHap(URL)
+      let result: Promise<http.HttpResponse> = WorkSchedulerSystem.getNewHap(URL);
       result.then(data => {
+        Logger.info('WorkScheduler', 'getNewHap success');
         if (data.responseCode === HTTP_STATUS_CODE) {
-          WorkSchedulerSystem.saveFile(filePath, data.result as ArrayBuffer)
-          WorkSchedulerSystem.publishNotification('download', 'isReady', 'download hap to update the application')
+          WorkSchedulerSystem.saveFile(filePath, data.result as ArrayBuffer);
+          WorkSchedulerSystem.publishNotification('download', 'isReady', 'download hap to update the application');
           Notification.subscribe({
             onConsume: (data) => {
               if (data.request.content.normal.text === 'allow') {
-                let path: string[] = []
-                path.push(filePath)
-                WorkSchedulerSystem.installBundle(path)
+                let path: string[] = [];
+                path.push(filePath);
+                WorkSchedulerSystem.installBundle(path);
               }
             }
           }, {
