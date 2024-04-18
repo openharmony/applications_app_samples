@@ -16,7 +16,6 @@
 // 反转摄像头_多机位_拍照_摄像
 
 import { RecodeStopDialog } from '../Dialog/RecodeStopDialog';
-import { MultiCameraDialog } from '../Dialog/MultiCameraDialog';
 import DateTimeUtil from '../model/DateTimeUtil';
 import Logger from '../model/Logger';
 import CameraService from '../model/CameraService';

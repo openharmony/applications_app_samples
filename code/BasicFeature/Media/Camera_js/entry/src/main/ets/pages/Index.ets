@@ -26,9 +26,6 @@ import { FocusAreaPage } from '../views/FocusAreaPage';
 import { ModeSwitchPage } from '../views/ModeSwitchPage';
 import { Constants } from '../common/Constants';
 import DisplayCalculator from '../common/DisplayCalculator';
-import { ColorEffectComponent } from '../views/ColorEffectComponent';
-import { MoonCaptureBoostComponent } from '../views/MoonCaptureBoostComponent';
-import { DeferredPhotoComponent } from '../views/DeferredPhotoComponent';
 import image from '@ohos.multimedia.image';
 import { CameraConfig } from '../common/CameraConfig';
 import { GlobalContext } from '../common/GlobalContext';
@@ -112,8 +109,6 @@ struct Index {
   cancelDialog(): void {
     AppStorage.setOrCreate<boolean>('flashingBol', true);
     AppStorage.setOrCreate<boolean>('countdownBol', true);
-    AppStorage.setOrCreate<boolean>('colorEffectComponentIsShow', true);
-    AppStorage.setOrCreate<boolean>('deferredPhotoComponentIsShow', true);
   }
 
   initXComponentSize(): void {
@@ -229,17 +224,6 @@ struct Index {
 
         // 闪光灯
         FlashingLightPage()
-        // 滤镜
-        ColorEffectComponent()
-
-        // 月亮模式
-        MoonCaptureBoostComponent();
-
-        // // 分段式拍照
-        // DeferredPhotoComponent({
-        //   surfaceId: this.surfaceId,
-        //   cameraDeviceIndex: this.cameraDeviceIndex,
-        // })
 
       }
       .margin({ left: 24 })

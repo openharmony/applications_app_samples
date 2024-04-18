@@ -71,7 +71,6 @@ export struct FocusAreaPage {
       AppStorage.setOrCreate<boolean>('flashingBol', true);
       AppStorage.setOrCreate<boolean>('countdownBol', true);
       AppStorage.setOrCreate<boolean>('colorEffectComponentIsShow', true);
-      AppStorage.setOrCreate<boolean>('deferredPhotoComponentIsShow', true);
     })
     // 单指竖直方向拖动触发该手势事件
     .gesture(

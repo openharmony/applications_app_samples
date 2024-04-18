@@ -1159,7 +1159,7 @@ class CameraService {
   async photoSessionFlowFn(): Promise<void> {
     try {
       Logger.info(TAG, "photoSessionFlowFn start");
-      // 创建CaptureSession实例
+      // 创建PhotoSession实例
       this.photoSession = this.cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO);
       // 监听焦距的状态变化
       this.onFocusStateChange();
@@ -1175,11 +1175,11 @@ class CameraService {
       this.photoSession.addOutput(this.photoOutPut);
       // hdr 拍照
       let hdrPhotoBol: boolean = (this.globalContext.getObject('cameraConfig') as CameraConfig).hdrPhotoBol;
+      Logger.info(TAG, "hdrPhotoBol:" + hdrPhotoBol);
       if (hdrPhotoBol) {
-        Logger.info(TAG, "photoSession set hdr");
-        this.setColorSpace(colorSpaceManager.ColorSpace.DISPLAY_P3);
+        this.setColorSpace(this.photoSession, colorSpaceManager.ColorSpace.DISPLAY_P3);
       } else {
-        this.setColorSpace(colorSpaceManager.ColorSpace.SRGB);
+        this.setColorSpace(this.photoSession, colorSpaceManager.ColorSpace.SRGB);
       }
       // 提交配置信息
       await this.photoSession.commitConfig();
@@ -1197,7 +1197,7 @@ class CameraService {
   async videoSessionFlowFn(): Promise<void> {
     try {
       Logger.info(TAG, "videoSessionFlowFn start");
-      // 创建CaptureSession实例
+      // 创建VideoSession实例
       this.videoSession = this.cameraManager.createSession(camera.SceneMode.NORMAL_VIDEO);
       // 监听焦距的状态变化
       this.onFocusStateChange();
@@ -1211,15 +1211,16 @@ class CameraService {
       this.videoSession.addOutput(this.previewOutput);
       // 把photoOutPut加入到会话
       this.videoSession.addOutput(this.videoOutput);
-      // hdr 录像
-      let hdrVideoBol: boolean = (this.globalContext.getObject('cameraConfig') as CameraConfig).hdrVideoBol;
-      if (hdrVideoBol) {
-        this.setColorSpace(colorSpaceManager.ColorSpace.BT2020_HLG);
-      } else {
-        this.setColorSpace(colorSpaceManager.ColorSpace.BT709);
-      }
       // 提交配置信息
       await this.videoSession.commitConfig();
+      // hdr 录像
+      let hdrVideoBol: boolean = (this.globalContext.getObject('cameraConfig') as CameraConfig).hdrVideoBol;
+      Logger.info(TAG, "hdrVideoBol:" + hdrVideoBol);
+      if (hdrVideoBol) {
+        this.setColorSpace(this.videoSession, colorSpaceManager.ColorSpace.BT2020_HLG);
+      } else {
+        this.setColorSpace(this.videoSession, colorSpaceManager.ColorSpace.BT709);
+      }
       // 开始会话工作
       await this.videoSession.start();
     } catch (error) {
@@ -1265,15 +1266,6 @@ class CameraService {
       } catch (error) {
         let err = error as BusinessError;
         Logger.error(TAG, `getZoomRatioRange fail: error code ${err.code}`);
-      }
-
-      this.setPortraitEffect();
-      const deviceType = AppStorage.get<string>('deviceType');
-      if (deviceType !== Constants.DEFAULT) {
-        AppStorage.setOrCreate('colorEffectComponentIsHidden', this.getSupportedColorEffects().length > 0 ? false : true);
-        if (this.colorEffect) {
-          this.setColorEffect(this.colorEffect);
-        }
       }
       // 开始会话工作
       await this.portraitSession.start();
@@ -1323,14 +1315,6 @@ class CameraService {
         let err = error as BusinessError;
         Logger.error(TAG, `getZoomRatioRange fail: error code ${err.code}`);
       }
-
-      const deviceType = AppStorage.get<string>('deviceType');
-      if (deviceType !== Constants.DEFAULT) {
-        AppStorage.setOrCreate('colorEffectComponentIsHidden', this.getSupportedColorEffects().length > 0 ? false : true);
-        if (this.colorEffect) {
-          this.setColorEffect(this.colorEffect);
-        }
-      }
       // 开始会话工作
       await this.nightSession.start();
       this.isFocusMode((this.globalContext.getObject('cameraConfig') as CameraConfig).focusMode);
@@ -1345,9 +1329,9 @@ class CameraService {
     try {
       Logger.info(TAG, `setColorSpace enter`);
       let colorSpaces: Array<colorSpaceManager.ColorSpace> = session.getSupportedColorSpaces();
-      Logger.info(TAG, `111`);
       let isSupportedUseColorSpaces = colorSpaces.indexOf(colorSpace);
       if (isSupportedUseColorSpaces) {
+        Logger.info(TAG, `setColorSpace ${colorSpace} start`);
         session.setColorSpace(colorSpace);
         Logger.info(TAG, `setColorSpace ${colorSpace} success`);
         return;
@@ -1639,28 +1623,6 @@ class CameraService {
   deferImageDeliveryFor(deferredType: camera.DeferredDeliveryImageType): void {
     Logger.info(TAG, `deferImageDeliveryFor type: ${deferredType}`);
     this.photoOutPut.deferImageDelivery(deferredType);
-  }
-
-  getSupportedColorSpaces(session: camera.PhotoSession): Array<colorSpaceManager.ColorSpace> {
-    let colorSpaces: Array<colorSpaceManager.ColorSpace> = [];
-    try {
-      colorSpaces = session.getSupportedColorSpaces();
-    } catch (error) {
-      let err = error as BusinessError;
-      console.error(`The getSupportedColorSpaces call failed. error code: ${err.code}`);
-    }
-    return colorSpaces;
-  }
-
-  getActiveColorSpace(session: camera.PhotoSession): colorSpaceManager.ColorSpace {
-    let colorSpace: colorSpaceManager.ColorSpace | undefined = undefined;
-    try {
-      colorSpace = session.getActiveColorSpace();
-    } catch (error) {
-      let err = error as BusinessError;
-      console.error(`The getActiveColorSpace call failed. error code: ${err.code}`);
-    }
-    return colorSpace;
   }
 
 }

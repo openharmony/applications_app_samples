@@ -186,7 +186,7 @@ export struct SettingDialog {
               borderBol: true,
               borderBole: false,
               iconModeBol: true,
-              modeMessage: 'HDR Vivid拍摄',
+              modeMessage: 'HDR 拍摄',
               setModeBol: (GlobalContext.get().getObject('cameraConfig') as CameraConfig).hdrPhotoBol,
               getModeBol: this.getHdrPhotoBol
             })
@@ -261,7 +261,7 @@ export struct SettingDialog {
               borderBol: true,
               borderBole: false,
               iconModeBol: true,
-              modeMessage: 'HDR Vivid录制',
+              modeMessage: 'HDR 录制',
               setModeBol: (GlobalContext.get().getObject('cameraConfig') as CameraConfig).hdrVideoBol,
               getModeBol: this.getHdrVideoBol
             })
