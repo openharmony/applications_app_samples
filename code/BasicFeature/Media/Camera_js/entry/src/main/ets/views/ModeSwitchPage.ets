@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -216,7 +216,7 @@ export struct ModeSwitchPage {
             Row() {
               // 超级防抖
               Column() {
-                Text('超级防抖')
+                Text($r('app.string.super_steady'))
                   .fontSize(14)
                   .fontColor(Color.White)
               }
@@ -231,7 +231,7 @@ export struct ModeSwitchPage {
                 let isSupported = CameraService.isVideoStabilizationModeSupportedFn(camera.VideoStabilizationMode.HIGH);
                 if (!isSupported) {
                   (GlobalContext.get().getPromptAction() as PromptAction).showToast({
-                    message: '当前不支持超级防抖模式，显示为普通模式',
+                    message: $r('app.string.not_support_super_steady'),
                     duration: 2000,
                     bottom: '50%'
                   })
@@ -241,7 +241,7 @@ export struct ModeSwitchPage {
 
               // 人像
               Column() {
-                Text('人像')
+                Text($r('app.string.portrait'))
                   .fontSize(14)
                   .fontColor(Color.White)
               }
@@ -256,7 +256,7 @@ export struct ModeSwitchPage {
                 let isSupported = CameraService.isPortraitModeSupportedFn();
                 if (!isSupported) {
                   (GlobalContext.get().getPromptAction() as PromptAction).showToast({
-                    message: '当前不支持人像模式，请切换其他模式',
+                    message: $r('app.string.not_support_portrait'),
                     duration: 2000,
                     bottom: '50%'
                   })
@@ -266,7 +266,7 @@ export struct ModeSwitchPage {
 
               // 夜景
               Column() {
-                Text('夜景')
+                Text($r('app.string.night_view'))
                   .fontSize(14)
                   .fontColor(Color.White)
               }
@@ -281,7 +281,7 @@ export struct ModeSwitchPage {
                 let isSupported = CameraService.isNightModeSupportedFn();
                 if (!isSupported) {
                   (GlobalContext.get().getPromptAction() as PromptAction).showToast({
-                    message: '当前不支持夜景模式，请切换其他模式',
+                    message: $r('app.string.not_support_night_view'),
                     duration: 2000,
                     bottom: '50%'
                   })
@@ -291,7 +291,7 @@ export struct ModeSwitchPage {
 
               // 拍照
               Column() {
-                Text('拍照')
+                Text($r('app.string.photo'))
                   .fontSize(14)
                   .fontColor(Color.White)
               }
@@ -307,7 +307,7 @@ export struct ModeSwitchPage {
 
               // 录像
               Column() {
-                Text('录像')
+                Text($r('app.string.video'))
                   .fontSize(14)
                   .fontColor(Color.White)
               }
@@ -402,7 +402,7 @@ export struct ModeSwitchPage {
                       await CameraService.initCamera(this.surfaceId, this.cameraDeviceIndex);
                     } else {
                       (globalContext.getPromptAction() as PromptAction).showToast({
-                        message: '不支持切换摄像头',
+                        message: $r('app.string.not_support_switch_camera'),
                         duration: 2000,
                         bottom: '50%'
                       });

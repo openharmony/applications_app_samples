@@ -27,19 +27,19 @@ class Logger {
     this.domain = 0xFF00;
   }
 
-  debug(...args: any[]): void {
+  debug(...args: string[]): void {
     hiLog.debug(this.domain, this.prefix, this.format, args);
   }
 
-  info(...args: any[]): void {
+  info(...args: string[]): void {
     hiLog.info(this.domain, this.prefix, this.format, args);
   }
 
-  warn(...args: any[]): void {
+  warn(...args: string[]): void {
     hiLog.warn(this.domain, this.prefix, this.format, args);
   }
 
-  error(...args: any[]): void {
+  error(...args: string[]): void {
     hiLog.error(this.domain, this.prefix, this.format, args);
   }
 }

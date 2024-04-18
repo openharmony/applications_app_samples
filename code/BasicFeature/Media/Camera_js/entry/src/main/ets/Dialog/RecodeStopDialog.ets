@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -30,7 +30,7 @@ export struct RecodeStopDialog {
 
   build() {
     Column() {
-      Text(`当前视频时长${this.dateTimeUtil.getVideoTime(this.videoRecodeTime)}分钟`)
+      Text($r('app.string.recording_completed'))
         .fontSize(18)
         .fontWeight(500)
         .fontColor('#182431')
@@ -38,7 +38,7 @@ export struct RecodeStopDialog {
         .width('99%')
       Row() {
         Button() {
-          Text('停止')
+          Text($r('app.string.stop'))
             .fontColor($r('app.color.theme_color'))
             .fontSize(17)
             .fontWeight(500)

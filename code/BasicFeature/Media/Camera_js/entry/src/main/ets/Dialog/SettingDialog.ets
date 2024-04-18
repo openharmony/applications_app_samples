@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,9 +14,7 @@
  */
 import { CameraConfig } from '../common/CameraConfig';
 import { GlobalContext } from '../common/GlobalContext';
-
 import { SettingPublicLayout } from '../common/SettingPublicLayout';
-import CameraService from '../model/CameraService';
 import Logger from '../model/Logger';
 
 const TAG: string = 'SettingDialog';
@@ -92,7 +90,7 @@ export struct SettingDialog {
                 Logger.info(TAG, 'back onClick');
                 this.controller.close();
               })
-            Text('设置')
+            Text($r('app.string.setting'))
               .fontSize(24)
               .fontWeight(700)
               .textAlign(TextAlign.Start)
@@ -109,7 +107,7 @@ export struct SettingDialog {
               isModeBol: true,
               borderBol: false,
               iconModeBol: true,
-              modeMessage: '自拍镜像',
+              modeMessage: $r('app.string.photo_mirror'),
               backNum: 1,
               leftSliderIndex: $leftSliderIndex,
               setModeBol: (GlobalContext.get().getObject('cameraConfig') as CameraConfig).mirrorBol,
@@ -126,7 +124,7 @@ export struct SettingDialog {
               borderBole: true,
               backNum: 2,
               leftSliderIndex: $leftSliderIndex,
-              modeMessage: '视频防抖'
+              modeMessage: $r('app.string.video_steady')
             })
 
             Divider()
@@ -136,7 +134,7 @@ export struct SettingDialog {
               backNum: 3,
               leftSliderIndex: $leftSliderIndex,
               icon: $r('app.media.ic_camera_set_exposure'),
-              modeMessage: '曝光模式'
+              modeMessage: $r('app.string.video_exposure')
             })
 
             Divider()
@@ -146,7 +144,7 @@ export struct SettingDialog {
               backNum: 4,
               leftSliderIndex: $leftSliderIndex,
               icon: $r('app.media.ic_camera_set_AF'),
-              modeMessage: '对焦模式'
+              modeMessage: $r('app.string.af_mode')
             })
 
             Divider()
@@ -156,7 +154,7 @@ export struct SettingDialog {
               backNum: 5,
               leftSliderIndex: $leftSliderIndex,
               icon: $r('app.media.ic_camera_set_Quality'),
-              modeMessage: '拍摄质量'
+              modeMessage: $r('app.string.photo_quality')
             })
 
             Divider()
@@ -170,7 +168,7 @@ export struct SettingDialog {
               borderBol: true,
               borderBole: false,
               iconModeBol: true,
-              modeMessage: '拍摄时显示地理位置',
+              modeMessage: $r('app.string.display_photo_location'),
               setModeBol: (GlobalContext.get().getObject('cameraConfig') as CameraConfig).locationBol,
               getModeBol: this.getLocationBol
             })
@@ -179,14 +177,14 @@ export struct SettingDialog {
               .width('94%')
 
             SettingPublicLayout({
-              backNum: 6,
+              backNum: 0,
               leftSliderIndex: $leftSliderIndex,
               icon: $r('app.media.ic_camera_set_photo_hdr'),
               isModeBol: true,
               borderBol: true,
               borderBole: false,
               iconModeBol: true,
-              modeMessage: 'HDR 拍摄',
+              modeMessage: $r('app.string.hdr_photo'),
               setModeBol: (GlobalContext.get().getObject('cameraConfig') as CameraConfig).hdrPhotoBol,
               getModeBol: this.getHdrPhotoBol
             })
@@ -201,7 +199,7 @@ export struct SettingDialog {
               backNum: 7,
               leftSliderIndex: $leftSliderIndex,
               icon: $r('app.media.ic_camera_set_Format'),
-              modeMessage: '照片格式',
+              modeMessage: $r('app.string.photo_format'),
               isModeBol: true,
               borderBol: true,
               borderBole: true,
@@ -214,7 +212,7 @@ export struct SettingDialog {
               backNum: 8,
               leftSliderIndex: $leftSliderIndex,
               icon: $r('app.media.ic_camera_set_class'),
-              modeMessage: '照片方向配置'
+              modeMessage: $r('app.string.photo_direction_config')
             })
 
             Divider()
@@ -224,7 +222,7 @@ export struct SettingDialog {
               backNum: 9,
               leftSliderIndex: $leftSliderIndex,
               icon: $r('app.media.ic_camera_set_pic_Resolution'),
-              modeMessage: '照片分辨率'
+              modeMessage: $r('app.string.photo_ratio')
             })
 
             Divider()
@@ -234,7 +232,7 @@ export struct SettingDialog {
               backNum: 10,
               leftSliderIndex: $leftSliderIndex,
               icon: $r('app.media.ic_camera_set_video_Resolution'),
-              modeMessage: '视频分辨率'
+              modeMessage: $r('app.string.video_ratio')
             })
 
             Divider()
@@ -244,7 +242,7 @@ export struct SettingDialog {
               backNum: 11,
               leftSliderIndex: $leftSliderIndex,
               icon: $r('app.media.ic_camera_set_video_Rate'),
-              modeMessage: '录像帧率',
+              modeMessage: $r('app.string.video_frame'),
               isModeBol: true,
               borderBol: true,
               borderBole: false,
@@ -254,14 +252,14 @@ export struct SettingDialog {
               .width('94%')
 
             SettingPublicLayout({
-              backNum: 6,
+              backNum: 13,
               leftSliderIndex: $leftSliderIndex,
               icon: $r('app.media.ic_camera_set_video_hdr'),
               isModeBol: true,
               borderBol: true,
               borderBole: false,
               iconModeBol: true,
-              modeMessage: 'HDR 录制',
+              modeMessage: $r('app.string.hdr_video'),
               setModeBol: (GlobalContext.get().getObject('cameraConfig') as CameraConfig).hdrVideoBol,
               getModeBol: this.getHdrVideoBol
             })
@@ -276,7 +274,7 @@ export struct SettingDialog {
               backNum: 12,
               leftSliderIndex: $leftSliderIndex,
               icon: $r('app.media.ic_camera_set_line'),
-              modeMessage: '参考线',
+              modeMessage: $r('app.string.reference_line'),
               isModeBol: true,
               borderBol: false,
               iconModeBol: true,

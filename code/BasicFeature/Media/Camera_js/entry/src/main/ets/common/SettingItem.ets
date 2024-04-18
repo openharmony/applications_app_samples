@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -43,7 +43,7 @@ export struct SettingItem {
         let isVideoStabSupported = CameraService.isVideoStabilizationModeSupportedFn(cameraConfig.videoStabilizationMode);
         try {
           (globalContext.getPromptAction() as PromptAction).showToast({
-            message: isVideoStabSupported ? '支持此模式' : '不支持此模式',
+            message: isVideoStabSupported ? $r('app.string.support_mode') : $r('app.string.not_support_mode'),
             duration: 2000,
             bottom: '50%'
           });
@@ -60,7 +60,7 @@ export struct SettingItem {
         let isExposureModeSupported = CameraService.isExposureModeSupportedFn(cameraConfig.exposureMode);
         try {
           (globalContext.getPromptAction() as PromptAction).showToast({
-            message: isExposureModeSupported ? '支持此模式' : '不支持此模式',
+            message: isExposureModeSupported ? $r('app.string.support_mode') : $r('app.string.not_support_mode'),
             duration: 2000,
             bottom: '50%'
           });
@@ -77,7 +77,7 @@ export struct SettingItem {
         let isFocusModeSupported = CameraService.isFocusModeSupported(cameraConfig.focusMode);
         try {
           (globalContext.getPromptAction() as PromptAction).showToast({
-            message: isFocusModeSupported ? '支持此模式' : '不支持此模式',
+            message: isFocusModeSupported ? $r('app.string.support_mode') : $r('app.string.not_support_mode'),
             duration: 2000,
             bottom: '50%'
           });
@@ -122,7 +122,7 @@ export struct SettingItem {
         }
         try {
           (globalContext.getPromptAction() as PromptAction).showToast({
-            message: isSupported ? '支持此模式' : '不支持此模式',
+            message: isSupported ? $r('app.string.support_mode') : $r('app.string.not_support_mode'),
             duration: 2000,
             bottom: '50%'
           });

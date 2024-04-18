@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,7 +18,7 @@ import Logger from '../model/Logger';
 
 interface ResourceObj {
   icon: Resource | string | undefined,
-  message: string | undefined
+  message: string | Resource | undefined
 }
 
 const TAG: string = "SettingRightLayout";
@@ -30,13 +30,16 @@ export struct SettingRightLayout {
     builder: null
   });
   @Link settingMessageNum: number; // 传进来的点击设置
-  private title: Array<string> = ['', '自拍镜像', '视频防抖', '曝光模式', '对焦模式', '拍摄质量', '拍摄时显示地理位置', '照片格式', '照片方向配置', '照片分辨率', '视频分辨率', '录像帧率', '参考线',];
-  private settingItemDataList: Array<Array<string>> = [
+  private title: Array<string | Resource> = ['', $r('app.string.photo_mirror'), $r('app.string.video_steady'), $r('app.string.video_exposure'), $r('app.string.af_mode'),
+    $r('app.string.photo_quality'), $r('app.string.display_photo_location'), $r('app.string.photo_format'), $r('app.string.photo_direction_config'),
+    $r('app.string.photo_ratio'), $r('app.string.video_ratio'), $r('app.string.video_frame'), $r('app.string.reference_line'),];
+  private settingItemDataList: Array<Array<string | Resource>> = [
     [], [],
-    ['关闭视频防抖', '基础防抖算法', '一般防抖算法', '最好防抖算法', '自动进行选择'],
-    ['锁定曝光模式', '自动曝光模式', '连续自动曝光'],
-    ['手动对焦', '连续自动对焦', '自动变焦', '对焦锁定'],
-    ['高', '中', '差'],
+    [$r('app.string.close_video_stabilization'), $r('app.string.basic_stabilization_algorithm'), $r('app.string.commonly_stabilization_algorithm'),
+      $r('app.string.best_stabilization_algorithm'), $r('app.string.auto_choice')],
+    [$r('app.string.lock_exposure_mode'), $r('app.string.auto_exposure_mode'), $r('app.string.continuous_exposure_mode')],
+    [$r('app.string.manual_focus'), $r('app.string.continuous_autofocus'), $r('app.string.automatic_zoom'), $r('app.string.focus_lock')],
+    [$r('app.string.high'), $r('app.string.middle'), $r('app.string.difference')],
     [],
     ['PNG', 'JPG', 'BMP', 'WEBP', 'JPEG'],
     ['0', '90', '180', '270'],
@@ -47,11 +50,11 @@ export struct SettingRightLayout {
 
   getModeIconObj(): ResourceObj {
     if (this.settingMessageNum == 1) {
-      return { icon: $r('app.media.pic_camera_mirror'), message: '自拍镜像功能只能在前置摄像头打开时可使用。' };
+      return { icon: $r('app.media.pic_camera_mirror'), message: $r('app.string.mirror_message') };
     } else if (this.settingMessageNum == 6) {
-      return { icon: $r('app.media.pic_camera_mirror'), message: '显示地理位置，用于记录照片或视频拍摄地理位置信息。' };
+      return { icon: $r('app.media.pic_camera_mirror'), message: $r('app.string.location_message') };
     } else if (this.settingMessageNum == 12) {
-      return { icon: $r('app.media.pic_camera_line'), message: '打开相机参考线，可以帮你创造出构图更出色的画面。' };
+      return { icon: $r('app.media.pic_camera_line'), message: $r('app.string.camera_line_message') };
     } else {
       return { icon: undefined, message: undefined };
     }
