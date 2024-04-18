@@ -32,8 +32,8 @@ constexpr int BOUND = 20000;
 static bool g_addLoad = false;
 static double g_durationTime = 0;
 
-static int MASK = 2;
-static int *affinity = &MASK;
+static int g_mask = 2;
+static int *g_affinity = &g_mask;
 
 long long DoFib(double n)
 {
@@ -68,7 +68,7 @@ void SetQoS(QoS_Level level)
     }
 
     cpu_set_t mask;
-    CPU_SET(*affinity, &mask);
+    CPU_SET(*g_affinity, &mask);
     if (sched_setaffinity(0, sizeof(mask), &mask) != 0) {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "bind qos thread failed");
         return;
@@ -115,7 +115,7 @@ void AddLoads(int n)
     }
 
     cpu_set_t mask;
-    CPU_SET(*affinity, &mask);
+    CPU_SET(*g_affinity, &mask);
     if (sched_setaffinity(0, sizeof(mask), &mask) != 0) {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "bind load thread failed");
         return;
@@ -123,7 +123,7 @@ void AddLoads(int n)
 
     for (int i = 0; i < BOUND; i++) {
         for (int j = 0; j < BOUND; j++) {
-            int x = (i + j) % n;
+            int x = (i + j) - n;
             printf("%d", x);
         }
     }
