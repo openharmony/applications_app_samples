@@ -61,7 +61,7 @@ export struct CertFramework {
           .margin({ top: '8vp', left: '16vp', right: '16vp' })
 
           Flex({ justifyContent: FlexAlign.End, alignItems: ItemAlign.Center }) {
-            Text(`${this.certTextInfo.length || 0}/100`)
+            Text(`${this.certTextInfo.length || 0}`)
               .fontColor($r('sys.color.ohos_id_color_foreground'))
               .fontSize($r('sys.float.ohos_id_text_size_caption'))
               .margin({ top: '8vp', right: '21vp' })
@@ -104,7 +104,7 @@ export struct CertFramework {
           .margin({ top: '8vp', left: '16vp', right: '16vp' })
 
           Flex({ justifyContent: FlexAlign.End, alignItems: ItemAlign.Center }) {
-            Text(`${this.originTextInfo.length || 0}/100`)
+            Text(`${this.originTextInfo.length || 0}`)
               .fontColor($r('sys.color.ohos_id_color_foreground'))
               .fontSize($r('sys.float.ohos_id_text_size_caption'))
               .margin({ top: '8vp', right: '21vp' })
@@ -147,7 +147,7 @@ export struct CertFramework {
           .margin({ top: '8vp', left: '16vp', right: '16vp' })
 
           Flex({ justifyContent: FlexAlign.End, alignItems: ItemAlign.Center }) {
-            Text(`${this.signTextInfo.length || 0}/100`)
+            Text(`${this.signTextInfo.length || 0}`)
               .fontColor($r('sys.color.ohos_id_color_foreground'))
               .fontSize($r('sys.float.ohos_id_text_size_caption'))
               .margin({ top: '8vp', right: '21vp' })
@@ -196,7 +196,7 @@ export struct CertFramework {
           .id('verifyButton')
           .onClick(() => {
             this.certFramework.verify((result: boolean) => {
-              if (result == true) {
+              if (result == true && this.certTextInfo) {
                 Logger.info(TAG, 'verify: PASS!!!');
                 this.promot($r('app.string.verify_success'))
               } else {

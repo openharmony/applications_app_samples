@@ -61,7 +61,7 @@ export struct CertChain {
           .margin({ top: '8vp', left: '16vp', right: '16vp' })
 
           Flex({ justifyContent: FlexAlign.End, alignItems: ItemAlign.Center }) {
-            Text(`${this.certChainData.length || 0}/100`)
+            Text(`${this.certChainData.length || 0}`)
               .fontColor($r('sys.color.ohos_id_color_foreground'))
               .fontSize($r('sys.float.ohos_id_text_size_caption'))
               .margin({ top: '8vp', right: '21vp' })
@@ -104,7 +104,7 @@ export struct CertChain {
           .margin({ top: '8vp', left: '16vp', right: '16vp' })
 
           Flex({ justifyContent: FlexAlign.End, alignItems: ItemAlign.Center }) {
-            Text(`${this.certChainRoot.length || 0}/100`)
+            Text(`${this.certChainRoot.length || 0}`)
               .fontColor($r('sys.color.ohos_id_color_foreground'))
               .fontSize($r('sys.float.ohos_id_text_size_caption'))
               .margin({ top: '8vp', right: '21vp' })
@@ -147,7 +147,7 @@ export struct CertChain {
           .margin({ top: '8vp', left: '16vp', right: '16vp' })
 
           Flex({ justifyContent: FlexAlign.End, alignItems: ItemAlign.Center }) {
-            Text(`${this.certChainCRL.length || 0}/100`)
+            Text(`${this.certChainCRL.length || 0}`)
               .fontColor($r('sys.color.ohos_id_color_foreground'))
               .fontSize($r('sys.float.ohos_id_text_size_caption'))
               .margin({ top: '8vp', right: '21vp' })
@@ -215,7 +215,7 @@ export struct CertChain {
           .id('certchainValidateButton')
           .onClick(async () => {
             const res = await this.certChain.validate(this.hasCrl)
-            if (res.code === 200) {
+            if (res.code === 200 && this.certChainCRL) {
               this.promot($r('app.string.verify_success'));
             } else {
               this.promot($r('app.string.verify_fail'));
