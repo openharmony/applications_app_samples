@@ -57,8 +57,7 @@ void SetQoS(QoS_Level level)
         QoS_Level queryLevel = QoS_Level::QOS_DEFAULT;
         ret = OH_QoS_GetThreadQoS(&queryLevel);
         if (!ret) { // ret等于0说明查询成功
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "the qos level of current thread : %{public}d",
-                         queryLevel);
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "the qos level of current thread : %{public}d", queryLevel);
         } else { // 否则说明查询失败
             OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "get qos level failed.");
             return;
@@ -67,20 +66,16 @@ void SetQoS(QoS_Level level)
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "get level qos failed!");
         return;
     }
-    
-    int prio = getpriority(PRIO_PROCESS, gettid());
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "prio is: %{public}d", prio);
 
     cpu_set_t mask;
     CPU_SET(*affinity, &mask);
     if (sched_setaffinity(0, sizeof(mask), &mask) != 0) {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "bind qos thread failed");
-    } else {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "bind qos thread success");
+        return;
     }
 
     auto startTime = std::chrono::system_clock::now();
-    long long res = DoFib(DEPTH); // do calculation task
+    long long res = DoFib(DEPTH); // 执行计算任务
     auto endTime = std::chrono::system_clock::now();
     g_durationTime = std::chrono::duration<double, std::milli>(endTime - startTime).count();
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "calculate res is: %{public}llu", res);
@@ -108,24 +103,24 @@ void SetQoS(QoS_Level level)
 
 void AddLoads(int n)
 {
-    int ret = OH_QoS_SetThreadQoS(QoS_Level::QOS_BACKGROUND); // 设置当前线程的QoS等级为level
-    if (!ret) {                           // ret等于0说明设置成功
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "loads success.");
-    } else {
+    if (!n) { // 检查n是否为负数，如果是则退出
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "invalid input.");
         return;
     }
-
-    int prio = getpriority(PRIO_PROCESS, gettid());
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "load prio is: %{public}d", prio);
+    
+    int ret = OH_QoS_SetThreadQoS(QoS_Level::QOS_BACKGROUND); // 设置负载线程的QoS等级
+    if (ret) { // ret不等于0说明设置失败
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "set load thread QoS level failed.");
+        return;
+    }
 
     cpu_set_t mask;
     CPU_SET(*affinity, &mask);
     if (sched_setaffinity(0, sizeof(mask), &mask) != 0) {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "bind load thread failed");
-    } else {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "bind load thread success");
+        return;
     }
-    
+
     for (int i = 0; i < BOUND; i++) {
         for (int j = 0; j < BOUND; j++) {
             int x = (i + j) % n;
@@ -191,7 +186,8 @@ static napi_value Init(napi_env env, napi_value exports)
 }
 EXTERN_C_END
 
-static napi_module demoModule = {
+static napi_module demoModule =
+{
     .nm_version = 1,
     .nm_flags = 0,
     .nm_filename = nullptr,
