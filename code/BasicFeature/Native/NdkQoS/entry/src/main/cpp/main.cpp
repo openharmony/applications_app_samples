@@ -35,7 +35,8 @@ static double g_durationTime = 0;
 static int MASK = 2;
 static int *affinity = &MASK;
 
-long long DoFib(double n) {
+long long DoFib(double n)
+{
     if (n == ONE) {
         return ONE;
     }
@@ -47,7 +48,8 @@ long long DoFib(double n) {
     return DoFib(n - ONE) + DoFib(n - TWO);
 }
 
-void SetQoS(QoS_Level level) {
+void SetQoS(QoS_Level level)
+{
     int ret = OH_QoS_SetThreadQoS(level); // 设置当前线程的QoS等级为level
     if (!ret) {                           // ret等于0说明设置成功
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "set qos level success.");
@@ -104,7 +106,8 @@ void SetQoS(QoS_Level level) {
     }
 }
 
-void AddLoads(int n) {
+void AddLoads(int n)
+{
     int ret = OH_QoS_SetThreadQoS(QoS_Level::QOS_BACKGROUND); // 设置当前线程的QoS等级为level
     if (!ret) {                           // ret等于0说明设置成功
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "loads success.");
@@ -131,7 +134,8 @@ void AddLoads(int n) {
     }
 }
 
-static napi_value highQoSCalculate(napi_env env, napi_callback_info info) {
+static napi_value highQoSCalculate(napi_env env, napi_callback_info info)
+{
     g_durationTime = 0;
 
     if (!g_addLoad) {
@@ -153,7 +157,8 @@ static napi_value highQoSCalculate(napi_env env, napi_callback_info info) {
     return res;
 }
 
-static napi_value lowQoSCalculate(napi_env env, napi_callback_info info) {
+static napi_value lowQoSCalculate(napi_env env, napi_callback_info info)
+{
     g_durationTime = 0;
 
     if (!g_addLoad) {
@@ -176,7 +181,8 @@ static napi_value lowQoSCalculate(napi_env env, napi_callback_info info) {
 }
 
 EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports) {
+static napi_value Init(napi_env env, napi_value exports)
+{
     napi_property_descriptor desc[] = {
         {"useHighQos", nullptr, highQoSCalculate, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"useLowQos", nullptr, lowQoSCalculate, nullptr, nullptr, nullptr, napi_default, nullptr}};
