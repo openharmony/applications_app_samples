@@ -14,5 +14,8 @@
  */
 
 import { DrawContext } from "@ohos.arkui.node";
+import image from "@ohos.multimedia.image";
 
-export const nativeOnDraw: (id: number, context: DrawContext, width: number, height: number, drawType: number) => void
+
+export const nativeOnDraw:
+  (id: number, context: DrawContext, width: number, height: number, drawType: number, pMap: image.PixelMap) => void

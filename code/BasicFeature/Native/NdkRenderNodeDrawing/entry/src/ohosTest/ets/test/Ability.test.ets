@@ -69,31 +69,6 @@ export default function abilityTest() {
     })
 
     /**
-     * 点击按钮，绘制矩形
-     */
-    it('DrawRect_001', 2, async () => {
-      console.info(TAG, 'DrawRect_001 begin');
-      let driver = Driver.create();
-      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-      try {
-        await abilityDelegator.startAbility({
-          bundleName: 'com.samples.ndknodedrawing',
-          abilityName: 'EntryAbility'
-        });
-      } catch (exception) {
-        console.info(TAG, `DrawRect_001 exception = ${JSON.stringify(exception)}`);
-        expect().assertFail();
-      }
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('Draw Rect'));
-      let drawPathBtn = await driver.findComponent(ON.text('Draw Rect'));
-      // 点击'Draw Rect'按钮
-      await drawPathBtn.click();
-      await driver.delayMs(1000);
-      console.info(TAG, 'DrawRect_001 end');
-    })
-
-    /**
      * 点击按钮，绘制文字
      */
     it('DrawText_001', 2, async () => {
@@ -116,6 +91,31 @@ export default function abilityTest() {
       await drawPathBtn.click();
       await driver.delayMs(1000);
       console.info(TAG, 'DrawPath_001 end');
+    })
+
+    /**
+     * 点击按钮，绘制图片
+     */
+    it('DrawImage_001', 2, async () => {
+      console.info(TAG, 'DrawRect_001 begin');
+      let driver = Driver.create();
+      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+      try {
+        await abilityDelegator.startAbility({
+          bundleName: 'com.samples.ndknodedrawing',
+          abilityName: 'EntryAbility'
+        });
+      } catch (exception) {
+        console.info(TAG, `DrawRect_001 exception = ${JSON.stringify(exception)}`);
+        expect().assertFail();
+      }
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('Draw Image'));
+      let drawPathBtn = await driver.findComponent(ON.text('Draw Image'));
+      // 点击'Draw Image'按钮
+      await drawPathBtn.click();
+      await driver.delayMs(1000);
+      console.info(TAG, 'DrawImage_001 end');
     })
   })
 }
