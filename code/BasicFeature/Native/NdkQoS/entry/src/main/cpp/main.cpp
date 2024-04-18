@@ -57,7 +57,8 @@ void SetQoS(QoS_Level level)
         QoS_Level queryLevel = QoS_Level::QOS_DEFAULT;
         ret = OH_QoS_GetThreadQoS(&queryLevel);
         if (!ret) { // ret等于0说明查询成功
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "the qos level of current thread : %{public}d", queryLevel);
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "the qos level of current thread : %{public}d",
+                         queryLevel);
         } else { // 否则说明查询失败
             OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "get qos level failed.");
             return;
@@ -96,7 +97,7 @@ void SetQoS(QoS_Level level)
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "the qos level after: %{public}d", queryLevelTwo);
         return;
     } else { // 正常路径
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "query qos level failed after reset.");
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "querry qos level failed after reset.");
         return;
     }
 }
@@ -186,8 +187,7 @@ static napi_value Init(napi_env env, napi_value exports)
 }
 EXTERN_C_END
 
-static napi_module demoModule =
-{
+static napi_module demoModule = {
     .nm_version = 1,
     .nm_flags = 0,
     .nm_filename = nullptr,
