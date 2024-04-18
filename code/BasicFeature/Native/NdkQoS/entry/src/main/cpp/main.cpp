@@ -96,7 +96,7 @@ void SetQoS(QoS_Level level)
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "the qos level after: %{public}d", queryLevelTwo);
         return;
     } else { // 正常路径
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "querry qos level failed after reset.");
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "query qos level failed after reset.");
         return;
     }
 }
