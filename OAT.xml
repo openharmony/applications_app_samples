@@ -182,6 +182,14 @@ Note:If the text contains special characters, please escape them according to th
         <filteritem type="filepath" name="code/BasicFeature/Native/NdkRenderNodeDrawing/entry/src/main/resources/base/media/icon.png" desc="Provided by code/BasicFeature/Native/NdkRenderNodeDrawing"/>
         <filteritem type="filepath" name="code/BasicFeature/Native/NdkRenderNodeDrawing/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/BasicFeature/Native/NdkRenderNodeDrawing"/>
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkRenderNodeDrawing/AppScope/resources/base/media/app_icon.png" desc="Provided by code/BasicFeature/Native/NdkRenderNodeDrawing"/>
+        <filteritem type="filepath" name="code/BasicFeature/Native/NdkTsDrawing/screenshots/Index.jpeg" desc="Provided by code/BasicFeature/Native/NdkTsDrawing"/>
+		<filteritem type="filepath" name="code/BasicFeature/Native/NdkTsDrawing/screenshots/DrawPath.jpeg" desc="Provided by code/BasicFeature/Native/NdkTsDrawing"/>
+        <filteritem type="filepath" name="code/BasicFeature/Native/NdkTsDrawing/screenshots/DrawRect.jpeg" desc="Provided by code/BasicFeature/Native/NdkTsDrawing"/>
+		<filteritem type="filepath" name="code/BasicFeature/Native/NdkTsDrawing/screenshots/DrawText.jpeg" desc="Provided by code/BasicFeature/Native/NdkTsDrawing"/>
+        <filteritem type="filepath" name="code/BasicFeature/Native/NdkTsDrawing/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/BasicFeature/Native/NdkTsDrawing"/>
+        <filteritem type="filepath" name="code/BasicFeature/Native/NdkTsDrawing/entry/src/main/resources/base/media/icon.png" desc="Provided by code/BasicFeature/Native/NdkTsDrawing"/>
+        <filteritem type="filepath" name="code/BasicFeature/Native/NdkTsDrawing/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/BasicFeature/Native/NdkTsDrawing"/>
+		<filteritem type="filepath" name="code/BasicFeature/Native/NdkTsDrawing/AppScope/resources/base/media/app_icon.png" desc="Provided by code/BasicFeature/Native/NdkTsDrawing"/>
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkNativeWindow/screenshots/device/ChangeColor.jpg" desc="Provided by code/BasicFeature/Native/NdkNativeWindow"/>
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkNativeWindow/screenshots/device/GetAvailableCount.jpg" desc="Provided by code/BasicFeature/Native/NdkNativeWindow"/>
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkNativeWindow/screenshots/device/Main.jpg" desc="Provided by code/BasicFeature/Native/NdkNativeWindow"/>

@@ -218,6 +218,7 @@ export default class RemoteDeviceModel {
           'extraInfo': extraInfo
         }
         let bindParam = {
+          "bindLevel": 3,
           "bindType": 1,
           "appName": 'Distributed Calc',
           "targetPkgName": 'ohos.samples.distributedcalc',

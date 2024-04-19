@@ -217,6 +217,7 @@ export class RemoteDeviceModel {
       try {
         if (this.deviceManager !== null) {
           this.deviceManager.bindTarget(device.deviceId, {
+            bindLevel: 3,
             bindType: 1,
             targetPkgName: 'ohos.samples.kvstore',
             appName: 'Distributed kvstore',
