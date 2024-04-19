@@ -172,22 +172,6 @@ export struct SettingDialog {
               setModeBol: (GlobalContext.get().getObject('cameraConfig') as CameraConfig).locationBol,
               getModeBol: this.getLocationBol
             })
-
-            Divider()
-              .width('94%')
-
-            SettingPublicLayout({
-              backNum: 0,
-              leftSliderIndex: $leftSliderIndex,
-              icon: $r('app.media.ic_camera_set_photo_hdr'),
-              isModeBol: true,
-              borderBol: true,
-              borderBole: false,
-              iconModeBol: true,
-              modeMessage: $r('app.string.hdr_photo'),
-              setModeBol: (GlobalContext.get().getObject('cameraConfig') as CameraConfig).hdrPhotoBol,
-              getModeBol: this.getHdrPhotoBol
-            })
           }
           .width('97%')
           .backgroundColor(Color.White)
@@ -248,6 +232,40 @@ export struct SettingDialog {
               borderBole: false,
             })
 
+
+          }
+          .width('97%')
+          .backgroundColor(Color.White)
+          .borderRadius(16)
+          .margin({ top: 15 })
+
+          Column() {
+            SettingPublicLayout({
+              backNum: 12,
+              leftSliderIndex: $leftSliderIndex,
+              icon: $r('app.media.ic_camera_set_line'),
+              modeMessage: $r('app.string.reference_line'),
+              isModeBol: true,
+              borderBol: false,
+              iconModeBol: true,
+              setModeBol: (GlobalContext.get().getObject('cameraConfig') as CameraConfig).referenceLineBol,
+              getModeBol: this.getReferenceLineBol
+            })
+            Divider()
+              .width('94%')
+
+            SettingPublicLayout({
+              backNum: 13,
+              leftSliderIndex: $leftSliderIndex,
+              icon: $r('app.media.ic_camera_set_photo_hdr'),
+              isModeBol: true,
+              borderBol: true,
+              borderBole: false,
+              iconModeBol: true,
+              modeMessage: $r('app.string.hdr_photo'),
+              setModeBol: (GlobalContext.get().getObject('cameraConfig') as CameraConfig).hdrPhotoBol,
+              getModeBol: this.getHdrPhotoBol
+            })
             Divider()
               .width('94%')
 
@@ -269,21 +287,6 @@ export struct SettingDialog {
           .borderRadius(16)
           .margin({ top: 15 })
 
-          Column() {
-            SettingPublicLayout({
-              backNum: 12,
-              leftSliderIndex: $leftSliderIndex,
-              icon: $r('app.media.ic_camera_set_line'),
-              modeMessage: $r('app.string.reference_line'),
-              isModeBol: true,
-              borderBol: false,
-              iconModeBol: true,
-              setModeBol: (GlobalContext.get().getObject('cameraConfig') as CameraConfig).referenceLineBol,
-              getModeBol: this.getReferenceLineBol
-            })
-              .margin({ top: 15 })
-          }
-          .width('97%')
         }
         .width('100%')
       }

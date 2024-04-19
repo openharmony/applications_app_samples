@@ -112,7 +112,6 @@ export struct SettingPublicLayout {
       .width('100%')
       .borderRadius(12)
       .height('40vp')
-      .backgroundColor(this.backClBol ? 'rgba(255,0,52,0.10)' : '')
     }
     .padding(2)
     .size({width: '100%', height: '40vp'})

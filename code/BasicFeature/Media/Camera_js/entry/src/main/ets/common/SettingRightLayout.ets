@@ -29,7 +29,7 @@ export struct SettingRightLayout {
   private controller: CustomDialogController = new CustomDialogController({
     builder: null
   });
-  @Link settingMessageNum: number; // 传进来的点击设置
+  @Link settingMessageNum: number // 传进来的点击设置
   private title: Array<string | Resource> = ['', $r('app.string.photo_mirror'), $r('app.string.video_steady'), $r('app.string.video_exposure'), $r('app.string.af_mode'),
     $r('app.string.photo_quality'), $r('app.string.display_photo_location'), $r('app.string.photo_format'), $r('app.string.photo_direction_config'),
     $r('app.string.photo_ratio'), $r('app.string.video_ratio'), $r('app.string.video_frame'), $r('app.string.reference_line'),];
