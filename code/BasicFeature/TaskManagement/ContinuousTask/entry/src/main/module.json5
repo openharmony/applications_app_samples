@@ -30,7 +30,7 @@
     "abilities": [
       {
         "name": "MainAbility",
-        "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+        "srcEntry": "./ets/MainAbility/MainAbility.ts",
         "description": "$string:MainAbility_desc",
         "icon": "$media:icon",
         "label": "$string:MainAbility_label",
@@ -38,8 +38,12 @@
         "startWindowBackground": "$color:white",
         "visible": true,
         "backgroundModes": [
+          "dataTransfer",
           "audioPlayback",
-          "dataTransfer"
+          "audioRecording",
+          "location",
+          "bluetoothInteraction",
+          "multiDeviceConnection"
         ],
         "skills": [
           {
