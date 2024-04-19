@@ -169,6 +169,22 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/Solutions/Media/MultiMedia/lib/VideoPlayer.hap" desc="Provided by code/Solutions/Media/MultiMedia"/>
                 <filteritem type="filepath" name="code/Solutions/Media/MultiMedia/lib/CameraPage-1.0.0.hap" desc="Provided by code/Solutions/Media/MultiMedia"/>
                 <filteritem type="filepath" name="code/BasicFeature/Media/AVRecorder/lib/VideoRecorder-1.0.0.hap" desc="Provided by code/BasicFeature/Media/AVRecorder"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/Camera_js/entry/src/main/resources/base/media/pic_avatar_radio01.png" desc="Provided by code/BasicFeature/Media/Camera_js"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/Camera_js/entry/src/main/resources/base/media/pic_avatar_regular.png" desc="Provided by code/BasicFeature/Media/Camera_js"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/Camera_js/entry/src/main/resources/base/media/pic_popup_right.png" desc="Provided by code/BasicFeature/Media/Camera_js"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/Camera_js/AppScope/resources/base/media/app_icon.png" desc="Provided by code/BasicFeature/Media/Camera_js"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/Camera_js/app_pic/auth3.jpg" desc="Provided by code/BasicFeature/Media/Camera_js"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/Camera_js/entry/src/main/resources/base/media/pic_popup_left.png" desc="Provided by code/BasicFeature/Media/Camera_js"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/Camera_js/entry/src/main/resources/base/media/icon.png" desc="Provided by code/BasicFeature/Media/Camera_js"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/Camera_js/app_pic/auth2.jpg" desc="Provided by code/BasicFeature/Media/Camera_js"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/Camera_js/entry/src/main/resources/base/media/pic_avatar_radio02.png" desc="Provided by code/BasicFeature/Media/Camera_js"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/Camera_js/entry/src/main/resources/base/media/pic_camera_line.png" desc="Provided by code/BasicFeature/Media/Camera_js"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/Camera_js/app_pic/setting.jpg" desc="Provided by code/BasicFeature/Media/Camera_js"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/Camera_js/entry/src/main/resources/base/media/pic_camera_mirror.png" desc="Provided by code/BasicFeature/Media/Camera_js"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/Camera_js/app_pic/preview.jpg" desc="Provided by code/BasicFeature/Media/Camera_js"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/Camera_js/app_pic/auth1.jpg" desc="Provided by code/BasicFeature/Media/Camera_js"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/Camera_js/app_pic/auth4.jpg" desc="Provided by code/BasicFeature/Media/Camera_js"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/Camera_js/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/BasicFeature/Media/Camera_js"/>
                 <filteritem type="filepath" name="code/BasicFeature/Connectivity/VPN/server/server.zip" desc="Provided by code/BasicFeature/Connectivity/VPN"/>
 		<filteritem type="filepath" name="code/BasicFeature/Connectivity/StageSocket/certificate_file.zip" desc="Provided by code/BasicFeature/Connectivity/StageSocket"/>
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkDrawing/screenshots/device/Index.jpg" desc="Provided by code/BasicFeature/Native/NdkDrawing"/>
