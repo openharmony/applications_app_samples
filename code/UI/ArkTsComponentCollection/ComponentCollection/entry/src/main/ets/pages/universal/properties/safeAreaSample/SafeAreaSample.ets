@@ -17,9 +17,11 @@ import { ChangePanel } from './ChangePanel'
 import { IntroductionTitle } from '../../../../common/IntroductionTitle'
 import { TitleBar } from '../../../../common/TitleBar'
 
-@Extend(Column) function columnStyle() {
-  .width('100%')
+@Extend(Column)
+function columnStyle() {
+  .width('90%')
   .padding(16)
+  .margin(12)
   .borderRadius(24)
   .backgroundColor(Color.White)
 }
@@ -32,36 +34,45 @@ struct SafeAreaSample {
 
   build() {
     Column() {
-      TitleBar({ title: $r('app.string.safe_area') })
-        .backgroundColor($r('app.color.background_shallow_grey'))
       Stack() {
         Row() {
-          TextInput({ placeholder: $r('app.string.save_area_input_text') })
-            .placeholderFont({ size: 14, weight: 400 })
-            .width(320)
-            .height(40)
-            .offset({ y: 120 })
-            .fontSize(14)
-            .fontColor(Color.Black)
-            .backgroundColor(Color.White)
-            .enableKeyboardOnFocus(false)
-        }.height('100%').alignItems(VerticalAlign.Top)
+        }
+        .height('100%')
+        .width('100%')
+        .backgroundImage($r('app.media.img_test_1'))
+        .backgroundImageSize(ImageSize.Cover)
+        .alignItems(VerticalAlign.Top)
+        .expandSafeArea(this.mSafeAreaType, this.mSafeAreaEdge)
 
         Column() {
+          TitleBar({ title: $r('app.string.safe_area') })
+            .backgroundColor($r('app.color.background_shallow_grey'))
           Column() {
             IntroductionTitle({ introduction: $r('app.string.safe_area_type_and_safe_area_edge') })
             ChangePanel({
               mSafeAreaType: $mSafeAreaType,
               mSafeAreaEdge: $mSafeAreaEdge
             })
-          }.columnStyle().alignItems(HorizontalAlign.Center)
-        }.padding(12).width('100%')
+          }
+          .columnStyle()
+          .alignItems(HorizontalAlign.Center)
+
+          TextInput({ placeholder: $r('app.string.save_area_input_text') })
+            .width(320)
+            .height(40)
+            .fontSize(14)
+            .fontColor(Color.Black)
+            .backgroundColor(Color.White)
+            .enableKeyboardOnFocus(false)
+            .margin({ top: 200 })
+            .placeholderFont({ size: 14, weight: 400 })
+        }
+        .width('100%')
+        .height('100%')
+        .alignItems(HorizontalAlign.Center)
       }
     }
     .width('100%')
     .height('100%')
-    .backgroundImage($r('app.media.img_test_1'))
-    .backgroundImageSize(ImageSize.Cover)
-    .expandSafeArea(this.mSafeAreaType, this.mSafeAreaEdge)
   }
 }
