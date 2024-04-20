@@ -15,7 +15,7 @@
 import router from '@ohos.router';
 import audio from '@ohos.multimedia.audio';
 import display from '@ohos.display';
-import AVVolumePanel from '@ohos.multimedia.avVolumePanel'
+import { AVVolumePanel } from '@ohos.multimedia.avVolumePanel';
 
 @Entry
 @Component
