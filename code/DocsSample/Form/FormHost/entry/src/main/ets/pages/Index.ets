@@ -80,9 +80,9 @@ struct formHostSample {
     transparencyEnabled: false
   }
   formInfoRecord: TextCascadePickerRangeContent[] = [];
+  pickerBtnMsg: Resource | string = $r('app.string.formType');
   @State showForm: boolean = true;
   @State selectFormId: string = '0';
-  @State pickerBtnMsg: Resource | string = $r('app.string.formType');
   @State pickDialogIndex: number = 0;
 
   aboutToAppear(): void {
@@ -227,7 +227,6 @@ struct formHostSample {
         // 点击查询所有卡片信息。
         Button($r('app.string.inquiryForm'))
           .onClick(() => {
-            console.log('===> 点击查询卡片成功');
             this.getAllBundleFormsInfo();
           })
 
@@ -267,10 +266,12 @@ struct formHostSample {
       }
       .margin({ left: 10 })
 
-      Text(this.pickerBtnMsg)
-        .margin({ top: 10, bottom: 10 })
-
       Divider().vertical(false).color(Color.Black).lineCap(LineCapStyle.Butt).margin({ top: 10, bottom: 10 })
+
+      if(this.showForm){
+        Text(this.pickerBtnMsg)
+          .margin({ top: 10, bottom: 10 })
+      }
 
       if (this.showForm) {
         Text('formId： ' + this.selectFormId)
