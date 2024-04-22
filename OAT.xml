@@ -261,6 +261,26 @@ Note:If the text contains special characters, please escape them according to th
         <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/StageModel/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/ApplicationModels/StageModel"/>
         <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/StageModel/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/ApplicationModels/StageModel"/>
         <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/StageModel/screenshots/device/stage_mode.png" desc="Provided by code/SystemFeature/ApplicationModels/StageModel"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/FileShare/Picker/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/FileManagement/FileShare/Picker"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/FileShare/Picker/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/FileManagement/FileShare/Picker"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/FileShare/Picker/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/FileManagement/FileShare/Picker"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/FileShare/Picker/screenshots/device/Edit.jpeg" desc="Provided by code/SystemFeature/FileManagement/FileShare/Picker"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/FileShare/Picker/screenshots/device/Index.jpeg" desc="Provided by code/SystemFeature/FileManagement/FileShare/Picker"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/FileShare/Picker/screenshots/device/Picture.jpeg" desc="Provided by code/SystemFeature/FileManagement/FileShare/Picker"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/FileShare/Picker/screenshots/device/Video.jpeg" desc="Provided by code/SystemFeature/FileManagement/FileShare/Picker"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/Photos/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/FileManagement/Photos"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/Photos/entry/src/main/resources/base/media/album_empty.png" desc="Provided by code/SystemFeature/FileManagement/Photos"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/Photos/entry/src/main/resources/base/media/ic_video_play_btn_png.png" desc="Provided by code/SystemFeature/FileManagement/Photos"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/Photos/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/FileManagement/Photos"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/Photos/entry/src/main/resources/base/media/ohos_gallery.png" desc="Provided by code/SystemFeature/FileManagement/Photos"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/Photos/entry/src/main/resources/base/media/photo_empty.png" desc="Provided by code/SystemFeature/FileManagement/Photos"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/Photos/entry/src/main/resources/base/media/scroll_light.png" desc="Provided by code/SystemFeature/FileManagement/Photos"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/Photos/entry/src/main/resources/base/media/scroll_press_light.png" desc="Provided by code/SystemFeature/FileManagement/Photos"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/Photos/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/FileManagement/Photos"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/Photos/screenshots/detail.jpeg" desc="Provided by code/SystemFeature/FileManagement/Photos"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/Photos/screenshots/home.jpeg" desc="Provided by code/SystemFeature/FileManagement/Photos"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/Photos/screenshots/photos.jpeg" desc="Provided by code/SystemFeature/FileManagement/Photos"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/Photos/screenshots/selector.jpeg" desc="Provided by code/SystemFeature/FileManagement/Photos"/>
 		<filteritem type="filepath" name="code/BasicFeature/ArkTSCard/ArkTSCard/libs/ArkTSUser.hap" desc="Provided by code/BasicFeature/ArkTSCard/ArkTSCard"/>
         <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmonyProfileDebug.pem" desc="Provided by code/Project/HapBuild"/>
                 <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmonyApplication.pem" desc="Provided by code/Project/HapBuild"/>
