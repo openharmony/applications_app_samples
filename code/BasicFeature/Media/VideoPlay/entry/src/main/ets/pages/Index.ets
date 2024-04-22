@@ -66,6 +66,8 @@ struct Index {
   @State percent: number = 0;
   @State windowWidth: number = 300;
   @State windowHeight: number = 300;
+  @State audioTrack: number = 0;
+  @State audioTrackValue: string = "默认轨道";
   @StorageLink('videoName') videoName: Resource = $r('app.string.video_res_1');
   @StorageLink('videoIndex') videoIndex: number = 0; // 视频索引
 
@@ -204,6 +206,23 @@ struct Index {
         .width('100%')
         .justifyContent(FlexAlign.Start)
 
+        // 点击图标设置音频轨道
+        Select(this.avPlayManage.arrList)
+          .id('Select')
+          .selected(this.audioTrack)
+          .value('AudioTrack: ' + this.audioTrackValue)
+          .font({ size: 16, weight: 400 })
+          .visibility(this.avPlayManage.arrList.length)
+          .fontColor(Color.White)
+          .selectedOptionFont({ size: 16, weight: 400 })
+          .optionFont({ size: 16, weight: 400 })
+          .onSelect((index: number, value: string) => {
+            if (this.audioTrack != index) {
+              this.audioTrack = index;
+              this.audioTrackValue = value;
+              this.avPlayManage.setAudioTrack(index);
+            }
+          })
         Blank()
 
         Column() {
