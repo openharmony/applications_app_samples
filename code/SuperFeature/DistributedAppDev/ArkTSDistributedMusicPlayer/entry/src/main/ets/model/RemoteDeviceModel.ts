@@ -148,6 +148,7 @@ export class RemoteDeviceModel {
         if (this.discoverLists[i].deviceId === device.deviceId) {
           Logger.info(TAG, 'device founded, ignored');
           let bindParam = {
+            bindLevel: 3,
             bindType: 1,
             targetPkgName: 'ohos.samples.distributedmusicplayer',
             appName: 'Music',

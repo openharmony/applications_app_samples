@@ -251,6 +251,7 @@ export class RemoteDeviceModel {
       try {
         if (this.deviceManager !== undefined) {
           this.deviceManager.bindTarget(device.deviceId, {
+            bindLevel: 3,
             bindType: 1,
             targetPkgName: BUNDLE_NAME,
             appName: 'Distributed distributecalc',

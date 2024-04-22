@@ -158,6 +158,7 @@ export default class RemoteDeviceModel {
       try {
         if (this.deviceManager !== null) {
           this.#deviceManager.bindTarget(deviceId, {
+            bindLevel: 3,
             bindType: 1,
             targetPkgName: 'ohos.samples.distributedmusicplayer',
             appName: 'Music',
