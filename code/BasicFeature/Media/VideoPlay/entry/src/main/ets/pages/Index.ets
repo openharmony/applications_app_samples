@@ -212,7 +212,7 @@ struct Index {
           .selected(this.audioTrack)
           .value('AudioTrack: ' + this.audioTrackValue)
           .font({ size: 16, weight: 400 })
-          .visibility(this.avPlayManage.arrList.length)
+          .visibility(this.avPlayManage.arrList.length > 2 ? Visibility.Visible : Visibility.Hidden)
           .fontColor(Color.White)
           .selectedOptionFont({ size: 16, weight: 400 })
           .optionFont({ size: 16, weight: 400 })
