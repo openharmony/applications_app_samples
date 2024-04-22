@@ -75,18 +75,33 @@ struct Index {
           }
         })
         .height(40)
-      Button(`update bufferqueuesize =${this.bufferQueueSize},attachedbuffer =${this.attachedBufferCount},cachebuffer=${this.cacheBufferCount}`)
-        .fontSize('14fp')
-        .fontWeight(500)
-        .margin({ bottom: 24 })
-        .onClick(() => {
-          if (this.nativeWindowContext) {
-            this.bufferQueueSize = this.nativeWindowContext.GetBufferQueueSize();
-            this.attachedBufferCount = this.nativeWindowContext.GetAttachBufferCount();
-            this.cacheBufferCount = this.nativeWindowContext.GetCacheBufferCount();
+      Button() {
+        Column() {
+          Row() {
+            Text(`update bufferqueuesize =${this.bufferQueueSize}`)
+              .fontSize('14fp')
+              .fontWeight(500)
+              .fontColor(Color.White)
+              .margin({ bottom: 8 })
           }
-        })
-        .height(40)
+          Row() {
+            Text(`attachedbuffer =${this.attachedBufferCount},cachebuffer=${this.cacheBufferCount}`)
+              .fontSize('14fp')
+              .fontWeight(500)
+              .fontColor(Color.White)
+          }
+        }
+        .margin({ left: 12, right: 12, top: 8, bottom: 8 })
+      }
+      .margin({ bottom: 24 })
+      .onClick(() => {
+        if (this.nativeWindowContext) {
+          this.bufferQueueSize = this.nativeWindowContext.GetBufferQueueSize();
+          this.attachedBufferCount = this.nativeWindowContext.GetAttachBufferCount();
+          this.cacheBufferCount = this.nativeWindowContext.GetCacheBufferCount();
+        }
+      })
+      .height(60)
       Button(`attach buffer`)
         .fontSize('14fp')
         .fontWeight(500)
