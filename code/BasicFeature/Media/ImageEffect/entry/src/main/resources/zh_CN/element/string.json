@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "ImageEffect"
+    },
+    {
+      "name": "btn_search",
+      "value": "查询"
+    },
+    {
+      "name": "look_up",
+      "value": "LookUp"
+    },
+    {
+      "name": "btn_confirm",
+      "value": "确认"
+    },
+    {
+      "name": "btn_cancel",
+      "value": "取消"
+    }
+  ]
+}
