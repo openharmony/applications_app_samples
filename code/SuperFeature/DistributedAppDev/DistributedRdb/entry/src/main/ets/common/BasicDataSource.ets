@@ -24,10 +24,35 @@ export default class ContactDataSource implements IDataSource {
   }
 
   public replaceDataArray(dataArray: Array<Contact>): number {
-    this.dataArray.splice(0, this.dataArray.length);
-    dataArray.forEach(item => {
-      this.dataArray.push(item);
-    })
+    if (this.dataArray.length < dataArray.length) {
+      // 新增联系人
+      dataArray.forEach(item => {
+        let contact = this.dataArray.find(obj => obj.id === item.id);
+        if (!contact) {
+          this.dataArray.push(item);
+        }
+      });
+    } else if (this.dataArray.length === dataArray.length) {
+      // 编辑联系人
+      dataArray.forEach((item, index) => {
+        this.dataArray.forEach((obj, i) => {
+          if (item.id === obj.id && index === i) {
+            if (item.name !== obj.name) {
+               obj.name = item.name;
+            } else if (item.phone !== obj.phone) {
+               obj.phone = item.phone.replace(item.phone.substring(3,7), '****');
+            } else if (item.remark !== obj.remark) {
+               obj.remark = item.remark;
+            } else if (item.age !== obj.age) {
+               obj.age = item.age;
+            }
+          }
+        });
+      });
+    } else {
+      // 删除联系人
+      this.dataArray = this.dataArray.filter(item => dataArray.some(obj => obj.id === item.id));
+    }
     this.notifyDataReload();
     return this.totalCount()
   }
