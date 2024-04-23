@@ -1,0 +1,208 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "cameraSample_js"
+    },
+    {
+      "name": "support_mode",
+      "value": "Support this mode"
+    },
+    {
+      "name": "not_support_mode",
+      "value": "This mode is not supported"
+    },
+    {
+      "name": "mirror_message",
+      "value": "The selfie mirror function can only be used when the front camera is turned on."
+    },
+    {
+      "name": "location_message",
+      "value": "Display geographic location, used to record photo or video shooting geographic location information."
+    },
+    {
+      "name": "camera_line_message",
+      "value": "Opening the camera reference line can help you create better composition images."
+    },
+    {
+      "name": "current_video_length",
+      "value": "Current video length"
+    },
+    {
+      "name": "minute",
+      "value": "min"
+    },
+    {
+      "name": "stop",
+      "value": "stop"
+    },
+    {
+      "name": "setting",
+      "value": "setting"
+    },
+    {
+      "name": "photo_mirror",
+      "value": "photo mirror"
+    },
+    {
+      "name": "video_steady",
+      "value": "video steady"
+    },
+    {
+      "name": "video_exposure",
+      "value": "video exposure"
+    },
+    {
+      "name": "af_mode",
+      "value": "AF mode"
+    },
+    {
+      "name": "photo_quality",
+      "value": "photo quality"
+    },
+    {
+      "name": "display_photo_location",
+      "value": "display photo location"
+    },
+    {
+      "name": "hdr_photo",
+      "value": "HDR PHOTO"
+    },
+    {
+      "name": "photo_format",
+      "value": "photo format"
+    },
+    {
+      "name": "photo_direction_config",
+      "value": "photo direction config"
+    },
+    {
+      "name": "photo_ratio",
+      "value": "photo ratio"
+    },
+    {
+      "name": "video_ratio",
+      "value": "video ratio"
+    },
+    {
+      "name": "video_frame",
+      "value": "video frame"
+    },
+    {
+      "name": "hdr_video",
+      "value": "HDR video"
+    },
+    {
+      "name": "reference_line",
+      "value": "reference line"
+    },
+    {
+      "name": "super_steady",
+      "value": "super steady"
+    },
+    {
+      "name": "not_support_super_steady",
+      "value": "Currently, Super Anti Shake Mode is not supported and is displayed as Normal Mode"
+    },
+    {
+      "name": "portrait",
+      "value": "portrait"
+    },
+    {
+      "name": "not_support_portrait",
+      "value": "Currently, portrait mode is not supported. Please switch to another mode"
+    },
+    {
+      "name": "night_view",
+      "value": "night view"
+    },
+    {
+      "name": "not_support_night_view",
+      "value": "Currently, night mode is not supported. Please switch to another mode"
+    },
+    {
+      "name": "photo",
+      "value": "photo"
+    },
+    {
+      "name": "video",
+      "value": "video"
+    },
+    {
+      "name": "not_support_switch_camera",
+      "value": "Does not support switching cameras"
+    },
+    {
+      "name": "close_video_stabilization",
+      "value": "close video stabilization"
+    },
+    {
+      "name": "basic_stabilization_algorithm",
+      "value": "basic stabilization algorithm"
+    },
+    {
+      "name": "commonly_stabilization_algorithm",
+      "value": "commonly stabilization algorithm"
+    },
+    {
+      "name": "best_stabilization_algorithm",
+      "value": "best stabilization algorithm"
+    },
+    {
+      "name": "auto_choice",
+      "value": "auto choice"
+    },
+    {
+      "name": "lock_exposure_mode",
+      "value": "lock exposure mode"
+    },
+    {
+      "name": "auto_exposure_mode",
+      "value": "auto exposure mode"
+    },
+    {
+      "name": "continuous_exposure_mode",
+      "value": "continuous exposure mode"
+    },
+    {
+      "name": "manual_focus",
+      "value": "manual focus"
+    },
+    {
+      "name": "continuous_autofocus",
+      "value": "continuous autofocus"
+    },
+    {
+      "name": "automatic_zoom",
+      "value": "automatic zoom"
+    },
+    {
+      "name": "focus_lock",
+      "value": "focus lock"
+    },
+    {
+      "name": "high",
+      "value": "high"
+    },
+    {
+      "name": "middle",
+      "value": "middle"
+    },
+    {
+      "name": "difference",
+      "value": "difference"
+    },
+    {
+      "name": "recording_completed",
+      "value": "recording completed"
+    }
+  ]
+}

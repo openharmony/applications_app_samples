@@ -15,6 +15,7 @@
 import media from '@ohos.multimedia.media';
 import fs from '@ohos.file.fs';
 import Logger from '../model/Logger';
+import { BusinessError } from '@ohos.base';
 
 const TAG: string = 'PlayerModel'
 
@@ -165,38 +166,41 @@ class PlayerModel {
     }
     this.index = index
     let uri = this.playlist.audioFiles[index].fileUri
-    fs.open(uri, (err, fdNumber) => {
-      let fdPath = 'fd://'
-      let source = fdPath + fdNumber.fd
-      Logger.info(TAG, `preLoad source ${source}`)
-      if (typeof (source) === 'undefined') {
-        Logger.error(TAG, `preLoad ignored source= ${source}`)
-        return
-      }
-      Logger.info(TAG, `preLoad ${source} begin`)
-      Logger.info(TAG, `state= ${this.player?.state}`)
-
-      if (source === this.player?.src && this.player?.state !== 'idle') {
-        Logger.info(TAG, 'preLoad finished. src not changed')
-        callback()
+    fs.open(uri, (err: BusinessError, fdNumber: fs.File) => {
+      if (err) {
+        Logger.error("open failed with error message: " + err.message + ", error code: " + err.code);
       } else {
-        this.notifyPlayingStatus(false)
-        this.cancelTimer()
-        Logger.info(TAG, 'player.reset')
-        this.player?.reset()
-        Logger.info(TAG, `player.reset done, state= ${this.player?.state}`)
-        this.player?.on('dataLoad', () => {
-          Logger.info(TAG, `dataLoad callback, state= ${this.player?.state}`)
-          callback()
-        })
-        Logger.info(TAG, `player.src= ${source}`)
-        if (this.player === undefined) {
-          Logger.error(TAG, `player= undefined`)
-        } else {
-          this.player.src = source
+        let fdPath = 'fd://';
+        let source = fdPath + fdNumber.fd;
+        Logger.info(TAG, `preLoad source ${source}`);
+        if (typeof (source) === 'undefined') {
+          Logger.error(TAG, `preLoad ignored source= ${source}`);
+          return;
         }
+        Logger.info(TAG, `preLoad ${source} begin`);
+        Logger.info(TAG, `state= ${this.player?.state}`);
+        if (source === this.player?.src && this.player?.state !== 'idle') {
+          Logger.info(TAG, 'preLoad finished. src not changed');
+          callback();
+        } else {
+          this.notifyPlayingStatus(false);
+          this.cancelTimer();
+          Logger.info(TAG, 'player.reset');
+          this.player?.reset();
+          Logger.info(TAG, `player.reset done, state= ${this.player?.state}`);
+          this.player?.on('dataLoad', () => {
+            Logger.info(TAG, `dataLoad callback, state= ${this.player?.state}`);
+            callback();
+          })
+          Logger.info(TAG, `player.src= ${source}`);
+          if (this.player === undefined) {
+            Logger.error(TAG, `player= undefined`);
+          } else {
+            this.player.src = source;
+          }
+        }
+        Logger.info(TAG, `preLoad ${source} end`);
       }
-      Logger.info(TAG, `preLoad ${source} end`)
     })
   }
 

@@ -18,18 +18,24 @@
 #include <thread>
 #include <hilog/log.h>
 #include <chrono>
+#include <unistd.h>
+#include <sys/resource.h>
+#include <sched.h>
 
 const unsigned int LOG_PRINT_DOMAIN = 0xFF00;
 constexpr int DEPTH = 34;
-constexpr int TASKS = 10;
-constexpr int ONE = 1;
-constexpr int TWO = 2;
-constexpr int FIVE = 5;
+constexpr int TASKS = 3;
+constexpr long long ONE = 1;
+constexpr long long TWO = 2;
+constexpr int BOUND = 20000;
 
 static bool g_addLoad = false;
 static double g_durationTime = 0;
 
-double DoFib(double n)
+static int g_mask = 2;
+static int *g_affinity = &g_mask;
+
+long long DoFib(double n)
 {
     if (n == ONE) {
         return ONE;
@@ -48,11 +54,11 @@ void SetQoS(QoS_Level level)
     if (!ret) {                           // ret等于0说明设置成功
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "set qos level success.");
         //  查询当前的qos等级
-        QoS_Level querryLevel = QoS_Level::QOS_DEFAULT;
-        ret = OH_QoS_GetThreadQoS(&querryLevel);
+        QoS_Level queryLevel = QoS_Level::QOS_DEFAULT;
+        ret = OH_QoS_GetThreadQoS(&queryLevel);
         if (!ret) { // ret等于0说明查询成功
             OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "the qos level of current thread : %{public}d",
-                         querryLevel);
+                         queryLevel);
         } else { // 否则说明查询失败
             OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "get qos level failed.");
             return;
@@ -62,12 +68,18 @@ void SetQoS(QoS_Level level)
         return;
     }
 
+    cpu_set_t mask;
+    CPU_SET(*g_affinity, &mask);
+    if (sched_setaffinity(0, sizeof(mask), &mask) != 0) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "bind qos thread failed");
+        return;
+    }
+
     auto startTime = std::chrono::system_clock::now();
-    double res = DoFib(DEPTH); // do calculation task
+    long long res = DoFib(DEPTH); // 执行计算任务
     auto endTime = std::chrono::system_clock::now();
     g_durationTime = std::chrono::duration<double, std::milli>(endTime - startTime).count();
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "calculate res is: %{public}f", res);
-    g_addLoad = false;
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "calculate res is: %{public}llu", res);
 
     // reset
     ret = OH_QoS_ResetThreadQoS();
@@ -79,10 +91,10 @@ void SetQoS(QoS_Level level)
     }
 
     // 在重置QoS后，再次查询，此时查询会失败
-    QoS_Level querryLevelTwo;
-    ret = OH_QoS_GetThreadQoS(&querryLevelTwo);
+    QoS_Level queryLevelTwo;
+    ret = OH_QoS_GetThreadQoS(&queryLevelTwo);
     if (!ret) { // 异常路径
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "the qos level after: %{public}d", querryLevelTwo);
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "the qos level after: %{public}d", queryLevelTwo);
         return;
     } else { // 正常路径
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "querry qos level failed after reset.");
@@ -90,13 +102,31 @@ void SetQoS(QoS_Level level)
     }
 }
 
-
 void AddLoads(int n)
 {
-    while (g_addLoad) {
-        n = (n + ONE) % TASKS;
-        n *= n;
-        printf("%d\n", n);
+    if (!n) { // 检查n是否为负数，如果是则退出
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "invalid input.");
+        return;
+    }
+    
+    int ret = OH_QoS_SetThreadQoS(QoS_Level::QOS_BACKGROUND); // 设置负载线程的QoS等级
+    if (ret) { // ret不等于0说明设置失败
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "set load thread QoS level failed.");
+        return;
+    }
+
+    cpu_set_t mask;
+    CPU_SET(*g_affinity, &mask);
+    if (sched_setaffinity(0, sizeof(mask), &mask) != 0) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "bind load thread failed");
+        return;
+    }
+
+    for (int i = 0; i < BOUND; i++) {
+        for (int j = 0; j < BOUND; j++) {
+            int x = (i + j) - n;
+            printf("%d", x);
+        }
     }
 }
 
@@ -107,7 +137,7 @@ static napi_value highQoSCalculate(napi_env env, napi_callback_info info)
     if (!g_addLoad) {
         std::vector<std::thread> loadThreads;
         for (int i = 0; i < TASKS; i++) {
-            loadThreads.emplace_back(std::thread(AddLoads, FIVE));
+            loadThreads.emplace_back(std::thread(AddLoads, TASKS));
             loadThreads[i].detach();
         }
 
@@ -130,7 +160,7 @@ static napi_value lowQoSCalculate(napi_env env, napi_callback_info info)
     if (!g_addLoad) {
         std::vector<std::thread> loadThreads;
         for (int i = 0; i < TASKS; i++) {
-            loadThreads.emplace_back(std::thread(AddLoads, FIVE));
+            loadThreads.emplace_back(std::thread(AddLoads, TASKS));
             loadThreads[i].detach();
         }
 

@@ -170,6 +170,7 @@ export class RemoteDeviceModel {
         continue;
       };
       let bindParam = {
+        bindLevel: 3,
         bindType: 1,
         targetPkgName: 'ohos.samples.distributeddatagobang',
         appName: 'distributeddatagobang',

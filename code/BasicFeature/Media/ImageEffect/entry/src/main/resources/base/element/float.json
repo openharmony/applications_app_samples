@@ -1,0 +1,24 @@
+{
+  "float": [
+    {
+      "name": "title_font_size",
+      "value": "20fp"
+    },
+    {
+      "name": "home_page_title_margin",
+      "value": "10"
+    },
+    {
+      "name": "home_page_title_height",
+      "value": "38"
+    },
+    {
+      "name": "title_image_width",
+      "value": "24vp"
+    },
+    {
+      "name": "title_image_height",
+      "value": "24vp"
+    }
+  ]
+}

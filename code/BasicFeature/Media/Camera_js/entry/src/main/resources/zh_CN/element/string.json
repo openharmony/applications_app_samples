@@ -1,0 +1,208 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "support_mode",
+      "value": "支持此模式"
+    },
+    {
+      "name": "not_support_mode",
+      "value": "不支持此模式"
+    },
+    {
+      "name": "mirror_message",
+      "value": "自拍镜像功能只能在前置摄像头打开时可使用。"
+    },
+    {
+      "name": "location_message",
+      "value": "显示地理位置，用于记录照片或视频拍摄地理位置信息。"
+    },
+    {
+      "name": "camera_line_message",
+      "value": "打开相机参考线，可以帮你创造出构图更出色的画面。"
+    },
+    {
+      "name": "current_video_length",
+      "value": "当前视频时长"
+    },
+    {
+      "name": "minute",
+      "value": "分钟"
+    },
+    {
+      "name": "stop",
+      "value": "停止"
+    },
+    {
+      "name": "setting",
+      "value": "设置"
+    },
+    {
+      "name": "photo_mirror",
+      "value": "自拍镜像"
+    },
+    {
+      "name": "video_steady",
+      "value": "视频防抖"
+    },
+    {
+      "name": "video_exposure",
+      "value": "曝光模式"
+    },
+    {
+      "name": "af_mode",
+      "value": "对焦模式"
+    },
+    {
+      "name": "photo_quality",
+      "value": "拍摄质量"
+    },
+    {
+      "name": "display_photo_location",
+      "value": "拍摄时显示地理位置"
+    },
+    {
+      "name": "hdr_photo",
+      "value": "HDR 拍摄"
+    },
+    {
+      "name": "photo_format",
+      "value": "照片格式"
+    },
+    {
+      "name": "photo_direction_config",
+      "value": "照片方向配置"
+    },
+    {
+      "name": "photo_ratio",
+      "value": "照片分辨率"
+    },
+    {
+      "name": "video_ratio",
+      "value": "视频分辨率"
+    },
+    {
+      "name": "video_frame",
+      "value": "录像帧率"
+    },
+    {
+      "name": "hdr_video",
+      "value": "HDR 录制"
+    },
+    {
+      "name": "reference_line",
+      "value": "参考线"
+    },
+    {
+      "name": "super_steady",
+      "value": "超级防抖"
+    },
+    {
+      "name": "not_support_super_steady",
+      "value": "当前不支持超级防抖模式，显示为普通模式"
+    },
+    {
+      "name": "portrait",
+      "value": "人像"
+    },
+    {
+      "name": "not_support_portrait",
+      "value": "当前不支持人像模式，请切换其他模式"
+    },
+    {
+      "name": "night_view",
+      "value": "夜景"
+    },
+    {
+      "name": "not_support_night_view",
+      "value": "当前不支持夜景模式，请切换其他模式"
+    },
+    {
+      "name": "photo",
+      "value": "拍照"
+    },
+    {
+      "name": "video",
+      "value": "录像"
+    },
+    {
+      "name": "not_support_switch_camera",
+      "value": "不支持切换摄像头"
+    },
+    {
+      "name": "close_video_stabilization",
+      "value": "关闭视频防抖"
+    },
+    {
+      "name": "basic_stabilization_algorithm",
+      "value": "基础防抖算法"
+    },
+    {
+      "name": "commonly_stabilization_algorithm",
+      "value": "一般防抖算法"
+    },
+    {
+      "name": "best_stabilization_algorithm",
+      "value": "最好防抖算法"
+    },
+    {
+      "name": "auto_choice",
+      "value": "自动进行选择"
+    },
+    {
+      "name": "lock_exposure_mode",
+      "value": "锁定曝光模式"
+    },
+    {
+      "name": "auto_exposure_mode",
+      "value": "自动曝光模式"
+    },
+    {
+      "name": "continuous_exposure_mode",
+      "value": "连续自动曝光"
+    },
+    {
+      "name": "manual_focus",
+      "value": "手动对焦"
+    },
+    {
+      "name": "continuous_autofocus",
+      "value": "连续自动对焦"
+    },
+    {
+      "name": "automatic_zoom",
+      "value": "自动变焦"
+    },
+    {
+      "name": "focus_lock",
+      "value": "对焦锁定"
+    },
+    {
+      "name": "high",
+      "value": "高"
+    },
+    {
+      "name": "middle",
+      "value": "中"
+    },
+    {
+      "name": "difference",
+      "value": "差"
+    },
+    {
+      "name": "recording_completed",
+      "value": "录制完成"
+    }
+  ]
+}

@@ -169,6 +169,37 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/Solutions/Media/MultiMedia/lib/VideoPlayer.hap" desc="Provided by code/Solutions/Media/MultiMedia"/>
                 <filteritem type="filepath" name="code/Solutions/Media/MultiMedia/lib/CameraPage-1.0.0.hap" desc="Provided by code/Solutions/Media/MultiMedia"/>
                 <filteritem type="filepath" name="code/BasicFeature/Media/AVRecorder/lib/VideoRecorder-1.0.0.hap" desc="Provided by code/BasicFeature/Media/AVRecorder"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/Camera_js/entry/src/main/resources/base/media/pic_avatar_radio01.png" desc="Provided by code/BasicFeature/Media/Camera_js"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/Camera_js/entry/src/main/resources/base/media/pic_avatar_regular.png" desc="Provided by code/BasicFeature/Media/Camera_js"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/Camera_js/entry/src/main/resources/base/media/pic_popup_right.png" desc="Provided by code/BasicFeature/Media/Camera_js"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/Camera_js/AppScope/resources/base/media/app_icon.png" desc="Provided by code/BasicFeature/Media/Camera_js"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/Camera_js/app_pic/auth3.jpg" desc="Provided by code/BasicFeature/Media/Camera_js"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/Camera_js/entry/src/main/resources/base/media/pic_popup_left.png" desc="Provided by code/BasicFeature/Media/Camera_js"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/Camera_js/entry/src/main/resources/base/media/icon.png" desc="Provided by code/BasicFeature/Media/Camera_js"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/Camera_js/app_pic/auth2.jpg" desc="Provided by code/BasicFeature/Media/Camera_js"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/Camera_js/entry/src/main/resources/base/media/pic_avatar_radio02.png" desc="Provided by code/BasicFeature/Media/Camera_js"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/Camera_js/entry/src/main/resources/base/media/pic_camera_line.png" desc="Provided by code/BasicFeature/Media/Camera_js"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/Camera_js/app_pic/setting.jpg" desc="Provided by code/BasicFeature/Media/Camera_js"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/Camera_js/entry/src/main/resources/base/media/pic_camera_mirror.png" desc="Provided by code/BasicFeature/Media/Camera_js"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/Camera_js/app_pic/preview.jpg" desc="Provided by code/BasicFeature/Media/Camera_js"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/Camera_js/app_pic/auth1.jpg" desc="Provided by code/BasicFeature/Media/Camera_js"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/Camera_js/app_pic/auth4.jpg" desc="Provided by code/BasicFeature/Media/Camera_js"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/Camera_js/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/BasicFeature/Media/Camera_js"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/ImageEffect/screenshots/filter_details.jpeg" desc="Provided by code/BasicFeature/Media/ImageEffect"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/ImageEffect/screenshots/brightness_efilter.jpeg" desc="Provided by code/BasicFeature/Media/ImageEffect"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/ImageEffect/screenshots/filters_info.jpeg" desc="Provided by code/BasicFeature/Media/ImageEffect"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/ImageEffect/screenshots/image_show.jpeg" desc="Provided by code/BasicFeature/Media/ImageEffect"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/ImageEffect/screenshots/contrast_efilter.jpeg" desc="Provided by code/BasicFeature/Media/ImageEffect"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/ImageEffect/AppScope/resources/base/media/app_icon.png" desc="Provided by code/BasicFeature/Media/ImageEffect"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/ImageEffect/screenshots/filter_chains.jpeg" desc="Provided by code/BasicFeature/Media/ImageEffect"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/ImageEffect/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/BasicFeature/Media/ImageEffect"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/ImageEffect/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/BasicFeature/Media/ImageEffect"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/ImageEffect/screenshots/crop_efilter.jpeg" desc="Provided by code/BasicFeature/Media/ImageEffect"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/ImageEffect/screenshots/filter_selection.jpeg" desc="Provided by code/BasicFeature/Media/ImageEffect"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/ImageEffect/entry/src/main/resources/base/media/ic_1080x1920.jpg" desc="Provided by code/BasicFeature/Media/ImageEffect"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/ImageEffect/screenshots/filter_parameters.jpeg" desc="Provided by code/BasicFeature/Media/ImageEffect"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/ImageEffect/screenshots/query_parameter.jpeg" desc="Provided by code/BasicFeature/Media/ImageEffect"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/ImageEffect/entry/src/main/resources/base/media/icon.png" desc="Provided by code/BasicFeature/Media/ImageEffect"/>
                 <filteritem type="filepath" name="code/BasicFeature/Connectivity/VPN/server/server.zip" desc="Provided by code/BasicFeature/Connectivity/VPN"/>
 		<filteritem type="filepath" name="code/BasicFeature/Connectivity/StageSocket/certificate_file.zip" desc="Provided by code/BasicFeature/Connectivity/StageSocket"/>
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkDrawing/screenshots/device/Index.jpg" desc="Provided by code/BasicFeature/Native/NdkDrawing"/>
@@ -176,12 +207,21 @@ Note:If the text contains special characters, please escape them according to th
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkDrawing/screenshots/device/DrawText.jpg" desc="Provided by code/BasicFeature/Native/NdkDrawing"/>
         <filteritem type="filepath" name="code/BasicFeature/Native/NdkRenderNodeDrawing/screenshots/Index.jpeg" desc="Provided by code/BasicFeature/Native/NdkRenderNodeDrawing"/>
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkRenderNodeDrawing/screenshots/DrawPath.jpeg" desc="Provided by code/BasicFeature/Native/NdkRenderNodeDrawing"/>
-        <filteritem type="filepath" name="code/BasicFeature/Native/NdkRenderNodeDrawing/screenshots/DrawRect.jpeg" desc="Provided by code/BasicFeature/Native/NdkRenderNodeDrawing"/>
+        <filteritem type="filepath" name="code/BasicFeature/Native/NdkRenderNodeDrawing/screenshots/DrawImage.jpeg" desc="Provided by code/BasicFeature/Native/NdkRenderNodeDrawing"/>
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkRenderNodeDrawing/screenshots/DrawText.jpeg" desc="Provided by code/BasicFeature/Native/NdkRenderNodeDrawing"/>
         <filteritem type="filepath" name="code/BasicFeature/Native/NdkRenderNodeDrawing/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/BasicFeature/Native/NdkRenderNodeDrawing"/>
         <filteritem type="filepath" name="code/BasicFeature/Native/NdkRenderNodeDrawing/entry/src/main/resources/base/media/icon.png" desc="Provided by code/BasicFeature/Native/NdkRenderNodeDrawing"/>
         <filteritem type="filepath" name="code/BasicFeature/Native/NdkRenderNodeDrawing/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/BasicFeature/Native/NdkRenderNodeDrawing"/>
+        <filteritem type="filepath" name="code/BasicFeature/Native/NdkRenderNodeDrawing/entry/src/main/resources/rawfile/test.jpg" desc="Provided by code/BasicFeature/Native/NdkRenderNodeDrawing"/>
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkRenderNodeDrawing/AppScope/resources/base/media/app_icon.png" desc="Provided by code/BasicFeature/Native/NdkRenderNodeDrawing"/>
+        <filteritem type="filepath" name="code/BasicFeature/Native/NdkTsDrawing/screenshots/Index.jpeg" desc="Provided by code/BasicFeature/Native/NdkTsDrawing"/>
+		<filteritem type="filepath" name="code/BasicFeature/Native/NdkTsDrawing/screenshots/DrawPath.jpeg" desc="Provided by code/BasicFeature/Native/NdkTsDrawing"/>
+        <filteritem type="filepath" name="code/BasicFeature/Native/NdkTsDrawing/screenshots/DrawRect.jpeg" desc="Provided by code/BasicFeature/Native/NdkTsDrawing"/>
+		<filteritem type="filepath" name="code/BasicFeature/Native/NdkTsDrawing/screenshots/DrawText.jpeg" desc="Provided by code/BasicFeature/Native/NdkTsDrawing"/>
+        <filteritem type="filepath" name="code/BasicFeature/Native/NdkTsDrawing/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/BasicFeature/Native/NdkTsDrawing"/>
+        <filteritem type="filepath" name="code/BasicFeature/Native/NdkTsDrawing/entry/src/main/resources/base/media/icon.png" desc="Provided by code/BasicFeature/Native/NdkTsDrawing"/>
+        <filteritem type="filepath" name="code/BasicFeature/Native/NdkTsDrawing/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/BasicFeature/Native/NdkTsDrawing"/>
+		<filteritem type="filepath" name="code/BasicFeature/Native/NdkTsDrawing/AppScope/resources/base/media/app_icon.png" desc="Provided by code/BasicFeature/Native/NdkTsDrawing"/>
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkNativeWindow/screenshots/device/ChangeColor.jpg" desc="Provided by code/BasicFeature/Native/NdkNativeWindow"/>
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkNativeWindow/screenshots/device/GetAvailableCount.jpg" desc="Provided by code/BasicFeature/Native/NdkNativeWindow"/>
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkNativeWindow/screenshots/device/Main.jpg" desc="Provided by code/BasicFeature/Native/NdkNativeWindow"/>
@@ -243,6 +283,53 @@ Note:If the text contains special characters, please escape them according to th
         <filteritem type="filepath" name="code/SystemFeature/Security/CertificateFramework/screenshots/device/chain_fail.jpeg" desc="Provided by code/SystemFeature/Security/CertificateFramework"/>
         <filteritem type="filepath" name="code/BasicFeature/Security/DLPManager/screenshots/device/index.jpeg" desc="Provided by code/BasicFeature/Security/DLPManager"/>
         <filteritem type="filepath" name="code/SystemFeature/Security/CertificateFramework/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/Security/CertificateFramework"/>
+        <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/StageModel/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/ApplicationModels/StageModel"/>
+        <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/StageModel/entry/src/main/js/common/qing.png" desc="Provided by code/SystemFeature/ApplicationModels/StageModel"/>
+        <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/StageModel/entry/src/main/js/common/widget.png" desc="Provided by code/SystemFeature/ApplicationModels/StageModel"/>
+        <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/StageModel/entry/src/main/resources/base/media/add.png" desc="Provided by code/SystemFeature/ApplicationModels/StageModel"/>
+        <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/StageModel/entry/src/main/resources/base/media/back.png" desc="Provided by code/SystemFeature/ApplicationModels/StageModel"/>
+        <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/StageModel/entry/src/main/resources/base/media/book.png" desc="Provided by code/SystemFeature/ApplicationModels/StageModel"/>
+        <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/StageModel/entry/src/main/resources/base/media/delete.png" desc="Provided by code/SystemFeature/ApplicationModels/StageModel"/>
+        <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/StageModel/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/ApplicationModels/StageModel"/>
+        <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/StageModel/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/ApplicationModels/StageModel"/>
+        <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/StageModel/screenshots/device/stage_mode.png" desc="Provided by code/SystemFeature/ApplicationModels/StageModel"/>
+        <filteritem type="filepath" name="code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics"/>
+        <filteritem type="filepath" name="code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics/Library/src/main/resources/base/media/airqulity.png" desc="Provided by code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics"/>
+        <filteritem type="filepath" name="code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics/Library/src/main/resources/base/media/calculator.png" desc="Provided by code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics"/>
+        <filteritem type="filepath" name="code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics/Library/src/main/resources/base/media/camera.png" desc="Provided by code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics"/>
+        <filteritem type="filepath" name="code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics/Library/src/main/resources/base/media/clock.png" desc="Provided by code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics"/>
+        <filteritem type="filepath" name="code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics/Library/src/main/resources/base/media/contacts.png" desc="Provided by code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics"/>
+        <filteritem type="filepath" name="code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics/Library/src/main/resources/base/media/ecg.png" desc="Provided by code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics"/>
+        <filteritem type="filepath" name="code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics/Library/src/main/resources/base/media/flashlight.png" desc="Provided by code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics"/>
+        <filteritem type="filepath" name="code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics/Library/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics"/>
+        <filteritem type="filepath" name="code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics/Library/src/main/resources/base/media/msg.png" desc="Provided by code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics"/>
+        <filteritem type="filepath" name="code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics/Library/src/main/resources/base/media/musicplayer.png" desc="Provided by code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics"/>
+        <filteritem type="filepath" name="code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics/Library/src/main/resources/base/media/notes.png" desc="Provided by code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics"/>
+        <filteritem type="filepath" name="code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics/Library/src/main/resources/base/media/photos.png" desc="Provided by code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics"/>
+        <filteritem type="filepath" name="code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics/Library/src/main/resources/base/media/settings.png" desc="Provided by code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics"/>
+        <filteritem type="filepath" name="code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics/Library/src/main/resources/base/media/shopping.png" desc="Provided by code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics"/>
+        <filteritem type="filepath" name="code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics"/>
+        <filteritem type="filepath" name="code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics/screenshots/devices/main.png" desc="Provided by code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/FileShare/Picker/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/FileManagement/FileShare/Picker"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/FileShare/Picker/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/FileManagement/FileShare/Picker"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/FileShare/Picker/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/FileManagement/FileShare/Picker"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/FileShare/Picker/screenshots/device/Edit.jpeg" desc="Provided by code/SystemFeature/FileManagement/FileShare/Picker"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/FileShare/Picker/screenshots/device/Index.jpeg" desc="Provided by code/SystemFeature/FileManagement/FileShare/Picker"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/FileShare/Picker/screenshots/device/Picture.jpeg" desc="Provided by code/SystemFeature/FileManagement/FileShare/Picker"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/FileShare/Picker/screenshots/device/Video.jpeg" desc="Provided by code/SystemFeature/FileManagement/FileShare/Picker"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/Photos/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/FileManagement/Photos"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/Photos/entry/src/main/resources/base/media/album_empty.png" desc="Provided by code/SystemFeature/FileManagement/Photos"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/Photos/entry/src/main/resources/base/media/ic_video_play_btn_png.png" desc="Provided by code/SystemFeature/FileManagement/Photos"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/Photos/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/FileManagement/Photos"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/Photos/entry/src/main/resources/base/media/ohos_gallery.png" desc="Provided by code/SystemFeature/FileManagement/Photos"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/Photos/entry/src/main/resources/base/media/photo_empty.png" desc="Provided by code/SystemFeature/FileManagement/Photos"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/Photos/entry/src/main/resources/base/media/scroll_light.png" desc="Provided by code/SystemFeature/FileManagement/Photos"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/Photos/entry/src/main/resources/base/media/scroll_press_light.png" desc="Provided by code/SystemFeature/FileManagement/Photos"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/Photos/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/FileManagement/Photos"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/Photos/screenshots/detail.jpeg" desc="Provided by code/SystemFeature/FileManagement/Photos"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/Photos/screenshots/home.jpeg" desc="Provided by code/SystemFeature/FileManagement/Photos"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/Photos/screenshots/photos.jpeg" desc="Provided by code/SystemFeature/FileManagement/Photos"/>
+        <filteritem type="filepath" name="code/SystemFeature/FileManagement/Photos/screenshots/selector.jpeg" desc="Provided by code/SystemFeature/FileManagement/Photos"/>
 		<filteritem type="filepath" name="code/BasicFeature/ArkTSCard/ArkTSCard/libs/ArkTSUser.hap" desc="Provided by code/BasicFeature/ArkTSCard/ArkTSCard"/>
         <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmonyProfileDebug.pem" desc="Provided by code/Project/HapBuild"/>
                 <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmonyApplication.pem" desc="Provided by code/Project/HapBuild"/>
