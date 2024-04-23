@@ -43,7 +43,7 @@ struct BindSheetSample {
   @State isShow: boolean = false
   @State showDragBar: boolean = true;
   @State enableOutsideInteractive: boolean = true;
-  @State popStyle: number = SheetType.BOTTOM;
+  @State popStyle: SheetType.CENTER | SheetType.POPUP = SheetType.CENTER;
   @State showClose: boolean = true;
   @State blurStyle: BlurStyle = BlurStyle.NONE;
   @State detentsArray: number[] = [];
@@ -60,6 +60,7 @@ struct BindSheetSample {
     Column() {
     }
     .width('100%')
+    .height('100%')
   }
 
   build() {
@@ -94,11 +95,7 @@ struct BindSheetSample {
               .id('enable_interactive')
               .margin({ right: 12, top: 8, bottom: 8 })
               .onChange((isOn: boolean) => {
-                if (isOn) {
-                  this.enableOutsideInteractive = true;
-                } else {
-                  this.enableOutsideInteractive = false;
-                }
+                this.enableOutsideInteractive = isOn;
               })
           }
           .backgroundColor('#ffffff')
@@ -208,7 +205,7 @@ struct BindSheetSample {
               .fontColor('#182431')
               .onSelect((index: number) => {
                 if (index === 0) {
-                  this.popStyle = SheetType.BOTTOM;
+                  this.popStyle = SheetType.CENTER;
                 } else if (index === 1) {
                   this.popStyle = SheetType.CENTER;
                 } else {
@@ -274,7 +271,7 @@ struct BindSheetSample {
               {
                 enableOutsideInteractive: this.enableOutsideInteractive,
                 dragBar: this.showDragBar,
-                backgroundColor: '#FFFFFF',
+                backgroundColor: Color.Gray,
                 detents: this.detents,
                 blurStyle: this.blurStyle,
                 showClose: this.showClose,
