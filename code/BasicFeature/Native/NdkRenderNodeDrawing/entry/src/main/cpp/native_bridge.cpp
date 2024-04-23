@@ -16,31 +16,46 @@
 #include <string>
 #include "napi/native_api.h"
 #include <bits/alltypes.h>
+#include <multimedia/image_framework/image_mdk_common.h>
+#include <multimedia/image_framework/image_pixel_map_mdk.h>
 #include <native_window/external_window.h>
 #include <native_drawing/drawing_bitmap.h>
 #include <native_drawing/drawing_color.h>
+#include <native_drawing/drawing_color_filter.h>
 #include <native_drawing/drawing_canvas.h>
 #include <native_drawing/drawing_pen.h>
+#include <native_drawing/drawing_pixel_map.h>
 #include <native_drawing/drawing_brush.h>
 #include <native_drawing/drawing_path.h>
 #include <native_drawing/drawing_rect.h>
+#include <native_drawing/drawing_register_font.h>
+#include <native_drawing/drawing_filter.h>
+#include <native_drawing/drawing_font.h>
 #include <native_drawing/drawing_font_collection.h>
+#include <native_drawing/drawing_sampling_options.h>
+#include <native_drawing/drawing_text_blob.h>
+#include <native_drawing/drawing_text_declaration.h>
 #include <native_drawing/drawing_text_typography.h>
+#include <native_drawing/drawing_types.h>
+#include <native_drawing/drawing_typeface.h>
 #include "common/log_common.h"
 
 enum DrawType {
     NONE,
     PATH,
-    RECT,
-    TEXT
+    TEXT,
+    IMAGE
 };
+
+const int FONT_COUNT = 2;
+const char *g_paths[FONT_COUNT] = {"system/fonts/NotoSans_KR_Bold.otf", "/system/fonts/HarmonyOS_Sans_Thin_Italic.ttf"};
 
 static void NativeOnDrawPath(OH_Drawing_Canvas *canvas, int32_t width, int32_t height)
 {
     // native node draw function
-    int len = height / 8;
-    float aX = width / 4;
-    float aY = height / 8;
+    int len = height / 4;
+    float aX = width / 2;
+    float aY = height / 6;
     float dX = aX - len * std::sin(18.0f);
     float dY = aY + len * std::cos(18.0f);
     float cX = aX + len * std::sin(18.0f);
@@ -89,25 +104,7 @@ static void NativeOnDrawPath(OH_Drawing_Canvas *canvas, int32_t width, int32_t h
     OH_Drawing_PathDestroy(cPath);
 }
 
-static void NativeOnDrawRect(OH_Drawing_Canvas *canvas)
-{
-    // 创建一个左上角坐标为(150, 200)，右下角坐标为(400, 700)的矩形
-    OH_Drawing_Rect *cRect = OH_Drawing_RectCreate(150, 200, 400, 700);
-    
-    // 创建一个画笔Pen对象，Pen对象用于形状的边框线绘制
-    OH_Drawing_Pen *cPen = OH_Drawing_PenCreate();
-    OH_Drawing_PenSetColor(cPen, OH_Drawing_ColorSetArgb(0xFF, 0xFF, 0x00, 0x00));
-    OH_Drawing_PenSetWidth(cPen, 10.0f); // pen width 10
-    // 将Pen画笔设置到canvas中
-    OH_Drawing_CanvasAttachPen(canvas, cPen);
-    
-    OH_Drawing_CanvasDrawRect(canvas, cRect);
-    
-    OH_Drawing_CanvasDetachPen(canvas);
-    OH_Drawing_PenDestroy(cPen);
-    OH_Drawing_RectDestroy(cRect);
-}
-
+// 字体引擎提供的文字绘制能力，可指定字体，自带排版，支持字体退化
 static void NativeOnDrawText(OH_Drawing_Canvas *canvas, int32_t width, int32_t height)
 {
     // 选择从左到右/左对齐等排版属性
@@ -120,31 +117,137 @@ static void NativeOnDrawText(OH_Drawing_Canvas *canvas, int32_t width, int32_t h
     OH_Drawing_TextStyle *txtStyle = OH_Drawing_CreateTextStyle();
     OH_Drawing_SetTextStyleColor(txtStyle, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00));
     // 设置文字大小、字重等属性
-    double fontSize = width / 30;
+    double fontSize = width / 16;
     OH_Drawing_SetTextStyleFontSize(txtStyle, fontSize);
     OH_Drawing_SetTextStyleFontWeight(txtStyle, FONT_WEIGHT_400);
     OH_Drawing_SetTextStyleBaseLine(txtStyle, TEXT_BASELINE_ALPHABETIC);
     OH_Drawing_SetTextStyleFontHeight(txtStyle, 1);
     // 设置字体类型等
-    const char *fontFamilies[] = {"Roboto"};
-    OH_Drawing_SetTextStyleFontFamilies(txtStyle, 1, fontFamilies);
-    OH_Drawing_SetTextStyleFontStyle(txtStyle, FONT_STYLE_NORMAL);
-    OH_Drawing_SetTextStyleLocale(txtStyle, "en");
-    OH_Drawing_TypographyCreate *handler =
-        OH_Drawing_CreateTypographyHandler(typoStyle, OH_Drawing_CreateFontCollection());
-    OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
-    // 设置文字内容
-    const char *text = "Hello World Drawing\n";
-    OH_Drawing_TypographyHandlerAddText(handler, text);
-    OH_Drawing_TypographyHandlerPopTextStyle(handler);
-    OH_Drawing_Typography *typography = OH_Drawing_CreateTypography(handler);
-    // 设置页面最大宽度
-    double maxWidth = width;
-    OH_Drawing_TypographyLayout(typography, maxWidth);
-    // 设置文本在画布上绘制的起始位置
-    double position[2] = {width / 10.0, height / 4.0};
-    // 将文本绘制到画布上
-    OH_Drawing_TypographyPaint(typography, canvas, position[0], position[1]);
+    for (int i = 0; i < FONT_COUNT; ++i) {
+        OH_Drawing_FontCollection *fontCollection = OH_Drawing_CreateFontCollection();
+        const char *fontFamily = "myFamilyName";
+        const char *fontPath = g_paths[i];
+        OH_Drawing_RegisterFont(fontCollection, fontFamily, fontPath);
+        const char *myFontFamilies[] = {"myFamilyName"};
+        OH_Drawing_SetTextStyleFontFamilies(txtStyle, 1, myFontFamilies);
+        OH_Drawing_SetTextStyleFontStyle(txtStyle, FONT_STYLE_NORMAL);
+        OH_Drawing_SetTextStyleLocale(txtStyle, "en");
+        OH_Drawing_TypographyCreate *handler =
+            OH_Drawing_CreateTypographyHandler(typoStyle, fontCollection);
+        OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
+        // 设置文字内容
+        const char *text = "你好，This is the text for demonstration";
+        OH_Drawing_TypographyHandlerAddText(handler, text);
+        OH_Drawing_TypographyHandlerPopTextStyle(handler);
+        OH_Drawing_Typography *typography = OH_Drawing_CreateTypography(handler);
+        // 设置页面最大宽度
+        double maxWidth = width - 100;
+        OH_Drawing_TypographyLayout(typography, maxWidth);
+        // 设置文本在画布上绘制的起始位置
+        double position[2] = {width / 10.0, height / 5.0 + fontSize * i * 2};
+        // 将文本绘制到画布上
+        OH_Drawing_TypographyPaint(typography, canvas, position[0], position[1]);
+        // 销毁创建的资源
+        OH_Drawing_DestroyTypography(typography);
+        OH_Drawing_DestroyTypographyHandler(handler);
+        OH_Drawing_DestroyFontCollection(fontCollection);
+    }
+    OH_Drawing_DestroyTypographyStyle(typoStyle);
+    OH_Drawing_DestroyTextStyle(txtStyle);
+}
+
+static void NativeOnDrawTextBlob(OH_Drawing_Canvas *canvas, int32_t width, int32_t height)
+{
+    OH_Drawing_Brush *brush = OH_Drawing_BrushCreate();
+    OH_Drawing_BrushSetColor(brush, OH_Drawing_ColorSetArgb(0xff, 0xff, 0x00, 0x00));
+    OH_Drawing_CanvasAttachBrush(canvas, brush);
+    // 第一种textBlob创建方式，自主指定pos和glyphsID，要求用户有自排版能力，不支持字体退化
+    const int textCount = 37;
+    const uint16_t glyphs[FONT_COUNT][textCount] = {
+        { 0, 3723, 21672, 53, 73, 74, 84, 1, 74, 84, 1, 85, 73, 70, 1, 85, 70, 89,
+          85, 1, 71, 80, 83, 1, 69, 70, 78, 80, 79, 84, 85, 83, 66, 85, 74, 80, 79 },
+        { 0, 0, 0, 139, 256, 260, 331, 1, 260, 331, 1, 339, 256, 226, 1, 339, 226,
+          374, 339, 1, 247, 298, 327, 1, 222, 226, 288, 298, 290, 331, 339, 327, 187, 339, 260, 298, 290 },
+    };
+    float textSize = width / 16;
+    for (int i = 0; i < FONT_COUNT; ++i) {
+        OH_Drawing_TextBlobBuilder *builder = OH_Drawing_TextBlobBuilderCreate();
+        OH_Drawing_Font *font = OH_Drawing_FontCreate();
+        OH_Drawing_Typeface *typeface = OH_Drawing_TypefaceCreateFromFile(g_paths[i], 0);
+        OH_Drawing_FontSetTypeface(font, typeface);
+        OH_Drawing_FontSetTextSize(font, textSize);
+        const OH_Drawing_RunBuffer *runBuffer = OH_Drawing_TextBlobBuilderAllocRunPos(builder, font, 37, nullptr);
+        // 以下为计算每个字的坐标设置的数据，无具体含义
+        const float posX = width / 10.0;
+        const float posY = height / 2.0;
+        const float shortX = 1.6;
+        const float enlargeY = 1.2;
+        const int numberTwo = 2;
+        const int wrap = 23;
+        for (int j = 0; j < textCount; ++j) {
+            runBuffer->glyphs[j] = glyphs[i][j];
+            // 此处在第wrap个字符处换行
+            if (j < wrap) {
+                // 自定义字体排版中的横坐标，数据可自由指定
+                runBuffer->pos[j * numberTwo] = posX + textSize * j / shortX;
+                // 自定义字体排版中的纵坐标，数据可自由指定
+                runBuffer->pos[j * numberTwo + 1] = posY + enlargeY * textSize * i * numberTwo;
+            } else {
+                // 自定义字体排版中的横坐标，数据可自由指定
+                runBuffer->pos[j * numberTwo] = posX + textSize * (j - wrap) / shortX;
+                // 自定义字体排版中的纵坐标，数据可自由指定
+                runBuffer->pos[j * numberTwo + 1] = posY + enlargeY * textSize * (i * numberTwo + 1);
+            }
+        }
+        OH_Drawing_TextBlob *textBlob = OH_Drawing_TextBlobBuilderMake(builder);
+        OH_Drawing_CanvasDrawTextBlob(canvas, textBlob, 0, 0);
+        
+        // 第二种textBlob创建方式，通过字符串创建，带有基础的排版，且不支持字体退化
+        const float tempY = 1.3;
+        OH_Drawing_TextBlob *stringTextBlob =
+            OH_Drawing_TextBlobCreateFromString("你好，This is the text for demonstration", font, TEXT_ENCODING_UTF8);
+        OH_Drawing_CanvasDrawTextBlob(canvas, stringTextBlob, posX, height / tempY + textSize * i);
+        
+        OH_Drawing_TextBlobDestroy(textBlob);
+        OH_Drawing_TextBlobBuilderDestroy(builder);
+        OH_Drawing_TextBlobDestroy(stringTextBlob);
+        OH_Drawing_TypefaceDestroy(typeface);
+        OH_Drawing_FontDestroy(font);
+    }
+    OH_Drawing_CanvasDetachBrush(canvas);
+    OH_Drawing_BrushDestroy(brush);
+}
+
+static void NativeOnDrawPixelMap(OH_Drawing_Canvas *canvas, NativePixelMap *native)
+{
+    OH_Drawing_CanvasSave(canvas);
+    OH_Drawing_PixelMap *pixelMap = OH_Drawing_PixelMapGetFromNativePixelMap(native);
+    OH_Drawing_SamplingOptions *sampling = OH_Drawing_SamplingOptionsCreate(FILTER_MODE_NEAREST, MIPMAP_MODE_NONE);
+    OH_Drawing_Rect *src = OH_Drawing_RectCreate(0, 0, 550, 564);
+    OH_Drawing_Rect *dst = OH_Drawing_RectCreate(25, 300, 300, 582);
+    OH_Drawing_CanvasDrawPixelMapRect(canvas, pixelMap, src, dst, sampling);
+    
+    // 设置样式，绘制时生效
+    OH_Drawing_Brush *brush = OH_Drawing_BrushCreate();
+    const float array[] = {
+        1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, -1, 0, 0, 1, 0,
+    };
+    OH_Drawing_ColorFilter *colorFilter = OH_Drawing_ColorFilterCreateMatrix(array);
+    OH_Drawing_Filter *filter = OH_Drawing_FilterCreate();
+    OH_Drawing_FilterSetColorFilter(filter, colorFilter);
+    OH_Drawing_BrushSetFilter(brush, filter);
+    OH_Drawing_CanvasAttachBrush(canvas, brush);
+    OH_Drawing_CanvasTranslate(canvas, 300.f, 0.f);
+    OH_Drawing_CanvasDrawPixelMapRect(canvas, pixelMap, src, dst, sampling);
+    OH_Drawing_CanvasDetachBrush(canvas);
+    
+    OH_Drawing_BrushDestroy(brush);
+    OH_Drawing_CanvasRestore(canvas);
+    OH_Drawing_FilterDestroy(filter);
+    OH_Drawing_ColorFilterDestroy(colorFilter);
+    OH_Drawing_SamplingOptionsDestroy(sampling);
+    OH_Drawing_RectDestroy(src);
+    OH_Drawing_RectDestroy(dst);
 }
 
 // 开发者提供的native方法，入参有且仅有如下两个，开发者不需进行变更。
@@ -152,8 +255,8 @@ static void NativeOnDrawText(OH_Drawing_Canvas *canvas, int32_t width, int32_t h
 // napi_callback_info 记录了一些信息，包括从ArkTS侧传递过来参数等。
 static napi_value OnDraw(napi_env env, napi_callback_info info)
 {
-    size_t argc = 5;
-    napi_value args[5] = {nullptr};
+    size_t argc = 6;
+    napi_value args[6] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
     int32_t id;
@@ -168,13 +271,15 @@ static napi_value OnDraw(napi_env env, napi_callback_info info)
     napi_get_value_int32(env, args[3], &height); // 3 means the third argument
     int32_t drawOption;
     napi_get_value_int32(env, args[4], &drawOption); // 4 means the forth argument
+    NativePixelMap *nativePixelMap = OH_PixelMap_InitNativePixelMap(env, args[5]); // 5 means the forth argument
     
     if (drawOption == PATH) {
         NativeOnDrawPath(canvas, width, height);
-    } else if (drawOption == RECT) {
-        NativeOnDrawRect(canvas);
     } else if (drawOption == TEXT) {
         NativeOnDrawText(canvas, width, height);
+        NativeOnDrawTextBlob(canvas, width, height);
+    } else if (drawOption == IMAGE) {
+        NativeOnDrawPixelMap(canvas, nativePixelMap);
     }
     return nullptr;
 }

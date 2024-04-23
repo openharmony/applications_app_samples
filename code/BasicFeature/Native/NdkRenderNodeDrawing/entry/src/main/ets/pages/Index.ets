@@ -16,56 +16,51 @@
 import { NodeController, FrameNode, RenderNode, DrawContext } from "@ohos.arkui.node";
 import { UIContext } from '@ohos.arkui.UIContext';
 import bridge from "libentry.so";
+import image from '@ohos.multimedia.image';
+import resourceManager from '@ohos.resourceManager';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 enum drawType {
   none,
   path,
-  rect,
-  text
+  text,
+  image
 }
 
-class MyRenderNode extends RenderNode {
-  private type: drawType = drawType.none
 
+class MyRenderNode extends RenderNode {
+  private type: drawType = drawType.none;
+  private pMap: image.PixelMap | undefined = undefined;
   draw(context: DrawContext) {
-    bridge.nativeOnDraw(666, context, vp2px(this.size.width), vp2px(this.size.height), this.type)
+    bridge.nativeOnDraw(666, context, vp2px(this.size.width), vp2px(this.size.height), this.type, this.pMap);
   }
 
   resetType(t: drawType) {
-    this.type = t
+    this.type = t;
+  }
+
+  setPixelMap(p: PixelMap) {
+    this.pMap = p;
   }
 }
 
 // 创建一个MyRenderNode对象
-const newNode = new MyRenderNode()
+const newNode = new MyRenderNode();
 // 定义newNode的大小和位置
-newNode.frame = { x: 0, y: 0, width: 750, height: 800 }
+newNode.frame = { x: 0, y: 0, width: 400, height: 600 };
 
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
-
   makeNode(uiContext: UIContext): FrameNode {
-    this.rootNode = new FrameNode(uiContext)
+    this.rootNode = new FrameNode(uiContext);
     if (this.rootNode === null) {
-      return this.rootNode
+      return this.rootNode;
     }
-    const renderNode = this.rootNode.getRenderNode()
+    const renderNode = this.rootNode.getRenderNode();
     if (renderNode !== null) {
-      renderNode.frame = { x: 0, y: 0, width: 10, height: 500 }
-      renderNode.pivot = { x: 50, y: 50 }
-      renderNode.appendChild(newNode)
+      renderNode.appendChild(newNode);
     }
-    return this.rootNode
-  }
-
-  addNode(node: RenderNode): void {
-    if (this.rootNode === null) {
-      return
-    }
-    const renderNode = this.rootNode.getRenderNode()
-    if (renderNode !== null) {
-      renderNode.appendChild(node)
-    }
+    return this.rootNode;
   }
 }
 
@@ -73,29 +68,45 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct RenderTest {
-  private myNodeController: MyNodeController = new MyNodeController()
+  private myNodeController: MyNodeController = new MyNodeController();
+  aboutToAppear() {
+    const context: Context = getContext(this);
+    const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
+    resourceMgr.getRawFileContent('test.jpg').then((fileData: Uint8Array) => {
+      console.log("Succeeded in getting RawFileContent");
+      const buffer = fileData.buffer.slice(0);
+      const imageSource: image.ImageSource = image.createImageSource(buffer);
+      imageSource.createPixelMap().then((pMap: image.PixelMap) => {
+        newNode.setPixelMap(pMap);
+      }).catch((err: BusinessError) => {
+        console.error("Failed to creating PixelMap");
+      });
+    }).catch((err: BusinessError) => {
+      console.error("Failed to get RawFileContent");
+    });
+  }
   build() {
     Column() {
       Row() {
         NodeContainer(this.myNodeController)
           .height('100%')
         Button("Draw Path")
-          .margin({ bottom: 200, right: 12 })
+          .margin({ bottom: 100, right: 12 })
           .onClick(() => {
-            newNode.resetType(drawType.path)
-            newNode.invalidate()
-          })
-        Button("Draw Rect")
-          .margin({ bottom: 200, right: 12 })
-          .onClick(() => {
-            newNode.resetType(drawType.rect)
-            newNode.invalidate()
+            newNode.resetType(drawType.path);
+            newNode.invalidate();
           })
         Button("Draw Text")
-          .margin({ bottom: 200, right: 12 })
+          .margin({ bottom: 100, right: 12 })
           .onClick(() => {
-            newNode.resetType(drawType.text)
-            newNode.invalidate()
+            newNode.resetType(drawType.text);
+            newNode.invalidate();
+          })
+        Button("Draw Image")
+          .margin({ bottom: 100, right: 12 })
+          .onClick(() => {
+            newNode.resetType(drawType.image);
+            newNode.invalidate();
           })
       }
       .width('100%')
