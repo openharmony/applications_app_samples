@@ -11,6 +11,14 @@
     {
       "name": "TestAbility_label",
       "value": "test label"
+    },
+    {
+      "name": "Continuous_task",
+      "value": "长时任务"
+    },
+    {
+      "name": "Without_notification",
+      "value": "没有通知"
     }
   ]
 }

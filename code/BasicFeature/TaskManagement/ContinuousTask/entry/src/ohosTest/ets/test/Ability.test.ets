@@ -79,7 +79,7 @@ export default function abilityTest() {
         hilog.info(DOMAIN, TAG, BUNDLE + 'StartContinuousTaskFunction_001 checkStart');
         await driver.swipe(100, 10, 100, 500, 600);
         await driver.delayMs(1000);
-        await driver.assertComponentExist(ON.text('长时任务'));
+        await driver.assertComponentExist(ON.text(String($r('app.string.Continuous_task'))));
         await driver.delayMs(1000);
         await driver.swipe(100, 500, 100, 10, 600);
         await driver.delayMs(1000);
@@ -101,8 +101,8 @@ export default function abilityTest() {
         await driver.delayMs(1000);
         // 进入应用
         hilog.info(DOMAIN, TAG, BUNDLE + 'StopContinuousTaskFunction_001 enter');
-        await driver.assertComponentExist(ON.text('长时任务'));
-        let btnEnter = await driver.findComponent(ON.text('长时任务'));
+        await driver.assertComponentExist(ON.text(String($r('app.string.Continuous_task'))));
+        let btnEnter = await driver.findComponent(ON.text(String($r('app.string.Continuous_task'))));
         await btnEnter.click();
         await driver.delayMs(2000);
         // 点击暂停结束长时任务
@@ -115,7 +115,7 @@ export default function abilityTest() {
         hilog.info(DOMAIN, TAG, BUNDLE + 'StopContinuousTaskFunction_001 checkStop');
         await driver.swipe(100, 10, 100, 500, 600);
         await driver.delayMs(1000);
-        await driver.assertComponentExist(ON.text('没有通知'));
+        await driver.assertComponentExist(ON.text(String($r('app.string.Without_notification'))));
         await driver.delayMs(1000);
         await driver.swipe(100, 500, 100, 10, 600);
         await driver.delayMs(1000);
