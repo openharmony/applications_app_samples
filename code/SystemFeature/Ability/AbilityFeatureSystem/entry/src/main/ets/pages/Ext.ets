@@ -32,22 +32,6 @@ struct Ext {
   private want: (Want | undefined) = storage.get<Want>('want');
   @State list: ListItemModel[] = [
     {
-      text: $r('app.string.extStartAbilityByType'),
-      callback: () => {
-        if (this.session === undefined) {
-          logger.error(`${TAG} session undefined`);
-          return;
-        }
-        this.session.startAbilityByType("share", {}, {
-          onError: (code: number, name: string, message: string) => {
-            logger.error(`${TAG} code:${code} name:${name} message:${message}`);
-          }
-        }, (err) => {
-          logger.error(`${TAG} startAbilityByType fail, err:${JSON.stringify(err)}`);
-        });
-      }
-    },
-    {
       text: $r('app.string.extStartAbilityAsCaller'),
       callback: () => {
         if (this.session === undefined) {

@@ -334,6 +334,10 @@ Note:If the text contains special characters, please escape them according to th
         <filteritem type="filepath" name="code/SystemFeature/FileManagement/Photos/entry/src/main/resources/base/media/arrow.png" desc="Provided by code/SystemFeature/FileManagement/Photos"/>
         <filteritem type="filepath" name="code/SystemFeature/FileManagement/Photos/entry/src/main/resources/base/media/gradientBasePlate.png" desc="Provided by code/SystemFeature/FileManagement/Photos"/>
         <filteritem type="filepath" name="code/SystemFeature/FileManagement/Photos/entry/src/main/resources/base/media/no_image_icon.png" desc="Provided by code/SystemFeature/FileManagement/Photos"/>
+        <filteritem type="filepath" name="code/SystemFeature/Ability/AbilityFeatureSystem/screenshots/index.jpeg" desc="Provided by code/SystemFeature/Ability/AbilityFeatureSystem"/>
+        <filteritem type="filepath" name="code/SystemFeature/Ability/AbilityFeatureSystem/screenshots/app_status.jpeg" desc="Provided by code/SystemFeature/Ability/AbilityFeatureSystem"/>
+        <filteritem type="filepath" name="code/SystemFeature/Ability/AbilityFeatureSystem/screenshots/sync_data.jpeg" desc="Provided by code/SystemFeature/Ability/AbilityFeatureSystem"/>
+        <filteritem type="filepath" name="code/SystemFeature/Ability/AbilityFeatureSystem/screenshots/uiextension.jpeg" desc="Provided by code/SystemFeature/Ability/AbilityFeatureSystem"/>
 		<filteritem type="filepath" name="code/BasicFeature/ArkTSCard/ArkTSCard/libs/ArkTSUser.hap" desc="Provided by code/BasicFeature/ArkTSCard/ArkTSCard"/>
         <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmonyProfileDebug.pem" desc="Provided by code/Project/HapBuild"/>
                 <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmonyApplication.pem" desc="Provided by code/Project/HapBuild"/>

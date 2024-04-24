@@ -113,20 +113,6 @@ struct Index {
       title: '4',
       list: [
         {
-          text: $r('app.string.StartAbilityByType'),
-          rType: 'arrow',
-          callback: () => {
-            logger.info(`${TAG} startAbilityByType`);
-            this.context.startAbilityByType('share', {}, {
-              onError: (code: number, name: string, message: string) => {
-                logger.info(`${TAG} startAbilityByType, code:${code} name:${name} message:${message}`);
-              }
-            }, (err) => {
-              logger.error(`${TAG} startAbilityByType fail, err: ${JSON.stringify(err)}`);
-            });
-          }
-        },
-        {
           text: $r('app.string.StartAbilityAsCaller'),
           rType: 'arrow',
           callback: () => {
