@@ -1,4 +1,4 @@
-# 任务延时调度
+# 延迟任务调度
 
 ### 介绍
 
@@ -43,14 +43,14 @@ entry/src/main/ets/
 |---util
 |   |---Logger.ets                          // 日志文件
 |---WorkSchedulerAbility
-|   |---WorkSchedulerAbility.ets            // 延时任务触发后的回调
+|   |---WorkSchedulerAbility.ets            // 延迟任务触发后的回调
 ```
 
 ### 具体实现
 
-* 设置延时任务、下载更新包、保存更新包、发送通知、安装更新包的功能接口都封装在WorkSchedulerSystem中，
+* 设置延迟任务、下载更新包、保存更新包、发送通知、安装更新包的功能接口都封装在WorkSchedulerSystem中，
   源码参考：[WorkSchedulerSystem.ets](entry/src/main/ets/feature/WorkSchedulerSystem.ets)
-  * 设置延时任务：在运行示例时会在[MainAbility.ets](entry/src/main/ets/MainAbility/MainAbility.ets)
+  * 设置延迟任务：在运行示例时会在[MainAbility.ets](entry/src/main/ets/MainAbility/MainAbility.ets)
   通过WorkSchedulerSystem.startUpdateSample()方法调用workScheduler.startWork()建立任务；
   * 下载更新包：当任务条件满足后，会在[WorkSchedulerAbility.ets](entry/src/main/ets/WorkSchedulerAbility/WorkSchedulerAbility.ets)
   通过WorkSchedulerSystem.getNewHap()方法调用http.createHttp().request()接口下载需要的文件；
