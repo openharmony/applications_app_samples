@@ -4,27 +4,25 @@
 
 本示例使用  [ohos.app.ability.appManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-appManager-sys.md), [UIAbilityContext](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md) , [UIExtensionContentSession](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession-sys.md) 等接口实现了以下功能：
 
-1. 提供查询单个应用是否正在运行接口;
+1. 提供查询单个应用是否正在运行接口；
 
-2. 新增系统接口请求创建模系统或模应用的UIExtension;
+2. 新增系统接口请求创建模系统或模应用的UIExtension；
 
 3. UIExtension支持同步返回数据的能力；
 
-4. 提供隐式启动UIExtension接口;
-
-6. UIExtension提供StartAsCaller接口;
+4. UIExtension提供StartAsCaller接口。
 
 ### 效果预览
 
-|                              主页面                               |                           弹出状态Toast                            |                             同步数据页面                             |                         UIExtension启动页                         |
-|:--------------------------------------------------------------:|:--------------------------------------------------------------:|:--------------------------------------------------------------:|:--------------------------------------------------------------:|
-| <img src="./screenshots/Screenshot_20231208091732705.jpeg"  /> | <img src="./screenshots/Screenshot_20231208091801521.jpeg"  /> | <img src="./screenshots/Screenshot_20231208091750553.jpeg"  /> | <img src="./screenshots/Screenshot_20231208091848484.jpeg"  /> |
+|                       主页面                        |                       弹出状态Toast                       |                        同步数据页面                        |                     UIExtension启动页                     |
+|:------------------------------------------------:|:-----------------------------------------------------:|:----------------------------------------------------:|:------------------------------------------------------:|
+| <img src="screenshots/index.jpeg" width="270" /> | <img src="screenshots/app_status.jpeg" width="270" /> | <img src="screenshots/sync_data.jpeg" width="270" /> | <img src="screenshots/uiextension.jpeg" width="270" /> |
 
 使用说明
 
 1.应用查询单个应用是否正在运行的能力
 
-点击''查询应用状态'的ListItem，弹出Toast提示'当前应用运行中'
+点击'查询应用状态'的ListItem，弹出Toast提示'当前应用运行中'
 
 2.UIExtension创建模系统或模应用
 
@@ -33,16 +31,12 @@
 3.UIExtension支持同步返回数据的能力
 
 点击'同步发送数据'的ListItem,进入到新页面再次点击'同步发送数据'的ListItem，UIAbility部分弹出Toast提示'HomeAbility
-onReceive data from UIExtensionAbility',UIExtensionAbility 部分弹出Toast提示'UIExtensionAbility onReceive data from
+onReceive data from UIExtensionAbility'，UIExtensionAbility 部分弹出Toast提示'UIExtensionAbility onReceive data from
 HomeAbility'
 
-4.UIExtension提供隐式启动startAbilityByType的能力
+4.UIExtension提供startAbilityAsCaller的能力
 
-点击启动启动UIExtensionAbility'的ListItem，进入到新页面，在新页面点击'启动AbilityByType'的ListItem，应用启动NewUIExtAbility
-
-5.UIExtension提供startAbilityAsCaller的能力
-
-点击启动启动UIExtensionAbility'的ListItem，进入到新页面，在新页面点击'启动AbilityAsCaller'的ListItem，应用启动NewAbility
+点击启动'启动UIExtensionAbility'的ListItem，进入到新页面，在新页面点击'启动AbilityAsCaller'的ListItem，应用启动NewAbility
 
 ### 工程目录
 
@@ -78,9 +72,6 @@ entry/src/main/ets/
   AsyncCallback<void>): void方法拉起UIExtensionAbility， 源码参考：[Index.ets](entry/src/main/ets/pages/Index.ets)
 - UIExtension支持同步返回数据的能力，通过UIExtensionProxy调用sendSync(data: { [key: string]: Object }): { [key: string]:
   Object }接口实现，源码参考：[SendSync.ets](entry/src/main/ets/pages/SendSync.ets)
-- UIExtension提供隐式启动startAbilityByType的能力，通过UIExtensionContentSession调用startAbilityByType(type: string,
-  wantParam: Record<string, Object>, abilityStartCallback: AbilityStartCallback, callback: AsyncCallback<void>):
-  void接口实现 ，源码参考：[Ext.ets](entry/src/main/ets/pages/Ext.ets)
 - UIExtension提供startAbilityAsCaller的能力,通过UIExtensionContentSession调用startAbilityAsCaller(want: Want, callback:
   AsyncCallback<void>): void接口实现，源码参考：[Ext.ets](entry/src/main/ets/pages/Ext.ets)
 
@@ -90,40 +81,7 @@ entry/src/main/ets/
 
 ### 依赖
 
-以下依赖主要针对UIExtension提供隐式启动startAbilityByType的功能使用
-
-1.将uiextension_picker_config.json配置文件导出到本地
-
-```
-hdc_std file recv system/etc/uiextension_picker_config.json
-```
-
-2.修改uiextension_picker_config.json配置文件
-
-json中需要配置的字段内容：
-
-```
-{
-    "uiextension":[
-        {
-            "type": "share",
-            "typePicker": "sysPicker/share"
-        }
-    ]
-}
-```
-
-3.将uiextension_picker_config.json文件导入到 /system/etc路径下
-
-```
-hdc_std shell mount -o rw,remount /
-
-hdc_std file send uiextension_picker_config.json /system/etc
-
-hdc_std shell sync
-
-hdc_std shell reboot
-```
+不涉及。
 
 ### 约束与限制
 
