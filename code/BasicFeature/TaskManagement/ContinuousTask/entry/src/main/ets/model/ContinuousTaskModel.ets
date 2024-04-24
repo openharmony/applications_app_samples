@@ -23,6 +23,7 @@ const TAG: string = 'ContinuousTaskModel'
 
 export default class ContinuousTaskModel {
   private context: common.UIAbilityContext
+  private list: Array<string> = ["audioPlayback"];
 
   constructor(context: common.UIAbilityContext) {
     this.context = context
@@ -43,16 +44,20 @@ export default class ContinuousTaskModel {
     }
 
     wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-      try {
-        backgroundTaskManager.startBackgroundRunning(this.context,
-        backgroundTaskManager.BackgroundMode.AUDIO_PLAYBACK, wantAgentObj).then(() => {
-          Logger.info(TAG, 'startBackgroundRunning succeeded');
-        }).catch((err: BusinessError) => {
-          Logger.info(TAG, `startBackgroundRunning failed Cause:  ${JSON.stringify(err)}`);
-        })
-      } catch (error) {
+      backgroundTaskManager.startBackgroundRunning(this.context, this.list, wantAgentObj).then(() => {
+        Logger.info(TAG, 'startBackgroundRunning succeeded');
+        this.list = ["audioPlayback","audioRecording"]
+        setTimeout(()=>{
+          backgroundTaskManager.updateBackgroundRunning(this.context, this.list).then(() => {
+            Logger.info(TAG, 'Operation updateBackgroundRunning succeeded');
+          }).catch((error: BusinessError) => {
+            Logger.info(TAG, `Operation updateBackgroundRunning failed. code is ${error.code} message
+            is ${error.message}`);
+          });
+        },5000)
+      }).catch((error: BusinessError) => {
         Logger.error(TAG, `Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-      }
+      });
     });
   }
 

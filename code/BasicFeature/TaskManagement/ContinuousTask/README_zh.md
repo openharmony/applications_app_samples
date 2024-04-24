@@ -56,9 +56,9 @@ entry/src/main/ets/
 
 1.本示例仅支持标准系统上运行,支持设备：RK3568；
 
-2.本示例已适配API version 10版本SDK，版本号：4.0 Release；
+2.本示例已适配API version 12版本SDK，版本号：4.1 Release；
 
-3.本示例需要使用DevEco Studio 版本号(4.0 Release)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 版本号(4.1 Release)及以上版本才可编译运行。
 
 ### 下载
 
