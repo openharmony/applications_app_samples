@@ -2,8 +2,8 @@
 
 ### 介绍
 
-本示例主要展示了音频通话相关的功能，使用[@ohos.multimedia.audio](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/reference/apis/js-apis-audio.md/)
-、[@ohos.net.socket](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/reference/apis/js-apis-socket.md/)
+本示例主要展示了音频通话相关的功能，使用[@ohos.multimedia.audio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-audio-kit/js-apis-audio.md)
+、[@ohos.net.socket](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-network-kit/js-apis-socket.md)
 等接口，实现音频录制和渲染，音频数据网络传输等功能
 
 ### 效果预览
@@ -23,11 +23,12 @@
 - 服务端地址在[socket.js](./script/socket.js)第19行修改
 - 客户端地址在[BufferModel.ets](./entry/src/main/ets/model/BufferModel.ets)，将serverIp替换为服务端IP地址即可
   
+
 ![img.png](screenshots/img2.png)
 
 3.仅体验语音通话功能时，可以两台设备都手动启动语音通话应用，分别点击接听按钮进入通话页面
 
-4.体验场景所有功能时，需要两台设备启动[聊天应用](../../Connectivity/StageSocket/),通过左下方语音按钮发起语音通话
+4.体验场景所有功能时，需要两台设备启动[聊天应用](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/StageSocket),通过左下方语音按钮发起语音通话
 
 5.一方发起语音通话请求，对方选择同意或拒绝
 
@@ -82,11 +83,11 @@
 + 音频录制：
     + [CapturerWorker](entry/src/main/ets/workers/CapturerWorker.ts)创建音频采集的子线程
     + [AudioCapturerHelper](./entry/src/main/ets/audio/AudioCapturerHelper.ts)
-      使用@ohos.multimedia.audio.AudioCapturer完成音频采集 [具体使用参考](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/media/using-audiocapturer-for-recording.md/)
+      使用@ohos.multimedia.audio.AudioCapturer完成音频采集 [具体使用参考](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/media/using-audiocapturer-for-recording.md/)
 + 音频播放：
     + [RendererWorker](entry/src/main/ets/workers/RendererWorker.ts)创建音频播放的子线程
     + [AudioRendererHelper](./entry/src/main/ets/audio/AudioCapturerHelper.ts)
-      使用@ohos.multimedia.audio.AudioRenderer完成音频播放 [具体使用参考](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/media/using-audiorenderer-for-playback.md/)
+      使用@ohos.multimedia.audio.AudioRenderer完成音频播放 [具体使用参考](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/media/using-audiorenderer-for-playback.md/)
 + 麦克风与扬声器以及通话场景控制：
     + 代码[AudioManagerModel](entry/src/main/ets/model/AudioManagerModel.ets)
     + 使用@ohos.multimedia.audio.AudioManager的setAudioScene接口切换通话场景
@@ -106,7 +107,7 @@
 ### 依赖
 
 1. windows上启动node socket服务，模拟流媒体服务，音频数据使用pcm传输，未编解码. [代码](./script/socket.js)
-2. 需要使用[聊天示例](../../Connectivity/StageSocket/)启动音频通话功能
+2. 需要使用[聊天示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/StageSocket)启动音频通话功能
 
 ![main](screenshots/img.png)
 
@@ -119,14 +120,14 @@
 3.本示例需要使用DevEco Studio 版本号(4.0 Release)及以上版本才可编译运行。
 
 4.本示例涉及使用系统接口@ohos.multimedia.audio：setAudioScene，需要手动替换Full
-  SDK才能编译通过，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)
+  SDK才能编译通过，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)
 
 5.本示例所配置的权限为system_basic级别(
-  相关权限级别可通过[权限定义列表](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/permission-list.md/)
+  相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md)
   查看),需要手动配置对应级别的权限签名(
-  具体操作可查看[自动化签名方案](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/))
+  具体操作可查看[自动化签名方案](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-overview.md))
 
-6.本示例有使用系统特性api，需要手动配置对应级别的应用类型("app-feature": "hos_system_app")。具体可参考profile配置文件[bundle-info对象内部结构](https://gitee.com/openharmony/docs/blob/eb73c9e9dcdd421131f33bb8ed6ddc030881d06f/zh-cn/application-dev/security/app-provision-structure.md#bundle-info%E5%AF%B9%E8%B1%A1%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84)
+6.本示例有使用系统特性api，需要手动配置对应级别的应用类型("app-feature": "hos_system_app")。具体可参考profile配置文件[bundle-info对象内部结构](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/app-provision-structure.md#bundle-info%E5%AF%B9%E8%B1%A1%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84)
 
 ### 下载
 
@@ -135,7 +136,7 @@
 ```
 git init
 git config core.sparsecheckout true
-echo code\BasicFeature\Media\VoiceCallDemo\ > .git/info/sparse-checkout
+echo code\SystemFeature\Media\VoiceCallDemo\ > .git/info/sparse-checkout
 git remote add origin https：//gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
