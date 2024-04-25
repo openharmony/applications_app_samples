@@ -235,8 +235,7 @@ void NativeImageAdaptor::AttachBuffer()
     }
 
     NativeWindowBuffer* buffer = bufferCache_.front();
-    int ret = OH_NativeWindow_NativeWindowDetachBuffer(nativeWindowCache_, buffer);
-    ret = OH_NativeWindow_NativeWindowAttachBuffer(nativeWindow_, buffer);
+    int ret = OH_NativeWindow_NativeWindowAttachBuffer(nativeWindowCache_, buffer);
     if (ret != 0) {
         LOGE("OH_NativeWindow_NativeWindowAttachBuffer fail");
         return;
@@ -254,8 +253,7 @@ void NativeImageAdaptor::DettachBuffer()
     }
     
     NativeWindowBuffer *buffer = bufferAttached_.front();
-    int ret = OH_NativeWindow_NativeWindowDetachBuffer(nativeWindow_, buffer);
-    ret = OH_NativeWindow_NativeWindowAttachBuffer(nativeWindowCache_, buffer);
+    int ret = OH_NativeWindow_NativeWindowDetachBuffer(nativeWindowCache_, buffer);
     if (ret != 0) {
         LOGE("OH_NativeWindow_NativeWindowDetachBuffer fail");
         return;
@@ -362,6 +360,7 @@ void NativeImageAdaptor::ProduceBuffer(uint32_t value, OHNativeWindow *InNativeW
     GetBufferMapPlanes(buffer);
     
     if (InNativeWindow == nativeWindowCache_) {
+        OH_NativeWindow_NativeWindowDetachBuffer(nativeWindowCache_, buffer);
         bufferCache_.push(buffer);
         return;
     }
