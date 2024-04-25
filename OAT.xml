@@ -338,6 +338,33 @@ Note:If the text contains special characters, please escape them according to th
         <filteritem type="filepath" name="code/SystemFeature/Ability/AbilityFeatureSystem/screenshots/app_status.jpeg" desc="Provided by code/SystemFeature/Ability/AbilityFeatureSystem"/>
         <filteritem type="filepath" name="code/SystemFeature/Ability/AbilityFeatureSystem/screenshots/sync_data.jpeg" desc="Provided by code/SystemFeature/Ability/AbilityFeatureSystem"/>
         <filteritem type="filepath" name="code/SystemFeature/Ability/AbilityFeatureSystem/screenshots/uiextension.jpeg" desc="Provided by code/SystemFeature/Ability/AbilityFeatureSystem"/>
+        <filteritem type="filepath" name="code/SystemFeature/Media/AVSession/MediaController/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/Media/AVSession/MediaController"/>
+        <filteritem type="filepath" name="code/SystemFeature/Media/AVSession/MediaController/entry/src/main/resources/base/media/background.png" desc="Provided by code/SystemFeature/Media/AVSession/MediaController"/>
+        <filteritem type="filepath" name="code/SystemFeature/Media/AVSession/MediaController/entry/src/main/resources/base/media/ic_pause.png" desc="Provided by code/SystemFeature/Media/AVSession/MediaController"/>
+        <filteritem type="filepath" name="code/SystemFeature/Media/AVSession/MediaController/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/Media/AVSession/MediaController"/>
+        <filteritem type="filepath" name="code/SystemFeature/Media/AVSession/MediaController/entry/src/main/resources/base/media/list_activate.png" desc="Provided by code/SystemFeature/Media/AVSession/MediaController"/>
+        <filteritem type="filepath" name="code/SystemFeature/Media/AVSession/MediaController/entry/src/main/resources/base/media/list_none.png" desc="Provided by code/SystemFeature/Media/AVSession/MediaController"/>
+        <filteritem type="filepath" name="code/SystemFeature/Media/AVSession/MediaController/entry/src/main/resources/base/media/lyric_activate.png" desc="Provided by code/SystemFeature/Media/AVSession/MediaController"/>
+        <filteritem type="filepath" name="code/SystemFeature/Media/AVSession/MediaController/entry/src/main/resources/base/media/lyric_none.png" desc="Provided by code/SystemFeature/Media/AVSession/MediaController"/>
+        <filteritem type="filepath" name="code/SystemFeature/Media/AVSession/MediaController/entry/src/main/resources/base/media/next.png" desc="Provided by code/SystemFeature/Media/AVSession/MediaController"/>
+        <filteritem type="filepath" name="code/SystemFeature/Media/AVSession/MediaController/entry/src/main/resources/base/media/no_music.png" desc="Provided by code/SystemFeature/Media/AVSession/MediaController"/>
+        <filteritem type="filepath" name="code/SystemFeature/Media/AVSession/MediaController/entry/src/main/resources/base/media/playmusic.png" desc="Provided by code/SystemFeature/Media/AVSession/MediaController"/>
+        <filteritem type="filepath" name="code/SystemFeature/Media/AVSession/MediaController/entry/src/main/resources/base/media/previous.png" desc="Provided by code/SystemFeature/Media/AVSession/MediaController"/>
+        <filteritem type="filepath" name="code/SystemFeature/Media/AVSession/MediaController/entry/src/main/resources/base/media/stopmusic.png" desc="Provided by code/SystemFeature/Media/AVSession/MediaController"/>
+        <filteritem type="filepath" name="code/SystemFeature/Media/AVSession/MediaController/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/Media/AVSession/MediaController"/>
+        <filteritem type="filepath" name="code/SystemFeature/Media/AVSession/MediaController/screenshots/device/index.jpeg" desc="Provided by code/SystemFeature/Media/AVSession/MediaController"/>
+        <filteritem type="filepath" name="code/SystemFeature/Media/AVSession/MediaController/screenshots/device/showLyric.jpeg" desc="Provided by code/SystemFeature/Media/AVSession/MediaController"/>
+        <filteritem type="filepath" name="code/SystemFeature/Media/AVSession/MediaController/screenshots/device/showQueueItem.jpeg" desc="Provided by code/SystemFeature/Media/AVSession/MediaController"/>
+        <filteritem type="filepath" name="code/SystemFeature/Media/VoiceCallDemo/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/Media/VoiceCallDemo"/>
+        <filteritem type="filepath" name="code/SystemFeature/Media/VoiceCallDemo/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/Media/VoiceCallDemo"/>
+        <filteritem type="filepath" name="code/SystemFeature/Media/VoiceCallDemo/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/Media/VoiceCallDemo"/>
+        <filteritem type="filepath" name="code/SystemFeature/Media/VoiceCallDemo/screenshots/devices/float_win.jpeg" desc="Provided by code/SystemFeature/Media/VoiceCallDemo"/>
+        <filteritem type="filepath" name="code/SystemFeature/Media/VoiceCallDemo/screenshots/devices/incoming.jpeg" desc="Provided by code/SystemFeature/Media/VoiceCallDemo"/>
+        <filteritem type="filepath" name="code/SystemFeature/Media/VoiceCallDemo/screenshots/devices/ring_up.jpeg" desc="Provided by code/SystemFeature/Media/VoiceCallDemo"/>
+        <filteritem type="filepath" name="code/SystemFeature/Media/VoiceCallDemo/screenshots/devices/voice.jpeg" desc="Provided by code/SystemFeature/Media/VoiceCallDemo"/>
+        <filteritem type="filepath" name="code/SystemFeature/Media/VoiceCallDemo/screenshots/img.png" desc="Provided by code/SystemFeature/Media/VoiceCallDemo"/>
+        <filteritem type="filepath" name="code/SystemFeature/Media/VoiceCallDemo/screenshots/img1.png" desc="Provided by code/SystemFeature/Media/VoiceCallDemo"/>
+        <filteritem type="filepath" name="code/SystemFeature/Media/VoiceCallDemo/screenshots/img2.png" desc="Provided by code/SystemFeature/Media/VoiceCallDemo"/>
 		<filteritem type="filepath" name="code/BasicFeature/ArkTSCard/ArkTSCard/libs/ArkTSUser.hap" desc="Provided by code/BasicFeature/ArkTSCard/ArkTSCard"/>
         <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmonyProfileDebug.pem" desc="Provided by code/Project/HapBuild"/>
                 <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmonyApplication.pem" desc="Provided by code/Project/HapBuild"/>
