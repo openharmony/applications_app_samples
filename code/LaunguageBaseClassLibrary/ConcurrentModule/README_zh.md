@@ -40,6 +40,8 @@
    6. 点击**取消任务**按钮，会取消最后一个未执行的task任务。需要注意的是，只有当任务数大于最大线程数且任务未开始执行时才可以取消成功。
 
    7. 点击**清除**按钮，清除字符串。
+   
+   8. 点击**传递SendableClass**按钮，内存共享方式传递SendableClass。
 
 3. 点击**拷贝文件**按钮进入文件拷贝界面：
 
@@ -79,6 +81,8 @@ entry/src/main/ets/
   * 清除：把字符串输入框和结果都清除。
   * 添加至任务组：调用addTask()接口，将当前任务添加至任务组。
 
+* 内存共享的实现在taskpool页面调用，源码参考[TaskPoolTab.ets](entry/src/main/ets/component/TaskPoolTab.ets)
+
 * 批量拷贝文件的功能封装在MyWorker，源码参考：[MyWorker.ts](ets/src/main/ets/fileFs/MyWorker.ts)
 
   * 拷贝文件：在[CopyFile.ets](entry/src/main/ets/pages/CopyFile.ets)
@@ -97,9 +101,9 @@ entry/src/main/ets/
 
 1.本示例仅支持标准系统上运行, 支持设备：RK3568;。
 
-2.本示例为Stage模型，支持API10版本SDK，版本号：4.0.10.13，镜像版本号：OpenHarmony 4.1.5.2。
+2.本示例为Stage模型，支持API12版本SDK，版本号：5.0.0.21，镜像版本号：OpenHarmony 5.0.0.21。
 
-3.本示例需要使用DevEco Studio 4.0 Release (Build Version: 4.0.0.600, built on October 17, 2023)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio NEXT Developer Preview1 (Build Version: 4.1.3.501, built on February 5, 2024)及以上版本才可编译运行。
 
 ### 下载
 

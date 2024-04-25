@@ -41,6 +41,8 @@ taskpool:
 
 7. Click the **Clear** button to clear the string.
 
+8. Click the **Pass SendableClass** button to transfer SendableClass through memory sharing.
+
 ### Constraints and Limitations
 
 1. This example only supports running on a standard system.

@@ -91,6 +91,10 @@
     {
       "name": "workerLogChooseFile",
       "value": "Please select a file"
+    },
+    {
+      "name": "transferSendableClass",
+      "value": "transfer SendableClass"
     }
   ]
 }
