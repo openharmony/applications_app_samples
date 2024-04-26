@@ -31,7 +31,7 @@ const DEFAULT_VIDEO_PROFILE = {
   audioSampleRate: 48000,
   fileFormat: media.ContainerFormatType.CFT_MPEG_4,
   videoBitrate: 2000000,
-  videoCodec: media.CodecMimeType.VIDEO_MPEG4,
+  videoCodec: media.CodecMimeType.VIDEO_AVC,
   videoFrameWidth: 0,
   videoFrameHeight: 0,
   videoFrameRate: 30
