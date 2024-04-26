@@ -152,6 +152,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/BasicFeature/TaskManagement/WorkScheduler/signTool/OpenHarmony.p12" desc="Provided by code/BasicFeature/TaskManagement/WorkScheduler"/>
                 <filteritem type="filepath" name="code/BasicFeature/TaskManagement/WorkScheduler/signTool/OpenHarmonyApplication.pem" desc="Provided by code/BasicFeature/TaskManagement/WorkScheduler"/>
                 <filteritem type="filepath" name="code/BasicFeature/TaskManagement/WorkScheduler/signTool/OpenHarmonyProfileRelease.pem" desc="Provided by code/BasicFeature/TaskManagement/WorkScheduler"/>
+                <filteritem type="filepath" name="code/BasicFeature/TaskManagement/WorkScheduler/signTool/OpenHarmonyProfileDebug.pem" desc="Provided by code/BasicFeature/TaskManagement/WorkScheduler"/>
                 <filteritem type="filepath" name="code/BasicFeature/TaskManagement/WorkScheduler/signTool/app_packing_tool.jar" desc="Provided by code/BasicFeature/TaskManagement/WorkScheduler"/>
                 <filteritem type="filepath" name="code/BasicFeature/TaskManagement/WorkScheduler/signTool/hap-sign-tool.jar" desc="Provided by code/BasicFeature/TaskManagement/WorkScheduler"/>
                 <filteritem type="filepath" name="code/BasicFeature/Connectivity/UploadAndDownLoad/environment/hfs.exe" desc="Provided by hfs"/>
@@ -365,6 +366,13 @@ Note:If the text contains special characters, please escape them according to th
         <filteritem type="filepath" name="code/SystemFeature/Media/VoiceCallDemo/screenshots/img.png" desc="Provided by code/SystemFeature/Media/VoiceCallDemo"/>
         <filteritem type="filepath" name="code/SystemFeature/Media/VoiceCallDemo/screenshots/img1.png" desc="Provided by code/SystemFeature/Media/VoiceCallDemo"/>
         <filteritem type="filepath" name="code/SystemFeature/Media/VoiceCallDemo/screenshots/img2.png" desc="Provided by code/SystemFeature/Media/VoiceCallDemo"/>
+        <filteritem type="filepath" name="code/SystemFeature/Media/VoiceCallDemo/entry/src/main/resources/rawfile/wechat_voice_ring.mp3" desc="Provided by code/SystemFeature/Media/VoiceCallDemo"/>
+        <filteritem type="filepath" name="code/SystemFeature/Telephony/Call/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/Telephony/Call"/>
+        <filteritem type="filepath" name="code/SystemFeature/Telephony/Call/entry/src/main/resources/base/media/call_off.png" desc="Provided by code/SystemFeature/Telephony/Call"/>
+        <filteritem type="filepath" name="code/SystemFeature/Telephony/Call/entry/src/main/resources/base/media/call_on.png" desc="Provided by code/SystemFeature/Telephony/Call"/>
+        <filteritem type="filepath" name="code/SystemFeature/Telephony/Call/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/Telephony/Call"/>
+        <filteritem type="filepath" name="code/SystemFeature/Telephony/Call/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/Telephony/Call"/>
+        <filteritem type="filepath" name="code/SystemFeature/Telephony/Call/screenshots/device/call.png" desc="Provided by code/SystemFeature/Telephony/Call"/>
 		<filteritem type="filepath" name="code/BasicFeature/ArkTSCard/ArkTSCard/libs/ArkTSUser.hap" desc="Provided by code/BasicFeature/ArkTSCard/ArkTSCard"/>
         <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmonyProfileDebug.pem" desc="Provided by code/Project/HapBuild"/>
                 <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmonyApplication.pem" desc="Provided by code/Project/HapBuild"/>
@@ -418,6 +426,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/BasicFeature/Notification/CustomCommonEvent/lib/CardEvent-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/BasicFeature/Ads/OAIDSample/lib/ResetOAID-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/Solutions/Tools/FlipClock/lib/Brightness-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/SystemFeature/Media/VoiceCallDemo/entry/src/main/resources/rawfile/wechat_voice_ring.mp3" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/BasicFeature/DataManagement/UDMF/UniformTypeDescriptor/UTDType/entry/src/main/resources/rawfile/arkdata/utd/utd.json5" desc="二进制文件，无需添加License头"/>
             </filefilter>
             <filefilter name="copyrightPolicyFilter" desc="Copyright文件头校验策略的过滤条件" >
@@ -448,6 +457,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/BasicFeature/Notification/CustomCommonEvent/lib/CardEvent-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/BasicFeature/Ads/OAIDSample/lib/ResetOAID-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/Solutions/Tools/FlipClock/lib/Brightness-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/SystemFeature/Media/VoiceCallDemo/entry/src/main/resources/rawfile/wechat_voice_ring.mp3" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/BasicFeature/DataManagement/UDMF/UniformTypeDescriptor/UTDType/entry/src/main/resources/rawfile/arkdata/utd/utd.json5" desc="二进制文件，无需添加版权头"/>
             </filefilter>
         </filefilterlist>
