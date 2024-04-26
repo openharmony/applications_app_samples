@@ -14,16 +14,15 @@
  */
 
 import UIAbility from '@ohos.app.ability.UIAbility'
-import notification from '@ohos.notification'
+import notification from '@ohos.notificationManager'
 import window from '@ohos.window'
 import Logger from '../util/Logger'
 
 const TAG: string = 'MainAbility'
 
 export default class MainAbility extends UIAbility {
-  async onCreate(want, launchParam) {
+  onCreate(want, launchParam) {
     Logger.info(TAG, 'onCreate')
-    await notification.requestEnableNotification()
   }
 
   onDestroy() {
@@ -33,6 +32,11 @@ export default class MainAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
     Logger.info(TAG, 'onWindowStageCreate')
+    notification.requestEnableNotification().then(() => {
+      Logger.info(TAG, `requestEnableNotification success`);
+    }).catch((err) => {
+      Logger.error(TAG, `requestEnableNotification fail: ${JSON.stringify(err)}`);
+    });
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
         Logger.error(TAG, `Failed to load the content. Cause: ${JSON.stringify(err)}`)
