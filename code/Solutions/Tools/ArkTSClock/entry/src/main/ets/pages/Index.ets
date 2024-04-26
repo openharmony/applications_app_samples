@@ -377,8 +377,4 @@ struct Clock {
     clearInterval(this.intervalId)
     Logger.info(TAG, `time93:${new Date(new Date().getTime())}`)
   }
-
-  aboutToDisappear(){
-    clearInterval(this.intervalId)
-  }
 }
