@@ -113,7 +113,7 @@ export struct TaskPoolTab {
         .padding({ top: "8vp" , left: "16vp", right: "16vp", bottom: "21vp" })
         .onChange((value: string) => {
           this.taskPoolInPutStr = value;
-          this.taskPoolInPutArr = this.taskPoolInPutStr.trim().split(' ');
+          this.taskPoolInPutArr = this.taskPoolInPutStr.trim().split(',');
           this.taskPoolOutPutStr = '';
         })
 
@@ -294,7 +294,7 @@ export struct TaskPoolTab {
       let result: string[] = await taskpool.execute(task) as string[];
       this.taskPoolOutPutStr += "Task executed successfully: "+ result.toString()+ "\n";
     } catch(e) {
-      this.taskPoolOutPutStr += "Task executed failed: "+ e.message + "\n";
+      this.taskPoolOutPutStr += "Task executed failed: "+  (e as BusinessError).toString() + "\n";
     }
     this.gStack.pop();
   }
