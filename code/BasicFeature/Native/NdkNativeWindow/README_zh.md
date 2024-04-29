@@ -20,8 +20,8 @@
 3. 点击页面底部“produce buffer”按钮，NativeWindow将生产数据并发送给NativeImage，页面展示了生产buffer的次数；
 4. 点击页面底部“update available buffer count”按钮，将展示NativeImage收到的可用帧回调次数。
 5. 点击页面底部“update bufferqueuesize, attachedbuffer, cachebuffer"按钮，将更新三项数值，分别是NativeWindow的buffer队列容量，attach到NativeWindow的buffer数量，缓存区buffer数量。 
-6. 点击页面底部”attachbuffer“, 在cachebuffer大于0时将buffer添加到nativewindow中，bufferqueuesize和attachedbuffer数值加1，cachebuffer数值减1；cachebuffer为0时不做处理。(需要点第五步按钮更新数值)
-7. 点击页面底部”detachbuffer", 在attachedbuffer大于0时将buffer添加到缓存区cachebuffer中，bufferqueuesize和attachedbuffer数值减1，cachebuffer数值加1； attachedbuffer为0时不做处理。(需要点第五步按钮更新数值)
+6. 点击页面底部”attachbuffer“, 在cachebuffer大于0时将buffer添加到nativewindow中，attachedbuffer数值加1，cachebuffer数值减1；cachebuffer为0时不做处理。(需要点第五步按钮更新数值)
+7. 点击页面底部”detachbuffer", 在attachedbuffer大于0时将buffer添加到缓存区cachebuffer中，attachedbuffer数值减1，cachebuffer数值加1； attachedbuffer为0时不做处理。(需要点第五步按钮更新数值)
 
 ### 工程目录
 
@@ -44,7 +44,12 @@
 
 ### 具体实现
 
-通过在IDE中创建Native c++ 工程，在c++代码中定义对外接口为DrawColor，在js侧调用该接口可改变窗口颜色；从NativeImage中创建NativeWindow，在c++代码中定义对外接口为ProduceBuffer，js调用该接口后，   NativeWindow会生产buffer并将该buffer flush给NativeImage，之后NativeImage将收到可用帧的回调，js侧调用GetAvailableCount接口，可以获取回调触发次数，并展示在界面上，正常情况下FlushBuffer的次数和可用帧回调触发次数一致。在c++代码中定义对外接口AttachBuffer，js侧调用该接口后，当缓存区cachebuffer数量大于0时，会添加1个cachebuffer到NativeWindow中，NativeWindow的bufferqueuesize数量加1，cachebuffer数量为0时不操作；js侧调用DetachBuffer接口，当NativeWindow的attachedbuffer数量大于0时，会将NativeWindow中的buffer移除，放置到缓存区中，NativeWindow的buffersizequeue数量减1，当attachedbuffer为0时不操作；js侧调用GetBufferQueueSize、GetAttachBufferCount、GetCacheBufferCount接口时，将获取当前NativeWindow的bufferqueue
+1.通过在IDE中创建Native c++ 工程，在c++代码中定义对外接口为DrawColor，在js侧调用该接口可改变窗口颜色；
+2.从NativeImage中创建NativeWindow，在c++代码中定义对外接口为ProduceBuffer，js调用该接口后，NativeWindow会生产buffer并将该buffer flush给NativeImage，之后NativeImage将收到可用帧的回调;
+3.js侧调用GetAvailableCount接口，可以获取回调触发次数，并展示在界面上，正常情况下FlushBuffer的次数和可用帧回调触发次数一致;
+4.在c++代码中定义对外接口AttachBuffer，js侧调用该接口后，当缓存区cachebuffer数量大于0时，会添加1个cachebuffer到NativeWindow中，cachebuffer数量为0时不操作；
+5.js侧调用DetachBuffer接口，当NativeWindow的attachedbuffer数量大于0时，会将NativeWindow中的buffer移除，放置到缓存区中，当attachedbuffer为0时不操作；
+6.js侧调用GetBufferQueueSize、GetAttachBufferCount、GetCacheBufferCount接口时，将获取当前NativeWindow的bufferqueue容量、已经attach到nativewindow的buffer数量，缓存区buffer数量
 
 源码参考：[cpp目录](entry/src/main/cpp)下的文件。
 
