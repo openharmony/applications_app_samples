@@ -44,6 +44,21 @@ export default function abilityTest() {
     })
 
     /**
+     * 获取权限
+     */
+    it('RequestPermission_001', 0, async () => {
+      hilog.info(0x0000, 'testTag', 'RequestPermission begin');
+      let driver = Driver.create();
+      await driver.delayMs(2000);
+      // 获取发送通知权限
+      hilog.info(0x0000, 'testTag', 'RequestPermission requestPermission');
+      await driver.assertComponentExist(ON.text('允许'));
+      let btnStart = await driver.findComponent(ON.text('允许'));
+      await btnStart.click();
+      hilog.info(0x0000, 'testTag', 'RequestPermission end');
+    })
+
+    /**
      * 进入时钟页面
      */
     it('ToIndex_001', 0, async function () {
@@ -197,10 +212,15 @@ export default function abilityTest() {
      */
     it('ToSetPage_001', 0, async function () {
       hilog.info(0x0000, 'testTag', 'ToSetPage_001 begin');
+      // 底部tabBar的设置菜单
       await DRIVER.assertComponentExist(ON.text('设置'));
       let setBtn = await DRIVER.findComponent(ON.text('设置'));
       await setBtn.click();
       await DRIVER.delayMs(1000);
+      // 设置页面上的设置按钮
+      await DRIVER.assertComponentExist(ON.id('Setting'));
+      let settingBtn = await DRIVER.findComponent(ON.id('Setting'));
+      await settingBtn.click();
       await DRIVER.assertComponentExist(ON.text('全屏'));
       await DRIVER.assertComponentExist(ON.text('屏幕常亮'));
       await DRIVER.assertComponentExist(ON.text('亮度'));
