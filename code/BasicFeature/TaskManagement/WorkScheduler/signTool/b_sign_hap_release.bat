@@ -12,5 +12,5 @@
 :: limitations under the License.
 
 @echo off
-java -jar hap-sign-tool.jar sign-app -keyAlias "oh-app1-key-v1" -signAlg "SHA256withECDSA" -mode "localSign" -appCertFile "OpenHarmonyApplication.pem" -profileFile "ohos_provision_release.p7b" -inFile "../entry/build/default/outputs/default/entry-default-unsigned.hap" -keystoreFile "OpenHarmony.p12" -outFile "../entry/build/default/outputs/default/entry-signed-release.hap" -keyPwd "123456" -keystorePwd "123456"
+java -jar hap-sign-tool.jar sign-app -keyAlias "openharmony application release" -signAlg "SHA256withECDSA" -mode "localSign" -appCertFile "OpenHarmonyApplication.pem" -profileFile "app1-profile.p7b" -inFile "../entry/build/default/outputs/default/entry-default-unsigned.hap" -keystoreFile "OpenHarmony.p12" -outFile "../entry/build/default/outputs/default/entry-signed-release.hap" -keyPwd "123456" -keystorePwd "123456
 pause
