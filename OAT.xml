@@ -211,6 +211,7 @@ Note:If the text contains special characters, please escape them according to th
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkVulkan/AppScope/resources/base/media/app_icon.png" desc="Provided by code/BasicFeature/Native/NdkVulkan"/>
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkVulkan/screenshots/device/sample.png" desc="Provided by code/BasicFeature/Native/NdkVulkan"/>
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkVulkan/AppScope/resources/rawfile/shaders/frag.spv" desc="Provided by code/BasicFeature/Native/NdkVulkan"/>
+		<filteritem type="filepath" name="code/BasicFeature/Native/NdkVulkan/entry/src/main/resources/base/media/icon.png" desc="Provided by code/BasicFeature/Native/NdkVulkan"/>
         <filteritem type="filepath" name="code/BasicFeature/Native/NdkRenderNodeDrawing/screenshots/Index.jpeg" desc="Provided by code/BasicFeature/Native/NdkRenderNodeDrawing"/>
 		<filteritem type="filepath" name="code/BasicFeature/Native/NdkRenderNodeDrawing/screenshots/DrawPath.jpeg" desc="Provided by code/BasicFeature/Native/NdkRenderNodeDrawing"/>
         <filteritem type="filepath" name="code/BasicFeature/Native/NdkRenderNodeDrawing/screenshots/DrawImage.jpeg" desc="Provided by code/BasicFeature/Native/NdkRenderNodeDrawing"/>
