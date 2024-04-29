@@ -1,4 +1,4 @@
-# AccessibilityExtensionAbility示例（仅对系统应用开放）
+# AccessibilityExtensionAbility示例
 
 ## 介绍
 
