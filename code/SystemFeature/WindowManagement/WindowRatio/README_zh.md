@@ -4,7 +4,7 @@
 
 本示例主要展示了在子窗口中以悬浮窗模式拉起悬浮应用，并对新的应用设置窗口缩放比例，窗口以设置的比例进行缩放，并在界面显示窗口当前的宽度和高度。
 
-本实例使用[@ohos.window](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-window.md)
+本实例使用[@ohos.window](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-window.md)
 
 ### 效果预览
 
@@ -16,7 +16,7 @@
 
 使用说明
 
-1.安装[WindowRatio](code/BasicFeature/WindowManagement/WindowRatio)工程hap包(即本示例)和[WindowManage](code/BasicFeature/WindowManagement/WindowManage)工程hap包
+1.安装[WindowRatio](code/SystemFeature/WindowManagement/WindowRatio)工程hap包(即本示例)和[WindowManage](code/BasicFeature/WindowManagement/WindowManage)工程hap包
 
 2.打开WindowManage应用sample，点击**窗口预览**进入视频播放页面，点击主窗口后拉起子窗口。
 
@@ -47,7 +47,7 @@ entry/src/main/ets/
 
 本示例需要在module.json5中配置如下权限:
 
-允许应用使用悬浮窗的能力：[ohos.permission.SYSTEM_FLOAT_WINDOW](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionsystem_float_window)
+允许应用使用悬浮窗的能力：[ohos.permission.SYSTEM_FLOAT_WINDOW](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionsystem_float_window)
 
 此外，因为本示例使用了系统能力的接口，还需在SDK/10/toolchains/lib目录下的UnsgnedReleasedProfileTemplate.json中修改以下配置权限：
 
@@ -67,9 +67,9 @@ entry/src/main/ets/
 
 1.本示例仅支持在标准系统上运行。
 
-2.本示例为Stage模型，仅支持API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0Release)；本示例涉及使用系统接口：@ohos.window中的WindowMode属性，需要手动替换Full SDK才能编译通过，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。
+2.本示例为Stage模型，仅支持API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0Release)；本示例涉及使用系统接口：@ohos.window中的WindowMode属性，需要手动替换Full SDK才能编译通过，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)。
 
-3.本示例所配置的权限ohos.permission.SYSTEM_FLOAT_WINDOW为system_basic级别(相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)查看)，需要手动配置对应级别的权限签名(具体操作可查看[自动化签名方案](https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/security/hapsigntool-overview.md/))。
+3.本示例所配置的权限ohos.permission.SYSTEM_FLOAT_WINDOW为system_basic级别(相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md)查看)，需要手动配置对应级别的权限签名(具体操作可查看[自动化签名方案](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/security/hapsigntool-overview.md))。
 
 4.本示例需要使用DevEco Studio 版本号(4.0Release)及以上版本才可编译运行。
 
@@ -79,7 +79,7 @@ entry/src/main/ets/
 ```
 git init
 git config core.sparsecheckout true
-echo code/BasicFeature/WindowManagement/WindowRatio/ > .git/info/sparse-checkout
+echo code/SystemFeature/WindowManagement/WindowRatio/ > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 
