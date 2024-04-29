@@ -29,8 +29,8 @@ export struct MediaItem {
   }
 
   getTimeString() {
-    let date = new Date()
-    date.setMilliseconds(this.media.dateAdded)
+    // js中Date时间戳单位是毫秒（13位），文件创建时间戳的单位是秒(10位)。故需转化成毫秒后表示
+    const date = new Date(this.media.dateAdded * 1000)
     return `${date.getFullYear()}/${this.tempNum(date.getMonth() + 1)}/${this.tempNum(date.getDate())}`
   }
 
