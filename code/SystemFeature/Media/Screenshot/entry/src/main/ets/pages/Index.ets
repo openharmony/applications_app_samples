@@ -60,14 +60,14 @@ struct Index {
   @State screenshotUrl: PixelMap = undefined
   @State cropBoxWidth: number = 300 // 裁剪框宽
   @State cropBoxHeight: number = 100 // 裁剪框高
-  @State leftTopPositionX: number = 50 // 裁剪框左上角X轴
-  @State leftTopPositionY: number = 300 // 裁剪框左上角Y轴
-  @State startTouchPositionX: number = 0 // 开始触摸点X坐标
-  @State startTouchPositionY: number = 0 // 开始触摸点Y坐标
-  @State startOffsetX: number = 0 // 开始触摸点距离父元素左上角X轴距离
-  @State startOffsetY: number = 0 // 开始触摸点距离父元素左上角Y轴距离
-  @State fullScreenWidth: number = 0 // 全屏宽度
-  @State fullScreenHeight: number = 0 // 全屏高度
+  @State leftTopPositionX: number = 50 // 裁剪框左上角X轴坐标
+  @State leftTopPositionY: number = 300 // 裁剪框左上角Y轴坐标
+  @State startTouchPositionX: number = 0 // 开始触摸点X轴坐标
+  @State startTouchPositionY: number = 0 // 开始触摸点Y轴坐标
+  @State startOffsetX: number = 0 // 开始触摸点相对于被触摸元素左边缘的X轴坐标
+  @State startOffsetY: number = 0 // 开始触摸点相对于被触摸元素左边缘的Y轴坐标
+  @State fullScreenWidth: number = 0 // 全屏宽度（单位 px）
+  @State fullScreenHeight: number = 0 // 全屏高度（单位 px）
   @State isFullScreen: boolean = false
   @State isTouch: boolean = true
   @State isCut: boolean = true
@@ -84,8 +84,10 @@ struct Index {
   initCutEvent(event: TouchEvent) {
     // 记录手指信息初始位置
     if (event.type === TouchType.Down && this.isTouch) {
+      // 触摸点坐标
       this.startTouchPositionX = event.touches[0].screenX
       this.startTouchPositionY = event.touches[0].screenY
+      // 触摸点相对于被触摸元素左边缘的坐标
       this.startOffsetX = event.touches[0].x
       this.startOffsetY = event.touches[0].y
       this.isTouch = false
@@ -97,27 +99,30 @@ struct Index {
     }
 
     if (event.type === TouchType.Move) {
-      // 表示在左上角
-      if (this.startOffsetX < RANGE && this.startOffsetY < RANGE) {
+      // 表示当前在移动裁剪框左上角
+      if (this.startOffsetX < RANGE && this.startOffsetY < RANGE && this.checkLeftTopValid(event)) {
+        // 当前触摸点相对先前触摸点的移动距离
         let moveX = event.touches[0].screenX - this.startTouchPositionX
         let moveY = event.touches[0].screenY - this.startTouchPositionY
 
-        // 每次触摸都重新记录位置
+        // 每次触摸都重新记录触摸位置
         this.startTouchPositionX = event.touches[0].screenX
         this.startTouchPositionY = event.touches[0].screenY
 
-        // 改变定位
+        // 更新裁剪框左上角与屏幕左上角的X轴、Y轴距离
         this.leftTopPositionX = this.leftTopPositionX + moveX
         this.leftTopPositionY = this.leftTopPositionY + moveY
 
-        // 改变大小
+        // 更新裁剪框大小
         this.cropBoxWidth -= moveX
         this.cropBoxHeight -= moveY
       }
+
       let offsetX = this.cropBoxWidth - this.startOffsetX
       let offsetY = this.cropBoxHeight - this.startOffsetY
-      if (offsetX < RANGE && offsetY < RANGE) {
-        // 右下角
+      // 表示当前在移动裁剪框右下角
+      if (offsetX < RANGE && offsetY < RANGE && this.checkRightBottomValid(event)) {
+        // 当前触摸点相对先前触摸点的移动距离
         let moveX = event.touches[0].screenX - this.startTouchPositionX
         let moveY = event.touches[0].screenY - this.startTouchPositionY
 
@@ -125,7 +130,7 @@ struct Index {
         this.startTouchPositionX = event.touches[0].screenX
         this.startTouchPositionY = event.touches[0].screenY
 
-        // 更新所在父元素点位
+        // 更新触摸点相对于被触摸元素左边缘的坐标
         this.startOffsetX = event.touches[0].x
         this.startOffsetY = event.touches[0].y
 
@@ -134,6 +139,44 @@ struct Index {
         this.cropBoxHeight += moveY
       }
     }
+  }
+
+  // 判断裁剪框左上角的坐标移动是否合规
+  checkLeftTopValid(event: TouchEvent): boolean {
+    // 当前触摸点相对先前触摸点的移动距离
+    let moveX = event.touches[0].screenX - this.startTouchPositionX
+    let moveY = event.touches[0].screenY - this.startTouchPositionY
+
+    // 触摸点要位于裁剪框的右下角之上、且要保证不溢出屏幕边缘
+    if (event.touches[0].screenX < this.cropBoxWidth + this.leftTopPositionX
+        && event.touches[0].screenY < this.cropBoxHeight + this.leftTopPositionY
+        && this.leftTopPositionX + moveX > 0
+        && this.leftTopPositionY + moveY > 0) {
+      // 合规
+      return true
+    }
+
+    // 不合规
+    return false
+  }
+
+  // 判断裁剪框右下角的坐标移动是否合规
+  checkRightBottomValid(event: TouchEvent): boolean {
+    // 当前触摸位置相对先前触摸位置的移动距离
+    let moveX = event.touches[0].screenX - this.startTouchPositionX
+    let moveY = event.touches[0].screenY - this.startTouchPositionY
+
+    // 触摸点要位于裁剪框的左上角之下、且要保证不溢出屏幕边缘
+    if (event.touches[0].screenX > this.leftTopPositionX
+        && event.touches[0].screenY > this.leftTopPositionY
+        && this.leftTopPositionX + this.cropBoxWidth + moveX < px2vp(this.fullScreenWidth)
+        && this.leftTopPositionY + this.cropBoxHeight + moveY < px2vp(this.fullScreenHeight)) {
+      // 合规
+      return true
+    }
+
+    // 不合规
+    return false
   }
 
   @Builder MenuBuilder() {
@@ -202,6 +245,11 @@ struct Index {
         .id('localScreenShot')
         .onClick(() => {
           this.isScroll = false
+          // 恢复裁剪框相关初始参数
+          this.cropBoxWidth = 300
+          this.cropBoxHeight = 100
+          this.leftTopPositionX = 50
+          this.leftTopPositionY = 300
           let result: ResponseData = hasPrivate()
           if (result.status === 'failed') {
             prompt.showToast({
