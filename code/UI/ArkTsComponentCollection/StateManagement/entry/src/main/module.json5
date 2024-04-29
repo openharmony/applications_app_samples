@@ -77,6 +77,11 @@
         "startWindowBackground": "$color:start_window_background",
         "visible": true
       }
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.START_ABILITIES_FROM_BACKGROUND"
+      }
     ]
   }
 }
