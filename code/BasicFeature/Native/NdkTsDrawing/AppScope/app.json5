@@ -14,7 +14,7 @@
  */
 {
   "app": {
-    "bundleName": "com.samples.ndkjsdrawing",
+    "bundleName": "com.samples.ndktsdrawing",
     "vendor": "example",
     "versionCode": 1000000,
     "versionName": "1.0.0",

@@ -18,18 +18,24 @@ import { UIContext } from '@ohos.arkui.UIContext';
 import drawing from "@ohos.graphics.drawing";
 import common2D from "@ohos.graphics.common2D";
 import display from '@ohos.display';
+import image from '@ohos.multimedia.image';
 
+const TAG = 'DrawingTSSample';
 let screen = display.getDefaultDisplaySync();
 let screenWidth: number = screen.width;
 let screenHeight: number = screen.height;
 
+let canvas_: drawing.Canvas;
+let pixelMap_: image.PixelMap | undefined;
+
 class MyRenderNode extends RenderNode {
+  // 在RenderNode的draw中使用drawing自定义绘制
   async draw(context: DrawContext) {
     const canvas = context.canvas;
-    let height_ = 1200;
+    let height_ = 600;
     let width_ = 600;
     let len = height_ / 4;
-    let aX = width_ / 2;
+    let aX = width_ / 3;
     let aY = height_ / 6;
     let dX = aX - len * Math.sin(18.0);
     let dY = aY + len * Math.cos(18.0);
@@ -86,32 +92,17 @@ const newNode = new MyRenderNode();
 // 定义newNode的像素格式
 newNode.frame = { x: 0, y: 0, width: screenWidth, height: screenHeight };
 
-class RectRenderNode extends RenderNode {
-  async draw(context: DrawContext) {
-    const canvas = context.canvas;
-    const pen = new drawing.Pen();
-    pen.setStrokeWidth(5);
-    pen.setColor({alpha: 255, red: 255, green: 0, blue: 0});
-    canvas.attachPen(pen);
-    canvas.drawRect({ left : 150, right : 400, top : 100, bottom : 700});
-    canvas.detachPen();
-  }
-}
-// 创建一个RectRenderNode对象
-const rectNode = new RectRenderNode();
-// 定义rectNode的像素格式
-rectNode.frame = { x: 0, y: 0, width: screenWidth, height: screenHeight };
 
 class TextRenderNode extends RenderNode {
   async draw(context: DrawContext) {
     const canvas = context.canvas;
-    const brush = new drawing.Brush();
+    let brush = new drawing.Brush();
     brush.setColor({alpha: 255, red: 255, green: 0, blue: 0});
-    const font = new drawing.Font();
-    font.setSize(60);
+    let font = new drawing.Font();
+    font.setSize(50);
     const textBlob = drawing.TextBlob.makeFromString("Hello World", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
     canvas.attachBrush(brush);
-    canvas.drawTextBlob(textBlob, 120, screenHeight / 3);
+    canvas.drawTextBlob(textBlob, 60, screenHeight / 4);
     canvas.detachBrush();
   }
 }
@@ -160,27 +151,44 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct RenderTest {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
   private myNodeController: MyNodeController = new MyNodeController();
 
   build() {
     Column() {
+      // 离屏绘制
+      Row() {
+        Canvas(this.context)
+          .width('100%')
+          .onReady(()=>{
+            this.CreateBitmapCanvas();
+          })
+      }
+      .height('40%')
+      Row() {
+        Button("Draw Rect")
+          .margin({ bottom: 20, right: 12 })
+          .onClick(() => {
+            if (canvas_ === null || canvas_ === undefined) {
+              return;
+            }
+            this.drawImage();
+          })
+      }
+      .height('10%')
+      // 使用RenderNode的能力进行绘制
       Row() {
         NodeContainer(this.myNodeController)
           .height('100%')
         Button("Draw Path")
-          .margin({ bottom: 200, right: 12 })
+          .margin({ bottom: 20, right: 12 })
           .onClick(() => {
             this.myNodeController.clearNodes();
             this.myNodeController.addNode(newNode);
           })
-        Button("Draw Rect")
-          .margin({ bottom: 200, right: 12 })
-          .onClick(() => {
-            this.myNodeController.clearNodes();
-            this.myNodeController.addNode(rectNode);
-          })
         Button("Draw Text")
-          .margin({ bottom: 200, right: 12 })
+          .margin({ bottom: 20, right: 12 })
           .onClick(() => {
             this.myNodeController.clearNodes();
             this.myNodeController.addNode(textNode);
@@ -193,4 +201,43 @@ struct RenderTest {
       .layoutWeight(1)
     }
   }
+
+  public async CreateBitmapCanvas() {
+    const color : ArrayBuffer = new ArrayBuffer(screenWidth * screenHeight * 4);
+    let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height:screenHeight, width: screenWidth}};
+    pixelMap_ = await image.createPixelMap(color, opts);
+    if (pixelMap_ === null || pixelMap_ === undefined) {
+      console.log(TAG, 'create pixelMap error');
+      return;
+    }
+
+    // 创建离屏canvas，与pixelMap绑定
+    canvas_ = new drawing.Canvas(pixelMap_);
+    if (canvas_ === null || canvas_ === undefined) {
+      console.log(TAG, 'create canvas_ error');
+      return;
+    }
+    console.log(TAG, 'create canvas_ success');
+    // 调用自定义函数绘制
+    drawCase(canvas_);
+  }
+
+  // 将离屏绘制好的bitmap绘制到屏幕上
+  public async drawImage() {
+    if (pixelMap_ === null) {
+      console.error(TAG, 'draw image pixelMap_ is null');
+      return;
+    }
+    console.log(TAG, 'drawImage success');
+    this.context.drawImage(pixelMap_, 0, 100);
+  }
+}
+
+async function drawCase(canvas: drawing.Canvas) {
+  let pen = new drawing.Pen();
+  pen.setStrokeWidth(5);
+  pen.setColor({alpha: 255, red: 255, green: 0, blue: 0});
+  canvas.attachPen(pen);
+  canvas.drawRect({ left : 200, right : 500, top : 50, bottom : 300});
+  canvas.detachPen();
 }

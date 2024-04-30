@@ -90,20 +90,24 @@ struct RenderTest {
       Row() {
         NodeContainer(this.myNodeController)
           .height('100%')
+      }
+      .width('100%')
+      .height('80%')
+      Row() {
         Button("Draw Path")
-          .margin({ bottom: 100, right: 12 })
+          .margin({ bottom: 50, right: 12 })
           .onClick(() => {
             newNode.resetType(drawType.path);
             newNode.invalidate();
           })
         Button("Draw Text")
-          .margin({ bottom: 100, right: 12 })
+          .margin({ bottom: 50, right: 12 })
           .onClick(() => {
             newNode.resetType(drawType.text);
             newNode.invalidate();
           })
         Button("Draw Image")
-          .margin({ bottom: 100, right: 12 })
+          .margin({ bottom: 50, right: 12 })
           .onClick(() => {
             newNode.resetType(drawType.image);
             newNode.invalidate();
