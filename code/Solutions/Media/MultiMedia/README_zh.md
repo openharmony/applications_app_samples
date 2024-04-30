@@ -93,13 +93,11 @@ entry/src/main/ets/
 
 ### 约束与限制
 
-1.rk3568底层录像功能有问题，暂不支持录像功能，当前拍照功能仅支持部分机型。
+1.本示例仅支持标准系统上运行。
 
-2.本示例仅支持标准系统上运行。
+2.本示例为Stage模型，已适配API version 9版本SDK，版本号：3.2.11.9；
 
-3.本示例为Stage模型，已适配API version 9版本SDK，版本号：3.2.11.9；
-
-4.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)及以上版本才可编译运行。
 
 ### 下载
 
