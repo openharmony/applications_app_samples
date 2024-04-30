@@ -158,7 +158,7 @@ export default function abilityTest() {
       await btnPlay.click();
 
       // 点击轨道:1
-      const str = '轨道:1';
+      const str = await getString($r('app.string.track_name_1'));
       await driver.assertComponentExist(ON.text(str));
       let button = await driver.findComponent(ON.text(str));
       await button.click();

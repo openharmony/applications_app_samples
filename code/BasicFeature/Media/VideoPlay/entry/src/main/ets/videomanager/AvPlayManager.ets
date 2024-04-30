@@ -39,6 +39,8 @@ export default class AvPlayManager {
   private fileDescriptor: resourceManager.RawFileDescriptor | null = null;
   private videoSrc: string | null = null;
   private fileSrc: string | null = null;
+  private default_track_value: string = "";
+  private track_name_value: string = "";
   private currentAudioTrackValue: number = 0 ;
   public arrList: Array<SelectOption>  = [];
 
@@ -61,6 +63,16 @@ export default class AvPlayManager {
       this.fileDescriptor = await this.mgr.getRawFd('test1.mp4');
       Logger.info(this.tag, `initPlayer videoPlay fileDescriptor = ${JSON.stringify(this.fileDescriptor)}`);
       this.avPlayer.fdSrc = this.fileDescriptor;
+      this.mgr.getStringValue($r('app.string.default_track')).then((value: string) => {
+        this.default_track_value = value;
+      }).catch((error: BusinessError) => {
+        console.error("getStringValue promise error is " + error);
+      });
+      this.mgr.getStringValue($r('app.string.track_name')).then((value: string) => {
+        this.track_name_value = value;
+      }).catch((error: BusinessError) => {
+        console.error("getStringValue promise error is " + error);
+      });
     } catch (err) {
       Logger.error(this.tag, `initPlayer initPlayer err：${JSON.stringify(err)}`);
     }
@@ -296,10 +308,10 @@ export default class AvPlayManager {
           let selectOptions: SelectOption[] = [];
           for (let i = 0; i < arrList.length; i++) {
             if (i == 0) {
-              selectOptions.push({ value: '默认轨道'});
+              selectOptions.push({ value: this.default_track_value});
             } else {
               let property: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
-              selectOptions.push({ value: '轨道:' + property.toString()});
+              selectOptions.push({ value: this.track_name_value + property.toString()});
             }
           }
           this.arrList = selectOptions

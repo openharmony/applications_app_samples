@@ -63,6 +63,18 @@
     {
       "name": "playing",
       "value": "当前播放"
+    },
+    {
+      "name": "default_track",
+      "value": "默认轨道"
+    },
+    {
+      "name": "track_name",
+      "value": "轨道:"
+    },
+    {
+      "name": "track_name_1",
+      "value": "轨道:1"
     }
   ]
 }
