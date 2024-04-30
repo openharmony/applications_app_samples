@@ -378,8 +378,12 @@ Note:If the text contains special characters, please escape them according to th
         <filteritem type="filepath" name="code/SystemFeature/Telephony/Call/entry/src/main/resources/base/media/call_on.png" desc="Provided by code/SystemFeature/Telephony/Call"/>
         <filteritem type="filepath" name="code/SystemFeature/Telephony/Call/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/Telephony/Call"/>
         <filteritem type="filepath" name="code/SystemFeature/Telephony/Call/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/Telephony/Call"/>
-        <filteritem type="filepath" name="code/SystemFeature/Telephony/Call/screenshots/device/call.png" desc="Provided by code/SystemFeature/Telephony/Call"/>
+        <filteritem type="filepath" name="code/SystemFeature/Media/Audio/screenshot/devices/spatialSceneMode.jpg" desc="Provided by code/SystemFeature/Media/Audio"/>
+		<filteritem type="filepath" name="code/BasicFeature/Native/NdkVulkan/entry/src/main/resources/base/media/icon.png" desc="Provided by code/BasicFeature/Native/NdkVulkan"/>
 		<filteritem type="filepath" name="code/BasicFeature/ArkTSCard/ArkTSCard/libs/ArkTSUser.hap" desc="Provided by code/BasicFeature/ArkTSCard/ArkTSCard"/>
+        <filteritem type="filepath" name="code/BasicFeature/Native/Audio/entry/src/main/resources/base/media/pic_Audiovivid.png" desc="Provided by code/BasicFeature/Native/Audio"/>
+        <filteritem type="filepath" name="code/BasicFeature/Native/Audio/screenshots/device/AudioVivid.jpg" desc="Provided by code/BasicFeature/Native/Audio"/>
+        <filteritem type="filepath" name="code/BasicFeature/Native/Audio/screenshots/device/index.jpg" desc="Provided by code/BasicFeature/Native/Audio"/>
         <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmonyProfileDebug.pem" desc="Provided by code/Project/HapBuild"/>
                 <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmonyApplication.pem" desc="Provided by code/Project/HapBuild"/>
                 <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmonyProfileRelease.pem" desc="Provided by code/Project/HapBuild"/>
