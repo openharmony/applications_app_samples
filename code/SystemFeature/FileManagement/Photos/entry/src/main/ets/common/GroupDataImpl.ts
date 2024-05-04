@@ -171,6 +171,7 @@ export class GroupDataImpl {
       return await userFileModel.getAllMovingPhotoItems();
     }
     let emptyPredicates = new dataSharePredicates.DataSharePredicates();
+    emptyPredicates.orderByDesc(photoAccessHelper.PhotoKeys.DATE_ADDED);
     let emptyFetchOption = {
       fetchColumns: MediaConstants.FILE_ASSET_FETCH_COLUMNS,
       predicates: emptyPredicates
