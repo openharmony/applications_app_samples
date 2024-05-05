@@ -1,0 +1,13 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/container",
+    "pages/node_base",
+    "pages/node_camera",
+    "pages/node_geometry",
+    "pages/node_light",
+    "pages/scene_animation",
+    "pages/scene_environment",
+    "pages/scene_shader"
+  ]
+}

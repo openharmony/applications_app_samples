@@ -1,0 +1,870 @@
+#version 460 core
+#extension GL_ARB_separate_shader_objects : enable
+#extension GL_ARB_shading_language_420pack : enable
+
+#line 1 "/home/huxiaoming/OHOS_20231204/foundation/graphic/graphic_3d/lume/LumeRender/api/render/shaders/common/render_compatibility_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+precision highp float;
+precision highp int;
+
+
+
+
+
+layout(constant_id = 256)const uint CORE_BACKEND_TYPE = 0;
+
+
+
+
+layout(constant_id = 257)const float CORE_FLIP_NDC = 1.0;
+
+
+
+
+
+
+
+
+
+
+vec2 GetFragCoordUv(vec2 fragCoord, vec2 inverseTexelSize)
+{
+    vec2 uv = fragCoord * inverseTexelSize;
+    if(CORE_FLIP_NDC < 0.0){
+        uv = vec2(uv . x, 1.0 - uv . y);
+    }
+    return uv;
+}
+
+
+
+
+
+
+
+#line 6 "shader/London.vert"
+#line 1 "/home/huxiaoming/OHOS_20231204/foundation/graphic/graphic_3d/lume/Lume_3D/api/3d/shaders/common/3d_dm_structures_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 1 "/home/huxiaoming/OHOS_20231204/foundation/graphic/graphic_3d/lume/LumeRender/api/render/shaders/common/render_compatibility_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 20 "/home/huxiaoming/OHOS_20231204/foundation/graphic/graphic_3d/lume/Lume_3D/api/3d/shaders/common/3d_dm_structures_common.h"
+#line 1 "/home/huxiaoming/OHOS_20231204/foundation/graphic/graphic_3d/lume/LumeRender/api/render/shaders/common/render_packing_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+uvec2 PackVec4Half2x16(const vec4 up)
+{
+    uvec2 packed;
+    packed . x = packHalf2x16(up . xy);
+    packed . y = packHalf2x16(up . zw);
+    return packed;
+}
+
+vec4 UnpackVec4Half2x16(const uvec2 packed)
+{
+    vec4 up;
+    up . xy = unpackHalf2x16(packed . x);
+    up . zw = unpackHalf2x16(packed . y);
+    return up;
+}
+
+uvec4 Pack2Vec4Half2x16(const vec4 up0, const vec4 up1)
+{
+    uvec4 packed;
+    packed . x = packHalf2x16(up0 . xy);
+    packed . y = packHalf2x16(up0 . zw);
+    packed . z = packHalf2x16(up1 . xy);
+    packed . w = packHalf2x16(up1 . zw);
+    return packed;
+}
+
+void UnpackVec42Half2x16(const uvec4 packed, inout vec4 up0, inout vec4 up1)
+{
+    up0 . xy = unpackHalf2x16(packed . x);
+    up0 . zw = unpackHalf2x16(packed . y);
+    up1 . xy = unpackHalf2x16(packed . z);
+    up1 . zw = unpackHalf2x16(packed . w);
+}
+
+
+
+
+#line 21 "/home/huxiaoming/OHOS_20231204/foundation/graphic/graphic_3d/lume/Lume_3D/api/3d/shaders/common/3d_dm_structures_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+struct DefaultMaterialSingleMeshStruct {
+
+
+    mat4 world;
+    mat4 normalWorld;
+    mat4 prevWorld;
+
+
+    uvec4 indices;
+
+    uvec4 layers;
+
+    uvec4 customData[2];
+};
+
+struct DefaultMaterialMeshStruct {
+    DefaultMaterialSingleMeshStruct mesh[64];
+};
+
+struct DefaultMaterialSingleMaterialStruct {
+    vec4 factors[15];
+    uvec4 indices;
+};
+
+struct DefaultMaterialMaterialStruct {
+    DefaultMaterialSingleMaterialStruct material[64];
+};
+
+struct DefaultMaterialTransformSingleMaterialStruct {
+    uvec4 packed[15];
+    uvec4 indices;
+};
+
+struct DefaultMaterialTransformMaterialStruct {
+    DefaultMaterialTransformSingleMaterialStruct material[64];
+};
+
+struct DefaultMaterialSingleUserMaterialStruct {
+    uvec4 userData[16u];
+};
+
+struct DefaultMaterialUserMaterialStruct {
+    DefaultMaterialSingleUserMaterialStruct material[64];
+};
+
+struct DefaultMaterialSingleLightStruct {
+    vec4 pos;
+
+    vec4 dir;
+
+    vec4 color;
+
+    vec4 spotLightParams;
+
+    vec4 shadowFactors;
+
+    vec4 additionalFactor;
+
+
+    uvec4 flags;
+
+    uvec4 indices;
+};
+
+struct DefaultMaterialLightStruct {
+    uint directionalLightBeginIndex;
+    uint directionalLightCount;
+
+    uint pointLightBeginIndex;
+    uint pointLightCount;
+
+    uint spotLightBeginIndex;
+    uint spotLightCount;
+
+    uint pad0;
+    uint pad1;
+
+    uvec4 clusterSizes;
+    vec4 clusterFactors;
+
+    vec4 atlasSizeInvSize;
+    vec4 additionalFactors;
+
+    DefaultMaterialSingleLightStruct lights[64];
+};
+
+struct DefaultMaterialSkinStruct {
+
+    mat4 jointMatrices[256u];
+};
+
+
+struct DefaultMaterialGeneralDataStruct {
+
+    uvec4 indices;
+
+    vec4 viewportSizeInvViewportSize;
+
+    vec4 sceneTimingData;
+};
+
+
+struct DefaultMaterialEnvironmentStruct {
+
+    vec4 indirectSpecularColorFactor;
+
+    vec4 indirectDiffuseColorFactor;
+
+    vec4 envMapColorFactor;
+
+    vec4 values;
+
+    vec4 blendFactor;
+
+
+    mat4 envRotation;
+
+
+    uvec4 indices;
+
+
+    vec4 shIndirectCoefficients[9];
+
+
+    vec4 pad0;
+};
+
+struct DefaultMaterialFogStruct {
+
+    uvec4 indices;
+
+
+    vec4 firstLayer;
+
+    vec4 secondLayer;
+
+
+    vec4 baseFactors;
+
+    vec4 inscatteringColor;
+
+    vec4 envMapFactor;
+
+
+    vec4 additionalFactor;
+};
+
+
+struct DefaultCameraMatrixStruct {
+    mat4 view;
+    mat4 proj;
+    mat4 viewProj;
+
+    mat4 viewInv;
+    mat4 projInv;
+    mat4 viewProjInv;
+
+    mat4 viewPrevFrame;
+    mat4 projPrevFrame;
+    mat4 viewProjPrevFrame;
+
+    mat4 shadowViewProj;
+    mat4 shadowViewProjInv;
+
+
+    vec4 jitter;
+    vec4 jitterPrevFrame;
+
+
+    uvec4 indices;
+
+    uvec4 multiViewIndices;
+
+    vec4 frustumPlanes[6];
+
+
+    uvec4 counts;
+
+    uvec4 pad0;
+    mat4 matPad0;
+    mat4 matPad1;
+};
+
+
+
+
+
+struct DefaultMaterialUnpackedSceneTimingStruct {
+
+    float sceneDeltaTime;
+
+    float tickDeltaTime;
+
+    float tickTotalTime;
+
+    uint frameIndex;
+};
+
+struct DefaultMaterialUnpackedPostProcessStruct {
+    float tonemapExposure;
+    float vignetteCoeff;
+    float vignettePower;
+};
+
+uint GetPackFlatIndices(const uint cameraIdx, const uint instanceIdx)
+{
+    return((instanceIdx << 16)|(cameraIdx & 0xffff));
+}
+
+void GetUnpackFlatIndices(in uint indices, out uint cameraIdx, out uint instanceIdx)
+{
+    cameraIdx = indices & 0xffff;
+    instanceIdx = indices >> 16;
+}
+
+uint GetUnpackFlatIndicesInstanceIdx(in uint indices)
+{
+    return(indices >> 16);
+}
+
+uint GetUnpackFlatIndicesCameraIdx(in uint indices)
+{
+    return(indices & 0xffff);
+}
+
+uint GetUnpackCameraIndex(const DefaultMaterialGeneralDataStruct dmgds)
+{
+    return dmgds . indices . x;
+}
+
+DefaultMaterialUnpackedSceneTimingStruct GetUnpackSceneTiming(const DefaultMaterialGeneralDataStruct dmgds)
+{
+    DefaultMaterialUnpackedSceneTimingStruct dm;
+    dm . sceneDeltaTime = dmgds . sceneTimingData . x;
+    dm . tickDeltaTime = dmgds . sceneTimingData . y;
+    dm . tickTotalTime = dmgds . sceneTimingData . z;
+    dm . frameIndex = floatBitsToUint(dmgds . sceneTimingData . w);
+    return dm;
+}
+
+vec4 GetUnpackViewport(const DefaultMaterialGeneralDataStruct dmgds)
+{
+    return dmgds . viewportSizeInvViewportSize;
+}
+
+
+
+struct DefaultMaterialUnpackedTexTransformStruct {
+    vec4 rotateScale;
+    vec2 translate;
+};
+
+DefaultMaterialUnpackedTexTransformStruct GetUnpackTextureTransform(const uvec4 packedTexTransform)
+{
+    DefaultMaterialUnpackedTexTransformStruct dm;
+    dm . rotateScale = UnpackVec4Half2x16(packedTexTransform . xy);
+    dm . translate = UnpackVec4Half2x16(packedTexTransform . zw). xy;
+    return dm;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 7 "shader/London.vert"
+
+layout(set = 0, binding = 0, std140)uniform uCameraMatrices
+{
+    DefaultCameraMatrixStruct uCameras[16];
+};
+
+layout(location = 0)out vec2 outUv;
+layout(location = 1)out flat uint outIndices;
+
+void main(void)
+{
+ float x = - 1.0 + float((gl_VertexIndex & 1)<< 2);
+ float y = 1.0 - float((gl_VertexIndex & 2)<< 1);
+                                     { gl_Position =(vec4(x, y, 1.0, 1.0));if(CORE_BACKEND_TYPE != 0){ gl_Position = vec4(gl_Position . x, gl_Position . y * CORE_FLIP_NDC,(gl_Position . z * 2.0 - gl_Position . w), gl_Position . w);} };
+ outUv = vec2(x, y);
+
+ const uint cameraIdx = 0U;
+ outIndices = GetPackFlatIndices(cameraIdx, 0);
+}

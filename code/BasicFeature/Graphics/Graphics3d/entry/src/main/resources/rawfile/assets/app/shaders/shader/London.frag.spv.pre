@@ -1,0 +1,1367 @@
+#version 460 core
+#extension GL_ARB_separate_shader_objects : enable
+#extension GL_ARB_shading_language_420pack : enable
+
+
+#line 1 "/home/huxiaoming/OHOS_20231204/foundation/graphic/graphic_3d/lume/LumeRender/api/render/shaders/common/render_color_conversion_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 1 "/home/huxiaoming/OHOS_20231204/foundation/graphic/graphic_3d/lume/LumeRender/api/render/shaders/common/render_compatibility_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+precision highp float;
+precision highp int;
+
+
+
+
+
+layout(constant_id = 256)const uint CORE_BACKEND_TYPE = 0;
+
+
+
+
+layout(constant_id = 257)const float CORE_FLIP_NDC = 1.0;
+
+
+
+
+
+
+
+
+
+
+vec2 GetFragCoordUv(vec2 fragCoord, vec2 inverseTexelSize)
+{
+    vec2 uv = fragCoord * inverseTexelSize;
+    if(CORE_FLIP_NDC < 0.0){
+        uv = vec2(uv . x, 1.0 - uv . y);
+    }
+    return uv;
+}
+
+
+
+
+
+
+
+#line 24 "/home/huxiaoming/OHOS_20231204/foundation/graphic/graphic_3d/lume/LumeRender/api/render/shaders/common/render_color_conversion_common.h"
+
+
+
+
+float CalcLuma(const vec3 color)
+{
+
+    return 0.299 * color . r + 0.587 * color . g + 0.114 * color . b;
+}
+
+
+
+
+float CalcLumaFxaa(const vec3 color)
+{
+
+    return color . g *(0.587 / 0.299)+ color . r;
+}
+
+
+
+
+float LumaWeight(const float luma)
+{
+    return(1.0 /(1.0 + luma));
+}
+
+
+
+
+vec3 TonemapLuma(const vec3 color, const float luma, const float range)
+{
+    return color /(1.0 + luma / range);
+}
+
+
+
+
+vec3 TonemapLumaInv(const vec3 color, const float luma, const float range)
+{
+    return color /(1.0 - luma / range);
+}
+
+
+
+
+
+vec3 SrgbToLinear(const vec3 srgb)
+{
+    const float mlow = 1.0f / 12.92f;
+    const float mhigh = 1.0f / 1.055f;
+
+    const vec3 high = pow((srgb + 0.055f)* mhigh, vec3(2.4f));
+    const vec3 low = srgb * mlow;
+    const bvec3 cutoff = lessThan(srgb, vec3(0.04045f));
+    return mix(high, low, cutoff);
+}
+
+
+
+
+
+vec3 LinearToSrgb(const vec3 linear)
+{
+    const float mlow = 12.92f;
+    const float mhigh = 1.055f;
+
+    const vec3 high = pow(linear, vec3(0.416f))* mhigh - 0.055f;
+    const vec3 low = linear * mlow;
+    const bvec3 cutoff = lessThan(linear, vec3(0.0031308f));
+    return mix(high, low, cutoff);
+}
+
+
+
+
+
+vec3 rgbToYCoCg(const vec3 rgb)
+{
+    const float y = dot(rgb, vec3(0.25, 0.5, 0.25));
+    const float co = dot(rgb, vec3(0.5, 0.0, - 0.5));
+    const float cg = dot(rgb, vec3(- 0.25, 0.5, - 0.25));
+    return vec3(y, co, cg);
+}
+
+
+
+
+
+vec3 yCoCgToRgb(const vec3 ycocg)
+{
+    const float y = ycocg . r;
+    const float co = ycocg . g;
+    const float cg = ycocg . b;
+    return vec3(y + co - cg, y + cg, y - co - cg);
+}
+
+
+#line 7 "shader/London.frag"
+
+#line 1 "/home/huxiaoming/OHOS_20231204/foundation/graphic/graphic_3d/lume/Lume_3D/api/3d/shaders/common/3d_dm_indirect_lighting_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 1 "/home/huxiaoming/OHOS_20231204/foundation/graphic/graphic_3d/lume/Lume_3D/api/3d/shaders/common/3d_dm_structures_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 1 "/home/huxiaoming/OHOS_20231204/foundation/graphic/graphic_3d/lume/LumeRender/api/render/shaders/common/render_compatibility_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 20 "/home/huxiaoming/OHOS_20231204/foundation/graphic/graphic_3d/lume/Lume_3D/api/3d/shaders/common/3d_dm_structures_common.h"
+#line 1 "/home/huxiaoming/OHOS_20231204/foundation/graphic/graphic_3d/lume/LumeRender/api/render/shaders/common/render_packing_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+uvec2 PackVec4Half2x16(const vec4 up)
+{
+    uvec2 packed;
+    packed . x = packHalf2x16(up . xy);
+    packed . y = packHalf2x16(up . zw);
+    return packed;
+}
+
+vec4 UnpackVec4Half2x16(const uvec2 packed)
+{
+    vec4 up;
+    up . xy = unpackHalf2x16(packed . x);
+    up . zw = unpackHalf2x16(packed . y);
+    return up;
+}
+
+uvec4 Pack2Vec4Half2x16(const vec4 up0, const vec4 up1)
+{
+    uvec4 packed;
+    packed . x = packHalf2x16(up0 . xy);
+    packed . y = packHalf2x16(up0 . zw);
+    packed . z = packHalf2x16(up1 . xy);
+    packed . w = packHalf2x16(up1 . zw);
+    return packed;
+}
+
+void UnpackVec42Half2x16(const uvec4 packed, inout vec4 up0, inout vec4 up1)
+{
+    up0 . xy = unpackHalf2x16(packed . x);
+    up0 . zw = unpackHalf2x16(packed . y);
+    up1 . xy = unpackHalf2x16(packed . z);
+    up1 . zw = unpackHalf2x16(packed . w);
+}
+
+
+
+
+#line 21 "/home/huxiaoming/OHOS_20231204/foundation/graphic/graphic_3d/lume/Lume_3D/api/3d/shaders/common/3d_dm_structures_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+struct DefaultMaterialSingleMeshStruct {
+
+
+    mat4 world;
+    mat4 normalWorld;
+    mat4 prevWorld;
+
+
+    uvec4 indices;
+
+    uvec4 layers;
+
+    uvec4 customData[2];
+};
+
+struct DefaultMaterialMeshStruct {
+    DefaultMaterialSingleMeshStruct mesh[64];
+};
+
+struct DefaultMaterialSingleMaterialStruct {
+    vec4 factors[15];
+    uvec4 indices;
+};
+
+struct DefaultMaterialMaterialStruct {
+    DefaultMaterialSingleMaterialStruct material[64];
+};
+
+struct DefaultMaterialTransformSingleMaterialStruct {
+    uvec4 packed[15];
+    uvec4 indices;
+};
+
+struct DefaultMaterialTransformMaterialStruct {
+    DefaultMaterialTransformSingleMaterialStruct material[64];
+};
+
+struct DefaultMaterialSingleUserMaterialStruct {
+    uvec4 userData[16u];
+};
+
+struct DefaultMaterialUserMaterialStruct {
+    DefaultMaterialSingleUserMaterialStruct material[64];
+};
+
+struct DefaultMaterialSingleLightStruct {
+    vec4 pos;
+
+    vec4 dir;
+
+    vec4 color;
+
+    vec4 spotLightParams;
+
+    vec4 shadowFactors;
+
+    vec4 additionalFactor;
+
+
+    uvec4 flags;
+
+    uvec4 indices;
+};
+
+struct DefaultMaterialLightStruct {
+    uint directionalLightBeginIndex;
+    uint directionalLightCount;
+
+    uint pointLightBeginIndex;
+    uint pointLightCount;
+
+    uint spotLightBeginIndex;
+    uint spotLightCount;
+
+    uint pad0;
+    uint pad1;
+
+    uvec4 clusterSizes;
+    vec4 clusterFactors;
+
+    vec4 atlasSizeInvSize;
+    vec4 additionalFactors;
+
+    DefaultMaterialSingleLightStruct lights[64];
+};
+
+struct DefaultMaterialSkinStruct {
+
+    mat4 jointMatrices[256u];
+};
+
+
+struct DefaultMaterialGeneralDataStruct {
+
+    uvec4 indices;
+
+    vec4 viewportSizeInvViewportSize;
+
+    vec4 sceneTimingData;
+};
+
+
+struct DefaultMaterialEnvironmentStruct {
+
+    vec4 indirectSpecularColorFactor;
+
+    vec4 indirectDiffuseColorFactor;
+
+    vec4 envMapColorFactor;
+
+    vec4 values;
+
+    vec4 blendFactor;
+
+
+    mat4 envRotation;
+
+
+    uvec4 indices;
+
+
+    vec4 shIndirectCoefficients[9];
+
+
+    vec4 pad0;
+};
+
+struct DefaultMaterialFogStruct {
+
+    uvec4 indices;
+
+
+    vec4 firstLayer;
+
+    vec4 secondLayer;
+
+
+    vec4 baseFactors;
+
+    vec4 inscatteringColor;
+
+    vec4 envMapFactor;
+
+
+    vec4 additionalFactor;
+};
+
+
+struct DefaultCameraMatrixStruct {
+    mat4 view;
+    mat4 proj;
+    mat4 viewProj;
+
+    mat4 viewInv;
+    mat4 projInv;
+    mat4 viewProjInv;
+
+    mat4 viewPrevFrame;
+    mat4 projPrevFrame;
+    mat4 viewProjPrevFrame;
+
+    mat4 shadowViewProj;
+    mat4 shadowViewProjInv;
+
+
+    vec4 jitter;
+    vec4 jitterPrevFrame;
+
+
+    uvec4 indices;
+
+    uvec4 multiViewIndices;
+
+    vec4 frustumPlanes[6];
+
+
+    uvec4 counts;
+
+    uvec4 pad0;
+    mat4 matPad0;
+    mat4 matPad1;
+};
+
+
+
+
+
+struct DefaultMaterialUnpackedSceneTimingStruct {
+
+    float sceneDeltaTime;
+
+    float tickDeltaTime;
+
+    float tickTotalTime;
+
+    uint frameIndex;
+};
+
+struct DefaultMaterialUnpackedPostProcessStruct {
+    float tonemapExposure;
+    float vignetteCoeff;
+    float vignettePower;
+};
+
+uint GetPackFlatIndices(const uint cameraIdx, const uint instanceIdx)
+{
+    return((instanceIdx << 16)|(cameraIdx & 0xffff));
+}
+
+void GetUnpackFlatIndices(in uint indices, out uint cameraIdx, out uint instanceIdx)
+{
+    cameraIdx = indices & 0xffff;
+    instanceIdx = indices >> 16;
+}
+
+uint GetUnpackFlatIndicesInstanceIdx(in uint indices)
+{
+    return(indices >> 16);
+}
+
+uint GetUnpackFlatIndicesCameraIdx(in uint indices)
+{
+    return(indices & 0xffff);
+}
+
+uint GetUnpackCameraIndex(const DefaultMaterialGeneralDataStruct dmgds)
+{
+    return dmgds . indices . x;
+}
+
+DefaultMaterialUnpackedSceneTimingStruct GetUnpackSceneTiming(const DefaultMaterialGeneralDataStruct dmgds)
+{
+    DefaultMaterialUnpackedSceneTimingStruct dm;
+    dm . sceneDeltaTime = dmgds . sceneTimingData . x;
+    dm . tickDeltaTime = dmgds . sceneTimingData . y;
+    dm . tickTotalTime = dmgds . sceneTimingData . z;
+    dm . frameIndex = floatBitsToUint(dmgds . sceneTimingData . w);
+    return dm;
+}
+
+vec4 GetUnpackViewport(const DefaultMaterialGeneralDataStruct dmgds)
+{
+    return dmgds . viewportSizeInvViewportSize;
+}
+
+
+
+struct DefaultMaterialUnpackedTexTransformStruct {
+    vec4 rotateScale;
+    vec2 translate;
+};
+
+DefaultMaterialUnpackedTexTransformStruct GetUnpackTextureTransform(const uvec4 packedTexTransform)
+{
+    DefaultMaterialUnpackedTexTransformStruct dm;
+    dm . rotateScale = UnpackVec4Half2x16(packedTexTransform . xy);
+    dm . translate = UnpackVec4Half2x16(packedTexTransform . zw). xy;
+    return dm;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 20 "/home/huxiaoming/OHOS_20231204/foundation/graphic/graphic_3d/lume/Lume_3D/api/3d/shaders/common/3d_dm_indirect_lighting_common.h"
+#line 1 "/home/huxiaoming/OHOS_20231204/foundation/graphic/graphic_3d/lume/LumeRender/api/render/shaders/common/render_compatibility_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 21 "/home/huxiaoming/OHOS_20231204/foundation/graphic/graphic_3d/lume/Lume_3D/api/3d/shaders/common/3d_dm_indirect_lighting_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+vec3 unpackEnvMap(vec4 envColorRgbd)
+{
+    return envColorRgbd . xyz *(1.0 / envColorRgbd . a);
+}
+
+
+vec3 unpackIblRadiance(vec4 envColorRgbd)
+{
+    return envColorRgbd . xyz *(1.0 / envColorRgbd . a);
+}
+
+
+vec3 unpackIblIrradianceSH(vec3 n, vec4 sh[9])
+{
+
+    return max(vec3(0.0), sh[0]. xyz
+
+                              + sh[1]. xyz * n . y + sh[2]. xyz * n . z + sh[3]. xyz * n . x
+
+                              + sh[4]. xyz *(n . x * n . y)+ sh[5]. xyz *(n . z * n . y)+
+                              sh[6]. xyz *((3.0 * n . z * n . z)- 1.0)+ sh[7]. xyz *(n . x * n . z)+
+                              sh[8]. xyz *(n . x * n . x - n . y * n . y));
+}
+
+
+
+vec3 EnvBRDFApprox(vec3 f0, float roughness, float NoV)
+{
+    const vec4 c0 = vec4(- 1.0, - 0.0275, - 0.572, 0.022);
+    const vec4 c1 = vec4(1.0, 0.0425, 1.04, - 0.04);
+    vec4 r = roughness * c0 + c1;
+    float a004 = min(r . x * r . x, exp2(- 9.28 * NoV))* r . x + r . y;
+    vec2 ab = vec2(- 1.04, 1.04)* a004 + r . zw;
+
+
+    const float f90 = clamp(50.0 * max(f0 . x, max(f0 . y, f0 . z)), 0.0, 1.0);
+    return f0 * ab . x + ab . y * f90;
+}
+
+
+
+float EnvBRDFApproxNonmetal(float Roughness, float NoV)
+{
+
+    const vec2 c0 = { - 1, - 0.0275 };
+    const vec2 c1 = { 1, 0.0425 };
+    vec2 r = Roughness * c0 + c1;
+    return min(r . x * r . x, exp2(- 9.28 * NoV))* r . x + r . y;
+}
+
+
+
+
+#line 9 "shader/London.frag"
+
+layout(push_constant, std430)uniform uPushConstant
+{
+ float unused;
+};
+
+layout(set = 0, binding = 1, std140)uniform uDeltaTime
+{
+ vec2 time;
+};
+
+layout(set = 0, binding = 2, std140)uniform uInputResolution
+{
+ vec2 inputResolution;
+};
+
+layout(set = 1, binding = 0)uniform sampler uSampler;
+layout(set = 1, binding = 1)uniform texture2D uLondon;
+
+layout(location = 0)in vec2 inUv;
+layout(location = 0)out vec4 outColor;
+
+
+
+
+
+
+
+
+
+
+
+
+
+vec3 N13(float p){
+
+   vec3 p3 = fract(vec3(p)* vec3(.1031, .11369, .13787));
+   p3 += dot(p3, p3 . yzx + 19.19);
+   return fract(vec3((p3 . x + p3 . y)* p3 . z,(p3 . x + p3 . z)* p3 . y,(p3 . y + p3 . z)* p3 . x));
+}
+
+vec4 N14(float t){
+ return fract(sin(t * vec4(123., 1024., 1456., 264.))* vec4(6547., 345., 8799., 1564.));
+}
+float N(float t){
+    return fract(sin(t * 12345.564)* 7658.76);
+}
+
+float Saw(float b, float t){
+ return smoothstep(0., b, t)* smoothstep(1., b, t);
+}
+
+
+vec2 DropLayer2(vec2 uv, float t){
+    vec2 UV = uv;
+
+    uv . y += t * 0.75;
+    vec2 a = vec2(6., 1.);
+    vec2 grid = a * 2.;
+    vec2 id = floor(uv * grid);
+
+    float colShift = N(id . x);
+    uv . y += colShift;
+
+    id = floor(uv * grid);
+    vec3 n = N13(id . x * 35.2 + id . y * 2376.1);
+    vec2 st = fract(uv * grid)- vec2(.5, 0);
+
+    float x = n . x - .5;
+
+    float y = UV . y * 20.;
+    float wiggle = sin(y + sin(y));
+    x += wiggle *(.5 - abs(x))*(n . z - .5);
+    x *= .7;
+    float ti = fract(t + n . z);
+    y =(Saw(.85, ti)- .5)* .9 + .5;
+    vec2 p = vec2(x, y);
+
+    float d = length((st - p)* a . yx);
+
+    float mainDrop = smoothstep(.4, .0, d);
+
+    float r = sqrt(smoothstep(1., y, st . y));
+    float cd = abs(st . x - x);
+    float trail = smoothstep(.23 * r, .15 * r * r, cd);
+    float trailFront = smoothstep(- .02, .02, st . y - y);
+    trail *= trailFront * r * r;
+
+    y = UV . y;
+    float trail2 = smoothstep(.2 * r, .0, cd);
+    float droplets = max(0.,(sin(y *(1. - y)* 120.)- st . y))* trail2 * trailFront * n . z;
+    y = fract(y * 10.)+(st . y - .5);
+    float dd = length(st - vec2(x, y));
+    droplets = smoothstep(.3, 0., dd);
+    float m = mainDrop + droplets * r * trailFront;
+
+
+    return vec2(m, trail);
+}
+
+float StaticDrops(vec2 uv, float t){
+ uv *= 40.;
+
+    vec2 id = floor(uv);
+    uv = fract(uv)- .5;
+    vec3 n = N13(id . x * 107.45 + id . y * 3543.654);
+    vec2 p =(n . xy - .5)* .7;
+    float d = length(uv - p);
+
+    float fade = Saw(.025, fract(t + n . z));
+    float c = smoothstep(.3, 0., d)* fract(n . z * 10.)* fade;
+    return c;
+}
+
+vec2 Drops(vec2 uv, float t, float l0, float l1, float l2){
+    float s = StaticDrops(uv, t)* l0;
+    vec2 m1 = DropLayer2(uv, t)* l1;
+    vec2 m2 = DropLayer2(uv * 1.85, t)* l2;
+
+    float c = s + m1 . x + m2 . x;
+    c = smoothstep(.3, 1., c);
+
+    return vec2(c, max(m1 . y * l0, m2 . y * l1));
+}
+
+
+void main(void)
+{
+ vec2 coord = vec2(gl_FragCoord . x, - gl_FragCoord . y);
+ vec2 uv =(coord . xy - .5 * inputResolution . xy)/ inputResolution . y;
+    vec2 UV = coord . xy / inputResolution . xy;
+
+    vec3 M = vec3(0.0f, 0.0f, 0.0f);
+    float T = time . x + M . x * 2.;
+
+
+    T = mod(time . x, 102.);
+    T = mix(T, M . x * 102., M . z > 0. ? 1. : 0.);
+
+
+
+    float t = T * .2;
+
+
+    float rainAmount = sin(T * .05)* .3 + .7;
+
+    float maxBlur = mix(3., 6., rainAmount);
+    float minBlur = 2.;
+
+    float story = 0.;
+    float heart = 0.;
+
+
+    story = smoothstep(0., 70., T);
+
+    t = min(1., T / 70.);
+    t = 1. - t;
+    t =(1. - t * t)* 70.;
+
+    float zoom = mix(.3, 1.2, story);
+    uv *= zoom;
+    minBlur = 4. + smoothstep(.5, 1., story)* 3.;
+    maxBlur = 6. + smoothstep(.5, 1., story)* 1.5;
+
+    vec2 hv = uv - vec2(.0, - .1);
+    hv . x *= .5;
+    float s = smoothstep(110., 70., T);
+    hv . y -= sqrt(abs(hv . x))* .5 * s;
+    heart = length(hv);
+    heart = smoothstep(.4 * s, .2 * s, heart)* s;
+    rainAmount = heart;
+
+    maxBlur -= heart;
+    uv *= 1.5;
+    t *= .25;
+
+
+
+
+    UV =(UV - .5)*(.9 + zoom * .1)+ .5;
+
+    float staticDrops = smoothstep(- .5, 1., rainAmount)* 2.;
+    float layer1 = smoothstep(.25, .75, rainAmount);
+    float layer2 = smoothstep(.0, .5, rainAmount);
+
+
+    vec2 c = Drops(uv, t, staticDrops, layer1, layer2);
+
+
+
+     vec2 e = vec2(.001, 0.);
+     float cx = Drops(uv + e, t, staticDrops, layer1, layer2). x;
+     float cy = Drops(uv + e . yx, t, staticDrops, layer1, layer2). x;
+     vec2 n = vec2(cx - c . x, cy - c . x);
+
+
+
+
+    n *= 1. - smoothstep(60., 85., T);
+    c . y *= 1. - smoothstep(80., 100., T)* .8;
+
+
+    float focus = mix(maxBlur - c . y, minBlur, smoothstep(.1, .2, c . x));
+    vec3 col = textureLod(sampler2D(uLondon, uSampler), UV + n, focus). rgb;
+
+
+
+    t =(T + 3.)* .5;
+    float colFade = sin(t * .2)* .5 + .5 + story;
+    col *= mix(vec3(1.), vec3(.8, .9, 1.3), colFade);
+    float fade = smoothstep(0., 10., T);
+    float lightning = sin(t * sin(t * 10.));
+    lightning *= pow(max(0., sin(t + sin(t))), 10.);
+    col *= 1. + lightning * fade * mix(1., .1, story * story);
+    col *= 1. - dot(UV -= .5, UV);
+
+
+     col = mix(pow(col, vec3(1.2)), col, heart);
+     fade *= smoothstep(102., 97., T);
+
+
+    col *= fade;
+
+
+
+
+ outColor = vec4(col, 1.);
+}

@@ -1,0 +1,80 @@
+{
+	"compatibility_info": {
+		"version": "22.00",
+		"type": "rendernodegraph"
+	},
+	"nodes": [
+		{
+			"typeName": "RenderNodeDefaultCameras",
+			"nodeName": "RenderNodeCameras"
+		},
+		{
+			"typeName": "RenderNodeFullscreenGeneric",
+			"nodeName": "RenderNodeFullscreenGeneric",
+			"queue": {
+				"type": "graphics",
+				"index": 0
+			},
+			"renderDataStoreShaderSpecialization": {
+				"dataStoreName": "RenderDataStorePod",
+				"typeName": "ShaderSpecializationRenderPod",
+				"configurationName": "ShaderSpecializationConfig"
+			},
+			"shader": "shaders://shader/London.shader",
+			"renderPass": {
+				"attachments": [
+					{
+						"loadOp": "dont_care",
+						"storeOp": "store",
+						"name": "CORE_DEFAULT_BACKBUFFER"
+					}
+				],
+				"subpassIndex": 0,
+				"subpassCount": 1,
+				"subpass": {
+					"colorAttachmentIndices": [ 0 ]
+				}
+			},
+			"resource": {
+				"buffers": [
+					{
+						"set": 0,
+						"binding": 0,
+						"optionalOffset": 0
+						"resourceLocation": "from_named_render_node_output",
+						"resourceIndex": 0,
+						"nodeName": "RenderNodeCameras"
+					},
+					{
+						"set": 0,
+						"binding": 1,
+						"optionalOffset": 0
+						"nodeName": "INPUT_BUFFER"
+					},
+					{
+						"set": 0,
+						"binding": 2,
+						"optionalOffset": 0
+						"nodeName": "RESOLUTION_BUFFER"
+					},
+				],
+				"samplers": [
+					{
+						"set": 1,
+						"binding": 0,
+						"name": "CORE_DEFAULT_SAMPLER_LINEAR_MIPMAP_REPEAT"
+					}
+				],
+				"images": [
+					{
+						"set": 1,
+						"binding": 1,
+						"optionalOffset": 0
+						"name": "IMAGE_0"
+					}
+				]
+			}
+		}
+
+	]
+}
