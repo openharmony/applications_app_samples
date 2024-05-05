@@ -1,8 +1,23 @@
+/*
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import scene3d from '@ohos.graphics.scene'
 import animator, { AnimatorResult } from '@ohos.animator';
 import router from '@ohos.router';
 
-let logTag: string = "lume_api_test ";
+let LOG_TAG: string = "Sample_Graphics3D ";
 
 @Entry
 @Component
@@ -22,7 +37,7 @@ struct node_geometry {
   @State meshInfo: string = '';
 
   private printNode : Function = (node: scene3d.Node, tag?:string)=>{
-    let msg: string = logTag + tag;
+    let msg: string = LOG_TAG + tag;
     if (!node) {
       console.log(msg + ' error node null');
       return;
@@ -42,7 +57,7 @@ struct node_geometry {
     this.hierarchy += node.path + '/' + node.name + '\n';
     let container: scene3d.Container<scene3d.Node> = node.children;
     let count: number = container.count();
-    console.log(logTag + " node child count", count);
+    console.log(LOG_TAG + " node child count", count);
     this.hierarchy += '  ';
     for (let i = 0; i < count; i++) {
       this.Traversal(container.get(i));
@@ -56,13 +71,13 @@ struct node_geometry {
     this.hierarchy += node.path + '/' + node.name + '\n';
     let container: scene3d.Container<scene3d.Node> = node.children;
     let count: number = container.count();
-    console.log(logTag + " node child count", count);
+    console.log(LOG_TAG + " node child count", count);
     this.hierarchy += '  ';
     for (let i = 0; i < count; i++) {
       this.Traversal(container.get(i));
     }
   }
-  //  scene:Nullable<scene3D.Scene>;
+
   onPageShow(): void {
     this.Init();
   }
@@ -75,7 +90,7 @@ struct node_geometry {
   }
 
   onPageHide(): void {
-    console.log('lume onPageHide')
+    console.log(LOG_TAG + ' onPageHide')
     if (this.scene) {
       this.scene.destroy();
     }
@@ -116,7 +131,6 @@ struct node_geometry {
           this.image = await this.rf.createImage({ name: "envImg3", uri: $rawfile("gltf/DamagedHelmet/glTF/Default_AO.jpg") });
           this.Traversal(this.scene?.root);
           if (!this.geom) {
-            // this.geom = this.scene.getNodeByPath("rootNode_/Unnamed Node 1/AnimatedCube") as scene3d.Geometry;
             this.geom = this.scene.getNodeByPath("rootNode_/Unnamed Node 1/Cube") as scene3d.Geometry;
             this.meshInfo += this.PrintAabb(this.geom.mesh.aabb, 'Mesh ');
             let i = 0;
@@ -131,7 +145,7 @@ struct node_geometry {
 
         })
         .catch((reason: string) => {
-          console.log("lume_api_test error: " + reason)
+          console.log(LOG_TAG + " error: " + reason)
         });
     }
   }
@@ -168,16 +182,12 @@ struct node_geometry {
           }
 
           if (!this.geom) {
-            // this.geom = this.scene.getNodeByPath("rootNode_/Unnamed Node 1/AnimatedCube") as scene3d.Geometry;
             this.geom = this.scene.getNodeByPath("rootNode_/Unnamed Node 1/Cube") as scene3d.Geometry;
           }
-          // this.materialOrg =
+
            this.geom.mesh.materialOverride = undefined;
            this.geom.mesh.subMeshes[0].material = this.material;
-          
-          // if (this.shader && this.image) {
-          //   (this.shader.inputs["BASE_COLOR_Image"] as scene3d.Image) = this.image;
-          // }
+
           if (this.material && this.material.colorShader && this.image) {
             (this.material.colorShader.inputs["BASE_COLOR_Image"] as scene3d.Image) = this.image;
           }
@@ -189,7 +199,6 @@ struct node_geometry {
           }
         })
         Button('material override').onClick(async () => {
-          // recovery first
           if (this.geom) {
             this.geom.mesh.subMeshes[0].material = this.materialOrg as scene3d.ShaderMaterial;
           }

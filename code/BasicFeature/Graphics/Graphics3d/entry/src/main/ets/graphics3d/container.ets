@@ -1,7 +1,23 @@
+/*
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import scene3d from '@ohos.graphics.scene'
 import router from '@ohos.router';
 import animator, { AnimatorResult } from '@ohos.animator'
-let logTag: string = 'lume_api_test';
+
+let LOG_TAG: string = 'Sample_Graphics3D';
 
 @Entry
 @Component
@@ -9,16 +25,15 @@ struct container {
   scene: scene3d.Scene | null = null;
   @State sceneOpt: SceneOptions | null = null;
   cam: scene3d.Camera | null = null;
-  private scaled: boolean = false;
-  private step: number = 0;
+  // private scaled: boolean = false;
+  // private step: number = 0;
   private node: scene3d.Node | null | undefined = undefined;
   private sceneNode: scene3d.Node | null = null;
   @State hierarchy: string = '';
-  backAnimator: AnimatorResult | undefined = undefined;
-  needAddCam: Boolean = false;
-
-  private printNode : Function = (node: scene3d.Node, tag?:string)=>{
-    let msg: string = logTag + tag;
+  // backAnimator: AnimatorResult | undefined = undefined;
+  // needAddCam: Boolean = false;
+  private printNode: Function = (node: scene3d.Node, tag?: string) => {
+    let msg: string = LOG_TAG + tag;
     if (!node) {
       console.log(msg + ' error node null');
       return;
@@ -38,7 +53,7 @@ struct container {
     this.hierarchy += node.path + '/' + node.name + '\n';
     let container: scene3d.Container<scene3d.Node> = node.children;
     let count: number = container.count();
-    console.log(logTag + " node child count", count);
+    console.log(LOG_TAG + " node child count", count);
     this.hierarchy += '  ';
     for (let i = 0; i < count; i++) {
       this.Traversal(container.get(i));
@@ -50,7 +65,7 @@ struct container {
   }
 
   onPageHide(): void {
-    console.log(logTag + ' onPageHide')
+    console.log(LOG_TAG + ' onPageHide')
     if (this.scene) {
       this.scene.destroy();
     }
@@ -61,21 +76,22 @@ struct container {
 
   Init(): void {
     if (this.scene == null) {
-      scene3d.Scene.load($rawfile("gltf/DamagedHelmet/glTF/DamagedHelmet.gltf")).then(async (result:scene3d.Scene) => {
+      scene3d.Scene.load($rawfile("gltf/DamagedHelmet/glTF/DamagedHelmet.gltf")).then(async (result: scene3d.Scene) => {
         this.scene = result;
         this.sceneOpt = { scene: this.scene, modelType: ModelType.SURFACE } as SceneOptions;
-        let rf:scene3d.SceneResourceFactory = this.scene.getResourceFactory();
+        let rf: scene3d.SceneResourceFactory = this.scene.getResourceFactory();
         this.cam = await rf.createCamera({ "name": "Camera1" });
         this.cam.enabled = true;
-        this.cam.position.z = 5;
+        this.cam.position.z = 5; // move camera to position 5 on z
 
         this.node = this.scene.getNodeByPath('rootNode_/Scene/node_damagedHelmet_-6514');
         this.printNode(this.node, 'node_damagedHelmet_-6514');
         this.printNode(this.cam, 'camera');
         this.Traversal(this.scene.root);
         this.sceneNode = this.scene.getNodeByPath('rootNode_/Scene');
-      }).catch((reason:string) => {
-        console.log(logTag + " error: " + reason )});
+      }).catch((reason: string) => {
+        console.log(LOG_TAG + " error: " + reason)
+      });
     }
   }
 
@@ -94,21 +110,22 @@ struct container {
         }
         .height('30%')
 
-        Button('remove node').onClick(()=>{
+        Button('remove node').onClick(() => {
           this.scene?.root?.children.remove(this.node);
         })
-        Button('appen node').onClick(()=>{
+        Button('append node').onClick(() => {
           this.scene?.root?.children.get(0)?.children.append(this.node);
         })
-        Button('insert node').onClick(()=>{
+        Button('insert node').onClick(() => {
           this.scene?.root?.children.get(0)?.children.insertAfter(this.node, null);
         })
-        Button('clear').onClick(()=>{
+        Button('clear').onClick(() => {
           this.scene?.root?.children.clear();
-          this.needAddCam = true;
         })
         Text(this.hierarchy)
-        Button('back').onClick(()=>{ router.back()})
+        Button('back').onClick(() => {
+          router.back()
+        })
       }
       .width('100%')
     }

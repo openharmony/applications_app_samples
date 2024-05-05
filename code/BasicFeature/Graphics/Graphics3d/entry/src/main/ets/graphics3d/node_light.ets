@@ -1,7 +1,22 @@
+/*
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import scene3d from '@ohos.graphics.scene'
 import router from '@ohos.router';
 
-let logTag: string = "lume_api_test";
+let LOG_TAG: string = "Sample_Graphics3D";
 let colorFlag: number = 0;
 let intensityFlag: number = 0;
 let shadowFlag: number = 0;
@@ -19,9 +34,11 @@ const intensities: number[] = [
 function Sub(l: scene3d.Vec3, r: scene3d.Vec3): scene3d.Vec3 {
   return { x: l.x - r.x, y: l.y - r.y, z: l.z - r.z };
 }
+
 function Dot(l: scene3d.Vec3, r: scene3d.Vec3): number {
   return l.x * r.x + l.y * r.y + r.z * l.z;
 }
+
 function Normalize(l: scene3d.Vec3): scene3d.Vec3 {
   let d = Math.sqrt(Dot(l, l));
   return { x: l.x / d, y: l.y / d, z: l.z / d };
@@ -32,8 +49,9 @@ function Cross(l: scene3d.Vec3, r: scene3d.Vec3): scene3d.Vec3 {
 }
 
 function Mul(l: scene3d.Quaternion, d: number): scene3d.Quaternion {
-  return { x: l.x * d, y: l.y * d, z: l.z * d, w: l.w * d};
+  return { x: l.x * d, y: l.y * d, z: l.z * d, w: l.w * d };
 }
+
 function lookAt(cam: scene3d.Node, eye: scene3d.Vec3, center: scene3d.Vec3, up: scene3d.Vec3) {
 
   let t: number;
@@ -79,39 +97,36 @@ struct node_geometry {
   @State nearPlaneValue: number = 0.1;
   radianceImg1: scene3d.Image | null = null;
 
-  //  scene:Nullable<scene3D.Scene>;
   onPageShow(): void {
     this.Init();
   }
-  PrintLight(light: scene3d.Light) : void
-  {
+
+  PrintLight(light: scene3d.Light): void {
     if (!light) {
       return;
     }
-    console.log(logTag + "Light name: " + light.name);
-    console.log(logTag + "Light type: " + light.lightType);
-    console.log(logTag + "Light color: [" + light.color.r + ", " + light.color.g + ", " + light.color.b + ", " + light.color.a + "]");
-    console.log(logTag + "Light intensity: ", light.intensity);
-    console.log(logTag + "Light shadowEnabled: " + light.shadowEnabled);
+    console.log(LOG_TAG + "Light name: " + light.name);
+    console.log(LOG_TAG + "Light type: " + light.lightType);
+    console.log(LOG_TAG + "Light color: [" + light.color.r + ", " + light.color.g + ", " + light.color.b + ", " + light.color.a + "]");
+    console.log(LOG_TAG + "Light intensity: ", light.intensity);
+    console.log(LOG_TAG + "Light shadowEnabled: " + light.shadowEnabled);
     if (light.lightType === scene3d.LightType.DIRECTIONAL) {
       let l: scene3d.DirectionalLight = light as scene3d.DirectionalLight;
-      console.log(logTag + "Light near plane: " + l.nearPlane);
+      console.log(LOG_TAG + "Light near plane: " + l.nearPlane);
     }
   }
 
   onPageHide(): void {
-    console.log('lume onPageHide')
+    console.log(LOG_TAG + ' onPageHide')
     if (this.scene) {
       this.scene.destroy();
     }
-
     this.cam = null;
     this.scene = null;
   }
 
   Init(): void {
     if (this.scene == null) {
-      //scene3d.Scene.load($rawfile("gltf/DamagedHelmet/glTF/DamagedHelmet.gltf"))
       scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"))
         .then(async (result: scene3d.Scene) => {
           this.scene = result;
@@ -131,19 +146,27 @@ struct node_geometry {
           this.scene.environment.radianceImage = this.radianceImg1;
 
           this.directionalLight =
-            await this.scene?.getResourceFactory().createLight({ "name": "DirectionalLight1" }, scene3d.LightType.DIRECTIONAL) as scene3d.DirectionalLight;
+          await this.scene?.getResourceFactory().createLight({
+            "name": "DirectionalLight1"
+          }, scene3d.LightType.DIRECTIONAL) as scene3d.DirectionalLight;
           if (!this.directionalLight) {
-            console.log(logTag + 'create directional light fail')
+            console.log(LOG_TAG + 'create directional light fail')
           }
-          lookAt(this.directionalLight, { x: 10.0, y: 10.0, z: 10.0 }, {x: 0.0, y: 0.0, z: 0.0 }, { x: 0.0, y: 1.0, z: 0.0 });
+          lookAt(this.directionalLight, { x: 10.0, y: 10.0, z: 10.0 }, { x: 0.0, y: 0.0, z: 0.0 }, {
+            x: 0.0,
+            y: 1.0,
+            z: 0.0
+          });
 
           this.directionalLight.enabled = false;
 
           this.spotLight =
-            await this.scene?.getResourceFactory().createLight({ "name": "SpotLight1" }, scene3d.LightType.SPOT) as scene3d.SpotLight;
+          await this.scene?.getResourceFactory().createLight({
+            "name": "SpotLight1"
+          }, scene3d.LightType.SPOT) as scene3d.SpotLight;
 
           if (!this.spotLight) {
-            console.log(logTag + 'create spot light fail')
+            console.log(LOG_TAG + 'create spot light fail')
           }
 
           let targ: scene3d.Vec3 = { x: 0, y: 0.0, z: 0.0 };
@@ -158,7 +181,7 @@ struct node_geometry {
           this.UpdateLights();
         })
         .catch((reason: string) => {
-          console.log("lume_api_test error: " + reason)
+          console.log(LOG_TAG + " error: " + reason)
         });
     }
   }
@@ -181,9 +204,8 @@ struct node_geometry {
         Column() {
           if (this.sceneOpt) {
             Component3D(this.sceneOpt)
-             .renderWidth('60%')
-             .renderHeight('60%')
-            // .backgroundColor(Color.Red)
+              .renderWidth('60%')
+              .renderHeight('60%')
           }
           else {
             Text("loading 1...");
@@ -193,7 +215,7 @@ struct node_geometry {
 
         if (this.lgt) {
           Button('Switch light type (' + (this.lgt.lightType === scene3d.LightType.DIRECTIONAL ? 'DIRECTIONAL' : 'SPOT') + ')')
-            .onClick(()=>{
+            .onClick(() => {
               if (this.lgt) {
                 this.lgt.enabled = false;
 
@@ -220,7 +242,7 @@ struct node_geometry {
 
             this.lgt.enabled = !this.lgt.enabled;
 
-            console.log(logTag + "Light enabled: " + this.lgt.enabled);
+            console.log(LOG_TAG + "Light enabled: " + this.lgt.enabled);
           });
 
           if (this.lgt.enabled) {
@@ -232,7 +254,7 @@ struct node_geometry {
               colorFlag = (colorFlag + 1) % colors.length;
               this.UpdateLights();
 
-              console.log(logTag + "Light color: [" + this.lgt.color.r + ", " + this.lgt.color.g + ", " + this.lgt.color.b + ", " + this.lgt.color.a + "]");
+              console.log(LOG_TAG + "Light color: [" + this.lgt.color.r + ", " + this.lgt.color.g + ", " + this.lgt.color.b + ", " + this.lgt.color.a + "]");
             });
 
             Button('Change intensity (' + this.lgt.intensity + ')').onClick(() => {
@@ -242,7 +264,7 @@ struct node_geometry {
 
               intensityFlag = (intensityFlag + 1) % intensities.length;
               this.UpdateLights();
-              console.log(logTag + "Light intensity: " + this.lgt.intensity);
+              console.log(LOG_TAG + "Light intensity: " + this.lgt.intensity);
             });
 
             Button('Shadows (' + (this.lgt.shadowEnabled ? 'enabled' : 'disabled') + ')').onClick(() => {
@@ -251,7 +273,7 @@ struct node_geometry {
               }
               shadowFlag = (shadowFlag + 1) % 2;
               this.UpdateLights();
-              console.log(logTag + "Light shadowEnabled: " + this.lgt.shadowEnabled);
+              console.log(LOG_TAG + "Light shadowEnabled: " + this.lgt.shadowEnabled);
             });
           }
         }
