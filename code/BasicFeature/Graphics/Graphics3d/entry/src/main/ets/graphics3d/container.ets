@@ -25,13 +25,10 @@ struct container {
   scene: scene3d.Scene | null = null;
   @State sceneOpt: SceneOptions | null = null;
   cam: scene3d.Camera | null = null;
-  // private scaled: boolean = false;
-  // private step: number = 0;
   private node: scene3d.Node | null | undefined = undefined;
   private sceneNode: scene3d.Node | null = null;
   @State hierarchy: string = '';
-  // backAnimator: AnimatorResult | undefined = undefined;
-  // needAddCam: Boolean = false;
+
   private printNode: Function = (node: scene3d.Node, tag?: string) => {
     let msg: string = LOG_TAG + tag;
     if (!node) {

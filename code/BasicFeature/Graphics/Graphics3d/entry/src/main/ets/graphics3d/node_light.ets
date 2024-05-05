@@ -192,7 +192,7 @@ struct node_geometry {
       this.lgt.color = colors[colorFlag];
       this.lgt.intensity = intensities[intensityFlag];
       if (this.lgt.lightType === scene3d.LightType.DIRECTIONAL) {
-        this.lgt.intensity = intensities[intensityFlag] / 50.0;
+        this.lgt.intensity = intensities[intensityFlag] / 50.0; // just reduce some intensity when directional light
       }
       this.lgt.shadowEnabled = shadowFlag == 0;
     }

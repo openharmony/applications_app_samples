@@ -66,10 +66,6 @@ struct node_geometry {
           }
           let env = await rf.createEnvironment({ "name": "Env" });
           this.scene.environment.backgroundType = scene3d.EnvironmentBackgroundType.BACKGROUND_NONE;
-          // if (this.cam.postProcess.toneMapping) {
-          //   this.cam.postProcess.toneMapping.type = scene3d.ToneMappingType.ACES_2020;
-          //   this.cam.postProcess.toneMapping.type = scene3d.ToneMappingType.FILMIC;
-          // }
         })
         .catch((reason: string) => {
           console.log(LOG_TAG + " error: " + reason)
