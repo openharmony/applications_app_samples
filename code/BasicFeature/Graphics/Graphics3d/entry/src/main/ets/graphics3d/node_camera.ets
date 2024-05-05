@@ -35,7 +35,7 @@ struct node_geometry {
 
   //  scene:Nullable<scene3D.Scene>;
   onPageShow(): void {
-    this.Init();
+    this.init();
   }
 
   onPageHide(): void {
@@ -48,7 +48,7 @@ struct node_geometry {
     this.scene = null;
   }
 
-  Init(): void {
+  init(): void {
     if (this.scene == null) {
       scene3d.Scene.load($rawfile("gltf/DamagedHelmet/glTF/DamagedHelmet.gltf"))
         .then(async (result: scene3d.Scene) => {
@@ -113,7 +113,7 @@ struct node_geometry {
             this.cam.fov = degree * Math.PI / 180;
             console.log(LOG_TAG + "Camera fov: " + this.cam.fov + ", degree: " + degree);
           }
-        });
+        }).id('change_fov');
 
         Column() {
           Text("nearPlane: " + this.nearPlaneValue.toFixed(1)).fontSize(12)
@@ -178,7 +178,7 @@ struct node_geometry {
             this.cam.enabled = false;
             console.log(LOG_TAG + "Camera enabled: " + this.cam.enabled);
           }
-        });
+        }).id('camera_enabled');
 
         Button('Change Tonemap Type').onClick(() => {
           if (!this.scene || !this.cam || !this.cam.postProcess || !this.cam.postProcess.toneMapping) {
@@ -203,7 +203,7 @@ struct node_geometry {
           };
 
           console.log(LOG_TAG + "Camera Tonemap Type:" + this.cam.postProcess.toneMapping?.type);
-        });
+        }).id('change_tonemapping');
 
         Column() {
           Text("Tonemap Exposure: " + this.tonemapExposure.toFixed(1)).fontSize(12)
@@ -259,11 +259,11 @@ struct node_geometry {
             this.cam.clearColor = { r: 1, g: 0, b: 0, a: 1.0 };
             console.log(LOG_TAG + "Camera clearColor: [" + this.cam.clearColor.r + ", " + this.cam.clearColor.g + ", " + this.cam.clearColor.b + ", " + this.cam.clearColor.a + "]");
           }
-        });
+        }).id('clear_color');
 
         Button('back').onClick(() => {
           router.back()
-        })
+        }).id('camera_back')
       }
       .width('100%')
     }

@@ -41,7 +41,7 @@ struct node_geometry {
   radianceImg1: scene3d.Image | null = null;
 
   onPageShow(): void {
-    this.Init();
+    this.init();
   }
 
   onPageHide(): void {
@@ -54,7 +54,7 @@ struct node_geometry {
     this.scene = null;
   }
 
-  Init(): void {
+  init(): void {
     if (this.scene == null) {
       scene3d.Scene.load($rawfile("gltf/DamagedHelmet/glTF/DamagedHelmet.gltf"))
         .then(async (result: scene3d.Scene) => {
@@ -133,7 +133,7 @@ struct node_geometry {
             this.scene.environment.environmentImage = this.envImg3;
             console.log(LOG_TAG + "Environment environmentImage set envImg3 EQUIRECTANGULAR");
           }
-        });
+        }).id('change_type_environment');
 
         Button('change radiance Img').onClick(() => {
           if (!this.scene || !this.env) {
@@ -148,7 +148,7 @@ struct node_geometry {
             this.scene.environment.radianceImage = this.radianceImg1;
             console.log(LOG_TAG + "Environment radianceImage set radianceImg1");
           }
-        });
+        }).id('change_radiance');
 
         Button('change indirectDiffuseFactor').onClick(() => {
           if (!this.scene || !this.env) {
@@ -199,7 +199,7 @@ struct node_geometry {
             + this.scene.environment.indirectDiffuseFactor.z + ", "
             + this.scene.environment.indirectDiffuseFactor.w + "]");
           }
-        });
+        }).id('change_indirectDiffuseFactor');
 
         Button('change indirectSpecularFactor').onClick(() => {
           if (!this.scene || !this.env) {
@@ -250,7 +250,7 @@ struct node_geometry {
             + this.scene.environment.indirectSpecularFactor.z + ", "
             + this.scene.environment.indirectSpecularFactor.w + "]");
           }
-        });
+        }).id('change_indirectSpecularFactor');
 
         Button('change environmentMapFactor').onClick(() => {
           if (!this.scene || !this.env) {
@@ -301,7 +301,7 @@ struct node_geometry {
             + this.scene.environment.environmentMapFactor.z + ", "
             + this.scene.environment.environmentMapFactor.w + "]");
           }
-        });
+        }).id('change_environmentMapFactor');
 
         Button('change irradianceCoefficients').onClick(() => {
           if (!this.scene || !this.env) {
@@ -322,11 +322,11 @@ struct node_geometry {
           + this.scene.environment.irradianceCoefficients[0].x + ", "
           + this.scene.environment.irradianceCoefficients[0].y + ", "
           + this.scene.environment.irradianceCoefficients[0].z + "]");
-        });
+        }).id('change_irradianceCoefficients');
 
         Button('back').onClick(() => {
           router.back()
-        })
+        }).id('back_environment')
       }
       .width('100%')
     }

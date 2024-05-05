@@ -31,24 +31,24 @@ const intensities: number[] = [
   100.0, 500.0, 1000.0, 1500.0, 2000.0,
 ]
 
-function Sub(l: scene3d.Vec3, r: scene3d.Vec3): scene3d.Vec3 {
+function sub(l: scene3d.Vec3, r: scene3d.Vec3): scene3d.Vec3 {
   return { x: l.x - r.x, y: l.y - r.y, z: l.z - r.z };
 }
 
-function Dot(l: scene3d.Vec3, r: scene3d.Vec3): number {
+function dot(l: scene3d.Vec3, r: scene3d.Vec3): number {
   return l.x * r.x + l.y * r.y + r.z * l.z;
 }
 
-function Normalize(l: scene3d.Vec3): scene3d.Vec3 {
-  let d = Math.sqrt(Dot(l, l));
+function normalize(l: scene3d.Vec3): scene3d.Vec3 {
+  let d = Math.sqrt(dot(l, l));
   return { x: l.x / d, y: l.y / d, z: l.z / d };
 }
 
-function Cross(l: scene3d.Vec3, r: scene3d.Vec3): scene3d.Vec3 {
+function cross(l: scene3d.Vec3, r: scene3d.Vec3): scene3d.Vec3 {
   return { x: (l.y * r.z - l.z * r.y), y: (l.z * r.x - l.x * r.z), z: (l.x * r.y - l.y * r.x) };
 }
 
-function Mul(l: scene3d.Quaternion, d: number): scene3d.Quaternion {
+function mul(l: scene3d.Quaternion, d: number): scene3d.Quaternion {
   return { x: l.x * d, y: l.y * d, z: l.z * d, w: l.w * d };
 }
 
@@ -57,9 +57,9 @@ function lookAt(cam: scene3d.Node, eye: scene3d.Vec3, center: scene3d.Vec3, up: 
   let t: number;
 
   let q: scene3d.Quaternion = { x: 0.0, y: 0.0, z: 0.0, w: 0.0 };
-  let f = Normalize(Sub(center, eye));
-  let m0 = Normalize(Cross(f, up));
-  let m1 = Cross(m0, f);
+  let f = normalize(sub(center, eye));
+  let m0 = normalize(cross(f, up));
+  let m1 = cross(m0, f);
   let m2: scene3d.Vec3 = { x: -f.x, y: -f.y, z: -f.z };
   if (m2.z < 0) {
     if (m0.x > m1.y) {
@@ -82,7 +82,7 @@ function lookAt(cam: scene3d.Node, eye: scene3d.Vec3, center: scene3d.Vec3, up: 
     }
   }
   cam.position = eye;
-  cam.rotation = Mul(q, 0.5 / Math.sqrt(t));
+  cam.rotation = mul(q, 0.5 / Math.sqrt(t));
 }
 
 @Entry
@@ -98,7 +98,7 @@ struct node_geometry {
   radianceImg1: scene3d.Image | null = null;
 
   onPageShow(): void {
-    this.Init();
+    this.init();
   }
 
   PrintLight(light: scene3d.Light): void {
@@ -125,7 +125,7 @@ struct node_geometry {
     this.scene = null;
   }
 
-  Init(): void {
+  init(): void {
     if (this.scene == null) {
       scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"))
         .then(async (result: scene3d.Scene) => {
@@ -231,7 +231,7 @@ struct node_geometry {
                 this.UpdateLights();
                 this.PrintLight(this.lgt);
               }
-            })
+            }).id('switch_light')
         }
 
         if (this.lgt) {
@@ -243,7 +243,7 @@ struct node_geometry {
             this.lgt.enabled = !this.lgt.enabled;
 
             console.log(LOG_TAG + "Light enabled: " + this.lgt.enabled);
-          });
+          }).id('enable_light');
 
           if (this.lgt.enabled) {
             Button('change color').onClick(() => {
@@ -255,7 +255,7 @@ struct node_geometry {
               this.UpdateLights();
 
               console.log(LOG_TAG + "Light color: [" + this.lgt.color.r + ", " + this.lgt.color.g + ", " + this.lgt.color.b + ", " + this.lgt.color.a + "]");
-            });
+            }).id('change_color');
 
             Button('Change intensity (' + this.lgt.intensity + ')').onClick(() => {
               if (!this.scene || !this.lgt) {
@@ -265,7 +265,7 @@ struct node_geometry {
               intensityFlag = (intensityFlag + 1) % intensities.length;
               this.UpdateLights();
               console.log(LOG_TAG + "Light intensity: " + this.lgt.intensity);
-            });
+            }).id('change_intensity');
 
             Button('Shadows (' + (this.lgt.shadowEnabled ? 'enabled' : 'disabled') + ')').onClick(() => {
               if (!this.scene || !this.lgt) {
@@ -274,13 +274,13 @@ struct node_geometry {
               shadowFlag = (shadowFlag + 1) % 2;
               this.UpdateLights();
               console.log(LOG_TAG + "Light shadowEnabled: " + this.lgt.shadowEnabled);
-            });
+            }).id('enable_shadow');
           }
         }
 
         Button('back').onClick(() => {
           router.back()
-        })
+        }).id('light_back')
       }
       .width('100%')
     }

@@ -42,7 +42,7 @@ struct container {
     console.log(msg + ' parent name', node.parent?.name);
   }
 
-  Traversal(node: scene3d.Node | null): void {
+  traversal(node: scene3d.Node | null): void {
     if (!node) {
       return;
     }
@@ -53,12 +53,12 @@ struct container {
     console.log(LOG_TAG + " node child count", count);
     this.hierarchy += '  ';
     for (let i = 0; i < count; i++) {
-      this.Traversal(container.get(i));
+      this.traversal(container.get(i));
     }
   }
 
   onPageShow(): void {
-    this.Init();
+    this.init();
   }
 
   onPageHide(): void {
@@ -71,7 +71,7 @@ struct container {
     this.scene = null;
   }
 
-  Init(): void {
+  init(): void {
     if (this.scene == null) {
       scene3d.Scene.load($rawfile("gltf/DamagedHelmet/glTF/DamagedHelmet.gltf")).then(async (result: scene3d.Scene) => {
         this.scene = result;
@@ -84,7 +84,7 @@ struct container {
         this.node = this.scene.getNodeByPath('rootNode_/Scene/node_damagedHelmet_-6514');
         this.printNode(this.node, 'node_damagedHelmet_-6514');
         this.printNode(this.cam, 'camera');
-        this.Traversal(this.scene.root);
+        this.traversal(this.scene.root);
         this.sceneNode = this.scene.getNodeByPath('rootNode_/Scene');
       }).catch((reason: string) => {
         console.log(LOG_TAG + " error: " + reason)
@@ -108,21 +108,25 @@ struct container {
         .height('30%')
 
         Button('remove node').onClick(() => {
-          this.scene?.root?.children.remove(this.node);
-        })
+            this.scene?.root?.children.remove(this.node);
+          }).id('remove_node')
+
         Button('append node').onClick(() => {
           this.scene?.root?.children.get(0)?.children.append(this.node);
-        })
+        }).id('append_node')
+
         Button('insert node').onClick(() => {
           this.scene?.root?.children.get(0)?.children.insertAfter(this.node, null);
-        })
+        }).id('insert_node')
+
         Button('clear').onClick(() => {
           this.scene?.root?.children.clear();
-        })
+        }).id('clear_node')
+
         Text(this.hierarchy)
         Button('back').onClick(() => {
           router.back()
-        })
+        }).id('container_back')
       }
       .width('100%')
     }

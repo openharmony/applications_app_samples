@@ -37,7 +37,7 @@ struct node_geometry {
   backAnimator: AnimatorResult | undefined = undefined;
 
   onPageShow(): void {
-    this.Init();
+    this.init();
   }
 
   onPageHide(): void {
@@ -50,7 +50,7 @@ struct node_geometry {
     this.scene = null;
   }
 
-  Init(): void {
+  init(): void {
     this.backAnimator = animator.create({
       duration: 2000,
       easing: "ease",
@@ -142,7 +142,7 @@ struct node_geometry {
 
           this.scene.animations[0].enabled = !this.scene.animations[0].enabled;
           console.log(LOG_TAG + "enable animation: " + this.scene.animations[0].enabled);
-        });
+        }).id('enable_animation');
         
         Button('start').onClick(async () => {
           if (!this.scene || !this.scene.animations[0]) {
@@ -151,7 +151,7 @@ struct node_geometry {
           let anim: scene3d.Animation = this.scene.animations[0];
           anim.start();
           console.log(LOG_TAG + "animation start");
-        });
+        }).id('start_animation');
 
         Button('pause').onClick(async () => {
           if (!this.scene || !this.scene.animations[0]) {
@@ -160,7 +160,7 @@ struct node_geometry {
           let anim: scene3d.Animation = this.scene.animations[0];
           anim.pause();
           console.log(LOG_TAG + "animation pause");
-        });
+        }).id('pause_animation');
 
         Button('stop').onClick(async () => {
           if (!this.scene || !this.scene.animations[0]) {
@@ -169,7 +169,7 @@ struct node_geometry {
           let anim: scene3d.Animation = this.scene.animations[0];
           anim.stop();
           console.log(LOG_TAG + "animation stop");
-        });
+        }).id('stop_animation');
 
         Button('finish').onClick(async () => {
           if (!this.scene || !this.scene.animations[0]) {
@@ -178,7 +178,7 @@ struct node_geometry {
           let anim: scene3d.Animation = this.scene.animations[0];
           anim.finish();
           console.log(LOG_TAG + "animation finish");
-        });
+        }).id('finish_animation');
 
         Button('restart').onClick(async () => {
           if (!this.scene || !this.scene.animations[0]) {
@@ -187,7 +187,7 @@ struct node_geometry {
           let anim: scene3d.Animation = this.scene.animations[0];
           anim.restart();
           console.log(LOG_TAG + "animation restart");
-        });
+        }).id('restart_animation');
 
         Button('seek to 30% progress').onClick(async () => {
           if (!this.scene || !this.scene.animations[0]) {
@@ -196,11 +196,11 @@ struct node_geometry {
           let anim: scene3d.Animation = this.scene.animations[0];
           anim.seek(0.3);
           console.log(LOG_TAG + "animation seek 0.3");
-        });
+        }).id('seek_animation');
 
         Button('back').onClick(() => {
           router.back()
-        })
+        }).id('back_animation')
       }
       .width('100%')
     }

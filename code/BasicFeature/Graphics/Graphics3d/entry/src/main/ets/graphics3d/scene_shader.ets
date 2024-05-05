@@ -49,7 +49,7 @@ struct node_geometry {
     console.log(msg + ' parent name', node.parent?.name);
   }
 
-  Traversal(node: scene3d.Node | null): void {
+  traversal(node: scene3d.Node | null): void {
     if (!node) {
       return;
     }
@@ -60,26 +60,12 @@ struct node_geometry {
     console.log(LOG_TAG + " node child count", count);
     this.hierarchy += '  ';
     for (let i = 0; i < count; i++) {
-      this.Traversal(container.get(i));
-    }
-  }
- FindFistMesh(node: scene3d.Node | null):  scene3d.Geometry | null  {
-    if (!node) {
-      return;
-    }
-    this.printNode(node, " node print");
-    this.hierarchy += node.path + '/' + node.name + '\n';
-    let container: scene3d.Container<scene3d.Node> = node.children;
-    let count: number = container.count();
-    console.log(LOG_TAG + " node child count", count);
-    this.hierarchy += '  ';
-    for (let i = 0; i < count; i++) {
-      this.Traversal(container.get(i));
+      this.traversal(container.get(i));
     }
   }
 
   onPageShow(): void {
-    this.Init();
+    this.init();
   }
 
   PrintAabb(aabb: scene3d.Aabb, append: string): string {
@@ -99,7 +85,7 @@ struct node_geometry {
     this.scene = null;
   }
 
-  Init(): void {
+  init(): void {
     this.backAnimator = animator.create({
       duration: 2000,
       easing: "ease",
@@ -129,7 +115,7 @@ struct node_geometry {
           this.cam.position.z = 5;
 
           this.image = await this.rf.createImage({ name: "envImg3", uri: $rawfile("gltf/DamagedHelmet/glTF/Default_AO.jpg") });
-          this.Traversal(this.scene?.root);
+          this.traversal(this.scene?.root);
           if (!this.geom) {
             this.geom = this.scene.getNodeByPath("rootNode_/Unnamed Node 1/Cube") as scene3d.Geometry;
             this.meshInfo += this.PrintAabb(this.geom.mesh.aabb, 'Mesh ');
@@ -191,13 +177,13 @@ struct node_geometry {
           if (this.material && this.material.colorShader && this.image) {
             (this.material.colorShader.inputs["BASE_COLOR_Image"] as scene3d.Image) = this.image;
           }
-        });
+        }).id('create_shader_change_material');
         Button('recovery original material').onClick(async () => {
           if (this.geom) {
             this.geom.mesh.materialOverride = undefined;
             this.geom.mesh.subMeshes[0].material = this.materialOrg as scene3d.ShaderMaterial;
           }
-        })
+        }).id('recovery_original')
         Button('material override').onClick(async () => {
           if (this.geom) {
             this.geom.mesh.subMeshes[0].material = this.materialOrg as scene3d.ShaderMaterial;
@@ -205,12 +191,12 @@ struct node_geometry {
           if (this.geom && this.material) {
             this.geom.mesh.materialOverride = this.material as scene3d.ShaderMaterial;
           }
-        })
+        }).id('material_override')
         Text(this.meshInfo);
         Text(this.hierarchy);
         Button('back').onClick(() => {
           router.back()
-        })
+        }).id('back_shader')
       }
       .width('100%')
     }
