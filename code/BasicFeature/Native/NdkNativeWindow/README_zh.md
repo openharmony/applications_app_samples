@@ -22,6 +22,7 @@
 5. 点击页面底部“update bufferqueuesize, attachedbuffer, cachebuffer"按钮，将更新三项数值，分别是NativeWindow的buffer队列容量，attach到NativeWindow的buffer数量，缓存区buffer数量。 
 6. 点击页面底部”attachbuffer“, 在cachebuffer大于0时将buffer添加到nativewindow中，attachedbuffer数值加1，cachebuffer数值减1；cachebuffer为0时不做处理。(需要点第五步按钮更新数值)
 7. 点击页面底部”detachbuffer", 在attachedbuffer大于0时将buffer添加到缓存区cachebuffer中，attachedbuffer数值减1，cachebuffer数值加1； attachedbuffer为0时不做处理。(需要点第五步按钮更新数值)
+8. 点击页面顶部"Change ScalingMode"按钮，在支持fit模式的设备可以切换色块居中显示或平铺显示。
 
 ### 工程目录
 
@@ -50,6 +51,7 @@
 4.在c++代码中定义对外接口AttachBuffer，js侧调用该接口后，当缓存区cachebuffer数量大于0时，会添加1个cachebuffer到NativeWindow中，cachebuffer数量为0时不操作；
 5.js侧调用DetachBuffer接口，当NativeWindow的attachedbuffer数量大于0时，会将NativeWindow中的buffer移除，放置到缓存区中，当attachedbuffer为0时不操作；
 6.js侧调用GetBufferQueueSize、GetAttachBufferCount、GetCacheBufferCount接口时，将获取当前NativeWindow的bufferqueue容量、已经attach到nativewindow的buffer数量，缓存区buffer数量
+7.js侧调用ChangeScalingMode接口，c++代码中会切换DrawColor的scalingmode，切换显示模式
 
 源码参考：[cpp目录](entry/src/main/cpp)下的文件。
 
