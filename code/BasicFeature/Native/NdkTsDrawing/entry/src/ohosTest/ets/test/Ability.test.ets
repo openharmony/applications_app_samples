@@ -30,7 +30,7 @@ export default function abilityTest() {
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
         await abilityDelegator.startAbility({
-          bundleName: 'com.samples.ndkjsdrawing',
+          bundleName: 'com.samples.ndktsdrawing',
           abilityName: 'EntryAbility'
         });
       } catch (exception) {
@@ -52,7 +52,7 @@ export default function abilityTest() {
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
         await abilityDelegator.startAbility({
-          bundleName: 'com.samples.ndkjsdrawing',
+          bundleName: 'com.samples.ndktsdrawing',
           abilityName: 'EntryAbility'
         });
       } catch (exception) {
@@ -77,7 +77,7 @@ export default function abilityTest() {
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
         await abilityDelegator.startAbility({
-          bundleName: 'com.samples.ndkjsdrawing',
+          bundleName: 'com.samples.ndktsdrawing',
           abilityName: 'EntryAbility'
         });
       } catch (exception) {
@@ -102,7 +102,7 @@ export default function abilityTest() {
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
         await abilityDelegator.startAbility({
-          bundleName: 'com.samples.ndkjsdrawing',
+          bundleName: 'com.samples.ndktsdrawing',
           abilityName: 'EntryAbility'
         });
       } catch (exception) {

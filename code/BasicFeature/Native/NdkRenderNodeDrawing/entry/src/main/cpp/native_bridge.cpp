@@ -225,10 +225,12 @@ static void NativeOnDrawPixelMap(OH_Drawing_Canvas *canvas, NativePixelMap *nati
     OH_Drawing_SamplingOptions *sampling = OH_Drawing_SamplingOptionsCreate(FILTER_MODE_NEAREST, MIPMAP_MODE_NONE);
     OH_Drawing_Rect *src = OH_Drawing_RectCreate(0, 0, 550, 564);
     OH_Drawing_Rect *dst = OH_Drawing_RectCreate(25, 300, 300, 582);
+    OH_Drawing_Brush *brush = OH_Drawing_BrushCreate();
+    OH_Drawing_CanvasAttachBrush(canvas, brush);
     OH_Drawing_CanvasDrawPixelMapRect(canvas, pixelMap, src, dst, sampling);
+    OH_Drawing_CanvasDetachBrush(canvas);
     
     // 设置样式，绘制时生效
-    OH_Drawing_Brush *brush = OH_Drawing_BrushCreate();
     const float array[] = {
         1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, -1, 0, 0, 1, 0,
     };

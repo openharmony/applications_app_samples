@@ -35,7 +35,9 @@
 
 ### 具体实现
 
-在IDE中创建空白工程，在js侧创建`RenderNode`子类`MyRenderNode`，并在其中定义绘图函数。构建出MyRenderNode类并在其中定义绘图的主要函数后，接下来创建一个MyRenderNode对象，并设置它的像素格式。创建`NodeController`的子类`MyNodeController`，并在其中定义创建`FrameNode`的函数。`NodeController`定义了节点容器的控制器，控制着容器里在生命周期中的节点。通过控制创建的节点即可画出五角星，矩形和文字
+在IDE中创建空白工程，在js侧drawing提供两种方式实现自定义绘制：
+1. 创建`RenderNode`子类`MyRenderNode`，并在其中定义绘图函数。构建出MyRenderNode类并在其中定义绘图的主要函数后，接下来创建一个MyRenderNode对象，并设置它的像素格式。创建`NodeController`的子类`MyNodeController`，并在其中定义创建`FrameNode`的函数。`NodeController`定义了节点容器的控制器，控制着容器里在生命周期中的节点。通过控制创建的节点即可画出五角星和文字。
+2. 创建一张位图并绑定drawing的Canvas，此时Canvas的绘制内容将会绘制到绑定的位图上，在完成绘制后将绑定的位图绘制出来即可实现离屏绘制，本示例中给出了矩形的离屏绘制例子。
 
 源码参考：[pages目录](entry/src/main/ets/pages)下的文件。
 
@@ -80,7 +82,7 @@ RenderNode。
 ```
 git init
 git config core.sparsecheckout true
-echo code/BasicFeature/Native/NdkJsDrawing/ > .git/info/sparse-checkout
+echo code/BasicFeature/Native/NdkTsDrawing/ > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
