@@ -4,7 +4,7 @@
 2. 新增Sample的工程推荐使用ArkTS语言编写；
 3. 新增Sample的工程推荐使用Stage模型编写；
 4. 新增Sample的工程中需要包含UI自动化用例（ohosTest工程模块），覆盖基本的功能场景；
-5. 新增Sample需要遵循[代码提交规范](#section1)、[工程结构规范](#section2)、[PR提交格式规范](#section3)、[ReadMe编写规范](#section4)和[UI自动化用例编写规范](#section5)；
+5. 新增Sample需要遵循[代码规范](#section1)、[ReadMe编写规范](#section2)、[工程结构规范](#section3)、[UI自动化用例编写规范](#section4)、[PR提交格式规范](#section5)和[二进制文件合入指导](#section6)；
 6. 新增Sample的UX设计需要符合[一多规范要求](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/key-features/multi-device-app-dev/Readme-CN.md) ；
 7. 新增Sample推荐使用当前最新版本IDE和SDK版本；
 8. 工程合入时，需要提供测试用例报告([参考示例](ohosTestTemplate.md)) ，包括测试场景、操作步骤和测试结果信息，可以附在提交工程中；
@@ -68,7 +68,7 @@ class Logger {
 25. 代码中避免出现中文字符，要使用资源代替，符合国际化开发标准；
 26. 应用包名统一使用“com.samples.xxx”，“xxx”为特性名称；
 
-## ReadMe编写规范<a name="section4"></a>
+## ReadMe编写规范<a name="section2"></a>
 
 1. 标题：以特性名称命名；
 2. 介绍：介绍sample用了哪些包，具有哪些功能，给出完整包名并附上链接；
@@ -172,7 +172,7 @@ class Logger {
     ```
 [ReadMe模板链接](SampleReadTemplate.md)
 
-## 工程结构规范<a name="section2"></a>
+## 工程结构规范<a name="section3"></a>
 
 Sample工程，应该区分开场景业务逻辑和特性相关封装接口，规则如下：
 
@@ -208,7 +208,7 @@ Library/src/main/ets/ 		// 特性接口封装放在Library模块下，能够独�
 |---utils 					// 特性相关工具类
 ```
 
-## UI自动化用例编写规范<a name="section5"></a>
+## UI自动化用例编写规范<a name="section4"></a>
 
 1. 用例命名规范为：“包名_测试功能_序号”，如“MyApp_StartAbility_001”，序号表示测试StartAbility功能的第1个用例;
 2. 用例的开头和结尾都需要有日志打印；
@@ -238,7 +238,7 @@ Library/src/main/ets/ 		// 特性接口封装放在Library模块下，能够独�
   })
 ```
 
-## PR提交格式规范<a name="section3"></a>
+## PR提交格式规范<a name="section5"></a>
 
 示例如下：
 
@@ -257,3 +257,21 @@ Signed-off-by: jiangwensai <jiangwensai@huawei.com>
 3. Sig统一使用SIG_Sample；
 4. Feature or Bugfix，如果是需求选择Feature，问题选择Bugfix；
 5. Signed-off-by，注明开发者账号和邮箱；
+
+## 二进制文件合入规范<a name="section6"></a>
+
+当提交的代码涉及到二进制文件时（图片、视频、压缩包、hap/har包等），需要在[OTA.xml](OAT.xml)中设置文件过滤：
+
+1.找到 name 为 "binaryFileTypePolicyFilter" 的过滤器:
+```
+<filefilter name="binaryFileTypePolicyFilter" desc="Filters for binary file policies" >
+```
+2.在过滤器中添加行：
+```
+<fileteritem type="filepath" name="此处填写二进制文件路径" desc="Provided by 二进制文件来源路径(来源是sample本身时填写当前Sample路径即可)"/>
+```
+例如：
+在 code/Solutions/Shopping/OrangeShopping 这个Sample中上传 ohos-notification-1.0.0.tgz 二进制文件时，添加行如下：
+```
+<filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-notification-1.0.0.tgz" desc="Provided by Notification/CustomEmitter"/>
+```
