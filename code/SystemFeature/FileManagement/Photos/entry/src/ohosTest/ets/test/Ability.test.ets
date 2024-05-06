@@ -173,6 +173,13 @@ export default function abilityTest() {
       let btnOK = await driver.findComponent(ON.text(await getResourceString($r('app.string.btn_confirm'))));
       await btnOK.click();
       await driver.delayMs(2000);
+      //返回
+      await driver.pressBack();
+      await driver.delayMs(2000);
+      //点击被重命名的图片
+      await driver.assertComponentExist(ON.type('GridItem'));
+      await driver.click(100, 200);
+      await driver.delayMs(2000);
       //点击详情，检查名称
       let btnInfo = await driver.findComponent(ON.id('5'));
       await btnInfo.click();

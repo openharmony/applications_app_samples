@@ -112,6 +112,7 @@ export class AlbumDataItem {
     };
     let predicates = new dataSharePredicates.DataSharePredicates();
     predicates.equalTo(photoAccessHelper.PhotoKeys.PHOTO_TYPE, photoAccessHelper.PhotoType.VIDEO)
+    predicates.orderByDesc(photoAccessHelper.PhotoKeys.DATE_ADDED);
     let fileFetchOption = {
       fetchColumns: MediaConstants.FILE_ASSET_FETCH_COLUMNS,
       predicates: predicates
