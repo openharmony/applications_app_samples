@@ -4,7 +4,7 @@
 
 本示例主要展示后台任务中的短时任务。
 
-通过[@ohos.resourceschedule.backgroundTaskManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-resourceschedule-backgroundTaskManager.md) ，[@ohos.app.ability.quickFixManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-quickFixManager.md) 等接口实现应用热更新的方式去展现短时任务机制。
+通过[@ohos.resourceschedule.backgroundTaskManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager-sys.md) ，[@ohos.app.ability.quickFixManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-quickFixManager-sys.md) 等接口实现应用热更新的方式去展现短时任务机制。
 
 ### 效果预览
 
@@ -43,13 +43,13 @@ entry/src/main/ets/
 
 * 该示例使用cancelSuspendDelay方法取消延迟挂起，applyQuickFix方法快速修复补丁，createHttp方法创建一个HTTP请求，openSync方法同步打开文件，writeSync方法同步将数据写入文件，closeSync方法同步关闭文件流等接口实现应用热更新的方式去展现短时任务机制。
 * 源码链接：[MainAbility.ts](entry/src/main/ets/MainAbility/MainAbility.ts)，[LoadFile.ts](entry/src/main/ets/feature/LoadFile.ts)，[SaveFile.ts](entry/src/main/ets/feature/SaveFile.ts)，[UpdateDialog.ets](entry/src/main/ets/pages/UpdateDialog.ets)
-* 接口参考：[@ohos.backgroundTaskManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-backgroundTaskManager.md)，[@ohos.app.ability.quickFixManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-quickFixManager.md)，[@ohos.net.http](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-http.md)，[@ohos.fileio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-fileio.md)
+* 接口参考：[@ohos.backgroundTaskManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager-sys.md)，[@ohos.app.ability.quickFixManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-quickFixManager-sys.md)，[@ohos.net.http](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-network-kit/js-apis-http.md)，[@ohos.fileio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-fileio.md)
 
 ### 相关权限
 
-1.允许应用安装、卸载其他应用权限：[ohos.permission.INSTALL_BUNDLE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissioninstall_bundle)
+1.允许应用安装、卸载其他应用权限：[ohos.permission.INSTALL_BUNDLE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissioninstall_bundle)
 
-2.允许使用Internet网络权限：[ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissioninternet)
+2.允许使用Internet网络权限：[ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissioninternet)
 
 ### 依赖
 
@@ -63,7 +63,7 @@ entry/src/main/ets/
 
 3.本示例仅支持模块化编译，在build-profile.json5文件的buildOption字段添加"compileMode": "esmodule"；
 
-4.本示例需要使用系统权限的接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)；
+4.本示例需要使用系统权限的接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)；
 
 5.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)才可编译运行。
 
@@ -73,7 +73,7 @@ entry/src/main/ets/
 ```
 git init
 git config core.sparsecheckout true
-echo code/BasicFeature/TaskManagement/TransientTask/ > .git/info/sparse-checkout
+echo code/SystemFeature/TaskManagement/TransientTask/ > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 
