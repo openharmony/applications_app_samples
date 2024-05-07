@@ -50,6 +50,7 @@ VideoPlay/src/main/ets/
 + 切换视频：在切换视频前要先调用avPlayer.reset()重置资源，再通过avPlayer.fdSrc为fdSrc赋值触发initialized状态机上报;
 + 视频跳转：在拖动滑动条时调用avPlayer.seek()
 + 视频预下载：在prepared状态之前调用avPlayer.setMediaSource()
++ 多音轨选择：调用avPlayer.getTrackDescription()获取音轨列表，调用avPlayer.selectTrack()选择音轨，调用avPlayer.deselectTrack()取消选择音轨。
 
 ### 相关权限
 

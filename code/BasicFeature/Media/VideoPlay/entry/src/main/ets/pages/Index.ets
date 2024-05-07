@@ -22,6 +22,7 @@ import { timeConvert } from '../utils/TimeUtils';
 import emitter from '@ohos.events.emitter';
 import { VideoPanel } from '../components/VideoPanel';
 import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const PROPORTION = 0.99; // 占屏幕比例
 const SURFACEW = 0.9; // 表面宽比例
@@ -66,6 +67,8 @@ struct Index {
   @State percent: number = 0;
   @State windowWidth: number = 300;
   @State windowHeight: number = 300;
+  @State audioTrack: number = 0;
+  @State audioTrackValue: string = "";
   @StorageLink('videoName') videoName: Resource = $r('app.string.video_res_1');
   @StorageLink('videoIndex') videoIndex: number = 0; // 视频索引
 
@@ -90,6 +93,11 @@ struct Index {
     this.surfaceH = this.surfaceW / SURFACEH;
     this.flag = true;
     AppStorage.setOrCreate('avPlayManage', this.avPlayManage);
+    getContext(this).resourceManager.getStringValue($r('app.string.default_track')).then((value: string) => {
+      this.audioTrackValue = value;
+    }).catch((error: BusinessError) => {
+      console.error("getStringValue promise error is " + error);
+    });
   }
 
   aboutToDisappear() {
@@ -204,6 +212,23 @@ struct Index {
         .width('100%')
         .justifyContent(FlexAlign.Start)
 
+        // 点击图标设置音频轨道
+        Select(this.avPlayManage.arrList)
+          .id('Select')
+          .selected(this.audioTrack)
+          .value('AudioTrack: ' + this.audioTrackValue)
+          .font({ size: 16, weight: 400 })
+          .visibility(this.avPlayManage.arrList.length > 2 ? Visibility.Visible : Visibility.Hidden)
+          .fontColor(Color.White)
+          .selectedOptionFont({ size: 16, weight: 400 })
+          .optionFont({ size: 16, weight: 400 })
+          .onSelect((index: number, value: string) => {
+            if (this.audioTrack != index) {
+              this.audioTrack = index;
+              this.audioTrackValue = value;
+              this.avPlayManage.setAudioTrack(index);
+            }
+          })
         Blank()
 
         Column() {

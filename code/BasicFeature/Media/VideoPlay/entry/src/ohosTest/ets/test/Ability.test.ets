@@ -135,6 +135,39 @@ export default function abilityTest() {
     })
 
     /**
+     * 点击多音轨轨道:1
+     */
+    it('Select_001', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, 'Select_001 begin');
+      // 启动Ability
+      hilog.info(DOMAIN, TAG, 'Choose_001 begin');
+      let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
+      await abilityDelegatorRegistry.executeShellCommand('aa start -a EntryAbility -b net.openvally.videoplay');
+
+      // 拉起操作界面
+      let driver = await Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('Video'));
+      let stack = await driver.findComponent(ON.id('Video'));
+      await driver.delayMs(1000);
+      await stack.click();
+
+      // 点击多音轨
+      await driver.assertComponentExist(ON.id('Select'));
+      let btnPlay = await driver.findComponent(ON.id('Select'));
+      await btnPlay.click();
+
+      // 点击轨道:1
+      const str = await getString($r('app.string.track_name_1'));
+      await driver.assertComponentExist(ON.text(str));
+      let button = await driver.findComponent(ON.text(str));
+      await button.click();
+      await driver.delayMs(2000);
+      done();
+      hilog.info(DOMAIN, TAG, 'Select_001 end');
+    })
+
+    /**
      * 进度条测试
      */
     it('Slider_001', 0, async (done: Function) => {

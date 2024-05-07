@@ -18,6 +18,7 @@ import resourceManager from '@ohos.resourceManager';
 import emitter from '@ohos.events.emitter';
 import Logger from '../utils/Logger';
 import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const CASE_ZERO = 0;
 const CASE_ONE = 1;
@@ -38,6 +39,10 @@ export default class AvPlayManager {
   private fileDescriptor: resourceManager.RawFileDescriptor | null = null;
   private videoSrc: string | null = null;
   private fileSrc: string | null = null;
+  private default_track_value: string = "";
+  private track_name_value: string = "";
+  private currentAudioTrackValue: number = 0 ;
+  public arrList: Array<SelectOption>  = [];
 
   /**
    * 初始化视频
@@ -58,6 +63,16 @@ export default class AvPlayManager {
       this.fileDescriptor = await this.mgr.getRawFd('test1.mp4');
       Logger.info(this.tag, `initPlayer videoPlay fileDescriptor = ${JSON.stringify(this.fileDescriptor)}`);
       this.avPlayer.fdSrc = this.fileDescriptor;
+      this.mgr.getStringValue($r('app.string.default_track')).then((value: string) => {
+        this.default_track_value = value;
+      }).catch((error: BusinessError) => {
+        console.error("getStringValue promise error is " + error);
+      });
+      this.mgr.getStringValue($r('app.string.track_name')).then((value: string) => {
+        this.track_name_value = value;
+      }).catch((error: BusinessError) => {
+        console.error("getStringValue promise error is " + error);
+      });
     } catch (err) {
       Logger.error(this.tag, `initPlayer initPlayer err：${JSON.stringify(err)}`);
     }
@@ -105,24 +120,10 @@ export default class AvPlayManager {
           break;
         case 'prepared': // prepare调用成功后上报该状态机
           Logger.info(this.tag, 'setAVPlayerCallback AVPlayer state prepared called.');
+          this.getAudioTrack();
           this.durationTime = this.avPlayer.duration;
           this.currentTime = this.avPlayer.currentTime;
           this.avPlayer.play(); // 调用播放接口开始播放
-          Logger.info(this.tag, `setAVPlayerCallback this.speedSelect = ${this.speedSelect}`);
-          switch (this.speedSelect) {
-            case CASE_ZERO:
-              this.videoSpeedOne();
-              break;
-            case CASE_ONE:
-              this.videoSpeedOnePointTwentyFive();
-              break;
-            case CASE_TWO:
-              this.videoSpeedOnePointSeventyFive();
-              break;
-            case CASE_THREE:
-              this.videoSpeedTwo();
-              break;
-          }
           callback(this.avPlayer);
           break;
         case 'playing': // play成功调用后触发该状态机上报
@@ -263,13 +264,11 @@ export default class AvPlayManager {
   /**
    * 视频跳转
    */
-  async videoSeek(seekTime: number, mode: SliderChangeMode): Promise<void> {
+  async videoSeek(seekTime: number): Promise<void> {
     if (this.avPlayer) {
       try {
-        if (mode !== SliderChangeMode.Begin) {
-          this.avPlayer.seek(seekTime, media.SeekMode.SEEK_PREV_SYNC);
-          this.currentTime = seekTime;
-        }
+        this.avPlayer.seek(seekTime, media.SeekMode.SEEK_PREV_SYNC);
+        this.currentTime = seekTime;
         Logger.info(this.tag, `videoSeek== ${seekTime}`);
       } catch (e) {
         Logger.info(this.tag, `videoSeek== ${JSON.stringify(e)}`);
@@ -299,6 +298,55 @@ export default class AvPlayManager {
     }
   }
 
+  // 获取视频多音轨列表
+  async getAudioTrack(): Promise<void> {
+    if (this.avPlayer) {
+      this.avPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) => {
+        Logger.info('getTrackDescription success');
+        Logger.info(this.tag, 'get AudioTrackList: ' + arrList.length);
+        if (this.arrList.length == 0 && arrList != null) {
+          let selectOptions: SelectOption[] = [];
+          for (let i = 0; i < arrList.length; i++) {
+            if (i == 0) {
+              selectOptions.push({ value: this.default_track_value});
+            } else {
+              let property: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
+              selectOptions.push({ value: this.track_name_value + property.toString()});
+            }
+          }
+          this.arrList = selectOptions
+        } else {
+          Logger.info(this.tag, 'audio getTrackDescription fail');
+        }
+      }).catch((error: BusinessError) => {
+        Logger.error(`video catchCallback, error:${error}`);
+      });
+      return;
+    }
+  }
+
+  // 设置视频多音轨轨道
+  async setAudioTrack(audioTrackValue: number): Promise<void> {
+    Logger.info(this.tag, 'selectTrack set AudioTrackType value is:' + audioTrackValue);
+    switch (audioTrackValue) {
+      case 0:
+        if (this.avPlayer != null && this.currentAudioTrackValue != 0) {
+          Logger.info(this.tag, 'deselectTrack start:' + (this.currentAudioTrackValue));
+          this.avPlayer.deselectTrack(this.currentAudioTrackValue)
+          Logger.info(this.tag, 'deselectTrack end:' + (this.currentAudioTrackValue));
+        }
+        break;
+      default:
+        if (this.avPlayer != null) {
+          this.currentAudioTrackValue = audioTrackValue;
+          Logger.info(this.tag, 'selectTrack start:' + (audioTrackValue));
+          this.avPlayer.selectTrack(audioTrackValue)
+          Logger.info(this.tag, 'selectTrack end:' + (audioTrackValue));
+        }
+        break;
+    }
+  }
+
   /**
    * 释放视频资源
    */
@@ -324,6 +372,9 @@ export default class AvPlayManager {
       this.videoSrc = videoSrc;
       this.speedSelect = speedSelect;
       Logger.info(this.tag, `videoChoose this.videoSrc = ${this.videoSrc}`);
+      this.currentTime = 0;
+      this.currentAudioTrackValue = 0;
+      this.arrList = []
       this.videoReset();
     } catch (e) {
       Logger.info(this.tag, 'videoChoose== ${JSON.stringify(e)}');

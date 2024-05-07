@@ -59,6 +59,18 @@
     {
       "name": "playing",
       "value": "playing"
+    },
+    {
+      "name": "default_track",
+      "value": "default_track"
+    },
+    {
+      "name": "track_name",
+      "value": "track:"
+    },
+    {
+      "name": "track_name_1",
+      "value": "track:1"
     }
   ]
 }

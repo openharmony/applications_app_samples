@@ -28,6 +28,7 @@ export struct VideoOperate {
   @Link flag: boolean;
   @Link XComponentFlag: boolean;
   @StorageLink('speedIndex') speedIndex: number = 0; // 倍速索引
+  @StorageLink('seekTime') seekTime: number = 0; // 定位时间
   @StorageLink('sliderWidth') sliderWidth: string = '';
   @StorageLink('speedName') speedName: Resource = $r('app.string.video_speed_1_0X');
   private dialogController: CustomDialogController = new CustomDialogController({
@@ -74,7 +75,10 @@ export struct VideoOperate {
           .selectedColor($r("app.color.slider_selected"))
           .showTips(false)
           .onChange((value: number, mode: SliderChangeMode) => {
-            this.avPlayManage.videoSeek(value, mode);
+            if (this.seekTime !== value) {
+              this.seekTime = value;
+              this.avPlayManage.videoSeek(value);
+            }
           })
       }
       .layoutWeight(1)
