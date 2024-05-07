@@ -20,10 +20,10 @@
       {
         "name": "default",
         "signingConfig": "default",
-        "compileSdkVersion": 11,
-        "compatibleSdkVersion": 11
       }
     ],
+    "compileSdkVersion": 12,
+    "compatibleSdkVersion": 12
   },
   "modules": [
     {
