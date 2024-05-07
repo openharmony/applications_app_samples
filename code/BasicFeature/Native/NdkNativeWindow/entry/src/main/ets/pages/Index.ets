@@ -30,16 +30,28 @@ struct Index {
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Button('Change Color')
-        .fontSize('14fp')
-        .fontWeight(500)
-        .margin({ bottom: 24 })
-        .onClick(() => {
-          if (this.nativeWindowContext) {
-            this.nativeWindowContext.DrawColor();
-          }
-        })
-        .width('50%')
+        Row() {
+          Button('Change Color')
+            .fontSize('14fp')
+            .fontWeight(500)
+            .margin({ bottom: 24 })
+            .onClick(() => {
+              if (this.nativeWindowContext) {
+                this.nativeWindowContext.DrawColor();
+              }
+            })
+            .width('40%')
+            Button('Change ScalingMode')
+            .fontSize('14fp')
+            .fontWeight(500)
+            .margin({ bottom: 24 })
+            .onClick(() => {
+              if (this.nativeWindowContext) {
+                this.nativeWindowContext.ChangeScalingMode();
+              }
+            })
+            .width('50%')
+        }
       Column() {
         Row() {
           XComponent({ id: 'xcomponentId', type: 'texture', libraryname: 'nativerender' })

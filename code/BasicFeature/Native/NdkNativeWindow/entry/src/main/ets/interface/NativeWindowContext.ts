@@ -29,6 +29,7 @@
 
 export default interface NativeWindowContext {
   DrawColor(): void;
+  ChangeScalingMode(): void;
   ProduceBuffer(): void;
   GetAvailableCount(): number;
   AttachBuffer(): void;

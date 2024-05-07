@@ -27,15 +27,19 @@ public:
     static NativeRender* GetInstance();
     static napi_value GetNativeRender(napi_env env, napi_callback_info info);
     static napi_value NapiOnDraw(napi_env env, napi_callback_info info);
+    static napi_value NapiOnChangeScalingMode(napi_env env, napi_callback_info info);
     static void Release();
     bool Export(napi_env env, napi_value exports);
     void DrawBaseColor();
+    void ChangeColor();
+    void ChangeScalingMode();
     void SetNativeWindow(OHNativeWindow* nativeWindow, uint64_t width,  uint64_t height);
 
 private:
     void NativeBufferApi();
     OH_NativeXComponent_Callback callback_;
     bool flag_ = false;
+    bool flagFit_ = false;
     OHNativeWindow* nativeWindow_ = nullptr;
     uint64_t height_;
     uint64_t width_;

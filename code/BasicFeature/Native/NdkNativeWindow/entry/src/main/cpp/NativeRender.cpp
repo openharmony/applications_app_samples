@@ -90,6 +90,8 @@ bool NativeRender::Export(napi_env env, napi_value exports)
 
     napi_property_descriptor desc[] = {
         { "DrawColor", nullptr, NativeRender::NapiOnDraw, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "ChangeScalingMode", nullptr, NativeRender::NapiOnChangeScalingMode, nullptr, nullptr, nullptr,
+            napi_default, nullptr },
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     callback_.OnSurfaceCreated = OnSurfaceCreatedCB;
@@ -125,11 +127,21 @@ void NativeRender::SetNativeWindow(OHNativeWindow* nativeWindow, uint64_t width,
     nativeWindow_ = nativeWindow;
     height_ = height;
     width_ = width;
+    int code = SET_BUFFER_GEOMETRY;
+    int32_t bufferHeight = static_cast<int32_t>(height_ / 4);
+    int32_t bufferWidth = static_cast<int32_t>(width_ / 2);
+    OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, bufferWidth, bufferHeight);
 }
 
 napi_value NativeRender::NapiOnDraw(napi_env env, napi_callback_info info)
 {
-    NativeRender::GetInstance()->DrawBaseColor();
+    NativeRender::GetInstance()->ChangeColor();
+    return nullptr;
+}
+
+napi_value NativeRender::NapiOnChangeScalingMode(napi_env env, napi_callback_info info)
+{
+    NativeRender::GetInstance()->ChangeScalingMode();
     return nullptr;
 }
 
@@ -161,7 +173,7 @@ void NativeRender::NativeBufferApi()
 void NativeRender::DrawBaseColor()
 {
     NativeBufferApi();
-    uint32_t value = (flag_ = !flag_) ? 0xfff0000f : 0xff00ffff;
+    uint32_t value = flag_ ? 0xfff0000f : 0xff00ffff;
     uint64_t surfaceId = 0;
     auto ret = OH_NativeWindow_GetSurfaceId(nativeWindow_, &surfaceId);
     if (ret != 0) {
@@ -210,5 +222,23 @@ void NativeRender::DrawBaseColor()
     }
 
     OH_NativeWindow_DestroyNativeWindow(nativeWindow);
+}
+
+void NativeRender::ChangeColor()
+{
+    flag_ = !flag_;
+    DrawBaseColor();
+}
+
+void NativeRender::ChangeScalingMode()
+{
+    flagFit_ = !flagFit_;
+    if (flagFit_) {
+        OH_NativeWindow_NativeWindowSetScalingModeV2(nativeWindow_, OH_SCALING_MODE_SCALE_FIT_V2);
+    } else {
+        OH_NativeWindow_NativeWindowSetScalingModeV2(nativeWindow_, OH_SCALING_MODE_SCALE_CROP_V2);
+    }
+
+    DrawBaseColor();
 }
 }
