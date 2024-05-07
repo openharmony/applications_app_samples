@@ -145,16 +145,19 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/BasicFeature/Notification/CustomCommonEvent/lib/CardEvent-1.0.0.tgz" desc="Provided by code/BasicFeature/Notification/CustomCommonEvent"/>
                 <filteritem type="filepath" name="code/BasicFeature/Ads/OAIDSample/lib/ResetOAID-1.0.0.tgz" desc="Provided by code/BasicFeature/Ads/OAIDSample"/>
                 <filteritem type="filepath" name="code/Solutions/Tools/FlipClock/lib/Brightness-1.0.0.tgz" desc="Provided by code/Solutions/Tools/FlipClock"/>
-                <filteritem type="filepath" name="code/DataMock/QuickFix/entry-signed-release.hqf" desc="Provided by code/BasicFeature/TaskManagement/TransientTask"/>
+                <filteritem type="filepath" name="code/DataMock/QuickFix/entry-signed-release.hqf" desc="Provided by code/SystemFeature/TaskManagement/TransientTask"/>
                 <filteritem type="filepath" name="code/Solutions/Shopping/ASOrangeShopping/data/freeinstall/famanager.hap" desc="Provided by BMS"/>
                 <filteritem type="filepath" name="code/Solutions/Shopping/ASOrangeShopping/data/freeinstall/launcher.hap" desc="Provided by  code/SystemFeature/ApplicationModels/Launcher"/>
-                <filteritem type="filepath" name="code/DataMock/WorkScheduler/UpdateWorkScheduler.hap" desc="Provided by code/BasicFeature/TaskManagement/WorkScheduler"/>
-                <filteritem type="filepath" name="code/BasicFeature/TaskManagement/WorkScheduler/signTool/OpenHarmony.p12" desc="Provided by code/BasicFeature/TaskManagement/WorkScheduler"/>
-                <filteritem type="filepath" name="code/BasicFeature/TaskManagement/WorkScheduler/signTool/OpenHarmonyApplication.pem" desc="Provided by code/BasicFeature/TaskManagement/WorkScheduler"/>
-                <filteritem type="filepath" name="code/BasicFeature/TaskManagement/WorkScheduler/signTool/OpenHarmonyProfileRelease.pem" desc="Provided by code/BasicFeature/TaskManagement/WorkScheduler"/>
-                <filteritem type="filepath" name="code/BasicFeature/TaskManagement/WorkScheduler/signTool/OpenHarmonyProfileDebug.pem" desc="Provided by code/BasicFeature/TaskManagement/WorkScheduler"/>
-                <filteritem type="filepath" name="code/BasicFeature/TaskManagement/WorkScheduler/signTool/app_packing_tool.jar" desc="Provided by code/BasicFeature/TaskManagement/WorkScheduler"/>
-                <filteritem type="filepath" name="code/BasicFeature/TaskManagement/WorkScheduler/signTool/hap-sign-tool.jar" desc="Provided by code/BasicFeature/TaskManagement/WorkScheduler"/>
+                <filteritem type="filepath" name="code/DataMock/WorkScheduler/UpdateWorkScheduler.hap" desc="Provided by code/SystemFeature/TaskManagement/WorkScheduler"/>
+                <filteritem type="filepath" name="code/SystemFeature/TaskManagement/WorkScheduler/signTool/OpenHarmony.p12" desc="Provided by code/SystemFeature/TaskManagement/WorkScheduler"/>
+                <filteritem type="filepath" name="code/SystemFeature/TaskManagement/WorkScheduler/signTool/OpenHarmonyApplication.pem" desc="Provided by code/SystemFeature/TaskManagement/WorkScheduler"/>
+                <filteritem type="filepath" name="code/SystemFeature/TaskManagement/WorkScheduler/signTool/OpenHarmonyProfileRelease.pem" desc="Provided by code/SystemFeature/TaskManagement/WorkScheduler"/>
+                <filteritem type="filepath" name="code/SystemFeature/TaskManagement/WorkScheduler/signTool/OpenHarmonyProfileDebug.pem" desc="Provided by code/SystemFeature/TaskManagement/WorkScheduler"/>
+                <filteritem type="filepath" name="code/SystemFeature/TaskManagement/WorkScheduler/signTool/app_packing_tool.jar" desc="Provided by code/SystemFeature/TaskManagement/WorkScheduler"/>
+                <filteritem type="filepath" name="code/SystemFeature/TaskManagement/WorkScheduler/signTool/hap-sign-tool.jar" desc="Provided by code/SystemFeature/TaskManagement/WorkScheduler"/>
+                <filteritem type="filepath" name="code/SystemFeature/TaskManagement/TransientTask/signature/material/OpenHarmony.p12" desc="Provided by code/SystemFeature/TaskManagement/TransientTask"/>
+                <filteritem type="filepath" name="code/SystemFeature/TaskManagement/TransientTask/signature/material/OpenHarmonyApplication.pem" desc="Provided by code/SystemFeature/TaskManagement/TransientTask"/>
+                <filteritem type="filepath" name="code/SystemFeature/TaskManagement/TransientTask/signature/material/hap-sign-tool.jar" desc="Provided by code/SystemFeature/TaskManagement/TransientTask"/>
                 <filteritem type="filepath" name="code/BasicFeature/Connectivity/UploadAndDownLoad/environment/hfs.exe" desc="Provided by hfs"/>
                 <filteritem type="filepath" name="code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic/libs/library.har" desc="Provided by code/BasicFeature/DeviceManagement/Vibrator"/>
                 <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-qr-code-scan-1.0.2.har" desc="Provided by media/QRCodeScan"/>
@@ -483,6 +486,45 @@ Note:If the text contains special characters, please escape them according to th
         <filteritem type="filepath" name="code/SystemFeature/Notification/CustomNotificationPush/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/Notification/CustomNotificationPush"/>
         <filteritem type="filepath" name="code/SystemFeature/Notification/CustomNotificationPush/screenshots/filter_off.png" desc="Provided by code/SystemFeature/Notification/CustomNotificationPush"/>
         <filteritem type="filepath" name="code/SystemFeature/Notification/CustomNotificationPush/screenshots/filter_on.png" desc="Provided by code/SystemFeature/Notification/CustomNotificationPush"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/WorkScheduler/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/TaskManagement/WorkScheduler"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/WorkScheduler/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/TaskManagement/WorkScheduler"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/WorkScheduler/entry/src/main/resources/base/media/right.png" desc="Provided by code/SystemFeature/TaskManagement/WorkScheduler"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/WorkScheduler/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/TaskManagement/WorkScheduler"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/WorkScheduler/screenshots/device/dialog.png" desc="Provided by code/SystemFeature/TaskManagement/WorkScheduler"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/WorkScheduler/screenshots/device/newVersion.png" desc="Provided by code/SystemFeature/TaskManagement/WorkScheduler"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/WorkScheduler/screenshots/device/oldVersion.png" desc="Provided by code/SystemFeature/TaskManagement/WorkScheduler"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/TransientTask/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/TaskManagement/TransientTask"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/TransientTask/entry/src/main/resources/base/media/Tomato.png" desc="Provided by code/SystemFeature/TaskManagement/TransientTask"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/TransientTask/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/TaskManagement/TransientTask"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/TransientTask/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/TaskManagement/TransientTask"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/TransientTask/screenshots/device/after.png" desc="Provided by code/SystemFeature/TaskManagement/TransientTask"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/TransientTask/screenshots/device/before.png" desc="Provided by code/SystemFeature/TaskManagement/TransientTask"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/Flybird/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/TaskManagement/Flybird"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/Flybird/entry/src/main/ets/common/pic/bgFive.png" desc="Provided by code/SystemFeature/TaskManagement/Flybird"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/Flybird/entry/src/main/ets/common/pic/bgFour.png" desc="Provided by code/SystemFeature/TaskManagement/Flybird"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/Flybird/entry/src/main/ets/common/pic/bgOne.png" desc="Provided by code/SystemFeature/TaskManagement/Flybird"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/Flybird/entry/src/main/ets/common/pic/bgThree.png" desc="Provided by code/SystemFeature/TaskManagement/Flybird"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/Flybird/entry/src/main/ets/common/pic/bgTwo.png" desc="Provided by code/SystemFeature/TaskManagement/Flybird"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/Flybird/entry/src/main/ets/common/pic/bird.png" desc="Provided by code/SystemFeature/TaskManagement/Flybird"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/Flybird/entry/src/main/ets/common/pic/fgFive.png" desc="Provided by code/SystemFeature/TaskManagement/Flybird"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/Flybird/entry/src/main/ets/common/pic/fgFour.png" desc="Provided by code/SystemFeature/TaskManagement/Flybird"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/Flybird/entry/src/main/ets/common/pic/fgOne.png" desc="Provided by code/SystemFeature/TaskManagement/Flybird"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/Flybird/entry/src/main/ets/common/pic/fgThree.png" desc="Provided by code/SystemFeature/TaskManagement/Flybird"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/Flybird/entry/src/main/ets/common/pic/fgTwo.png" desc="Provided by code/SystemFeature/TaskManagement/Flybird"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/Flybird/entry/src/main/ets/common/pic/pipeNorthFive.png" desc="Provided by code/SystemFeature/TaskManagement/Flybird"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/Flybird/entry/src/main/ets/common/pic/pipeNorthFour.png" desc="Provided by code/SystemFeature/TaskManagement/Flybird"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/Flybird/entry/src/main/ets/common/pic/pipeNorthOne.png" desc="Provided by code/SystemFeature/TaskManagement/Flybird"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/Flybird/entry/src/main/ets/common/pic/pipeNorthThree.png" desc="Provided by code/SystemFeature/TaskManagement/Flybird"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/Flybird/entry/src/main/ets/common/pic/pipeNorthTwo.png" desc="Provided by code/SystemFeature/TaskManagement/Flybird"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/Flybird/entry/src/main/ets/common/pic/pipeSouthFive.png" desc="Provided by code/SystemFeature/TaskManagement/Flybird"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/Flybird/entry/src/main/ets/common/pic/pipeSouthFour.png" desc="Provided by code/SystemFeature/TaskManagement/Flybird"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/Flybird/entry/src/main/ets/common/pic/pipeSouthOne.png" desc="Provided by code/SystemFeature/TaskManagement/Flybird"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/Flybird/entry/src/main/ets/common/pic/pipeSouthThree.png" desc="Provided by code/SystemFeature/TaskManagement/Flybird"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/Flybird/entry/src/main/ets/common/pic/pipeSouthTwo.png" desc="Provided by code/SystemFeature/TaskManagement/Flybird"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/Flybird/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/TaskManagement/Flybird"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/Flybird/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/TaskManagement/Flybird"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/Flybird/screenshot/snapshot1.png" desc="Provided by code/SystemFeature/TaskManagement/Flybird"/>
+        <filteritem type="filepath" name="code/SystemFeature/TaskManagement/Flybird/screenshot/snapshot2.png" desc="Provided by code/SystemFeature/TaskManagement/Flybird"/>
 		<filteritem type="filepath" name="code/BasicFeature/ArkTSCard/ArkTSCard/libs/ArkTSUser.hap" desc="Provided by code/BasicFeature/ArkTSCard/ArkTSCard"/>
         <filteritem type="filepath" name="code/BasicFeature/Native/Audio/entry/src/main/resources/base/media/pic_Audiovivid.png" desc="Provided by code/BasicFeature/Native/Audio"/>
         <filteritem type="filepath" name="code/BasicFeature/Native/Audio/screenshots/device/AudioVivid.jpg" desc="Provided by code/BasicFeature/Native/Audio"/>
