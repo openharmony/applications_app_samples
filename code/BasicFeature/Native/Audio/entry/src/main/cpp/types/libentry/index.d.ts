@@ -32,3 +32,16 @@ export const getFastState: () => number;
 export const getFramesWritten: () => number;
 export const getFileSize: () => number;
 export const closeFile: () => number;
+
+export const avpAudioRendererInit: () => void;
+export const avpAudioRendererStart: () => void;
+export const avpAudioRendererPause: () => void;
+export const avpAudioRendererStop: () => void;
+export const avpAudioRendererRelease: () => void;
+export const avpGetRendererState: () => number;
+export const avpVividAudioRendererInit: () => void;
+export const avpVividAudioRendererStart: () => void;
+export const avpVividAudioRendererPause: () => void;
+export const avpVividAudioRendererStop: () => void;
+export const avpVividAudioRendererRelease: () => void;
+export const avpVividGetRendererState: () => number;

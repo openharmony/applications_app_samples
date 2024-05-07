@@ -63,6 +63,18 @@
     {
       "name": "RECORD_RESULT",
       "value": "录音结果"
+    },
+    {
+      "name": "AUDIOVIVID_PLAYBACK",
+      "value": "Audio vivid播放"
+    },
+    {
+      "name": "NORMAL_PLAY",
+      "value": "普通音乐示例"
+    },
+    {
+      "name": "VIVID_PLAY",
+      "value": "Audio vivid音乐示例"
     }
 
   ]

@@ -273,5 +273,99 @@ export default function abilityTest() {
       done();
     })
 
+
+    /**
+     * [EnterAudioVivid] Enter AudioVivid playback page
+     *  enter -> check buttons
+     */
+    it('EnterAudioVivid', 0, async (done: Function) => {
+      Logger.info(TAG, 'EnterAudioVivid begin');
+      try {
+        await driver.assertComponentExist(ON.id('audiovivid_page_card'));
+        let enter_btn = await driver.findComponent(ON.id('audiovivid_page_card'));
+        await enter_btn.click();
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.id('normal_play_btn'));
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.id('vivid_play_btn'));
+      } catch (err) {
+        Logger.error(TAG, 'EnterAudioVivid:' + JSON.stringify(err));
+        expect(false).assertTrue();
+      }
+      Logger.info(TAG, 'EnterAudioVivid end');
+      done();
+    })
+
+    /**
+     * [NormalMusicPlayback] play normal music
+     *  click play -> click pause
+     */
+    it('NormalMusicPlayback', 0, async (done: Function) => {
+      Logger.info(TAG, 'NormalMusicPlayback begin');
+      try {
+        let play_btn = await driver.findComponent(ON.id('normal_play_btn'));
+        await play_btn.click();
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.id('normal_pause_btn'));
+        await driver.delayMs(1000);
+
+        let pause_btn = await driver.findComponent(ON.id('normal_pause_btn'));
+        await pause_btn.click();
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.id('normal_play_btn'));
+        await driver.delayMs(1000);
+      } catch (err) {
+        Logger.error(TAG, 'NormalMusicPlayback:' + JSON.stringify(err));
+        expect(false).assertTrue();
+      }
+      Logger.info(TAG, 'NormalMusicPlayback end');
+      done();
+    })
+
+    /**
+     * [VividMusicPlayback] play audiovivid music
+     *  click play -> click pause
+     */
+    it('VividMusicPlayback', 0, async (done: Function) => {
+      Logger.info(TAG, 'VividMusicPlayback begin');
+      try {
+        let play_btn = await driver.findComponent(ON.id('vivid_play_btn'));
+        await play_btn.click();
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.id('vivid_pause_btn'));
+        await driver.delayMs(1000);
+
+        let pause_btn = await driver.findComponent(ON.id('vivid_pause_btn'));
+        await pause_btn.click();
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.id('vivid_play_btn'));
+        await driver.delayMs(1000);
+      } catch (err) {
+        Logger.error(TAG, 'VividMusicPlayback:' + JSON.stringify(err));
+        expect(false).assertTrue();
+      }
+      Logger.info(TAG, 'VividMusicPlayback end');
+      done();
+    })
+
+    /**
+     * [Back] click back btn to home
+     *  back
+     */
+    it('Back', 0, async (done: Function) => {
+      Logger.info(TAG, 'Back begin');
+      try {
+        let back_btn = await driver.findComponent(ON.id('spatial_audio_back_btn'));
+        await back_btn.click();
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.id('audiovivid_page_card'));
+      } catch (err) {
+        Logger.error(TAG, 'Back:' + JSON.stringify(err));
+        expect(false).assertTrue();
+      }
+      Logger.info(TAG, 'Back end');
+      done();
+    })
+
   })
 }
