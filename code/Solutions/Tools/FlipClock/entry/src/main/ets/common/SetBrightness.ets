@@ -23,6 +23,7 @@ export struct SetBrightness {
   build() {
     Column() {
       Button( $r('app.string.setting') , {type: ButtonType.Capsule})
+        .id("Setting")
         .width('40%')
         .fontColor($r('app.color.text_normal'))
         .backgroundColor($r('app.color.btn_bg'))

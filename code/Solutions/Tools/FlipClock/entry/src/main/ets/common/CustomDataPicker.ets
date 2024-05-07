@@ -81,7 +81,7 @@ export struct CustomDatePicker {
                 pkgName: 'ohos.samples.flipclock',
                 abilityName: 'ohos.samples.flipclock.EntryAbility'
               },
-              ringDuration: 5000
+              ringDuration: 5
             }
             this.reminderId = await reminderAgentManager.publishReminder(reminderRequest)
             let dateTime = { hour: this.hourTest, minute: this.minuteTest, reminderId: this.reminderId }
