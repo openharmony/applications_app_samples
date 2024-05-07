@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -46,7 +46,7 @@ struct Subscribe {
         Column() {
           Text($r('app.string.notionContent'))
             .fontWeight('HarmonyHeiTi-Medium')
-            .fontSize(60)
+            .fontSize(40)
             .fontColor('#000000')
             .textAlign(TextAlign.Start)
             .lineHeight(82)
@@ -71,6 +71,7 @@ struct Subscribe {
                     .width('100%')
                     .fontWeight(500)
                   Text(this.notificationSubscribeContent)
+                    .width('100%')
                     .opacity(0.8)
                     .fontFamily('HarmonyHeiTi')
                     .fontSize(28)
@@ -78,8 +79,11 @@ struct Subscribe {
                     .lineHeight(38)
                     .fontWeight(400)
                     .textAlign(TextAlign.Start)
-                    .width('100%')
+                    .maxLines(1)
+                    .textOverflow({ overflow: TextOverflow.Ellipsis })
+                    .wordBreak(WordBreak.BREAK_ALL)
                 }
+                .layoutWeight(1)
                 .margin({ left: 20, bottom: 40 })
 
               }
