@@ -20,6 +20,8 @@ import hilog from '@ohos.hilog';
 
 const TAG = '[Sample_VideoPlay]';
 const DOMAIN = 0xF811;
+const driver = Driver.create();
+const abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
 export default function abilityTest() {
   describe('ActsAbilityTest', () => {
@@ -42,17 +44,62 @@ export default function abilityTest() {
       // Presets a clear action, which is performed after all test cases of the test suite end.
       // This API supports only one parameter: clear action function.
     })
+
+    /**
+     * 拉起应用
+     */
+    it('StartAbility_001', 0, async (done: Function) => {
+      console.info(TAG, 'StartAbility_001 begin');
+
+      try {
+        await abilityDelegator.startAbility({
+          bundleName: 'net.openvally.videoplay',
+          abilityName: 'EntryAbility'
+        });
+      } catch (exception) {
+        hilog.info(DOMAIN, TAG, `StartAbility_001 exception = ${JSON.stringify(exception)}`);
+        expect().assertFail();
+      }
+      await driver.delayMs(3000);
+      done();
+      console.info(TAG, 'StartAbility_001 end');
+    })
+
+    /**
+     * 点击多音轨轨道:1
+     */
+    it('Select_001', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, 'Select_001 begin');
+
+      // 拉起操作界面
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('Video'));
+      let stack = await driver.findComponent(ON.id('Video'));
+      await driver.delayMs(1000);
+      await stack.click();
+
+      // 点击多音轨
+      await driver.assertComponentExist(ON.id('Select'));
+      let btnPlay = await driver.findComponent(ON.id('Select'));
+      await btnPlay.click();
+
+      // 点击轨道:1
+      const str = await getString($r('app.string.track_name_1'));
+      await driver.assertComponentExist(ON.text(str));
+      let button = await driver.findComponent(ON.text(str));
+      await button.click();
+      await driver.delayMs(2000);
+      done();
+      hilog.info(DOMAIN, TAG, 'Select_001 end');
+    })
+
     /**
      * 切换pre_download_network.mp4视频
      */
     it('Choose_002', 0, async (done: Function) => {
-      // 启动Ability
       hilog.info(DOMAIN, TAG, 'Choose_002 begin');
-      let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
-      await abilityDelegatorRegistry.executeShellCommand('aa start -a EntryAbility -b net.openvally.videoplay');
 
       // 拉起操作界面
-      let driver = await Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('Video'));
       let stack = await driver.findComponent(ON.id('Video'));
@@ -77,13 +124,9 @@ export default function abilityTest() {
      * 切换test2.mp4视频
      */
     it('Choose_001', 0, async (done: Function) => {
-      // 启动Ability
       hilog.info(DOMAIN, TAG, 'Choose_001 begin');
-      let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
-      await abilityDelegatorRegistry.executeShellCommand('aa start -a EntryAbility -b net.openvally.videoplay');
 
       // 拉起操作界面
-      let driver = await Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('Video'));
       let stack = await driver.findComponent(ON.id('Video'));
@@ -110,9 +153,7 @@ export default function abilityTest() {
     it('Speed_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, 'Speed_001 begin');
 
-      // 拉起操作界面
-      let driver = await Driver.create();
-      // 等待倒计时介绍
+      // 拉起操作界面、等待倒计时介绍
       await driver.delayMs(8000);
       await driver.assertComponentExist(ON.id('Video'));
       let stack = await driver.findComponent(ON.id('Video'));
@@ -135,45 +176,12 @@ export default function abilityTest() {
     })
 
     /**
-     * 点击多音轨轨道:1
-     */
-    it('Select_001', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, 'Select_001 begin');
-      // 启动Ability
-      hilog.info(DOMAIN, TAG, 'Choose_001 begin');
-      let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
-      await abilityDelegatorRegistry.executeShellCommand('aa start -a EntryAbility -b net.openvally.videoplay');
-
-      // 拉起操作界面
-      let driver = await Driver.create();
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.id('Video'));
-      let stack = await driver.findComponent(ON.id('Video'));
-      await driver.delayMs(1000);
-      await stack.click();
-
-      // 点击多音轨
-      await driver.assertComponentExist(ON.id('Select'));
-      let btnPlay = await driver.findComponent(ON.id('Select'));
-      await btnPlay.click();
-
-      // 点击轨道:1
-      const str = await getString($r('app.string.track_name_1'));
-      await driver.assertComponentExist(ON.text(str));
-      let button = await driver.findComponent(ON.text(str));
-      await button.click();
-      await driver.delayMs(2000);
-      done();
-      hilog.info(DOMAIN, TAG, 'Select_001 end');
-    })
-
-    /**
      * 进度条测试
      */
     it('Slider_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, 'Slider_001 begin');
+
       // 拉起操作界面
-      let driver = Driver.create();
       await driver.delayMs(8000);
       await driver.assertComponentExist(ON.id('Video'));
       let stack = await driver.findComponent(ON.id('Video'));
@@ -194,9 +202,9 @@ export default function abilityTest() {
      */
     it('PlayPause_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, 'PlayPause_001 begin');
-      let driver = Driver.create();
-      await driver.delayMs(8000);
+
       // 拉起操作界面
+      await driver.delayMs(8000);
       await driver.assertComponentExist(ON.id('Video'));
       let stack = await driver.findComponent(ON.id('Video'));
       await stack.click();
@@ -208,14 +216,15 @@ export default function abilityTest() {
       done();
       hilog.info(DOMAIN, TAG, 'PlayPause_001 end');
     })
+
     /**
      * 点击播放
      */
     it('PlayPause_002', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, 'PlayPause_002 begin');
-      let driver = Driver.create();
-      await driver.delayMs(8000);
+
       // 拉起操作界面
+      await driver.delayMs(8000);
       await driver.assertComponentExist(ON.id('Video'));
       let stack = await driver.findComponent(ON.id('Video'));
       await stack.click();
@@ -227,13 +236,14 @@ export default function abilityTest() {
       done();
       hilog.info(DOMAIN, TAG, 'PlayPause_002 end');
     })
+
     /**
      * 退出测试
      */
     it('Exit_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, 'Exit_001 begin');
+
       // 拉起操作界面
-      let driver = Driver.create();
       await driver.delayMs(8000);
       await driver.assertComponentExist(ON.id('Video'));
       let stack = await driver.findComponent(ON.id('Video'));
