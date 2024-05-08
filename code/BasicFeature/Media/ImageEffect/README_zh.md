@@ -14,7 +14,7 @@
 
 - 功能查询接口<br>
 
-  框架还提供了查询接口，允许开发者次查询单个算子或整个算子链的详细信息。
+  框架还提供了查询接口，允许开发者查询单个算子或整个算子链的详细信息。
 
 ### 效果预览
 
@@ -80,7 +80,7 @@ entry/src/main/ets
 
 具体实现
 
-- 图片编辑功能在ImageEditPage中实现，源码参考[ImageEditPage.ets](entry%2Fsrc%2Fmain%2Fets%2Fpages%2FImageEdit.ets):
+- 图片编辑功能在ImageEditPage中实现，源码参考[ImageEditPage.ets](entry%2Fsrc%2Fmain%2Fets%2Fpages%2FImageEditPage.ets):
   - 滤镜选择：首先使用image的createImageSource生成pixelmap，然后在图片展示页面点击设置按钮弹出滤镜参数设置页面，选择滤镜并设置参数，点击确认按钮保存滤镜参数选择。
   - 滤镜生效：点击Apply按钮，展示经过滤镜处理后的图片效果，点击Reset按钮，图片恢复至调整前状态。
   - 滤镜查询：点击滑动条后面的查询图标可查询单个滤镜信息，点击下方查询按钮可查询对应条件的滤镜信息。
