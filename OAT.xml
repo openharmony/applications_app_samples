@@ -525,6 +525,29 @@ Note:If the text contains special characters, please escape them according to th
         <filteritem type="filepath" name="code/SystemFeature/TaskManagement/Flybird/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/TaskManagement/Flybird"/>
         <filteritem type="filepath" name="code/SystemFeature/TaskManagement/Flybird/screenshot/snapshot1.png" desc="Provided by code/SystemFeature/TaskManagement/Flybird"/>
         <filteritem type="filepath" name="code/SystemFeature/TaskManagement/Flybird/screenshot/snapshot2.png" desc="Provided by code/SystemFeature/TaskManagement/Flybird"/>
+        <filteritem type="filepath" name="code/SystemFeature/Widget/FormExtAbility/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/Widget/FormExtAbility"/>
+        <filteritem type="filepath" name="code/SystemFeature/Widget/FormExtAbility/EntryCard/entry/base/snapshot/widget-2x2.png" desc="Provided by code/SystemFeature/Widget/FormExtAbility"/>
+        <filteritem type="filepath" name="code/SystemFeature/Widget/FormExtAbility/entry/src/main/js/common/widget.png" desc="Provided by code/SystemFeature/Widget/FormExtAbility"/>
+        <filteritem type="filepath" name="code/SystemFeature/Widget/FormExtAbility/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/Widget/FormExtAbility"/>
+        <filteritem type="filepath" name="code/SystemFeature/Widget/FormExtAbility/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/Widget/FormExtAbility"/>
+        <filteritem type="filepath" name="code/SystemFeature/Widget/FormExtAbility/persistentProxyForm/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/Widget/FormExtAbility"/>
+        <filteritem type="filepath" name="code/SystemFeature/Widget/FormExtAbility/processProxyForm/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/Widget/FormExtAbility"/>
+        <filteritem type="filepath" name="code/SystemFeature/Widget/FormExtAbility/screenshots/ProcessProxyForm_main.jpeg" desc="Provided by code/SystemFeature/Widget/FormExtAbility"/>
+        <filteritem type="filepath" name="code/SystemFeature/Widget/FormExtAbility/screenshots/ProcessProxyForm_modifyCondition.jpeg" desc="Provided by code/SystemFeature/Widget/FormExtAbility"/>
+        <filteritem type="filepath" name="code/SystemFeature/Widget/FormExtAbility/screenshots/ProcessProxyForm_preview.jpeg" desc="Provided by code/SystemFeature/Widget/FormExtAbility"/>
+        <filteritem type="filepath" name="code/SystemFeature/Widget/FormExtAbility/screenshots/ProcessProxyForm_push.jpeg" desc="Provided by code/SystemFeature/Widget/FormExtAbility"/>
+        <filteritem type="filepath" name="code/SystemFeature/Widget/FormExtAbility/screenshots/cardStyle.jpeg" desc="Provided by code/SystemFeature/Widget/FormExtAbility"/>
+        <filteritem type="filepath" name="code/SystemFeature/Widget/FormExtAbility/screenshots/dataRelease.jpeg" desc="Provided by code/SystemFeature/Widget/FormExtAbility"/>
+        <filteritem type="filepath" name="code/SystemFeature/Widget/FormExtAbility/screenshots/eTSFormExample.png" desc="Provided by code/SystemFeature/Widget/FormExtAbility"/>
+        <filteritem type="filepath" name="code/SystemFeature/Widget/FormExtAbility/screenshots/mainInterface.jpeg" desc="Provided by code/SystemFeature/Widget/FormExtAbility"/>
+        <filteritem type="filepath" name="code/SystemFeature/Widget/FormExtAbility/screenshots/modifySubscriptionConditions.jpeg" desc="Provided by code/SystemFeature/Widget/FormExtAbility"/>
+        <filteritem type="filepath" name="code/SystemFeature/Widget/FormExtAbility/screenshots/second.png" desc="Provided by code/SystemFeature/Widget/FormExtAbility"/>
+        <filteritem type="filepath" name="code/SystemFeature/Widget/RequestAddForm/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/Widget/RequestAddForm"/>
+        <filteritem type="filepath" name="code/SystemFeature/Widget/RequestAddForm/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/Widget/RequestAddForm"/>
+        <filteritem type="filepath" name="code/SystemFeature/Widget/RequestAddForm/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/Widget/RequestAddForm"/>
+        <filteritem type="filepath" name="code/SystemFeature/Widget/RequestAddForm/screenshots/zh/card.jpeg" desc="Provided by code/SystemFeature/Widget/RequestAddForm"/>
+        <filteritem type="filepath" name="code/SystemFeature/Widget/RequestAddForm/screenshots/zh/menu.jpeg" desc="Provided by code/SystemFeature/Widget/RequestAddForm"/>
+        <filteritem type="filepath" name="code/SystemFeature/Widget/RequestAddForm/screenshots/zh/menu.jpeg" desc="Provided by code/SystemFeature/Widget/RequestAddForm"/>
 		<filteritem type="filepath" name="code/BasicFeature/ArkTSCard/ArkTSCard/libs/ArkTSUser.hap" desc="Provided by code/BasicFeature/ArkTSCard/ArkTSCard"/>
         <filteritem type="filepath" name="code/BasicFeature/Native/Audio/entry/src/main/resources/base/media/pic_Audiovivid.png" desc="Provided by code/BasicFeature/Native/Audio"/>
         <filteritem type="filepath" name="code/BasicFeature/Native/Audio/screenshots/device/AudioVivid.jpg" desc="Provided by code/BasicFeature/Native/Audio"/>
