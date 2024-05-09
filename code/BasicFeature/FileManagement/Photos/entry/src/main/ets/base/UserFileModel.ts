@@ -220,6 +220,7 @@ class UserFileModel {
     let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = null;
     try {
       let predicates = new dataSharePredicates.DataSharePredicates();
+      predicates.orderByDesc(photoAccessHelper.PhotoKeys.DATE_ADDED);
       let emptyFetchOption = {
         fetchColumns: MediaConstants.FILE_ASSET_FETCH_COLUMNS,
         predicates: predicates

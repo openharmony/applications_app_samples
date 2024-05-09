@@ -275,7 +275,6 @@ export class UserFileDataItem implements DateAdded {
     this.displayName = displayName;
     this.title = name;
     try {
-      fileAsset.set(photoAccessHelper.PhotoKeys.DISPLAY_NAME.toString(), displayName);
       fileAsset.set(photoAccessHelper.PhotoKeys.TITLE.toString(), name);
       await fileAsset.commitModify();
     } catch (err) {
