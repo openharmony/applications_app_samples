@@ -1,0 +1,15 @@
+{
+  "data": {
+    "cityName": "",
+    "cityTemperature": ""
+  },
+  "actions": {
+    "routerEvent": {
+      "action": "router",
+      "abilityName": "EntryAbility",
+      "params": {
+        "message": "add detail"
+      }
+    }
+  }
+}
