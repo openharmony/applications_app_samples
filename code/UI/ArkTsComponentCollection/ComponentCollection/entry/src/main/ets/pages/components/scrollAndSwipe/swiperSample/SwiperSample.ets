@@ -17,10 +17,11 @@ import { IntroductionTitle } from '../../../../common/IntroductionTitle';
 import { TitleBar } from '../../../../common/TitleBar';
 import { LEFT_PADDING, RIGHT_PADDING } from '../../ComponentData';
 import { PropertiesControlPanel } from './SwiperControlPanel';
+import { CustomAnimationPropertiesControlPanel } from './SwiperCustomAnimationControlPanel';
 
 @Extend(Column) function backgroundStyle() {
   .width('100%')
-  .padding(12)
+  .padding({ left: 12, right: 12, top: 4, bottom: 4 })
   .borderRadius(16)
   .backgroundColor(Color.White)
   .justifyContent(FlexAlign.Start)
@@ -34,10 +35,13 @@ import { PropertiesControlPanel } from './SwiperControlPanel';
   .backgroundColor(bgColor)
 }
 
+const DISPLAY_COUNT: number = 2;
+const MIN_SCALE: number = 0.75;
 
 @Entry
 @Component
 struct SwiperSample {
+  // Common interfaces and properties
   @State isDisableSwipe: boolean = false;
   @State itemSpace: number = 0;
   @State isVertical: boolean = false;
@@ -45,26 +49,63 @@ struct SwiperSample {
   @State loop: boolean = false;
   @State autoPlay: boolean = false;
   @State interval: number = 1000;
+
+  // properties of custom transition animation
+  @State changeOpacity: boolean = false;
+  @State changeScale: boolean = false;
+  @State closeTwoPagesTogether: boolean = false;
+  @State cancelDefaultTranslate: boolean = false;
+  @State customAnimationAutoPlay: boolean = false;
+  @State customAnimationDuration: number = 400;
+  @State customAnimationCurve: string = 'Linear';
+  @State backgroundColorList: Resource[] = [
+    $r('app.color.background_blue'),
+    $r('app.color.background_orange'),
+    $r('app.color.background_green'),
+    $r('app.color.background_pink')
+  ];
+  @State opacityList: number[] = [];
+  @State scaleList: number[] = [];
+  @State translateList: number[] = [];
+  @State zIndexList: number[] = [];
+
   private controller: SwiperController = new SwiperController();
   private data: number[] = [];
-
-  @Styles commonButtonStyle(){
-    .backgroundColor($r('app.color.background_blue'))
-    .padding(12)
-    .borderRadius(10)
-  }
 
   aboutToAppear() {
     for (let i = 1; i < 11; i++) {
       this.data.push(i)
     }
+    for (let i = 1; i < this.backgroundColorList.length; i++) {
+      this.opacityList.push(1.0)
+      this.scaleList.push(1.0)
+      this.translateList.push(0.0)
+      this.zIndexList.push(0)
+    }
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
-      TitleBar({ title: $r('app.string.swiper_title') })
-        .flexGrow(0)
-      IntroductionTitle({ introduction: $r('app.string.swiper_introduction') })
+    Column() {
+      TitleBar({ title: $r('app.string.swiper_name') })
+
+      Tabs() {
+        TabContent() {
+          this.CommonPropertiesPage()
+        }.tabBar(SubTabBarStyle.of($r('app.string.swiper_common_interfaces_and_properties')))
+
+        TabContent() {
+          this.CustomPropertiesPage()
+        }.tabBar(SubTabBarStyle.of($r('app.string.swiper_custom_properties')))
+      }
+      .padding({ left: LEFT_PADDING, right: RIGHT_PADDING, bottom: 56 })
+      .barMode(BarMode.Scrollable)
+      .barBackgroundColor($r('app.color.background_shallow_grey'))
+    }
+    .backgroundColor($r('app.color.background_shallow_grey'))
+  }
+
+  @Builder CommonPropertiesPage() {
+    Column() {
       // component
       Swiper(this.controller) {
         ForEach(this.data, (item: number, index) => {
@@ -73,7 +114,7 @@ struct SwiperSample {
               .swiperItemStyle($r('app.color.background_orange'))
           } else {
             Text(item.toString())
-              .swiperItemStyle($r('app.color.background_light_gray'))
+              .swiperItemStyle($r('app.color.background_green'))
           }
         })
       }
@@ -86,9 +127,7 @@ struct SwiperSample {
       .autoPlay(this.autoPlay)
       .borderRadius(16)
       .backgroundColor(Color.White)
-      .width('100%')
-      .height(200)
-      .flexGrow(0)
+      .height(216)
 
       Scroll() {
         // 控制面板
@@ -98,17 +137,20 @@ struct SwiperSample {
             Row() {
               Text($r('app.string.swiper_controller_next'))
                 .fontColor($r('app.color.background_blue'))
-                .margin({ right: 40 })
+                .padding(20)
                 .onClick(() => {
                   this.controller.showNext()
                 })
 
               Text($r('app.string.swiper_controller_previous'))
                 .fontColor($r('app.color.background_blue'))
+                .padding(20)
                 .onClick(() => {
                   this.controller.showPrevious()
                 })
             }
+            .height(56)
+            .alignItems(VerticalAlign.Center)
           }
           .backgroundStyle()
 
@@ -126,15 +168,87 @@ struct SwiperSample {
           }
           .backgroundStyle()
         }
-        .justifyContent(FlexAlign.Start)
-        .width('100%')
       }
-      .flexGrow(1)
-      .margin({ bottom: 10 })
+      .height('calc(100% - 216vp)')
     }
-    .padding({ left: LEFT_PADDING, right: RIGHT_PADDING })
     .height('100%')
     .width('100%')
-    .backgroundColor($r('app.color.background_shallow_grey'))
+  }
+
+  @Builder CustomPropertiesPage() {
+    Column() {
+      Swiper() {
+        ForEach(this.backgroundColorList, (backgroundColor: Resource, index: number) => {
+          Column()
+            .width('100%')
+            .height('100%')
+            .backgroundColor(backgroundColor)
+            .opacity(this.changeOpacity ? this.opacityList[index] : 1.0)
+            .scale(this.changeScale ? { x: this.scaleList[index], y: this.scaleList[index] } : {})
+            .translate((this.closeTwoPagesTogether || this.cancelDefaultTranslate) ?
+              { x: this.translateList[index] } : {})
+            .zIndex(this.zIndexList[index])
+        })
+      }
+      .displayCount(DISPLAY_COUNT, true)
+      .autoPlay(this.customAnimationAutoPlay)
+      .duration(this.customAnimationDuration)
+      .curve(this.customAnimationCurve.toLowerCase())
+      .customContentTransition({
+        transition: (proxy: SwiperContentTransitionProxy) => {
+          if (proxy.position <= proxy.index % DISPLAY_COUNT ||
+            proxy.position >= DISPLAY_COUNT + proxy.index % DISPLAY_COUNT) {
+            // 同组页面往左滑或往右完全滑出视窗外时，重置属性值
+            this.opacityList[proxy.index] = 1.0;
+            this.scaleList[proxy.index] = 1.0;
+            this.translateList[proxy.index] = 0.0;
+            this.zIndexList[proxy.index] = 0;
+          } else {
+            // 同组页面往右滑且未滑出视窗外时，对同组中左右两个页面，逐帧根据position、mainAxisLength修改属性值
+            let relativePosition = proxy.position - proxy.index % DISPLAY_COUNT;
+            this.opacityList[proxy.index] = 1 - relativePosition / DISPLAY_COUNT;
+            this.scaleList[proxy.index] = MIN_SCALE + (1 - MIN_SCALE) * (1 - relativePosition / DISPLAY_COUNT);
+            let translate = 0.0;
+            if (this.changeScale && this.closeTwoPagesTogether) {
+              let itemSpace = (1 - this.scaleList[proxy.index]) * proxy.mainAxisLength;
+              if (proxy.index % DISPLAY_COUNT === 0) {
+                translate += itemSpace / 2.0;
+              } else {
+                translate -= itemSpace / 2.0;
+              }
+            }
+            if (this.cancelDefaultTranslate) {
+              translate -= relativePosition * proxy.mainAxisLength;
+            }
+            this.translateList[proxy.index] = translate;
+            this.zIndexList[proxy.index] = -1;
+          }
+        }
+      })
+      .borderRadius(16)
+      .height(216)
+
+      Scroll() {
+        // 控制面板
+        Column() {
+          IntroductionTitle({ introduction: $r('app.string.swiper_modify_custom_properties') })
+          Column() {
+            CustomAnimationPropertiesControlPanel({
+              changeOpacity: $changeOpacity,
+              changeScale: $changeScale,
+              closeTwoPagesTogether: $closeTwoPagesTogether,
+              cancelDefaultTranslate: $cancelDefaultTranslate,
+              customAnimationAutoPlay: $customAnimationAutoPlay,
+              customAnimationDuration: $customAnimationDuration,
+              customAnimationCurve: $customAnimationCurve
+            })
+          }
+          .backgroundStyle()
+        }
+        .height('calc(100% - 216vp)')
+      }
+    }
+    .height('100%')
+    .width('100%')
   }
 }
