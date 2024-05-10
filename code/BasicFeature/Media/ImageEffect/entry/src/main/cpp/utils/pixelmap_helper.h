@@ -16,7 +16,7 @@
 #ifndef IMAGEEFFECT_PIXELMAP_HELPER_H
 #define IMAGEEFFECT_PIXELMAP_HELPER_H
 
-#include <multimedia/image_framework/pixelmap_native.h>
+#include <multimedia/image_framework/image/pixelmap_native.h>
 #include <multimedia/image_framework/image_pixel_map_mdk.h>
 #include <memory>
 
