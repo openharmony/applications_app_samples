@@ -95,7 +95,10 @@ struct Index {
           callback: () => {
             this.context.startAbility({
               action: "ohos.want.action.viewData",
-              type: "text/plain"
+              type: "text/plain",
+              parameters: {
+                uri: "filePath"
+              }
             }, (error, data) => {
               logger.info(`${TAG} startAbility end: ${JSON.stringify(error)}, ${JSON.stringify(data)}`);
             })
@@ -109,7 +112,10 @@ struct Index {
               action: "ohos.want.action.viewData",
               type: "text/plain",
               // 设置flags为FLAG_START_WITHOUT_TIPS 隐式启动未找到时不弹窗
-              flags: wantConstant.Flags.FLAG_START_WITHOUT_TIPS
+              flags: wantConstant.Flags.FLAG_START_WITHOUT_TIPS,
+              parameters: {
+                uri: "filePath"
+              }
             }, (error, data) => {
               logger.info(`${TAG} startAbility end ${JSON.stringify(error)}, ${JSON.stringify(data)}`);
               prompt.showToast({ message: $r('app.string.Implicit_Launch_not_Popup'), duration: 3000 });
