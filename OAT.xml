@@ -145,6 +145,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/BasicFeature/Notification/CustomCommonEvent/lib/CardEvent-1.0.0.tgz" desc="Provided by code/BasicFeature/Notification/CustomCommonEvent"/>
                 <filteritem type="filepath" name="code/BasicFeature/Ads/OAIDSample/lib/ResetOAID-1.0.0.tgz" desc="Provided by code/BasicFeature/Ads/OAIDSample"/>
                 <filteritem type="filepath" name="code/Solutions/Tools/FlipClock/lib/Brightness-1.0.0.tgz" desc="Provided by code/Solutions/Tools/FlipClock"/>
+                <filteritem type="filepath" name="code/SystemFeature/Security/DLP/screenshots/haps/FileEdit.tgz" desc="Provided by code/SystemFeature/Security/DLP"/>
                 <filteritem type="filepath" name="code/DataMock/QuickFix/entry-signed-release.hqf" desc="Provided by code/SystemFeature/TaskManagement/TransientTask"/>
                 <filteritem type="filepath" name="code/Solutions/Shopping/ASOrangeShopping/data/freeinstall/famanager.hap" desc="Provided by BMS"/>
                 <filteritem type="filepath" name="code/Solutions/Shopping/ASOrangeShopping/data/freeinstall/launcher.hap" desc="Provided by  code/SystemFeature/ApplicationModels/Launcher"/>
@@ -291,7 +292,6 @@ Note:If the text contains special characters, please escape them according to th
         <filteritem type="filepath" name="code/SystemFeature/Security/CertificateFramework/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/Security/CertificateFramework"/>
         <filteritem type="filepath" name="code/SystemFeature/Security/CertificateFramework/screenshots/device/verify_success.jpeg" desc="Provided by code/SystemFeature/Security/CertificateFramework"/>
         <filteritem type="filepath" name="code/SystemFeature/Security/CertificateFramework/screenshots/device/chain_fail.jpeg" desc="Provided by code/SystemFeature/Security/CertificateFramework"/>
-        <filteritem type="filepath" name="code/BasicFeature/Security/DLPManager/screenshots/device/index.jpeg" desc="Provided by code/BasicFeature/Security/DLPManager"/>
         <filteritem type="filepath" name="code/SystemFeature/Security/CertificateFramework/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/Security/CertificateFramework"/>
         <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/StageModel/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/ApplicationModels/StageModel"/>
         <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/StageModel/entry/src/main/js/common/qing.png" desc="Provided by code/SystemFeature/ApplicationModels/StageModel"/>
@@ -548,7 +548,64 @@ Note:If the text contains special characters, please escape them according to th
         <filteritem type="filepath" name="code/SystemFeature/Widget/RequestAddForm/screenshots/zh/card.jpeg" desc="Provided by code/SystemFeature/Widget/RequestAddForm"/>
         <filteritem type="filepath" name="code/SystemFeature/Widget/RequestAddForm/screenshots/zh/menu.jpeg" desc="Provided by code/SystemFeature/Widget/RequestAddForm"/>
         <filteritem type="filepath" name="code/SystemFeature/Widget/RequestAddForm/screenshots/zh/menu.jpeg" desc="Provided by code/SystemFeature/Widget/RequestAddForm"/>
-		<filteritem type="filepath" name="code/BasicFeature/ArkTSCard/ArkTSCard/libs/ArkTSUser.hap" desc="Provided by code/BasicFeature/ArkTSCard/ArkTSCard"/>
+		<filteritem type="filepath" name="code/SystemFeature/ArkTSCard/ArkTSCard/libs/ArkTSUser.hap" desc="Provided by code/SystemFeature/ArkTSCard/ArkTSCard"/>
+		<filteritem type="filepath" name="code/SystemFeature/ArkTSCard/ArkTSCard/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/ArkTSCard/ArkTSCard"/>
+		<filteritem type="filepath" name="code/SystemFeature/ArkTSCard/ArkTSCard/entry/src/main/resources/base/media/16.png" desc="Provided by code/SystemFeature/ArkTSCard/ArkTSCard"/>
+		<filteritem type="filepath" name="code/SystemFeature/ArkTSCard/ArkTSCard/entry/src/main/resources/base/media/18.png" desc="Provided by code/SystemFeature/ArkTSCard/ArkTSCard"/>
+		<filteritem type="filepath" name="code/SystemFeature/ArkTSCard/ArkTSCard/entry/src/main/resources/base/media/21.png" desc="Provided by code/SystemFeature/ArkTSCard/ArkTSCard"/>
+		<filteritem type="filepath" name="code/SystemFeature/ArkTSCard/ArkTSCard/entry/src/main/resources/base/media/ic_public_music.png" desc="Provided by code/SystemFeature/ArkTSCard/ArkTSCard"/>
+		<filteritem type="filepath" name="code/SystemFeature/ArkTSCard/ArkTSCard/entry/src/main/resources/base/media/ic_public_music_filled.png" desc="Provided by code/SystemFeature/ArkTSCard/ArkTSCard"/>
+		<filteritem type="filepath" name="code/SystemFeature/ArkTSCard/ArkTSCard/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/ArkTSCard/ArkTSCard"/>
+		<filteritem type="filepath" name="code/SystemFeature/ArkTSCard/ArkTSCard/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/ArkTSCard/ArkTSCard"/>
+		<filteritem type="filepath" name="code/SystemFeature/ArkTSCard/ArkTSCard/screenshots/device/FormDeepLink.jpeg" desc="Provided by code/SystemFeature/ArkTSCard/ArkTSCard"/>
+		<filteritem type="filepath" name="code/SystemFeature/ArkTSCard/ArkTSCard/screenshots/device/addCard.png" desc="Provided by code/SystemFeature/ArkTSCard/ArkTSCard"/>
+		<filteritem type="filepath" name="code/SystemFeature/ArkTSCard/ArkTSCard/screenshots/device/desktopCard.png" desc="Provided by code/SystemFeature/ArkTSCard/ArkTSCard"/>
+		<filteritem type="filepath" name="code/SystemFeature/ArkTSCard/ArkTSCard/screenshots/device/lock.jpeg" desc="Provided by code/SystemFeature/ArkTSCard/ArkTSCard"/>
+		<filteritem type="filepath" name="code/SystemFeature/ArkTSCard/ArkTSCard/screenshots/device/music.jpeg" desc="Provided by code/SystemFeature/ArkTSCard/ArkTSCard"/>
+		<filteritem type="filepath" name="code/SystemFeature/ArkTSCard/ArkTSCard/screenshots/device/music2.png" desc="Provided by code/SystemFeature/ArkTSCard/ArkTSCard"/>
+		<filteritem type="filepath" name="code/SystemFeature/ArkTSCard/ArkTSCard/screenshots/device/unlock.jpeg" desc="Provided by code/SystemFeature/ArkTSCard/ArkTSCard"/>
+		<filteritem type="filepath" name="code/SystemFeature/ArkTSCard/ArkTSCard/screenshots/device/unlock.jpeg" desc="Provided by code/SystemFeature/ArkTSCard/ArkTSCard"/>
+		<filteritem type="filepath" name="code/SystemFeature/IDL/AbilityConnectServiceExtension/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/IDL/AbilityConnectServiceExtension"/>
+		<filteritem type="filepath" name="code/SystemFeature/IDL/AbilityConnectServiceExtension/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/IDL/AbilityConnectServiceExtension"/>
+		<filteritem type="filepath" name="code/SystemFeature/IDL/AbilityConnectServiceExtension/entry/src/main/resources/base/media/icon_back.png" desc="Provided by code/SystemFeature/IDL/AbilityConnectServiceExtension"/>
+		<filteritem type="filepath" name="code/SystemFeature/IDL/AbilityConnectServiceExtension/entry/src/main/resources/base/media/icon_side.png" desc="Provided by code/SystemFeature/IDL/AbilityConnectServiceExtension"/>
+		<filteritem type="filepath" name="code/SystemFeature/IDL/AbilityConnectServiceExtension/entry/src/main/resources/base/media/rain_bg.png" desc="Provided by code/SystemFeature/IDL/AbilityConnectServiceExtension"/>
+		<filteritem type="filepath" name="code/SystemFeature/IDL/AbilityConnectServiceExtension/entry/src/main/resources/base/media/rain_port.png" desc="Provided by code/SystemFeature/IDL/AbilityConnectServiceExtension"/>
+		<filteritem type="filepath" name="code/SystemFeature/IDL/AbilityConnectServiceExtension/entry/src/main/resources/base/media/sunny_bg.png" desc="Provided by code/SystemFeature/IDL/AbilityConnectServiceExtension"/>
+		<filteritem type="filepath" name="code/SystemFeature/IDL/AbilityConnectServiceExtension/entry/src/main/resources/base/media/sunny_port.png" desc="Provided by code/SystemFeature/IDL/AbilityConnectServiceExtension"/>
+		<filteritem type="filepath" name="code/SystemFeature/IDL/AbilityConnectServiceExtension/entry/src/main/resources/base/media/weather_fine.png" desc="Provided by code/SystemFeature/IDL/AbilityConnectServiceExtension"/>
+		<filteritem type="filepath" name="code/SystemFeature/IDL/AbilityConnectServiceExtension/entry/src/main/resources/base/media/weather_rain.png" desc="Provided by code/SystemFeature/IDL/AbilityConnectServiceExtension"/>
+		<filteritem type="filepath" name="code/SystemFeature/IDL/AbilityConnectServiceExtension/entry/src/main/resources/base/media/weather_yin.png" desc="Provided by code/SystemFeature/IDL/AbilityConnectServiceExtension"/>
+		<filteritem type="filepath" name="code/SystemFeature/IDL/AbilityConnectServiceExtension/entry/src/main/resources/base/media/yin_bg.png" desc="Provided by code/SystemFeature/IDL/AbilityConnectServiceExtension"/>
+		<filteritem type="filepath" name="code/SystemFeature/IDL/AbilityConnectServiceExtension/entry/src/main/resources/base/media/yin_port.png" desc="Provided by code/SystemFeature/IDL/AbilityConnectServiceExtension"/>
+		<filteritem type="filepath" name="code/SystemFeature/IDL/AbilityConnectServiceExtension/entry/src/main/resources/phone/media/rain_bg.png" desc="Provided by code/SystemFeature/IDL/AbilityConnectServiceExtension"/>
+		<filteritem type="filepath" name="code/SystemFeature/IDL/AbilityConnectServiceExtension/entry/src/main/resources/phone/media/sunny_bg.png" desc="Provided by code/SystemFeature/IDL/AbilityConnectServiceExtension"/>
+		<filteritem type="filepath" name="code/SystemFeature/IDL/AbilityConnectServiceExtension/entry/src/main/resources/phone/media/weather_fine.png" desc="Provided by code/SystemFeature/IDL/AbilityConnectServiceExtension"/>
+		<filteritem type="filepath" name="code/SystemFeature/IDL/AbilityConnectServiceExtension/entry/src/main/resources/phone/media/weather_rain.png" desc="Provided by code/SystemFeature/IDL/AbilityConnectServiceExtension"/>
+		<filteritem type="filepath" name="code/SystemFeature/IDL/AbilityConnectServiceExtension/entry/src/main/resources/phone/media/weather_yin.png" desc="Provided by code/SystemFeature/IDL/AbilityConnectServiceExtension"/>
+		<filteritem type="filepath" name="code/SystemFeature/IDL/AbilityConnectServiceExtension/entry/src/main/resources/phone/media/yin_bg.png" desc="Provided by code/SystemFeature/IDL/AbilityConnectServiceExtension"/>
+		<filteritem type="filepath" name="code/SystemFeature/IDL/AbilityConnectServiceExtension/entry/src/main/resources/tablet/media/weather_fine.png" desc="Provided by code/SystemFeature/IDL/AbilityConnectServiceExtension"/>
+		<filteritem type="filepath" name="code/SystemFeature/IDL/AbilityConnectServiceExtension/entry/src/main/resources/tablet/media/weather_rain.png" desc="Provided by code/SystemFeature/IDL/AbilityConnectServiceExtension"/>
+		<filteritem type="filepath" name="code/SystemFeature/IDL/AbilityConnectServiceExtension/entry/src/main/resources/tablet/media/weather_yin.png" desc="Provided by code/SystemFeature/IDL/AbilityConnectServiceExtension"/>
+		<filteritem type="filepath" name="code/SystemFeature/IDL/AbilityConnectServiceExtension/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/IDL/AbilityConnectServiceExtension"/>
+		<filteritem type="filepath" name="code/SystemFeature/IDL/AbilityConnectServiceExtension/screenshots/device/after.png" desc="Provided by code/SystemFeature/IDL/AbilityConnectServiceExtension"/>
+		<filteritem type="filepath" name="code/SystemFeature/IDL/AbilityConnectServiceExtension/screenshots/device/before.png" desc="Provided by code/SystemFeature/IDL/AbilityConnectServiceExtension"/>
+        <filteritem type="filepath" name="code/SystemFeature/Security/DLPManager/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/Security/DLPManager"/>
+        <filteritem type="filepath" name="code/SystemFeature/Security/DLPManager/entry/src/main/resources/base/media/add.png" desc="Provided by code/SystemFeature/Security/DLPManager"/>
+        <filteritem type="filepath" name="code/SystemFeature/Security/DLPManager/entry/src/main/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/Security/DLPManager"/>
+        <filteritem type="filepath" name="code/SystemFeature/Security/DLPManager/entry/src/main/resources/base/media/ic_normal_dark_grid_dlp.png" desc="Provided by code/SystemFeature/Security/DLPManager"/>
+        <filteritem type="filepath" name="code/SystemFeature/Security/DLPManager/entry/src/main/resources/base/media/ic_normal_white_grid_txt.png" desc="Provided by code/SystemFeature/Security/DLPManager"/>
+        <filteritem type="filepath" name="code/SystemFeature/Security/DLPManager/entry/src/main/resources/base/media/ic_public_back.png" desc="Provided by code/SystemFeature/Security/DLPManager"/>
+        <filteritem type="filepath" name="code/SystemFeature/Security/DLPManager/entry/src/main/resources/base/media/ic_public_edit.png" desc="Provided by code/SystemFeature/Security/DLPManager"/>
+        <filteritem type="filepath" name="code/SystemFeature/Security/DLPManager/entry/src/main/resources/base/media/ic_public_more.png" desc="Provided by code/SystemFeature/Security/DLPManager"/>
+        <filteritem type="filepath" name="code/SystemFeature/Security/DLPManager/entry/src/main/resources/base/media/ic_public_save.png" desc="Provided by code/SystemFeature/Security/DLPManager"/>
+        <filteritem type="filepath" name="code/SystemFeature/Security/DLPManager/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/Security/DLPManager"/>
+        <filteritem type="filepath" name="code/SystemFeature/Security/DLPManager/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/SystemFeature/Security/DLPManager"/>
+        <filteritem type="filepath" name="code/SystemFeature/Security/DLPManager/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/Security/DLPManager"/>
+        <filteritem type="filepath" name="code/SystemFeature/Security/DLPManager/screenshots/device/dlpPage.jpeg" desc="Provided by code/SystemFeature/Security/DLPManager"/>
+        <filteritem type="filepath" name="code/SystemFeature/Security/DLPManager/screenshots/device/filePage.jpeg" desc="Provided by code/SystemFeature/Security/DLPManager"/>
+        <filteritem type="filepath" name="code/SystemFeature/Security/DLPManager/screenshots/device/index.jpeg" desc="Provided by code/SystemFeature/Security/DLPManager"/>
+        <filteritem type="filepath" name="code/SystemFeature/Security/DLPManager/screenshots/device/index.jpeg" desc="Provided by code/SystemFeature/Security/DLPManager"/>
         <filteritem type="filepath" name="code/BasicFeature/Native/Audio/entry/src/main/resources/base/media/pic_Audiovivid.png" desc="Provided by code/BasicFeature/Native/Audio"/>
         <filteritem type="filepath" name="code/BasicFeature/Native/Audio/screenshots/device/AudioVivid.jpg" desc="Provided by code/BasicFeature/Native/Audio"/>
         <filteritem type="filepath" name="code/BasicFeature/Native/Audio/screenshots/device/index.jpg" desc="Provided by code/BasicFeature/Native/Audio"/>
@@ -604,6 +661,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/BasicFeature/Notification/CustomCommonEvent/lib/CardEvent-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/BasicFeature/Ads/OAIDSample/lib/ResetOAID-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/Solutions/Tools/FlipClock/lib/Brightness-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/SystemFeature/Security/DLP/screenshots/haps/FileEdit.tgz" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/SystemFeature/Media/VoiceCallDemo/entry/src/main/resources/rawfile/wechat_voice_ring.mp3" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/BasicFeature/DataManagement/UDMF/UniformTypeDescriptor/UTDType/entry/src/main/resources/rawfile/arkdata/utd/utd.json5" desc="二进制文件，无需添加License头"/>
             </filefilter>
@@ -635,6 +693,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/BasicFeature/Notification/CustomCommonEvent/lib/CardEvent-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/BasicFeature/Ads/OAIDSample/lib/ResetOAID-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/Solutions/Tools/FlipClock/lib/Brightness-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/SystemFeature/Security/DLP/screenshots/haps/FileEdit.tgz" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/SystemFeature/Media/VoiceCallDemo/entry/src/main/resources/rawfile/wechat_voice_ring.mp3" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/BasicFeature/DataManagement/UDMF/UniformTypeDescriptor/UTDType/entry/src/main/resources/rawfile/arkdata/utd/utd.json5" desc="二进制文件，无需添加版权头"/>
             </filefilter>

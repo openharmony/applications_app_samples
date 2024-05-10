@@ -1,0 +1,232 @@
+{
+  "forms": [
+    {
+      "name": "StaticWeatherCard",
+      "description": "This is a service widget.",
+      "src": "./ets/staticweathercard/pages/StaticWeatherCard.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": true,
+      "isDynamic": false,
+      "updateEnabled": false,
+      "scheduledUpdateTime": "10:30",
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "2*2"
+      ]
+    },
+    {
+      "name": "DynamicWeatherCard",
+      "description": "This is a service widget.",
+      "src": "./ets/dynamicweathercard/pages/DynamicWeatherCard.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": false,
+      "isDynamic": true,
+      "updateEnabled": false,
+      "scheduledUpdateTime": "10:30",
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "2*2"
+      ]
+    },
+    {
+      "name": "DynamicBookCard",
+      "description": "This is a service widget.",
+      "src": "./ets/dynamicbookcard/pages/DynamicBookCard.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": false,
+      "isDynamic": true,
+      "updateEnabled": false,
+      "scheduledUpdateTime": "10:30",
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "2*2"
+      ]
+    },
+    {
+      "name": "DynamicMusicCard",
+      "description": "This is a service widget.",
+      "src": "./ets/dynamicmusiccard/pages/DynamicMusicCard.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": false,
+      "isDynamic": true,
+      "updateEnabled": false,
+      "scheduledUpdateTime": "10:30",
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "2*2"
+      ]
+    },
+    {
+      "name": "StaticMusicCard",
+      "description": "This is a service widget.",
+      "src": "./ets/staticmusiccard/pages/StaticMusicCard.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": false,
+      "isDynamic": false,
+      "updateEnabled": false,
+      "scheduledUpdateTime": "10:30",
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "2*2"
+      ]
+    },
+    {
+      "name": "StaticBookCard",
+      "description": "This is a service widget.",
+      "src": "./ets/staticbookcard/pages/StaticBookCard.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": false,
+      "isDynamic": false,
+      "updateEnabled": false,
+      "scheduledUpdateTime": "10:30",
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "2*2"
+      ]
+    },
+    {
+      "name": "StaticMusicLockCard",
+      "description": "This is a service widget.",
+      "src": "./ets/staticmusiccard/pages/StaticMusicLockCard.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": false,
+      "isDynamic": false,
+      "updateEnabled": false,
+      "scheduledUpdateTime": "10:30",
+      "defaultDimension": "1*1",
+      "supportDimensions": [
+        "1*1","1*2"
+      ]
+    },
+    {
+      "name": "DynamicMusicLockCard",
+      "description": "This is a service widget.",
+      "src": "./ets/dynamicmusiccard/pages/DynamicMusicLockCard.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": false,
+      "isDynamic": true,
+      "updateEnabled": false,
+      "scheduledUpdateTime": "10:30",
+      "defaultDimension": "1*1",
+      "supportDimensions": [
+        "1*1","1*2"
+      ]
+    },
+    {
+      "name": "StaticMusicLockLongCard",
+      "description": "This is a service widget.",
+      "src": "./ets/staticmusiccard/pages/StaticMusicLockLongCard.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": false,
+      "isDynamic": false,
+      "updateEnabled": false,
+      "scheduledUpdateTime": "10:30",
+      "defaultDimension": "1*1",
+      "supportDimensions": [
+        "1*1","1*2"
+      ]
+    },
+    {
+      "name": "DynamicMusicLockLongCard",
+      "description": "This is a service widget.",
+      "src": "./ets/dynamicmusiccard/pages/DynamicMusicLockLongCard.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": false,
+      "isDynamic": true,
+      "updateEnabled": false,
+      "scheduledUpdateTime": "10:30",
+      "defaultDimension": "1*1",
+      "supportDimensions": [
+        "1*1","1*2"
+      ]
+    },
+    {
+      "name": "DynamicMusicLockUltraLongCard",
+      "description": "This is a UltraLongCard.",
+      "src": "./ets/dynamicmusiccard/pages/DynamicMusicLockUltraLongCard.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": false,
+      "isDynamic": true,
+      "updateEnabled": false,
+      "scheduledUpdateTime": "10:30",
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "2*2","6*4"
+      ]
+    },
+    {
+      "name": "StaticMusicLockUltraLongCard",
+      "description": "This is a UltraLongCard.",
+      "src": "./ets/staticmusiccard/pages/StaticMusicLockUltraLongCard.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": false,
+      "isDynamic": false,
+      "updateEnabled": false,
+      "scheduledUpdateTime": "10:30",
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "2*2","6*4"
+      ]
+    }
+  ]
+}
