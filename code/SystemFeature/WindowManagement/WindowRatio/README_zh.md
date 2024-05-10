@@ -65,7 +65,7 @@ entry/src/main/ets/
 
 ### 约束与限制
 
-1.本示例仅支持在标准系统上运行。
+1.本示例仅支持在标准系统上运行，仅支持设备：RK3568。
 
 2.本示例为Stage模型，仅支持API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0Release)；本示例涉及使用系统接口：@ohos.window中的WindowMode属性，需要手动替换Full SDK才能编译通过，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)。
 
