@@ -112,7 +112,6 @@ struct node_geometry {
     console.log(LOG_TAG + "Light shadowEnabled: " + light.shadowEnabled);
     if (light.lightType === scene3d.LightType.DIRECTIONAL) {
       let l: scene3d.DirectionalLight = light as scene3d.DirectionalLight;
-      console.log(LOG_TAG + "Light near plane: " + l.nearPlane);
     }
   }
 

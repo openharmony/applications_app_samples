@@ -143,7 +143,9 @@ struct node_geometry {
           if (this.sceneOpt) {
             Component3D(this.sceneOpt)
               .renderWidth('60%')
-              .renderHeight('60%').onAppear(()=>{this.backAnimator?.play()})
+              .renderHeight('60%').onAppear(()=>{
+               this.backAnimator?.play()
+            })
           }
           else {
             Text("loading 1...");
@@ -195,6 +197,7 @@ struct node_geometry {
         Text(this.meshInfo);
         Text(this.hierarchy);
         Button('back').onClick(() => {
+          this.backAnimator?.cancel();
           router.back()
         }).id('back_shader')
       }

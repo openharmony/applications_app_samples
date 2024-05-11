@@ -81,7 +81,7 @@ struct node_geometry {
 
           let env = await rf.createEnvironment({ "name": "Env" });
           this.scene.environment.backgroundType = scene3d.EnvironmentBackgroundType.BACKGROUND_IMAGE;
-          this.scene.environment.environmentImage = await rf.createImage({ name: "envImg1", uri: $rawfile("bricks.jpg") });
+          this.scene.environment.environmentImage = await rf.createImage({ name: "envImg1", uri: $rawfile("gltf/DamagedHelmet/glTF/Default_normal.jpg") });
         })
         .catch((reason: string) => {
           console.log(LOG_TAG + " error: " + reason)
