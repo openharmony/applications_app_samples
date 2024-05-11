@@ -312,36 +312,36 @@ class RemoteDeviceModel {
     let isOnlineName = getGlobalObject("isOnlineName") as string;
     let isTrustedName = getGlobalObject("isTrustedName") as string;
     let rangeName = getGlobalObject("rangeName") as string;
-    let deviceType = currentFilterOptions.get(deviceTypeName)
-    let authForm = currentFilterOptions.get(authFormName)
-    let isOnline = currentFilterOptions.get(isOnlineName)
-    let isTrusted = currentFilterOptions.get(isTrustedName)
-    let range = currentFilterOptions.get(rangeName)
-    if (isOnline !== 0) {
+    let currentDeviceType = currentFilterOptions.get(deviceTypeName)
+    let currentAuthForm = currentFilterOptions.get(authFormName)
+    let currentIsOnline = currentFilterOptions.get(isOnlineName)
+    let currentIsTrusted = currentFilterOptions.get(isTrustedName)
+    let currentRange = currentFilterOptions.get(rangeName)
+    if (currentIsOnline !== 0) {
       filterOptions.filters.push({
         type: "credible",
-        value: isOnline == 1 ? 1 : 0
+        value: currentIsOnline == 1 ? 1 : 0
       });
     }
 
-    if (isTrusted != 0) {
+    if (currentIsTrusted != 0) {
       filterOptions.filters.push({
         type: "isTrusted",
-        value: isTrusted == 1 ? 1 : 0
+        value: currentIsTrusted == 1 ? 1 : 0
       });
     }
 
-    if (deviceType != 0) {
+    if (currentDeviceType != 0) {
       let deviceType = 0;
-      if (deviceType == 1) {
+      if (currentDeviceType == 1) {
         deviceType = deviceManager.DeviceType.TABLET;
       }
       ;
-      if (deviceType == 2) {
+      if (currentDeviceType == 2) {
         deviceType = deviceManager.DeviceType.PHONE;
       }
       ;
-      if (deviceType == 3) {
+      if (currentDeviceType == 3) {
         deviceType = deviceManager.DeviceType.UNKNOWN_TYPE;
       }
       ;
@@ -351,15 +351,15 @@ class RemoteDeviceModel {
       });
     }
 
-    if (authForm != 0) {
+    if (currentAuthForm != 0) {
       let authForm = -1;
-      if (authForm == 1) {
+      if (currentAuthForm == 1) {
         authForm = 1;
       }
-      if (authForm == 2) {
+      if (currentAuthForm == 2) {
         authForm = 2;
       }
-      if (authForm == 3) {
+      if (currentAuthForm == 3) {
         authForm = 0;
       }
       filterOptions.filters.push({
@@ -368,15 +368,15 @@ class RemoteDeviceModel {
       });
     }
 
-    if (range != 0) {
+    if (currentRange != 0) {
       let range = 0;
-      if (range == 1) {
+      if (currentRange == 1) {
         range = 50;
       }
-      if (range == 2) {
+      if (currentRange == 2) {
         range = 80;
       }
-      if (range == 3) {
+      if (currentRange == 3) {
         range = 100;
       }
       filterOptions.filters.push({
