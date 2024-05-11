@@ -15,8 +15,8 @@
 
 #include "pixelmap_helper.h"
 #include "common_utils.h"
-#include <multimedia/image_framework/image_source_native.h>
-#include <multimedia/image_framework/image_packer_native.h>
+#include <multimedia/image_framework/image/image_source_native.h>
+#include <multimedia/image_framework/image/image_packer_native.h>
 #include <fcntl.h>
 #include <unistd.h>
 
