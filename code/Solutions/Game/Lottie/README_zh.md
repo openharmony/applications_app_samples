@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例展示了lottie对动画的操作功能。引入[Lottie模块](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-components-canvas-lottie.md)，实现控制动画的播放、暂停、倍速播放、播放顺序、播放到指定帧停止或从指定帧开始播放、侦听事件等功能，动画资源路径必须是json格式。
+本示例展示了lottie对动画的操作功能。引入[Lottie模块](https://gitee.com/openharmony-tpc/lottieArkTS)，实现控制动画的播放、暂停、倍速播放、播放顺序、播放到指定帧停止或从指定帧开始播放、侦听事件等功能，动画资源路径必须是json格式。
 
 ### 效果预览
 
@@ -39,8 +39,7 @@ entry/src/main/ets/
 
 1. 本示例支持标准系统上运行，支持设备：RK3568;
 2. 本示例已适配API version 9版本SDK，版本号：3.2.11.9;
-3. 本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)及以上版本才可编译运行;
-4. 本示例需要使用animator.d.ts系统权限的系统接口。使用Full SDK时需要手动从[镜像站点]((https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/release-notes/OpenHarmony-v3.2-beta4.md/))获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。
+3. 本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)及以上版本才可编译运行。
 
 ### 下载
 如需单独下载本工程，执行如下命令：
