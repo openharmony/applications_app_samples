@@ -106,6 +106,7 @@ interface Params {
         Logger.info(TAG, `device ${i}/${deviceTempList.length} deviceId= ${deviceTempList[i].deviceId},
          deviceName= ${deviceTempList[i].deviceName}, deviceType= ${deviceTempList[i].deviceType}`);
         this.deviceLists.push(deviceTempList[i]);
+        Logger.info(TAG, `deviceLists:${JSON.stringify(this.deviceLists)}`);
         Logger.info(TAG, 'deviceLists push end');
       };
       Logger.info(TAG, 'CustomDialogController start');
@@ -334,10 +335,12 @@ interface Params {
   };
 
   selectedIndexChange = (selectedIndex: number) => {
+    Logger.info(TAG, `this.deviceLists[selectedIndex]:${JSON.stringify(this.deviceLists[selectedIndex])}`);
+    Logger.info(TAG, `deviceId:${JSON.stringify(this.deviceLists[selectedIndex].deviceId)}`);
     if (this.context !== null && selectedIndex === 0) {
       this.context.startAbility({ bundleName: 'ohos.samples.distributedmusicplayer',
         abilityName: 'ohos.samples.distributedmusicplayer.MainAbility',
-        deviceId: this.deviceLists[selectedIndex].deviceId,
+        deviceId: this.deviceLists[selectedIndex]!.deviceId,
         parameters: {
           isFA: 'EXIT'
         }
