@@ -328,7 +328,7 @@ export default function abilityTest() {
         await driver.assertComponentExist(ON.id('datePicker'));
         let datePicker = await driver.findComponent(ON.id('datePicker'));
         let point = await datePicker.getBoundsCenter();
-        await driver.swipe(point.x - 20, point.y + 20, point.x - 20, point.y - 40);
+        await driver.swipe(point.x - 20, point.y + 20, point.x - 20, point.y - 50);
         await driver.delayMs(DELAY_TIME);
         await driver.assertComponentExist(ON.id('dateValue'));
         let dateValue = await driver.findComponent(ON.id('dateValue'));
@@ -339,7 +339,7 @@ export default function abilityTest() {
         await driver.delayMs(DELAY_TIME);
         // 使时间计时器上滑6次
         for (let i = 0; i < 6; i++) {
-          await driver.swipe(point.x - 20, point.y + 20, point.x - 20, point.y - 40);
+          await driver.swipe(point.x - 20, point.y + 20, point.x - 20, point.y - 50);
           await driver.delayMs(1000);
         }
         if (await dateValue.getText() !== '2023-05-28') {
@@ -733,6 +733,8 @@ export default function abilityTest() {
         let testName = 'SwiperFunction';
         Logger.info(BUNDLE + testName + ' begin ------------------------------');
         await driver.delayMs(DELAY_TIME);
+
+        // 进入 Swiper 翻页
         let atom = await manager.getStringValue($r('app.string.swiper_name'));
         let button = await driver.findComponent(ON.text(atom));
         if (!button) {
@@ -742,6 +744,7 @@ export default function abilityTest() {
         await checkButtonAndClickWithText(atom);
         await driver.delayMs(DELAY_TIME);
 
+        // 进入 常用接口和属性 页面
         await checkButtonAndClickWithTextByResource($r('app.string.swiper_controller_next'));
         await checkButtonAndClickWithTextByResource($r('app.string.swiper_controller_previous'));
         await checkButtonAndClickWithID(`swiper_001`);
@@ -749,13 +752,23 @@ export default function abilityTest() {
         await checkButtonAndClickWithTextByResource($r('app.string.swiper_controller_next'));
         await checkButtonAndClickWithID(`swiper_003`);
         await checkButtonAndClickWithID(`swiper_004`);
-        // 从下往上滑动列表
+        await driver.drag(200, 900, 200, 700, 800);
+        await driver.delayMs(DELAY_TIME);
         await drawSliderWithId('swiper_005')
         await checkButtonAndClickWithID(`swiper_006`);
-
         await checkButtonAndClickWithText("1000");
         await checkButtonAndClickWithID(`swiper_007`);
         await checkButtonAndClickWithText("2000");
+
+        // 切换页签，进入 自定义切换动画的属性 页面
+        await checkButtonAndClickWithTextByResource($r('app.string.swiper_custom_properties'));
+        await checkButtonAndClickWithID('custom_swiper_001');
+        await checkButtonAndClickWithID('custom_swiper_002');
+        await checkButtonAndClickWithID('custom_swiper_003');
+        await checkButtonAndClickWithID('custom_swiper_004');
+        await checkButtonAndClickWithID('custom_swiper_005');
+        await clickSelectIDAndSelectText('custom_swiper_006', '1000');
+        await clickSelectIDAndSelectText('custom_swiper_007', 'Friction');
 
         // 返回
         await checkButtonAndClickWithID('backBtn');
@@ -1017,16 +1030,12 @@ export default function abilityTest() {
 
         // 调整Value
         await driver.delayMs(DELAY_TIME);
-        // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
-        await driver.drag(212, 664, 400, 664, 800);
-        await driver.drag(800, 664, 100, 664, 800);
+        await drawSliderWithId('gauge_slider_001');
         await driver.delayMs(DELAY_TIME);
 
         // 调整strokeWidth
         await driver.delayMs(DELAY_TIME);
-        // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
-        await driver.drag(212, 739, 400, 739, 800);
-        await driver.drag(800, 739, 100, 739, 800);
+        await drawSliderWithId('gauge_slider_002');
         await driver.delayMs(DELAY_TIME);
 
         // 返回
@@ -1354,16 +1363,16 @@ export default function abilityTest() {
         await driver.delayMs(DELAY_TIME_FiVE);
 
         // 用坐标点击选择菜单
-        await driver.longClick(80, 980)
+        await driver.longClick(80, 960);
         // 点击获取
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.text_get')));
         await driver.assertComponentExist(ON.text('Hint'));
         // 点击复制
-        await driver.longClick(80, 980)
+        await driver.longClick(80, 960);
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.text_copy')));
         await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.copy_success'))));
         // 点击粘贴
-        await driver.longClick(80, 980)
+        await driver.longClick(80, 960);
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.text_paste')));
         await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.paste_success'))));
 
@@ -1789,13 +1798,13 @@ export default function abilityTest() {
         await checkButtonAndClickWithID(`sidebarContainer_001`);
         await checkButtonAndClickWithText(`Embed`);
         await checkButtonAndClickWithID(`sidebarContainer_002`);
+        await driver.drag(200, 900, 200, 735, 800);
         await drawSliderWithId(`sidebarContainer_003`);
-        await driver.drag(200, 900, 200, 620, 800);
         await drawSliderWithId(`sidebarContainer_004`);
         await checkButtonAndClickWithID(`sidebarContainer_005`);
         await checkButtonAndClickWithID(`sidebarContainer_006`);
         await checkButtonAndClickWithText(`End`);
-        await driver.drag(200, 950, 200, 500, 800);
+        await driver.drag(200, 900, 200, 735, 800);
         await drawSliderWithId(`sidebarContainer_007`)
         await drawSliderWithId(`sidebarContainer_008`)
         await checkButtonAndClickWithID(`sidebarContainer_009`)
@@ -1857,7 +1866,7 @@ export default function abilityTest() {
         await checkButtonAndClickWithText(`Wrap`);
         await checkButtonAndClickWithID(`flex_003`);
         await checkButtonAndClickWithText(`SpaceEvenly`);
-        await driver.drag(200, 700, 200, 100, 800);
+        await driver.drag(200, 900, 200, 100, 800);
         await checkButtonAndClickWithID(`flex_004`);
         await checkButtonAndClickWithText(`Stretch`);
         await checkButtonAndClickWithID(`flex_005`);
@@ -1938,6 +1947,7 @@ export default function abilityTest() {
         await checkButtonAndClickWithID(`list_009`);
         await checkButtonAndClickWithID(`list_010`);
         await checkButtonAndClickWithText(`4`);
+        await driver.drag(200, 900, 200, 800, 800);
         await checkButtonAndClickWithID(`list_011`);
         await checkButtonAndClickWithText(`Start`);
 
@@ -2037,7 +2047,7 @@ export default function abilityTest() {
         Logger.info(BUNDLE + testName + ' begin ------------------------------');
         await driver.delayMs(DELAY_TIME);
 
-        // await driver.drag(200, 500, 200, 200, 800)
+        await driver.drag(200, 500, 200, 200, 800);
 
         let list = await driver.findComponent(ON.id('list_001'));
         let on = ON.text(await manager.getStringValue($r('app.string.list_and_grid')));
@@ -2067,7 +2077,7 @@ export default function abilityTest() {
         await checkButtonAndClickWithText(`Green`);
         await drawSliderWithId(`waterFlow_005`);
 
-        await driver.drag(700, 900, 700, 1000, 800)
+        await driver.drag(200, 900, 200, 800, 800);
         await checkButtonAndClickWithID(`waterFlow_006`);
         await checkButtonAndClickWithText(`Fade`);
 
@@ -2517,16 +2527,17 @@ export default function abilityTest() {
         await checkButtonAndClickWithText(atom);
         await driver.delayMs(DELAY_TIME);
 
-        await checkButtonAndClickWithID(`tab_001`)
-        await checkButtonAndClickWithText(`End`)
-        await checkButtonAndClickWithID(`tab_002`)
-        await checkButtonAndClickWithText(`2`)
-        await checkButtonAndClickWithID(`tab_003`)
-        await checkButtonAndClickWithID(`tab_004`)
-        await checkButtonAndClickWithID(`tab_005`)
-        await checkButtonAndClickWithText(`Scrollable`)
-        await checkButtonAndClickWithID(`tab_006`)
-        await checkButtonAndClickWithText(`2000`)
+        await checkButtonAndClickWithID(`tab_001`);
+        await checkButtonAndClickWithText(`End`);
+        await checkButtonAndClickWithID(`tab_002`);
+        await checkButtonAndClickWithText(`2`);
+        await checkButtonAndClickWithID(`tab_003`);
+        await checkButtonAndClickWithID(`tab_004`);
+        await checkButtonAndClickWithID(`tab_005`);
+        await checkButtonAndClickWithText(`Scrollable`);
+        await driver.drag(200, 700, 200, 600, 800);
+        await checkButtonAndClickWithID(`tab_006`);
+        await checkButtonAndClickWithText(`2000`);
 
 
         // 返回
@@ -2654,7 +2665,6 @@ export default function abilityTest() {
         await driver.delayMs(DELAY_TIME);
 
         // 限制字数
-        await driver.pressBack();
         await driver.assertComponentExist(ON.id('textarea_character_limit'));
         let limit = await driver.findComponent(ON.id('textarea_character_limit'));
         await limit.click();
@@ -2812,15 +2822,15 @@ export default function abilityTest() {
         }
         await checkButtonAndClickWithText(atom);
         await driver.delayMs(DELAY_TIME);
-        await checkButtonAndClickWithID('video_switch_001')
-        await checkButtonAndClickWithID('video_switch_002')
-        await checkButtonAndClickWithID('video_switch_003')
-        await driver.drag(200, 500, 200, 200, 800)
-        await checkButtonAndClickWithID('video_switch_004')
-        await checkButtonAndClickWithID('video_select_001')
-        await checkButtonAndClickWithText('Auto')
-        await checkButtonAndClickWithID('video_select_002')
-        await checkButtonAndClickWithText('1.25X')
+        await checkButtonAndClickWithID('video_switch_001');
+        await checkButtonAndClickWithID('video_switch_002');
+        await checkButtonAndClickWithID('video_switch_003');
+        await driver.drag(200, 800, 200, 500, 800);
+        await checkButtonAndClickWithID('video_switch_004');
+        await checkButtonAndClickWithID('video_select_001');
+        await checkButtonAndClickWithText('Auto');
+        await checkButtonAndClickWithID('video_select_002');
+        await checkButtonAndClickWithText('1.25X');
         await driver.delayMs(DELAY_TIME);
         // 返回
         await checkButtonAndClickWithID('backBtn');
@@ -3498,12 +3508,12 @@ export default function abilityTest() {
         // 调整区域宽度
         await driver.delayMs(DELAY_TIME);
         // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
-        await driver.drag(110, 235, 354, 235, 800)
+        await driver.drag(110, 270, 354, 270, 800);
         await driver.delayMs(DELAY_TIME);
         // 调整区域高度
         await driver.delayMs(DELAY_TIME);
         // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
-        await driver.drag(110, 315, 354, 315, 800)
+        await driver.drag(110, 330, 354, 330, 800);
         await driver.delayMs(DELAY_TIME);
 
         // 返回
@@ -3634,7 +3644,9 @@ export default function abilityTest() {
       it(BUNDLE + 'ForegroundFunction_001', 0, async () => {
         let testName = 'ForegroundFunction';
         Logger.info(BUNDLE + testName + ' begin');
-
+        // 从下往上滑动列表
+        await driver.drag(200, 700, 200, 200, 800);
+        await driver.delayMs(DELAY_TIME);
         // 进入页面
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.prop_foreground')));
 
@@ -3654,9 +3666,6 @@ export default function abilityTest() {
       it(BUNDLE + 'BackgroundFunction_001', 0, async () => {
         let testName = 'BackgroundFunction';
         Logger.info(BUNDLE + testName + ' begin');
-        // 从下往上滑动列表
-        await driver.drag(200, 700, 200, 200, 800);
-        await driver.delayMs(DELAY_TIME);
         // 进入页面
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.prop_background')));
         // 正常显示
@@ -5000,7 +5009,7 @@ export default function abilityTest() {
         // 滚动日期 可能是年-2020
         await driver.delayMs(DELAY_TIME);
         // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
-        await driver.drag(100, 1017, 100, 1117, 800);
+        await driver.drag(100, 630, 100, 730, 800);
         await driver.delayMs(DELAY_TIME);
         //确定
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_confirm')));
@@ -5010,7 +5019,7 @@ export default function abilityTest() {
         // 滚动日期 可能是年-2024
         await driver.delayMs(DELAY_TIME);
         // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
-        await driver.drag(100, 1087, 100, 1017, 800);
+        await driver.drag(100, 630, 100, 530, 800);
         await driver.delayMs(DELAY_TIME);
         // 确定
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_confirm')));
@@ -5044,7 +5053,7 @@ export default function abilityTest() {
         // 滚动小时
         await driver.delayMs(DELAY_TIME);
         // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
-        await driver.drag(200, 1017, 200, 1117, 800);
+        await driver.drag(200, 630, 200, 730, 800);
         await driver.delayMs(DELAY_TIME);
         // 确定
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_confirm')));
@@ -5054,7 +5063,7 @@ export default function abilityTest() {
         // 滚动小时
         await driver.delayMs(DELAY_TIME);
         // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
-        await driver.drag(200, 1117, 200, 1017, 800);
+        await driver.drag(200, 630, 200, 530, 800);
         await driver.delayMs(DELAY_TIME);
         // 确定
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.button_confirm')));
@@ -5189,6 +5198,7 @@ export default function abilityTest() {
         await image1.longClick();
         await driver.delayMs(DELAY_TIME);
         await driver.click(200, 300);
+        await driver.delayMs(DELAY_TIME);
         // 长按图片2
         await image2.longClick();
         await driver.delayMs(DELAY_TIME);

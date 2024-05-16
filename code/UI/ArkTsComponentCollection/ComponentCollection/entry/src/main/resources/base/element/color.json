@@ -25,6 +25,10 @@
       "value": "#000000"
     },
     {
+      "name": "font_color_grey",
+      "value": "#99000000"
+    },
+    {
       "name": "font_color_red",
       "value": "#FFD22C2C"
     },

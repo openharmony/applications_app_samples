@@ -82,7 +82,11 @@ export struct CommonItemTwoRowSlider {
     Column() {
       Row() {
         Text(this.name)
+          .fontWeight(FontWeight.Medium)
+          .fontColor($r('app.color.font_color_black'))
         Text(`${Math.trunc(this.changeValue)}` + this.vpTest)
+          .fontSize(14)
+          .fontColor($r('app.color.font_color_grey'))
       }
       .justifyContent(FlexAlign.SpaceBetween)
       .margin({ bottom: 4 })
@@ -133,14 +137,16 @@ export struct CommonItemSelect {
   build() {
     Row() {
       Text(this.name)
-        .margin({ left: this.isItemStyle ? 0 : 12, right: this.isItemStyle ? 0 : 12 })
-      Blank()
+        .fontWeight(FontWeight.Medium)
+        .fontColor($r('app.color.font_color_black'))
+        .maxLines(2)
+        .constraintSize({ maxWidth: '75%' })
+        .margin({ left: this.isItemStyle ? 0 : 12, right: this.isItemStyle ? 0 : 12, top: 8, bottom: 8 })
       Select(this.selectOption)
         .id(this.testId)
         .value(this.text)
         .backgroundColor(Color.White)
         .borderRadius(19)
-        .constraintSize({ minWidth: 150 })
         .selected(this.selectIndex)
         .font(this.fontSize)
         .optionFont(this.fontSize)
@@ -148,13 +154,13 @@ export struct CommonItemSelect {
           this.callback(index, value)
           this.selectIndex = index
         })
-        .height('100%')
     }
-    .size({ width: '100%', height: this.isItemStyle ? 42 : 70 })
+    .width('100%')
+    .constraintSize({ minHeight: this.isItemStyle ? 48 : 70 })
     .padding({ left: this.isItemStyle ? 0 : 12, right: this.isItemStyle ? 0 : 12 })
     .borderRadius(this.isItemStyle ? 0 : 24)
     .backgroundColor(this.isItemStyle ? Color.Transparent : Color.White)
-    .margin({ bottom: 6 })
+    .justifyContent(FlexAlign.SpaceBetween)
   }
 }
 
@@ -331,14 +337,20 @@ export struct CommonSwitcher {
   build() {
     Row() {
       Text(this.name)
-      Blank()
+        .fontWeight(FontWeight.Medium)
+        .fontColor($r('app.color.font_color_black'))
+        .maxLines(2)
+        .constraintSize({ maxWidth: '85%' })
+        .margin({ top: 8, bottom: 8 })
       Toggle({ type: ToggleType.Switch, isOn: this.bool })
         .onChange((isOn) => {
           this.bool = isOn
         })
         .id(this.testId || this.testID)
-    }.width('100%')
-    .height(40)
+    }
+    .width('100%')
+    .constraintSize({ minHeight: 48 })
+    .justifyContent(FlexAlign.SpaceBetween)
   }
 }
 
