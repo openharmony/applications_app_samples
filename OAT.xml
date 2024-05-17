@@ -162,7 +162,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/BasicFeature/Connectivity/UploadAndDownLoad/environment/hfs.exe" desc="Provided by hfs"/>
                 <filteritem type="filepath" name="code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic/libs/library.har" desc="Provided by code/BasicFeature/DeviceManagement/Vibrator"/>
                 <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-qr-code-scan-1.0.2.har" desc="Provided by media/QRCodeScan"/>
-                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-sharecomponent-1.0.2.har" desc="Provided by code/BasicFeature/ApplicationModels/CustomShare"/>
+                <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-sharecomponent-1.0.2.har" desc="Provided by code/SystemFeature/ApplicationModels/CustomShare"/>
                 <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-video-component-1.0.6.har" desc="Provided by media/VideoShow"/>
                 <filteritem type="filepath" name="code/Solutions/IM/Chat/products/phone/entry/src/main/resources/rawfile/video_1.zip" desc="Provided by code/Solutions/IM/Chat"/>
                 <filteritem type="filepath" name="code/Solutions/IM/Chat/products/phone/entry/src/main/resources/rawfile/video_2.zip" desc="Provided by code/Solutions/IM/Chat"/>
@@ -606,6 +606,26 @@ Note:If the text contains special characters, please escape them according to th
         <filteritem type="filepath" name="code/SystemFeature/Security/DLPManager/screenshots/device/filePage.jpeg" desc="Provided by code/SystemFeature/Security/DLPManager"/>
         <filteritem type="filepath" name="code/SystemFeature/Security/DLPManager/screenshots/device/index.jpeg" desc="Provided by code/SystemFeature/Security/DLPManager"/>
         <filteritem type="filepath" name="code/SystemFeature/Security/DLPManager/screenshots/device/index.jpeg" desc="Provided by code/SystemFeature/Security/DLPManager"/>
+        <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/CustomShare/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/ApplicationModels/CustomShare"/>
+        <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/CustomShare/ShareComponent/src/main/resources/base/media/canvas.png" desc="Provided by code/SystemFeature/ApplicationModels/CustomShare"/>
+        <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/CustomShare/ShareComponent/src/main/resources/base/media/chat.png" desc="Provided by code/SystemFeature/ApplicationModels/CustomShare"/>
+        <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/CustomShare/ShareComponent/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/ApplicationModels/CustomShare"/>
+        <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/CustomShare/ShareComponent/src/main/resources/base/media/line.png" desc="Provided by code/SystemFeature/ApplicationModels/CustomShare"/>
+        <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/CustomShare/ShareComponent/src/main/resources/base/media/phone.png" desc="Provided by code/SystemFeature/ApplicationModels/CustomShare"/>
+        <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/CustomShare/ShareComponent/src/main/resources/base/media/textShare.png" desc="Provided by code/SystemFeature/ApplicationModels/CustomShare"/>
+        <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/CustomShare/ShareComponent/src/main/resources/base/media/wChat.png" desc="Provided by code/SystemFeature/ApplicationModels/CustomShare"/>
+        <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/CustomShare/ShareComponent/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/ApplicationModels/CustomShare"/>
+        <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/CustomShare/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/ApplicationModels/CustomShare"/>
+        <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/CustomShare/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/ApplicationModels/CustomShare"/>
+        <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/CustomShare/screenshots/revieved/image_file.png" desc="Provided by code/SystemFeature/ApplicationModels/CustomShare"/>
+        <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/CustomShare/screenshots/revieved/text_line.png" desc="Provided by code/SystemFeature/ApplicationModels/CustomShare"/>
+        <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/CustomShare/screenshots/shared/button_dialo.png" desc="Provided by code/SystemFeature/ApplicationModels/CustomShare"/>
+        <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/CustomShare/screenshots/shared/canvas_dialog.png" desc="Provided by code/SystemFeature/ApplicationModels/CustomShare"/>
+        <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/CustomShare/screenshots/shared/home.png" desc="Provided by code/SystemFeature/ApplicationModels/CustomShare"/>
+        <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/CustomShare/screenshots/textEdit/textEditPreview.jpeg" desc="Provided by code/SystemFeature/ApplicationModels/CustomShare"/>
+        <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/CustomShare/screenshots/textShare/textSharePreview.jpeg" desc="Provided by code/SystemFeature/ApplicationModels/CustomShare"/>
+        <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/CustomShare/textEdit/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/ApplicationModels/CustomShare"/>
+        <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/CustomShare/textShare/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/ApplicationModels/CustomShare"/>
         <filteritem type="filepath" name="code/BasicFeature/Native/Audio/entry/src/main/resources/base/media/pic_Audiovivid.png" desc="Provided by code/BasicFeature/Native/Audio"/>
         <filteritem type="filepath" name="code/BasicFeature/Native/Audio/screenshots/device/AudioVivid.jpg" desc="Provided by code/BasicFeature/Native/Audio"/>
         <filteritem type="filepath" name="code/BasicFeature/Native/Audio/screenshots/device/index.jpg" desc="Provided by code/BasicFeature/Native/Audio"/>
