@@ -15,13 +15,12 @@
 
 import scene3d from '@ohos.graphics.scene'
 import router from '@ohos.router';
+import Logger from '../util/Logger';
 
 let fovFlag: number = 0;
 let enabledFlag: number = 0;
 let TonemapTypeFlag: number = 0;
 let clearColorFlag: number = 0;
-
-let LOG_TAG: string = "Sample_Graphics3D";
 
 @Entry
 @Component
@@ -39,7 +38,6 @@ struct node_geometry {
   }
 
   onPageHide(): void {
-    console.log(LOG_TAG + ' onPageHide')
     if (this.scene) {
       this.scene.destroy();
     }
@@ -68,7 +66,7 @@ struct node_geometry {
           this.scene.environment.backgroundType = scene3d.EnvironmentBackgroundType.BACKGROUND_NONE;
         })
         .catch((reason: string) => {
-          console.log(LOG_TAG + " error: " + reason)
+          Logger.error("init error", reason);
         });
     }
   }
@@ -97,21 +95,23 @@ struct node_geometry {
           if (!this.scene || !this.cam) {
             return;
           }
-          fovFlag = (fovFlag + 1) % 3;
-          if (fovFlag == 0) {
-            let degree = 60;
-            this.cam.fov = degree * Math.PI / 180;
-            console.log(LOG_TAG + "Camera fov: " + this.cam.fov + ", degree: " + degree);
+          const RADIAN: number = Math.PI / 180;
+          const FOV_COUNT: number = 3;
+          const FOV_0: number = 0;
+          const FOV_1: number = 1;
+          const FOV_2: number = 2;
+          fovFlag = ++fovFlag % FOV_COUNT;
+          if (fovFlag == FOV_0) {
+            let degree = 60; // 60 degree
+            this.cam.fov = degree *RADIAN;
           }
-          else if (fovFlag == 1) {
-            let degree = 90;
-            this.cam.fov = degree * Math.PI / 180;
-            console.log(LOG_TAG + "Camera fov: " + this.cam.fov + ", degree: " + degree);
+          else if (fovFlag == FOV_1) {
+            let degree = 90; // 90 degree
+            this.cam.fov = degree * RADIAN;
           }
-          else if (fovFlag == 2) {
-            let degree = 45;
-            this.cam.fov = degree * Math.PI / 180;
-            console.log(LOG_TAG + "Camera fov: " + this.cam.fov + ", degree: " + degree);
+          else if (fovFlag == FOV_2) {
+            let degree = 45; // 45 degree
+            this.cam.fov = degree * RADIAN;
           }
         }).id('change_fov');
 
@@ -119,9 +119,9 @@ struct node_geometry {
           Text("nearPlane: " + this.nearPlaneValue.toFixed(1)).fontSize(12)
           Slider({
             value: this.nearPlaneValue,
-            min: 0.1,
-            max: 10,
-            step: 0.1,
+            min: 0.1, // near plane min
+            max: 10, // near plane far
+            step: 0.1, // step
             style: SliderStyle.OutSet
           })
             .showTips(false)
@@ -132,7 +132,6 @@ struct node_geometry {
                   return;
                 }
                 this.cam.nearPlane = value;
-                console.log(LOG_TAG + "Camera near Plane: " + this.cam.nearPlane);
               }
             })
             .width("100%")
@@ -144,9 +143,9 @@ struct node_geometry {
           Text("farPlane: " + this.farPlaneValue.toFixed(1)).fontSize(12)
           Slider({
             value: this.farPlaneValue,
-            min: 0,
-            max: 100,
-            step: 1,
+            min: 0.1, // far plane min
+            max: 100, // far plane max
+            step: 1, // step
             style: SliderStyle.OutSet
           })
             .showTips(false)
@@ -157,7 +156,6 @@ struct node_geometry {
                   return;
                 }
                 this.cam.farPlane = value;
-                console.log(LOG_TAG + "Camera far Plane: " + this.cam.farPlane);
               }
             })
             .width("100%")
@@ -169,15 +167,7 @@ struct node_geometry {
           if (!this.scene || !this.cam) {
             return;
           }
-          enabledFlag = (enabledFlag + 1) % 2;
-          if (enabledFlag == 0) {
-            this.cam.enabled = true;
-            console.log(LOG_TAG + "Camera enabled: " + this.cam.enabled);
-          }
-          else if (enabledFlag == 1) {
-            this.cam.enabled = false;
-            console.log(LOG_TAG + "Camera enabled: " + this.cam.enabled);
-          }
+          this.cam.enabled = !this.cam.enabled;
         }).id('camera_enabled');
 
         Button('Change Tonemap Type').onClick(() => {
@@ -185,33 +175,33 @@ struct node_geometry {
             return;
           }
           let type: scene3d.ToneMappingType = scene3d.ToneMappingType.ACES;
-
-          TonemapTypeFlag = (TonemapTypeFlag + 1) % 3;
-          if (TonemapTypeFlag == 0) {
+          const TONE_MAPPING_COUNT: number = 3;
+          const TONE_MAPPING_0: number = 0;
+          const TONE_MAPPING_1: number = 1;
+          const TONE_MAPPING_2: number = 2;
+          TonemapTypeFlag = ++TonemapTypeFlag % TONE_MAPPING_COUNT;
+          if (TonemapTypeFlag == TONE_MAPPING_0) {
             type = scene3d.ToneMappingType.ACES;
-          } else if (TonemapTypeFlag == 1) {
+          } else if (TonemapTypeFlag == TONE_MAPPING_1) {
             type = scene3d.ToneMappingType.ACES_2020;
-          } else if (TonemapTypeFlag == 2) {
+          } else if (TonemapTypeFlag == TONE_MAPPING_2) {
             type = scene3d.ToneMappingType.FILMIC;
           }
-
           this.cam.postProcess = {
             toneMapping: {
               exposure: this.cam.postProcess.toneMapping.exposure,
               type: type
             }
           };
-
-          console.log(LOG_TAG + "Camera Tonemap Type:" + this.cam.postProcess.toneMapping?.type);
         }).id('change_tonemapping');
 
         Column() {
           Text("Tonemap Exposure: " + this.tonemapExposure.toFixed(1)).fontSize(12)
           Slider({
             value: this.tonemapExposure,
-            min: 0,
-            max: 10,
-            step: 0.1,
+            min: 0, // tone mapping exposure min
+            max: 10, // tone mapping exposure max
+            step: 0.1, // tone mapping exposure step
             style: SliderStyle.OutSet
           })
             .showTips(false)
@@ -221,15 +211,11 @@ struct node_geometry {
                 if (!this.scene || !this.cam || !this.cam.postProcess || !this.cam.postProcess.toneMapping) {
                   return;
                 }
-                //this.cam.postProcess.toneMapping.exposure = value;
                 this.cam.postProcess = {
                   toneMapping: {
                     exposure: value,
                     type: this.cam.postProcess.toneMapping.type
                   }
-                }
-                if (this.cam.postProcess.toneMapping?.exposure) {
-                  console.log(LOG_TAG + "Camera Tonemap exposure: " + this.cam.postProcess.toneMapping.exposure);
                 }
               }
             })
@@ -242,22 +228,20 @@ struct node_geometry {
           if (!this.scene || !this.cam) {
             return;
           }
-          clearColorFlag = (clearColorFlag + 1) % 4;
-          if (clearColorFlag == 0) {
+          const CLEAR_COLOR_COUNT: number = 3;
+          const CLEAR_COLOR_0: number = 0;
+          const CLEAR_COLOR_1: number = 1;
+          const CLEAR_COLOR_2: number = 2;
+
+          clearColorFlag = ++clearColorFlag % CLEAR_COLOR_COUNT;
+          if (clearColorFlag == CLEAR_COLOR_0) {
             this.cam.clearColor = null;
-            console.log(LOG_TAG + "Camera clearColor: " + this.cam.clearColor);
           }
-          else if (clearColorFlag == 1) {
+          else if (clearColorFlag == CLEAR_COLOR_1) {
             this.cam.clearColor = { r: 0, g: 0, b: 0, a: 0.0 };
-            console.log(LOG_TAG + "Camera clearColor: [" + this.cam.clearColor.r + ", " + this.cam.clearColor.g + ", " + this.cam.clearColor.b + ", " + this.cam.clearColor.a + "]");
           }
-          else if (clearColorFlag == 2) {
-            this.cam.clearColor = { r: 1, g: 0, b: 0, a: 0.1 };
-            console.log(LOG_TAG + "Camera clearColor: [" + this.cam.clearColor.r + ", " + this.cam.clearColor.g + ", " + this.cam.clearColor.b + ", " + this.cam.clearColor.a + "]");
-          }
-          else if (clearColorFlag == 3) {
-            this.cam.clearColor = { r: 1, g: 0, b: 0, a: 1.0 };
-            console.log(LOG_TAG + "Camera clearColor: [" + this.cam.clearColor.r + ", " + this.cam.clearColor.g + ", " + this.cam.clearColor.b + ", " + this.cam.clearColor.a + "]");
+          else if (clearColorFlag == CLEAR_COLOR_2) {
+            this.cam.clearColor = { r: 1, g: 0, b: 0, a: 1 };
           }
         }).id('clear_color');
 
