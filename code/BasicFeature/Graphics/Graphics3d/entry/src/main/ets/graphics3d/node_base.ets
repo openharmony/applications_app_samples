@@ -15,9 +15,7 @@
 
 import scene3d from '@ohos.graphics.scene'
 import router from '@ohos.router';
-
-let LOG_TAG = 'Sample_Graphics3D';
-
+import Logger from '../util/Logger';
 @Entry
 @Component
 struct node_base {
@@ -31,18 +29,6 @@ struct node_base {
   private value: number = 0;
   private layerMaskIndex: number = 0x1;
   node: scene3d.Node | null | undefined = null;
-  private printNode: Function = (node: scene3d.Node, tag?: string) => {
-    let msg: string = LOG_TAG + tag;
-    if (!node) {
-      console.log(msg + ' error node null');
-      return;
-    }
-    console.log(msg + ' name', node.name);
-    console.log(msg + ' path', node.path);
-    console.log(msg + ' nodeType', node.nodeType);
-    console.log(msg + ' node resource type', node.resourceType);
-    console.log(msg + ' parent name', node.parent?.name);
-  }
 
   traversalChild(node: scene3d.Node | null): void {
     if (!node) {
@@ -51,7 +37,6 @@ struct node_base {
 
     let container: scene3d.Container<scene3d.Node> = node.children;
     let count: number = container.count();
-    console.log(LOG_TAG + "node child count", count);
 
     for (let i = 0; i < count; i++) {
       this.traversalChild(container.get(i));
@@ -63,7 +48,6 @@ struct node_base {
   }
 
   onPageHide(): void {
-    console.log(LOG_TAG + ' onPageHide')
     if (this.scene) {
       this.scene.destroy();
     }
@@ -90,7 +74,7 @@ struct node_base {
           this.value = this.xAxis;
         }
       }).catch((reason: string) => {
-        console.log(LOG_TAG + " error: " + reason)
+        Logger.error("init error", reason);
       });
     }
   }
@@ -122,12 +106,10 @@ struct node_base {
 
             if (this.scaled) {
               node.scale = { x: 1.0, y: 1.0, z: 1.0 }
-              console.log(LOG_TAG + " restore scale");
               this.scaled = false;
             } else {
               node.scale = { x: 0.5, y: 0.5, z: 0.5 }
               this.scaled = true;
-              console.log(LOG_TAG + " scale");
             }
           }).id('scale_helmet');
 

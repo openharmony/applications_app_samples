@@ -15,9 +15,7 @@
 
 import scene3d from '@ohos.graphics.scene'
 import router from '@ohos.router';
-import animator, { AnimatorResult } from '@ohos.animator'
-
-let LOG_TAG: string = 'Sample_Graphics3D';
+import Logger from '../util/Logger';
 
 @Entry
 @Component
@@ -29,28 +27,15 @@ struct container {
   private sceneNode: scene3d.Node | null = null;
   @State hierarchy: string = '';
 
-  private printNode: Function = (node: scene3d.Node, tag?: string) => {
-    let msg: string = LOG_TAG + tag;
-    if (!node) {
-      console.log(msg + ' error node null');
-      return;
-    }
-    console.log(msg + ' name', node.name);
-    console.log(msg + ' path', node.path);
-    console.log(msg + ' nodeType', node.nodeType);
-    console.log(msg + ' node resource type', node.resourceType);
-    console.log(msg + ' parent name', node.parent?.name);
-  }
-
   traversal(node: scene3d.Node | null): void {
     if (!node) {
       return;
     }
-    this.printNode(node, " node print");
+
     this.hierarchy += node.path + '/' + node.name + '\n';
     let container: scene3d.Container<scene3d.Node> = node.children;
     let count: number = container.count();
-    console.log(LOG_TAG + " node child count", count);
+
     this.hierarchy += '  ';
     for (let i = 0; i < count; i++) {
       this.traversal(container.get(i));
@@ -62,7 +47,6 @@ struct container {
   }
 
   onPageHide(): void {
-    console.log(LOG_TAG + ' onPageHide')
     if (this.scene) {
       this.scene.destroy();
     }
@@ -82,12 +66,10 @@ struct container {
         this.cam.position.z = 5; // move camera to position 5 on z
 
         this.node = this.scene.getNodeByPath('rootNode_/Scene/node_damagedHelmet_-6514');
-        this.printNode(this.node, 'node_damagedHelmet_-6514');
-        this.printNode(this.cam, 'camera');
         this.traversal(this.scene.root);
         this.sceneNode = this.scene.getNodeByPath('rootNode_/Scene');
       }).catch((reason: string) => {
-        console.log(LOG_TAG + " error: " + reason)
+        Logger.error("init error", reason);
       });
     }
   }
