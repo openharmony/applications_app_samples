@@ -16,10 +16,7 @@
 import scene3d from '@ohos.graphics.scene'
 import router from '@ohos.router';
 import animator, { AnimatorResult } from '@ohos.animator';
-
-let LOG_TAG: string = "Sample_Graphics3D ";
-
-let enableFlag: number = 0;
+import Logger from '../util/Logger';
 
 @Entry
 @Component
@@ -41,7 +38,6 @@ struct node_geometry {
   }
 
   onPageHide(): void {
-    console.log(LOG_TAG + ' onPageHide')
     if (this.scene) {
       this.scene.destroy();
     }
@@ -52,14 +48,14 @@ struct node_geometry {
 
   init(): void {
     this.backAnimator = animator.create({
-      duration: 2000,
+      duration: 2000, // duration
       easing: "ease",
       delay: 0,
       fill: "none",
       direction: "normal",
-      iterations: -1,
-      begin: 100,
-      end: 200
+      iterations: -1, // endless loop
+      begin: 100, // begin
+      end: 200 // end
     })
     this.backAnimator.onframe = value => {
       if (this.scene?.animations[0]) {
@@ -84,7 +80,7 @@ struct node_geometry {
           this.scene.environment.environmentImage = await rf.createImage({ name: "envImg1", uri: $rawfile("gltf/DamagedHelmet/glTF/Default_normal.jpg") });
         })
         .catch((reason: string) => {
-          console.log(LOG_TAG + " error: " + reason)
+          Logger.error("init error", reason);
         });
     }
   }
@@ -102,19 +98,12 @@ struct node_geometry {
                   return;
                 }
                 let count = this.scene.animations.length;
-                console.log(LOG_TAG + "animation count", count)
-                for (let i = 0; i < count; i++) {
-                  console.log(LOG_TAG + "animation index name", i, this.scene.animations[i].name);
-                }
-                let anim: scene3d.Animation = this.scene.animations[0];
-                console.log(LOG_TAG + "animation count", anim.name)
-                anim.onStarted(()=>{
-                  console.log(LOG_TAG + 'animation onStart');
 
+                let anim: scene3d.Animation = this.scene.animations[0];
+                anim.onStarted(()=>{
                   this.animationCallbackInvoked = 'animation on start'
                 });
                 anim.onFinished(() => {
-                  console.log(LOG_TAG + 'animation onFinish');
                   this.animationCallbackInvoked = 'animation on finish'
                 });
                 this.backAnimator?.play();
@@ -141,7 +130,6 @@ struct node_geometry {
           }
 
           this.scene.animations[0].enabled = !this.scene.animations[0].enabled;
-          console.log(LOG_TAG + "enable animation: " + this.scene.animations[0].enabled);
         }).id('enable_animation');
         
         Button('start').onClick(async () => {
@@ -150,7 +138,6 @@ struct node_geometry {
           }
           let anim: scene3d.Animation = this.scene.animations[0];
           anim.start();
-          console.log(LOG_TAG + "animation start");
         }).id('start_animation');
 
         Button('pause').onClick(async () => {
@@ -159,7 +146,6 @@ struct node_geometry {
           }
           let anim: scene3d.Animation = this.scene.animations[0];
           anim.pause();
-          console.log(LOG_TAG + "animation pause");
         }).id('pause_animation');
 
         Button('stop').onClick(async () => {
@@ -168,7 +154,6 @@ struct node_geometry {
           }
           let anim: scene3d.Animation = this.scene.animations[0];
           anim.stop();
-          console.log(LOG_TAG + "animation stop");
         }).id('stop_animation');
 
         Button('finish').onClick(async () => {
@@ -177,7 +162,6 @@ struct node_geometry {
           }
           let anim: scene3d.Animation = this.scene.animations[0];
           anim.finish();
-          console.log(LOG_TAG + "animation finish");
         }).id('finish_animation');
 
         Button('restart').onClick(async () => {
@@ -186,7 +170,6 @@ struct node_geometry {
           }
           let anim: scene3d.Animation = this.scene.animations[0];
           anim.restart();
-          console.log(LOG_TAG + "animation restart");
         }).id('restart_animation');
 
         Button('seek to 30% progress').onClick(async () => {
@@ -194,8 +177,8 @@ struct node_geometry {
             return;
           }
           let anim: scene3d.Animation = this.scene.animations[0];
+          // seek to 30%
           anim.seek(0.3);
-          console.log(LOG_TAG + "animation seek 0.3");
         }).id('seek_animation');
 
         Button('back').onClick(() => {

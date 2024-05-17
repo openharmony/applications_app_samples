@@ -16,8 +16,7 @@
 import scene3d from '@ohos.graphics.scene'
 import animator, { AnimatorResult } from '@ohos.animator';
 import router from '@ohos.router';
-
-let LOG_TAG: string = "Sample_Graphics3D ";
+import Logger from '../util/Logger';
 
 @Entry
 @Component
@@ -36,28 +35,13 @@ struct node_geometry {
   @State hierarchy: string = '';
   @State meshInfo: string = '';
 
-  private printNode : Function = (node: scene3d.Node, tag?:string)=>{
-    let msg: string = LOG_TAG + tag;
-    if (!node) {
-      console.log(msg + ' error node null');
-      return;
-    }
-    console.log(msg + ' name', node.name);
-    console.log(msg + ' path', node.path);
-    console.log(msg + ' nodeType', node.nodeType);
-    console.log(msg + ' node resource type', node.resourceType);
-    console.log(msg + ' parent name', node.parent?.name);
-  }
-
   traversal(node: scene3d.Node | null): void {
     if (!node) {
       return;
     }
-    this.printNode(node, " node print");
     this.hierarchy += node.path + '/' + node.name + '\n';
     let container: scene3d.Container<scene3d.Node> = node.children;
     let count: number = container.count();
-    console.log(LOG_TAG + " node child count", count);
     this.hierarchy += '  ';
     for (let i = 0; i < count; i++) {
       this.traversal(container.get(i));
@@ -76,7 +60,6 @@ struct node_geometry {
   }
 
   onPageHide(): void {
-    console.log(LOG_TAG + ' onPageHide')
     if (this.scene) {
       this.scene.destroy();
     }
@@ -87,19 +70,21 @@ struct node_geometry {
 
   init(): void {
     this.backAnimator = animator.create({
-      duration: 2000,
+      duration: 2000, // duration
       easing: "ease",
       delay: 0,
       fill: "none",
       direction: "normal",
-      iterations: -1,
-      begin: 100,
-      end: 200
+      iterations: -1, // endless loop
+      begin: 100, // begin
+      end: 200 // end
     })
     this.backAnimator.onframe = value => {
       this.step++;
       if (this.material && this.material.colorShader) {
-        (this.material.colorShader.inputs["vec_1"] as scene3d.Vec4) = { x: Math.abs(Math.sin(this.step) + 0.5), y: Math.abs(Math.sin(this.step * 0.86) + 0.5),
+        // just give a random effect
+        (this.material.colorShader.inputs["vec_1"] as scene3d.Vec4) = { x: Math.abs(Math.sin(this.step) + 0.5),
+          y: Math.abs(Math.sin(this.step * 0.86) + 0.5),
                z: Math.abs(Math.sin(this.step * 0.91) + 0.5), w: 1.0 };
         (this.material.colorShader.inputs["time"] as number) = this.step;
       }
@@ -112,7 +97,7 @@ struct node_geometry {
           this.rf = this.scene.getResourceFactory();
           this.cam = await this.rf.createCamera({ "name": "Camera1" });
           this.cam.enabled = true;
-          this.cam.position.z = 5;
+          this.cam.position.z = 5; // put camera to 5 at z
 
           this.image = await this.rf.createImage({ name: "envImg3", uri: $rawfile("gltf/DamagedHelmet/glTF/Default_AO.jpg") });
           this.traversal(this.scene?.root);
@@ -131,7 +116,7 @@ struct node_geometry {
 
         })
         .catch((reason: string) => {
-          console.log(LOG_TAG + " error: " + reason)
+          Logger.error("init error", reason);
         });
     }
   }
@@ -161,7 +146,6 @@ struct node_geometry {
             this.material = await this.rf.createMaterial({ name: "CustomMaterial" }, scene3d.MaterialType.SHADER);
           }
           if (!this.shader) {
-           // this.shader = await this.rf.createShader({ name: "CustomShader", uri: $rawfile("shaders/custom_shader/custom_material_sample.shader") });
             this.shader = await this.rf.createShader({ name: "CustomShader", uri: $rawfile("shaders/custom_shader/custom_material_sample.shader") });
           }
 
@@ -180,12 +164,14 @@ struct node_geometry {
             (this.material.colorShader.inputs["BASE_COLOR_Image"] as scene3d.Image) = this.image;
           }
         }).id('create_shader_change_material');
+
         Button('recovery original material').onClick(async () => {
           if (this.geom) {
             this.geom.mesh.materialOverride = undefined;
             this.geom.mesh.subMeshes[0].material = this.materialOrg as scene3d.ShaderMaterial;
           }
         }).id('recovery_original')
+
         Button('material override').onClick(async () => {
           if (this.geom) {
             this.geom.mesh.subMeshes[0].material = this.materialOrg as scene3d.ShaderMaterial;
@@ -194,6 +180,7 @@ struct node_geometry {
             this.geom.mesh.materialOverride = this.material as scene3d.ShaderMaterial;
           }
         }).id('material_override')
+
         Text(this.meshInfo);
         Text(this.hierarchy);
         Button('back').onClick(() => {

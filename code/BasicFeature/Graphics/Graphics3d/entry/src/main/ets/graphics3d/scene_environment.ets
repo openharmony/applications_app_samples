@@ -15,14 +15,18 @@
 
 import scene3d from '@ohos.graphics.scene'
 import router from '@ohos.router';
+import Logger from '../util/Logger';
 
-let LOG_TAG: string = "Sample_Graphics3D ";
 let typeFlag: number = 0;
-let DiffuseFactorFlag: number = 0;
-let SpecularFactorFlag: number = 0;
 let MapFactorFlag: number = 0;
-let radianceImageFlag: number = 0;
-let irradianceFlag: number = 0;
+let radianceImageFlag: boolean = true;
+let factorIndex: number = 0;
+const ENVIRONMENT_FACTOR: scene3d.Vec4[] = [
+  { x: 1, y: 1, z: 1, w: 1 },
+  { x: 40, y: 1, z: 1, w: 1 },
+  { x: 1, y: 40, z: 1, w: 1 },
+  { x: 1, y: 1, z: 40, w: 1 },
+];
 
 function GenRandom(): number {
   return Math.random() * 2 - 1;
@@ -45,7 +49,6 @@ struct node_geometry {
   }
 
   onPageHide(): void {
-    console.log(LOG_TAG + ' onPageHide')
     if (this.scene) {
       this.scene.destroy();
     }
@@ -81,7 +84,7 @@ struct node_geometry {
           });
         })
         .catch((reason: string) => {
-          console.log("lume_api_test error: " + reason)
+          Logger.error("init error", reason);
         });
     }
   }
@@ -112,26 +115,27 @@ struct node_geometry {
           if (!this.scene || !this.env || !this.cam) {
             return;
           }
-          typeFlag = (typeFlag + 1) % 4;
-          if (typeFlag == 0) {
+          const ENV_TYPE_COUNT: number = 4;
+          const ENV_TYPE_0: number = 0;
+          const ENV_TYPE_1: number = 1;
+          const ENV_TYPE_2: number = 2;
+          const ENV_TYPE_3: number = 3;
+          typeFlag = ++typeFlag  % ENV_TYPE_COUNT;
+          if (typeFlag == ENV_TYPE_0) {
             this.scene.environment.backgroundType = scene3d.EnvironmentBackgroundType.BACKGROUND_NONE;
             this.cam.clearColor = { r: 0, g: 0, b: 0, a: 0.0 };
-            console.log(LOG_TAG + "Environment environmentImage set NONE");
           }
-          else if (this.envImg1 && typeFlag == 1) {
+          else if (this.envImg1 && typeFlag == ENV_TYPE_1) {
             this.scene.environment.backgroundType = scene3d.EnvironmentBackgroundType.BACKGROUND_IMAGE;
             this.scene.environment.environmentImage = this.envImg1;
-            console.log(LOG_TAG + "Environment environmentImage set envImg1 IMAGE");
           }
-          else if (this.envImg2 && typeFlag == 2) {
+          else if (this.envImg2 && typeFlag == ENV_TYPE_2) {
             this.scene.environment.backgroundType = scene3d.EnvironmentBackgroundType.BACKGROUND_CUBEMAP;
             this.scene.environment.environmentImage = this.envImg2;
-            console.log(LOG_TAG + "Environment environmentImage set envImg2 CUBEMAP");
           }
-          else if (this.envImg3 && typeFlag == 3) {
+          else if (this.envImg3 && typeFlag == ENV_TYPE_3) {
             this.scene.environment.backgroundType = scene3d.EnvironmentBackgroundType.BACKGROUND_EQUIRECTANGULAR;
             this.scene.environment.environmentImage = this.envImg3;
-            console.log(LOG_TAG + "Environment environmentImage set envImg3 EQUIRECTANGULAR");
           }
         }).id('change_type_environment');
 
@@ -139,14 +143,12 @@ struct node_geometry {
           if (!this.scene || !this.env) {
             return;
           }
-          radianceImageFlag = (radianceImageFlag + 1) % 2;
-          if (radianceImageFlag == 0) {
+          radianceImageFlag = !radianceImageFlag;
+          if (radianceImageFlag) {
             this.scene.environment.radianceImage = null;
-            console.log(LOG_TAG + "Environment radianceImage set null");
           }
-          else if (this.radianceImg1 && radianceImageFlag == 1) {
+          else if (this.radianceImg1 && !radianceImageFlag) {
             this.scene.environment.radianceImage = this.radianceImg1;
-            console.log(LOG_TAG + "Environment radianceImage set radianceImg1");
           }
         }).id('change_radiance');
 
@@ -154,153 +156,24 @@ struct node_geometry {
           if (!this.scene || !this.env) {
             return;
           }
-          DiffuseFactorFlag = (DiffuseFactorFlag + 1) % 4;
-          if (DiffuseFactorFlag == 0) {
-            this.scene.environment.indirectDiffuseFactor.x = 1;
-            this.scene.environment.indirectDiffuseFactor.y = 1;
-            this.scene.environment.indirectDiffuseFactor.z = 1;
-            this.scene.environment.indirectDiffuseFactor.w = 1;
-            console.log(LOG_TAG + "Environment indirectDiffuseFactor: ["
-            + this.scene.environment.indirectDiffuseFactor.x + ", "
-            + this.scene.environment.indirectDiffuseFactor.y + ", "
-            + this.scene.environment.indirectDiffuseFactor.z + ", "
-            + this.scene.environment.indirectDiffuseFactor.w + "]");
-          }
-          else if (DiffuseFactorFlag == 1) {
-            this.scene.environment.indirectDiffuseFactor.x = 40;
-            this.scene.environment.indirectDiffuseFactor.y = 1;
-            this.scene.environment.indirectDiffuseFactor.z = 1;
-            this.scene.environment.indirectDiffuseFactor.w = 1;
-            console.log(LOG_TAG + "Environment indirectDiffuseFactor: ["
-            + this.scene.environment.indirectDiffuseFactor.x + ", "
-            + this.scene.environment.indirectDiffuseFactor.y + ", "
-            + this.scene.environment.indirectDiffuseFactor.z + ", "
-            + this.scene.environment.indirectDiffuseFactor.w + "]");
-          }
-          else if (DiffuseFactorFlag == 2) {
-            this.scene.environment.indirectDiffuseFactor.x = 1;
-            this.scene.environment.indirectDiffuseFactor.y = 40;
-            this.scene.environment.indirectDiffuseFactor.z = 1;
-            this.scene.environment.indirectDiffuseFactor.w = 1;
-            console.log(LOG_TAG + "Environment indirectDiffuseFactor: ["
-            + this.scene.environment.indirectDiffuseFactor.x + ", "
-            + this.scene.environment.indirectDiffuseFactor.y + ", "
-            + this.scene.environment.indirectDiffuseFactor.z + ", "
-            + this.scene.environment.indirectDiffuseFactor.w + "]");
-          }
-          else if (DiffuseFactorFlag == 3) {
-            this.scene.environment.indirectDiffuseFactor.x = 1;
-            this.scene.environment.indirectDiffuseFactor.y = 1;
-            this.scene.environment.indirectDiffuseFactor.z = 40;
-            this.scene.environment.indirectDiffuseFactor.w = 1;
-            console.log(LOG_TAG + "Environment indirectDiffuseFactor: ["
-            + this.scene.environment.indirectDiffuseFactor.x + ", "
-            + this.scene.environment.indirectDiffuseFactor.y + ", "
-            + this.scene.environment.indirectDiffuseFactor.z + ", "
-            + this.scene.environment.indirectDiffuseFactor.w + "]");
-          }
+          this.scene.environment.indirectDiffuseFactor =
+            ENVIRONMENT_FACTOR[++factorIndex % ENVIRONMENT_FACTOR.length];
         }).id('change_indirectDiffuseFactor');
 
         Button('change indirectSpecularFactor').onClick(() => {
           if (!this.scene || !this.env) {
             return;
           }
-          SpecularFactorFlag = (SpecularFactorFlag + 1) % 4;
-          if (SpecularFactorFlag == 0) {
-            this.scene.environment.indirectSpecularFactor.x = 1;
-            this.scene.environment.indirectSpecularFactor.y = 1;
-            this.scene.environment.indirectSpecularFactor.z = 1;
-            this.scene.environment.indirectSpecularFactor.w = 1;
-            console.log(LOG_TAG + "Environment indirectSpecularFactor: ["
-            + this.scene.environment.indirectSpecularFactor.x + ", "
-            + this.scene.environment.indirectSpecularFactor.y + ", "
-            + this.scene.environment.indirectSpecularFactor.z + ", "
-            + this.scene.environment.indirectSpecularFactor.w + "]");
-          }
-          else if (SpecularFactorFlag == 1) {
-            this.scene.environment.indirectSpecularFactor.x = 40;
-            this.scene.environment.indirectSpecularFactor.y = 1;
-            this.scene.environment.indirectSpecularFactor.z = 1;
-            this.scene.environment.indirectSpecularFactor.w = 1;
-            console.log(LOG_TAG + "Environment indirectSpecularFactor: ["
-            + this.scene.environment.indirectSpecularFactor.x + ", "
-            + this.scene.environment.indirectSpecularFactor.y + ", "
-            + this.scene.environment.indirectSpecularFactor.z + ", "
-            + this.scene.environment.indirectSpecularFactor.w + "]");
-          }
-          else if (SpecularFactorFlag == 2) {
-            this.scene.environment.indirectSpecularFactor.x = 1;
-            this.scene.environment.indirectSpecularFactor.y = 40;
-            this.scene.environment.indirectSpecularFactor.z = 1;
-            this.scene.environment.indirectSpecularFactor.w = 1;
-            console.log(LOG_TAG + "Environment indirectSpecularFactor: ["
-            + this.scene.environment.indirectSpecularFactor.x + ", "
-            + this.scene.environment.indirectSpecularFactor.y + ", "
-            + this.scene.environment.indirectSpecularFactor.z + ", "
-            + this.scene.environment.indirectSpecularFactor.w + "]");
-          }
-          else if (SpecularFactorFlag == 3) {
-            this.scene.environment.indirectSpecularFactor.x = 1;
-            this.scene.environment.indirectSpecularFactor.y = 1;
-            this.scene.environment.indirectSpecularFactor.z = 40;
-            this.scene.environment.indirectSpecularFactor.w = 1;
-            console.log(LOG_TAG + "Environment indirectSpecularFactor: ["
-            + this.scene.environment.indirectSpecularFactor.x + ", "
-            + this.scene.environment.indirectSpecularFactor.y + ", "
-            + this.scene.environment.indirectSpecularFactor.z + ", "
-            + this.scene.environment.indirectSpecularFactor.w + "]");
-          }
+          this.scene.environment.indirectSpecularFactor =
+            ENVIRONMENT_FACTOR[++factorIndex % ENVIRONMENT_FACTOR.length];
         }).id('change_indirectSpecularFactor');
 
         Button('change environmentMapFactor').onClick(() => {
           if (!this.scene || !this.env) {
             return;
           }
-          MapFactorFlag = (MapFactorFlag + 1) % 4;
-          if (MapFactorFlag == 0) {
-            this.scene.environment.environmentMapFactor.x = 1;
-            this.scene.environment.environmentMapFactor.y = 1;
-            this.scene.environment.environmentMapFactor.z = 1;
-            this.scene.environment.environmentMapFactor.w = 1;
-            console.log(LOG_TAG + "Environment environmentMapFactor: ["
-            + this.scene.environment.environmentMapFactor.x + ", "
-            + this.scene.environment.environmentMapFactor.y + ", "
-            + this.scene.environment.environmentMapFactor.z + ", "
-            + this.scene.environment.environmentMapFactor.w + "]");
-          }
-          else if (MapFactorFlag == 1) {
-            this.scene.environment.environmentMapFactor.x = 40;
-            this.scene.environment.environmentMapFactor.y = 1;
-            this.scene.environment.environmentMapFactor.z = 1;
-            this.scene.environment.environmentMapFactor.w = 1;
-            console.log(LOG_TAG + "Environment environmentMapFactor: ["
-            + this.scene.environment.environmentMapFactor.x + ", "
-            + this.scene.environment.environmentMapFactor.y + ", "
-            + this.scene.environment.environmentMapFactor.z + ", "
-            + this.scene.environment.environmentMapFactor.w + "]");
-          }
-          else if (MapFactorFlag == 2) {
-            this.scene.environment.environmentMapFactor.x = 1;
-            this.scene.environment.environmentMapFactor.y = 40;
-            this.scene.environment.environmentMapFactor.z = 1;
-            this.scene.environment.environmentMapFactor.w = 1;
-            console.log(LOG_TAG + "Environment environmentMapFactor: ["
-            + this.scene.environment.environmentMapFactor.x + ", "
-            + this.scene.environment.environmentMapFactor.y + ", "
-            + this.scene.environment.environmentMapFactor.z + ", "
-            + this.scene.environment.environmentMapFactor.w + "]");
-          }
-          else if (MapFactorFlag == 3) {
-            this.scene.environment.environmentMapFactor.x = 1;
-            this.scene.environment.environmentMapFactor.y = 1;
-            this.scene.environment.environmentMapFactor.z = 40;
-            this.scene.environment.environmentMapFactor.w = 1;
-            console.log(LOG_TAG + "Environment environmentMapFactor: ["
-            + this.scene.environment.environmentMapFactor.x + ", "
-            + this.scene.environment.environmentMapFactor.y + ", "
-            + this.scene.environment.environmentMapFactor.z + ", "
-            + this.scene.environment.environmentMapFactor.w + "]");
-          }
+          this.scene.environment.environmentMapFactor =
+            ENVIRONMENT_FACTOR[++factorIndex % ENVIRONMENT_FACTOR.length];
         }).id('change_environmentMapFactor');
 
         Button('change irradianceCoefficients').onClick(() => {
@@ -318,10 +191,6 @@ struct node_geometry {
             { x: GenRandom(), y: GenRandom(), z: GenRandom() },
             { x: GenRandom(), y: GenRandom(), z: GenRandom() },
             { x: GenRandom(), y: GenRandom(), z: GenRandom() }];
-          console.log(LOG_TAG + "Environment irradianceCoefficients[0]: ["
-          + this.scene.environment.irradianceCoefficients[0].x + ", "
-          + this.scene.environment.irradianceCoefficients[0].y + ", "
-          + this.scene.environment.irradianceCoefficients[0].z + "]");
         }).id('change_irradianceCoefficients');
 
         Button('back').onClick(() => {
