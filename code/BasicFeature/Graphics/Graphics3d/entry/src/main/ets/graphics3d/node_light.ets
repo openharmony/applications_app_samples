@@ -15,20 +15,20 @@
 
 import scene3d from '@ohos.graphics.scene'
 import router from '@ohos.router';
+import Logger from '../util/Logger';
 
-let LOG_TAG: string = "Sample_Graphics3D";
 let colorFlag: number = 0;
 let intensityFlag: number = 0;
-let shadowFlag: number = 0;
+let shadowFlag: boolean = true;
 
 const colors: scene3d.Color[] = [
-  { r: 0.8, g: 0.1, b: 0.2, a: 1.0 },
-  { r: 0.1, g: 0.8, b: 0.2, a: 1.0 },
-  { r: 0.2, g: 0.1, b: 0.8, a: 1.0 },
+  { r: 0.8, g: 0.1, b: 0.2, a: 1.0 }, // color 1
+  { r: 0.1, g: 0.8, b: 0.2, a: 1.0 }, // color 2
+  { r: 0.2, g: 0.1, b: 0.8, a: 1.0 }, // color 3
 ];
 
 const intensities: number[] = [
-  100.0, 500.0, 1000.0, 1500.0, 2000.0,
+  100.0, 500.0, 1000.0, 1500.0, 2000.0, // light intensity
 ]
 
 function sub(l: scene3d.Vec3, r: scene3d.Vec3): scene3d.Vec3 {
@@ -94,29 +94,12 @@ struct node_geometry {
   directionalLight: scene3d.DirectionalLight | null | undefined = null;
   spotLight: scene3d.SpotLight | null = null;
   @State lgt: scene3d.Light | null = null;
-  @State nearPlaneValue: number = 0.1;
   radianceImg1: scene3d.Image | null = null;
 
   onPageShow(): void {
     this.init();
   }
-
-  PrintLight(light: scene3d.Light): void {
-    if (!light) {
-      return;
-    }
-    console.log(LOG_TAG + "Light name: " + light.name);
-    console.log(LOG_TAG + "Light type: " + light.lightType);
-    console.log(LOG_TAG + "Light color: [" + light.color.r + ", " + light.color.g + ", " + light.color.b + ", " + light.color.a + "]");
-    console.log(LOG_TAG + "Light intensity: ", light.intensity);
-    console.log(LOG_TAG + "Light shadowEnabled: " + light.shadowEnabled);
-    if (light.lightType === scene3d.LightType.DIRECTIONAL) {
-      let l: scene3d.DirectionalLight = light as scene3d.DirectionalLight;
-    }
-  }
-
   onPageHide(): void {
-    console.log(LOG_TAG + ' onPageHide')
     if (this.scene) {
       this.scene.destroy();
     }
@@ -134,7 +117,7 @@ struct node_geometry {
           this.cam = await rf.createCamera({ "name": "Camera1" });
           this.cam.position.z = 5;
           this.cam.enabled = true;
-
+          // camera look at direction
           lookAt(this.cam, { x: 10, y: 5, z: 15 }, { x: 0, y: 0.0, z: 0.0 }, { x: 0, y: 1, z: 0 });
 
           this.radianceImg1 = await rf.createImage({
@@ -148,9 +131,8 @@ struct node_geometry {
           await this.scene?.getResourceFactory().createLight({
             "name": "DirectionalLight1"
           }, scene3d.LightType.DIRECTIONAL) as scene3d.DirectionalLight;
-          if (!this.directionalLight) {
-            console.log(LOG_TAG + 'create directional light fail')
-          }
+
+          // light look at direction
           lookAt(this.directionalLight, { x: 10.0, y: 10.0, z: 10.0 }, { x: 0.0, y: 0.0, z: 0.0 }, {
             x: 0.0,
             y: 1.0,
@@ -163,16 +145,8 @@ struct node_geometry {
           await this.scene?.getResourceFactory().createLight({
             "name": "SpotLight1"
           }, scene3d.LightType.SPOT) as scene3d.SpotLight;
-
-          if (!this.spotLight) {
-            console.log(LOG_TAG + 'create spot light fail')
-          }
-
-          let targ: scene3d.Vec3 = { x: 0, y: 0.0, z: 0.0 };
-          let pos: scene3d.Vec3 = { x: 6, y: 6, z: -6 };
-          let up: scene3d.Vec3 = { x: 0, y: 1, z: 0 };
-
-          lookAt(this.spotLight, pos, targ, up);
+          // spot light look at direction
+          lookAt(this.spotLight, { x: 6, y: 6, z: -6 }, { x: 0, y: 0.0, z: 0.0 }, { x: 0, y: 1, z: 0 });
 
           this.spotLight.enabled = true;
 
@@ -180,7 +154,7 @@ struct node_geometry {
           this.UpdateLights();
         })
         .catch((reason: string) => {
-          console.log(LOG_TAG + " error: " + reason)
+          Logger.error("init error", reason);
         });
     }
   }
@@ -193,7 +167,7 @@ struct node_geometry {
       if (this.lgt.lightType === scene3d.LightType.DIRECTIONAL) {
         this.lgt.intensity = intensities[intensityFlag] / 50.0; // just reduce some intensity when directional light
       }
-      this.lgt.shadowEnabled = shadowFlag == 0;
+      this.lgt.shadowEnabled = shadowFlag;
     }
   }
 
@@ -228,7 +202,6 @@ struct node_geometry {
               if (this.lgt) {
                 this.lgt.enabled = true;
                 this.UpdateLights();
-                this.PrintLight(this.lgt);
               }
             }).id('switch_light')
         }
@@ -240,8 +213,6 @@ struct node_geometry {
             }
 
             this.lgt.enabled = !this.lgt.enabled;
-
-            console.log(LOG_TAG + "Light enabled: " + this.lgt.enabled);
           }).id('enable_light');
 
           if (this.lgt.enabled) {
@@ -250,10 +221,9 @@ struct node_geometry {
                 return;
               }
 
-              colorFlag = (colorFlag + 1) % colors.length;
+              colorFlag = ++colorFlag % colors.length;
               this.UpdateLights();
 
-              console.log(LOG_TAG + "Light color: [" + this.lgt.color.r + ", " + this.lgt.color.g + ", " + this.lgt.color.b + ", " + this.lgt.color.a + "]");
             }).id('change_color');
 
             Button('Change intensity (' + this.lgt.intensity + ')').onClick(() => {
@@ -263,16 +233,14 @@ struct node_geometry {
 
               intensityFlag = (intensityFlag + 1) % intensities.length;
               this.UpdateLights();
-              console.log(LOG_TAG + "Light intensity: " + this.lgt.intensity);
             }).id('change_intensity');
 
             Button('Shadows (' + (this.lgt.shadowEnabled ? 'enabled' : 'disabled') + ')').onClick(() => {
               if (!this.scene || !this.lgt) {
                 return;
               }
-              shadowFlag = (shadowFlag + 1) % 2;
+              shadowFlag = !shadowFlag;
               this.UpdateLights();
-              console.log(LOG_TAG + "Light shadowEnabled: " + this.lgt.shadowEnabled);
             }).id('enable_shadow');
           }
         }
