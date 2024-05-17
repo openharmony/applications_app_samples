@@ -116,3 +116,12 @@ SampleBitMap *PluginManager::GetRender(std::string &id)
     }
     return pluginRenderMap_[id];
 }
+
+void PluginManager::ReleaseRender(std::string &id)
+{
+    auto map = pluginRenderMap_.find(id);
+    if (map == pluginRenderMap_.end()) {
+        return;
+    }
+    pluginRenderMap_.erase(map);
+}

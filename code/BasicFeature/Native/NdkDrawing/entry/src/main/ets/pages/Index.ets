@@ -30,6 +30,7 @@ struct Index {
             this.xComponentContext = xComponentContext as XComponentContext;
           }).width('640px') // Multiples of 64
       }.height('88%')
+      .backgroundColor(Color.White)
       Row() {
         Button('Draw Path')
           .fontSize('16fp')
