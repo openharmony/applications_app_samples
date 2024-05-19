@@ -24,25 +24,14 @@ bool PluginManager::Init(napi_env env, napi_value exports)
     OH_NativeXComponent *nativeXComponent = nullptr;
     // get exportInstance
     napi_status status = napi_get_named_property(env, exports, OH_NATIVE_XCOMPONENT_OBJ, &exportInstance);
-    if (status != napi_ok) {
-        LOGE("PluginManager::Export napi_get_named_property failed, status:%{public}d", static_cast<int>(status));
-        return false;
-    }
+
     // get nativeXComponent
     status = napi_unwrap(env, exportInstance, reinterpret_cast<void **>(&nativeXComponent));
-    if (status != napi_ok) {
-        LOGE("PluginManager::Export napi_unwrap failed, status:%{public}d", static_cast<int>(status));
-        return false;
-    }
 
     char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
     uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
     // get nativeXComponent Id
     int32_t ret = OH_NativeXComponent_GetXComponentId(nativeXComponent, idStr, &idSize);
-    if (ret != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
-        LOGE("PluginManager::Export OH_NativeXComponent_GetXComponentId failed, ret:%{public}d", ret);
-        return false;
-    }
 
     std::string id(idStr);
     auto context = PluginManager::GetInstance();
