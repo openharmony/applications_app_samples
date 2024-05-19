@@ -56,6 +56,7 @@ public:
     void SetUp();
     void RenderLoop();
     bool IsInited() const;
+    void SetRecreateSwapChain();
 private:
     bool CreateInstance();
     bool CreateSurface();
@@ -135,6 +136,7 @@ private:
     uint32_t width = 1280;
     uint32_t height = 720;
     bool inited = false;
+    bool shouldRecreate = false;
     const std::vector<const char *> deviceExtensions = {VK_KHR_SWAPCHAIN_EXTENSION_NAME};
     std::vector<std::string> supportedInstanceExtensions;
     std::vector<const char *> enabledInstanceExtensions;
