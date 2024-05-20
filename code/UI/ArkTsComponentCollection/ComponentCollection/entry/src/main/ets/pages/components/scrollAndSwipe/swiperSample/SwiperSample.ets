@@ -22,7 +22,7 @@ import { CustomAnimationPropertiesControlPanel } from './SwiperCustomAnimationCo
 @Extend(Column) function backgroundStyle() {
   .width('100%')
   .padding({ left: 12, right: 12, top: 4, bottom: 4 })
-  .borderRadius(16)
+  .borderRadius(20)
   .backgroundColor(Color.White)
   .justifyContent(FlexAlign.Start)
 }

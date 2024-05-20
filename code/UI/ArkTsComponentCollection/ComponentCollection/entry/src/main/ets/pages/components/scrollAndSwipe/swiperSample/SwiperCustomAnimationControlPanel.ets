@@ -70,6 +70,7 @@ export struct CustomAnimationPropertiesControlPanel {
       CommonItemSelect({
         name: $r('app.string.swiper_properties_duration'),
         selects: ['400', '1000', '2000'],
+        menuAlignType: MenuAlignType.END,
         callback: (index, str) => {
           this.customAnimationDuration = Number.parseInt(str);
         },
@@ -81,6 +82,7 @@ export struct CustomAnimationPropertiesControlPanel {
       CommonItemSelect({
         name: $r('app.string.swiper_custom_property_curve'),
         selects: ['Linear', 'Ease', 'FastOutSlowIn', 'Sharp', 'Rhythm', 'Smooth', 'Friction'],
+        menuAlignType: MenuAlignType.END,
         callback: (index, str) => {
           this.customAnimationCurve = str;
         },

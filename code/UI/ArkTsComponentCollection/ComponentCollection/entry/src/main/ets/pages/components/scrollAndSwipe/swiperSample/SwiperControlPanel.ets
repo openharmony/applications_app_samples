@@ -73,6 +73,7 @@ export struct PropertiesControlPanel {
       CommonItemSelect({
         name: $r('app.string.swiper_properties_duration'),
         selects: ['400', '1000', '2000'],
+        menuAlignType: MenuAlignType.END,
         callback: (index, str) => {
           this.duration = Number.parseInt(str);
         },
@@ -84,6 +85,7 @@ export struct PropertiesControlPanel {
       CommonItemSelect({
         name: $r('app.string.swiper_properties_interval'),
         selects: ['1000', '2000', '3000'],
+        menuAlignType: MenuAlignType.END,
         callback: (index, str) => {
           this.interval = Number.parseInt(str);
         },
