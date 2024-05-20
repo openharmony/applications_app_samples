@@ -146,16 +146,11 @@ entry/src/main/
 
 ### 约束与限制
 
-描述一些设备、SDK版本、IDE版本、接口限制、签名等约束和限制，示例如下：
-
 1. 本示例仅支持标准系统上运行，支持设备：RK3568;
 2. 本示例仅支持API12版本SDK，SDK版本号：(API Version 12 5.0.0.24)，镜像版本号：OpenHarmony 5.0.0.24；
 3. 本示例需要使用DevEco Studio Next Developer Preview2 (Build Version: 4.1.3.700)才可编译运行；
+
 ### 下载
-
-给出单独下载本工程的命令，在代码中替换工程目录并以/结尾，如下面示例中的 **FileManager/FileManager**，示例如下：
-
-如需单独下载本工程，执行如下命令：
 
 ```
 git init
