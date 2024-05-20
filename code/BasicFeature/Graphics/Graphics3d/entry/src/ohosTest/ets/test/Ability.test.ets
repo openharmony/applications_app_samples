@@ -174,6 +174,7 @@ export default function abilityTest() {
         let driver = Driver.create();
         // enter into animation test page
         await step(driver, 'index_animation');
+        await driver.delayMs(DELAY_MS_5S);
         // enable the animation
         await step(driver, 'enable_animation');
         // start the animation
