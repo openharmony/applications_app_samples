@@ -189,7 +189,6 @@ struct Clock {
     }
     Logger.info(TAG, `hour and minute hand draw finish`)
     Logger.info(TAG, `time36:${new Date(new Date().getTime())}`)
-    this.context.restore()
     Logger.info(TAG, `drawBackGround,call restore`)
     Logger.info(TAG, `time37:${new Date(new Date().getTime())}`)
   }
