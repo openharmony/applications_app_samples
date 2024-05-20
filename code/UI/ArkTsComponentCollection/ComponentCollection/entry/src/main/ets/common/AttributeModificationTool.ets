@@ -127,6 +127,7 @@ export struct CommonItemSelect {
   private fontSize: Font = { size: 15, weight: FontWeight.Medium };
   private isItemStyle: boolean = true;
   private text: string = "请选择";
+  private menuAlignType: MenuAlignType = MenuAlignType.START;
 
   aboutToAppear() {
     this.selects.forEach((selects, index) => {
@@ -150,6 +151,7 @@ export struct CommonItemSelect {
         .selected(this.selectIndex)
         .font(this.fontSize)
         .optionFont(this.fontSize)
+        .menuAlign(this.menuAlignType)
         .onSelect((index, value) => {
           this.callback(index, value)
           this.selectIndex = index
