@@ -82,6 +82,12 @@ bool VulkanExample::IsInited() const
 {
     return inited;
 }
+
+void VulkanExample::SetRecreateSwapChain()
+{
+    shouldRecreate = true;
+}
+
 // Load libvulkan.so
 VulkanExample::VulkanExample()
 {
@@ -277,7 +283,7 @@ void VulkanExample::CreateSwapChain()
         createInfo.imageSharingMode = VK_SHARING_MODE_EXCLUSIVE;
     }
 
-    createInfo.preTransform = swapChainSupport.capabilities.currentTransform;
+    createInfo.preTransform = VK_SURFACE_TRANSFORM_IDENTITY_BIT_KHR;
     createInfo.compositeAlpha = VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR;
     createInfo.presentMode = presentMode;
     createInfo.clipped = VK_TRUE;
@@ -850,8 +856,9 @@ void VulkanExample::DrawFrame()
     uint32_t imageIndex;
     VkResult result = vkAcquireNextImageKHR(device, swapChain, UINT64_MAX,
         imageAvailableSemaphore, VK_NULL_HANDLE, &imageIndex);
-    if (result == VK_ERROR_OUT_OF_DATE_KHR) {
+    if (result == VK_ERROR_OUT_OF_DATE_KHR || shouldRecreate) {
         LOGI("Need to recreate swapchain!");
+        shouldRecreate = false;
         RecreateSwapChain();
         return;
     }

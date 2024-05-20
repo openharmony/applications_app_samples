@@ -4,10 +4,10 @@ XComponent组件作为绘制组件, 可用于满足开发者较为复杂的自�
 该组件分为`surface`类型和`component`类型, 可通过指定`type`字段来确定。 其中`surface`类型可支持开发者将相关数据传入XComponent单独拥有的surface来渲染画面。
 本篇示例基于"Native C++"模板, 演示了XComponent调用Vulkan API完成三角形绘制, 并将渲染结果显示在屏幕上的流程。
 
-示例主要使用[@ohos.app.ability.UIAbility](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V2/js-apis-app-ability-uiability-0000001493584184-V2), 
-[@ohos.hilog](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V2/js-apis-hilog-0000001428061984-V2), 
-[@ohos.window](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V2/js-apis-window-0000001477981397-V2), 
-[Native XComponent](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V2/_o_h___native_x_component-0000001497210885-V2), 
+示例主要使用[@ohos.app.ability.UIAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/Readme-CN.md), 
+[@ohos.hilog](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/dfx), 
+[@ohos.window](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/windowmanager/window-overview.md), 
+[NativeWindow](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/graphics/native-window-guidelines.md), 
 [Vulkan](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/reference/native-lib)接口。
 
 ### 效果预览
@@ -25,8 +25,8 @@ entry/src/main/
 |   |   |   |---shader
 |   |   |   |   |   |---triangle.frag                // fragment shader
 |   |   |   |   |   |---triangle.vert                // vertex shader
-|   |   |   |---vulkane_xample.h                     // 本示例中用于实现三角形绘制的VulkanExample类
-|   |   |   |---vulkane_xample.cpp
+|   |   |   |---vulkan_example.h                     // 本示例中用于实现三角形绘制的VulkanExample类
+|   |   |   |---vulkan_example.cpp
 |   |   |   |---vulkan_utils.h                       // 本示例中用于加载Vulkan动态库以及Vulkan函数
 |   |   |   |---vulkan_utils.cpp
 |   |   |---plugin_manager.h                         // 对接XComponent
@@ -49,7 +49,7 @@ XComponent组件可通过NDK接口为开发者在C++层提供NativeWindow用于�
 首先填充`napi_module`结构体, 然后调用`napi_module_register`函数注册.
 ```
 // entry/src/main/cpp/plugin.cpp
-static napi_module demoModule = {
+static napi_module SampleModule = {
     .nm_version = 1,
     .nm_flags = 0,
     .nm_filename = nullptr,
@@ -70,7 +70,7 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void) {
 static napi_value Init(napi_env env, napi_value exports)
 {
     if (!PluginManager::GetInstance()->Init(env, exports)) {
-        LOGE("NAPI init failed!");
+        LOGE("Failed to init NAPI!");
     }
     return exports;
 }
@@ -87,16 +87,8 @@ bool PluginManager::Init(napi_env env, napi_value exports)
     OH_NativeXComponent *nativeXComponent = nullptr; // NativeXComponent指针
     // 首先调用napi_get_name_property, 传入OH_NATIVE_XCOMPONENT_OBJ, 解析得到exportInstance.
     napi_status status = napi_get_named_property(env, exports, OH_NATIVE_XCOMPONENT_OBJ, &exportInstance);
-    if (status != napi_ok) {
-        LOGE("PluginManager::Export napi_get_named_property failed, status:%{public}d", static_cast<int>(status));
-        return false;
-    }
     // 然后调用napi_unwrap, 从exportInstance中解析得到nativeXComponent实例指针
     status = napi_unwrap(env, exportInstance, reinterpret_cast<void **>(&nativeXComponent));
-    if (status != napi_ok) {
-        LOGE("PluginManager::Export napi_unwrap failed, status:%{public}d", static_cast<int>(status));
-        return false;
-    }
     ...
 }
 ```
@@ -172,14 +164,11 @@ void PluginRender::SetNativeXComponent(OH_NativeXComponent *component)
 // entry/src/main/cpp/render/plugin_render.cpp
 napi_value PluginRender::Export(napi_env env, napi_value exports)
 {
-    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "PluginRender", "Export is comming");
-
     napi_property_descriptor desc[] = {
-        { "stopOrStart", nullptr, PluginRender::NapiStopMovingOrRestart, nullptr, nullptr, nullptr, napi_default, nullptr}
+        { "stopOrStart", nullptr, PluginRender::NapiStopMovingOrRestart, nullptr, nullptr, nullptr,
+            napi_default, nullptr}
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
-    OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "PluginRender", "Export drawTriangle is end");
-    
     return exports;
 }
 ```
@@ -218,18 +207,19 @@ void PluginRender::RenderThread()
 #### Vulkan后端
 本用例中用于绘制三角形的`Vulkan`后端被封装成了类`VulkanExample`, 它对外部暴露5个接口:
 ```
-bool InitVulkan();                              // 用于初始化Vulkan环境, 包括加载vulkan动态库, 创建Instance, 选择PhysicalDevice以及创建LogicalDevice
-void SetupWindow(NativeWindow* nativeWindow);   // 将NativeXComponent的NativeWindow指针传入, 用于surface创建
-bool SetUp();                                   // 创建Swapchain, ImageView及渲染相关组件
-void RenderLoop();                              // 在渲染线程循环调用, 用于绘制三角形
-bool IsInited();                                // 判断Vulkan环境是否初始化成功
+bool InitVulkan();                             // 用于初始化Vulkan环境, 包括加载vulkan动态库, 创建Instance, 选择PhysicalDevice以及创建LogicalDevice
+void SetupWindow(NativeWindow* nativeWindow);  // 将NativeXComponent的NativeWindow指针传入, 用于surface创建
+void SetUp();                                  // 创建Swapchain, ImageView及渲染相关组件
+void RenderLoop();                             // 在渲染线程循环调用, 用于绘制三角形
+bool IsInited() const;                         // 判断Vulkan环境是否初始化成功
+void SetRecreateSwapChain();                   // 设置下次渲染前重建swapchain
 ```
 因为本用例主要用于展示`XComponent`组件调用`Vulkan`API的流程, 因此对Vulkan绘制三角形的一般流程不做讲解（相关知识可参考[Vulkan官方指导](https://vulkan-tutorial.com/)).
 仅讲解与`XComponent`以及`OpenHarmony`相关的部分, 更多`OpenHarmony VulkanAPI`使用指导可参考[鸿蒙Vulkan](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/reference/native-lib).
-源码可参考[vulkan render](entry/src/main/cpp/render/vulkan)
 ##### libvulkan.so动态库加载
 OpenHarmony操作系统中Vulkan动态库的名称是`libvulkan.so`, 可通过`dlopen`函数加载.
 ```
+// entry/src/main/cpp/render/vulkan/vulkan_utils.cpp
 #include <dlfcn.h>
 
 const char* path_ = "libvulkan.so";
@@ -241,6 +231,7 @@ Vulkan函数分为`Instance`域函数, `PhysicalDevice`域函数, `Device`域函
 
 `Instance`域函数中的`全局函数`可通过`dlsym`函数获取其函数指针.
 ```
+// entry/src/main/cpp/render/vulkan/vulkan_utils.cpp
 // 全局函数加载
 #include <dlfcn.h>
 // 省略libvulkan.so的加载
@@ -258,6 +249,7 @@ PFN_vkGetDeviceProcAddr vkGetDeviceProcAddr =
 
 在获取`vkGetInstanceProcAddr`函数后, 可通过它加载`Instance`域函数和`PhysicalDevice`域函数; 在获取`vkGetDeviceProcAddr`函数后, 可通过它加载`Device`域函数.
 ```
+// entry/src/main/cpp/render/vulkan/vulkan_utils.cpp
 // Instance域函数加载
 PFN_vkCreateDevice vkCreateDevice =
     reinterpret_cast<PFN_vkCreateDevice>(vkGetInstanceProcAddr(instance, "vkCreateDevice"));
@@ -269,6 +261,7 @@ PFN_vkCreateSwapchainKHR vkCreateSwapchainKHR =
 ##### Instance创建
 创建`Instance`时, 为保证后续能成功创建`OpenHarmony`平台下的`surface`, 需要开启extension `VK_OHOS_SURFACE_EXTENSION_NAME`和`VK_KHR_SURFACE_EXTENSION_NAME`.
 ```
+// entry/src/main/cpp/render/vulkan/vulkan_example.cpp
 bool VulkanExample::CreateInstance() {
     VkInstanceCreateInfo createInfo{};
     createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
@@ -288,6 +281,7 @@ bool VulkanExample::CreateInstance() {
 ##### Surface创建
 OHOS上的`surface`创建需要填写结构体`VkSurfaceCreateInfoOHOS`, XCompoenent通过`SetupWindow`函数传入`window`指针用于`surface`的创建.
 ```
+// entry/src/main/cpp/render/vulkan/vulkan_example.cpp
 // window为VulkanExample的成员变量, 其类型为NativeWindow*
 void VulkanExample::SetupWindow(NativeWindow* nativeWindow)
 {
