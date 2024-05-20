@@ -695,5 +695,105 @@ export default function ActsAbilityTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ColorSpacePhoto_004 end');
     })
 
+    /**
+     * @tc.number  DecodingPhoto_001
+     * @tc.name DecodingPhoto_001
+     * @tc.desc 点击修改hdr设置
+     */
+    it('DecodingPhoto_001', 27, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE+ 'DecodingPhoto_001 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      // 进入编辑
+      await enterEdit();
+      let tip: string = getString($r('app.string.setting'));
+      await driver.assertComponentExist(ON.text(tip));
+      let setting = await driver.findComponent(ON.text(tip));
+      await setting.click();
+      await driver.delayMs(1000);
+      done();
+      hilog.info(DOMAIN, TAG, BUNDLE + 'DecodingPhoto_001 end');
+     })
+
+    /**
+     * @tc.number  Decoding_001
+     * @tc.name Decoding_001
+     * @tc.desc 点击修改hdr设置 >- 自动
+     */
+    it('Decoding_001', 28, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'Decoding_001 begin');
+      let driver = Driver.create();
+      let tip = getString($r('app.string.setting'));
+      await driver.assertComponentExist(ON.text(tip));
+      let setting = await driver.findComponent(ON.text(tip));
+      await setting.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('auto'));
+      let auto = await driver.findComponent(ON.id('auto'));
+      await auto.click();
+      await driver.delayMs(1080);
+      await driver.assertComponentExist(ON.id('ok'));
+      let ok = await driver.findComponent(ON.id('Ok'));
+      await ok.click();
+      await driver.delayMs(1000);
+      // 保存当前编辑
+      await saveEdit();
+      done();
+      hilog.info(DOMAIN, TAG, BUNDLE + 'Decoding_001 end');
+     })
+
+    /**
+     * @tc.number  Decoding_002
+     * @tc.name Decoding_002
+     * @tc.desc 点击修改hdr设置 >- SDR
+     */
+    it('Decoding_002', 29, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'Decoding_002 begin');
+      let driver = Driver.create();
+      let tip = getString($r('app.string.setting'));
+      await driver.assertComponentExist(ON.text(tip));
+      let setting = await driver.findComponent(ON.text(tip));
+      await setting.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('sdr'));
+      let sdr = await driver.findComponent(ON.id('sdr'));
+      await sdr.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('Ok'));
+      let ok = await driver.findComponent(ON.id('Ok'));
+      await ok.click();
+      await driver.delayMs(1000);
+      // 保存当前编辑
+      await saveEdit();
+      done();
+      hilog.info(DOMAIN, TAG, BUNDLE + 'Decoding_002 end');
+    })
+
+    /**
+     * @tc.number  Decoding_003
+     * @tc.name Decoding_003
+     * @tc.desc 点击修改hdr设置 >- HDR
+     */
+    it('Decoding_003', 30, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'Decoding_003 begin');
+      let driver = Driver.create() ;
+      let tip = getString($r('app.string.setting'));
+      await driver.assertComponentExist(ON.text(tip));
+      let setting = await driver.findComponent(ON.text(tip));
+      await setting.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('hdr'));
+      let hdr = await driver.findComponent(ON.id('hdr'));
+      await hdr.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('0k'));
+      let ok = await driver.findComponent(ON.id('Ok'));
+      await ok.click();
+      await driver.delayMs(1000);
+      // 保存当前编辑
+      await saveEdit();
+      done();
+      hilog.info(DOMAIN, TAG, BUNDLE + "Decoding_003 end");
+    })
   })
 }

@@ -12,7 +12,7 @@ In this sample, [\<TextArea>](https://gitee.com/openharmony/docs/blob/master/en/
 
 2. Select the images to be displayed. You can select six images at most.
 
-3. Select an image and touch **Next**. The image editing page is displayed. To scale an image, touch **scale** and then touch **narrow** or **amplification**. To crop the image, touch **crop** and select a crop ratio. To rotate the image, touch **rotate**.
+3. Select an image and touch **Next**. The image editing page is displayed. To scale an image, touch **scale** and then touch **narrow** or **amplification**. To crop the image, touch **crop** and select a crop ratio. To rotate the image, touch **rotate**.To decode the image, touch **update hdr setting**.
 
 4. After finishing editing the image, touch **OK**. The page for posting comments is displayed, with the images shown. You can touch **Add image** to add more images.
 
@@ -20,7 +20,7 @@ In this sample, [\<TextArea>](https://gitee.com/openharmony/docs/blob/master/en/
 
 ### Preview
 
-![](screenshots/devices/scale.jpeg) ![](screenshots/devices/crop.jpeg) ![](screenshots/devices/rotato.jpeg)![](screenshots/devices/colorSpace.jpeg)
+![](screenshots/devices/scale.jpeg) ![](screenshots/devices/crop.jpeg) ![](screenshots/devices/rotato.jpeg)![](screenshots/devices/colorSpace.jpeg)![](screenshots/devices/rotato.jpeg)
 
 ### Required Permissions
 
