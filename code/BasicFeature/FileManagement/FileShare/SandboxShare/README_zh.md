@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例主要展示了沙箱文件分享相关的功能，使用 [@ohos.file.fileuri](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-fileuri.md) 、[@ohos.file.fs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-fs.md)、[@ohos.ability.wantConstant](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-ability-wantConstant.md)、[@ohos.application.Want](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-want.md) 等接口，实现了获取文件uri、创建沙箱文件、提供want中操作want常数和解释Flags说、应用组件间的信息传递的功能。
+本示例主要展示了沙箱文件分享相关的功能，使用 [@ohos.file.fileuri](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-fileuri.md) 、[@ohos.file.fs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-fs.md)、[@ohos.ability.wantConstant](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-wantConstant.md)、[@ohos.application.Want](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-want.md) 等接口，实现了获取文件uri、创建沙箱文件、提供want中操作want常数和解释Flags说、应用组件间的信息传递的功能。
 
 ### 效果预览
 
@@ -36,13 +36,13 @@ entry/src/main/ets/
 
 * 增添文件、查找指定类型文件、获取文件uri、传递want信息启动ability的功能接口封装在fileFs.ts，源码参考：[fileFs.ts](src/main/ets/fileFs/fileFs.ts)
 
-  * 使用fs.mkdirSync、fs.openSync、fs.writeSync、fs.readSync、fs.closeSync分别用来来创建文件夹、打开文件、写文件、读文件、关闭文件，接口参考：[@ohos.file.fs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-fs.md)
+  * 使用fs.mkdirSync、fs.openSync、fs.writeSync、fs.readSync、fs.closeSync分别用来来创建文件夹、打开文件、写文件、读文件、关闭文件，接口参考：[@ohos.file.fs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-fs.md)
 
-  * 使用fileUri.getUriFromPath来获取文件uri，接口参考：[@ohos.file.fileuri](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-fileuri.md) 
+  * 使用fileUri.getUriFromPath来获取文件uri，接口参考：[@ohos.file.fileuri](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-fileuri.md) 
 
   * 分享文件至picker应用打开并编辑：在分享页面[show.ets](src/main/ets/pages/Show.ets)
 
-    调用 implicitStartAbility 方法传递want参数启动新的ability，接口参考：[@ohos.ability.wantConstant](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-ability-wantConstant.md)、[@ohos.application.Want](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-want.md) 
+    调用 implicitStartAbility 方法传递want参数启动新的ability，接口参考：[@ohos.ability.wantConstant](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-wantConstant.md)、[@ohos.application.Want](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-want.md) 
 
 
 ### 相关权限
@@ -66,7 +66,7 @@ entry/src/main/ets/
 
 3.本示例需要使用DevEco Studio 3.1 Release (Build Version: 3.1.0.500, built on April 28, 2023)及以上版本才可编译运行。
 
-4.本示例涉及部分接口需要配置系统应用签名，可以参考[特殊权限配置方法](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/) ，把配置文件中的“apl”字段信息改为“system_basic”。
+4.本示例涉及部分接口需要配置系统应用签名，可以参考[特殊权限配置方法](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-overview.md) ，把配置文件中的“apl”字段信息改为“system_basic”。
 
 ### 下载
 

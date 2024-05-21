@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例使用Drawing进行图形绘制与显示时，使用[@ohos.graphics.drawing](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkgraphics2d/js-apis-graphics-drawing.md)模块的画布画笔绘制基本的2D图形和文字，调用绘制和显示的逻辑，在应用上显示图形和文字。功能主要包括点击按钮绘制一个五角星、矩形和“Hello World”文字。
+本示例使用Drawing进行图形绘制与显示时，使用[@ohos.graphics.drawing](https://docs.openharmony.cn/pages/v4.1/en/application-dev/reference/apis-arkgraphics2d/js-apis-graphics-drawing.md)模块的画布画笔绘制基本的2D图形和文字，调用绘制和显示的逻辑，在应用上显示图形和文字。功能主要包括点击按钮绘制一个五角星、矩形和“Hello World”文字。
 
 使用说明
 
@@ -60,7 +60,7 @@
 | detachPen(): void | 清空画布上设置的画笔，画布将不再使用画笔绘制图形。|
 | detachBrush(): void | 清空画布上设置的画刷，画布将不再使用画刷绘制图形。|
 
-详细的接口说明请参考[Drawing](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkgraphics2d/js-apis-graphics-drawing.md)。
+详细的接口说明请参考[Drawing](https://docs.openharmony.cn/pages/v4.1/en/application-dev/reference/apis-arkgraphics2d/js-apis-graphics-drawing.md)。
 
 ### 相关权限
 

@@ -51,7 +51,7 @@
 
 ### 具体实现
 
-* 自绘制：通过调用[@ohos.graphics.displaySync](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkgraphics2d/js-apis-graphics-displaySync.md)接口，通过注册回调和设置刷新了区间控制回调周期
+* 自绘制：通过调用[@ohos.graphics.displaySync](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-arkgraphics2d/js-apis-graphics-displaySync.md)接口，通过注册回调和设置刷新了区间控制回调周期
     * 涉及到的相关接口：
       
       通过`import displaySync from '@ohos.graphics.displaySync'`引入

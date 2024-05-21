@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例主要展示了媒体会话（媒体提供方）的相关功能，使用[@ohos.multimedia.avsession](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-avsession.md)等接口实现媒体提供方与媒体控制方自定义信息的交互功能。
+本示例主要展示了媒体会话（媒体提供方）的相关功能，使用[@ohos.multimedia.avsession](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/apis/js-apis-avsession.md)等接口实现媒体提供方与媒体控制方自定义信息的交互功能。
 
 > 注意：
 > 此示例仅展示媒体提供方的相关功能，如果需要媒体会话提供的完整的自定义信息交互功能，请将本示例与[媒体提供方示例](../MediaController/README.md)共同使用。
@@ -107,7 +107,7 @@ entry/src/main/ets/
 
 1. 长时任务权限ohos.permission.KEEP_BACKGROUND_RUNNING
 
-   如果需要让媒体提供方应用在后台运行或响应命令，需要注册长时任务权限[ohos.permission.KEEP_BACKGROUND_RUNNING](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionkeep_background_running)
+   如果需要让媒体提供方应用在后台运行或响应命令，需要注册长时任务权限[ohos.permission.KEEP_BACKGROUND_RUNNING](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionkeep_background_running)
    
    请在需要后台运行的Ability的`module.json5`中添加以下配置：
   

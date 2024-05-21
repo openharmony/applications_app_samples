@@ -115,7 +115,7 @@ RenderNode提供自绘制渲染节点，在c++代码侧通过Drawing接口完成
 | OH_Drawing_ColorFilterDestroy (OH_Drawing_ColorFilter* ) | 销毁颜色滤波器对象，并收回该对象占用的内存。 |
 | OH_Drawing_SamplingOptionsDestroy (OH_Drawing_SamplingOptions* ) | 销毁采样选项对象并回收该对象占有内存。 |
 
-详细的接口说明请参考[Drawing](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkgraphics2d/_drawing.md)。
+详细的接口说明请参考[Drawing](https://docs.openharmony.cn/pages/v4.1/en/application-dev/reference/apis-arkgraphics2d/js-apis-graphics-drawing.md)。
 
 ### 相关权限
 
