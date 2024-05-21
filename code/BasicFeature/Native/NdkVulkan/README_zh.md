@@ -11,7 +11,7 @@ XComponent组件作为绘制组件, 可用于满足开发者较为复杂的自�
 [Vulkan](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/reference/native-lib)接口。
 
 ### 效果预览
-如下图所示, 打开应用, 屏幕中心会绘制一个旋转中的三角形, 可以点击'暂停/开始'按钮控制三角形的旋转状态。
+如下图所示, 打开应用, 屏幕中心会绘制一个旋转中的三角形, 可以点击'stop/start'按钮控制三角形的旋转状态。
 ![image](screenshots/device/sample.png)
 ### 工程目录
 
@@ -60,7 +60,7 @@ static napi_module demoModule = {
 };
 
 extern "C" __attribute__((constructor)) void RegisterEntryModule(void) {
-    napi_module_register(&demoModule);
+    napi_module_register(&SampleModule);
 }
 ```
 注意`napi_module`中的成员变量`.nm_register_func`指定了加载so时的注册函数名为`Init`, 我们通过修改该函数来控制注册NAPI时要执行的操作.
@@ -105,6 +105,7 @@ bool PluginManager::Init(napi_env env, napi_value exports)
 `PluginManager`可以管理多个`PluginRender`实例（示例中只使用一个）, 在`PluginManager::Init`中进行`PluginRender`的创建和初始化.
 实际对接`Vulkan`渲染后端是通过`PluginRender`类完成的, 每个`XComponent`实例对应一个`PluginRender`实例, 通过`XComponentId`进行区分.
 ```
+// entry/src/main/cpp/render/plugin_manager.cpp
 bool PluginManager::Init(napi_env env, napi_value exports)
 {
     // 省略获取nativeXComponent的部分
@@ -216,7 +217,7 @@ void PluginRender::RenderThread()
 ```
 
 #### Vulkan后端
-本用例中用于绘制三角形的`Vulkan`后端被封装成了类`VulkanExample`, 它对外部暴露5个接口:
+本示例中用于绘制三角形的`Vulkan`后端被封装成了类`VulkanExample`, 它对外部暴露6个接口:
 ```
 bool InitVulkan();                              // 用于初始化Vulkan环境, 包括加载vulkan动态库, 创建Instance, 选择PhysicalDevice以及创建LogicalDevice
 void SetupWindow(NativeWindow* nativeWindow);   // 将NativeXComponent的NativeWindow指针传入, 用于surface创建
@@ -224,11 +225,13 @@ bool SetUp();                                   // 创建Swapchain, ImageView及
 void RenderLoop();                              // 在渲染线程循环调用, 用于绘制三角形
 bool IsInited();                                // 判断Vulkan环境是否初始化成功
 ```
-因为本用例主要用于展示`XComponent`组件调用`Vulkan`API的流程, 因此对Vulkan绘制三角形的一般流程不做讲解（相关知识可参考[Vulkan官方指导](https://vulkan-tutorial.com/)).
+因为本示例主要用于展示`XComponent`组件调用`Vulkan`API的流程, 因此对Vulkan绘制三角形的一般流程不做讲解（相关知识可参考[Vulkan官方指导](https://vulkan-tutorial.com/)).
 仅讲解与`XComponent`以及`OpenHarmony`相关的部分, 更多`OpenHarmony VulkanAPI`使用指导可参考[鸿蒙Vulkan](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/reference/native-lib).
 源码可参考[vulkan render](entry/src/main/cpp/render/vulkan)
 ##### libvulkan.so动态库加载
 OpenHarmony操作系统中Vulkan动态库的名称是`libvulkan.so`, 可通过`dlopen`函数加载.
+
+示例代码：
 ```
 #include <dlfcn.h>
 
@@ -240,6 +243,8 @@ void libVulkan = dlopen(path_, RTLD_NOW | RTLD_LOCAL);
 Vulkan函数分为`Instance`域函数, `PhysicalDevice`域函数, `Device`域函数.
 
 `Instance`域函数中的`全局函数`可通过`dlsym`函数获取其函数指针.
+
+示例代码：
 ```
 // 全局函数加载
 #include <dlfcn.h>
@@ -257,6 +262,8 @@ PFN_vkGetDeviceProcAddr vkGetDeviceProcAddr =
 ```
 
 在获取`vkGetInstanceProcAddr`函数后, 可通过它加载`Instance`域函数和`PhysicalDevice`域函数; 在获取`vkGetDeviceProcAddr`函数后, 可通过它加载`Device`域函数.
+
+示例代码：
 ```
 // Instance域函数加载
 PFN_vkCreateDevice vkCreateDevice =
@@ -268,6 +275,8 @@ PFN_vkCreateSwapchainKHR vkCreateSwapchainKHR =
 ```
 ##### Instance创建
 创建`Instance`时, 为保证后续能成功创建`OpenHarmony`平台下的`surface`, 需要开启extension `VK_OHOS_SURFACE_EXTENSION_NAME`和`VK_KHR_SURFACE_EXTENSION_NAME`.
+
+示例代码：
 ```
 bool VulkanExample::CreateInstance() {
     VkInstanceCreateInfo createInfo{};
@@ -287,6 +296,8 @@ bool VulkanExample::CreateInstance() {
 ```
 ##### Surface创建
 OHOS上的`surface`创建需要填写结构体`VkSurfaceCreateInfoOHOS`, XCompoenent通过`SetupWindow`函数传入`window`指针用于`surface`的创建.
+
+示例代码：
 ```
 // window为VulkanExample的成员变量, 其类型为NativeWindow*
 void VulkanExample::SetupWindow(NativeWindow* nativeWindow)
@@ -303,7 +314,7 @@ bool VulkanExample::CreateSurface() {
     }
     surfaceCreateInfo.window = window;
     if (vkCreateSurfaceOHOS(instance, &surfaceCreateInfo, nullptr, &surface) != VK_SUCCESS) {
-        LOGI("Failed to create OHOS surface!");
+        LOGE("Failed to create OHOS surface!");
         return false;
     }
     return true;
