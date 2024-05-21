@@ -1,7 +1,7 @@
 # 浏览器
 
 ### 介绍
-本示例使用[@ohos.systemparameter](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-system-parameter.md)接口和[Web组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-web.md)展示了一个浏览器的基本功能,展示网页，根据页面历史栈前进回退等。
+本示例使用[@ohos.systemparameter](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/apis/js-apis-system-parameter.md)接口和[Web组件](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-web.md)展示了一个浏览器的基本功能,展示网页，根据页面历史栈前进回退等。
 
 ### 效果预览
 
@@ -37,9 +37,9 @@ entry/src/main/ets/
 
 ### 相关权限
 
-[ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissioninternet)
+[ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissioninternet)
 
-[ohos.permission.GET_WIFI_INFO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionget_wifi_info)
+[ohos.permission.GET_WIFI_INFO_INTERNAL](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionget_wifi_info_internal)
 
 ### 依赖
 
@@ -51,7 +51,7 @@ entry/src/main/ets/
 2. 本示例需外接鼠标进行验证;
 3. 本示例已适配API version 9版本SDK，版本号：3.2.11.9。
 4. 本示例不支持点击tab页签，切换网页并刷新页面;
-5. 本示例涉及使用系统接口：[@ohos.systemparameter](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-system-parameter.md)，需要手动替换Full SDK才能编译通过，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/);
+5. 本示例涉及使用系统接口：[@ohos.systemparameter](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/apis/js-apis-system-parameter.md)，需要手动替换Full SDK才能编译通过，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md);
 6. 本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)及以上版本才可编译运行。
 
 ### 下载

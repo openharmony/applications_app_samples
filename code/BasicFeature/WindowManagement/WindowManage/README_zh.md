@@ -77,14 +77,14 @@ entry/src/main/ets/
     * 首页入口模块
         * 使用WindowStage实例化一个窗口，引入WindowManger方法设置一个主窗口与子窗口
         * 源码链接：[WindowManger.ts](WindowComponent/src/main/ets/components/feature/WindowManger.ts)，[WindowConst.ts](WindowComponent/src/main/ets/components/util/WindowConst.ts),
-        * 参考接口：[@ohos.window](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-window.md)，[@ohos.events.emitter](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-as/js-apis-emitter.md)，[@ohos.app.ability.common](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-common.md)，[@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-router.md)
+        * 参考接口：[@ohos.window](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-window.md)，[@ohos.events.emitter](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/apis/js-apis-emitter.md)，[@ohos.app.ability.common](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-common.md)，[@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-router.md)
 
     * 窗口视频模块
         * 这里用到依赖window-components中WindowComponent方法来进行视频的播放
 
     * 全屏播放窗口并切换窗口方向模块
         * 通过EventPriority方法表示事件被发送的优先级，emitter.emit方法发送指定的事件进行全屏播放和切换窗口方向
-        * 参考接口：[@ohos.events.emitter](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-as/js-apis-emitter.md)
+        * 参考接口：[@ohos.events.emitter](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/apis/js-apis-emitter.md)
     
     * 获取系统状态栏属性页
         * 通过Button触发当前window.getWindowSystemBarProperties()方法，通过Text组件展示到界面
@@ -97,7 +97,7 @@ entry/src/main/ets/
 
 本示例需要在module.json5中配置如下权限:
 
-允许应用使用悬浮窗的能力：[ohos.permission.SYSTEM_FLOAT_WINDOW](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionsystem_float_window)
+允许应用使用悬浮窗的能力：[ohos.permission.SYSTEM_FLOAT_WINDOW](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionsystem_float_window)
 
 ### 依赖
 
@@ -117,7 +117,7 @@ void;，需要手动替换Full SDK才能编译通过，具体操作可参考[替
 4.本示例需要使用DevEco Studio 版本号(Build Version: 4.1.3.500, built on January 20, 2024)及以上版本才可编译运行。
 
 5.本示例所配置的权限ohos.permission.SYSTEM_FLOAT_WINDOW为system_basic级别(
-相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)
+相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md)
 查看)，需要手动配置对应级别的权限签名(
 具体操作可查看[自动化签名方案](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/security/hapsigntool-overview.md/)。
 

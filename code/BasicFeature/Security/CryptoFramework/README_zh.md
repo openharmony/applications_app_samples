@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例使用[@ohos.security.cryptoFramework](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-cryptoFramework.md)
+本示例使用[@ohos.security.cryptoFramework](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md)
 相关接口实现了对文本文件的加解密、签名验签操作。
 
 实现场景如下：
@@ -74,23 +74,23 @@ entry/src/main/ets/
 
 * 对文本文件加密：在[Encrypt.ets](entry/src/main/ets/tab/Encrypt.ets)
   文件中依次点击打开文件、选择密钥，通过filePicker选择明文文本文件和密钥文件，点击加密按钮，调用加密函数实现对文本内容进行加密，并将密文文件通过filePicker保存。
-  需要生成密钥文本文件时，可以点击随机生成AES密钥，通过调用[cryptoFramework.symKeyGenerator](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-cryptoFramework.md#symkeygenerator)
+  需要生成密钥文本文件时，可以点击随机生成AES密钥，通过调用[cryptoFramework.symKeyGenerator](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#symkeygenerator)
   生成用于加密的AES密钥，并通过filePicker保存密钥文本文件。
-  对消息加密的过程中采用[cryptoFramework.Cipher](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-cryptoFramework.md#cipher)
+  对消息加密的过程中采用[cryptoFramework.Cipher](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cipher)
   完成加密操作。
 * 对文本文件解密：在[Decrypt.ets](entry/src/main/ets/tab/Decrypt.ets)
   文件中依次点击打开文件、选择密钥，通过filePicker选择密文文本文件和密钥文件，点击解密按钮，调用解密函数实现对文本内容进行解密，并将明文文件通过filePicker保存。
-  对消息解密的过程中采用[cryptoFramework.Cipher](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-cryptoFramework.md#cipher)
+  对消息解密的过程中采用[cryptoFramework.Cipher](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cipher)
   完成解密操作。
 * 对文本文件签名：在[Sign.ets](entry/src/main/ets/tab/Sign.ets)
   文件中依次点击打开文件、选择密钥，通过filePicker选择待签名文本文件和密钥文件，点击签名按钮，调用签名函数实现对文本内容进行加密，并将签名文件通过filePicker保存。
-  需要生成密钥文本文件时，可以点击随机生成RSA密钥，通过调用[cryptoFramework.asyKeyGenerator](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-cryptoFramework.md#asykeygenerator)
+  需要生成密钥文本文件时，可以点击随机生成RSA密钥，通过调用[cryptoFramework.asyKeyGenerator](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#asykeygenerator)
   生成用于签名的RSA密钥，并通过filePicker保存密钥文本文件。
-  对消息签名的过程中采用[cryptoFramework.Sign](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-cryptoFramework.md#sign)
+  对消息签名的过程中采用[cryptoFramework.Sign](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#sign)
   完成加密操作。
 * 对文本文件验签：在[Verify.ets](entry/src/main/ets/tab/Verify.ets)
   文件中依次点击打开文件、选择密钥、选择签名文件，通过filePicker选择密文文本文件、密钥文件和签名文件，点击验签按钮，调用验签函数实现对文本内容进行验签，并显示验签结果。
-  对消息验签的过程中采用[cryptoFramework.Verify](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-cryptoFramework.md#verify)
+  对消息验签的过程中采用[cryptoFramework.Verify](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#verify)
   完成验签操作。
 
 ### 相关权限
@@ -99,11 +99,11 @@ entry/src/main/ets/
 
 ### 依赖
 
-* filePicker文件选择器[@ohos.file.picker](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-picker.md)
+* filePicker文件选择器[@ohos.file.picker](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-picker.md)
 
-* 文件管理[@ohos.file.fs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-fs.md)
+* 文件管理[@ohos.file.fs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-fs.md)
 
-* 应用上下文Context[@ohos.app.ability.common](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-ability-common.md)
+* 应用上下文Context[@ohos.app.ability.common](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-common.md)
 
 ### 约束与限制
 
