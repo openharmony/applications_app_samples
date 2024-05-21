@@ -122,7 +122,7 @@ struct nodeLight {
 
           this.radianceImg1 = await rf.createImage({
             name: "radianceImg1",
-            uri: $rawfile("gltf/Environment/glTF/images/quarry_02_2k_radiance(spec).ktx")
+            uri: $rawfile("gltf/Environment/glTF/images/quarry_02_2k_radiance.ktx")
           });
 
           this.scene.environment.radianceImage = this.radianceImg1;
