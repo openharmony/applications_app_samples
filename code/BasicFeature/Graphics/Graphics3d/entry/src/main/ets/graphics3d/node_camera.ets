@@ -24,7 +24,7 @@ let clearColorFlag: number = 0;
 
 @Entry
 @Component
-struct node_geometry {
+struct nodeCamera {
   scene: scene3d.Scene | null = null;
   @State sceneOpt: SceneOptions | null = null;
   cam: scene3d.Camera | null = null;
@@ -32,7 +32,6 @@ struct node_geometry {
   @State farPlaneValue: number = 100;
   @State tonemapExposure: number = 1;
 
-  //  scene:Nullable<scene3D.Scene>;
   onPageShow(): void {
     this.init();
   }
@@ -47,7 +46,7 @@ struct node_geometry {
   }
 
   init(): void {
-    if (this.scene == null) {
+    if (this.scene === null) {
       scene3d.Scene.load($rawfile("gltf/DamagedHelmet/glTF/DamagedHelmet.gltf"))
         .then(async (result: scene3d.Scene) => {
           this.scene = result;
@@ -101,15 +100,15 @@ struct node_geometry {
           const FOV_1: number = 1;
           const FOV_2: number = 2;
           fovFlag = ++fovFlag % FOV_COUNT;
-          if (fovFlag == FOV_0) {
+          if (fovFlag === FOV_0) {
             let degree = 60; // 60 degree
             this.cam.fov = degree *RADIAN;
           }
-          else if (fovFlag == FOV_1) {
+          else if (fovFlag === FOV_1) {
             let degree = 90; // 90 degree
             this.cam.fov = degree * RADIAN;
           }
-          else if (fovFlag == FOV_2) {
+          else if (fovFlag === FOV_2) {
             let degree = 45; // 45 degree
             this.cam.fov = degree * RADIAN;
           }
@@ -127,7 +126,7 @@ struct node_geometry {
             .showTips(false)
             .onChange((value: number, mode: SliderChangeMode) => {
               this.nearPlaneValue = value;
-              if (mode == SliderChangeMode.End) {
+              if (mode === SliderChangeMode.End) {
                 if (!this.scene || !this.cam) {
                   return;
                 }
@@ -151,7 +150,7 @@ struct node_geometry {
             .showTips(false)
             .onChange((value: number, mode: SliderChangeMode) => {
               this.farPlaneValue = value;
-              if (mode == SliderChangeMode.End) {
+              if (mode === SliderChangeMode.End) {
                 if (!this.scene || !this.cam) {
                   return;
                 }
@@ -180,11 +179,11 @@ struct node_geometry {
           const TONE_MAPPING_1: number = 1;
           const TONE_MAPPING_2: number = 2;
           TonemapTypeFlag = ++TonemapTypeFlag % TONE_MAPPING_COUNT;
-          if (TonemapTypeFlag == TONE_MAPPING_0) {
+          if (TonemapTypeFlag === TONE_MAPPING_0) {
             type = scene3d.ToneMappingType.ACES;
-          } else if (TonemapTypeFlag == TONE_MAPPING_1) {
+          } else if (TonemapTypeFlag === TONE_MAPPING_1) {
             type = scene3d.ToneMappingType.ACES_2020;
-          } else if (TonemapTypeFlag == TONE_MAPPING_2) {
+          } else if (TonemapTypeFlag === TONE_MAPPING_2) {
             type = scene3d.ToneMappingType.FILMIC;
           }
           this.cam.postProcess = {
@@ -207,7 +206,7 @@ struct node_geometry {
             .showTips(false)
             .onChange((value: number, mode: SliderChangeMode) => {
               this.tonemapExposure = value;
-              if (mode == SliderChangeMode.End) {
+              if (mode === SliderChangeMode.End) {
                 if (!this.scene || !this.cam || !this.cam.postProcess || !this.cam.postProcess.toneMapping) {
                   return;
                 }
@@ -234,13 +233,13 @@ struct node_geometry {
           const CLEAR_COLOR_2: number = 2;
 
           clearColorFlag = ++clearColorFlag % CLEAR_COLOR_COUNT;
-          if (clearColorFlag == CLEAR_COLOR_0) {
+          if (clearColorFlag === CLEAR_COLOR_0) {
             this.cam.clearColor = null;
           }
-          else if (clearColorFlag == CLEAR_COLOR_1) {
+          else if (clearColorFlag === CLEAR_COLOR_1) {
             this.cam.clearColor = { r: 0, g: 0, b: 0, a: 0.0 };
           }
-          else if (clearColorFlag == CLEAR_COLOR_2) {
+          else if (clearColorFlag === CLEAR_COLOR_2) {
             this.cam.clearColor = { r: 1, g: 0, b: 0, a: 1 };
           }
         }).id('clear_color');

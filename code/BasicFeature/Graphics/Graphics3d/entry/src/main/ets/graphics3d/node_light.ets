@@ -87,7 +87,7 @@ function lookAt(cam: scene3d.Node, eye: scene3d.Vec3, center: scene3d.Vec3, up: 
 
 @Entry
 @Component
-struct node_geometry {
+struct nodeLight {
   scene: scene3d.Scene | null = null;
   @State sceneOpt: SceneOptions | null = null;
   cam: scene3d.Camera | null = null;
@@ -108,7 +108,7 @@ struct node_geometry {
   }
 
   init(): void {
-    if (this.scene == null) {
+    if (this.scene === null) {
       scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"))
         .then(async (result: scene3d.Scene) => {
           this.scene = result;

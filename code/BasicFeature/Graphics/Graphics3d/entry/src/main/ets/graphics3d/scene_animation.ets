@@ -20,7 +20,7 @@ import Logger from '../util/Logger';
 
 @Entry
 @Component
-struct node_geometry {
+struct sceneAnimation {
   scene: scene3d.Scene | null = null;
   @State sceneOpt: SceneOptions | null = null;
   cam: scene3d.Camera | null = null;
@@ -65,7 +65,7 @@ struct node_geometry {
         this.progressValue = this.scene.animations[0].progress;
       }
     }
-    if (this.scene == null) {
+    if (this.scene === null) {
       scene3d.Scene.load($rawfile("gltf/BrainStem/glTF/BrainStem.gltf"))
         .then(async (result: scene3d.Scene) => {
           this.scene = result;

@@ -20,7 +20,7 @@ import Logger from '../util/Logger';
 
 @Entry
 @Component
-struct node_geometry {
+struct sceneShader {
   scene: scene3d.Scene | null = null;
   @State sceneOpt: SceneOptions | null = null;
   rf: scene3d.SceneResourceFactory | null = null;
@@ -89,7 +89,7 @@ struct node_geometry {
         (this.material.colorShader.inputs["time"] as number) = this.step;
       }
     }
-    if (this.scene == null) {
+    if (this.scene === null) {
       scene3d.Scene.load($rawfile("gltf/Cube/glTF/Cube.gltf"))
         .then(async (result: scene3d.Scene) => {
           this.scene = result;

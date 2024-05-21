@@ -18,7 +18,7 @@ import router from '@ohos.router';
 import Logger from '../util/Logger';
 @Entry
 @Component
-struct node_base {
+struct nodeBase {
   scene: scene3d.Scene | null = null;
   @State sceneOpt: SceneOptions | null = null;
   cam: scene3d.Camera | null = null;
@@ -57,7 +57,7 @@ struct node_base {
   }
 
   init(): void {
-    if (this.scene == null) {
+    if (this.scene === null) {
       scene3d.Scene.load($rawfile("gltf/DamagedHelmet/glTF/DamagedHelmet.gltf")).then(async (result: scene3d.Scene) => {
         this.scene = result;
         this.sceneOpt = { scene: this.scene, modelType: ModelType.SURFACE } as SceneOptions;
@@ -125,7 +125,7 @@ struct node_base {
             .showTips(false)
             .onChange((value: number, mode: SliderChangeMode) => {
               this.xAxis = value;
-              if (mode == SliderChangeMode.End) {
+              if (mode === SliderChangeMode.End) {
                 if (!this.node) {
                   return;
                 }

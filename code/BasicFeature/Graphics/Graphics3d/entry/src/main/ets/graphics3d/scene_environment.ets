@@ -34,7 +34,7 @@ function GenRandom(): number {
 
 @Entry
 @Component
-struct node_geometry {
+struct sceneEnvironment {
   scene: scene3d.Scene | null = null;
   @State sceneOpt: SceneOptions | null = null;
   cam: scene3d.Camera | null = null;
@@ -58,7 +58,7 @@ struct node_geometry {
   }
 
   init(): void {
-    if (this.scene == null) {
+    if (this.scene === null) {
       scene3d.Scene.load($rawfile("gltf/DamagedHelmet/glTF/DamagedHelmet.gltf"))
         .then(async (result: scene3d.Scene) => {
           this.scene = result;
@@ -121,19 +121,19 @@ struct node_geometry {
           const ENV_TYPE_2: number = 2;
           const ENV_TYPE_3: number = 3;
           typeFlag = ++typeFlag  % ENV_TYPE_COUNT;
-          if (typeFlag == ENV_TYPE_0) {
+          if (typeFlag === ENV_TYPE_0) {
             this.scene.environment.backgroundType = scene3d.EnvironmentBackgroundType.BACKGROUND_NONE;
             this.cam.clearColor = { r: 0, g: 0, b: 0, a: 0.0 };
           }
-          else if (this.envImg1 && typeFlag == ENV_TYPE_1) {
+          else if (this.envImg1 && typeFlag === ENV_TYPE_1) {
             this.scene.environment.backgroundType = scene3d.EnvironmentBackgroundType.BACKGROUND_IMAGE;
             this.scene.environment.environmentImage = this.envImg1;
           }
-          else if (this.envImg2 && typeFlag == ENV_TYPE_2) {
+          else if (this.envImg2 && typeFlag === ENV_TYPE_2) {
             this.scene.environment.backgroundType = scene3d.EnvironmentBackgroundType.BACKGROUND_CUBEMAP;
             this.scene.environment.environmentImage = this.envImg2;
           }
-          else if (this.envImg3 && typeFlag == ENV_TYPE_3) {
+          else if (this.envImg3 && typeFlag === ENV_TYPE_3) {
             this.scene.environment.backgroundType = scene3d.EnvironmentBackgroundType.BACKGROUND_EQUIRECTANGULAR;
             this.scene.environment.environmentImage = this.envImg3;
           }
