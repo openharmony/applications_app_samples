@@ -4,7 +4,7 @@
 
 应用接入数据备份恢复需要通过配置BackupExtensionAbility实现。
 
-BackupExtensionAbility，是[Stage模型](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/stage-model-development-overview.md)中扩展组件[ExtensionAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/extensionability-overview.md)的派生类。开发者可以通过修改配置文件定制备份恢复框架的行为，包括是否允许备份恢复，备份哪些文件等。
+BackupExtensionAbility，是[Stage模型](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/application-models/stage-model-development-overview.md)中扩展组件[ExtensionAbility](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/application-models/extensionability-overview.md)的派生类。开发者可以通过修改配置文件定制备份恢复框架的行为，包括是否允许备份恢复，备份哪些文件等。
 
 本sample主要给备份流程提供应用，用于生成数据和显示数据。
 
