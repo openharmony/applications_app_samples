@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例主要展示了音频的相关功能，使用[@ohos.multimedia.audio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-audio.md)等接口实现音频的发声设备的切换与查询、音频焦点、音效的查询与设置以及音频录制等功能
+本示例主要展示了音频的相关功能，使用[@ohos.multimedia.audio](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-audio-kit/js-apis-audio.md)等接口实现音频的发声设备的切换与查询、音频焦点、音效的查询与设置以及音频录制等功能
 
 ### 效果预览
 
@@ -93,8 +93,8 @@ library/
     * 对每个render对象都监听audioRenderer.on('stateChange'),收到回调时，说明当前renderer对象的状态被改变，据此更新UI状态
     * 使用audioRenderer.start()方法和audioRenderer.write()进行音频的播放处理，写入字节的长度由audioRenderer.getBufferSize()接口来决定
     * 使用audioRenderer.stop()进行音频的停止播放处理
-    * 使用resourceManager.getRawFd()接口加载工程里面的resources\rawfile下面的音频文件资源获取对应的文件描述对象fileDescriptor,接口参考：[@ohos.resourceManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-resource-manager.md#getrawfd9)
-    * 根据文件描述对象，使用fs.read()接口进行音频数据读取，读取到的结果用于audioRenderer.write()的写入,接口参考：[@ohos.file.fs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-fs.md)
+    * 使用resourceManager.getRawFd()接口加载工程里面的resources\rawfile下面的音频文件资源获取对应的文件描述对象fileDescriptor,接口参考：[@ohos.resourceManager](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/apis/js-apis-resource-manager.md)
+    * 根据文件描述对象，使用fs.read()接口进行音频数据读取，读取到的结果用于audioRenderer.write()的写入,接口参考：[@ohos.file.fs](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-fs.md)
 
 * 预置音效查询功能都封装在PresetEffect, 源码参考：[PresetEffect.ets](entry/src/main/ets/pages/PresetEffect.ets)
     *  在选择框中的类型和场景映射为数字后, 作为之后调用的getAudioEffectInfoArray(content type:number, stream usage:number)的两个入参
@@ -112,7 +112,7 @@ library/
 
 * 音频录制-普通录制功能都封装在NormalCapturer,源码参考：[NormalCapturer.ets](entry/src/main/ets/pages/NormalCapturer.ets)
     * 创建一个麦克风源的capturer对象用于录音
-    * 点击开始录制时，调用capturer对象的start方法，同时调用capturer的read读取录音数据，并通过使用fs.write接口将录音数据写入到文件中去存储起来，接口参考：[@ohos.file.fs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-fs.md)，同时利用setTimeout开启一个计时器，记录录音时间。
+    * 点击开始录制时，调用capturer对象的start方法，同时调用capturer的read读取录音数据，并通过使用fs.write接口将录音数据写入到文件中去存储起来，接口参考：[@ohos.file.fs](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-fs.md)，同时利用setTimeout开启一个计时器，记录录音时间。
     * 点击暂停，调用capturer.stop(),同时文件写入也停止
     * 点击继续，再次调用capturer.start(),capturer.read()以及继续将录音数据写入到文件中去
     * 点击停止,调用capturer.stop(),同时文件写入也停止，录音结果生成成功，然后创建一个audioRenderer对象用于播放录音结果
@@ -134,7 +134,7 @@ library/
 
 音频录制涉及的权限包括：
 
-1.允许应用使用麦克风：[ohos.permission.MICROPHONE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionmicrophone)
+1.允许应用使用麦克风：[ohos.permission.MICROPHONE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionmicrophone)
 
 ### 依赖
 

@@ -75,7 +75,7 @@
 ### 依赖
 
 1. windows上启动socket服务端，模拟消息转发服务器[服务器目录](./server_python)
-2. 需要使用[音频通话示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/VoiceCallDemo)启动语音通话功能
+2. 需要使用[音频通话示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Media/VoiceCallDemo)启动语音通话功能
 
 ### 约束与限制
 

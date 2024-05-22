@@ -71,8 +71,8 @@ advertiser/src/main/ets/
 
 ### 具体实现
 
-1. 首页扫描蓝牙心率设备：使用[bluetooth](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/reference/apis/js-apis-bluetooth.md/) 来实现蓝牙的开启和BLE的扫描，然后再使用一个List显示扫描到BLE心率设备，点击连接按钮可以连接上对应的心率设备。
-2. 实时心率图页：使用[bluetooth](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/reference/apis/js-apis-bluetooth.md/) 来接收心率设备发送的心率数据，并使用画布[Canvas](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/reference/arkui-ts/ts-components-canvas-canvas.md/) 来绘制实时心率图，点击断开连接可以断开与当前心率设备的连接。
+1. 首页扫描蓝牙心率设备：使用[bluetooth](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth.md) 来实现蓝牙的开启和BLE的扫描，然后再使用一个List显示扫描到BLE心率设备，点击连接按钮可以连接上对应的心率设备。
+2. 实时心率图页：使用[bluetooth](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth.md) 来接收心率设备发送的心率数据，并使用画布[Canvas](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-components-canvas-canvas.md) 来绘制实时心率图，点击断开连接可以断开与当前心率设备的连接。
 
 ### 相关权限
 
@@ -93,7 +93,7 @@ advertiser/src/main/ets/
 1. 本示例仅支持标准系统上运行。
 2. 本示例为Stage模型，从API version 9开始支持。SDK版本号：3.2.12.1 Release，镜像版本号：OpenHarmony 3.2.12.2。
 3. 本示例需要使用DevEco Studio 3.1 Release (Build Version: 3.1.0.500, built on April 28, 2023)编译运行。
-4. 本示例所配置的权限包含system_basic级别（相关权限级别可通过[权限定义列表]([OpenAtom OpenHarmony](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/permission-list.md/)查看），需要手动配置对应级别的权限签名或者使用ACL使能（具体操作可查看[自动化签名方案](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/)）。
+4. 本示例所配置的权限包含system_basic级别（相关权限级别可通过[权限定义列表]([OpenAtom OpenHarmony](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md)查看），需要手动配置对应级别的权限签名或者使用ACL使能（具体操作可查看[自动化签名方案](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-auto-configuring-signature-information-0000001271659465)）。
 
 ### 下载
 

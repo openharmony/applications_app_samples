@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例使用[Vibrator模块](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-vibrator.md)展示了振感定制化的基本功能，包括振感与音效、视频协同振动等。
+本示例使用[Vibrator模块](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-vibrator.md)展示了振感定制化的基本功能，包括振感与音效、视频协同振动等。
 
 ### 效果预览
 | 首页                                     | 我的                                    | 视频                                       |
@@ -47,11 +47,11 @@ entry/src/main/ets/
 + 振动强度设置：可以选择振动的强度等级，源码参考[MyInfoMoModule.ets](entry/src/main/ets/module/MyInfoModule.ets)；
 + 振效库：点击振效库中各项，会调用媒体库AVPlayer播放音效，并同时调用vibrator模块startVibration接口启动振动，源码参考[DisplayModule.ets](entry/src/main/ets/module/DisplayModule.ets)以及component目录下振效库场景，比如[Battle.ets](entry/src/main/ets/component/Battle.ets)等;
 + 振感视频：使用Video控件全屏播放视频，在开始播放同时调用vibrator模块startVibration接口启动振动，源码参考[VideoPlayModule.ets](entry/src/main/ets//module/VideoPlayModule.ets)；
-+ 自定义振动：使用[Vibrator模块](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-vibrator.md)的startVibration方法播放应用内置的振动资源文件，代码参考[Util.ets](entry/src/main/ets/module/Util.ets);
++ 自定义振动：使用[Vibrator模块](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-vibrator.md)的startVibration方法播放应用内置的振动资源文件，代码参考[Util.ets](entry/src/main/ets/module/Util.ets);
 
 ### 相关权限
 
-[ohos.permission.VIBRATE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionvibrate)
+[ohos.permission.VIBRATE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionvibrate)
 
 ### 依赖
 不涉及
