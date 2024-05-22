@@ -114,6 +114,9 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/BasicFeature/Security/Asset/screenshots/save.jpeg" desc="screenshot"/>
                 <filteritem type="filepath" name="code/BasicFeature/Security/Asset/screenshots/batch_query_result.jpeg" desc="screenshot"/>
                 <filteritem type="filepath" name="code/BasicFeature/Security/Asset/screenshots/query.jpeg" desc="screenshot"/>
+                <filteritem type="filepath" name="code\BasicFeature\Media\Audio\screenshots\device\index.png" desc="screenshot"/>
+                <filteritem type="filepath" name="code\BasicFeature\Media\Audio\screenshots\device\VolumePanel.png" desc="screenshot"/>
+                <filteritem type="filepath" name="code\BasicFeature\Media\Audio\screenshots\device\VolumePanel_ChangeVolumLevel.png" desc="screenshot"/>
                 <filteritem type="filepath" name="ability/DistributedMusicPlayer/entry/src/main/resources/rawfile/Homey.mp3" desc="Provided by the UX team."/>
                 <filteritem type="filepath" name="ability/DistributedMusicPlayer/entry/src/main/resources/rawfile/Technology.mp3" desc="Provided by the UX team."/>
                 <filteritem type="filepath" name="UI/JsAnimation/entry/src/main/js/default/common/animator/show.mp4" desc="Provided by the UX team."/>
@@ -659,6 +662,42 @@ Note:If the text contains special characters, please escape them according to th
         <filteritem type="filepath" name=" code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic/entry/src/main/resources/base/media/select.png" desc="Provided by code/BasicFeature/DeviceManagement/Vibrator"/>
         <filteritem type="filepath" name="code/BasicFeature/Graphics/DisplaySync/screenshots/device/animator.jpg" desc="Provided by code/BasicFeature/Graphics/DisplaySync"/>
 		<filteritem type="filepath" name="code/Solutions/Social/GrapeSquare/feature/authorizedControl/src/main/resources/base/media/photo120.jpg" desc="Provided by code/Solutions/Social/GrapeSquare"/>
+                <filteritem type="filepath" name="code/BasicFeature/WindowManagement/WindowManage/screenshots/devices/getPropertiesOfSystemBar.jpg" desc="Provided by code/BasicFeature/WindowManagement/WindowManage"/>
+                <filteritem type="filepath" name="code/BasicFeature/WindowManagement/WindowManage/screenshots/devices/mainWindow.jpg" desc="Provided by code/BasicFeature/WindowManagement/WindowManage"/>
+                <filteritem type="filepath" name="code/BasicFeature/WindowManagement/WindowManage/screenshots/devices/setTouchableAreas.jpg" desc="Provided by code/BasicFeature/WindowManagement/WindowManage"/>
+                <filteritem type="filepath" name="code/BasicFeature/WindowManagement/WindowManage/screenshots/devices/startAbility.png" desc="Provided by code/BasicFeature/WindowManagement/WindowManage"/>
+                <filteritem type="filepath" name="code/BasicFeature/WindowManagement/WindowManage/screenshots/devices/subWindow.png" desc="Provided by code/BasicFeature/WindowManagement/WindowManage"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/gltf/BrainStem/glTF/BrainStem0.bin" desc="Provided by code/BasicFeature/Graphics/Graphics3d"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/gltf/BrainStem/glTF-Binary/BrainStem.glb" desc="Provided by code/BasicFeature/Graphics/Graphics3d"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/gltf/BrainStem/glTF-Draco/BrainStem0.bin" desc="Provided by code/BasicFeature/Graphics/Graphics3d"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/gltf/BrainStem/glTF-Meshopt/BrainStem.bin" desc="Provided by code/BasicFeature/Graphics/Graphics3d"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/gltf/Cube/glTF/Cube.bin" desc="Provided by code/BasicFeature/Graphics/Graphics3d"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/gltf/Cube/glTF/Cube_BaseColor.png" desc="Provided by code/BasicFeature/Graphics/Graphics3d"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/gltf/Cube/glTF/Cube_MetallicRoughness.png" desc="Provided by code/BasicFeature/Graphics/Graphics3d"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/gltf/CubeWithFloor/glTF/cube.bin" desc="Provided by code/BasicFeature/Graphics/Graphics3d"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/gltf/DamagedHelmet/glTF/DamagedHelmet.bin" desc="Provided by code/BasicFeature/Graphics/Graphics3d"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/gltf/DamagedHelmet/glTF/Default_albedo.jpg" desc="Provided by code/BasicFeature/Graphics/Graphics3d"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/gltf/DamagedHelmet/glTF/Default_AO.jpg" desc="Provided by code/BasicFeature/Graphics/Graphics3d"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/gltf/DamagedHelmet/glTF/Default_emissive.jpg" desc="Provided by code/BasicFeature/Graphics/Graphics3d"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/gltf/DamagedHelmet/glTF/Default_metalRoughness.jpg" desc="Provided by code/BasicFeature/Graphics/Graphics3d"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/gltf/DamagedHelmet/glTF/Default_normal.jpg" desc="Provided by code/BasicFeature/Graphics/Graphics3d"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/gltf/Environment/glTF/images/quarry_02_2k_radiance.ktx" desc="Provided by code/BasicFeature/Graphics/Graphics3d"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/gltf/Environment/glTF/images/quarry_02_2k_skybox.ktx" desc="Provided by code/BasicFeature/Graphics/Graphics3d"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/shaders/custom_shader/custom_material_sample.frag.spv.lsb" desc="Provided by code/BasicFeature/Graphics/Graphics3d"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/shaders/custom_shader/custom_material_sample.frag.spv" desc="Provided by code/BasicFeature/Graphics/Graphics3d"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/screenshots/compile_result.png" desc="Provided by code/BasicFeature/Graphics/Graphics3d"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/screenshots/ohosTest.png" desc="Provided by code/BasicFeature/Graphics/Graphics3d"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/screenshots/rk/main_page.jpg" desc="Provided by code/BasicFeature/Graphics/Graphics3d"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/screenshots/rk/node_base.jpg" desc="Provided by code/BasicFeature/Graphics/Graphics3d"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/screenshots/rk/node_camera.jpg" desc="Provided by code/BasicFeature/Graphics/Graphics3d"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/screenshots/rk/node_container.jpg" desc="Provided by code/BasicFeature/Graphics/Graphics3d"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/screenshots/rk/node_light.jpg" desc="Provided by code/BasicFeature/Graphics/Graphics3d"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/screenshots/rk/scene_animation.jpg" desc="Provided by code/BasicFeature/Graphics/Graphics3d"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/screenshots/rk/scene_environment.jpg" desc="Provided by code/BasicFeature/Graphics/Graphics3d"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/screenshots/rk/scene_shader.jpg" desc="Provided by code/BasicFeature/Graphics/Graphics3d"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/AppScope/resources/base/media/app_icon.png" desc="Provided by code/BasicFeature/Graphics/Graphics3d"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/BasicFeature/Graphics/Graphics3d"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/base/media/icon.png" desc="Provided by code/BasicFeature/Graphics/Graphics3d"/>
             </filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加License头"/>
@@ -691,6 +730,19 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/SystemFeature/Security/DLP/screenshots/haps/FileEdit.tgz" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/SystemFeature/Media/VoiceCallDemo/entry/src/main/resources/rawfile/wechat_voice_ring.mp3" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/BasicFeature/DataManagement/UDMF/UniformTypeDescriptor/UTDType/entry/src/main/resources/rawfile/arkdata/utd/utd.json5" desc="二进制文件，无需添加License头"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/gltf/BrainStem/glTF-Draco/BrainStem.gltf" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/gltf/BrainStem/glTF-Embedded/BrainStem.gltf" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/gltf/BrainStem/glTF-Meshopt/BrainStem.gltf" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/gltf/BrainStem/glTF/BrainStem.gltf" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/gltf/Cube/glTF/Cube.gltf" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/gltf/CubeWithFloor/glTF/AnimatedCube.gltf" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/gltf/DamagedHelmet/glTF/DamagedHelmet.gltf" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/gltf/Environment/glTF/Environment.gltf" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/shaders/custom_shader/custom_material_sample.frag.spv" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/shaders/custom_shader/custom_material_sample.frag.spv.gl" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/shaders/custom_shader/custom_material_sample.frag.spv.gles" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/shaders/custom_shader/custom_material_sample.frag.spv.pre" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/shaders/custom_shader/custom_material_sample.shader" desc="二进制文件，无需添加版权头"/>
             </filefilter>
             <filefilter name="copyrightPolicyFilter" desc="Copyright文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加版权头"/>
@@ -723,6 +775,19 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/SystemFeature/Security/DLP/screenshots/haps/FileEdit.tgz" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/SystemFeature/Media/VoiceCallDemo/entry/src/main/resources/rawfile/wechat_voice_ring.mp3" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/BasicFeature/DataManagement/UDMF/UniformTypeDescriptor/UTDType/entry/src/main/resources/rawfile/arkdata/utd/utd.json5" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/gltf/BrainStem/glTF-Draco/BrainStem.gltf" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/gltf/BrainStem/glTF-Embedded/BrainStem.gltf" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/gltf/BrainStem/glTF-Meshopt/BrainStem.gltf" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/gltf/BrainStem/glTF/BrainStem.gltf" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/gltf/Cube/glTF/Cube.gltf" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/gltf/CubeWithFloor/glTF/AnimatedCube.gltf" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/gltf/DamagedHelmet/glTF/DamagedHelmet.gltf" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/gltf/Environment/glTF/Environment.gltf" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/shaders/custom_shader/custom_material_sample.frag.spv" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/shaders/custom_shader/custom_material_sample.frag.spv.gl" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/shaders/custom_shader/custom_material_sample.frag.spv.gles" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/shaders/custom_shader/custom_material_sample.frag.spv.pre" desc="二进制文件，无需添加版权头"/>
+                <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/shaders/custom_shader/custom_material_sample.shader" desc="二进制文件，无需添加版权头"/>
             </filefilter>
         </filefilterlist>
     </oatconfig>

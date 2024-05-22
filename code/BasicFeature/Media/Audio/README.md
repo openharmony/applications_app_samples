@@ -6,13 +6,17 @@
 
 ### 效果预览
 
-| 主页                                     | 发声设备查询与选择页面  | 音频焦点页面 |
-|----------------------------------------|-----------------------------------------|------------------------------------------------------|
-| ![Index](screenshots/device/index.jpg) | ![PreferOutputDevice](screenshots/device/preferoutputdevice.jpeg) | ![Focus](screenshots/device/focus.jpeg) |
+| 主页                                   | 发声设备查询与选择页面  | 音频焦点页面 |
+|--------------------------------------|-----------------------------------------|------------------------------------------------------|
+| ![Index](screenshots/device/index.png)|![PreferOutputDevice](screenshots/device/preferoutputdevice.jpeg) | ![Focus](screenshots/device/focus.jpeg) |
 
 | 音效管理页面-<br>预置音效查询                                    | 音效管理页面-<br>实时音效设置             | 音频录制页面-<br>普通录制             | 音频录制页面-<br>并行录制             |
 |-----------------------------------------|----------------------------------------|----------------------------------------|----------------------------------------|
 | ![PresetEffect](screenshots/device/PresetEffect.jpg) | ![RealtimeEffect](screenshots/device/RealtimeEffect.jpg) | ![NormalCapturer](screenshots/device/normal_capturer.jpg) | ![ParallelCapturer](screenshots/device/parallel_capturer.jpg) |
+
+| 音量组件页面                                             | 音量组件页面-<br>音量面板                                                     |
+|----------------------------------------------------|---------------------------------------------------------------------|
+| ![VolumePanel](screenshots/device/VolumePanel.png) | ![VolumePanel](screenshots/device/VolumePanel_ChangeVolumLevel.png) |
 
 使用说明
 
@@ -53,6 +57,9 @@
 33. 在并行录制界面中，点击停止录制按钮，停止录制，或者超时30s会自动停止录制，停止后按钮点成不可点击状态
 34. 在并行录制界面中，录制停止后，会生成两个音频播放器，一个是麦克风的录音结果，一个是屏幕录制的结果，点击进行播放，暂停，播放结束自动停止
 35. 点击返回按按钮回到主页
+36. 在主界面点击“音量组件”按钮，进入音量组件页面
+37. 在音量组件页面，点击“音量+”或“音量-”按钮，弹出音量面板
+38. 在音量组件页面，点击左上方返回图标，回到主页
 
 ### 工程目录
 
@@ -66,6 +73,7 @@ entry/src/main/ets/
 |---|---RealtimeEffect.ets                  //音效管理页面-实时音效设置
 |---|---NormalCapturer.ets                  //音频录制-普通录制
 |---|---ParallelCapturer.ets                //音频录制-并行录制
+|---|---VolumePanel.ets                     //音量组件页面
 library/
 |---Logger.ts                               //日志打印封装
 ```
@@ -118,6 +126,9 @@ library/
     * 点击开始录制，则相继调用audioCapturerNormal.start()，audioCapturerScreen.start(),同时利用setTimeout开始计时,且还要分别调用audioCapturerNormal.read()，audioCapturerScreen.read(),以及调用fs.write将录音数据写入不同的文件
     * 点击停止录制，则相继调用audioCapturerNormal.stop()，audioCapturerScreen.stop()，同时利用clearInterval清除计时器，从而停止计时，同时也创建两个audiorenderer对象分别用于播放录音数据
     * 接下来就是分别调用两个audioRenderer对象的start,pause,stop以及fs.read等接口进行录音数据的播放，暂停，停止这些操作
+* 音量组件功能都封装在VolumePanel,源码参考：[VolumePanel.ets](entry/src/main/ets/pages/VolumePanel.ets)
+    * 调用AVVolumePanel组件创建音量面板,其中参数volumeLevel属于number类型,用于设置设备音量;参数volumeParameter属于AVVolumePanelParameter类型,用于设置音量面板的自定义参数
+    * 点击”音量+”或”音量-”按钮,会传入不同的volumeLevel，从而弹出音量面板
 
 ### 相关权限
 
