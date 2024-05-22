@@ -629,6 +629,18 @@ Note:If the text contains special characters, please escape them according to th
         <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/CustomShare/screenshots/textShare/textSharePreview.jpeg" desc="Provided by code/SystemFeature/ApplicationModels/CustomShare"/>
         <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/CustomShare/textEdit/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/ApplicationModels/CustomShare"/>
         <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/CustomShare/textShare/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/ApplicationModels/CustomShare"/>
+        <filteritem type="filepath" name="code/SystemFeature/WindowManagement/WindowManage/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/WindowManagement/WindowManage"/>
+        <filteritem type="filepath" name="code/SystemFeature/WindowManagement/WindowManage/WindowComponent/src/main/resources/base/media/FullVideo.png" desc="Provided by code/SystemFeature/WindowManagement/WindowManage"/>
+        <filteritem type="filepath" name="code/SystemFeature/WindowManagement/WindowManage/WindowComponent/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/WindowManagement/WindowManage"/>
+        <filteritem type="filepath" name="code/SystemFeature/WindowManagement/WindowManage/WindowComponent/src/main/resources/rawfile/video.mp4" desc="Provided by code/SystemFeature/WindowManagement/WindowManage"/>
+        <filteritem type="filepath" name="code/SystemFeature/WindowManagement/WindowManage/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/WindowManagement/WindowManage"/>
+        <filteritem type="filepath" name="code/SystemFeature/WindowManagement/WindowManage/entry/src/main/resources/rawfile/video.mp4" desc="Provided by code/SystemFeature/WindowManagement/WindowManage"/>
+        <filteritem type="filepath" name="code/SystemFeature/WindowManagement/WindowManage/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/WindowManagement/WindowManage"/>
+        <filteritem type="filepath" name="code/SystemFeature/WindowManagement/WindowManage/screenshots/devices/getPropertiesOfSystemBar.jpg" desc="Provided by code/SystemFeature/WindowManagement/WindowManage"/>
+        <filteritem type="filepath" name="code/SystemFeature/WindowManagement/WindowManage/screenshots/devices/mainWindow.jpg" desc="Provided by code/SystemFeature/WindowManagement/WindowManage"/>
+        <filteritem type="filepath" name="code/SystemFeature/WindowManagement/WindowManage/screenshots/devices/setTouchableAreas.jpg" desc="Provided by code/SystemFeature/WindowManagement/WindowManage"/>
+        <filteritem type="filepath" name="code/SystemFeature/WindowManagement/WindowManage/screenshots/devices/startAbility.png" desc="Provided by code/SystemFeature/WindowManagement/WindowManage"/>
+        <filteritem type="filepath" name="code/SystemFeature/WindowManagement/WindowManage/screenshots/devices/subWindow.png" desc="Provided by code/SystemFeature/WindowManagement/WindowManage"/>
         <filteritem type="filepath" name="code/BasicFeature/Native/Audio/entry/src/main/resources/base/media/pic_Audiovivid.png" desc="Provided by code/BasicFeature/Native/Audio"/>
         <filteritem type="filepath" name="code/BasicFeature/Native/Audio/screenshots/device/AudioVivid.jpg" desc="Provided by code/BasicFeature/Native/Audio"/>
         <filteritem type="filepath" name="code/BasicFeature/Native/Audio/screenshots/device/index.jpg" desc="Provided by code/BasicFeature/Native/Audio"/>
