@@ -22,10 +22,3 @@
 | 验证 嵌套测试套是否正常执行                   |	设备正常运行|		|嵌套测试套正常执行|Pass|
 | 验证回调函数中断言功能正常执行                  |	设备正常运行|		|回调函数中断言功能正常执行|Pass|
 | 验证自定义断言函数正常执行                    |	设备正常运行|		|自定义断言函数正常执行|Pass|
-| 验证afterReturnNothing是否函数正常执行       |	设备正常运行|		|afterReturnNothing函数正常执行|Pass|
-| 验证afterReturn函数是否正常执行              |	设备正常运行|		|afterReturn函数正常执行|Pass|
-| 验证afterThrow函数是否正常执行               |	设备正常运行|		|afterThrow函数正常执行|Pass|
-| 验证clear函数是否正常执行                  |	设备正常运行|		|clear函数正常执行|Pass|
-| 验证ignoreMock函数是否正常执行                    |	设备正常运行|		|ignoreMock函数正常执行|Pass|
-| 验证atLeast函数是否正常执行                    |	设备正常运行|		|atLeast函数正常执行|Pass|
-| 验证times函数是否正常执行                    |	设备正常运行|		|times函数正常执行|Pass|
