@@ -30,10 +30,10 @@ import windowAttr from './operationExampleTest/window/WindowAttr.test'
 export default function testsuite() {
   basicExampleTest();
   findTest();
-   click();
-   input();
-   screenCap();
-   mouse();
+  click();
+  input();
+  screenCap();
+  mouse();
   fling();
   swipe();
   pinch();
