@@ -94,7 +94,7 @@ struct Index {
       }
     } else {
       const hasSymbol: boolean = this.expression.indexOf('+') !== -1 || this.expression.indexOf('-') !== -1 ||
-        this.expression.indexOf('*') !== -1 || this.expression.indexOf('/') !== -1
+        this.expression.indexOf('*') !== -1 || this.expression.indexOf('/') !== -1;
       if (this.expression && !this.result && !hasSymbol) {
         this.expression = '';
       }
