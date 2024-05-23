@@ -43,7 +43,7 @@ export default class MainAbility extends UIAbility {
         Logger.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
         windowClass = data;
         let systemBarProperties = {
-          statusBarColor:"#f1f3f5"
+          statusBarColor: "#f1f3f5"
         };
         windowClass.setWindowSystemBarProperties(systemBarProperties, (err) => {
           if (err.code) {
@@ -51,6 +51,10 @@ export default class MainAbility extends UIAbility {
             return;
           }
           Logger.info('Succeeded in setting the system bar properties.');
+        })
+        let bottomAvoidArea: number = windowClass.getWindowAvoidArea(window.AvoidAreaType.TYPE_NAVIGATION_INDICATOR).bottomRect.height;
+        windowClass.on('keyboardHeightChange', (data: number) => {
+          AppStorage.setOrCreate('keyboardHeight', data - bottomAvoidArea);
         })
       })
     } catch (exception) {
