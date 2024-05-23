@@ -19,7 +19,7 @@ import param from './paramExampleTest/paramExample.test'
 import custom from './customExampleTest/customExample.test'
 import cover from './coverExampleTest/coverExample.test'
 import callBack from './callBackExampleTest/callBackExample.test'
-import customAssertTest from './customEexpect/customEexpect.test'
+import customAssertTest from './customEexpect/customAssert.test'
 export default function testsuite() {
   basicTest();
   assert();
