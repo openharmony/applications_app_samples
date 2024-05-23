@@ -13,14 +13,10 @@
 * limitations under the License.
 */
 
-import Want from '@ohos.app.ability.Want';
 import { describe, it, expect, TestType } from '@ohos/hypium'
-import { Driver, ON } from '@ohos.UiTest'
-import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
-
+import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
+import { UIAbility, Want } from '@kit.AbilityKit';
 import Logger from '../../util/Logger';
-
 const delegator = abilityDelegatorRegistry.getAbilityDelegator()
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const TAG = 'basicExampleTest'
@@ -46,10 +42,8 @@ export default function basicExampleTest() {
       await delegator.startAbility(want);
       await sleep(1000);
       // check top display ability
-      await delegator.getCurrentTopAbility().then((ability: UIAbility)=>{
-        console.info('get top ability');
-        expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
-      })
+      let ability: UIAbility = await delegator.getCurrentTopAbility();
+      expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
       // ui test code
       // init driver
       let  driver = await Driver.create();

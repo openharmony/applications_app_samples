@@ -13,14 +13,12 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, it, expect, TestType } from '@ohos/hypium'
-import UIAbility from '@ohos.app.ability.UIAbility';
-import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import { Driver, ON} from '@ohos.UiTest'
-import Want from '@ohos.app.ability.Want';
-
+import { describe, it, expect, TestType, beforeAll } from '@ohos/hypium'
+import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
+import { UIAbility, Want } from '@kit.AbilityKit';
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
+
 const WAIT_UI_READYMS = 1000;
 let ab: UIAbility;
 let test: string = '中文测试';
@@ -82,9 +80,9 @@ export default function InputEventTest() {
      * @tc.number:InputEventTest_002
      * @tc.name: clickEventTest_Input_zh
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 检测uitest inputText 输入中文功能测试
+     * @tc.desc: 检测uitest 指定坐标位置inputText输入功能测试
      */
-    it('clickEventTest_Input_driver',TestType.FUNCTION, async (done: Function) => {
+    it('clickEventTest_Input_center',TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create();
       await driver.delayMs(WAIT_UI_READYMS);
       let input = await driver.findComponent(ON.type('TextInput'));

@@ -17,7 +17,7 @@
 @Component
 struct ScreenExample {
   @State  myscale: number = 1
-
+  @State  myscaleOut: number = 1
   build() {
     Column() {
       Text(this.myscale.toString())
@@ -38,6 +38,25 @@ struct ScreenExample {
           .onActionEnd(() => {
             console.info('Pinch end')
           })
+        )
+      Image($r('app.media.icon'))
+        .objectFit(ImageFit.Auto)
+        .height(200)
+        .width(200)
+        .margin({top: 100})
+        .id("pinch_ima_out")
+        .scale({ x: this.myscaleOut, y: this.myscaleOut, z: this.myscaleOut })
+        .gesture(
+          PinchGesture()
+            .onActionStart((event: GestureEvent) => {
+              console.info('Pinch start')
+            })
+            .onActionUpdate((event: GestureEvent) => {
+              this.myscaleOut = event.scale
+            })
+            .onActionEnd(() => {
+              console.info('Pinch end')
+            })
         )
     }
     .width('100%')

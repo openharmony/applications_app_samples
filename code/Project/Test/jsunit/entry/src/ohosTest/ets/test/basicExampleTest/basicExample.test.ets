@@ -13,13 +13,10 @@
 * limitations under the License.
 */
 
-import hilog from '@ohos.hilog';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility, Want } from '@kit.AbilityKit';
 import { describe, it, expect, TestType } from '@ohos/hypium';
-import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import Logger from '../../util/Logger';
-import EntryAbility from '../../../../main/ets/entryability/EntryAbility';
-import Want from '@ohos.app.ability.Want';
-import UIAbility from '@ohos.app.ability.UIAbility';
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const delegator = abilityDelegatorRegistry.getAbilityDelegator()
 const TAG = '[basicExampleTest]'
@@ -37,14 +34,14 @@ export default function basicExampleTest() {
      */
     it('basic_StartAbility_001',TestType.FUNCTION, async (done: Function) =>  {
       Logger.info(" StartAbility_001 begin")
-      //start tested ability
+      // start tested ability
       let want: Want = {
         bundleName : bundleName,
         abilityName : "EntryAbility"
       }
       await delegator.startAbility(want);
       await sleep(1000);
-      //check top display ability
+      // check top display ability
       await delegator.getCurrentTopAbility().then((ability: UIAbility)=>{
         console.info("get top ability");
         expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');

@@ -16,7 +16,7 @@
 {
   "license": "ISC",
   "devDependencies": {
-    "@ohos/hypium": "1.0.6"
+    "@ohos/hypium": "1.0.18"
   },
   "name": "jsunit",
   "description": "example description",

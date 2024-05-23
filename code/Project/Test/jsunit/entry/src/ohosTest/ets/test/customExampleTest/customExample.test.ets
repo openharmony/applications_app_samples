@@ -14,10 +14,9 @@
  */
 
 import { describe, it, expect, TestType } from '@ohos/hypium';
-import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import Want from '@ohos.app.ability.Want';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import EntryAbility from '../../../../main/ets/entryability/EntryAbility'
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility, Want } from '@kit.AbilityKit';
+import EntryAbility from '../../../../main/ets/entryability/EntryAbility';
 const delegator = abilityDelegatorRegistry.getAbilityDelegator()
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 function sleep(time: number) {

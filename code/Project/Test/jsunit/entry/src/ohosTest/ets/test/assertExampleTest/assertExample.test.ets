@@ -45,7 +45,7 @@
 
 
 import { describe, it, expect, TestType } from '@ohos/hypium'
-export default async function assertExampleTest() {
+export default function assertExampleTest() {
   describe('assertExampleTest', () => {
 
     /**

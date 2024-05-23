@@ -13,11 +13,9 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, it, expect, TestType } from '@ohos/hypium'
-import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import { Driver, ON, UiDirection} from '@ohos.UiTest'
-import Want from '@ohos.app.ability.Want';
-
+import { describe, it, expect, TestType, beforeAll } from '@ohos/hypium'
+import { abilityDelegatorRegistry, Driver, ON, UiDirection } from '@kit.TestKit';
+import { Want } from '@kit.AbilityKit';
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const WAIT_UI_READYMS = 1000;
@@ -56,12 +54,12 @@ export default function FlingEventTest() {
      * @tc.number:FlingEventTest_002
      * @tc.name: FlingEvent_v
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 检测uitest fling 功能 坐标点仅支持RK3568
+     * @tc.desc: 检测uitest fling 水平滑动功能 坐标点仅支持RK3568
      */
     it('FlingEvent_v', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create();
       await driver.delayMs(WAIT_UI_READYMS);
-      await driver.fling({x:400, y:700},{x:400, y:500}, 20, 600 );
+      await driver.fling({x:400, y:700},{x:400, y:200}, 20, 600 );
       await driver.delayMs(WAIT_UI_READYMS);
       let text = await driver.findComponent(ON.id('scroll_item'));
       expect(await text.getText()).not().assertEqual('0');
@@ -72,7 +70,7 @@ export default function FlingEventTest() {
      * @tc.number:FlingEventTest_003
      * @tc.name: FlingEvent_d
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 检测uitest fling方向设置测试 功能 坐标点仅支持RK3568
+     * @tc.desc: 检测uitest fling 垂直滑动功能 坐标点仅支持RK3568
      */
     it('FlingEvent_d', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create()

@@ -13,15 +13,13 @@
 * limitations under the License.
 */
 
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
 import { Hypium } from '@ohos/hypium';
 import testsuite from '../test/List.test';
 import data from '../test/data.json'
-import window from '@ohos.window';
 import Logger from '../util/Logger'
-import Want from '@ohos.app.ability.Want';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { window } from '@kit.ArkUI';
 
 const TAG = 'testTag'
 export default class TestAbility extends UIAbility {
@@ -29,8 +27,8 @@ export default class TestAbility extends UIAbility {
         Logger.info(TAG, "TestAbility onCreate");
         Logger.info(TAG, "want param:" + JSON.stringify(want));
         Logger.info(TAG, "launchParam:" + JSON.stringify(launchParam));
-        let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-        let abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
+        let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
+        let abilityDelegatorArguments = abilityDelegatorRegistry.getArguments()
         Logger.info(TAG, "start run testcase!!!");
         // 设置数据
         Hypium.setData(data);

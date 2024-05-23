@@ -14,9 +14,8 @@
  */
 
 import { describe, it, expect, TestType } from '@ohos/hypium'
-import { Driver } from '@ohos.UiTest'
-import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import Want from '@ohos.app.ability.Want';
+import { abilityDelegatorRegistry, Driver } from '@kit.TestKit';
+import { Want } from '@kit.AbilityKit';
 
 const DELAYMS = 1000;
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();

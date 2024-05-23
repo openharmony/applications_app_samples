@@ -13,8 +13,8 @@
 * limitations under the License.
 */
 
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 import Logger from '../util/Logger'
 export default class FlingAbility extends UIAbility {
     onCreate(want, launchParam) {

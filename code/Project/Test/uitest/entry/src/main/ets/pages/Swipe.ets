@@ -61,7 +61,7 @@ struct Swipe {
                   Text(item.toString())
                     .width('90%')
                     .height(100)
-                    .id("scroll_item")
+                    .id("scroll_item_" + item)
                     .backgroundColor('#3366CC')
                     .borderRadius(15)
                     .fontSize(16)

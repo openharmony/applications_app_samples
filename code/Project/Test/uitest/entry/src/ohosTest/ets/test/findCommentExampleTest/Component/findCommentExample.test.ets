@@ -42,11 +42,9 @@
 
 
 
-import { describe, it, expect, beforeAll, TestType } from '@ohos/hypium'
-import { Driver, ON, MatchPattern } from '@ohos.UiTest'
-import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import Want from '@ohos.app.ability.Want';
-
+import { describe, it, expect, TestType, beforeAll } from '@ohos/hypium'
+import { abilityDelegatorRegistry, Driver, MatchPattern, ON } from '@kit.TestKit';
+import { UIAbility, Want } from '@kit.AbilityKit';
 const delegator = abilityDelegatorRegistry.getAbilityDelegator()
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const DELAYMS = 1000;

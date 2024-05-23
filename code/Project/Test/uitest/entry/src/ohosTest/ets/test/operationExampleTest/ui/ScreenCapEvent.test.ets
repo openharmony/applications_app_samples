@@ -14,7 +14,7 @@
  */
 
 import { describe, it, expect, TestType } from '@ohos/hypium'
-import {Driver} from '@ohos.UiTest'
+import { Driver } from '@kit.TestKit';
 const WAIT_UI_READYMS = 1000;
 export default function ScreenCapEventTest() {
   describe('ScreenCapEvent', () => {

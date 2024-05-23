@@ -13,23 +13,22 @@
 * limitations under the License.
 */
 
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import hilog from '@ohos.hilog';
 import { Hypium } from '@ohos/hypium';
 import testsuite from '../test/List.test';
-import window from '@ohos.window';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
 import Logger from '../util/Logger'
-import Want from '@ohos.app.ability.Want';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+
 const TAG = 'testTag'
 export default class TestAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         Logger.info(TAG, "TestAbility onCreate");
         Logger.info(TAG, "want param:" + JSON.stringify(want));
         Logger.info(TAG, "launchParam:" + JSON.stringify(launchParam));
-        let  abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-        let  abilityDelegatorArguments =  AbilityDelegatorRegistry.getArguments()
+        let  abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
+        let  abilityDelegatorArguments =  abilityDelegatorRegistry.getArguments()
         Logger.info(TAG, "start run testcase!!!");
         Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
     }

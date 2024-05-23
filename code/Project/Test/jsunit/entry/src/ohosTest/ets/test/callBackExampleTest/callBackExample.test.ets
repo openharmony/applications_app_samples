@@ -14,7 +14,6 @@
 */
 
 import { describe, it, expect, TestType } from '@ohos/hypium';
-import { BusinessError } from '@ohos.base';
 import  Logger from '../../util/Logger'
 const TAG = "CallBack_Test";
 const BUNDLE = "CallBack_"

@@ -13,11 +13,9 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, it, expect, TestType } from '@ohos/hypium'
-import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import { Driver, ON} from '@ohos.UiTest'
-import Want from '@ohos.app.ability.Want';
-
+import { describe, it, expect, TestType, beforeAll } from '@ohos/hypium'
+import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
+import { Want } from '@kit.AbilityKit';
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const WAIT_UI_READYMS = 1000;
@@ -61,11 +59,11 @@ export default function PinchEventTest() {
     it('PinchEventTest_Out', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create();
       await driver.delayMs(WAIT_UI_READYMS);
-      let image1 = await driver.findComponent(ON.id('pinch_ima'));
+      let image1 = await driver.findComponent(ON.id('pinch_ima_out'));
       let bounds1 = await image1.getBounds();
-      await image1.pinchIn(0.8);
+      await image1.pinchOut(1.2);
       await driver.delayMs(WAIT_UI_READYMS);
-      let image2 = await driver.findComponent(ON.id('pinch_ima'));
+      let image2 = await driver.findComponent(ON.id('pinch_ima_out'));
       let bounds2 = await image2.getBounds();
       expect(bounds1).not().assertDeepEquals(bounds2);
       done();

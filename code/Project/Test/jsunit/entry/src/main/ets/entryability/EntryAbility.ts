@@ -12,11 +12,11 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+import { UIAbility } from '@kit.AbilityKit';
+import Logger from '../util/Logger';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
 
-import UIAbility from '@ohos.app.ability.UIAbility';
-import hilog from '@ohos.hilog';
-import window from '@ohos.window';
-import Logger from '../util/Logger'
 export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         Logger.info('testTag', '%{public}s', 'Ability onCreate');
