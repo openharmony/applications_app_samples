@@ -12,8 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-import hilog from '@ohos.hilog';
 const TAG = "[Sample_ArkTest]";
 class Logger {
     private domain: number;
