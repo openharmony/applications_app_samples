@@ -150,7 +150,7 @@ function packToFilePixelMap(context: Context, filePath: string){
     const packOptions = ndkTest.CreatePackingOptions()
     ndkTest.PackingOptionsSetMimeType(packOptions, `image/png`)
     ndkTest.PackingOptionsSetQuality(packOptions, 100)
-    const packFilePath: string = context.filesDir + '/' + getTimeStr() + '____1.png';
+    const packFilePath: string = context.filesDir + '/' + getTimeStr() + '_1.png';
     const packFile = fs.openSync(packFilePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
 
     // uri创建ImageSource
@@ -177,7 +177,7 @@ function packToFileImageSource(context: Context, file: fileIo.File){
     const packOptions = ndkTest.CreatePackingOptions()
     ndkTest.PackingOptionsSetMimeType(packOptions, `image/jpeg`)
     ndkTest.PackingOptionsSetQuality(packOptions, 100)
-    const packFilePath: string = context.filesDir + '/' + getTimeStr() + '____2.jpg';
+    const packFilePath: string = context.filesDir + '/' + getTimeStr() + '_2.jpg';
     const packFile = fs.openSync(packFilePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
 
     // fd创建ImageSource
@@ -211,7 +211,7 @@ function packToDataPixelMap(context: Context, buffer :ArrayBuffer){
     const result = ndkTest.PackToDataFromPixelMap(packer, packOptions, pixelMap, packBuffer)
     console.log("----------------- PackToDataFromPixelMap result:" + result)
 
-    const packFilePath: string = context.filesDir + '/' + getTimeStr() + '____3.jpg';
+    const packFilePath: string = context.filesDir + '/' + getTimeStr() + '_3.jpg';
     const file = fs.openSync(packFilePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
     fs.writeSync(file.fd, packBuffer)
     fs.closeSync(file)
@@ -238,7 +238,7 @@ async function packToDataImageSource(context: Context){
     const result = ndkTest.PackToDataFromImageSource(packer, packOptions, rawFileImageSource, packBuffer)
     console.log('----------------- PackToDataFromImageSource result:' + result)
 
-    const packFilePath: string = context.filesDir + '/' + getTimeStr() + '____4.webp';
+    const packFilePath: string = context.filesDir + '/' + getTimeStr() + '_4.webp';
     const file = fs.openSync(packFilePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
     fs.writeSync(file.fd, packBuffer)
     fs.closeSync(file)
