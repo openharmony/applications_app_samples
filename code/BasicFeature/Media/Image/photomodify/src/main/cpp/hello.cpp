@@ -42,14 +42,14 @@ static napi_value CreateDecodingOptions(napi_env env, napi_callback_info info)
 
     napi_get_undefined(env, &result);
 
-    OH_DecodingOptions *deops;
-    Image_ErrorCode errCode = OH_DecodingOptions_Create(&deops);
+    OH_DecodingOptions *options;
+    Image_ErrorCode errCode = OH_DecodingOptions_Create(&options);
     if (IMAGE_SUCCESS != errCode) {
         napi_create_int32(env, errCode, &result);
         return result;
     }
 
-    napi_status status = napi_create_external(env, reinterpret_cast<void *>(deops), nullptr, nullptr, &result);
+    napi_status status = napi_create_external(env, reinterpret_cast<void *>(options), nullptr, nullptr, &result);
     if (status != napi_ok) {
         napi_throw_error(env, nullptr, "Failed to create external object");
         return nullptr;
@@ -145,17 +145,16 @@ static napi_value CreateFromData(napi_env env, napi_callback_info info)
         return result;
     }
 
-    OH_LOG_INFO(LOG_APP, "end OH_ImageSource2_CreatePixelMapList 721:%{public}d", dataSize);
     OH_ImageSourceNative *res = nullptr;
     Image_ErrorCode error = OH_ImageSourceNative_CreateFromData(reinterpret_cast<uint8_t *>(data), dataSize, &res);
     if (error != IMAGE_SUCCESS) {
-        napi_throw_error(env, nullptr, "Failed to OH_ImageSource2_CreateFromData create external object,");
+        napi_throw_error(env, nullptr, "Failed to OH_ImageSourceNative_CreateFromData create external object");
         return result;
     }
 
     status = napi_create_external(env, reinterpret_cast<void *>(res), nullptr, nullptr, &result);
     if (status != napi_ok) {
-        napi_throw_error(env, nullptr, "Failed to OH_ImageSource2_CreateFromData create external object");
+        napi_throw_error(env, nullptr, "Failed to OH_ImageSourceNative_CreateFromData create external object");
         return result;
     }
 
@@ -171,8 +170,6 @@ static napi_value CreateFromRawFile(napi_env env, napi_callback_info info)
     napi_status status;
 
     napi_get_undefined(env, &result);
-
-    OH_LOG_INFO(LOG_APP, "lhb CreateFromRawFile errCode====");
 
     if (napi_get_cb_info(env, info, &argCount, argValue, nullptr, nullptr) != napi_ok || argCount < PARAM_THREE) {
         return result;
@@ -190,13 +187,10 @@ static napi_value CreateFromRawFile(napi_env env, napi_callback_info info)
     napi_get_value_int64(env, argValue[PARAM_TWO], &tmp);
     rawDesc.length = static_cast<long>(tmp);
 
-    OH_LOG_INFO(LOG_APP, "lhb CreateFromRawFile fd:%{public}d, start:%{public}ld, length:%{public}ld", rawDesc.fd,
-                rawDesc.start, rawDesc.length);
-
     OH_ImageSourceNative *res = nullptr;
     Image_ErrorCode errCode = OH_ImageSourceNative_CreateFromRawFile(&rawDesc, &res);
     if (errCode != IMAGE_SUCCESS) {
-        napi_throw_error(env, nullptr, "Failed to OH_ImageSource2_CreateFromData create external object,");
+        napi_throw_error(env, nullptr, "Failed to OH_ImageSourceNative_CreateFromRawFile create external object");
         napi_create_int32(env, errCode, &result);
         return result;
     }
@@ -220,7 +214,6 @@ static napi_value CreatePixelMap(napi_env env, napi_callback_info info)
     if (napi_get_cb_info(env, info, &argCount, argValue, nullptr, nullptr) != napi_ok || argCount < PARAM_TWO) {
         return result;
     }
-    OH_LOG_INFO(LOG_APP, "CreatePixelMap errCode====");
 
     void *ptr = nullptr;
     napi_status status = napi_get_value_external(env, argValue[0], &ptr);
@@ -232,6 +225,7 @@ static napi_value CreatePixelMap(napi_env env, napi_callback_info info)
     OH_PixelmapNative *resPixMap = nullptr;
     Image_ErrorCode errCode = OH_ImageSourceNative_CreatePixelmap(imageSource, decodeOpts, &resPixMap);
     if (IMAGE_SUCCESS != errCode) {
+        napi_throw_error(env, nullptr, "Failed to OH_ImageSourceNative_CreatePixelmap create external object");
         napi_create_int32(env, errCode, &result);
         return result;
     }
@@ -253,6 +247,7 @@ static napi_value CreatePackingOptions(napi_env env, napi_callback_info info)
     OH_PackingOptions *res = nullptr;
     Image_ErrorCode errorCode = OH_PackingOptions_Create(&res);
     if (errorCode != IMAGE_SUCCESS) {
+        napi_throw_error(env, nullptr, "Failed to OH_PackingOptions_Create create external object");
         napi_create_int32(env, errorCode, &result);
         return result;
     }
