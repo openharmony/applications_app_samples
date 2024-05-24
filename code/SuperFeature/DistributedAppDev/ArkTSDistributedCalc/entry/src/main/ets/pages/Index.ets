@@ -93,6 +93,11 @@ struct Index {
         this.result = '';
       }
     } else {
+      const hasSymbol: boolean = this.expression.indexOf('+') !== -1 || this.expression.indexOf('-') !== -1 ||
+        this.expression.indexOf('*') !== -1 || this.expression.indexOf('/') !== -1;
+      if (this.expression && !this.result && !hasSymbol) {
+        this.expression = '';
+      }
       this.expression += value;
       this.result = calc(this.expression);
     }
