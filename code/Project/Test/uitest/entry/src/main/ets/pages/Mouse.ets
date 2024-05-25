@@ -45,7 +45,7 @@ struct Mouse {
             .fontSize(15)
             .fontWeight(FontWeight.Bold)
         }.onClick((event?: ClickEvent) => {
-          router.push({
+          router.pushUrl({
             url: "pages/five"
           })
 
@@ -84,7 +84,7 @@ struct Mouse {
         .gesture(
           TapGesture({ count: 2 })
             .onAction(() => {
-              router.push({
+              router.pushUrl({
                 url: "pages/Third"
               })
             })
@@ -92,7 +92,7 @@ struct Mouse {
         .gesture(
           LongPressGesture({ repeat: false })
             .onAction(() => {
-              router.push({
+              router.pushUrl({
                 url: "pages/Fourth"
               })
             })

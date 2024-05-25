@@ -159,15 +159,14 @@ export default function MouseEventTest() {
 
     /**
      * @tc.number:MouseEventTest_005
-     * @tc.name: testMouseScroll
+     * @tc.name: testMouseScroll_with
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 检测uitest 模拟鼠标滚轮向下滑动与组合键功能
      */
-    it('testMouseScroll_speed', TestType.FUNCTION, async (done: Function) => {
+    it('testMouseScroll_with', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create();
       await driver.delayMs(WAIT_UI_READYMS);
       let scroll = await driver.findComponent(ON.id('scroll_test'));
-      await scroll.scrollToTop(5000);
       let center = await scroll.getBoundsCenter();
       await driver.mouseScroll(center,true,10, 2072, 2071, 20);
       let button1 = await driver.findComponent(ON.id('scroll_item'));
