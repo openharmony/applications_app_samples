@@ -27,6 +27,7 @@ import scroller from './operationExampleTest/ui/ScrollerEvent.test'
 import moveWindow from './operationExampleTest/window/MoveToEvent.test'
 import reSizeWindow from './operationExampleTest/window/ReSizeWindow.test'
 import windowAttr from './operationExampleTest/window/WindowAttr.test'
+import monitorEventTest from './operationExampleTest/ui/MonitorEvent.test'
 export default function testsuite() {
   basicExampleTest();
   findTest();
@@ -42,4 +43,5 @@ export default function testsuite() {
   moveWindow();
   reSizeWindow();
   windowAttr();
+  monitorEventTest()
 }

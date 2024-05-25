@@ -95,5 +95,26 @@ export default function InputEventTest() {
       expect(text == '1234556').assertTrue();
       done();
     })
+
+    /**
+     * @tc.number:InputEventTest_003
+     * @tc.name: clickEventTest_Input_zh
+     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
+     * @tc.desc: 检测uitest clear text
+     */
+    it('testClearText', TestType.FUNCTION, async () => {
+      let driver = Driver.create()
+      await driver.delayMs(WAIT_UI_READYMS)
+      let input1 = await driver.findComponent(ON.type('TextInput'))
+      await input1.inputText('abc')
+      await driver.delayMs(WAIT_UI_READYMS)
+      let input2 = await driver.findComponent(ON.type('TextInput'))
+      await input2.clearText()
+      await driver.delayMs(WAIT_UI_READYMS)
+      let input_new = await driver.findComponent(ON.type('TextInput'))
+      let text = await input_new.getText()
+      console.info("testClearText result :" + text)
+      expect(text).assertEqual('')
+    })
   })
 }

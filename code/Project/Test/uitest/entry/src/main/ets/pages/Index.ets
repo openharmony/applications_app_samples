@@ -13,8 +13,7 @@
 * limitations under the License.
 */
 
-import router from '@ohos.router';
-
+import {promptAction, router } from "@kit.ArkUI"
 @Entry
 @Component
 struct Index {
@@ -75,7 +74,28 @@ struct Index {
           .onClick(() =>{
 
           })
-          .margin({left: 10})
+          Button('showToast', { type: ButtonType.Normal, stateEffect: true })
+            .borderRadius(8)
+            .backgroundColor(0x317aff)
+            .width(90)
+            .onClick(() => {
+              console.log('ButtonType.Normal');
+              promptAction.showToast({
+                message: "testMessage",
+                duration: 2000
+              })
+            })
+          Button('showDialog', { type: ButtonType.Normal, stateEffect: true })
+            .borderRadius(8)
+            .backgroundColor(0x317aff)
+            .width(90)
+            .onClick(() => {
+              console.log('ButtonType.Normal dialog');
+              promptAction.showDialog({
+                title: "testDialog",
+                message: "testMessage"
+              })
+            })
           Button(){
             Text("Drag")
           }.id("drag")

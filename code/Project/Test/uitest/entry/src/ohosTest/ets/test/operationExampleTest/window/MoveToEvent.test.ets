@@ -14,7 +14,7 @@
 */
 
 import { describe, it, expect, TestType, beforeAll } from '@ohos/hypium'
-import { abilityDelegatorRegistry, Driver } from '@kit.TestKit';
+import { abilityDelegatorRegistry, DisplayRotation, Driver } from '@kit.TestKit';
 import { Want } from '@kit.AbilityKit';
 import Logger from '../../../util/Logger'
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
@@ -68,6 +68,68 @@ export default function MoveToEventTest() {
         Logger.info(TAG, BUNDLE + 'Test_001 end');
         done();
       }
+    })
+
+    /**
+     * @tc.number:MoveToEventTest_002
+     * @tc.name: testDisplayRotation
+     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
+     * @tc.desc: 查找window获取window状态
+     */
+    it('testDisplayRotation', TestType.FUNCTION, async () => {
+      let driver = Driver.create()
+      await driver.delayMs(WAIT_UI_READYMS)
+      await driver.setDisplayRotation(DisplayRotation.ROTATION_0)
+      await driver.delayMs(WAIT_UI_READYMS)
+      let rotation = await driver.getDisplayRotation()
+      if (rotation == DisplayRotation.ROTATION_90) {
+        console.info('The device is displayed in horizontal on default')
+        await driver.setDisplayRotation(DisplayRotation.ROTATION_90)
+        await driver.delayMs(WAIT_UI_READYMS)
+        let rotation1 = await driver.getDisplayRotation()
+        expect(rotation1 == DisplayRotation.ROTATION_0)
+
+        await driver.setDisplayRotation(DisplayRotation.ROTATION_180)
+        await driver.delayMs(WAIT_UI_READYMS)
+        let rotation2 = await driver.getDisplayRotation()
+        expect(rotation2 == DisplayRotation.ROTATION_270)
+
+        await driver.setDisplayRotation(DisplayRotation.ROTATION_270)
+        await driver.delayMs(WAIT_UI_READYMS)
+        let rotation3 = await driver.getDisplayRotation()
+        expect(rotation3 == DisplayRotation.ROTATION_180)
+
+        await driver.setDisplayRotation(DisplayRotation.ROTATION_90)
+      } else if (rotation == DisplayRotation.ROTATION_0) {
+        console.info('The device is displayed in vertical on default')
+        await driver.setDisplayRotation(DisplayRotation.ROTATION_90)
+        await driver.delayMs(WAIT_UI_READYMS)
+        let rotation1 = await driver.getDisplayRotation()
+        expect(rotation1 == DisplayRotation.ROTATION_90)
+
+        await driver.setDisplayRotation(DisplayRotation.ROTATION_180)
+        await driver.delayMs(WAIT_UI_READYMS)
+        let rotation2 = await driver.getDisplayRotation()
+        expect(rotation2 == DisplayRotation.ROTATION_180)
+
+        await driver.setDisplayRotation(DisplayRotation.ROTATION_270)
+        await driver.delayMs(WAIT_UI_READYMS)
+        let rotation3 = await driver.getDisplayRotation()
+        expect(rotation3 == DisplayRotation.ROTATION_270)
+        await driver.setDisplayRotation(DisplayRotation.ROTATION_0)
+      }
+    })
+
+    /**
+     * @tc.number:MoveToEventTest_003
+     * @tc.name: testWakeUpDisplay
+     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
+     * @tc.desc: 查找window获取window状态
+     */
+    it('testWakeUpDisplay', 0, async () => {
+      let driver = Driver.create()
+      await driver.delayMs(WAIT_UI_READYMS)
+      await driver.wakeUpDisplay()
     })
   })
 }

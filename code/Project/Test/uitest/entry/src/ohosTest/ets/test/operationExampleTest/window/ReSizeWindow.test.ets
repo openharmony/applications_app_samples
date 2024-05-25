@@ -14,7 +14,7 @@
 */
 
 import { describe, it, expect, TestType, beforeAll } from '@ohos/hypium'
-import { abilityDelegatorRegistry, Driver, ResizeDirection } from '@kit.TestKit';
+import { abilityDelegatorRegistry, Driver, ResizeDirection, WindowMode } from '@kit.TestKit';
 import { Want } from '@kit.AbilityKit';
 import Logger from '../../../util/Logger'
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
@@ -87,6 +87,68 @@ export default function ReSizeWindow() {
       } finally {
         Logger.info(TAG, BUNDLE + 'Test_001 end');
         done();
+      }
+    })
+
+    /**
+     * @tc.number:ReSize_002
+     * @tc.name: testWindowMaximize
+     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
+     * @tc.desc: 设置window最大窗口
+     */
+    it('testWindowMaximize', TestType.FUNCTION, async () => {
+      let driver = Driver.create()
+      await driver.delayMs(WAIT_UI_READYMS)
+      let window = await driver.findWindow({bundleName: bundleName})
+      try{
+        let windowMode = await window.getWindowMode()
+        if (windowMode != WindowMode.FLOATING) {
+          await window.resume()
+        }
+        let window2 = await driver.findWindow({bundleName: bundleName})
+        await window2.maximize()
+        await driver.delayMs(WAIT_UI_READYMS)
+        let window3 = await driver.findWindow({bundleName: bundleName})
+        let mode = await window3.getWindowMode()
+        expect(mode == WindowMode.FULLSCREEN).assertTrue()
+      }
+      catch (err) {
+        if (err.message == 'this device can not support this action') {
+          expect(window != null).assertTrue()
+        } else {
+          expect(false).assertTrue()
+        }
+      }
+    })
+
+    /**
+     * @tc.number:ReSize_003
+     * @tc.name: testWindowMinimize
+     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
+     * @tc.desc: 设置window最小窗口
+     */
+    it('testWindowMinimize', TestType.FUNCTION, async () => {
+      let driver = Driver.create()
+      await driver.delayMs(WAIT_UI_READYMS)
+      let window = await driver.findWindow({bundleName: bundleName})
+      try{
+        let windowMode = await window.getWindowMode()
+        if (windowMode != WindowMode.FLOATING) {
+          await window.resume()
+        }
+        let window2 = await driver.findWindow({bundleName: bundleName})
+        await window2.minimize()
+        await driver.delayMs(WAIT_UI_READYMS)
+        let window3 = await driver.findWindow({bundleName: bundleName})
+        let mode = await window3.getWindowMode()
+        expect(mode == WindowMode.FULLSCREEN).assertTrue()
+      }
+      catch (err) {
+        if (err.message == 'this device can not support this action') {
+          expect(window != null).assertTrue()
+        } else {
+          expect(false).assertTrue()
+        }
       }
     })
   })

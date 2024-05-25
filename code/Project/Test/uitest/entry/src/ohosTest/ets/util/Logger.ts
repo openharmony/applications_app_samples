@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 const TAG = '[Sample_UiTest]'
 class Logger {
     private domain: number;

@@ -44,7 +44,7 @@
 
 import { describe, it, expect, TestType, beforeAll } from '@ohos/hypium'
 import { abilityDelegatorRegistry, Driver, MatchPattern, ON } from '@kit.TestKit';
-import { UIAbility, Want } from '@kit.AbilityKit';
+import { Want } from '@kit.AbilityKit';
 const delegator = abilityDelegatorRegistry.getAbilityDelegator()
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const DELAYMS = 1000;
@@ -153,6 +153,40 @@ export default function findExampleTest() {
       await dr.delayMs(DELAYMS);
       expect(await button.getText()).assertEqual("5");
       done();
+    })
+
+    /**
+     * @tc.number:findExampleTest_007
+     * @tc.name: testDescription
+     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
+     * @tc.desc: 验证组件的description属性
+     */
+    it('testDescription', TestType.FUNCTION, async () => {
+      let driver = Driver.create()
+      await driver.delayMs(DELAYMS)
+      let text = await driver.findComponent(ON.type('Text').description(''))
+      let description = await text.getDescription()
+      expect(description == '').assertTrue()
+    })
+
+    /**
+     * @tc.number:findExampleTest_008
+     * @tc.name: testWithIn
+     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
+     * @tc.desc: 验证组件的description属性
+     */
+    it('testWithIn', TestType.FUNCTION, async () => {
+      let driver = Driver.create()
+      await driver.delayMs(DELAYMS)
+      let scroll = await driver.findComponent(ON.type('Scroll'))
+      let btn = await driver.findComponent(ON.within(ON.type('Scroll')).text('0'))
+      let bounds1 = await scroll.getBounds()
+      let bounds2 = await btn.getBounds()
+      expect(await btn.getText()).assertEqual("0")
+      expect(bounds1.top < bounds2.top).assertTrue()
+      expect(bounds1.bottom > bounds2.bottom).assertTrue()
+      expect(bounds1.left < bounds2.right).assertTrue()
+      expect(bounds1.right > bounds2.right).assertTrue()
     })
   })
 }
