@@ -493,7 +493,10 @@ struct CustomDialogExample {
   @Builder
   LookupCategoryMenuBuilder() {
     Menu() {
-      MenuItem({ content: "Format" }).bindMenu(this.FormatMenuBuilder())
+      MenuItem({
+        content: "Format",
+        builder: (): void => this.FormatMenuBuilder()
+      })
     }.id("menu_category")
   }
 
