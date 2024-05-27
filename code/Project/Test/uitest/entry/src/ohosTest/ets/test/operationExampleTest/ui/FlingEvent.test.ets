@@ -34,7 +34,7 @@ export default function FlingEventTest() {
      * @tc.number:FlingEventTest_001
      * @tc.name: FlingEvent_h
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 检测uitest fling 功能 坐标点仅支持RK3568
+     * @tc.desc: 检测uitest fling水平抛滑功能坐标点仅支持RK3568
      */
     it('FlingEvent_h', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create();
@@ -54,7 +54,7 @@ export default function FlingEventTest() {
      * @tc.number:FlingEventTest_002
      * @tc.name: FlingEvent_v
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 检测uitest fling 水平滑动功能 坐标点仅支持RK3568
+     * @tc.desc: 检测uitest fling 竖直抛滑功能坐标点仅支持RK3568
      */
     it('FlingEvent_v', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create();
