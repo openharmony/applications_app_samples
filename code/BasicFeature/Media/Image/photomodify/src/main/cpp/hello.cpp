@@ -443,7 +443,7 @@ static napi_value PackToFileFromImageSource(napi_env env, napi_callback_info inf
 
     napi_get_undefined(env, &result);
 
-    if (napi_get_cb_info(env, info, &argCount, argValue, nullptr, nullptr) != napi_ok || argCount < PARAM_FOUR ) {
+    if (napi_get_cb_info(env, info, &argCount, argValue, nullptr, nullptr) != napi_ok || argCount < PARAM_FOUR ){
         return result;
     }
 

@@ -9,7 +9,7 @@
 使用[@ohos.effectKit](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-effectKit.md)
 生成effectKit,使用effectKit.getHighestSaturationColor()
 接口实现对图片的高亮调节。添加文字/贴纸，利用组件的组合编辑素材大小和位置，再使用OffscreenCanvasRenderingContext2D进行离屏绘制保存。
-新增图片编解码NDK示例代码，使用[libohcamera.so]实现uri创建ImageSource，fd创建ImageSource，data创建ImageSource，rawFile创建ImageSource，
+新增图片编解码NDK示例代码，使用[libentry.so]实现uri创建ImageSource，fd创建ImageSource，data创建ImageSource，rawFile创建ImageSource，
 imageSource转换为pixelMap，PixelMap转为file，ImageSource转为file，PixelMap转为data，ImageSource转为数据。
 
 ### 效果预览
