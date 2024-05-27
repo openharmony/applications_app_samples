@@ -37,21 +37,23 @@ export default function monitorEventTest() {
      * @tc.desc: toast监听测试
      */
     it("testMonitor_toast", TestType.FUNCTION, async (done: Function) => {
-      let driver = Driver.create()
-      await driver.delayMs(WAIT_UI_READYMS)
-      let observer = await driver.createUIEventObserver()
+      let driver = Driver.create();
+      await driver.delayMs(WAIT_UI_READYMS);
+      let observer = await driver.createUIEventObserver();
       let callback = (uiElementInfo : UIElementInfo) => {
         try {
-          expect(uiElementInfo.bundleName == 'com.samples.test.uitest').assertTrue()
-          expect(uiElementInfo.text == 'testMessage').assertTrue()
-          expect(uiElementInfo.type == 'Toast').assertTrue()
+          expect(uiElementInfo.bundleName == 'com.samples.test.uitest').assertTrue();
+          expect(uiElementInfo.text == 'testMessage').assertTrue();
+          expect(uiElementInfo.type == 'Toast').assertTrue();
         } catch (e) {
+          console.log(`testMonitor_toast, error, ${JSON.stringify(e)}`);
+          expect().assertFail();
         }
       }
       observer.once('toastShow', callback)
-      let btn = await driver.findComponent(ON.text('showToast'))
-      await btn.click()
-      await driver.delayMs(WAIT_UI_READYMS * 2)
+      let btn = await driver.findComponent(ON.text('showToast'));
+      await btn.click();
+      await driver.delayMs(WAIT_UI_READYMS * 2);
       done();
     })
 
@@ -62,21 +64,23 @@ export default function monitorEventTest() {
      * @tc.desc: dialog监听测试
      */
     it("testMonitor_dialog", TestType.FUNCTION, async (done: Function) => {
-      let driver = Driver.create()
-      await driver.delayMs(WAIT_UI_READYMS)
-      let observer = await driver.createUIEventObserver()
+      let driver = Driver.create();
+      await driver.delayMs(WAIT_UI_READYMS);
+      let observer = await driver.createUIEventObserver();
       let callback = (uiElementInfo : UIElementInfo) => {
         try {
-          expect(uiElementInfo.bundleName == 'com.samples.test.uitest').assertTrue()
-          expect(uiElementInfo.text == 'testMessage').assertTrue()
-          expect(uiElementInfo.type == 'Toast').assertTrue()
+          expect(uiElementInfo.bundleName == 'com.samples.test.uitest').assertTrue();
+          expect(uiElementInfo.text == 'testMessage').assertTrue();
+          expect(uiElementInfo.type == 'Toast').assertTrue();
         } catch (e) {
+          console.log(`testMonitor_dialog, error, ${JSON.stringify(e)}`);
+          expect().assertFail();
         }
       }
-      observer.once('dialogShow', callback)
-      let btn = await driver.findComponent(ON.text('showDialog'))
-      await btn.click()
-      await driver.delayMs(WAIT_UI_READYMS * 2)
+      observer.once('dialogShow', callback);
+      let btn = await driver.findComponent(ON.text('showDialog'));
+      await btn.click();
+      await driver.delayMs(WAIT_UI_READYMS * 2);
       done();
     })
   })
