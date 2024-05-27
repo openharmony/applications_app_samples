@@ -119,6 +119,16 @@
         "visible": true
       },
       {
+        "name": "ScrollerAbility",
+        "srcEntrance": "./ets/scrollerability/ScrollerAbility.ts",
+        "description": "$string:ScrollerAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:ScrollerAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "visible": true
+      },
+      {
         "name": "DragAbility",
         "srcEntrance": "./ets/dragability/DragAbility.ts",
         "description": "$string:DragAbility_desc",
@@ -127,15 +137,6 @@
         "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:start_window_background",
         "visible": true
-      },
-      {
-        "name": "ScrollerEventAbility",
-        "srcEntry": "./ets/scrollereventability/ScrollerEventAbility.ets",
-        "description": "$string:ScrollerEventAbility_desc",
-        "icon": "$media:icon",
-        "label": "$string:ScrollerEventAbility_label",
-        "startWindowIcon": "$media:icon",
-        "startWindowBackground": "$color:start_window_background"
       }
     ]
   }

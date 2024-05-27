@@ -103,14 +103,6 @@
     {
       "name": "test",
       "value": "测试内容"
-    },
-    {
-      "name": "ScrollerEventAbility_desc",
-      "value": "description"
-    },
-    {
-      "name": "ScrollerEventAbility_label",
-      "value": "label"
     }
   ]
 }
