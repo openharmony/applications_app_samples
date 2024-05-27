@@ -33,7 +33,6 @@ struct ScreenExample {
             console.info('Pinch start')
           })
           .onActionUpdate((event: GestureEvent) => {
-            console.log(`ljl, onActionUpdate, ${event.scale}`)
             this.myScale = event.scale
           })
           .onActionEnd(() => {
