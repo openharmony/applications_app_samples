@@ -98,29 +98,29 @@ export default function ReSizeWindow() {
      * @tc.desc: 设置window最大窗口,WindowMode.FLOATING: 悬浮窗口, WindowMode.FULLSCREEN: 全屏窗口
      */
     it('testWindowMaximize', TestType.FUNCTION, async () => {
-      let driver = Driver.create()
-      await driver.delayMs(WAIT_UI_READYMS)
-      let window = await driver.findWindow({bundleName: bundleName})
+      let driver = Driver.create();
+      await driver.delayMs(WAIT_UI_READYMS);
+      let window = await driver.findWindow({bundleName: bundleName});
       try{
-        let windowMode = await window.getWindowMode()
+        let windowMode = await window.getWindowMode();
         if (windowMode != WindowMode.FLOATING) {
-          await window.resume()
+          await window.resume();
         }
         let window2 = await driver.findWindow({bundleName: bundleName})
         // 设置widow窗口为最大
-        await window2.maximize()
-        await driver.delayMs(WAIT_UI_READYMS)
-        let window3 = await driver.findWindow({bundleName: bundleName})
-        let mode = await window3.getWindowMode()
+        await window2.maximize();
+        await driver.delayMs(WAIT_UI_READYMS);
+        let window3 = await driver.findWindow({bundleName: bundleName});
+        let mode = await window3.getWindowMode();
 
         // 判断当前window是否全屏
-        expect(mode == WindowMode.FULLSCREEN).assertTrue()
+        expect(mode == WindowMode.FULLSCREEN).assertTrue();
       }
       catch (err) {
         if (err.message == 'this device can not support this action') {
-          expect(window != null).assertTrue()
+          expect(window != null).assertTrue();
         } else {
-          expect(false).assertTrue()
+          expect(false).assertTrue();
         }
       }
     })
@@ -132,27 +132,27 @@ export default function ReSizeWindow() {
      * @tc.desc: 设置window最小窗口, WindowMode.FLOATING: 悬浮窗口, WindowMode.FULLSCREEN: 全屏窗口
      */
     it('testWindowMinimize', TestType.FUNCTION, async () => {
-      let driver = Driver.create()
-      await driver.delayMs(WAIT_UI_READYMS)
-      let window = await driver.findWindow({bundleName: bundleName})
+      let driver = Driver.create();
+      await driver.delayMs(WAIT_UI_READYMS);
+      let window = await driver.findWindow({bundleName: bundleName});
       try{
-        let windowMode = await window.getWindowMode()
+        let windowMode = await window.getWindowMode();
         if (windowMode != WindowMode.FLOATING) {
-          await window.resume()
+          await window.resume();
         }
 
         // 设置widow窗口为最小
-        await window.minimize()
-        await driver.delayMs(WAIT_UI_READYMS)
-        let window1 = await driver.findWindow({bundleName: bundleName})
+        await window.minimize();
+        await driver.delayMs(WAIT_UI_READYMS);
+        let window1 = await driver.findWindow({bundleName: bundleName});
         // 判断当前window是否查找成功
-        expect(window1 == null).assertTrue()
+        expect(window1 == null).assertTrue();
       }
       catch (err) {
         if (err.message == 'this device can not support this action') {
-          expect(window != null).assertTrue()
+          expect(window != null).assertTrue();
         } else {
-          expect(false).assertTrue()
+          expect(false).assertTrue();
         }
       }
     })
