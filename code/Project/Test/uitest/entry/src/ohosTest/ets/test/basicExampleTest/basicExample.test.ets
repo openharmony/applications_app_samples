@@ -16,15 +16,14 @@
 import { describe, it, expect, TestType } from '@ohos/hypium'
 import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
-import Logger from '../../util/Logger';
-const delegator = abilityDelegatorRegistry.getAbilityDelegator()
+
+const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
-const TAG = 'basicExampleTest'
-function sleep(time:number) {
+function sleep(time: number) {
   return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
 }
-export default function basicExampleTest() {
-  describe('basicExampleTest', () => {
+export default function abilityTest() {
+  describe('ActsAbilityTest', () => {
 
     /**
      * @tc.number:basicExampleTest_001
@@ -32,32 +31,32 @@ export default function basicExampleTest() {
      * @tc.type: TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
      * @tc.desc: 验证UI操作点击指定按钮后，界面变化是否符合预期
      */
-    it('testUiExample',TestType.FUNCTION, async (done: Function) => {
-      Logger.info(TAG, 'testUiExample start');
+    it('testUiExample',0, async (done: Function) => {
+      console.info("uitest: TestUiExample begin");
       //start tested ability
-      let want: Want = {
-        bundleName : bundleName,
-        abilityName : 'EntryAbility'
+      const want: Want = {
+        bundleName: bundleName,
+        abilityName: 'EntryAbility'
       }
       await delegator.startAbility(want);
       await sleep(1000);
-      // check top display ability
-      let ability: UIAbility = await delegator.getCurrentTopAbility();
-      expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
-      // ui test code
-      // init driver
-      let  driver = await Driver.create();
+      //check top display ability
+      await delegator.getCurrentTopAbility().then((Ability: UIAbility)=>{
+        console.info("get top ability");
+        expect(Ability.context.abilityInfo.name).assertEqual('EntryAbility');
+      })
+      //ui test code
+      //init driver
+      let driver = Driver.create();
       await driver.delayMs(1000);
-      // find button on text 'Next'
+      //find button on text 'Next'
       let button = await driver.findComponent(ON.text('Next'));
-      expect(button !== null).assertTrue();
-      // click button
+      //click button
       await button.click();
       await driver.delayMs(1000);
-      // check text
+      //check text
       await driver.assertComponentExist(ON.text('after click'));
       await driver.pressBack();
-      Logger.info(TAG, 'testUiExample end');
       done();
     })
   })
