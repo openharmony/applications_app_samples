@@ -99,6 +99,14 @@
     {
       "name": "DragAbility_label",
       "value": "label"
+    },
+    {
+      "name": "ScrollerEventAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "ScrollerEventAbility_label",
+      "value": "label"
     }
   ]
 }

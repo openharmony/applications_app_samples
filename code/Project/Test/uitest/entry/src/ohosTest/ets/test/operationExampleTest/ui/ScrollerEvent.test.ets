@@ -26,7 +26,7 @@ export default function ScrollerEventTest() {
     beforeAll(async () => {
       let want: Want = {
         bundleName : bundleName,
-        abilityName : 'ScrollerAbility'
+        abilityName : 'ScrollerEventAbility'
       };
       await delegator.startAbility(want);
     })
