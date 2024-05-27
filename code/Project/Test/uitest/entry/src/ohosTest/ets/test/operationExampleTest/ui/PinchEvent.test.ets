@@ -41,6 +41,7 @@ export default function PinchEventTest() {
       await driver.delayMs(WAIT_UI_READYMS);
       let image1 = await driver.findComponent(ON.id('pinch_ima'));
       let bounds1 = await image1.getBounds();
+      // 缩小0.3倍
       await image1.pinchIn(0.3);
       await driver.delayMs(WAIT_UI_READYMS);
       let image2 = await driver.findComponent(ON.id('pinch_ima'));
@@ -61,6 +62,7 @@ export default function PinchEventTest() {
       await driver.delayMs(WAIT_UI_READYMS);
       let image1 = await driver.findComponent(ON.id('pinch_ima_out'));
       let bounds1 = await image1.getBounds();
+      // 放大1.2倍
       await image1.pinchOut(1.2);
       await driver.delayMs(WAIT_UI_READYMS);
       let image2 = await driver.findComponent(ON.id('pinch_ima_out'));

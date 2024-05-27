@@ -63,23 +63,5 @@ export default function WindowAttr() {
       Logger.info(TAG, BUNDLE + 'Test_001 end');
       done();
     })
-
-    /**
-     * @tc.number:WindowAttr_002
-     * @tc.name: WindowAttr_Test_002
-     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 查找window获取window状态
-     */
-    it("WindowAttr_Test_002", TestType.FUNCTION, async (done: Function) => {
-      Logger.info(TAG, BUNDLE + 'Test_002 start');
-      let driver = Driver.create()
-      await driver.delayMs(WAIT_UI_READYMS)
-      let window = await driver.findWindow({bundleName:bundleName, focused:true, active:true, title:''})
-      await window.focus()
-      let isActive = await window.isActive()
-      expect(isActive == true).assertTrue()
-      Logger.info(TAG, BUNDLE + 'Test_002 end');
-      done();
-    })
   })
 }

@@ -22,6 +22,7 @@ const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const WAIT_UI_READYMS = 1000;
 const TAG = "ReSize_Test";
 const BUNDLE = "ReSize_"
+
 export default function ReSizeWindow() {
   describe('ReSizeWindow', () => {
     beforeAll(async () => {
@@ -94,7 +95,7 @@ export default function ReSizeWindow() {
      * @tc.number:ReSize_002
      * @tc.name: testWindowMaximize
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 设置window最大窗口
+     * @tc.desc: 设置window最大窗口,WindowMode.FLOATING: 悬浮窗口, WindowMode.FULLSCREEN: 全屏窗口
      */
     it('testWindowMaximize', TestType.FUNCTION, async () => {
       let driver = Driver.create()
@@ -106,10 +107,13 @@ export default function ReSizeWindow() {
           await window.resume()
         }
         let window2 = await driver.findWindow({bundleName: bundleName})
+        // 设置widow窗口为最大
         await window2.maximize()
         await driver.delayMs(WAIT_UI_READYMS)
         let window3 = await driver.findWindow({bundleName: bundleName})
         let mode = await window3.getWindowMode()
+
+        // 判断当前window是否全屏
         expect(mode == WindowMode.FULLSCREEN).assertTrue()
       }
       catch (err) {
@@ -125,7 +129,7 @@ export default function ReSizeWindow() {
      * @tc.number:ReSize_003
      * @tc.name: testWindowMinimize
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 设置window最小窗口
+     * @tc.desc: 设置window最小窗口, WindowMode.FLOATING: 悬浮窗口, WindowMode.FULLSCREEN: 全屏窗口
      */
     it('testWindowMinimize', TestType.FUNCTION, async () => {
       let driver = Driver.create()
@@ -136,12 +140,13 @@ export default function ReSizeWindow() {
         if (windowMode != WindowMode.FLOATING) {
           await window.resume()
         }
-        let window2 = await driver.findWindow({bundleName: bundleName})
-        await window2.minimize()
+
+        // 设置widow窗口为最小
+        await window.minimize()
         await driver.delayMs(WAIT_UI_READYMS)
-        let window3 = await driver.findWindow({bundleName: bundleName})
-        let mode = await window3.getWindowMode()
-        expect(mode == WindowMode.FULLSCREEN).assertTrue()
+        let window1 = await driver.findWindow({bundleName: bundleName})
+        // 判断当前window是否查找成功
+        expect(window1 == null).assertTrue()
       }
       catch (err) {
         if (err.message == 'this device can not support this action') {

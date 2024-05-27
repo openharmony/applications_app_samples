@@ -74,49 +74,55 @@ export default function MoveToEventTest() {
      * @tc.number:MoveToEventTest_002
      * @tc.name: testDisplayRotation
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 查找window获取window状态
+     * @tc.desc: 获取、切换屏幕显示方向
      */
     it('testDisplayRotation', TestType.FUNCTION, async () => {
-      let driver = Driver.create()
-      await driver.delayMs(WAIT_UI_READYMS)
-      await driver.setDisplayRotation(DisplayRotation.ROTATION_0)
-      await driver.delayMs(WAIT_UI_READYMS)
-      let rotation = await driver.getDisplayRotation()
+      let driver = Driver.create();
+      await driver.delayMs(WAIT_UI_READYMS);
+      await driver.setDisplayRotation(DisplayRotation.ROTATION_0);
+      await driver.delayMs(WAIT_UI_READYMS);
+      let rotation = await driver.getDisplayRotation();
+      // 屏幕垂直显示
       if (rotation == DisplayRotation.ROTATION_90) {
-        console.info('The device is displayed in horizontal on default')
-        await driver.setDisplayRotation(DisplayRotation.ROTATION_90)
-        await driver.delayMs(WAIT_UI_READYMS)
-        let rotation1 = await driver.getDisplayRotation()
-        expect(rotation1 == DisplayRotation.ROTATION_0)
+        console.info('The device is displayed in horizontal on default');
+        // 屏幕旋转90 degrees
+        await driver.setDisplayRotation(DisplayRotation.ROTATION_90);
+        await driver.delayMs(WAIT_UI_READYMS);
+        let rotation1 = await driver.getDisplayRotation();
+        // 屏幕水平位置
+        expect(rotation1 == DisplayRotation.ROTATION_0);
 
-        await driver.setDisplayRotation(DisplayRotation.ROTATION_180)
-        await driver.delayMs(WAIT_UI_READYMS)
-        let rotation2 = await driver.getDisplayRotation()
-        expect(rotation2 == DisplayRotation.ROTATION_270)
+        // 屏幕旋转180 degrees
+        await driver.setDisplayRotation(DisplayRotation.ROTATION_180);
+        await driver.delayMs(WAIT_UI_READYMS);
+        let rotation2 = await driver.getDisplayRotation();
+        expect(rotation2 == DisplayRotation.ROTATION_270);
 
-        await driver.setDisplayRotation(DisplayRotation.ROTATION_270)
-        await driver.delayMs(WAIT_UI_READYMS)
-        let rotation3 = await driver.getDisplayRotation()
-        expect(rotation3 == DisplayRotation.ROTATION_180)
+        // 屏幕旋转270 degrees
+        await driver.setDisplayRotation(DisplayRotation.ROTATION_270);
+        await driver.delayMs(WAIT_UI_READYMS);
+        let rotation3 = await driver.getDisplayRotation();
+        expect(rotation3 == DisplayRotation.ROTATION_180);
+        await driver.setDisplayRotation(DisplayRotation.ROTATION_90);
 
-        await driver.setDisplayRotation(DisplayRotation.ROTATION_90)
-      } else if (rotation == DisplayRotation.ROTATION_0) {
-        console.info('The device is displayed in vertical on default')
-        await driver.setDisplayRotation(DisplayRotation.ROTATION_90)
-        await driver.delayMs(WAIT_UI_READYMS)
-        let rotation1 = await driver.getDisplayRotation()
-        expect(rotation1 == DisplayRotation.ROTATION_90)
+      } else if (rotation == DisplayRotation.ROTATION_0) { // 屏幕水平显示
+        console.info('The device is displayed in vertical on default');
+        // 屏幕旋转90 degrees
+        await driver.setDisplayRotation(DisplayRotation.ROTATION_90);
+        await driver.delayMs(WAIT_UI_READYMS);
+        let rotation1 = await driver.getDisplayRotation();
+        expect(rotation1 == DisplayRotation.ROTATION_90);
 
-        await driver.setDisplayRotation(DisplayRotation.ROTATION_180)
-        await driver.delayMs(WAIT_UI_READYMS)
-        let rotation2 = await driver.getDisplayRotation()
-        expect(rotation2 == DisplayRotation.ROTATION_180)
+        await driver.setDisplayRotation(DisplayRotation.ROTATION_180);
+        await driver.delayMs(WAIT_UI_READYMS);
+        let rotation2 = await driver.getDisplayRotation();
+        expect(rotation2 == DisplayRotation.ROTATION_180);
 
-        await driver.setDisplayRotation(DisplayRotation.ROTATION_270)
-        await driver.delayMs(WAIT_UI_READYMS)
-        let rotation3 = await driver.getDisplayRotation()
-        expect(rotation3 == DisplayRotation.ROTATION_270)
-        await driver.setDisplayRotation(DisplayRotation.ROTATION_0)
+        await driver.setDisplayRotation(DisplayRotation.ROTATION_270);
+        await driver.delayMs(WAIT_UI_READYMS);
+        let rotation3 = await driver.getDisplayRotation();
+        expect(rotation3 == DisplayRotation.ROTATION_270);
+        await driver.setDisplayRotation(DisplayRotation.ROTATION_0);
       }
     })
 
@@ -124,12 +130,12 @@ export default function MoveToEventTest() {
      * @tc.number:MoveToEventTest_003
      * @tc.name: testWakeUpDisplay
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 查找window获取window状态
+     * @tc.desc: 唤醒屏幕
      */
     it('testWakeUpDisplay', 0, async () => {
-      let driver = Driver.create()
-      await driver.delayMs(WAIT_UI_READYMS)
-      await driver.wakeUpDisplay()
+      let driver = Driver.create();
+      await driver.delayMs(WAIT_UI_READYMS);
+      await driver.wakeUpDisplay();
     })
   })
 }

@@ -161,13 +161,14 @@ export default function MouseEventTest() {
      * @tc.number:MouseEventTest_005
      * @tc.name: testMouseScroll_with
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 检测uitest 模拟鼠标滚轮向下滑动与组合键功能
+     * @tc.desc: 检测uitest 模拟鼠标滚轮向下滑动与Ctrl + 删除键组合使用。
      */
     it('testMouseScroll_with', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create();
       await driver.delayMs(WAIT_UI_READYMS);
       let scroll = await driver.findComponent(ON.id('scroll_test'));
       let center = await scroll.getBoundsCenter();
+      // 10: 滚轮滚动的单元格数, 2072: 左Ctrl键, 2071: 删除键, 20: 滚动速度
       await driver.mouseScroll(center,true,10, 2072, 2071, 20);
       let button1 = await driver.findComponent(ON.id('scroll_item'));
       expect(await button1.getText() !== '0').assertTrue();
