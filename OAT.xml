@@ -499,6 +499,9 @@ Note:If the text contains special characters, please escape them according to th
         <filteritem type="filepath" name="code/SystemFeature/TaskManagement/TransientTask/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/TaskManagement/TransientTask"/>
         <filteritem type="filepath" name="code/SystemFeature/TaskManagement/TransientTask/screenshots/device/after.png" desc="Provided by code/SystemFeature/TaskManagement/TransientTask"/>
         <filteritem type="filepath" name="code/SystemFeature/TaskManagement/TransientTask/screenshots/device/before.png" desc="Provided by code/SystemFeature/TaskManagement/TransientTask"/>
+        <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/EmbeddedUIExtensionAbility/entry/src/ohosTest/resources/base/media/icon.png" desc="code/SystemFeature/ApplicationModels/EmbeddedUIExtensionAbility"/>
+		<filteritem type="filepath" name="code/SystemFeature/ApplicationModels/UIExtensionAbility/screenshots/main.png" desc="Provided by code/SystemFeature/ApplicationModels/UIExtensionAbility"/>
+        <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/UIExtensionAbility/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/ApplicationModels/UIExtensionAbility"/>
         <filteritem type="filepath" name="code/SystemFeature/TaskManagement/Flybird/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/TaskManagement/Flybird"/>
         <filteritem type="filepath" name="code/SystemFeature/TaskManagement/Flybird/entry/src/main/ets/common/pic/bgFive.png" desc="Provided by code/SystemFeature/TaskManagement/Flybird"/>
         <filteritem type="filepath" name="code/SystemFeature/TaskManagement/Flybird/entry/src/main/ets/common/pic/bgFour.png" desc="Provided by code/SystemFeature/TaskManagement/Flybird"/>
@@ -523,9 +526,12 @@ Note:If the text contains special characters, please escape them according to th
         <filteritem type="filepath" name="code/SystemFeature/TaskManagement/Flybird/entry/src/main/ets/common/pic/pipeSouthTwo.png" desc="Provided by code/SystemFeature/TaskManagement/Flybird"/>
         <filteritem type="filepath" name="code/SystemFeature/TaskManagement/Flybird/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/TaskManagement/Flybird"/>
         <filteritem type="filepath" name="code/SystemFeature/TaskManagement/Flybird/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/TaskManagement/Flybird"/>
+        <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/EmbeddedUIExtensionAbility/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/ApplicationModels/EmbeddedUIExtensionAbility"/>
+        <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/UIExtensionAbility/screenshots/main.png" desc="Provided by code/SystemFeature/ApplicationModels/UIExtensionAbility"/>
+        <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/UIExtensionAbility/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/ApplicationModels/UIExtensionAbility"/>
         <filteritem type="filepath" name="code/SystemFeature/TaskManagement/Flybird/screenshot/snapshot1.png" desc="Provided by code/SystemFeature/TaskManagement/Flybird"/>
         <filteritem type="filepath" name="code/SystemFeature/TaskManagement/Flybird/screenshot/snapshot2.png" desc="Provided by code/SystemFeature/TaskManagement/Flybird"/>
-		<filteritem type="filepath" name="code/BasicFeature/ArkTSCard/ArkTSCard/libs/ArkTSUser.hap" desc="Provided by code/BasicFeature/ArkTSCard/ArkTSCard"/>
+        <filteritem type="filepath" name="code/BasicFeature/ArkTSCard/ArkTSCard/libs/ArkTSUser.hap" desc="Provided by code/BasicFeature/ArkTSCard/ArkTSCard"/>
         <filteritem type="filepath" name="code/BasicFeature/Native/Audio/entry/src/main/resources/base/media/pic_Audiovivid.png" desc="Provided by code/BasicFeature/Native/Audio"/>
         <filteritem type="filepath" name="code/BasicFeature/Native/Audio/screenshots/device/AudioVivid.jpg" desc="Provided by code/BasicFeature/Native/Audio"/>
         <filteritem type="filepath" name="code/BasicFeature/Native/Audio/screenshots/device/index.jpg" desc="Provided by code/BasicFeature/Native/Audio"/>
