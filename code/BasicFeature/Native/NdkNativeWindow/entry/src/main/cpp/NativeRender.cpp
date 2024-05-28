@@ -22,7 +22,7 @@
 namespace NativeWindowSample {
 static void TestReadWriteWindow(NativeWindow *nativeWindow)
 {
-    OHIPCParcel *parcel = OH_IPCParcel_Create();
+    OHIPCParcel *parcel = OH_IPCParcel_Create();,
     OH_NativeWindow_WriteToParcel(nativeWindow, parcel);
     OHNativeWindow *readWindow = nullptr;
     OH_NativeWindow_ReadFromParcel(parcel, &readWindow);
