@@ -174,13 +174,29 @@ void NativeRender::NativeBufferApi()
 static void TestReadWriteWindow(NativeWindow *nativeWindow)
 {
     OHIPCParcel *parcel = OH_IPCParcel_Create();
-    OH_NativeWindow_WriteToParcel(nativeWindow, parcel);
+    if (parcel == nullptr) {
+        LOGE("OH_IPCParcel_Create fail");
+        return;
+    }
+    auto ret = OH_NativeWindow_WriteToParcel(nativeWindow, parcel);
+    if (ret != 0) {
+        LOGE("WriteToParcel fail, err code is %{public}d.", ret);
+        return;    
+    }
     OHNativeWindow *readWindow = nullptr;
-    OH_NativeWindow_ReadFromParcel(parcel, &readWindow);
+    ret = OH_NativeWindow_ReadFromParcel(parcel, &readWindow);
+    if (ret != 0) {
+        LOGE("ReadFromParcel fail, err code is %{public}d.", ret);
+        return;    
+    }
     uint64_t nativeId = 0;
     uint64_t readId = 0;
-    OH_NativeWindow_GetSurfaceId(nativeWindow, &nativeId);
-    OH_NativeWindow_GetSurfaceId(readWindow, &readId);
+    ret = OH_NativeWindow_GetSurfaceId(nativeWindow, &nativeId);
+    ret &= OH_NativeWindow_GetSurfaceId(readWindow, &readId);
+    if (ret != 0) {
+        LOGE("OH_NativeWindow_GetSurfaceId fail");
+        return;    
+    }
     LOGI("TestReadWriteWindow window nativeId:%{public}lld, readId:%{public}lld", nativeId, readId);
 }
 
