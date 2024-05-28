@@ -22,8 +22,6 @@ find_library( # Sets the name of the path variable.
               # Specifies the name of the NDK library that
               # you want CMake to locate.
               ace_ndk.z )
-
-
 add_library(nativerender SHARED
             plugin.cpp
             NativeRender.cpp
