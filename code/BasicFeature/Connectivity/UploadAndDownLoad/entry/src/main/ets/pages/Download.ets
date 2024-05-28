@@ -28,7 +28,7 @@ import {
 } from '@ohos/uploaddownload';
 import { SelectFolderDialog } from '../components/SelectFolderDialog';
 
-const TAG: string = 'Download';
+const TAG: string = 'DownloadSample';
 
 @Entry
 @Component
@@ -227,6 +227,7 @@ struct Download {
   }
 
   aboutToAppear() {
+    logger.debug(TAG, "aboutToAppear");
     this.isRunning = false;
     this.isPause = false;
     this.isGetData = true;
@@ -246,6 +247,7 @@ struct Download {
   }
 
   fileCheck(index: number) {
+    logger.debug(TAG, `fileCheck= ${index}`);
     if (!this.isBackground) {
       for (let i = 0; i < this.checkList.length; i++) {
         if (i !== index) {
@@ -258,6 +260,7 @@ struct Download {
   }
 
   download(folder: string) {
+    logger.debug(TAG, `download folder= ${folder}`);
     this.checkFile = [];
     if (this.checkList === undefined) {
       return;
@@ -300,12 +303,14 @@ struct Download {
   }
 
   downloadFilesCallback = (downloadCount: number, isSuccess: boolean) => {
+    logger.debug(TAG, "downloadFilesCallback");
     this.progress = downloadCount;
     if (downloadCount === this.checkFile.length) {
       this.downloadFinish(isSuccess);
     }
   }
   downloadFileCallback = (progress: number, isSuccess: boolean) => {
+    logger.debug(TAG, "downloadFileCallback");
     this.progress = progress;
     if (this.progress === 100) {
       this.downloadFinish(isSuccess);
@@ -313,6 +318,7 @@ struct Download {
   }
 
   downloadFinish(isSuccess: boolean) {
+    logger.debug(TAG, "downloadFinish");
     this.isRunning = false;
     this.checkFile = [];
     this.checkList = [];

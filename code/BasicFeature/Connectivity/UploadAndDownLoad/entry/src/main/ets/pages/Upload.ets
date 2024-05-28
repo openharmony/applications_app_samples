@@ -18,9 +18,10 @@ import fs from '@ohos.file.fs';
 import promptAction from '@ohos.promptAction';
 import { AddPictures } from '../components/AddPictures';
 import { ConfigFileChunkDialog } from '../components/ConfigFileChunkDialog';
-import { BackgroundTaskState, requestUpload, TOAST_BOTTOM, NO_IMAGE_SELECTED } from '@ohos/uploaddownload';
+import { BackgroundTaskState, requestUpload, logger, TOAST_BOTTOM, NO_IMAGE_SELECTED } from '@ohos/uploaddownload';
 
 const TIME_MAX: number = 5;
+const TAG: string = 'UploadSample';
 
 @Entry
 @Component
@@ -144,17 +145,20 @@ struct Upload {
   }
 
   aboutToAppear() {
+    logger.debug(TAG, "aboutToAppear");
     this.isBegin = false;
     this.backTaskState = BackgroundTaskState.NONE;
   }
 
   stateChange() {
+    logger.debug(TAG, "stateChange");
     if (this.backTaskState === BackgroundTaskState.NONE) {
       this.imageList = [];
     }
   }
 
   uploadFiles() {
+    logger.debug(TAG, "uploadFiles");
     if (this.imageList.length == 0) {
       return;
     }
@@ -164,6 +168,7 @@ struct Upload {
       this.progress = 0;
       let index = this.chunkImgIndex;
       let fileUris = this.imageList.slice(index);
+      console.debug(TAG + "fileuri:" + fileUris);
       requestUpload.uploadFileChunk(fileUris, this.chunkParaBegins, this.chunkParaEnds, (progress: number, isSucceed: boolean) => {
         this.progress = progress;
         if (this.progress === 100 && isSucceed) {
@@ -187,7 +192,7 @@ struct Upload {
 
       return;
     }
-
+    console.debug(TAG + ":imageList:" + this.imageList);
     if (this.isBackground) {
       AppStorage.setOrCreate('backTaskState', BackgroundTaskState.RUNNING);
       requestUpload.uploadFilesBackground(this.imageList);
@@ -220,10 +225,13 @@ struct Upload {
 
   getResourceString(resource: Resource) {
     let context = getContext(this) as common.UIAbilityContext;
-    return context.resourceManager.getStringSync(resource.id);
+    let res = context.resourceManager.getStringSync(resource.id);
+    logger.debug(TAG + ":****" + res);
+    return res;
   }
 
   onChunkImgIndexChange(propName: string) {
+    logger.debug(TAG, "onChunkImgIndexChange");
     if (this.chunkImgIndex != NO_IMAGE_SELECTED) {
       this.chunkDialog.open();
     }
@@ -234,6 +242,7 @@ struct Upload {
   }
 
   onChunkDiaglogCancel() {
+    logger.debug(TAG, "onChunkDiaglogCancel");
     this.chunkImgIndex = NO_IMAGE_SELECTED;
   }
 }

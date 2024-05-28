@@ -17,7 +17,8 @@ import notificationManager from '@ohos.notificationManager';
 import router from '@ohos.router';
 import common from '@ohos.app.ability.common';
 
-@Styles function itemStyle() {
+@Styles
+function itemStyle() {
   .width('100%')
   .height(56)
   .padding({ top: 17, bottom: 17, left: 12, right: 12 })
@@ -26,7 +27,8 @@ import common from '@ohos.app.ability.common';
   .margin({ top: 12 })
 }
 
-@Extend(Text) function textStyle() {
+@Extend(Text)
+function textStyle() {
   .fontColor($r('app.color.text_normal'))
   .fontWeight(400)
   .fontFamily('HarmonyHeiTi')
@@ -68,6 +70,11 @@ struct Index {
           this.CapabilityView($r('app.media.ic_download'), $r('app.string.download'), 'btn_download', () => {
             router.pushUrl({
               url: 'pages/Download'
+            })
+          })
+          this.CapabilityView($r('app.media.ic_certified'), $r('app.string.cert_lock'), 'btn_cert_lock', () => {
+            router.pushUrl({
+              url: 'pages/CertLock'
             })
           })
         }
