@@ -22,9 +22,16 @@ find_library( # Sets the name of the path variable.
               # Specifies the name of the NDK library that
               # you want CMake to locate.
               ace_ndk.z )
+
+find_library( # Sets the name of the path variable.
+              libipc_capi-lib
+              # Specifies the name of the NDK library that
+              # you want CMake to locate.
+              libipc_capi.z )
+
 add_library(nativerender SHARED
             plugin.cpp
             NativeRender.cpp
             NativeImageAdaptor.cpp)
 
-target_link_libraries(nativerender PUBLIC ${hilog-lib} ${libnapi-lib} ${libace-lib} libnative_buffer.so libnative_window.so libnative_image.so libEGL.so libGLESv3.so)
+target_link_libraries(nativerender PUBLIC ${hilog-lib} ${libnapi-lib} ${libace-lib} ${libipc_capi-lib} libnative_buffer.so libnative_window.so libnative_image.so libEGL.so libGLESv3.so)
