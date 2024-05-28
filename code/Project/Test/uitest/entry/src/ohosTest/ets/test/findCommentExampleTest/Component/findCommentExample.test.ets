@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License")
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -42,20 +42,20 @@
 
 
 
-import { describe, it, expect, TestType, beforeAll } from '@ohos/hypium'
+import { describe, it, expect, TestType, beforeAll } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, MatchPattern, ON } from '@kit.TestKit';
 import { Want } from '@kit.AbilityKit';
-const delegator = abilityDelegatorRegistry.getAbilityDelegator()
+const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const DELAYMS = 1000;
-const  arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+const  arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 export default function findExampleTest() {
   describe('findExampleTest', () => {
     beforeAll(async  () => {
       let want: Want = {
         bundleName : bundleName,
         abilityName : 'EntryAbility'
-      }
+      };
       await delegator.startAbility(want);
     })
 
@@ -68,7 +68,7 @@ export default function findExampleTest() {
     it("findComponent_On_ID", TestType.FUNCTION, async (done: Function) => {
       let dr = await Driver.create();
       await dr.delayMs(DELAYMS);
-      let text  = await dr.findComponent(ON.id('idTest'))
+      let text  = await dr.findComponent(ON.id('idTest'));
       expect(dr).not().assertNull();
       expect(await text.getId()).assertEqual('idTest');
       done();
@@ -162,11 +162,11 @@ export default function findExampleTest() {
      * @tc.desc: 验证组件的description属性
      */
     it('testDescription', TestType.FUNCTION, async () => {
-      let driver = Driver.create()
-      await driver.delayMs(DELAYMS)
-      let text = await driver.findComponent(ON.type('Text').description(''))
-      let description = await text.getDescription()
-      expect(description == '').assertTrue()
+      let driver = Driver.create();
+      await driver.delayMs(DELAYMS);
+      let text = await driver.findComponent(ON.type('Text').description(''));
+      let description = await text.getDescription();
+      expect(description == '').assertTrue();
     })
 
     /**
@@ -176,17 +176,17 @@ export default function findExampleTest() {
      * @tc.desc: 验证组件的description属性
      */
     it('testWithIn', TestType.FUNCTION, async () => {
-      let driver = Driver.create()
-      await driver.delayMs(DELAYMS)
-      let scroll = await driver.findComponent(ON.type('Scroll'))
-      let btn = await driver.findComponent(ON.within(ON.type('Scroll')).text('0'))
-      let bounds1 = await scroll.getBounds()
-      let bounds2 = await btn.getBounds()
-      expect(await btn.getText()).assertEqual("0")
-      expect(bounds1.top < bounds2.top).assertTrue()
-      expect(bounds1.bottom > bounds2.bottom).assertTrue()
-      expect(bounds1.left < bounds2.right).assertTrue()
-      expect(bounds1.right > bounds2.right).assertTrue()
+      let driver = Driver.create();
+      await driver.delayMs(DELAYMS);
+      let scroll = await driver.findComponent(ON.type('Scroll'));
+      let btn = await driver.findComponent(ON.within(ON.type('Scroll')).text('0'));
+      let bounds1 = await scroll.getBounds();
+      let bounds2 = await btn.getBounds();
+      expect(await btn.getText()).assertEqual("0");
+      expect(bounds1.top < bounds2.top).assertTrue();
+      expect(bounds1.bottom > bounds2.bottom).assertTrue();
+      expect(bounds1.left < bounds2.right).assertTrue();
+      expect(bounds1.right > bounds2.right).assertTrue();
     })
   })
 }

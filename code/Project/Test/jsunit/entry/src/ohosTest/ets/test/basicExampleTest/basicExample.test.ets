@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2023 Huawei Device Co., Ltd.
+* Copyright (c) 2023-2024 Huawei Device Co., Ltd.
 * Licensed under the Apache License, Version 2.0 (the "License")
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -17,7 +17,7 @@ import { describe, it, expect } from '@ohos/hypium';
 import { abilityDelegatorRegistry } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
 
-const delegator = abilityDelegatorRegistry.getAbilityDelegator()
+const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 function sleep(time: number) {
   return new Promise<void>((resolve: Function) => setTimeout(resolve, time));

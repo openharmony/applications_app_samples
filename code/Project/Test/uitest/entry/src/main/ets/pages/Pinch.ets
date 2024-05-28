@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,8 +16,8 @@
 @Entry
 @Component
 struct ScreenExample {
-  @State  myScale: number = 1
-  @State  myScaleOut: number = 1
+  @State  myScale: number = 1;
+  @State  myScaleOut: number = 1;
   build() {
     Column() {
       Text(this.myScale.toString())
@@ -30,13 +30,13 @@ struct ScreenExample {
         .gesture(
         PinchGesture()
           .onActionStart((event: GestureEvent) => {
-            console.info('Pinch start')
+            console.info('Pinch start');
           })
           .onActionUpdate((event: GestureEvent) => {
-            this.myScale = event.scale
+            this.myScale = event.scale;
           })
           .onActionEnd(() => {
-            console.info('Pinch end')
+            console.info('Pinch end');
           })
         )
       Image($r('app.media.icon'))
@@ -49,13 +49,13 @@ struct ScreenExample {
         .gesture(
           PinchGesture()
             .onActionStart((event: GestureEvent) => {
-              console.info('Pinch start')
+              console.info('Pinch start');
             })
             .onActionUpdate((event: GestureEvent) => {
-              this.myScaleOut = event.scale
+              this.myScaleOut = event.scale;
             })
             .onActionEnd(() => {
-              console.info('Pinch end')
+              console.info('Pinch end');
             })
         )
     }

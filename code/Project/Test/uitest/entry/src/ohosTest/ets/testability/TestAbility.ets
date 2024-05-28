@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2023 Huawei Device Co., Ltd.
+* Copyright (c) 2023-2024 Huawei Device Co., Ltd.
 * Licensed under the Apache License, Version 2.0 (the "License")
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -19,18 +19,18 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { abilityDelegatorRegistry } from '@kit.TestKit';
-import Logger from '../util/Logger'
+import Logger from '../util/Logger';
 
-const TAG = 'testTag'
+const TAG = 'testTag';
 export default class TestAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         Logger.info(TAG, "TestAbility onCreate");
         Logger.info(TAG, "want param:" + JSON.stringify(want));
         Logger.info(TAG, "launchParam:" + JSON.stringify(launchParam));
-        let  abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
-        let  abilityDelegatorArguments =  abilityDelegatorRegistry.getArguments()
+        let  abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+        let  abilityDelegatorArguments =  abilityDelegatorRegistry.getArguments();
         Logger.info(TAG, "start run testcase!!!");
-        Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
+        Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
     }
 
     onWindowStageCreate(windowStage: window.WindowStage) {

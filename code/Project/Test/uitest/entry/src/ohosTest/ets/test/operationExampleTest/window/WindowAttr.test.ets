@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2023 Huawei Device Co., Ltd.
+* Copyright (c) 2023-2024 Huawei Device Co., Ltd.
 * Licensed under the Apache License, Version 2.0 (the "License")
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -26,15 +26,15 @@
 *
  */
 
-import { describe, it, expect, TestType, beforeAll } from '@ohos/hypium'
+import { describe, it, expect, TestType, beforeAll } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver } from '@kit.TestKit';
 import { Want } from '@kit.AbilityKit';
-import Logger from '../../../util/Logger'
+import Logger from '../../../util/Logger';
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const WAIT_UI_READYMS = 1000;
 const TAG = 'WindowAttr_Test';
-const BUNDLE = 'WindowAttr_'
+const BUNDLE = 'WindowAttr_';
 export default function WindowAttr() {
   describe('WindowAttr',  () => {
     beforeAll(async () => {

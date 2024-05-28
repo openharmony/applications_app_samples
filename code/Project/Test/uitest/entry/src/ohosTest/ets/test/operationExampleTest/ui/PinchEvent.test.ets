@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License")
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { describe, it, expect, TestType, beforeAll } from '@ohos/hypium'
+import { describe, it, expect, TestType, beforeAll } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
 import { Want } from '@kit.AbilityKit';
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
@@ -78,21 +78,21 @@ export default function PinchEventTest() {
      * @tc.desc: 检测uitest 先缩小,然后放大测试。
      */
     it('testPinch_In_Out', 0, async () => {
-      let driver = Driver.create()
-      await driver.delayMs(WAIT_UI_READYMS)
-      let image1 = await driver.findComponent(ON.id('pinch_ima_out'))
-      let bounds1 = await image1.getBounds()
+      let driver = Driver.create();
+      await driver.delayMs(WAIT_UI_READYMS);
+      let image1 = await driver.findComponent(ON.id('pinch_ima_out'));
+      let bounds1 = await image1.getBounds();
       await image1.pinchIn(0.5);
-      await driver.delayMs(WAIT_UI_READYMS * 2)
-      let image2 = await driver.findComponent(ON.id('pinch_ima_out'))
-      let bounds2 = await image2.getBounds()
-      expect(bounds2 != bounds1).assertTrue()
+      await driver.delayMs(WAIT_UI_READYMS * 2);
+      let image2 = await driver.findComponent(ON.id('pinch_ima_out'));
+      let bounds2 = await image2.getBounds();
+      expect(bounds2 != bounds1).assertTrue();
       await image2.pinchOut(1.5);
-      await driver.delayMs(WAIT_UI_READYMS * 2)
-      let image3 = await driver.findComponent(ON.id('pinch_ima_out'))
-      let bounds3 = await image3.getBounds()
-      expect(bounds3 != bounds2).assertTrue()
-      await driver.pressBack()
+      await driver.delayMs(WAIT_UI_READYMS * 2);
+      let image3 = await driver.findComponent(ON.id('pinch_ima_out'));
+      let bounds3 = await image3.getBounds();
+      expect(bounds3 != bounds2).assertTrue();
+      await driver.pressBack();
     })
   })
 }

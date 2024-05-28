@@ -12,13 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { router } from '@kit.ArkUI'
+import { router } from '@kit.ArkUI';
 
 
 @Entry
 @Component
 struct Click {
-  @State message: string = 'Hello World'
+  @State message: string = 'Hello World';
 
   build() {
     Row() {
@@ -30,7 +30,7 @@ struct Click {
         Button("singleClick")
           .id("click_bt")
           .onClick(() =>{
-            this.message = "singleClick"
+            this.message = "singleClick";
           })
         Button() {
           Text('Click twice')
@@ -42,13 +42,13 @@ struct Click {
         .gesture(
         TapGesture({ count: 2 })
           .onAction(() => {
-            router.pushUrl({ url: 'pages/Third' })
+            router.pushUrl({ url: 'pages/Third' });
           })
         )
         .gesture(
         LongPressGesture({ repeat: false })
           .onAction(() => {
-            router.pushUrl({ url: 'pages/Fourth' })
+            router.pushUrl({ url: 'pages/Fourth' });
           })
         )
       }

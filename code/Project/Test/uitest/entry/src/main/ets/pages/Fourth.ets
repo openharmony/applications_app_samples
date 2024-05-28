@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2023 Huawei Device Co., Ltd.
+* Copyright (c) 2023-2024 Huawei Device Co., Ltd.
 * Licensed under the Apache License, Version 2.0 (the "License")
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -19,7 +19,7 @@ import { router } from '@kit.ArkUI';
 @Component
 struct Fourth
 {
-  private content: string = "Fourth Page"
+  private content: string = "Fourth Page";
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {

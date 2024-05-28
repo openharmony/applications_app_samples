@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2023 Huawei Device Co., Ltd.
+* Copyright (c) 2023-2024 Huawei Device Co., Ltd.
 * Licensed under the Apache License, Version 2.0 (the "License")
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -13,13 +13,13 @@
 * limitations under the License.
 */
 
-import {promptAction, router } from "@kit.ArkUI"
+import {promptAction, router } from "@kit.ArkUI";
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
-  private scroller: Scroller = new Scroller()
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  @State message: string = 'Hello World';
+  private scroller: Scroller = new Scroller();
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   @State count: number = 0;
 
   build() {
@@ -66,7 +66,7 @@ struct Index {
           .onClick(() =>{
             router.replaceUrl({
               url:'pages/Scroller'
-            })
+            });
           })
           Button(){
             Text("ButtonTest1")
@@ -83,7 +83,7 @@ struct Index {
               promptAction.showToast({
                 message: "testMessage",
                 duration: 2000
-              })
+              });
             })
           Button('showDialog', { type: ButtonType.Normal, stateEffect: true })
             .borderRadius(8)
@@ -95,14 +95,14 @@ struct Index {
                 title: "testDialog",
                 message: "testMessage"
               })
-            })
+            });
           Button(){
             Text("Drag")
           }.id("drag")
           .onClick(() =>{
             router.push({
               url:'pages/Drag'
-            })
+            });
           })
           Button(){
             Text("Pinch")
@@ -110,7 +110,7 @@ struct Index {
           .onClick(() =>{
             router.push({
               url:'pages/Pinch'
-            })
+            });
           })
           .margin({left: 10})
         }.margin({top: 10})
@@ -119,14 +119,14 @@ struct Index {
             .selectedColor('#007DFF')
             .switchPointColor('#FFFFFF')
             .onChange((isOn: boolean) => {
-              console.info('Component status:' + isOn)
+              console.info('Component status:' + isOn);
             }).id("Toggle_switch_false")
 
           Toggle({ type: ToggleType.Switch, isOn: true })
             .selectedColor('#007DFF')
             .switchPointColor('#FFFFFF')
             .onChange((isOn: boolean) => {
-              console.info('Component status:' + isOn)
+              console.info('Component status:' + isOn);
             })
             .id("Toggle_switch_true")
 
@@ -142,7 +142,7 @@ struct Index {
             .select(false)
             .selectedColor(0x39a2db)
             .onChange((value: boolean) => {
-              console.info('Checkbox2 change is'+ value)
+              console.info('Checkbox2 change is'+ value);
             }).id("check_test_not_checked")
 
         }.margin({top: 10})
@@ -157,7 +157,7 @@ struct Index {
             .selectedOptionFont({ size: 40, weight: 500, family: 'serif', style: FontStyle.Normal })
             .optionFont({ size: 30, weight: 400, family: 'serif', style: FontStyle.Normal })
             .onSelect((index: number) => {
-              console.info("Select:" + index)
+              console.info("Select:" + index);
             })
         }.margin({top: 10})
         Row(){
@@ -172,7 +172,7 @@ struct Index {
           .gesture(
           TapGesture({ count: 2 })
             .onAction(() => {
-              router.push({url: 'pages/Swipe'})
+              router.push({url: 'pages/Swipe'});
             })
           )
       }

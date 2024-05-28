@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License")
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { describe, it, expect, TestType, beforeAll } from '@ohos/hypium'
+import { describe, it, expect, TestType, beforeAll } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON, UiDirection } from '@kit.TestKit';
 import { Want } from '@kit.AbilityKit';
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
@@ -26,7 +26,7 @@ export default function FlingEventTest() {
       let want: Want = {
         bundleName : bundleName,
         abilityName : 'FlingAbility'
-      }
+      };
       await delegator.startAbility(want);
     })
 
@@ -73,7 +73,7 @@ export default function FlingEventTest() {
      * @tc.desc: 检测uitest fling 垂直滑动功能 坐标点仅支持RK3568
      */
     it('FlingEvent_d', TestType.FUNCTION, async (done: Function) => {
-      let driver = Driver.create()
+      let driver = Driver.create();
       await driver.delayMs(WAIT_UI_READYMS);
       await driver.fling(UiDirection.LEFT, 39000);
       await driver.delayMs(WAIT_UI_READYMS);

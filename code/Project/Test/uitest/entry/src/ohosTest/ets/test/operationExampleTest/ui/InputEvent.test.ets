@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License")
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { describe, it, expect, TestType, beforeAll } from '@ohos/hypium'
+import { describe, it, expect, TestType, beforeAll } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
@@ -103,18 +103,18 @@ export default function InputEventTest() {
      * @tc.desc: 检测uitest clear text
      */
     it('testClearText', TestType.FUNCTION, async () => {
-      let driver = Driver.create()
-      await driver.delayMs(WAIT_UI_READYMS)
-      let input1 = await driver.findComponent(ON.type('TextInput'))
-      await input1.inputText('abc')
-      await driver.delayMs(WAIT_UI_READYMS)
-      let input2 = await driver.findComponent(ON.type('TextInput'))
-      await input2.clearText()
-      await driver.delayMs(WAIT_UI_READYMS)
-      let input_new = await driver.findComponent(ON.type('TextInput'))
-      let text = await input_new.getText()
-      console.info("testClearText result :" + text)
-      expect(text).assertEqual('')
+      let driver = Driver.create();
+      await driver.delayMs(WAIT_UI_READYMS);
+      let input1 = await driver.findComponent(ON.type('TextInput'));
+      await input1.inputText('abc');
+      await driver.delayMs(WAIT_UI_READYMS);
+      let input2 = await driver.findComponent(ON.type('TextInput'));
+      await input2.clearText();
+      await driver.delayMs(WAIT_UI_READYMS);
+      let input_new = await driver.findComponent(ON.type('TextInput'));
+      let text = await input_new.getText();
+      console.info("testClearText result :" + text);
+      expect(text).assertEqual('');
     })
   })
 }

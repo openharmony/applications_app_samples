@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2023 Huawei Device Co., Ltd.
+* Copyright (c) 2023-2024 Huawei Device Co., Ltd.
 * Licensed under the Apache License, Version 2.0 (the "License")
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -17,22 +17,23 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { abilityDelegatorRegistry } from '@kit.TestKit';
 import { Hypium } from '@ohos/hypium';
 import testsuite from '../test/List.test';
-import data from '../test/data.json'
-import Logger from '../util/Logger'
+import getParamsData from '../test/ParamsData'
+import Logger from '../util/Logger';
 import { window } from '@kit.ArkUI';
 
-const TAG = 'testTag'
+const TAG = 'testTag';
 export default class TestAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         Logger.info(TAG, "TestAbility onCreate");
         Logger.info(TAG, "want param:" + JSON.stringify(want));
         Logger.info(TAG, "launchParam:" + JSON.stringify(launchParam));
-        let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
-        let abilityDelegatorArguments = abilityDelegatorRegistry.getArguments()
+        let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+        let abilityDelegatorArguments = abilityDelegatorRegistry.getArguments();
         Logger.info(TAG, "start run testcase!!!");
         // 设置数据
+        let data = getParamsData();
         Hypium.setData(data);
-        Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
+        Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
     }
 
     onDestroy() {

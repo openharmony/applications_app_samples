@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License")
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,7 +18,7 @@ import { router } from '@kit.ArkUI';
 @Entry
 @Component
 struct Third{
-  private content: string = "Third Page"
+  private content: string = "Third Page";
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -35,7 +35,7 @@ struct Third{
       })
       .backgroundColor('#0D9FFB')
       .onClick(() => {
-        router.back()
+        router.back();
       })
     }
     .width('100%')
