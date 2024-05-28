@@ -41,7 +41,6 @@ void OnSurfaceCreatedCB(OH_NativeXComponent* component, void* window)
     OHNativeWindow* nativeWindow = (NativeWindow*) (window);
     NativeRender::GetInstance()->SetNativeWindow(nativeWindow, width, height);
     NativeRender::GetInstance()->DrawBaseColor();
-    TestReadWriteWindow(nativeWindow);
 }
 
 void OnSurfaceChangedCB(OH_NativeXComponent* component, void* window)
@@ -200,7 +199,7 @@ void NativeRender::DrawBaseColor()
         LOGE("OH_NativeWindow_CreateNativeWindowFromSurfaceId fail");
         return;
     }
-
+    TestReadWriteWindow(nativeWindow);
     int fenceFd = -1;
     OHNativeWindowBuffer *nativeWindowBuffer = nullptr;
     ret = OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow, &nativeWindowBuffer, &fenceFd);
