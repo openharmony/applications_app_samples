@@ -43,5 +43,5 @@ export default function testsuite() {
   moveWindow();
   reSizeWindow();
   windowAttr();
-  monitorEventTest()
+  monitorEventTest();
 }

@@ -37,7 +37,7 @@ export default function customExampleTest() {
       let want: Want = {
         bundleName : bundleName,
         abilityName : "EntryAbility"
-      }
+      };
       await delegator.startAbility(want);
       await sleep(1000);
       // check top display ability
