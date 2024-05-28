@@ -187,7 +187,7 @@ static void TestReadWriteWindow(NativeWindow *nativeWindow)
     ret = OH_NativeWindow_ReadFromParcel(parcel, &readWindow);
     if (ret != 0) {
         LOGE("ReadFromParcel fail, err code is %{public}d.", ret);
-        return;    
+        return;
     }
     uint64_t nativeId = 0;
     uint64_t readId = 0;
