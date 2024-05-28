@@ -181,7 +181,7 @@ static void TestReadWriteWindow(NativeWindow *nativeWindow)
     auto ret = OH_NativeWindow_WriteToParcel(nativeWindow, parcel);
     if (ret != 0) {
         LOGE("WriteToParcel fail, err code is %{public}d.", ret);
-        return;    
+        return;
     }
     OHNativeWindow *readWindow = nullptr;
     ret = OH_NativeWindow_ReadFromParcel(parcel, &readWindow);
@@ -195,7 +195,7 @@ static void TestReadWriteWindow(NativeWindow *nativeWindow)
     ret &= OH_NativeWindow_GetSurfaceId(readWindow, &readId);
     if (ret != 0) {
         LOGE("OH_NativeWindow_GetSurfaceId fail");
-        return;    
+        return;
     }
     LOGI("TestReadWriteWindow window nativeId:%{public}lld, readId:%{public}lld", nativeId, readId);
 }
