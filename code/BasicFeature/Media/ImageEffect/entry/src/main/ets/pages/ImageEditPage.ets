@@ -514,28 +514,34 @@ struct CustomDialogExample {
 @Component
 struct LookupFilterMenuItem {
   @State item: string = "";
-  @State handlePopup: boolean = false
+
+  dialogController: CustomDialogController = new CustomDialogController({
+    builder: CustomDialogDetails({
+      item: $item
+    }),
+    offset: { dx: 0, dy: 220 },
+    autoCancel: true,
+  })
 
   build() {
     MenuItem({ content: this.item })
-      .bindPopup(this.handlePopup, {
-        message: 'Filters:\n' + imageEffect.lookupFilters(this.item),
-        messageOptions: {
-          font: {
-            size: '14vp',
-            style: FontStyle.Italic
-          },
-        },
-        placementOnTop: false,
-        onStateChange: (e) => {
-          console.log(e.isVisible.toString())
-          if (!e.isVisible) {
-            this.handlePopup = false
-          }
+      .onClick(() => {
+        if (this.dialogController != null) {
+          this.dialogController.open()
         }
       })
-      .onClick(() => {
-        this.handlePopup = !this.handlePopup
-      })
+  }
+}
+
+@CustomDialog
+struct CustomDialogDetails {
+  @Link item: string
+  controller?: CustomDialogController
+
+  build() {
+    Column() {
+      Text('Filters:\n' + imageEffect.lookupFilters(this.item))
+        .fontSize(16)
+    }
   }
 }
