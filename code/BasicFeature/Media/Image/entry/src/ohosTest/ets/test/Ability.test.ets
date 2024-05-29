@@ -706,7 +706,9 @@ export default function ActsAbilityTest() {
       await driver.delayMs(1000);
       // 进入编辑
       await enterEdit();
+      await showColorSpace();
       let tip: string = getString($r('app.string.setting'));
+      await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(tip));
       let setting = await driver.findComponent(ON.text(tip));
       await setting.click();
@@ -723,18 +725,10 @@ export default function ActsAbilityTest() {
     it('Decoding_001', 28, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'Decoding_001 begin');
       let driver = Driver.create();
-      let tip = getString($r('app.string.setting'));
-      await driver.assertComponentExist(ON.text(tip));
-      let setting = await driver.findComponent(ON.text(tip));
-      await setting.click();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('auto'));
       let auto = await driver.findComponent(ON.id('auto'));
       await auto.click();
-      await driver.delayMs(1080);
-      await driver.assertComponentExist(ON.id('ok'));
-      let ok = await driver.findComponent(ON.id('Ok'));
-      await ok.click();
       await driver.delayMs(1000);
       // 保存当前编辑
       await saveEdit();
@@ -750,7 +744,11 @@ export default function ActsAbilityTest() {
     it('Decoding_002', 29, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'Decoding_002 begin');
       let driver = Driver.create();
-      let tip = getString($r('app.string.setting'));
+      // 进入编辑
+      await enterEdit();
+      await showColorSpace();
+      let tip: string = getString($r('app.string.setting'));
+      await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(tip));
       let setting = await driver.findComponent(ON.text(tip));
       await setting.click();
@@ -758,10 +756,6 @@ export default function ActsAbilityTest() {
       await driver.assertComponentExist(ON.id('sdr'));
       let sdr = await driver.findComponent(ON.id('sdr'));
       await sdr.click();
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.id('Ok'));
-      let ok = await driver.findComponent(ON.id('Ok'));
-      await ok.click();
       await driver.delayMs(1000);
       // 保存当前编辑
       await saveEdit();
@@ -777,7 +771,11 @@ export default function ActsAbilityTest() {
     it('Decoding_003', 30, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'Decoding_003 begin');
       let driver = Driver.create() ;
-      let tip = getString($r('app.string.setting'));
+      // 进入编辑
+      await enterEdit();
+      await showColorSpace();
+      let tip: string = getString($r('app.string.setting'));
+      await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(tip));
       let setting = await driver.findComponent(ON.text(tip));
       await setting.click();
@@ -785,10 +783,6 @@ export default function ActsAbilityTest() {
       await driver.assertComponentExist(ON.id('hdr'));
       let hdr = await driver.findComponent(ON.id('hdr'));
       await hdr.click();
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.id('0k'));
-      let ok = await driver.findComponent(ON.id('Ok'));
-      await ok.click();
       await driver.delayMs(1000);
       // 保存当前编辑
       await saveEdit();
