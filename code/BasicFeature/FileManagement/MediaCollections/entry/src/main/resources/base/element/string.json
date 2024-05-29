@@ -231,6 +231,10 @@
     {
       "name": "onlinePlayerView_speed",
       "value": "倍速"
+    },
+    {
+      "name": "reason",
+      "value": "get permission"
     }
   ]
 }

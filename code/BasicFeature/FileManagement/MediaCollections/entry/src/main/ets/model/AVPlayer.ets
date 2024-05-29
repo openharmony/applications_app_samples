@@ -18,8 +18,9 @@ import { BusinessError } from '@ohos.base'
 import media from '@ohos.multimedia.media'
 import audio from '@ohos.multimedia.audio'
 import common from '@ohos.app.ability.common'
+import drm from '@ohos.multimedia.drm'
 import Logger from '../model/Logger'
-import DrmController, { drmInfo } from './DrmController'
+import DrmController from './DrmController'
 
 const TAG = 'AVPlayer'
 
@@ -48,6 +49,8 @@ export class AVPlayer {
   private callbackBitrateUpdate: (bitrateList: number[]) => void = (bitrateList: number[]) => {
   }
   private callbackErrorUpdate: (error: string) => void = (error: string) => {
+  }
+  private callbackLicenseInfoUpdate: (licenseInfo: string) => void = (licenseInfo: string) => {
   }
   private fd: number = 0
   private fileDescriptor: media.AVFileDescriptor = {} as media.AVFileDescriptor
@@ -81,6 +84,10 @@ export class AVPlayer {
 
   setErrorCallback(func: (error: string) => void) {
     this.callbackErrorUpdate = func
+  }
+
+  setLicenseInfoCallback(func: (licenseInfo: string) => void) {
+    this.callbackLicenseInfoUpdate = func
   }
 
   async prev(surfaceId: string) {
@@ -162,8 +169,7 @@ export class AVPlayer {
   }
 
   async httpInit(url: string, surfaceId?: string) {
-    this.isHttp = true;
-    this.isVideo = true;
+    this.isHttp = true
     if (surfaceId) {
       this.surfaceId = surfaceId.toString()
       Logger.info(TAG, `surfaceId success: ${surfaceId}`)
@@ -209,7 +215,7 @@ export class AVPlayer {
 
   async init(resourceAddress: mediaLibrary.FileAsset, surfaceId?: string) {
     this.isHttp = false
-    Logger.info(TAG, `init state`)
+    Logger.info(TAG, 'init state')
     this.isVideo = false
     // 判断是否传入surfaceID
     if (surfaceId) {
@@ -230,7 +236,7 @@ export class AVPlayer {
       Logger.info(TAG, `fd success: ${fd}`)
       this.fd = fd
       if (this.resourceAddress.mediaType == mediaLibrary.MediaType.AUDIO) {
-        Logger.info(TAG, `AUDIO success`)
+        Logger.info(TAG, 'AUDIO success')
         this.getFileIndex(this.audioData)
         this.mediaDataLen = this.audioData.length
       } else if (this.resourceAddress.mediaType == mediaLibrary.MediaType.VIDEO) {
@@ -264,9 +270,8 @@ export class AVPlayer {
   // 视频信息上报函数
   async setSourceInfo(): Promise<void> {
     // drmInfo 更新回调
-    this.media.on('drmInfoUpdate', (drmInfo: Object[]) => {
-      const drmInfoArr: drmInfo[] = drmInfo as drmInfo[]
-      this.drmPlayProcess(drmInfoArr)
+    this.media.on('mediaKeySystemInfoUpdate', (mediaKeySystemInfo: drm.MediaKeySystemInfo[]) => {
+      this.drmPlayProcess(mediaKeySystemInfo)
     })
     // 时间上报函数
     this.media.on('timeUpdate', (time: number) => {
@@ -324,6 +329,8 @@ export class AVPlayer {
     this.media.on('error', (error: BusinessError) => {
       Logger.error(TAG, 'error happened,message is :' + error.message)
       this.callbackErrorUpdate('Error ' + error.code + ' - ' + error.message)
+      // 当error上报时自动播放下一个视频或者音频
+      this.next(this.surfaceId)
     })
   }
 
@@ -472,7 +479,7 @@ export class AVPlayer {
    * DRM播放流程启动
    * @param drmInfoArr
    */
-  async drmPlayProcess(drmInfoArr: drmInfo[]) {
+  async drmPlayProcess(drmInfoArr: drm.MediaKeySystemInfo[]) {
     if (this.drmInfoFirstUpdate === false) {
       this.drmInfoFirstUpdate = true
       Logger.info(TAG, 'player has received drmInfo signal: ' + JSON.stringify(drmInfoArr))
@@ -487,16 +494,28 @@ export class AVPlayer {
 
       // --- 2 --- 创建drm实例及会话
       this.drmController.createDrmSystem()
+      //  注册过期release回调
+      this.drmController.getReleaseCallback(() => {
+        this.release()
+        this.callbackErrorUpdate('Failed to play the video. \n The license has expired.')
+      })
 
       // --- 3 --- 生成license请求；发送license到云端获取响应，将响应交给底层
-      let isSuccess: boolean = await this.drmController.executeLicenseProcess(this.drmUrl, this.drmLicenseUrl, drmInfoArr, AppStorage.get('licenseType'))
+      let licenseType: number = AppStorage.get('licenseType') as number
+      let isSuccess: boolean = await this.drmController.executeLicenseProcess(this.drmUrl, this.drmLicenseUrl, drmInfoArr, licenseType)
       if (!isSuccess) {
+        Logger.error(TAG, 'Failed to process the license, Release Playback Resources.')
         this.release()
+        this.callbackErrorUpdate('Failed to play the video.')
         return
       }
 
       // --- 4 --- 设置加密配置
       this.drmController.bindInstance(this.media)
+
+      // --- 5 --- 获取license info
+      const licenseInfo: string = this.drmController.getLicenseInfo()
+      this.callbackLicenseInfoUpdate(licenseInfo)
     }
   }
 

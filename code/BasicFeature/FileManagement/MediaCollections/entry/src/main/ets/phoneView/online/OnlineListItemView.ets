@@ -93,7 +93,6 @@ export default struct OnlineListItemView {
               .textOverflow({ overflow: TextOverflow.Ellipsis })
 
               Row({ space: 10 }) {
-                Image($r('app.media.download')).height(25)
                 Image(this.isOpenOfflineLicenseArr[index] ? $r('app.media.key_blue') : $r('app.media.key'))
                   .height(25)
                   .onClick(() => {
@@ -122,9 +121,9 @@ export default struct OnlineListItemView {
                 }
               })
               if (this.isOpenOfflineLicenseArr[index]) {
-                AppStorage.setOrCreate('licenseType', 1);
-              } else {
                 AppStorage.setOrCreate('licenseType', 0);
+              } else {
+                AppStorage.setOrCreate('licenseType', 1);
               }
             })
           }.width('100%')
