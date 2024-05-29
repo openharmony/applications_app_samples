@@ -189,7 +189,6 @@ struct Upload {
           promptAction.showToast({ message: $r('app.string.upload_fail'), bottom: TOAST_BOTTOM });
         }
       });
-
       return;
     }
     console.debug(TAG + ":imageList:" + this.imageList);
@@ -235,7 +234,6 @@ struct Upload {
     if (this.chunkImgIndex != NO_IMAGE_SELECTED) {
       this.chunkDialog.open();
     }
-
     this.chunkInputEnable = false;
     this.chunkParaBegins = 0;
     this.chunkParaEnds = -1;

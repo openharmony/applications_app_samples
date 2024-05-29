@@ -21,7 +21,6 @@ import router from '@ohos.router';
 import { BusinessError } from '@ohos.base';
 import { logger, TOAST_BOTTOM } from '@ohos/uploaddownload';
 
-
 const TAG: string = 'CertLockSample';
 
 @Entry
@@ -33,7 +32,6 @@ struct CertLock {
 
   build() {
     Navigation() {
-
       RelativeContainer() {
         Text(this.message)
           .fontSize(20)
@@ -69,7 +67,6 @@ struct CertLock {
         .onClick(() => {
           this.DownloadTask();
         })
-
     }
     .width('100%')
     .height('100%')
@@ -94,7 +91,6 @@ struct CertLock {
       method: 'GET',
       network: request.agent.Network.ANY,
     };
-
     let task: request.agent.Task = await request.agent.create(getContext(), config);
     CertLock.task = task;
     task.on('progress', async (progress) => {
@@ -102,7 +98,6 @@ struct CertLock {
       promptAction.showToast({ message: $r('app.string.download_finish'), bottom: TOAST_BOTTOM });
       this.taskId = task.tid;
     })
-
     let responseOnCallback = (response: request.agent.HttpResponse) => {
       logger.debug(TAG, `response : ${response.version} ${response.statusCode} ${response.reason} ${response.headers}  ${response.headers.size}`)
       let headers: string = '';
@@ -119,12 +114,9 @@ struct CertLock {
       logger.debug(TAG, `/Request download failed ${(JSON.stringify(progress))}`);
       promptAction.showToast({ message: $r('app.string.download_fail'), bottom: TOAST_BOTTOM });
     })
-
-
     logger.debug(TAG, "Downloading before");
     await task.start();
     logger.debug(TAG, "Downloading started");
-
   }
 
   async uploadTask() {
@@ -149,7 +141,8 @@ struct CertLock {
       saveas: "./"
     };
     let createOnCallback = (progress: request.agent.Progress) => {
-      this.progress = '已上传： ' + ((progress.processed / 1024 / 1024))
+      let txt: string = $r('app.string.upload_fail').bundleName;
+      this.progress = txt + ((progress.processed / 1024 / 1024));
       promptAction.showToast({ message: $r('app.string.upload_success'), bottom: TOAST_BOTTOM });
     };
     request.agent.create(getContext(), config).then((task: request.agent.Task) => {
@@ -160,7 +153,6 @@ struct CertLock {
         }
       });
       task.on('progress', createOnCallback);
-
       let responseOnCallback = (response: request.agent.HttpResponse) => {
         logger.debug(TAG, `response : ${response.version} ${response.statusCode} ${response.reason} ${response.headers}  ${response.headers.size}`)
         let headers: string = '';
@@ -172,12 +164,10 @@ struct CertLock {
         this.message = headers;
       };
       task.on('response', responseOnCallback);
-
       task.on('failed', async (progress) => {
         logger.debug(TAG, `/Request upload failed ${(JSON.stringify(progress))}`);
         promptAction.showToast({ message: $r('app.string.upload_fail'), bottom: TOAST_BOTTOM });
       })
-
       logger.debug(TAG, `Succeeded in creating a upload task. result: ${task.tid}`);
     }).catch((err: BusinessError) => {
       this.progress = `Failed to create a upload task, Code: ${err.code}, message: ${err.message}`;

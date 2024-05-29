@@ -79,7 +79,6 @@ struct Download {
           .padding({ top: 4, bottom: 4 })
           .divider({ strokeWidth: 1, startMargin: 44, endMargin: 12 })
         }
-
         this.BottomView()
       }
       .padding({ left: 12, right: 12, bottom: 12 })
@@ -309,6 +308,7 @@ struct Download {
       this.downloadFinish(isSuccess);
     }
   }
+
   downloadFileCallback = (progress: number, isSuccess: boolean) => {
     logger.debug(TAG, "downloadFileCallback");
     this.progress = progress;

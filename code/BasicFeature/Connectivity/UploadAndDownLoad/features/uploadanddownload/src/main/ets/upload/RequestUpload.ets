@@ -126,7 +126,6 @@ class Upload {
     this.config.data = await this.getFilesAndData(context.cacheDir, fileUris);
     logger.info(TAG, `config data:${JSON.stringify(this.config.data)}`);
     this.config.url = await urlUtils.getUrl(context);
-
     logger.info(TAG, `config url:${JSON.stringify(this.config.url)}`);
     this.config.mode = request.agent.Mode.FOREGROUND;
     try {
