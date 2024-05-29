@@ -24,6 +24,7 @@ const TAG: string = 'UrlUtils';
 const SUBSCRIBER_EVENT: string = 'uploaddownload.event.SET_URL';
 const URL_KEY: string = 'url';
 const STORE_NAME: string = 'server_url';
+const DEFAULT_SERVER_URL: string = 'http://192.168.1.1/';
 
 class UrlUtil {
   private subscriber: CommonEventSubscriber | undefined = undefined;
@@ -46,6 +47,10 @@ class UrlUtil {
   async getUrl(context: common.UIAbilityContext): Promise<string> {
     let preference = await preferences.getPreferences(context, STORE_NAME);
     let url = await preference.get(URL_KEY, '') as string;
+    if (url == "") {
+      url = DEFAULT_SERVER_URL;
+      logger.info(TAG, "config url is null");
+    }
     logger.info(TAG, `getUrl,url= ${url}`);
     return url;
   }

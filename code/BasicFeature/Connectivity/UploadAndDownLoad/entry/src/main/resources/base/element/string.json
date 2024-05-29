@@ -131,6 +131,10 @@
     {
       "name": "chunk_para_invalid",
       "value": "Begins or Ends is invalid"
+    },
+    {
+      "name": "cert_lock",
+      "value": "Cert lock"
     }
   ]
 }

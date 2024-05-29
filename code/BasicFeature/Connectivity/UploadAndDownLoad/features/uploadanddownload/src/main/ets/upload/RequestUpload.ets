@@ -48,8 +48,16 @@ class Upload {
     }, 2000);
   }
 
+  getFileName(filePath: string): string {
+    const lastSlashIndex = filePath.lastIndexOf('/');
+    if (lastSlashIndex === -1) {
+      return filePath;
+    }
+    return filePath.substring(lastSlashIndex + 1);
+  }
+
   async uploadFilesBackground(fileUris: Array<string>): Promise<void> {
-    logger.info(TAG, `uploadFiles begin, ${JSON.stringify(fileUris)}`);
+    logger.info(TAG, `uploadFilesBackground:uploadFiles begin, ${JSON.stringify(fileUris)}`);
     this.context = getContext(this) as common.UIAbilityContext;
     if (fileUris.length === 0) {
       return;
@@ -60,6 +68,7 @@ class Upload {
   }
 
   async flushBackgroundTask() {
+    logger.info(TAG, "flushBackgroundTask:uploadFiles begin");
     let tasks = await request.agent.search({
       state: request.agent.State.RUNNING
     });
@@ -78,6 +87,7 @@ class Upload {
   }
 
   async createBackgroundTask(fileUris: Array<string>) {
+    logger.info(TAG, `createBackgroundTask:uploadFiles begin, ${JSON.stringify(fileUris)}`);
     if (this.context === undefined) {
       return;
     }
@@ -114,7 +124,10 @@ class Upload {
     }
     let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
     this.config.data = await this.getFilesAndData(context.cacheDir, fileUris);
+    logger.info(TAG, `config data:${JSON.stringify(this.config.data)}`);
     this.config.url = await urlUtils.getUrl(context);
+
+    logger.info(TAG, `config url:${JSON.stringify(this.config.url)}`);
     this.config.mode = request.agent.Mode.FOREGROUND;
     try {
       this.uploadTask = await request.agent.create(context, this.config);
@@ -214,6 +227,7 @@ class Upload {
   }
 
   async cancelTask() {
+    logger.info(TAG, "cancelTask");
     if (this.uploadTask === undefined) {
       return;
     }
@@ -230,6 +244,7 @@ class Upload {
   }
 
   async pauseOrResume() {
+    logger.info(TAG, "pauseOrResume");
     let state = AppStorage.get<number>('backTaskState');
     if (state === BackgroundTaskState.RUNNING) {
       await this.pause();
@@ -271,14 +286,18 @@ class Upload {
     let files: Array<request.agent.FormItem> = [];
     for (let i = 0; i < fileUris.length; i++) {
       logger.info(TAG, `getFile fileUri = ${fileUris[i]}`);
-      let imagePath = await this.mediaUtils.copyFileToCache(cacheDir, fileUris[i]);
-      logger.info(TAG, `getFilesAndData ${JSON.stringify(imagePath)}`);
+      let imagePath = fileUris[i];
+      logger.info(TAG, `getFilesAndData  imagePath: ${JSON.stringify(imagePath)}`);
+      let fileName = this.getFileName(imagePath);
       let file: request.agent.FormItem = {
-        name: imagePath.split('cache/')[1].split('.')[0],
+        name: "createTest",
         value: {
-          path: './' + imagePath.split('cache/')[1]
+          filename: fileName,
+          mimeType: "application/octet-stream",
+          path: imagePath,
         }
       }
+      logger.info(TAG, `getFile file = ${JSON.stringify(file)}`);
       files.push(file);
     }
     logger.info(TAG, `getFilesAndData ${JSON.stringify(files)}`);
