@@ -34,15 +34,15 @@ struct CertLock {
     Navigation() {
       RelativeContainer() {
         Text(this.message)
-          .fontSize(20)
-          .fontColor(0xf0000000)
+          .fontSize(16)
+          .fontColor($r('app.color.text_message'))
           .textAlign(TextAlign.Start)
           .id('http_response')
           .width('100%')
           .maxLines(20)
           .textOverflow({ overflow: TextOverflow.Ellipsis })
       }
-      .margin({left:50})
+      .margin({left:16,right:16})
       .width('90%')
       .height('80%')
       .padding(10)
@@ -50,6 +50,7 @@ struct CertLock {
       Button($r('app.string.upload'))
         .id('upload')
         .width('90%')
+        .fontSize(16)
         .height(40)
         .margin({ top: 10, bottom: 20 })
         .enabled(true)
@@ -60,11 +61,14 @@ struct CertLock {
 
       Button($r('app.string.download'))
         .id('download')
+        .type(ButtonType.Capsule)
         .width('90%')
+        .fontSize(16)
+        .fontColor($r('app.color.btn_text_blue'))
         .height(40)
         .margin({ bottom: 10 })
         .enabled(true)
-        .backgroundColor($r('app.color.button_blue'))
+        .backgroundColor($r('app.color.button_light_gray'))
         .onClick(() => {
           this.DownloadTask();
         })
