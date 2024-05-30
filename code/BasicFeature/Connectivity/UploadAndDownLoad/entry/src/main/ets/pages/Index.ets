@@ -24,7 +24,7 @@ function itemStyle() {
   .padding({ top: 17, bottom: 17, left: 12, right: 12 })
   .backgroundColor(Color.White)
   .borderRadius(24)
-  .margin({ top: 12 })
+  .margin({ top: 20 })
 }
 
 @Extend(Text)
@@ -53,6 +53,7 @@ struct Index {
               .textStyle()
             Blank()
             Toggle({ type: ToggleType.Switch, isOn: this.isBackground })
+              .width(40)
               .height(24)
               .onChange((isOn: boolean) => {
                 this.isBackground = isOn;
@@ -92,7 +93,7 @@ struct Index {
     .title({
       main: this.getResourceString($r('app.string.EntryAbility_label')),
       sub: this.getResourceString($r('app.string.home_tips'))
-    })
+    }).margin({top:10})
   }
 
   @Builder

@@ -35,22 +35,23 @@ struct CertLock {
       RelativeContainer() {
         Text(this.message)
           .fontSize(20)
-          .fontColor(0xCCCCCC)
+          .fontColor(0xf0000000)
           .textAlign(TextAlign.Start)
           .id('http_response')
           .width('100%')
           .maxLines(20)
           .textOverflow({ overflow: TextOverflow.Ellipsis })
       }
+      .margin({left:50})
       .width('90%')
-      .height('70%')
+      .height('80%')
       .padding(10)
 
       Button($r('app.string.upload'))
         .id('upload')
-        .width('80%')
-        .height('10%')
-        .margin({ top: 40, bottom: 30 })
+        .width('90%')
+        .height(40)
+        .margin({ top: 10, bottom: 20 })
         .enabled(true)
         .backgroundColor($r('app.color.button_blue'))
         .onClick(() => {
@@ -59,9 +60,9 @@ struct CertLock {
 
       Button($r('app.string.download'))
         .id('download')
-        .width('80%')
-        .height('10%')
-        .margin({ bottom: 24 })
+        .width('90%')
+        .height(40)
+        .margin({ bottom: 10 })
         .enabled(true)
         .backgroundColor($r('app.color.button_blue'))
         .onClick(() => {
@@ -95,7 +96,7 @@ struct CertLock {
     CertLock.task = task;
     task.on('progress', async (progress) => {
       logger.debug(TAG, `/Request download status ${progress.state}, downloaded ${progress.processed}`);
-      promptAction.showToast({ message: $r('app.string.download_finish'), bottom: TOAST_BOTTOM });
+      promptAction.showToast({ message: $r('app.string.download_finish'), bottom: TOAST_BOTTOM,offset:{dx:10,dy:50} });
       this.taskId = task.tid;
     })
     let responseOnCallback = (response: request.agent.HttpResponse) => {
