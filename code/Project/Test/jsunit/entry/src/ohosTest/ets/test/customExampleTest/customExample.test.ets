@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License")
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,11 +14,10 @@
  */
 
 import { describe, it, expect, TestType } from '@ohos/hypium';
-import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import Want from '@ohos.app.ability.Want';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import EntryAbility from '../../../../main/ets/entryability/EntryAbility'
-const delegator = abilityDelegatorRegistry.getAbilityDelegator()
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility, Want } from '@kit.AbilityKit';
+import EntryAbility from '../../../../main/ets/entryability/EntryAbility';
+const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 function sleep(time: number) {
   return new Promise<void>((resolve:Function) => setTimeout(resolve, time));
@@ -38,8 +37,8 @@ export default function customExampleTest() {
       let want: Want = {
         bundleName : bundleName,
         abilityName : "EntryAbility"
-      }
-      await delegator.startAbility(want)
+      };
+      await delegator.startAbility(want);
       await sleep(1000);
       // check top display ability
       await delegator.getCurrentTopAbility().then((ability: UIAbility)=>{

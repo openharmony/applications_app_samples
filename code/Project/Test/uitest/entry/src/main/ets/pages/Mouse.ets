@@ -13,17 +13,17 @@
 * limitations under the License.
 */
 
-import router from '@ohos.router';
+import { router } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Mouse {
-  @State message: string = 'Hello World'
-  private scroller: Scroller = new Scroller()
-  private arr: number[] = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18.19,20,21,22,23,24,25,26,27,28,29,30]
+  @State message: string = 'Hello World';
+  private scroller: Scroller = new Scroller();
+  private arr: number[] = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18.19,20,21,22,23,24,25,26,27,28,29,30];
   @State count: number = 0;
-  @State hoverText : string = 'jump'
-  @State hoverMsg : string = 'hoverText'
+  @State hoverText : string = 'jump';
+  @State hoverMsg : string = 'hoverText';
   build() {
     Row() {
       Column() {
@@ -36,7 +36,7 @@ struct Mouse {
         .id("hover_bt")
         .onHover((isHover: boolean | undefined, event?: HoverEvent | undefined) => {
           if (isHover) {
-            this.hoverMsg = 'hover'
+            this.hoverMsg = 'hover';
           }
         })
         Button() {
@@ -45,10 +45,9 @@ struct Mouse {
             .fontSize(15)
             .fontWeight(FontWeight.Bold)
         }.onClick((event?: ClickEvent) => {
-          router.push({
+          router.pushUrl({
             url: "pages/five"
-          })
-
+          });
         })
         Button() {
           Text(this.hoverText)
@@ -61,20 +60,20 @@ struct Mouse {
         .margin({ top: 20 })
         .onHover((isHover: boolean | undefined, event?: HoverEvent | undefined) => {
           if (isHover) {
-            this.hoverText = 'hover'
+            this.hoverText = 'hover';
           }
         })
         .onMouse((event: MouseEvent) => {
           switch (event.button) {
             case MouseButton.Left :
               console.log("ljl","left");
-              this.hoverText = 'left'
+              this.hoverText = 'left';
               break
             case MouseButton.Right :
-              this.hoverText = 'right'
+              this.hoverText = 'right';
               break
             case MouseButton.Middle :
-              this.hoverText = 'middle'
+              this.hoverText = 'middle';
               break
             default:
               console.log("ljl","defaultTest");
@@ -84,17 +83,17 @@ struct Mouse {
         .gesture(
           TapGesture({ count: 2 })
             .onAction(() => {
-              router.push({
+              router.pushUrl({
                 url: "pages/Third"
-              })
+              });
             })
         )
         .gesture(
           LongPressGesture({ repeat: false })
             .onAction(() => {
-              router.push({
+              router.pushUrl({
                 url: "pages/Fourth"
-              })
+              });
             })
         )
         Column(){

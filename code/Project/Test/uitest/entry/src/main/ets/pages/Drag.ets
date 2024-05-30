@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,14 +16,14 @@
 @Entry
 @Component
 struct DragExample {
-  @State numbers: string[] = ['one', 'two', 'three', 'four', 'five', 'six']
-  @State text: string = ''
-  @State bool: boolean = false
-  @State dragBool: boolean = false
-  @State appleVisible: Visibility = Visibility.Visible
-  @State orangeVisible: Visibility = Visibility.Visible
-  @State bananaVisible: Visibility = Visibility.Visible
-  @State select: number = 0
+  @State numbers: string[] = ['one', 'two', 'three', 'four', 'five', 'six'];
+  @State text: string = '';
+  @State bool: boolean = false;
+  @State dragBool: boolean = false;
+  @State appleVisible: Visibility = Visibility.Visible;
+  @State orangeVisible: Visibility = Visibility.Visible;
+  @State bananaVisible: Visibility = Visibility.Visible;
+  @State select: number = 0;
 
   @Builder pixelMapBuilder() {
     Column() {
@@ -49,29 +49,29 @@ struct DragExample {
           .textAlign(TextAlign.Center).backgroundColor(0xAFEEEE)
           .visibility(this.appleVisible)
           .onDragStart(() => {
-            this.bool = true
-            this.text = 'apple'
-            this.appleVisible = Visibility.Hidden
+            this.bool = true;
+            this.text = 'apple';
+            this.appleVisible = Visibility.Hidden;
             return this.pixelMapBuilder
           })
         Text('orange').width('25%').height(35).fontSize(16)
           .textAlign(TextAlign.Center).backgroundColor(0xAFEEEE)
           .visibility(this.orangeVisible)
           .onDragStart(() => {
-            this.bool = true
-            this.text = 'orange'
-            this.orangeVisible = Visibility.Hidden
-            return this.pixelMapBuilder
+            this.bool = true;
+            this.text = 'orange';
+            this.orangeVisible = Visibility.Hidden;
+            return this.pixelMapBuilder;
           })
         Text('banana').width('25%').height(35).fontSize(16)
           .textAlign(TextAlign.Center).backgroundColor(0xAFEEEE)
           .visibility(this.bananaVisible)
           .onDragStart((event: DragEvent, extraParams: string) => {
             console.log('Text onDragStarts, ' + extraParams)
-            this.bool = true
-            this.text = 'banana'
-            this.bananaVisible = Visibility.Hidden
-            return this.pixelMapBuilder
+            this.bool = true;
+            this.text = 'banana';
+            this.bananaVisible = Visibility.Hidden;
+            return this.pixelMapBuilder;
           })
       }.border({ width: 1 }).width('90%').padding({ top: 10, bottom: 10 }).margin(10)
 
@@ -90,11 +90,11 @@ struct DragExample {
               return;
             }
             console.log('ListItem onDragStarts, ' + extraParams)
-            let jsonString: ObjTest = JSON.parse(extraParams)
-            this.dragBool = true
-            this.text = this.numbers[jsonString.selectedIndex]
-            this.select = jsonString.selectedIndex
-            return this.pixelMapBuilder
+            let jsonString: ObjTest = JSON.parse(extraParams);
+            this.dragBool = true;
+            this.text = this.numbers[jsonString.selectedIndex];
+            this.select = jsonString.selectedIndex;
+            return this.pixelMapBuilder;
           })
         }, (item: string) => item)
       }
@@ -102,27 +102,27 @@ struct DragExample {
       .height('50%').width('90%').border({ width: 1 })
       .divider({ strokeWidth: 2, color: 0xFFFFFF, startMargin: 20, endMargin: 20 })
       .onDragEnter((event: DragEvent | undefined, extraParams: string | undefined) => {
-        console.log('List onDragEnter, ' + extraParams)
+        console.log('List onDragEnter, ' + extraParams);
       })
       .onDragMove((event: DragEvent | undefined, extraParams: string | undefined) => {
-        console.log('List onDragMove, ' + extraParams)
+        console.log('List onDragMove, ' + extraParams);
       })
       .onDragLeave((event: DragEvent | undefined, extraParams: string | undefined) => {
-        console.log('List onDragLeave, ' + extraParams)
+        console.log('List onDragLeave, ' + extraParams);
       })
       .onDrop((event: DragEvent  | undefined, extraParams: string | undefined) => {
         if (extraParams == undefined) {
           return;
         }
-        let jsonString: ObjTest = JSON.parse(extraParams)
+        let jsonString: ObjTest = JSON.parse(extraParams);
         if (this.bool) {
-          this.numbers.splice(jsonString.insertIndex, 0, this.text)
+          this.numbers.splice(jsonString.insertIndex, 0, this.text);
           this.bool = false
         } else if (this.dragBool) {
-          this.numbers.splice(jsonString.selectedIndex, 1)
-          this.numbers.splice(jsonString.insertIndex, 0, this.text)
-          this.bool = false
-          this.dragBool = false
+          this.numbers.splice(jsonString.selectedIndex, 1);
+          this.numbers.splice(jsonString.insertIndex, 0, this.text);
+          this.bool = false;
+          this.dragBool = false;
         }
       })
     }.width('100%').height('100%').padding({ top: 20 }).margin({ top: 20 })

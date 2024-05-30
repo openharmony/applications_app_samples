@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2023 Huawei Device Co., Ltd.
+* Copyright (c) 2023-2024 Huawei Device Co., Ltd.
 * Licensed under the Apache License, Version 2.0 (the "License")
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -13,43 +13,31 @@
 * limitations under the License.
 */
 
-import hilog from '@ohos.hilog';
-import { describe, it, expect, TestType } from '@ohos/hypium';
-import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import Logger from '../../util/Logger';
-import EntryAbility from '../../../../main/ets/entryability/EntryAbility';
-import Want from '@ohos.app.ability.Want';
-import UIAbility from '@ohos.app.ability.UIAbility';
-const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
-const delegator = abilityDelegatorRegistry.getAbilityDelegator()
-const TAG = '[basicExampleTest]'
-function sleep(time: number) {
-  return new Promise<void>((resolve:Function) => setTimeout(resolve, time));
-}
-export default function basicExampleTest() {
-  describe('basicExampleTest', () => {
+import { describe, it, expect } from '@ohos/hypium';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility, Want } from '@kit.AbilityKit';
 
-    /**
-     * @tc.number:basicExampleTest_001
-     * @tc.name: basic_StartAbility_001
-     * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 检测delegator.startAbility接口打开指定Ability对象
-     */
-    it('basic_StartAbility_001',TestType.FUNCTION, async (done: Function) =>  {
-      Logger.info(" StartAbility_001 begin")
+const delegator = abilityDelegatorRegistry.getAbilityDelegator();
+const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
+function sleep(time: number) {
+  return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
+}
+export default function abilityTest() {
+  describe('ActsAbilityTest', () =>{
+    it('testUiExample',0, async (done: Function) => {
+      console.info("uitest: TestUiExample begin");
       //start tested ability
-      let want: Want = {
-        bundleName : bundleName,
-        abilityName : "EntryAbility"
+      const want: Want = {
+        bundleName: bundleName,
+        abilityName: 'EntryAbility'
       }
       await delegator.startAbility(want);
       await sleep(1000);
       //check top display ability
-      await delegator.getCurrentTopAbility().then((ability: UIAbility)=>{
+      await delegator.getCurrentTopAbility().then((Ability: UIAbility)=>{
         console.info("get top ability");
-        expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
+        expect(Ability.context.abilityInfo.name).assertEqual('EntryAbility');
       })
-      Logger.info(TAG, " StartAbility_001 end")
       done();
     })
   })
