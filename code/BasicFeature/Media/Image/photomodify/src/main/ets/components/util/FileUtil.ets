@@ -149,9 +149,9 @@ function packToDataPixelMap(context: Context, buffer :ArrayBuffer){
 async function packToDataImageSource(context: Context){
   try {
     // rawFile创建ImageSource
-    const resourceMgr = context.createModuleContext("entry").resourceManager
+    const resourceMgr = context.createModuleContext('entry').resourceManager
     let rawFileDescriptor: resourceManager.RawFileDescriptor
-    rawFileDescriptor = await resourceMgr.getRawFd("test_jpg.jpg");
+    rawFileDescriptor = await resourceMgr.getRawFd('test_jpg.jpg');
     const packFilePath: string = context.filesDir + '/' + getTimeStr() + '_4.webp'
 
     const result: number = ndkTest.packToDataImageSource(rawFileDescriptor.fd, rawFileDescriptor.offset,
