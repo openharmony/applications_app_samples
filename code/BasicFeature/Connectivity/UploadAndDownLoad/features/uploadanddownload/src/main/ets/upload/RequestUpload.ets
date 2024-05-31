@@ -68,7 +68,7 @@ class Upload {
   }
 
   async flushBackgroundTask() {
-    logger.info(TAG, "flushBackgroundTask:uploadFiles begin");
+    logger.info(TAG, 'flushBackgroundTask:uploadFiles begin');
     let tasks = await request.agent.search({
       state: request.agent.State.RUNNING
     });
@@ -226,7 +226,7 @@ class Upload {
   }
 
   async cancelTask() {
-    logger.info(TAG, "cancelTask");
+    logger.info(TAG, 'cancelTask');
     if (this.uploadTask === undefined) {
       return;
     }
@@ -243,7 +243,7 @@ class Upload {
   }
 
   async pauseOrResume() {
-    logger.info(TAG, "pauseOrResume");
+    logger.info(TAG, 'pauseOrResume');
     let state = AppStorage.get<number>('backTaskState');
     if (state === BackgroundTaskState.RUNNING) {
       await this.pause();
@@ -289,10 +289,10 @@ class Upload {
       logger.info(TAG, `getFilesAndData  imagePath: ${JSON.stringify(imagePath)}`);
       let fileName = this.getFileName(imagePath);
       let file: request.agent.FormItem = {
-        name: "createTest",
+        name: 'createTest',
         value: {
           filename: fileName,
-          mimeType: "application/octet-stream",
+          mimeType: 'application/octet-stream',
           path: imagePath,
         }
       }

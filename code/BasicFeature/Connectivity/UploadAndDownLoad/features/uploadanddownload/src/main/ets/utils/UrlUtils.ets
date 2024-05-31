@@ -47,9 +47,9 @@ class UrlUtil {
   async getUrl(context: common.UIAbilityContext): Promise<string> {
     let preference = await preferences.getPreferences(context, STORE_NAME);
     let url = await preference.get(URL_KEY, '') as string;
-    if (url == "") {
+    if (url == '') {
       url = DEFAULT_SERVER_URL;
-      logger.info(TAG, "config url is null");
+      logger.info(TAG, 'config url is null');
     }
     logger.info(TAG, `getUrl,url= ${url}`);
     return url;

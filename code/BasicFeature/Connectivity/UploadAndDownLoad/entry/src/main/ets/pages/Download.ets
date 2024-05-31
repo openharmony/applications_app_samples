@@ -227,7 +227,7 @@ struct Download {
   }
 
   aboutToAppear() {
-    logger.debug(TAG, "aboutToAppear");
+    logger.debug(TAG, 'aboutToAppear');
     this.isRunning = false;
     this.isPause = false;
     this.isGetData = true;
@@ -303,14 +303,14 @@ struct Download {
   }
 
   downloadFilesCallback = (downloadCount: number, isSuccess: boolean) => {
-    logger.debug(TAG, "downloadFilesCallback");
+    logger.debug(TAG, 'downloadFilesCallback');
     this.progress = downloadCount;
     if (downloadCount === this.checkFile.length) {
       this.downloadFinish(isSuccess);
     }
   }
   downloadFileCallback = (progress: number, isSuccess: boolean) => {
-    logger.debug(TAG, "downloadFileCallback");
+    logger.debug(TAG, 'downloadFileCallback');
     this.progress = progress;
     if (this.progress === 100) {
       this.downloadFinish(isSuccess);
@@ -318,7 +318,7 @@ struct Download {
   }
 
   downloadFinish(isSuccess: boolean) {
-    logger.debug(TAG, "downloadFinish");
+    logger.debug(TAG, 'downloadFinish');
     this.isRunning = false;
     this.checkFile = [];
     this.checkList = [];

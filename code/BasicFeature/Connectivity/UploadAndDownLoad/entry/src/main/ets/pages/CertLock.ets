@@ -82,7 +82,7 @@ struct CertLock {
   static netConnection = connection.createNetConnection();
 
   async DownloadTask() {
-    logger.debug(TAG, "DownloadTask");
+    logger.debug(TAG, 'DownloadTask');
     let config: request.agent.Config = {
       action: request.agent.Action.DOWNLOAD,
       url: 'https://www.baidu.com',
@@ -115,34 +115,37 @@ struct CertLock {
     task.on('response', responseOnCallback);
 
     task.on('failed', async (progress) => {
+      this.message = JSON.stringify(progress);
       logger.debug(TAG, `/Request download failed ${(JSON.stringify(progress))}`);
       promptAction.showToast({ message: $r('app.string.download_fail'), bottom: TOAST_BOTTOM });
     })
-    logger.debug(TAG, "Downloading before");
+    logger.debug(TAG, 'Downloading before');
     await task.start();
-    logger.debug(TAG, "Downloading started");
+    logger.debug(TAG, 'Downloading started');
   }
 
   async uploadTask() {
-    logger.debug(TAG, "uploadTask");
-    let attachments: Array<request.agent.FormItem> = [{
-      name: "test",
+    logger.debug(TAG, 'uploadTask');
+    let attachments: Array<request.agent.FormItem> = [];
+    let attachment: request.agent.FormItem = {
+      name: 'test',
       value: [
         {
-          filename: "testUpload.txt",
-          path: "./testUpload.txt",
+          filename: 'testUpload.txt',
+          path: './testUpload.txt',
         },
       ]
-    }];
+    };
+    attachments.push(attachment);
     let config: request.agent.Config = {
       action: request.agent.Action.UPLOAD,
       url: 'https://www.baidu.com',
       title: 'taskOnTest',
       mode: request.agent.Mode.FOREGROUND,
       overwrite: true,
-      method: "POST",
+      method: 'POST',
       data: attachments,
-      saveas: "./"
+      saveas: './'
     };
     let createOnCallback = (progress: request.agent.Progress) => {
       let txt: string = $r('app.string.upload_fail').bundleName;
@@ -161,7 +164,7 @@ struct CertLock {
         logger.debug(TAG, `response : ${response.version} ${response.statusCode} ${response.reason} ${response.headers}  ${response.headers.size}`)
         let headers: string = '';
         for (let k of response.headers.keys()) {
-          headers = headers + k + ":" + response.headers.get(k) + '\r\n';
+          headers = headers + k + ':' + response.headers.get(k) + '\r\n';
           ;
           logger.debug(TAG, `response 1 ${k}, ${response.headers.get(k)}`)
         }
@@ -169,6 +172,7 @@ struct CertLock {
       };
       task.on('response', responseOnCallback);
       task.on('failed', async (progress) => {
+        this.message = JSON.stringify(progress);
         logger.debug(TAG, `/Request upload failed ${(JSON.stringify(progress))}`);
         promptAction.showToast({ message: $r('app.string.upload_fail'), bottom: TOAST_BOTTOM });
       })
@@ -179,10 +183,10 @@ struct CertLock {
   }
 
   aboutToAppear() {
-    logger.debug(TAG, "aboutToAppear");
+    logger.debug(TAG, 'aboutToAppear');
   }
 
   stateChange() {
-    logger.debug(TAG, "stateChange");
+    logger.debug(TAG, 'stateChange');
   }
 }
