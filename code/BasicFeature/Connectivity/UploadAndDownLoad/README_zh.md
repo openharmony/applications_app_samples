@@ -45,7 +45,7 @@
 
 点击**上传**按钮会使用post方式访问百度，并在空白处显示返回的响应header内容。
 
-以上功能需要在src/main/resources/base/profile/network_config.json中配置domains和digest，只有你配置的证书信息通过验证，上传和下载才可以正常响应。如果你要访问的服务器根证书不在系统中，你需要把它的根证书放到src/main/resources/resfile目录下。
+以上功能需要在src/main/resources/base/profile/network_config.json中配置domains和digest，只有你配置的证书信息通过验证，上传和下载才可以正常响应；否则将无法正常访问百度，会通过toast提示上传或者下载失败，日志中会有具体错误信息。如果你要访问的服务器根证书不在系统中，你需要把它的根证书放到src/main/resources/resfile目录下。
 
 
 
