@@ -1,0 +1,5758 @@
+#version 460 core
+#extension GL_ARB_separate_shader_objects : enable
+#extension GL_ARB_shading_language_420pack : enable
+
+
+
+#line 1 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/LumeRender/api/render/shaders/common/render_compatibility_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+precision highp float;
+precision highp int;
+
+
+
+
+
+layout(constant_id = 256) const uint CORE_BACKEND_TYPE = 0;
+
+
+
+
+layout(constant_id = 257) const float CORE_FLIP_NDC = 1.0;
+
+
+
+
+
+
+
+
+
+
+vec2 GetFragCoordUv(vec2 fragCoord, vec2 inverseTexelSize)
+{
+    vec2 uv = fragCoord * inverseTexelSize;
+    if (CORE_FLIP_NDC < 0.0) {
+        uv = vec2(uv.x, 1.0 - uv.y);
+    }
+    return uv;
+}
+
+
+
+
+
+
+
+#line 8 "shader/custom_materiaL_sample.frag"
+
+#line 1 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/LumeRender/api/render/shaders/common/render_color_conversion_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 1 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/LumeRender/api/render/shaders/common/render_compatibility_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 24 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/LumeRender/api/render/shaders/common/render_color_conversion_common.h"
+
+
+
+
+float CalcLuma(const vec3 color)
+{
+
+    return 0.299 * color.r + 0.587 * color.g + 0.114 * color.b;
+}
+
+
+
+
+float CalcLumaFxaa(const vec3 color)
+{
+
+    return color.g * (0.587 / 0.299) + color.r;
+}
+
+
+
+
+float LumaWeight(const float luma)
+{
+    return(1.0 / (1.0 + luma));
+}
+
+
+
+
+vec3 TonemapLuma(const vec3 color, const float luma, const float range)
+{
+    return color / (1.0 + luma / range);
+}
+
+
+
+
+vec3 TonemapLumaInv(const vec3 color, const float luma, const float range)
+{
+    return color / (1.0 - luma / range);
+}
+
+
+
+
+
+vec3 SrgbToLinear(const vec3 srgb)
+{
+    const float mlow = 1.0f / 12.92f;
+    const float mhigh = 1.0f / 1.055f;
+
+    const vec3 high = pow( (srgb + 0.055f) * mhigh, vec3(2.4f));
+    const vec3 low = srgb * mlow;
+    const bvec3 cutoff = lessThan(srgb, vec3(0.04045f));
+    return mix(high, low, cutoff);
+}
+
+
+
+
+
+vec3 LinearToSrgb(const vec3 linear)
+{
+    const float mlow = 12.92f;
+    const float mhigh = 1.055f;
+
+    const vec3 high = pow(linear, vec3(0.416f)) * mhigh - 0.055f;
+    const vec3 low = linear * mlow;
+    const bvec3 cutoff = lessThan(linear, vec3(0.0031308f));
+    return mix(high, low, cutoff);
+}
+
+
+
+
+
+vec3 rgbToYCoCg(const vec3 rgb)
+{
+    const float y = dot(rgb, vec3(0.25, 0.5, 0.25));
+    const float co = dot(rgb, vec3(0.5, 0.0, - 0.5));
+    const float cg = dot(rgb, vec3(- 0.25, 0.5, - 0.25));
+    return vec3(y, co, cg);
+}
+
+
+
+
+
+vec3 yCoCgToRgb(const vec3 ycocg)
+{
+    const float y = ycocg.r;
+    const float co = ycocg.g;
+    const float cg = ycocg.b;
+    return vec3(y + co - cg, y + cg, y - co - cg);
+}
+
+
+#line 10 "shader/custom_materiaL_sample.frag"
+#line 1 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/LumeRender/api/render/shaders/common/render_post_process_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 1 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/LumeRender/api/render/shaders/common/render_post_process_structs_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 1 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/LumeRender/api/render/shaders/common/render_compatibility_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 20 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/LumeRender/api/render/shaders/common/render_post_process_structs_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+struct GlobalPostProcessStruct {
+
+    uvec4 flags;
+
+    vec4 renderTimings;
+
+
+    vec4 factors[14];
+
+
+    vec4 userFactors[16];
+};
+
+
+
+
+struct LocalPostProcessStruct {
+
+    vec4 factors[16];
+};
+
+struct LocalPostProcessPushConstantStruct {
+
+    vec4 viewportSizeInvSize;
+
+    vec4 factor;
+};
+
+struct PostProcessTonemapStruct {
+    vec4 texSizeInvTexSize;
+
+    uvec4 flags;
+
+    vec4 tonemap;
+    vec4 vignette;
+    vec4 colorFringe;
+    vec4 dither;
+
+    vec4 bloomParameters;
+};
+
+
+#line 20 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/LumeRender/api/render/shaders/common/render_post_process_common.h"
+
+
+
+
+
+
+float getVignetteCoeff(const vec2 uv, mediump const float coeff, mediump const float power)
+{
+    vec2 uvVal = uv.xy * (vec2(1.0) - uv.yx);
+    float vignette = uvVal.x * uvVal.y * coeff;
+    vignette = pow(vignette, power);
+    return clamp(vignette, 0.0, 1.0);
+}
+
+
+
+
+float getChromaCoeff(const vec2 uv, mediump const float chromaCoefficient)
+{
+
+    vec2 distUv = (uv - 0.5) * 2.0;
+    return dot(distUv, distUv) * chromaCoefficient;
+}
+
+
+
+
+float RandomDither(vec2 st)
+{
+    return fract(sin(dot(st.xy, vec2(12.9898, 78.233))) * 43758.5453);
+}
+
+
+
+
+#line 11 "shader/custom_materiaL_sample.frag"
+#line 1 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/LumeRender/api/render/shaders/common/render_tonemap_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 1 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/LumeRender/api/render/shaders/common/render_post_process_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 20 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/LumeRender/api/render/shaders/common/render_tonemap_common.h"
+
+
+
+
+
+vec3 TonemapAces(vec3 x)
+{
+    const float a = 2.51f;
+    const float b = 0.03f;
+    const float c = 2.43f;
+    const float d = 0.59f;
+    const float e = 0.14f;
+    return(x * (a * x + b)) / (x * (c * x + d) + e);
+}
+
+
+
+
+
+vec3 TonemapAcesFilmRec2020(vec3 x)
+{
+    float a = 15.8f;
+    float b = 2.12f;
+    float c = 1.2f;
+    float d = 5.92f;
+    float e = 1.9f;
+    return(x * (a * x + b)) / (x * (c * x + d) + e);
+}
+
+
+
+
+
+float TonemapFilmic(float x)
+{
+    const float a = 0.15f;
+    const float b = 0.50f;
+    const float c = 0.10f;
+    const float d = 0.20f;
+    const float e = 0.02f;
+    const float f = 0.30f;
+    return( (x * (a * x + c * b) + d * e) / (x * (a * x + b) + d * f)) - e / f;
+}
+vec3 TonemapFilmic(vec3 x)
+{
+    const float a = 0.15f;
+    const float b = 0.50f;
+    const float c = 0.10f;
+    const float d = 0.20f;
+    const float e = 0.02f;
+    const float f = 0.30f;
+    const float w = 11.2f;
+    const vec3 curr = ( (x * (a * x + c * b) + d * e) / (x * (a * x + b) + d * f)) - e / f;
+    const float whiteScale = 1.0 / TonemapFilmic(w);
+    return curr * vec3(whiteScale);
+}
+
+
+#line 12 "shader/custom_materiaL_sample.frag"
+
+#line 1 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/Lume_3D/api/3d/shaders/common/3d_dm_structures_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 1 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/LumeRender/api/render/shaders/common/render_compatibility_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 20 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/Lume_3D/api/3d/shaders/common/3d_dm_structures_common.h"
+#line 1 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/LumeRender/api/render/shaders/common/render_packing_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+uvec2 PackVec4Half2x16(const vec4 up)
+{
+    uvec2 packed;
+    packed.x = packHalf2x16(up.xy);
+    packed.y = packHalf2x16(up.zw);
+    return packed;
+}
+
+vec4 UnpackVec4Half2x16(const uvec2 packed)
+{
+    vec4 up;
+    up.xy = unpackHalf2x16(packed.x);
+    up.zw = unpackHalf2x16(packed.y);
+    return up;
+}
+
+uvec4 Pack2Vec4Half2x16(const vec4 up0, const vec4 up1)
+{
+    uvec4 packed;
+    packed.x = packHalf2x16(up0.xy);
+    packed.y = packHalf2x16(up0.zw);
+    packed.z = packHalf2x16(up1.xy);
+    packed.w = packHalf2x16(up1.zw);
+    return packed;
+}
+
+void UnpackVec42Half2x16(const uvec4 packed, inout vec4 up0, inout vec4 up1)
+{
+    up0.xy = unpackHalf2x16(packed.x);
+    up0.zw = unpackHalf2x16(packed.y);
+    up1.xy = unpackHalf2x16(packed.z);
+    up1.zw = unpackHalf2x16(packed.w);
+}
+
+
+
+
+#line 21 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/Lume_3D/api/3d/shaders/common/3d_dm_structures_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+struct DefaultMaterialSingleMeshStruct {
+
+
+    mat4 world;
+    mat4 normalWorld;
+    mat4 prevWorld;
+
+
+    uvec4 indices;
+
+    uvec4 layers;
+
+    uvec4 customData[2];
+};
+
+struct DefaultMaterialMeshStruct {
+    DefaultMaterialSingleMeshStruct mesh[64];
+};
+
+struct DefaultMaterialSingleMaterialStruct {
+    vec4 factors[15];
+    uvec4 indices;
+};
+
+struct DefaultMaterialMaterialStruct {
+    DefaultMaterialSingleMaterialStruct material[64];
+};
+
+struct DefaultMaterialTransformSingleMaterialStruct {
+    uvec4 packed[15];
+    uvec4 indices;
+};
+
+struct DefaultMaterialTransformMaterialStruct {
+    DefaultMaterialTransformSingleMaterialStruct material[64];
+};
+
+struct DefaultMaterialSingleUserMaterialStruct {
+    uvec4 userData[16u];
+};
+
+struct DefaultMaterialUserMaterialStruct {
+    DefaultMaterialSingleUserMaterialStruct material[64];
+};
+
+struct DefaultMaterialSingleLightStruct {
+    vec4 pos;
+
+    vec4 dir;
+
+    vec4 color;
+
+    vec4 spotLightParams;
+
+    vec4 shadowFactors;
+
+    vec4 additionalFactor;
+
+
+    uvec4 flags;
+
+    uvec4 indices;
+};
+
+struct DefaultMaterialLightStruct {
+    uint directionalLightBeginIndex;
+    uint directionalLightCount;
+
+    uint pointLightBeginIndex;
+    uint pointLightCount;
+
+    uint spotLightBeginIndex;
+    uint spotLightCount;
+
+    uint pad0;
+    uint pad1;
+
+    uvec4 clusterSizes;
+    vec4 clusterFactors;
+
+    vec4 atlasSizeInvSize;
+    vec4 additionalFactors;
+
+    DefaultMaterialSingleLightStruct lights[64];
+};
+
+struct DefaultMaterialSkinStruct {
+
+    mat4 jointMatrices[256u];
+};
+
+
+struct DefaultMaterialGeneralDataStruct {
+
+    uvec4 indices;
+
+    vec4 viewportSizeInvViewportSize;
+
+    vec4 sceneTimingData;
+};
+
+
+struct DefaultMaterialEnvironmentStruct {
+
+    vec4 indirectSpecularColorFactor;
+
+    vec4 indirectDiffuseColorFactor;
+
+    vec4 envMapColorFactor;
+
+    vec4 values;
+
+    vec4 blendFactor;
+
+
+    mat4 envRotation;
+
+
+    uvec4 indices;
+
+
+    vec4 shIndirectCoefficients[9];
+
+
+    vec4 pad0;
+};
+
+struct DefaultMaterialFogStruct {
+
+    uvec4 indices;
+
+
+    vec4 firstLayer;
+
+    vec4 secondLayer;
+
+
+    vec4 baseFactors;
+
+    vec4 inscatteringColor;
+
+    vec4 envMapFactor;
+
+
+    vec4 additionalFactor;
+};
+
+
+struct DefaultCameraMatrixStruct {
+    mat4 view;
+    mat4 proj;
+    mat4 viewProj;
+
+    mat4 viewInv;
+    mat4 projInv;
+    mat4 viewProjInv;
+
+    mat4 viewPrevFrame;
+    mat4 projPrevFrame;
+    mat4 viewProjPrevFrame;
+
+    mat4 shadowViewProj;
+    mat4 shadowViewProjInv;
+
+
+    vec4 jitter;
+    vec4 jitterPrevFrame;
+
+
+    uvec4 indices;
+
+    uvec4 multiViewIndices;
+
+    vec4 frustumPlanes[6];
+
+
+    uvec4 counts;
+
+    uvec4 pad0;
+    mat4 matPad0;
+    mat4 matPad1;
+};
+
+
+
+
+
+struct DefaultMaterialUnpackedSceneTimingStruct {
+
+    float sceneDeltaTime;
+
+    float tickDeltaTime;
+
+    float tickTotalTime;
+
+    uint frameIndex;
+};
+
+struct DefaultMaterialUnpackedPostProcessStruct {
+    float tonemapExposure;
+    float vignetteCoeff;
+    float vignettePower;
+};
+
+uint GetPackFlatIndices(const uint cameraIdx, const uint instanceIdx)
+{
+    return( (instanceIdx << 16) | (cameraIdx & 0xffff));
+}
+
+void GetUnpackFlatIndices(in uint indices, out uint cameraIdx, out uint instanceIdx)
+{
+    cameraIdx = indices & 0xffff;
+    instanceIdx = indices >> 16;
+}
+
+uint GetUnpackFlatIndicesInstanceIdx(in uint indices)
+{
+    return(indices >> 16);
+}
+
+uint GetUnpackFlatIndicesCameraIdx(in uint indices)
+{
+    return(indices & 0xffff);
+}
+
+uint GetUnpackCameraIndex(const DefaultMaterialGeneralDataStruct dmgds)
+{
+    return dmgds.indices.x;
+}
+
+DefaultMaterialUnpackedSceneTimingStruct GetUnpackSceneTiming(const DefaultMaterialGeneralDataStruct dmgds)
+{
+    DefaultMaterialUnpackedSceneTimingStruct dm;
+    dm.sceneDeltaTime = dmgds.sceneTimingData.x;
+    dm.tickDeltaTime = dmgds.sceneTimingData.y;
+    dm.tickTotalTime = dmgds.sceneTimingData.z;
+    dm.frameIndex = floatBitsToUint(dmgds.sceneTimingData.w);
+    return dm;
+}
+
+vec4 GetUnpackViewport(const DefaultMaterialGeneralDataStruct dmgds)
+{
+    return dmgds.viewportSizeInvViewportSize;
+}
+
+
+
+struct DefaultMaterialUnpackedTexTransformStruct {
+    vec4 rotateScale;
+    vec2 translate;
+};
+
+DefaultMaterialUnpackedTexTransformStruct GetUnpackTextureTransform(const uvec4 packedTexTransform)
+{
+    DefaultMaterialUnpackedTexTransformStruct dm;
+    dm.rotateScale = UnpackVec4Half2x16(packedTexTransform.xy);
+    dm.translate = UnpackVec4Half2x16(packedTexTransform.zw).xy;
+    return dm;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 14 "shader/custom_materiaL_sample.frag"
+
+
+
+#line 1 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/Lume_3D/api/3d/shaders/common/3d_dm_frag_layout_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 1 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/Lume_3D/api/3d/shaders/common/3d_dm_structures_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 20 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/Lume_3D/api/3d/shaders/common/3d_dm_frag_layout_common.h"
+#line 1 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/LumeRender/api/render/shaders/common/render_compatibility_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 21 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/Lume_3D/api/3d/shaders/common/3d_dm_frag_layout_common.h"
+#line 1 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/LumeRender/api/render/shaders/common/render_post_process_structs_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 22 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/Lume_3D/api/3d/shaders/common/3d_dm_frag_layout_common.h"
+
+
+
+
+
+
+
+layout(set = 0, binding = 0, std140) uniform uCameraMatrices
+{
+    DefaultCameraMatrixStruct uCameras[16];
+};
+layout(set = 0, binding = 1, std140) uniform uGeneralStructData
+{
+    DefaultMaterialGeneralDataStruct uGeneralData;
+};
+layout(set = 0, binding = 2, std140) uniform uEnvironmentStructData
+{
+    DefaultMaterialEnvironmentStruct uEnvironmentData;
+};
+layout(set = 0, binding = 3, std140) uniform uFogStructData
+{
+    DefaultMaterialFogStruct uFogData;
+};
+layout(set = 0, binding = 4, std140) uniform uLightStructData
+{
+    DefaultMaterialLightStruct uLightData;
+};
+layout(set = 0, binding = 5, std140) uniform uPostProcessStructData
+{
+    GlobalPostProcessStruct uPostProcessData;
+};
+layout(set = 0, binding = 6, std430) buffer uLightClusterIndexData
+{
+    uint uLightClusterData;
+};
+layout(set = 0, binding = 7) uniform mediump sampler2D uSampColorPrePass;
+layout(set = 0, binding = 8) uniform sampler2D uSampColorShadow;
+layout(set = 0, binding = 9) uniform sampler2DShadow uSampDepthShadow;
+layout(set = 0, binding = 10) uniform samplerCube uSampRadiance;
+
+
+
+layout(set = 1, binding = 0, std140) uniform uMeshStructData
+{
+    DefaultMaterialMeshStruct uMeshMatrix;
+};
+layout(set = 1, binding = 1, std140) uniform uObjectSkinStructData
+{
+    DefaultMaterialSkinStruct uSkinData;
+};
+layout(set = 1, binding = 2, std140) uniform uMaterialStructData
+{
+    DefaultMaterialMaterialStruct uMaterialData;
+};
+
+layout(set = 1, binding = 3, std140) uniform uMaterialTransformStructData
+{
+    DefaultMaterialTransformMaterialStruct uMaterialTransformData;
+};
+layout(set = 1, binding = 4, std140) uniform uMaterialUserStructData
+{
+    DefaultMaterialUserMaterialStruct uMaterialUserData;
+};
+
+
+layout(set = 2, binding = 0) uniform mediump sampler2D uSampTextureBase;
+layout(set = 2, binding = 1) uniform mediump sampler2D uSampTextures[10];
+
+layout(constant_id = 0) const uint CORE_MATERIAL_TYPE = 0;
+layout(constant_id = 1) const uint CORE_MATERIAL_FLAGS = 0;
+layout(constant_id = 2) const uint CORE_LIGHTING_FLAGS = 0;
+layout(constant_id = 3) const uint CORE_POST_PROCESS_FLAGS = 0;
+layout(constant_id = 4) const uint CORE_CAMERA_FLAGS = 0;
+
+
+
+
+
+
+#line 18 "shader/custom_materiaL_sample.frag"
+#line 1 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/Lume_3D/api/3d/shaders/common/3d_dm_lighting_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 1 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/Lume_3D/api/3d/shaders/common/3d_dm_brdf_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+float dLambert()
+{
+    return(1.0 / 3.14159265359);
+}
+
+
+
+float EnvSpecularAo(float ao, float NoV, float roughness)
+{
+    return clamp(pow(NoV + ao, exp2(- 16.0 * roughness - 1.0)) - 1.0 + ao, 0.0, 1.0);
+}
+
+float SpecularHorizonOcclusion(vec3 R, vec3 N)
+{
+    const float horizon = min(1.0 + dot(R, N), 1.0);
+    return horizon * horizon;
+}
+
+float dAshikhmin(float roughness, float NoH)
+{
+    const float r2 = roughness * roughness;
+    const float cos2h = NoH * NoH;
+    const float sin2h = 1.0 - cos2h;
+    const float sin4h = sin2h * sin2h;
+    return(sin4h + 4.0 * exp(- cos2h / (sin2h * r2))) / (3.14159265359 * (1.0 + 4.0 * r2) * sin4h);
+}
+
+
+float vAshikhmin(float NoV, float NoL)
+{
+    return 1.0 / (4.0 * (NoL + NoV - NoL * NoL));
+}
+
+float dCharlie(float roughness, float NoH)
+{
+    const float invR = 1.0 / roughness;
+    const float cos2h = NoH * NoH;
+    const float sin2h = 1.0 - cos2h;
+    return(2.0 + invR) * pow(sin2h, invR * 0.5) / (2.0 * 3.14159265359);
+}
+
+
+vec3 f0ClearcoatToSurface(const vec3 f0)
+{
+
+    return clamp(f0 * (f0 * 0.526868 + 0.529324) - 0.0482256, 0.0, 1.0);
+}
+
+
+float EnvBRDFApproxSheen(float NoV, float alpha)
+{
+    const float c = 1.0 - NoV;
+    const float c3 = c * c * c;
+    return 0.6558446 * c3 + 1.0 / (4.1652655 + exp(- 7.9729136 * alpha + 6.3351689));
+}
+
+vec3 fSchlick(vec3 f0, float VoH)
+{
+
+    const float p = pow(1.0 - VoH, 5.0);
+    return p + f0 * (1.0 - p);
+}
+
+float fSchlickSingle(float f0, float VoH)
+{
+    const float p = pow(1.0 - VoH, 5.0);
+    return p + f0 * (1.0 - p);
+}
+
+
+vec3 fSchlick(vec4 f0, float VoH)
+{
+    const float p = pow(1.0 - VoH, 5.0);
+    return(f0.w * p) + f0.xyz * (1.0 - p);
+}
+
+
+float dGGX(float alpha2, float NoH)
+{
+    const float f = (NoH * alpha2 - NoH) * NoH + 1.0;
+    return alpha2 / (3.14159265359 * (f * f));
+}
+
+
+float dGGXAnisotropic(float at, float ab, float NoH, float ToH, float BoH, float anisotropy)
+{
+    float a2 = at * ab;
+    vec3 d = vec3(ab * ToH, at * BoH, a2 * NoH);
+    float d2 = dot(d, d);
+    if (d2 == 0) {
+        return 0.0;
+    }
+    float w2 = a2 / d2;
+    return a2 * w2 * w2 * (1.0 / 3.14159265359);
+}
+
+
+float vGGXWithCombinedDenominator(float alpha2, float NoV, float NoL)
+{
+    const float gv = NoV + sqrt( (NoV - NoV * alpha2) * NoV + alpha2);
+    const float gl = NoL + sqrt( (NoL - NoL * alpha2) * NoL + alpha2);
+    return min(1.0 / (gv * gl), 64512.0);
+}
+
+
+
+float vKelemen(float LoH)
+{
+    return min(0.25 / (LoH * LoH), 64512.0);
+}
+
+float vGGXAnisotropic(
+    float at, float ab, float NoL, float NoV, float ToL, float ToV, float BoL, float BoV, float anisotropy)
+{
+    float gv = NoL * length(vec3(at * ToV, ab * BoV, NoV));
+    float gl = NoV * length(vec3(at * ToL, ab * BoL, NoL));
+    float v = 0.5 / (gv + gl);
+    return clamp(v, 0.0, 1.0);
+}
+
+vec3 microfacedSpecularBrdf(vec3 f0, float alpha2, float NoL, float NoV, float NoH, float VoH)
+{
+
+    float D = dGGX(alpha2, NoH);
+    float G = vGGXWithCombinedDenominator(alpha2, NoV, NoL);
+    vec3 F = fSchlick(f0, VoH);
+    return F * (D * G);
+}
+
+float microfacedSpecularBrdfClearcoat(
+    float f0, float alpha2, float NoL, float NoH, float VoH, float clearcoat, out float fcc)
+{
+
+    float D = dGGX(alpha2, NoH);
+    float G = vKelemen(NoH);
+    float F = fSchlickSingle(f0, VoH) * clearcoat;
+    fcc = F;
+    return F * D * G;
+}
+
+vec3 microfacedSpecularBrdfAnisotropic(vec3 f0, float alpha, float NoL, float NoV, float NoH, float VoH, float ToL,
+    float ToV, float ToH, float BoL, float BoV, float BoH, float anisotropy)
+{
+    const float at = max(alpha * (1.0 + anisotropy), 0.0001);
+    const float ab = max(alpha * (1.0 - anisotropy), 0.0001);
+
+    float D = dGGXAnisotropic(at, ab, NoH, ToH, BoH, anisotropy);
+    float V = vGGXAnisotropic(at, ab, NoL, NoV, BoV, ToV, ToL, BoL, anisotropy);
+    vec3 F = fSchlick(f0, VoH);
+    return F * (V * D);
+}
+
+float diffuseCoeff()
+{
+    return dLambert();
+}
+
+
+#line 20 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/Lume_3D/api/3d/shaders/common/3d_dm_lighting_common.h"
+#line 1 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/Lume_3D/api/3d/shaders/common/3d_dm_indirect_lighting_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 1 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/Lume_3D/api/3d/shaders/common/3d_dm_structures_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 20 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/Lume_3D/api/3d/shaders/common/3d_dm_indirect_lighting_common.h"
+#line 1 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/LumeRender/api/render/shaders/common/render_compatibility_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 21 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/Lume_3D/api/3d/shaders/common/3d_dm_indirect_lighting_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+vec3 unpackEnvMap(vec4 envColorRgbd)
+{
+    return envColorRgbd.xyz * (1.0 / envColorRgbd.a);
+}
+
+
+vec3 unpackIblRadiance(vec4 envColorRgbd)
+{
+    return envColorRgbd.xyz * (1.0 / envColorRgbd.a);
+}
+
+
+vec3 unpackIblIrradianceSH(vec3 n, vec4 sh[9])
+{
+
+    return max(vec3(0.0), sh[0].xyz
+
+                              + sh[1].xyz * n.y + sh[2].xyz * n.z + sh[3].xyz * n.x
+
+                              + sh[4].xyz * (n.x * n.y) + sh[5].xyz * (n.z * n.y) +
+                              sh[6].xyz * ( (3.0 * n.z * n.z) - 1.0) + sh[7].xyz * (n.x * n.z) +
+                              sh[8].xyz * (n.x * n.x - n.y * n.y));
+}
+
+
+
+vec3 EnvBRDFApprox(vec3 f0, float roughness, float NoV)
+{
+    const vec4 c0 = vec4(- 1.0, - 0.0275, - 0.572, 0.022);
+    const vec4 c1 = vec4(1.0, 0.0425, 1.04, - 0.04);
+    vec4 r = roughness * c0 + c1;
+    float a004 = min(r.x * r.x, exp2(- 9.28 * NoV)) * r.x + r.y;
+    vec2 ab = vec2(- 1.04, 1.04) * a004 + r.zw;
+
+
+    const float f90 = clamp(50.0 * max(f0.x, max(f0.y, f0.z)), 0.0, 1.0);
+    return f0 * ab.x + ab.y * f90;
+}
+
+
+
+float EnvBRDFApproxNonmetal(float Roughness, float NoV)
+{
+
+    const vec2 c0 = { - 1, - 0.0275 };
+    const vec2 c1 = { 1, 0.0425 };
+    vec2 r = Roughness * c0 + c1;
+    return min(r.x * r.x, exp2(- 9.28 * NoV)) * r.x + r.y;
+}
+
+
+
+
+#line 21 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/Lume_3D/api/3d/shaders/common/3d_dm_lighting_common.h"
+#line 1 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/Lume_3D/api/3d/shaders/common/3d_dm_shadowing_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 1 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/LumeRender/api/render/shaders/common/render_compatibility_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 20 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/Lume_3D/api/3d/shaders/common/3d_dm_shadowing_common.h"
+
+
+
+
+
+
+
+vec2 ComputeReceiverPlaneDepthBias(const vec3 uvDdx, const vec3 uvDdy)
+{
+    vec2 uvBias;
+    uvBias.x = uvDdy.y * uvDdx.z - uvDdx.y * uvDdy.z;
+    uvBias.y = uvDdx.x * uvDdy.z - uvDdy.x * uvDdx.z;
+    uvBias *= 1.0f / ( (uvDdx.x * uvDdy.y) - (uvDdx.y * uvDdy.x));
+    return uvBias;
+}
+
+float GetPcfSample(sampler2DShadow shadow, const vec2 baseUv, const vec2 offset, const float compareDepth,
+    const vec2 texelSize, const vec2 receiverPlaneDepthBias)
+{
+    const vec2 uvOffset = offset * texelSize;
+
+
+
+    const float compZ = compareDepth;
+
+    return texture(shadow, vec3(baseUv + uvOffset, compZ)).x;
+}
+
+bool ValidShadowRange(const vec3 shadowCoord, float stepSize, float shadowIdx)
+{
+    const float xMin = stepSize * shadowIdx;
+    const float xMax = xMin + stepSize;
+    return( (shadowCoord.z > 0.0) && (shadowCoord.x > xMin) && (shadowCoord.x < xMax));
+}
+
+
+
+float CalcPcfShadow(
+    sampler2DShadow shadow, vec4 inShadowCoord, float NoL, vec4 shadowFactor, vec4 atlasSizeInvSize, uvec2 shadowFlags)
+{
+
+    const vec3 shadowCoord = inShadowCoord.xyz / inShadowCoord.w;
+
+                mediump float light = 1.0;
+    if (ValidShadowRange(shadowCoord, shadowFactor.w, float(shadowFlags.x))) {
+        const vec2 textureSize = atlasSizeInvSize.xy;
+        const vec2 texelSize = atlasSizeInvSize.zw;
+        const float normalBias = shadowFactor.z;
+        const float depthBias = shadowFactor.y;
+        const float bias = max(normalBias * (1.0 - NoL), depthBias);
+
+        const vec2 offset = vec2(0.5);
+        const vec2 uv = (shadowCoord.xy * textureSize) + offset;
+        vec2 baseUv = (floor(uv) - offset) * texelSize;
+        const float fracS = fract(uv.x);
+        const float fracT = fract(uv.y);
+
+
+
+
+
+
+
+
+
+
+
+
+        const vec2 receiverPlaneDepthBias = vec2(shadowFactor.y, shadowFactor.y);
+        const float compareDepth = shadowCoord.z - bias;
+
+
+        const float uw0 = 4.0 - 3.0 * fracS;
+        const float uw1 = 7.0;
+        const float uw2 = 1.0 + 3.0 * fracS;
+
+        const float u0 = (3.0 - 2.0 * fracS) / uw0 - 2.0;
+        const float u1 = (3.0 + fracS) / uw1;
+        const float u2 = fracS / uw2 + 2.0;
+
+        const float vw0 = 4.0 - 3.0 * fracT;
+        const float vw1 = 7.0;
+        const float vw2 = 1.0 + 3.0 * fracT;
+
+        const float v0 = (3.0 - 2.0 * fracT) / vw0 - 2.0;
+        const float v1 = (3.0 + fracT) / vw1;
+        const float v2 = fracT / vw2 + 2.0;
+
+                    mediump float sum = 0;
+
+        sum += uw0 * vw0 * GetPcfSample(shadow, baseUv, vec2(u0, v0), compareDepth, texelSize, receiverPlaneDepthBias);
+        sum += uw1 * vw0 * GetPcfSample(shadow, baseUv, vec2(u1, v0), compareDepth, texelSize, receiverPlaneDepthBias);
+        sum += uw2 * vw0 * GetPcfSample(shadow, baseUv, vec2(u2, v0), compareDepth, texelSize, receiverPlaneDepthBias);
+
+        sum += uw0 * vw1 * GetPcfSample(shadow, baseUv, vec2(u0, v1), compareDepth, texelSize, receiverPlaneDepthBias);
+        sum += uw1 * vw1 * GetPcfSample(shadow, baseUv, vec2(u1, v1), compareDepth, texelSize, receiverPlaneDepthBias);
+        sum += uw2 * vw1 * GetPcfSample(shadow, baseUv, vec2(u2, v1), compareDepth, texelSize, receiverPlaneDepthBias);
+
+        sum += uw0 * vw2 * GetPcfSample(shadow, baseUv, vec2(u0, v2), compareDepth, texelSize, receiverPlaneDepthBias);
+        sum += uw1 * vw2 * GetPcfSample(shadow, baseUv, vec2(u1, v2), compareDepth, texelSize, receiverPlaneDepthBias);
+        sum += uw2 * vw2 * GetPcfSample(shadow, baseUv, vec2(u2, v2), compareDepth, texelSize, receiverPlaneDepthBias);
+
+        sum *= 1.0f / 144.0f;
+
+        light = 1.0 - (sum * shadowFactor.x);
+    }
+
+    return light;
+}
+float CalcPcfShadowMed(
+    sampler2DShadow shadow, vec4 inShadowCoord, float NoL, vec4 shadowFactor, vec4 atlasSizeInvSize, uvec2 shadowFlags)
+{
+
+    const vec3 shadowCoord = inShadowCoord.xyz / inShadowCoord.w;
+
+                mediump float light = 1.0;
+    if (ValidShadowRange(shadowCoord, shadowFactor.w, float(shadowFlags.x))) {
+        const vec2 textureSize = vec2(textureSize(shadow, 0).xy);
+        const vec2 texelSize = 1.0 / textureSize;
+        const float normalBias = shadowFactor.z;
+        const float depthBias = shadowFactor.y;
+        const float bias = max(normalBias * (1.0 - NoL), depthBias);
+
+        const vec2 offset = vec2(0.5);
+        const vec2 uv = (shadowCoord.xy * textureSize) + offset;
+        vec2 baseUv = (floor(uv) - offset) * texelSize;
+        const float fracS = fract(uv.x);
+        const float fracT = fract(uv.y);
+
+
+
+
+
+
+
+
+
+
+
+
+        const vec2 receiverPlaneDepthBias = vec2(shadowFactor.y, shadowFactor.y);
+        const float compareDepth = shadowCoord.z - bias;
+
+
+        const float uw0 = (3 - 2 * fracS);
+        const float uw1 = (1 + 2 * fracS);
+
+        const float u0 = (2 - fracS) / uw0 - 1;
+        const float u1 = fracS / uw1 + 1;
+
+        const float vw0 = (3 - 2 * fracT);
+        const float vw1 = (1 + 2 * fracT);
+
+        float v0 = (2 - fracT) / vw0 - 1;
+        float v1 = fracT / vw1 + 1;
+
+                    mediump float sum = 0;
+
+        sum += uw0 * vw0 * GetPcfSample(shadow, baseUv, vec2(u0, v0), compareDepth, texelSize, receiverPlaneDepthBias);
+        sum += uw1 * vw0 * GetPcfSample(shadow, baseUv, vec2(u1, v0), compareDepth, texelSize, receiverPlaneDepthBias);
+
+        sum += uw0 * vw1 * GetPcfSample(shadow, baseUv, vec2(u0, v1), compareDepth, texelSize, receiverPlaneDepthBias);
+        sum += uw1 * vw1 * GetPcfSample(shadow, baseUv, vec2(u1, v1), compareDepth, texelSize, receiverPlaneDepthBias);
+
+        sum *= (1.0f / 16.0f);
+
+        light = 1.0 - (sum * shadowFactor.x);
+    }
+
+    return light;
+}
+
+float CalcPcfShadowSimpleSample(
+    sampler2DShadow shadow, vec4 inShadowCoord, vec4 shadowFactor, vec4 atlasSizeInvSize, uvec2 shadowFlags)
+{
+
+    const vec3 shadowCoord = inShadowCoord.xyz / inShadowCoord.w;
+
+                mediump float light = 1.0;
+    if (ValidShadowRange(shadowCoord, shadowFactor.w, float(shadowFlags.x))) {
+        const float bias = 0.002;
+        const vec2 baseUv = shadowCoord.xy;
+        const float compareDepth = shadowCoord.z - bias;
+        const mediump float sum = texture(shadow, vec3(baseUv, compareDepth)).x;
+
+        light = 1.0 - (sum * shadowFactor.x);
+    }
+
+    return light;
+}
+
+
+
+float LinstepVsm(float minVal, float maxVal, float v)
+{
+    return clamp( (v - minVal) / (maxVal - minVal), 0.0, 1.0);
+}
+float ReduceLightBleedingVsm(float pMax, float amount)
+{
+
+    return LinstepVsm(amount, 1.0, pMax);
+}
+
+float CalcVsmShadow(
+    sampler2D shadow, vec4 inShadowCoord, float NoL, vec4 shadowFactors, vec4 atlasSizeInvSize, uvec2 shadowFlags)
+{
+
+    const vec3 shadowCoord = inShadowCoord.xyz / inShadowCoord.w;
+
+                mediump float light = 1.0;
+    if (ValidShadowRange(shadowCoord, shadowFactors.w, float(shadowFlags.x))) {
+        const vec2 moments = texture(shadow, shadowCoord.xy).xy;
+        if (shadowCoord.z > moments.x) {
+            float variance = moments.y - (moments.x * moments.x);
+            const float evaluatedMinValue = 0.00001;
+            variance = max(variance, evaluatedMinValue);
+
+            const float d = shadowCoord.z - moments.x;
+            light = variance / (variance + d * d);
+            const float evaluatedLightBleedingVal = 0.2;
+            light = ReduceLightBleedingVsm(light, evaluatedLightBleedingVal);
+            light = 1.0 - (1.0 - light) * shadowFactors.x;
+        }
+    }
+
+    return light;
+}
+
+float CalcVsmShadowSimpleSample(
+    sampler2D shadow, vec4 inShadowCoord, vec4 shadowFactors, vec4 atlasSizeInvSize, uvec2 shadowFlags)
+{
+
+    const vec3 shadowCoord = inShadowCoord.xyz / inShadowCoord.w;
+
+                mediump float light = 1.0;
+    if (ValidShadowRange(shadowCoord, shadowFactors.w, float(shadowFlags.x))) {
+        const vec2 moments = texture(shadow, shadowCoord.xy).xy;
+        if (shadowCoord.z > moments.x) {
+            float variance = moments.y - (moments.x * moments.x);
+            const float evaluatedMinValue = 0.00001;
+            variance = max(variance, evaluatedMinValue);
+
+            const float d = shadowCoord.z - moments.x;
+            light = variance / (variance + d * d);
+            const float evaluatedLightBleedingVal = 0.2;
+            light = ReduceLightBleedingVsm(light, evaluatedLightBleedingVal);
+            light = 1.0 - (1.0 - light) * shadowFactors.x;
+        }
+    }
+
+    return light;
+}
+
+
+#line 22 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/Lume_3D/api/3d/shaders/common/3d_dm_lighting_common.h"
+#line 1 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/LumeRender/api/render/shaders/common/render_compatibility_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 23 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/Lume_3D/api/3d/shaders/common/3d_dm_lighting_common.h"
+
+
+
+
+
+
+
+
+
+struct InputBrdfData {
+    vec4 f0;
+    vec3 diffuseColor;
+    float roughness;
+    float alpha2;
+};
+
+struct ShadingData {
+    vec3 pos;
+    vec3 N;
+    float NoV;
+    vec3 V;
+    float alpha2;
+    vec4 f0;
+    vec3 diffuseColor;
+};
+
+struct ShadingDataInplace {
+    vec3 pos;
+    vec3 N;
+    float NoV;
+    vec3 V;
+    float alpha2;
+    vec4 f0;
+    vec3 diffuseColor;
+    uint materialFlags;
+    uvec2 layers;
+};
+
+struct ClearcoatShadingVariables {
+    vec3 ccNormal;
+    float cc;
+                mediump float ccRoughness;
+    float ccAlpha2;
+};
+
+struct SheenShadingVariables {
+                mediump vec3 sheenColor;
+                mediump float sheenRoughness;
+                mediump float sheenColorMax;
+                mediump float sheenBRDFApprox;
+};
+
+struct AnisotropicShadingVariables {
+    float roughness;
+    float alpha;
+    float anisotropy;
+    float ToV;
+    float BoV;
+    vec3 anisotropicT;
+    vec3 anisotropicB;
+};
+
+struct SubsurfaceScatterShadingVariables {
+    vec3 scatterColor;
+    float scatterDistance;
+    float thickness;
+};
+
+
+
+void GetFinalCorrectedRoughness(mediump in vec3 polygonNormal, mediump inout float roughness)
+{
+
+
+    const mediump vec3 normalDFdx = dFdx(polygonNormal);
+    const mediump vec3 normalDdFdy = dFdy(polygonNormal);
+    const mediump float geometricRoughness =
+        pow(clamp(max(dot(normalDFdx, normalDFdx), dot(normalDdFdy, normalDdFdy)), 0.0, 1.0), 0.333);
+    roughness = max(roughness, geometricRoughness);
+
+    roughness = clamp(roughness, 0.089, 1.0);
+}
+
+void AppendIndirectSheen(in SheenShadingVariables ssv, in mediump vec3 radianceSample,
+    in mediump float alpha, inout mediump vec3 irradiance, inout mediump vec3 radiance)
+{
+    const vec3 sheenF = ssv.sheenColor * ssv.sheenBRDFApprox;
+    const float sheenAttenuation = 1.0 - (ssv.sheenColorMax * ssv.sheenBRDFApprox);
+
+    irradiance *= sheenAttenuation;
+    radiance *= sheenAttenuation;
+
+    radiance += sheenF * radianceSample;
+}
+
+void AppendIndirectClearcoat(in ClearcoatShadingVariables ccsv, in mediump vec3 radianceSample,
+    in mediump float alpha, in vec3 V, inout mediump vec3 irradiance, inout mediump vec3 radiance)
+{
+    const float ccNoV = clamp(dot(ccsv.ccNormal, V), 0.0001, 1.0);
+
+    GetFinalCorrectedRoughness(ccsv.ccNormal, ccsv.ccAlpha2);
+
+    float ccRadianceFactor = EnvBRDFApproxNonmetal(ccsv.ccAlpha2, ccNoV);
+    float ccAttenuation = 1.0 - ccRadianceFactor;
+
+
+    irradiance *= ccAttenuation;
+    radiance *= ccAttenuation;
+
+
+    radiance += radianceSample * ccRadianceFactor;
+}
+
+void AppendIndirectTransmission(in mediump vec3 radianceSample, in mediump vec3 baseColor,
+    in mediump float transmission, inout mediump vec3 irradiance)
+{
+
+    const mediump vec3 Ft = radianceSample * baseColor.rgb;
+    irradiance *= (1.0 - transmission);
+    irradiance = mix(irradiance, Ft, transmission);
+}
+
+void GetFinalSampledBrdfGeometricCorrection(in vec3 polygonNormal, inout InputBrdfData ibd)
+{
+
+                mediump float roughness = ibd.roughness;
+    GetFinalCorrectedRoughness(polygonNormal, roughness);
+
+    const mediump float alpha = roughness * roughness;
+    ibd.alpha2 = alpha * alpha;
+    ibd.roughness = roughness;
+}
+
+void GetFinalSampledBrdfGeometricCorrection(inout InputBrdfData ibd)
+{
+    const mediump float roughness = ibd.roughness;
+    const mediump float alpha = roughness * roughness;
+    ibd.alpha2 = alpha * alpha;
+}
+
+InputBrdfData CalcBRDFMetallicRoughness(mediump vec4 baseColor, vec3 polygonNormal, mediump vec4 material)
+{
+    InputBrdfData bd;
+    {
+        const mediump float metallic = clamp(material.b, 0.0, 1.0);
+        bd.f0.xyz = mix(vec3(material.a), baseColor.rgb, metallic);
+        bd.f0.w = 1.0;
+
+        bd.diffuseColor = mix(baseColor.rgb * (1.0 - bd.f0.xyz), vec3(0.0), vec3(metallic));
+        bd.roughness = material.g;
+    }
+
+    GetFinalSampledBrdfGeometricCorrection(polygonNormal, bd);
+
+    return bd;
+}
+
+InputBrdfData CalcBRDFMetallicRoughness(mediump vec4 baseColor, mediump vec4 material)
+{
+    InputBrdfData bd;
+    {
+        const mediump float metallic = clamp(material.b, 0.0, 1.0);
+        bd.f0.xyz = mix(vec3(material.a), baseColor.rgb, metallic);
+        bd.f0.w = 1.0;
+
+        bd.diffuseColor = mix(baseColor.rgb * (1.0 - bd.f0.xyz), vec3(0.0), vec3(metallic));
+        bd.roughness = material.g;
+    }
+
+    GetFinalSampledBrdfGeometricCorrection(bd);
+
+    return bd;
+}
+
+InputBrdfData CalcBRDFSpecularGlossiness(mediump vec4 baseColor, vec3 polygonNormal, mediump vec4 material)
+{
+    InputBrdfData bd;
+    {
+        bd.f0.xyz = material.xyz;
+        bd.f0.w = 1.0;
+        bd.diffuseColor = baseColor.rgb * (1.0 - max(bd.f0.x, max(bd.f0.y, bd.f0.z)));
+        bd.roughness = 1.0 - clamp(material.a, 0.0, 1.0);
+    }
+
+    GetFinalSampledBrdfGeometricCorrection(polygonNormal, bd);
+
+    return bd;
+}
+
+InputBrdfData CalcBRDFSpecular(
+                mediump vec4 baseColor, vec3 polygonNormal, mediump vec4 material, mediump vec4 specular)
+{
+    InputBrdfData bd;
+    {
+        const mediump float metallic = clamp(material.b, 0.0, 1.0);
+
+        bd.f0.xyz = mix(vec3(material.a), baseColor.rgb, metallic);
+
+
+        bd.f0.xyz = min(bd.f0.xyz * specular.rgb, vec3(1.0)) * specular.a;
+
+
+        bd.diffuseColor = mix(baseColor.rgb * (1.0 - max(bd.f0.x, max(bd.f0.y, bd.f0.z))), vec3(0.0), vec3(metallic));
+
+
+        bd.f0.xyz = mix(bd.f0.xyz, baseColor.rgb, metallic);
+        bd.f0.w = mix(specular.a, 1.0, metallic);
+        bd.roughness = material.g;
+    }
+
+    GetFinalSampledBrdfGeometricCorrection(polygonNormal, bd);
+
+    return bd;
+}
+
+mat3 CalcTbnMatrix(in vec3 polygonNormal, in vec4 tangentW)
+{
+    const vec3 tangent = normalize(tangentW.xyz);
+    const vec3 bitangent = cross(polygonNormal, tangent.xyz) * tangentW.w;
+    return mat3(tangent.xyz, bitangent.xyz, polygonNormal);
+}
+
+vec3 CalcFinalNormal(in mat3 tbn, in vec3 normal, in float normalScale)
+{
+    vec3 n = normalize( (2.0 * normal - 1.0) * vec3(normalScale, normalScale, 1.0f));
+    return normalize(tbn * n);
+}
+
+vec3 GetAnistropicReflectionVector(const vec3 V, const vec3 N, AnisotropicShadingVariables asv)
+{
+
+    const vec3 anisoDir = asv.anisotropy >= 0.0 ? asv.anisotropicB : asv.anisotropicT;
+    const vec3 anisoTangent = cross(anisoDir, V);
+    const vec3 anisoNormal = cross(anisoTangent, anisoDir);
+
+    const float bendFactor = abs(asv.anisotropy) * clamp(asv.roughness * 5.0, 0.0, 1.0);
+    const vec3 bentNormal = normalize(mix(N, anisoNormal, bendFactor));
+
+    return reflect(- V, bentNormal);
+}
+
+mat4 GetShadowMatrix(const uint shadowCamIdx)
+{
+
+    return uCameras[shadowCamIdx].shadowViewProj;
+}
+
+vec3 CalculateLight(
+    uint currLightIdx, vec3 materialDiffuseBRDF, vec3 L, float NoL, ShadingData sd, const uint materialFlags)
+{
+    const vec3 H = normalize(L + sd.V);
+    const float VoH = clamp(dot(sd.V, H), 0.0, 1.0);
+    const float NoH = clamp(dot(sd.N, H), 0.0, 1.0);
+
+    float extAttenuation = 1.0;
+    vec3 calculatedColor = vec3(0.0);
+    const float D = dGGX(sd.alpha2, NoH);
+    const float G = vGGXWithCombinedDenominator(sd.alpha2, sd.NoV, NoL);
+    const vec3 F = fSchlick(sd.f0, VoH);
+    const vec3 specContrib = F * (D * G);
+
+
+
+    const vec3 diffuseContrib = (1.0 - F.xyz) * materialDiffuseBRDF;
+    calculatedColor += (diffuseContrib + specContrib * extAttenuation) * extAttenuation * NoL;
+    calculatedColor *= uLightData.lights[currLightIdx].color.xyz;
+    return calculatedColor;
+}
+
+vec3 CalculateLight(uint currLightIdx, vec3 materialDiffuseBRDF, vec3 L, float NoL, ShadingData sd,
+    ClearcoatShadingVariables ccsv, SheenShadingVariables ssv, const uint materialFlags)
+{
+    const vec3 H = normalize(L + sd.V);
+    const float VoH = clamp(dot(sd.V, H), 0.0, 1.0);
+    const float NoH = clamp(dot(sd.N, H), 0.0, 1.0);
+
+    float extAttenuation = 1.0;
+    vec3 calculatedColor = vec3(0.0);
+    if ( (materialFlags & (1 << 6)) == (1 << 6)) {
+        const float sheenD = dCharlie(ssv.sheenRoughness, NoH);
+        const float sheenV = vAshikhmin(sd.NoV, NoL);
+        const vec3 sheenSpec = ssv.sheenColor * (sheenD * sheenV);
+
+        extAttenuation *= (1.0 - (ssv.sheenColorMax * ssv.sheenBRDFApprox));
+        calculatedColor += (sheenSpec * NoL);
+    }
+    if ( (materialFlags & (1 << 4)) == (1 << 4)) {
+        const float ccNoL = clamp(dot(ccsv.ccNormal, L), 0.0001, 1.0);
+        const float ccNoH = clamp(dot(ccsv.ccNormal, H), 0.0001, 1.0);
+        const float ccLoH = clamp(dot(L, H), 0.0001, 1.0);
+        const float ccNoV = clamp(dot(ccsv.ccNormal, sd.V), 0.0001, 1.0);
+        const float ccf0 = 0.04;
+
+        const float ccD = dGGX(ccsv.ccAlpha2, ccNoH);
+        const float ccG = vKelemen(ccLoH);
+        const float ccF = fSchlickSingle(ccf0, ccNoV) * ccsv.cc;
+        const float ccSpec = ccF * ccD * ccG;
+
+        extAttenuation *= (1.0 - ccF);
+        calculatedColor += vec3(ccSpec * ccNoL);
+    }
+    const float D = dGGX(sd.alpha2, NoH);
+    const float G = vGGXWithCombinedDenominator(sd.alpha2, sd.NoV, NoL);
+    const vec3 F = fSchlick(sd.f0, VoH);
+    const vec3 specContrib = F * (D * G);
+
+
+
+    const vec3 diffuseContrib = (1.0 - F.xyz) * materialDiffuseBRDF;
+    calculatedColor += (diffuseContrib + specContrib * extAttenuation) * extAttenuation * NoL;
+    calculatedColor *= uLightData.lights[currLightIdx].color.xyz;
+    return calculatedColor;
+}
+
+vec3 CalculateLighting(ShadingData sd, const uint materialFlags)
+{
+    const vec3 materialDiffuseBRDF = sd.diffuseColor * diffuseCoeff();
+    vec3 color = vec3(0.0);
+    const uint directionalLightCount = uLightData.directionalLightCount;
+    const uint directionalLightBeginIndex = uLightData.directionalLightBeginIndex;
+    const vec4 atlasSizeInvSize = uLightData.atlasSizeInvSize;
+    for (uint lightIdx = 0; lightIdx < directionalLightCount; ++ lightIdx) {
+        const uint currLightIdx = directionalLightBeginIndex + lightIdx;
+        const vec3 L = - uLightData.lights[currLightIdx].dir.xyz;
+        const float NoL = clamp(dot(sd.N, L), 0.0, 1.0);
+
+                    mediump float shadowCoeff = 1.0;
+        if ( (materialFlags & (1 << 0)) == (1 << 0)) {
+            const uvec4 lightFlags = uLightData.lights[currLightIdx].flags;
+            if ( (lightFlags.x & (1 << 3)) == (1 << 3)) {
+                const vec4 shadowCoord = GetShadowMatrix(lightFlags.y) * vec4(sd.pos.xyz, 1.0);
+                const vec4 shadowFactors = uLightData.lights[currLightIdx].shadowFactors;
+                if ( (CORE_LIGHTING_FLAGS & (1 << 0)) == (1 << 0)) {
+                    shadowCoeff = CalcVsmShadow(
+                        uSampColorShadow, shadowCoord, NoL, shadowFactors, atlasSizeInvSize, lightFlags.zw);
+                } else {
+                    shadowCoeff = CalcPcfShadow(
+                        uSampDepthShadow, shadowCoord, NoL, shadowFactors, atlasSizeInvSize, lightFlags.zw);
+                }
+            }
+        }
+        color += CalculateLight(currLightIdx, materialDiffuseBRDF, L, NoL, sd, materialFlags) * shadowCoeff;
+    }
+
+    if ( (CORE_LIGHTING_FLAGS & (1 << 2)) == (1 << 2)) {
+        const uint spotLightCount = uLightData.spotLightCount;
+        const uint spotLightLightBeginIndex = uLightData.spotLightBeginIndex;
+        for (uint spotIdx = 0; spotIdx < spotLightCount; ++ spotIdx) {
+            const uint currLightIdx = spotLightLightBeginIndex + spotIdx;
+
+            const vec3 pointToLight = uLightData.lights[currLightIdx].pos.xyz - sd.pos.xyz;
+            const float dist = length(pointToLight);
+            const vec3 L = pointToLight / dist;
+            const float NoL = clamp(dot(sd.N, L), 0.0, 1.0);
+
+                        mediump float shadowCoeff = 1.0;
+            if ( (materialFlags & (1 << 0)) == (1 << 0)) {
+                const uvec4 lightFlags = uLightData.lights[currLightIdx].flags;
+                if ( (lightFlags.x & (1 << 3)) == (1 << 3)) {
+                    const vec4 shadowCoord = GetShadowMatrix(lightFlags.y) * vec4(sd.pos.xyz, 1.0);
+                    const vec4 shadowFactors = uLightData.lights[currLightIdx].shadowFactors;
+                    if ( (CORE_LIGHTING_FLAGS & (1 << 0)) ==
+                                                        (1 << 0)) {
+                        shadowCoeff = CalcVsmShadow(
+                            uSampColorShadow, shadowCoord, NoL, shadowFactors, atlasSizeInvSize, lightFlags.zw);
+                    } else {
+                        shadowCoeff = CalcPcfShadow(
+                            uSampDepthShadow, shadowCoord, NoL, shadowFactors, atlasSizeInvSize, lightFlags.zw);
+                    }
+                }
+            }
+
+            const float lightAngleScale = uLightData.lights[currLightIdx].spotLightParams.x;
+            const float lightAngleOffset = uLightData.lights[currLightIdx].spotLightParams.y;
+
+            const float cd = dot(uLightData.lights[currLightIdx].dir.xyz, - L);
+            const float angularAttenuation = clamp(cd * lightAngleScale + lightAngleOffset, 0.0, 1.0);
+
+            const float range = uLightData.lights[currLightIdx].dir.w;
+            const float attenuation = max(min(1.0 - pow(dist / range, 4.0), 1.0), 0.0) / (dist * dist);
+            color += CalculateLight(currLightIdx, materialDiffuseBRDF, L, NoL, sd, materialFlags) *
+                     (angularAttenuation * angularAttenuation * attenuation) * shadowCoeff;
+        }
+    }
+
+    if ( (CORE_LIGHTING_FLAGS & (1 << 1)) == (1 << 1)) {
+        const uint pointLightCount = uLightData.pointLightCount;
+        const uint pointLightBeginIndex = uLightData.pointLightBeginIndex;
+        for (uint pointIdx = 0; pointIdx < pointLightCount; ++ pointIdx) {
+            const uint currLightIdx = pointLightBeginIndex + pointIdx;
+
+            const vec3 pointToLight = uLightData.lights[currLightIdx].pos.xyz - sd.pos.xyz;
+            const float dist = length(pointToLight);
+            const vec3 L = pointToLight / dist;
+            const float NoL = clamp(dot(sd.N, L), 0.0, 1.0);
+            const float range = uLightData.lights[currLightIdx].dir.w;
+            const float attenuation = max(min(1.0 - pow(dist / range, 4.0), 1.0), 0.0) / (dist * dist);
+
+            color += CalculateLight(currLightIdx, materialDiffuseBRDF, L, NoL, sd, materialFlags) * attenuation;
+        }
+    }
+
+    return color;
+}
+
+vec3 CalculateLighting(
+    ShadingData sd, ClearcoatShadingVariables ccsv, SheenShadingVariables ssv, const uint materialFlags)
+{
+    const vec3 materialDiffuseBRDF = sd.diffuseColor * diffuseCoeff();
+    vec3 color = vec3(0.0);
+    const uint directionalLightCount = uLightData.directionalLightCount;
+    const uint directionalLightBeginIndex = uLightData.directionalLightBeginIndex;
+    const vec4 atlasSizeInvSize = uLightData.atlasSizeInvSize;
+    for (uint lightIdx = 0; lightIdx < directionalLightCount; ++ lightIdx) {
+        const uint currLightIdx = directionalLightBeginIndex + lightIdx;
+        const vec3 L = - uLightData.lights[currLightIdx].dir.xyz;
+        const float NoL = clamp(dot(sd.N, L), 0.0, 1.0);
+
+                    mediump float shadowCoeff = 1.0;
+        if ( (materialFlags & (1 << 0)) == (1 << 0)) {
+            const uvec4 lightFlags = uLightData.lights[currLightIdx].flags;
+            if ( (lightFlags.x & (1 << 3)) == (1 << 3)) {
+                const vec4 shadowCoord = GetShadowMatrix(lightFlags.y) * vec4(sd.pos.xyz, 1.0);
+                const vec4 shadowFactors = uLightData.lights[currLightIdx].shadowFactors;
+                if ( (CORE_LIGHTING_FLAGS & (1 << 0)) == (1 << 0)) {
+                    shadowCoeff = CalcVsmShadow(
+                        uSampColorShadow, shadowCoord, NoL, shadowFactors, atlasSizeInvSize, lightFlags.zw);
+                } else {
+                    shadowCoeff = CalcPcfShadow(
+                        uSampDepthShadow, shadowCoord, NoL, shadowFactors, atlasSizeInvSize, lightFlags.zw);
+                }
+            }
+        }
+        color += CalculateLight(currLightIdx, materialDiffuseBRDF, L, NoL, sd, ccsv, ssv, materialFlags) * shadowCoeff;
+    }
+
+    if ( (CORE_LIGHTING_FLAGS & (1 << 2)) == (1 << 2)) {
+        const uint spotLightCount = uLightData.spotLightCount;
+        const uint spotLightLightBeginIndex = uLightData.spotLightBeginIndex;
+        for (uint spotIdx = 0; spotIdx < spotLightCount; ++ spotIdx) {
+            const uint currLightIdx = spotLightLightBeginIndex + spotIdx;
+
+            const vec3 pointToLight = uLightData.lights[currLightIdx].pos.xyz - sd.pos.xyz;
+            const float dist = length(pointToLight);
+            const vec3 L = pointToLight / dist;
+            const float NoL = clamp(dot(sd.N, L), 0.0, 1.0);
+
+                        mediump float shadowCoeff = 1.0;
+            if ( (materialFlags & (1 << 0)) == (1 << 0)) {
+                const uvec4 lightFlags = uLightData.lights[currLightIdx].flags;
+                if ( (lightFlags.x & (1 << 3)) == (1 << 3)) {
+                    const vec4 shadowCoord = GetShadowMatrix(lightFlags.y) * vec4(sd.pos.xyz, 1.0);
+                    const vec4 shadowFactors = uLightData.lights[currLightIdx].shadowFactors;
+                    if ( (CORE_LIGHTING_FLAGS & (1 << 0)) ==
+                                                        (1 << 0)) {
+                        shadowCoeff = CalcVsmShadow(
+                            uSampColorShadow, shadowCoord, NoL, shadowFactors, atlasSizeInvSize, lightFlags.zw);
+                    } else {
+                        shadowCoeff = CalcPcfShadow(
+                            uSampDepthShadow, shadowCoord, NoL, shadowFactors, atlasSizeInvSize, lightFlags.zw);
+                    }
+                }
+            }
+
+            const float lightAngleScale = uLightData.lights[currLightIdx].spotLightParams.x;
+            const float lightAngleOffset = uLightData.lights[currLightIdx].spotLightParams.y;
+
+            const float cd = dot(uLightData.lights[currLightIdx].dir.xyz, - L);
+            const float angularAttenuation = clamp(cd * lightAngleScale + lightAngleOffset, 0.0, 1.0);
+
+            const float range = uLightData.lights[currLightIdx].dir.w;
+            const float attenuation = max(min(1.0 - pow(dist / range, 4.0), 1.0), 0.0) / (dist * dist);
+            color += CalculateLight(currLightIdx, materialDiffuseBRDF, L, NoL, sd, ccsv, ssv, materialFlags) *
+                     (angularAttenuation * angularAttenuation * attenuation) * shadowCoeff;
+        }
+    }
+    if ( (CORE_LIGHTING_FLAGS & (1 << 1)) == (1 << 1)) {
+        const uint pointLightCount = uLightData.pointLightCount;
+        const uint pointLightBeginIndex = uLightData.pointLightBeginIndex;
+        for (uint pointIdx = 0; pointIdx < pointLightCount; ++ pointIdx) {
+            const uint currLightIdx = pointLightBeginIndex + pointIdx;
+
+            const vec3 pointToLight = uLightData.lights[currLightIdx].pos.xyz - sd.pos.xyz;
+            const float dist = length(pointToLight);
+            const vec3 L = pointToLight / dist;
+            const float NoL = clamp(dot(sd.N, L), 0.0, 1.0);
+            const float range = uLightData.lights[currLightIdx].dir.w;
+            const float attenuation = max(min(1.0 - pow(dist / range, 4.0), 1.0), 0.0) / (dist * dist);
+
+            color +=
+                CalculateLight(currLightIdx, materialDiffuseBRDF, L, NoL, sd, ccsv, ssv, materialFlags) * attenuation;
+        }
+    }
+
+    return color;
+}
+
+vec3 CalculateLight(uint currLightIdx, vec3 materialDiffuseBRDF, vec3 L, float NoL, ShadingData sd,
+    AnisotropicShadingVariables asv, ClearcoatShadingVariables ccsv, SheenShadingVariables ssv,
+    const uint materialFlags)
+{
+    const vec3 H = normalize(L + sd.V);
+    const float VoH = dot(sd.V, H);
+    const float NoH = dot(sd.N, H);
+
+    vec3 calculatedColor = vec3(0.0);
+    float extAttenuation = 1.0;
+    if ( (materialFlags & (1 << 6)) == (1 << 6)) {
+        const float sheenD = dCharlie(ssv.sheenRoughness, NoH);
+        const float sheenV = vAshikhmin(sd.NoV, NoL);
+        const vec3 sheenSpec = ssv.sheenColor * (sheenD * sheenV);
+
+        extAttenuation *= (1.0 - (ssv.sheenColorMax * ssv.sheenBRDFApprox));
+        calculatedColor += (sheenSpec * NoL);
+    }
+    if ( (materialFlags & (1 << 4)) == (1 << 4)) {
+        const float ccNoL = clamp(dot(ccsv.ccNormal, L), 0.0001, 1.0);
+        const float ccNoH = clamp(dot(ccsv.ccNormal, H), 0.0, 1.0);
+        const float ccf0 = 0.04;
+
+        const float ccD = dGGX(ccsv.ccAlpha2, ccNoH);
+        const float ccG = vKelemen(ccNoH);
+        const float ccF = fSchlickSingle(ccf0, VoH) * ccsv.cc;
+        const float ccSpec = ccF * ccD * ccG;
+
+        extAttenuation *= (1.0 - ccF);
+        calculatedColor += vec3(ccSpec * ccNoL);
+    }
+
+    const float ToL = dot(asv.anisotropicT, L);
+    const float ToH = dot(asv.anisotropicT, H);
+    const float BoL = dot(asv.anisotropicB, L);
+    const float BoH = dot(asv.anisotropicB, H);
+    const float at = max(asv.alpha * (1.0 + asv.anisotropy), 0.0001);
+    const float ab = max(asv.alpha * (1.0 - asv.anisotropy), 0.0001);
+
+    const float D = dGGXAnisotropic(at, ab, NoH, ToH, BoH, asv.anisotropy);
+    const float G = vGGXAnisotropic(at, ab, NoL, sd.NoV, ToL, asv.ToV, BoL, asv.BoV, asv.anisotropy);
+    const vec3 F = fSchlick(sd.f0, VoH);
+    const vec3 specContrib = F * (D * G);
+
+
+
+    const vec3 diffuseContrib = (1.0 - F.xyz) * materialDiffuseBRDF;
+    calculatedColor += (diffuseContrib + specContrib * extAttenuation) * extAttenuation * NoL;
+    calculatedColor *= uLightData.lights[currLightIdx].color.xyz;
+    return calculatedColor;
+}
+
+vec3 CalculateLighting(ShadingData sd, AnisotropicShadingVariables asv, ClearcoatShadingVariables ccsv,
+    SheenShadingVariables ssv, const uint materialFlags)
+{
+    const vec3 materialDiffuseBRDF = sd.diffuseColor * diffuseCoeff();
+    vec3 color = vec3(0.0);
+    const uint directionalLightCount = uLightData.directionalLightCount;
+    const uint directionalLightBeginIndex = uLightData.directionalLightBeginIndex;
+    const vec4 atlasSizeInvSize = uLightData.atlasSizeInvSize;
+    for (uint lightIdx = 0; lightIdx < directionalLightCount; ++ lightIdx) {
+        const uint currLightIdx = directionalLightBeginIndex + lightIdx;
+        const vec3 L = - uLightData.lights[currLightIdx].dir.xyz;
+        const float NoL = clamp(dot(sd.N, L), 0.0, 1.0);
+
+                    mediump float shadowCoeff = 1.0;
+        if ( (materialFlags & (1 << 0)) == (1 << 0)) {
+            const uvec4 lightFlags = uLightData.lights[currLightIdx].flags;
+            if ( (lightFlags.x & (1 << 3)) == (1 << 3)) {
+                const vec4 shadowCoord = GetShadowMatrix(lightFlags.y) * vec4(sd.pos.xyz, 1.0);
+                const vec4 shadowFactors = uLightData.lights[currLightIdx].shadowFactors;
+                if ( (CORE_LIGHTING_FLAGS & (1 << 0)) == (1 << 0)) {
+                    shadowCoeff = CalcVsmShadow(
+                        uSampColorShadow, shadowCoord, NoL, shadowFactors, atlasSizeInvSize, lightFlags.zw);
+                } else {
+                    shadowCoeff = CalcPcfShadow(
+                        uSampDepthShadow, shadowCoord, NoL, shadowFactors, atlasSizeInvSize, lightFlags.zw);
+                }
+            }
+        }
+        color +=
+            CalculateLight(currLightIdx, materialDiffuseBRDF, L, NoL, sd, asv, ccsv, ssv, materialFlags) * shadowCoeff;
+    }
+
+    if ( (CORE_LIGHTING_FLAGS & (1 << 2)) == (1 << 2)) {
+        const uint spotLightCount = uLightData.spotLightCount;
+        const uint spotLightLightBeginIndex = uLightData.spotLightBeginIndex;
+        for (uint spotIdx = 0; spotIdx < spotLightCount; ++ spotIdx) {
+            const uint currLightIdx = spotLightLightBeginIndex + spotIdx;
+
+            const vec3 pointToLight = uLightData.lights[currLightIdx].pos.xyz - sd.pos.xyz;
+            const float dist = length(pointToLight);
+            const vec3 L = pointToLight / dist;
+            const float NoL = clamp(dot(sd.N, L), 0.0, 1.0);
+
+                        mediump float shadowCoeff = 1.0;
+            if ( (materialFlags & (1 << 0)) == (1 << 0)) {
+                const uvec4 lightFlags = uLightData.lights[currLightIdx].flags;
+                if ( (lightFlags.x & (1 << 3)) == (1 << 3)) {
+                    const vec4 shadowCoord = GetShadowMatrix(lightFlags.y) * vec4(sd.pos.xyz, 1.0);
+                    const vec4 shadowFactors = uLightData.lights[currLightIdx].shadowFactors;
+                    if ( (CORE_LIGHTING_FLAGS & (1 << 0)) ==
+                                                        (1 << 0)) {
+                        shadowCoeff = CalcVsmShadow(
+                            uSampColorShadow, shadowCoord, NoL, shadowFactors, atlasSizeInvSize, lightFlags.zw);
+                    } else {
+                        shadowCoeff = CalcPcfShadow(
+                            uSampDepthShadow, shadowCoord, NoL, shadowFactors, atlasSizeInvSize, lightFlags.zw);
+                    }
+                }
+            }
+
+            const float lightAngleScale = uLightData.lights[currLightIdx].spotLightParams.x;
+            const float lightAngleOffset = uLightData.lights[currLightIdx].spotLightParams.y;
+
+            const float cd = dot(uLightData.lights[currLightIdx].dir.xyz, - L);
+            const float angularAttenuation = clamp(cd * lightAngleScale + lightAngleOffset, 0.0, 1.0);
+
+            const float range = uLightData.lights[currLightIdx].dir.w;
+            const float attenuation = max(min(1.0 - pow(dist / range, 4.0), 1.0), 0.0) / (dist * dist);
+            color += CalculateLight(currLightIdx, materialDiffuseBRDF, L, NoL, sd, asv, ccsv, ssv, materialFlags) *
+                     (angularAttenuation * angularAttenuation * attenuation) * shadowCoeff;
+        }
+    }
+    if ( (CORE_LIGHTING_FLAGS & (1 << 1)) == (1 << 1)) {
+        const uint pointLightCount = uLightData.pointLightCount;
+        const uint pointLightBeginIndex = uLightData.pointLightBeginIndex;
+        for (uint pointIdx = 0; pointIdx < pointLightCount; ++ pointIdx) {
+            const uint currLightIdx = pointLightBeginIndex + pointIdx;
+
+            const vec3 pointToLight = uLightData.lights[currLightIdx].pos.xyz - sd.pos.xyz;
+            const float dist = length(pointToLight);
+            const vec3 L = pointToLight / dist;
+            const float NoL = clamp(dot(sd.N, L), 0.0, 1.0);
+            const float range = uLightData.lights[currLightIdx].dir.w;
+            const float attenuation = max(min(1.0 - pow(dist / range, 4.0), 1.0), 0.0) / (dist * dist);
+
+            color += CalculateLight(currLightIdx, materialDiffuseBRDF, L, NoL, sd, asv, ccsv, ssv, materialFlags) *
+                     attenuation;
+        }
+    }
+
+    return color;
+}
+
+vec3 CalculateLight(uint currLightIdx, vec3 materialDiffuseBRDF, vec3 L, float NoL, ShadingData sd,
+    SubsurfaceScatterShadingVariables ssssv, const uint materialFlags)
+{
+    const vec3 H = normalize(L + sd.V);
+    const float VoH = clamp(dot(sd.V, H), 0.0, 1.0);
+    const float NoH = clamp(dot(sd.N, H), 0.0, 1.0);
+
+    float extAttenuation = 1.0;
+    vec3 calculatedColor = vec3(0.0);
+    const float D = dGGX(sd.alpha2, NoH);
+    const float G = vGGXWithCombinedDenominator(sd.alpha2, sd.NoV, NoL);
+    const vec3 F = fSchlick(sd.f0, VoH);
+    const vec3 specContrib = F * (D * G);
+
+    const vec3 diffuseContrib = (1.0 - F.xyz) * materialDiffuseBRDF;
+    calculatedColor += (diffuseContrib + specContrib * extAttenuation) * extAttenuation * NoL;
+
+
+
+
+    float scatterVoH = clamp(dot(sd.V, - L), 0.0, 1.0);
+
+    float sharpness = 10000.0 - 10000.0 * ssssv.scatterDistance;
+    float forwardScatter = exp2(scatterVoH * sharpness - sharpness);
+    float backScatter = clamp(NoL * ssssv.thickness + (1.0 - ssssv.thickness), 0.0, 1.0) * 0.5;
+    float subsurface = mix(backScatter, 1.0, forwardScatter) * (1.0 - ssssv.thickness);
+    calculatedColor += ssssv.scatterColor * (subsurface * dLambert());
+
+
+    return(calculatedColor * uLightData.lights[currLightIdx].color.rgb);
+}
+
+vec3 CalculateLighting(ShadingData sd, SubsurfaceScatterShadingVariables sssv, const uint materialFlags)
+{
+    const vec3 materialDiffuseBRDF = sd.diffuseColor * diffuseCoeff();
+    vec3 color = vec3(0.0);
+    const uint directionalLightCount = uLightData.directionalLightCount;
+    const uint directionalLightBeginIndex = uLightData.directionalLightBeginIndex;
+    const vec4 atlasSizeInvSize = uLightData.atlasSizeInvSize;
+    for (uint lightIdx = 0; lightIdx < directionalLightCount; ++ lightIdx) {
+        const uint currLightIdx = directionalLightBeginIndex + lightIdx;
+        const vec3 L = - uLightData.lights[currLightIdx].dir.xyz;
+        const float NoL = clamp(dot(sd.N, L), 0.0, 1.0);
+
+                    mediump float shadowCoeff = 1.0;
+        if ( (materialFlags & (1 << 0)) == (1 << 0)) {
+            const uvec4 lightFlags = uLightData.lights[currLightIdx].flags;
+            if ( (lightFlags.x & (1 << 3)) == (1 << 3)) {
+                const vec4 shadowCoord = GetShadowMatrix(lightFlags.y) * vec4(sd.pos.xyz, 1.0);
+                const vec4 shadowFactors = uLightData.lights[currLightIdx].shadowFactors;
+                if ( (CORE_LIGHTING_FLAGS & (1 << 0)) == (1 << 0)) {
+                    shadowCoeff = CalcVsmShadow(
+                        uSampColorShadow, shadowCoord, NoL, shadowFactors, atlasSizeInvSize, lightFlags.zw);
+                } else {
+                    shadowCoeff = CalcPcfShadow(
+                        uSampDepthShadow, shadowCoord, NoL, shadowFactors, atlasSizeInvSize, lightFlags.zw);
+                }
+            }
+        }
+        color += CalculateLight(currLightIdx, materialDiffuseBRDF, L, NoL, sd, sssv, materialFlags) * shadowCoeff;
+    }
+
+    if ( (CORE_LIGHTING_FLAGS & (1 << 2)) == (1 << 2)) {
+        const uint spotLightCount = uLightData.spotLightCount;
+        const uint spotLightLightBeginIndex = uLightData.spotLightBeginIndex;
+        for (uint spotIdx = 0; spotIdx < spotLightCount; ++ spotIdx) {
+            const uint currLightIdx = spotLightLightBeginIndex + spotIdx;
+
+            const vec3 pointToLight = uLightData.lights[currLightIdx].pos.xyz - sd.pos.xyz;
+            const float dist = length(pointToLight);
+            const vec3 L = pointToLight / dist;
+            const float NoL = clamp(dot(sd.N, L), 0.0, 1.0);
+
+                        mediump float shadowCoeff = 1.0;
+            if ( (materialFlags & (1 << 0)) == (1 << 0)) {
+                const uvec4 lightFlags = uLightData.lights[currLightIdx].flags;
+                if ( (lightFlags.x & (1 << 3)) == (1 << 3)) {
+                    const vec4 shadowCoord = GetShadowMatrix(lightFlags.y) * vec4(sd.pos.xyz, 1.0);
+                    const vec4 shadowFactors = uLightData.lights[currLightIdx].shadowFactors;
+                    if ( (CORE_LIGHTING_FLAGS & (1 << 0)) ==
+                                                        (1 << 0)) {
+                        shadowCoeff = CalcVsmShadow(
+                            uSampColorShadow, shadowCoord, NoL, shadowFactors, atlasSizeInvSize, lightFlags.zw);
+                    } else {
+                        shadowCoeff = CalcPcfShadow(
+                            uSampDepthShadow, shadowCoord, NoL, shadowFactors, atlasSizeInvSize, lightFlags.zw);
+                    }
+                }
+            }
+
+            const float lightAngleScale = uLightData.lights[currLightIdx].spotLightParams.x;
+            const float lightAngleOffset = uLightData.lights[currLightIdx].spotLightParams.y;
+
+            const float cd = dot(uLightData.lights[currLightIdx].dir.xyz, - L);
+            const float angularAttenuation = clamp(cd * lightAngleScale + lightAngleOffset, 0.0, 1.0);
+
+            const float range = uLightData.lights[currLightIdx].dir.w;
+            const float attenuation = max(min(1.0 - pow(dist / range, 4.0), 1.0), 0.0) / (dist * dist);
+            color += CalculateLight(currLightIdx, materialDiffuseBRDF, L, NoL, sd, sssv, materialFlags) *
+                     (angularAttenuation * angularAttenuation * attenuation) * shadowCoeff;
+        }
+    }
+    if ( (CORE_LIGHTING_FLAGS & (1 << 1)) == (1 << 1)) {
+        const uint pointLightCount = uLightData.pointLightCount;
+        const uint pointLightBeginIndex = uLightData.pointLightBeginIndex;
+        for (uint pointIdx = 0; pointIdx < pointLightCount; ++ pointIdx) {
+            const uint currLightIdx = pointLightBeginIndex + pointIdx;
+
+            const vec3 pointToLight = uLightData.lights[currLightIdx].pos.xyz - sd.pos.xyz;
+            const float dist = length(pointToLight);
+            const vec3 L = pointToLight / dist;
+            const float NoL = clamp(dot(sd.N, L), 0.0, 1.0);
+            const float range = uLightData.lights[currLightIdx].dir.w;
+            const float attenuation = max(min(1.0 - pow(dist / range, 4.0), 1.0), 0.0) / (dist * dist);
+
+            color += CalculateLight(currLightIdx, materialDiffuseBRDF, L, NoL, sd, sssv, materialFlags) * attenuation;
+        }
+    }
+
+    return color;
+}
+
+
+#line 19 "shader/custom_materiaL_sample.frag"
+
+
+struct MyMaterialSampleStruct {
+    vec4 vec_1;
+    float time;
+    bool dof;
+    bool motionBlur;
+};
+layout(set = 1, binding = 4, std140) uniform uMyBuffer0
+{
+    MyMaterialSampleStruct uMyData;
+};
+
+
+
+#line 1 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/Lume_3D/api/3d/shaders/common/3d_dm_inout_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 1 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/LumeRender/api/render/shaders/common/render_compatibility_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 20 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/Lume_3D/api/3d/shaders/common/3d_dm_inout_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+layout(location = 0) in vec3 inPos;
+layout(location = 1) in vec3 inNormal;
+layout(location = 2) in vec4 inTangentW;
+layout(location = 3) in vec4 inPrevPosI;
+layout(location = 4) in vec4 inUv;
+layout(location = 5) in mediump vec4 inColor;
+layout(location = 6) in flat uint inIndices;
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 35 "shader/custom_materiaL_sample.frag"
+#line 1 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/Lume_3D/api/3d/shaders/common/3d_dm_inplace_sampling_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+vec2 GetTransformedUV(const DefaultMaterialUnpackedTexTransformStruct texTransform, const vec2 uvInput)
+{
+    vec2 uv;
+    uv.x = dot(texTransform.rotateScale.xy, uvInput);
+    uv.y = dot(texTransform.rotateScale.zw, uvInput);
+    uv += texTransform.translate.xy;
+    return uv;
+}
+
+
+
+uint GetUnpackTexCoordInfo()
+{
+    return floatBitsToUint(uMaterialData.material[0].factors[11].y);
+}
+uint GetUnpackTexCoordInfo(uint instanceIdx)
+{
+    return floatBitsToUint(uMaterialData.material[instanceIdx].factors[11].y);
+}
+
+vec2 GetFinalSamplingUV(vec4 inputUv, uint texCoordInfoBit, uint texCoordIdx)
+{
+    const uint texCoordInfo = GetUnpackTexCoordInfo();
+    vec2 uv = ( ( (texCoordInfo >> 16) & texCoordInfoBit) == texCoordInfoBit) ? inputUv.zw
+                                                                                                           : inputUv.xy;
+    const bool doTrans = ( ( (texCoordInfo & 0xffff) & texCoordInfoBit) == texCoordInfoBit);
+    if ( ( (CORE_MATERIAL_FLAGS & (1 << 3)) == (1 << 3)) &&
+        doTrans) {
+        DefaultMaterialUnpackedTexTransformStruct texTransform =
+            GetUnpackTextureTransform(uMaterialTransformData.material[0].packed[texCoordIdx]);
+        uv = GetTransformedUV(texTransform, uv);
+    }
+    return uv;
+}
+vec2 GetFinalSamplingUV(vec4 inputUv, uint texCoordInfoBit, uint texCoordIdx, uint instanceIdx)
+{
+    const uint texCoordInfo = GetUnpackTexCoordInfo(instanceIdx);
+    vec2 uv = ( ( (texCoordInfo >> 16) & texCoordInfoBit) == texCoordInfoBit) ? inputUv.zw
+                                                                                                           : inputUv.xy;
+    const bool doTrans = ( ( (texCoordInfo & 0xffff) & texCoordInfoBit) == texCoordInfoBit);
+    if ( ( (CORE_MATERIAL_FLAGS & (1 << 3)) == (1 << 3)) &&
+        doTrans) {
+        DefaultMaterialUnpackedTexTransformStruct texTransform =
+            GetUnpackTextureTransform(uMaterialTransformData.material[instanceIdx].packed[texCoordIdx]);
+        uv = GetTransformedUV(texTransform, uv);
+    }
+    return uv;
+}
+
+vec4 GetBaseColorSample(const vec4 uvInput)
+{
+    const vec2 uv =
+        GetFinalSamplingUV(uvInput, (1 << 0), 0);
+    return texture(uSampTextureBase, uv);
+}
+vec4 GetBaseColorSample(const vec4 uvInput, const uint instanceIdx)
+{
+    const vec2 uv = GetFinalSamplingUV(
+        uvInput, (1 << 0), 0, instanceIdx);
+    return texture(uSampTextureBase, uv);
+}
+
+vec3 GetNormalSample(const vec4 uvInput)
+{
+    const vec2 uv =
+        GetFinalSamplingUV(uvInput, (1 << 1), 1);
+    return texture(uSampTextures[0], uv).xyz;
+}
+vec3 GetNormalSample(const vec4 uvInput, const uint instanceIdx)
+{
+    const vec2 uv = GetFinalSamplingUV(
+        uvInput, (1 << 1), 1, instanceIdx);
+    return texture(uSampTextures[0], uv).xyz;
+}
+
+vec4 GetMaterialSample(const vec4 uvInput)
+{
+    const vec2 uv =
+        GetFinalSamplingUV(uvInput, (1 << 2), 2);
+    return texture(uSampTextures[1], uv);
+}
+vec4 GetMaterialSample(const vec4 uvInput, const uint instanceIdx)
+{
+    const vec2 uv = GetFinalSamplingUV(
+        uvInput, (1 << 2), 2, instanceIdx);
+    return texture(uSampTextures[1], uv);
+}
+
+vec3 GetEmissiveSample(const vec4 uvInput)
+{
+    const vec2 uv =
+        GetFinalSamplingUV(uvInput, (1 << 3), 3);
+    return texture(uSampTextures[2], uv).xyz;
+}
+vec3 GetEmissiveSample(const vec4 uvInput, const uint instanceIdx)
+{
+    const vec2 uv = GetFinalSamplingUV(
+        uvInput, (1 << 3), 3, instanceIdx);
+    return texture(uSampTextures[2], uv).xyz;
+}
+
+float GetAOSample(const vec4 uvInput)
+{
+    const vec2 uv = GetFinalSamplingUV(uvInput, (1 << 4), 4);
+    return texture(uSampTextures[3], uv).x;
+}
+float GetAOSample(const vec4 uvInput, const uint instanceIdx)
+{
+    const vec2 uv =
+        GetFinalSamplingUV(uvInput, (1 << 4), 4, instanceIdx);
+    return texture(uSampTextures[3], uv).x;
+}
+
+float GetClearcoatSample(const vec4 uvInput)
+{
+    const vec2 uv =
+        GetFinalSamplingUV(uvInput, (1 << 5), 5);
+    return texture(uSampTextures[4], uv).x;
+}
+float GetClearcoatSample(const vec4 uvInput, const uint instanceIdx)
+{
+    const vec2 uv = GetFinalSamplingUV(
+        uvInput, (1 << 5), 5, instanceIdx);
+    return texture(uSampTextures[4], uv).x;
+}
+
+float GetClearcoatRoughnessSample(const vec4 uvInput)
+{
+    const vec2 uv = GetFinalSamplingUV(uvInput, (1 << 6),
+                                                        6);
+    return texture(uSampTextures[5], uv).y;
+}
+float GetClearcoatRoughnessSample(const vec4 uvInput, const uint instanceIdx)
+{
+    const vec2 uv = GetFinalSamplingUV(uvInput, (1 << 6),
+                                                        6, instanceIdx);
+    return texture(uSampTextures[5], uv).y;
+}
+
+vec3 GetClearcoatNormalSample(const vec4 uvInput)
+{
+    const vec2 uv = GetFinalSamplingUV(
+        uvInput, (1 << 7), 7);
+    return texture(uSampTextures[6], uv).xyz;
+}
+vec3 GetClearcoatNormalSample(const vec4 uvInput, const uint instanceIdx)
+{
+    const vec2 uv = GetFinalSamplingUV(uvInput, (1 << 7),
+                                                     7, instanceIdx);
+    return texture(uSampTextures[6], uv).xyz;
+}
+
+vec3 GetSheenSample(const vec4 uvInput)
+{
+    const vec2 uv =
+        GetFinalSamplingUV(uvInput, (1 << 8), 8);
+    return texture(uSampTextures[7], uv).xyz;
+}
+vec3 GetSheenSample(const vec4 uvInput, const uint instanceIdx)
+{
+    const vec2 uv = GetFinalSamplingUV(
+        uvInput, (1 << 8), 8, instanceIdx);
+    return texture(uSampTextures[7], uv).xyz;
+}
+
+
+float GetSheenRoughnessSample(const vec4 uvInput)
+{
+    const vec2 uv =
+        GetFinalSamplingUV(uvInput, (1 << 8), 8);
+    return texture(uSampTextures[7], uv).a;
+}
+float GetSheenRoughnessSample(const vec4 uvInput, const uint instanceIdx)
+{
+    const vec2 uv = GetFinalSamplingUV(
+        uvInput, (1 << 8), 8, instanceIdx);
+    return texture(uSampTextures[7], uv).a;
+}
+
+float GetTransmissionSample(const vec4 uvInput)
+{
+    const vec2 uv = GetFinalSamplingUV(
+        uvInput, (1 << 9), 9);
+    return texture(uSampTextures[8], uv).r;
+}
+float GetTransmissionSample(const vec4 uvInput, const uint instanceIdx)
+{
+    const vec2 uv = GetFinalSamplingUV(
+        uvInput, (1 << 9), 9, instanceIdx);
+    return texture(uSampTextures[8], uv).r;
+}
+
+vec4 GetSpecularSample(const vec4 uvInput)
+{
+    const vec2 uv =
+        GetFinalSamplingUV(uvInput, (1 << 10), 10);
+    return texture(uSampTextures[9], uv);
+}
+vec4 GetSpecularSample(const vec4 uvInput, const uint instanceIdx)
+{
+    const vec2 uv = GetFinalSamplingUV(
+        uvInput, (1 << 10), 10, instanceIdx);
+    return texture(uSampTextures[9], uv);
+}
+
+
+
+
+
+uint GetUnpackCameraIndex()
+{
+    return uGeneralData.indices.x;
+}
+
+vec4 GetUnpackViewport()
+{
+    return uGeneralData.viewportSizeInvViewportSize;
+}
+
+vec4 GetUnpackBaseColor(const uint instanceIdx)
+{
+    return uMaterialData.material[instanceIdx].factors[0];
+}
+
+vec4 GetUnpackMaterial(const uint instanceIdx)
+{
+    return uMaterialData.material[instanceIdx].factors[2];
+}
+
+float GetUnpackAO(const uint instanceIdx)
+{
+    return uMaterialData.material[instanceIdx].factors[4].x;
+}
+
+float GetUnpackClearcoat(const uint instanceIdx)
+{
+    return uMaterialData.material[instanceIdx].factors[5].x;
+}
+
+
+float GetUnpackClearcoatRoughness(const uint instanceIdx)
+{
+    return uMaterialData.material[instanceIdx].factors[6].y;
+}
+
+float GetUnpackClearcoatNormalScale(const uint instanceIdx)
+{
+    return uMaterialData.material[instanceIdx].factors[7].x;
+}
+
+
+vec4 GetUnpackSheen(const uint instanceIdx)
+{
+    return uMaterialData.material[instanceIdx].factors[8];
+}
+
+float GetUnpackTransmission(const uint instanceIdx)
+{
+    return uMaterialData.material[instanceIdx].factors[9].x;
+}
+
+
+vec4 GetUnpackSpecular(const uint instanceIdx)
+{
+    return uMaterialData.material[instanceIdx].factors[10];
+}
+
+vec3 GetUnpackEmissiveColor(const uint instanceIdx)
+{
+    const vec4 emissive = uMaterialData.material[instanceIdx].factors[3];
+    return emissive.rgb * emissive.a;
+}
+
+float GetUnpackNormalScale(const uint instanceIdx)
+{
+    return uMaterialData.material[instanceIdx].factors[1].x;
+}
+
+float GetUnpackAlphaCutoff(const uint instanceIdx)
+{
+    return uMaterialData.material[instanceIdx].factors[11].x;
+}
+
+vec4 GetUnpackMaterialTextureInfoSlotFactor(const uint materialIndexSlot, const uint instanceIdx)
+{
+    const uint maxIndex = min(materialIndexSlot, 15 - 1);
+    return uMaterialData.material[instanceIdx].factors[maxIndex].xyzw;
+}
+
+vec4 Unpremultiply(in vec4 color)
+{
+    if (color.a == 0.0) {
+        return vec4(0);
+    }
+    return vec4(color.rgb / color.a, color.a);
+}
+
+            mediump vec4 GetUnpackBaseColorFinalValue(in mediump vec4 color, in vec4 uv, in uint instanceIdx)
+{
+
+                mediump vec4 baseColor = GetBaseColorSample(uv, instanceIdx) * GetUnpackBaseColor(instanceIdx) * color;
+    baseColor.a = clamp(baseColor.a, 0.0, 1.0);
+    if ( (CORE_MATERIAL_FLAGS & (1 << 7)) ==
+                                                  (1 << 7)) {
+        if (baseColor.a < GetUnpackAlphaCutoff(instanceIdx)) {
+            discard;
+        }
+    }
+    if ( (CORE_MATERIAL_FLAGS & (1 << 8)) == (1 << 8)) {
+        baseColor.a = 1.0;
+    } else {
+        baseColor = Unpremultiply(baseColor);
+    }
+    return baseColor;
+}
+
+
+vec2 GetFinalCalculatedVelocity(in vec3 pos, in vec3 prevPos)
+{
+
+
+
+    const uint cameraIdx = GetUnpackCameraIndex();
+    const vec4 projPos = uCameras[cameraIdx].viewProj * vec4(pos.xyz, 1.0);
+    const vec4 projPosPrev = uCameras[cameraIdx].viewProjPrevFrame * vec4(prevPos.xyz, 1.0);
+
+    const vec2 uvPos = (projPos.xy / projPos.w) * 0.5 + 0.5;
+    const vec2 oldUvPos = (projPosPrev.xy / projPosPrev.w) * 0.5 + 0.5;
+
+    return(uvPos - oldUvPos) * uGeneralData.viewportSizeInvViewportSize.xy;
+}
+
+vec2 GetFinalCalculatedVelocity(in vec3 pos, in vec3 prevPos, in uint cameraIdx)
+{
+
+
+
+    const vec4 projPos = uCameras[cameraIdx].viewProj * vec4(pos.xyz, 1.0);
+    const vec4 projPosPrev = uCameras[cameraIdx].viewProjPrevFrame * vec4(prevPos.xyz, 1.0);
+
+    const vec2 uvPos = (projPos.xy / projPos.w) * 0.5 + 0.5;
+    const vec2 oldUvPos = (projPosPrev.xy / projPosPrev.w) * 0.5 + 0.5;
+
+    return(uvPos - oldUvPos) * uGeneralData.viewportSizeInvViewportSize.xy;
+}
+
+#line 36 "shader/custom_materiaL_sample.frag"
+#line 1 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/Lume_3D/api/3d/shaders/common/3d_dm_inplace_post_process.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 1 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/LumeRender/api/render/shaders/common/render_post_process_blocks.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 1 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/LumeRender/api/render/shaders/common/render_color_conversion_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 20 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/LumeRender/api/render/shaders/common/render_post_process_blocks.h"
+#line 1 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/LumeRender/api/render/shaders/common/render_post_process_structs_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 21 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/LumeRender/api/render/shaders/common/render_post_process_blocks.h"
+#line 1 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/LumeRender/api/render/shaders/common/render_tonemap_common.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 22 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/LumeRender/api/render/shaders/common/render_post_process_blocks.h"
+
+
+
+
+
+
+void PostProcessTonemapBlock(in uint postProcessFlags, in vec4 tonemapFactor, in vec3 inCol, out vec3 outCol)
+{
+    outCol = inCol;
+    if ( (postProcessFlags & (1 << 0)) == (1 << 0)) {
+        const float exposure = tonemapFactor.x;
+        const vec3 x = outCol * exposure;
+        const uint tonemapType = uint(tonemapFactor.w);
+        if (tonemapType == 0) {
+            outCol = TonemapAces(x);
+        } else if (tonemapType == 1) {
+            outCol = TonemapAcesFilmRec2020(x);
+        } else if (tonemapType == 2) {
+            const float exposureEstimate = 6.0f;
+            outCol = TonemapFilmic(x * exposureEstimate);
+        }
+    }
+}
+
+
+
+
+void PostProcessVignetteBlock(
+    in uint postProcessFlags, in vec4 vignetteFactor, in vec2 uv, in vec3 inCol, out vec3 outCol)
+{
+    outCol = inCol;
+    if ( (postProcessFlags & (1 << 1)) == (1 << 1)) {
+        const vec2 uvVal = uv.xy * (vec2(1.0) - uv.yx);
+                    mediump float vignette = uvVal.x * uvVal.y * vignetteFactor.x * 40.0;
+        vignette = clamp(pow(vignette, vignetteFactor.y), 0.0, 1.0);
+        outCol.rgb *= vignette;
+    }
+}
+
+
+
+
+void PostProcessColorFringeBlock(in uint postProcessFlags, in vec4 chromaFactor, in vec2 uv, in vec2 uvSize,
+    in sampler2D imgSampler, in vec3 inCol, out vec3 outCol)
+{
+    outCol = inCol;
+    if ( (postProcessFlags & (1 << 4)) ==
+                                                   (1 << 4)) {
+
+        const vec2 distUv = (uv - 0.5) * 2.0;
+        const mediump float chroma = dot(distUv, distUv) * chromaFactor.y * chromaFactor.x;
+
+        const vec2 uvDistToImageCenter = chroma * uvSize;
+        const mediump float chromaRed =
+            textureLod(imgSampler, uv - vec2(uvDistToImageCenter.x, uvDistToImageCenter.y), 0).x;
+        const mediump float chromaBlue =
+            textureLod(imgSampler, uv + vec2(uvDistToImageCenter.x, uvDistToImageCenter.y), 0).z;
+
+        outCol.r = chromaRed;
+        outCol.b = chromaBlue;
+    }
+}
+
+
+
+
+void PostProcessDitherBlock(in uint postProcessFlags, in vec4 ditherFactor, in vec2 uv, in vec3 inCol, out vec3 outCol)
+{
+    outCol = inCol;
+    if ( (postProcessFlags & (1 << 2)) == (1 << 2)) {
+        const vec2 random01Range = vec2(uv.x * ditherFactor.y, uv.y * ditherFactor.z);
+        outCol += fract(sin(dot(random01Range.xy, vec2(12.9898, 78.233))) * 43758.5453) * ditherFactor.x;
+    }
+}
+
+
+
+
+void PostProcessColorConversionBlock(
+    in uint postProcessFlags, in vec4 colorConversionFactor, in vec3 inCol, out vec3 outCol)
+{
+    outCol = inCol;
+    if ( (postProcessFlags & (1 << 3)) ==
+                                                       (1 << 3)) {
+        const uint conversionType = uint(colorConversionFactor.w);
+        if (conversionType == 1) {
+            outCol.rgb = LinearToSrgb(outCol.rgb);
+        }
+    }
+}
+
+
+
+
+void PostProcessBloomCombineBlock(in uint postProcessFlags, in vec4 bloomFactor, in vec2 uv, in sampler2D imgSampler,
+    in sampler2D dirtImgSampler, in vec3 inCol, out vec3 outCol)
+{
+    outCol = inCol;
+    if ( (postProcessFlags & (1 << 9)) == (1 << 9)) {
+
+        const vec3 bloomColor = textureLod(imgSampler, uv, 0).rgb * bloomFactor.z;
+        const vec3 dirtColor = textureLod(dirtImgSampler, uv, 0).rgb * bloomFactor.w;
+        const vec3 bloomCombine = outCol + bloomColor + dirtColor * max(bloomColor.x, max(bloomColor.y, bloomColor.z));
+        outCol.rgb = min(bloomCombine, 64512.0);
+    }
+}
+
+
+#line 21 "/home/huxiaoming/upload_gitee/foundation/graphic/graphic_3d/lume/Lume_3D/api/3d/shaders/common/3d_dm_inplace_post_process.h"
+
+
+
+
+
+void InplacePostProcess(in vec2 fragUv, inout vec4 color)
+{
+
+    PostProcessTonemapBlock(
+        uPostProcessData.flags.x, uPostProcessData.factors[0], color.rgb, color.rgb);
+
+    const float tickDelta = uPostProcessData.renderTimings.y;
+    const vec2 vecCoeffs = fragUv.xy * tickDelta;
+    PostProcessDitherBlock(
+        uPostProcessData.flags.x, uPostProcessData.factors[2], vecCoeffs, color.rgb, color.rgb);
+    PostProcessVignetteBlock(
+        uPostProcessData.flags.x, uPostProcessData.factors[1], fragUv, color.rgb, color.rgb);
+    PostProcessColorConversionBlock(
+        uPostProcessData.flags.x, uPostProcessData.factors[3], color.rgb, color.rgb);
+}
+
+
+
+
+#line 37 "shader/custom_materiaL_sample.frag"
+
+
+
+layout(location = 0) out vec4 outColor;
+
+
+
+
+
+const float pi = acos(- 1.);
+const float pi2 = acos(- 1.) * 2.;
+
+
+const int nS = 2;
+
+const float w = .03;
+
+
+mat2 rot(float a) {
+    float s = sin(a), c = cos(a);
+    return mat2(c, s, - s, c);
+}
+
+float hash12(vec2 p) {
+    float v = dot(p, vec2(1.8672, 1.3723));
+    return fract(sin(v) * 5723.2622);
+}
+
+
+float perlin1d(float x) {
+    float i = floor(x);
+    float f = fract(x);
+    float u = f * f * (3. - 2. * f);
+
+    return mix(f * (fract(sin(i) * 5723.2622) * 2. - 1.), (f - 1.) * (fract(sin(i + 1.) * 5723.2622) * 2. - 1.), u);
+}
+
+float fiberShape(float x, float time) {
+    float s = .03;
+    float curve = smoothstep(.25 - s, .25 + s, abs(fract(time * .11) - .5));
+    return perlin1d(x) * (1. - w * 2.) * curve;
+}
+
+
+float stepNoise(float x, float n) {
+    float i = floor(x);
+    float s = .1;
+    float u = smoothstep(.5 - s, .5 + s, fract(x));
+
+    return mix(floor(fract(sin(i) * 5723.2622) * n), floor(fract(sin(i + 1.) * 5723.2622) * n), u);
+}
+
+
+
+void main(void)
+{
+    vec2 uv = (inUv.xy - vec2(0.5, 0.5)) * 2.0f;
+    vec2 fragCoord = inUv.xy;
+
+    vec3 col = vec3(0);
+
+    vec3 ac = vec3(0);
+
+
+    for (float j = 0.; j < float(nS); j ++) {
+        float time = uMyData.time;
+        vec2 seed = fragCoord.xy + fract(time) * 500. + j * sqrt(983.);
+
+
+        if (uMyData.motionBlur) {
+            time += hash12(seed) * .05;
+        }
+
+        vec3 ro = vec3(0, 1, - time);
+        vec3 ta = vec3(0, - .5, - time - .5);
+
+
+        ro.x += (stepNoise(ro.z, 5.) - 2.) * .5;
+        ro.y += stepNoise(ro.z - 500., 5.) * .5;
+
+        vec3 dir = normalize(ta - ro);
+        vec3 side = normalize(cross(dir, vec3(0, 1, 0)));
+        vec3 up = normalize(cross(side, dir));
+
+        float fov = 40.;
+        fov += (stepNoise(ro.z - 1000., 2.) * 2. - 1.) * 20.;
+        vec3 rd = normalize(uv.x * side + uv.y * up + dir / tan(fov / 360. * pi));
+        float L = length(ta - ro);
+        vec3 fp = ro + rd * L;
+
+
+        vec3 ros = ro;
+        if (uMyData.dof) {
+            float r = sqrt(hash12(seed * 1.1));
+            float theta = hash12(seed * 1.2) * pi2;
+            ros.xy += r * vec2(cos(theta), sin(theta)) * L * .025;
+        }
+        vec3 rds = normalize(fp - ros);
+
+        bool hit = false;
+        float t;
+        vec2 id, q;
+
+        for (float i = 0.; i < 50.; i ++) {
+            t = - (ros.y + i * .05) / rds.y;
+            vec2 p = ros.xz + t * rds.xz;
+            p.x += fract(sin(i) * 5723.2622) * 500.;
+            p *= rot(i * 2.);
+
+            id = vec2(i, floor(p.x));
+
+            p.x = fract(p.x) - .5;
+            p.y += hash12(id) * 500.;
+            p.x -= fiberShape(p.y, time);
+
+            if (t > 0. && abs(p.x) < w) {
+                q = p;
+                hit = true;
+                break;
+            }
+        }
+
+        if (hit) {
+            vec3 add = vec3(1);
+
+            vec3 lightDir = normalize(vec3(- 5, 2, - 2));
+            vec3 normal = normalize(vec3(q.x, sqrt(w * w - q.x * q.x), 0));
+
+            float e = 1e-4;
+            float grad = (fiberShape(q.y + e, time) - fiberShape(q.y - e, time)) / (e * 2.);
+            float a = atan(grad);
+            normal.xz *= rot(- id.x * 2. + a);
+
+
+            float diff = max(dot(normal, lightDir), 0.);
+            float spec = pow(max(dot(reflect(lightDir, normal), rds), 0.), 20.);
+            float m = .5;
+            float lp = 3.;
+            add *= diff * (1. - m) * lp + spec * m * lp + .2;
+
+
+            q.y = fract(q.y * .03 - time * .2) - .5;
+            add += smoothstep(.01, 0., abs(q.y)) * 3.;
+
+
+            float T = time + hash12(id);
+            add += step(hash12(id * 1.1 + floor(T)), .05) * step(fract(T * 3.), .8) * 3.;
+
+            add *= exp(- t * t * .1 - id.x * id.x * .001);
+
+            ac += add;
+        }
+    }
+
+    col += ac / float(nS);
+
+    float a = uMyData.vec_1.w;
+
+    col *= uMyData.vec_1.xyz;
+
+    col = pow(col, vec3(1. / 2.2));
+
+                mediump vec4 baseColor = GetBaseColorSample(inUv);
+
+    col *= baseColor.xyz;
+
+    outColor = vec4(col, a);
+}

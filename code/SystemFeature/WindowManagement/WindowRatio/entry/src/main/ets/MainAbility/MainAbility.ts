@@ -22,7 +22,7 @@ export default class MainAbility extends UIAbility {
     globalThis.abilityWant = want;
   }
 
-  onDestroy():void {
+  onDestroy(): void {
     console.log('[Demo] MainAbility onDestroy');
   }
 
@@ -46,7 +46,7 @@ export default class MainAbility extends UIAbility {
     } else {
       console.info('MyApplicationDemo getMainWindow success');
     }
-    AppStorage.setOrCreate<window.Window>('windows',windows);
+    AppStorage.setOrCreate<window.Window>('windows', windows);
     let mode = window.WindowMode.FLOATING;
     try {
       let promise = windows.setWindowMode(mode);
@@ -58,30 +58,14 @@ export default class MainAbility extends UIAbility {
     } catch (exception) {
       console.error('MyApplicationDemo Failed to set the window mode. Cause: ' + JSON.stringify(exception));
     }
-    try {
-      let promise = window.setGestureNavigationEnabled(true);
-      promise.then(() => {
-        console.info('MyApplicationDemo ' + 'Succeeded in setting gesture navigation enabled.');
-      }).catch((err) => {
-        console.error('MyApplicationDemo ' + 'Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(err));
-      });
-    } catch (exception) {
-      console.error('MyApplicationDemo ' + 'Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(exception));
-    }
-    try {
-      window.on('gestureNavigationEnabledChange', (data) => {
-        console.info('MyApplicationDemo ' + 'Succeeded in enabling the listener for gesture navigation status changes. Data: ' + JSON.stringify(data));
-      });
-    } catch (exception) {
-      console.error('MyApplicationDemo ' + 'Failed to enable the listener for gesture navigation status changes. Cause: ' + JSON.stringify(exception));
-    }
+
     try {
       windows.on('windowSizeChange', (data) => {
         console.info('MyApplicationDemo ' + 'Succeeded in enabling the listener for window size changes. Data: ' + JSON.stringify(data));
         let width = data.width;
         let height = data.height;
-        AppStorage.SetOrCreate('windowWidth', JSON.stringify(width));
-        AppStorage.SetOrCreate('windowHeight', JSON.stringify(height));
+        AppStorage.setOrCreate('windowWidth', JSON.stringify(width));
+        AppStorage.setOrCreate('windowHeight', JSON.stringify(height));
       });
     } catch (exception) {
       console.error('MyApplicationDemo ' + 'Failed to enable the listener for window size changes. Cause: ' + JSON.stringify(exception));

@@ -88,6 +88,7 @@ struct GaugeSample {
               max: 100,
               style: SliderStyle.OutSet
             })
+              .id('gauge_slider_001')
               .onChange((value: number) => {
                 this.value = value
               })
@@ -105,6 +106,7 @@ struct GaugeSample {
               max: 100,
               style: SliderStyle.OutSet
             })
+              .id('gauge_slider_002')
               .onChange((value: number) => {
                 this.mWidth = value
               })

@@ -39,6 +39,7 @@ struct FloatingWindowSample {
   @State moveStartTime: number = 0; // 触摸开始时间
   @State moveEndTime: number = 0; // 触摸结束时间
   @State inputMethodSetting: inputMethod.InputMethodSetting = inputMethod.getSetting();
+  @StorageLink('keyboardHeight') @Watch('keyboardHeightChange') keyboardHeight: number = 0;
 
   aboutToAppear() {
     display.getAllDisplays((err, data) => {
@@ -50,23 +51,18 @@ struct FloatingWindowSample {
       this.displayHalfWidth = px2vp(this.displayHalfWidth);
       this.displayHalfHeight = px2vp(this.displayHalfHeight);
       Logger.info(TAG, `aboutToAppear getAllDisplays data 2 width:${this.displayHalfWidth}, height:${this.displayHalfHeight}`);
-      this.inputMethodSetting.on('imeShow', (info: Array<inputMethod.InputWindowInfo>) => {
-        Logger.info(TAG, `aboutToAppear InputWindowInfo:${JSON.stringify(info[0])}`);
-        let keyboradTop: number = this.displayHalfHeight * 2 - info[0].top;
-        if(keyboradTop < this.positionY) {
-          animateTo({ curve: curves.responsiveSpringMotion() }, () => {
-            this.positionY = this.displayHalfHeight * 2 - info[0].top;
-            Logger.info(TAG, `aboutToAppear avoid inputkeyboard, animateTo x:${this.positionX}, y:${this.positionY}`);
-          })
-        }
-      });
     })
   }
 
-  aboutToDisappear() {
-    this.inputMethodSetting.off('imeShow', () => {
-      Logger.info(TAG, `aboutToDisappear off imeshow`);
-    });
+  keyboardHeightChange() {
+    Logger.info(TAG, `keyboardHeightChange keyboardHeight: ${this.keyboardHeight}`);
+    let keyboradTop: number = this.displayHalfHeight * 2 - this.keyboardHeight - 100;
+    if (keyboradTop < this.positionY) {
+      animateTo({ curve: curves.responsiveSpringMotion() }, () => {
+        this.positionY = keyboradTop;
+        Logger.info(TAG, `keyboardHeightChange avoid inputkeyboard, animateTo x:${this.positionX}, y:${this.positionY}`);
+      })
+    }
   }
 
   build() {

@@ -30,6 +30,7 @@ public:
 
     void SetNativeXComponent(std::string &id, OH_NativeXComponent *nativeXComponent);
     SampleBitMap *GetRender(std::string &id);
+    void ReleaseRender(std::string &id);
     void Export(napi_env env, napi_value exports);
 private:
 

@@ -486,9 +486,9 @@ export let panelData: number[] = [10, 10, 30, 10, 10, 20]
 // 文本与输入/spanSelectData
 export let selectData: Resource[] = [$r('app.string.span_decoration_none'), $r('app.string.span_decoration_linethrough'), $r('app.string.span_decoration_underline'), $r('app.string.span_decoration_overline')]
 // 三级类别 Scroll 通用 left padding
-export const LEFT_PADDING: number = 12
+export const LEFT_PADDING: number = 16
 // 三级类别 Scroll 通用 right padding
-export const RIGHT_PADDING: number = 12
+export const RIGHT_PADDING: number = 16
 // 行列与分栏/rowAlignItemsData
 export const ROW_ALIGNITEMS_DATA: Resource[] = [$r('app.string.row_alignitems_top'), $r('app.string.row_alignitems_center'), $r('app.string.row_alignitems_bottom')]
 // 行列与分栏/rowJustifyContentData

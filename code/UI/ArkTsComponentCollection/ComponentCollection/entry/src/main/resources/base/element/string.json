@@ -2437,18 +2437,6 @@
       "value": "Slider"
     },
     {
-      "name": "swiper_set_next_margin_and_previous_margin",
-      "value": "set next margin and previous margin"
-    },
-    {
-      "name": "swiper_next_margin",
-      "value": "next margin"
-    },
-    {
-      "name": "swiper_previous_margin",
-      "value": "previous margin"
-    },
-    {
       "name": "alphabetindexer_an",
       "value": "An"
     },
@@ -4560,14 +4548,6 @@
       "value": "Modify the end column number"
     },
     {
-      "name": "swiper_title",
-      "value": "swiper"
-    },
-    {
-      "name": "swiper_introduction",
-      "value": "Swipe left or right to switch pages"
-    },
-    {
       "name": "swiper_introduction_arguments",
       "value": "SwiperController Controller"
     },
@@ -4577,7 +4557,7 @@
     },
     {
       "name": "swiper_properties_disable_swipe",
-      "value": "Disable swipe left or right to switch function"
+      "value": "Disable swipe left or right to switch"
     },
     {
       "name": "swiper_properties_item_space",
@@ -4585,23 +4565,19 @@
     },
     {
       "name": "swiper_properties_vertical",
-      "value": "Is it vertical sliding"
+      "value": "Slide vertically"
     },
     {
       "name": "swiper_properties_duration",
-      "value": "Duration of slide switching animation (unit: ms)"
+      "value": "Duration of transition animation (unit: ms)"
     },
     {
       "name": "swiper_properties_loop",
-      "value": "Enable loop from beginning to end"
-    },
-    {
-      "name": "swiper_properties_auto_play",
-      "value": "Enable automatic loop playback"
+      "value": "Enable loop"
     },
     {
       "name": "swiper_properties_interval",
-      "value": "Interval of automatic playback (unit: ms)"
+      "value": "Interval of automatic playing (unit: ms)"
     },
     {
       "name": "swiper_controller_next",
@@ -4610,6 +4586,42 @@
     {
       "name": "swiper_controller_previous",
       "value": "Previous page"
+    },
+    {
+      "name": "swiper_common_interfaces_and_properties",
+      "value": "Common interfaces and properties"
+    },
+    {
+      "name": "swiper_custom_properties",
+      "value": "Properties of custom transition animation"
+    },
+    {
+      "name": "swiper_modify_custom_properties",
+      "value": "Modify the properties of custom transition animation"
+    },
+    {
+      "name": "swiper_custom_property_opacity",
+      "value": "Change opacity duration animation"
+    },
+    {
+      "name": "swiper_custom_property_scale",
+      "value": "Scale page duration animation"
+    },
+    {
+      "name": "swiper_close_two_pages_together",
+      "value": "Close two pages together when scaling"
+    },
+    {
+      "name": "swiper_cancel_default_translate",
+      "value": "Cancel default translate"
+    },
+    {
+      "name": "swiper_property_auto_play",
+      "value": "Play automatically"
+    },
+    {
+      "name": "swiper_custom_property_curve",
+      "value": "Curve of custom transition animation"
     },
     {
       "name": "navRouter_title",

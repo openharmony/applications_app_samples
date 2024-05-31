@@ -78,7 +78,7 @@
 | OH_Drawing_TypographyHandlerAddText (OH_Drawing_TypographyCreate *, const char *) | 设置文本内容。 |
 | OH_Drawing_TypographyPaint (OH_Drawing_Typography *, OH_Drawing_Canvas *, double, double) | 显示文本。 |
 
-详细的接口说明请参考[Drawing](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/native-apis/_drawing.md)。
+详细的接口说明请参考[Drawing](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/native-apis/_drawing.md)。
 
 ### 相关权限
 

@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例主要展示了设定应用的桌面图标角标的功能，使用[@ohos.notificationManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-notificationManager.md)
+本示例主要展示了设定应用的桌面图标角标的功能，使用[@ohos.notificationManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-notificationManager.md)
 接口，进行桌面角标的设置，通知的发送，获取等。
 
 ### 效果预览

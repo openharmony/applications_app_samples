@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License")
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,11 +14,9 @@
  */
 
 
-import { describe, beforeAll, it, expect, TestType } from '@ohos/hypium'
-import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import { Driver, ON} from '@ohos.UiTest'
-import Want from '@ohos.app.ability.Want';
-
+import { describe, it, expect, TestType, beforeAll } from '@ohos/hypium';
+import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
+import { Want } from '@kit.AbilityKit';
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const WAIT_UI_READYMS = 1000;

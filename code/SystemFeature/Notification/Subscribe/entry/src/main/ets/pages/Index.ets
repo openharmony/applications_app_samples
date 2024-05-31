@@ -74,7 +74,7 @@ struct Subscribe {
                     .width('100%')
                     .opacity(0.8)
                     .fontFamily('HarmonyHeiTi')
-                    .fontSize(28)
+                    .fontSize(18)
                     .fontColor('#182431')
                     .lineHeight(38)
                     .fontWeight(400)
