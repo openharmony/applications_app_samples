@@ -79,6 +79,8 @@
 | OH_NativeBuffer_FromNativeWindowBuffer (OHNativeWindowBuffer *nativeWindowBuffer, OH_NativeBuffer **buffer) | 将OHNativeWindowBuffer实例转换为OH_NativeBuffer实例 |
 | OH_NativeWindow_NativeWindowAttachBuffer(OHNativeWindow *window, OHNativeWindowBuffer *buffer) | 将缓存区OHNativeWindowBuffer添加到OHNativeWindow中 |
 | OH_NativeWindow_NativeWindowDetachBuffer(OHNativeWindow *window, OHNativeWindowBuffer *buffer) | 将OHNativeWindow中的buffer移除，放置到缓存区中 |
+| OH_NativeWindow_WriteToParcel(OHNativeWindow* window, OHIPCParcel* parcel)| 向OHIPCParcel对象中写入一个OHNativeWindow对象|
+| OH_NativeWindow_ReadFromParcel(OHIPCParcel *parcel, OHNativeWindow **window)| 从OHIPCParcel对象中读取一个OHNativeWindow对象|
 
 详细的接口说明请参考[NativeWindow](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-arkgraphics2d/_o_h___native_image.md)，[NativeImage](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-arkgraphics2d/_o_h___native_image.md)，[NativeBuffer](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/native-apis/_o_h___native_buffer.md)。
 

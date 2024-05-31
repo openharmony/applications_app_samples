@@ -17,6 +17,7 @@
 #include <native_window/external_window.h>
 #include <sys/mman.h>
 #include "logger_common.h"
+#include "IPCKit/ipc_cparcel.h"
 
 namespace NativeWindowSample {
 void OnSurfaceCreatedCB(OH_NativeXComponent* component, void* window)
@@ -170,6 +171,35 @@ void NativeRender::NativeBufferApi()
     }
 }
 
+static void TestReadWriteWindow(NativeWindow *nativeWindow)
+{
+    OHIPCParcel *parcel = OH_IPCParcel_Create();
+    if (parcel == nullptr) {
+        LOGE("OH_IPCParcel_Create fail");
+        return;
+    }
+    auto ret = OH_NativeWindow_WriteToParcel(nativeWindow, parcel);
+    if (ret != 0) {
+        LOGE("WriteToParcel fail, err code is %{public}d.", ret);
+        return;
+    }
+    OHNativeWindow *readWindow = nullptr;
+    ret = OH_NativeWindow_ReadFromParcel(parcel, &readWindow);
+    if (ret != 0) {
+        LOGE("ReadFromParcel fail, err code is %{public}d.", ret);
+        return;
+    }
+    uint64_t nativeId = 0;
+    uint64_t readId = 0;
+    ret = OH_NativeWindow_GetSurfaceId(nativeWindow, &nativeId);
+    ret &= OH_NativeWindow_GetSurfaceId(readWindow, &readId);
+    if (ret != 0) {
+        LOGE("OH_NativeWindow_GetSurfaceId fail");
+        return;
+    }
+    LOGI("TestReadWriteWindow window nativeId:%{public}lld, readId:%{public}lld", nativeId, readId);
+}
+
 void NativeRender::DrawBaseColor()
 {
     NativeBufferApi();
@@ -186,7 +216,7 @@ void NativeRender::DrawBaseColor()
         LOGE("OH_NativeWindow_CreateNativeWindowFromSurfaceId fail");
         return;
     }
-
+    TestReadWriteWindow(nativeWindow);
     int fenceFd = -1;
     OHNativeWindowBuffer *nativeWindowBuffer = nullptr;
     ret = OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow, &nativeWindowBuffer, &fenceFd);
