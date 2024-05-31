@@ -9,7 +9,7 @@
 使用[@ohos.effectKit](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-effectKit.md)
 生成effectKit,使用effectKit.getHighestSaturationColor()
 接口实现对图片的高亮调节。添加文字/贴纸，利用组件的组合编辑素材大小和位置，再使用OffscreenCanvasRenderingContext2D进行离屏绘制保存。
-新增图片编解码NDK示例代码，使用[libentry.so]实现uri创建ImageSource，fd创建ImageSource，data创建ImageSource，rawFile创建ImageSource，
+新增图片编解码示例代码，使用[libentry.so]实现uri创建ImageSource，fd创建ImageSource，data创建ImageSource，rawFile创建ImageSource，
 imageSource转换为pixelMap，PixelMap转为file，ImageSource转为file，PixelMap转为data，ImageSource转为数据。
 
 ### 效果预览
@@ -35,7 +35,7 @@ imageSource转换为pixelMap，PixelMap转为file，ImageSource转为file，Pixe
 4. 调整菜单有裁剪、缩放、旋转、调色功能；
 5. 标记菜单有添加文字、添加贴纸功能；
 6. 编辑完成后，点击撤回按钮图片会还原到上一个编辑状态；
-7. 图片编辑完成后，点击保存，会调新增的图片编解码NDK示例代码，用页面会跳转到发表评价页面，显示相关照片；
+7. 图片编辑完成后，点击保存，会调新增的图片编解码示例代码，用页面会跳转到发表评价页面，显示相关照片；
 8. 点击返回按钮，退出应用。
 
 ### 工程目录
