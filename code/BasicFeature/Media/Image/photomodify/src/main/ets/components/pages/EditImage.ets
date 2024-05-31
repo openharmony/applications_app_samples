@@ -117,8 +117,7 @@ export struct EditImage {
 
   async onEditCancel(): Promise<void> {
     if (this.currentTask === Tasks.CROP || this.currentTask === Tasks.SCALE ||
-    this.currentTask === Tasks.ROTATE || this.currentTask === Tasks.TONING || this.currentTask === Tasks.COLORSPACE
-    || this.currentTask === Tasks.HDR) {
+    this.currentTask === Tasks.ROTATE || this.currentTask === Tasks.TONING || this.currentTask === Tasks.COLORSPACE || this.currentTask === Tasks.HDR) {
       this.currentTask = Tasks.ADJUST;
       this.cropIndex = 0;
     }
@@ -256,7 +255,7 @@ export struct EditImage {
    * @param decodingType 解码类型(0:AUTO,1:SDR,2:HDR)
    * @returns
    */
-  async decodingImage(decodingType: number): Promise<void> {
+  async decodingImage(decodingType:number):Promise<void>{
     logger.info(TAG, 'decodingImage start');
     let decodingOptions: image.DecodingOptions = {
       editable: true,
@@ -361,8 +360,7 @@ export struct EditImage {
           .margin({ right: '10%' })
           .onClick(() => {
             if (this.currentTask === Tasks.CROP || this.currentTask === Tasks.SCALE ||
-            this.currentTask === Tasks.ROTATE || this.currentTask === Tasks.TONING || this.currentTask === Tasks.COLORSPACE
-              || this.currentTask === Tasks.HDR) {
+            this.currentTask === Tasks.ROTATE || this.currentTask === Tasks.TONING || this.currentTask === Tasks.COLORSPACE || this.currentTask === Tasks.HDR) {
               this.currentTask = Tasks.ADJUST;
               this.cropIndex = 0;
             }
@@ -611,7 +609,7 @@ export struct EditImage {
   }
 
   @Builder
-  getDecodingTool() {
+  getDecodingTool(){
     Row() {
       Column() {
         Image($r('app.media.ic_rotate'))
