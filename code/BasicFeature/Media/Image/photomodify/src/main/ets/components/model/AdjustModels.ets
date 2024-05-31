@@ -20,8 +20,8 @@ export const adjustDatas: TaskData [] = [
   new TaskData(Tasks.SCALE, $r('app.media.ic_scale'), $r('app.string.scale')),
   new TaskData(Tasks.ROTATE, $r('app.media.ic_rotate'), $r('app.string.rotate')),
   new TaskData(Tasks.TONING, $r('app.media.ic_brightness_small'), $r('app.string.toning')),
-  new TaskData(Tasks.COLORSPACE, $r('app.media.ic_brightness_small'), $r('app.string.colorSpace'))
-
+  new TaskData(Tasks.COLORSPACE, $r('app.media.ic_brightness_small'), $r('app.string.colorSpace')),
+  new TaskData(Tasks.HDR, $r('app.media.ic_rotate'), $r('app.string.update_hdr_setting'))
 ];
 
 export const markDatas: TaskData [] = [

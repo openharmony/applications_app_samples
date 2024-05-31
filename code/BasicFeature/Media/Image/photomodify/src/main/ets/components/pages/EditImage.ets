@@ -117,7 +117,8 @@ export struct EditImage {
 
   async onEditCancel(): Promise<void> {
     if (this.currentTask === Tasks.CROP || this.currentTask === Tasks.SCALE ||
-    this.currentTask === Tasks.ROTATE || this.currentTask === Tasks.TONING || this.currentTask === Tasks.COLORSPACE) {
+    this.currentTask === Tasks.ROTATE || this.currentTask === Tasks.TONING || this.currentTask === Tasks.COLORSPACE ||
+      this.currentTask === Tasks.HDR) {
       this.currentTask = Tasks.ADJUST;
       this.cropIndex = 0;
     }
@@ -251,6 +252,34 @@ export struct EditImage {
   }
 
   /**
+   * 图片解码
+   * @param decodingType 解码类型(0:AUTO,1:SDR,2:HDR)
+   * @returns
+   */
+  async decodingImage(decodingType:number):Promise<void>{
+    logger.info(TAG, 'decodingImage start');
+    let decodingOptions: image.DecodingOptions = {
+      editable: true,
+      desiredDynamicRange: decodingType
+    };
+    logger.debug(TAG, `decoding Type = ${decodingType}`);
+    this.pixelMap = await readImage(this.mediaUris, decodingOptions);
+    if (!this.pixelMap) {
+      logger.info(TAG, `decodingImage no pixelMap`);
+      return;
+    }
+    let imageInfo: image.ImageInfo = await this.pixelMap.getImageInfo();
+    if (!imageInfo) {
+      logger.info(TAG, `decodingImage no imageInfo`);
+      return;
+    }
+    logger.debug(TAG, `imageInfo = ${JSON.stringify(imageInfo)}`);
+    logger.debug(TAG, `imageInfo.isHdr  = ${imageInfo.isHdr}`);
+    this.flushPage();
+    logger.info(TAG, 'decodingImage end');
+  }
+
+  /**
    * 底部一级菜单
    */
   @Builder
@@ -322,7 +351,8 @@ export struct EditImage {
         Text(text)
           .fontColor(Color.White)
           .fontSize($r('app.float.size_18'))
-          .width($r('app.float.size_40'))
+          // 根据【修改hdr设置】文字长度，设置宽度为120
+          .width(this.currentTask === Tasks.HDR ? $r('app.float.size_120') : $r('app.float.size_40'))
           .height($r('app.float.size_30'))
 
         Image($r('app.media.ic_ok'))
@@ -331,7 +361,8 @@ export struct EditImage {
           .margin({ right: '10%' })
           .onClick(() => {
             if (this.currentTask === Tasks.CROP || this.currentTask === Tasks.SCALE ||
-            this.currentTask === Tasks.ROTATE || this.currentTask === Tasks.TONING || this.currentTask === Tasks.COLORSPACE) {
+            this.currentTask === Tasks.ROTATE || this.currentTask === Tasks.TONING || this.currentTask === Tasks.COLORSPACE ||
+              this.currentTask === Tasks.HDR) {
               this.currentTask = Tasks.ADJUST;
               this.cropIndex = 0;
             }
@@ -580,6 +611,75 @@ export struct EditImage {
   }
 
   @Builder
+  getDecodingTool(){
+    Row() {
+      Column() {
+        Image($r('app.media.ic_rotate'))
+          .width($r('app.float.size_30'))
+          .height($r('app.float.size_30'))
+        Text($r('app.string.edit_image_decoding_auto'))
+          .margin({ top: $r('app.float.size_5') })
+          .fontSize($r('app.float.size_14'))
+          .fontColor(Color.White)
+      }
+      .id('auto')
+      .onClick(async () => {
+        if (this.canClick) {
+          this.canClick = false;
+          await this.decodingImage(image.DecodingDynamicRange.AUTO);
+          setTimeout(() => {
+            this.canClick = true;
+          }, 300)
+        }
+      })
+
+      Column() {
+        Image($r('app.media.ic_rotateto90'))
+          .width($r('app.float.size_30'))
+          .height($r('app.float.size_30'))
+        Text($r('app.string.edit_image_decoding_sdr'))
+          .margin({ top: $r('app.float.size_5') })
+          .fontColor(Color.White)
+          .fontSize($r('app.float.size_14'))
+      }
+      .id('sdr')
+      .onClick(async () => {
+        if (this.canClick) {
+          this.canClick = false;
+          await this.decodingImage(image.DecodingDynamicRange.SDR);
+          setTimeout(() => {
+            this.canClick = true;
+          }, 300)
+        }
+      })
+
+      Column() {
+        Image($r('app.media.ic_rotateto90'))
+          .width($r('app.float.size_30'))
+          .height($r('app.float.size_30'))
+        Text($r('app.string.edit_image_decoding_hdr'))
+          .margin({ top: $r('app.float.size_5') })
+          .fontColor(Color.White)
+          .fontSize($r('app.float.size_14'))
+      }
+      .id('hdr')
+      .onClick(async () => {
+        if (this.canClick) {
+          this.canClick = false;
+          await this.decodingImage(image.DecodingDynamicRange.HDR);
+          setTimeout(() => {
+            this.canClick = true;
+          }, 300)
+        }
+      })
+    }
+    .justifyContent(FlexAlign.SpaceAround)
+    .backgroundColor($r('app.color.edit_image_public_background'))
+    .height('14%')
+    .width('100%')
+  }
+
+  @Builder
   getMaterialTool(materials: MaterialData[]) {
     this.TextOrStickerScroll(materials)
   }
@@ -665,7 +765,7 @@ export struct EditImage {
         })
       Blank()
       // 非编辑模式，展示撤回和保存功能
-      if (this.currentTask === Tasks.ADJUST || this.currentTask === Tasks.MARK) {
+      if (this.currentTask === Tasks.ADJUST || this.currentTask === Tasks.MARK || this.currentTask === Tasks.HDR) {
         Row({ space: 24 }) {
           Image($r('app.media.ic_public_tosmall'))
             .height($r('app.float.size_32'))
@@ -742,6 +842,7 @@ export struct EditImage {
             .objectFit(ImageFit.Contain)
             .width('90%')
             .height('90%')
+            .dynamicRangeMode(DynamicRangeMode.HIGH)
             .backgroundColor($r('app.color.edit_image_stack_image'))
             .alignRules(
               {
@@ -790,6 +891,8 @@ export struct EditImage {
           this.getMaterialTool(fontColors);
         } else if (this.currentTask === Tasks.STICKER) {
           this.getMaterialTool(stickers);
+        } else if (this.currentTask === Tasks.HDR) {
+          this.getDecodingTool();
         }
         if (this.currentTask === Tasks.MARK || this.currentTask === Tasks.ADJUST) {
           this.getFirstLvMenu();

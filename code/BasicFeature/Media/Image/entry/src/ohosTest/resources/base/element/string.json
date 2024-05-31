@@ -111,6 +111,22 @@
     {
       "name": "takePhoto",
       "value": "拍照"
+    },
+    {
+      "name": "setting",
+      "value": "修改hdr设置"
+    },
+    {
+      "name": "auto",
+      "value": "自动"
+    },
+    {
+      "name": "sdr",
+      "value": "SDR"
+    },
+    {
+      "name": "hdr",
+      "value": "HDR"
     }
   ]
 }
