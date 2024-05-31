@@ -106,7 +106,7 @@ struct CertLock {
       logger.debug(TAG, `response : ${response.version} ${response.statusCode} ${response.reason} ${response.headers}  ${response.headers.size}`)
       let headers: string = '';
       for (let k of response.headers.keys()) {
-        headers = headers + k + ":" + response.headers.get(k) + '\r\n';
+        headers = headers + k + ':' + response.headers.get(k) + '\r\n';
         ;
         logger.debug(TAG, `response 1 ${k}, ${response.headers.get(k)}`)
       }
