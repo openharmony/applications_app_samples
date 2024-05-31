@@ -93,7 +93,8 @@ struct Index {
     .title({
       main: this.getResourceString($r('app.string.EntryAbility_label')),
       sub: this.getResourceString($r('app.string.home_tips'))
-    }).margin({top:10})
+    })
+    .margin({ top: 10 })
   }
 
   @Builder

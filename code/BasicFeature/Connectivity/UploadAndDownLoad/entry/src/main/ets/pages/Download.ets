@@ -163,6 +163,7 @@ struct Download {
         .onClick(() => {
           requestDownload.pauseOrResume();
         })
+
         Button() {
           Row() {
             Text($r('app.string.cancel'))
@@ -308,7 +309,6 @@ struct Download {
       this.downloadFinish(isSuccess);
     }
   }
-
   downloadFileCallback = (progress: number, isSuccess: boolean) => {
     logger.debug(TAG, "downloadFileCallback");
     this.progress = progress;

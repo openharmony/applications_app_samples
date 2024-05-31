@@ -32,20 +32,15 @@ struct CertLock {
 
   build() {
     Navigation() {
-      RelativeContainer() {
-        Text(this.message)
-          .fontSize(16)
-          .fontColor($r('app.color.text_message'))
-          .textAlign(TextAlign.Start)
-          .id('http_response')
-          .width('100%')
-          .maxLines(20)
-          .textOverflow({ overflow: TextOverflow.Ellipsis })
-      }
-      .margin({left:16,right:16})
-      .width('90%')
-      .height('80%')
-      .padding(10)
+      Text(this.message)
+        .fontSize(16)
+        .fontColor($r('app.color.text_message'))
+        .textAlign(TextAlign.Start)
+        .id('http_response')
+        .width('90%')
+        .height('80%')
+        .maxLines(30)
+        .textOverflow({ overflow: TextOverflow.Ellipsis })
 
       Button($r('app.string.upload'))
         .id('upload')
@@ -100,7 +95,11 @@ struct CertLock {
     CertLock.task = task;
     task.on('progress', async (progress) => {
       logger.debug(TAG, `/Request download status ${progress.state}, downloaded ${progress.processed}`);
-      promptAction.showToast({ message: $r('app.string.download_finish'), bottom: TOAST_BOTTOM,offset:{dx:10,dy:50} });
+      promptAction.showToast({
+        message: $r('app.string.download_finish'),
+        bottom: TOAST_BOTTOM,
+        offset: { dx: 10, dy: 96 }
+      });
       this.taskId = task.tid;
     })
     let responseOnCallback = (response: request.agent.HttpResponse) => {
