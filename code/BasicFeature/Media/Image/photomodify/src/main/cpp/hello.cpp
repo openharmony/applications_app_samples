@@ -40,7 +40,8 @@ static std::shared_ptr<OH_ImagePackerNative> CreatePacker()
     if (OH_ImagePackerNative_Create(&packer) != IMAGE_SUCCESS) {
         return nullptr;
     }
-    return std::make_shared<OH_ImagePackerNative>(packer, OH_ImagePackerNative_Release);
+    std::shared_ptr<OH_ImagePackerNative> ptr(packer, OH_ImagePackerNative_Release);
+    return ptr;
 }
 
 static std::shared_ptr<OH_PackingOptions> CreatePackingOpts(const char* mimeTypeStr)
@@ -52,7 +53,7 @@ static std::shared_ptr<OH_PackingOptions> CreatePackingOpts(const char* mimeType
 
     Image_MimeType mimeType;
     mimeType.size = strlen(mimeTypeStr);
-    mimeType.data = mimeTypeStr;
+    mimeType.data = (char*)mimeTypeStr;
     if (OH_PackingOptions_SetMimeType(opts, &mimeType) != IMAGE_SUCCESS) {
         OH_PackingOptions_Release(opts);
         return nullptr;
@@ -63,7 +64,8 @@ static std::shared_ptr<OH_PackingOptions> CreatePackingOpts(const char* mimeType
         return nullptr;
     }
 
-    return std::make_shared<OH_PackingOptions>(opts, OH_PackingOptions_Release);
+    std::shared_ptr<OH_PackingOptions> ptr(opts, OH_PackingOptions_Release);
+    return ptr;
 }
 
 static std::shared_ptr<OH_PixelmapNative> CreatePixelMap(OH_ImageSourceNative* imgSource)
@@ -80,7 +82,8 @@ static std::shared_ptr<OH_PixelmapNative> CreatePixelMap(OH_ImageSourceNative* i
     }
 
     OH_DecodingOptions_Release(decOpts);
-    return std::make_shared<OH_PixelmapNative>(pixelMap, OH_PixelmapNative_Release);
+    std::shared_ptr<OH_PixelmapNative> ptr(pixelMap, OH_PixelmapNative_Release);
+    return ptr;
 }
 
 static bool WriteFile(const char* outPath, uint8_t* outBuffer, size_t outBufferSize)
@@ -100,30 +103,6 @@ static bool WriteFile(const char* outPath, uint8_t* outBuffer, size_t outBufferS
     return true;
 }
 
-static bool WritePixelMap(
-    std::shared_ptr<OH_ImagePackerNative> ptrPacker,
-    std::shared_ptr<OH_PackingOptions> ptrOpts,
-    std::shared_ptr<OH_PixelmapNative> ptrPixelMap,
-    const char* outPath)
-{
-    uint8_t* outBuffer = new uint8_t[DEFAULT_BUFFER_SIZE];
-    size_t outBufferSize = 0;
-    Image_ErrorCode errCode = OH_ImagePackerNative_PackToDataFromPixelmap(
-        ptrPacker.get(), ptrOpts.get(), ptrPixelMap.get(), outBuffer, &outBufferSize);
-
-    if (errCode != IMAGE_SUCCESS) {
-        delete [] outBuffer;
-        return false;
-    }
-
-    if (!WriteFile(outPath, outBuffer, outBufferSize)) {
-        delete [] outBuffer;
-        return false;
-    }
-    delete [] outBuffer;
-    return true;
-}
-
 // PixelMap转为data
 static napi_value packToDataPixelMap(napi_env env, napi_callback_info info)
 {
@@ -131,30 +110,25 @@ static napi_value packToDataPixelMap(napi_env env, napi_callback_info info)
     napi_create_int32(env, 0, &retSucess);
     napi_value retFailed = nullptr;
     napi_create_int32(env, -1, &retFailed);
-
     size_t argCount = NUM_2;
     napi_value argValue[NUM_2] = {0};
     size_t dataSize;
     void* inBuffer;
     char outPath[PATH_MAX];
     size_t outPathLen = 0;
-
     if (napi_get_cb_info(env, info, &argCount, argValue, nullptr, nullptr) != napi_ok || argCount < NUM_2) {
         return retFailed;
     }
     napi_get_arraybuffer_info(env, argValue[NUM_0], &inBuffer, &dataSize);
     napi_get_value_string_utf8(env, argValue[NUM_1], outPath, PATH_MAX, &outPathLen);
-
     auto ptrPacker = CreatePacker();
     if (!ptrPacker) {
         return retFailed;
     }
-
     auto ptrOpts = CreatePackingOpts(MIMETYPE_JPEG_STRING);
     if (!ptrOpts) {
         return retFailed;
     }
-
     OH_ImageSourceNative *imgSource = nullptr;
     Image_ErrorCode errCode = OH_ImageSourceNative_CreateFromData(
         (uint8_t*)inBuffer, dataSize, &imgSource);
@@ -162,15 +136,23 @@ static napi_value packToDataPixelMap(napi_env env, napi_callback_info info)
         return retFailed;
     }
     std::shared_ptr<OH_ImageSourceNative> ptrImgSource(imgSource, OH_ImageSourceNative_Release);
-
     auto ptrPixelMap = CreatePixelMap(ptrImgSource.get());
     if (!ptrPixelMap) {
         return retFailed;
     }
-
-    if (!WritePixelMap(ptrPacker, ptrOpts, ptrPixelMap, outPath)) {
+    uint8_t* outBuffer = new uint8_t[DEFAULT_BUFFER_SIZE];
+    size_t outBufferSize = 0;
+    errCode = OH_ImagePackerNative_PackToDataFromPixelmap(
+        ptrPacker.get(), ptrOpts.get(), ptrPixelMap.get(), outBuffer, &outBufferSize);
+    if (errCode != IMAGE_SUCCESS) {
+        delete [] outBuffer;
         return retFailed;
     }
+    if (!WriteFile(outPath, outBuffer, outBufferSize)) {
+        delete [] outBuffer;
+        return retFailed;
+    }
+    delete [] outBuffer;
     return retSucess;
 }
 
@@ -280,14 +262,12 @@ static napi_value packToDataImageSource(napi_env env, napi_callback_info info)
     napi_create_int32(env, 0, &retSucess);
     napi_value retFailed = nullptr;
     napi_create_int32(env, -1, &retFailed);
-
     size_t argCount = NUM_4;
     napi_value argValue[NUM_4] = {0};
     RawFileDescriptor rawSrc;
     int64_t tmp;
     char outPath[PATH_MAX];
     size_t outPathLen = 0;
-
     if (napi_get_cb_info(env, info, &argCount, argValue, nullptr, nullptr) != napi_ok || argCount < NUM_4) {
         return retFailed;
     }
@@ -297,32 +277,34 @@ static napi_value packToDataImageSource(napi_env env, napi_callback_info info)
     napi_get_value_int64(env, argValue[NUM_2], &tmp);
     rawSrc.length = static_cast<long>(tmp);
     napi_get_value_string_utf8(env, argValue[NUM_3], outPath, PATH_MAX, &outPathLen);
-
     auto ptrPacker = CreatePacker();
-    if (!ptrPacker) {
-        return retFailed;
-    }
-
     auto ptrOpts = CreatePackingOpts(MIMETYPE_WEBP_STRING);
-    if (!ptrOpts) {
+    if (!ptrPacker || !ptrOpts) {
         return retFailed;
     }
-
     OH_ImageSourceNative *imgSource = nullptr;
     Image_ErrorCode errCode = OH_ImageSourceNative_CreateFromRawFile(&rawSrc, &imgSource);
     if (errCode != IMAGE_SUCCESS) {
         return retFailed;
     }
     std::shared_ptr<OH_ImageSourceNative> ptrImgSource(imgSource, OH_ImageSourceNative_Release);
-
     auto ptrPixelMap = CreatePixelMap(ptrImgSource.get());
     if (!ptrPixelMap) {
         return retFailed;
     }
-
-    if (!WritePixelMap(ptrPacker, ptrOpts, ptrPixelMap, outPath)) {
+    uint8_t* outBuffer = new uint8_t[DEFAULT_BUFFER_SIZE];
+    size_t outBufferSize = 0;
+    errCode = OH_ImagePackerNative_PackToDataFromPixelmap(
+        ptrPacker.get(), ptrOpts.get(), ptrPixelMap.get(), outBuffer, &outBufferSize);
+    if (errCode != IMAGE_SUCCESS) {
+        delete [] outBuffer;
         return retFailed;
     }
+    if (!WriteFile(outPath, outBuffer, outBufferSize)) {
+        delete [] outBuffer;
+        return retFailed;
+    }
+    delete [] outBuffer;
     return retSucess;
 }
 
