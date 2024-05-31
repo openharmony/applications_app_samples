@@ -105,9 +105,9 @@ function packToFilePixelMap(context: Context, filePath: string){
     const packFilePath: string = context.filesDir + '/' + getTimeStr() + '_1.png';
     const packFile = fs.openSync(packFilePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
     const result: number = ndkTest.packPixelMapToFile(filePath, packFile.fd)
-    console.log("----------------- packPixelMapToFile result " + result)
+    logger.info(TAG, "----------------- packPixelMapToFile result " + result);
   } catch (error) {
-    console.log( 'packing fail ' + JSON.stringify(error))
+    logger.error(TAG, 'packing fail ' + JSON.stringify(error));
   }
 }
 
@@ -121,9 +121,9 @@ function packToFileImageSource(context: Context, file: fileIo.File){
     const packFilePath: string = context.filesDir + '/' + getTimeStr() + '_2.jpg'
     const packFile = fs.openSync(packFilePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE)
     const result: number = ndkTest.packToFileImageSource(file.fd, packFile.fd)
-    console.log("----------------- packToFileImageSource result:" + result)
+    logger.info(TAG, "----------------- packToFileImageSource result " + result);
   } catch (error) {
-    console.log('packTopFile fail' + JSON.stringify(error))
+    logger.error(TAG, 'packing fail ' + JSON.stringify(error));
   }
 }
 
@@ -136,9 +136,9 @@ function packToDataPixelMap(context: Context, buffer :ArrayBuffer){
   try {
     const packFilePath: string = context.filesDir + '/' + getTimeStr() + '_3.jpg'
     const result: number = ndkTest.packToDataPixelMap(buffer, packFilePath)
-    console.log("----------------- packToDataPixelMap result: " + result)
+    logger.info(TAG, "----------------- packToDataPixelMap result " + result);
   } catch (error) {
-    console.log( 'packing fail ' + JSON.stringify(error))
+    logger.error(TAG, 'packing fail ' + JSON.stringify(error));
   }
 }
 
@@ -155,8 +155,8 @@ async function packToDataImageSource(context: Context){
     const packFilePath: string = context.filesDir + '/' + getTimeStr() + '_4.webp'
 
     const result: number = ndkTest.packToDataImageSource(rawFileDescriptor.fd, rawFileDescriptor.offset, rawFileDescriptor.length, packFilePath)
-    console.log('----------------- packToDataImageSource result:' + result)
+    logger.info(TAG, "----------------- packToDataImageSource result " + result);
   } catch (error) {
-    console.log( 'packing fail ' + JSON.stringify(error))
+    logger.error(TAG, 'packing fail ' + JSON.stringify(error));
   }
 }

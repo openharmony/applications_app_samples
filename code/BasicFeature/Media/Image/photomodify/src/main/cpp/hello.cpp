@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-#include <limits.h>
-#include <stdio.h>
+#include <cstdio>
+#include <climits>
 #include <memory>
 #include <string>
 #include "rawfile/raw_file.h"
@@ -34,397 +34,296 @@ constexpr int32_t NUM_4 = 4;
 constexpr uint32_t QUALITY = 100;
 constexpr uint64_t DEFAULT_BUFFER_SIZE = 25 * 1024 * 1024;
 
+static std::shared_ptr<OH_ImagePackerNative> CreatePacker()
+{
+    OH_ImagePackerNative *packer = nullptr;
+    if (OH_ImagePackerNative_Create(&packer) != IMAGE_SUCCESS) {
+        return nullptr;
+    }
+    return std::make_shared<OH_ImagePackerNative>(packer, OH_ImagePackerNative_Release);
+}
+
+static std::shared_ptr<OH_PackingOptions> CreatePackingOpts(const char* mimeTypeStr)
+{
+    OH_PackingOptions *opts = nullptr;
+    if (OH_PackingOptions_Create(&opts) != IMAGE_SUCCESS) {
+        return nullptr;
+    }
+
+    Image_MimeType mimeType;
+    mimeType.size = strlen(mimeTypeStr);
+    mimeType.data = mimeTypeStr;
+    if (OH_PackingOptions_SetMimeType(opts, &mimeType) != IMAGE_SUCCESS) {
+        OH_PackingOptions_Release(opts);
+        return nullptr;
+    }
+
+    if (OH_PackingOptions_SetQuality(opts, QUALITY) != IMAGE_SUCCESS) {
+        OH_PackingOptions_Release(opts);
+        return nullptr;
+    }
+
+    return std::make_shared<OH_PackingOptions>(opts, OH_PackingOptions_Release);
+}
+
+static std::shared_ptr<OH_PixelmapNative> CreatePixelMap(OH_ImageSourceNative* imgSource)
+{
+    OH_DecodingOptions *decOpts = nullptr;
+    if (OH_DecodingOptions_Create(&decOpts) != IMAGE_SUCCESS) {
+        return nullptr;
+    }
+
+    OH_PixelmapNative *pixelMap = nullptr;
+    if (OH_ImageSourceNative_CreatePixelmap(imgSource, decOpts, &pixelMap) != IMAGE_SUCCESS) {
+        OH_DecodingOptions_Release(decOpts);
+        return nullptr;
+    }
+
+    OH_DecodingOptions_Release(decOpts);
+    return std::make_shared<OH_PixelmapNative>(pixelMap, OH_PixelmapNative_Release);
+}
+
+static bool WriteFile(const char* outPath, uint8_t* outBuffer, size_t outBufferSize)
+{
+    FILE* file = fopen(outPath, "w");
+    if (file == nullptr) {
+        return false;
+    }
+
+    if (fwrite(outBuffer, sizeof(uint8_t), outBufferSize, file) <= 0) {
+        return false;
+    }
+    
+    if (fclose(file) != 0) {
+        return false;
+    }
+    return true;
+}
+
+static bool WritePixelMap(
+    std::shared_ptr<OH_ImagePackerNative> ptrPacker,
+    std::shared_ptr<OH_PackingOptions> ptrOpts,
+    std::shared_ptr<OH_PixelmapNative> ptrPixelMap,
+    const char* outPath)
+{
+    uint8_t* outBuffer = new uint8_t[DEFAULT_BUFFER_SIZE];
+    size_t outBufferSize = 0;
+    Image_ErrorCode errCode = OH_ImagePackerNative_PackToDataFromPixelmap(
+        ptrPacker.get(), ptrOpts.get(), ptrPixelMap.get(), outBuffer, &outBufferSize);
+
+    if (errCode != IMAGE_SUCCESS) {
+        delete [] outBuffer;
+        return false;
+    }
+
+    if (!WriteFile(outPath, outBuffer, outBufferSize)) {
+        delete [] outBuffer;
+        return false;
+    }
+    delete [] outBuffer;
+    return true;
+}
+
 // PixelMap转为data
 static napi_value packToDataPixelMap(napi_env env, napi_callback_info info)
 {
-    napi_value result = nullptr;
+    napi_value retSucess = nullptr;
+    napi_create_int32(env, 0, &retSucess);
+    napi_value retFailed = nullptr;
+    napi_create_int32(env, -1, &retFailed);
+
     size_t argCount = NUM_2;
     napi_value argValue[NUM_2] = {0};
-
-    napi_get_undefined(env, &result);
-
-    if (napi_get_cb_info(env, info, &argCount, argValue, nullptr, nullptr) != napi_ok || argCount < NUM_2) {
-        return result;
-    }
-
     size_t dataSize;
     void* inBuffer;
-    napi_get_arraybuffer_info(env, argValue[NUM_0], &inBuffer, &dataSize);
-
     char outPath[PATH_MAX];
     size_t outPathLen = 0;
+
+    if (napi_get_cb_info(env, info, &argCount, argValue, nullptr, nullptr) != napi_ok || argCount < NUM_2) {
+        return retFailed;
+    }
+    napi_get_arraybuffer_info(env, argValue[NUM_0], &inBuffer, &dataSize);
     napi_get_value_string_utf8(env, argValue[NUM_1], outPath, PATH_MAX, &outPathLen);
 
-    OH_ImagePackerNative *packer = nullptr;
-    Image_ErrorCode errCode = OH_ImagePackerNative_Create(&packer);
-    if (errCode != IMAGE_SUCCESS) {
-        napi_create_int32(env, errCode, &result);
-        return result;
-    }
-    std::shared_ptr<OH_ImagePackerNative> ptrPacker(packer, OH_ImagePackerNative_Release);
-
-    OH_PackingOptions *opts = nullptr;
-    errCode = OH_PackingOptions_Create(&opts);
-    if (errCode != IMAGE_SUCCESS) {
-        napi_create_int32(env, errCode, &result);
-        return result;
-    }
-    std::shared_ptr<OH_PackingOptions> ptrOpts(opts, OH_PackingOptions_Release);
-
-    Image_MimeType mimeType;
-    mimeType.size = strlen(MIMETYPE_JPEG_STRING);
-    mimeType.data = new char[mimeType.size + 1];
-    memcpy(mimeType.data, MIMETYPE_JPEG_STRING, mimeType.size);
-    mimeType.data[mimeType.size] = '\0';
-    errCode = OH_PackingOptions_SetMimeType(opts, &mimeType);
-    if (errCode != IMAGE_SUCCESS) {
-        napi_create_int32(env, errCode, &result);
-        return result;
+    auto ptrPacker = CreatePacker();
+    if (!ptrPacker) {
+        return retFailed;
     }
 
-    errCode = OH_PackingOptions_SetQuality(opts, QUALITY);
-    if (errCode != IMAGE_SUCCESS) {
-        napi_create_int32(env, errCode, &result);
-        return result;
+    auto ptrOpts = CreatePackingOpts(MIMETYPE_JPEG_STRING);
+    if (!ptrOpts) {
+        return retFailed;
     }
 
     OH_ImageSourceNative *imgSource = nullptr;
-    errCode = OH_ImageSourceNative_CreateFromData((uint8_t*)inBuffer, dataSize, &imgSource);
+    Image_ErrorCode errCode = OH_ImageSourceNative_CreateFromData(
+        (uint8_t*)inBuffer, dataSize, &imgSource);
     if (errCode != IMAGE_SUCCESS) {
-        napi_create_int32(env, errCode, &result);
-        return result;
+        return retFailed;
     }
     std::shared_ptr<OH_ImageSourceNative> ptrImgSource(imgSource, OH_ImageSourceNative_Release);
 
-    OH_DecodingOptions *decOpts = nullptr;
-    errCode = OH_DecodingOptions_Create(&decOpts);
-    if (errCode != IMAGE_SUCCESS) {
-        napi_create_int32(env, errCode, &result);
-        return result;
-    }
-    std::shared_ptr<OH_DecodingOptions> ptrDecOpts(decOpts, OH_DecodingOptions_Release);
-
-    OH_PixelmapNative *pixelMap = nullptr;
-    errCode = OH_ImageSourceNative_CreatePixelmap(imgSource, decOpts, &pixelMap);
-    if (errCode != IMAGE_SUCCESS) {
-        napi_create_int32(env, errCode, &result);
-        return result;
-    }
-    std::shared_ptr<OH_PixelmapNative> ptrPixelMap(pixelMap, OH_PixelmapNative_Release);
-
-    uint8_t* outBuffer = new uint8_t[DEFAULT_BUFFER_SIZE];
-    size_t outBufferSize = 0;
-
-    errCode = OH_ImagePackerNative_PackToDataFromPixelmap(
-        packer, opts, pixelMap, outBuffer, &outBufferSize);
-    if (errCode != IMAGE_SUCCESS) {
-        napi_create_int32(env, errCode, &result);
-        delete [] outBuffer;
-        return result;
+    auto ptrPixelMap = CreatePixelMap(ptrImgSource.get());
+    if (!ptrPixelMap) {
+        return retFailed;
     }
 
-    FILE* file = fopen(outPath, "w");
-    if (file == nullptr) {
-        napi_create_int32(env, errCode, &result);
-        delete [] outBuffer;
-        return result;
+    if (!WritePixelMap(ptrPacker, ptrOpts, ptrPixelMap, outPath)) {
+        return retFailed;
     }
-
-    fwrite(outBuffer, sizeof(uint8_t), outBufferSize, file);
-    fclose(file);
-
-    napi_create_int32(env, errCode, &result);
-    delete [] outBuffer;
-    return result;
+    return retSucess;
 }
 
 // PixelMap转为file
 static napi_value packPixelMapToFile(napi_env env, napi_callback_info info)
 {
-    napi_value result = nullptr;
+    napi_value retSucess = nullptr;
+    napi_create_int32(env, 0, &retSucess);
+    napi_value retFailed = nullptr;
+    napi_create_int32(env, -1, &retFailed);
+
     size_t argCount = NUM_2;
     napi_value argValue[NUM_2] = {0};
-
-    napi_get_undefined(env, &result);
-
-    if (napi_get_cb_info(env, info, &argCount, argValue, nullptr, nullptr) != napi_ok || argCount < NUM_2) {
-        return result;
-    }
-
     char inPath[PATH_MAX];
     size_t inPathLen = 0;
-    napi_get_value_string_utf8(env, argValue[NUM_0], inPath, PATH_MAX, &inPathLen);
-
     int32_t outFD;
+
+    if (napi_get_cb_info(env, info, &argCount, argValue, nullptr, nullptr) != napi_ok || argCount < NUM_2) {
+        return retFailed;
+    }
+    napi_get_value_string_utf8(env, argValue[NUM_0], inPath, PATH_MAX, &inPathLen);
     napi_get_value_int32(env, argValue[NUM_1], &outFD);
-    if (outFD < 0) {
-        napi_create_int32(env, outFD, &result);
-        return result;
+
+    auto ptrPacker = CreatePacker();
+    if (!ptrPacker) {
+        return retFailed;
     }
 
-    OH_ImagePackerNative *packer = nullptr;
-    Image_ErrorCode errCode = OH_ImagePackerNative_Create(&packer);
-    if (errCode != IMAGE_SUCCESS) {
-        napi_create_int32(env, errCode, &result);
-        return result;
-    }
-    std::shared_ptr<OH_ImagePackerNative> ptrPacker(packer, OH_ImagePackerNative_Release);
-
-    OH_PackingOptions *opts = nullptr;
-    errCode = OH_PackingOptions_Create(&opts);
-    if (errCode != IMAGE_SUCCESS) {
-        napi_create_int32(env, errCode, &result);
-        return result;
-    }
-    std::shared_ptr<OH_PackingOptions> ptrOpts(opts, OH_PackingOptions_Release);
-
-    Image_MimeType mimeType;
-    mimeType.size = strlen(MIMETYPE_PNG_STRING);
-    mimeType.data = new char[mimeType.size + 1];
-    memcpy(mimeType.data, MIMETYPE_PNG_STRING, mimeType.size);
-    mimeType.data[mimeType.size] = '\0';
-    errCode = OH_PackingOptions_SetMimeType(opts, &mimeType);
-    if (errCode != IMAGE_SUCCESS) {
-        napi_create_int32(env, errCode, &result);
-        return result;
-    }
-
-    errCode = OH_PackingOptions_SetQuality(opts, QUALITY);
-    if (errCode != IMAGE_SUCCESS) {
-        napi_create_int32(env, errCode, &result);
-        return result;
+    auto ptrOpts = CreatePackingOpts(MIMETYPE_PNG_STRING);
+    if (!ptrOpts) {
+        return retFailed;
     }
 
     OH_ImageSourceNative *imgSource = nullptr;
-    errCode = OH_ImageSourceNative_CreateFromUri(inPath, inPathLen, &imgSource);
+    Image_ErrorCode errCode = OH_ImageSourceNative_CreateFromUri(inPath, inPathLen, &imgSource);
     if (errCode != IMAGE_SUCCESS) {
-        napi_create_int32(env, errCode, &result);
-        return result;
+        return retFailed;
     }
     std::shared_ptr<OH_ImageSourceNative> ptrImgSource(imgSource, OH_ImageSourceNative_Release);
 
-    OH_DecodingOptions *decOpts = nullptr;
-    errCode = OH_DecodingOptions_Create(&decOpts);
-    if (errCode != IMAGE_SUCCESS) {
-        napi_create_int32(env, errCode, &result);
-        return result;
+    auto ptrPixelMap = CreatePixelMap(ptrImgSource.get());
+    if (!ptrPixelMap) {
+        return retFailed;
     }
-    std::shared_ptr<OH_DecodingOptions> ptrDecOpts(decOpts, OH_DecodingOptions_Release);
 
-    OH_PixelmapNative *pixelMap = nullptr;
-    errCode = OH_ImageSourceNative_CreatePixelmap(imgSource, decOpts, &pixelMap);
+    errCode = OH_ImagePackerNative_PackToFileFromPixelmap(
+        ptrPacker.get(), ptrOpts.get(), ptrPixelMap.get(), outFD);
     if (errCode != IMAGE_SUCCESS) {
-        napi_create_int32(env, errCode, &result);
-        return result;
+        return retFailed;
     }
-    std::shared_ptr<OH_PixelmapNative> ptrPixelMap(pixelMap, OH_PixelmapNative_Release);
-
-    errCode = OH_ImagePackerNative_PackToFileFromPixelmap(packer, opts, pixelMap, outFD);
-    napi_create_int32(env, errCode, &result);
-    return result;
+    return retSucess;
 }
 
 // ImageSource转为file
 static napi_value packToFileImageSource(napi_env env, napi_callback_info info)
 {
-    napi_value result = nullptr;
+    napi_value retSucess = nullptr;
+    napi_create_int32(env, 0, &retSucess);
+    napi_value retFailed = nullptr;
+    napi_create_int32(env, -1, &retFailed);
+
     size_t argCount = NUM_2;
     napi_value argValue[NUM_2] = {0};
-
-    napi_get_undefined(env, &result);
+    int32_t inFD;
+    int32_t outFD;
 
     if (napi_get_cb_info(env, info, &argCount, argValue, nullptr, nullptr) != napi_ok || argCount < NUM_2) {
-        return result;
+        return retFailed;
     }
-
-    int32_t inFD;
     napi_get_value_int32(env, argValue[NUM_0], &inFD);
-    if (inFD < 0) {
-        napi_create_int32(env, inFD, &result);
-        return result;
-    }
-
-    int32_t outFD;
     napi_get_value_int32(env, argValue[NUM_1], &outFD);
-    if (outFD < 0) {
-        napi_create_int32(env, outFD, &result);
-        return result;
+
+    auto ptrPacker = CreatePacker();
+    if (!ptrPacker) {
+        return retFailed;
     }
 
-    OH_ImagePackerNative *packer = nullptr;
-    Image_ErrorCode errCode = OH_ImagePackerNative_Create(&packer);
-    if (errCode != IMAGE_SUCCESS) {
-        napi_create_int32(env, errCode, &result);
-        return result;
-    }
-    std::shared_ptr<OH_ImagePackerNative> ptrPacker(packer, OH_ImagePackerNative_Release);
-
-    OH_PackingOptions *opts = nullptr;
-    errCode = OH_PackingOptions_Create(&opts);
-    if (errCode != IMAGE_SUCCESS) {
-        napi_create_int32(env, errCode, &result);
-        return result;
-    }
-    std::shared_ptr<OH_PackingOptions> ptrOpts(opts, OH_PackingOptions_Release);
-
-    Image_MimeType mimeType;
-    mimeType.size = strlen(MIMETYPE_JPEG_STRING);
-    mimeType.data = new char[mimeType.size + 1];
-    memcpy(mimeType.data, MIMETYPE_JPEG_STRING, mimeType.size);
-    mimeType.data[mimeType.size] = '\0';
-    errCode = OH_PackingOptions_SetMimeType(opts, &mimeType);
-    if (errCode != IMAGE_SUCCESS) {
-        napi_create_int32(env, errCode, &result);
-        return result;
-    }
-
-    errCode = OH_PackingOptions_SetQuality(opts, QUALITY);
-    if (errCode != IMAGE_SUCCESS) {
-        napi_create_int32(env, errCode, &result);
-        return result;
+    auto ptrOpts = CreatePackingOpts(MIMETYPE_JPEG_STRING);
+    if (!ptrOpts) {
+        return retFailed;
     }
 
     OH_ImageSourceNative *imgSource = nullptr;
-    errCode = OH_ImageSourceNative_CreateFromFd(inFD, &imgSource);
+    Image_ErrorCode errCode = OH_ImageSourceNative_CreateFromFd(inFD, &imgSource);
     if (errCode != IMAGE_SUCCESS) {
-        napi_create_int32(env, errCode, &result);
-        return result;
+        return retFailed;
     }
     std::shared_ptr<OH_ImageSourceNative> ptrImgSource(imgSource, OH_ImageSourceNative_Release);
 
-    OH_DecodingOptions *decOpts = nullptr;
-    errCode = OH_DecodingOptions_Create(&decOpts);
-    if (errCode != IMAGE_SUCCESS) {
-        napi_create_int32(env, errCode, &result);
-        return result;
+    auto ptrPixelMap = CreatePixelMap(ptrImgSource.get());
+    if (!ptrPixelMap) {
+        return retFailed;
     }
-    std::shared_ptr<OH_DecodingOptions> ptrDecOpts(decOpts, OH_DecodingOptions_Release);
 
-    OH_PixelmapNative *pixelMap = nullptr;
-    errCode = OH_ImageSourceNative_CreatePixelmap(imgSource, decOpts, &pixelMap);
+    errCode = OH_ImagePackerNative_PackToFileFromPixelmap(
+        ptrPacker.get(), ptrOpts.get(), ptrPixelMap.get(), outFD);
     if (errCode != IMAGE_SUCCESS) {
-        napi_create_int32(env, errCode, &result);
-        return result;
+        return retFailed;
     }
-    std::shared_ptr<OH_PixelmapNative> ptrPixelMap(pixelMap, OH_PixelmapNative_Release);
-
-    errCode = OH_ImagePackerNative_PackToFileFromPixelmap(packer, opts, pixelMap, outFD);
-    napi_create_int32(env, errCode, &result);
-    return result;
+    return retSucess;
 }
 
 // ImageSource转为data
 static napi_value packToDataImageSource(napi_env env, napi_callback_info info)
 {
-    napi_value result = nullptr;
+    napi_value retSucess = nullptr;
+    napi_create_int32(env, 0, &retSucess);
+    napi_value retFailed = nullptr;
+    napi_create_int32(env, -1, &retFailed);
+
     size_t argCount = NUM_4;
     napi_value argValue[NUM_4] = {0};
-
-    napi_get_undefined(env, &result);
-
-    if (napi_get_cb_info(env, info, &argCount, argValue, nullptr, nullptr) != napi_ok || argCount < NUM_4) {
-        return result;
-    }
-
     RawFileDescriptor rawSrc;
-    napi_get_value_int32(env, argValue[NUM_0], &rawSrc.fd);
-    if (rawSrc.fd < 0) {
-        napi_create_int32(env, rawSrc.fd, &result);
-        return result;
-    }
-
     int64_t tmp;
-    napi_get_value_int64(env, argValue[NUM_1], &tmp);
-    rawSrc.start = static_cast<long>(tmp);
-
-    napi_get_value_int64(env, argValue[NUM_2], &tmp);
-    rawSrc.length = static_cast<long>(tmp);
-
     char outPath[PATH_MAX];
     size_t outPathLen = 0;
+
+    if (napi_get_cb_info(env, info, &argCount, argValue, nullptr, nullptr) != napi_ok || argCount < NUM_4) {
+        return retFailed;
+    }
+    napi_get_value_int32(env, argValue[NUM_0], &rawSrc.fd);
+    napi_get_value_int64(env, argValue[NUM_1], &tmp);
+    rawSrc.start = static_cast<long>(tmp);
+    napi_get_value_int64(env, argValue[NUM_2], &tmp);
+    rawSrc.length = static_cast<long>(tmp);
     napi_get_value_string_utf8(env, argValue[NUM_3], outPath, PATH_MAX, &outPathLen);
 
-    OH_ImagePackerNative *packer = nullptr;
-    Image_ErrorCode errCode = OH_ImagePackerNative_Create(&packer);
-    if (errCode != IMAGE_SUCCESS) {
-        napi_create_int32(env, errCode, &result);
-        return result;
-    }
-    std::shared_ptr<OH_ImagePackerNative> ptrPacker(packer, OH_ImagePackerNative_Release);
-
-    OH_PackingOptions *opts = nullptr;
-    errCode = OH_PackingOptions_Create(&opts);
-    if (errCode != IMAGE_SUCCESS) {
-        napi_create_int32(env, errCode, &result);
-        return result;
-    }
-    std::shared_ptr<OH_PackingOptions> ptrOpts(opts, OH_PackingOptions_Release);
-
-    Image_MimeType mimeType;
-    mimeType.size = strlen(MIMETYPE_WEBP_STRING);
-    mimeType.data = new char[mimeType.size + 1];
-    memcpy(mimeType.data, MIMETYPE_WEBP_STRING, mimeType.size);
-    mimeType.data[mimeType.size] = '\0';
-    errCode = OH_PackingOptions_SetMimeType(opts, &mimeType);
-    if (errCode != IMAGE_SUCCESS) {
-        napi_create_int32(env, errCode, &result);
-        return result;
+    auto ptrPacker = CreatePacker();
+    if (!ptrPacker) {
+        return retFailed;
     }
 
-    errCode = OH_PackingOptions_SetQuality(opts, QUALITY);
-    if (errCode != IMAGE_SUCCESS) {
-        napi_create_int32(env, errCode, &result);
-        return result;
+    auto ptrOpts = CreatePackingOpts(MIMETYPE_WEBP_STRING);
+    if (!ptrOpts) {
+        return retFailed;
     }
 
     OH_ImageSourceNative *imgSource = nullptr;
-    errCode = OH_ImageSourceNative_CreateFromRawFile(&rawSrc, &imgSource);
+    Image_ErrorCode errCode = OH_ImageSourceNative_CreateFromRawFile(&rawSrc, &imgSource);
     if (errCode != IMAGE_SUCCESS) {
-        napi_create_int32(env, errCode, &result);
-        return result;
+        return retFailed;
     }
     std::shared_ptr<OH_ImageSourceNative> ptrImgSource(imgSource, OH_ImageSourceNative_Release);
 
-    OH_DecodingOptions *decOpts = nullptr;
-    errCode = OH_DecodingOptions_Create(&decOpts);
-    if (errCode != IMAGE_SUCCESS) {
-        napi_create_int32(env, errCode, &result);
-        return result;
-    }
-    std::shared_ptr<OH_DecodingOptions> ptrDecOpts(decOpts, OH_DecodingOptions_Release);
-
-    OH_PixelmapNative *pixelMap = nullptr;
-    errCode = OH_ImageSourceNative_CreatePixelmap(imgSource, decOpts, &pixelMap);
-    if (errCode != IMAGE_SUCCESS) {
-        napi_create_int32(env, errCode, &result);
-        return result;
-    }
-    std::shared_ptr<OH_PixelmapNative> ptrPixelMap(pixelMap, OH_PixelmapNative_Release);
-
-    uint8_t* outBuffer = new uint8_t[DEFAULT_BUFFER_SIZE];
-    size_t outBufferSize = 0;
-
-    errCode = OH_ImagePackerNative_PackToDataFromPixelmap(
-        packer, opts, pixelMap, outBuffer, &outBufferSize);
-    if (errCode != IMAGE_SUCCESS) {
-        napi_create_int32(env, errCode, &result);
-        delete [] outBuffer;
-        return result;
+    auto ptrPixelMap = CreatePixelMap(ptrImgSource.get());
+    if (!ptrPixelMap) {
+        return retFailed;
     }
 
-    FILE* file = fopen(outPath, "w");
-    if (file == nullptr) {
-        napi_create_int32(env, errCode, &result);
-        delete [] outBuffer;
-        return result;
+    if (!WritePixelMap(ptrPacker, ptrOpts, ptrPixelMap, outPath)) {
+        return retFailed;
     }
-
-    fwrite(outBuffer, sizeof(uint8_t), outBufferSize, file);
-    fclose(file);
-
-    napi_create_int32(env, errCode, &result);
-    delete [] outBuffer;
-    return result;
+    return retSucess;
 }
 
 EXTERN_C_START static napi_value Init(napi_env env, napi_value exports)
