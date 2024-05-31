@@ -117,7 +117,8 @@ export struct EditImage {
 
   async onEditCancel(): Promise<void> {
     if (this.currentTask === Tasks.CROP || this.currentTask === Tasks.SCALE ||
-    this.currentTask === Tasks.ROTATE || this.currentTask === Tasks.TONING || this.currentTask === Tasks.COLORSPACE || this.currentTask === Tasks.HDR) {
+    this.currentTask === Tasks.ROTATE || this.currentTask === Tasks.TONING || this.currentTask === Tasks.COLORSPACE ||
+      this.currentTask === Tasks.HDR) {
       this.currentTask = Tasks.ADJUST;
       this.cropIndex = 0;
     }
@@ -360,7 +361,8 @@ export struct EditImage {
           .margin({ right: '10%' })
           .onClick(() => {
             if (this.currentTask === Tasks.CROP || this.currentTask === Tasks.SCALE ||
-            this.currentTask === Tasks.ROTATE || this.currentTask === Tasks.TONING || this.currentTask === Tasks.COLORSPACE || this.currentTask === Tasks.HDR) {
+            this.currentTask === Tasks.ROTATE || this.currentTask === Tasks.TONING || this.currentTask === Tasks.COLORSPACE ||
+              this.currentTask === Tasks.HDR) {
               this.currentTask = Tasks.ADJUST;
               this.cropIndex = 0;
             }
