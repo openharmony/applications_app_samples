@@ -75,6 +75,14 @@
     {
       "name": "track_name_1",
       "value": "轨道:1"
+    },
+    {
+      "name": "thumbnail_page",
+      "value": "进入获取缩略图页面"
+    },
+    {
+      "name": "get_thumbnail",
+      "value": "获取缩略图(test.mp4)"
     }
   ]
 }

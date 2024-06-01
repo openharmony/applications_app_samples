@@ -675,6 +675,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/BasicFeature/Notification/CustomCommonEvent/lib/CardEvent-1.0.0.hap" desc="Provided by code/BasicFeature/Notification/CustomCommonEvent"/>
                 <filteritem type="filepath" name="code/BasicFeature/Ads/OAIDSample/lib/ResetOAID-1.0.0.hap" desc="Provided by code/BasicFeature/Ads/OAIDSample"/>
                 <filteritem type="filepath" name="code/Solutions/Tools/FlipClock/lib/Brightness-1.0.0.hap" desc="Provided by code/Solutions/Tools/FlipClock"/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/VideoPlay/entry/src/main/resources/rawfile/test.mp4" desc="Provided by code/BasicFeature/Media/VideoPlay"/>
 
         <filteritem type="filepath" name="code/BasicFeature/DeviceManagement/Sensor/Capi/entry/src/main/resources/base/media/compass.png" desc="Provided by code/BasicFeature/DeviceManagement/Sensor"/>
         <filteritem type="filepath" name=" code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic/entry/src/main/resources/base/media/select.png" desc="Provided by code/BasicFeature/DeviceManagement/Vibrator"/>
