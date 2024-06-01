@@ -1445,6 +1445,62 @@ export default function abilityTest() {
       })
 
       /**
+       * Text 属性字符串
+       */
+      it(BUNDLE + 'TextStyledStringFunction_001', 0, async () => {
+        let testName = 'TextStyledStringFunction';
+        Logger.info(BUNDLE + testName + ' begin');
+
+        let driver: Driver = Driver.create();
+        await driver.delayMs(DELAY_TIME);
+
+        // 进入Text 属性字符串
+        let atom = await manager.getStringValue($r('app.string.text_styled_string_title'));
+        let button = await driver.findComponent(ON.text(atom));
+        if (!button) {
+          // 如果没展开 就展开
+          await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.text_and_input')));
+        }
+        await checkButtonAndClickWithText(atom);
+
+        // 下标
+        await driver.assertComponentExist(ON.id('start_select'));
+        let startTextPicker = await driver.findComponent(ON.id('start_select'));
+        let startPoint = await startTextPicker.getBoundsCenter();
+        await driver.swipe(startPoint.x - 20, startPoint.y + 20, startPoint.x - 20, startPoint.y - 50);
+
+        // 长度
+        await driver.assertComponentExist(ON.id('length_select'));
+        let lengthTextPicker = await driver.findComponent(ON.id('length_select'));
+        let lengthPoint = await lengthTextPicker.getBoundsCenter();
+        await driver.swipe(lengthPoint.x - 20, lengthPoint.y + 20, lengthPoint.x - 20, lengthPoint.y - 450, 1000);
+
+        // 输入文本
+        let input = await driver.findComponent(ON.id('test_input_to_select_string'));
+        await input.inputText('test');
+
+        await driver.delayMs(DELAY_TIME_FiVE);
+        // 属性字符串方法
+        {
+          let styleKeys = ['replaceString', 'replaceStyle', 'replaceStyledString', 'insertString', 'insertStyledString',
+            'appendStyledString', 'removeString', 'removeStyle', 'removeStyles', 'clearStyles'];
+          for (let i = 0; i < styleKeys.length; i++) {
+            {
+              let atom = styleKeys[i];
+              await clickSelectIDAndSelectText('test_itemSelect', atom);
+              Logger.info(BUNDLE + testName + atom);
+            }
+          }
+        }
+
+        // 返回
+        await checkButtonAndClickWithID('backBtn');
+        await driver.delayMs(DELAY_TIME_FiVE);
+
+        Logger.info(BUNDLE + testName + ' end');
+      })
+
+      /**
        * RichText 富文本
        */
       it(BUNDLE + 'RichTextFunction_001', 0, async () => {

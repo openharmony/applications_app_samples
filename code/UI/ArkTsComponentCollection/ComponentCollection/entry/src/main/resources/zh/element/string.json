@@ -1386,7 +1386,7 @@
     },
     {
       "name": "text_input_phone_type",
-      "value": "数字、+ 、-、*、#，长度不限"
+      "value": "数字、空格、+、-、*、#、(、)，长度不限"
     },
     {
       "name": "text_input_input_type",
@@ -4828,6 +4828,22 @@
       "value": "文本删除"
     },
     {
+      "name": "text_input_line_break_strategy",
+      "value": "折行规则"
+    },
+    {
+      "name": "text_input_line_break_strategy_content",
+      "value": "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effectof thesecomponents in method chaining mode, page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented."
+    },
+    {
+      "name": "text_input_word_break",
+      "value": "断行规则"
+    },
+    {
+      "name": "text_input_word_break_content",
+      "value": "This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu."
+    },
+    {
       "name": "textarea_character_limit",
       "value": "限制字数"
     },
@@ -4974,6 +4990,30 @@
     {
       "name":"current_event_on_scroll_stop",
       "value":"onScrollStop"
+    },
+    {
+      "name": "text_styled_string_title",
+      "value": "Text 属性字符串"
+    },
+    {
+      "name": "text_mutable_styled_string",
+      "value": "属性字符串"
+    },
+    {
+      "name": "text_mutable_styled_string_start",
+      "value": "下标"
+    },
+    {
+      "name": "text_mutable_styled_string_length",
+      "value": "长度"
+    },
+    {
+      "name": "text_mutable_styled_error",
+      "value": "请输入字符串"
+    },
+    {
+      "name": "text_styled_string_gesture_style",
+      "value": "GestureStyle"
     }
   ]
 }

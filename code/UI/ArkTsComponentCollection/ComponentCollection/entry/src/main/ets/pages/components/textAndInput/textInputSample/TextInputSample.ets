@@ -21,8 +21,10 @@ import { TitleBar } from '../../../../common/TitleBar';
 import pasteboard from '@ohos.pasteboard';
 import promptAction from '@ohos.promptAction';
 import { BusinessError } from '@ohos.base';
+import InputUtil from '../InputUtil';
 
 const DURATION: number = 200000;
+const NUM_TEXT_MAXSIZE_LENGTH: number = 14;
 
 @Extend(Column) function backgroundStyle() {
   .width('100%')
@@ -50,6 +52,11 @@ struct TextInputSample {
   @State chooseContents: string = '';
   @State selectedStart: number = 0;
   @State selectedEnd: number = 0;
+  @State textStr : string = '';
+  @State lineBreakStrategy: LineBreakStrategy = LineBreakStrategy.GREEDY;
+  @State lineBreakStrategyStr: Resource = $r('app.string.text_input_line_break_strategy_content');
+  @State wordBreak: WordBreak = WordBreak.NORMAL;
+  @State wordBreakTextStr: Resource = $r('app.string.text_input_word_break_content');
   private select: number = 0;
   private maxLength: number = 12;
   private context: Context = getContext(this);
@@ -142,10 +149,37 @@ struct TextInputSample {
         Column() {
           IntroductionTitle({ introduction: $r('app.string.text_input_input_type') })
           Column() {
-            TextInput({ placeholder: this.typePlaceholder })
+            TextInput({text: `${this.textStr}`, placeholder: this.typePlaceholder })
               .type(this.inputType).id('test_input')
               .showPasswordIcon(this.showPasswordIcon)
               .enableKeyboardOnFocus(false)
+              .onChange((number: string) => {
+                  if (this.inputType == InputType.PhoneNumber) {
+                    let telNumberNoSpace: string = InputUtil.removeSpace(number);
+                    if (telNumberNoSpace.length > NUM_TEXT_MAXSIZE_LENGTH - 2) {
+                      this.textStr = telNumberNoSpace;
+                    } else if (InputUtil.checkNeedNumberSpace(number)) {
+                      if (telNumberNoSpace.length <= 3) {
+                        this.textStr = telNumberNoSpace;
+                      } else {
+                        let split1: string = telNumberNoSpace.substring(0, 3);
+                        let split2: string = telNumberNoSpace.substring(3);
+                        this.textStr = split1 + ' ' + split2;
+                        if (telNumberNoSpace.length > 7) {
+                          split2 = telNumberNoSpace.substring(3, 7);
+                          let split3: string = telNumberNoSpace.substring(7);
+                          this.textStr = split1 + ' ' + split2 + ' ' + split3;
+                        }
+                      }
+                    } else if (telNumberNoSpace.length > 8) {
+                      let split4 = telNumberNoSpace.substring(0, 8);
+                      let split5 = telNumberNoSpace.substring(8);
+                      this.textStr = split4 + ' ' + split5;
+                    } else {
+                      this.textStr = number;
+                    }
+                  }
+              })
 
             CommonItemSelect({
               selects: ['Normal', 'Password', 'Email', 'Number', 'PhoneNumber'],
@@ -374,6 +408,70 @@ struct TextInputSample {
                 .cancelButton({
                   style: CancelButtonStyle.CONSTANT
                 })
+            }
+            .backgroundStyle()
+
+            // 设置折行规则
+            IntroductionTitle({ introduction: $r('app.string.text_input_line_break_strategy') })
+            Column() {
+              CommonItemSelect({
+                selects: ['GREEDY', 'HIGH_QUALITY', 'BALANCED'],
+                name: $r('app.string.text_input_current_type'),
+                callback: (index) => {
+                  switch (index) {
+                    case 1:
+                      this.lineBreakStrategy = LineBreakStrategy.HIGH_QUALITY;
+                      break
+                    case 2:
+                      this.lineBreakStrategy = LineBreakStrategy.BALANCED;
+                      break
+                    default:
+                      this.lineBreakStrategy = LineBreakStrategy.GREEDY;
+                  }
+                }
+              })
+
+              TextInput({text: this.lineBreakStrategyStr})
+                .id('text_line_break_strategy')
+                .fontSize(12)
+                .border({ width: 1 })
+                .padding(10)
+                .width('100%')
+                .maxLines(5)
+                .style(TextInputStyle.Inline)
+                .lineBreakStrategy(this.lineBreakStrategy)
+            }
+            .backgroundStyle()
+
+            // 设置断行规则
+            IntroductionTitle({ introduction: $r('app.string.text_input_word_break') })
+            Column() {
+              CommonItemSelect({
+                selects: ['NORMAL', 'BREAK_ALL', 'BREAK_WORD'],
+                name: $r('app.string.text_input_current_type'),
+                callback: (index) => {
+                  switch (index) {
+                    case 1:
+                      this.wordBreak = WordBreak.BREAK_ALL;
+                      break
+                    case 2:
+                      this.wordBreak = WordBreak.BREAK_WORD;
+                      break
+                    default:
+                      this.wordBreak = WordBreak.NORMAL;
+                  }
+                }
+              })
+
+              TextInput({text: this.wordBreakTextStr})
+                .id('text_word_break')
+                .fontSize(12)
+                .border({ width: 1 })
+                .padding(10)
+                .width('100%')
+                .maxLines(5)
+                .style(TextInputStyle.Inline) // Inline模式
+                .wordBreak(this.wordBreak) // 非Inline模式该属性无效
             }
             .backgroundStyle()
             .margin({ bottom: 70 })
