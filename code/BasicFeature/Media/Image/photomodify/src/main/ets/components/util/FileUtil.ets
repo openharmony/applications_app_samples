@@ -16,6 +16,8 @@ import image from '@ohos.multimedia.image';
 import fs from '@ohos.file.fs';
 import fileIo from '@ohos.file.fs';
 import { logger } from '../util/Logger';
+import ndkTest from 'libentry.so'
+import resourceManager from '@ohos.resourceManager';
 
 const TAG: string = '[Sample_SavePixelMap]';
 /**
@@ -33,6 +35,8 @@ export async function savePixelMap(context: Context, pm: PixelMap): Promise<stri
   try {
     packToFile(context, pm);
     const data: ArrayBuffer = await imagePackerApi.packing(pm, packOpts);
+    // PixelMap转为data
+    packToDataPixelMap(context, data)
     return await saveFile(context, data);
   } catch (err) {
     logger.error(TAG, '保存文件失败，err=' + JSON.stringify(err));
@@ -54,6 +58,12 @@ async function saveFile(context: Context, data: ArrayBuffer): Promise<string> {
   let uri: string = context.filesDir + '/' + getTimeStr() + '.jpg';
   let file: fileIo.File = fs.openSync(uri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   fs.writeSync(file.fd, data);
+  // ImageSource转为file
+  packToFileImageSource(context, file);
+  // PixelMap转为file
+  packToFilePixelMap(context, uri);
+  // ImageSource转为data
+  packToDataImageSource(context);
   fs.closeSync(file);
   // /data/storage/....  加上file://前缀
   uri = 'file:/' + uri;
@@ -83,4 +93,71 @@ function getTimeStr() {
   const minutes: number = now.getMinutes();
   const seconds: number = now.getSeconds();
   return `${year}${month}${day}_${hours}${minutes}${seconds}`;
+}
+
+/**
+ * PixelMap转为file
+ * @param context
+ * @param filePath 调用uri创建ImageSource方法, 需接收filePath参数
+ */
+function packToFilePixelMap(context: Context, filePath: string){
+  try {
+    const packFilePath: string = context.filesDir + '/' + getTimeStr() + '_1.png';
+    const packFile = fs.openSync(packFilePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    const result: number = ndkTest.packPixelMapToFile(filePath, packFile.fd)
+    logger.info(TAG, 'packPixelMapToFile result ' + result);
+  } catch (error) {
+    logger.error(TAG, 'packing fail ' + JSON.stringify(error));
+  }
+}
+
+/**
+ * ImageSource转为file
+ * @param context
+ * @param file 调用fd创建ImageSource方法, 需接收file参数
+ */
+function packToFileImageSource(context: Context, file: fileIo.File){
+  try {
+    const packFilePath: string = context.filesDir + '/' + getTimeStr() + '_2.jpg'
+    const packFile = fs.openSync(packFilePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE)
+    const result: number = ndkTest.packToFileImageSource(file.fd, packFile.fd)
+    logger.info(TAG, 'packToFileImageSource result ' + result);
+  } catch (error) {
+    logger.error(TAG, 'packing fail ' + JSON.stringify(error));
+  }
+}
+
+/**
+ * PixelMap转为data
+ * @param context
+ * @param buffer 调用data创建ImageSource方法, 需接收buffer参数
+ */
+function packToDataPixelMap(context: Context, buffer :ArrayBuffer){
+  try {
+    const packFilePath: string = context.filesDir + '/' + getTimeStr() + '_3.jpg'
+    const result: number = ndkTest.packToDataPixelMap(buffer, packFilePath)
+    logger.info(TAG, 'packToDataPixelMap result ' + result);
+  } catch (error) {
+    logger.error(TAG, 'packing fail ' + JSON.stringify(error));
+  }
+}
+
+/**
+ * ImageSource转为数据
+ * @param context 调用rawFile创建ImageSource方法
+ */
+async function packToDataImageSource(context: Context){
+  try {
+    // rawFile创建ImageSource
+    const resourceMgr = context.createModuleContext('entry').resourceManager
+    let rawFileDescriptor: resourceManager.RawFileDescriptor
+    rawFileDescriptor = await resourceMgr.getRawFd('test_jpg.jpg');
+    const packFilePath: string = context.filesDir + '/' + getTimeStr() + '_4.webp'
+
+    const result: number = ndkTest.packToDataImageSource(rawFileDescriptor.fd, rawFileDescriptor.offset,
+      rawFileDescriptor.length, packFilePath)
+    logger.info(TAG, 'packToDataImageSource result ' + result);
+  } catch (error) {
+    logger.error(TAG, 'packing fail ' + JSON.stringify(error));
+  }
 }

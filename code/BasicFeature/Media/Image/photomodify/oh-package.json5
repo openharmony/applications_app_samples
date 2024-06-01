@@ -17,7 +17,8 @@
   "license": "ISC",
   "types": "",
   "devDependencies": {
-    "@ohos/hypium": "1.0.6"
+    "@ohos/hypium": "1.0.6",
+    "libentry.so": "file:./src/main/cpp/types/libentry"
   },
   "name": "@ohos/photomodify",
   "description": "a npm package which contains arkUI2.0 page",
