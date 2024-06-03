@@ -1,0 +1,75 @@
+{
+    "asset": {
+        "version": "2.0"
+    },
+    "images": [
+        {
+            "name": "quarry_02_2k_radiance(spec).ktx",
+            "uri": "images/quarry_02_2k_radiance(spec).ktx",
+            "mimeType": "image/ktx"
+        },
+        {
+            "name": "quarry_02_2k_skybox.ktx",
+            "uri": "images/quarry_02_2k_skybox.ktx",
+            "mimeType": "image/ktx"
+        }
+    ],
+    "scenes": [
+        {
+            "name": "scene",
+            "extensions": {
+                "EXT_lights_image_based": {
+                    "light": 0
+                }
+            }
+        }
+    ],
+    "scene": 0,
+    "extensions": {
+        "EXT_lights_image_based": {
+            "lights": [
+                {
+                    "intensity": 1,
+                    "irradianceCoefficients": [
+                        [
+                            1.080343842506409,  0.936282396316528,  0.665518164634705
+                        ],
+                        [
+                            0.959947884082794,  0.828918874263763,  0.569704353809357
+                        ],
+                        [
+                            0.848236382007599,  0.715092182159424,  0.473145037889481
+                        ],
+                        [
+                            -0.591795265674591, -0.501678705215454, -0.334018945693970
+                        ],
+                        [
+                            -0.775423347949982, -0.655484378337860, -0.437325984239578
+                        ],
+                        [
+                            1.053589701652527,  0.887459456920624,  0.587381422519684
+                        ],
+                        [
+                            -0.018954016268253, -0.014871496707201, -0.008891185745597
+                        ],
+                        [
+                            -0.566255271434784, -0.476870059967041, -0.314557582139969
+                        ],
+                        [
+                            -0.239390164613724, -0.200478553771973, -0.132790848612785
+                        ]
+                    ],
+                    "name": "imageBasedLight",
+                    "extras": {
+                        "skymapImage": 1,
+                        "skymapImageLodLevel": 0,
+                        "specularCubeImage": 0
+                    }
+                }
+            ]
+        }
+    },
+    "extensionsUsed": [
+        "EXT_lights_image_based"
+    ]
+}

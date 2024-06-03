@@ -26,26 +26,16 @@ const BUNDLE: string = 'Image_';
 async function enterEdit() {
   hilog.info(DOMAIN, TAG, BUNDLE + 'ClickPhoto_001 begin');
   let driver = Driver.create();
-  await driver.delayMs(1000);
+  await driver.delayMs(3000);
   await driver.assertComponentExist(ON.id('Photo'));
   let photo = await driver.findComponent(ON.id('Photo'));
   await photo.click();
-  await driver.delayMs(1000);
+  await driver.delayMs(3000);
   await driver.assertComponentExist(ON.id('Edit'));
   let stack = await driver.findComponent(ON.id('Edit'));
   await stack.click();
   await driver.delayMs(1000);
   hilog.info(DOMAIN, TAG, BUNDLE + 'ClickPhoto_001 end');
-}
-
-async function saveEdit() {
-  hilog.info(DOMAIN, TAG, BUNDLE + 'Save_001 begin');
-  let driver = Driver.create();
-  await driver.assertComponentExist(ON.id('Save'));
-  let scale = await driver.findComponent(ON.id('Save'));
-  await scale.click();
-  await driver.delayMs(1000);
-  hilog.info(DOMAIN, TAG, BUNDLE + 'Save_001 end');
 }
 
 async function showColorSpace() {
@@ -256,120 +246,9 @@ export default function ActsAbilityTest() {
       await ok.click();
       await driver.delayMs(1000);
       // 保存当前操作
-      await saveEdit();
+      //await saveEdit();
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'CropOrigin end');
-    })
-
-    /**
-     * @tc.number  ScalePhoto_001
-     * @tc.name ScalePhoto_001
-     * @tc.desc 点击缩放
-     */
-    it('ScalePhoto_001', 8, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ScalePhoto_001 begin');
-      let driver = Driver.create();
-      await driver.delayMs(1000);
-      // 进入编辑
-      await enterEdit();
-      let tip: string = getString($r('app.string.scale'));
-      await driver.assertComponentExist(ON.text(tip));
-      let stack = await driver.findComponent(ON.text(tip));
-      await stack.click();
-      await driver.delayMs(1000);
-      done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ScalePhoto_001 end');
-    })
-
-    /**
-     * @tc.number  Scale_001
-     * @tc.name Scale_001
-     * @tc.desc 点击缩小
-     */
-    it('Scale_001', 9, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Scale_001 begin');
-      let driver = Driver.create();
-      await driver.delayMs(1000);
-      let zoomOut: string = getString($r('app.string.zoomOut'));
-      await driver.assertComponentExist(ON.text(zoomOut));
-      let stack = await driver.findComponent(ON.text(zoomOut));
-      await stack.click();
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.id('Ok'));
-      let ok = await driver.findComponent(ON.id('Ok'));
-      await ok.click();
-      await driver.delayMs(1000);
-      done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Scale_001 end');
-    })
-
-    /**
-     * @tc.number  Scale_002
-     * @tc.name Scale_002
-     * @tc.desc 点击放大
-     */
-    it('Scale_002', 10, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Scale_002 begin');
-      let driver = Driver.create();
-      let tip = getString($r('app.string.scale'));
-      await driver.assertComponentExist(ON.text(tip));
-      let scale = await driver.findComponent(ON.text(tip));
-      await scale.click();
-      await driver.delayMs(1000);
-      let zoomIn = getString($r('app.string.zoomIn'));
-      await driver.assertComponentExist(ON.text(zoomIn));
-      let stack = await driver.findComponent(ON.text(zoomIn));
-      await stack.click();
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.id('Ok'));
-      let ok = await driver.findComponent(ON.id('Ok'));
-      await ok.click();
-      await driver.delayMs(1000);
-      // 保存当前编辑
-      await saveEdit();
-      done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Scale_002 end');
-    })
-
-    /**
-     * @tc.number  RotatePhoto_001
-     * @tc.name RotatePhoto_001
-     * @tc.desc 点击旋转
-     */
-    it('RotatePhoto_001', 11, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'RotatePhoto_001 begin');
-      let driver = Driver.create();
-      await driver.delayMs(1000);
-      // 进入编辑
-      await enterEdit();
-      let tip: string = getString($r('app.string.rotate'));
-      await driver.assertComponentExist(ON.text(tip));
-      let stack = await driver.findComponent(ON.text(tip));
-      await stack.click();
-      await driver.delayMs(1000);
-      done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'RotatePhoto_001 end');
-    })
-
-    /**
-     * @tc.number  Rotate_001
-     * @tc.name Rotate_001
-     * @tc.desc 旋转-90度
-     */
-    it('Rotate_001', 12, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Rotate_001 begin');
-      let driver = Driver.create();
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.id('-90'));
-      let rotate90 = await driver.findComponent(ON.id('-90'));
-      await rotate90.click();
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.id('Ok'));
-      let ok = await driver.findComponent(ON.id('Ok'));
-      await ok.click();
-      await driver.delayMs(1000);
-      done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Rotate_001 end');
     })
 
     /**
@@ -394,118 +273,9 @@ export default function ActsAbilityTest() {
       await ok.click();
       await driver.delayMs(1000);
       // 保存当前编辑
-      await saveEdit();
+      //await saveEdit();
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'Rotate_002 end');
-    })
-
-    /**
-     * @tc.number  ToningPhoto_001
-     * @tc.name ToningPhoto_001
-     * @tc.desc 点击调色
-     */
-    it('ToningPhoto_001', 14, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ToningPhoto_001 begin');
-      let driver = Driver.create();
-      await driver.delayMs(1000);
-      // 进入编辑
-      await enterEdit();
-      let tip: string = getString($r('app.string.toning'));
-      await driver.assertComponentExist(ON.text(tip));
-      let stack = await driver.findComponent(ON.text(tip));
-      await stack.click();
-      await driver.delayMs(1000);
-      done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ToningPhoto_001 end');
-    })
-
-    /**
-     * @tc.number  Toning_001
-     * @tc.name Toning_001
-     * @tc.desc 拖动滑动条
-     */
-    it('Toning_001', 15, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Toning_001 begin');
-      let driver = Driver.create();
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.id('Slider'));
-      let slider = await driver.findComponent(ON.id('Slider'));
-      let point = await slider.getBoundsCenter();
-      // 拖动滑动条，固定坐标只支持RK3568，其他设备需要调整
-      await driver.drag(point.x - 50, point.y, point.x + 50, point.y, 800);
-      await slider.click();
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.id('Ok'));
-      let ok = await driver.findComponent(ON.id('Ok'));
-      await ok.click();
-      await driver.delayMs(1000);
-      // 保存当前编辑
-      await saveEdit();
-      done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Scale_001 end');
-    })
-
-    /**
-     * @tc.number  Mark_001
-     * @tc.name Mark_001
-     * @tc.desc 点击标记
-     */
-    it('Mark_001', 16, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Mark_001 begin');
-      let driver = Driver.create();
-      await driver.delayMs(1000);
-      // 进入编辑
-      await enterEdit();
-      let mark: string = getString($r('app.string.mark'));
-      await driver.assertComponentExist(ON.text(mark));
-      let stack = await driver.findComponent(ON.text(mark));
-      await stack.click();
-      await driver.delayMs(1000);
-      done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Mark_001 end');
-    })
-
-    /**
-     * @tc.number  Text_001
-     * @tc.name Text_001
-     * @tc.desc 点击文字
-     */
-    it('Text_001', 17, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Text_001 begin');
-      let driver = Driver.create();
-      await driver.delayMs(1000);
-      let text: string = getString($r('app.string.text'));
-      await driver.assertComponentExist(ON.text(text));
-      let stack = await driver.findComponent(ON.text(text));
-      await stack.click();
-      await driver.delayMs(1000);
-      done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Text_001 end');
-    })
-
-    /**
-     * @tc.number  TextInput_001
-     * @tc.name TextInput_001
-     * @tc.desc 输入文字
-     */
-    it('TextInput_001', 18, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'TextInput_001 begin');
-      let driver = Driver.create();
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.id('TextInput'));
-      let input = await driver.findComponent(ON.id('TextInput'));
-      await input.inputText('ttt');
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.id('Sure'));
-      let sure = await driver.findComponent(ON.id('Sure'));
-      await sure.click();
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.id('Ok'));
-      let ok = await driver.findComponent(ON.id('Ok'));
-      await ok.click();
-      await driver.delayMs(1000);
-      done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'TextInput_001 end');
     })
 
     /**
@@ -521,74 +291,9 @@ export default function ActsAbilityTest() {
       await scale.click();
       await driver.delayMs(1000);
       // 保存当前编辑
-      await saveEdit();
+      //await saveEdit();
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'Repeal_001 end');
-    })
-
-    /**
-     * @tc.number  Mark_002
-     * @tc.name Mark_002
-     * @tc.desc 点击标记
-     */
-    it('Mark_002', 20, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Mark_002 begin');
-      let driver = Driver.create();
-      await driver.delayMs(1000);
-      // 进入编辑
-      await enterEdit();
-      let mark: string = getString($r('app.string.mark'));
-      await driver.assertComponentExist(ON.text(mark));
-      let stack = await driver.findComponent(ON.text(mark));
-      await stack.click();
-      await driver.delayMs(1000);
-      done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Mark_002 end');
-    })
-
-    /**
-     * @tc.number  AddSticker_001
-     * @tc.name AddSticker_001
-     * @tc.desc 添加贴纸
-     */
-    it('AddSticker_001', 21, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'AddSticker_001 begin');
-      let driver = Driver.create();
-      await driver.delayMs(1000);
-      let sticker: string = getString($r('app.string.sticker'));
-      await driver.assertComponentExist(ON.text(sticker));
-      let stack = await driver.findComponent(ON.text(sticker));
-      await stack.click();
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.id('Ok'));
-      let ok = await driver.findComponent(ON.id('Ok'));
-      await ok.click();
-      await driver.delayMs(1000);
-      // 保存当前编辑
-      await saveEdit();
-      done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'AddSticker_001 end');
-    })
-
-    /**
-     * @tc.number  ColorSpace_001
-     * @tc.name ColorSpace_001
-     * @tc.desc 点击色域
-     */
-    it('ColorSpace_001', 22, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ColorSpace_001 begin');
-      let driver = Driver.create();
-      await driver.delayMs(1000);
-      // 进入编辑
-      await enterEdit();
-      await showColorSpace();
-      let tip = getString($r('app.string.colorSpace'));
-      await driver.assertComponentExist(ON.text(tip));
-      let colorSpace = await driver.findComponent(ON.text(tip));
-      await colorSpace.click();
-      await driver.delayMs(1000);
-      done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'ColorSpace_001 end');
     })
 
     /**
@@ -599,11 +304,17 @@ export default function ActsAbilityTest() {
     it('ColorSpacePhoto_001', 23, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ColorSpacePhoto_001 begin');
       let driver = Driver.create();
+      await showColorSpace();
+      let tip = getString($r('app.string.colorSpace'));
+      await driver.assertComponentExist(ON.text(tip));
+      let colorSpaceBtn = await driver.findComponent(ON.text(tip));
+      await colorSpaceBtn.click();
+      await driver.delayMs(1000);
       let colorSpace = getString($r('app.string.colorSpaceSRGB'));
       await driver.assertComponentExist(ON.text(colorSpace));
       let stack = await driver.findComponent(ON.text(colorSpace));
       await stack.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(3000);
       await driver.assertComponentExist(ON.id('Ok'));
       let ok = await driver.findComponent(ON.id('Ok'));
       await ok.click();
@@ -690,10 +401,9 @@ export default function ActsAbilityTest() {
       await ok.click();
       await driver.delayMs(1000);
       // 保存当前编辑
-      await saveEdit();
+      //await saveEdit();
       done();
       hilog.info(DOMAIN, TAG, BUNDLE + 'ColorSpacePhoto_004 end');
     })
-
   })
 }

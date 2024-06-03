@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2023 Huawei Device Co., Ltd.
+* Copyright (c) 2023-2024 Huawei Device Co., Ltd.
 * Licensed under the Apache License, Version 2.0 (the "License")
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -14,9 +14,8 @@
 */
 
 {
-  "hvigorVersion": "3.0.2",
+  "hvigorVersion": "4.0.4",
   "dependencies": {
-    "@ohos/hvigor-ohos-plugin": "3.0.2"
+    "@ohos/hvigor-ohos-plugin": "4.0.4"
   },
-
 }

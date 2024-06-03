@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例使用了[@ohos.faultLogger](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-faultLogger.md)接口，展示了在eTS中如何获取应用故障相关信息。
+本示例使用了[@ohos.faultLogger](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-performance-analysis-kit/js-apis-faultLogger.md)接口，展示了在eTS中如何获取应用故障相关信息。
 
 ### 效果预览
 |首页|
@@ -26,7 +26,7 @@ entry/src/main/ets/
 ```
 
 ### 具体实现
-+ 创造应用故障场景，故障类型枚举值参考[faultType](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-faultLogger.md#faulttype)，源码参考[FaultDialog.ets](entry/src/main/ets/common/FaultDialog.ets)：
++ 创造应用故障场景，故障类型枚举值参考[FaultType](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-performance-analysis-kit/js-apis-faultLogger.md)，源码参考[FaultDialog.ets](entry/src/main/ets/common/FaultDialog.ets)：
     + js_crash故障：通过数组访问越界构造;
     + cpp_crash故障：通过调用不存在的Api接口构造;
     + freeze_crash故障：通过代码产生死循环构造;

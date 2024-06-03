@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License")
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,10 +13,9 @@
  * limitations under the License.
  */
 
-import { describe, it, expect, TestType } from '@ohos/hypium'
-import { Driver } from '@ohos.UiTest'
-import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import Want from '@ohos.app.ability.Want';
+import { describe, it, expect, TestType } from '@ohos/hypium';
+import { abilityDelegatorRegistry, Driver } from '@kit.TestKit';
+import { Want } from '@kit.AbilityKit';
 
 const DELAYMS = 1000;
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
@@ -35,7 +34,7 @@ export default function findWindowExampleTest() {
       let want: Want = {
         bundleName : bundleName,
         abilityName :'EntryAbility'
-      }
+      };
       await delegator.startAbility(want);
       let driver = Driver.create();
       await driver.delayMs(DELAYMS);

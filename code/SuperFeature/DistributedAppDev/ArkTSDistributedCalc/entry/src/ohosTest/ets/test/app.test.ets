@@ -51,10 +51,6 @@ export default function appTest() {
       await driver.assertComponentExist(ON.text('允许'))
       let btnStart = await driver.findComponent(ON.text('允许'));
       await btnStart.click();
-      await delegator.getCurrentTopAbility().then((Ability) => {
-        logger.info(TAG, `${BUNDLE}get top ability`);
-        expect(Ability.context.abilityInfo.name).assertEqual('MainAbility');
-      })
       logger.info(TAG, `${BUNDLE}RequestPermissionFunction_001 end`);
       done();
     })

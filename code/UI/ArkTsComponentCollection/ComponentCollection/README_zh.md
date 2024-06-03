@@ -271,6 +271,7 @@ entry/src/main/ets/
 |   |   |   |   |---ScrollSample.ets                     // 滚动
 |   |   |   |---swiperSample
 |   |   |   |   |---SwiperControlPanel.ets
+|   |   |   |   |---SwiperCustomAnimationControlPanel.ets
 |   |   |   |   |---SwiperSample.ets                     // 轮播
 |   |   |---stackFlexAndGrid
 |   |   |   |---flexSample                               
@@ -543,9 +544,9 @@ entry/src/main/ets/
 
 1.本示例仅支持标准系统上运行，支持设备：RK3568。
 
-2.本示例仅支持API11版本SDK，SDK版本号(4.1.6.1 Beta1),镜像版本号( OpenHarmony 4.1.6.1)。
+2.本示例仅支持API12版本SDK，SDK版本号(5.0.0.23 Canary2),镜像版本号( OpenHarmony 5.0.0.23)。
 
-3.本示例需要使用DevEco Studio 版本号(3.1.1 Release)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 版本号(4.1.3.500)及以上版本才可编译运行。
 
 4.本示例涉及ohos.permission.GET_BUNDLE_INFO_PRIVILEGED、ohos.permission.REQUIRE_FORM为system_basic级别（相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md)
 查看），需要配置高权限签名，可参考[应用apl等级说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/app-permission-mgmt-overview.md#apl等级)。

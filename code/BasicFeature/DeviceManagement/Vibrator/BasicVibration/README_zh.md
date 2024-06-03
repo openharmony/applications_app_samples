@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例模拟倒计时场景，通过[@ohos.vibrator](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-vibrator.md) 等接口来实现振动。
+本示例模拟倒计时场景，通过[@ohos.vibrator](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-vibrator.md) 等接口来实现振动。
 
 ### 效果预览
 
@@ -44,7 +44,7 @@ entry/src/main/ets/
   
 ### 相关权限
 
-[ohos.permission.VIBRATE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionvibrate)
+[ohos.permission.VIBRATE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionvibrate)
 
 ### 依赖
 

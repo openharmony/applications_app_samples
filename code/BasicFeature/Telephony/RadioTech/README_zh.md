@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例通过[@ohos.telephony.sim](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-sim.md) 、[@ohos.telephony.radio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-radio.md) 等接口来展示电话服务中网络搜索功能，包含无线接入技术、网络状态、选网模式、ISO国家码、信号强度信息列表及Radio是否打开
+本示例通过[@ohos.telephony.sim](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-telephony-kit/js-apis-sim.md) 、[@ohos.telephony.radio](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-telephony-kit/js-apis-radio.md) 等接口来展示电话服务中网络搜索功能，包含无线接入技术、网络状态、选网模式、ISO国家码、信号强度信息列表及Radio是否打开
 
 ### 效果预览
 |主页|
@@ -45,7 +45,7 @@ entry/src/main/ets/
 
 ### 相关权限
 
-[ohos.permission.GET_NETWORK_INFO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionget_network_info)
+[ohos.permission.GET_NETWORK_INFO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionget_network_info)
 
 ### 依赖
 

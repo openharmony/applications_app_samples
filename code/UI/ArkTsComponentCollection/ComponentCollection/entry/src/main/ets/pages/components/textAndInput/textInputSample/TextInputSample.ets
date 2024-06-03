@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -290,6 +290,7 @@ struct TextInputSample {
           Column() {
             Row() {
               Text($r('app.string.text_input_set_text_selection_start_select'))
+                .fontSize(14)
               Column() {
                 TextPicker({ range: this.selects, selected: this.select })
                   .onChange((value: string | string[], index: number | number[]) => {
@@ -300,9 +301,10 @@ struct TextInputSample {
                   })
               }
               .height(90)
-              .width(100)
+              .width(60)
 
               Text($r('app.string.text_input_set_text_selection_end_select'))
+                .fontSize(14)
               Column() {
                 TextPicker({ range: this.selects, selected: this.select })
                   .onChange((value: string | string[], index: number | number[]) => {
@@ -314,7 +316,7 @@ struct TextInputSample {
                   .id('end_select')
               }
               .height(90)
-              .width(100)
+              .width(60)
 
               Button($r('app.string.text_area_set_text_selection'))
                 .id('button_to_select')
@@ -356,7 +358,7 @@ struct TextInputSample {
                 })
                 .margin({ left: 12 })
               }
-              .width(432)
+              .width('100%')
               .height(40)
               .backgroundColor($r('app.color.background_shallow_grey'))
               .borderRadius(20)

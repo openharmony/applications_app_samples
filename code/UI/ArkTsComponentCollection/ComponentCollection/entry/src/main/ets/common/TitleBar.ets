@@ -24,9 +24,8 @@ export struct TitleBar {
     Column() {
       Row() {
         Image($r('app.media.ic_back'))
-          .width(20)
-          .height(20)
-          .margin({ left: 26 })
+          .width(40)
+          .height(40)
           .objectFit(ImageFit.Contain)
           .onClick(() => {
             router.back()
@@ -34,13 +33,13 @@ export struct TitleBar {
           .id('backBtn')
         Text(this.title)
           .fontSize(20)
-          .layoutWeight(1)
-          .margin({ left: 16 })
-          .align(Alignment.Start)
-        Blank()
+          .fontWeight(FontWeight.Bold)
+          .fontColor($r('app.color.font_color_black'))
+          .margin({ left: 8, right: 8 })
       }
       .height(56)
       .width('100%')
+      .padding({ left: 16, right: 16 })
     }
   }
 }

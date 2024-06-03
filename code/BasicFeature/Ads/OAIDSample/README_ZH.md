@@ -24,7 +24,7 @@
 
 3.点击“通过异步callback获取OAID”，上方文本框显示OAID。
 
-4.重置功能需安装[ResetOAID](/lib/ResetOAID-1.0.0.hap)，点击“重置OAID”，上方文本框OAID重置。
+4.重置功能需安装[ResetOAID](/code/BasicFeature/Ads/OAIDSample/lib/ResetOAID-1.0.0.hap)，点击“重置OAID”，上方文本框OAID重置。
 
 
 ### 工程目录

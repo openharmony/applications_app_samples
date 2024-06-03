@@ -49,7 +49,7 @@
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td height="270" align="center" rowspan="31" style='height:202.50pt' x:str><strong>基础特性</strong></td>
+  <td height="270" align="center" rowspan="29" style='height:202.50pt' x:str><strong>基础特性</strong></td>
   <td x:str><strong>能力增强</strong></td>
   <td x:str><a href="code/BasicFeature/Ability/AbilityFeature">基础能力增强</a></td>
   <td ></td>
@@ -66,36 +66,16 @@
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>应用模型</strong></td>
   <td x:str><a href="code/BasicFeature/ApplicationModels/AbilityStartMode">Ability的启动方式</a></td>
-  <td x:str><a href="code/BasicFeature/ApplicationModels/CustomShare">自定义分享（API 10）</a></td>
   <td x:str><a href="code/BasicFeature/ApplicationModels/DynamicRouter">Navigation动态路由</a></td>
   <td ></td>
- </tr>
- <tr height="18" style='height:13.50pt;'>
-  <td x:str><strong>卡片</strong></td>
-  <td x:str><a href="code/BasicFeature/ArkTSCard/ArkTSCard">ArkTs卡片能力增强</a></td>
-  <td ></td>
-  <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td rowspan="2" x:str><strong>通知</strong></td>
+  <td x:str><strong>通知</strong></td>
   <td x:str><a href="code/BasicFeature/Notification/CustomEmitter">自定义Emitter</a></td>
   <td x:str><a href="code/BasicFeature/Notification/CustomNotification">自定义通知（API 10）</a></td>
   <td x:str><a href="code/BasicFeature/Notification/CustomCommonEvent">公共事件的订阅和发布（API 11）</a></td>
   <td x:str><a href="code/BasicFeature/Notification/CustomNotificationBadge">自定义通知角标（API 10）</a></td>
- </tr>
- <tr height="18" style='height:13.50pt;'>
-  <td x:str><a href="code/BasicFeature/Notification/CustomNotificationPush">自定义通知推送（API 10）</a></td>
-  <td ></td>
-  <td ></td>
-  <td ></td>
- </tr>
- <tr height="18" style='height:13.50pt;'>
-  <td x:str><strong>窗口管理</strong></td>
-  <td x:str><a href="code/BasicFeature/WindowManagement/WindowManage">窗口管理（API 12）</a></td>
-  <td x:str><a href="code/BasicFeature/WindowManagement/WindowRatio">悬浮窗（API 10）</a></td>
-  <td ></td>
-  <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>Web</strong></td>
@@ -130,7 +110,7 @@
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td rowspan="3"><strong>安全</strong></td>
+  <td rowspan="2"><strong>安全</strong></td>
   <td x:str><a href="code/BasicFeature/Security/Cipher">加解密</a></td>
   <td x:str><a href="code/BasicFeature/Security/AppAccountManager">应用帐号管理</a></td>
   <td x:str><a href="code/BasicFeature/Security/CryptoFramework">通用密钥库系统（cryptoFramework）</a></td>
@@ -140,12 +120,6 @@
   <td x:str><a href="code/BasicFeature/Security/Huks">通用密钥库系统（huks）（API 10）</a></td>
   <td x:str><a href="code/BasicFeature/Security/PaySecurely">支付</a></td>
   <td x:str><a href="code/BasicFeature/Security/CertManager">证书管理</a></td>
-  <td x:str><a href="code/BasicFeature/Security/DLPManager">DLPManager</a></td>
- </tr>
- <tr height="18" style='height:13.50pt;'>
-  <td x:str><a href="code/BasicFeature/Security/CertManager">证书管理</a></td>
-  <td ></td>
-  <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
@@ -216,15 +190,9 @@
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td rowspan="2" x:str><strong>任务管理</strong></td>
+  <td x:str><strong>任务管理</strong></td>
   <td x:str><a href="code/BasicFeature/TaskManagement/ReminderAgentManager">后台代理提醒</a></td>
-  <td x:str><a href="code/BasicFeature/TaskManagement/WorkScheduler">延迟任务调度</a></td>
-  <td x:str><a href="code/BasicFeature/TaskManagement/Flybird">资源调度接口使用</a></td>
   <td x:str><a href="code/BasicFeature/TaskManagement/ContinuousTask">长时任务</a></td>
- </tr>
- <tr height="18" style='height:13.50pt;'>
-  <td x:str><a href="code/BasicFeature/TaskManagement/TransientTask">短时任务</a></td>
-  <td ></td>
   <td ></td>
   <td ></td>
  </tr>
@@ -249,13 +217,6 @@
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td x:str><strong>IDL</strong></td>
-  <td x:str><a href="code/BasicFeature/IDL/AbilityConnectServiceExtension">Ability与ServiceExtensionAbility通信</a></td>
-  <td x:str></td>
-  <td x:str></td>
-  <td x:str></td>
- </tr>
- <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>国际化</strong></td>
   <td x:str><a href="code/BasicFeature/International/International">国际化</a></td>
   <td ></td>
@@ -263,22 +224,26 @@
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td rowspan="2" x:str><strong>Native</strong></td>
+  <td rowspan="3" x:str><strong>Native</strong></td>
   <td x:str><a href="code/BasicFeature/Native/NdkRawfile">获取Rawfile资源</a></td>
   <td x:str><a href="code/BasicFeature/Native/NdkXComponent">Native XComponent（API 10）</a></td>
   <td x:str><a href="code/BasicFeature/Native/NdkOpenGL">OpenGL三棱椎（API 10）</a></td>
   <td x:str><a href="code/BasicFeature/Native/Audio">音频管理</a></td>
-  <td x:str><a href="code/BasicFeature/Native/NdkDrawing">Native Drawing</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
+  <td x:str><a href="code/BasicFeature/Native/NdkDrawing">Native Drawing</a></td>
   <td x:str><a href="code/BasicFeature/Native/NdkNativeWindow">Native Window</a></td>
   <td x:str><a href="code/BasicFeature/Native/XComponent3D">XComponent3D</a></td>
   <td x:str><a href="code/BasicFeature/Native/NdkRenderNodeDrawing">Native RenderNode Drawing</a></td>
-  <td x:str><a href="code/BasicFeature/Native/NdkTsDrawing">NdkTsDrawing</a></td>
-  <td x:str><a href="code/BasicFeature/Native/NdkQoS">Native QoS</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-<td height="90" align="center" rowspan="18" style='height:67.50pt;' x:str><strong>系统特性（仅对系统应用开放）</strong></td>
+  <td x:str><a href="code/BasicFeature/Native/NdkTsDrawing">NdkTsDrawing</a></td>
+  <td x:str><a href="code/BasicFeature/Native/NdkQoS">Native QoS</a></td>
+  <td x:str><a href="code/BasicFeature/Native/NdkVulkan">XComponent组件对接Vulkan</a></td>
+  <td ></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
+<td height="90" align="center" rowspan="25" style='height:67.50pt;' x:str><strong>系统特性（仅对系统应用开放）</strong></td>
   <td x:str><strong>能力增强</strong></td>
   <td x:str><a href="code/SystemFeature/Ability/AbilityFeatureSystem">基础能力增强</a></td>
   <td ></td>
@@ -286,7 +251,7 @@
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td rowspan="2" x:str><strong>应用模型</strong></td>
+  <td rowspan="3" x:str><strong>应用模型</strong></td>
   <td x:str><a href="code/SystemFeature/ApplicationModels/Launcher">仿桌面应用（API 10）</a></td>
   <td x:str><a href="code/SystemFeature/ApplicationModels/MissionManager">任务管理</a></td>
   <td x:str><a href="code/SystemFeature/ApplicationModels/StaticSubscriber">静态订阅（API 10）</a></td>
@@ -299,18 +264,24 @@
   <td x:str><a href="code/SystemFeature/ApplicationModels/StageModel">Stage模型（API10）</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
+  <td x:str><a href="code/SystemFeature/ApplicationModels/CustomShare">自定义分享（API 10）</a></td>
+  <td ></td>
+  <td ></td>
+  <td ></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>自动填充</strong></td>
   <td x:str><a href="code/SystemFeature/AutoFill/AutoFill">AutoFill自动填充能力</a></td>
   <td ></td>
   <td ></td>
   <td ></td>
+ </tr>
  <tr height="18" style='height:13.50pt;'>
   <td rowspan="2" x:str><strong>媒体</strong></td>
   <td x:str><a href="code/SystemFeature/Media/Screenshot">截屏</a></td>
   <td x:str><a href="code/SystemFeature/Media/ScreenRecorder">录屏</a></td>
   <td x:str><a href="code/SystemFeature/Media/Camera">相机和媒体库（API 10）</a></td>
   <td x:str><a href="code/SystemFeature/Media/Audio">音频管理（仅对系统应用开放）</a></td>
- </tr>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><a href="code/SystemFeature/Media/AVSession/MediaController">媒体会话——控制方（API 10）</a></td>
@@ -322,21 +293,27 @@
   <td x:str><strong>通知</strong></td>
   <td x:str><a href="code/SystemFeature/Notification/Publish">实况通知推送</a></td>
   <td x:str><a href="code/SystemFeature/Notification/Subscribe">通知发布订阅</a></td>
-  <td ></td>
+  <td x:str><a href="code/SystemFeature/Notification/CustomNotificationPush">自定义通知推送（API 10）</a></td>
   <td ></td>
  </tr>
-  <tr height="18" style='height:13.50pt;'>
-  <td x:str><strong>安全</strong></td>
+ <tr height="18" style='height:13.50pt;'>
+  <td rowspan="2" x:str><strong>安全</strong></td>
   <td x:str><a href="code/SystemFeature/Security/AbilityAccessCtrl">应用访问权限控制</a></td>
   <td x:str><a href="code/SystemFeature/Security/AuthorizedButton">安全控件类型的UI控件（API 10）</a></td>
   <td x:str><a href="code/SystemFeature/Security/DLP">DLP</a></td>
-<td x:str><a href="code/SystemFeature/Security/CertificateFramework">证书算法库框架</a></td>
+  <td x:str><a href="code/SystemFeature/Security/CertificateFramework">证书算法库框架</a></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
+  <td x:str><a href="code/SystemFeature/Security/DLPManager">DLPManager</a></td>
+  <td ></td>
+  <td ></td>
+  <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>窗口管理</strong></td>
   <td x:str><a href="code/SystemFeature/WindowManagement/WindowExtAbility">窗口扩展</a></td>
-  <td ></td>
-  <td ></td>
+  <td x:str><a href="code/SystemFeature/WindowManagement/WindowRatio">悬浮窗（API 10）</a></td>
+  <td x:str><a href="code/SystemFeature/WindowManagement/WindowManage">窗口管理（API 12）</a></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
@@ -349,6 +326,13 @@
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>数据管理</strong></td>
   <td x:str><a href="code/SystemFeature/DataManagement/CrossAppDataShare">跨应用数据共享</a></td>
+  <td ></td>
+  <td ></td>
+  <td ></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
+  <td x:str><strong>卡片能力增强</strong></td>
+  <td x:str><a href="code/SystemFeature/ArkTSCard/ArkTSCard">ArkTs卡片能力增强</a></td>
   <td ></td>
   <td ></td>
   <td ></td>
@@ -367,6 +351,13 @@
   <td ></td>
   <td ></td>
  </tr>
+  <tr height="18" style='height:13.50pt;'>
+  <td x:str><strong>IDL</strong></td>
+  <td x:str><a href="code/SystemFeature/IDL/AbilityConnectServiceExtension">Ability与ServiceExtensionAbility通信</a></td>
+  <td x:str></td>
+  <td x:str></td>
+  <td x:str></td>
+ </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>分布式</strong></td>
   <td x:str><a href="code/SystemFeature/DistributedAppDev/DistributedAccount">分布式帐号（API 10）</a></td>
@@ -382,6 +373,13 @@
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
+  <td x:str><strong>资源配置</strong></td>
+  <td x:str><a href="code/Project/ResourceAllocation/ApplicationThemeSwitch">应用主题切换</a></td>
+  <td ></td>
+  <td ></td>
+  <td ></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>意图</strong></td>
   <td x:str><a href="code/SystemFeature/InsightIntent/IntentDriver">意图执行</a></td>
   <td ></td>
@@ -390,6 +388,13 @@
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>电话服务</strong></td>
+  <td x:str><a href="code/SystemFeature/TaskManagement/Flybird">小鸟避障游戏</a></td>
+  <td x:str><a href="code/SystemFeature/TaskManagement/TransientTask">短时任务</a></td>
+  <td x:str><a href="code/SystemFeature/TaskManagement/WorkScheduler">延迟任务调度</a></td>
+  <td ></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
+  <td x:str><strong>任务管理</strong></td>
   <td x:str><a href="code/SystemFeature/Telephony/Message">短信</a></td>
   <td x:str><a href="code/SystemFeature/Telephony/Call">拨打电话</a></td>
   <td ></td>
@@ -401,6 +406,14 @@
   <td ></td>
   <td ></td>
   <td ></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
+  <td x:str><strong>卡片</strong></td>
+  <td x:str><a href="code/SystemFeature/Widget/FormExtAbility">Stage模型卡片</a></td>
+  <td x:str><a href="code/SystemFeature/Widget/RequestAddForm">应用主动添加数据代理卡片到桌面</a></td>
+  <td ></td>
+  <td ></td>
+ </tr>
  <tr height="18" style='height:13.50pt;'>
   <td height="90" align="center" rowspan="8" style='height:67.50pt;' x:str><strong>关键特性</strong></td>
   <td rowspan="3" x:str><strong>一次开发，多端部署</strong></td>
@@ -443,14 +456,14 @@
  <tr height="18" style='height:13.50pt;'>
   <td rowspan="2" x:str><strong>卡片</strong></td>
   <td x:str><a href="code/SuperFeature/Widget/AdaptiveServiceWidget">JS多设备自适应服务卡片</a></td>
-  <td x:str><a href="code/SuperFeature/Widget/FormExtAbility">Stage模型卡片</a></td>
   <td x:str><a href="code/SuperFeature/Widget/FormGame">Stage模型卡片JS与C++通信（API 10）</a></td>
-  <td x:str><a href="code/SuperFeature/Widget/RequestAddForm">应用主动添加数据代理卡片到桌面（API 10）</a></td>
- </tr>
- <tr height="18" style='height:13.50pt;'>
   <td x:str><a href="code/SuperFeature/Widget/ArkTSCard/CanvasGame">ArkTS卡片Canvas小游戏</a></td>
   <td x:str><a href="code/SuperFeature/Widget/ArkTSCard/MusicControl">ArkTs音乐卡片</a></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
   <td x:str><a href="code/SuperFeature/Widget/ArkTSCard/Calculator">ArkTS卡片计算器</a></td>
+  <td ></td>
+  <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
@@ -474,7 +487,6 @@
   <td ></td>
   <td ></td>
   <td ></td>
- </tr>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>媒体</strong></td>
@@ -505,14 +517,7 @@
   <td x:str><a href="code/Solutions/Tools/ArkTSClock">ArkTS时钟</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td height="54" align="center" rowspan="4" style='height:40.50pt' x:str><strong>工程能力</strong></td>
-  <td x:str><strong>资源配置</strong></td>
-  <td x:str><a href="code/Project/ResourceAllocation/ApplicationThemeSwitch">应用主题切换</a></td>
-  <td ></td>
-  <td ></td>
-  <td ></td>
- </tr>
- <tr height="18" style='height:13.50pt;'>
+  <td height="54" align="center" rowspan="3" style='height:40.50pt' x:str><strong>工程能力</strong></td>
   <td x:str><strong>应用程序包</strong></td>
   <td x:str><a href="code/Project/ApplicationHap/MultiHap">多HAP</a></td>
   <td ></td>
@@ -575,14 +580,12 @@ code
   |---Ability                      # 能力增强
   |---Ads                          # 广告
   |---ApplicationModels            # 应用模型
-  |---ArkTsCard                    # 卡片
   |---Connectivity                 # 网络与连接
   |---DFX                          # DFX
   |---DataManagement               # 数据管理
   |---DeviceManagement             # 设备管理
   |---FileManagement               # 文件管理
   |---Graphics                     # 图像
-  |---IDL                          # IDL
   |---InsightIntent                # 意图
   |---International                # 国际化
   |---Media                        # 媒体
@@ -597,6 +600,7 @@ code
 |---SystemFeature              # 系统特性
   |---Ability                      # 能力增强
   |---ApplicationModels            # 应用模型
+  |---ArkTsCard                    # 卡片能力增强
   |---AutoFill                     # 自动填充
   |---Connectivity                 # 网络与连接
   |---DataManagement               # 数据管理
@@ -604,12 +608,16 @@ code
   |---DeviceUsageStatistics        # 设备使用信息
   |---DistributedAppDev            # 分布式
   |---FileManagement               # 文件管理
+  |---IDL                          # IDL
   |---InsightIntent                # 意图
   |---Internationalnation          # 国际化
   |---Media                        # 媒体
   |---Notification                 # 通知
+  |---ResourceAllocation           # 资源配置
   |---Security                     # 安全
+  |---TaskManagement               # 任务管理
   |---Telephony                    # 电话服务
+  |---Widget                       # 卡片
   |---WindowManagement             # 窗口管理
 |---SuperFeature               # 关键特性
   |---DistributedAppDev            # 分布式
@@ -626,7 +634,6 @@ code
 |---Project                    # 工程能力
   |---ApplicationHap               # 应用程序包
   |---HapBuild                     # 流水线预测试工具
-  |---ResourceAllocation           # 资源配置
   |---Test                         # 测试框架
 |---LaunguageBaseClassLibrary  # 语言基础类库
   |---ConcurrentModule             # 多线程任务

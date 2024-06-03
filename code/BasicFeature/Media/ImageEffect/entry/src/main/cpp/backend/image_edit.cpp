@@ -303,15 +303,6 @@ napi_value ImageEdit::RegisterCustomBrightness()
     ImageEffect_ErrorCode errorCode = OH_EffectFilter_Register(effectInfo, &delegate);
     CHECK_AND_RETURN_RET_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, result,
         "OH_EffectFilter_Register fail! errorCode = %{public}d", errorCode);
-    OH_EffectFilter *filter = OH_EffectFilter_Create("CustomBrightness");
-    CHECK_AND_RETURN_RET_LOG(filter != nullptr, result, "OH_ImageEffect_AddFilter fail!");
-    ImageEffect_Any value;
-    std::string key = "";
-    value.dataType = ImageEffect_DataType::EFFECT_DATA_TYPE_FLOAT, value.dataValue.floatValue = 0;
-    key = "brightness";
-    OH_ImageEffect *imageEffect = OH_ImageEffect_Create("imageEdit");
-    OH_EffectFilter *customerFilter = OH_ImageEffect_AddFilter(imageEffect, "CustomBrightness");
-    CHECK_AND_RETURN_RET_LOG(customerFilter != nullptr, result, "OH_ImageEffect_AddFilter fail!");
     return result;
 }
 

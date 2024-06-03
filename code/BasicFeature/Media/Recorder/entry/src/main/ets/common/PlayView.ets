@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -70,17 +70,19 @@ export struct PlayView {
     if (this.fileName !== '') {
       Logger.info(TAG, `handleChangePlayState this.isPlay= ${this.playState}`);
       if (!this.playState) {
+        Logger.info(TAG, `handleChangePlayState play start`);
         this.audioModel.play(() => {
           Logger.info(TAG, `handleChangePlayState play success`);
-          this.playState = !this.playState;
-          AppStorage.SetOrCreate('playState', this.playState);
-        })
+          this.playState = true;
+          AppStorage.SetOrCreate('playState', true);
+        });
       } else {
+        Logger.info(TAG, `handleChangePlayState pause start`);
         this.audioModel.pause(() => {
           Logger.info(TAG, `handleChangePlayState pause success`);
-          this.playState = !this.playState;
-          AppStorage.SetOrCreate('playState', this.playState);
-        })
+          this.playState = false;
+          AppStorage.SetOrCreate('playState', false);
+        });
       }
     }
   }

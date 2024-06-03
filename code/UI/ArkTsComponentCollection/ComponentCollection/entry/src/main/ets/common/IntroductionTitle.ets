@@ -15,14 +15,19 @@
 
 @Component
 export struct IntroductionTitle {
-  private introduction!: Resource;
+  private introduction!: Resource | string;
 
   build() {
-    Text(this.introduction)
-      .fontSize(18)
-      .width('100%')
-      .direction(Direction.Ltr)
-      .margin({ left: 26, top: 8, bottom: 8 })
-      .fontColor($r('app.color.font_color_shallow'))
+    Column() {
+      Blank()
+      Text(this.introduction)
+        .fontSize(14)
+        .fontWeight(FontWeight.Medium)
+        .fontColor($r('app.color.font_color_grey'))
+    }
+    .height(56)
+    .width('100%')
+    .padding({ left: 12, right: 12, bottom: 8 })
+    .alignItems(HorizontalAlign.Start)
   }
 }

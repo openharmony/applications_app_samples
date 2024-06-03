@@ -151,7 +151,6 @@
       "name": "blank_and_divider",
       "value": "Blank and divider"
     },
-    // AlertDialog
     {
       "name": "alert_dialog",
       "value": "Alert dialog"
@@ -252,7 +251,6 @@
       "name": "alert_dialog_grid_four",
       "value": "4 grid width"
     },
-    // Background
     {
       "name": "background_color",
       "value": "Set background color"
@@ -293,7 +291,6 @@
       "name": "background_image_offset",
       "value": "Picture position offset to the right and down"
     },
-    // Badge
     {
       "name": "auxiliary_badge",
       "value": "Badge"
@@ -350,7 +347,6 @@
       "name": "badge_green",
       "value": "Small green marker"
     },
-    // Border
     {
       "name": "border_type",
       "value": "Border type"
@@ -423,7 +419,6 @@
       "name": "border_radius_right_bottom",
       "value": "Bottom right border"
     },
-    // Button
     {
       "name": "button_title",
       "value": "Button"
@@ -484,7 +479,6 @@
       "name": "button_click",
       "value": "Button is clicked"
     },
-    // Click Event
     {
       "name": "click_action_tips",
       "value": "Click the gray area to change the crosshair position"
@@ -501,7 +495,6 @@
       "name": "get_click_event_detail",
       "value": "Click location information"
     },
-    // CustomDialog
     {
       "name": "custom_dialog",
       "value": "Custom dialog"
@@ -542,7 +535,6 @@
       "name": "custom_dialog_start",
       "value": "One-click opening"
     },
-    // DatePickerDialog
     {
       "name": "date_picker_dialog",
       "value": "DatePickerDialog"
@@ -579,7 +571,6 @@
       "name": "date_picker_dialog_datetimethree",
       "value": "2100-12-31"
     },
-    // DatePicker
     {
       "name": "date_picker_title",
       "value": "DatePicker"
@@ -588,7 +579,6 @@
       "name": "date_picker_lunar",
       "value": "Is lunar"
     },
-    // Divider
     {
       "name": "divider_title",
       "value": "Divider"
@@ -617,7 +607,6 @@
       "name": "divider_attribute",
       "value": "Divider"
     },
-    // Font
     {
       "name": "font_color",
       "value": "Color"
@@ -634,7 +623,6 @@
       "name": "font_style",
       "value": "Style"
     },
-    // Interpolation Calculation
     {
       "name": "interpolation_calculation_cubic_bezier_curve",
       "value": "Third-order Bézier curve object"
@@ -651,7 +639,6 @@
       "name": "interpolation_calculation_steps_curve",
       "value": "step curve object"
     },
-    // Page Transition
     {
       "name": "page_transition",
       "value": "Transitions between pages"
@@ -684,7 +671,6 @@
       "name": "page_transition_back",
       "value": "Back to page transition between pages"
     },
-    // QRCode
     {
       "name": "qrcode_title",
       "value": "QRCode"
@@ -701,7 +687,6 @@
       "name": "qrcode_enter_content",
       "value": "Enter to change QR code"
     },
-    // Radio
     {
       "name": "radio_title",
       "value": "Radio"
@@ -730,7 +715,6 @@
       "name": "radio_guangzhou",
       "value": "Guangzhou"
     },
-    // Rotate
     {
       "name": "graphic_transformation_rotate",
       "value": "Rotate"
@@ -755,7 +739,6 @@
       "name": "rotate_image_angle",
       "value": "Rotate 15°"
     },
-    // Select
     {
       "name": "select_title",
       "value": "Select"
@@ -796,7 +779,6 @@
       "name": "select_value",
       "value": "The value of the selected option:"
     },
-    // Shareelement Transition
     {
       "name": "share_element_transition",
       "value": "Shared element transition"
@@ -837,7 +819,6 @@
       "name": "side_bar_effects_title",
       "value": "SideBar effects"
     },
-    // Size
     {
       "name": "size_width",
       "value": "Width"
@@ -862,7 +843,6 @@
       "name": "size_height_percent",
       "value": "Height is 60%"
     },
-    // Slider
     {
       "name": "slider_title",
       "value": "Slider"
@@ -931,7 +911,6 @@
       "name": "slider_title_value",
       "value": "Slider slide as a percentage of the total length:"
     },
-    // Span
     {
       "name": "span_attribute",
       "value": "Configure different span attributes"
@@ -996,7 +975,6 @@
       "name": "span_decoration_overline",
       "value": "Overline"
     },
-    // Text
     {
       "name": "text_title",
       "value": "Text"
@@ -1085,7 +1063,6 @@
       "name": "text_text_case_lowercase",
       "value": "Lowercase"
     },
-    // ImageSpan
     {
       "name": "image_span_title",
       "value": "Image Span"
@@ -1098,7 +1075,6 @@
       "name": "image_fit_contain",
       "value": "Contain"
     },
-    // TextInput
     {
       "name": "text_input_title",
       "value": "TextInput"
@@ -1199,7 +1175,6 @@
       "name": "text_input_toast_edit",
       "value": "The edited text is:"
     },
-    // TimePickerDialog
     {
       "name": "time_picker_dialog",
       "value": "TimePickerDialog"
@@ -1236,7 +1211,6 @@
       "name": "time_picker_dialog_timetwo",
       "value": "10/01/2022 12:00"
     },
-    // Toggle
     {
       "name": "toggle_title",
       "value": "Toggle"
@@ -1265,7 +1239,6 @@
       "name": "toggle_state",
       "value": "Checked: "
     },
-    // Translate
     {
       "name": "graphic_transformation_translate",
       "value": "Translate"
@@ -1286,7 +1259,6 @@
       "name": "translate_y_axis",
       "value": "Y-axis:"
     },
-    //Display
     {
       "name": "components_display",
       "value": "Display"
@@ -1618,7 +1590,6 @@
       "name": "status_select",
       "value": "Status selection"
     },
-    // 辅助
     {
       "name": "scroll_bar",
       "value": "ScrollBar"
@@ -2162,6 +2133,14 @@
     {
       "name": "swiper_controller_previous",
       "value": "上一页"
+    },
+    {
+      "name": "swiper_common_interfaces_and_properties",
+      "value": "Common interfaces and properties"
+    },
+    {
+      "name": "swiper_custom_properties",
+      "value": "Properties of custom transition animation"
     },
     {
       "name": "rows_and_columns",

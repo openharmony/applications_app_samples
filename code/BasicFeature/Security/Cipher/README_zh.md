@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例使用[cipher](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-system-cipher.md)相关接口实现了字符串加解密算法，包括RSA加密算法与AES加密算法。
+本示例使用[cipher](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-crypto-architecture-kit/js-apis-system-cipher.md)相关接口实现了字符串加解密算法，包括RSA加密算法与AES加密算法。
 
 RSA加密算法：RSA公开密钥密码体制是一种使用不同的加密密钥与解密密钥，由已知加密密钥推导出解密密钥在计算上是不可行的密码体制。
 
@@ -48,12 +48,12 @@ entry/src/main/ets/
   * 加密模块
     * 使用到rsaEncrypt(RSA算法加密)与aesEncrypt(AES算法加密)两种加密方法进行加密操作。
     * 源码链接：[Encryption.ets](entry/src/main/ets/common/Encryption.ets)，[CipherModel.ts](entry/src/main/ets/model/CipherModel.ts)
-    * 接口参考：[@system.cipher](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-system-cipher.md#cipheraes)，[@ohos.prompt](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-promptAction.md)，[@system.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-system-router.md)
+    * 接口参考：[@system.cipher](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-crypto-architecture-kit/js-apis-system-cipher.md)，[@ohos.prompt](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-arkui/js-apis-prompt.md)，[@system.router](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-arkui/js-apis-system-router.md)
 
   * 解密模块
     * 使用到rsaDecrypt(RSA算法解密)与aesDecrypt(AES算法解密)两种解密方法进行解密操作。
     * 源码链接：[Decrypt.ets](entry/src/main/ets/common/Decrypt.ets)，[CipherModel.ts](entry/src/main/ets/model/CipherModel.ts)
-    * 接口参考：[@system.cipher](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-system-cipher.md#cipheraes)，[@ohos.prompt](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-promptAction.md)，[@system.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-system-router.md)
+    * 接口参考：[@system.cipher](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-crypto-architecture-kit/js-apis-system-cipher.md)，[@ohos.prompt](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-arkui/js-apis-prompt.md)，[@system.router](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-arkui/js-apis-system-router.md)
   
 ### 相关权限
 

@@ -343,19 +343,21 @@ export struct modeSwitchPage {
         Row() {
           if (this.modelBagCol === 'photo') {
             Text(this.imgThumbnail || 'app.media.camera_thumbnail_4x')
-            .width('1px')
-            .height('1px')
-            .borderRadius('1px')
-            .id('ThumbnailText')
+              .width('1px')
+              .height('1px')
+              .borderRadius('1px')
+              .id('ThumbnailText')
             Image(this.imgThumbnail || $r('app.media.camera_thumbnail_4x'))
               .objectFit(ImageFit.Fill)
-              .width('200px')
-              .height('200px')
+              .width('176px')
+              .height('176px')
+              .clip(new Circle({ width: '176px', height: '176px' }))
           } else {
             Image(this.videoThumbnail || $r('app.media.camera_thumbnail_4x'))
               .objectFit(ImageFit.Fill)
-              .width('200px')
-              .height('200px')
+              .width('176px')
+              .height('176px')
+              .clip(new Circle({ width: '176px', height: '176px' }))
           }
         }.onClick(() => {
           if (deviceInfo.deviceType == 'default') {
@@ -379,16 +381,16 @@ export struct modeSwitchPage {
         Row() {
           if (this.modelBagCol === 'photo') {
             Image($r('app.media.camera_take_photo_4x'))
-              .width('200px')
-              .height('200px')
+              .width('176px')
+              .height('176px')
               .onClick(() => {
                 // Countdown camera recording - default camera recording
                 this.countTakeVideoFn();
               })
           } else {
             Image($r('app.media.camera_take_video_4x'))
-              .width('200px')
-              .height('200px')
+              .width('176px')
+              .height('176px')
               .onClick(() => {
                 // Countdown camera recording - default camera recording
                 this.countTakeVideoFn();
@@ -402,16 +404,16 @@ export struct modeSwitchPage {
       Column() {
         Row() {
           Image($r('app.media.camera_switch_4x'))
-          .width('200px')
-          .height('200px')
-          .onClick(async () => {
-            // Switching Cameras
-            this.cameraDeviceIndex ? this.cameraDeviceIndex = 0 : this.cameraDeviceIndex = 1;
-            // Clear configuration
-            cameraDemo.releaseSession();
-            // Start preview
-            cameraDemo.initCamera(this.surfaceId, this.settingDataObj.focusMode, this.cameraDeviceIndex);
-          })
+            .width('176px')
+            .height('176px')
+            .onClick(async () => {
+              // Switching Cameras
+              this.cameraDeviceIndex ? this.cameraDeviceIndex = 0 : this.cameraDeviceIndex = 1;
+              // Clear configuration
+              cameraDemo.releaseSession();
+              // Start preview
+              cameraDemo.initCamera(this.surfaceId, this.settingDataObj.focusMode, this.cameraDeviceIndex);
+            })
         }
       }.position({ x: '70%', y: '85%' })
       .id('SwitchCameraButton')
@@ -429,11 +431,11 @@ export struct modeSwitchPage {
       Column() {
         // Video capture button
         Image($r('app.media.camera_take_photo_4x'))
-        .width('200px')
-        .height('200px')
-        .onClick(() => {
-          cameraDemo.takePictureWithSettings(this.photoSettings);
-        })
+          .width('176px')
+          .height('176px')
+          .onClick(() => {
+            cameraDemo.takePictureWithSettings(this.photoSettings);
+          })
       }.position({ x: '10%', y: '85%' })
       .id('VideoCaptureButton')
 
@@ -441,32 +443,33 @@ export struct modeSwitchPage {
         Row() {
           Column() {
             // video stop button
-            Image($r('app.media.camera_pause_video_4x')).size({ width: 25, height: 25 })
-            .width('200px')
-            .height('200px')
-            .id('StopVideo')
-            .onClick(() => {
-              if (this.timer) {
-                clearInterval(this.timer);
-              }
-              // Stop video
-              this.stopVideo().then(async (fileAsset: mediaLibrary.FileAsset) => {
-                this.videoRecodeTime = 0;
-                this.isModeBol = true;
-                try {
-                  // Get video thumbnail
-                  this.videoThumbnail = await fileAsset.getThumbnail();
-                } catch (err) {
-                  Logger.info(this.tag, 'videoThumbnail err----------:' + JSON.stringify(err.message));
+            Image($r('app.media.camera_pause_video_4x'))
+              .size({ width: 25, height: 25 })
+              .width('176px')
+              .height('176px')
+              .id('StopVideo')
+              .onClick(() => {
+                if (this.timer) {
+                  clearInterval(this.timer);
                 }
+                // Stop video
+                this.stopVideo().then(async (fileAsset: mediaLibrary.FileAsset | undefined) => {
+                  this.videoRecodeTime = 0;
+                  this.isModeBol = true;
+                  try {
+                    // Get video thumbnail
+                    fileAsset !== undefined ? this.videoThumbnail = await fileAsset.getThumbnail() : Logger.info(this.tag, 'fileAsset is undefined')
+                  } catch (err) {
+                    Logger.info(this.tag, 'videoThumbnail err----------:' + JSON.stringify(err.message));
+                  }
+                })
               })
-            })
           }
           .width('180px')
           .height('180px')
         }
-        .width('200px')
-        .height('200px')
+        .width('176px')
+        .height('176px')
       }.position({ x: '40%', y: '85%' })
     }
   }

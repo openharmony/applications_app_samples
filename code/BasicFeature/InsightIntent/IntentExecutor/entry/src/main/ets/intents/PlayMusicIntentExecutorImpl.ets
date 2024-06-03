@@ -40,9 +40,14 @@ export default class PlayMusicIntentExecutorImpl extends IntentExecutor {
     }
 
     // if developer need load content
-    router.pushUrl({
-      url: 'pages/IntentPage'
-    });
+    try {
+      router.pushUrl({
+        url: 'pages/IntentPage'
+      });
+    } catch (err) {
+      logger.error(TAG, `pushUrl failed,code:${JSON.stringify(err.code)},message:${JSON.stringify(err.message)}`)
+    }
+
 
     msg = {
       'message': 'onExecuteInUIAbilityForegroundMode execute insight intent succeed.',

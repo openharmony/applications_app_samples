@@ -29,18 +29,18 @@
 #include "mutex"
 
 #include "hilog/log.h"
-#include "multimedia/camera_framework/camera.h"
-#include "multimedia/camera_framework/camera_input.h"
-#include "multimedia/camera_framework/capture_session.h"
-#include "multimedia/camera_framework/photo_output.h"
-#include "multimedia/camera_framework/preview_output.h"
-#include "multimedia/camera_framework/video_output.h"
+#include "ohcamera/camera.h"
+#include "ohcamera/camera_input.h"
+#include "ohcamera/capture_session.h"
+#include "ohcamera/photo_output.h"
+#include "ohcamera/preview_output.h"
+#include "ohcamera/video_output.h"
 #include "napi/native_api.h"
-#include "multimedia/camera_framework/camera_manager.h"
+#include "ohcamera/camera_manager.h"
 
 namespace OHOS_CAMERA_SAMPLE {
 class NDKCamera {
-public:
+  public:
     ~NDKCamera();
     NDKCamera(char *str, uint32_t focusMode, uint32_t cameraDeviceIndex);
 
@@ -113,7 +113,7 @@ public:
     MetadataOutput_Callbacks *GetMetadataOutputListener(void);
     CaptureSession_Callbacks *GetCaptureSessionRegister(void);
 
-private:
+  private:
     NDKCamera(const NDKCamera &) = delete;
     NDKCamera &operator=(const NDKCamera &) = delete;
     uint32_t cameraDeviceIndex_;
@@ -150,4 +150,4 @@ private:
     volatile bool valid_;
 };
 } // namespace OHOS_CAMERA_SAMPLE
-#endif  // CAMERA_NDK_CAMERA_H
+#endif // CAMERA_NDK_CAMERA_H

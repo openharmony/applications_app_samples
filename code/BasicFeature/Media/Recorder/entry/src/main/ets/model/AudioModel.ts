@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -58,11 +58,12 @@ export class AudioModel {
   }
 
   onFinish(callback) {
-    console.info(`${TAG}set onFinish`)
+    Logger.info(TAG, `set onFinish`);
     this.audioPlayer.on('finish', () => {
-      Logger.info(TAG, `audioPlayer finish called`)
-      this.audioPlayer.seek(0)
-      callback()
+      Logger.info(TAG, `audioPlayer finish called`);
+      this.audioPlayer.seek(0);
+      this.finish();
+      callback();
     });
   }
 
@@ -96,7 +97,7 @@ export class AudioModel {
 
   finish() {
     if (typeof (this.audioPlayer) != `undefined`) {
-      this.audioPlayer.stop()
+      this.audioPlayer.pause();
     }
   }
 }

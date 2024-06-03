@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例主要展示了音振协同功能，使用[@ohos.multimedia.audioHaptic](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-audioHaptic.md)等接口提供播放音频同时伴随振动的功能，可用于同时需要声音与振动的场景。
+本示例主要展示了音振协同功能，使用[@ohos.multimedia.audioHaptic](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-audio-kit/js-apis-audioHaptic.md)等接口提供播放音频同时伴随振动的功能，可用于同时需要声音与振动的场景。
 
 ### 效果预览
 
@@ -48,7 +48,7 @@ library/
 
 ### 相关权限
 
-允许应用控制马达振动:[ohos.permission.VIBRATE](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.0-Release/zh-cn/application-dev/security/permission-list.md#ohospermissionvibrate)
+允许应用控制马达振动:[ohos.permission.VIBRATE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionvibrate)
 
 ### 依赖
 

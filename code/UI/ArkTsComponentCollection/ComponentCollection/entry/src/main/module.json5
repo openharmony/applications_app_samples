@@ -33,11 +33,10 @@
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
-    "uiSyntax": "ets",
     "abilities": [
       {
         "name": "MainAbility",
-        "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+        "srcEntry": "./ets/MainAbility/MainAbility.ts",
         "description": "$string:MainAbility_desc",
         "icon": "$media:icon",
         "label": "$string:entry_desc",

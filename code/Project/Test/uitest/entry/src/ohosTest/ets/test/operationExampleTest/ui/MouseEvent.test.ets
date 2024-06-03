@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License")
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,13 +13,9 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, it, expect, TestType } from '@ohos/hypium'
-import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import { Driver, MouseButton, ON} from '@ohos.UiTest'
-import Want from '@ohos.app.ability.Want';
-import Router from '@system.router';
-import router from '@ohos.router';
-
+import { describe, it, expect, TestType, beforeAll } from '@ohos/hypium';
+import { abilityDelegatorRegistry, Driver, ON, MouseButton } from '@kit.TestKit';
+import { Want } from '@kit.AbilityKit';
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 const WAIT_UI_READYMS = 1000;
@@ -163,16 +159,16 @@ export default function MouseEventTest() {
 
     /**
      * @tc.number:MouseEventTest_005
-     * @tc.name: testMouseScroll
+     * @tc.name: testMouseScroll_with
      * @tc.type: 0 || TestType.FUNCTION || Size.SMALLTEST || Level.LEVEL0
-     * @tc.desc: 检测uitest 模拟鼠标滚轮向下滑动功能
+     * @tc.desc: 检测uitest 模拟鼠标滚轮向下滑动与Ctrl + 删除键组合使用。
      */
-    it('testMouseScroll_speed', TestType.FUNCTION, async (done: Function) => {
+    it('testMouseScroll_with', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create();
       await driver.delayMs(WAIT_UI_READYMS);
       let scroll = await driver.findComponent(ON.id('scroll_test'));
-      await scroll.scrollToTop();
       let center = await scroll.getBoundsCenter();
+      // 10: 滚轮滚动的单元格数, 2072: 左Ctrl键, 2071: 删除键, 20: 滚动速度
       await driver.mouseScroll(center,true,10, 2072, 2071, 20);
       let button1 = await driver.findComponent(ON.id('scroll_item'));
       expect(await button1.getText() !== '0').assertTrue();
@@ -213,7 +209,5 @@ export default function MouseEventTest() {
       expect(appleBtn1=== null).assertTrue();
       done();
     })
-
-
   })
 }
