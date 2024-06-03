@@ -15,27 +15,15 @@
 
 import screenManager from '@ohos.screen';
 import media from '@ohos.multimedia.media';
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import Logger from '../common/Logger';
 import display from '@ohos.display';
 import emitter from '@ohos.events.emitter';
 import { DESTROY_FLOAT_WINDOW } from '../common/Constants';
 import PhoneConstants from '../common/Constants';
+import { BusinessError } from '@ohos.base';
 
 const TAG: string = '[ScreenRecorder]';
-
-const DEFAULT_VIDEO_PROFILE = {
-  audioBitrate: 48000,
-  audioChannels: 2,
-  audioCodec: media.CodecMimeType.AUDIO_AAC,
-  audioSampleRate: 48000,
-  fileFormat: media.ContainerFormatType.CFT_MPEG_4,
-  videoBitrate: 2000000,
-  videoCodec: media.CodecMimeType.VIDEO_AVC,
-  videoFrameWidth: 0,
-  videoFrameHeight: 0,
-  videoFrameRate: 30
-};
 
 enum RecordingState {
   Idle = 0,
@@ -54,24 +42,22 @@ const VIDEO_TYPE = '.mp4';
 const CONNECTOR = '_';
 const VIRTUAL_SCREEN_NAME = 'screenRecorder';
 const DEVICE_RATE = 0.6;
-type MediaManager = ReturnType<typeof mediaLibrary.getMediaLibrary>;
 
 @Entry
 @Component
 struct ScreenRecorder {
-  //'Idle' | 'Recording' | 'Stopped' | 'Error'
   @State recordingState: RecordingState = RecordingState.Idle
   @State isIconHidden: boolean = false
   textTimerController: TextTimerController = new TextTimerController()
   private timeoutID: number = -1
-  //'idle' | 'prepared' | 'playing' | 'paused' | 'stopped' | 'error'
-  private videoRecorder: media.VideoRecorder
-  private virtualScreen: screenManager.Screen
-  private videoFd: number
-  private videoAsset: mediaLibrary.FileAsset
-  private videoFileName: string
-  private mediaManager: MediaManager
+  private videoRecorder: media.VideoRecorder | undefined
+  private virtualScreen: screenManager.Screen | undefined
+  private videoFd: number = -1
+  private videoAsset: photoAccessHelper.PhotoAsset | undefined
+  private videoFileName: string = ''
+  private photoAccessManager: photoAccessHelper.PhotoAccessHelper | undefined
   @State timerFormat: string = 'hh:mm:ss'
+
   build() {
     Row() {
       Rect({ width: 10, height: 10, radius: 2 })
@@ -95,7 +81,6 @@ struct ScreenRecorder {
     .padding({ left: 20, right: 20 })
     .backgroundColor(0x55000000)
     .size({ width: '100%', height: '100%' })
-
   }
 
   /* Red icon of the recording state to flash each 500ms */
@@ -137,7 +122,14 @@ struct ScreenRecorder {
     Logger.info(TAG, 'phoneWidth:' + JSON.stringify(dftDisplay.width));
     Logger.info(TAG, 'phoneHeight:' + JSON.stringify(dftDisplay.height));
     const videoProfile: media.VideoRecorderProfile = {
-      ...DEFAULT_VIDEO_PROFILE,
+      audioBitrate: 48000,
+      audioChannels: 2,
+      audioCodec: media.CodecMimeType.AUDIO_AAC,
+      audioSampleRate: 48000,
+      fileFormat: media.ContainerFormatType.CFT_MPEG_4,
+      videoBitrate: 2000000,
+      videoCodec: media.CodecMimeType.VIDEO_AVC,
+      videoFrameRate: 30,
       videoFrameWidth: Number(dftDisplay.width) * DEVICE_RATE,
       videoFrameHeight: Number(dftDisplay.height) * DEVICE_RATE
     };
@@ -149,24 +141,23 @@ struct ScreenRecorder {
     }
   }
 
-  private getMediaManager(): MediaManager {
-    if (this.mediaManager) {
-      return this.mediaManager;
+  private getPhotoAccessManager(): photoAccessHelper.PhotoAccessHelper {
+    if (this.photoAccessManager) {
+      return this.photoAccessManager;
     }
-    this.mediaManager = mediaLibrary.getMediaLibrary(globalThis.shotScreenContext)
-    return this.mediaManager
+    this.photoAccessManager = photoAccessHelper.getPhotoAccessHelper(getContext(this))
+    return this.photoAccessManager
   }
 
   private async createVideoAsset(): Promise<void> {
     try {
-      const mediaManager = this.getMediaManager()
-      const publicPath = await mediaManager.getPublicDirectory(mediaLibrary.DirectoryType.DIR_VIDEO)
-      this.videoAsset = await mediaManager.createAsset(mediaLibrary.MediaType.VIDEO, this.videoFileName, publicPath)
+      const phAccessHelper = this.getPhotoAccessManager()
+      this.videoAsset = await phAccessHelper.createAsset(this.videoFileName)
       this.videoFd = await this.videoAsset.open('w')
     } catch (err) {
       Logger.error(TAG, 'createVideoAsset error:', JSON.stringify(err))
       this.videoAsset && this.videoAsset.close(this.videoFd)
-      this.videoFd = undefined;
+      this.videoFd = -1
     }
   }
 
@@ -204,6 +195,7 @@ struct ScreenRecorder {
       })
     } catch (err) {
       Logger.error(TAG, 'Create the virtual screen failed' + JSON.stringify(err))
+      return
     }
   }
 
@@ -222,6 +214,7 @@ struct ScreenRecorder {
       screenManager.makeMirror(defaultScreen.id, [this.virtualScreen.id])
     } catch (err) {
       Logger.error(TAG, 'setVirtualScreenAsMirror error:' + JSON.stringify(err))
+      return
     }
   }
 
@@ -264,20 +257,22 @@ struct ScreenRecorder {
       // Initialize video Recorder
       await this.initPreparedVideoRecorder()
 
-      // Obtains the surface ID provided by the video recorder
-      const surfaceId = await this.videoRecorder.getInputSurface()
+      if (this.videoRecorder != undefined) {
+        // Obtains the surface ID provided by the video recorder
+        const surfaceId = await this.videoRecorder.getInputSurface()
 
-      this.virtualScreen = await this.createVirtualScreen(surfaceId)
+        this.virtualScreen = await this.createVirtualScreen(surfaceId)
 
-      // Bind the output of the virtual screen to the surface of the video recorder
-      await this.bindSurfaceToRecorder(surfaceId)
+        // Bind the output of the virtual screen to the surface of the video recorder
+        await this.bindSurfaceToRecorder(surfaceId)
 
-      // Set the virtual screen as a mirror of the default screen
-      await this.setVirtualScreenAsMirror()
+        // Set the virtual screen as a mirror of the default screen
+        await this.setVirtualScreenAsMirror()
 
-      await this.videoRecorder.start()
-      this.recordingState = this.videoRecorder.state === 'playing' ? RecordingState.Recording : RecordingState.Error
-      Logger.info(TAG, 'startRecorder() recordingState:' + this.recordingState.toString())
+        await this.videoRecorder.start()
+        this.recordingState = this.videoRecorder.state === 'playing' ? RecordingState.Recording : RecordingState.Error
+        Logger.info(TAG, 'startRecorder() recordingState:' + this.recordingState.toString())
+      }
     } catch (err) {
       this.release()
       this.recordingState = RecordingState.Error
@@ -288,25 +283,27 @@ struct ScreenRecorder {
   private async stopRecorder(): Promise<void> {
     if (!this.videoRecorder) {
       Logger.error(TAG, 'Recording is stopped or not started')
-    }
-    try {
-      await this.videoRecorder.stop().then(() => {
-        Logger.info(TAG, 'Stop video recorder success')
-      }).catch((err) => {
-        Logger.error(TAG, 'Stop video recorder failed error:' + JSON.stringify(err))
-      })
-      await this.videoRecorder.reset().then(() => {
-        Logger.info(TAG, 'Reset video recorder success')
-      }).catch((err) => {
-        Logger.error(TAG, 'Reset video recorder failed error:' + JSON.stringify(err))
-      })
-      this.recordingState = this.videoRecorder.state === 'idle' ? RecordingState.Idle : RecordingState.Error
-      Logger.info(TAG, 'stopRecorder() recordingState:' + this.recordingState.toString())
-    } catch (err) {
-      this.recordingState = RecordingState.Error
-      Logger.error(TAG, 'Stop screenRecorder error:' + JSON.stringify(err))
-    } finally {
-      await this.release()
+      return
+    } else {
+      try {
+        await this.videoRecorder.stop().then(() => {
+          Logger.info(TAG, 'Stop video recorder success')
+        }).catch((err: BusinessError) => {
+          Logger.error(TAG, 'Stop video recorder failed error:' + JSON.stringify(err))
+        })
+        await this.videoRecorder.reset().then(() => {
+          Logger.info(TAG, 'Reset video recorder success')
+        }).catch((err: BusinessError) => {
+          Logger.error(TAG, 'Reset video recorder failed error:' + JSON.stringify(err))
+        })
+        this.recordingState = this.videoRecorder.state === 'idle' ? RecordingState.Idle : RecordingState.Error
+        Logger.info(TAG, 'stopRecorder() recordingState:' + this.recordingState.toString())
+      } catch (err) {
+        this.recordingState = RecordingState.Error
+        Logger.error(TAG, 'Stop screenRecorder error:' + JSON.stringify(err))
+      } finally {
+        await this.release()
+      }
     }
   }
 
@@ -314,7 +311,12 @@ struct ScreenRecorder {
     try {
       this.videoRecorder && await this.videoRecorder.release()
       this.videoRecorder = undefined
-      this.videoFileName = undefined
+      this.videoFileName = ''
+
+      // 关闭当前文件
+      this.videoAsset && this.videoAsset.close(this.videoFd)
+      // 释放PhotoAccessHelper实例
+      this.photoAccessManager && await this.photoAccessManager.release()
 
       this.virtualScreen && await screenManager.destroyVirtualScreen(this.virtualScreen.id)
       this.virtualScreen = undefined
@@ -325,5 +327,3 @@ struct ScreenRecorder {
     }
   }
 }
-
-
