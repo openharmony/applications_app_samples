@@ -644,6 +644,14 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/SystemFeature/WindowManagement/WindowManage/screenshots/devices/startAbility.png" desc="Provided by code/SystemFeature/WindowManagement/WindowManage"/>
 				<filteritem type="filepath" name="code/SystemFeature/WindowManagement/WindowManage/screenshots/devices/subWindow.png" desc="Provided by code/SystemFeature/WindowManagement/WindowManage"/>
 				<filteritem type="filepath" name="code/BasicFeature/Native/Audio/entry/src/main/resources/base/media/pic_Audiovivid.png" desc="Provided by code/BasicFeature/Native/Audio"/>
+                <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/EmbeddedUIExtensionAbility/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/ApplicationModels/EmbeddedUIExtensionAbility"/>
+                <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/EmbeddedUIExtensionAbility/screenshots/main.png" desc="Provided by code/SystemFeature/ApplicationModels/EmbeddedUIExtensionAbility"/>
+                <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/EmbeddedUIExtensionAbility/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/ApplicationModels/EmbeddedUIExtensionAbility"/>
+                <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/EmbeddedUIExtensionAbility/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/ApplicationModels/EmbeddedUIExtensionAbility"/>
+                <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/UIExtensionAbility/screenshots/main.png" desc="Provided by code/SystemFeature/ApplicationModels/UIExtensionAbility"/>
+                <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/UIExtensionAbility/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/ApplicationModels/UIExtensionAbility"/>
+                <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/UIExtensionAbility/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/ApplicationModels/UIExtensionAbility"/>
+                <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/UIExtensionAbility/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/ApplicationModels/UIExtensionAbility"/>
 				<filteritem type="filepath" name="code/BasicFeature/Native/Audio/screenshots/device/AudioVivid.jpg" desc="Provided by code/BasicFeature/Native/Audio"/>
 				<filteritem type="filepath" name="code/BasicFeature/Native/Audio/screenshots/device/index.jpg" desc="Provided by code/BasicFeature/Native/Audio"/>
 				<filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmonyProfileDebug.pem" desc="Provided by code/Project/HapBuild"/>
