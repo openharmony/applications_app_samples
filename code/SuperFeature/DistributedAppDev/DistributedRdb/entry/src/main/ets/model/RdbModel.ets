@@ -17,7 +17,7 @@ import data_rdb from '@ohos.data.relationalStore'
 import common from '@ohos.app.ability.common'
 import Contact from '../model/Contact'
 import Logger from '../model/Logger'
-import { STORE_CONFIG } from '../model/RdbConst'
+import { STORE_CONFIG, TABLE_NAME, TYPE_INSERT, TYPE_UPDATE, TYPE_DELETE } from '../model/RdbConst'
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
 const TAG = 'RdbModel'
@@ -28,7 +28,8 @@ export default class RdbModel {
   private sqlCreateTable: string = ''
   private columns: Array<string> = []
   private distributedTable: string = ''
-  private dataChangeCallback : Function| null = null
+  private dataChangeCallback: Function | null = null
+  private dataChangeDetailCallback: Function | null = null
   private isCreateDbDone: boolean = false
   private context: common.UIAbilityContext
 
@@ -57,7 +58,7 @@ export default class RdbModel {
     Logger.info(TAG, 'getRdbStore end')
     try {
       // 执行sql语句，联系人个各个属性设定
-      if(this.rdbStore != undefined) {
+      if (this.rdbStore != undefined) {
         await this.rdbStore.executeSql(this.sqlCreateTable)
         console.info(`create tabe start ` + this.sqlCreateTable);
         // 设置分布式表，表明为contact
@@ -85,7 +86,7 @@ export default class RdbModel {
       'remark': value4,
       'age': value5,
     }
-    if(this.rdbStore != undefined) {
+    if (this.rdbStore != undefined) {
       let ret = await this.rdbStore.insert(this.tableName, valueBucket, data_rdb.ConflictResolution.ON_CONFLICT_REPLACE)
       Logger.info(TAG, `insert done:${ret}`)
     }
@@ -130,6 +131,7 @@ export default class RdbModel {
     Logger.info(TAG, 'query start')
     Logger.info(TAG, 'predicates is ' + JSON.stringify(predicates))
     Logger.info(TAG, 'columns ' + JSON.stringify(this.columns))
+
     if (this.rdbStore != undefined) {
       // 默认查询所有列
       let resultSet: data_rdb.ResultSet = await this.rdbStore.query(predicates, this.columns);
@@ -171,6 +173,27 @@ export default class RdbModel {
     }
   }
 
+  async onDataChangeDetail(device: string, callback: Function) {
+    Logger.info(TAG, `onDataChangeDetail enter，device=` + device + ` ,tableName = ` + this.tableName);
+    try {
+      if (this.rdbStore != undefined) {
+        this.distributedTable = await this.rdbStore.obtainDistributedTableName(device, this.tableName);
+        Logger.info(TAG, `obtainDistributedTableName,distributedTable=` + this.distributedTable);
+      }
+    }
+    catch (err) {
+      Logger.error(TAG, `ObtainDistributedTableName failed, code is ${err.code},message is ${err.message}`);
+    }
+    this.dataChangeDetailCallback = callback;
+    if (this.rdbStore != undefined) {
+      this.rdbStore.on('dataChange', data_rdb.SubscribeType.SUBSCRIBE_TYPE_LOCAL_DETAILS, async (changeInfo: Array<data_rdb.ChangeInfo>) => {
+        Logger.info(TAG, `on dataChange SUBSCRIBE_TYPE_REMOTE, callback`);
+        Logger.info(TAG, `on dataChange SUBSCRIBE_TYPE_REMOTE =` + JSON.stringify(changeInfo));
+        await this.pullDataDetail(changeInfo);
+      })
+    }
+  }
+
   async pullData() {
     Logger.info(TAG, `start pullData`)
     if (this.rdbStore != undefined) {
@@ -198,9 +221,72 @@ export default class RdbModel {
     }
   }
 
+  async pullDataDetail(changeInfo: Array<data_rdb.ChangeInfo>) {
+    Logger.info(TAG, `start pullDataDetail`);
+    if (this.rdbStore != undefined) {
+      if (changeInfo.length > 0) {
+        let result: Array<Contact> = [];
+        for (let i = 0; i < changeInfo.length; i++) {
+          let table: string = changeInfo[i].table;
+          if (table !== TABLE_NAME) {
+            return;
+          }
+          let inserted: Array<string> | Array<number> = changeInfo[i].inserted;
+          let updated: Array<string> | Array<number> = changeInfo[i].updated;
+          let deleted: Array<string> | Array<number> = changeInfo[i].deleted;
+          if (inserted.length > 0) {
+            let insertData: Array<Contact> = await this.getDetailByType(inserted, TYPE_INSERT);
+            insertData.forEach(element => {
+              result.push(element);
+            });
+          }
+          if (updated.length > 0) {
+            let updateData: Array<Contact> = await this.getDetailByType(updated, TYPE_UPDATE);
+            updateData.forEach(element => {
+              result.push(element);
+            });
+          }
+          if (deleted.length > 0) {
+            for (let index = 0; index < deleted.length; index++) {
+              result.push(new Contact(deleted[index] as number, '', 0, '', 0, '', TYPE_DELETE));
+            }
+          }
+        }
+        Logger.info(TAG, `result:` + JSON.stringify(result));
+        if (this.dataChangeDetailCallback !== null) {
+          this.dataChangeDetailCallback(result);
+        }
+      }
+    }
+  }
+
+  async getDetailByType(id: Array<string> | Array<number>, type: string): Promise<Array<Contact>> {
+    let predicates = new data_rdb.RdbPredicates(TABLE_NAME);
+    predicates.in('id', id);
+    let aData = await this.query(predicates);
+    Logger.info(TAG, `type:${type}`);
+    Logger.info(TAG, `aData:` + JSON.stringify(aData));
+    if (aData.length > 0) {
+      for (let i = 0; i < aData.length; i++) {
+        aData[i].type = type;
+      }
+    }
+    return aData;
+  }
+
   offDataChange() {
-    if(this.rdbStore != undefined) {
+    if (this.rdbStore != undefined) {
       this.rdbStore.off('dataChange', data_rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (devices) => {
+        for (let i = 0; i < devices.length; i++) {
+          Logger.info(TAG, `device=${devices[i]} off data changed`)
+        }
+      })
+    }
+  }
+
+  offDataChangeDetail() {
+    if (this.rdbStore != undefined) {
+      this.rdbStore.off('dataChange', data_rdb.SubscribeType.SUBSCRIBE_TYPE_LOCAL_DETAILS, (devices) => {
         for (let i = 0; i < devices.length; i++) {
           Logger.info(TAG, `device=${devices[i]} off data changed`)
         }
