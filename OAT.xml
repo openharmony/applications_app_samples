@@ -163,7 +163,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/SystemFeature/TaskManagement/TransientTask/signature/material/OpenHarmonyApplication.pem" desc="Provided by code/SystemFeature/TaskManagement/TransientTask"/>
                 <filteritem type="filepath" name="code/SystemFeature/TaskManagement/TransientTask/signature/material/hap-sign-tool.jar" desc="Provided by code/SystemFeature/TaskManagement/TransientTask"/>
                 <filteritem type="filepath" name="code/BasicFeature/Connectivity/UploadAndDownLoad/environment/hfs.exe" desc="Provided by hfs"/>
-				<filteritem type="filepath" name="code/BasicFeature/Connectivity/UploadAndDownLoad/entry/src/main/resources/base/media/ic_certified.svg" desc="Provided by code/BasicFeature/Connectivity/UploadAndDownLoad"/>
+				<filteritem type="filepath" name="code/BasicFeature/Connectivity/UploadAndDownLoad/screenshots/devices/zh/cert_lock.jpg" desc="Provided by screenshots"/>
                 <filteritem type="filepath" name="code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic/libs/library.har" desc="Provided by code/BasicFeature/DeviceManagement/Vibrator"/>
                 <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-qr-code-scan-1.0.2.har" desc="Provided by media/QRCodeScan"/>
                 <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-sharecomponent-1.0.2.har" desc="Provided by code/SystemFeature/ApplicationModels/CustomShare"/>
@@ -209,6 +209,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/BasicFeature/Media/ImageEffect/screenshots/filter_parameters.jpeg" desc="Provided by code/BasicFeature/Media/ImageEffect"/>
                 <filteritem type="filepath" name="code/BasicFeature/Media/ImageEffect/screenshots/query_parameter.jpeg" desc="Provided by code/BasicFeature/Media/ImageEffect"/>
                 <filteritem type="filepath" name="code/BasicFeature/Media/ImageEffect/entry/src/main/resources/base/media/icon.png" desc="Provided by code/BasicFeature/Media/ImageEffect"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/Image/photomodify/src/main/resources/rawfile/test_jpg.jpg" desc="Provided by code/BasicFeature/Media/Image"/>
                 <filteritem type="filepath" name="code/BasicFeature/Connectivity/VPN/server/server.zip" desc="Provided by code/BasicFeature/Connectivity/VPN"/>
 				<filteritem type="filepath" name="code/BasicFeature/Connectivity/StageSocket/certificate_file.zip" desc="Provided by code/BasicFeature/Connectivity/StageSocket"/>
 				<filteritem type="filepath" name="code/BasicFeature/Native/NdkDrawing/screenshots/device/Index.jpg" desc="Provided by code/BasicFeature/Native/NdkDrawing"/>
@@ -658,6 +659,16 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/BasicFeature/Notification/CustomCommonEvent/lib/CardEvent-1.0.0.hap" desc="Provided by code/BasicFeature/Notification/CustomCommonEvent"/>
                 <filteritem type="filepath" name="code/BasicFeature/Ads/OAIDSample/lib/ResetOAID-1.0.0.hap" desc="Provided by code/BasicFeature/Ads/OAIDSample"/>
                 <filteritem type="filepath" name="code/Solutions/Tools/FlipClock/lib/Brightness-1.0.0.hap" desc="Provided by code/Solutions/Tools/FlipClock"/>
+
+        <filteritem type="filepath" name="code/BasicFeature/DeviceManagement/Sensor/Capi/entry/src/main/resources/base/media/compass.png" desc="Provided by code/BasicFeature/DeviceManagement/Sensor"/>
+        <filteritem type="filepath" name=" code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic/entry/src/main/resources/base/media/select.png" desc="Provided by code/BasicFeature/DeviceManagement/Vibrator"/>
+        <filteritem type="filepath" name="code/BasicFeature/Graphics/DisplaySync/screenshots/device/animator.jpg" desc="Provided by code/BasicFeature/Graphics/DisplaySync"/>
+        <filteritem type="filepath" name="code/BasicFeature/Graphics/DisplaySoloist/screenshots/device/displaySoloist.jpg" desc="Provided by code/BasicFeature/Graphics/DisplaySoloist"/>
+        <filteritem type="filepath" name="code/BasicFeature/Graphics/DisplaySoloist/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/BasicFeature/Graphics/DisplaySoloist"/>
+        <filteritem type="filepath" name="code/BasicFeature/Graphics/DisplaySoloist/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/BasicFeature/Graphics/DisplaySoloist"/>
+        <filteritem type="filepath" name="code/BasicFeature/Graphics/DisplaySoloist/AppScope/resources/base/media/app_icon.png" desc="Provided by code/BasicFeature/Graphics/DisplaySoloist"/>
+        <filteritem type="filepath" name="code/BasicFeature/Graphics/DisplaySoloist/entry/src/main/resources/base/media/icon.png" desc="Provided by code/BasicFeature/Graphics/DisplaySoloist"/>
+		<filteritem type="filepath" name="code/Solutions/Social/GrapeSquare/feature/authorizedControl/src/main/resources/base/media/photo120.jpg" desc="Provided by code/Solutions/Social/GrapeSquare"/>
 				<filteritem type="filepath" name="code/BasicFeature/DeviceManagement/Sensor/Capi/entry/src/main/resources/base/media/compass.png" desc="Provided by code/BasicFeature/DeviceManagement/Sensor"/>
 				<filteritem type="filepath" name=" code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic/entry/src/main/resources/base/media/select.png" desc="Provided by code/BasicFeature/DeviceManagement/Vibrator"/>
 				<filteritem type="filepath" name="code/BasicFeature/Graphics/DisplaySync/screenshots/device/animator.jpg" desc="Provided by code/BasicFeature/Graphics/DisplaySync"/>
@@ -701,6 +712,7 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/SuperFeature/MultiDeviceAppDev/AdaptiveCapabilities/entry/src/main/resources/base/media/lg_new.png" desc="Provided by code/SuperFeature/MultiDeviceAppDev/AdaptiveCapabilities"/>
 				<filteritem type="filepath" name="code/SuperFeature/MultiDeviceAppDev/AdaptiveCapabilities/entry/src/main/resources/base/media/md_new.png" desc="Provided by code/SuperFeature/MultiDeviceAppDev/AdaptiveCapabilities"/>
 				<filteritem type="filepath" name="code/SuperFeature/MultiDeviceAppDev/AdaptiveCapabilities/entry/src/main/resources/base/media/sm_new.png" desc="Provided by code/SuperFeature/MultiDeviceAppDev/AdaptiveCapabilities"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/Image/screenshots/devices/decoding.jpeg" desc="Provided by code/BasicFeature/Media/Image"/>
 			</filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加License头"/>
