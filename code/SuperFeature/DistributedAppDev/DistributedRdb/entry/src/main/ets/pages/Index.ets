@@ -66,6 +66,7 @@ struct Index {
   async aboutToAppear() {
     Logger.info(TAG, 'aboutToAppear')
     await this.rdbModel.getRdbStore();
+    await this.getData();
     this.rdbModel.onDataChangeDetail(this.state.distributedDevice, (result: Array<Contact>) => {
       this.showDataChangeDialog(result)
     })
@@ -113,7 +114,7 @@ struct Index {
   async onPageShow() {
     try {
       // 初始化分部署数据库
-      //await this.rdbModel.getRdbStore()
+      await this.rdbModel.getRdbStore()
       this.intervalId = setInterval(() => {
         // 手动侦听应用被拉起的动作
         this.getWant()

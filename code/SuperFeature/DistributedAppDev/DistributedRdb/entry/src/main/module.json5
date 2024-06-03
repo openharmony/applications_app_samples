@@ -50,7 +50,7 @@
     ],
     "requestPermissions": [
       {
-        "name": "ohos.permission.DISTRIBUTED_DATASYNC",
+        "name": "ohos.permission.DISTRIBUTED_DATASYNC"
       },
       {
         "name": "ohos.permission.ACCESS_SERVICE_DM"
