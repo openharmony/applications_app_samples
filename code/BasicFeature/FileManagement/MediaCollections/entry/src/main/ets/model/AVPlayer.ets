@@ -502,7 +502,8 @@ export class AVPlayer {
 
       // --- 3 --- 生成license请求；发送license到云端获取响应，将响应交给底层
       let licenseType: number = AppStorage.get('licenseType') as number
-      let isSuccess: boolean = await this.drmController.executeLicenseProcess(this.drmUrl, this.drmLicenseUrl, drmInfoArr, licenseType)
+      let isSuccess: boolean = await this.drmController
+          .executeLicenseProcess(this.drmUrl, this.drmLicenseUrl, drmInfoArr, licenseType)
       if (!isSuccess) {
         Logger.error(TAG, 'Failed to process the license, Release Playback Resources.')
         this.release()
