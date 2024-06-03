@@ -163,6 +163,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/SystemFeature/TaskManagement/TransientTask/signature/material/OpenHarmonyApplication.pem" desc="Provided by code/SystemFeature/TaskManagement/TransientTask"/>
                 <filteritem type="filepath" name="code/SystemFeature/TaskManagement/TransientTask/signature/material/hap-sign-tool.jar" desc="Provided by code/SystemFeature/TaskManagement/TransientTask"/>
                 <filteritem type="filepath" name="code/BasicFeature/Connectivity/UploadAndDownLoad/environment/hfs.exe" desc="Provided by hfs"/>
+				<filteritem type="filepath" name="code/BasicFeature/Connectivity/UploadAndDownLoad/screenshots/devices/zh/cert_lock.jpg" desc="Provided by screenshots"/>
                 <filteritem type="filepath" name="code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic/libs/library.har" desc="Provided by code/BasicFeature/DeviceManagement/Vibrator"/>
                 <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-qr-code-scan-1.0.2.har" desc="Provided by media/QRCodeScan"/>
                 <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-sharecomponent-1.0.2.har" desc="Provided by code/SystemFeature/ApplicationModels/CustomShare"/>
