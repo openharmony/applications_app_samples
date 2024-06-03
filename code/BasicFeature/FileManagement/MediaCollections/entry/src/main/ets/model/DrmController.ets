@@ -62,7 +62,8 @@ export default class DrmController {
     Logger.info(this.TAG, 'MediaKeySystem has been created.')
 
     // 若无证书，此接口会返回失败
-    this.mediaKeySession = this.mediaKeySystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_HW_CRYPTO)
+    this.mediaKeySession = this.mediaKeySystem
+        .createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_HW_CRYPTO)
     if (this.mediaKeySession) {
       Logger.info(this.TAG, 'mediaKeySession has been created.')
       this.svp = this.mediaKeySession.requireSecureDecoderModule('video/avc')
@@ -165,8 +166,8 @@ export default class DrmController {
 
       // license Request
       const optionsData: drm.OptionsData[] = [{
-        name: "optionalDataName",
-        value: "optionalDataValue"
+        name: 'optionalDataName',
+        value: 'optionalDataValue'
       }]
       const uint8pssh: Uint8Array = new Uint8Array(drmInfoArr[i].pssh)
       const licenseRequestData: drm.MediaKeyRequest = await this.mediaKeySession.generateMediaKeyRequest('video/mp4', uint8pssh, licenseType, optionsData)
