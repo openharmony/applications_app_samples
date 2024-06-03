@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "pasteboard"
+    },
+    {
+      "name": "Button_copy",
+      "value": "复制"
+    },
+    {
+      "name": "Button_paste",
+      "value": "粘贴"
+    },
+    {
+      "name": "Button_security_paste",
+      "value": "安全粘贴"
+    },
+    {
+      "name": "Button_text_paste",
+      "value": "仅粘贴文本"
+    },
+    {
+      "name": "Button_device_paste",
+      "value": "跨设备粘贴"
+    }
+  ]
+}

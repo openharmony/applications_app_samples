@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "permit",
+      "value": "permit"
+    },
+    {
+      "name": "Button_copy",
+      "value": "复制"
+    },
+    {
+      "name": "Button_paste",
+      "value": "粘贴"
+    },
+    {
+      "name": "Button_security_paste",
+      "value": "安全粘贴"
+    },
+    {
+      "name": "Button_text_paste",
+      "value": "仅粘贴文本"
+    },
+    {
+      "name": "Button_device_paste",
+      "value": "跨设备粘贴"
+    }
+  ]
+}
