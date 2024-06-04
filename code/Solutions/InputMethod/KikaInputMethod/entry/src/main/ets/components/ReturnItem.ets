@@ -62,6 +62,7 @@ export struct ReturnItem {
       .width(this.returnWidth)
       .borderRadius(4)
       .height('100%')
+      .id('returnItem')
       .shadow({ radius: 1, color: $r('app.color.shadow'), offsetY: 3 })
       .onClick(() => {
         InputHandler.getInstance().sendKeyFunction();
