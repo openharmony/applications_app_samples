@@ -186,7 +186,7 @@ export class InputHandler {
 
       // 取出的内容为当前输入之前的字符，不包含当前的字符,需将当前字符加上
       textPre = textPre + text;
-      if (textPre == "hel") {
+      if (textPre == 'hel') {
         this.addLog('insertText hel');
         try {
           //把当前字符计算在内
@@ -519,7 +519,7 @@ class KeyboardController {
       }
     });
 
-    this.inputHandle.addLog("pre on privateCommand");
+    this.inputHandle.addLog('pre on privateCommand');
     try {
       InputMethodEngine.on('privateCommand', (record : Record<string, inputMethodEngine.CommandDataType>) => {
         this.inputHandle.addLog('keyboard privateCommand' + JSON.stringify(record));

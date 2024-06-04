@@ -14,7 +14,6 @@
  */
 
 import inputMethod from '@ohos.inputMethod';
-import inputMethodEngine from '@ohos.inputMethodEngine';
 import Log from '../model/Log';
 import { BusinessError } from '@ohos.base';
 
@@ -50,11 +49,11 @@ struct PrivatePreview {
   build() {
     Column() {
       Text($r('app.string.Preview_Text'))
-        .width("100%")
+        .width('100%')
         .height(56)
-        .fontFamily("HarmonyHeiTi-Medium")
-        .fontSize("16fp")
-        .fontColor("#182431")
+        .fontFamily('HarmonyHeiTi-Medium')
+        .fontSize('16fp')
+        .fontColor('#182431')
         .lineHeight(22)
         .fontWeight(500)
 
