@@ -19,7 +19,7 @@ import { SpeedDialog } from '../components/SpeedDialog';
 
 @Component
 export struct VideoOperate {
-  @State videoList: Resource[] = [$r('app.string.video_res_1'), $r('app.string.video_res_2'), $r('app.string.video_res_3'), $r('app.string.video_res_4')];
+  @State videoList: Resource[] = [$r('app.string.video_res_1'), $r('app.string.video_res_2'), $r('app.string.video_res_3'), $r('app.string.video_res_4'), $r('app.string.video_res_4')];
   @State speedSelect: number = 0; // 倍速选择
   @Link currentTime: number;
   @Link durationTime: number;

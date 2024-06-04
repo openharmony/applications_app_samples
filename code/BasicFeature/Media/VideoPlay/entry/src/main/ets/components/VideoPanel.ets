@@ -23,7 +23,7 @@ const VIDEOSELECT = 2; // 网络视频索引
 
 @Component
 export struct VideoPanel {
-  @State videoList: Resource[] = [$r('app.string.video_res_1'), $r('app.string.video_res_2'), $r('app.string.video_res_3'), $r('app.string.video_res_4')];
+  @State videoList: Resource[] = [$r('app.string.video_res_1'), $r('app.string.video_res_2'), $r('app.string.video_res_3'), $r('app.string.video_res_4'), $r('app.string.video_res_5')];
   @State selectColor: boolean = true;
   @Link show: boolean;
   @Link videoSelect: number; // 当前选择项的索引
@@ -147,7 +147,7 @@ export struct VideoPanel {
     .type(PanelType.Foldable)
     .mode(PanelMode.Half)
     .dragBar(false)
-    .halfHeight(330)
+    .halfHeight(400)
     .width('100%')
     .mode(PanelMode.Half)
     .padding({ top: $r('app.float.size_5') })
