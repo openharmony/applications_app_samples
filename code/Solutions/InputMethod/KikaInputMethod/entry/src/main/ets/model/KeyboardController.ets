@@ -35,7 +35,7 @@ interface CursorInfo {
   y: number;
   height: number
 }
-
+const previewContent: string  = "hello world";// hello world
 const InputMethodEngine: inputMethodEngine.InputMethodAbility = inputMethodEngine.getInputMethodAbility();
 const TAG: string = 'KeyboardController->';
 const isDebug: boolean = false;
@@ -69,6 +69,7 @@ export class InputHandler {
   private selectInfo: string = '';
   private textInfo: string = '';
   private inputInfo: string = '';
+  private intputText: string = '';
 
   private constructor() {
     this.mKbController = undefined;
@@ -94,8 +95,28 @@ export class InputHandler {
       this.mEditorAttribute = res;
       AppStorage.setOrCreate('enterKeyType', res.enterKeyType);
       AppStorage.setOrCreate('inputPattern', res.inputPattern);
-      this.setInputInfo('EditorInfo：enterKeyType = ' + this.mEditorAttribute.enterKeyType + ';inputPattern = ' + this.mEditorAttribute.inputPattern);
+      // AppStorage.setOrCreate('isTextPreviewSupported', res.isTextPreviewSupported);
+
+      this.setInputInfo('EditorInfo：enterKeyType = ' + this.mEditorAttribute.enterKeyType + ';inputPattern = ' + this.mEditorAttribute.inputPattern +
+        '; isTextPreviewSupported = ' + this.mEditorAttribute.isTextPreviewSupported);
     })
+    try {
+      this.addLog(`onInputStart sendPrivateCommand begin`);
+      let record: Record<string, inputMethodEngine.CommandDataType> = {
+        "previewTextStyle": "underline"
+      }
+      this.mTextInputClient.sendPrivateCommand(record).then((err) => {
+        this.addLog(`insertText sendPrivateCommand success`);
+      }).catch((err:BusinessError) => {
+        if (err !== undefined) {
+          let error = err as BusinessError;
+          this.addLog(`insertText sendPrivateCommand catch error: ${error.code} ${error.message}`);
+        }
+      });
+    } catch (err) {
+      let error = err as BusinessError;
+      this.addLog(`insertText sendPrivateCommand catch error: ${error.code} ${error.message}`);
+    }
   }
 
   public hideKeyboardSelf(): void {
@@ -111,6 +132,13 @@ export class InputHandler {
     this.addLog('sendKeyFunction')
     if (this.mTextInputClient && this.mEditorAttribute) {
       this.mTextInputClient.sendKeyFunction(this.mEditorAttribute.enterKeyType);
+
+      //调用结束预上屏接口, 预上屏内容将被系统正式上屏
+      this.mTextInputClient.finishTextPreview().then(() => {
+        console.log('Succeeded in finishing text preview.');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to finishTextPreview: ${JSON.stringify(err)}`);
+      });
     } else {
       this.addLog('sendKeyFunction this.mTextInputClient is undefined');
     }
@@ -141,15 +169,118 @@ export class InputHandler {
   }
 
   public insertText(text: string): void {
+
     this.addLog(`insertText = ${text}`);
     if (this.mTextInputClient !== undefined) {
       this.mTextInputClient.insertText(text);
+
+
+      let indexCursor: number = 0;
+      indexCursor = this.mTextInputClient.getTextIndexAtCursorSync();
+      this.intputText = this.mTextInputClient.getForwardSync(indexCursor);
+      this.intputText = this.intputText + text;
+
+      //设置预上屏数据
+      let length = 2;
+      let textPre: string = this.mTextInputClient.getForwardSync(length); // 取出的内容为当前输入之前的字符，不包含当前的字符
+      this.addLog('insertText textPre:' + textPre);
+      textPre = textPre + text;
+      if (textPre == "hel") {
+        this.addLog('insertText hel');
+        try {
+          // let indexCursor: number = 0;
+          // indexCursor = this.mTextInputClient.getTextIndexAtCursorSync();
+          let endRange: number = indexCursor + 1; //把当前字符计算在内
+          this.addLog('insertText start ' + (indexCursor - length).toString());
+          this.addLog('insertText end ' + (indexCursor).toString());
+          let range: inputMethodEngine.Range = { start: indexCursor - length, end: endRange };
+          this.mTextInputClient.setPreviewText(previewContent, range).then(() => {
+            this.addLog('insertText preViewText Succeeded in setting preview text.');
+          }).catch((err: BusinessError) => {
+            this.addLog(`insertText preViewText Failed to setPreviewText: ${JSON.stringify(err)}`);
+          });
+        } catch (err) {
+          this.addLog(`insertText preViewText Failed to setPreviewText: ${JSON.stringify(err)}`);
+        }
+      }
+      else if (this.intputText.length > length + 1){
+        this.addLog('insertText indexSubStrStart else ');
+        this.addLog('insertText this.intputText ' + this.intputText);
+
+        // if (textPre.length > length + 1) {
+        //
+        // }
+
+        let indexSubStrStart: number = this.intputText.lastIndexOf("hel");
+        this.addLog('insertText indexSubStrStart ' + indexSubStrStart.toString());
+
+        if (indexSubStrStart >= 0) { // 当前文本框存在预上屏的部分内容
+          let subStr: string = this.intputText.substring(indexSubStrStart, indexCursor);
+          this.addLog('insertText indexSubStrStart subStr ' + subStr);
+
+          if((previewContent != subStr) && (previewContent.includes(subStr))) { // 文本框的子串与预上屏内容吻合，则调用预上屏接口，替换文本框的子串
+
+            this.addLog('insertText previewContent indexSubStrStart ' + indexSubStrStart.toString());
+            this.addLog('insertText previewContent end ' + (indexCursor).toString());
+            let range: inputMethodEngine.Range = { start: indexSubStrStart, end: indexCursor + 1 };
+            this.mTextInputClient.setPreviewText(previewContent, range).then(() => {
+              this.addLog('insertText preViewText Succeeded in setting preview text.');
+            }).catch((err: BusinessError) => {
+              this.addLog(`insertText preViewText Failed to setPreviewText: ${JSON.stringify(err)}`);
+            });
+          }
+        }
+      }
+
+
+      //发送私有数据到文本编辑框
+      // 首先，判断当前输入的前三个字符是否为177
+      // let length = 3;
+      // let textPrivate: string = this.mTextInputClient.getForwardSync(length);
+      // this.addLog('insertText textPrivate :' + textPrivate);
+      // if (textPrivate == "177") {
+      //     // 然后，发送私有数据到文本框
+      //
+      // }
+      // try {
+      //   this.mTextInputClient.getForward(length).then((text: string) => {
+      //     console.log('Succeeded in getting forward, text: ' + text);
+      //     if (text == "177") {
+      //       // 然后，发送私有数据到文本框
+      //       try {
+      //         this.addLog(`onInputStart sendPrivateCommand begin`);
+      //         let record: Record<string, inputMethodEngine.CommandDataType> = {
+      //           "valueString1": "17712346543",
+      //         }
+      //         this.mTextInputClient.sendPrivateCommand(record).then((err) => {
+      //           this.addLog(`onInputStart sendPrivateCommand success`);
+      //         }).catch((err:BusinessError) => {
+      //           if (err !== undefined) {
+      //             let error = err as BusinessError;
+      //             this.addLog(`onInputStart sendPrivateCommand catch error: ${error.code} ${error.message}`);
+      //           }
+      //         });
+      //       } catch (err) {
+      //         let error = err as BusinessError;
+      //         this.addLog(`onInputStart sendPrivateCommand catch error: ${error.code} ${error.message}`);
+      //       }
+      //     }
+      //   }).catch((err: BusinessError) => {
+      //     console.error(`Failed to getForward: ${JSON.stringify(err)}`);
+      //   });
+      // } catch (err) {
+      //   console.error(`Failed to getForward: ${JSON.stringify(err)}`);
+      // }
+
+
+      // old code
     } else {
       this.addLog('insertText this.mTextInputClient is undefined');
     }
     if (isDebug) {
       this.refreshInfo();
     }
+
   }
 
   public addLog(message: string): void {
@@ -435,6 +566,20 @@ class KeyboardController {
         this.mContext.destroy();
       }
     });
+
+    this.inputHandle.addLog("pre on privateCommand");
+    try {
+      InputMethodEngine.on('privateCommand', (record : Record<string, inputMethodEngine.CommandDataType>) => {
+        console.log("on privateCommand");
+        this.inputHandle.addLog('keyboard privateCommand' + JSON.stringify(record));
+        Object.keys(record).forEach((key: string) => {
+          this.inputHandle.addLog(`onPageShow private command key: ${key}, value: ${record[key]}`);
+        })
+      });
+    } catch (err) {
+      let error = err as BusinessError;
+      this.inputHandle.addLog(`on privateCommand sendPrivateCommand catch error: ${error.code} ${error.message}`);
+    }
 
     this.mKeyboardDelegate = inputMethodEngine.getKeyboardDelegate();
 
