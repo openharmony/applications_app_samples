@@ -117,6 +117,14 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code\BasicFeature\Media\Audio\screenshots\device\index.png" desc="screenshot"/>
                 <filteritem type="filepath" name="code\BasicFeature\Media\Audio\screenshots\device\VolumePanel.png" desc="screenshot"/>
                 <filteritem type="filepath" name="code\BasicFeature\Media\Audio\screenshots\device\VolumePanel_ChangeVolumLevel.png" desc="screenshot"/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/AVSession/AvCastPickerForCall/entry/src/main/resources/base/media/icon.png" desc="Provided by the avsession"/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/AVSession/AvCastPickerForCall/entry/src/main/resources/base/media/startIcon.png" desc="Provided by the avsession"/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/AVSession/AvCastPickerForCall/entry/src/main/resources/rawfile/test1.wav" desc="Provided by the avsession"/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/AVSession/AvCastPickerForCall/AppScope/resources/base/media/app_icon.png" desc="Provided by the avsession"/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/AVSession/AvCastPickerForCall/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by the avsession"/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/AVSession/AvCastPickerForCall/screenshots/device/DefaultPicker.jpeg" desc="Provided by the avsession"/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/AVSession/AvCastPickerForCall/screenshots/device/Index.jpeg" desc="Provided by the avsession"/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/AVSession/AvCastPickerForCall/screenshots/device/CustomPicker.jpeg" desc="Provided by the avsession"/>
                 <filteritem type="filepath" name="ability/DistributedMusicPlayer/entry/src/main/resources/rawfile/Homey.mp3" desc="Provided by the UX team."/>
                 <filteritem type="filepath" name="ability/DistributedMusicPlayer/entry/src/main/resources/rawfile/Technology.mp3" desc="Provided by the UX team."/>
                 <filteritem type="filepath" name="UI/JsAnimation/entry/src/main/js/default/common/animator/show.mp4" desc="Provided by the UX team."/>
