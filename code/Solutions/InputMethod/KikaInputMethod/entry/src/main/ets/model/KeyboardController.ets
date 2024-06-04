@@ -35,7 +35,7 @@ interface CursorInfo {
   y: number;
   height: number
 }
-const previewContent: string  = "hello world";
+const previewContent: string  = 'hello world';
 const InputMethodEngine: inputMethodEngine.InputMethodAbility = inputMethodEngine.getInputMethodAbility();
 const TAG: string = 'KeyboardController->';
 const isDebug: boolean = false;
@@ -102,7 +102,7 @@ export class InputHandler {
     try {
       this.addLog(`onInputStart sendPrivateCommand begin`);
       let record: Record<string, inputMethodEngine.CommandDataType> = {
-        "previewTextStyle": "underline"
+        'previewTextStyle': 'underline'
       }
       this.mTextInputClient.sendPrivateCommand(record).then((err) => {
         this.addLog(`insertText sendPrivateCommand success`);
@@ -202,11 +202,10 @@ export class InputHandler {
         } catch (err) {
           this.addLog(`insertText preViewText Failed to setPreviewText: ${JSON.stringify(err)}`);
         }
-      }
-      else if (this.intputText.length > length + 1){
+      } else if (this.intputText.length > length + 1){
         this.addLog('insertText this.intputText ' + this.intputText);
 
-        let indexSubStrStart: number = this.intputText.lastIndexOf("hel");
+        let indexSubStrStart: number = this.intputText.lastIndexOf('hel');
         this.addLog('insertText indexSubStrStart ' + indexSubStrStart.toString());
 
         if (indexSubStrStart >= 0) {
@@ -523,7 +522,6 @@ class KeyboardController {
     this.inputHandle.addLog("pre on privateCommand");
     try {
       InputMethodEngine.on('privateCommand', (record : Record<string, inputMethodEngine.CommandDataType>) => {
-        console.log("on privateCommand");
         this.inputHandle.addLog('keyboard privateCommand' + JSON.stringify(record));
         Object.keys(record).forEach((key: string) => {
           this.inputHandle.addLog(`onPageShow private command key: ${key}, value: ${record[key]}`);
