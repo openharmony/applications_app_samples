@@ -95,7 +95,6 @@ export class InputHandler {
       this.mEditorAttribute = res;
       AppStorage.setOrCreate('enterKeyType', res.enterKeyType);
       AppStorage.setOrCreate('inputPattern', res.inputPattern);
-      // AppStorage.setOrCreate('isTextPreviewSupported', res.isTextPreviewSupported);
 
       this.setInputInfo('EditorInfo：enterKeyType = ' + this.mEditorAttribute.enterKeyType + ';inputPattern = ' + this.mEditorAttribute.inputPattern +
         '; isTextPreviewSupported = ' + this.mEditorAttribute.isTextPreviewSupported);
@@ -188,8 +187,6 @@ export class InputHandler {
       if (textPre == "hel") {
         this.addLog('insertText hel');
         try {
-          // let indexCursor: number = 0;
-          // indexCursor = this.mTextInputClient.getTextIndexAtCursorSync();
           let endRange: number = indexCursor + 1; //把当前字符计算在内
           this.addLog('insertText start ' + (indexCursor - length).toString());
           this.addLog('insertText end ' + (indexCursor).toString());
@@ -204,12 +201,7 @@ export class InputHandler {
         }
       }
       else if (this.intputText.length > length + 1){
-        this.addLog('insertText indexSubStrStart else ');
         this.addLog('insertText this.intputText ' + this.intputText);
-
-        // if (textPre.length > length + 1) {
-        //
-        // }
 
         let indexSubStrStart: number = this.intputText.lastIndexOf("hel");
         this.addLog('insertText indexSubStrStart ' + indexSubStrStart.toString());
@@ -231,49 +223,6 @@ export class InputHandler {
           }
         }
       }
-
-
-      //发送私有数据到文本编辑框
-      // 首先，判断当前输入的前三个字符是否为177
-      // let length = 3;
-      // let textPrivate: string = this.mTextInputClient.getForwardSync(length);
-      // this.addLog('insertText textPrivate :' + textPrivate);
-      // if (textPrivate == "177") {
-      //     // 然后，发送私有数据到文本框
-      //
-      // }
-      // try {
-      //   this.mTextInputClient.getForward(length).then((text: string) => {
-      //     console.log('Succeeded in getting forward, text: ' + text);
-      //     if (text == "177") {
-      //       // 然后，发送私有数据到文本框
-      //       try {
-      //         this.addLog(`onInputStart sendPrivateCommand begin`);
-      //         let record: Record<string, inputMethodEngine.CommandDataType> = {
-      //           "valueString1": "17712346543",
-      //         }
-      //         this.mTextInputClient.sendPrivateCommand(record).then((err) => {
-      //           this.addLog(`onInputStart sendPrivateCommand success`);
-      //         }).catch((err:BusinessError) => {
-      //           if (err !== undefined) {
-      //             let error = err as BusinessError;
-      //             this.addLog(`onInputStart sendPrivateCommand catch error: ${error.code} ${error.message}`);
-      //           }
-      //         });
-      //       } catch (err) {
-      //         let error = err as BusinessError;
-      //         this.addLog(`onInputStart sendPrivateCommand catch error: ${error.code} ${error.message}`);
-      //       }
-      //     }
-      //   }).catch((err: BusinessError) => {
-      //     console.error(`Failed to getForward: ${JSON.stringify(err)}`);
-      //   });
-      // } catch (err) {
-      //   console.error(`Failed to getForward: ${JSON.stringify(err)}`);
-      // }
-
-
-      // old code
     } else {
       this.addLog('insertText this.mTextInputClient is undefined');
     }

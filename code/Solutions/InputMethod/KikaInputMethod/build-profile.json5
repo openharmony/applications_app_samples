@@ -16,18 +16,6 @@
 {
   "app": {
     "signingConfigs": [
-      {
-        "name": "default",
-        "material": {
-          "certpath": "C:/Users/Administrator/.ohos/config/openharmony/default_KikaInputMethod_U54bIzNDY6IJlZxbuwlUMxs0q-DQZ3MmwDCiK9XWifM=.cer",
-          "storePassword": "0000001A443F30EB5BD1003CA9676C30DE76C8DFBEA1B71710237B0C04C60F6512301D797C3B7C2F452D",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001A1B32A39E9EF5C2A494BA924624E6AA61F5565D2021E9F652560C8DA011A92BBA94E5EA8BA761",
-          "profile": "C:/Users/Administrator/.ohos/config/openharmony/default_KikaInputMethod_U54bIzNDY6IJlZxbuwlUMxs0q-DQZ3MmwDCiK9XWifM=.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:/Users/Administrator/.ohos/config/openharmony/default_KikaInputMethod_U54bIzNDY6IJlZxbuwlUMxs0q-DQZ3MmwDCiK9XWifM=.p12"
-        }
-      }
     ],
     "products": [
       {
