@@ -159,8 +159,7 @@ export default class RdbModel {
         this.distributedTable = await this.rdbStore.obtainDistributedTableName(device, this.tableName)
         Logger.info(TAG, `obtainDistributedTableName,distributedTable=` + this.distributedTable)
       }
-    }
-    catch (err) {
+    } catch (err) {
       Logger.error(TAG, `ObtainDistributedTableName failed, code is ${err.code},message is ${err.message}`)
     }
     this.dataChangeCallback = callback
@@ -180,8 +179,7 @@ export default class RdbModel {
         this.distributedTable = await this.rdbStore.obtainDistributedTableName(device, this.tableName);
         Logger.info(TAG, `obtainDistributedTableName,distributedTable=` + this.distributedTable);
       }
-    }
-    catch (err) {
+    } catch (err) {
       Logger.error(TAG, `ObtainDistributedTableName failed, code is ${err.code},message is ${err.message}`);
     }
     this.dataChangeDetailCallback = callback;
@@ -225,7 +223,7 @@ export default class RdbModel {
     Logger.info(TAG, `start pullDataDetail`);
     if (this.rdbStore != undefined) {
       if (changeInfo.length > 0) {
-        let result: Array<Contact> = [];
+        let result: Contact[] = [];
         for (let i = 0; i < changeInfo.length; i++) {
           let table: string = changeInfo[i].table;
           if (table !== TABLE_NAME) {
@@ -235,13 +233,13 @@ export default class RdbModel {
           let updated: Array<string> | Array<number> = changeInfo[i].updated;
           let deleted: Array<string> | Array<number> = changeInfo[i].deleted;
           if (inserted.length > 0) {
-            let insertData: Array<Contact> = await this.getDetailByType(inserted, TYPE_INSERT);
+            let insertData: Contact[] = await this.getDetailByType(inserted, TYPE_INSERT);
             insertData.forEach(element => {
               result.push(element);
             });
           }
           if (updated.length > 0) {
-            let updateData: Array<Contact> = await this.getDetailByType(updated, TYPE_UPDATE);
+            let updateData: Contact[] = await this.getDetailByType(updated, TYPE_UPDATE);
             updateData.forEach(element => {
               result.push(element);
             });
@@ -295,9 +293,9 @@ export default class RdbModel {
   }
 
   // 处理数据格式
-  getListFromResultSet(resultSet: data_rdb.ResultSet): Array<Contact> {
+  getListFromResultSet(resultSet: data_rdb.ResultSet): Contact[] {
     // 声明结果变量
-    let contacts: Array<Contact> = []
+    let contacts: Contact[] = []
     // 进入结果集的第一行
     resultSet.goToFirstRow()
     // 如果没有结束就继续遍历
