@@ -112,12 +112,12 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text('a', MatchPattern.CONTAINS));
       let inputTexta = await driver.findComponent(ON.text('a', MatchPattern.CONTAINS));
       await inputTexta.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(2000);
 
       await driver.assertComponentExist(ON.text('c', MatchPattern.CONTAINS));
       let inputTextc = await driver.findComponent(ON.text('c', MatchPattern.CONTAINS));
       await inputTextc.click();
-      await driver.delayMs(1500);
+      await driver.delayMs(2000);
 
       await driver.assertComponentExist(ON.text('d', MatchPattern.CONTAINS));
       let inputTextd = await driver.findComponent(ON.text('d', MatchPattern.CONTAINS));
