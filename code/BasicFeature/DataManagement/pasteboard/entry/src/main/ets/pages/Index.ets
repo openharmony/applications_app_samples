@@ -1,54 +1,47 @@
 import { BusinessError } from '@ohos.base';
-import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
 import pasteboard from '@ohos.pasteboard';
+import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
 import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
-// import { pasteboardkit } from '@kit.BasicServicesKit';
 import Log from '../../common/Log'
 
 const TAG: string = 'pasteboard->';
-
 @Entry
 @Component
 struct Index {
-  @State text: string = 'Hello World';
-  // @State text: string = ''
-  controller: TextAreaController = new TextAreaController()
-
-
+  @State text: string = '';
+  controller: TextInputController = new TextInputController()
   addLog(message: string): void {
-    Log.showInfo(TAG, `kikaInput-new: ${message}`);
+    Log.showInfo(TAG, `pasteboard: ${message}`);
   }
 
   build() {
     Row() {
-
       Column() {
         Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceEvenly }) {
-          TextArea({
+          TextInput({
             text: this.text,
-            placeholder: 'The text area can hold an unlimited amount of text. input your word...',
+            placeholder: 'Please input your word...',
             controller: this.controller
           })
             .placeholderFont({ size: 16, weight: 400 })
-            .width(336)
-            .height(56)
+            .backgroundColor('#FFFFFF')
+            .border({ width: 1, color: Color.Gray, radius: 18 })
+            .width(436) //336
+            .height(56) // 56
             .margin(20)
             .fontSize(16)
             .fontColor('#182431')
-            .backgroundColor(Color.Red)
-            .id('pasteTextArea')
+            .id('pasteText')
             .onChange((value: string) => {
               this.text = value
             })
-          // Text($r('app.string.Button_copy'))
-          // Row() {
           Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
             Button($r('app.string.Button_copy'))
               .backgroundColor('#007DFF')
               .margin(15)
               .onClick(() => {
-
-                this.addLog('text arear content :' + this.text);
+                // 复制文本框文本到剪贴板
+                this.addLog('text content :' + this.text);
                 let plainTextData = new unifiedDataChannel.UnifiedData();
                 let plainText = new unifiedDataChannel.PlainText();
                 plainText.details = {
@@ -56,7 +49,7 @@ struct Index {
                     Value: this.text,
                 };
                 plainText.textContent = this.text;
-                plainText.abstract = 'delayTextContent'; // 'delayTextContent'
+                plainText.abstract = 'delayTextContent';
                 plainTextData.addRecord(plainText);
 
                 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
@@ -70,7 +63,7 @@ struct Index {
               .backgroundColor('#007DFF')
               .margin(15)
               .onClick(() => {
-                // 设置光标位置到第一个字符后
+                // 粘贴剪贴板内容到文本框
                 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
                 systemPasteboard.getUnifiedData().then((data) => {
                   let records = data.getRecords();
@@ -86,32 +79,24 @@ struct Index {
                   this.addLog('Failed to get UnifiedData. Cause: ' + err.message);
                 });
               })
-          }.height('10%').backgroundColor(Color.Orange)
-
-          // }.width('100%').height('30%').backgroundColor('#F1F3F5')
+          }
+          .height('10%')
 
           PasteButton()
             .backgroundColor('#007DFF')
-            // .margin(15)
-            // .onClick(() => {
-              // 设置光标位置到第一个字符后
-              // this.controller.caretPosition(1)
-
-              // TextInput({ placeholder: '请输入验证码', text: this.message })
-              .onClick((event: ClickEvent, result: PasteButtonOnClickResult) => {
-                this.addLog('PasteButton onclick!')
-                if (PasteButtonOnClickResult.SUCCESS === result) {
-                  pasteboard.getSystemPasteboard().getData((err: BusinessError, pasteData: pasteboard.PasteData) => {
-                    if (err) {
-                      this.addLog(`Failed to get paste data. Code is ${err.code}, message is ${err.message}`);
-                      return;
-                    }
-                    // 剪贴板内容为 'Hello World'
-                    this.text = pasteData.getPrimaryText();
-                    this.addLog('PasteButton onclick getPrimaryText: ' + this.text)
-                  });
-                }
-              // })
+            .onClick((event: ClickEvent, result: PasteButtonOnClickResult) => {
+              // 使用安全粘贴控件粘贴文本
+              this.addLog('PasteButton onclick!')
+              if (PasteButtonOnClickResult.SUCCESS === result) {
+                pasteboard.getSystemPasteboard().getData((err: BusinessError, pasteData: pasteboard.PasteData) => {
+                  if (err) {
+                    this.addLog(`Failed to get paste data. Code is ${err.code}, message is ${err.message}`);
+                    return;
+                  }
+                  this.text = pasteData.getPrimaryText();
+                  this.addLog('PasteButton onclick getPrimaryText: ' + this.text)
+                });
+              }
             })
 
           Button($r('app.string.Button_text_paste'))
@@ -119,8 +104,7 @@ struct Index {
             .margin(15)
             .id('textPaste')
             .onClick(() => {
-              // 设置光标位置到第一个字符后
-
+              // 粘贴类型过滤，仅粘贴文本
               let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
               let result: boolean = systemPasteboard.hasDataType(pasteboard.MIMETYPE_TEXT_PLAIN);
               if (result) {
@@ -137,7 +121,6 @@ struct Index {
                 }).catch((err: BusinessError) => {
                   this.addLog('Failed to get UnifiedData. Cause: ' + err.message);
                 });
-
               } else {
                 this.addLog('Check the PLAIN_TEXT DataType fail!')
               }
@@ -146,9 +129,7 @@ struct Index {
             .backgroundColor('#007DFF')
             .margin(15)
             .onClick(() => {
-              // 设置光标位置到第一个字符后
-              // this.controller.caretPosition(1)
-
+              // 粘贴类型过滤，仅跨设备文本
               let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
               let result: boolean = systemPasteboard.isRemoteData();
               if (result) {
@@ -169,15 +150,8 @@ struct Index {
                 this.addLog('Check isRemoteData DataType fail!');
               }
             })
-          // Column() {
-          //   Text(this.message)
-          //     .fontSize(50)
-          //     .fontWeight(FontWeight.Bold)
-          // }
-          // .width('100%')
         }
         .height('100%')
-        .backgroundColor(Color.Green)
       }
       .height('100%')
       .width('100%')
