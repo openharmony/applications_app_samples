@@ -35,7 +35,7 @@ interface CursorInfo {
   y: number;
   height: number
 }
-const previewContent: string  = "hello world";// hello world
+const previewContent: string  = "hello world";
 const InputMethodEngine: inputMethodEngine.InputMethodAbility = inputMethodEngine.getInputMethodAbility();
 const TAG: string = 'KeyboardController->';
 const isDebug: boolean = false;
@@ -181,13 +181,16 @@ export class InputHandler {
 
       //设置预上屏数据
       let length = 2;
-      let textPre: string = this.mTextInputClient.getForwardSync(length); // 取出的内容为当前输入之前的字符，不包含当前的字符
+      let textPre: string = this.mTextInputClient.getForwardSync(length);
       this.addLog('insertText textPre:' + textPre);
+
+      // 取出的内容为当前输入之前的字符，不包含当前的字符,需将当前字符加上
       textPre = textPre + text;
       if (textPre == "hel") {
         this.addLog('insertText hel');
         try {
-          let endRange: number = indexCursor + 1; //把当前字符计算在内
+          //把当前字符计算在内
+          let endRange: number = indexCursor + 1;
           this.addLog('insertText start ' + (indexCursor - length).toString());
           this.addLog('insertText end ' + (indexCursor).toString());
           let range: inputMethodEngine.Range = { start: indexCursor - length, end: endRange };
@@ -206,12 +209,13 @@ export class InputHandler {
         let indexSubStrStart: number = this.intputText.lastIndexOf("hel");
         this.addLog('insertText indexSubStrStart ' + indexSubStrStart.toString());
 
-        if (indexSubStrStart >= 0) { // 当前文本框存在预上屏的部分内容
+        if (indexSubStrStart >= 0) {
+          // 当前文本框存在预上屏的部分内容
           let subStr: string = this.intputText.substring(indexSubStrStart, indexCursor);
           this.addLog('insertText indexSubStrStart subStr ' + subStr);
 
-          if((previewContent != subStr) && (previewContent.includes(subStr))) { // 文本框的子串与预上屏内容吻合，则调用预上屏接口，替换文本框的子串
-
+          if((previewContent != subStr) && (previewContent.includes(subStr))) {
+            // 文本框的子串与预上屏内容吻合，则调用预上屏接口，替换文本框的子串
             this.addLog('insertText previewContent indexSubStrStart ' + indexSubStrStart.toString());
             this.addLog('insertText previewContent end ' + (indexCursor).toString());
             let range: inputMethodEngine.Range = { start: indexSubStrStart, end: indexCursor + 1 };
