@@ -79,17 +79,17 @@ export struct VideoPanel {
               middle: { anchor: '__container__', align: HorizontalAlign.Center },
               center: { anchor: '__container__', align: VerticalAlign.Center }
             })
-            .id("test1")
+            .id('test1')
           Image($r('app.media.ic_video_list_down'))
             .width($r('app.float.size_30'))
             .height($r('app.float.size_20'))
             .alignRules({
               right: { anchor: '__container__', align: HorizontalAlign.End },
               center: { anchor: '__container__', align: VerticalAlign.Center }
-            }).id("test2")
+            }).id('test2')
         }
         .height($r('app.float.size_20'))
-        .width("90%")
+        .width('90%')
         .margin({ top: $r('app.float.size_20'), bottom: $r('app.float.size_20') })
 
         List() {
@@ -114,12 +114,12 @@ export struct VideoPanel {
                       .textAlign(TextAlign.Center)
                   }
                 }
-                .width("90%")
+                .width('90%')
               }
-              .width("100%")
+              .width('100%')
             }
-            .backgroundColor(this.videoSelect === index ? $r('app.color.video_play_selected') : "")
-            .width("100%")
+            .backgroundColor(this.videoSelect === index ? $r('app.color.video_play_selected') : '')
+            .width('100%')
             .height($r('app.float.size_64'))
             .onClick(async () => {
               this.videoSelect = index;
@@ -134,7 +134,7 @@ export struct VideoPanel {
             })
           })
         }
-        .width("100%")
+        .width('100%')
       }
     }
     .onClick(() => {
