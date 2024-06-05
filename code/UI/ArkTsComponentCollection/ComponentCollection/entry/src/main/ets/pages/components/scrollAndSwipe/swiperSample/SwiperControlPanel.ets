@@ -33,11 +33,15 @@ export struct PropertiesControlPanel {
         testID: `swiper_001`
       })
 
+      Divider()
+
       CommonSwitcher({
         bool: $isVertical,
         name: $r('app.string.swiper_properties_vertical'),
         testID: `swiper_002`
       })
+
+      Divider()
 
       CommonSwitcher({
         name: $r('app.string.swiper_properties_loop'),
@@ -45,11 +49,15 @@ export struct PropertiesControlPanel {
         testID: `swiper_003`
       })
 
+      Divider()
+
       CommonSwitcher({
-        name: $r('app.string.swiper_properties_auto_play'),
+        name: $r('app.string.swiper_property_auto_play'),
         bool: $autoPlay,
         testID: `swiper_004`
       })
+
+      Divider()
 
       CommonItemTwoRowSlider({
         changeValue: $itemSpace,
@@ -58,20 +66,26 @@ export struct PropertiesControlPanel {
         max: 300,
         step: 100,
         testId:"swiper_005"
-      })
+      }).margin({ top: 12 })
+
+      Divider()
 
       CommonItemSelect({
         name: $r('app.string.swiper_properties_duration'),
         selects: ['400', '1000', '2000'],
+        menuAlignType: MenuAlignType.END,
         callback: (index, str) => {
           this.duration = Number.parseInt(str);
         },
         testId:`swiper_006`
       })
 
+      Divider()
+
       CommonItemSelect({
         name: $r('app.string.swiper_properties_interval'),
         selects: ['1000', '2000', '3000'],
+        menuAlignType: MenuAlignType.END,
         callback: (index, str) => {
           this.interval = Number.parseInt(str);
         },

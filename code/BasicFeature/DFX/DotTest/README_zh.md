@@ -32,7 +32,7 @@ entry/src/main/ets/
 
 * 该示例使用hiAppEvent接口中write方法将事件写入到当天的事件文件中，EventType方法枚举事件类型，configure方法去配置打点开关来实现测试打点。
 * 源码链接：[DotTestPage.ets](entry/src/main/ets/pages/DotTestPage.ets)
-* 接口参考：[@ohos.hiAppEvent](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-hiappevent.md)
+* 接口参考：[@ohos.hiviewdfx.hiAppEvent](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md)
 
 ### 相关权限
 

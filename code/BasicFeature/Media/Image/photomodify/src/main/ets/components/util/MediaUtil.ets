@@ -15,7 +15,7 @@
 import image from '@ohos.multimedia.image'
 import fs from '@ohos.file.fs';
 
-export async function readImage(uri: string): Promise<PixelMap | null> {
+export async function readImage(uri: string, decodingOptions?: image.DecodingOptions): Promise<PixelMap | null> {
   const prefix: string = 'file:/';
   if (uri.startsWith('file://media')) {
   } else if (prefix) {
@@ -27,7 +27,12 @@ export async function readImage(uri: string): Promise<PixelMap | null> {
   if (!imageSourceApi) {
     return null;
   }
-  let pixmap: image.PixelMap = await imageSourceApi.createPixelMap();
+  let pixmap: image.PixelMap;
+  if (decodingOptions) {
+    pixmap = await imageSourceApi.createPixelMap(decodingOptions);
+  } else {
+    pixmap = await imageSourceApi.createPixelMap();
+  }
   if (!pixmap) {
     return null;
   }

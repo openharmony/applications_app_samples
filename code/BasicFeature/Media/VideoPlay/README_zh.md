@@ -2,7 +2,7 @@
 
 ### 介绍
 视频播放的主要工作是将视频数据转码并输出到设备进行播放，同时管理播放任务。本文将对视频播放全流程、视频切换、视频循环播放等场景开发进行介绍说明。
-本示例主要展示了播放本地视频和网络视频相关功能,使用 [@ohos.multimedia.media](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-media.md#bufferinginfotype8),[@ohos.resourceManager](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-resource-manager.md),[@ohos.wifiManager](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-wifiManager.md)等接口,实现了视频播放、暂停、调节倍速、切换视频的功能;实现效果如下;
+本示例主要展示了播放本地视频和网络视频相关功能,使用 [@ohos.multimedia.media](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-media-kit/js-apis-media.md),[@ohos.resourceManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-localization-kit/js-apis-resource-manager.md),[@ohos.wifiManager](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/apis/js-apis-wifiManager.md)等接口,实现了视频播放、暂停、调节倍速、切换视频的功能;实现效果如下;
 
 ### 效果预览
 | 播放                                       | 暂停                                    | 倍速弹窗                                       | 视频列表                                      |
@@ -56,8 +56,8 @@ VideoPlay/src/main/ets/
 
 ### 相关权限
 
-#### [ohos.permission.INTERNET](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/permission-list.md/)
-#### [ohos.permission.GET_WIFI_INFO](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/permission-list.md/)
+#### [ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissioninternet)
+#### [ohos.permission.ohos.permission.GET_WIFI_INFO_INTERNAL](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionget_wifi_info_internal)
 
 ### 依赖
 不涉及。

@@ -94,6 +94,31 @@ export default function abilityTest() {
     })
 
     /**
+     * 切换pre_download_dash.mpd视频
+     */
+    it('Choose_003', 0, async (done: Function) => {
+      // 拉起操作界面
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('Video'));
+      let stack = await driver.findComponent(ON.id('Video'));
+      await driver.delayMs(1000);
+      await stack.click();
+      // 点击视频列表
+      await driver.assertComponentExist(ON.id('Choose'));
+      let btnPlay = await driver.findComponent(ON.id('Choose'));
+      await btnPlay.click();
+
+      // 点击pre_download_dash.mpd
+      const str = await getString($r('app.string.video_res_5'));
+      await driver.assertComponentExist(ON.text(str));
+      let button = await driver.findComponent(ON.text(str));
+      await button.click();
+      await driver.delayMs(2000);
+      done();
+      hilog.info(DOMAIN, TAG, 'Choose_003 end');
+    })
+
+    /**
      * 切换pre_download_network.mp4视频
      */
     it('Choose_002', 0, async (done: Function) => {
@@ -115,7 +140,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text(str));
       let button = await driver.findComponent(ON.text(str));
       await button.click();
-      await driver.delayMs(5000);
+      await driver.delayMs(2000);
       done();
       hilog.info(DOMAIN, TAG, 'Choose_002 end');
     })

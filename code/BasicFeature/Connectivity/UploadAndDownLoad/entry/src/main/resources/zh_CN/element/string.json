@@ -131,6 +131,10 @@
     {
       "name": "chunk_para_invalid",
       "value": "Begins 或 Ends 无效"
+    },
+    {
+      "name": "cert_lock",
+      "value": "证书锁定"
     }
   ]
 }

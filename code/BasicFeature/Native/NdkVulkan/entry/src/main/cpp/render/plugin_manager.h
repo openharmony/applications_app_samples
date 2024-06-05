@@ -27,8 +27,7 @@
 
 class PluginManager {
   public:
-    ~PluginManager() {
-    }
+    ~PluginManager() = default;
     static PluginManager *GetInstance()
     {
         static PluginManager instance;

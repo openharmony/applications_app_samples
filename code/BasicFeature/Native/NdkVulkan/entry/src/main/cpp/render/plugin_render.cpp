@@ -155,6 +155,11 @@ void PluginRender::OnSurfaceCreated(OH_NativeXComponent *component, void *window
 void PluginRender::OnSurfaceChanged(OH_NativeXComponent *component, void *window)
 {
     int32_t ret = OH_NativeXComponent_GetXComponentSize(component, window, &width_, &height_);
+    if (vulkanExample_ == nullptr) {
+        OnSurfaceCreated(component, window);
+    } else {
+        vulkanExample_->SetRecreateSwapChain();
+    }
     LOGD("PluginRender::OnSurfaceChanged ret is %{public}d, w:%{public}lu, d:%{public}lu", ret, width_, height_);
 }
 

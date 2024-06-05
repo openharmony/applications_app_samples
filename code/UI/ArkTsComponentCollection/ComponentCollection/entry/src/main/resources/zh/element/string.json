@@ -2008,18 +2008,6 @@
       "value": "Select 选择器"
     },
     {
-      "name": "swiper_set_next_margin_and_previous_margin",
-      "value": "设置前后页边距"
-    },
-    {
-      "name": "swiper_next_margin",
-      "value": "上一页边距"
-    },
-    {
-      "name": "swiper_previous_margin",
-      "value": "下一页边距"
-    },
-    {
       "name": "alphabetindexer_an",
       "value": "安"
     },
@@ -4000,14 +3988,6 @@
       "value": "修改终点列号"
     },
     {
-      "name": "swiper_title",
-      "value": "swiper"
-    },
-    {
-      "name": "swiper_introduction",
-      "value": "左右滑动切换页面"
-    },
-    {
       "name": "swiper_introduction_arguments",
       "value": "SwiperController 控制器"
     },
@@ -4017,27 +3997,23 @@
     },
     {
       "name": "swiper_properties_disable_swipe",
-      "value": "是否禁用左右滑动切换功能"
+      "value": "禁用左右滑动切换功能"
     },
     {
       "name": "swiper_properties_item_space",
-      "value": "滑动页面间隙"
+      "value": "子组件之间的间隙"
     },
     {
       "name": "swiper_properties_vertical",
-      "value": "是否为纵向滑动"
+      "value": "纵向滑动"
     },
     {
       "name": "swiper_properties_duration",
-      "value": "滑动切换的动画时长(单位: ms)"
+      "value": "动画时长(单位: ms)"
     },
     {
       "name": "swiper_properties_loop",
-      "value": "是否开启首尾循环"
-    },
-    {
-      "name": "swiper_properties_auto_play",
-      "value": "是否开启自动循环播放"
+      "value": "开启循环"
     },
     {
       "name": "swiper_properties_interval",
@@ -4050,6 +4026,42 @@
     {
       "name": "swiper_controller_previous",
       "value": "上一页"
+    },
+    {
+      "name": "swiper_common_interfaces_and_properties",
+      "value": "常用接口和属性"
+    },
+    {
+      "name": "swiper_custom_properties",
+      "value": "自定义切换动画的属性"
+    },
+    {
+      "name": "swiper_modify_custom_properties",
+      "value": "修改自定义切换动画的属性"
+    },
+    {
+      "name": "swiper_custom_property_opacity",
+      "value": "动态改变透明度"
+    },
+    {
+      "name": "swiper_custom_property_scale",
+      "value": "动态缩放页面"
+    },
+    {
+      "name": "swiper_close_two_pages_together",
+      "value": "缩放时同组两页靠拢"
+    },
+    {
+      "name": "swiper_cancel_default_translate",
+      "value": "抵消默认位移"
+    },
+    {
+      "name": "swiper_property_auto_play",
+      "value": "自动播放"
+    },
+    {
+      "name": "swiper_custom_property_curve",
+      "value": "动画曲线"
     },
     {
       "name": "navRouter_title",

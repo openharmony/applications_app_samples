@@ -27,4 +27,4 @@ add_library(nativerender SHARED
             NativeRender.cpp
             NativeImageAdaptor.cpp)
 
-target_link_libraries(nativerender PUBLIC ${hilog-lib} ${libnapi-lib} ${libace-lib} libnative_buffer.so libnative_window.so libnative_image.so libEGL.so libGLESv3.so)
+target_link_libraries(nativerender PUBLIC ${hilog-lib} ${libnapi-lib} ${libace-lib} libnative_buffer.so libnative_window.so libnative_image.so libEGL.so libGLESv3.so libipc_capi.so)

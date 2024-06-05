@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "default_avcastpicker",
+      "value": "默认样式组件"
+    },
+    {
+      "name": "custom_avcastpicker",
+      "value": "自定义样式组件"
+    }
+  ]
+}

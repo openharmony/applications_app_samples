@@ -45,6 +45,10 @@
       "value": "pre_download_network.mp4"
     },
     {
+      "name": "video_res_5",
+      "value": "pre_download_dash.mpd"
+    },
+    {
       "name": "video_speed_2_0X",
       "value": "2.0X"
     },

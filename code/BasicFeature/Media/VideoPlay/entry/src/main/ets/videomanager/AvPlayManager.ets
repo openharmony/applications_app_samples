@@ -401,6 +401,8 @@ export default class AvPlayManager {
         this.fileSrc = 'https:\/\/vd3.bdstatic.com\/mda-pdc2kmwtd2vxhiy4\/cae_h264\/1681502407203843413\/mda-pdc2kmwtd2vxhiy4.mp4';
       } else if (this.videoSrc === 'pre_download_network.mp4') {
         this.fileSrc = 'https:\/\/vd3.bdstatic.com\/mda-nmh2004d24kf4bjh\/hd/h264\/1671326683061787710\/mda-nmh2004d24kf4bjh.mp4';
+      } else if (this.videoSrc === 'pre_download_dash.mpd') {
+        this.fileSrc = 'https:\/\/hwposter-inland.hwcloudtest.cn\/AiMaxEngine\/DASH_LOCAL\/DASH_SDR_H264_LC\/DASH_SDR_H264_LC.mpd';
       } else {
         this.fileSrc = this.videoSrc;
       }
@@ -409,7 +411,7 @@ export default class AvPlayManager {
         let bool = regex.test(this.fileSrc);
         if (bool) {
           Logger.info(this.tag, `avPlayerChoose avPlayerChoose fileDescriptor = ${JSON.stringify(this.fileDescriptor)}`);
-          if (this.videoSrc === 'pre_download_network.mp4') {
+          if (this.videoSrc === 'pre_download_network.mp4' || this.videoSrc === 'pre_download_dash.mpd') {
             this.preDownload(this.fileSrc);
           } else {
             this.avPlayer.url = this.fileSrc;

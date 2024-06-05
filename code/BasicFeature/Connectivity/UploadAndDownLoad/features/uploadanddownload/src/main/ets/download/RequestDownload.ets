@@ -206,7 +206,6 @@ class RequestDownload {
         logger.info(TAG, `deleteTask fail, err= ${JSON.stringify(err)}`);
       }
     }
-
     this.downloadTask = undefined;
   }
 

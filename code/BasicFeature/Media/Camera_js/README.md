@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例主要展示了相机的相关功能，使用[@ohos.multimedia.camera](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.multimedia.camera.d.ts)等接口实现相机的预览、拍照、录像、前后置摄像头切换进行拍照、录像，以及闪光灯、变焦、对焦、曝光等控制类功能。
+本示例主要展示了相机的相关功能，使用[@ohos.multimedia.camera](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-camera-kit/js-apis-camera.md)等接口实现相机的预览、拍照、录像、前后置摄像头切换进行拍照、录像，以及闪光灯、变焦、对焦、曝光等控制类功能。
 
 ### 效果预览
 
@@ -97,7 +97,7 @@ entry/src/main
 
 ### 相关权限
 
-[ohos.permission.CAMERA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissioncamera)
+[ohos.permission.CAMERA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-camera-kit/js-apis-camera.md)
 
 [ohos.permission.MICROPHONE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionmicrophone)
 

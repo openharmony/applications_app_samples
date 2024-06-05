@@ -18,6 +18,7 @@
 #include <native_drawing/drawing_text_typography.h>
 #include "common/log_common.h"
 #include "sample_bitmap.h"
+#include "plugin/plugin_manager.h"
 
 static void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window)
 {
@@ -380,6 +381,7 @@ void SampleBitMap::Destroy()
 
 void SampleBitMap::Release(std::string &id)
 {
+    PluginManager::GetInstance()->ReleaseRender(id);
     SampleBitMap *render = SampleBitMap::GetInstance(id);
     if (render != nullptr) {
         delete render;
