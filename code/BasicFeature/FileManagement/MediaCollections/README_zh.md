@@ -119,11 +119,13 @@ entry/src/main/ets/
 
 1.本示例仅支持标准系统上运行，支持设备：RK3568。
 
-2.本示例已适配API version 12版本SDK，本示例涉及使用系统接口：getXComponentSurfaceId()，需要手动替换Full SDK才能编译通过，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)。
+2.本示例已适配API version 12版本SDK，版本号：5.0.0.22。
 
 3.本示例需要使用DevEco Studio NEXT Developer Beta1 (Build Version: 5.0.1.100 构建 2024年3月25日)及以上版本才可编译运行。
 
-4. DRM播放需要IP白名单才可以运行，设备需要含DCM证书，否则无法播放DRM片源。
+4.本示例涉及使用系统接口：getXComponentSurfaceId()，需要手动替换Full SDK才能编译通过，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)。
+
+5.本示例DRM播放需要IP白名单才可以运行，设备需要含DCM证书，否则无法播放DRM片源。
 
 ### 下载
 如需单独下载本工程，执行如下命令：
