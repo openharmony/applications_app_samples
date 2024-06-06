@@ -26,3 +26,9 @@ export const STORE_CONFIG: data_rdb.StoreConfig = { name: 'contact.db', security
 export const BUNDLE = 'ohos.samples.distributedrdb';
 
 export const ABILITY = 'EntryAbility';
+
+export const TYPE_INSERT = 'insert';
+
+export const TYPE_UPDATE = 'update';
+
+export const TYPE_DELETE = 'delete';

@@ -24,12 +24,12 @@ import { GlobalContext } from '../model/GlobalContext';
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     GlobalContext.getContext().setObject('context', this.context);
-    AppStorage.SetOrCreate('want', want);
+    AppStorage.setOrCreate('want', want);
   }
 
   async onWindowStageCreate(windowStage: Window.WindowStage): Promise<void> {
     // Main window is created, set main page for this ability
-    windowStage.loadContent('pages/Index', (err, data:void) => {
+    windowStage.loadContent('pages/Index', (err, data: void) => {
       if (err.code) {
         Logger.error('Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
