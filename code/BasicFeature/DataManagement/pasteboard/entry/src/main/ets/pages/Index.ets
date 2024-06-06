@@ -25,8 +25,8 @@ const TAG: string = 'pasteboard->';
 struct Index {
   @State copyText: string = '';
   @State text: string = '';
-  controller: TextInputController = new TextInputController()
-  copyController: TextInputController = new TextInputController()
+  controller: TextInputController = new TextAreaController()
+  copyController: TextInputController = new TextAreaController()
   addLog(message: string): void {
     Log.showInfo(TAG, `pasteboard: ${message}`);
   }
@@ -40,22 +40,15 @@ struct Index {
             .fontSize(30)
             .textAlign(TextAlign.Start)
             .fontWeight(700)
-            // .backgroundColor(Color.Red)
 
-// Column() {}
         Text($r('app.string.text_input'))
           .fontStyle(FontStyle.Normal)
           .fontSize(16)
           .textAlign(TextAlign.Start)
           .margin({top:12, bottom:12})
 
-        // Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceEvenly }) {
-
-            // .fontWeight(700)
-
-          TextInput({
+          TextArea({
             text: this.copyText,
-            // placeholder: 'Please input your word...',
             controller: this.copyController
           })
             .placeholderFont({ size: 16, weight: 400 })
@@ -66,6 +59,8 @@ struct Index {
             .margin(0)
             .fontSize(16)
             .fontColor('#182431')
+            .maxLength(50)
+            .maxLines(4)
             .id('copyText')
             .onChange((value: string) => {
               this.copyText = value
@@ -76,10 +71,8 @@ struct Index {
             .fontSize(16)
             .textAlign(TextAlign.Start)
             .margin({top:12, bottom:12})
-            // .fontWeight(700)
-          TextInput({
+          TextArea({
             text: this.text,
-            // placeholder: 'Please paste your word...',
             controller: this.controller
           })
             .placeholderFont({ size: 16, weight: 400 })
@@ -89,27 +82,25 @@ struct Index {
             .height('40%') // 56
             .margin(0)
             .fontSize(16)
+            .maxLength(50)
+            .maxLines(4)
             .fontColor('#182431')
             .id('pasteText')
             .onChange((value: string) => {
               this.text = value
             })
         }
-        // .backgroundColor(Color.Gray)
         .width('100%')
         .height('60%')
 
         Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceEvenly }) {
           Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
-            // Row() {
             Button($r('app.string.Button_paste'))
               .backgroundColor('#007DFF')
               .fontSize(16)
               .fontColor('#007DFF')
               .backgroundColor($r('app.color.custom_button_color'))
-              // .margin(15)
               .border({ radius: 20 })
-              // .height('20%')
               .width('45%')
               .onClick(() => {
                 // 粘贴剪贴板内容到文本框
@@ -131,7 +122,6 @@ struct Index {
 
             Button($r('app.string.Button_text_paste'))
               .backgroundColor('#007DFF')
-              // .margin(15)
               .border({ radius: 20 })
               .id('textPaste')
               .width('45%')
@@ -158,15 +148,11 @@ struct Index {
                   this.addLog('Check the PLAIN_TEXT DataType fail!')
                 }
               })
-            // }
-            // .height('25%')//row
           }
-          // .height('20%')
           .margin({left:12, right:12})
 
           Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
             PasteButton()
-              // .backgroundColor('#007DFF')
               .width('45%')
               .fontSize(16)
               .fontColor('#007DFF')
@@ -188,7 +174,6 @@ struct Index {
 
             Button($r('app.string.Button_device_paste'))
               .backgroundColor('#007DFF')
-              // .margin(15)
               .width('45%')
               .border({ radius: 20 })
               .onClick(() => {
@@ -215,7 +200,6 @@ struct Index {
               })
           }
           .margin({left:12, right:12})
-          // .height('15%')
 
           Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
             Button($r('app.string.Button_copy'))
@@ -246,16 +230,11 @@ struct Index {
               })
           }
         }
-        // .backgroundColor(Color.Brown)
         .height('40%')
         .width('100%')
         }
       .margin({ left: 24, right: 24, top:24, bottom:24 })
-      // .backgroundColor(Color.Green)
         .height('100%')
-      // }
-      // .height('100%')
-      // .width('100%')
     }
     .height('100%')
     .width('100%')
