@@ -63,7 +63,7 @@ struct VideoWindow {
   videoController: VideoController = new VideoController();
   private context: common.UIAbilityContext | null = null;
   private subWindow: window.WindowStage | null = null;
-  private isPortrait: Boolean = true;
+  @StorageLink('isPortrait') isPortrait: Boolean = true;
   private showSubWindow: Boolean = false;
 
   aboutToAppear() {
@@ -75,6 +75,7 @@ struct VideoWindow {
     };
     this.context.eventHub.emit("createWindow", data);
     this.subWindow = data.subWindow;
+    WindowManger.updateDisplay();
   }
 
   build() {
@@ -106,7 +107,7 @@ struct VideoWindow {
               }
             } else {
               this.videoController.pause();
-              WindowManger.initSubWindow(this.subWindow, windowAttribute);
+              WindowManger.initSubWindow(this.subWindow, windowAttribute, this.isPortrait);
               this.showSubWindow = true;
             }
             ;
