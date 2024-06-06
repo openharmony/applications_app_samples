@@ -26,11 +26,22 @@
     },
     {
       "name": "Button_text_paste",
-      "value": "仅粘贴文本"
+      "value": "文本粘贴"
     },
     {
       "name": "Button_device_paste",
       "value": "跨设备粘贴"
+    },    {
+      "name": "text_input",
+      "value": "请输入文字"
+    },
+    {
+      "name": "text_result",
+      "value": "执行结果"
+    },
+    {
+      "name": "title",
+      "value": "Pasteboard"
     }
   ]
 }

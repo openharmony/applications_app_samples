@@ -31,6 +31,18 @@
     {
       "name": "Button_device_paste",
       "value": "device paste"
+    },
+    {
+      "name": "text_input",
+      "value": "Please input text"
+    },
+    {
+      "name": "text_result",
+      "value": "Pasted result"
+    },
+    {
+      "name": "title",
+      "value": "Pasteboard"
     }
   ]
 }
