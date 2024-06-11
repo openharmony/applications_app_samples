@@ -18,6 +18,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import { describe, it, expect, TestType } from '@ohos/hypium';
 import { Driver, ON, MatchPattern } from '@ohos.UiTest';
 import { logger } from '../util/Logger';
+import inputMethod from '@ohos.inputMethod';
 
 const TAG: string = 'Sample_KikaInput_Test';
 const BUNDLE = 'KikaInput_';
@@ -47,28 +48,19 @@ export default function abilityTest() {
     it('SwitchInputMethod_001',TestType.FUNCTION, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}SwitchInputMethod_001 begin`);
       let driver: Driver = Driver.create();
-      let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
-      // -a ServiceExtAbility -b com.samples.kikainput
-      // -a InputMethod -b cn.openharmony.inputmethodchoosedialog
-      await delegator.executeShellCommand('aa start ability -a ServiceExtAbility -b com.samples.kikainput')
-        .then(result => {
-          logger.info(TAG, `${BUNDLE}start ability finished, result = ${JSON.stringify(result)}`);
-        })
-        .catch((err: Error) => {
-          logger.info(TAG, `${BUNDLE}start ability failed, err = ${JSON.stringify(err)}`);
-        })
-      // logger.info(TAG, `${BUNDLE}SwitchInputMethod_001 11`);
-      // await driver.delayMs(1000);
-      // await driver.assertComponentExist(ON.type('List'));
-      // logger.info(TAG, `${BUNDLE}SwitchInputMethod_001 22`);
-      //
-      // let list = await driver.findComponent(ON.type('List'));
-      // let kikainput = await list.scrollSearch(ON.text('kikainput', MatchPattern.CONTAINS));
-      // logger.info(TAG, `${BUNDLE}SwitchInputMethod_001 33 kikainput` + kikainput);
-      // await driver.delayMs(1000);
-      // let bound = await kikainput.getBounds();
-      // await driver.click(bound.right - 10, bound.bottom - 10);
-      // await driver.delayMs(1000);
+      await inputMethod.getSetting().showOptionalInputMethods();
+      logger.info(TAG, `${BUNDLE}SwitchInputMethod_001 11`);
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.type('List'));
+      logger.info(TAG, `${BUNDLE}SwitchInputMethod_001 22`);
+
+      let list = await driver.findComponent(ON.type('List'));
+      let kikainput = await list.scrollSearch(ON.text('kikainput', MatchPattern.CONTAINS));
+      logger.info(TAG, `${BUNDLE}SwitchInputMethod_001 33 kikainput` + kikainput);
+      await driver.delayMs(1000);
+      let bound = await kikainput.getBounds();
+      await driver.click(bound.right - 10, bound.bottom - 10);
+      await driver.delayMs(1000);
       logger.info(TAG, `${BUNDLE}SwitchInputMethod_001 end`);
       done();
     })
