@@ -224,7 +224,6 @@ export default function abilityTest() {
       let driver: Driver = Driver.create();
       let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
-      // -a InputMethod -b cn.openharmony.inputmethodchoosedialog
       await delegator.executeShellCommand('aa start ability -a EntryAbility -b com.samples.kikainput')
         .then(result => {
           logger.info(TAG, `${BUNDLE}start ability finished, result = ${JSON.stringify(result)}`);
