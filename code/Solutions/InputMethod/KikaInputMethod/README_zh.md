@@ -101,7 +101,7 @@ hdc shell aa start ability -a InputMethod -b cn.openharmony.inputmethodchoosedia
 如需单独下载本工程，执行如下命令：
 
 ```
-git init
+git init[OAT.xml](..%2F..%2F..%2F..%2FOAT.xml)
 git config core.sparsecheckout true
 echo code/Solutions/InputMethod/KikaInputMethod/ > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
