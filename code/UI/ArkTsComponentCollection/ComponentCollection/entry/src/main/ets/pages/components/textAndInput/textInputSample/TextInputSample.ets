@@ -50,7 +50,7 @@ struct TextInputSample {
   @State chooseContents: string = '';
   @State selectedStart: number = 0;
   @State selectedEnd: number = 0;
-  private select: number = 1;
+  private select: number = 0;
   private maxLength: number = 12;
   private context: Context = getContext(this);
   private inputController: TextInputController = new TextInputController();
