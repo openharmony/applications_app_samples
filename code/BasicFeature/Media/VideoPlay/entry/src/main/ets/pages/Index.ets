@@ -23,6 +23,7 @@ import emitter from '@ohos.events.emitter';
 import { VideoPanel } from '../components/VideoPanel';
 import common from '@ohos.app.ability.common';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { router } from '@kit.ArkUI';
 
 const PROPORTION = 0.99; // 占屏幕比例
 const SURFACEW = 0.9; // 表面宽比例
@@ -211,7 +212,32 @@ struct Index {
         }
         .width('100%')
         .justifyContent(FlexAlign.Start)
-
+        Row() {
+          Row() {
+            Button() {
+              Text($r('app.string.thumbnail_page'))
+                .fontSize(30)
+                .fontWeight(FontWeight.Bold)
+            }
+            .id('Thumbnail_1')
+            .type(ButtonType.Capsule)
+            .backgroundColor('#0D9FFB')
+            .width('60%')
+            .height('5%')
+            .onClick(() => {
+              router.pushUrl({
+                  url: 'pages/ThumbnailGet'
+                }, router.RouterMode.Standard, (err) => {
+                  if (err) {
+                    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+                    return;
+                  }
+                  console.info('pushUrl success');
+                });
+            })
+          }
+          .width('100%')
+        }
         // 点击图标设置音频轨道
         Select(this.avPlayManage.arrList)
           .id('Select')
