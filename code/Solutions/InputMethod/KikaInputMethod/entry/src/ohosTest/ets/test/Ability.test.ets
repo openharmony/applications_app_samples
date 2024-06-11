@@ -197,8 +197,8 @@ export default function abilityTest() {
       let arrow_right = await driver.findComponent(ON.id('arrow_right'));
       await arrow_right.click();
       await driver.delayMs(1000);
-      // let selectInput1 = await driver.findComponent(ON.id('selectInput'));
-      // expect(selectInput1).assertNull();
+      let selectInput1 = await driver.findComponent(ON.id('selectInput'));
+      expect(selectInput1).assertNull();
       logger.info(TAG, `${BUNDLE}Selection_001 end`);
       done();
     })

@@ -5,9 +5,9 @@
 
 ### 效果预览
 
-|               主键盘               |             菜单             |                 编辑                 |
-| :---------------------------------------: | :---------------------------------------: | :--------------------------------------: |
-|    ![main](screenshots/devices/main.jpg)    | ![util](screenshots/devices/menu.jpg) | ![convertxml](screenshots/devices/edit.jpg) |
+|               主键盘               |             菜单             |                 编辑                 |                 预上屏                 |
+| :---------------------------------------: | :---------------------------------------: | :--------------------------------------: |:--------------------------------------: |
+|    ![main](screenshots/devices/main.jpg)    | ![util](screenshots/devices/menu.jpg) | ![convertxml](screenshots/devices/edit.jpg) | ![preview](screenshots/devices/preview.jpg)
 
 使用说明
 
@@ -23,6 +23,11 @@
 
 6.编辑状态点击选择按钮，进入选择状态，点击方向键可以选中文本。
 
+预上屏应用使用说明
+1.安装应用，首页点击kikainput切换输入法到当前应用;
+2.文本框中输入预上屏触发字符'hel',触发输入法预上屏;
+3.点击输入法的回车键，确认预上屏内容'hello world'替换文本框中的'hel';
+
 ### 工程目录
 
 ```
@@ -35,8 +40,11 @@ KikaInput
 │   │   ├── common
 │   │   │   ├── StyleConfiguration.ets         //适配不同设备下的键盘布局
 │   │   ├── components                         //输入法软键盘自定义组件
+│   │   ├── entryability                       //应用入口
+│   │   │   ├── EntryAbility.ets               //应用入口Ability
 │   │   ├── pages
 │   │   │   ├── Index.ets                       //输入法主页
+│   │   │   ├── PrivatePreview.ets              //预上屏主页
 │   │   ├── model
 │   │   │   ├── HardKeyUtils.ets                //外接键盘KeyCode数据
 │   │   │   ├── KeyboardController.ets          //输入法键盘控制
@@ -72,9 +80,9 @@ KikaInput
 
 1.本示例仅支持标准系统上运行。
 
-2.本示例适配API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0 Release)。
+2.本示例适配API12版本SDK，SDK版本号(API Version 12 Release),镜像版本号(5.0.0.25及以后版本)。
 
-3.本示例需要使用DevEco Studio 版本号(4.0 Release)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 版本号(4.1 Release)及以上版本才可编译运行。
 
 5.本示例需要使用@ohos.application.InputMethodExtensionAbility系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。
 

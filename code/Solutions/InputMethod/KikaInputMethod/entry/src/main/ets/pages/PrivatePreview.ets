@@ -23,8 +23,8 @@ const TAG: string = 'PrivatePreview->';
 @Component
 struct PrivatePreview {
   @State message: string = 'Hello World';
-  @State accountText: string = ''; //177
-  @State preViewText: string = ''; //helloworld
+  @State accountText: string = '';
+  @State preViewText: string = '';
   @StorageLink('isTextPreviewSupported') isTextPreviewSupported: boolean = true;
   controllerPrivate: TextInputController = new TextInputController();
   controllerPreview: TextInputController = new TextInputController();

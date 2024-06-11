@@ -103,7 +103,8 @@ export class InputHandler {
       this.addLog(`onInputStart sendPrivateCommand begin`);
       let record: Record<string, inputMethodEngine.CommandDataType> = {
         'previewTextStyle': 'underline'
-      }
+      };
+
       this.mTextInputClient.sendPrivateCommand(record).then((err) => {
         this.addLog(`insertText sendPrivateCommand success`);
       }).catch((err:BusinessError) => {
@@ -134,7 +135,7 @@ export class InputHandler {
 
       //调用结束预上屏接口, 预上屏内容将被系统正式上屏
       this.mTextInputClient.finishTextPreview().then(() => {
-        console.log('Succeeded in finishing text preview.');
+        this.addLog('Succeeded in finishing text preview.');
       }).catch((err: BusinessError) => {
         console.error(`Failed to finishTextPreview: ${JSON.stringify(err)}`);
       });
@@ -168,11 +169,9 @@ export class InputHandler {
   }
 
   public insertText(text: string): void {
-
     this.addLog(`insertText = ${text}`);
     if (this.mTextInputClient !== undefined) {
       this.mTextInputClient.insertText(text);
-
 
       let indexCursor: number = 0;
       indexCursor = this.mTextInputClient.getTextIndexAtCursorSync();
@@ -202,7 +201,7 @@ export class InputHandler {
         } catch (err) {
           this.addLog(`insertText preViewText Failed to setPreviewText: ${JSON.stringify(err)}`);
         }
-      } else if (this.intputText.length > length + 1){
+      } else if (this.intputText.length > length + 1) {
         this.addLog('insertText this.intputText ' + this.intputText);
 
         let indexSubStrStart: number = this.intputText.lastIndexOf('hel');
