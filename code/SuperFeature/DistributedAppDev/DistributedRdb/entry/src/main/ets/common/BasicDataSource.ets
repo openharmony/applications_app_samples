@@ -46,7 +46,7 @@ export default class ContactDataSource implements IDataSource {
             } else if (item.age !== obj.age) {
                obj.age = item.age;
             } else if (item.gender !== obj.gender) {
-               obj.gender = item.gender
+               obj.gender = item.gender;
             }
           }
         });
