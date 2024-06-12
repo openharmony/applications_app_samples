@@ -2930,6 +2930,14 @@
     {
       "name": "grid_item_polymorphic_styles",
       "value": "Polymorphic Styles"
+    },
+    {
+      "name": "previous",
+      "value": "previous"
+    },
+    {
+      "name": "next_step",
+      "value": "next step"
     }
   ]
 }

@@ -5802,6 +5802,14 @@
     {
       "name":"current_event_on_scroll_stop",
       "value":"onScrollStop"
+    },
+    {
+      "name": "previous",
+      "value": "previous"
+    },
+    {
+      "name": "next_step",
+      "value": "next step"
     }
   ]
 }
