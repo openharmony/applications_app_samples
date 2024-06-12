@@ -61,7 +61,7 @@
 //            },
             {
               "name": "ohos.permission.READ_PASTEBOARD",
-              //"reason": "$string:read_permission",
+              "reason": "$string:read_permission",
               "usedScene": {
                 "abilities": [
                   "EntryAbility"

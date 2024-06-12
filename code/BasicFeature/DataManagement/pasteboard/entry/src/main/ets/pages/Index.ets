@@ -16,6 +16,7 @@
 import { BusinessError } from '@ohos.base';
 import pasteboard from '@ohos.pasteboard';
 import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
+// import { unifiedDataChannel } from '@kit.ArkData';
 import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 import Log from '../../common/Log'
 
@@ -98,8 +99,8 @@ struct Index {
             Button($r('app.string.Button_paste'))
               .backgroundColor('#007DFF')
               .fontSize(16)
-              .fontColor('#007DFF')
-              .backgroundColor($r('app.color.custom_button_color'))
+              // .fontColor('#007DFF')
+              // .backgroundColor($r('app.color.custom_button_color'))
               .border({ radius: 20 })
               .width('45%')
               .onClick(() => {
@@ -155,8 +156,8 @@ struct Index {
             PasteButton()
               .width('45%')
               .fontSize(16)
-              .fontColor('#007DFF')
-              .backgroundColor($r('app.color.custom_button_color'))
+              // .fontColor('#007DFF')
+              // .backgroundColor($r('app.color.custom_button_color'))
               .onClick((event: ClickEvent, result: PasteButtonOnClickResult) => {
                 // 使用安全粘贴控件粘贴文本
                 this.addLog('PasteButton onclick!')
@@ -167,10 +168,39 @@ struct Index {
                       return;
                     }
                     this.text = pasteData.getPrimaryText();
-                    this.addLog('PasteButton onclick getPrimaryText: ' + this.text)
+                    this.addLog('PasteButton onclick getPrimaryText: ' + this.text);
                   });
                 }
               })
+
+            // PasteButton().onClick((event: ClickEvent, result: PasteButtonOnClickResult) => {
+            //   this.addLog('PasteButton onclick!')
+            //
+            //   // if (PasteButtonOnClickResult.SUCCESS === result) {
+            //   //   pasteboard.getSystemPasteboard().getData((err: BusinessError, pasteData: pasteboard.PasteData) => {
+            //   //     if (err) {
+            //   //       console.error(`Failed to get paste data. Code is ${err.code}, message is ${err.message}`);
+            //   //       return;
+            //   //     }
+            //   //     // 剪贴板内容为 '123456'
+            //   //     this.text = pasteData.getPrimaryText();
+            //   //     this.addLog('PasteButton onclick getPrimaryText: ' + this.text)
+            //   //   });
+            //   // }
+            //
+            //   // 使用安全粘贴控件粘贴文本
+            //   // this.addLog('PasteButton onclick!')
+            //   if (PasteButtonOnClickResult.SUCCESS === result) {
+            //     pasteboard.getSystemPasteboard().getData((err: BusinessError, pasteData: pasteboard.PasteData) => {
+            //       if (err) {
+            //         this.addLog(`Failed to get paste data. Code is ${err.code}, message is ${err.message}`);
+            //         return;
+            //       }
+            //       this.text = pasteData.getPrimaryText();
+            //       this.addLog('PasteButton onclick getPrimaryText: ' + this.text)
+            //     });
+            //   }
+            // })
 
             Button($r('app.string.Button_device_paste'))
               .backgroundColor('#007DFF')
@@ -227,6 +257,24 @@ struct Index {
                 }).catch((err: BusinessError) => {
                   console.error('Failed to set UnifiedData. Cause: ' + err.message);
                 });
+
+                // let plainTextData = new unifiedDataChannel.UnifiedData();
+                // let plainText = new unifiedDataChannel.PlainText();
+                // plainText.details = {
+                //   Key: 'delayPlaintext',
+                //   Value: 'delayPlaintext',
+                // };
+                // plainText.textContent = 'delayTextContent';
+                // plainText.abstract = 'delayTextContent';
+                // plainTextData.addRecord(plainText);
+                //
+                // let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+                // systemPasteboard.setUnifiedData(plainTextData).then((data: void) => {
+                //   console.info('Succeeded in setting UnifiedData.');
+                // }).catch((err: BusinessError) => {
+                //   console.error('Failed to set UnifiedData. Cause: ' + err.message);
+                // });
+
               })
           }
         }

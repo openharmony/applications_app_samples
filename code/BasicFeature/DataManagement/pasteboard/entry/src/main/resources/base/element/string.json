@@ -43,6 +43,11 @@
     {
       "name": "title",
       "value": "Pasteboard"
+    },
+    {
+      "name": "read_permission",
+      "value": "read_permission"
     }
+
   ]
 }
