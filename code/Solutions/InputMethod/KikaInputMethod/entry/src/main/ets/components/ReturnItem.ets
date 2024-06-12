@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -62,6 +62,7 @@ export struct ReturnItem {
       .width(this.returnWidth)
       .borderRadius(4)
       .height('100%')
+      .id('returnItem')
       .shadow({ radius: 1, color: $r('app.color.shadow'), offsetY: 3 })
       .onClick(() => {
         InputHandler.getInstance().sendKeyFunction();

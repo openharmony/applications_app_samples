@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,9 +15,10 @@
 
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import UIAbility from '@ohos.app.ability.UIAbility';
-import { describe, it, expect } from '@ohos/hypium';
+import { describe, it, expect, TestType } from '@ohos/hypium';
 import { Driver, ON, MatchPattern } from '@ohos.UiTest';
 import { logger } from '../util/Logger';
+import inputMethod from '@ohos.inputMethod';
 
 const TAG: string = 'Sample_KikaInput_Test';
 const BUNDLE = 'KikaInput_';
@@ -25,7 +26,7 @@ const BUNDLE = 'KikaInput_';
 export default function abilityTest() {
   describe('ActsAbilityTest', () => {
     // 打开自绘编辑框应用
-    it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
+    it('StartAbility_001',TestType.FUNCTION, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}StartAbility_001 begin`);
       let driver: Driver = Driver.create();
       let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -44,31 +45,28 @@ export default function abilityTest() {
     })
 
     // 切换输入法应用
-    it(BUNDLE + 'ChangeInputMethod_001', 0, async (done: Function) => {
-      logger.info(TAG, `${BUNDLE}ChangeInputMethod_001 begin`);
+    it('SwitchInputMethod_001',TestType.FUNCTION, async (done: Function) => {
+      logger.info(TAG, `${BUNDLE}SwitchInputMethod_001 begin`);
       let driver: Driver = Driver.create();
-      let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
-      await delegator.executeShellCommand('aa start ability -a InputMethod -b cn.openharmony.inputmethodchoosedialog')
-        .then(result => {
-          logger.info(TAG, `${BUNDLE}start ability finished, result = ${JSON.stringify(result)}`);
-        })
-        .catch((err: Error) => {
-          logger.info(TAG, `${BUNDLE}start ability failed, err = ${JSON.stringify(err)}`);
-        })
+      await inputMethod.getSetting().showOptionalInputMethods();
+      logger.info(TAG, `${BUNDLE}SwitchInputMethod_001 11`);
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.type('List'));
+      logger.info(TAG, `${BUNDLE}SwitchInputMethod_001 22`);
+
       let list = await driver.findComponent(ON.type('List'));
       let kikainput = await list.scrollSearch(ON.text('kikainput', MatchPattern.CONTAINS));
+      logger.info(TAG, `${BUNDLE}SwitchInputMethod_001 33 kikainput` + kikainput);
       await driver.delayMs(1000);
       let bound = await kikainput.getBounds();
       await driver.click(bound.right - 10, bound.bottom - 10);
       await driver.delayMs(1000);
-      logger.info(TAG, `${BUNDLE}ChangeInputMethod_001 end`);
+      logger.info(TAG, `${BUNDLE}SwitchInputMethod_001 end`);
       done();
     })
 
     // 点击自绘编辑框拉起输入法，并输入内容
-    it(BUNDLE + 'ShowKeyboard_001', 0, async (done: Function) => {
+    it('ShowKeyboard_001', TestType.FUNCTION, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}ShowKeyboard_001 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(1000);
@@ -84,6 +82,7 @@ export default function abilityTest() {
         await keyboardMenu.click();
       }
 
+      logger.info(TAG, `${BUNDLE}ShowKeyboard_001 11`);
       // 如果当前是编辑页面，切换到主键盘
       let btn_selection = await driver.findComponent(ON.id('btn_selection'));
       if (btn_selection !== undefined && btn_selection !== null) {
@@ -97,21 +96,36 @@ export default function abilityTest() {
       if (charKey !== undefined && charKey !== null) {
         await charKey.click();
       }
+      logger.info(TAG, `${BUNDLE}ShowKeyboard_001 22`);
+
+      //点击等输入法弹出
+      await customInputText.click();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('a', MatchPattern.CONTAINS));
-      let inputText = await driver.findComponent(ON.text('a', MatchPattern.CONTAINS));
-      await inputText.click();
-      await inputText.click();
-      await inputText.click();
+      let inputTexta = await driver.findComponent(ON.text('a', MatchPattern.CONTAINS));
+      await inputTexta.click();
+      await driver.delayMs(2000);
+
+      await driver.assertComponentExist(ON.text('c', MatchPattern.CONTAINS));
+      let inputTextc = await driver.findComponent(ON.text('c', MatchPattern.CONTAINS));
+      await inputTextc.click();
+      await driver.delayMs(2000);
+
+      await driver.assertComponentExist(ON.text('d', MatchPattern.CONTAINS));
+      let inputTextd = await driver.findComponent(ON.text('d', MatchPattern.CONTAINS));
+      await inputTextd.click();
+      await driver.delayMs(2000);
+
       let inputContent = await driver.findComponent(ON.id('inputText'));
       let inputString = await inputContent.getText();
-      expect(inputString === 'aaa').assertTrue();
+      await driver.delayMs(200);
+      expect(inputString === 'acd').assertTrue();
       logger.info(TAG, `${BUNDLE}ShowKeyboard_001 end`);
       done();
     })
 
     // 进入菜单
-    it(BUNDLE + 'EditModel_001', 0, async (done: Function) => {
+    it('EditModel_001', TestType.FUNCTION, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}EditModel_001 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(1000);
@@ -129,7 +143,7 @@ export default function abilityTest() {
     })
 
     // 编辑界面，向左移动光标
-    it(BUNDLE + 'MoveCursor_001', 0, async (done: Function) => {
+    it('MoveCursor_001', TestType.FUNCTION, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}MoveCursor_001 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(1000);
@@ -147,7 +161,7 @@ export default function abilityTest() {
     })
 
     // 编辑界面，向右移动光标
-    it(BUNDLE + 'MoveCursor_002', 0, async (done: Function) => {
+    it('MoveCursor_002', TestType.FUNCTION, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}MoveCursor_002 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(1000);
@@ -165,7 +179,7 @@ export default function abilityTest() {
     })
 
     // 编辑界面，文本选中
-    it(BUNDLE + 'Selection_001', 0, async (done: Function) => {
+    it('Selection_001', TestType.FUNCTION, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}Selection_001 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(1000);
@@ -190,7 +204,7 @@ export default function abilityTest() {
     })
 
     // 隐藏软键盘
-    it(BUNDLE + 'HideKeyboard_001', 0, async (done: Function) => {
+    it('HideKeyboard_001', TestType.FUNCTION, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}HideKeyboard_001 begin`);
       let driver: Driver = Driver.create();
       await driver.delayMs(1000);
@@ -203,5 +217,117 @@ export default function abilityTest() {
       logger.info(TAG, `${BUNDLE}HideKeyboard_001 end`);
       done();
     })
+
+    // 预上屏
+    it('PreviewText_001', TestType.FUNCTION, async (done: Function) => {
+      logger.info(TAG, `${BUNDLE}PreviewText_001 begin`);
+      let driver: Driver = Driver.create();
+      let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
+
+      await delegator.executeShellCommand('aa start ability -a EntryAbility -b com.samples.kikainput')
+        .then(result => {
+          logger.info(TAG, `${BUNDLE}start ability finished, result = ${JSON.stringify(result)}`);
+        })
+        .catch((err: Error) => {
+          logger.info(TAG, `${BUNDLE}start ability failed, err = ${JSON.stringify(err)}`);
+        })
+      logger.info(TAG, `${BUNDLE}PreviewText_001 11`);
+      await driver.delayMs(1000);
+
+      let kikaInputDown = await driver.findComponent(ON.text('kikainput', MatchPattern.CONTAINS));
+      await kikaInputDown.click();
+      await driver.delayMs(1000);
+      logger.info(TAG, `${BUNDLE}PreviewText_001 end`);
+      done();
+    })
+
+    it('PreviewText_002', TestType.FUNCTION, async (done: Function) => {
+      logger.info(TAG, `${BUNDLE}PreviewText_002 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(1000);
+
+      // 输入‘hel'触发预上屏'hello world'
+      await driver.assertComponentExist(ON.type('TextInput'));
+      let textInput = await driver.findComponent(ON.type('TextInput'));
+      await textInput.click();
+      await driver.delayMs(1000); // 等待输入法应用弹出
+
+      await driver.assertComponentExist(ON.text('h', MatchPattern.CONTAINS));
+      let inputTextH = await driver.findComponent(ON.text('h', MatchPattern.CONTAINS));
+      await inputTextH.click();
+
+      await driver.assertComponentExist(ON.text('e', MatchPattern.CONTAINS));
+      let inputTextE = await driver.findComponent(ON.text('e', MatchPattern.CONTAINS));
+      await inputTextE.click();
+
+      await driver.assertComponentExist(ON.text('l', MatchPattern.CONTAINS));
+      let inputTextL = await driver.findComponent(ON.text('l', MatchPattern.CONTAINS));
+      await inputTextL.click();
+      await driver.delayMs(2000);
+
+      // 点击回车键触发预上屏内容到编辑框
+      await driver.assertComponentExist(ON.id('returnItem')); // ON.type('ReturnItem')
+      let enterKey = await driver.findComponent(ON.id('returnItem')); // ON.type('ReturnItem')
+
+      await enterKey.click();
+      await driver.delayMs(1000);
+
+      // 校验文本框的内容为预上屏内容
+      let inputString = await textInput.getText();
+      expect(inputString === 'hello world').assertTrue();
+
+      logger.info(TAG, `${BUNDLE}PreviewText_002 end`);
+      done();
+    })
+
+    it('PreviewText_003', TestType.FUNCTION, async (done: Function) => {
+      logger.info(TAG, `${BUNDLE}PreviewText_003 begin`);
+      let driver: Driver = Driver.create();
+
+      // 输入‘abhel'触发预上屏'hello world'
+      await driver.assertComponentExist(ON.type('TextInput'));
+      let textInput = await driver.findComponent(ON.type('TextInput'));
+      await textInput.click();
+      await textInput.clearText();
+      await driver.delayMs(1000); // 等待输入法应用弹出
+
+      await driver.assertComponentExist(ON.text('a', MatchPattern.CONTAINS));
+      let inputText = await driver.findComponent(ON.text('a', MatchPattern.CONTAINS));
+      await inputText.click();
+
+      await driver.assertComponentExist(ON.text('b', MatchPattern.CONTAINS));
+      inputText = await driver.findComponent(ON.text('b', MatchPattern.CONTAINS));
+      await inputText.click();
+
+      await driver.assertComponentExist(ON.text('h', MatchPattern.CONTAINS));
+      let inputTextH = await driver.findComponent(ON.text('h', MatchPattern.CONTAINS));
+      await inputTextH.click();
+
+      await driver.assertComponentExist(ON.text('e', MatchPattern.CONTAINS));
+      let inputTextE = await driver.findComponent(ON.text('e', MatchPattern.CONTAINS));
+      await inputTextE.click();
+
+      await driver.assertComponentExist(ON.text('l', MatchPattern.CONTAINS));
+      let inputTextL = await driver.findComponent(ON.text('l', MatchPattern.CONTAINS));
+      await inputTextL.click();
+      await driver.delayMs(2000);
+
+      logger.info(TAG, `${BUNDLE}PreviewText_003 11`);
+
+      // 点击回车键触发预上屏内容到编辑框
+      await driver.assertComponentExist(ON.id('returnItem')); // ON.type('ReturnItem')
+      let enterKey = await driver.findComponent(ON.id('returnItem')); // ON.type('ReturnItem')
+
+      await enterKey.click();
+      await driver.delayMs(1000);
+
+      // 校验文本框的内容为预上屏内容
+      let inputString = await textInput.getText();
+      expect(inputString === 'abhello world').assertTrue();
+
+      logger.info(TAG, `${BUNDLE}PreviewText_003 end`);
+      done();
+    })
+
   })
 }

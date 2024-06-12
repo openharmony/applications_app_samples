@@ -24,11 +24,13 @@ const TAG = '[Sample_DistributedRdb]';
 const BUNDLE = 'DistributedRdb_';
 
 export default function abilityTest() {
-  let driver = Driver.create();
-  let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
+
   describe('ActsAbilityTest', () => {
-    it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
+    it('DistributedRdb_StartAbility_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}StartAbility_001 begin`);
+      let driver = Driver.create();
+      logger.info(TAG, `Driver.create: ${driver}`);
+      let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
       let want: Want = {
         bundleName: "ohos.samples.distributedrdb",
         abilityName: "EntryAbility"
@@ -44,8 +46,10 @@ export default function abilityTest() {
     /**
      * 点击允许授权
      */
-    it(BUNDLE + 'ClickAcceptFunction_001', 0, async (done: Function) => {
+    it('DistributedRdb_ClickAcceptFunction_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}ClickAcceptFunction_001 begin`);
+      let driver = Driver.create();
+      let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
       await driver.delayMs(1000);
       logger.info(TAG, `${BUNDLE}ClickAcceptFunction_001 clickAccept`);
       // 点击允许
@@ -64,8 +68,9 @@ export default function abilityTest() {
     /**
      * 设置页面
      */
-    it(BUNDLE + 'Settings_001', 0, async (done: Function) => {
+    it('DistributedRdb_Settings_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}Settings_001 begin`);
+      let driver = Driver.create();
       await driver.delayMs(1000);
       // 点击右上角更多按钮、弹出菜单
       await driver.assertComponentExist(ON.id('rightBtn'));
@@ -90,6 +95,8 @@ export default function abilityTest() {
       await driver.delayMs(1000);
       let isManual1 = await manualSwitch.isChecked();
       let isAutomatic1 = await automaticSwitch.isChecked();
+
+
       logger.info(TAG, `${BUNDLE}isManual1=${isManual1},isAutomatic1=${isAutomatic1}`);
       await driver.pressBack();
       logger.info(TAG, `${BUNDLE}Settings_001 end`);
@@ -99,8 +106,9 @@ export default function abilityTest() {
     /**
      * 连接设备弹窗
      */
-    it(BUNDLE + 'SelectDeviceDialog_001', 0, async (done: Function) => {
+    it('DistributedRdb_SelectDeviceDialog_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}SelectDeviceDialog_001 begin`);
+      let driver = Driver.create();
       await driver.delayMs(1000)
       // 点击右上角更多按钮、弹出菜单
       await driver.assertComponentExist(ON.id('rightBtn'));
@@ -125,8 +133,9 @@ export default function abilityTest() {
     /**
      * 添加联系人
      */
-    it(BUNDLE + 'AddContactFunction_001', 0, async (done: Function) => {
+    it('DistributedRdb_AddContactFunction_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}AddContactFunction_001 begin`);
+      let driver = Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('btnAdd'));
       let btnAdd = await driver.findComponent(ON.id('btnAdd'));
@@ -160,6 +169,11 @@ export default function abilityTest() {
       let rightBtn = await driver.findComponent(ON.id('rightBtn'));
       await rightBtn.click();
       await driver.delayMs(1000);
+      let listChange: Component[] = await driver.findComponents(ON.type('ListItem'));
+      expect(listChange.length > 0).assertTrue();
+      let sureBtn = await driver.findComponent(ON.id('sureBtn'));
+      await sureBtn.click();
+      await driver.delayMs(1000);
       let list: Component[] = await driver.findComponents(ON.type('ListItem'));
       expect(list.length > 0).assertTrue();
       logger.info(TAG, `${BUNDLE}AddContactFunction_001 end`);
@@ -169,8 +183,9 @@ export default function abilityTest() {
     /**
      * 搜索联系人
      */
-    it(BUNDLE + 'SearchContactFunction_001', 0, async (done: Function) => {
+    it('DistributedRdb_SearchContactFunction_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}SearchContactFunction_001 begin`);
+      let driver = Driver.create();
       await driver.delayMs(1000)
       // 点击搜索框
       await driver.assertComponentExist(ON.id('searchBar'))
@@ -198,8 +213,9 @@ export default function abilityTest() {
     /**
      * 添加联系人并解决联系人冲突（电话号码一样，联系人名称不一样）
      */
-    it(BUNDLE + 'AddContactConflictFunction_001', 0, async (done: Function) => {
+    it('DistributedRdb_AddContactConflictFunction_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}AddContactConflictFunction_001 begin`);
+      let driver = Driver.create();
       await driver.delayMs(500);
       await driver.assertComponentExist(ON.id('btnAdd'));
       let btnAdd = await driver.findComponent(ON.id('btnAdd'));
@@ -235,6 +251,11 @@ export default function abilityTest() {
       let rightBtn = await driver.findComponent(ON.id('rightBtn'));
       await rightBtn.click();
       await driver.delayMs(500);
+      await driver.delayMs(1000);
+      let listChange: Component[] = await driver.findComponents(ON.type('ListItem'));
+      expect(listChange.length > 0).assertTrue();
+      let sureBtn = await driver.findComponent(ON.id('sureBtn'));
+      await sureBtn.click();
       let list: Component[] = await driver.findComponents(ON.type('ListItem'));
       expect(list.length > 0).assertTrue();
 
@@ -268,6 +289,11 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('rightBtn'));
       let rightBtn1 = await driver.findComponent(ON.id('rightBtn'));
       await rightBtn1.click();
+      await driver.delayMs(1000);
+      let listChange2: Component[] = await driver.findComponents(ON.type('ListItem'));
+      expect(listChange2.length > 0).assertTrue();
+      let sureBtn2 = await driver.findComponent(ON.id('sureBtn'));
+      await sureBtn2.click();
       await driver.delayMs(500);
       let list1: Component[] = await driver.findComponents(ON.type('ListItem'));
       expect(list1.length > 0).assertTrue();
@@ -298,8 +324,9 @@ export default function abilityTest() {
     /**
      * 长按联系人进入多选、退出多选
      */
-    it(BUNDLE + 'LongClickFunction_001', 0, async (done: Function) => {
+    it('DistributedRdb_LongClickFunction_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}LongClickFunction_001 begin`);
+      let driver = Driver.create();
       await driver.delayMs(1000)
       // 长按第一条，进入多选
       let list: Component[] = await driver.findComponents(ON.type('ListItem'));
@@ -318,8 +345,9 @@ export default function abilityTest() {
     /**
      * 进入多选后全选、删除
      */
-    it(BUNDLE + 'DeleteContactFunction_001', 0, async (done: Function) => {
+    it('DistributedRdb_DeleteContactFunction_001', 0, async (done: Function) => {
       logger.info(TAG, `${BUNDLE}DeleteContactFunction_001 begin`);
+      let driver = Driver.create();
       await driver.delayMs(1000)
       // 长按第一条，进入多选
       let list: Component[] = await driver.findComponents(ON.type('ListItem'));
@@ -339,6 +367,11 @@ export default function abilityTest() {
         await driver.assertComponentExist(ON.type("AlertDialog"));
         let btnInDailog = await driver.findComponents(ON.type('Button'));
         await btnInDailog[0].click();
+        await driver.delayMs(1000);
+        let listChange: Component[] = await driver.findComponents(ON.type('ListItem'));
+        expect(listChange.length > 0).assertTrue();
+        let sureBtn = await driver.findComponent(ON.id('sureBtn'));
+        await sureBtn.click();
         await driver.delayMs(1000);
         let list1: Component[] = await driver.findComponents(ON.type('ListItem'));
         expect(list1 == null || list1.length == 0).assertTrue();

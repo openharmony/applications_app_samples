@@ -225,6 +225,10 @@ const TEXT_AND_INPUT: ThirdLevelCategory =
         url: 'pages/components/textAndInput/textSample/TextSample'
       },
       {
+        title: $r('app.string.text_styled_string_title'),
+        url: 'pages/components/textAndInput/textStyledStringSample/TextStyledStringSample',
+      },
+      {
         title: $r('app.string.rich_text'),
         url: 'pages/components/textAndInput/richTextSample/RichTextSample'
       },{

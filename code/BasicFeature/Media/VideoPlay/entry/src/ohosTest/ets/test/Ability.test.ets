@@ -17,6 +17,7 @@ import { Driver, ON } from '@ohos.UiTest';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { getString } from '../utils/ResourceUtil';
 import hilog from '@ohos.hilog';
+import { router } from '@kit.ArkUI';
 
 const TAG = '[Sample_VideoPlay]';
 const DOMAIN = 0xF811;
@@ -66,6 +67,34 @@ export default function abilityTest() {
     })
 
     /**
+     * 点击外挂字幕-关
+     */
+    it('Subtitle_001', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, 'Subtitle_001 begin')
+
+      // 拉起操作界面
+      await driver.delayMs(1000)
+      await driver.assertComponentExist(ON.id('Video'))
+      let stack = await driver.findComponent(ON.id('Video'))
+      await driver.delayMs(1000)
+      await stack.click()
+
+      // 点击外挂字幕
+      await driver.assertComponentExist(ON.id('Select2'))
+      let btnSubtitle = await driver.findComponent(ON.id('Select2'))
+      await btnSubtitle.click()
+
+      // 点击关
+      const str = await getString($r('app.string.subtitle_off'))
+      await driver.assertComponentExist(ON.text(str))
+      let button = await driver.findComponent(ON.text(str))
+      await button.click()
+      await driver.delayMs(2000)
+      done()
+      hilog.info(DOMAIN, TAG, 'Subtitle_001 end')
+    })
+
+    /**
      * 点击多音轨轨道:1
      */
     it('Select_001', 0, async (done: Function) => {
@@ -94,6 +123,31 @@ export default function abilityTest() {
     })
 
     /**
+     * 切换pre_download_dash.mpd视频
+     */
+    it('Choose_003', 0, async (done: Function) => {
+      // 拉起操作界面
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('Video'));
+      let stack = await driver.findComponent(ON.id('Video'));
+      await driver.delayMs(1000);
+      await stack.click();
+      // 点击视频列表
+      await driver.assertComponentExist(ON.id('Choose'));
+      let btnPlay = await driver.findComponent(ON.id('Choose'));
+      await btnPlay.click();
+
+      // 点击pre_download_dash.mpd
+      const str = await getString($r('app.string.video_res_5'));
+      await driver.assertComponentExist(ON.text(str));
+      let button = await driver.findComponent(ON.text(str));
+      await button.click();
+      await driver.delayMs(2000);
+      done();
+      hilog.info(DOMAIN, TAG, 'Choose_003 end');
+    })
+
+    /**
      * 切换pre_download_network.mp4视频
      */
     it('Choose_002', 0, async (done: Function) => {
@@ -115,7 +169,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text(str));
       let button = await driver.findComponent(ON.text(str));
       await button.click();
-      await driver.delayMs(5000);
+      await driver.delayMs(2000);
       done();
       hilog.info(DOMAIN, TAG, 'Choose_002 end');
     })
@@ -235,6 +289,37 @@ export default function abilityTest() {
       await driver.delayMs(2000);
       done();
       hilog.info(DOMAIN, TAG, 'PlayPause_002 end');
+    })
+
+    /**
+     * 点击获取缩略图
+     */
+    it('Thumbnail_001', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, 'Thumbnail_001 begin');
+
+      // 拉起操作界面
+      await driver.delayMs(8000);
+      await driver.assertComponentExist(ON.id('Video'));
+      let stack = await driver.findComponent(ON.id('Video'));
+      await stack.click();
+
+      // 点击进入获取缩略图界面
+      await driver.assertComponentExist(ON.id('Thumbnail_1'));
+      let thumbnailButton1 = await driver.findComponent(ON.id('Thumbnail_1'));
+      await thumbnailButton1.click();
+
+      // 点击获取缩略图
+      await driver.assertComponentExist(ON.id('Thumbnail_2'));
+      let thumbnailButton2 = await driver.findComponent(ON.id('Thumbnail_2'));
+      await thumbnailButton2.click();
+      await driver.delayMs(2000);
+
+      // 退回到视频播放页面
+      router.back(1)
+      await driver.delayMs(1000);
+      await stack.click();
+      done();
+      hilog.info(DOMAIN, TAG, 'Thumbnail_001 end');
     })
 
     /**

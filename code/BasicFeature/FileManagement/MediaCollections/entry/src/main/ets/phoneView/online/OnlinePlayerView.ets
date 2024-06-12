@@ -14,6 +14,7 @@
  */
 
 import router from '@ohos.router'
+import drm from '@ohos.multimedia.drm'
 import { AVPlayer } from '../../model/AVPlayer'
 import { getTimeString } from '../../model/TimeTools'
 import { samplesData } from '../../model/JsonListData'
@@ -38,6 +39,7 @@ export default struct OnlinePlayerView {
   @State isDeleteShow: boolean = false
   @State bitRateList: number[] = []
   @State errorText: string = ''
+  @State licenseInfoText: string = ''
   private onlineVideoData: samplesData = {} as samplesData
   private mXComponentController: XComponentController = {} as XComponentController
 
@@ -54,6 +56,10 @@ export default struct OnlinePlayerView {
 
     this.myMedia.setErrorCallback((error) => {
       this.errorText = error
+    })
+
+    this.myMedia.setLicenseInfoCallback((licenseInfo) => {
+      this.licenseInfoText = licenseInfo
     })
 
     setTimeout(async () => {
@@ -113,202 +119,215 @@ export default struct OnlinePlayerView {
 
   build() {
     Column() {
-      Stack({ alignContent: Alignment.Top }) {
-        // 底层播放区域
-        if (this.isXComponent) {
+      Column() {
+        Stack({ alignContent: Alignment.Top }) {
+          // 底层播放区域
+          if (this.isXComponent) {
+            Column() {
+              Column().layoutWeight(1)
+
+              XComponent({
+                id: '',
+                type: 'surface',
+                controller: this.mXComponentController
+              })
+                .height(this.isLandscape ? '100%' : '55%')
+                .aspectRatio(1920 / 1080)
+                .onLoad(() => {
+                  this.surfaceId = Number(this.mXComponentController.getXComponentSurfaceId())
+                  this.isPlaying = true
+                  const uri: string = this.onlineVideoData.uri
+                  const licenseUrl: string = this.onlineVideoData.drm_license_url
+                  const title: string = this.onlineVideoData.name
+                  Logger.info(TAG, `drmUrl: ${uri}`)
+                  Logger.info(TAG, `drmLicenseUrl: ${licenseUrl}`)
+                  this.myMedia.drmInit(this.surfaceId.toString(), title, uri, licenseUrl)
+                })
+              Column().layoutWeight(2)
+            }.zIndex(0)
+          }
+
+          // 上层操作界面
           Column() {
-            Column().layoutWeight(1)
+            // 标题栏区域
+            Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }) {
+              Image($r('app.media.icon_back'))
+                .width(24)
+                .height(24)
+                .margin(15)
+                .onClick(() => {
+                  if (this.isLandscape) {
+                    this.isLandscape = false
+                  } else {
+                    router.back()
+                  }
+                })
 
-            XComponent({
-              id: '',
-              type: 'surface',
-              controller: this.mXComponentController
-            })
-              .height(this.isLandscape ? '100%' : '55%')
-              .aspectRatio(1920 / 1080)
-              .onLoad(() => {
-                this.surfaceId = Number(this.mXComponentController.getXComponentSurfaceId())
-                this.isPlaying = true
-                const uri: string = this.onlineVideoData.uri
-                const licenseUrl: string = this.onlineVideoData.drm_license_url
-                const title: string = this.onlineVideoData.name
-                Logger.info(TAG, `drmUrl: ${uri}`)
-                Logger.info(TAG, `drmLicenseUrl: ${licenseUrl}`)
-                this.myMedia.drmInit(this.surfaceId.toString(), title, uri, licenseUrl)
-              })
-            Column().layoutWeight(2)
-          }.zIndex(0)
-        }
+              Text(this.myMedia.fileName || $r('app.string.phoneMain_title'))
+                .fontColor('rgba(255,255,255,0.90)')
+                .fontSize(18)
+                .fontFamily('HarmonyHeiTi-Medium')
+                .maxLines(1)
+                .textOverflow({ overflow: TextOverflow.MARQUEE })
+                .width('50%')
 
-        // 上层操作界面
-        Column() {
-          // 标题栏区域
-          Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }) {
-            Image($r('app.media.icon_back'))
-              .width(24)
-              .height(24)
-              .margin(15)
-              .onClick(() => {
-                if (this.isLandscape) {
-                  this.isLandscape = false
-                } else {
-                  router.back()
-                }
-              })
+              Blank()
 
-            Text(this.myMedia.fileName || $r('app.string.phoneMain_title'))
-              .fontColor('rgba(255,255,255,0.90)')
-              .fontSize(18)
-              .fontFamily('HarmonyHeiTi-Medium')
-              .maxLines(1)
-              .textOverflow({ overflow: TextOverflow.MARQUEE })
-              .width('50%')
-
-            Blank()
-
-            Text($r('app.string.onlinePlayerView_bitrate'))
-              .fontColor('rgba(255,255,255,0.90)')
-              .fontSize(18)
-              .fontFamily('HarmonyHeiTi-Medium')
-              .margin(15)
-              .onClick(() => {
-                this.isBitrateShow = !this.isBitrateShow
-              })
-              .bindPopup(this.isBitrateShow, {
-                builder: this.bitratePopup, // 气泡的内容
-                placement: Placement.Bottom, // 气泡的弹出位置
-                popupColor: 'rgba(0,0,0,0.6)' // 气泡的背景色
-              })
-
-            Text($r('app.string.onlinePlayerView_speed'))
-              .fontColor('rgba(255,255,255,0.90)')
-              .fontSize(18)
-              .fontFamily('HarmonyHeiTi-Medium')
-              .margin(15)
-              .onClick(() => {
-                this.isSpeedShow = !this.isSpeedShow
-              })
-              .bindPopup(this.isSpeedShow, {
-                builder: this.speedPopup, // 气泡的内容
-                placement: Placement.Bottom, // 气泡的弹出位置
-                popupColor: 'rgba(0,0,0,0.6)' // 气泡的背景色
-              })
-          }.layoutWeight(1)
-
-          // 提示
-          Column() {
-            // 加载中UI
-            LoadingProgress()
-              .color(Color.White)
-              .opacity(0.6)
-              .width(40)
-              .height(40)
-              .enableLoading(this.myMedia.isLoading ? true : false)
-
-            if (this.errorText) {
-              Text(this.errorText)
+              Text($r('app.string.onlinePlayerView_bitrate'))
                 .fontColor('rgba(255,255,255,0.90)')
                 .fontSize(18)
                 .fontFamily('HarmonyHeiTi-Medium')
                 .margin(15)
-            }
-          }
-          .justifyContent(FlexAlign.Center)
-          .height('55%')
+                .onClick(() => {
+                  this.isBitrateShow = !this.isBitrateShow
+                })
+                .bindPopup(this.isBitrateShow, {
+                  builder: this.bitratePopup, // 气泡的内容
+                  placement: Placement.Bottom, // 气泡的弹出位置
+                  popupColor: 'rgba(0,0,0,0.6)' // 气泡的背景色
+                })
 
-          // 进度条区域
-          Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceEvenly }) {
-            Image(this.isPlaying ? $r('app.media.icon_play') : $r('app.media.icon_pause'))
-              .width(24)
-              .height(24)
-              .onClick(() => {
-                this.isPlaying = !this.isPlaying
-              })
-            Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-              Text(getTimeString(this.currentTime) || '00:00')
-                .fontSize(12)
-                .fontColor('#FFFFFF')
-                .fontWeight(500)
+              Text($r('app.string.onlinePlayerView_speed'))
+                .fontColor('rgba(255,255,255,0.90)')
+                .fontSize(18)
+                .fontFamily('HarmonyHeiTi-Medium')
+                .margin(15)
+                .onClick(() => {
+                  this.isSpeedShow = !this.isSpeedShow
+                })
+                .bindPopup(this.isSpeedShow, {
+                  builder: this.speedPopup, // 气泡的内容
+                  placement: Placement.Bottom, // 气泡的弹出位置
+                  popupColor: 'rgba(0,0,0,0.6)' // 气泡的背景色
+                })
+            }.layoutWeight(1)
+
+            // 提示
+            Column() {
+              // 加载中UI
+              LoadingProgress()
+                .color(Color.White)
                 .opacity(0.6)
-                .fontFamily('HarmonyHeiTi')
-              Slider({
-                value: Math.floor((this.currentTime / 1000)),
-                max: Math.floor(this.myMedia.totalDuration / 1000)
-              },)
-                .layoutWeight(1)
-                .selectedColor(Color.White)
-                .trackColor(Color.Gray)
-                .onChange((value: number, mode: SliderChangeMode) => {
-                  let changeTime = Math.floor(value) * 1000
-                  if (mode === SliderChangeMode.Begin) {
-                    this.isProgressMoving = true
-                  } else if (mode === SliderChangeMode.Moving) {
-                    this.isProgressMoving = true
-                    this.currentTime = changeTime
-                  } else if (mode === SliderChangeMode.End) {
-                    this.isProgressMoving = false
-                    this.myMedia.seek(changeTime)
+                .width(40)
+                .height(40)
+                .enableLoading(this.myMedia.isLoading ? true : false)
+
+              if (this.errorText) {
+                Text(this.errorText)
+                  .fontColor('rgba(255,255,255,0.90)')
+                  .fontSize(18)
+                  .fontFamily('HarmonyHeiTi-Medium')
+                  .margin(15)
+              }
+            }
+            .justifyContent(FlexAlign.Center)
+            .height('55%')
+
+            // 进度条区域
+            Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceEvenly }) {
+              Image(this.isPlaying ? $r('app.media.icon_play') : $r('app.media.icon_pause'))
+                .width(24)
+                .height(24)
+                .onClick(() => {
+                  this.isPlaying = !this.isPlaying
+                })
+              Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+                Text(getTimeString(this.currentTime) || '00:00')
+                  .fontSize(12)
+                  .fontColor('#FFFFFF')
+                  .fontWeight(500)
+                  .opacity(0.6)
+                  .fontFamily('HarmonyHeiTi')
+                Slider({
+                  value: Math.floor((this.currentTime / 1000)),
+                  max: Math.floor(this.myMedia.totalDuration / 1000)
+                },)
+                  .layoutWeight(1)
+                  .selectedColor(Color.White)
+                  .trackColor(Color.Gray)
+                  .onChange((value: number, mode: SliderChangeMode) => {
+                    let changeTime = Math.floor(value) * 1000
+                    if (mode === SliderChangeMode.Begin) {
+                      this.isProgressMoving = true
+                    } else if (mode === SliderChangeMode.Moving) {
+                      this.isProgressMoving = true
+                      this.currentTime = changeTime
+                    } else if (mode === SliderChangeMode.End) {
+                      this.isProgressMoving = false
+                      this.myMedia.seek(changeTime)
+                    }
+                  })
+                Text(this.myMedia ? getTimeString(this.myMedia.totalDuration) : '00:00')
+                  .fontSize(12)
+                  .fontColor('#FFFFFF')
+                  .fontWeight(500)
+                  .opacity(0.6)
+                  .fontFamily('HarmonyHeiTi')
+              }.width('80%')
+
+              Image($r('app.media.icon_large'))
+                .width(24)
+                .height(24)
+                .opacity(this.isLandscape ? 1 : 0.4)
+                .onClick(() => {
+                  this.isLandscape = !this.isLandscape
+                })
+            }
+            .layoutWeight(1)
+
+            // 控制栏
+            Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }) {
+              Image($r("app.media.icon_seekStart"))
+                .width(24)
+                .height(24)
+                .onClick(() => {
+                  this.myMedia.seek(0)
+                })
+
+              Image($r('app.media.icon_cycle'))
+                .width(24)
+                .height(24)
+                .opacity(this.isLoop ? 1 : 0.4)
+                .onClick(() => {
+                  this.isLoop = !this.isLoop
+                })
+
+              Image($r("app.media.icon_seekEnd"))
+                .width(24)
+                .height(24)
+                .onClick(() => {
+                  this.myMedia.seek(this.myMedia.totalDuration)
+                })
+
+              Image($r("app.media.delete"))
+                .width(24)
+                .height(24)
+                .visibility(this.isDeleteShow ? Visibility.Visible : Visibility.Hidden)
+                .onClick(async () => {
+                  if (this.isDeleteShow) {
+                    this.isDeleteShow = false
+                    this.myMedia.deleteOfflineLicense(this.onlineVideoData.uri)
                   }
                 })
-              Text(this.myMedia ? getTimeString(this.myMedia.totalDuration) : '00:00')
-                .fontSize(12)
-                .fontColor('#FFFFFF')
-                .fontWeight(500)
-                .opacity(0.6)
-                .fontFamily('HarmonyHeiTi')
-            }.width('80%')
-
-            Image($r('app.media.icon_large'))
-              .width(24)
-              .height(24)
-              .opacity(this.isLandscape ? 1 : 0.4)
-              .onClick(() => {
-                this.isLandscape = !this.isLandscape
-              })
+            }
+            .layoutWeight(1)
           }
-          .layoutWeight(1)
-
-          // 控制栏
-          Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }) {
-            Image($r("app.media.icon_seekStart"))
-              .width(24)
-              .height(24)
-              .onClick(() => {
-                this.myMedia.seek(0)
-              })
-
-            Image($r('app.media.icon_cycle'))
-              .width(24)
-              .height(24)
-              .opacity(this.isLoop ? 1 : 0.4)
-              .onClick(() => {
-                this.isLoop = !this.isLoop
-              })
-
-            Image($r("app.media.icon_seekEnd"))
-              .width(24)
-              .height(24)
-              .onClick(() => {
-                this.myMedia.seek(this.myMedia.totalDuration)
-              })
-
-            Image($r("app.media.delete"))
-              .width(24)
-              .height(24)
-              .visibility(this.isDeleteShow ? Visibility.Visible : Visibility.Hidden)
-              .onClick(async () => {
-                if (this.isDeleteShow) {
-                  this.isDeleteShow = false
-                  this.myMedia.deleteOfflineLicense(this.onlineVideoData.uri)
-                }
-              })
-          }
-          .layoutWeight(1)
+          .zIndex(1)
         }
-        .zIndex(1)
       }
+      .height(this.isLandscape ? '100%' : '50%')
+      .backgroundColor(Color.Black)
+
+
+      Column() {
+        Text(this.licenseInfoText)
+          .fontColor(Color.White)
+      }
+      .width('100%')
+      .height(this.isLandscape ? '0%' : '50%')
+      .padding(10)
     }
-    .height(this.isLandscape ? '100%' : '50%')
-    .backgroundColor(Color.Black)
+    .width('100%')
+    .height('100%')
   }
 }

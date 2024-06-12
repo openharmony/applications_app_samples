@@ -2370,6 +2370,10 @@
     {
       "name": "list_properties_edge_effect",
       "value": "edgeEffect"
+    },
+    {
+      "name": "text_styled_string_title",
+      "value": "Text 属性字符串"
     }
   ]
 }
