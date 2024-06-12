@@ -40,7 +40,7 @@ export struct VideoOperate {
   build() {
     Row() {
       Row() {
-        Image(this.flag ? $r("app.media.ic_video_play") : $r("app.media.ic_video_pause")) // 暂停/播放
+        Image(this.flag ? $r('app.media.ic_video_play') : $r('app.media.ic_video_pause')) // 暂停/播放
           .id('play')
           .width($r('app.float.size_40'))
           .height($r('app.float.size_40'))
@@ -72,7 +72,7 @@ export struct VideoOperate {
           .id('Slider')
           .blockColor(Color.White)
           .trackColor(Color.Gray)
-          .selectedColor($r("app.color.slider_selected"))
+          .selectedColor($r('app.color.slider_selected'))
           .showTips(false)
           .onChange((value: number, mode: SliderChangeMode) => {
             if (this.seekTime !== value) {

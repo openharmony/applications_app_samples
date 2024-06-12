@@ -67,6 +67,34 @@ export default function abilityTest() {
     })
 
     /**
+     * 点击外挂字幕-关
+     */
+    it('Subtitle_001', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, 'Subtitle_001 begin')
+
+      // 拉起操作界面
+      await driver.delayMs(1000)
+      await driver.assertComponentExist(ON.id('Video'))
+      let stack = await driver.findComponent(ON.id('Video'))
+      await driver.delayMs(1000)
+      await stack.click()
+
+      // 点击外挂字幕
+      await driver.assertComponentExist(ON.id('Select2'))
+      let btnSubtitle = await driver.findComponent(ON.id('Select2'))
+      await btnSubtitle.click()
+
+      // 点击关
+      const str = await getString($r('app.string.subtitle_off'))
+      await driver.assertComponentExist(ON.text(str))
+      let button = await driver.findComponent(ON.text(str))
+      await button.click()
+      await driver.delayMs(2000)
+      done()
+      hilog.info(DOMAIN, TAG, 'Subtitle_001 end')
+    })
+
+    /**
      * 点击多音轨轨道:1
      */
     it('Select_001', 0, async (done: Function) => {

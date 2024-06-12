@@ -777,6 +777,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/shaders/custom_shader/custom_material_sample.frag.spv.gles" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/shaders/custom_shader/custom_material_sample.frag.spv.pre" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/shaders/custom_shader/custom_material_sample.shader" desc="二进制文件，无需添加版权头"/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/VideoPlay/entry/src/main/resources/rawfile/test1.srt" desc="Demo外挂字幕文件，无需添加版权头"/>
             </filefilter>
             <filefilter name="copyrightPolicyFilter" desc="Copyright文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加版权头"/>
@@ -822,6 +823,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/shaders/custom_shader/custom_material_sample.frag.spv.gles" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/shaders/custom_shader/custom_material_sample.frag.spv.pre" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/shaders/custom_shader/custom_material_sample.shader" desc="二进制文件，无需添加版权头"/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/VideoPlay/entry/src/main/resources/rawfile/test1.srt" desc="Demo外挂字幕文件，无需添加版权头"/>
             </filefilter>
         </filefilterlist>
     </oatconfig>

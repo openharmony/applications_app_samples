@@ -83,6 +83,14 @@
     {
       "name": "get_thumbnail",
       "value": "获取缩略图(test.mp4)"
+    },
+    {
+      "name": "subtitle_on",
+      "value": "开"
+    },
+    {
+      "name": "subtitle_off",
+      "value": "关"
     }
   ]
 }

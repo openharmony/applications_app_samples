@@ -79,6 +79,10 @@
     {
       "name": "track_name_1",
       "value": "轨道:1"
+    },
+    {
+      "name": "subtitle_off",
+      "value": "关"
     }
   ]
 }
