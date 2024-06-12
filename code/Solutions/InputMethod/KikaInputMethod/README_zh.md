@@ -27,6 +27,7 @@
 1.安装应用，首页点击kikainput切换输入法到当前应用;
 2.文本框中输入预上屏触发字符'hel',触发输入法预上屏;
 3.点击输入法的回车键，确认预上屏内容'hello world'替换文本框中的'hel';
+注：上屏的内容后继续输入字符a，hello world被替换，就是没有确认上屏，否则呈现内容是hello worlda的话就是内容已经确认预上屏。
 
 ### 工程目录
 
@@ -101,7 +102,7 @@ hdc shell aa start ability -a InputMethod -b cn.openharmony.inputmethodchoosedia
 如需单独下载本工程，执行如下命令：
 
 ```
-git init[OAT.xml](..%2F..%2F..%2F..%2FOAT.xml)
+git init
 git config core.sparsecheckout true
 echo code/Solutions/InputMethod/KikaInputMethod/ > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
