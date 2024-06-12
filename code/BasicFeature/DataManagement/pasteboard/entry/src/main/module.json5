@@ -49,16 +49,6 @@
       }
     ],
     "requestPermissions":[
-//            {
-//              "name": "ohos.permission.DISTRIBUTED_DATASYNC",//分布式数据同步的权限
-//              //"reason": "$string:read_permission",
-//              "usedScene": {
-//                "abilities": [
-//                  "EntryAbility"
-//                ],
-//                "when": "always"
-//              }
-//            },
             {
               "name": "ohos.permission.READ_PASTEBOARD",
               "reason": "$string:read_permission",
