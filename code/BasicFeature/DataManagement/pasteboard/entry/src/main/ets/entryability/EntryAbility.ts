@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2024 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -65,15 +65,6 @@ export default class EntryAbility extends UIAbility {
 
   getPermission(): void {
     let array: Array<Permissions> = [
-      // 'ohos.permission.READ_MEDIA',
-      // 'ohos.permission.WRITE_MEDIA',
-      // 'ohos.permission.MEDIA_LOCATION',
-      // 'ohos.permission.GET_BUNDLE_INFO',
-      // 'ohos.permission.DISTRIBUTED_DATASYNC',
-      // 'ohos.permission.START_ABILITIES_FROM_BACKGROUND',
-      // 'ohos.permission.START_INVISIBLE_ABILITY',
-      // 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS',
-      // 'ohos.permission.GET_DISTRIBUTED_ACCOUNTS',
       'ohos.permission.READ_PASTEBOARD'
     ];
 
