@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,15 +13,15 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router';
-import Logger from '../log/Logger';
+import { router } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 let options: router.RouterOptions = {
   url: 'autofillpages/LoginSuccessPage'
-}
+};
 let registerOptions: router.RouterOptions = {
   url: 'autofillpages/RegisterPage'
-}
+};
 
 @Entry
 @Component
@@ -48,7 +48,7 @@ struct Index {
               .fontColor($r('app.color.user'))
               .fontWeight(400)
               .fontSize(16)
-              .height("100%")
+              .height('100%')
               .id('userName')
               .backgroundColor($r('app.color.controlBackColor'))
               .onChange((value: string) => {
@@ -69,7 +69,7 @@ struct Index {
               .fontColor($r('app.color.user'))
               .fontWeight(400)
               .fontSize(16)
-              .height("100%")
+              .height('100%')
               .backgroundColor($r('app.color.controlBackColor'))
               .id('passWord')
               .onChange((value: string) => {
@@ -106,7 +106,7 @@ struct Index {
           .id('register')
           .onClick(() => {
             router.pushUrl(registerOptions, (err, data) => {
-              Logger.info('page jump to registerPage',
+              hilog.info(0x0000, 'testTag', '%{public}s', 'page jump to registerPage',
                 JSON.stringify(err), JSON.stringify(data));
             })
           })
@@ -124,7 +124,7 @@ struct Index {
           .width('86.7%')
           .onClick(() => {
             router.pushUrl(options, (err, data) => {
-              Logger.info('page jump to LoginSuccessPage page',
+              hilog.info(0x0000, 'testTag', '%{public}s', 'page jump to LoginSuccessPage page',
                 JSON.stringify(err), JSON.stringify(data));
             })
           })

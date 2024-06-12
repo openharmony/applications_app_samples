@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,123 +13,30 @@
  * limitations under the License.
  */
 
-import Base from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
-import { Driver, ON } from '@ohos.UiTest';
 import { describe, it, expect } from '@ohos/hypium';
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import Logger from '../util/Logger';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { Want } from '@kit.AbilityKit';
+import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const TAG = '[Sample_AutoFillTest]';
-const abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+const TAG: string = '[Sample_AutoFillTest]';
+const DOMAIN_NUMBER: number = 0xFF00;
+const abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 
 function startAbility() {
-  Logger.info(TAG, 'StartAbility start');
+  hilog.info(DOMAIN_NUMBER, TAG, 'StartAbility start');
   let want: Want = {
     bundleName: 'com.ohos.passwordbox',
     abilityName: 'EntryAbility'
   };
-  Logger.info(TAG, 'getAbilityDelegator end');
-  abilityDelegator.startAbility(want, (err: Base.BusinessError) => {
-    Logger.info(TAG, 'StartAbility get err ' + JSON.stringify(err));
+  hilog.info(DOMAIN_NUMBER, TAG, 'getAbilityDelegator end');
+  abilityDelegator.startAbility(want, (err: BusinessError) => {
+    hilog.info(DOMAIN_NUMBER, TAG, 'StartAbility get err ' + JSON.stringify(err));
   });
 }
 
 export default function abilityTest() {
   describe('AutoFillSampleTest', () => {
-
-    /*
-    * @tc.number: AutoFill_NewPassWordTextInput_003
-    * @tc.name: Click Enter NewPassword input field
-    * @tc.desc: Click Enter NewPassword input field
-    * @tc.size: MediumTest
-    * @tc.type: Function
-    * @tc.level Level 1
-    */
-    it('AutoFill_NewPassWordTextInput_003', 0, async (done: Function) => {
-      Logger.info(TAG, 'AutoFill_NewPassWordTextInput_003 start');
-      startAbility();
-      let driver = Driver.create();
-      await driver.delayMs(1000);
-      let registerBtn = await driver.findComponent(
-        ON.id("register"));
-      await driver.delayMs(1000);
-      await registerBtn.click();
-      await driver.delayMs(500);
-      let newPassWordTextInput = await driver.findComponent(
-        ON.id("newPassWord"));
-      await driver.delayMs(1000);
-      await newPassWordTextInput.click();
-      await driver.delayMs(1000);
-      let confirmBtn = await driver.findComponent(ON.id("confirm"));
-      await driver.delayMs(1000);
-      await confirmBtn.click();
-      await driver.delayMs(1000);
-      let newPassWordInfo = await newPassWordTextInput.getText();
-      await driver.delayMs(500);
-      Logger.info(TAG, 'AutoFill_NewPassWordTextInput_003_newPassWordInfo', newPassWordInfo);
-      expect(newPassWordInfo).assertEqual('******');
-      Logger.info(TAG, 'AutoFill_NewPassWordTextInput_003 end');
-      await driver.pressBack();
-      done();
-    })
-
-    /*
-    * @tc.number: AutoFill_ManualSave_004
-    * @tc.name: The user actively calls the save interface
-    * @tc.desc: The user actively calls the save interface
-    * @tc.size: MediumTest
-    * @tc.type: Function
-    * @tc.level Level 1
-    */
-    it('AutoFill_ManualSave_004', 0, async (done: Function) => {
-      Logger.info(TAG, 'AutoFill_ManualSave_004 start');
-      let driver = Driver.create();
-      await driver.delayMs(2000);
-      let registerNowBtn = await driver.findComponent(
-        ON.id("registerNowBtn"));
-      await driver.delayMs(500);
-      await registerNowBtn.click();
-      await driver.delayMs(1000);
-      let savePage = await driver.findComponent(ON.id('Save'));
-      await driver.delayMs(1000);
-      await expect(savePage != null).assertTrue();
-      done();
-    })
-
-    /*
-    * @tc.number: AutoFill_AutoSave_005
-    * @tc.name: The page is automatically saved when it disappears
-    * @tc.desc: The page is automatically saved when it disappears
-    * @tc.size: MediumTest
-    * @tc.type: Function
-    * @tc.level Level 1
-    */
-    it('AutoFill_AutoSave_005', 0, async (done: Function) => {
-      Logger.info(TAG, 'AutoFill_AutoSave_005 start');
-      let driver = Driver.create();
-      await driver.delayMs(1000);
-      let loginBtn = await driver.findComponent(
-        ON.id("login"));
-      await driver.delayMs(500);
-      await loginBtn.click();
-      await driver.delayMs(500);
-      let savePage = await driver.findComponent(ON.id('Save'));
-      await driver.delayMs(1000);
-      await expect(savePage != null).assertTrue();
-      Logger.info(TAG, 'AutoFill_AutoSave_005 end');
-      await driver.pressBack();
-      await driver.delayMs(500);
-      await driver.pressBack();
-      await driver.delayMs(500);
-      await driver.pressBack();
-      await driver.delayMs(500);
-      await driver.pressBack();
-      await driver.delayMs(500);
-      await driver.pressBack();
-      done();
-    })
-
     /*
     * @tc.number: AutoFill_UserNameTextInput_001
     * @tc.name: Click Enter Account input field
@@ -139,7 +46,7 @@ export default function abilityTest() {
     * @tc.level Level 1
     */
     it('AutoFill_UserNameTextInput_001', 0, async (done: Function) => {
-      Logger.info(TAG, 'AutoFill_UserNameTextInput_001 start');
+      hilog.info(DOMAIN_NUMBER, TAG, 'AutoFill_UserNameTextInput_001 start');
       startAbility();
       let driver = Driver.create();
       await driver.delayMs(1000);
@@ -152,46 +59,119 @@ export default function abilityTest() {
       await driver.delayMs(1000);
       await userNameColumn.click();
       await driver.delayMs(500);
-      await driver.pressBack();
-      await driver.delayMs(500);
-      let userNameInfo = await userNameTextInput.getText();
+      let userClick = await driver.findComponent(
+        ON.id("success"));
       await driver.delayMs(1000);
-      Logger.info(TAG, 'AutoFill_UserNameTextInput_001_userNameInfo', userNameInfo);
-      expect(userNameInfo).assertEqual('user2');
-      Logger.info(TAG, 'AutoFill_UserNameTextInput_001 end');
-      await driver.pressBack();
+      await userClick.click();
+      await driver.delayMs(1000);
+      let userNameInfo = await userNameTextInput.getText();
       await driver.delayMs(500);
+      expect(userNameInfo).assertEqual('user2');
+      hilog.info(DOMAIN_NUMBER, TAG, 'AutoFill_UserNameTextInput_001 end');
+      await driver.delayMs(1000);
+      let passWordTextInput = await driver.findComponent(
+        ON.id("passWord"));
+      let passWordInfo = await passWordTextInput.getText();
+      await driver.delayMs(500);
+      expect(passWordInfo).assertEqual('******');
+      done();
+    })
+
+    /*
+     * @tc.number: AutoFill_NewPassWordTextInput_003
+     * @tc.name: Click Enter NewPassword input field
+     * @tc.desc: Click Enter NewPassword input field
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it('AutoFill_NewPassWordTextInput_003', 0, async (done: Function) => {
+      hilog.info(DOMAIN_NUMBER, TAG, 'AutoFill_NewPassWordTextInput_003 start');
+      startAbility();
+      let driver = Driver.create();
+      await driver.delayMs(2000);
+      let registerBtn = await driver.findComponent(
+        ON.id("register"));
+      await driver.delayMs(1000);
+      await registerBtn.click();
+      await driver.delayMs(1000);
+      let newPassWordTextInput = await driver.findComponent(
+        ON.id("newPassWord"));
+      await driver.delayMs(1000);
+      await newPassWordTextInput.click();
+      await driver.delayMs(1000);
+      let confirmBtn = await driver.findComponent(ON.id("confirm"));
+      await driver.delayMs(1000);
+      await confirmBtn.click();
+      await driver.delayMs(1000);
+      let newPassWordInfo = await newPassWordTextInput.getText();
+      await driver.delayMs(500);
+      hilog.info(DOMAIN_NUMBER, TAG, 'AutoFill_NewPassWordTextInput_003_newPassWordInfo', newPassWordInfo);
+      expect(newPassWordInfo).assertEqual('******');
+      hilog.info(DOMAIN_NUMBER, TAG, 'AutoFill_NewPassWordTextInput_003 end');
       await driver.pressBack();
       done();
     })
 
     /*
-    * @tc.number: AutoFill_PassWordTextInput_002
-    * @tc.name: Click Enter Password input field
-    * @tc.desc: Click Enter Password input field
-    * @tc.size: MediumTest
-    * @tc.type: Function
-    * @tc.level Level 1
-    */
-    it('AutoFill_PassWordTextInput_002', 0, async (done: Function) => {
-      Logger.info(TAG, 'AutoFill_PassWordTextInput_002 start');
-      startAbility();
+     * @tc.number: AutoFill_ManualSave_004
+     * @tc.name: The user actively calls the save interface
+     * @tc.desc: The user actively calls the save interface
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it('AutoFill_ManualSave_004', 0, async (done: Function) => {
+      hilog.info(DOMAIN_NUMBER, TAG, 'AutoFill_ManualSave_004 start');
+      let driver = Driver.create();
+      await driver.delayMs(2000);
+      let registerNowBtn = await driver.findComponent(
+        ON.id("registerNowBtn"));
+      await driver.delayMs(500);
+      await registerNowBtn.click();
+      await driver.delayMs(2000);
+      let confirmBtn = await driver.findComponent(ON.id("saveConfirm"));
+      await driver.delayMs(1000);
+      await confirmBtn.click();
+      let savePage = await driver.findComponent(ON.text('登录'));
+      await driver.delayMs(1000);
+      await expect(savePage != null).assertTrue();
+      done();
+    })
+
+    /*
+     * @tc.number: AutoFill_AutoSave_005
+     * @tc.name: The page is automatically saved when it disappears
+     * @tc.desc: The page is automatically saved when it disappears
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it('AutoFill_AutoSave_005', 0, async (done: Function) => {
+      hilog.info(DOMAIN_NUMBER, TAG, 'AutoFill_AutoSave_005 start');
       let driver = Driver.create();
       await driver.delayMs(1000);
-      let passWordTextInput = await driver.findComponent(
-        ON.id("passWord"));
-      await driver.delayMs(1000);
-      await passWordTextInput.click();
-      await driver.delayMs(1000);
-      let passWordColumn = await driver.findComponent(ON.id('third'));
-      await driver.delayMs(1000);
-      await passWordColumn.click();
-      await driver.delayMs(1000);
-      let passWordInfo = await passWordTextInput.getText();
+      let loginBtn = await driver.findComponent(
+        ON.id("login"));
       await driver.delayMs(500);
-      Logger.info(TAG, 'AutoFill_PassWordTextInput_002_passWordInfo', passWordInfo);
-      expect(passWordInfo).assertEqual('******');
-      Logger.info(TAG, 'AutoFill_PassWordTextInput_002 end');
+      await loginBtn.click();
+      await driver.delayMs(1000);
+      let confirmBtn = await driver.findComponent(ON.id("saveConfirm"));
+      await driver.delayMs(1000);
+      await confirmBtn.click();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      let savePage = await driver.findComponent(ON.text('登录'));
+      await driver.delayMs(1000);
+      await expect(savePage != null).assertTrue();
+      hilog.info(DOMAIN_NUMBER, TAG, 'AutoFill_AutoSave_005 end');
+      await driver.pressBack();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      await driver.delayMs(500);
+      await driver.pressBack();
+      await driver.delayMs(500);
       await driver.pressBack();
       await driver.delayMs(500);
       await driver.pressBack();

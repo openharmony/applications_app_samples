@@ -239,6 +239,22 @@
     {
       "name": "resetGetCode",
       "value": "resetGetCode(    )"
+    },
+    {
+      "name": "success",
+      "value": "success"
+    },
+    {
+      "name": "fail",
+      "value": "fail"
+    },
+    {
+      "name": "biological_Certification",
+      "value": "biological_Certification"
+    },
+    {
+      "name": "onCancel",
+      "value": "onCancel"
     }
   ]
 }

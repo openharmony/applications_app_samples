@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,27 +13,13 @@
  * limitations under the License.
  */
 
-import { FillRequestCallback, FillResponse } from "application/AutoFillRequest";
-import ViewData from 'application/ViewData';
-import Logger from '../log/Logger';
+import { FillRequestCallback } from 'application/AutoFillRequest';
+import { autoFillManager } from '@kit.AbilityKit';
+import { router } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const storage = LocalStorage.getShared();
-const fillCallback = storage.get<FillRequestCallback>('fillCallback');
-const viewData: ViewData | undefined = storage.get<ViewData>('viewData');
-
-function successFunc(data: ViewData, userName: string, passWord: string) {
-  if (data.pageNodeInfos.length !== 2) {
-    Logger.info('get unEnough pageNodeInfos, skipping!');
-    return;
-  } else {
-    data.pageNodeInfos[0].value = userName;
-    data.pageNodeInfos[1].value = passWord;
-  }
-  if (fillCallback) {
-    let response: FillResponse = { viewData: data };
-    fillCallback.onSuccess(response);
-  }
-}
+const fillCallback: autoFillManager.FillRequestCallback | undefined = storage.get<FillRequestCallback>('fillCallback');
 
 function cancelFunc() {
   if (fillCallback) {
@@ -52,7 +38,7 @@ struct AutoFillControl {
           .width(24)
           .id('back')
           .onClick(() => {
-            Logger.info('autofill cancel');
+            hilog.info(0x0000, 'testTag', '%{public}s', 'autofill cancel');
             cancelFunc();
           })
         Text($r('app.string.userPassWord_title'))
@@ -77,9 +63,12 @@ struct AutoFillControl {
       .width('95%')
       .height('7.2%')
       .onClick(() => {
-        if (viewData != undefined) {
-          successFunc(viewData, "user1", "123456");
-        }
+        router.pushUrl({
+          url: 'autofillpages/BiometricAuthentication',
+          params: {
+            fileFlag: 'user1',
+          }
+        })
       })
 
       Row() {
@@ -91,16 +80,19 @@ struct AutoFillControl {
           .margin({ left: '3.3%' })
           .fontFamily('HarmonyHeiTi-Medium')
       }
-      .id("second")
+      .id('second')
       .borderRadius(24)
       .backgroundColor($r('app.color.controlBackColor'))
       .width('95%')
       .height('7.2%')
       .margin({ top: '24px' })
       .onClick(() => {
-        if (viewData != undefined) {
-          successFunc(viewData, "user2", "abcdef");
-        }
+        router.pushUrl({
+          url: 'autofillpages/BiometricAuthentication',
+          params: {
+            fileFlag: 'user2',
+          }
+        })
       })
 
       Row() {
@@ -112,16 +104,19 @@ struct AutoFillControl {
           .margin({ left: '3.3%' })
           .fontFamily('HarmonyHeiTi-Medium')
       }
-      .id("third")
+      .id('third')
       .borderRadius(24)
       .backgroundColor($r('app.color.controlBackColor'))
       .width('95%')
       .height('7.2%')
       .margin({ top: '24px' })
       .onClick(() => {
-        if (viewData != undefined) {
-          successFunc(viewData, "user3", "ABCDEF");
-        }
+        router.pushUrl({
+          url: 'autofillpages/BiometricAuthentication',
+          params: {
+            fileFlag: 'user3',
+          }
+        })
       })
     }.backgroundColor($r('app.color.pageBackColor')).height('100%')
   }

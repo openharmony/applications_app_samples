@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,64 +13,64 @@
  * limitations under the License.
  */
 
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
-import type { UIContext } from '@ohos.arkui.UIContext';
-import Logger from '../log/Logger';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import type { UIContext, window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const TAG: string = 'entryAbility';
+const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     AppStorage.link('uiContext');
-    Logger.info('testTag', '%{public}s', 'Ability onCreate');
+    hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
   }
 
   onDestroy(): void {
-    Logger.info('testTag', '%{public}s', 'Ability onDestroy');
+    hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onDestroy');
   }
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability
-    Logger.info('testTag', '%{public}s', 'Ability onWindowStageCreate');
+    hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onWindowStageCreate');
     let storage = new LocalStorage(
       {
         'message': 'Index Page',
       });
     windowStage.loadContent('pages/Index', storage, (err, data) => {
       if (err.code) {
-        Logger.error('testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        hilog.error(DOMAIN_NUMBER, TAG, 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
       }
 
       windowStage.getMainWindow((err: BusinessError, data: window.Window) => {
         let errCode: number = err.code;
         if (errCode) {
-          Logger.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+          hilog.error(DOMAIN_NUMBER, TAG, 'Failed to obtain the main window. Cause: ' + JSON.stringify(err));
           return;
         }
-        Logger.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+        hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
         // get UIContext instance
         let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
         PersistentStorage.persistProp('uiContext', uiContext);
       });
-      Logger.info('testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
     });
   }
 
   onWindowStageDestroy(): void {
     // Main window is destroyed, release UI related resources
-    Logger.info('testTag', '%{public}s', 'Ability onWindowStageDestroy');
+    hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onWindowStageDestroy');
   }
 
   onForeground(): void {
     // Ability has brought to foreground
-    Logger.info('testTag', '%{public}s', 'Ability onForeground');
+    hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onForeground');
   }
 
   onBackground(): void {
     // Ability has back to background
-    Logger.info('testTag', '%{public}s', 'Ability onBackground');
+    hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onBackground');
   }
 }

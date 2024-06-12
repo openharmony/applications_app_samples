@@ -35,6 +35,10 @@
     {
       "name": "NoAccountColor",
       "value": "#6f7780"
+    },
+    {
+      "name": "cancelColor",
+      "value": "#FDE5E9E9"
     }
   ]
 }

@@ -1,0 +1,80 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Scenarioization"
+    },
+    {
+      "name": "AutoFillAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "AutoFillAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "returnMainPage",
+      "value": "返回主界面"
+    },
+    {
+      "name": "phone_Number",
+      "value": "Input content"
+    },
+    {
+      "name": "hint_Number",
+      "value": "Mobile phone number"
+    },
+    {
+      "name": "person_Full_Name",
+      "value": "Name"
+    },
+    {
+      "name": "storeData",
+      "value": "保存数据?"
+    },
+    {
+      "name": "confirm",
+      "value": "保存"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "loginSuccess",
+      "value": "登录成功!"
+    },
+    {
+      "name": "scenarioization",
+      "value": "情景化填充"
+    },
+    {
+      "name": "settingType",
+      "value": "设置类型:"
+    },
+    {
+      "name": "noTypeSet",
+      "value": "未设置类型,设置hint:"
+    },
+    {
+      "name": "setTypeName",
+      "value": "设置的类型为姓名:"
+    },
+    {
+      "name": "saveData",
+      "value": "保存"
+    },
+    {
+      "name": "switchInterface",
+      "value": "切换界面"
+    }
+  ]
+}

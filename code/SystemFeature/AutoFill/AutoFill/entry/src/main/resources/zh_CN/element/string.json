@@ -239,6 +239,22 @@
     {
       "name": "resetGetCode",
       "value": "重新获取(    )"
+    },
+    {
+      "name": "success",
+      "value": "成功"
+    },
+    {
+      "name": "fail",
+      "value": "失败"
+    },
+    {
+      "name": "biological_Certification",
+      "value": "生物验证"
+    },
+    {
+      "name": "onCancel",
+      "value": "取消"
     }
   ]
 }
