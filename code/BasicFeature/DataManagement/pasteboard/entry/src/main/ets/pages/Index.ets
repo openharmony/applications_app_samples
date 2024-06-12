@@ -124,8 +124,6 @@ struct Index {
             PasteButton()
               .width('45%')
               .fontSize(16)
-                // .fontColor('#007DFF')
-                // .backgroundColor($r('app.color.custom_button_color'))
               .onClick((event: ClickEvent, result: PasteButtonOnClickResult) => {
                 // 使用安全粘贴控件粘贴文本
                 this.addLog('PasteButton onclick!')
@@ -144,26 +142,6 @@ struct Index {
           .margin({left:12, right:12})
 
           Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
-            // PasteButton()
-            //   .width('45%')
-            //   .fontSize(16)
-            //   // .fontColor('#007DFF')
-            //   // .backgroundColor($r('app.color.custom_button_color'))
-            //   .onClick((event: ClickEvent, result: PasteButtonOnClickResult) => {
-            //     // 使用安全粘贴控件粘贴文本
-            //     this.addLog('PasteButton onclick!')
-            //     if (PasteButtonOnClickResult.SUCCESS === result) {
-            //       pasteboard.getSystemPasteboard().getData((err: BusinessError, pasteData: pasteboard.PasteData) => {
-            //         if (err) {
-            //           this.addLog(`Failed to get paste data. Code is ${err.code}, message is ${err.message}`);
-            //           return;
-            //         }
-            //         this.text = pasteData.getPrimaryText();
-            //         this.addLog('PasteButton onclick getPrimaryText: ' + this.text);
-            //       });
-            //     }
-            //   })
-
             Button($r('app.string.Button_text_paste'))
               .backgroundColor('#007DFF')
               .border({ radius: 20 })
@@ -171,7 +149,6 @@ struct Index {
               .width('45%')
               .fontColor('#007DFF')
               .backgroundColor($r('app.color.custom_button_color'))
-                // .height('20%')
               .onClick(() => {
                 // 粘贴类型过滤，仅粘贴文本
                 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
