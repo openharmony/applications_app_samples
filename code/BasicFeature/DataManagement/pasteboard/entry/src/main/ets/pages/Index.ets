@@ -214,8 +214,8 @@ struct Index {
                 let plainTextData = new unifiedDataChannel.UnifiedData();
                 let plainText = new unifiedDataChannel.PlainText();
                 plainText.details = {
-                  Key: 'delayPlaintext',
-                  Value: this.copyText,
+                  key: 'delayPlaintext',
+                  value: this.copyText,
                 };
                 plainText.textContent = this.copyText;
                 plainText.abstract = 'delayTextContent';
