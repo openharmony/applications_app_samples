@@ -21,7 +21,7 @@ export struct ExitVideo {
   build() {
     Row() {
       // 退出
-      Image($r("app.media.ic_video_back"))
+      Image($r('app.media.ic_video_back'))
         .id('Exit')
         .width($r('app.float.size_35'))
         .height($r('app.float.size_35'))

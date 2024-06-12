@@ -34,7 +34,11 @@
 onReceive data from UIExtensionAbility'，UIExtensionAbility 部分弹出Toast提示'UIExtensionAbility onReceive data from
 HomeAbility'
 
-4.UIExtension提供startAbilityAsCaller的能力
+4.UIExtension提供启动AbilityAsCaller的能力
+
+点击'启动AbilityAsCaller'的ListItem,应用启动NewAbility
+
+5.UIExtension提供startAbilityAsCaller的能力
 
 点击启动'启动UIExtensionAbility'的ListItem，进入到新页面，在新页面点击'启动AbilityAsCaller'的ListItem，应用启动NewAbility
 

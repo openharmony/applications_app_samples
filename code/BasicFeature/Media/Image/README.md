@@ -34,6 +34,6 @@ N/A
 
 1. This sample can only be run on standard-system devices that use the Rockchip RK3568 chip.
 
-2. This sample is based on the stage model, which is supported from API version 11 (API Version 11 4.1.3.5). 
+2. This sample is based on the stage model, which is supported from API version 12 (API Version 12 5.0.0.26). 
 
-3. DevEco Studio (3.1.0.501) must be used.
+3. DevEco Studio (4.1.3.500) must be used.

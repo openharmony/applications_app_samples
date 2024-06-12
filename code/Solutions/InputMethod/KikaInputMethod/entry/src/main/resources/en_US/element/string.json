@@ -23,6 +23,30 @@
     {
       "name": "edit",
       "value": "Edit"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "Private_data",
+      "value": "Private data"
+    },
+    {
+      "name": "Preview_Text",
+      "value": "Preview Text"
+    },
+    {
+      "name": "Private_tip",
+      "value": "Please input account number"
+    },
+    {
+      "name": "Preview_tip",
+      "value": "Please input preview content"
     }
   ]
 }
