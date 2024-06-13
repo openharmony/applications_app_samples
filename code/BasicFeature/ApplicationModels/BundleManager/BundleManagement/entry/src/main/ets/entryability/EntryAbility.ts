@@ -40,6 +40,27 @@ export default class EntryAbility extends UIAbility {
       }
       hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
     });
+
+    windowStage.getMainWindow((err, data) => {
+      if (err.code) {
+        hilog.error(DOMAIN_NUMBER, TAG, 'Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        return;
+      }
+      let windowClass = data;
+      hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+
+      let SystemBarProperties = {
+        statusBarColor: "#f1f3f5",
+        navigationBarColor: "#f1f3f5"
+      };
+      windowClass.setWindowSystemBarProperties(SystemBarProperties, (err) => {
+        if (err) {
+          hilog.error(DOMAIN_NUMBER, TAG, 'Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
+          return;
+        }
+        hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in setting the system bar properties.');
+      });
+    })
   }
 
   onWindowStageDestroy() {

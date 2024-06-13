@@ -362,9 +362,9 @@ struct Index {
                     Row() {
                       Flex({ justifyContent: FlexAlign.SpaceBetween, alignContent: FlexAlign.Center }) {
                         Text(item.text) {
-                        }.fontSize(18)
+                        }.fontSize(16)
                         .textAlign(TextAlign.Start)
-                        .fontWeight(700)
+                        .fontWeight(500)
                       }
                     }
                     .width('100%')
@@ -420,6 +420,7 @@ struct Index {
       .width('100%')
       .height(700)
       .backgroundColor($r('app.color.backGrounding'))
+      .margin({ top: '16vp' })
     }
     .width('100%')
     .height('100%')
