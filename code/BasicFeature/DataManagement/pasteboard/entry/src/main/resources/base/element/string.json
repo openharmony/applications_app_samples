@@ -10,7 +10,7 @@
     },
     {
       "name": "EntryAbility_label",
-      "value": "pasteboard"
+      "value": "PasteBoard"
     },
     {
       "name": "Button_copy",
@@ -42,7 +42,7 @@
     },
     {
       "name": "title",
-      "value": "Pasteboard"
+      "value": "PasteBoard"
     },
     {
       "name": "read_permission",
