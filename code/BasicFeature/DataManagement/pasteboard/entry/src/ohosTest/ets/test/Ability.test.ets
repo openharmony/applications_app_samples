@@ -18,9 +18,9 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 import { Driver, ON, MatchPattern } from '@ohos.UiTest';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
-const TAG = '[Sample_pasteboard]';
+const TAG = '[Sample_PasteBoard]';
 const DOMAIN = 0xF811;
-const BUNDLE = 'pasteboard_';
+const BUNDLE = 'PasteBoard_';
 
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 // 资源本地化
