@@ -22,6 +22,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 const TAG: string = '[Sample_BundleManager]';
 const DOMAIN_NUMBER: number = 0xFF00;
 const abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+let resourceManager = abilityDelegator.getAppContext().resourceManager;
 
 async function sleep(time: number) {
   return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
@@ -57,7 +58,8 @@ export default function abilityTest() {
       hilog.info(DOMAIN_NUMBER, TAG, 'driver err ' + JSON.stringify(driver));
       startAbility();
       await sleep(2000);
-      let registerBtn = await driver.findComponent(ON.text('获取BundleInfo'));
+      let registerBtn = await driver.findComponent(ON.text(
+        await resourceManager.getStringValue($r('app.string.GetBundleInfoTest'))));
       await sleep(1000);
       await registerBtn.click();
       await sleep(1000);
@@ -77,7 +79,8 @@ export default function abilityTest() {
       hilog.info(DOMAIN_NUMBER, TAG, 'BundleManager_GetBundleInfoForSelfSync_002 start');
       let driver = Driver.create();
       await sleep(1000);
-      let registerBtn = await driver.findComponent(ON.text('获取BundleInfo(sync)'));
+      let registerBtn = await driver.findComponent(ON.text(
+        await resourceManager.getStringValue($r('app.string.GetBundleInfoSyncTest'))));
       await sleep(1000);
       await registerBtn.click();
       await sleep(1000);
@@ -97,7 +100,8 @@ export default function abilityTest() {
       hilog.info(DOMAIN_NUMBER, TAG, 'BundleManager_GetProfileByAbility_004 start');
       let driver = Driver.create();
       await sleep(1000);
-      let registerBtn = await driver.findComponent(ON.text('获取配置json'));
+      let registerBtn = await driver.findComponent(ON.text(
+        await resourceManager.getStringValue($r('app.string.GetConfigurationJsonTest'))));
       await sleep(1000);
       await registerBtn.click();
       await sleep(1000);
@@ -117,7 +121,8 @@ export default function abilityTest() {
       hilog.info(DOMAIN_NUMBER, TAG, 'BundleManager_GetProfileByExtensionAbility_005 start');
       let driver = Driver.create();
       await sleep(1000);
-      let registerBtn = await driver.findComponent(ON.text('获取配置数组'));
+      let registerBtn = await driver.findComponent(ON.text(
+        await resourceManager.getStringValue($r('app.string.GetConfigurationArrayTest'))));
       await sleep(1000);
       await registerBtn.click();
       await sleep(2000);
@@ -137,7 +142,8 @@ export default function abilityTest() {
       hilog.info(DOMAIN_NUMBER, TAG, 'BundleManager_GetProfileByExtensionAbilitySync_006 start');
       let driver = Driver.create();
       await sleep(2000);
-      let registerBtn = await driver.findComponent(ON.text('获取配置json(sync)'));
+      let registerBtn = await driver.findComponent(ON.text(
+        await resourceManager.getStringValue($r('app.string.GetConfigurationJsonSyncTest'))));
       await sleep(1000);
       await registerBtn.click();
       await sleep(1000);
@@ -157,7 +163,8 @@ export default function abilityTest() {
       hilog.info(DOMAIN_NUMBER, TAG, 'BundleManager_CanOpenLink_007 start');
       let driver = Driver.create();
       await sleep(1000);
-      let registerBtn = await driver.findComponent(ON.text('校验链接是否可打开'));
+      let registerBtn = await driver.findComponent(ON.text(
+        await resourceManager.getStringValue($r('app.string.VerifyLinkOpenedTest'))));
       await sleep(1000);
       await registerBtn.click();
       await sleep(1000);
@@ -178,7 +185,8 @@ export default function abilityTest() {
       let driver = Driver.create();
       await sleep(1000);
       await driver.swipe(360, 1070, 360, 600);
-      let registerBtn = await driver.findComponent(ON.text('判断默认应用'));
+      let registerBtn = await driver.findComponent(ON.text(
+        await resourceManager.getStringValue($r('app.string.DetermineDefaultApplicationTest'))));
       await sleep(1000);
       await registerBtn.click();
       await sleep(1000);
@@ -198,7 +206,8 @@ export default function abilityTest() {
       hilog.info(DOMAIN_NUMBER, TAG, 'DefaultAppMgr_IsDefaultApplicationSync_009 start');
       let driver = Driver.create();
       await sleep(1000);
-      let registerBtn = await driver.findComponent(ON.text('判断默认应用(sync)'));
+      let registerBtn = await driver.findComponent(ON.text(
+        await resourceManager.getStringValue($r('app.string.DetermineDefaultApplicationSyncTest'))));
       await sleep(1000);
       await registerBtn.click();
       await sleep(1000);
@@ -218,7 +227,8 @@ export default function abilityTest() {
       hilog.info(DOMAIN_NUMBER, TAG, 'Overlay_SetOverlayEnabled_010 start');
       let driver = Driver.create();
       await sleep(1000);
-      let registerBtn = await driver.findComponent(ON.text('设置禁用使能状态'));
+      let registerBtn = await driver.findComponent(ON.text(
+        await resourceManager.getStringValue($r('app.string.SetDisableEnableStatusTest'))));
       await sleep(1000);
       await registerBtn.click();
       await sleep(1000);
@@ -238,7 +248,8 @@ export default function abilityTest() {
       hilog.info(DOMAIN_NUMBER, TAG, 'Overlay_GetOverlayModuleInfo_011 start');
       let driver = Driver.create();
       await sleep(1000);
-      let registerBtn = await driver.findComponent(ON.text('获取overlayModuleInfo信息'));
+      let registerBtn = await driver.findComponent(ON.text(
+        await resourceManager.getStringValue($r('app.string.ObtainOverlayModuleInfoInformationTest'))));
       await sleep(1000);
       await registerBtn.click();
       await sleep(1000);
@@ -258,7 +269,8 @@ export default function abilityTest() {
       hilog.info(DOMAIN_NUMBER, TAG, 'Overlay_GetTargetOverlayModuleInfos_012 start');
       let driver = Driver.create();
       await sleep(1000);
-      let registerBtn = await driver.findComponent(ON.text('获取多条overlayModuleInfo信息'));
+      let registerBtn = await driver.findComponent(ON.text(
+        await resourceManager.getStringValue($r('app.string.ObtainMultipleOverlayModuleInfoInformationTest'))));
       await sleep(1000);
       await registerBtn.click();
       await sleep(1000);
