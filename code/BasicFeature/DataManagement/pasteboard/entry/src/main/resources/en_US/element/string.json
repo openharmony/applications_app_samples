@@ -1,0 +1,47 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "PasteBoard"
+    },
+    {
+      "name": "Button_copy",
+      "value": "copy"
+    },
+    {
+      "name": "Button_paste",
+      "value": "paste"
+    },
+    {
+      "name": "Button_security_paste",
+      "value": "security paste"
+    },
+    {
+      "name": "Button_text_paste",
+      "value": "text paste"
+    },
+    {
+      "name": "Button_device_paste",
+      "value": "device paste"
+    },    {
+      "name": "text_input",
+      "value": "Please input text"
+    },
+    {
+      "name": "text_result",
+      "value": "Pasted result"
+    },
+    {
+      "name": "title",
+      "value": "PasteBoard"
+    }
+  ]
+}
