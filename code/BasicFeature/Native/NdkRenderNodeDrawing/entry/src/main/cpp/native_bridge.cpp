@@ -48,7 +48,9 @@ enum DrawType {
 };
 
 const int FONT_COUNT = 2;
-const char *g_paths[FONT_COUNT] = {"system/fonts/NotoSans_KR_Bold.otf", "/system/fonts/HarmonyOS_Sans_Thin_Italic.ttf"};
+const char *TEXT_DEMO = "Hello, OpenHarmony! 你好，鸿蒙！";
+const char *g_paths[FONT_COUNT] = {"system/fonts/NotoSansBengaliUI-Bold.ttf",
+    "system/fonts/NotoSansDevanagariUI-Regular.ttf"};
 
 static void NativeOnDrawPath(OH_Drawing_Canvas *canvas, int32_t width, int32_t height)
 {
@@ -136,8 +138,7 @@ static void NativeOnDrawText(OH_Drawing_Canvas *canvas, int32_t width, int32_t h
             OH_Drawing_CreateTypographyHandler(typoStyle, fontCollection);
         OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
         // 设置文字内容
-        const char *text = "你好，This is the text for demonstration";
-        OH_Drawing_TypographyHandlerAddText(handler, text);
+        OH_Drawing_TypographyHandlerAddText(handler, TEXT_DEMO);
         OH_Drawing_TypographyHandlerPopTextStyle(handler);
         OH_Drawing_Typography *typography = OH_Drawing_CreateTypography(handler);
         // 设置页面最大宽度
@@ -161,14 +162,6 @@ static void NativeOnDrawTextBlob(OH_Drawing_Canvas *canvas, int32_t width, int32
     OH_Drawing_Brush *brush = OH_Drawing_BrushCreate();
     OH_Drawing_BrushSetColor(brush, OH_Drawing_ColorSetArgb(0xff, 0xff, 0x00, 0x00));
     OH_Drawing_CanvasAttachBrush(canvas, brush);
-    // 第一种textBlob创建方式，自主指定pos和glyphsID，要求用户有自排版能力，不支持字体退化
-    const int textCount = 37;
-    const uint16_t glyphs[FONT_COUNT][textCount] = {
-        { 0, 3723, 21672, 53, 73, 74, 84, 1, 74, 84, 1, 85, 73, 70, 1, 85, 70, 89,
-          85, 1, 71, 80, 83, 1, 69, 70, 78, 80, 79, 84, 85, 83, 66, 85, 74, 80, 79 },
-        { 0, 0, 0, 139, 256, 260, 331, 1, 260, 331, 1, 339, 256, 226, 1, 339, 226,
-          374, 339, 1, 247, 298, 327, 1, 222, 226, 288, 298, 290, 331, 339, 327, 187, 339, 260, 298, 290 },
-    };
     float textSize = width / 16;
     for (int i = 0; i < FONT_COUNT; ++i) {
         OH_Drawing_TextBlobBuilder *builder = OH_Drawing_TextBlobBuilderCreate();
@@ -176,27 +169,37 @@ static void NativeOnDrawTextBlob(OH_Drawing_Canvas *canvas, int32_t width, int32
         OH_Drawing_Typeface *typeface = OH_Drawing_TypefaceCreateFromFile(g_paths[i], 0);
         OH_Drawing_FontSetTypeface(font, typeface);
         OH_Drawing_FontSetTextSize(font, textSize);
-        const OH_Drawing_RunBuffer *runBuffer = OH_Drawing_TextBlobBuilderAllocRunPos(builder, font, 37, nullptr);
+        int textCount = OH_Drawing_FontCountText(font, TEXT_DEMO, strlen(TEXT_DEMO), TEXT_ENCODING_UTF8);
+        uint16_t glyphs[textCount];
+        // 获取文本对应的glyphsID
+        uint32_t glyphsCount =
+            OH_Drawing_FontTextToGlyphs(font, TEXT_DEMO, strlen(TEXT_DEMO), TEXT_ENCODING_UTF8, glyphs, textCount);
+        float textWidth[glyphsCount];
+        // 获取文本中每个字符的宽度，以此来确定排版横坐标
+        OH_Drawing_FontGetWidths(font, glyphs, glyphsCount, textWidth);
+        OH_Drawing_Font_Metrics metrics;
+        OH_Drawing_FontGetMetrics(font, &metrics);
+        // 计算字体高度用于换行
+        const float textHeight = metrics.descent - metrics.ascent;
+        const OH_Drawing_RunBuffer *runBuffer =
+            OH_Drawing_TextBlobBuilderAllocRunPos(builder, font, glyphsCount, nullptr);
         // 以下为计算每个字的坐标设置的数据，无具体含义
         const float posX = width / 10.0;
         const float posY = height / 2.0;
-        const float shortX = 1.6;
         const float enlargeY = 1.2;
         const int numberTwo = 2;
-        const int wrap = 23;
-        for (int j = 0; j < textCount; ++j) {
-            runBuffer->glyphs[j] = glyphs[i][j];
-            // 此处在第wrap个字符处换行
-            if (j < wrap) {
-                // 自定义字体排版中的横坐标，数据可自由指定
-                runBuffer->pos[j * numberTwo] = posX + textSize * j / shortX;
-                // 自定义字体排版中的纵坐标，数据可自由指定
-                runBuffer->pos[j * numberTwo + 1] = posY + enlargeY * textSize * i * numberTwo;
-            } else {
-                // 自定义字体排版中的横坐标，数据可自由指定
-                runBuffer->pos[j * numberTwo] = posX + textSize * (j - wrap) / shortX;
-                // 自定义字体排版中的纵坐标，数据可自由指定
-                runBuffer->pos[j * numberTwo + 1] = posY + enlargeY * textSize * (i * numberTwo + 1);
+        float bufferPosX = posX;
+        float bufferPosY = posY + enlargeY * textSize * i * numberTwo;
+        for (int j = 0; j < glyphsCount; ++j) {
+            runBuffer->glyphs[j] = glyphs[j];
+            // 自定义字体排版中的横坐标
+            runBuffer->pos[j * numberTwo] = bufferPosX;
+            // 自定义字体排版中的纵坐标
+            runBuffer->pos[j * numberTwo + 1] = bufferPosY;
+            bufferPosX += textWidth[j];
+            if (bufferPosX >= width) {
+                bufferPosX = posX;
+                bufferPosY += textHeight;
             }
         }
         OH_Drawing_TextBlob *textBlob = OH_Drawing_TextBlobBuilderMake(builder);
@@ -205,7 +208,7 @@ static void NativeOnDrawTextBlob(OH_Drawing_Canvas *canvas, int32_t width, int32
         // 第二种textBlob创建方式，通过字符串创建，带有基础的排版，且不支持字体退化
         const float tempY = 1.3;
         OH_Drawing_TextBlob *stringTextBlob =
-            OH_Drawing_TextBlobCreateFromString("你好，This is the text for demonstration", font, TEXT_ENCODING_UTF8);
+            OH_Drawing_TextBlobCreateFromString(TEXT_DEMO, font, TEXT_ENCODING_UTF8);
         OH_Drawing_CanvasDrawTextBlob(canvas, stringTextBlob, posX, height / tempY + textSize * i);
         
         OH_Drawing_TextBlobDestroy(textBlob);
@@ -242,7 +245,8 @@ static void NativeOnDrawPixelMap(OH_Drawing_Canvas *canvas, NativePixelMap *nati
     OH_Drawing_CanvasTranslate(canvas, 300.f, 0.f);
     OH_Drawing_CanvasDrawPixelMapRect(canvas, pixelMap, src, dst, sampling);
     OH_Drawing_CanvasDetachBrush(canvas);
-    
+
+    OH_Drawing_PixelMapDissolve(pixelMap);
     OH_Drawing_BrushDestroy(brush);
     OH_Drawing_CanvasRestore(canvas);
     OH_Drawing_FilterDestroy(filter);
