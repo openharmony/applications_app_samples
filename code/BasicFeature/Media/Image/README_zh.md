@@ -9,6 +9,8 @@
 使用[@ohos.effectKit](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkgraphics2d/js-apis-effectKit.md)
 生成effectKit,使用effectKit.getHighestSaturationColor()
 接口实现对图片的高亮调节。添加文字/贴纸，利用组件的组合编辑素材大小和位置，再使用OffscreenCanvasRenderingContext2D进行离屏绘制保存。
+新增图片编解码示例代码，使用[libentry.so]实现uri创建ImageSource，fd创建ImageSource，data创建ImageSource，rawFile创建ImageSource，
+imageSource转换为pixelMap，PixelMap转为file，ImageSource转为file，PixelMap转为data，ImageSource转为数据。
 
 ### 效果预览
 
@@ -20,9 +22,9 @@
 |-------------------------------------------------|---------------------------------------------------|-----------------------------------------------------|
 | ![crop.jpeg](screenshots%2Fdevices%2Fcrop.jpeg) | ![scale.jpeg](screenshots%2Fdevices%2Fscale.jpeg) | ![rotato.jpeg](screenshots%2Fdevices%2Frotato.jpeg) |
 
-| 图片亮度调节                                              | 图片添加贴纸                                                | 图片添加文字                                          |  图片色域调节                                              |
-|-----------------------------------------------------|-------------------------------------------------------|-------------------------------------------------|-----------------------------------------------------|
-| ![toning.jpeg](screenshots%2Fdevices%2Ftoning.jpeg) | ![sticker.jpeg](screenshots%2Fdevices%2Fsticker.jpeg) | ![text.jpeg](screenshots%2Fdevices%2Ftext.jpeg) | ![colorSpace.jpeg](screenshots%2Fdevices%2FcolorSpace.jpeg) |
+| 图片亮度调节                                              | 图片添加贴纸                                                | 图片添加文字                                          | 图片色域调节                                                      | 修改hdr设置                                               |
+|-----------------------------------------------------|-------------------------------------------------------|-------------------------------------------------|-------------------------------------------------------------|-------------------------------------------------------|
+| ![toning.jpeg](screenshots%2Fdevices%2Ftoning.jpeg) | ![sticker.jpeg](screenshots%2Fdevices%2Fsticker.jpeg) | ![text.jpeg](screenshots%2Fdevices%2Ftext.jpeg) | ![colorSpace.jpeg](screenshots%2Fdevices%2FcolorSpace.jpeg) | ![rotato.jpeg](screenshots%2Fdevices%2Fdecoding.jpeg) |
 
 
 使用说明：
@@ -30,10 +32,10 @@
 1. 发表评价页面点击添加图片/照片，页面跳转到图片选择页面；
 2. 进入图片选择页面后，选择需要显示的图片；
 3. 选中图片后，页面会跳转到发表评价页面，点击图片跳转到图片编辑删除页面，点击编辑进入到编辑功能页；
-4. 调整菜单有裁剪、缩放、旋转、调色功能；
+4. 调整菜单有裁剪、缩放、旋转、调色、修改hdr设置功能(因为有些机型设备不支持，所以HDR解码后显示效果看不出来)；
 5. 标记菜单有添加文字、添加贴纸功能；
 6. 编辑完成后，点击撤回按钮图片会还原到上一个编辑状态；
-7. 图片编辑完成后，点击保存，页面会跳转到发表评价页面，显示相关照片；
+7. 图片编辑完成后，点击保存，会调新增的图片编解码示例代码，用页面会跳转到发表评价页面，显示相关照片；
 8. 点击返回按钮，退出应用。
 
 ### 工程目录
@@ -68,6 +70,7 @@ photomodify/src/main/ets/components
 |   |---Logger.ets                           // 日志工具
 |   |---MediaUtil.ts                         // 媒体帮助类
 |   |---SvgUtil.ts                           // svg操作帮助类
+|   |---FileUtil.ets                         // 数据操作帮助类
 ```
 
 ### 具体实现
@@ -78,7 +81,7 @@ photomodify/src/main/ets/components
     + 图片编辑：图片编辑权限需要使用[requestPermissionsFromUser](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)
     申请，源码参考[MainAbility.ts](entry/src/main/ets/MainAbility/MainAbility.ts)
     ，首先根据选择图片获取到的uri打开图片文件，fileAsset.open选择‘rw'读写模式，然后使用image.createImageSource创建图片源实例，接下来使用createPixelMap创建PixelMap对象，便于处理图片，最后使用crop对图像进行裁剪处理，使用scale对图像进行缩放处理，rotate进行旋转处理。亮度调节使用effectKit.getHighestSaturationColor()
-    接口实现对图片的高亮调节。添加文字/贴纸，编辑模式下，使用组件组合（Image、Shape、Text）进行交互完成素材大小和位置选择；编辑确认后，再使用OffscreenCanvasRenderingContext2D进行离屏绘制，保存为新的pixelMap。
+    接口实现对图片的高亮调节。图片解码通过createPixelMap(DecodingOptions)，并根据DecodingOptions构造参数里面的设定值(0: auto;1: SDR;2 HDR)，对应创建不同的PixelMap对象。其中设置值为AUTO时，会根据图片本身结构来判断是否解码为HDR内容。添加文字/贴纸，编辑模式下，使用组件组合（Image、Shape、Text）进行交互完成素材大小和位置选择；编辑确认后，再使用OffscreenCanvasRenderingContext2D进行离屏绘制，保存为新的pixelMap。
 
 ### 相关权限
 
@@ -95,8 +98,8 @@ photomodify/src/main/ets/components
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568;
-2. 本示例为Stage模型，已适配API version 11版本SDK，SDK版本号(API Version 11 4.1.3.5),镜像版本号(4.1.3.5);
-3. 本示例需要使用DevEco Studio 版本号(3.1.0.501)及以上版本才可编译运行。
+2. 本示例为Stage模型，已适配API version 12版本SDK，SDK版本号(API Version 12 5.0.0.26),镜像版本号(5.0.0.26);
+3. 本示例需要使用DevEco Studio 版本号(4.1.3.500)及以上版本才可编译运行。
 
 ### 下载
 

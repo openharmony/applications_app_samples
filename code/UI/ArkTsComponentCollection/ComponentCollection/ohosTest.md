@@ -22,7 +22,7 @@
 | 验证LoadingProgress                  | 展开信息展示与动效，进入LoadingProgress           | 更改LoadingProgress的颜色                                                                               | 正确更改相应的颜色         | 是    | Pass |
 | 验证Marquee 跑马灯                      | 展开信息展示与动效，进入Marquee 跑马灯               | 更改Marquee样式，依次开始，停止跑马灯                                                                             | 正确反馈状态，依次运行，停止跑马灯 | 是    | Pass |
 | 验证TextTimer 文字计时器                  | 展开信息展示与动效，进入TextTimer 文字计时器           | 依次开始、暂停、重置、更换时间格式                                                                                  | 正确运行状态            | 是    | Pass |
-| 验证TextClock 文字时钟                   | 展开信息展示与动效，进入TextClock 文字时钟            | 依次点击开始、暂停、更改时钟样式、显示文字阴影、设置字体                                        | 正确运行状态并改变样式       | 是    | Pass |
+| 验证TextClock 文字时钟                   | 展开信息展示与动效，进入TextClock 文字时钟            | 依次点击开始、暂停、更改时钟样式、显示文字阴影、设置字体                                                                       | 正确运行状态并改变样式       | 是    | Pass |
 | 验证Progress 进度条                     | 展开信息展示与动效，进入Progress 进度条              | 调整进度条的进度                                                                                           | 正确显示进度条的进度        | 是    | Pass |
 | 验证Gauge 仪表盘                        | 展开信息展示与动效，进入Gauge 仪表盘                 | 调整仪表盘的value和strokeWidth                                                                            | 正确改变仪表盘的属性        | 是    | Pass |
 | 验证DataPanel 数据面板                   | 展开信息展示与动效，进入DataPanel 数据面板            |                                                                                                    | 正确显示数据面板动画        | 是    | Pass |
@@ -31,7 +31,7 @@
 | 验证ImageFit 切换                      | 展开信息展示与动效，进入ImageFit 切换               | 依次点击Radius按钮进行ImageFit模式切换                                                                         | ImageFit 模式切换成功   | 是    | Pass |
 | 验证Particle粒子效果                     | 展开信息展示与动效，进入Particle粒子效果              | 点击Particle粒子效果生成按钮                                                                                 | Particle粒子效果生成成功  | 是    | Pass |
 | 验证Span 行内文本                        | 展开文本与输入，进入Span 行内文本                   | 依次调整字符间距，装饰线类型，跨度线高度，颜色                                                                            | 依次改变对于属性          | 是    | Pass |
-| 验证TextInput 文本输入                   | 展开文本与输入，进入TextInput 文本输入              | 在输入框输入文本，可否选择对应文本段选中并高亮，长按文本获取、复制、粘贴文本，验证文本删除                                 | 正确显示输入文本          | 是    | Pass |
+| 验证TextInput 文本输入                   | 展开文本与输入，进入TextInput 文本输入              | 在输入框输入文本，可否选择对应文本段选中并高亮，长按文本获取、复制、粘贴文本，验证文本删除                                                      | 正确显示输入文本          | 是    | Pass |
 | 验证Text 文本                          | 展开文本与输入，进入Text 文本                     | 依次更改字符间距，行高，对其类型，超长文本显示方式，装饰线，字体颜色，大小写                                                             | 依次更改对应属性          | 是    | Pass |
 | 验证RichText 富文本                     | 展开文本与输入，进入RichText 富文本                |                                                                                                    | 正确显示富文本           | 是    | Pass |
 | 验证RichEditorText 富文本编辑             | 展开文本与输入，进入RichEditorText 富文本          |                                                                                                    | 正确显示富文本编辑         | 是    | Pass |
@@ -46,16 +46,16 @@
 | 验证拖拽事件                             |                                       | 依次拖拽应用图标、GridItem、ListItem、Hyperlink、Text、Image、Video、FormComponent                                | 正确响应拖动            | 是    | Pass |
 | 验证组件区域变化事件                         |                                       | 调整宽度，高度                                                                                            | 正确约束小球运动范围        | 是    | Pass |
 | 验证SafeArea 安全区域                    | 进入SafeArea 安全区域                       | 调整安全区域扩展的类型和方向                                                                                     | 正确显示效果            | 是    | Pass |
-| 验证foreground 前景                    |                                       | 进入foreground 前景                                   | 正确显示背景            | 是    | Pass |
-| 验证background 背景                    |                                       | 进入background 背景                                                     | 正确显示背景            | 是    | Pass |
-| 验证border 边框                        |                                       | 进入border 边框页面                                                       | 正确显示边框            | 是    | Pass |
-| 验证outline 外边框                      |                                       | 进入outline 外边框页面，输入框输入信息和悬停在text组件时，有突出显示的外描边效果。 | 正确显示外边框           | 是 | Pass |
-| 验证font 字体                          |                                       | 进入font 字体页面                                                         | 正确显示字体            | 是    | Pass |
-| 验证size 尺寸                          |                                       | 进入size 尺寸页面                                                         | 正确显示尺寸            | 是    | Pass |
-| 验证rotate 旋转                        | 展开图形变换                                | 调整图片平移和容器平移的X轴、y轴                                                   | 正确响应调整            | 是    | Pass |
-| 验证translate 平移                     | 展开图形变化                                | 调整图片平移和容器平移的X轴、y轴                                                   | 正确响应调整            | 是    | Pass |
-| 验证显示                               |                                       | 依次测试Z序，浮层，显隐，透明，测试响应属性                                              | 正确显示组件，并按调整改变     | 是    | Pass |
-| 验证图像效果                             |                                       | 依次测试图像模糊，阴影，特效显示效果                                                  | 正确显示效果            | 是    | Pass |
+| 验证foreground 前景                    |                                       | 进入foreground 前景                                                                                    | 正确显示背景            | 是    | Pass |
+| 验证background 背景                    |                                       | 进入background 背景                                                                                    | 正确显示背景            | 是    | Pass |
+| 验证border 边框                        |                                       | 进入border 边框页面                                                                                      | 正确显示边框            | 是    | Pass |
+| 验证outline 外边框                      |                                       | 进入outline 外边框页面，输入框输入信息和悬停在text组件时，有突出显示的外描边效果。                                                    | 正确显示外边框           | 是 | Pass |
+| 验证font 字体                          |                                       | 进入font 字体页面                                                                                        | 正确显示字体            | 是    | Pass |
+| 验证size 尺寸                          |                                       | 进入size 尺寸页面                                                                                        | 正确显示尺寸            | 是    | Pass |
+| 验证rotate 旋转                        | 展开图形变换                                | 调整图片平移和容器平移的X轴、y轴                                                                                  | 正确响应调整            | 是    | Pass |
+| 验证translate 平移                     | 展开图形变化                                | 调整图片平移和容器平移的X轴、y轴                                                                                  | 正确响应调整            | 是    | Pass |
+| 验证显示                               |                                       | 依次测试Z序，浮层，显隐，透明，测试响应属性                                                                             | 正确显示组件，并按调整改变     | 是    | Pass |
+| 验证图像效果                             |                                       | 依次测试图像模糊，阴影，特效显示效果                                                                                 | 正确显示效果            | 是    | Pass |
 | 验证互动                               |                                       | 依次测试禁用、弹窗、点击、热区、悬停、菜单、多态 、多模输入                                                                     | 正确显示组件，并按调整改变     | 是    | Pass |
 | 验证TarBar 进入动画                      | 在通用页面                                 | 点击下方tab动画                                                                                          | 跳转到动画页面           | 是    | Pass |
 | 验证pageTransition 页面间转场             | 展开转场动画，进入pageTransition 页面间转场         | 依次测试顶部进场/底部退场，左侧进场/右侧退场，缩放进场/退场等                                                                   | 正确展示动画            | 是    | Pass |
@@ -105,11 +105,11 @@
 | 验证motionPath 路径动画                  | 进入motionPath 路径动画                     | 点击按钮                                                                                               | 按钮按照指定的路径发生改变     | 是    | Pass |
 | 验证ActionSheetDialogSample 列表选择弹框   | 展开弹窗，ActionSheetDialogSample 列表选择弹框   | 依次点击弹窗位置、是否关闭弹窗、偏移量、选项内容                                                                           | 正确展示响应弹窗          | 是    | Pass |
 | 验证TextPickerDialogSample 文本滑动选择器弹框 | 展开弹窗，TextPickerDialogSample 文本滑动选择器弹框 | 点击文字，滑动列表后点确定                                                                                      | 正确展示响应弹窗          | 是    | Pass |
-| 验证MenuSample 菜单                    | 展开弹窗，MenuSample 菜单                    | 鼠标右键点击、手指触摸长按、调整menu宽度、选择纵向或者横向布局、长按图片1图片2     | 正确展示响应弹窗          | 是    | Pass |
-| 验证BindSheet半模态 | 进入BindSheet半模态 | 点击弹出样式、模糊背景材质设置属性，然后点击弹出半模态按钮，关闭允许页面交互按钮，下拉半模态界面，然后点击X退出半模态界面 | 正确显示效果 | 是 | Pass |
-| 验证Popup | 进入Popup                                           | 依次点击Popup高级组件按钮以及Placement下方的12个按钮         | 正确显示效果                       | 是       | Pass     |
+| 验证MenuSample 菜单                    | 展开弹窗，MenuSample 菜单                    | 鼠标右键点击、手指触摸长按、调整menu宽度、选择纵向或者横向布局、长按图片1图片2                                                         | 正确展示响应弹窗          | 是    | Pass |
+| 验证BindSheet半模态                     | 进入BindSheet半模态 | 点击弹出样式、模糊背景材质设置属性，然后点击弹出半模态按钮，关闭允许页面交互按钮，下拉半模态界面，然后点击X退出半模态界面                                      | 正确显示效果 | 是 | Pass |
+| 验证Popup                            | 进入Popup                                           | 依次点击Popup高级组件按钮以及Placement下方的12个按钮                                                                 | 正确显示效果                       | 是       | Pass     |
 | 验证Swiper组件	                        | 展开滚动与滑动，进入swiper翻页	                   | 依次点击下一页、上一页、是否被禁用左右滑动切换功能、是否能纵向滑动、是否首尾循环、是否开启自动循环播放、滑动页面间隙、滑动切换的动画时长、自动播放的时间间隔、上下页边距               | 正确显示效果            | 是    | Pass |
-| 验证TextArea组件                       | 展开文本与输入，进入TextArea多行文本输入框             | 依次点击水平对齐、可否复制、placeholder文本颜色、输入框光标颜色、可否选择对应文本段选中并高亮、限制文本框输入字数                                | 正确显示效果	           | 是    | Pass |
+| 验证TextArea组件                       | 展开文本与输入，进入TextArea多行文本输入框             | 依次点击水平对齐、可否复制、placeholder文本颜色、输入框光标颜色、可否选择对应文本段选中并高亮、限制文本框输入字数                                     | 正确显示效果	           | 是    | Pass |
 | 验证PatternLock组件                    | 	展开文本与输入，进入PatternLock图案密码锁           | 依次滑动宫格宽高、圆点半径、连线宽度以及点击圆点未选中状态颜色、圆点激活状态颜色                                                           | 正确显示效果            | 是    | Pass |
 | 验证Search组件  	                      | 展开文本与输入，进入Search搜索框	                  | 依次点击水平对齐、可否复制、搜索框本文颜色	                                                                             | 正确显示效果            | 是    | Pass |
 | 验证Row组件	                           | 展开行列与分栏，进入Row水平布局                     | 依次滑动元素间距以及点击交叉轴对齐样式、主轴对齐样式                                                                         | 正确显示效果            | 是    | Pass |
@@ -142,22 +142,23 @@
 | 验证Video组件	                         | 展开图片视频与媒体，进入Video视频	                  | 依次点击自动播放、控制栏显示、静音、循环播放、视频显示模式、倍速	                                                                  | 正确显示效果            | 是    | Pass |
 | 验证XComponent组件	                    | 展开图片视频与媒体，进入XComponent绘制组件            | 	无操作	                                                                                              | 正确显示效果            | 是    | Pass |                                                                                    
 | 验证web组件	                           | 展开网页，进入web网页                          | 	无操作                                                                                               | 	正确显示效果           | 是    | Pass |                                                           
-| 验证WaterFlow组件	                     | 展开列表与宫格，进入WaterFlow	                   | 依次点击WaterFlow参数、WaterFlow属性的所有设置	                                                                | 正确显示效果            | 是    | Pass |
+| 验证WaterFlow组件	                     | 展开列表与宫格，进入WaterFlow	                   | 依次点击WaterFlow参数、WaterFlow属性的所有设置	                                                                  | 正确显示效果            | 是    | Pass |
 | 验证XComponent组件	                    | 展开图片视频与媒体，进入XComponent绘制组件            | 	无操作	                                                                                              | 正确显示效果            | 是    | Pass |
 | 验证web组件	                           | 展开网页，进入web网页                          | 	无操作                                                                                               | 	正确显示效果           | 是    | Pass |
-| 验证WaterFlow组件	                     | 展开列表与宫格，进入WaterFlow	                   | 依次点击WaterFlow参数、WaterFlow属性的所有设置	                                                                | 正确显示效果            | 是    | Pass |
-| 验证Navigation基础属性	| 展开导航、进入Navigation | 点击navigation基本功能 | 正确显示效果 | 是 | Pass |
-| 验证滚动组件延伸底部导航条	| 展开导航、进入Navigation | 点击滚动组件延伸底部导航条进入页面、点击延伸 | 滚动组件延伸到导航条底部           | 是 | Pass |
-| 验证Navigation组件Split模式	| 展开导航、进入Navigation | 点击Split模式动画演示进入页面、依次点击列表1/列表2 | 正确显示页面及切换动画 | 是 | Pass |
-| 验证BindSheet避让键盘	| 展开导航、进入Navigation | 点击BindSheet避让键盘进入页面、点击输入框 | 输入框位置自动调整至键盘上方 | 是 | Pass |
-| 验证Navigation组件Split模式鼠标样式	| 展开导航、进入Navigation | 点击分栏的鼠标样式进入页面、点击列表1 | 正确显示页面 | 是 | Pass |
-| 验证Navigation跳转到Har包页面	| 展开导航、进入Navigation | 点击跳转到Har包按钮 | 正确显示页面 | 是 | Pass |
-| 验证Navigation替换页面接口	| 展开导航、进入Navigation | 点击“Replace当前页面”按钮 | 替换过程中有动画 | 是 | Pass |
-| 验证隐藏NavBar	| 展开导航、进入Navigation | 点击隐藏按钮 | 页面中无NavBar信息 | 是 | Pass |
-| 验证Navigation组件安全区	| 展开导航、进入Navigation | 依次点击扩展安全区、收起安全区 | Navigation安全区发生相应变化 | 是 | Pass |
-| 验证Navigation组件避让底部导航条	| 展开导航、进入Navigation | 点击避让底部导航条进入页面、点击不延伸 | 正确显示效果 | 是 | Pass |
-| 验证组件自定义click事件分发，区域内响应	         | 进入通用tab页，进入组件自定义事件分发页面        | 	点击Click按钮进入Click页面，先蓝色圆圈区域内点击，再黄色圆圈区域内点击                                     | 	按压点在蓝色区域内，弹出提示"大圈事件已响应", 按压黄色区域内，弹出提示"小圈事件已响应"    | 是    | Pass |
-| 验证组件自定义click事件分发，区域外无响应	         | 进入通用tab页，进入组件自定义事件分发页面        | 	点击Click按钮进入Click页面，蓝色圆圈区域外点击                                     | 	无任何响应    | 是    | Pass |
-| 验证组件自定义scrolling事件分发	         | 进入通用tab页，进入组件自定义事件分发页面        | 	点击Scrolling按钮进入Scrolling页面，在"Scroll Area"向上拖动向上箭头                        | 	下部的list跟着一起向上滚动，上部到顶后，list内部开始向上滚动    | 是    | Pass |
-| 验证自定义手势判定，响应长按手势	     | 进入通用tab页，进入自定义手势判定页面                | 	在上部蓝色区域分别点击，长按                | 	点击不响应，长按弹出提示"长按上半区蓝色区域，蓝色区域响应"           | 是    | Pass |
-| 验证自定义手势判定，响应点击手势	     | 进入通用tab页，进入自定义手势判定页面                | 	在下部黄色区域分别点击，长按                | 	点击弹出提示"点击下半区黄色区域，黄色区域响应"，长按不响应           | 是    | Pass |
+| 验证WaterFlow组件	                     | 展开列表与宫格，进入WaterFlow	                   | 依次点击WaterFlow参数、WaterFlow属性的所有设置	                                                                  | 正确显示效果            | 是    | Pass |
+| 验证Navigation基础属性	                  | 展开导航、进入Navigation | 点击navigation基本功能                                                                                   | 正确显示效果 | 是 | Pass |
+| 验证滚动组件延伸底部导航条	                     | 展开导航、进入Navigation | 点击滚动组件延伸底部导航条进入页面、点击延伸                                                                             | 滚动组件延伸到导航条底部           | 是 | Pass |
+| 验证Navigation组件Split模式	             | 展开导航、进入Navigation | 点击Split模式动画演示进入页面、依次点击列表1/列表2                                                                      | 正确显示页面及切换动画 | 是 | Pass |
+| 验证BindSheet避让键盘	                   | 展开导航、进入Navigation | 点击BindSheet避让键盘进入页面、点击输入框                                                                          | 输入框位置自动调整至键盘上方 | 是 | Pass |
+| 验证Navigation组件Split模式鼠标样式	         | 展开导航、进入Navigation | 点击分栏的鼠标样式进入页面、点击列表1                                                                                | 正确显示页面 | 是 | Pass |
+| 验证Navigation跳转到Har包页面	             | 展开导航、进入Navigation | 点击跳转到Har包按钮                                                                                        | 正确显示页面 | 是 | Pass |
+| 验证Navigation替换页面接口	                | 展开导航、进入Navigation | 点击“Replace当前页面”按钮                                                                                  | 替换过程中有动画 | 是 | Pass |
+| 验证隐藏NavBar	                        | 展开导航、进入Navigation | 点击隐藏按钮                                                                                             | 页面中无NavBar信息 | 是 | Pass |
+| 验证Navigation组件安全区	                 | 展开导航、进入Navigation | 依次点击扩展安全区、收起安全区                                                                                    | Navigation安全区发生相应变化 | 是 | Pass |
+| 验证Navigation组件避让底部导航条	             | 展开导航、进入Navigation | 点击避让底部导航条进入页面、点击不延伸                                                                                | 正确显示效果 | 是 | Pass |
+| 验证组件自定义click事件分发，区域内响应	            | 进入通用tab页，进入组件自定义事件分发页面        | 	点击Click按钮进入Click页面，先蓝色圆圈区域内点击，再黄色圆圈区域内点击                                                          | 	按压点在蓝色区域内，弹出提示"大圈事件已响应", 按压黄色区域内，弹出提示"小圈事件已响应"    | 是    | Pass |
+| 验证组件自定义click事件分发，区域外无响应	           | 进入通用tab页，进入组件自定义事件分发页面        | 	点击Click按钮进入Click页面，蓝色圆圈区域外点击                                                                      | 	无任何响应    | 是    | Pass |
+| 验证组件自定义scrolling事件分发	              | 进入通用tab页，进入组件自定义事件分发页面        | 	点击Scrolling按钮进入Scrolling页面，在"Scroll Area"向上拖动向上箭头                                                 | 	下部的list跟着一起向上滚动，上部到顶后，list内部开始向上滚动    | 是    | Pass |
+| 验证自定义手势判定，响应长按手势	                  | 进入通用tab页，进入自定义手势判定页面                | 	在上部蓝色区域分别点击，长按                                                                                    | 	点击不响应，长按弹出提示"长按上半区蓝色区域，蓝色区域响应"           | 是    | Pass |
+| 验证自定义手势判定，响应点击手势	                  | 进入通用tab页，进入自定义手势判定页面                | 	在下部黄色区域分别点击，长按                                                                                    | 	点击弹出提示"点击下半区黄色区域，黄色区域响应"，长按不响应           | 是    | Pass |
+| 验证Text 属性字符串                       | 展开文本与输入，进入Text 属性字符串                     | 依次更改属性字符串                                                                                          | 依次更改对应属性          | 是    | Pass |

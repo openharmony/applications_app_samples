@@ -95,7 +95,7 @@ export struct AddInformationView {
     builder: AgePickDialog({ sure: (age: number) => {
       this.information.age = age;
     } }),
-    customStyle: true,
+    customStyle: false,
     alignment: DialogAlignment.Bottom
   })
   @State flag: string = '';

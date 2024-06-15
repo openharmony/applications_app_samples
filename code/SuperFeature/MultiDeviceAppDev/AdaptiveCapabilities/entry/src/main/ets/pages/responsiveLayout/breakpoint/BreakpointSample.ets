@@ -13,45 +13,44 @@
  * limitations under the License.
  */
 
-import window from '@ohos.window'
-import getValueOnBreakpoint, { Breakpoints } from '../../../common/GetValueOnBreakpoint';
+import { BreakpointSystem, BreakpointState } from './Breakpoint'
 
 @Entry
 @Component
 struct BreakpointSample {
-  @State currentBreakpoint: string = 'small';
-
-  listenOnBreakpoint(windowObj: window.Window) {
-    const breakpointsLabels: string[] = ['xSmall', 'small', 'medium', 'large'];
-    const breakpoints :Breakpoints= { xs: 0, sm: 320, md: 600, lg: 840 };
-    this.currentBreakpoint = getValueOnBreakpoint(breakpointsLabels, breakpoints);
-    windowObj.on('windowSizeChange', () => {
-      this.currentBreakpoint = getValueOnBreakpoint(breakpointsLabels, breakpoints);
-    });
-  }
+  @State compStr: BreakpointState<string> = BreakpointState.of({ sm: "sm", md: "md", lg: "lg" })
+  @State compImg: BreakpointState<Resource> = BreakpointState.of({
+    sm: $r('app.media.sm_new'),
+    md: $r('app.media.md_new'),
+    lg: $r('app.media.lg_new')
+  });
 
   aboutToAppear() {
-    let windowObj: window.Window | undefined = AppStorage.Get('windowObj');
-    if(windowObj != undefined){
-      this.listenOnBreakpoint(windowObj);
-    }
+    BreakpointSystem.getInstance().attach(this.compStr)
+    BreakpointSystem.getInstance().attach(this.compImg)
+    BreakpointSystem.getInstance().start()
   }
 
   aboutToDisappear() {
-    let windowObj: window.Window | undefined= AppStorage.Get('windowObj');
-    if(windowObj != undefined){
-      windowObj.off('windowSizeChange');
-    }
+    BreakpointSystem.getInstance().detach(this.compStr)
+    BreakpointSystem.getInstance().detach(this.compImg)
+    BreakpointSystem.getInstance().stop()
   }
 
   build() {
-    Column() {
-      Text(this.currentBreakpoint)
-        .fontSize(50)
-        .fontWeight(FontWeight.Medium)
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Column()
+        .height(100)
+        .width(100)
+        .backgroundImage(this.compImg.value)
+        .backgroundImagePosition(Alignment.Center)
+        .backgroundImageSize(ImageSize.Contain)
+
+      Text(this.compStr.value)
+        .fontSize(24)
+        .margin(10)
     }
-    .height('100%')
     .width('100%')
-    .justifyContent(FlexAlign.Center)
+    .height('100%')
   }
 }

@@ -309,6 +309,8 @@ entry/src/main/ets/
 |   |   |   |---textSample
 |   |   |   |   |---ChangePanel.ets
 |   |   |   |   |---TextSample.ets                       // 文本
+|   |   |   |---textStyledStringSample
+|   |   |   |   |---TextStyledStringSample.ets           // 文本属性字符串
 |   |   |---web
 |   |   |   |---webSample
 |   |   |   |   |---WebSample.ets                        // 网页

@@ -220,6 +220,22 @@
     {
       "name": "update_page_delete",
       "value": "删除"
+    },
+    {
+      "name": "update_hdr_setting",
+      "value": "修改hdr设置"
+    },
+    {
+      "name": "edit_image_decoding_auto",
+      "value": "自动"
+    },
+    {
+      "name": "edit_image_decoding_sdr",
+      "value": "SDR"
+    },
+    {
+      "name": "edit_image_decoding_hdr",
+      "value": "HDR"
     }
   ]
 }

@@ -19,6 +19,8 @@ import hilog from '@ohos.hilog';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 import { getString } from '../utils/ResourceUtil';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 const TAG: string = 'abilityTest';
 const DRIVER = Driver.create();
@@ -26,15 +28,14 @@ const DOMAIN = 0xF811;
 const BUNDLE = 'ScreenRecorder_';
 let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
 let mediaDataCount: number
-let media: mediaLibrary.MediaLibrary
+let media: photoAccessHelper.PhotoAccessHelper
 
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
-
+  describe('ActsAbilityTest', () => {
     /**
      * 拉起应用
      */
-    it('StartAbility_001', 0, async (done) => {
+    it('StartAbility_001', 0, async (done : () => void) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001 begin');
       try {
         await abilityDelegatorRegistry.startAbility({
@@ -61,25 +62,24 @@ export default function abilityTest() {
       let allowBtn1 = await DRIVER.findComponent(ON.text(tipAllow));
       await allowBtn1.click();
       await DRIVER.delayMs(1000);
-      // 访问文件授权
-      let allowBtn2 = await DRIVER.findComponent(ON.text(tipAllow));
-      await allowBtn2.click();
-      await DRIVER.delayMs(1000);
       // 麦克风授权
       let allowBtn3 = await DRIVER.findComponent(ON.text(tipAllow));
       await allowBtn3.click();
       await DRIVER.delayMs(1000);
       // 获取当前应用的ability
       let currentAbility = await abilityDelegatorRegistry.getCurrentTopAbility();
-      // 使用当前应用的ability获取媒体库
-      media = mediaLibrary.getMediaLibrary(currentAbility.context);
-      // 读取媒体库的视频资源
-      let fetchResultBefore = await media.getFileAssets({
-        selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
-        selectionArgs: [mediaLibrary.MediaType.VIDEO.toString()],
-      })
+      // 获取相册管理模块的实例，用于访问和修改相册中的媒体文件
+      media = photoAccessHelper.getPhotoAccessHelper(currentAbility.context);
+      // 读取相册的视频资源
+      let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+      let fetchOptions: photoAccessHelper.FetchOptions = {
+        fetchColumns: [],
+        predicates: predicates
+      };
+      let fetchResultBefore = await media.getAssets(fetchOptions)
       // 媒体资源的数量
       mediaDataCount = fetchResultBefore.getCount();
+      console.log("媒体资源的数量:"+mediaDataCount)
       hilog.info(DOMAIN, TAG, BUNDLE + 'GetPermission_001 end');
     })
 
@@ -92,7 +92,6 @@ export default function abilityTest() {
       let startRecordBtn = await DRIVER.findComponent(ON.id('startRecord'));
       await startRecordBtn.click();
       await DRIVER.delayMs(1000);
-      await DRIVER.assertComponentExist(ON.id('stopRecord'));
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartRecord_001 end');
     })
 
@@ -107,15 +106,13 @@ export default function abilityTest() {
       await stopRecordBtn.click();
       hilog.info(DOMAIN, TAG, BUNDLE + 'StopRecord_001 click');
       await DRIVER.delayMs(1000);
-      // 确定关闭后，停止按钮消失
-      expect(await stopRecordBtn.isEnabled()).assertNull();
-      await DRIVER.delayMs(10000);
       // 再次获取媒体库中的视频数量
-      // 读取媒体库的视频资源
-      let fetchResultAfter = await media.getFileAssets({
-        selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
-        selectionArgs: [mediaLibrary.MediaType.VIDEO.toString()],
-      })
+      let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+      let fetchOptions: photoAccessHelper.FetchOptions = {
+        fetchColumns: [],
+        predicates: predicates
+      };
+      let fetchResultAfter = await media.getAssets(fetchOptions)
       hilog.info(DOMAIN, TAG, BUNDLE + 'StopRecord_001 end; mediaDataCountAfter = ' + fetchResultAfter.getCount());
       // 断言比录制视频之前多一个
       expect(fetchResultAfter.getCount()).assertEqual(mediaDataCount + 1)

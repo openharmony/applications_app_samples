@@ -97,6 +97,7 @@ export struct Decrypt {
           .height('25%')
           .border({ width: 2, color: Color.Black })
           .margin(10)
+          .copyOption(CopyOptions.InApp)
       }
     }
     .width('100%')

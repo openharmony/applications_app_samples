@@ -135,6 +135,10 @@
     {
       "name": "reverse",
       "value": "反向"
+    },
+    {
+      "name": "use_ae_fps",
+      "value": "使用AE原始帧率播放动画"
     }
   ]
 }

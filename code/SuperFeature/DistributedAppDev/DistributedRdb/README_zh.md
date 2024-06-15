@@ -23,6 +23,7 @@ entry/src/main/ets/
 |   |---BasicDataSource.ets                     // 联系人列表懒加载数据
 |   |---BottomBtn.ets                           // 
 |   |---ContactItem.ets                         // 联系人
+|   |---DataChangeDetailDialog                  // 联系人变更通知
 |   |---DeviceDialog.ets                        // 设备列表
 |   |---PopupMenu.ets                           // 设备选择
 |   |---QueryItem.ets                           // 联系人详情
@@ -63,8 +64,8 @@ entry/src/main/ets/
 
 1. 本示例的同步功能需要两台设备组网后测试;
 2. 本示例仅支持标准系统上运行，支持设备：RK3568。
-3. 本示例为Stage模型，支持API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0 Release)
-4. 本示例需要使用DevEco Studio 版本号(4.0 Release)及以上版本才可编译运行。
+3. 本示例为Stage模型，支持API12版本SDK，SDK版本号(API Version 12 Release),镜像版本号(5.0 Release)
+4. 本示例需要使用DevEco Studio 版本号(4.1 Release)及以上版本才可编译运行。
 5. 本示例需要使用@ohos.distributedDeviceManager系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。
 
 ### 下载

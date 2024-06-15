@@ -25,7 +25,11 @@
 
 6.点击AudioTrack音轨列表选择框，可以选择音轨进行切换;
 
-7.点击左上角退出箭头，退出应用。
+7.点击进入获取缩略图界面，可以获取视频的缩略图;
+
+8.点击Subtitle开关列表选择框，可以切换外挂字幕是否显示;
+
+9.点击左上角退出箭头，退出应用。
 
 ### 目录结构
 ```
@@ -53,6 +57,7 @@ VideoPlay/src/main/ets/
 + 视频跳转：在拖动滑动条时调用avPlayer.seek()
 + 视频预下载：在prepared状态之前调用avPlayer.setMediaSource()
 + 多音轨选择：调用avPlayer.getTrackDescription()获取音轨列表，调用avPlayer.selectTrack()选择音轨，调用avPlayer.deselectTrack()取消选择音轨。
++ 外挂字幕显示切换：选择是否显示外挂字幕
 
 ### 相关权限
 
