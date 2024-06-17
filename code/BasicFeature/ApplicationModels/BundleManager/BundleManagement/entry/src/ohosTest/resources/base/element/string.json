@@ -1,0 +1,68 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "GetBundleInfoTest",
+      "value": "获取BundleInfo"
+    },
+    {
+      "name": "GetBundleInfoSyncTest",
+      "value": "获取BundleInfo(sync)"
+    },
+    {
+      "name": "GetConfigurationJsonTest",
+      "value": "获取配置json"
+    },
+    {
+      "name": "GetConfigurationArrayTest",
+      "value": "获取配置数组"
+    },
+    {
+      "name": "GetConfigurationJsonSyncTest",
+      "value": "获取配置json(sync)"
+    },
+    {
+      "name": "VerifyFileTest",
+      "value": "校验.abc文件"
+    },
+    {
+      "name": "DeleteFileTest",
+      "value": "删除.abc文件"
+    },
+    {
+      "name": "VerifyLinkOpenedTest",
+      "value": "校验链接是否可打开"
+    },
+    {
+      "name": "DetermineDefaultApplicationTest",
+      "value": "判断默认应用"
+    },
+    {
+      "name": "DetermineDefaultApplicationSyncTest",
+      "value": "判断默认应用(sync)"
+    },
+    {
+      "name": "SetDisableEnableStatusTest",
+      "value": "设置禁用使能状态"
+    },
+    {
+      "name": "ObtainOverlayModuleInfoInformationTest",
+      "value": "获取overlayModuleInfo信息"
+    },
+    {
+      "name": "ObtainMultipleOverlayModuleInfoInformationTest",
+      "value": "获取多条overlayModuleInfo信息"
+    }
+  ]
+}

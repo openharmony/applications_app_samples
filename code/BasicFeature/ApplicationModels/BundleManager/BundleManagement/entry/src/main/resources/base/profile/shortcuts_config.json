@@ -1,0 +1,12 @@
+{
+  "shortcuts": [{
+    "shortcutId": "id_test1",
+    "label": "$string:shortcut",
+    "icon": "$media:icon",
+    "wants": [{
+      "bundleName": "com.samples.bundlemanagement",
+      "moduleName": "entry",
+      "abilityName": "NewAbility"
+    }]
+  }]
+}
