@@ -1,5 +1,8 @@
 {
   "src": [
-    "pages/Index"
+    "pages/Index",
+    "zlib/ZipLibDecompressionPage",
+    "zlib/ZLibInterfaceListPage",
+    "zlib/CompressFilesPage"
   ]
 }

@@ -15,8 +15,8 @@
 
 {
   "app": {
-    "compileSdkVersion": 9,
-    "compatibleSdkVersion": 9,
+    "compileSdkVersion": 12,
+    "compatibleSdkVersion": 12,
     "products": [
       {
         "name": "default",

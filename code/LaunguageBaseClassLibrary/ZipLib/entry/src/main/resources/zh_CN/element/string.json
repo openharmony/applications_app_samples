@@ -46,11 +46,11 @@
     },
     {
       "name": "input_name",
-      "value": "请输入名称"
+      "value": "输入文件名"
     },
     {
       "name": "input_content",
-      "value": "请输入文件内容"
+      "value": "输入文件内容"
     },
     {
       "name": "create_file",
@@ -65,12 +65,88 @@
       "value": "已存在压缩文件，压缩失败"
     },
     {
+      "name": "zlib_compress_failure",
+      "value": "zlib文件压缩失败！"
+    },
+    {
+      "name": "ziplibdecompression",
+      "value": "zipLib解压缩文件"
+    },
+    {
+      "name": "zlibInterface",
+      "value": "zLib相关接口调用"
+    },
+    {
+      "name": "zLib",
+      "value": "zLib"
+    },
+    {
+      "name": "zlib_uncompress_failure",
+      "value": "zlib文件解压失败！"
+    },
+    {
       "name": "tip_complete",
-      "value": "文件压缩完成"
+      "value": "zlib文件压缩完成"
     },
     {
       "name": "warning_failure",
-      "value": "文件压缩失败"
+      "value": "zlib文件压缩失败"
+    },
+    {
+      "name": "gzip_compress_failure",
+      "value": "gzip文件压缩失败！"
+    },
+    {
+      "name": "gzip_uncompress_failure",
+      "value": "gzip文件解压失败！"
+    },
+    {
+      "name": "gzip_interface",
+      "value": "gzip格式解压缩"
+    },
+    {
+      "name": "zlib_interface",
+      "value": "zlib格式解压缩"
+    },
+    {
+      "name": "CompressFiles",
+      "value": "压缩多个文件"
+    },
+    {
+      "name": "CompressFiles_success",
+      "value": "压缩文件成功"
+    },
+    {
+      "name": "CompressFiles_failure",
+      "value": "压缩多个文件失败！"
+    },
+    {
+      "name": "tip_CompressFiles",
+      "value": "注：多文件压缩路径\n/data/app/el2/100/base/ohos.samples.ziplib/haps/entry/files"
+    },
+    {
+      "name": "tip_Gzip",
+      "value": "注：gzip和zlib格式解压缩文件路径为\n/data/app/el2/100/base/ohos.samples.ziplib/haps/entry/cache/"
+    },
+    {
+      "name": "CompressFiles_success_size",
+      "value": "压缩多个文件成功，压缩的zip包大小为：%s"
+    },
+    {
+      "name": "zlib_compress_success",
+      "value": "zlib文件压缩成功，压缩数据为：%s"
+    },
+    {
+      "name": "zlib_uncompress_success",
+      "value": "zlib文件解压成功，解压数据为：%s"
+    },
+    {
+      "name": "gzip_compress_success",
+      "value": "gzip文件压缩成功，压缩数据为：%s"
+    },
+    {
+      "name": "gzip_uncompress_success",
+      "value": "gzip文件解压成功，解压数据为：%s"
     }
   ]
 }

@@ -667,17 +667,6 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/BasicFeature/Native/Audio/screenshots/device/AudioVivid.jpg" desc="Provided by code/BasicFeature/Native/Audio"/>
 				<filteritem type="filepath" name="code/BasicFeature/Native/Audio/screenshots/device/index.jpg" desc="Provided by code/BasicFeature/Native/Audio"/>
 				<filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmonyProfileDebug.pem" desc="Provided by code/Project/HapBuild"/>
-	        <filteritem type="filepath" name="code/BasicFeature/ApplicationModels/BundleManager/BundleManagement/libraryOverlay/src/main/resources/base/media/icon.png" desc="Provided by code/BasicFeature/ApplicationModels/BundleManager/BundleManagement"/>
-                <filteritem type="filepath" name="code/BasicFeature/ApplicationModels/BundleManager/BundleManagement/sceenshots/device/snapshot_directory.png" desc="Provided by code/BasicFeature/ApplicationModels/BundleManager/BundleManagement"/>
-                <filteritem type="filepath" name="code/BasicFeature/ApplicationModels/BundleManager/BundleManagement/libraryOverlay/src/main/resources/base/media/setting.jpeg" desc="Provided by code/BasicFeature/ApplicationModels/BundleManager/BundleManagement"/>
-                <filteritem type="filepath" name="code/BasicFeature/ApplicationModels/BundleManager/BundleManagement/AppScope/resources/base/media/app_icon.png" desc="Provided by code/BasicFeature/ApplicationModels/BundleManager/BundleManagement"/>
-                <filteritem type="filepath" name="code/BasicFeature/ApplicationModels/BundleManager/BundleManagement/sceenshots/device/Scene-directory.png" desc="Provided by code/BasicFeature/ApplicationModels/BundleManager/BundleManagement"/>
-                <filteritem type="filepath" name="code/BasicFeature/ApplicationModels/BundleManager/BundleManagement/libraryRuntimeOverlay/src/main/resources/base/media/setting.jpeg" desc="Provided by code/BasicFeature/ApplicationModels/BundleManager/BundleManagement"/>
-                <filteritem type="filepath" name="code/BasicFeature/ApplicationModels/BundleManager/BundleManagement/entry/src/main/resources/base/media/icon.png" desc="Provided by code/BasicFeature/ApplicationModels/BundleManager/BundleManagement"/>
-                <filteritem type="filepath" name="code/BasicFeature/ApplicationModels/BundleManager/BundleManagement/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/BasicFeature/ApplicationModels/BundleManager/BundleManagement"/>
-                <filteritem type="filepath" name="code/BasicFeature/ApplicationModels/BundleManager/BundleManagement/entry/src/main/resources/base/media/pic_empty.svg" desc="Provided by code/BasicFeature/ApplicationModels/BundleManager/BundleManagement"/>
-                <filteritem type="filepath" name="code/BasicFeature/ApplicationModels/BundleManager/BundleManagement/entry/src/main/resources/base/media/ic_back.svg" desc="Provided by code/BasicFeature/ApplicationModels/BundleManager/BundleManagement"/>
-                <filteritem type="filepath" name="code/BasicFeature/ApplicationModels/BundleManager/BundleManagement/libraryRuntimeOverlay/src/main/resources/base/media/icon.png" desc="Provided by code/BasicFeature/ApplicationModels/BundleManager/BundleManagement"/>
                 <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmonyApplication.pem" desc="Provided by code/Project/HapBuild"/>
                 <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmonyProfileRelease.pem" desc="Provided by code/Project/HapBuild"/>
                 <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/hap-sign-tool.jar" desc="Provided by code/Project/HapBuild"/>
@@ -752,6 +741,16 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/BasicFeature/DataManagement/pasteboard/screenshots/first.png" desc="Provided by code/BasicFeature/DataManagement/pasteboard"/>
 				<filteritem type="filepath" name="code/Solutions/InputMethod/KikaInputMethod/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/Solutions/InputMethod/KikaInputMethod"/>
 				<filteritem type="filepath" name="code/Solutions/InputMethod/KikaInputMethod/screenshots/devices/preview.jpg" desc="Provided by code/Solutions/InputMethod/KikaInputMethod"/>
+				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/screenshots/device/zLib_interface_call.png" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
+				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/screenshots/device/zip_multiple_file.png" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
+				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/screenshots/device/new_main.png" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
+				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/screenshots/device/main.png" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
+				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/entry/src/main/resources/base/media/icon_next.png" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
+				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/entry/src/main/resources/base/media/icon_back.png" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
+				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/entry/src/main/resources/base/media/file.png" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
+				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/entry/src/main/resources/base/media/add.png" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
+				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/entry/src/main/resources/base/media/zip.png" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
+				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/entry/src/main/resources/base/media/icon.png" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
 			</filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加License头"/>
