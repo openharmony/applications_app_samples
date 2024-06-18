@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,23 +13,21 @@
  * limitations under the License.
  */
 
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { Hypium } from '@ohos/hypium';
-import Window from '@ohos.window';
+import { window } from '@kit.ArkUI';
 import testsuite from '../test/List.test';
 
 export default class TestAbility extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
     hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onCreate');
     hilog.info(0x0000, 'testTag', '%{public}s', 'want param:' + JSON.stringify(want) ?? '');
     hilog.info(0x0000, 'testTag', '%{public}s', 'launchParam:' + JSON.stringify(launchParam) ?? '');
-    var abilityDelegator: any;
-    abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-    var abilityDelegatorArguments: any;
-    abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
+    let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+    let abilityDelegatorArguments = abilityDelegatorRegistry.getArguments();
     hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
     hilog.info(0x0000, 'testTag', '%{public}s', 'start run testcase!!!');
     Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
@@ -40,7 +38,7 @@ export default class TestAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onDestroy');
   }
 
-  onWindowStageCreate(windowStage: Window.WindowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
     hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onWindowStageCreate');
     windowStage.loadContent('testability/pages/Index', (err, data) => {

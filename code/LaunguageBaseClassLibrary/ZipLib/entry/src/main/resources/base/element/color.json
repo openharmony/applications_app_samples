@@ -5,6 +5,10 @@
       "value": "#FFFFFF"
     },
     {
+      "name": "text_white_color",
+      "value": "#FFFFFF"
+    },
+    {
       "name": "divider_bg",
       "value": "#999999"
     },
@@ -14,7 +18,47 @@
     },
     {
       "name": "index_bg",
-      "value": "#eeeeee"
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "button_color",
+      "value": "#0A59F7"
+    },
+    {
+      "name": "button_light_color",
+      "value": "#660A59F7"
+    },
+    {
+      "name": "backGrounding",
+      "value": "#f1f3f5"
+    },
+    {
+      "name": "text_color",
+      "value": "#000000"
+    },
+    {
+      "name": "checkbox_color",
+      "value": "#0A59F7"
+    },
+    {
+      "name": "button_backeGround",
+      "value": "#0D000000"
+    },
+    {
+      "name": "tip_Gzip_backeGround",
+      "value": "#66000000"
+    },
+    {
+      "name": "focus_color",
+      "value": "#80000000"
+    },
+    {
+      "name": "blur_color",
+      "value": "#66000000"
+    },
+    {
+      "name": "border_blur_color",
+      "value": "#CDFFFFFF"
     }
   ]
 }
