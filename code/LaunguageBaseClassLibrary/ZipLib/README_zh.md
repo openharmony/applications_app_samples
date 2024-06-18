@@ -7,9 +7,9 @@
 
 ### 效果预览
 
-|主页|zlib解压缩文件页面|zlib相关接口调用页面|压缩多个文件页面|
-|---|:--|---|---|
-|<img src="screenshots/device/new_main.png" style="zoom: 80%;" />|<img src="screenshots/device/main.png" style="zoom: 80%;" />|<img src="screenshots/device/zLib_interface_call.png" style="zoom: 80%;" />|<img src="screenshots/device/zip_multiple_file.png" style="zoom: 80%;" />|
+|                            主页面                            |                      zlib解压缩文件页面                      |                    zlib相关接口调用页面                     |                      压缩多个文件页面                       |
+| :----------------------------------------------------------: | :----------------------------------------------------------: | :---------------------------------------------------------: | :---------------------------------------------------------: |
+| <img src="./screenshots/device/Screenshot_20231208091553194.jpeg"  /> | <img src="./screenshots/device/Screenshot_20231208091651506.jpeg"  /> | ![](./screenshots/device/Screenshot_20231208091638669.jpeg) | ![](./screenshots/device/Screenshot_20231208091619146.jpeg) |
 
 使用说明
 
