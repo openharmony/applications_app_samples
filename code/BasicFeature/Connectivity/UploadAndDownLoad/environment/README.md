@@ -16,11 +16,11 @@ https://nchc.dl.sourceforge.net/project/hfs/HFS/2.3m/hfs.exe
 | ------------------------------------------------------------ | ------------------------ | ------------------------------------ |
 | ![bind](src/bind.png)                                        | ![bind](src/prop.png)    | ![bind](src/permission.png)          |
 
-4.**手机端打开应用后**，查看打开客户端的url，修改[setURL.bat](./setURL.bat)中的url为hfs客户端的url后双击运行[setURL.bat](./setURL.bat)。
+4.**手机端打开应用后**，查看打开客户端的url，修改HFS地址中的url为hfs客户端的url。
 
 |          获取url          |          修改url          |
 | :-----------------------: | :-----------------------: |
-| ![copy](src/copy_url.png) | ![copy](src/past_url.png) |
+| ![copy](src/copy_url.png) | ![copy](src/past_url.jpg) |
 
 5、按照顺序操作1-4步骤后，即可测试上传下载任务。
 

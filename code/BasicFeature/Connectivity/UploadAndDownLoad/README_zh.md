@@ -7,7 +7,7 @@
 
 |               主页               |             上传             |             片段上传             |                 下载                 |                 证书锁定                 |
 | :---------------------------------------: | :---------------------------------------: | :--------------------------------------: | :--------------------------------------: | ---------------------------------------- |
-|    ![home](screenshots/devices/zh/home.jpg)    | ![util](screenshots/devices/zh/upload.jpg) | ![util](screenshots/devices/zh/uploadchunk.jpg) | ![convertxml](screenshots/devices/zh/download.jpg) | ![](D:\01Code\sample\PR\applications_app_samples\code\BasicFeature\Connectivity\UploadAndDownLoad\screenshots\devices\zh\cert_lock.jpg) |
+|    ![home](screenshots/devices/zh/home.jpg)    | ![util](screenshots/devices/zh/upload.jpg) | ![util](screenshots/devices/zh/uploadchunk.jpg) | ![convertxml](screenshots/devices/zh/download.jpg) | ![cert_lock](screenshots/devices/zh/cert_lock.jpg) |
 
 使用说明
 
@@ -120,7 +120,7 @@ UploadAndDownload
 
 2.本示例为Stage模型，支持API12版本SDK，SDK版本号(API Version 12),镜像版本号(5.0)
 
-3.本示例需要使用DevEco Studio 版本号(4.0 Release)及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio 版本号(4.1 Release)及以上版本才可编译运行。
 
 4.运行本示例需全程联网。
 

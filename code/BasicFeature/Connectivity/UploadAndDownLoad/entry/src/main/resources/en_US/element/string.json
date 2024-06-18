@@ -109,6 +109,10 @@
       "value": "Whether to start background tasks"
     },
     {
+      "name": "HFS_tips",
+      "value": "HFS Address"
+    },
+    {
       "name": "home_tips",
       "value": "Demonstrate foreground and background upload and download tasks"
     },
