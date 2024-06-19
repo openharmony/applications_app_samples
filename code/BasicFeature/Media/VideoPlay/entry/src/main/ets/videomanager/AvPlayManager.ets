@@ -39,10 +39,16 @@ export default class AvPlayManager {
   private fileDescriptor: resourceManager.RawFileDescriptor | null = null;
   private videoSrc: string | null = null;
   private fileSrc: string | null = null;
-  private default_track_value: string = "";
-  private track_name_value: string = "";
+  private default_track_value: string = '';
+  private track_name_value: string = '';
   private currentAudioTrackValue: number = 0 ;
   public arrList: Array<SelectOption>  = [];
+  // 字幕
+  public arrSubTitleList: Array<SelectOption>  = []
+  private currentSubtitleStateValue: number = 0
+  private text: string | null = ''
+  private startTime: number | null = 0
+  private duration: number | null = 0
 
   /**
    * 初始化视频
@@ -60,19 +66,23 @@ export default class AvPlayManager {
       Logger.info(this.tag, 'initPlayer videoPlay setAVPlayerCallback');
       this.mgr = ctx.resourceManager;
       Logger.info(this.tag, 'initPlayer videoPlay this.mgr');
-      this.fileDescriptor = await this.mgr.getRawFd('test1.mp4');
+      this.videoSrc = 'test1.mp4'
+      this.fileDescriptor = await this.mgr.getRawFd(this.videoSrc);
       Logger.info(this.tag, `initPlayer videoPlay fileDescriptor = ${JSON.stringify(this.fileDescriptor)}`);
       this.avPlayer.fdSrc = this.fileDescriptor;
+      this.addSubtitleFdSrc()
       this.mgr.getStringValue($r('app.string.default_track')).then((value: string) => {
         this.default_track_value = value;
       }).catch((error: BusinessError) => {
-        console.error("getStringValue promise error is " + error);
+        console.error('getStringValue promise error is ' + error);
       });
       this.mgr.getStringValue($r('app.string.track_name')).then((value: string) => {
         this.track_name_value = value;
       }).catch((error: BusinessError) => {
-        console.error("getStringValue promise error is " + error);
+        console.error('getStringValue promise error is ' + error);
       });
+      // 字幕相关
+      await this.getSubtitleStates()
     } catch (err) {
       Logger.error(this.tag, `initPlayer initPlayer err：${JSON.stringify(err)}`);
     }
@@ -99,7 +109,7 @@ export default class AvPlayManager {
     });
     // 状态机变化回调函数
     this.avPlayer.on('stateChange', async (state, reason) => {
-
+      Logger.info(this.tag, 'stateChange is called >> state = ' + state)
       if (this.avPlayer == null) {
         Logger.info(this.tag, 'avPlayer has not init');
         return;
@@ -162,6 +172,17 @@ export default class AvPlayManager {
       this.currentTime = time;
       Logger.info(this.tag, `setAVPlayerCallback timeUpdate success,and new time is = ${this.currentTime}`);
     });
+    // 字幕回调函数
+    this.avPlayer.on('subtitleUpdate', (info: media.SubtitleInfo) => {
+      if (!!info) {
+        Logger.info(this.tag, `subtitleUpdate info is called text=${info.text} startTime=${info.startTime} duration=${info.duration}`)
+        this.text = (!info.text) ? '' : info.text
+        this.startTime = (!info.startTime) ? 0 : info.startTime
+        this.duration = (!info.duration) ? 0 : info.duration
+      } else {
+        Logger.info(this.tag, 'subtitleUpdate info is null')
+      }
+    })
   }
 
   /**
@@ -285,6 +306,7 @@ export default class AvPlayManager {
       return;
     }
     this.avPlayer.reset();
+    this.clearSubtitle()
   }
 
   /**
@@ -292,7 +314,7 @@ export default class AvPlayManager {
    */
   async preDownload(url: string): Promise<void> {
     if (this.avPlayer) {
-      let mediaSource : media.MediaSource = media.createMediaSourceWithUrl(url,  {"aa" : "bb", "cc" : "dd"});
+      let mediaSource : media.MediaSource = media.createMediaSourceWithUrl(url,  {'aa' : 'bb', 'cc' : 'dd'});
       let playbackStrategy : media.PlaybackStrategy = {preferredWidth: 1, preferredHeight: 2, preferredBufferDuration: 3, preferredHdr: false};
       this.avPlayer.setMediaSource(mediaSource, playbackStrategy)
     }
@@ -401,15 +423,17 @@ export default class AvPlayManager {
         this.fileSrc = 'https:\/\/vd3.bdstatic.com\/mda-pdc2kmwtd2vxhiy4\/cae_h264\/1681502407203843413\/mda-pdc2kmwtd2vxhiy4.mp4';
       } else if (this.videoSrc === 'pre_download_network.mp4') {
         this.fileSrc = 'https:\/\/vd3.bdstatic.com\/mda-nmh2004d24kf4bjh\/hd/h264\/1671326683061787710\/mda-nmh2004d24kf4bjh.mp4';
+      } else if (this.videoSrc === 'pre_download_dash.mpd') {
+        this.fileSrc = 'https:\/\/hwposter-inland.hwcloudtest.cn\/AiMaxEngine\/DASH_LOCAL\/DASH_SDR_H264_LC\/DASH_SDR_H264_LC.mpd';
       } else {
         this.fileSrc = this.videoSrc;
       }
       if (this.fileSrc) {
-        let regex = new RegExp("^(http|https)", "i");
+        let regex = /^(http|https)/i;
         let bool = regex.test(this.fileSrc);
         if (bool) {
           Logger.info(this.tag, `avPlayerChoose avPlayerChoose fileDescriptor = ${JSON.stringify(this.fileDescriptor)}`);
-          if (this.videoSrc === 'pre_download_network.mp4') {
+          if (this.videoSrc === 'pre_download_network.mp4' || this.videoSrc === 'pre_download_dash.mpd') {
             this.preDownload(this.fileSrc);
           } else {
             this.avPlayer.url = this.fileSrc;
@@ -419,6 +443,8 @@ export default class AvPlayManager {
             this.fileDescriptor = await this.mgr.getRawFd(this.fileSrc);
             Logger.info(this.tag, `avPlayerChoose avPlayerChoose fileDescriptor = ${JSON.stringify(this.fileDescriptor)}`);
             this.avPlayer.fdSrc = this.fileDescriptor;
+            // 字幕
+            this.addSubtitleFdSrc()
           }
         }
       }
@@ -426,5 +452,74 @@ export default class AvPlayManager {
       Logger.info(this.tag, 'avPlayerChoose trycatch avPlayerChoose');
       this.videoReset();
     }
+  }
+
+  // 字幕相关
+  async getSubtitleStates(): Promise<void> {
+    let selectOptions: SelectOption[] = []
+    if (this.mgr) {
+      this.mgr.getStringValue($r('app.string.subtitle_on')).then((v: string) => {
+        selectOptions.push({ value: v})
+      }).catch((error: BusinessError) => {
+        Logger.error('subtitle getStringValue promise error is ' + error)
+      })
+      this.mgr.getStringValue($r('app.string.subtitle_off')).then((v: string) => {
+        selectOptions.push({ value: v})
+      }).catch((e: BusinessError) => {
+        Logger.error('subtitle getStringValue promise error is ' + e)
+      })
+      this.arrSubTitleList = selectOptions
+    }
+    Logger.info(this.tag, 'subtitle getSubtitleStates end:' + `${JSON.stringify(this.arrSubTitleList.length)}`)
+  }
+
+  async setSubtitleState(subtitleState: number): Promise<void> {
+    Logger.info(this.tag, 'subtitle  setSubtitleState value is:' + subtitleState)
+    this.currentSubtitleStateValue = subtitleState
+  }
+
+  getSubTitle(): string {
+    if (this.currentSubtitleStateValue == 0 && !!this.startTime && !!this.duration && !!this.text) {
+      if (this.startTime > 0 && this.duration > 0 && this.currentTime > 0) {
+        let dis = this.currentTime - this.startTime
+        if (0 <= dis && dis <= this.duration) {
+          return this.text
+        } else {
+          Logger.info(this.tag, 'getSubTitle there is no subtitle at current time')
+        }
+      }
+    }
+    return ''
+  }
+
+  clearSubtitle(): void {
+    this.text = ''
+    this.startTime = 0
+    this.duration = 0
+    Logger.info(this.tag, 'subtitle clearSubtitle')
+  }
+
+  async addSubtitleFdSrc(): Promise<void> {
+    if (!this.videoSrc) {
+      Logger.info(this.tag, 'subtitle addSubtitleFdSrc videoSrc is null')
+      return
+    }
+    if (!this.mgr) {
+      Logger.info(this.tag, 'subtitle addSubtitleFdSrc this.mgr is null')
+      return
+    }
+    let subtitleSource = this.videoSrc.split('.')[0] + '.srt'
+    Logger.info(this.tag, 'subtitle addSubtitleFdSrc ' + subtitleSource)
+    this.fileDescriptor = await this.mgr.getRawFd(subtitleSource)
+    if (!this.fileDescriptor) {
+      Logger.info(this.tag, 'subtitle subtitleSource maybe not exists')
+      return
+    }
+    if (!this.avPlayer) {
+      Logger.info(this.tag, 'subtitle addSubtitleFdSrc avPlayer has not init')
+      return
+    }
+    Logger.info(this.tag, `subtitle fd=${this.fileDescriptor.fd}, offset=${this.fileDescriptor.offset}, length=${this.fileDescriptor.length}`)
+    this.avPlayer.addSubtitleFromFd(this.fileDescriptor.fd, this.fileDescriptor.offset, this.fileDescriptor.length)
   }
 }

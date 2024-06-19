@@ -29,6 +29,7 @@
  */
 
 import lottie from '@ohos/lottie'
+import promptAction from '@ohos.promptAction'
 import Logger from '../util/Logger'
 
 const TAG: string = 'Lottie'
@@ -326,6 +327,7 @@ struct Lottie {
             }
             .width('100%')
             .justifyContent(FlexAlign.Start)
+            .margin({ top: 10 })
           }
           .justifyContent(FlexAlign.SpaceAround)
           .backgroundColor('#FFFFFF')
@@ -690,6 +692,9 @@ struct Lottie {
                         .onClick(() => {
                           if (this.animateItem !== null) {
                             this.animateItem.setSubframe(false)
+                            promptAction.showToast({
+                              message: $r('app.string.use_ae_fps')
+                            });
                           }
                         })
 
@@ -842,6 +847,9 @@ struct Lottie {
                         .onClick(() => {
                           if (this.animateItem !== null) {
                             this.animateItem.addEventListener('loopComplete', this.callbackItem)
+                            promptAction.showToast({
+                              message: 'grunt loopComplete'
+                            });
                           }
                         })
 

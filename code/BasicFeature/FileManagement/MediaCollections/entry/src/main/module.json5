@@ -50,10 +50,24 @@
     ],
     "requestPermissions": [
       {
-        "name": "ohos.permission.WRITE_MEDIA"
+        "name": "ohos.permission.WRITE_MEDIA",
+        "reason": "$string:reason",
+        "usedScene": {
+          "abilities":[
+            "MainAbility"
+          ],
+          "when": "inuse",
+        }
       },
       {
-        "name": "ohos.permission.READ_MEDIA"
+        "name": "ohos.permission.READ_MEDIA",
+        "reason": "$string:reason",
+        "usedScene": {
+          "abilities":[
+            "MainAbility"
+          ],
+          "when": "inuse",
+        }
       },
       {
         "name": "ohos.permission.INTERNET"

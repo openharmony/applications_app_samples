@@ -29,6 +29,7 @@ import { SyncState } from '../model/LiteStore'
 import { SearchBar } from '../common/SearchBar'
 import { TitleBar } from '../common/TitleBar'
 import { TABLE_NAME, BUNDLE, ABILITY, SQL_CREATE_TABLE, COLUMNS } from '../model/RdbConst'
+import { DataChangeDetailDialog } from '../common/DataChangeDetailDialog';
 
 const TAG: string = 'Index'
 
@@ -41,12 +42,14 @@ export interface stateType {
   distributedDevice: string,
   opacityValue: number
 }
+
 @Entry
 @Component
 struct Index {
   private liteStore = new LiteStore("sync_state", getContext(this) as common.UIAbilityContext)
   private rdbModel = new RdbModel(TABLE_NAME, SQL_CREATE_TABLE, COLUMNS, getContext(this) as common.UIAbilityContext)
   private intervalId: number = 0
+  private dialogController: CustomDialogController | null = null;
   @State contacts: ContactDataSource = new ContactDataSource([])
   @State isMultiCheck: boolean = false
   @State isSelectedAll: boolean = false
@@ -64,12 +67,19 @@ struct Index {
     Logger.info(TAG, 'aboutToAppear')
     await this.rdbModel.getRdbStore();
     await this.getData();
+    this.rdbModel.onDataChangeDetail(this.state.distributedDevice, (result: Array<Contact>) => {
+      this.showDataChangeDialog(result)
+    })
+  }
+
+  aboutToDisappear(): void {
+    this.rdbModel.offDataChangeDetail()
   }
 
   // 拉起应用后读取数据，暂定为分布式功能
   getWant() {
-    let want = AppStorage.Get<Want>('want') as Want
-    if(want.parameters != undefined) {
+    let want = AppStorage.get<Want>('want') as Want
+    if (want.parameters != undefined) {
       if (this.state.isDistributed && want.parameters.isStage === 'EXIT') {
         Logger.info(TAG, 'isStage = EXIT')
         this.state.isStage = false
@@ -93,8 +103,8 @@ struct Index {
           }
         })
         Logger.info(TAG, 'onDataChange')
-        this.rdbModel.onDataChange(this.state.distributedDevice, (result: Array<Contact>)=> {
-        this.contacts.dataArray = result
+        this.rdbModel.onDataChange(this.state.distributedDevice, (result: Array<Contact>) => {
+          this.contacts.dataArray = result
           this.contacts.notifyDataReload()
         })
       }
@@ -161,6 +171,21 @@ struct Index {
         }
       }
     })
+  }
+
+  showDataChangeDialog(result: Array<Contact>) {
+    Logger.info(TAG, `showDataChangeDialog:` + JSON.stringify(result))
+    if (this.dialogController !== null) {
+      this.dialogController.close()
+      this.dialogController = null
+    }
+    this.dialogController = new CustomDialogController({
+      builder: DataChangeDetailDialog({
+        detailList: result,
+      }),
+      autoCancel: true
+    })
+    this.dialogController.open()
   }
 
   handleClickContact(item: Contact, index: number) {

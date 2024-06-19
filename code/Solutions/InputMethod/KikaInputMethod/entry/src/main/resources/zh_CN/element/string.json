@@ -23,6 +23,29 @@
     {
       "name": "edit",
       "value": "编辑"
+    },{
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "Private_data",
+      "value": "私有数据传递："
+    },
+    {
+      "name": "Preview_Text",
+      "value": "预上屏："
+    },
+    {
+      "name": "Private_tip",
+      "value": "请输入账号信息"
+    },
+    {
+      "name": "Preview_tip",
+      "value": "请输入预上屏内容"
     }
   ]
 }

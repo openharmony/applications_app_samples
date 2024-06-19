@@ -23,7 +23,7 @@ const VIDEOSELECT = 2; // 网络视频索引
 
 @Component
 export struct VideoPanel {
-  @State videoList: Resource[] = [$r('app.string.video_res_1'), $r('app.string.video_res_2'), $r('app.string.video_res_3'), $r('app.string.video_res_4')];
+  @State videoList: Resource[] = [$r('app.string.video_res_1'), $r('app.string.video_res_2'), $r('app.string.video_res_3'), $r('app.string.video_res_4'), $r('app.string.video_res_5')];
   @State selectColor: boolean = true;
   @Link show: boolean;
   @Link videoSelect: number; // 当前选择项的索引
@@ -79,17 +79,17 @@ export struct VideoPanel {
               middle: { anchor: '__container__', align: HorizontalAlign.Center },
               center: { anchor: '__container__', align: VerticalAlign.Center }
             })
-            .id("test1")
+            .id('test1')
           Image($r('app.media.ic_video_list_down'))
             .width($r('app.float.size_30'))
             .height($r('app.float.size_20'))
             .alignRules({
               right: { anchor: '__container__', align: HorizontalAlign.End },
               center: { anchor: '__container__', align: VerticalAlign.Center }
-            }).id("test2")
+            }).id('test2')
         }
         .height($r('app.float.size_20'))
-        .width("90%")
+        .width('90%')
         .margin({ top: $r('app.float.size_20'), bottom: $r('app.float.size_20') })
 
         List() {
@@ -114,12 +114,12 @@ export struct VideoPanel {
                       .textAlign(TextAlign.Center)
                   }
                 }
-                .width("90%")
+                .width('90%')
               }
-              .width("100%")
+              .width('100%')
             }
-            .backgroundColor(this.videoSelect === index ? $r('app.color.video_play_selected') : "")
-            .width("100%")
+            .backgroundColor(this.videoSelect === index ? $r('app.color.video_play_selected') : '')
+            .width('100%')
             .height($r('app.float.size_64'))
             .onClick(async () => {
               this.videoSelect = index;
@@ -134,7 +134,7 @@ export struct VideoPanel {
             })
           })
         }
-        .width("100%")
+        .width('100%')
       }
     }
     .onClick(() => {
@@ -147,7 +147,7 @@ export struct VideoPanel {
     .type(PanelType.Foldable)
     .mode(PanelMode.Half)
     .dragBar(false)
-    .halfHeight(330)
+    .halfHeight(400)
     .width('100%')
     .mode(PanelMode.Half)
     .padding({ top: $r('app.float.size_5') })
