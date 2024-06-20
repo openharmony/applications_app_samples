@@ -1,0 +1,112 @@
+{
+  "string": [
+    {
+      "name": "entry_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "completed",
+      "value": "完成"
+    },
+    {
+      "name": "crop",
+      "value": "裁剪"
+    },
+    {
+      "name": "percent43",
+      "value": "4:3"
+    },
+    {
+      "name": "percent169",
+      "value": "16:9"
+    },
+    {
+      "name": "percent11",
+      "value": "1:1"
+    },
+    {
+      "name": "origin",
+      "value": "原图"
+    },
+    {
+      "name": "rotate",
+      "value": "旋转"
+    },
+    {
+      "name": "scale",
+      "value": "缩放"
+    },
+    {
+      "name": "zoomIn",
+      "value": "放大"
+    },
+    {
+      "name": "zoomOut",
+      "value": "缩小"
+    },
+    {
+      "name": "mark",
+      "value": "标记"
+    },
+    {
+      "name": "sticker",
+      "value": "贴纸"
+    },
+    {
+      "name": "text",
+      "value": "文字"
+    },
+    {
+      "name": "toning",
+      "value": "调色"
+    },
+    {
+      "name": "colorSpaceAdobeRGB",
+      "value": "ADOBE_RGB"
+    },
+    {
+      "name": "colorSpaceDCIP3",
+      "value": "DCI_P3"
+    },
+    {
+      "name": "colorSpaceDisplayP3",
+      "value": "DisplayP3"
+    },
+    {
+      "name": "colorSpaceSRGB",
+      "value": "SRGB"
+    },
+    {
+      "name": "colorSpace",
+      "value": "色域"
+    },
+    {
+      "name": "takePhoto",
+      "value": "拍照"
+    },
+    {
+      "name": "setting",
+      "value": "修改hdr设置"
+    },
+    {
+      "name": "auto",
+      "value": "自动"
+    },
+    {
+      "name": "sdr",
+      "value": "SDR"
+    },
+    {
+      "name": "hdr",
+      "value": "HDR"
+    }
+  ]
+}
