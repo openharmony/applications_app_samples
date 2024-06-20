@@ -143,6 +143,9 @@
       },
       {
         "name": "ohos.permission.MANAGE_LOCAL_ACCOUNTS"
+      },
+      {
+        "name": "ohos.permission.PROXY_AUTHORIZATION_URI"
       }
     ]
   }
