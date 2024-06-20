@@ -38,13 +38,12 @@ struct LocationSample {
               Stack() {
                 Text($r('app.string.location_settings_bottom_end'))
                   .height('65%')
-                  .backgroundColor(0xD2B48C)
-                  .align(Alignment.BottomEnd)
               }
               .width('90%')
               .height(50)
               .margin({ top: 5 })
               .backgroundColor(0xFFE4C4)
+              .align(Alignment.BottomEnd)
 
               Stack() {
                 Text($r('app.string.location_settings_top_start'))

@@ -22,6 +22,8 @@ import { BusinessError } from '@ohos.base';
 import Logger from '../utils/Logger';
 import dlpPermission from '@ohos.dlpPermission';
 import picker from '@ohos.file.picker';
+import wantConstant from '@ohos.app.ability.wantConstant';
+import uriPermissionManager from '@ohos.application.uriPermissionManager';
 
 const TAG = '[dlpmanager_filePage]';
 const OPACITY_VALUE = 0.6; // 透明度
@@ -197,6 +199,12 @@ struct FilePage {
    */
   async onEncrypt() {
     Logger.info(TAG + 'new file and encrypt');
+    let flag = wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION |
+    wantConstant.Flags.FLAG_AUTH_PERSISTABLE_URI_PERMISSION;
+    let targetBundleName = 'com.ohos.dlpmanager';
+    uriPermissionManager.grantUriPermission(this.myUri, flag, targetBundleName, (result) => {
+      Logger.info(TAG, `grandUriPermission result: ${JSON.stringify(result)}`);
+    });
     try {
       let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext
       let want: Want = {

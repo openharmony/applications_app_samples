@@ -29,6 +29,10 @@
       "value": "pre_download_network.mp4"
     },
     {
+      "name": "video_res_5",
+      "value": "pre_download_dash.mpd"
+    },
+    {
       "name": "video_speed_1_0X",
       "value": "1.0X"
     },
@@ -71,6 +75,14 @@
     {
       "name": "track_name_1",
       "value": "track:1"
+    },
+    {
+      "name": "thumbnail_page",
+      "value": "进入获取缩略图页面"
+    },
+    {
+      "name": "get_thumbnail",
+      "value": "获取缩略图(test.mp4)"
     }
   ]
 }

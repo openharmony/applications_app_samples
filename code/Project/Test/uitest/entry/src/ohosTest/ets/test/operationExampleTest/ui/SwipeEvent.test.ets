@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License")
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,10 +13,9 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, it, expect, TestType } from '@ohos/hypium'
-import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import {Driver, ON} from '@ohos.UiTest'
-import Want from '@ohos.app.ability.Want';
+import { describe, beforeAll, it, expect, TestType } from '@ohos/hypium';
+import { Want } from '@kit.AbilityKit';
+import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
@@ -62,10 +61,12 @@ export default function SwipeEventTest() {
     it('testSwipe_v', TestType.FUNCTION, async (done: Function) => {
       let driver = Driver.create();
       await driver.delayMs(WAIT_UI_READYMS);
-      await driver.swipe(400, 700, 400, 500);
-      await driver.delayMs(WAIT_UI_READYMS);
-      let text = await driver.findComponent(ON.id('scroll_item'));
-      expect(await text.getText()).not().assertEqual("0");
+      let textZero = await driver.findComponent(ON.id('scroll_item_0'));
+      expect(await textZero.getText()).assertEqual("0");
+      await driver.swipe(400, 700, 400, 300);
+      await driver.delayMs(WAIT_UI_READYMS * 2);
+      let textZeroNot = await driver.findComponent(ON.id('scroll_item_0')); // 滑动导致组件不可见,查找失败。
+      expect(textZeroNot).assertNull();
       done();
     })
   })

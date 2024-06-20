@@ -17,16 +17,18 @@ import notificationManager from '@ohos.notificationManager';
 import router from '@ohos.router';
 import common from '@ohos.app.ability.common';
 
-@Styles function itemStyle() {
+@Styles
+function itemStyle() {
   .width('100%')
   .height(56)
   .padding({ top: 17, bottom: 17, left: 12, right: 12 })
   .backgroundColor(Color.White)
   .borderRadius(24)
-  .margin({ top: 12 })
+  .margin({ top: 20 })
 }
 
-@Extend(Text) function textStyle() {
+@Extend(Text)
+function textStyle() {
   .fontColor($r('app.color.text_normal'))
   .fontWeight(400)
   .fontFamily('HarmonyHeiTi')
@@ -51,6 +53,7 @@ struct Index {
               .textStyle()
             Blank()
             Toggle({ type: ToggleType.Switch, isOn: this.isBackground })
+              .width(40)
               .height(24)
               .onChange((isOn: boolean) => {
                 this.isBackground = isOn;
@@ -70,6 +73,11 @@ struct Index {
               url: 'pages/Download'
             })
           })
+          this.CapabilityView($r('app.media.ic_certified'), $r('app.string.cert_lock'), 'btn_cert_lock', () => {
+            router.pushUrl({
+              url: 'pages/CertLock'
+            })
+          })
         }
         .width('100%')
       }
@@ -86,6 +94,7 @@ struct Index {
       main: this.getResourceString($r('app.string.EntryAbility_label')),
       sub: this.getResourceString($r('app.string.home_tips'))
     })
+    .margin({ top: 10 })
   }
 
   @Builder

@@ -16,7 +16,7 @@
 import router from '@ohos.router';
 import Http from '@ohos/http';
 import { GoodResponse, Info, Records, ShopCartItemDataModel } from '../../model/GoodsModel';
-import { Products_Data, SHOP_CART_ITEM_DATA } from '../../mock/ProductsData';
+import { Products_Data, PRODUCT_DATA } from '../../mock/ProductsData';
 
 @Component
 export struct FavorGoodList {
@@ -96,7 +96,7 @@ export struct FavorGoodList {
         y: vp2px(8)
       }
     }) {
-      ForEach(this.flag ? this.productsData.data.records : SHOP_CART_ITEM_DATA, (item: Object) => {
+      ForEach(this.flag ? this.productsData.data.records : PRODUCT_DATA, (item: Object) => {
         GridCol({
           span: {
             sm: 6,

@@ -22,27 +22,36 @@ export default class HttpUtil {
   static async getDrmResponse(url: string, _extraData: string): Promise<string> {
     let responseData: string = 'defaultStr'
     let httpRequest = http.createHttp()
-    let response = await httpRequest.request(url, {
-      method: http.RequestMethod.POST,
-      header: {
-        'Content-Type': 'application/json',
-        'Accept-Encoding': 'gzip, deflate',
-      },
-      extraData: _extraData,
-      expectDataType: http.HttpDataType.STRING,
-    })
 
-    if (response?.responseCode == 200) {
-      if (typeof response.result == 'string') {
-        responseData = response.result
-        Logger.info(TAG, 'responseData Length:' + responseData.length)
+    try {
+      let response: http.HttpResponse = await httpRequest.request(url, {
+        method: http.RequestMethod.POST,
+        header: {
+          'Content-Type': 'application/json',
+          'Accept-Encoding': 'gzip, deflate',
+        },
+        extraData: _extraData,
+        expectDataType: http.HttpDataType.STRING,
+        connectTimeout: 2000,
+        readTimeout: 2000,
+      })
+
+      if (response?.responseCode == 200) {
+        if (typeof response.result == 'string') {
+          responseData = response.result
+          Logger.info(TAG, 'responseData Length:' + responseData.length)
+        } else {
+          Logger.error(TAG, 'error:' + typeof response.result)
+        }
+        httpRequest.destroy()
       } else {
-        Logger.error(TAG, 'error:' + typeof response.result)
+        Logger.error(TAG, 'error: responseCode' + response.responseCode)
       }
-      httpRequest.destroy()
-    } else {
-      Logger.error(TAG, 'error: responseCode' + response.responseCode)
+
+    } catch (e) {
+      Logger.error(TAG, 'getDrmResponse error:  [' + JSON.stringify(e) + ']')
     }
+
     return responseData
   }
 }

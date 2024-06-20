@@ -22,8 +22,9 @@ export default class Contact {
   remark: string;
   age: number;
   isSelected: boolean;
+  type: string | undefined;
 
-  constructor(id: number, name: string, gender: number, phone: string, age: number, remark: string) {
+  constructor(id: number, name: string, gender: number, phone: string, age: number, remark: string, type?: string) {
     this.id = id;
     this.name = name;
     this.gender = gender;
@@ -31,5 +32,6 @@ export default class Contact {
     this.remark = remark;
     this.age = age;
     this.isSelected = false;
+    this.type = type;
   }
 }

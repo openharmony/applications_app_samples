@@ -219,6 +219,22 @@
     {
       "name": "material_font_color_thirteen",
       "value": "#D1A738"
+    },
+    {
+      "name": "update_hdr_setting",
+      "value": "update hdr setting"
+    },
+    {
+      "name": "edit_image_decoding_auto",
+      "value": "AUTO"
+    },
+    {
+      "name": "edit_image_decoding_sdr",
+      "value": "SDR"
+    },
+    {
+      "name": "edit_image_decoding_hdr",
+      "value": "HDR"
     }
   ]
 }

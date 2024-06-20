@@ -1,0 +1,100 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "btn_setting",
+      "value": "btn_setting"
+    },
+    {
+      "name": "btn_dialog_confirm",
+      "value": "btn_dialog_confirm"
+    },
+    {
+      "name": "btn_dialog_cancel",
+      "value": "btn_dialog_cancel"
+    },
+    {
+      "name": "checkbox_brightness",
+      "value": "checkbox_brightness"
+    },
+    {
+      "name": "slider_brightness",
+      "value": "slider_brightness"
+    },
+    {
+      "name": "btn_apply",
+      "value": "btn_apply"
+    },
+    {
+      "name": "btn_reset",
+      "value": "btn_reset"
+    },
+    {
+      "name": "checkbox_contrast",
+      "value": "checkbox_contrast"
+    },
+    {
+      "name": "slider_contrast",
+      "value": "slider_contrast"
+    },
+    {
+      "name": "checkbox_crop",
+      "value": "checkbox_crop"
+    },
+    {
+      "name": "slider_crop",
+      "value": "slider_crop"
+    },
+    {
+      "name": "checkbox_custom",
+      "value": "checkbox_custom"
+    },
+    {
+      "name": "slider_custom",
+      "value": "slider_custom"
+    },
+    {
+      "name": "btn_search_brightness",
+      "value": "btn_search_brightness"
+    },
+    {
+      "name": "filter_info_menu",
+      "value": "filter_info_menu"
+    },
+    {
+      "name": "btn_search_contrast",
+      "value": "btn_search_contrast"
+    },
+    {
+      "name": "btn_search_crop",
+      "value": "btn_search_crop"
+    },
+    {
+      "name": "btn_search_custom",
+      "value": "btn_search_custom"
+    },
+    {
+      "name": "btn_search",
+      "value": "btn_search"
+    },
+    {
+      "name": "menu_category",
+      "value": "menu_category"
+    },
+    {
+      "name": "menu_format",
+      "value": "menu_format"
+    }
+  ]
+}

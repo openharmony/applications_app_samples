@@ -31,7 +31,7 @@ export struct SpeedDialog {
     Column() {
       Text($r('app.string.dialog_play_speed'))
         .fontSize($r('app.float.size_20'))
-        .width("90%")
+        .width('90%')
         .fontColor(Color.Black)
         .textAlign(TextAlign.Start)
         .margin({ top: $r('app.float.size_20'), bottom: $r('app.float.size_12') })
@@ -63,9 +63,9 @@ export struct SpeedDialog {
                   .width('100%')
               }
             }
-            .width("90%")
+            .width('90%')
           }
-          .width("100%")
+          .width('100%')
           .height($r('app.float.size_48'))
           .onClick(() => {
             this.speedSelect = index;
@@ -92,7 +92,7 @@ export struct SpeedDialog {
           })
         })
       }
-      .width("100%")
+      .width('100%')
       .margin({
         top: $r('app.float.size_12')
       })
@@ -111,10 +111,10 @@ export struct SpeedDialog {
       .alignItems(VerticalAlign.Center)
       .height($r('app.float.size_50'))
       .padding({ bottom: $r('app.float.size_5') })
-      .width("100%")
+      .width('100%')
     }
     .alignItems(HorizontalAlign.Center)
-    .width("90%")
+    .width('90%')
     .borderRadius($r('app.float.size_24'))
     .backgroundColor(Color.White)
   }

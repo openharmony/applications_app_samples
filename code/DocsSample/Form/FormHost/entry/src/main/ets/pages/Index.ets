@@ -77,7 +77,8 @@ struct formHostSample {
     supportDimensions: [],
     customizeData: {},
     isDynamic: false,
-    transparencyEnabled: false
+    transparencyEnabled: false,
+    supportedShapes: []
   }
   formInfoRecord: TextCascadePickerRangeContent[] = [];
   pickerBtnMsg: Resource | string = $r('app.string.formType');

@@ -23,6 +23,7 @@ export enum Tasks {
   ADJUST,
   MARK,
   COLORSPACE,
+  HDR,
   NONE = 99
 }
 

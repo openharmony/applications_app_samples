@@ -23,6 +23,7 @@ import emitter from '@ohos.events.emitter';
 import { VideoPanel } from '../components/VideoPanel';
 import common from '@ohos.app.ability.common';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { router } from '@kit.ArkUI';
 
 const PROPORTION = 0.99; // 占屏幕比例
 const SURFACEW = 0.9; // 表面宽比例
@@ -68,7 +69,9 @@ struct Index {
   @State windowWidth: number = 300;
   @State windowHeight: number = 300;
   @State audioTrack: number = 0;
-  @State audioTrackValue: string = "";
+  @State audioTrackValue: string = '';
+  @State subtitleState: number = 0;
+  @State subtitleStateValue: string = '';
   @StorageLink('videoName') videoName: Resource = $r('app.string.video_res_1');
   @StorageLink('videoIndex') videoIndex: number = 0; // 视频索引
 
@@ -96,8 +99,13 @@ struct Index {
     getContext(this).resourceManager.getStringValue($r('app.string.default_track')).then((value: string) => {
       this.audioTrackValue = value;
     }).catch((error: BusinessError) => {
-      console.error("getStringValue promise error is " + error);
+      console.error('getStringValue promise error is ' + error);
     });
+    getContext(this).resourceManager.getStringValue($r('app.string.subtitle_on')).then((value: string) => {
+      this.subtitleStateValue = value
+    }).catch((error: BusinessError) => {
+      console.error('getStringValue promise error is ' + error)
+    })
   }
 
   aboutToDisappear() {
@@ -145,29 +153,50 @@ struct Index {
     }
   }
 
+  getSubtitleText(): string {
+    if (this.avPlayManage) {
+      return this.avPlayManage.getSubTitle()
+    }
+    return ''
+  }
+
   @Builder
   CoverXComponent() {
-    XComponent({ // 装载视频容器
-      id: 'xComponent',
-      type: 'surface',
-      controller: this.xComponentController
-    })
-      .visibility(this.XComponentFlag ? Visibility.Visible : Visibility.Hidden)
-      .onLoad(() => {
-        this.surfaceId = this.xComponentController.getXComponentSurfaceId();
-        this.avPlayManage.initPlayer(getContext(this) as common.UIAbilityContext, this.surfaceId, (avPlayer: media.AVPlayer) => {
-          this.percent = avPlayer.width / avPlayer.height;
-          this.setVideoWH();
-          this.durationTime = this.avPlayManage.getDurationTime();
-          setInterval(() => { // 更新当前时间
-            if (!this.isSwiping) {
-              this.currentTime = this.avPlayManage.getCurrentTime();
-            }
-          }, SET_INTERVAL);
-        })
+    Stack() {
+      XComponent({ // 装载视频容器
+        id: 'xComponent',
+        type: 'surface',
+        controller: this.xComponentController
       })
-      .height(`${this.surfaceH}px`)
-      .width(`${this.surfaceW}px`)
+        .visibility(this.XComponentFlag ? Visibility.Visible : Visibility.Hidden)
+        .onLoad(() => {
+          this.surfaceId = this.xComponentController.getXComponentSurfaceId();
+          this.avPlayManage.initPlayer(getContext(this) as common.UIAbilityContext, this.surfaceId, (avPlayer: media.AVPlayer) => {
+            this.percent = avPlayer.width / avPlayer.height;
+            this.setVideoWH();
+            this.durationTime = this.avPlayManage.getDurationTime();
+            setInterval(() => { // 更新当前时间
+              if (!this.isSwiping) {
+                this.currentTime = this.avPlayManage.getCurrentTime();
+              }
+            }, SET_INTERVAL);
+          })
+        })
+        .height(`${this.surfaceH}px`)
+        .width(`${this.surfaceW}px`)
+
+      // 字幕
+      Column() {
+        Text(this.getSubtitleText())
+          .width(`${this.surfaceW}px`)
+          .margin({ bottom: $r('app.float.size_5')})
+          .fontColor(Color.White)
+          .textAlign(TextAlign.Center)
+      }
+        .justifyContent(FlexAlign.End)
+        .height(`${this.surfaceH}px`)
+        .width(`${this.surfaceW}px`)
+    }
   }
 
   build() {
@@ -195,8 +224,8 @@ struct Index {
         Text(timeConvert(this.currentTime))
           .fontSize($r('app.float.size_24'))
           .opacity($r('app.float.size_1'))
-          .fontColor($r("app.color.slider_selected"))
-        Text("/" + timeConvert(this.durationTime))
+          .fontColor($r('app.color.slider_selected'))
+        Text('/' + timeConvert(this.durationTime))
           .fontSize($r('app.float.size_24'))
           .opacity($r('app.float.size_1'))
           .fontColor(Color.White)
@@ -212,23 +241,71 @@ struct Index {
         .width('100%')
         .justifyContent(FlexAlign.Start)
 
-        // 点击图标设置音频轨道
-        Select(this.avPlayManage.arrList)
-          .id('Select')
-          .selected(this.audioTrack)
-          .value('AudioTrack: ' + this.audioTrackValue)
-          .font({ size: 16, weight: 400 })
-          .visibility(this.avPlayManage.arrList.length > 2 ? Visibility.Visible : Visibility.Hidden)
-          .fontColor(Color.White)
-          .selectedOptionFont({ size: 16, weight: 400 })
-          .optionFont({ size: 16, weight: 400 })
-          .onSelect((index: number, value: string) => {
-            if (this.audioTrack != index) {
-              this.audioTrack = index;
-              this.audioTrackValue = value;
-              this.avPlayManage.setAudioTrack(index);
+        Row() {
+          Row() {
+            Button() {
+              Text($r('app.string.thumbnail_page'))
+                .fontSize(30)
+                .fontWeight(FontWeight.Bold)
             }
-          })
+            .id('Thumbnail_1')
+            .type(ButtonType.Capsule)
+            .backgroundColor('#0D9FFB')
+            .width('60%')
+            .height('5%')
+            .onClick(() => {
+              router.pushUrl({
+                  url: 'pages/ThumbnailGet'
+                }, router.RouterMode.Standard, (err) => {
+                  if (err) {
+                    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+                    return;
+                  }
+                  console.info('pushUrl success');
+                });
+            })
+          }
+          .width('100%')
+        }
+
+        Row() {
+          // 点击图标设置音频轨道
+          Select(this.avPlayManage.arrList)
+            .id('Select')
+            .selected(this.audioTrack)
+            .value('AudioTrack: ' + this.audioTrackValue)
+            .font({ size: 16, weight: 400 })
+            .visibility(this.avPlayManage.arrList.length > 2 ? Visibility.Visible : Visibility.Hidden)
+            .fontColor(Color.White)
+            .selectedOptionFont({ size: 16, weight: 400 })
+            .optionFont({ size: 16, weight: 400 })
+            .onSelect((index: number, value: string) => {
+              if (this.audioTrack != index) {
+                this.audioTrack = index;
+                this.audioTrackValue = value;
+                this.avPlayManage.setAudioTrack(index);
+              }
+            })
+
+          // 点击图标设置字幕开关
+          Select(this.avPlayManage.arrSubTitleList)
+            .id('Select2')
+            .selected(this.subtitleState)
+            .value('Subtitle: ' + this.subtitleStateValue)
+            .font({ size: 16, weight: 400 })
+            .visibility(this.avPlayManage.arrSubTitleList.length > 1 ? Visibility.Visible : Visibility.Hidden)
+            .fontColor(Color.White)
+            .selectedOptionFont({ size: 16, weight: 400 })
+            .optionFont({ size: 16, weight: 400 })
+            .optionWidth(30)
+            .onSelect((index: number, value: string) => {
+              if (this.subtitleState != index) {
+                this.subtitleState = index;
+                this.subtitleStateValue = value;
+                this.avPlayManage.setSubtitleState(index);
+              }
+            })
+        }
         Blank()
 
         Column() {

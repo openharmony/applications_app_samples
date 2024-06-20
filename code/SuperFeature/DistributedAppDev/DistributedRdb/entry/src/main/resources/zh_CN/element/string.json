@@ -17,6 +17,30 @@
       "value": "选择设备"
     },
     {
+      "name": "change_detail",
+      "value": "联系人数据变更通知"
+    },
+    {
+      "name": "change_delete",
+      "value": "删除联系人"
+    },
+    {
+      "name": "change_insert",
+      "value": "新增联系人"
+    },
+    {
+      "name": "change_update",
+      "value": "修改联系人"
+    },
+    {
+      "name": "id",
+      "value": "ID"
+    },
+    {
+      "name": "change_type",
+      "value": "类型"
+    },
+    {
       "name": "cancel",
       "value": "取消"
     },
@@ -51,6 +75,10 @@
     {
       "name": "gender",
       "value": "性别:"
+    },
+    {
+      "name": "gender1",
+      "value": "性别"
     },
     {
       "name": "phone",

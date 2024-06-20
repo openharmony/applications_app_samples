@@ -1,0 +1,128 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "BundleManagement"
+    },
+    {
+      "name": "shortcut",
+      "value": "shortcut"
+    },
+    {
+      "name": "empty",
+      "value": "empty"
+    },
+    {
+      "name": "NewAbility_label",
+      "value": "NewAbility"
+    },
+    {
+      "name": "NewAbility_desc",
+      "value": "NewAbility"
+    },
+    {
+      "name": "bundleManagement",
+      "value": "bundleManagement"
+    },
+    {
+      "name": "interface",
+      "value": "interface"
+    },
+    {
+      "name": "adler_crc_interface",
+      "value": "adler_crc_interface"
+    },
+    {
+      "name": "EntryAbility1_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility1_label",
+      "value": "label"
+    },
+    {
+      "name": "GetBundleInfoCurrentApplication",
+      "value": "GetBundleInfoCurrentApplication"
+    },
+    {
+      "name": "GetBundleInfo",
+      "value": "GetBundleInfo"
+    },
+    {
+      "name": "GetBundleInfoSync",
+      "value": "GetBundleInfoSync"
+    },
+    {
+      "name": "GetConfiguration",
+      "value": "GetConfiguration"
+    },
+    {
+      "name": "GetConfigurationJson",
+      "value": "GetConfigurationJson"
+    },
+    {
+      "name": "GetConfigurationArray",
+      "value": "GetConfigurationArray"
+    },
+    {
+      "name": "GetConfigurationJsonSync",
+      "value": "GetConfigurationJsonSync"
+    },
+    {
+      "name": "VerifyFile",
+      "value": "VerifyFile"
+    },
+    {
+      "name": "DeleteFile",
+      "value": "DeleteFile"
+    },
+    {
+      "name": "VerifyLink",
+      "value": "VerifyLink"
+    },
+    {
+      "name": "VerifyLinkOpened",
+      "value": "VerifyLinkOpened"
+    },
+    {
+      "name": "DetermineDefaultApplications",
+      "value": "DetermineDefaultApplications"
+    },
+    {
+      "name": "DetermineDefaultApplication",
+      "value": "DetermineDefaultApplication"
+    },
+    {
+      "name": "DetermineDefaultApplicationSync",
+      "value": "DetermineDefaultApplicationSync"
+    },
+    {
+      "name": "SetOverlayStatus",
+      "value": "SetOverlayStatus"
+    },
+    {
+      "name": "SetDisableEnableStatus",
+      "value": "SetDisableEnableStatus"
+    },
+    {
+      "name": "ObtainOverlayModuleInfo",
+      "value": "ObtainOverlayModuleInfo"
+    },
+    {
+      "name": "ObtainOverlayModuleInfoInformation",
+      "value": "ObtainOverlayModuleInfoInformation"
+    },
+    {
+      "name": "ObtainMultipleOverlayModuleInfoInformation",
+      "value": "ObtainMultipleOverlayModuleInfoInformation"
+    }
+  ]
+}

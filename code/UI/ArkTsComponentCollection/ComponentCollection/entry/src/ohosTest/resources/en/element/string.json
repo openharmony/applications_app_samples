@@ -2497,6 +2497,10 @@
     {
       "name": "attribute_modifier",
       "value": "AttributeModifier"
+    },
+    {
+      "name": "text_styled_string_title",
+      "value": "Text Styled String"
     }
   ]
 }

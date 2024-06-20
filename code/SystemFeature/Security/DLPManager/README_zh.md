@@ -69,6 +69,35 @@ entry/src/main/ets/
 
 3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400 构建 2023年4月7日)及以上版本才可编译运行。
 
+4.本示例签名时需修改sdk文件夹下`UnsgnedReleasedProfileTemplate.json`文件，如下所示：
+```json
+{
+  "bundle-info": {
+    "developer-id": "OpenHarmony",
+    "distribution-certificate": "",
+    "bundle-name": "com.sample.dlpmanager",
+    "apl": "normal",
+    "app-feature": "hos_system_app"
+  },
+  "acls": {
+    "allowed-acls": [
+      "ohos.permission.MEDIA_LOCATION",
+      "ohos.permission.READ_MEDIA",
+      "ohos.permission.WRITE_MEDIA",
+      "ohos.permission.FILE_ACCESS_MANAGER",
+      "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED",
+      "ohos.permission.ACCESS_DLP_FILE",
+      "ohos.permission.START_INVISIBLE_ABILITY",
+      "ohos.permission.START_ABILITIES_FROM_BACKGROUND",
+      "ohos.permission.ABILITY_BACKGROUND_COMMUNICATION",
+      "ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS",
+      "ohos.permission.MANAGE_LOCAL_ACCOUNTS",
+      "ohos.permission.PROXY_AUTHORIZATION_URI"
+    ]
+  }
+}
+```
+
 ### 下载
 
 如需单独下载本工程，执行如下命令：

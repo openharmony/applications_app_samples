@@ -45,6 +45,17 @@ async function saveEdit() {
   let scale = await driver.findComponent(ON.id('Save'));
   await scale.click();
   await driver.delayMs(1000);
+  // SDK升级到12后，出现保存后加载的弹窗不能自动关闭，导致保存后以后的case找不到控件
+  // 对应解决方法：点击加载后不能关闭的弹窗外的区域，使这个弹窗关闭
+  await driver.delayMs(1000);
+  // 定位不能关闭的弹窗
+  await driver.assertComponentExist(ON.type('Dialog'));
+  let loadingDig = await driver.findComponent(ON.type('Dialog'));
+  // 获取弹窗中心位置
+  let point = await loadingDig.getBoundsCenter();
+  // 点击弹窗顶部空白区域，使其关闭
+  await driver.click(point.x, point.y + 200);
+  await driver.delayMs(1000);
   hilog.info(DOMAIN, TAG, BUNDLE + 'Save_001 end');
 }
 
@@ -495,10 +506,14 @@ export default function ActsAbilityTest() {
       await driver.assertComponentExist(ON.id('TextInput'));
       let input = await driver.findComponent(ON.id('TextInput'));
       await input.inputText('ttt');
-      await driver.delayMs(1000);
+      await driver.delayMs(3000);
       await driver.assertComponentExist(ON.id('Sure'));
       let sure = await driver.findComponent(ON.id('Sure'));
       await sure.click();
+      await driver.delayMs(1000);
+      // SDK升级到12后，确定输入框文字后屏幕下方键盘控件不能自动关闭，导致以后的case找不到控件
+      // 对应解决方法：确定输入框文字后，定位屏幕下方键盘控件关闭按钮的位置(x:709,y:694)，点击键盘控件关闭按钮
+      await driver.click(709,694)
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('Ok'));
       let ok = await driver.findComponent(ON.id('Ok'));
@@ -695,5 +710,99 @@ export default function ActsAbilityTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ColorSpacePhoto_004 end');
     })
 
+    /**
+     * @tc.number  DecodingPhoto_001
+     * @tc.name DecodingPhoto_001
+     * @tc.desc 点击修改hdr设置
+     */
+    it('DecodingPhoto_001', 27, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE+ 'DecodingPhoto_001 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      // 进入编辑
+      await enterEdit();
+      await showColorSpace();
+      let tip: string = getString($r('app.string.setting'));
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text(tip));
+      let setting = await driver.findComponent(ON.text(tip));
+      await setting.click();
+      await driver.delayMs(1000);
+      done();
+      hilog.info(DOMAIN, TAG, BUNDLE + 'DecodingPhoto_001 end');
+    })
+
+    /**
+     * @tc.number  Decoding_001
+     * @tc.name Decoding_001
+     * @tc.desc 点击修改hdr设置 >- 自动
+     */
+    it('Decoding_001', 28, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'Decoding_001 begin');
+      let driver = Driver.create();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('auto'));
+      let auto = await driver.findComponent(ON.id('auto'));
+      await auto.click();
+      await driver.delayMs(1000);
+      // 保存当前编辑
+      await saveEdit();
+      done();
+      hilog.info(DOMAIN, TAG, BUNDLE + 'Decoding_001 end');
+    })
+
+    /**
+     * @tc.number  Decoding_002
+     * @tc.name Decoding_002
+     * @tc.desc 点击修改hdr设置 >- SDR
+     */
+    it('Decoding_002', 29, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'Decoding_002 begin');
+      let driver = Driver.create();
+      // 进入编辑
+      await enterEdit();
+      await showColorSpace();
+      let tip: string = getString($r('app.string.setting'));
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text(tip));
+      let setting = await driver.findComponent(ON.text(tip));
+      await setting.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('sdr'));
+      let sdr = await driver.findComponent(ON.id('sdr'));
+      await sdr.click();
+      await driver.delayMs(1000);
+      // 保存当前编辑
+      await saveEdit();
+      done();
+      hilog.info(DOMAIN, TAG, BUNDLE + 'Decoding_002 end');
+    })
+
+    /**
+     * @tc.number  Decoding_003
+     * @tc.name Decoding_003
+     * @tc.desc 点击修改hdr设置 >- HDR
+     */
+    it('Decoding_003', 30, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'Decoding_003 begin');
+      let driver = Driver.create() ;
+      // 进入编辑
+      await enterEdit();
+      await showColorSpace();
+      let tip: string = getString($r('app.string.setting'));
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text(tip));
+      let setting = await driver.findComponent(ON.text(tip));
+      await setting.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.id('hdr'));
+      let hdr = await driver.findComponent(ON.id('hdr'));
+      await hdr.click();
+      await driver.delayMs(1000);
+      // 保存当前编辑
+      await saveEdit();
+      done();
+      hilog.info(DOMAIN, TAG, BUNDLE + "Decoding_003 end");
+    })
   })
 }

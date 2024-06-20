@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License")
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,12 +16,11 @@
 @Entry
 @Component
 struct Fling {
-  @State message: string = 'Hello World'
-  private swiperController: SwiperController = new SwiperController()
-  private  result = ["jsunit", "uitest", "arkUI", "tdd"]
-  private scroller: Scroller = new Scroller()
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-  // private data: MyDataSource = new MyDataSource([])
+  @State message: string = 'Hello World';
+  private swiperController: SwiperController = new SwiperController();
+  private  result = ["jsunit", "uitest", "arkUI", "tdd"];
+  private scroller: Scroller = new Scroller();
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   build() {
     Row() {
       Column() {
@@ -51,7 +50,7 @@ struct Fling {
         .curve(Curve.Linear)
         .onChange((index: number) => {
           this.message = this.result[index];
-          console.info(index.toString())
+          console.info(index.toString());
         })
         Column(){
           Scroll(this.scroller) {
@@ -89,8 +88,8 @@ struct Fling {
           .edgeEffect(EdgeEffect.None) // 滑动到边缘无效果
           .chainAnimation(false) // 联动特效关闭
           .onScrollIndex((firstIndex: number, lastIndex: number) => {
-            console.info('first' + firstIndex)
-            console.info('last' + lastIndex)
+            console.info('first' + firstIndex);
+            console.info('last' + lastIndex);
           })
         }.height("300").width("100%").backgroundColor("#99FF33")
       }

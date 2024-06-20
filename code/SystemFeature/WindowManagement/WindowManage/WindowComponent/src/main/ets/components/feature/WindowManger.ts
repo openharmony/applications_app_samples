@@ -27,6 +27,7 @@ const WIDTH = 320;
 const HEIGHT = 240;
 const MOVE_X = 10;
 let MOVE_Y = 500;
+let MOVE_Y2 = 300;
 
 class WindowType {
   moveToWidth: number;
@@ -77,7 +78,9 @@ class WindowManger {
       // 加载状态变量
       mainWindow.setWindowSystemBarProperties(sysBarProps);
     });
+  }
 
+  updateDisplay() {
     try {
       const displayClass = display.getDefaultDisplaySync();
       this.windowWidth = displayClass.width;
@@ -87,10 +90,9 @@ class WindowManger {
     } catch (err) {
       Logger.error('Failed to obtain the default display object. Code: ' + JSON.stringify(err));
     }
-    ;
   }
 
-  async initSubWindow(windowStage, windowAttribute) {
+  async initSubWindow(windowStage, windowAttribute, isPortrait) {
     // 创建应用子窗口
     let subWindow = await windowStage.createSubWindow('mySubWindow');
     subWindow.on('avoidAreaChange', ({type, area}) => {
@@ -147,7 +149,12 @@ class WindowManger {
 
     Logger.info('show');
     subWindow.resize(vp2px(WIDTH), vp2px(HEIGHT));
-    subWindow.moveWindowTo(MOVE_X, MOVE_Y); // 移动至坐标x为10，y为500的位置
+    if (isPortrait) {
+      subWindow.moveWindowTo(MOVE_X, MOVE_Y);
+    } else {
+      this.updateDisplay();
+      subWindow.moveWindowTo(MOVE_X, MOVE_Y2);
+    }
     subWindow.setUIContent('pages/SubWindowPage');
     subWindow.setWindowTouchable(true);
     subWindow.showWindow();

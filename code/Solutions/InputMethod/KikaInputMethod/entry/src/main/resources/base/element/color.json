@@ -43,6 +43,10 @@
     {
       "name": "key_item_normal_text",
       "value": "#606060"
+    },
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
     }
   ]
 }

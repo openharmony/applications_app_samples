@@ -19,7 +19,7 @@ import { SpeedDialog } from '../components/SpeedDialog';
 
 @Component
 export struct VideoOperate {
-  @State videoList: Resource[] = [$r('app.string.video_res_1'), $r('app.string.video_res_2'), $r('app.string.video_res_3'), $r('app.string.video_res_4')];
+  @State videoList: Resource[] = [$r('app.string.video_res_1'), $r('app.string.video_res_2'), $r('app.string.video_res_3'), $r('app.string.video_res_4'), $r('app.string.video_res_4')];
   @State speedSelect: number = 0; // 倍速选择
   @Link currentTime: number;
   @Link durationTime: number;
@@ -40,7 +40,7 @@ export struct VideoOperate {
   build() {
     Row() {
       Row() {
-        Image(this.flag ? $r("app.media.ic_video_play") : $r("app.media.ic_video_pause")) // 暂停/播放
+        Image(this.flag ? $r('app.media.ic_video_play') : $r('app.media.ic_video_pause')) // 暂停/播放
           .id('play')
           .width($r('app.float.size_40'))
           .height($r('app.float.size_40'))
@@ -72,7 +72,7 @@ export struct VideoOperate {
           .id('Slider')
           .blockColor(Color.White)
           .trackColor(Color.Gray)
-          .selectedColor($r("app.color.slider_selected"))
+          .selectedColor($r('app.color.slider_selected'))
           .showTips(false)
           .onChange((value: number, mode: SliderChangeMode) => {
             if (this.seekTime !== value) {

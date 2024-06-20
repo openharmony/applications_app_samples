@@ -15,6 +15,7 @@
     "pages/components/textAndInput/spanSample/SpanSample",
     "pages/components/textAndInput/textInputSample/TextInputSample",
     "pages/components/textAndInput/textSample/TextSample",
+    "pages/components/textAndInput/textStyledStringSample/TextStyledStringSample",
     "pages/components/canvas/attributesSample/AttributesSample",
     "pages/components/canvas/methodsSample/MethodsSample",
     "pages/components/canvas/shadowsSample/ShadowsSample",

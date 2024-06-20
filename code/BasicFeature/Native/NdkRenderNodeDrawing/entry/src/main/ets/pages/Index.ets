@@ -13,11 +13,10 @@
  * limitations under the License.
  */
 
-import { NodeController, FrameNode, RenderNode, DrawContext } from "@ohos.arkui.node";
-import { UIContext } from '@ohos.arkui.UIContext';
 import bridge from "libentry.so";
-import image from '@ohos.multimedia.image';
-import resourceManager from '@ohos.resourceManager';
+import { FrameNode, NodeController, RenderNode } from '@kit.ArkUI';
+import { image } from '@kit.ImageKit';
+import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 enum drawType {

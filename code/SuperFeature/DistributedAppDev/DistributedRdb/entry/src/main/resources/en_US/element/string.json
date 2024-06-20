@@ -17,6 +17,30 @@
       "value": "Check device"
     },
     {
+      "name": "change_detail",
+      "value": "Change Detail"
+    },
+    {
+      "name": "change_type",
+      "value": "Change Type"
+    },
+    {
+      "name": "change_delete",
+      "value": "Contract deleted"
+    },
+    {
+      "name": "id",
+      "value": "ID"
+    },
+    {
+      "name": "change_insert",
+      "value": "Contract inserted"
+    },
+    {
+      "name": "change_update",
+      "value": "Contract updated"
+    },
+    {
       "name": "cancel",
       "value": "Cancel"
     },
@@ -55,6 +79,10 @@
     {
       "name": "gender",
       "value": "Gender:"
+    },
+    {
+      "name": "gender1",
+      "value": "Gender"
     },
     {
       "name": "contact_name",
