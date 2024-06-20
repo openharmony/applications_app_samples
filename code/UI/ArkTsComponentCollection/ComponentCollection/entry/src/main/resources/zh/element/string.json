@@ -4992,6 +4992,12 @@
       "value":"onScrollStop"
     },
     {
+      "name": "previous",
+      "value": "上一步"
+    },
+    {
+      "name": "next_step",
+      "value": "下一步"
       "name": "text_styled_string_title",
       "value": "Text 属性字符串"
     },

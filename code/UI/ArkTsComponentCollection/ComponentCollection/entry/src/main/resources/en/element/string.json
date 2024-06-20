@@ -2948,6 +2948,12 @@
       "value": "Polymorphic Styles"
     },
     {
+      "name": "previous",
+      "value": "previous"
+    },
+    {
+      "name": "next_step",
+      "value": "next step"
       "name": "text_styled_string_title",
       "value": "Text Styled String"
     },
