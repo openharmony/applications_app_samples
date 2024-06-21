@@ -1,20 +1,19 @@
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import { describe, it, expect } from '@ohos/hypium';
 import Want from '@ohos.app.ability.Want';
 import Base from '@ohos.base';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import { Driver, ON, UIElementInfo, UIEventObserver } from '@ohos.UiTest';
+import { Driver, ON } from '@ohos.UiTest';
 import { getString } from '../utils/ResourceUtil';
 
 const BUNDLE = 'MindSporeLiteArkTSDemo_';
 const TAG = 'abilityTest';
 const domain: number = 0xF811;
-let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-let resourceManager = abilityDelegator.getAppContext().resourceManager;
 
 export default function abilityTest() {
   let driver: Driver = Driver.create();
   describe('MindSporeLiteArkTSDemoTest', () => {
+    // Defines a test suite. Two parameters are supported: test suite name and test suite function.
     /*
      * @tc.number: MindSporeLiteArkTSDemoTest_000
      * @tc.name: Start Ability
@@ -23,11 +22,11 @@ export default function abilityTest() {
      * @tc.type: Function
      * @tc.level Level 1
      */
-    it(BUNDLE + 'EntryAbility', 0, async (done: Function) => {
+    it('EntryAbility', 0, async (done: Function) => {
       hilog.info(domain, TAG, BUNDLE + 'EntryAbility_001 begin');
       // 开启应用
       let want: Want = {
-        bundleName: 'com.samples.mindsporelite',
+        bundleName: 'com.samples.mindsporelitearktsdemo',
         abilityName: 'EntryAbility'
       };
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -47,7 +46,7 @@ export default function abilityTest() {
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it(BUNDLE + 'IfExists', 0, async (done: Function) => {
+    it('IfExists', 0, async (done: Function) => {
       hilog.info(domain, TAG, BUNDLE + 'IfExists_001 begin');
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('MindSporeLite ArkTS Demo'));
@@ -65,7 +64,7 @@ export default function abilityTest() {
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it(BUNDLE + 'PhotoPredict', 0, async (done: Function) => {
+    it('PhotoPredict', 0, async (done: Function) => {
       hilog.info(domain, TAG, BUNDLE + 'PhotoPredict_001 begin');
       await driver.delayMs(1000);
       // 点击photo按钮

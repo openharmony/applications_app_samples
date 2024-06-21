@@ -15,7 +15,7 @@
 
 {
   "app": {
-    "bundleName": "com.samples.mindsporelite",
+    "bundleName": "com.samples.mindsporelitearktsdemo",
     "vendor": "samples",
     "versionCode": 1000000,
     "versionName": "1.0.0",
