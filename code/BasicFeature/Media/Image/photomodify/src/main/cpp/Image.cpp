@@ -242,13 +242,8 @@ static napi_value packToFileImageSource(napi_env env, napi_callback_info info)
     }
     std::shared_ptr<OH_ImageSourceNative> ptrImgSource(imgSource, OH_ImageSourceNative_Release);
 
-    auto ptrPixelMap = CreatePixelMap(ptrImgSource.get());
-    if (!ptrPixelMap) {
-        return retFailed;
-    }
-
-    errCode = OH_ImagePackerNative_PackToFileFromPixelmap(
-        ptrPacker.get(), ptrOpts.get(), ptrPixelMap.get(), outFD);
+    errCode = OH_ImagePackerNative_PackToFileFromImageSource(
+        ptrPacker.get(), ptrOpts.get(), imgSource, outFD);
     if (errCode != IMAGE_SUCCESS) {
         return retFailed;
     }
@@ -288,14 +283,11 @@ static napi_value packToDataImageSource(napi_env env, napi_callback_info info)
         return retFailed;
     }
     std::shared_ptr<OH_ImageSourceNative> ptrImgSource(imgSource, OH_ImageSourceNative_Release);
-    auto ptrPixelMap = CreatePixelMap(ptrImgSource.get());
-    if (!ptrPixelMap) {
-        return retFailed;
-    }
+
     uint8_t* outBuffer = new uint8_t[DEFAULT_BUFFER_SIZE];
     size_t outBufferSize = 0;
-    errCode = OH_ImagePackerNative_PackToDataFromPixelmap(
-        ptrPacker.get(), ptrOpts.get(), ptrPixelMap.get(), outBuffer, &outBufferSize);
+    errCode = OH_ImagePackerNative_PackToDataFromImageSource(
+        ptrPacker.get(), ptrOpts.get(), imgSource, outBuffer, &outBufferSize);
     if (errCode != IMAGE_SUCCESS) {
         delete [] outBuffer;
         return retFailed;
