@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "UDMFDemo"
+    },
+    {
+      "name": "text_content",
+      "value": "文本内容"
+    },
+    {
+      "name": "UDMF_demo",
+      "value": "UDMFDemo"
+    },
+    {
+      "name": "text_target_content",
+      "value": "目的文本"
+    }
+  ]
+}

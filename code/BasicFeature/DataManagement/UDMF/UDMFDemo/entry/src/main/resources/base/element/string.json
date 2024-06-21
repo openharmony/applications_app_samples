@@ -1,0 +1,29 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "UDMFDemo"
+    },
+    {
+      "name": "text_content",
+      "value": "text Content"
+    },
+    {
+      "name": "UDMF_demo",
+      "value": "UDMFDemo"
+    },
+    {
+      "name": "text_target_content",
+      "value": "text target content"
+    }
+
+  ]
+}
