@@ -2900,34 +2900,6 @@
       "value": "组件标识"
     },
     {
-      "name": "component_blurred",
-      "value": "组件背景模糊"
-    },
-    {
-      "name": "component_blurred_thin",
-      "value": "薄材料"
-    },
-    {
-      "name": "restore_id",
-      "value": "分布式迁移标识"
-    },
-    {
-      "name": "gesture_process",
-      "value": "手势处理"
-    },
-    {
-      "name": "bind_gesture_methods",
-      "value": "绑定手势方法"
-    },
-    {
-      "name": "bind_gesture_priorityGesture",
-      "value": "priorityGesture会忽略text,优先识别父组件column"
-    },
-    {
-      "name": "bind_gesture_parallelGesture",
-      "value": "parallelGesture识别父子组件column，text"
-    },
-    {
       "name": "double_click",
       "value": "单指双击触发"
     },
@@ -4884,6 +4856,1040 @@
       "value":"WaterFlow 属性"
     },
     {
+      "name":"horizontal_reach_start",
+      "value":"横向滚动onReachStart"
+    },
+    {
+      "name":"horizontal_reach_end",
+      "value":"横向滚动onReachEnd"
+    },
+    {
+      "name":"vertical_reach_start",
+      "value":"纵向滚动onReachStart"
+    },
+    {
+      "name":"vertical_reach_end",
+      "value":"纵向滚动onReachEnd"
+    },
+    {
+      "name":"current_initialIndex",
+      "value":"当前initialIndex为:"
+    },
+    {
+      "name":"modify_initialIndex_tips",
+      "value":"修改 initialIndex 后请再次进入本页面查看效果"
+    },
+    {
+      "name":"current_scroll_event",
+      "value":"当前滚动事件为："
+    },
+    {
+      "name":"current_scroll_state",
+      "value":"当前滚动状态为："
+    },
+    {
+      "name":"current_scroll_distance",
+      "value":"本次滚动距离为："
+    },
+    {
+      "name":"current_scroll_index_first",
+      "value":"当前index, first："
+    },
+    {
+      "name":"current_event_value",
+      "value":"无事件"
+    },
+    {
+      "name": "previous",
+      "value": "上一步"
+    },
+    {
+      "name": "next_step",
+      "value": "下一步"
+    },
+    {
+      "name": "text_styled_string_title",
+      "value": "Text 属性字符串"
+    },
+    {
+      "name": "text_mutable_styled_string",
+      "value": "属性字符串"
+    },
+    {
+      "name": "text_mutable_styled_string_start",
+      "value": "下标"
+    },
+    {
+      "name": "text_mutable_styled_string_length",
+      "value": "长度"
+    },
+    {
+      "name": "text_mutable_styled_error",
+      "value": "请输入字符串"
+    },
+    {
+      "name": "text_styled_string_gesture_style",
+      "value": "GestureStyle"
+    },
+    {
+      "name": "prop_bluefont",
+      "value": "#409EFF"
+    },
+    {
+      "name": "prop_orangefont",
+      "value": "#E6A23C"
+    },
+    {
+      "name": "prop_pinkfont",
+      "value": "#F56C6C"
+    },
+    {
+      "name": "size_transition_flex",
+      "value": "Flex"
+    },
+    {
+      "name": "size_transition_grid_item",
+      "value": "GridItem"
+    },
+    {
+      "name": "size_transition_list_item",
+      "value": "ListItem"
+    },
+    {
+      "name": "size_transition_swiper_item",
+      "value": "SwiperItem"
+    },
+    {
+      "name": "size_transition_font_size",
+      "value": "FontSize"
+    },
+    {
+      "name": "size_transition_expansion_tabContent",
+      "value": "TabContent"
+    },
+    {
+      "name": "blur_style_system",
+      "value": "System"
+    },
+    {
+      "name": "blur_style_light",
+      "value": "Light"
+    },
+    {
+      "name": "blur_style_dark",
+      "value": "Dark"
+    },
+    {
+      "name": "blur_style_default",
+      "value": "Default"
+    },
+    {
+      "name": "shadow_type_color",
+      "value": "COLOR"
+    },
+    {
+      "name": "shadow_type_blur",
+      "value": "BLUR"
+    },
+    {
+      "name": "blur_style_average",
+      "value": "Average"
+    },
+    {
+      "name": "background_image_size_cover",
+      "value": "Cover"
+    },
+    {
+      "name": "background_image_size_contain",
+      "value": "Contain"
+    },
+
+    {
+      "name": "background_image_position_top_start",
+      "value": "TopStart"
+    },
+    {
+      "name": "background_image_position_top",
+      "value": "Top"
+    },
+    {
+      "name": "background_image_position_top_end",
+      "value": "TopEnd"
+    },
+    {
+      "name": "background_image_position_start",
+      "value": "Top"
+    },
+    {
+      "name": "background_image_position_center",
+      "value": "Center"
+    },
+    {
+      "name": "background_image_position_end",
+      "value": "End"
+    },
+    {
+      "name": "background_image_position_bottom_start",
+      "value": "BottomStart"
+    },
+    {
+      "name": "background_image_position_bottom",
+      "value": "Bottom"
+    },
+
+    {
+      "name": "background_image_position_bottom_end",
+      "value": "BottomEnd"
+    },
+    {
+      "name": "date_picker_dialog_datetimeone",
+      "value": "2022-10-01"
+    },
+    {
+      "name": "date_picker_dialog_datetimetwo",
+      "value": "1970-1-1"
+    },
+    {
+      "name": "date_picker_dialog_datetimethree",
+      "value": "2100-12-31"
+    },
+    {
+      "name": "divider_color_blue",
+      "value": "Blue"
+    },
+    {
+      "name": "divider_color_green",
+      "value": "Green"
+    },
+    {
+      "name": "divider_color_orange",
+      "value": "Orange"
+    },
+    {
+      "name": "divider_color_pink",
+      "value": "Pink"
+    },
+    {
+      "name": "divider_line_type_butt",
+      "value": "Butt"
+    },
+    {
+      "name": "divider_line_type_round",
+      "value": "Round"
+    },
+    {
+      "name": "divider_line_type_square",
+      "value": "Square"
+    },
+    {
+      "name": "save_area_input_text",
+      "value": "input your word ..."
+    },
+    {
+      "name": "safe_area_edge_top",
+      "value": "TOP"
+    },
+    {
+      "name": "safe_area_edge_bottom",
+      "value": "BOTTOM"
+    },
+    {
+      "name": "safe_area_edge_start",
+      "value": "START"
+    },
+    {
+      "name": "safe_area_edge_end",
+      "value": "END"
+    },
+    {
+      "name": "safe_area_type_system",
+      "value": "SYSTEM"
+    },
+    {
+      "name": "safe_area_type_cutout",
+      "value": "CUTOUT"
+    },
+    {
+      "name": "safe_area_type_keyboard",
+      "value": "KEYBOARD"
+    },
+    {
+      "name": "span_decoration_none",
+      "value": "None"
+    },
+    {
+      "name": "span_decoration_linethrough",
+      "value": "LineThrough"
+    },
+    {
+      "name": "span_decoration_underline",
+      "value": "Underline"
+    },
+    {
+      "name": "span_decoration_overline",
+      "value": "Overline"
+    },
+    {
+      "name": "text_content_en",
+      "value": "Steel is tempered in fire and sharp cooling, so it can be hard and not afraid of anything. It is also in this way that our generation has been tempered in struggles and terrible trials, learning not to succumb to life."
+    },
+    {
+      "name": "text_content_en_first",
+      "value": "Steel is tempered in fire and sharp cooling, so it can be hard and not afraid of anything. "
+    },
+    {
+      "name": "text_content_en_last",
+      "value": "It is also in this way that our generation has been tempered in struggles and terrible trials, learning not to succumb to life. "
+    },
+    {
+      "name": "time_picker_options_usemilitarytime",
+      "value": "useMilitaryTime"
+    },
+    {
+      "name": "time_picker_dialog_timeone",
+      "value": "00:00"
+    },
+    {
+      "name": "time_picker_dialog_timetwo",
+      "value": "10/01/2022 12:00"
+    },
+    {
+      "name": "components_interaction_menuone",
+      "value": "Menu Item 1"
+    },
+    {
+      "name": "components_interaction_menutwo",
+      "value": "Menu Item 2"
+    },
+    {
+      "name": "components_interaction_menuthree",
+      "value": "Menu Item 3"
+    },
+    {
+      "name": "components_interaction_menufour",
+      "value": "Menu Item 4"
+    },
+    {
+      "name": "components_interaction_clicktextone",
+      "value": "Background"
+    },
+    {
+      "name": "components_interaction_clicktexttwo",
+      "value": "Forground"
+    },
+    {
+      "name": "components_interaction_clicktextthree",
+      "value": "Forground Child"
+    },
+    {
+      "name": "components_interaction_hittestbehavior",
+      "value": "hitTestBehavior:"
+    },
+    {
+      "name": "components_interaction_hovereffect",
+      "value": "hoverEffect"
+    },
+    {
+      "name": "components_display_content",
+      "value": "ABCDEFG abcdefg"
+    },
+    {
+      "name": "components_display_center",
+      "value": "center"
+    },
+    {
+      "name": "components_display_topstart",
+      "value": "top start"
+    },
+    {
+      "name": "components_display_topend",
+      "value": "top end"
+    },
+    {
+      "name": "components_display_top",
+      "value": "top"
+    },
+    {
+      "name": "components_display_start",
+      "value": "start"
+    },
+    {
+      "name": "components_display_end",
+      "value": "end"
+    },
+    {
+      "name": "components_display_bottomstart",
+      "value": "bottom start"
+    },
+    {
+      "name": "components_display_bottom",
+      "value": "bottom"
+    },
+    {
+      "name": "components_display_bottomend",
+      "value": "bottom end"
+    },
+    {
+      "name": "components_display_none",
+      "value": "None"
+    },
+    {
+      "name": "components_display_hidden",
+      "value": "Hidden"
+    },
+    {
+      "name": "components_display_visible",
+      "value": "Visible"
+    },
+    {
+      "name": "side_bar_type_embed",
+      "value": "Embed"
+    },
+    {
+      "name": "side_bar_type_overlay",
+      "value": "Overlay"
+    },
+    {
+      "name": "side_bar_type_auto",
+      "value": "Auto"
+    },
+    {
+      "name": "auxiliary_refresh_offset",
+      "value": "offset:"
+    },
+    {
+      "name": "auxiliary_refresh_minvalue",
+      "value": "0"
+    },
+    {
+      "name": "auxiliary_refresh_maxvalue",
+      "value": "100"
+    },
+    {
+      "name": "auxiliary_refresh_friction",
+      "value": "friction:"
+    },
+    {
+      "name": "marquee_src",
+      "value": "Hello ArkUI String Length Larger Than Content"
+    },
+    {
+      "name": "marquee_fromstart",
+      "value": "fromStart"
+    },
+    {
+      "name": "marquee_step",
+      "value": "step"
+    },
+    {
+      "name": "marquee_loop",
+      "value": "loop"
+    },
+    {
+      "name": "text_timer_start",
+      "value": "start"
+    },
+    {
+      "name": "text_timer_pause",
+      "value": "pause"
+    },
+    {
+      "name": "text_timer_reset",
+      "value": "reset"
+    },
+    {
+      "name": "text_timer_iscountdown",
+      "value": "isCountDown"
+    },
+    {
+      "name": "text_timer_timeformatone",
+      "value": "mm:ss:SS"
+    },
+    {
+      "name": "text_timer_groupformat",
+      "value": "format"
+    },
+    {
+      "name": "text_timer_timeformattwo",
+      "value": "HH:mm:ss"
+    },
+    {
+      "name": "text_timer_timeformatthree",
+      "value": "DD-HH-mm-ss.SSS"
+    },
+    {
+      "name": "text_clock_start",
+      "value": "start"
+    },
+    {
+      "name": "text_clock_stop",
+      "value": "stop"
+    },
+    {
+      "name": "text_clock_timeformatone",
+      "value": "HH:mm:ss"
+    },
+    {
+      "name": "text_clock_groupformat",
+      "value": "format"
+    },
+    {
+      "name": "text_clock_timeformattwo",
+      "value": "yy:MM:dd"
+    },
+    {
+      "name": "text_clock_timeformatthree",
+      "value": "hh-mm-ss"
+    },
+    {
+      "name": "gauge_value",
+      "value": "value"
+    },
+    {
+      "name": "gauge_strokewidth",
+      "value": "strokeWidth"
+    },
+    {
+      "name": "gauge_startangle",
+      "value": "startAngle"
+    },
+    {
+      "name": "gauge_endangle",
+      "value": " endAngle"
+    },
+    {
+      "name": "checkbox_title",
+      "value": "Checkbox"
+    },
+    {
+      "name": "checkbox_checkbox1",
+      "value": "Checkbox1"
+    },
+    {
+      "name": "checkbox_checkbox2",
+      "value": "Checkbox2"
+    },
+    {
+      "name": "checkbox_checkbox3",
+      "value": "Checkbox3"
+    },
+    {
+      "name": "checkbox_checkgroup",
+      "value": "checkboxGroup"
+    },
+    {
+      "name": "checkbox_checkgroup_title",
+      "value": "CheckboxGroup"
+    },
+    {
+      "name": "rating_options_indicator",
+      "value": "indicator"
+    },
+    {
+      "name": "rating_options_value",
+      "value": "value"
+    },
+    {
+      "name": "rating_options_stars",
+      "value": "stars"
+    },
+    {
+      "name": "rich_editor_style",
+      "value": "样式"
+    },
+    {
+      "name": "rich_editor_title",
+      "value": "RichEditor"
+    },
+    {
+      "name": "alphabetindexer_selectedcolor_selectedcolor",
+      "value": "selectedColor"
+    },
+    {
+      "name": "alphabetindexer_selectedcolor_selectedbgcolor",
+      "value": "selectedBackColor"
+    },
+    {
+      "name": "alphabetindexer_selectedcolor_popupcolor",
+      "value": "popupColor"
+    },
+    {
+      "name": "alphabetindexer_selectedcolor_popupbackground",
+      "value": "popupBackground"
+    },
+    {
+      "name": "alphabetindexer_selectedcolor_usingpopup",
+      "value": "usingPopup"
+    },
+    {
+      "name": "panel_radio_groupname",
+      "value": "fruit"
+    },
+    {
+      "name": "checkbox_apple",
+      "value": "Apple"
+    },
+    {
+      "name": "checkbox_banbana",
+      "value": "Banana"
+    },
+    {
+      "name": "checkbox_cherries",
+      "value": "Cherries"
+    },
+    {
+      "name": "checkbox_durian",
+      "value": "Durian"
+    },
+    {
+      "name": "size_size_description_one",
+      "value": "宽高为100vp"
+    },
+    {
+      "name": "size_size_description_two",
+      "value": "宽高为100%"
+    },
+    {
+      "name": "focus_control_group1",
+      "value": "Group1"
+    },
+    {
+      "name": "focus_control_group2",
+      "value": "Group2"
+    },
+    {
+      "name": "focus_control_group3",
+      "value": "Group3"
+    },
+    {
+      "name": "focus_control_input",
+      "value": "Input"
+    },
+    {
+      "name": "component_id_onKeyTab",
+      "value": "OnKeyTab"
+    },
+    {
+      "name": "component_id_click",
+      "value": "Click to start"
+    },
+    {
+      "name": "component_id_longClick",
+      "value": "LongClick"
+    },
+    {
+      "name": "component_id_onTouch",
+      "value": "OnTouch"
+    },
+    {
+      "name": "component_id_onMouse",
+      "value": "OnMouse"
+    },
+    {
+      "name": "component_id_click_text",
+      "value": "Button 'click to start' is clicked"
+    },
+    {
+      "name": "component_id_longClick_text",
+      "value": "Button 'longClick' is longClicked"
+    },
+    {
+      "name": "component_id_onTouch_text",
+      "value": "Button 'onTouch' is clicked"
+    },
+    {
+      "name": "component_id_onMouse_text",
+      "value": "Button 'onMouse' in onMouse"
+    },
+    {
+      "name": "component_blurred",
+      "value": "组件背景模糊"
+    },
+    {
+      "name": "component_blurred_thin",
+      "value": "薄材料"
+    },
+    {
+      "name": "restore_id",
+      "value": "分布式迁移标识"
+    },
+    {
+      "name": "gesture_process",
+      "value": "手势处理"
+    },
+    {
+      "name": "bind_gesture_methods",
+      "value": "绑定手势方法"
+    },
+    {
+      "name": "bind_gesture_priorityGesture",
+      "value": "priorityGesture会忽略text,优先识别父组件column"
+    },
+    {
+      "name": "bind_gesture_parallelGesture",
+      "value": "parallelGesture识别父子组件column，text"
+    },
+    {
+      "name": "bind_gesture_tapGesture",
+      "value": "TapGesture:"
+    },
+    {
+      "name": "bind_gesture_text",
+      "value": "\nText"
+    },
+    {
+      "name": "bind_gesture_column",
+      "value": "\nColumn"
+    },
+    {
+      "name": "onAction",
+      "value": "onAction:"
+    },
+    {
+      "name": "long_press",
+      "value": "单指长按文本"
+    },
+    {
+      "name": "pan_offset",
+      "value": "PanGesture offset:\nX:"
+    },
+    {
+      "name": "pan_offset_y",
+      "value": "\nY:"
+    },
+    {
+      "name": "pinch_center",
+      "value": "PinchGesture center:\nx:"
+    },
+    {
+      "name": "rotation_text",
+      "value": "RotationGesture \n angle:"
+    },
+    {
+      "name": "swipe_text_speed",
+      "value": "SwipeGesture\n speed:"
+    },
+    {
+      "name": "swipe_text_angle",
+      "value": "SwipeGesture\n angle"
+    },
+    {
+      "name": "combinded_pan_start",
+      "value": "Pan start"
+    },
+    {
+      "name": "combinded_pan_update",
+      "value": "Pan update"
+    },
+    {
+      "name": "combinded_pan_end",
+      "value": "Pan end"
+    },
+    {
+      "name": "combinded_longPress_onAction",
+      "value": "LongPress onAction"
+    },
+    {
+      "name": "combinded_longPress_end",
+      "value": "LongPress end"
+    },
+    {
+      "name": "combinded_sequence",
+      "value": "sequence gesture\n"
+    },
+    {
+      "name": "combinded_longPress",
+      "value": "LongPress onAction:"
+    },
+    {
+      "name": "combinded_offset",
+      "value": "\nPanGesture offset:\nX:"
+    },
+    {
+      "name": "combinded_x",
+      "value": "\nX:"
+    },
+    {
+      "name": "key_press_keyType",
+      "value": "KeyType:"
+    },
+    {
+      "name": "key_press_keyCode",
+      "value": "\nkeyCode:"
+    },
+    {
+      "name": "key_press_keyText",
+      "value": "\nkeyText:"
+    },
+    {
+      "name": "key_press_down",
+      "value": "Down"
+    },
+    {
+      "name": "key_press_up",
+      "value": "Up"
+    },
+    {
+      "name": "componentId_longClick",
+      "value": "longClick"
+    },
+    {
+      "name": "componentId_onTouch",
+      "value": "onTouch"
+    },
+    {
+      "name": "componentId_onMouse",
+      "value": "onMouse"
+    },
+    {
+      "name": "flex_auto",
+      "value": "auto"
+    },
+    {
+      "name": "canvas_fillStyle",
+      "value": "fillStyle"
+    },
+    {
+      "name": "canvas_lineWidth",
+      "value": "lineWidth"
+    },
+    {
+      "name": "canvas_strokeStyle",
+      "value": "strokeStyle"
+    },
+    {
+      "name": "canvas_lineCap",
+      "value": "lineCap"
+    },
+    {
+      "name": "canvas_lineJoin",
+      "value": "lineJoin"
+    },
+    {
+      "name": "canvas_miterLimit",
+      "value": "miterLimit"
+    },
+    {
+      "name": "canvas_font",
+      "value": "font"
+    },
+    {
+      "name": "canvas_textAlign",
+      "value": "textAlign"
+    },
+    {
+      "name": "canvas_textBaseline",
+      "value": "textBaseline"
+    },
+    {
+      "name": "canvas_globalAlpha",
+      "value": "globalAlpha"
+    },
+    {
+      "name": "canvas_lineDashOffset",
+      "value": "lineDashOffset"
+    },
+    {
+      "name": "canvas_globalCompositeOperation",
+      "value": "globalCompositeOperation"
+    },
+    {
+      "name": "canvas_imageSmoothingEnabled",
+      "value": "imageSmoothingEnabled"
+    },
+    {
+      "name": "canvas_createLinearGradient",
+      "value": "createLinearGradient"
+    },
+    {
+      "name": "cavas_createRadialGradient",
+      "value": "createRadialGradient"
+    },
+    {
+      "name": "canvas_createRadialGradient",
+      "value": "createRadialGradient"
+    },
+    {
+      "name": "canvas_fillRect",
+      "value": "fillRect"
+    },
+    {
+      "name": "canvas_strokeRect",
+      "value": "strokeRect"
+    },
+    {
+      "name": "canvas_fillText",
+      "value": "fillText"
+    },
+    {
+      "name": "canvas_strokeText",
+      "value": "strokeText"
+    },
+    {
+      "name": "canvas_measureText",
+      "value": "measureText"
+    },
+    {
+      "name": "canvas_stroke",
+      "value": "stroke"
+    },
+    {
+      "name": "canvas_createPattern",
+      "value": "createPattern"
+    },
+    {
+      "name": "canvas_fill",
+      "value": "fill"
+    },
+    {
+      "name": "canvas_clip",
+      "value": "clip"
+    },
+    {
+      "name": "canvas_rotate",
+      "value": "rotate"
+    },
+    {
+      "name": "canvas_scale",
+      "value": "scale"
+    },
+    {
+      "name": "canvas_drawImage",
+      "value": "drawImage"
+    },
+    {
+      "name": "canvas_getImageData",
+      "value": "getImageData"
+    },
+    {
+      "name": "canvas_putImageData",
+      "value": "putImageData"
+    },
+    {
+      "name": "canvas_setLineDash",
+      "value": "setLineDash"
+    },
+    {
+      "name": "canvas_getLineDash",
+      "value": "getLineDash"
+    },
+    {
+      "name": "canvas_transferFromImageBitmap",
+      "value": "transferFromImageBitmap"
+    },
+    {
+      "name": "canvas_toDataURL",
+      "value": "toDataURL"
+    },
+    {
+      "name": "cavnas_clearRect",
+      "value": "clearRect"
+    },
+    {
+      "name": "canvas_clearRect",
+      "value": "clearRect"
+    },
+    {
+      "name": "canvas_shadowBlur",
+      "value": "shadowBlur"
+    },
+    {
+      "name": "canvas_shadowColor",
+      "value": "shadowColor"
+    },
+    {
+      "name": "canvas_shadowOffsetX",
+      "value": "shadowOffsetX"
+    },
+    {
+      "name": "canvas_shadowOffsetY",
+      "value": "shadowOffsetY"
+    },
+    {
+      "name": "canvas_addColorStop",
+      "value": "addColorStop"
+    },
+    {
+      "name": "canvas_beginPath",
+      "value": "beginPath"
+    },
+    {
+      "name": "canvas_moveTo",
+      "value": "moveTo"
+    },
+    {
+      "name": "canvas_lineTo",
+      "value": "lineTo"
+    },
+    {
+      "name": "canvas_closePath",
+      "value": "closePath"
+    },
+    {
+      "name": "canvas_bezierCurveTo",
+      "value": "bezierCurveTo"
+    },
+    {
+      "name": "canvas_quadraticCurveTo",
+      "value": "quadraticCurveTo"
+    },
+    {
+      "name": "canvas_arc",
+      "value": "arc"
+    },
+    {
+      "name": "canvas_arcTo",
+      "value": "arcTo"
+    },
+    {
+      "name": "canvas_ellipse",
+      "value": "ellipse"
+    },
+    {
+      "name": "canvas_rect",
+      "value": "rect"
+    },
+    {
+      "name": "canvas_transform",
+      "value": "transform"
+    },
+    {
+      "name": "canvas_setTransform",
+      "value": "setTransform"
+    },
+    {
+      "name": "canvas_translate",
+      "value": "translate"
+    },
+    {
+      "name": "canvas_imageSmoothingQuality",
+      "value": "imageSmoothingQuality"
+    },
+    {
+      "name": "navigator_title",
+      "value": "Navigator"
+    },
+    {
+      "name": "component_id_press_to_see_attributeModifier",
+      "value": "按压按钮查看状态变化"
+    },
+    {
+      "name": "component_id_click_to_see_attributeModifier",
+      "value": "点击按钮查看状态变化"
+    },
+    {
+      "name": "component_id_disable_to_see_attributeModifier",
+      "value": "禁用按钮查看状态变化"
+    },
+    {
+      "name": "component_id_disable_radio",
+      "value": "禁用"
+    },
+    {
+      "name": "component_id_press_list_to_see_attributeModifier",
+      "value": "按压列表选项查看状态变化"
+    },
+    {
       "name":"water_flow_controller_scrollEdge",
       "value":"scrollEdge"
     },
@@ -4928,52 +5934,8 @@
       "value":"None"
     },
     {
-      "name":"horizontal_reach_start",
-      "value":"横向滚动onReachStart"
-    },
-    {
-      "name":"horizontal_reach_end",
-      "value":"横向滚动onReachEnd"
-    },
-    {
-      "name":"vertical_reach_start",
-      "value":"纵向滚动onReachStart"
-    },
-    {
-      "name":"vertical_reach_end",
-      "value":"纵向滚动onReachEnd"
-    },
-    {
-      "name":"current_initialIndex",
-      "value":"当前initialIndex为:"
-    },
-    {
-      "name":"modify_initialIndex_tips",
-      "value":"修改 initialIndex 后请再次进入本页面查看效果"
-    },
-    {
-      "name":"current_scroll_event",
-      "value":"当前滚动事件为："
-    },
-    {
-      "name":"current_scroll_state",
-      "value":"当前滚动状态为："
-    },
-    {
-      "name":"current_scroll_distance",
-      "value":"本次滚动距离为："
-    },
-    {
-      "name":"current_scroll_index_first",
-      "value":"当前index, first："
-    },
-    {
       "name":"current_scroll_index_last",
       "value":", last："
-    },
-    {
-      "name":"current_event_value",
-      "value":"无事件"
     },
     {
       "name":"current_event_on_scroll",
@@ -4992,34 +5954,8 @@
       "value":"onScrollStop"
     },
     {
-      "name": "previous",
-      "value": "上一步"
-    },
-    {
-      "name": "next_step",
-      "value": "下一步"
-      "name": "text_styled_string_title",
-      "value": "Text 属性字符串"
-    },
-    {
-      "name": "text_mutable_styled_string",
-      "value": "属性字符串"
-    },
-    {
-      "name": "text_mutable_styled_string_start",
-      "value": "下标"
-    },
-    {
-      "name": "text_mutable_styled_string_length",
-      "value": "长度"
-    },
-    {
-      "name": "text_mutable_styled_error",
-      "value": "请输入字符串"
-    },
-    {
-      "name": "text_styled_string_gesture_style",
-      "value": "GestureStyle"
+      "name": "panel_background_color",
+      "value": "#ffffff"
     }
   ]
 }
