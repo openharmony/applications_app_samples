@@ -96,7 +96,7 @@ function toSuffixExpression(expression) {
       } else {
         topOperator = operatorStack[operatorStack.length - 1]
         if (!isGrouping(topOperator) && !isPrioritized(element, topOperator)) {
-          while (operatorStack.length) {
+          while (operatorStack.length && !isPrioritized(element, operatorStack[operatorStack.length - 1])) {
             suffixExpression.push(operatorStack.pop())
           }
         }
