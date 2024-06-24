@@ -62,7 +62,7 @@
     },
     {
       "name": "GetConfiguration",
-      "value": "获取配置"
+      "value": "获取module.json配置"
     },
     {
       "name": "GetConfigurationJson",
