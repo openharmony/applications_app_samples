@@ -41,7 +41,7 @@ struct Index {
         {
           text: $r('app.string.GetBundleInfo'),
           callback: () => {
-            let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
+            let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION;
             try {
               bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
                 hilog.info(DOMAIN_NUMBER, TAG, 'getBundleInfoForSelf success. Data: %{public}s',
