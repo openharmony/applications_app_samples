@@ -100,7 +100,8 @@ struct PanelSample {
       }
       .mode(this.miniPanelMode)
       .type(PanelType.Minibar)
-      .borderWidth(1)
+      .backgroundColor($r('app.string.panel_background_color'))
+      .borderWidth(0)
       .borderRadius(24)
 
       Panel(this.foldableShow) {
@@ -125,7 +126,8 @@ struct PanelSample {
         this.panelMode = mode
       })
       .mode(this.panelMode)
-      .borderWidth(1)
+      .backgroundColor($r('app.string.panel_background_color'))
+      .borderWidth(0)
       .borderRadius(24)
 
       Panel(this.temporaryShow) {
@@ -150,7 +152,8 @@ struct PanelSample {
         this.panelMode = mode
       })
       .type(PanelType.Temporary)
-      .borderWidth(1)
+      .backgroundColor($r('app.string.panel_background_color'))
+      .borderWidth(0)
       .borderRadius(24)
 
     }
