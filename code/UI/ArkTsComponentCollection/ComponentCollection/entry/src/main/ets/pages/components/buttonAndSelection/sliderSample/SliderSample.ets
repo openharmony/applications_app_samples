@@ -42,6 +42,7 @@ struct SliderSample {
   @State selectColor: string = '#FF0A59F7'
   @State trackColor: string = '#19000000'
   @State trackThickness: number = 5
+  @State sliderValue: number = 0;
   private steps: string[] = ['10', '20', '30', '40', '50', '60', '70', '80', '90']
   private changeModes: Resource[] = [$r('app.string.slider_event_begin'), $r('app.string.slider_event_moving'),
   $r('app.string.slider_event_end'), $r('app.string.slider_event_click')]
@@ -103,16 +104,19 @@ struct SliderSample {
           IntroductionTitle({ introduction: $r('app.string.slider_step_tip') })
           Column() {
             Slider({
-              value: 10,
+              value: this.sliderValue,
               step: 10,
               min: 10,
               max: 90,
               style: SliderStyle.OutSet
             })
               .width('100%')
-              .showTips(true)
+              .showTips(true, this.sliderValue.toString())
               .showSteps(true)
               .padding({ left: 12, right: 12 })
+              .onChange((value) => {
+                this.sliderValue = value;
+              })
 
             Row() {
               ForEach(this.steps, (item: string) => {
