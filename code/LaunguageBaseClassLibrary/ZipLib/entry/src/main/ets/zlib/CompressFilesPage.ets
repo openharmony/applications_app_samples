@@ -20,6 +20,7 @@ import { promptAction, router } from '@kit.ArkUI';
 import { zlib } from '@kit.BasicServicesKit';
 import fileio from '@ohos.fileio';
 import { AddDialog } from '../common/AddDialog';
+import { DeleteDialog } from '../common/DeleteDialog';
 import { ZipLibSource } from '../model/DataSource';
 
 const DOMAIN = 0xF811;
@@ -34,6 +35,7 @@ struct CompressFilesPage {
   @State files: ZipLibSource = new ZipLibSource([]);
   @State fileName: string = '';
   @State slectFileName: string[] = [];
+  @State zipFileNames: string[] = [];
   @State fileContent: string = '';
   @State fileNumber: number = 0;
   @State isSelect: boolean = false;
@@ -63,6 +65,28 @@ struct CompressFilesPage {
     }),
     autoCancel: true,
   })
+  private deleteDialogController: CustomDialogController = new CustomDialogController({
+    builder: DeleteDialog({
+      fileNames: this.zipFileNames,
+      isInserted: this.isInserted,
+      deleteFiles: async (isInserted: boolean, fileNames: Array<string>) => {
+        hilog.info(DOMAIN, TAG, BUNDLE + `enter the deleteFiles`);
+        if (!isInserted) {
+          return;
+        }
+        for (let index = 0; index < this.files.fileData.length; index++) {
+          for (let i = 0; i < this.zipFileNames.length; i++) {
+            if (this.zipFileNames[i] == this.files.fileData[index]) {
+              this.files.deleteData(index);
+              await fileList.put('fileNames', JSON.stringify(this.files.fileData));
+              await fileList.flush();
+            }
+          }
+        }
+      }
+    }),
+    autoCancel: true,
+  })
 
   async aboutToAppear() {
     fileList = await preferences.getPreferences(getContext(this), 'fileList');
@@ -81,6 +105,7 @@ struct CompressFilesPage {
     let zipFiles = Array.from(files);
     hilog.debug(DOMAIN, TAG, BUNDLE + `zipFile = ${zipFiles}`);
     let newName = `test_` + this.fileNumber + `.zip`;
+    this.zipFileNames.push(newName);
     let zipOutFile = `${this.path}/${newName}`;
     hilog.debug(DOMAIN, TAG, BUNDLE + `zipOutFile = ${zipOutFile}`);
 
@@ -131,13 +156,24 @@ struct CompressFilesPage {
               .fontWeight(FontWeight.Bold)
           }
 
-          Image($r('app.media.add'))
-            .size({ height: '71%' })
-            .id('addFile')
-            .objectFit(ImageFit.Contain)
-            .onClick(() => {
-              this.dialogController.open();
-            })
+          Row() {
+            Image($r('app.media.icon_delete'))
+              .size({ height: '71%' })
+              .id('deleteFile')
+              .objectFit(ImageFit.Contain)
+              .onClick(() => {
+                this.deleteDialogController.open();
+              })
+
+            Image($r('app.media.add'))
+              .size({ height: '71%' })
+              .id('addFile')
+              .margin({ left: '3%' })
+              .objectFit(ImageFit.Contain)
+              .onClick(() => {
+                this.dialogController.open();
+              })
+          }
         }
         .justifyContent(FlexAlign.SpaceBetween)
         .width('91%')

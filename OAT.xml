@@ -769,6 +769,7 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/entry/src/main/resources/base/media/add.png" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
 				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/entry/src/main/resources/base/media/zip.png" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
 				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/entry/src/main/resources/base/media/icon.png" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
+				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/entry/src/main/resources/base/media/icon_delete.png" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
 			</filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加License头"/>
