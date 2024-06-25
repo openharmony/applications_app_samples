@@ -673,6 +673,14 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/UIExtensionAbility/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/ApplicationModels/UIExtensionAbility"/>
 				<filteritem type="filepath" name="code/BasicFeature/Native/Audio/screenshots/device/AudioVivid.jpg" desc="Provided by code/BasicFeature/Native/Audio"/>
 				<filteritem type="filepath" name="code/BasicFeature/Native/Audio/screenshots/device/index.jpg" desc="Provided by code/BasicFeature/Native/Audio"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Audio/OHAudio/screenshots/device/record.jpeg" desc="Provided by code/DocsSample/Media/Audio/OHAudio"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Audio/OHAudio/screenshots/device/play.jpeg" desc="Provided by code/DocsSample/Media/Audio/OHAudio"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Audio/OHAudio/screenshots/device/AudioVivid.jpg" desc="Provided by code/DocsSample/Media/Audio/OHAudio"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Audio/OHAudio/screenshots/device/index.jpg" desc="Provided by code/DocsSample/Media/Audio/OHAudio"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Audio/OHAudio/AppScope/resources/base/media/app_icon.png" desc="Provided by code/DocsSample/Media/Audio/OHAudio"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Audio/OHAudio/entry/src/main/resources/base/media/icon.png" desc="Provided by code/DocsSample/Media/Audio/OHAudio"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Audio/OHAudio/entry/src/main/resources/base/media/pic_Audiovivid.png" desc="Provided by code/DocsSample/Media/Audio/OHAudio"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Audio/OHAudio/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/DocsSample/Media/Audio/OHAudio"/>
 				<filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmonyProfileDebug.pem" desc="Provided by code/Project/HapBuild"/>
 	        <filteritem type="filepath" name="code/BasicFeature/ApplicationModels/BundleManager/BundleManagement/libraryOverlay/src/main/resources/base/media/icon.png" desc="Provided by code/BasicFeature/ApplicationModels/BundleManager/BundleManagement"/>
                 <filteritem type="filepath" name="code/BasicFeature/ApplicationModels/BundleManager/BundleManagement/sceenshots/device/snapshot_directory.png" desc="Provided by code/BasicFeature/ApplicationModels/BundleManager/BundleManagement"/>
