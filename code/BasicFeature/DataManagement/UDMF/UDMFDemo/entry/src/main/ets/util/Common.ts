@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2024 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,45 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-import type { Permissions } from '@ohos.abilityAccessCtrl';
-// import { describe, it, expect } from '@ohos/hypium';
 import util from '@ohos.util';
-import { logger } from '../util/Logger';
 
 const INDEX: number = 2; // 序号
 const SLEEP_TIME: number = 10; // 睡眠时间
 const RADIX: number = 16; // parInt第二个参数值
-
-// ############################################# 应用授权 ##########################################################
-/*
- {
-    "name": "ohos.permission.DISTRIBUTED_DATASYNC"
-  },
- * */
-export function reqPermissions(context): void {
-  let atManager = abilityAccessCtrl.createAtManager();
-  const permissions: Array<Permissions> = [
-    'ohos.permission.READ_MEDIA',
-    'ohos.permission.WRITE_MEDIA',
-    'ohos.permission.MEDIA_LOCATION',
-    'ohos.permission.DISTRIBUTED_DATASYNC'
-  ];
-  atManager.requestPermissionsFromUser(context, permissions).then((data) => {
-    console.info(`[requestPermissions] data: ${JSON.stringify(data)}`);
-    let grantStatus: Array<number> = data.authResults;
-    if (grantStatus[0] === 0 && grantStatus[1] === 0 && grantStatus[INDEX] === 0) {
-      // 授权成功
-      logger.info('[requestPermissions] Success to start request permissions.');
-    } else {
-      // 授权失败
-      logger.info('[requestPermissions] Do not have permissions.');
-    }
-  }).catch((err) => {
-    logger.error(`[requestPermissions] Failed to start request permissions. Error: ${JSON.stringify(err)}`);
-  });
-}
 
 export function strToUtf8Bytes(content: string | number | boolean): Array<number> {
   const code = encodeURIComponent(content);

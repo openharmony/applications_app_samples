@@ -27,7 +27,6 @@ import { Event } from '@ohos.worker';
 const TAG: string = 'UDMF_Demo';
 
 
-
 // 获取应用文件路径
 let context = getContext(this) as common.UIAbilityContext;
 let baseDir = context.filesDir;
@@ -121,36 +120,7 @@ function CreatePrecastFile(): void {
   }
 }
 
-// function  readFileContent(filename: string) {
-//   let fileName = filesDir + "/" + filename;
-//   logger.info(TAG, `The file name: ${fileName}`);
-//   try {
-//     // let res = fs.accessSync(fileName);
-//     // if (res) {
-//     //   logger.info(TAG, `file: ${fileName} exists!.`);
-//     // } else {
-//     //   logger.info(TAG, `file: ${fileName} not exists, will create it!.`);
-//
-//       if (fileName.includes('.txt')) {
-//         let file = fs.openSync(fileName, fs.OpenMode.READ_WRITE);
-//         logger.info(TAG, "file fd: " + file.fd);
-//         logger.info(TAG, "txt file write sync ");
-//         const BUFFER_SIZE = 4096; // 读写文件缓冲区大小
-//         let buf = new ArrayBuffer(BUFFER_SIZE);
-//         fs.readSync(file.fd, buf);
-//         let resultPut: string = FileFs.bufferToString(buf);
-//         logger.info(TAG, 'modifyFileToWatcher getFileContent read resultPut = ' + resultPut);
-//         fs.closeSync(file);
-//       }
-//
-//     // }
-//   } catch (error) {
-//     let err: BusinessError = error as BusinessError;
-//     logger.error(TAG, "accessSync failed with error message: " + err.message + ", error code: " + err.code);
-//   }
-// }
-
-function  saveAsFileContent(fileName: string, content: string) {
+function saveAsFileContent(fileName: string, content: string) {
   logger.info(TAG, `The file name: ${fileName}`);
   try {
     let res = fs.accessSync(fileName);
@@ -172,6 +142,7 @@ function  saveAsFileContent(fileName: string, content: string) {
     logger.error(TAG, "accessSync failed with error message: " + err.message + ", error code: " + err.code);
   }
 }
+
 function getIconByType(fileName: string) {
   // let typeObj = utdDesc.getTypeDescriptor(type); //'general.plain-text'
   let index = fileName.lastIndexOf('.');
@@ -183,8 +154,7 @@ function getIconByType(fileName: string) {
   logger.info(TAG, `getIconByType typeObj.iconFile: ${typeObj.iconFile}`);
   if (typeObj.iconFile == '') {
     logger.info(TAG, `getIconByType typeObj.iconFile is null`);
-    // let iconFile:string = getIconByType('test.xls');
-    let iconFile:string = 'app.media.ic_select_option_collection';
+    let iconFile: string = 'app.media.ic_select_option_collection';
     return iconFile;
   }
   return typeObj.iconFile;
@@ -201,13 +171,10 @@ struct Index {
   @State arrowPosition: ArrowPosition = ArrowPosition.END;
   @State fileNames: string[] = [];
   @State selectedFilesInfos: FileInfo[] = [];
-
-  @State textContent: string  = '';
-  @State textContentTarget: string  = '';
+  @State textContent: string = '';
+  @State textContentTarget: string = '';
   @State backGroundColor: Color = Color.Transparent;
-
   controller: TextAreaController = new TextAreaController()
-
   controllerTarget: TextAreaController = new TextAreaController()
 
   getListFile(): string[] {
@@ -313,29 +280,18 @@ struct Index {
     Row() {
       Column() {
         Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
-        // Column() {
-          // Row() {
-            Text($r('app.string.UDMF_demo'))
-              .fontStyle(FontStyle.Normal)
-              .fontSize(20)
-              .fontWeight(700)
-              .textAlign(TextAlign.Start)
-              .id('titleText')
-          // }
-          // .width('100%')
-          // .height(56)
-          // .alignItems(VerticalAlign.Center)
+          Text($r('app.string.UDMF_demo'))
+            .fontStyle(FontStyle.Normal)
+            .fontSize(20)
+            .fontWeight(700)
+            .textAlign(TextAlign.Start)
+            .id('titleText')
         }
-        // .width(280)
-        // .height(56)
-        // .alignItems(HorizontalAlign.Start)
-        // .backgroundColor(Color.Yellow)
         .width('30%')
         .height('5%')
-        .margin({left:12})
+        .margin({ left: 12 })
 
         // 下拉选择框
-        // Column() {
         Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
           Select([{ value: 'All', icon: $r('app.media.ic_select_option_collection') },
             { value: 'Images', icon: $r(getIconByType('test.png')) },
@@ -357,7 +313,7 @@ struct Index {
             .menuAlign(MenuAlignType.START, { dx: 0, dy: 0 })
             .backgroundColor($r('app.color.bottom_title_divider'))
             .width('30%')
-            .height('100%')
+            .height('30%')
             .onSelect((index: number, text?: string | undefined) => {
               this.index = index;
               if (text) {
@@ -372,12 +328,10 @@ struct Index {
             placeholder: $r('app.string.text_target_tips'),
             controller: this.controllerTarget
           })
-            .placeholderFont({ size: 16, weight: 400 })
-            // .backgroundColor('#FFFFFF')
+            .placeholderFont({ size: 16, weight: 500 })
             .backgroundColor($r('app.color.bottom_title_divider'))
-            // .border({ width: 1, color: Color.Gray, radius: 16 })
-            .width('70%') //336
-            .height('100%') // 56
+            .width('70%')
+            .height(42)
             .margin({ left: 12, right: 12 })
             .fontSize(16)
             .maxLength(50)
@@ -395,8 +349,6 @@ struct Index {
             .allowDrop([UTD.UniformDataType.PLAIN_TEXT])
             .onDrop((dragEvent?: DragEvent) => {
               this.textContentTarget = '';
-              // this.controllerTarget.caretPosition()
-              // logger.info(`textContentTarget onDrop this.textContentTarget  ${this.textContentTarget}`)
               logger.info(TAG, `textContentTarget onDrop this.textContentTarget：` + this.textContentTarget);
               this.getDataFromUdmf((dragEvent as DragEvent), (event: DragEvent) => {
                 let records: Array<UDC.UnifiedRecord> = event.getData().getRecords();
@@ -406,84 +358,16 @@ struct Index {
             })
         }
         .margin({ left: 12, right: 12 })
-        // .height(48)
-        // .width(160)
-        // .margin(0)
         .height('5%')
-        // .width('100%')
-        // .alignItems(HorizontalAlign.Start)
-        // .justifyContent(FlexAlign.Center)
-        // .backgroundColor(Color.Brown)
-
-        // 拖拽文本内容
-        // Column() {
-        // Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
-        //   // Row() {
-        //   Text($r('app.string.text_target_content'))
-        //     .fontStyle(FontStyle.Normal)
-        //     .fontSize(16)
-        //     .textAlign(TextAlign.Start)
-        //     .margin({top:12, bottom:12})
-        //     .height('10%')
-        //     .copyOption(CopyOptions.InApp)
-        //     .draggable(true)
-        //   TextArea({
-        //     text: this.textContentTarget,
-        //     controller: this.controllerTarget
-        //   })
-        //     .placeholderFont({ size: 16, weight: 400 })
-        //     .backgroundColor('#FFFFFF')
-        //     .border({ width: 1, color: Color.Gray, radius: 16 })
-        //     .width('100%') //336
-        //     .height('90%') // 56
-        //     .margin(5)
-        //     .fontSize(16)
-        //     .maxLength(50)
-        //     .maxLines(4)
-        //     .fontColor('#182431')
-        //     .id('pasteText')
-        //     .onChange((value: string) => {
-        //       this.textContentTarget = value
-        //       logger.info(TAG, `textContentTarget onChange this.textContentTarget：` + this.textContentTarget);
-        //     })
-        //     .onClick((event: ClickEvent) => {
-        //       logger.info(TAG, `textContentTarget onClick this.textContentTarget：` + this.textContentTarget);
-        //       this.textContentTarget = '';
-        //     })
-        //     .allowDrop([UTD.UniformDataType.PLAIN_TEXT])
-        //     .onDrop((dragEvent?: DragEvent) => {
-        //       this.textContentTarget = '';
-        //       // this.controllerTarget.caretPosition()
-        //       // logger.info(`textContentTarget onDrop this.textContentTarget  ${this.textContentTarget}`)
-        //       logger.info(TAG, `textContentTarget onDrop this.textContentTarget：` + this.textContentTarget);
-        //       this.getDataFromUdmf((dragEvent as DragEvent), (event: DragEvent) => {
-        //         let records: Array<UDC.UnifiedRecord> = event.getData().getRecords();
-        //         let plainText: UDC.PlainText = records[0] as UDC.PlainText;
-        //         this.textContentTarget = plainText.textContent;
-        //       })
-        //     })
-        //
-        //   // }
-        //   // .width('100%')
-        //   // .height(56)
-        //   // .alignItems(VerticalAlign.Center)
-        // }
-        // // .width(280)
-        // .width('100%')
-        // .height('20%')
-        // .margin(10)
-        // .visibility(Visibility.Visible)
-        // // .alignItems(HorizontalAlign.Start)
-        // .backgroundColor(Color.Red)
 
         // 文件列表
-        // Column() {
         Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
           Text($r('app.string.file_list'))
             .fontStyle(FontStyle.Normal)
             .fontSize(16)
+            .fontWeight(700)
             .textAlign(TextAlign.Start)
-            .margin({left:12, top:24, bottom:6})
+            .margin({ left: 12, top: 24, bottom: 12 })
             .height('10%')
             .copyOption(CopyOptions.InApp)
             .draggable(true)
@@ -508,12 +392,6 @@ struct Index {
                         .visibility(Visibility.Visible)
                         .onClick(() => {
                           logger.info(TAG, `selected file：` + item.filename + `and clicked`);
-                          // let file = fs.openSync(this.path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-                          // let context = getContext(this);
-                          // let filepath = filesDir + "/" + item.filename;;
-                          // logger.info(TAG, "context this "+ context);
-                          // this.fileFs.implicitStartAbility(context, filepath);
-
                           logger.info(TAG, `selected file：` + item.filename + `and clicked row`);
                           let fileTestDirPath = filesDir + "/" + item.filename;
                           if (item.filename.includes('.txt')) {
@@ -524,13 +402,6 @@ struct Index {
                           }
                         })
                     }
-                    // .onClick(() => {
-                    //   logger.info(TAG, `selected file：` + item.filename + `and clicked row`);
-                    //     let fileTestDirPath = filesDir + "/" + item.filename;
-                    //     if (item.filename.includes('.txt')) {
-                    //       this.textContent = this.fileFs.getFileContent(fileTestDirPath);
-                    //     }
-                    // })
 
                     Divider()
                       .vertical(false)
@@ -546,7 +417,6 @@ struct Index {
                   .onDragStart((event) => {
                     this.textContentTarget = '';
                     let content: string = ''
-                    // let fileTestDirPath =
                     let fileTestDirPath = filesDir + "/" + item.filename;
                     if (item.filename.includes('.txt')) {
                       content = this.fileFs.getFileContent(fileTestDirPath);
@@ -575,78 +445,54 @@ struct Index {
               .id("listItem_" + no)
             })
           }
-          .listDirection(Axis.Vertical) // 排列方向
+          .listDirection(Axis.Vertical)
           .scrollBar(BarState.Auto)
           .friction(0.6)
           .margin({ left: 12, right: 12 })
           .borderRadius(24)
           .edgeEffect(EdgeEffect.Spring) // 边缘效果设置为Spring
           .onScrollIndex((firstIndex: number, lastIndex: number, centerIndex: number) => {
-            // logger.info(TAG, 'first: ' + firstIndex);
-            // logger.info(TAG, 'last: ' + lastIndex);
-            // logger.info(TAG, 'center: ' + centerIndex);
           })
           .onDidScroll((scrollOffset: number, scrollState: ScrollState) => {
-            // logger.info(TAG, `onScroll scrollState = ScrollState` + scrollState + `, scrollOffset = ` + scrollOffset);
           })
           .backgroundColor(0xFFFFFF)
         }
-        // .width('100%')
-        // .height(680)
         .height('40%')
-        // .alignItems(HorizontalAlign.Start)
-        // .justifyContent(FlexAlign.Start)
-        // .backgroundColor(Color.Orange)
 
         // 文件内容
-        // Column() {
-          // Row() {
-          Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
-            Text($r('app.string.text_content'))
-              .fontStyle(FontStyle.Normal)
-              .fontSize(16)
-              .textAlign(TextAlign.Start)
-              .margin({left:12, top:12, bottom:6})
-              .height('10%')
-              .copyOption(CopyOptions.InApp)
-              .draggable(true)
-            TextArea({
-              text: this.textContent,
-              controller: this.controller
+        Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
+          Text($r('app.string.text_content'))
+            .fontStyle(FontStyle.Normal)
+            .fontSize(16)
+            .fontWeight(700)
+            .textAlign(TextAlign.Start)
+            .margin({ left: 12, top: 12, bottom: 6 })
+            .height('10%')
+            .copyOption(CopyOptions.InApp)
+            .draggable(true)
+          TextArea({
+            text: this.textContent,
+            controller: this.controller
+          })
+            .placeholderFont({ size: 16, weight: 400 })
+            .backgroundColor('#FFFFFF')
+            .border({ width: 1, color: Color.Gray, radius: 16 })
+            .height('80%')
+            .margin({ left: 12, right: 12 })
+            .fontSize(16)
+            .maxLines(4)
+            .fontColor('#182431')
+            .copyOption(CopyOptions.InApp)
+            .draggable(true)
+            .id('textContent')
+            .onChange((value: string) => {
+              this.textContent = value
             })
-              .placeholderFont({ size: 16, weight: 400 })
-              .backgroundColor('#FFFFFF')
-              .border({ width: 1, color: Color.Gray, radius: 16 })
-              // .width('100%') //336
-              .height('80%') // 56
-              .margin({left:12, right:12})
-              .fontSize(16)
-              // .maxLength(200)
-              .maxLines(4)
-              .fontColor('#182431')
-              .copyOption(CopyOptions.InApp)
-              .draggable(true)
-              .id('textContent')
-              .onChange((value: string) => {
-                this.textContent = value
-              })
-
-          // }
-          // .width('100%')
-          // .height(56)
-          // .alignItems(VerticalAlign.Center)
         }
-          .margin({top:12})
-        // .width(280)
-        // .height(56)
+        .margin({ top: 12 })
         .onDragStart((event) => {
-          // this.backGroundColor = Color.Transparent;
-          // let data: UDC.PlainText = new UDC.PlainText();
-          // data.abstract = 'this is abstract';
-          // // data.textContent = this.textContent;
-          // let unifiedData = new UDC.UnifiedData(data);
 
-
+          this.textContentTarget = '';
           let name: string = randomString(6, 'UDMFDemo');
           let fileTestDirPathNew = filesDir + "/" + 'new_' + name;
           saveAsFileContent(fileTestDirPathNew, this.textContent);
@@ -657,24 +503,14 @@ struct Index {
           data.textContent = 'Content save as ' + 'new_' + name;
           (event as DragEvent).setData(new UDC.UnifiedData(data));
         })
-        // .width('100%')
         .height('45%')
-        // .alignItems(HorizontalAlign.Start)
-        // .backgroundColor(Color.Green)
-        // .margin(0)        // 下拉选择框
       }
-      // .width('100%')
-      // .height('100%')
-      .margin({left: 12, right:12})
+      .margin({ left: 12, right: 12 })
       .alignItems(HorizontalAlign.Start)
-      // .backgroundColor(Color.Pink)
     }
     .height('100%')
     .width('100%')
-    // .padding({top:0})
-    // .margin({top:0})
     .backgroundColor($r('app.color.background_shallow_grey'))
-    // .backgroundColor(Color.Black)
   }
 }
 

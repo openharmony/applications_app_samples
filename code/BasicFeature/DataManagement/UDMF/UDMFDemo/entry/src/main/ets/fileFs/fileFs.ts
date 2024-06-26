@@ -18,7 +18,6 @@ import { logger }  from '../util/Logger';
 import fs from '@ohos.file.fs';
 import fileUri from '@ohos.file.fileuri';
 import wantConstant from '@ohos.ability.wantConstant';
-// import type Want from '@ohos.application.Want';
 
 import Want from '@ohos.app.ability.Want';
 
@@ -116,32 +115,10 @@ export default class FileFs {
   }
 
   implicitStartAbility(context, filePath): void {
-    // let buf = new ArrayBuffer(BUFFER_SIZE);
-    // let num = fs.readSync(fileFd, buf);
     logger.info(TAG, 'modifyFileToWatcher getFileContent read num = ');
-    // let content = bufferToString(buf);
 
     let myUri: string = fileUri.getUriFromPath(filePath);
-    // let myUri: string = ''
     logger.info(TAG, 'implicitStartAbility myUri is: ' + myUri);
-    // let mode = wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION | wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION;
-    // let uris: string[] = [myUri];
-    // let want: Want = {
-    //   action: 'ohos.want.action.sendData',
-    //   parameters: {
-    //     'keyFd': {
-    //       'type': 'txt'
-    //       // 'value': fileFd,
-    //       // 'name': fileName,
-    //       // 'size': fileSize,
-    //       // 'content': content
-    //     },
-    //     'stream': uris
-    //   },
-    //   flags: mode,
-    //   type: 'application/txt',
-    //   uri: myUri
-    // };
 
     let want: Want  = {
       // 配置被分享文件的读写权限，例如对被分享应用进行读写授权
@@ -150,9 +127,6 @@ export default class FileFs {
       action: 'ohos.want.action.sendData',
       uri: myUri,
       type: 'text/plain'
-      // utd: 'general.file',
-
-      // type: 'text/plain'
     }
 
     context.startAbility(want).then(() => {
