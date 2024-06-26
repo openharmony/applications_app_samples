@@ -151,6 +151,14 @@
     {
       "name": "delete_file",
       "value": "是否删除所有压缩文件？"
+    },
+    {
+      "name": "delete_file_success",
+      "value": "删除zip文件成功"
+    },
+    {
+      "name": "delete_file_tip",
+      "value": "列表中没有zip文件，请先进行压缩操作"
     }
   ]
 }

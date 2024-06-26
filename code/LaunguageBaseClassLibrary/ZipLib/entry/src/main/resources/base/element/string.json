@@ -150,7 +150,15 @@
     },
     {
       "name": "delete_file",
-      "value": "delete all files£¿"
+      "value": "delete all files?"
+    },
+    {
+      "name": "delete_file_success",
+      "value": "delete file success"
+    },
+    {
+      "name": "delete_file_tip",
+      "value": "delete file tip"
     }
   ]
 }

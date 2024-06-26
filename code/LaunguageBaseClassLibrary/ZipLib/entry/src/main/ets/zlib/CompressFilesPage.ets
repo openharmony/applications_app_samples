@@ -74,6 +74,13 @@ struct CompressFilesPage {
         if (!isInserted) {
           return;
         }
+        if ( this.zipFileNames.length == 0) {
+          promptAction.showToast({
+            message: $r('app.string.delete_file_tip'),
+            bottom: '11%'
+          });
+          return;
+        }
         for (let index = 0; index < this.files.fileData.length; index++) {
           for (let i = 0; i < this.zipFileNames.length; i++) {
             if (this.zipFileNames[i] == this.files.fileData[index]) {
@@ -83,6 +90,11 @@ struct CompressFilesPage {
             }
           }
         }
+        this.zipFileNames.length = 0;
+        promptAction.showToast({
+          message: $r('app.string.delete_file_success'),
+          bottom: '11%'
+        });
       }
     }),
     autoCancel: true,
