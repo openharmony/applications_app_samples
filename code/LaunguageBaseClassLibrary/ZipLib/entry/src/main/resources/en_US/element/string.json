@@ -147,6 +147,10 @@
     {
       "name": "gzip_uncompress_success",
       "value": "gzip uncompress success£º%s"
+    },
+    {
+      "name": "delete_file",
+      "value": "delete all files?"
     }
   ]
 }
