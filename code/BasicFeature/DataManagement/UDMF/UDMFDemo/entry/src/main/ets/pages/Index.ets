@@ -210,7 +210,6 @@ struct Index {
 
   controllerTarget: TextAreaController = new TextAreaController()
 
-
   getListFile(): string[] {
     let files = fs.listFileSync(filesDir);
     return files;
@@ -384,7 +383,7 @@ struct Index {
             .maxLength(50)
             .maxLines(1)
             .fontColor('#182431')
-            .id('pasteText')
+            .id('targetText')
             .onChange((value: string) => {
               this.textContentTarget = value
               logger.info(TAG, `textContentTarget onChange this.textContentTarget：` + this.textContentTarget);
@@ -480,6 +479,15 @@ struct Index {
         // 文件列表
         // Column() {
         Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
+          Text($r('app.string.file_list'))
+            .fontStyle(FontStyle.Normal)
+            .fontSize(16)
+            .textAlign(TextAlign.Start)
+            .margin({left:12, top:24, bottom:6})
+            .height('10%')
+            .copyOption(CopyOptions.InApp)
+            .draggable(true)
+
           List({ space: 2, initialIndex: 0 }) {
             ForEach(this.selectedFilesInfos, (item: FileInfo, no: Number) => {
               ListItem() {
@@ -598,7 +606,7 @@ struct Index {
               .fontStyle(FontStyle.Normal)
               .fontSize(16)
               .textAlign(TextAlign.Start)
-              .margin({left:12, top:12, bottom:12})
+              .margin({left:12, top:12, bottom:6})
               .height('10%')
               .copyOption(CopyOptions.InApp)
               .draggable(true)
@@ -618,7 +626,7 @@ struct Index {
               .fontColor('#182431')
               .copyOption(CopyOptions.InApp)
               .draggable(true)
-              .id('pasteText')
+              .id('textContent')
               .onChange((value: string) => {
                 this.textContent = value
               })

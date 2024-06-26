@@ -27,6 +27,10 @@
     {
       "name": "text_target_tips",
       "value": "Drag files/text here"
+    },
+    {
+      "name": "file_list",
+      "value": "file list"
     }
   ]
 }

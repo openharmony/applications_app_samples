@@ -14,7 +14,11 @@
     },
     {
       "name": "text_content",
-      "value": "文本内容"
+      "value": "文本呈现区域"
+    },
+    {
+      "name": "file_list",
+      "value": "文件呈现区域"
     },
     {
       "name": "UDMF_demo",
