@@ -69,7 +69,7 @@ interface Params {
   @State isDistributed: boolean = false;
   @StorageLink('title') title: string = '';
   @StorageLink('totalTimeText') totalTimeText: string = '00:00';
-  @StorageLink('albumSrc') albumSrc: Resource = $r('app.media.album');
+  @State albumSrc: Resource = $r('app.media.album');
   @State selectedIndex: number = 0;
   @State imageArrays: Array<Resource> = [$r('app.media.ic_hop'), $r('app.media.ic_play_previous'), $r('app.media.ic_play'), $r('app.media.ic_play_next')];
   private dialogController: CustomDialogController | null = null;
