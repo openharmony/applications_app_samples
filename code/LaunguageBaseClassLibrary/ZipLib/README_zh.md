@@ -39,6 +39,8 @@ zlib解压缩文件
 
 点击 **压缩** 按钮，提示“压缩多个文件成功”，并会在文件列表创建一个名称为test.zip的文件。
 
+6.点击屏幕右上角的 **删除**按钮，弹出删除窗口，点击 **确定** 按钮会删除列表中所有.zip文件。
+
 
 
 gzip格式解压缩使用说明：
@@ -89,6 +91,7 @@ entry/src/main/ets/
   
   * 添加文件：通过调用fileio.openSync()创建文件并调用fileio.writeSync()向文件中写入内容。
   * 压缩多个文件：通过调用zlib.compressFiles()压缩指定的多个文件。
+  * 计算压缩文件大小：通过调用getOriginalSize()计算.zip文件大小。
 * zlib压缩和解压数据相关的接口，源码参考[ZlibInterfaceListPage.ets](entry/src/main/ets/zlib/ZlibInterfaceListPage.ets)
   
   * 创建zip对象：通过调用zlib.createZipSync()创建zip对象。
