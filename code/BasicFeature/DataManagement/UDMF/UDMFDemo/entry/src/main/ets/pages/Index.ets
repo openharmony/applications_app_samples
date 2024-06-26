@@ -195,7 +195,7 @@ function getIconByType(fileName: string) {
 struct Index {
   @State message: string = 'Hello World';
   fileFs: FileFs = new FileFs();
-  @State text: string = "Images";
+  @State text: string = "All";
   @State index: number = 1;
   @State space: number = 12;
   @State arrowPosition: ArrowPosition = ArrowPosition.END;
@@ -330,13 +330,14 @@ struct Index {
         // .width(280)
         // .height(56)
         // .alignItems(HorizontalAlign.Start)
-        .backgroundColor(Color.Yellow)
+        // .backgroundColor(Color.Yellow)
         .width('30%')
         .height('5%')
+        .margin({left:12})
 
         // 下拉选择框
         // Column() {
-        Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
+        Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
           Select([{ value: 'All', icon: $r('app.media.ic_select_option_collection') },
             { value: 'Images', icon: $r(getIconByType('test.png')) },
             { value: 'Audios', icon: $r(getIconByType('test.mp3')) },
@@ -355,8 +356,8 @@ struct Index {
             .space(this.space)
             .arrowPosition(this.arrowPosition)
             .menuAlign(MenuAlignType.START, { dx: 0, dy: 0 })
-            .backgroundColor($r('app.color.background_shallow_grey'))
-            .width('100%')
+            .backgroundColor($r('app.color.bottom_title_divider'))
+            .width('30%')
             .height('100%')
             .onSelect((index: number, text?: string | undefined) => {
               this.index = index;
@@ -366,42 +367,22 @@ struct Index {
                 this.UpdateSelectedFiles();
               }
             })
-        }
-        // .margin({ left: 12, right: 12 })
-        // .height(48)
-        // .width(160)
-        .margin(0)
-        .height('5%')
-        .width('40%')
-        // .alignItems(HorizontalAlign.Start)
-        // .justifyContent(FlexAlign.Center)
-        .backgroundColor(Color.Brown)
 
-        // 拖拽文本内容
-        // Column() {
-        Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
-          // Row() {
-          Text($r('app.string.text_target_content'))
-            .fontStyle(FontStyle.Normal)
-            .fontSize(16)
-            .textAlign(TextAlign.Start)
-            .margin({top:12, bottom:12})
-            .height('10%')
-            .copyOption(CopyOptions.InApp)
-            .draggable(true)
           TextArea({
             text: this.textContentTarget,
+            placeholder: $r('app.string.text_target_tips'),
             controller: this.controllerTarget
           })
             .placeholderFont({ size: 16, weight: 400 })
-            .backgroundColor('#FFFFFF')
-            .border({ width: 1, color: Color.Gray, radius: 16 })
-            .width('100%') //336
-            .height('90%') // 56
-            .margin(5)
+            // .backgroundColor('#FFFFFF')
+            .backgroundColor($r('app.color.bottom_title_divider'))
+            // .border({ width: 1, color: Color.Gray, radius: 16 })
+            .width('70%') //336
+            .height('100%') // 56
+            .margin({ left: 12, right: 12 })
             .fontSize(16)
             .maxLength(50)
-            .maxLines(4)
+            .maxLines(1)
             .fontColor('#182431')
             .id('pasteText')
             .onChange((value: string) => {
@@ -424,19 +405,77 @@ struct Index {
                 this.textContentTarget = plainText.textContent;
               })
             })
-
-          // }
-          // .width('100%')
-          // .height(56)
-          // .alignItems(VerticalAlign.Center)
         }
-        // .width(280)
-        .width('100%')
-        .height('20%')
-        .margin(10)
-        .visibility(Visibility.Visible)
+        .margin({ left: 12, right: 12 })
+        // .height(48)
+        // .width(160)
+        // .margin(0)
+        .height('5%')
+        // .width('100%')
         // .alignItems(HorizontalAlign.Start)
-        .backgroundColor(Color.Red)
+        // .justifyContent(FlexAlign.Center)
+        // .backgroundColor(Color.Brown)
+
+        // 拖拽文本内容
+        // Column() {
+        // Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
+        //   // Row() {
+        //   Text($r('app.string.text_target_content'))
+        //     .fontStyle(FontStyle.Normal)
+        //     .fontSize(16)
+        //     .textAlign(TextAlign.Start)
+        //     .margin({top:12, bottom:12})
+        //     .height('10%')
+        //     .copyOption(CopyOptions.InApp)
+        //     .draggable(true)
+        //   TextArea({
+        //     text: this.textContentTarget,
+        //     controller: this.controllerTarget
+        //   })
+        //     .placeholderFont({ size: 16, weight: 400 })
+        //     .backgroundColor('#FFFFFF')
+        //     .border({ width: 1, color: Color.Gray, radius: 16 })
+        //     .width('100%') //336
+        //     .height('90%') // 56
+        //     .margin(5)
+        //     .fontSize(16)
+        //     .maxLength(50)
+        //     .maxLines(4)
+        //     .fontColor('#182431')
+        //     .id('pasteText')
+        //     .onChange((value: string) => {
+        //       this.textContentTarget = value
+        //       logger.info(TAG, `textContentTarget onChange this.textContentTarget：` + this.textContentTarget);
+        //     })
+        //     .onClick((event: ClickEvent) => {
+        //       logger.info(TAG, `textContentTarget onClick this.textContentTarget：` + this.textContentTarget);
+        //       this.textContentTarget = '';
+        //     })
+        //     .allowDrop([UTD.UniformDataType.PLAIN_TEXT])
+        //     .onDrop((dragEvent?: DragEvent) => {
+        //       this.textContentTarget = '';
+        //       // this.controllerTarget.caretPosition()
+        //       // logger.info(`textContentTarget onDrop this.textContentTarget  ${this.textContentTarget}`)
+        //       logger.info(TAG, `textContentTarget onDrop this.textContentTarget：` + this.textContentTarget);
+        //       this.getDataFromUdmf((dragEvent as DragEvent), (event: DragEvent) => {
+        //         let records: Array<UDC.UnifiedRecord> = event.getData().getRecords();
+        //         let plainText: UDC.PlainText = records[0] as UDC.PlainText;
+        //         this.textContentTarget = plainText.textContent;
+        //       })
+        //     })
+        //
+        //   // }
+        //   // .width('100%')
+        //   // .height(56)
+        //   // .alignItems(VerticalAlign.Center)
+        // }
+        // // .width(280)
+        // .width('100%')
+        // .height('20%')
+        // .margin(10)
+        // .visibility(Visibility.Visible)
+        // // .alignItems(HorizontalAlign.Start)
+        // .backgroundColor(Color.Red)
 
         // 文件列表
         // Column() {
@@ -497,11 +536,18 @@ struct Index {
                   .justifyContent(FlexAlign.Center)
                   .alignItems(HorizontalAlign.Start)
                   .onDragStart((event) => {
-                  let content: string = ''
+                    this.textContentTarget = '';
+                    let content: string = ''
                     // let fileTestDirPath =
                     let fileTestDirPath = filesDir + "/" + item.filename;
                     if (item.filename.includes('.txt')) {
                       content = this.fileFs.getFileContent(fileTestDirPath);
+                    } else {
+                      let data: UDC.PlainText = new UDC.PlainText();
+                      data.abstract = 'this is abstract';
+                      data.textContent = 'This file type not support Drag!';
+                      (event as DragEvent).setData(new UDC.UnifiedData(data));
+                      return;
                     }
 
                     let fileTestDirPathNew = filesDir + "/" + 'new_' + item.filename;
@@ -510,7 +556,7 @@ struct Index {
                     this.backGroundColor = Color.Transparent;
                     let data: UDC.PlainText = new UDC.PlainText();
                     data.abstract = 'this is abstract';
-                    data.textContent = 'Content save as ' + 'new_' + item.filename;
+                    data.textContent = 'Save as ' + 'new_' + item.filename;
                     (event as DragEvent).setData(new UDC.UnifiedData(data));
                   })
                 }
@@ -528,21 +574,21 @@ struct Index {
           .borderRadius(24)
           .edgeEffect(EdgeEffect.Spring) // 边缘效果设置为Spring
           .onScrollIndex((firstIndex: number, lastIndex: number, centerIndex: number) => {
-            logger.info(TAG, 'first: ' + firstIndex);
-            logger.info(TAG, 'last: ' + lastIndex);
-            logger.info(TAG, 'center: ' + centerIndex);
+            // logger.info(TAG, 'first: ' + firstIndex);
+            // logger.info(TAG, 'last: ' + lastIndex);
+            // logger.info(TAG, 'center: ' + centerIndex);
           })
           .onDidScroll((scrollOffset: number, scrollState: ScrollState) => {
-            logger.info(TAG, `onScroll scrollState = ScrollState` + scrollState + `, scrollOffset = ` + scrollOffset);
+            // logger.info(TAG, `onScroll scrollState = ScrollState` + scrollState + `, scrollOffset = ` + scrollOffset);
           })
           .backgroundColor(0xFFFFFF)
         }
-        .width('100%')
+        // .width('100%')
         // .height(680)
-        .height('30%')
+        .height('40%')
         // .alignItems(HorizontalAlign.Start)
         // .justifyContent(FlexAlign.Start)
-        .backgroundColor(Color.Orange)
+        // .backgroundColor(Color.Orange)
 
         // 文件内容
         // Column() {
@@ -552,7 +598,7 @@ struct Index {
               .fontStyle(FontStyle.Normal)
               .fontSize(16)
               .textAlign(TextAlign.Start)
-              .margin({top:12, bottom:12})
+              .margin({left:12, top:12, bottom:12})
               .height('10%')
               .copyOption(CopyOptions.InApp)
               .draggable(true)
@@ -563,11 +609,11 @@ struct Index {
               .placeholderFont({ size: 16, weight: 400 })
               .backgroundColor('#FFFFFF')
               .border({ width: 1, color: Color.Gray, radius: 16 })
-              .width('100%') //336
+              // .width('100%') //336
               .height('80%') // 56
-              .margin(5)
+              .margin({left:12, right:12})
               .fontSize(16)
-              .maxLength(50)
+              // .maxLength(200)
               .maxLines(4)
               .fontColor('#182431')
               .copyOption(CopyOptions.InApp)
@@ -582,6 +628,7 @@ struct Index {
           // .height(56)
           // .alignItems(VerticalAlign.Center)
         }
+          .margin({top:12})
         // .width(280)
         // .height(56)
         .onDragStart((event) => {
@@ -602,21 +649,24 @@ struct Index {
           data.textContent = 'Content save as ' + 'new_' + name;
           (event as DragEvent).setData(new UDC.UnifiedData(data));
         })
-        .width('100%')
-        .height('20%')
+        // .width('100%')
+        .height('45%')
         // .alignItems(HorizontalAlign.Start)
-        .backgroundColor(Color.Green)
-        .margin(10)        // 下拉选择框
+        // .backgroundColor(Color.Green)
+        // .margin(0)        // 下拉选择框
       }
-      .width('100%')
-      .height('95%')
+      // .width('100%')
+      // .height('100%')
+      .margin({left: 12, right:12})
       .alignItems(HorizontalAlign.Start)
-      .backgroundColor(Color.Pink)
+      // .backgroundColor(Color.Pink)
     }
     .height('100%')
-    .padding({top:0})
-    .margin({top:0})
-    .backgroundColor(Color.Black)
+    .width('100%')
+    // .padding({top:0})
+    // .margin({top:0})
+    .backgroundColor($r('app.color.background_shallow_grey'))
+    // .backgroundColor(Color.Black)
   }
 }
 

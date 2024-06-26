@@ -18,11 +18,15 @@
     },
     {
       "name": "UDMF_demo",
-      "value": "UDMFDemo"
+      "value": "UDMF"
     },
     {
       "name": "text_target_content",
       "value": "text target content"
+    },
+    {
+      "name": "text_target_tips",
+      "value": "Drag files/text here"
     }
   ]
 }

@@ -18,11 +18,15 @@
     },
     {
       "name": "UDMF_demo",
-      "value": "UDMFDemo"
+      "value": "UDMF"
     },
     {
       "name": "text_target_content",
       "value": "目的文本"
+    },
+    {
+      "name": "text_target_tips",
+      "value": "将文件/文本拖入此处"
     }
   ]
 }
