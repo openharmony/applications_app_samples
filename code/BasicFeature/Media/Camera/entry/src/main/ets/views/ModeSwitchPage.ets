@@ -18,13 +18,13 @@
 import DateTimeUtil from '../model/DateTimeUtil';
 import Logger from '../model/Logger';
 import cameraDemo from 'libentry.so';
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import image from '@ohos.multimedia.image';
 import media from '@ohos.multimedia.media';
 import MediaUtils from '../model/MediaUtils';
 import deviceInfo from '@ohos.deviceInfo';
 import fileio from '@ohos.fileio';
-import { SettingDataObj } from '../common/Constants'
+import { Constants, SettingDataObj } from '../common/Constants'
 import common from '@ohos.app.ability.common'
 
 let context = getContext(this) as common.UIAbilityContext;
@@ -54,7 +54,7 @@ interface PhotoRotationMap {
 export struct modeSwitchPage {
   private tag: string = 'sample modeSwitchPage:';
   private mediaUtil = MediaUtils.getInstance();
-  private fileAsset?: mediaLibrary.FileAsset;
+  private fileAsset?: photoAccessHelper.PhotoAsset;
   private fd: number = -1;
   @State videoId: string = '';
   @State mSurfaceId: string = '';
@@ -171,7 +171,7 @@ export struct modeSwitchPage {
     this.videoRecorder = await media.createAVRecorder();
     Logger.info(this.tag, `getVideoSurfaceID videoRecorder: ${this.videoRecorder}`);
 
-    this.fileAsset = await this.mediaUtil.createAndGetUri(mediaLibrary.MediaType.VIDEO);
+    this.fileAsset = await this.mediaUtil.createAndGetUri(Constants.VIDEO);
     Logger.info(this.tag, `getVideoSurfaceID fileAsset: ${this.fileAsset}`);
 
     this.fd = await this.mediaUtil.getFdPath(this.fileAsset);
@@ -247,7 +247,7 @@ export struct modeSwitchPage {
   async savePicture(buffer: ArrayBuffer, img: image.Image) {
     try {
       Logger.info(this.tag, 'savePicture start');
-      let imgFileAsset = await this.mediaUtil.createAndGetUri(mediaLibrary.MediaType.IMAGE);
+      let imgFileAsset: photoAccessHelper.PhotoAsset = await this.mediaUtil.createAndGetUri(Constants.IMAGE);
       let imgPhotoUri = imgFileAsset.uri;
       Logger.info(this.tag, `photoUri = ${imgPhotoUri}`);
       let imgFd = await this.mediaUtil.getFdPath(imgFileAsset);
@@ -453,7 +453,7 @@ export struct modeSwitchPage {
                   clearInterval(this.timer);
                 }
                 // Stop video
-                this.stopVideo().then(async (fileAsset: mediaLibrary.FileAsset | undefined) => {
+                this.stopVideo().then(async (fileAsset: photoAccessHelper.PhotoAsset | undefined) => {
                   this.videoRecodeTime = 0;
                   this.isModeBol = true;
                   try {
