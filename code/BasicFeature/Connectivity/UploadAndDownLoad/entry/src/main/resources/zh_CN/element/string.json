@@ -109,6 +109,10 @@
       "value": "是否开启后台任务"
     },
     {
+      "name": "HFS_tips",
+      "value": "HFS 地址"
+    },
+    {
       "name": "home_tips",
       "value": "演示前台和后台上传和下载任务"
     },

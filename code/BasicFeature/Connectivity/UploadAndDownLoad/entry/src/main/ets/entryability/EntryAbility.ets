@@ -48,7 +48,6 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability
     logger.info(TAG, 'Ability onWindowStageCreate');
-    urlUtils.subscribe(this.context);
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
         logger.error(TAG, `Failed to load the content. Cause:${JSON.stringify(err) ?? ''}`);
