@@ -1,18 +1,21 @@
+/*
+ * Copyright (c) 2024 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 {
   "app": {
     "signingConfigs": [
-      {
-        "name": "default",
-        "material": {
-          "certpath": "C:/Users/kaihong/.ohos/config/openharmony/default_UDMFDemo_v8CECitMiqM_5opSeMJt-04OGaHRWMTBtevrGeZedZY=.cer",
-          "storePassword": "0000001AF36F64690F01FDB21158D0D71C88EB547D8210DFCBF9FCCEF3E2A3D34357D4B9AA5273A762F2",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001A33BF5E85FA7F7367D5824EB4BF8951EE9CFD8F175B1D0AD76DE3C7663EC3A1EC7A0B39EACE3E",
-          "profile": "C:/Users/kaihong/.ohos/config/openharmony/default_UDMFDemo_v8CECitMiqM_5opSeMJt-04OGaHRWMTBtevrGeZedZY=.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:/Users/kaihong/.ohos/config/openharmony/default_UDMFDemo_v8CECitMiqM_5opSeMJt-04OGaHRWMTBtevrGeZedZY=.p12"
-        }
-      }
     ],
     "products": [
       {

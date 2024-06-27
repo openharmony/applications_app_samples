@@ -739,6 +739,13 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/BasicFeature/DataManagement/pasteboard/screenshots/first.png" desc="Provided by code/BasicFeature/DataManagement/pasteboard"/>
 				<filteritem type="filepath" name="code/Solutions/InputMethod/KikaInputMethod/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/Solutions/InputMethod/KikaInputMethod"/>
 				<filteritem type="filepath" name="code/Solutions/InputMethod/KikaInputMethod/screenshots/devices/preview.jpg" desc="Provided by code/Solutions/InputMethod/KikaInputMethod"/>
+				<filteritem type="filepath" name="code/BasicFeature/DataManagement/UDMF/UDMFDemo/AppScope/resources/base/media/app_icon.png" desc="Provided by code/BasicFeature/DataManagement/UDMF/UDMFDemo"/>
+				<filteritem type="filepath" name="code/BasicFeature/DataManagement/UDMF/UDMFDemo/entry/src/main/resources/base/media/ic_select_option_collection.png" desc="Provided by code/BasicFeature/DataManagement/UDMF/UDMFDemo"/>
+				<filteritem type="filepath" name="code/BasicFeature/DataManagement/UDMF/UDMFDemo/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/BasicFeature/DataManagement/UDMF/UDMFDemo"/>
+				<filteritem type="filepath" name="code/BasicFeature/DataManagement/UDMF/UDMFDemo/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/BasicFeature/DataManagement/UDMF/UDMFDemo"/>
+				<filteritem type="filepath" name="code/BasicFeature/DataManagement/UDMF/UDMFDemo/screenshots/first.png" desc="Provided by code/BasicFeature/DataManagement/UDMF/UDMFDemo"/>
+				<filteritem type="filepath" name="code/BasicFeature/DataManagement/UDMF/UDMFDemo/screenshots/select.png" desc="Provided by code/BasicFeature/DataManagement/UDMF/UDMFDemo"/>
+				<filteritem type="filepath" name="code/BasicFeature/DataManagement/UDMF/UDMFDemo/screenshots/drag.png" desc="Provided by code/BasicFeature/DataManagement/UDMF/UDMFDemo"/>
 			</filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加License头"/>

@@ -139,12 +139,11 @@ function saveAsFileContent(fileName: string, content: string) {
     }
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    logger.error(TAG, "accessSync failed with error message: " + err.message + ", error code: " + err.code);
+    logger.error(TAG, 'accessSync failed with error message: ' + err.message + ', error code: ' + err.code);
   }
 }
 
 function getIconByType(fileName: string) {
-  // let typeObj = utdDesc.getTypeDescriptor(type); //'general.plain-text'
   let index = fileName.lastIndexOf('.');
   let fileExtension = fileName.substring(index);
   logger.info(TAG, `getIconByType fileExtension： ${fileExtension}`);
@@ -221,14 +220,13 @@ struct Index {
               }
             }
           } else {
-            if (class2UTD.get(this.text) == "All") {
-              let fileInfo = new FileInfo(fileName, "");
+            if (class2UTD.get(this.text) == 'All') {
+              let fileInfo = new FileInfo(fileName, '');
               this.selectedFilesInfos.push(fileInfo);
               logger.info(TAG, `utd null All type: ${fileInfo.filename}, utd: ${utd}, iconFile: ${fileInfo.iconFile}`);
             }
           }
-        }
-        catch (e) {
+        } catch (e) {
           let error: BusinessError = e as BusinessError;
           logger.error(TAG, `belongsTo throws an exception. code is ${error.code}, message is ${error.message}`);
         }
@@ -255,14 +253,14 @@ struct Index {
       if (!data) {
         return false;
       }
-      let records: Array<UDC.UnifiedRecord> = data.getRecords();
+      let records: UDC.UnifiedRecord[] = data.getRecords();
       if (!records || records.length <= 0) {
         return false;
       }
       callback(event);
       return true;
     } catch (e) {
-      console.log("getData failed, code = " + (e as BusinessError).code + ", message = " + (e as BusinessError).message);
+      console.log('getData failed, code = ' + (e as BusinessError).code + ', message = ' + (e as BusinessError).message);
       return false;
     }
   }
