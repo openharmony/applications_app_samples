@@ -38,20 +38,19 @@ struct SystemIcon {
         Stack() {
           Slider({
             value: this.sliderValue,
-            style: SliderStyle.InSet,
+            style: SliderStyle.NONE,
             direction: Axis.Vertical,
             reverse: true
           })
             .id('systemIcons_slider')
-            .width(54)
-            .height(130)
+            .width('100%')
+            .height(260)
             .trackThickness(54)
             .showTips(false)
             .trackColor($r('app.color.COLOR_80000000'))
             .blockColor($r('app.color.COLOR_FFFFFF'))
             .selectedColor($r('app.color.COLOR_FFFFFF'))
-            .blockSize({ width: 0.1, height: 0.1 })
-            .trackBorderRadius(12)
+            .trackBorderRadius(20)
             .onChange((value: number, mode: SliderChangeMode) => {
               this.sliderValue = value;
               if (this.sliderValue <= 50) {
@@ -71,6 +70,7 @@ struct SystemIcon {
               .animation({ duration: 500, curve: "ease" })
               .borderRadius(8)
               .backgroundColor($r('app.color.COLOR_8C9BA2'))
+              .margin({ bottom: 14 })
 
             this.lineComponent(0)
             this.lineComponent(45)
@@ -82,9 +82,7 @@ struct SystemIcon {
           .margin({ bottom: 8 })
           .alignContent(Alignment.Center)
         }
-        .width(54)
-        .height(130)
-        .offset({ x: 34, y: -10 })
+        .offset({ x: 34, y: 0 })
         .alignContent(Alignment.Bottom)
 
       }
@@ -117,5 +115,6 @@ struct SystemIcon {
     .height(2)
     .rotate({ angle: angle })
     .justifyContent(FlexAlign.Center)
+    .margin({ bottom: 14 })
   }
 }
