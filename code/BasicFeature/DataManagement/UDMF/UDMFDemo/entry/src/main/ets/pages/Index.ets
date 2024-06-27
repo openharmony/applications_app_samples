@@ -132,7 +132,7 @@ function saveAsFileContent(fileName: string, content: string) {
       logger.info(TAG, "file fd: " + file.fd);
 
       if (fileName.includes('.txt')) {
-        logger.info(TAG, "txt file write sync ");
+        logger.info(TAG, 'txt file write sync ');
         fs.writeSync(file.fd, content);
       }
       fs.closeSync(file);
@@ -207,7 +207,7 @@ struct Index {
           if (utd != null) {
             let typeObj: utdDesc.TypeDescriptor = utdDesc.getTypeDescriptor(utd);
 
-            if (class2UTD.get(this.text) == "All") {
+            if (class2UTD.get(this.text) == 'All') {
               let fileInfo = new FileInfo(fileName, typeObj.iconFile);
               this.selectedFilesInfos.push(fileInfo);
               logger.info(TAG, `All type: ${fileInfo.filename}, utd: ${utd}, iconFile: ${fileInfo.iconFile}`);
