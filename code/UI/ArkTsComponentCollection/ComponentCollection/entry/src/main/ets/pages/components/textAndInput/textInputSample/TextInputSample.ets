@@ -59,6 +59,7 @@ struct TextInputSample {
   @State wordBreakTextStr: Resource = $r('app.string.text_input_word_break_content');
   private select: number = 0;
   private maxLength: number = 12;
+  private submitContent: string='';
   private context: Context = getContext(this);
   private inputController: TextInputController = new TextInputController();
   private inputSelectController: TextInputController = new TextInputController();
@@ -232,6 +233,9 @@ struct TextInputSample {
           TextInput({ placeholder: $r('app.string.text_input_event_placeholder') })
             .type(InputType.Email)
             .enterKeyType(EnterKeyType.Search)
+            .onChange((value:string)=>{
+              this.submitContent = value;
+            })
             .onPaste(value => {
               ShowToast.longToast(
                 `${this.context.resourceManager.getStringSync($r('app.string.text_input_toast_paste').id)}${value}`)
@@ -246,7 +250,7 @@ struct TextInputSample {
             })
             .onSubmit(keyType => {
               ShowToast.longToast(
-                `${this.context.resourceManager.getStringSync($r('app.string.text_input_toast_submit').id)}${keyType}`)
+                `${this.context.resourceManager.getStringSync($r('app.string.text_input_toast_submit').id)}${this.submitContent}`)
             })
             .onEditChange(isEditing => {
               // You can get edit status by isEditing

@@ -88,8 +88,8 @@ struct Index {
           .onLoad((xComponentContext) => {
             this.xComponentContext1 = xComponentContext as XComponentContext;
           }).width('640px')
+          .backgroundColor(Color.White);
       }.height('30%')
-      .backgroundColor(Color.White);
 
       Row() {
         Text('60hz')
@@ -114,8 +114,8 @@ struct Index {
           .onLoad((xComponentContext) => {
             this.xComponentContext2 = xComponentContext as XComponentContext;
           }).width('640px')
+          .backgroundColor(Color.White);
       }.height('30%')
-      .backgroundColor(Color.White);
 
       Row() {
         Text('120hz')
@@ -140,8 +140,8 @@ struct Index {
           .onLoad((xComponentContext) => {
             this.xComponentContext3 = xComponentContext as XComponentContext;
           }).width('640px')
+          .backgroundColor(Color.White);
       }.height('30%')
-      .backgroundColor(Color.White);
     }
   }
 }

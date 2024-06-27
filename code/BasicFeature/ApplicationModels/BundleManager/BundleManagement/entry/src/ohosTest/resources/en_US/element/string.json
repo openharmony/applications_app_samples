@@ -1,0 +1,68 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "GetBundleInfoTest",
+      "value": "GetBundleInfo"
+    },
+    {
+      "name": "GetBundleInfoSyncTest",
+      "value": "GetBundleInfoSync"
+    },
+    {
+      "name": "GetConfigurationJsonTest",
+      "value": "GetConfigurationJson"
+    },
+    {
+      "name": "GetConfigurationArrayTest",
+      "value": "GetConfigurationArray"
+    },
+    {
+      "name": "GetConfigurationJsonSyncTest",
+      "value": "GetConfigurationJsonSync"
+    },
+    {
+      "name": "VerifyFileTest",
+      "value": "VerifyFile"
+    },
+    {
+      "name": "DeleteFileTest",
+      "value": "DeleteFile"
+    },
+    {
+      "name": "VerifyLinkOpenedTest",
+      "value": "VerifyLinkOpened"
+    },
+    {
+      "name": "DetermineDefaultApplicationTest",
+      "value": "DetermineDefaultApplication"
+    },
+    {
+      "name": "DetermineDefaultApplicationSyncTest",
+      "value": "DetermineDefaultApplicationSync"
+    },
+    {
+      "name": "SetDisableEnableStatusTest",
+      "value": "SetDisableEnableStatus"
+    },
+    {
+      "name": "ObtainOverlayModuleInfoInformationTest",
+      "value": "ObtainOverlayModuleInfoInformation"
+    },
+    {
+      "name": "ObtainMultipleOverlayModuleInfoInformationTest",
+      "value": "ObtainMultipleOverlayModuleInfoInformation"
+    }
+  ]
+}

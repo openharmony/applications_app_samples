@@ -115,6 +115,7 @@ struct DataPanelSample {
         path.lineTo(25, 105);
         path.lineTo(75, 105);
         path.lineTo(75, 25);
+        path.lineTo(25, 25);
         this.context.strokeStyle = 'rgb(0,0,255)';
         this.context.stroke(path);
         this.context.restore();

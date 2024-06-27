@@ -58,7 +58,7 @@ struct GridSample {
               })
           }.itemStyle()
         }
-        .nextLabel('Next')
+        .nextLabel(getContext().resourceManager.getStringSync($r('app.string.next_step')))
         .status(this.firstState)
         StepperItem() {
           Column() {
@@ -71,8 +71,8 @@ struct GridSample {
               })
           }.itemStyle()
         }
-        .nextLabel('Next')
-        .prevLabel('Previous')
+        .nextLabel(getContext().resourceManager.getStringSync($r('app.string.next_step')))
+        .prevLabel(getContext().resourceManager.getStringSync($r('app.string.previous')))
         .status(this.secondState)
         StepperItem() {
           Column() {

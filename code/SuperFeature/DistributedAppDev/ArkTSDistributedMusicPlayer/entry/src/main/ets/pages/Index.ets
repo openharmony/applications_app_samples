@@ -58,8 +58,8 @@ interface Params {
   private listener = mediaQuery.matchMediaSync('screen and (min-aspect-ratio: 1.5) or (orientation: landscape)');
   @State isLand: boolean = false;
   @State currentTimeText: string = '';
-  @State currentProgress: number = 0;
-  @State totalMs: number = 0;
+  @StorageLink('currentProgress') currentProgress: number = 0;
+  @StorageLink('totalMs') totalMs: number = 0;
   @State riscale: number = 1;
   @State risw: number = 720;
   @State rish: number = 1280;
@@ -67,8 +67,8 @@ interface Params {
   @State deviceLists: Array<deviceManager.DeviceBasicInfo> = [];
   @State isDialogShowing: boolean = false;
   @State isDistributed: boolean = false;
-  @State title: string = '';
-  @State totalTimeText: string = '00:00';
+  @StorageLink('title') title: string = '';
+  @StorageLink('totalTimeText') totalTimeText: string = '00:00';
   @State albumSrc: Resource = $r('app.media.album');
   @State selectedIndex: number = 0;
   @State imageArrays: Array<Resource> = [$r('app.media.ic_hop'), $r('app.media.ic_play_previous'), $r('app.media.ic_play'), $r('app.media.ic_play_next')];

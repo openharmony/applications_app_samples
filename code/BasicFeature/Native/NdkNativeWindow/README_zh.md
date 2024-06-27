@@ -6,11 +6,11 @@
 
 ### 效果预览
 
-| 主页                                           | 改变矩形框颜色                                           | 生产buffer | 获取可用帧回调次数                                         |
-|----------------------------------------------|---------------------------------------------------| --------------------------------------------------------- | --------------------------------------------------------- |
-| ![main](screenshots/device/Main.jpg)         | ![Draw Path](screenshots/device/ChangeColor.jpg)  | ![change color](screenshots/device/ProduceBuffer.jpg) |![change color](screenshots/device/GetAvailableCount.jpg)|
-| attachbuffer                                 | detachbuffer                                      |
-| ![main](screenshots/device/AttachBuffer.jpg) | ![Draw Path](screenshots/device/DetachBuffer.jpg) |
+| 主页                                           | 改变矩形框颜色                                           | 生产buffer                                          | 获取可用帧回调次数                                                 |
+|----------------------------------------------|---------------------------------------------------|---------------------------------------------------|-----------------------------------------------------------|
+| ![main](screenshots/device/Main.jpg)         | ![Draw Path](screenshots/device/ChangeColor.jpg)  | ![change color](screenshots/device/ProduceBuffer.jpg) | ![change color](screenshots/device/GetAvailableCount.jpg) |
+| attachbuffer                                 | detachbuffer                                      | fit模式(手机）                                         | 拉伸模式（手机）                                                  |
+| ![main](screenshots/device/AttachBuffer.jpg) | ![Draw Path](screenshots/device/DetachBuffer.jpg) | ![Draw Path](screenshots/device/scalefit.jpg)     | ![Draw Path](screenshots/device/scaledown.jpg)            |
 
 
 使用说明
@@ -19,10 +19,10 @@
 2. 点击页面底部“Chaneg Color”按钮，矩形框填充区域将改变颜色，黄蓝切换；
 3. 点击页面底部“produce buffer”按钮，NativeWindow将生产数据并发送给NativeImage，页面展示了生产buffer的次数；
 4. 点击页面底部“update available buffer count”按钮，将展示NativeImage收到的可用帧回调次数。
-5. 点击页面底部“update bufferqueuesize, attachedbuffer, cachebuffer"按钮，将更新三项数值，分别是NativeWindow的buffer队列容量，attach到NativeWindow的buffer数量，缓存区buffer数量。 
+5. 点击页面底部“update bufferqueuesize, attachedbuffer, cachebuffer"按钮，将更新三项数值，分别是NativeWindow的buffer队列容量，attach到NativeWindow的buffer数量，缓存区buffer数量。
 6. 点击页面底部”attachbuffer“, 在cachebuffer大于0时将buffer添加到nativewindow中，attachedbuffer数值加1，cachebuffer数值减1；cachebuffer为0时不做处理。(需要点第五步按钮更新数值)
 7. 点击页面底部”detachbuffer", 在attachedbuffer大于0时将buffer添加到缓存区cachebuffer中，attachedbuffer数值减1，cachebuffer数值加1； attachedbuffer为0时不做处理。(需要点第五步按钮更新数值)
-8. 点击页面顶部"Change ScalingMode"按钮，在支持fit模式的设备可以切换色块居中显示或平铺显示。
+8. 点击页面顶部"Change ScalingMode"按钮，在支持fit模式的设备可以切换色块居中显示或平铺显示，开发板不支持fit模式。
 
 ### 工程目录
 
@@ -81,6 +81,7 @@
 | OH_NativeWindow_NativeWindowDetachBuffer(OHNativeWindow *window, OHNativeWindowBuffer *buffer) | 将OHNativeWindow中的buffer移除，放置到缓存区中 |
 | OH_NativeWindow_WriteToParcel(OHNativeWindow* window, OHIPCParcel* parcel)| 向OHIPCParcel对象中写入一个OHNativeWindow对象|
 | OH_NativeWindow_ReadFromParcel(OHIPCParcel *parcel, OHNativeWindow **window)| 从OHIPCParcel对象中读取一个OHNativeWindow对象|
+| OH_NativeWindow_NativeWindowSetScalingModeV2(OHNativeWindow *window, OHScalingModeV2 scalingMode)| 为OHNativeWindow设置显示模式|
 
 详细的接口说明请参考[NativeWindow](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-arkgraphics2d/_o_h___native_image.md)，[NativeImage](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-arkgraphics2d/_o_h___native_image.md)，[NativeBuffer](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/native-apis/_o_h___native_buffer.md)。
 

@@ -1,6 +1,118 @@
 {
   "string": [
     {
+      "name": "focus_control_tab_status",
+      "value": "Focus state style switching: external keyboard Tab key switches focus to view state changes"
+    },
+    {
+      "name": "select_to_see_status",
+      "value": "Select state style switch"
+    },
+    {
+      "name": "disable_to_see_status",
+      "value": "Disable state style switching"
+    },
+    {
+      "name": "press_to_see_status",
+      "value": "Press state style switch"
+    },
+    {
+      "name": "click_to_see_status",
+      "value": "Normal state style switching"
+    },
+    {
+      "name": "custom_event",
+      "value": "Component custom event distribution"
+    },
+    {
+      "name": "custom_click_event_button",
+      "value": "Click"
+    },
+    {
+      "name": "custom_Scrolling_event_button",
+      "value": "Scrolling"
+    },
+    {
+      "name": "custom_judge_title",
+      "value": "Judge"
+    },
+    {
+      "name": "custom_judge_long_press",
+      "value": "Long press the response area"
+    },
+    {
+      "name": "custom_long_press_prompt",
+      "value": "Long press the blue area in the upper half, and the blue area responds"
+    },
+    {
+      "name": "custom_judge_click",
+      "value": "Click on the response area"
+    },
+    {
+      "name": "custom_tap_prompt",
+      "value": "Click on the yellow area in the lower half, and the yellow area responds"
+    },
+    {
+      "name": "custom_bigcircle_prompt",
+      "value": "custom big circle prompt"
+    },
+    {
+      "name": "custom_smallcircle_prompt",
+      "value": "custom small circle prompt"
+    },
+    {
+      "name": "custom_gesture",
+      "value": "Custom gesture determination"
+    },
+    {
+      "name": "send_event",
+      "value": "Sendevent"
+    },
+    {
+      "name": "custom_click_event",
+      "value": "Click"
+    },
+    {
+      "name": "custom_scrolling_event",
+      "value": "Scrolling"
+    },
+    {
+      "name": "custom_scrolling_area",
+      "value": "Scroll Area"
+    },
+    {
+      "name": "custom_click_big_btn",
+      "value": "Big circle"
+    },
+    {
+      "name": "custom_click_small_btn",
+      "value": "Small circle"
+    },
+    {
+      "name": "big_circle_prompt",
+      "value": "The blue area corresponds to the large circle event"
+    },
+    {
+      "name": "small_circle_prompt",
+      "value": "The yellow area corresponds to small circle events"
+    },
+    {
+      "name": "canvas_component_shadow",
+      "value": "Shadows"
+    },
+    {
+      "name": "action_sheet_title_autoCancel",
+      "value": "Whether the pop-up window is automatically canceled"
+    },
+    {
+      "name": "Blue",
+      "value": "Blue"
+    },
+    {
+      "name": "button",
+      "value": "Button"
+    },
+    {
       "name": "entry_desc",
       "value": "Component Collection"
     },
@@ -1977,10 +2089,6 @@
       "value": "Red"
     },
     {
-      "name": "Blue",
-      "value": "Blue"
-    },
-    {
       "name": "Yellow",
       "value": "Yellow"
     },
@@ -2019,10 +2127,6 @@
     {
       "name": "list_disabled",
       "value": "List Disabled"
-    },
-    {
-      "name": "button",
-      "value": "Button"
     },
     {
       "name": "focus",
@@ -2402,7 +2506,7 @@
     },
     {
       "name": "rich_editor_style",
-      "value": "样式"
+      "value": "style"
     },
     {
       "name": "rich_editor_title",
@@ -5820,6 +5924,14 @@
       "value":"onScrollStop"
     },
     {
+      "name": "previous",
+      "value": "previous"
+    },
+    {
+      "name": "next_step",
+      "value": "next step"
+    },
+    {
       "name": "text_styled_string_title",
       "value": "Text Styled String"
     },
@@ -5842,6 +5954,10 @@
     {
       "name": "text_styled_string_gesture_style",
       "value": "GestureStyle"
+    },
+    {
+      "name": "panel_background_color",
+      "value": "#ffffff"
     }
   ]
 }

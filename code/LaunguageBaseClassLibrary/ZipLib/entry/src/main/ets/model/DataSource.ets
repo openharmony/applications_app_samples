@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -20,7 +20,7 @@ class BasicDataSource implements IDataSource {
     return 0
   }
 
-  public getData(index: number): string {
+  public getData(index: number): string | undefined {
     return undefined
   }
 
@@ -94,5 +94,10 @@ export class ZipLibSource extends BasicDataSource {
   public pushData(data: string): void {
     this.fileData.push(data)
     this.notifyDataAdd(this.fileData.length - 1)
+  }
+
+  public deleteData(index: number): void {
+    this.fileData.splice(index, 1);
+    this.notifyDataDelete(index);
   }
 }

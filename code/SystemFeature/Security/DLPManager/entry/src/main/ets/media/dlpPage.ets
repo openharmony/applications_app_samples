@@ -23,6 +23,8 @@ import fs from '@ohos.file.fs';
 import Logger from '../utils/Logger';
 import dlpPermission from '@ohos.dlpPermission';
 import picker from '@ohos.file.picker';
+import wantConstant from '@ohos.app.ability.wantConstant';
+import uriPermissionManager from '@ohos.application.uriPermissionManager';
 
 const TAG = '[dlpmanager_dlpPage]';
 const OPACITY_VALUE = 0.6; // 透明度
@@ -150,26 +152,29 @@ struct DlpPage {
   async onEncrypt() {
     Logger.info(TAG + 'new file and encrypt');
     let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext
-    let want: Want = {
-      "action": "ohos.want.action.editData",
-      "bundleName": "com.ohos.dlpmanager",
-      "type": "text/plain",
-      "abilityName": "MainAbility",
-      "uri": this.dlpUri,
-      "parameters": {
-        "displayName": this.dlpName,
-        "fileName": { "name": this.dlpName },
-        "linkFileName": { "name": this.dlpLinkName },
-      }
-    };
+    let flag = wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION |
+    wantConstant.Flags.FLAG_AUTH_PERSISTABLE_URI_PERMISSION;
+    let targetBundleName = 'com.ohos.dlpmanager';
+    uriPermissionManager.grantUriPermission(this.dlpUri, flag, targetBundleName, (result) => {
+      Logger.info(TAG, `grandUriPermission result: ${JSON.stringify(result)}`);
+    });
     try {
-      Logger.info(TAG, "openDLPFile:" + JSON.stringify(want));
-      context.startAbility(want, (error: BusinessError) => {
-        Logger.error(TAG, 'want error.code =' + error.code + ',error.message =' + error.message);
+      let context = getContext() as common.UIAbilityContext;
+      // 请求参数
+      let want: Want = {
+        'uri': this.dlpUri,
+        'parameters': {
+          'displayName': this.dlpName
+        }
+      };
+      Logger.info(TAG, 'onEncrypt:' + JSON.stringify(want));
+      // 打开DLP权限管理应用
+      dlpPermission.startDLPManagerForResult(context, want).then((res: dlpPermission.DLPManagerResult) => {
+        Logger.info(TAG, 'startDLPManagerForResult res.resultCode:' + res.resultCode);
+        Logger.info(TAG, 'startDLPManagerForResult res.want:' + JSON.stringify(res.want));
       });
     } catch (err) {
-      Logger.error('openDLPFile startAbility failed' + (err as BusinessError).code + (err as BusinessError).message);
-      return;
+      Logger.error(TAG, 'startDLPManagerForResult error:' + (err as BusinessError).code + (err as BusinessError).message);
     }
   }
 
