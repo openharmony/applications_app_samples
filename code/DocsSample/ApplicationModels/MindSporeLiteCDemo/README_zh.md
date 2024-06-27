@@ -43,7 +43,7 @@ entry
 
 * 本示例程序中使用的终端图像分类模型文件为mobilenetv2.ms，放置在entry\src\main\resources\rawfile工程目录下。
 
-  注：可手工下载模型文件[mobilenetv2.ms](https://download.mindspore.cn/model_zoo/official/lite/mobilenetv2_openimage_lite/1.5/mobilenetv2.ms)。
+  注：开发者可按需手工从[MindSpore Model Hub](https://download.mindspore.cn/model_zoo/official/lite)中下载所需模型文件。
 
 * 调用[@ohos.file.picker](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-picker.md) （图片文件选择）、[@ohos.multimedia.image](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-image-kit/js-apis-image.md) （图片处理效果）、[@ohos.file.fs](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-fs.md) （基础文件操作） 等API实现相册图片获取及图片处理。完整代码请参见Index.ets。
 
