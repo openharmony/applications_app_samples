@@ -26,7 +26,6 @@ import { Event } from '@ohos.worker';
 
 const TAG: string = 'UDMF_Demo';
 
-
 // 获取应用文件路径
 let context = getContext(this) as common.UIAbilityContext;
 let baseDir = context.filesDir;
@@ -426,8 +425,12 @@ struct Index {
                       return;
                     }
 
-                    let fileTestDirPathNew = filesDir + "/" + 'new_' + item.filename;
+                    let name: string = randomString(6, 'UDMFDemo');
+                    let fileTestDirPathNew = filesDir + "/" + name + '_' + item.filename;
+                    logger.info(TAG, 'fileTestDirPathNew: ' + fileTestDirPathNew)
                     saveAsFileContent(fileTestDirPathNew, content);
+
+                    this.UpdateSelectedFiles();
 
                     this.backGroundColor = Color.Transparent;
                     let data: UDC.PlainText = new UDC.PlainText();
@@ -450,8 +453,13 @@ struct Index {
           .borderRadius(24)
           .edgeEffect(EdgeEffect.Spring) // 边缘效果设置为Spring
           .onScrollIndex((firstIndex: number, lastIndex: number, centerIndex: number) => {
+            logger.info(TAG, 'onScrollIndex')
           })
           .onDidScroll((scrollOffset: number, scrollState: ScrollState) => {
+            logger.info(TAG, 'onDidScroll')
+          })
+          .onScrollStop(()=> {
+            logger.info(TAG, 'onScrollStop')
           })
           .backgroundColor(0xFFFFFF)
         }
@@ -491,9 +499,10 @@ struct Index {
         .onDragStart((event) => {
 
           this.textContentTarget = '';
-          let name: string = randomString(6, 'UDMFDemo');
+          let name: string = randomString(6, 'UDMFDemo') + '.txt';
           let fileTestDirPathNew = filesDir + "/" + 'new_' + name;
           saveAsFileContent(fileTestDirPathNew, this.textContent);
+          this.UpdateSelectedFiles();
 
           this.backGroundColor = Color.Transparent;
           let data: UDC.PlainText = new UDC.PlainText();
