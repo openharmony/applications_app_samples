@@ -91,11 +91,11 @@ function CreatePrecastFile(): void {
     }
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    logger.error(TAG, "accessSync failed with error message: " + err.message + ", error code: " + err.code);
+    logger.error(TAG, 'accessSync failed with error message: ' + err.message + ', error code: ' + err.code);
   }
 
   for (let i = 0; i < precastFiles.length; i++) {
-    let fileName = filesDir + "/" + precastFiles[i];
+    let fileName = filesDir + '/' + precastFiles[i];
     logger.info(TAG, `The file name: ${fileName}`);
     try {
       let res = fs.accessSync(fileName);
@@ -104,17 +104,17 @@ function CreatePrecastFile(): void {
       } else {
         logger.info(TAG, `file: ${fileName} not exists, will create it!.`);
         let file = fs.openSync(fileName, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-        logger.info(TAG, "file fd: " + file.fd);
+        logger.info(TAG, 'file fd: ' + file.fd);
 
         if (fileName.includes('.txt')) {
-          logger.info(TAG, "txt file write sync ");
+          logger.info(TAG, 'txt file write sync ');
           fs.writeSync(file.fd, 'test content 1 test content 2');
         }
         fs.closeSync(file);
       }
     } catch (error) {
       let err: BusinessError = error as BusinessError;
-      logger.error(TAG, "accessSync failed with error message: " + err.message + ", error code: " + err.code);
+      logger.error(TAG, 'accessSync failed with error message: ' + err.message + ', error code: ' + err.code);
     }
   }
 }
@@ -128,7 +128,7 @@ function saveAsFileContent(fileName: string, content: string) {
     } else {
       logger.info(TAG, `file: ${fileName} not exists, will create it!.`);
       let file = fs.openSync(fileName, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-      logger.info(TAG, "file fd: " + file.fd);
+      logger.info(TAG, 'file fd: ' + file.fd);
 
       if (fileName.includes('.txt')) {
         logger.info(TAG, 'txt file write sync ');
@@ -163,7 +163,7 @@ function getIconByType(fileName: string) {
 struct Index {
   @State message: string = 'Hello World';
   fileFs: FileFs = new FileFs();
-  @State text: string = "All";
+  @State text: string = 'All';
   @State index: number = 1;
   @State space: number = 12;
   @State arrowPosition: ArrowPosition = ArrowPosition.END;
@@ -186,14 +186,14 @@ struct Index {
       this.selectedFilesInfos.pop();
     }
     this.selectedFilesInfos = [];
-    logger.info(TAG, "selectText: " + this.text)
+    logger.info(TAG, 'selectText: ' + this.text)
     for (let i = 0; i < this.fileNames.length; i++) {
       let fileName = this.fileNames[i];
       let index = fileName.lastIndexOf('.');
       if (index < 0) {
         logger.info(TAG, `fileNames file: ${fileName}`);
-        if (this.text == "All") {
-          let fileInfo = new FileInfo(fileName, "");
+        if (this.text == 'All') {
+          let fileInfo = new FileInfo(fileName, '');
           this.selectedFilesInfos.push(fileInfo);
         }
         continue;
@@ -385,12 +385,12 @@ struct Index {
                         .textAlign(TextAlign.Start)
                         .margin({ left: 12, right: 12 })
                         .fontWeight(500)
-                        .id("textFilename_" + no)
+                        .id('textFilename_' + no)
                         .visibility(Visibility.Visible)
                         .onClick(() => {
                           logger.info(TAG, `selected file：` + item.filename + `and clicked`);
                           logger.info(TAG, `selected file：` + item.filename + `and clicked row`);
-                          let fileTestDirPath = filesDir + "/" + item.filename;
+                          let fileTestDirPath = filesDir + '/' + item.filename;
                           if (item.filename.includes('.txt')) {
                             this.textContent = this.fileFs.getFileContent(fileTestDirPath);
                             if (this.textContent == '') {
@@ -414,7 +414,7 @@ struct Index {
                   .onDragStart((event) => {
                     this.textContentTarget = '';
                     let content: string = ''
-                    let fileTestDirPath = filesDir + "/" + item.filename;
+                    let fileTestDirPath = filesDir + '/' + item.filename;
                     if (item.filename.includes('.txt')) {
                       content = this.fileFs.getFileContent(fileTestDirPath);
                     } else {
@@ -426,7 +426,7 @@ struct Index {
                     }
 
                     let name: string = randomString(6, 'UDMFDemo');
-                    let fileTestDirPathNew = filesDir + "/" + name + '_' + item.filename;
+                    let fileTestDirPathNew = filesDir + '/' + name + '_' + item.filename;
                     logger.info(TAG, 'fileTestDirPathNew: ' + fileTestDirPathNew)
                     saveAsFileContent(fileTestDirPathNew, content);
 
@@ -443,7 +443,7 @@ struct Index {
                 .height(48)
                 .alignItems(VerticalAlign.Center)
               }
-              .id("listItem_" + no)
+              .id('listItem_'+ no)
             })
           }
           .listDirection(Axis.Vertical)
@@ -500,7 +500,7 @@ struct Index {
 
           this.textContentTarget = '';
           let name: string = randomString(6, 'UDMFDemo') + '.txt';
-          let fileTestDirPathNew = filesDir + "/" + 'new_' + name;
+          let fileTestDirPathNew = filesDir + '/'+ 'new_' + name;
           saveAsFileContent(fileTestDirPathNew, this.textContent);
           this.UpdateSelectedFiles();
 
