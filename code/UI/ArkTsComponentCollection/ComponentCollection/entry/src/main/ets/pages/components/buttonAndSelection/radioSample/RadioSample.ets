@@ -32,6 +32,8 @@ struct RadioSample {
   @State noResponseRegionIndex: number = 0;
   private context: Context = getContext(this);
   private cityNames: Resource[] = [$r('app.string.radio_beijing'), $r('app.string.radio_shanghai'), $r('app.string.radio_guangzhou'), $r('app.string.radio_shenzhen')];
+  private widthValue: number = 20;
+  private heightValue: number = 48;
 
   build() {
     Column() {
@@ -63,10 +65,12 @@ struct RadioSample {
             ForEach(this.cityNames, (item: Resource, index: number) => {
               Row() {
                 Radio({ value: this.context.resourceManager.getStringSync(item), group: 'responseRegion' })
-                  .size({ width: 20, height: 20 })
+                  .size({ width: this.widthValue, height: this.heightValue })
                   .checked(this.responseRegionIndex === index)
                   .responseRegion({
-                    width: this.radioItemWidth, // Get response region with equals radio item width
+                    x: 0,
+                    y: 0,
+                    width: this.radioItemWidth * (100 / this.widthValue) + '%',
                     height: '100%'
                   })
                   .onChange((isChecked: boolean) => {
@@ -77,9 +81,7 @@ struct RadioSample {
                   })
                   .id('cityHot' + String(index))
                 Text(item)
-                  .width(this.radioItemWidth)
-                  .height(48)
-                  .responseRegion({ width: 0, height: 0 }) // Make this text has no response region
+                  .height(this.heightValue)
               }
               .width('100%')
               .margin({ bottom: 6 })
