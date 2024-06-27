@@ -65,12 +65,100 @@
       "value": "Compression failed because the compressed file exists, compression failure"
     },
     {
+      "name": "zlib_compress_failure",
+      "value": "File compression failure"
+    },
+    {
       "name": "tip_complete",
       "value": "File compression complete"
     },
     {
       "name": "warning_failure",
       "value": "File compression failure"
+    },
+    {
+      "name": "ziplibdecompression",
+      "value": "zipLibDecompression"
+    },
+    {
+      "name": "zlibInterface",
+      "value": "zipLibInterface"
+    },
+    {
+      "name": "zLib",
+      "value": "zLib"
+    },
+    {
+      "name": "zlib_uncompress_failure",
+      "value": "zlib uncompression failure"
+    },
+    {
+      "name": "gzip_compress_failure",
+      "value": "gzip compression failure"
+    },
+    {
+      "name": "gzip_uncompress_failure",
+      "value": "gzip uncompression failure"
+    },
+    {
+      "name": "gzip_interface",
+      "value": "gzip interface"
+    },
+    {
+      "name": "zlib_interface",
+      "value": "zlib interface"
+    },
+    {
+      "name": "CompressFiles",
+      "value": "CompressFiles"
+    },
+    {
+      "name": "CompressFiles_success",
+      "value": "compressFiles complete"
+    },
+    {
+      "name": "CompressFiles_failure",
+      "value": "compressFiles failure"
+    },
+    {
+      "name": "tip_CompressFiles",
+      "value": "tip"
+    },
+    {
+      "name": "tip_Gzip",
+      "value": "tip"
+    },
+    {
+      "name": "CompressFiles_success_size",
+      "value": "CompressFiles success size:%s"
+    },
+    {
+      "name": "zlib_compress_success",
+      "value": "zlib compress success:%s"
+    },
+    {
+      "name": "zlib_uncompress_success",
+      "value": "zlib uncompress success:%s"
+    },
+    {
+      "name": "gzip_compress_success",
+      "value": "gzip compress success:%s"
+    },
+    {
+      "name": "gzip_uncompress_success",
+      "value": "gzip uncompress success:%s"
+    },
+    {
+      "name": "delete_file",
+      "value": "delete all files?"
+    },
+    {
+      "name": "delete_file_success",
+      "value": "delete file success"
+    },
+    {
+      "name": "delete_file_tip",
+      "value": "delete file tip"
     }
   ]
 }

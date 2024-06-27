@@ -1,0 +1,128 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "BundleManagement"
+    },
+    {
+      "name": "shortcut",
+      "value": "快捷方式"
+    },
+    {
+      "name": "empty",
+      "value": "暂无内容"
+    },
+    {
+      "name": "NewAbility_label",
+      "value": "NewAbility"
+    },
+    {
+      "name": "NewAbility_desc",
+      "value": "NewAbility"
+    },
+    {
+      "name": "bundleManagement",
+      "value": "包管理"
+    },
+    {
+      "name": "interface",
+      "value": "包管理接口"
+    },
+    {
+      "name": "adler_crc_interface",
+      "value": "接口1"
+    },
+    {
+      "name": "EntryAbility1_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility1_label",
+      "value": "label"
+    },
+    {
+      "name": "GetBundleInfoCurrentApplication",
+      "value": "获取当前应用的BundleInfo"
+    },
+    {
+      "name": "GetBundleInfo",
+      "value": "获取BundleInfo"
+    },
+    {
+      "name": "GetBundleInfoSync",
+      "value": "获取BundleInfo(sync)"
+    },
+    {
+      "name": "GetConfiguration",
+      "value": "获取module.json配置"
+    },
+    {
+      "name": "GetConfigurationJson",
+      "value": "获取配置json"
+    },
+    {
+      "name": "GetConfigurationArray",
+      "value": "获取配置数组"
+    },
+    {
+      "name": "GetConfigurationJsonSync",
+      "value": "获取配置json(sync)"
+    },
+    {
+      "name": "VerifyFile",
+      "value": "校验.abc文件"
+    },
+    {
+      "name": "DeleteFile",
+      "value": "删除.abc文件"
+    },
+    {
+      "name": "VerifyLink",
+      "value": "校验链接"
+    },
+    {
+      "name": "VerifyLinkOpened",
+      "value": "校验链接是否可打开"
+    },
+    {
+      "name": "DetermineDefaultApplications",
+      "value": "判断是否为默认应用"
+    },
+    {
+      "name": "DetermineDefaultApplication",
+      "value": "判断默认应用"
+    },
+    {
+      "name": "DetermineDefaultApplicationSync",
+      "value": "判断默认应用(sync)"
+    },
+    {
+      "name": "SetOverlayStatus",
+      "value": "设置overlay状态"
+    },
+    {
+      "name": "SetDisableEnableStatus",
+      "value": "设置禁用使能状态"
+    },
+    {
+      "name": "ObtainOverlayModuleInfo",
+      "value": "获取overlayModuleInfo"
+    },
+    {
+      "name": "ObtainOverlayModuleInfoInformation",
+      "value": "获取overlayModuleInfo信息"
+    },
+    {
+      "name": "ObtainMultipleOverlayModuleInfoInformation",
+      "value": "获取多条overlayModuleInfo信息"
+    }
+  ]
+}

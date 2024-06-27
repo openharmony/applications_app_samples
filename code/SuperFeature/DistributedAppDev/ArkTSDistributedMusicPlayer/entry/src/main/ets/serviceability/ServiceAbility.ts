@@ -22,6 +22,8 @@ import {
   MusicSharedEventCode,
   MusicConnectEvent
 } from '../common/MusicSharedDefinition';
+import PlayerModel from '../model/PlayerModel';
+import media from '@ohos.multimedia.media';
 
 const TAG: string = 'ServiceAbility'
 const CONNECT_REMOTE_TIMEOUT = 10000
@@ -201,6 +203,10 @@ export default class ServiceAbility extends ServiceExtensionAbility {
     if (this.context === null && this.context === undefined) {
       Logger.error(TAG, 'ServiceAbility context does not exist or is empty')
       return
+    }
+    if (PlayerModel.player === undefined) {
+      PlayerModel.player = media.createAudioPlayer();
+      PlayerModel.initAudioPlayer();
     }
     return new DistributedMusicServiceExtension('ohos.samples.distributedMusicServiceExtension', this.context)
   }

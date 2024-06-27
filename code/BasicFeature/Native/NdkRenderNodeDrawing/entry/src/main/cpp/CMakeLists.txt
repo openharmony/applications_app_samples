@@ -19,6 +19,5 @@ find_library(
 )
 target_link_libraries(entry PUBLIC ${hilog-lib})
 target_link_libraries(entry PUBLIC libace_napi.z.so)
-target_link_libraries(entry PUBLIC libnative_window.so)
 target_link_libraries(entry PUBLIC libnative_drawing.so)
 target_link_libraries(entry PUBLIC libpixelmap_ndk.z.so libimage_source_ndk.z.so librawfile.z.so)

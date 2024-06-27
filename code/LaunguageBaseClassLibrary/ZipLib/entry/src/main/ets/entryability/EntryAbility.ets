@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,44 +13,49 @@
  * limitations under the License.
  */
 
-import UIAbility from '@ohos.app.ability.UIAbility'
-import Window from '@ohos.window'
-import Logger from '../model/Logger'
+
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
+
+const DOMAIN = 0xF811;
+const BUNDLE = 'ZipLib_';
+const TAG: string = '[EntryAbility]'
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want, launchParam) {
-    Logger.info('Ability onCreate')
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    hilog.info(DOMAIN, TAG, BUNDLE + 'Ability onCreate');
   }
 
   onDestroy() {
-    Logger.info('Ability onDestroy')
+    hilog.info(DOMAIN, TAG, BUNDLE + 'Ability onDestroy');
   }
 
-  onWindowStageCreate(windowStage: Window.WindowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
-    Logger.info('Ability onWindowStageCreate')
-
+    hilog.info(DOMAIN, TAG, BUNDLE + 'Ability onWindowStageCreate');
+    AppStorage.setOrCreate('context', this.context);
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
-        Logger.error(`Failed to load the content. Cause: ${JSON.stringify(err)}`)
+        hilog.error(DOMAIN, TAG, BUNDLE + `Failed to load the content. Cause: ${JSON.stringify(err)}`);
         return
       }
-      Logger.info(`Succeeded in loading the content. Data: ${JSON.stringify(data)}`)
+      hilog.info(DOMAIN, TAG, BUNDLE + `Succeeded in loading the content. Data: ${JSON.stringify(data)}`);
     })
   }
 
   onWindowStageDestroy() {
     // Main window is destroyed, release UI related resources
-    Logger.info('Ability onWindowStageDestroy')
+    hilog.info(DOMAIN, TAG, BUNDLE + 'Ability onWindowStageDestroy');
   }
 
   onForeground() {
     // Ability has brought to foreground
-    Logger.info('Ability onForeground')
+    hilog.info(DOMAIN, TAG, BUNDLE + 'Ability onForeground');
   }
 
   onBackground() {
     // Ability has back to background
-    Logger.info('Ability onBackground')
+    hilog.info(DOMAIN, TAG, BUNDLE + 'Ability onBackground');
   }
 }
