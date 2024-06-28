@@ -186,7 +186,7 @@ struct Index {
       this.selectedFilesInfos.pop();
     }
     this.selectedFilesInfos = [];
-    logger.info(TAG, 'selectText: ' + this.text)
+    logger.info(TAG, 'selectText: ' + this.text);
     for (let i = 0; i < this.fileNames.length; i++) {
       let fileName = this.fileNames[i];
       let index = fileName.lastIndexOf('.');
@@ -345,7 +345,6 @@ struct Index {
             })
             .allowDrop([UTD.UniformDataType.PLAIN_TEXT, UTD.UniformDataType.FILE])
             .onDrop((dragEvent?: DragEvent) => {
-              this.textContentTarget = '';
               logger.info(TAG, `textContentTarget onDrop this.textContentTarget：` + this.textContentTarget);
               this.getDataFromUdmf((dragEvent as DragEvent), (event: DragEvent) => {
                 let records: Array<UDC.UnifiedRecord> = event.getData().getRecords();
@@ -380,7 +379,8 @@ struct Index {
 
                   saveAsFileContent(fileTestDirPathNew, plainText.textContent);
                   this.UpdateSelectedFiles();
-                  this.textContentTarget = 'Content save as ' + 'new_' + name;
+                  plainText.textContent = 'Content save as ' + 'new_' + name;
+                  this.textContentTarget = plainText.textContent;
                   logger.info(TAG, `textContentTarget onDrop  this.textContentTarget：` +  this.textContentTarget);
                 }
               })
@@ -529,7 +529,7 @@ struct Index {
           this.backGroundColor = Color.Transparent;
           let data: UDC.PlainText = new UDC.PlainText();
           data.abstract = 'this is abstract';
-          data.textContent = this.textContent; //'Content save as ' + 'new_'
+          data.textContent = this.textContent;
           (event as DragEvent).setData(new UDC.UnifiedData(data));
         })
         .height('45%')

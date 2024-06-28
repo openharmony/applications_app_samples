@@ -77,7 +77,7 @@ export default function abilityTest() {
       let textContent = await driver.findComponent(ON.id('textContent'));
       let inputString = await textContent.getText();
       logger.info(TAG, 'UDMF_Select_001 inputString: ' + inputString);
-      //
+
       expect(inputString.includes('test content 1 test content 2')).assertTrue();
 
       await driver.assertComponentExist(ON.id('SelectTypeList'));
@@ -139,7 +139,6 @@ export default function abilityTest() {
 
       await driver.assertComponentExist(ON.id('targetText'));
       let textTarget = await driver.findComponent(ON.id('targetText'));
-      await textTarget.click();
       await driver.delayMs(500);
 
       await driver.drag(100, 320, 430, 180);
@@ -169,7 +168,6 @@ export default function abilityTest() {
       let textTarget = await driver.findComponent(ON.id('targetText'));
 
       logger.info(TAG, 'UDMF_Drag_002 bb');
-      await textTarget.click();
       await driver.delayMs(500);
 
       await driver.click(100, 320);
