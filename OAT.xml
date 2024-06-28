@@ -678,6 +678,18 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/BasicFeature/ApplicationModels/BundleManager/BundleManagement/entry/src/main/resources/base/media/pic_empty.svg" desc="Provided by code/BasicFeature/ApplicationModels/BundleManager/BundleManagement"/>
                 <filteritem type="filepath" name="code/BasicFeature/ApplicationModels/BundleManager/BundleManagement/entry/src/main/resources/base/media/ic_back.svg" desc="Provided by code/BasicFeature/ApplicationModels/BundleManager/BundleManagement"/>
                 <filteritem type="filepath" name="code/BasicFeature/ApplicationModels/BundleManager/BundleManagement/libraryRuntimeOverlay/src/main/resources/base/media/icon.png" desc="Provided by code/BasicFeature/ApplicationModels/BundleManager/BundleManagement"/>
+		<filteritem type="filepath" name="code/SystemFeature/AutoFill/AutoFill/entry/src/main/resources/base/media/svg.png" desc="Provided by code/SystemFeature/AutoFill/AutoFill"/>
+   		<filteritem type="filepath" name="code/SystemFeature/AutoFill/AutoFillScenarioization/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/AutoFill/AutoFillScenarioization"/>
+   		<filteritem type="filepath" name="code/SystemFeature/AutoFill/AutoFill/screenshots/biometricauthentication.jpg" desc="Provided by code/SystemFeature/AutoFill/AutoFill"/>
+       		<filteritem type="filepath" name="code/SystemFeature/AutoFill/AutoFill/screenshots/autoFillControl.jpg" desc="Provided by code/SystemFeature/AutoFill/AutoFill"/>
+   		<filteritem type="filepath" name="code/SystemFeature/AutoFill/AutoFillScenarioization/screenshots/Index.jpg" desc="Provided by code/SystemFeature/AutoFill/AutoFillScenarioization"/>
+   		<filteritem type="filepath" name="code/SystemFeature/AutoFill/AutoFillScenarioization/screenshots/ReturnMainPage.jpg" desc="Provided by code/SystemFeature/AutoFill/AutoFillScenarioization"/>
+   		<filteritem type="filepath" name="code/SystemFeature/AutoFill/AutoFillScenarioization/screenshots/SavePage.jpg" desc="Provided by code/SystemFeature/AutoFill/AutoFillScenarioization"/>
+   		<filteritem type="filepath" name="code/SystemFeature/AutoFill/AutoFillScenarioization/screenshots/SelectorList.jpg" desc="Provided by code/SystemFeature/AutoFill/AutoFillScenarioization"/>
+   		<filteritem type="filepath" name="code/SystemFeature/AutoFill/AutoFillScenarioization/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/AutoFill/AutoFillScenarioization"/>
+   		<filteritem type="filepath" name="code/SystemFeature/AutoFill/AutoFillScenarioization/entry/src/main/resources/base/media/style.png" desc="Provided by code/SystemFeature/AutoFill/AutoFillScenarioization"/>
+   		<filteritem type="filepath" name="code/SystemFeature/AutoFill/AutoFillScenarioization/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/AutoFill/AutoFillScenarioization"/>
+   		<filteritem type="filepath" name="code/SystemFeature/AutoFill/AutoFillScenarioization/entry/src/main/resources/base/media/arrow.png" desc="Provided by code/SystemFeature/AutoFill/AutoFillScenarioization"/>
                 <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmonyApplication.pem" desc="Provided by code/Project/HapBuild"/>
                 <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmonyProfileRelease.pem" desc="Provided by code/Project/HapBuild"/>
                 <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/hap-sign-tool.jar" desc="Provided by code/Project/HapBuild"/>

@@ -22,43 +22,50 @@ struct ReturnMainPage {
 
   build() {
     Column() {
-      Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
-        Image($r('app.media.arrow'))
-          .height(44)
-          .width(44)
-          .onClick(() => {
-            router.back();
-          })
-        Text($r('app.string.scenarioization'))
-          .fontWeight(500)
-          .fontFamily('HarmonyHeiTi-Medium')
-          .fontSize(22)
-          .margin({ left: '2.4%' })
-      }.margin({ top: '2.8%', left: '4.9%' })
+      Column() {
+        Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+          Image($r('app.media.arrow'))
+            .height(44)
+            .width(44)
+            .onClick(() => {
+              router.back();
+            })
+          Text($r('app.string.scenarioization'))
+            .fontWeight(500)
+            .fontFamily('HarmonyHeiTi-Medium')
+            .fontSize(22)
+            .margin({ left: '2.4%' })
+        }.margin({ top: '2.8%', left: '4.9%' })
 
-      Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-        Image($r('app.media.style'))
-          .height('48%')
-          .width('56%')
-      }.margin({ top: '19.8%' })
+        Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+          Image($r('app.media.style'))
+            .height('448px')
+            .width('448px')
+        }.margin({ top: '19.8%' })
+      }.height('70%')
 
-      Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-        Column() {
-          Row() {
-            Button($r('app.string.returnMainPage'))
-              .type(ButtonType.Normal)
-              .borderRadius(25)
-              .fontColor($r('app.color.cancelBtnColor'))
-              .backgroundColor($r('app.color.mainInterface'))
-              .fontSize(18)
-              .height('7.8%')
-              .width('38.2%')
-              .onClick(() => {
-                router.back();
-              })
+      Column() {
+        Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+          Column() {
+            Row() {
+              Button($r('app.string.returnMainPage'))
+                .type(ButtonType.Normal)
+                .borderRadius(25)
+                .fontColor($r('app.color.cancelBtnColor'))
+                .backgroundColor($r('app.color.mainInterface'))
+                .fontSize(16)
+                .fontWeight(400)
+                .height('20.8%')
+                .width('38.2%')
+                .onClick(() => {
+                  router.back();
+                })
+            }
           }
-        }
-      }.margin({ top: '44.6%' })
+        }.margin({ bottom: '44px' })
+      }
+      .height('30%')
+      .justifyContent(FlexAlign.End)
     }
     .backgroundColor($r('app.color.pageBackColor')).height('100%')
   }

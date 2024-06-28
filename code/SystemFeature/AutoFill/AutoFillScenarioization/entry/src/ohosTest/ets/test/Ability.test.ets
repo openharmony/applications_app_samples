@@ -26,6 +26,7 @@ function sleep(time: number): Promise<number> {
 const TAG = 'Sample_AutoFillTest';
 const DOMAIN_NUMBER: number = 0xFF00;
 const abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+let resourceManager = abilityDelegator.getAppContext().resourceManager;
 
 async function startAbility() {
   hilog.info(DOMAIN_NUMBER, TAG, 'StartAbility start');
@@ -98,7 +99,7 @@ export default function abilityTest() {
       let point = await text.getBoundsCenter();
       await driver.delayMs(1000);
       await driver.inputText(point, '123');
-      await driver.delayMs(2000);
+      await driver.delayMs(1000);
       await driver.pressBack();
       await driver.delayMs(500);
       await driver.pressBack();
@@ -113,7 +114,9 @@ export default function abilityTest() {
       await saveBtn1.click();
       hilog.info(DOMAIN_NUMBER, TAG, 'saveBtn1 clicked');
       await driver.delayMs(1000);
-      let typeSetting = await driver.findComponent(ON.text('设置类型:'));
+      let typeSetting = await driver.findComponent(ON.text(
+        await resourceManager.getStringValue($r('app.string.settingTypeTest'))
+      ));
       expect(typeSetting != null).assertTrue();
       done();
     })
@@ -138,7 +141,9 @@ export default function abilityTest() {
       await driver.delayMs(1000);
       await saveOnlyBtn.click();
       await driver.delayMs(500);
-      let backMain = await driver.findComponent(ON.text('返回主界面'));
+      let backMain = await driver.findComponent(ON.text(
+        await resourceManager.getStringValue($r('app.string.returnMainPageTest'))
+      ));
       await driver.delayMs(1000);
       expect(backMain != null).assertTrue();
       await driver.pressBack();

@@ -84,6 +84,14 @@ entry/src/main/ets/
   * 源码链接：[RegisterPage.ets](entry/src/main/ets/autofillpages/RegisterPage.ets)，[AutoFillAbility.ts](entry/src/main/ets/autofillability/AutoFillAbility.ts)，[SavePage.ets](entry/src/main/ets/autofillpages/SavePage.ets)
   * 参考接口：[application/AutoFillRequest](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/application/AutoFillRequest.d.ts)，[@ohos.app.ability.AutoFillExtensionAbility](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.app.ability.AutoFillExtensionAbility.d.ts)，[@ohos.app.ability.autoFillManager](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.app.ability.autoFillManager.d.ts)
 
+### 安装命令
+
+1.验证生物认证界面需要在Window CMD输入如下命令配置账号密码自动填充时拉起Popup：
+
+```
+hdc shell param set persist.sys.abilityms.autofill.is_passwd_popup_window true
+```
+
 ### 相关权限
 
 不涉及。

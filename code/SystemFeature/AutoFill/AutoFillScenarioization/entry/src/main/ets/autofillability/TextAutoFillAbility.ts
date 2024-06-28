@@ -55,7 +55,7 @@ export default class TextAutoFillAbility extends AutoFillExtensionAbility {
     let storage = LocalStorage.getShared();
     let fillCallback = storage.get<autoFillManager.FillRequestCallback>('fillCallback');
     let size: autoFillManager.PopupSize = {
-      width: 400,
+      width: 656,
       height: 149
     };
     fillCallback.setAutoFillPopupConfig({
@@ -90,7 +90,7 @@ export default class TextAutoFillAbility extends AutoFillExtensionAbility {
           'autoFillType': request.type
         });
       let size: autoFillManager.PopupSize = {
-        width: 400,
+        width: 656,
         height: 220
       };
       callback.setAutoFillPopupConfig({

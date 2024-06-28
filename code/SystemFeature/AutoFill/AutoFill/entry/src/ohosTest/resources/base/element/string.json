@@ -23,6 +23,10 @@
     {
       "name": "user1",
       "value": "user1"
+    },
+    {
+      "name": "loginTest",
+      "value": "登录"
     }
   ]
 }

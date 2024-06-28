@@ -14,12 +14,13 @@
  */
 
 import type { FillRequest, SaveRequest, FillRequestCallback, SaveRequestCallback } from 'application/AutoFillRequest';
-import { AutoFillExtensionAbility, UIExtensionContentSession } from '@kit.AbilityKit';
+import { AutoFillExtensionAbility, autoFillManager, UIExtensionContentSession } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const AUTOFILLTYPE: number = 3;
 const TAG: string = 'autoFillAbility';
 const DOMAIN_NUMBER: number = 0xFF00;
+const BOTTOM_LEFT: number = 6;
 
 export default class AutoFillAbility extends AutoFillExtensionAbility {
   onCreate(): void {
@@ -55,10 +56,24 @@ export default class AutoFillAbility extends AutoFillExtensionAbility {
           'fillCallback': callback,
           'viewData': request.viewData,
           'pageNodeInfos': request.viewData.pageNodeInfos,
+          'autoFillExtensionContext': this.context,
+          'customData': request.customData
         });
+
+      let size: autoFillManager.PopupSize = {
+        width: 620,
+        height: 220
+      };
+      callback.setAutoFillPopupConfig({
+        popupSize: size,
+        placement: BOTTOM_LEFT
+      });
+
       request.viewData.pageNodeInfos.forEach((item) => {
         if (item.autoFillType === AUTOFILLTYPE) {
           session.loadContent('autofillpages/AutoFillNewPassWord', storageFill);
+        } else if (request.customData != undefined) {
+          session.loadContent('autofillpages/BiometricAuthentication', storageFill);
         } else {
           session.loadContent('autofillpages/AutoFillControl', storageFill);
         }

@@ -6,7 +6,7 @@
     },
     {
       "name": "cancelBtnColor",
-      "value": "#007DFF"
+      "value": "#0A59F7"
     },
     {
       "name": "enableColor",
@@ -31,6 +31,10 @@
     {
       "name": "backgroundColor",
       "value": "#ffffffff"
+    },
+    {
+      "name": "TextColor",
+      "value": "#99000000"
     }
   ]
 }

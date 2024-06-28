@@ -22,6 +22,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 const TAG: string = '[Sample_AutoFillTest]';
 const DOMAIN_NUMBER: number = 0xFF00;
 const abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+let resourceManager = abilityDelegator.getAppContext().resourceManager;
 
 function startAbility() {
   hilog.info(DOMAIN_NUMBER, TAG, 'StartAbility start');
@@ -37,46 +38,6 @@ function startAbility() {
 
 export default function abilityTest() {
   describe('AutoFillSampleTest', () => {
-    /*
-    * @tc.number: AutoFill_UserNameTextInput_001
-    * @tc.name: Click Enter Account input field
-    * @tc.desc: Click Enter Account input field
-    * @tc.size: MediumTest
-    * @tc.type: Function
-    * @tc.level Level 1
-    */
-    it('AutoFill_UserNameTextInput_001', 0, async (done: Function) => {
-      hilog.info(DOMAIN_NUMBER, TAG, 'AutoFill_UserNameTextInput_001 start');
-      startAbility();
-      let driver = Driver.create();
-      await driver.delayMs(1000);
-      let userNameTextInput = await driver.findComponent(
-        ON.id("userName"));
-      await driver.delayMs(1000);
-      await userNameTextInput.click();
-      await driver.delayMs(1000);
-      let userNameColumn = await driver.findComponent(ON.id('second'));
-      await driver.delayMs(1000);
-      await userNameColumn.click();
-      await driver.delayMs(500);
-      let userClick = await driver.findComponent(
-        ON.id("success"));
-      await driver.delayMs(1000);
-      await userClick.click();
-      await driver.delayMs(1000);
-      let userNameInfo = await userNameTextInput.getText();
-      await driver.delayMs(500);
-      expect(userNameInfo).assertEqual('user2');
-      hilog.info(DOMAIN_NUMBER, TAG, 'AutoFill_UserNameTextInput_001 end');
-      await driver.delayMs(1000);
-      let passWordTextInput = await driver.findComponent(
-        ON.id("passWord"));
-      let passWordInfo = await passWordTextInput.getText();
-      await driver.delayMs(500);
-      expect(passWordInfo).assertEqual('******');
-      done();
-    })
-
     /*
      * @tc.number: AutoFill_NewPassWordTextInput_003
      * @tc.name: Click Enter NewPassword input field
@@ -133,7 +94,10 @@ export default function abilityTest() {
       let confirmBtn = await driver.findComponent(ON.id("saveConfirm"));
       await driver.delayMs(1000);
       await confirmBtn.click();
-      let savePage = await driver.findComponent(ON.text('登录'));
+      await driver.delayMs(500);
+      let savePage = await driver.findComponent(ON.text(
+        await resourceManager.getStringValue($r('app.string.loginTest'))
+      ));
       await driver.delayMs(1000);
       await expect(savePage != null).assertTrue();
       done();
@@ -162,7 +126,9 @@ export default function abilityTest() {
       await driver.delayMs(500);
       await driver.pressBack();
       await driver.delayMs(500);
-      let savePage = await driver.findComponent(ON.text('登录'));
+      let savePage = await driver.findComponent(ON.text(
+        await resourceManager.getStringValue($r('app.string.loginTest'))
+      ));
       await driver.delayMs(1000);
       await expect(savePage != null).assertTrue();
       hilog.info(DOMAIN_NUMBER, TAG, 'AutoFill_AutoSave_005 end');

@@ -39,57 +39,66 @@ function SuccessFunc(success: boolean) {
 struct SavePage {
   build() {
     Column() {
-      Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
-        Image($r('app.media.arrow'))
-          .height(44)
-          .width(44)
-          .onClick(() => {
-            SuccessFunc(false);
-          })
-        Text($r('app.string.scenarioization'))
-          .fontWeight(500)
-          .fontFamily('HarmonyHeiTi-Medium')
-          .fontSize(22)
-          .margin({ left: '2.4%' })
-      }.margin({ top: '12.8%', left: '4.9%' })
-
-      Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-        Image($r('app.media.style'))
-          .height('44%')
-          .width('60.5%')
-      }.margin({ top: '19.8%' })
-
-      Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.End }) {
-        Row() {
-          Button($r('app.string.cancel'))
-            .type(ButtonType.Normal)
-            .borderRadius(25)
-            .fontSize(20)
-            .margin({ top: 30, right: 10 })
-            .fontColor($r('app.color.cancelBtnColor'))
-            .backgroundColor($r('app.color.mainInterface'))
-            .height('7.8%')
-            .width('42.2%')
-            .onClick(() => {
-              SuccessFunc(true);
-            })
-
-          Button($r('app.string.confirm'))
-            .type(ButtonType.Normal)
-            .borderRadius(25)
-            .fontSize(20)
-            .margin({ top: 30, left: 10 })
-            .fontColor($r('app.color.mainInterface'))
-            .id('saveOnly')
-            .backgroundColor($r('app.color.cancelBtnColor'))
-            .height('7.8%')
-            .width('42.2%')
+      Column() {
+        Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+          Image($r('app.media.arrow'))
+            .height(44)
+            .width(44)
             .onClick(() => {
               SuccessFunc(false);
             })
+          Text($r('app.string.scenarioization'))
+            .fontWeight(500)
+            .fontFamily('HarmonyHeiTi-Medium')
+            .fontSize(22)
+            .margin({ left: '2.4%' })
+        }.margin({ top: '12.8%', left: '4.9%' })
+
+        Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+          Image($r('app.media.style'))
+            .height('448px')
+            .width('448px')
+        }.margin({ top: '19.8%' })
+      }.height('70%')
+
+      Column() {
+        Column() {
+          Row() {
+            Button($r('app.string.cancel'))
+              .type(ButtonType.Normal)
+              .borderRadius(25)
+              .fontSize(16)
+              .fontWeight(400)
+              .margin({ right: 6 })
+              .fontColor($r('app.color.cancelBtnColor'))
+              .backgroundColor($r('app.color.mainInterface'))
+              .height('20.8%')
+              .width('44.5%')
+              .onClick(() => {
+                SuccessFunc(true);
+              })
+
+            Button($r('app.string.confirm'))
+              .type(ButtonType.Normal)
+              .borderRadius(25)
+              .fontSize(16)
+              .fontWeight(400)
+              .margin({ left: 6 })
+              .fontColor($r('app.color.mainInterface'))
+              .id('saveOnly')
+              .backgroundColor($r('app.color.cancelBtnColor'))
+              .height('20.8%')
+              .width('44.5%')
+              .onClick(() => {
+                SuccessFunc(false);
+              })
+          }
         }
+        .margin({ bottom: '44px' })
       }
-      .margin({ top: '38.8%' })
+      .height('30%')
+      .justifyContent(FlexAlign.End)
+      .alignItems(HorizontalAlign.Center)
     }.backgroundColor($r('app.color.pageBackColor')).height('100%')
   }
 }

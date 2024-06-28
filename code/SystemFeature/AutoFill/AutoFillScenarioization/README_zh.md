@@ -7,13 +7,13 @@
 1.数据的自动保存；
 2.数据的手动保存；
 3.设置情景化类型数据的自动填充；
-4.情景化类型为姓名时，输入两位字符进行联想自动填充。
+4.情景化类型为姓名时，输入字符进行联想自动填充。
 
 ### 效果预览
 
-| 情景化填充页面                      | 数据选择页面                               | 跳转页面                                     | 保存数据页面                           |
-| ----------------------------------- | ------------------------------------------ | -------------------------------------------- | -------------------------------------- |
-| <img src="screenshots/Index.jpg" /> | <img src="screenshots/SelectorList.jpg" /> | <img src="screenshots/ReturnMainPage.jpg" /> | <img src="screenshots/SavePage.jpg" /> |
+| 情景化填充页面                      | 数据选择页面                               | 数据联想                                 | 跳转页面                                     | 保存数据页面                           |
+| ----------------------------------- | ------------------------------------------ | ------------------------------------------- | -------------------------------------------- | -------------------------------------- |
+| <img src="screenshots/Index.jpg" /> | <img src="screenshots/SelectorList.jpg" /> | <img src="screenshots/NameAssociation.jpg" /> | <img src="screenshots/ReturnMainPage.jpg" /> | <img src="screenshots/SavePage.jpg" /> |
 
 使用说明：
 
@@ -21,7 +21,7 @@
 
 2.进入应用显示保存/切换界面，点击页面中设置类型的输入框，页面弹出select弹窗，选择其中任意号码后，输入框中分别显示出刚选择其对应的号码。
 
-3.点击页面中设置类型为姓名的输入框，输入两位字符进行联想页面弹出select弹窗，选择其中联想对应的名字后，输入框中显示出刚选择其对应的名字。
+3.点击页面中设置类型为姓名的输入框，输入字符进行联想页面弹出select弹窗，选择其中联想对应的名字后，输入框中显示出刚选择其对应的名字。
 
 4.在保存/切换界面分别手动输入任意数据，点击"保存"按钮，自动触发OnSaveRequest回调，立即跳转新页面显示"取消/保存"按钮，点击"保存"按钮，页面回到"保存/切换界面"主页面。
 
@@ -48,13 +48,13 @@ entry/src/main/ets/
 * 该示例分为四个分支：
   1. FULL_PHONE_NUMBER类型的情景化自动填充。
 
-  * FULL_PHONE_NUMBER类型的TextInput控件获焦后拉起AutoFillExtensionAbility，并触发onFillRequest回调，将选择的号码返回到textInput组件。
+  * FULL_PHONE_NUMBER类型的TextInput控件获焦后拉起AutoFillExtensionAbility。
   * 源码链接：[Index.ets](entry/src/main/ets/pages/Index.ets)，[AutoFillAbility.ts](entry/src/main/ets/autofillability/TextAutoFillAbility.ts)，[SelectorList.ets](entry/src/main/ets/autofillpages/SelectorList.ets)
   * 参考接口：[@ohos.app.ability.UIExtensionContentSession](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.app.ability.UIExtensionContentSession.d.ts)，[@ohos.app.ability.autoFillManager](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.app.ability.autoFillManager.d.ts)
 
   2. PERSON_FULL_NAME类型的情景化自动填充。
 
-  * PERSON_FULL_NAME类型的TextInput控件获焦后拉起AutoFillExtensionAbility，并触发onFillRequest回调，将选择的名字返回到textInput组件。
+  * PERSON_FULL_NAME类型的TextInput控件获焦后拉起AutoFillExtensionAbility，输入字符进行联想页面弹出select弹窗并触发onUpdateRequest回调，将选择的名字返回到textInput组件。
   * 源码链接：[Index.ets](entry/src/main/ets/pages/Index.ets)，[AutoFillAbility.ts](entry/src/main/ets/autofillability/TextAutoFillAbility.ts)，[SelectorList.ets](entry/src/main/ets/autofillpages/SelectorList.ets)
   * 参考接口：[@ohos.app.ability.UIExtensionContentSession](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.app.ability.UIExtensionContentSession.d.ts)，[@ohos.app.ability.autoFillManager](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.app.ability.autoFillManager.d.ts)
   

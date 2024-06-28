@@ -78,9 +78,11 @@ struct SelectorList {
               Text(item ? item : '')
                 .width('100%')
                 .height(40)
-                .fontSize(16)
-                .textAlign(TextAlign.Center)
-                .borderRadius(5)
+                .fontSize($r('sys.float.ohos_id_text_size_body1'))
+                .fontColor($r('sys.color.ohos_id_color_text_primary'))
+                .textAlign(TextAlign.Start)
+                .margin({ left: '4.8%' })
+                .borderRadius($r('sys.float.ohos_id_corner_radius_card'))
             }
             .onClick(() => {
               hilog.info(DOMAIN_NUMBER, TAG, 'click item: ', item);
@@ -91,14 +93,14 @@ struct SelectorList {
         .listDirection(Axis.Vertical)
         .scrollBar(BarState.Off)
         .friction(0.6)
-        .divider({ strokeWidth: 1, color: '#fff5eeee', startMargin: 20, endMargin: 20 })
+        .divider({ strokeWidth: 1, color: $r('app.color.placeholderColor'), startMargin: 20, endMargin: 20 })
         .edgeEffect(EdgeEffect.Spring)
         .onScrollIndex((firstIndex: number, lastIndex: number, centerIndex: number) => {
           hilog.info(DOMAIN_NUMBER, TAG, 'first' + firstIndex);
           hilog.info(DOMAIN_NUMBER, TAG, 'last' + lastIndex);
           hilog.info(DOMAIN_NUMBER, TAG, 'center' + centerIndex);
         })
-        .onScrollIndex((scrollOffset: number, scrollState: ScrollState) => {
+        .onScroll((scrollOffset: number, scrollState: ScrollState) => {
           hilog.info(DOMAIN_NUMBER, TAG, `onScroll scrollState = ScrollState` + scrollState + `, scrollOffset = ` +
             scrollOffset);
         })

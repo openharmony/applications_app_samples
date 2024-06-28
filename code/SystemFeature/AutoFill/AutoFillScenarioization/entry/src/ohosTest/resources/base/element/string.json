@@ -11,6 +11,14 @@
     {
       "name": "TestAbility_label",
       "value": "test label"
+    },
+    {
+      "name": "settingTypeTest",
+      "value": "设置类型:"
+    },
+    {
+      "name": "returnMainPageTest",
+      "value": "返回主界面"
     }
   ]
 }
