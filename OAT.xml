@@ -690,6 +690,7 @@ Note:If the text contains special characters, please escape them according to th
    		<filteritem type="filepath" name="code/SystemFeature/AutoFill/AutoFillScenarioization/entry/src/main/resources/base/media/style.png" desc="Provided by code/SystemFeature/AutoFill/AutoFillScenarioization"/>
    		<filteritem type="filepath" name="code/SystemFeature/AutoFill/AutoFillScenarioization/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/AutoFill/AutoFillScenarioization"/>
    		<filteritem type="filepath" name="code/SystemFeature/AutoFill/AutoFillScenarioization/entry/src/main/resources/base/media/arrow.png" desc="Provided by code/SystemFeature/AutoFill/AutoFillScenarioization"/>
+		<filteritem type="filepath" name="code/SystemFeature/AutoFill/AutoFillScenarioization/screenshots/NameAssociation.jpg" desc="Provided by code/SystemFeature/AutoFill/AutoFillScenarioization"/>	
                 <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmonyApplication.pem" desc="Provided by code/Project/HapBuild"/>
                 <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmonyProfileRelease.pem" desc="Provided by code/Project/HapBuild"/>
                 <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/hap-sign-tool.jar" desc="Provided by code/Project/HapBuild"/>
