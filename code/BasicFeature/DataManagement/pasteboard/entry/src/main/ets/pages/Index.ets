@@ -208,7 +208,7 @@ struct Index {
               .margin({ left: 12, right: 12 })
               .border({ radius: 20 })
               .width('100%')
-              .onClick(async () => {
+              .onClick(() => {
                 // 复制文本框文本到剪贴板
                 this.addLog('text content :' + this.text);
                 let plainTextData = new unifiedDataChannel.UnifiedData();
