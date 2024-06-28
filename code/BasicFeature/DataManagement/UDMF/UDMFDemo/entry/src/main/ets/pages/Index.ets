@@ -23,7 +23,6 @@ import UDC from '@ohos.data.unifiedDataChannel';
 import UTD from '@ohos.data.uniformTypeDescriptor';
 import FileFs from '../fileFs/fileFs'
 import { randomString } from '../util/Common';
-import { Event } from '@ohos.worker';
 
 const TAG: string = 'UDMF_Demo';
 
@@ -346,58 +345,33 @@ struct Index {
             })
             .allowDrop([UTD.UniformDataType.PLAIN_TEXT, UTD.UniformDataType.FILE])
             .onDrop((dragEvent?: DragEvent) => {
-
-              // this.textContentTarget = '';
-              // let name: string = randomString(6, 'UDMFDemo') + '.txt';
-              // let fileTestDirPathNew = filesDir + "/" + 'new_' + name;
-              // saveAsFileContent(fileTestDirPathNew, this.textContent);
-              // this.UpdateSelectedFiles();
-              //
-              // this.backGroundColor = Color.Transparent;
-              // let data: UDC.PlainText = new UDC.PlainText();
-              // data.abstract = 'this is abstract';
-              // data.textContent = 'Content save as ' + 'new_' + name;
-              // (event as DragEvent).setData(new UDC.UnifiedData(data));
-
-
-              // this.textContentTarget = '';
+              this.textContentTarget = '';
               logger.info(TAG, `textContentTarget onDrop this.textContentTarget：` + this.textContentTarget);
               this.getDataFromUdmf((dragEvent as DragEvent), (event: DragEvent) => {
                 let records: Array<UDC.UnifiedRecord> = event.getData().getRecords();
                 let type: string  = records[0].getType();
-                logger.info(TAG, 'type is : ' + type);
-                if(type == 'general.file') {
+                if(type == UTD.UniformDataType.FILE) {
                   logger.info(TAG, 'general.file is true!');
-
                   let file: UDC.File = records[0] as UDC.File;
-
                   let name: string = randomString(6, 'UDMFDemo');
 
                   let details: Record<string, string> | undefined = file.details
-
                   if (details == undefined) {
                     return;
                   }
+
                   let fileTestDirPathNew: string = filesDir + "/" + name + '_' + details.name;
-                  // let fileTestDirPathNew: string = filesDir + "/" + name + '_' + file.details.name;
-
-
                   let fileTestDirPath: string = filesDir + "/" + details.name;
-                  logger.info(TAG, 'fileTestDirPathNew: ' + fileTestDirPathNew)
+                  logger.info(TAG, 'fileTestDirPathNew: ' + fileTestDirPathNew);
 
-                   let content: string = this.fileFs.getFileContent(fileTestDirPath);
-
+                  let content: string = this.fileFs.getFileContent(fileTestDirPath);
                   saveAsFileContent(fileTestDirPathNew, content);
-
                   this.UpdateSelectedFiles();
-
                   this.textContentTarget = 'Save as ' + name + '_' + details.name;
-
-                } else if (type == 'general.plain-text') {
+                } else if (type == UTD.UniformDataType.PLAIN_TEXT) {
                   logger.info(TAG, 'general.plain-text is true!');
                   let plainText: UDC.PlainText = records[0] as UDC.PlainText;
 
-                  // this.textContentTarget = '';
                   let name: string = randomString(6, 'UDMFDemo') + '.txt';
                   let fileTestDirPathNew = filesDir + "/" + 'new_' + name;
 
@@ -406,17 +380,9 @@ struct Index {
 
                   saveAsFileContent(fileTestDirPathNew, plainText.textContent);
                   this.UpdateSelectedFiles();
-
-                  // this.backGroundColor = Color.Transparent;
-                  // let data: UDC.PlainText = new UDC.PlainText();
-                  // data.abstract = 'this is abstract';
-                  // data.textContent = 'Content save as ' + 'new_' + name;
-                  // (event as DragEvent).setData(new UDC.UnifiedData(data));
-
                   this.textContentTarget = 'Content save as ' + 'new_' + name;
                   logger.info(TAG, `textContentTarget onDrop  this.textContentTarget：` +  this.textContentTarget);
                 }
-
               })
             })
         }
@@ -479,7 +445,6 @@ struct Index {
                   .alignItems(HorizontalAlign.Start)
                   .onDragStart((event) => {
                     this.textContentTarget = '';
-                    let content: string = ''
                     let fileTestDirPath = filesDir + '/' + item.filename;
                     if (item.filename.includes('.txt')) {
                       logger.info(TAG, 'onDragStart txt')
@@ -492,7 +457,6 @@ struct Index {
                       file.uri = fileUri.getUriFromPath(fileTestDirPath);
                       this.backGroundColor = Color.Transparent;
                       (event as DragEvent).setData(new UDC.UnifiedData(file));
-                      // content = this.fileFs.getFileContent(fileTestDirPath);
                     } else {
                       logger.info(TAG, 'onDragStart error');
                       let data: UDC.PlainText = new UDC.PlainText();
@@ -501,22 +465,6 @@ struct Index {
                       (event as DragEvent).setData(new UDC.UnifiedData(data));
                       return;
                     }
-
-                    // let name: string = randomString(6, 'UDMFDemo');
-                    // let fileTestDirPathNew = filesDir + '/' + name + '_' + item.filename;
-                    // logger.info(TAG, 'fileTestDirPathNew: ' + fileTestDirPathNew)
-                    // saveAsFileContent(fileTestDirPathNew, content);
-                    //
-                    // this.UpdateSelectedFiles();
-
-
-                    // let data: UDC.PlainText = new UDC.PlainText();
-                    // data.abstract = 'this is abstract';
-                    // data.textContent = 'Save as ' + 'new_' + item.filename;
-                    // let video: UDC.Video = new UDC.Video();
-                    // video.videoUri = '/resources/rawfile/01.mp4';
-                    // let data: UDC.UnifiedData = new UDC.UnifiedData(video);
-
                   })
                 }
                 .width('100%')
@@ -577,18 +525,11 @@ struct Index {
         }
         .margin({ top: 12 })
         .onDragStart((event) => {
-
           this.textContentTarget = '';
-          // let name: string = randomString(6, 'UDMFDemo') + '.txt';
-          // let fileTestDirPathNew = filesDir + '/' + 'new_' + name;
-          // saveAsFileContent(fileTestDirPathNew, this.textContent);
-          // this.UpdateSelectedFiles();
-
           this.backGroundColor = Color.Transparent;
           let data: UDC.PlainText = new UDC.PlainText();
           data.abstract = 'this is abstract';
-          data.textContent = this.textContent; // this.textContent 'Content save as ' + 'new_'
-          // data.textContent = 'Content save as ' + 'new_' + name;
+          data.textContent = this.textContent; //'Content save as ' + 'new_'
           (event as DragEvent).setData(new UDC.UnifiedData(data));
         })
         .height('45%')
