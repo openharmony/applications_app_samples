@@ -113,28 +113,4 @@ export default class FileFs {
       return resultPut;
     }
   }
-
-  implicitStartAbility(context, filePath): void {
-    logger.info(TAG, 'modifyFileToWatcher getFileContent read num = ');
-
-    let myUri: string = fileUri.getUriFromPath(filePath);
-    logger.info(TAG, 'implicitStartAbility myUri is: ' + myUri);
-
-    let want: Want  = {
-      // 配置被分享文件的读写权限，例如对被分享应用进行读写授权
-      flags: wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION | wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
-      // 配置分享应用的隐式拉起规则
-      action: 'ohos.want.action.sendData',
-      uri: myUri,
-      type: 'text/plain'
-    }
-
-    context.startAbility(want).then(() => {
-      logger.info(TAG, 'startAbility success');
-    }).catch((err) => {
-      logger.info(TAG, 'startAbility err:' + err);
-    });
-  }
 }
-
-

@@ -43,24 +43,7 @@
             ],
             "actions": [
               "action.system.home"
-//              "ohos.want.action.sendData"
             ]
-//            "uris": [
-//              {
-//                "scheme": "file",
-//                "type": "text/plain"
-////                "utd": "general.file",
-////                "maxFileSupported": 6,
-//              }
-//            ,
-//              {
-//                "scheme": "file",
-//                "utd": "general.mp3",
-//                  "utd": "com.example.sharekit_samplecode_clientdemo_arkts.dwg",
-//                "maxFileSupported": 6,
-//              }
-
-//            ]
           }
         ]
       }

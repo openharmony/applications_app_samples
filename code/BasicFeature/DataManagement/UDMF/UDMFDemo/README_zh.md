@@ -3,7 +3,7 @@
 ### 介绍
 
 本示例主要使用[@ohos.data.uniformTypeDescriptor](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkdata/js-apis-data-uniformTypeDescriptor.md) 
-[@ohos.data.unifiedDataChannel](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.data.unifiedDataChannel.d.ts)展示了标准化数据定义与描述的功能，在新增预置媒体文件后，对媒体文件的utd标准类型获取、utd类型归属类型查询、获取文件对应的utd类型的默认图标、支持自定义数据类型等功能。 实现过程中还使用到[@ohos.file.fs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-fs.md) 等接口。
+[@ohos.data.unifiedDataChannel](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.data.unifiedDataChannel.d.ts)展示了标准化数据定义与描述的功能，在新增预置文件后，对文件的utd标准类型获取、utd类型归属类型查询、获取文件对应的utd类型的默认图标等功能。 实现过程中还使用到[@ohos.file.fs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-fs.md) 等接口。
 另外，展示了ArkTS控件[拖拽事件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md)中使用UDMF数据结构相关实现。
 
 
