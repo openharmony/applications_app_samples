@@ -19,6 +19,7 @@ import { GridItemDrag } from './component/GridItemDrag';
 import { HyperlinkDrag } from './component/HyperlinkDrag';
 import { ImageDrag } from './component/ImageDrag';
 import { ListItemDrag } from './component/ListItemDrag';
+import  { MultiSelectDrag } from './component/MultiSelectDrag';
 import { TextDrag } from './component/TextDrag';
 import { VideoDrag } from './component/VideoDrag';
 import Logger from '../../../../util/Logger';
@@ -263,6 +264,9 @@ struct DragEventSample {
           Column() {
             IntroductionTitle({ introduction: $r('app.string.griditem') })
             GridItemDrag()
+
+            IntroductionTitle({ introduction: $r('app.string.multiselect') })
+            MultiSelectDrag()
 
             IntroductionTitle({ introduction: $r('app.string.listitem') })
             ListItemDrag()
