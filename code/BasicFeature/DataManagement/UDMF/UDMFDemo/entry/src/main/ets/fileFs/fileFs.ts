@@ -96,6 +96,21 @@ export default class FileFs {
     }
   }
 
+  getFileContentBuffer(path: string): ArrayBuffer {
+    let buf = new ArrayBuffer(BUFFER_SIZE);
+    try {
+      logger.info(TAG, 'modifyFileToWatcher getFileContent filePath = ' + path);
+      let file = fs.openSync(path, fs.OpenMode.READ_WRITE);
+      let num = fs.readSync(file.fd, buf);
+      logger.info(TAG, 'modifyFileToWatcher getFileContent read num = ' + num);
+      fs.closeSync(file);
+      return buf;
+    } catch (e) {
+      logger.error(TAG, `modifyFileToWatcher getFileContent has failed for: {message: ${e.message}, code: ${e.code}}`);
+      return buf;
+    }
+  }
+
   getFileContent(path: string): string {
     let resultPut = '';
     try {
