@@ -13,9 +13,8 @@
  * limitations under the License.
  */
 
-import common from '@ohos.app.ability.common';
-import base, { BusinessError } from '@ohos.base';
-import { autoFillManager } from '@kit.AbilityKit';
+import { BusinessError } from '@ohos.base';
+import { autoFillManager, common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const storage = LocalStorage.getShared();
@@ -64,7 +63,7 @@ struct AutoFillControl {
                 let want: Record<string, Object> = {};
                 context.reloadInModal({ data: { text: 'User2', want } }).then(() => {
                   hilog.info(DOMAIN_NUMBER, TAG, 'reloadInModal successfully User2.');
-                }).catch((err: base.BusinessError) => {
+                }).catch((err: BusinessError) => {
                   hilog.info(DOMAIN_NUMBER, TAG, 'reloadInModal failed User2.');
                 })
               }
@@ -85,7 +84,7 @@ struct AutoFillControl {
                 let want: Record<string, Object> = {};
                 context.reloadInModal({ data: { text: 'User3', want } }).then(() => {
                   hilog.info(DOMAIN_NUMBER, TAG, 'reloadInModal successfully User3.');
-                }).catch((err: base.BusinessError) => {
+                }).catch((err: BusinessError) => {
                   hilog.info(DOMAIN_NUMBER, TAG, 'reloadInModal failed User3.');
                 })
               }

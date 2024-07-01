@@ -13,9 +13,8 @@
  * limitations under the License.
  */
 
-import { autoFillManager } from '@kit.AbilityKit';
 import { nameList, phoneList } from '../application/ItemListData';
-import { common } from '@kit.AbilityKit';
+import { common, autoFillManager } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 let storage = LocalStorage.getShared();
