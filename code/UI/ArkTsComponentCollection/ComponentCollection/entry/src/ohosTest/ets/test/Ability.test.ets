@@ -3534,6 +3534,15 @@ export default function abilityTest() {
         // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
         await driver.drag(660, 600, 660, 0);
 
+        await checkButtonAndClickWithID('gridItemId0');
+        await checkButtonAndClickWithID('gridItemId1');
+        await checkButtonAndClickWithID('gridItemId3');
+        await checkButtonAndClickWithID('gridItemId4');
+        await checkButtonAndDragToTargetWithID('gridItemId0', column);
+
+        // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
+        await driver.drag(660, 600, 660, 0);
+        await driver.drag(660, 400, 660, 0);
         await checkButtonAndDragToTargetWithID('listItem0', column);
         await checkButtonAndDragToTargetWithID('hyperlink', column);
         await checkButtonAndDragToTargetWithID('text', column);
@@ -3642,7 +3651,7 @@ export default function abilityTest() {
         await smallBtn.click();
         await driver.delayMs(DELAY_TIME);
         await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.custom_smallcircle_prompt'))));
-        
+
         Logger.info(BUNDLE + testName + ' end');
       });
 

@@ -649,6 +649,10 @@
       "value": "GridItem"
     },
     {
+      "name": "multiselect",
+      "value": "MultiSelect"
+    },
+    {
       "name": "listitem",
       "value": "ListItem"
     },
