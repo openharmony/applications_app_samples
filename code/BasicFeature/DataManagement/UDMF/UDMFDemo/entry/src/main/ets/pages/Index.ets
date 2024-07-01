@@ -23,6 +23,7 @@ import UDC from '@ohos.data.unifiedDataChannel';
 import UTD from '@ohos.data.uniformTypeDescriptor';
 import FileFs from '../fileFs/fileFs'
 import { randomString } from '../util/Common';
+import systemDateTime from '@ohos.systemDateTime';
 
 const TAG: string = 'UDMF_Demo';
 
@@ -404,6 +405,15 @@ struct Index {
               this.getDataFromUdmf((dragEvent as DragEvent), (event: DragEvent) => {
                 let records: Array<UDC.UnifiedRecord> = event.getData().getRecords();
                 let type: string  = records[0].getType();
+                let time = 0;
+                try {
+                  time = systemDateTime.getUptime(systemDateTime.TimeType.ACTIVE, false);
+                  logger.info(TAG, 'getUptime: ' + time);
+                } catch(e) {
+                  let error = e as BusinessError;
+                  logger.info(TAG, `Failed to get uptime. message: ${error.message}, code: ${error.code}`);
+                }
+
                 if(type == UTD.UniformDataType.FILE) {
                   logger.info(TAG, 'general.file is true!');
                   let file: UDC.File = records[0] as UDC.File;
@@ -414,26 +424,28 @@ struct Index {
                     return;
                   }
 
-                  let fileTestDirPathNew: string = filesDir + "/" + name + '_' + details.name;
+                  let fileNewName: string = 'copy' + '_' + time.toString() + '_' + details.name;
+                  let fileTestDirPathNew: string = filesDir + "/" + fileNewName;
                   logger.info(TAG, 'fileTestDirPathNew: ' + fileTestDirPathNew);
 
                   let content: ArrayBuffer = this.fileFs.getFileContentBuffer(file.uri);
                   saveAsFileContent(fileTestDirPathNew, content);
                   this.UpdateSelectedFiles();
-                  this.textContentTarget = 'Save as ' + name + '_' + details.name;
+                  this.textContentTarget = 'Save as ' + fileNewName;
                 } else if (type == UTD.UniformDataType.PLAIN_TEXT) {
                   logger.info(TAG, 'general.plain-text is true!');
                   let plainText: UDC.PlainText = records[0] as UDC.PlainText;
 
                   let name: string = randomString(6, 'UDMFDemo') + '.txt';
-                  let fileTestDirPathNew = filesDir + "/" + 'new_' + name;
+                  let fileNewName: string = time.toString() + '_' + name;
+                  let fileTestDirPathNew = filesDir + "/" + fileNewName;
 
                   logger.info(TAG, `textContentTarget onDrop fileTestDirPathNew：` + fileTestDirPathNew);
                   logger.info(TAG, `textContentTarget onDrop  plainText.textContent：` +  plainText.textContent);
 
                   saveAsFileContent(fileTestDirPathNew, plainText.textContent);
                   this.UpdateSelectedFiles();
-                  this.textContentTarget = 'Content save as ' + 'new_' + name;
+                  this.textContentTarget = 'Content save as ' + fileNewName;
                   logger.info(TAG, `textContentTarget onDrop  this.textContentTarget：` +  this.textContentTarget);
                 }
               })
