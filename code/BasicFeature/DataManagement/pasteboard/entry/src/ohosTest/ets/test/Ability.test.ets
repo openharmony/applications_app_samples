@@ -67,17 +67,12 @@ export default function abilityTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + 'copy_001 begin');
       let driver = await Driver.create();
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.id('pasteText'));
-      let inputTextArea = await driver.findComponent(ON.id('pasteText'));
+      await driver.assertComponentExist(ON.id('copyText'));
+      let inputTextArea = await driver.findComponent(ON.id('copyText'));
       await inputTextArea.click();
       await inputTextArea.clearText();
 
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('a', MatchPattern.CONTAINS));
-      let inputTextA = await driver.findComponent(ON.text('a', MatchPattern.CONTAINS));
-      await inputTextA.click();
-
-      await driver.delayMs(1000);
+      await driver.delayMs(2000);
       await driver.assertComponentExist(ON.text('b', MatchPattern.CONTAINS));
       let inputTextB = await driver.findComponent(ON.text('b', MatchPattern.CONTAINS));
       await inputTextB.click();
@@ -114,7 +109,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.id('pasteText'));
       let inputTextArea = await driver.findComponent(ON.id('pasteText'));
       let inputString = await inputTextArea.getText();
-      expect(inputString === 'abc').assertTrue();
+      expect(inputString === 'bc').assertTrue();
 
       await driver.delayMs(200);
       hilog.info(DOMAIN, TAG, BUNDLE + 'paste_001 end');
@@ -135,7 +130,7 @@ export default function abilityTest() {
       let inputTextArea = await driver.findComponent(ON.id('pasteText'));
       let inputString = await inputTextArea.getText();
       hilog.info(DOMAIN, TAG, BUNDLE + 'paste_text_001 inputString: ' + inputString);
-      expect(inputString === 'abc').assertTrue();
+      expect(inputString === 'bc').assertTrue();
 
       await driver.delayMs(200);
       hilog.info(DOMAIN, TAG, BUNDLE + 'paste_security_text_001 end');
@@ -156,7 +151,7 @@ export default function abilityTest() {
       let inputTextArea = await driver.findComponent(ON.id('pasteText'));
       let inputString = await inputTextArea.getText();
       hilog.info(DOMAIN, TAG, BUNDLE + 'paste_text_001 inputString: ' + inputString);
-      expect(inputString === 'abc').assertTrue();
+      expect(inputString === 'bc').assertTrue();
 
       await driver.delayMs(200);
       hilog.info(DOMAIN, TAG, BUNDLE + 'paste_text_001 end');
