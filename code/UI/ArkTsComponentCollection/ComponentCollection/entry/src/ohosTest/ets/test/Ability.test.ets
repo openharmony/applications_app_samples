@@ -4337,6 +4337,12 @@ export default function abilityTest() {
         await checkButtonAndClickWithID('clickButton');
         await checkButtonAndClickWithID('longClickButton');
         await checkButtonAndClickWithID('ListItem2');
+
+        await driver.drag(200, 800, 200, 50, 800);
+        await checkButtonAndClickWithID('clickButton2');
+        await checkButtonAndClickWithID('initButton');
+        await checkButtonAndClickWithID('clickText');
+
         // 返回
         await checkButtonAndClickWithID('backBtn');
         await driver.delayMs(DELAY_TIME_FiVE);

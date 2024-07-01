@@ -5960,6 +5960,26 @@
     {
       "name": "panel_background_color",
       "value": "#ffffff"
+    },
+    {
+      "name": "multiple_attribute_take_effect",
+      "value": "组件属性动态设置，多个属性设置同时生效"
+    },
+    {
+      "name": "click_to_see_image_border_change",
+      "value": "点击按钮查看图片边框变化"
+    },
+    {
+      "name": "dynamical_updates_ui_directly",
+      "value": "组件属性动态设置，非状态变量直接触发UI更新"
+    },
+    {
+      "name": "click_to_see_component_change",
+      "value": "点击按钮修改组件属性值"
+    },
+    {
+      "name": "click_to_see_text_component_change",
+      "value": "点击更新Text组件构造入参"
     }
   ]
 }
