@@ -38,7 +38,11 @@ let class2UTD = new Map([
   ["Videos", "general.video"],
   ["Text", "general.text"],
   ["Archive", "general.archive"],
-  ["Calendar", "general.calendar"]
+  ["Calendar", "general.calendar"],
+  ["ComObject", "general.composite-object"],
+  ["Exe", "general.executable"],
+  ["OpenXml", "org.openxmlformats.openxml"],
+
 ]);
 
 class FileInfo {
@@ -53,15 +57,35 @@ class FileInfo {
 
 let precastFiles: string[] = [
   "test1.txt",
+  "testx.xhtml",
+  "testc.css",
+  "testm.md",
+  "testRtf.rtf",
+  "testCsv.csv",
+
   "imagePng1.png",
   "imageJpg2.jpg",
   "imageTiff1.tiff",
   "imageTiff2.tiff",
   "imageMyImage1.myImage",
   "imageMyImage2.myImage",
+  "imageXbm.xbm",
+  "imageFpx.fpx",
+  "imageGif.gif",
 
   "myPsd.psd",
   "audioMp32.mp3",
+  "audioAu.au",
+  "audioAif.aif",
+  "audioM4a.m4a",
+  "audioMp2.mp2",
+  "audioMpga.mpga",
+
+  "audioAu.au",
+  "audioSd2.sd2",
+  "audioRa.ra",
+  "audioMka.mka",
+
   "audioWav1.wav",
   "audioWav2.wav",
   "myBz2.bz2",
@@ -77,6 +101,34 @@ let precastFiles: string[] = [
   "videoAvi2.avi",
   "myTar.tar",
   "videoMyVideo2.myVideo",
+  "videoMxu.mxu",
+  "videoRm.rm",
+  "videoMkv.mkv",
+  "videoSwf.swf",
+
+  "myArchiveOpg.opg",
+  "myArchiveIso.iso",
+
+
+  // api 12新增
+  "myComObjectPps.pps",
+  "myComObjectXlt.xlt",
+  "myComObjectVsd.vsd",
+
+  "myComObjectVsdx.vsdx",
+  "myComObjectDocm.docm",
+  "myComObjectXlsm.xlsm",
+  "myComObjectPptm.pptm",
+  "myComObjectVsdx.vsdx",
+  "myComObjectVstx.vstx",
+
+
+  "myExe.exe",
+  "myClass.class",
+
+  "myOfd.ofd",
+  "myRar.rar",
+  "My7z.7z"
 ];
 
 // 预制文件
@@ -119,7 +171,7 @@ function CreatePrecastFile(): void {
   }
 }
 
-function saveAsFileContent(fileName: string, content: string) {
+function saveAsFileContent(fileName: string, content: ArrayBuffer | string) {
   logger.info(TAG, `The file name: ${fileName}`);
   try {
     let res = fs.accessSync(fileName);
@@ -147,7 +199,7 @@ function getIconByType(fileName: string) {
   let fileExtension = fileName.substring(index);
   logger.info(TAG, `getIconByType fileExtension： ${fileExtension}`);
 
-  let utd = utdDesc.getUniformDataTypeByFilenameExtension(fileExtension); // `.txt`
+  let utd = utdDesc.getUniformDataTypeByFilenameExtension(fileExtension);
   let typeObj: utdDesc.TypeDescriptor = utdDesc.getTypeDescriptor(utd);
   logger.info(TAG, `getIconByType typeObj.iconFile: ${typeObj.iconFile}`);
   if (typeObj.iconFile == '') {
@@ -306,7 +358,10 @@ struct Index {
             { value: 'Videos', icon: $r(getIconByType('test.avi')) },
             { value: 'Text', icon: $r(getIconByType('test.txt')) },
             { value: 'Archive', icon: $r(getIconByType('test.zip')) },
-            { value: 'Calendar', icon: $r(getIconByType('test.ics')) }
+            { value: 'Calendar', icon: $r(getIconByType('test.ics')) },
+            { value: 'ComObject', icon: $r(getIconByType('test.ofd')) },
+            { value: 'Exe', icon: $r(getIconByType('test.exe')) },
+            { value: 'OpenXml', icon: $r(getIconByType('test.xls')) }
           ])
             .selected(this.index)
             .value(this.text)
@@ -340,7 +395,7 @@ struct Index {
             .fontColor('#182431')
             .id('targetText')
             .borderRadius(24)
-            .textOverflow({ overflow: TextOverflow.Ellipsis })
+            .textOverflow({ overflow: TextOverflow.MARQUEE })
             .maxLines(1)
             .padding({left: 12})
             .allowDrop([UTD.UniformDataType.PLAIN_TEXT, UTD.UniformDataType.FILE])
@@ -362,7 +417,7 @@ struct Index {
                   let fileTestDirPathNew: string = filesDir + "/" + name + '_' + details.name;
                   logger.info(TAG, 'fileTestDirPathNew: ' + fileTestDirPathNew);
 
-                  let content: string = this.fileFs.getFileContent(file.uri);
+                  let content: ArrayBuffer = this.fileFs.getFileContentBuffer(file.uri);
                   saveAsFileContent(fileTestDirPathNew, content);
                   this.UpdateSelectedFiles();
                   this.textContentTarget = 'Save as ' + name + '_' + details.name;
@@ -379,7 +434,7 @@ struct Index {
                   saveAsFileContent(fileTestDirPathNew, plainText.textContent);
                   this.UpdateSelectedFiles();
                   this.textContentTarget = 'Content save as ' + 'new_' + name;
-                    logger.info(TAG, `textContentTarget onDrop  this.textContentTarget：` +  this.textContentTarget);
+                  logger.info(TAG, `textContentTarget onDrop  this.textContentTarget：` +  this.textContentTarget);
                 }
               })
             })
@@ -444,15 +499,15 @@ struct Index {
                   .onDragStart((event) => {
                     this.textContentTarget = '';
                     let fileTestDirPath = filesDir + '/' + item.filename;
-                      logger.info(TAG, 'onDragStart begin!')
+                    logger.info(TAG, 'onDragStart begin!')
 
-                      let file = new UDC.File();
-                      file.details = {
-                        name: item.filename,
-                      };
-                      file.uri = fileUri.getUriFromPath(fileTestDirPath);
-                      this.backGroundColor = Color.Transparent;
-                      (event as DragEvent).setData(new UDC.UnifiedData(file));
+                    let file = new UDC.File();
+                    file.details = {
+                      name: item.filename,
+                    };
+                    file.uri = fileUri.getUriFromPath(fileTestDirPath);
+                    this.backGroundColor = Color.Transparent;
+                    (event as DragEvent).setData(new UDC.UnifiedData(file));
                   })
                 }
                 .width('100%')
@@ -530,4 +585,3 @@ struct Index {
     .backgroundColor($r('app.color.background_shallow_grey'))
   }
 }
-
