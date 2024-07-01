@@ -360,10 +360,9 @@ struct Index {
                   }
 
                   let fileTestDirPathNew: string = filesDir + "/" + name + '_' + details.name;
-                  let fileTestDirPath: string = filesDir + "/" + details.name;
                   logger.info(TAG, 'fileTestDirPathNew: ' + fileTestDirPathNew);
 
-                  let content: string = this.fileFs.getFileContent(fileTestDirPath);
+                  let content: string = this.fileFs.getFileContent(file.uri);
                   saveAsFileContent(fileTestDirPathNew, content);
                   this.UpdateSelectedFiles();
                   this.textContentTarget = 'Save as ' + name + '_' + details.name;
