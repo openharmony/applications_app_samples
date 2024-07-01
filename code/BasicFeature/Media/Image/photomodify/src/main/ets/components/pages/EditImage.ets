@@ -38,6 +38,7 @@ const TAG: string = '[Sample_EditImage]';
 export struct EditImage {
   @State mediaUris: string = (router.getParams() as Record<string, Object>)['mediaUris'] as string;
   @State pixelMap: PixelMap | undefined | null = undefined;
+  @State isPixelMapChange: boolean = false;
   @State adjustMarkJudg: boolean = false;
   @State currentTask: number = Tasks.ADJUST;
   @State currentCropTask: number = CropTasks.NONE;
@@ -547,9 +548,11 @@ export struct EditImage {
       .onClick(async () => {
         if (this.canClick) {
           this.canClick = false;
+          this.isPixelMapChange = true;
           await this.pixelMap?.rotate(90);
           setTimeout(() => {
             this.canClick = true;
+            this.isPixelMapChange = false;
             this.flushPage();
           }, 300)
         }
@@ -568,9 +571,11 @@ export struct EditImage {
       .onClick(async () => {
         if (this.canClick) {
           this.canClick = false;
+          this.isPixelMapChange = true;
           await this.pixelMap?.rotate(-90);
           setTimeout(() => {
             this.canClick = true;
+            this.isPixelMapChange = false;
             this.flushPage();
           }, 300);
         }
@@ -838,19 +843,35 @@ export struct EditImage {
         }.layoutWeight(1)
       } else {
         Stack({ alignContent: Alignment.Center }) {
-          Image(this.pixelMap)
-            .objectFit(ImageFit.Contain)
-            .width('90%')
-            .height('90%')
-            .dynamicRangeMode(DynamicRangeMode.HIGH)
-            .backgroundColor($r('app.color.edit_image_stack_image'))
-            .alignRules(
-              {
-                middle: { anchor: '__container__', align: HorizontalAlign.Center },
-                center: { anchor: '__container__', align: VerticalAlign.Center }
-              }
-            )
-            .id('image')
+          if (this.isPixelMapChange) {
+            Image(this.pixelMap)
+              .objectFit(ImageFit.Contain)
+              .width('90%')
+              .height('90%')
+              .dynamicRangeMode(DynamicRangeMode.HIGH)
+              .backgroundColor($r('app.color.edit_image_stack_image'))
+              .alignRules(
+                {
+                  middle: { anchor: '__container__', align: HorizontalAlign.Center },
+                  center: { anchor: '__container__', align: VerticalAlign.Center }
+                }
+              )
+              .id('image')
+          } else {
+            Image(this.pixelMap)
+              .objectFit(ImageFit.Contain)
+              .width('90%')
+              .height('90%')
+              .dynamicRangeMode(DynamicRangeMode.HIGH)
+              .backgroundColor($r('app.color.edit_image_stack_image'))
+              .alignRules(
+                {
+                  middle: { anchor: '__container__', align: HorizontalAlign.Center },
+                  center: { anchor: '__container__', align: VerticalAlign.Center }
+                }
+              )
+              .id('image')
+          }
 
           if (this.currentTask === Tasks.SCALE) {
             Stack() {
