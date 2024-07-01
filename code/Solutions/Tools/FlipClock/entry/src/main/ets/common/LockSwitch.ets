@@ -13,15 +13,14 @@
  * limitations under the License.
  */
 
-import lock from '@ohos.runningLock'
-import Logger from '../model/Logger'
-
-const HIDE_TIME = 86400000
+import Logger from '../model/Logger';
+import window from '@ohos.window';
 
 @Component
 export struct LockSwitch {
   private isLock: boolean = false
-  @Link isComTime: boolean
+  @Link isComTime: boolean;
+  private isKeepScreenOn: boolean = false;
 
   build() {
     Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
@@ -31,20 +30,34 @@ export struct LockSwitch {
         .id('screenLight')
         .onChange(() => {
           this.isLock = !(this.isLock)
-          lock.createRunningLock('running_lock_test', lock.RunningLockType.PROXIMITY_SCREEN_CONTROL)
-            .then(lock => {
-              lock.isHolding()
-              if (this.isLock === true) {
-                this.isComTime = false
-                lock.hold(HIDE_TIME)
-              } else {
-                lock.unhold()
-                this.isComTime = true
-              }
-            })
-            .catch(error => {
-              Logger.info(`create runningLock test error: ${error}`)
-            })
+          let windowClass: window.Window | undefined = AppStorage.Get('windowClass');
+          if (this.isLock === true) {
+            // 打开常亮
+            this.isKeepScreenOn = true;
+            try {
+              let promise = windowClass.setWindowKeepScreenOn(this.isKeepScreenOn);
+              promise.then(() => {
+                Logger.info('Succeeded in setting the screen to be always on.');
+              }).catch((err) => {
+                Logger.info(`Failed to set the screen to be always on. Cause code: ${err.code}, message: ${err.message}`);
+              });
+            } catch (exception) {
+              Logger.error(`Failed to set the screen to be always on. Cause code: ${exception.code}, message: ${exception.message}`);
+            }
+          } else {
+            // 关闭常亮
+            this.isKeepScreenOn = false;
+            try {
+              let promise = windowClass.setWindowKeepScreenOn(this.isKeepScreenOn);
+              promise.then(() => {
+                Logger.info('Succeeded in setting the screen to be always off.');
+              }).catch((err) => {
+                Logger.info(`Failed to set the screen to be always off. Cause code: ${err.code}, message: ${err.message}`);
+              });
+            } catch (exception) {
+              Logger.error(`Failed to set the screen to be always off. Cause code: ${exception.code}, message: ${exception.message}`);
+            }
+          }
         })
     }
     .width('100%')

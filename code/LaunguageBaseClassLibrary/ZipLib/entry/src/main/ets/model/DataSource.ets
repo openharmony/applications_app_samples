@@ -95,4 +95,9 @@ export class ZipLibSource extends BasicDataSource {
     this.fileData.push(data)
     this.notifyDataAdd(this.fileData.length - 1)
   }
+
+  public deleteData(index: number): void {
+    this.fileData.splice(index, 1);
+    this.notifyDataDelete(index);
+  }
 }

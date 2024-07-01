@@ -271,6 +271,15 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/DocsSample/ApplicationModels/MindSporeLiteArkTSDemo/entry/src/main/resources/base/media/icon.png" desc="Provided by code/DocsSample/ApplicationModels/MindSporeLiteArkTSDemo"/>
 				<filteritem type="filepath" name="code/DocsSample/ApplicationModels/MindSporeLiteArkTSDemo/AppScope/resources/base/media/app_icon.png" desc="Provided by code/DocsSample/ApplicationModels/MindSporeLiteArkTSDemo"/>
 				<filteritem type="filepath" name="code/DocsSample/ApplicationModels/MindSporeLiteArkTSDemo/screenshots/MindSporeLiteArkTSDemo.png" desc="Provided by code/DocsSample/ApplicationModels/MindSporeLiteArkTSDemo"/>
+				<filteritem type="filepath" name="code/DocsSample/ApplicationModels/MindSporeLiteArkTSDemo/entry/src/main/resources/rawfile/mobilenetv2.ms" desc="Provided by code/DocsSample/ApplicationModels/MindSporeLiteArkTSDemo"/>
+				<filteritem type="filepath" name="code/DocsSample/ApplicationModels/MindSporeLiteCDemo/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/DocsSample/ApplicationModels/MindSporeLiteCDemo"/>
+				<filteritem type="filepath" name="code/DocsSample/ApplicationModels/MindSporeLiteCDemo/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/DocsSample/ApplicationModels/MindSporeLiteCDemo"/>
+				<filteritem type="filepath" name="code/DocsSample/ApplicationModels/MindSporeLiteCDemo/entry/src/main/resources/base/media/background.png" desc="Provided by code/DocsSample/ApplicationModels/MindSporeLiteCDemo"/>
+				<filteritem type="filepath" name="code/DocsSample/ApplicationModels/MindSporeLiteCDemo/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/DocsSample/ApplicationModels/MindSporeLiteCDemo"/>
+				<filteritem type="filepath" name="code/DocsSample/ApplicationModels/MindSporeLiteCDemo/entry/src/main/resources/base/media/icon.png" desc="Provided by code/DocsSample/ApplicationModels/MindSporeLiteCDemo"/>
+				<filteritem type="filepath" name="code/DocsSample/ApplicationModels/MindSporeLiteCDemo/AppScope/resources/base/media/app_icon.png" desc="Provided by code/DocsSample/ApplicationModels/MindSporeLiteCDemo"/>
+				<filteritem type="filepath" name="code/DocsSample/ApplicationModels/MindSporeLiteCDemo/screenshots/MindSporeLiteCDemoPic.png" desc="Provided by code/DocsSample/ApplicationModels/MindSporeLiteCDemo"/>
+				<filteritem type="filepath" name="code/DocsSample/ApplicationModels/MindSporeLiteCDemo/entry/src/main/resources/rawfile/mobilenetv2.ms" desc="Provided by code/DocsSample/ApplicationModels/MindSporeLiteCDemo"/>
 				<filteritem type="filepath" name="code/DocsSample/ApplicationModels/ImplicitStartByTypeRely/entry/src/main/resources/base/media/icon.png" desc="Provided by code/DocsSample/ApplicationModels/ImplicitStartByTypeRely"/>
 				<filteritem type="filepath" name="code/DocsSample/ApplicationModels/ImplicitStartByTypeRely/screenshots/newability.png" desc="Provided by code/DocsSample/ApplicationModels/ImplicitStartByTypeRely"/>
 				<filteritem type="filepath" name="code/DocsSample/ApplicationModels/StageModelAbilityInteraction/screenshot/coldstartuppage.png" desc="Provided by code/DocsSample/ApplicationModels/StageModelAbilityInteraction"/>
@@ -681,6 +690,14 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/DocsSample/Media/Audio/OHAudio/entry/src/main/resources/base/media/icon.png" desc="Provided by code/DocsSample/Media/Audio/OHAudio"/>
 				<filteritem type="filepath" name="code/DocsSample/Media/Audio/OHAudio/entry/src/main/resources/base/media/pic_Audiovivid.png" desc="Provided by code/DocsSample/Media/Audio/OHAudio"/>
 				<filteritem type="filepath" name="code/DocsSample/Media/Audio/OHAudio/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/DocsSample/Media/Audio/OHAudio"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTSUtilsDocModule/entry/src/main/resources/base/media/icon.png" desc="Provided by code/DocsSample/ArkTSUtilsDocModule"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTSUtilsDocModule/entry/src/main/resources/rawfile/startIcon.png" desc="Provided by code/DocsSample/ArkTSUtilsDocModule"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTSUtilsDocModule/screenshots/device/image1.jpeg" desc="Provided by code/DocsSample/ArkTSUtilsDocModule"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTSUtilsDocModule/screenshots/device/image2.jpeg" desc="Provided by code/DocsSample/ArkTSUtilsDocModule"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTSUtilsDocModule/screenshots/device/image3.jpeg" desc="Provided by code/DocsSample/ArkTSUtilsDocModule"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTSUtilsDocModule/AppScope/resources/base/media/app_icon.png" desc="Provided by code/DocsSample/ArkTSUtilsDocModule"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTSUtilsDocModule/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/DocsSample/ArkTSUtilsDocModule"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTSUtilsDocModule/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/DocsSample/ArkTSUtilsDocModule"/>
 				<filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmonyProfileDebug.pem" desc="Provided by code/Project/HapBuild"/>
 	        <filteritem type="filepath" name="code/BasicFeature/ApplicationModels/BundleManager/BundleManagement/libraryOverlay/src/main/resources/base/media/icon.png" desc="Provided by code/BasicFeature/ApplicationModels/BundleManager/BundleManagement"/>
                 <filteritem type="filepath" name="code/BasicFeature/ApplicationModels/BundleManager/BundleManagement/sceenshots/device/snapshot_directory.png" desc="Provided by code/BasicFeature/ApplicationModels/BundleManager/BundleManagement"/>
@@ -777,6 +794,7 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/entry/src/main/resources/base/media/add.png" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
 				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/entry/src/main/resources/base/media/zip.png" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
 				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/entry/src/main/resources/base/media/icon.png" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
+				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/entry/src/main/resources/base/media/icon_delete.png" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
 			</filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加License头"/>
@@ -823,6 +841,8 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/shaders/custom_shader/custom_material_sample.frag.spv.pre" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/shaders/custom_shader/custom_material_sample.shader" desc="二进制文件，无需添加版权头"/>
 				<filteritem type="filepath" name="code/BasicFeature/Media/VideoPlay/entry/src/main/resources/rawfile/test1.srt" desc="Demo外挂字幕文件，无需添加版权头"/>
+				<filteritem type="filepath" name="code/DocsSample/ApplicationModels/MindSporeLiteArkTSDemo/entry/src/main/resources/rawfile/mobilenetv2.ms" desc="二进制文件，无需添加版权头"/>
+				<filteritem type="filepath" name="code/DocsSample/ApplicationModels/MindSporeLiteCDemo/entry/src/main/resources/rawfile/mobilenetv2.ms" desc="二进制文件，无需添加版权头"/>
             </filefilter>
             <filefilter name="copyrightPolicyFilter" desc="Copyright文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加版权头"/>
@@ -869,6 +889,8 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/shaders/custom_shader/custom_material_sample.frag.spv.pre" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/shaders/custom_shader/custom_material_sample.shader" desc="二进制文件，无需添加版权头"/>
 				<filteritem type="filepath" name="code/BasicFeature/Media/VideoPlay/entry/src/main/resources/rawfile/test1.srt" desc="Demo外挂字幕文件，无需添加版权头"/>
+				<filteritem type="filepath" name="code/DocsSample/ApplicationModels/MindSporeLiteArkTSDemo/entry/src/main/resources/rawfile/mobilenetv2.ms" desc="二进制文件，无需添加版权头"/>
+				<filteritem type="filepath" name="code/DocsSample/ApplicationModels/MindSporeLiteCDemo/entry/src/main/resources/rawfile/mobilenetv2.ms" desc="二进制文件，无需添加版权头"/>
             </filefilter>
         </filefilterlist>
     </oatconfig>

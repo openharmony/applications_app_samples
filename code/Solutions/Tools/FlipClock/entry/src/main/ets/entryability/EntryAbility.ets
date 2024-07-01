@@ -32,5 +32,20 @@ export default class EntryAbility extends UIAbility {
       }
       Logger.info(`loadContent success`)
     })
+    let windowClass: Window.Window | undefined = undefined;
+    try {
+      Window.getLastWindow(this.context, (err, data) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error(`Failed to obtain the top window. Cause code: ${err.code}, message: ${err.message}`);
+          return;
+        }
+        windowClass = data;
+        console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+        AppStorage.SetOrCreate('windowClass', windowClass);
+      });
+    } catch (exception) {
+      console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
   }
 }

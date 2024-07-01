@@ -30,6 +30,10 @@ export class Constants {
   // video frame
   static readonly VIDEO_FRAME_30 = 30; // 30: VIDEO_FRAME_30
   static readonly VIDEO_FRAME_15 = 15; // 15: VIDEO_FRAME_15
+
+  // video type
+  static readonly IMAGE = 1;
+  static readonly VIDEO = 2;
 };
 
 export class SettingDataObj {

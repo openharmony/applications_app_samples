@@ -70,8 +70,8 @@ struct NavigationFullSafeArea {
           Radio({ value: 'unexpand', group: 'safearea' })
             .onChange((checked: boolean) => {
               if (checked) {
-                this.type = [];
-                this.edge = [];
+                this.type = [SafeAreaType.SYSTEM, SafeAreaType.CUTOUT, SafeAreaType.KEYBOARD];
+                this.edge = [SafeAreaEdge.START, SafeAreaEdge.END];
               }
             })
         }

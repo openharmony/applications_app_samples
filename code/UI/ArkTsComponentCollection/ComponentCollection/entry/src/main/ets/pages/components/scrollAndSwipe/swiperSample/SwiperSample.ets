@@ -128,6 +128,7 @@ struct SwiperSample {
       .borderRadius(16)
       .backgroundColor(Color.White)
       .height(216)
+      .curve('linear')
 
       Scroll() {
         // 控制面板
