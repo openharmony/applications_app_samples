@@ -11,6 +11,14 @@
     {
       "name": "MainAbility_label",
       "value": "二维码扫描"
+    },
+    {
+      "name": "read_image_video_permission",
+      "value": "读取用户公共目录的图片或视频文件"
+    },
+    {
+      "name": "write_image_video_permission",
+      "value": "修改用户公共目录的图片或视频文件"
     }
   ]
 }

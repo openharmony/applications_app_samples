@@ -28,7 +28,7 @@ export default class MainAbility extends UIAbility {
     Logger.info(TAG, 'MainAbility onCreate')
     let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
     try {
-      await atManager.requestPermissionsFromUser(this.context, ['ohos.permission.CAMERA', 'ohos.permission.READ_MEDIA', 'ohos.permission.WRITE_MEDIA', 'ohos.permission.MEDIA_LOCATION']).then((data) => {
+      await atManager.requestPermissionsFromUser(this.context, ['ohos.permission.CAMERA', 'ohos.permission.READ_IMAGEVIDEO', 'ohos.permission.WRITE_IMAGEVIDEO', 'ohos.permission.MEDIA_LOCATION']).then((data) => {
         Logger.info(TAG, `data: ${JSON.stringify(data)}`)
         // 如果权限列表中有-1，说明用户拒绝了授权
         if (data.authResults[0] === 0) {
