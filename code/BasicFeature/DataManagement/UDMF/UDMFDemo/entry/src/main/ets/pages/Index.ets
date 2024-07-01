@@ -158,20 +158,8 @@ function getIconByType(fileName: string) {
   return typeObj.iconFile;
 }
 
-// async function convertResourceToString(resource: Resource) {
-//   return await context.resourceManager.getStringValue(resource.id)
-// }
-
 async function convertResourceToString(resource: Resource) {
-  // let result: string = ''
   let value: string = await context.resourceManager.getStringValue($r('app.string.text_target_tips').id);
-
-  //   then((value: Object) => {
-  //     logger.info(TAG, 'getStringValue ok.');
-  //     result = value.toString();
-  //   }).catch((error: BusinessError) => {
-  //   logger.error(TAG, 'Failed to getStringValue.');
-  // });
   logger.info(TAG, 'getStringValue value： ' + value);
   return value;
 }
@@ -179,10 +167,7 @@ async function convertResourceToString(resource: Resource) {
 @Entry
 @Component
 struct Index {
-  // @State textContentTarget: string = '将文件/文本拖入此处'; // $r('app.string.text_target_tips')
-  // string promise<string>
   @State textContentTarget: string = '';
-
   @StorageLink('filesDir') filesDir: string = '';
 
   fileFs: FileFs = new FileFs();
@@ -193,7 +178,6 @@ struct Index {
   @State fileNames: string[] = [];
   @State selectedFilesInfos: FileInfo[] = [];
   @State textContent: string = '';
-  // @State textContentTarget: string = '';
   @State backGroundColor: Color = Color.Transparent;
   controller: TextAreaController = new TextAreaController()
   controllerTarget: TextAreaController = new TextAreaController()
@@ -346,16 +330,12 @@ struct Index {
               }
             })
 
-          // placeholder: $r('app.string.text_target_tips'),
-
           Text(this.textContentTarget)
-            // .placeholderFont({ size: 16, weight: 500 })
             .backgroundColor($r('app.color.bottom_title_divider'))
             .width('70%')
             .height(42)
             .margin({ left: 12, right: 12 })
             .fontSize(16)
-            // .maxLength(50)
             .maxLines(1)
             .fontColor('#182431')
             .id('targetText')
@@ -363,14 +343,6 @@ struct Index {
             .textOverflow({ overflow: TextOverflow.Ellipsis })
             .maxLines(1)
             .padding({left: 12})
-            // .onChange((value: string) => {
-            //   this.textContentTarget = value
-            //   logger.info(TAG, `textContentTarget onChange this.textContentTarget：` + this.textContentTarget);
-            // })
-            // .onClick((event: ClickEvent) => {
-            //   logger.info(TAG, `textContentTarget onClick this.textContentTarget：` + this.textContentTarget);
-            //   this.textContentTarget = '';
-            // })
             .allowDrop([UTD.UniformDataType.PLAIN_TEXT, UTD.UniformDataType.FILE])
             .onDrop((dragEvent?: DragEvent) => {
               logger.info(TAG, `textContentTarget onDrop this.textContentTarget：` + this.textContentTarget);
@@ -412,72 +384,6 @@ struct Index {
                 }
               })
             })
-
-          // TextArea({
-          //   text: this.textContentTarget,
-          //   placeholder: $r('app.string.text_target_tips'),
-          //   controller: this.controllerTarget
-          // })
-          //   .placeholderFont({ size: 16, weight: 500 })
-          //   .backgroundColor($r('app.color.bottom_title_divider'))
-          //   .width('70%')
-          //   .height(42)
-          //   .margin({ left: 12, right: 12 })
-          //   .fontSize(16)
-          //   .maxLength(50)
-          //   .maxLines(1)
-          //   .fontColor('#182431')
-          //   .id('targetText')
-          //   .onChange((value: string) => {
-          //     this.textContentTarget = value
-          //     logger.info(TAG, `textContentTarget onChange this.textContentTarget：` + this.textContentTarget);
-          //   })
-          //   .onClick((event: ClickEvent) => {
-          //     logger.info(TAG, `textContentTarget onClick this.textContentTarget：` + this.textContentTarget);
-          //     this.textContentTarget = '';
-          //   })
-          //   .allowDrop([UTD.UniformDataType.PLAIN_TEXT, UTD.UniformDataType.FILE])
-          //   .onDrop((dragEvent?: DragEvent) => {
-          //     logger.info(TAG, `textContentTarget onDrop this.textContentTarget：` + this.textContentTarget);
-          //     this.getDataFromUdmf((dragEvent as DragEvent), (event: DragEvent) => {
-          //       let records: Array<UDC.UnifiedRecord> = event.getData().getRecords();
-          //       let type: string  = records[0].getType();
-          //       if(type == UTD.UniformDataType.FILE) {
-          //         logger.info(TAG, 'general.file is true!');
-          //         let file: UDC.File = records[0] as UDC.File;
-          //         let name: string = randomString(6, 'UDMFDemo');
-          //
-          //         let details: Record<string, string> | undefined = file.details
-          //         if (details == undefined) {
-          //           return;
-          //         }
-          //
-          //         let fileTestDirPathNew: string = filesDir + "/" + name + '_' + details.name;
-          //         let fileTestDirPath: string = filesDir + "/" + details.name;
-          //         logger.info(TAG, 'fileTestDirPathNew: ' + fileTestDirPathNew);
-          //
-          //         let content: string = this.fileFs.getFileContent(fileTestDirPath);
-          //         saveAsFileContent(fileTestDirPathNew, content);
-          //         this.UpdateSelectedFiles();
-          //         this.textContentTarget = 'Save as ' + name + '_' + details.name;
-          //       } else if (type == UTD.UniformDataType.PLAIN_TEXT) {
-          //         logger.info(TAG, 'general.plain-text is true!');
-          //         let plainText: UDC.PlainText = records[0] as UDC.PlainText;
-          //
-          //         let name: string = randomString(6, 'UDMFDemo') + '.txt';
-          //         let fileTestDirPathNew = filesDir + "/" + 'new_' + name;
-          //
-          //         logger.info(TAG, `textContentTarget onDrop fileTestDirPathNew：` + fileTestDirPathNew);
-          //         logger.info(TAG, `textContentTarget onDrop  plainText.textContent：` +  plainText.textContent);
-          //
-          //         saveAsFileContent(fileTestDirPathNew, plainText.textContent);
-          //         this.UpdateSelectedFiles();
-          //         plainText.textContent = 'Content save as ' + 'new_' + name;
-          //         this.textContentTarget = plainText.textContent;
-          //         logger.info(TAG, `textContentTarget onDrop  this.textContentTarget：` +  this.textContentTarget);
-          //       }
-          //     })
-          //   })
         }
         .margin({ left: 12, right: 12 })
         .height('5%')
@@ -539,25 +445,15 @@ struct Index {
                   .onDragStart((event) => {
                     this.textContentTarget = '';
                     let fileTestDirPath = filesDir + '/' + item.filename;
-                    // if (item.filename.includes('.txt')) {
                       logger.info(TAG, 'onDragStart begin!')
 
                       let file = new UDC.File();
                       file.details = {
                         name: item.filename,
-                        // type: 'txt',
                       };
                       file.uri = fileUri.getUriFromPath(fileTestDirPath);
                       this.backGroundColor = Color.Transparent;
                       (event as DragEvent).setData(new UDC.UnifiedData(file));
-                    // } else {
-                    //   logger.info(TAG, 'onDragStart error');
-                    //   let data: UDC.PlainText = new UDC.PlainText();
-                    //   data.abstract = 'this is abstract';
-                    //   data.textContent = 'This file type not support Drag!';
-                    //   (event as DragEvent).setData(new UDC.UnifiedData(data));
-                    //   return;
-                    // }
                   })
                 }
                 .width('100%')
