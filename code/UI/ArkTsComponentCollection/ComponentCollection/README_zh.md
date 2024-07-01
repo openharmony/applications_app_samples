@@ -350,6 +350,7 @@ entry/src/main/ets/
 |   |   |   |   |   |---HyperlinkDrag.ets
 |   |   |   |   |   |---ImageDrag.ets
 |   |   |   |   |   |---ListItemDrag.ets
+|   |   |   |   |   |---MultiSelectDrag.ets
 |   |   |   |   |   |---TextDrag.ets
 |   |   |   |   |   |---VideoDrag.ets
 |   |   |   |   |---DragEventSample.ets                  // 拖拽事件
