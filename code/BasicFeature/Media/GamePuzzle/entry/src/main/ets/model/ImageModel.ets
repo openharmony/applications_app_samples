@@ -13,37 +13,40 @@
  * limitations under the License.
  */
 import image from '@ohos.multimedia.image'
-import mediaLibrary from '@ohos.multimedia.mediaLibrary'
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import Logger from './Logger'
 import PictureItem from '../model/PictureItem'
+import { Context } from '@ohos.abilityAccessCtrl';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 const TAG = '[ImageModel]'
 const SPLIT_COUNT: number = 3 // 图片横竖切割的份数
 export default class ImageModel {
-  private media: mediaLibrary.MediaLibrary = undefined
+  private phAccessHelper: photoAccessHelper.PhotoAccessHelper;
 
-  constructor(context: any) {
-    this.media = mediaLibrary.getMediaLibrary(context)
+  constructor(context: Context) {
+    this.phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
   }
 
   async getAllImg() {
-    let fileKeyObj = mediaLibrary.FileKey
-    let fetchOp = {
-      selections: fileKeyObj.MEDIA_TYPE + '=?',
-      selectionArgs: [`${mediaLibrary.MediaType.IMAGE}`],
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+
+    let mediaList: photoAccessHelper.PhotoAsset[] = [];
+    const fetchResult = await this.phAccessHelper.getAssets(fetchOptions);
+    if (fetchResult.getCount() > 0) {
+      mediaList = await fetchResult.getAllObjects();
+      Logger.info(TAG, 'fetchResult success' + JSON.stringify(mediaList));
     }
-    let mediaList: Array<mediaLibrary.FileAsset> = []
-    const fetchFileResult = await this.media.getFileAssets(fetchOp)
-    Logger.info(TAG, `queryFile getFileAssetsFromType fetchFileResult.count = ${fetchFileResult.getCount()}`)
-    if (fetchFileResult.getCount() > 0) {
-      mediaList = await fetchFileResult.getAllObject()
-    }
-    return mediaList
+    return mediaList;
   }
 
   async splitPic(index: number) {
     let imagePixelMap: PictureItem[] = []
-    let imgDatas: Array<mediaLibrary.FileAsset> = await this.getAllImg()
+    let imgDatas: photoAccessHelper.PhotoAsset[] = await this.getAllImg();
     let imagePackerApi = image.createImagePacker()
     let fd = await imgDatas[index].open('r')
     let imageSource = image.createImageSource(fd)
@@ -52,7 +55,7 @@ export default class ImageModel {
     let height = imageInfo.size.height / SPLIT_COUNT
     for (let i = 0; i < SPLIT_COUNT; i++) {
       for (let j = 0; j < SPLIT_COUNT; j++) {
-        let picItem
+        let picItem: PictureItem | PixelMap | undefined = undefined;
         if (i === SPLIT_COUNT - 1 && j === SPLIT_COUNT - 1) {
           picItem = new PictureItem(9, undefined)
           imagePixelMap.push(picItem)
