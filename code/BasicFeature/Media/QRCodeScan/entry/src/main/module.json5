@@ -39,6 +39,14 @@
       },
       {
         "name": "ohos.permission.READ_MEDIA"
+      },
+      {
+        "name": "ohos.permission.READ_IMAGEVIDEO",
+        "reason": "$string:read_image_video_permission"
+      },
+      {
+        "name": "ohos.permission.WRITE_IMAGEVIDEO",
+        "reason": "$string:write_image_video_permission"
       }
     ],
     "abilities": [
