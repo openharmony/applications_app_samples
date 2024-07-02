@@ -682,6 +682,14 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/UIExtensionAbility/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/ApplicationModels/UIExtensionAbility"/>
 				<filteritem type="filepath" name="code/BasicFeature/Native/Audio/screenshots/device/AudioVivid.jpg" desc="Provided by code/BasicFeature/Native/Audio"/>
 				<filteritem type="filepath" name="code/BasicFeature/Native/Audio/screenshots/device/index.jpg" desc="Provided by code/BasicFeature/Native/Audio"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Audio/OHAudio/screenshots/device/record.jpeg" desc="Provided by code/DocsSample/Media/Audio/OHAudio"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Audio/OHAudio/screenshots/device/play.jpeg" desc="Provided by code/DocsSample/Media/Audio/OHAudio"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Audio/OHAudio/screenshots/device/AudioVivid.jpg" desc="Provided by code/DocsSample/Media/Audio/OHAudio"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Audio/OHAudio/screenshots/device/index.jpg" desc="Provided by code/DocsSample/Media/Audio/OHAudio"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Audio/OHAudio/AppScope/resources/base/media/app_icon.png" desc="Provided by code/DocsSample/Media/Audio/OHAudio"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Audio/OHAudio/entry/src/main/resources/base/media/icon.png" desc="Provided by code/DocsSample/Media/Audio/OHAudio"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Audio/OHAudio/entry/src/main/resources/base/media/pic_Audiovivid.png" desc="Provided by code/DocsSample/Media/Audio/OHAudio"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Audio/OHAudio/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/DocsSample/Media/Audio/OHAudio"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkTSUtilsDocModule/entry/src/main/resources/base/media/icon.png" desc="Provided by code/DocsSample/ArkTSUtilsDocModule"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkTSUtilsDocModule/entry/src/main/resources/rawfile/startIcon.png" desc="Provided by code/DocsSample/ArkTSUtilsDocModule"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkTSUtilsDocModule/screenshots/device/image1.jpeg" desc="Provided by code/DocsSample/ArkTSUtilsDocModule"/>
