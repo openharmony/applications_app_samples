@@ -3538,7 +3538,8 @@ export default function abilityTest() {
         await checkButtonAndClickWithID('gridItemId1');
         await checkButtonAndClickWithID('gridItemId3');
         await checkButtonAndClickWithID('gridItemId4');
-        await checkButtonAndDragToTargetWithID('gridItemId0', column);
+        let gridItemId8 = await driver.findComponent(ON.id('gridItemId8'));
+        await checkButtonAndDragToTargetWithID('gridItemId0', gridItemId8);
 
         // 滑动slider调整 固定坐标只支持RK3568，其他设备需要调整
         await driver.drag(660, 600, 660, 0);

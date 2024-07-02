@@ -37,6 +37,17 @@ export struct MultiSelectDrag {
   @State pixmap: image.PixelMap | undefined = undefined;
 
   @Builder
+  MenuBuilder() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button('Test ContextMenu1')
+      Divider().strokeWidth(2).margin(5).color(Color.Black)
+      Button('Test ContextMenu2')
+      Divider().strokeWidth(2).margin(5).color(Color.Black)
+      Button('Test ContextMenu3')
+    }
+  }
+
+  @Builder
   createGrid() {
     Grid() {
       ForEach(this.number2, (index: number) => {
@@ -68,6 +79,7 @@ export struct MultiSelectDrag {
         .dragPreviewOptions({
           mode: [DragPreviewMode.ENABLE_DEFAULT_SHADOW, DragPreviewMode.ENABLE_DEFAULT_RADIUS]
         }, { isMultiSelectionEnabled: true, defaultAnimationBeforeLifting: true })
+        .bindContextMenu(this.MenuBuilder, ResponseType.LongPress, { preview: MenuPreviewMode.NONE })
         .dragPreview(`gridItemId${index}`)
         .onDragStart(() => {
 
