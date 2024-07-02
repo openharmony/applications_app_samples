@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "expand_str",
+      "value": "...expand"
+    },
+    {
+      "name": "collapse_str",
+      "value": "...collapse"
+    },
+    {
+      "name": "list_content1",
+      "value": "On January 16, the Information Office of the State Council held a press conference."
+    },
+    {
+      "name": "list_content2",
+      "value": "Introduce the situation and work arrangements for the Spring Festival in 2024."
+    },
+    {
+      "name": "list_content3",
+      "value": "From 00:00 on February 9 (Chinese New Year's Eve) to 24:00 on February 17 (the eighth day of the first lunar month), 9 days are free."
+    }
+  ]
+}
