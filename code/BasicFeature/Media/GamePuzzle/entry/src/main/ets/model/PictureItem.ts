@@ -18,7 +18,7 @@ export default class PictureItem {
   public index: number
   public pixelMap: image.PixelMap
 
-  constructor(index: number, pixelMap: image.PixelMap) {
+  constructor(index: number, pixelMap: image.PixelMap | undefined) {
     this.index = index
     this.pixelMap = pixelMap
   }

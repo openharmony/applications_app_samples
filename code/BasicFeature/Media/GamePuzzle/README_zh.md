@@ -2,7 +2,7 @@
 
 ### 介绍
 
-该示例通过[@ohos.multimedia.image](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-image-kit/js-apis-image.md)和[@ohos.multimedia.mediaLibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-medialibrary.md)接口实现获取图片，以及图片裁剪分割的功能。
+该示例通过[@ohos.multimedia.image](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-image-kit/js-apis-image.md)和[@ohos.file.photoAccessHelper](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-photoAccessHelper.md)接口实现获取图片，以及图片裁剪分割的功能。
 
 ### 效果预览
 |首页|运行|
@@ -38,8 +38,11 @@ VideoComponent/src/main/ets/components
 
 [ohos.permission.READ_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionread_media)
 
+[ohos.permission.WRITE_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionwrite_media)
+
 [ohos.permission.MEDIA_LOCATION](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionmedia_location)
 
+[ohos.permission.READ_IMAGEVIDEO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionread_imagevideo)
 ### 依赖
 
 不涉及。
@@ -47,8 +50,8 @@ VideoComponent/src/main/ets/components
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行;
-2. 本示例已适配API version 9版本SDK，版本号：3.2.11.9;
-3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)才可编译运行。
+2. 本示例已适配API version 10版本SDK，版本号：4.0.10.18;
+3. 本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)才可编译运行。
 
 ### 下载
 如需单独下载本工程，执行如下命令：
