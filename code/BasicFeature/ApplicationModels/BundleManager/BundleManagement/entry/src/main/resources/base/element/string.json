@@ -57,6 +57,10 @@
       "value": "获取BundleInfo"
     },
     {
+      "name": "GetBundleInfoCombination",
+      "value": "获取BundleInfo(组合参数)"
+    },
+    {
       "name": "GetBundleInfoSync",
       "value": "获取BundleInfo(sync)"
     },
@@ -71,6 +75,10 @@
     {
       "name": "GetConfigurationArray",
       "value": "获取配置数组"
+    },
+    {
+      "name": "GetConfigurationArraySync",
+      "value": "获取配置数组(sync)"
     },
     {
       "name": "GetConfigurationJsonSync",

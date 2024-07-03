@@ -41,11 +41,11 @@ function startAbility() {
 }
 
 export default function abilityTest() {
-  describe('AutoFillSampleTest', () => {
+  describe('BundleManagerSampleTest', () => {
     /*
     * @tc.number: BundleManager_GetBundleInfoForSelf_001
     * @tc.name: By providing the sample code call interface
-    * @tc.desc: Call the GetProfileByExtensionAbility API successfully
+    * @tc.desc: Call the getBundleInfoForSelf API successfully
     * @tc.size: MediumTest
     * @tc.type: Function
     * @tc.level Level 1
@@ -68,15 +68,36 @@ export default function abilityTest() {
     })
 
     /*
-    * @tc.number: BundleManager_GetBundleInfoForSelfSync_002
+     * @tc.number: BundleManager_GetBundleInfoForSelfSync_002
+     * @tc.name: By providing the sample code call interface
+     * @tc.desc: Call the getBundleInfoForSelf(parameterCombination) API successfully
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
+     */
+    it('BundleManager_GetBundleInfoForSelfSync_002', 0, async (done: Function) => {
+      hilog.info(DOMAIN_NUMBER, TAG, 'BundleManager_GetBundleInfoForSelfSync_002 start');
+      let driver = Driver.create();
+      await sleep(1000);
+      let registerBtn = await driver.findComponent(ON.text(
+        await resourceManager.getStringValue($r('app.string.GetBundleInfoCombinationTest'))));
+      await sleep(1000);
+      await registerBtn.click();
+      await sleep(1000);
+      expect(registerBtn != null).assertTrue();
+      done();
+    })
+
+    /*
+    * @tc.number: BundleManager_GetBundleInfoForSelfSync_003
     * @tc.name: By providing the sample code call interface
     * @tc.desc: Call the GetBundleInfoForSelfSync API successfully
     * @tc.size: MediumTest
     * @tc.type: Function
     * @tc.level Level 1
     */
-    it('BundleManager_GetBundleInfoForSelfSync_002', 0, async (done: Function) => {
-      hilog.info(DOMAIN_NUMBER, TAG, 'BundleManager_GetBundleInfoForSelfSync_002 start');
+    it('BundleManager_GetBundleInfoForSelfSync_003', 0, async (done: Function) => {
+      hilog.info(DOMAIN_NUMBER, TAG, 'BundleManager_GetBundleInfoForSelfSync_003 start');
       let driver = Driver.create();
       await sleep(1000);
       let registerBtn = await driver.findComponent(ON.text(
@@ -110,15 +131,36 @@ export default function abilityTest() {
     })
 
     /*
-    * @tc.number: BundleManager_GetProfileByExtensionAbility_005
+    * @tc.number: BundleManager_getProfileByAbilitySync_005
     * @tc.name: By providing the sample code call interface
     * @tc.desc: Call the GetProfileByExtensionAbility API successfully
     * @tc.size: MediumTest
     * @tc.type: Function
     * @tc.level Level 1
     */
-    it('BundleManager_GetProfileByExtensionAbility_005', 0, async (done: Function) => {
-      hilog.info(DOMAIN_NUMBER, TAG, 'BundleManager_GetProfileByExtensionAbility_005 start');
+    it('BundleManager_getProfileByAbilitySync_005', 0, async (done: Function) => {
+      hilog.info(DOMAIN_NUMBER, TAG, 'BundleManager_getProfileByAbilitySync_005 start');
+      let driver = Driver.create();
+      await sleep(1000);
+      let registerBtn = await driver.findComponent(ON.text(
+        await resourceManager.getStringValue($r('app.string.GetConfigurationSyncTest'))));
+      await sleep(1000);
+      await registerBtn.click();
+      await sleep(2000);
+      expect(registerBtn != null).assertTrue();
+      done();
+    })
+
+    /*
+    * @tc.number: BundleManager_GetProfileByExtensionAbility_006
+    * @tc.name: By providing the sample code call interface
+    * @tc.desc: Call the GetProfileByExtensionAbility API successfully
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level Level 1
+    */
+    it('BundleManager_GetProfileByExtensionAbility_006', 0, async (done: Function) => {
+      hilog.info(DOMAIN_NUMBER, TAG, 'BundleManager_GetProfileByExtensionAbility_006 start');
       let driver = Driver.create();
       await sleep(1000);
       let registerBtn = await driver.findComponent(ON.text(
@@ -131,19 +173,19 @@ export default function abilityTest() {
     })
 
     /*
-    * @tc.number: BundleManager_GetProfileByExtensionAbilitySync_006
+    * @tc.number: BundleManager_GetProfileByExtensionAbilitySync_007
     * @tc.name: By providing the sample code call interface
     * @tc.desc: Call the GetProfileByExtensionAbilitySync API successfully
     * @tc.size: MediumTest
     * @tc.type: Function
     * @tc.level Level 1
     */
-    it('BundleManager_GetProfileByExtensionAbilitySync_006', 0, async (done: Function) => {
-      hilog.info(DOMAIN_NUMBER, TAG, 'BundleManager_GetProfileByExtensionAbilitySync_006 start');
+    it('BundleManager_GetProfileByExtensionAbilitySync_007', 0, async (done: Function) => {
+      hilog.info(DOMAIN_NUMBER, TAG, 'BundleManager_GetProfileByExtensionAbilitySync_007 start');
       let driver = Driver.create();
       await sleep(2000);
       let registerBtn = await driver.findComponent(ON.text(
-        await resourceManager.getStringValue($r('app.string.GetConfigurationJsonSyncTest'))));
+        await resourceManager.getStringValue($r('app.string.GetConfigurationArraySyncTest'))));
       await sleep(1000);
       await registerBtn.click();
       await sleep(1000);
@@ -152,20 +194,21 @@ export default function abilityTest() {
     })
 
     /*
-    * @tc.number: BundleManager_CanOpenLink_007
+    * @tc.number: BundleManager_CanOpenLink_008
     * @tc.name: By providing the sample code call interface
     * @tc.desc: Call the CanOpenLink API successfully
     * @tc.size: MediumTest
     * @tc.type: Function
     * @tc.level Level 1
     */
-    it('BundleManager_CanOpenLink_007', 0, async (done: Function) => {
-      hilog.info(DOMAIN_NUMBER, TAG, 'BundleManager_CanOpenLink_007 start');
+    it('BundleManager_CanOpenLink_008', 0, async (done: Function) => {
+      hilog.info(DOMAIN_NUMBER, TAG, 'BundleManager_CanOpenLink_008 start');
       let driver = Driver.create();
       await sleep(1000);
       let registerBtn = await driver.findComponent(ON.text(
         await resourceManager.getStringValue($r('app.string.VerifyLinkOpenedTest'))));
       await sleep(1000);
+      await driver.swipe(360, 1100, 360, 100);
       await registerBtn.click();
       await sleep(1000);
       expect(registerBtn != null).assertTrue();
@@ -173,18 +216,17 @@ export default function abilityTest() {
     })
 
     /*
-    * @tc.number: DefaultAppMgr_IsDefaultApplication_008
+    * @tc.number: DefaultAppMgr_IsDefaultApplication_009
     * @tc.name: By providing the sample code call interface
     * @tc.desc: Call the IsDefaultApplication API successfully
     * @tc.size: MediumTest
     * @tc.type: Function
     * @tc.level Level 1
     */
-    it('DefaultAppMgr_IsDefaultApplication_008', 0, async (done: Function) => {
-      hilog.info(DOMAIN_NUMBER, TAG, 'DefaultAppMgr_IsDefaultApplication_008 start');
+    it('DefaultAppMgr_IsDefaultApplication_009', 0, async (done: Function) => {
+      hilog.info(DOMAIN_NUMBER, TAG, 'DefaultAppMgr_IsDefaultApplication_009 start');
       let driver = Driver.create();
       await sleep(1000);
-      await driver.swipe(360, 1070, 360, 600);
       let registerBtn = await driver.findComponent(ON.text(
         await resourceManager.getStringValue($r('app.string.DetermineDefaultApplicationTest'))));
       await sleep(1000);
@@ -195,15 +237,15 @@ export default function abilityTest() {
     })
 
     /*
-    * @tc.number: DefaultAppMgr_IsDefaultApplicationSync_009
+    * @tc.number: DefaultAppMgr_IsDefaultApplicationSync_010
     * @tc.name: By providing the sample code call interface
     * @tc.desc: Call the IsDefaultApplicationSync API successfully
     * @tc.size: MediumTest
     * @tc.type: Function
     * @tc.level Level 1
     */
-    it('DefaultAppMgr_IsDefaultApplicationSync_009', 0, async (done: Function) => {
-      hilog.info(DOMAIN_NUMBER, TAG, 'DefaultAppMgr_IsDefaultApplicationSync_009 start');
+    it('DefaultAppMgr_IsDefaultApplicationSync_010', 0, async (done: Function) => {
+      hilog.info(DOMAIN_NUMBER, TAG, 'DefaultAppMgr_IsDefaultApplicationSync_010 start');
       let driver = Driver.create();
       await sleep(1000);
       let registerBtn = await driver.findComponent(ON.text(
@@ -216,15 +258,15 @@ export default function abilityTest() {
     })
 
     /*
-    * @tc.number: Overlay_SetOverlayEnabled_010
+    * @tc.number: Overlay_SetOverlayEnabled_011
     * @tc.name: By providing the sample code call interface
     * @tc.desc: Call the SetOverlayEnabled API successfully
     * @tc.size: MediumTest
     * @tc.type: Function
     * @tc.level Level 1
     */
-    it('Overlay_SetOverlayEnabled_010', 0, async (done: Function) => {
-      hilog.info(DOMAIN_NUMBER, TAG, 'Overlay_SetOverlayEnabled_010 start');
+    it('Overlay_SetOverlayEnabled_011', 0, async (done: Function) => {
+      hilog.info(DOMAIN_NUMBER, TAG, 'Overlay_SetOverlayEnabled_011 start');
       let driver = Driver.create();
       await sleep(1000);
       let registerBtn = await driver.findComponent(ON.text(
@@ -237,15 +279,15 @@ export default function abilityTest() {
     })
 
     /*
-    * @tc.number: Overlay_GetOverlayModuleInfo_011
+    * @tc.number: Overlay_GetOverlayModuleInfo_012
     * @tc.name: By providing the sample code call interface
     * @tc.desc: Call the GetOverlayModuleInfo API successfully
     * @tc.size: MediumTest
     * @tc.type: Function
     * @tc.level Level 1
     */
-    it('Overlay_GetOverlayModuleInfo_011', 0, async (done: Function) => {
-      hilog.info(DOMAIN_NUMBER, TAG, 'Overlay_GetOverlayModuleInfo_011 start');
+    it('Overlay_GetOverlayModuleInfo_012', 0, async (done: Function) => {
+      hilog.info(DOMAIN_NUMBER, TAG, 'Overlay_GetOverlayModuleInfo_012 start');
       let driver = Driver.create();
       await sleep(1000);
       let registerBtn = await driver.findComponent(ON.text(
@@ -258,15 +300,15 @@ export default function abilityTest() {
     })
 
     /*
-    * @tc.number: Overlay_GetTargetOverlayModuleInfos_012
+    * @tc.number: Overlay_GetTargetOverlayModuleInfos_013
     * @tc.name: By providing the sample code call interface
     * @tc.desc: Call the GetTargetOverlayModuleInfos API successfully
     * @tc.size: MediumTest
     * @tc.type: Function
     * @tc.level Level 1
     */
-    it('Overlay_GetTargetOverlayModuleInfos_012', 0, async (done: Function) => {
-      hilog.info(DOMAIN_NUMBER, TAG, 'Overlay_GetTargetOverlayModuleInfos_012 start');
+    it('Overlay_GetTargetOverlayModuleInfos_013', 0, async (done: Function) => {
+      hilog.info(DOMAIN_NUMBER, TAG, 'Overlay_GetTargetOverlayModuleInfos_013 start');
       let driver = Driver.create();
       await sleep(1000);
       let registerBtn = await driver.findComponent(ON.text(

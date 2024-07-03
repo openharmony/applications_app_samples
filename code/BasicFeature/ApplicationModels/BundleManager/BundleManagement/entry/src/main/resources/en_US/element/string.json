@@ -57,6 +57,10 @@
       "value": "GetBundleInfo"
     },
     {
+      "name": "GetBundleInfoCombination",
+      "value": "GetBundleInfoCombination"
+    },
+    {
       "name": "GetBundleInfoSync",
       "value": "GetBundleInfoSync"
     },
@@ -71,6 +75,10 @@
     {
       "name": "GetConfigurationArray",
       "value": "GetConfigurationArray"
+    },
+    {
+      "name": "GetConfigurationArraySync",
+      "value": "GetConfigurationArraySync"
     },
     {
       "name": "GetConfigurationJsonSync",

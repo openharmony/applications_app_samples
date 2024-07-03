@@ -1,8 +1,9 @@
 |测试功能|预置条件|输入|预期输出|测试结果|
 |--------------------------------|--------------------------------|--------------------------------|--------------------------------|--------------------------------|
-|进入主页| 1.拉起资源API示例页面 |不涉及|调用GetProfileByExtensionAbility接口成功，页面正常展示字符串文本|Pass|
-|进入主页| 1.拉起资源API示例页面 |不涉及|调用GetBundleInfoForSelfSync接口成功，页面正常展示字符串文本|Pass|
-|进入主页| 1.拉起资源API示例页面 |不涉及|调用GetProfileByAbility接口成功，页面正常展示字符串文本|Pass|
+|进入主页| 1.拉起资源API示例页面 |不涉及|调用getBundleInfoForSelf接口成功，页面正常展示字符串文本|Pass|
+|进入主页| 1.拉起资源API示例页面 |不涉及|调用getBundleInfoForSelfSync接口成功，页面正常展示字符串文本|Pass|
+|进入主页| 1.拉起资源API示例页面 |不涉及|调用getProfileByAbility接口成功，页面正常展示字符串文本|Pass|
+|进入主页| 1.拉起资源API示例页面 |不涉及|调用getProfileByAbilitySync接口成功，页面正常展示字符串文本|Pass|
 |进入主页| 1.拉起资源API示例页面 |不涉及|调用GetProfileByExtensionAbility接口成功，页面正常展示字符串文本|Pass|
 |进入主页| 1.拉起资源API示例页面 |不涉及|调用GetProfileByExtensionAbilitySync接口成功，页面正常展示字符串文本|Pass|
 |进入主页| 1.将.abc文件放到/data/app/el1/bundle/public/com.samples.bundlemanagement/目录下                                                                                          2.拉起资源API示例页面 |不涉及|调用verifyAbc接口成功，页面正常展示字符串文本|Pass|
