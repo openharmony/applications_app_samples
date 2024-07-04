@@ -17,6 +17,10 @@
       "value": "获取BundleInfo"
     },
     {
+      "name": "GetBundleInfoCombinationTest",
+      "value": "获取BundleInfo(组合参数)"
+    },
+    {
       "name": "GetBundleInfoSyncTest",
       "value": "获取BundleInfo(sync)"
     },
@@ -29,7 +33,11 @@
       "value": "获取配置数组"
     },
     {
-      "name": "GetConfigurationJsonSyncTest",
+      "name": "GetConfigurationArraySyncTest",
+      "value": "获取配置数组(sync)"
+    },
+    {
+      "name": "GetConfigurationSyncTest",
       "value": "获取配置json(sync)"
     },
     {
