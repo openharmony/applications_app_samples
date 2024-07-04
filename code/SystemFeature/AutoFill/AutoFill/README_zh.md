@@ -92,6 +92,12 @@ entry/src/main/ets/
 hdc shell param set persist.sys.abilityms.autofill.is_passwd_popup_window true
 ```
 
+2.验证登录页面中注册功能需要在Window CMD输入如下命令配置账号密码自动填充时拉起模态窗：
+
+```
+hdc shell param set persist.sys.abilityms.autofill.is_passwd_popup_window false
+```
+
 ### 相关权限
 
 不涉及。
