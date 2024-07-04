@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Hunan OpenValley Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023-2024 Hunan OpenValley Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -79,7 +79,7 @@ function setImageList(uri: string) {
   if (imageList !== undefined && index !== undefined) {
     imageList[index] = uri;
   }
-  AppStorage.SetOrCreate<Array<string>>('imageList', imageList);
+  AppStorage.setOrCreate<Array<string>>('imageList', imageList);
 
 
 }
