@@ -37,7 +37,6 @@ struct CompressFilesPage {
   @State slectFileName: string[] = [];
   @State zipFileNames: string[] = [];
   @State fileContent: string = '';
-  @State fileNumber: number = 0;
   @State isSelect: boolean = false;
   private path: string = '';
   private title: Resource = $r('app.string.CompressFiles');
@@ -74,7 +73,7 @@ struct CompressFilesPage {
         if (!isInserted) {
           return;
         }
-        if ( this.zipFileNames.length == 0) {
+        if (this.zipFileNames.length == 0) {
           promptAction.showToast({
             message: $r('app.string.delete_file_tip'),
             bottom: '11%'
@@ -107,17 +106,18 @@ struct CompressFilesPage {
     let value = await fileList.get('fileNames', '');
     this.files.fileData = JSON.parse(`${value}`);
     this.files.notifyDataReload();
+    this.zipFileNames.length = 0;
+    this.zipFileNames = this.files.fileData.filter(item => item.endsWith('.zip'));
   }
 
-  async zipcompressFiles(path: string, fileNames: Array<string>): Promise<void> {
+  async zipcompressFiles(path: string, zipfileNames: Array<string>): Promise<void> {
     let files: string[] = [];
-    for (let index = 0; index < fileNames.length; index++) {
-      files[index] = `${path}/${fileNames[index]}`;
+    for (let index = 0; index < zipfileNames.length; index++) {
+      files[index] = `${path}/${zipfileNames[index]}`;
     }
     let zipFiles = Array.from(files);
     hilog.debug(DOMAIN, TAG, BUNDLE + `zipFile = ${zipFiles}`);
-    let newName = `test_` + this.fileNumber + `.zip`;
-    this.zipFileNames.push(newName);
+    let newName = `test_` + this.zipFileNames.length + `.zip`;
     let zipOutFile = `${this.path}/${newName}`;
     hilog.debug(DOMAIN, TAG, BUNDLE + `zipOutFile = ${zipOutFile}`);
 
@@ -129,7 +129,7 @@ struct CompressFilesPage {
       return;
     }
     try {
-      zlib.compressFiles(zipFiles, zipOutFile, {}).then(data => {
+      await zlib.compressFiles(zipFiles, zipOutFile, {}).then(data => {
         zlib.getOriginalSize(zipOutFile).then((num) => {
           promptAction.showToast({
             message: $r('app.string.CompressFiles_success_size', num),
@@ -137,6 +137,7 @@ struct CompressFilesPage {
           });
         })
         this.files.pushData(`${newName}`);
+        this.zipFileNames.push(newName);
       })
     } catch {
       promptAction.showToast({
@@ -144,7 +145,7 @@ struct CompressFilesPage {
         bottom: '11%'
       });
     }
-    this.fileNumber = this.fileNumber + 1;
+
     await fileList.put('fileNames', JSON.stringify(this.files.fileData));
     await fileList.flush();
   }
@@ -211,7 +212,7 @@ struct CompressFilesPage {
                 Checkbox()
                   .visibility(item.includes('.zip') ? Visibility.Hidden : Visibility.Visible)
                   .width('6%')
-                  .select(false)
+                  .select(this.slectFileName.indexOf(item) != -1 ? true : false)
                   .id('file_' + index)
                   .selectedColor($r('app.color.checkbox_color'))
                   .shape(CheckBoxShape.CIRCLE)
@@ -221,6 +222,10 @@ struct CompressFilesPage {
                       this.slectFileName.push(item);
                     } else {
                       this.isSelect = false;
+                      let index = this.slectFileName.indexOf(item)
+                      if (index !== -1) {
+                        this.slectFileName.splice(index, 1)
+                      }
                     }
                   })
               }
