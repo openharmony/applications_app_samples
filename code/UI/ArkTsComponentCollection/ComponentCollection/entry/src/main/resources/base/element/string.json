@@ -849,6 +849,10 @@
       "value": "GridItem"
     },
     {
+      "name": "multiselect",
+      "value": "MultiSelect"
+    },
+    {
       "name": "listitem",
       "value": "ListItem"
     },
@@ -5958,6 +5962,26 @@
     {
       "name": "panel_background_color",
       "value": "#ffffff"
+    },
+    {
+      "name": "multiple_attribute_take_effect",
+      "value": "Component properties dynamically-set: multiple property Settings take effect at the same time"
+    },
+    {
+      "name": "click_to_see_image_border_change",
+      "value": "Click the button to see the picture border change"
+    },
+    {
+      "name": "dynamical_updates_ui_directly",
+      "value": "Component properties are set dynamically, and non-state variables trigger UI updates directly"
+    },
+    {
+      "name": "click_to_see_component_change",
+      "value": "Click the button to see component property value change"
+    },
+    {
+      "name": "click_to_see_text_component_change",
+      "value": "Click to update the text component construction with the parameter"
     }
   ]
 }

@@ -179,10 +179,9 @@ struct Index {
               .onClick(() => {
                 // 粘贴类型过滤，仅跨设备文本
                 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-                let result: boolean = systemPasteboard.isRemoteData();
-                if (result) {
-                  let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-                  systemPasteboard.getUnifiedData().then((data) => {
+                systemPasteboard.getUnifiedData().then((data) => {
+                  let result: boolean = systemPasteboard.isRemoteData();
+                  if (result) {
                     let records = data.getRecords();
                     for (let j = 0; j < records.length; j++) {
                       if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
@@ -191,12 +190,13 @@ struct Index {
                         this.addLog('Button_device_paste' + `${j + 1}.${text.textContent}`);
                       }
                     }
-                  }).catch((err: BusinessError) => {
-                    this.addLog('Failed to get UnifiedData. Cause: ' + err.message);
-                  });
-                } else {
-                  this.addLog('Check isRemoteData DataType fail!');
-                }
+                  } else {
+                    this.addLog('Check isRemoteData DataType fail!');
+                    return;
+                  }
+                }).catch((err: BusinessError) => {
+                  this.addLog('Failed to get UnifiedData. Cause: ' + err.message);
+                });
               })
           }
           .margin({left:12, right:12})

@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "UDMFDemo"
+    },
+    {
+      "name": "text_content",
+      "value": "文本呈现区域"
+    },
+    {
+      "name": "file_list",
+      "value": "文件呈现区域"
+    },
+    {
+      "name": "UDMF_demo",
+      "value": "UDMF"
+    },
+    {
+      "name": "text_target_content",
+      "value": "目的文本"
+    },
+    {
+      "name": "text_target_tips",
+      "value": "将文件/文本拖入此处"
+    }
+  ]
+}

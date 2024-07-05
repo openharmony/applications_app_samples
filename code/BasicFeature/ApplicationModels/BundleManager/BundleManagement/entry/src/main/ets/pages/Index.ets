@@ -41,13 +41,38 @@ struct Index {
         {
           text: $r('app.string.GetBundleInfo'),
           callback: () => {
-            let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION;
+            let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_ABILITY |
+            bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_HAP_MODULE;
             try {
               bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
                 hilog.info(DOMAIN_NUMBER, TAG, 'getBundleInfoForSelf success. Data: %{public}s',
                   JSON.stringify(data));
                 promptAction.showToast({
-                  message: JSON.stringify(data), duration: 3000
+                  message: JSON.stringify(data), duration: 5000
+                });
+              }).catch((err: BusinessError) => {
+                hilog.error(DOMAIN_NUMBER, TAG, 'getBundleInfoForSelf failed. Cause: %{public}s', err.message);
+              });
+            } catch (err) {
+              let message = (err as BusinessError).message;
+              hilog.error(DOMAIN_NUMBER, TAG, 'getBundleInfoForSelf failed: %{public}s', message);
+            }
+          }
+        },
+        {
+          text: $r('app.string.GetBundleInfoCombination'),
+          callback: () => {
+            let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_METADATA |
+            bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION |
+            bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_HAP_MODULE |
+            bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY |
+            bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_ABILITY;
+            try {
+              bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
+                hilog.info(DOMAIN_NUMBER, TAG, 'getBundleInfoForSelf success. Data: %{public}s',
+                  JSON.stringify(data));
+                promptAction.showToast({
+                  message: JSON.stringify(data), duration: 5000
                 });
               }).catch((err: BusinessError) => {
                 hilog.error(DOMAIN_NUMBER, TAG, 'getBundleInfoForSelf failed. Cause: %{public}s', err.message);
@@ -66,7 +91,7 @@ struct Index {
               let data = bundleManager.getBundleInfoForSelfSync(bundleFlags);
               hilog.info(DOMAIN_NUMBER, TAG, 'getBundleInfoForSelfSync success: %{public}s', JSON.stringify(data));
               promptAction.showToast({
-                message: JSON.stringify(data), duration: 3000
+                message: JSON.stringify(data), duration: 5000
               });
             } catch (err) {
               let message = (err as BusinessError).message;
@@ -92,13 +117,31 @@ struct Index {
                 } else {
                   hilog.info(DOMAIN_NUMBER, TAG, 'getProfileByAbility success: %{public}s', JSON.stringify(data));
                   promptAction.showToast({
-                    message: JSON.stringify(data), duration: 3000
+                    message: JSON.stringify(data), duration: 5000
                   });
                 }
               });
             } catch (err) {
               let message = (err as BusinessError).message;
               hilog.error(DOMAIN_NUMBER, TAG, 'getProfileByAbility failed. Cause: %{public}s', message);
+            }
+          }
+        },
+        {
+          text: $r('app.string.GetConfigurationJsonSync'),
+          callback: () => {
+            let moduleName = 'entry';
+            let abilityName = 'EntryAbility';
+            let metadataName = 'ohos.ability.shortcuts';
+            try {
+              let data = bundleManager.getProfileByAbilitySync(moduleName, abilityName, metadataName);
+              hilog.info(DOMAIN_NUMBER, TAG, 'getProfileByAbilitySync successfully: %{public}s', JSON.stringify(data));
+              promptAction.showToast({
+                message: JSON.stringify(data), duration: 5000
+              });
+            } catch (err) {
+              let message = (err as BusinessError).message;
+              hilog.error(DOMAIN_NUMBER, TAG, 'getProfileByAbilitySync failed. Cause: %{public}s', message);
             }
           }
         },
@@ -117,7 +160,7 @@ struct Index {
                     hilog.info(DOMAIN_NUMBER, TAG, 'getProfileByExtensionAbility success: %{public}s',
                       JSON.stringify(data));
                     promptAction.showToast({
-                      message: JSON.stringify(data), duration: 3000
+                      message: JSON.stringify(data), duration: 5000
                     });
                   }
                 });
@@ -128,27 +171,18 @@ struct Index {
           }
         },
         {
-          text: $r('app.string.GetConfigurationJsonSync'),
+          text: $r('app.string.GetConfigurationArraySync'),
           callback: () => {
             let moduleName = 'entry';
             let extensionAbilityName = 'NewUIExtAbility';
             let metadataName = 'ohos.ability.NewUIExtAbility';
             try {
-              let data = bundleManager.getProfileByExtensionAbilitySync(moduleName, extensionAbilityName);
-              hilog.info(DOMAIN_NUMBER, TAG, 'getProfileByExtensionAbilitySync successfully. Data: %{public}s',
-                JSON.stringify(data));
-              promptAction.showToast({
-                message: JSON.stringify(data), duration: 3000
-              });
-            } catch (err) {
-              let message = (err as BusinessError).message;
-              hilog.error(DOMAIN_NUMBER, TAG, 'getProfileByExtensionAbilitySync failed. Cause: %{public}s', message);
-            }
-
-            try {
               let data = bundleManager.getProfileByExtensionAbilitySync(moduleName, extensionAbilityName, metadataName);
               hilog.info(DOMAIN_NUMBER, TAG, 'getProfileByExtensionAbilitySync successfully. Data: %{public}s',
                 JSON.stringify(data));
+              promptAction.showToast({
+                message: JSON.stringify(data), duration: 5000
+              });
             } catch (err) {
               let message = (err as BusinessError).message;
               hilog.error(DOMAIN_NUMBER, TAG, 'getProfileByExtensionAbilitySync failed. Cause: %{public}s', message);
@@ -168,7 +202,7 @@ struct Index {
               bundleManager.verifyAbc(abcPaths, true).then((data) => {
                 hilog.info(DOMAIN_NUMBER, TAG, 'verifyAbc successfully' + JSON.stringify(data));
                 promptAction.showToast({
-                  message: 'success', duration: 3000
+                  message: 'success', duration: 5000
                 });
               }).catch((err: BusinessError) => {
                 hilog.error(DOMAIN_NUMBER, TAG, 'verifyAbc err: %{public}s', err.message);
@@ -187,7 +221,7 @@ struct Index {
               bundleManager.deleteAbc(abcPath).then(() => {
                 hilog.info(DOMAIN_NUMBER, TAG, 'deleteAbc successfully');
                 promptAction.showToast({
-                  message: 'success', duration: 3000
+                  message: 'success', duration: 5000
                 });
               }).catch((err: BusinessError) => {
                 hilog.error(DOMAIN_NUMBER, TAG, 'deleteAbc failed. err: %{public}s', err.message);
@@ -211,7 +245,7 @@ struct Index {
               let data = bundleManager.canOpenLink(link);
               hilog.info(DOMAIN_NUMBER, TAG, 'canOpenLink successfully: %{public}s', JSON.stringify(data));
               promptAction.showToast({
-                message: JSON.stringify(data), duration: 3000
+                message: JSON.stringify(data), duration: 5000
               });
             } catch (err) {
               let message = (err as BusinessError).message;
@@ -231,7 +265,7 @@ struct Index {
               .then((data) => {
                 hilog.info(DOMAIN_NUMBER, TAG, 'Operation successful. IsDefaultApplication ? ' + JSON.stringify(data));
                 promptAction.showToast({
-                  message: JSON.stringify(data), duration: 3000
+                  message: JSON.stringify(data), duration: 5000
                 });
               }).catch((error: BusinessError) => {
               hilog.error(DOMAIN_NUMBER, TAG, 'Operation failed. Cause: ' + JSON.stringify(error));
@@ -246,7 +280,7 @@ struct Index {
               hilog.info(DOMAIN_NUMBER, TAG, 'Operation successful. IsDefaultApplicationSync ? ' +
               JSON.stringify(data));
               promptAction.showToast({
-                message: JSON.stringify(data), duration: 3000
+                message: JSON.stringify(data), duration: 5000
               });
             } catch (error) {
               hilog.error(DOMAIN_NUMBER, TAG, 'Operation failed. Cause: ' + JSON.stringify(error));
@@ -297,7 +331,7 @@ struct Index {
                 let overlayModuleInfo = await overlay.getOverlayModuleInfo(moduleName);
                 hilog.info(DOMAIN_NUMBER, TAG, 'overlayModuleInfo is ' + JSON.stringify(overlayModuleInfo));
                 promptAction.showToast({
-                  message: JSON.stringify(overlayModuleInfo), duration: 3000
+                  message: JSON.stringify(overlayModuleInfo), duration: 5000
                 });
               } catch (err) {
                 let code = (err as BusinessError).code;
@@ -317,7 +351,7 @@ struct Index {
                 let overlayModuleInfos = await overlay.getTargetOverlayModuleInfos(targetModuleName);
                 hilog.info(DOMAIN_NUMBER, TAG, 'overlayModuleInfos are ' + JSON.stringify(overlayModuleInfos));
                 promptAction.showToast({
-                  message: JSON.stringify(overlayModuleInfos), duration: 3000
+                  message: JSON.stringify(overlayModuleInfos), duration: 5000
                 });
               } catch (err) {
                 let code = (err as BusinessError).code;

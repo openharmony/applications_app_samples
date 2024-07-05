@@ -150,9 +150,34 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/Solutions/Media/MultiMedia/lib/CameraPage-1.0.0.tgz" desc="Provided by code/Solutions/Media/MultiMedia"/>
                 <filteritem type="filepath" name="code/BasicFeature/Media/AVRecorder/lib/VideoRecorder-1.0.0.tgz" desc="Provided by code/BasicFeature/Media/AVRecorder"/>
                 <filteritem type="filepath" name="code/BasicFeature/FileManagement/FileManager/lib/MyPhoneFilePage-1.0.0.tgz" desc="Provided by code/BasicFeature/FileManagement/FileManager"/>
-				<filteritem type="filepath" name="code\BasicFeature/FileManagement/MediaCollections/screenshots/devices/drm_play_page.png" desc="Provided by code/BasicFeature/FileManagement/FileManager"/>
-				<filteritem type="filepath" name="code\BasicFeature/FileManagement/MediaCollections/screenshots/devices/drm_playlist.png" desc="Provided by code/BasicFeature/FileManagement/FileManager"/>
-                <filteritem type="filepath" name="code/BasicFeature/Connectivity/VPN/lib/VPNFoundation-1.0.0.tgz" desc="Provided by code/BasicFeature/Connectivity/VPN"/>
+				<filteritem type="filepath" name="code/SystemFeature/FileManagement/MediaCollections/screenshots/devices/drm_play_page.png" desc="Provided by code/SystemFeature/FileManagement/FileManager/MediaCollections"/>
+				<filteritem type="filepath" name="code/SystemFeature/FileManagement/MediaCollections/screenshots/devices/drm_playlist.png" desc="Provided by code/SystemFeature/FileManagement/FileManager/MediaCollections"/>
+				<filteritem type="filepath" name="code/SystemFeature/FileManagement/MediaCollections/screenshots/devices/video.png" desc="Provided by code/SystemFeature/FileManagement/FileManager/MediaCollections"/>
+				<filteritem type="filepath" name="code/SystemFeature/FileManagement/MediaCollections/screenshots/devices/audio.png" desc="Provided by code/SystemFeature/FileManagement/FileManager/MediaCollections"/>
+				<filteritem type="filepath" name="code/SystemFeature/FileManagement/MediaCollections/screenshots/devices/rename.png" desc="Provided by code/SystemFeature/FileManagement/FileManager/MediaCollections"/>
+				<filteritem type="filepath" name="code/SystemFeature/FileManagement/MediaCollections/screenshots/devices/index.png" desc="Provided by code/SystemFeature/FileManagement/FileManager/MediaCollections"/>
+				<filteritem type="filepath" name="code/SystemFeature/FileManagement/MediaCollections/entry/src/main/resources/base/media/icon_loading.png" desc="Provided by code/SystemFeature/FileManagement/FileManager/MediaCollections"/>
+				<filteritem type="filepath" name="code/SystemFeature/FileManagement/MediaCollections/entry/src/main/resources/base/media/icon_seekStart.png" desc="Provided by code/SystemFeature/FileManagement/FileManager/MediaCollections"/>
+				<filteritem type="filepath" name="code/SystemFeature/FileManagement/MediaCollections/screenshots/devices/rename.png" desc="Provided by code/SystemFeature/FileManagement/FileManager/MediaCollections"/>
+				<filteritem type="filepath" name="code/SystemFeature/FileManagement/MediaCollections/screenshots/devices/index.png" desc="Provided by code/SystemFeature/FileManagement/FileManager/MediaCollections"/>
+				<filteritem type="filepath" name="code/SystemFeature/FileManagement/MediaCollections/entry/src/main/resources/base/media/audioCover.png" desc="Provided by code/SystemFeature/FileManagement/FileManager/MediaCollections"/>
+				<filteritem type="filepath" name="code/SystemFeature/FileManagement/MediaCollections/entry/src/main/resources/base/media/icon_forward.png" desc="Provided by code/SystemFeature/FileManagement/FileManager/MediaCollections"/>
+				<filteritem type="filepath" name="code/SystemFeature/FileManagement/MediaCollections/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/FileManagement/FileManager/MediaCollections"/>
+				<filteritem type="filepath" name="code/SystemFeature/FileManagement/MediaCollections/entry/src/main/resources/base/media/key.png" desc="Provided by code/SystemFeature/FileManagement/FileManager/MediaCollections"/>
+				<filteritem type="filepath" name="code/SystemFeature/FileManagement/MediaCollections/entry/src/main/resources/base/media/upward.png" desc="Provided by code/SystemFeature/FileManagement/FileManager/MediaCollections"/>
+				<filteritem type="filepath" name="code/SystemFeature/FileManagement/MediaCollections/entry/src/main/resources/base/media/icon_backoff.png" desc="Provided by code/SystemFeature/FileManagement/FileManager/MediaCollections"/>
+				<filteritem type="filepath" name="code/SystemFeature/FileManagement/MediaCollections/entry/src/main/resources/base/media/icon_seekEnd.png" desc="Provided by code/SystemFeature/FileManagement/FileManager/MediaCollections"/>
+				<filteritem type="filepath" name="code/SystemFeature/FileManagement/MediaCollections/entry/src/main/resources/base/media/download.png" desc="Provided by code/SystemFeature/FileManagement/FileManager/MediaCollections"/>
+				<filteritem type="filepath" name="code/SystemFeature/FileManagement/MediaCollections/entry/src/main/resources/base/media/icon_logo.png" desc="Provided by code/SystemFeature/FileManagement/FileManager/MediaCollections"/>
+				<filteritem type="filepath" name="code/SystemFeature/FileManagement/MediaCollections/entry/src/main/resources/base/media/videoCover.png" desc="Provided by code/SystemFeature/FileManagement/FileManager/MediaCollections"/>
+				<filteritem type="filepath" name="code/SystemFeature/FileManagement/MediaCollections/entry/src/main/resources/base/media/downward.png" desc="Provided by code/SystemFeature/FileManagement/FileManager/MediaCollections"/>
+				<filteritem type="filepath" name="code/SystemFeature/FileManagement/MediaCollections/screenshots/devices/video.png" desc="Provided by code/SystemFeature/FileManagement/FileManager/MediaCollections"/>
+				<filteritem type="filepath" name="code/SystemFeature/FileManagement/MediaCollections/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/FileManagement/FileManager/MediaCollections"/>
+				<filteritem type="filepath" name="code/SystemFeature/FileManagement/MediaCollections/screenshots/devices/audio.png" desc="Provided by code/SystemFeature/FileManagement/FileManager/MediaCollections"/>
+				<filteritem type="filepath" name="code/SystemFeature/FileManagement/MediaCollections/entry/src/main/resources/base/media/key_blue.png" desc="Provided by code/SystemFeature/FileManagement/FileManager/MediaCollections"/>
+				<filteritem type="filepath" name="code/SystemFeature/FileManagement/MediaCollections/entry/src/main/resources/base/media/delete.png" desc="Provided by code/SystemFeature/FileManagement/FileManager/MediaCollections"/>
+				<filteritem type="filepath" name="code/SystemFeature/FileManagement/MediaCollections/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/FileManagement/FileManager/MediaCollections"/>
+				<filteritem type="filepath" name="code/BasicFeature/Connectivity/VPN/lib/VPNFoundation-1.0.0.tgz" desc="Provided by code/BasicFeature/Connectivity/VPN"/>
                 <filteritem type="filepath" name="code/UI/ArkTsComponentCollection/ComponentCollection/lib/DragEvent-1.0.0.tgz" desc="Provided by code/UI/ArkTsComponentCollection/ComponentCollection"/>
                 <filteritem type="filepath" name="code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary/lib/ProcessMessage-1.0.0.tgz" desc="Provided by code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary"/>
                 <filteritem type="filepath" name="code/BasicFeature/Notification/CustomCommonEvent/lib/CardEvent-1.0.0.tgz" desc="Provided by code/BasicFeature/Notification/CustomCommonEvent"/>
@@ -682,6 +707,22 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/SystemFeature/ApplicationModels/UIExtensionAbility/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/ApplicationModels/UIExtensionAbility"/>
 				<filteritem type="filepath" name="code/BasicFeature/Native/Audio/screenshots/device/AudioVivid.jpg" desc="Provided by code/BasicFeature/Native/Audio"/>
 				<filteritem type="filepath" name="code/BasicFeature/Native/Audio/screenshots/device/index.jpg" desc="Provided by code/BasicFeature/Native/Audio"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Audio/OHAudio/screenshots/device/record.jpeg" desc="Provided by code/DocsSample/Media/Audio/OHAudio"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Audio/OHAudio/screenshots/device/play.jpeg" desc="Provided by code/DocsSample/Media/Audio/OHAudio"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Audio/OHAudio/screenshots/device/AudioVivid.jpg" desc="Provided by code/DocsSample/Media/Audio/OHAudio"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Audio/OHAudio/screenshots/device/index.jpg" desc="Provided by code/DocsSample/Media/Audio/OHAudio"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Audio/OHAudio/AppScope/resources/base/media/app_icon.png" desc="Provided by code/DocsSample/Media/Audio/OHAudio"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Audio/OHAudio/entry/src/main/resources/base/media/icon.png" desc="Provided by code/DocsSample/Media/Audio/OHAudio"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Audio/OHAudio/entry/src/main/resources/base/media/pic_Audiovivid.png" desc="Provided by code/DocsSample/Media/Audio/OHAudio"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Audio/OHAudio/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/DocsSample/Media/Audio/OHAudio"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTSUtilsDocModule/entry/src/main/resources/base/media/icon.png" desc="Provided by code/DocsSample/ArkTSUtilsDocModule"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTSUtilsDocModule/entry/src/main/resources/rawfile/startIcon.png" desc="Provided by code/DocsSample/ArkTSUtilsDocModule"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTSUtilsDocModule/screenshots/device/image1.jpeg" desc="Provided by code/DocsSample/ArkTSUtilsDocModule"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTSUtilsDocModule/screenshots/device/image2.jpeg" desc="Provided by code/DocsSample/ArkTSUtilsDocModule"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTSUtilsDocModule/screenshots/device/image3.jpeg" desc="Provided by code/DocsSample/ArkTSUtilsDocModule"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTSUtilsDocModule/AppScope/resources/base/media/app_icon.png" desc="Provided by code/DocsSample/ArkTSUtilsDocModule"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTSUtilsDocModule/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/DocsSample/ArkTSUtilsDocModule"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTSUtilsDocModule/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/DocsSample/ArkTSUtilsDocModule"/>
 				<filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmonyProfileDebug.pem" desc="Provided by code/Project/HapBuild"/>
 	        <filteritem type="filepath" name="code/BasicFeature/ApplicationModels/BundleManager/BundleManagement/libraryOverlay/src/main/resources/base/media/icon.png" desc="Provided by code/BasicFeature/ApplicationModels/BundleManager/BundleManagement"/>
                 <filteritem type="filepath" name="code/BasicFeature/ApplicationModels/BundleManager/BundleManagement/sceenshots/device/snapshot_directory.png" desc="Provided by code/BasicFeature/ApplicationModels/BundleManager/BundleManagement"/>
@@ -768,6 +809,14 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/BasicFeature/DataManagement/pasteboard/screenshots/first.png" desc="Provided by code/BasicFeature/DataManagement/pasteboard"/>
 				<filteritem type="filepath" name="code/Solutions/InputMethod/KikaInputMethod/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/Solutions/InputMethod/KikaInputMethod"/>
 				<filteritem type="filepath" name="code/Solutions/InputMethod/KikaInputMethod/screenshots/devices/preview.jpg" desc="Provided by code/Solutions/InputMethod/KikaInputMethod"/>
+				<filteritem type="filepath" name="code/BasicFeature/DataManagement/UDMF/UDMFDemo/AppScope/resources/base/media/app_icon.png" desc="Provided by code/BasicFeature/DataManagement/UDMF/UDMFDemo"/>
+				<filteritem type="filepath" name="code/BasicFeature/DataManagement/UDMF/UDMFDemo/entry/src/main/resources/base/media/ic_select_option_collection.png" desc="Provided by code/BasicFeature/DataManagement/UDMF/UDMFDemo"/>
+				<filteritem type="filepath" name="code/BasicFeature/DataManagement/UDMF/UDMFDemo/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/BasicFeature/DataManagement/UDMF/UDMFDemo"/>
+				<filteritem type="filepath" name="code/BasicFeature/DataManagement/UDMF/UDMFDemo/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/BasicFeature/DataManagement/UDMF/UDMFDemo"/>
+				<filteritem type="filepath" name="code/BasicFeature/DataManagement/UDMF/UDMFDemo/screenshots/first.png" desc="Provided by code/BasicFeature/DataManagement/UDMF/UDMFDemo"/>
+				<filteritem type="filepath" name="code/BasicFeature/DataManagement/UDMF/UDMFDemo/screenshots/select.png" desc="Provided by code/BasicFeature/DataManagement/UDMF/UDMFDemo"/>
+				<filteritem type="filepath" name="code/BasicFeature/DataManagement/UDMF/UDMFDemo/screenshots/drag.png" desc="Provided by code/BasicFeature/DataManagement/UDMF/UDMFDemo"/>
+				<filteritem type="filepath" name="code/BasicFeature/DataManagement/UDMF/UDMFDemo/entry/src/main/resources/base/media/icon.png" desc="Provided by code/BasicFeature/DataManagement/UDMF/UDMFDemo"/>
 				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/screenshots/device/Screenshot_20231208091553194.jpeg" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
 				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/screenshots/device/Screenshot_20231208091619146.jpeg" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
 				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/screenshots/device/Screenshot_20231208091638669.jpeg" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>

@@ -21,29 +21,11 @@ import { CommonEventSubscriber } from './commonEvent/commonEventSubscriber';
 import { logger } from './Logger';
 
 const TAG: string = 'UrlUtils';
-const SUBSCRIBER_EVENT: string = 'uploaddownload.event.SET_URL';
 const URL_KEY: string = 'url';
 const STORE_NAME: string = 'server_url';
 const DEFAULT_SERVER_URL: string = 'http://192.168.1.1/';
 
 class UrlUtil {
-  private subscriber: CommonEventSubscriber | undefined = undefined;
-
-  async subscribe(context: common.UIAbilityContext): Promise<void> {
-    logger.info(TAG, `subscribe`)
-    this.subscriber = await commonEventManager.createSubscriber({ events: [SUBSCRIBER_EVENT] });
-    commonEventManager.subscribe(this.subscriber, (err: Error, data: CommonEventData) => {
-      if (err) {
-        logger.error(TAG, `subscribeCallBack, failed: ${JSON.stringify(err)}`);
-        return;
-      }
-      logger.info(TAG, `subscribeCallBack, ${JSON.stringify(data)}`);
-      if (data.event === 'uploaddownload.event.SET_URL' && data.data) {
-        urlUtils.saveUrl(context, data.data);
-      }
-    });
-  }
-
   async getUrl(context: common.UIAbilityContext): Promise<string> {
     let preference = await preferences.getPreferences(context, STORE_NAME);
     let url = await preference.get(URL_KEY, '') as string;

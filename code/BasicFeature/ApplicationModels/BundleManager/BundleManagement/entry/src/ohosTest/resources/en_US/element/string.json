@@ -17,6 +17,10 @@
       "value": "GetBundleInfo"
     },
     {
+      "name": "GetBundleInfoCombinationTest",
+      "value": "GetBundleInfoCombinationTest"
+    },
+    {
       "name": "GetBundleInfoSyncTest",
       "value": "GetBundleInfoSync"
     },
@@ -29,8 +33,12 @@
       "value": "GetConfigurationArray"
     },
     {
-      "name": "GetConfigurationJsonSyncTest",
-      "value": "GetConfigurationJsonSync"
+      "name": "GetConfigurationArraySyncTest",
+      "value": "GetConfigurationArraySyncTest"
+    },
+    {
+      "name": "GetConfigurationSyncTest",
+      "value": "GetConfigurationSyncTest"
     },
     {
       "name": "VerifyFileTest",

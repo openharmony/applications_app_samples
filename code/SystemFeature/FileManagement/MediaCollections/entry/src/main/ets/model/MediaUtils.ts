@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// @ts-nocheck
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import userFileManager from '@ohos.filemanagement.userFileManager';
 import Logger from '../model/Logger';

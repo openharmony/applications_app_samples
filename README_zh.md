@@ -49,7 +49,7 @@
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td height="270" align="center" rowspan="29" style='height:202.50pt' x:str><strong>基础特性</strong></td>
+  <td height="270" align="center" rowspan="28" style='height:202.50pt' x:str><strong>基础特性</strong></td>
   <td x:str><strong>能力增强</strong></td>
   <td x:str><a href="code/BasicFeature/Ability/AbilityFeature">基础能力增强</a></td>
   <td ></td>
@@ -146,19 +146,11 @@
   <td rowspan="1" x:str><strong>文件管理</strong></td>
   <td x:str><a href="code/BasicFeature/FileManagement/FileBackupExtension">应用接入数据备份恢复（API 11）</a></td>
   <td x:str><a href="code/BasicFeature/FileManagement/FileManager">文件管理（API 11）</a></td>
-  <td x:str><a href="code/BasicFeature/FileManagement/MediaCollections">媒体管理合集</a></td>
   <td x:str><a href="code/BasicFeature/FileManagement/FileShare/SandboxShare">文件分享与访问</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td rowspan="1" x:str><strong>图像</strong></td>
   <td x:str><a href="code/BasicFeature/Graphics/DisplaySync">DisplaySync分级管控</a></td>
-  <td ></td>
-  <td ></td>
-  <td ></td>
- </tr>
- <tr height="18" style='height:13.50pt;'>
-  <td rowspan="1" x:str><strong>意图</strong></td>
-  <td x:str><a href="code/BasicFeature/InsightIntent/IntentExecutor">意图执行</a></td>
   <td ></td>
   <td ></td>
   <td ></td>
@@ -243,7 +235,7 @@
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-<td height="90" align="center" rowspan="25" style='height:67.50pt;' x:str><strong>系统特性（仅对系统应用开放）</strong></td>
+<td height="90" align="center" rowspan="24" style='height:67.50pt;' x:str><strong>系统特性（仅对系统应用开放）</strong></td>
   <td x:str><strong>能力增强</strong></td>
   <td x:str><a href="code/SystemFeature/Ability/AbilityFeatureSystem">基础能力增强</a></td>
   <td ></td>
@@ -369,19 +361,12 @@
   <td x:str><strong>文件管理</strong></td>
   <td x:str><a href="code/SystemFeature/FileManagement/FileShare/Picker">选择并查看文档与媒体文件（API 10）</a></td>
   <td x:str><a href="code/SystemFeature/FileManagement/Photos">相册（API 12）</a></td>
-  <td ></td>
+  <td x:str><a href="code/SystemFeature/FileManagement/MediaCollections">媒体管理合集</a></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>资源配置</strong></td>
   <td x:str><a href="code/Project/ResourceAllocation/ApplicationThemeSwitch">应用主题切换</a></td>
-  <td ></td>
-  <td ></td>
-  <td ></td>
- </tr>
- <tr height="18" style='height:13.50pt;'>
-  <td x:str><strong>意图</strong></td>
-  <td x:str><a href="code/SystemFeature/InsightIntent/IntentDriver">意图执行</a></td>
   <td ></td>
   <td ></td>
   <td ></td>
@@ -586,7 +571,6 @@ code
   |---DeviceManagement             # 设备管理
   |---FileManagement               # 文件管理
   |---Graphics                     # 图像
-  |---InsightIntent                # 意图
   |---International                # 国际化
   |---Media                        # 媒体
   |---Native                       # Native c++
@@ -609,7 +593,6 @@ code
   |---DistributedAppDev            # 分布式
   |---FileManagement               # 文件管理
   |---IDL                          # IDL
-  |---InsightIntent                # 意图
   |---Internationalnation          # 国际化
   |---Media                        # 媒体
   |---Notification                 # 通知
