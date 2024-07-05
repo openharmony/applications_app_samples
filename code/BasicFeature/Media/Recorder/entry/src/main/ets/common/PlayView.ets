@@ -22,7 +22,7 @@ const TAG = '[Recorder.PlayView]';
 
 @Component
 export struct PlayView {
-  private audioModel: AudioModel = null;
+  private audioModel: AudioModel | undefined = undefined;
   private millisecond: number = 0;
   private duration: string = '';
   @State time: string = '00:00';
@@ -41,11 +41,11 @@ export struct PlayView {
 
   initAudioPlayer() {
     if (this.fileName !== '') {
-      this.audioModel.play(() => {
+      this.audioModel?.play(() => {
         this.playState = true;
         this.reset();
       });
-      this.audioModel.onFinish(() => {
+      this.audioModel?.onFinish(() => {
         this.playState = false;
         this.reset();
       });
@@ -61,7 +61,7 @@ export struct PlayView {
     this.resetAnimation = !this.resetAnimation;
   }
 
-  updateTimeStr() {
+  updateTimeStr = () => {
     this.millisecond += 1000;
     this.time = updateTime(this.millisecond);
   }
@@ -71,17 +71,17 @@ export struct PlayView {
       Logger.info(TAG, `handleChangePlayState this.isPlay= ${this.playState}`);
       if (!this.playState) {
         Logger.info(TAG, `handleChangePlayState play start`);
-        this.audioModel.play(() => {
+        this.audioModel?.play(() => {
           Logger.info(TAG, `handleChangePlayState play success`);
           this.playState = true;
-          AppStorage.SetOrCreate('playState', true);
+          AppStorage.setOrCreate('playState', true);
         });
       } else {
         Logger.info(TAG, `handleChangePlayState pause start`);
-        this.audioModel.pause(() => {
+        this.audioModel?.pause(() => {
           Logger.info(TAG, `handleChangePlayState pause success`);
           this.playState = false;
-          AppStorage.SetOrCreate('playState', false);
+          AppStorage.setOrCreate('playState', false);
         });
       }
     }
@@ -89,7 +89,7 @@ export struct PlayView {
 
   build() {
     Column() {
-      AnimateView({ resetAnimation: $resetAnimation, updateTimeStr: this.updateTimeStr.bind(this) })
+      AnimateView({ resetAnimation: $resetAnimation, updateTimeStr: this.updateTimeStr })
       Image($r('app.media.bg_play'))
         .width('100%')
         .height('30%')

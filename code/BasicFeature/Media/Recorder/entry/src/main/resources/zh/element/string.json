@@ -47,6 +47,26 @@
     {
       "name": "rename_fail",
       "value": "重命名失败，请检查回收站是否有重名文件"
+    },
+    {
+      "name": "permission_microphone_reason",
+      "value": "申请获取麦克风权限"
+    },
+    {
+      "name": "permission_readmedia_reason",
+      "value": "申请获取媒体读取权限"
+    },
+    {
+      "name": "permission_writemedia_reason",
+      "value": "申请获取媒体写入权限"
+    },
+    {
+      "name": "permission_writeaudio_reason",
+      "value": "申请获取音频写入权限"
+    },
+    {
+      "name": "permission_readaudio_reason",
+      "value": "申请获取音频读取权限"
     }
   ]
 }

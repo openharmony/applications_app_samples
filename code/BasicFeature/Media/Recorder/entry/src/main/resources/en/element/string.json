@@ -47,6 +47,26 @@
     {
       "name": "rename_fail",
       "value": "Renaming failed. Please check if there is a file with the same name in the recycle bin"
+    },
+    {
+      "name": "permission_microphone_reason",
+      "value": "Request microphone permission"
+    },
+    {
+      "name": "permission_readmedia_reason",
+      "value": "Request media read permission"
+    },
+    {
+      "name": "permission_writemedia_reason",
+      "value": "Request media write permission"
+    },
+    {
+      "name": "permission_writeaudio_reason",
+      "value": "Request audio write permission"
+    },
+    {
+      "name": "permission_readaudio_reason",
+      "value": "Request audio write permission"
     }
   ]
 }
