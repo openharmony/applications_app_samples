@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
-import { SaveRequestCallback } from "application/AutoFillRequest";
-import Logger from '../log/Logger';
+import { SaveRequestCallback } from 'application/AutoFillRequest';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const storage = LocalStorage.getShared();
-const saveRequestCallback = storage.get<SaveRequestCallback>('saveCallback');
+const saveRequestCallback: SaveRequestCallback | undefined = storage.get<SaveRequestCallback>('saveCallback');
 
 function SuccessFunc(success: boolean) {
   if (saveRequestCallback) {
@@ -26,7 +26,7 @@ function SuccessFunc(success: boolean) {
     }
     saveRequestCallback.onFailure();
   }
-  Logger.error('saveRequestCallback is nullptr!');
+  hilog.error(0x0000, 'testTag', '%{public}s', 'saveRequestCallback is nullptr!');
 }
 
 @Entry
@@ -39,7 +39,7 @@ struct SavePage {
           .height(24)
           .width(24)
           .onClick(() => {
-            Logger.info('save cancel');
+            hilog.info(0x0000, 'testTag', '%{public}s', 'save cancel');
             SuccessFunc(false);
           })
         Text($r('app.string.saveInfo'))
@@ -48,7 +48,7 @@ struct SavePage {
           .fontSize(20)
           .fontColor($r('app.color.userPassWord_title'))
           .margin({ left: '4.4%' })
-          .id("Save")
+          .id('Save')
       }.margin({ top: '8.8%', left: '4.9%' }).height('7.2%')
 
       Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start, alignItems: ItemAlign.Start }) {
@@ -96,6 +96,7 @@ struct SavePage {
           .height('16.5%')
           .textAlign(TextAlign.Center)
           .margin({ left: '3.3%' })
+          .id('saveConfirm')
           .onClick(() => {
             SuccessFunc(true);
           })

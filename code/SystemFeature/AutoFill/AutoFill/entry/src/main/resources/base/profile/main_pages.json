@@ -5,6 +5,7 @@
     "autofillpages/SavePage",
     "autofillpages/RegisterPage",
     "autofillpages/LoginSuccessPage",
-    "autofillpages/AutoFillNewPassWord"
+    "autofillpages/AutoFillNewPassWord",
+    "autofillpages/BiometricAuthentication"
   ]
 }

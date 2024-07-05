@@ -26,7 +26,7 @@
     },
     {
       "name": "cancelBtnColor",
-      "value": "#007DFF"
+      "value": "#0A59F7"
     },
     {
       "name": "enableColor",
@@ -35,6 +35,14 @@
     {
       "name": "NoAccountColor",
       "value": "#6f7780"
+    },
+    {
+      "name": "cancelColor",
+      "value": "#FDE5E9E9"
+    },
+    {
+      "name": "placeholderColor",
+      "value": "#fff5eeee"
     }
   ]
 }

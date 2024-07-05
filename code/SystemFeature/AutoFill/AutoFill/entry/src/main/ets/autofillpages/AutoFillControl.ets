@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,116 +13,102 @@
  * limitations under the License.
  */
 
-import { FillRequestCallback, FillResponse } from "application/AutoFillRequest";
-import ViewData from 'application/ViewData';
-import Logger from '../log/Logger';
+import { BusinessError } from '@ohos.base';
+import { autoFillManager, common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const storage = LocalStorage.getShared();
-const fillCallback = storage.get<FillRequestCallback>('fillCallback');
-const viewData: ViewData | undefined = storage.get<ViewData>('viewData');
-
-function successFunc(data: ViewData, userName: string, passWord: string) {
-  if (data.pageNodeInfos.length !== 2) {
-    Logger.info('get unEnough pageNodeInfos, skipping!');
-    return;
-  } else {
-    data.pageNodeInfos[0].value = userName;
-    data.pageNodeInfos[1].value = passWord;
-  }
-  if (fillCallback) {
-    let response: FillResponse = { viewData: data };
-    fillCallback.onSuccess(response);
-  }
-}
-
-function cancelFunc() {
-  if (fillCallback) {
-    fillCallback.onCancel();
-  }
-}
+let viewData: autoFillManager.ViewData | undefined = storage.get<autoFillManager.ViewData>('viewData');
+let context: common.AutoFillExtensionContext | undefined = storage.get<common.AutoFillExtensionContext>('autoFillExtensionContext');
+const TAG: string = 'autoFill';
+const DOMAIN_NUMBER: number = 0xFF00;
 
 @Entry
 @Component
 struct AutoFillControl {
   build() {
-    Column() {
-      Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
-        Image($r('app.media.ic_public_back'))
-          .height(24)
-          .width(24)
-          .id('back')
+    Row() {
+      Column() {
+        List({ space: 10, initialIndex: 0 }) {
+          ListItem() {
+            Text($r('app.string.user1'))
+              .width('100%')
+              .height(40)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .borderRadius(5)
+          }
           .onClick(() => {
-            Logger.info('autofill cancel');
-            cancelFunc();
+            if (context != undefined) {
+              let want: Record<string, Object> = {};
+              context.reloadInModal({ data: { text: 'User1', want } }).then(() => {
+                hilog.info(DOMAIN_NUMBER, TAG, 'reloadInModal successfully User1.');
+              }).catch((err: BusinessError) => {
+                hilog.info(DOMAIN_NUMBER, TAG, 'reloadInModal failed User1.');
+              })
+            }
           })
-        Text($r('app.string.userPassWord_title'))
-          .fontWeight(500)
-          .fontFamily('HarmonyHeiTi-Medium')
-          .fontSize(20)
-          .fontColor($r('app.color.userPassWord_title'))
-          .margin({ left: '4.4%' })
-      }.margin({ top: '8.8%', left: '4.9%' }).height('7.2%')
 
-      Row() {
-        Text($r('app.string.user1'))
-          .fontSize(16)
-          .fontColor($r('app.color.user'))
-          .lineHeight(22)
-          .fontWeight(500)
-          .fontFamily('HarmonyHeiTi-Medium')
-          .margin({ left: '3.3%' })
-      }
-      .borderRadius(24)
-      .backgroundColor($r('app.color.controlBackColor'))
-      .width('95%')
-      .height('7.2%')
-      .onClick(() => {
-        if (viewData != undefined) {
-          successFunc(viewData, "user1", "123456");
-        }
-      })
+          ListItem() {
+            Text($r('app.string.user2'))
+              .width('100%')
+              .height(40)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .borderRadius(5)
+          }
+          .onClick(() => {
+            if (viewData != undefined) {
+              if (context != undefined) {
+                let want: Record<string, Object> = {};
+                context.reloadInModal({ data: { text: 'User2', want } }).then(() => {
+                  hilog.info(DOMAIN_NUMBER, TAG, 'reloadInModal successfully User2.');
+                }).catch((err: BusinessError) => {
+                  hilog.info(DOMAIN_NUMBER, TAG, 'reloadInModal failed User2.');
+                })
+              }
+            }
+          })
 
-      Row() {
-        Text($r('app.string.user2'))
-          .fontSize(16)
-          .fontColor($r('app.color.user'))
-          .lineHeight(22)
-          .fontWeight(500)
-          .margin({ left: '3.3%' })
-          .fontFamily('HarmonyHeiTi-Medium')
-      }
-      .id("second")
-      .borderRadius(24)
-      .backgroundColor($r('app.color.controlBackColor'))
-      .width('95%')
-      .height('7.2%')
-      .margin({ top: '24px' })
-      .onClick(() => {
-        if (viewData != undefined) {
-          successFunc(viewData, "user2", "abcdef");
+          ListItem() {
+            Text($r('app.string.user3'))
+              .width('100%')
+              .height(40)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .borderRadius(5)
+          }
+          .onClick(() => {
+            if (viewData != undefined) {
+              if (context != undefined) {
+                let want: Record<string, Object> = {};
+                context.reloadInModal({ data: { text: 'User3', want } }).then(() => {
+                  hilog.info(DOMAIN_NUMBER, TAG, 'reloadInModal successfully User3.');
+                }).catch((err: BusinessError) => {
+                  hilog.info(DOMAIN_NUMBER, TAG, 'reloadInModal failed User3.');
+                })
+              }
+            }
+          })
         }
-      })
-
-      Row() {
-        Text($r('app.string.user3'))
-          .fontSize(16)
-          .fontColor($r('app.color.user'))
-          .lineHeight(22)
-          .fontWeight(500)
-          .margin({ left: '3.3%' })
-          .fontFamily('HarmonyHeiTi-Medium')
+        .listDirection(Axis.Vertical)
+        .scrollBar(BarState.Off)
+        .friction(0.6)
+        .divider({ strokeWidth: 1, color: $r('app.color.placeholderColor'), startMargin: 20, endMargin: 20 })
+        .edgeEffect(EdgeEffect.Spring)
+        .onScrollIndex((firstIndex: number, lastIndex: number, centerIndex: number) => {
+          console.info('first' + firstIndex);
+          console.info('last' + lastIndex);
+          console.info('center' + centerIndex);
+        })
+        .onScroll((scrollOffset: number, scrollState: ScrollState) => {
+          console.info(`onScroll scrollState = ScrollState` + scrollState + `, scrollOffset = ` + scrollOffset);
+        })
       }
-      .id("third")
-      .borderRadius(24)
-      .backgroundColor($r('app.color.controlBackColor'))
-      .width('95%')
-      .height('7.2%')
-      .margin({ top: '24px' })
-      .onClick(() => {
-        if (viewData != undefined) {
-          successFunc(viewData, "user3", "ABCDEF");
-        }
-      })
-    }.backgroundColor($r('app.color.pageBackColor')).height('100%')
+      .width('100%')
+      .shadow(ShadowStyle.OUTER_FLOATING_SM)
+    }
+    .height('100%')
+    .shadow(ShadowStyle.OUTER_FLOATING_SM)
   }
 }

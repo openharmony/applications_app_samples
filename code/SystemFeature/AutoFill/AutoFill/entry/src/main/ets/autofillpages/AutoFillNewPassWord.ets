@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,22 +13,24 @@
  * limitations under the License.
  */
 
-import { FillRequestCallback, FillResponse } from "application/AutoFillRequest";
+import { FillRequestCallback, FillResponse } from 'application/AutoFillRequest';
 import ViewData from 'application/ViewData';
-import Logger from '../log/Logger';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 let storage = LocalStorage.getShared();
-let fillCallback = storage.get<FillRequestCallback>('fillCallback');
+let fillCallback: FillRequestCallback | undefined = storage.get<FillRequestCallback>('fillCallback');
 let viewData: ViewData | undefined = storage.get<ViewData>('viewData');
+const TAG: string = 'autoFill';
+const DOMAIN_NUMBER: number = 0xFF00;
 
 function successFunc(data: ViewData) {
   if (data.pageNodeInfos.length !== 3) {
-    Logger.error('testTag', '%{public}s', 'get unEnough pageNodeInfos, skipping!');
+    hilog.error(DOMAIN_NUMBER, TAG, '%{public}s', 'get unEnough pageNodeInfos, skipping!');
     return;
   }
   data.pageNodeInfos[2].value = 'user1 new password';
 
-  Logger.info('testTag', 'autofill about to success with viewData: %{public}s', JSON.stringify(viewData));
+  hilog.info(DOMAIN_NUMBER, TAG, 'autofill about to success with viewData: %{public}s', JSON.stringify(viewData));
   if (fillCallback) {
     let response: FillResponse = { viewData: data };
     fillCallback.onSuccess(response);
@@ -51,7 +53,7 @@ struct AutoFillNewPassWord {
           .height(24)
           .width(24)
           .onClick(() => {
-            Logger.info('autofill cancel');
+            hilog.info(DOMAIN_NUMBER, TAG, 'autofill cancel');
             cancelFunc();
           })
         Text($r('app.string.newPassword_title'))
@@ -90,6 +92,7 @@ struct AutoFillNewPassWord {
           .lineHeight(22)
           .width('41.7%')
           .height('16.5%')
+          .id('Cancel')
           .fontColor($r('app.color.cancelBtnColor'))
           .textAlign(TextAlign.Center)
           .onClick(() => {

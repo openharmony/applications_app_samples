@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,24 +13,24 @@
  * limitations under the License.
  */
 
-import autoFillManager from '@ohos.app.ability.autoFillManager';
+import { autoFillManager, common } from '@kit.AbilityKit';
 import { UIContext } from '@ohos.arkui.UIContext';
-import router from '@ohos.router';
-import common from '@ohos.app.ability.common';
-import Prompt from '@system.prompt';
-import Logger from '../log/Logger';
+import { router, promptAction } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 let options: router.RouterOptions = {
   url: 'autofillpages/LoginSuccessPage'
-}
+};
+const TAG: string = 'autoFill';
+const DOMAIN_NUMBER: number = 0xFF00;
 
 @Entry
 @Component
 struct RegisterPage {
   @State registerBtnColor: Resource = $r('app.color.enableColor');
-  @State codeNumber: string = "";
+  @State codeNumber: string = '';
   @State isShowLoginBtn: Boolean = false;
-  private registerSuccess: string = "";
+  private registerSuccess: string = '';
   private context = getContext(this) as common.UIAbilityContext;
 
   aboutToAppear() {
@@ -53,7 +53,7 @@ struct RegisterPage {
       .fontSize(16)
       .margin({ left: '65%' })
       .onClick(() => {
-        this.codeNumber = "565789"
+        this.codeNumber = '565789';
       })
   }
 
@@ -76,7 +76,7 @@ struct RegisterPage {
               .fontColor($r('app.color.user'))
               .fontWeight(400)
               .fontSize(16)
-              .height("100%")
+              .height('100%')
               .backgroundColor($r('app.color.controlBackColor'))
               .onChange((value: string) => {
                 if (value) {
@@ -93,7 +93,7 @@ struct RegisterPage {
               .fontFamily('HarmonyHeiTi')
               .fontColor($r('app.color.user'))
               .fontWeight(400)
-              .height("100%")
+              .height('100%')
               .fontSize(16)
               .backgroundColor($r('app.color.controlBackColor'))
               .onChange((value: string) => {
@@ -118,9 +118,9 @@ struct RegisterPage {
               .fontColor($r('app.color.user'))
               .fontWeight(400)
               .fontSize(16)
-              .height("100%")
+              .height('100%')
               .enableAutoFill(true)
-              .id("newPassWord")
+              .id('newPassWord')
               .onChange((value: string) => {
                 if (value) {
                   this.registerBtnColor = $r('app.color.cancelBtnColor');
@@ -150,7 +150,7 @@ struct RegisterPage {
             .id('login')
             .onClick(() => {
               router.pushUrl(options, (err, data) => {
-                Logger.info('page jump to LoginSuccessPage page',
+                hilog.info(DOMAIN_NUMBER, TAG, 'page jump to LoginSuccessPage page',
                   JSON.stringify(err), JSON.stringify(data));
               })
             })
@@ -168,7 +168,7 @@ struct RegisterPage {
             .onClick(() => {
               this.isShowLoginBtn = true;
               SaveFunc();
-              Prompt.showToast({
+              promptAction.showToast({
                 message: this.registerSuccess,
                 duration: 2000,
               })
@@ -180,15 +180,15 @@ struct RegisterPage {
 }
 
 function SaveFunc() {
-  Logger.info('send save request');
+  hilog.info(DOMAIN_NUMBER, TAG, 'send save request');
   let context = AppStorage.get<UIContext>('uiContext');
-  Logger.info('UIContext: ', JSON.stringify(context));
+  hilog.info(DOMAIN_NUMBER, TAG, 'UIContext: ', JSON.stringify(context));
   autoFillManager.requestAutoSave(context, {
     onSuccess: () => {
-      Logger.info('save request on success');
+      hilog.info(DOMAIN_NUMBER, TAG, 'save request on success');
     },
     onFailure: () => {
-      Logger.info('save request on failure');
+      hilog.info(DOMAIN_NUMBER, TAG, 'save request on failure');
     }
   });
 }

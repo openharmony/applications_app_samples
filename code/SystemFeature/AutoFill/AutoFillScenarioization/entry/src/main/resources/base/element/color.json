@@ -1,0 +1,40 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "cancelBtnColor",
+      "value": "#0A59F7"
+    },
+    {
+      "name": "enableColor",
+      "value": "#bfdbf9"
+    },
+    {
+      "name": "pageBackColor",
+      "value": "#f1f3f5"
+    },
+    {
+      "name": "cancelColor",
+      "value": "#D8FCFFFE"
+    },
+    {
+      "name": "mainInterface",
+      "value": "#FDE5E9E9"
+    },
+    {
+      "name": "placeholderColor",
+      "value": "#fff5eeee"
+    },
+    {
+      "name": "backgroundColor",
+      "value": "#ffffffff"
+    },
+    {
+      "name": "TextColor",
+      "value": "#99000000"
+    }
+  ]
+}

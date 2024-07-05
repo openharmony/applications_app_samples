@@ -1,0 +1,80 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Scenarioization"
+    },
+    {
+      "name": "AutoFillAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "AutoFillAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "returnMainPage",
+      "value": "returnMainPage"
+    },
+    {
+      "name": "storeData",
+      "value": "storeData"
+    },
+    {
+      "name": "confirm",
+      "value": "confirm"
+    },
+    {
+      "name": "cancel",
+      "value": "cancel"
+    },
+    {
+      "name": "loginSuccess",
+      "value": "loginSuccess"
+    },
+    {
+      "name": "scenarioization",
+      "value": "scenarioization"
+    },
+    {
+      "name": "settingType",
+      "value": "settingType"
+    },
+    {
+      "name": "noTypeSet",
+      "value": "noTypeSet"
+    },
+    {
+      "name": "setTypeName",
+      "value": "setTypeName"
+    },
+    {
+      "name": "saveData",
+      "value": "saveData"
+    },
+    {
+      "name": "switchInterface",
+      "value": "switchInterface"
+    },
+    {
+      "name": "phone_Number",
+      "value": "Input content"
+    },
+    {
+      "name": "hint_Number",
+      "value": "Mobile phone number"
+    },
+    {
+      "name": "person_Full_Name",
+      "value": "Name"
+    }
+  ]
+}
