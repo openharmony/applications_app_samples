@@ -16,6 +16,8 @@
 #include <bits/alltypes.h>
 #include <native_drawing/drawing_font_collection.h>
 #include <native_drawing/drawing_text_typography.h>
+#include <native_buffer/native_buffer.h>
+
 #include "common/log_common.h"
 #include "sample_bitmap.h"
 #include "plugin/plugin_manager.h"
@@ -89,8 +91,14 @@ void SampleBitMap::Prepare()
         return;
     }
     // 这里的nativeWindow是从上一步骤中的回调函数中获得的
+    int32_t usage = NATIVEBUFFER_USAGE_CPU_READ | NATIVEBUFFER_USAGE_CPU_WRITE | NATIVEBUFFER_USAGE_MEM_DMA;
+    int ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, SET_USAGE, usage);
+    if (ret != 0) {
+        DRAWING_LOGE("failed to OH_NativeWindow_NativeWindowHandleOpt");
+        return;
+    }
     // 通过 OH_NativeWindow_NativeWindowRequestBuffer 获取 OHNativeWindowBuffer 实例
-    int ret = OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow_, &buffer_, &fenceFd_);
+    ret = OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow_, &buffer_, &fenceFd_);
     DRAWING_LOGI("request buffer ret = %{public}d", ret);
     // 通过 OH_NativeWindow_GetBufferHandleFromNative 获取 buffer 的 handle
     bufferHandle_ = OH_NativeWindow_GetBufferHandleFromNative(buffer_);
