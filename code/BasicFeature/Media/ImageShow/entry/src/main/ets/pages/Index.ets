@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,10 +13,16 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
-import Logger from '../../../../../imagelibrary/src/main/ets/components/data/Logger'
+import router from '@ohos.router';
+import common from '@ohos.app.ability.common';
+import Logger from '../../../../../imagelibrary/src/main/ets/components/data/Logger';
 
-const TAG: string = 'Index'
+const TAG: string = 'Index';
+
+interface RouteParams {
+  isShowCamera?: boolean,
+  mediaUris?: string[]
+};
 
 @Entry
 @Component
@@ -28,21 +34,24 @@ struct Index {
   @State isShowComment: boolean = true
 
   async onPageShow() {
-    Logger.info(TAG, 'enter onPageShow')
-    if (router.getParams()['isShowCamera'] !== undefined && router.getParams()['isShowCamera'] !== null) {
-      this.isShowCamera = router.getParams()['isShowCamera']
-      Logger.info(TAG, `this.isShowCamera = ${this.isShowCamera}`)
+    Logger.info(TAG, 'enter onPageShow');
+    if ((router.getParams() as RouteParams).isShowCamera !== undefined &&
+      (router.getParams() as RouteParams).isShowCamera !== null) {
+      this.isShowCamera = (router.getParams() as RouteParams).isShowCamera as boolean;
+      Logger.info(TAG, `this.isShowCamera = ${this.isShowCamera}`);
     }
 
-    if (router.getParams()['mediaUris'] !== undefined && router.getParams()['mediaUris'] !== null) {
-      this.mediaUris = router.getParams()['mediaUris']
-      this.mediaUris.push('')
+    if ((router.getParams() as RouteParams).mediaUris !== undefined &&
+      (router.getParams() as RouteParams).mediaUris !== null) {
+      this.mediaUris = (router.getParams() as RouteParams).mediaUris as string[];
+      this.mediaUris.push('');
     }
-    Logger.info(TAG, 'end onPageShow')
+    Logger.info(TAG, 'end onPageShow');
   }
 
-  terminateSelf(context: any) {
-    context.terminateSelf()
+  terminateSelf() {
+    let context = AppStorage.get<common.UIAbilityContext>('UIContext');
+    context!.terminateSelf();
   }
 
   build() {
@@ -53,8 +62,7 @@ struct Index {
           .height(26)
           .objectFit(ImageFit.Contain)
           .onClick(() => {
-            let context = getContext(this)
-            this.terminateSelf(context)
+            this.terminateSelf();
           })
 
         Text($r('app.string.publish_comments'))
@@ -107,7 +115,7 @@ struct Index {
 
               if (this.isShowCamera) {
                 Grid() {
-                  ForEach(this.mediaUris, (item, index) => {
+                  ForEach(this.mediaUris, (item: string, index) => {
                     GridItem() {
                       if (index < this.mediaUris.length - 1) {
                         Image(item)
@@ -122,10 +130,10 @@ struct Index {
                             .height(40)
                             .width(40)
                             .onClick(() => {
-                              router.push({
+                              router.pushUrl({
                                 url: 'pages/ChoicePhoto',
                                 params: { 'mediaUris': this.mediaUris }
-                              })
+                              });
                             })
                           Text($r('app.string.add_picture'))
                             .fontSize(13)
