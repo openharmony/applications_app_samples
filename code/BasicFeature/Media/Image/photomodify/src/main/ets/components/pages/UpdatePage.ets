@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Hunan OpenValley Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023-2024 Hunan OpenValley Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -89,7 +89,7 @@ export struct UpdatePage {
           let imageList: Array<string> = AppStorage.Get('imageList') as Array<string>;
           let index: number = AppStorage.Get('selectIndex') as number;
           imageList.splice(index, 1);
-          AppStorage.SetOrCreate<Array<string>>('imageList', imageList);
+          AppStorage.setOrCreate<Array<string>>('imageList', imageList);
           // 返回
           router.back();
         })
