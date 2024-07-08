@@ -27,6 +27,7 @@ import Want from '@ohos.app.ability.Want';
 import fileUri from '@ohos.file.fileuri';
 import account from '@ohos.account.distributedAccount';
 import account_osAccount from '@ohos.account.osAccount';
+import wantConstant from '@ohos.app.ability.wantConstant';
 
 const accountAbility = account.getDistributedAccountAbility();
 
@@ -270,8 +271,8 @@ export struct Index {
     let want: Want = {
       'action': 'ohos.want.action.viewData',
       'bundleName': 'com.sample.dlpmanager',
-      'type': 'text/plain',
       'abilityName': 'FuncAbility',
+      'flags': wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION | wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION,
       'uri': dlpUri,
       'parameters': {
         'fileName': {
