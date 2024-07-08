@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import mediaLibrary from '@ohos.multimedia.mediaLibrary'
+import userFileManager from '@ohos.filemanagement.userFileManager';
 import Logger from '../model/Logger'
 import { AVPlayer } from '../model/AVPlayer'
 import MediaUtils from '../model/MediaUtils'
@@ -47,10 +47,10 @@ struct Index {
   @State streamBtnText: Resource = $r('app.string.index_play')
   @State streamOpacity: number = 0.4
   @State fileIndex: number = 0
-  @State fileType: number = 0
-  @State itemDate: mediaLibrary.FileAsset = {} as mediaLibrary.FileAsset
-  @State audioData: mediaLibrary.FileAsset[] = []
-  @State videoData: mediaLibrary.FileAsset[] = []
+  @State fileType: number = userFileManager.FileType.AUDIO
+  @State itemDate: userFileManager.FileAsset = {} as userFileManager.FileAsset
+  @State audioData: userFileManager.FileAsset[] = []
+  @State videoData: userFileManager.FileAsset[] = []
   @State @Watch('onChangeLoop') isLoop: boolean = false
   @State @Watch('onChangePlay') isPlaying: boolean = false
   @State streamBackgroundColor: string = '#99B9F8'
@@ -67,7 +67,7 @@ struct Index {
   private context: Context = getContext(this)
 
   async aboutToAppear() {
-    MediaUtils.mediaLib = mediaLibrary.getMediaLibrary(this.context)
+    MediaUtils.mediaLib = userFileManager.getUserFileMgr(this.context)
     await this.getAudioData()
     await this.getVideoData()
     this.mainDialogController.open()
@@ -78,7 +78,7 @@ struct Index {
   }
 
   async convertResourceToString(resource: Resource) {
-    return await this.context.resourceManager.getString(resource.id)
+    return await this.context.resourceManager.getStringValue(resource.id)
   }
 
   onPageShow() {
@@ -91,11 +91,11 @@ struct Index {
 
   async getAudioData() {
     this.audioData = []
-    let fileAsset = MediaUtils.getFileAssetsFromType(mediaLibrary.MediaType.AUDIO)
+    let fileAsset = MediaUtils.getFileAssetsFromType(userFileManager.FileType.AUDIO)
     fileAsset.then(fileList => {
       Logger.info(TAG, 'getFileList callback')
       this.audioData = fileList
-      this.myMedia.getAudioData(this.audioData)
+      this.myMedia.setAudioData(this.audioData)
     }).catch((err: Error) => {
       Logger.error(TAG, `getFileList err,err = ${err}`)
     })
@@ -103,11 +103,11 @@ struct Index {
 
   async getVideoData() {
     this.videoData = []
-    let fileAsset = MediaUtils.getFileAssetsFromType(mediaLibrary.MediaType.VIDEO)
+    let fileAsset = MediaUtils.getFileAssetsFromType(userFileManager.FileType.VIDEO)
     fileAsset.then(fileList => {
       Logger.info(TAG, 'getFileList callback')
       this.videoData = fileList
-      this.myMedia.getVideoData(this.videoData)
+      this.myMedia.setVideoData(this.videoData)
     }).catch((err: Error) => {
       Logger.error(TAG, `getFileList err,err = ${err}`)
     })
@@ -127,7 +127,7 @@ struct Index {
     this.fillMediaType = this.fileType
     let disPlayName: string = ''
     let disPlayType: string = ''
-    if (this.fileType == mediaLibrary.MediaType.AUDIO) {
+    if (this.fileType == userFileManager.FileType.AUDIO) {
       disPlayName = this.audioData[this.fillIndex].displayName
       let audio: string = await this.convertResourceToString($r('app.string.phoneMain_audioTitle'))
       disPlayType = audio
@@ -151,7 +151,7 @@ struct Index {
 
   setRename(): void {
     this.newName = this.testUtile.getName()
-    if (this.fillMediaType == mediaLibrary.MediaType.AUDIO) {
+    if (this.fillMediaType == userFileManager.FileType.AUDIO) {
       this.audioData[this.fileIndex].displayName = this.newName
       this.audioData[this.fileIndex].commitModify((err) => {
         if (err !== undefined) {
@@ -177,8 +177,8 @@ struct Index {
   }
 
   deleteDialogShow(): void {
-    let mediaData: mediaLibrary.FileAsset[] = []
-    if (this.fileType == mediaLibrary.MediaType.AUDIO) {
+    let mediaData: userFileManager.FileAsset[] = []
+    if (this.fileType == userFileManager.FileType.AUDIO) {
       mediaData = this.audioData
     } else {
       mediaData = this.videoData

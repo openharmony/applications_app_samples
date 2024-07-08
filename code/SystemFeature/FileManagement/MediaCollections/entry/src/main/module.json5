@@ -50,27 +50,54 @@
     ],
     "requestPermissions": [
       {
-        "name": "ohos.permission.WRITE_MEDIA",
+        "name": "ohos.permission.READ_IMAGEVIDEO",
         "reason": "$string:reason",
         "usedScene": {
           "abilities":[
             "MainAbility"
           ],
-          "when": "inuse",
+          "when": "always",
         }
       },
       {
-        "name": "ohos.permission.READ_MEDIA",
+        "name": "ohos.permission.WRITE_IMAGEVIDEO",
         "reason": "$string:reason",
         "usedScene": {
           "abilities":[
             "MainAbility"
           ],
-          "when": "inuse",
+          "when": "always",
         }
       },
       {
-        "name": "ohos.permission.INTERNET"
+        "name": "ohos.permission.READ_AUDIO",
+        "reason": "$string:reason",
+        "usedScene": {
+          "abilities":[
+            "MainAbility"
+          ],
+          "when": "always",
+        }
+      },
+      {
+        "name": "ohos.permission.WRITE_AUDIO",
+        "reason": "$string:reason",
+        "usedScene": {
+          "abilities":[
+            "MainAbility"
+          ],
+          "when": "always",
+        }
+      },
+      {
+        "name": "ohos.permission.INTERNET",
+        "reason": "$string:reason",
+        "usedScene": {
+          "abilities":[
+            "MainAbility"
+          ],
+          "when": "always",
+        }
       }
     ]
   }

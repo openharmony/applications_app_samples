@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import mediaLibrary from '@ohos.multimedia.mediaLibrary'
-import iaImage from '@ohos.multimedia.image'
+import userFileManager from '@ohos.filemanagement.userFileManager';
+import image from '@ohos.multimedia.image';
 import { getTimeString } from '../model/TimeTools'
 import Logger from '../model/Logger'
 
@@ -28,8 +28,8 @@ export struct MediaItem {
   @Link @Watch('leftSliderChange') leftSliderIndex: number
   @State translateLeft: number = 0
   @State translateRight: number = TRANSLATE
-  @State pixelMap: iaImage.PixelMap = {} as iaImage.PixelMap
-  @State mediaItem: mediaLibrary.FileAsset = {} as mediaLibrary.FileAsset
+  @State pixelMap: image.PixelMap = {} as image.PixelMap
+  @State mediaItem: userFileManager.FileAsset = {} as userFileManager.FileAsset
   private index: number = -1
   private deleteDialogShow: () => void = () => {
   }
@@ -54,8 +54,8 @@ export struct MediaItem {
   }
 
   async aboutToAppear() {
-    let size: mediaLibrary.Size = { width: 100, height: 66 }
-    this.mediaItem.getThumbnail(size, (err: Error, pixelMap: iaImage.PixelMap) => {
+    let size: image.Size = { width: 100, height: 66 }
+    this.mediaItem.getThumbnail(size, (err: Error, pixelMap: image.PixelMap) => {
       Logger.info(TAG, 'getThumbnail callback')
       if (err) {
         Logger.info(TAG, `getThumbnail callback,err=${JSON.stringify(err)}`)
@@ -66,8 +66,8 @@ export struct MediaItem {
     })
   }
 
-  getImageSrc() {
-    if (this.mediaItem.mediaType === mediaLibrary.MediaType.VIDEO) {
+  getImageSrc(): Resource {
+    if (this.mediaItem.fileType == userFileManager.FileType.VIDEO) {
       return $r('app.media.videoCover')
     } else {
       return $r('app.media.audioCover')
@@ -87,7 +87,7 @@ export struct MediaItem {
           .borderRadius(12)
           .objectFit(ImageFit.Fill)
 
-        Text(getTimeString(this.mediaItem.duration))
+        Text(getTimeString(this.mediaItem.get('duration') as number))
           .fontSize(14)
           .fontColor('#FFFFFF')
           .position({
@@ -137,7 +137,7 @@ export struct MediaItem {
         .onClick(() => {
           this.leftSliderIndex = -1
           this.fileIndex = this.index
-          this.fileType = this.mediaItem.mediaType
+          this.fileType = this.mediaItem.fileType
           this.renameDialogShow()
         })
 
@@ -161,7 +161,7 @@ export struct MediaItem {
         })
         .onClick(() => {
           this.fileIndex = this.index
-          this.fileType = this.mediaItem.mediaType
+          this.fileType = this.mediaItem.fileType
           this.deleteDialogShow()
           this.leftSliderIndex = -1
         })

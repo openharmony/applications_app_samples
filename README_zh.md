@@ -146,7 +146,6 @@
   <td rowspan="1" x:str><strong>文件管理</strong></td>
   <td x:str><a href="code/BasicFeature/FileManagement/FileBackupExtension">应用接入数据备份恢复（API 11）</a></td>
   <td x:str><a href="code/BasicFeature/FileManagement/FileManager">文件管理（API 11）</a></td>
-  <td x:str><a href="code/BasicFeature/FileManagement/MediaCollections">媒体管理合集</a></td>
   <td x:str><a href="code/BasicFeature/FileManagement/FileShare/SandboxShare">文件分享与访问</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
@@ -362,7 +361,7 @@
   <td x:str><strong>文件管理</strong></td>
   <td x:str><a href="code/SystemFeature/FileManagement/FileShare/Picker">选择并查看文档与媒体文件（API 10）</a></td>
   <td x:str><a href="code/SystemFeature/FileManagement/Photos">相册（API 12）</a></td>
-  <td ></td>
+  <td x:str><a href="code/SystemFeature/FileManagement/MediaCollections">媒体管理合集</a></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
