@@ -59,18 +59,18 @@ struct SwiperSample {
   @State customAnimationDuration: number = 400;
   @State customAnimationCurve: string = 'Linear';
   @State backgroundColorList: Resource[] = [
-    $r('app.color.background_blue'),
-    $r('app.color.background_orange'),
-    $r('app.color.background_green'),
-    $r('app.color.background_pink')
+  $r('app.color.background_blue'),
+  $r('app.color.background_orange'),
+  $r('app.color.background_green'),
+  $r('app.color.background_pink')
   ];
   @State opacityList: number[] = [];
   @State scaleList: number[] = [];
   @State translateList: number[] = [];
   @State zIndexList: number[] = [];
-
   private controller: SwiperController = new SwiperController();
   private data: number[] = [];
+  private swiperHeight: number = 216;
 
   aboutToAppear() {
     for (let i = 1; i < 11; i++) {
@@ -119,7 +119,7 @@ struct SwiperSample {
         })
       }
       .disableSwipe(this.isDisableSwipe)
-      .itemSpace(this.itemSpace)
+      .itemSpace(this.itemSpace === 300 && this.isVertical === true ? this.swiperHeight : this.itemSpace)
       .vertical(this.isVertical)
       .duration(this.duration)
       .loop(this.loop)
@@ -127,7 +127,7 @@ struct SwiperSample {
       .autoPlay(this.autoPlay)
       .borderRadius(16)
       .backgroundColor(Color.White)
-      .height(216)
+      .height(this.swiperHeight)
       .curve('linear')
 
       Scroll() {
@@ -198,7 +198,7 @@ struct SwiperSample {
       .customContentTransition({
         transition: (proxy: SwiperContentTransitionProxy) => {
           if (proxy.position <= proxy.index % DISPLAY_COUNT ||
-            proxy.position >= DISPLAY_COUNT + proxy.index % DISPLAY_COUNT) {
+          proxy.position >= DISPLAY_COUNT + proxy.index % DISPLAY_COUNT) {
             // 同组页面往左滑或往右完全滑出视窗外时，重置属性值
             this.opacityList[proxy.index] = 1.0;
             this.scaleList[proxy.index] = 1.0;
