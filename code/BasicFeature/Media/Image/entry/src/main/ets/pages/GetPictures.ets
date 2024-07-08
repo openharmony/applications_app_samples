@@ -21,36 +21,39 @@ const LENGTH: number = 9;
 
 export default class GetPictures {
   async getImage(): Promise<void> {
-    let mContext: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
-    let abilityResult: common.AbilityResult = await mContext.startAbilityForResult(
-      {
-        bundleName: 'com.ohos.photos',
-        abilityName: 'com.ohos.photos.MainAbility',
-        parameters: {
-          uri: 'multipleselect',
-          filterMediaType: 'FILTER_MEDIA_TYPE_IMAGE',
-          maxSelectCount: LENGTH
-        }
-      }
-    );
-    let want: Want | undefined = abilityResult.want;
-    if (want !== null && want !== undefined) {
-      let param: Want | undefined = want.parameters;
-      if (param !== null && param !== undefined) {
-        let result: Array<string> = param['select-item-list'] as Array<string>;
-        let select: Array<string> = [];
-        if (result.length === LENGTH) {
-          for (let i: number = LENGTH_START; i < LENGTH; i++) {
-            select.push(result[i]);
+    return new Promise(async (resolve, reject) => {
+      let mContext: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+      let abilityResult: common.AbilityResult = await mContext.startAbilityForResult(
+        {
+          bundleName: 'com.ohos.photos',
+          abilityName: 'com.ohos.photos.MainAbility',
+          parameters: {
+            uri: 'multipleselect',
+            filterMediaType: 'FILTER_MEDIA_TYPE_IMAGE',
+            maxSelectCount: LENGTH
           }
-        } else {
-          result.forEach(item => {
-            select.push(item);
-          })
         }
-        let imageList:Array<string> = AppStorage.Get('imageList') as Array<string>;
-        AppStorage.setOrCreate<Array<string>>('imageList', imageList.concat(select));
+      );
+      let want: Want | undefined = abilityResult.want;
+      if (want !== null && want !== undefined) {
+        let param: Want | undefined = want.parameters;
+        if (param !== null && param !== undefined) {
+          let result: Array<string> = param['select-item-list'] as Array<string>;
+          let select: Array<string> = [];
+          if (result.length === LENGTH) {
+            for (let i: number = LENGTH_START; i < LENGTH; i++) {
+              select.push(result[i]);
+            }
+          } else {
+            result.forEach(item => {
+              select.push(item);
+            })
+          }
+          let imageList:Array<string> = AppStorage.Get('imageList') as Array<string>;
+          AppStorage.setOrCreate<Array<string>>('imageList', imageList.concat(select));
+        }
       }
-    }
+      resolve();
+    })
   }
 }
