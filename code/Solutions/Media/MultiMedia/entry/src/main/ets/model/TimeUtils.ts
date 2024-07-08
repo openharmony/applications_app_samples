@@ -19,7 +19,7 @@ export function tempNum(num) {
   return num.toString()
 }
 
-export function getDurationString(duration) {
+export function getDurationString(duration: number) {
   let hour = Math.floor(duration / (1000 * 60 * 60))
   let minute = Math.floor((duration - hour * (1000 * 60 * 60)) / (1000 * 60))
   let second = Math.floor((duration - hour * (1000 * 60 * 60) - minute * (60 * 1000)) / 1000)

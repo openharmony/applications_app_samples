@@ -17,7 +17,7 @@
   "module": {
     "name": "entry",
     "type": "entry",
-    "srcEntrance": "./ets/Application/AbilityStage.ts",
+    "srcEntry": "./ets/Application/AbilityStage.ts",
     "description": "$string:entry_desc",
     "mainElement": "MainAbility",
     "deviceTypes": [
@@ -59,7 +59,7 @@
           "abilities": [
             "MainAbility"
           ],
-          "when": "inuse"
+          "when": "always"
         }
       },
       {
@@ -69,7 +69,27 @@
           "abilities": [
             "MainAbility"
           ],
-          "when": "inuse"
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.READ_AUDIO",
+        "reason": "$string:media_location_permission",
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ],
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.WRITE_AUDIO",
+        "reason": "$string:media_location_permission",
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ],
+          "when": "always"
         }
       },
       {
@@ -79,27 +99,46 @@
           "abilities": [
             "MainAbility"
           ],
-          "when": "inuse"
+          "when": "always"
         }
       },
       {
-        "name": "ohos.permission.WRITE_MEDIA",
+        "name": "ohos.permission.WRITE_IMAGEVIDEO",
         "reason": "$string:write_permission",
         "usedScene": {
           "abilities": [
             "MainAbility"
           ],
-          "when": "inuse"
+          "when": "always"
         }
       },
       {
-        "name": "ohos.permission.READ_MEDIA",
+        "name": "ohos.permission.READ_IMAGEVIDEO",
         "reason": "$string:read_permission",
         "usedScene": {
           "abilities": [
             "MainAbility"
           ],
-          "when": "inuse"
+          "when": "always"
+        }
+      },      {
+        "name" : "ohos.permission.FILE_ACCESS_MANAGER",
+        "reason": "$string:read_permission",
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ],
+          "when":"always"
+        }
+      },
+      {
+        "name" : "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED",
+        "reason": "$string:read_permission",
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ],
+          "when":"always"
         }
       }
     ]

@@ -15,12 +15,12 @@
 
 import camera from '@ohos.multimedia.camera'
 import deviceInfo from '@ohos.deviceInfo'
-import fileio from '@ohos.fileio'
+import fileio from '@ohos.file.fs'
 import image from '@ohos.multimedia.image'
 import media from '@ohos.multimedia.media'
-import mediaLibrary from '@ohos.multimedia.mediaLibrary'
+import userFileManager from '@ohos.filemanagement.userFileManager'
 import Logger from '../model/Logger'
-import MediaUtils from '../model/MediaUtils'
+import MediaUtils, { FileType } from '../model/MediaUtils'
 
 const CameraMode = {
   MODE_PHOTO: 0, // 拍照模式
@@ -45,7 +45,7 @@ export default class CameraService {
   private captureSession: camera.CaptureSession = undefined
   private mReceiver: image.ImageReceiver = undefined
   private photoUri: string = ''
-  private fileAsset: mediaLibrary.FileAsset = undefined
+  private fileAsset: userFileManager.FileAsset = undefined
   private fd: number = -1
   private curMode = CameraMode.MODE_PHOTO
   private videoRecorder: media.VideoRecorder = undefined
@@ -110,7 +110,7 @@ export default class CameraService {
 
   async savePicture(buffer: ArrayBuffer, img: image.Image) {
     Logger.info(this.tag, 'savePicture')
-    this.fileAsset = await this.mediaUtil.createAndGetUri(mediaLibrary.MediaType.IMAGE)
+    this.fileAsset = await this.mediaUtil.createAndGetUri(FileType.IMAGE)
     this.photoUri = this.fileAsset.uri
     Logger.info(this.tag, `this.photoUri = ${this.photoUri}`)
     this.fd = await this.mediaUtil.getFdPath(this.fileAsset)
@@ -133,9 +133,9 @@ export default class CameraService {
     } else {
       this.videoConfig.videoSourceType = 0
     }
-    this.cameraManager = await camera.getCameraManager(this.context)
+    this.cameraManager = camera.getCameraManager(this.context)
     Logger.info(this.tag, 'getCameraManager')
-    this.cameras = await this.cameraManager.getSupportedCameras()
+    this.cameras = this.cameraManager.getSupportedCameras()
     Logger.info(this.tag, `get cameras ${this.cameras.length}`)
     if (this.cameras.length === 0) {
       Logger.info(this.tag, 'cannot get cameras')
@@ -143,23 +143,23 @@ export default class CameraService {
     }
 
     let cameraDevice = this.cameras[0]
-    this.cameraInput = await this.cameraManager.createCameraInput(cameraDevice)
+    this.cameraInput = this.cameraManager.createCameraInput(cameraDevice)
     this.cameraInput.open()
     Logger.info(this.tag, 'createCameraInput')
-    this.cameraOutputCapability = await this.cameraManager.getSupportedOutputCapability(cameraDevice)
+    this.cameraOutputCapability = this.cameraManager.getSupportedOutputCapability(cameraDevice)
     let previewProfile = this.cameraOutputCapability.previewProfiles[0]
-    this.previewOutput = await this.cameraManager.createPreviewOutput(previewProfile, surfaceId)
+    this.previewOutput = this.cameraManager.createPreviewOutput(previewProfile, surfaceId)
     Logger.info(this.tag, 'createPreviewOutput')
     let mSurfaceId = await this.mReceiver.getReceivingSurfaceId()
-    let photoProfile = this.cameraOutputCapability.photoProfiles[0]
-    this.photoOutPut = await this.cameraManager.createPhotoOutput(photoProfile, mSurfaceId)
-    this.captureSession = await this.cameraManager.createCaptureSession()
+    let profile = this.cameraOutputCapability.photoProfiles[0]
+    this.photoOutPut = this.cameraManager.createPhotoOutput(profile, mSurfaceId)
+    this.captureSession = this.cameraManager.createCaptureSession()
     Logger.info(this.tag, 'createCaptureSession')
-    await this.captureSession.beginConfig()
+    this.captureSession.beginConfig()
     Logger.info(this.tag, 'beginConfig')
-    await this.captureSession.addInput(this.cameraInput)
-    await this.captureSession.addOutput(this.previewOutput)
-    await this.captureSession.addOutput(this.photoOutPut)
+    this.captureSession.addInput(this.cameraInput)
+    this.captureSession.addOutput(this.previewOutput)
+    this.captureSession.addOutput(this.photoOutPut)
     await this.captureSession.commitConfig()
     await this.captureSession.start()
     Logger.info(this.tag, 'captureSession start')
@@ -186,37 +186,36 @@ export default class CameraService {
     }
     await this.photoOutPut.capture(photoSettings)
     Logger.info(this.tag, 'takePicture done')
-    AppStorage.Set('isRefresh', true)
   }
 
   async startVideo() {
     Logger.info(this.tag, 'startVideo begin')
     await this.captureSession.stop()
-    await this.captureSession.beginConfig()
+    this.captureSession.beginConfig()
     if (this.curMode === CameraMode.MODE_PHOTO) {
       this.curMode = CameraMode.MODE_VIDEO
       if (this.photoOutPut) {
-        await this.captureSession.removeOutput(this.photoOutPut)
+        this.captureSession.removeOutput(this.photoOutPut)
         this.photoOutPut.release()
       }
     } else {
       if (this.videoOutput) {
-        await this.captureSession.removeOutput(this.videoOutput)
+        this.captureSession.removeOutput(this.videoOutput)
       }
     }
     if (this.videoOutput) {
-      await this.captureSession.removeOutput(this.videoOutput)
+      this.captureSession.removeOutput(this.videoOutput)
       await this.videoOutput.release()
     }
-    this.fileAsset = await this.mediaUtil.createAndGetUri(mediaLibrary.MediaType.VIDEO)
+    this.fileAsset = await this.mediaUtil.createAndGetUri(FileType.VIDEO)
     this.fd = await this.mediaUtil.getFdPath(this.fileAsset)
     this.videoRecorder = await media.createVideoRecorder()
     this.videoConfig.url = `fd://${this.fd}`
     await this.videoRecorder.prepare(this.videoConfig)
     let videoId = await this.videoRecorder.getInputSurface()
-    let videoProfile = this.cameraOutputCapability.videoProfiles[0];
-    this.videoOutput = await this.cameraManager.createVideoOutput(videoProfile, videoId)
-    await this.captureSession.addOutput(this.videoOutput)
+    let profile = this.cameraOutputCapability.videoProfiles[0];
+    this.videoOutput = this.cameraManager.createVideoOutput(profile, videoId)
+    this.captureSession.addOutput(this.videoOutput)
     await this.captureSession.commitConfig()
     await this.captureSession.start()
     await this.videoOutput.start()

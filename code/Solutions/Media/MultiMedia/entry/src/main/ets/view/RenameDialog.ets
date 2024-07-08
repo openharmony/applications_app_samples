@@ -13,12 +13,13 @@
  * limitations under the License.
  */
 import prompt from '@ohos.prompt'
+import { MediaData } from './BasicDataSource'
 
 @CustomDialog
 export struct RenameDialog {
   private controller: CustomDialogController
-  private action: (title: string) => void
-  @State title: string = ''
+  private action: (selectMedia: MediaData) => void = () => {}
+  @Link selectMedia: MediaData
 
   build() {
     Column() {
@@ -26,15 +27,14 @@ export struct RenameDialog {
         .fontSize(20)
         .fontColor(Color.Black)
         .fontWeight(FontWeight.Bold)
-      TextInput({ placeholder: 'input new name', text: this.title })
+      TextInput({ placeholder: 'input new name', text: this.selectMedia.displayName })
         .id('inputRename')
         .type(InputType.Normal)
         .placeholderColor(Color.Gray)
-        .maxLength(20)
         .fontSize(19)
         .margin({ left: 10, top: 15 })
         .onChange((value: string) => {
-          this.title = value
+          this.selectMedia.displayName = value
         })
       Row() {
         Button() {
@@ -46,11 +46,11 @@ export struct RenameDialog {
         .backgroundColor(Color.White)
         .margin(5)
         .onClick(() => {
-          if (this.title === '') {
+          if (this.selectMedia.displayName === '') {
             prompt.showToast({ message: 'please input the file name', duration: 1000 })
             return
           }
-          this.action(this.title)
+          this.action(this.selectMedia)
         })
 
         Divider()
