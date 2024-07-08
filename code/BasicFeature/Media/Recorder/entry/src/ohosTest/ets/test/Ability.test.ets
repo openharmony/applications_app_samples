@@ -16,33 +16,36 @@
 import { describe, expect, it } from '@ohos/hypium';
 import { Component, Driver, MatchPattern, ON } from '@ohos.UiTest';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import userFileManager from '@ohos.filemanagement.userFileManager';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import { logger } from '../util/Logger';
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+import { UIAbility, Want } from '@kit.AbilityKit';
 
 const TAG = '[Sample_Recorder]';
 const BUNDLE = 'Recorder_';
 const RENAMED = 'renamed' + new Date().getTime();
 let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
-let ability;
+let ability: UIAbility;
 
 async function getAudioNum(): Promise<number> {
   logger.info(TAG, `${BUNDLE}getAudioAssets start`);
-  let fileKeyObj = mediaLibrary.FileKey;
-  let fetchOp = {
-    selections: `${fileKeyObj.MEDIA_TYPE}=?`,
-    selectionArgs: [`${mediaLibrary.MediaType.AUDIO}`],
+  const context = getContext();
+  let mgr = userFileManager.getUserFileMgr(context);
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: userFileManager.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
   };
-  let library = await mediaLibrary.getMediaLibrary(getContext());
-  let fetchFileResult: mediaLibrary.FetchFileResult = undefined;
   try {
-    fetchFileResult = await library.getFileAssets(fetchOp);
+    let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getAudioAssets(fetchOptions);
+    if (fetchResult !== undefined) {
+      logger.info('fetchFileResult success');
+      return fetchResult.getCount();
+    }
+    return 0;
   } catch (err) {
     expect().assertFail();
-    logger.info(TAG, `${BUNDLE}getAudioAssets failed, message = ${JSON.stringify(err)}`);
-  }
-  if (fetchFileResult != undefined && fetchFileResult.getCount() > 0) {
-    return fetchFileResult.getCount();
-  } else {
+    logger.error('getAudioAssets failed, message = ' + err);
     return 0;
   }
 }
@@ -57,13 +60,13 @@ function componentNullAble(arr: Component[]): Component[] {
 export default function abilityTest() {
   let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
   let driver: Driver = Driver.create();
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
     /**
      * 拉起应用
      */
-    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+    it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
       logger.info(TAG, BUNDLE + 'StartAbility_001 begin');
-      let want = {
+      let want: Want = {
         bundleName: "ohos.samples.recorder",
         abilityName: "EntryAbility"
       };
@@ -79,7 +82,7 @@ export default function abilityTest() {
     /**
      * 获取权限，并判断是否正常进入主页
      */
-    it(BUNDLE + 'RequestPermissionFunction_001', 0, async function (done) {
+    it(BUNDLE + 'RequestPermissionFunction_001', 1, async (done: Function) => {
       logger.info(TAG, BUNDLE + 'RequestPermissionFunction_001 begin');
       await driver.delayMs(1000);
       // 获取权限
@@ -106,7 +109,7 @@ export default function abilityTest() {
     /**
      * 录音功能，进入录音界面开始录音
      */
-    it(BUNDLE + 'RecordePage_001', 0, async function (done) {
+    it(BUNDLE + 'RecordePage_001', 2, async (done: Function) => {
       logger.info(TAG, BUNDLE + 'RecordePage_001 begin');
       // 初始化用户数据管理模块实例
       let currentAudioNum = await getAudioNum();
@@ -124,7 +127,7 @@ export default function abilityTest() {
     /**
      * 录音功能，录音界面，暂停继续录制功能
      */
-    it(BUNDLE + 'RecordePage_002', 0, async function (done) {
+    it(BUNDLE + 'RecordePage_002', 3, async (done: Function) => {
       logger.info(TAG, BUNDLE + 'RecordePage_002 begin');
       // 录音界面 暂停录音功能
       await driver.delayMs(2000);
@@ -149,7 +152,7 @@ export default function abilityTest() {
     /**
      * 录音功能，录音界面，停止录音功能
      */
-    it(BUNDLE + 'RecordePage_003', 0, async function (done) {
+    it(BUNDLE + 'RecordePage_003', 4, async (done: Function) => {
       logger.info(TAG, BUNDLE + 'RecordePage_003 begin');
       // 录音界面 停止录音
       await driver.assertComponentExist(ON.id('titleContent'));
@@ -170,7 +173,7 @@ export default function abilityTest() {
     /**
      * 首页，已有录音，播放功能测试
      */
-    it(BUNDLE + 'Play_001', 0, async function (done) {
+    it(BUNDLE + 'Play_001', 5, async (done: Function) => {
       logger.info(TAG, BUNDLE + 'Play_001 begin');
       // 如果有录音文件，点击第一个开始播放
       let audios: Component[] = await driver.findComponents(ON.type('ListItem'));
@@ -199,7 +202,7 @@ export default function abilityTest() {
     /**
      * 录制多条音频
      */
-    it(BUNDLE + 'RE_Recorde_001', 0, async function (done) {
+    it(BUNDLE + 'RE_Recorde_001', 6, async (done: Function) => {
       logger.info(TAG, BUNDLE + 'RE_Recorde_001 begin');
       let sAudios: Component[] = await driver.findComponents(ON.type('ListItem'));
       sAudios = componentNullAble(sAudios);
@@ -231,7 +234,7 @@ export default function abilityTest() {
     /**
      * 连续删除->数量0
      */
-    it(BUNDLE + 'Del_Recorde_001', 0, async function (done) {
+    it(BUNDLE + 'Del_Recorde_001', 7, async (done: Function) => {
       logger.info(TAG, BUNDLE + 'Del_Recorde_001 begin');
       await driver.delayMs(1000);
       let sAudios: Component[] = await driver.findComponents(ON.type('ListItem'));
@@ -268,7 +271,7 @@ export default function abilityTest() {
     /**
      * 录制多条音频
      */
-    it(BUNDLE + 'RE_Recorde_002', 0, async function (done) {
+    it(BUNDLE + 'RE_Recorde_002', 8, async (done: Function) => {
       logger.info(TAG, BUNDLE + 'RE_Recorde_001 begin');
       let num = 0;
       while (num < 3) {
@@ -296,7 +299,7 @@ export default function abilityTest() {
     /**
      * 首页，已有录音，左滑重命名
      */
-    it(BUNDLE + 'SlideAudioItem_001', 0, async function (done) {
+    it(BUNDLE + 'SlideAudioItem_001', 9, async (done: Function) => {
       logger.info(TAG, BUNDLE + 'SlideAudioItem_001 begin');
       // 如果有录音文件，左滑第一个文件
       await driver.delayMs(1000);
@@ -333,7 +336,7 @@ export default function abilityTest() {
     /**
      * 首页，重新录一条音频，并将其重命名为跟前面重命名文件同样名字
      */
-    it(BUNDLE + 'RenameRepeat_001', 0, async function (done) {
+    it(BUNDLE + 'RenameRepeat_001', 10, async (done: Function) => {
       logger.info(TAG, BUNDLE + 'RenameRepeat_001 begin');
       await driver.delayMs(1000);
       // 录制前的音频文件数量
@@ -389,7 +392,7 @@ export default function abilityTest() {
     /**
      * 首页，已有录音，多选状态和退出多选状态
      */
-    it(BUNDLE + 'CheckState_001', 0, async function (done) {
+    it(BUNDLE + 'CheckState_001', 11, async (done: Function) => {
       logger.info(TAG, BUNDLE + 'CheckState_001 begin');
       // 如果有录音文件，长按第一个文件
       let audios: Component[] = await driver.findComponents(ON.type('ListItem'));
@@ -428,7 +431,7 @@ export default function abilityTest() {
     /**
      * 长按删除一条录音文件
      */
-    it(BUNDLE + 'DeleteRecord_001', 0, async function (done) {
+    it(BUNDLE + 'DeleteRecord_001', 12, async (done: Function) => {
       logger.info(TAG, BUNDLE + 'DeleteRecord_001 begin');
       await driver.delayMs(1000);
       let audios: Component[] = await driver.findComponents(ON.type('ListItem'));
@@ -456,7 +459,7 @@ export default function abilityTest() {
     /**
      * 首页，全部删除
      */
-    it(BUNDLE + 'Del_All_001', 0, async function (done) {
+    it(BUNDLE + 'Del_All_001', 13, async (done: Function) => {
       logger.info(TAG, BUNDLE + 'Del_All_001 begin');
       // 如果有录音文件，长按第一个文件
       let audios: Component[] = await driver.findComponents(ON.type('ListItem'));

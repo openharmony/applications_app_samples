@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,18 +13,24 @@
  * limitations under the License.
  */
 
-import Logger from '../model/Logger'
-import UIAbility from '@ohos.app.ability.UIAbility'
-import Window from '@ohos.window'
-import prompt from '@ohos.promptAction'
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
-import type { Permissions } from '@ohos.abilityAccessCtrl'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Window from '@ohos.window';
+import promptAction from '@ohos.promptAction';
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import Logger from '../model/Logger';
+import type { Permissions } from '@ohos.abilityAccessCtrl';
 
-const TAG: string = '[Index]'
-const PERMISSIONS: Array<Permissions> = ['ohos.permission.MICROPHONE', 'ohos.permission.WRITE_MEDIA', 'ohos.permission.READ_MEDIA']
+const TAG: string = '[Index]';
+const PERMISSIONS: Array<Permissions> = ['ohos.permission.MICROPHONE', 'ohos.permission.WRITE_MEDIA',
+  'ohos.permission.READ_MEDIA', 'ohos.permission.WRITE_AUDIO', 'ohos.permission.WRITE_AUDIO'];
 
 export default class EntryAbility extends UIAbility {
   async onCreate(want, launchParam) {
+    let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+    let authResults = await atManager.requestPermissionsFromUser(this.context, PERMISSIONS);
+    if (authResults.authResults.includes(-1)) {
+      return;
+    }
   }
 
   onDestroy() {
@@ -34,12 +40,7 @@ export default class EntryAbility extends UIAbility {
   async onWindowStageCreate(windowStage: Window.WindowStage): Promise<void> {
     // Main window is created, set main page for this ability
     Logger.info(TAG, 'Ability onWindowStageCreate');
-    let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-    let authResults = await atManager.requestPermissionsFromUser(this.context, PERMISSIONS);
-    if (authResults.authResults.includes(-1)) {
-      return;
-    }
-    prompt.showToast({
+    promptAction.showToast({
       message: 'requestPermissionsFromUser success'
     });
     windowStage.loadContent('pages/Index', (err, data) => {

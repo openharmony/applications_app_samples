@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -22,8 +22,8 @@ import { TitleBar } from '../common/TitleBar';
 
 @Component
 export struct HomeView {
-  private clickItem: (record: Record, operate: string) => void;
-  private deleteDialogShow: (num: number, checkRecords: Record[], deleteAction: () => void) => void;
+  private clickItem: (record: Record, operate: string) => void = () => {};
+  private deleteDialogShow: (num: number, checkRecords: Record[], deleteAction: () => void) => void = () => {};
   @State leftSliderIndex: number = -1;
   @State checkNum: number = 0;
   @Link @Watch('recordListChange') recordList: Array<Record>;
@@ -40,7 +40,7 @@ export struct HomeView {
   }
 
   recordListChange() {
-    this.recordDataSource['dataArray'] = this.recordList;
+    this.recordDataSource.setData(this.recordList);
     this.recordDataSource.notifyDataReload();
   }
 
@@ -64,7 +64,7 @@ export struct HomeView {
             })
           }
           .id('audioItem' + index)
-        }, (item, index) => {
+        }, (item: Record, index) => {
           return JSON.stringify(item) + index;
         })
       }
@@ -91,13 +91,15 @@ export struct HomeView {
           .enabled(this.checkNum == 1)
           .opacity(this.checkNum == 1 ? 1.0 : 0.5)
           .onClick(() => {
-            let checkRecord = null;
+            let checkRecord: Record | undefined = undefined;
             for (let i = 0;i < this.recordList.length; i++) {
               if (this.recordList[i].isCheck == true) {
                 checkRecord = this.recordList[i];
               }
             }
-            this.clickItem(checkRecord, 'rename');
+            if(checkRecord !== undefined) {
+              this.clickItem(checkRecord, 'rename');
+            }
             this.checkState = false;
           })
 
@@ -154,12 +156,12 @@ export struct HomeView {
   checkItem = (index: number) => {
     this.recordList[index].isCheck = !this.recordList[index].isCheck;
     this.checkNum = this.checkNum + (this.recordList[index].isCheck ? 1 : -1);
-    this.recordDataSource['dataArray'] = this.recordList;
+    this.recordDataSource.setData(this.recordList);
     this.recordDataSource.notifyDataReload();
   }
   batchDelete = () => {
-    let checkRecords = [];
-    let newRecords = [];
+    let checkRecords: Record[] = [];
+    let newRecords: Record[] = [];
     for (let i = 0;i < this.recordList.length; i++) {
       if (this.recordList[i].isCheck == true) {
         checkRecords.push(this.recordList[i]);

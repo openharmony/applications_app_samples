@@ -13,18 +13,18 @@
  * limitations under the License.
  */
 
-import media from '@ohos.multimedia.media'
-import mediaLibrary from '@ohos.multimedia.mediaLibrary'
-import Logger from '../model/Logger'
+import media from '@ohos.multimedia.media';
+import userFileManager from '@ohos.filemanagement.userFileManager';
+import Logger from '../model/Logger';
 
-const TAG: string = '[Recorder.AudioModel]'
+const TAG: string = '[Recorder.AudioModel]';
 
 export class AudioModel {
   private audioPlayer = undefined;
-  private playFile: mediaLibrary.FileAsset = undefined
-  private dataLoad: boolean = false
+  private playFile: userFileManager.FileAsset = undefined;
+  private dataLoad: boolean = false;
 
-  initAudioPlayer(playSrc: mediaLibrary.FileAsset, isPlay) {
+  initAudioPlayer(playSrc: userFileManager.FileAsset, isPlay) {
     this.playFile = playSrc
     this.dataLoad = false
     this.release()

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,15 +15,15 @@
 
 import { Record } from '../model/Record'
 
-class BasicDataSource implements IDataSource {
+class BasicDataSource<T> implements IDataSource {
   private listeners: DataChangeListener[] = []
 
   public totalCount(): number {
     return 0
   }
 
-  public getData(index: number): any {
-    return undefined
+  public getData(index: number): T | void {
+    return undefined;
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -72,7 +72,7 @@ class BasicDataSource implements IDataSource {
   }
 }
 
-export default class RecordDataSource extends BasicDataSource {
+export default class RecordDataSource extends BasicDataSource<Record> {
   private dataArray: Record[] = []
 
   constructor(data: Record[]) {
@@ -86,6 +86,10 @@ export default class RecordDataSource extends BasicDataSource {
 
   public getData(index: number): Record {
     return this.dataArray[index]
+  }
+
+  public setData(data: Record[]) {
+    this.dataArray = data;
   }
 
   public addData(index: number, data: Record): void {
