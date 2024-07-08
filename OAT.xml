@@ -780,6 +780,15 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/BasicFeature/WindowManagement/WindowManage/screenshots/devices/setTouchableAreas.jpg" desc="Provided by code/BasicFeature/WindowManagement/WindowManage"/>
                 <filteritem type="filepath" name="code/BasicFeature/WindowManagement/WindowManage/screenshots/devices/startAbility.png" desc="Provided by code/BasicFeature/WindowManagement/WindowManage"/>
                 <filteritem type="filepath" name="code/BasicFeature/WindowManagement/WindowManage/screenshots/devices/subWindow.png" desc="Provided by code/BasicFeature/WindowManagement/WindowManage"/>
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/ExpandText/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/BasicFeature/Graphics/Graphics2d/ExpandText"/>
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/ExpandText/screenshots/collapse.png" desc="Provided by code/BasicFeature/Graphics/Graphics2d/ExpandText"/>
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/ExpandText/entry/src/main/resources/rawfile/STXINGKA.ttf" desc="Provided by code/BasicFeature/Graphics/Graphics2d/ExpandText"/>
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/ExpandText/entry/src/main/resources/base/media/background.png" desc="Provided by code/BasicFeature/Graphics/Graphics2d/ExpandText"/>
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/ExpandText/entry/src/main/resources/rawfile/FZBWKSJW.TTF" desc="Provided by code/BasicFeature/Graphics/Graphics2d/ExpandText"/>
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/ExpandText/AppScope/resources/base/media/app_icon.png" desc="Provided by code/BasicFeature/Graphics/Graphics2d/ExpandText"/>
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/ExpandText/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/BasicFeature/Graphics/Graphics2d/ExpandText"/>
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/ExpandText/screenshots/expand.png" desc="Provided by code/BasicFeature/Graphics/Graphics2d/ExpandText"/>
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/ExpandText/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/BasicFeature/Graphics/Graphics2d/ExpandText"/>
                 <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/gltf/BrainStem/glTF/BrainStem0.bin" desc="Provided by code/BasicFeature/Graphics/Graphics3d"/>
                 <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/gltf/BrainStem/glTF-Binary/BrainStem.glb" desc="Provided by code/BasicFeature/Graphics/Graphics3d"/>
                 <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/rawfile/gltf/BrainStem/glTF-Draco/BrainStem0.bin" desc="Provided by code/BasicFeature/Graphics/Graphics3d"/>

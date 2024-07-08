@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "expand_str",
+      "value": "...展开"
+    },
+    {
+      "name": "collapse_str",
+      "value": "...收起"
+    },
+    {
+      "name": "list_content1",
+      "value": "1月16日，国务院新闻办公室举行新闻发布会，"
+    },
+    {
+      "name": "list_content2",
+      "value": "介绍2024年春运形势及工作安排。"
+    },
+    {
+      "name": "list_content3",
+      "value": "从2月9日（除夕）00:00到2月17日（正月初八）24:00，免费9天。"
+    }
+  ]
+}
