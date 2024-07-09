@@ -387,7 +387,7 @@ struct TextInputSample {
                   Span(this.message)
                 }
                 .id('text_hint')
-                .copyOption(CopyOptions.InApp)
+                .copyOption(CopyOptions.LocalDevice)
                 .bindSelectionMenu(TextSpanType.TEXT, this.LongPressImageCustomMenu, TextResponseType.LONG_PRESS)
                 .onTextSelectionChange((selectionStart: number, selectionEnd: number) => {
                   this.selectedStart = selectionStart;
