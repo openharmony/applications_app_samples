@@ -67,6 +67,7 @@ export struct EditImage {
   @State dpi: string = '';
   // 图片父容器大小
   containerArea: Area | null = null;
+  isBrightChanging: boolean = false;
   private pixelMapQueue: PixelMapQueue = new PixelMapQueue();
 
   onOpen(): void {
@@ -210,10 +211,12 @@ export struct EditImage {
    */
   async brightChange(): Promise<void> {
     let headFilter: effectKit.Filter = effectKit.createEffect(this.brightnessOriginBM);
-    if (headFilter !== null) {
+    if (headFilter !== null && !this.isBrightChanging) {
+      this.isBrightChanging = true;
       headFilter.brightness(this.brightnessValue);
-      this.pixelMap = headFilter.getPixelMap();
+      this.pixelMap = await headFilter.getEffectPixelMap();
       this.flushPage();
+      this.isBrightChanging = false;
     }
   }
 
@@ -246,6 +249,7 @@ export struct EditImage {
         x: 0,
         y: 0
       });
+      this.isPixelMapChange = !this.isPixelMapChange;
     } catch (error) {
       logger.info(TAG, `crop error = ${JSON.stringify(error)}`);
     }
