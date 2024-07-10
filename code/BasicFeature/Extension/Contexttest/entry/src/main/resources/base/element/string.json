@@ -1,0 +1,80 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "stageContextEntryAbility1_desc",
+      "value": "description"
+    },
+    {
+      "name": "stageContextEntryAbility1_label",
+      "value": "label"
+    },
+    {
+      "name": "StageEntryAbility1_desc",
+      "value": "description"
+    },
+    {
+      "name": "StageEntryAbility1_label",
+      "value": "label"
+    },
+    {
+      "name": "ExtensionAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "ExtensionAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "EntryAbility1_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility1_label",
+      "value": "label"
+    },
+    {
+      "name": "SharedFileSuccess",
+      "value": "创建\"test1\"共享文件"
+    },
+    {
+      "name": "SharedFileFail",
+      "value": "创建\"test2\"共享文件"
+    },
+    {
+      "name": "InterviewModuleExtension",
+      "value": "访问module级别沙箱文件"
+    },
+    {
+      "name": "InterviewApplyExtension",
+      "value": "访问应用级别沙箱文件"
+    },
+    {
+      "name": "CreatedSuccess",
+      "value": "创建成功"
+    },
+    {
+      "name": "CreatedFail",
+      "value": "创建失败"
+    },
+    {
+      "name": "AccessSuccess",
+      "value": "访问成功"
+    },
+    {
+      "name": "AccessFail",
+      "value": "访问失败"
+    }
+  ]
+}
