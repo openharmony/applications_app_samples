@@ -28,8 +28,11 @@ export default class EntryAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'want param:' + JSON.stringify(want) ?? '');
     hilog.info(0x0000, 'testTag', '%{public}s', 'launchParam:' + JSON.stringify(launchParam) ?? '');
     const PERMISSIONS: Array<Permissions> = [
+      'ohos.permission.CAMERA',
       'ohos.permission.MEDIA_LOCATION',
-      'ohos.permission.MICROPHONE'
+      'ohos.permission.MICROPHONE',
+      'ohos.permission.READ_IMAGEVIDEO',
+      'ohos.permission.WRITE_IMAGEVIDEO'
     ];
     let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
     atManager.requestPermissionsFromUser(this.context, PERMISSIONS);
