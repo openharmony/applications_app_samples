@@ -24,7 +24,7 @@ let context = getContext(this) as common.Context;
 
 export default class MediaUtils {
   private tag: string = 'MediaUtils';
-  private mediaTest: photoAccessHelper.PhotoAsset = photoAccessHelper.getPhotoAccessHelper(context);
+  private mediaTest: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
   private static instance: MediaUtils = new MediaUtils();
   private num: number = 0;
   private settingDataObj: SettingDataObj = {
