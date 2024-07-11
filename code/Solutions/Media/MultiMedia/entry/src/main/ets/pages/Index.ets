@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import router from '@ohos.router';
@@ -24,7 +23,12 @@ import Logger from '../model/Logger';
 
 @Observed
 export default class Album {
-  constructor(public albumName: string, public count: number, public mediaType?: mediaLibrary.MediaType) {
+
+  public albumName: string;
+  public count: number;
+  public mediaType?: string;
+
+  constructor(albumName: string, count: number, mediaType?: string) {
     this.albumName = albumName;
     this.count = count;
     this.mediaType = mediaType;
@@ -41,24 +45,8 @@ struct Index {
 
   async onPageShow() {
     this.albums = [];
-    this.albums = await this.mediaUtils.getAlbums();
-  }
-
-  @Builder OperateBtn(src, zIndex, translate, handleClick) {
-    Button() {
-      Image(src)
-        .width('70%')
-        .height('70%')
-    }
-    .type(ButtonType.Circle)
-    .width('40%')
-    .height('40%')
-    .backgroundColor('#0D9FFB')
-    .zIndex(zIndex)
-    .translate({ x: translate.x, y: translate.y })
-    .transition({ type: TransitionType.Insert, translate: { x: 0, y: 0 } })
-    .transition({ type: TransitionType.Delete, opacity: 0 })
-    .onClick(handleClick)
+    let context = getContext(this) as common.UIAbilityContext;
+    this.albums = await this.mediaUtils.getAlbums(context);
   }
 
   build() {
@@ -71,7 +59,7 @@ struct Index {
               MediaView({ album: item })
                 .id(`mediaType${index}`)
             }
-          }, item => item.albumName)
+          }, (item: Album) => item.albumName)
         }
         .divider({ strokeWidth: 1, color: Color.Gray, startMargin: 16, endMargin: 16 })
         .layoutWeight(1)
@@ -166,9 +154,5 @@ struct Index {
     }
     .width('100%')
     .height('100%')
-  }
-
-  aboutToDisappear() {
-    this.mediaUtils.offDateChange()
   }
 }

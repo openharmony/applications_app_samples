@@ -12,10 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import mediaLibrary from '@ohos.multimedia.mediaLibrary'
+import userFileManager from '@ohos.filemanagement.userFileManager'
 import router from '@ohos.router'
 import DateTimeUtil from '../model/DateTimeUtil'
-import MediaUtils from '../model/MediaUtils'
+import MediaUtils, { FileType } from '../model/MediaUtils'
 import RecordModel from '../model/RecordModel'
 import TitleBar from '../view/TitleBar'
 
@@ -25,22 +25,18 @@ struct Record {
   private recordModel: RecordModel = new RecordModel()
   private isStartRecord: boolean = false
   private mediaUtils: MediaUtils = MediaUtils.getInstance(getContext(this))
-  private intervalId: number = null
-  private fileAsset: mediaLibrary.FileAsset = undefined
+  private intervalId: number = -1
+  private fileAsset: userFileManager.FileAsset = {} as userFileManager.FileAsset
   private fd: number = -1
   @State format: string = 'hh:mm:ss.ms'
   @State isRecording: boolean = false
   @State millisecond: number = 0
 
   async startRecord() {
-    let dataUri = await this.mediaUtils.createAndGetUri(mediaLibrary.MediaType.AUDIO)
-    if (dataUri) {
-      this.fileAsset = await this.mediaUtils.queryFile(dataUri)
-      this.fd = await this.mediaUtils.getFdPath(this.fileAsset)
-      let fdPath = "fd://" + this.fd
-      this.recordModel.startRecorder(fdPath)
-      this.isStartRecord = true
-    }
+    this.fileAsset = await this.mediaUtils.createAndGetUri(FileType.AUDIO)
+    this.fd = await this.mediaUtils.getFdPath(this.fileAsset)
+    this.recordModel.startRecorder(this.fd)
+    this.isStartRecord = true
   }
 
   getTime() {
@@ -55,16 +51,14 @@ struct Record {
     if (this.isRecording) {
       if (this.intervalId) {
         clearInterval(this.intervalId)
-        this.intervalId = null
+        this.intervalId = -1
       }
-      if (this.isRecording) {
-        this.intervalId = setInterval(() => {
-          this.millisecond += 1000
-        }, 1000)
-      }
+      this.intervalId = setInterval(() => {
+        this.millisecond += 1000
+      }, 1000)
     } else {
       clearInterval(this.intervalId)
-      this.intervalId = null
+      this.intervalId = -1
     }
   }
 
@@ -89,9 +83,13 @@ struct Record {
         .backgroundColor('#FFFFFF')
         .id('endOfRecording')
         .onClick(() => {
-          router.back()
           this.recordModel.finish()
-          AppStorage.Set('isRefresh', true)
+          this.isStartRecord = false
+          this.isRecording = false
+          // 关闭录制文件fd
+          this.fileAsset.close(this.fd).then(() =>{
+            router.back()
+          })
         })
 
         Blank()
@@ -124,7 +122,6 @@ struct Record {
             }
             this.startRecord()
           }
-          AppStorage.Set('isRefresh', true)
         })
 
         Blank()
@@ -147,11 +144,11 @@ struct Record {
 
   async aboutToDisappear() {
     this.recordModel.finish()
-    if (this.fileAsset && this.millisecond < 1000) {
+    if (this.millisecond < 1000) {
       if (this.fd !== -1) {
         this.fileAsset.close(this.fd)
       }
-      await this.mediaUtils.deleteFile(this.fileAsset)
+      await this.mediaUtils.deleteFile(FileType.AUDIO, this.fileAsset.uri)
     }
   }
 }

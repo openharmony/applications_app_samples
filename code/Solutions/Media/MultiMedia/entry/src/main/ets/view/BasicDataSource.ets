@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import mediaLibrary from '@ohos.multimedia.mediaLibrary'
+import userFileManager from '@ohos.filemanagement.userFileManager';
 
 class BasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = []
@@ -22,8 +22,8 @@ class BasicDataSource implements IDataSource {
     return 0
   }
 
-  public getData(index: number): any {
-    return undefined
+  public getData(index: number): MediaData {
+    return {} as MediaData
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -72,23 +72,43 @@ class BasicDataSource implements IDataSource {
   }
 }
 
+export interface MediaData {
+  uri: string;
+  fileType: number;
+  displayName: string;
+  duration: number;
+  dateAdded: number;
+}
+
 export default class MediaDataSource extends BasicDataSource {
-  private dataArray: mediaLibrary.FileAsset[] = []
+  private dataArray: MediaData[] = []
+
+  public setDataArray(dataArray: MediaData[]): void {
+    this.dataArray = dataArray
+  }
+
+  public getDataArray(): MediaData[] {
+    return this.dataArray
+  }
 
   public totalCount(): number {
     return this.dataArray.length
   }
 
-  public getData(index: number): mediaLibrary.FileAsset {
+  public getData(index: number): MediaData {
     return this.dataArray[index]
   }
 
-  public addData(index: number, data: mediaLibrary.FileAsset): void {
+  public deleteData(index: number, count: number): void {
+    this.dataArray.splice(index, count)
+  }
+
+  public addData(index: number, data: MediaData): void {
     this.dataArray.splice(index, 0, data)
     this.notifyDataAdd(index)
   }
 
-  public pushData(data: mediaLibrary.FileAsset): void {
+  public pushData(data: MediaData): void {
     this.dataArray.push(data)
     this.notifyDataAdd(this.dataArray.length - 1)
   }

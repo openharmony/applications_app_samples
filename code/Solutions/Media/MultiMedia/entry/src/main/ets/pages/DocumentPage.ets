@@ -12,12 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import fileIo from '@ohos.fileio'
-import mediaLibrary from '@ohos.multimedia.mediaLibrary'
+import fileIo from '@ohos.file.fs'
 import router from '@ohos.router'
 import Logger from '../model/Logger'
 import MediaUtils from '../model/MediaUtils'
 import TitleBar from '../view/TitleBar'
+import common from '@ohos.app.ability.common'
 
 @Entry
 @Component
@@ -28,11 +28,11 @@ struct DocumentPage {
 
   async saveFile() {
     Logger.info(this.tag, 'saveFile')
-    let fd = await this.mediaUtils.createFile(mediaLibrary.MediaType.FILE)
+    let context = getContext(this) as common.UIAbilityContext
+    let fd: number = await this.mediaUtils.createFile(4, context)
     Logger.info(this.tag, `fd = ${fd}`)
     await fileIo.write(fd, this.fileContent)
     await fileIo.close(fd)
-    AppStorage.Set('isRefresh', true)
     router.back()
   }
 

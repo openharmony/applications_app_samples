@@ -13,69 +13,95 @@
  * limitations under the License.
  */
 
-import mediaLibrary from '@ohos.multimedia.mediaLibrary'
+import userFileManager from '@ohos.filemanagement.userFileManager'
+import fileAccess from '@ohos.file.fileAccess';
 import router from '@ohos.router'
 import Logger from '../model/Logger'
-import MediaUtils from '../model/MediaUtils'
-import MediaDataSource from '../view/BasicDataSource'
+import MediaUtils, { FileType } from '../model/MediaUtils'
+import MediaDataSource, { MediaData } from '../view/BasicDataSource'
 import { MediaItem } from '../view/MediaItem'
 import { RenameDialog } from '../view/RenameDialog'
 import TitleBar from '../view/TitleBar'
+import { BusinessError } from '@ohos.base'
+import common from '@ohos.app.ability.common'
+
+interface RouterParams {
+  albumName: string;
+  mediaType: number;
+}
+
+const context = getContext(this) as common.UIAbilityContext
 
 @Entry
 @Component
 struct AlbumPage {
   private tag: string = 'AlbumPage'
-  private albumName: string = <string> router.getParams()['albumName']
-  private mediaType: number = <number> router.getParams()['mediaType']
+  private albumName: string = (router.getParams() as RouterParams).albumName
+  private mediaType: number = (router.getParams() as RouterParams).mediaType
   private mediaUtils: MediaUtils = MediaUtils.getInstance(getContext(this))
-  private renameDialogController: CustomDialogController = null
-  //  @State mediaList: Array<mediaLibrary.FileAsset> = []
+  @State selectMedia: MediaData = {} as MediaData
+  private renameDialogController: CustomDialogController = new CustomDialogController({
+    builder: RenameDialog({
+      selectMedia: $selectMedia,
+      action: (selectMedia: MediaData) => this.renameMedia(selectMedia)
+    }),
+    autoCancel: true
+  });
   private mediaDataSource: MediaDataSource = new MediaDataSource()
-  @State selectMedia: mediaLibrary.FileAsset = undefined
 
-  btnAction(operate, index, mediaItemId) {
-    Logger.info(this.tag, `btnAction callback,operate: ${operate}, index: ${index}`)
-    let selectMediaArray = this.mediaDataSource['dataArray'].filter((item) => {
-      return item.id === mediaItemId;
+  btnAction(operate: string, index: number, mediaItemUri: string): void {
+    Logger.info(this.tag, `btnAction callback,operate: ${operate}, index: ${index}, mediaItemUri: ${mediaItemUri}`)
+    let selectMediaArray = this.mediaDataSource.getDataArray().filter((item) => {
+      return item.uri === mediaItemUri;
     });
     this.selectMedia = selectMediaArray[0];
     if (operate === 'delete') {
       this.deleteMedia(() => {
-        this.mediaUtils.deleteFile(this.selectMedia);
-        this.mediaDataSource['dataArray'].forEach((item: mediaLibrary.FileAsset, index: number) => {
-          if (item.id === mediaItemId) {
-            this.mediaDataSource['dataArray'].splice(index, 1);
+        this.mediaUtils.deleteFile(this.mediaType, this.selectMedia.uri, context);
+        this.mediaDataSource.getDataArray().forEach((item: MediaData, index: number) => {
+          if (item.uri === mediaItemUri) {
+            this.mediaDataSource.deleteData(index, 1);
             this.mediaDataSource.notifyDataReload();
           }
         })
       })
     } else {
-      if (this.renameDialogController === null) {
-        this.renameDialogController = new CustomDialogController({
-          builder: RenameDialog({ title: this.selectMedia.title, action: this.renameMedia.bind(this) }),
-          autoCancel: true
-        })
-      }
       this.renameDialogController.open()
     }
   }
 
-  renameMedia(title) {
+  async renameMedia(selectMedia: MediaData): Promise<void> {
     Logger.info(this.tag, `renameMedia newName = ${this.selectMedia.displayName}`)
-    this.selectMedia.title = title
-    this.selectMedia.commitModify(err => {
-      if (err !== undefined) {
+    // 重命名文件资源
+    if (this.mediaType === 4) {
+      let fileAccessHelper = fileAccess.createFileAccessHelper(context);
+      try {
+        await fileAccessHelper.rename(selectMedia.uri, selectMedia.displayName);
+        Logger.info(this.tag, 'commitModify success')
+        this.renameDialogController.close()
+        this.refreshData()
+      } catch (err) {
         Logger.info(this.tag, `commitModify,err: ${err}`)
-        return
       }
-      Logger.info(this.tag, 'commitModify success')
-      this.renameDialogController.close()
-      this.refreshData()
-    })
+    } else {
+      // 重命名图片/视频/音频资源
+      let fileAssetList: userFileManager.FileAsset[] = await this.mediaUtils.getFileAssetsFromType(this.mediaType)
+      let fileAsset: userFileManager.FileAsset | undefined = fileAssetList.find(item => item.uri === selectMedia.uri)
+      if (fileAsset !== undefined) {
+        try {
+          fileAsset.set('display_name', selectMedia.displayName)
+          await fileAsset.commitModify();
+          Logger.info(this.tag, 'commitModify success')
+          this.renameDialogController.close()
+          this.refreshData()
+        } catch (err) {
+          Logger.info(this.tag, `commitModify,err: ${err}`)
+        }
+      }
+    }
   }
 
-  deleteMedia(deleteAction) {
+  deleteMedia(deleteAction: () => void) {
     AlertDialog.show(
       {
         message: $r('app.string.delete_file'),
@@ -97,14 +123,45 @@ struct AlbumPage {
   }
 
   refreshData() {
-    let fileAsset = this.mediaUtils.getFileAssetsFromType(this.mediaType)
-    fileAsset.then(fileList => {
-      Logger.info(this.tag, 'getFileList callback')
-      this.mediaDataSource['dataArray'] = fileList
-      this.mediaDataSource.notifyDataReload()
-    }).catch(err => {
-      Logger.error(this.tag, `getFileList err,err = ${err}`)
-    })
+    if (this.mediaType === 4) {
+      let fileInfos = this.mediaUtils.getFileAssets(context)
+      fileInfos.then(fileList => {
+        Logger.info(this.tag, 'getFileList callback')
+        let mediaDataList: MediaData[] = fileList.map(file => {
+          let mediaData: MediaData = {
+            uri: file.uri,
+            fileType: 4,
+            displayName: file.fileName,
+            duration: 0,
+            dateAdded: file.mtime
+          }
+          return mediaData
+        })
+        this.mediaDataSource.setDataArray(mediaDataList)
+        this.mediaDataSource.notifyDataReload()
+      }).catch((err: BusinessError) => {
+        Logger.error(this.tag, `getFileList err,err = ${err}`)
+      })
+    } else {
+      let fileAsset = this.mediaUtils.getFileAssetsFromType(this.mediaType)
+      fileAsset.then(fileList => {
+        Logger.info(this.tag, 'getFileList callback')
+        let mediaDataList: MediaData[] = fileList.map(file => {
+         let mediaData: MediaData = {
+            uri: file.uri,
+            fileType: file.fileType as number,
+            displayName: file.displayName,
+            duration: file.get('duration') as number,
+            dateAdded: file.get('date_added') as number
+          }
+          return mediaData
+        })
+        this.mediaDataSource.setDataArray(mediaDataList)
+        this.mediaDataSource.notifyDataReload()
+      }).catch((err: BusinessError) => {
+        Logger.error(this.tag, `getFileList err,err = ${err}`)
+      })
+    }
   }
 
   aboutToAppear() {
@@ -116,21 +173,25 @@ struct AlbumPage {
     Column() {
       TitleBar({ title: this.albumName })
       List() {
-        LazyForEach(this.mediaDataSource, (item, index) => {
+        LazyForEach(this.mediaDataSource, (item: MediaData, index) => {
           ListItem() {
-            MediaItem({ media: item, index: index, btnAction: this.btnAction.bind(this) })
+            MediaItem({
+              media: item,
+              index: index,
+              btnAction: (operate, index, mediaItemUri) => this.btnAction(operate, index, mediaItemUri)
+            })
           }
           .id(`mediaId${index}`)
           .onClick(() => {
-            if (item.mediaType === mediaLibrary.MediaType.VIDEO) {
-              Logger.info(this.tag, `onClick,item.id=${item.id}`)
-              let context = getContext(this) as any
+            console.log("item.fileType："+item.fileType)
+            if (item.fileType === FileType.VIDEO) {
+              Logger.info(this.tag, `onClick,item.id=${item.uri}`)
               context.startAbility({
                 bundleName: 'ohos.samples.videoplayer',
                 abilityName: 'PlayAbility',
                 deviceId: "",
                 parameters: {
-                  fileId: item.id
+                  fileUri: item.uri
                 }
               }, (error) => {
                 Logger.info(this.tag, `error.code = ${error.code}`)
@@ -138,7 +199,7 @@ struct AlbumPage {
               )
             }
           })
-        }, item => JSON.stringify(item.title))
+        }, (item: userFileManager.FileAsset) => JSON.stringify(item.displayName))
       }
       .layoutWeight(1)
     }
