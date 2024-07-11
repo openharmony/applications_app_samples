@@ -26,6 +26,8 @@ export default class MainAbility extends UIAbility {
     Logger.info(TAG, '[Demo] MainAbility onCreate')
     //The list of user_grant permission, MEDIA|MIC separated to grant
     const PERMISSIONS: Array<Permissions> = [
+      "ohos.permission.READ_IMAGEVIDEO",
+      "ohos.permission.WRITE_IMAGEVIDEO",
       'ohos.permission.MEDIA_LOCATION',
       'ohos.permission.MICROPHONE'
     ];
