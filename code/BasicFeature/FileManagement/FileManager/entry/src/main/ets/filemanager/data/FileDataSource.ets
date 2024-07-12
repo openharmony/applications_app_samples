@@ -13,51 +13,51 @@
  * limitations under the License.
  */
 
-import mediaLibrary from '@ohos.multimedia.mediaLibrary'
-import { Logger } from '@ohos/feature-file-manager'
+import { Logger } from '@ohos/feature-file-manager';
+import userFileManager from '@ohos.filemanagement.userFileManager';
 
 export default class FileDataSource implements IDataSource {
-  private listener: DataChangeListener | undefined = undefined
-  private fileList: Array<mediaLibrary.FileAsset> = new Array<mediaLibrary.FileAsset>()
+  private listener: DataChangeListener | undefined = undefined;
+  private fileList: Array<userFileManager.FileAsset> = new Array<userFileManager.FileAsset>();
 
   totalCount(): number {
-    let count = this.fileList.length
-    Logger.debug(`totalCount: ${count}`)
-    return count
+    let count = this.fileList.length;
+    Logger.debug(`totalCount: ${count}`);
+    return count;
   }
 
-  getData(index: number): mediaLibrary.FileAsset {
-    let file = this.fileList[index]
-    Logger.debug(`getData index: ${index}, name: ${file.displayName}`)
-    return file
+  getData(index: number): userFileManager.FileAsset {
+    let file = this.fileList[index];
+    Logger.debug(`getData index: ${index}, name: ${file.displayName}`);
+    return file;
   }
 
-  pushData(fileAsset: mediaLibrary.FileAsset): void {
-    this.fileList.push(fileAsset)
-    this.listener?.onDataAdd(this.totalCount() - 1)
+  pushData(fileAsset: userFileManager.FileAsset): void {
+    this.fileList.push(fileAsset);
+    this.listener?.onDataAdd(this.totalCount() - 1);
   }
 
-  pushDataList(fileAssets: Array<mediaLibrary.FileAsset>): void {
+  pushDataList(fileAssets: Array<userFileManager.FileAsset>): void {
     fileAssets.forEach(element => {
-      this.fileList.push(element)
+      this.fileList.push(element);
     })
-    this.listener?.onDataReloaded()
+    this.listener?.onDataReloaded();
   }
 
-  deleteData(id: number): void {
-    this.fileList.forEach((item: mediaLibrary.FileAsset, index: number) => {
-      if (item.id === id) {
-        this.fileList.splice(index, 1)
-        this.listener?.onDataDelete(index)
+  deleteData(uri: string): void {
+    this.fileList.forEach((item: userFileManager.FileAsset, index: number) => {
+      if (item.uri === uri) {
+        this.fileList.splice(index, 1);
+        this.listener?.onDataDelete(index);
       }
     })
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
-    this.listener = listener
+    this.listener = listener;
   }
 
   unregisterDataChangeListener(listener: DataChangeListener): void {
-    this.listener = listener
+    this.listener = listener;
   }
 }

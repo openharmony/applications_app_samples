@@ -13,20 +13,26 @@
  * limitations under the License.
  */
 
-import image from '@ohos.multimedia.image'
-import mediaLibrary from '@ohos.multimedia.mediaLibrary'
-import Logger from '../../utils/Logger'
+import Logger from '../../utils/Logger';
+import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 import type { Permissions } from '@ohos.abilityAccessCtrl';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import userFileManager from '@ohos.filemanagement.userFileManager';
 
 /**
- * 主要封装了mediaLibrary库相关的接口
+ * 主要封装了userFileManager库相关的接口
  */
 class MediaLibraryManager {
   requestPermission(context): void {
     let permissions: Array<Permissions> = [
-      'ohos.permission.READ_MEDIA',
-      'ohos.permission.WRITE_MEDIA'
+      'ohos.permission.WRITE_IMAGEVIDEO',
+      'ohos.permission.READ_IMAGEVIDEO',
+      'ohos.permission.FILE_ACCESS_MANAGER',
+      'ohos.permission.READ_AUDIO',
+      'ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY',
+      'ohos.permission.GET_BUNDLE_INFO_PRIVILEGED'
     ]
     let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
     atManager.requestPermissionsFromUser(context, permissions, (code, result) => {
@@ -34,7 +40,7 @@ class MediaLibraryManager {
     })
   }
 
-  async getPixelMapByFileAsset(fileAsset: mediaLibrary.FileAsset): Promise<image.PixelMap> {
+  async getPixelMapByFileAsset(fileAsset: userFileManager.FileAsset): Promise<image.PixelMap> {
     if (fileAsset == undefined) {
       Logger.error('fileAsset undefined')
       // 异常情况下统一返回undefined，不建议使用null
@@ -66,68 +72,89 @@ class MediaLibraryManager {
     return pixelMap
   }
 
-  getMediaLibrary(context): mediaLibrary.MediaLibrary {
-    return mediaLibrary.getMediaLibrary(context)
+
+  async getFileAssets(context, fileType: userFileManager.FileType): Promise<userFileManager.FetchResult<userFileManager.FileAsset>> {
+    let mgr = userFileManager.getUserFileMgr(context);
+    let fileKeyObj = userFileManager.ImageVideoKey;
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: userFileManager.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates.equalTo(fileKeyObj.FILE_TYPE.toString(), fileType)
+    };
+    let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset>;
+    if (fileType === userFileManager.FileType.IMAGE || fileType === userFileManager.FileType.VIDEO) {
+      fetchResult = await mgr.getPhotoAssets(fetchOptions);
+    } else if (fileType === userFileManager.FileType.AUDIO) {
+      fetchResult = await mgr.getAudioAssets(fetchOptions);
+    }
+    return fetchResult;
   }
 
-  async getFileAssets(context, fileType: mediaLibrary.MediaType): Promise<mediaLibrary.FetchFileResult> {
-    Logger.debug('begin getFileAssets, fileType:' + fileType)
-    let fileKeyObj = mediaLibrary.FileKey
-    let imagesFetchOption = {
-      selections: fileKeyObj.MEDIA_TYPE + '= ?',
-      selectionArgs: [fileType.toString()],
-    }
-    let fetchFileResult: mediaLibrary.FetchFileResult = undefined
+  async getFileAssetsByName(context, name: string): Promise<userFileManager.FileAsset> {
+    let mgr = userFileManager.getUserFileMgr(context);
+    Logger.debug('begin getFileAssetsByName: ' + name);
+    let fileKeyObj = userFileManager.ImageVideoKey;
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: userFileManager.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates.equalTo(fileKeyObj.DISPLAY_NAME.toString(), name.toString())
+    };
+    let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset>;
+    let file: userFileManager.FileAsset = undefined;
     try {
-      fetchFileResult = await this.getMediaLibrary(context).getFileAssets(imagesFetchOption)
-      Logger.debug('fetchFileResult count:' + fetchFileResult.getCount())
+      fetchResult = await mgr.getPhotoAssets(fetchOptions);
+      file = await fetchResult.getFirstObject();
     } catch (error) {
-      Logger.error('fetchFileResult Error: ' + JSON.stringify(error))
+      Logger.error('fetchFileResult Error: ' + JSON.stringify(error));
     }
-    return fetchFileResult
+    return file;
   }
 
-  async getFileAssetsByName(context, name: string): Promise<mediaLibrary.FileAsset> {
-    Logger.debug('begin getFileAssetsByName: ' + name)
-    let fileKeyObj = mediaLibrary.FileKey
-    let imagesFetchOption = {
-      selections: fileKeyObj.DISPLAY_NAME + '= ?',
-      selectionArgs: [name.toString()],
+  async getThumbnail(fileAsset: userFileManager.FileAsset): Promise<image.PixelMap> {
+    let thumbnail: image.PixelMap = undefined;
+    await fileAsset.getThumbnail().then((pixelMap) => {
+      thumbnail = pixelMap;
+      Logger.info('getThumbnail successful ' + pixelMap);
+    }).catch((err: BusinessError) => {
+      Logger.error('getThumbnail fail' + err);
+    });
+    return thumbnail;
+  }
+
+  async createFileAsset(context, mediaType: userFileManager.FileType, fileName: string): Promise<userFileManager.FileAsset> {
+    Logger.debug('createFileAsset: ' + fileName);
+    let mgr = userFileManager.getUserFileMgr(context);
+    if (mediaType === 1 || mediaType === 2) {
+      let fileAsset: userFileManager.FileAsset = undefined;
+      try {
+        let createOption: userFileManager.PhotoCreateOptions = {
+          subType: userFileManager.PhotoSubType.DEFAULT
+        }
+        fileAsset = await mgr.createPhotoAsset(fileName, createOption);
+        Logger.info('createPhotoAsset successfully file displayName' + fileAsset.displayName);
+      } catch (err) {
+        Logger.error('createPhotoAsset failed, message = ', err);
+      }
+      return fileAsset;
+    } else if (mediaType === 3) {
+      let fileAsset: userFileManager.FileAsset = undefined;
+      try {
+        fileAsset = await mgr.createAudioAsset(fileName);
+      } catch (err) {
+        Logger.error('createAudioAsset failed, message = ', err);
+      }
+      return fileAsset;
     }
-    let fetchFileResult: mediaLibrary.FetchFileResult = undefined
-    let file: mediaLibrary.FileAsset = undefined
+  }
+
+  async deleteFileAsset(context, fileAsset: userFileManager.FileAsset): Promise<void> {
     try {
-      fetchFileResult = await this.getMediaLibrary(context).getFileAssets(imagesFetchOption)
-      Logger.debug('fetchFileResult count:' + fetchFileResult.getCount())
-      file = await fetchFileResult.getFirstObject()
-    } catch (error) {
-      Logger.error('fetchFileResult Error: ' + JSON.stringify(error))
+      let mgr = userFileManager.getUserFileMgr(context);
+      await mgr.delete(fileAsset.uri);
+      Logger.info('delete successfully');
+    } catch (err) {
+      Logger.error('delete failed with error: ' + err);
     }
-    return file
-  }
-
-  async getThumbnail(fileAsset: mediaLibrary.FileAsset): Promise<image.PixelMap> {
-    let thumbnail = undefined
-    try {
-      thumbnail = await fileAsset.getThumbnail()
-      Logger.debug('PixelMap size: ' + thumbnail.getPixelBytesNumber())
-    } catch (error) {
-      Logger.error('getThumbnail Error: ' + JSON.stringify(error))
-    }
-    return thumbnail
-  }
-
-  async createFileAsset(context, mediaType: mediaLibrary.MediaType,
-                        dir: mediaLibrary.DirectoryType, fileName: string): Promise<mediaLibrary.FileAsset> {
-    Logger.debug('createFileAsset: ' + fileName)
-    let media = this.getMediaLibrary(context)
-    let path = await media.getPublicDirectory(dir)
-    return await media.createAsset(mediaType, fileName, path)
-  }
-
-  async deleteFileAsset(fileAsset: mediaLibrary.FileAsset): Promise<void> {
-    Logger.debug('deleteFileAsset:' + fileAsset.displayName);
-    await fileAsset.trash(true);
   }
 }
 

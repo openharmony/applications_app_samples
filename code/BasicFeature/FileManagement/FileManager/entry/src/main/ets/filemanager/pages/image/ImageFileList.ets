@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 
-import mediaLibrary from '@ohos.multimedia.mediaLibrary'
-import prompt from '@ohos.promptAction'
-import router from '@ohos.router'
-import { FileList } from '../common/FileList'
-import { FileManager } from '@ohos/feature-file-manager'
+import router from '@ohos.router';
+import prompt from '@ohos.promptAction';
+import { FileList } from '../common/FileList';
+import { FileManager } from '@ohos/feature-file-manager';
+import userFileManager from '@ohos.filemanagement.userFileManager';
 
-const ONE_SECOND: number = 1000
+const ONE_SECOND: number = 1000;
 
 @Entry
 @Component
@@ -28,8 +28,8 @@ struct ImageFileList {
     Column() {
       FileList({
         title: $r('app.string.image'),
-        mediaType: mediaLibrary.MediaType.IMAGE,
-        itemClickFunction: async (fileAsset: mediaLibrary.FileAsset) => {
+        mediaType: userFileManager.FileType.IMAGE,
+        itemClickFunction: async (fileAsset: userFileManager.FileAsset) => {
           if (fileAsset == undefined || !FileManager.isSupportPreview(fileAsset.displayName)) {
             prompt.showToast({
               duration: ONE_SECOND,
