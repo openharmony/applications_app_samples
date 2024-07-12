@@ -22,17 +22,14 @@ const TAG: string = 'MainAbility'
 const PERMISSIONS: Array<Permissions> = [
   'ohos.permission.CAMERA',
   'ohos.permission.MICROPHONE',
-  'ohos.permission.MEDIA_LOCATION',
-  'ohos.permission.READ_AUDIO',
-  'ohos.permission.WRITE_AUDIO',
-  'ohos.permission.READ_IMAGEVIDEO',
-  'ohos.permission.WRITE_IMAGEVIDEO',
-  'ohos.permission.GET_BUNDLE_INFO_PRIVILEGED'];
+  'ohos.permission.READ_MEDIA',
+  'ohos.permission.WRITE_MEDIA',
+  'ohos.permission.MEDIA_LOCATION'];
 
 export default class MainAbility extends UIAbility {
   onCreate(want, launchParam) {
     Logger.info(TAG, 'MainAbility onCreate');
-    AppStorage.setOrCreate('context', this.context);
+    AppStorage.SetOrCreate('context', this.context);
   }
 
   onDestroy() {
