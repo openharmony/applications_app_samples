@@ -34,6 +34,7 @@ let oppositeAddr = {
 let loginCount = 0
 
 let udp = socket.constructUDPSocketInstance()
+let callOnceForudpObj = 0
 
 @Entry
 @Component
@@ -50,12 +51,16 @@ struct Login {
   @State receiveMsg: string = ''
 
   bindOption() {
-    let bindOption = udp.bind(localAddr);
-    bindOption.then(() => {
-      Logger.info(TAG, 'bind success');
-    }).catch(err => {
-      Logger.info(TAG, 'bind fail');
-    })
+    if (callOnceForudpObj == 0) {
+      let bindOption = udp.bind(localAddr);
+      bindOption.then(() => {
+        Logger.info(TAG, 'bind success');
+      }).catch(err => {
+        Logger.info(TAG, 'bind fail');
+      })
+      callOnceForudpObj = 1;
+    }
+
     udp.on('message', data => {
       Logger.info(TAG, `data:${JSON.stringify(data)}`);
       let buffer = data.message;

@@ -23,6 +23,7 @@ import { ChatSource } from '../model/DataSource';
 import util from '@ohos.util';
 
 let udp = socket.constructUDPSocketInstance()
+let callOnceForudpObj = 0
 const TAG: string = '[Index]'
 
 let localAddr = {
@@ -66,13 +67,17 @@ struct Index {
   }
 
   bindOption() {
-    //绑定，开始监听消息
-    let promise = udp.bind(localAddr);
-    promise.then(() => {
-      Logger.info(TAG, 'udp bind success');
-    }).catch(err => {
-      Logger.info(TAG, `udp bind fail ${err}`);
-    })
+    if (callOnceForudpObj == 0) {
+      //绑定，开始监听消息
+      let promise = udp.bind(localAddr);
+      promise.then(() => {
+        Logger.info(TAG, 'udp bind success');
+      }).catch(err => {
+        Logger.info(TAG, `udp bind fail ${err}`);
+      })
+      callOnceForudpObj = 1
+    }
+
     udp.on('message', data => {
       let textDecoder = util.TextDecoder.create('utf-8');
       if (data.message instanceof ArrayBuffer) {
