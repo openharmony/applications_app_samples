@@ -13,23 +13,19 @@
  * limitations under the License.
  */
 
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
-import MediaLibraryManager from '../../filemanager/medialibrary/MediaLibraryManager'
-import Logger from '../../utils/Logger'
+import Logger from '../../utils/Logger';
+import userFileManager from '@ohos.filemanagement.userFileManager';
+import MediaLibraryManager from '../../filemanager/medialibrary/MediaLibraryManager';
 
-const DIR_DOWNLOAD: mediaLibrary.DirectoryType = mediaLibrary.DirectoryType.DIR_DOWNLOAD
-const MOCK: string = 'mock_'
+const MOCK: string = 'mock_';
 
 class LocalMockData {
-  async createFileAsset(context, mediaType?: mediaLibrary.MediaType): Promise<mediaLibrary.FileAsset> {
-    Logger.debug('mockFileAsset type: ' + mediaType)
-    if (mediaType == undefined) {
-      mediaType = mediaLibrary.MediaType.FILE
-    }
-    return await MediaLibraryManager.createFileAsset(context, mediaType, DIR_DOWNLOAD, this.mockFileName(mediaType))
+  async createFileAsset(context, mediaType?: userFileManager.FileType): Promise<userFileManager.FileAsset> {
+    Logger.debug('mockFileAsset type: ' + mediaType);
+    return await MediaLibraryManager.createFileAsset(context, mediaType, this.mockFileName(mediaType));
   }
 
-  mockFileName(mediaType: mediaLibrary.MediaType): string {
+  mockFileName(mediaType: userFileManager.FileType): string {
     Logger.debug('mockFileName type: ' + mediaType)
     return MOCK + Date.now() + '.txt'
   }

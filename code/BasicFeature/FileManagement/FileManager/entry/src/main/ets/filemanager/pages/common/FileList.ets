@@ -13,42 +13,43 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
-import mediaLibrary from '@ohos.multimedia.mediaLibrary'
-import { Logger, FileManager, ThumbnailImage } from '@ohos/feature-file-manager'
-import FileDataSource from '../../data/FileDataSource'
+import router from '@ohos.router';
+import FileDataSource from '../../data/FileDataSource';
+import userFileManager from '@ohos.filemanagement.userFileManager';
+import { Logger, FileManager, ThumbnailImage } from '@ohos/feature-file-manager';
 
-const SIZE_M: number = 1024 * 1024
-const ONE_SECOND: number = 1000
+const SIZE_M: number = 1024 * 1024;
+const ONE_SECOND: number = 1000;
+const context = getContext(this);
+let sanBoxFileDir: string = AppStorage.get('sanBoxFileDir') as string;
 
 @Preview
 @Component
 export struct FileList {
-  @State fileList: FileDataSource = new FileDataSource()
-  @State isNoFile: boolean = true
-  @State showDeleteButton: boolean = false
+  @State fileList: FileDataSource = new FileDataSource();
+  @State isNoFile: boolean = true;
+  @State showDeleteButton: boolean = false;
   title: Resource = {} as Resource;
-  mediaType: mediaLibrary.MediaType = mediaLibrary.MediaType.FILE
-  itemClickFunction: (fileAsset: mediaLibrary.FileAsset) => void = () => {}
+  mediaType: userFileManager.FileType = userFileManager.FileType.AUDIO;
+  itemClickFunction: (fileAsset: userFileManager.FileAsset) => void = () => {
+  }
 
   async aboutToAppear() {
-    let files = await FileManager.getFileAssets(getContext(), this.mediaType)
+    let files = await FileManager.getFileAssets(getContext(), this.mediaType);
     if (files == undefined) {
-      Logger.error('files undefined')
-      return
+      Logger.error('files undefined');
+      return;
     }
     if (files.getCount() > 0) {
-      Logger.debug('show list')
-      this.isNoFile = false
+      Logger.debug('show list');
+      this.isNoFile = false;
     }
     for (let i = 0; i < files.getCount(); i++) {
-      let fileAsset: mediaLibrary.FileAsset = await files.getNextObject()
+      let fileAsset: userFileManager.FileAsset = await files.getNextObject();
       if (fileAsset == undefined) {
-        continue
+        continue;
       }
-      Logger.debug('getFileAssetsByType success, fileAsset.displayName ' + i + ': ' + fileAsset.displayName +
-      ' data:' + fileAsset.dateAdded + ', ' + fileAsset.dateModified)
-      this.fileList.pushData(fileAsset)
+      this.fileList.pushData(fileAsset);
     }
   }
 
@@ -86,33 +87,6 @@ export struct FileList {
           .fontColor($r('app.color.black'))
 
         Blank()
-
-        if (this.mediaType === mediaLibrary.MediaType.FILE) {
-          Image($r('app.media.add'))
-            .id('fileAdd')
-            .width(36)
-            .height(36)
-            .objectFit(ImageFit.Fill)
-            .alignSelf(ItemAlign.End)
-            .responseRegion({
-              x: 0,
-              y: 0,
-              width: 45,
-              height: 45
-            })
-            .stateStyles({
-              pressed: this.imagePressedStyles
-            })
-            .onClick(async () => {
-              let fileAsset: mediaLibrary.FileAsset = await FileManager.createTxtFileAsset(getContext(this))
-              if (fileAsset == undefined) {
-                Logger.error("createTxtFileAsset undefined")
-                return
-              }
-              this.fileList.pushData(fileAsset)
-              this.isNoFile = false
-            })
-        }
       }
       .width('100%')
       .margin({ top: 10, bottom: 20 })
@@ -135,18 +109,18 @@ export struct FileList {
         .width('100%')
       } else {
         List() {
-          LazyForEach(this.fileList, (listItem: mediaLibrary.FileAsset) => {
+          LazyForEach(this.fileList, (listItem: userFileManager.FileAsset) => {
             ListItem() {
               FileListItemComponent({
                 itemFileList: $fileList,
                 fileListItem: listItem,
                 itemClickFunction: this.itemClickFunction,
-                itemId: listItem.id,
+                uri: listItem.uri,
                 itemShowDeleteButton: $showDeleteButton,
                 itemIsNoFile: $isNoFile
               })
             }
-          }, (listItem: mediaLibrary.FileAsset) => JSON.stringify(listItem.title))
+          }, (listItem: userFileManager.FileAsset) => JSON.stringify(listItem.displayName))
         }
         .height('100%')
         .width('100%')
@@ -164,9 +138,10 @@ struct FileListItemComponent {
   @Link itemFileList: FileDataSource
   @Link itemShowDeleteButton: boolean
   @Link itemIsNoFile: boolean
-  private fileListItem: mediaLibrary.FileAsset = {} as mediaLibrary.FileAsset;
-  private itemClickFunction: (fileAsset: mediaLibrary.FileAsset) => void = () => {}
-  private itemId: number = 0
+  private fileListItem: userFileManager.FileAsset = {} as userFileManager.FileAsset;
+  private itemClickFunction: (fileAsset: userFileManager.FileAsset) => void = () => {
+  }
+  private uri: string = '';
 
   @Styles itemPressedStyles() {
     .backgroundColor($r('app.color.item_pressed'))
@@ -182,15 +157,16 @@ struct FileListItemComponent {
           .margin({ left: 20 })
 
         Column() {
-          Text(this.fileListItem.title)
+          Text(this.fileListItem.displayName)
             .maxLines(1)
             .width('75%')
-            .textOverflow({overflow:TextOverflow.Ellipsis})
+            .textOverflow({ overflow: TextOverflow.Ellipsis })
             .fontSize(16)
             .fontColor($r('app.color.black'))
 
-          Text(new Date(this.fileListItem.dateAdded * ONE_SECOND).toLocaleDateString() + ' - ' +
-          Math.ceil(this.fileListItem.size / SIZE_M) + 'M')
+          Text(new Date(FileManager.getFileState(sanBoxFileDir)
+            .crtime * ONE_SECOND).toLocaleDateString() + ' - ' +
+          Math.ceil(FileManager.getFileState(sanBoxFileDir).size / SIZE_M) + 'M')
             .fontSize(12)
             .margin({ top: 5 })
             .fontColor($r('app.color.font_gray'))
@@ -217,11 +193,11 @@ struct FileListItemComponent {
               pressed: this.itemPressedStyles
             })
             .onClick(() => {
-              FileManager.deleteFileAsset(this.fileListItem)
-              this.itemFileList.deleteData(this.itemId)
-              this.itemShowDeleteButton = false
+              FileManager.deleteFileAsset(context, this.fileListItem);
+              this.itemFileList.deleteData(this.uri);
+              this.itemShowDeleteButton = false;
               if (this.itemFileList.totalCount() === 0) {
-                this.itemIsNoFile = true
+                this.itemIsNoFile = true;
               }
             })
         }
@@ -232,14 +208,17 @@ struct FileListItemComponent {
     }
     .width('100%')
     .stateStyles({
-      pressed: this.itemPressedStyles
+      pressed: this.itemPressedStyles,
+      normal: {
+        .backgroundColor(Color.White)
+      }
     })
     .onClick(async () => {
       this.itemClickFunction(this.fileListItem)
     })
     .gesture(LongPressGesture({ repeat: true })
       .onAction((event?: GestureEvent) => {
-        this.itemShowDeleteButton = true
+        this.itemShowDeleteButton = true;
       })
     )
   }

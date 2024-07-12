@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-import mediaLibrary from '@ohos.multimedia.mediaLibrary'
-import FileManager from '../FileManager'
-import Logger from '../../utils/Logger'
+import Logger from '../../utils/Logger';
+import FileManager from '../FileManager';
+import userFileManager from '@ohos.filemanagement.userFileManager';
 
 /**
  * 缩略图组件，组件构建时，需传入fileAsset对象，组件会处理该对象，生成缩略图组件
@@ -23,9 +23,8 @@ import Logger from '../../utils/Logger'
  */
 @Component
 export default struct ThumbnailImage {
-  @State thumbnail: PixelMap | null = null
-  // 私有成员变量使用private修饰
-  private fileAsset?: mediaLibrary.FileAsset
+  @State thumbnail: PixelMap | null = null;
+  private fileAsset?: userFileManager.FileAsset;
 
   async aboutToAppear() {
     if (this.fileAsset == undefined) {

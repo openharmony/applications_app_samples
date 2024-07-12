@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
-import mediaLibrary from '@ohos.multimedia.mediaLibrary'
-import prompt from '@ohos.promptAction'
-import { FileList } from '../common/FileList'
+import prompt from '@ohos.promptAction';
+import { FileList } from '../common/FileList';
+import userFileManager from '@ohos.filemanagement.userFileManager';
 
-const ONE_SECOND: number = 1000
+const ONE_SECOND: number = 1000;
 
 @Entry
 @Component
@@ -26,8 +26,8 @@ struct VideoFileList {
     Column() {
       FileList({
         title: $r('app.string.video'),
-        mediaType: mediaLibrary.MediaType.VIDEO,
-        itemClickFunction: async (fileAsset: mediaLibrary.FileAsset) => {
+        mediaType: userFileManager.FileType.VIDEO,
+        itemClickFunction: async (fileAsset: userFileManager.FileAsset) => {
           prompt.showToast({
             duration: ONE_SECOND,
             message: $r('app.string.not_supported_tip')
