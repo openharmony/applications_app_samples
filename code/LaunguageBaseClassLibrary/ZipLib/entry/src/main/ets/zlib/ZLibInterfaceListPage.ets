@@ -53,10 +53,15 @@ struct ZLibInterfaceListPage {
     checksum.crc32(0, arrayBufferIn);
     try {
       // 压缩数据
-      await zip.deflate({ nextIn: arrayBufferIn, availableIn: BUFFER_SIZE, nextOut: arrayBufferOut,
-        availableOut: BUFFER_SIZE }, zlib.CompressFlushMode.FINISH).then((data) => {
+      await zip.deflate({
+        nextIn: arrayBufferIn,
+        availableIn: BUFFER_SIZE,
+        nextOut: arrayBufferOut,
+        availableOut: BUFFER_SIZE
+      }, zlib.CompressFlushMode.FINISH).then((data) => {
         // 将压缩后的buffer写入zlibDeflateFile.txt文件中
-        let zlibDeflateFile = fileIo.openSync(pathDir + '/zlibDeflateFile.txt', fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
+        let zlibDeflateFile =
+          fileIo.openSync(pathDir + '/zlibDeflateFile.txt', fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
         fileIo.writeSync(zlibDeflateFile.fd, arrayBufferOut);
         fileIo.closeSync(zlibDeflateFile);
         promptAction.showToast({
@@ -80,15 +85,20 @@ struct ZLibInterfaceListPage {
     checksum.crc32(0, arrayBufferOut);
     try {
       // 解压数据
-      await zip.inflate({ nextIn: arrayBufferOut, availableIn: BUFFER_SIZE, nextOut: inflateArrayBufferOut,
-        availableOut: BUFFER_SIZE }, zlib.CompressFlushMode.NO_FLUSH).then((data) => {
+      await zip.inflate({
+        nextIn: arrayBufferOut,
+        availableIn: BUFFER_SIZE,
+        nextOut: inflateArrayBufferOut,
+        availableOut: BUFFER_SIZE
+      }, zlib.CompressFlushMode.NO_FLUSH).then((data) => {
         let array = new Uint8Array(inflateArrayBufferOut);
         let dataString = '';
         for (let i = 0; i < array.length; i++) {
           dataString += String.fromCharCode(array[i]);
         }
         // 将解压后的数据写入zlibInflateFile.txt文件中
-        let zlibInflateFile = fileIo.openSync(pathDir + '/zlibInflateFile.txt', fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
+        let zlibInflateFile =
+          fileIo.openSync(pathDir + '/zlibInflateFile.txt', fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
         fileIo.writeSync(zlibInflateFile.fd, dataString);
         fileIo.closeSync(zlibInflateFile);
         // 验证压缩与解压的数据是否一致
@@ -121,7 +131,7 @@ struct ZLibInterfaceListPage {
     // 创建gzip对象
     let gzip = zlib.createGZipSync();
     // 打开.gz文件，对文件进行写操作
-    gzip.gzopen(path, 'wb');
+    await gzip.gzopen(path, 'wb');
     let str = STRING_DATA;
     let arrayBufferIn = new ArrayBuffer(BUFFER_SIZE);
     let byteArray = new Uint8Array(arrayBufferIn);
@@ -130,7 +140,7 @@ struct ZLibInterfaceListPage {
     }
     try {
       // 将bufferWithData压缩并写入文件
-      gzip.gzfwrite(arrayBufferIn, 8, 2).then((data) => {
+      await gzip.gzfwrite(arrayBufferIn, 8, 2).then((data) => {
         promptAction.showToast({
           message: $r('app.string.gzip_compress_success', str),
           bottom: '11%'
@@ -142,16 +152,16 @@ struct ZLibInterfaceListPage {
         bottom: '11%'
       });
     }
-    gzip.gzflush(0);
-    gzip.gzclose();
+    await gzip.gzflush(0);
+    await gzip.gzclose();
 
     await sleep(SLEEP_TIME);
     // 打开.gz文件，对文件进行读操作
-    gzip.gzopen(path, 'rb');
+    await gzip.gzopen(path, 'rb');
     try {
       let bufferWithDataOut = new ArrayBuffer(BUFFER_SIZE);
       // 从.gz文件中读取和解压数据
-      gzip.gzfread(bufferWithDataOut, 8, 2).then((data) => {
+      await gzip.gzfread(bufferWithDataOut, 8, 2).then((data) => {
         let array = new Uint8Array(bufferWithDataOut);
         let dataString = '';
         for (let i = 0; i < array.length; i++) {
@@ -162,7 +172,8 @@ struct ZLibInterfaceListPage {
             message: $r('app.string.gzip_uncompress_success', dataString),
             bottom: '11%'
           });
-          let gzipFile = fileIo.openSync(pathDir + '/gzipTest.txt', fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
+          let gzipFile =
+            fileIo.openSync(pathDir + '/gzipTest.txt', fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
           fileIo.writeSync(gzipFile.fd, dataString);
           fileIo.closeSync(gzipFile);
         }
@@ -173,7 +184,7 @@ struct ZLibInterfaceListPage {
         bottom: '11%'
       });
     }
-    gzip.gzclose();
+    await gzip.gzclose();
     hilog.info(DOMAIN, TAG, BUNDLE + `gzipDecompression end`);
   }
 

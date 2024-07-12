@@ -145,7 +145,6 @@ struct CompressFilesPage {
         bottom: '11%'
       });
     }
-
     await fileList.put('fileNames', JSON.stringify(this.files.fileData));
     await fileList.flush();
   }
@@ -222,9 +221,9 @@ struct CompressFilesPage {
                       this.slectFileName.push(item);
                     } else {
                       this.isSelect = false;
-                      let index = this.slectFileName.indexOf(item)
+                      let index = this.slectFileName.indexOf(item);
                       if (index !== -1) {
-                        this.slectFileName.splice(index, 1)
+                        this.slectFileName.splice(index, 1);
                       }
                     }
                   })
