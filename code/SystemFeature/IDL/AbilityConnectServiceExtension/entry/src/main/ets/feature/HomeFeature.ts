@@ -54,7 +54,11 @@ export default class HomeFeature {
       bundleName: BUNDLE_NAME,
       abilityName: SERVICE_EXTENSION_ABILITY_NAME
     }
-    this.connection = this.context.connectAbility(want, this.options)
+    try {
+      this.connection = this.context.connectServiceExtensionAbility(want, this.options)
+    } catch (err) {
+      Logger.error(`connectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`)
+    }
     Logger.info(`connectServiceExtAbility result:${this.connection}`)
   }
 
