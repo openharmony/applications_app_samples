@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023-2024 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -45,7 +45,7 @@ class FsManager {
         Logger.info(TAG, `file path: ${filesDir1} not exists`);
         fs.mkdirSync(filesDir1);
       }
-    } catch(error) {
+    } catch (error) {
       let err: BusinessError = error as BusinessError;
       Logger.error(TAG, "accessSync failed with error message: " + err.message + ", error code: " + err.code);
     }
@@ -57,34 +57,34 @@ class FsManager {
         Logger.info(TAG, `file path: ${filesDir2} not exists`);
         fs.mkdirSync(filesDir2);
       }
-    } catch(error) {
+    } catch (error) {
       let err: BusinessError = error as BusinessError;
       Logger.error(TAG, "accessSync failed with error message: " + err.message + ", error code: " + err.code);
     }
 
-  for (let i = 0; i < precastFiles.length; i++) {
-    let fileName = filesDir1 + "/" + precastFiles[i];
-    Logger.info(TAG, `The file name: ${fileName}`);
-    try {
-      let res = fs.accessSync(fileName);
-      if (res) {
-        Logger.info(TAG, `file: ${fileName} exists!.`);
-      } else {
-        Logger.info(TAG, `file: ${fileName} not exists, will create it!.`);
-        let file = fs.openSync(fileName, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-        fs.writeSync(file.fd, 'test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1' +
-          'test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test' +
-          'test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test' +
-          'test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test' +
-          'test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test' +
-          'test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test');
-        fs.closeSync(file);
+    for (let i = 0; i < precastFiles.length; i++) {
+      let fileName = filesDir1 + "/" + precastFiles[i];
+      Logger.info(TAG, `The file name: ${fileName}`);
+      try {
+        let res = fs.accessSync(fileName);
+        if (res) {
+          Logger.info(TAG, `file: ${fileName} exists!.`);
+        } else {
+          Logger.info(TAG, `file: ${fileName} not exists, will create it!.`);
+          let file = fs.openSync(fileName, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+          fs.writeSync(file.fd, 'test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1' +
+            'test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test' +
+            'test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test' +
+            'test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test' +
+            'test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test' +
+            'test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test');
+          fs.closeSync(file);
+        }
+      } catch (error) {
+        let err: BusinessError = error as BusinessError;
+        Logger.error(TAG, "accessSync failed with error message: " + err.message + ", error code: " + err.code);
       }
-    } catch(error) {
-      let err: BusinessError = error as BusinessError;
-      Logger.error(TAG, "accessSync failed with error message: " + err.message + ", error code: " + err.code);
     }
-  }
 
     let fileName = filesDir2 + "/" + "file4.txt";
     try {
@@ -102,11 +102,11 @@ class FsManager {
           'test4test4test4test4test4test4test4test4test4test4test4test4test4test4test4test4test4test4test4');
         fs.closeSync(file);
       }
-    } catch(error) {
+    } catch (error) {
       let err: BusinessError = error as BusinessError;
       Logger.error(TAG, "accessSync failed with error message: " + err.message + ", error code: " + err.code);
     }
-}
+  }
 
   listFiles(dir: string): Array<string> {
     let files: string[] = [];
@@ -136,12 +136,12 @@ class FsManager {
       let localSrcUri = fileuri.getUriFromPath(file.filePath);
       //如果是文件夹
       if (file.type === 1) {
-        distributedUri = distributedUri0+ "/" + file.fileName;
-        this.innerCopyFilesToDistributedDir(localSrcUri,distributedUri0);
+        distributedUri = distributedUri0 + "/" + file.fileName;
+        this.innerCopyFilesToDistributedDir(localSrcUri, distributedUri0);
       } else if (file.type === 2) { //处理Uri，如果是文件类型，需另外处理，前缀增加"file+"，用分布式对象进行传输
         const fileName = localSrcUri.split('/').pop();
-        distributedUri = distributedUri0 +"/"+fileName;
-        this.innerCopyFilesToDistributedDir(localSrcUri,distributedUri);
+        distributedUri = distributedUri0 + "/" + fileName;
+        this.innerCopyFilesToDistributedDir(localSrcUri, distributedUri);
         localSrcUri = "file+" + localSrcUri;
         distributedUri = "file+" + distributedUri;
       } else {
@@ -149,28 +149,28 @@ class FsManager {
       }
       // to update DataObject
       localFileUriList.push(localSrcUri);
-      disFileUriList.push(distributedUri);
+      disFileUriList.push(localSrcUri);
       disFileList.push(disFilePath);
     })
-    DataObject.update(deviceId,localFileUriList,disFileUriList,disFileList);
+    DataObject.update(deviceId, localFileUriList, disFileUriList, disFileList);
   }
 
   //复制到剪切板，不弹进度条
-  innerCopyFilesToDistributedDir(from:string,to:string) {
+  innerCopyFilesToDistributedDir(from: string, to: string) {
     Logger.info(TAG, `copyToDistributedDir--from: ${from}`);
     Logger.info(TAG, `copyToDistributedDir--to: ${to}`);
     try {
       // copy
       let progressListener: fs.ProgressListener = (progress: fs.Progress) => {
-        Logger.info(TAG ,"progressSize: " + progress.processedSize + ", totalSize: " + progress.totalSize);
+        Logger.info(TAG, "progressSize: " + progress.processedSize + ", totalSize: " + progress.totalSize);
       };
       let options: fs.CopyOptions = {
-        "progressListener" : progressListener
-      }
+        "progressListener": progressListener
+      };
       // 进行拷贝
-      fs.copy(from, to, options).then(()=>{
+      fs.copy(from, to, options).then(() => {
         Logger.info("Succeeded in copying. ");
-      }).catch((err: BusinessError)=>{
+      }).catch((err: BusinessError) => {
         Logger.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
         return prompt.showToast({ message: $r('app.string.label_copy2disfailed') });
       })
@@ -180,23 +180,22 @@ class FsManager {
     }
   }
 
-  pasteFromDistributedDir(deviceId: string, directoryPath:string, fileData: Array<FileStructure>) {
+  pasteFromDistributedDir(deviceId: string, directoryPath: string, fileData: Array<FileStructure>) {
     let localDstUri = fileuri.getUriFromPath(directoryPath);
 
-    if (DataObject.distributedObject["disFileUriList"].length === 0) {
+    if (DataObject.distributedObject!["disFileUriList"].length === 0) {
       return prompt.showToast({ message: $r('app.string.label_nodata') });
     }
     //本地拷贝:文件需进行重命名操作
-    if (deviceId == DataObject.distributedObject["from"]) {
-      let localFileArray: Array<string> = DataObject.distributedObject["localFileUriList"];
-      let newFileName:string = '';
-      localFileArray.forEach( item  => {
+    if (deviceId == DataObject.distributedObject!["from"]) {
+      let localFileArray: Array<string> = DataObject.distributedObject!["localFileUriList"];
+      let newFileName: string = '';
+      localFileArray.forEach(item => {
         //判断uri前缀是否有“file+”，如果是文件类型，去掉“file+”前缀，在localDstUri后面加上文件名称
         if (item.includes("file+")) {
           item = item.substring(5, item.length);
           let fileName: string | undefined = item.split('/').pop();
-          if(fileName)
-          {
+          if (fileName) {
             newFileName = fileName;
           } else {
             return;
@@ -204,10 +203,10 @@ class FsManager {
           //判断本地是否有同名文件，有则重命名
           fileData.forEach(file => {
             //有同名文件
-            if(file.name.includes(newFileName)){
+            if (file.name.includes(newFileName)) {
               //extension 文件后缀
-              let extension :string = newFileName.slice((newFileName.lastIndexOf(".") - 1 >>> 0) + 2);
-              if(extension){
+              let extension: string = newFileName.slice((newFileName.lastIndexOf(".") - 1 >>> 0) + 2);
+              if (extension) {
                 let fileParts = newFileName.split('.');
                 newFileName = fileParts[0] + fileCopy + '.' + fileParts[1];
               } else {
@@ -216,30 +215,44 @@ class FsManager {
             }
           })
         }
-        this.innerPasteFromDistributedDir(item,localDstUri+newFileName);
+        this.innerPasteFromDistributedDir(item, localDstUri + newFileName);
       })
     } else { //跨设备拷贝
-      let disFileUriArray: Array<string> = DataObject.distributedObject["disFileUriList"];
-      disFileUriArray.forEach( item  => {
+      let disFileUriArray: Array<string> = DataObject.distributedObject!["disFileUriList"];
+      disFileUriArray.forEach(item => {
         if (item.includes("file+")) {
           item = item.substring(5, item.length);
           let fileName: string | undefined = item.split('/').pop();
           let newFileName: string = '';
-          if(fileName)
-          {
+          if (fileName) {
             newFileName = fileName;
+            //判断是否有同名文件，有则重命名
+            fileData.forEach(file => {
+              //有同名文件
+              if (file.name.includes(newFileName)) {
+                //extension 文件后缀
+                let extension: string = newFileName.slice((newFileName.lastIndexOf(".") - 1 >>> 0) + 2);
+                if (extension) {
+                  let fileParts = newFileName.split('.');
+                  newFileName = fileParts[0] + fileCopy + '.' + fileParts[1];
+                } else {
+                  newFileName = newFileName + fileCopy;
+                }
+              }
+            })
           } else {
             return;
           }
-          this.innerPasteFromDistributedDir(item,localDstUri+newFileName);
+          this.innerPasteFromDistributedDir(item, localDstUri + newFileName);
         } else {
-          this.innerPasteFromDistributedDir(item,localDstUri);
+          this.innerPasteFromDistributedDir(item, localDstUri);
         }
       })
     }
   }
+
   //粘贴，弹进度条
-  innerPasteFromDistributedDir(from:string,to:string) {
+  innerPasteFromDistributedDir(from: string, to: string) {
     Logger.info(TAG, `innerPasteFromDistributedDir--from: ${from}`);
     Logger.info(TAG, `innerPasteFromDistributedDir--to: ${to}`);
     try {
@@ -252,7 +265,7 @@ class FsManager {
       let progressListener: fs.ProgressListener = (progress: fs.Progress) => {
         Logger.info(TAG, "progressSize: " + progress.processedSize + ", totalSize: " + progress.totalSize);
         //第一次进入回调
-        if(firstCopy === true) {
+        if (firstCopy === true) {
           Logger.info(TAG, "firstCopy");
           totalCopySize += progress.totalSize;
           copiedSize += progress.processedSize;
@@ -264,37 +277,37 @@ class FsManager {
           lastCopiedSize = progress.processedSize;
         }
 
-        totalProgress = Number(((copiedSize/totalCopySize)*100).toFixed(0));
-        AppStorage.SetOrCreate('progress',totalProgress);
+        totalProgress = Number(((copiedSize / totalCopySize) * 100).toFixed(0));
+        AppStorage.setOrCreate('progress', totalProgress);
         Logger.info(TAG, "totalCopySize: " + totalCopySize + ", copiedSize: " + copiedSize);
-        if(totalCopySize != copiedSize) {
+        if (totalCopySize != copiedSize) {
           isCopying = true;
-          AppStorage.SetOrCreate('isCopying',true);
+          AppStorage.setOrCreate('isCopying', true);
         } else {
           Logger.info(TAG, "totalCopySize == copiedSize,Successfully coppied");
           isCopying = false;
-          AppStorage.SetOrCreate('isCopying',false);
-          AppStorage.SetOrCreate('flashPage',!AppStorage.Get<string>('flashPage'));
+          AppStorage.setOrCreate('isCopying', false);
+          AppStorage.setOrCreate('flashPage',!AppStorage.get<string>('flashPage'));
           DataObject.clear();
           return prompt.showToast({ message: $r('app.string.label_dirupdate') });
         }
       };
       let options: fs.CopyOptions = {
-        "progressListener" : progressListener
-      }
+        "progressListener": progressListener
+      };
       // 进行拷贝
       fs.copy(from, to, options).then(() => {
         isCopying = false;
-        AppStorage.SetOrCreate('isCopying',false);
+        AppStorage.setOrCreate('isCopying', false);
         Logger.info(TAG, "Succeeded in copying. ");
       }).catch((err: BusinessError) => {
         isCopying = false;
-        AppStorage.SetOrCreate('isCopying',false);
+        AppStorage.setOrCreate('isCopying', false);
         Logger.info(TAG, `Failed to copy. Code: ${err.code}, message: ${err.message}`);
         DataObject.clear();
         return prompt.showToast({ message: $r('app.string.label_copyfailed') });
       })
-    } catch(err) {
+    } catch (err) {
       Logger.error(TAG, `Failed to getData. Code: ${err.code}, message: ${err.message}`);
     }
   }

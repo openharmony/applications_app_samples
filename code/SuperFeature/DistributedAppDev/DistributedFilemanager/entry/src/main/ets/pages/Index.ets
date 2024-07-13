@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023-2024 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,7 +15,6 @@
 
 import common from '@ohos.app.ability.common';
 import distributedObject from '@ohos.data.distributedDataObject';
-import DataObject from '../model/DataObject';
 import distributedDeviceManager from '@ohos.distributedDeviceManager';
 import FsManager from '../model/FsManager';
 import router from '@ohos.router';
@@ -52,7 +51,7 @@ export struct Index {
 
   // 路由返回后刷新页面
   onPageShow() {
-    AppStorage.SetOrCreate('flashPage', !AppStorage.Get<number>('flashPage'));
+    AppStorage.setOrCreate('flashPage', !AppStorage.get<number>('flashPage'));
   }
 
   aboutToAppear() {
@@ -77,10 +76,10 @@ export struct Index {
   }
 
   updateProgress(){
-    this.progress = AppStorage.Get<number>('progress') as number;
+    this.progress = AppStorage.get<number>('progress') as number;
   }
   updateCopyStatus(){
-    this.isCopying = AppStorage.Get<boolean>('isCopying') as boolean;
+    this.isCopying = AppStorage.get<boolean>('isCopying') as boolean;
   }
   // 每次退出选择状态就降临时数据清空
   clearTempData() {
@@ -149,9 +148,9 @@ export struct Index {
                 .height(18)
                 .margin({ left: 26 })
                 .onClick(() => {
-                  this.fileData = []
-                  AppStorage.SetOrCreate('flashPage',!AppStorage.Get<string>('flashPage'));
-                  router.back()
+                  this.fileData = [];
+                  AppStorage.setOrCreate('flashPage',!AppStorage.get<string>('flashPage'));
+                  router.back();
                 })
             }
             Text(this.directoryName)
