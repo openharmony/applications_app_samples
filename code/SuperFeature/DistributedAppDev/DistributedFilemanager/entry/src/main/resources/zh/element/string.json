@@ -5,10 +5,6 @@
       "value": "入口描述"
     },
     {
-      "name": "buttonPrompt",
-      "value": "Please select a media file"
-    },
-    {
       "name": "MainAbility_desc",
       "value": "描述"
     },
@@ -57,12 +53,16 @@
       "value": "应用需要文件写权限"
     },
     {
-      "name": "storage_reason",
-      "value": "应用需要获取空间使用状态权限"
+      "name": "service_dm_reason",
+      "value": "应用需要获取分布式设备的认证组网权限"
     },
     {
       "name": "file_access_reason",
       "value": "应用需要文件访问权限"
+    },
+    {
+      "name": "datasync_reason",
+      "value": "应用需要允许不同设备间数据交换权限"
     },
     {
       "name": "no_file",

@@ -57,12 +57,16 @@
       "value": "write_reason"
     },
     {
-      "name": "storage_reason",
-      "value": "storage_reason"
+      "name": "service_dm_reason",
+      "value": "Apply for permission to obtain authentication grouping privileges for distributed devices"
     },
     {
       "name": "file_access_reason",
-      "value": "file_access_reason"
+      "value": "Apply for permission to access files"
+    },
+    {
+      "name": "datasync_reason",
+      "value": "Access permission to exchange data between different devices"
     },
     {
       "name": "no_file",
