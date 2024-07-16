@@ -92,7 +92,7 @@
   <td x:str><a href="code/BasicFeature/Media/ImageShow">图片显示</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td x:str><a href="code/BasicFeature/Media/Recorder">录音机</a></td>
+  <td x:str><a href="code/BasicFeature/Media/ImageEffect">图片编辑</a></td>
   <td x:str><a href="code/BasicFeature/Media/QRCodeScan">二维码扫描</a></td>
   <td x:str><a href="code/BasicFeature/Media/VideoPlay">视频播放（API 12）</a></td>
   <td x:str><a href="code/BasicFeature/Media/AVSession/MediaProvider">媒体会话——提供方（API 10）</a></td>
@@ -106,7 +106,7 @@
  <tr height="18" style='height:13.50pt;'>
   <td x:str><a href="code/BasicFeature/Media/Camera">相机示例</a></td>
   <td x:str><a href="code/BasicFeature/Media/Camera_js">相机示例（JS）</a></td>
-  <td x:str><a href="code/BasicFeature/Media/ImageEffect">图片编辑</a></td>
+  <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
@@ -278,7 +278,7 @@
  <tr height="18" style='height:13.50pt;'>
   <td x:str><a href="code/SystemFeature/Media/AVSession/MediaController">媒体会话——控制方（API 10）</a></td>
   <td x:str><a href="code/SystemFeature/Media/VoiceCallDemo">音频通话示例（API 10）</a></td>
-  <td ></td>
+  <td x:str><a href="code/SystemFeature/Media/Recorder">录音机</a></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
