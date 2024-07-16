@@ -15,7 +15,7 @@ export default class FileTask extends StartupTask {
 
   createFile(filesDir: string) {
     let srcFile = fs.openSync(filesDir + '/test.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-    fs.writeSync(srcFile.fd, "test StartupTask_003 file write data");
+    fs.writeSync(srcFile.fd, 'test StartupTask_003 file write data');
     let destFile = fs.openSync(filesDir + '/destFile.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
     // 读取源文件内容并写入至目的文件
     let bufSize = 4096;
