@@ -858,6 +858,33 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/entry/src/main/resources/base/media/zip.png" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
 				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/entry/src/main/resources/base/media/icon.png" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
 				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/entry/src/main/resources/base/media/icon_delete.png" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/start.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/ic_pause.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/screenshots/device/record.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/rectangle.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/slider_time.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/delete.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/ic_about.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/play.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/screenshots/device/check.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/ic_play.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/bg_play.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/uncheck.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/delete_fill.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/finish.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/screenshots/device/slider.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/pause.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/bg_record.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/ic_rename.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/screenshots/device/main.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/close.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/back.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/screenshots/device/play.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/check.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+
 			</filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加License头"/>
