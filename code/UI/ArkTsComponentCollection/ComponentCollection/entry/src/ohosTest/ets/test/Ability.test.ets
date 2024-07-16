@@ -1362,19 +1362,24 @@ export default function abilityTest() {
         await scroll.scrollToBottom();
         await driver.delayMs(DELAY_TIME_FiVE);
 
-        // 用坐标点击选择菜单
-        await driver.longClick(80, 960);
+        //获取组件
+        let selectMenu = await driver.findComponent(ON.id('text_hint'));
+        await selectMenu.longClick();
         // 点击获取
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.text_get')));
         await driver.assertComponentExist(ON.text('Hint'));
         // 点击复制
-        await driver.longClick(80, 960);
+        await selectMenu.longClick();
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.text_copy')));
         await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.copy_success'))));
         // 点击粘贴
-        await driver.longClick(80, 960);
+        await selectMenu.longClick();
         await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.text_paste')));
         await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.paste_success'))));
+
+        // 文本自定义菜单
+        let customMenu = await driver.findComponent(ON.id('text_input_custom_menu'));
+        await customMenu.longClick();
 
         // 文本删除
         await driver.assertComponentExist(ON.id('text_delete'));
@@ -1383,10 +1388,11 @@ export default function abilityTest() {
         await driver.pressBack();
         await driver.delayMs(DELAY_TIME_FiVE);
         // 点击 清除 的坐标
-        await driver.click(640, 1126)
+        await driver.click(640, 1126);
         await driver.delayMs(DELAY_TIME);
 
         // 返回
+        await driver.pressBack();
         await checkButtonAndClickWithID('backBtn');
         await driver.delayMs(DELAY_TIME_FiVE);
 
@@ -1434,8 +1440,19 @@ export default function abilityTest() {
         await clickSelectIDAndSelectText('select3', await manager.getStringValue($r('app.string.text_decoration_type_under_line')));
         // 选择字体颜色 Pink
         await clickSelectIDAndSelectText('select4', 'Pink');
+
+        // 滑动scroll到最底部
+        await driver.assertComponentExist(ON.id('text_scroll'));
+        let scroll = await driver.findComponent(ON.id('text_scroll'));
+        await scroll.scrollToBottom();
+        await driver.delayMs(DELAY_TIME_FiVE);
+
         // 选择大小写 大写
         await clickSelectIDAndSelectText('select5', await manager.getStringValue($r('app.string.text_text_case_uppercase')));
+
+        // 文本自定义菜单
+        let customMenu = await driver.findComponent(ON.id('text_custom_menu'));
+        await customMenu.longClick();
 
         // 返回
         await checkButtonAndClickWithID('backBtn');
@@ -2696,13 +2713,15 @@ export default function abilityTest() {
         let on = ON.text(await manager.getStringValue($r('app.string.text_and_input')));
         await list.scrollSearch(on);
         let atom = await manager.getStringValue($r('app.string.textarea_title'));
+        await driver.drag(200, 400, 200, 100, 800);
         let button = await driver.findComponent(ON.text(atom));
         await driver.delayMs(DELAY_TIME);
         if (!button) {
           // 如果没展开 就展开
           await checkButtonAndClickWithText(await manager.getStringValue($r('app.string.text_and_input')));
+          // await list.scrollSearch(ON.text(atom))
           if (!await driver.findComponent(ON.text(atom))) {
-            await driver.drag(200, 200, 200, 100, 800);
+            await driver.drag(200, 400, 200, 100, 800);
           }
         }
         await checkButtonAndClickWithText(atom);
@@ -2711,13 +2730,13 @@ export default function abilityTest() {
         let input = await driver.findComponent(ON.id('textarea_001'));
         await input.inputText('test');
         await checkButtonAndClickWithID('textarea_select_001');
-        await checkButtonAndClickWithText('End')
+        await checkButtonAndClickWithText('End');
         await checkButtonAndClickWithID('textarea_select_002');
-        await checkButtonAndClickWithText('In App')
+        await checkButtonAndClickWithText('In App');
         await checkButtonAndClickWithID('textarea_color_001');
-        await checkButtonAndClickWithText('Pink')
+        await checkButtonAndClickWithText('Pink');
         await checkButtonAndClickWithID('textarea_color_002');
-        await checkButtonAndClickWithText('Blue')
+        await checkButtonAndClickWithText('Blue');
         await driver.delayMs(DELAY_TIME);
 
         // 限制字数
@@ -2727,8 +2746,18 @@ export default function abilityTest() {
         // 测试输入一百个字符
         await input.inputText(await manager.getStringValue($r('app.string.text_input_limit')));
         await driver.delayMs(DELAY_TIME);
+        await driver.pressBack();
+        await driver.delayMs(DELAY_TIME_FiVE);
+
+        // 文本自定义菜单
+        let customMenu = await driver.findComponent(ON.id('text_area_custom_menu'));
+        await customMenu.click();
+        await customMenu.longClick();
 
         // 返回
+        await driver.pressBack();
+        await driver.delayMs(DELAY_TIME_FiVE);
+        await driver.pressBack();
         await checkButtonAndClickWithID('backBtn');
         await driver.delayMs(DELAY_TIME_FiVE);
 
@@ -2783,13 +2812,24 @@ export default function abilityTest() {
         await checkButtonAndClickWithID('search_select_001');
         await checkButtonAndClickWithText('End');
         await checkButtonAndClickWithID('search_select_002');
-        await checkButtonAndClickWithText('In App')
+        await checkButtonAndClickWithText('In App');
         await checkButtonAndClickWithID('search_color_001');
-        await checkButtonAndClickWithText('Pink')
+        await checkButtonAndClickWithText('Pink');
         let input = await driver.findComponent(ON.id('search_001'));
         await input.inputText('test');
+        await driver.pressBack();
         await driver.delayMs(DELAY_TIME);
+
+        // 文本自定义菜单
+        let customMenu = await driver.findComponent(ON.id('search_custom_menu'));
+        await customMenu.click();
+        await driver.delayMs(DELAY_TIME_FiVE);
+        await customMenu.longClick();
+
         // 返回
+        await driver.pressBack();
+        await driver.delayMs(DELAY_TIME_FiVE);
+        await driver.pressBack();
         await checkButtonAndClickWithID('backBtn');
         await driver.delayMs(DELAY_TIME_FiVE);
         await driver.drag(200, 100, 200, 800, 800);

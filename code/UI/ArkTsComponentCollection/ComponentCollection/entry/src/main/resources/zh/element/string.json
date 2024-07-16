@@ -4780,6 +4780,10 @@
       "value": "文本选择菜单"
     },
     {
+      "name": "text_custom_menu",
+      "value": "文本自定义菜单"
+    },
+    {
       "name": "text_input_text_copy",
       "value": "复制"
     },
