@@ -90,7 +90,7 @@ struct Index {
 
   build() {
     Column() {
-      Button('手动模式')
+      Button($r('app.string.Manual_mode'))
         .size({ width: 100, height: 100 })
         .onClick(() => {
           if (!startupManager.isStartupTaskInitialized('ImageKnifeTask')) {

@@ -11,6 +11,10 @@
     {
       "name": "EntryAbility_label",
       "value": "label"
+    },
+    {
+      "name": "Manual_mode",
+      "value": "手动模式"
     }
   ]
 }
