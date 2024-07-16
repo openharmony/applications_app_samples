@@ -14,10 +14,10 @@
 */
 
 import { audio } from '@kit.AudioKit';
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
-import resourceManager from '@ohos.resourceManager';
-import common from '@ohos.app.ability.common';
+import { fileIo } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { resourceManager } from '@kit.LocalizationKit';
+import { common } from '@kit.AbilityKit';
 import { avSession, AVCastPicker } from '@kit.AVSessionKit';
 
 class Options {
@@ -34,20 +34,22 @@ struct DefaultPicker {
   private audioRenderer: audio.AudioRenderer | undefined = undefined;
   private audioSource = 'test1.wav';
   private fileDescriptor?: resourceManager.RawFileDescriptor | undefined = undefined;
+  private audioManager: audio.AudioManager | undefined = undefined;
+  private audioRoutingManager: audio.AudioRoutingManager | undefined = undefined;
   private audioRendererInfo: audio.AudioRendererInfo = {
     usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
     rendererFlags: 0
-  }
+  };
   private audioStreamInfo: audio.AudioStreamInfo = {
     samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率
     channels: audio.AudioChannel.CHANNEL_2, // 通道
     sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式
     encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式
-  }
+  };
   private  audioRendererOption: audio.AudioRendererOptions = {
     streamInfo: this.audioStreamInfo,
     rendererInfo: this.audioRendererInfo
-  }
+  };
 
   async aboutToAppear() {
     console.log('about to appear');
@@ -63,9 +65,16 @@ struct DefaultPicker {
   }
 
   async observerDevices() {
-    let audioManager = audio.getAudioManager();
-    let audioRoutingManager = audioManager.getRoutingManager();
-    audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', this.audioRendererInfo, (desc: audio.AudioDeviceDescriptors) => {
+    this.audioManager = audio.getAudioManager();
+    if (!this.audioManager) {
+      console.error('get audioManager failed');
+      return;
+    }
+    this.audioRoutingManager = this.audioManager.getRoutingManager();
+    if(!this.audioRoutingManager) {
+      return;
+    }
+    this.audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', this.audioRendererInfo, (desc: audio.AudioDeviceDescriptors) => {
       console.log(`device change to: ${desc[0].deviceType}`);
     });
   }
@@ -74,6 +83,7 @@ struct DefaultPicker {
     let fileDescriptor: resourceManager.RawFileDescriptor | undefined = undefined;
     if (this.appContext) {
       let mgr = this.appContext.resourceManager;
+      this.fileDescriptor = mgr.getRawFdSync(fileName);
       await mgr.getRawFd(fileName).then(value => {
         fileDescriptor = value;
         console.log('case getRawFileDescriptor success fileName: ' + fileName);
@@ -91,53 +101,27 @@ struct DefaultPicker {
     this.getStageFileDescriptor(this.audioSource).then((res) => {
       this.fileDescriptor = res;
     });
+    if (!this.fileDescriptor) {
+      return;
+    }
+    let file: resourceManager.RawFileDescriptor = this.fileDescriptor;
     try {
       this.audioRenderer = await audio.createAudioRenderer(this.audioRendererOption);
     } catch (error) {
       console.error(`audioRenderer create : Error: ${JSON.stringify(error)}`);
       return;
     }
-    let bufferSize : number;
-    try {
-      bufferSize = await this.audioRenderer.getBufferSize();
-      await this.audioRenderer.start();
-    } catch (err) {
-      let error = err as BusinessError;
-      console.error(`audioRenderer start : Error: ${JSON.stringify(error)}`);
-      return;
-    }
-
-    try {
-      if (!this.fileDescriptor) {
-        return;
+    let bufferSize: number = this.fileDescriptor.offset;
+    let writeDataCallback = (buffer: ArrayBuffer) => {
+      let options: Options = {
+        offset: bufferSize,
+        length: buffer.byteLength
       }
-      let startOffset = this.fileDescriptor.offset;
-      let cur = startOffset;
-      let buf = new ArrayBuffer(bufferSize);
-      while (true) {
-        // when render released,state is changed to STATE_RELEASED
-        if (this.audioRenderer.state === audio.AudioState.STATE_RELEASED) {
-          break;
-        }
-        while (cur <= startOffset + this.fileDescriptor.length) {
-          // when render released,state is changed to STATE_RELEASED
-          if (this.audioRenderer.state.valueOf() === audio.AudioState.STATE_RELEASED.valueOf()) {
-            break;
-          }
-          let options: Options = {
-            offset: cur,
-            length: bufferSize
-          }
-          await fs.read(this.fileDescriptor.fd, buf, options);
-          await this.audioRenderer.write(buf);
-          cur += bufferSize;
-        }
-        cur = startOffset;
-      }
-    } catch (err) {
-      let error = err as BusinessError;
-      console.error(`audioRenderer write : Error: ${JSON.stringify(error)}`);
-    }
+      fileIo.readSync(file.fd, buffer, options);
+      bufferSize += buffer.byteLength;
+    };
+    this.audioRenderer.on('writeData', writeDataCallback);
+    await this.audioRenderer.start();
   }
 
   async stopRenderer(): Promise<void> {
@@ -164,28 +148,35 @@ struct DefaultPicker {
 
   onBackPress(): void {
     this.stopRenderer();
-    this.appContext ==undefined;
+    this.destroy();
   }
 
   async onPageHide(): Promise<void> {
     this.stopRenderer();
-    this.appContext ==undefined;
+    this.destroy();
   }
 
   onPageShow(): void {
     this.init();
   }
-  
-  aboutToDisappear() {
-    console.log('about to disappear');
+
+  destroy(): void {
     this.appContext = undefined;
+    if (this.audioRoutingManager !== undefined) {
+      this.audioRoutingManager.off('preferOutputDeviceChangeForRendererInfo');
+    }
     try {
       if (this.session) {
         this.session?.destroy();
       }
-    } catch (error) {
-      console.log('case closeRawFd err: ' + error);
+    } catch (err) {
+      console.error('session destroy failed');
     }
+  }
+  
+  aboutToDisappear() {
+    console.log('about to disappear');
+    this.destroy();
   }
 
   build() {

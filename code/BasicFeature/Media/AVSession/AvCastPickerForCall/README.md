@@ -75,7 +75,7 @@ entry/src/main/ets/
     ```ets
     import { avSession } from '@kit.AVSessionKit';
 
-    init（）{
+    init() {
       //...
       this.session = await avSession.createAVSession(this.appContext, 'voiptest', 'voice_call');
     }
@@ -153,9 +153,9 @@ entry/src/main/ets/
     import { avSession } from '@kit.AVSessionKit';
     import { audio } from '@kit.AudioKit';
 
-    init（）{
-      this.observerDevices()；
+    init(){
       this.session = await avSession.createAVSession(this.appContext, 'voiptest', 'voice_call');
+      this.observerDevices();
     }
 
     async observerDevices() {
