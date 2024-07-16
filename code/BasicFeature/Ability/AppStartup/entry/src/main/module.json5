@@ -1,0 +1,90 @@
+{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    "description": "$string:module_desc",
+    "mainElement": "EntryAbility",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "appStartup": "$profile:startup_config",
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        "srcEntry": "./ets/entryability/EntryAbility.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "StartupConfig",
+        "srcEntry": "./ets/startup/StartupConfig.ets",
+        "description": "StartupConfig",
+        "type": "embeddedUI",
+        "label": "$string:EntryAbility_label",
+        "exported": true
+      },
+      {
+        "name": "ImageKnifeTask",
+        "srcEntry": "./ets/startup/ImageKnifeTask.ets",
+        "description": "ImageKnifeTask",
+        "type": "embeddedUI",
+        "exported": true
+      },
+      {
+        "name": "ResourceManagerTask",
+        "srcEntry": "./ets/startup/ResourceManagerTask.ets",
+        "description": "ResourceManagerTask",
+        "type": "embeddedUI",
+        "exported": true
+      },
+      {
+        "name": "FileTask",
+        "srcEntry": "./ets/startup/FileTask.ets",
+        "description": "FileTask",
+        "type": "embeddedUI",
+        "exported": true
+      },
+      {
+        "name": "KVStoreTask",
+        "srcEntry": "./ets/startup/KVStoreTask.ets",
+        "description": "KVStoreTask",
+        "type": "embeddedUI",
+        "exported": true
+      },
+      {
+        "name": "RdbStoreTask",
+        "srcEntry": "./ets/startup/RdbStoreTask.ets",
+        "description": "RdbStoreTask",
+        "type": "embeddedUI",
+        "exported": true
+      },
+      {
+        "name": "KvManagerUtilTask",
+        "srcEntry": "./ets/startup/KvManagerUtilTask.ets",
+        "description": "KvManagerUtilTask",
+        "type": "embeddedUI",
+        "exported": true
+      }
+    ]
+  }
+}

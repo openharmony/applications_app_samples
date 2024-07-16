@@ -1,0 +1,50 @@
+{
+  "startupTasks": [
+    {
+      "name": "ImageKnifeTask",
+      "srcEntry": "./ets/startup/ImageKnifeTask.ets",
+      "runOnThread": "mainThread",
+      "waitOnMainThread": true,
+      "excludeFromAutoStart": true
+    },
+    {
+      "name": "ResourceManagerTask",
+      "srcEntry": "./ets/startup/ResourceManagerTask.ets",
+      "runOnThread": "mainThread",
+      "waitOnMainThread": false,
+      "excludeFromAutoStart": false
+    },
+    {
+      "name": "FileTask",
+      "srcEntry": "./ets/startup/FileTask.ets",
+      "runOnThread": "taskPool",
+      "waitOnMainThread": false,
+      "excludeFromAutoStart": false
+    },
+    {
+      "name": "KVStoreTask",
+      "srcEntry": "./ets/startup/KVStoreTask.ets",
+      "dependencies": [
+        "KvManagerUtilTask"
+      ],
+      "runOnThread": "mainThread",
+      "waitOnMainThread": true,
+      "excludeFromAutoStart": false
+    },
+    {
+      "name": "RdbStoreTask",
+      "srcEntry": "./ets/startup/RdbStoreTask.ets",
+      "runOnThread": "mainThread",
+      "waitOnMainThread": true,
+      "excludeFromAutoStart": false
+    },
+    {
+      "name": "KvManagerUtilTask",
+      "srcEntry": "./ets/startup/KvManagerUtilTask.ets",
+      "runOnThread": "mainThread",
+      "waitOnMainThread": false,
+      "excludeFromAutoStart": false
+    }
+  ],
+  "configEntry": "./ets/startup/StartupConfig.ets"
+}

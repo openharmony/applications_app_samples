@@ -52,7 +52,7 @@
   <td height="270" align="center" rowspan="28" style='height:202.50pt' x:str><strong>基础特性</strong></td>
   <td x:str><strong>能力增强</strong></td>
   <td x:str><a href="code/BasicFeature/Ability/AbilityFeature">基础能力增强</a></td>
-  <td ></td>
+  <td x:str><a href="code/BasicFeature/Ability/AppStartup">应用启动框架startup</a></td>
   <td ></td>
   <td ></td>
  </tr>

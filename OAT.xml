@@ -858,6 +858,16 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/entry/src/main/resources/base/media/zip.png" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
 				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/entry/src/main/resources/base/media/icon.png" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
 				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/entry/src/main/resources/base/media/icon_delete.png" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
+				<filteritem type="filepath" name="code/BasicFeature/Ability/AppStartup/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/BasicFeature/Ability/AppStartup"/>
+				<filteritem type="filepath" name="code/BasicFeature/Ability/AppStartup/entry/src/ohosTest/resources/base/media/startIcon.png" desc="Provided by code/BasicFeature/Ability/AppStartup"/>
+				<filteritem type="filepath" name="code/BasicFeature/Ability/AppStartup/entry/src/ohosTest/resources/base/media/background.png" desc="Provided by code/BasicFeature/Ability/AppStartup"/>
+				<filteritem type="filepath" name="code/BasicFeature/Ability/AppStartup/screenshots/ImageKnife.png" desc="Provided by code/BasicFeature/Ability/AppStartup"/>
+				<filteritem type="filepath" name="code/BasicFeature/Ability/AppStartup/screenshots/index.png" desc="Provided by code/BasicFeature/Ability/AppStartup"/>
+				<filteritem type="filepath" name="code/BasicFeature/Ability/AppStartup/AppScope/resources/base/media/app_icon.png" desc="Provided by code/BasicFeature/Ability/AppStartup"/>
+				<filteritem type="filepath" name="code/BasicFeature/Ability/AppStartup/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/BasicFeature/Ability/AppStartup"/>
+				<filteritem type="filepath" name="code/BasicFeature/Ability/AppStartup/dependencies/hvigor-ohos-arkui-x-plugin-3.3.0.tgz" desc="Provided by code/BasicFeature/Ability/AppStartup"/>
+				<filteritem type="filepath" name="code/BasicFeature/Ability/AppStartup/dependencies/hvigor-ohos-plugin-4.3.0.tgz" desc="Provided by code/BasicFeature/Ability/AppStartup"/>
+				<filteritem type="filepath" name="code/BasicFeature/Ability/AppStartup/dependencies/hvigor-4.3.0.tgz" desc="Provided by code/BasicFeature/Ability/AppStartup"/>
 			</filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加License头"/>
