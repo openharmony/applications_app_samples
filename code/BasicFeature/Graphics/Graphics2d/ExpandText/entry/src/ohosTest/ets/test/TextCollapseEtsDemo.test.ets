@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import { Driver, ON } from '@ohos.UiTest';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-const LOG_TAG: string  = '[Sample_Graphics2D]'
-const DOMAIN = 0xF811
-const BUNDLE = 'Graphics2d'
+const LOG_TAG: string  = '[Sample_Graphics2D]';
+const DOMAIN = 0xF811;
+const BUNDLE = 'Graphics2d';
 
 export default function TextCollapseEtsDemoTest() {
   describe('TextCollapseEtsDemoTest', () => {

@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import TextCollapseEtsDemoTest from './TextCollapseEtsDemo.test'
+import TextCollapseEtsDemoTest from './TextCollapseEtsDemo.test';
 
 export default function testsuite() {
-  TextCollapseEtsDemoTest()
+  TextCollapseEtsDemoTest();
 }
