@@ -177,6 +177,11 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/SystemFeature/FileManagement/MediaCollections/entry/src/main/resources/base/media/key_blue.png" desc="Provided by code/SystemFeature/FileManagement/FileManager/MediaCollections"/>
 				<filteritem type="filepath" name="code/SystemFeature/FileManagement/MediaCollections/entry/src/main/resources/base/media/delete.png" desc="Provided by code/SystemFeature/FileManagement/FileManager/MediaCollections"/>
 				<filteritem type="filepath" name="code/SystemFeature/FileManagement/MediaCollections/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/FileManagement/FileManager/MediaCollections"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/GamePuzzle/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/Media/GamePuzzle"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/GamePuzzle/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/Media/GamePuzzle"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/GamePuzzle/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/Media/GamePuzzle"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/GamePuzzle/screenshot/devices/change.jpeg" desc="Provided by code/SystemFeature/Media/GamePuzzle"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/GamePuzzle/screenshot/devices/running.jpeg" desc="Provided by code/SystemFeature/Media/GamePuzzle"/>
 				<filteritem type="filepath" name="code/BasicFeature/Connectivity/VPN/lib/VPNFoundation-1.0.0.tgz" desc="Provided by code/BasicFeature/Connectivity/VPN"/>
                 <filteritem type="filepath" name="code/UI/ArkTsComponentCollection/ComponentCollection/lib/DragEvent-1.0.0.tgz" desc="Provided by code/UI/ArkTsComponentCollection/ComponentCollection"/>
                 <filteritem type="filepath" name="code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary/lib/ProcessMessage-1.0.0.tgz" desc="Provided by code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary"/>
