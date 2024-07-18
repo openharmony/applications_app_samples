@@ -103,7 +103,13 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="network/Bluetooth/entry/src/main/java/ohos/samples/bluetooth/adapter/" desc="Not contains 3rd code，license file is not required in this subdirectory."/>
             </filefilter>
             <filefilter name="binaryFileTypePolicyFilter" desc="Filters for binary file policies" >
-                <filteritem type="filepath" name="code/BasicFeature/Security/Asset/AppScope/resources/base/media/app_icon.png" desc="Provided by the UX team."/>
+                <filteritem type="filepath" name="code/BasicFeature/Native/XComponent/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by the UX team."/>
+                <filteritem type="filepath" name="code/BasicFeature/Native/XComponent/screenshots/device/changeColor.png" desc="Provided by code/BasicFeature/Native/XComponent."/>
+                <filteritem type="filepath" name="code/BasicFeature/Native/XComponent/screenshots/device/drawStar.png" desc="Provided by code/BasicFeature/Native/XComponent."/>
+                <filteritem type="filepath" name="code/BasicFeature/Native/XComponent/screenshots/device/main.png" desc="Provided by code/BasicFeature/Native/XComponent."/>
+                <filteritem type="filepath" name="code/BasicFeature/Native/XComponent/AppScope/resources/base/media/app_icon.png" desc="Provided by the UX team."/>
+                <filteritem type="filepath" name="code/BasicFeature/Native/XComponent/entry/src/main/resources/base/media/icon.png" desc="Provided by the UX team."/>
+			    <filteritem type="filepath" name="code/BasicFeature/Security/Asset/AppScope/resources/base/media/app_icon.png" desc="Provided by the UX team."/>
                 <filteritem type="filepath" name="code/BasicFeature/Security/Asset/AppScope/resources/base/media/forward.png" desc="Provided by the UX team."/>
 		        <filteritem type="filepath" name="code/BasicFeature/Security/Asset/AppScope/resources/base/media/back.png" desc="Provided by the UX team."/>
                 <filteritem type="filepath" name="code/BasicFeature/Security/Asset/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by the UX team."/>
@@ -870,6 +876,33 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/BasicFeature/Ability/AppStartup/dependencies/hvigor-ohos-arkui-x-plugin-3.3.0.tgz" desc="Provided by code/BasicFeature/Ability/AppStartup"/>
 				<filteritem type="filepath" name="code/BasicFeature/Ability/AppStartup/dependencies/hvigor-ohos-plugin-4.3.0.tgz" desc="Provided by code/BasicFeature/Ability/AppStartup"/>
 				<filteritem type="filepath" name="code/BasicFeature/Ability/AppStartup/dependencies/hvigor-4.3.0.tgz" desc="Provided by code/BasicFeature/Ability/AppStartup"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/start.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/ic_pause.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/screenshots/device/record.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/rectangle.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/slider_time.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/delete.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/ic_about.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/play.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/screenshots/device/check.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/ic_play.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/bg_play.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/uncheck.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/delete_fill.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/finish.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/screenshots/device/slider.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/pause.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/bg_record.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/ic_rename.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/screenshots/device/main.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/close.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/back.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/screenshots/device/play.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/check.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+
 			</filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加License头"/>
