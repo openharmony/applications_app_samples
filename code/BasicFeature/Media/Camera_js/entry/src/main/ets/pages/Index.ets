@@ -29,6 +29,8 @@ import DisplayCalculator from '../common/DisplayCalculator';
 import image from '@ohos.multimedia.image';
 import { CameraConfig } from '../common/CameraConfig';
 import { GlobalContext } from '../common/GlobalContext';
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import common from '@ohos.app.ability.common';
 
 const TAG: string = 'indexPage';
 
@@ -91,11 +93,34 @@ struct Index {
   @State referenceLineBol: boolean = false;
   @StorageLink('defaultAspectRatio') @Watch('initXComponentSize') defaultAspectRatio: number = Constants.MIN_ASPECT_RATIO;
   // 主页面是否显示
-  @StorageLink('isShow') isShow: boolean = false;
+  @State isShow: boolean = false;
   // 是否支持变焦
   @StorageLink('isSupportZoom') isSupportZoom: boolean = false;
 
-  aboutToAppear(): void {
+  private atManager = abilityAccessCtrl.createAtManager();
+  private appContext: common.Context = getContext(this);
+  /**
+   * 获取权限
+   */
+  async requestPermissionsFn() {
+    Logger.info(TAG, `requestPermissionsFn entry`);
+    try {
+      this.atManager.requestPermissionsFromUser(this.appContext, [
+        'ohos.permission.CAMERA',
+        'ohos.permission.MICROPHONE',
+        'ohos.permission.READ_IMAGEVIDEO',
+        'ohos.permission.WRITE_IMAGEVIDEO'
+      ]).then(() => {
+        Logger.info(TAG, `request Permissions success!`);
+        this.isShow = true;
+      })
+    } catch (err) {
+      Logger.info(TAG, `requestPermissionsFromUser call Failed! error: ${err.code}`);
+    }
+  }
+
+  async aboutToAppear() {
+    await this.requestPermissionsFn();
     let mDisplay = display.getDefaultDisplaySync();
     this.screenWidth = px2vp(mDisplay.width);
     this.screenHeight = px2vp(mDisplay.height);

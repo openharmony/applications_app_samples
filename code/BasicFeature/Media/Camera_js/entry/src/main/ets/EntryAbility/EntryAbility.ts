@@ -15,10 +15,8 @@
 
 import type window from '@ohos.window';
 import deviceInfo from '@ohos.deviceInfo';
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 import type Want from '@ohos.app.ability.Want';
 import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import { BusinessError } from '@ohos.base';
 import Logger from '../model/Logger';
 import { Constants } from '../common/Constants';
 import UIAbility from '@ohos.app.ability.UIAbility';
@@ -46,7 +44,6 @@ export default class EntryAbility extends UIAbility {
     windowStage.loadContent('pages/Index', (): void => {
       Logger.info(TAG, 'Succeeded in loading the content.');
     });
-    this.requestPermissionsFn();
     AppStorage.setOrCreate<string>('deviceType', deviceInfo.deviceType);
     windowStage.getMainWindow().then((win: window.Window): void => {
       GlobalContext.get().setPromptAction(win.getUIContext().getPromptAction());
@@ -63,26 +60,6 @@ export default class EntryAbility extends UIAbility {
           .then((): void => {
           });
       }
-    });
-  }
-
-  /**
-   * 获取权限
-   */
-  requestPermissionsFn(): void {
-    let atManager = abilityAccessCtrl.createAtManager();
-    atManager.requestPermissionsFromUser(this.context, [
-      'ohos.permission.CAMERA',
-      'ohos.permission.MICROPHONE',
-      'ohos.permission.READ_MEDIA',
-      'ohos.permission.WRITE_MEDIA',
-      'ohos.permission.WRITE_IMAGEVIDEO',
-      'ohos.permission.READ_IMAGEVIDEO'
-    ]).then((): void => {
-      AppStorage.setOrCreate<boolean>('isShow', true);
-      Logger.info(TAG, 'request Permissions success!');
-    }).catch((error: BusinessError): void => {
-      Logger.info(TAG, `requestPermissionsFromUser call Failed! error: ${error.code}`);
     });
   }
 }
