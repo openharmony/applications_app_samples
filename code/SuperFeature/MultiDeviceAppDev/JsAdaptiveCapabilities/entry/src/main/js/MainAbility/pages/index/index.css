@@ -25,6 +25,7 @@
 .headline {
   font-size: 24vp;
   height: 100vp;
+  line-height: 100vp;
   font-weight: bold;
 }
 
