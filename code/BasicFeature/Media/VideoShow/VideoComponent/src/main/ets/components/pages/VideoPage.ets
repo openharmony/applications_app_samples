@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -54,15 +54,18 @@ export struct VideoPage {
                 this.isStart = true
                 this.firstClick = !this.firstClick
               } else {
-                router.push({ url: 'pages/FullPage', params: { videoSrc: this.videoSrc, videoTime: this.updateTime } })
+                router.pushUrl({ url: 'pages/FullPage', params: { videoSrc: this.videoSrc,
+                  videoTime: this.updateTime } });
               }
             } else {
-              router.push({ url: 'pages/FullPage', params: { videoSrc: this.videoSrc, videoTime: this.updateTime } })
+              router.pushUrl({ url: 'pages/FullPage', params: { videoSrc: this.videoSrc,
+                videoTime: this.updateTime } });
             }
           })
           .onFinish(() => {
-            this.isHidden = true
-            this.isStart = false
+            this.isHidden = true;
+            this.isStart = false;
+            this.updateTime = 0;
           })
 
         // 空白层预览
