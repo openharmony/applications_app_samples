@@ -18,6 +18,7 @@ import ShowToast from '../../../../util/ShowToast';
 import { TitleBar } from '../../../../common/TitleBar';
 import { LEFT_PADDING, RIGHT_PADDING } from '../../ComponentData';
 import { textAreaControlPanel } from './ChangePanel';
+import Logger from '../../../../util/Logger';
 
 @Extend(Column) function cardStyle() {
   .borderRadius(16)
@@ -35,7 +36,33 @@ struct TextAreaSample {
   @State caretColor: Color = Color.Blue;
   @State copyOptions: CopyOptions = CopyOptions.None;
   @State isLimit: boolean = false;
+  @State customTextStr: string = 'TextArea Custom Menu TextArea Custom Menu TextArea Custom Menu';
   controller: TextAreaController = new TextAreaController();
+
+  onCreateMenu(menuItems: Array<TextMenuItem>) {
+    menuItems.forEach((value, index) => {
+      value.icon = $r('app.media.icon');
+      if (value.id.equals(TextMenuItemId.COPY)) {
+        value.content = 'copy change';
+      }
+      if (value.id.equals(TextMenuItemId.SELECT_ALL)) {
+        value.content = 'select_all change';
+      }
+    });
+    let item1: TextMenuItem = {
+      content: 'custom1',
+      icon: $r('app.media.icon'),
+      id: TextMenuItemId.of('custom1'),
+    };
+    let item2: TextMenuItem = {
+      content: 'custom2',
+      id: TextMenuItemId.of('custom2'),
+      icon: $r('app.media.icon'),
+    };
+    menuItems.push(item1);
+    menuItems.unshift(item2);
+    return menuItems;
+  }
 
   build() {
     Column() {
@@ -63,16 +90,16 @@ struct TextAreaSample {
             .maxLength(this.isLimit ? 100 : undefined)
             .showCounter(this.isLimit, { thresholdPercentage: 1, highlightBorder: true })
             .onChange(() => {
-              ShowToast.shortToast('The input have changed.')
+              ShowToast.shortToast('The input have changed.');
             })
             .onCopy(() => {
-              ShowToast.shortToast('copy')
+              ShowToast.shortToast('copy');
             })
             .onCut(() => {
-              ShowToast.shortToast('cut')
+              ShowToast.shortToast('cut');
             })
             .onPaste(() => {
-              ShowToast.shortToast('paste')
+              ShowToast.shortToast('paste');
             })
           IntroductionTitle({ introduction: $r('app.string.textarea_control') })
           Column() {
@@ -99,6 +126,34 @@ struct TextAreaSample {
           .backgroundColor(Color.White)
           .padding({ left: 12, right: 18 })
           .margin({ left: 12, right: 12, top: 12 })
+
+          // 文本自定义菜单
+          IntroductionTitle({ introduction: $r('app.string.text_custom_menu') })
+          TextArea({ text: this.customTextStr, controller: this.controller })
+            .id('text_area_custom_menu')
+            .copyOption(CopyOptions.LocalDevice)
+            .borderRadius(16)
+            .width('100%')
+            .height(80)
+            .fontSize(20)
+            .backgroundColor($r('app.color.white'))
+            .editMenuOptions({
+              onCreateMenu: this.onCreateMenu, onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
+                if (menuItem.id.equals(TextMenuItemId.of('custom2'))) {
+                  Logger.info(`intercept id: custom2 start: ${textRange.start}, end: ${textRange.end}`);
+                  return true;
+                }
+                if (menuItem.id.equals(TextMenuItemId.COPY)) {
+                  Logger.info(`intercept COPY start: ${textRange.start}, end: ${textRange.end}`);
+                  return true;
+                }
+                if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
+                  Logger.info(`non-intercept SELECT_ALL start: ${textRange.start}, end: ${textRange.end}`);
+                  return false;
+                }
+                return false;
+              }
+            })
         }
         .width('100%')
       }

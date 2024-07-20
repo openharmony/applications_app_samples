@@ -5740,6 +5740,10 @@
       "value": "Text Selection Menu"
     },
     {
+      "name": "text_custom_menu",
+      "value": "Text Custom Menu"
+    },
+    {
       "name": "text_input_text_copy",
       "value": "Copy"
     },

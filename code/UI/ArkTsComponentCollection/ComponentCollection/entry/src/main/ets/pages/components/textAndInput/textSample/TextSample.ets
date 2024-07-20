@@ -16,6 +16,8 @@
 import measure from '@ohos.measure';
 import { ChangeTextCase, ChangeTextAttribute } from './ChangePanel';
 import { TitleBar } from '../../../../common/TitleBar';
+import { IntroductionTitle } from '../../../../common/IntroductionTitle';
+import Logger from '../../../../util/Logger';
 
 @Extend(Column)
 function backgroundStyle() {
@@ -39,9 +41,35 @@ struct TextSample {
   @State textOverFlow: TextOverflow = TextOverflow.None;
   @State styleForDecorative: TextDecorationType = TextDecorationType.None;
   @State textContent: Resource = $r('app.string.text_content');
+  @State customTextStr: string = 'Text Custom Menu';
   textSize: SizeOptions = measure.measureTextSize({
     textContent: $r('app.string.text_content'),
   });
+
+  onCreateMenu(menuItems: Array<TextMenuItem>) {
+    menuItems.forEach((value, index) => {
+      value.icon = $r('app.media.icon');
+      if (value.id.equals(TextMenuItemId.COPY)) {
+        value.content = 'copy change';
+      }
+      if (value.id.equals(TextMenuItemId.SELECT_ALL)) {
+        value.content = 'select_all change';
+      }
+    });
+    let item1: TextMenuItem = {
+      content: 'custom1',
+      icon: $r('app.media.icon'),
+      id: TextMenuItemId.of('custom1'),
+    };
+    let item2: TextMenuItem = {
+      content: 'custom2',
+      id: TextMenuItemId.of('custom2'),
+      icon: $r('app.media.icon'),
+    };
+    menuItems.push(item1);
+    menuItems.unshift(item2);
+    return menuItems;
+  }
 
   build() {
     Column() {
@@ -112,10 +140,42 @@ struct TextSample {
             })
           }
           .backgroundStyle()
-          .margin({ bottom: 60 })
+
+          // 文本自定义菜单
+          IntroductionTitle({ introduction: $r('app.string.text_custom_menu') })
+          Column(){
+            Text(this.customTextStr)
+              .id('text_custom_menu')
+              .copyOption(CopyOptions.LocalDevice)
+              .width('95%')
+              .height(40)
+              .editMenuOptions({
+                onCreateMenu: this.onCreateMenu, onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
+                  if (menuItem.id.equals(TextMenuItemId.of('custom2'))) {
+                    Logger.info(`intercept id: custom2 start: ${textRange.start}, end: ${textRange.end}`);
+                    return true;
+                  }
+                  if (menuItem.id.equals(TextMenuItemId.COPY)) {
+                    Logger.info(`intercept COPY start: ${textRange.start}, end: ${textRange.end}`);
+                    return true;
+                  }
+                  if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
+                    Logger.info(`non-intercept SELECT_ALL start: ${textRange.start}, end: ${textRange.end}`);
+                    return false;
+                  }
+                  return false;
+                }
+              })
+          }
+          .backgroundColor(Color.White)
+          .padding(12)
+          .margin({ bottom: 12 })
+          .borderRadius(24)
         }
         .constraintSize({ minHeight: '100%' }) // Let the minHeight of the component cover screen
       }
+      .id('text_scroll')
+      .margin({ bottom: 100 })
       .size({ width: '100%', height: '100%' })
       .padding({ left: 12, right: 12 })
     }
