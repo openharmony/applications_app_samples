@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -66,19 +66,19 @@ struct SpanSample {
                 .height(50)
                 .lineHeight(this.lineHeight)
                 .decoration({
-                  type: this.decoration, // Decoration type
-                  color: this.decorationColor // Line color
+                  type: this.decoration,
+                  color: this.decorationColor
                 })
 
               Span($r('app.string.span_text_spacing'))
                 .font({
                   size: 20
                 })
-                .lineHeight(this.lineHeight)
-                .letterSpacing(this.letterSpacing) // Letter spacing
+                .letterSpacing(this.letterSpacing)
             }
-            .height(60)
+            .height(100)
             .fontSize(50)
+
             ChangePanel({
               letterSpacing: $letterSpacing,
               decoration: $decoration,
