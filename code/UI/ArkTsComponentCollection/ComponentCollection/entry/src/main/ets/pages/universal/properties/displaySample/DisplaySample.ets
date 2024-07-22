@@ -54,13 +54,14 @@ struct Page {
   @State currentTabIndex: number = 0;
   private visibilityArray: Visibility[] = [Visibility.Visible, Visibility.Hidden, Visibility.None];
   private alignments: Alignment[] = [Alignment.Center, Alignment.TopStart,
-  Alignment.TopEnd, Alignment.Top, Alignment.Start,
-  Alignment.End, Alignment.BottomStart,
-  Alignment.Bottom, Alignment.BottomEnd];
+    Alignment.TopEnd, Alignment.Top, Alignment.Start,
+    Alignment.End, Alignment.BottomStart,
+    Alignment.Bottom, Alignment.BottomEnd];
   private selectArray: ResourceObjectType[] = locationTypes;
   private visibleArray: ResourceObjectType[] = visibileTypes;
 
-  @Builder tabbarTitle(name: string | Resource, index: number) {
+  @Builder
+  tabbarTitle(name: string | Resource, index: number) {
     Stack() {
       Text(name)
         .fontSize(22)
@@ -158,9 +159,9 @@ struct Page {
             Column() {
               Column() {
                 Row()
-                  .width(200)
+                  .width(420)
                   .height(200)
-                  .backgroundColor($r('app.color.background_grey'))
+                  .backgroundColor($r('app.color.white'))
                   .overlay(getStringData($r('app.string.components_display_content')), {
                     align: this.alignmentLocation,
                     offset: {
