@@ -29,7 +29,7 @@ struct Index {
   @State pixelMaps: Array<PixelMap|undefined> = [];
   @State commodityPixelMap: PixelMap | null = null;
   @State imageArr: Array<PixelMap | null> = [];
-  @StorageLink('imageList') imageList: Array<string> = [];
+  @StorageLink('imageList') @Watch('imageListChange') imageList: Array<string> = [];
   @StorageLink('fileFd') fileSrc: string = '';
   @StorageLink('isUpdate') isUpdate: boolean = false;
   private GetPictures: GetPictures = new GetPictures();
@@ -51,7 +51,7 @@ struct Index {
     })
   }
 
-  async onPageShow(): Promise<void> {
+  async imageListChange(): Promise<void> {
     this.imageArr = await Promise.all(this.imageList.map(imgUrl =>{
       return readImage(imgUrl)
     }))
