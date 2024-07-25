@@ -15,7 +15,6 @@
 
 import UIAbility from '@ohos.app.ability.UIAbility'
 import { Logger, QRCodeScanConst } from '@ohos/feature-qr-code-scan'
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 import { BusinessError } from '@ohos.base'
 import Want from '@ohos.app.ability.Want'
 import AbilityConstant from '@ohos.app.ability.AbilityConstant'
@@ -26,25 +25,6 @@ const TAG = 'MainAbility'
 export default class MainAbility extends UIAbility {
   async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     Logger.info(TAG, 'MainAbility onCreate')
-    let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
-    try {
-      await atManager.requestPermissionsFromUser(this.context, ['ohos.permission.CAMERA', 'ohos.permission.READ_IMAGEVIDEO', 'ohos.permission.WRITE_IMAGEVIDEO', 'ohos.permission.MEDIA_LOCATION']).then((data) => {
-        Logger.info(TAG, `data: ${JSON.stringify(data)}`)
-        // 如果权限列表中有-1，说明用户拒绝了授权
-        if (data.authResults[0] === 0) {
-          // 控制相机是否打开
-          AppStorage.SetOrCreate(QRCodeScanConst.HAS_CAMERA_PERMISSION, true)
-          Logger.info(TAG, 'MainAbility permissionRequestResult success')
-        } else {
-          Logger.info(TAG, 'MainAbility permissionRequestResult failed')
-        }
-        AppStorage.SetOrCreate('context', this.context)
-      }).catch((err: BusinessError) => {
-        Logger.info(TAG, `err: ${JSON.stringify(err)}`)
-      })
-    } catch (err) {
-      Logger.info(TAG, `catch err->${JSON.stringify(err)}`)
-    }
   }
 
   onDestroy() {
