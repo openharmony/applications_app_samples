@@ -62,9 +62,10 @@ class PlayerModel {
       Logger.error(TAG, `player error`)
     })
     this.player?.on('finish', () => {
-      Logger.info(TAG, 'finish() callback is called')
-      this.seek(0)
-      this.notifyPlayingStatus(false)
+      Logger.info(TAG, 'finish() callback is called');
+      this.playingProgressListener(this.player?.currentTime);
+      this.seek(0);
+      this.notifyPlayingStatus(false);
     })
     this.player?.on('timeUpdate', () => {
 
