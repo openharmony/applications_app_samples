@@ -13,14 +13,10 @@
  * limitations under the License.
  */
 
-import hilog from '@ohos.hilog';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-
 import { Driver, ON, MatchPattern, Component } from '@ohos.UiTest'
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
-import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import Logger from '../utils/Logger';
-import { getStringData } from '../../../main/ets/data/ResourceDataHandle';
 import resourceManager from '@ohos.resourceManager';
 
 const BUNDLE = 'ComponentCollection_';
