@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import MediaLib from '@ohos.multimedia.mediaLibrary';
+import userFileManager from '@ohos.filemanagement.userFileManager';
 import { Log } from '../utils/Log';
 import { DateUtil } from '../utils/DateUtil';
 import { screenManager } from '../common/ScreenManager';
@@ -161,7 +161,7 @@ export struct DetailsDialog {
       }.margin({
         bottom: $r('sys.float.ohos_id_text_paragraph_margin_s') })
 
-      if (this.mediaDetails.mediaType === MediaLib.MediaType.VIDEO) {
+      if (this.mediaDetails.mediaType === userFileManager.FileType.VIDEO) {
         Row() {
           Column() {
             Text($r('app.string.duration'))
