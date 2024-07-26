@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,9 +18,11 @@ import Logger from './Logger'
 import PictureItem from '../model/PictureItem'
 import { Context } from '@ohos.abilityAccessCtrl';
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import userFileManager from '@ohos.filemanagement.userFileManager';
 
 const TAG = '[ImageModel]'
 const SPLIT_COUNT: number = 3 // 图片横竖切割的份数
+
 export default class ImageModel {
   private phAccessHelper: photoAccessHelper.PhotoAccessHelper;
 
@@ -30,11 +32,10 @@ export default class ImageModel {
 
   async getAllImg() {
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-    let fetchOptions: photoAccessHelper.FetchOptions = {
+    let fetchOptions: userFileManager.FetchOptions = {
       fetchColumns: [],
-      predicates: predicates
+      predicates: predicates.equalTo(userFileManager.ImageVideoKey.FILE_TYPE.toString(), userFileManager.FileType.IMAGE.toString())
     };
-
     let mediaList: photoAccessHelper.PhotoAsset[] = [];
     const fetchResult = await this.phAccessHelper.getAssets(fetchOptions);
     if (fetchResult.getCount() > 0) {
