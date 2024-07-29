@@ -172,7 +172,7 @@ struct Index {
                     .fontWeight(FontWeight.Bold)
                     .visibility(this.editable ? Visibility.Visible : Visibility.None)
                     .onClick(() => {
-                      this.contacts['contactData'].splice(index, 1)
+                      this.contacts['contactData'] = this.contacts['contactData'].filter(obj => obj.name !== item.name || obj.destinationHost !== item.destinationHost);
                       this.contacts.notifyDataReload()
                       Logger.info(`${TAG}, onItemDelete contacts = ${JSON.stringify(this.contacts['contactData'][index])}`)
                     })
