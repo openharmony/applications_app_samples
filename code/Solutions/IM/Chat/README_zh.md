@@ -123,11 +123,11 @@ url: 'pages/SearchPage' })。
 5. 按照步骤1中的release编译模式进行编译，并安装到设备，等待设备端侧AOT编译优化完成后，应用运行性能即可得到相应的提升。
 
 > **AOT前置约束说明**
-> - 仅支持API10及以上版本Stage模型的ArkTS工程
+> - 仅支持API12及以上版本Stage模型的ArkTS工程
 > - 目前仅HAP和HSP支持该功能
-> - IDE需要4.0.1.400及以上版本
+> - IDE需要4.1.3.700及以上版本
 > - Node.js需要14.19.1及以上版本
-> - SDK建议升级到OpenHarmony 4.0 beta2（4.0.9.2）及以上版本
+> - SDK建议升级到OpenHarmony 5.0（5.0.0.32）及以上版本
 
 ### 相关权限
 
@@ -139,9 +139,9 @@ url: 'pages/SearchPage' })。
 
 ### 约束与限制
 
-1.本示例已适配API version 10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0Release)。
+1.本示例已适配API version 12版本SDK，SDK版本号(5.0.0.32),镜像版本号(5.0.0.32)。
 
-2.本示例需要使用DevEco Studio 版本号(4.0Release)及以上版本才可编译运行。
+2.本示例需要使用DevEco Studio 版本号(4.1.3.700)版本才可编译运行。
 
 ### 下载
 
