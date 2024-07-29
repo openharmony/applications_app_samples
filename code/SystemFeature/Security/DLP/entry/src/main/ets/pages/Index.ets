@@ -79,6 +79,7 @@ struct FilePicker {
 
   // 拉起picker保存文件
   async callFilePickerSaveFile(): Promise<void> {
+    this.isFlag = false;
     try {
       let DocumentSaveOptions = new picker.DocumentSaveOptions();
       DocumentSaveOptions.newFileNames = [getResourceString(context, $r('app.string.init_file_name'))];
@@ -127,6 +128,7 @@ struct FilePicker {
     // 获取文件名称
     this.fileName = (myUri.split('/').pop()) as string;
     Logger.info('the fileName is' + this.fileName);
+    await this.onPageShow();
   }
 
   // 删除dlp文件
