@@ -26,6 +26,8 @@ struct Index {
   @State bufferQueueSize: number = 3;
   @State attachedBufferCount: number = 0;
   @State frameFlushedCount: number = 0;
+  @State frameConsumerCount: number = 0;
+  @State isAutoConsumer: boolean = false;
   private nativeWindowContext: NativeWindowContext | undefined = undefined;
 
   build() {
@@ -70,12 +72,39 @@ struct Index {
         .onClick(() => {
           if (this.nativeWindowContext) {
             console.log(TAG, "Produce Buffer");
-            this.nativeWindowContext.ProduceBuffer();
-            this.frameFlushedCount++;
+            if (this.nativeWindowContext.ProduceBuffer() ==0) {
+              this.frameFlushedCount++;
+            }
             setTimeout("GetCount", 1000);
           }
         })
         .height(40)
+      Row() {
+        Button(`auto consumer=${this.isAutoConsumer}`)
+          .fontSize('14fp')
+          .fontWeight(500)
+          .margin({ bottom: 24 })
+          .onClick(() => {
+            if (this.nativeWindowContext) {
+              this.isAutoConsumer = this.nativeWindowContext.ChangeIsAutoConsumer();
+            }
+          })
+          .height(40)
+        Button(`consumer buffer count=${this.frameConsumerCount}`)
+          .fontSize('14fp')
+          .fontWeight(500)
+          .margin({ bottom: 24 })
+          .onClick(() => {
+            if (this.nativeWindowContext) {
+              console.log(TAG, "Consumer Buffer");
+              if (this.nativeWindowContext.ConsumerBuffer() == 0) {
+                this.frameConsumerCount++;
+              }
+              setTimeout("GetCount", 1000);
+            }
+          })
+          .height(40)
+      }
       Button(`update available buffer count=${this.frameAvailableCount}`)
         .fontSize('14fp')
         .fontWeight(500)
