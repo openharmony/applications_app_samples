@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -24,8 +24,7 @@ import emitter from '@ohos.events.emitter';
 import mediaquery from '@ohos.mediaquery';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
-const PERMISSIONS: Permissions[] = ['ohos.permission.READ_MEDIA', 'ohos.permission.WRITE_MEDIA',
-  'ohos.permission.MEDIA_LOCATION', 'ohos.permission.MANAGE_MISSIONS', 'ohos.permission.READ_IMAGEVIDEO'];
+const PERMISSIONS: Permissions[] = ['ohos.permission.MEDIA_LOCATION', 'ohos.permission.MANAGE_MISSIONS', 'ohos.permission.READ_IMAGEVIDEO'];
 const IMAGE_SIZE: number = px2vp(640)
 const GAME_TIME: number = 300 // 游戏时长
 const TAG: string = 'Index'
