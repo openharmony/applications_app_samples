@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "FullScreenStart"
+    },
+    {
+      "name": "EmbeddableStart",
+      "value": "全屏启动原子化服务组件"
+    },
+    {
+      "name": "UIAbilityStart",
+      "value": "UIAbility启动原子化服务"
+    },
+    {
+      "name": "UIExtensionStart",
+      "value": "UIExtension启动原子化服务"
+    },
+    {
+      "name": "AtomicService",
+      "value": "原子化服务"
+    }
+  ]
+}
