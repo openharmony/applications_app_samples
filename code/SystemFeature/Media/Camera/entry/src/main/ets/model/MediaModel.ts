@@ -13,8 +13,10 @@
  * limitations under the License.
  */
 
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import DateTimeUtil from '../utlis/DateTimeUtil';
+import { GlobalContext } from '../utlis/GlobalContext';
+import common from '@ohos.app.ability.common';
 import Logger from '../utlis/Logger';
 
 const TAG = '[MediaModel]';
@@ -22,15 +24,15 @@ const TAG = '[MediaModel]';
 type FileInfo = {
   prefix: string;
   suffix: string;
-  directory: number;
 };
 
 export default class MediaModel {
-  private mediaLibraryTest: mediaLibrary.MediaLibrary = undefined;
+  private accessHelper: photoAccessHelper.PhotoAccessHelper = undefined;
   private static mediaInstance: MediaModel = undefined;
 
   constructor() {
-    this.mediaLibraryTest = mediaLibrary.getMediaLibrary(globalThis.cameraContext);
+    let cameraContext: common.UIAbilityContext = GlobalContext.getContext().getCameraAbilityContext();
+    this.accessHelper = photoAccessHelper.getPhotoAccessHelper(cameraContext);
   }
 
   public static getMediaInstance(): MediaModel {
@@ -40,132 +42,37 @@ export default class MediaModel {
     return this.mediaInstance;
   }
 
-  async createAndGetUri(mediaType: mediaLibrary.MediaType): Promise<mediaLibrary.FileAsset> {
+  async createAndGetUri(mediaType: photoAccessHelper.PhotoType): Promise<photoAccessHelper.PhotoAsset> {
     let dateTimeUtil: DateTimeUtil = new DateTimeUtil();
     let info: FileInfo = this.getInfoFromMediaType(mediaType);
     let name: string = `${dateTimeUtil.getDate()}_${dateTimeUtil.getTime()}`;
     let displayName: string = `${info.prefix}${name}${info.suffix}`;
     Logger.info(TAG, `displayName = ${displayName},mediaType = ${mediaType}`);
-    let publicPath: string = await this.mediaLibraryTest.getPublicDirectory(
-      info.directory
-    );
-    Logger.info(TAG, `publicPath = ${publicPath}`);
-    let fileAsset: mediaLibrary.FileAsset = await this.mediaLibraryTest.createAsset(
-      mediaType,
-      displayName,
-      publicPath
-    );
+    let fileAsset: photoAccessHelper.PhotoAsset = await this.accessHelper.createAsset(displayName);
     return fileAsset;
   }
 
-  async getFile(dataUri: mediaLibrary.FileAsset): Promise<mediaLibrary.FileAsset> {
-    let fileKeyObj = mediaLibrary.FileKey;
-    if (dataUri !== undefined) {
-      let args = dataUri.id.toString();
-      let fetchOp = {
-        selections: `${fileKeyObj.ID}=?`,
-        selectionArgs: [args],
-      };
-      const fetchFileResult: mediaLibrary.FetchFileResult = await this.mediaLibraryTest.getFileAssets(
-        fetchOp
-      );
-      Logger.info(
-        TAG,
-        `fetchFileResult.getCount() = ${fetchFileResult.getCount()}`
-      );
-      const fileAssets = await fetchFileResult.getAllObject();
-      let fileAsset: mediaLibrary.FileAsset = fileAssets[0];
-      return fileAsset;
-    }
-    return null;
-  }
-
-  async getFdPath(fileAsset: mediaLibrary.FileAsset): Promise<number> {
-    let fd: number = await fileAsset.open('Rw');
+  async getFdPath(fileAsset: photoAccessHelper.PhotoAsset): Promise<number> {
+    let fd: number = await fileAsset.open('rw');
     Logger.info(TAG, `fd = ${fd}`);
     return fd;
   }
 
-  async getFileAssetsFromMediaType(mediaType: number): Promise<Array<mediaLibrary.FileAsset>> {
-    Logger.info(TAG, `getFileAssetsFromType,mediaType = ${mediaType}`);
-    let fileKeyObj = mediaLibrary.FileKey;
-    let fileAssets: Array<mediaLibrary.FileAsset> = [];
-
-    try {
-      let fetchOp = {
-        selections: `${fileKeyObj.MEDIA_TYPE}=?`,
-        selectionArgs: [`${mediaType}`],
-      };
-      const fetchFileResult: mediaLibrary.FetchFileResult = await this.mediaLibraryTest.getFileAssets(
-        fetchOp
-      );
-      Logger.info(TAG, `getFileAssetsFromType,fetchFileResult.count = ${fetchFileResult.getCount()}`);
-      if (fetchFileResult.getCount() > 0) {
-        fileAssets = await fetchFileResult.getAllObject();
-      }
-    } catch (err) {
-      console.info(`LSQ: err ${JSON.stringify(err)}`);
-    }
-    return fileAssets;
-  }
-
-  onDateChange(callback: () => void): void {
-    this.mediaLibraryTest.on('albumChange', () => {
-      Logger.info(TAG, 'albumChange called');
-      callback();
-    });
-    this.mediaLibraryTest.on('imageChange', () => {
-      Logger.info(TAG, 'imageChange called');
-      callback();
-    });
-    this.mediaLibraryTest.on('audioChange', () => {
-      Logger.info(TAG, 'audioChange called');
-      callback();
-    });
-    this.mediaLibraryTest.on('videoChange', () => {
-      Logger.info(TAG, 'videoChange called');
-      callback();
-    });
-    this.mediaLibraryTest.on('fileChange', () => {
-      Logger.info(TAG, 'fileChange called');
-      callback();
-    });
-  }
-
-  offDateChange(): void {
-    this.mediaLibraryTest.off('albumChange');
-    this.mediaLibraryTest.off('imageChange');
-    this.mediaLibraryTest.off('audioChange');
-    this.mediaLibraryTest.off('videoChange');
-    this.mediaLibraryTest.off('fileChange');
-  }
-
-  getInfoFromMediaType(mediaType: mediaLibrary.MediaType): FileInfo {
+  getInfoFromMediaType(mediaType: photoAccessHelper.PhotoType): FileInfo {
     let fileInfo: FileInfo = {
       prefix: '',
-      suffix: '',
-      directory: 0
+      suffix: ''
     };
     switch (mediaType) {
-      case mediaLibrary.MediaType.FILE:
-        fileInfo.prefix = 'FILE_';
-        fileInfo.suffix = '.txt';
-        fileInfo.directory = mediaLibrary.DirectoryType.DIR_DOCUMENTS;
-        break;
-      case mediaLibrary.MediaType.IMAGE:
+      case photoAccessHelper.PhotoType.IMAGE:
         fileInfo.prefix = 'IMG_';
         fileInfo.suffix = '.jpg';
-        fileInfo.directory = mediaLibrary.DirectoryType.DIR_IMAGE;
         break;
-      case mediaLibrary.MediaType.VIDEO:
+      case photoAccessHelper.PhotoType.VIDEO:
         fileInfo.prefix = 'VID_';
         fileInfo.suffix = '.mp4';
-        fileInfo.directory = mediaLibrary.DirectoryType.DIR_VIDEO;
         break;
-      case mediaLibrary.MediaType.AUDIO:
-        fileInfo.prefix = 'AUD_';
-        fileInfo.suffix = '.wav';
-        fileInfo.directory = mediaLibrary.DirectoryType.DIR_AUDIO;
+      default:
         break;
     }
     return fileInfo;

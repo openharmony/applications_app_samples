@@ -18,7 +18,7 @@ import { Permissions } from '@ohos.abilityAccessCtrl';
 import bundleManager from '@ohos.bundle.bundleManager';
 import Logger from './Logger';
 import common from '@ohos.app.ability.common';
-import { GlobalContext } from '../utlis/GlobalContext'
+import { GlobalContext } from './GlobalContext';
 
 const TAG: string = '[Permission]';
 
@@ -26,8 +26,8 @@ const PERMISSIONS: Array<Permissions> = [
   'ohos.permission.CAMERA',
   'ohos.permission.MEDIA_LOCATION',
   'ohos.permission.MICROPHONE',
-  'ohos.permission.READ_MEDIA',
-  'ohos.permission.WRITE_MEDIA'
+  'ohos.permission.READ_IMAGEVIDEO',
+  'ohos.permission.WRITE_IMAGEVIDEO'
 ];
 
 export default async function grantPermission(): Promise<boolean> {
@@ -53,7 +53,7 @@ export default async function grantPermission(): Promise<boolean> {
     if (pems.length > 0) {
       Logger.info(TAG, 'grantPermission  requestPermissionsFromUser :' + JSON.stringify(pems));
       let ctx: common.UIAbilityContext = GlobalContext.getContext()
-        .getValue('cameraContext') as common.UIAbilityContext;
+        .getCameraAbilityContext();
       let result: PermissionRequestResult = await atManager.requestPermissionsFromUser(ctx, pems);
 
       let grantStatus: Array<number> = result.authResults;

@@ -48,7 +48,7 @@
 
 #### 相关概念
 
-媒体库管理：媒体库管理提供接口对公共媒体资源文件进行管理，包括文件的增、删、改、查等。  
+相册管理：相册管理模块提供相册管理模块能力，包括创建相册以及访问、修改相册中的媒体数据信息等。  
 相机：相机模块支持相机相关基础功能的开发，主要包括预览、拍照、录像等。
 
 ### 相关权限
@@ -56,13 +56,13 @@
 相机权限：ohos.permission.CAMERA
 麦克风权限：ohos.permission.MICROPHONE
 访问媒体文件地理位置信息权限：ohos.permission.MEDIA_LOCATION
-读取公共媒体文件权限：ohos.permission.READ_MEDIA
-读写公共媒体文件权限：ohos.permission.WRITE_MEDIA
+读取用户公共目录的图片或视频文件权限：ohos.permission.READ_IMAGEVIDEO
+读写修改公共目录的图片或视频文件权限：ohos.permission.WRITE_IMAGEVIDEO
 
 ### 具体实现
 
 1.使用@ohos.multimedia.camera接口实现相机示例的主要功能：拍照、录像、参数配置等。代码：[CameraModel.ts](entry%2Fsrc%2Fmain%2Fets%2Fmodel%2FCameraModel.ts)。  
-2.使用@ohos.multimedia.mediaLibrary接口实现对媒体文件的存储。代码：[MediaModel.ts](entry%2Fsrc%2Fmain%2Fets%2Fmodel%2FMediaModel.ts)。  
+2.使用@ohos.file.photoAccessHelper接口实现对媒体文件的存储。代码：[MediaModel.ts](entry%2Fsrc%2Fmain%2Fets%2Fmodel%2FMediaModel.ts)。  
 3.通过跳转至相册来访问设备上的照片和录制视频。
 
 ### 依赖
