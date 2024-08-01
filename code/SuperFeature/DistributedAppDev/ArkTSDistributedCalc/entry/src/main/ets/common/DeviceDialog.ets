@@ -64,7 +64,7 @@ export struct DeviceDialog {
             })
           }
           .width('100%')
-          .height('40%')
+          .height('50%')
         }, (item: deviceManager.DeviceBasicInfo) => item.deviceName)
       }
       .height('60%')
