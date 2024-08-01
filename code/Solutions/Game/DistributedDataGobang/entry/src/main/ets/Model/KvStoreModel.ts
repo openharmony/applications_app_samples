@@ -14,10 +14,14 @@
  */
 
 import distributedData from '@ohos.data.distributedKVStore';
-import Logger from '../util/Logger'
-import { GobangConst } from '../util/GobangConst'
+import Logger from '../util/Logger';
+import { GobangConst } from '../util/GobangConst';
+import distributedDeviceManager from '@ohos.distributedDeviceManager';
+import common from '@ohos.app.ability.common';
 
-const TAG: string = 'KvStoreModel'
+const TAG: string = 'KvStoreModel';
+let devManager: distributedDeviceManager.DeviceManager;
+let bundleName = 'ohos.samples.distributeddatagobang';
 
 export class KvStoreModel {
   public kvManager: distributedData.KVManager
@@ -32,7 +36,7 @@ export class KvStoreModel {
       return
     }
     let config = {
-      bundleName: 'ohos.samples.distributeddatagobang',
+      bundleName,
       context: context
     }
     Logger.info(TAG, 'createKVManager begin')
@@ -46,7 +50,7 @@ export class KvStoreModel {
       createIfMissing: true,
       encrypt: false,
       backup: false,
-      autoSync: true,
+      autoSync: false,
       kvStoreType: distributedData.KVStoreType.SINGLE_VERSION,
       securityLevel: distributedData.SecurityLevel.S1
     };
@@ -63,7 +67,19 @@ export class KvStoreModel {
     Logger.info(TAG, `kvStore.put ${key} = ${value}`)
     try {
       this.kvStore.put(key, value).then((data) => {
-        Logger.info(TAG, `kvStore.put ${key} finished, data= ${JSON.stringify(data)}`)
+        Logger.info(TAG, `kvStore.put ${key} finished, data= ${JSON.stringify(data)}`);
+        devManager = distributedDeviceManager.createDeviceManager(bundleName);
+        let deviceIds: string[] = [];
+        if (devManager != null) {
+          let devices = devManager.getAvailableDeviceListSync();
+          for (let i = 0; i < devices.length; i++) {
+            deviceIds[i] = devices[i].networkId as string;
+          }
+        }
+        const mode = distributedData.SyncMode.PUSH_PULL;
+        if (this.kvStore != null) {
+          this.kvStore.sync(deviceIds, mode, 1000);
+        }
       }).catch((err) => {
         Logger.info(TAG, `kvStore.put  ${key} failed, ${JSON.stringify(err)}`)
       })
