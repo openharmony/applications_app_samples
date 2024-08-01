@@ -12,11 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import distributedData from '@ohos.data.distributedData'
-import { logger } from './Logger'
+import distributedData from '@ohos.data.distributedData';
+import { logger } from './Logger';
+import deviceManager from '@ohos.distributedHardware.deviceManager';
 
-const STORE_ID = 'distributedcalc'
-const TAG = 'KvStoreModel'
+const STORE_ID = 'distributedcalc';
+const TAG = 'KvStoreModel';
+let bundleName = 'ohos.samples.distributedcalc';
+const mode = distributedData.SyncMode.PUSH_PULL;
+let devManager;
 
 export class KvStoreModel {
   kvManager
@@ -27,7 +31,7 @@ export class KvStoreModel {
       callback()
     }
     var config = {
-      bundleName: 'ohos.samples.distributedcalc',
+      bundleName,
       userInfo: {
         userId: '0',
         userType: 0
@@ -41,7 +45,7 @@ export class KvStoreModel {
         createIfMissing: true,
         encrypt: false,
         backup: false,
-        autoSync: true,
+        autoSync: false,
         kvStoreType: 1,
         securityLevel: 1,
       }
@@ -61,6 +65,22 @@ export class KvStoreModel {
     try {
       this.kvStore.put(key, value + 'end').then((data) => {
         logger.debug(TAG, `kvStore.put ${key}  finished, data=${JSON.stringify(data)}`)
+        // create deviceManager
+        deviceManager.createDeviceManager(bundleName, (err, value) => {
+          let deviceIds = [];
+          if (!err) {
+            devManager = value;
+            if (devManager != null) {
+              var devices = devManager.getTrustedDeviceListSync();
+              for (var i = 0; i < devices.length; i++) {
+                deviceIds[i] = devices[i].networkId;
+              }
+            }
+          }
+          if (this.kvStore != null) {
+            this.kvStore.sync(deviceIds, mode, 1000);
+          }
+        });
       }).catch((err) => {
         logger.error(TAG, `kvStore.put ${key} failed, ${JSON.stringify(err)}`)
       })
@@ -84,7 +104,7 @@ export class KvStoreModel {
     this.createKvStore(() => {
       logger.info(TAG, `kvStore.on(dataChange) begin`)
       try {
-        this.kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (data) => {
+        this.kvStore?.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (data) => {
           logger.debug(TAG, `dataChange, ${JSON.stringify(data)}`)
           logger.debug(TAG, `dataChange, insert ${data.insertEntries.length} update ${data.updateEntries.length}`)
           let entries = data.insertEntries.length > 0 ? data.insertEntries : data.updateEntries
