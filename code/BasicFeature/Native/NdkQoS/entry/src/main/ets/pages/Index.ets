@@ -27,8 +27,8 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
 
-        Button('High level QoS test', {type: ButtonType.Normal})
-          .margin({top: 50})
+        Button('High level QoS test', { type: ButtonType.Normal })
+          .margin({ top: 50 })
           .height('6%')
           .width('50%')
           .borderRadius(8)
@@ -43,14 +43,14 @@ struct Index {
               confirm: {
                 value: "OK",
                 action: () => {
-                  console.log("High-QoS done")
+                  console.info("High-QoS done")
                 }
               }
             })
           })
 
-        Button('Low level QoS test', {type: ButtonType.Normal})
-          .margin({top: 50})
+        Button('Low level QoS test', { type: ButtonType.Normal })
+          .margin({ top: 50 })
           .height('6%')
           .borderRadius(8)
           .width('50%')
@@ -65,7 +65,7 @@ struct Index {
               confirm: {
                 value: "OK",
                 action: () => {
-                  console.log("Low-QoS done")
+                  console.info("Low-QoS done")
                 }
               }
             })
