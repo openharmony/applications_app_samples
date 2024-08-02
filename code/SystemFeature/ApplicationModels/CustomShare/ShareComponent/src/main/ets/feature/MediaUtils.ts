@@ -13,29 +13,35 @@
  * limitations under the License.
  */
 
-import mediaLibrary from '@ohos.multimedia.mediaLibrary'
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import Logger from '../util/Logger'
 
 const TAG: string = 'MediaUtils'
 
 class MediaUtils {
   async getFileAssetsFromType(mediaType: number, context: any) {
-    let mediaList: Array<mediaLibrary.FileAsset> = []
-    let mediaLib: mediaLibrary.MediaLibrary = mediaLibrary.getMediaLibrary(context)
-    Logger.info(TAG, `getFileAssetsFromType,mediaType: ${mediaType}`)
-    let fileKeyObj = mediaLibrary.FileKey
-
-    let fetchOption = {
-      selections: `${fileKeyObj.MEDIA_TYPE}=?`,
-      selectionArgs: [`${mediaType}`]
-    }
-
+    let mediaList: Array<photoAccessHelper.PhotoAsset> = [];
+    let mediaLib: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+    Logger.info(TAG, `getFileAssetsFromType,mediaType: ${mediaType}`);
     // 获取文件资源
-    let fetchFileResult = await mediaLib.getFileAssets(fetchOption)
-    Logger.info(TAG, `getFileAssetsFromType,fetchFileResult.count: ${fetchFileResult.getCount()}`)
-    // getCount 获取文件检索结果中的文件总数。
-    if (fetchFileResult.getCount() > 0) {
-      mediaList = await fetchFileResult.getAllObject() // 获取文件检索结果中的所有文件资产。此方法返回FileAsset结果集。
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [`${mediaType}`],
+      predicates: predicates
+    };
+    try {
+      let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await mediaLib.getAssets(fetchOptions);
+      if (fetchResult !== undefined) {
+        Logger.info(TAG, 'fetchResult success');
+        Logger.info(TAG, `getFileAssetsFromType,fetchFileResult.count: ${fetchResult.getCount()}`)
+        // getCount 获取文件检索结果中的文件总数。
+        if (fetchResult.getCount() > 0) {
+          mediaList = await fetchResult.getAllObjects() // 获取文件检索结果中的所有文件资产。此方法返回FileAsset结果集。
+        }
+      }
+    } catch (err) {
+      Logger.error(TAG,`getAssets failed, error: ${err.code}, ${err.message}`);
     }
     return mediaList
   }
