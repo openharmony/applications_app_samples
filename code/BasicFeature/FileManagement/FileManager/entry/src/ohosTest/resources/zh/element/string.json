@@ -19,6 +19,10 @@
     {
       "name": "label_confirm",
       "value": "确定"
+    },
+    {
+      "name": "select_all",
+      "value": "全选"
     }
   ]
 }
