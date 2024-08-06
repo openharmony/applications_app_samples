@@ -37,7 +37,7 @@ class MediaUtils {
         Logger.info(TAG, `getFileAssetsFromType,fetchFileResult.count: ${fetchResult.getCount()}`)
         // getCount 获取文件检索结果中的文件总数。
         if (fetchResult.getCount() > 0) {
-          mediaList = await fetchResult.getAllObjects() // 获取文件检索结果中的所有文件资产。此方法返回FileAsset结果集。
+          mediaList = await fetchResult.getAllObjects(); // 获取文件检索结果中的所有文件资产。此方法返回FileAsset结果集。
         }
       }
     } catch (err) {
