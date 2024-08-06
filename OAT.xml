@@ -912,6 +912,23 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/screenshots/device/play.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
 				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
 				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/check.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/FullScreenStart/FullScreenStart/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/FullScreenStart/FullScreenStart/entry/src/main/resources/base/media/background.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/FullScreenStart/FullScreenStart/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/FullScreenStart/FullScreenStart/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/FullScreenStart/FullScreenStart/screenshots/atomicServicePage.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/FullScreenStart/FullScreenStart/screenshots/startPage.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/FullScreenStart/FullScreenStart_Service/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/FullScreenStart/FullScreenStart_Service/entry/src/main/resources/base/media/ic_add.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/FullScreenStart/FullScreenStart_Service/entry/src/main/resources/base/media/ic_clean.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/FullScreenStart/FullScreenStart_Service/entry/src/main/resources/base/media/ic_del.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/FullScreenStart/FullScreenStart_Service/entry/src/main/resources/base/media/ic_div.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/FullScreenStart/FullScreenStart_Service/entry/src/main/resources/base/media/ic_equ.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/FullScreenStart/FullScreenStart_Service/entry/src/main/resources/base/media/ic_min.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/FullScreenStart/FullScreenStart_Service/entry/src/main/resources/base/media/ic_mul.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/FullScreenStart/FullScreenStart_Service/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/FullScreenStart/FullScreenStart_Service/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/FullScreenStart/FullScreenStart_Service/screenshots/atomicServicePage.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
 
 			</filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
