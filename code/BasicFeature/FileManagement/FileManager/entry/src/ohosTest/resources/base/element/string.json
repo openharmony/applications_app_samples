@@ -19,6 +19,10 @@
     {
       "name": "label_confirm",
       "value": "Label Confirm"
+    },
+    {
+      "name": "select_all",
+      "value": "select all"
     }
   ]
 }
