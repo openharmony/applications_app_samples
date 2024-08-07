@@ -4,6 +4,8 @@
 
 XComponent控件常用于相机预览流的显示和游戏画面的绘制,在OpenHarmony上，可以配合Native Window创建OpenGL开发环境，并最终将OpenGL绘制的图形显示到XComponent控件。本示例基于"Native C++"模板，调用OpenGL(OpenGL ES)图形库相关API绘制3D图形（三棱锥），并将结果渲染到页面的XComponent控件中进行展示。同时，还可以在屏幕上通过触摸滑动手势对三棱锥进行旋转，最终得到不同角度的图形并显示到页面。
 
+> **说明**
+> 本示例XComponent接口使用方法已停止演进，推荐使用方法请参考[XComponent示例](../XComponent/README_zh.md)。
 ### 效果预览
 
 | 首页                                     | 滑动屏幕旋转变换                                 |

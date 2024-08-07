@@ -4,6 +4,8 @@
 
 本示例中主要介绍开发者在利用[Native XComponent](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)来获取[NativeWindow](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/native-apis/_native_window.md)实例，通过数据填充改变矩形框颜色。并提供从[NativeImage](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-arkgraphics2d/_o_h___native_image.md)中获取NativeWindow进行buffer轮转的案例，通过NativeWindow生产buffer来触发NativeImage的可用帧回调。
 
+> **说明**
+> 本示例XComponent接口使用方法已停止演进，推荐使用方法请参考[XComponent示例](../XComponent/README_zh.md)。
 ### 效果预览
 
 | 主页                                           | 改变矩形框颜色                                           | 生产buffer                                          | 获取可用帧回调次数                                                 |
