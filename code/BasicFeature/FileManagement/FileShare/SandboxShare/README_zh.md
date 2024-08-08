@@ -12,7 +12,7 @@
 
 使用说明：
 
-1. 因本应用的功能依赖Picker应用，在使用本应用之前首先应安装[Picker](/code/SystemFeature/FileManagement/FileShare/Picker/README_zh.md)应用;
+1. 因本应用的功能依赖Picker应用，在使用本应用之前首先应安装[Picker](/code/BasicFeature/FileManagement/FileShare/Picker/README_zh.md)应用;
 2. 在主界面，可以点击沙箱文件夹列出文件夹中的文件，同时也可以直接点击沙箱目录下的文件进入文件分享界面；
 3. 点击沙箱文件，进入文件分享界面，点击分享图标，文件将以picker方式打开文件，点击编辑图标，文件进入可编辑模式，在textArea中输入内容，然后点击保存，文件内容更新，返回沙箱应用首页，文件修改成功。
 
@@ -56,7 +56,7 @@ entry/src/main/ets/
 
 ### 依赖
 
-本应用需要依赖[Picker](/code/SystemFeature/FileManagement/FileShare/Picker/README_zh.md)应用，沙箱文件需分享至Picker应用打开并编辑保存
+本应用需要依赖[Picker](/code/BasicFeature/FileManagement/FileShare/Picker/README_zh.md)应用，沙箱文件需分享至Picker应用打开并编辑保存
 
 ### 约束与限制
 
