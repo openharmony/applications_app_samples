@@ -88,24 +88,24 @@
   <td rowspan="4" x:str><strong>媒体</strong></td>
   <td x:str><a href="code/BasicFeature/Media/Image">图片显示及处理（API 11）</a></td>
   <td x:str><a href="code/BasicFeature/Media/VideoShow">媒体库视频</a></td>
-  <td x:str><a href="code/BasicFeature/Media/GamePuzzle">图片裁剪与分割</a></td>
   <td x:str><a href="code/BasicFeature/Media/ImageShow">图片显示</a></td>
+  <td x:str><a href="code/BasicFeature/Media/ImageEffect">图片编辑</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td x:str><a href="code/BasicFeature/Media/ImageEffect">图片编辑</a></td>
   <td x:str><a href="code/BasicFeature/Media/QRCodeScan">二维码扫描</a></td>
   <td x:str><a href="code/BasicFeature/Media/VideoPlay">视频播放（API 12）</a></td>
   <td x:str><a href="code/BasicFeature/Media/AVSession/MediaProvider">媒体会话——提供方（API 10）</a></td>
+  <td x:str><a href="code/BasicFeature/Media/AVRecorder">音视频录制</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td x:str><a href="code/BasicFeature/Media/AVRecorder">音视频录制</a></td>
   <td x:str><a href="code/BasicFeature/Media/Audio">音频管理（API 12）</a></td>
   <td x:str><a href="code/BasicFeature/Media/AudioHaptic">音振</a></td>
   <td x:str><a href="code/BasicFeature/Media/AVSession/VideoPlayer">视频播放</a></td>
+  <td x:str><a href="code/BasicFeature/Media/Camera">相机示例</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td x:str><a href="code/BasicFeature/Media/Camera">相机示例</a></td>
   <td x:str><a href="code/BasicFeature/Media/Camera_js">相机示例（JS）</a></td>
+  <td ></td>
   <td ></td>
   <td ></td>
  </tr>
@@ -279,7 +279,7 @@
   <td x:str><a href="code/SystemFeature/Media/AVSession/MediaController">媒体会话——控制方（API 10）</a></td>
   <td x:str><a href="code/SystemFeature/Media/VoiceCallDemo">音频通话示例（API 10）</a></td>
   <td x:str><a href="code/SystemFeature/Media/Recorder">录音机</a></td>
-  <td ></td>
+  <td x:str><a href="code/SystemFeature/Media/GamePuzzle">图片裁剪与分割</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>通知</strong></td>
@@ -366,7 +366,7 @@
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>资源配置</strong></td>
-  <td x:str><a href="code/Project/ResourceAllocation/ApplicationThemeSwitch">应用主题切换</a></td>
+  <td x:str><a href="code/SystemFeature/ResourceAllocation/ApplicationThemeSwitch">应用主题切换</a></td>
   <td ></td>
   <td ></td>
   <td ></td>
