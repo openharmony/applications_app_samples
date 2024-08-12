@@ -26,7 +26,7 @@ struct History {
   private feature: historyFeature = new historyFeature(getContext() as common.UIAbilityContext)
   @State arr: Array<Array<string>> = []
 
-  async onPageShow() {
+  async aboutToAppear() {
     this.feature.getData().then((data: Array<Array<string>>) => {
       this.arr = data
       Logger.info('mst arr is ' + JSON.stringify(this.arr.length))
