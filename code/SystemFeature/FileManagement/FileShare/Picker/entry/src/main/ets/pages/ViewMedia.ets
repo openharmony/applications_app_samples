@@ -17,7 +17,8 @@ import common from '@ohos.app.ability.common';
 import fs from '@ohos.file.fs'; // 实现应用文件访问能力
 import router from '@ohos.router';
 import picker from '@ohos.file.picker';
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import { BusinessError } from '@ohos.base';
 import MediaFileUri from '../media/MediaFileUri';
 import Logger from '../common/Logger';
@@ -84,14 +85,14 @@ struct ViewMedia {
   getMediaNameByUri(myUri: string, index: number) {
     Logger.info(TAG, 'getMediaNameByUri getFilenameByUriForMedia begin');
     // 创建文件获取选项，此处参数为获取image类型的文件资源
-    let imagesFetchOp: mediaLibrary.MediaFetchOptions = {
-      selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? OR ' + mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
-      selectionArgs: [mediaLibrary.MediaType.IMAGE.toString(), mediaLibrary.MediaType.VIDEO.toString()],
-      uri: myUri
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates.equalTo('uri', myUri)
     };
-    let media = mediaLibrary.getMediaLibrary(getContext(this));
+    let media =photoAccessHelper.getPhotoAccessHelper(getContext(this));
     // 获取文件资源，使用callback方式返回异步结果
-    media.getFileAssets(imagesFetchOp, async (error, fetchFileResult) => {
+    media.getAssets(fetchOptions, async (error, fetchFileResult) => {
       // 判断获取的文件资源的检索结果集是否为undefined，若为undefined则接口调用失败
       Logger.info(TAG, 'getFilenameByUriForMedia getMediaLibrary is ok');
 
@@ -125,7 +126,7 @@ struct ViewMedia {
         Logger.info(TAG, 'fileAsset.uri 0:' + fileAsset.uri);
         Logger.info(TAG, 'myUri: ' + myUri);
 
-        this.myFileTypes[index] = fileAsset.mediaType
+        this.myFileTypes[index] = fileAsset.photoType
         this.myFileName = fileAsset.displayName;
         this.myFileNames[index] = this.myFileName;
 
@@ -133,7 +134,7 @@ struct ViewMedia {
         AppStorage.SetOrCreate('myFileName', this.myFileName);
         AppStorage.SetOrCreate('myFileTypes', this.myFileTypes);
 
-        if (this.myFileTypes[index] === mediaLibrary.MediaType.VIDEO) {
+        if (this.myFileTypes[index] === photoAccessHelper.PhotoType.VIDEO) {
           Logger.info(TAG, 'getMediaNameByUri set showPauses for VIDEO');
           this.showPauses[index] = 1;
         }
@@ -243,7 +244,7 @@ struct ViewMedia {
                 Column() {
                   Image(uri)
                     .borderRadius(24)
-                    .visibility(index !== undefined && this.myFileTypes[index] === mediaLibrary.MediaType.IMAGE ? Visibility.Visible : Visibility.Hidden)
+                    .visibility(index !== undefined && this.myFileTypes[index] === photoAccessHelper.PhotoType.IMAGE ? Visibility.Visible : Visibility.Hidden)
                     .onClick(() => {
                       if (index !== undefined) {
                         this.myFileSize = this.myFileSizes[index];
@@ -263,7 +264,7 @@ struct ViewMedia {
                         .autoPlay(false)
                         .controls(true)
                         .borderRadius(24)
-                        .visibility(this.myFileTypes[index] === mediaLibrary.MediaType.VIDEO ? Visibility.Visible : Visibility.Hidden)
+                        .visibility(this.myFileTypes[index] === photoAccessHelper.PhotoType.VIDEO ? Visibility.Visible : Visibility.Hidden)
 
                       Image($r('app.media.ic_PAUSE'))
                         .width(25)
