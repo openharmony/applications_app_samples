@@ -13,14 +13,11 @@
  * limitations under the License.
  */
 
-import hilog from '@ohos.hilog';
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-
-import { Driver, ON, MatchPattern } from '@ohos.UiTest'
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
-import mediaLibrary from '@ohos.multimedia.mediaLibrary'
-import Logger from '../utils/Logger';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import inputMethod from '@ohos.inputMethod';
+import { Driver, ON, MatchPattern } from '@ohos.UiTest';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import Logger from '../utils/Logger';
 
 const TAG = '[Sample_StateManagement]'
 const BUNDLE = 'StateManagement_'

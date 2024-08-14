@@ -16,10 +16,12 @@ import distributedData from '@ohos.data.distributedKVStore';
 import Logger from '../model/Logger'
 import { BUNDLE_NAME } from './RemoteDeviceModel'
 import common from '@ohos.app.ability.common';
-import { Callback } from '@ohos.base';
+import { BusinessError, Callback } from '@ohos.base';
+import distributedDeviceManager from '@ohos.distributedDeviceManager';
 
-const TAG: string = 'KvStoreModel'
-const STORE_ID: string = 'distributedcalc'
+const TAG: string = 'KvStoreModel';
+const STORE_ID: string = 'distributedcalc';
+let devManager: distributedDeviceManager.DeviceManager;
 
 export class KvStoreModel {
   public kvManager: distributedData.KVManager | undefined = undefined
@@ -45,7 +47,7 @@ export class KvStoreModel {
       createIfMissing: true,
       encrypt: false,
       backup: false,
-      autoSync: true,
+      autoSync: false,
       kvStoreType: distributedData.KVStoreType.DEVICE_COLLABORATION,
       securityLevel: distributedData.SecurityLevel.S1
     };
@@ -81,9 +83,21 @@ export class KvStoreModel {
         key,
         value
       ).then((data) => {
-        Logger.debug(TAG, `kvStore.put ${key} finished, data= ${JSON.stringify(data)}`)
-      }).catch((err: object) => {
-        Logger.debug(TAG, `kvStore.put ${key} failed, ${JSON.stringify(err)}`)
+        Logger.debug(TAG, `kvStore.put ${key} finished, data= ${JSON.stringify(data)}`);
+        devManager = distributedDeviceManager.createDeviceManager(BUNDLE_NAME);
+        let deviceIds: string[] = [];
+        if (devManager != null) {
+          let devices = devManager.getAvailableDeviceListSync();
+          for (let i = 0; i < devices.length; i++) {
+            deviceIds[i] = devices[i].networkId as string;
+          }
+        }
+        const mode = distributedData.SyncMode.PUSH_PULL;
+        if (this.kvStore != null) {
+          this.kvStore.sync(deviceIds, mode, 1000);
+        }
+      }).catch((err: BusinessError) => {
+        Logger.debug(TAG, `kvStore.put ${key} failed, ${JSON.stringify(err)}`);
       })
     }
   }

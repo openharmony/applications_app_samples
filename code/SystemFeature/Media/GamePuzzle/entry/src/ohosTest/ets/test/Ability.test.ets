@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,25 +14,25 @@
  */
 
 import hilog from '@ohos.hilog';
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import { describe, it, expect } from '@ohos/hypium';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON } from '@ohos.UiTest';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 import missionManager from '@ohos.app.ability.missionManager';
 import emitter from '@ohos.events.emitter';
+import userFileManager from '@ohos.filemanagement.userFileManager';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 const DRIVER = Driver.create();
 const BUNDLE = 'gamePuzzle';
 let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
 
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
 
     /**
      * 拉起应用
      */
-    it(`${BUNDLE}_StartAbility_001`, 0, async function (done) {
+    it(`${BUNDLE}_StartAbility_001`, 0, async (done: Function) => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       hilog.info(0xF811, 'testTag', 'StartAbility_001 begin');
       try {
@@ -51,7 +51,7 @@ export default function abilityTest() {
     /**
      * 授权
      */
-    it(`${BUNDLE}_GetPermission_001`, 0, async (done) => {
+    it(`${BUNDLE}_GetPermission_001`, 0, async (done: Function) => {
       hilog.info(0xF811, 'testTag', 'GetPermission_001 begin');
       await DRIVER.delayMs(2000);
       let ability = abilityDelegatorRegistry.getAppContext();
@@ -60,10 +60,6 @@ export default function abilityTest() {
       let allowBtn = await DRIVER.findComponent(ON.text(await manager.getStringValue($r('app.string.allow'))));
       await allowBtn.click();
       await DRIVER.delayMs(1000);
-      await DRIVER.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.allow'))));
-      let allowBtnSecond = await DRIVER.findComponent(ON.text(await manager.getStringValue($r('app.string.allow'))));
-      await allowBtnSecond.click();
-      await DRIVER.delayMs(1000);
       done();
       hilog.info(0xF811, 'testTag', 'GetPermission_001 end');
     })
@@ -71,16 +67,18 @@ export default function abilityTest() {
     /**
      * 决定是否调用相机拍照
      */
-    it(`${BUNDLE}_IsTakePhoto_001`, 0, async (done) => {
+    it(`${BUNDLE}_IsTakePhoto_001`, 0, async (done: Function) => {
       hilog.info(0xF811, 'testTag', 'IsTakePhoto_001 begin');
       let context = abilityDelegatorRegistry.getAppContext();
-      let manager = mediaLibrary.getMediaLibrary(context);
-      let albums = await manager.getFileAssets({
-        selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
-        selectionArgs: [mediaLibrary.MediaType.IMAGE.toString()]
-      });
+      let mgr = userFileManager.getUserFileMgr(context);
+      let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+      let fetchOptions: userFileManager.FetchOptions = {
+        fetchColumns: [],
+        predicates: predicates.equalTo(userFileManager.ImageVideoKey.FILE_TYPE.toString(), userFileManager.FileType.IMAGE.toString())
+      };
+      let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOptions);
       // 小于两张，就拍照
-      if (albums.getCount() < 2) {
+      if (fetchResult.getCount() < 2) {
         await abilityDelegatorRegistry.startAbility({
           bundleName: 'com.ohos.camera',
           abilityName: 'com.ohos.camera.MainAbility'
@@ -102,7 +100,7 @@ export default function abilityTest() {
     /**
      * 重新吊起应用
      */
-    it(`${BUNDLE}_StartAbility_002`, 0, async (done) => {
+    it(`${BUNDLE}_StartAbility_002`, 0, async (done: Function) => {
       hilog.info(0xF811, 'testTag', 'StartAbility_002 begin');
       try {
         await abilityDelegatorRegistry.startAbility({

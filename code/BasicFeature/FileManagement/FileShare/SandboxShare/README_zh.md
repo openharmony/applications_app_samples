@@ -12,7 +12,7 @@
 
 使用说明：
 
-1. 因本应用的功能依赖Picker应用，在使用本应用之前首先应安装[Picker](code/BasicFeature/FileManagement/FileShare/Picker)应用;
+1. 因本应用的功能依赖Picker应用，在使用本应用之前首先应安装[Picker](/code/SystemFeature/FileManagement/FileShare/Picker/README_zh.md)应用;
 2. 在主界面，可以点击沙箱文件夹列出文件夹中的文件，同时也可以直接点击沙箱目录下的文件进入文件分享界面；
 3. 点击沙箱文件，进入文件分享界面，点击分享图标，文件将以picker方式打开文件，点击编辑图标，文件进入可编辑模式，在textArea中输入内容，然后点击保存，文件内容更新，返回沙箱应用首页，文件修改成功。
 
@@ -34,13 +34,13 @@ entry/src/main/ets/
 ```
 ### 具体实现
 
-* 增添文件、查找指定类型文件、获取文件uri、传递want信息启动ability的功能接口封装在fileFs.ts，源码参考：[fileFs.ts](src/main/ets/fileFs/fileFs.ts)
+* 增添文件、查找指定类型文件、获取文件uri、传递want信息启动ability的功能接口封装在fileFs.ts，源码参考：[fileFs.ts](/code/BasicFeature/FileManagement/FileShare/SandboxShare/entry/src/main/ets/fileFs/fileFs.ts)
 
   * 使用fs.mkdirSync、fs.openSync、fs.writeSync、fs.readSync、fs.closeSync分别用来来创建文件夹、打开文件、写文件、读文件、关闭文件，接口参考：[@ohos.file.fs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-fs.md)
 
   * 使用fileUri.getUriFromPath来获取文件uri，接口参考：[@ohos.file.fileuri](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-fileuri.md) 
 
-  * 分享文件至picker应用打开并编辑：在分享页面[show.ets](src/main/ets/pages/Show.ets)
+  * 分享文件至picker应用打开并编辑：在分享页面[show.ets](/code/BasicFeature/FileManagement/FileShare/SandboxShare/entry/src/main/ets/pages/Show.ets)
 
     调用 implicitStartAbility 方法传递want参数启动新的ability，接口参考：[@ohos.ability.wantConstant](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-wantConstant.md)、[@ohos.application.Want](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-want.md) 
 
@@ -56,7 +56,7 @@ entry/src/main/ets/
 
 ### 依赖
 
-本应用需要依赖[Picker](code/BasicFeature/FileManagement/FileShare/Picker)应用，沙箱文件需分享至Picker应用打开并编辑保存
+本应用需要依赖[Picker](/code/SystemFeature/FileManagement/FileShare/Picker/README_zh.md)应用，沙箱文件需分享至Picker应用打开并编辑保存
 
 ### 约束与限制
 

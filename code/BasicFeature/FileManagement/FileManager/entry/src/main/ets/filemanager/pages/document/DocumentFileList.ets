@@ -30,7 +30,7 @@ let fileAccessHelperAllServer: fileAccess.FileAccessHelper;
 @Entry
 @Component
 struct DocumentFileList {
-  @State isNoFile: boolean = false;
+  @State isNoFile: boolean = true;
   @State showDeleteButton: boolean = false;
   @State fileList: DocumentDataSource = new DocumentDataSource();
   title: Resource = {} as Resource;
@@ -43,8 +43,13 @@ struct DocumentFileList {
       rootInfos = result;
     });
     fileInfos = documentFileManager.iteratorDir(rootInfos);
+    AppStorage.setOrCreate('fileListCount', 0);
     documentFileManager.scanFiles(fileInfos).forEach((item: fileAccess.FileInfo) => {
       this.fileList.pushData(item);
+      if (this.fileList.totalCount() > 0) {
+        this.isNoFile = false;
+        AppStorage.setOrCreate('fileListCount', this.fileList.totalCount());
+      }
     });
   }
 
@@ -58,6 +63,7 @@ struct DocumentFileList {
     Column() {
       Row() {
         Image($r('app.media.back'))
+          .id('backStep')
           .width(36)
           .height(36)
           .objectFit(ImageFit.Fill)
@@ -96,7 +102,10 @@ struct DocumentFileList {
             height: 45
           })
           .stateStyles({
-            pressed: this.imagePressedStyles
+            pressed: this.imagePressedStyles,
+            normal: {
+              .backgroundColor(Color.White)
+            }
           })
           .onClick(async () => {
             let fileInfo: fileAccess.FileInfo | undefined = undefined;

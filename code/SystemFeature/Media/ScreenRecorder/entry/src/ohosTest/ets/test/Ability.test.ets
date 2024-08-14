@@ -17,7 +17,6 @@ import { describe, expect, it } from '@ohos/hypium';
 import { Driver, ON } from '@ohos.UiTest';
 import hilog from '@ohos.hilog';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 import { getString } from '../utils/ResourceUtil';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import dataSharePredicates from '@ohos.data.dataSharePredicates';

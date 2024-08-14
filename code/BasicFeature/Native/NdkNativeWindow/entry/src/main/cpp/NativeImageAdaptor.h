@@ -35,16 +35,20 @@ public:
     ~NativeImageAdaptor();
     static NativeImageAdaptor *GetInstance();
     static napi_value GetAvailableCount(napi_env env, napi_callback_info info);
+    static napi_value NapiOnChangeIsAutoConsumer(napi_env env, napi_callback_info info);
     static napi_value NapiOnGetAttachBufferCount(napi_env env, napi_callback_info info);
     static napi_value NapiOnGetBufferQueueSize(napi_env env, napi_callback_info info);
     static napi_value NapiOnGetCacheBufferCount(napi_env env, napi_callback_info info);
     static napi_value NapiOnProduceBuffer(napi_env env, napi_callback_info info);
+    static napi_value NapiOnConsumerBuffer(napi_env env, napi_callback_info info);
     static napi_value NapiOnAttachBuffer(napi_env env, napi_callback_info info);
     static napi_value NapiOnDettachBuffer(napi_env env, napi_callback_info info);
+    
     static void OnFrameAvailable(void *context);
     void DealCallback(void *context);
     bool Export(napi_env env, napi_value exports);
-    void ProduceBuffer(uint32_t value, OHNativeWindow *InNativeWindow);
+    int32_t ProduceBuffer(uint32_t value, OHNativeWindow *InNativeWindow);
+    int32_t ConsumerBuffer(uint32_t value, OHNativeWindow *InNativeWindow);
     void InitEGLEnv();
     bool InitNativeWindow();
     bool InitNativeWindowCache();
@@ -56,6 +60,7 @@ public:
     int32_t GetAttachBufferCount();
     int32_t GetBufferQueueSize();
     int32_t GetCacheBufferCount();
+    bool ChangeIsAutoConsumer();
 
 private:
     void SetConfigAndGetValue();
@@ -73,6 +78,7 @@ private:
     std::mutex opMutex_;
     std::queue<NativeWindowBuffer *> bufferCache_;
     std::queue<NativeWindowBuffer *> bufferAttached_;
+    bool isAutoConsumer_;
 };
 }
 #endif // NdkNativeWindow_NativeImageAdaptor_H

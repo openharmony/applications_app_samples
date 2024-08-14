@@ -93,3 +93,12 @@ export class RdbStoreUtil {
 
   }
 }
+
+export class TimeUtils {
+  static startTime: number = 0;
+  static endTime: number = 0;
+
+  static countTime(): number {
+    return this.endTime - this.startTime;
+  }
+}

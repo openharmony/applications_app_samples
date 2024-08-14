@@ -44,7 +44,8 @@ export struct SmallVideo {
           .muted(true)
           .id('smallVideo')
           .onFinish(() => {
-            this.isHidden = false
+            this.isHidden = false;
+            this.updateTime = 0;
           })
 
         // 视频小窗口的右上角X

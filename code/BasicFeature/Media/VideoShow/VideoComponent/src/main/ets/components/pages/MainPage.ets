@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -22,17 +22,17 @@ import { MyDataSource } from '../model/LiveDataModel'
 @Entry
 @Component
 export struct MainPage {
-  private arrScroll: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-  private arrSwiper: number[] = [0, 1, 2, 3]
-  @State isHidden: boolean = false
-  @State @Watch("onScrollUpdated") scrollSum: number = 0
-  @State isState: boolean = true
-  @State isCancel: boolean = true
-  @State activeVideo: number = 0
-  @State openFirst: boolean = false
-  @Provide('playTime') playNum: number = 20
-  @State isPhone: boolean = false
-  portraitFunc = null
+  private arrScroll: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  private arrSwiper: number[] = [0, 1, 2, 3];
+  @State isHidden: boolean = false;
+  @State @Watch("onScrollUpdated") scrollSum: number = 0;
+  @State isState: boolean = true;
+  @State isCancel: boolean = true;
+  @State activeVideo: number = 0;
+  @State openFirst: boolean = false;
+  @Provide('playTime') playNum: number = 0;
+  @State isPhone: boolean = false;
+  portraitFunc = null;
   listenerIsPhone = mediaQuery.matchMediaSync('(orientation:landscape)');
 
   onPortrait(mediaQueryResult) {
@@ -40,8 +40,8 @@ export struct MainPage {
   }
 
   async aboutToAppear() {
-    this.portraitFunc = this.onPortrait.bind(this) // bind current js instance
-    this.listenerIsPhone.on('change', this.portraitFunc)
+    this.portraitFunc =  (mediaQueryResult) => this.onPortrait(mediaQueryResult);
+    this.listenerIsPhone.on('change', this.portraitFunc);
   }
 
   onScrollUpdated(): void { // 监听Scroll下滑距离

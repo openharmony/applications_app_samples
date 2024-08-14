@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "FullScreenStart"
+    },
+    {
+      "name": "EmbeddableStart",
+      "value": "FullScreenLaunchComponent "
+    },
+    {
+      "name": "UIAbilityStart",
+      "value": "UIAbilityOpenAtomicService"
+    },
+    {
+      "name": "UIExtensionStart",
+      "value": "UIExtensionOpenAtomicService"
+    },
+    {
+      "name": "AtomicService",
+      "value": "AtomicService"
+    }
+  ]
+}

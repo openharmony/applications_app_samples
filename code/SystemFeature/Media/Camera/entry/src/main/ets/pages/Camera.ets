@@ -164,7 +164,7 @@ struct CameraPage {
   }
 
   startAbilityToPhoto() {
-    (GlobalContext.getContext().getValue('cameraContext') as common.UIAbilityContext).startAbility({
+    (GlobalContext.getContext().getCameraAbilityContext() as common.UIAbilityContext).startAbility({
       bundleName: 'com.ohos.photos',
       abilityName: 'com.ohos.photos.MainAbility'
     }, (error: BusinessError) => {
@@ -200,6 +200,7 @@ struct CameraPage {
       }
       this.currentModel = CameraMode.modePhoto;
       this.videoThumbnail = undefined;
+      this.cameraModel.initCamera(this.surfaceId);
     }
   }
 
@@ -213,6 +214,7 @@ struct CameraPage {
         this.textMove = this.textMove - 56;
       });
       this.currentModel = CameraMode.modeVideo;
+      this.imageThumbnail = '';
     }
   }
 

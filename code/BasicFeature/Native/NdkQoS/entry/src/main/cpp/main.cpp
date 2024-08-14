@@ -13,28 +13,29 @@
  * limitations under the License.
  */
 
+#include <chrono>
+#include <thread>
+#include <unistd.h>
+#include <sched.h>
+#include <sys/resource.h>
+#include <hilog/log.h>
 #include "napi/native_api.h"
 #include "qos/qos.h"
-#include <thread>
-#include <hilog/log.h>
-#include <chrono>
-#include <unistd.h>
-#include <sys/resource.h>
-#include <sched.h>
 
 const unsigned int LOG_PRINT_DOMAIN = 0xFF00;
 constexpr int DEPTH = 34;
-constexpr int TASKS = 3;
+constexpr int TASKS = 3;   // 负载线程个数
 constexpr long long ONE = 1;
 constexpr long long TWO = 2;
 constexpr int BOUND = 20000;
 
-static bool g_addLoad = false;
-static double g_durationTime = 0;
+static bool g_addLoad = false;    // 负载线程是否加载
+static double g_durationTime = 0; // 计算任务耗时时间
 
-static int g_mask = 2;
+static int g_mask = 2; // 绑定到第二个cpu
 static int *g_affinity = &g_mask;
 
+// 执行 斐波那契数列 计算
 long long DoFib(double n)
 {
     if (n == ONE) {
@@ -44,13 +45,13 @@ long long DoFib(double n)
     if (n == TWO) {
         return TWO;
     }
-
     return DoFib(n - ONE) + DoFib(n - TWO);
 }
 
 void SetQoS(QoS_Level level)
 {
-    int ret = OH_QoS_SetThreadQoS(level); // 设置当前线程的QoS等级为level
+     // 设置当前线程的QoS等级为level
+    int ret = OH_QoS_SetThreadQoS(level);
     if (!ret) {                           // ret等于0说明设置成功
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "set qos level success.");
         //  查询当前的qos等级
@@ -60,94 +61,100 @@ void SetQoS(QoS_Level level)
             OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "the qos level of current thread : %{public}d",
                          queryLevel);
         } else { // 否则说明查询失败
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "get qos level failed.");
+            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "QoS", "get qos level failed.");
             return;
         }
     } else { // ret不等于0说明设置失败
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "get level qos failed!");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "QoS", "get level qos failed!");
         return;
     }
 
+    // 绑定到特定cpu
     cpu_set_t mask;
     CPU_SET(*g_affinity, &mask);
     if (sched_setaffinity(0, sizeof(mask), &mask) != 0) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "bind qos thread failed");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "QoS", "bind qos thread failed");
         return;
     }
-
+    // 执行斐波那契数列计算任务
     auto startTime = std::chrono::system_clock::now();
-    long long res = DoFib(DEPTH); // 执行计算任务
+    long long res = DoFib(DEPTH); // 执行斐波那契数列计算任务
     auto endTime = std::chrono::system_clock::now();
     g_durationTime = std::chrono::duration<double, std::milli>(endTime - startTime).count();
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "calculate res is: %{public}llu", res);
 
-    // reset
+    // 重置线程QoS等级
     ret = OH_QoS_ResetThreadQoS();
     if (!ret) { // ret等于0说明重置成功
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "reset qos level success.");
     } else { // 否则说明重置失败
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "reset qos level failed!");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "QoS", "reset qos level failed!");
         return;
     }
 
     // 在重置QoS后，再次查询，此时查询会失败
     QoS_Level queryLevelTwo;
     ret = OH_QoS_GetThreadQoS(&queryLevelTwo);
-    if (!ret) { // 异常路径
+    if (!ret) { // 正常路径
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "the qos level after: %{public}d", queryLevelTwo);
         return;
-    } else { // 正常路径
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "querry qos level failed after reset.");
+    } else { // 异常路径
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "QoS", "querry qos level failed after reset.");
         return;
     }
 }
 
+// 负载任务
 void AddLoads(int n)
 {
     if (!n) { // 检查n是否为负数，如果是则退出
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "invalid input.");
-        return;
-    }
-    
-    int ret = OH_QoS_SetThreadQoS(QoS_Level::QOS_BACKGROUND); // 设置负载线程的QoS等级
-    if (ret) { // ret不等于0说明设置失败
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "set load thread QoS level failed.");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "QoS", "invalid input.");
         return;
     }
 
+    int ret = OH_QoS_SetThreadQoS(QoS_Level::QOS_BACKGROUND); // 设置负载线程的QoS等级
+    if (ret) {                                                // ret不等于0说明设置失败
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "QoS", "set load thread QoS level failed.");
+        return;
+    }
+
+    // 绑定到特定cpu
     cpu_set_t mask;
     CPU_SET(*g_affinity, &mask);
     if (sched_setaffinity(0, sizeof(mask), &mask) != 0) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "QoS", "bind load thread failed");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "QoS", "bind load thread failed");
         return;
     }
-
+    // 执行负载计算
     for (int i = 0; i < BOUND; i++) {
         for (int j = 0; j < BOUND; j++) {
             int x = (i + j) - n;
             printf("%d", x);
         }
     }
+    // 重新初始化负载线程
+    g_addLoad = false;
 }
 
 static napi_value highQoSCalculate(napi_env env, napi_callback_info info)
 {
     g_durationTime = 0;
-
+    // 没有加载系统负载的情况下，开启TASKS个线程模拟系统负载
     if (!g_addLoad) {
         std::vector<std::thread> loadThreads;
         for (int i = 0; i < TASKS; i++) {
+            // 开启线程执行负载任务
             loadThreads.emplace_back(std::thread(AddLoads, TASKS));
             loadThreads[i].detach();
         }
-
         g_addLoad = true;
     }
-
+    // 开启 QOS_USER_INTERACTIVE 高 QoS 线程进行计算
     QoS_Level level = QoS_Level::QOS_USER_INTERACTIVE;
     std::thread task(SetQoS, level);
     task.join();
-
+    
+    // 返回计算耗时
     napi_value res;
     napi_create_double(env, g_durationTime, &res);
     return res;
@@ -156,21 +163,23 @@ static napi_value highQoSCalculate(napi_env env, napi_callback_info info)
 static napi_value lowQoSCalculate(napi_env env, napi_callback_info info)
 {
     g_durationTime = 0;
-
+    // 没有加载系统负载的情况下，开启TASKS个线程模拟系统负载
     if (!g_addLoad) {
         std::vector<std::thread> loadThreads;
         for (int i = 0; i < TASKS; i++) {
+            // 开启线程执行负载任务
             loadThreads.emplace_back(std::thread(AddLoads, TASKS));
             loadThreads[i].detach();
         }
-
         g_addLoad = true;
     }
 
+    // 开启 QOS_BACKGROUND 低 QoS 线程进行计算
     QoS_Level level = QoS_Level::QOS_BACKGROUND;
     std::thread task(SetQoS, level);
     task.join();
 
+    // 返回计算耗时
     napi_value res;
     napi_create_double(env, g_durationTime, &res);
     return res;

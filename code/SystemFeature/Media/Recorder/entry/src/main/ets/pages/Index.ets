@@ -89,7 +89,7 @@ struct Index {
     if (operate === 'play') {
       if (!this.isLand) {
         router.pushUrl({
-          params: { fileId: recorder.fileAsset?.uri },
+          params: { uri: recorder.fileAsset?.uri },
           url: 'pages/Play'
         });
       } else {

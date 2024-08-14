@@ -23,7 +23,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    GlobalContext.getContext().setValue('cameraContext',this.context);
+    GlobalContext.getContext().setCameraAbilityContext(this.context);
   }
 
   onDestroy() {

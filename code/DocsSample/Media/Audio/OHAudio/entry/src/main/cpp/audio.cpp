@@ -166,6 +166,9 @@ static napi_value AudioCapturerLowLatencyInit(napi_env env, napi_callback_info i
     OH_AudioStreamBuilder_SetLatencyMode(builder, AUDIOSTREAM_LATENCY_MODE_FAST);
     OH_AudioCapturer_Callbacks callbacks;
     callbacks.OH_AudioCapturer_OnReadData = AudioCapturerOnReadData;
+    callbacks.OH_AudioCapturer_OnError = nullptr;
+    callbacks.OH_AudioCapturer_OnInterruptEvent = nullptr;
+    callbacks.OH_AudioCapturer_OnStreamEvent = nullptr;
     OH_AudioStreamBuilder_SetCapturerCallback(builder, callbacks, nullptr);
     // 3. create OH_AudioCapturer
     OH_AudioStreamBuilder_GenerateCapturer(builder, &audioCapturer);
@@ -194,6 +197,9 @@ static napi_value AudioCapturerInit(napi_env env, napi_callback_info info)
     OH_AudioStreamBuilder_SetLatencyMode(builder, AUDIOSTREAM_LATENCY_MODE_NORMAL);
     OH_AudioCapturer_Callbacks callbacks;
     callbacks.OH_AudioCapturer_OnReadData = AudioCapturerOnReadData;
+    callbacks.OH_AudioCapturer_OnStreamEvent = nullptr;
+    callbacks.OH_AudioCapturer_OnInterruptEvent = nullptr;
+    callbacks.OH_AudioCapturer_OnError = nullptr;
     OH_AudioStreamBuilder_SetCapturerCallback(builder, callbacks, nullptr);
     // 3. create OH_AudioCapturer
     OH_AudioStreamBuilder_GenerateCapturer(builder, &audioCapturer);
@@ -268,6 +274,9 @@ static napi_value AudioRendererLowLatencyInit(napi_env env, napi_callback_info i
     OH_AudioStreamBuilder_SetLatencyMode(rendererBuilder, AUDIOSTREAM_LATENCY_MODE_FAST);
     OH_AudioRenderer_Callbacks rendererCallbacks;
     rendererCallbacks.OH_AudioRenderer_OnWriteData = AudioRendererOnWriteData;
+    rendererCallbacks.OH_AudioRenderer_OnError = nullptr;
+    rendererCallbacks.OH_AudioRenderer_OnInterruptEvent = nullptr;
+    rendererCallbacks.OH_AudioRenderer_OnStreamEvent = nullptr;
     OH_AudioStreamBuilder_SetRendererCallback(rendererBuilder, rendererCallbacks, nullptr);
     // create OH_AudioRenderer
     OH_AudioStreamBuilder_GenerateRenderer(rendererBuilder, &audioRenderer);
@@ -301,6 +310,9 @@ static napi_value AudioRendererInit(napi_env env, napi_callback_info info)
     OH_AudioStreamBuilder_SetLatencyMode(rendererBuilder, AUDIOSTREAM_LATENCY_MODE_NORMAL);
     OH_AudioRenderer_Callbacks rendererCallbacks;
     rendererCallbacks.OH_AudioRenderer_OnWriteData = AudioRendererOnWriteData;
+    rendererCallbacks.OH_AudioRenderer_OnStreamEvent = nullptr;
+    rendererCallbacks.OH_AudioRenderer_OnInterruptEvent = nullptr;
+    rendererCallbacks.OH_AudioRenderer_OnError = nullptr;
     OH_AudioStreamBuilder_SetRendererCallback(rendererBuilder, rendererCallbacks, nullptr);
     // create OH_AudioRenderer
     OH_AudioStreamBuilder_GenerateRenderer(rendererBuilder, &audioRenderer);

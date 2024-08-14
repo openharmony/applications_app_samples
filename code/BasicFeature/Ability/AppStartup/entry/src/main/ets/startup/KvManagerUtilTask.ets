@@ -1,7 +1,8 @@
 import StartupTask from '@ohos.app.appstartup.StartupTask';
 import common from '@ohos.app.ability.common';
-import { KvManagerUtil } from '../util/SingleKVStore';
+import { KvManagerUtil, TimeUtils } from '../util/SingleKVStore';
 import distributedKVStore from '@ohos.data.distributedKVStore';
+import systemDateTime from '@ohos.systemDateTime';
 
 @Sendable
 export default class KvManagerUtilTask extends StartupTask {
@@ -10,6 +11,8 @@ export default class KvManagerUtilTask extends StartupTask {
   }
 
   async init(context: common.AbilityStageContext): Promise<distributedKVStore.KVManager> {
+    let time = systemDateTime.getTime(false);
+    TimeUtils.startTime = time;
     return KvManagerUtil.getInstance(context);
   }
 

@@ -117,7 +117,6 @@ struct AnimationToSample {
             .width(160)
             .rotate({ angle: this.rotateAngleDelay })
             .margin(35)
-            .animation({})
 
           Button($r('app.string.attribute_animation_play_count'))
             .onClick(() => {

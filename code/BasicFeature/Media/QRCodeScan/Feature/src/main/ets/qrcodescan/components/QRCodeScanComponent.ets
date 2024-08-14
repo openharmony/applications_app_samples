@@ -13,34 +13,43 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
-import image from '@ohos.multimedia.image'
-import prompt from '@ohos.promptAction'
-import common from '@ohos.app.ability.common'
-import { CameraService } from '../CameraService'
+import router from '@ohos.router';
+import image from '@ohos.multimedia.image';
+import prompt from '@ohos.promptAction';
+import common from '@ohos.app.ability.common';
+import { CameraService } from '../CameraService';
 import { QRCodeScanConst, ImageAttribute, DecodeResultAttribute } from '../QRCodeScanConst';
-import { QRCodeParser } from '../QRCodeParser'
+import { QRCodeParser } from '../QRCodeParser';
+import Logger from '../../utils/Logger';
+import { BusinessError } from '@ohos.base';
+import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
+
+const TAG: string = 'QRCodeScanComponent';
+let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+const PERMISSIONS: Permissions[] = ['ohos.permission.CAMERA', 'ohos.permission.READ_IMAGEVIDEO',
+  'ohos.permission.WRITE_IMAGEVIDEO', 'ohos.permission.MEDIA_LOCATION'];
 
 /**
  * 二维码扫描组件
  */
 @Component
 export default struct QRCodeScanComponent {
-  private cameraService: CameraService = new CameraService()
-  private qrCodeParser: QRCodeParser = new QRCodeParser()
-  private xComponentController: XComponentController = new XComponentController()
-  @StorageProp('qrCodeParseResult') @Watch('showQrCodeResult') qrCodeParseResult: string = ''
-  @State qrCodeImage: image.PixelMap | undefined = undefined
-  @State animationOrdinate: number = QRCodeScanConst.SCAN_TO_TOP_HEIGHT
+  private cameraService: CameraService = new CameraService();
+  private qrCodeParser: QRCodeParser = new QRCodeParser();
+  private xComponentController: XComponentController = new XComponentController();
+  private context: common.Context = getContext(this);
+  @StorageProp('qrCodeParseResult') @Watch('showQrCodeResult') qrCodeParseResult: string = '';
+  @State qrCodeImage: image.PixelMap | undefined = undefined;
+  @State animationOrdinate: number = QRCodeScanConst.SCAN_TO_TOP_HEIGHT;
   @State hasCameraPermission: boolean | undefined = false;
-  @State isQRCodeScanStopped: boolean = false
+  @State isQRCodeScanStopped: boolean = false;
   // 每当应用切换回来都重新打开相机
-  @StorageLink('cameraStatus') @Watch('reCreateCamera') isCameraOpened: boolean = false
-  @State surFaceId: string = ''
+  @StorageLink('cameraStatus') @Watch('reCreateCamera') isCameraOpened: boolean = false;
+  @State surFaceId: string = '';
 
   // 重新打开相机
   async reCreateCamera() {
-    await this.cameraService.createCamera(this.surFaceId)
+    await this.cameraService.createCamera(this.surFaceId);
   }
 
   showQrCodeResult() {
@@ -50,11 +59,37 @@ export default struct QRCodeScanComponent {
     })
   }
 
+  // 获取权限
+  async requestPermissions() {
+    try {
+      await atManager.requestPermissionsFromUser(this.context, PERMISSIONS)
+        .then((data) => {
+          Logger.info(TAG, `data: ${JSON.stringify(data)}`);
+          // 如果权限列表中有-1，说明用户拒绝了授权
+          if (data.authResults[0] === 0) {
+            // 控制相机是否打开
+            AppStorage.setOrCreate(QRCodeScanConst.HAS_CAMERA_PERMISSION, true);
+            Logger.info(TAG, 'permissionRequestResult success');
+          } else {
+            Logger.info(TAG, 'permissionRequestResult failed');
+          }
+          Logger.info(TAG, `context:${JSON.stringify(this.context)}`);
+          AppStorage.setOrCreate('context', this.context);
+        })
+        .catch((err: BusinessError) => {
+          Logger.error(TAG, `requestPermissionsFromUser err code:${err.code},message:${err.message}`);
+        })
+    } catch (err) {
+      Logger.info(TAG, `catch err->${JSON.stringify(err)}`);
+    }
+  }
+
   aboutToAppear() {
+    this.requestPermissions();
     // 监听相机权限
-    this.watchCameraPermission()
+    this.watchCameraPermission();
     // 设置扫描动画
-    this.setQRCodeScanAnimation()
+    this.setQRCodeScanAnimation();
     // 解析二维码图片信息
     this.qrCodeParser.parseQRCodeImageFromCamera(this.cameraService);
   }

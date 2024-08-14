@@ -16,6 +16,7 @@
 import curves from '@ohos.curves';
 import display from '@ohos.display';
 import inputMethod from '@ohos.inputMethod';
+import window from '@ohos.window';
 import { TitleBar } from '../../../../common/TitleBar'
 import FloatingWindowComponent from './FloatingWindowComponent';
 import Logger from '../../../../util/Logger';
@@ -40,9 +41,11 @@ struct FloatingWindowSample {
   @State moveEndTime: number = 0; // 触摸结束时间
   @State inputMethodSetting: inputMethod.InputMethodSetting = inputMethod.getSetting();
   @StorageLink('keyboardHeight') @Watch('keyboardHeightChange') keyboardHeight: number = 0;
+  private statusHeight: number = 0;
+  private bottomHeight: number = 0;
 
   aboutToAppear() {
-    display.getAllDisplays((err, data) => {
+    display.getAllDisplays((_err, data) => {
       // 拿到屏幕宽高的一半，作为判断基准值
       this.displayHalfWidth = data[0].width / 2;
       this.displayHalfHeight = data[0].height / 2;
@@ -52,11 +55,20 @@ struct FloatingWindowSample {
       this.displayHalfHeight = px2vp(this.displayHalfHeight);
       Logger.info(TAG, `aboutToAppear getAllDisplays data 2 width:${this.displayHalfWidth}, height:${this.displayHalfHeight}`);
     })
+    // 获取窗口上下规避区域高度
+    window.getLastWindow(getContext(this)).then(windowClass => {
+      let avoidTopArea = windowClass.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM);
+      this.statusHeight = avoidTopArea.topRect.height + avoidTopArea.bottomRect.height;
+      let avoidBottomArea = windowClass.getWindowAvoidArea(window.AvoidAreaType.TYPE_NAVIGATION_INDICATOR);
+      this.bottomHeight = avoidBottomArea.topRect.height;
+      Logger.info(TAG, `aboutToAppear getAvoidAreaHeight avoidTopArea:${this.statusHeight}, avoidBottomArea:${this.bottomHeight}`);
+    })
   }
 
   keyboardHeightChange() {
     Logger.info(TAG, `keyboardHeightChange keyboardHeight: ${this.keyboardHeight}`);
-    let keyboradTop: number = this.displayHalfHeight * 2 - this.keyboardHeight - 100;
+    let keyboradTop: number = this.displayHalfHeight * 2 - px2vp(this.keyboardHeight) -
+      px2vp(this.statusHeight) - px2vp(this.bottomHeight) - 200;
     if (keyboradTop < this.positionY) {
       animateTo({ curve: curves.responsiveSpringMotion() }, () => {
         this.positionY = keyboradTop;

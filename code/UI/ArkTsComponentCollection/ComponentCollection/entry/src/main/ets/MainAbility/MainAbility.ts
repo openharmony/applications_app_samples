@@ -52,9 +52,8 @@ export default class MainAbility extends UIAbility {
           }
           Logger.info('Succeeded in setting the system bar properties.');
         })
-        let bottomAvoidArea: number = windowClass.getWindowAvoidArea(window.AvoidAreaType.TYPE_NAVIGATION_INDICATOR).bottomRect.height;
         windowClass.on('keyboardHeightChange', (data: number) => {
-          AppStorage.setOrCreate('keyboardHeight', data - bottomAvoidArea);
+          AppStorage.setOrCreate('keyboardHeight', data);
         })
       })
     } catch (exception) {

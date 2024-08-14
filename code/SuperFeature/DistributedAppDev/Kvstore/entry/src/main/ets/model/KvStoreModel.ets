@@ -13,13 +13,17 @@
  * limitations under the License.
  */
 
-import distributedData from '@ohos.data.distributedKVStore'
-import common from '@ohos.app.ability.common'
-import Logger from '../util/Logger'
+import distributedData from '@ohos.data.distributedKVStore';
+import common from '@ohos.app.ability.common';
+import Logger from '../util/Logger';
 import { Callback } from '@ohos.base';
+import distributedDeviceManager from '@ohos.distributedDeviceManager';
 
-const STORE_ID = 'etskvstore'
-const TAG = 'KvStoreModel'
+const STORE_ID = 'etskvstore';
+const TAG = 'KvStoreModel';
+const mode = distributedData.SyncMode.PUSH_PULL;
+let context: common.Context = getContext(this);
+let devManager: distributedDeviceManager.DeviceManager;
 
 export class KvStoreModel {
   private kvManager?: distributedData.KVManager = undefined;
@@ -49,7 +53,7 @@ export class KvStoreModel {
       createIfMissing: true,
       encrypt: false,
       backup: false,
-      autoSync: true,
+      autoSync: false,
       kvStoreType: distributedData.KVStoreType.SINGLE_VERSION,
       securityLevel: distributedData.SecurityLevel.S1,
     }
@@ -72,6 +76,21 @@ export class KvStoreModel {
         value
       ).then((data) => {
         Logger.debug(TAG, `kvStore.put ${key} finished, data= ${JSON.stringify(data)}`);
+        try {
+          devManager = distributedDeviceManager.createDeviceManager(context.applicationInfo.name);
+          let deviceIds: string[] = [];
+          if (devManager != null) {
+            let devices = devManager.getAvailableDeviceListSync();
+            for (let i = 0; i < devices.length; i++) {
+              deviceIds[i] = devices[i].networkId as string;
+            }
+          }
+          if (this.kvStore != null) {
+            this.kvStore.sync(deviceIds, mode, 1000);
+          }
+        } catch (err) {
+          Logger.error('createDeviceManager errCode:' + err.code + ',errMessage:' + err.message);
+        }
       }).catch((err: object) => {
         Logger.debug(TAG, `kvStore.put ${key} failed, ${JSON.stringify(err)}`);
       })

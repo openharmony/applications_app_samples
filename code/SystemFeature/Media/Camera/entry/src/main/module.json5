@@ -81,7 +81,7 @@
         }
       },
       {
-        "name": "ohos.permission.WRITE_MEDIA",
+        "name": "ohos.permission.WRITE_IMAGEVIDEO",
         "reason": "$string:write_permission",
         "usedScene": {
           "abilities": [
@@ -91,7 +91,7 @@
         }
       },
       {
-        "name": "ohos.permission.READ_MEDIA",
+        "name": "ohos.permission.READ_IMAGEVIDEO",
         "reason": "$string:read_permission",
         "usedScene": {
           "abilities": [

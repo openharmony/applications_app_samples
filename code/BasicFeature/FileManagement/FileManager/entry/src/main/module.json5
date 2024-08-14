@@ -52,16 +52,6 @@
     ],
     "requestPermissions": [
       {
-        "name": "ohos.permission.FILE_ACCESS_MANAGER",
-        "reason": "$string:file_access_reason",
-        "usedScene": {
-          "abilities": [
-            "MainAbility"
-          ],
-          "when": "always"
-        }
-      },
-      {
         "name": "ohos.permission.STORAGE_MANAGER",
         "reason": "$string:storage_reason",
         "usedScene": {
@@ -124,16 +114,6 @@
       {
         "name": "ohos.permission.FILE_ACCESS_MANAGER",
         "reason": "$string:storage_reason",
-        "usedScene": {
-          "abilities": [
-            "MainAbility"
-          ],
-          "when": "always"
-        }
-      },
-      {
-        "name": "ohos.permission.READ_AUDIO",
-        "reason": "$string:write_reason",
         "usedScene": {
           "abilities": [
             "MainAbility"
