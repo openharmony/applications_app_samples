@@ -28,7 +28,7 @@
 
 #word_title {
   color: #ff02132d;
-  font-size: 15vp;
+  font-size: 15px;
 }
 
 #box_rect {
@@ -75,7 +75,6 @@
 
 #word_t {
   color: #ffb70909;
-  font-size: 26vp;
 }
 
 #word_s {
