@@ -17,6 +17,7 @@ import { AbilityConstant, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
+import commonEventManager from '@ohos.commonEventManager';
 
 export default class EntryAbility extends EmbeddableUIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
@@ -48,6 +49,13 @@ export default class EntryAbility extends EmbeddableUIAbility {
   onForeground(): void {
     // Ability has brought to foreground
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
+    let options: commonEventManager.CommonEventPublishData = {
+      parameters: {
+        'bundleName': this.context.abilityInfo.bundleName,
+      }
+    }
+    commonEventManager.publish('GetCurrentTopAbility', options, async () => {
+    })
   }
 
   onBackground(): void {
