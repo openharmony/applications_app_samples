@@ -126,7 +126,7 @@ struct ViewMedia {
         Logger.info(TAG, 'fileAsset.uri 0:' + fileAsset.uri);
         Logger.info(TAG, 'myUri: ' + myUri);
 
-        this.myFileTypes[index] = fileAsset.photoType
+        this.myFileTypes[index] = fileAsset.photoType;
         this.myFileName = fileAsset.displayName;
         this.myFileNames[index] = this.myFileName;
 
