@@ -15,7 +15,8 @@
 
 import picker from '@ohos.file.picker';
 import router from '@ohos.router';
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';
 import Logger from '../common/Logger';
@@ -94,14 +95,14 @@ struct Index {
   async getFilenameByUriForMedia(myUris: string[]) {
     Logger.info(TAG, ' getFilenameByUriForMedia begin');
     // 创建文件获取选项，此处参数为获取image类型的文件资源
-    let imagesFetchOp: mediaLibrary.MediaFetchOptions = {
-      selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? OR ' + mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
-      selectionArgs: [mediaLibrary.MediaType.IMAGE.toString(), mediaLibrary.MediaType.VIDEO.toString()],
-      uri: myUris[0],
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates.equalTo('uri', myUris[0])
     };
-    let media = mediaLibrary.getMediaLibrary(getContext(this));
+    let media = photoAccessHelper.getPhotoAccessHelper(getContext(this));
     // 获取文件资源，使用callback方式返回异步结果
-    media.getFileAssets(imagesFetchOp, async (error, fetchFileResult) => {
+    media.getAssets(fetchOptions, async (error, fetchFileResult) => {
       // 判断获取的文件资源的检索结果集是否为undefined，若为undefined则接口调用失败
 
       Logger.info(TAG, 'getFilenameByUriForMedia getMediaLibrary is ok');
@@ -321,9 +322,9 @@ struct Index {
             .listDirection(Axis.Vertical) // 排列方向
             .id('indexList')
             .edgeEffect(EdgeEffect.Spring) // 滑动到边缘无效果
-            .scrollBar(BarState.Auto)
+            .scrollBar(BarState.Off)
             .alignListItem(ListItemAlign.Center)
-            .margin({ top: '1%', left: 12, right: 12 })
+            .margin({ top: '1%', bottom: '15%', left: 12, right: 12 })
           }
           .height('100%')
           .width('100%')

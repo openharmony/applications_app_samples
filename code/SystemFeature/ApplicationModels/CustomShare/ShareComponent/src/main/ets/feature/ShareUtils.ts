@@ -18,7 +18,7 @@ import fileio from '@ohos.fileio'
 import display from '@ohos.display'
 import screenshot from '@ohos.screenshot'
 import image from '@ohos.multimedia.image'
-import mediaLibrary from '@ohos.multimedia.mediaLibrary'
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import Logger from '../util/Logger'
 import MediaUtils from '../feature/MediaUtils'
 import { ShareConst } from '../util/ShareConst'
@@ -209,10 +209,10 @@ export class ShareUtils {
     }
   }
 
-  async queryMedia(mediaList: Array<mediaLibrary.FileAsset>, fileAssetName: string) {
+  async queryMedia(mediaList: Array<photoAccessHelper.PhotoAsset>, fileAssetName: string) {
     let fdNum: number
     for (let i = 0; i < mediaList.length; i++) {
-      Logger.info(TAG, `queryMedia: file.id: ${mediaList[i].id}, file.name: ${mediaList[i].displayName}`)
+      Logger.info(TAG, `queryMedia: file.uri: ${mediaList[i].uri}, file.name: ${mediaList[i].displayName}`)
       try {
         if (mediaList[i].displayName === fileAssetName) {
           let fileAsset = mediaList[i]
@@ -228,11 +228,11 @@ export class ShareUtils {
   }
 
   async getFileData(contextCaller) {
-    let mediaList: Array<mediaLibrary.FileAsset> = []
-    let fileAssets = MediaUtils.getFileAssetsFromType(mediaLibrary.MediaType.VIDEO, this.context)
+    let mediaList: Array<photoAccessHelper.PhotoAsset> = [];
+    let fileAssets = MediaUtils.getFileAssetsFromType(photoAccessHelper.PhotoType.VIDEO, this.context);
     let fileAssetName: string = 'video_4.mp4'
     let fdVideo
-    mediaList = await MediaUtils.getFileAssetsFromType(mediaLibrary.MediaType.VIDEO, this.context)
+    mediaList = await MediaUtils.getFileAssetsFromType(photoAccessHelper.PhotoType.VIDEO, this.context);
     Logger.info(TAG, `getFileData: getFileData mediaList: ${mediaList}`)
     fdVideo = await this.queryMedia(mediaList, fileAssetName)
     Logger.info(TAG, `getFileData: getFileData fd: ${fdVideo}`)
