@@ -1,0 +1,248 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "main_title",
+      "value": "public api example"
+    },
+    {
+      "name": "AppManager",
+      "value": "appManager example"
+    },
+    {
+      "name": "appRecovery",
+      "value": "appRecovery example"
+    },
+    {
+      "name": "DataUriUtils",
+      "value": "dataUriUtils example"
+    },
+    {
+      "name": "WantAgent",
+      "value": "WantAgent example"
+    },
+    {
+      "name": "ApplicationContext",
+      "value": "ApplicationContext example"
+    },
+    {
+      "name": "UIAbilityContext",
+      "value": "UIAbilityContext example"
+    },
+    {
+      "name": "AbilityLifecycleCallback",
+      "value": "AbilityLifecycleCallback example"
+    },
+    {
+      "name": "ErrorManager",
+      "value": "errorManager example"
+    },
+    {
+      "name": "isRunningInStabilityTestCallback",
+      "value": "isRunningInStabilityTest(callback)"
+    },
+    {
+      "name": "isRunningInStabilityTestPromise",
+      "value": "isRunningInStabilityTest(promise)"
+    },
+    {
+      "name": "isRamConstrainedDeviceCallback",
+      "value": "isRamConstrainedDevice(callback)"
+    },
+    {
+      "name": "isRamConstrainedDevicePromise",
+      "value": "isRamConstrainedDevice(promise)"
+    },
+    {
+      "name": "getAppMemorySizeCallback",
+      "value": "getAppMemorySize(callback)"
+    },
+    {
+      "name": "getAppMemorySizePromise",
+      "value": "getAppMemorySize(promise)"
+    },
+    {
+      "name": "getRunningProcessInformationCallback",
+      "value": "getRunningProcessInformation(callback)"
+    },
+    {
+      "name": "getRunningProcessInformationPromise",
+      "value": "getRunningProcessInformation(promise)"
+    },
+    {
+      "name": "registerErrorObserver",
+      "value": "register ErrorObserver"
+    },
+    {
+      "name": "unregisterErrorObserver",
+      "value": "unregister ErrorObserver"
+    },
+    {
+      "name": "simulateError",
+      "value": "simulate Error"
+    },
+    {
+      "name": "registerLoopObserver",
+      "value": "register LoopObserver"
+    },
+    {
+      "name": "unregisterLoopObserver",
+      "value": "unregister LoopObserver"
+    },
+    {
+      "name": "simulateLoopTimeout",
+      "value": "simulate LoopTimeout"
+    },
+    {
+      "name": "registerUnhandledRejection",
+      "value": "register UnhandledRejectionObserver"
+    },
+    {
+      "name": "unregisterUnhandledRejection",
+      "value": "unregister UnhandledRejectionObserver"
+    },
+    {
+      "name": "simulateUnhandledRejection",
+      "value": "simulate UnhandledRejection"
+    },
+    {
+      "name": "getId",
+      "value": "getId"
+    },
+    {
+      "name": "attachId",
+      "value": "attachId"
+    },
+    {
+      "name": "deleteId",
+      "value": "deleteId"
+    },
+    {
+      "name": "updateId",
+      "value": "updateId"
+    },
+    {
+      "name": "UIAbilityContext_startAbilityByType",
+      "value": "startAbilityByType"
+    },
+    {
+      "name": "UIAbilityContext_requestModalUIExtension",
+      "value": "requestModalUIExtension"
+    },
+    {
+      "name": "UIExtensionContentSession_terminateSelfWithResultCallback",
+      "value": "terminateSelfWithResult(callback)"
+    },
+    {
+      "name": "UIExtensionContentSession_terminateSelfWithResultPromise",
+      "value": "terminateSelfWithResult(promise)"
+    },
+    {
+      "name": "UIExtensionContentSession_setWindowPrivacyModeCallback",
+      "value": "setWindowPrivacyMode(callback)"
+    },
+    {
+      "name": "UIExtensionContentSession_setWindowPrivacyModePromise",
+      "value": "setWindowPrivacyMode(promise)"
+    },
+    {
+      "name": "privacy_window_permission",
+      "value": "permit user to set privacy window"
+    },
+    {
+      "name": "UIExtensionContentSession_getUIExtensionWindowProxy",
+      "value": "getUIExtensionWindowProxy"
+    },
+    {
+      "name": "getBundleNameCallback",
+      "value": "getBundleName(callback)"
+    },
+    {
+      "name": "getBundleNamePromise",
+      "value": "getBundleName(promise)"
+    },
+    {
+      "name": "getUidCallback",
+      "value": "getUid(callback)"
+    },
+    {
+      "name": "getUidPromise",
+      "value": "getUid(promise)"
+    },
+    {
+      "name": "cancelCallback",
+      "value": "cancel(callback)"
+    },
+    {
+      "name": "cancelPromise",
+      "value": "cancel(promise)"
+    },
+    {
+      "name": "equalCallback",
+      "value": "equal(callback)"
+    },
+    {
+      "name": "equalPromise",
+      "value": "equal(promise)"
+    },
+    {
+      "name": "getOperationTypeCallback",
+      "value": "getOperationType(callback)"
+    },
+    {
+      "name": "getOperationTypePromise",
+      "value": "getOperationType(promise)"
+    },
+    {
+      "name": "trigger",
+      "value": "trigger"
+    },
+    {
+      "name": "MapAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MapAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "ApplicationContext_restartApp",
+      "value": "restartApp"
+    },
+    {
+      "name": "ApplicationContext_setFont",
+      "value": "setFont"
+    },
+    {
+      "name": "ApplicationContext_getRunningProcessInformation_promise",
+      "value": "getRunningProcessInformationPromise"
+    },
+    {
+      "name": "ApplicationContext_getRunningProcessInformation_callback",
+      "value": "getRunningProcessInformation(callback)"
+    },
+    {
+      "name": "ApplicationContext_getCurrentAppCloneIndex",
+      "value": "getCurrentAppCloneIndex"
+    },
+    {
+      "name": "UIAbilityContext_moveAbilityToBackground",
+      "value": "moveAbilityToBackground"
+    },
+    {
+      "name": "UIAbilityContext_terminateSelf",
+      "value": "terminateSelf"
+    }
+  ]
+}

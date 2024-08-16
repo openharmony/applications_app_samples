@@ -929,6 +929,15 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/SystemFeature/FullScreenStart/FullScreenStart_Service/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
 				<filteritem type="filepath" name="code/SystemFeature/FullScreenStart/FullScreenStart_Service/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
 				<filteritem type="filepath" name="code/SystemFeature/FullScreenStart/FullScreenStart_Service/screenshots/atomicServicePage.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/BasicFeature/Ability/AbilityRuntime/screenshots/appManager.jpeg" desc="Provided by code/BasicFeature/Ability/AbilityRuntime"/>
+				<filteritem type="filepath" name="code/BasicFeature/Ability/AbilityRuntime/screenshots/index.jpeg" desc="Provided by code/BasicFeature/Ability/AbilityRuntime"/>
+				<filteritem type="filepath" name="code/BasicFeature/Ability/AbilityRuntime/screenshots/errorManager.jpeg" desc="Provided by code/BasicFeature/Ability/AbilityRuntime"/>
+				<filteritem type="filepath" name="code/BasicFeature/Ability/AbilityRuntime/screenshots/UIabilityContext.jpeg" desc="Provided by code/BasicFeature/Ability/AbilityRuntime"/>
+				<filteritem type="filepath" name="code/BasicFeature/Ability/AbilityRuntime/entry/src/main/resources/base/media/background.png" desc="Provided by code/BasicFeature/Ability/AbilityRuntime"/>
+				<filteritem type="filepath" name="code/BasicFeature/Ability/AbilityRuntime/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/BasicFeature/Ability/AbilityRuntime"/>
+				<filteritem type="filepath" name="code/BasicFeature/Ability/AbilityRuntime/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/BasicFeature/Ability/AbilityRuntime"/>
+				<filteritem type="filepath" name="code/BasicFeature/Ability/AbilityRuntime/entry/src/main/resources/base/media/ic_arrow.svg" desc="Provided by code/BasicFeature/Ability/AbilityRuntime"/>
+				<filteritem type="filepath" name="code/BasicFeature/Ability/AbilityRuntime/AppScope/resources/base/media/app_icon.png" desc="Provided by code/BasicFeature/Ability/AbilityRuntime"/>
 				<filteritem type="filepath" name="code/BasicFeature/Print/ScanNapiInterfaceDemo/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/BasicFeature/Print/ScanNapiInterfaceDemo"/>
 				<filteritem type="filepath" name="code/BasicFeature/Print/ScanNapiInterfaceDemo/entry/src/main/resources/base/media/background.png" desc="Provided by code/BasicFeature/Print/ScanNapiInterfaceDemo"/>
 				<filteritem type="filepath" name="code/BasicFeature/Print/ScanNapiInterfaceDemo/AppScope/resources/base/media/app_icon.png" desc="Provided by code/BasicFeature/Print/ScanNapiInterfaceDemo"/>

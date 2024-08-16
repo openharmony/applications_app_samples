@@ -1,0 +1,248 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "main_title",
+      "value": "元能力public接口开发示例"
+    },
+    {
+      "name": "AppManager",
+      "value": "appManager开发示例"
+    },
+    {
+      "name": "appRecovery",
+      "value": "appRecovery开发示例"
+    },
+    {
+      "name": "DataUriUtils",
+      "value": "dataUriUtils开发示例"
+    },
+    {
+      "name": "WantAgent",
+      "value": "WantAgent开发示例"
+    },
+    {
+      "name": "ApplicationContext",
+      "value": "ApplicationContext开发示例"
+    },
+    {
+      "name": "UIAbilityContext",
+      "value": "UIAbilityContext开发示例"
+    },
+    {
+      "name": "AbilityLifecycleCallback",
+      "value": "AbilityLifecycleCallback开发示例"
+    },
+    {
+      "name": "ErrorManager",
+      "value": "errorManager开发示例"
+    },
+    {
+      "name": "isRunningInStabilityTestCallback",
+      "value": "isRunningInStabilityTest(callback)"
+    },
+    {
+      "name": "isRunningInStabilityTestPromise",
+      "value": "isRunningInStabilityTest(promise)"
+    },
+    {
+      "name": "isRamConstrainedDeviceCallback",
+      "value": "isRamConstrainedDevice(callback)"
+    },
+    {
+      "name": "isRamConstrainedDevicePromise",
+      "value": "isRamConstrainedDevice(promise)"
+    },
+    {
+      "name": "getAppMemorySizeCallback",
+      "value": "getAppMemorySize(callback)"
+    },
+    {
+      "name": "getAppMemorySizePromise",
+      "value": "getAppMemorySize(promise)"
+    },
+    {
+      "name": "getRunningProcessInformationCallback",
+      "value": "getRunningProcessInformation(callback)"
+    },
+    {
+      "name": "getRunningProcessInformationPromise",
+      "value": "getRunningProcessInformation(promise)"
+    },
+    {
+      "name": "registerErrorObserver",
+      "value": "注册ErrorObserver"
+    },
+    {
+      "name": "unregisterErrorObserver",
+      "value": "注销ErrorObserver"
+    },
+    {
+      "name": "simulateError",
+      "value": "模拟Error"
+    },
+    {
+      "name": "registerLoopObserver",
+      "value": "注册LoopObserver"
+    },
+    {
+      "name": "unregisterLoopObserver",
+      "value": "注销LoopObserver"
+    },
+    {
+      "name": "simulateLoopTimeout",
+      "value": "模拟LoopTimeout"
+    },
+    {
+      "name": "registerUnhandledRejection",
+      "value": "注册UnhandledRejectionObserver"
+    },
+    {
+      "name": "unregisterUnhandledRejection",
+      "value": "注销UnhandledRejectionObserver"
+    },
+    {
+      "name": "simulateUnhandledRejection",
+      "value": "模拟UnhandledRejection"
+    },
+    {
+      "name": "getId",
+      "value": "getId(获取指定uri路径末尾的ID)"
+    },
+    {
+      "name": "attachId",
+      "value": "attachId(将ID附加到uri的路径末尾)"
+    },
+    {
+      "name": "deleteId",
+      "value": "deleteId(删除指定uri路径末尾的ID)"
+    },
+    {
+      "name": "updateId",
+      "value": "updateId(更新指定uri中的ID)"
+    },
+    {
+      "name": "UIAbilityContext_startAbilityByType",
+      "value": "startAbilityByType"
+    },
+    {
+      "name": "UIAbilityContext_requestModalUIExtension",
+      "value": "requestModalUIExtension"
+    },
+    {
+      "name": "UIExtensionContentSession_terminateSelfWithResultCallback",
+      "value": "terminateSelfWithResult(callback)"
+    },
+    {
+      "name": "UIExtensionContentSession_terminateSelfWithResultPromise",
+      "value": "terminateSelfWithResult(promise)"
+    },
+    {
+      "name": "UIExtensionContentSession_setWindowPrivacyModeCallback",
+      "value": "setWindowPrivacyMode(callback)"
+    },
+    {
+      "name": "UIExtensionContentSession_setWindowPrivacyModePromise",
+      "value": "setWindowPrivacyMode(promise)"
+    },
+    {
+      "name": "privacy_window_permission",
+      "value": "运行用户设置隐私窗口"
+    },
+    {
+      "name": "UIExtensionContentSession_getUIExtensionWindowProxy",
+      "value": "getUIExtensionWindowProxy"
+    },
+    {
+      "name": "getBundleNameCallback",
+      "value": "getBundleName(callback)"
+    },
+    {
+      "name": "getBundleNamePromise",
+      "value": "getBundleName(promise)"
+    },
+    {
+      "name": "getUidCallback",
+      "value": "getUid(callback)"
+    },
+    {
+      "name": "getUidPromise",
+      "value": "getUid(promise)"
+    },
+    {
+      "name": "cancelCallback",
+      "value": "cancel(callback)"
+    },
+    {
+      "name": "cancelPromise",
+      "value": "cancel(promise)"
+    },
+    {
+      "name": "equalCallback",
+      "value": "equal(callback)"
+    },
+    {
+      "name": "equalPromise",
+      "value": "equal(promise)"
+    },
+    {
+      "name": "getOperationTypeCallback",
+      "value": "getOperationType(callback)"
+    },
+    {
+      "name": "getOperationTypePromise",
+      "value": "getOperationType(promise)"
+    },
+    {
+      "name": "trigger",
+      "value": "trigger"
+    },
+    {
+      "name": "MapAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MapAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "ApplicationContext_restartApp",
+      "value": "restartApp"
+    },
+    {
+      "name": "ApplicationContext_setFont",
+      "value": "setFont"
+    },
+    {
+      "name": "ApplicationContext_getRunningProcessInformation_promise",
+      "value": "getRunningProcessInformation(promise)"
+    },
+    {
+      "name": "ApplicationContext_getRunningProcessInformation_callback",
+      "value": "getRunningProcessInformation(callback)"
+    },
+    {
+      "name": "ApplicationContext_getCurrentAppCloneIndex",
+      "value": "getCurrentAppCloneIndex"
+    },
+    {
+      "name": "UIAbilityContext_moveAbilityToBackground",
+      "value": "moveAbilityToBackground"
+    },
+    {
+      "name": "UIAbilityContext_terminateSelf",
+      "value": "terminateSelf"
+    }
+  ]
+}
