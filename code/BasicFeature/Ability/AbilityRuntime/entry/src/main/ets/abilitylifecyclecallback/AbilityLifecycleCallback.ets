@@ -139,25 +139,27 @@ export default class AbilityLifecycle extends UIAbility {
     windowStage.getMainWindow((err: BusinessError, data) => {
       const errCode: number = err.code;
       if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        hilog.error(DOMAIN, TAG, `Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
         return;
       }
       windowClass = data;
-      let SystemBarProperties: window.SystemBarProperties = {
+      let systemBarProperties: window.SystemBarProperties = {
         statusBarColor: '#f1f3f5',
         navigationBarColor: '#f1f3f5',
       };
       try {
-        windowClass.setWindowSystemBarProperties(SystemBarProperties, (err: BusinessError) => {
+        windowClass.setWindowSystemBarProperties(systemBarProperties, (err: BusinessError) => {
           const errCode: number = err.code;
           if (errCode) {
-            console.error(`Failed to set the system bar properties. Cause code: ${err.code}, message: ${err.message}`);
+            hilog.error(DOMAIN, TAG,
+              `Failed to set the system bar properties. Cause code: ${err.code}, message: ${err.message}`);
             return;
           }
-          console.info('Succeeded in setting the system bar properties.');
+          hilog.info(DOMAIN, TAG, 'Succeeded in setting the system bar properties.');
         });
       } catch (exception) {
-        console.error(`Failed to set the system bar properties. Cause code: ${exception.code}, message: ${exception.message}`);
+        hilog.error(DOMAIN, TAG,
+          `Failed to set the system bar properties. Cause code: ${exception.code}, message: ${exception.message}`);
       }
     });
 
@@ -186,13 +188,13 @@ export default class AbilityLifecycle extends UIAbility {
       abilityName: "SecondAbility"
     }
     this.context.startAbilityForResult(want)
-      .then((result)=>{
+      .then((result) => {
         // 获取ability处理结果，当返回结果的resultCode为0关闭当前UIAbility
         hilog.info(DOMAIN, TAG, 'startAbilityForResult success, resultCode is ' + result.resultCode);
         if (result.resultCode === 0) {
           this.context.terminateSelf();
         }
-      }).catch((err: BusinessError)=>{
+      }).catch((err: BusinessError) => {
       // 异常处理
       hilog.error(DOMAIN, TAG, 'startAbilityForResult failed, err:' + JSON.stringify(err));
       this.context.terminateSelf();

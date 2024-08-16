@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { common, Want } from '@kit.AbilityKit';
+import { common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { font, promptAction } from '@kit.ArkUI';
 
@@ -46,43 +46,6 @@ struct ApplicationContext {
       .backgroundColor($r('app.color.backGrounding'))
 
       List({ initialIndex: 0 }) {
-        ListItem() {
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignContent: FlexAlign.Center }) {
-            Text($r('app.string.ApplicationContext_restartApp'))
-              .textAlign(TextAlign.Start)
-              .fontWeight(500)
-              .margin({
-                top: 17,
-                bottom: 17,
-                left: 12
-              })
-              .fontSize(16)
-              .width('77.87%')
-              .height('39.29%')
-              .fontColor($r('app.color.text_color'))
-          }
-          .id('restartApp')
-          .onClick(() => {
-            hilog.info(DOMAIN, TAG, 'ApplicationContext.restartApp begin.');
-            let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
-            let applicationContext = context.getApplicationContext();
-            let want: Want = {
-              bundleName: 'com.samples.abilityruntime',
-              abilityName: 'EntryAbility'
-            };
-            try {
-              applicationContext.restartApp(want);
-            } catch (error) {
-              hilog.info(DOMAIN, TAG, `ApplicationContext.restartApp fail, error: ${JSON.stringify(error)}`);
-            }
-            hilog.info(DOMAIN, TAG, 'ApplicationContext.restartApp succeed.');
-          })
-        }
-        .height('8.45%')
-        .backgroundColor($r('app.color.start_window_background'))
-        .borderRadius(24)
-        .margin({ top: 12, right: 12, left: 12 })
-
         ListItem() {
           Flex({ justifyContent: FlexAlign.SpaceBetween, alignContent: FlexAlign.Center }) {
             Text($r('app.string.ApplicationContext_getCurrentAppCloneIndex'))

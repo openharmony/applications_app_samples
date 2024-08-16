@@ -24,7 +24,6 @@ const DOMAIN: number = 0xFF00;
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(DOMAIN, TAG, '%{public}s', 'Ability onCreate');
-
   }
 
   onDestroy(): void {
@@ -39,25 +38,27 @@ export default class EntryAbility extends UIAbility {
     windowStage.getMainWindow((err: BusinessError, data) => {
       const errCode: number = err.code;
       if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        hilog.error(DOMAIN, TAG, `Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
         return;
       }
       windowClass = data;
-      let SystemBarProperties: window.SystemBarProperties = {
+      let systemBarProperties: window.SystemBarProperties = {
         statusBarColor: '#f1f3f5',
         navigationBarColor: '#f1f3f5',
       };
       try {
-        windowClass.setWindowSystemBarProperties(SystemBarProperties, (err: BusinessError) => {
+        windowClass.setWindowSystemBarProperties(systemBarProperties, (err: BusinessError) => {
           const errCode: number = err.code;
           if (errCode) {
-            console.error(`Failed to set the system bar properties. Cause code: ${err.code}, message: ${err.message}`);
+            hilog.error(DOMAIN, TAG,
+              `Failed to set the system bar properties. Cause code: ${err.code}, message: ${err.message}`);
             return;
           }
-          console.info('Succeeded in setting the system bar properties.');
+          hilog.info(DOMAIN, TAG, 'Succeeded in setting the system bar properties.');
         });
       } catch (exception) {
-        console.error(`Failed to set the system bar properties. Cause code: ${exception.code}, message: ${exception.message}`);
+        hilog.error(DOMAIN, TAG,
+          `Failed to set the system bar properties. Cause code: ${exception.code}, message: ${exception.message}`);
       }
     });
 
