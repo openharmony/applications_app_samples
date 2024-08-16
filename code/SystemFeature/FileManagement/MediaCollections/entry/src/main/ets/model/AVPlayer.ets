@@ -247,10 +247,10 @@ export class AVPlayer {
         const height: number = this.resourceAddress.get('height') as number
         this.ratio = width / height
         Logger.info(TAG, `VIDEO success this.ratio` + this.ratio)
-        this.setSourceInfo()
-        this.setStateChangeCallback()
       }
       this.isCreate = true
+      this.setSourceInfo()
+      this.setStateChangeCallback()
       this.media.url = `fd://${this.fd}`
     })
   }
