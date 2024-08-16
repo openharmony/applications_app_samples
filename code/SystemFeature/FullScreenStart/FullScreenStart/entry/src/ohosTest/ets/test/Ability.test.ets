@@ -14,13 +14,19 @@
  */
 
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { describe, beforeAll, it } from '@ohos/hypium';
+import { describe, beforeAll, it, expect, afterEach } from '@ohos/hypium';
 import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError, commonEventManager } from '@kit.BasicServicesKit';
+import Base from '@ohos.base';
 
 const TAG = '[Sample_OpenAtomicService]';
 const DOMAIN = 0xF811;
 const BUNDLE = 'OpenAtomicService_';
+
+let subscribe: commonEventManager.CommonEventSubscriber;
+let commonEvent: commonEventManager.CommonEventSubscribeInfo = {
+  events: ['GetCurrentTopAbility']
+};
 
 export default function abilityTest() {
   describe('ActsAbilityTest', () => {
@@ -40,6 +46,12 @@ export default function abilityTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility end');
     })
 
+    afterEach(async (done: Function) => {
+      commonEventManager.unsubscribe(subscribe, () => {
+        done();
+      });
+    })
+
     /**
      * @tc.number     : OpenAtomicServiceTest_001
      * @tc.name       : OpenAtomicServiceTest_001
@@ -50,6 +62,19 @@ export default function abilityTest() {
      */
     it('Sample_OpenAtomicService_OpenAtomicServiceTest_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'OpenAtomicServiceTest_001 begin');
+
+      commonEventManager.createSubscriber(commonEvent).then(data => {
+        subscribe = data;
+        commonEventManager.subscribe(subscribe,
+          async (error: Base.BusinessError, data: commonEventManager.CommonEventData) => {
+            if (data.event === "GetCurrentTopAbility" && data.parameters) {
+              let bundleName: string = data.parameters['bundleName'];
+              hilog.info(DOMAIN, TAG, BUNDLE + 'bundleName is ' + JSON.stringify(bundleName));
+              expect(bundleName).assertEqual('com.atomicservice.5765880207854787517');
+            }
+          })
+      })
+
       let driver = await Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('EmbeddableStart'));
@@ -72,6 +97,19 @@ export default function abilityTest() {
      */
     it('Sample_OpenAtomicService_OpenAtomicServiceTest_002', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'OpenAtomicServiceTest_002 begin');
+
+      commonEventManager.createSubscriber(commonEvent).then(data => {
+        subscribe = data;
+        commonEventManager.subscribe(subscribe,
+          async (error: Base.BusinessError, data: commonEventManager.CommonEventData) => {
+            if (data.event === "GetCurrentTopAbility" && data.parameters) {
+              let bundleName: string = data.parameters['bundleName'];
+              hilog.info(DOMAIN, TAG, BUNDLE + 'bundleName is ' + JSON.stringify(bundleName));
+              expect(bundleName).assertEqual('com.atomicservice.5765880207854787517');
+            }
+          })
+      })
+
       let driver = await Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('UIAbilityStart'));
@@ -94,6 +132,19 @@ export default function abilityTest() {
      */
     it('Sample_OpenAtomicService_OpenAtomicServiceTest_003', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'OpenAtomicServiceTest_003 begin');
+
+      commonEventManager.createSubscriber(commonEvent).then(data => {
+        subscribe = data;
+        commonEventManager.subscribe(subscribe,
+          async (error: Base.BusinessError, data: commonEventManager.CommonEventData) => {
+            if (data.event === "GetCurrentTopAbility" && data.parameters) {
+              let bundleName: string = data.parameters['bundleName'];
+              hilog.info(DOMAIN, TAG, BUNDLE + 'bundleName is ' + JSON.stringify(bundleName));
+              expect(bundleName).assertEqual('com.atomicservice.5765880207854787517');
+            }
+          })
+      })
+
       let driver = await Driver.create();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.id('UIExtensionStart'));
