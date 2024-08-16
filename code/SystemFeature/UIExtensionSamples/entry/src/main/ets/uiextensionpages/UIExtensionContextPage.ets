@@ -21,7 +21,7 @@ const TAG: string = 'UIExtensionContent';
 const DOMAIN: number = 0xFF00;
 let storage: LocalStorage = LocalStorage.getShared();
 
-@Entry(storage)
+@Entry
 @Component
 struct UIExtensionContextPage {
   private context = getContext(this) as common.UIExtensionContext;
@@ -31,32 +31,19 @@ struct UIExtensionContextPage {
   build() {
     Column() {
       Row() {
-      }
-      .width('100%')
-      .height('6%')
-      .justifyContent(FlexAlign.Start)
-      .backgroundColor($r('app.color.start_window_background'))
-
-      Row() {
         Flex({ justifyContent: FlexAlign.Start, alignContent: FlexAlign.Center }) {
           Text($r('app.string.UIExtensionAbilityContext'))
             .fontSize(30)
             .fontWeight(700)
             .textAlign(TextAlign.Start)
             .margin({
-              top: 8,
-              bottom: 8,
-              left: 12
+              top: '12%',
+              left: '2%'
             })
         }
       }
-      .margin({
-        top: '7.18%',
-        bottom: '6.41%',
-        left: '3.33%'
-      })
       .width('100%')
-      .height('7.18%')
+      .height('18%')
       .justifyContent(FlexAlign.Start)
       .backgroundColor($r('app.color.backGrounding'))
 
@@ -225,7 +212,7 @@ struct UIExtensionContextPage {
         .margin({ top: 12, right: 12, left: 12 })
 
       }
-      .height('85%')
+      .height('86%')
       .backgroundColor($r('app.color.backGrounding'))
     }
     .height('100%')

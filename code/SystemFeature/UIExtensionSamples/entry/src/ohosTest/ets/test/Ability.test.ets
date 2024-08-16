@@ -17,9 +17,9 @@ import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { describe, it, expect, beforeAll } from '@ohos/hypium';
 
-const TAG = '[Sample_PublicAbility]';
+const TAG = '[Sample_UIExtensionSamples]';
 const DOMAIN = 0xF811;
-const BUNDLE = 'PublicAbility_';
+const BUNDLE = 'UIExtensionSamples_';
 const TIME = 1500;
 
 export default function abilityTest() {
@@ -40,15 +40,15 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number     : PublicAbility_AbilityStartCallback_001
-     * @tc.name       : PublicAbility_AbilityStartCallback_001
+     * @tc.number     : UIExtensionSamples_AbilityStartCallback_001
+     * @tc.name       : UIExtensionSamples_AbilityStartCallback_001
      * @tc.desc       : Test the interface in AbilityStartCallback
      * @tc.size       : MEDIUM
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('PublicAbility_AbilityStartCallback_001', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'PublicAbility_AbilityStartCallback_001 begin');
+    it('UIExtensionSamples_AbilityStartCallback_001', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'UIExtensionSamples_AbilityStartCallback_001 begin');
 
       let driver = await Driver.create();
       await driver.delayMs(TIME);
@@ -70,7 +70,7 @@ export default function abilityTest() {
       await onError.click();
       await driver.delayMs(TIME);
 
-      hilog.info(DOMAIN, TAG, BUNDLE + 'PublicAbility_AbilityStartCallback_001 end');
+      hilog.info(DOMAIN, TAG, BUNDLE + 'UIExtensionSamples_AbilityStartCallback_001 end');
       await driver.delayMs(TIME);
       await driver.pressBack();
       await driver.delayMs(TIME);
@@ -78,15 +78,15 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number     : PublicAbility_UIAbilityContext_001
-     * @tc.name       : PublicAbility_UIAbilityContext_001
+     * @tc.number     : UIExtensionSamples_UIAbilityContext_001
+     * @tc.name       : UIExtensionSamples_UIAbilityContext_001
      * @tc.desc       : Test the interface in UIAbilityContext
      * @tc.size       : MEDIUM
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('PublicAbility_UIAbilityContext_001', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'PublicAbility_UIAbilityContext_001 begin');
+    it('UIExtensionSamples_UIAbilityContext_001', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'UIExtensionSamples_UIAbilityContext_001 begin');
       let driver = await Driver.create();
       await driver.delayMs(TIME);
 
@@ -122,20 +122,20 @@ export default function abilityTest() {
       await startUIExtensionSecond.click();
       await driver.delayMs(TIME);
 
-      hilog.info(DOMAIN, TAG, BUNDLE + 'PublicAbility_UIAbilityContext_001 end');
+      hilog.info(DOMAIN, TAG, BUNDLE + 'UIExtensionSamples_UIAbilityContext_001 end');
       done()
     })
 
     /**
-     * @tc.number     : PublicAbility_UIAbilityContext_002
-     * @tc.name       : PublicAbility_UIAbilityContext_002
+     * @tc.number     : UIExtensionSamples_UIAbilityContext_002
+     * @tc.name       : UIExtensionSamples_UIAbilityContext_002
      * @tc.desc       : Test the interface in UIAbilityContext
      * @tc.size       : MEDIUM
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('PublicAbility_UIAbilityContext_002', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'PublicAbility_UIAbilityContext_002 begin');
+    it('UIExtensionSamples_UIAbilityContext_002', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'UIExtensionSamples_UIAbilityContext_002 begin');
       let driver = await Driver.create();
       await driver.delayMs(TIME);
 
@@ -164,7 +164,7 @@ export default function abilityTest() {
       await terminateSelfWithResultPromise.click();
       await driver.delayMs(TIME);
 
-      hilog.info(DOMAIN, TAG, BUNDLE + 'PublicAbility_UIAbilityContext_002 end');
+      hilog.info(DOMAIN, TAG, BUNDLE + 'UIExtensionSamples_UIAbilityContext_002 end');
       await driver.delayMs(TIME);
       await driver.pressBack();
       await driver.delayMs(TIME);
@@ -172,15 +172,15 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number     : PublicAbility_UIExtensionContentSession_001
-     * @tc.name       : PublicAbility_UIExtensionContentSession_001
+     * @tc.number     : UIExtensionSamples_UIExtensionContentSession_001
+     * @tc.name       : UIExtensionSamples_UIExtensionContentSession_001
      * @tc.desc       : Test the interface in UIExtensionContentSession
      * @tc.size       : MEDIUM
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('PublicAbility_UIExtensionContentSession_001', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'PublicAbility_UIExtensionContentSession_001 begin');
+    it('UIExtensionSamples_UIExtensionContentSession_001', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'UIExtensionSamples_UIExtensionContentSession_001 begin');
       let driver = await Driver.create();
       await driver.delayMs(TIME);
 
@@ -204,20 +204,20 @@ export default function abilityTest() {
       await startUIExtensionSecond.click();
       await driver.delayMs(TIME);
 
-      hilog.info(DOMAIN, TAG, BUNDLE + 'PublicAbility_UIExtensionContentSession_001 end');
+      hilog.info(DOMAIN, TAG, BUNDLE + 'UIExtensionSamples_UIExtensionContentSession_001 end');
       done()
     })
 
     /**
-     * @tc.number     : PublicAbility_UIExtensionContentSession_002
-     * @tc.name       : PublicAbility_UIExtensionContentSession_002
+     * @tc.number     : UIExtensionSamples_UIExtensionContentSession_002
+     * @tc.name       : UIExtensionSamples_UIExtensionContentSession_002
      * @tc.desc       : Test the interface in UIExtensionContentSession
      * @tc.size       : MEDIUM
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('PublicAbility_UIExtensionContentSession_002', 0, async (done: Function) => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'PublicAbility_UIExtensionContentSession_002 begin');
+    it('UIExtensionSamples_UIExtensionContentSession_002', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'UIExtensionSamples_UIExtensionContentSession_002 begin');
       let driver = await Driver.create();
       await driver.delayMs(TIME);
 
@@ -246,7 +246,7 @@ export default function abilityTest() {
       await getUIExtensionWindowProxy.click();
       await driver.delayMs(TIME);
 
-      hilog.info(DOMAIN, TAG, BUNDLE + 'PublicAbility_UIExtensionContentSession_002 end');
+      hilog.info(DOMAIN, TAG, BUNDLE + 'UIExtensionSamples_UIExtensionContentSession_002 end');
       await driver.delayMs(TIME);
       await driver.pressBack();
       await driver.delayMs(TIME);

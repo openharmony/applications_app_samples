@@ -43,13 +43,8 @@ struct UIExtensionContext {
             })
         }
       }
-      .margin({
-        top: '7.18%',
-        bottom: '6.41%',
-        left: '3.33%'
-      })
       .width('100%')
-      .height('7.18%')
+      .height('14.36%')
       .justifyContent(FlexAlign.Start)
       .backgroundColor($r('app.color.backGrounding'))
 
@@ -164,7 +159,7 @@ struct UIExtensionContext {
         .margin({ top: 12, right: 12, left: 12 })
 
       }
-      .height('85%')
+      .height('86%')
       .backgroundColor($r('app.color.backGrounding'))
     }
     .width('100%')
