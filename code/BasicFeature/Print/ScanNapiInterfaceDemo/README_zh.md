@@ -1,7 +1,7 @@
 # 扫描仪应用demo
 
 ### 介绍
-本示例使用@ohos.scan接口拉起扫描框架，实现发现与连接扫描仪、获取扫描仪选项、设置扫描仪参数、启动扫描仪、获取扫描图片进度、取消扫描的功能。
+本示例使用@ohos.scan接口拉起[扫描服务]([print_print_fwk: 暂无描述 (gitee.com)](https://gitee.com/openharmony/print_print_fwk))，由扫描服务加载扫描仪驱动，完成扫描仪的发现与连接、获取扫描仪选项、设置扫描仪参数、启动扫描仪、获取扫描图片进度、取消扫描的功能。
 
 ### 界面预览
 ![扫描demo](sceenshots/scandemo.png)
@@ -97,7 +97,9 @@ ScanNapiInterfaceDemo
 
 ### 依赖
 
-基于[sane-backends](https://gitee.com/openharmony-sig/third_party_backends)开发的扫描仪驱动。
+1.API12版本SDK的@ohos.scan接口。
+
+2.基于[sane-backends](https://gitee.com/openharmony-sig/third_party_backends)开发的扫描仪驱动以及对应厂商型号的扫描仪设备。
 
 ### 约束与限制
 
@@ -120,3 +122,13 @@ echo code/BasicFeature/Print/ScanNapiInterfaceDemo/ > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull
 ```
+
+### 构建说明
+
+1.需要基于[sane-backends](https://gitee.com/openharmony-sig/third_party_backends/)完成扫描仪驱动的开发。
+
+2.扫描仪驱动通过驱动安装应用安装到[指定路径](/data/service/el1/public/print_service/sane/backend)。
+
+3.本工程通过Build Hap(s)/APP(s)完成编译构建，然后安装。
+
+4.通过局域网或有线等物理方式连接扫描仪后即可通过主界面的相关按钮实现扫描仪的发现和连接等功能。
