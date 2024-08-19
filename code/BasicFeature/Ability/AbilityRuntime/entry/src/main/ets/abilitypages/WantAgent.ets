@@ -27,8 +27,8 @@ struct WantAgentClass {
   private wantAgentInfo: wantAgent.WantAgentInfo = {
     wants: [
       {
-        bundleName: "com.samples.abilityruntime",
-        abilityName: "EntryAbility",
+        bundleName: 'com.samples.abilityruntime',
+        abilityName: 'EntryAbility',
       }
     ],
     operationType: wantAgent.OperationType.START_ABILITY,
@@ -98,7 +98,7 @@ struct WantAgentClass {
         hilog.info(DOMAIN, TAG,
           `The result of cancel(callback) is: ${JSON.stringify(data)}`);
         promptAction.showToast({
-          message: `cancel(callback) success, data: ${JSON.stringify(data)}`,
+          message: `cancel(callback) success`,
           duration: this.promptDuration
         })
       })
@@ -112,7 +112,7 @@ struct WantAgentClass {
         hilog.info(DOMAIN, TAG,
           `The result of cancel(promise) is: ${JSON.stringify(data)}`);
         promptAction.showToast({
-          message: `cancel(promise) success, data: ${JSON.stringify(data)}`,
+          message: `cancel(promise) success`,
           duration: this.promptDuration
         })
       })

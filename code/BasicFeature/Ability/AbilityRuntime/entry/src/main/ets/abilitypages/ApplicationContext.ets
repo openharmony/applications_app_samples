@@ -57,7 +57,7 @@ struct ApplicationContext {
                 left: 12
               })
               .fontSize(16)
-              .width('77.87%')
+              .width('100%')
               .height('39.29%')
               .fontColor($r('app.color.text_color'))
           }
@@ -97,7 +97,7 @@ struct ApplicationContext {
                 left: 12
               })
               .fontSize(16)
-              .width('77.87%')
+              .width('100%')
               .height('39.29%')
               .fontColor($r('app.color.text_color'))
           }
@@ -139,7 +139,7 @@ struct ApplicationContext {
                 left: 12
               })
               .fontSize(16)
-              .width('77.87%')
+              .width('100%')
               .height('39.29%')
               .fontColor($r('app.color.text_color'))
           }
@@ -181,7 +181,7 @@ struct ApplicationContext {
                 left: 12
               })
               .fontSize(16)
-              .width('77.87%')
+              .width('100%')
               .height('39.29%')
               .fontColor($r('app.color.text_color'))
           }

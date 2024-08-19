@@ -19,6 +19,7 @@ import { promptAction } from '@kit.ArkUI';
 
 const TAG: string = 'DataUriUtils';
 const DOMAIN: number = 0xFF00;
+const ID = 1122;
 
 @Entry
 @Component
@@ -172,10 +173,9 @@ struct DataUriUtils {
           .id('updateId')
           .onClick(() => {
             ((): void => {
-              let id = 1122;
               let uri = dataUriUtils.updateId(
                 'com.example.dataUriUtils/1221',
-                id
+                ID
               );
               promptAction.showToast({
                 message: `dataUriUtils.updateId() called. uri: ${JSON.stringify(uri)}`,

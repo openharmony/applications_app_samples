@@ -4,7 +4,7 @@
 
 本示例使用 [AppManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-appManager.md) ，[dataUriUtils](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-ability-dataUriUtils.md)，[WantAgent](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-wantAgent.md)，[ApplicationContext](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-applicationContext.md)，[errorManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-errorManager.md)，[UIAbilityContext](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-application-uiAbilityContext.md)中的接口进行实现。
 
-### 效果预览-未更新
+### 效果预览
 
 |                      主页面                      |                  appManager开发示例                   |                  errorManager开发示例                   |                  UIAbilityContext开发示例                   |
 | :----------------------------------------------: | :---------------------------------------------------: | :-----------------------------------------------------: | :---------------------------------------------------------: |
@@ -112,7 +112,7 @@ UIAbilityContext对应接口
 
 3.再次点击主页面**UIAbilityContext开发示例**按钮，启动新的Ability显示'UIAbilityContext开发示例'界面，点击**terminateSelf**按钮，回到主页面；
 
-### 工程目录-未更新
+### 工程目录
 
 ```
 entry/src/main/ets/

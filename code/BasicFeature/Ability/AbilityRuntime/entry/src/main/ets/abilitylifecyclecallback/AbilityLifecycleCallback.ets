@@ -73,43 +73,43 @@ let abilityLifecycleCallback: AbilityLifecycleCallback = {
   onAbilityContinue(ability) {
     hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onAbilityContinue.');
   },
-  ////注册监听应用上下文的生命周期后，在UIAbility的[onNewWant]触发后回调。
+  // 注册监听应用上下文的生命周期后，在UIAbility的[onNewWant]触发后回调。
   onNewWant(ability) {
     hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onNewWant');
   },
-  //注册监听应用上下文的生命周期后，在UIAbility的[onNewWant]触发前回调。
+  // 注册监听应用上下文的生命周期后，在UIAbility的[onNewWant]触发前回调。
   onWillNewWant(ability) {
     hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onWillNewWant');
   },
-  //注册监听应用上下文的生命周期后，在UIAbility的[onCreate]触发前回调。
+  // 注册监听应用上下文的生命周期后，在UIAbility的[onCreate]触发前回调。
   onAbilityWillCreate(ability) {
     hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onAbilityWillCreate');
   },
-  //注册监听应用上下文的生命周期后，在UIAbility的[onWindowStageCreate]触发前回调。
+  // 注册监听应用上下文的生命周期后，在UIAbility的[onWindowStageCreate]触发前回调。
   onWindowStageWillCreate(ability, windowStage) {
     hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onWindowStageWillCreate');
   },
-  //注册监听应用上下文的生命周期后，在UIAbility的[onWindowStageDestroy]触发前回调。
+  // 注册监听应用上下文的生命周期后，在UIAbility的[onWindowStageDestroy]触发前回调。
   onWindowStageWillDestroy(ability, windowStage) {
     hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onWindowStageWillDestroy');
   },
-  //注册监听应用上下文的生命周期后，在UIAbility的[onDestroy]触发前回调。
+  // 注册监听应用上下文的生命周期后，在UIAbility的[onDestroy]触发前回调。
   onAbilityWillDestroy(ability) {
     hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onAbilityWillDestroy');
   },
-  //注册监听应用上下文的生命周期后，在UIAbility的[onForeground]触发前回调。
+  // 注册监听应用上下文的生命周期后，在UIAbility的[onForeground]触发前回调。
   onAbilityWillForeground(ability) {
     hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onAbilityWillForeground');
   },
-  //注册监听应用上下文的生命周期后，在UIAbility的[onBackground]触发前回调。
+  // 注册监听应用上下文的生命周期后，在UIAbility的[onBackground]触发前回调。
   onAbilityWillBackground(ability) {
     hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onAbilityWillBackground');
   },
-  //注册监听应用上下文的生命周期后，在UIAbility的[onSaveState]触发前回调。
+  // 注册监听应用上下文的生命周期后，在UIAbility的[onSaveState]触发前回调。
   onAbilityWillSaveState(ability: UIAbility) {
     hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onAbilityWillSaveState.');
   },
-  //注册监听应用上下文的生命周期后，在UIAbility的[onSaveState]触发后回调。
+  // 注册监听应用上下文的生命周期后，在UIAbility的[onSaveState]触发后回调。
   onAbilitySaveState(ability: UIAbility) {
     hilog.info(DOMAIN, TAG, 'AbilityLifecycleCallback onAbilitySaveState.');
   }
