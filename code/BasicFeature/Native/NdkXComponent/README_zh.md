@@ -4,6 +4,8 @@
 
 本示例中主要介绍开发者如何使用Native XComponent接口来获取NativeWindow实例、获取布局/事件信息、注册事件回调并通过OpenGL/EGL实现在页面上绘制形状。功能主要包括点击按钮绘制一个五角星，并可以通过点击XComponent区域改变五角星的颜色。
 
+> **说明**
+> 本示例已停止演进，XComponent使用方法推荐参考[XComponent示例](../XComponent/README_zh.md)。
 ### 效果预览
 
 | 主页                                 | 绘制五角星                                    | 改变颜色                                            |
