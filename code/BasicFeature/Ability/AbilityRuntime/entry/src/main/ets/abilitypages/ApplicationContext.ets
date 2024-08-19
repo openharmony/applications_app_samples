@@ -197,7 +197,7 @@ struct ApplicationContext {
             let applicationContext = context.getApplicationContext();
 
             try {
-              applicationContext.setFont("fontName");
+              applicationContext.setFont('fontName');
               let msg = `setFont successfully`;
               hilog.info(DOMAIN, TAG, msg);
               promptAction.showToast({

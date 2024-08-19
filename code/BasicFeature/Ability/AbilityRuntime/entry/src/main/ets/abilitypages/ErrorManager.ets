@@ -23,7 +23,7 @@ const DOMAIN: number = 0xFF00;
 let observer: errorManager.LoopObserver = {
   onLoopTimeOut(timeout: number) {
     hilog.info(DOMAIN, TAG, `onLoopTimeOut, timeout: ${timeout}`)
-    errorManager.off("loopObserver");
+    errorManager.off('loopObserver');
   }
 };
 
@@ -74,7 +74,7 @@ struct ErrorManager {
           .onClick(() => {
             ((): void => {
               try {
-                errorManager.on("loopObserver", this.loopTimeOut, observer);
+                errorManager.on('loopObserver', this.loopTimeOut, observer);
                 let msg = `loopObserver registered successfully, loopTimeOut: ${this.loopTimeOut}`;
                 hilog.info(DOMAIN, TAG, msg);
                 promptAction.showToast({
@@ -82,7 +82,7 @@ struct ErrorManager {
                   duration: this.promptDuration
                 })
               } catch (error) {
-                hilog.info(DOMAIN, TAG, `errorManager.on("loopObserver") failed, error: ${JSON.stringify(error)}`);
+                hilog.info(DOMAIN, TAG, `errorManager.on('loopObserver') failed, error: ${JSON.stringify(error)}`);
               }
             })()
           })
@@ -122,7 +122,7 @@ struct ErrorManager {
                 };
 
                 try {
-                  errorManager.on("unhandledRejection", observer);
+                  errorManager.on('unhandledRejection', observer);
                   this.unhandledRejectionRegistered = true;
                   let msg = `unhandledRejection registered successfully`;
                   hilog.info(DOMAIN, TAG, msg);
@@ -132,13 +132,13 @@ struct ErrorManager {
                   })
                 } catch (error) {
                   hilog.info(DOMAIN, TAG,
-                    `errorManager.on("unhandledRejection") failed, error: ${JSON.stringify(error)}`);
+                    `errorManager.on('unhandledRejection') failed, error: ${JSON.stringify(error)}`);
                   this.unhandledRejectionRegistered = false;
                 }
 
               } else {
                 try {
-                  errorManager.off("unhandledRejection");
+                  errorManager.off('unhandledRejection');
                   this.unhandledRejectionRegistered = false;
                   let msg: string = `unhandledRejection unregistered successfully`;
                   hilog.info(DOMAIN, TAG, msg);

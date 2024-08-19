@@ -180,8 +180,8 @@ struct WantAgentClass {
     let triggerInfo: wantAgent.TriggerInfo = {
       code: 0,
       want: {
-        bundleName: "com.samples.abilityruntime",
-        abilityName: "EntryAbility",
+        bundleName: 'com.samples.abilityruntime',
+        abilityName: 'EntryAbility',
       },
       permission: '',
       extraInfo: {

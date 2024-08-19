@@ -124,7 +124,7 @@ export default class AbilityLifecycle extends UIAbility {
     // 2.通过applicationContext注册监听应用内生命周期
     try {
       let lifecycleId = applicationContext.on('abilityLifecycle', abilityLifecycleCallback);
-      GlobalContext.getContext().setObject("lifecycleId", lifecycleId);
+      GlobalContext.getContext().setObject('lifecycleId', lifecycleId);
       hilog.info(DOMAIN, TAG,
         `registerAbilityLifecycleCallback lifecycleId: ${GlobalContext.getContext().getObject('lifecycleId')}`);
     } catch (paramError) {
@@ -183,9 +183,8 @@ export default class AbilityLifecycle extends UIAbility {
     // 开发者定义预关闭动作
     // 例如拉起另一个ability，根据ability处理结果执行异步关闭
     let want: Want = {
-      bundleName: "com.example.myapplication",
-      moduleName: "entry",
-      abilityName: "SecondAbility"
+      bundleName: 'com.samples.abilityruntime',
+      abilityName: 'AbilityLifecycleAbility'
     }
     this.context.startAbilityForResult(want)
       .then((result) => {
@@ -223,7 +222,7 @@ export default class AbilityLifecycle extends UIAbility {
 
   onDestroy() {
     let applicationContext = this.context.getApplicationContext();
-    let lifecycleId = GlobalContext.getContext().getObject("lifecycleId") as number;
+    let lifecycleId = GlobalContext.getContext().getObject('lifecycleId') as number;
     try {
       // 3.通过applicationContext注销监听应用内生命周期
       applicationContext.off('abilityLifecycle', lifecycleId, (error) => {
