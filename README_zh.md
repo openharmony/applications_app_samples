@@ -49,7 +49,7 @@
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td height="270" align="center" rowspan="28" style='height:202.50pt' x:str><strong>基础特性</strong></td>
+  <td height="270" align="center" rowspan="29" style='height:202.50pt' x:str><strong>基础特性</strong></td>
   <td x:str><strong>能力增强</strong></td>
   <td x:str><a href="code/BasicFeature/Ability/AbilityFeature">基础能力增强</a></td>
   <td x:str><a href="code/BasicFeature/Ability/AppStartup">应用启动框架startup</a></td>
@@ -67,7 +67,7 @@
   <td x:str><strong>应用模型</strong></td>
   <td x:str><a href="code/BasicFeature/ApplicationModels/AbilityStartMode">Ability的启动方式</a></td>
   <td x:str><a href="code/BasicFeature/ApplicationModels/DynamicRouter">Navigation动态路由</a></td>
-  <td ></td>
+  <td x:str><a href="code/BasicFeature/ApplicationModels/BundleManager/BundleManagement">支持5.0特性能力sample</a></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
@@ -139,20 +139,27 @@
   <td x:str><strong>数据管理</strong></td>
   <td x:str><a href="code/BasicFeature/DataManagement/Preferences">首选项</a></td>
   <td x:str><a href="code/BasicFeature/DataManagement/UDMF/UniformTypeDescriptor/UTDType">标准化数据定义与描述</a></td>
-  <td ></td>
-  <td ></td>
+  <td x:str><a href="code/BasicFeature/DataManagement/UDMF/UDMFDemo">UDMF Demo</a></td>
+  <td x:str><a href="code/BasicFeature/DataManagement/pasteboard">剪贴板Sample</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td rowspan="1" x:str><strong>文件管理</strong></td>
   <td x:str><a href="code/BasicFeature/FileManagement/FileBackupExtension">应用接入数据备份恢复（API 11）</a></td>
-  <td x:str><a href="code/BasicFeature/FileManagement/FileManager">文件管理（API 11）</a></td>
   <td x:str><a href="code/BasicFeature/FileManagement/FileShare/SandboxShare">文件分享与访问</a></td>
+  <td x:str><a href="code/BasicFeature/Extension/Contexttest">extension示例</a></td>
+  <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td rowspan="1" x:str><strong>图像</strong></td>
+  <td rowspan="2" x:str><strong>图像</strong></td>
   <td x:str><a href="code/BasicFeature/Graphics/DisplaySync">DisplaySync分级管控</a></td>
+  <td x:str><a href="code/BasicFeature/Graphics/DisplaySoloist">DisplaySoloist分级管控</a></td>
   <td ></td>
   <td ></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
+  <td x:str><a href="code/BasicFeature/Graphics/Graphics2d/ExpandText">字体文本展开</a></td>
+  <td x:str><a href="code/BasicFeature/Graphics/Graphics2d/PaintVerbatim">字体绘制</a></td>
+  <td x:str><a href="code/BasicFeature/Graphics/Graphics3d">3D引擎接口示例</a></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
@@ -165,7 +172,7 @@
  <tr height="18" style='height:13.50pt;'>
   <td x:str><a href="code/BasicFeature/DeviceManagement/Vibrator/BasicVibration">振动</a></td>
   <td x:str><a href="code/BasicFeature/DeviceManagement/Sensor/Capi">传感器</a></td>
-  <td ></td>
+  <td x:str><a href="code/BasicFeature/Print/ScanNapiInterfaceDemo">扫描仪应用demo</a></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
@@ -232,10 +239,10 @@
   <td x:str><a href="code/BasicFeature/Native/NdkTsDrawing">NdkTsDrawing</a></td>
   <td x:str><a href="code/BasicFeature/Native/NdkQoS">Native QoS</a></td>
   <td x:str><a href="code/BasicFeature/Native/NdkVulkan">XComponent组件对接Vulkan</a></td>
-  <td ></td>
+  <td x:str><a href="code/BasicFeature/Native/XComponent">XComponent</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-<td height="90" align="center" rowspan="24" style='height:67.50pt;' x:str><strong>系统特性（仅对系统应用开放）</strong></td>
+<td height="90" align="center" rowspan="25" style='height:67.50pt;' x:str><strong>系统特性（仅对系统应用开放）</strong></td>
   <td x:str><strong>能力增强</strong></td>
   <td x:str><a href="code/SystemFeature/Ability/AbilityFeatureSystem">基础能力增强</a></td>
   <td ></td>
@@ -257,14 +264,21 @@
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><a href="code/SystemFeature/ApplicationModels/CustomShare">自定义分享（API 10）</a></td>
-  <td ></td>
+  <td x:str><a href="code/SystemFeature/ApplicationModels/EmbeddedUIExtensionAbility">EmbeddedUIExtensionAbility</a></td>
   <td ></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>自动填充</strong></td>
   <td x:str><a href="code/SystemFeature/AutoFill/AutoFill">AutoFill自动填充能力</a></td>
+  <td x:str><a href="code/SystemFeature/AutoFill/AutoFillScenarioization">情景化自动填充能力</a></td>
   <td ></td>
+  <td ></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
+  <td x:str><strong>全屏启动原子化服务</strong></td>
+  <td x:str><a href="code/SystemFeature/FullScreenStart/FullScreenStart">全屏启动原子化服务</a></td>
+  <td x:str><a href="code/SystemFeature/FullScreenStart/FullScreenStart_Service">原子化服务</a></td>
   <td ></td>
   <td ></td>
  </tr>
@@ -362,7 +376,7 @@
   <td x:str><a href="code/SystemFeature/FileManagement/FileShare/Picker">选择并查看文档与媒体文件（API 10）</a></td>
   <td x:str><a href="code/SystemFeature/FileManagement/Photos">相册（API 12）</a></td>
   <td x:str><a href="code/SystemFeature/FileManagement/MediaCollections">媒体管理合集</a></td>
-  <td ></td>
+  <td x:str><a href="code/SystemFeature/FileManagement/FileManager">文件管理（API 11）</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>资源配置</strong></td>
