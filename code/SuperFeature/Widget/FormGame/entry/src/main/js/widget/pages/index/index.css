@@ -75,8 +75,10 @@
 
 #word_t {
   color: #ffb70909;
+  font-size: 24px;
 }
 
 #word_s {
   color: #ff302602;
+  font-size: 30px;
 }
