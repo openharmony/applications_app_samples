@@ -74,8 +74,8 @@ async function saveFile(context: Context, data: ArrayBuffer): Promise<string> {
 
 function setImageList(uri: string) {
 
-  let imageList: Array<string> | undefined = AppStorage.Get('imageList');
-  const index: number | undefined = AppStorage.Get('selectIndex');
+  let imageList: Array<string> | undefined = AppStorage.get('imageList');
+  const index: number | undefined = AppStorage.get('selectIndex');
   if (imageList !== undefined && index !== undefined) {
     imageList[index] = uri;
   }

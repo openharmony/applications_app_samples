@@ -86,8 +86,8 @@ export struct UpdatePage {
         .width($r('app.float.size_100'))
         .onClick(() => {
           // 删除图片
-          let imageList: Array<string> = AppStorage.Get('imageList') as Array<string>;
-          let index: number = AppStorage.Get('selectIndex') as number;
+          let imageList: Array<string> = AppStorage.get('imageList') as Array<string>;
+          let index: number = AppStorage.get('selectIndex') as number;
           imageList.splice(index, 1);
           AppStorage.setOrCreate<Array<string>>('imageList', imageList);
           // 返回
