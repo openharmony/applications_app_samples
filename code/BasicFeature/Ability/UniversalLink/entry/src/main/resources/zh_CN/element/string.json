@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "UniversalLink",
+      "value": "UniversalLink开发示例"
+    },
+    {
+      "name": "UIAbilityContext_openLink",
+      "value": "openLink(promise)拉起应用"
+    },
+    {
+      "name": "UIAbilityContext_openLink_withResult",
+      "value": "openLink(callback)拉起应用"
+    },
+    {
+      "name": "OpenLinkTitle",
+      "value": "UniversalLink方式拉起Ability成功"
+    }
+  ]
+}

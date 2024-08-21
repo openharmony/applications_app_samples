@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "UniversalLink",
+      "value": "UniversalLink example"
+    },
+    {
+      "name": "UIAbilityContext_openLink",
+      "value": "UIAbilityContext.openLink"
+    },
+    {
+      "name": "UIAbilityContext_openLink_withResult",
+      "value": "UIAbilityContext.openLink with result"
+    },
+    {
+      "name": "OpenLinkTitle",
+      "value": "OpenLink Ability"
+    }
+  ]
+}
