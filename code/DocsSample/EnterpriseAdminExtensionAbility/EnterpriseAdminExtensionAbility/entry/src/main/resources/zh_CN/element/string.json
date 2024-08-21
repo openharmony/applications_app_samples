@@ -1,0 +1,112 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "主能力描述"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "设备管理"
+    },
+    {
+      "name": "extension_header",
+      "value": "企业设备管理ExtensionAbility测试"
+    },
+    {
+      "name": "enable_admin",
+      "value": "激活"
+    },
+    {
+      "name": "please_use_hdc_active_device",
+      "value": "请使用hdc命令激活设备"
+    },
+    {
+      "name": "disable_admin",
+      "value": "解除激活"
+    },
+    {
+      "name": "enable_wifi",
+      "value": "启用Wi-Fi"
+    },
+    {
+      "name": "disable_wifi",
+      "value": "禁用Wi-Fi"
+    },
+    {
+      "name": "operate_device",
+      "value": "设备操作"
+    },
+    {
+      "name": "query_wifi",
+      "value": "查询Wi-Fi状态"
+    },
+    {
+      "name": "reboot",
+      "value": "重启设备"
+    },
+    {
+      "name": "execute_result",
+      "value": "结果:"
+    },
+    {
+      "name": "current_wifi_status",
+      "value": "当前Wi-Fi状态:"
+    },
+    {
+      "name": "active_status",
+      "value": "当前激活状态:"
+    },
+    {
+      "name": "disable_wifi_suc",
+      "value": "禁用Wi-Fi成功"
+    } ,
+    {
+      "name": "enable_wifi_suc",
+      "value": "启用Wi-Fi成功"
+    } ,
+    {
+      "name": "disable_wifi_fail",
+      "value": "禁用Wi-Fi失败"
+    } ,
+    {
+      "name": "enable_wifi_fail",
+      "value": "启用Wi-Fi失败"
+    } ,
+    {
+      "name": "enabled",
+      "value": "未禁用"
+    } ,
+    {
+      "name": "disabled",
+      "value": "已禁用"
+    } ,
+    {
+      "name": "get_wifi_status_failed",
+      "value": "获取Wi-Fi状态失败"
+    } ,
+    {
+      "name": "reboot_fail",
+      "value": "重启失败"
+    } ,
+    {
+      "name": "deactivate_fail",
+      "value": "解除激活失败"
+    } ,
+    {
+      "name": "deactivate_suc",
+      "value": "解除激活成功"
+    } ,
+    {
+      "name": "no_active",
+      "value": "未激活"
+    } ,
+    {
+      "name": "activated",
+      "value": "已激活"
+    }
+  ]
+}

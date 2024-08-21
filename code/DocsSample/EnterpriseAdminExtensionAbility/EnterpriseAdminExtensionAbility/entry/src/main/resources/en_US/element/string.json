@@ -1,0 +1,112 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "Module Description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "Functions Description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Device Management"
+    },
+    {
+      "name": "extension_header",
+      "value": "Enterprise Device Management Test"
+    },
+    {
+      "name": "enable_admin",
+      "value": "Enable Admin"
+    },
+    {
+      "name": "please_use_hdc_active_device",
+      "value": "Run the hdc command to activate the device"
+    },
+    {
+      "name": "disable_admin",
+      "value": "Disable Admin"
+    },
+    {
+      "name": "enable_wifi",
+      "value": "Enable Wi-Fi"
+    },
+    {
+      "name": "disable_wifi",
+      "value": "Disable Wi-Fi"
+    },
+    {
+      "name": "operate_device",
+      "value": "Operate Device"
+    },
+    {
+      "name": "query_wifi",
+      "value": "Query the Wi-Fi status"
+    },
+    {
+      "name": "reboot",
+      "value": "Reboot Device"
+    },
+    {
+      "name": "execute_result",
+      "value": "Result:"
+    },
+    {
+      "name": "current_wifi_status",
+      "value": "Current Wi-Fi status:"
+    },
+    {
+      "name": "active_status",
+      "value": "Current active status:"
+    },
+    {
+      "name": "disable_wifi_suc",
+      "value": "disable Wi-Fi successfully"
+    },
+    {
+      "name": "enable_wifi_suc",
+      "value": "enable Wi-Fi successfully"
+    },
+    {
+      "name": "disable_wifi_fail",
+      "value": "disable Wi-Fi failed"
+    },
+    {
+      "name": "enable_wifi_fail",
+      "value": "enable Wi-Fi failed"
+    },
+    {
+      "name": "enabled",
+      "value": "enabled"
+    },
+    {
+      "name": "disabled",
+      "value": "disabled"
+    },
+    {
+      "name": "get_wifi_status_failed",
+      "value": "get Wi-Fi status failed"
+    },
+    {
+      "name": "reboot_fail",
+      "value": "reboot failed"
+    },
+    {
+      "name": "deactivate_fail",
+      "value": "deactivate failed"
+    },
+    {
+      "name": "deactivate_suc",
+      "value": "deactivate successfully"
+    },
+    {
+      "name": "no_active",
+      "value": "no active"
+    },
+    {
+      "name": "activated",
+      "value": "activated"
+    }
+  ]
+}
