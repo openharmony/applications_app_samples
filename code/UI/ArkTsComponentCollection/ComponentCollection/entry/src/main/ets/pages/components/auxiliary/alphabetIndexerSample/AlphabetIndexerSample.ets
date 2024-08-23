@@ -252,6 +252,7 @@ struct AlphabetIndexerSample {
               }
               this.scroller.scrollToIndex(length + index)
             })
+            .popupBackgroundBlurStyle(BlurStyle.NONE) // 设置提示弹窗的背景模糊材质
         }
         .padding(10)
         .width('100%')
