@@ -14,6 +14,12 @@
  */
 import { TitleBar } from '../../../../common/TitleBar';
 
+class Pages {
+  names: string = "";
+  values: NavPathStack | null = null;
+  listIndex: number = 0;
+}
+
 @Entry
 @Component
 struct NavigationHideBar {
@@ -23,11 +29,11 @@ struct NavigationHideBar {
   @State selectnav: number = -1;
   @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack();
   private context: Context = getContext(this);
-  @State hide:boolean = false;
+  @State hide: boolean = false;
 
   @Builder
-  PageMap(name: string, listIndex: number) {
-    this.pageList({ names: name, values: this.pageInfos, listIndex: listIndex });
+  PageMap(name: string, param: number) {
+    this.pageList({ names: name, values: this.pageInfos, listIndex: param });
   }
 
   @Builder
@@ -58,19 +64,15 @@ struct NavigationHideBar {
     .title(this.context.resourceManager.getStringSync($r('app.string.navigation_navbar_list_nopara')) + info.listIndex)
     .backgroundColor($r('app.color.background_shallow_grey'))
     .onBackPressed(() => {
-      let stack:NavPathStack = info.values as NavPathStack
+      let stack: NavPathStack = info.values as NavPathStack;
       stack.pop();
-      if (stack.size() === 0) {
-        let applicationContext = this.context.getApplicationContext();
-        applicationContext.killAllProcesses();
-      }
-
+      this.selectnav = stack.getParamByIndex(stack.size() - 1) as number;
       return true;
     })
   }
 
   build() {
-    Stack({alignContent: Alignment.TopEnd}) {
+    Stack({ alignContent: Alignment.TopEnd }) {
       Navigation(this.pageInfos) {
         TitleBar({ title: $r('app.string.navigation_split_title') })
         Column() {
@@ -112,7 +114,7 @@ struct NavigationHideBar {
           .width(24)
           .height(24)
           .objectFit(ImageFit.Contain)
-          .onClick(()=>{
+          .onClick(() => {
             this.hide = !this.hide;
           })
           .id('hide')
@@ -124,10 +126,4 @@ struct NavigationHideBar {
     .width('100%')
     .backgroundColor($r('app.color.background_shallow_grey'))
   }
-}
-
-class Pages {
-  names: string = "";
-  values: NavPathStack | null = null;
-  listIndex: number = 0;
 }
