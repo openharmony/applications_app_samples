@@ -1,0 +1,11 @@
+{
+  "src": [
+    "pages/Index",
+    "abilitypages/AppManager",
+    "abilitypages/ErrorManager",
+    "abilitypages/DataUriUtils",
+    "abilitypages/UIAbilityContext",
+    "abilitypages/WantAgent",
+    "abilitypages/ApplicationContext"
+  ]
+}
