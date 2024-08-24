@@ -83,7 +83,7 @@ entry/src/main/ets/
 
 * 内存共享的实现在taskpool页面调用，源码参考[TaskPoolTab.ets](entry/src/main/ets/component/TaskPoolTab.ets)
 
-* 批量拷贝文件的功能封装在MyWorker，源码参考：[MyWorker.ts](ets/src/main/ets/fileFs/MyWorker.ts)
+* 批量拷贝文件的功能封装在MyWorker，源码参考：[MyWorker.ets](entry/src/main/ets/fileFs/MyWorker.ets)
 
   * 拷贝文件：在[CopyFile.ets](entry/src/main/ets/pages/CopyFile.ets)
 
