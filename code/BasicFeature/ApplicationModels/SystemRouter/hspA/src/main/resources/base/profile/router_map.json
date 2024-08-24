@@ -1,0 +1,17 @@
+{
+  "routerMap": [
+    {
+      "name": "HspAPageOne",
+      "pageSourceFile": "src/main/ets/pages/HspAPageOne.ets",
+      "buildFunction": "HspAPageOneBuilder",
+      "data": {
+        "description": "this is pageOne"
+      }
+    },
+    {
+      "name": "HspAPageTwo",
+      "pageSourceFile": "src/main/ets/pages/HspAPageTwo.ets",
+      "buildFunction": "HspAPageTwoBuilder"
+    }
+  ]
+}

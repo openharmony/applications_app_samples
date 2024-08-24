@@ -1,0 +1,17 @@
+{
+  "routerMap": [
+    {
+      "name": "HarBPageOne",
+      "pageSourceFile": "src/main/ets/pages/HarBPageOne.ets",
+      "buildFunction": "HarBPageOneBuilder",
+      "data": {
+        "description": "this is pageOne"
+      }
+    },
+    {
+      "name": "HarBPageTwo",
+      "pageSourceFile": "src/main/ets/pages/HarBPageTwo.ets",
+      "buildFunction": "HarBPageTwoBuilder"
+    }
+  ]
+}
