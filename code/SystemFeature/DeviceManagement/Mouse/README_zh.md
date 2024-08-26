@@ -4,7 +4,7 @@
 
 本示例展示了多模输入鼠标外设的五种场景：鼠标样式资源切换、设置鼠标大小及颜色、设置鼠标动画光标样式、通过switch开关切换鼠标滚轮在非激活悬停窗口的滚动操作使能状态、通过switch开关切换鼠标主次键等功能。
 
-本实例使用[鼠标指针](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-pointer.md)
+本实例使用[鼠标指针](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-input-kit/js-apis-pointer.md)
 
 ### 效果预览
 
@@ -41,7 +41,7 @@ entry/src/main/ets/
   * 鼠标外设模块
     * 主要展示了鼠标外设的五种功能设置场景
     * 源码链接：[Main.ets](entry/src/main/ets/pages/Main.ets)，
-    * 接口参考：[@ohos.multimodalInput.pointer](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-pointer.md)
+    * 接口参考：[@ohos.multimodalInput.pointer](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-input-kit/js-apis-pointer.md)
 
 ### 相关权限
 

@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例主要展示了静态订阅的创建与使用，以及静态订阅的使能和去使能。通过[CommonEventManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-commonEventManager.md)发布自定义事件，使能和去使能静态订阅。通过[StaticSubscriberExtensionAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-application-staticSubscriberExtensionAbility.md)、[NotificationManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-notificationManager.md)静态订阅已发布的自定义事件，订阅后即可自动收到该事件，收到该事件后，发送通知将自定义事件数据显示在通知栏。
+本示例主要展示了静态订阅的创建与使用，以及静态订阅的使能和去使能。通过[CommonEventManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-commonEventManager.md)发布自定义事件，使能和去使能静态订阅。通过[StaticSubscriberExtensionAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-application-staticSubscriberExtensionAbility.md)、[NotificationManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-notificationManager.md)静态订阅已发布的自定义事件，订阅后即可自动收到该事件，收到该事件后，发送通知将自定义事件数据显示在通知栏。
 
 ### 效果预览
 
@@ -42,19 +42,19 @@ entry/src/main/ets/
 
 * 源码链接：[Index.ets](publish/src/main/ets/pages/Index.ets)
 
-* 接口参考：[@ohos.commonEventManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-commonEventManager.md)
+* 接口参考：[@ohos.commonEventManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-commonEventManager.md)
 
 * 通过CommonEventManager.setStaticSubscriberState方法为当前应用设置静态订阅事件使能或去使能状态。
 
 * 源码链接：[Index.ets](publish/src/main/ets/pages/Index.ets)
 
-* 接口参考：[@ohos.commonEventManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-commonEventManager.md)
+* 接口参考：[@ohos.commonEventManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-commonEventManager.md)
 
 * 通过StaticSubscriberExtensionAbility接口静态订阅已发布的自定义事件，订阅后即可自动收到该事件，收到该事件后，setNotificationEnable，ContentType方法发送通知将自定义事件数据显示在通知栏。
 
 * 源码链接：[StaticSubscriber.ts](entry/src/main/ets/StaticSubscriber/StaticSubscriber.ts)
 
-* 接口参考：[@ohos.application.StaticSubscriberExtensionAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-application-staticSubscriberExtensionAbility.md)，[@ohos.notificationManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-notificationManager.md)
+* 接口参考：[@ohos.application.StaticSubscriberExtensionAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-application-staticSubscriberExtensionAbility.md)，[@ohos.notificationManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-notificationManager.md)
 
 ### 相关权限
 
