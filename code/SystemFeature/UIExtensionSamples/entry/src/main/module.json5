@@ -1,0 +1,105 @@
+/*
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    "description": "$string:module_desc",
+    "mainElement": "EntryAbility",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        "srcEntry": "./ets/entryability/EntryAbility.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:startIcon",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "OpenLinkUIAbility",
+        "srcEntry": "./ets/entryability/OpenLinkUIAbility.ets",
+        "description": "uri",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home",
+              "entity.system.browsable"
+            ],
+            "actions": [
+              "action.system.home",
+              "ohos.want.action.viewData"
+            ],
+            "uris": [
+              {
+                // scheme可以自定义
+                "scheme": "http",
+                // host须配置关联的域名
+                "host": "docs.openharmony.cn",
+                // path可选，为了避免匹配到多个应用，建议配置该字段
+                "path": ""
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "SessionUIExtensionAbility",
+        "srcEntry": "./ets/uiextensionentry/SessionUIExtensionAbility.ets",
+        "type": "sys/commonUI",
+        "exported": true
+      },
+      {
+        "name": "ContextUIExtensionAbility",
+        "srcEntry": "./ets/uiextensionentry/ContextUIExtensionAbility.ets",
+        "type": "sys/commonUI",
+        "exported": true,
+      }
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.PRIVACY_WINDOW"
+      },
+      {
+        "name": "ohos.permission.START_INVISIBLE_ABILITY"
+      }
+    ]
+  }
+}

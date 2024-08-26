@@ -1,0 +1,116 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "main_title",
+      "value": "public api example"
+    },
+    {
+      "name": "UIExtensionContext",
+      "value": "UIExtensionContext example"
+    },
+    {
+      "name": "UIExtensionContentSession",
+      "value": "UIExtensionContentSession example"
+    },
+    {
+      "name": "UIAbilityContext_requestModalUIExtension",
+      "value": "requestModalUIExtension"
+    },
+    {
+      "name": "UIAbilityContext_startAbilityByType",
+      "value": "startAbilityByType"
+    },
+    {
+      "name": "UIExtensionContentSession_terminateSelfWithResultCallback",
+      "value": "terminateSelfWithResult callback"
+    },
+    {
+      "name": "UIExtensionContentSession_terminateSelfWithResultPromise",
+      "value": "terminateSelfWithResult promise"
+    },
+    {
+      "name": "UIExtensionContentSession_setWindowPrivacyModeCallback",
+      "value": "setWindowPrivacyMode callback"
+    },
+    {
+      "name": "UIExtensionContentSession_setWindowPrivacyModePromise",
+      "value": "setWindowPrivacyMode promise"
+    },
+    {
+      "name": "UIExtensionContentSession_getUIExtensionWindowProxy",
+      "value": "getUIExtensionWindowProxy"
+    },
+    {
+      "name": "UIExtensionContent_terminateSelfCallback",
+      "value": "terminateSelf callback"
+    },
+    {
+      "name": "UIExtensionContent_terminateSelfPromise",
+      "value": "terminateSelf promise"
+    },
+    {
+      "name": "UIExtensionContent_terminateSelfWithResultCallback",
+      "value": "terminateSelfWithResult callback"
+    },
+    {
+      "name": "UIExtensionContent_terminateSelfWithResultPromise",
+      "value": "terminateSelfWithResult promise"
+    },
+    {
+      "name": "UIExtensionContent_openLink",
+      "value": "openLink"
+    },
+    {
+      "name": "UIAbilityContext_openLink",
+      "value": "openLink"
+    },
+    {
+      "name": "UIExtensionAbilityContext_openLink",
+      "value": "openLink"
+    },
+    {
+      "name": "UIExtensionAbilityContext",
+      "value": "UIExtensionAbility"
+    },
+    {
+      "name": "privacy_window_permission",
+      "value": "permit user to set privacy window"
+    },
+    {
+      "name": "UIExtensionAbilityContext_requestModalUIExtension",
+      "value": "startUIExtensionAbility"
+    },
+    {
+      "name": "UIAbilityContext_startAbilityByType_onResult",
+      "value": "startAbilityByType onResult"
+    },
+    {
+      "name": "UIAbilityContext_startAbilityByType_onError",
+      "value": "startAbilityByType onError"
+    },
+    {
+      "name": "AbilityStartCallback",
+      "value": "AbilityStartCallback example"
+    },
+    {
+      "name": "UIExtensionContent_reportDrawnCompleted",
+      "value": "reportDrawnCompleted"
+    },
+    {
+      "name": "OpenLinkTitle",
+      "value": "OpenLink Ability"
+    }
+  ]
+}
