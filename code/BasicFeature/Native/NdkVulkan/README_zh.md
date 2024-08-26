@@ -11,7 +11,7 @@ XComponent组件作为绘制组件, 可用于满足开发者较为复杂的自�
 [Vulkan](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/reference/native-lib)接口。
 
 > **说明**
-> 本示例XComponent接口使用方法已停止演进，推荐使用方法请参考[XComponent示例](../XComponent/README_zh.md)。
+> 本示例XComponent接口使用方法已停止演进，推荐使用方法请参考[ArkTSXComponent示例](../ArkTSXComponent/README_zh.md)。
 ### 效果预览
 如下图所示, 打开应用, 屏幕中心会绘制一个旋转中的三角形, 可以点击'stop/start'按钮控制三角形的旋转状态。
 ![image](screenshots/device/sample.png)

@@ -8,7 +8,7 @@
 2. 使用OpenGL实现了在主页面绘制两个立方体，光源可以在当前场景中移动，并实现了光照效果。
 
 > **说明**
-> 本示例XComponent接口使用方法已停止演进，推荐使用方法请参考[XComponent示例](../XComponent/README_zh.md)。
+> 本示例XComponent接口使用方法已停止演进，推荐使用方法请参考[ArkTSXComponent示例](../ArkTSXComponent/README_zh.md)。
 #### 效果展示
 
 | 3D效果1                                                   | 3D效果2                                                   | 2D效果1                                                   | 2D效果2                                                   |

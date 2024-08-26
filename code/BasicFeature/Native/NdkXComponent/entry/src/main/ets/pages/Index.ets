@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,13 +13,17 @@
  * limitations under the License.
  */
 
-import XComponentContext from "../interface/XComponentContext"
+import nativeNode from 'libnativenode.so';
+import {NodeContent} from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Index {
   @State currentStatus: string = "init";
-  private xComponentContext: XComponentContext | undefined = undefined;
+  private nodeContent: NodeContent = new NodeContent();
+  aboutToAppear():void{
+    nativeNode.createNativeNode(this.nodeContent,"ygb");
+  }
 
   build() {
     Column() {
@@ -37,19 +41,7 @@ struct Index {
       .height(56)
 
       Column({ space: 10 }) {
-        XComponent({
-          id: 'xcomponentId',
-          type: XComponentType.SURFACE,
-          libraryname: 'nativerender'
-        })
-          .onLoad((xComponentContext) => {
-            this.xComponentContext = xComponentContext as XComponentContext;
-            this.currentStatus = "index";
-          })
-          .onDestroy(() => {
-            console.log('onDestroy');
-          })
-          .id("xcomponent")
+        ContentSlot(this.nodeContent);
 
         Text(this.currentStatus)
           .fontSize('24fp')
@@ -57,8 +49,8 @@ struct Index {
       }
       .onClick(() => {
         let hasChangeColor: boolean = false;
-        if (this.xComponentContext && this.xComponentContext.getStatus()) {
-          hasChangeColor = this.xComponentContext.getStatus().hasChangeColor;
+        if (nativeNode.getStatus()) {
+          hasChangeColor = nativeNode.getStatus().hasChangeColor;
         }
         if (hasChangeColor) {
           this.currentStatus = "change color";
@@ -78,16 +70,14 @@ struct Index {
           .fontWeight(500)
           .margin({ bottom: 24 })
           .onClick(() => {
-            if (this.xComponentContext) {
-              this.xComponentContext.drawPattern();
+              nativeNode.drawPattern();
               let hasDraw: boolean = false;
-              if (this.xComponentContext.getStatus()) {
-                hasDraw = this.xComponentContext.getStatus().hasDraw;
+              if (nativeNode.getStatus()) {
+                hasDraw = nativeNode.getStatus().hasDraw;
               }
               if (hasDraw) {
                 this.currentStatus = "draw star";
               }
-            }
           })
           .width('53.6%')
           .height(40)

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -28,28 +28,33 @@ static napi_value Init(napi_env env, napi_value exports)
         return nullptr;
     }
 
-    napi_property_descriptor desc[] = { { "getContext", nullptr, PluginManager::GetContext, nullptr, nullptr, nullptr,
-        napi_default, nullptr } };
+    napi_property_descriptor desc[] = {
+        {"createNativeNode", nullptr, PluginManager::createNativeNode, nullptr, nullptr, nullptr,
+         napi_default, nullptr },
+        {"getStatus", nullptr, PluginManager::GetXComponentStatus, nullptr, nullptr,
+         nullptr, napi_default, nullptr},
+        {"drawPattern", nullptr, PluginManager::NapiDrawPattern, nullptr, nullptr,
+         nullptr, napi_default, nullptr}
+    };
     if (napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc) != napi_ok) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Init", "napi_define_properties failed");
         return nullptr;
     }
-
-    PluginManager::GetInstance()->Export(env, exports);
+    
     return exports;
 }
 EXTERN_C_END
 
-static napi_module nativerenderModule = { .nm_version = 1,
+static napi_module nativenodeModule = { .nm_version = 1,
     .nm_flags = 0,
     .nm_filename = nullptr,
     .nm_register_func = Init,
-    .nm_modname = "nativerender",
+    .nm_modname = "nativenode",
     .nm_priv = ((void*)0),
     .reserved = { 0 } };
 
 extern "C" __attribute__((constructor)) void RegisterModule(void)
 {
-    napi_module_register(&nativerenderModule);
+    napi_module_register(&nativenodeModule);
 }
 } // namespace NativeXComponentSample

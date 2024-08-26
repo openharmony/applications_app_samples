@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -50,8 +50,6 @@ export default function abilityTest() {
     it('DrawShape_001', 2, async () => {
       console.info(TAG, 'CreateFiles_001 begin');
       let driver = Driver.create();
-      // 判断XComponent onLoad回调执行成功
-      await driver.assertComponentExist(ON.text('index'));
       // 判断是否有按键
       await driver.assertComponentExist(ON.text('Draw Star'));
       let drawStarBtn = await driver.findComponent(ON.text('Draw Star'));
@@ -62,7 +60,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text('draw star'));
 
       // 判断是否有XComponent组件
-      let xcomponent = await driver.findComponent(ON.id('xcomponent'));
+      let xcomponent = await driver.findComponent(ON.id('ndkxcomponent'));
       // 点击XComponent组件
       await xcomponent.click();
       await driver.delayMs(1000);

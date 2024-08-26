@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,24 +18,33 @@
 #include <ace/xcomponent/native_interface_xcomponent.h>
 #include <js_native_api.h>
 #include <js_native_api_types.h>
+#include <napi/native_api.h>
+#include <string>
 #include <unordered_map>
-#include <native_window/external_window.h>
+
 #include "../render/plugin_render.h"
 
 namespace NativeXComponentSample {
 class PluginManager {
 public:
     ~PluginManager();
-    static PluginRender* GetPluginRender(int64_t& id);
-    static napi_value ChangeColor(napi_env env, napi_callback_info info);
-    static napi_value DrawPattern(napi_env env, napi_callback_info info);
-    static napi_value SetSurfaceId(napi_env env, napi_callback_info info);
-    static napi_value ChangeSurface(napi_env env, napi_callback_info info);
-    static napi_value DestroySurface(napi_env env, napi_callback_info info);
-    static napi_value GetXComponentStatus(napi_env env, napi_callback_info info);
-public:
-    static std::unordered_map<int64_t, PluginRender*> pluginRenderMap_;
-    static std::unordered_map<int64_t, OHNativeWindow*> windowMap_;
+
+    static PluginManager* GetInstance()
+    {
+        return &PluginManager::pluginManager_;
+    }
+
+    static napi_value GetContext(napi_env env, napi_callback_info info);
+
+    void SetNativeXComponent(std::string& id, OH_NativeXComponent* nativeXComponent);
+    PluginRender* GetRender(std::string& id);
+    void Export(napi_env env, napi_value exports);
+
+private:
+    static PluginManager pluginManager_;
+
+    std::unordered_map<std::string, OH_NativeXComponent*> nativeXComponentMap_;
+    std::unordered_map<std::string, PluginRender*> pluginRenderMap_;
 };
 } // namespace NativeXComponentSample
 #endif // NATIVE_XCOMPONENT_PLUGIN_MANAGER_H

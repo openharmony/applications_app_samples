@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -19,7 +19,6 @@
 #include "manager/plugin_manager.h"
 
 namespace NativeXComponentSample {
-
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
@@ -28,38 +27,29 @@ static napi_value Init(napi_env env, napi_value exports)
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Init", "env or exports is null");
         return nullptr;
     }
-    napi_property_descriptor desc[] = {
-        {"ChangeColor", nullptr, PluginManager::ChangeColor,
-            nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"SetSurfaceId", nullptr, PluginManager::SetSurfaceId,
-            nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"ChangeSurface", nullptr, PluginManager::ChangeSurface,
-            nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"GetXComponentStatus", nullptr, PluginManager::GetXComponentStatus,
-            nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"DrawPattern", nullptr, PluginManager::DrawPattern,
-            nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"DestroySurface", nullptr, PluginManager::DestroySurface,
-            nullptr, nullptr, nullptr, napi_default, nullptr}
-    };
+
+    napi_property_descriptor desc[] = { { "getContext", nullptr, PluginManager::GetContext, nullptr, nullptr, nullptr,
+        napi_default, nullptr } };
     if (napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc) != napi_ok) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Init", "napi_define_properties failed");
         return nullptr;
     }
+
+    PluginManager::GetInstance()->Export(env, exports);
     return exports;
 }
 EXTERN_C_END
 
-static napi_module nativerenderModule = {
-    .nm_version = 1,
+static napi_module nativerenderModule = { .nm_version = 1,
     .nm_flags = 0,
     .nm_filename = nullptr,
     .nm_register_func = Init,
     .nm_modname = "nativerender",
     .nm_priv = ((void*)0),
     .reserved = { 0 } };
-} // namespace NativeXComponentSample
+
 extern "C" __attribute__((constructor)) void RegisterModule(void)
 {
-    napi_module_register(&NativeXComponentSample::nativerenderModule);
+    napi_module_register(&nativerenderModule);
 }
+} // namespace NativeXComponentSample

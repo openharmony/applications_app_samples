@@ -10,9 +10,8 @@ include_directories(
     ${NATIVERENDER_ROOT_PATH}/include
 )
 
-add_library(nativerender SHARED
+add_library(nativenode SHARED
     render/egl_core.cpp
-    render/plugin_render.cpp
     manager/plugin_manager.cpp
     napi_init.cpp
 )
@@ -65,5 +64,5 @@ find_library(
     uv
 )
 
-target_link_libraries(nativerender PUBLIC
+target_link_libraries(nativenode PUBLIC
     ${EGL-lib} ${GLES-lib} ${hilog-lib} ${libace-lib} ${libnapi-lib} ${libuv-lib})
