@@ -1,0 +1,84 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "navDestination_width",
+      "value": "100%"
+    },
+    {
+      "name": "navDestination_height",
+      "value": "100%"
+    },
+    {
+      "name": "button_width",
+      "value": "100%"
+    },
+    {
+      "name": "button_height",
+      "value": "40"
+    },
+    {
+      "name": "button_margin",
+      "value": "20"
+    },
+    {
+      "name": "column_padding",
+      "value": "16"
+    },
+    {
+      "name": "entry_index_title",
+      "value": "NavIndex"
+    },
+    {
+      "name": "entry_index",
+      "value": "toIndex"
+    },
+    {
+      "name": "entry_pageOne",
+      "value": "toEntryPageOne"
+    },
+    {
+      "name": "entry_pageTwo",
+      "value": "toEntryPageTwo"
+    },
+    {
+      "name": "harA_pageOne",
+      "value": "toHarAPageOne"
+    },
+    {
+      "name": "harA_pageTwo",
+      "value": "toHarAPageTwo"
+    },
+    {
+      "name": "harB_pageOne",
+      "value": "toHarBPageOne"
+    },
+    {
+      "name": "harB_pageTwo",
+      "value": "toHarBPageTwo"
+    },
+    {
+      "name": "hspA_pageOne",
+      "value": "toHspAPageOne"
+    },
+    {
+      "name": "hspA_pageTwo",
+      "value": "toHspAPageTwo"
+    },
+    {
+      "name": "hspB_pageOne",
+      "value": "toHspBPageOne"
+    },
+    {
+      "name": "hspB_pageTwo",
+      "value": "toHspBPageTwo"
+    },
+    {
+      "name": "full_percent",
+      "value": "100%"
+    }
+  ]
+}

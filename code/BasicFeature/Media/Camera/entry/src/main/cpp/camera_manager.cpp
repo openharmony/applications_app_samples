@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -532,6 +532,7 @@ Camera_ErrorCode NDKCamera::StartVideo(char *videoId, char *photoId)
         OH_LOG_ERROR(LOG_APP, "SessionBegin failed. %d ", ret);
     }
     OH_CaptureSession_RemovePhotoOutput(captureSession_, photoOutput_);
+    OH_CaptureSession_SetSessionMode(captureSession_, NORMAL_VIDEO);
     CreatePhotoOutput(photoId);
     AddPhotoOutput();
     CreateVideoOutput(videoId);
