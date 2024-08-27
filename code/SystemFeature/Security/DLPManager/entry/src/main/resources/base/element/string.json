@@ -45,6 +45,10 @@
       "value": "进入编辑状态"
     },
     {
+      "name": "dlp_edit_tip",
+      "value": "不支持编辑此文件"
+    },
+    {
       "name": "saved",
       "value": "已保存"
     },

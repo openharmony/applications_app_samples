@@ -244,10 +244,15 @@ struct DlpPage {
     Logger.info(TAG, "funcAbilityWant dlpLinkName:" + this.dlpLinkName);
     Logger.info(TAG, "funcAbilityWant fd:" + this.fd);
     Logger.info(TAG, "funcAbilityWant dlpContent:" + this.dlpContent);
-    this.fd = fs.openSync(this.dlpLinkUri).fd;
-    this.isDlpFileFunc(this.fd);
-    this.getOriginalFileNameFunc(this.dlpName);
-    this.getDLPSuffixFunc();
+    try {
+      this.fd = fs.openSync(this.dlpLinkUri).fd;
+      this.isDlpFileFunc(this.fd);
+      this.getOriginalFileNameFunc(this.dlpName);
+      this.getDLPSuffixFunc();
+    } catch (err) {
+      Logger.error(TAG, "open DlpError:" + JSON.stringify(err));
+    }
+
     Logger.info(TAG, "onPageShow end ------");
   }
 
@@ -280,7 +285,7 @@ struct DlpPage {
       Scroll(this.scroller) {
         Column() {
           TextArea({ text: this.dlpContent, placeholder: 'Input text here...', controller: this.controller })
-            .width('372vp')
+            .width('90%')
             .height('100vp')
             .fontSize('16vp')
             .fontFamily('HarmonyHeiTi-Medium')
@@ -309,9 +314,9 @@ struct DlpPage {
             })
             .backgroundColor('#FFFFFF')
         }
-        .width('380vp')
+        .width('100%')
         .height('64vp')
-        .margin({ left: '28vp', right: '72vp', top: '4vp', bottom: '576vp' })
+        .margin({ top: '4vp', bottom: '576vp' })
       }
 
       Blank()
@@ -324,6 +329,9 @@ struct DlpPage {
             .margin({ top: '8vp', bottom: '3vp', left: '40vp', right: '40vp' })
             .id('dlpEdit')
             .onClick(() => {
+              promptAction.showToast({ message: $r('app.string.dlp_edit_tip'), duration: 2000 });
+              return;
+              // 不再支持编辑dlp文件
               this.editable = true;
               AppStorage.setOrCreate('editable', this.editable);
               Logger.info(TAG, 'EditFile caretPosition length = ' + this.dlpContent.length);

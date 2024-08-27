@@ -45,6 +45,10 @@
       "value": "Editable"
     },
     {
+      "name": "dlp_edit_tip",
+      "value": "Editing this file is not supported"
+    },
+    {
       "name": "saved",
       "value": "Saved"
     },

@@ -71,6 +71,7 @@ export struct Index {
   @StorageLink('fileNameList') fileNameList: Array<string> = [];
   @StorageLink('filePathList') filePathList: Array<string> = [];
   @StorageLink('fileTimeList') fileTimeList: Array<string> = [];
+  scroller: Scroller = new Scroller();
 
   /**
    * 拉起picker选择文件
@@ -407,9 +408,6 @@ export struct Index {
     this.accountLogin(this.accountName);
   }
 
-  aboutToAppear() {
-  }
-
   build() {
     Column() {
       Stack({ alignContent: Alignment.TopEnd }) {
@@ -448,7 +446,7 @@ export struct Index {
       }.width('100%').height('84vp')
 
       Stack({ alignContent: Alignment.TopEnd }) {
-        List() {
+        List({ scroller: this.scroller }) {
           ForEach(this.fileInfoList, (item: FileInfo, index: number) => {
             ListItem() {
               Column() {
@@ -507,6 +505,7 @@ export struct Index {
         }
         .zIndex(1)
         .width('100%')
+        .height('100%')
         .listDirection(Axis.Vertical) // 排列方向
         .id('indexList')
         .edgeEffect(EdgeEffect.Spring) // 滑动到边缘无效果
@@ -522,7 +521,7 @@ export struct Index {
             this.callFilePickerSelectFile();
           })
       }
-      .height('100%')
+      .layoutWeight(1)
       .width('100%')
     }
     .height('100%')
