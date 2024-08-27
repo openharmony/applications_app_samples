@@ -5,8 +5,8 @@
 本示例展示在进场时加载进场动画，整体使用**Tabs**容器设计应用框架，通过**TabContent**组件设置分页面，在子页面中绘制界面。通过Navigation完成页面之间的切换。在详情页中通过
 **Video**组件加载视频资源，使用**CustomDialogController**弹窗选择位置信息，点击首页及购物车返回主页面。
 
-本示例使用[Tabs容器](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-tabs.md)
-实现通过页签进行内容视图切换。使用[Navigation](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.0-Beta2/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-navigation.md#navigation)实现页面之间的切换。使用[自定义弹窗](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-methods-custom-dialog-box.md)
+本示例使用[Tabs容器](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-tabs.md)
+实现通过页签进行内容视图切换。使用[Navigation](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.0-Beta2/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-navigation.md#navigation)实现页面之间的切换。使用[自定义弹窗](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md)
 设置位置信息。使用[Swiper](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-swiper.md)
 组件实现页面展示图轮播。使用[Grid](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-list.md)
 容器组件设置展示的商品信息。

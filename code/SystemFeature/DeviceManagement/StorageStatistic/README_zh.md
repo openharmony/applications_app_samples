@@ -48,7 +48,7 @@ entry/src/main/ets/
 
 * 本示例使用DataPanel组件展示不同种类的应用存储信息，通过 Bundle模块来获取不同应用的包名与应用名等信息，使用应用空间统计来查询当前设备的存储使用情况，使用卷管理来查询可用卷存储使用情况。
 * 源码链接：[QueryStorageData.ets](entry/src/main/ets/common/QueryStorageData.ets)，[QueryVolumeData.ets](entry/src/main/ets/common/QueryVolumeData.ets)
-* 接口参考：[DataPanel组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-datapanel.md)，[@ohos.bundle.bundleManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-Bundle.md)，[@ohos.file.storageStatistics](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-storage-statistics.md)，[@ohos.file.volumeManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-volumemanager.md)
+* 接口参考：[DataPanel组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-datapanel.md)，[@ohos.bundle.bundleManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-Bundle.md)，[@ohos.file.storageStatistics](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-storage-statistics.md)，[@ohos.file.volumeManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-volumemanager.md)
 
 ### 相关权限
 

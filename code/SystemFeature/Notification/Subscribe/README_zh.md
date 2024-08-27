@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例主要展示了通知发布订阅的功能，使用[notificationSubscribe.subscribe](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-notificationSubscribe.md)
+本示例主要展示了通知发布订阅的功能，使用[notificationSubscribe.subscribe](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-notificationSubscribe-sys.md)
 等接口，实现订阅、发布、推送通知等功能。
 
 ### 效果预览
@@ -45,7 +45,7 @@ entry/src/ohosTest/ets/
 
 ### 相关权限
 
-[ohos.permission.NOTIFICATION_CONTROLLER](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-notificationSubscribe.md)
+[ohos.permission.NOTIFICATION_CONTROLLER](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionnotification_controller)
 
 ### 依赖
 

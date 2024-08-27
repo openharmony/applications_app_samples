@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例通过[@ohos.zlib](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-zlib.md)
+本示例通过[@ohos.zlib](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-zlib.md)
 和[@ohos.fileio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-fileio.md) 接口，实现添加文件、解压和压缩文件场景。
 
 ### 效果预览

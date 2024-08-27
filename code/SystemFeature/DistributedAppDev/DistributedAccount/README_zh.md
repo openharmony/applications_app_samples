@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例主要展示了分布式帐号相关的功能，使用[@ohos.account.distributedAccount](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-distributed-account.md)、[@ohos.account.osAccount](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-osAccount.md)等接口，实现了绑定分布式帐号、解绑分布式帐号、更新分布式帐号信息和管理分布式帐号的功能；
+本示例主要展示了分布式帐号相关的功能，使用[@ohos.account.distributedAccount](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-distributed-account.md)、[@ohos.account.osAccount](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-osAccount.md)等接口，实现了绑定分布式帐号、解绑分布式帐号、更新分布式帐号信息和管理分布式帐号的功能；
 
 ### 效果预览
 
@@ -52,7 +52,7 @@ entry/src/main/ets/
     * 查询分布式帐号信息：使用accountAbility.getOsAccountDistributedInfo()和accountAbility.getOsAccountDistributedInfoByLocalId;
 ### 相关权限
 
-[ohos.permission.MANAGE_LOCAL_ACCOUNTS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionmanage_local_accounts)
+[ohos.permission.MANAGE_LOCAL_ACCOUNTS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionmanage_local_accounts)
 
 [ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionmanage_distributed_accounts)
 
