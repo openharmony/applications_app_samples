@@ -1036,7 +1036,18 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/BasicFeature/Print/ScanNapiInterfaceDemo/AppScope/resources/base/media/app_icon.png" desc="Provided by code/BasicFeature/Print/ScanNapiInterfaceDemo"/>
 				<filteritem type="filepath" name="code/BasicFeature/Print/ScanNapiInterfaceDemo/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/BasicFeature/Print/ScanNapiInterfaceDemo"/>
 				<filteritem type="filepath" name="code/BasicFeature/Print/ScanNapiInterfaceDemo/sceenshots/scandemo.png" desc="Provided by code/BasicFeature/Print/ScanNapiInterfaceDemo"/>
-
+				<filteritem type="filepath" name="code/BasicFeature/ApplicationModels/SystemRouter/entry/src/main/resources/base/media/icon.png" desc="code/BasicFeature/ApplicationModels/SystemRouter"/>
+				<filteritem type="filepath" name="code/BasicFeature/ApplicationModels/SystemRouter/entry/src/main/resources/base/media/startIcon.png" desc="code/BasicFeature/ApplicationModels/SystemRouter"/>
+				<filteritem type="filepath" name="code/BasicFeature/ApplicationModels/SystemRouter/entry/src/main/resources/base/media/background.png" desc="code/BasicFeature/ApplicationModels/SystemRouter"/>
+				<filteritem type="filepath" name="code/BasicFeature/ApplicationModels/SystemRouter/AppScope/resources/base/media/app_icon.png" desc="code/BasicFeature/ApplicationModels/SystemRouter"/>
+				<filteritem type="filepath" name="code/BasicFeature/ApplicationModels/SystemRouter/entry/src/main/resources/base/media/foreground.png" desc="code/BasicFeature/ApplicationModels/SystemRouter"/>
+				<filteritem type="filepath" name="code/BasicFeature/ApplicationModels/SystemRouter/images/HspAPageOne.jpeg" desc="code/BasicFeature/ApplicationModels/SystemRouter"/>
+				<filteritem type="filepath" name="code/BasicFeature/ApplicationModels/SystemRouter/images/HarAPageTwo.jpeg" desc="code/BasicFeature/ApplicationModels/SystemRouter"/>
+				<filteritem type="filepath" name="code/BasicFeature/ApplicationModels/SystemRouter/images/HspAPageTwo.jpeg" desc="code/BasicFeature/ApplicationModels/SystemRouter"/>
+				<filteritem type="filepath" name="code/BasicFeature/ApplicationModels/SystemRouter/images/EntryPageOne.jpeg" desc="code/BasicFeature/ApplicationModels/SystemRouter"/>
+				<filteritem type="filepath" name="code/BasicFeature/ApplicationModels/SystemRouter/images/NavIndex.jpeg" desc="code/BasicFeature/ApplicationModels/SystemRouter"/>
+				<filteritem type="filepath" name="code/BasicFeature/ApplicationModels/SystemRouter/images/EntryPageTwo.jpeg" desc="code/BasicFeature/ApplicationModels/SystemRouter"/>
+				<filteritem type="filepath" name="code/BasicFeature/ApplicationModels/SystemRouter/images/HarAPageOne.jpeg" desc="code/BasicFeature/ApplicationModels/SystemRouter"/>
 			</filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加License头"/>
