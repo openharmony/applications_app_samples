@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例通过[@ohos.wifiManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-wifiManager.md) 相关API实现wlan激活和关闭、扫描和连接WIFI等功能。
+本示例通过[@ohos.wifiManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-wifiManager.md) 相关API实现wlan激活和关闭、扫描和连接WIFI等功能。
 
 ### 效果预览
 

@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例主要展示了设备管理相关的功能，使用[@ohos.distributedHardware.deviceManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-device-manager.md)
+本示例主要展示了设备管理相关的功能，使用[@ohos.distributedHardware.deviceManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-distributedservice-kit/js-apis-device-manager-sys.md)
 等接口，实现了包括获取本机设备信息，获取授信设备列表，根据过滤条件扫描设备，设备认证，设备状态订阅，导入凭据，控制设备是否允许被发现等功能。
 
 ### 效果预览

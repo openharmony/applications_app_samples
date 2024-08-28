@@ -65,11 +65,11 @@ International
 
 ### 相关权限
 
-1.更新配置权限：[ohos.permission.UPDATE_CONFIGURATION](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionupdate_configuration)
+1.更新配置权限：[ohos.permission.UPDATE_CONFIGURATION](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionupdate_configuration)
 
-2.设置时区权限：[ohos.permission.SET_TIME_ZONE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionset_time_zone)
+2.设置时区权限：[ohos.permission.SET_TIME_ZONE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionset_time_zone)
 
-3.设置系统时间权限：[ohos.permission.SET_TIME](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionset_time)
+3.设置系统时间权限：[ohos.permission.SET_TIME](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionset_time)
 
 ### 依赖
 
