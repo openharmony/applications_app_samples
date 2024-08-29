@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例是一个安全类App，使用[@ohos.dlpPermission](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-data-loss-prevention-kit/js-apis-dlppermission-sys.md) 接口展示了在eTS中普通文件加密受限的过程。
+本示例是一个安全类App，使用[@ohos.dlpPermission](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-data-protection-kit/js-apis-dlppermission-sys.md) 接口展示了在eTS中普通文件加密受限的过程。
 
 ### 效果预览
 | Index                                     | Encryption                                           | Encryptied                                       | FileEdit                                           |

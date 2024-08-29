@@ -55,7 +55,7 @@ entry/src/main/ets/
 * 获取应用功能模块
   * 使用launcherBundleManager模块接口（系统能力：SystemCapability.BundleManager.BundleFramework），获取所有应用信息和给定包名获取应用信息，实现桌面展示所有安装的应用。使用on接口监听应用的安装和卸载从而实现应用安装和卸载刷新桌面。
   * 源码链接：[LauncherAbilityManager.ts](base/src/main/ets/default/manager/LauncherAbilityManager.ts)
-  * 接口参考：[@ohos.bundle.launcherBundleManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-launcherBundleManager.md)
+  * 接口参考：[@ohos.bundle.launcherBundleManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-launcherBundleManager-sys.md)
 
 * 应用卸载功能模块
   * 使用bundle模块的getBundleInstaller接口获取到BundleInstaller（系统能力：SystemCapability.BundleManager.BundleFramework），调用uninstall接口实现应用卸载功能。

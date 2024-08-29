@@ -4,7 +4,7 @@
 
 本示例展示全屏截图和屏幕局部截图。
 
-本示例通过[screenshot](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-screenshot.md)模块实现屏幕截图 ，通过[window](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-window.md#setwindowprivacymode9)模块实现隐私窗口切换，通过[display](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-display.md#displayhasprivatewindow9)模块查询当前隐私窗口。
+本示例通过[screenshot](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-screenshot.md)模块实现屏幕截图 ，通过[window](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-window.md#setwindowprivacymode9)模块实现隐私窗口切换，通过[display](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-display.md#displayhasprivatewindow9)模块查询当前隐私窗口。
 
 ## 效果预览
 

@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本实例展示如何使用媒体查询，通过[@ohos.mediaquery](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-mediaquery.md) 接口完成在不同设备上显示不同的界面效果。
+本实例展示如何使用媒体查询，通过[@ohos.mediaquery](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-mediaquery.md) 接口完成在不同设备上显示不同的界面效果。
 
 ### 效果预览
 

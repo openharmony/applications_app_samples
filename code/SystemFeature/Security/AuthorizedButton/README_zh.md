@@ -48,7 +48,7 @@ entry/src/main/ets/
   
     * 使用SecLocationButton组件开发获取定位信息功能，在其点击回调onclick事件中调用geoLocationManager.getCurrentLocation()得到当前定位信息经纬度
     * 源码链接：[LocationButton.ets](entry/src/main/ets/common/Component/LocationButton.ets)
-    * 接口参考：[@ohos.geoLocationManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-geoLocationManager.md#geolocationmanagergetcurrentlocation)
+    * 接口参考：[@ohos.geoLocationManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-location-kit/js-apis-geoLocationManager.md#geolocationmanagergetcurrentlocation)
 
   * 剪贴板安全控件模块
   

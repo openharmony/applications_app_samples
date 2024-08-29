@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例通过调用系统任务管理的能力，使用[@ohos.application.missionManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-application-missionManager.md) 、[@ohos.multimedia.image](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md) 等接口完成对系统任务执行锁定、解锁、清理、切换到前台等操作。
+本示例通过调用系统任务管理的能力，使用[@ohos.application.missionManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-application-missionManager-sys.md) 、[@ohos.multimedia.image](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md) 等接口完成对系统任务执行锁定、解锁、清理、切换到前台等操作。
 
 ### 效果预览
 
@@ -47,7 +47,7 @@ entry/src/main/ets/
 
 ### 相关权限
 
-[ohos.permission.MANAGE_MISSIONS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionmanage_missions)
+[ohos.permission.MANAGE_MISSIONS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionmanage_missions)
 
 ### 依赖
 
