@@ -4,13 +4,13 @@
 
 本示例使用   [ApplicationContext](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-inner-application-applicationContext.md) ,[ohos.ability.wantConstant](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-ability-wantConstant.md) ,[ohos.app.ability.StartOptions](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-startOptions.md)等接口实现了以下功能：
 
-1. 支持应用定制系统环境参数;
+1. 支持应用定制系统环境参数；
 
-5. 支持隐式启动个数为0时才触发提示弹框--增加了一个flag;
+5. 支持隐式启动个数为0时才触发提示弹框--增加了一个flag；
 
-6. 支持应用清理自己的数据;
+6. 支持应用清理自己的数据；
 
-7. Ability启动参数支持传递初始位置/初始大小/是否携带动效;
+7. Ability启动参数支持传递初始位置/初始大小/是否携带动效；
 
 ### 效果预览
 
@@ -20,30 +20,30 @@
 
 使用说明
 
-1.应用切换语言的能力
+1.应用切换语言的能力；
 
 点击'切换英文语言'的ListItem，当前页面切换为英文，标题'基础能力增强'切换成'Basic capabilities are enhanced'
-,点击'切换中文语言'的ListItem，当前页面切换为中文，标题'Basic capabilities are enhanced'切换成'基础能力增强'
+,点击'切换中文语言'的ListItem，当前页面切换为中文，标题'Basic capabilities are enhanced'切换成'基础能力增强'；
 
 2.应用切换颜色模式的能力
 
-点击'切换深色模式'的ListItem，当前页面颜色切换为深色,弹出Toast提示'切换成功',点击'切换浅色模式'
-的ListItem，当前页面颜色切换为浅色,弹出Toast提示'切换成功'
+点击'切换深色模式'的ListItem，当前页面颜色切换为深色，弹出Toast提示'切换成功'，点击'切换浅色模式'
+的ListItem，当前页面颜色切换为浅色，弹出Toast提示'切换成功'；
 
-3.应用隐式启动个数为0时,才触发提示弹框的特性
+3.应用隐式启动个数为0时，才触发提示弹框的特性
 
-点击'隐式启动弹窗'的ListItem，弹出弹窗，弹窗标题为'未找到文件'  ,点击'隐式启动不弹窗'
-的ListItem，弹出Toast提示'隐式启动不弹窗'，且无弹窗（仅支持rk）
+点击'隐式启动弹窗'的ListItem，弹出弹窗，弹窗标题为'未找到文件'，点击'隐式启动不弹窗'
+的ListItem，弹出Toast提示'隐式启动不弹窗'，且无弹窗（仅支持rk）；
 
 4.应用清理自己的数据的能力
 
-点击'创建数据'的ListItem，弹出Toast提示创建'缓存文件成功',点击'检查数据'的ListItem，弹出Toast提示创建'查询到缓存文件'
-,点击'清除数据'的ListItem，应用清理缓存文件后自动退出。手动重新启动应用后，点击'检查数据'的ListItem，弹出Toast提示创建'未找到缓存文件'
+点击'创建数据'的ListItem，弹出Toast提示创建'缓存文件成功'，点击'检查数据'的ListItem，弹出Toast提示创建'查询到缓存文件'
+，点击'清除数据'的ListItem，应用清理缓存文件后自动退出。手动重新启动应用后，点击'检查数据'的ListItem，弹出Toast提示创建'未找到缓存文件'；
 
 5.应用可以设置启动参数启动Ability能力
-mm
-点击''StartOptions配置'的ListItem,应用启动NewAbility。返回主界面后，点击''启动动画'的Toggle,再点击''
-StartOptions配置'的ListItem，应用启动NewAbility
+
+点击'StartOptions配置'的ListItem，应用启动NewAbility。返回主界面后，点击'启动动画'的Toggle，再点击'
+StartOptions配置'的ListItem，应用启动NewAbility；
 
 ### 工程目录
 
