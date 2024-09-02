@@ -119,7 +119,7 @@ struct Watcher {
   @StorageLink('newFileContent') newFileContent: string = '';
   @StorageLink('eventArray') eventArray: Array<string> = [];
   @StorageLink('addIndex') addIndex: number = 10;
-  public baseDir: string = AppStorage.Get<string>('sanBoxFileDir') as string;
+  public baseDir: string = AppStorage.get<string>('sanBoxFileDir') as string;
 
   @Builder itemEnd(index: number) { // 侧滑后尾端出现的组件
     Row() {
@@ -161,7 +161,7 @@ struct Watcher {
           this.currentDelFileName = this.showFilePath[index];
           this.currentIndex = index;
           let lastIndex = this.currentDelFileName.length - 4;
-          let isDelDile = AppStorage.Get<string>('isDelFile') as string;
+          let isDelDile = AppStorage.get<string>('isDelFile') as string;
           this.currentDelFileName = isDelDile + this.currentDelFileName.substring(0, lastIndex) + '?';
           this.deleteDialog.open();
         });

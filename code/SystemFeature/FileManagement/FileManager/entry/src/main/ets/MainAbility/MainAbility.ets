@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -24,7 +24,7 @@ import common from '@ohos.app.ability.common';
 let myContext: common.UIAbilityContext | null = null ;
 export default class MainAbility extends Ability {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    AppStorage.SetOrCreate('context', this.context);
+    AppStorage.setOrCreate('context', this.context);
     hilog.info(0x0000, 'Sample', '%{public}s', 'onCreate');
   }
 
@@ -38,7 +38,7 @@ export default class MainAbility extends Ability {
 
     let filesDir = this.context.filesDir;
     console.info('sanBoxFileDir = ' + filesDir);
-    AppStorage.SetOrCreate('sanBoxFileDir', filesDir);
+    AppStorage.setOrCreate('sanBoxFileDir', filesDir);
     myContext = this.context;
 
     this.getResourceStr();
@@ -56,7 +56,7 @@ export default class MainAbility extends Ability {
     try {
       myContext?.resourceManager.getStringValue($r('app.string.isDelFile').id)
         .then((value: Object) => {
-          AppStorage.SetOrCreate('isDelFile', value);
+          AppStorage.setOrCreate('isDelFile', value);
           hilog.info(0x0000, 'testTag', '%{public}s', 'getStringValue value' + value);
         })
         .catch((error: BusinessError) => {
@@ -65,7 +65,7 @@ export default class MainAbility extends Ability {
 
       myContext?.resourceManager.getStringValue($r('app.string.fileContent1').id)
         .then((value: Object) => {
-          AppStorage.SetOrCreate('fileContent1', value);
+          AppStorage.setOrCreate('fileContent1', value);
           hilog.info(0x0000, 'testTag', '%{public}s', 'getStringValue value' + value);
         })
         .catch((error: BusinessError) => {
@@ -74,7 +74,7 @@ export default class MainAbility extends Ability {
 
       myContext?.resourceManager.getStringValue($r('app.string.fileContent2').id)
         .then((value: Object) => {
-          AppStorage.SetOrCreate('fileContent2', value);
+          AppStorage.setOrCreate('fileContent2', value);
           hilog.info(0x0000, 'testTag', '%{public}s', 'getStringValue value' + value);
         })
         .catch((error: BusinessError) => {
@@ -83,7 +83,7 @@ export default class MainAbility extends Ability {
 
       myContext?.resourceManager.getStringValue($r('app.string.fileContent3').id)
         .then((value: Object) => {
-          AppStorage.SetOrCreate('fileContent3', value);
+          AppStorage.setOrCreate('fileContent3', value);
           hilog.info(0x0000, 'testTag', '%{public}s', 'getStringValue value' + value);
         })
         .catch((error: BusinessError) => {
@@ -92,7 +92,7 @@ export default class MainAbility extends Ability {
 
       myContext?.resourceManager.getStringValue($r('app.string.fileContent4').id)
         .then((value: Object) => {
-          AppStorage.SetOrCreate('fileContent4', value);
+          AppStorage.setOrCreate('fileContent4', value);
           hilog.info(0x0000, 'testTag', '%{public}s', 'getStringValue value' + value);
         })
         .catch((error: BusinessError) => {

@@ -56,7 +56,7 @@ struct EditFile {
   @State flagBackContent: boolean = false;
   myWatcher: MyWatcher = new MyWatcher();
   scroller: Scroller = new Scroller();
-  public baseDir: string = AppStorage.Get<string>('sanBoxFileDir') as string;
+  public baseDir: string = AppStorage.get<string>('sanBoxFileDir') as string;
   controllerArea: TextAreaController = new TextAreaController();
   controllerInput: TextInputController = new TextInputController()
 
