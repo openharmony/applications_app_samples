@@ -34,7 +34,7 @@
   <td width="680" colspan="4" align="center" x:str><strong>应用示例</strong></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td width="140" align="center" rowspan="2" style='height:27.00pt' x:str><strong>UI</strong></td>
+  <td width="140" align="center" rowspan="1" style='height:27.00pt' x:str><strong>UI</strong></td>
   <td x:str><strong>声明式开发范式</strong></td>
   <td width="170" x:str><a href="code/UI/ArkTsComponentCollection/ComponentCollection">ArkTS组件集（API 11）</a></td>
   <td width="170" x:str><a href="code/UI/ArkTsComponentCollection/MediaQuery">横竖屏切换</a></td>
@@ -42,19 +42,12 @@
   <td width="170" x:str><a href="code/UI/ArkTsComponentCollection/StateManagement">状态管理</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td x:str><strong>类Web开发范式</strong></td>
-  <td x:str><a href="code/UI/JsComponentCollection/JsComponentCollection">JS组件集</a></td>
-  <td ></td>
-  <td ></td>
-  <td ></td>
- </tr>
- <tr height="18" style='height:13.50pt;'>
   <td height="270" align="center" rowspan="29" style='height:202.50pt' x:str><strong>基础特性</strong></td>
   <td x:str><strong>能力增强</strong></td>
   <td x:str><a href="code/BasicFeature/Ability/AbilityFeature">基础能力增强</a></td>
   <td x:str><a href="code/BasicFeature/Ability/AppStartup">应用启动框架startup</a></td>
-  <td ></td>
-  <td ></td>
+  <td x:str><a href="code/BasicFeature/Ability/AbilityRuntime">基础能力增强</a></td>
+  <td x:str><a href="code/BasicFeature/Ability/UniversalLink">基础能力增强</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>广告</strong></td>
@@ -68,7 +61,7 @@
   <td x:str><a href="code/BasicFeature/ApplicationModels/AbilityStartMode">Ability的启动方式</a></td>
   <td x:str><a href="code/BasicFeature/ApplicationModels/DynamicRouter">Navigation动态路由</a></td>
   <td x:str><a href="code/BasicFeature/ApplicationModels/BundleManager/BundleManagement">支持5.0特性能力sample</a></td>
-  <td ></td>
+  <td x:str><a href="code/BasicFeature/ApplicationModels/SystemRouter">Navigation系统路由</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>通知</strong></td>
@@ -95,17 +88,17 @@
   <td x:str><a href="code/BasicFeature/Media/QRCodeScan">二维码扫描</a></td>
   <td x:str><a href="code/BasicFeature/Media/VideoPlay">视频播放（API 12）</a></td>
   <td x:str><a href="code/BasicFeature/Media/AVSession/MediaProvider">媒体会话——提供方（API 10）</a></td>
-  <td x:str><a href="code/BasicFeature/Media/AVRecorder">音视频录制</a></td>
+  <td x:str><a href="code/BasicFeature/Media/AVSession/AvCastPickerForCall">通话设备切换</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
+  <td x:str><a href="code/BasicFeature/Media/AVRecorder">音视频录制</a></td>
   <td x:str><a href="code/BasicFeature/Media/Audio">音频管理（API 12）</a></td>
   <td x:str><a href="code/BasicFeature/Media/AudioHaptic">音振</a></td>
   <td x:str><a href="code/BasicFeature/Media/AVSession/VideoPlayer">视频播放</a></td>
-  <td x:str><a href="code/BasicFeature/Media/Camera">相机示例</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
+  <td x:str><a href="code/BasicFeature/Media/Camera">相机示例</a></td>
   <td x:str><a href="code/BasicFeature/Media/Camera_js">相机示例（JS）</a></td>
-  <td ></td>
   <td ></td>
   <td ></td>
  </tr>
@@ -138,9 +131,9 @@
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>数据管理</strong></td>
   <td x:str><a href="code/BasicFeature/DataManagement/Preferences">首选项</a></td>
-  <td x:str><a href="code/BasicFeature/DataManagement/UDMF/UniformTypeDescriptor/UTDType">标准化数据定义与描述</a></td>
   <td x:str><a href="code/BasicFeature/DataManagement/UDMF/UDMFDemo">UDMF Demo</a></td>
   <td x:str><a href="code/BasicFeature/DataManagement/pasteboard">剪贴板Sample</a></td>
+  <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td rowspan="1" x:str><strong>文件管理</strong></td>
@@ -242,7 +235,7 @@
   <td x:str><a href="code/BasicFeature/Native/XComponent">XComponent</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-<td height="90" align="center" rowspan="25" style='height:67.50pt;' x:str><strong>系统特性（仅对系统应用开放）</strong></td>
+<td height="90" align="center" rowspan="26" style='height:67.50pt;' x:str><strong>系统特性（仅对系统应用开放）</strong></td>
   <td x:str><strong>能力增强</strong></td>
   <td x:str><a href="code/SystemFeature/Ability/AbilityFeatureSystem">基础能力增强</a></td>
   <td ></td>
@@ -265,7 +258,7 @@
  <tr height="18" style='height:13.50pt;'>
   <td x:str><a href="code/SystemFeature/ApplicationModels/CustomShare">自定义分享（API 10）</a></td>
   <td x:str><a href="code/SystemFeature/ApplicationModels/EmbeddedUIExtensionAbility">EmbeddedUIExtensionAbility</a></td>
-  <td ></td>
+  <td x:str><a href="code/SystemFeature/ApplicationModels/UIExtensionAbility">UIExtensionAbility</a></td>
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
@@ -396,6 +389,13 @@
   <td x:str><strong>任务管理</strong></td>
   <td x:str><a href="code/SystemFeature/Telephony/Message">短信</a></td>
   <td x:str><a href="code/SystemFeature/Telephony/Call">拨打电话</a></td>
+  <td ></td>
+  <td ></td>
+ </tr>
+<tr height="18" style='height:13.50pt;'>
+  <td x:str><strong>基础能力增强</strong></td>
+  <td x:str><a href="code/SystemFeature/UIExtensionSamples">基础能力增强</a></td>
+  <td ></td>
   <td ></td>
   <td ></td>
  </tr>
@@ -574,7 +574,6 @@ Sample仓下所展示的组件能力：
 code
 |---UI                         # UI开发
   |---ArkTsComponentCollection    # ArkTs组件集
-  |---JsComponentCollection       # 类Web开发范式组件集
 |---BasicFeature               # 基础特性
   |---Ability                      # 能力增强
   |---Ads                          # 广告
@@ -583,18 +582,19 @@ code
   |---DFX                          # DFX
   |---DataManagement               # 数据管理
   |---DeviceManagement             # 设备管理
+  |---Extension                    # Extension
   |---FileManagement               # 文件管理
   |---Graphics                     # 图像
   |---International                # 国际化
   |---Media                        # 媒体
   |---Native                       # Native c++
   |---Notification                 # 通知
+  |---Print                        # 打印
   |---Resource                     # 资源
   |---Security                     # 安全
   |---TaskManagement               # 任务管理
   |---Telephony                    # 电话服务
   |---Web                          # Web
-  |---WindowManagement             # 窗口管理
 |---SystemFeature              # 系统特性
   |---Ability                      # 能力增强
   |---ApplicationModels            # 应用模型
@@ -606,6 +606,7 @@ code
   |---DeviceUsageStatistics        # 设备使用信息
   |---DistributedAppDev            # 分布式
   |---FileManagement               # 文件管理
+  |---FullScreenStart              # 全屏原子化服务
   |---IDL                          # IDL
   |---Internationalnation          # 国际化
   |---Media                        # 媒体
@@ -614,6 +615,7 @@ code
   |---Security                     # 安全
   |---TaskManagement               # 任务管理
   |---Telephony                    # 电话服务
+  |---UIExtensionSamples           # 基础能力增强
   |---Widget                       # 卡片
   |---WindowManagement             # 窗口管理
 |---SuperFeature               # 关键特性
