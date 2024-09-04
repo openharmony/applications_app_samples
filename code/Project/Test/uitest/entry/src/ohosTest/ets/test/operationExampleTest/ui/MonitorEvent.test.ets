@@ -70,8 +70,8 @@ export default function monitorEventTest() {
       let callback = (uiElementInfo : UIElementInfo) => {
         try {
           expect(uiElementInfo.bundleName == 'com.samples.test.uitest').assertTrue();
-          expect(uiElementInfo.text == 'testMessage').assertTrue();
-          expect(uiElementInfo.type == 'Toast').assertTrue();
+          expect(uiElementInfo.text == 'testDialogtestMessage').assertTrue();
+          expect(uiElementInfo.type == 'AlertDialog').assertTrue();
         } catch (e) {
           console.log(`testMonitor_dialog, error, ${JSON.stringify(e)}`);
           expect().assertFail();

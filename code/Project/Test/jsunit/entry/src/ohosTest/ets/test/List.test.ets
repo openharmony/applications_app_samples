@@ -20,6 +20,7 @@ import custom from './customExampleTest/customExample.test';
 import cover from './coverExampleTest/coverExample.test';
 import callBack from './callBackExampleTest/callBackExample.test';
 import customAssertTest from './customEexpect/customAssert.test';
+import resourceReferenceTest from './resourceReferenceTest/resourceReference.test';
 export default function testsuite() {
   basicTest();
   assert();
@@ -28,4 +29,5 @@ export default function testsuite() {
   cover();
   callBack();
   customAssertTest();
+  resourceReferenceTest();
 }

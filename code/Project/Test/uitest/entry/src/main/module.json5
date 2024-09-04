@@ -137,6 +137,16 @@
         "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:start_window_background",
         "visible": true
+      },
+      {
+        "name": "WebAbility",
+        "srcEntry": "./ets/webability/WebAbility.ts",
+        "description": "$string:WebAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:WebAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "visible": true
       }
     ]
   }

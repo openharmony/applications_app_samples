@@ -101,6 +101,14 @@
       "value": "label"
     },
     {
+      "name": "WebAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "WebAbility_label",
+      "value": "label"
+    },
+    {
       "name": "test",
       "value": "测试内容"
     }
