@@ -44,7 +44,7 @@ dataUriUtils对应接口
 
 4.点击**deleteId**按钮，弹出提示'dataUriUtils.deleteId() called...'信息；
 
-5.点击**getId**按钮，弹出提示'dataUriUtils.getId() called...'信息；
+5.点击**updateId**按钮，弹出提示'dataUriUtils.updateId() called...'信息；
 
 
 
@@ -60,9 +60,9 @@ WantAgent对应接口
 
 5.点击**getUid promise**按钮，弹出提示'getUid(promise) success...'信息；
 
-6.点击**cancel callback**按钮，弹出提示'cancel(callback) success...'信息；
+6.点击**cancel callback**按钮，弹出提示'cancel(callback) success'信息；
 
-7.点击**cancel promise**按钮，弹出提示'cancel(promise) success...'信息；
+7.点击**cancel promise**按钮，弹出提示'cancel(promise) success'信息；
 
 8.点击**equal callback**按钮，弹出提示'equal(callback) success...'信息；
 
@@ -80,7 +80,7 @@ ApplicationContext对应接口
 
 1.点击主页面**ApplicationContext开发示例**按钮，跳转到'ApplicationContext开发示例'界面；
 
-2.点击**setFont**按钮，弹出提示'setFont successfully...'信息；
+2.点击**setFont**按钮，弹出提示'setFont successfully'信息；
 
 3.点击**getRunningProcessInformation promise**按钮，弹出提示'getRunningProcessInformation promise successfully...'信息；
 
@@ -96,11 +96,11 @@ errorManager对应接口
 
 2.点击**注册LoopObserver**按钮，弹出提示'loopObserver registered successfully...'信息；
 
-3.点击**注册UnhandledRejectionObserver**按钮，弹出提示'unhandledRejection registered successfully...'信息，列表中增加**模拟UnhandledRejection**按钮，并且原**注册UnhandledRejectionObserver**按钮变为**注销UnhandledRejectionObserver**按钮
+3.点击**注册UnhandledRejectionObserver**按钮，弹出提示'unhandledRejection registered successfully'信息，列表中增加**模拟UnhandledRejection**按钮，并且原**注册UnhandledRejectionObserver**按钮变为**注销UnhandledRejectionObserver**按钮
 
 4.点击**模拟UnhandledRejection**按钮，弹出提示'UnhandledRejectionObserver  reason...'信息；
 
-5.点击**注销UnhandledRejection**按钮，弹出提示'unhandledRejection unregistered successfully...'信息，**注销UnhandledRejectionObserver**按钮变回**注册UnhandledRejectionObserver**按钮，列表中**模拟UnhandledRejection**按钮消失；
+5.点击**注销UnhandledRejection**按钮，弹出提示'unhandledRejection unregistered successfully'信息，**注销UnhandledRejectionObserver**按钮变回**注册UnhandledRejectionObserver**按钮，列表中**模拟UnhandledRejection**按钮消失；
 
 
 
