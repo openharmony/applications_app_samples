@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -58,7 +58,7 @@ export class EmitterClass {
     let addGoodDataId: EventsId = new EventsId(EmitterConst.ADD_EVENT_ID);
     // 以持久化方式订阅购物车添加事件并接收事件回调
     emitter.off(EmitterConst.ADD_EVENT_ID);
-    emitter.on(addGoodDataId, (eventData: EventsData) => {
+    emitter.on(addGoodDataId, (eventData) => {
       callback(eventData);
     });
   }
