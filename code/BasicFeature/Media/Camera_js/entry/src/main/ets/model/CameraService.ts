@@ -1298,7 +1298,9 @@ class CameraService {
       // 把photoOutPut加入到会话
       this.photoSession.addOutput(this.photoOutPut);
       // 把depthDataOutput加入到会话
-      this.photoSession.addOutput(this.depthDataOutput);
+      if (this.depthDataOutput) {
+        this.photoSession.addOutput(this.depthDataOutput);
+      }
       // hdr 拍照
       let hdrPhotoBol: boolean = (this.globalContext.getObject('cameraConfig') as CameraConfig).hdrPhotoBol;
       Logger.info(TAG, "hdrPhotoBol:" + hdrPhotoBol);
