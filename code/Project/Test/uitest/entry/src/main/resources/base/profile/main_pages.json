@@ -11,6 +11,7 @@
     "pages/Pinch",
     "pages/Scroller",
     "pages/Drag",
-    "pages/five"
+    "pages/five",
+    "pages/Web"
   ]
 }

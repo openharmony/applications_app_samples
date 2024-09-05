@@ -99,6 +99,14 @@
     {
       "name": "DragAbility_label",
       "value": "label"
+    },
+    {
+      "name": "WebAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "WebAbility_label",
+      "value": "label"
     }
   ]
 }

@@ -28,9 +28,13 @@ import moveWindow from './operationExampleTest/window/MoveToEvent.test';
 import reSizeWindow from './operationExampleTest/window/ReSizeWindow.test';
 import windowAttr from './operationExampleTest/window/WindowAttr.test';
 import monitorEventTest from './operationExampleTest/ui/MonitorEvent.test';
+import webOperateTest from './operationExampleTest/web/webOperate.test';
+import findWindowExampleTest from './findCommentExampleTest/window/findWindowExample.test';
+
 export default function testsuite() {
   basicExampleTest();
   findTest();
+  findWindowExampleTest();
   click();
   input();
   screenCap();
@@ -44,4 +48,5 @@ export default function testsuite() {
   reSizeWindow();
   windowAttr();
   monitorEventTest();
+  webOperateTest();
 }
