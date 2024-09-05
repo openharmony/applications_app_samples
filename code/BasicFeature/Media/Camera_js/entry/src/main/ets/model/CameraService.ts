@@ -252,7 +252,9 @@ class CameraService {
     let previewProfileObj: camera.Profile;
     let photoProfileObj: camera.Profile;
     let depthProfileObj: camera.Profile;
-    depthProfileObj = depthProfiles[0];
+    if (!depthProfiles) {
+        depthProfileObj = depthProfiles[0];
+    }
     const deviceType = AppStorage.get<string>('deviceType');
     switch (this.cameraMode) {
       case CameraMode.PORTRAIT:
@@ -430,7 +432,9 @@ class CameraService {
       // 创建previewOutput输出对象
       this.createPreviewOutputFn(this.previewProfileObj, surfaceId);
       // 创建depthOutput输出对象
-      this.createDepthDataOutputFn(this.depthProfileObj);
+      if (this.depthProfileObj) {
+        this.createDepthDataOutputFn(this.depthProfileObj);
+      }
       // 监听预览事件
       this.previewOutputCallBack();
       if (this.cameraMode === CameraMode.SUPER_STAB || this.cameraMode === CameraMode.VIDEO) {
