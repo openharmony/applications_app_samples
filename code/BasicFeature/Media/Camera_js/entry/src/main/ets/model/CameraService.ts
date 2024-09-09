@@ -150,6 +150,9 @@ class CameraService {
   private globalContext: GlobalContext = GlobalContext.get();
   private isFirstRecord = true;
   private isMoonCaptureBoostSupported: Boolean = false;
+  private depthDataOutput: camera.DepthDataOutput | undefined = undefined;
+  private depthProfiles: Array<camera.DepthProfile>;
+  private depthProfileObj: camera.Profile;
 
   constructor() {
     mockInterface();
@@ -230,6 +233,7 @@ class CameraService {
     let previewProfiles: Array<camera.Profile> = profiles.previewProfiles;
     let videoProfiles: Array<camera.Profile> = profiles.videoProfiles;
     let photoProfiles: Array<camera.Profile> = profiles.photoProfiles;
+    let depthProfiles: Array<camera.Profile> = profiles.depthProfiles;
     let isValidProfiles = true;
     if (!previewProfiles || previewProfiles.length < 1) {
       isValidProfiles = false;
@@ -247,6 +251,10 @@ class CameraService {
     let defaultAspectRatio: number = AppStorage.get<number>('defaultAspectRatio');
     let previewProfileObj: camera.Profile;
     let photoProfileObj: camera.Profile;
+    let depthProfileObj: camera.Profile;
+    if (!depthProfiles) {
+        depthProfileObj = depthProfiles[0];
+    }
     const deviceType = AppStorage.get<string>('deviceType');
     switch (this.cameraMode) {
       case CameraMode.PORTRAIT:
@@ -423,6 +431,10 @@ class CameraService {
       this.initProfile(cameraDeviceIndex);
       // 创建previewOutput输出对象
       this.createPreviewOutputFn(this.previewProfileObj, surfaceId);
+      // 创建depthOutput输出对象
+      if (this.depthProfileObj) {
+        this.createDepthDataOutputFn(this.depthProfileObj);
+      }
       // 监听预览事件
       this.previewOutputCallBack();
       if (this.cameraMode === CameraMode.SUPER_STAB || this.cameraMode === CameraMode.VIDEO) {
@@ -772,6 +784,105 @@ class CameraService {
     Logger.info(TAG, 'takePicture end');
   }
 
+  /**
+   * 开启深度流
+   */
+  async startDepthDataOutput(depthDataOutput: camera.DepthDataOutput): Promise<void> {
+    Logger.info(TAG, 'startDepthDataOutput');
+    if (!depthDataOutput) {
+      Logger.error(TAG, 'depthDataOutput Undefined');
+      return;
+    }
+    try {
+      await depthDataOutput.start();
+    } catch (err) {
+      const error = err as BusinessError;
+      Logger.error(TAG, `depthDataOutputStart error:${error.code};${error.message}`);
+    }
+  }
+
+  /**
+   * 停止深度流
+   */
+  async stopDepthDataOutput(depthDataOutput: camera.DepthDataOutput): Promise<void> {
+    Logger.info(TAG, 'stopDepthDataOutput');
+    if (!depthDataOutput) {
+      Logger.error(TAG, 'depthDataOutput Undefined');
+      return;
+    }
+    try {
+      await depthDataOutput.stop();
+    } catch (err) {
+      const error = err as BusinessError;
+      Logger.error(TAG, `depthDataOutputStop error:${error.code};${error.message}`);
+    }
+  }
+
+  /**
+   * 接收深度数据
+   */
+  depthDataOutputOnDataAvailable(depthDataOutput: camera.DepthDataOutput,
+    callback?: (err: BusinessError, data: camera.DepthData) => void): void {
+    Logger.info(TAG, 'depthDataOutputOnDataAvailable');
+    if (!depthDataOutput) {
+      Logger.error(TAG, 'depthDataOutput Undefined');
+      return;
+    }
+    depthDataOutput.on('depthDataAvailable', (err: BusinessError, data: camera.DepthData) => {
+      callback?.(err, data);
+      // 获取到的深度图数据处理后，需要将对应的图像Buffer释放
+      this.releaseDepthData(data);
+    });
+  }
+
+  /**
+   * 释放深度图数据
+   */
+  releaseDepthData(depthData: camera.DepthData): void {
+    if (!depthData) {
+      Logger.error(TAG, 'depthData Undefined');
+      return;
+    }
+    try {
+      if (!depthData.depthMap) {
+        Logger.error(TAG, 'depthMap Undefined');
+      }
+      depthData.release();
+    } catch (err) {
+      const error = err as BusinessError;
+      Logger.error(TAG, `releaseDepthData error:${error.code};${error.message}`);
+    }
+  }
+
+  /**
+   * 监听深度输出流事件回调
+   */
+  depthDataOutputOnEvent(depthDataOutput: camera.DepthDataOutput,
+    errCallback?: (err: BusinessError) => void): void {
+    Logger.info(TAG, 'depthDataOutputOnEvent');
+    if (!depthDataOutput) {
+      Logger.error(TAG, 'depthDataOutput Undefined');
+      return;
+    }
+    depthDataOutput.on('error', (err: BusinessError) => {
+      Logger.error(TAG, 'depthDataOutput error');
+      errCallback?.(err);
+    });
+  }
+
+  /**
+   * 取消监听深度输出流事件回调
+   */
+  depthDataOutputOffEvent(depthDataOutput: camera.DepthDataOutput): void {
+    Logger.info(TAG, 'depthDataOutputOffEvent');
+    if (!depthDataOutput) {
+      Logger.error(TAG, 'depthDataOutput Undefined');
+      return;
+    }
+    depthDataOutput.off('depthDataAvailable');
+    depthDataOutput.off('error');
+  }
+
   async prepareAVRecorder(): Promise<void> {
     await this.initUrl();
     let deviceType = AppStorage.get<string>('deviceType');
@@ -1100,6 +1211,19 @@ class CameraService {
   }
 
   /**
+   * 创建depthDataOutput输出对象
+   */
+  createDepthDataOutputFn(depthProfileObj: camera.Profile): void {
+    try {
+      this.depthDataOutput = this.cameraManager.createDepthDataOutput(depthProfileObj);
+      Logger.info(TAG, `createDepthDataOutput success: ${this.depthDataOutput}`);
+    } catch (error) {
+      let err = error as BusinessError;
+      Logger.error(TAG, `createDepthDataOutput failed: ${JSON.stringify(err)}`);
+    }
+  }
+
+  /**
    * 创建cameraInput输出对象
    */
   createCameraInputFn(cameraDevice: camera.CameraDevice): void {
@@ -1173,6 +1297,10 @@ class CameraService {
       this.photoSession.addOutput(this.previewOutput);
       // 把photoOutPut加入到会话
       this.photoSession.addOutput(this.photoOutPut);
+      // 把depthDataOutput加入到会话
+      if (this.depthDataOutput) {
+        this.photoSession.addOutput(this.depthDataOutput);
+      }
       // hdr 拍照
       let hdrPhotoBol: boolean = (this.globalContext.getObject('cameraConfig') as CameraConfig).hdrPhotoBol;
       Logger.info(TAG, "hdrPhotoBol:" + hdrPhotoBol);
