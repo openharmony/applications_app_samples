@@ -16,7 +16,7 @@ AbilityStartCallback对应接口
 
 1.点击主页面**AbilityStartCallback开发示例**按钮，跳转到'AbilityStartCallback开发示例'界面；
 
-2.点击**startAbilityByTyp onResult**按钮，拉起'所有照片'窗口，点击返回按钮，返回上级界面；
+2.点击**startAbilityByTyp onResult**按钮，拉起'选择音频'窗口，点击返回按钮，返回上级界面；
 
 3.点击**startAbilityByType onError**按钮，弹出提示'startAbilityByType onError...'信息。
 
@@ -28,7 +28,7 @@ UIExtensionContext对应接口
 
 2.点击**openLink**按钮，启动一个新的UIAbility，点击返回按钮，返回上级界面;
 
-3.点击**启动UIExtensionAbility**按钮，启动一个新的UIExtensionAbility，在UIExtensionAbility界面上显示reportDrawnCompleted，terminateSelf(callback)，terminateSelf(promise)，terminateSelfWithResult(callback)，terminateSelfWithResult(promise)接口对应的按钮；
+3.点击**启动UIExtensionAbility**按钮，启动一个新的UIExtensionAbility，在UIExtensionAbility界面上显示reportDrawnCompleted，terminateSelf callback，terminateSelf promise，terminateSelfWithResult callback，terminateSelfWithResult promise接口对应的按钮；
 
 4.点击**reportDrawnCompleted**按钮，弹出提示'UIExtensionContent.reportDrawnCompleted succeed.'信息；
 
@@ -44,9 +44,9 @@ UIExtensionContext对应接口
 
 UIExtensionContentSession对应接口
 
-1.点击主页面**UIExtensionContentSession**按钮，跳转到'UIExtensionContentSession开发示例'界面；
+1.点击主页面**UIExtensionContentSession开发示例**按钮，跳转到'UIExtensionContentSession开发示例'界面；
 
-2.点击**启动UIExtensionAbility**按钮，启动一个新的UIExtensionAbility，在UIExtensionAbility界面上显示terminateSelfWithResult(callback)，terminateSelfWithResult(promise)，setWindowPrivacyMode(callback)，setWindowPrivacyMode(promise)，getUIExtensionWindowProxy接口对应的按钮；
+2.点击**启动UIExtensionAbility**按钮，启动一个新的UIExtensionAbility，在UIExtensionAbility界面上显示terminateSelfWithResult callback，terminateSelfWithResult promise，setWindowPrivacyMode callback，setWindowPrivacyMode promise，getUIExtensionWindowProxy接口对应的按钮；
 
 3.点击**terminateSelfWithResult callback**按钮，关闭UIExtensionAbility，显示'UIExtensionContentSession开发示例'界面；
 
@@ -145,7 +145,7 @@ entry/src/main/ets/
 ```shell
 git init
 git config core.sparsecheckout true
-echo code/SystemFeature/UIExtensionSamples/ > .git/info/sparse-checkout
+echo code/SystemFeature/UIExtensionSamples > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
