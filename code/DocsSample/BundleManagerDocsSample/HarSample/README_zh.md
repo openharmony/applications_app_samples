@@ -16,7 +16,7 @@ HAR（Harmony Archive）是静态共享包，可以包含代码、C++库、资�
 
 1.启动HarSample(静态共享包)应用，首页正常显示所引用HAR的ArkUI组件、ts类和方法、native方法、资源。
 
-2.点击主页"引用HAR的ArkUI组件"按钮，正确引用HAR的ArkUI组件，跳转至HAR的MainPage页面，页面显示内容为：Hello World。
+2.点击主页"引用HAR的ArkUI组件"按钮，正确引用HAR的ArkUI组件，跳转至HAR的MainPage页面，页面显示内容为：暂无内容。
 
 3.点击主页"引用HAR的ts类和方法"按钮，正确引用HAR导出的ts类和方法，页面Hello World字段变更为func return: har func。
 
