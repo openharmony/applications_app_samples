@@ -947,7 +947,6 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/entry/src/main/resources/base/media/add.png" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
 				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/entry/src/main/resources/base/media/zip.png" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
 				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/entry/src/main/resources/base/media/icon.png" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
-				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/ZipLib/entry/src/main/resources/base/media/icon_delete.png" desc="Provided by code/LaunguageBaseClassLibrary/ZipLib"/>
 				<filteritem type="filepath" name="code/BasicFeature/Ability/AppStartup/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/BasicFeature/Ability/AppStartup"/>
 				<filteritem type="filepath" name="code/BasicFeature/Ability/AppStartup/entry/src/main/resources/base/media/icon.png" desc="Provided by code/BasicFeature/Ability/AppStartup"/>
 				<filteritem type="filepath" name="code/BasicFeature/Ability/AppStartup/entry/src/ohosTest/resources/base/media/startIcon.png" desc="Provided by code/BasicFeature/Ability/AppStartup"/>

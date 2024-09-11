@@ -20,7 +20,6 @@ import { promptAction, router } from '@kit.ArkUI';
 import { zlib } from '@kit.BasicServicesKit';
 import fileio from '@ohos.fileio';
 import { AddDialog } from '../common/AddDialog';
-import { DeleteDialog } from '../common/DeleteDialog';
 import { ZipLibSource } from '../model/DataSource';
 
 const DOMAIN = 0xF811;
@@ -60,40 +59,6 @@ struct CompressFilesPage {
         hilog.info(DOMAIN, TAG, BUNDLE + `this.files = ${JSON.stringify(this.files.fileData)}`);
         await fileList.put('fileNames', JSON.stringify(this.files.fileData));
         await fileList.flush();
-      }
-    }),
-    autoCancel: true,
-  })
-  private deleteDialogController: CustomDialogController = new CustomDialogController({
-    builder: DeleteDialog({
-      fileNames: this.zipFileNames,
-      isInserted: this.isInserted,
-      deleteFiles: async (isInserted: boolean, fileNames: Array<string>) => {
-        hilog.info(DOMAIN, TAG, BUNDLE + `enter the deleteFiles`);
-        if (!isInserted) {
-          return;
-        }
-        if (this.zipFileNames.length == 0) {
-          promptAction.showToast({
-            message: $r('app.string.delete_file_tip'),
-            bottom: '11%'
-          });
-          return;
-        }
-        for (let index = 0; index < this.files.fileData.length; index++) {
-          for (let i = 0; i < this.zipFileNames.length; i++) {
-            if (this.zipFileNames[i] == this.files.fileData[index]) {
-              this.files.deleteData(index);
-              await fileList.put('fileNames', JSON.stringify(this.files.fileData));
-              await fileList.flush();
-            }
-          }
-        }
-        this.zipFileNames.length = 0;
-        promptAction.showToast({
-          message: $r('app.string.delete_file_success'),
-          bottom: '11%'
-        });
       }
     }),
     autoCancel: true,
@@ -169,14 +134,6 @@ struct CompressFilesPage {
           }
 
           Row() {
-            Image($r('app.media.icon_delete'))
-              .size({ height: '71%' })
-              .id('deleteFile')
-              .objectFit(ImageFit.Contain)
-              .onClick(() => {
-                this.deleteDialogController.open();
-              })
-
             Image($r('app.media.add'))
               .size({ height: '71%' })
               .id('addFile')
