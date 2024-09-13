@@ -13,10 +13,16 @@
  * limitations under the License.
  */
 
-import UIAbility from '@ohos.app.ability.UIAbility'
-import Window from '@ohos.window'
-import Logger from '../model/Logger'
-import Notification from '@ohos.notificationManager'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Window from '@ohos.window';
+import Logger from '../model/Logger';
+import Notification from '@ohos.notificationManager';
+import { abilityAccessCtrl, common, PermissionRequestResult, AbilityConstant, Permissions, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { calendarManager } from '@kit.CalendarKit';
+
+export let calendarMgr: calendarManager.CalendarManager | null = null;
+export let mContext: common.UIAbilityContext | null = null;
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: Window.WindowStage) {
@@ -27,11 +33,22 @@ export default class EntryAbility extends UIAbility {
     });
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
-        Logger.error(`Failed to load the content. Cause: ${JSON.stringify(err)}`)
-        return
+        Logger.error(`Failed to load the content. Cause: ${JSON.stringify(err)}`);
+        return;
       }
-      Logger.info(`loadContent success`)
+      Logger.info(`loadContent success`);
+    });
+
+    mContext = this.context;
+    const permissions: Permissions[] = ['ohos.permission.READ_CALENDAR', 'ohos.permission.WRITE_CALENDAR'];
+    let atManager = abilityAccessCtrl.createAtManager();
+    atManager.requestPermissionsFromUser(mContext, permissions).then((result: PermissionRequestResult) => {
+      console.log(`get Permission success, result: {JSON.stringify(result)}`);
+      calendarMgr = calendarManager.getCalendarManager(mContext);
+    }).catch((error: BusinessError) => {
+      console.error(`get Permission error, error. Code: {error.code}, message: {error.code}, message: {error.message}`);
     })
+
     let windowClass: Window.Window | undefined = undefined;
     try {
       Window.getLastWindow(this.context, (err, data) => {

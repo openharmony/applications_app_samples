@@ -14,56 +14,56 @@
  */
 
 class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = []
+  private listeners: DataChangeListener[] = [];
 
   public totalCount(): number {
-    return 0
+    return 0;
   }
 
-  public getData(index: number): any {
-    return undefined
+  public getData(index: number): void {
+    return undefined;
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
     if (this.listeners.indexOf(listener) < 0) {
-      this.listeners.push(listener)
+      this.listeners.push(listener);
     }
   }
 
   unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener)
+    const pos = this.listeners.indexOf(listener);
     if (pos >= 0) {
-      this.listeners.splice(pos, 1)
+      this.listeners.splice(pos, 1);
     }
   }
 
   notifyDataReload(): void {
     this.listeners.forEach(listener => {
-      listener.onDataReloaded()
+      listener.onDataReloaded();
     })
   }
 
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataAdd(index)
+      listener.onDataAdd(index);
     })
   }
 
   notifyDataChange(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataChange(index)
+      listener.onDataChange(index);
     })
   }
 
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataDelete(index)
+      listener.onDataDelete(index);
     })
   }
 
   notifyDataMove(from: number, to: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataMove(from, to)
+      listener.onDataMove(from, to);
     })
   }
 }
@@ -72,37 +72,88 @@ export class TabType {
   icon: Resource;
   icon_after: Resource;
   text: Resource;
-  num: number
+  num: number;
+
+  constructor(icon: Resource, icon_after: Resource, text: Resource, num: number) {
+    this.icon = icon;
+    this.icon_after = icon_after;
+    this.text = text;
+    this.num = num;
+  }
 }
 
 export class MyDataSource extends BasicDataSource {
-  private dataArray: TabType[] = []
+  private dataArray: TabType[] = [];
 
   constructor(data: TabType[]) {
     super()
-    this.dataArray = data
+    this.dataArray = data;
   }
 
   public totalCount(): number {
-    return this.dataArray.length
+    return this.dataArray.length;
   }
 
-  public getData(index: number): any {
-    return this.dataArray[index]
+  public getData(index: number): TabType {
+    return this.dataArray[index];
   }
 
   public deleteData(index: number): void {
-    this.dataArray.splice(index, 1)
-    this.notifyDataAdd(index)
+    this.dataArray.splice(index, 1);
+    this.notifyDataAdd(index);
   }
 
-  public pushData(index: any): void {
-    this.dataArray.push(index)
-    this.notifyDataAdd(this.dataArray.length - 1)
+  public pushData(data: TabType): void {
+    this.dataArray.push(data);
+    this.notifyDataAdd(this.dataArray.length - 1);
   }
 
   public replaceData(result: TabType[]): void {
-    this.dataArray = result
-    this.notifyDataReload()
+    this.dataArray = result;
+    this.notifyDataReload();
+  }
+}
+
+export class Contact {
+  key: string;
+  value: string;
+  reminderId: number;
+
+  constructor(key: string, value: string, reminderId: number) {
+    this.key = key;
+    this.value = value;
+    this.reminderId = reminderId;
+  }
+}
+
+export class ContactSource extends BasicDataSource {
+  public dataArray: Array<Contact> = new Array<Contact>();
+
+  constructor(data: Array<Contact>) {
+    super()
+    this.dataArray = data;
+  }
+
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  public getData(index: number): Contact {
+    return this.dataArray[index];
+  }
+
+  public deleteData(index: number): void {
+    this.dataArray.splice(index, 1);
+    this.notifyDataAdd(index);
+  }
+
+  public pushData(data: Contact): void {
+    this.dataArray.push(data);
+    this.notifyDataAdd(this.dataArray.length - 1);
+  }
+
+  public replaceData(result: Contact[]): void {
+    this.dataArray = result;
+    this.notifyDataReload();
   }
 }
