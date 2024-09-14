@@ -99,14 +99,14 @@ entry/src/main/
   * 修改nearPlane和farPlane属性投影的近平面和远平面；
   * 修改enabled属性改变相机是否启用，设为false之后控件中的画面将不再刷新；
   * 修改postProcess.toneMapping.type属性可以改变用于色调映射的方法，目前有ACES/ACES_2020/FILMIC三种；
-  * 修改postProcess.toneMapping.exposure属性可以改变用于色调映射的曝光参数。
+  * 修改postProcess.toneMapping.exposure属性可以改变用于色调映射的曝光参数；
   * 修改clearColor属性可以设置每一帧的刷新背景色，设置a通道为零可以获得一个透明的背景，设置为null时不会刷新全部背景像素。
 
 * 对灯光的类型、颜色、强度、阴影等进行操作的功能接口封装在graphics3d/[SceneNodes.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/graphics3d/SceneNodes.d.ts)，源码参考：node_light.ets
   * lightType属性为只读，表示灯光的种类，目前有DIRECTIONAL和SPOT两种，分别为平行光和点光源；
   * 修改enabled属性改变灯光是否启用；
   * 修改color属性可以改变灯光的颜色，本示例中有三种可以变化；
-  * 修改intensity属性可以改变灯光的强度。
+  * 修改intensity属性可以改变灯光的强度；
   * 修改shadowEnabled属性可以设置灯光是否产生阴影。
 
 * 对背景进行操作的功能接口封装在graphics3d/[SceneResources.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/graphics3d/SceneResources.d.ts)，源码参考：scene_environment.ets
