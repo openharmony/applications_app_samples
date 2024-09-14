@@ -47,7 +47,7 @@ export struct StationaryManager {
     switch (index) {
       case 0:
         try {
-          stationary.on('still', stationary.ActivityEvent.ENTER_EXIT, 3, (data) => {
+          stationary.on('still', stationary.ActivityEvent.ENTER_EXIT, 1000000000, (data) => {
             this.result = `on still success:${JSON.stringify(data)}`;
           })
           this.result = ``;
