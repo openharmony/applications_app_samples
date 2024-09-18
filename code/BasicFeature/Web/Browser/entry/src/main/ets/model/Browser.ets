@@ -14,11 +14,12 @@
  */
 import Logger from './Logger'
 import prompt from '@ohos.prompt';
+import web_webview from '@ohos.web.webview';
 
 export class WebObject {
-  controller: WebController;
+  controller: web_webview.WebviewController;
   isRegistered: boolean;
-  constructor(controller: WebController, isRegistered: boolean) {
+  constructor(controller: web_webview.WebviewController, isRegistered: boolean) {
     this.controller = controller
     this.isRegistered = isRegistered
   }
@@ -51,7 +52,7 @@ export class Browser {
 
   webArray: Array<WebKey> = [new WebKey(0, new Date().getTime())]
   tabsController: TabsController = new TabsController()
-  webControllerArray: Array<WebObject> = [new WebObject(new WebController(), false)]
+  webControllerArray: Array<WebObject> = [new WebObject(new web_webview.WebviewController(), false)]
 
   deleteTab(index: number) {
     Logger.info(TAG, `delete before tab index= ${index} controller length ${this.webControllerArray.length} tabArrayIndex= ${this.tabArrayIndex}`)
@@ -81,7 +82,7 @@ export class Browser {
       })
       return;
     }
-    let webController: WebController = new WebController();
+    let webController: web_webview.WebviewController = new web_webview.WebviewController();
     let object = new WebObject(webController, false)
     this.webControllerArray.push(object)
     this.webArray.push(new WebKey(this.webArray.length, new Date().getTime()))
@@ -109,23 +110,25 @@ export class Browser {
   }
 
   loadUrl(addr: string) {
-    addr = "https://" + addr;
-    this.webControllerArray[this.tabArrayIndex].controller.loadUrl({ url: addr })
+    if (!addr.startsWith("https://") && !addr.startsWith("http://")) {
+      addr = "https://" + addr;
+    }
+    this.webControllerArray[this.tabArrayIndex]?.controller?.loadUrl(addr)
   }
 
   Back() {
-    if (this.webControllerArray[this.tabArrayIndex].controller.accessBackward()) {
-      this.webControllerArray[this.tabArrayIndex].controller.backward()
+    if (this.webControllerArray[this.tabArrayIndex]?.controller?.accessBackward()) {
+      this.webControllerArray[this.tabArrayIndex]?.controller?.backward()
     }
   }
 
   Forward() {
-    if (this.webControllerArray[this.tabArrayIndex].controller.accessForward()) {
-      this.webControllerArray[this.tabArrayIndex].controller.forward()
+    if (this.webControllerArray[this.tabArrayIndex]?.controller?.accessForward()) {
+      this.webControllerArray[this.tabArrayIndex]?.controller?.forward()
     }
   }
 
   Refresh() {
-    this.webControllerArray[this.tabArrayIndex].controller.refresh()
+    this.webControllerArray[this.tabArrayIndex]?.controller?.refresh()
   }
 }
