@@ -130,12 +130,6 @@ export struct CustomDatePicker {
                 ringDuration: 5
               }
               this.reminderId = await reminderAgentManager.publishReminder(reminderRequest);
-              let dateTime: DateTime = { hour: this.hourTest, minute: this.minuteTest, reminderId: this.reminderId };
-              StorageModel.getInstance().putStorageValue(`alarmClock${this.total}`, dateTime);
-              this.total += 1;
-              StorageModel.getInstance().putTotalStorageValue('amount', this.total);
-              this.controller.close();
-              this.countChange(this.total);
             } else {
               let selectDate = this.year + '-' + this.month + '-' + this.day + ' ' + this.hourTest + ':' + this.minuteTest + ':' + this.secondTest;
               Logger.info(`selectDate: ${selectDate}`);
@@ -150,16 +144,17 @@ export struct CustomDatePicker {
                 Logger.info(`Succeeded in adding event, id -> {data}`);
                 this.reminderId = data;
                 Logger.info(`this.reminderId is` + JSON.stringify(this.reminderId));
-                let dateTime: DateTime = { hour: this.hourTest, minute: this.minuteTest, reminderId: this.reminderId };
-                StorageModel.getInstance().putStorageValue(`alarmClock${this.total}`, dateTime);
-                this.total += 1;
-                StorageModel.getInstance().putTotalStorageValue('amount', this.total);
-                this.controller.close();
-                this.countChange(this.total);
               }).catch((err: BusinessError) => {
                 Logger.error(`Failed to add event. Code: {err.code}, message: {err.code}, message: {err.message}` + JSON.stringify(err));
               });
             }
+            let dateTime: DateTime = { hour: this.hourTest, minute: this.minuteTest, reminderId: this.reminderId };
+            Logger.info(`dateTime: ` + dateTime);
+            StorageModel.getInstance().putStorageValue(`alarmClock${this.total}`, dateTime);
+            this.total += 1;
+            StorageModel.getInstance().putTotalStorageValue('amount', this.total);
+            this.controller.close();
+            this.countChange(this.total);
           })
 
         Button($r('app.string.no'))
@@ -168,7 +163,7 @@ export struct CustomDatePicker {
           .backgroundColor(Color.White)
           .layoutWeight(1)
           .onClick(() => {
-            this.controller.close()
+            this.controller.close();
           })
       }
       .margin({ top: 10, bottom: 20 })
