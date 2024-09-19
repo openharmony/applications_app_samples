@@ -277,7 +277,7 @@ struct Time {
         TextPicker({ range: this.pickerArrayGen(60) })
           .width(60)
           .height('100%')
-          .onChange((value: string| string[], index: number| number[]) => {
+          .onChange((value: string | string[], index: number| number[]) => {
             pickerS = index as number;
           })
       }

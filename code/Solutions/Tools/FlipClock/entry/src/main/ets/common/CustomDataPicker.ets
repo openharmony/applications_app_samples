@@ -60,7 +60,7 @@ export struct CustomDatePicker {
     }
   }
 
-  setCalendarReminder() {
+  setCalendarReminder(){
     let config: calendarManager.CalendarConfig = {
       enableReminder: true,
       color: '#aabbcc',

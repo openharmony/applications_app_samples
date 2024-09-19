@@ -127,7 +127,7 @@ export class Contact {
 }
 
 export class ContactSource extends BasicDataSource {
-  public dataArray: Array<Contact> = new Array<Contact>();
+  public dataArray: Contact[] = [];
 
   constructor(data: Array<Contact>) {
     super()

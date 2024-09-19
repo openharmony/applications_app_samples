@@ -32,7 +32,7 @@ export struct AlarmClock {
   private datePicker: CustomDialogController | null = null;
   private storage: StorageModel = StorageModel.getInstance();
   private calendar : calendarManager.Calendar | undefined = undefined;
-  @State isDefault: boolean= false;
+  @State isDefault: boolean = false;
 
   async getTest(): Promise<void> {
     this.listItems.replaceData([]);
@@ -53,7 +53,7 @@ export struct AlarmClock {
   }
 
   // 获取设备类型
-  async getDeviceType() {
+  async getDeviceType(){
     try {
       let deviceType = deviceInfo.deviceType;
       Logger.info(`deviceType` + JSON.stringify(deviceType));
@@ -94,7 +94,11 @@ export struct AlarmClock {
           .onClick(() => {
             if (this.datePicker === null) {
               this.datePicker = new CustomDialogController({
-                builder: CustomDatePicker({ total: this.total, countChange: this.countChange.bind(this), isDefault: this.isDefault }),
+                builder: CustomDatePicker({
+                  total: this.total,
+                  countChange: this.countChange.bind(this),
+                  isDefault: this.isDefault
+                }),
                 autoCancel: true
               })
             }

@@ -48,7 +48,7 @@ export default class StorageModel {
     await this.storage!.flush();
   }
 
-  async putTotalStorageValue(putKey: string, alarmClock: number) {
+  async putTotalStorageValue(putKey: string, alarmClock: number){
     let value = JSON.stringify(alarmClock);
     this.storage = await this.getStorage();
     await this.storage!.put(putKey, value);
