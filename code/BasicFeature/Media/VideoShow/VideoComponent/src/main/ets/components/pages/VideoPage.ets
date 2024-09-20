@@ -54,11 +54,11 @@ export struct VideoPage {
                 this.isStart = true
                 this.firstClick = !this.firstClick
               } else {
-                router.pushUrl({ url: 'pages/FullPage', params: { videoSrc: this.videoSrc,
+                router.replaceUrl({ url: 'pages/FullPage', params: { videoSrc: this.videoSrc,
                   videoTime: this.updateTime } });
               }
             } else {
-              router.pushUrl({ url: 'pages/FullPage', params: { videoSrc: this.videoSrc,
+              router.replaceUrl({ url: 'pages/FullPage', params: { videoSrc: this.videoSrc,
                 videoTime: this.updateTime } });
             }
           })
@@ -69,7 +69,7 @@ export struct VideoPage {
           })
 
         // 空白层预览
-        if(this.isHidden){
+        if (this.isHidden) {
           Column() {
             Image($r('app.media.previewImg'))
               .id('previewImg')
@@ -81,7 +81,7 @@ export struct VideoPage {
         }
 
         // 视频上的play图标
-        if(this.isHidden){
+        if (this.isHidden) {
           Column() {
             Image($r('app.media.play'))
               .id('playBtn')

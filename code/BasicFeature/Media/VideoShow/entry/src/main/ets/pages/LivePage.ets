@@ -13,11 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+import router from '@ohos.router';
 import { LivePage } from "@ohos/video-component"
 
 @Entry
 @Component
 struct Live {
+
+  onBackPress() {
+    router.replaceUrl({url: 'pages/Index'});
+    return true;
+  }
+
   build() {
     Column() {
       LivePage()

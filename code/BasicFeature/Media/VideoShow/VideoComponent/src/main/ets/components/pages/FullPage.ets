@@ -16,7 +16,6 @@
 import router from '@ohos.router'
 import mediaQuery from '@ohos.mediaquery';
 
-@Entry
 @Component
 export struct FullPage {
   @State fullParams: object = {}
@@ -89,7 +88,7 @@ export struct FullPage {
             })
 
           // 暂停按钮
-          if(this.isHidden){
+          if (this.isHidden) {
             Column() {
               Image($r('app.media.play'))
                 .id('fullPlayBtn')
@@ -109,7 +108,7 @@ export struct FullPage {
             .id('backBtn')
             .width(42).height(42)
             .onClick(() => {
-              router.back()
+              router.replaceUrl({ url: 'pages/Index' });
             })
         }
         .position({ x: '5%', y: '5%' })

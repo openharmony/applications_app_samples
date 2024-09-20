@@ -37,7 +37,6 @@ class commentInfo {
   comment: string
 }
 
-@Entry
 @Component
 export struct LivePage {
   @State active: number = 0
@@ -133,7 +132,7 @@ export struct LivePage {
                     .id('close')
                     .width(42).height(42)
                     .onClick(() => {
-                      router.back()
+                      router.replaceUrl({ url: 'pages/Index' });
                     })
                 }
                 .margin({ left: '4%' })
