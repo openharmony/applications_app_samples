@@ -19,7 +19,6 @@ import { VideoPage } from "./VideoPage"
 import { SmallVideo } from "./SmallVideo"
 import { MyDataSource } from '../model/LiveDataModel'
 
-@Entry
 @Component
 export struct MainPage {
   private arrScroll: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -40,7 +39,7 @@ export struct MainPage {
   }
 
   async aboutToAppear() {
-    this.portraitFunc =  (mediaQueryResult) => this.onPortrait(mediaQueryResult);
+    this.portraitFunc = (mediaQueryResult) => this.onPortrait(mediaQueryResult);
     this.listenerIsPhone.on('change', this.portraitFunc);
   }
 
@@ -142,7 +141,7 @@ export struct MainPage {
         .borderWidth(1.3)
         .id('directVideo')
         .onClick(() => {
-          router.push({ url: 'pages/LivePage' })
+          router.replaceUrl({ url: 'pages/LivePage' })
         })
         .position({ x: '86%', y: '20%' })
       }.width('100%').height('100%').backgroundColor(0xDCDCDC)
