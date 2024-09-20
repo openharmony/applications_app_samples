@@ -42,7 +42,7 @@ entry/src/main/ets/MainAbility
 
 * Grid布局：展示食物分类信息，创建Tabs页签展示不同分类的食物。
 
-* 路由机制：[@ohos.router接口](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-router.md)、Navigator和页面间数据传递。
+* 路由机制：[@ohos.router接口](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-router.md)、Navigator和页面间数据传递。
 
 #### 相关概念
 

@@ -4,7 +4,7 @@
 
 本示例仿设置应用，实现点击设置菜单栏，跳转或加载详情页面。
 
-本示例通过 [窗口扩展能力](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-application-windowExtensionAbility-sys.md) 设置不同Ability，使用 [AbilityComponent](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-ability-component.md) 组件加载各个Ability。
+本示例通过 [窗口扩展能力](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-application-windowExtensionAbility-sys.md) 设置不同Ability，使用 [AbilityComponent](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-ability-component-sys.md) 组件加载各个Ability。
 
 ### 效果预览
 
@@ -45,7 +45,7 @@ entry/src/main/ets/
 
 * 本示例通过窗口扩展能力设置不同Ability，使用AbilityComponent组件加载各个Ability，matchMediaSync方法设置媒体查询的查询条件，RemoteObject方法实现远程对象。
 * 源码链接：[WlanExtAbility.ts](entry/src/main/ets/MainAbility/WlanExtAbility.ts)，[BluetoothExtAbility.ts](entry/src/main/ets/MainAbility/BluetoothExtAbility.ts)，[MobileDataExtAbility.ts](entry/src/main/ets/MainAbility/MobileDataExtAbility.ts)，[Rpc.ts](entry/src/main/ets/feature/Rpc.ts)
-* 接口参考：[@ohos.application.WindowExtensionAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-application-windowExtensionAbility-sys.md)，[AbilityComponent](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-ability-component.md)，[@ohos.rpc](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-rpc.md)，[@ohos.mediaquery](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-mediaquery.md)
+* 接口参考：[@ohos.application.WindowExtensionAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-application-windowExtensionAbility-sys.md)，[AbilityComponent](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-ability-component-sys.md)，[@ohos.rpc](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ipc-kit/js-apis-rpc.md)，[@ohos.mediaquery](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-mediaquery.md)
 
 ### 相关权限
 
