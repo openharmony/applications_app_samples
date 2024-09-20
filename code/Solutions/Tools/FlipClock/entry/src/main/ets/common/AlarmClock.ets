@@ -46,7 +46,13 @@ export struct AlarmClock {
       if (alarmClock !== 'null') {
         let dataTime = JSON.parse(alarmClock.toString()).hour + ':' + JSON.parse(alarmClock.toString()).minute;
         Logger.info(`dataTime` + JSON.stringify(dataTime));
-        this.listItems.pushData(new Contact(`alarmClock${i}`, dataTime, JSON.parse(alarmClock.toString()).reminderId));
+        this.listItems.pushData(
+          new Contact(
+            `alarmClock${i}`,
+            dataTime,
+            JSON.parse(alarmClock.toString()).reminderId
+          )
+        );
         Logger.info(`this.listItems` + JSON.stringify(this.listItems));
       }
     }
@@ -102,7 +108,7 @@ export struct AlarmClock {
                 autoCancel: true
               })
             }
-            this.datePicker.open()
+            this.datePicker.open();
           })
       }
       .height(62)
@@ -137,7 +143,7 @@ export struct AlarmClock {
                       } else {
                         calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calendar) => {
                           if (err) {
-                            Logger.error(`Failed to get calendar. Code: {err.code}, message: {err.code}, message: {err.message}`);
+                            Logger.error(`Failed to get calendar. Code: {err.code}, message: {err.message}`);
                           } else {
                             Logger.info(`Succeeded in getting calendar, data -> {JSON.stringify(data)}`);
                             this.calendar = data;

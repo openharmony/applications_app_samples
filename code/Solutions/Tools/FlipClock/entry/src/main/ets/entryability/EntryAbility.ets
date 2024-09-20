@@ -17,7 +17,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import Window from '@ohos.window';
 import Logger from '../model/Logger';
 import Notification from '@ohos.notificationManager';
-import { abilityAccessCtrl, common, PermissionRequestResult, AbilityConstant, Permissions, Want } from '@kit.AbilityKit';
+import { abilityAccessCtrl, common, PermissionRequestResult, Permissions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { calendarManager } from '@kit.CalendarKit';
 
@@ -46,7 +46,7 @@ export default class EntryAbility extends UIAbility {
       console.log(`get Permission success, result: {JSON.stringify(result)}`);
       calendarMgr = calendarManager.getCalendarManager(mContext);
     }).catch((error: BusinessError) => {
-      console.error(`get Permission error, error. Code: {error.code}, message: {error.code}, message: {error.message}`);
+      console.error(`get Permission error. Code: {error.code}, message: {error.message}`);
     })
 
     let windowClass: Window.Window | undefined = undefined;

@@ -67,7 +67,7 @@ export struct CustomDatePicker {
     };
     calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calendar) => {
       if (err) {
-        Logger.error(`Failed to get calendar. Code: {err.code}, message: {err.code}, message: {err.message}`);
+        Logger.error(`Failed to get calendar. Code: {err.code}, message: {err.message}`);
       } else {
         Logger.info(`Succeeded in getting calendar, data ->` + JSON.stringify(data));
         this.calendar = data;
@@ -131,7 +131,9 @@ export struct CustomDatePicker {
               }
               this.reminderId = await reminderAgentManager.publishReminder(reminderRequest);
             } else {
-              let selectDate = this.year + '-' + this.month + '-' + this.day + ' ' + this.hourTest + ':' + this.minuteTest + ':' + this.secondTest;
+              let date = this.year + '-' + this.month + '-' + this.day;
+              let time = this.hourTest + ':' + this.minuteTest + ':' + this.secondTest;
+              let selectDate = date + ' ' + time;
               Logger.info(`selectDate: ${selectDate}`);
               let event: calendarManager.Event = {
                 type: calendarManager.EventType.NORMAL,
@@ -145,10 +147,14 @@ export struct CustomDatePicker {
                 this.reminderId = data;
                 Logger.info(`this.reminderId is` + JSON.stringify(this.reminderId));
               }).catch((err: BusinessError) => {
-                Logger.error(`Failed to add event. Code: {err.code}, message: {err.code}, message: {err.message}` + JSON.stringify(err));
+                Logger.error(`Failed to add event` + JSON.stringify(err));
               });
             }
-            let dateTime: DateTime = { hour: this.hourTest, minute: this.minuteTest, reminderId: this.reminderId };
+            let dateTime: DateTime = {
+              hour: this.hourTest,
+              minute: this.minuteTest,
+              reminderId: this.reminderId
+            };
             Logger.info(`dateTime: ` + dateTime);
             StorageModel.getInstance().putStorageValue(`alarmClock${this.total}`, dateTime);
             this.total += 1;
