@@ -34,7 +34,7 @@
     "pages": "$profile:main_pages",
     "abilities": [
       {
-        "srcEntrance": "./ets/EntryAbility/EntryAbility.ts",
+        "srcEntry": "./ets/EntryAbility/EntryAbility.ts",
         "name": "MainAbility",
         "description": "$string:MainAbility_desc",
         "icon": "$media:icon",
