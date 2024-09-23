@@ -13,49 +13,76 @@
  * limitations under the License.
  */
 
-import StorageModel from '../model/StorageModel'
-import { CustomDatePicker } from '../common/CustomDataPicker'
-import { MyDataSource } from '../common/DataSource'
-import reminderAgentManager from '@ohos.reminderAgentManager'
-import log from '../model/Logger'
+import StorageModel from '../model/StorageModel';
+import { CustomDatePicker } from '../common/CustomDataPicker';
+import { MyDataSource, ContactSource, Contact } from '../common/DataSource';
+import reminderAgentManager from '@ohos.reminderAgentManager';
+import Logger from '../model/Logger';
+import { calendarManager } from '@kit.CalendarKit';
+import { calendarMgr } from '../entryability/EntryAbility';
+import { BusinessError } from '@kit.BasicServicesKit';
+import deviceInfo from '@ohos.deviceInfo';
 
-const TAG: string = 'AlarmClock'
+const TAG: string = 'AlarmClock';
 
 @Component
 export struct AlarmClock {
-  @State total: number = 0
-  @State listItems: MyDataSource = new MyDataSource([])
-  private datePicker: CustomDialogController = null
-  private storage: StorageModel = StorageModel.getInstance()
+  @State total: number = 0;
+  @State listItems: ContactSource = new ContactSource([]);
+  private datePicker: CustomDialogController | null = null;
+  private storage: StorageModel = StorageModel.getInstance();
+  private calendar : calendarManager.Calendar | undefined = undefined;
+  @State isDefault: boolean = false;
 
   async getTest(): Promise<void> {
-    this.listItems.replaceData([])
-    let amount = await this.storage.getStorageValue('amount')
+    this.listItems.replaceData([]);
+    let amount = await this.storage.getStorageValue('amount');
     if (amount !== 'null') {
-      this.total = parseInt(amount)
+      this.total = parseInt(amount.toString());
     }
     for (let i = 0; i <= this.total; i++) {
-      let alarmClock = await this.storage.getStorageValue(`alarmClock${i}`)
+      let alarmClock = await this.storage.getStorageValue(`alarmClock${i}`);
+      Logger.info(`alarmClock` + JSON.stringify(alarmClock));
       if (alarmClock !== 'null') {
-        let dataTime = JSON.parse(alarmClock).hour + ':' + JSON.parse(alarmClock).minute
-        this.listItems.pushData({
-          key: `alarmClock${i}`,
-          value: dataTime,
-          reminderId: JSON.parse(alarmClock).reminderId
-        })
+        let dataTime = JSON.parse(alarmClock.toString()).hour + ':' + JSON.parse(alarmClock.toString()).minute;
+        Logger.info(`dataTime` + JSON.stringify(dataTime));
+        this.listItems.pushData(
+          new Contact(
+            `alarmClock${i}`,
+            dataTime,
+            JSON.parse(alarmClock.toString()).reminderId
+          )
+        );
+        Logger.info(`this.listItems` + JSON.stringify(this.listItems));
       }
     }
   }
 
+  // 获取设备类型
+  async getDeviceType(){
+    try {
+      let deviceType = deviceInfo.deviceType;
+      Logger.info(`deviceType` + JSON.stringify(deviceType));
+      if (deviceType === 'default') {
+        this.isDefault = true;
+      } else {
+        this.isDefault = false;
+      }
+    } catch (e) {
+      Logger.info(`getSync unexpected error: ${e}`);
+    }
+  }
+
   aboutToAppear() {
+    this.getDeviceType();
     this.storage.getFromStorage().then(() => {
-      this.getTest()
+      this.getTest();
     })
   }
 
-  countChange(result): void {
-    this.total = result
-    this.getTest()
+  countChange(result: number): void {
+    this.total = result;
+    this.getTest();
   }
 
   build() {
@@ -73,11 +100,15 @@ export struct AlarmClock {
           .onClick(() => {
             if (this.datePicker === null) {
               this.datePicker = new CustomDialogController({
-                builder: CustomDatePicker({ total: this.total, countChange: this.countChange.bind(this) }),
+                builder: CustomDatePicker({
+                  total: this.total,
+                  countChange: this.countChange.bind(this),
+                  isDefault: this.isDefault
+                }),
                 autoCancel: true
               })
             }
-            this.datePicker.open()
+            this.datePicker.open();
           })
       }
       .height(62)
@@ -86,7 +117,7 @@ export struct AlarmClock {
 
       Scroll() {
         List() {
-          LazyForEach(this.listItems, (item, index) => {
+          LazyForEach(this.listItems, (item: Contact, index) => {
             ListItem() {
               Row() {
                 Text(item.value)
@@ -96,19 +127,34 @@ export struct AlarmClock {
                   .id('deleteAlarmClock')
                   .margin({ left: '20%' })
                   .onClick(async () => {
-                    await this.storage.deleteSync(item.key)
-                    this.listItems['dataArray'].splice(index, 1)
-                    this.listItems.notifyDataReload()
+                    await this.storage.deleteSync(item.key);
+                    this.listItems.dataArray.splice(index, 1);
+                    this.listItems.notifyDataReload();
+                    Logger.info(`item.reminderId` + JSON.stringify(item.reminderId));
                     try {
-                      reminderAgentManager.cancelReminder(item.reminderId, (err, data) => {
-                        if (err) {
-                          log.info(TAG, `callback err code: ${err.code} message: ${err.message}`)
-                        } else {
-                          log.info(TAG, `cancelReminder callback`)
-                        }
-                      })
+                      if (this.isDefault === true) {
+                        reminderAgentManager.cancelReminder(item.reminderId, (err, data) => {
+                          if (err) {
+                            Logger.info(TAG, `callback err code: ${err.code} message: ${err.message}`);
+                          } else {
+                            Logger.info(TAG, `cancelReminder callback`);
+                          }
+                        });
+                      } else {
+                        calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calendar) => {
+                          if (err) {
+                            Logger.error(`Failed to get calendar. Code: {err.code}, message: {err.message}`);
+                          } else {
+                            Logger.info(`Succeeded in getting calendar, data -> {JSON.stringify(data)}`);
+                            this.calendar = data;
+                            await this.calendar.deleteEvent(item.reminderId).then(() => {
+                              Logger.info(`Succeeded in deleting event`);
+                            })
+                          }
+                        });
+                      }
                     } catch (error) {
-                      log.info(TAG, `cancelReminder code: ${error.code} message: ${error.message}`)
+                      Logger.info(TAG, `cancelReminder code: ${error.code} message: ${error.message}`);
                     }
                   })
                   .width('20%')
@@ -122,7 +168,7 @@ export struct AlarmClock {
             .borderRadius(24)
             .margin({ bottom: 5 })
             .backgroundColor($r('app.color.divider_bg'))
-          }, (item, index) => {
+          }, (item: Contact, index) => {
             return JSON.stringify(item) + index
           })
         }

@@ -13,31 +13,11 @@
  * limitations under the License.
  */
 
-import { TabType } from '../common/DataSource'
+import { TabType } from '../common/DataSource';
 
 export const tabArray: Array<TabType> = [
-  {
-    icon: $r('app.media.worldclock'),
-    icon_after: $r('app.media.worldclock_blue'),
-    text: $r('app.string.tab0'),
-    num: 0
-  },
-  {
-    icon: $r('app.media.clock'),
-    icon_after: $r('app.media.clock_blue'),
-    text: $r('app.string.tab1'),
-    num: 1
-  },
-  {
-    icon: $r('app.media.timer'),
-    icon_after: $r('app.media.timer_blue'),
-    text: $r('app.string.tab2'),
-    num: 2
-  },
-  {
-    icon: $r('app.media.settings'),
-    icon_after: $r('app.media.settings_blue'),
-    text: $r('app.string.tab3'),
-    num: 3
-  }
+   new TabType($r('app.media.worldclock'), $r('app.media.worldclock_blue'), $r('app.string.tab0'), 0),
+   new TabType($r('app.media.clock'), $r('app.media.clock_blue'), $r('app.string.tab1'), 1),
+   new TabType($r('app.media.timer'), $r('app.media.timer_blue'), $r('app.string.tab2'), 2),
+   new TabType($r('app.media.settings'), $r('app.media.settings_blue'), $r('app.string.tab3'), 3)
 ]
