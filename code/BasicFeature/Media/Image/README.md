@@ -16,7 +16,9 @@ In this sample, [\<TextArea>](https://gitee.com/openharmony/docs/blob/master/en/
 
 4. After finishing editing the image, touch **OK**. The page for posting comments is displayed, with the images shown. You can touch **Add image** to add more images.
 
-5. Touch the back button to exit the app.
+5. Select an image and touch **Next**. The image editing page is displayed.
+
+6. Touch the back button to exit the app.
 
 ### Preview
 

@@ -28,7 +28,7 @@ import { readImage } from '../util/MediaUtil';
 import { FontColorData, MaterialData } from '../model/MaterialData';
 import { fontColors, stickers } from '../model/MaterialModels';
 import { getContainSize, Size } from '../util/ImageUtil';
-import { savePixelMap } from '../util/FileUtil';
+import { ImageTest } from '../util/FileUtil';
 import { BusinessError } from '@ohos.base';
 import { ColorSpacePage } from './ColorSpacePage';
 
@@ -69,6 +69,7 @@ export struct EditImage {
   containerArea: Area | null = null;
   isBrightChanging: boolean = false;
   private pixelMapQueue: PixelMapQueue = new PixelMapQueue();
+  private test = new ImageTest();
 
   onOpen(): void {
     if (this.loading) {
@@ -701,7 +702,7 @@ export struct EditImage {
     this.loadingController.open();
 
     if (this.pixelMap !== undefined && this.pixelMap !== null) {
-      const uri: string = await savePixelMap(getContext(this), this.pixelMap);
+      const uri: string = await this.test.savePixelMap(getContext(this), this.pixelMap);
       logger.debug('保存图片地址为:' + uri);
       router.pushUrl({
         url: 'pages/Index',
@@ -861,7 +862,7 @@ export struct EditImage {
                   center: { anchor: '__container__', align: VerticalAlign.Center }
                 }
               )
-              .id('image')
+              .id('sourceImage')
           } else {
             Image(this.pixelMap)
               .objectFit(ImageFit.Contain)
@@ -875,7 +876,7 @@ export struct EditImage {
                   center: { anchor: '__container__', align: VerticalAlign.Center }
                 }
               )
-              .id('image')
+              .id('resultImage')
           }
 
           if (this.currentTask === Tasks.SCALE) {

@@ -165,6 +165,10 @@
       "value": "编辑"
     },
     {
+      "name": "update_page_picture",
+      "value": "多图操作"
+    },
+    {
       "name": "update_page_delete",
       "value": "删除"
     },

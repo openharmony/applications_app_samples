@@ -24,6 +24,10 @@ export enum Tasks {
   MARK,
   COLORSPACE,
   HDR,
+  ENCODEJS,
+  DECODEJS,
+  ENCODENDK,
+  DECODENDK,
   NONE = 99
 }
 
@@ -53,10 +57,12 @@ export class TaskData {
   task?: number
   image?: Resource
   text?: Resource
+  name?: string
 
-  constructor(task?: number, image?: Resource, text?: Resource) {
+  constructor(task?: number, image?: Resource, text?: Resource, name?: string) {
     this.task = task;
     this.image = image;
     this.text = text;
+    this.name = name;
   }
 }

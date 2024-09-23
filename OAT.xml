@@ -295,6 +295,13 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/BasicFeature/Media/ImageEffect/screenshots/query_parameter.jpeg" desc="Provided by code/BasicFeature/Media/ImageEffect"/>
                 <filteritem type="filepath" name="code/BasicFeature/Media/ImageEffect/entry/src/main/resources/base/media/icon.png" desc="Provided by code/BasicFeature/Media/ImageEffect"/>
                 <filteritem type="filepath" name="code/BasicFeature/Media/Image/photomodify/src/main/resources/rawfile/test_jpg.jpg" desc="Provided by code/BasicFeature/Media/Image"/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/Image/photomodify/src/main/resources/rawfile/HdrVivid.jpg" desc="Provided by code/BasicFeature/Media/Image"/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/Image/photomodify/src/main/resources/rawfile/HEIFISOMultiChannelBaseColor0512V12.heic" desc="Provided by code/BasicFeature/Media/Image"/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/Image/screenshots/devices/index.jpeg" desc="Provided by code/BasicFeature/Media/Image"/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/Image/screenshots/devices/encoding.jpeg" desc="Provided by code/BasicFeature/Media/Image"/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/Image/screenshots/devices/decoding.jpeg" desc="Provided by code/BasicFeature/Media/Image"/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/Image/screenshots/devices/picture_decoding.jpeg" desc="Provided by code/BasicFeature/Media/Image"/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/Image/screenshots/devices/menu.jpeg" desc="Provided by code/BasicFeature/Media/Image"/>
                 <filteritem type="filepath" name="code/BasicFeature/Connectivity/VPN/server/server.zip" desc="Provided by code/BasicFeature/Connectivity/VPN"/>
 				<filteritem type="filepath" name="code/BasicFeature/Connectivity/StageSocket/certificate_file.zip" desc="Provided by code/BasicFeature/Connectivity/StageSocket"/>
 				<filteritem type="filepath" name="code/BasicFeature/Native/NdkDrawing/screenshots/device/Index.jpg" desc="Provided by code/BasicFeature/Native/NdkDrawing"/>

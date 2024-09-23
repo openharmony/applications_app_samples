@@ -20,10 +20,30 @@
 #include "rawfile/raw_file.h"
 #include "napi/native_api.h"
 #include "multimedia/image_framework/image/image_packer_native.h"
+#include "image.h"
+#include "common/log_common.h"
+#include <bits/alltypes.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <sstream>
+#include <fstream>
 
 #define MIMETYPE_JPEG_STRING "image/jpeg"
 #define MIMETYPE_PNG_STRING "image/png"
 #define MIMETYPE_WEBP_STRING "image/webp"
+#define AUTO 0
+#define SDR 1
+#define SIZE 10
+const char *TAG = "[SamplePictureCpp]";
+static napi_value GetRowStride(napi_env env, napi_callback_info info);
+static napi_value GetAuxInfoType(napi_env env, napi_callback_info info);
+static napi_value GetAuxInfoSize(napi_env env, napi_callback_info info);
+static napi_value GetPixelFormat(napi_env env, napi_callback_info info);
+Image_ErrorCode MyPackToFileFromImageSource(uint32_t fd);
+Image_ErrorCode ReleaseImageSource(OH_ImageSourceNative* &source);
+static ImagePictureNative *g_thisPicture  = new ImagePictureNative();
 
 constexpr int32_t NUM_0 = 0;
 constexpr int32_t NUM_1 = 1;
@@ -33,6 +53,7 @@ constexpr int32_t NUM_4 = 4;
 
 constexpr uint32_t QUALITY = 100;
 constexpr uint64_t DEFAULT_BUFFER_SIZE = 25 * 1024 * 1024;
+constexpr size_t MAX_BUFFER_SIZE = 10000 * 10000;
 
 static std::shared_ptr<OH_ImagePackerNative> CreatePacker()
 {
@@ -106,8 +127,8 @@ static bool WriteFile(const char* outPath, uint8_t* outBuffer, size_t outBufferS
 // PixelMap转为data
 static napi_value packToDataPixelMap(napi_env env, napi_callback_info info)
 {
-    napi_value retSucess = nullptr;
-    napi_create_int32(env, 0, &retSucess);
+    napi_value retSuccess = nullptr;
+    napi_create_int32(env, 0, &retSuccess);
     napi_value retFailed = nullptr;
     napi_create_int32(env, -1, &retFailed);
     size_t argCount = NUM_2;
@@ -153,14 +174,14 @@ static napi_value packToDataPixelMap(napi_env env, napi_callback_info info)
         return retFailed;
     }
     delete [] outBuffer;
-    return retSucess;
+    return retSuccess;
 }
 
 // PixelMap转为file
 static napi_value packPixelMapToFile(napi_env env, napi_callback_info info)
 {
-    napi_value retSucess = nullptr;
-    napi_create_int32(env, 0, &retSucess);
+    napi_value retSuccess = nullptr;
+    napi_create_int32(env, 0, &retSuccess);
     napi_value retFailed = nullptr;
     napi_create_int32(env, -1, &retFailed);
 
@@ -203,14 +224,14 @@ static napi_value packPixelMapToFile(napi_env env, napi_callback_info info)
     if (errCode != IMAGE_SUCCESS) {
         return retFailed;
     }
-    return retSucess;
+    return retSuccess;
 }
 
 // ImageSource转为file
 static napi_value packToFileImageSource(napi_env env, napi_callback_info info)
 {
-    napi_value retSucess = nullptr;
-    napi_create_int32(env, 0, &retSucess);
+    napi_value retSuccess = nullptr;
+    napi_create_int32(env, 0, &retSuccess);
     napi_value retFailed = nullptr;
     napi_create_int32(env, -1, &retFailed);
 
@@ -247,14 +268,14 @@ static napi_value packToFileImageSource(napi_env env, napi_callback_info info)
     if (errCode != IMAGE_SUCCESS) {
         return retFailed;
     }
-    return retSucess;
+    return retSuccess;
 }
 
 // ImageSource转为data
 static napi_value packToDataImageSource(napi_env env, napi_callback_info info)
 {
-    napi_value retSucess = nullptr;
-    napi_create_int32(env, 0, &retSucess);
+    napi_value retSuccess = nullptr;
+    napi_create_int32(env, 0, &retSuccess);
     napi_value retFailed = nullptr;
     napi_create_int32(env, -1, &retFailed);
     size_t argCount = NUM_4;
@@ -297,7 +318,218 @@ static napi_value packToDataImageSource(napi_env env, napi_callback_info info)
         return retFailed;
     }
     delete [] outBuffer;
-    return retSucess;
+    return retSuccess;
+}
+
+// 处理napi返回值
+napi_value getJsResult(napi_env env, Image_ErrorCode errorCode)
+{
+    napi_value retSuccess = nullptr;
+    napi_create_int32(env, 0, &retSuccess);
+    napi_value retFailed = nullptr;
+    napi_create_int32(env, -1, &retFailed);
+    if (errorCode == IMAGE_SUCCESS) {
+        return retSuccess;
+    } else {
+        return retFailed;
+    }
+}
+
+// 释放ImageSource
+Image_ErrorCode ReleaseImageSource(OH_ImageSourceNative*& source)
+{
+    if (source != nullptr) {
+        g_thisPicture->errorCode = OH_ImageSourceNative_Release(source);
+        source = nullptr;
+        return g_thisPicture->errorCode;
+    }
+    return IMAGE_SUCCESS;
+}
+
+// 解码创造多图对象
+static napi_value CreatePictureByImageSource(napi_env env, napi_callback_info info)
+{
+    napi_value retFailed = nullptr;
+    napi_create_int32(env, -1, &retFailed);
+    size_t argCount = NUM_1;
+    napi_value argValue[NUM_1] = {0};
+    char filePath[PATH_MAX];
+    size_t filePathSize = NUM_0;
+
+    if (napi_get_cb_info(env, info, &argCount, argValue, nullptr, nullptr) != napi_ok || argCount < NUM_1) {
+        return retFailed;
+    }
+    napi_get_value_string_utf8(env, argValue[NUM_0], filePath, PATH_MAX, &filePathSize);
+
+    ReleaseImageSource(g_thisPicture->source);
+    g_thisPicture->errorCode = OH_ImageSourceNative_CreateFromUri(filePath, filePathSize, &g_thisPicture->source);
+    if (g_thisPicture->errorCode != NUM_0) {
+        H_LOGE("%{public}s CreatePictureByImageSource OH_ImageSourceNative_CreateFromUri failed !", TAG);
+        return getJsResult(env, g_thisPicture->errorCode);
+    }
+    
+    g_thisPicture->errorCode =
+        OH_ImageSourceNative_CreatePicture(g_thisPicture->source, g_thisPicture->options, &g_thisPicture->picture);
+    return getJsResult(env, g_thisPicture->errorCode);
+}
+
+// 创造解码参数对象
+static napi_value CreateDecodingOptions(napi_env env, napi_callback_info info)
+{
+    g_thisPicture->errorCode = OH_DecodingOptionsForPicture_Create(&g_thisPicture->options);
+    return getJsResult(env, g_thisPicture->errorCode);
+}
+
+// 配置解码参数
+static napi_value SetDesiredAuxiliaryPictures(napi_env env, napi_callback_info info)
+{
+    size_t argc = NUM_1;
+    napi_value args[NUM_1] = {nullptr};
+    if (napi_get_cb_info(env, info, &argc, args, nullptr, nullptr) != napi_ok || argc < 1 || args[0] == nullptr) {
+        H_LOGE("%{public}s napi_get_cb_info failed !", TAG);
+        return getJsResult(env, IMAGE_BAD_PARAMETER);
+    }
+    
+    uint32_t length = NUM_0;
+    napi_get_array_length(env, args[0], &length);
+    if (length <= NUM_0) {
+        H_LOGE("%{public}s napi_get_array_length failed !", TAG);
+        return getJsResult(env, IMAGE_UNKNOWN_ERROR);
+    }
+    Image_AuxiliaryPictureType typeList[length];
+    for (int index = 0; index < length; index++) {
+        napi_value element;
+        uint32_t ulType = NUM_0;
+        napi_get_element(env, args[NUM_0], index, &element);
+        napi_get_value_uint32(env, element, &ulType);
+        typeList[index] = static_cast<Image_AuxiliaryPictureType>(ulType);
+    }
+    
+    g_thisPicture->errorCode =
+        OH_DecodingOptionsForPicture_SetDesiredAuxiliaryPictures(g_thisPicture->options, typeList, length);
+    return getJsResult(env, g_thisPicture->errorCode);
+}
+
+// 获取解码参数
+static napi_value GetDesiredAuxiliaryPictures(napi_env env, napi_callback_info info)
+{
+    napi_value retSuccess = nullptr;
+    napi_create_int32(env, NUM_0, &retSuccess);
+    Image_AuxiliaryPictureType *desiredAuxiliaryPictures = nullptr;
+    size_t length = NUM_0;
+    g_thisPicture->errorCode = OH_DecodingOptionsForPicture_GetDesiredAuxiliaryPictures(
+        g_thisPicture->options, &desiredAuxiliaryPictures, &length);
+    if (g_thisPicture->errorCode != IMAGE_SUCCESS || desiredAuxiliaryPictures == nullptr || length <= 0) {
+        H_LOGE("%{public}s OH_DecodingOptionsForPicture_GetDesiredAuxiliaryPictures failed, errCode: %{public}d.", TAG,
+               g_thisPicture->errorCode);
+        return getJsResult(env, g_thisPicture->errorCode);
+    }
+    return retSuccess;
+}
+
+// 释放解码参数
+static napi_value ReleaseDecodingOptions(napi_env env, napi_callback_info info)
+{
+    g_thisPicture->errorCode = OH_DecodingOptionsForPicture_Release(g_thisPicture->options);
+    g_thisPicture->options = nullptr;
+    return getJsResult(env, g_thisPicture->errorCode);
+}
+  
+// 配置编码参数
+void SetPackOptions(OH_PackingOptions *packerOptions, Image_MimeType format, uint32_t quality,
+                    bool needsPackProperties, int32_t desiredDynamicRange)
+{
+    OH_PackingOptions_SetMimeType(packerOptions, &format);
+    OH_PackingOptions_SetQuality(packerOptions, quality);
+    OH_PackingOptions_SetNeedsPackProperties(packerOptions, needsPackProperties);
+    OH_PackingOptions_SetDesiredDynamicRange(packerOptions, desiredDynamicRange);
+}
+ 
+// 把多图对象编码成data
+static napi_value PackToDataPicture(napi_env env, napi_callback_info info)
+{
+    napi_value retFailed = nullptr;
+    napi_create_int32(env, -1, &retFailed);
+    size_t argc = NUM_1;
+    napi_value args[NUM_1] = {nullptr};
+    if (napi_get_cb_info(env, info, &argc, args, nullptr, nullptr) != napi_ok) {
+        H_LOGE("%{public}s napi_get_cb_info failed !", TAG);
+        return getJsResult(env, g_thisPicture->errorCode);
+    }
+
+    char outPath[PATH_MAX];
+    size_t outPathLen = NUM_0;
+    napi_get_value_string_utf8(env, args[NUM_0], outPath, PATH_MAX, &outPathLen);
+    size_t outDataSize = MAX_BUFFER_SIZE;
+    uint8_t *outData = new uint8_t[MAX_BUFFER_SIZE];
+
+    if (g_thisPicture->packerOptions == nullptr) {
+        g_thisPicture->errorCode = OH_PackingOptions_Create(&g_thisPicture->packerOptions);
+    }
+    if (g_thisPicture->imagePacker == nullptr) {
+        g_thisPicture->errorCode = OH_ImagePackerNative_Create(&g_thisPicture->imagePacker);
+    }
+    
+    Image_MimeType format;
+    format.size = SIZE;
+    format.data = const_cast<char *>(MIMETYPE_JPEG_STRING);
+    uint32_t quality = QUALITY;
+    bool needsPackProperties = true;
+    int32_t desiredDynamicRange = SDR;
+    SetPackOptions(g_thisPicture ->packerOptions,
+        format, quality, needsPackProperties, desiredDynamicRange);
+    g_thisPicture->errorCode = OH_ImagePackerNative_PackToDataFromPicture(
+        g_thisPicture->imagePacker, g_thisPicture->packerOptions, g_thisPicture->picture, outData, &outDataSize);
+    if (g_thisPicture->errorCode != IMAGE_SUCCESS) {
+        H_LOGE("%{public}s OH_ImagePackerNative_PackToDataFromPicture failed, errCode: %{public}d.", TAG,
+               g_thisPicture->errorCode);
+        delete[] outData;
+        return getJsResult(env, g_thisPicture->errorCode);
+    } else {
+        if (!WriteFile(outPath, outData, outDataSize)) {
+        delete [] outData;
+        return retFailed;
+        }
+    }
+    return getJsResult(env, g_thisPicture->errorCode);
+}
+
+static napi_value PackToFilePicture(napi_env env, napi_callback_info info)
+{
+    size_t argc = NUM_1;
+    napi_value args[NUM_1] = {nullptr};
+    if (napi_get_cb_info(env, info, &argc, args, nullptr, nullptr) != napi_ok) {
+        H_LOGE("%{public}s napi_get_cb_info failed !", TAG);
+        return getJsResult(env, g_thisPicture->errorCode);
+    }
+    uint32_t fd = NUM_0;
+    napi_get_value_uint32(env, args[NUM_0], &fd);
+
+    if (g_thisPicture->packerOptions == nullptr) {
+        g_thisPicture->errorCode = OH_PackingOptions_Create(&g_thisPicture->packerOptions);
+    }
+    if (g_thisPicture->imagePacker == nullptr) {
+        g_thisPicture->errorCode = OH_ImagePackerNative_Create(&g_thisPicture->imagePacker);
+    }
+
+    Image_MimeType format;
+    format.size = SIZE;
+    format.data = const_cast<char *>(MIMETYPE_JPEG_STRING);
+    uint32_t quality = QUALITY;
+    bool needsPackProperties = true;
+    int32_t desiredDynamicRange = SDR;
+    SetPackOptions(g_thisPicture->packerOptions,
+        format, quality, needsPackProperties, desiredDynamicRange);
+
+    g_thisPicture->errorCode = OH_ImagePackerNative_PackToFileFromPicture(
+        g_thisPicture->imagePacker, g_thisPicture->packerOptions, g_thisPicture->picture, fd);
+    
+    if (g_thisPicture->errorCode != IMAGE_SUCCESS) {
+        H_LOGE("%{public}s OH_ImagePackerNative_PackToFileFromPicture failed, errCode: %{public}d.", TAG,
+               g_thisPicture->errorCode);
+        return getJsResult(env, g_thisPicture->errorCode);
+    }
+    return getJsResult(env, g_thisPicture->errorCode);
 }
 
 EXTERN_C_START static napi_value Init(napi_env env, napi_value exports)
@@ -307,6 +539,16 @@ EXTERN_C_START static napi_value Init(napi_env env, napi_value exports)
         {"packPixelMapToFile", nullptr, packPixelMapToFile, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"packToFileImageSource", nullptr, packToFileImageSource, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"packToDataImageSource", nullptr, packToDataImageSource, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"createPictureByImageSource", nullptr, CreatePictureByImageSource, nullptr, nullptr, nullptr, napi_default,
+         nullptr},
+        {"createDecodingOptions", nullptr, CreateDecodingOptions, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"getDesiredAuxiliaryPictures", nullptr, GetDesiredAuxiliaryPictures, nullptr, nullptr, nullptr, napi_default,
+         nullptr},
+        {"setDesiredAuxiliaryPictures", nullptr, SetDesiredAuxiliaryPictures, nullptr, nullptr, nullptr, napi_default,
+         nullptr},
+        {"releaseDecodingOptions", nullptr, ReleaseDecodingOptions, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"packToDataPicture", nullptr, PackToDataPicture, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"packToFilePicture", nullptr, PackToFilePicture, nullptr, nullptr, nullptr, napi_default, nullptr},
     };
 
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[NUM_0]), desc);
