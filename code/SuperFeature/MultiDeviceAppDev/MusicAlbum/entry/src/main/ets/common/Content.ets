@@ -22,7 +22,7 @@ export default struct Content {
 
   build() {
     GridRow() {
-      GridCol({ span: { sm: 12, md: 6, lg: 4 } }) {
+      GridCol({ span: { xs: 12, sm: 12, md: 6, lg: 4 } }) {
         PlayListCover()
           .onAreaChange((oldArea: Area, newArea: Area) => {
             this.coverHeight = newArea.height as number
@@ -30,7 +30,7 @@ export default struct Content {
       }
       .backgroundColor('#e4ecf7')
 
-      GridCol({ span: { sm: 12, md: 6, lg: 8 } }) {
+      GridCol({ span: { xs: 12, sm: 12, md: 6, lg: 8 } }) {
         PlayList()
       }
       .borderRadius(40)
