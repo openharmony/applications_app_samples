@@ -14,10 +14,12 @@
  */
 import display from '@ohos.display'
 import Logger from '../model/Logger'
+import { forceGC } from '../util/ForceGCUtil';
 
 const HOURS: Array<string> = ['3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '1', '2']
 const HEIGHT_ADD: number = 150 // 表盘下面需要绘制时间，canvas高度是宽度加150
 const TAG: string = 'Index'
+const DELAY: number = 600000;
 
 @Entry
 @Component
@@ -27,6 +29,7 @@ struct Clock {
   @State canvasWidth: number = 300 // 300是表盘默认大小
   private radius: number = 150 // 默认表盘半径
   private intervalId: number = 0
+  private intervalIdGC: number = 0;
   updateTime = () => {
     this.context.clearRect(0, 0, this.canvasWidth, this.canvasWidth + HEIGHT_ADD)
     let nowTime = new Date()
@@ -204,6 +207,7 @@ struct Clock {
           Logger.info(TAG, `onReady`)
           this.updateTime()
           this.intervalId = setInterval(this.updateTime, 1000)
+          this.intervalIdGC = setInterval(forceGC, DELAY); // 10分钟GC一次
         })
     }
     .width('100%')
@@ -213,10 +217,12 @@ struct Clock {
   onPageHide() {
     Logger.info(TAG, `onPageHide`)
     clearInterval(this.intervalId)
+    clearInterval(this.intervalIdGC);
   }
 
   aboutToDisappear() {
     Logger.info(TAG, `aboutToDisappear`)
     clearInterval(this.intervalId)
+    clearInterval(this.intervalIdGC);
   }
 }
