@@ -129,6 +129,6 @@ export class Browser {
   }
 
   Refresh() {
-    this.webControllerArray[this.tabArrayIndex]?.controller?.refresh()
+    this.webControllerArray[this.tabArrayIndex]?.controller?.refresh();
   }
 }
