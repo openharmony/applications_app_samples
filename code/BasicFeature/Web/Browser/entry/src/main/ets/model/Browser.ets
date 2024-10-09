@@ -52,7 +52,7 @@ export class Browser {
 
   webArray: Array<WebKey> = [new WebKey(0, new Date().getTime())]
   tabsController: TabsController = new TabsController()
-  webControllerArray: Array<WebObject> = [new WebObject(new web_webview.WebviewController(), false)]
+  webControllerArray: Array<WebObject> = [new WebObject(new web_webview.WebviewController(), false)];
 
   deleteTab(index: number) {
     Logger.info(TAG, `delete before tab index= ${index} controller length ${this.webControllerArray.length} tabArrayIndex= ${this.tabArrayIndex}`)
@@ -112,20 +112,20 @@ export class Browser {
   loadUrl(addr: string) {
     if (!addr.startsWith("https://") && !addr.startsWith("http://")) {
       addr = "https://" + addr;
-    }
-    this.webControllerArray[this.tabArrayIndex]?.controller?.loadUrl(addr)
+    };
+    this.webControllerArray[this.tabArrayIndex]?.controller?.loadUrl(addr);
   }
 
   Back() {
     if (this.webControllerArray[this.tabArrayIndex]?.controller?.accessBackward()) {
-      this.webControllerArray[this.tabArrayIndex]?.controller?.backward()
-    }
+      this.webControllerArray[this.tabArrayIndex]?.controller?.backward();
+    };
   }
 
   Forward() {
     if (this.webControllerArray[this.tabArrayIndex]?.controller?.accessForward()) {
-      this.webControllerArray[this.tabArrayIndex]?.controller?.forward()
-    }
+      this.webControllerArray[this.tabArrayIndex]?.controller?.forward();
+    };
   }
 
   Refresh() {

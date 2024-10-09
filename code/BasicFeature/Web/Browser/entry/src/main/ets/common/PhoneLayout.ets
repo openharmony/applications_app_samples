@@ -106,7 +106,7 @@ export struct PhoneLayout {
                   this.browser.Refresh();
                   break;
                 case 5:
-                  this.browser.webControllerArray[this.browser.tabArrayIndex].controller.loadUrl($rawfile('phone.html'))
+                  this.browser.webControllerArray[this.browser.tabArrayIndex].controller.loadUrl($rawfile('phone.html'));
                   break;
                 default:
                   break;
@@ -140,7 +140,7 @@ export struct PhoneLayout {
           })
           .onSubmit((enterKey: EnterKeyType) => {
             Logger.info(TAG, `onSubmit`);
-            this.browser.webControllerArray[this.browser.tabArrayIndex].controller.loadUrl(`https://${this.addr}`)
+            this.browser.webControllerArray[this.browser.tabArrayIndex].controller.loadUrl(`https://${this.addr}`);
           })
       }
 
