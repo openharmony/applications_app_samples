@@ -20,6 +20,7 @@ const HOURS: Array<string> = ['3', '4', '5', '6', '7', '8', '9', '10', '11', '12
 const HEIGHT_ADD: number = 150 // 表盘下面需要绘制时间，canvas高度是宽度加150
 const TAG: string = 'Index'
 const DELAY: number = 600000;
+const UPDATE_DELAY: number = 1000;
 
 @Entry
 @Component
@@ -54,6 +55,12 @@ struct Clock {
   aboutToAppear() {
     Logger.info(TAG, `enter aboutToAppear`)
     this.getSize()
+  }
+
+  onPageShow() {
+    Logger.info(TAG, `onPageShow`);
+    this.updateTime();
+    this.intervalId = setInterval(this.updateTime, UPDATE_DELAY);
   }
 
   // 获取设备宽高计算表盘大小
