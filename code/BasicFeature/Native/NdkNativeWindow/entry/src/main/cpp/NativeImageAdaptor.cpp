@@ -148,25 +148,32 @@ bool NativeImageAdaptor::Export(napi_env env, napi_value exports)
 
 bool NativeImageAdaptor::InitNativeWindow()
 {
+    width_ = 0x100;
+    height_ = 0x100;
     GLuint textureId;
     glGenTextures(1, &textureId);
     // Create a NativeImage instance and associate it with OpenGL textures
     image_ = OH_NativeImage_Create(textureId, GL_TEXTURE_2D);
-    // Obtain Producer NativeWindow
-    nativeWindow_ = OH_NativeImage_AcquireNativeWindow(image_);
 
-    int code = SET_BUFFER_GEOMETRY;
-    width_ = 0x100;
-    height_ = 0x100;
-    int32_t ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, width_, height_);
+    int32_t ret = OH_ConsumerSurface_SetDefaultSize(image_, width_, height_);
     if (ret != 0) {
-        LOGE("NativeImageAdaptor OH_NativeWindow_NativeWindowHandleOpt fail");
+        LOGE("NativeImageAdaptor OH_ConsumerSurface_SetDefaultSize fail");
     }
 
-    code = SET_USAGE;
-    int32_t usage = NATIVEBUFFER_USAGE_CPU_READ | NATIVEBUFFER_USAGE_CPU_WRITE | NATIVEBUFFER_USAGE_MEM_DMA;
-    ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, code, usage);
+    uint64_t defaultUsage = NATIVEBUFFER_USAGE_CPU_READ |
+                            NATIVEBUFFER_USAGE_CPU_WRITE |
+                            NATIVEBUFFER_USAGE_MEM_DMA |
+                            1ULL<<50;
+    ret = OH_ConsumerSurface_SetDefaultUsage(image_, defaultUsage);
+    if (ret != 0) {
+        LOGE("NativeImageAdaptor OH_ConsumerSurface_SetDefaultUsage fail");
+    }
 
+    // Obtain Producer NativeWindow
+    nativeWindow_ = OH_NativeImage_AcquireNativeWindow(image_);
+    if (nativeWindow_ == nullptr) {
+        LOGE("NativeImageAdaptor OH_NativeImage_AcquireNativeWindow fail");
+    }
     OH_OnFrameAvailableListener listener;
     listener.context = static_cast<void*>(image_);
     listener.onFrameAvailable = NativeImageAdaptor::OnFrameAvailable;
@@ -340,7 +347,7 @@ void NativeImageAdaptor::GetBufferMapPlanes(NativeWindowBuffer *buffer)
     }
     LOGD("Get planeCount: %{public}d", outPlanes.planeCount);
     for (int32_t i = 0; i < outPlanes.planeCount; i++) {
-        LOGD("Get offset: %{public}llu rowStride: %{public}d columnStride: %{public}d", outPlanes.planes[i].offset,
+        LOGD("Get offset: %{public}lu rowStride: %{public}d columnStride: %{public}d", outPlanes.planes[i].offset,
              outPlanes.planes[i].rowStride, outPlanes.planes[i].columnStride);
     }
 }
@@ -397,7 +404,7 @@ int32_t NativeImageAdaptor::ProduceBuffer(uint32_t value, OHNativeWindow *InNati
     ret = OH_NativeWindow_NativeWindowFlushBuffer(InNativeWindow, buffer, fenceFd, *region);
     if (ret != 0) {
         LOGE("OH_NativeWindow_NativeWindowFlushBuffer fail");
-        GSERROR_FAILD;
+        return GSERROR_FAILD;
     }
     
     delete region;

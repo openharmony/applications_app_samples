@@ -29,6 +29,18 @@ struct Index {
   @State frameConsumerCount: number = 0;
   @State isAutoConsumer: boolean = false;
   private nativeWindowContext: NativeWindowContext | undefined = undefined;
+  private debounceTimer: number | null = null;
+
+  // 防抖函数
+  private debounceClick( action: () => void, delay: number = 500 ) {
+    if (this.debounceTimer) {
+      clearTimeout(this.debounceTimer);
+    }
+    this.debounceTimer = setTimeout(() => {
+      action();
+      this.debounceTimer = null;
+    }, delay);
+  }
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -70,13 +82,16 @@ struct Index {
         .fontWeight(500)
         .margin({ bottom: 24 })
         .onClick(() => {
-          if (this.nativeWindowContext) {
-            console.log(TAG, "Produce Buffer");
-            if (this.nativeWindowContext.ProduceBuffer() ==0) {
-              this.frameFlushedCount++;
+          this.debounceClick(() => {
+            if (this.nativeWindowContext) {
+              console.log(TAG, "Produce Buffer");
+              if (this.nativeWindowContext.ProduceBuffer() == 0) {
+                this.frameFlushedCount++;
+              }
+              setTimeout("GetCount", 1000);
             }
-            setTimeout("GetCount", 1000);
-          }
+          });
+
         })
         .height(40)
       Row() {
