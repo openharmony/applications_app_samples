@@ -104,20 +104,25 @@ class DistributedMusicServiceExtension extends rpc.RemoteObject {
     if (code === MusicSharedEventCode.START_DISTRIBUTED_MUSIC_SERVICE) {
       let deviceId = data.readString()
       let stringJson: string = data.readString()
-      let jsonData = JSON.parse(stringJson)
-      let params = {
-        uri: jsonData.uri,
-        seekTo: jsonData.seekTo,
-        isPlaying: jsonData.isPlaying,
-        flag: 'START_REMOTE_DISTRIBUTED_MUSIC_SERVICE'
+      try {
+        let jsonData = JSON.parse(stringJson);
+        Logger.info(TAG, `onRemoteRequest jsonData: ${JSON.stringify(jsonData)}`);
+        let params = {
+          uri: jsonData.uri,
+          seekTo: jsonData.seekTo,
+          isPlaying: jsonData.isPlaying,
+          flag: 'START_REMOTE_DISTRIBUTED_MUSIC_SERVICE'
+        }
+        let want = {
+          deviceId: deviceId,
+          bundleName: APPLICATION_BUNDLE_NAME,
+          abilityName: APPLICATION_SERVICE_NAME,
+          parameters: params
+        }
+        this.startServiceAbility(want);
+      } catch (error) {
+        Logger.error(TAG, `JSON text error`);
       }
-      let want = {
-        deviceId: deviceId,
-        bundleName: APPLICATION_BUNDLE_NAME,
-        abilityName: APPLICATION_SERVICE_NAME,
-        parameters: params
-      }
-      this.startServiceAbility(want)
     } else if (code === MusicSharedEventCode.STOP_DISTRIBUTED_MUSIC_SERVICE) {
       let deviceId = data.readString()
       let want = {
