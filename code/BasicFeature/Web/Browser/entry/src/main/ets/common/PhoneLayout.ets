@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -106,9 +106,7 @@ export struct PhoneLayout {
                   this.browser.Refresh();
                   break;
                 case 5:
-                  this.browser.webControllerArray[this.browser.tabArrayIndex].controller.loadUrl({
-                    url: $rawfile('phone.html')
-                  });
+                  this.browser.webControllerArray[this.browser.tabArrayIndex].controller.loadUrl($rawfile('phone.html'));
                   break;
                 default:
                   break;
@@ -142,10 +140,7 @@ export struct PhoneLayout {
           })
           .onSubmit((enterKey: EnterKeyType) => {
             Logger.info(TAG, `onSubmit`);
-            this.browser.webControllerArray[this.browser.tabArrayIndex].controller.loadUrl({
-              url: `https://${this.addr}`
-            });
-            this.addr = '';
+            this.browser.webControllerArray[this.browser.tabArrayIndex].controller.loadUrl(`https://${this.addr}`);
           })
       }
 
@@ -174,7 +169,6 @@ export struct PhoneLayout {
       })
       .onClick((event: ClickEvent) => {
         this.browser.loadUrl(this.addr);
-        this.addr = '';
       })
     }
     .position({ x: 0, y: 3 })
