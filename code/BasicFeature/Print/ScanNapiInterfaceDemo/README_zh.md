@@ -1,7 +1,7 @@
 # 扫描仪应用demo
 
 ### 介绍
-本示例使用@ohos.scan接口拉起[扫描服务]([print_print_fwk: 暂无描述 (gitee.com)](https://gitee.com/openharmony/print_print_fwk))，由扫描服务加载扫描仪驱动，完成扫描仪的发现与连接、获取扫描仪选项、设置扫描仪参数、启动扫描仪、获取扫描图片进度、取消扫描的功能。
+本示例使用@ohos.scan接口拉起[打印框架](https://gitee.com/openharmony/print_print_fwk)下的扫描服务，由扫描服务加载扫描仪驱动，完成扫描仪的发现与连接、获取扫描仪选项、设置扫描仪参数、启动扫描仪、获取扫描图片进度、取消扫描的功能。
 
 ### 界面预览
 ![扫描demo](sceenshots/scandemo.png)
@@ -127,7 +127,7 @@ git pull
 
 1.需要基于[sane-backends](https://gitee.com/openharmony-sig/third_party_backends/)完成扫描仪驱动的开发。
 
-2.扫描仪驱动通过驱动安装应用安装到[指定路径](/data/service/el1/public/print_service/sane/backend)。
+2.扫描仪驱动通过驱动安装应用安装到指定路径。
 
 3.本工程通过Build Hap(s)/APP(s)完成编译构建，然后安装。
 
