@@ -339,6 +339,11 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/BasicFeature/Native/NdkQoS/screenshots/device/main.jpeg" desc="Provided by code/BasicFeature/Native/NdkNativeQoS"/>
                 <filteritem type="filepath" name="code/BasicFeature/Native/NdkQoS/screenshots/device/showhighQoScomputingTime.jpeg" desc="Provided by code/BasicFeature/Native/NdkNativeQoS"/>
                 <filteritem type="filepath" name="code/BasicFeature/Native/NdkQoS/entry/src/main/resources/base/media/icon.png" desc="Provided by code/BasicFeature/Native/NdkNativeQoS"/>
+				<filteritem type="filepath" name="code/BasicFeature/Native/NdkNotification/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/BasicFeature/Native/NdkNotification/"/>
+				<filteritem type="filepath" name="code/BasicFeature/Native/NdkNotification/screenshots/device/turnOnNotification.jpeg" desc="Provided by code/BasicFeature/Native/NdkNotification/"/>
+				<filteritem type="filepath" name="code/BasicFeature/Native/NdkNotification/AppScope/resources/base/media/app_icon.png" desc="Provided by code/BasicFeature/Native/NdkNotification/"/>
+				<filteritem type="filepath" name="code/BasicFeature/Native/NdkNotification/screenshots/device/main.jpeg" desc="Provided by code/BasicFeature/Native/NdkNotification/"/>
+				<filteritem type="filepath" name="code/BasicFeature/Native/NdkNotification/screenshots/device/turnOffNotification.jpeg" desc="Provided by code/BasicFeature/Native/NdkNotification/"/>
 				<filteritem type="filepath" name="code/BasicFeature/Extension/Contexttest/entry/src/main/resources/base/media/icon.png" desc="Provided by code/BasicFeature/Extension/Contexttest"/>
 				<filteritem type="filepath" name="code/BasicFeature/Extension/Contexttest/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/BasicFeature/Extension/Contexttest"/>
 				<filteritem type="filepath" name="code/BasicFeature/Extension/Contexttest/screenshots/extension1.jpeg" desc="Provided by code/BasicFeature/Extension/Contexttest"/>

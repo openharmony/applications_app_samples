@@ -42,7 +42,7 @@
   <td width="170" x:str><a href="code/UI/ArkTsComponentCollection/StateManagement">状态管理</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td height="270" align="center" rowspan="29" style='height:202.50pt' x:str><strong>基础特性</strong></td>
+  <td height="270" align="center" rowspan="30" style='height:202.50pt' x:str><strong>基础特性</strong></td>
   <td x:str><strong>能力增强</strong></td>
   <td x:str><a href="code/BasicFeature/Ability/AbilityFeature">基础能力增强</a></td>
   <td x:str><a href="code/BasicFeature/Ability/AppStartup">应用启动框架startup</a></td>
@@ -216,7 +216,7 @@
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td rowspan="3" x:str><strong>Native</strong></td>
+  <td rowspan="4" x:str><strong>Native</strong></td>
   <td x:str><a href="code/BasicFeature/Native/NdkRawfile">获取Rawfile资源</a></td>
   <td x:str><a href="code/BasicFeature/Native/NdkXComponent">Native XComponent（API 10）</a></td>
   <td x:str><a href="code/BasicFeature/Native/NdkOpenGL">OpenGL三棱椎（API 10）</a></td>
@@ -233,6 +233,12 @@
   <td x:str><a href="code/BasicFeature/Native/NdkQoS">Native QoS</a></td>
   <td x:str><a href="code/BasicFeature/Native/NdkVulkan">XComponent组件对接Vulkan</a></td>
   <td x:str><a href="code/BasicFeature/Native/XComponent">XComponent</a></td>
+ </tr>
+  <tr height="18" style='height:13.50pt;'>
+  <td x:str><a href="code/BasicFeature/Native/NdkNotification">Native Notification</a></td>
+  <td ></td>
+  <td ></td>
+  <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
 <td height="90" align="center" rowspan="26" style='height:67.50pt;' x:str><strong>系统特性（仅对系统应用开放）</strong></td>
