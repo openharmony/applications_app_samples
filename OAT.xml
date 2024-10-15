@@ -782,7 +782,17 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/BasicFeature/Media/VideoPlay/entry/src/main/resources/rawfile/test.mp4" desc="Provided by code/BasicFeature/Media/VideoPlay"/>
 
         <filteritem type="filepath" name="code/BasicFeature/DeviceManagement/Sensor/Capi/entry/src/main/resources/base/media/compass.png" desc="Provided by code/BasicFeature/DeviceManagement/Sensor"/>
-        <filteritem type="filepath" name=" code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic/entry/src/main/resources/base/media/select.png" desc="Provided by code/BasicFeature/DeviceManagement/Vibrator"/>
+        <filteritem type="filepath" name="code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic/entry/src/main/resources/base/media/select.png" desc="Provided by code/BasicFeature/DeviceManagement/Vibrator"/>
+		<filteritem type="filepath" name="code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic/entry/src/main/resources/base/media/AK47.png" desc="Provided by code/BasicFeature/DeviceManagement/Vibrator"/>
+		<filteritem type="filepath" name="code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic/entry/src/main/resources/base/media/AssaultRifle.png" desc="Provided by code/BasicFeature/DeviceManagement/Vibrator"/>
+		<filteritem type="filepath" name="code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic/entry/src/main/resources/base/media/Battle5.png" desc="Provided by code/BasicFeature/DeviceManagement/Vibrator"/>
+		<filteritem type="filepath" name="code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic/entry/src/main/resources/base/media/Battle6.png" desc="Provided by code/BasicFeature/DeviceManagement/Vibrator"/>
+		<filteritem type="filepath" name="code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic/entry/src/main/resources/base/media/Rifle.png" desc="Provided by code/BasicFeature/DeviceManagement/Vibrator"/>
+		<filteritem type="filepath" name="code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic/entry/src/main/resources/base/media/Winchester.png" desc="Provided by code/BasicFeature/DeviceManagement/Vibrator"/>
+		<filteritem type="filepath" name="code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic/entry/src/main/resources/base/media/MP5.png" desc="Provided by code/BasicFeature/DeviceManagement/Vibrator"/>
+		<filteritem type="filepath" name="code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic/entry/src/main/resources/base/media/M4.png" desc="Provided by code/BasicFeature/DeviceManagement/Vibrator"/>
+		<filteritem type="filepath" name="code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic/entry/src/main/resources/base/media/CZ75.png" desc="Provided by code/BasicFeature/DeviceManagement/Vibrator"/>
+		<filteritem type="filepath" name="code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic/entry/src/main/resources/base/media/HK416.png" desc="Provided by code/BasicFeature/DeviceManagement/Vibrator"/>
         <filteritem type="filepath" name="code/BasicFeature/Graphics/DisplaySync/screenshots/device/animator.jpg" desc="Provided by code/BasicFeature/Graphics/DisplaySync"/>
         <filteritem type="filepath" name="code/BasicFeature/Graphics/DisplaySoloist/screenshots/device/displaySoloist.jpg" desc="Provided by code/BasicFeature/Graphics/DisplaySoloist"/>
         <filteritem type="filepath" name="code/BasicFeature/Graphics/DisplaySoloist/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/BasicFeature/Graphics/DisplaySoloist"/>
