@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -197,7 +197,7 @@ static void TestReadWriteWindow(NativeWindow *nativeWindow)
         LOGE("OH_NativeWindow_GetSurfaceId fail");
         return;
     }
-    LOGI("TestReadWriteWindow window nativeId:%{public}lld, readId:%{public}lld", nativeId, readId);
+    LOGI("TestReadWriteWindow window nativeId:%{public}llu, readId:%{public}llu", nativeId, readId);
 }
 
 void NativeRender::DrawBaseColor()
