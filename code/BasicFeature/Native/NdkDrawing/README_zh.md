@@ -13,7 +13,7 @@
 3. 点击页面底部“Draw Text”按钮，页面将绘制“Hello World Drawing”。
 
 > **说明**
-> 本示例XComponent接口使用方法已停止演进，推荐使用方法请参考[XComponent示例](../XComponent/README_zh.md)。
+> 本示例XComponent接口使用方法已停止演进，推荐使用方法请参考[ArkTSXComponent示例](../ArkTSXComponent/README_zh.md)。
 ### 效果预览
 
 | 主页                                 | 绘制五角星                                         | 绘制文字                                            |

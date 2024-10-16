@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -24,7 +24,6 @@
 #include <hilog/log.h>
 
 #include "../common/common.h"
-#include "plugin_render.h"
 
 namespace NativeXComponentSample {
 namespace {
@@ -222,7 +221,6 @@ bool EGLCore::EglContextInit(void* window, int width, int height)
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "eglChooseConfig: unable to choose configs");
         return false;
     }
-
     return CreateEnvironment();
 }
 

@@ -1,11 +1,10 @@
 {
+  "license": "",
+  "devDependencies": {},
+  "author": "",
   "name": "entry",
-  "version": "1.0.0",
   "description": "Please describe the basic information.",
   "main": "",
-  "author": "",
-  "license": "",
-  "dependencies": {
-    "libnativerender.so": "file:./src/main/cpp/types/libnativerender"
-  }
+  "version": "1.0.0",
+  "dependencies": {}
 }
