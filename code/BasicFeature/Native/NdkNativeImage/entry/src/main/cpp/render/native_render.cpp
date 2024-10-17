@@ -1,6 +1,10 @@
 #include "native_render.h"
 #include <common/common.h>
 #include <cmath>
+#include <poll.h>
+#include <unistd.h>
+#include <errno.h>
+#include <stdint.h>
 #include <hilog/log.h>
 
 OHNativeRender::~OHNativeRender()
@@ -48,13 +52,25 @@ bool OHNativeRender::SetSurfaceId(uint64_t surfaceId, uint64_t width, uint64_t h
 void OHNativeRender::RenderFrame()
 {
     OHNativeWindowBuffer *buffer = nullptr;
-    int fenceFd = -1;
-    int32_t result = OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow_, &buffer, &fenceFd);
+    int releaseFenceFd = -1;
+    int32_t result = OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow_, &buffer, &releaseFenceFd);
     if (result != 0 || buffer == nullptr) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "OHNativeRender", "Failed to request buffer.");
         return;
     }
 
+    int retCode = -1;
+    uint32_t timeout = 3000;
+    if (releaseFenceFd != -1) {
+        struct pollfd pollfds = {0};
+        pollfds.fd = releaseFenceFd;
+        pollfds.events = POLLIN;
+        do {
+            retCode = poll(&pollfds, 1, timeout);
+        } while (retCode == -1 && (errno == EINTR || errno == EAGAIN));
+        close(releaseFenceFd); // 防止fd泄漏
+    }
+    
     BufferHandle *handle = OH_NativeWindow_GetBufferHandleFromNative(buffer);
     if (handle == nullptr) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "OHNativeRender", "Failed to get buffer handle.");
@@ -83,7 +99,7 @@ void OHNativeRender::RenderFrame()
     // 设置刷新区域
     Region region{nullptr, 0};
     // 提交给消费者
-    result = OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow_, buffer, fenceFd, region);
+    result = OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow_, buffer, -1, region);
     if (result != 0) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "OHNativeRender", "Failed to flush buffer.");
     }

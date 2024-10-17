@@ -32,6 +32,9 @@ public:
     // 启动渲染引擎
     void Start();
 
+    // 停止渲染引擎
+    void Stop();
+
     // 主循环
     void MainLoop();
 

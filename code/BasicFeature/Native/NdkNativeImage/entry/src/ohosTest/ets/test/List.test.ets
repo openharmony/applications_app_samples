@@ -1,4 +1,4 @@
-import abilityTest from './Ability.test';
+import abilityTest from './NdkNativeImage.test';
 
 export default function testsuite() {
   abilityTest();

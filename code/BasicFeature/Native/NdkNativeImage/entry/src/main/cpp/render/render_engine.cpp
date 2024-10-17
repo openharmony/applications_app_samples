@@ -15,27 +15,7 @@ RenderEngine::RenderEngine(std::shared_ptr<ImageRender> imageRender, uint64_t wi
 
 RenderEngine::~RenderEngine()
 {
-    running_ = false;
-    if (nativeRenderThread_.joinable()) {
-        nativeRenderThread_.join();
-    }
-    // 使用 promise 和 future 确保任务在渲染线程中执行完毕
-    std::promise<void> promise;
-    std::future<void> future = promise.get_future();
-    PostTask([this, &promise](std::shared_ptr<ImageRender> render) {
-        DestroyNativeImage();
-        UpdateNativeWindow(0, 0, nullptr);
-        DestroyNativeVsync();
-        promise.set_value();
-    });
-
-    // 等待任务执行完毕
-    future.wait();
-
-    running_ = false;
-    if (thread_.joinable()) {
-        thread_.join();
-    }
+    Stop();
 }
 
 void RenderEngine::Start()
@@ -56,6 +36,43 @@ void RenderEngine::Start()
         imageRender_->Cleanup();
     });
 }
+
+void RenderEngine::Stop()
+{
+    if (!running_) {
+        return;
+    }
+
+    // 停止渲染线程
+    running_ = false;
+
+    // 唤醒主渲染线程以便它能退出
+    {
+        std::lock_guard<std::mutex> lock(wakeUpMutex_);
+        wakeUp_ = true;
+    }
+    wakeUpCond_.notify_one();
+
+    // 等待主渲染线程结束
+    if (thread_.joinable()) {
+        thread_.join();
+    }
+
+    // 等待 nativeRenderThread_ 渲染线程结束
+    if (nativeRenderThread_.joinable()) {
+        nativeRenderThread_.join();
+    }
+
+    // 解绑 EGLImage 和 textureId
+    OH_NativeImage_DetachContext(nativeImage_);
+    
+    // 销毁资源
+    DestroyNativeImage();
+    UpdateNativeWindow(0, 0, nullptr);
+    DestroyNativeVsync();
+    imageRender_->Cleanup();
+}
+
 
 void RenderEngine::UpdateNativeWindow(uint64_t width, uint64_t height, void *window)
 {
@@ -115,7 +132,7 @@ void RenderEngine::MainLoop()
         ret = OH_NativeImage_UpdateSurfaceImage(nativeImage_);
         if (ret != 0) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "RenderEngine",
-                        "OH_NativeImage_UpdateSurfaceImage failed, ret: %d, texId: %u",
+                        "OH_NativeImage_UpdateSurfaceImage failed, ret: %{public}d, texId: %{public}u",
                         ret, nativeImageTexId_);
             continue;
         }
@@ -160,7 +177,7 @@ void RenderEngine::PostTask(const RenderTask &task)
 
 void RenderEngine::OnVsync(long long timestamp, void *data)
 {
-    OH_LOG_Print(LOG_APP, LOG_DEBUG, LOG_PRINT_DOMAIN, "RenderEngine", "OnVsync %lld.", timestamp);
+    OH_LOG_Print(LOG_APP, LOG_DEBUG, LOG_PRINT_DOMAIN, "RenderEngine", "OnVsync %{public}lld.", timestamp);
     auto renderEngine = reinterpret_cast<RenderEngine *>(data);
     if (renderEngine == nullptr) {
         return;
@@ -216,14 +233,20 @@ bool RenderEngine::CreateNativeImage()
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "RenderEngine", "OH_NativeImage_Create failed.");
         return false;
     }
-    int ret = 0;
+    // 调用 AttachContext 绑定 textureId 到 EGL 图像
+    int ret = OH_NativeImage_AttachContext(nativeImage_, nativeImageTexId_);
+    if (ret != 0) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "RenderEngine",
+                     "AttachContext failed for textureId: %{public}d", nativeImageTexId_);
+        return false;
+    }
     {
         std::lock_guard<std::mutex> lock(nativeImageSurfaceIdMutex_);
         ret = OH_NativeImage_GetSurfaceId(nativeImage_, &nativeImageSurfaceId_);
     }
     if (ret != 0) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "RenderEngine",
-            "OH_NativeImage_GetSurfaceId failed, ret is %d.", ret);
+            "OH_NativeImage_GetSurfaceId failed, ret is %{public}d.", ret);
         return false;
     }
 
@@ -261,6 +284,11 @@ bool RenderEngine::CreateNativeImage()
             nativeRender_->RenderFrame();
             // 控制渲染帧率，避免过高的 CPU 占用
             std::this_thread::sleep_for(std::chrono::nanoseconds(1000000000 / 120)); // 每帧约 8.33 毫秒
+            
+            // 如果 `running_` 被设置为 false，则线程应退出
+            if (!running_) {
+                break;
+            }
         }
     });
     
