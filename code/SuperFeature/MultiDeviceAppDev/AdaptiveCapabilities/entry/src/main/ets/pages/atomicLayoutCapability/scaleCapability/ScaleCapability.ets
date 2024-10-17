@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -20,7 +20,7 @@ struct ScaleCapability {
   @State sliderHeight: number = 400
 
   @Builder slider() {
-    Slider({ value: this.sliderWidth, min: 100, max: 400 })
+    Slider({ value: this.sliderWidth, min: 100, max: 400, style: SliderStyle.OutSet })
       .blockColor(Color.White)
       .width('60%')
       .height(50)
@@ -28,7 +28,7 @@ struct ScaleCapability {
         this.sliderWidth = value
       })
       .position({ x: '20%', y: '80%' })
-    Slider({ value: this.sliderHeight, min: 100, max: 400 })
+    Slider({ value: this.sliderHeight, min: 100, max: 400, style: SliderStyle.OutSet  })
       .blockColor(Color.White)
       .width('60%')
       .height(50)
@@ -39,20 +39,20 @@ struct ScaleCapability {
   }
 
   build() {
-    Row() {
-      Row() {
+    Column() {
+      Column() {
         Column() {
           Image($r('app.media.illustrator'))
+            .width('100%')
+            .height('100%')
         }
-        .width('100%')
-        .height('100%')
         .aspectRatio(1)
         .border({ width: 2, color: '#66F1CCB8' })
       }
       .backgroundColor('#FFFFFF')
       .height(this.sliderHeight)
       .width(this.sliderWidth)
-      .alignItems(VerticalAlign.Center)
+      .alignItems(HorizontalAlign.Center)
       .justifyContent(FlexAlign.Center)
 
       this.slider()
@@ -60,7 +60,7 @@ struct ScaleCapability {
     .height('100%')
     .width('100%')
     .backgroundColor('#F1F3F5')
-    .alignItems(VerticalAlign.Center)
+    .alignItems(HorizontalAlign.Center)
     .justifyContent(FlexAlign.Center)
   }
 }
