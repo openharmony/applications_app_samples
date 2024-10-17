@@ -18,6 +18,7 @@
 #include <GLES2/gl2.h>
 #include <GLES2/gl2ext.h>
 #include <hilog/log.h>
+#include <memory>
 #include <EGL/egl.h>
 #include <EGL/eglext.h>
 #include <cmath>
@@ -27,6 +28,25 @@ namespace {
     constexpr uint32_t POSITION_COMPONENT_COUNT = 3;   // 每个顶点的坐标有3个分量 (x, y, z)
     constexpr uint32_t TEX_COORD_COMPONENT_COUNT = 2;  // 每个顶点的纹理坐标有2个分量 (u, v)
     constexpr uint32_t STRIDE = (POSITION_COMPONENT_COUNT + TEX_COORD_COMPONENT_COUNT) * sizeof(GLfloat); // 步长，5个浮点数
+    const char* vertexShaderSource = R"(
+        attribute vec4 aPosition;
+        attribute vec2 aTexCoord;
+        varying vec2 vTexCoord;
+        void main() {
+            gl_Position = aPosition;
+            vTexCoord = aTexCoord;
+        }
+    )";
+
+    const char* fragmentShaderSource = R"(
+        #extension GL_OES_EGL_image_external : require
+        precision mediump float;
+        uniform samplerExternalOES uTexture;
+        varying vec2 vTexCoord;
+        void main() {
+            gl_FragColor = texture2D(uTexture, vTexCoord);
+        }
+    )";
 }
 ImageRender::~ImageRender()
 {
@@ -57,6 +77,38 @@ bool ImageRender::InitEGL()
         return true;
     }
 
+    if (!InitializeEGLDisplay()) {
+        return false;
+    }
+
+    EGLConfig config;
+    if (!ChooseEGLConfig(config)) {
+        return false;
+    }
+
+    if (!CreateEGLSurface(config)) {
+        return false;
+    }
+
+    if (!CreateEGLContext(config)) {
+        return false;
+    }
+
+    if (!MakeCurrentContext()) {
+        return false;
+    }
+
+    SetupViewport();
+    if (!CompileAndLinkShaders()) {
+        return false;
+    }
+
+    isInit_ = true;
+    return true;
+}
+
+bool ImageRender::InitializeEGLDisplay()
+{
     display_ = eglGetDisplay(EGL_DEFAULT_DISPLAY);
     if (display_ == EGL_NO_DISPLAY) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ImageRender", "Failed to get EGL display.");
@@ -67,10 +119,12 @@ bool ImageRender::InitEGL()
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ImageRender", "Failed to initialize EGL.");
         return false;
     }
+    return true;
+}
 
-    EGLConfig config;
-    EGLint numConfigs;
-    EGLint attribs[] = {
+bool ImageRender::ChooseEGLConfig(EGLConfig& config)
+{
+    const EGLint attribs[] = {
         EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,
         EGL_SURFACE_TYPE, EGL_WINDOW_BIT,
         EGL_RED_SIZE, 8,
@@ -80,54 +134,52 @@ bool ImageRender::InitEGL()
         EGL_NONE
     };
 
+    EGLint numConfigs;
     if (!eglChooseConfig(display_, attribs, &config, 1, &numConfigs) || numConfigs == 0) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ImageRender", "Failed to choose EGL config.");
         return false;
     }
+    return true;
+}
 
+bool ImageRender::CreateEGLSurface(EGLConfig config)
+{
     surface_ = eglCreateWindowSurface(display_, config, window_, nullptr);
     if (surface_ == EGL_NO_SURFACE) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ImageRender", "Failed to create EGL surface.");
         return false;
     }
+    return true;
+}
 
-    EGLint contextAttribs[] = { EGL_CONTEXT_CLIENT_VERSION, 2, EGL_NONE };
+bool ImageRender::CreateEGLContext(EGLConfig config)
+{
+    const EGLint contextAttribs[] = { EGL_CONTEXT_CLIENT_VERSION, 2, EGL_NONE };
     context_ = eglCreateContext(display_, config, EGL_NO_CONTEXT, contextAttribs);
     if (context_ == EGL_NO_CONTEXT) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ImageRender", "Failed to create EGL context.");
         return false;
     }
+    return true;
+}
 
+bool ImageRender::MakeCurrentContext()
+{
     if (!eglMakeCurrent(display_, surface_, surface_, context_)) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ImageRender", "Failed to make EGL context current.");
         return false;
     }
+    return true;
+}
 
-    // 设置视口
-    glViewport(0, 0, width_, height_);
+void ImageRender::SetupViewport()
+{
+    glViewport(0, 0, static_cast<GLsizei>(width_), static_cast<GLsizei>(height_));
     glEnable(GL_DEPTH_TEST);
+}
 
-    // 编译着色器并链接程序
-    const char* vertexShaderSource = R"(
-        attribute vec4 aPosition;
-        attribute vec2 aTexCoord;
-        varying vec2 vTexCoord;
-        void main() {
-            gl_Position = aPosition;
-            vTexCoord = aTexCoord;
-        }
-    )";
-
-    const char* fragmentShaderSource = R"(
-        #extension GL_OES_EGL_image_external : require
-        precision mediump float;
-        uniform samplerExternalOES uTexture;
-        varying vec2 vTexCoord;
-        void main() {
-            gl_FragColor = texture2D(uTexture, vTexCoord);
-        }
-    )";
-
+bool ImageRender::CompileAndLinkShaders()
+{
     GLuint vertexShader = CompileShader(GL_VERTEX_SHADER, vertexShaderSource);
     if (vertexShader == 0) {
         return false;
@@ -147,14 +199,7 @@ bool ImageRender::InitEGL()
     GLint linked;
     glGetProgramiv(shaderProgram_, GL_LINK_STATUS, &linked);
     if (!linked) {
-        GLint infoLen = 0;
-        glGetProgramiv(shaderProgram_, GL_INFO_LOG_LENGTH, &infoLen);
-        if (infoLen > 1) {
-            char* infoLog = new char[infoLen];
-            glGetProgramInfoLog(shaderProgram_, infoLen, nullptr, infoLog);
-            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ImageRender", "Error linking program: %s", infoLog);
-            delete[] infoLog;
-        }
+        PrintProgramLinkError(shaderProgram_);
         glDeleteProgram(shaderProgram_);
         glDeleteShader(vertexShader);
         glDeleteShader(fragmentShader);
@@ -174,8 +219,18 @@ bool ImageRender::InitEGL()
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
 
-    isInit_ = true;
     return true;
+}
+
+void ImageRender::PrintProgramLinkError(GLuint program)
+{
+    GLint infoLen = 0;
+    glGetProgramiv(program, GL_INFO_LOG_LENGTH, &infoLen);
+    if (infoLen > 1) {
+        std::unique_ptr<char[]> infoLog(new char[infoLen]);
+        glGetProgramInfoLog(program, infoLen, nullptr, infoLog.get());
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ImageRender", "Error linking program: %{public}s", infoLog.get());
+    }
 }
 
 void ImageRender::Render()
@@ -210,12 +265,12 @@ void ImageRender::Render()
     };
 
     glEnableVertexAttribArray(positionAttrib_);
-    glVertexAttribPointer(positionAttrib_, POSITION_COMPONENT_COUNT, GL_FLOAT, GL_FALSE, 
-                        STRIDE, vertices);
+    glVertexAttribPointer(positionAttrib_, POSITION_COMPONENT_COUNT, GL_FLOAT, GL_FALSE,
+                          STRIDE, vertices);
 
     glEnableVertexAttribArray(texCoordAttrib_);
-    glVertexAttribPointer(texCoordAttrib_, TEX_COORD_COMPONENT_COUNT, GL_FLOAT, GL_FALSE, 
-                        STRIDE, vertices + POSITION_COMPONENT_COUNT);
+    glVertexAttribPointer(texCoordAttrib_, TEX_COORD_COMPONENT_COUNT, GL_FLOAT, GL_FALSE,
+                          STRIDE, vertices + POSITION_COMPONENT_COUNT);
 
     // 绘制纹理
     glDrawArrays(GL_TRIANGLE_STRIP, 0, NUM_VERTICES);
@@ -273,7 +328,8 @@ GLuint ImageRender::CompileShader(GLenum type, const char* source)
         if (infoLen > 1) {
             char* infoLog = new char[infoLen];
             glGetShaderInfoLog(shader, infoLen, nullptr, infoLog);
-            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ImageRender", "Error compiling shader: %{public}s", infoLog);
+            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ImageRender",
+                         "Error compiling shader: %{public}s", infoLog);
             delete[] infoLog;
         }
         glDeleteShader(shader);

@@ -12,20 +12,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 #include "native_render.h"
 #include <common/common.h>
 #include <algorithm>
 #include <cmath>
 #include <poll.h>
-#include <unistd.h>
-#include <errno.h>
-#include <stdint.h>
+#include <unistd.h>   // 修正为 <unistd.h>
+#include <cerrno>
+#include <cstdint>
 #include <hilog/log.h>
 
 namespace {
-    constexpr double ANIMATION_SPEED_INCREMENT = 0.05;
+    constexpr double ANIMATION_SPEED_INCREMENT = 0.05;    // 动画速度增量
+    constexpr int INVALID_FD = -1;                        // 无效的文件描述符
+    constexpr uint32_t POLL_TIMEOUT_MS = 3000;            // poll 超时时间（毫秒）
+    constexpr nfds_t NUM_POLL_FDS = 1;                    // poll 的文件描述符数量
+    constexpr int SUCCESS = 0;                            // 成功返回码
+    constexpr int FAILURE = -1;                           // 失败返回码
+    constexpr int NO_FENCE = -1;                          // 无同步栅栏
+    constexpr uint8_t MAX_COLOR_VALUE = 255;              // 颜色分量的最大值
+    constexpr double MAX_INTENSITY = 1.0;                 // 最大强度值
+    constexpr double MIN_INTENSITY = 0.0;                 // 最小强度值
+    constexpr double INTENSITY_MULTIPLIER = 2.0;          // 强度乘数
+    constexpr double INTENSITY_LIMIT = 1.0;               // 强度限制
+    constexpr uint8_t ALPHA_SHIFT = 24;                   // Alpha 通道位移
+    constexpr uint8_t RED_SHIFT = 16;                     // Red 通道位移
+    constexpr uint8_t GREEN_SHIFT = 8;                    // Green 通道位移
+    constexpr uint8_t BLUE_SHIFT = 0;                     // Blue 通道位移
 }
+
 OHNativeRender::~OHNativeRender()
 {
     if (nativeWindow_ != nullptr) {
@@ -47,7 +62,7 @@ bool OHNativeRender::SetSurfaceId(uint64_t surfaceId, uint64_t width, uint64_t h
 
     // 从 SurfaceId 创建 NativeWindow
     int ret = OH_NativeWindow_CreateNativeWindowFromSurfaceId(surfaceId, &nativeWindow_);
-    if (ret != 0) {
+    if (ret != SUCCESS) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "OHNativeRender",
             "Failed to create NativeWindow from SurfaceId.");
         return false;
@@ -57,15 +72,10 @@ bool OHNativeRender::SetSurfaceId(uint64_t surfaceId, uint64_t width, uint64_t h
     // 设置缓冲区的大小等属性
     int32_t result = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, SET_BUFFER_GEOMETRY,
         static_cast<int32_t>(width_), static_cast<int32_t>(height_));
-    if (result != 0) {
+    if (result != SUCCESS) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "OHNativeRender", "Failed to set buffer geometry.");
         return false;
     }
-
-    // 如果需要，可以设置其他属性，例如格式、用法等
-    // 示例：
-    // (void)OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_,
-    //     SET_USAGE, BUFFER_USAGE_CPU_READ | BUFFER_USAGE_CPU_WRITE);
 
     return true;
 }
@@ -73,23 +83,23 @@ bool OHNativeRender::SetSurfaceId(uint64_t surfaceId, uint64_t width, uint64_t h
 void OHNativeRender::RenderFrame()
 {
     OHNativeWindowBuffer *buffer = nullptr;
-    int releaseFenceFd = -1;
+    int releaseFenceFd = INVALID_FD;
     int32_t result = OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow_, &buffer, &releaseFenceFd);
-    if (result != 0 || buffer == nullptr) {
+    if (result != SUCCESS || buffer == nullptr) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "OHNativeRender", "Failed to request buffer.");
         return;
     }
 
-    int retCode = -1;
-    uint32_t timeout = 3000;
-    if (releaseFenceFd != -1) {
-        struct pollfd pollfds = {0};
+    int retCode = FAILURE;
+    uint32_t timeout = POLL_TIMEOUT_MS;
+    if (releaseFenceFd != INVALID_FD) {
+        struct pollfd pollfds = {};
         pollfds.fd = releaseFenceFd;
         pollfds.events = POLLIN;
         do {
-            retCode = poll(&pollfds, 1, timeout);
-        } while (retCode == -1 && (errno == EINTR || errno == EAGAIN));
-        close(releaseFenceFd); // 防止fd泄漏
+            retCode = poll(&pollfds, NUM_POLL_FDS, timeout);
+        } while (retCode == FAILURE && (errno == EINTR || errno == EAGAIN));
+        close(releaseFenceFd); // 防止 fd 泄漏
     }
     
     BufferHandle *handle = OH_NativeWindow_GetBufferHandleFromNative(buffer);
@@ -113,15 +123,15 @@ void OHNativeRender::RenderFrame()
 
     // 解除内存映射
     result = munmap(mappedAddr, handle->size);
-    if (result == -1) {
+    if (result == FAILURE) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "OHNativeRender", "Failed to munmap buffer.");
     }
 
     // 设置刷新区域
     Region region{nullptr, 0};
     // 提交给消费者
-    result = OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow_, buffer, -1, region);
-    if (result != 0) {
+    result = OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow_, buffer, NO_FENCE, region);
+    if (result != SUCCESS) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "OHNativeRender", "Failed to flush buffer.");
     }
 }
@@ -133,7 +143,7 @@ void OHNativeRender::DrawGradient(uint32_t* pixel, uint64_t width, uint64_t heig
     time += ANIMATION_SPEED_INCREMENT; // 调整增量以控制动画速度
 
     // 计算动画偏移，用于控制渐变的位置
-    double offset = (sin(time) + 1.0) / 2.0; // 范围从 0.0 到 1.0
+    double offset = (sin(time) + MAX_INTENSITY) / INTENSITY_MULTIPLIER; // 范围从 0.0 到 1.0
 
     // 遍历每一个像素
     for (uint64_t y = 0; y < height; y++) {
@@ -143,19 +153,23 @@ void OHNativeRender::DrawGradient(uint32_t* pixel, uint64_t width, uint64_t heig
 
             // 计算颜色强度，随着时间偏移
             double intensity = fabs(normalizedX - offset);
-            intensity = 1.0 - std::min(2.0 * intensity, 1.0); // 调整范围，使渐变从 1.0 到 0.0，再回到 1.0
-            if (intensity < 0.0) {
-                intensity = 0.0;
+            intensity = MAX_INTENSITY - std::min(INTENSITY_MULTIPLIER * intensity, INTENSITY_LIMIT); // 调整范围
+            if (intensity < MIN_INTENSITY) {
+                intensity = MIN_INTENSITY;
             }
 
             // 计算颜色分量，使用灰度值
-            uint8_t red = static_cast<uint8_t>(intensity * 255);
-            uint8_t green = static_cast<uint8_t>(intensity * 255);
-            uint8_t blue = static_cast<uint8_t>(intensity * 255);
-            uint8_t alpha = 255;
+            uint8_t colorValue = static_cast<uint8_t>(intensity * MAX_COLOR_VALUE);
+            uint8_t red = colorValue;
+            uint8_t green = colorValue;
+            uint8_t blue = colorValue;
+            uint8_t alpha = MAX_COLOR_VALUE;
 
             // 组合颜色值（RGBA）
-            uint32_t color = (alpha << 24) | (red << 16) | (green << 8) | blue;
+            uint32_t color = (static_cast<uint32_t>(alpha) << ALPHA_SHIFT) |
+                             (static_cast<uint32_t>(red) << RED_SHIFT) |
+                             (static_cast<uint32_t>(green) << GREEN_SHIFT) |
+                             (static_cast<uint32_t>(blue) << BLUE_SHIFT);
 
             // 写入像素
             *pixel++ = color;

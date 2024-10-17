@@ -147,19 +147,19 @@ void RenderEngine::MainLoop()
         ret = OH_NativeImage_UpdateSurfaceImage(nativeImage_);
         if (ret != 0) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "RenderEngine",
-                        "OH_NativeImage_UpdateSurfaceImage failed, ret: %{public}d, texId: %{public}u",
-                        ret, nativeImageTexId_);
+                         "OH_NativeImage_UpdateSurfaceImage failed, ret: %{public}d, texId: %{public}u",
+                         ret, nativeImageTexId_);
             continue;
         }
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "RenderEngine",
-                    "OH_NativeImage_UpdateSurfaceImage succeed.");
+                     "OH_NativeImage_UpdateSurfaceImage succeed.");
 
         // 如果需要更新纹理矩阵，可以在这里获取并传递给 ImageRender
         float matrix[16];
         ret = OH_NativeImage_GetTransformMatrixV2(nativeImage_, matrix);
         if (ret != 0) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "RenderEngine",
-                        "OH_NativeImage_GetTransformMatrix failed, ret: %d", ret);
+                        "OH_NativeImage_GetTransformMatrix failed, ret: %{public}d", ret);
             continue;
         }
         // 如果需要，将矩阵传递给 ImageRender

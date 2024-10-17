@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-#ifndef NDK_NATIVE_IMAGE_RENDER_H
-#define NDK_NATIVE_IMAGE_RENDER_H
+#ifndef NDK_NATIVE_IMAGE_RENDERER_H
+#define NDK_NATIVE_IMAGE_RENDERER_H
 
 #include <atomic>
 #include <EGL/egl.h>
@@ -35,6 +35,14 @@ public:
 
 private:
     GLuint CompileShader(GLenum type, const char* source);
+    bool InitializeEGLDisplay();
+    bool ChooseEGLConfig(EGLConfig& config);
+    bool CreateEGLSurface(EGLConfig config);
+    bool CreateEGLContext(EGLConfig config);
+    bool MakeCurrentContext();
+    void SetupViewport();
+    bool CompileAndLinkShaders();
+    void PrintProgramLinkError(GLuint program);
 
     uint64_t width_ = 0;
     uint64_t height_ = 0;
@@ -53,4 +61,4 @@ private:
     GLuint textureTarget_ = 0;
 };
 
-#endif // NDK_NATIVE_IMAGE_RENDER_H
+#endif // NDK_NATIVE_IMAGE_RENDERER_H

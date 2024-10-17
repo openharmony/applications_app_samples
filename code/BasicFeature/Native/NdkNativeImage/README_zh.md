@@ -47,7 +47,7 @@
 
 1. **创建 RenderEngine**：`RenderEngine` 类负责渲染逻辑的管理，包括渲染线程的启动和停止，以及调用具体的渲染函数。
 
-2. **创建窗口实例**：在 C++ 代码中，通过 Surface ID 获取 `OH_NativeWindow` 实例，用于与窗口系统交互。
+2. **获取窗口实例**：在 C++ 代码中，通过 Surface ID 获取 `OH_NativeWindow` 实例，用于与窗口系统交互。
 
 3. **设置缓冲区属性**：使用 [`OH_NativeWindow_NativeWindowHandleOpt`](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkgraphics2d/_native_window.md#oh_nativewindow_nativewindowhandleopt) 函数设置缓冲区的大小、像素格式等属性，确保缓冲区满足渲染需求。
 
@@ -68,7 +68,7 @@
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| `OH_NativeWindow_CreateNativeWindowFromSurfaceId(uint64_t surfaceId, OHNativeWindow **window)` | 通过 Surface ID 创建 `OH_NativeWindow` 对象。 |
+| `OH_NativeWindow_CreateNativeWindowFromSurfaceId(uint64_t surfaceId, OHNativeWindow **window)` | 通过 Surface ID 创建 `OH_NativeWindow` 对象，用于显示内容。 |
 | `OH_NativeWindow_NativeWindowHandleOpt(OH_NativeWindow *window, int code, ...)` | 设置 `OH_NativeWindow` 的属性，例如缓冲区大小、像素格式等。 |
 | `OH_NativeWindow_NativeWindowRequestBuffer(OH_NativeWindow *window, OH_NativeWindow_Buffer **buffer, int *fenceFd)` | 请求一个可写的缓冲区，用于渲染内容。 |
 | `OH_NativeWindow_GetBufferHandleFromNative(OH_NativeWindow_Buffer *buffer)` | 从 `OH_NativeWindow_Buffer` 获取 `BufferHandle`，以便进行内存映射。 |
