@@ -1,5 +1,21 @@
+/*
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 #include "native_render.h"
 #include <common/common.h>
+#include <algorithm>
 #include <cmath>
 #include <poll.h>
 #include <unistd.h>
@@ -7,6 +23,9 @@
 #include <stdint.h>
 #include <hilog/log.h>
 
+namespace {
+    constexpr double ANIMATION_SPEED_INCREMENT = 0.05;
+}
 OHNativeRender::~OHNativeRender()
 {
     if (nativeWindow_ != nullptr) {
@@ -29,7 +48,8 @@ bool OHNativeRender::SetSurfaceId(uint64_t surfaceId, uint64_t width, uint64_t h
     // 从 SurfaceId 创建 NativeWindow
     int ret = OH_NativeWindow_CreateNativeWindowFromSurfaceId(surfaceId, &nativeWindow_);
     if (ret != 0) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "OHNativeRender", "Failed to create NativeWindow from SurfaceId.");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "OHNativeRender",
+            "Failed to create NativeWindow from SurfaceId.");
         return false;
     }
     (void)OH_NativeWindow_NativeObjectReference(nativeWindow_);
@@ -44,7 +64,8 @@ bool OHNativeRender::SetSurfaceId(uint64_t surfaceId, uint64_t width, uint64_t h
 
     // 如果需要，可以设置其他属性，例如格式、用法等
     // 示例：
-    // (void)OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_, SET_USAGE, BUFFER_USAGE_CPU_READ | BUFFER_USAGE_CPU_WRITE);
+    // (void)OH_NativeWindow_NativeWindowHandleOpt(nativeWindow_,
+    //     SET_USAGE, BUFFER_USAGE_CPU_READ | BUFFER_USAGE_CPU_WRITE);
 
     return true;
 }
@@ -109,7 +130,7 @@ void OHNativeRender::DrawGradient(uint32_t* pixel, uint64_t width, uint64_t heig
 {
     // 引入时间变量，实现动态效果
     static double time = 0.0;
-    time += 0.05; // 调整增量以控制动画速度
+    time += ANIMATION_SPEED_INCREMENT; // 调整增量以控制动画速度
 
     // 计算动画偏移，用于控制渐变的位置
     double offset = (sin(time) + 1.0) / 2.0; // 范围从 0.0 到 1.0
@@ -122,7 +143,7 @@ void OHNativeRender::DrawGradient(uint32_t* pixel, uint64_t width, uint64_t heig
 
             // 计算颜色强度，随着时间偏移
             double intensity = fabs(normalizedX - offset);
-            intensity = 1.0 - intensity * 2.0; // 调整范围，使渐变从 1.0 到 0.0，再回到 1.0
+            intensity = 1.0 - std::min(2.0 * intensity, 1.0); // 调整范围，使渐变从 1.0 到 0.0，再回到 1.0
             if (intensity < 0.0) {
                 intensity = 0.0;
             }

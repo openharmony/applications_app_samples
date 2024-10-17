@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 #include "image_render.h"
 #include "common/common.h"
 #include <GLES2/gl2.h>
@@ -7,6 +22,12 @@
 #include <EGL/eglext.h>
 #include <cmath>
 
+namespace {
+    constexpr uint32_t NUM_VERTICES = 4;
+    constexpr uint32_t POSITION_COMPONENT_COUNT = 3;   // 每个顶点的坐标有3个分量 (x, y, z)
+    constexpr uint32_t TEX_COORD_COMPONENT_COUNT = 2;  // 每个顶点的纹理坐标有2个分量 (u, v)
+    constexpr uint32_t STRIDE = (POSITION_COMPONENT_COUNT + TEX_COORD_COMPONENT_COUNT) * sizeof(GLfloat); // 步长，5个浮点数
+}
 ImageRender::~ImageRender()
 {
     Cleanup();
@@ -189,13 +210,15 @@ void ImageRender::Render()
     };
 
     glEnableVertexAttribArray(positionAttrib_);
-    glVertexAttribPointer(positionAttrib_, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), vertices);
+    glVertexAttribPointer(positionAttrib_, POSITION_COMPONENT_COUNT, GL_FLOAT, GL_FALSE, 
+                        STRIDE, vertices);
 
     glEnableVertexAttribArray(texCoordAttrib_);
-    glVertexAttribPointer(texCoordAttrib_, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), vertices + 3);
+    glVertexAttribPointer(texCoordAttrib_, TEX_COORD_COMPONENT_COUNT, GL_FLOAT, GL_FALSE, 
+                        STRIDE, vertices + POSITION_COMPONENT_COUNT);
 
     // 绘制纹理
-    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, NUM_VERTICES);
 
     // 禁用属性
     glDisableVertexAttribArray(positionAttrib_);
@@ -204,7 +227,8 @@ void ImageRender::Render()
     // 交换缓冲区
     if (!eglSwapBuffers(display_, surface_)) {
         EGLint error = eglGetError();
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ImageRender", "eglSwapBuffers failed with error: %d", error);
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ImageRender",
+            "eglSwapBuffers failed with error: %{public}d", error);
     }
 }
 
@@ -249,7 +273,7 @@ GLuint ImageRender::CompileShader(GLenum type, const char* source)
         if (infoLen > 1) {
             char* infoLog = new char[infoLen];
             glGetShaderInfoLog(shader, infoLen, nullptr, infoLog);
-            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ImageRender", "Error compiling shader: %s", infoLog);
+            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ImageRender", "Error compiling shader: %{public}s", infoLog);
             delete[] infoLog;
         }
         glDeleteShader(shader);

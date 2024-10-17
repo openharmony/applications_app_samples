@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 #include <iostream>
 #include <hilog/log.h>
 #include "napi/native_api.h"
@@ -12,7 +27,8 @@ OH_NativeXComponent *g_nativeXComponent;
 std::unique_ptr<RenderEngine> g_renderEngine = nullptr;
 void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window) {
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "OnSurfaceCreatedCB");
-    if ((component == nullptr) || (window == nullptr)) {
+    if ((component == nullptr) || (window == nullptr))
+    {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Callback",
                      "OnSurfaceCreatedCB: component or window is null");
         return;
@@ -21,7 +37,8 @@ void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window) {
     uint64_t width;
     uint64_t height;
     int32_t xSize = OH_NativeXComponent_GetXComponentSize(component, window, &width, &height);
-    if (xSize != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+    if (xSize != OH_NATIVEXCOMPONENT_RESULT_SUCCESS)
+    {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Callback",
                      "OnSurfaceCreatedCB: Unable to get XComponent size");
         return;
@@ -38,7 +55,8 @@ void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window) {
 
 void OnSurfaceChangedCB(OH_NativeXComponent *component, void *window) {
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "OnSurfaceChangedCB");
-    if ((component == nullptr) || (window == nullptr)) {
+    if ((component == nullptr) || (window == nullptr))
+    {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Callback",
                      "OnSurfaceChangedCB: component or window is null");
         return;
@@ -47,7 +65,8 @@ void OnSurfaceChangedCB(OH_NativeXComponent *component, void *window) {
     uint64_t width;
     uint64_t height;
     int32_t xSize = OH_NativeXComponent_GetXComponentSize(component, window, &width, &height);
-    if (xSize != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+    if (xSize != OH_NATIVEXCOMPONENT_RESULT_SUCCESS)
+    {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Callback",
                      "OnSurfaceChangedCB: Unable to get XComponent size");
         return;
@@ -69,19 +88,22 @@ EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
     OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "napi_init",
-                     "init start");
+        "init start");
     napi_property_descriptor desc[] = {
-        { "render", nullptr, Render, nullptr, nullptr, nullptr, napi_default, nullptr }
+        /* 如果需要绑定ts接口，需要在这里添加 */
+        // { "render", nullptr, Render, nullptr, nullptr, nullptr, napi_default, nullptr }
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
-      napi_value exportInstance = nullptr;
-    if (napi_get_named_property(env, exports, OH_NATIVE_XCOMPONENT_OBJ, &exportInstance) != napi_ok) {
+    napi_value exportInstance = nullptr;
+    if (napi_get_named_property(env, exports, OH_NATIVE_XCOMPONENT_OBJ, &exportInstance) != napi_ok)
+    {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "napi_init", "Export: napi_get_named_property fail");
         return nullptr;
     }
 
     OH_NativeXComponent *nativeXComponent = nullptr;
-    if (napi_unwrap(env, exportInstance, reinterpret_cast<void **>(&nativeXComponent)) != napi_ok) {
+    if (napi_unwrap(env, exportInstance, reinterpret_cast<void **>(&nativeXComponent)) != napi_ok)
+    {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "napi_init", "Export: napi_unwrap fail");
         return nullptr;
     }
@@ -89,7 +111,8 @@ static napi_value Init(napi_env env, napi_value exports)
     char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {'\0'};
     uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
     if (OH_NativeXComponent_GetXComponentId(nativeXComponent, idStr, &idSize) !=
-        OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+        OH_NATIVEXCOMPONENT_RESULT_SUCCESS)
+    {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "napi_init",
                      "Export: OH_NativeXComponent_GetXComponentId fail");
         return nullptr;
