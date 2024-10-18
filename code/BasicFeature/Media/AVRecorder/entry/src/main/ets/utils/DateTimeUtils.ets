@@ -37,20 +37,20 @@ export default class DateTimeUtil {
   }
 }
 
-export function getShownTimer(ms): string {
-  let seconds: any = Math.round(ms / 1000);
-  let sec: any = seconds % 60;
-  let min: any = (seconds - sec) / 60;
+export function getShownTimer(ms: number): string {
+  let seconds: number = Math.round(ms / 1000);
+  let sec: number = seconds % 60;
+  let min: number = (seconds - sec) / 60;
   if (sec < 10) {
-    sec = '0' + sec;
+    sec = 0 + sec;
   }
   if (min < 10) {
-    min = '0' + min;
+    min = 0 + min;
   }
   return min + ':' + sec;
 }
 
-export function dateTime(t): string {
+export function dateTime(t: number): string {
   let minute: number = Math.floor(t / 60) % 60
   let m = minute < 10 ? '0' + minute : minute
   let second: number = t % 60
