@@ -26,24 +26,59 @@
     "metadata": [
       {
         "name": "ArkTSPartialUpdate",
-        "value": "false"
+        "value": "true"
       }
     ],
     "requestPermissions": [
       {
-        "name": "ohos.permission.MEDIA_LOCATION"
+        "name": "ohos.permission.MEDIA_LOCATION",
+        "reason": "$string:reason",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when": "inuse"
+        }
       },
       {
-        "name": "ohos.permission.READ_MEDIA"
+        "name": "ohos.permission.READ_MEDIA",
+        "reason": "$string:reason",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when": "inuse"
+        }
       },
       {
-        "name": "ohos.permission.WRITE_MEDIA"
+        "name": "ohos.permission.WRITE_MEDIA",
+        "reason": "$string:reason",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when": "inuse"
+        }
       },
       {
-        "name": "ohos.permission.CAMERA"
+        "name": "ohos.permission.CAMERA",
+        "reason": "$string:reason",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when": "inuse"
+        }
       },
       {
-        "name": "ohos.permission.MICROPHONE"
+        "name": "ohos.permission.MICROPHONE",
+        "reason": "$string:reason",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when": "inuse"
+        }
       }
     ],
     "deliveryWithInstall": true,
@@ -52,7 +87,7 @@
     "abilities": [
       {
         "name": "TestAbility",
-        "srcEntrance": "./ets/testability/TestAbility.ets",
+        "srcEntry": "./ets/testability/TestAbility.ets",
         "description": "$string:TestAbility_desc",
         "icon": "$media:icon",
         "label": "$string:TestAbility_label",

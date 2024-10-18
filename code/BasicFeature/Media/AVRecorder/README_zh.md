@@ -2,9 +2,9 @@
 
 ### 介绍
 
-音视频录制应用是基于AVRecorder接口开发的实现音频录制和视频录制功能的应用，音视频录制的主要工作是捕获音频信号，接收视频信号，完成音视频编码并保存到文件中，帮助开发者轻松实现音视频录制功能，包括开始录制、暂停录制、恢复录制、停止录制、释放资源等功能控制。它允许调用者指定录制的编码格式、封装格式、文件路径等参数。
+音视频录制应用是基于AVRecorder接口开发的实现音频录制和视频录制功能的应用，音视频录制的主要工作是捕获音频信号，接收视频信号，完成音视频编码并保存到文件中，帮助开发者轻松实现音视频录制功能，包括开始录制、暂停录制、恢复录制、停止录制、释放资源等功能控制。它允许调用者指定录制的图像size、音频采样频率等参数。
 
-本示例主要使用@ohos.multimedia.media中的AVRecorder接口实现了录制功能；另外辅助使用@ohos.multimedia.medialibrary接口，实现了创建录制文件功能，接口使用以及权限获取详见[媒体库管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-medialibrary.md)。使用@ohos.multimedia.camera接口，实现了相机预览及出流功能，接口使用以及权限获取详见[相机管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-camera-kit/js-apis-camera.md)。
+本示例主要使用@kit.MediaKit中的AVRecorder接口实现了录制功能；另外辅助使用@kit.CoreFileKit接口，实现了创建录制文件功能，接口使用以及权限获取详见[文件管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/Readme-CN.md)。使用@kit.CameraKit接口，实现了相机预览及出流功能，接口使用以及权限获取详见[相机管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-camera-kit/js-apis-camera.md)。
 
 ### 效果预览
 
@@ -40,8 +40,8 @@ entry/src/main/ets/
 
 * 录控功能接口调用实现参考工程目录中的音频录制页面和视频录制页面
   * 调用create()、prepare()、getInputSurface()、start()、pause()、resume()、stop()、reset()、release()接口实现录制器的创建、准备、录控操作、重置、销毁实例等功能；
-  * 视频录制[VRecorder.ets](entry/src/main/ets/recorder/VideoRecorder.ets)调用Camera接口实现相机出流功能配合视频录制功能，相机的实现方法参考自相机接口[@ohos.multimedia.camera](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-camera-kit/js-apis-camera.md)
-* 调用MediaLibrary实现创建录制文件代码在[SaveCameraAsset.ets](entry/src/main/ets/utils/SaveCameraAsset.ets)，实现方法参考[@ohos.multimedia.medialibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-medialibrary.md)接口说明
+  * 视频录制[VRecorder.ets](entry/src/main/ets/recorder/VideoRecorder.ets)调用Camera接口实现相机出流功能配合视频录制功能，相机的实现方法参考自相机接口[@kit.CameraKit](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-camera-kit/js-apis-camera.md)
+* 调用MediaLibrary实现创建录制文件代码在[SaveCameraAsset.ets](entry/src/main/ets/utils/SaveCameraAsset.ets)，实现方法参考[@kit.CoreFileKit](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/Readme-CN.md)接口说明
 
 ### 相关权限
 
@@ -51,7 +51,7 @@ entry/src/main/ets/
 
 1.允许应用使用麦克风：[ohos.permission.MICROPHONE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionmicrophone)
 
-2.允许应用使用相机拍摄照片和录制视频：[ohos.permission.CAMERA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-camera-kit/js-apis-camera.md)
+2.允许应用使用相机拍摄照片和录制视频：[ohos.permission.CAMERA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissioncamera)
 
 3.允许应用读取用户外部存储中的媒体文件信息：[ohos.permission.READ_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionread_media)
 
@@ -67,9 +67,9 @@ entry/src/main/ets/
 
 1.本示例仅支持在标准系统上运行，支持设备：Phone。
 
-2.本示例仅支持API9版本SDK，版本号：3.2.10.8。
+2.本示例仅支持API12版本SDK，版本号：5.0.0.65。
 
-3.本示例使用的IDE版本信息：DevEco Studio 3.1 Beta2 (Build Version:3.1.0.400, built on April 7, 2023)。
+3.本示例使用的IDE版本信息：DevEco Studio Next 5.0 Beta1 (Build Version:5.0.3.800, built on Sep 4, 2024)。
 
 4.相机、媒体库为系统接口，需要配置高权限签名，相关权限级别可查阅权限列表，需要配置系统应用签名，可以参考[特殊权限配置方法](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-overview.md)。
 

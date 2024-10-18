@@ -13,8 +13,9 @@
  * limitations under the License.
  */
 
-import camera from '@ohos.multimedia.camera';
-import media from '@ohos.multimedia.media';
+import { camera } from '@kit.CameraKit';
+import { media } from '@kit.MediaKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { dateTime } from '../utils/DateTimeUtils';
 import Logger from '../utils/Logger';
 import SaveCameraAsset from '../utils/SaveCameraAsset';
@@ -26,44 +27,44 @@ const TAG: string = 'Sample_VideoRecorder';
 struct VideoRecording {
   private surfaceId: string = '';
   xcomponentController: XComponentController = new XComponentController();
-  private videoRecorder: media.AVRecorder;
-  private cameraManager: camera.CameraManager;
-  private cameras: any = undefined;
-  private cameraInput: camera.CameraInput;
-  private captureSession: camera.CaptureSession;
-  private previewOutput: camera.PreviewOutput;
-  private videoOutput: camera.VideoOutput;
+  private videoRecorder?: media.AVRecorder;
+  private cameraManager?: camera.CameraManager;
+  private cameras?: Array<camera.CameraDevice>;
+  private cameraInput?: camera.CameraInput;
+  private captureSession?: camera.CaptureSession;
+  private previewOutput?: camera.PreviewOutput;
+  private videoOutput?: camera.VideoOutput;
   private videoOutSurfaceId: string = '';
-  private fdPath: string = undefined;
+  private fdPath?: string = '';
   @State videoRecorderTimeText: string = '00:00';
   private seconds: number = 0;
   private timer: number = 0;
   private cameraIndex: number = 0;
-  @State videoResolution: object = { 'frameWidth': 1280, 'frameHeight': 720};
+  @State videoResolution: Resolution = { frameWidth: 1920, frameHeight: 1080};
   @State framerate: number = 30; // set default video framerate 30
   @State videoCodecType: string = 'video/avc';
   private recorderState: string = 'free';
   @State isStartRecording: boolean = false;
   @State isPauseRecording: boolean = false;
   private mSaveCameraAsset: SaveCameraAsset = new SaveCameraAsset(TAG);
-  private mFileAssetId: number = 0;
-  private cameraOutputCapability: camera.CameraOutputCapability = undefined;
-  private videoProfiles: any = undefined;
-  private previewProfiles: any = undefined;
+  private mFileAssetId?: number = 0;
+  private cameraOutputCapability?: camera.CameraOutputCapability;
+  private curVideoProfiles?: Array<camera.VideoProfile>;
+  private previewProfiles?: Array<camera.Profile>;
 
-  private avProfile = {
+  private avProfile: media.AVRecorderProfile = {
     audioBitrate: 200000, // set audioBitrate according to device ability
     audioChannels: 2, // set audioChannels, valid value 1-8
     audioCodec: media.CodecMimeType.AUDIO_AAC, // set audioCodec, AUDIO_AAC is the only choice
     audioSampleRate: 48000, // set audioSampleRate according to device ability
     fileFormat: media.ContainerFormatType.CFT_MPEG_4, // set fileFormat, for video is mp4
-    videoBitrate: 300000, // set videoBitrate according to device ability
+    videoBitrate: 3000000, // set videoBitrate according to device ability
     videoCodec: media.CodecMimeType.VIDEO_AVC, // set videoCodec, avc or mpeg4 can be selected
     videoFrameWidth: 640, // set videoFrameWidth according to device ability
     videoFrameHeight: 480, // set videoFrameHeight according to device ability
     videoFrameRate: 30 // set videoFrameRate according to device ability
   }
-  private avConfig = {
+  private avConfig: media.AVRecorderConfig = {
     audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
     videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
     profile: this.avProfile,
@@ -91,11 +92,11 @@ struct VideoRecording {
     this.stopRecordingProcess();
   }
 
-  async failureCallback(error): Promise<void> {
+  async failureCallback(error: BusinessError): Promise<void> {
     Logger.info(TAG, 'case failureCallback called,errMessage is ' + error.message);
   }
 
-  async catchCallback(error): Promise<void> {
+  async catchCallback(error: BusinessError): Promise<void> {
     Logger.info(TAG, 'case catchCallback called,errMessage is ' + error.message);
   }
 
@@ -139,59 +140,65 @@ struct VideoRecording {
       Logger.info(TAG, '[camera] case getCameras failed');
     }
     this.cameraOutputCapability = this.cameraManager.getSupportedOutputCapability(this.cameras[this.cameraIndex]);
-    this.videoProfiles = this.cameraOutputCapability.videoProfiles;
+    this.curVideoProfiles = this.cameraOutputCapability.videoProfiles;
     Logger.info(TAG, 'init camera done');
   }
 
   // create camera input
   async createCameraInput(): Promise<void> {
     Logger.info(TAG, 'createCameraInput called');
-    this.cameraInput = this.cameraManager.createCameraInput(this.cameras[this.cameraIndex]);
-    if (this.cameraInput) {
-      Logger.info(TAG, '[camera] case createCameraInput success');
-    } else {
-      Logger.info(TAG, '[camera] case createCameraInput failed');
-      return;
+    if (this.cameraManager && this.cameras && this.cameras.length > 0) {
+      this.cameraInput = this.cameraManager.createCameraInput(this.cameras[this.cameraIndex]);
+      if (this.cameraInput) {
+        Logger.info(TAG, '[camera] case createCameraInput success');
+      } else {
+        Logger.info(TAG, '[camera] case createCameraInput failed');
+        return;
+      }
+      await this.cameraInput.open().then(() => {
+        Logger.info(TAG, '[camera] case cameraInput.open() called');
+      }, this.failureCallback).catch(this.catchCallback);
     }
-    await this.cameraInput.open().then(() => {
-      Logger.info(TAG, '[camera] case cameraInput.open() called');
-    }, this.failureCallback).catch(this.catchCallback);
   }
 
   // create camera preview
   async createPreviewOutput(): Promise<void> {
     Logger.info(TAG, 'createPreviewOutput called');
-    this.previewProfiles = this.cameraOutputCapability.previewProfiles;
-    this.previewProfiles[0].size.height = this.videoResolution['frameHeight'];
-    this.previewProfiles[0].size.width = this.videoResolution['frameWidth'];
-    if (this.previewProfiles[0].format === camera.CameraFormat.CAMERA_FORMAT_YUV_420_SP) {
-      Logger.info(TAG, '[camera] case format is VIDEO_SOURCE_TYPE_SURFACE_YUV');
-      this.avConfig.videoSourceType = media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV;
-    } else {
-      Logger.info(TAG, '[camera] case format is VIDEO_SOURCE_TYPE_SURFACE_ES');
-      this.avConfig.videoSourceType = media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_ES;
+    if (this.cameraOutputCapability && this.cameraManager) {
+      this.previewProfiles = this.cameraOutputCapability.previewProfiles;
+      this.previewProfiles[0].size.height = this.videoResolution.frameHeight;
+      this.previewProfiles[0].size.width = this.videoResolution.frameWidth;
+      if (this.previewProfiles[0].format === camera.CameraFormat.CAMERA_FORMAT_YUV_420_SP) {
+        Logger.info(TAG, '[camera] case format is VIDEO_SOURCE_TYPE_SURFACE_YUV');
+        this.avConfig.videoSourceType = media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV;
+      } else {
+        Logger.info(TAG, '[camera] case format is VIDEO_SOURCE_TYPE_SURFACE_ES');
+        this.avConfig.videoSourceType = media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_ES;
+      }
+      this.previewOutput = this.cameraManager.createPreviewOutput(this.previewProfiles[0], this.surfaceId);
+      if (!this.previewOutput) {
+        Logger.info(TAG, 'create previewOutput failed!');
+      }
+      Logger.info(TAG, 'createPreviewOutput done');
     }
-    this.previewOutput = this.cameraManager.createPreviewOutput(this.previewProfiles[0], this.surfaceId);
-    if (!this.previewOutput) {
-      Logger.info(TAG, 'create previewOutput failed!');
-    }
-    Logger.info(TAG, 'createPreviewOutput done');
   }
 
   // create camera capture session
   async createCaptureSession(): Promise<void> {
     Logger.info(TAG, 'createCaptureSession called');
-    this.captureSession = this.cameraManager.createCaptureSession();
-    if (!this.captureSession) {
-      Logger.info(TAG, 'createCaptureSession failed!');
-      return
+    if (this.cameraManager) {
+      this.captureSession = this.cameraManager.createCaptureSession();
+      if (!this.captureSession) {
+        Logger.info(TAG, 'createCaptureSession failed!');
+        return
+      }
+      this.captureSession.beginConfig();
+      this.captureSession.addInput(this.cameraInput);
+      this.captureSession.addOutput(this.previewOutput);
+      await this.captureSession.commitConfig().then(() => {
+        Logger.info(TAG, 'case commitConfig success');
+      }, this.failureCallback).catch(this.catchCallback);
     }
-    this.captureSession.beginConfig();
-    this.captureSession.addInput(this.cameraInput);
-    this.captureSession.addOutput(this.previewOutput);
-    await this.captureSession.commitConfig().then(() => {
-      Logger.info(TAG, 'case commitConfig success');
-    }, this.failureCallback).catch(this.catchCallback);
   }
 
   // start captureSession
@@ -211,8 +218,10 @@ struct VideoRecording {
     Logger.info(TAG, 'removeVideoOutput called');
     if (this.videoOutput) {
       Logger.info(TAG, 'videoOutput already exits, remove it');
-      this.captureSession.removeOutput(this.videoOutput);
-      Logger.info(TAG, 'remove videoOutput done');
+      if (this.captureSession) {
+        this.captureSession.removeOutput(this.videoOutput);
+        Logger.info(TAG, 'remove videoOutput done');
+      }
     }
     Logger.info(TAG, 'removeVideoOutput done');
   }
@@ -220,10 +229,10 @@ struct VideoRecording {
   // create video output
   async createVideoOutput(): Promise<void> {
     Logger.info(TAG, 'createVideoOutput called');
-    if (this.videoRecorder) {
-      this.videoProfiles[this.cameraIndex].size.height = this.videoResolution['frameHeight'];
-      this.videoProfiles[this.cameraIndex].size.width = this.videoResolution['frameWidth'];
-      this.videoOutput = this.cameraManager.createVideoOutput(this.videoProfiles[this.cameraIndex], this.videoOutSurfaceId);
+    if (this.videoRecorder && this.curVideoProfiles && this.cameraManager) {
+      this.curVideoProfiles[this.cameraIndex].size.height = this.videoResolution.frameHeight;
+      this.curVideoProfiles[this.cameraIndex].size.width = this.videoResolution.frameWidth;
+      this.videoOutput = this.cameraManager.createVideoOutput(this.curVideoProfiles[this.cameraIndex], this.videoOutSurfaceId);
       if (!this.videoOutput) {
         Logger.info(TAG, '[camera] case create videoOutPut fail!!!');
         return;
@@ -239,24 +248,26 @@ struct VideoRecording {
   // add video output into CaptureSession
   async restartVideoOutput(): Promise<void> {
     Logger.info(TAG, 'restartVideoOutput called');
-    await this.captureSession.stop().then(() => {
-      Logger.info(TAG, 'case stop captureSession success');
-    }, this.failureCallback).catch(this.catchCallback);
-    this.captureSession.beginConfig();
-    await this.removeVideoOutput();
-    await this.createVideoOutput();
-    this.captureSession.addOutput(this.videoOutput);
-    await this.captureSession.commitConfig().then(() => {
-      Logger.info(TAG, 'case commitConfig success');
-    }, this.failureCallback).catch(this.catchCallback);
-    await this.startCaptureSession();
-    if (this.videoOutput) {
-      await this.videoOutput.start().then(() => {
-        Logger.info(TAG, '[camera] case videoOutput start success');
+    if (this.captureSession) {
+      await this.captureSession.stop().then(() => {
+        Logger.info(TAG, 'case stop captureSession success');
       }, this.failureCallback).catch(this.catchCallback);
-    } else {
-      Logger.info(TAG, 'videoOutput is null!!!');
-      return;
+      this.captureSession.beginConfig();
+      await this.removeVideoOutput();
+      await this.createVideoOutput();
+      this.captureSession.addOutput(this.videoOutput);
+      await this.captureSession.commitConfig().then(() => {
+        Logger.info(TAG, 'case commitConfig success');
+      }, this.failureCallback).catch(this.catchCallback);
+      await this.startCaptureSession();
+      if (this.videoOutput) {
+        await this.videoOutput.start().then(() => {
+          Logger.info(TAG, '[camera] case videoOutput start success');
+        }, this.failureCallback).catch(this.catchCallback);
+      } else {
+        Logger.info(TAG, 'videoOutput is null!!!');
+        return;
+      }
     }
   }
 
@@ -290,7 +301,7 @@ struct VideoRecording {
   async releaseCameraInput(): Promise<void> {
     Logger.info(TAG, 'releaseCameraInput called');
     if (this.cameraInput) {
-      this.cameraInput = null;
+      this.cameraInput = undefined;
     }
     Logger.info(TAG, 'releaseCameraInput done');
   }
@@ -302,7 +313,7 @@ struct VideoRecording {
       await this.previewOutput.release().then(() => {
         Logger.info('[camera] case main previewOutput release called');
       }, this.failureCallback).catch(this.catchCallback);
-      this.previewOutput = null;
+      this.previewOutput = undefined;
     }
     Logger.info(TAG, 'releasePreviewOutput done');
   }
@@ -314,7 +325,7 @@ struct VideoRecording {
       await this.videoOutput.release().then(() => {
         Logger.info('[camera] case main videoOutput release called');
       }, this.failureCallback).catch(this.catchCallback);
-      this.videoOutput = null;
+      this.videoOutput = undefined;
     }
     Logger.info(TAG, 'releaseVideoOutput done');
   }
@@ -337,7 +348,7 @@ struct VideoRecording {
       await this.captureSession.release().then(() => {
         Logger.info('[camera] case main captureSession release success');
       }, this.failureCallback).catch(this.catchCallback);
-      this.captureSession = null;
+      this.captureSession = undefined;
     }
     Logger.info(TAG, 'releaseCaptureSession done');
   }
@@ -356,45 +367,47 @@ struct VideoRecording {
   // set callback on
   setCallback(): void {
     Logger.info('case callback');
-    this.videoRecorder.on('stateChange', (state, reason) => {
-      Logger.info('case state has changed, new state is' + state);
-      switch (state) {
-        case 'idle':
-          this.recorderState = 'idle';
-          break;
-        case 'prepared':
-          this.recorderState = 'prepared';
-          break;
-        case 'started':
-          this.recorderState = 'started';
-          this.getRecordTime();
-          this.isStartRecording = true;
-          this.isPauseRecording = false;
-          break;
-        case 'paused':
-          this.recorderState = 'paused';
-          clearInterval(this.timer);
-          this.isPauseRecording = true;
-          break;
-        case 'stopped':
-          this.recorderState = 'stopped';
-          this.isStartRecording = false;
-          break;
-        case 'released':
-          this.recorderState = 'released';
-          break;
-        case 'error':
-          Logger.info('case error state!!!');
-          this.recorderState = 'error';
-          break;
-        default:
-          Logger.info('case start is unknown');
-          break;
-      }
-    });
-    this.videoRecorder.on('error', (err) => {
-      Logger.info(TAG, 'case avRecorder.on(error) called, errMessage is ' + err.message);
-    });
+    if (this.videoRecorder) {
+      this.videoRecorder.on('stateChange', (state, reason) => {
+        Logger.info('case state has changed, new state is' + state);
+        switch (state) {
+          case 'idle':
+            this.recorderState = 'idle';
+            break;
+          case 'prepared':
+            this.recorderState = 'prepared';
+            break;
+          case 'started':
+            this.recorderState = 'started';
+            this.getRecordTime();
+            this.isStartRecording = true;
+            this.isPauseRecording = false;
+            break;
+          case 'paused':
+            this.recorderState = 'paused';
+            clearInterval(this.timer);
+            this.isPauseRecording = true;
+            break;
+          case 'stopped':
+            this.recorderState = 'stopped';
+            this.isStartRecording = false;
+            break;
+          case 'released':
+            this.recorderState = 'released';
+            break;
+          case 'error':
+            Logger.info('case error state!!!');
+            this.recorderState = 'error';
+            break;
+          default:
+            Logger.info('case start is unknown');
+            break;
+        }
+      });
+      this.videoRecorder.on('error', (err) => {
+        Logger.info(TAG, 'case avRecorder.on(error) called, errMessage is ' + err.message);
+      });
+    }
   }
 
   async createVideoRecorder(): Promise<void> {
@@ -417,61 +430,75 @@ struct VideoRecording {
     } else {
       this.avConfig.profile.videoCodec = media.CodecMimeType.VIDEO_AVC;
     }
-    this.avConfig.profile.videoFrameHeight = this.videoResolution['frameHeight'];
-    this.avConfig.profile.videoFrameWidth = this.videoResolution['frameWidth'];
+    this.avConfig.profile.videoFrameHeight = this.videoResolution.frameHeight;
+    this.avConfig.profile.videoFrameWidth = this.videoResolution.frameWidth;
     this.avConfig.profile.videoFrameRate = this.framerate;
-    await this.videoRecorder.prepare(this.avConfig).then(() => {
-      Logger.info(TAG, 'case prepare AVRecorder called');
-    }, this.failureCallback).catch(this.catchCallback);
-    Logger.info(TAG, 'case prepareVideoRecorder out');
+    if (this.videoRecorder) {
+      await this.videoRecorder.prepare(this.avConfig).then(() => {
+        Logger.info(TAG, 'case prepare AVRecorder called');
+      }, this.failureCallback).catch(this.catchCallback);
+      Logger.info(TAG, 'case prepareVideoRecorder out');
+    }
   }
 
   async getInputSurface(): Promise<void> {
     Logger.info(TAG, 'case getInputSurface in');
-    await this.videoRecorder.getInputSurface().then((outPutSurface) => {
-      Logger.info('case getInputSurface called');
-      if (!outPutSurface) {
-        Logger.error(TAG, 'case getInputSurface ID is none');
-        return
-      }
-      this.videoOutSurfaceId = outPutSurface;
-      Logger.info(TAG, 'case outPutSurface surfaceID is: ${this.videoOutSurfaceId}');
-    }, this.failureCallback).catch(this.catchCallback);
+    if (this.videoRecorder) {
+      await this.videoRecorder.getInputSurface().then((outPutSurface) => {
+        Logger.info('case getInputSurface called');
+        if (!outPutSurface) {
+          Logger.error(TAG, 'case getInputSurface ID is none');
+          return
+        }
+        this.videoOutSurfaceId = outPutSurface;
+        Logger.info(TAG, 'case outPutSurface surfaceID is: ${this.videoOutSurfaceId}');
+      }, this.failureCallback).catch(this.catchCallback);
+    }
     Logger.info(TAG, 'case getInputSurface out');
   }
 
   async startVideoRecording(): Promise<void> {
     Logger.info(TAG, 'case startVideoRecording called');
-    await this.videoRecorder.start().then(() => {
-      Logger.info(TAG, 'case start VideoRecorder called');
-    }, this.failureCallback).catch(this.catchCallback);
+    if (this.videoRecorder) {
+      await this.videoRecorder.start().then(() => {
+        Logger.info(TAG, 'case start VideoRecorder called');
+      }, this.failureCallback).catch(this.catchCallback);
+    }
   }
 
   async pauseVideoRecording(): Promise<void> {
     Logger.info(TAG, 'case pauseVideoRecording called');
-    await this.videoRecorder.pause().then(() => {
-      Logger.info(TAG, 'case pause VideoRecorder called');
-    }, this.failureCallback).catch(this.catchCallback);
+    if (this.videoRecorder) {
+      await this.videoRecorder.pause().then(() => {
+        Logger.info(TAG, 'case pause VideoRecorder called');
+      }, this.failureCallback).catch(this.catchCallback);
+    }
   }
 
   async resumeVideoRecording(): Promise<void> {
     Logger.info(TAG, 'case resumeVideoRecording called');
-    await this.videoRecorder.resume().then(() => {
-      Logger.info(TAG, 'case resume VideoRecorder called');
-    }, this.failureCallback).catch(this.catchCallback);
+    if (this.videoRecorder) {
+      await this.videoRecorder.resume().then(() => {
+        Logger.info(TAG, 'case resume VideoRecorder called');
+      }, this.failureCallback).catch(this.catchCallback);
+    }
   }
 
   async stopVideoRecording(): Promise<void> {
     Logger.info(TAG, 'case stopVideoRecording called');
-    await this.videoRecorder.stop().then(() => {
-      Logger.info(TAG, 'case stop VideoRecorder called');
-    }, this.failureCallback).catch(this.catchCallback);
+    if (this.videoRecorder) {
+      await this.videoRecorder.stop().then(() => {
+        Logger.info(TAG, 'case stop VideoRecorder called');
+      }, this.failureCallback).catch(this.catchCallback);
+    }
   }
 
   async resetVideoRecording(): Promise<void> {
-    await this.videoRecorder.reset().then(() => {
-      Logger.info(TAG, 'case resetVideoRecording called');
-    }, this.failureCallback).catch(this.catchCallback);
+    if (this.videoRecorder) {
+      await this.videoRecorder.reset().then(() => {
+        Logger.info(TAG, 'case resetVideoRecording called');
+      }, this.failureCallback).catch(this.catchCallback);
+    }
   }
 
   async releaseVideoRecorder(): Promise<void> {
@@ -488,8 +515,8 @@ struct VideoRecording {
   // close file fd
   async closeFd(): Promise<void> {
     Logger.info(TAG, 'case closeFd called');
-    if (this.fdPath) {
-      await this.mSaveCameraAsset.VideoPrepareFile.close(this.mFileAssetId);
+    if (this.mSaveCameraAsset) {
+      await this.mSaveCameraAsset.closeVideoFile();
       this.mFileAssetId = undefined;
       this.fdPath = undefined;
       Logger.info(TAG, 'case closeFd done');
@@ -575,7 +602,6 @@ struct VideoRecording {
               this.surfaceId = this.xcomponentController.getXComponentSurfaceId()
               Logger.info(TAG, '[VideoRecorder] surfaceId: ' + this.surfaceId)
               Logger.info(TAG, 'XComponent1 loaded');
-              this.enterInit();
             })
             .width('100%').height('100%')
           Text(this.videoRecorderTimeText)
@@ -675,32 +701,51 @@ struct VideoRecording {
   })
 }
 
+class Resolution {
+  public frameWidth: number = 0
+  public frameHeight: number = 0
+}
+
+class VideoResolution {
+  public itemValue: string = ''
+  public value: Resolution = { frameWidth: 0, frameHeight: 0 }
+}
+
+class VideoFrameRate {
+  public itemValue: string = ''
+  public value: number = 0
+}
+
+class VideoCodec {
+  public itemValue: string = ''
+  public value: string = ''
+}
 
 @CustomDialog
 struct CustomDialogSetting {
-  @Link videoResolution: Object
+  @Link videoResolution: Resolution
   @Link videoFrameRate: number
   @Link videoCodec: string
   controller: CustomDialogController
-  cancel: () => void
-  confirm: () => void
-  @State currentVideoResolution: Object = { 'frameWidth': 1280, 'frameHeight': 720 }
-  @State currentVideoResolutionText: string = '[16:9]720p'
+  cancel?: () => void
+  confirm?: () => void
+  @State currentVideoResolution: Resolution = { frameWidth: 1920, frameHeight: 1080 }
+  @State currentVideoResolutionText: string = '[16:9]1080p'
   @State currentVideoFramerate: number = 30
   @State currentVideoCodec: string = 'video/avc'
-  private initVideoResolution: Object = this.videoResolution
+  private initVideoResolution: Resolution = this.videoResolution
   private initVideoFramerate: number = this.videoFrameRate
-  private initVideoCodec: string = this.videoCodec
-  @State videoResolutionList: Array<Object> = [
-    { 'itemValue': '16:9 (720p)', 'value': { 'frameWidth': 1280, 'frameHeight': 720 } },
-    { 'itemValue': '16:9 (1080p)', 'value': { 'frameWidth': 1920, 'frameHeight': 1080 } },
+  private initVideoCodec: string = 'video/avc'
+  @State videoResolutionList: Array<VideoResolution> = [
+    { itemValue: '16:9 (720p)', value: { frameWidth: 1280, frameHeight: 720 } },
+    { itemValue: '16:9 (1080p)', value: { frameWidth: 1920, frameHeight: 1080 } },
   ]
-  @State videoFrameRateList: Array<Object> = [
-    { 'itemValue': '30fps', 'value': 30 },
+  @State videoFrameRateList: Array<VideoFrameRate> = [
+    { itemValue: '30fps', value: 30 },
   ]
-  @State videoCodecList: Array<Object> = [
-    { 'itemValue': 'video/avc', 'value': 'video/avc' },
-    { 'itemValue': 'video/mpeg4', 'value': 'video/mpeg4' },
+  @State videoCodecList: Array<VideoCodec> = [
+    { itemValue: 'video/avc', value: 'video/avc' },
+    { itemValue: 'video/mpeg4', value: 'video/mpeg4' },
   ]
 
   build() {
@@ -714,7 +759,7 @@ struct CustomDialogSetting {
           .margin({ left: 24, top: 16, right: 24 })
         Column() {
           List({ space: 10 }) {
-            ForEach(this.videoResolutionList, (item, index) => {
+            ForEach(this.videoResolutionList, (item: VideoResolution, index) => {
               ListItem() {
                 Row() {
                   Text($r('app.string.video_resolution'))
@@ -724,7 +769,7 @@ struct CustomDialogSetting {
                     .width(160)
                     .fontFamily('HarmonyHeiTi-Medium')
                   Radio({ value: item.value.toString(), group: 'radioGroup' })
-                    .checked(item.value['frameWidth'] == this.initVideoResolution['frameWidth'])
+                    .checked(item.value.frameWidth == this.initVideoResolution.frameWidth)
                     .height(24)
                     .onChange((isChecked: boolean) => {
                       if (isChecked) {
@@ -747,7 +792,9 @@ struct CustomDialogSetting {
             this.videoFrameRate = this.initVideoFramerate
             this.videoCodec = this.initVideoCodec
             this.controller.close()
-            this.cancel()
+            if (this.cancel) {
+              this.cancel()
+            }
           })
           .backgroundColor($r('app.color.button_background'))
           .fontColor($r('app.color.button_color'))
@@ -767,7 +814,9 @@ struct CustomDialogSetting {
             this.videoFrameRate = this.currentVideoFramerate
             this.videoCodec = this.currentVideoCodec
             this.controller.close()
-            this.confirm()
+            if (this.confirm) {
+              this.confirm()
+            }
           })
           .backgroundColor($r('app.color.button_background'))
           .fontColor($r('app.color.button_color'))
