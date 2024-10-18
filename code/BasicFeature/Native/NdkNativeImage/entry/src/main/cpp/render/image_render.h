@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-#ifndef NDK_NATIVE_IMAGE_RENDERER_H
-#define NDK_NATIVE_IMAGE_RENDERER_H
+#ifndef NATIVE_IMAGE_RENDERER_H
+#define NATIVE_IMAGE_RENDERER_H
 
 #include <atomic>
 #include <EGL/egl.h>
@@ -32,6 +32,8 @@ public:
 
     // 添加 SetTexture 方法，用于接收 RenderEngine 提供的纹理
     void SetTexture(GLuint textureId, GLuint textureTarget);
+
+    void SetTransformMatrix(const float matrix[16]);
 
 private:
     GLuint CompileShader(GLenum type, const char* source);
@@ -59,6 +61,8 @@ private:
     GLint textureUniform_ = -1;
     GLuint textureId_ = 0;
     GLuint textureTarget_ = 0;
+
+    float transformMatrix_[16] = { 0.0f };
 };
 
-#endif // NDK_NATIVE_IMAGE_RENDERER_H
+#endif // NATIVE_IMAGE_RENDERER_H

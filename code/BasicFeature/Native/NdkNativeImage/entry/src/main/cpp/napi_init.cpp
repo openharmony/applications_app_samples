@@ -83,8 +83,7 @@ static napi_value Render(napi_env env, napi_callback_info info)
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
-    OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "napi_init",
-        "init start");
+    OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "napi_init", "init start");
     napi_property_descriptor desc[] = {
         /* 如果需要绑定ts接口，需要在这里添加 */
         // { "render", nullptr, Render, nullptr, nullptr, nullptr, napi_default, nullptr }

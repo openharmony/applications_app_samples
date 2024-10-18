@@ -50,42 +50,47 @@ public:
     // 停止渲染引擎
     void Stop();
 
-    // 主循环
-    void MainLoop();
-
     // 发布任务到渲染线程
     void PostTask(const RenderTask &task);
 
     // 更新 NativeWindow
-    // @param width - NativeWindow width.
-    // @param height - NativeWindow height.
-    // @param window - NativeWindow created by XComponent
     void UpdateNativeWindow(uint64_t width, uint64_t height, void *window);
 
 private:
-    // 渲染引擎运行状态
-    std::atomic<bool> running_{false};
-    std::thread thread_;
-    std::thread::id threadId_;
+    // 主循环
+    void MainLoop();
 
-    // NativeImage 相关
-    static void OnNativeImageFrameAvailable(void *data);
-    OH_OnFrameAvailableListener nativeImageFrameAvailableListener_{};
-    OH_NativeImage *nativeImage_ = nullptr;
-    GLuint nativeImageTexId_ = 0U;
-    mutable std::mutex nativeImageSurfaceIdMutex_;
-    uint64_t nativeImageSurfaceId_ = 0;
-    std::atomic<int> availableFrameCnt_{0};
+    // 渲染线程初始化
+    void InitializeRendering();
+    void CleanupResources();
 
+    // 渲染流程任务
+    void WaitForVsync();
+    void ExecuteRenderTasks();
+    void UpdateSurfaceImage();
+    void UpdateTextureMatrix();
+
+    // 创建与销毁 NativeImage
     bool CreateNativeImage();
+    void GenerateTexture();
+    bool InitializeNativeImage();
+    bool SetupFrameAvailableListener();
+    bool StartNativeRenderThread();
+    void ControlFrameRate();
     void DestroyNativeImage();
 
     // Vsync 相关
     bool InitNativeVsync();
     void DestroyNativeVsync();
-    OH_NativeVSync *nativeVsync_ = nullptr;
     static void OnVsync(long long timestamp, void *data);
-    std::atomic<int> vSyncCnt_{0};
+
+    // NativeImage 相关
+    static void OnNativeImageFrameAvailable(void *data);
+
+    // 渲染引擎运行状态
+    std::atomic<bool> running_{false};
+    std::thread thread_;
+    std::thread::id threadId_;
 
     // 同步和任务队列
     mutable std::mutex wakeUpMutex_;
@@ -100,6 +105,19 @@ private:
     uint64_t width_ = 0;
     uint64_t height_ = 0;
 
+    // NativeImage 相关
+    OH_OnFrameAvailableListener nativeImageFrameAvailableListener_{};
+    OH_NativeImage *nativeImage_ = nullptr;
+    GLuint nativeImageTexId_ = 0U;
+    mutable std::mutex nativeImageSurfaceIdMutex_;
+    uint64_t nativeImageSurfaceId_ = 0;
+    std::atomic<int> availableFrameCnt_{0};
+
+    // Vsync 相关
+    OH_NativeVSync *nativeVsync_ = nullptr;
+    std::atomic<int> vSyncCnt_{0};
+
+    // NativeRender 相关
     std::shared_ptr<OHNativeRender> nativeRender_;
     std::thread nativeRenderThread_;
 };

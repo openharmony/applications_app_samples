@@ -28,7 +28,7 @@ namespace {
     constexpr uint32_t POSITION_COMPONENT_COUNT = 3;   // 每个顶点的坐标有3个分量 (x, y, z)
     constexpr uint32_t TEX_COORD_COMPONENT_COUNT = 2;  // 每个顶点的纹理坐标有2个分量 (u, v)
     constexpr uint32_t STRIDE = (POSITION_COMPONENT_COUNT + TEX_COORD_COMPONENT_COUNT) * sizeof(GLfloat); // 步长，5个浮点数
-    const char* vertexShaderSource = R"(
+    const char* g_vertexShaderSource = R"(
         attribute vec4 aPosition;
         attribute vec2 aTexCoord;
         varying vec2 vTexCoord;
@@ -38,7 +38,7 @@ namespace {
         }
     )";
 
-    const char* fragmentShaderSource = R"(
+    const char* g_fragmentShaderSource = R"(
         #extension GL_OES_EGL_image_external : require
         precision mediump float;
         uniform samplerExternalOES uTexture;
@@ -180,12 +180,12 @@ void ImageRender::SetupViewport()
 
 bool ImageRender::CompileAndLinkShaders()
 {
-    GLuint vertexShader = CompileShader(GL_VERTEX_SHADER, vertexShaderSource);
+    GLuint vertexShader = CompileShader(GL_VERTEX_SHADER, g_vertexShaderSource);
     if (vertexShader == 0) {
         return false;
     }
 
-    GLuint fragmentShader = CompileShader(GL_FRAGMENT_SHADER, fragmentShaderSource);
+    GLuint fragmentShader = CompileShader(GL_FRAGMENT_SHADER, g_fragmentShaderSource);
     if (fragmentShader == 0) {
         glDeleteShader(vertexShader);
         return false;
@@ -227,11 +227,16 @@ void ImageRender::PrintProgramLinkError(GLuint program)
     GLint infoLen = 0;
     glGetProgramiv(program, GL_INFO_LOG_LENGTH, &infoLen);
     if (infoLen > 1) {
-        std::unique_ptr<char[]> infoLog(new char[infoLen]);
+        std::unique_ptr<char[]> infoLog = std::make_unique<char[]>(infoLen);
         glGetProgramInfoLog(program, infoLen, nullptr, infoLog.get());
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN,
                      "ImageRender", "Error linking program: %{public}s", infoLog.get());
     }
+}
+
+void ImageRender::SetTransformMatrix(const float matrix[16])
+{
+    std::copy(matrix, matrix + 16, transformMatrix_);
 }
 
 void ImageRender::Render()
@@ -255,6 +260,12 @@ void ImageRender::Render()
 
     // 设置纹理采样器
     glUniform1i(textureUniform_, 0);
+
+    // 使用 transformMatrix_ 进行渲染
+    GLint matrixLocation = glGetUniformLocation(shaderProgram_, "uTransformMatrix");
+    if (matrixLocation != -1) {
+        glUniformMatrix4fv(matrixLocation, 1, GL_FALSE, transformMatrix_);
+    }
 
     // 设置顶点数据和属性
     GLfloat vertices[] = {

@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-#ifndef NDK_NATIVE_IMAGE_NATIVE_RENDER_H
-#define NDK_NATIVE_IMAGE_NATIVE_RENDER_H
+#ifndef NATIVE_IMAGE_NATIVE_RENDER_H
+#define NATIVE_IMAGE_NATIVE_RENDER_H
 #include <native_window/external_window.h>
 #include <native_buffer/native_buffer.h>
 #include <sys/mman.h>
@@ -34,4 +34,4 @@ private:
     uint64_t width_ = 0;
     uint64_t height_ = 0;
 };
-#endif //NDK_NATIVE_IMAGE_NATIVE_RENDER_H
+#endif // NATIVE_IMAGE_NATIVE_RENDER_H
