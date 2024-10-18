@@ -68,7 +68,7 @@
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| `OH_NativeWindow_CreateNativeWindowFromSurfaceId(uint64_t surfaceId, OHNativeWindow **window)` | 通过 Surface ID 创建 `OH_NativeWindow` 对象，用于显示内容。 |
+| `OH_NativeWindow_CreateNativeWindowFromSurfaceId(uint64_t surfaceId, OHNativeWindow **window)` | 通过 Surface ID 创建 `OH_NativeWindow` 对象，用于显示图形内容。 |
 | `OH_NativeWindow_NativeWindowHandleOpt(OH_NativeWindow *window, int code, ...)` | 设置 `OH_NativeWindow` 的属性，例如缓冲区大小、像素格式等。 |
 | `OH_NativeWindow_NativeWindowRequestBuffer(OH_NativeWindow *window, OH_NativeWindow_Buffer **buffer, int *fenceFd)` | 请求一个可写的缓冲区，用于渲染内容。 |
 | `OH_NativeWindow_GetBufferHandleFromNative(OH_NativeWindow_Buffer *buffer)` | 从 `OH_NativeWindow_Buffer` 获取 `BufferHandle`，以便进行内存映射。 |

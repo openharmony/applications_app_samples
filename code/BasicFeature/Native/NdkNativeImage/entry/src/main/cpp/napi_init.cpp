@@ -27,8 +27,7 @@ OH_NativeXComponent *g_nativeXComponent;
 std::unique_ptr<RenderEngine> g_renderEngine = nullptr;
 void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window) {
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "OnSurfaceCreatedCB");
-    if ((component == nullptr) || (window == nullptr))
-    {
+    if ((component == nullptr) || (window == nullptr)) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Callback",
                      "OnSurfaceCreatedCB: component or window is null");
         return;
@@ -37,8 +36,7 @@ void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window) {
     uint64_t width;
     uint64_t height;
     int32_t xSize = OH_NativeXComponent_GetXComponentSize(component, window, &width, &height);
-    if (xSize != OH_NATIVEXCOMPONENT_RESULT_SUCCESS)
-    {
+    if (xSize != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Callback",
                      "OnSurfaceCreatedCB: Unable to get XComponent size");
         return;
@@ -55,8 +53,7 @@ void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window) {
 
 void OnSurfaceChangedCB(OH_NativeXComponent *component, void *window) {
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Callback", "OnSurfaceChangedCB");
-    if ((component == nullptr) || (window == nullptr))
-    {
+    if ((component == nullptr) || (window == nullptr)) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Callback",
                      "OnSurfaceChangedCB: component or window is null");
         return;
@@ -65,8 +62,7 @@ void OnSurfaceChangedCB(OH_NativeXComponent *component, void *window) {
     uint64_t width;
     uint64_t height;
     int32_t xSize = OH_NativeXComponent_GetXComponentSize(component, window, &width, &height);
-    if (xSize != OH_NATIVEXCOMPONENT_RESULT_SUCCESS)
-    {
+    if (xSize != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Callback",
                      "OnSurfaceChangedCB: Unable to get XComponent size");
         return;
@@ -95,15 +91,13 @@ static napi_value Init(napi_env env, napi_value exports)
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     napi_value exportInstance = nullptr;
-    if (napi_get_named_property(env, exports, OH_NATIVE_XCOMPONENT_OBJ, &exportInstance) != napi_ok)
-    {
+    if (napi_get_named_property(env, exports, OH_NATIVE_XCOMPONENT_OBJ, &exportInstance) != napi_ok) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "napi_init", "Export: napi_get_named_property fail");
         return nullptr;
     }
 
     OH_NativeXComponent *nativeXComponent = nullptr;
-    if (napi_unwrap(env, exportInstance, reinterpret_cast<void **>(&nativeXComponent)) != napi_ok)
-    {
+    if (napi_unwrap(env, exportInstance, reinterpret_cast<void **>(&nativeXComponent)) != napi_ok) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "napi_init", "Export: napi_unwrap fail");
         return nullptr;
     }
@@ -111,8 +105,7 @@ static napi_value Init(napi_env env, napi_value exports)
     char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {'\0'};
     uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
     if (OH_NativeXComponent_GetXComponentId(nativeXComponent, idStr, &idSize) !=
-        OH_NATIVEXCOMPONENT_RESULT_SUCCESS)
-    {
+        OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "napi_init",
                      "Export: OH_NativeXComponent_GetXComponentId fail");
         return nullptr;

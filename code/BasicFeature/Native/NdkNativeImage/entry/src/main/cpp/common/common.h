@@ -12,7 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+#ifndef NDK_NATIVE_IMAGE_COMMON_H
+#define NDK_NATIVE_IMAGE_COMMON_H
 const unsigned int LOG_PRINT_DOMAIN = 0xFF00;
 
-constexpr char DEMO_NAME[] = "NativeImageDemo";
+constexpr char DEMO_NAME[] = "NdkNativeImageSample";
+#endif

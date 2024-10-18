@@ -229,7 +229,8 @@ void ImageRender::PrintProgramLinkError(GLuint program)
     if (infoLen > 1) {
         std::unique_ptr<char[]> infoLog(new char[infoLen]);
         glGetProgramInfoLog(program, infoLen, nullptr, infoLog.get());
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ImageRender", "Error linking program: %{public}s", infoLog.get());
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN,
+                     "ImageRender", "Error linking program: %{public}s", infoLog.get());
     }
 }
 
