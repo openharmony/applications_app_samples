@@ -86,7 +86,8 @@ void OHNativeRender::RenderFrame()
     int releaseFenceFd = INVALID_FD;
     int32_t result = OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow_, &buffer, &releaseFenceFd);
     if (result != SUCCESS || buffer == nullptr) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "OHNativeRender", "Failed to request buffer.");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN,
+                     "OHNativeRender", "Failed to request buffer, ret : %{public}d.", result);
         return;
     }
 
@@ -132,7 +133,8 @@ void OHNativeRender::RenderFrame()
     // 提交给消费者
     result = OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow_, buffer, NO_FENCE, region);
     if (result != SUCCESS) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "OHNativeRender", "Failed to flush buffer.");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN,
+                     "OHNativeRender", "Failed to flush buffer, result : %{public}d.", result);
     }
 }
 

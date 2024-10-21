@@ -15,19 +15,18 @@
 
 #include "image_render.h"
 #include "common/common.h"
-#include <GLES2/gl2.h>
 #include <GLES2/gl2ext.h>
 #include <hilog/log.h>
 #include <memory>
-#include <EGL/egl.h>
-#include <EGL/eglext.h>
 #include <cmath>
+#include <algorithm>
+#include <EGL/eglext.h>
 
 namespace {
     constexpr uint32_t NUM_VERTICES = 4;
-    constexpr uint32_t POSITION_COMPONENT_COUNT = 3;   // 每个顶点的坐标有3个分量 (x, y, z)
-    constexpr uint32_t TEX_COORD_COMPONENT_COUNT = 2;  // 每个顶点的纹理坐标有2个分量 (u, v)
-    constexpr uint32_t STRIDE = (POSITION_COMPONENT_COUNT + TEX_COORD_COMPONENT_COUNT) * sizeof(GLfloat); // 步长，5个浮点数
+    constexpr uint32_t POSITION_COMPONENT_COUNT = 3;
+    constexpr uint32_t TEX_COORD_COMPONENT_COUNT = 2;
+    constexpr uint32_t STRIDE = (POSITION_COMPONENT_COUNT + TEX_COORD_COMPONENT_COUNT) * sizeof(GLfloat);
     const char* g_vertexShaderSource = R"(
         attribute vec4 aPosition;
         attribute vec2 aTexCoord;
@@ -48,81 +47,69 @@ namespace {
         }
     )";
 }
+
+ImageRender::ImageRender()
+{
+    // 初始化 transformMatrix_ 为单位矩阵
+    for (int i = 0; i < 16; ++i) {
+        transformMatrix_[i] = (i % 5 == 0) ? 1.0f : 0.0f;
+    }
+}
+
 ImageRender::~ImageRender()
 {
     Cleanup();
 }
 
-void ImageRender::SetTexture(GLuint textureId, GLuint textureTarget)
+bool ImageRender::InitEGL(EGLNativeWindowType window, uint64_t width, uint64_t height)
 {
-    textureId_ = textureId;
-    textureTarget_ = textureTarget;
-}
-
-void ImageRender::Update(uint64_t width, uint64_t height, EGLNativeWindowType window)
-{
+    window_ = window;
     width_ = width;
     height_ = height;
-    window_ = window;
 
-    if (isInit_) {
-        Cleanup();
-        InitEGL();
-    }
-}
-
-bool ImageRender::InitEGL()
-{
-    if (isInit_) {
-        return true;
-    }
-
-    if (!InitializeEGLDisplay()) {
-        return false;
-    }
-
-    EGLConfig config;
-    if (!ChooseEGLConfig(config)) {
-        return false;
-    }
-
-    if (!CreateEGLSurface(config)) {
-        return false;
-    }
-
-    if (!CreateEGLContext(config)) {
+    if (!InitializeEGLDisplay() || !ChooseEGLConfig() || !CreateEGLContext() || !CreateEGLSurface()) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ImageRender", "Failed to initialize EGL");
         return false;
     }
 
     if (!MakeCurrentContext()) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ImageRender", "Failed to make EGL context current");
         return false;
     }
 
-    SetupViewport();
     if (!CompileAndLinkShaders()) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ImageRender", "Failed to compile and link shaders");
         return false;
     }
 
-    isInit_ = true;
+    UpdateViewport();
+
     return true;
+}
+
+void ImageRender::UpdateWindowInfo(uint64_t width, uint64_t height)
+{
+    width_ = width;
+    height_ = height;
 }
 
 bool ImageRender::InitializeEGLDisplay()
 {
     display_ = eglGetDisplay(EGL_DEFAULT_DISPLAY);
     if (display_ == EGL_NO_DISPLAY) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ImageRender", "Failed to get EGL display.");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ImageRender", "Failed to get EGL display");
         return false;
     }
 
     if (!eglInitialize(display_, nullptr, nullptr)) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ImageRender", "Failed to initialize EGL.");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ImageRender", "Failed to initialize EGL");
         return false;
     }
+
     return true;
 }
 
-bool ImageRender::ChooseEGLConfig(EGLConfig& config)
+bool ImageRender::ChooseEGLConfig()
 {
     const EGLint attribs[] = {
         EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,
@@ -135,29 +122,29 @@ bool ImageRender::ChooseEGLConfig(EGLConfig& config)
     };
 
     EGLint numConfigs;
-    if (!eglChooseConfig(display_, attribs, &config, 1, &numConfigs) || numConfigs == 0) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ImageRender", "Failed to choose EGL config.");
+    if (!eglChooseConfig(display_, attribs, &config_, 1, &numConfigs) || numConfigs == 0) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ImageRender", "Failed to choose EGL config");
         return false;
     }
     return true;
 }
 
-bool ImageRender::CreateEGLSurface(EGLConfig config)
-{
-    surface_ = eglCreateWindowSurface(display_, config, window_, nullptr);
-    if (surface_ == EGL_NO_SURFACE) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ImageRender", "Failed to create EGL surface.");
-        return false;
-    }
-    return true;
-}
-
-bool ImageRender::CreateEGLContext(EGLConfig config)
+bool ImageRender::CreateEGLContext()
 {
     const EGLint contextAttribs[] = { EGL_CONTEXT_CLIENT_VERSION, 2, EGL_NONE };
-    context_ = eglCreateContext(display_, config, EGL_NO_CONTEXT, contextAttribs);
+    context_ = eglCreateContext(display_, config_, EGL_NO_CONTEXT, contextAttribs);
     if (context_ == EGL_NO_CONTEXT) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ImageRender", "Failed to create EGL context.");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ImageRender", "Failed to create EGL context");
+        return false;
+    }
+    return true;
+}
+
+bool ImageRender::CreateEGLSurface()
+{
+    surface_ = eglCreateWindowSurface(display_, config_, window_, nullptr);
+    if (surface_ == EGL_NO_SURFACE) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ImageRender", "Failed to create EGL surface");
         return false;
     }
     return true;
@@ -166,16 +153,17 @@ bool ImageRender::CreateEGLContext(EGLConfig config)
 bool ImageRender::MakeCurrentContext()
 {
     if (!eglMakeCurrent(display_, surface_, surface_, context_)) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ImageRender", "Failed to make EGL context current.");
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ImageRender", "Failed to make EGL context current");
         return false;
     }
     return true;
 }
 
-void ImageRender::SetupViewport()
+void ImageRender::UpdateViewport()
 {
     glViewport(0, 0, static_cast<GLsizei>(width_), static_cast<GLsizei>(height_));
-    glEnable(GL_DEPTH_TEST);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ImageRender",
+                 "Viewport updated to %{public}llu x %{public}llu", width_, height_);
 }
 
 bool ImageRender::CompileAndLinkShaders()
@@ -208,14 +196,10 @@ bool ImageRender::CompileAndLinkShaders()
 
     glUseProgram(shaderProgram_);
 
-    // 获取属性位置
     positionAttrib_ = glGetAttribLocation(shaderProgram_, "aPosition");
     texCoordAttrib_ = glGetAttribLocation(shaderProgram_, "aTexCoord");
-
-    // 获取纹理统一变量位置
     textureUniform_ = glGetUniformLocation(shaderProgram_, "uTexture");
 
-    // 清理着色器对象
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
 
@@ -239,63 +223,86 @@ void ImageRender::SetTransformMatrix(const float matrix[16])
     std::copy(matrix, matrix + 16, transformMatrix_);
 }
 
+void ImageRender::SetTexture(GLuint textureId, GLuint textureTarget)
+{
+    textureId_ = textureId;
+    textureTarget_ = textureTarget;
+}
+
+void ImageRender::SetupVertexAttributes()
+{
+    // Define the vertex data for a textured quad
+    static const GLfloat vertices[] = {
+        // Positions         // Texture Coords
+        -1.0f, -1.0f, 0.0f,   0.0f, 1.0f, // Left Bottom
+         1.0f, -1.0f, 0.0f,   1.0f, 1.0f, // Right Bottom
+        -1.0f,  1.0f, 0.0f,   0.0f, 0.0f, // Left Top
+         1.0f,  1.0f, 0.0f,   1.0f, 0.0f, // Right Top
+    };
+
+    // Enable and set the position attribute
+    glEnableVertexAttribArray(positionAttrib_);
+    glVertexAttribPointer(positionAttrib_, POSITION_COMPONENT_COUNT, GL_FLOAT, GL_FALSE,
+                          STRIDE, vertices);
+
+    // Enable and set the texture coordinate attribute
+    glEnableVertexAttribArray(texCoordAttrib_);
+    glVertexAttribPointer(texCoordAttrib_, TEX_COORD_COMPONENT_COUNT, GL_FLOAT, GL_FALSE,
+                          STRIDE, vertices + POSITION_COMPONENT_COUNT);
+}
+
+void ImageRender::DisableVertexAttributes()
+{
+    // Disable the vertex attribute arrays after rendering
+    glDisableVertexAttribArray(positionAttrib_);
+    glDisableVertexAttribArray(texCoordAttrib_);
+}
+
 void ImageRender::Render()
 {
     if (surface_ == EGL_NO_SURFACE) {
         return;
     }
-    
-    eglMakeCurrent(display_, surface_, surface_, context_);
 
-    // 清除屏幕
+    if (!eglMakeCurrent(display_, surface_, surface_, context_)) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ImageRender", "Failed to make context current in Render");
+        return;
+    }
+
+    // Clear the color buffer
     glClearColor(0.0f, 1.0f, 1.0f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT);
 
-    // 使用着色器程序
+    // Use the shader program
     glUseProgram(shaderProgram_);
 
-    // 绑定纹理
+    // Bind the texture
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(textureTarget_, textureId_);
 
-    // 设置纹理采样器
+    // Set the texture sampler to texture unit 0
     glUniform1i(textureUniform_, 0);
 
-    // 使用 transformMatrix_ 进行渲染
+    // Set the transformation matrix
     GLint matrixLocation = glGetUniformLocation(shaderProgram_, "uTransformMatrix");
     if (matrixLocation != -1) {
         glUniformMatrix4fv(matrixLocation, 1, GL_FALSE, transformMatrix_);
     }
 
-    // 设置顶点数据和属性
-    GLfloat vertices[] = {
-        // Positions         // Texture Coords
-        -1.0f, -1.0f, 0.0f,   0.0f, 0.0f, // 左下角
-         1.0f, -1.0f, 0.0f,   1.0f, 0.0f, // 右下角
-        -1.0f,  1.0f, 0.0f,   0.0f, 1.0f, // 左上角
-         1.0f,  1.0f, 0.0f,   1.0f, 1.0f, // 右上角
-    };
+    // Set up vertex attributes
+    SetupVertexAttributes();
 
-    glEnableVertexAttribArray(positionAttrib_);
-    glVertexAttribPointer(positionAttrib_, POSITION_COMPONENT_COUNT, GL_FLOAT, GL_FALSE,
-                          STRIDE, vertices);
-
-    glEnableVertexAttribArray(texCoordAttrib_);
-    glVertexAttribPointer(texCoordAttrib_, TEX_COORD_COMPONENT_COUNT, GL_FLOAT, GL_FALSE,
-                          STRIDE, vertices + POSITION_COMPONENT_COUNT);
-
-    // 绘制纹理
+    // Draw the textured quad
     glDrawArrays(GL_TRIANGLE_STRIP, 0, NUM_VERTICES);
 
-    // 禁用属性
-    glDisableVertexAttribArray(positionAttrib_);
-    glDisableVertexAttribArray(texCoordAttrib_);
+    // Disable vertex attributes
+    DisableVertexAttributes();
 
-    // 交换缓冲区
+    // Swap the buffers to display the rendered image
     if (!eglSwapBuffers(display_, surface_)) {
         EGLint error = eglGetError();
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ImageRender",
-            "eglSwapBuffers failed with error: %{public}d", error);
+            "eglSwapBuffers failed with error: %d", error);
     }
 }
 
@@ -318,7 +325,10 @@ void ImageRender::Cleanup()
         display_ = EGL_NO_DISPLAY;
     }
 
-    isInit_ = false;
+    if (shaderProgram_ != 0) {
+        glDeleteProgram(shaderProgram_);
+        shaderProgram_ = 0;
+    }
 }
 
 GLuint ImageRender::CompileShader(GLenum type, const char* source)
@@ -335,17 +345,21 @@ GLuint ImageRender::CompileShader(GLenum type, const char* source)
     GLint compiled;
     glGetShaderiv(shader, GL_COMPILE_STATUS, &compiled);
     if (!compiled) {
-        GLint infoLen = 0;
-        glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &infoLen);
-        if (infoLen > 1) {
-            char* infoLog = new char[infoLen];
-            glGetShaderInfoLog(shader, infoLen, nullptr, infoLog);
-            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ImageRender",
-                         "Error compiling shader: %{public}s", infoLog);
-            delete[] infoLog;
-        }
+        PrintShaderCompileError(shader);
         glDeleteShader(shader);
         return 0;
     }
     return shader;
+}
+
+void ImageRender::PrintShaderCompileError(GLuint shader)
+{
+    GLint infoLen = 0;
+    glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &infoLen);
+    if (infoLen > 1) {
+        std::unique_ptr<char[]> infoLog(new char[infoLen]);
+        glGetShaderInfoLog(shader, infoLen, nullptr, infoLog.get());
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ImageRender",
+                     "Error compiling shader: %{public}s", infoLog.get());
+    }
 }

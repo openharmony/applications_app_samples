@@ -13,56 +13,52 @@
  * limitations under the License.
  */
 
-#ifndef NATIVE_IMAGE_RENDERER_H
-#define NATIVE_IMAGE_RENDERER_H
+#ifndef IMAGE_RENDER_H
+#define IMAGE_RENDER_H
 
-#include <atomic>
 #include <EGL/egl.h>
 #include <GLES2/gl2.h>
 
 class ImageRender {
 public:
-    ImageRender() = default;
+    ImageRender();
     ~ImageRender();
 
-    void Update(uint64_t width, uint64_t height, EGLNativeWindowType window);
-    void Cleanup();
-    void Render();
-    bool InitEGL();
-
-    // 添加 SetTexture 方法，用于接收 RenderEngine 提供的纹理
+    bool InitEGL(EGLNativeWindowType window, uint64_t width, uint64_t height);
+    bool MakeCurrentContext();
+    void UpdateViewport();
+    void UpdateWindowInfo(uint64_t width, uint64_t height);
     void SetTexture(GLuint textureId, GLuint textureTarget);
-
+    void Render();
+    void Cleanup();
     void SetTransformMatrix(const float matrix[16]);
 
 private:
-    GLuint CompileShader(GLenum type, const char* source);
+    void SetupVertexAttributes();
+    void DisableVertexAttributes();
     bool InitializeEGLDisplay();
-    bool ChooseEGLConfig(EGLConfig& config);
-    bool CreateEGLSurface(EGLConfig config);
-    bool CreateEGLContext(EGLConfig config);
-    bool MakeCurrentContext();
-    void SetupViewport();
+    bool ChooseEGLConfig();
+    bool CreateEGLContext();
+    bool CreateEGLSurface();
     bool CompileAndLinkShaders();
     void PrintProgramLinkError(GLuint program);
-
-    uint64_t width_ = 0;
-    uint64_t height_ = 0;
+    GLuint CompileShader(GLenum type, const char* source);
+    void PrintShaderCompileError(GLuint shader);
 
     EGLDisplay display_ = EGL_NO_DISPLAY;
     EGLSurface surface_ = EGL_NO_SURFACE;
     EGLContext context_ = EGL_NO_CONTEXT;
+    EGLConfig config_ = nullptr;
     EGLNativeWindowType window_ = 0;
-    std::atomic<bool> isInit_{false};
-
+    uint64_t width_ = 0;
+    uint64_t height_ = 0;
     GLuint shaderProgram_ = 0;
     GLint positionAttrib_ = -1;
     GLint texCoordAttrib_ = -1;
     GLint textureUniform_ = -1;
     GLuint textureId_ = 0;
     GLuint textureTarget_ = 0;
-
     float transformMatrix_[16] = { 0.0f };
 };
 
-#endif // NATIVE_IMAGE_RENDERER_H
+#endif // IMAGE_RENDER_H

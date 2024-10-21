@@ -54,11 +54,18 @@ public:
     void PostTask(const RenderTask &task);
 
     // 更新 NativeWindow
-    void UpdateNativeWindow(uint64_t width, uint64_t height, void *window);
-    void OnSurfaceChanged(uint64_t width, uint64_t height, void* window);
+    void UpdateNativeWindow(uint64_t width, uint64_t height);
+    void OnSurfaceChanged(uint64_t width, uint64_t height);
     void OnAppResume();
     void OnAppPause();
+
 private:
+    static void OnNativeImageFrameAvailable(void *data);
+    // Vsync 相关
+    bool InitNativeVsync();
+    void DestroyNativeVsync();
+    static void OnVsync(long long timestamp, void *data);
+    
     // 主循环
     void MainLoop();
 
@@ -67,6 +74,7 @@ private:
     void CleanupResources();
 
     // 渲染流程任务
+    void WaitForNewFrame();
     void WaitForVsync();
     void ExecuteRenderTasks();
     void UpdateSurfaceImage();
@@ -75,21 +83,27 @@ private:
     // 创建与销毁 NativeImage
     bool CreateNativeImage();
     bool StartNativeRenderThread();
-    void ControlFrameRate();
+    void StopNativeRenderThread();
     void DestroyNativeImage();
-    
+
     bool GenerateTexture();
     bool CreateNativeImageObject();
     bool AttachContextAndGetSurfaceId();
     bool SetFrameAvailableListener();
 
-    // Vsync 相关
-    bool InitNativeVsync();
-    void DestroyNativeVsync();
-    static void OnVsync(long long timestamp, void *data);
+    // NativeRender 相关
+    std::shared_ptr<OHNativeRender> nativeRender_;
+    std::thread nativeRenderThread_;
 
     // NativeImage 相关
-    static void OnNativeImageFrameAvailable(void *data);
+    OH_OnFrameAvailableListener nativeImageFrameAvailableListener_{};
+    OH_NativeImage *nativeImage_ = nullptr;
+    GLuint nativeImageTexId_ = 0U;
+    std::mutex nativeImageSurfaceIdMutex_;
+    uint64_t nativeImageSurfaceId_ = 0;
+    std::atomic<int> availableFrameCnt_{0};
+    std::condition_variable frameCond_;
+    std::mutex frameMutex_;
 
     // 渲染引擎运行状态
     std::atomic<bool> running_{false};
@@ -97,11 +111,13 @@ private:
     std::thread::id threadId_;
 
     // 同步和任务队列
+    std::mutex taskMutex_;
+    std::vector<RenderTask> tasks_;
     mutable std::mutex wakeUpMutex_;
     std::condition_variable wakeUpCond_;
     bool wakeUp_ = false;
-    mutable std::mutex taskMutex_;
-    std::vector<RenderTask> tasks_;
+    std::atomic<int> vSyncCnt_{0};
+    OH_NativeVSync *nativeVsync_ = nullptr;
 
     // 关联的 ImageRender 实例
     std::shared_ptr<ImageRender> imageRender_;
@@ -109,32 +125,8 @@ private:
     uint64_t width_ = 0;
     uint64_t height_ = 0;
 
-    // NativeImage 相关
-    OH_OnFrameAvailableListener nativeImageFrameAvailableListener_{};
-    OH_NativeImage *nativeImage_ = nullptr;
-    GLuint nativeImageTexId_ = 0U;
-    mutable std::mutex nativeImageSurfaceIdMutex_;
-    uint64_t nativeImageSurfaceId_ = 0;
-    std::atomic<int> availableFrameCnt_{0};
-
-    // Vsync 相关
-    OH_NativeVSync *nativeVsync_ = nullptr;
-    std::atomic<int> vSyncCnt_{0};
-
-    // NativeRender 相关
-    std::shared_ptr<OHNativeRender> nativeRender_;
-    std::thread nativeRenderThread_;
-    
-    void HandleContextLoss();
-    void UpdateRenderLoop();
-    
-    bool EnsureGLContext();
-    void CleanupGLResources();
-    bool ReinitializeGLResources();
-
-    std::atomic<bool> hasValidGLContext_{false};
+    // 其他状态变量
     std::atomic<bool> isPaused_{false};
-    std::atomic<bool> needsReinitialization_{false};
 };
 
 #endif // RENDER_ENGINE_H
