@@ -4,17 +4,18 @@
 
 本示例主要演示如何在 OpenHarmony 系统中，使用 Native C++ 代码，通过 `OH_NativeImage`、`OH_NativeWindow` 和 `OH_NativeVSync` API，实现一个从左到右循环渐变的动态动画效果。示例展示了如何创建 `OH_NativeWindow` 实例、使用 `OH_NativeImage` 处理图像数据、接收 VSync 信号、映射缓冲区内存、逐像素绘制动态渐变动画，以及在屏幕上呈现该动画。
 
+### 效果预览
+
+| 动态渐变效果                          |
+| -------------------------------------- |
+| ![Gradient Animation](screenshots/GradientAnimation.jpg) |
+
 ### 使用说明
 
 1. **编译安装**：使用 DevEco Studio 编译生成应用的 hap 包，并将其安装到设备上。
 
 2. **运行应用**：打开应用后，您将看到屏幕上显示一个从左到右循环渐变的平滑动画效果。
 
-### 效果预览
-
-| 动态渐变效果                          |
-| -------------------------------------- |
-| ![Gradient Animation](screenshots/GradientAnimation.jpg) |
 
 ### 工程目录
 ```

@@ -55,7 +55,9 @@ public:
 
     // 更新 NativeWindow
     void UpdateNativeWindow(uint64_t width, uint64_t height, void *window);
-
+    void OnSurfaceChanged(uint64_t width, uint64_t height, void* window);
+    void OnAppResume();
+    void OnAppPause();
 private:
     // 主循环
     void MainLoop();
@@ -72,12 +74,14 @@ private:
 
     // 创建与销毁 NativeImage
     bool CreateNativeImage();
-    void GenerateTexture();
-    bool InitializeNativeImage();
-    bool SetupFrameAvailableListener();
     bool StartNativeRenderThread();
     void ControlFrameRate();
     void DestroyNativeImage();
+    
+    bool GenerateTexture();
+    bool CreateNativeImageObject();
+    bool AttachContextAndGetSurfaceId();
+    bool SetFrameAvailableListener();
 
     // Vsync 相关
     bool InitNativeVsync();
@@ -120,6 +124,17 @@ private:
     // NativeRender 相关
     std::shared_ptr<OHNativeRender> nativeRender_;
     std::thread nativeRenderThread_;
+    
+    void HandleContextLoss();
+    void UpdateRenderLoop();
+    
+    bool EnsureGLContext();
+    void CleanupGLResources();
+    bool ReinitializeGLResources();
+
+    std::atomic<bool> hasValidGLContext_{false};
+    std::atomic<bool> isPaused_{false};
+    std::atomic<bool> needsReinitialization_{false};
 };
 
 #endif // RENDER_ENGINE_H
