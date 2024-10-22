@@ -18,28 +18,24 @@
     "name": "entry",
     "type": "entry",
     "description": "$string:module_desc",
-    "srcEntrance": "./ets/app/MyAbilityStage.ets",
+    "srcEntry": "./ets/app/MyAbilityStage.ets",
     "mainElement": "EntryAbility",
     "deviceTypes": [
       "default"
     ],
-    "metadata": [ {
-      "name": "ArkTSPartialUpdate",
-      "value": "false"
-    } ],
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
     "abilities": [
       {
         "name": "EntryAbility",
-        "srcEntrance": "./ets/ability/EntryAbility.ets",
+        "srcEntry": "./ets/ability/EntryAbility.ets",
         "description": "$string:EntryAbility_desc",
         "icon": "$media:icon",
         "label": "$string:EntryAbility_label",
         "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:start_window_background",
-        "visible": true,
+        "exported": true,
         "recoverable": true,
         "skills": [
           {
@@ -54,24 +50,24 @@
       },
       {
         "name": "SecondAbility",
-        "srcEntrance": "./ets/ability/SecondAbility.ets",
+        "srcEntry": "./ets/ability/SecondAbility.ets",
         "description": "$string:EntryAbility_desc",
         "icon": "$media:icon",
         "label": "$string:TextAbility_label",
         "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:start_window_background",
-        "visible": true,
+        "exported": true,
         "recoverable": true
       },
       {
         "name": "RecoveryAbility",
-        "srcEntrance": "./ets/ability/RecoveryAbility.ets",
+        "srcEntry": "./ets/ability/RecoveryAbility.ets",
         "description": "$string:EntryAbility_desc",
         "icon": "$media:icon",
         "label": "$string:RecoveryAbility_label",
         "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:start_window_background",
-        "visible": true
+        "exported": true
       }
     ]
   }
