@@ -35,7 +35,7 @@ struct FirstPage {
         .fontSize('30fp')
         .fontWeight(FontWeight.Bold)
         .padding({ left: '24vp', right: '24vp', top: '7vp', bottom: '8vp' })
-        .margin({ top: '24vp' })
+        .margin({ top: '14vp' })
         .textAlign(TextAlign.Start)
         .height('56vp')
         .width('100%')
@@ -84,9 +84,10 @@ struct FirstPage {
           router.pushUrl({ url: 'pages/FaultTriggerPage' });
         })
         .width('88.9%')
-        .margin({ top: '520vp', right: '24vp', left: '24vp', bottom: '24vp' })
+        .margin({ top: '480vp', right: '24vp', left: '24vp', bottom: '34vp' })
         .height('40vp')
         .backgroundColor($r('app.color.text_blue_opacity'));
-    }.backgroundColor($r('sys.color.ohos_id_color_sub_background')).width('100%').height('100%');
+    }.backgroundColor($r('sys.color.ohos_id_color_sub_background')).width('100%').height('100%')
+    .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM]);
   }
 }

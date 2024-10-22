@@ -61,7 +61,7 @@ struct FaultTriggerPage {
         .fontSize('30fp')
         .fontWeight(FontWeight.Bold)
         .padding({ left: '24vp', right: '24vp', top: '7vp', bottom: '8vp' })
-        .margin({ top: '24vp' })
+        .margin({ top: '14vp' })
         .textAlign(TextAlign.Start)
         .height('56vp')
         .width('100%')
@@ -309,6 +309,7 @@ struct FaultTriggerPage {
       .backgroundColor($r('sys.color.ohos_id_color_foreground_contrary'))
       .padding({ left: '12vp', right: '12vp', top: '4vp', bottom: '4vp' })
       .divider({ strokeWidth: '0.5vp', color: $r('app.color.text_grey_opacity') });
-    }.backgroundColor($r('sys.color.ohos_id_color_sub_background')).width('100%').height('100%');
+    }.backgroundColor($r('sys.color.ohos_id_color_sub_background')).width('100%').height('100%')
+    .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM]);
   }
 }
