@@ -73,8 +73,18 @@ struct Index {
 
         Text($r('app.string.publish_comments'))
           .fontSize($r('app.float.size_22'))
-          .margin({ left: $r('app.float.size_130') })
+          .margin({ left: $r('app.float.size_10') })
           .textAlign(TextAlign.Center)
+
+        Button($r('app.string.picture_operate'))
+          .fontSize($r('app.float.size_22'))
+          .margin({ left: $r('app.float.size_10') })
+          .id('picture_operate')
+          .onClick(() => {
+            router.pushUrl({
+              url: 'pages/PicturePages'
+            })
+          })
 
         Blank()
 

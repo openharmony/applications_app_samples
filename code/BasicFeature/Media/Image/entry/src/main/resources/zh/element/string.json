@@ -21,6 +21,10 @@
       "value": "提交"
     },
     {
+      "name": "picture_operate",
+      "value": "多图操作"
+    },
+    {
       "name": "commodity_comment",
       "value": "商品评价"
     },

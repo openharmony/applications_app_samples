@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { ColorSpaceTasks,CropTasks, ScaleTasks, TaskData, Tasks } from '../model/AdjustData';
+import { ColorSpaceTasks, CropTasks, ScaleTasks, TaskData, Tasks } from '../model/AdjustData';
 
 export const adjustDatas: TaskData [] = [
   new TaskData(Tasks.CROP, $r('app.media.ic_screen'), $r('app.string.crop')),
@@ -47,4 +47,14 @@ export const colorSpaceTaskDatas: TaskData[] = [
   new TaskData(ColorSpaceTasks.ADOBERGB, $r('app.media.ic_image'), $r('app.string.colorSpaceAdobeRGB')),
   new TaskData(ColorSpaceTasks.DCIP3, $r('app.media.ic_image'), $r('app.string.colorSpaceDCIP3')),
   new TaskData(ColorSpaceTasks.DISPLAYP3, $r('app.media.ic_image'), $r('app.string.colorSpaceDisplayP3'))
+];
+
+export const pictureJsDatas: TaskData [] = [
+  new TaskData(Tasks.DECODEJS, $r('app.media.ic_rotate'), $r('app.string.update_decode_setting'), 'decodingJs'),
+  new TaskData(Tasks.ENCODEJS, $r('app.media.ic_rotate'), $r('app.string.update_encode_setting'), 'encodingJs'),
+];
+
+export const pictureNdkDatas: TaskData [] = [
+  new TaskData(Tasks.DECODENDK, $r('app.media.ic_rotate'), $r('app.string.update_decode_setting'), 'decodingNdk'),
+  new TaskData(Tasks.ENCODENDK, $r('app.media.ic_rotate'), $r('app.string.update_encode_setting'), 'encodingNdk'),
 ];

@@ -236,6 +236,54 @@
     {
       "name": "edit_image_decoding_hdr",
       "value": "HDR"
+    },
+    {
+      "name": "update_encode_setting",
+      "value": "编码"
+    },
+    {
+      "name": "update_decode_setting",
+      "value": "解码"
+    },
+    {
+      "name": "edit_picture_js",
+      "value": "js接口"
+    },
+    {
+      "name": "edit_picture_native",
+      "value": "native接口"
+    },
+    {
+      "name": "picture_decode_jpeg",
+      "value": "JPEG"
+    },
+    {
+      "name": "picture_decode_heif",
+      "value": "HEIF"
+    },
+    {
+      "name": "source_encode",
+      "value": "ImageSource"
+    },
+    {
+      "name": "picture_encode",
+      "value": "picture"
+    },
+    {
+      "name": "source_encode_buffer",
+      "value": "sourceToBuffer"
+    },
+    {
+      "name": "picture_encode_buffer",
+      "value": "pictureToBuffer"
+    },
+    {
+      "name": "source_encode_file",
+      "value": "sourceToFile"
+    },
+    {
+      "name": "picture_encode_file",
+      "value": "pictureToFile"
     }
   ]
 }
