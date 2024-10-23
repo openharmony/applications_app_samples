@@ -170,6 +170,8 @@ struct PhotoGridPage {
       menuOperation.doAction();
     } else if (action === Action.NEW) {
       this.routeToAddMediaPage();
+    } else if (action === Action.HIDE_SENSITIZATION) {
+      this.openSelectSensitiveDialog();
     }
   }
 
@@ -190,6 +192,13 @@ struct PhotoGridPage {
       this.broadCast.emit(BroadcastConstants.SHOW_MULTI_SELECT_DIALOG, [items.length, size]);
     }
   }
+
+  async openSelectSensitiveDialog(): Promise<void> {
+    let items: UserFileDataItem[] = this.groupDataSource.getSelectedItems() as UserFileDataItem[];
+    Log.info(TAG, 'lumingfei count is ' + items.length);
+    this.broadCast.emit(BroadcastConstants.SHOW_SENSITIVE_DIALOG, [items]);
+  }
+
   private routeSelectAlbumPage(pageType: string): void {
     this.routerStart = true;
     router.push({
@@ -467,9 +476,9 @@ struct PhotoGridPage {
 
     this.initGridRowCount();
     if (this.albumInfo.albumType==MediaConstants.ALBUM_TYPE_USER){
-      this.moreMenuList = [Action.MOVE, Action.REMOVE, Action.INFO];
+      this.moreMenuList = [Action.MOVE, Action.REMOVE, Action.HIDE_SENSITIZATION, Action.INFO];
     } else {
-      this.moreMenuList = [Action.MOVE, Action.INFO];
+      this.moreMenuList = [Action.MOVE, Action.HIDE_SENSITIZATION, Action.INFO];
     }
 
     this.updateActionBar();
@@ -537,15 +546,16 @@ struct PhotoGridPage {
     this.isAllSelected = this.groupDataSource.isSelect();
     if (this.totalSelectedCount > 0) {
       if (this.albumInfo.albumType === MediaConstants.ALBUM_TYPE_USER){
-        this.moreMenuList = [Action.MOVE, Action.REMOVE, Action.INFO];
+        this.moreMenuList = [Action.MOVE, Action.REMOVE, Action.HIDE_SENSITIZATION, Action.INFO];
       } else {
-        this.moreMenuList = [Action.MOVE, Action.INFO];
+        this.moreMenuList = [Action.MOVE, Action.HIDE_SENSITIZATION, Action.INFO];
       }
     } else {
       if (this.albumInfo.albumType === MediaConstants.ALBUM_TYPE_USER){
-        this.moreMenuList = [Action.MOVE_INVALID, Action.REMOVE_INVALID, Action.INFO_INVALID];
+        this.moreMenuList = [Action.MOVE_INVALID, Action.REMOVE_INVALID,
+          Action.HIDE_SENSITIZATION, Action.INFO_INVALID];
       } else {
-        this.moreMenuList = [Action.MOVE_INVALID, Action.INFO_INVALID];
+        this.moreMenuList = [Action.MOVE_INVALID, Action.HIDE_SENSITIZATION, Action.INFO_INVALID];
       }
     }
   }

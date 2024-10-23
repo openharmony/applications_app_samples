@@ -33,6 +33,8 @@ export class MediaDetails {
   uri: string = '';
   displayName: string = '';
   dateModified: number = 0;
+  location: string = '';
+  shootingParams: string = '';
 }
 
 @CustomDialog
@@ -153,6 +155,42 @@ export struct DetailsDialog {
 
         Column() {
           Text(this.getResolution(this.mediaDetails.height, this.mediaDetails.width))
+            .fontSize($r('sys.float.ohos_id_text_size_body2'))
+            .fontFamily($r('app.string.id_text_font_family_regular'))
+            .fontColor($r('sys.color.ohos_id_color_text_secondary'))
+            .textOverflow({ overflow: TextOverflow.Ellipsis })
+        }
+      }.margin({
+        bottom: $r('sys.float.ohos_id_text_paragraph_margin_s') })
+
+      Row() {
+        Column() {
+          Text($r('app.string.location'))
+            .fontSize($r('sys.float.ohos_id_text_size_body2'))
+            .fontFamily($r('app.string.id_text_font_family_regular'))
+            .fontColor($r('sys.color.ohos_id_color_text_primary'))
+        }
+
+        Column() {
+          Text(this.mediaDetails.location)
+            .fontSize($r('sys.float.ohos_id_text_size_body2'))
+            .fontFamily($r('app.string.id_text_font_family_regular'))
+            .fontColor($r('sys.color.ohos_id_color_text_secondary'))
+            .textOverflow({ overflow: TextOverflow.Ellipsis })
+        }
+      }.margin({
+        bottom: $r('sys.float.ohos_id_text_paragraph_margin_s') })
+
+      Row() {
+        Column() {
+          Text($r('app.string.shooting_params'))
+            .fontSize($r('sys.float.ohos_id_text_size_body2'))
+            .fontFamily($r('app.string.id_text_font_family_regular'))
+            .fontColor($r('sys.color.ohos_id_color_text_primary'))
+        }
+
+        Column() {
+          Text(this.mediaDetails.shootingParams)
             .fontSize($r('sys.float.ohos_id_text_size_body2'))
             .fontFamily($r('app.string.id_text_font_family_regular'))
             .fontColor($r('sys.color.ohos_id_color_text_secondary'))

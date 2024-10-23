@@ -55,6 +55,7 @@ import { getAlbumDisplayName } from '../base/UserFileDataHelper';
 import { startAbility, terminateSelf } from '../utils/AbilityUtils';
 import { userFileDataItemCache } from '../base/UserFileDataItemCache';
 import { GlobalContext } from '../common/GlobalContext';
+import { TranscodingMenuOperation } from '../menus/TranscodingMenuOperation';
 // page of large photo
 
 const TAG = 'PhotoBrowser';
@@ -177,9 +178,24 @@ struct PhotoBrowser {
         .withBroadCast(this.broadCast)
         .withAlbumInfo(this.albumInfo);
       menuOperation = new RenameMenuOperation(menuContext);
+    } else if (action === Action.TRANSCODING) {
+      if (currentPhoto == undefined) {
+        return;
+      }
+      menuContext.withItems([currentPhoto])
+        .withBroadCast(this.broadCast)
+        .withAlbumInfo(this.albumInfo);
+      menuOperation = new TranscodingMenuOperation(menuContext);
     } else if (action === Action.MOVE) {
       this.backFromCopy = true;
       this.routeSelectAlbumPage(MediaOperationType.Move);
+      return;
+    } else if (action == Action.HIDE_SENSITIZATION) {
+      let currentPhoto = this.getCurrentPhoto();
+      let items: UserFileDataItem[] = [];
+      items.push(currentPhoto);
+      Log.info(TAG, 'count is ' + items.length);
+      this.broadCast.emit(BroadcastConstants.SHOW_SENSITIVE_DIALOG, [items]);
       return;
     } else {
       return;
@@ -340,13 +356,22 @@ struct PhotoBrowser {
     let list: Action[] = [];
     if (this.pageFrom === Constants.ENTRY_FROM.RECYCLE) {
       list.push(Action.RECOVER, Action.DELETE);
+    } else if(await currentPhoto.isVideo()) {
+      let isFavor = await currentPhoto.isFavor();
+      Log.info(TAG,'isFavor' + isFavor)
+      list.push(
+        isFavor ? Action.FAVORITE : Action.NOT_FAVORITE,
+        Action.RENAME,
+        Action.DELETE,
+        Action.TRANSCODING,);
     } else {
       let isFavor = await currentPhoto.isFavor();
       Log.info(TAG,'isFavor' + isFavor)
       list.push(
         isFavor ? Action.FAVORITE : Action.NOT_FAVORITE,
         Action.RENAME,
-        Action.DELETE,);
+        Action.DELETE,
+        Action.HIDE_SENSITIZATION,);
     }
     return list;
   }

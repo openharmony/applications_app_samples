@@ -145,6 +145,22 @@
       "value": "设置"
     },
     {
+      "name": "action_transcoding",
+      "value": "转码"
+    },
+    {
+      "name": "action_transcoding_success",
+      "value": "转码成功"
+    },
+    {
+      "name": "action_transcoding_progress",
+      "value": "转码进度"
+    },
+    {
+      "name": "action_transcoding_path",
+      "value": "转码视频路径: "
+    },
+    {
       "name": "action_navigation",
       "value": "导航"
     },
@@ -901,12 +917,32 @@
       "value": "user read file permission"
     },
     {
-      "name": "write_permission",
-      "value": "user write file permission"
+      "name": "location",
+      "value": "位置: "
     },
     {
-      "name": "write_image_video_permission",
-      "value": "user write image video permission"
+      "name": "shooting_params",
+      "value": "拍摄参数: "
+    },
+    {
+      "name": "action_hide_sensitization",
+      "value": "脱敏"
+    },
+    {
+      "name": "hide_location_and_shootingparam",
+      "value": "位置和拍摄参数"
+    },
+    {
+      "name": "hide_location_only",
+      "value": "位置"
+    },
+    {
+      "name": "hide_shootingparam_only",
+      "value": "拍摄参数"
+    },
+    {
+      "name": "no_hide_sensitive_type",
+      "value": "无"
     }
   ]
 }

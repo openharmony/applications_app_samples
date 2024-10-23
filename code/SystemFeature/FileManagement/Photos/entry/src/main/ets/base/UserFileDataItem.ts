@@ -19,7 +19,9 @@ import { userFileModel } from './UserFileModel';
 import { MediaConstants } from '../constants/MediaConstants';
 import { selectManager } from '../common/SelectManager';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import fs from '@ohos.file.fs';
 import { screenManager } from '../common/ScreenManager';
+import image from '@ohos.multimedia.image';
 
 const TAG = 'UserFileDataItem';
 const STATUS_UNDEFINED = -1;
@@ -57,6 +59,9 @@ export class UserFileDataItem implements DateAdded {
   selections: string = '';
   selectionArgs: string[] = [];
   deviceId: string = '';
+  longitude: string = '';
+  latitude: string = '';
+  shootingParams: string = '';
   fileAsset: photoAccessHelper.PhotoAsset = undefined;
   defaultThumbnail: PixelMap = undefined;
   thumbnailArray: Map<string, PixelMap> = new Map<string, PixelMap>();
@@ -174,6 +179,21 @@ export class UserFileDataItem implements DateAdded {
     } else {
       this.status = MediaConstants.PART_LOADED;
     }
+    this.getExif(fileAsset);
+  }
+
+  async getExif(fileAsset: photoAccessHelper.PhotoAsset): Promise<void> {
+    let file = await fs.open(fileAsset.uri);
+    let imageSourceApi: image.ImageSource = image.createImageSource(file.fd);
+    this.latitude = await imageSourceApi.getImageProperty(image.PropertyKey.GPS_LATITUDE);
+    this.longitude = await imageSourceApi.getImageProperty(image.PropertyKey.GPS_LONGITUDE);
+    let light = await imageSourceApi.getImageProperty(image.PropertyKey.EXPOSURE_TIME);
+    let fNumber = await imageSourceApi.getImageProperty(image.PropertyKey.F_NUMBER);
+    let photographicSensitivity = await imageSourceApi.getImageProperty(
+      image.PropertyKey.PHOTOGRAPHIC_SENSITIVITY);
+    this.shootingParams = 'F_NUMBER ' + fNumber +
+      ' PHOTOGRAPHIC_SENSITIVITY ' + photographicSensitivity +
+      ' EXPOSURE_TIME ' + light;
   }
 
   async getThumbnail(width: number, height: number): Promise<PixelMap> {
@@ -255,6 +275,15 @@ export class UserFileDataItem implements DateAdded {
     return this.favouriteStatus === STATUS_TRUE;
   }
 
+  async isVideo(): Promise<boolean> {
+    let fileAsset = await this.loadFileAsset();
+    this.mediaType = fileAsset.photoType;
+    if (this.mediaType === photoAccessHelper.PhotoType.VIDEO) {
+      return true;
+    }
+    return false;
+  }
+  
   async setFavor(): Promise<boolean> {
     let status = !(await this.isFavor());
     try {

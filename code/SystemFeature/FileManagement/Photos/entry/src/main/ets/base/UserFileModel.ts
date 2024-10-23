@@ -23,6 +23,7 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import { MediaConstants } from '../constants/MediaConstants'
 import { getSystemAlbumDisplayName } from './UserFileDataHelper';
 import { SimpleAlbumDataItem } from '../common/SimpleAlbumDataItem';
+import bundleManager from '@ohos.bundle.bundleManager';
 
 const TAG = 'UserFileModel';
 
@@ -533,6 +534,15 @@ class UserFileModel {
       });
     } catch (err) {
       Log.error(TAG, 'addPhotoAssetsDemoPromise failed with error: ' + err);
+    }
+  }
+
+  async hideSensitives(type: number, uris: string[]): Promise<void> {
+    let flags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+    let bundleInfo = bundleManager.getBundleInfoForSelfSync(flags);
+    let appId = bundleInfo.signatureInfo.appId;
+    for (let uri of uris) {
+      await this.userFileMgr.grantPhotoUriPermission(appId, uri, 1, type);
     }
   }
 }
