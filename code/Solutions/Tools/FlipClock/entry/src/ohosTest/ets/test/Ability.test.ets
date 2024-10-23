@@ -21,12 +21,12 @@ import { Driver, ON } from '@ohos.UiTest';
 const DRIVER = Driver.create();
 
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
 
     /**
      * 拉起应用
      */
-    it('StartAbility_001', 0, async function (done) {
+    it('StartAbility_001', 0, async (done: Function) => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       hilog.info(0x0000, 'testTag', 'StartAbility_001 begin');
       let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -61,7 +61,7 @@ export default function abilityTest() {
     /**
      * 进入时钟页面
      */
-    it('ToIndex_001', 0, async function () {
+    it('ToIndex_001', 0, async () => {
       hilog.info(0x0000, 'testTag', 'ToIndex_001 begin');
       await DRIVER.delayMs(1000);
       await DRIVER.assertComponentExist(ON.id('currentTimeBox'));
@@ -71,7 +71,7 @@ export default function abilityTest() {
     /**
      * 进入闹钟页面
      */
-    it('ToAlarmClock_001', 0, async function () {
+    it('ToAlarmClock_001', 0, async () => {
       hilog.info(0x0000, 'testTag', 'ToAlarmClock_001 begin');
       await DRIVER.assertComponentExist(ON.text('闹钟'));
       let alarmClock = await DRIVER.findComponent(ON.text('闹钟'));
@@ -84,7 +84,7 @@ export default function abilityTest() {
     /**
      * 添加闹钟
      */
-    it('AddAlarmClock_001', 0, async function () {
+    it('AddAlarmClock_001', 0, async () => {
       hilog.info(0x0000, 'testTag', 'AddAlarmClock_001 begin');
       let addBtn = await DRIVER.findComponent(ON.id('add'));
       await addBtn.click();
@@ -105,7 +105,7 @@ export default function abilityTest() {
     /**
      * 删除闹钟
      */
-    it('DeleteAlarmClock_001', 0, async function () {
+    it('DeleteAlarmClock_001', 0, async () => {
       hilog.info(0x0000, 'testTag', 'DeleteAlarmClock_001 begin');
       let deleteBtn = await DRIVER.findComponent(ON.id('deleteAlarmClock'));
       await deleteBtn.click();
@@ -118,7 +118,7 @@ export default function abilityTest() {
     /**
      * 进入倒计时页面
      */
-    it('ToCountDown_001', 0, async function () {
+    it('ToCountDown_001', 0, async () => {
       hilog.info(0x0000, 'testTag', 'ToCountDown_001 begin');
       await DRIVER.assertComponentExist(ON.text('倒计时'));
       let countdown = await DRIVER.findComponent(ON.text('倒计时'));
@@ -135,7 +135,7 @@ export default function abilityTest() {
     /**
      * 开始倒计时
      */
-    it('StartCountDown_001', 0, async function () {
+    it('StartCountDown_001', 0, async () => {
       hilog.info(0x0000, 'testTag', 'StartCountDown_001 begin');
       // 获取分钟组件
       let minute = await DRIVER.findComponent(ON.id('minute'));
@@ -156,7 +156,7 @@ export default function abilityTest() {
     /**
      * 暂停倒计时
      */
-    it('PauseCountDown_001', 0, async function () {
+    it('PauseCountDown_001', 0, async () => {
       hilog.info(0x0000, 'testTag', 'PauseCountDown_001 begin');
       // 获取暂停按钮
       let stopBtn = await DRIVER.findComponent(ON.id('start'));
@@ -176,7 +176,7 @@ export default function abilityTest() {
     /**
      * 继续倒计时
      */
-    it('ContinueCountDown_001', 0, async function () {
+    it('ContinueCountDown_001', 0, async () => {
       hilog.info(0x0000, 'testTag', 'ContinueCountDown_001 begin');
       // 获取继续按钮
       let continueBtn = await DRIVER.findComponent(ON.id('start'));
@@ -197,7 +197,7 @@ export default function abilityTest() {
     /**
      * 重置倒计时
      */
-    it('ResetCountDown_001', 0, async function () {
+    it('ResetCountDown_001', 0, async () => {
       hilog.info(0x0000, 'testTag', 'ResetCountDown_001 begin');
       let resetBtn = await DRIVER.findComponent(ON.id('reset'));
       await resetBtn.click();
@@ -210,7 +210,7 @@ export default function abilityTest() {
     /**
      * 进入设置页面
      */
-    it('ToSetPage_001', 0, async function () {
+    it('ToSetPage_001', 0, async () => {
       hilog.info(0x0000, 'testTag', 'ToSetPage_001 begin');
       // 底部tabBar的设置菜单
       await DRIVER.assertComponentExist(ON.text('设置'));
