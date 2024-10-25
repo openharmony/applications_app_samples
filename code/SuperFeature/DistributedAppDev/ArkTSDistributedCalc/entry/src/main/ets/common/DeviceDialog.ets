@@ -29,25 +29,25 @@ export struct DeviceDialog {
   build() {
     Column() {
       Text($r('app.string.choiceDevice'))
-        .fontSize(px2vp(30))
+        .fontSize(24)
         .width('100%')
-        .height('20%')
         .fontColor(Color.Black)
         .textAlign(TextAlign.Start)
+        .fontWeight(600)
       List() {
         ForEach(this.deviceList, (item: deviceManager.DeviceBasicInfo, index: number | undefined) => {
           ListItem() {
             Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
               Text(item.deviceName)
-                .fontSize(px2vp(30))
-                .width('80%')
+                .fontSize(18)
+                .width('86%')
                 .fontColor(Color.Black)
+                .textAlign(TextAlign.Start)
               Radio({ value: '', group: 'radioGroup' })
                 .radioStyle({
                   checkedBackgroundColor: '#ff0d64fb'
                 })
-                .align(Alignment.Top)
-                .width('3%')
+                .width('7%')
                 .checked(index === this.selectedIndex ? true : false)
             }
             .margin({ top: 17 })
@@ -91,8 +91,8 @@ export struct DeviceDialog {
       this.deviceDialogWidth = (newArea.width > newArea.height ? newArea.height : newArea.width) as number * 0.1 //percentage
     })
     .width('80%')
-    .height(px2vp(240))
-    .padding({ left: 18, right: 32 })
+    .height(300)
+    .padding(16)
     .backgroundColor(Color.White)
     .border({ color: Color.White, radius: 20 })
   }

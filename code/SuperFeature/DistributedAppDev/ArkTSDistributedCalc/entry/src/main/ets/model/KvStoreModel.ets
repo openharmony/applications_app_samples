@@ -76,14 +76,14 @@ export class KvStoreModel {
 
   put(key: string, value: string) {
     if (this.kvStore) {
-      Logger.debug(TAG, `kvStore.put ${key} = ${value}`)
-      this.kvStore.put(
+      Logger.debug(TAG, `kvStore?.put ${key} = ${value}`)
+      this.kvStore?.put(
         key,
         value
       ).then((data) => {
-        Logger.debug(TAG, `kvStore.put ${key} finished, data= ${JSON.stringify(data)}`)
+        Logger.debug(TAG, `kvStore?.put ${key} finished, data= ${JSON.stringify(data)}`)
       }).catch((err: object) => {
-        Logger.debug(TAG, `kvStore.put ${key} failed, ${JSON.stringify(err)}`)
+        Logger.debug(TAG, `kvStore?.put ${key} failed, ${JSON.stringify(err)}`)
       })
     }
   }
@@ -91,10 +91,10 @@ export class KvStoreModel {
   setOnMessageReceivedListener(context: common.UIAbilityContext, msg: string, callback: Callback<string>) {
     Logger.info(TAG, `setOnMessageReceivedListener: ${msg}`);
     this.createKvStore(context, () => {
-      Logger.info(TAG, `kvStore.on(dataChange) begin`);
+      Logger.info(TAG, `kvStore?.on(dataChange) begin`);
       if (this.kvStore !== undefined && this.kvStore !== null) {
         try {
-          this.kvStore!.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (data) => {
+          this.kvStore?.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (data) => {
             Logger.debug(TAG, `dataChange, ${JSON.stringify(data)}`);
             let entries = data.insertEntries.length > 0 ? data.insertEntries : data.updateEntries;
             for (let i = 0; i < entries.length; i++) {
@@ -107,10 +107,10 @@ export class KvStoreModel {
             }
           })
         } catch (err) {
-          Logger.error(TAG, `kvStore.on(dataChange) err :` + err);
+          Logger.error(TAG, `kvStore?.on(dataChange) err :` + err);
         }
       }
-      Logger.info(TAG, `kvStore.on(dataChange) end`);
+      Logger.info(TAG, `kvStore?.on(dataChange) end`);
     })
   }
 }

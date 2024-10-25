@@ -174,8 +174,9 @@ export struct TitleBarComponent {
         })
       Text($r('app.string.distributed_calculator'))
         .height('60%')
-        .fontSize('28px')
+        .fontSize(24)
         .margin({ left: 12 })
+        .fontWeight(600)
       Blank().layoutWeight(1)
       if (!this.isShow) {
         Image($r("app.media.ic_hop_normal1"))
