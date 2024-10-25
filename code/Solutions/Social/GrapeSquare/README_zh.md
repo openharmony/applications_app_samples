@@ -70,21 +70,21 @@ products/phone/entry/src/main/ets
       然后通过helper.createAsset()方法得到媒体库图片的uri， resourceManager.getMediaContent()可以得到存放在Resources/base/media文件下的banner.png图片内容，
       使用fs.open()和fs.write()方法将图片内容通过得到的uri写到媒体库中，最后通过fs.close()方法关闭文件
     * 源码链接：[SaveControl.ets](feature/authorizedControl/src/main/ets/authorizedControl/SaveControl.ets)
-    * 接口参考：[@ohos.file.photoAccessHelper](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-photoAccessHelper.md)，[@ohos.file.fs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-fs.md#fsopen)
-  
+    * 接口参考：[@ohos.file.photoAccessHelper](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-photoAccessHelper.md)，[@ohos.file.fs](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-fs.md)
+
   * 文本的复制和粘贴
 
     * 使用PasteButton控件获取剪贴板信息，在其点击回调onclick事件中调用systemPasteboard.setData()方法将文本复制到剪贴板中，然后通过systemPasteboard.getData()方法得到剪贴板内容
     * 源码链接：[PasteButton.ets](feature/authorizedControl/src/main/ets/authorizedControl/PasteControl.ets)
-    * 接口参考：[@ohos.pasteboard](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-pasteboard.md#getdata9)
+    * 接口参考：[@ohos.pasteboard](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-pasteboard.md)
 
   * 位置信息的获取
-  
+
     * 使用LocationButton控件获取定位信息，在其点击回调onclick事件中调用geoLocationManager.getCurrentLocation()方法得到当前定位信息经纬度。
     * 源码链接：[LocationButton.ets](feature/authorizedControl/src/main/ets/authorizedControl/LocationControl.ets)
-    * 接口参考：[@ohos.geoLocationManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-geoLocationManager.md#geolocationmanagergetcurrentlocation)
+    * 接口参考：[@ohos.geoLocationManager](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-location-kit/js-apis-geoLocationManager-sys.md)
 
-  
+
 ### 相关权限
 
 不涉及。
