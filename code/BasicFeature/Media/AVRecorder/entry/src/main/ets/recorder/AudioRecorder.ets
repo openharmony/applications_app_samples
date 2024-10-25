@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Huawei Device Co., Ltd.
+ * Copyright (C) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +13,8 @@
  * limitations under the License.
  */
 
-import media from '@ohos.multimedia.media';
+import { media } from '@kit.MediaKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { dateTime } from '../utils/DateTimeUtils';
 import Logger from '../utils/Logger';
 import SaveCameraAsset from '../utils/SaveCameraAsset';
@@ -23,29 +24,29 @@ const TAG: string = 'Sample_AudioRecorder';
 @Entry
 @Component
 struct AudioRecording {
-  private audioRecorder: media.AVRecorder;
-  private fdPath: string = undefined;
+  private audioRecorder?: media.AVRecorder;
+  private fdPath?: string = '';
   @State frameRate: number = 15;
   @State audioRecorderTimeText: string = '00:00';
   private seconds: number = 0;
   private timer: number = 0;
-  @State displayLog: string = undefined;
+  @State displayLog: string = '';
   private recorderState: string = 'free';
   @State isStartRecording: boolean = false;
   @State isPauseRecording: boolean = false;
   private mSaveCameraAsset: SaveCameraAsset = new SaveCameraAsset(TAG);
-  private mFileAssetId: number = 0; // init fd 0
+  private mFileAssetId?: number = 0; // init fd 0
   @State audioChannels: number = 2; // set default audioChannels 2
   @State audioSampleRate: number = 48000; // set default audioSampleRate 48000
 
-  private avProfile = {
-    audioBitrate: 48000, // set audioBitrate according to device ability
-    audioChannels: 2, // set audioChannels, valid value 1-8
+  private avProfile: media.AVRecorderProfile = {
+    audioBitrate: 64000, // set audioBitrate according to device ability
+    audioChannels: 1, // set audioChannels, valid value 1-8
     audioCodec: media.CodecMimeType.AUDIO_AAC, // set audioCodec, AUDIO_AAC is the only choice
-    audioSampleRate: 48000, // set audioSampleRate according to device ability
+    audioSampleRate: 8000, // set audioSampleRate according to device ability
     fileFormat: media.ContainerFormatType.CFT_MPEG_4A, // set fileFormat, for video is m4a
   }
-  private avConfig = {
+  private avConfig: media.AVRecorderConfig = {
     audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
     profile: this.avProfile,
     url: 'fd://'
@@ -61,11 +62,11 @@ struct AudioRecording {
     Logger.info(TAG, 'aboutToDisappear done');
   }
 
-  async failureCallback(error): Promise<void> {
+  async failureCallback(error: BusinessError): Promise<void> {
     Logger.info(TAG, 'case failureCallback called,errMessage is ' + error.message);
   }
 
-  async catchCallback(error): Promise<void> {
+  async catchCallback(error: BusinessError): Promise<void> {
     Logger.info(TAG, 'case catchCallback called,errMessage is ' + error.message);
   }
 
@@ -103,89 +104,103 @@ struct AudioRecording {
   // set callback on
   setCallback(): void {
     Logger.info(TAG, 'case callback');
-    this.audioRecorder.on('stateChange', (state, reason) => {
-      Logger.info(TAG, 'case state has changed, new state is' + state);
-      switch (state) {
-        case 'idle':
-          this.recorderState = 'idle';
-          break;
-        case 'prepared':
-          this.recorderState = 'prepared';
-          break;
-        case 'started':
-          this.recorderState = 'started';
-          this.getRecordTime();
-          this.isStartRecording = true;
-          this.isPauseRecording = false;
-          break;
-        case 'paused':
-          this.recorderState = 'paused';
-          clearInterval(this.timer);
-          this.isPauseRecording = true;
-          break;
-        case 'stopped':
-          this.recorderState = 'stopped';
-          this.isStartRecording = false;
-          break;
-        case 'released':
-          this.recorderState = 'released';
-          break;
-        case 'error':
-          Logger.info(TAG, 'case error state!!!');
-          this.recorderState = 'error';
-          break;
-        default:
-          Logger.info(TAG, 'case start is unknown');
-          break;
-      }
-    });
-    this.audioRecorder.on('error', (err) => {
-      Logger.info(TAG, 'case avRecorder.on(error) called, errMessage is ' + err.message);
-    });
+    if (this.audioRecorder) {
+      this.audioRecorder.on('stateChange', (state, reason) => {
+        Logger.info(TAG, 'case state has changed, new state is' + state);
+        switch (state) {
+          case 'idle':
+            this.recorderState = 'idle';
+            break;
+          case 'prepared':
+            this.recorderState = 'prepared';
+            break;
+          case 'started':
+            this.recorderState = 'started';
+            this.getRecordTime();
+            this.isStartRecording = true;
+            this.isPauseRecording = false;
+            break;
+          case 'paused':
+            this.recorderState = 'paused';
+            clearInterval(this.timer);
+            this.isPauseRecording = true;
+            break;
+          case 'stopped':
+            this.recorderState = 'stopped';
+            this.isStartRecording = false;
+            break;
+          case 'released':
+            this.recorderState = 'released';
+            break;
+          case 'error':
+            Logger.info(TAG, 'case error state!!!');
+            this.recorderState = 'error';
+            break;
+          default:
+            Logger.info(TAG, 'case start is unknown');
+            break;
+        }
+      });
+      this.audioRecorder.on('error', (err) => {
+        Logger.info(TAG, 'case avRecorder.on(error) called, errMessage is ' + err.message);
+      });
+    }
   }
 
   async prepareAudioRecorder(): Promise<void> {
     Logger.info(TAG, 'case prepareAudioRecorder in');
     this.avConfig.profile.audioChannels = this.audioChannels;
     this.avConfig.profile.audioSampleRate = this.audioSampleRate;
-    await this.audioRecorder.prepare(this.avConfig).then(() => {
-      Logger.info(TAG, 'case prepare AVRecorder called');
-    }, this.failureCallback).catch(this.catchCallback);
+    if (this.audioRecorder) {
+      await this.audioRecorder.prepare(this.avConfig).then(() => {
+        Logger.info(TAG, 'case prepare AVRecorder called');
+      }, this.failureCallback).catch(this.catchCallback);
+    }
     Logger.info(TAG, 'case prepareAudioRecorder out');
   }
 
   async startAudioRecording(): Promise<void> {
     Logger.info(TAG, 'case startAudioRecording called');
-    await this.audioRecorder.start().then(() => {
-      Logger.info(TAG, 'case start AudioRecorder called');
-    }, this.failureCallback).catch(this.catchCallback);
+    if (this.audioRecorder) {
+      await this.audioRecorder.start().then(() => {
+        Logger.info(TAG, 'case start AudioRecorder called');
+      }, this.failureCallback).catch(this.catchCallback);
+    }
   }
 
   async pauseAudioRecording(): Promise<void> {
     Logger.info(TAG, 'case pauseAudioRecording called');
-    await this.audioRecorder.pause().then(() => {
-      Logger.info(TAG, 'case pause AudioRecorder called');
-    }, this.failureCallback).catch(this.catchCallback);
+    if (this.audioRecorder) {
+      await this.audioRecorder.pause().then(() => {
+        Logger.info(TAG, 'case pause AudioRecorder called');
+      }, this.failureCallback).catch(this.catchCallback);
+    }
   }
 
   async resumeAudioRecording(): Promise<void> {
     Logger.info(TAG, 'case resumeAudioRecording called');
-    await this.audioRecorder.resume().then(() => {
-      Logger.info(TAG, 'case resume AudioRecorder called');
-    }, this.failureCallback).catch(this.catchCallback);
+    if (this.audioRecorder) {
+      await this.audioRecorder.resume().then(() => {
+        Logger.info(TAG, 'case resume AudioRecorder called');
+      }, this.failureCallback).catch(this.catchCallback);
+    }
   }
 
   async stopAudioRecording(): Promise<void> {
     Logger.info(TAG, 'case stopAudioRecording called');
-    await this.audioRecorder.stop().then(() => {
-      Logger.info(TAG, 'case stop AudioRecorder called');
-    }, this.failureCallback).catch(this.catchCallback);
+    if (this.audioRecorder) {
+      await this.audioRecorder.stop().then(() => {
+        Logger.info(TAG, 'case stop AudioRecorder called');
+      }, this.failureCallback).catch(this.catchCallback);
+    }
   }
 
   async resetAudioRecording(): Promise<void> {
-    await this.audioRecorder.reset().then(() => {
-      Logger.info(TAG, 'case resetAudioRecording called');
-    }, this.failureCallback).catch(this.catchCallback);
+    if (this.audioRecorder) {
+      await this.audioRecorder.reset().then(() => {
+        Logger.info(TAG, 'case resetAudioRecording called');
+      }, this.failureCallback).catch(this.catchCallback);
+    }
   }
 
   async releaseAudioRecorder(): Promise<void> {
@@ -202,8 +217,8 @@ struct AudioRecording {
   // close file fd
   async closeFd(): Promise<void> {
     Logger.info(TAG, 'case closeFd called');
-    if (this.fdPath) {
-      await this.mSaveCameraAsset.AudioPrepareFile.close(this.mFileAssetId);
+    if (this.mSaveCameraAsset) {
+      await this.mSaveCameraAsset.closeAudioFile();
       this.mFileAssetId = undefined;
       this.fdPath = undefined;
       Logger.info(TAG, 'case closeFd done');
@@ -367,8 +382,8 @@ struct CustomDialogSetting {
   @Link audioChannels: number
   @Link audioSampleRate: number
   controller: CustomDialogController
-  cancel: () => void
-  confirm: () => void
+  cancel?: () => void
+  confirm?: () => void
   @State currentAudioChannels: number = 2
   @State currentAudioSampleRate: number = 48000
   private initAudioChannels: number = this.audioChannels
@@ -387,7 +402,7 @@ struct CustomDialogSetting {
           .margin({ left: 24, right: 24, top: 16 })
         Column() {
           List({ space: 10 }) {
-            ForEach(this.audioSampleRateList, (item, index) => {
+            ForEach(this.audioSampleRateList, (item: number, index) => {
               ListItem() {
                 Row() {
                   Text($r('app.string.audio_samplerate'))
@@ -429,7 +444,9 @@ struct CustomDialogSetting {
             this.audioChannels = this.initAudioChannels
             this.audioSampleRate = this.initAudioSampleRate
             this.controller.close()
-            this.cancel()
+            if (this.cancel) {
+              this.cancel()
+            }
           })
           .backgroundColor($r('app.color.button_background'))
           .fontColor($r('app.color.button_color'))
@@ -448,7 +465,9 @@ struct CustomDialogSetting {
             this.audioChannels = this.currentAudioChannels
             this.audioSampleRate = this.currentAudioSampleRate
             this.controller.close()
-            this.confirm()
+            if (this.confirm) {
+              this.confirm()
+            }
           })
           .backgroundColor($r('app.color.button_background'))
           .fontColor($r('app.color.button_color'))

@@ -22,7 +22,7 @@ ohos.permission.WRITE_MEDIA, which allows an app to write media files to the use
 ### Constraints
 
 1. This sample can only be run on standard-system devices that use the phone.
-2. This sample is based on the stage model, which is supported from API version 9. You should manully fetch Full SDK from gitee and replace them in DevEco Studio.
-3. DevEco Studio 3.1 Beta2 (Build Version:3.1.0.400, built on  April 7, 2023) must be used.
+2. This sample is based on the stage model, which is supported from API version 12. You should manully fetch Full SDK from gitee and replace them in DevEco Studio.
+3. DevEco Studio Next 5.0 Beta1 (Build Version:5.0.3.800, built on Sep 4, 2024) must be used.
 3. Camera apis can only be used by system app. In order to run this sample,  you should generate signature manually with hap-sign-tool.
 

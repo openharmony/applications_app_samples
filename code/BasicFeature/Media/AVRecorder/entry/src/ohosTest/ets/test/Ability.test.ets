@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Huawei Device Co., Ltd.
+ * Copyright (C) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,7 +15,6 @@
 
 import { describe, it, expect } from '@ohos/hypium'
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-// @ts-ignore
 import { Driver, ON } from '@ohos.UiTest';
 import { logger } from '../util/Logger';
 
@@ -25,11 +24,11 @@ const driver = Driver.create();
 const abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
 
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
     /**
      * 拉起应用
      */
-    it(BUNDLE + '_StartAbility', 0, async function () {
+    it(BUNDLE + '_StartAbility', 0, async () => {
       logger.info(TAG, BUNDLE + '_StartAbility start');
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
@@ -52,11 +51,11 @@ export default function abilityTest() {
       await driver.delayMs(1000);
       let ability = abilityDelegatorRegistry.getAppContext();
       let manager = ability.resourceManager;
-      for (let i = 0; i < 4; i++) {
+      for (let i = 0; i < 3; i++) {
         let btnAccept = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.allow'))));
         if (btnAccept !== undefined) {
           await btnAccept.click();
-          await driver.delayMs(500);
+          await driver.delayMs(1000);
         }
       }
       logger.info(TAG, BUNDLE + '_Permission end');

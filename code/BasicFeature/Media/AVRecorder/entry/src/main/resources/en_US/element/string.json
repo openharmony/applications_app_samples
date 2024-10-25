@@ -47,6 +47,10 @@
     {
       "name": "video_resolution",
       "value": "video resolution: "
+    },
+    {
+      "name": "reason",
+      "value": "Permission"
     }
   ]
 }

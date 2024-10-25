@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Huawei Device Co., Ltd.
+ * Copyright (C) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
-import UIAbility from '@ohos.app.ability.UIAbility';
-import type window from '@ohos.window';
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-import type { Permissions } from '@ohos.abilityAccessCtrl';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { abilityAccessCtrl } from '@kit.AbilityKit';
+import { Permissions } from '@kit.AbilityKit';
 import Logger from '../utils/Logger';
 
 /**
@@ -33,14 +33,13 @@ export default class EntryAbility extends UIAbility {
     atManager.requestPermissionsFromUser(globalThis.abilityContext, permissionNames).then((data) => {
       Logger.info('testTag', 'requestPermissionsFromUser called');
     });
-    AppStorage.SetOrCreate('context', this.context);
   }
 
   onDestroy() {
     Logger.info('testTag', 'Ability onDestroy');
   }
 
-  async onWindowStageCreate(windowStage: window.WindowStage): Promise<void> {
+  async onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
     Logger.info('testTag', 'Ability onWindowStageCreate');
 
