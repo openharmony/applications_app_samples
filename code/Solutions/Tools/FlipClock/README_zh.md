@@ -3,11 +3,11 @@
 ### 介绍
 
 本示例集中展示了时钟、闹钟、倒计时、设置屏幕亮度相关的场景，  
-1、使用[@ohos.reminderAgentManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-reminderAgentManager.md )完成闹钟的相关功能，  
-2、使用animateTo完成翻页时钟动画，使用[@ohos.runningLock](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-runninglock.md )完成屏幕常亮功能，  
-3、设置屏幕亮度，使用[@ohos.brightness](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-brightness.md )系统能力调节屏幕亮度，  
-4、后台消息提醒，使用[@ohos.notificationManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-notificationManager.md )系统能力做后台代理提醒。  
-5、需要系统存储信息，使用用户首选项接口[@ohos.data.preferences](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-preferences.md )。
+1、使用[@ohos.reminderAgentManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager.md )完成闹钟的相关功能，  
+2、使用animateTo完成翻页时钟动画，使用[@ohos.runningLock](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-runninglock.md )完成屏幕常亮功能，  
+3、设置屏幕亮度，使用[@ohos.brightness](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-brightness-sys.md )系统能力调节屏幕亮度，  
+4、后台消息提醒，使用[@ohos.notificationManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-notificationManager.md )系统能力做后台代理提醒。  
+5、需要系统存储信息，使用用户首选项接口[@ohos.data.preferences](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkdata/js-apis-data-preferences.md )。
 
 
 ### 效果预览
@@ -57,46 +57,46 @@ entry/src/main/ets/
   2、使用tabs()标签，将四个组件封装。
 * 组件逻辑实现  
   1、时钟： 通过aboutToAppear()中new date()获取当前时间，通过获取date的时、分、秒，10位数通过math.floor()取整，个位数通过对10取余，从而实现对时间格式化，使用box标签，对获取到的数据进行渲染。  
-  2、闹钟：   
-   * a) 使用自定义对话控制器CustomDialogController，定义时间选择器，使用data.preferences存储设置的闹钟，并使用reminderAgentManager将其添加到系统中。
-  import data_preferences from '@ohos.data.preferences'
-  import reminderAgentManager from '@ohos.reminderAgentManager'  
+  2、闹钟：
+  * a) 使用自定义对话控制器CustomDialogController，定义时间选择器，使用data.preferences存储设置的闹钟，并使用reminderAgentManager将其添加到系统中。
+    import data_preferences from '@ohos.data.preferences'
+    import reminderAgentManager from '@ohos.reminderAgentManager'
   *  b) 页面从data.preferences获取添加的闹钟数据，通过Scroll()标签渲染，在标签row内，设置delete按钮，如果删除就调用以下函数取消系统时钟
-  import reminderAgentManager from '@ohos.reminderAgentManager'
-  reminderAgentManager.cancelReminder  
-  3、倒计时  
-  * a) 使用aboutToAppear()初始化界面布局，通过this.listener.on('change', portraitFunc)添加监听，  
+     import reminderAgentManager from '@ohos.reminderAgentManager'
+     reminderAgentManager.cancelReminder  
+     3、倒计时
+  * a) 使用aboutToAppear()初始化界面布局，通过this.listener.on('change', portraitFunc)添加监听，
   * b) 点击开始按钮触发以下函数开始计时，并修改按钮的样式为暂停，并将running=true，触发canvas样式
-  countInSec = pickerH * 3600 + pickerM * 60 + pickerS //总计时计算
-  this.timer = setInterval(this.timerCountDown.bind(this), 1000) //时间计算
+    countInSec = pickerH * 3600 + pickerM * 60 + pickerS //总计时计算
+    this.timer = setInterval(this.timerCountDown.bind(this), 1000) //时间计算
   * c) 点击暂停按钮，时间暂停，并将按钮样式修改为开始  
-  clearInterval(this.timer)
-  this.isRunning = true
-  this.isPausing = true
-  this.startImg = $r('app.media.start')
+    clearInterval(this.timer)
+    this.isRunning = true
+    this.isPausing = true
+    this.startImg = $r('app.media.start')
   * d) 点击reset计时重置，将所有数据初始化  
-  clearInterval(this.timer)
-  this.isRunning = false
-  this.isPausing = false
-  this.progressVal = 0
-  this.rotates = 0
-  passSec = 0
-  this.hoursTime = 0
-  this.minuteTime = 0
-  this.secondTime = 0
-  pickerH = 0
-  pickerM = 0
-  pickerS = 0
-  this.startImg = $r('app.media.start')
-  this.resetImg = $r('app.media.resetccc')
+    clearInterval(this.timer)
+    this.isRunning = false
+    this.isPausing = false
+    this.progressVal = 0
+    this.rotates = 0
+    passSec = 0
+    this.hoursTime = 0
+    this.minuteTime = 0
+    this.secondTime = 0
+    pickerH = 0
+    pickerM = 0
+    pickerS = 0
+    this.startImg = $r('app.media.start')
+    this.resetImg = $r('app.media.resetccc')
 
 ### 相关权限
 
-[ohos.permission.PUBLISH_AGENT_REMINDER](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionpublish_agent_reminder)
+[ohos.permission.PUBLISH_AGENT_REMINDER](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionpublish_agent_reminder)
 
-[ohos.permission.RUNNING_LOCK](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionrunning_lock)
+[ohos.permission.RUNNING_LOCK](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionrunning_lock)
 
-[ohos.permission.NOTIFICATION_CONTROLLER](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionnotification_controller)
+[ohos.permission.NOTIFICATION_CONTROLLER](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionnotification_controller)
 
 ### 依赖
 
@@ -106,9 +106,9 @@ entry/src/main/ets/
 
 1.本示例仅支持在标准系统上运行。
 
-2.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400 , built on April 7, 2023)及以上版本才可编译运行。
+2.本示例需要使用DevEco Studio NEXT Developer Preview2 (Build Version: 4.1.3.700, built on March 19, 2024)版本才可编译运行。
 
-3.本示例已适配API version 9版本SDK，版本号：3.2.11.9；
+3.本示例已适配API version 12版本SDK，版本号：5.0.0.70；
 
 ### 下载
 
