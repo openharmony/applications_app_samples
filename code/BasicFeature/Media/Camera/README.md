@@ -73,7 +73,7 @@ entry/src/main
 ```
 
 ### 具体实现
-* 相机功能接口实现在CameraManager.cpp中，源码参考：[CameraManager.cpp](entry/src/main/cpp/CameraManager.cpp)
+* 相机功能接口实现在CameraManager.cpp中，源码参考：[CameraManager.cpp](entry/src/main/cpp/camera_manager.cpp)
     * 在NDKCamera构造函数里完成一个相机生命周期初始化的过程，包括调用OH_Camera_GetCameraMananger获取CameraMananger，调用OH_CameraManager_CreateCaptureSession创建CaptureSession，调用CaptureSessionRegisterCallback创建CaptureSession注册回调，调用GetSupportedCameras获取支持的camera设备，调用GetSupportedOutputCapability获取支持的camera设备能力集，调用CreatePreviewOutput创建预览输出，调用CreateCameraInput创建相机输入，调用CameraInputOpen打开相机输入，调用CameraManagerRegisterCallback创建CameraManager注册回调，最后调用SessionFlowFn开启Session。
     * 其中SessionFlowFn是一个开启预览的动作，主要流程包括：调用OH_CaptureSession_BeginConfig开始配置会话，调用OH_CaptureSession_AddInput把CameraInput加入到会话，调用OH_CaptureSession_AddPreviewOutput把previewOutput加入到会话，调用OH_CaptureSession_CommitConfig提交配置信息，调用OH_CaptureSession_Start开始会话工作，还有一步是在开启预览的同时调用IsFocusMode启动对焦功能，这边后面会涉及到。
     * 在NDKCamera析构函数里完成对相机生命周期释放的过程，调用OH_CameraManager_DeleteSupportedCameras删除支持的camera设备，调用OH_CameraManager_DeleteSupportedCameraOutputCapability删除支持的camera设备能力集，调用OH_Camera_DeleteCameraMananger删除camera manager。
@@ -95,17 +95,17 @@ entry/src/main
         * CaptureSessionRegisterCallback：session出现异常时以及开启对焦模式时触发回调
 
 
-* 相机预览、拍照、录像功能、前后置切换功能实现调用侧位于tableIndex.ets，modeSwitchPage.ets，main.cpp中，源码参考：[tableIndex.ets](entry/src/main/cpp/ets/pages/tableIndex.ets)，[modeSwitchPage.ets](entry/src/main/cpp/ets/views/modeSwitchPage.ets)，[main.cpp](entry/src/main/cpp/main.cpp)
-    * 预览：开启预览位于tableIndex.ets下的onPageShow接口，其中调用cameraDemo.initCamera接口，将预览的surfaceId，对焦模式的值，以及是前置还是后置摄像头设备作为入参啊传下去，实际调用的是main.cpp下的InitCamera接口，InitCamera接口将JS侧拿到的参数进行转换再传入cameraManager.cpp中的构造函数里去，完成开启相机的操作，开启预览并设置好对焦模式。
-    * 拍照和录像：开启拍照位于modeSwitchPage.ets下的isVideoPhotoFn接口，通过判断modelBagCol的值是photo还是video，将modelBagCol的值，videoId，拍照的surfaceID或者录像的surfaceId传入接口startPhotoOrVideo。如果是拍照模式，则通过modeSwitchPage.ets下的getPhotoSurfaceID接口获取photo surfaceId，跳转到main.cpp中的StartPhotoOrVideo接口，将传下来的参数进行格式转换，再调用CameraManager对象下的StartPhoto接口开启拍照操作；如果是录像模式，则通过modeSwitchPage.ets下的getVideoSurfaceID接口获取video surfaceId，跳转到main.cpp中的StartPhotoOrVideo接口，将传下来的参数进行格式转换，再调用CameraManager对象下的StartVideo接口开启录像操作
-    * 前后置切换：前后置摄像头切换接口位于modeSwitchPage.ets，切换cameraDeviceIndex，将先前的session配置释放，调用cameraDemo.releaseSession接口，实际上是main.cpp下的ReleaseSession接口，最终调用到CameraMangaer.cpp下的ReleaseSession接口。然后将预览的surfaceId，对焦模式的值以及cameraDeviceIndex传入cameraDemo.initCamera接口中，逻辑和预览一致。
+* 相机预览、拍照、录像功能、前后置切换功能实现调用侧位于Index.ets，modeSwitchPage.ets，main.cpp中，源码参考：[Index.ets](entry/src/main/ets/pages/Index.ets)，[ModeSwitchPage.ets](entry/src/main/ets/views/ModeSwitchPage.ets)，[main.cpp](entry/src/main/cpp/main.cpp)
+    * 预览：开启预览位于Index.ets下的onPageShow接口，其中调用cameraDemo.initCamera接口，将预览的surfaceId，对焦模式的值，以及是前置还是后置摄像头设备作为入参啊传下去，实际调用的是main.cpp下的InitCamera接口，InitCamera接口将JS侧拿到的参数进行转换再传入cameraManager.cpp中的构造函数里去，完成开启相机的操作，开启预览并设置好对焦模式。
+    * 拍照和录像：开启拍照位于ModeSwitchPage.ets下的isVideoPhotoFn接口，通过判断modelBagCol的值是photo还是video，将modelBagCol的值，videoId，拍照的surfaceID或者录像的surfaceId传入接口startPhotoOrVideo。如果是拍照模式，则通过modeSwitchPage.ets下的getPhotoSurfaceID接口获取photo surfaceId，跳转到main.cpp中的StartPhotoOrVideo接口，将传下来的参数进行格式转换，再调用CameraManager对象下的StartPhoto接口开启拍照操作；如果是录像模式，则通过modeSwitchPage.ets下的getVideoSurfaceID接口获取video surfaceId，跳转到main.cpp中的StartPhotoOrVideo接口，将传下来的参数进行格式转换，再调用CameraManager对象下的StartVideo接口开启录像操作
+    * 前后置切换：前后置摄像头切换接口位于ModeSwitchPage.ets，切换cameraDeviceIndex，将先前的session配置释放，调用cameraDemo.releaseSession接口，实际上是main.cpp下的ReleaseSession接口，最终调用到CameraMangaer.cpp下的ReleaseSession接口。然后将预览的surfaceId，对焦模式的值以及cameraDeviceIndex传入cameraDemo.initCamera接口中，逻辑和预览一致。
 
 
-* 相机闪光灯、变焦、对焦、曝光功能实现调用侧位于FlashingLightPage.ets，SlidePage.ets，focusAreaPage.ets中，源码参考：[FlashingLightPage.ets](entry/src/main/cpp/ets/views/FlashingLightPage.ets)，[SlidePage.ets](entry/src/main/cpp/ets/views/SlidePage.ets)，[focusAreaPage.ets](entry/src/main/cpp/ets/views/focusAreaPage.ets)，[main.cpp](entry/src/main/cpp/main.cpp)
+* 相机闪光灯、变焦、对焦、曝光功能实现调用侧位于FlashingLightPage.ets，SlidePage.ets，focusAreaPage.ets中，源码参考：[FlashingLightPage.ets](entry/src/main/ets/views/FlashingLightPage.ets)，[SlidePage.ets](entry/src/main/ets/views/SlidePage.ets)，[FocusAreaPage.ets](entry/src/main/ets/views/FocusAreaPage.ets)，[main.cpp](entry/src/main/cpp/main.cpp)
     * 闪光灯：闪光灯功能位于FlashingLightPage.ets，getImageDefault接口用作在点击闪光灯图标之后选择闪光灯模式，0代表关闭，1代表打开，2是自动，3是常亮。然后在build中通过cameraDemo.hasFlash接口调用到main.cpp中的HasFlash接口，最终调到CameraManager.cpp中的HasFlashFn接口，完成闪光灯功能的实现。
     * 变焦：变焦功能位于SlidePage.ets，通过调用slideChange接口设置slide滑块的值，目前只支持1-6.然后调用cameraDemo.setZoomRatio接口调用到main.cpp中的SetZoomRatio接口，最终调到CameraManager.cpp中的setZoomRatioFn接口，完成变焦功能的实现。
-    * 对焦：对焦功能位于focusAreaPage.ets，通过在build中将对焦焦点下发到cpp侧，在CameraManager.cpp文件中的SessionFlowFn函数中，会调用IsFocusMode接口来判断是否支持对焦模式，然后通过onTouch的方式将对焦点位通过cameraDemo.isFocusPoint接口下发到main.cpp侧的IsFocusPoint接口，最终调到CameraManager.cpp中的IsFocusPoint接口。以及调用OH_CaptureSession_SetFocusMode拿到对焦点位来设置对焦模式，最后调用OH_CaptureSession_GetFocusMode来获取对焦模式，完成对焦功能实现。
-    * 曝光：曝光功能位于focusAreaPage.ets，通过在build中将侧光点位下发到cpp侧，然后通过onTouch的方式将对焦点位以及侧光点位通过cameraDemo.isFocusPoint接口下发到main.cpp侧的isMeteringPoint接口，最终调到CameraManager.cpp中的IsMeteringPoint接口。然后设置曝光补偿，单指竖直方向拖动触发该手势事件，调用gesture中的cameraDemo.isExposureBiasRange接口将曝光值下发到main.cpp中的IsExposureBiasRange，然后经过napi转换后将值传到CameraManager.cpp中的IsExposureBiasRange接口，之后从native侧发到曝光补偿的范围，再调用OH_CaptureSession_SetExposureBias设置曝光值，最后调用OH_CaptureSession_GetExposureBias接口获取曝光值，完成曝光功能。
+    * 对焦：对焦功能位于FocusAreaPage.ets，通过在build中将对焦焦点下发到cpp侧，在CameraManager.cpp文件中的SessionFlowFn函数中，会调用IsFocusMode接口来判断是否支持对焦模式，然后通过onTouch的方式将对焦点位通过cameraDemo.isFocusPoint接口下发到main.cpp侧的IsFocusPoint接口，最终调到CameraManager.cpp中的IsFocusPoint接口。以及调用OH_CaptureSession_SetFocusMode拿到对焦点位来设置对焦模式，最后调用OH_CaptureSession_GetFocusMode来获取对焦模式，完成对焦功能实现。
+    * 曝光：曝光功能位于FocusAreaPage.ets，通过在build中将侧光点位下发到cpp侧，然后通过onTouch的方式将对焦点位以及侧光点位通过cameraDemo.isFocusPoint接口下发到main.cpp侧的isMeteringPoint接口，最终调到CameraManager.cpp中的IsMeteringPoint接口。然后设置曝光补偿，单指竖直方向拖动触发该手势事件，调用gesture中的cameraDemo.isExposureBiasRange接口将曝光值下发到main.cpp中的IsExposureBiasRange，然后经过napi转换后将值传到CameraManager.cpp中的IsExposureBiasRange接口，之后从native侧发到曝光补偿的范围，再调用OH_CaptureSession_SetExposureBias设置曝光值，最后调用OH_CaptureSession_GetExposureBias接口获取曝光值，完成曝光功能。
 
 ### 相关权限
 
