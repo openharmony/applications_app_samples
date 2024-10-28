@@ -33,6 +33,7 @@ export struct TransCodingDialog {
   @State showProgressNum: number = 0;
   @State transCodingResult: boolean = false;
   @State fileUri: string = '';
+  @State isTranscoding: Boolean = false;
 
   aboutToAppear(): void {
     Log.info(TAG, 'aboutToAppear');
@@ -60,7 +61,7 @@ export struct TransCodingDialog {
       Stack({ alignContent: Alignment.Top }) {
         Row() {
           Button() {
-            Text($r('app.string.no'))
+            Text($r('app.string.action_back'))
               .fontSize($r('sys.float.ohos_id_text_size_button1'))
               .fontColor($r('app.color.color_control_highlight'))
               .fontWeight(FontWeight.Medium)
@@ -93,13 +94,14 @@ export struct TransCodingDialog {
               .width('50%')
               .textAlign(TextAlign.Center)
           }
-          .enabled(!this.isNull)
-          .opacity(this.isNull ? $r('app.float.disable_button_opacity') : 1)
+          .enabled(!this.isNull && !this.isTranscoding)
+          .opacity(this.isNull || this.isTranscoding ? $r('app.float.disable_button_opacity') : 1)
           .margin({ right: $r('app.float.details_dialog_button_margin_left') })
           .backgroundColor($r('app.color.transparent'))
           .height($r('app.float.details_dialog_button_height'))
           .onClick((): void => {
             if (this.dialogCallback != null && this.dialogCallback.confirmCallback !== null) {
+              this.isTranscoding = true;
               const fileUri = (uri: string) => {
                 this.fileUri = uri;
                 Log.info(TAG, 'fileUri uri:' + uri);
@@ -107,6 +109,7 @@ export struct TransCodingDialog {
               const transCodingResult = (result: boolean) => {
                 this.transCodingResult = result;
                 Log.info(TAG, 'Transcoding Result:' + result);
+                this.isTranscoding = false;
               };
               const showProgressNum = (progress: number) => {
                 this.showProgressNum = progress;
