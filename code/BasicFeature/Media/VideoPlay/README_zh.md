@@ -2,7 +2,7 @@
 
 ### 介绍
 视频播放的主要工作是将视频数据转码并输出到设备进行播放，同时管理播放任务。本文将对视频播放全流程、视频切换、视频循环播放等场景开发进行介绍说明。
-本示例主要展示了播放本地视频和网络视频相关功能,使用 [@ohos.multimedia.media](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-media-kit/js-apis-media.md),[@ohos.resourceManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-localization-kit/js-apis-resource-manager.md),[@ohos.wifiManager](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/apis/js-apis-wifiManager.md)等接口,实现了视频播放、暂停、调节倍速、切换视频的功能;实现效果如下;
+本示例主要展示了播放本地视频和网络视频相关功能,使用 [@ohos.multimedia.media](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-media-kit/js-apis-media.md),[@ohos.resourceManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-localization-kit/js-apis-resource-manager.md),[@ohos.wifiManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-wifiManager.md)等接口,实现了视频播放、暂停、调节倍速、切换视频的功能;实现效果如下;
 
 ### 效果预览
 | 播放                                       | 暂停                                    | 倍速弹窗                                       | 视频列表                                      |
@@ -49,7 +49,7 @@ VideoPlay/src/main/ets/
 ```
 
 ### 具体实现
-+ 视频倍速切换、暂停、播放、切换视频、视频跳转的功能接口都封装在AvPlayManager.ts,源码参考：[AvPlayManager.ts](entry%2Fsrc%2Fmain%2Fets%2Fvideomanager%2FAvPlayManager.ts);
++ 视频倍速切换、暂停、播放、切换视频、视频跳转的功能接口都封装在AvPlayManager.ts,源码参考：[AvPlayManager.ts](entry/src/main/ets/videomanager/AvPlayManager.ets);
 + 使用media.createAVPlayer()来获取AVPlayer对象;
 + 倍速切换：选择不同的倍速时调用avPlayer.setSpeed(speed: PlaybackSpeed);
 + 暂停、播放：点击暂停、播放时调用avPlayer.pause()、avPlayer.play();
