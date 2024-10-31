@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例使用了[@ohos.security.cert](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-cert.md)相关接口实现了对签名数据进行校验的功能。
+本示例使用了[@ohos.security.cert](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-device-certificate-kit/js-apis-cert.md)相关接口实现了对签名数据进行校验的功能。
 
 实现场景（一）如下：
 
@@ -68,12 +68,12 @@ entry/src/main/ets/
 
 场景（一）
 * 使用证书公钥实现签名校验的功能接口Verify封装在CertFrameworkModel中
-    * 获取证书公钥：首先调用[cert.createX509Cert](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-cert.md#cryptocertcreatex509cert)接口生成证书对象certObject，使用certObject对象的[getPublicKey](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-cert.md#getpublickey)能力获取公钥pubKey；然后调用[cryptoFramework.createAsyKeyGenerator](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator)接口创建密钥生成器keyGenerator，使用keyGenerator的[convertKey](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-cryptoFramework.md#convertkey-1)能力将公钥pubKey转换为正确的格式。
-    * 使用公钥校验签名：首先调用[cryptoFramework.createVerify](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreateverify)接口创建验签对象verifier，使用公钥pubKey对验签对象verifier进行初始化[verifier.init](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-cryptoFramework.md#init-6)；然后使用验签对象verifier的[verify](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-cryptoFramework.md#verify-1)能力对签名进行校验。
+  * 获取证书公钥：首先调用[cert.createX509Cert](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-device-certificate-kit/js-apis-cert.md#certcreatex509cert)接口生成证书对象certObject，使用certObject对象的[getPublicKey](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-device-certificate-kit/js-apis-cert.md#getpublickey)能力获取公钥pubKey；然后调用[cryptoFramework.createAsyKeyGenerator](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator)接口创建密钥生成器keyGenerator，使用keyGenerator的[convertKey](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey)能力将公钥pubKey转换为正确的格式。
+  * 使用公钥校验签名：首先调用[cryptoFramework.createVerify](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateverify)接口创建验签对象verifier，使用公钥pubKey对验签对象verifier进行初始化[verifier.init](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-4)；然后使用验签对象verifier的[verify](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#verify)能力对签名进行校验。
 
 场景（二）
 * 使用证书公钥实现签名校验的功能接口validate封装在CertChainModel中
-  * 创建证书链： 调用[cert.createX509CertChain](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-cert.md)接口生成证书链对象certChainObject。
+  * 创建证书链： 调用[cert.createX509CertChain](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-device-certificate-kit/js-apis-cert.md#certcreatex509certchain11)接口生成证书链对象certChainObject。
   * 验证证书链： 从根证书中获取校验参数，然后使用certChainObject对象中的validate能力来对证书链进行验证。
 
 ### 相关权限
@@ -82,7 +82,7 @@ entry/src/main/ets/
 
 ### 依赖
 
-* 加解密算法库框架[@ohos.security.cryptoFramework](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-cryptoFramework.md#ohossecuritycryptoframework-%E5%8A%A0%E8%A7%A3%E5%AF%86%E7%AE%97%E6%B3%95%E5%BA%93%E6%A1%86%E6%9E%B6)
+* 加解密算法库框架[@ohos.security.cryptoFramework](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md)
 
 ### 约束与限制
 
@@ -98,7 +98,7 @@ entry/src/main/ets/
 
 ### 下载
 
- 如需单独下载本工程，执行如下命令： 
+如需单独下载本工程，执行如下命令：
 
 ```
 git init
