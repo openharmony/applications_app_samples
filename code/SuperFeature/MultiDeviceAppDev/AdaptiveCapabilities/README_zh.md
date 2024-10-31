@@ -136,8 +136,8 @@ entry/src/main/ets/
 ### 具体实现
 
 * 该示例使用了路由跳转接口，实现了各个不同布局之间的页面跳转，通过MediaQueryListener方法查询媒体，matchMediaSync方法设置媒体查询的查询条件。
-* 源码链接：[BreakpointSystem.ets](code/SuperFeature/MultiDeviceAppDev/AdaptiveCapabilities/entry/src/main/ets/common/BreakpointSystem.ets)，[DirectoryList.ets](code/SuperFeature/MultiDeviceAppDev/AdaptiveCapabilities/entry/src/main/ets/common/DirectoryList.ets)
-* 接口参考：[@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-system-router.md)，[@ohos.mediaquery](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-mediaquery.md)
+* 源码链接：[BreakpointSystem.ets](entry/src/main/ets/common/BreakpointSystem.ets)，[DirectoryList.ets](entry/src/main/ets/common/DirectoryList.ets)
+* 接口参考：[@ohos.router](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-system-router.md)，[@ohos.mediaquery](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-arkui/js-apis-mediaquery.md)
 
 ### 相关权限
 
