@@ -49,7 +49,7 @@ export default class GetPictures {
               select.push(item);
             })
           }
-          let imageList:Array<string> = AppStorage.Get('imageList') as Array<string>;
+          let imageList:Array<string> = AppStorage.get('imageList') as Array<string>;
           AppStorage.setOrCreate<Array<string>>('imageList', imageList.concat(select));
         }
       }
