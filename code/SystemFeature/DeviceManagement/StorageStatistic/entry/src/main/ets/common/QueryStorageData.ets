@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -126,22 +126,28 @@ export class QueryStorageData {
 
   private async getAppNameSync(labelId: number, bundleName: string, appName: string): Promise<string> {
     if (CheckEmptyUtils.isEmpty(labelId) || labelId <= 0 || CheckEmptyUtils.checkStrIsEmpty(bundleName)) {
-      Logger.info(TAG, `getAppNameSync param empty! appName: ${appName}`)
-      return appName
+      Logger.info(TAG, `getAppNameSync param empty! appName: ${appName}`);
+      return bundleName;
     } else {
-      let cacheKey = labelId + bundleName
-      Logger.info(TAG, `getAppNameSync getResourceManager cacheKey: ${cacheKey}`)
+      let cacheKey = labelId + bundleName;
+      Logger.info(TAG, `getAppNameSync getResourceManager cacheKey: ${cacheKey}`);
       if (this.isResourceManagerEmpty()) {
-        Logger.info(TAG, 'getAppNameSync resourceManager is empty')
-        return appName
+        Logger.info(TAG, 'getAppNameSync resourceManager is empty');
+        return bundleName;
       }
-      let bundleContext: Context = this.context.createBundleContext(bundleName)
-      let resMgrName: string = await bundleContext.resourceManager.getString(labelId)
-      Logger.info(TAG, `getAppNameSync resMgrName: ${resMgrName}`)
-      if (resMgrName != null) {
-        return resMgrName
+      let resMgrName: string = '';
+      try {
+        let bundleContext: Context = this.context.createBundleContext(bundleName);
+        resMgrName = bundleContext.resourceManager.getStringSync(labelId);
+      } catch (err) {
+        Logger.error(TAG, `getAppNameSync error: ${JSON.stringify(err)}`);
+      }
+
+      Logger.info(TAG, `getAppNameSync resMgrName: ${resMgrName}`);
+      if (resMgrName != '') {
+        return resMgrName;
       } else {
-        return appName
+        return bundleName;
       }
     }
   }
