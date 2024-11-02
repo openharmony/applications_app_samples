@@ -41,14 +41,15 @@ struct Index {
 
   aboutToAppear(): void {
     logger.info(TAG, 'enter aboutToAppear');
-    if (AppStorage.Get<string[]>('pixelMaps')) {
+    if (AppStorage.get<string[]>('pixelMaps')) {
       this.pixelMaps.push(undefined);
     }
     let rawFile = getContext().resourceManager.getRawFdSync("commodity.png");
     let imageSourceApi = image.createImageSource(rawFile);
     imageSourceApi.createPixelMap().then((pixelMap) => {
       this.commodityPixelMap = pixelMap;
-    })
+    });
+    this.imageListChange();
   }
 
   async imageListChange(): Promise<void> {
