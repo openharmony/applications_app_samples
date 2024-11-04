@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import router from '@ohos.router';
 import image from '@ohos.multimedia.image';
 import effectKit from '@ohos.effectKit';
@@ -22,7 +23,6 @@ import { CropTasks, TaskData, Tasks } from '../model/AdjustData';
 import { ScalePhotoPage } from '../pages/ScalePhotoPage';
 import MaterialEdit from './MaterialEdit';
 import InputTextDialog from './InputTextDialog';
-import LoadingDialog from './LoadingDialog';
 import PixelMapQueue from '../feature/PixelMapQueue';
 import { readImage } from '../util/MediaUtil';
 import { FontColorData, MaterialData } from '../model/MaterialData';
@@ -31,6 +31,7 @@ import { getContainSize, Size } from '../util/ImageUtil';
 import { ImageTest } from '../util/FileUtil';
 import { BusinessError } from '@ohos.base';
 import { ColorSpacePage } from './ColorSpacePage';
+import { LoadingDialog } from '@kit.ArkUI';
 
 const TAG: string = '[Sample_EditImage]';
 
@@ -76,14 +77,13 @@ export struct EditImage {
       return;
     }
     this.loading = true;
-    this.loadingController.open();
+    this.loadingDialogController.open();
   }
 
   onClose(): void {
     this.loading = false;
-    this.loadingController.close();
+    this.loadingDialogController.close();
   }
-
 
   /**
    * 输入文字素材弹窗
@@ -101,11 +101,14 @@ export struct EditImage {
     gridCount: 4,
     customStyle: false
   });
-
   /**
    * 加载弹窗
    */
-  loadingController: CustomDialogController = new CustomDialogController({ builder: LoadingDialog() });
+  loadingDialogController: CustomDialogController = new CustomDialogController({
+    builder: LoadingDialog({
+      content: $r('app.string.Processing')
+    })
+  });
 
   onCancel(): void {
     console.info('Callback when the first button is clicked');
@@ -699,7 +702,7 @@ export struct EditImage {
       return;
     }
     this.loading = true;
-    this.loadingController.open();
+    this.loadingDialogController.open();
 
     if (this.pixelMap !== undefined && this.pixelMap !== null) {
       const uri: string = await this.test.savePixelMap(getContext(this), this.pixelMap);

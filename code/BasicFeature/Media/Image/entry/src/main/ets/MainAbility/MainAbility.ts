@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -26,7 +26,7 @@ export default class MainAbility extends UIAbility {
     let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
     try {
       atManager.requestPermissionsFromUser(this.context,
-        ['ohos.permission.READ_MEDIA', 'ohos.permission.WRITE_MEDIA', 'ohos.permission.MEDIA_LOCATION'])
+        ['ohos.permission.READ_IMAGEVIDEO', 'ohos.permission.WRITE_IMAGEVIDEO', 'ohos.permission.MEDIA_LOCATION'])
         .then((data) => {
           logger.info(TAG, `data: ${JSON.stringify(data)}`);
         }).catch((err) => {

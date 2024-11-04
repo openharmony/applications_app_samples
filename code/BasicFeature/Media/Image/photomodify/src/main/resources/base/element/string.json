@@ -284,6 +284,10 @@
     {
       "name": "picture_encode_file",
       "value": "pictureToFile"
+    },
+    {
+      "name": "Processing",
+      "value": "正在处理..."
     }
   ]
 }
