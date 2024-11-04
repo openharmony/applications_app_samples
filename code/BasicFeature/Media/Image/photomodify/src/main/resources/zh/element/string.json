@@ -239,6 +239,10 @@
     {
       "name": "edit_image_decoding_hdr",
       "value": "HDR"
+    },
+    {
+      "name": "Processing",
+      "value": "正在处理..."
     }
   ]
 }

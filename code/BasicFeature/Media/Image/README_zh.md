@@ -135,8 +135,8 @@ photomodify/src/main/ets/components
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568;
-2. 本示例为Stage模型，已适配API version 12版本SDK，SDK版本号(API Version 12 5.0.0.26),镜像版本号(5.0.0.26);
-3. 本示例需要使用DevEco Studio 版本号(4.1.3.500)及以上版本才可编译运行。
+2. 本示例为Stage模型，已适配API version 14版本SDK，SDK版本号(API Version 14 5.0.2.43),镜像版本号(5.0.2.43);
+3. 本示例需要使用DevEco Studio NEXT Release(Build Version: 5.0.3.900, built on October 8, 2024)版本才可编译运行;
 
 ### 下载
 
