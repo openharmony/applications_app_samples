@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-import camera from '@ohos.multimedia.camera';
-import media from '@ohos.multimedia.media';
+import { camera } from '@kit.CameraKit';
+import { media } from '@kit.MediaKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { dateTime } from '../utils/DateTimeUtils';
 import Logger from '../utils/Logger';
 import SaveCameraAsset from '../utils/SaveCameraAsset';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG: string = 'Sample_VideoRecorder';
 
@@ -40,7 +40,7 @@ struct VideoRecording {
   private seconds: number = 0;
   private timer: number = 0;
   private cameraIndex: number = 0;
-  @State videoResolution: Resolution = { frameWidth: 1280, frameHeight: 720};
+  @State videoResolution: Resolution = { frameWidth: 1920, frameHeight: 1080};
   @State framerate: number = 30; // set default video framerate 30
   @State videoCodecType: string = 'video/avc';
   private recorderState: string = 'free';
@@ -49,7 +49,7 @@ struct VideoRecording {
   private mSaveCameraAsset: SaveCameraAsset = new SaveCameraAsset(TAG);
   private mFileAssetId?: number = 0;
   private cameraOutputCapability?: camera.CameraOutputCapability;
-  private curVideoProfiles?: Array<camera.VideoProfileDescriptor>;
+  private curVideoProfiles?: Array<camera.VideoProfile>;
   private previewProfiles?: Array<camera.Profile>;
 
   private avProfile: media.AVRecorderProfile = {
@@ -58,7 +58,7 @@ struct VideoRecording {
     audioCodec: media.CodecMimeType.AUDIO_AAC, // set audioCodec, AUDIO_AAC is the only choice
     audioSampleRate: 48000, // set audioSampleRate according to device ability
     fileFormat: media.ContainerFormatType.CFT_MPEG_4, // set fileFormat, for video is mp4
-    videoBitrate: 300000, // set videoBitrate according to device ability
+    videoBitrate: 3000000, // set videoBitrate according to device ability
     videoCodec: media.CodecMimeType.VIDEO_AVC, // set videoCodec, avc or mpeg4 can be selected
     videoFrameWidth: 640, // set videoFrameWidth according to device ability
     videoFrameHeight: 480, // set videoFrameHeight according to device ability
@@ -169,11 +169,11 @@ struct VideoRecording {
       this.previewProfiles[0].size.height = this.videoResolution.frameHeight;
       this.previewProfiles[0].size.width = this.videoResolution.frameWidth;
       if (this.previewProfiles[0].format === camera.CameraFormat.CAMERA_FORMAT_YUV_420_SP) {
-        Logger.info(TAG, '[camera] case format is CAMERA_FORMAT_YUV_420_SP');
-        this.avConfig.videoSourceType = media.VideoSourceType.VIDEO_SOURCE_YUV;
+        Logger.info(TAG, '[camera] case format is VIDEO_SOURCE_TYPE_SURFACE_YUV');
+        this.avConfig.videoSourceType = media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV;
       } else {
-        Logger.info(TAG, '[camera] case format is ES_STREAM');
-        this.avConfig.videoSourceType = media.VideoSourceType.VIDEO_SOURCE_TYPE_ES;
+        Logger.info(TAG, '[camera] case format is VIDEO_SOURCE_TYPE_SURFACE_ES');
+        this.avConfig.videoSourceType = media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_ES;
       }
       this.previewOutput = this.cameraManager.createPreviewOutput(this.previewProfiles[0], this.surfaceId);
       if (!this.previewOutput) {
@@ -602,7 +602,6 @@ struct VideoRecording {
               this.surfaceId = this.xcomponentController.getXComponentSurfaceId()
               Logger.info(TAG, '[VideoRecorder] surfaceId: ' + this.surfaceId)
               Logger.info(TAG, 'XComponent1 loaded');
-              this.enterInit();
             })
             .width('100%').height('100%')
           Text(this.videoRecorderTimeText)
@@ -724,18 +723,18 @@ class VideoCodec {
 
 @CustomDialog
 struct CustomDialogSetting {
-  @Link videoResolution: Object
+  @Link videoResolution: Resolution
   @Link videoFrameRate: number
   @Link videoCodec: string
   controller: CustomDialogController
   cancel?: () => void
   confirm?: () => void
   @State currentVideoResolution: Resolution = { frameWidth: 1920, frameHeight: 1080 }
-  @State currentVideoResolutionText: string = '[16:9]720p'
+  @State currentVideoResolutionText: string = '[16:9]1080p'
   @State currentVideoFramerate: number = 30
   @State currentVideoCodec: string = 'video/avc'
-  private initVideoResolution: Resolution = { frameWidth: 1920, frameHeight: 1080 }
-  private initVideoFramerate: number = 30
+  private initVideoResolution: Resolution = this.videoResolution
+  private initVideoFramerate: number = this.videoFrameRate
   private initVideoCodec: string = 'video/avc'
   @State videoResolutionList: Array<VideoResolution> = [
     { itemValue: '16:9 (720p)', value: { frameWidth: 1280, frameHeight: 720 } },
