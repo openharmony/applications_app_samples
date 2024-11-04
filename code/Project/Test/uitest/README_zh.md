@@ -4,9 +4,9 @@
 
 测试框架arkxtest的详细介绍请[参考](https://gitee.com/openharmony/testfwk_arkxtest) 。
 
-本实例需要引入UiTest接口[@ohos.UiTest](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-uitest.md) 。  
+本实例需要引入UiTest接口[@ohos.UiTest](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-test-kit/js-apis-uitest.md) 。  
 
-如需日志打印调试，需要引入日志打印接口[@ohos.hilog](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-hilog.md)  。
+如需日志打印调试，需要引入日志打印接口[@ohos.hilog](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-performance-analysis-kit/js-apis-hilog.md) 。
 
 其中自动化测试用例编写规范文档，请[参考](https://gitee.com/openharmony/applications_app_samples/blob/master/CodeCommitChecklist.md#ui%E8%87%AA%E5%8A%A8%E5%8C%96%E7%94%A8%E4%BE%8B%E7%BC%96%E5%86%99%E8%A7%84%E8%8C%83) 。
 
