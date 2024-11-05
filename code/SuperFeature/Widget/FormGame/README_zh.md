@@ -4,11 +4,11 @@
 
 本示例展示了如何通过Stage模型实现一个简单的游戏卡片。
 
-- 通过卡片支持的[点击事件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/js-service-widget-ui/js-service-widget-common-events.md)进行交互，让用户通过点击的先后顺序把一个乱序的成语排列成正确的成语。
+- 通过卡片支持的[点击事件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-service-widget-ui/js-service-widget-common-events.md)进行交互，让用户通过点击的先后顺序把一个乱序的成语排列成正确的成语。
 
 - 使用了C++和TS的混合编程方式，将获取随机数的能力下沉到C++实现，并通过[NAPI](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/napi/napi-guidelines.md)的能力将C++实现的能力暴露到TS中。
 
-- 用到了卡片扩展模块接口，[@ohos.app.form.FormExtensionAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-form-formExtensionAbility.md) 。
+- 用到了卡片扩展模块接口，[@ohos.app.form.FormExtensionAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md) 。
 
 
 
@@ -53,7 +53,7 @@ entry/src/main
 
 1、在module.json5文件添加拓展能力，类型为卡片，并设置卡片入口srcEntrance和卡片元数据metadata，[源码参考](entry/src/main/module.json5 )。 
 2、配置卡片：用js编写相应的卡片，将卡片配置到resources/base/profile/form_config。  
-3、定义小游戏逻辑：实现FormExtensionAbility中addform时初始化数据（本sample中使用的是mock数据)，并将数据存储到dataStore，通过调用c++随机数，将成语顺序打乱显示，
+3、定义小游戏逻辑：实现FormExtensionAbility中addform时初始化数据（本sample中使用的是mock数据），并将数据存储到dataStore，通过调用c++随机数，将成语顺序打乱显示，
 4、监听卡片变化：通过onformEvent()监听卡片事件，更新已选择的成语数据，并随机替换成语待选列表的已被选掉的word，[源码参考](entry/src/main/ets/FormAbility/FormAbility.ts )。
 
 ### 相关权限
@@ -68,7 +68,7 @@ entry/src/main
 
 1.本示例仅支持标准系统上运行。
 
-2.本示例支持API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0 Release)。
+2.本示例支持API10版本SDK，SDK版本号(API Version 10 Release)，镜像版本号(4.0 Release)。
 
 3.本示例需要使用DevEco Studio 版本号(4.0 Release)及以上版本才可编译运行。
 
