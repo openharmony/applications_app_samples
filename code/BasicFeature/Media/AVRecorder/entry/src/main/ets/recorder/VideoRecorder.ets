@@ -723,30 +723,30 @@ class VideoCodec {
 
 @CustomDialog
 struct CustomDialogSetting {
-  @Link videoResolution: Resolution
-  @Link videoFrameRate: number
-  @Link videoCodec: string
-  controller: CustomDialogController
-  cancel?: () => void
-  confirm?: () => void
-  @State currentVideoResolution: Resolution = { frameWidth: 1920, frameHeight: 1080 }
-  @State currentVideoResolutionText: string = '[16:9]1080p'
-  @State currentVideoFramerate: number = 30
-  @State currentVideoCodec: string = 'video/avc'
-  private initVideoResolution: Resolution = this.videoResolution
-  private initVideoFramerate: number = this.videoFrameRate
-  private initVideoCodec: string = 'video/avc'
+  @Link videoResolution: Resolution;
+  @Link videoFrameRate: number;
+  @Link videoCodec: string;
+  controller: CustomDialogController;
+  cancel?: () => void;
+  confirm?: () => void;
+  @State currentVideoResolution: Resolution = { frameWidth: 1920, frameHeight: 1080 };
+  @State currentVideoResolutionText: string = "[16:9]1080p";
+  @State currentVideoFramerate: number = 30;
+  @State currentVideoCodec: string = 'video/avc';
+  private initVideoResolution: Resolution = this.videoResolution;
+  private initVideoFramerate: number = this.videoFrameRate;
+  private initVideoCodec: string = 'video/avc';
   @State videoResolutionList: Array<VideoResolution> = [
     { itemValue: '16:9 (720p)', value: { frameWidth: 1280, frameHeight: 720 } },
     { itemValue: '16:9 (1080p)', value: { frameWidth: 1920, frameHeight: 1080 } },
-  ]
+  ];
   @State videoFrameRateList: Array<VideoFrameRate> = [
     { itemValue: '30fps', value: 30 },
-  ]
+  ];
   @State videoCodecList: Array<VideoCodec> = [
     { itemValue: 'video/avc', value: 'video/avc' },
     { itemValue: 'video/mpeg4', value: 'video/mpeg4' },
-  ]
+  ];
 
   build() {
     Column() {
