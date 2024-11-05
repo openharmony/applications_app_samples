@@ -730,7 +730,7 @@ struct CustomDialogSetting {
   cancel?: () => void;
   confirm?: () => void;
   @State currentVideoResolution: Resolution = { frameWidth: 1920, frameHeight: 1080 };
-  @State currentVideoResolutionText: string = "[16:9]1080p";
+  @State currentVideoResolutionText: string = '[16:9]1080p';
   @State currentVideoFramerate: number = 30;
   @State currentVideoCodec: string = 'video/avc';
   private initVideoResolution: Resolution = this.videoResolution;
