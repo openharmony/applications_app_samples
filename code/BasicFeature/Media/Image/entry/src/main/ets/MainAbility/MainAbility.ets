@@ -15,12 +15,16 @@
 
 import UIAbility from '@ohos.app.ability.UIAbility';
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-import { logger } from '../../../../../photomodify/src/main/ets/components/util/Logger';
+import { logger } from '@ohos/photomodify';
+import Want from '@ohos.app.ability.Want';
+import { AbilityConstant } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG: string = '[Sample_MainAbility]';
 
 export default class MainAbility extends UIAbility {
-  onCreate(want, launchParam): void {
+  onCreate(want :Want, launchParam: AbilityConstant.LaunchParam): void {
     globalThis.mainContext = this.context;
     logger.info(TAG, '[Demo] MainAbility onCreate');
     let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
@@ -29,7 +33,7 @@ export default class MainAbility extends UIAbility {
         ['ohos.permission.READ_IMAGEVIDEO', 'ohos.permission.WRITE_IMAGEVIDEO', 'ohos.permission.MEDIA_LOCATION'])
         .then((data) => {
           logger.info(TAG, `data: ${JSON.stringify(data)}`);
-        }).catch((err) => {
+        }).catch((err: BusinessError) => {
           logger.info(TAG, `err: ${JSON.stringify(err)}`);
       })
     } catch (err) {
@@ -41,7 +45,7 @@ export default class MainAbility extends UIAbility {
     logger.info(TAG, '[Demo] MainAbility onDestroy');
   }
 
-  onWindowStageCreate(windowStage): void {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability
     logger.info(TAG, '[Demo] MainAbility onWindowStageCreate');
 

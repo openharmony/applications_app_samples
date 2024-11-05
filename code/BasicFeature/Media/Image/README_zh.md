@@ -88,7 +88,7 @@ photomodify/src/main/ets/components
     
 + 图片编辑功能在EditImage中实现，源码参考[EditImage.ets](photomodify%2Fsrc%2Fmain%2Fets%2Fcomponents%2Fpages%2FEditImage.ets):
     + 图片编辑：图片编辑权限需要使用[requestPermissionsFromUser](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)
-    申请，源码参考[MainAbility.ts](entry/src/main/ets/MainAbility/MainAbility.ts)
+    申请，源码参考[MainAbility.ets](entry/src/main/ets/MainAbility/MainAbility.ets)
     ，首先根据选择图片获取到的uri打开图片文件，fileAsset.open选择‘rw'读写模式，然后使用image.createImageSource创建图片源实例，接下来使用createPixelMap创建PixelMap对象，便于处理图片，最后使用crop对图像进行裁剪处理，使用scale对图像进行缩放处理，rotate进行旋转处理。亮度调节使用effectKit.getHighestSaturationColor()
     接口实现对图片的高亮调节。图片解码通过createPixelMap(DecodingOptions)，并根据DecodingOptions构造参数里面的设定值(0: auto;1: SDR;2 HDR)，对应创建不同的PixelMap对象。其中设置值为AUTO时，会根据图片本身结构来判断是否解码为HDR内容。添加文字/贴纸，编辑模式下，使用组件组合（Image、Shape、Text）进行交互完成素材大小和位置选择；编辑确认后，再使用OffscreenCanvasRenderingContext2D进行离屏绘制，保存为新的pixelMap。
     
@@ -122,9 +122,9 @@ photomodify/src/main/ets/components
 
 
 
-[ohos.permission.READ_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionread_media)
+[ohos.permission.READ_IMAGEVIDEO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionread_imagevideo)
 
-[ohos.permission.WRITE_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionwrite_media)
+[ohos.permission.WRITE_IMAGEVIDEO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionread_imagevideo)
 
 [ohos.permission.MEDIA_LOCATION](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionmedia_location)
 
