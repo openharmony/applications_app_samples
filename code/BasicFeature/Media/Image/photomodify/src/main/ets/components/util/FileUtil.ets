@@ -16,7 +16,7 @@ import image from '@ohos.multimedia.image';
 import fs from '@ohos.file.fs';
 import fileIo from '@ohos.file.fs';
 import { logger } from '../util/Logger';
-import { AppLog } from '../Model/log';
+import { AppLog } from '../model/log';
 import ndkTest from 'libentry.so'
 import resourceManager from '@ohos.resourceManager';
 
@@ -161,7 +161,7 @@ export class ImageTest {
     return fileName;
   }
 
-  private logger = new AppLog(`[Sample_Picture_File]`);
+  private logger: AppLog = new AppLog(`[Sample_Picture_File]`);
 
   // 将rawFile中的文件写到沙箱中
   async writeFileToBox(fileName: string): Promise<string> {
