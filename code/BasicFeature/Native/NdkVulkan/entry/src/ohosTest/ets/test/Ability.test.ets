@@ -42,7 +42,7 @@ export default function abilityTest() {
       hilog.info(DOMAIN, TAG, BUNDLE + 'StartAbility_001, begin');
       //start tested ability
       const want: Want = {
-        bundleName: bundleName,
+        bundleName: 'com.samples.ndkvulkan',
         abilityName: 'EntryAbility'
       }
       await delegator.startAbility(want);
