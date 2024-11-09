@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,11 +17,12 @@ import UIAbility from '@ohos.app.ability.UIAbility'
 import Logger from '../util/Logger'
 import window from '@ohos.window';
 import { KeyboardAvoidMode } from '@ohos.arkui.UIContext';
+import { AbilityConstant } from '@kit.AbilityKit';
 
 const TAG: string = 'MainAbility'
 
 export default class MainAbility extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     Logger.info(TAG, 'onCreate');
     AppStorage.setOrCreate('context', this.context);
   }
@@ -30,11 +31,11 @@ export default class MainAbility extends UIAbility {
     Logger.info(TAG, 'onDestroy')
   }
 
-  onWindowStageCreate(windowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
     Logger.info(TAG, 'onWindowStageCreate')
     try {
-      let windowClass = null;
+      let windowClass: window.Window | undefined = undefined;
       window.getLastWindow(this.context, (err, data) => {
         if (err.code) {
           Logger.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
@@ -42,9 +43,7 @@ export default class MainAbility extends UIAbility {
         }
         Logger.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
         windowClass = data;
-        let systemBarProperties = {
-          statusBarColor: "#f1f3f5"
-        };
+        let systemBarProperties: window.SystemBarProperties = {};
         windowClass.setWindowSystemBarProperties(systemBarProperties, (err) => {
           if (err.code) {
             Logger.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
