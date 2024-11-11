@@ -4,8 +4,7 @@
 
 需要介绍本sample的主要实现原理，如使用了什么API、有什么关键性的配置和实现等等，附上链接，后面需要加上应用的使用说明，示例如下：
 
-本示例主要展示了文件管理相关的功能，使用[@ohos.file.fileAccess](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/apis/js-apis-fileAccess.md)
-、[@ohos.filemanagement.userFileManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-userFileManager.md)
+本示例主要展示了文件管理相关的功能，使用[@ohos.filemanagement.userFileManager](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-userFileManager-sys.md) 、[@ohos.file.fileAccess](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-fileAccess-sys.md) 、[@ohos.fileio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-fileio.md) 、[@ohos.file.fs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-fs.md)、[@ohos.app.ability.contextConstant](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-contextConstant.md)
 等接口，实现了增添文件、删除文件、查找指定类型文件文件和预览图片的功能;
 
 ### 效果预览
