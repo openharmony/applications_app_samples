@@ -4,9 +4,9 @@
 
 本示例使用Grid组件，实现了2048小游戏功能。
 
-需要系统存储信息，运用了用户首选项接口[ohos.data.preferences](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-preferences.md) ,
+需要系统存储信息，运用了用户首选项接口[ohos.data.preferences](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkdata/js-apis-data-preferences.md) ,
 
-屏幕属性接口[@ohos.display](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-display.md#displaygetdefaultdisplaydeprecated) 。
+屏幕属性接口[@ohos.display](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-display.md) 。
 
 
 ### 效果预览
@@ -40,7 +40,7 @@ entry/src/main/ets/
 * 界面编写步骤  
   1、使用Grid编写网格界面，并在下方编写start按钮触发gameStart()函数生成gridItem所需数据，并且将游戏状态修改为游戏中，触发游戏规则Init()初始化游戏规则。  
   2、循环渲染gridItem，去生成网格数据，MyGridItem会根据每一个数据渲染每一个网格的数字颜色（<=4?黑:白）和背景色(通过自然对数计算出颜色数组中的当前索引)。  
-  3、grid通过gesture()去绑定一组手势up,down,left,right函数, [源码参考](entry/src/main/ets/pages/Index.ets )。  
+  3、grid通过gesture()去绑定一组手势up,down,left,right函数, [源码参考](entry/src/main/ets/pages/Index.ets )。
 * 游戏规则编写  
   1、init()函数初始化游戏规则，将所有网格数字设置为0，游戏状态为开始，分数为0，并生成网格数字。[源码参考](entry/src/main/ets/model/GameRule.ets )。  
   2、触发up/down函数，网格沿着colnum移动，最多可移动三次(row大小-1次)，如果当前网格数字===要移动到的网格上的数字，就将要移动的网格数字 + 当前网格数字，将结果加上旧score赋值给最新的score，
