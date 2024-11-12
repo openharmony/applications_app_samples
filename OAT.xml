@@ -272,6 +272,15 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/SystemFeature/Security/DLP/screenshots/haps/DlpManager.hap" desc="Provided by DlpManager"/>
                 <filteritem type="filepath" name="code/SystemFeature/Security/DLP/screenshots/haps/FileEdit.hap" desc="Provided by FileEdit"/>
                 <filteritem type="filepath" name="code/BasicFeature/DeviceManagement/Sensor/Capi/libs/library.har" desc="Provided by code/BasicFeature/DeviceManagement/Sensor"/>
+				<filteritem type="filepath" name="code/DocsSample/Sensor/entry/src/main/resources/base/media/background.png" desc="Provided by code/DocsSample/Sensor"/>
+				<filteritem type="filepath" name="code/DocsSample/Sensor/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/DocsSample/Sensor"/>
+				<filteritem type="filepath" name="code/DocsSample/Sensor/entry/src/main/resources/base/media/layered_image.png" desc="Provided by code/DocsSample/Sensor"/>
+				<filteritem type="filepath" name="code/DocsSample/Sensor/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/DocsSample/Sensor"/>
+				<filteritem type="filepath" name="code/DocsSample/Sensor/AppScope/resources/base/media/app_icon.png" desc="Provided by code/DocsSample/Sensor"/>
+				<filteritem type="filepath" name="code/DocsSample/Sensor/screenshots/devices/homePage.jpeg" desc="Provided by code/DocsSample/Sensor"/>
+				<filteritem type="filepath" name="code/DocsSample/Sensor/screenshots/devices/sampleRate.jpeg" desc="Provided by code/DocsSample/Sensor"/>
+				<filteritem type="filepath" name="code/DocsSample/Sensor/screenshots/devices/sensorType.jpeg" desc="Provided by code/DocsSample/Sensor"/>
+				<filteritem type="filepath" name="code/DocsSample/Sensor/screenshots/devices/subscribe.jpeg" desc="Provided by code/DocsSample/Sensor"/>
                 <filteritem type="filepath" name="code/Solutions/Media/MultiMedia/lib/VideoPlayer.hap" desc="Provided by code/Solutions/Media/MultiMedia"/>
                 <filteritem type="filepath" name="code/Solutions/Media/MultiMedia/lib/CameraPage-1.0.0.hap" desc="Provided by code/Solutions/Media/MultiMedia"/>
                 <filteritem type="filepath" name="code/BasicFeature/Media/AVRecorder/lib/VideoRecorder-1.0.0.hap" desc="Provided by code/BasicFeature/Media/AVRecorder"/>
