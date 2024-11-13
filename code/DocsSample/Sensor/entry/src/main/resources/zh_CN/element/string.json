@@ -1,0 +1,21 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    }
+  ,{
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },{
+      "name": "on",
+      "value": "订阅"
+    },{
+      "name": "off",
+      "value": "取消订阅"
+    },{
+      "name": "once",
+      "value": "订阅一次"
+    }
+  ]
+}
