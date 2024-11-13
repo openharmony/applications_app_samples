@@ -4,9 +4,9 @@
 
 这是一个仿聊天类应用，使用了静态布局搭建了不同的页面。为了优化内存与性能体验，在部分list场景使用了懒加载。
 
-本示例用到了 图片处理能力接口[@ohos.multimedia.image](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md )。
+本示例用到了 图片处理能力接口[@ohos.multimedia.image](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-image-kit/js-apis-image.md)。
 
-文件存储管理能力接口[@ohos.fileio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-fileio.md) 。
+文件存储管理能力接口[@ohos.fileio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-fileio.md) 。
 
 ### 效果预览
 | 主页                                    | 通讯录                                      | 发现                                     | 个人页面                                |
@@ -68,7 +68,7 @@ products/phone/entry/src/main/ets
 
 懒加载：开发框架提供数据懒加载（LazyForEach组件）从提供的数据源中按需迭代数据，并在每次迭代过程中创建相应的组件。
 
-多线程：开发框架提供[多线程并发能力](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/performance/multi_thread_capability.md/)，允许在同一时间段内同时执行多段代码，进行大量或调度点较分散的任务开发和处理。
+多线程：开发框架提供[多线程并发能力](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/performance/multi_thread_capability.md/)，允许在同一时间段内同时执行多段代码，进行大量或调度点较分散的任务开发和处理。
 
 ### 具体实现
 
@@ -110,14 +110,14 @@ url: 'pages/SearchPage' })。
    }
    ```
 3. 从设备端采集热点ap文件：
-   - 通过命令行开启设备ap文件开关。
-     ```shell
-     hdc shell param set ark.profile true
-     ```
-   - 将应用按步骤1中release模式打包出hap并安装到设备上，在需要优化的场景进行操作，记录高频操作后，通过命令行导出ap文件。
-     ```shell
-     hdc file recv /data/local/ark-profile/100/{bundleName}/modules.ap {apPath}
-     ```
+    - 通过命令行开启设备ap文件开关。
+      ```shell
+      hdc shell param set ark.profile true
+      ```
+    - 将应用按步骤1中release模式打包出hap并安装到设备上，在需要优化的场景进行操作，记录高频操作后，通过命令行导出ap文件。
+      ```shell
+      hdc file recv /data/local/ark-profile/100/{bundleName}/modules.ap {apPath}
+      ```
 4. 将步骤3中获取到的ap文件，放入步骤2中指定的apPath路径。
 5. 按照步骤1中的release编译模式进行编译，并安装到设备，等待设备端侧AOT编译优化完成后，应用运行性能即可得到相应的提升。
 
