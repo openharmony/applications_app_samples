@@ -224,6 +224,7 @@ struct FilePicker {
                   .fontWeight(500)
                   .textAlign(TextAlign.Start)
                   .margin({ left: 0, right: 16 })
+                  .width('50%')
               }
 
               if (!this.itemShowDeleteButton) {
