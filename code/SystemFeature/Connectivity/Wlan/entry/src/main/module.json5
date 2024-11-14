@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,7 +18,7 @@
     "name": "entry",
     "type": "entry",
     "description": "$string:module_desc",
-    "mainElement": "EntryAbility",
+    "mainElement": "MainAbility",
     "deviceTypes": [
       "default",
       "tablet"
@@ -28,31 +28,24 @@
     "pages": "$profile:main_pages",
     "requestPermissions": [
       {
-        "name": "ohos.permission.GET_WIFI_INFO"
+        "name": "ohos.permission.GET_WIFI_INFO",
+        "reason": "$string:GET_WIFI_INFO",
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ],
+          "when": "inuse"
+        },
       },
       {
-        "name": "ohos.permission.GET_WIFI_INFO_INTERNAL"
-      },
-      {
-        "name": "ohos.permission.SET_WIFI_INFO"
-      },
-      {
-        "name": "ohos.permission.GET_WIFI_PEERS_MAC"
-      },
-      {
-        "name": "ohos.permission.GET_WIFI_LOCAL_MAC"
-      },
-      {
-        "name": "ohos.permission.GET_WIFI_CONFIG"
-      },
-      {
-        "name": "ohos.permission.SET_WIFI_CONFIG"
-      },
-      {
-        "name": "ohos.permission.MANAGE_WIFI_CONNECTION"
-      },
-      {
-        "name": "ohos.permission.MANAGE_WIFI_HOTSPOT"
+        "name": "ohos.permission.SET_WIFI_INFO",
+        "reason": "$string:SET_WIFI_INFO",
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ],
+          "when": "inuse"
+        }
       },
       {
         "name": "ohos.permission.LOCATION",
@@ -67,6 +60,75 @@
       {
         "name": "ohos.permission.APPROXIMATELY_LOCATION",
         "reason": "$string:approximately_location_permission",
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ],
+          "when": "inuse"
+        }},
+      {
+        "name": "ohos.permission.GET_WIFI_INFO_INTERNAL",
+        "reason": "$string:GET_WIFI_INFO_INTERNAL",
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ],
+          "when": "inuse"
+        }
+      },
+      {
+        "name": "ohos.permission.GET_WIFI_PEERS_MAC",
+        "reason": "$string:GET_WIFI_PEERS_MAC",
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ],
+          "when": "inuse"
+        }
+      },
+      {
+        "name": "ohos.permission.GET_WIFI_LOCAL_MAC",
+        "reason": "$string:GET_WIFI_LOCAL_MAC",
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ],
+          "when": "inuse"
+        }
+      },
+      {
+        "name": "ohos.permission.GET_WIFI_CONFIG",
+        "reason": "$string:GET_WIFI_CONFIG",
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ],
+          "when": "inuse"
+        }
+      },
+      {
+        "name": "ohos.permission.SET_WIFI_CONFIG",
+        "reason": "$string:SET_WIFI_CONFIG",
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ],
+          "when": "inuse"
+        }
+      },
+      {
+        "name": "ohos.permission.MANAGE_WIFI_CONNECTION",
+        "reason": "$string:MANAGE_WIFI_CONNECTION",
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ],
+          "when": "inuse"
+        }
+      },
+      {
+        "name": "ohos.permission.MANAGE_WIFI_HOTSPOT",
+        "reason": "$string:MANAGE_WIFI_HOTSPOT",
         "usedScene": {
           "abilities": [
             "MainAbility"

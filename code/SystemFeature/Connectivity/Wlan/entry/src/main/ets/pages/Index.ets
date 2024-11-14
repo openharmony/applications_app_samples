@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,32 +13,32 @@
  * limitations under the License.
  */
 
-import wifi from '@ohos.wifiManager'
-import { AvailableWifi } from '../component/AvailableWifi'
-import Logger from '../model/Logger'
-import { TitleBar } from '../component/TitleBar'
-import { WifiModel, WifiType } from '../model/WifiModel'
+import wifi from '@ohos.wifiManager';
+import { AvailableWifi } from '../component/AvailableWifi';
+import Logger from '../model/Logger';
+import { TitleBar } from '../component/TitleBar';
+import { WifiModel, WifiType } from '../model/WifiModel';
 
-const TAG = 'Index'
+const TAG = 'Index';
 
 @Entry
 @Component
 struct Index {
-  private wifiModel: WifiModel = new WifiModel()
-  private linkedInfo: wifi.WifiLinkedInfo = null
-  @State isLinked: boolean = false
-  @State isSwitchOn: boolean = false
+  private wifiModel: WifiModel = new WifiModel();
+  private linkedInfo: wifi.WifiLinkedInfo = null;
+  @State isLinked: boolean = false;
+  @State isSwitchOn: boolean = false;
 
   // 扫描wifi
   async scan() {
     // 获取有关Wi-Fi连接的信息,存入linkedInfo
-    await this.getLinkedInfo()
+    await this.getLinkedInfo();
     // 不停地扫描wifi
-    let result: Array<WifiType> = await this.wifiModel.getScanInfos()
+    let result: Array<WifiType> = await this.wifiModel.getScanInfos();
     if (this.isSwitchOn) {
-      AppStorage.SetOrCreate('wifiList', result)
+      AppStorage.SetOrCreate('wifiList', result);
       setTimeout(async () => {
-        await this.scan()
+        await this.scan();
       }, 3000)
     }
   }
@@ -46,16 +46,16 @@ struct Index {
   // 获取有关Wi-Fi连接的信息,存入linkedInfo
   async getLinkedInfo() {
     try {
-      let wifiLinkedInfo = await wifi.getLinkedInfo()
+      let wifiLinkedInfo = await wifi.getLinkedInfo();
       if (wifiLinkedInfo === null || wifiLinkedInfo.bssid === '') {
-        this.isLinked = false
-        this.linkedInfo = null
-        return
+        this.isLinked = false;
+        this.linkedInfo = null;
+        return;
       }
-      this.isLinked = true
-      this.linkedInfo = wifiLinkedInfo
+      this.isLinked = true;
+      this.linkedInfo = wifiLinkedInfo;
     } catch (err) {
-      Logger.info(`getLinkedInfo failed err is ${JSON.stringify(err)}`)
+      Logger.info(`getLinkedInfo failed err is ${JSON.stringify(err)}`);
     }
   }
 
@@ -63,15 +63,15 @@ struct Index {
   addListener() {
     // 连接状态改变时，修改连接信息
     wifi.on('wifiConnectionChange', async state => {
-      Logger.log(TAG, `wifiConnectionChange: ${state}`)
-      await this.getLinkedInfo()
+      Logger.log(TAG, `wifiConnectionChange: ${state}`);
+      await this.getLinkedInfo();
     })
     // wifi状态改变时，先清空wifi列表，然后判断是否是开启状态，如果是就扫描
     wifi.on('wifiStateChange', state => {
-      Logger.log(TAG, `wifiStateLisener state: ${state}`)
-      AppStorage.SetOrCreate('wifiList', [])
+      Logger.log(TAG, `wifiStateLisener state: ${state}`);
+      AppStorage.SetOrCreate('wifiList', []);
       if (state === 1) { // 1: wifi is enable, 0:wifi is disable
-        this.scan()
+        this.scan();
       }
     })
   }
@@ -79,14 +79,18 @@ struct Index {
   aboutToAppear() {
     // 如果wifi是开的，就记录下状态，然后扫描wifi，并获取连接信息
     if (wifi.isWifiActive()) {
-      Logger.log(TAG, 'wifi is active')
-      this.isSwitchOn = true
-      wifi.scan()
-      this.scan()
-      this.getLinkedInfo()
+      Logger.log(TAG, 'wifi is active');
+      this.isSwitchOn = true;
+      try {
+        wifi.scan();
+      } catch (error) {
+        Logger.error(TAG, "scan faild:" + JSON.stringify(error));
+      }
+      this.scan();
+      this.getLinkedInfo();
     }
     // 启动监听
-    this.addListener()
+    this.addListener();
   }
 
   build() {
@@ -101,23 +105,23 @@ struct Index {
           Toggle({ type: ToggleType.Switch, isOn: this.isSwitchOn })
             .id('switch')
             .onChange((isOn: boolean) => {
-              Logger.log(`LSQ: wifi swtich is: ${isOn}`)
-              AppStorage.SetOrCreate('wifiList', [])
+              Logger.log(`LSQ: wifi swtich is: ${isOn}`);
+              AppStorage.SetOrCreate('wifiList', []);
               try {
                 // 如果是打开状态，记录状态，打开网络，开始扫描
                 if (isOn) {
-                  this.isSwitchOn = true
-                  wifi.enableWifi()
+                  this.isSwitchOn = true;
+                  wifi.enableWifi();
                   return
                 } else {
                   // 记录状态，断开网络禁用网络
-                  this.isSwitchOn = false
-                  this.isLinked = false
-                  wifi.disconnect()
-                  wifi.disableWifi()
+                  this.isSwitchOn = false;
+                  this.isLinked = false;
+                  wifi.disconnect();
+                  wifi.disableWifi();
                 }
               } catch (error) {
-                Logger.error(TAG, `failed,code:${JSON.stringify(error.code)},message:${JSON.stringify(error.message)}`)
+                Logger.error(TAG, `failed,code:${JSON.stringify(error.code)},message:${JSON.stringify(error.message)}`);
               }
             })
         }
@@ -149,7 +153,7 @@ struct Index {
         .padding({ left: 16, right: 16 })
       }
       if (this.isSwitchOn) {
-        AvailableWifi({ linkedInfo: this.linkedInfo })
+        AvailableWifi({ linkedInfo: this.linkedInfo });
       }
     }
     .width('100%')
@@ -158,7 +162,7 @@ struct Index {
   }
 
   aboutToDisappear() {
-    wifi.off('wifiConnectionChange')
-    wifi.off('wifiStateChange')
+    wifi.off('wifiConnectionChange');
+    wifi.off('wifiStateChange');
   }
 }

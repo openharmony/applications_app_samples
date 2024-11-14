@@ -115,6 +115,42 @@
     {
       "name": "approximately_location_permission",
       "value": "Allow app to obtain device ambiguous location information"
+    },
+    {
+      "name": "GET_WIFI_INFO",
+      "value": "Allow applications to obtain Wi Fi information"
+    },
+    {
+      "name": "SET_WIFI_INFO",
+      "value": "Allow applications to configure Wi Fi devices"
+    },
+    {
+      "name": "GET_WIFI_INFO_INTERNAL",
+      "value": "Allow system processes to obtain Wi Fi related parameters"
+    },
+    {
+      "name": "GET_WIFI_PEERS_MAC",
+      "value": "Allow applications to obtain the MAC address of peer Wi Fi devices"
+    },
+    {
+      "name": "GET_WIFI_LOCAL_MAC",
+      "value": "Allow applications to obtain the MAC address of local Wi Fi devices"
+    },
+    {
+      "name": "GET_WIFI_CONFIG",
+      "value": "Allow applications to obtain Wi Fi configuration information"
+    },
+    {
+      "name": "SET_WIFI_CONFIG",
+      "value": "Allow applications to configure Wi Fi information"
+    },
+    {
+      "name": "MANAGE_WIFI_CONNECTION",
+      "value": "Allow applications to manage Wi Fi connections"
+    },
+    {
+      "name": "MANAGE_WIFI_HOTSPOT",
+      "value": "Allow applications to turn on or off Wi Fi hotspots"
     }
   ]
 }
