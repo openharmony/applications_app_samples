@@ -7,7 +7,7 @@
 
 卡片信息和状态等相关类型和枚举接口，[@ohos.app.form.formInfo](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-form-kit/js-apis-app-form-formInfo.md) 。  
 
-卡片数据绑定的能力接口[@ohos.app.form.formBindingData](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-app-form-formBindingData.md) 。  
+卡片数据绑定的能力接口[@ohos.app.form.formBindingData](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/reference/apis-form-kit/js-apis-app-form-formBindingData.md) 。  
 
 
 
