@@ -19,7 +19,7 @@ import { forceGC } from '../util/ForceGCUtil';
 const HOURS: Array<string> = ['3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '1', '2']
 const HEIGHT_ADD: number = 150 // 表盘下面需要绘制时间，canvas高度是宽度加150
 const TAG: string = 'Index'
-const DELAY: number = 600000;
+const DELAY: number = 7200000;
 const UPDATE_DELAY: number = 1000;
 
 @Entry
@@ -214,7 +214,7 @@ struct Clock {
           Logger.info(TAG, `onReady`)
           this.updateTime()
           this.intervalId = setInterval(this.updateTime, 1000)
-          this.intervalIdGC = setInterval(forceGC, DELAY); // 10分钟GC一次
+          this.intervalIdGC = setInterval(forceGC, DELAY); // 2小时GC一次
         })
     }
     .width('100%')
