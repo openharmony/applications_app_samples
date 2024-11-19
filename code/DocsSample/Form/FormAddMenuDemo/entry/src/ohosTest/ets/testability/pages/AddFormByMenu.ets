@@ -63,7 +63,7 @@ export default struct AddFormByMenu {
           .fontSize(30)
           .margin({ bottom: 20 })
       }
-      .backgroundImage($r("app.media.CardEvent"))
+      .backgroundImage($r('app.media.CardEvent'))
       .backgroundImageSize(ImageSize.Cover)
       .id(this.compId)
       .width(200)
