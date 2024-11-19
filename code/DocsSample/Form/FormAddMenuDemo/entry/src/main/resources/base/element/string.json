@@ -31,6 +31,22 @@
     {
       "name": "add_form",
       "value": "add form"
+    },
+    {
+      "name": "default_city",
+      "value": "Nanjing"
+    },
+    {
+      "name": "default_time",
+      "value": "--"
+    },
+    {
+      "name": "menu_info_long_click",
+      "value": "long click show menu"
+    },
+    {
+      "name": "font_size",
+      "value": "25fp"
     }
   ]
 }

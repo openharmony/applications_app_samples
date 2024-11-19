@@ -31,6 +31,22 @@
     {
       "name": "add_form",
       "value": "添加到桌面"
+    },
+    {
+      "name": "default_city",
+      "value": "南京"
+    },
+    {
+      "name": "default_time",
+      "value": "--"
+    },
+    {
+      "name": "menu_info_long_click",
+      "value": "长按显示菜单"
+    },
+    {
+      "name": "font_size",
+      "value": "25fp"
     }
   ]
 }

@@ -1,13 +1,27 @@
-// index.ets
+/*
+* Copyright (C) 2024 Huawei Device Co., Ltd.
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
 import { AddFormMenuItem } from '@kit.ArkUI';
 import { formBindingData } from '@kit.FormKit';
 import Logger from '../logger/Logger';
 
 @Component
 export default struct AddFormByMenu {
-  @State message: string = '长按显示菜单';
-  @State city: string = '南京';
-  @State time: string = '--';
+  @State message: string | Resource = $r('app.string.menu_info_long_click');
+  @State city: string | Resource = $r('app.string.default_city');
+  @State time: string | Resource = $r('app.string.default_time');
   private compId: string = '12345678';
 
   @Builder
@@ -20,7 +34,7 @@ export default struct AddFormByMenu {
           parameters: {
             'ohos.extra.param.key.form_dimension': 2,
             'ohos.extra.param.key.form_name': 'widget',
-            'ohos.extra.param.key.module_name': 'entry'
+            'ohos.extra.param.key.module_name': 'entry',
           },
         },
         this.compId,
@@ -63,9 +77,8 @@ export default struct AddFormByMenu {
           .fontSize(30)
           .margin({ bottom: 20 })
       }
-      .backgroundImage($r('app.media.CardEvent'))
+      .backgroundImage($r("app.media.CardEvent"))
       .backgroundImageSize(ImageSize.Cover)
-      .id(this.compId)
       .width(200)
       .height(200)
       .borderRadius(10)

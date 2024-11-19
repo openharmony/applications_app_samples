@@ -66,9 +66,9 @@ entry/src/main/ets/
 
 1.本示例仅支持标准系统上运行，支持设备：RK3568。
 
-2.本示例为Stage模型，支持API11版本SDK，SDK版本号（API Version 11 Canary1）。
+2.本示例为Stage模型，支持API11版本SDK，SDK版本号（API Version 12 Release）。
 
-3.本示例需要使用DevEco Studio版本号（3.1 Release）及以上版本才可编译运行。
+3.本示例需要使用DevEco Studio版本号（DevEco Studio 5.0.0 Release）及以上版本才可编译运行。
 
 ### 下载
 

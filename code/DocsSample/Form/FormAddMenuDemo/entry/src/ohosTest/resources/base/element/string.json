@@ -15,6 +15,10 @@
     {
       "name": "add_form",
       "value": "add form"
+    },
+    {
+      "name": "font_size",
+      "value": "25fp"
     }
   ]
 }
