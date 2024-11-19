@@ -29,7 +29,7 @@ export default struct AddFormByMenu {
     Menu() {
       AddFormMenuItem(
         {
-          bundleName: 'com.example.formSample', // 包名
+          bundleName: 'com.samples.formSample', // 包名
           abilityName: 'EntryAbility', // 模块ability名称
           parameters: {
             'ohos.extra.param.key.form_dimension': 2,

@@ -33,7 +33,7 @@ export default function abilityTest() {
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
         await abilityDelegator.startAbility({
-          bundleName: 'com.example.formSample',
+          bundleName: 'com.samples.formSample',
           abilityName: 'EntryAbility'
         });
       } catch (exception) {

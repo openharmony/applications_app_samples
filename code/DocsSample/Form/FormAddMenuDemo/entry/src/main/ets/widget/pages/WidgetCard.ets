@@ -45,11 +45,11 @@ struct WidgetCard {
     Row() {
       Column() {
         Text(this.city_value)
-          .fontSize($r('app.float.font_size'))
+          .fontSize($r('app.string.font_size'))
           .fontWeight(FontWeight.Medium)
           .fontColor($r('app.color.item_title_font'))
         Text(this.time_value)
-          .fontSize($r('app.float.font_size'))
+          .fontSize($r('app.string.font_size'))
           .fontWeight(FontWeight.Medium)
           .fontColor($r('app.color.item_title_font'))
       }

@@ -15,8 +15,8 @@
 
 {
   "app": {
-    "bundleName": "com.example.formSample",
-    "vendor": "example",
+    "bundleName": "com.samples.formSample",
+    "vendor": "samples",
     "versionCode": 1000000,
     "versionName": "1.0.0",
     "icon": "$media:app_icon",
