@@ -24,8 +24,6 @@
 
 3.点击"添加到桌面",退出Form Sample应用到桌面，可看到"添加到桌面"卡片。
 
-4.点击主页"引用HAR导出的native方法"按钮，正确引用HAR导出的native方法，页面Hello World字段变更为result: 3。
-
 ### 工程目录
 
 ```
