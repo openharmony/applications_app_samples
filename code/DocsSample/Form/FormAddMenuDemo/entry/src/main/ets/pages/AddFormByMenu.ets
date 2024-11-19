@@ -25,7 +25,7 @@ export default struct AddFormByMenu {
   private compId: string = '12345678';
 
   @Builder
-  MyMenu() {
+  myMenu() {
     Menu() {
       AddFormMenuItem(
         {
@@ -83,7 +83,7 @@ export default struct AddFormByMenu {
       .width(200)
       .height(200)
       .borderRadius(10)
-      .bindContextMenu(this.MyMenu, ResponseType.LongPress, {
+      .bindContextMenu(this.myMenu, ResponseType.LongPress, {
         placement: Placement.TopLeft
       })
     }
