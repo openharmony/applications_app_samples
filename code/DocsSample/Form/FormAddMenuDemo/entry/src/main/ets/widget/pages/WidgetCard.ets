@@ -18,8 +18,8 @@ const local = new LocalStorage()
 @Entry(local)
 @Component
 struct WidgetCard {
-  @LocalStorageProp('city') city_value: string = ''; // 定义需要刷新的卡片数据
-  @LocalStorageProp('time') time_value: string = ''; // 定义需要刷新的卡片数据
+  @LocalStorageProp('city') cityValue: string = ''; // 定义需要刷新的卡片数据
+  @LocalStorageProp('time') timeValue: string = ''; // 定义需要刷新的卡片数据
   /*
    * The action type.
    */
@@ -44,11 +44,11 @@ struct WidgetCard {
   build() {
     Row() {
       Column() {
-        Text(this.city_value)
+        Text(this.cityValue)
           .fontSize($r('app.string.font_size'))
           .fontWeight(FontWeight.Medium)
           .fontColor($r('app.color.item_title_font'))
-        Text(this.time_value)
+        Text(this.timeValue)
           .fontSize($r('app.string.font_size'))
           .fontWeight(FontWeight.Medium)
           .fontColor($r('app.color.item_title_font'))
