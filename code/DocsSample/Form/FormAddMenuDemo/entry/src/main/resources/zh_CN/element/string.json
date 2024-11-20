@@ -1,0 +1,52 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Form Sample"
+    },
+    {
+      "name": "EntryFormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "EntryFormAbility_label",
+      "value": "form_label"
+    },
+    {
+      "name": "widget_desc",
+      "value": "This is a service widget."
+    },
+    {
+      "name": "widget_display_name",
+      "value": "widget"
+    },
+    {
+      "name": "add_form",
+      "value": "添加到桌面"
+    },
+    {
+      "name": "default_city",
+      "value": "南京"
+    },
+    {
+      "name": "default_time",
+      "value": "--"
+    },
+    {
+      "name": "menu_info_long_click",
+      "value": "长按显示菜单"
+    },
+    {
+      "name": "font_size",
+      "value": "25fp"
+    }
+  ]
+}
