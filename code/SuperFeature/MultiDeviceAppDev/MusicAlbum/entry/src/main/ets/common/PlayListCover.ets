@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -100,15 +100,15 @@ export default struct PlayListCover {
     if (this.currentBreakpoint === 'sm') {
       Column() {
         GridRow() {
-          GridCol({ span: { sm: 4, md: 10 }, offset: { sm: 0, md: 1, lg: 1 } }) {
+          GridCol({ span: { xs: 4, sm: 4, md: 10 }, offset: { xs: 0, sm: 0, md: 1, lg: 1 } }) {
             this.CoverImage()
           }
 
-          GridCol({ span: { sm: 8, md: 10 }, offset: { sm: 0, md: 2, lg: 2 } }) {
+          GridCol({ span: { xs: 8, sm: 8, md: 10 }, offset: { xs: 0, sm: 0, md: 2, lg: 2 } }) {
             this.CoverIntroduction()
           }
 
-          GridCol({ span: { sm: 12, md: 10 }, offset: { sm: 0, md: 2, lg: 2 } }) {
+          GridCol({ span: { xs: 12, sm: 12, md: 10 }, offset: { xs: 0, sm: 0, md: 2, lg: 2 } }) {
             this.CoverOptions()
           }
         }
@@ -118,15 +118,15 @@ export default struct PlayListCover {
     } else {
       Column() {
         GridRow() {
-          GridCol({ span: { sm: 4, md: 10 }, offset: { sm: 0, md: 1, lg: 1 } }) {
+          GridCol({ span: { xs: 4, sm: 4, md: 10 }, offset: { xs: 0, sm: 0, md: 1, lg: 1 } }) {
             this.CoverImage()
           }
 
-          GridCol({ span: { sm: 8, md: 10 }, offset: { sm: 0, md: 2, lg: 2 } }) {
+          GridCol({ span: { xs: 8, sm: 8, md: 10 }, offset: { xs: 0, sm: 0, md: 2, lg: 2 } }) {
             this.CoverIntroduction()
           }
 
-          GridCol({ span: { sm: 12, md: 10 }, offset: { sm: 0, md: 2, lg: 2 } }) {
+          GridCol({ span: { xs: 12, sm: 12, md: 10 }, offset: { xs: 0, sm: 0, md: 2, lg: 2 } }) {
             this.CoverOptions()
           }.margin({
             top: this.currentBreakpoint === 'sm' ? 15 : 0,
