@@ -1096,6 +1096,12 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/BasicFeature/ApplicationModels/SystemRouter/images/NavIndex.jpeg" desc="code/BasicFeature/ApplicationModels/SystemRouter"/>
 				<filteritem type="filepath" name="code/BasicFeature/ApplicationModels/SystemRouter/images/EntryPageTwo.jpeg" desc="code/BasicFeature/ApplicationModels/SystemRouter"/>
 				<filteritem type="filepath" name="code/BasicFeature/ApplicationModels/SystemRouter/images/HarAPageOne.jpeg" desc="code/BasicFeature/ApplicationModels/SystemRouter"/>
+				<filteritem type="filepath" name="code/Performance/PerformanceArticle/images/reasonable_using_system_interfaces_2.PNG" desc="Provided by code/Performance/PerformanceArticle"/>
+				<filteritem type="filepath" name="code/Performance/PerformanceArticle/images/reasonable_using_system_interfaces_4.PNG" desc="Provided by code/Performance/PerformanceArticle"/>
+				<filteritem type="filepath" name="code/Performance/PerformanceArticle/images/reasonable_using_system_interfaces_getanonymousadsync.png" desc="Provided by code/Performance/PerformanceArticle"/>
+				<filteritem type="filepath" name="code/Performance/PerformanceArticle/images/reasonable_using_system_interfaces_getanonymousid.png" desc="Provided by code/Performance/PerformanceArticle"/>
+				<filteritem type="filepath" name="code/Performance/PerformanceArticle/images/reasonable_using_system_interfaces_getstringsync.png" desc="Provided by code/Performance/PerformanceArticle"/>
+				<filteritem type="filepath" name="code/Performance/PerformanceArticle/images/reasonable_using_system_interfaces_getstringsyncafter.png" desc="Provided by code/Performance/PerformanceArticle"/>
 			</filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加License头"/>
