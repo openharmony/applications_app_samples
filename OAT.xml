@@ -247,7 +247,22 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/SystemFeature/Media/GamePuzzle/screenshot/devices/running.jpeg" desc="Provided by code/SystemFeature/Media/GamePuzzle"/>
 				<filteritem type="filepath" name="code/BasicFeature/Connectivity/VPN/lib/VPNFoundation-1.0.0.tgz" desc="Provided by code/BasicFeature/Connectivity/VPN"/>
                 <filteritem type="filepath" name="code/UI/ArkTsComponentCollection/ComponentCollection/lib/DragEvent-1.0.0.tgz" desc="Provided by code/UI/ArkTsComponentCollection/ComponentCollection"/>
-                <filteritem type="filepath" name="code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary/lib/ProcessMessage-1.0.0.tgz" desc="Provided by code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary"/>
+				<filteritem type="filepath" name="code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow/tabcontentoverflow.gif" desc="Provided by code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow"/>
+                <filteritem type="filepath" name="code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow/src/main/resources/base/media/tabcontentoverflow_follow.png" desc="Provided by code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow"/>
+				<filteritem type="filepath" name="code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow/src/main/resources/base/media/tabcontentoverflow_add.png" desc="Provided by code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow"/>
+				<filteritem type="filepath" name="code/UI/TabContentTouchHotZone/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow"/>	
+				<filteritem type="filepath" name="code/UI/TabContentTouchHotZone/entry/src/main/resources/base/media/background.png" desc="Provided by code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow"/>	
+				<filteritem type="filepath" name="code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow/src/main/resources/base/media/tabcontentoverflow_foucs_add.png" desc="Provided by code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow"/>
+				<filteritem type="filepath" name="code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow/src/main/resources/base/media/tabcontentoverflow_fabulo.png" desc="Provided by code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow"/>		
+				<filteritem type="filepath" name="code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow/src/main/resources/base/media/tabcontentoverflow_preview.jpg" desc="Provided by code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow"/>		
+				<filteritem type="filepath" name="code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow/src/main/resources/base/media/tabcontentoverflow_comment.png" desc="Provided by code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow"/>
+				<filteritem type="filepath" name="code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow/src/main/resources/base/media/tabcontentoverflow_share.png" desc="Provided by code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow"/>
+				<filteritem type="filepath" name="code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow/src/main/resources/base/media/tabcontentoverflow_search_icon.png" desc="Provided by code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow"/>
+				<filteritem type="filepath" name="code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow/src/main/resources/base/media/tabcontentoverflow_head_image.jpg" desc="Provided by code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow"/>
+				<filteritem type="filepath" name="code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow/src/main/resources/base/media/tabcontentoverflow_fabulous.png" desc="Provided by code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow"/>
+				<filteritem type="filepath" name="code/UI/TabContentTouchHotZone/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/UI/TabContentTouchHotZone"/>
+				<filteritem type="filepath" name="code/UI/TabContentTouchHotZone/AppScope/resources/base/media/app_icon.png" desc="Provided by code/UI/TabContentTouchHotZone"/>
+				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary/lib/ProcessMessage-1.0.0.tgz" desc="Provided by code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary"/>
                 <filteritem type="filepath" name="code/BasicFeature/Notification/CustomCommonEvent/lib/CardEvent-1.0.0.tgz" desc="Provided by code/BasicFeature/Notification/CustomCommonEvent"/>
                 <filteritem type="filepath" name="code/BasicFeature/Ads/OAIDSample/lib/ResetOAID-1.0.0.tgz" desc="Provided by code/BasicFeature/Ads/OAIDSample"/>
                 <filteritem type="filepath" name="code/Solutions/Tools/FlipClock/lib/Brightness-1.0.0.tgz" desc="Provided by code/Solutions/Tools/FlipClock"/>
@@ -1125,6 +1140,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/BasicFeature/Media/AVRecorder/lib/VideoRecorder-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/BasicFeature/Connectivity/VPN/lib/VPNFoundation-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/UI/ArkTsComponentCollection/ComponentCollection/lib/DragEvent-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
+				<filteritem type="filepath" name="code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow/src/main/resources/rawfile/tabcontentoverflow_play_video.MP4" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary/lib/ProcessMessage-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/Solutions/Media/MultiMedia/lib/CameraPage-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
                 <filteritem type="filepath" name="code/BasicFeature/Notification/CustomCommonEvent/lib/CardEvent-1.0.0.tgz" desc="二进制文件，无需添加License头"/>
@@ -1172,6 +1188,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/BasicFeature/Media/AVRecorder/lib/VideoRecorder-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/BasicFeature/Connectivity/VPN/lib/VPNFoundation-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/UI/ArkTsComponentCollection/ComponentCollection/lib/DragEvent-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
+				<filteritem type="filepath" name="code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow/src/main/resources/rawfile/tabcontentoverflow_play_video.MP4" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary/lib/ProcessMessage-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/Solutions/Media/MultiMedia/lib/CameraPage-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
                 <filteritem type="filepath" name="code/BasicFeature/Notification/CustomCommonEvent/lib/CardEvent-1.0.0.tgz" desc="二进制文件，无需添加版权头"/>
