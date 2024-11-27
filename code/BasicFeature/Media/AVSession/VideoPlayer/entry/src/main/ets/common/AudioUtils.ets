@@ -23,6 +23,7 @@ export default class AudioUtils {
   public surfaceId: string = '';
   private callbackMap: Map<string, Function> = new Map();
   private playState: SubscribedAbstractProperty<number>;
+  private videoLoadedCallback: (isLoaded: boolean) => void = () => {};
 
   constructor() {
     Log.info(`AVPlayer seek succeede in `);
@@ -33,6 +34,10 @@ export default class AudioUtils {
     this.avPlayer = await media.createAVPlayer();
     this.setAVPlayerCallback();
     return this.avPlayer;
+  }
+
+  setVideoLoadedCallback(callback: (isLoaded: boolean) => void) {
+    this.videoLoadedCallback = callback;
   }
 
   setAVPlayerCallback() {
@@ -61,6 +66,7 @@ export default class AudioUtils {
           }
           try {
             this.avPlayer?.prepare().then(() => {
+              this.videoLoadedCallback(true);
               Log.info('AVPlayer prepare succeeded.');
             });
           } catch(err) {
@@ -103,6 +109,7 @@ export default class AudioUtils {
   }
 
   public async loadFromSrcFd(fileDescriptor: media.AVFileDescriptor) {
+    this.videoLoadedCallback(false);
     Log.info('loadFromSrcFd: ' + JSON.stringify(fileDescriptor));
     if (!this.avPlayer) {
       Log.info('no acPlayer');
@@ -116,6 +123,7 @@ export default class AudioUtils {
   }
 
   public async loadFromRawFile(fileName: string) {
+    this.videoLoadedCallback(false);
     Log.info('loadFromRawFile: ' + fileName);
     if (!this.avPlayer) {
       Log.info('no avplayer');
@@ -132,6 +140,7 @@ export default class AudioUtils {
   }
 
   public async loadFromNetwork(url: string) {
+    this.videoLoadedCallback(false);
     Log.info('loadFromNetwork: ' + url);
     if (!this.avPlayer) {
       Log.info('no avplayer');
