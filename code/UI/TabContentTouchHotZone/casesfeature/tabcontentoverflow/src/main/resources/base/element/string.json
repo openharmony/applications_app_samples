@@ -1,0 +1,64 @@
+{
+  "string": [
+    {
+      "name": "tabcontentoverflow_homepage",
+      "value": "首页"
+    },
+    {
+      "name": "tabcontentoverflow_video",
+      "value": "视频"
+    },
+    {
+      "name": "tabcontentoverflow_mall",
+      "value": "商城"
+    },
+    {
+      "name": "tabcontentoverflow_mine",
+      "value": "我的"
+    },
+    {
+      "name": "tabcontentoverflow_full_size",
+      "value": "100%"
+    },
+    {
+      "name": "tabcontentoverflow_video_height",
+      "value": "calc(100% - 60vp)"
+    },
+    {
+      "name": "tabcontentoverflow_upgrade_hot",
+      "value": "上升热点"
+    },
+    {
+      "name": "tabcontentoverflow_online_people",
+      "value": "98万人在看"
+    },
+    {
+      "name": "tabcontentoverflow_toast_message",
+      "value": "仅供UI展示，功能尚未开发"
+    },
+    {
+      "name": "tabcontentoverflow_share",
+      "value": "分享"
+    },
+    {
+      "name": "tabcontentoverflow_focus",
+      "value": "关注"
+    },
+    {
+      "name": "tabcontentoverflow_selected",
+      "value": "精选"
+    },
+    {
+      "name": "tabcontentoverflow_recommendation",
+      "value": "推荐"
+    },
+    {
+      "name": "tabcontentoverflow_screeninghall",
+      "value": "放映厅"
+    },
+    {
+      "name": "tabcontentoverflow_focus_width",
+      "value": "calc((100% - 120vp)/4)"
+    }
+  ]
+}

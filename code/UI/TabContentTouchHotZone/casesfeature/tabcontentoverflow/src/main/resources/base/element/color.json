@@ -1,0 +1,52 @@
+{
+  "color": [
+    {
+      "name": "tabcontentoverflow_white",
+      "value": "#FFFFFFFF"
+    },
+    {
+      "name": "tabcontentoverflow_click_color",
+      "value": "#e40d0d"
+    },
+    {
+      "name": "tabcontentoverflow_row_background",
+      "value": "#FF000000"
+    },
+    {
+      "name": "tabcontentoverflow_black",
+      "value": "#FF000000"
+    },
+    {
+      "name": "tabcontentoverflow_up_color",
+      "value": "#ff3300"
+    },
+    {
+      "name": "tabcontentoverflow_font_color",
+      "value": "#aaaaaa"
+    },
+    {
+      "name": "tabcontentoverflow_play_time_text_color",
+      "value": "#ffff0000"
+    },
+    {
+      "name": "tabcontentoverflow_total_time_text_color",
+      "value": "#ffffffff"
+    },
+    {
+      "name": "tabcontentoverflow_text1_background_color",
+      "value": "#804e4c4d"
+    },
+    {
+      "name": "tabcontentoverflow_text2_background_color",
+      "value": "#999999"
+    },
+    {
+      "name": "tabcontentoverflow_time_text_font_color",
+      "value": "#bbbbbb"
+    },
+    {
+      "name": "tabcontentoverflow_gray_background_color",
+      "value": "#32292A"
+    }
+  ]
+}

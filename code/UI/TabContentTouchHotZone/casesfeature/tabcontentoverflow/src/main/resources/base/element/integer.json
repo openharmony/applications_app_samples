@@ -1,0 +1,284 @@
+{
+  "integer": [
+    {
+      "name": "tabcontentoverflow_row_column_image_width",
+      "value": 30
+    },
+    {
+      "name": "tabcontentoverflow_row_column_image_height",
+      "value": 30
+    },
+    {
+      "name": "tabcontentoverflow_row_column_text_font_size",
+      "value": 12
+    },
+    {
+      "name": "tabcontentoverflow_row_column_width",
+      "value": 50
+    },
+    {
+      "name": "tabcontentoverflow_row_column_height",
+      "value": 100
+    },
+    {
+      "name": "tabcontentoverflow_row_offset",
+      "value": -60
+    },
+    {
+      "name": "tabcontentoverflow_interval_number",
+      "value": 20
+    },
+    {
+      "name": "tabcontentoverflow_image_width",
+      "value": 50
+    },
+    {
+      "name": "tabcontentoverflow_image_height",
+      "value": 50
+    },
+    {
+      "name": "tabcontentoverflow_tabcontent_text_fontsize",
+      "value": 20
+    },
+    {
+      "name": "tabcontentoverflow_margin_samll",
+      "value": 10
+    },
+    {
+      "name": "tabcontentoverflow_tabs_barheight",
+      "value": 0
+    },
+    {
+      "name": "tabcontentoverflow_upgrade_text_font_size",
+      "value": 14
+    },
+    {
+      "name": "tabcontentoverflow_upgrade_icon_size",
+      "value": 14
+    },
+    {
+      "name": "tabcontentoverflow_mus_font_size",
+      "value": 12
+    },
+    {
+      "name": "tabcontentoverflow_maxline",
+      "value": 1
+    },
+    {
+      "name": "tabcontentoverflow_mus_height",
+      "value": 20
+    },
+    {
+      "name": "tabcontentoverflow_upgrade_margin",
+      "value": 4
+    },
+    {
+      "name": "tabcontentoverflow_upgrade_height",
+      "value": 36
+    },
+    {
+      "name": "tabcontentoverflow_upgrade_padding",
+      "value": 12
+    },
+    {
+      "name": "tabcontentoverflow_search_icon_width",
+      "value": 20
+    },
+    {
+      "name": "tabcontentoverflow_search_icon_height",
+      "value": 20
+    },
+    {
+      "name": "tabcontentoverflow_tab_font_size",
+      "value": 16
+    },
+    {
+      "name": "tabcontentoverflow_tab_divider_width",
+      "value": 30
+    },
+    {
+      "name": "tabcontentoverflow_divider_margin_top",
+      "value": 5
+    },
+    {
+      "name": "tabcontentoverflow_side_margin_top",
+      "value": -20
+    },
+    {
+      "name": "tabcontentoverflow_video_des_margin_bottom",
+      "value": 2
+    },
+    {
+      "name": "tabcontentoverflow_play_time_text_font_size",
+      "value": 20
+    },
+    {
+      "name": "tabcontentoverflow_play_time_text_width",
+      "value": 100
+    },
+    {
+      "name": "tabcontentoverflow_play_time_text_height",
+      "value": 30
+    },
+    {
+      "name": "tabcontentoverflow_play_time_text_margin",
+      "value": -100
+    },
+    {
+      "name": "tabcontentoverflow_text1_height",
+      "value": 5
+    },
+    {
+      "name": "tabcontentoverflow_text1_touch_height",
+      "value": 20
+    },
+    {
+      "name": "tabcontentoverflow_text1_borderradius",
+      "value": 5
+    },
+    {
+      "name": "tabcontentoverflow_text1_touch_border_radius",
+      "value": 0
+    },
+    {
+      "name": "tabcontentoverflow_text1_margin_top",
+      "value": -5
+    },
+    {
+      "name": "tabcontentoverflow_text1_margin_left",
+      "value": 15
+    },
+    {
+      "name": "tabcontentoverflow_text3_width",
+      "value": 20
+    },
+    {
+      "name": "tabcontentoverflow_text3_height",
+      "value": 20
+    },
+    {
+      "name": "tabcontentoverflow_text3_border_radius",
+      "value": 10
+    },
+    {
+      "name": "tabcontentoverflow_tabbar_height",
+      "value": 60
+    },
+    {
+      "name": "tabcontentoverflow_head_image_width",
+      "value": 45
+    },
+    {
+      "name": "tabcontentoverflow_head_image_height",
+      "value": 45
+    },
+    {
+      "name": "tabcontentoverflow_head_image_border_width",
+      "value": 1
+    },
+    {
+      "name": "tabcontentoverflow_focus_image_width",
+      "value": 20
+    },
+    {
+      "name": "tabcontentoverflow_focus_image_height",
+      "value": 20
+    },
+    {
+      "name": "tabcontentoverflow_focus_image_border_radius",
+      "value": 20
+    },
+    {
+      "name": "tabcontentoverflow_focus_image_margin",
+      "value": -10
+    },
+    {
+      "name": "tabcontentoverflow_like_image_width",
+      "value": 35
+    },
+    {
+      "name": "tabcontentoverflow_like_image_height",
+      "value": 30
+    },
+    {
+      "name": "tabcontentoverflow_like_image_margin_top",
+      "value": 18
+    },
+    {
+      "name": "tabcontentoverflow_like_text_font_size",
+      "value": 10
+    },
+    {
+      "name": "tabcontentoverflow_like_text_margin_top",
+      "value": 5
+    },
+    {
+      "name": "tabcontentoverflow_relativecontainer_width",
+      "value": 60
+    },
+    {
+      "name": "tabcontentoverflow_relativecontainer_height",
+      "value": 330
+    },
+    {
+      "name": "tabcontentoverflow_name_text_font_size",
+      "value": 18
+    },
+    {
+      "name": "tabcontentoverflow_name_text_margin_left",
+      "value": 10
+    },
+    {
+      "name": "tabcontentoverflow_des_text_font_size",
+      "value": 14
+    },
+    {
+      "name": "tabcontentoverflow_des_text_margin_top",
+      "value": 5
+    },
+    {
+      "name": "tabcontentoverflow_des_text_padding_left",
+      "value": 10
+    },
+    {
+      "name": "tabcontentoverflow_time_text_font_size",
+      "value": 10
+    },
+    {
+      "name": "tabcontentoverflow_gray_background_margin_top",
+      "value": 16
+    },
+    {
+      "name": "tabcontentoverflow_upgrade_filled_margin_top",
+      "value": 8
+    },
+    {
+      "name": "tabcontentoverflow_arrow_right_margin_right",
+      "value": 10
+    },
+    {
+      "name": "tabcontentoverflow_divider_margin_right",
+      "value": 5
+    },
+    {
+      "name": "tabcontentoverflow_video_des_relativecontainer_height",
+      "value": 106
+    },
+    {
+      "name": "tabcontentoverflow_search_image_margin",
+      "value": 20
+    },
+    {
+      "name": "tabcontentoverflow_top_view_relativecontainer_height",
+      "value": 50
+    },
+    {
+      "name": "tabcontentoverflow_top_view_divider_margin_top",
+      "value": 3
+    },
+    {
+      "name": "tabcontentoverflow_top_view_divider_margin_left",
+      "value": -15
+    }
+  ]
+}
