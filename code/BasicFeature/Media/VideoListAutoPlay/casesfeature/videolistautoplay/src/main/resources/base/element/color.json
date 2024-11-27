@@ -1,0 +1,28 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "video_list_autoplay_tab_title_font_color",
+      "value": "#0a59f7"
+    },
+    {
+      "name": "video_list_autoplay_tab_title_font_color_change",
+      "value": "#898585"
+    },
+    {
+      "name": "video_list_autoplay_custom_search_text_background_color",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "video_list_autoplay_custom_search_row_border_color",
+      "value": "#e4e4e4"
+    },
+    {
+      "name": "video_list_autoplay_lazy_foreach_list_page_list_item_background_color",
+      "value": "#fff6f6f6"
+    }
+  ]
+}

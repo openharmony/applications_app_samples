@@ -1,0 +1,88 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "video_list_autoplay_tab_main",
+      "value": "首页"
+    },
+    {
+      "name": "video_list_autoplay_tab_short",
+      "value": "短片"
+    },
+    {
+      "name": "video_list_autoplay_tab_vip",
+      "value": "会员"
+    },
+    {
+      "name": "video_list_autoplay_tab_message",
+      "value": "消息"
+    },
+    {
+      "name": "video_list_autoplay_tab_mine",
+      "value": "个人中心"
+    },
+    {
+      "name": "video_list_autoplay_custom_tab_bar_width",
+      "value": "100%"
+    },
+    {
+      "name": "video_list_autoplay_height",
+      "value": "100%"
+    },
+    {
+      "name": "video_list_autoplay_custom_search_width",
+      "value": "100%"
+    },
+    {
+      "name": "video_list_autoplay_lazy_foreach_list_page_list_width",
+      "value": "95%"
+    },
+    {
+      "name": "video_list_autoplay_lazy_foreach_list_page_width",
+      "value": "100%"
+    },
+    {
+      "name": "video_list_autoplay_component_video_width",
+      "value": "100%"
+    },
+    {
+      "name": "video_list_autoplay_custom_search_text",
+      "value": "搜索"
+    },
+    {
+      "name": "video_list_autoplay_video_item_news_name_width",
+      "value": "100%"
+    },
+    {
+      "name": "video_list_autoplay_video_item_news_name_column_width",
+      "value": "60%"
+    },
+    {
+      "name": "video_list_autoplay_video_item_news_name_row_width",
+      "value": "90%"
+    },
+    {
+      "name": "video_list_autoplay_video_item_row_column_width",
+      "value": "80%"
+    },
+    {
+      "name": "video_list_autoplay_video_item_news_performer",
+      "value": "演员"
+    },
+    {
+      "name": "video_list_autoplay_component_video_loading_progress",
+      "value": "努力加载中..."
+    },
+    {
+      "name": "video_list_autoplay_toast_tips",
+      "value": "仅用作美化，请根据业务需要自行实现"
+    }
+  ]
+}
