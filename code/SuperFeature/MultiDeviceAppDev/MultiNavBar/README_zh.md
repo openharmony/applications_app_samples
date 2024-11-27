@@ -54,7 +54,7 @@ MultiNavBar/entry/src/main/ets/
 
 #### 整体布局
 
-1.通过GridRow组件提供的断点事件，获取到当前窗口的断点，通过visibility属性将[Tabs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-tabs.md)组件与[SideBarContainer](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-sidebarcontainer.md)组件分别在sm/(md、lg)
+1.通过GridRow组件提供的断点事件，获取到当前窗口的断点，通过visibility属性将[Tabs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-tabs.md)组件与[SideBarContainer](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md)组件分别在sm/(md、lg)
 形态下展示/隐藏。
 
 2.同时通过断点，对组件设置不同的样式属性，以最优的效果展示。
