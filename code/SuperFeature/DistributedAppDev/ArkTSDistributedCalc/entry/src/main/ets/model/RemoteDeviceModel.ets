@@ -60,7 +60,7 @@ export class RemoteDeviceModel {
   }
 
   changeStateOnline(device: deviceManager.DeviceBasicInfo) {
-    if (this.deviceList !== null) {
+    if (this.deviceList !== null && !this.deviceList.some((existDevice) => existDevice.deviceId === device.deviceId)) {
       this.deviceList![this.deviceList!.length] = device;
     }
     Logger.debug(TAG, `online, device list= ${JSON.stringify(this.deviceList)}`);
