@@ -86,9 +86,10 @@ export function transformToSvgObj(text: string): SvgClass {
 function getAllElements(obj: ObjectType): Elements[] {
   const set: Elements[] = [];
   if (obj instanceof Array) {
+    const arr: Array<ObjectType> = obj as Array<ObjectType>;
     const length: number = obj.length;
     for (let i: number = 0; i < length; i++) {
-      set.push(...getAllElements(obj[i]));
+      set.push(...getAllElements(arr[i]));
     }
   }
   if (obj._attributes !== undefined && obj?._type !== undefined
