@@ -103,6 +103,17 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="network/Bluetooth/entry/src/main/java/ohos/samples/bluetooth/adapter/" desc="Not contains 3rd code，license file is not required in this subdirectory."/>
             </filefilter>
             <filefilter name="binaryFileTypePolicyFilter" desc="Filters for binary file policies" >
+				<filteritem type="filepath" name="code/UI/ExpandTitle/entry/src/main/resources/base/media/expanded_title_dinner_food.png" desc="Provide by code/UI/ExpandTitle"/>
+				<filteritem type="filepath" name="code/UI/ExpandTitle/entry/src/main/resources/base/media/expanded_title_ic_public_app5.png" desc="Provide by code/UI/ExpandTitle"/>
+				<filteritem type="filepath" name="code/UI/ExpandTitle/entry/src/main/resources/base/media/background.png" desc="Provide by code/UI/ExpandTitle"/>
+				<filteritem type="filepath" name="code/UI/ExpandTitle/entry/src/main/resources/base/media/expanded_title_drink_coffee.png" desc="Provide by code/UI/ExpandTitle"/>
+				<filteritem type="filepath" name="code/UI/ExpandTitle/entry/src/main/resources/base/media/expanded_title_cook_picture.png" desc="Provide by code/UI/ExpandTitle"/>
+				<filteritem type="filepath" name="code/UI/ExpandTitle/entry/src/main/resources/base/media/expanded_title_ic_public_app12.png" desc="Provide by code/UI/ExpandTitle"/>
+				<filteritem type="filepath" name="code/UI/ExpandTitle/AppScope/resources/base/media/app_icon.png" desc="Provide by code/UI/ExpandTitle"/>
+				<filteritem type="filepath" name="code/UI/ExpandTitle/entry/src/main/resources/base/media/startIcon.png" desc="Provide by code/UI/ExpandTitle"/>
+				<filteritem type="filepath" name="code/UI/ExpandTitle/entry/src/main/resources/base/media/expanded_title_ic_public_game1.png" desc="Provide by code/UI/ExpandTitle"/>
+				<filteritem type="filepath" name="code/UI/ExpandTitle/entry/src/main/resources/base/media/foreground.png" desc="Provide by code/UI/ExpandTitle"/>
+				<filteritem type="filepath" name="code/UI/ExpandTitle/entry/src/main/resources/base/media/expand_title.gif" desc="Provide by code/UI/ExpandTitle"/>
 				<filteritem type="filepath" name="code/DocsSample/Form/FormAddMenuDemo/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/DocsSample/Form/FormAddMenuDemo."/>
 				<filteritem type="filepath" name="code/DocsSample/Form/FormAddMenuDemo/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/DocsSample/Form/FormAddMenuDemo."/>
 				<filteritem type="filepath" name="code/DocsSample/Form/FormAddMenuDemo/entry/src/main/resources/base/media/background.png" desc="Provided by code/DocsSample/Form/FormAddMenuDemo."/>

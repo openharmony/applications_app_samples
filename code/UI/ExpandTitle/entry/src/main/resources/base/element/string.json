@@ -1,0 +1,96 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "expanded_title_layout_8",
+      "value": "8"
+    },
+    {
+      "name": "expanded_title_layout_10",
+      "value": "10"
+    },
+    {
+      "name": "expanded_title_layout_25",
+      "value": "25"
+    },
+    {
+      "name": "expanded_title_layout_90",
+      "value": "90"
+    },
+    {
+      "name": "expanded_title_layout_110",
+      "value": "110"
+    },
+    {
+      "name": "expanded_title_layout_100_percent",
+      "value": "100%"
+    },
+    {
+      "name": "expanded_title_layout_90_percent",
+      "value": "90%"
+    },
+    {
+      "name": "expanded_title_layout_70_percent",
+      "value": "70%"
+    },
+    {
+      "name": "expanded_title_layout_8_percent",
+      "value": "8%"
+    },
+    {
+      "name": "expanded_title_menu_pic_layout",
+      "value": "25"
+    },
+    {
+      "name": "expanded_title_init_title_font_size",
+      "value": "25"
+    },
+    {
+      "name": "expanded_title_font_size",
+      "value": "30"
+    },
+    {
+      "name": "expanded_title_memo_counts_font_size",
+      "value": "16"
+    },
+    {
+      "name": "expanded_title_memo_area_height_before",
+      "value": "88%"
+    },
+    {
+      "name": "expanded_title_memo_area_height_after",
+      "value": "75%"
+    },
+    {
+      "name": "expanded_title_search_placeholder",
+      "value": "Type to search..."
+    },
+    {
+      "name": "expanded_title_memo_counts",
+      "value": "8 notes"
+    },
+    {
+      "name": "expanded_title_memo_title",
+      "value": "All notes"
+    },
+    {
+      "name": "expanded_title_toast_hint_message",
+      "value": "仅演示，可自行实现业务功能"
+    },
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "ability_label",
+      "value": "expandTitle"
+    }
+  ]
+}
