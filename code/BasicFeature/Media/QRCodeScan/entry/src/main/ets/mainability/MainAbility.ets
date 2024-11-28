@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -28,20 +28,23 @@ export default class MainAbility extends UIAbility {
     Logger.info(TAG, 'MainAbility onCreate')
     let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
     try {
-      await atManager.requestPermissionsFromUser(this.context, ['ohos.permission.CAMERA', 'ohos.permission.READ_MEDIA', 'ohos.permission.WRITE_MEDIA', 'ohos.permission.MEDIA_LOCATION']).then((data) => {
-        Logger.info(TAG, `data: ${JSON.stringify(data)}`)
-        // 如果权限列表中有-1，说明用户拒绝了授权
-        if (data.authResults[0] === 0) {
-          // 控制相机是否打开
-          AppStorage.SetOrCreate(QRCodeScanConst.HAS_CAMERA_PERMISSION, true)
-          Logger.info(TAG, 'MainAbility permissionRequestResult success')
-        } else {
-          Logger.info(TAG, 'MainAbility permissionRequestResult failed')
-        }
-        AppStorage.SetOrCreate('context', this.context)
-      }).catch((err: BusinessError) => {
-        Logger.info(TAG, `err: ${JSON.stringify(err)}`)
-      })
+      await atManager.requestPermissionsFromUser(this.context, ['ohos.permission.CAMERA', 'ohos.permission.READ_IMAGEVIDEO',
+        'ohos.permission.WRITE_IMAGEVIDEO', 'ohos.permission.MEDIA_LOCATION'])
+        .then((data) => {
+          Logger.info(TAG, `data: ${JSON.stringify(data)}`)
+          // 如果权限列表中有-1，说明用户拒绝了授权
+          if (data.authResults[0] === 0) {
+            // 控制相机是否打开
+            AppStorage.SetOrCreate(QRCodeScanConst.HAS_CAMERA_PERMISSION, true)
+            Logger.info(TAG, 'MainAbility permissionRequestResult success')
+          } else {
+            Logger.info(TAG, 'MainAbility permissionRequestResult failed')
+          }
+          AppStorage.SetOrCreate('context', this.context)
+        })
+        .catch((err: BusinessError) => {
+          Logger.info(TAG, `err: ${JSON.stringify(err)}`)
+        })
     } catch (err) {
       Logger.info(TAG, `catch err->${JSON.stringify(err)}`)
     }
@@ -66,7 +69,7 @@ export default class MainAbility extends UIAbility {
   }
 
   onForeground() {
-    AppStorage.SetOrCreate('cameraStatus',!AppStorage.Get<boolean>('cameraStatus'))
+    AppStorage.SetOrCreate('cameraStatus', !AppStorage.Get<boolean>('cameraStatus'))
     Logger.info('MainAbility onForeground')
   }
 
