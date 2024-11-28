@@ -56,6 +56,7 @@ struct Index {
   @State isProgressSliding: boolean = false;
   @State audioType: 'url' | 'rawfile' | 'scan' | 'video' = 'url';
   @State avCastPickerColor:Color = Color.White;
+  @State isLoaded: boolean = false;
   private audioUtils: AudioUtils = new AudioUtils();
   private avPlayer: media.AVPlayer | undefined = undefined;
   private audioVolumeGroupManager: audio.AudioVolumeGroupManager | undefined = undefined;
@@ -72,6 +73,9 @@ struct Index {
     this.songList = this.urlVideoList;
     this.audioType = 'video';
     this.currentPlayInfo = this.urlVideoList[0];
+    this.audioUtils.setVideoLoadedCallback((isLoaded: boolean) => {
+      this.isLoaded = isLoaded;
+    });
     this.avPlayer = await this.audioUtils.init();
     this.avPlayer?.on('audioInterrupt', (info: audio.InterruptEvent) => {
       Log.info('audioInterrupt success, and InterruptEvent info is: ' + info);
@@ -790,16 +794,21 @@ struct Index {
         // video
         if (this.playType === 'local') {
           Row() {
-            Stack({ alignContent: Alignment.Bottom }) {
+            Stack({ alignContent: Alignment.Center }) {
               XComponent({ id: '', type: 'surface', controller: this.mXComponentController })
                 .onLoad(() => {
                   const surfaceId = this.mXComponentController.getXComponentSurfaceId();
                   Log.info('XComponent onLoad, surfaceId = ' + surfaceId);
                   this.audioUtils.surfaceId = surfaceId;
                 })
+              LoadingProgress()
+                .color(Color.White)
+                .width(100)
+                .height(100)
+                .visibility(this.isLoaded ? Visibility.None : Visibility.Visible)
             }
             .width('100%')
-            .height(200)
+            .height(400)
           }
           .flexShrink(0)
           .width('100%')
