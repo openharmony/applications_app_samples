@@ -111,6 +111,15 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/DocsSample/Form/FormAddMenuDemo/entry/src/main/resources/base/media/CardEvent.png" desc="Provided by code/DocsSample/Form/FormAddMenuDemo."/>
 				<filteritem type="filepath" name="code/DocsSample/Form/FormAddMenuDemo/screenshots/addFormByMenu.png" desc="Provided by code/DocsSample/Form/FormAddMenuDemo."/>
 				<filteritem type="filepath" name="code/DocsSample/Form/FormAddMenuDemo/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/DocsSample/Form/FormAddMenuDemo."/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/VideoListAutoPlay/AppScope/resources/base/media/app_icon.png" desc="Provided by code/UI/VideoListAutoPlay."/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/VideoListAutoPlay/casesfeature/videolistautoplay/src/main/resources/base/media/video_list_autoplay_preview4.PNG" desc="Provided by code/UI/VideoListAutoPlay."/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/VideoListAutoPlay/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/UI/VideoListAutoPlay."/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/VideoListAutoPlay/casesfeature/videolistautoplay/src/main/resources/base/media/video_list_autoplay_preview3.PNG" desc="Provided by code/UI/VideoListAutoPlay."/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/VideoListAutoPlay/casesfeature/videolistautoplay/src/main/resources/base/media/video_list_autoplay_preview1.PNG" desc="Provided by code/UI/VideoListAutoPlay."/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/VideoListAutoPlay/entry/src/main/resources/base/media/background.png" desc="Provided by code/UI/VideoListAutoPlay."/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/VideoListAutoPlay/casesfeature/videolistautoplay/video_list_autoplay.gif" desc="Provided by code/UI/VideoListAutoPlay."/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/VideoListAutoPlay/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/UI/VideoListAutoPlay."/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/VideoListAutoPlay/casesfeature/videolistautoplay/src/main/resources/base/media/video_list_autoplay_preview2.PNG" desc="Provided by code/UI/VideoListAutoPlay."/>
                 <filteritem type="filepath" name="code/BasicFeature/Native/ArkTSXComponent/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by the UX team."/>
                 <filteritem type="filepath" name="code/BasicFeature/Native/ArkTSXComponent/screenshots/device/changeColor.png" desc="Provided by code/BasicFeature/Native/ArkTSXComponent."/>
                 <filteritem type="filepath" name="code/BasicFeature/Native/ArkTSXComponent/screenshots/device/drawStar.png" desc="Provided by code/BasicFeature/Native/ArkTSXComponent."/>

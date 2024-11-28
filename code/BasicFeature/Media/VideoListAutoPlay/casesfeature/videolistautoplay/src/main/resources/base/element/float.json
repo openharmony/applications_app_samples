@@ -1,0 +1,32 @@
+{
+  "float": [
+    {
+      "name": "video_list_autoplay_tab_font_size",
+      "value": "10fp"
+    },
+    {
+      "name": "video_list_autoplay_tab_border_width",
+      "value": "0.5vp"
+    },
+    {
+      "name": "video_list_autoplay_tab_img_size",
+      "value": "24vp"
+    },
+    {
+      "name": "video_list_autoplay_tab_big_img_width",
+      "value": "40vp"
+    },
+    {
+      "name": "video_list_autoplay_tab_big_img_height",
+      "value": "38vp"
+    },
+    {
+      "name": "video_list_autoplay_tab_margin",
+      "value": "-15vp"
+    },
+    {
+      "name": "video_list_autoplay_tab_title_margin",
+      "value": "5vp"
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "integer": [
+    {
+      "name": "video_list_autoplay_custom_tab_bar_height",
+      "value": 50
+    },
+    {
+      "name": "video_list_autoplay_tab_item_padding",
+      "value": 2
+    },
+    {
+      "name": "video_list_autoplay_custom_search_image",
+      "value": 20
+    },
+    {
+      "name": "video_list_autoplay_custom_search_text_width",
+      "value": 270
+    },
+    {
+      "name": "video_list_autoplay_custom_search_text_height",
+      "value": 30
+    },
+    {
+      "name": "video_list_autoplay_custom_search_text_font_size",
+      "value": 12
+    },
+    {
+      "name": "video_list_autoplay_custom_search_text_padding_left",
+      "value": 3
+    },
+    {
+      "name": "video_list_autoplay_custom_search_row_padding_left",
+      "value": 2
+    },
+    {
+      "name": "video_list_autoplay_custom_search_row_padding_top",
+      "value": 1
+    },
+    {
+      "name": "video_list_autoplay_custom_search_row_border_radius",
+      "value": 20
+    },
+    {
+      "name": "video_list_autoplay_lazy_foreach_list_page_list_item_border_radius",
+      "value": 30
+    },
+    {
+      "name": "video_list_autoplay_lazy_foreach_list_page_list_item_margin_bottom",
+      "value": 20
+    },
+    {
+      "name": "video_list_autoplay_lazy_foreach_list_page_list_padding_top",
+      "value": 5
+    },
+    {
+      "name": "video_list_autoplay_component_height",
+      "value": 280
+    },
+    {
+      "name": "video_list_autoplay_component_margin_bottom",
+      "value": 15
+    },
+    {
+      "name": "video_list_autoplay_component_video_height",
+      "value": 220
+    },
+    {
+      "name": "video_list_autoplay_component_video_component_border_radius",
+      "value": 30
+    },
+    {
+      "name": "video_list_autoplay_component_video_loading_progress_width",
+      "value": 80
+    },
+    {
+      "name": "video_list_autoplay_component_video_loading_text_font_size",
+      "value": 16
+    },
+    {
+      "name": "video_list_autoplay_component_video_playing_image_width",
+      "value": 24
+    },
+    {
+      "name": "video_list_autoplay_component_video_playing_image_margin_left",
+      "value": 10
+    },
+    {
+      "name": "video_list_autoplay_video_item_news_image_height",
+      "value": 40
+    },
+    {
+      "name": "video_list_autoplay_video_item_news_image_width",
+      "value": 30
+    },
+    {
+      "name": "video_list_autoplay_video_item_news_image_margin_right",
+      "value": 5
+    },
+    {
+      "name": "video_list_autoplay_video_item_news_image_margin_bottom",
+      "value": 2
+    },
+    {
+      "name": "video_list_autoplay_video_item_news_name_font_size",
+      "value": 16
+    },
+    {
+      "name": "video_list_autoplay_video_item_news_name_margin_bottom",
+      "value": 3
+    },
+    {
+      "name": "video_list_autoplay_video_item_news_performer_font_size",
+      "value": 14
+    },
+    {
+      "name": "video_list_autoplay_video_item_news_name_row_margin_top",
+      "value": 5
+    },
+    {
+      "name": "video_list_autoplay_video_item_news_details_font_size",
+      "value": 12
+    },
+    {
+      "name": "video_list_autoplay_video_item_news_details_padding_bottom",
+      "value": 20
+    },
+    {
+      "name": "video_list_autoplay_video_item_icon_image_width",
+      "value": 18
+    },
+    {
+      "name": "video_list_autoplay_video_item_row_icon_image_padding",
+      "value": 10
+    },
+    {
+      "name": "video_list_autoplay_video_item_row_icon_image_height",
+      "value": 80
+    }
+  ]
+}
