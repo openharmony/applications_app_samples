@@ -14,7 +14,6 @@
  */
 
 import UIAbility from '@ohos.app.ability.UIAbility';
-import prompt from '@system.prompt'
 import window from '@ohos.window';
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 import { Permissions } from '@ohos.abilityAccessCtrl';
@@ -28,6 +27,12 @@ export default class EntryAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
     hilog.info(0x0000, 'testTag', '%{public}s', 'want param:' + JSON.stringify(want) ?? '');
     hilog.info(0x0000, 'testTag', '%{public}s', 'launchParam:' + JSON.stringify(launchParam) ?? '');
+    const PERMISSIONS: Array<Permissions> = [
+      'ohos.permission.MEDIA_LOCATION',
+      'ohos.permission.MICROPHONE'
+    ];
+    let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+    atManager.requestPermissionsFromUser(this.context, PERMISSIONS);
   }
 
   onDestroy() {
