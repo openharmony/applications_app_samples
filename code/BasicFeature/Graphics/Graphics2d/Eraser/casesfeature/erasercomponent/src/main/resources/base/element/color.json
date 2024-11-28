@@ -1,0 +1,32 @@
+{
+  "color": [
+    {
+      "name": "eraser_top_and_bottom_line_background_color",
+      "value": "#cc212224"
+    },
+    {
+      "name": "eraser_divider_color",
+      "value": "#cccccc"
+    },
+    {
+      "name": "eraser_selected_color",
+      "value": "#FA6400"
+    },
+    {
+      "name": "eraser_unselected_color",
+      "value": "#CCFFFFFF"
+    },
+    {
+      "name": "eraser_top_button_disabled_color",
+      "value": "#55FFFFFF"
+    },
+    {
+      "name": "eraser_top_button_enabled_color",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "eraser_background_color",
+      "value": "#000000"
+    }
+  ]
+}

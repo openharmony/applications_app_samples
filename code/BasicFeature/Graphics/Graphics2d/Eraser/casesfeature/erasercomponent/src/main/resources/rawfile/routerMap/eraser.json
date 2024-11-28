@@ -1,0 +1,10 @@
+{
+  "routerMap": [
+    {
+      "name": "eraser/EraserMainPage",
+      "pageModule": "eraser",
+      "pageSourceFile": "src/main/ets/generated/RouterBuilder.ets",
+      "registerFunction": "eraserMainPageRegister"
+    }
+  ]
+}
