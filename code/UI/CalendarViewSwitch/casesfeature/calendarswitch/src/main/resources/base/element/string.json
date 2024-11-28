@@ -1,0 +1,72 @@
+﻿{
+  "string": [
+    {
+      "name": "calendar_switch_full_size",
+      "value": "100%"
+    },
+    {
+      "name": "calendar_switch_size_twenty_three",
+      "value": "23%"
+    },
+    {
+      "name": "calendar_switch_size_twenty_five",
+      "value": "25%"
+    },
+    {
+      "name": "calendar_switch_repeat",
+      "value": "重复"
+    },
+    {
+      "name": "calendar_switch_reminder_time",
+      "value": "提醒时间"
+    },
+    {
+      "name": "calendar_switch_cancel",
+      "value": "取消"
+    },
+    {
+      "name": "calendar_switch_new_schedule",
+      "value": "新建日程"
+    },
+    {
+      "name": "calendar_switch_add",
+      "value": "添加"
+    },
+    {
+      "name": "calendar_switch_title_msg",
+      "value": "请填写标题后再试"
+    },
+    {
+      "name": "calendar_switch_time_msg",
+      "value": "结束时间需要大于开始时间，请修改后再试"
+    },
+    {
+      "name": "calendar_switch_add_completed",
+      "value": "日程已添加，可到系统日历中查看新增日程"
+    },
+    {
+      "name": "calendar_switch_title",
+      "value": "标题"
+    },
+    {
+      "name": "calendar_switch_location",
+      "value": "地点"
+    },
+    {
+      "name": "calendar_switch_start_time",
+      "value": "开始时间"
+    },
+    {
+      "name": "calendar_switch_end_time",
+      "value": "结束时间"
+    },
+    {
+      "name": "calendar_switch_button_style",
+      "value": "20fp"
+    },
+    {
+      "name": "calendar_switch_describe",
+      "value": "说明"
+    }
+  ]
+}
