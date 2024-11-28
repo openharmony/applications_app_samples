@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -29,8 +29,8 @@ const EVENT: string = 'getAbilityData';
 const PERMISSIONS: Array<Permissions> = [
   'ohos.permission.CAMERA',
   'ohos.permission.MICROPHONE',
-  'ohos.permission.READ_MEDIA',
-  'ohos.permission.WRITE_MEDIA',
+  'ohos.permission.READ_IMAGEVIDEO',
+  'ohos.permission.WRITE_IMAGEVIDEO',
   'ohos.permission.MEDIA_LOCATION',
   'ohos.permission.INTERNET'
 ];

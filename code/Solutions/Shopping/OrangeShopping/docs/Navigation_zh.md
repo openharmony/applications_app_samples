@@ -33,7 +33,7 @@ Navigation的路由切换的方式有两种，本次示例主要介绍NavPathSta
 | Navigation | 模块内页面切换  | 通过组件级路由统一路由管理     | 向右折叠转场效果 |
 
 ## 使用NavPathStack路由转场
-NavPathStack是Navigation路由栈，通过对栈内元素的操作，完成页面的路由转场。详细API如下表, [详细API说明文档](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-navigation.md)：
+NavPathStack是Navigation路由栈，通过对栈内元素的操作，完成页面的路由转场。详细API如下表, [详细API说明文档](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)：
 
 | API             | 描述                                                        |
 | --------------- | ----------------------------------------------------------- |
