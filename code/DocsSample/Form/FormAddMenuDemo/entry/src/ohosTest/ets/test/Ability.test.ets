@@ -16,7 +16,7 @@
 import { describe, it, expect } from '@ohos/hypium';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON } from '@ohos.UiTest';
-import { Logger } from '../Logger/Logger';
+import { Logger } from '../logger/Logger';
 
 const TAG = '[Sample_Add_Form]';
 const BUNDLE = 'Form Kit';
