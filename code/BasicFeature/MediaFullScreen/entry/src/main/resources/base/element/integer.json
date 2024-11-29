@@ -1,0 +1,140 @@
+{
+  "integer": [
+    {
+      "name": "media_full_screen_main_page_row_padding_left",
+      "value": 10
+    },
+    {
+      "name": "media_full_screen_main_page_row_padding_right",
+      "value": 16
+    },
+    {
+      "name": "media_full_screen_main_page_icon_play_width",
+      "value": 40
+    },
+    {
+      "name": "media_full_screen_main_page_icon_play_height",
+      "value": 40
+    },
+    {
+      "name": "media_full_screen_video_icon_play_width",
+      "value": 24
+    },
+    {
+      "name": "media_full_screen_video_icon_play_height",
+      "value": 24
+    },
+    {
+      "name": "media_full_screen_video_icon_play_margin",
+      "value": 10
+    },
+    {
+      "name": "media_full_screen_main_page_useName_line_height",
+      "value": 22
+    },
+    {
+      "name": "media_full_screen_main_page_userText_fontSize",
+      "value": 14
+    },
+    {
+      "name": "media_full_screen_main_page_user_image_width",
+      "value": 20
+    },
+    {
+      "name": "media_full_screen_main_page_user_image_height",
+      "value": 20
+    },
+    {
+      "name": "media_full_screen_main_page_user_image_border_radius",
+      "value": 10
+    },
+    {
+      "name": "media_full_screen_main_page_useName_fontSize",
+      "value": 14
+    },
+    {
+      "name": "media_full_screen_main_page_userText_line_height",
+      "value": 19
+    },
+    {
+      "name": "media_full_screen_main_page_user_col_margin_left",
+      "value": 8
+    },
+    {
+      "name": "media_full_screen_main_page_row_padding_top",
+      "value": 2
+    },
+    {
+      "name": "media_full_screen_main_page_row_padding_bottom",
+      "value": 10
+    },
+    {
+      "name": "media_full_screen_stack_shadow_radius",
+      "value": 3
+    },
+    {
+      "name": "media_full_screen_video_name_font_size",
+      "value": 24
+    },
+    {
+      "name": "media_full_screen_video_name_padding",
+      "value": 10
+    },
+    {
+      "name": "media_full_screen_current_time_font_size",
+      "value": 16
+    },
+    {
+      "name": "media_full_screen_speed_popup_text_font",
+      "value": 15
+    },
+    {
+      "name": "media_full_screen_speed_popup_row_padding",
+      "value": 10
+    },
+    {
+      "name": "media_full_screen_speed_popup_row_height",
+      "value": 20
+    },
+    {
+      "name": "media_full_screen_speed_popup_list_width",
+      "value": 80
+    },
+    {
+      "name": "media_full_screen_speed_popup_list_padding",
+      "value": 10
+    },
+    {
+      "name": "media_full_screen_speed_icon_font_size",
+      "value": 18
+    },
+    {
+      "name": "media_full_screen_speed_icon_margin",
+      "value": 15
+    },
+    {
+      "name": "media_full_screen_icon_large_width",
+      "value": 24
+    },
+    {
+      "name": "media_full_screen_icon_large_height",
+      "value": 24
+    },
+    {
+      "name": "media_full_screen_icon_large_margin",
+      "value": 10
+    },
+    {
+      "name": "media_full_screen_duration_font_size",
+      "value": 16
+    },
+    {
+      "name": "media_full_screen_duration_row_height",
+      "value": 25
+    },
+    {
+      "name": "media_full_screen_video_border_radius",
+      "value": 10
+    }
+  ]
+}
