@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "eraser_full_size",
+      "value": "100%"
+    },
+    {
+      "name": "eraser_pen_shape_text",
+      "value": "涂鸦"
+    },
+    {
+      "name": "eraser_eraser_text",
+      "value": "橡皮擦"
+    }
+  ]
+}

@@ -152,6 +152,7 @@
  <tr height="18" style='height:13.50pt;'>
   <td x:str><a href="code/BasicFeature/Graphics/Graphics2d/ExpandText">字体文本展开</a></td>
   <td x:str><a href="code/BasicFeature/Graphics/Graphics2d/PaintVerbatim">字体绘制</a></td>
+  <td x:str><a href="code/BasicFeature/Graphics/Graphics2d/Eraser">橡皮擦</a></td>
   <td x:str><a href="code/BasicFeature/Graphics/Graphics3d">3D引擎接口示例</a></td>
   <td ></td>
  </tr>
