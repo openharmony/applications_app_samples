@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,88 +13,92 @@
  * limitations under the License.
  */
 
-import media from '@ohos.multimedia.media'
-import Logger from '../model/Logger'
+import media from '@ohos.multimedia.media';
+import userFileManager from '@ohos.filemanagement.userFileManager';
+import BusinessError from "@ohos.base";
+import Logger from '../model/Logger';
 
-const TAG: string = '[Recorder.RecordModel]'
+const TAG: string = '[Recorder.RecordModel]';
 
-let audioConfig = {
-  audioEncodeBitRate : 22050,
-  audioSampleRate : 22050,
-  numberOfChannels : 2,
-  uri :'',
-  location : { latitude : 30, longitude : 130},
-  audioEncoderMime : media.CodecMimeType.AUDIO_AAC,
-  fileFormat : media.ContainerFormatType.CFT_MPEG_4A,
-}
+let avProfile: media.AVRecorderProfile = {
+  audioBitrate: 100000, // 音频比特率
+  audioChannels: 2, // 音频声道数
+  audioCodec: media.CodecMimeType.AUDIO_AAC, // 音频编码格式，当前只支持aac
+  audioSampleRate: 48000, // 音频采样率
+  fileFormat: media.ContainerFormatType.CFT_MPEG_4A, // 封装格式，当前只支持m4a
+};
 
 export class RecordModel {
-  private audioRecorder = undefined
+  private audioRecorder: media.AVRecorder | undefined = undefined;
+  private fd: number;
+  private fileAsset: userFileManager.FileAsset;
 
-  initAudioRecorder() {
-    this.release();
-    this.audioRecorder = media.createAudioRecorder()
-    Logger.info(TAG, 'create audioRecorder success')
+  async initAudioRecorder() {
+    await this.release();
+    this.audioRecorder = await media.createAVRecorder();
+    Logger.info(TAG, 'create audioRecorder success');
+
+    this.audioRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
+      Logger.info(TAG, `current state is ${state}`);
+    })
+
+    this.audioRecorder.on('error', (err: BusinessError.BusinessError) => {
+      Logger.error(TAG, `avRecorder failed, code is ${err.code}, message is ${err.message}`);
+    })
   }
 
-  release() {
-    if (typeof (this.audioRecorder) != `undefined`) {
-      Logger.info(TAG, 'case audioRecorder  release')
-      this.audioRecorder.release()
-      this.audioRecorder = undefined
+  async release() {
+    Logger.info(TAG, 'audioRecorder release');
+    if (this.audioRecorder !== undefined) {
+      await this.audioRecorder.release();
+    }
+    this.audioRecorder = undefined;
+  }
+
+  startRecorder(pathName: string, fileAsset: userFileManager.FileAsset, callback) {
+    Logger.info(TAG, `enter the startRecorder,pathName=${pathName}, audioRecorder=${JSON.stringify(this.audioRecorder)}`);
+    this.fileAsset = fileAsset;
+    this.fd = Number(pathName.split('/').pop());
+    let avConfig: media.AVRecorderConfig = {
+      audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
+      profile: avProfile,
+      url: pathName
+    };
+    this.audioRecorder?.prepare(avConfig).then(async () => {
+      Logger.info(TAG, 'Invoke prepare succeeded.');
+      await this.audioRecorder.start();
+      callback();
+    }, (err: BusinessError.BusinessError) => {
+      Logger.error(TAG, `Invoke prepare failed, code is ${err.code}, message is ${err.message}`);
+    })
+
+  }
+
+  async pause(callback) {
+    Logger.info(TAG, 'audioRecorder pause called');
+    if (this.audioRecorder !== undefined && this.audioRecorder.state === 'started') {
+      await this.audioRecorder.pause();
+      callback();
     }
   }
 
-  startRecorder(pathName, callback) {
-    Logger.info(TAG, `enter the startRecorder,pathName=${pathName}, audioRecorder=${JSON.stringify(this.audioRecorder)}`)
-    if (typeof (this.audioRecorder) != 'undefined') {
-      Logger.info(TAG, 'enter the if')
-      this.audioRecorder.on('prepare', () => {
-        Logger.info(TAG, 'setCallback  prepare case callback is called')
-        this.audioRecorder.start()
-      })
-      this.audioRecorder.on('start', () => {
-        Logger.info(TAG, 'setCallback start case callback is called')
-        callback()
-      })
-      Logger.info(TAG, 'start prepare')
-      audioConfig.uri = pathName
-      this.audioRecorder.prepare(audioConfig)
-    } else {
-      Logger.info(TAG, 'case failed, audioRecorder is null')
+  async resume(callback) {
+    Logger.info(TAG, 'audioRecorder resume called');
+    if (this.audioRecorder !== undefined && this.audioRecorder.state === 'paused') {
+      await this.audioRecorder.resume();
+      callback();
     }
   }
 
-  pause(callback) {
-    Logger.info(TAG, 'audioRecorder pause called')
-    if (typeof (this.audioRecorder) != `undefined`) {
-      this.audioRecorder.on('pause', () => {
-        Logger.info(TAG, 'audioRecorder pause finish')
-        callback()
-      })
-      this.audioRecorder.pause()
-    }
-  }
-
-  resume(callback) {
-    Logger.info(TAG, 'audioRecorder resume called')
-    if (typeof (this.audioRecorder) != `undefined`) {
-      this.audioRecorder.on('resume', () => {
-        Logger.info(TAG, 'audioRecorder resume finish')
-        callback()
-      })
-      this.audioRecorder.resume()
-    }
-  }
-
-  finish(callback) {
-    if (typeof (this.audioRecorder) != `undefined`) {
-      this.audioRecorder.on('stop', () => {
-        Logger.info(TAG, 'audioRecorder stop called')
-        this.audioRecorder.release()
-        callback()
-      })
-      this.audioRecorder.stop()
+  async finish(callback) {
+    Logger.info(TAG, 'audioRecorder finish called');
+    if (this.audioRecorder !== undefined && (this.audioRecorder.state === 'started'
+      || this.audioRecorder.state === 'paused')) {
+      await this.audioRecorder.stop();
+      await this.audioRecorder.reset();
+      await this.audioRecorder.release();
+      await this.fileAsset.close(this.fd);
+      callback();
     }
   }
 }

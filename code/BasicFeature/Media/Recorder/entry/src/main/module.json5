@@ -49,13 +49,25 @@
     ],
     "requestPermissions": [
       {
-        "name": "ohos.permission.MICROPHONE"
+        "name": "ohos.permission.MICROPHONE",
+        "reason": "$string:permission_microphone_reason",
+        "usedScene": {
+          "when": "always"
+        }
       },
       {
-        "name": "ohos.permission.READ_MEDIA"
+        "name": "ohos.permission.READ_AUDIO",
+        "reason": "$string:permission_readaudio_reason",
+        "usedScene": {
+          "when": "always"
+        }
       },
       {
-        "name": "ohos.permission.WRITE_MEDIA"
+        "name": "ohos.permission.WRITE_AUDIO",
+        "reason": "$string:permission_writeaudio_reason",
+        "usedScene": {
+          "when": "always"
+        }
       }
     ]
   }

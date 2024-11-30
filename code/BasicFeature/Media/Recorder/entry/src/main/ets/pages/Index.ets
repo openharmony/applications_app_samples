@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -30,30 +30,68 @@ let TAG = '[Recorder.Index]';
 @Component
 struct Index {
   private mediaManager = new MediaManager(getContext(this) as common.UIAbilityContext);
-  private appContext: common.Context;
+  private appContext: common.Context | undefined = undefined;
   private audioModel: AudioModel = new AudioModel();
   @State recordList: Array<Record> = [];
   @State isLand: boolean = false;
   @State record: Record = new Record(getContext(this) as common.UIAbilityContext);
-  @State renameRecord: Record = undefined;
+  @State renameRecord: Record | undefined = undefined;
+
+  renameCallBack = async (newName: string) => {
+    Logger.info(TAG, `renameCallBack: newName=${newName}`);
+    if (this.renameRecord !== undefined) {
+      let duration = await this.mediaManager.getFileDuration(this.renameRecord.fileAsset!.displayName);
+      let backups = this.renameRecord.fileAsset?.displayName;
+      this.renameRecord.fileAsset!.displayName = newName;
+      this.renameRecord.fileAsset!.commitModify(err => {
+        if (err !== undefined) {
+          Logger.info(TAG, `commitModify: err:${err}`);
+          AlertDialog.show(
+            {
+              message: $r('app.string.rename_fail'),
+              primaryButton: {
+                value: $r('app.string.sure'),
+                action: () => {
+                  this.renameRecord!.fileAsset!.displayName = backups;
+                  return;
+                }
+              }
+            }
+          )
+          return;
+        }
+        Logger.info(TAG, `commitModify success`);
+        this.mediaManager.saveFileDuration(this.renameRecord!.title, duration);
+        this.renameDialogController.close();
+        this.getAudios();
+        if (this.record.title == this.renameRecord!.title) {
+          Logger.info(TAG, `renameCallBack: renameCallBack:this.recorder == record`);
+          this.audioModel.initAudioPlayer(this.renameRecord!.fileAsset, false);
+          this.record.title = newName;
+        }
+      });
+    }
+  }
+
   private renameDialogController: CustomDialogController = new CustomDialogController({
-    builder: RenameDialog({ record: this.renameRecord, renameCallback: this.renameCallBack.bind(this) }),
+    builder: RenameDialog({ record: this.renameRecord, renameCallback: this.renameCallBack }),
     autoCancel: true
   });
   private listener = mediaQuery.matchMediaSync('screen and (min-aspect-ratio: 1.5) or (orientation: landscape)');
 
-  onPortrait(mediaQueryResult) {
-    this.isLand = mediaQueryResult.matches
+  onPortrait = (mediaQueryResult: mediaQuery.MediaQueryResult) => {
+    this.isLand = mediaQueryResult.matches;
     Logger.info(TAG, `onPortrait: isLand=${this.isLand}`);
   }
 
-  clickItem(recorder, operate) {
+  clickItem = (recorder: Record, operate: string) => {
     Logger.info(TAG, `clickItem: operate=${operate}`);
     if (operate === 'play') {
       if (!this.isLand) {
         router.pushUrl({
-          params: { fileId: recorder.fileAsset.id },
-          url: 'pages/Play' });
+          params: { uri: recorder.fileAsset?.uri },
+          url: 'pages/Play'
+        });
       } else {
         if (this.record.title != recorder.title) {
           this.record = recorder;
@@ -62,10 +100,12 @@ struct Index {
       }
     } else if (operate === 'delete') {
       this.deleteDialogShow(1, [recorder], async () => {
-        await this.mediaManager.deleteFile(recorder.fileAsset);
-        let index = this.recordList.indexOf(recorder);
-        this.recordList.splice(index, 1)
-        this.getAudios();
+        if(recorder.fileAsset !== undefined){
+          await this.mediaManager.deleteFile(recorder.fileAsset);
+          let index = this.recordList.indexOf(recorder);
+          this.recordList.splice(index, 1);
+          this.getAudios();
+        }
       })
     } else if (operate === 'rename') {
       this.renameRecord = recorder;
@@ -73,41 +113,7 @@ struct Index {
     }
   }
 
-  async renameCallBack(newName) {
-    Logger.info(TAG, `renameCallBack: newName=${newName}`);
-    let duration = await this.mediaManager.getFileDuration(this.renameRecord.fileAsset.title);
-    let backups = this.renameRecord.fileAsset.title;
-    this.renameRecord.fileAsset.title = newName;
-    this.renameRecord.fileAsset.commitModify(err => {
-      if (err !== undefined) {
-        Logger.info(TAG, `commitModify: err:${err}`);
-        AlertDialog.show(
-          {
-            message: $r('app.string.rename_fail'),
-            primaryButton: {
-              value: $r('app.string.sure'),
-              action: () => {
-                this.renameRecord.fileAsset.title = backups;
-                return;
-              }
-            }
-          }
-        )
-        return;
-      }
-      Logger.info(TAG, `commitModify success`);
-      this.mediaManager.saveFileDuration(this.renameRecord.fileAsset.title, duration);
-      this.renameDialogController.close();
-      this.getAudios();
-      if (this.record.title == this.renameRecord.title) {
-        Logger.info(TAG, `renameCallBack: renameCallBack:this.recorder == record`);
-        this.audioModel.initAudioPlayer(this.renameRecord.fileAsset, false);
-        this.record.title = newName;
-      }
-    })
-  }
-
-  deleteDialogShow(num, checkRecords, deleteAction) {
+  deleteDialogShow = (num: number, checkRecords: Record[], deleteAction: () => void) => {
     let message = $r('app.string.delete_message_one');
     if (num > 1) {
       message = $r('app.string.delete_message_other');
@@ -120,9 +126,9 @@ struct Index {
           fontColor: Color.Red,
           action: async () => {
             deleteAction()
-            for (let record in checkRecords) {
-              await this.mediaManager.deleteFile(checkRecords[record].fileAsset);
-              if (this.record && this.record.title === checkRecords[record].title) {
+            for(let i = 0; i < checkRecords.length; i++) {
+              await this.mediaManager.deleteFile(checkRecords[i].fileAsset);
+              if (this.record && this.record.title === checkRecords[i].title) {
                 this.audioModel.finish();
                 this.record = new Record(getContext(this) as common.UIAbilityContext);
                 this.record.init(undefined, false);
@@ -148,7 +154,7 @@ struct Index {
     this.record.init(undefined, false);
     this.appContext = getContext(this);
     await this.getAudios();
-    this.listener.on('change', this.onPortrait.bind(this));
+    this.listener.on('change', this.onPortrait);
     this.mediaManager.onAudioChange(this.getAudios);
   }
 
@@ -160,8 +166,9 @@ struct Index {
     Row() {
       HomeView({
         recordList: $recordList,
-        clickItem: this.clickItem.bind(this),
-        deleteDialogShow: this.deleteDialogShow.bind(this) })
+        clickItem: this.clickItem,
+        deleteDialogShow: this.deleteDialogShow
+      })
       if (this.isLand) {
         Column() {
           Row() {

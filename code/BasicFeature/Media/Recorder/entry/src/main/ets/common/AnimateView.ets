@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,16 +13,16 @@
  * limitations under the License.
  */
 
-import { getTimeString } from '../model/Utils'
-import Logger from '../model/Logger'
+import { getTimeString } from '../model/Utils';
+import Logger from '../model/Logger';
 
-const TAG = '[Recorder.AnimateView]'
+const TAG = '[Recorder.AnimateView]';
 
 @Component
 export struct AnimateView {
   private timeTextNum = [0, 1, 2, 3, 4, 5]
   private intervalId: number = 0
-  private updateTimeStr: () => void
+  private updateTimeStr: () => void = () => {}
   @State timeAdd: number = 0
   @State translateImage: string = '-0.2%'
   @State translateText: string = '-1%'
@@ -63,7 +63,7 @@ export struct AnimateView {
   build() {
     Column() {
       Row() {
-        ForEach(this.timeTextNum, item => {
+        ForEach(this.timeTextNum, (item: number) => {
           Text(getTimeString(this.timeAdd, item))
             .fontSize(12)
             .fontColor(Color.Gray)
@@ -71,7 +71,7 @@ export struct AnimateView {
             .maxLines(1)
           Blank()
             .layoutWeight(1)
-        }, item => item.toString())
+        }, (item: number) => item.toString())
       }
       .width('120%')
       .translate({ x: this.translateText })
