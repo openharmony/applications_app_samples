@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,9 +16,9 @@
 import prompt from '@ohos.promptAction';
 import router from '@ohos.router';
 import { FileManager } from '@ohos/feature-file-manager';
+import fs from '@ohos.file.fs';
 import { Logger } from '../../common/Common';
 import MyWatcher from '../fileFs/MyWatcher';
-import fs from '@ohos.file.fs';
 
 class MainListItemModel {
   image: Resource | null = null
@@ -38,7 +38,8 @@ const MAIN_LIST_ITEMS: MainListItemModel[] = [
   {
     image: $r('app.media.video'),
     title: $r('app.string.video'),
-    routerUrl: 'filemanager/pages/video/VideoFileList' },
+    routerUrl: 'filemanager/pages/video/VideoFileList'
+  },
   {
     image: $r('app.media.document'),
     title: $r('app.string.document'),
@@ -70,7 +71,7 @@ const MAIN_LIST_ITEMS: MainListItemModel[] = [
 
 @Component
 export default struct FileManagerHome {
-  private baseDir: string = AppStorage.Get<string>('sanBoxFileDir') as string;
+  private baseDir: string = AppStorage.get<string>('sanBoxFileDir') as string;
 
   aboutToAppear() {
     FileManager.requestPermission(getContext(this));
@@ -82,9 +83,9 @@ export default struct FileManagerHome {
       let isDirectory = fs.statSync(filePathDir).isDirectory();
       if (isDirectory) {
         fs.rmdirSync(filePathDir);
-        AppStorage.SetOrCreate('eventLog', 'unknown');
-        AppStorage.SetOrCreate('fileNameLog', 'unknown');
-        AppStorage.SetOrCreate('cookieLog', 'unknown');
+        AppStorage.setOrCreate('eventLog', 'unknown');
+        AppStorage.setOrCreate('fileNameLog', 'unknown');
+        AppStorage.setOrCreate('cookieLog', 'unknown');
       }
     } catch (e) {
       Logger.error(`remove fileRemove has failed for: {message: ${e.message}, code: ${e.code}}`);
@@ -120,7 +121,7 @@ struct MainListItemComponent {
   private mainListItem: MainListItemModel = new MainListItemModel();
   myWatcher: MyWatcher = new MyWatcher();
   private filePathDir: string = '';
-  private baseDir: string = AppStorage.Get<string>('sanBoxFileDir') as string;
+  private baseDir: string = AppStorage.get<string>('sanBoxFileDir') as string;
 
   @Styles itemPressedStyles() {
     .backgroundColor($r('app.color.item_pressed'))
@@ -134,12 +135,12 @@ struct MainListItemComponent {
     let isDirectory = fs.statSync(this.filePathDir).isDirectory();
     if (isDirectory) {
       fs.rmdirSync(this.filePathDir);
-      AppStorage.SetOrCreate('eventLog', 'unknown');
-      AppStorage.SetOrCreate('fileNameLog', 'unknown');
-      AppStorage.SetOrCreate('cookieLog', 'unknown');
+      AppStorage.setOrCreate('eventLog', 'unknown');
+      AppStorage.setOrCreate('fileNameLog', 'unknown');
+      AppStorage.setOrCreate('cookieLog', 'unknown');
     }
-    AppStorage.Set('eventArray', ['test']);
-    AppStorage.SetOrCreate('addIndex', 10);
+    AppStorage.set('eventArray', ['test']);
+    AppStorage.setOrCreate('addIndex', 10);
     this.myWatcher.readyFilesToWatcher(this.filePathDir);
   }
 
@@ -182,7 +183,7 @@ struct MainListItemComponent {
       if (this.mainListItem.isFileWatcher) {
         this.readyForWatcher();
       }
-      router.push({ url: this.mainListItem.routerUrl })
+      router.pushUrl({ url: this.mainListItem.routerUrl });
     })
   }
 }

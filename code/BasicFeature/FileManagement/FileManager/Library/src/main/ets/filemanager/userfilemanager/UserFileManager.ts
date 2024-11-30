@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -20,7 +20,11 @@ class UserFileManager {
   requestPermission(context): void {
     let permissions = [
       'ohos.permission.READ_IMAGEVIDEO',
-      'ohos.permission.WRITE_IMAGEVIDEO'
+      'ohos.permission.WRITE_IMAGEVIDEO',
+      'ohos.permission.FILE_ACCESS_MANAGER',
+      'ohos.permission.READ_AUDIO',
+      'ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY',
+      'ohos.permission.GET_BUNDLE_INFO_PRIVILEGED'
     ]
     context.requestPermissionsFromUser(permissions, (code, result) => {
       Logger.debug('permissionRequest ' + JSON.stringify(code) + ' Result: ' + JSON.stringify(result))

@@ -2,7 +2,9 @@
 
 ### 介绍
 
-本示例主要展示了文件管理相关的功能，使用[@ohos.multimedia.medialibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-medialibrary.md) 、[@ohos.filemanagement.userFileManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-userFileManager-sys.md) 、[@ohos.fileio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-fileio.md) 、[@ohos.file.fs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-fs.md)、[@ohos.app.ability.contextConstant](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/application-context-stage.md)等接口，实现了增添文件、删除文件、查找指定类型文件文件、复制并移动文件、切换加密分区和预览图片、监听文件的功能;
+本示例主要展示了文件管理相关的功能，使用[@ohos.filemanagement.userFileManager](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-userFileManager-sys.md) 、[@ohos.file.fileAccess](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-fileAccess-sys.md) 、[@ohos.fileio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-fileio.md) 、[@ohos.file.fs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-fs.md)、[@ohos.app.ability.contextConstant](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-contextConstant.md)
+
+等接口，实现了增添文件、删除文件、查找指定类型文件文件、复制并移动文件、切换加密分区和预览图片、监听文件的功能;
 
 ### 效果预览
 
@@ -17,6 +19,7 @@
 4. 在图片文件列表界面，点击图片可以进入图片预览界面。
 5. 在主页点击“我的手机”，进入应用沙箱目录下。
    1. 列表的上方是默认的EL2加密分区的应用根目录下文件列表，点击下方两个按钮“data/app/el3”和“data/app/el4”分别进入EL3和EL4加密分区应用根目录，进入后对文件或文件夹操作与EL2加密分区相同。
+   
    2. 点击左下角“新建文件夹”按钮，在弹窗中输入文件夹名称，点击弹窗中的“确定”按钮，完成创建。
 
    3. 点击新建的文件夹，进入目录，在新目录中点击左下角的“新建文件”，在弹窗的窗口中填写文件名称，然后点击确定，完成创建。
@@ -54,6 +57,7 @@ entry/src/main/ets/
 |   |---Logger.ts             // 监听文件日志
 |---filemanager
 |   |---data
+|   |   |---DocumentDataSource.ets         // 懒加载数据格式
 |   |   |---FileDataSource.ets             // 懒加载数据格式
 |   |---fileFs
 |   |   |---MyWatcher.ts      // 预制10个文件进行监听，并对文件增删改进行处理，以及对添加watcher和删除watcher进行处理
@@ -64,6 +68,7 @@ entry/src/main/ets/
 |   |   |   |---FileList.ets               // 同类型文件列表展示页面，接收文件类型，展示特定类型的文件列表
 |   |   |---document
 |   |   |   |---DocumentFileList.ets       // 文档列表页面
+|   |   |   |---DocumentFileManager.ets    // 文档数据获取函数封装
 |   |   |---image
 |   |   |   |---ImageFileList.ets          // 图片列表页面
 |   |   |   |---ImagePreview.ets           // 图片预览页面
@@ -99,11 +104,11 @@ Library/src/main/ets/
 ### 具体实现：
 
 * 增添文件、删除文件、查找指定类型文件文件和预览图片的功能接口封装在MediaLibraryManager，源码参考：[MediaLibraryManager.ts](Library/src/main/ets/filemanager/medialibrary/MediaLibraryManager.ts)
-    * 使用mediaLibrary.getMediaLibrary来获取MediaLibrary对象;
-    * 读取每个文件的数据：使用MediaLibrary.getFileAssets读取满足条件的文件集合FetchFileResult，然后调用FetchFileResult.getFirstObject();
-    * 创建模拟文件：使用MediaLibrary.getPublicDirectory()获取系统预定的目录，然后使用MediaLibrary.createAsset();
-    * 删除指定路径的文件：使用MediaLibrary.deleteAsset();
-    * 获取预览图：使用image.createImageSource()创建指定的文件资源ImageSource，然后调用ImageSource.createPixelMap()，接口参考：[@ohos.multimedia.image](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-image-kit/js-apis-image.md)。
+    * 使用userFileManager.getUserFileMgr来获取userFileManager对象;
+    * 读取每个文件的数据：使用userFileManager.getPhotoAssets读取满足条件的文图片视频以及音频集合FetchResult，然后调用FetchResult.getFirstObject();
+    * 创建模拟文件：如果是视频或图片文件，使用createPhotoAsset()创建，如果是音频文件，使用createAudioAsset()创建，如果是文档文件，则使用fileAccess中的createFile()创建;
+    * 删除指定路径的文件：使用userFileManager中的delete();
+    * 获取预览图：使用image.createImageSource()创建指定的文件资源ImageSource，然后调用ImageSource.createPixelMap()，接口参考：[@ohos.multimedia.image](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-image-kit/js-apis-image.md) 。
     
 * MyPhone模块中的文件增删、复制移动、查找功能封装在FileSystem，源码参考：[FileIoManager.ets](Library/src/main/ets/filemanager/fileio/FileIoManager.ets) 。
   * 读取文件列表：使用fileio.opendirSync()打开指定目录dir，然后使用dir.readSync()读取文件内容dirent，在调用dirent中相关api获取想要的文件参数;
@@ -135,9 +140,17 @@ Library/src/main/ets/
 
 ### 相关权限
 
-[ohos.permission.READ_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionread_media)
+[ohos.permission.WRITE_IMAGEVIDEO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionwrite_imagevideo)
 
-[ohos.permission.WRITE_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionwrite_media)
+[ohos.permission.READ_IMAGEVIDEO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionread_imagevideo)
+
+[ohos.permission.READ_AUDIO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionread_audio)
+
+[ohos.permission.WRITE_AUDIO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionwrite_audio)
+
+[ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionread_write_download_directory)
+
+[ohos.permission.GET_BUNDLE_INFO_PRIVILEGED](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionget_bundle_info_privileged)
 
 [ohos.permission.FILE_ACCESS_MANAGER](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionfile_access_manager)
 
@@ -150,18 +163,16 @@ Library/src/main/ets/
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568;
-2. 本示例为Stage模型，仅支持API11版本SDK，SDK版本号(API Version 11 Release),镜像版本号(4.0Release)。
-3. 本示例涉及使用系统接口：@ohos.multimedia.mediaLibrary中的deleteAsset接口，需要手动替换Full SDK才能编译通过，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)；
-4. 本示例需要使用DevEco Studio 版本号(4.0Release)及以上版本才可编译运行。
-5. 本示例涉及调用系统权限的接口，需要配置允许权限列表，可以参考[特殊权限配置方法](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-overview.md) ，在配置文件中的“allowed-acls”字段中增加"ohos.permission.READ_MEDIA", "ohos.permission.WRITE_MEDIA", "ohos.permission.FILE_ACCESS_MANAGER", "ohos.permission.STORAGE_MANAGER"四个权限。
+2. 本示例为Stage模型，仅支持API11版本SDK，SDK版本号(API Version 11 Release),镜像版本号(4.1Release)。
+3. 本示例需要使用DevEco Studio 版本号(4.1Release)版本才可编译运行。
+4. 本示例涉及调用系统权限的接口，需要配置允许权限列表，可以参考[特殊权限配置方法](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-overview.md) ，在配置文件中的“allowed-acls”字段中增加"ohos.permission.FILE_ACCESS_MANAGER", "ohos.permission.STORAGE_MANAGER", "ohos.permission.WRITE_IMAGEVIDEO", "ohos.permission.READ_IMAGEVIDEO","ohos.permission.READ_AUDIO","ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY","ohos.permission.GET_BUNDLE_INFO_PRIVILEGED","ohos.permission.FILE_ACCESS_MANAGER","ohos.permission.WRITE_AUDIO"等权限。
 
 ### 下载
 
 如需单独下载本工程，执行如下命令：
-```
+
     git init
     git config core.sparsecheckout true
     echo code/BasicFeature/FileManager/FileManager/ > .git/info/sparse-checkout
     git remote add origin https://gitee.com/openharmony/applications_app_samples.git
     git pull origin master
-```
