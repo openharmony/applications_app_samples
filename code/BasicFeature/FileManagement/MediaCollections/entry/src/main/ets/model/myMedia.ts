@@ -13,15 +13,14 @@
  * limitations under the License.
  */
 
-// @ts-nocheck
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+import userFileManager from '@ohos.filemanagement.userFileManager';
 import media from '@ohos.multimedia.media';
 import Logger from '../model/Logger';
 
 const TAG = 'myMedia:';
 
 export class myMedia {
-  public resourceAddress: mediaLibrary.FileAsset = undefined;
+  public resourceAddress: userFileManager.FileAsset = undefined;
   public fileName: string = undefined;
   public totalDuration: number = 0;
   public format: string;
@@ -29,11 +28,11 @@ export class myMedia {
   private playStatus: string;
   private playMode: string;
   private currentNode: string;
-  private media: media.AudioPlayer | media.VideoPlayer;
+  private media: media.AVPlayer;
   private surfaceId: string = '';
   private isLoop: boolean;
-  private audioData: mediaLibrary.FileAsset[];
-  private videoData: mediaLibrary.FileAsset[];
+  private audioData: userFileManager.FileAsset[];
+  private videoData: userFileManager.FileAsset[];
   private fileIndex: number = 0;
   private mediaDataLen: number;
   private uri: string = undefined;
@@ -52,10 +51,10 @@ export class myMedia {
     } else {
       this.fileIndex = this.mediaDataLen - 1;
     }
-    if (this.resourceAddress.mediaType == mediaLibrary.MediaType.AUDIO) {
+    if (this.resourceAddress.fileType == userFileManager.FileType.AUDIO) {
       this.resourceAddress = this.audioData[this.fileIndex];
       this.init(this.resourceAddress);
-    } else if (this.resourceAddress.mediaType == mediaLibrary.MediaType.VIDEO) {
+    } else if (this.resourceAddress.fileType == userFileManager.FileType.VIDEO) {
       this.resourceAddress = this.videoData[this.fileIndex];
       this.init(this.resourceAddress, surfaceId);
     }
@@ -67,10 +66,10 @@ export class myMedia {
     } else {
       this.fileIndex = 0;
     }
-    if (this.resourceAddress.mediaType == mediaLibrary.MediaType.AUDIO) {
+    if (this.resourceAddress.fileType == userFileManager.FileType.AUDIO) {
       this.resourceAddress = this.audioData[this.fileIndex];
       this.init(this.resourceAddress);
-    } else if (this.resourceAddress.mediaType == mediaLibrary.MediaType.VIDEO) {
+    } else if (this.resourceAddress.fileType == userFileManager.FileType.VIDEO) {
       this.resourceAddress = this.videoData[this.fileIndex];
       this.init(this.resourceAddress, surfaceId);
     }
@@ -78,7 +77,7 @@ export class myMedia {
 
   getFileIndex(data) {
     data.forEach((file, index) => {
-      if (file.id === this.resourceAddress.id) {
+      if (file.uri === this.resourceAddress.uri) {
         this.fileIndex = index;
       }
     });
@@ -96,21 +95,18 @@ export class myMedia {
     }
     this.stop();
     this.release();
-    this.media = await media.createVideoPlayer();
+    this.media = await media.createAVPlayer();
     this.setVideoCallBack(this.media);
     this.media.url = url;
-    await this.media.setDisplaySurface(this.surfaceId).then(() => {
-      Logger.info(TAG, 'httpInit success');
-    }).catch((error) => {
-      Logger.info(TAG, `httpInit setDisplaySurface fali error:${error.message}`);
-    });
+    this.media.surfaceId = this.surfaceId;
+    Logger.info(TAG, 'httpInit success');
     await this.media.prepare();
     this.totalDuration = this.media.duration;
     this.fileName = 'Http';
     this.media.play();
   }
 
-  async init(resourceAddress: mediaLibrary.FileAsset, surfaceId?) {
+  async init(resourceAddress: userFileManager.FileAsset, surfaceId?) {
     Logger.info(TAG, 'init state');
     if (surfaceId) {
       this.surfaceId = surfaceId.toString();
@@ -122,26 +118,24 @@ export class myMedia {
     Logger.info(TAG, `resourceAddress success: ${this.resourceAddress}`);
     this.fileName = resourceAddress.displayName;
     Logger.info(TAG, `fileName success: ${this.fileName}`);
-    this.totalDuration = resourceAddress.duration;
+    this.totalDuration = resourceAddress.get('duration') as number;
     Logger.info(TAG, `totalDuration success: ${this.totalDuration}`);
     this.resourceAddress.open('r').then(async (fd) => {
       Logger.info(TAG, `fd success: ${fd}`);
-      if (this.resourceAddress.mediaType == mediaLibrary.MediaType.AUDIO) {
+      this.media = await media.createAVPlayer();
+      this.media.url = 'fd://' + fd;
+      if (this.resourceAddress.fileType == userFileManager.FileType.AUDIO) {
         Logger.info(TAG, 'AUDIO success');
         this.getFileIndex(this.audioData);
         this.mediaDataLen = this.audioData.length;
-        this.media = media.createAudioPlayer();
         Logger.info(TAG, `AUDIO success: ${this.media}`);
         this.setAudioCallBack(this.media);
-        this.media.src = 'fd://' + fd;
-      } else if (this.resourceAddress.mediaType == mediaLibrary.MediaType.VIDEO) {
+      } else if (this.resourceAddress.fileType == userFileManager.FileType.VIDEO) {
         Logger.info(TAG, 'VIDEO success');
         this.getFileIndex(this.videoData);
         this.mediaDataLen = this.videoData.length;
-        this.media = await media.createVideoPlayer();
         this.setVideoCallBack(this.media);
-        this.media.url = 'fd://' + fd;
-        await this.media.setDisplaySurface(this.surfaceId);
+        this.media.surfaceId = this.surfaceId;
         await this.media.prepare();
         Logger.info(TAG, 'VIDEO end');
       }
@@ -167,7 +161,7 @@ export class myMedia {
     audioPlayer.on('finish', () => {
       Logger.info(TAG, 'AUDIO case finish called');
       this.release();
-      if (this.resourceAddress && this.resourceAddress.mediaType) {
+      if (this.resourceAddress && this.resourceAddress.fileType) {
         this.next();
       }
     });
@@ -197,7 +191,7 @@ export class myMedia {
     videoPlayer.on('playbackCompleted', () => {
       Logger.info(TAG, 'VIDEO playbackCompleted finish');
       this.release();
-      if (this.resourceAddress && this.resourceAddress.mediaType) {
+      if (this.resourceAddress && this.resourceAddress.fileType) {
         this.next();
       }
     });
@@ -260,13 +254,8 @@ export class myMedia {
 
   setSpeed(speed) {
     if (typeof (this.media) != 'undefined') {
-      this.media.setSpeed(speed, (err) => {
-        if (typeof (err) == 'undefined') {
-          Logger.info(TAG, 'setSpeed success');
-        } else {
-          Logger.info(TAG, 'setSpeed fail!!');
-        }
-      });
+      this.media.setSpeed(speed);
+      Logger.info(TAG, 'setSpeed success');
     }
   }
 
@@ -274,9 +263,5 @@ export class myMedia {
     if (typeof (this.media) != 'undefined') {
       await this.media.seek(time);
     }
-  }
-
-  getFormat() {
-    return this.resourceAddress.mimeType;
   }
 }

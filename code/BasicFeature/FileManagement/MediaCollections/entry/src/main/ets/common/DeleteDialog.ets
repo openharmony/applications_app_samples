@@ -14,7 +14,7 @@
  */
 
 import display from '@ohos.display'
-import mediaLibrary from '@ohos.multimedia.mediaLibrary'
+import userFileManager from '@ohos.filemanagement.userFileManager';
 import { promptShowToast } from '../model/Prompt'
 import MediaUtils from '../model/MediaUtils'
 
@@ -22,18 +22,18 @@ import MediaUtils from '../model/MediaUtils'
 export struct DeleteDialog {
   @State displayWidth: number = 0
   private index: number = 0
-  private mediaData: mediaLibrary.FileAsset[] = []
+  private mediaData: userFileManager.FileAsset[] = []
   private controller: CustomDialogController = {} as CustomDialogController
-  private mediaType: mediaLibrary.MediaType = 0
+  private mediaType: userFileManager.FileType = userFileManager.FileType.AUDIO
 
-  async aboutToAppear() {
-    let abilityDisplay = await display.getDefaultDisplay()
+  aboutToAppear() {
+    let abilityDisplay = display.getDefaultDisplaySync()
     this.displayWidth = abilityDisplay.width
   }
 
   build() {
     Column() {
-      Text(this.mediaType == mediaLibrary.MediaType.AUDIO ? $r('app.string.index_del_audio') : $r('app.string.index_del'))
+      Text(this.mediaType == userFileManager.FileType.AUDIO ? $r('app.string.index_del_audio') : $r('app.string.index_del'))
         .fontSize(18)
         .fontColor(this.displayWidth > 2500 ? Color.White : Color.Black)
         .margin({ top: 10 })

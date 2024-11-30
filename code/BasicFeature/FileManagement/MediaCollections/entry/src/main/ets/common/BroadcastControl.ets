@@ -14,7 +14,7 @@
  */
 
 import audio from '@ohos.multimedia.audio'
-import mediaLibrary from '@ohos.multimedia.mediaLibrary'
+import userFileManager from '@ohos.filemanagement.userFileManager';
 import { AVPlayer } from '../model/AVPlayer'
 import { getTimeString } from '../model/TimeTools'
 import { isInformationDialog } from '../common/IsInformationDialog'
@@ -33,12 +33,12 @@ export struct BroadcastControl {
   @Link currentTime: number
   @Link btnEnabled: boolean
   @Link isXComponent: boolean
-  @Link itemData: mediaLibrary.FileAsset
+  @Link itemData: userFileManager.FileAsset
   @Link @Watch('onChangeIsShowMenu') isShowMenu: boolean
   @State isVolume: boolean = false
   @State mediaVolumeValue: number = -1
   @State isInformation: boolean = false
-  @State isInformationObj: mediaLibrary.FileAsset = {} as mediaLibrary.FileAsset
+  @State isInformationObj: userFileManager.FileAsset = {} as userFileManager.FileAsset
   @State selectText: string = ''
   private timerOut: number = 0
   private scroller: Scroller = new Scroller()
@@ -168,8 +168,8 @@ export struct BroadcastControl {
                 .fontColor(Color.White)
                 .selectedOptionFont({ size: 18 })
                 .optionFontColor(Color.Black)
-                .opacity(this.itemData ? (this.itemData.mediaType == mediaLibrary.MediaType.AUDIO ? 0 : 1) : 0.4)
-                .enabled(this.itemData ? (this.itemData.mediaType == mediaLibrary.MediaType.AUDIO ? false : true) : false)
+                .opacity(this.itemData ? (this.itemData.fileType == userFileManager.FileType.AUDIO ? 0 : 1) : 0.4)
+                .enabled(this.itemData ? (this.itemData.fileType == userFileManager.FileType.AUDIO ? false : true) : false)
                 .optionFont({ size: 18 })
                 .onSelect((index: number) => {
                   this.myMedia.setSpeed(index)

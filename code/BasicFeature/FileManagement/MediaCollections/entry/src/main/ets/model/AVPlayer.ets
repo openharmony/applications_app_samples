@@ -13,18 +13,17 @@
  * limitations under the License.
  */
 
-import mediaLibrary from '@ohos.multimedia.mediaLibrary'
+import userFileManager from '@ohos.filemanagement.userFileManager';
 import { BusinessError } from '@ohos.base'
 import media from '@ohos.multimedia.media'
 import audio from '@ohos.multimedia.audio'
 import common from '@ohos.app.ability.common'
 import Logger from '../model/Logger'
-import DrmController, { drmInfo } from './DrmController'
 
 const TAG = 'AVPlayer'
 
 export class AVPlayer {
-  resourceAddress: mediaLibrary.FileAsset = {} as mediaLibrary.FileAsset
+  resourceAddress: userFileManager.FileAsset = {} as userFileManager.FileAsset
   fileName: string = ''
   totalDuration: number = 0
   format: string = ''
@@ -35,8 +34,8 @@ export class AVPlayer {
   private media: media.AVPlayer = {} as media.AVPlayer
   private surfaceId: string = ''
   private isLoop: boolean = true
-  private audioData: mediaLibrary.FileAsset[] = []
-  private videoData: mediaLibrary.FileAsset[] = []
+  private audioData: userFileManager.FileAsset[] = []
+  private videoData: userFileManager.FileAsset[] = []
   private fileIndex: number = 0
   private mediaDataLen: number = 0
   private isVideo: boolean = true
@@ -53,17 +52,15 @@ export class AVPlayer {
   private fileDescriptor: media.AVFileDescriptor = {} as media.AVFileDescriptor
   private isCreate: boolean = false
   private context: Context = getContext(this) as common.UIAbilityContext
-  // drm variable
-  private drmController: DrmController = new DrmController()
   private drmUrl: string = ''
   private drmLicenseUrl: string = ''
   private drmInfoFirstUpdate: boolean = false
 
-  getAudioData(audioData: mediaLibrary.FileAsset[]) {
+  setAudioData(audioData: userFileManager.FileAsset[]) {
     this.audioData = audioData
   }
 
-  getVideoData(videoData: mediaLibrary.FileAsset[]) {
+  setVideoData(videoData: userFileManager.FileAsset[]) {
     this.videoData = videoData
   }
 
@@ -92,11 +89,11 @@ export class AVPlayer {
     }
     await this.media.reset()
     await this.resourceAddress.close(this.fd)
-    if (this.resourceAddress.mediaType == mediaLibrary.MediaType.AUDIO) {
+    if (this.resourceAddress.fileType == userFileManager.FileType.AUDIO) {
       this.resourceAddress = this.audioData[this.fileIndex]
       this.isVideo = false
       this.playNext(this.resourceAddress)
-    } else if (this.resourceAddress.mediaType == mediaLibrary.MediaType.VIDEO) {
+    } else if (this.resourceAddress.fileType == userFileManager.FileType.VIDEO) {
       this.resourceAddress = this.videoData[this.fileIndex]
       this.isVideo = true
       this.playNext(this.resourceAddress)
@@ -112,21 +109,21 @@ export class AVPlayer {
     }
     await this.media.reset()
     await this.resourceAddress.close(this.fd)
-    if (this.resourceAddress.mediaType == mediaLibrary.MediaType.AUDIO) {
+    if (this.resourceAddress.fileType == userFileManager.FileType.AUDIO) {
       this.resourceAddress = this.audioData[this.fileIndex]
       this.isVideo = false
       this.playNext(this.resourceAddress)
-    } else if (this.resourceAddress.mediaType == mediaLibrary.MediaType.VIDEO) {
+    } else if (this.resourceAddress.fileType == userFileManager.FileType.VIDEO) {
       this.resourceAddress = this.videoData[this.fileIndex]
       this.isVideo = true
       this.playNext(this.resourceAddress)
     }
   }
 
-  async playNext(fileAsset: mediaLibrary.FileAsset) {
+  async playNext(fileAsset: userFileManager.FileAsset) {
     this.resourceAddress = fileAsset
     this.fileName = fileAsset.displayName
-    this.totalDuration = fileAsset.duration
+    this.totalDuration = fileAsset.get('duration') as number
     this.fd = await this.resourceAddress.open('r')
     if (this.getPlayStatus() === 'idle') {
       this.media.url = `fd://${this.fd}`
@@ -135,9 +132,9 @@ export class AVPlayer {
     }
   }
 
-  getFileIndex(data: mediaLibrary.FileAsset[]) {
-    data.forEach((file: mediaLibrary.FileAsset, index: number) => {
-      if (file.id === this.resourceAddress.id) {
+  getFileIndex(data: userFileManager.FileAsset[]) {
+    data.forEach((file: userFileManager.FileAsset, index: number) => {
+      if (file.uri === this.resourceAddress.uri) {
         this.fileIndex = index
       }
     })
@@ -207,9 +204,9 @@ export class AVPlayer {
     this.media.fdSrc = this.fileDescriptor
   }
 
-  async init(resourceAddress: mediaLibrary.FileAsset, surfaceId?: string) {
+  async init(resourceAddress: userFileManager.FileAsset, surfaceId?: string) {
     this.isHttp = false
-    Logger.info(TAG, `init state`)
+    Logger.info(TAG, 'init state')
     this.isVideo = false
     // 判断是否传入surfaceID
     if (surfaceId) {
@@ -223,26 +220,28 @@ export class AVPlayer {
     Logger.info(TAG, `resourceAddress success: ${this.resourceAddress}`)
     this.fileName = resourceAddress.displayName
     Logger.info(TAG, `fileName success: ${this.fileName}`)
-    this.totalDuration = resourceAddress.duration
-    Logger.info(TAG, `totalDuration success: ${this.totalDuration}`)
+    this.totalDuration = resourceAddress.get('duration') as number
+    Logger.info(TAG, `AVPlayer totalDuration success: ${this.totalDuration}`)
     // 获取待播放的fd地址
     this.resourceAddress.open('r').then(async (fd: number) => {
-      Logger.info(TAG, `fd success: ${fd}`)
+      Logger.info(TAG, `get fd success: ${fd}`)
+      this.media = await media.createAVPlayer()
       this.fd = fd
-      if (this.resourceAddress.mediaType == mediaLibrary.MediaType.AUDIO) {
-        Logger.info(TAG, `AUDIO success`)
+      if (this.resourceAddress.fileType == userFileManager.FileType.AUDIO) {
+        Logger.info(TAG, 'AUDIO success')
         this.getFileIndex(this.audioData)
         this.mediaDataLen = this.audioData.length
-      } else if (this.resourceAddress.mediaType == mediaLibrary.MediaType.VIDEO) {
+      } else if (this.resourceAddress.fileType == userFileManager.FileType.VIDEO) {
         this.getFileIndex(this.videoData)
         this.mediaDataLen = this.videoData.length
+        const width: number = this.resourceAddress.get('width') as number
+        const height: number = this.resourceAddress.get('height') as number
+        this.ratio = width / height
+        Logger.info(TAG, `VIDEO success this.ratio` + this.ratio)
       }
-      this.media = await media.createAVPlayer()
       this.isCreate = true
       this.setSourceInfo()
       this.setStateChangeCallback()
-      this.ratio = this.resourceAddress.width / this.resourceAddress.height
-      Logger.info(TAG, `VIDEO success this.ratio` + this.ratio)
       this.media.url = `fd://${this.fd}`
     })
   }
@@ -263,11 +262,6 @@ export class AVPlayer {
 
   // 视频信息上报函数
   async setSourceInfo(): Promise<void> {
-    // drmInfo 更新回调
-    this.media.on('drmInfoUpdate', (drmInfo: Object[]) => {
-      const drmInfoArr: drmInfo[] = drmInfo as drmInfo[]
-      this.drmPlayProcess(drmInfoArr)
-    })
     // 时间上报函数
     this.media.on('timeUpdate', (time: number) => {
       Logger.info(TAG, 'timeUpdate called: time is :' + time)
@@ -369,7 +363,6 @@ export class AVPlayer {
         case 'released':
           Logger.info(TAG, 'state released called')
           this.isLoading = false
-          this.drmController.releaseDrm()
           break
         case 'error':
           Logger.info(TAG, 'state error called')
@@ -465,46 +458,6 @@ export class AVPlayer {
   }
 
   getFormat() {
-    return this.resourceAddress.mimeType
-  }
-
-  /**
-   * DRM播放流程启动
-   * @param drmInfoArr
-   */
-  async drmPlayProcess(drmInfoArr: drmInfo[]) {
-    if (this.drmInfoFirstUpdate === false) {
-      this.drmInfoFirstUpdate = true
-      Logger.info(TAG, 'player has received drmInfo signal: ' + JSON.stringify(drmInfoArr))
-
-      // --- 1 --- 判断系统是否支持drm能力
-      let isSupported = this.drmController.isDrmSupported()
-      if (!isSupported) {
-        Logger.error(TAG, 'The system does not support the DRM.')
-        return
-      }
-      Logger.info(TAG, 'The system supports the DRM.')
-
-      // --- 2 --- 创建drm实例及会话
-      this.drmController.createDrmSystem()
-
-      // --- 3 --- 生成license请求；发送license到云端获取响应，将响应交给底层
-      let isSuccess: boolean = await this.drmController.executeLicenseProcess(this.drmUrl, this.drmLicenseUrl, drmInfoArr, AppStorage.get('licenseType'))
-      if (!isSuccess) {
-        this.release()
-        return
-      }
-
-      // --- 4 --- 设置加密配置
-      this.drmController.bindInstance(this.media)
-    }
-  }
-
-  /**
-   * 删除离线license
-   * @param drmUrl
-   */
-  deleteOfflineLicense(drmUrl: string) {
-    this.drmController.deleteOfflineLicense(drmUrl)
+    return this.resourceAddress.fileType
   }
 }

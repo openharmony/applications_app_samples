@@ -14,51 +14,55 @@
  */
 
 // @ts-nocheck
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import userFileManager from '@ohos.filemanagement.userFileManager';
 import Logger from '../model/Logger';
 
 const TAG: string = 'MediaUtils';
 
 class MediaUtils {
-  private mediaList: mediaLibrary.FileAsset[] = [];
-  public mediaLib: mediaLibrary.MediaLibrary = undefined;
-
-  async queryFile(id: string): Promise<mediaLibrary.FileAsset> {
-    Logger.info(TAG, `queryFile,id = ${id}`);
-    const fetchOp: mediaLibrary.MediaFetchOptions = {
-      selections: `${mediaLibrary.FileKey.ID}=?`,
-      selectionArgs: [id],
-    };
-    const fetchFileResult = await this.mediaLib.getFileAssets(fetchOp);
-    Logger.info(TAG, `fetchFileResult.getCount() = ${fetchFileResult.getCount()}`);
-    const fileAsset = await fetchFileResult.getAllObject();
-    return fileAsset[0];
-  }
-
-  async getFdPath(fileAsset: any) {
-    let fd = await fileAsset.open('Rw');
-    Logger.info(TAG, `fd = ${fd}`);
-    return fd;
-  }
+  private mediaList: userFileManager.FileAsset[] = [];
+  public mediaLib: userFileManager.UserFileManager = undefined;
 
   async getFileAssetsFromType(mediaType: number) {
     Logger.info(TAG, `getFileAssetsFromType,mediaType = ${mediaType}`);
-    let fileKeyObj = mediaLibrary.FileKey;
-    let fetchOp = {
-      selections: `${fileKeyObj.MEDIA_TYPE}=?`,
-      selectionArgs: [`${mediaType}`],
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    // 过滤图片资源、且保证音视频时长均大于0
+    predicates.greaterThan("duration", 0)
+    let fetchOptions: userFileManager.FetchOptions = {
+      fetchColumns: ['duration'],
+      predicates: predicates
     };
-    let fetchFileResult = await this.mediaLib.getFileAssets(fetchOp);
-    Logger.info(TAG, `getFileAssetsFromType,fetchFileResult.count = ${fetchFileResult.getCount()}`);
-    if (fetchFileResult.getCount() > 0) {
-      this.mediaList = await fetchFileResult.getAllObject();
+    try {
+      let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = undefined
+      if (mediaType === userFileManager.FileType.AUDIO) {
+        // 获取音频资源
+        fetchResult = await this.mediaLib.getAudioAssets(fetchOptions);
+      } else if (mediaType === userFileManager.FileType.VIDEO) {
+        fetchOptions.fetchColumns = [
+          'title',
+          'duration',
+          'width',
+          'height',
+          'orientation'
+        ];
+        // 获取视频资源
+        fetchResult = await this.mediaLib.getPhotoAssets(fetchOptions);
+      }
+      Logger.info(TAG, `mediaType = ${mediaType} getFileAssetsFromType,fetchResult.count = ${fetchResult.getCount()}`);
+      if (fetchResult != undefined) {
+        Logger.info(TAG,'fetchResult success');
+        this.mediaList = await fetchResult.getAllObject();
+      }
+    } catch (err) {
+      Logger.info(TAG,'getMediaAssets failed, message = ', err);
     }
     return this.mediaList;
   }
 
-  deleteFile(fileAsset: mediaLibrary.FileAsset): Promise<void> {
+  deleteFile(fileAsset: userFileManager.FileAsset): Promise<void> {
     Logger.info(TAG, `deleteFile,displayName=${fileAsset.displayName},uri = ${fileAsset.uri}`);
-    return fileAsset.trash(true);
+    return this.mediaLib.delete(fileAsset.uri);
   }
 
   onDateChange(audioCallback: () => void, videoCallback: () => void) {

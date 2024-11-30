@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import mediaLibrary from '@ohos.multimedia.mediaLibrary'
+import userFileManager from '@ohos.filemanagement.userFileManager';
 import common from '@ohos.app.ability.common'
 import Logger from '../model/Logger'
 import { AVPlayer } from '../model/AVPlayer'
@@ -33,8 +33,8 @@ const TAG = 'PhoneIndex: '
 struct Send {
   @State surfaceId: number = -1
   @State myMedia: AVPlayer = new AVPlayer()
-  @State audioData: mediaLibrary.FileAsset[] = []
-  @State videoData: mediaLibrary.FileAsset[] = []
+  @State audioData: userFileManager.FileAsset[] = []
+  @State videoData: userFileManager.FileAsset[] = []
   @State fillIndex: number = -1
   @State fillMediaType: number = -1
   @State currentTime: number = 0
@@ -43,7 +43,7 @@ struct Send {
   @State isXComponent: boolean = true
   @State httpUrl: string = ''
   @State fileIndex: number = 0
-  @State fileType: number = 0
+  @State fileType: number = userFileManager.FileType.AUDIO
   @State newName: string = ''
   private testUtile: MediaUtiles = new MediaUtiles()
   private renameDialogController: CustomDialogController = {} as CustomDialogController
@@ -52,7 +52,7 @@ struct Send {
   private context: Context = getContext(this) as common.UIAbilityContext
 
   async aboutToAppear() {
-    MediaUtils.mediaLib = mediaLibrary.getMediaLibrary(this.context)
+    MediaUtils.mediaLib = userFileManager.getUserFileMgr(this.context)
     await this.getAudioData()
     await this.getVideoData()
     this.myMedia.setCompleteCallback(() => {
@@ -67,11 +67,11 @@ struct Send {
 
   async getAudioData() {
     this.audioData = []
-    let fileAsset = MediaUtils.getFileAssetsFromType(mediaLibrary.MediaType.AUDIO)
-    fileAsset.then((fileList: mediaLibrary.FileAsset[]) => {
+    let fileAsset = MediaUtils.getFileAssetsFromType(userFileManager.FileType.AUDIO)
+    fileAsset.then((fileList: userFileManager.FileAsset[]) => {
       Logger.info(TAG, 'getFileList callback')
       this.audioData = fileList
-      this.myMedia.getAudioData(this.audioData)
+      this.myMedia.setAudioData(this.audioData)
     }).catch((err: Error) => {
       Logger.error(TAG, `getFileList err,err = ${err}`)
     })
@@ -79,11 +79,11 @@ struct Send {
 
   async getVideoData() {
     this.videoData = []
-    let fileAsset = MediaUtils.getFileAssetsFromType(mediaLibrary.MediaType.VIDEO)
-    fileAsset.then((fileList: mediaLibrary.FileAsset[]) => {
+    let fileAsset = MediaUtils.getFileAssetsFromType(userFileManager.FileType.VIDEO)
+    fileAsset.then((fileList: userFileManager.FileAsset[]) => {
       Logger.info(TAG, 'getFileList callback')
       this.videoData = fileList
-      this.myMedia.getVideoData(this.videoData)
+      this.myMedia.setVideoData(this.videoData)
     }).catch((err: Error) => {
       Logger.error(TAG, `getFileList err,err = ${err}`)
     })
@@ -98,7 +98,7 @@ struct Send {
   }
 
   async convertResourceToString(resource: Resource): Promise<string> {
-    return this.context.resourceManager.getString(resource.id)
+    return this.context.resourceManager.getStringValue(resource.id)
   }
 
   async renameDialogShow(): Promise<void> {
@@ -106,7 +106,7 @@ struct Send {
     this.fillMediaType = this.fileType
     let disPlayName: string
     let disPlayType: string
-    if (this.fileType == mediaLibrary.MediaType.AUDIO) {
+    if (this.fileType == userFileManager.FileType.AUDIO) {
       disPlayName = this.audioData[this.fileIndex].displayName
       let audio = await this.convertResourceToString($r('app.string.phoneMain_audioTitle'))
       disPlayType = audio
@@ -130,7 +130,7 @@ struct Send {
 
   setRename(): void {
     this.newName = this.testUtile.getName()
-    if (this.fillMediaType == mediaLibrary.MediaType.AUDIO) {
+    if (this.fillMediaType == userFileManager.FileType.AUDIO) {
       this.audioData[this.fileIndex].displayName = this.newName
       this.audioData[this.fileIndex].commitModify((err) => {
         if (err !== undefined) {
@@ -156,8 +156,8 @@ struct Send {
   }
 
   deleteDialogShow(): void {
-    let mediaData: mediaLibrary.FileAsset[]
-    if (this.fileType == mediaLibrary.MediaType.AUDIO) {
+    let mediaData: userFileManager.FileAsset[]
+    if (this.fileType == userFileManager.FileType.AUDIO) {
       mediaData = this.audioData
     } else {
       mediaData = this.videoData
