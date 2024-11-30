@@ -145,6 +145,8 @@ export struct XComponentVideo {
 
   // 视频信息上报函数
   async setSourceInfo(): Promise<void> {
+    this.isLoadingVideo = false; // 视频未加载完成
+    this.isLoading = true; // 加载动画继续加载
     // 时间上报函数
     this.avPlayer.on('timeUpdate', (time: number) => {
       logger.info('timeUpdate called: time is :' + time);
@@ -218,6 +220,8 @@ export struct XComponentVideo {
         // 资源初始化，avplayer设置播放源后触发该状态上报
         case 'initialized':
           logger.info('state initialized called');
+          this.isLoadingVideo = false; // 视频未加载完成
+          this.isLoading = true; // 加载动画继续加载
           this.setSurfaceID(); // 设置显示画面，当播放的资源为纯音频时无需设置
           this.avPlayer.prepare(); // 进入准备状态
           break;
@@ -356,7 +360,9 @@ export struct XComponentVideo {
           })
           .visibility(this.centerIndex === this.index && this.isPlaying ? Visibility.Hidden : Visibility.Visible)
           .onClick(() => {
-            this.isPlaying = !this.isPlaying;
+            if (this.centerIndex === this.index) {
+              this.isPlaying = !this.isPlaying;
+            }
             if (this.index === FIRST_INDEX || this.index === this.arrayLength) {
               this.imageChange = false;
               this.startOrEnd = false;
