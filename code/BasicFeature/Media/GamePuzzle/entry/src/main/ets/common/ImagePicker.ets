@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,11 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import mediaLibrary from '@ohos.multimedia.mediaLibrary'
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 @CustomDialog
 export default struct ImagePicker {
-  private imageDatas: Array<mediaLibrary.FileAsset> = []
+  private imageDatas: photoAccessHelper.PhotoAsset[] = [];
   @State selected: number = 0
   public controller: CustomDialogController
   @Link index: number
@@ -28,7 +28,7 @@ export default struct ImagePicker {
   build() {
     Column() {
       List({ space: 5 }) {
-        ForEach(this.imageDatas, (item, index) => {
+        ForEach(this.imageDatas, (item: photoAccessHelper.PhotoAsset, index: number) => {
           ListItem() {
             Stack({ alignContent: Alignment.TopEnd }) {
               Image(item.uri)

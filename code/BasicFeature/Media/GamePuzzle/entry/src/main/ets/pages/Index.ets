@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,7 +14,6 @@
  */
 
 import mediaQuery from '@ohos.mediaquery'
-import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import GameRules from "../model/GameRules"
 import ImageModel from "../model/ImageModel"
 import ImagePicker from '../common/ImagePicker'
@@ -22,9 +21,10 @@ import Logger from '../model/Logger'
 import PictureItem from '../model/PictureItem'
 import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl'
 import emitter from '@ohos.events.emitter';
+import mediaquery from '@ohos.mediaquery';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
-const PERMISSIONS: Array<Permissions> = ['ohos.permission.READ_MEDIA', 'ohos.permission.WRITE_MEDIA',
-                                         'ohos.permission.MEDIA_LOCATION','ohos.permission.MANAGE_MISSIONS'];
+const PERMISSIONS: Permissions[] = ['ohos.permission.MEDIA_LOCATION', 'ohos.permission.MANAGE_MISSIONS', 'ohos.permission.READ_IMAGEVIDEO'];
 const IMAGE_SIZE: number = px2vp(640)
 const GAME_TIME: number = 300 // 游戏时长
 const TAG: string = 'Index'
@@ -39,12 +39,12 @@ struct Index {
   private timer: number = -1
   private isRefresh: boolean = false
   @State numArray: PictureItem[] = []
-  @State imgDatas: Array<mediaLibrary.FileAsset> = []
+  @State imgDatas: photoAccessHelper.PhotoAsset[] = [];
   @State @Watch("onTimeOver") gameTime: number = GAME_TIME
   @State @Watch("onImageChange") index: number = 0
   @State isLand: boolean = false
-  onLand = (mediaQueryResult) => {
-    console.info(`[eTSMediaQuery.Index]onLand: mediaQueryResult.matches=${mediaQueryResult.matches}`)
+  onLand = (mediaQueryResult: mediaquery.MediaQueryResult) => {
+    Logger.info(TAG, `[eTSMediaQuery.Index]onLand: mediaQueryResult.matches=${mediaQueryResult.matches}`)
     this.isLand = mediaQueryResult.matches
   }
 
@@ -147,7 +147,7 @@ struct Index {
   @Builder
   ImageGrid(leftMargin: number, topMargin: number) {
     Grid() {
-      ForEach(this.numArray, (item, index) => {
+      ForEach(this.numArray, (item: PictureItem, index: number) => {
         GridItem() {
           Image(item.pixelMap)
             .width('99%')
