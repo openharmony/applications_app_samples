@@ -1126,31 +1126,43 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/Performance/PerformanceArticle/images/reasonable_using_system_interfaces_getanonymousid.png" desc="Provided by code/Performance/PerformanceArticle"/>
 				<filteritem type="filepath" name="code/Performance/PerformanceArticle/images/reasonable_using_system_interfaces_getstringsync.png" desc="Provided by code/Performance/PerformanceArticle"/>
 				<filteritem type="filepath" name="code/Performance/PerformanceArticle/images/reasonable_using_system_interfaces_getstringsyncafter.png" desc="Provided by code/Performance/PerformanceArticle"/>
-				<filteritem type="filepath" name="code\BasicFeature\MediaFullScreen\entry\src\main\resources\base\media\background.png" desc="Provided by code/BasicFeature/MediaFullScreen"/>
-				<filteritem type="filepath" name="code\BasicFeature\MediaFullScreen\entry\src\main\resources\base\media\foreground.png" desc="Provided by code/BasicFeature/MediaFullScreen"/>
-				<filteritem type="filepath" name="code\BasicFeature\MediaFullScreen\entry\src\main\resources\base\media\media_full_screen_ic_back.png" desc="Provided by code/BasicFeature/MediaFullScreen"/>
-				<filteritem type="filepath" name="code\BasicFeature\MediaFullScreen\entry\src\main\resources\base\media\media_full_screen_photo1.jpg" desc="Provided by code/BasicFeature/MediaFullScreen"/>
-				<filteritem type="filepath" name="code\BasicFeature\MediaFullScreen\entry\src\main\resources\base\media\media_full_screen_photo2.jpg" desc="Provided by code/BasicFeature/MediaFullScreen"/>
-				<filteritem type="filepath" name="code\BasicFeature\MediaFullScreen\entry\src\main\resources\base\media\media_full_screen_photo3.jpg" desc="Provided by code/BasicFeature/MediaFullScreen"/>
-				<filteritem type="filepath" name="code\BasicFeature\MediaFullScreen\entry\src\main\resources\base\media\media_full_screen_photo4.jpg" desc="Provided by code/BasicFeature/MediaFullScreen"/>
-				<filteritem type="filepath" name="code\BasicFeature\MediaFullScreen\entry\src\main\resources\base\media\media_full_screen_photo5.jpg" desc="Provided by code/BasicFeature/MediaFullScreen"/>
-				<filteritem type="filepath" name="code\BasicFeature\MediaFullScreen\entry\src\main\resources\base\media\media_full_screen_photo6.jpg" desc="Provided by code/BasicFeature/MediaFullScreen"/>
-				<filteritem type="filepath" name="code\BasicFeature\MediaFullScreen\entry\src\main\resources\base\media\media_full_screen_photo7.jpg" desc="Provided by code/BasicFeature/MediaFullScreen"/>
-				<filteritem type="filepath" name="code\BasicFeature\MediaFullScreen\entry\src\main\resources\base\media\media_full_screen_photo8.jpg" desc="Provided by code/BasicFeature/MediaFullScreen"/>
-				<filteritem type="filepath" name="code\BasicFeature\MediaFullScreen\entry\src\main\resources\base\media\media_full_screen_photo9.jpg" desc="Provided by code/BasicFeature/MediaFullScreen"/>
-				<filteritem type="filepath" name="code\BasicFeature\MediaFullScreen\entry\src\main\resources\base\media\media_full_screen_photo10.jpg" desc="Provided by code/BasicFeature/MediaFullScreen"/>
-				<filteritem type="filepath" name="code\BasicFeature\MediaFullScreen\entry\src\main\resources\base\media\media_full_screen_play.png" desc="Provided by code/BasicFeature/MediaFullScreen"/>
-				<filteritem type="filepath" name="code\BasicFeature\MediaFullScreen\entry\src\main\resources\base\media\media_full_screen_preview1.jpg" desc="Provided by code/BasicFeature/MediaFullScreen"/>
-				<filteritem type="filepath" name="code\BasicFeature\MediaFullScreen\entry\src\main\resources\base\media\media_full_screen_preview2.jpg" desc="Provided by code/BasicFeature/MediaFullScreen"/>
-				<filteritem type="filepath" name="code\BasicFeature\MediaFullScreen\entry\src\main\resources\base\media\media_full_screen_preview3.jpg" desc="Provided by code/BasicFeature/MediaFullScreen"/>
-				<filteritem type="filepath" name="code\BasicFeature\MediaFullScreen\entry\src\main\resources\base\media\media_full_screen_preview4.jpg" desc="Provided by code/BasicFeature/MediaFullScreen"/>
-				<filteritem type="filepath" name="code\BasicFeature\MediaFullScreen\entry\src\main\resources\base\media\media_full_screen_profile_photo.jpg" desc="Provided by code/BasicFeature/MediaFullScreen"/>
-				<filteritem type="filepath" name="code\BasicFeature\MediaFullScreen\entry\src\main\resources\base\media\media_fullscreen.gif" desc="Provided by code/BasicFeature/MediaFullScreen"/>
-				<filteritem type="filepath" name="code\BasicFeature\MediaFullScreen\entry\src\main\resources\base\media\startIcon.png" desc="Provided by code/BasicFeature/MediaFullScreen"/>
-				<filteritem type="filepath" name="code\BasicFeature\MediaFullScreen\entry\src\main\resources\rawfile\media_full_screen_video1.MP4" desc="Provided by code/BasicFeature/MediaFullScreen"/>
-				<filteritem type="filepath" name="code\BasicFeature\MediaFullScreen\entry\src\main\resources\rawfile\media_full_screen_video2.MP4" desc="Provided by code/BasicFeature/MediaFullScreen"/>
-				<filteritem type="filepath" name="code\BasicFeature\MediaFullScreen\entry\src\main\resources\rawfile\media_full_screen_video3.MP4" desc="Provided by code/BasicFeature/MediaFullScreen"/>
-				<filteritem type="filepath" name="code\BasicFeature\MediaFullScreen\entry\src\main\resources\rawfile\media_full_screen_video4.MP4" desc="Provided by code/BasicFeature/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/AppScope/resources/base/media/app_icon.png" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/background.png" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_ic_back.png" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_photo1.jpg" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_photo2.jpg" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_photo3.jpg" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_photo4.jpg" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_photo5.jpg" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_photo6.jpg" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_photo7.jpg" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_photo8.jpg" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_photo9.jpg" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_photo10.jpg" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_play.png" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_preview1.jpg" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_preview2.jpg" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_preview3.jpg" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_preview4.jpg" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_profile_photo.jpg" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/media_fullscreen.gif" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/rawfile/media_full_screen_video1.mp4" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/rawfile/media_full_screen_video2.mp4" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/rawfile/media_full_screen_video3.mp4" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/rawfile/media_full_screen_video4.mp4" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/AppScope/resources/base/media/app_icon.png" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>	
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/entry/src/main/resources/base/media/background.png" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>	
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/entry/src/main/resources/base/media/layered_image.png" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>	
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/casesfeature/erasercomponent/eraser.gif" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>	
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/casesfeature/erasercomponent/src/main/resources/base/media/eraser_picture.jpg" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>	
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/casesfeature/erasercomponent/src/main/resources/base/media/eraser_redo.svg" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>	
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/casesfeature/erasercomponent/src/main/resources/base/media/eraser_screenshot_eraser.svg" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>	
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/casesfeature/erasercomponent/src/main/resources/base/media/eraser_screenshot_penshape.svg" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>	
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/casesfeature/erasercomponent/src/main/resources/base/media/eraser_undo.svg" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>	
 			</filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加License头"/>
