@@ -62,26 +62,6 @@
         }
       },
       {
-        "name": "ohos.permission.READ_MEDIA",
-        "reason": "$string:permission_read_media",
-        "usedScene": {
-          "abilities": [
-            "MainAbility"
-          ],
-          "when": "inuse"
-        }
-      },
-      {
-        "name": "ohos.permission.WRITE_MEDIA",
-        "reason": "$string:permission_write_media",
-        "usedScene": {
-          "abilities": [
-            "MainAbility"
-          ],
-          "when": "inuse"
-        }
-      },
-      {
         "name": "ohos.permission.MEDIA_LOCATION",
         "reason": "$string:permission_media_location",
         "usedScene": {
