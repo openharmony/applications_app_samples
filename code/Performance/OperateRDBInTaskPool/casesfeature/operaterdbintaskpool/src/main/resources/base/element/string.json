@@ -1,0 +1,156 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_list_name",
+      "value": "列表"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_prompt_text",
+      "value": "仅演示，可自行实现业务功能"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_delete_dialog_title",
+      "value": "确定删除%s通讯录好友吗？"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_edit_dialog_title",
+      "value": "确定修改%s信息吗？"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_add_dialog_title",
+      "value": "确定新增%s通讯录好友吗？"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_delete_dialog_content",
+      "value": "确定从通讯录中删除不可恢复"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_edit_dialog_content",
+      "value": "确定从修改不可撤回"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_add_dialog_content",
+      "value": "确定新增好友"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_dialog_confirm_button_text",
+      "value": "确定"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_dialog_edit_button_text",
+      "value": "编辑"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_dialog_delete_button_text",
+      "value": "删除"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_dialog_cancel_button_text",
+      "value": "取消"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_detail_phone",
+      "value": "号码"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_detail_video",
+      "value": "视频通话"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_detail_email",
+      "value": "邮箱"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_detail_address",
+      "value": "地址"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_name_prompt_text",
+      "value": "请输入姓名"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_phone_prompt_text",
+      "value": "请输入电话"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_email_prompt_text",
+      "value": "请输入邮箱"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_address_prompt_text",
+      "value": "请输入地址"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_no_modify_prompt_text",
+      "value": "暂无修改"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_navigation_edit_text",
+      "value": "编辑联系人"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_navigation_add_text",
+      "value": "新增联系人"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_text_input_name",
+      "value": "姓名"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_text_input_phone",
+      "value": "电话"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_text_input_email",
+      "value": "邮箱"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_text_input_address",
+      "value": "地址"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_add_prompt_text",
+      "value": "好友%s添加成功"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_delete_prompt_text",
+      "value": "好友%s已删除"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_update_prompt_text",
+      "value": "好友%s已更新"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_query_prompt_text",
+      "value": "查询通讯录数据共%s条"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_sync_book",
+      "value": "点击同步通讯录数据"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_sync_book_fail",
+      "value": "通讯录同步失败"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_sync_book_done",
+      "value": "通讯录同步完成"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_sync_book_loading",
+      "value": "正在同步通讯录数据"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_search_text",
+      "value": "搜索"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_one_hundred_percent",
+      "value": "100%"
+    }
+  ]
+}
