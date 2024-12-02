@@ -149,8 +149,6 @@ export struct XComponentVideo {
     this.isLoading = true; // 加载动画继续加载
     // 时间上报函数
     this.avPlayer.on('timeUpdate', (time: number) => {
-      logger.info('timeUpdate called: time is :' + time);
-      logger.info('timeUpdate called: currentTime is :' + this.avPlayer.currentTime);
       this.callbackTimeUpdate(time);
     });
     // 音量变化回调函数
@@ -233,7 +231,6 @@ export struct XComponentVideo {
           this.isLoadingVideo = true; // 视频加载完成
           // 在屏幕中间的视频开始播放
           if (this.centerIndex === this.index) {
-            this.isPlaying = true;
             this.avPlayer.play();
           }
           break;
@@ -241,10 +238,12 @@ export struct XComponentVideo {
         case 'playing':
           this.flag = true; // 视频准备完毕
           this.isLoading = false; // 取消加载
+          this.isPlaying = true; // 视频开始播放
           logger.info('state playing called');
           break;
         // 暂停状态
         case 'paused':
+          this.isPlaying = false; // 视频暂停播放
           logger.info('state paused called');
           break;
         // 播放至结尾状态
@@ -254,6 +253,7 @@ export struct XComponentVideo {
           break;
         // 停止状态
         case 'stopped':
+          this.isPlaying = false; // 视频暂停播放
           logger.info('state stopped called');
           break;
         // 销毁状态，销毁与当前AVPlayer关联的播放引擎，无法再进行状态转换
