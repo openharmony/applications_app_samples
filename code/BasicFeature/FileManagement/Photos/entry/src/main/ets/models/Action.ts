@@ -56,7 +56,9 @@ enum ActionID {
   NAVIGATION_ALBUMS,
   DOWNLOAD,
   DOWNLOAD_INVALID,
-  CLEAR_RECYCLE_INVALID
+  CLEAR_RECYCLE_INVALID,
+  HIDE_SENSITIZATION,
+  TRANSCODING
 }
 
 class ActionOptions {
@@ -293,6 +295,14 @@ export class Action {
     fillColor: $r('app.color.icon_disabled_color'),
     actionType: $r('app.string.action_deRename')
   });
+  public static TRANSCODING = new Action({
+    id: ActionID.TRANSCODING,
+    iconRes: $r('app.media.ic_edit_public_redo'),
+    textRes: $r('app.string.action_transcoding'),
+    isAutoTint: null,
+    fillColor: null,
+    actionType: null
+  });
   public static MOVE = new Action({
     id: ActionID.MOVE,
     iconRes: null,
@@ -307,6 +317,14 @@ export class Action {
     textRes: $r('app.string.action_move_to_album'),
     isAutoTint: null,
     fillColor: $r('app.color.icon_disabled_color'),
+    actionType: null
+  });
+  public static HIDE_SENSITIZATION = new Action({
+    id: ActionID.HIDE_SENSITIZATION,
+    iconRes: null,
+    textRes: $r('app.string.action_hide_sensitization'),
+    isAutoTint: null,
+    fillColor: null,
     actionType: null
   });
   public static REMOVE = new Action({

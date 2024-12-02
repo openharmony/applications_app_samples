@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import MediaLib from '@ohos.multimedia.mediaLibrary';
+import userFileManager from '@ohos.filemanagement.userFileManager';
 import { Log } from '../utils/Log';
 import { DateUtil } from '../utils/DateUtil';
 import { screenManager } from '../common/ScreenManager';
@@ -33,6 +33,8 @@ export class MediaDetails {
   uri: string = '';
   displayName: string = '';
   dateModified: number = 0;
+  location: string = '';
+  shootingParams: string = '';
 }
 
 @CustomDialog
@@ -161,7 +163,43 @@ export struct DetailsDialog {
       }.margin({
         bottom: $r('sys.float.ohos_id_text_paragraph_margin_s') })
 
-      if (this.mediaDetails.mediaType === MediaLib.MediaType.VIDEO) {
+      Row() {
+        Column() {
+          Text($r('app.string.location'))
+            .fontSize($r('sys.float.ohos_id_text_size_body2'))
+            .fontFamily($r('app.string.id_text_font_family_regular'))
+            .fontColor($r('sys.color.ohos_id_color_text_primary'))
+        }
+
+        Column() {
+          Text(this.mediaDetails.location)
+            .fontSize($r('sys.float.ohos_id_text_size_body2'))
+            .fontFamily($r('app.string.id_text_font_family_regular'))
+            .fontColor($r('sys.color.ohos_id_color_text_secondary'))
+            .textOverflow({ overflow: TextOverflow.Ellipsis })
+        }
+      }.margin({
+        bottom: $r('sys.float.ohos_id_text_paragraph_margin_s') })
+
+      Row() {
+        Column() {
+          Text($r('app.string.shooting_params'))
+            .fontSize($r('sys.float.ohos_id_text_size_body2'))
+            .fontFamily($r('app.string.id_text_font_family_regular'))
+            .fontColor($r('sys.color.ohos_id_color_text_primary'))
+        }
+
+        Column() {
+          Text(this.mediaDetails.shootingParams)
+            .fontSize($r('sys.float.ohos_id_text_size_body2'))
+            .fontFamily($r('app.string.id_text_font_family_regular'))
+            .fontColor($r('sys.color.ohos_id_color_text_secondary'))
+            .textOverflow({ overflow: TextOverflow.Ellipsis })
+        }
+      }.margin({
+        bottom: $r('sys.float.ohos_id_text_paragraph_margin_s') })
+
+      if (this.mediaDetails.mediaType === userFileManager.FileType.VIDEO) {
         Row() {
           Column() {
             Text($r('app.string.duration'))

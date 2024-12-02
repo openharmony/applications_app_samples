@@ -23,6 +23,7 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import { MediaConstants } from '../constants/MediaConstants'
 import { getSystemAlbumDisplayName } from './UserFileDataHelper';
 import { SimpleAlbumDataItem } from '../common/SimpleAlbumDataItem';
+import bundleManager from '@ohos.bundle.bundleManager';
 
 const TAG = 'UserFileModel';
 
@@ -232,6 +233,32 @@ class UserFileModel {
       }
     } catch (err) {
       Log.error(TAG, 'getAllMediaItems failed with err: ' + err);
+    } finally {
+      if (photoFetchResult != null) {
+        photoFetchResult.close();
+      }
+    }
+    return fileAssets;
+  }
+
+  async getAllMovingPhotoItems(): Promise<photoAccessHelper.PhotoAsset[]> {
+    let fileAssets: photoAccessHelper.PhotoAsset[] = [];
+    let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = null;
+    try {
+      let predicates = new dataSharePredicates.DataSharePredicates();
+      predicates.equalTo(MediaConstants.PHOTO_SUBTYPE, MediaConstants.MOVING_PHOTO);
+      predicates.orderByDesc(photoAccessHelper.PhotoKeys.DATE_ADDED);
+      let fetchOptions: photoAccessHelper.FetchOptions = {
+        fetchColumns: MediaConstants.FILE_ASSET_FETCH_COLUMNS,
+        predicates: predicates
+      };
+      photoFetchResult = await this.userFileMgr.getAssets(fetchOptions);
+      Log.info(TAG, 'getAllMovingPhotoItems count: ' + photoFetchResult.getCount());
+      for (let i = 0; i < photoFetchResult.getCount(); i++) {
+        fileAssets.push(await photoFetchResult.getObjectByPosition(i));
+      }
+    } catch (err) {
+      Log.error(TAG, 'getAllMovingPhotoItems failed with err: ' + err);
     } finally {
       if (photoFetchResult != null) {
         photoFetchResult.close();
@@ -507,6 +534,15 @@ class UserFileModel {
       });
     } catch (err) {
       Log.error(TAG, 'addPhotoAssetsDemoPromise failed with error: ' + err);
+    }
+  }
+
+  async hideSensitives(type: number, uris: string[]): Promise<void> {
+    let flags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+    let bundleInfo = bundleManager.getBundleInfoForSelfSync(flags);
+    let appId = bundleInfo.signatureInfo.appId;
+    for (let uri of uris) {
+      await this.userFileMgr.grantPhotoUriPermission(appId, uri, 1, type);
     }
   }
 }
