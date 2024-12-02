@@ -48,8 +48,16 @@ class Upload {
     }, 2000);
   }
 
+  getFileName(filePath: string): string {
+    const lastSlashIndex = filePath.lastIndexOf('/');
+    if (lastSlashIndex === -1) {
+      return filePath;
+    }
+    return filePath.substring(lastSlashIndex + 1);
+  }
+
   async uploadFilesBackground(fileUris: Array<string>): Promise<void> {
-    logger.info(TAG, `uploadFiles begin, ${JSON.stringify(fileUris)}`);
+    logger.info(TAG, `uploadFilesBackground:uploadFiles begin, ${JSON.stringify(fileUris)}`);
     this.context = getContext(this) as common.UIAbilityContext;
     if (fileUris.length === 0) {
       return;
@@ -271,14 +279,18 @@ class Upload {
     let files: Array<request.agent.FormItem> = [];
     for (let i = 0; i < fileUris.length; i++) {
       logger.info(TAG, `getFile fileUri = ${fileUris[i]}`);
-      let imagePath = await this.mediaUtils.copyFileToCache(cacheDir, fileUris[i]);
-      logger.info(TAG, `getFilesAndData ${JSON.stringify(imagePath)}`);
+      let imagePath = fileUris[i];
+      logger.info(TAG, `getFilesAndData  imagePath: ${JSON.stringify(imagePath)}`);
+      let fileName = this.getFileName(imagePath);
       let file: request.agent.FormItem = {
-        name: imagePath.split('cache/')[1].split('.')[0],
+        name: 'createTest',
         value: {
-          path: './' + imagePath.split('cache/')[1]
+          filename: fileName,
+          mimeType: 'application/octet-stream',
+          path: imagePath,
         }
       }
+      logger.info(TAG, `getFile file = ${JSON.stringify(file)}`);
       files.push(file);
     }
     logger.info(TAG, `getFilesAndData ${JSON.stringify(files)}`);
