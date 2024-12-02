@@ -27,6 +27,7 @@ import Want from '@ohos.app.ability.Want';
 import fileUri from '@ohos.file.fileuri';
 import account from '@ohos.account.distributedAccount';
 import account_osAccount from '@ohos.account.osAccount';
+import wantConstant from '@ohos.app.ability.wantConstant';
 
 const accountAbility = account.getDistributedAccountAbility();
 
@@ -70,6 +71,7 @@ export struct Index {
   @StorageLink('fileNameList') fileNameList: Array<string> = [];
   @StorageLink('filePathList') filePathList: Array<string> = [];
   @StorageLink('fileTimeList') fileTimeList: Array<string> = [];
+  scroller: Scroller = new Scroller();
 
   /**
    * 拉起picker选择文件
@@ -89,7 +91,7 @@ export struct Index {
             this.uri = value;
             editFlag = true;
             Logger.info(TAG, `select file uri: ${this.uri}`);
-          })
+          });
         }
         if (editFlag) {
           this.getFilenameByUri(this.uri);
@@ -270,8 +272,8 @@ export struct Index {
     let want: Want = {
       'action': 'ohos.want.action.viewData',
       'bundleName': 'com.sample.dlpmanager',
-      'type': 'text/plain',
       'abilityName': 'FuncAbility',
+      'flags': wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION | wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION,
       'uri': dlpUri,
       'parameters': {
         'fileName': {
@@ -406,9 +408,6 @@ export struct Index {
     this.accountLogin(this.accountName);
   }
 
-  aboutToAppear() {
-  }
-
   build() {
     Column() {
       Stack({ alignContent: Alignment.TopEnd }) {
@@ -435,7 +434,7 @@ export struct Index {
             .height('30vp')
             .width('100%')
             .id('latestFile')
-        }.zIndex(1).width('480vp').height('82vp')
+        }.zIndex(1).width('100%').height('82vp')
 
         Image($r('app.media.ic_public_more'))
           .height('24vp')
@@ -447,7 +446,7 @@ export struct Index {
       }.width('100%').height('84vp')
 
       Stack({ alignContent: Alignment.TopEnd }) {
-        List() {
+        List({ scroller: this.scroller }) {
           ForEach(this.fileInfoList, (item: FileInfo, index: number) => {
             ListItem() {
               Column() {
@@ -506,6 +505,7 @@ export struct Index {
         }
         .zIndex(1)
         .width('100%')
+        .height('100%')
         .listDirection(Axis.Vertical) // 排列方向
         .id('indexList')
         .edgeEffect(EdgeEffect.Spring) // 滑动到边缘无效果
@@ -521,7 +521,7 @@ export struct Index {
             this.callFilePickerSelectFile();
           })
       }
-      .height('100%')
+      .layoutWeight(1)
       .width('100%')
     }
     .height('100%')

@@ -13,11 +13,13 @@
  * limitations under the License.
  */
 
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import fileAccess from '@ohos.file.fileAccess';
+import userFileManager from '@ohos.filemanagement.userFileManager';
 import { describe , it , expect } from '@ohos/hypium';
 import { Driver , ON } from '@ohos.UiTest';
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
-import Logger from '../../../main/ets/utils/Logger'
+import Logger from '../../../main/ets/utils/Logger';
 
 const TAG = '[Sample_Dlp]';
 const BUNDLE = 'dlp_';
@@ -25,37 +27,70 @@ const DOMAIN = 0xF811;
 // 屏幕上最多显示11条记录
 const MAX_NUM = 11;
 
-const TYPE: [ mediaLibrary.MediaType , string , mediaLibrary.DirectoryType ][] = [
-  [ mediaLibrary.MediaType.FILE, '.txt', mediaLibrary.DirectoryType.DIR_DOCUMENTS ],
-]
+class FilterType {
+  public suffix: string[] = ['.txt']
+}
 
 // 检查页面是否正常显示
-async function checkPage( library: mediaLibrary.MediaLibrary , driver: Driver , type: mediaLibrary.MediaType ) {
-  Logger.info( DOMAIN + TAG + 'checkPage begin ' );
-  let fileFetchOption: mediaLibrary.MediaFetchOptions = {
-    selections : mediaLibrary.FileKey.MEDIA_TYPE + '= ?' ,
-    selectionArgs : [ type.toString() ] ,
-  };
-  let fetchFileResult: mediaLibrary.FetchFileResult | undefined = undefined;
-  try {
-    fetchFileResult = await library.getFileAssets( fileFetchOption );
-  } catch( error ) {
-    expect().assertFail();
-  }
-  if ( fetchFileResult?.getCount() === 0 ) {
-    await driver.assertComponentExist( ON.id( 'no_file' ) );
-    await driver.delayMs( 1000 );
-  } else {
-    await driver.assertComponentExist( ON.type( 'ListItem' ) );
-    let btnItem = await driver.findComponents( ON.type( 'ListItem' ) );
-    Logger.info( DOMAIN + TAG + 'item length = ' + btnItem.length + ' and file count =' + fetchFileResult?.getCount() );
-    if ( fetchFileResult!.getCount() <= MAX_NUM ) {
-      await expect( btnItem.length ).assertEqual( fetchFileResult?.getCount() );
-    } else {
-      await expect( btnItem.length ).assertEqual( MAX_NUM );
+async function checkPage(library: fileAccess.FileAccessHelper, driver: Driver, type: string) {
+  Logger.info(DOMAIN + TAG + 'checkPage begin ');
+
+  let isDone: boolean = false;
+  let rootIterator = await library.getRoots();
+  let rootInfos: fileAccess.RootInfo[] = [];
+  while (!isDone) {
+    let result = rootIterator.next();
+    Logger.info(DOMAIN + TAG + 'next result = ' + JSON.stringify(result));
+    isDone = result.done;
+    if (!isDone) {
+      rootInfos.push(result.value);
+      Logger.info(DOMAIN + TAG + 'rootsInfos is: ' + rootInfos)
     }
   }
-  Logger.info( DOMAIN + TAG + 'checkPage end ' );
+
+  let rootInfo: fileAccess.RootInfo = rootInfos[0];
+  let fileInfos: fileAccess.FileInfo[] = [];
+  let listFileIsDone: boolean = false;
+  let listFileIterator: fileAccess.FileIterator = rootInfo.listFile();
+  if (!listFileIterator) {
+    Logger.error(DOMAIN + TAG + 'listFile interface returns an undefined object');
+  }
+  while (!listFileIsDone) {
+    let result = listFileIterator.next();
+    Logger.info(DOMAIN + TAG + 'next result = ' + JSON.stringify(result));
+    listFileIsDone = result.done;
+    if (!listFileIsDone) {
+      fileInfos.push(result.value);
+    }
+  }
+
+  let fileInfoDir: fileAccess.FileInfo = fileInfos[1];
+  let subfileInfos: fileAccess.FileInfo[] = [];
+  let scanFileIsDone: boolean = false;
+  let filter: FilterType = { suffix: ['.txt'] };
+  let scanFileIterator = fileInfoDir.scanFile(filter);
+  while (!scanFileIsDone) {
+    let result = scanFileIterator.next();
+    scanFileIsDone = result.done;
+    if (!scanFileIsDone) {
+      subfileInfos.push(result.value);
+    }
+  }
+
+  if (subfileInfos.length === 0) {
+    await driver.assertComponentExist(ON.id('no_file'));
+    await driver.delayMs(1000);
+  } else {
+    await driver.assertComponentExist(ON.type('ListItem'));
+    let btnItem = await driver.findComponents(ON.type('ListItem'));
+    Logger.info(DOMAIN + TAG + 'item length = ' + btnItem.length + ' and file count =' + subfileInfos.length);
+    if (subfileInfos.length <= MAX_NUM) {
+      await expect(btnItem.length).assertEqual(subfileInfos.length);
+    } else {
+      await expect(btnItem.length).assertEqual(MAX_NUM);
+    }
+  }
+  Logger.info(DOMAIN + TAG + 'checkPage end ');
 }
 
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
