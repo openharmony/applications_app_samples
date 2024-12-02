@@ -114,6 +114,8 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/BasicFeature/Security/Asset/screenshots/save.jpeg" desc="screenshot"/>
                 <filteritem type="filepath" name="code/BasicFeature/Security/Asset/screenshots/batch_query_result.jpeg" desc="screenshot"/>
                 <filteritem type="filepath" name="code/BasicFeature/Security/Asset/screenshots/query.jpeg" desc="screenshot"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/AVRecorder/lib/VideoRecorder-1.0.0.hap" desc="Provided by the code/BasicFeature/Media/AVRecorder"/>
+                <filteritem type="filepath" name="code/BasicFeature/Media/AVRecorder/lib/VideoRecorder-1.0.0.tgz" desc="Provided by the code/BasicFeature/Media/AVRecorder"/>
                 <filteritem type="filepath" name="ability/DistributedMusicPlayer/entry/src/main/resources/rawfile/Homey.mp3" desc="Provided by the UX team."/>
                 <filteritem type="filepath" name="ability/DistributedMusicPlayer/entry/src/main/resources/rawfile/Technology.mp3" desc="Provided by the UX team."/>
                 <filteritem type="filepath" name="UI/JsAnimation/entry/src/main/js/default/common/animator/show.mp4" desc="Provided by the UX team."/>

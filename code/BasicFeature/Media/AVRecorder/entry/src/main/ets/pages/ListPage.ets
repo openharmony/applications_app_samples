@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Huawei Device Co., Ltd.
+ * Copyright (C) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router';
+import { router } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -41,7 +41,7 @@ struct ListPage {
       .backgroundColor($r('app.color.button_background'))
       .borderRadius(24)
       .onClick(() => {
-        router.push({
+        router.pushUrl({
           url: 'recorder/VideoRecorder',
         })
       })
@@ -60,7 +60,7 @@ struct ListPage {
       .backgroundColor($r('app.color.button_background'))
       .borderRadius(24)
       .onClick(() => {
-        router.push({
+        router.pushUrl({
           url: 'recorder/AudioRecorder',
         })
       })

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Huawei Device Co., Ltd.
+ * Copyright (C) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,87 +13,57 @@
  * limitations under the License.
  */
 
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+import { common } from '@kit.AbilityKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 import DateTimeUtil from './DateTimeUtils';
 import Logger from './Logger';
 
 export default class SaveCameraAsset {
   private tag: string
 
-  constructor(tag) {
+  constructor(tag: string) {
     this.tag = tag;
   }
 
+  private context = getContext(this) as common.UIAbilityContext;
   private lastSaveTime: string = '';
   private saveIndex: number = 0;
-  public VideoPrepareFile: any;
-  public AudioPrepareFile: any;
+  public VideoPrepareFile?: fs.File;
+  public AudioPrepareFile?: fs.File;
 
-  public async createVideoFd(): Promise<number> {
+  public async createVideoFd() {
     Logger.info(this.tag, 'get Recorder File Fd');
     const mDateTimeUtil = new DateTimeUtil();
     const displayName = this.checkName(`REC_${mDateTimeUtil.getDate()}_${mDateTimeUtil.getTime()}`) + '.mp4';
     Logger.info(this.tag, 'get Recorder display name is: ' + displayName);
-    const media = mediaLibrary.getMediaLibrary(globalThis.abilityContext)
-    Logger.info(this.tag, 'get Recorder File Fd publicPath')
-    const fileKeyObj = mediaLibrary.FileKey;
-    const mediaType = mediaLibrary.MediaType.VIDEO;
-    let publicPath: string = await media.getPublicDirectory(mediaLibrary.DirectoryType.DIR_VIDEO);
-    Logger.info(this.tag,  'get Recorder File publicPath: ' + JSON.stringify(publicPath));
-    try {
-      const dataUri = await media.createAsset(mediaType, displayName, publicPath);
-      Logger.info(this.tag, 'get Recorder dataUri is: ' + dataUri);
-      if (dataUri != undefined) {
-        Logger.info(this.tag, 'dataUri is undefined');
-        const args = dataUri.id.toString();
-        const fetchOp = {
-          selections: fileKeyObj.ID + "=?",
-          selectionArgs: [args],
-        }
-        Logger.info(this.tag, 'fetchOp= ' + JSON.stringify(fetchOp))
-        const fetchFileResult = await media.getFileAssets(fetchOp);
-        Logger.info(this.tag, 'getFileAssets finished');
-        this.VideoPrepareFile = await fetchFileResult.getFirstObject();
-        const fdNumber = await this.VideoPrepareFile.open('rw');
-        Logger.info(this.tag, 'get Recorder File fd is: ' + JSON.stringify(fdNumber));
-        return fdNumber
-      }
-    } catch (err) {
-      Logger.error(this.tag, 'create Recorder File Fd ERROR: ' + err);
+    this.VideoPrepareFile = fs.openSync(this.context.filesDir + '/' + displayName, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    let fdNumber: number = this.VideoPrepareFile.fd;
+    Logger.info(this.tag, 'get Recorder File fd is: ' + JSON.stringify(fdNumber));
+    return fdNumber;
+  }
+
+  public async closeVideoFile() {
+    if (this.VideoPrepareFile) {
+      await fs.close(this.VideoPrepareFile);
+      Logger.info(this.tag, 'close Video File end');
     }
   }
 
-  public async createAudioFd(): Promise<number> {
+  public async createAudioFd() {
     Logger.info(this.tag, 'get Recorder File Fd');
     const mDateTimeUtil = new DateTimeUtil();
-    const displayName = this.checkName(`REC_${mDateTimeUtil.getDate()}_${mDateTimeUtil.getTime()}`) + '.m4a';
+    const displayName = this.checkName(`REC_${mDateTimeUtil.getDate()}_${mDateTimeUtil.getTime()}`) + '.wav';
     Logger.info(this.tag, 'get Recorder display name is: ' + displayName);
-    const media = mediaLibrary.getMediaLibrary(globalThis.abilityContext)
-    Logger.info(this.tag, 'get Recorder File Fd publicPath')
-    const fileKeyObj = mediaLibrary.FileKey;
-    const mediaType = mediaLibrary.MediaType.AUDIO;
-    let publicPath: string = await media.getPublicDirectory(mediaLibrary.DirectoryType.DIR_AUDIO);
-    Logger.info(this.tag,  'get Recorder File publicPath: ' + JSON.stringify(publicPath));
-    try {
-      const dataUri = await media.createAsset(mediaType, displayName, publicPath);
-      Logger.info(this.tag, 'get Recorder dataUri is: ' + dataUri);
-      if (dataUri != undefined) {
-        Logger.info(this.tag, 'dataUri is undefined');
-        const args = dataUri.id.toString();
-        const fetchOp = {
-          selections: fileKeyObj.ID + "=?",
-          selectionArgs: [args],
-        }
-        Logger.info(this.tag, 'fetchOp= ' + JSON.stringify(fetchOp))
-        const fetchFileResult = await media.getFileAssets(fetchOp);
-        Logger.info(this.tag, 'getFileAssets finished');
-        this.AudioPrepareFile = await fetchFileResult.getFirstObject();
-        const fdNumber = await this.AudioPrepareFile.open('rw');
-        Logger.info(this.tag, 'get Recorder File fd is: ' + JSON.stringify(fdNumber));
-        return fdNumber
-      }
-    } catch (err) {
-      Logger.error(this.tag, 'create Recorder File Fd ERROR: ' + err);
+    this.AudioPrepareFile = fs.openSync(this.context.filesDir + '/' + displayName, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    let fdNumber: number = this.AudioPrepareFile.fd;
+    Logger.info(this.tag, 'get Recorder File fd is: ' + JSON.stringify(fdNumber));
+    return fdNumber;
+  }
+
+  public async closeAudioFile() {
+    if (this.AudioPrepareFile) {
+      await fs.close(this.AudioPrepareFile);
+      Logger.info(this.tag, 'close Audio File end');
     }
   }
 
