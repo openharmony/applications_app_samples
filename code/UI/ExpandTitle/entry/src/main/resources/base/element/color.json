@@ -1,0 +1,20 @@
+{
+  "color": [
+    {
+      "name": "expanded_title_list_item_normal_color",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "expanded_title_background_color",
+      "value": "#eaf0ef"
+    },
+    {
+      "name": "expanded_title_font_color_light_dark",
+      "value": "#182431"
+    },
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    }
+  ]
+}

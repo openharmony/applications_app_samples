@@ -1,0 +1,108 @@
+{
+  "color": [
+    {
+      "name": "operate_rdb_in_taskpool_divider_color",
+      "value": "#aaaaaa"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_head_background_color",
+      "value": "#aabbcc"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_navigation_button_background_color",
+      "value": "#E5E7E9"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_navigation_background_color",
+      "value": "#F1F1F1"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_detail_content_text_color",
+      "value": "#222222"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_detail_title_text_color",
+      "value": "#A9A9A9"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_button_background_color_green",
+      "value": "#009e76"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_button_background_color_blue",
+      "value": "#1b7af8"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_button_background_color_red",
+      "value": "#ff5d5b"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_button_background_color_gray",
+      "value": "#A9A9A9"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_dialog_divider_line_color",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_avatar_background_color",
+      "value": "#d9d9d9"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_text_input_placeholder_color",
+      "value": "#999999"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_text_input_font_color",
+      "value": "#222222"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_text_input_background_color",
+      "value": "#e6e6e6"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_text_input_devider_color",
+      "value": "#dddddd"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_list_head_background_color",
+      "value": "#d9d9d9"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_list_divider_background_color",
+      "value": "#d9d9d9"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_alphabet_selected_color",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_alphabet_selected_bacground_color",
+      "value": "#5dabff"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_alphabet_popup_color",
+      "value": "#A9A9A9"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_alphabet_popup_background_color",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_search_button_color",
+      "value": "#0091FF"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_search_background_color",
+      "value": "#d9d9d9"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_sync_button_color",
+      "value": "#5dabff"
+    },
+    {
+      "name": "operate_rdb_in_taskpool_progress_background_color",
+      "value": "#d9d9d9"
+    }
+  ]
+}

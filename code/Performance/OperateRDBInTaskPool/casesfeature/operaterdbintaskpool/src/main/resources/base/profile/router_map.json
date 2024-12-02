@@ -1,0 +1,14 @@
+{
+  "routerMap": [
+    {
+      "name": "AddressBookDetail",
+      "pageSourceFile": "src/main/ets/view/AddressBookDetail.ets",
+      "buildFunction": "AddressBookDetailBuilder"
+    },
+    {
+      "name": "AddressBookEdit",
+      "pageSourceFile": "src/main/ets/view/AddressBookEdit.ets",
+      "buildFunction": "AddressBookEditBuilder"
+    }
+  ]
+}

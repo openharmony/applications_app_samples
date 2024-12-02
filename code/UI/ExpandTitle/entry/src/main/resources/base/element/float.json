@@ -1,0 +1,20 @@
+{
+  "float": [
+    {
+      "name": "expanded_title_font_size_normal",
+      "value": "17fp"
+    },
+    {
+      "name": "expanded_title_font_size_smaller",
+      "value": "14fp"
+    },
+    {
+      "name": "expanded_title_list_item_border_radius",
+      "value": "24vp"
+    },
+    {
+      "name": "expanded_title_list_item_padding",
+      "value": "12vp"
+    }
+  ]
+}
