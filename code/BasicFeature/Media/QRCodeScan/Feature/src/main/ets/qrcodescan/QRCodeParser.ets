@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -44,7 +44,6 @@ let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicate
  * 二维码解析器
  */
 class QRCodeParser {
-
   /**
    * 解析从相机获取的二维码图片
    *
@@ -148,6 +147,7 @@ class QRCodeParser {
       return { isSucess: false, decodeResult: error };
     }
   }
+
   /**
    * 获取图片的属性
    * @param context
@@ -186,6 +186,7 @@ class QRCodeParser {
       pixelMap: pixelMap
     };
   }
+
   /**
    * 在媒体公共资源目录下的创建指定类型的资源对象
    */

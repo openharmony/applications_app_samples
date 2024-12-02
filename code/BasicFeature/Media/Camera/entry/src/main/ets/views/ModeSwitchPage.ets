@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,13 +18,13 @@
 import DateTimeUtil from '../model/DateTimeUtil';
 import Logger from '../model/Logger';
 import cameraDemo from 'libentry.so';
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import image from '@ohos.multimedia.image';
 import media from '@ohos.multimedia.media';
 import MediaUtils from '../model/MediaUtils';
 import deviceInfo from '@ohos.deviceInfo';
 import fileio from '@ohos.fileio';
-import { SettingDataObj } from '../common/Constants'
+import { Constants, SettingDataObj } from '../common/Constants'
 import common from '@ohos.app.ability.common'
 
 let context = getContext(this) as common.UIAbilityContext;
@@ -54,7 +54,7 @@ interface PhotoRotationMap {
 export struct modeSwitchPage {
   private tag: string = 'sample modeSwitchPage:';
   private mediaUtil = MediaUtils.getInstance();
-  private fileAsset?: mediaLibrary.FileAsset;
+  private fileAsset?: photoAccessHelper.PhotoAsset;
   private fd: number = -1;
   @State videoId: string = '';
   @State mSurfaceId: string = '';
@@ -171,7 +171,7 @@ export struct modeSwitchPage {
     this.videoRecorder = await media.createAVRecorder();
     Logger.info(this.tag, `getVideoSurfaceID videoRecorder: ${this.videoRecorder}`);
 
-    this.fileAsset = await this.mediaUtil.createAndGetUri(mediaLibrary.MediaType.VIDEO);
+    this.fileAsset = await this.mediaUtil.createAndGetUri(Constants.VIDEO);
     Logger.info(this.tag, `getVideoSurfaceID fileAsset: ${this.fileAsset}`);
 
     this.fd = await this.mediaUtil.getFdPath(this.fileAsset);
@@ -187,7 +187,7 @@ export struct modeSwitchPage {
     if (deviceInfo.deviceType == 'phone') {
       Logger.info(this.tag, `deviceType = phone`)
       this.videoConfig.videoSourceType = media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV;
-      this.videoConfig.profile.videoCodec = media.CodecMimeType.VIDEO_MPEG4;
+      this.videoConfig.profile.videoCodec = media.CodecMimeType.VIDEO_AVC;
       if (this.cameraDeviceIndex == 1) {
         this.videoConfig.rotation = this.photoRotationMap.rotation270;
       } else {
@@ -247,7 +247,7 @@ export struct modeSwitchPage {
   async savePicture(buffer: ArrayBuffer, img: image.Image) {
     try {
       Logger.info(this.tag, 'savePicture start');
-      let imgFileAsset = await this.mediaUtil.createAndGetUri(mediaLibrary.MediaType.IMAGE);
+      let imgFileAsset: photoAccessHelper.PhotoAsset = await this.mediaUtil.createAndGetUri(Constants.IMAGE);
       let imgPhotoUri = imgFileAsset.uri;
       Logger.info(this.tag, `photoUri = ${imgPhotoUri}`);
       let imgFd = await this.mediaUtil.getFdPath(imgFileAsset);
@@ -349,13 +349,15 @@ export struct modeSwitchPage {
               .id('ThumbnailText')
             Image(this.imgThumbnail || $r('app.media.camera_thumbnail_4x'))
               .objectFit(ImageFit.Fill)
-              .width('200px')
-              .height('200px')
+              .width('176px')
+              .height('176px')
+              .clip(new Circle({ width: '176px', height: '176px' }))
           } else {
             Image(this.videoThumbnail || $r('app.media.camera_thumbnail_4x'))
               .objectFit(ImageFit.Fill)
-              .width('200px')
-              .height('200px')
+              .width('176px')
+              .height('176px')
+              .clip(new Circle({ width: '176px', height: '176px' }))
           }
         }.onClick(() => {
           if (deviceInfo.deviceType == 'default') {
@@ -379,16 +381,16 @@ export struct modeSwitchPage {
         Row() {
           if (this.modelBagCol === 'photo') {
             Image($r('app.media.camera_take_photo_4x'))
-              .width('200px')
-              .height('200px')
+              .width('176px')
+              .height('176px')
               .onClick(() => {
                 // Countdown camera recording - default camera recording
                 this.countTakeVideoFn();
               })
           } else {
             Image($r('app.media.camera_take_video_4x'))
-              .width('200px')
-              .height('200px')
+              .width('176px')
+              .height('176px')
               .onClick(() => {
                 // Countdown camera recording - default camera recording
                 this.countTakeVideoFn();
@@ -402,8 +404,8 @@ export struct modeSwitchPage {
       Column() {
         Row() {
           Image($r('app.media.camera_switch_4x'))
-            .width('200px')
-            .height('200px')
+            .width('176px')
+            .height('176px')
             .onClick(async () => {
               // Switching Cameras
               this.cameraDeviceIndex ? this.cameraDeviceIndex = 0 : this.cameraDeviceIndex = 1;
@@ -429,8 +431,8 @@ export struct modeSwitchPage {
       Column() {
         // Video capture button
         Image($r('app.media.camera_take_photo_4x'))
-          .width('200px')
-          .height('200px')
+          .width('176px')
+          .height('176px')
           .onClick(() => {
             cameraDemo.takePictureWithSettings(this.photoSettings);
           })
@@ -443,20 +445,20 @@ export struct modeSwitchPage {
             // video stop button
             Image($r('app.media.camera_pause_video_4x'))
               .size({ width: 25, height: 25 })
-              .width('200px')
-              .height('200px')
+              .width('176px')
+              .height('176px')
               .id('StopVideo')
               .onClick(() => {
                 if (this.timer) {
                   clearInterval(this.timer);
                 }
                 // Stop video
-                this.stopVideo().then(async (fileAsset: mediaLibrary.FileAsset | undefined) => {
+                this.stopVideo().then(async (fileAsset: photoAccessHelper.PhotoAsset | undefined) => {
                   this.videoRecodeTime = 0;
                   this.isModeBol = true;
                   try {
                     // Get video thumbnail
-                      fileAsset !== undefined ? this.videoThumbnail = await fileAsset.getThumbnail() : Logger.info(this.tag, 'fileAsset is undefined')
+                    fileAsset !== undefined ? this.videoThumbnail = await fileAsset.getThumbnail() : Logger.info(this.tag, 'fileAsset is undefined')
                   } catch (err) {
                     Logger.info(this.tag, 'videoThumbnail err----------:' + JSON.stringify(err.message));
                   }
@@ -466,8 +468,8 @@ export struct modeSwitchPage {
           .width('180px')
           .height('180px')
         }
-        .width('200px')
-        .height('200px')
+        .width('176px')
+        .height('176px')
       }.position({ x: '40%', y: '85%' })
     }
   }

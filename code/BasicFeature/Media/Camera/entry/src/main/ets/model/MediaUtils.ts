@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,20 +12,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 // @ts-nocheck
 
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import DateTimeUtil from '../model/DateTimeUtil';
 import Logger from '../model/Logger';
-import { SettingDataObj } from '../common/Constants';
+import { Constants, SettingDataObj } from '../common/Constants';
 import common from '@ohos.app.ability.common';
 
 let context = getContext(this) as common.Context;
 
 export default class MediaUtils {
   private tag: string = 'MediaUtils';
-  private mediaTest: mediaLibrary.MediaLibrary = mediaLibrary.getMediaLibrary(context);
+  private mediaTest: photoAccessHelper.PhotoAsset = photoAccessHelper.getPhotoAccessHelper(context);
   private static instance: MediaUtils = new MediaUtils();
   private num: number = 0;
   private settingDataObj: SettingDataObj = {
@@ -56,19 +55,17 @@ export default class MediaUtils {
     let name = `${dateTimeUtil.getDate()}_${dateTimeUtil.getTime()}`;
     let displayName = `${info.prefix}${name}${info.suffix}`;
     Logger.info(this.tag, `createAndGetUri displayName = ${displayName},mediaType = ${mediaType}`);
-    let publicPath = await this.mediaTest.getPublicDirectory(info.directory);
-    Logger.info(this.tag, `createAndGetUri publicPath = ${publicPath}`);
     try {
-      return await this.mediaTest.createAsset(mediaType, displayName, publicPath);
+      return await this.mediaTest.createAsset(displayName);
     } catch {
       this.num++;
       displayName = `${info.prefix}${name}_${this.num}${info.suffix}`;
-      return await this.mediaTest.createAsset(mediaType, displayName, publicPath);
+      return await this.mediaTest.createAsset(displayName);
     }
   }
 
-  async getFdPath(fileAsset: mediaLibrary.FileAsset) {
-    let fd = await fileAsset.open('Rw');
+  async getFdPath(fileAsset: photoAccessHelper.PhotoAsset) {
+    let fd = await fileAsset.open('rw');
     Logger.info(this.tag, `fd = ${fd}`);
     return fd;
   }
@@ -94,28 +91,18 @@ export default class MediaUtils {
 
   getInfoFromType(mediaType: number) {
     let result = {
-      prefix: '', suffix: '', directory: 0
+      prefix: '', suffix: ''
     };
     switch (mediaType) {
-      case mediaLibrary.MediaType.FILE:
-        result.prefix = 'FILE_';
-        result.suffix = '.txt';
-        result.directory = mediaLibrary.DirectoryType.DIR_DOCUMENTS;
-        break;
-      case mediaLibrary.MediaType.IMAGE:
+      case Constants.IMAGE:
         result.prefix = 'IMG_';
         result.suffix = `.${this.onChangePhotoFormat()}`;
-        result.directory = mediaLibrary.DirectoryType.DIR_CAMERA;
         break;
-      case mediaLibrary.MediaType.VIDEO:
+      case Constants.VIDEO:
         result.prefix = 'VID_';
         result.suffix = '.mp4';
-        result.directory = mediaLibrary.DirectoryType.DIR_CAMERA;
         break;
-      case mediaLibrary.MediaType.AUDIO:
-        result.prefix = 'AUD_';
-        result.suffix = '.wav';
-        result.directory = mediaLibrary.DirectoryType.DIR_AUDIO;
+      default:
         break;
     }
     return result;

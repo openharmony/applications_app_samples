@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -30,6 +30,10 @@ export class Constants {
   // video frame
   static readonly VIDEO_FRAME_30 = 30; // 30: VIDEO_FRAME_30
   static readonly VIDEO_FRAME_15 = 15; // 15: VIDEO_FRAME_15
+
+  // video type
+  static readonly IMAGE = 1;
+  static readonly VIDEO = 2;
 };
 
 export class SettingDataObj {

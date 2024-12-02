@@ -30,30 +30,30 @@
     "requestPermissions": [
       {
         "name": "ohos.permission.CAMERA",
-        "reason": "$string:read_image_video_permission",
+        "reason": "$string:CAMERA",
         "usedScene": {
-          "when": "always"
+          "when": "inuse"
         }
       },
       {
         "name": "ohos.permission.MEDIA_LOCATION",
-        "reason": "$string:read_image_video_permission",
+        "reason": "$string:MEDIA_LOCATION",
         "usedScene": {
-          "when": "always"
-        }
-      },
-      {
-        "name": "ohos.permission.READ_IMAGEVIDEO",
-        "reason": "$string:read_image_video_permission",
-        "usedScene": {
-          "when": "always"
+          "when": "inuse"
         }
       },
       {
         "name": "ohos.permission.WRITE_IMAGEVIDEO",
-        "reason": "$string:write_image_video_permission",
+        "reason": "$string:WRITE_IMAGEVIDEO",
         "usedScene": {
-          "when": "always"
+          "when": "inuse"
+        }
+      },
+      {
+        "name": "ohos.permission.READ_IMAGEVIDEO",
+        "reason": "$string:READ_IMAGEVIDEO",
+        "usedScene": {
+          "when": "inuse"
         }
       }
     ],
