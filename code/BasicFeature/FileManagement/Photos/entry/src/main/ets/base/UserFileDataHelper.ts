@@ -53,6 +53,8 @@ export async function getAlbumDisplayName(name: string): Promise<string> {
     return await getResourceString($r('app.string.album_remote_device'));
   } else if (name === MediaConstants.ALBUM_ID_SNAPSHOT) {
     return await getResourceString($r('app.string.album_screen_shot'));
+  } else if (name === MediaConstants.ALBUM_ID_MOVING_PHOTO) {
+    return await getResourceString($r('app.string.album_moving_photo'));
   }
   return null;
 }
@@ -66,5 +68,6 @@ export async function getSystemAlbumDisplayName(): Promise<string[]> {
   albumNames.push(await getResourceString($r('app.string.album_favor')));
   albumNames.push(await getResourceString($r('app.string.album_remote_device')));
   albumNames.push(await getResourceString($r('app.string.album_screen_shot')));
+  albumNames.push(await getResourceString($r('app.string.album_moving_photo')));
   return albumNames;
 }

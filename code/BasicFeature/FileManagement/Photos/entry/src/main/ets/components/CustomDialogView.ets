@@ -33,6 +33,8 @@ import { NewAlbumDialog } from './NewAlbumDialog';
 import { FindSameNameDialog, FindSameNameParam } from './FindSameNameDialog';
 import { screenManager } from '../common/ScreenManager';
 import { SaveImageDialog } from './SaveImageDialog';
+import { SelectSensitiveDialog } from './SelectSensitiveDialog';
+import { TransCodingDialog } from './TransCodingDialog';
 
 const TAG: string = 'CustomDialogView'
 
@@ -52,6 +54,7 @@ export struct CustomDialogView {
   @Provide findSameNameParam: FindSameNameParam = new FindSameNameParam();
   @Provide cancelMessage: Resource = $r('app.string.common_place_holder', String(''));
   @Provide renameFileName: string = '';
+  @Provide uris: string[] = [];
   @Provide mediaDetails: MediaDetails = {
     mediaType: 0,
     height: 0,
@@ -64,7 +67,9 @@ export struct CustomDialogView {
     dateAdded: 0,
     uri: '',
     displayName: '',
-    dateModified: 0
+    dateModified: 0,
+    location: '',
+    shootingParams: ''
   };
   @Provide targetMediaDetails: MediaDetails = {
     mediaType: 0,
@@ -78,7 +83,9 @@ export struct CustomDialogView {
     dateAdded: 0,
     uri: '',
     displayName: '',
-    dateModified: 0
+    dateModified: 0,
+    location: '',
+    shootingParams: ''
   };
   @Provide multiSelectDetails: MultiSelectDetails = {
     count: 0,
@@ -98,6 +105,8 @@ export struct CustomDialogView {
   newAlbumDialogController?: CustomDialogController ;
   findSameNameDialog?: CustomDialogController ;
   saveImageDialogController?: CustomDialogController ;
+  sensitiveDialogController?: CustomDialogController ;
+  transCodingFileDialogController?: CustomDialogController ;
 
   aboutToDisappear(): void {
     Log.info(TAG, 'aboutToDisappear');
@@ -113,6 +122,7 @@ export struct CustomDialogView {
     this.newAlbumDialogController = undefined;
     this.findSameNameDialog = undefined;
     this.saveImageDialogController = undefined;
+    this.sensitiveDialogController = undefined;
   }
 
   aboutToAppear(): void {
@@ -120,6 +130,16 @@ export struct CustomDialogView {
     let self = this;
     this.dialogController = new CustomDialogController({
       builder: DetailsDialog(),
+      autoCancel: false,
+      alignment: this.isHorizontal || this.isSidebar ? DialogAlignment.Center : DialogAlignment.Bottom,
+      offset: {
+        dx: 0,
+        dy: this.isHorizontal || this.isSidebar ? 0 : $r('app.float.dialog_offset_bottom')
+      },
+      customStyle: true
+    });
+    this.sensitiveDialogController = new CustomDialogController({
+      builder: SelectSensitiveDialog(),
       autoCancel: false,
       alignment: this.isHorizontal || this.isSidebar ? DialogAlignment.Center : DialogAlignment.Bottom,
       offset: {
@@ -188,6 +208,16 @@ export struct CustomDialogView {
       },
       customStyle: true
     });
+    this.transCodingFileDialogController = new CustomDialogController({
+      builder: TransCodingDialog(),
+      autoCancel: false,
+      alignment: this.isHorizontal || this.isSidebar ? DialogAlignment.Center : DialogAlignment.Bottom,
+      offset: {
+        dx: 0,
+        dy: this.isHorizontal || this.isSidebar ? 0 : $r('app.float.dialog_offset_bottom')
+      },
+      customStyle: true
+    });
     this.saveDialogController = new CustomDialogController({
       builder: SaveDialog(),
       autoCancel: false,
@@ -231,6 +261,16 @@ export struct CustomDialogView {
       this.showDetailDialog(item)
     });
 
+    this.broadCast.on(BroadcastConstants.SHOW_SENSITIVE_DIALOG,
+      (items: UserFileDataItem[]): void => {
+      let uris: string[] = [];
+      for (let item of items) {
+        uris.push(item.uri);
+      }
+      self.uris = uris;
+      self.sensitiveDialogController?.open();
+    });
+
     this.broadCast.on(BroadcastConstants.SHOW_MULTI_SELECT_DIALOG,
       (count: number, size: number): void => {
         Log.info(TAG, 'SHOW_MULTI_SELECT_DIALOG ');
@@ -258,6 +298,13 @@ export struct CustomDialogView {
         self.renameFileDialogController?.open();
       });
 
+    this.broadCast.on(BroadcastConstants.SHOW_TRANS_CODING_DIALOG,
+      (fileName: string, confirmCallback: Function, cancelCallback?: Function): void => {
+        Log.info(TAG, 'SHOW_TRANS_CODING_DIALOG ');
+        self.renameFileName = fileName;
+        self.dialogCallback = { confirmCallback: confirmCallback, cancelCallback: cancelCallback };
+        self.transCodingFileDialogController?.open();
+      });
     this.broadCast.on(BroadcastConstants.SHOW_ADD_NOTES_PHOTO_DIALOG,
       (confirmCallback: Function, cancelCallback?: Function): void => {
         Log.info(TAG, 'SHOW_ADD_NOTES_PHOTO_DIALOG ');
@@ -365,7 +412,9 @@ export struct CustomDialogView {
         dateAdded: item.dateAdded,
         uri: item.uri,
         displayName: item.displayName,
-        dateModified: item.dateModified
+        dateModified: item.dateModified,
+        location: 'longitude ' + item.longitude + ' latitude ' + item.latitude,
+        shootingParams: item.shootingParams
       };
       this.dialogController?.open();
     })
