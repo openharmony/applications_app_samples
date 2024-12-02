@@ -1,0 +1,24 @@
+{
+  "color": [
+    {
+      "name": "calendar_switch_border_color",
+      "value": "#24A844"
+    },
+    {
+      "name": "calendar_switch_segment_button_bgcolor",
+      "value": "#FFFEFEFE"
+    },
+    {
+      "name": "calendar_switch_segment_button_font_color",
+      "value": "#4e4e4e"
+    },
+    {
+      "name": "calendar_switch_segment_button_row_bgcolor",
+      "value": "#e7e7e7"
+    },
+    {
+      "name": "calendar_switch_schedule_point_color",
+      "value": "#ffababab"
+    }
+  ]
+}

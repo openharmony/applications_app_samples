@@ -273,6 +273,12 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow/src/main/resources/base/media/tabcontentoverflow_fabulous.png" desc="Provided by code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow"/>
 				<filteritem type="filepath" name="code/UI/TabContentTouchHotZone/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/UI/TabContentTouchHotZone"/>
 				<filteritem type="filepath" name="code/UI/TabContentTouchHotZone/AppScope/resources/base/media/app_icon.png" desc="Provided by code/UI/TabContentTouchHotZone"/>
+				<filteritem type="filepath" name="code/UI/CalendarViewSwitch/casesfeature/calendarswitch/src/main/resources/base/media/calendar_switch_add.png" desc="Provided by code/UI/CalendarViewSwitch"/>
+				<filteritem type="filepath" name="code/UI/CalendarViewSwitch/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/UI/CalendarViewSwitch"/>
+				<filteritem type="filepath" name="code/UI/CalendarViewSwitch/entry/src/main/resources/base/media/background.png" desc="Provided by code/UI/CalendarViewSwitch"/>
+				<filteritem type="filepath" name="code/UI/CalendarViewSwitch/casesfeature/calendarswitch/calendar_switch.gif" desc="Provided by code/UI/CalendarViewSwitch"/>
+				<filteritem type="filepath" name="code/UI/CalendarViewSwitch/AppScope/resources/base/media/app_icon.png" desc="Provided by code/UI/CalendarViewSwitch"/>
+				<filteritem type="filepath" name="code/UI/CalendarViewSwitch/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/UI/CalendarViewSwitch"/>
 				<filteritem type="filepath" name="code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary/lib/ProcessMessage-1.0.0.tgz" desc="Provided by code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary"/>
                 <filteritem type="filepath" name="code/BasicFeature/Notification/CustomCommonEvent/lib/CardEvent-1.0.0.tgz" desc="Provided by code/BasicFeature/Notification/CustomCommonEvent"/>
                 <filteritem type="filepath" name="code/BasicFeature/Ads/OAIDSample/lib/ResetOAID-1.0.0.tgz" desc="Provided by code/BasicFeature/Ads/OAIDSample"/>
