@@ -1,0 +1,332 @@
+{
+  "integer": [
+    {
+      "name": "operate_rdb_in_taskpool_head_font_size",
+      "value": 20
+    },
+    {
+      "name": "operate_rdb_in_taskpool_head_padding",
+      "value": 10
+    },
+    {
+      "name": "operate_rdb_in_taskpool_button_border_radius",
+      "value": 8
+    },
+    {
+      "name": "operate_rdb_in_taskpool_button_width",
+      "value": 110
+    },
+    {
+      "name": "operate_rdb_in_taskpool_button_height",
+      "value": 40
+    },
+    {
+      "name": "operate_rdb_in_taskpool_flex_padding",
+      "value": 10
+    },
+    {
+      "name": "operate_rdb_in_taskpool_flex_margin",
+      "value": 20
+    },
+    {
+      "name": "operate_rdb_in_taskpool_list_flex_padding",
+      "value": 20
+    },
+    {
+      "name": "operate_rdb_in_taskpool_list_item_height",
+      "value": 40
+    },
+    {
+      "name": "operate_rdb_in_taskpool_list_start_margin",
+      "value": 20
+    },
+    {
+      "name": "operate_rdb_in_taskpool_list_end_margin",
+      "value": 20
+    },
+    {
+      "name": "operate_rdb_in_taskpool_list_margin_top",
+      "value": 12
+    },
+    {
+      "name": "operate_rdb_in_taskpool_list_margin_bottom",
+      "value": 12
+    },
+    {
+      "name": "operate_rdb_in_taskpool_arrow_left_width",
+      "value": 28
+    },
+    {
+      "name": "operate_rdb_in_taskpool_arrow_left_height",
+      "value": 28
+    },
+    {
+      "name": "operate_rdb_in_taskpool_arrow_left_background_width",
+      "value": 40
+    },
+    {
+      "name": "operate_rdb_in_taskpool_arrow_left_background_height",
+      "value": 40
+    },
+    {
+      "name": "operate_rdb_in_taskpool_navigation_title_font_size",
+      "value": 20
+    },
+    {
+      "name": "operate_rdb_in_taskpool_navigation_title_margin_left",
+      "value": 9
+    },
+    {
+      "name": "operate_rdb_in_taskpool_button_right_width",
+      "value": 30
+    },
+    {
+      "name": "operate_rdb_in_taskpool_button_right_height",
+      "value": 30
+    },
+    {
+      "name": "operate_rdb_in_taskpool_button_right_back_ground_height",
+      "value": 40
+    },
+    {
+      "name": "operate_rdb_in_taskpool_bind_sheet_height",
+      "value": 180
+    },
+    {
+      "name": "operate_rdb_in_taskpool_button_ok_width",
+      "value": 28
+    },
+    {
+      "name": "operate_rdb_in_taskpool_button_ok_height",
+      "value": 28
+    },
+    {
+      "name": "operate_rdb_in_taskpool_navigation_height",
+      "value": 56
+    },
+    {
+      "name": "operate_rdb_in_taskpool_navigation_padding_left",
+      "value": 24
+    },
+    {
+      "name": "operate_rdb_in_taskpool_navigation_padding_right",
+      "value": 24
+    },
+    {
+      "name": "operate_rdb_in_taskpool_navigation_margin_bottom",
+      "value": 8
+    },
+    {
+      "name": "operate_rdb_in_taskpool_detail_content_font_size",
+      "value": 19
+    },
+    {
+      "name": "operate_rdb_in_taskpool_detail_content_height",
+      "value": 25
+    },
+    {
+      "name": "operate_rdb_in_taskpool_detail_title_font_size",
+      "value": 15
+    },
+    {
+      "name": "operate_rdb_in_taskpool_detail_title_height",
+      "value": 25
+    },
+    {
+      "name": "operate_rdb_in_taskpool_detail_icon_width",
+      "value": 25
+    },
+    {
+      "name": "operate_rdb_in_taskpool_detail_icon_height",
+      "value": 25
+    },
+    {
+      "name": "operate_rdb_in_taskpool_detail_icon_button_width",
+      "value": 45
+    },
+    {
+      "name": "operate_rdb_in_taskpool_detail_item_button_height",
+      "value": 45
+    },
+    {
+      "name": "operate_rdb_in_taskpool_detail_item_height",
+      "value": 60
+    },
+    {
+      "name": "operate_rdb_in_taskpool_phone_margin_top",
+      "value": 40
+    },
+    {
+      "name": "operate_rdb_in_taskpool_video_button_height",
+      "value": 50
+    },
+    {
+      "name": "operate_rdb_in_taskpool_detail_item_margin_top",
+      "value": 30
+    },
+    {
+      "name": "operate_rdb_in_taskpool_dialog_button_font_size",
+      "value": 17
+    },
+    {
+      "name": "operate_rdb_in_taskpool_dialog_button_height",
+      "value": 45
+    },
+    {
+      "name": "operate_rdb_in_taskpool_dialog_divider_line_height",
+      "value": 2
+    },
+    {
+      "name": "operate_rdb_in_taskpool_operate_builder_padding_top",
+      "value": 20
+    },
+    {
+      "name": "operate_rdb_in_taskpool_avatar_width",
+      "value": 100
+    },
+    {
+      "name": "operate_rdb_in_taskpool_avatar_height",
+      "value": 100
+    },
+    {
+      "name": "operate_rdb_in_taskpool_avatar_font_size",
+      "value": 60
+    },
+    {
+      "name": "operate_rdb_in_taskpool_name_font_size",
+      "value": 40
+    },
+    {
+      "name": "operate_rdb_in_taskpool_name_height",
+      "value": 50
+    },
+    {
+      "name": "operate_rdb_in_taskpool_name_margin_top",
+      "value": 10
+    },
+    {
+      "name": "operate_rdb_in_taskpool_detail_padding_left",
+      "value": 24
+    },
+    {
+      "name": "operate_rdb_in_taskpool_detail_padding_right",
+      "value": 24
+    },
+    {
+      "name": "operate_rdb_in_taskpool_confirm_buttom_background_width",
+      "value": 40
+    },
+    {
+      "name": "operate_rdb_in_taskpool_confirm_buttom_background_height",
+      "value": 40
+    },
+    {
+      "name": "operate_rdb_in_taskpool_avatar_edit_view_margin_top",
+      "value": 20
+    },
+    {
+      "name": "operate_rdb_in_taskpool_text_input_font_size",
+      "value": 17
+    },
+    {
+      "name": "operate_rdb_in_taskpool_text_input_height",
+      "value": 60
+    },
+    {
+      "name": "operate_rdb_in_taskpool_text_input_margin_left",
+      "value": 24
+    },
+    {
+      "name": "operate_rdb_in_taskpool_text_input_margin_right",
+      "value": 24
+    },
+    {
+      "name": "operate_rdb_in_taskpool_text_input_margin_top",
+      "value": 20
+    },
+    {
+      "name": "operate_rdb_in_taskpool_text_input_devider_padding_left",
+      "value": 12
+    },
+    {
+      "name": "operate_rdb_in_taskpool_text_input_devider_padding_right",
+      "value": 12
+    },
+    {
+      "name": "operate_rdb_in_taskpool_text_input_padding_top",
+      "value": 5
+    },
+    {
+      "name": "operate_rdb_in_taskpool_text_input_padding_bottom",
+      "value": 5
+    },
+    {
+      "name": "operate_rdb_in_taskpool_list_head_font_size",
+      "value": 16
+    },
+    {
+      "name": "operate_rdb_in_taskpool_list_head_height",
+      "value": 25
+    },
+    {
+      "name": "operate_rdb_in_taskpool_list_head_padding_left",
+      "value": 12
+    },
+    {
+      "name": "operate_rdb_in_taskpool_list_font_size",
+      "value": 16
+    },
+    {
+      "name": "operate_rdb_in_taskpool_list_padding_left",
+      "value": 12
+    },
+    {
+      "name": "operate_rdb_in_taskpool_alphabet_margin_right",
+      "value": -8
+    },
+    {
+      "name": "operate_rdb_in_taskpool_alphabet_padding_right",
+      "value": 12
+    },
+    {
+      "name": "operate_rdb_in_taskpool_add_image_width",
+      "value": 50
+    },
+    {
+      "name": "operate_rdb_in_taskpool_add_image_height",
+      "value": 50
+    },
+    {
+      "name": "operate_rdb_in_taskpool_search_height",
+      "value": 40
+    },
+    {
+      "name": "operate_rdb_in_taskpool_search_margin_left",
+      "value": 12
+    },
+    {
+      "name": "operate_rdb_in_taskpool_search_margin_right",
+      "value": 12
+    },
+    {
+      "name": "operate_rdb_in_taskpool_progress_margin_left",
+      "value": 12
+    },
+    {
+      "name": "operate_rdb_in_taskpool_progress_margin_right",
+      "value": 12
+    },
+    {
+      "name": "operate_rdb_in_taskpool_sync_button_width",
+      "value": 180
+    },
+    {
+      "name": "operate_rdb_in_taskpool_sync_button_height",
+      "value": 40
+    },
+    {
+      "name": "operate_rdb_in_taskpool_sync_height",
+      "value": 200
+    }
+  ]
+}
