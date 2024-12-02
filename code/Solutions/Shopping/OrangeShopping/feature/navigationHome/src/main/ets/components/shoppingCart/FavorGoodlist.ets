@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,7 +16,7 @@
 import router from '@ohos.router';
 import Http from '@ohos/http';
 import { GoodResponse, Info, Records, ShopCartItemDataModel } from '../../model/GoodsModel';
-import { Products_Data, SHOP_CART_ITEM_DATA } from '../../mock/ProductsData';
+import { Products_Data, PRODUCT_DATA } from '../../mock/ProductsData';
 
 @Component
 export struct FavorGoodList {
@@ -96,7 +96,7 @@ export struct FavorGoodList {
         y: vp2px(8)
       }
     }) {
-      ForEach(this.flag ? this.productsData.data.records : SHOP_CART_ITEM_DATA, (item: Object) => {
+      ForEach(this.flag ? this.productsData.data.records : PRODUCT_DATA, (item: Object) => {
         GridCol({
           span: {
             sm: 6,

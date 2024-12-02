@@ -21,8 +21,8 @@
       "value": "shopping cart"
     },
     {
-      "name": "edit",
-      "value": "edit"
+      "name": "shop_cart_edit",
+      "value": "shop_cart_edit"
     },
     {
       "name": "shopping_self_support",
