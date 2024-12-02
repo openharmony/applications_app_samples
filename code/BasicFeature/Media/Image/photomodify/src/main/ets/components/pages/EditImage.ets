@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Hunan OpenValley Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023-2024 Hunan OpenValley Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -81,7 +81,6 @@ export struct EditImage {
     this.loadingController.close();
   }
 
-
   /**
    * 输入文字素材弹窗
    */
@@ -98,7 +97,6 @@ export struct EditImage {
     gridCount: 4,
     customStyle: false
   });
-
   /**
    * 加载弹窗
    */
@@ -117,7 +115,7 @@ export struct EditImage {
 
   async onEditCancel(): Promise<void> {
     if (this.currentTask === Tasks.CROP || this.currentTask === Tasks.SCALE ||
-    this.currentTask === Tasks.ROTATE || this.currentTask === Tasks.TONING || this.currentTask === Tasks.COLORSPACE) {
+      this.currentTask === Tasks.ROTATE || this.currentTask === Tasks.TONING || this.currentTask === Tasks.COLORSPACE) {
       this.currentTask = Tasks.ADJUST;
       this.cropIndex = 0;
     }
@@ -134,7 +132,7 @@ export struct EditImage {
       this.pixelMap = await copyPixelMap(this.originBM); // 拷贝
     }
     // 移出一个缓存
-    const pm: image.PixelMap|undefined = this.pixelMapQueue.pop();
+    const pm: image.PixelMap | undefined = this.pixelMapQueue.pop();
     this.releasePm(pm);
   }
 
@@ -297,11 +295,11 @@ export struct EditImage {
   }
 
   releasePm(pm: PixelMap | undefined): void {
-    if(!pm){
+    if (!pm) {
       return
     }
 
-    pm.release().catch((err:BusinessError) => {
+    pm.release().catch((err: BusinessError) => {
       logger.error('pm release异常:' + JSON.stringify(err));
     });
   }
@@ -331,7 +329,7 @@ export struct EditImage {
           .margin({ right: '10%' })
           .onClick(() => {
             if (this.currentTask === Tasks.CROP || this.currentTask === Tasks.SCALE ||
-            this.currentTask === Tasks.ROTATE || this.currentTask === Tasks.TONING || this.currentTask === Tasks.COLORSPACE) {
+              this.currentTask === Tasks.ROTATE || this.currentTask === Tasks.TONING || this.currentTask === Tasks.COLORSPACE) {
               this.currentTask = Tasks.ADJUST;
               this.cropIndex = 0;
             }
@@ -407,7 +405,7 @@ export struct EditImage {
               if (item.task !== undefined) {
                 this.currentCropTask = item.task;
               }
-              this.pixelMap = await copyPixelMap(this.originBM); // 拷贝
+              this.pixelMap = await copyPixelMap(this.originBM!); // 拷贝
               this.flushPage();
               this.cropIndex = index;
               if (this.currentCropTask === CropTasks.ORIGIN) { // 原图
@@ -463,7 +461,7 @@ export struct EditImage {
               if (item.text !== undefined) {
                 this.cancelOkText = item.text
               }
-              this.originBM = await copyPixelMap(this.pixelMap) // 拷贝
+              this.originBM = await copyPixelMap(this.pixelMap!) // 拷贝
               if (item.task === Tasks.ROTATE) {
                 this.pixelMap = await copyPixelMap(this.originBM);
               }
@@ -607,7 +605,7 @@ export struct EditImage {
     Row() {
       Scroll() {
         List({ scroller: this.scroller }) {
-          ForEach(materials, (item: MaterialData, index:number) => {
+          ForEach(materials, (item: MaterialData, index: number) => {
             ListItem() {
               Column() {
                 if (item instanceof FontColorData) {
@@ -794,7 +792,7 @@ export struct EditImage {
         if (this.currentTask === Tasks.MARK || this.currentTask === Tasks.ADJUST) {
           this.getFirstLvMenu();
         } else {
-          this.CancelOrOk(this.cancelOkText);
+          this.CancelOrOk(this.cancelOkText!);
         }
       }
       .width('100%')

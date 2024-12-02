@@ -11,6 +11,26 @@
     {
       "name": "EntryAbility_label",
       "value": "ndk_camera_demo"
+    },
+    {
+      "name": "MICROPHONE",
+      "value": "允许应用使用麦克风"
+    },
+    {
+      "name": "WRITE_IMAGEVIDEO",
+      "value": "允许修改用户公共目录的图片或视频文件"
+    },
+    {
+      "name": "READ_IMAGEVIDEO",
+      "value": "允许读取用户公共目录的图片或视频文件"
+    },
+    {
+      "name": "MEDIA_LOCATION",
+      "value": "允许应用访问用户媒体文件中的地理位置信息"
+    },
+    {
+      "name": "CAMERA",
+      "value": "允许应用使用相机"
     }
   ]
 }

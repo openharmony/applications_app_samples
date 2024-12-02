@@ -11,6 +11,26 @@
     {
       "name": "EntryAbility_label",
       "value": "ndk_camera_demo"
+    },
+    {
+      "name": "MICROPHONE",
+      "value": "Allow applications to use microphones"
+    },
+    {
+      "name": "WRITE_IMAGEVIDEO",
+      "value": "Allow modification of images or video files in the user's public directory"
+    },
+    {
+      "name": "READ_IMAGEVIDEO",
+      "value": "Allow reading of images or video files from the user's public directory"
+    },
+    {
+      "name": "MEDIA_LOCATION",
+      "value": "Allow applications to access geographic location information in user media files"
+    },
+    {
+      "name": "CAMERA",
+      "value": "Allow applications to use cameras"
     }
   ]
 }
