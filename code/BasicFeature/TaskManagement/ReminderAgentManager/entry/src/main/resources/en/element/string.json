@@ -25,6 +25,14 @@
       "value": "Allows the app to read media file information from the user's external storage"
     },
     {
+      "name": "permission_read_calendar",
+      "value": "Allow the app to read calendar information"
+    },
+    {
+      "name": "permission_write_calendar",
+      "value": "Allow the app to add, remove, or change calendar events"
+    },
+    {
       "name": "setting",
       "value": "Settings"
     },
