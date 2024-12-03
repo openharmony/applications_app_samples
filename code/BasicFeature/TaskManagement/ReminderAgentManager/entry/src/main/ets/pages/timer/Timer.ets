@@ -13,15 +13,22 @@
  * limitations under the License.
  */
 
-import notification from '@ohos.notification'
+import notificationManager from '@ohos.notificationManager';
 import reminderAgent from '@ohos.reminderAgentManager';
-import vibrator from '@ohos.vibrator'
-import AudioPlayer from '../../util/AudioPlayer'
-import Constant from '../../common//Constant'
-import Logger from '../../util/Logger'
-import { SelectTime } from './SelectTime'
+import vibrator from '@ohos.vibrator';
+import AudioPlayer from '../../util/AudioPlayer';
+import Constant from '../../common//Constant';
+import Logger from '../../util/Logger';
+import { SelectTime } from './SelectTime';
+import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
+import { deviceInfo } from '@kit.BasicServicesKit';
+import { calendarManager } from '@kit.CalendarKit';
+import { calendarMgr } from '../../MainAbility/MainAbility';
 
-const TAG: string = 'CountDown'
+const TAG: string = 'CountDown';
+let deviceTypeInfo: string = deviceInfo.deviceType;
+let calendar: calendarManager.Calendar | undefined = undefined;
 
 @Component
 export struct Timer {
@@ -44,9 +51,24 @@ export struct Timer {
   @State isPausing: boolean = false
   @State startImg: Resource = $r('app.media.ic_public_start')
   @State resetImg: Resource = $r('app.media.ic_countdown_reset')
-  private title: Resource
+  private title: Resource | undefined = undefined;
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private selectedTime: Date = new Date();
+  private intervalId: number = 0;
+
+  aboutToAppear() {
+    this.intervalId = setInterval(() => {
+      this.getTime();
+    }, Constant.SECONDS_MILLISECONDS);
+    if (deviceTypeInfo !== 'default') {
+      this.setCalendarReminder();
+    }
+  }
+
+  aboutToDisappear() {
+    clearInterval(this.intervalId);
+  }
 
   build() {
     Column() {
@@ -152,11 +174,36 @@ export struct Timer {
     .height('100%')
   }
 
-  formatTime(num) {
+  formatTime(num: number) {
     if (num > 99 || num < 0) {
       return '**'
     }
     return (num < 10) ? ('0' + num).toString() : num.toString()
+  }
+
+  setCalendarReminder() {
+    let config: calendarManager.CalendarConfig = {
+      enableReminder: true,
+      color: '#aabbcc',
+    };
+
+    calendarMgr?.getCalendar(async (err: BusinessError, data: calendarManager.Calendar) => {
+      if (err) {
+        Logger.error(TAG, `Failed to get calendar.code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+      } else {
+        Logger.info(TAG, `Succeeded in getting calendar, data ->` + JSON.stringify(data));
+        calendar = data;
+        await calendar!.setConfig(config).then(() => {
+          Logger.info(TAG, `Succeeded in setting config, config -> ` + JSON.stringify(config));
+        }).catch((err: BusinessError) => {
+          Logger.error(TAG, `Failed to set config. code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+        });
+      }
+    });
+  }
+
+  getTime() {
+    this.selectedTime = new Date();
   }
 
   async timerCountDown() {
@@ -184,36 +231,80 @@ export struct Timer {
       this.minuteTime = this.pickerMinute
       this.secondTime = this.pickerSecond
     }
-    let context: any = getContext(this)
+    let context = getContext(this) as common.UIAbilityContext;
     this.countInSec = this.pickerHour * Constant.HOUR_SECONDS + this.pickerMinute * Constant.MINUTES_SECONDS + this.pickerSecond
     this.countdownTime = this.hoursTime * Constant.HOUR_SECONDS + this.minuteTime * Constant.MINUTES_SECONDS + this.secondTime
     this.isRunning = true
     this.isPausing = false
     this.startImg = $r('app.media.ic_public_pause')
     this.resetImg = $r('app.media.ic_public_reset')
-    this.timer = setInterval(await this.timerCountDown.bind(this), Constant.SECONDS_MILLISECONDS)
-    await reminderAgent.addNotificationSlot({ type: notification.SlotType.SERVICE_INFORMATION })
+    this.timer = setInterval(() => {
+      this.timerCountDown();
+    }, Constant.SECONDS_MILLISECONDS);
+    if (deviceTypeInfo === 'default') {
+      await this.handleDefaultDevice(context);
+    } else {
+      setTimeout(() => {
+        this.handleNonDefaultDevice(context);
+      }, this.countdownTime * Constant.SECONDS_MILLISECONDS);
+    }
+    try {
+      this.vibratorId = setTimeout(() => {
+        vibrator.startVibration({
+          type: 'time',
+          duration: Constant.VIBRATOR_DURATION
+        }, {
+          id: 0,
+          usage: 'alarm'
+        })
+          .then(() => {
+            Logger.info(TAG, `Succeed in starting vibration`);
+          }, (error: BusinessError) => {
+            Logger.error(TAG, `Failed to start vibration.
+              code: ${JSON.stringify(error.code)}, message: ${JSON.stringify(error.message)}`);
+          });
+      }, this.countdownTime * Constant.SECONDS_MILLISECONDS);
+    } catch (err) {
+      Logger.error(TAG, `Start vibration error occurred.
+        code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+    }
+    this.audioId = await AudioPlayer.getAudioID('/system/etc/demo.wav', this.countdownTime * Constant.SECONDS_MILLISECONDS);
+  }
+
+  async handleDefaultDevice(context: common.UIAbilityContext) {
+    await reminderAgent.addNotificationSlot({ notificationType: notificationManager.SlotType.SERVICE_INFORMATION });
     let timer: reminderAgent.ReminderRequestTimer = {
       reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
       ringDuration: Constant.REMINDER_DURATION,
       title: context.resourceManager.getStringSync($r('app.string.timer').id),
       content: context.resourceManager.getStringSync($r('app.string.countdown_close').id),
-      wantAgent: { pkgName: 'ohos.samples.reminderagentmanager', abilityName: 'MainAbility' },
-      slotType: notification.SlotType.CONTENT_INFORMATION,
+      wantAgent: {
+        pkgName: 'ohos.samples.reminderagentmanager',
+        abilityName: 'MainAbility'
+      },
+      slotType: notificationManager.SlotType.CONTENT_INFORMATION,
       triggerTimeInSeconds: this.countdownTime
-    }
-    Logger.info(TAG, `this timer is ${JSON.stringify(timer)}}`)
-    this.reminderId = await reminderAgent.publishReminder(timer)
-    this.vibratorId = setTimeout(function () {
-      vibrator.vibrate(Constant.VIBRATOR_DURATION, function (err) {
-        if (err) {
-          Logger.error(TAG, `this vibrator is failed err is ${JSON.stringify(err)}`)
-        } else {
-          Logger.info(TAG, `this vibrator is successed`)
-        }
+    };
+    this.reminderId = await reminderAgent.publishReminder(timer);
+  }
+
+  handleNonDefaultDevice(context: common.UIAbilityContext) {
+    let event: calendarManager.Event = {
+      type: calendarManager.EventType.NORMAL,
+      title: context.resourceManager.getStringSync($r('app.string.timer').id),
+      reminderTime: [0],
+      startTime: this.selectedTime.getTime(),
+      endTime: this.selectedTime.getTime() + 60 * 1000
+    };
+    calendar!.addEvent(event)
+      .then((data: number) => {
+        Logger.info(TAG, `Succeeded in adding event, id -> {data}`);
+        this.reminderId = data;
+        Logger.info(TAG, `this.reminderId is` + JSON.stringify(this.reminderId));
       })
-    }, this.countdownTime * Constant.SECONDS_MILLISECONDS)
-    this.audioId = await AudioPlayer.getAudioID('/system/etc/demo.wav', this.countdownTime * Constant.SECONDS_MILLISECONDS)
+      .catch((err: BusinessError) => {
+        Logger.error(TAG, `Failed to add event.code: ${err.code}, message: ${err.message}`);
+      });
   }
 
   async pause() {
@@ -224,7 +315,7 @@ export struct Timer {
     this.isPausing = true
     this.startImg = $r('app.media.ic_public_start')
     await reminderAgent.cancelReminder(this.reminderId)
-    await vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME)
+    await vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME);
   }
 
   async reset(isCancel?: boolean) {
@@ -247,6 +338,6 @@ export struct Timer {
     if (isCancel) {
       await reminderAgent.cancelReminder(this.reminderId);
     }
-    await vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME)
+    await vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME);
   }
 }
