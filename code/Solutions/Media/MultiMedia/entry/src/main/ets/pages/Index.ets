@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,15 +12,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import router from '@ohos.router'
-import TitleBar from '../view/TitleBar'
-import MediaUtils from '../model/MediaUtils'
-import { MediaView } from '../view/MediaView'
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+import router from '@ohos.router';
+import TitleBar from '../view/TitleBar';
+import MediaUtils from '../model/MediaUtils';
+import { MediaView } from '../view/MediaView';
+import Logger from '../model/Logger';
 
 @Observed
 export default class Album {
-  constructor(public albumName: string, public count: number, public mediaType?: mediaLibrary.MediaType) {
+  public albumName: string;
+  public count: number;
+  public mediaType?: string;
+
+  constructor(albumName: string, count: number, mediaType?: string) {
     this.albumName = albumName;
     this.count = count;
     this.mediaType = mediaType;
@@ -37,24 +44,8 @@ struct Index {
 
   async onPageShow() {
     this.albums = [];
-    this.albums = await this.mediaUtils.getAlbums();
-  }
-
-  @Builder OperateBtn(src, zIndex, translate, handleClick) {
-    Button() {
-      Image(src)
-        .width('70%')
-        .height('70%')
-    }
-    .type(ButtonType.Circle)
-    .width('40%')
-    .height('40%')
-    .backgroundColor('#0D9FFB')
-    .zIndex(zIndex)
-    .translate({ x: translate.x, y: translate.y })
-    .transition({ type: TransitionType.Insert, translate: { x: 0, y: 0 } })
-    .transition({ type: TransitionType.Delete, opacity: 0 })
-    .onClick(handleClick)
+    let context = getContext(this) as common.UIAbilityContext;
+    this.albums = await this.mediaUtils.getAlbums(context);
   }
 
   build() {
@@ -67,7 +58,7 @@ struct Index {
               MediaView({ album: item })
                 .id(`mediaType${index}`)
             }
-          }, item => item.albumName)
+          }, (item: Album) => item.albumName)
         }
         .divider({ strokeWidth: 1, color: Color.Gray, startMargin: 16, endMargin: 16 })
         .layoutWeight(1)
@@ -107,8 +98,17 @@ struct Index {
         .translate({ x: 0, y: -80 })
         .visibility(this.operateVisible ? Visibility.Visible : Visibility.None)
         .onClick(() => {
-          this.operateVisible = !this.operateVisible
-          router.pushUrl({ url: 'pages/CameraPage' })
+          this.operateVisible = !this.operateVisible;
+          let context: common.UIAbilityContext | undefined = AppStorage.Get('context');
+          let want: Want = {
+            bundleName: "com.samples.camera_page",
+            abilityName: "EntryAbility",
+          };
+          context && context.startAbility(want, (err) => {
+            if (err.code) {
+              Logger.error('StartAbility', `Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+            }
+          });
         })
 
         Button() {
@@ -153,9 +153,5 @@ struct Index {
     }
     .width('100%')
     .height('100%')
-  }
-
-  aboutToDisappear() {
-    this.mediaUtils.offDateChange()
   }
 }
