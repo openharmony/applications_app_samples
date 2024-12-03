@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Hunan OpenValley Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023-2024 Hunan OpenValley Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,7 +18,7 @@ import deviceInfo from '@ohos.deviceInfo';
 import fileIo from '@ohos.file.fs';
 import image from '@ohos.multimedia.image';
 import media from '@ohos.multimedia.media';
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import Logger from '../utlis/Logger';
 import MediaModel from './MediaModel';
 
@@ -55,7 +55,7 @@ const TAG = '[CameraModel]';
 
 export default class CameraService {
   private mediaModel: MediaModel = undefined;
-  private fileAsset: mediaLibrary.FileAsset = undefined;
+  private fileAsset: photoAccessHelper.PhotoAsset | undefined = undefined;
   private cameraMgr: camera.CameraManager = undefined;
   private camerasArray: Array<camera.CameraDevice> = undefined;
   private cameraInput: camera.CameraInput = undefined;
@@ -85,7 +85,7 @@ export default class CameraService {
     audioSampleRate: 48000,
     fileFormat: media.ContainerFormatType.CFT_MPEG_4,
     videoBitrate: 48000,
-    videoCodec: media.CodecMimeType.VIDEO_MPEG4,
+    videoCodec: media.CodecMimeType.VIDEO_AVC,
     videoFrameWidth: 480,
     videoFrameHeight: 360,
     videoFrameRate: 30,
@@ -180,7 +180,7 @@ export default class CameraService {
    */
   async saveImage(buffer: ArrayBuffer, img: image.Image): Promise<void> {
     Logger.info(TAG, 'savePicture');
-    this.fileAsset = await this.mediaModel.createAndGetUri(mediaLibrary.MediaType.IMAGE);
+    this.fileAsset = await this.mediaModel.createAndGetUri(photoAccessHelper.PhotoType.IMAGE);
     this.photoPath = this.fileAsset.uri;
     Logger.info(TAG, `this.photoUri = ${this.photoPath}`);
     this.fd = await this.mediaModel.getFdPath(this.fileAsset);
@@ -285,7 +285,6 @@ export default class CameraService {
     };
     await this.photoOutPut.capture(photoSettings);
     Logger.info(TAG, 'takePicture done');
-    AppStorage.Set('isRefresh', true);
   }
 
   /**
@@ -338,7 +337,7 @@ export default class CameraService {
       }
     }
     Logger.info(TAG, 'startVideo 8');
-    this.fileAsset = await this.mediaModel.createAndGetUri(mediaLibrary.MediaType.VIDEO);
+    this.fileAsset = await this.mediaModel.createAndGetUri(photoAccessHelper.PhotoType.VIDEO);
     Logger.info(TAG, `startVideo fileAsset:${this.fileAsset}`);
     this.fd = await this.mediaModel.getFdPath(this.fileAsset);
     Logger.info(TAG, `startVideo fd:${this.fd}`);

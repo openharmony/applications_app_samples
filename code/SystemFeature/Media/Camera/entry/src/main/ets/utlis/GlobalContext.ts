@@ -13,13 +13,14 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
+import common from '@ohos.app.ability.common';
 
 export class GlobalContext {
   private constructor() {
   }
 
   private static instance: GlobalContext;
-  private _objects = new Map<string, Object>();
+  private cameraAbilityContext: common.UIAbilityContext;
 
   public static getContext(): GlobalContext {
     if (!GlobalContext.instance) {
@@ -28,15 +29,11 @@ export class GlobalContext {
     return GlobalContext.instance;
   }
 
-  getValue(value: string): Object {
-    let result = this._objects.get(value);
-    if (!result) {
-      throw new Error("this value undefined")
-    }
-    return result;
+  public getCameraAbilityContext(): common.UIAbilityContext {
+    return this.cameraAbilityContext;
   }
 
-  setValue(key: string, objectClass: Object): void {
-    this._objects.set(key, objectClass);
+  public setCameraAbilityContext(context: common.UIAbilityContext): void {
+    this.cameraAbilityContext = context;
   }
 }

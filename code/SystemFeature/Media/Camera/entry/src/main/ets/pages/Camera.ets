@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Hunan OpenValley Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023-2024 Hunan OpenValley Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -164,7 +164,7 @@ struct CameraPage {
   }
 
   startAbilityToPhoto() {
-    (GlobalContext.getContext().getValue('cameraContext') as common.UIAbilityContext).startAbility({
+    (GlobalContext.getContext().getCameraAbilityContext() as common.UIAbilityContext).startAbility({
       bundleName: 'com.ohos.photos',
       abilityName: 'com.ohos.photos.MainAbility'
     }, (error: BusinessError) => {
@@ -200,6 +200,7 @@ struct CameraPage {
       }
       this.currentModel = CameraMode.modePhoto;
       this.videoThumbnail = undefined;
+      this.cameraModel.initCamera(this.surfaceId);
     }
   }
 
@@ -213,6 +214,7 @@ struct CameraPage {
         this.textMove = this.textMove - 56;
       });
       this.currentModel = CameraMode.modeVideo;
+      this.imageThumbnail = '';
     }
   }
 
