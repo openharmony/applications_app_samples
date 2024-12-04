@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -19,6 +19,7 @@ import emitter from '@ohos.events.emitter'
 import Logger from '../common/Logger'
 import { DESTROY_FLOAT_WINDOW } from '../common/Constants'
 import display from '@ohos.display';
+import { BusinessError } from '@ohos.base';
 
 const TAG: string = '[index]'
 
@@ -56,37 +57,43 @@ struct Index {
   }
 
   start = () => {
-    let windowClass
-    //TODO: use the  new api "window.createWindow(config: Configuration, callback: AsyncCallback<Window>): void" instead
-    window.create(getContext(this), 'floatWindow', window.WindowType.TYPE_FLOAT, (err, data) => {
+    let windowClass: window.Window | undefined = undefined;
+    let config: window.Configuration = {
+      name: 'floatWindow',
+      windowType: window.WindowType.TYPE_FLOAT,
+      ctx: getContext(this)
+    };
+    window.createWindow(config, (err: BusinessError, data: window.Window) => {
       if (err.code) {
         Logger.error(TAG, 'Failed to create the floatWindow: ' + JSON.stringify(err))
         return
       }
       Logger.info(TAG, 'Succeeded in creating the floatWindow. Data: ' + JSON.stringify(data))
       windowClass = data
-      windowClass.moveTo(vp2px(50), vp2px(50), (err, data) => {
+      windowClass.moveWindowTo(vp2px(50), vp2px(50), (err: BusinessError) => {
         if (err.code) {
           Logger.error(TAG, 'Failed to move the window. Cause: ' + JSON.stringify(data))
           return
         }
         Logger.info(TAG, 'Succeeded in moving the window. Data:' + JSON.stringify(data))
       })
-      windowClass.resetSize(vp2px(130), vp2px(30), (err, data) => {
+      windowClass.resize(vp2px(130), vp2px(30), (err: BusinessError, data) => {
         if (err.code) {
           Logger.error(TAG, 'Failed to resetSize. Cause: ' + JSON.stringify(data))
           return
         }
         Logger.info(TAG, 'Succeeded in resetting size. Data:' + JSON.stringify(data))
       })
-      windowClass.loadContent('pages/ScreenRecorder', (err, data) => {
+      windowClass.setUIContent('pages/ScreenRecorder', (err: BusinessError, data) => {
         if (err.code) {
           Logger.error(TAG, 'Failed to load ScreenRecorder page. Cause: ' + JSON.stringify(data))
           return
         }
         Logger.info(TAG, 'Succeeded in loading ScreenRecorder page. Data:' + JSON.stringify(data))
 
-        windowClass.show((err, data) => {
+        windowClass && windowClass.setWindowBackgroundColor('#00ffffff');
+
+        windowClass && windowClass.showWindow((err: BusinessError, data) => {
           if (err.code) {
             Logger.error(TAG, 'Failed to show window. Case: ' + JSON.stringify(data))
             return
@@ -94,19 +101,19 @@ struct Index {
           Logger.info(TAG, 'Succeeded in showing the window. Data:' + JSON.stringify(data))
         })
       })
-      windowClass.setBackgroundColor(Color.Transparent)
-    })
-    globalThis.floatWindow = windowClass
-    let displayClass = display.getDefaultDisplaySync();
-    window.minimizeAll(displayClass.id);
-    emitter.once({ eventId: DESTROY_FLOAT_WINDOW }, () => {
-      Logger.info(TAG, 'emitter once')
-      windowClass.destroyWindow((err, data) => {
-        if(err.code) {
-          Logger.error(TAG, 'Failed to destroy the window. Cause:' + JSON.stringify(err))
-          return
-        }
-        Logger.info(TAG, 'Succeeded to destroy the window. Data:' + JSON.stringify(data))
+
+      const displayClass = display.getDefaultDisplaySync();
+      window.minimizeAll(displayClass.id);
+
+      emitter.once({ eventId: DESTROY_FLOAT_WINDOW }, () => {
+        Logger.info(TAG, 'emitter once');
+        windowClass && windowClass.destroyWindow((err: BusinessError, data) => {
+          if (err.code) {
+            Logger.error(TAG, 'Failed to destroy the window. Cause:' + JSON.stringify(err));
+            return;
+          }
+          Logger.info(TAG, 'Succeeded to destroy the window. Data:' + JSON.stringify(data));
+        })
       })
     })
   }
