@@ -71,8 +71,6 @@ export default class EntryAbility extends UIAbility {
   
   getPermission( want: Want ): void {
     let array: Array<Permissions> = [
-      'ohos.permission.READ_MEDIA',
-      'ohos.permission.WRITE_MEDIA',
       'ohos.permission.ACCESS_DLP_FILE',
       'ohos.permission.MEDIA_LOCATION',
       'ohos.permission.FILE_ACCESS_MANAGER',
