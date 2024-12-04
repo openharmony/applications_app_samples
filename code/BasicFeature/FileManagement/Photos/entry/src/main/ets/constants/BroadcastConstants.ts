@@ -28,6 +28,7 @@ export class BroadcastConstants {
   static readonly ON_TAB_CHANGED = 'onTabChanged';
   static readonly RESET_ZERO = 'resetZero';
   static readonly SHOW_DETAIL_DIALOG = 'showDetailDialog';
+  static readonly SHOW_SENSITIVE_DIALOG = 'showSensitiveDialog';
   static readonly SHOW_THIRD_DELETE_DIALOG = 'showThirdDeleteDialog';
   static readonly SHOW_MULTI_SELECT_DIALOG = 'showMultiSelectDialog';
   static readonly UPDATE_DATA_SOURCE = 'updateDataSource';
@@ -55,6 +56,7 @@ export class BroadcastConstants {
   static readonly ON_DATA_RELOADED_WITH_EDIT = 'on_data_reloaded_with_edit';
   static readonly PHOTO_EDIT_SAVE_COMPLETE: string = 'photo_edit_save_complete';
   static readonly CHANGE_SWIPER_DURATION = 'change_swiper_duration';
+  static readonly SHOW_TRANS_CODING_DIALOG = 'showTranscodingDialog';
   // USED for AppStorage
   static readonly LEFT_BLANK: string = 'leftBlank';
   static readonly RESET_TAB_SELECTED_STATUE: string = 'reset_tab_selected_statue';

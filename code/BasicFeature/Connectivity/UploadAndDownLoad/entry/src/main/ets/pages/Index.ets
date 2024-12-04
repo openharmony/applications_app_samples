@@ -16,17 +16,21 @@
 import notificationManager from '@ohos.notificationManager';
 import router from '@ohos.router';
 import common from '@ohos.app.ability.common';
+import { urlUtils } from '@ohos/uploaddownload';
+import util from '@ohos.util';
 
-@Styles function itemStyle() {
+@Styles
+function itemStyle() {
   .width('100%')
   .height(56)
   .padding({ top: 17, bottom: 17, left: 12, right: 12 })
   .backgroundColor(Color.White)
   .borderRadius(24)
-  .margin({ top: 12 })
+  .margin({ top: 20 })
 }
 
-@Extend(Text) function textStyle() {
+@Extend(Text)
+function textStyle() {
   .fontColor($r('app.color.text_normal'))
   .fontWeight(400)
   .fontFamily('HarmonyHeiTi')
@@ -51,6 +55,7 @@ struct Index {
               .textStyle()
             Blank()
             Toggle({ type: ToggleType.Switch, isOn: this.isBackground })
+              .width(40)
               .height(24)
               .onChange((isOn: boolean) => {
                 this.isBackground = isOn;
@@ -58,7 +63,21 @@ struct Index {
               })
           }
           .itemStyle()
-          .margin({ top: 0 })
+          .margin({ top: 20 })
+
+          Row() {
+            Text($r('app.string.HFS_tips'))
+              .textStyle()
+            Blank()
+            TextInput()
+              .width(250)
+              .height(40)
+              .margin({ left: 20 })
+              .onChange((val) => urlUtils.saveUrl(getContext(this) as common.UIAbilityContext, val))
+          }
+
+          .itemStyle()
+          .margin({ top: 15 })
 
           this.CapabilityView($r('app.media.ic_upload'), $r('app.string.upload'), 'btn_upload', () => {
             router.pushUrl({
@@ -72,8 +91,9 @@ struct Index {
           })
         }
         .width('100%')
+        .margin({ left: -12 })
       }
-      .padding({ left: 12, right: 12 })
+      .padding({ left: 12, right: 6 })
       .height('100%')
       .align(Alignment.Top)
     }
@@ -86,6 +106,7 @@ struct Index {
       main: this.getResourceString($r('app.string.EntryAbility_label')),
       sub: this.getResourceString($r('app.string.home_tips'))
     })
+    .padding({ top: 5 })
   }
 
   @Builder

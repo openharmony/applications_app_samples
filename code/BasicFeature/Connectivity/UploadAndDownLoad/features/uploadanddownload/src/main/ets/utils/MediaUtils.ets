@@ -13,9 +13,7 @@
  * limitations under the License.
  */
 
-import common from '@ohos.app.ability.common';
 import fs from '@ohos.file.fs';
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 import { logger } from '../utils/Logger';
 
 const TAG: string = 'MediaUtils';

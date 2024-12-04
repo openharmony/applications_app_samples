@@ -2,7 +2,8 @@
 
 ### 介绍
 
-本示例主要展示了相册相关的功能，使用[@ohos.file.photoAccessHelper](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-photoAccessHelper.md)接口，实现了查看系统相册、创建用户相册、查看相册照片、用户相册文件添加和删除、以及预览图片、最近删除、收藏夹操作等功能;
+本示例主要展示了相册相关的功能，使用[@ohos.file.photoAccessHelper](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md)
+接口，实现了查看系统相册、创建用户相册、查看相册照片、用户相册文件添加和删除、以及预览图片、最近删除、收藏夹操作等功能;
 
 ### 效果预览
 
@@ -197,7 +198,7 @@
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568。
 
-2. 本示例为Stage模型，支持API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0 Release)
+2. 本示例为Stage模型，支持API11版本SDK，SDK版本号(API Version 11),镜像版本号(4.1 Release)
 
 3. 本示例需要使用DevEco Studio 版本号(4.0 Release)及以上版本才可编译运行。需要配置"apl":"system_basic"才可安装成功；
 

@@ -19,7 +19,9 @@ import { userFileModel } from './UserFileModel';
 import { MediaConstants } from '../constants/MediaConstants';
 import { selectManager } from '../common/SelectManager';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import fs from '@ohos.file.fs';
 import { screenManager } from '../common/ScreenManager';
+import image from '@ohos.multimedia.image';
 
 const TAG = 'UserFileDataItem';
 const STATUS_UNDEFINED = -1;
@@ -57,6 +59,9 @@ export class UserFileDataItem implements DateAdded {
   selections: string = '';
   selectionArgs: string[] = [];
   deviceId: string = '';
+  longitude: string = '';
+  latitude: string = '';
+  shootingParams: string = '';
   fileAsset: photoAccessHelper.PhotoAsset = undefined;
   defaultThumbnail: PixelMap = undefined;
   thumbnailArray: Map<string, PixelMap> = new Map<string, PixelMap>();
@@ -255,6 +260,15 @@ export class UserFileDataItem implements DateAdded {
     return this.favouriteStatus === STATUS_TRUE;
   }
 
+  async isVideo(): Promise<boolean> {
+    let fileAsset = await this.loadFileAsset();
+    this.mediaType = fileAsset.photoType;
+    if (this.mediaType === photoAccessHelper.PhotoType.VIDEO) {
+      return true;
+    }
+    return false;
+  }
+  
   async setFavor(): Promise<boolean> {
     let status = !(await this.isFavor());
     try {

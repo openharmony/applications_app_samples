@@ -141,6 +141,22 @@
       "value": "Settings"
     },
     {
+      "name": "action_transcoding",
+      "value": "transCoding"
+    },
+    {
+      "name": "action_transcoding_success",
+      "value": "transCodingSuccess"
+    },
+    {
+      "name": "action_transcoding_progress",
+      "value": "transCodingProgress"
+    },
+    {
+      "name": "action_transcoding_path",
+      "value": "transCodingPath: "
+    },
+    {
       "name": "action_navigation",
       "value": "Get directions to this location"
     },
@@ -853,6 +869,10 @@
       "value": "Screenshots"
     },
     {
+      "name": "album_moving_photo",
+      "value": "MovingPhoto"
+    },
+    {
       "name": "album_recycle",
       "value": "Recently deleted"
     },
@@ -899,6 +919,34 @@
     {
       "name": "write_image_video_permission",
       "value": "user write image video permission"
+    },
+    {
+      "name": "location",
+      "value": "Location: "
+    },
+    {
+      "name": "shooting_params",
+      "value": "Shooting params: "
+    },
+    {
+      "name": "action_hide_sensitization",
+      "value": "Hide sensitization"
+    },
+    {
+      "name": "hide_location_and_shootingparam",
+      "value": "Both location and shootingparams"
+    },
+    {
+      "name": "hide_location_only",
+      "value": "Location only"
+    },
+    {
+      "name": "hide_shootingparam_only",
+      "value": "Shootingparams only"
+    },
+    {
+      "name": "no_hide_sensitive_type",
+      "value": "none"
     }
   ]
 }
