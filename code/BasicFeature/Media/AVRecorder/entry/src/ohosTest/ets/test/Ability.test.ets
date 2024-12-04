@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Huawei Device Co., Ltd.
+ * Copyright (C) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,22 +14,21 @@
  */
 
 import { describe, it, expect } from '@ohos/hypium'
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
-// @ts-ignore
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON } from '@ohos.UiTest';
 import { logger } from '../util/Logger';
 
 const TAG = '[Sample_AVRecorder]'
 const BUNDLE = 'AVRecorder'
 const driver = Driver.create();
-let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
+const abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
 
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
+  describe('ActsAbilityTest', () => {
     /**
      * 拉起应用
      */
-    it(BUNDLE + '_StartAbility', 0, async function () {
+    it(BUNDLE + '_StartAbility', 0, async () => {
       logger.info(TAG, BUNDLE + '_StartAbility start');
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
@@ -52,11 +51,11 @@ export default function abilityTest() {
       await driver.delayMs(1000);
       let ability = abilityDelegatorRegistry.getAppContext();
       let manager = ability.resourceManager;
-      for (let i = 0; i < 4; i++) {
+      for (let i = 0; i < 3; i++) {
         let btnAccept = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.allow'))));
         if (btnAccept !== undefined) {
           await btnAccept.click();
-          await driver.delayMs(500);
+          await driver.delayMs(1000);
         }
       }
       logger.info(TAG, BUNDLE + '_Permission end');
@@ -75,6 +74,7 @@ export default function abilityTest() {
       let settingBtn = await driver.findComponent(ON.id('audioSetting'));
       if (settingBtn !== undefined) {
         await settingBtn.click();
+        await driver.delayMs(1000);
       }
       let confirmBtn = await driver.findComponent(ON.id('audioConfirm'));
       if (confirmBtn !== undefined) {
@@ -91,22 +91,21 @@ export default function abilityTest() {
       let startBtn = await driver.findComponent(ON.id('audioStart'));
       if (startBtn !== undefined) {
         await startBtn.click();
+        await driver.delayMs(3000);
       }
-      await driver.delayMs(2000);
       let pauseBtn = await driver.findComponent(ON.id('audioPause'));
       if (pauseBtn !== undefined) {
         await pauseBtn.click();
-        await driver.delayMs(500);
+        await driver.delayMs(3000);
       }
       let resumeBtn = await driver.findComponent(ON.id('audioResume'));
       if (resumeBtn !== undefined) {
         await resumeBtn.click();
+        await driver.delayMs(3000);
       }
-      await driver.delayMs(1000);
       let stopBtn = await driver.findComponent(ON.id('audioStop'));
       if (stopBtn !== undefined) {
         await stopBtn.click();
-        await driver.delayMs(500);
       }
       logger.info(TAG, BUNDLE + '_TestRecorderFunc end');
     })
