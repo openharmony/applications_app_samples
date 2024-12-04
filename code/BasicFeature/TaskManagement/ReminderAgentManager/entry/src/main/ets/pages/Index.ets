@@ -17,11 +17,13 @@ import { AlarmClock } from './alarmClock/AlarmClock'
 import { ReminderCalendar } from './calendar/Calendar'
 import { Timer } from './timer/Timer'
 
-const CATEGORY: Array<{
+interface categoryType {
   tabBarName: Resource,
   selectedImage: Resource,
   unSelectImage: Resource
-}> = [
+}
+
+const CATEGORY: Array<categoryType> = [
   {
     tabBarName: $r('app.string.alarm_clock'),
     selectedImage: $r('app.media.ic_public_clock_filled'),
@@ -47,7 +49,7 @@ struct Index {
   build() {
     Column() {
       Tabs({ barPosition: BarPosition.End }) {
-        ForEach(CATEGORY, (item, index) => {
+        ForEach(CATEGORY, (item: categoryType, index) => {
           TabContent() {
             if (index === 0) {
               AlarmClock({ title: item.tabBarName })

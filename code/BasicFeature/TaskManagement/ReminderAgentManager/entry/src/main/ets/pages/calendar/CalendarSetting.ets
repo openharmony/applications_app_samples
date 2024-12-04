@@ -16,16 +16,19 @@
 import CalendarsReminder from '../../util/CalendarReminder'
 import PreferencesDataManager from '../../util/PreferencesDataManager'
 
+interface musicsType {
+  value: string,
+  src: string
+}
+
 @CustomDialog
 export struct CalendarSetting {
   @State selectName: string = 'Demo'
   @State calendarTime: string = '0:0'
-  private selectIndex: number
+  private selectIndex: number = 0;
   private controller: CustomDialogController
-  private musics: Array<{
-    value: string
-    src: string,
-  }> = [{ value: 'Demo', src: '/system/etc/demo.wav' }, { value: 'Dynamic', src: '/system/etc/dynamic.wav' }]
+  private musics: Array<musicsType> = [{ value: 'Demo', src: '/system/etc/demo.wav' },
+    { value: 'Dynamic', src: '/system/etc/dynamic.wav' }];
 
   build() {
     Column() {
@@ -42,10 +45,10 @@ export struct CalendarSetting {
               selected: new Date,
               useMilitaryTime: true,
               onAccept: (value: TimePickerResult) => {
-                CalendarsReminder.calendarReminders[this.selectIndex].reminderRequestCalendar.dateTime.hour = value.hour
-                CalendarsReminder.calendarReminders[this.selectIndex].reminderRequestCalendar.dateTime.minute = value.minute
-                let hour = value.hour < 10 ? `0${value.hour}` : value.hour
-                let minute = value.minute < 10 ? `0${value.minute}` : value.minute
+                CalendarsReminder.calendarReminders[this.selectIndex].reminderRequestCalendar!.dateTime.hour = value.hour;
+                CalendarsReminder.calendarReminders[this.selectIndex].reminderRequestCalendar!.dateTime.minute = value.minute;
+                let hour = value.hour! < 10 ? `0${value.hour}` : value.hour;
+                let minute = value.minute! < 10 ? `0${value.minute}` : value.minute;
                 this.calendarTime = `${hour}:${minute}`
               }
             })
@@ -116,8 +119,8 @@ export struct CalendarSetting {
 
   aboutToAppear() {
     // Read the data of the settings and display it
-    let hour = CalendarsReminder.calendarReminders[this.selectIndex].reminderRequestCalendar.dateTime.hour;
-    let minute = CalendarsReminder.calendarReminders[this.selectIndex].reminderRequestCalendar.dateTime.minute;
+    let hour = CalendarsReminder.calendarReminders[this.selectIndex].reminderRequestCalendar!.dateTime.hour;
+    let minute = CalendarsReminder.calendarReminders[this.selectIndex].reminderRequestCalendar!.dateTime.minute;
     let dataTimeHour = hour < 10 ? `0${hour}` : hour;
     let dateTimeMinute = minute < 10 ? `0${minute}` : minute;
     this.calendarTime = `${dataTimeHour}:${dateTimeMinute}`;

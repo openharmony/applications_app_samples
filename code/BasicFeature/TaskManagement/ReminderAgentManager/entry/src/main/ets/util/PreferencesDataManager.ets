@@ -16,18 +16,19 @@
 import data_preferences from '@ohos.data.preferences'
 import Logger from './Logger'
 import { Reminder } from '../common/Reminder'
+import common from '@ohos.app.ability.common';
 
 const TAG: string = 'Preferences'
 
 class PreferencesDataManager {
-  private context: any = getContext(this)
+  private context = getContext(this) as common.UIAbilityContext;
 
   async getData(key: string) {
-    let getValue: Reminder[] = undefined
+    let getValue: Reminder[] | undefined = undefined;
     let preferences = await data_preferences.getPreferences(this.context, 'ReminderAgentManager')
     if (await preferences.get(key, 'default')) {
       try {
-        let result = <string> await preferences.get(key, 'default')
+        let result = await preferences.get(key, 'default') as string;
         getValue = JSON.parse(result)
         Logger.info(TAG, `this is ${JSON.stringify(getValue)}`)
       } catch (err) {

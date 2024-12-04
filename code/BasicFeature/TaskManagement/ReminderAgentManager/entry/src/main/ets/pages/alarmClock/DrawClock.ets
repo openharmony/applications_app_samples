@@ -51,7 +51,7 @@ export struct DrawClock {
       })
   }
 
-  fillTime(time) {
+  fillTime(time: number) {
     return time < 10 ? `0${time}` : `${time}`
   }
 
@@ -109,7 +109,7 @@ export struct DrawClock {
   }
 
   // Draw the hour hand
-  drawHour(hour, minute) {
+  drawHour(hour: number, minute: number) {
     this.context.save()
     this.context.beginPath()
     this.context.lineWidth = 8
@@ -125,7 +125,7 @@ export struct DrawClock {
   }
 
   // Draw the minute hand
-  drawMinute(minute) {
+  drawMinute(minute: number) {
     this.context.save()
     this.context.beginPath()
     this.context.lineWidth = 6
@@ -140,7 +140,7 @@ export struct DrawClock {
   }
 
   // Draw the second hand
-  drawSecond(second) {
+  drawSecond(second: number) {
     this.context.save()
     this.context.beginPath()
     this.context.lineWidth = 4
@@ -165,7 +165,7 @@ export struct DrawClock {
   }
 
   // Draw the time text below the dial
-  drawTime(time) {
+  drawTime(time: string) {
     this.context.save()
     this.context.beginPath()
     this.context.font = '60px'
