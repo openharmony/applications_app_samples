@@ -14,11 +14,12 @@
  */
 import Logger from './Logger'
 import prompt from '@ohos.prompt';
+import webview from '@ohos.web.webview';
 
 export class WebObject {
-  controller: WebController;
+  controller: webview.WebviewController;
   isRegistered: boolean;
-  constructor(controller: WebController, isRegistered: boolean) {
+  constructor(controller: webview.WebviewController, isRegistered: boolean) {
     this.controller = controller
     this.isRegistered = isRegistered
   }
@@ -51,7 +52,7 @@ export class Browser {
 
   webArray: Array<WebKey> = [new WebKey(0, new Date().getTime())]
   tabsController: TabsController = new TabsController()
-  webControllerArray: Array<WebObject> = [new WebObject(new WebController(), false)]
+  webControllerArray: Array<WebObject> = [new WebObject(new webview.WebviewController(), false)]
 
   deleteTab(index: number) {
     Logger.info(TAG, `delete before tab index= ${index} controller length ${this.webControllerArray.length} tabArrayIndex= ${this.tabArrayIndex}`)
@@ -81,7 +82,7 @@ export class Browser {
       })
       return;
     }
-    let webController: WebController = new WebController();
+    let webController: webview.WebviewController = new webview.WebviewController();
     let object = new WebObject(webController, false)
     this.webControllerArray.push(object)
     this.webArray.push(new WebKey(this.webArray.length, new Date().getTime()))
@@ -110,7 +111,7 @@ export class Browser {
 
   loadUrl(addr: string) {
     addr = "https://" + addr;
-    this.webControllerArray[this.tabArrayIndex].controller.loadUrl({ url: addr })
+    this.webControllerArray[this.tabArrayIndex].controller.loadUrl(addr);
   }
 
   Back() {

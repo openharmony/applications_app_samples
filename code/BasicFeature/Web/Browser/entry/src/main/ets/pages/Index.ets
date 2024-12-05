@@ -43,6 +43,9 @@ struct Index {
         PhoneLayout({ browser: $browser })
       }
     }
+    .margin({
+      bottom: 72
+    })
   }
 
   aboutToAppear() {
