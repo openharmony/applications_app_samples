@@ -2,7 +2,7 @@
 
 ### 介绍
 
-该示例通过[@ohos.multimedia.image](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-image-kit/js-apis-image.md)和[@ohos.multimedia.mediaLibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-medialibrary.md)接口实现获取图片，以及图片裁剪分割的功能。
+该示例通过[@ohos.multimedia.image](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-image-kit/js-apis-image.md)和[@ohos.file.photoAccessHelper](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-photoAccessHelper.md)接口实现获取图片，以及图片裁剪分割的功能。
 
 ### 效果预览
 |首页|运行|
@@ -29,16 +29,17 @@ VideoComponent/src/main/ets/components
 |   |---Index.ets                           // 首页
 ```
 ### 具体实现
+
 + 游戏中图片裁剪分割的效果实现在ImageModel中，源码参考[ImageModel](entry/src/main/ets/model/ImageModel.ts):
   + 获取本地图片：首先使用getMediaLibrary获取媒体库实例，然后使用getFileAssets方法获取文件资源，最后使用getAllObject获取检索结果中的所有文件资产方便展示；
-  + 裁剪图片准备：裁剪图片需要使用[@ohos.multimedia.image](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-image-kit/js-apis-image.md)接口，裁剪前需要申请图片编辑权限，使用[requestPermissionsFromUser](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-as/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)申请，源码参考[Index.ets](entry/src/main/ets/pages/Index.ets);
+  + 裁剪图片准备：裁剪图片需要使用[@ohos.multimedia.image](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-image-kit/js-apis-image.md)接口，裁剪前需要申请图片编辑权限，使用[requestPermissionsFromUser](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)申请，源码参考[Index.ets](entry/src/main/ets/pages/Index.ets);
   + 图片编辑：首先使用createImagePacker创建ImagePacker实例，然后使用fileAsset.open打开文件，调用createImageSource接口创建图片源实例方便操作图片，接下来使用getImageInfo方法获取图片大小便于分割，最后使用createPixelMap方法传入每一份的尺寸参数完成图片裁剪。
 
 ### 相关权限
 
-[ohos.permission.READ_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionread_media)
-
 [ohos.permission.MEDIA_LOCATION](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionmedia_location)
+
+[ohos.permission.READ_IMAGEVIDEO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionread_imagevideo)
 
 ### 依赖
 
@@ -47,8 +48,8 @@ VideoComponent/src/main/ets/components
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行;
-2. 本示例已适配API version 9版本SDK，版本号：3.2.11.9;
-3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)才可编译运行。
+2. 本示例已适配API version 10版本SDK，版本号：4.0.10.18;
+3. 本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)才可编译运行。
 
 ### 下载
 如需单独下载本工程，执行如下命令：
