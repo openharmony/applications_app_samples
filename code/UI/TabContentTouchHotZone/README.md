@@ -1,8 +1,8 @@
-# tabContent内容可以在tabBar上显示并响应滑动事件案例
+# Progress触摸热区增大案例
 
 ### 介绍
 
-本示例实现了tabContent内容可以在tabBar上显示并且tabBar可以响应滑动事件的功能。
+本示例实现了Progress触摸热区增大，拖动进度条和进度条下方区域都能改变播放进度的功能。
 
 ### 效果图预览
 
@@ -202,6 +202,8 @@ Tabs({ index: this.index, controller: this.tabsController }) {
 1.本示例仅支持在标准系统上运行。
 
 2.本示例需要使用DevEco Studio 5.0.0 Release 才可编译运行。
+
+3.如没有外网权限配置了内部仓可能导致casesfeature中的MP4资源不可用，可从gitee中下载该MP4资源文件进行替换。
 
 ### 下载
 
