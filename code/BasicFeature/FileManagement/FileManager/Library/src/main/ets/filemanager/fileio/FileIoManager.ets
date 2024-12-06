@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -56,6 +56,7 @@ class FileSystem {
     let totalSize: number;
     try {
       totalSize = await storageStatistics.getTotalSize();
+      Logger.info(TAG, `getTotalSize successed, totalSize is ${totalSize}`);
     } catch (err) {
       let error: BusinessError = err as BusinessError;
       Logger.error(TAG, `getTotalSize failed, code is ${error.code}, message is ${error.message}`);
@@ -69,6 +70,7 @@ class FileSystem {
     let freeSize: number;
     try {
       freeSize = await storageStatistics.getFreeSize();
+      Logger.info(TAG, `getFreeSize successed, freeSize is ${freeSize}`);
     } catch (err) {
       let error: BusinessError = err as BusinessError;
       Logger.error(TAG, `getFreeSize failed, code is ${error.code}, message is ${error.message}`);
@@ -197,7 +199,8 @@ class FileSystem {
           fileio.rmdirSync(data);
         } else {
           fileio.unlinkSync(data);
-        }})
+        }
+      })
       prompt.showToast({ message: $r('app.string.label_delete_success') });
     } catch (err) {
       Logger.error(TAG, `delete failed, code is ${err.code}, message is ${err.message}`);

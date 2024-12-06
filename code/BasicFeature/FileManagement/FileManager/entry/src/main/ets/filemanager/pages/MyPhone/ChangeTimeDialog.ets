@@ -23,7 +23,7 @@ export struct ChangeTimeDialog {
 
   aboutToAppear() {
     if (this.time) {
-      AppStorage.SetOrCreate('time', this.time);
+      AppStorage.setOrCreate('time', this.time);
     }
   }
 
@@ -52,7 +52,7 @@ export struct ChangeTimeDialog {
         .fontColor(Color.Black)
         .enableKeyboardOnFocus(false)
         .onChange((value: string) => {
-          AppStorage.SetOrCreate('time', value)
+          AppStorage.setOrCreate('time', value);
         })
 
       Row() {

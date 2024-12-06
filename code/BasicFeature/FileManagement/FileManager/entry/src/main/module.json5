@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -52,8 +52,8 @@
     ],
     "requestPermissions": [
       {
-        "name": "ohos.permission.READ_MEDIA",
-        "reason": "$string:read_reason",
+        "name": "ohos.permission.STORAGE_MANAGER",
+        "reason": "$string:storage_reason",
         "usedScene": {
           "abilities": [
             "MainAbility"
@@ -62,8 +62,48 @@
         }
       },
       {
-        "name": "ohos.permission.WRITE_MEDIA",
-        "reason": "$string:write_reason",
+        "name": "ohos.permission.WRITE_IMAGEVIDEO",
+        "reason": "$string:storage_reason",
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ],
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.READ_IMAGEVIDEO",
+        "reason": "$string:storage_reason",
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ],
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.READ_AUDIO",
+        "reason": "$string:storage_reason",
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ],
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY",
+        "reason": "$string:storage_reason",
+        "usedScene": {
+          "abilities": [
+            "MainAbility"
+          ],
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED",
+        "reason": "$string:storage_reason",
         "usedScene": {
           "abilities": [
             "MainAbility"
@@ -73,7 +113,7 @@
       },
       {
         "name": "ohos.permission.FILE_ACCESS_MANAGER",
-        "reason": "$string:file_access_reason",
+        "reason": "$string:storage_reason",
         "usedScene": {
           "abilities": [
             "MainAbility"
@@ -82,8 +122,8 @@
         }
       },
       {
-        "name": "ohos.permission.STORAGE_MANAGER",
-        "reason": "$string:storage_reason",
+        "name": "ohos.permission.WRITE_AUDIO",
+        "reason": "$string:write_reason",
         "usedScene": {
           "abilities": [
             "MainAbility"

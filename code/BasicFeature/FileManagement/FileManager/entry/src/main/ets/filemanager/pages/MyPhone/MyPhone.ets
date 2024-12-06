@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023-2024 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -129,18 +129,23 @@ export struct MyPhone {
 
   // 路由返回后刷新页面
   onPageShow() {
-    AppStorage.SetOrCreate('flashPage',!AppStorage.Get<number>('flashPage'));
+    AppStorage.setOrCreate('flashPage', !AppStorage.get<number>('flashPage'));
     this.subTitle = updateContextArea(this.directoryPath, myContext);
   }
 
   async aboutToAppear() {
     // 有路由参数就加载当前路由文件路径
     let params = router.getParams() as Record<string, Object>;
-    this.directoryPath = params.directoryPath as string;
-    this.directoryName = params.directoryName as string;
+    try {
+      this.directoryPath = params.directoryPath as string;
+      this.directoryName = params.directoryName as string;
+    } catch (err) {
+      Logger.error(TAG, `aboutToAppear get router params failed, now in root path: ${this.directoryPath}`);
+    }
     Logger.info(TAG, "aboutToAppear after get router param test directoryPath: " + this.directoryPath + ", directoryName: " + this.directoryName);
 
     this.subTitle = updateContextArea(this.directoryPath, myContext);
+
     // 回到首页就读取当前内存变化
     if (this.directoryPath === BASE_PATH) {
       this.totalSize = await FileSystem.getTotalSize();
@@ -182,7 +187,7 @@ export struct MyPhone {
     builder: InputNameDialog({
       type: this.fileDialogType,
       confirm: () => {
-        const name: string | undefined = AppStorage.Get('name');
+        const name: string | undefined = AppStorage.get('name');
         if (!name) {
           return prompt.showToast({ message: $r('app.string.tip_input_name') });
         }
@@ -198,13 +203,12 @@ export struct MyPhone {
     }),
     autoCancel: true
   });
-
   // 重命名弹窗
   renameDialog: CustomDialogController = new CustomDialogController({
     builder: InputNameDialog({
       name: this.selectedFiles[0],
       confirm: () => {
-        const name: string | undefined = AppStorage.Get('name');
+        const name: string | undefined = AppStorage.get('name');
         if (!name) {
           return prompt.showToast({ message: $r('app.string.tip_input_name') });
         }
@@ -217,7 +221,6 @@ export struct MyPhone {
     }),
     autoCancel: true
   });
-
   // 删除文件的弹窗
   deleteDialog: CustomDialogController = new CustomDialogController({
     builder: DeleteDialog({
@@ -235,7 +238,7 @@ export struct MyPhone {
     builder: ChangeTimeDialog({
       time: this.selectedFilesTime,
       confirm: () => {
-        const time: string | undefined = AppStorage.Get('time');
+        const time: string | undefined = AppStorage.get('time');
         if (!time) {
           return prompt.showToast({ message: $r('app.string.tip_input_name') });
         }
@@ -247,7 +250,8 @@ export struct MyPhone {
     })
   })
 
-  @Builder MenuBuilder() {
+  @Builder
+  MenuBuilder() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
       Text($r('app.string.label_change_time'))
         .fontSize(16)
@@ -367,7 +371,7 @@ export struct MyPhone {
               .alignSelf(ItemAlign.Auto)
               .onClick(() => {
                 this.fileData = [];
-                AppStorage.SetOrCreate('flashPage',!AppStorage.Get<string>('flashPage'));
+                AppStorage.setOrCreate('flashPage', !AppStorage.get<string>('flashPage'));
                 router.back();
                 this.canMove = true;
               })

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023-2024 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -65,13 +65,13 @@ export default class MyWatcher {
     ['IN_MOVE_SELF', IN_MOVE_SELF],
     ['IN_ISDIR', IN_ISDIR]
   ]);
-  public content1: string = AppStorage.Get<string>('fileContent1') as string;
-  public content2: string = AppStorage.Get<string>('fileContent2') as string;
-  public content3: string = AppStorage.Get<string>('fileContent3') as string;
-  public content4: string = AppStorage.Get<string>('fileContent4') as string;
+  public content1: string = AppStorage.get<string>('fileContent1') as string;
+  public content2: string = AppStorage.get<string>('fileContent2') as string;
+  public content3: string = AppStorage.get<string>('fileContent3') as string;
+  public content4: string = AppStorage.get<string>('fileContent4') as string;
 
   constructor() {
-    this.baseDir = AppStorage.Get<string>('sanBoxFileDir') as string;
+    this.baseDir = AppStorage.get<string>('sanBoxFileDir') as string;
   }
 
   startWatcher(watcherName: string): void {
@@ -110,9 +110,9 @@ export default class MyWatcher {
           } else {
             Logger.info('startWatcher fail');
           }
-          AppStorage.SetOrCreate('eventLog', JSON.stringify(data.event));
-          AppStorage.SetOrCreate('fileNameLog', data.fileName);
-          AppStorage.SetOrCreate('cookieLog', JSON.stringify(data.cookie));
+          AppStorage.setOrCreate('eventLog', JSON.stringify(data.event));
+          AppStorage.setOrCreate('fileNameLog', data.fileName);
+          AppStorage.setOrCreate('cookieLog', JSON.stringify(data.cookie));
           Logger.info(TAG, `${watcherName}-startWatcher :{event: ${data.event}, fileName: ${data.fileName}, cookie: ${data.cookie}}`);
         });
 
