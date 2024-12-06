@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,26 +14,22 @@
  */
 
 import UIAbility from '@ohos.app.ability.UIAbility';
-import Window from '@ohos.window'
+import Window from '@ohos.window';
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 import type { Permissions } from '@ohos.abilityAccessCtrl';
-import Logger from '../common/Logger'
+import Logger from '../common/Logger';
 
-const TAG: string = '[MainAbility]'
+const TAG: string = '[MainAbility]';
 
 export default class MainAbility extends UIAbility {
   onCreate(want, launchParam) {
     Logger.info(TAG, '[Demo] MainAbility onCreate')
-    globalThis.abilityWant = want;
-    globalThis.shotScreenContext = this.context;
     //The list of user_grant permission, MEDIA|MIC separated to grant
-    // mediaLibrary接口被废弃，新接口需要ohos.permission.READ_IMAGEVIDEO权限，测试用例已经升级到新接口，sample未处理
     const PERMISSIONS: Array<Permissions> = [
+      "ohos.permission.READ_IMAGEVIDEO",
+      "ohos.permission.WRITE_IMAGEVIDEO",
       'ohos.permission.MEDIA_LOCATION',
-      'ohos.permission.READ_MEDIA',
-      'ohos.permission.WRITE_MEDIA',
-      'ohos.permission.MICROPHONE',
-      'ohos.permission.READ_IMAGEVIDEO'
+      'ohos.permission.MICROPHONE'
     ];
     let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
     atManager.requestPermissionsFromUser(this.context, PERMISSIONS);
