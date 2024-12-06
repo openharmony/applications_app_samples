@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -25,7 +25,7 @@ function translateParamsToString(parameters) {
     '-s level', '-s testType', '-s size', '-s timeout',
     '-s dryRun'
   ])
-  let targetParams = ''
+  let targetParams = '';
   for (const key in parameters) {
     if (keySet.has(key)) {
       targetParams = `${targetParams} ${key} ${parameters[key]}`
@@ -58,20 +58,21 @@ export default class OpenHarmonyTestRunner implements TestRunner {
     let lMonitor = {
       abilityName: testAbilityName,
       onAbilityCreate: onAbilityCreateCallback,
-    }
+    };
     abilityDelegator.addAbilityMonitor(lMonitor, addAbilityMonitorCallback)
     var cmd = 'aa start -d 0 -a TestAbility' + ' -b ' + abilityDelegatorArguments.bundleName
-    cmd += ' ' + translateParamsToString(abilityDelegatorArguments.parameters)
+    cmd += ' '+translateParamsToString(abilityDelegatorArguments.parameters);
     var debug = abilityDelegatorArguments.parameters["-D"]
-    if (debug == 'true') {
-      cmd += ' -D'
+    if (debug == 'true')
+    {
+      cmd += ' -D';
     }
-    console.info('cmd : ' + cmd)
+    console.info('cmd : '+cmd);
     abilityDelegator.executeShellCommand(cmd,
       (err: any, d: any) => {
-        console.info('executeShellCommand : err : ' + JSON.stringify(err))
-        console.info('executeShellCommand : data : ' + d.stdResult)
-        console.info('executeShellCommand : data : ' + d.exitCode)
+        console.info('executeShellCommand : err : ' + JSON.stringify(err));
+        console.info('executeShellCommand : data : ' + d.stdResult);
+        console.info('executeShellCommand : data : ' + d.exitCode);
       })
     console.info('OpenHarmonyTestRunner onRun end')
   }
