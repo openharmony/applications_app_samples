@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -22,7 +22,7 @@ const TAG = '[Recorder.PlayView]';
 
 @Component
 export struct PlayView {
-  private audioModel: AudioModel = null;
+  private audioModel: AudioModel | undefined = undefined;
   private millisecond: number = 0;
   private duration: string = '';
   @State time: string = '00:00';
@@ -41,11 +41,11 @@ export struct PlayView {
 
   initAudioPlayer() {
     if (this.fileName !== '') {
-      this.audioModel.play(() => {
+      this.audioModel?.play(() => {
         this.playState = true;
         this.reset();
       });
-      this.audioModel.onFinish(() => {
+      this.audioModel?.onFinish(() => {
         this.playState = false;
         this.reset();
       });
@@ -61,7 +61,7 @@ export struct PlayView {
     this.resetAnimation = !this.resetAnimation;
   }
 
-  updateTimeStr() {
+  updateTimeStr = () => {
     this.millisecond += 1000;
     this.time = updateTime(this.millisecond);
   }
@@ -70,24 +70,26 @@ export struct PlayView {
     if (this.fileName !== '') {
       Logger.info(TAG, `handleChangePlayState this.isPlay= ${this.playState}`);
       if (!this.playState) {
-        this.audioModel.play(() => {
+        Logger.info(TAG, `handleChangePlayState play start`);
+        this.audioModel?.play(() => {
           Logger.info(TAG, `handleChangePlayState play success`);
-          this.playState = !this.playState;
-          AppStorage.SetOrCreate('playState', this.playState);
-        })
+          this.playState = true;
+          AppStorage.setOrCreate('playState', true);
+        });
       } else {
-        this.audioModel.pause(() => {
+        Logger.info(TAG, `handleChangePlayState pause start`);
+        this.audioModel?.pause(() => {
           Logger.info(TAG, `handleChangePlayState pause success`);
-          this.playState = !this.playState;
-          AppStorage.SetOrCreate('playState', this.playState);
-        })
+          this.playState = false;
+          AppStorage.setOrCreate('playState', false);
+        });
       }
     }
   }
 
   build() {
     Column() {
-      AnimateView({ resetAnimation: $resetAnimation, updateTimeStr: this.updateTimeStr.bind(this) })
+      AnimateView({ resetAnimation: $resetAnimation, updateTimeStr: this.updateTimeStr })
       Image($r('app.media.bg_play'))
         .width('100%')
         .height('30%')

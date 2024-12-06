@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,10 +14,9 @@
  */
 
 import router from '@ohos.router';
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+import userFileManager from '@ohos.filemanagement.userFileManager';
 import MediaManager from '../model/MediaManager';
 import Logger from '../model/Logger';
-import common from '@ohos.app.ability.common';
 import { TitleBar } from '../common/TitleWithBack';
 import { AnimateView } from '../common/AnimateView';
 import { RecordModel } from '../model/RecordModel';
@@ -28,36 +27,40 @@ const TAG = '[Recorder.Record]';
 @Entry
 @Component
 struct RecordPage {
-  private mediaManager = new MediaManager(getContext(this) as common.UIAbilityContext);
+  private mediaManager = new MediaManager(getContext(this));
   private recordModel: RecordModel = new RecordModel();
   private millisecond: number = 0;
-  @State fileAsset: mediaLibrary.FileAsset = undefined;
-  private fd: number = undefined;
+  @State fileAsset: userFileManager.FileAsset | undefined = undefined;
+  private fd: number | undefined = undefined;
   @StorageLink('playState') playState: boolean = true;
   @State duration: string = '00:00';
   @State resetAnimation: boolean = false;
 
   async finish() {
-    await this.mediaManager.saveFileDuration(this.fileAsset.title, this.duration);
-    this.recordModel.finish(() => {
-      this.playState = false;
-      AppStorage.SetOrCreate('playState', this.playState);
-      router.back();
-    })
+    Logger.info(TAG, `avRecordder finished. ${this.fileAsset?.displayName}`);
+    if (this.fileAsset !== undefined) {
+      await this.mediaManager.saveFileDuration(this.fileAsset.displayName, this.duration);
+      this.recordModel.finish(() => {
+        Logger.info(TAG, `avRecordder finished.`);
+        this.playState = false;
+        AppStorage.setOrCreate('playState', this.playState);
+        router.back();
+      })
+    }
   }
 
   async aboutToAppear() {
-    this.recordModel.initAudioRecorder();
+    await this.recordModel.initAudioRecorder();
     this.fileAsset = await this.mediaManager.createAudioFile();
     this.fd = await this.fileAsset.open('Rw');
-    this.recordModel.startRecorder(`fd://${this.fd}`, () => {
+    this.recordModel.startRecorder(`fd://${this.fd}`, this.fileAsset, () => {
       Logger.info(TAG, 'startRecorder callback success');
       this.millisecond = 0;
       this.playState = true;
     })
   }
 
-  updateTimeStr() {
+  updateTimeStr = () => {
     this.millisecond += 1000;
     this.duration = updateTime(this.millisecond);
   }
@@ -65,10 +68,10 @@ struct RecordPage {
   build() {
     Column() {
       if (this.fileAsset) {
-        TitleBar({ title: this.fileAsset.title })
+        TitleBar({ title: this.fileAsset.displayName })
       }
       Column() {
-        AnimateView({ resetAnimation: $resetAnimation, updateTimeStr: this.updateTimeStr.bind(this) })
+        AnimateView({ resetAnimation: $resetAnimation, updateTimeStr: this.updateTimeStr })
         Image($r('app.media.bg_record'))
           .width('100%')
           .height('40%')
@@ -88,8 +91,8 @@ struct RecordPage {
           .height(70)
           .borderWidth(1)
           .backgroundColor('#FFFFFF')
-          .onClick(() => {
-            this.finish();
+          .onClick(async () => {
+            await this.finish();
           })
 
           Blank().layoutWeight(2)
@@ -103,10 +106,11 @@ struct RecordPage {
           .size({ width: 60, height: 60 })
           .backgroundColor('#FFFFFF')
           .onClick(() => {
-            let callback = function(){
+            let callback = () => {
               this.playState = !this.playState;
-              AppStorage.SetOrCreate('playState', this.playState);
-            }.bind(this);
+              AppStorage.setOrCreate('playState', this.playState);
+              Logger.info(TAG, `playstate changed.`);
+            };
             if (this.playState) {
               this.recordModel.pause(callback);
             } else {

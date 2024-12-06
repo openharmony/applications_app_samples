@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -24,8 +24,8 @@ const TRANSLATE: number = -145;
 export struct AudioItem {
   @ObjectLink record: Record;
   private index: number = -1;
-  private clickItem: (record: Record, operate: string) => void;
-  private checkItem: (index: number) => void;
+  private clickItem: (record: Record, operate: string) => void = () => {};
+  private checkItem: (index: number) => void = () => {};
   @State translateLeft: number = 0;
   @State translateRight: number = TRANSLATE;
   @State imgRes: Resource = $r('app.media.uncheck');
@@ -50,7 +50,7 @@ export struct AudioItem {
   }
 
   getTimeString() {
-    let date = new Date(this.record.fileAsset.dateAdded * 1000);
+    let date = new Date(Number(this.record.dateTime) * 1000);
     let dateTimeUtil = new DateTimeUtil();
     return `${date.getFullYear()}/${dateTimeUtil.fill(date.getMonth() + 1)}/${dateTimeUtil.fill(date.getDate())}`;
   }
@@ -59,7 +59,7 @@ export struct AudioItem {
     Row() {
       Row() {
         Column() {
-          Text(this.record.fileAsset.title)
+          Text(this.record.fileAsset!.displayName)
             .fontSize(22)
             .fontColor(Color.Black)
           Text(this.getTimeString())
