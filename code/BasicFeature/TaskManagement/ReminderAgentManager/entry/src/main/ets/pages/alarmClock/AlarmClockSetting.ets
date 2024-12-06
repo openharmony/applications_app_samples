@@ -15,6 +15,7 @@
 
 import AlarmClockReminder from '../../util/AlarmClockReminder'
 import PreferencesDataManager from '../../util/PreferencesDataManager'
+import logger from '../../util/Logger';
 
 interface daysType {
   name: Resource,
@@ -186,13 +187,17 @@ export struct AlarmClockSetting {
     this.timeInterval = AlarmClockReminder.alarmClockReminders[this.selectAlarmClockIndex].reminderRequestAlarm!.timeInterval!;
     this.selectName = AlarmClockReminder.alarmClockReminders[this.selectAlarmClockIndex].audioSrc === '/system/etc/demo.wav' ? 'Demo' : 'Dynamic';
     let selectDays = AlarmClockReminder.alarmClockReminders[this.selectAlarmClockIndex].reminderRequestAlarm!.daysOfWeek;
-    for (let i = 0; i < this.days.length; i++) {
-      for (let j = 0; j < selectDays.length; j++) {
-        if (this.days[i].value === selectDays[j]) {
-          this.days[i].isSelect = true
-          break
+    if(selectDays !== undefined){
+      for (let i = 0; i < this.days.length; i++) {
+        for (let j = 0; j < selectDays.length; j++) {
+          if (this.days[i].value === selectDays[j]) {
+            this.days[i].isSelect = true;
+            break;
+          }
         }
       }
+    }else{
+      logger.error('selectDays is undefined!');
     }
   }
 }
