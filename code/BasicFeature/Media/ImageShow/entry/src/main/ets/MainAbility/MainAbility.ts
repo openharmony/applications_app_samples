@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,25 +13,27 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.app.ability.UIAbility'
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
-import Logger from '../../../../../imagelibrary/src/main/ets/components/data/Logger'
+import Ability from '@ohos.app.ability.UIAbility';
+import common from '@ohos.app.ability.common';
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import Logger from '../../../../../imagelibrary/src/main/ets/components/data/Logger';
 
-const TAG: string = 'MainAbility'
+const TAG: string = 'MainAbility';
 
 export default class MainAbility extends Ability {
   async onCreate(want, launchParam) {
-    Logger.info(TAG, `[Demo] MainAbility onCreate`)
-    let atManager = abilityAccessCtrl.createAtManager()
+    Logger.info(TAG, `[Demo] MainAbility onCreate`);
+    let atManager = abilityAccessCtrl.createAtManager();
     try {
-      atManager.requestPermissionsFromUser(this.context, ['ohos.permission.READ_MEDIA', 'ohos.permission.WRITE_MEDIA', 'ohos.permission.MEDIA_LOCATION']).then((data) => {
-        Logger.info(TAG, `data: ${JSON.stringify(data)}`)
+      atManager.requestPermissionsFromUser(this.context, ['ohos.permission.MEDIA_LOCATION', 'ohos.permission.READ_IMAGEVIDEO']).then((data) => {
+        Logger.info(TAG, `data: ${JSON.stringify(data)}`);
       }).catch((err) => {
-        Logger.info(TAG, `err: ${JSON.stringify(err)}`)
+        Logger.info(TAG, `err: ${JSON.stringify(err)}`);
       })
     } catch (err) {
       Logger.info(TAG, `catch err->${JSON.stringify(err)}`);
     }
+    AppStorage.setOrCreate<common.UIAbilityContext>('UIContext', this.context);
   }
 
   onDestroy() {
