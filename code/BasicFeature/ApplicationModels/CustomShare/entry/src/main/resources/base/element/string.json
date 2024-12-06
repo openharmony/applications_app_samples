@@ -49,14 +49,6 @@
       "value": "允许使用Internet网络"
     },
     {
-      "name": "permission_read_media",
-      "value": "允许应用读取用户外部存储中的媒体文件信息"
-    },
-    {
-      "name": "permission_write_media",
-      "value": "允许应用读写用户外部存储中的媒体文件信息"
-    },
-    {
       "name": "permission_media_location",
       "value": "允许应用访问用户媒体文件中的地理位置信息"
     },

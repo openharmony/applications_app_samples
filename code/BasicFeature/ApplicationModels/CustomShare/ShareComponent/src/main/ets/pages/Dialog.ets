@@ -148,8 +148,8 @@ export struct ButtonDialogBuilder {
   }
   onShareFriend = () => {
     // 拉起三方应用操作
-    Logger.info(TAG, `onShareChat`)
-    this.shareUtils.startAbility(this.contextCaller, this.title, this.srcImage)
+    Logger.info(TAG, `onShareChat start`);
+    this.shareUtils.startAbility(this.contextCaller, this.title, this.srcImage);
   }
   openDialog = () => {
     // 生成画布
