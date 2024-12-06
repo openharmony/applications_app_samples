@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Hunan OpenValley Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023-2024 Hunan OpenValley Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,14 +13,12 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
-
-import hilog from '@ohos.hilog';
+import { logger as Logger } from '../util/Logger';
 import { Driver, ON, MatchPattern } from '@ohos.UiTest';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { getString } from '../util/ResourceUtil';
 
 const TAG = '[Sample_Camera]';
-const DOMAIN = 0xF811;
 const BUNDLE = 'Camera_';
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 
@@ -59,9 +57,9 @@ export default function CameraTest() {
       // Presets a clear action, which is performed after all test cases of the test suite end.
       // This API supports only one parameter: clear action function.
     })
-    it(BUNDLE + 'TakePicture_Video', 0, async (done: Function) => {
+    it('TakePicture_Video', 0, async (done: Function) => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      hilog.info(DOMAIN, TAG, BUNDLE + 'TakePicture_video begin');
+      Logger.info(TAG, BUNDLE + 'TakePicture_video begin');
       await driver.delayMs(1000);
 
       // 点击拍照
@@ -84,12 +82,12 @@ export default function CameraTest() {
 
       await driver.delayMs(1000);
       done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'TakePicture_video end');
+      Logger.info(TAG, BUNDLE + 'TakePicture_video end');
     })
 
-    it(BUNDLE + 'Rotation', 0, async (done: Function) => {
+    it('Rotation', 0, async (done: Function) => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Rotation begin');
+      Logger.info(TAG, BUNDLE + 'Rotation begin');
       await driver.delayMs(1000);
 
       // 点击进入设置
@@ -114,12 +112,12 @@ export default function CameraTest() {
 
       await driver.delayMs(1000);
       done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Rotation end');
+      Logger.info(TAG, BUNDLE + 'Rotation end');
     })
 
-    it(BUNDLE + 'Resolution', 0, async (done: Function) => {
+    it('Resolution', 0, async (done: Function) => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Resolution begin');
+      Logger.info(TAG, BUNDLE + 'Resolution begin');
       await driver.delayMs(1000);
 
       // 点击进入设置
@@ -153,12 +151,12 @@ export default function CameraTest() {
 
       await driver.delayMs(1000);
       done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'Resolution end');
+      Logger.info(TAG, BUNDLE + 'Resolution end');
     })
 
-    it(BUNDLE + 'IntoPhoto', 0, async (done: Function) => {
+    it('IntoPhoto', 0, async (done: Function) => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      hilog.info(DOMAIN, TAG, BUNDLE + 'IntoPhoto begin');
+      Logger.info(TAG, BUNDLE + 'IntoPhoto begin');
       await driver.delayMs(1000);
 
       // 点击进入相册
@@ -166,7 +164,7 @@ export default function CameraTest() {
 
       await driver.delayMs(1000);
       done();
-      hilog.info(DOMAIN, TAG, BUNDLE + 'IntoPhoto end');
+      Logger.info(TAG, BUNDLE + 'IntoPhoto end');
     })
   })
 
@@ -175,7 +173,7 @@ export default function CameraTest() {
    * @param id
    */
   let checkAndClickById = async (id: string, log: string) => {
-    hilog.info(DOMAIN, TAG, BUNDLE + `${log} id:${id}`);
+    Logger.info(TAG, BUNDLE + `${log} id:${id}`);
     await driver.assertComponentExist(ON.id(id));
     let res = await driver.findComponent(ON.id(id));
     await res.click();
@@ -185,16 +183,16 @@ export default function CameraTest() {
    * @param text
    */
   let checkAndClickByText = async (text: string, log: string) => {
-    hilog.info(DOMAIN, TAG, BUNDLE + `${log} text:${text}`);
+    Logger.info(TAG, BUNDLE + `${log} text:${text}`);
     await driver.assertComponentExist(ON.text(text));
     let res = await driver.findComponent(ON.text(text));
     await res.click();
   }
 
   let checkAndClickPermission = async (text: string, log: string) => {
-    hilog.info(DOMAIN, TAG, BUNDLE + `${log} text:${text}`);
+    Logger.info(TAG, BUNDLE + `${log} text:${text}`);
     await driver.delayMs(1000);
-    await driver.assertComponentExist(ON.text(getString($r('app.string.whether')) + text, MatchPattern.CONTAINS));
+    await driver.assertComponentExist(ON.text(text, MatchPattern.CONTAINS));
     await driver.delayMs(1000);
     // 点击授权
     let res = await driver.findComponent(ON.text(text, MatchPattern.EQUALS));
