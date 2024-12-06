@@ -1,0 +1,128 @@
+{
+  "integer": [
+    {
+      "name": "citysearch_integer_1",
+      "value": 100
+    },
+    {
+      "name": "citysearch_img_width",
+      "value": 30
+    },
+    {
+      "name": "citysearch_img_height",
+      "value": 6
+    },
+    {
+      "name": "citysearch_image_marginTop",
+      "value": 10
+    },
+    {
+      "name": "citysearch_search_height",
+      "value": 40
+    },
+    {
+      "name": "citysearch_placeholderFont_size",
+      "value": 14
+    },
+    {
+      "name": "citysearch_placeholderFont_weight",
+      "value": 400
+    },
+    {
+      "name": "citysearch_padding_left",
+      "value": 10
+    },
+    {
+      "name": "citysearch_padding_right",
+      "value": 16
+    },
+    {
+      "name": "citysearch_text_font",
+      "value": 14
+    },
+    {
+      "name": "citysearch_txt_margin_left",
+      "value": 5
+    },
+    {
+      "name": "citysearch_txt_margin_bottom",
+      "value": 50
+    },
+    {
+      "name": "citysearch_text_margin_left2",
+      "value": 6
+    },
+    {
+      "name": "citysearch_row_margin_bottom",
+      "value": 14
+    },
+    {
+      "name": "citysearch_text_margin_bottom",
+      "value": 12
+    },
+    {
+      "name": "citysearch_text_height",
+      "value": 28
+    },
+    {
+      "name": "citysearch_text_border_radius",
+      "value": 18
+    },
+    {
+      "name": "citysearch_list_item_height",
+      "value": 30
+    },
+    {
+      "name": "citysearch_font_size",
+      "value": 16
+    },
+    {
+      "name": "citysearch_divider_strokeWidth",
+      "value": 2
+    },
+    {
+      "name": "citysearch_divider_start",
+      "value": 0
+    },
+    {
+      "name": "citysearch_divider_end",
+      "value": 20
+    },
+    {
+      "name": "citysearch_margin_top",
+      "value": 20
+    },
+    {
+      "name": "citysearch_pop_position_x",
+      "value": 50
+    },
+    {
+      "name": "citysearch_pop_position_y",
+      "value": 350
+    },
+    {
+      "name": "citysearch_select_font",
+      "value": 16
+    },
+    {
+      "name": "citysearch_pop_font",
+      "value": 30
+    },
+    {
+      "name": "citysearch_padding_bottom",
+      "value": 10
+    },
+    {
+      "name": "citysearch_search_margin_top",
+      "value": 15
+    },
+    {
+      "name": "citysearch_search_margin_left",
+      "value": 3
+    },
+    {
+      "name": "citysearch_list_margin_top",
+      "value": 15
+    }
+  ]
+}
