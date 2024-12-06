@@ -20,20 +20,20 @@ export default class DrmConstants {
   /**
    * WisePlay MediaKeySystem的名称
    */
-  static readonly WISEPLAY_DRM_UUID: string = 'com.wiseplay.drm'
+  static readonly WISEPLAY_DRM_NAME: string = 'com.wiseplay.drm'
   /**
    * ClearPlay MediaKeySystem的名称
    */
-  static readonly CLEAR_PLAY_DRM_UUID: string = 'com.clearplay.drm'
+  static readonly CLEAR_PLAY_DRM_NAME: string = 'com.clearplay.drm'
 }
 
 /**
  * KeySession 回调事件
  */
 export enum KeySessionEvents {
-  KEY_NEEDED = 'keyNeeded',
+  KEY_REQUIRED = 'keyRequired',
   KEY_EXPIRED = 'keyExpired',
   VENDOR_DEFINED = 'vendorDefined',
-  EXPIRATION_UPDATED = 'expirationUpdated',
-  KEYS_CHANGED = 'keyChanged',
+  EXPIRATION_UPDATE = 'expirationUpdate',
+  KEYS_CHANGED = 'keysChange',
 }

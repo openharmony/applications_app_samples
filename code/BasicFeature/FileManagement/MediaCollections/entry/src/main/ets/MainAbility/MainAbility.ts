@@ -23,6 +23,14 @@ const TAG: string = 'MainAbility';
 export default class MainAbility extends UIAbility {
   async onCreate(want, launchParam) {
     Logger.info(TAG, '[Demo] MainAbility onCreate');
+    const PERMISSIONS: Array<Permissions> = [
+      "ohos.permission.READ_AUDIO",
+      "ohos.permission.WRITE_AUDIO",
+      "ohos.permission.READ_IMAGEVIDEO",
+      "ohos.permission.WRITE_IMAGEVIDEO"
+    ];
+    let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+    atManager.requestPermissionsFromUser(this.context, PERMISSIONS);
   }
 
   onDestroy() {
@@ -31,14 +39,7 @@ export default class MainAbility extends UIAbility {
 
   async onWindowStageCreate(windowStage) {
     Logger.info(TAG, '[Demo] MainAbility onWindowStageCreate');
-    let context = this.context;
-    let permissionNames: Permissions[] = ['ohos.permission.MEDIA_LOCATION', 'ohos.permission.READ_MEDIA',
-      'ohos.permission.WRITE_MEDIA'];
-    let atManager = abilityAccessCtrl.createAtManager();
-    await atManager.requestPermissionsFromUser(context, permissionNames).then((data) => {
-      Logger.info(TAG, 'getPermission success');
-    });
-    windowStage.loadContent('pages/HomePage', (err, data) => {
+    windowStage.loadContent('pages/phoneMain', (err, data) => {
       if (err.code) {
         Logger.info(TAG, 'Failed to load the content. Cause:' + JSON.stringify(err));
         return;

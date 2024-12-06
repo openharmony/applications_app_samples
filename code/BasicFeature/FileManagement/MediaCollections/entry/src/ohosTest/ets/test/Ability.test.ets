@@ -62,6 +62,8 @@ export default function abilityTest() {
       let agree = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.allow'))))
       await agree.click()
       await driver.delayMs(1000)
+      await agree.click()
+      await driver.delayMs(1000)
       agree = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.allow'))))
       expect(agree).assertNull()
       Logger.info(TAG, 'getPermission_001 end')
@@ -144,6 +146,7 @@ export default function abilityTest() {
       await confirm.click();
       await driver.delayMs(1000);
       Logger.info(TAG, `${BUNDLE} audioRename_001 end`);
+      done();
     })
 
     /**
@@ -172,6 +175,7 @@ export default function abilityTest() {
       await confirm.click();
       await driver.delayMs(1000);
       Logger.info(TAG, `${BUNDLE} audioDelete_001 end`);
+      done();
     })
 
     /**
@@ -210,6 +214,7 @@ export default function abilityTest() {
       await confirm.click();
       await driver.delayMs(1000);
       Logger.info(TAG, `${BUNDLE} videoRename_001 end`);
+      done();
     })
 
     /**
@@ -238,6 +243,7 @@ export default function abilityTest() {
       await confirm.click();
       await driver.delayMs(1000);
       Logger.info(TAG, `${BUNDLE} videoDelete_001 end`);
+      done();
     })
 
     /**

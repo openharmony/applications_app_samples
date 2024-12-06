@@ -1,9 +1,5 @@
 {
   "src": [
-    "pages/index",
-    "pages/phoneMain",
-    "pages/HomePage",
-    "pages/online/OnlineList",
-    "pages/online/OnlinePlayer"
+    "pages/phoneMain"
   ]
 }

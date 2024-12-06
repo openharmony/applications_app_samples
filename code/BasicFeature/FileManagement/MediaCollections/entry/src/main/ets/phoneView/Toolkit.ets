@@ -16,7 +16,7 @@
 import { MediaItem } from '../common/MediaItem'
 import { AVPlayer } from '../model/AVPlayer'
 import { gridData } from '../model/GridData'
-import mediaLibrary from '@ohos.multimedia.mediaLibrary'
+import userFileManager from '@ohos.filemanagement.userFileManager';
 import { GridDataItem } from '../phoneView/GridDataItem'
 
 @Component
@@ -25,14 +25,14 @@ export struct Toolkit {
   @State isTitle: string = ''
   @State leftSliderIndex: number = -1
   @State clickIndex: number = -1
-  @State itemData: mediaLibrary.FileAsset = {} as mediaLibrary.FileAsset
+  @State itemData: userFileManager.FileAsset = {} as userFileManager.FileAsset
   @State audioText: string = ''
   @State videoText: string = ''
   @Link myMedia: AVPlayer
   @Link currentTime: number
   @Link isXComponent: boolean
-  @Link audioData: mediaLibrary.FileAsset[]
-  @Link videoData: mediaLibrary.FileAsset[]
+  @Link audioData: userFileManager.FileAsset[]
+  @Link videoData: userFileManager.FileAsset[]
   @Link isPlaying: boolean
   @Link surfaceId: number
   @Link fileIndex: number
@@ -80,7 +80,7 @@ export struct Toolkit {
         Scroll(this.scroller) {
           Column() {
             List({ initialIndex: 0 }) {
-              ForEach(this.isTitle == this.audioText ? this.audioData : this.videoData, (item: mediaLibrary.FileAsset, index) => {
+              ForEach(this.isTitle == this.audioText ? this.audioData : this.videoData, (item: userFileManager.FileAsset, index) => {
                 ListItem() {
                   MediaItem({
                     index: index,
@@ -109,7 +109,7 @@ export struct Toolkit {
                     }, 1000)
                   }
                 })
-              }, (item: mediaLibrary.FileAsset) => item.displayName)
+              }, (item: userFileManager.FileAsset) => item.displayName)
             }
             .height(260)
             .alignListItem(ListItemAlign.Center)

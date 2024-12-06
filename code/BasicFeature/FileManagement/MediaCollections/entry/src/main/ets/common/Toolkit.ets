@@ -14,7 +14,7 @@
  */
 
 
-import mediaLibrary from '@ohos.multimedia.mediaLibrary'
+import userFileManager from '@ohos.filemanagement.userFileManager';
 import { gridData } from '../model/GridData'
 import { AVPlayer } from '../model/AVPlayer'
 import { MediaItem } from './MediaItem'
@@ -33,9 +33,9 @@ export struct Toolkit {
   @Link isXComponent: boolean
   @Link isStreamShow: boolean
   @Link streamBtnText: Resource
-  @Link itemData: mediaLibrary.FileAsset
-  @Link audioData: mediaLibrary.FileAsset[]
-  @Link videoData: mediaLibrary.FileAsset[]
+  @Link itemData: userFileManager.FileAsset
+  @Link audioData: userFileManager.FileAsset[]
+  @Link videoData: userFileManager.FileAsset[]
   @Link fileIndex: number
   @Link fileType: number
   @State isBom: boolean = true
@@ -123,7 +123,7 @@ export struct Toolkit {
         if (this.isTitle == this.audioText) {
           Column() {
             List({ initialIndex: 0 }) {
-              ForEach(this.audioData, (item: mediaLibrary.FileAsset, index) => {
+              ForEach(this.audioData, (item: userFileManager.FileAsset, index) => {
                 ListItem() {
                   MediaItem({
                     index: index,
@@ -154,7 +154,7 @@ export struct Toolkit {
                     }, 1000)
                   }
                 })
-              }, (item: mediaLibrary.FileAsset) => item.id.toString())
+              }, (item: userFileManager.FileAsset) => item.uri)
             }
             .editMode(true)
           }
@@ -163,7 +163,7 @@ export struct Toolkit {
         if (this.isTitle == this.videoText) {
           Column() {
             List({ initialIndex: 0 }) {
-              ForEach(this.videoData, (item: mediaLibrary.FileAsset, index) => {
+              ForEach(this.videoData, (item: userFileManager.FileAsset, index) => {
                 ListItem() {
                   MediaItem({
                     index: index,
@@ -198,7 +198,7 @@ export struct Toolkit {
                     }, 1000)
                   }
                 })
-              }, (item: mediaLibrary.FileAsset) => item.id.toString())
+              }, (item: userFileManager.FileAsset) => item.uri)
             }
             .editMode(true)
           }

@@ -1,6 +1,6 @@
 # 媒体管理合集
 
-###  介绍
+### 介绍
 
 #### 具体功能
 
@@ -10,13 +10,21 @@
 
 ### 效果预览
 
-|主页|音频| 视频                                 | 重命名                                 |
-|--------------------------------|--------------------------------|------------------------------------|-------------------------------------|
-|![](screenshots/devices/index.png) |![](screenshots/devices/audio.png)| ![](screenshots/devices/video.png) | ![](screenshots/devices/rename.png) |
+| 主页                                         | 音频                                        | 视频                                 | 重命名                                 |
+|--------------------------------------------|-------------------------------------------|------------------------------------|-------------------------------------|
+| ![](screenshots/devices/index.png)         | ![](screenshots/devices/audio.png)        | ![](screenshots/devices/video.png) | ![](screenshots/devices/rename.png) |
 
 使用说明
 
-1. 启动应用，点击音频或视频可以查看本地音视频资源。若本地没有音视频资源，可以push视频到本地媒体库路径，视频路径(storage/media/100/local/files/Videos)  音频路径(storage/media/100/local/files/Audios)，需要先hdc进入storage/media/100/local/files路径下查看是否有Videos/Audios文件夹，没有则需要mkdir Videos/Audios创建文件夹后push音视频资源。
+1. 启动应用，选择离线播放，点击音频或视频可以查看本地音视频资源。若本地没有音视频资源，可以用mediatool工具push视频到本地媒体库路径：
+```
+将资源复制进设备
+hdc file send Audios(Videos) /data/Audios.mp3(Videos.mp4) 
+
+通过mediatool把设备目录下的文件推入媒体库中
+hdc shell mediatool send /data/Audios.mp3(Videos.mp4)
+```
+
 2. 进入首页，可以通过输入网络地址或点击音频，视频进行播放音视频。
 3. 音视频播放后，对于播控按键显示，点击播放、暂停可以播放、暂停音视频。
 4. 音视频列表左滑可以开启重命名、删除图标，点击对应图标可以进行音视频的重命名和删除。
@@ -79,7 +87,7 @@ entry/src/main/ets/
 * 获取音频模块
   * 使用媒体库接口进行音视频的扫描，获取音视频详细信息，重命名和删除操作，使用PixelMap方法读取或写入图像数据以及获取图像信息。
   * 源码链接：[myMedia.ts](entry/src/main/ets/model/myMedia.ts)，[IsInformationDialog.ets](entry/src/main/ets/common/IsInformationDialog.ets)，[DeleteDialog.ets](entry/src/main/ets/common/DeleteDialog.ets)，[RenameDialog.ets](entry/src/main/ets/common/RenameDialog.ets)
-  * 接口参考：[@ohos.multimedia.mediaLibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-medialibrary.md)，[@ohos.multimedia.image](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-image-kit/js-apis-image.md)，[@ohos.prompt](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-promptAction.md)
+  * 接口参考：[@ohos.multimedia.image](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-image-kit/js-apis-image.md)，[@ohos.prompt](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-as/js-apis-promptAction.md)
 
 * 音频，视频操作模块
   * 使用媒体服务进行音视频播放，暂停，seek等操作，其中AudioPlayer方法播放音频，VideoPlayer方法播放视频。
@@ -93,9 +101,15 @@ entry/src/main/ets/
 
 ### 相关权限
 
-1.读取公共媒体文件权限：[ohos.permission.READ_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionread_media)
+1.读取公共目录的图片或视频文件：[ohos.permission.READ_IMAGEVIDEO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionread_imagevideo)
 
-2.读写公共媒体文件权限：[ohos.permission.WEITE_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionwrite_media)
+2.修改公共目录的图片或视频文件：[ohos.permission.WRITE_IMAGEVIDEO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionwrite_imagevideo)
+
+3.读取公共目录的音频文件：[ohos.permission.READ_AUDIO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionread_audio)
+
+4.修改公共目录的音频文件：[ohos.permission.WRITE_AUDIO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionwrite_audio)
+
+5.使用Internet网络：[ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissioninternet)
 
 ### 依赖
 
