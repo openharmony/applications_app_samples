@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -33,10 +33,15 @@ interface Reminder {
   reminderRequestCalendar?: reminderAgent.ReminderRequestCalendar,
 }
 
+interface timerType {
+  reminderType: reminderAgent.ReminderType;
+  triggerTimeInSeconds: number;
+}
+
 const BUNDLE = 'reminderAgentManagerTest_';
 const TAG = 'ReminderAgentAppTestPage';
 let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
-let uiAbility: UIAbility = undefined;
+let uiAbility: UIAbility = new UIAbility();
 
 async function getResourceString(resource: Resource): Promise<string> {
   let manage = abilityDelegatorRegistry.getAppContext().resourceManager;
@@ -50,8 +55,8 @@ async function getPerferenceData(key: string) {
   let getValue = [];
   if (await preferences.get(key, 'default')) {
     try {
-      let result = <string> await preferences.get(key, 'default');
-      getValue = JSON.parse(result);
+      let result = await preferences.get(key, 'default');
+      getValue = JSON.parse(result as string);
     } catch (err) {
       Logger.error(TAG, `this getData err is ${JSON.stringify(err)}`);
     }
@@ -61,36 +66,34 @@ async function getPerferenceData(key: string) {
   return getValue;
 }
 
-export default function appTest() {
-  describe('appTest', function () {
+export default function abilityTest() {
+  describe('ActsAbilityTest', () => {
     // 打开应用
-    it(BUNDLE + 'StartAbility', 0, async function (done) {
+    it('StartAbility_001', 0, async (done: Function) => {
       Logger.info(TAG, 'StartAbility start')
-      let want = {
+      abilityDelegatorRegistry.startAbility({
         bundleName: "ohos.samples.reminderagentmanager",
         abilityName: "MainAbility"
-      };
-      abilityDelegatorRegistry.startAbility(want, (err) => {
+      }, (err) => {
         Logger.info(TAG, `_startAbility get err ${JSON.stringify(err)}`);
         done();
         Logger.info(TAG, '_startAbility end');
       });
 
-      function onAbilityCreateCallback() {
-        Logger.info(TAG, 'onAbilityCreateCallback');
-      }
-
       let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
         abilityName: 'MainAbility',
-        onAbilityCreate: onAbilityCreateCallback
+        onAbilityCreate: () => {
+          Logger.info(TAG, 'onAbilityCreateCallback');
+        }
       }
       uiAbility = await abilityDelegatorRegistry.waitAbilityMonitor(monitor);
       Logger.info(TAG, 'StartAbility end')
+      done();
     })
     /**
      * 获取通知使能
      */
-    it(`${BUNDLE}RequestEnableNotification`, 0, async () => {
+    it('RequestEnableNotification_001', 0, async (done: Function) => {
       Logger.info(TAG, BUNDLE + 'RequestEnableNotification begin');
       let driver: Driver = Driver.create();
       await driver.delayMs(3000);
@@ -100,7 +103,7 @@ export default function appTest() {
       await agreeNotication.click();
       await driver.delayMs(1000);
       // 校验是否使能成功
-      let timer = {
+      let timer: timerType = {
         reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
         triggerTimeInSeconds: 10
       }
@@ -110,12 +113,13 @@ export default function appTest() {
         expect().assertFail();
       }
       Logger.info(TAG, BUNDLE + 'RequestEnableNotification end');
+      done();
     })
 
     /**
      * 设置日历，用例只支持RK3568
      */
-    it(`${BUNDLE}setCalendar`, 0, async () => {
+    it('setCalendar_001', 0, async (done: Function) => {
       Logger.info(TAG, BUNDLE + 'createCalendar begin');
       let driver: Driver = Driver.create();
       await driver.delayMs(1000);
@@ -244,12 +248,13 @@ export default function appTest() {
         await driver.delayMs(1000);
       }
       Logger.info(TAG, BUNDLE + 'set end');
+      done();
     });
 
     /**
      * 设置闹钟，用例只支持RK3568
      */
-    it(`${BUNDLE}setClock_001`, 0, async () => {
+    it('setClock_001', 0, async (done: Function) => {
       Logger.info(TAG, BUNDLE + 'setClock_001 begin');
       let driver: Driver = Driver.create();
       await driver.delayMs(5000);
@@ -326,7 +331,7 @@ export default function appTest() {
       await clock.click();
       await driver.delayMs(1000);
       // 设置提醒天数默认设置为全周
-      for (let i = 0;i < 7; i++) {
+      for (let i = 0; i < 7; i++) {
         await driver.assertComponentExist(ON.id(`day0${i}`));
         let reminderDays: Component = await driver.findComponent(ON.id(`day0${i}`));
         await reminderDays.click();
@@ -336,22 +341,22 @@ export default function appTest() {
       let intervalDel: Component[] = await driver.findComponents(ON.text('-'));
       await driver.assertComponentExist(ON.id('timeCounter'));
       let addIntervalTime: Component = intervalAdd[0];
-      for (let i = 0;i < 2; i++) {
+      for (let i = 0; i < 2; i++) {
         await addIntervalTime.click();
       }
       // 减少间隔次数
       let delIntervalTime: Component = intervalDel[0];
-      for (let i = 0;i < 1; i++) {
+      for (let i = 0; i < 1; i++) {
         await delIntervalTime.click();
       }
       // 增加间隙
       let addIntervalDuration: Component = intervalAdd[1];
-      for (let i = 0;i < 2; i++) {
+      for (let i = 0; i < 2; i++) {
         await addIntervalDuration.click();
       }
       // 减少间隔次数
       let delIntervalDuration: Component = intervalDel[1];
-      for (let i = 0;i < 1; i++) {
+      for (let i = 0; i < 1; i++) {
         await delIntervalDuration.click();
       }
       // 开启震动
@@ -398,10 +403,11 @@ export default function appTest() {
         await driver.delayMs(1000);
       }
       Logger.info(TAG, BUNDLE + 'setClock_001 end');
+      done();
     });
 
     // 设置计时器，用例只支持RK3568
-    it(`${BUNDLE}setCalculagraph`, 0, async () => {
+    it('setCalculagraph_001', 0, async (done: Function) => {
       Logger.info(TAG, BUNDLE + 'calculagraph begin');
       let driver: Driver = Driver.create();
       await driver.delayMs(1000);
@@ -469,6 +475,7 @@ export default function appTest() {
       }
       await driver.delayMs(1000);
       Logger.info(TAG, BUNDLE + 'calculagraph end');
+      done();
     });
   })
 }
