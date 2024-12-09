@@ -1212,6 +1212,16 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/UI/CitySearch/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/UI/CitySearch"/>
 				<filteritem type="filepath" name="code/UI/CitySearch/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/UI/CitySearch"/>
 				<filteritem type="filepath" name="code/UI/CitySearch/casesfeature/citysearch/city_search.gif" desc="Provided by code/UI/CitySearch"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/MusicPlayer/musicplayer/music_player.gif" desc="Provided by code/SystemFeature/Media/MusicPlayer"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/MusicPlayer/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/SystemFeature/Media/MusicPlayer"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/MusicPlayer/musicplayer/src/main/resources/rawfile/cover_second.webp" desc="Provided by code/SystemFeature/Media/MusicPlayer"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/MusicPlayer/musicplayer/src/main/resources/rawfile/cover_third.webp" desc="Provided by code/SystemFeature/Media/MusicPlayer"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/MusicPlayer/musicplayer/src/main/resources/rawfile/cover_first.webp" desc="Provided by code/SystemFeature/Media/MusicPlayer"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/MusicPlayer/entry/src/main/resources/base/media/background.png" desc="Provided by code/SystemFeature/Media/MusicPlayer"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/MusicPlayer/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/Media/MusicPlayer"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/MusicPlayer/musicplayer/src/main/resources/rawfile/lyrics.lrc" desc="Provided by code/SystemFeature/Media/MusicPlayer"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/MusicPlayer/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/SystemFeature/Media/MusicPlayer"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/MusicPlayer/musicplayer/src/main/resources/rawfile/music.mp3" desc="Provided by code/SystemFeature/Media/MusicPlayer"/>
 			</filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加License头"/>
