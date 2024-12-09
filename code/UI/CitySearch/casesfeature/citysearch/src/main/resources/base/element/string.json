@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "citysearch_module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "citysearch_EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "citysearch_address",
+      "value": "address"
+    },
+    {
+      "name": "citysearch_hotCity",
+      "value": "国内热门城市"
+    },
+    {
+      "name": "citysearch_searchText",
+      "value": "搜索"
+    },
+    {
+      "name": "citysearch_placeholder",
+      "value": "长沙"
+    },
+    {
+      "name": "citysearch_only_show_ui",
+      "value": "此样式仅为案例展示"
+    },
+    {
+      "name": "citysearch_one_percent",
+      "value": "100%"
+    },
+    {
+      "name": "citysearch_only_show_for_ux",
+      "value": "没有搜到相关城市信息~"
+    }
+  ]
+}

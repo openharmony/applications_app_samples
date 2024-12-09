@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "城市选择模块"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "城市选择"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "CitySearch"
+    }
+  ]
+}
