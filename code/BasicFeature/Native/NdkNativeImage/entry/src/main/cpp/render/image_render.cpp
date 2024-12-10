@@ -23,6 +23,10 @@
 #include <EGL/eglext.h>
 
 namespace {
+    constexpr int MATRIX_SIZE = 16;
+    constexpr int MATRIX_DIAGONAL_STEP = 5;
+    constexpr float IDENTITY_DIAGONAL = 1.0f;
+    constexpr float IDENTITY_OTHER = 0.0f;
     constexpr uint32_t NUM_VERTICES = 4;
     constexpr uint32_t POSITION_COMPONENT_COUNT = 3;
     constexpr uint32_t TEX_COORD_COMPONENT_COUNT = 2;
@@ -31,9 +35,10 @@ namespace {
         attribute vec4 aPosition;
         attribute vec2 aTexCoord;
         varying vec2 vTexCoord;
+        uniform mat4 uTransformMatrix;
         void main() {
             gl_Position = aPosition;
-            vTexCoord = aTexCoord;
+            vTexCoord = (uTransformMatrix * vec4(aTexCoord, 0.0, 1.0)).xy;
         }
     )";
 
@@ -50,9 +55,9 @@ namespace {
 
 ImageRender::ImageRender()
 {
-    // 初始化 transformMatrix_ 为单位矩阵
-    for (int i = 0; i < 16; ++i) {
-        transformMatrix_[i] = (i % 5 == 0) ? 1.0f : 0.0f;
+    // Initialize transformMatrix_ as an identity matrix
+    for (int i = 0; i < MATRIX_SIZE; ++i) {
+        transformMatrix_[i] = (i % MATRIX_DIAGONAL_STEP == 0) ? IDENTITY_DIAGONAL : IDENTITY_OTHER;
     }
 }
 
@@ -218,9 +223,9 @@ void ImageRender::PrintProgramLinkError(GLuint program)
     }
 }
 
-void ImageRender::SetTransformMatrix(const float matrix[16])
+void ImageRender::SetTransformMatrix(const float matrix[MATRIX_SIZE])
 {
-    std::copy(matrix, matrix + 16, transformMatrix_);
+    std::copy(matrix, matrix + MATRIX_SIZE, transformMatrix_);
 }
 
 void ImageRender::SetTexture(GLuint textureId, GLuint textureTarget)
@@ -231,13 +236,11 @@ void ImageRender::SetTexture(GLuint textureId, GLuint textureTarget)
 
 void ImageRender::SetupVertexAttributes()
 {
-    // Define the vertex data for a textured quad
     static const GLfloat vertices[] = {
-        // Positions         // Texture Coords
-        -1.0f, -1.0f, 0.0f,   0.0f, 1.0f, // Left Bottom
-         1.0f, -1.0f, 0.0f,   1.0f, 1.0f, // Right Bottom
-        -1.0f,  1.0f, 0.0f,   0.0f, 0.0f, // Left Top
-         1.0f,  1.0f, 0.0f,   1.0f, 0.0f, // Right Top
+        -1.0f, -1.0f, 0.0f,      0.0f, 0.0f,    // 左下
+        1.0f, -1.0f, 0.0f,      1.0f, 0.0f,     // 右下
+        -1.0f,  1.0f, 0.0f,      0.0f, 1.0f,    // 左上
+        1.0f,  1.0f, 0.0f,      1.0f, 1.0f      // 右上
     };
 
     // Enable and set the position attribute
@@ -357,7 +360,7 @@ void ImageRender::PrintShaderCompileError(GLuint shader)
     GLint infoLen = 0;
     glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &infoLen);
     if (infoLen > 1) {
-        std::unique_ptr<char[]> infoLog(new char[infoLen]);
+        auto infoLog = std::make_unique<char[]>(infoLen);
         glGetShaderInfoLog(shader, infoLen, nullptr, infoLog.get());
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ImageRender",
                      "Error compiling shader: %{public}s", infoLog.get());

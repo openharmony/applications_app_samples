@@ -58,7 +58,6 @@ public:
     void OnSurfaceChanged(uint64_t width, uint64_t height);
     void OnAppResume();
     void OnAppPause();
-
 private:
     static void OnNativeImageFrameAvailable(void *data);
     // Vsync 相关

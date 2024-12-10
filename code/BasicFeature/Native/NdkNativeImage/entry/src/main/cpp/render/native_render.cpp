@@ -17,28 +17,48 @@
 #include <algorithm>
 #include <cmath>
 #include <poll.h>
-#include <unistd.h>   // 修正为 <unistd.h>
+#include <unistd.h>
 #include <cerrno>
 #include <cstdint>
 #include <hilog/log.h>
 
 namespace {
-    constexpr double ANIMATION_SPEED_INCREMENT = 0.05;    // 动画速度增量
-    constexpr int INVALID_FD = -1;                        // 无效的文件描述符
-    constexpr uint32_t POLL_TIMEOUT_MS = 3000;            // poll 超时时间（毫秒）
-    constexpr nfds_t NUM_POLL_FDS = 1;                    // poll 的文件描述符数量
-    constexpr int SUCCESS = 0;                            // 成功返回码
-    constexpr int FAILURE = -1;                           // 失败返回码
-    constexpr int NO_FENCE = -1;                          // 无同步栅栏
-    constexpr uint8_t MAX_COLOR_VALUE = 255;              // 颜色分量的最大值
-    constexpr double MAX_INTENSITY = 1.0;                 // 最大强度值
-    constexpr double MIN_INTENSITY = 0.0;                 // 最小强度值
-    constexpr double INTENSITY_MULTIPLIER = 2.0;          // 强度乘数
-    constexpr double INTENSITY_LIMIT = 1.0;               // 强度限制
-    constexpr uint8_t ALPHA_SHIFT = 24;                   // Alpha 通道位移
-    constexpr uint8_t RED_SHIFT = 16;                     // Red 通道位移
-    constexpr uint8_t GREEN_SHIFT = 8;                    // Green 通道位移
-    constexpr uint8_t BLUE_SHIFT = 0;                     // Blue 通道位移
+    // 动画相关
+    constexpr double ANIMATION_SPEED_INCREMENT = 0.6;   // 动画速度增量
+
+    // 文件描述符和轮询相关
+    constexpr int INVALID_FD = -1;                      // 无效的文件描述符 
+    constexpr uint32_t POLL_TIMEOUT_MS = 3000;          // poll 超时时间（毫秒）
+    constexpr nfds_t NUM_POLL_FDS = 1;                  // poll 的文件描述符数量
+    constexpr int NO_FENCE = -1;                        // 无同步栅栏
+    constexpr int MAX_RETRY = 3;                        // 最大重试次数
+
+    // 返回状态码
+    constexpr int SUCCESS = 0;                          // 成功返回码
+    constexpr int FAILURE = -1;                         // 失败返回码
+
+    // 颜色和像素相关
+    constexpr uint8_t MAX_COLOR_VALUE = 255;            // 颜色分量的最大值
+    constexpr int32_t BYTES_PER_PIXEL = 4;              // 每个像素的字节数
+
+    // 颜色通道位移
+    constexpr uint8_t ALPHA_SHIFT = 24;                 // Alpha 通道位移
+    constexpr uint8_t RED_SHIFT = 16;                   // Red 通道位移
+    constexpr uint8_t GREEN_SHIFT = 8;                  // Green 通道位移
+    constexpr uint8_t BLUE_SHIFT = 0;                   // Blue 通道位移
+
+    // 强度相关
+    constexpr double MAX_INTENSITY = 1.0;               // 最大强度值
+    constexpr double MIN_INTENSITY = 0.5;               // 最小强度值
+    constexpr double INTENSITY_MULTIPLIER = 2.0;        // 强度乘数
+    constexpr double INTENSITY_LIMIT = 1.0;             // 强度限制
+
+    // 箭头绘制相关
+    constexpr int ARROW_SIZE_DIVISOR = 2;               // 箭头大小的除数
+    constexpr int STEM_WIDTH_DIVISOR = 6;               // 箭头柄宽度的除数
+    constexpr int HEAD_WIDTH_DIVISOR = 2;               // 箭头头部宽度的除数
+    constexpr int HEAD_LENGTH_DIVISOR = 3;              // 箭头头部长度的除数
+    constexpr double HEAD_SLOPE_MULTIPLIER = 0.5;       // 箭头头部斜率的乘数
 }
 
 OHNativeRender::~OHNativeRender()
@@ -97,12 +117,24 @@ void OHNativeRender::RenderFrame()
         struct pollfd pollfds = {};
         pollfds.fd = releaseFenceFd;
         pollfds.events = POLLIN;
+
+        int retryCount = 0;
+
         do {
-            retCode = poll(&pollfds, NUM_POLL_FDS, timeout);
+            retCode = poll(&pollfds, NUM_POLL_FDS, POLL_TIMEOUT_MS);
+            retryCount++;
+
+            // 超过最大重试次数则退出
+            if (retryCount >= MAX_RETRY) {
+                OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN,
+                    "OHNativeRender", "Poll reached maximum retry count.");
+                break;
+            }
         } while (retCode == FAILURE && (errno == EINTR || errno == EAGAIN));
-        close(releaseFenceFd); // 防止 fd 泄漏
+
+        close(releaseFenceFd);
     }
-    
+
     BufferHandle *handle = OH_NativeWindow_GetBufferHandleFromNative(buffer);
     if (handle == nullptr) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "OHNativeRender", "Failed to get buffer handle.");
@@ -120,7 +152,7 @@ void OHNativeRender::RenderFrame()
     uint32_t *pixel = static_cast<uint32_t *>(mappedAddr);
 
     // 调用封装的函数来绘制渐变
-    DrawGradient(pixel, width_, height_);
+    DrawGradient(pixel, handle->stride / BYTES_PER_PIXEL, height_);
 
     // 解除内存映射
     result = munmap(mappedAddr, handle->size);
@@ -128,6 +160,7 @@ void OHNativeRender::RenderFrame()
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "OHNativeRender", "Failed to munmap buffer.");
     }
 
+    std::lock_guard<std::mutex> lock(mutex_);
     // 设置刷新区域
     Region region{nullptr, 0};
     // 提交给消费者
@@ -140,41 +173,49 @@ void OHNativeRender::RenderFrame()
 
 void OHNativeRender::DrawGradient(uint32_t* pixel, uint64_t width, uint64_t height)
 {
-    // 引入时间变量，实现动态效果
     static double time = 0.0;
-    time += ANIMATION_SPEED_INCREMENT; // 调整增量以控制动画速度
+    time += ANIMATION_SPEED_INCREMENT;
+    double offset = (sin(time) + MAX_INTENSITY) / INTENSITY_MULTIPLIER;
 
-    // 计算动画偏移，用于控制渐变的位置
-    double offset = (sin(time) + MAX_INTENSITY) / INTENSITY_MULTIPLIER; // 范围从 0.0 到 1.0
+    // 箭头参数
+    const int arrowSize = std::min(width, height) / ARROW_SIZE_DIVISOR;
+    const int arrowX = width / ARROW_SIZE_DIVISOR;
+    const int arrowY = height / ARROW_SIZE_DIVISOR;
+    const int stemWidth = arrowSize / STEM_WIDTH_DIVISOR;
+    const int headWidth = arrowSize / HEAD_WIDTH_DIVISOR;
+    const int headLength = arrowSize / HEAD_LENGTH_DIVISOR;
+    const int stemStart = arrowX - arrowSize / ARROW_SIZE_DIVISOR;
+    const int stemEnd = arrowX + arrowSize / ARROW_SIZE_DIVISOR - headLength;
 
-    // 遍历每一个像素
     for (uint64_t y = 0; y < height; y++) {
         for (uint64_t x = 0; x < width; x++) {
-            // 计算当前像素的归一化横坐标，范围从 0.0 到 1.0
             double normalizedX = static_cast<double>(x) / static_cast<double>(width - 1);
+            bool isArrow = false;
 
-            // 计算颜色强度，随着时间偏移
-            double intensity = fabs(normalizedX - offset);
-            intensity = MAX_INTENSITY - std::min(INTENSITY_MULTIPLIER * intensity, INTENSITY_LIMIT); // 调整范围
-            if (intensity < MIN_INTENSITY) {
-                intensity = MIN_INTENSITY;
+            if ((x >= stemStart && x <= stemEnd && y >= arrowY - stemWidth * HEAD_SLOPE_MULTIPLIER &&
+                y <= arrowY + stemWidth * HEAD_SLOPE_MULTIPLIER) || (x >= stemEnd && x <= stemEnd + headLength &&
+                fabs(static_cast<int>(y - arrowY)) <= (headWidth * HEAD_SLOPE_MULTIPLIER) *
+                (1.0 - static_cast<double>(x - stemEnd) / headLength))) {
+                isArrow = true;
             }
 
-            // 计算颜色分量，使用灰度值
-            uint8_t colorValue = static_cast<uint8_t>(intensity * MAX_COLOR_VALUE);
-            uint8_t red = colorValue;
-            uint8_t green = colorValue;
-            uint8_t blue = colorValue;
+            uint8_t red = static_cast<uint8_t>((1.0 - normalizedX) * MAX_COLOR_VALUE);
+            uint8_t blue = static_cast<uint8_t>(normalizedX * MAX_COLOR_VALUE);
+            uint8_t green = 0;
             uint8_t alpha = MAX_COLOR_VALUE;
+            if (isArrow) {
+                red = green = blue = MAX_COLOR_VALUE;
+            }
+            double intensity = fabs(normalizedX - offset);
+            intensity = MAX_INTENSITY - std::min(INTENSITY_MULTIPLIER * intensity, INTENSITY_LIMIT);
+            intensity = std::max(intensity, MIN_INTENSITY);
 
-            // 组合颜色值（RGBA）
-            uint32_t color = (static_cast<uint32_t>(alpha) << ALPHA_SHIFT) |
-                             (static_cast<uint32_t>(red) << RED_SHIFT) |
-                             (static_cast<uint32_t>(green) << GREEN_SHIFT) |
-                             (static_cast<uint32_t>(blue) << BLUE_SHIFT);
+            red = static_cast<uint8_t>(red * intensity);
+            green = static_cast<uint8_t>(green * intensity);
+            blue = static_cast<uint8_t>(blue * intensity);
 
-            // 写入像素
-            *pixel++ = color;
+            *pixel++ = (static_cast<uint32_t>(alpha) << ALPHA_SHIFT) | (static_cast<uint32_t>(red) << RED_SHIFT) |
+                (static_cast<uint32_t>(green) << GREEN_SHIFT) | (static_cast<uint32_t>(blue) << BLUE_SHIFT);
         }
     }
 }

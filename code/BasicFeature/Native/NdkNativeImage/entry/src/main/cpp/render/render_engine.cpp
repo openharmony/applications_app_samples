@@ -347,7 +347,8 @@ bool RenderEngine::StartNativeRenderThread()
         }
 
         if (!nativeRender_->SetSurfaceId(nativeImageSurfaceId_, width_, height_)) {
-            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "RenderEngine", "Failed to set SurfaceId for NativeRender");
+            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN,
+                "RenderEngine", "Failed to set SurfaceId for NativeRender");
             return false;
         }
     }

@@ -95,9 +95,9 @@ XComponent NativeWindow。
 
 1. **运行环境**：本示例仅支持在 OpenHarmony 标准系统上运行。
 
-2. **SDK 版本**：本示例已适配 API Version 10 版本 SDK，适用于 SDK 版本号（API Version 10 Release）、镜像版本号（4.0 Release）。
+2. **SDK 版本**：本示例已适配 API Version 12 版本 SDK，适用于 SDK 版本号（API Version 12 Release）、镜像版本号（5.0.0 Release）。
 
-3. **开发工具**：本示例需要使用 DevEco Studio 版本号（3.1 Release）及以上版本进行编译和运行。
+3. **开发工具**：本示例需要使用 DevEco Studio 版本号（5.0.0 Release）及以上版本进行编译和运行。
 
 ### 下载
 
@@ -106,7 +106,7 @@ XComponent NativeWindow。
 ```bash
 git init
 git config core.sparsecheckout true
-echo code/NativeFeature/Native/NdkNativeImage/ > .git/info/sparse-checkout
+echo code/BasicFeature/Native/NdkNativeImage > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

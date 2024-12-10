@@ -18,6 +18,7 @@
 #include <native_window/external_window.h>
 #include <native_buffer/native_buffer.h>
 #include <sys/mman.h>
+#include <mutex>
 
 class OHNativeRender {
 public:
@@ -29,8 +30,9 @@ public:
 
 private:
     void DrawGradient(uint32_t* pixel, uint64_t width, uint64_t height);
-    
+
     OHNativeWindow* nativeWindow_ = nullptr;
+    std::mutex mutex_;
     uint64_t width_ = 0;
     uint64_t height_ = 0;
 };
