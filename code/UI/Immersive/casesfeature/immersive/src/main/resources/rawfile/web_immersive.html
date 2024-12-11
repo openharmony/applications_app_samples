@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='viewport-fit=cover, width=device-width, initial-scale=1.0'>
+    <title>冬日暖心家电狂欢季</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: blue;
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+        }
+        header h1 {
+            font-size: 36px;
+            margin: 0;
+        }
+        header p {
+            font-size: 18px;
+        }
+        footer {
+            /* 网页元素对导航条进行避让 */
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+        .cta-btn {
+            background-color: #FF6F61;
+            color: white;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .cta-btn:hover {
+            background-color: #FF4C3B;
+        }
+        .countdown {
+            font-size: 22px;
+            color: #FF4500;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .product-list {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 20px;
+        }
+        .product {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            text-align: center;
+            width: 280px;
+            height:
+        }
+        .product img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+        }
+        .product-info {
+            padding: 15px;
+        }
+        .product-info h3 {
+            margin: 0;
+            font-size: 22px;
+            color: #333;
+        }
+        .product-info p {
+            font-size: 16px;
+            color: #777;
+            margin: 10px 0;
+        }
+        .product-info .price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #FF4500;
+        }
+        .product-info .old-price {
+            text-decoration: line-through;
+            color: #999;
+        }
+        .buy-btn {
+            background-color: #FF6F61;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            cursor: pointer;
+        }
+        .buy-btn:hover {
+            background-color: #FF4C3B;
+        }
+        .offer-banner {
+            background-color: #FFD700;
+            padding: 20px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            color: #333;
+        }
+        .offer-banner button {
+            background-color: #FF6F61;
+            color: white;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .offer-banner button:hover {
+            background-color: #FF4C3B;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>冬日暖心家电狂欢季</h1>
+    <p>暖冬好物，限时抢购，带给您温暖与便利！</p>
+    <a href="#products" class="cta-btn">立即抢购</a>
+    <div class="countdown">活动倒计时：仅剩 3天 5小时 20分钟！</div>
+</header>
+
+<section class="product-list" id="products">
+    <div class="product">
+        <img src="./immersive_kongtiao.jpg" alt="空调" width="240px" height="420px">
+        <div class="product-info">
+            <h3>空调</h3>
+            <p>快速制冷，智能温控</p>
+            <div class="price">
+                ￥1999 <span class="old-price">￥2999</span>
+            </div>
+            <button class="buy-btn">立即购买</button>
+        </div>
+    </div>
+
+    <div class="product">
+        <img src="./immersive_bingxiang.jpeg" alt="冰箱">
+        <div class="product-info">
+            <h3>冰箱</h3>
+            <p>超大容量，节能省电</p>
+            <div class="price">
+                ￥2399 <span class="old-price">￥3299</span>
+            </div>
+            <button class="buy-btn">立即购买</button>
+        </div>
+    </div>
+
+    <div class="product">
+        <img src="./immersive_xiyiji.jpg" alt="洗衣机">
+        <div class="product-info">
+            <h3>洗衣机</h3>
+            <p>高效洗涤，静音设计</p>
+            <div class="price">
+                ￥1599 <span class="old-price">￥2299</span>
+            </div>
+            <button class="buy-btn">立即购买</button>
+        </div>
+    </div>
+</section>
+
+<section class="offer-banner">
+    <p>领取专属优惠券，享受额外折扣！</p>
+    <button>立即领取优惠券</button>
+</section>
+
+<footer style="text-align: center; padding-top: 20px; background-color: #333; color: white;">
+    <p>© 2024 冬日暖心家电狂欢季 | 所有产品均享受2年保修服务</p>
+</footer>
+
+</body>
+</html>

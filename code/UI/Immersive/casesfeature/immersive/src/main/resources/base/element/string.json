@@ -1,0 +1,323 @@
+{
+  "string": [
+    {
+      "name": "immersive_adaption",
+      "value": "沉浸式适配"
+    },
+    {
+      "name": "web_immersive_adaption",
+      "value": "Web页面沉浸式适配"
+    },
+    {
+      "name": "list_immersive_adaption",
+      "value": "列表滑动沉浸式适配"
+    },
+    {
+      "name": "dialog_immersive_adaption",
+      "value": "弹框沉浸式适配"
+    },
+    {
+      "name": "full_screen_immersive_adaption",
+      "value": "窗口全屏布局方案"
+    },
+    {
+      "name": "immersive_fixed_color_value",
+      "value": "直接设置固定色值"
+    },
+    {
+      "name": "immersive_resource_color_value",
+      "value": "用资源方式设置色值"
+    },
+    {
+      "name": "immersive_system_color_value",
+      "value": "用系统方式设置色值"
+    },
+    {
+      "name": "immersive_png_format_image",
+      "value": "Png格式图片（WEBG/JEPG）"
+    },
+    {
+      "name": "immersive_svg_format_image",
+      "value": "SVG格式图片"
+    },
+    {
+      "name": "immersive_listen_mode",
+      "value": "监听方式实现深浅模式布局或逻辑的差异"
+    },
+    {
+      "name": "immersive_light_string",
+      "value": "Light"
+    },
+    {
+      "name": "immersive_product_title00",
+      "value": "充电宝"
+    },
+    {
+      "name": "immersive_product_title01",
+      "value": "笔记本电脑"
+    },
+    {
+      "name": "immersive_product_title02",
+      "value": "移动手机"
+    },
+    {
+      "name": "immersive_product_title03",
+      "value": "电动按摩椅"
+    },
+    {
+      "name": "immersive_product_title04",
+      "value": "折叠屏"
+    },
+    {
+      "name": "immersive_product_title05",
+      "value": "极简潮流背包"
+    },
+    {
+      "name": "immersive_product_price00",
+      "value": "￥79.9"
+    },
+    {
+      "name": "immersive_product_price01",
+      "value": "￥6975.8"
+    },
+    {
+      "name": "immersive_product_price02",
+      "value": "￥4279.6"
+    },
+    {
+      "name": "immersive_product_price03",
+      "value": "￥5385.4"
+    },
+    {
+      "name": "immersive_product_price04",
+      "value": "￥1252.9"
+    },
+    {
+      "name": "immersive_product_price05",
+      "value": "￥105.3"
+    },
+    {
+      "name": "immersive_product_view00",
+      "value": "3.2W"
+    },
+    {
+      "name": "immersive_product_view01",
+      "value": "9.8k"
+    },
+    {
+      "name": "immersive_product_view02",
+      "value": "1.8k"
+    },
+    {
+      "name": "immersive_product_view03",
+      "value": "859"
+    },
+    {
+      "name": "immersive_product_view04",
+      "value": "4.7W"
+    },
+    {
+      "name": "immersive_product_view05",
+      "value": "1.2W"
+    },
+    {
+      "name": "immersive_warning_text_title",
+      "value": "功能描述"
+    },
+    {
+      "name": "immersive_warning_text",
+      "value": "通过系统设置界面手动调整颜色模式选项，应用内深浅色适配设计才能得到实际展现。"
+    },
+    {
+      "name": "immersive_search_text",
+      "value": "精品好礼"
+    },
+    {
+      "name": "immersive_new_product_text",
+      "value": "新品首发"
+    },
+    {
+      "name": "immersive_mode_other_function",
+      "value": "仅演示，可自行实现业务功能"
+    },    {
+      "name": "immersive_full_size",
+      "value": "100%"
+    },
+    {
+      "name": "immersive_show_case_only",
+      "value": "该视图仅作展示使用"
+    },
+    {
+      "name": "immersive_comment_textinput_placeholder",
+      "value": "快来发表一下评论吧"
+    },
+    {
+      "name": "immersive_comment_example",
+      "value": "真的超级喜欢，非常支持，质量非常好，与卖家描述的完全一致，非常满意，真的很喜欢，完全超出期望值，发货速度非常快，包装非常仔细、严实，物流公司服务态度很好，运送速度很快，很满意的一次购物。"
+    },
+    {
+      "name": "immersive_comment_title_label",
+      "value": "商品评论 10+"
+    },
+    {
+      "name": "immersive_comment_time",
+      "value": "4-11"
+    },
+    {
+      "name": "immersive_comment_reply_label",
+      "value": "回复"
+    },
+    {
+      "name": "immersive_comment_ad_image_height",
+      "value": "83%"
+    },
+    {
+      "name": "immersive_vp_1",
+      "value": "1vp"
+    },
+    {
+      "name": "immersive_vp_5",
+      "value": "5vp"
+    },
+    {
+      "name": "immersive_vp_10",
+      "value": "10vp"
+    },
+    {
+      "name": "immersive_vp_12",
+      "value": "12vp"
+    },
+    {
+      "name": "immersive_vp_15",
+      "value": "15vp"
+    },
+    {
+      "name": "immersive_vp_20",
+      "value": "20vp"
+    },
+    {
+      "name": "immersive_vp_25",
+      "value": "25vp"
+    },
+    {
+      "name": "immersive_vp_30",
+      "value": "30vp"
+    },
+    {
+      "name": "immersive_vp_50",
+      "value": "50vp"
+    },
+    {
+      "name": "immersive_vp_60",
+      "value": "60vp"
+    },
+    {
+      "name": "immersive_vp_90",
+      "value": "90"
+    },
+    {
+      "name": "immersive_vp_100",
+      "value": "100vp"
+    },
+    {
+      "name": "immersive_vp_160",
+      "value": "160vp"
+    },
+    {
+      "name": "immersive_module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "immersive_EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "immersive_EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "immersive_shared_desc",
+      "value": "description"
+    },
+    {
+      "name": "immersive_shopping_cart",
+      "value": "购物车"
+    },
+    {
+      "name": "immersive_store_name",
+      "value": "xxx旗舰店"
+    },
+    {
+      "name": "immersive_commodity_name",
+      "value": "商品"
+    },
+    {
+      "name": "immersive_commodity_model",
+      "value": "商品评论"
+    },
+    {
+      "name": "immersive_commodity_price",
+      "value": "¥300"
+    },
+    {
+      "name": "immersive_text",
+      "value": "文本"
+    },
+    {
+      "name": "immersive_text_one",
+      "value": "文本1"
+    },
+    {
+      "name": "immersive_text_two",
+      "value": "文本2"
+    },
+    {
+      "name": "immersive_text_three",
+      "value": "文本3"
+    },
+    {
+      "name": "immersive_full_reduction",
+      "value": "每满300减40"
+    },
+    {
+      "name": "immersive_sold",
+      "value": "已售88"
+    },
+    {
+      "name": "immersive_coupon_collection",
+      "value": "领券"
+    },
+    {
+      "name": "immersive_buy_now",
+      "value": "立即购买"
+    },
+    {
+      "name": "immersive_add_cart",
+      "value": "加入购物车"
+    },
+    {
+      "name": "immersive_settlement",
+      "value": "结算"
+    },
+    {
+      "name": "immersive_only_show",
+      "value": "此样式仅为案例展示"
+    },
+    {
+      "name": "immersive_text_proportion",
+      "value": "40%"
+    },
+    {
+      "name": "immersive_image_proportion",
+      "value": "60%"
+    },
+    {
+      "name": "immersive_max_size",
+      "value": "100%"
+    },
+    {
+      "name": "immersive_list_height",
+      "value": "calc(100% - 50vp)"
+    }
+  ]
+}

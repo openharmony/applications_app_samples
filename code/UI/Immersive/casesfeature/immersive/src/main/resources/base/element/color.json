@@ -1,0 +1,80 @@
+{
+  "color": [
+    {
+      "name": "immersive_background_color",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "immersive_page_bg_color",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "immersive_column_bg_color",
+      "value": "#FA5A3C"
+    },
+    {
+      "name": "immersive_black_font_color",
+      "value": "#000000"
+    },
+    {
+      "name": "immersive_white_font_color",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "immersive_search_bg_color",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "immersive_product_bg_color",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "immersive_list_bg_color",
+      "value": "#E7D9D9"
+    },
+    {
+      "name": "immersive_custom_bg_color",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "immersive_view_fill_color",
+      "value": "#000000"
+    },
+    {
+      "name": "immersive_comment_reply_font_color",
+      "value": "#ff5b5b5b"
+    },
+    {
+      "name": "immersive_white",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "immersive_red",
+      "value": "#FF0000"
+    },
+    {
+      "name": "immersive_orange",
+      "value": "#FF4500"
+    },
+    {
+      "name": "immersive_buttonColor",
+      "value": "#EE7600"
+    },
+    {
+      "name": "immersive_iconColor",
+      "value": "#B22222"
+    },
+    {
+      "name": "immersive_imageColor",
+      "value": "#ccc"
+    },
+    {
+      "name": "immersive_selectColor",
+      "value": "#FF8247"
+    },
+    {
+      "name": "immersive_barColor",
+      "value": "#F5F5F5"
+    }
+  ]
+}
