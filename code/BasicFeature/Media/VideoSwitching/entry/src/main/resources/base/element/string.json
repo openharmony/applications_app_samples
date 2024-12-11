@@ -1,0 +1,64 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "VideoSwitching"
+    },
+    {
+      "name": "video_screen_direction_switching_layout_100",
+      "value": "100%"
+    },
+    {
+      "name": "video_screen_direction_switching_layout_200",
+      "value": "200%"
+    },
+    {
+      "name": "video_screen_direction_switching_layout_negative_200",
+      "value": "-200%"
+    },
+    {
+      "name": "video_screen_direction_switching_video_width",
+      "value": "100%"
+    },
+    {
+      "name": "video_screen_direction_switching_video_height",
+      "value": "100%"
+    },
+    {
+      "name": "video_screen_direction_switching_harmony_hei_ti",
+      "value": "HarmonyHeiTi"
+    },
+    {
+      "name": "video_screen_direction_switching_harmony_hei_ti_medium",
+      "value": "HarmonyHeiTi-Medium"
+    },
+    {
+      "name": "video_screen_direction_switching_full_screen",
+      "value": "全屏观看"
+    },
+    {
+      "name": "video_screen_direction_switching_full_screen_color",
+      "value": "rgba(0,0,0,0.05)"
+    },
+    {
+      "name": "video_screen_direction_switching_popup_color",
+      "value": "rgba(0,0,0,0.6)"
+    },
+    {
+      "name": "video_screen_direction_switching_font_color",
+      "value": "rgba(255,255,255,0.90)"
+    },
+    {
+      "name": "video_screen_direction_switching_full_screen_border_radius",
+      "value": "50%"
+    }
+  ]
+}
