@@ -1222,6 +1222,25 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/SystemFeature/Media/MusicPlayer/musicplayer/src/main/resources/rawfile/lyrics.lrc" desc="Provided by code/SystemFeature/Media/MusicPlayer"/>
 				<filteritem type="filepath" name="code/SystemFeature/Media/MusicPlayer/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/SystemFeature/Media/MusicPlayer"/>
 				<filteritem type="filepath" name="code/SystemFeature/Media/MusicPlayer/musicplayer/src/main/resources/rawfile/music.mp3" desc="Provided by code/SystemFeature/Media/MusicPlayer"/>
+				<filteritem type="filepath" name="code/UI/Immersive/casesfeature/immersive/src/main/resources/base/media/immersive_product00.png" desc="Provided by code/UI/Immersive"/>
+				<filteritem type="filepath" name="code/UI/Immersive/casesfeature/immersive/src/main/resources/rawfile/immersive_xiyiji.jpg" desc="Provided by code/UI/Immersive"/>
+				<filteritem type="filepath" name="code/UI/Immersive/casesfeature/immersive/src/main/resources/base/media/immersive_product01.png" desc="Provided by code/UI/Immersive"/>
+				<filteritem type="filepath" name="code/UI/Immersive/casesfeature/immersive/src/main/resources/base/media/immersive_comment_pic.jpg" desc="Provided by code/UI/Immersive"/>
+				<filteritem type="filepath" name="code/UI/Immersive/entry/src/main/resources/base/media/background.png" desc="Provided by code/UI/Immersive"/>
+				<filteritem type="filepath" name="code/UI/Immersive/casesfeature/immersive/src/main/resources/base/media/immersive_product03.png" desc="Provided by code/UI/Immersive"/>
+				<filteritem type="filepath" name="code/UI/Immersive/casesfeature/immersive/src/main/resources/rawfile/immersive_kongtiao.jpg" desc="Provided by code/UI/Immersive"/>
+				<filteritem type="filepath" name="code/UI/Immersive/casesfeature/immersive/src/main/resources/base/media/immersive_logo.png" desc="Provided by code/UI/Immersive"/>
+				<filteritem type="filepath" name="code/UI/Immersive/casesfeature/immersive/src/main/resources/base/media/immersive_product04.png" desc="Provided by code/UI/Immersive"/>
+				<filteritem type="filepath" name="code/UI/Immersive/casesfeature/immersive/src/main/resources/base/media/immersive_scan.png" desc="Provided by code/UI/Immersive"/>
+				<filteritem type="filepath" name="code/UI/Immersive/entry/src/main/resources/base/media/immersive.gif" desc="Provided by code/UI/Immersive"/>
+				<filteritem type="filepath" name="code/UI/Immersive/casesfeature/immersive/src/main/resources/rawfile/immersive_bingxiang.jpeg" desc="Provided by code/UI/Immersive"/>
+				<filteritem type="filepath" name="code/UI/Immersive/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/UI/Immersive"/>
+				<filteritem type="filepath" name="code/UI/Immersive/casesfeature/immersive/src/main/resources/base/media/immersive_product02.jpg" desc="Provided by code/UI/Immersive"/>
+				<filteritem type="filepath" name="code/UI/Immersive/casesfeature/immersive/src/main/resources/base/media/immersive_light_mode_banner.jpg" desc="Provided by code/UI/Immersive"/>
+				<filteritem type="filepath" name="code/UI/Immersive/casesfeature/immersive/src/main/resources/base/media/immersive_search.png" desc="Provided by code/UI/Immersive"/>
+				<filteritem type="filepath" name="code/UI/Immersive/casesfeature/immersive/src/main/resources/base/media/immersive_product05.png" desc="Provided by code/UI/Immersive"/>
+				<filteritem type="filepath" name="code/UI/Immersive/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/UI/Immersive"/>
+				<filteritem type="filepath" name="code/UI/Immersive/casesfeature/immersive/src/main/resources/base/media/immersive_portrait_1.png" desc="Provided by code/UI/Immersive"/>
 			</filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加License头"/>
