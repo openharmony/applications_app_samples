@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,5 +15,6 @@
 
 import Logger from './src/main/ets/utils/Logger';
 import FileSystem from './src/main/ets/filemanager/fileio/FileIoManager';
+import { FileStructure, FileType } from './src/main/ets/mock/local/FileData';
 
-export { Logger, FileSystem }
+export { Logger, FileSystem, FileStructure, FileType };
