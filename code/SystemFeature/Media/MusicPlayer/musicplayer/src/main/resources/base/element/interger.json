@@ -1,0 +1,48 @@
+{
+  "integer": [
+    {
+      "name": "foldable_screen_cases_font_size_music_title",
+      "value": 40
+    },
+    {
+      "name": "foldable_screen_cases_font_size_music_singer",
+      "value": 16
+    },
+    {
+      "name": "foldable_screen_cases_font_size_music_time",
+      "value": 10
+    },
+    {
+      "name": "foldable_screen_cases_btn_ctrl_padding",
+      "value": 10
+    },
+    {
+      "name": "foldable_screen_cases_btn_back_position_x",
+      "value": 10
+    },
+    {
+      "name": "foldable_screen_cases_btn_back_position_y",
+      "value": -40
+    },
+    {
+      "name": "foldable_screen_cases_music_progress_slider_trackthickness",
+      "value": 5
+    },
+    {
+      "name": "foldable_screen_cases_music_progress_margin",
+      "value": 10
+    },
+    {
+      "name": "foldable_screen_cases_music_ctrl_margin_top",
+      "value": 30
+    },
+    {
+      "name": "foldable_screen_cases_music_ctrl_margin_bottom",
+      "value": 40
+    },
+    {
+      "name": "foldable_screen_cases_music_info_margin_top",
+      "value": 10
+    }
+  ]
+}

@@ -1,0 +1,219 @@
+{
+  "integer": [
+    {
+      "name": "integer_5",
+      "value": 5
+    },
+    {
+      "name": "integer_15",
+      "value": 15
+    },
+    {
+      "name": "integer_20",
+      "value": 20
+    },
+    {
+      "name": "integer_40",
+      "value": 40
+    },
+    {
+      "name": "integer_50",
+      "value": 50
+    },
+    {
+      "name": "integer_100",
+      "value": 100
+    },
+    {
+      "name": "integer_230",
+      "value": 230
+    },
+    {
+      "name": "integer_276",
+      "value": 276
+    },
+    {
+      "name": "integer_700",
+      "value": 700
+    },
+    {
+      "name": "immersive_warning_text_height",
+      "value": 60
+    },
+    {
+      "name": "immersive_image_width",
+      "value": 32
+    },
+    {
+      "name": "immersive_flex_height",
+      "value": 32
+    },
+    {
+      "name": "immersive_search_image_width",
+      "value": 20
+    },
+    {
+      "name": "immersive_search_image_margin_left",
+      "value": 20
+    },
+    {
+      "name": "immersive_text_margin_left",
+      "value": 20
+    },
+    {
+      "name": "immersive_row_height",
+      "value": 40
+    },
+    {
+      "name": "immersive_row_border_radius",
+      "value": 20
+    },
+    {
+      "name": "immersive_column_padding",
+      "value": 12
+    },
+    {
+      "name": "immersive_column_height",
+      "value": 100
+    },
+    {
+      "name": "immersive_banner_height",
+      "value": 160
+    },
+    {
+      "name": "immersive_banner_border_radius",
+      "value": 20
+    },
+    {
+      "name": "immersive_new_goods_font",
+      "value": 18
+    },
+    {
+      "name": "immersive_new_goods_height",
+      "value": 45
+    },
+    {
+      "name": "immersive_ew_goods_padding_top",
+      "value": 5
+    },
+    {
+      "name": "immersive_column_border_radius",
+      "value": 20
+    },
+    {
+      "name": "immersive_column_padding_bottom",
+      "value": 12
+    },
+    {
+      "name": "immersive_goods_image_margin_bottom",
+      "value": 12
+    },
+    {
+      "name": "immersive_goods_font",
+      "value": 16
+    },
+    {
+      "name": "immersive_grid_row_padding",
+      "value": 12
+    },
+    {
+      "name": "immersive_goods_border_radius",
+      "value": 10
+    },
+    {
+      "name": "immersive_goods_column_padding_left",
+      "value": 10
+    },
+    {
+      "name": "immersive_view_image_width",
+      "value": 20
+    },
+    {
+      "name": "immersive_view_font",
+      "value": 16
+    },
+    {
+      "name": "immersive_view_margin_left",
+      "value": 5
+    },
+    {
+      "name": "immersive_flex_margin_top",
+      "value": 6
+    },
+    {
+      "name": "immersive_comment_reply_font_size",
+      "value": 13
+    },
+    {
+      "name": "immersive_comment_time_font_size",
+      "value": 12
+    },
+    {
+      "name": "immersive_comment_padding",
+      "value": 10
+    },
+    {
+      "name": "immersive_comment_textinput_height",
+      "value": 50
+    },
+    {
+      "name": "immersive_comment_like_icon_size",
+      "value": 15
+    },{
+      "name": "immersive_comment_title_height",
+      "value": 35
+    },
+    {
+      "name": "immersive_comment_title_blank_width",
+      "value": 40
+    },
+    {
+      "name": "immersive_comment_title_font_size",
+      "value": 15
+    },
+    {
+      "name": "immersive_comment_title_font_width",
+      "value": 100
+    },
+    {
+      "name": "immersive_comment_title_close_button_width",
+      "value": 40
+    },
+    {
+      "name": "immersive_comment_title_close_button_height",
+      "value": 30
+    },
+    {
+      "name": "immersive_comment_title_close_img_size",
+      "value": 18
+    },
+    {
+      "name": "immersive_comment_portrait_size",
+      "value": 24
+    },
+    {
+      "name": "immersive_comment_portrait_radius",
+      "value": 16
+    },
+    {
+      "name": "immersive_comment_username_font_size",
+      "value": 12
+    },
+    {
+      "name": "immersive_comment_image_size",
+      "value": 100
+    },
+    {
+      "name": "immersive_comment_image_radius",
+      "value": 10
+    },
+    {
+      "name": "immersive_comment_info_blank_width",
+      "value": 20
+    },
+    {
+      "name": "immersive_comment_dialog_radius",
+      "value": 10
+    }
+  ]
+}

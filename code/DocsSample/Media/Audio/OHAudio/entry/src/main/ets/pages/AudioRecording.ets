@@ -63,6 +63,8 @@ struct AudioRecording {
     if (this.interval) {
       clearInterval(this.interval)
     }
+    testNapi.audioCapturerStop();
+    testNapi.audioRendererStop();
     testNapi.audioCapturerRelease();
     this.recordState = 'init';
     testNapi.audioRendererRelease();

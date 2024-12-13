@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
-import common from '@ohos.app.ability.common';
 import { DeviceDialog } from './Dialog';
-import { RemoteDeviceModel } from '../model/RemoteDeviceModel';
 import { DeviceDataModel } from '../model/DeviceDataModel';
 import { Logger } from '@ohos/feature-file-manager';
+import { RemoteDeviceModel } from '../model/RemoteDeviceModel';
+import common from '@ohos.app.ability.common';
 
 const TAG: string = '[DistributedButton]';
 const DEVICE_DISCOVERY_RANGE: number = 1000;
@@ -50,7 +50,8 @@ export struct DistributedButton {
     this.remoteDeviceModel.authenticateDevice(this.deviceList[this.selectedIndex], () => {
       Logger.info(TAG, 'auth and online finished');
       for (let i = 0; i < this.remoteDeviceModel!.deviceList.length; i++) {
-        if (this.remoteDeviceModel!.deviceList[i].deviceName === this.deviceList[this.selectedIndex].deviceName) {
+        if (this.remoteDeviceModel!.deviceList[i].deviceName ===
+        this.deviceList[this.selectedIndex].deviceName) {
           this.startAbility(this.remoteDeviceModel!.deviceList[i].networkId as string);
         }
       }
@@ -94,12 +95,14 @@ export struct DistributedButton {
       this.deviceList = [];
       Logger.info(TAG, 'registerDeviceListCallback, callback entered');
       this.deviceList.push(new DeviceDataModel('0', 'Local device', '0', false, '', DEVICE_DISCOVERY_RANGE));
-      let deviceTempList = this.remoteDeviceModel!.discoverList.length > 0 ? this.remoteDeviceModel!.discoverList : this.remoteDeviceModel!.deviceList;
+      let deviceTempList = this.remoteDeviceModel!.discoverList.length > 0 ? this.remoteDeviceModel!.discoverList :
+      this.remoteDeviceModel!.deviceList;
       for (let i = 0; i < deviceTempList.length; i++) {
         Logger.info(TAG, `device ${i}/${deviceTempList.length} deviceId=${deviceTempList[i].deviceId}
         deviceName=${deviceTempList[i].deviceName} deviceType=${deviceTempList[i].deviceType}`);
         this.deviceList.push(new DeviceDataModel(deviceTempList[i].deviceId, deviceTempList[i].deviceName,
-          deviceTempList[i].deviceType, (this.selectedIndex === i), deviceTempList[i].networkId as string, DEVICE_DISCOVERY_RANGE));
+          deviceTempList[i].deviceType, (this.selectedIndex === i), deviceTempList[i].networkId as string,
+          DEVICE_DISCOVERY_RANGE));
       }
       if (this.dialogShow) {
         this.dialogController!.close();

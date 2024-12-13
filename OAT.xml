@@ -400,6 +400,11 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/BasicFeature/Native/NdkNativeWindow/screenshots/device/scaledown.jpg" desc="Provided by code/BasicFeature/Native/NdkNativeWindow"/>
 				<filteritem type="filepath" name="code/BasicFeature/Native/NdkNativeWindow/screenshots/device/scalefit.jpg" desc="Provided by code/BasicFeature/Native/NdkNativeWindow"/>
                 <filteritem type="filepath" name="code/BasicFeature/Native/NdkQoS/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/BasicFeature/Native/NdkNativeQoS"/>
+				<filteritem type="filepath" name="code/BasicFeature/Native/NdkNativeImage/screenshots/GradientAnimation.jpg" desc="Provided by code/BasicFeature/Native/NdkNativeImage/screenshots/GradientAnimation.jpg"/>
+				<filteritem type="filepath" name="code/BasicFeature/Native/NdkNativeImage/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/BasicFeature/Native/NdkNativeImage/entry/src/main/resources/base/media/startIcon.png"/>
+				<filteritem type="filepath" name="code/BasicFeature/Native/NdkNativeImage/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/BasicFeature/Native/NdkNativeImage/entry/src/main/resources/base/media/foreground.png"/>
+				<filteritem type="filepath" name="code/BasicFeature/Native/NdkNativeImage/entry/src/main/resources/base/media/background.png" desc="Provided by code/BasicFeature/Native/NdkNativeImage/entry/src/main/resources/base/media/background.png"/>
+				<filteritem type="filepath" name="code/BasicFeature/Native/NdkNativeImage/AppScope/resources/base/media/app_icon.png" desc="Provided by code/BasicFeature/Native/NdkNativeImage/AppScope/resources/base/media/app_icon.png"/>
                 <filteritem type="filepath" name="code/BasicFeature/Native/NdkQoS/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/BasicFeature/Native/NdkNativeQoS"/>
                 <filteritem type="filepath" name="code/BasicFeature/Native/NdkQoS/screenshots/device/QoSLog.png" desc="Provided by code/BasicFeature/Native/NdkNativeQoS"/>
                 <filteritem type="filepath" name="code/BasicFeature/Native/NdkQoS/screenshots/device/showlowQoScomputingTime.jpeg" desc="Provided by code/BasicFeature/Native/NdkNativeQoS"/>
@@ -1216,6 +1221,35 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/SuperFeature/DistributedAppDev/DistributedFilemanager/entry/src/main/resources/base/media/checked.png" desc="Provided by code/SuperFeature/DistributedAppDev/DistributedFilemanager"/>
 				<filteritem type="filepath" name="code/SuperFeature/DistributedAppDev/DistributedFilemanager/entry/src/main/resources/base/media/ic_hop_normal.png" desc="Provided by code/SuperFeature/DistributedAppDev/DistributedFilemanager"/>
 				<filteritem type="filepath" name="code/SuperFeature/DistributedAppDev/DistributedFilemanager/entry/src/main/resources/base/media/uncheck.png" desc="Provided by code/SuperFeature/DistributedAppDev/DistributedFilemanager"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/MusicPlayer/musicplayer/music_player.gif" desc="Provided by code/SystemFeature/Media/MusicPlayer"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/MusicPlayer/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/SystemFeature/Media/MusicPlayer"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/MusicPlayer/musicplayer/src/main/resources/rawfile/cover_second.webp" desc="Provided by code/SystemFeature/Media/MusicPlayer"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/MusicPlayer/musicplayer/src/main/resources/rawfile/cover_third.webp" desc="Provided by code/SystemFeature/Media/MusicPlayer"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/MusicPlayer/musicplayer/src/main/resources/rawfile/cover_first.webp" desc="Provided by code/SystemFeature/Media/MusicPlayer"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/MusicPlayer/entry/src/main/resources/base/media/background.png" desc="Provided by code/SystemFeature/Media/MusicPlayer"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/MusicPlayer/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/Media/MusicPlayer"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/MusicPlayer/musicplayer/src/main/resources/rawfile/lyrics.lrc" desc="Provided by code/SystemFeature/Media/MusicPlayer"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/MusicPlayer/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/SystemFeature/Media/MusicPlayer"/>
+				<filteritem type="filepath" name="code/SystemFeature/Media/MusicPlayer/musicplayer/src/main/resources/rawfile/music.mp3" desc="Provided by code/SystemFeature/Media/MusicPlayer"/>
+				<filteritem type="filepath" name="code/UI/Immersive/casesfeature/immersive/src/main/resources/base/media/immersive_product00.png" desc="Provided by code/UI/Immersive"/>
+				<filteritem type="filepath" name="code/UI/Immersive/casesfeature/immersive/src/main/resources/rawfile/immersive_xiyiji.jpg" desc="Provided by code/UI/Immersive"/>
+				<filteritem type="filepath" name="code/UI/Immersive/casesfeature/immersive/src/main/resources/base/media/immersive_product01.png" desc="Provided by code/UI/Immersive"/>
+				<filteritem type="filepath" name="code/UI/Immersive/casesfeature/immersive/src/main/resources/base/media/immersive_comment_pic.jpg" desc="Provided by code/UI/Immersive"/>
+				<filteritem type="filepath" name="code/UI/Immersive/entry/src/main/resources/base/media/background.png" desc="Provided by code/UI/Immersive"/>
+				<filteritem type="filepath" name="code/UI/Immersive/casesfeature/immersive/src/main/resources/base/media/immersive_product03.png" desc="Provided by code/UI/Immersive"/>
+				<filteritem type="filepath" name="code/UI/Immersive/casesfeature/immersive/src/main/resources/rawfile/immersive_kongtiao.jpg" desc="Provided by code/UI/Immersive"/>
+				<filteritem type="filepath" name="code/UI/Immersive/casesfeature/immersive/src/main/resources/base/media/immersive_logo.png" desc="Provided by code/UI/Immersive"/>
+				<filteritem type="filepath" name="code/UI/Immersive/casesfeature/immersive/src/main/resources/base/media/immersive_product04.png" desc="Provided by code/UI/Immersive"/>
+				<filteritem type="filepath" name="code/UI/Immersive/casesfeature/immersive/src/main/resources/base/media/immersive_scan.png" desc="Provided by code/UI/Immersive"/>
+				<filteritem type="filepath" name="code/UI/Immersive/entry/src/main/resources/base/media/immersive.gif" desc="Provided by code/UI/Immersive"/>
+				<filteritem type="filepath" name="code/UI/Immersive/casesfeature/immersive/src/main/resources/rawfile/immersive_bingxiang.jpeg" desc="Provided by code/UI/Immersive"/>
+				<filteritem type="filepath" name="code/UI/Immersive/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/UI/Immersive"/>
+				<filteritem type="filepath" name="code/UI/Immersive/casesfeature/immersive/src/main/resources/base/media/immersive_product02.jpg" desc="Provided by code/UI/Immersive"/>
+				<filteritem type="filepath" name="code/UI/Immersive/casesfeature/immersive/src/main/resources/base/media/immersive_light_mode_banner.jpg" desc="Provided by code/UI/Immersive"/>
+				<filteritem type="filepath" name="code/UI/Immersive/casesfeature/immersive/src/main/resources/base/media/immersive_search.png" desc="Provided by code/UI/Immersive"/>
+				<filteritem type="filepath" name="code/UI/Immersive/casesfeature/immersive/src/main/resources/base/media/immersive_product05.png" desc="Provided by code/UI/Immersive"/>
+				<filteritem type="filepath" name="code/UI/Immersive/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/UI/Immersive"/>
+				<filteritem type="filepath" name="code/UI/Immersive/casesfeature/immersive/src/main/resources/base/media/immersive_portrait_1.png" desc="Provided by code/UI/Immersive"/>
 			</filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加License头"/>

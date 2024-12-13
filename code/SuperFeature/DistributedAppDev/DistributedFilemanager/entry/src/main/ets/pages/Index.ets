@@ -19,7 +19,7 @@ import distributedDeviceManager from '@ohos.distributedDeviceManager';
 import router from '@ohos.router';
 import FsManager from '../model/FsManager';
 import { DistributedButton } from '../components/DistributedButton';
-import { RemoteDeviceModel } from '../model/RemoteDeviceModel'
+import { RemoteDeviceModel } from '../model/RemoteDeviceModel';
 import { FileSystem, FileStructure, FileType, Logger } from '@ohos/feature-file-manager';
 
 let context = getContext(this) as common.UIAbilityContext; // 获取设备A的UIAbilityContext信息
