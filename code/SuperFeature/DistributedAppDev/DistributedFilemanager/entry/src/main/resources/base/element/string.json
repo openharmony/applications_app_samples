@@ -255,6 +255,10 @@
     {
       "name": "fileContent4",
       "value": "File Content4"
+    },
+    {
+      "name": "check_device",
+      "value": "Check device"
     }
   ]
 }
