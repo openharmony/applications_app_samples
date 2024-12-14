@@ -1581,6 +1581,32 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/DocsSample/ArkUISample/StateMgmtV2MVVM/entry/src/main/resources/base/media/startIcon.png" desc="Provide by code/DocsSample/ArkUISample/StateMgmtV2MVVM"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkUISample/StateMgmtV2MVVM/entry/src/main/resources/base/media/unfinished.png" desc="Provide by code/DocsSample/ArkUISample/StateMgmtV2MVVM"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkUISample/StateMgmtV2MVVM/AppScope/resources/base/media/app_icon.png" desc="Provide by code/DocsSample/ArkUISample/StateMgmtV2MVVM"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPIObject/screenshots/NodeAPIObject1.png" desc="Provided by code/DocsSample/ArkTS"/>
+                <filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPIObject/screenshots/NodeAPIObject2.png" desc="Provided by code/DocsSample/ArkTS"/>
+                <filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPIPrimitive/screenshots/NodeAPIPrimitive1.png" desc="Provided by code/DocsSample/ArkTS"/>
+                <filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPIPrimitive/screenshots/NodeAPIPrimitive2.png" desc="Provided by code/DocsSample/ArkTS"/>
+                <filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPIPromise/screenshots/NodeAPIPromise1.png" desc="Provided by code/DocsSample/ArkTS"/>
+                <filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPIPromise/screenshots/NodeAPIPromise2.png" desc="Provided by code/DocsSample/ArkTS"/>
+                <filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPIProperty/screenshots/NodeAPIProperty1.png" desc="Provided by code/DocsSample/ArkTS"/>
+                <filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPIProperty/screenshots/NodeAPIProperty2.png" desc="Provided by code/DocsSample/ArkTS"/>
+                <filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeApiString/screenshots/NodeApiString1.png" desc="Provided by code/DocsSample/ArkTS"/>
+                <filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeApiString/screenshots/NodeApiString2.png" desc="Provided by code/DocsSample/ArkTS"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPICleanuphook/screenshots/NodeAPICleanuphook1.png" desc="Provided by code/DocsSample/ArkTS"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPICleanuphook/screenshots/NodeAPICleanuphook2.png" desc="Provided by code/DocsSample/ArkTS"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeApiCustomAsynchronousOperations/screenshots/NodeApiCustomAsynchronousOperations1.png" desc="Provided by code/DocsSample/ArkTS"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeApiCustomAsynchronousOperations/screenshots/NodeApiCustomAsynchronousOperations2.png" desc="Provided by code/DocsSample/ArkTS"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPIDate/screenshots/NodeAPIDate1.png" desc="Provided by code/DocsSample/ArkTS"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPIDate/screenshots/NodeAPIDate2.png" desc="Provided by code/DocsSample/ArkTS"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPIEnvironmentalLifeCycle/screenshots/NodeAPIEnvironmentalLifeCycle1.png" desc="Provided by code/DocsSample/ArkTS"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPIEnvironmentalLifeCycle/screenshots/NodeAPIEnvironmentalLifeCycle2.png" desc="Provided by code/DocsSample/ArkTS"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPIError/screenshots/NodeAPIError1.png" desc="Provided by code/DocsSample/ArkTS"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPIError/screenshots/NodeAPIError2.png" desc="Provided by code/DocsSample/ArkTS"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/screenshots/NodeAPIExtendCapabilities1.png" desc="Provided by code/DocsSample/ArkTS"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/screenshots/NodeAPIExtendCapabilities2.png" desc="Provided by code/DocsSample/ArkTS"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPIFunction/screenshots/NodeAPIFunction1.png" desc="Provided by code/DocsSample/ArkTS"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPIFunction/screenshots/NodeAPIFunction2.png" desc="Provided by code/DocsSample/ArkTS"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPILifeCycle/screenshots/NodeAPILifeCycle1.png" desc="Provided by code/DocsSample/ArkTS"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPILifeCycle/screenshots/NodeAPILifeCycle2.png" desc="Provided by code/DocsSample/ArkTS"/>
 			</filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加License头"/>
