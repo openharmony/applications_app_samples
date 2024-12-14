@@ -1860,6 +1860,7 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/UI/PullToRefresh/pulltorefresh/src/main/resources/base/media/pull_refresh_news.png" desc="code/UI/PullToRefresh"/>
                 <filteritem type="filepath" name="code/UI/PullToRefresh/pulltorefresh/src/main/resources/base/media/pull_to_refresh_news.gif" desc="code/UI/PullToRefresh"/>
                 <filteritem type="filepath" name="code/UI/PullToRefresh/AppScope/resources/base/media/app_icon.png" desc="code/UI/PullToRefresh"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/resources/rawfile/test.abc" desc="Provided by code/DocsSample/ArkTs"/>
 			</filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加License头"/>
