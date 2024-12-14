@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "NodeApiApplicationScenario"
+    },
+    {
+      "name": "createArkRuntime",
+      "value": "Call createArkRuntime"
+    },
+    {
+      "name": "runEventLoop",
+      "value": "Call runEventLoop"
+    },
+    {
+      "name": "CallThreadSafeWithPriority",
+      "value": "Call CallThreadSafeWithPriority"
+    },
+    {
+      "name": "startThread",
+      "value": "Call startThread"
+    }
+  ]
+}
