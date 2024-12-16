@@ -321,6 +321,8 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/DocsSample/Sensor/screenshots/devices/sampleRate.jpeg" desc="Provided by code/DocsSample/Sensor"/>
 				<filteritem type="filepath" name="code/DocsSample/Sensor/screenshots/devices/sensorType.jpeg" desc="Provided by code/DocsSample/Sensor"/>
 				<filteritem type="filepath" name="code/DocsSample/Sensor/screenshots/devices/subscribe.jpeg" desc="Provided by code/DocsSample/Sensor"/>
+				<filteritem type="filepath" name="code/DocsSample/Drawing/NDKDrawing/screenshot/path.png" desc="Provided by code/DocsSample/Drawing/NDKDrawing"/>
+				<filteritem type="filepath" name="code/DocsSample/Drawing/NDKDrawing/screenshot/text.png" desc="Provided by code/DocsSample/Drawing/NDKDrawing"/>
                 <filteritem type="filepath" name="code/Solutions/Media/MultiMedia/lib/VideoPlayer.hap" desc="Provided by code/Solutions/Media/MultiMedia"/>
                 <filteritem type="filepath" name="code/Solutions/Media/MultiMedia/lib/CameraPage-1.0.0.hap" desc="Provided by code/Solutions/Media/MultiMedia"/>
                 <filteritem type="filepath" name="code/BasicFeature/Media/AVRecorder/lib/VideoRecorder-1.0.0.hap" desc="Provided by code/BasicFeature/Media/AVRecorder"/>
