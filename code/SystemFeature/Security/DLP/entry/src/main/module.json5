@@ -50,12 +50,6 @@
     ],
     "requestPermissions": [
       {
-        "name": "ohos.permission.READ_MEDIA",
-      },
-      {
-        "name": "ohos.permission.WRITE_MEDIA",
-      },
-      {
         "name": "ohos.permission.FILE_ACCESS_MANAGER",
       },
       {
