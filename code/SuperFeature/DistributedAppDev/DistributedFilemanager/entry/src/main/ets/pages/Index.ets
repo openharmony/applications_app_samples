@@ -16,10 +16,11 @@
 import common from '@ohos.app.ability.common';
 import distributedObject from '@ohos.data.distributedDataObject';
 import distributedDeviceManager from '@ohos.distributedDeviceManager';
-import FsManager from '../model/FsManager';
 import router from '@ohos.router';
-import { FileStructure, FileType } from '@ohos/feature-file-manager/src/main/ets/mock/local/FileData';
-import { FileSystem } from '@ohos/feature-file-manager';
+import FsManager from '../model/FsManager';
+import { DistributedButton } from '../components/DistributedButton';
+import { RemoteDeviceModel } from '../model/RemoteDeviceModel';
+import { FileSystem, FileStructure, FileType, Logger } from '@ohos/feature-file-manager';
 
 let context = getContext(this) as common.UIAbilityContext; // 获取设备A的UIAbilityContext信息
 const BASE_PATH = context.filesDir+"/";
@@ -39,15 +40,15 @@ export struct Index {
   @State @Watch('updateFileData') directoryPath: string = BASE_PATH;
   // 目录名称
   @State directoryName: string = '';
-
   @State deviceId: string = '';
   //拷贝进度信息
   @StorageLink('progress') @Watch('updateProgress') progress: number = 0;
   @StorageLink('isCopying') @Watch('updateCopyStatus') isCopying: boolean = false;
   // 刷新页面
   @StorageLink('flashPage') @Watch('updateFileData') flashPage: boolean = false;
-
   @StorageLink('g_object') g_object?: distributedObject.DistributedObject|null = null;
+  @State isDistributed: boolean = false;
+  private remoteDeviceModel: RemoteDeviceModel = new RemoteDeviceModel();
 
   // 路由返回后刷新页面
   onPageShow() {
@@ -90,7 +91,14 @@ export struct Index {
   getLocalDeviceId() {
     let dm:distributedDeviceManager.DeviceManager = distributedDeviceManager.createDeviceManager('com.samples.distributedfilemanager');
     this.deviceId = dm.getLocalDeviceId();
+    Logger.info('Index', 'getLocalDeviceId: ' + this.deviceId);
  }
+
+  onDestroy() {
+    if (this.remoteDeviceModel !== null) {
+      this.remoteDeviceModel.unregisterDeviceListCallback();
+    }
+  }
 
   build() {
     Column() {
@@ -124,6 +132,10 @@ export struct Index {
                 }
                 FsManager.pasteFromDistributedDir(this.deviceId,this.directoryPath,this.fileData);
               })
+            DistributedButton({
+              remoteDeviceModel: this.remoteDeviceModel,
+              isDistributed: $isDistributed
+            })
           }.margin({ right: 26 })
           .justifyContent(FlexAlign.End)
         }.width('100%')

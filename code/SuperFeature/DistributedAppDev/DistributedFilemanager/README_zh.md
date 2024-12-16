@@ -8,14 +8,16 @@
 
 分布式数据对象接口[@ohos.data.distributedDataObject](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkdata/js-apis-data-distributedobject.md)。
 
+设备管理接口[@ohos.distributedDeviceManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md)。
+
 ### 效果预览
-|                                     |
-|-------------------------------------|
-| ![](./screenshots/select.png) |
+|                                |
+|--------------------------------|
+| ![](./screenshots/select.jpeg) |
 
 使用说明
 
-1.两台设备A、B组网成功。
+1.打开A设备上本应用，点击右上角的“组网”图标，选择B设备，成功组网，从A设备退出应用。
 
 2.打开A设备上本应用，B设备上本应用自动拉起。
 
@@ -30,9 +32,14 @@
 entry/src/main/ets/
 |---pages
 |   |---index.ets                           // 页面逻辑
+|---components
+|   |---Dialog.ets                          // 自定义弹窗
+|   |---DistributedButton.ets               // 分布式组网按钮
 |---model                                    
 |   |---DataObject.ets                      // 分布式数据对象
-|   |---FsManager.ets                       // 文件拷贝操作                                                     
+|   |---DeviceDataModel.ets                 // 设备数据定义
+|   |---FsManager.ets                       // 文件拷贝操作 
+|   |---RemoteDeviceModel.ets               // 远程设备操作类                                         
 ```
 
 
@@ -65,7 +72,7 @@ entry/src/main/ets/
 ```
 git init
 git config core.sparsecheckout true
-echo code/SuperFeature/DistributedAppDev/DistributedCalc/ > .git/info/sparse-checkout
+echo code/SuperFeature/DistributedAppDev/DistributedFilemanager/ > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
