@@ -1,5 +1,11 @@
 /node_modules
-/.preview
-/build
-/.cxx
-/package-lock.json
+/oh_modules
+/local.properties
+/.idea
+**/build
+/.hvigor
+.cxx
+/.clangd
+/.clang-format
+/.clang-tidy
+**/.test

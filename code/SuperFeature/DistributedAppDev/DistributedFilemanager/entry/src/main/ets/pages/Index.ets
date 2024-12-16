@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023-2024 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,12 +15,12 @@
 
 import common from '@ohos.app.ability.common';
 import distributedObject from '@ohos.data.distributedDataObject';
-import DataObject from '../model/DataObject';
 import distributedDeviceManager from '@ohos.distributedDeviceManager';
-import FsManager from '../model/FsManager';
 import router from '@ohos.router';
-import { FileStructure, FileType } from '@ohos/feature-file-manager/src/main/ets/mock/local/FileData';
-import { FileSystem } from '@ohos/feature-file-manager';
+import FsManager from '../model/FsManager';
+import { DistributedButton } from '../components/DistributedButton';
+import { RemoteDeviceModel } from '../model/RemoteDeviceModel';
+import { FileSystem, FileStructure, FileType, Logger } from '@ohos/feature-file-manager';
 
 let context = getContext(this) as common.UIAbilityContext; // 获取设备A的UIAbilityContext信息
 const BASE_PATH = context.filesDir+"/";
@@ -40,19 +40,19 @@ export struct Index {
   @State @Watch('updateFileData') directoryPath: string = BASE_PATH;
   // 目录名称
   @State directoryName: string = '';
-
   @State deviceId: string = '';
   //拷贝进度信息
   @StorageLink('progress') @Watch('updateProgress') progress: number = 0;
   @StorageLink('isCopying') @Watch('updateCopyStatus') isCopying: boolean = false;
   // 刷新页面
   @StorageLink('flashPage') @Watch('updateFileData') flashPage: boolean = false;
-
   @StorageLink('g_object') g_object?: distributedObject.DistributedObject|null = null;
+  @State isDistributed: boolean = false;
+  private remoteDeviceModel: RemoteDeviceModel = new RemoteDeviceModel();
 
   // 路由返回后刷新页面
   onPageShow() {
-    AppStorage.SetOrCreate('flashPage', !AppStorage.Get<number>('flashPage'));
+    AppStorage.setOrCreate('flashPage', !AppStorage.get<number>('flashPage'));
   }
 
   aboutToAppear() {
@@ -77,10 +77,10 @@ export struct Index {
   }
 
   updateProgress(){
-    this.progress = AppStorage.Get<number>('progress') as number;
+    this.progress = AppStorage.get<number>('progress') as number;
   }
   updateCopyStatus(){
-    this.isCopying = AppStorage.Get<boolean>('isCopying') as boolean;
+    this.isCopying = AppStorage.get<boolean>('isCopying') as boolean;
   }
   // 每次退出选择状态就降临时数据清空
   clearTempData() {
@@ -91,7 +91,14 @@ export struct Index {
   getLocalDeviceId() {
     let dm:distributedDeviceManager.DeviceManager = distributedDeviceManager.createDeviceManager('com.samples.distributedfilemanager');
     this.deviceId = dm.getLocalDeviceId();
+    Logger.info('Index', 'getLocalDeviceId: ' + this.deviceId);
  }
+
+  onDestroy() {
+    if (this.remoteDeviceModel !== null) {
+      this.remoteDeviceModel.unregisterDeviceListCallback();
+    }
+  }
 
   build() {
     Column() {
@@ -125,6 +132,10 @@ export struct Index {
                 }
                 FsManager.pasteFromDistributedDir(this.deviceId,this.directoryPath,this.fileData);
               })
+            DistributedButton({
+              remoteDeviceModel: this.remoteDeviceModel,
+              isDistributed: $isDistributed
+            })
           }.margin({ right: 26 })
           .justifyContent(FlexAlign.End)
         }.width('100%')
@@ -149,9 +160,9 @@ export struct Index {
                 .height(18)
                 .margin({ left: 26 })
                 .onClick(() => {
-                  this.fileData = []
-                  AppStorage.SetOrCreate('flashPage',!AppStorage.Get<string>('flashPage'));
-                  router.back()
+                  this.fileData = [];
+                  AppStorage.setOrCreate('flashPage',!AppStorage.get<string>('flashPage'));
+                  router.back();
                 })
             }
             Text(this.directoryName)
