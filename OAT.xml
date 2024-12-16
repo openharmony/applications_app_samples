@@ -309,6 +309,26 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/Solutions/IM/Chat/products/phone/entry/src/main/resources/rawfile/video_2.zip" desc="Provided by code/Solutions/IM/Chat"/>
                 <filteritem type="filepath" name="code/Solutions/IM/Chat/products/phone/entry/src/main/resources/rawfile/video_3.zip" desc="Provided by code/Solutions/IM/Chat"/>
                 <filteritem type="filepath" name="code/Solutions/IM/Chat/products/phone/entry/src/main/resources/rawfile/video_4.zip" desc="Provided by code/Solutions/IM/Chat"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Image/NdkPixelMap/entry/src/main/resources/rawfile/test.gif" desc="Provided by code/DocsSample/Media/Image/NdkPixelMap"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Image/NdkPixelMap/screenshots/NdkPixelMap.jpeg" desc="Provided by code/DocsSample/Media/Image/NdkPixelMap"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Image/PixelMap/entry/src/main/resources/base/media/ic_horizontal_flip.png" desc="Provided by code/DocsSample/Media/Image/PixelMap"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Image/PixelMap/entry/src/main/resources/base/media/ic_vertical_flip.png" desc="Provided by code/DocsSample/Media/Image/PixelMap"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Image/PixelMap/entry/src/main/resources/base/media/ic_clockwise_rotate.png" desc="Provided by code/DocsSample/Media/Image/PixelMap"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Image/PixelMap/entry/src/main/resources/base/media/ic_crop.png" desc="Provided by code/DocsSample/Media/Image/PixelMap"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Image/PixelMap/entry/src/main/resources/base/media/ic_save_image.png" desc="Provided by code/DocsSample/Media/Image/PixelMap"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Image/PixelMap/entry/src/main/resources/base/media/ic_edit_EXIF.png" desc="Provided by code/DocsSample/Media/Image/PixelMap"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Image/PixelMap/entry/src/main/resources/base/media/image.jpg" desc="Provided by code/DocsSample/Media/Image/PixelMap"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Image/PixelMap/entry/src/main/resources/base/media/ic_bitmap_operation.png" desc="Provided by code/DocsSample/Media/Image/PixelMap"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Image/PixelMap/entry/src/main/resources/base/media/CUVAHdr.jpg" desc="Provided by code/DocsSample/Media/Image/PixelMap"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Image/PixelMap/entry/src/main/resources/base/media/ic_open_image.png" desc="Provided by code/DocsSample/Media/Image/PixelMap"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Image/PixelMap/entry/src/main/resources/base/media/ic_translate.png" desc="Provided by code/DocsSample/Media/Image/PixelMap"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Image/PixelMap/entry/src/main/resources/base/media/ic_reset_image.png" desc="Provided by code/DocsSample/Media/Image/PixelMap"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Image/PixelMap/entry/src/main/resources/base/media/ic_scale.png" desc="Provided by code/DocsSample/Media/Image/PixelMap"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Image/PixelMap/entry/src/main/resources/base/media/ic_change_opacity.png" desc="Provided by code/DocsSample/Media/Image/PixelMap"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Image/PixelMap/screenshots/pixelmap_1.jpeg" desc="Provided by code/DocsSample/Media/Image/PixelMap"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Image/PixelMap/screenshots/pixelmap_2.jpeg" desc="Provided by code/DocsSample/Media/Image/PixelMap"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Image/PixelMap/screenshots/pixelmap_3.jpeg" desc="Provided by code/DocsSample/Media/Image/PixelMap"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Image/PixelMap/screenshots/pixelmap_4.jpeg" desc="Provided by code/DocsSample/Media/Image/PixelMap"/>
                 <filteritem type="filepath" name="code/SystemFeature/Security/DLP/screenshots/haps/DlpManager.hap" desc="Provided by DlpManager"/>
                 <filteritem type="filepath" name="code/SystemFeature/Security/DLP/screenshots/haps/FileEdit.hap" desc="Provided by FileEdit"/>
                 <filteritem type="filepath" name="code/BasicFeature/DeviceManagement/Sensor/Capi/libs/library.har" desc="Provided by code/BasicFeature/DeviceManagement/Sensor"/>

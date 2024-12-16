@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "NdkPixelMap"
+    },
+    {
+      "name": "read_imagevideo_reason",
+      "value": "用于获取图片"
+    },
+    {
+      "name": "Decode_Image",
+      "value": "图片解码"
+    },
+    {
+      "name": "PixelMap_Operation",
+      "value": "位图操作"
+    },
+    {
+      "name": "Encode_Image_ImageSource",
+      "value": "图片编码_ImageSource"
+    },
+    {
+      "name": "Encode_Image_PixelMap",
+      "value": "图片编码_PixelMap"
+    }
+  ]
+}
