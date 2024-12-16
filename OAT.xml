@@ -365,6 +365,13 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/BasicFeature/Media/Image/screenshots/devices/menu.jpeg" desc="Provided by code/BasicFeature/Media/Image"/>
                 <filteritem type="filepath" name="code/BasicFeature/Connectivity/VPN/server/server.zip" desc="Provided by code/BasicFeature/Connectivity/VPN"/>
 				<filteritem type="filepath" name="code/BasicFeature/Connectivity/StageSocket/certificate_file.zip" desc="Provided by code/BasicFeature/Connectivity/StageSocket"/>
+				<filteritem type="filepath" name="code/DocsSample/ResourceManagement/RawFile/screenshots/RawFile_Index1.png" desc="Provided by code/DocsSample/ResourceManagement/RawFile"/>
+				<filteritem type="filepath" name="code/DocsSample/ResourceManagement/RawFile/screenshots/RawFile_Index2.png" desc="Provided by code/DocsSample/ResourceManagement/RawFile"/>
+				<filteritem type="filepath" name="code/DocsSample/ResourceManagement/RawFile/screenshots/log.png" desc="Provided by code/DocsSample/ResourceManagement/RawFile"/>
+				<filteritem type="filepath" name="code/DocsSample/ResourceManagement/RawFile/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/DocsSample/ResourceManagement/RawFile"/>
+				<filteritem type="filepath" name="code/DocsSample/ResourceManagement/RawFile/entry/src/main/resources/base/media/background.png" desc="Provided by code/DocsSample/ResourceManagement/RawFile"/>
+				<filteritem type="filepath" name="code/DocsSample/ResourceManagement/RawFile/AppScope/resources/base/media/app_icon.png" desc="Provided by code/DocsSample/ResourceManagement/RawFile"/>
+				<filteritem type="filepath" name="code/DocsSample/ResourceManagement/RawFile/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/DocsSample/ResourceManagement/RawFile"/>
 				<filteritem type="filepath" name="code/BasicFeature/Native/NdkDrawing/screenshots/device/Index.jpg" desc="Provided by code/BasicFeature/Native/NdkDrawing"/>
 				<filteritem type="filepath" name="code/BasicFeature/Native/NdkDrawing/screenshots/device/DrawPath.jpg" desc="Provided by code/BasicFeature/Native/NdkDrawing"/>
 				<filteritem type="filepath" name="code/BasicFeature/Native/NdkDrawing/screenshots/device/DrawText.jpg" desc="Provided by code/BasicFeature/Native/NdkDrawing"/>
