@@ -41,7 +41,7 @@ export class AVSessionModel {
       elapsedTime: 0,
       updateTime: 0,
     },
-    loopMode:AVSessionManager.LoopMode.LOOP_MODE_SEQUENCE,
+    loopMode:AVSessionManager.LoopMode.LOOP_MODE_LIST,
   };
   private isBackgroundTaskRunning: boolean = false;
 
