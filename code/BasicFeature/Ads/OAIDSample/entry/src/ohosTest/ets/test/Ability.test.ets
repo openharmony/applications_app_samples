@@ -55,16 +55,12 @@ export default function abilityTest() {
     it(BUNDLE + 'OAIDFunction_001', 0, async (done: Function) => {
       Logger.info(TAG, BUNDLE + 'OAIDFunction_001 begin')
       let driver = Driver.create()
-      await driver.delayMs(2000)
-      Logger.info(TAG, BUNDLE + 'OAIDFunction_001 clickOAIDShowPage start')
-      // 允许广告跟踪权限
-      let button = await driver.findComponent(ON.text("允许"));
-      await button.click();
-      Logger.info(TAG, BUNDLE + 'OAIDFunction_001 clickOAIDShowPage get permission end')
+      await driver.delayMs(2000);
       // 获取OAID按钮，Promise方式
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.oaid_btn_promise'))))
       let getOaidByPromise = await driver.findComponent(ON.text(await getResourceString($r('app.string.oaid_btn_promise'))))
       await getOaidByPromise.click()
+      await driver.delayMs(2000);
       let oaidTextArea = await driver.findComponent(ON.id('hiad_demo_oaid_textArea'))
       let oaid = await oaidTextArea.getText();
       expect(oaid.length > 0).assertEqual(true)
@@ -73,6 +69,7 @@ export default function abilityTest() {
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.oaid_btn_asynccallback'))))
       let getOaidByAsyncCallback = await driver.findComponent(ON.text(await getResourceString($r('app.string.oaid_btn_asynccallback'))))
       await getOaidByAsyncCallback.click()
+      await driver.delayMs(2000);
       oaid = await oaidTextArea.getText();
       expect(oaid.length > 0).assertEqual(true)
       await driver.delayMs(1000)
