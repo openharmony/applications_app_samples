@@ -373,7 +373,7 @@ interface Params {
     if (this.selectedIndex !== undefined){
       this.remoteDeviceModel.authDevice(this.deviceLists[this.selectedIndex], (device: deviceManager.DeviceBasicInfo) => {
         Logger.info(TAG, 'auth and online finished');
-        this.startAbilityContinuation(device.networkId);
+        this.startAbilityContinuation(device.networkId!);
       });
     }
     Logger.info(TAG, 'start ability2 ......');
