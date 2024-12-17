@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023-2024 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -49,6 +49,20 @@
         ]
       }
     ],
+    "extensionAbilities": [
+      {
+        "name": "EntryBackupAbility",
+        "srcEntry": "./ets/entrybackupability/EntryBackupAbility.ets",
+        "type": "backup",
+        "exported": false,
+        "metadata": [
+          {
+            "name": "ohos.extension.backup",
+            "resource": "$profile:backup_config"
+          }
+        ]
+      }
+    ],
     "requestPermissions": [
       {
         "name": "ohos.permission.FILE_ACCESS_MANAGER",
@@ -62,7 +76,7 @@
       },
       {
         "name": "ohos.permission.ACCESS_SERVICE_DM",
-        "reason": "$string:storage_reason",
+        "reason": "$string:service_dm_reason",
         "usedScene": {
           "abilities": [
             "EntryAbility"
@@ -72,6 +86,13 @@
       },
       {
         "name": "ohos.permission.DISTRIBUTED_DATASYNC",
+        "reason": "$string:datasync_reason",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when": "always"
+        }
       }
     ]
   }

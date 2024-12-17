@@ -1,30 +1,27 @@
 {
   "UniformDataTypeDeclarations": [{
-    "typeId": "com.example.UTDType.image",
-    "belongingToTypes": ["general.image"],
+    "TypeId": "com.example.UTDType.image",
+    "BelongingToTypes": ["general.image"],
     "FilenameExtensions": [".myImage", ".khImage"],
-    "mimeTypes": ["application/my-document", "application/my-doc"],
-    "description": "My Image.",
-    "referenceURL": "",
-    "iconFile": "resources/base/media/image.png"
+    "MIMETypes": ["application/my-document", "application/my-doc"],
+    "Description": "My Image.",
+    "ReferenceURL": ""
   },
   {
-    "typeId": "com.example.UTDType.audio",
-    "belongingToTypes": ["general.audio"],
+    "TypeId": "com.example.UTDType.audio",
+    "BelongingToTypes": ["general.audio"],
     "FilenameExtensions": [".myAudio", ".khAudio"],
-    "mimeTypes": ["application/my-document", "application/my-doc"],
-    "description": "My audio.",
-    "referenceURL": "",
-    "iconFile": "resources/base/media/myAudio.png"
+    "MIMETypes": ["application/my-document", "application/my-doc"],
+    "Description": "My audio.",
+    "ReferenceURL": ""
   },
   {
-    "typeId": "com.example.UTDType.video",
-    "belongingToTypes": ["general.video"],
+    "TypeId": "com.example.UTDType.video",
+    "BelongingToTypes": ["general.video"],
     "FilenameExtensions": [".myVideo", ".khVideo"],
-    "mimeTypes": ["application/my-document", "application/my-doc"],
-    "description": "My video.",
-    "referenceURL": "",
-    "iconFile": "resources/base/media/video.png"
+    "MIMETypes": ["application/my-document", "application/my-doc"],
+    "Description": "My video.",
+    "ReferenceURL": ""
   }
   ]
 }
