@@ -1,0 +1,96 @@
+{
+  "integer": [
+    {
+      "name": "video_screen_direction_switching_video_icon_play_width",
+      "value": 24
+    },
+    {
+      "name": "video_screen_direction_switching_video_icon_play_height",
+      "value": 24
+    },
+    {
+      "name": "video_screen_direction_switching_video_icon_play_margin",
+      "value": 10
+    },
+    {
+      "name": "video_screen_direction_switching_video_name_font_size",
+      "value": 18
+    },
+    {
+      "name": "video_screen_direction_switching_video_name_padding",
+      "value": 10
+    },
+    {
+      "name": "video_screen_direction_switching_current_time_font_size",
+      "value": 16
+    },
+    {
+      "name": "video_screen_direction_switching_speed_popup_text_font",
+      "value": 15
+    },
+    {
+      "name": "video_screen_direction_switching_speed_popup_row_padding",
+      "value": 10
+    },
+    {
+      "name": "video_screen_direction_switching_speed_popup_row_height",
+      "value": 20
+    },
+    {
+      "name": "video_screen_direction_switching_speed_popup_list_width",
+      "value": 80
+    },
+    {
+      "name": "video_screen_direction_switching_speed_popup_list_padding",
+      "value": 10
+    },
+    {
+      "name": "video_screen_direction_switching_speed_icon_font_size",
+      "value": 18
+    },
+    {
+      "name": "video_screen_direction_switching_speed_icon_margin",
+      "value": 15
+    },
+    {
+      "name": "video_screen_direction_switching_duration_font_size",
+      "value": 16
+    },
+    {
+      "name": "video_screen_direction_switching_duration_row_height",
+      "value": 25
+    },
+    {
+      "name": "video_screen_direction_switching_pause_width",
+      "value": 90
+    },
+    {
+      "name": "video_screen_direction_switching_pause_height",
+      "value": 90
+    },
+    {
+      "name": "video_screen_direction_switching_file_name_padding",
+      "value": 15
+    },
+    {
+      "name": "video_screen_direction_switching_full_screen_font_size",
+      "value": 14
+    },
+    {
+      "name": "video_screen_direction_switching_full_screen_margin",
+      "value": 500
+    },
+    {
+      "name": "video_screen_direction_switching_full_screen_width",
+      "value": 90
+    },
+    {
+      "name": "video_screen_direction_switching_full_screen_height",
+      "value": 30
+    },
+    {
+      "name": "video_screen_direction_switching_full_screen_border",
+      "value": 1
+    }
+  ]
+}
