@@ -1,0 +1,14 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/button/CreateButton",
+    "pages/button/ButtonCustomStyle",
+    "pages/button/FloatingButton",
+    "pages/radio/RadioSample",
+    "pages/button/SetButtonType",
+    "pages/button/SubmitForm",
+    "pages/toggle/CreateToggle",
+    "pages/toggle/ToggleCustomStyle",
+    "pages/toggle/ToggleCaseExample"
+  ]
+}

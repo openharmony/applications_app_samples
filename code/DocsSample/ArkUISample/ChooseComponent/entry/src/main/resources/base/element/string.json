@@ -1,0 +1,211 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "ChooseComponent"
+    },
+    {
+      "name": "RadioSample_title",
+      "value": "单选框示例示例"
+    },
+    {
+      "name": "Sample",
+      "value": "示例"
+    },
+    {
+      "name": "RadioSample_description",
+      "value": "单选框示例，模拟单选框应用效果。"
+    },
+    {
+      "name": "ToggleCaseExample_title",
+      "value": "toggle蓝牙示例"
+    },
+    {
+      "name": "ToggleCaseExample_description",
+      "value": "Toggle 组件的场景示例，模拟toggle的使用场景。"
+    },
+    {
+      "name": "ToggleCustomStyle_title",
+      "value": "自定义切换按钮"
+    },
+    {
+      "name": "CreateToggle_title",
+      "value": "创建切换按钮"
+    },
+    {
+      "name": "CreateToggle_description",
+      "value": "Toggle 组件的创建，分别创建默认不带子组件的按钮和自定义带子组件的切换按钮。"
+    },
+    {
+      "name": "ToggleCustomStyle_titleOne",
+      "value": "selectedColor设置选中后的背景颜色"
+    },
+    {
+      "name": "ToggleCustomStyle_titleTwo",
+      "value": "设置Switch类型的圆形滑块颜色"
+    },
+    {
+      "name": "ToggleCustomStyle_description",
+      "value": "Toggle 组件具体样式的设置，可对字体、背景等要素进行设置。"
+    },
+    {
+      "name": "ToggleCustomStyle_descriptionOne",
+      "value": "通过selectedColor属性设置Toggle打开选中后的背景颜色。"
+    },
+    {
+      "name": "ToggleCustomStyle_descriptionTwo",
+      "value": "通过switchPointColor属性设置Switch类型的圆形滑块颜色，仅对type为ToggleType.Switch生效。"
+    },
+    {
+      "name": "CreateButton_title",
+      "value": "创建按钮"
+    },
+    {
+      "name": "CreateButton_titleOne",
+      "value": "不包含子组件的按钮"
+    },
+    {
+      "name": "CreateButton_titleTwo",
+      "value": "包含子组件的按钮"
+    },
+    {
+      "name": "CreateButton_description",
+      "value": "Button 组件的创建，分别创建默认不带子组件的按钮和自定义带子组件的按钮。"
+    },
+    {
+      "name": "CreateButton_descriptionOne",
+      "value": "通过接口创建按钮，label用来设置按钮文字，type用于设置Button类型，stateEffect属性设置Button是否开启点击效果。"
+    },
+    {
+      "name": "CreateButton_descriptionTwo",
+      "value": "通过接口创建带子组件的按钮。使用Row作为子组件容器，Image引用箭头图片，Text显示‘back’文本。"
+    },
+    {
+      "name": "SetButtonType_test",
+      "value": "按钮类型"
+    },
+    {
+      "name": "SetButtonType_title",
+      "value": "设置按钮类型"
+    },
+    {
+      "name": "SetButtonType_titleOne",
+      "value": "胶囊型按钮"
+    },
+    {
+      "name": "SetButtonType_titleTwo",
+      "value": "圆形按钮"
+    },
+    {
+      "name": "SetButtonType_titleThree",
+      "value": "普通按钮"
+    },
+    {
+      "name": "SetButtonType_titleFour",
+      "value": "圆角矩形按钮"
+    },
+    {
+      "name": "SetButtonType_description",
+      "value": "Button 组件的类型的设置，共有四种类型：胶囊按钮、圆形按钮、普通按钮、圆角矩形按钮。"
+    },
+    {
+      "name": "SetButtonType_descriptionOne",
+      "value": "通过type属性为ButtonType.Capsule，将按钮类型设置为胶囊型按钮（圆角默认为高度的一半）。"
+    },
+    {
+      "name": "SetButtonType_descriptionTwo",
+      "value": "通过type属性为ButtonType.Circle，将按钮类型设置为圆形按钮。"
+    },
+    {
+      "name": "SetButtonType_descriptionThree",
+      "value": "通过type属性为ButtonType.Normal，将按钮类型设置为普通按钮（默认不带圆角）。"
+    },
+    {
+      "name": "SetButtonType_descriptionFour",
+      "value": "通过type属性为ButtonType.ROUNDED_RECTANGLE，将按钮类型设置为圆角矩形按钮。"
+    },
+    {
+      "name": "ButtonCustomStyle_test",
+      "value": "按钮样式"
+    },
+    {
+      "name": "ButtonCustomStyle_title",
+      "value": "自定义按钮样式"
+    },
+    {
+      "name": "ButtonCustomStyle_titleOne",
+      "value": "设置边框弧度"
+    },
+    {
+      "name": "ButtonCustomStyle_titleTwo",
+      "value": "设置文本样式"
+    },
+    {
+      "name": "ButtonCustomStyle_titleThree",
+      "value": "设置背景颜色"
+    },
+    {
+      "name": "ButtonCustomStyle_description",
+      "value": "Button 组件具体样式的设置，可对字体、背景等要素进行设置。"
+    },
+    {
+      "name": "ButtonCustomStyle_descriptionOne",
+      "value": "按钮type属性为ButtonType.Normal，通过borderRadius设置边框圆角半径为10。"
+    },
+    {
+      "name": "ButtonCustomStyle_descriptionTwo",
+      "value": "通过fontSize设置按钮中字体的大小为20，fontColor设置字体颜色为粉色，fontWeight设置字体的粗细值为800。"
+    },
+    {
+      "name": "ButtonCustomStyle_descriptionThree",
+      "value": "通过backgroundColor属性设置按钮里的背景颜色为红色。"
+    },
+    {
+      "name": "SubmitForm",
+      "value": "注册"
+    },
+    {
+      "name": "SubmitForm_title",
+      "value": "注册登录示例"
+    },
+    {
+      "name": "SubmitForm_description",
+      "value": "Button 组件使用的场景示例，对注册/登录页面的模拟。"
+    },
+    {
+      "name": "FloatingButton_title",
+      "value": "悬浮按钮示例"
+    },    {
+      "name": "FloatingButton",
+      "value": "Button 组件悬浮按钮的场景示例，在场景中设置悬浮于容器的按钮。"
+    },
+    {
+      "name": "FloatingButton_description",
+      "value": "Button 组件悬浮按钮的场景示例，在场景中设置悬浮于容器的按钮。"
+    },
+    {
+      "name": "changeToggle_example",
+      "value": "切换按钮示例"
+    },
+    {
+      "name": "button",
+      "value": "按钮/Button"
+    },
+    {
+      "name": "radio",
+      "value": "单选框/Radio"
+    },
+    {
+      "name": "toggle",
+      "value": "切换按钮/Toggle"
+    }
+  ]
+}
