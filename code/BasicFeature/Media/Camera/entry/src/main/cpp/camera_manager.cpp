@@ -17,6 +17,12 @@
 
 #define LOG_TAG "DEMO:"
 #define LOG_DOMAIN 0x3200
+#define EPSILON 0.00001
+
+int AreFloatsEqual(float a, float b)
+{
+    return fabs(a - b) < EPSILON;
+}
 
 namespace OHOS_CAMERA_SAMPLE {
 NDKCamera *NDKCamera::ndkCamera_ = nullptr;
@@ -386,12 +392,26 @@ Camera_ErrorCode NDKCamera::GetSupportedOutputCapability(void)
 
 Camera_ErrorCode NDKCamera::CreatePreviewOutput(void)
 {
-    profile_ = cameraOutputCapability_->previewProfiles[0];
-    if (profile_ == nullptr) {
+    previewProfile_ = cameraOutputCapability_->previewProfiles[0];
+    if (previewProfile_ == nullptr) {
         OH_LOG_ERROR(LOG_APP, "Get previewProfiles failed.");
         return CAMERA_INVALID_ARGUMENT;
     }
-    ret_ = OH_CameraManager_CreatePreviewOutput(cameraManager_, profile_, previewSurfaceId_, &previewOutput_);
+    for (int i = 0; i < cameraOutputCapability_->videoProfilesSize; i++) {
+        videoProfile_ = cameraOutputCapability_->videoProfiles[i];
+        if (AreFloatsEqual(static_cast<float>(previewProfile_->size.width) / previewProfile_->size.height,
+            static_cast<float>(videoProfile_->size.width) / videoProfile_->size.height)) {
+            OH_LOG_ERROR(LOG_APP, "video width: %{public}d, height: %{public}d",
+                         videoProfile_->size.width, videoProfile_->size.height);
+            OH_LOG_ERROR(LOG_APP, "preview width: %{public}f, height: %{public}f",
+                         static_cast<float>(previewProfile_->size.width),
+                         static_cast<float>(previewProfile_->size.height));
+            break;
+        }
+    }
+    ret_ = OH_CameraManager_CreatePreviewOutput(cameraManager_, previewProfile_, previewSurfaceId_, &previewOutput_);
+    OH_LOG_ERROR(LOG_APP, "video width: %{public}d, height: %{public}d",
+        previewProfile_->size.width, previewProfile_->size.height);
     if (previewSurfaceId_ == nullptr || previewOutput_ == nullptr || ret_ != CAMERA_OK) {
         OH_LOG_ERROR(LOG_APP, "CreatePreviewOutput failed.");
         return CAMERA_INVALID_ARGUMENT;
@@ -407,7 +427,6 @@ Camera_ErrorCode NDKCamera::CreatePhotoOutput(char *photoSurfaceId)
         OH_LOG_ERROR(LOG_APP, "Get photoProfiles failed.");
         return CAMERA_INVALID_ARGUMENT;
     }
-
     if (photoSurfaceId == nullptr) {
         OH_LOG_ERROR(LOG_APP, "CreatePhotoOutput failed.");
         return CAMERA_INVALID_ARGUMENT;
@@ -420,8 +439,6 @@ Camera_ErrorCode NDKCamera::CreatePhotoOutput(char *photoSurfaceId)
 
 Camera_ErrorCode NDKCamera::CreateVideoOutput(char *videoId)
 {
-    videoProfile_ = cameraOutputCapability_->videoProfiles[0];
-
     if (videoProfile_ == nullptr) {
         OH_LOG_ERROR(LOG_APP, "Get videoProfiles failed.");
         return CAMERA_INVALID_ARGUMENT;
@@ -723,7 +740,6 @@ Camera_ErrorCode NDKCamera::IsFocusPoint(float x, float y)
 
 int32_t NDKCamera::GetVideoFrameWidth(void)
 {
-    videoProfile_ = cameraOutputCapability_->videoProfiles[0];
     if (videoProfile_ == nullptr) {
         OH_LOG_ERROR(LOG_APP, "Get videoProfiles failed.");
         return CAMERA_INVALID_ARGUMENT;
@@ -733,7 +749,6 @@ int32_t NDKCamera::GetVideoFrameWidth(void)
 
 int32_t NDKCamera::GetVideoFrameHeight(void)
 {
-    videoProfile_ = cameraOutputCapability_->videoProfiles[0];
     if (videoProfile_ == nullptr) {
         OH_LOG_ERROR(LOG_APP, "Get videoProfiles failed.");
         return CAMERA_INVALID_ARGUMENT;
@@ -743,7 +758,6 @@ int32_t NDKCamera::GetVideoFrameHeight(void)
 
 int32_t NDKCamera::GetVideoFrameRate(void)
 {
-    videoProfile_ = cameraOutputCapability_->videoProfiles[0];
     if (videoProfile_ == nullptr) {
         OH_LOG_ERROR(LOG_APP, "Get videoProfiles failed.");
         return CAMERA_INVALID_ARGUMENT;
