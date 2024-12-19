@@ -5,9 +5,9 @@
 本示例展示了如何通过广告标识服务部件提供的接口获取开放匿名设备标识符以及重置开放匿名设备标识符
 
 ### 效果预览
-| 打开主页弹出授权弹框页面      | 获取OAID成功页面                       |         获取OAID失败页面                    |   
-|-----------------------------------|--------------------|------------------------------------|
-| ![](screenshots/indexPopAuth.png) | ![](screenshots/getOAIDdOK.png) | ![](screenshots/getOAIDFailed.png) | 
+| 获取OAID成功页面                                           | 获取OAID失败页面                                              |   
+|------------------------------------------------------|---------------------------------------------------------|
+| <img src="screenshots/getOAIDdOK.png" width="270" /> | <img src="screenshots/getOAIDFailed.png" width="270" /> | 
 
 
 概念说明：
@@ -18,7 +18,7 @@
 
 使用说明：
 
-1.打开应用进入首页，首次进入应用会弹出授权弹窗，选择“允许”，则可以获取到OAID；选择“禁止”，则OAID获取不到，为全0的空串。
+1.在设置应用中将跨应用关联访问权限设置为“允许”。
 
 2.点击“通过Promise获取OAID”，上方文本框显示OAID。
 
@@ -71,7 +71,7 @@ entry/src/main/ets/
 ### 相关权限
 
 获取OAID功能需要申请广告跟踪权限：
-[ohos.permission.APP_TRACKING_CONSENT](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/security/permission-list.md/)。
+[ohos.permission.APP_TRACKING_CONSENT](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all-user.md#ohospermissionapp_tracking_consent)。
 
 ### 依赖
 
