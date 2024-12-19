@@ -5,7 +5,7 @@
 本示例主要展示了媒体会话（媒体提供方）的相关功能，使用[@ohos.multimedia.avsession](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/apis/js-apis-avsession.md)等接口实现媒体提供方与媒体控制方自定义信息的交互功能。
 
 > 注意：
-> 此示例仅展示媒体提供方的相关功能，如果需要媒体会话提供的完整的自定义信息交互功能，请将本示例与[媒体提供方示例](../MediaController/README.md)共同使用。
+> 此示例仅展示媒体提供方的相关功能，如果需要媒体会话提供的完整的自定义信息交互功能，请将本示例与[媒体提供方示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Media/AVSession/MediaController)共同使用。
 
 ### 效果预览
 
@@ -145,7 +145,7 @@ entry/src/main/ets/
 
 ### 依赖
 
-此示例仅展示媒体提供方的相关功能，如果需要媒体会话提供的完整的自定义信息交互功能，请将本示例与[媒体提供方示例](../MediaController/README.md)共同使用。
+此示例仅展示媒体提供方的相关功能，如果需要媒体会话提供的完整的自定义信息交互功能，请将本示例与[媒体提供方示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Media/AVSession/MediaController)共同使用。
 
 ### 约束与限制
 

@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例主要展示了通知发布订阅的功能，使用[notificationManager.publish](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-notificationManager.md)
+本示例主要展示了通知发布订阅的功能，使用[notificationManager.publish](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-notificationManager.md)
 等接口，实现订阅、发布、推送通知等功能。
 
 ### 效果预览

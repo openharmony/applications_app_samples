@@ -31,7 +31,7 @@ entry/src/main/ets/
 
 * 本示例通过screenshot接口实现屏幕截图 ，通过window接口实现隐私窗口切换，通过display接口查询当前隐私窗口。
 * 源码链接：[Screenshot.ets](Feature/src/main/ets/components/utils/Screenshot.ets)，[WindowPrivacy.ets](Feature/src/main/ets/components/utils/WindowPrivacy.ets)
-* 接口参考：[@ohos.screenshot](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-screenshot.md)，[@ohos.window](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-window.md#setwindowprivacymode9)，[@ohos.display](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-display.md#displayhasprivatewindow9)
+* 接口参考：[@ohos.screenshot](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-screenshot.md)，[@ohos.window](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-window.md#setwindowprivacymode9)，[@ohos.display](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-display.md#displayhasprivatewindow9)
 
 ## 相关权限
 
@@ -45,7 +45,7 @@ entry/src/main/ets/
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568；
 2. 本示例已适配 API version 9 版本 SDK，本示例涉及使用系统接口：@ohos.screenshot，需要手动替换 Full SDK
-   才能编译通过，具体操作可以参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)
+   才能编译通过，具体操作可以参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)
    ；
 3. 本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)及以上版本才可编译运行；
 4. 本示例所配置的权限 ohos.permission.CAPTURE_SCREEN 为 system_core 级别(

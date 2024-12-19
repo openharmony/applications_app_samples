@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例主要展示了分布式帐号相关的功能，使用[@ohos.account.distributedAccount](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-distributed-account.md)、[@ohos.account.osAccount](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-osAccount.md)等接口，实现了绑定分布式帐号、解绑分布式帐号、更新分布式帐号信息和管理分布式帐号的功能；
+本示例主要展示了分布式帐号相关的功能，使用[@ohos.account.distributedAccount](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-distributed-account.md)、[@ohos.account.osAccount](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-osAccount.md)等接口，实现了绑定分布式帐号、解绑分布式帐号、更新分布式帐号信息和管理分布式帐号的功能。
 
 ### 效果预览
 
@@ -13,10 +13,10 @@
 使用说明
 
 1. 首次进入应用会根据分布式帐号绑定状态进行页面跳转，若帐号已绑定，则直接跳转至帐号列表界面；若帐号未绑定，则需要在首页进行绑定；
-1. 首页输入分布式帐号名（必填）、昵称，选择头像（需先使用hdc命令将图片推到storage/media/100/local/files/Pictures/路径下并重启），选择绑定的系统帐号，点击**绑定**，绑定成功跳转至帐号列表界面；
-2. 在帐号列表界面，可对所有可解绑分布式帐号进行管理，点击选择分布式帐号，跳转至对应的帐号信息界面；
-3. 在帐号信息界面，点击**解绑**，可解绑该分布式帐号；
-3. 在帐号解绑之后，可对分布式帐号信息进行更新，在首页直接进行输入后点击绑定即可。
+2. 首页输入分布式帐号名（必填）、昵称，选择头像（需先使用hdc命令将图片推到storage/media/100/local/files/Pictures/路径下并重启），选择绑定的系统帐号，点击**绑定**，绑定成功跳转至帐号列表界面；
+3. 在帐号列表界面，可对所有可解绑分布式帐号进行管理，点击选择分布式帐号，跳转至对应的帐号信息界面；
+4. 在帐号信息界面，点击**解绑**，可解绑该分布式帐号；
+5. 在帐号解绑之后，可对分布式帐号信息进行更新，在首页直接进行输入后点击绑定即可。
 
 ### 工程目录
 
@@ -50,11 +50,12 @@ entry/src/main/ets/
     * 使用distributedAccount.getDistributedAccountAbility()获取分布式帐号单实例对象accountAbility;
     * 绑定、解绑和更新分布式帐号：使用accountAbility.setOsAccountDistributedInfoByLocalId();
     * 查询分布式帐号信息：使用accountAbility.getOsAccountDistributedInfo()和accountAbility.getOsAccountDistributedInfoByLocalId;
+
 ### 相关权限
 
 [ohos.permission.MANAGE_LOCAL_ACCOUNTS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionmanage_local_accounts)
 
-[ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionmanage_distributed_accounts)
+[ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionmanage_distributed_accounts)
 
 ### 依赖
 
