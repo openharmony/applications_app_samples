@@ -35,7 +35,7 @@ struct Index {
         TabletTitle({ browser: $browser })
         Progress({ value: this.browser.progress, total: 100 })
           .color('#0000ff')
-          .visibility(this.browser.hideProgress ? Visibility.None : Visibility.Visible)
+          .visibility(this.browser.hideProgress ? Visibility.Hidden : Visibility.Visible)
         BrowserTabs({ browser: $browser })
         Divider().color('#c6c6c6').width('100%').flexShrink(0)
         WebTab({ browser: $browser, isPhone: $isPhone })
