@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -84,7 +84,7 @@ export struct modeSwitchPage {
       videoBitrate: 512000,
       videoCodec: media.CodecMimeType.VIDEO_AVC,
       videoFrameWidth: 640,
-      videoFrameHeight: 480,
+      videoFrameHeight: 640,
       videoFrameRate: 30
     },
     url: '',
@@ -202,8 +202,13 @@ export struct modeSwitchPage {
     this.videoConfig.profile.videoFrameWidth = cameraDemo.getVideoFrameWidth();
     this.videoConfig.profile.videoFrameHeight = cameraDemo.getVideoFrameHeight();
     this.videoConfig.profile.videoFrameRate = cameraDemo.getVideoFrameRate();
+    try{
+      await this.videoRecorder.prepare(this.videoConfig);
+      Logger.info(this.tag, 'prepare success!');
+    }catch (err) {
+      Logger.error(this.tag, 'prepare failed: ' + err);
+    }
 
-    await this.videoRecorder.prepare(this.videoConfig);
     this.videoId = await this.videoRecorder.getInputSurface();
     Logger.info(this.tag, `getVideoSurfaceID videoId: ${this.videoId}`);
   }
@@ -342,22 +347,17 @@ export struct modeSwitchPage {
       Column() {
         Row() {
           if (this.modelBagCol === 'photo') {
-            Text(this.imgThumbnail || 'app.media.camera_thumbnail_4x')
-              .width('1px')
-              .height('1px')
-              .borderRadius('1px')
-              .id('ThumbnailText')
             Image(this.imgThumbnail || $r('app.media.camera_thumbnail_4x'))
-              .objectFit(ImageFit.Fill)
-              .width('176px')
-              .height('176px')
-              .clip(new Circle({ width: '176px', height: '176px' }))
+              .objectFit(ImageFit.Auto)
+              .width('170px')
+              .height('170px')
+              .clip(new Circle({ width: '170px', height: '170px' }))
           } else {
             Image(this.videoThumbnail || $r('app.media.camera_thumbnail_4x'))
-              .objectFit(ImageFit.Fill)
-              .width('176px')
-              .height('176px')
-              .clip(new Circle({ width: '176px', height: '176px' }))
+              .objectFit(ImageFit.Auto)
+              .width('170px')
+              .height('170px')
+              .clip(new Circle({ width: '170px', height: '170px' }))
           }
         }.onClick(() => {
           if (deviceInfo.deviceType == 'default') {

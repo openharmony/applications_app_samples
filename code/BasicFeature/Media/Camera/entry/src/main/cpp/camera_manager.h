@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -123,6 +123,7 @@ class NDKCamera {
     uint32_t size_;
     Camera_OutputCapability *cameraOutputCapability_;
     const Camera_Profile *profile_;
+    const Camera_Profile *previewProfile_;
     const Camera_VideoProfile *videoProfile_;
     Camera_PreviewOutput *previewOutput_;
     Camera_PhotoOutput *photoOutput_;
