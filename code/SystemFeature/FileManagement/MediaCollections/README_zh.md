@@ -111,7 +111,7 @@ entry/src/main/ets/
 * Drm解密模块模块
   * 使用Drm接口对加密视频进行解密播放，支持HLS+TS格式，支持离线license、Renew、过期事件上报。
   * 源码链接：[DrmController.ets ](entry/src/main/ets/model/DrmController.ets)
-  * 接口参考：@ohos.multimedia.drm
+  * 接口参考：[@ohos.multimedia.drm](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-drm-kit/js-apis-drm.md)
 
 ### 相关权限
 
