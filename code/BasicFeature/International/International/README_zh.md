@@ -2,8 +2,8 @@
 
 ### 介绍
 
-本示例主要展示了国际化模块的相关功能，使用[@ohos.i18n](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/apis/js-apis-i18n.md)
-接口，实现简单日历展示、字符类型判断、文本断点处理功能;
+本示例主要展示了国际化模块的相关功能，使用[@ohos.i18n](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-localization-kit/js-apis-i18n.md)
+接口，实现简单日历展示、字符类型判断、文本断点处理功能。
 
 ### 效果预览
 
@@ -34,9 +34,9 @@ entry/src/main/ets/
 ```
 
 ### 具体实现
-1. 日历功能使用[@ohos.i18n](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/apis/js-apis-i18n.md)模块中Calendar实现，全部逻辑处于Calendar，源码参考：[Calendar.ets](entry/src/main/ets/pages/Calendar.ets)。
-2. 字符类型判断功能使用[@ohos.i18n](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/apis/js-apis-i18n.md)模块中Unicode实现，全部逻辑处于TextProcessing，源码参考：[TextProcessing.ets](entry/src/main/ets/pages/TextProcessing.ets)。
-3. 文本断点功能使用[@ohos.i18n](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/apis/js-apis-i18n.md)模块中breakIterator实现，全部逻辑处于TextProcessing，源码参考：[TextProcessing.ets](entry/src/main/ets/pages/TextProcessing.ets)。
+1. 日历功能使用[@ohos.i18n](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-localization-kit/js-apis-i18n.md)模块中Calendar实现，全部逻辑处于Calendar，源码参考：[Calendar.ets](entry/src/main/ets/pages/Calendar.ets)。
+2. 字符类型判断功能使用[@ohos.i18n](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-localization-kit/js-apis-i18n.md)模块中Unicode实现，全部逻辑处于TextProcessing，源码参考：[TextProcessing.ets](entry/src/main/ets/pages/TextProcessing.ets)。
+3. 文本断点功能使用[@ohos.i18n](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-localization-kit/js-apis-i18n.md)模块中breakIterator实现，全部逻辑处于TextProcessing，源码参考：[TextProcessing.ets](entry/src/main/ets/pages/TextProcessing.ets)。
 
 ### 相关权限
 

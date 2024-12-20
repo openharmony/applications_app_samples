@@ -98,7 +98,7 @@
 
 3. Stage模型与FA模型交互
 
-1）在本设备安装[FA模型](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ApplicationModels/FAModelAbilityDevelop)所包含工程；
+1）在本设备安装[FA模型](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/DocsSample/ApplicationModels/FAModelAbilityDevelop)所包含工程；
 
 2）进入APP主页，点击list进入Stage模型和FA模型交互页面；
 

@@ -54,7 +54,7 @@ entry/src/main/ets/
   
     * 使用SecPasteButton组件开发获取剪贴板信息功能，在其点击回调onclick事件中调用ystemPasteboard.setData()将文本复制到剪贴板中，systemPasteboard.getData()得到剪贴板内容
     * 源码链接：[PasteButton.ets](entry/src/main/ets/common/Component/PasteButton.ets)
-    * 接口参考：[@ohos.pasteboard](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-pasteboard.md#getdata9)
+    * 接口参考：[@ohos.pasteboard](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-pasteboard.md#getdata9)
 
   * 媒体库安全控件模块
   
@@ -63,7 +63,7 @@ entry/src/main/ets/
     resourceManager.getMediaContent()得到存放在Resources/base/media文件下的banner.png图片内容，
     fs.open()和fs.write()将图片内容通过得到的uri写到媒体库中，最后fs.close()关闭文件
     * 源码链接：[SaveButton.ets](entry/src/main/ets/common/Component/SaveButton.ets)
-    * 接口参考：[@ohos.file.photoAccessHelper](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-photoAccessHelper.md)，[@ohos.file.fs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-fs.md#fsopen)
+    * 接口参考：[@ohos.file.photoAccessHelper](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-photoAccessHelper.md)，[@ohos.file.fs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-fs.md)
 
 ### 相关权限
 
@@ -78,7 +78,7 @@ entry/src/main/ets/
 1. 本示例仅支持标准系统上运行，支持设备：GPS定位功能仅支持部分机型。
 2. 本示例仅支持API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0 Release)。
 3. 本示例需要使用DevEco Studio 版本号(4.0 Release)及以上版本才可编译运行。
-4. 本示例需要使用系统权限的系统接口，需要使用Full SDK编译。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Fquick-start%2Ffull-sdk-switch-guide.md%2F)。
+4. 本示例需要使用系统权限的系统接口，需要使用Full SDK编译。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)。
 
 ### 下载
 
@@ -87,7 +87,7 @@ entry/src/main/ets/
 ```
 git init
 git config core.sparsecheckout true
-echo Account/AuthorizedButton/ > .git/info/sparse-checkout
+echo code/SystemFeature/Security/AuthorizedButton/ > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 ```
