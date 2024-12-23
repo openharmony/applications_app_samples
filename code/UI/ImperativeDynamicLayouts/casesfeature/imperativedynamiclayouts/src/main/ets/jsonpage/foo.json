@@ -1,0 +1,245 @@
+{
+  "type": "Column",
+  "css": {
+    "width": "100%"
+  },
+  "children": [
+    {
+      "type": "Row",
+      "css": {
+        "width": "100%",
+        "padding": {
+          "left": 15,
+          "right": 15
+        },
+        "margin": {
+          "top": 5,
+          "bottom": 5
+        },
+        "justifyContent": "FlexAlign.SpaceBetween"
+      },
+      "children": [
+        {
+          "type": "Text",
+          "css": {
+            "fontSize": 24,
+            "fontColor": "#ffffff"
+          },
+          "content": "首页"
+        },
+        {
+          "type": "Image",
+          "css": {
+            "width": 24,
+            "height": 24
+          },
+          "content": "app.media.search"
+        }
+      ]
+    },
+    {
+      "type": "Swiper",
+      "css": {
+        "width": "100%"
+      },
+      "children": [
+        {
+          "type": "Image",
+          "css": {
+            "height": "40%",
+            "width": "100%"
+          },
+          "content": "app.media.movie1"
+        },
+        {
+          "type": "Image",
+          "css": {
+            "height": "40%",
+            "width": "100%"
+          },
+          "content": "app.media.movie2"
+        },
+        {
+          "type": "Image",
+          "css": {
+            "height": "40%",
+            "width": "100%"
+          },
+          "content": "app.media.movie3"
+        }
+      ]
+    },
+    {
+      "type": "Row",
+      "css": {
+        "width": "100%",
+        "padding": {
+          "left": 15,
+          "right": 15
+        },
+        "margin": {
+          "top": 15,
+          "bottom": 15
+        },
+        "justifyContent": "FlexAlign.SpaceBetween"
+      },
+      "children": [
+        {
+          "type": "Text",
+          "css": {
+            "width": 75,
+            "height": 40,
+            "borderRadius": 60,
+            "fontColor": "#000000",
+            "backgroundColor": "#ffffff"
+          },
+          "content": "精选"
+        },
+        {
+          "type": "Text",
+          "css": {
+            "width": 75,
+            "height": 40,
+            "borderRadius": 60,
+            "fontColor": "#000000",
+            "backgroundColor": "#808080"
+          },
+          "content": "电视剧"
+        },
+        {
+          "type": "Text",
+          "css": {
+            "width": 75,
+            "height": 40,
+            "borderRadius": 60,
+            "fontColor": "#000000",
+            "backgroundColor": "#808080"
+          },
+          "content": "电影"
+        },
+        {
+          "type": "Text",
+          "css": {
+            "width": 75,
+            "height": 40,
+            "borderRadius": 60,
+            "fontColor": "#000000",
+            "backgroundColor": "#808080"
+          },
+          "content": "综艺"
+        }
+      ]
+    },
+    {
+      "type": "Row",
+      "css": {
+        "width": "100%",
+        "padding": {
+          "left": 15,
+          "right": 15
+        },
+        "margin": {
+          "top": 5,
+          "bottom": 5
+        },
+        "justifyContent": "FlexAlign.SpaceBetween"
+      },
+      "children": [
+        {
+          "type": "Text",
+          "css": {
+            "fontSize": 24,
+            "fontColor": "#ffffff"
+          },
+          "content": "每日推荐"
+        },
+        {
+          "type": "Text",
+          "css": {
+            "fontSize": 20,
+            "fontColor": "#ffffff",
+            "opacity": 0.5
+          },
+          "content": "更多"
+        }
+      ]
+    },
+    {
+      "type": "Row",
+      "css": {
+        "width": "100%",
+        "padding": {
+          "left": 15,
+          "right": 15
+        },
+        "margin": {
+          "top": 5,
+          "bottom": 5
+        },
+        "justifyContent": "FlexAlign.SpaceBetween"
+      },
+      "children": [
+        {
+          "type": "Column",
+          "css": {
+            "alignItems": "HorizontalAlign.Start"
+          },
+          "children": [
+            {
+              "type": "Image",
+              "css": {
+                "height": 120,
+                "width": 170,
+                "borderRadius": 10
+              },
+              "content": "app.media.movie4"
+            },
+            {
+              "type": "Text",
+              "css": {
+                "fontColor": "#ffffff"
+              },
+              "content": "电影1"
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "css": {
+            "alignItems": "HorizontalAlign.Start"
+          },
+          "children": [
+            {
+              "type": "Image",
+              "css": {
+                "height": 120,
+                "width": 170,
+                "borderRadius": 10
+              },
+              "content": "app.media.movie5"
+            },
+            {
+              "type": "Text",
+              "css": {
+                "fontColor": "#ffffff"
+              },
+              "content": "电影2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refreshImage",
+      "type": "Text",
+      "css": {
+        "width": 180,
+        "height": 40,
+        "borderRadius": 60,
+        "fontColor": "#ffffff",
+        "backgroundColor": "#0000FF"
+      },
+      "content": "刷新"
+    }
+  ]
+}
