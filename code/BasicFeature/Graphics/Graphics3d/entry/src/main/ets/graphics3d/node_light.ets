@@ -242,6 +242,16 @@ struct nodeLight {
               shadowFlag = !shadowFlag;
               this.UpdateLights();
             }).id('enable_shadow');
+
+            Button('change light rotation').onClick(() => {
+              if (!this.scene || !this.lgt || this.lgt.lightType != scene3d.LightType.DIRECTIONAL) {
+                return;
+              }
+              let lgtPos: scene3d.Vec3 = { x: 4.0, y: 5.0, z: 6.0 };
+              let lgtQ: scene3d.Quaternion = { x: 0.3, y: 0.4, z: 0.5, w: 0.2 };
+              this.lgt.position = lgtPos;
+              this.lgt.rotation = lgtQ;
+            });
           }
         }
 
