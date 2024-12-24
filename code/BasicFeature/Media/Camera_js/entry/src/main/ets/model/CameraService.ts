@@ -341,6 +341,17 @@ class CameraService {
             }
           }
         }
+        for (let index = profiles.videoProfiles.length - 1; index >= 0; index--){
+          let videoProfile = profiles.videoProfiles[index];
+          if (this.withinErrorMargin(defaultAspectRatio, videoProfile.size.width / videoProfile.size.height)) {
+            if (videoProfile.size.width <= Constants.PHOTO_MAX_WIDTH &&
+              videoProfile.size.height <= Constants.PHOTO_MAX_WIDTH) {
+              this.videoProfileObj = videoProfile;
+              Logger.debug(TAG, `videoProfileObj: ${JSON.stringify(this.videoProfileObj)}`);
+              break;
+            }
+          }
+        }
         for (let index = profiles.photoProfiles.length - 1; index >= 0; index--) {
           const photoProfile = profiles.photoProfiles[index];
           if (this.withinErrorMargin(defaultAspectRatio, photoProfile.size.width / photoProfile.size.height)) {

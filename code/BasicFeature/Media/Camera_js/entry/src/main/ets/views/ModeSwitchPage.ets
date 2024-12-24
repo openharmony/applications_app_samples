@@ -352,12 +352,21 @@ export struct ModeSwitchPage {
                   } else {
                     uri = this.imgThumbnail;
                   }
-                  GlobalContext.get().getCameraSettingContext().startAbility({
-                    parameters: { uri: uri },
-                    action: 'ohos.want.action.viewData',
-                    bundleName: 'com.ohos.photos',
-                    abilityName: 'com.ohos.photos.MainAbility'
-                  });
+                  if (this.deviceType === Constants.DEFAULT) {
+                    GlobalContext.get().getCameraSettingContext().startAbility({
+                      parameters: { uri: uri },
+                      action: 'ohos.want.action.viewData',
+                      bundleName: 'com.ohos.photos',
+                      abilityName: 'com.ohos.photos.MainAbility'
+                    });
+                  } else if (this.deviceType === Constants.PHONE) {
+                    GlobalContext.get().getCameraSettingContext().startAbility({
+                      parameters: { uri: uri },
+                      action: 'ohos.want.action.viewData',
+                      bundleName: 'com.huawei.hmos.photos',
+                      abilityName: 'com.huawei.hmos.photos.MainAbility'
+                    });
+                  }
                 })
               }
 
