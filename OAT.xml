@@ -1279,6 +1279,25 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/UI/Immersive/casesfeature/immersive/src/main/resources/base/media/immersive_product05.png" desc="Provided by code/UI/Immersive"/>
 				<filteritem type="filepath" name="code/UI/Immersive/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/UI/Immersive"/>
 				<filteritem type="filepath" name="code/UI/Immersive/casesfeature/immersive/src/main/resources/base/media/immersive_portrait_1.png" desc="Provided by code/UI/Immersive"/>
+				<filteritem type="filepath" name="code/UI/ImperativeDynamicLayouts/casesfeature/imperativedynamiclayouts/src/main/resources/base/media/movie2.jpg" desc="Provided by code/UI/ImperativeDynamicLayouts"/>
+				<filteritem type="filepath" name="code/UI/ImperativeDynamicLayouts/casesfeature/imperativedynamiclayouts/src/main/resources/base/media/movie10.png" desc="Provided by code/UI/ImperativeDynamicLayouts"/>
+				<filteritem type="filepath" name="code/UI/ImperativeDynamicLayouts/entry/src/main/resources/base/media/background.png" desc="Provided by code/UI/ImperativeDynamicLayouts"/>
+				<filteritem type="filepath" name="code/UI/ImperativeDynamicLayouts/casesfeature/imperativedynamiclayouts/src/main/resources/base/media/movie8.png" desc="Provided by code/UI/ImperativeDynamicLayouts"/>
+				<filteritem type="filepath" name="code/UI/ImperativeDynamicLayouts/casesfeature/imperativedynamiclayouts/src/main/resources/base/media/movie7.png" desc="Provided by code/UI/ImperativeDynamicLayouts"/>
+				<filteritem type="filepath" name="code/UI/ImperativeDynamicLayouts/docs/images/imperative_dynamic_layouts.gif" desc="Provided by code/UI/ImperativeDynamicLayouts"/>
+				<filteritem type="filepath" name="code/UI/ImperativeDynamicLayouts/AppScope/resources/base/media/app_icon.png" desc="Provided by code/UI/ImperativeDynamicLayouts"/>
+				<filteritem type="filepath" name="code/UI/ImperativeDynamicLayouts/docs/images/imperative_dynamic_layouts_trace_1.png" desc="Provided by code/UI/ImperativeDynamicLayouts"/>
+				<filteritem type="filepath" name="code/UI/ImperativeDynamicLayouts/docs/images/imperative_dynamic_layouts_component_tree.jpg" desc="Provided by code/UI/ImperativeDynamicLayouts"/>
+				<filteritem type="filepath" name="code/UI/ImperativeDynamicLayouts/casesfeature/imperativedynamiclayouts/src/main/resources/base/media/movie6.png" desc="Provided by code/UI/ImperativeDynamicLayouts"/>
+				<filteritem type="filepath" name="code/UI/ImperativeDynamicLayouts/casesfeature/imperativedynamiclayouts/src/main/resources/base/media/movie4.jpg" desc="Provided by code/UI/ImperativeDynamicLayouts"/>
+				<filteritem type="filepath" name="code/UI/ImperativeDynamicLayouts/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/UI/ImperativeDynamicLayouts"/>
+				<filteritem type="filepath" name="code/UI/ImperativeDynamicLayouts/casesfeature/imperativedynamiclayouts/src/main/resources/base/media/movie9.png" desc="Provided by code/UI/ImperativeDynamicLayouts"/>
+				<filteritem type="filepath" name="code/UI/ImperativeDynamicLayouts/docs/images/imperative_dynamic_layouts_diff.jpg" desc="Provided by code/UI/ImperativeDynamicLayouts"/>
+				<filteritem type="filepath" name="code/UI/ImperativeDynamicLayouts/docs/images/imperative_dynamic_layouts_trace_2.png" desc="Provided by code/UI/ImperativeDynamicLayouts"/>
+				<filteritem type="filepath" name="code/UI/ImperativeDynamicLayouts/casesfeature/imperativedynamiclayouts/src/main/resources/base/media/movie3.jpg" desc="Provided by code/UI/ImperativeDynamicLayouts"/>
+				<filteritem type="filepath" name="code/UI/ImperativeDynamicLayouts/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/UI/ImperativeDynamicLayouts"/>
+				<filteritem type="filepath" name="code/UI/ImperativeDynamicLayouts/casesfeature/imperativedynamiclayouts/src/main/resources/base/media/movie5.jpg" desc="Provided by code/UI/ImperativeDynamicLayouts"/>
+				<filteritem type="filepath" name="code/UI/ImperativeDynamicLayouts/casesfeature/imperativedynamiclayouts/src/main/resources/base/media/movie1.jpg" desc="Provided by code/UI/ImperativeDynamicLayouts"/>
 			</filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加License头"/>
