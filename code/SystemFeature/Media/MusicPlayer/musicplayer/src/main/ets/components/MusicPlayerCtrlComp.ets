@@ -94,6 +94,17 @@ export struct MusicPlayerCtrlComp {
 
             // 当前进度到达最大进度时，不响应onChange事件
             if (this.viewModel.curProgress >= CommonConstants.MUSIC_SLIDER_MAX) {
+              if (this.viewModel.curPlayerState === CommonConstants.AVPLAYER_STATE_IDLE ||
+                this.viewModel.curPlayerState === CommonConstants.AVPLAYER_STATE_PREPARED) {
+                this.viewModel.progressLock = false;
+                this.viewModel.playNext();
+              } else if (this.viewModel.curPlayerState === CommonConstants.AVPLAYER_STATE_PLAYING) {
+                this.viewModel.progressLock = false;
+                this.viewModel.playNext();
+              } else if (this.viewModel.curPlayerState === CommonConstants.AVPLAYER_STATE_PAUSED) {
+                this.viewModel.updateCurTime(this.viewModel.curMusicModel.totalTime);
+                this.viewModel.seek(this.viewModel.curMusicModel.totalTime);
+              }
               return;
             }
 
