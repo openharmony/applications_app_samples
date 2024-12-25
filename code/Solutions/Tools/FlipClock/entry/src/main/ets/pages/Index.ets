@@ -58,17 +58,17 @@ struct Index {
           ForEach(tabArray, (item: TabType) => {
             TabContent() {
               if (item.num === 0) {
-                FlipClock()
+                FlipClock();
               } else if (item.num === 1) {
-                AlarmClock()
+                AlarmClock();
               } else if (item.num === 2) {
-                CountDown()
+                CountDown();
               } else if (item.num === 3) {
-                SetBrightness()
+                SetBrightness();
               }
             }
             .tabBar(this.tabBuilder(item))
-          }, item => JSON.stringify(item))
+          }, (item: TabType) => JSON.stringify(item))
         }
         .zIndex(-1)
         .width('100%')

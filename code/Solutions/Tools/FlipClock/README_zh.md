@@ -59,36 +59,36 @@ entry/src/main/ets/
   1、时钟： 通过aboutToAppear()中new date()获取当前时间，通过获取date的时、分、秒，10位数通过math.floor()取整，个位数通过对10取余，从而实现对时间格式化，使用box标签，对获取到的数据进行渲染。  
   2、闹钟：
   * a) 使用自定义对话控制器CustomDialogController，定义时间选择器，使用data.preferences存储设置的闹钟，并使用reminderAgentManager将其添加到系统中。
-    import data_preferences from '@ohos.data.preferences'
-    import reminderAgentManager from '@ohos.reminderAgentManager'
-  *  b) 页面从data.preferences获取添加的闹钟数据，通过Scroll()标签渲染，在标签row内，设置delete按钮，如果删除就调用以下函数取消系统时钟
-     import reminderAgentManager from '@ohos.reminderAgentManager'
-     reminderAgentManager.cancelReminder  
-     3、倒计时
+    import data_preferences from '@ohos.data.preferences';
+    import reminderAgentManager from '@ohos.reminderAgentManager';
+  * b) 页面从data.preferences获取添加的闹钟数据，通过Scroll()标签渲染，在标签row内，设置delete按钮，如果删除就调用以下函数取消系统时钟
+    import reminderAgentManager from '@ohos.reminderAgentManager';
+    reminderAgentManager.cancelReminder;
+    3、倒计时
   * a) 使用aboutToAppear()初始化界面布局，通过this.listener.on('change', portraitFunc)添加监听，
   * b) 点击开始按钮触发以下函数开始计时，并修改按钮的样式为暂停，并将running=true，触发canvas样式
-    countInSec = pickerH * 3600 + pickerM * 60 + pickerS //总计时计算
-    this.timer = setInterval(this.timerCountDown.bind(this), 1000) //时间计算
+    countInSec = pickerH * 3600 + pickerM * 60 + pickerS; //总计时计算
+    this.timer = setInterval(this.timerCountDown.bind(this), 1000); //时间计算
   * c) 点击暂停按钮，时间暂停，并将按钮样式修改为开始  
-    clearInterval(this.timer)
-    this.isRunning = true
-    this.isPausing = true
-    this.startImg = $r('app.media.start')
+    clearInterval(this.timer);
+    this.isRunning = true;
+    this.isPausing = true;
+    this.startImg = $r('app.media.start');
   * d) 点击reset计时重置，将所有数据初始化  
-    clearInterval(this.timer)
-    this.isRunning = false
-    this.isPausing = false
-    this.progressVal = 0
-    this.rotates = 0
-    passSec = 0
-    this.hoursTime = 0
-    this.minuteTime = 0
-    this.secondTime = 0
-    pickerH = 0
-    pickerM = 0
-    pickerS = 0
-    this.startImg = $r('app.media.start')
-    this.resetImg = $r('app.media.resetccc')
+    clearInterval(this.timer);
+    this.isRunning = false;
+    this.isPausing = false;
+    this.progressVal = 0;
+    this.rotates = 0;
+    passSec = 0;
+    this.hoursTime = 0;
+    this.minuteTime = 0;
+    this.secondTime = 0;
+    pickerH = 0;
+    pickerM = 0;
+    pickerS = 0;
+    this.startImg = $r('app.media.start');
+    this.resetImg = $r('app.media.resetccc');
 
 ### 相关权限
 

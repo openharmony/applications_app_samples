@@ -13,18 +13,18 @@
  * limitations under the License.
  */
 
-import window from '@ohos.window'
-import brightness from '@ohos.brightness'
-import { LockSwitch } from '../common/LockSwitch'
-import Logger from '../model/Logger'
+import window from '@ohos.window';
+import brightness from '@ohos.brightness';
+import { LockSwitch } from '../common/LockSwitch';
+import Logger from '../model/Logger';
 
 @Component
 export struct Setting {
-  @State isFullScreen: boolean = false
-  @State inSetValue: number = 40
+  @State isFullScreen: boolean = false;
+  @State inSetValue: number = 40;
 
   setBrightness(): void {
-    brightness.setValue(this.inSetValue)
+    brightness.setValue(this.inSetValue);
   }
 
   build() {
@@ -41,13 +41,13 @@ export struct Setting {
         Toggle({ type: ToggleType.Switch, isOn: this.isFullScreen })
           .switchPointColor(0xe5ffffff)
           .onChange(async () => {
-            this.isFullScreen = !this.isFullScreen
+            this.isFullScreen = !this.isFullScreen;
             try {
-              const win = await window.getLastWindow(getContext(this))
-              let names = this.isFullScreen ? [] : ['status', 'navigation']
-              await win.setWindowSystemBarEnable(names as Array<'status' | 'navigation'>)
+              const win = await window.getLastWindow(getContext(this));
+              let names = this.isFullScreen ? [] : ['status', 'navigation'];
+              await win.setWindowSystemBarEnable(names as Array<'status' | 'navigation'>);
             } catch (err) {
-              Logger.info(`setFullScreen fail, code = ${err.code}`)
+              Logger.info(`setFullScreen fail, code = ${err.code}`);
             }
           })
       }
@@ -95,8 +95,8 @@ export struct Setting {
           .trackColor(Color.Black)
           .selectedColor(0xCCCCCC)
           .onChange((value: number, mode: SliderChangeMode) => {
-            this.inSetValue = value
-            this.setBrightness()
+            this.inSetValue = value;
+            this.setBrightness();
           })
       }
       .width('98%')
@@ -116,7 +116,7 @@ export struct Setting {
 
 @Component
 struct Lock {
-  @State isComTime: boolean = true
+  @State isComTime: boolean = true;
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,52 +13,60 @@
  * limitations under the License.
  */
 
-import data_preferences from '@ohos.data.preferences'
+import data_preferences from '@ohos.data.preferences';
 
 export default class StorageModel {
-  static instance: StorageModel = null
-  private storage = null
+  static instance: StorageModel | null = null;
+  private storage: data_preferences.Preferences | null = null;
 
   public static getInstance() {
-    if (this.instance === null) {
-      this.instance = new StorageModel()
+    if (StorageModel.instance === null) {
+      StorageModel.instance = new StorageModel();
     }
-    return this.instance
+    return StorageModel.instance;
   }
 
   async getFromStorage() {
-    this.storage = await data_preferences.getPreferences(getContext(this), `storage`)
-    return
+    this.storage = await data_preferences.getPreferences(getContext(this), `storage`);
+    return;
   }
 
   async getStorage() {
     if (this.storage !== null) {
-      return this.storage
+      return this.storage;
     } else {
-      await this.getFromStorage()
-      return this.storage
+      await this.getFromStorage();
+      return this.storage;
     }
   }
 
-  async putStorageValue(putKey: string, alarmClock) {
-    let value = JSON.stringify(alarmClock)
-    this.storage = await this.getStorage()
-    await this.storage.put(putKey, value)
+  async putStorageValue(putKey: string, alarmClock: object) {
+    let value = JSON.stringify(alarmClock);
+    this.storage = await this.getStorage();
+    await this.storage!.put(putKey, value);
 
-    await this.storage.flush()
+    await this.storage!.flush();
+  }
+
+  async putTotalStorageValue(putKey: string, alarmClock: number){
+    let value = JSON.stringify(alarmClock);
+    this.storage = await this.getStorage();
+    await this.storage!.put(putKey, value);
+
+    await this.storage!.flush();
   }
 
   async getStorageValue(getKey: string) {
-    this.storage = await this.getStorage()
-    let getValue = this.storage.get(getKey, 'null')
+    this.storage = await this.getStorage();
+    let getValue = this.storage!.get(getKey, 'null');
 
-    return getValue
+    return getValue;
   }
 
   async deleteSync(key: string) {
-    await this.storage.delete(key)
-    await this.storage.flush()
-    let result = await this.storage.get(key, 'null')
-    return result
+    await this.storage!.delete(key);
+    await this.storage!.flush();
+    let result = await this.storage!.get(key, 'null');
+    return result;
   }
 }

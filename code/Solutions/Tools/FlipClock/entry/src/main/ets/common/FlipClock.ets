@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,35 +15,35 @@
 
 @Component
 export struct FlipClock {
-  @State timeOne: Array<number> = []
-  @State timeTwo: Array<number> = []
-  @State timeThree: Array<number> = []
-  @State timeFour: Array<number> = []
-  @State angleOne: Array<number> = [0, 0, 0, 0, 0, 0]
-  @State angleTwo: Array<number> = [-90, -90, -90, -90, -90, -90]
+  @State timeOne: Array<number> = [];
+  @State timeTwo: Array<number> = [];
+  @State timeThree: Array<number> = [];
+  @State timeFour: Array<number> = [];
+  @State angleOne: Array<number> = [0, 0, 0, 0, 0, 0];
+  @State angleTwo: Array<number> = [-90, -90, -90, -90, -90, -90];
 
   aboutToAppear() {
-    const arr = this.changeTime()
-    this.timeOne = [...arr]
-    this.timeTwo = [...arr]
-    this.timeThree = [...arr]
-    this.timeFour = [...arr]
+    const arr = this.changeTime();
+    this.timeOne = [...arr];
+    this.timeTwo = [...arr];
+    this.timeThree = [...arr];
+    this.timeFour = [...arr];
     setInterval(() => {
-      const time = new Date()
+      const time = new Date();
       if (this.timeOne[5] != time.getSeconds() % 10) {
-        const arr = this.changeTime()
+        const arr = this.changeTime();
         for (let i = 0;i < 6; i++) {
           if (arr[i] != this.timeFour[i]) {
-            this.timeFour[i] = arr[i]
-            this.animationOne(i)
+            this.timeFour[i] = arr[i];
+            this.animationOne(i);
             setTimeout(() => {
-              this.timeTwo[i] = arr[i]
+              this.timeTwo[i] = arr[i];
             }, 100)
             setTimeout(() => {
-              this.timeThree[i] = arr[i]
+              this.timeThree[i] = arr[i];
             }, 150)
             setTimeout(() => {
-              this.timeOne[i] = arr[i]
+              this.timeOne[i] = arr[i];
             }, 240)
           }
         }
@@ -53,41 +53,41 @@ export struct FlipClock {
 
   //修改时间
   changeTime(): Array<number> {
-    const time = new Date()
-    const hour = time.getHours()
-    const hourOne = Math.floor(hour / 10)
-    const hourTwo = hour % 10
-    const minutesOne = Math.floor(time.getMinutes() / 10)
-    const minutesTwo = time.getMinutes() % 10
-    const secondsOne = Math.floor(time.getSeconds() / 10)
-    const secondsTwo = time.getSeconds() % 10
-    return [hourOne, hourTwo, minutesOne, minutesTwo, secondsOne, secondsTwo]
+    const time = new Date();
+    const hour = time.getHours();
+    const hourOne = Math.floor(hour / 10);
+    const hourTwo = hour % 10;
+    const minutesOne = Math.floor(time.getMinutes() / 10);
+    const minutesTwo = time.getMinutes() % 10;
+    const secondsOne = Math.floor(time.getSeconds() / 10);
+    const secondsTwo = time.getSeconds() % 10;
+    return [hourOne, hourTwo, minutesOne, minutesTwo, secondsOne, secondsTwo];
   }
 
-  animationOne(i): void {
+  animationOne(i: number): void {
     animateTo({
       duration: 250,
       delay: 0,
       iterations: 1,
       onFinish: () => {
-        this.animationTwo(i)
-        this.angleOne[i] = 0
+        this.animationTwo(i);
+        this.angleOne[i] = 0;
       }
     }, () => this.angleOne[i] = 90)
   }
 
-  animationTwo(i): void {
+  animationTwo(i: number): void {
     animateTo({
       duration: 250,
       delay: 0,
       iterations: 1,
       onFinish: () => {
-        this.angleTwo[i] = -90
+        this.angleTwo[i] = -90;
       }
     }, () => this.angleTwo[i] = 0)
   }
 
-  @Builder box(num) {
+  @Builder box(num: number) {
     Column() {
       Divider()
         .zIndex(5)
