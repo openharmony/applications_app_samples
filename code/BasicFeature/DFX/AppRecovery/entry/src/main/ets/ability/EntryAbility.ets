@@ -76,7 +76,7 @@ export default class EntryAbility extends UIAbility {
   }
 
   onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>): AbilityConstant.OnSaveResult {
-    Logger.info(TAG, 'onDestroy');
+    Logger.info(TAG, 'onSaveState');
     let string = this.storage.get<string>('FaultTriggerPageString');
     let counter = this.storage.get<number>('FaultTriggerPageCounter');
     wantParam['FaultTriggerPageString'] = string ?? 'Empty';
