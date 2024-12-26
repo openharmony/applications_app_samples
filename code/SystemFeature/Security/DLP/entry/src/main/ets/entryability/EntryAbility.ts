@@ -31,8 +31,6 @@ class TestDlpFileInfo {
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     let permissions: Array<Permissions> = [
-      'ohos.permission.READ_MEDIA',
-      'ohos.permission.WRITE_MEDIA',
       'ohos.permission.FILE_ACCESS_MANAGER',
       'ohos.permission.GET_BUNDLE_INFO_PRIVILEGED',
       'ohos.permission.ACCESS_DLP_FILE',
