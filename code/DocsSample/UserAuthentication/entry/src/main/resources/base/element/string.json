@@ -1,0 +1,156 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "User Authentication"
+    },
+    {
+      "name": "module_desc",
+      "value": "User Authentication"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "User Authentication"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "User Authentication"
+    },
+    {
+      "name": "reason",
+      "value": "Used to verify user permissions"
+    },
+    {
+      "name": "whetherSupported",
+      "value": "Whether the certification capability is supported"
+    },
+    {
+      "name": "query",
+      "value": "query"
+    },
+    {
+      "name": "descriptionContent1",
+      "value": "Use the authentication credibility level ≥ATL3 face + lock screen password + fingerprint authentication to obtain the authentication result"
+    },
+    {
+      "name": "example1",
+      "value": "Example 1 of initiating user authentication"
+    },
+    {
+      "name": "descriptionContent2",
+      "value": "Use the authentication level ≥ATL3 face + lock screen password + fingerprint authentication + authentication type + multiplexing device unlocking maximum validity period authentication to obtain the authentication result"
+    },
+    {
+      "name": "example2",
+      "value": "Example 2 for initiating user authentication"
+    },
+    {
+      "name": "descriptionContent4",
+      "value": "Perform user identity authentication in the form of a modular application"
+    },
+    {
+      "name": "example3",
+      "value": "Example 3 for initiating user authentication"
+    },
+    {
+      "name": "descriptionContent3",
+      "value": "Initiate user authentication and use the authentication credibility level ≥ATL3 face + lock screen password + fingerprint authentication + any application authentication type + reuse the maximum validity duration authentication of any application to obtain the authentication result"
+    },
+    {
+      "name": "example4",
+      "value": "Example 3 for initiating user authentication"
+    },
+    {
+      "name": "queryCredentials",
+      "value": "Query the status of the user's registration credentials, and when the authentication method is disabled and then enabled, the query credentials will change again"
+    },
+    {
+      "name": "customLogin",
+      "value": "Impersonate a custom login"
+    },
+    {
+      "name": "simpleLogin",
+      "value": "User authentication login"
+    },
+    {
+      "name": "refreshTheCredentials",
+      "value": "Refresh the credentials"
+    },
+    {
+      "name": "credentialDescription",
+      "value": "After the authentication method is disabled and then enabled, click \"Refresh Credential Information\" to change the credential code"
+    },
+    {
+      "name": "refreshSupported",
+      "value": "Refreshes the support status of the certification competency"
+    },
+    {
+      "name": "queryCapability",
+      "value": "Query capability"
+    },
+    {
+      "name": "exampleTab1",
+      "value": "Example 1、2"
+    },
+    {
+      "name": "exampleTab2",
+      "value": "Example 3、4"
+    },
+    {
+      "name": "exampleTab3",
+      "value": "Cancel"
+    },
+    {
+      "name": "exampleTab4",
+      "value": "Customize"
+    },
+    {
+      "name": "credentialQueries",
+      "value": "Query credentials"
+    },
+    {
+      "name": "waitQuery",
+      "value": "Wait for the query"
+    },
+    {
+      "name": "queryPass",
+      "value": "Support authentication capabilities"
+    },
+    {
+      "name": "queryError",
+      "value": "No, please go to Settings -> Biometrics & Passwords to set the authentication capability"
+    },
+    {
+      "name": "simulationValidation",
+      "value": "Simulation validation"
+    },
+    {
+      "name": "title",
+      "value": "Please verify your identity"
+    },
+    {
+      "name": "navigationButtonText",
+      "value": "Use app passwords"
+    },
+    {
+      "name": "dialogOfCustom",
+      "value": "Here pull up the application password entry interface"
+    },
+    {
+      "name": "descriptionContent5",
+      "value": "After initiating the authentication of the face + lock screen password + fingerprint authentication with the authentication level ≥ATL3), cancel the authentication request"
+    },
+    {
+      "name": "example5",
+      "value": "Cancellation of certification during the certification process"
+    },
+    {
+      "name": "descriptionContent6",
+      "value": "Toggle custom authentication"
+    },
+    {
+      "name": "example6",
+      "value": "Pull up the certification"
+    }
+  ]
+}

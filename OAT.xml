@@ -924,6 +924,9 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/DocsSample/EnterpriseAdminExtensionAbility/EnterpriseAdminExtensionAbility/screenshots/device/second.jpg" desc="Provided by code/DocsSample/EnterpriseAdminExtensionAbility"/>
 				<filteritem type="filepath" name="code/DocsSample/EnterpriseAdminExtensionAbility/EnterpriseAdminExtensionAbility/screenshots/device/third.jpg" desc="Provided by code/DocsSample/EnterpriseAdminExtensionAbility"/>
 				<filteritem type="filepath" name="code/DocsSample/EnterpriseAdminExtensionAbility/EnterpriseAdminExtensionAbility/screenshots/device/fourth.jpg" desc="Provided by code/DocsSample/EnterpriseAdminExtensionAbility"/>
+				<filteritem type="filepath" name="code/DocsSample/UserAuthentication/screenshots/example1.jpeg" desc="Provided by code/DocsSample/UserAuthentication"/>
+				<filteritem type="filepath" name="code/DocsSample/UserAuthentication/screenshots/mockLogin.jpeg" desc="Provided by code/DocsSample/UserAuthentication"/>
+				<filteritem type="filepath" name="code/DocsSample/UserAuthentication/screenshots/query.jpeg" desc="Provided by code/DocsSample/UserAuthentication"/>
 				<filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmonyProfileDebug.pem" desc="Provided by code/Project/HapBuild"/>
 	        <filteritem type="filepath" name="code/BasicFeature/ApplicationModels/BundleManager/BundleManagement/libraryOverlay/src/main/resources/base/media/icon.png" desc="Provided by code/BasicFeature/ApplicationModels/BundleManager/BundleManagement"/>
                 <filteritem type="filepath" name="code/BasicFeature/ApplicationModels/BundleManager/BundleManagement/sceenshots/device/snapshot_directory.png" desc="Provided by code/BasicFeature/ApplicationModels/BundleManager/BundleManagement"/>
