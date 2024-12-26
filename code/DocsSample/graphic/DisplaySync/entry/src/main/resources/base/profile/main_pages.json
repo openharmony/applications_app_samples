@@ -1,0 +1,8 @@
+{
+  "src": [
+    "pages/Index",
+    "DispalySync/CustomDrawDisplaySync",
+    "DispalySync/PropertyAnimationDisplaySync",
+    "DispalySync/XComponentDisplaySync"
+  ]
+}
