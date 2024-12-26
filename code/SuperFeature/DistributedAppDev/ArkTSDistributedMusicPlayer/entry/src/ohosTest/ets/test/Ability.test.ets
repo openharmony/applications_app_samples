@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -40,7 +40,7 @@ export default function abilityTest() {
     /**
      * 拉起应用
      */
-    it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
+    it('StartAbility_001', 0, async (done: Function) => {
       Logger.info(TAG, `${BUNDLE}StartAbility_001 begin`);
       try {
         await abilityDelegator.startAbility({
@@ -59,7 +59,7 @@ export default function abilityTest() {
     /**
      * 点击允许，授权使用多设备协同
      */
-    it(BUNDLE + 'RequestPermissionFunction_001', 0, async () => {
+    it('RequestPermissionFunction_001', 0, async () => {
       Logger.info(TAG, `${BUNDLE}RequestPermissionFunction_001 begin`);
       let driver = Driver.create();
       await driver.delayMs(2000);
@@ -77,7 +77,7 @@ export default function abilityTest() {
     /**
      * 音乐播放控制
      */
-    it(BUNDLE + 'ControlMusicFunction_001', 0, async () => {
+    it('ControlMusicFunction_001', 0, async () => {
       Logger.info(TAG, `${BUNDLE}ControlMusicFunction_001 begin`);
       let driver = Driver.create();
       await driver.delayMs(200);
