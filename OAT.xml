@@ -336,6 +336,11 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/SystemFeature/Security/DLP/screenshots/haps/DlpManager.hap" desc="Provided by DlpManager"/>
                 <filteritem type="filepath" name="code/SystemFeature/Security/DLP/screenshots/haps/FileEdit.hap" desc="Provided by FileEdit"/>
                 <filteritem type="filepath" name="code/BasicFeature/DeviceManagement/Sensor/Capi/libs/library.har" desc="Provided by code/BasicFeature/DeviceManagement/Sensor"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Image/NdkPixelMap_js/entry/src/main/resources/rawfile/example.jpg" desc="Provided by code/DocsSample/Media/Image/NdkPixelMap_js"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Image/NdkPixelMap_js/screenshots/NdkPixelMap_js_1.jpeg" desc="Provided by code/DocsSample/Media/Image/NdkPixelMap_js"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Image/NdkPixelMap_js/screenshots/NdkPixelMap_js_2.jpeg" desc="Provided by code/DocsSample/Media/Image/NdkPixelMap_js"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Image/NdkPixelMap_js/screenshots/NdkPixelMap_js_3.jpeg" desc="Provided by code/DocsSample/Media/Image/NdkPixelMap_js"/>
+				<filteritem type="filepath" name="code/DocsSample/Media/Image/NdkPixelMap_js/screenshots/NdkPixelMap_js_4.jpeg" desc="Provided by code/DocsSample/Media/Image/NdkPixelMap_js"/>
 				<filteritem type="filepath" name="code/DocsSample/Sensor/entry/src/main/resources/base/media/background.png" desc="Provided by code/DocsSample/Sensor"/>
 				<filteritem type="filepath" name="code/DocsSample/Sensor/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/DocsSample/Sensor"/>
 				<filteritem type="filepath" name="code/DocsSample/Sensor/entry/src/main/resources/base/media/layered_image.png" desc="Provided by code/DocsSample/Sensor"/>

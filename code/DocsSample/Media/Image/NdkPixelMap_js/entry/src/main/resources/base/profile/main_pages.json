@@ -1,0 +1,9 @@
+{
+  "src": [
+    "pages/Index",
+    "pixelmap/pages/DecodeImages",
+    "pixelmap/pages/TransformImages",
+    "pixelmap/pages/ProcessPixelMapData",
+    "pixelmap/pages/EncodeImages"
+  ]
+}

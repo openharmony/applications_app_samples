@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "NdkPixelMap_js"
+    },
+    {
+      "name": "Decode_Images",
+      "value": "图片解码"
+    },
+    {
+      "name": "Transform_Images",
+      "value": "图像变换"
+    },
+    {
+      "name": "Process_PixelMap_Data",
+      "value": "处理PixelMap数据"
+    },
+    {
+      "name": "Encode_Images",
+      "value": "图片编码"
+    },
+    {
+      "name": "Go_Back",
+      "value": "返回"
+    },
+    {
+      "name": "Allow",
+      "value": "允许"
+    },
+    {
+      "name": "PixelMap",
+      "value": "PixelMap"
+    },
+    {
+      "name": "IMAGE",
+      "value": "IMAGE"
+    }
+  ]
+}
