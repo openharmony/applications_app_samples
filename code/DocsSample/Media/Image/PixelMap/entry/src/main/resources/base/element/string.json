@@ -1,0 +1,92 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "PixelMap"
+    },
+    {
+      "name": "edit_image",
+      "value": "PixelMap图片编辑"
+    },
+    {
+      "name": "reset_image",
+      "value": "重置图片"
+    },
+    {
+      "name": "crop",
+      "value": "裁剪"
+    },
+    {
+      "name": "scale",
+      "value": "缩放"
+    },
+    {
+      "name": "translate",
+      "value": "移动"
+    },
+    {
+      "name": "cut",
+      "value": "剪切"
+    },
+    {
+      "name": "clockwise_rotate",
+      "value": "顺时针旋转"
+    },
+    {
+      "name": "vertical_flip",
+      "value": "垂直翻转"
+    },
+    {
+      "name": "horizontal_flip",
+      "value": "水平翻转"
+    },
+    {
+      "name": "flip",
+      "value": "翻转"
+    },
+    {
+      "name": "bitmap_operation",
+      "value": "位图操作部分"
+    },
+    {
+      "name": "bitmap_operation_all",
+      "value": "位图操作全部"
+    },
+    {
+      "name": "change_opacity",
+      "value": "设置透明度"
+    },
+    {
+      "name": "toning",
+      "value": "调色"
+    },
+    {
+      "name": "list_file",
+      "value": "查看文件"
+    },
+    {
+      "name": "save_image",
+      "value": "保存图片"
+    },
+    {
+      "name": "open_image",
+      "value": "打开图片"
+    },
+    {
+      "name": "edit_EXIF",
+      "value": "编辑EXIF信息"
+    },
+    {
+      "name": "file_operation",
+      "value": "文件操作"
+    }
+  ]
+}
