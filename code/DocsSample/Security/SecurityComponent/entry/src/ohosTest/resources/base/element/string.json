@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "admit",
+      "value": "允许"
+    },
+    {
+      "name": "select_all",
+      "value": "全选"
+    },
+    {
+      "name": "cut",
+      "value": "剪切"
+    }
+  ]
+}
