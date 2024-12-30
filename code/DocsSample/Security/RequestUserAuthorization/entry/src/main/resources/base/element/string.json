@@ -1,0 +1,64 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "用户权限请求"
+    },
+    {
+      "name": "approximately_location_permission_reason",
+      "value": "用于模糊定位"
+    },
+    {
+      "name": "location_permission_reason",
+      "value": "用于获取定位"
+    },
+    {
+      "name": "SecondAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "SecondAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "check_permission",
+      "value": "检测权限"
+    },
+    {
+      "name": "req_permission_ability",
+      "value": "在UIAbility中申请权限"
+    },
+    {
+      "name": "req_permission_page",
+      "value": "在Page中申请权限"
+    },
+    {
+      "name": "return_entryability",
+      "value": "导航到EntryAbility"
+    },
+    {
+      "name": "return_main",
+      "value": "返回主页"
+    },
+    {
+      "name": "location_not_apply",
+      "value": "未申请精确定位权限"
+    },
+    {
+      "name": "permission_not_apply",
+      "value": "权限未申请"
+    },
+    {
+      "name": "permission_apply",
+      "value": "返回主页"
+    }
+  ]
+}
