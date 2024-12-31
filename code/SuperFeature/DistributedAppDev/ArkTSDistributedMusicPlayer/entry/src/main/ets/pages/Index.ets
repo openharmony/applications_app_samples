@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,7 +18,7 @@ import common from '@ohos.app.ability.common';
 import mediaQuery from '@ohos.mediaquery';
 import rpc from '@ohos.rpc';
 import Want from '@ohos.app.ability.Want';
-import PermissionRequestResult from 'security/PermissionRequestResult';
+import { PermissionRequestResult } from '@kit.AbilityKit';
 import KvStoreModel from '../model/KvStoreModel';
 import Logger from '../model/Logger';
 import PlayerModel from '../model/PlayerModel';
