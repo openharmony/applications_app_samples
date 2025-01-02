@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "Application1",
+      "value": "Create application account"
+    },
+    {
+      "name": "Application2",
+      "value": "Query application account"
+    },
+    {
+      "name": "Application3",
+      "value": "Access account credentials"
+    },
+    {
+      "name": "Application4",
+      "value": "Access custom data of the account"
+    },
+    {
+      "name": "Application5",
+      "value": "Access account authorization token"
+    },
+    {
+      "name": "Application6",
+      "value": "Delete application account"
+    }
+  ]
+}
