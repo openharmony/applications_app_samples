@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "DistributedAccount1",
+      "value": "Log in and bind distributed account on the current system account"
+    },
+    {
+      "name": "DistributedAccount2",
+      "value": "Log out and unbind distributed account on the current system account"
+    },
+    {
+      "name": "DistributedAccount3",
+      "value": "Log in and bind distributed account on the specified system account"
+    },
+    {
+      "name": "DistributedAccount4",
+      "value": "Log out and unbind distributed account on the specified system account"
+    }
+  ]
+}

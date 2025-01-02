@@ -1366,6 +1366,11 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/UI/ImperativeDynamicLayouts/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/UI/ImperativeDynamicLayouts"/>
 				<filteritem type="filepath" name="code/UI/ImperativeDynamicLayouts/casesfeature/imperativedynamiclayouts/src/main/resources/base/media/movie5.jpg" desc="Provided by code/UI/ImperativeDynamicLayouts"/>
 				<filteritem type="filepath" name="code/UI/ImperativeDynamicLayouts/casesfeature/imperativedynamiclayouts/src/main/resources/base/media/movie1.jpg" desc="Provided by code/UI/ImperativeDynamicLayouts"/>
+				<filteritem type="filepath" name="code/DocsSample/Account/ManageDistributedAccount/screenshots/ManageDistributedAccount_1.png" desc="Provided by code/DocsSample/Account/ManageDistributedAccount"/>
+				<filteritem type="filepath" name="code/DocsSample/Account/ManageDistributedAccount/screenshots/ManageDistributedAccount_2.png" desc="Provided by code/DocsSample/Account/ManageDistributedAccount"/>
+				<filteritem type="filepath" name="code/DocsSample/Account/ManageDistributedAccount/screenshots/ManageDistributedAccount_3.png" desc="Provided by code/DocsSample/Account/ManageDistributedAccount"/>
+				<filteritem type="filepath" name="code/DocsSample/Account/ManageDistributedAccount/screenshots/ManageDistributedAccount_4.png" desc="Provided by code/DocsSample/Account/ManageDistributedAccount"/>
+				<filteritem type="filepath" name="code/DocsSample/Account/ManageDistributedAccount/screenshots/ManageDistributedAccount_5.png" desc="Provided by code/DocsSample/Account/ManageDistributedAccount"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/DynamicImport/screenshots/DynamicImport.png" desc="Provided by code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/DynamicImport"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/JsApisLoadNativeModule/screenshots/JsApisLoadNativeModule1.png" desc="Provided by code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/JsApisLoadNativeModule"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/JsApisLoadNativeModule/screenshots/JsApisLoadNativeModule2.png" desc="Provided by code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/JsApisLoadNativeModule"/>
