@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "DomainAccount"
+    },
+    {
+      "name": "Domain1",
+      "value": "Authenticate domain account using password"
+    },
+    {
+      "name": "Domain2",
+      "value": "Authenticate domain account using popup"
+    },
+    {
+      "name": "Domain3",
+      "value": "Register plugin"
+    },
+    {
+      "name": "Domain4",
+      "value": "Unregister plugin"
+    },
+    {
+      "name": "Domain5",
+      "value": "Check if the specified domain account exists"
+    },
+    {
+      "name": "Domain6",
+      "value": "Add domain account"
+    },
+    {
+      "name": "Domain7",
+      "value": "Delete domain account"
+    },
+    {
+      "name": "Domain8",
+      "value": "Query domain account information"
+    }
+  ]
+}

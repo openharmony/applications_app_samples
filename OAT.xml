@@ -1478,6 +1478,18 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/ModuleLoadingSideEffects/screenshots/ModuleLoadingSideEffects.png" desc="Provided by code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/ModuleLoadingSideEffects"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview/screenshots/AsyncConcurrencyOverview_1.png" desc="Provided by code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview/screenshots/AsyncConcurrencyOverview_2.png" desc="Provided by code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview"/>
+				<filteritem type="filepath" name="code/DocsSample/Account/DomainAccount/screenshots/DomainAccount_1.png" desc="Provided by code/DocsSample/Account/DomainAccount"/>
+				<filteritem type="filepath" name="code/DocsSample/Account/DomainAccount/screenshots/DomainAccount_2.png" desc="Provided by code/DocsSample/Account/DomainAccount"/>
+				<filteritem type="filepath" name="code/DocsSample/Account/DomainAccount/screenshots/DomainAccount_3.png" desc="Provided by code/DocsSample/Account/DomainAccount"/>
+				<filteritem type="filepath" name="code/DocsSample/Account/DomainAccount/screenshots/DomainAccount_4.png" desc="Provided by code/DocsSample/Account/DomainAccount"/>
+				<filteritem type="filepath" name="code/DocsSample/Account/DomainAccount/screenshots/DomainAccount_5.png" desc="Provided by code/DocsSample/Account/DomainAccount"/>
+				<filteritem type="filepath" name="code/DocsSample/Account/DomainAccount/screenshots/DomainAccount_6.png" desc="Provided by code/DocsSample/Account/DomainAccount"/>
+				<filteritem type="filepath" name="code/DocsSample/Account/DomainAccount/screenshots/DomainAccount_7.png" desc="Provided by code/DocsSample/Account/DomainAccount"/>
+				<filteritem type="filepath" name="code/DocsSample/Account/DomainAccount/screenshots/DomainAccount_8.png" desc="Provided by code/DocsSample/Account/DomainAccount"/>
+				<filteritem type="filepath" name="code/DocsSample/Account/DomainAccount/screenshots/DomainAccount_9.png" desc="Provided by code/DocsSample/Account/DomainAccount"/>
+				<filteritem type="filepath" name="code/DocsSample/Account/DomainAccount/screenshots/DomainAccount_10.png" desc="Provided by code/DocsSample/Account/DomainAccount"/>
+				<filteritem type="filepath" name="code/DocsSample/Account/DomainAccount/screenshots/DomainAccount_11.png" desc="Provided by code/DocsSample/Account/DomainAccount"/>
+				<filteritem type="filepath" name="code/DocsSample/Account/DomainAccount/screenshots/DomainAccount_12.png" desc="Provided by code/DocsSample/Account/DomainAccount"/>
 				<filteritem type="filepath" name="code/DocsSample/Account/ManageSystemAccountCredentials/screenshots/AccountCredentials_1.png" desc="Provided by code/DocsSample/Account"/>
 				<filteritem type="filepath" name="code/DocsSample/Account/ManageSystemAccountCredentials/screenshots/AccountCredentials_2.png" desc="Provided by code/DocsSample/Account"/>
 				<filteritem type="filepath" name="code/DocsSample/Account/ManageSystemAccountCredentials/screenshots/AccountCredentials_3.png" desc="Provided by code/DocsSample/Account"/>
