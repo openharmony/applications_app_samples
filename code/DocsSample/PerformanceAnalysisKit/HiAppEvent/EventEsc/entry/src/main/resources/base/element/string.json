@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "EventEsc"
+    },
+    {
+      "name": "AddProcessorTest_Button",
+      "value": "addProcessorTest"
+    },
+    {
+      "name": "UserIdTest_Button",
+      "value": "userIdTest"
+    },
+    {
+      "name": "UserPropertyTest_Button",
+      "value": "userPropertyTest"
+    },
+    {
+      "name": "WriteTest_Button",
+      "value": "writeTest"
+    },
+    {
+      "name": "RemoveProcessorTest_Button",
+      "value": "removeProcessorTest"
+    }
+  ]
+}
