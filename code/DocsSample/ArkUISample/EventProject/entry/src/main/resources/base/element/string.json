@@ -1,0 +1,420 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "EventProject"
+    },
+    {
+      "name": "HoverEffectSample_title",
+      "value": "悬浮状态"
+    },
+    {
+      "name": "Hover_Event",
+      "value": "悬浮事件"
+    },
+    {
+      "name": "Hover_Description",
+      "value": "鼠标悬浮事件回调。参数isHover类型为boolean，表示鼠标进入组件或离开组件。该事件不支持自定义冒泡设置，默认父子冒泡"
+    },
+    {
+      "name": "Mouse_Event",
+      "value": "鼠标事件"
+    },
+    {
+      "name": "Mouse_Description",
+      "value": "鼠标事件回调。绑定该API的组件每当鼠标指针在该组件内产生行为（MouseAction）时，触发事件回调，参数为MouseEvent对象，表示触发此次的鼠标事件。该事件支持自定义冒泡设置，默认父子冒泡。常用于开发者自定义的鼠标行为逻辑处理。"
+    },
+    {
+      "name": "Hover_Effect",
+      "value": "鼠标悬浮态效果"
+    },
+    {
+      "name": "Hover_Effect_Description",
+      "value": "鼠标悬浮态效果设置的通用属性。参数类型为HoverEffect，HoverEffect提供的Auto、Scale、Highlight效果均为固定效果，开发者无法自定义设置效果参数。"
+    },
+    {
+      "name": "Key_Event",
+      "value": "按键事件"
+    },
+    {
+      "name": "Key_Description",
+      "value": "按键事件由外设键盘等设备触发，经驱动和多模处理转换后发送给当前获焦的窗口，窗口获取到事件后，会尝试分发三次事件。"
+    },
+    {
+      "name": "Key_PreIme",
+      "value": "屏蔽"
+    },
+    {
+      "name": "Key_PreIme_Description",
+      "value": "使用OnKeyPreIme屏蔽在输入框中使用方向左键。"
+    },
+    {
+      "name": "Device_index_title",
+      "value": "键鼠事件"
+    },
+    {
+      "name": "Device_OnHover_title",
+      "value": "悬浮事件"
+    },
+    {
+      "name": "Device_OnKey_title",
+      "value": "按键事件"
+    },
+    {
+      "name": "Device_OnKeyPreIme_title",
+      "value": "按键事件"
+    },
+    {
+      "name": "Device_OnMouse_title",
+      "value": "鼠标事件"
+    },
+    {
+      "name": "Drag_DefaultDrag_title",
+      "value": "通用拖拽"
+    },
+    {
+      "name": "Drag_Index_DefaultDrag_title",
+      "value": "通用拖拽"
+    },
+    {
+      "name": "Drag_Index_DefaultDrag_description",
+      "value": "组件使能拖拽。设置draggable属性为true，并配置onDragStart回调函数。"
+    },
+    {
+      "name": "Drag_Index_MoreDrag_title",
+      "value": "多选拖拽"
+    },
+    {
+      "name": "Drag_Index_MoreDrag_description",
+      "value": "从API version 12开始，Grid组件和List组件中的GridItem和ListItem组件支持多选与拖拽功能。目前，仅支持onDragStart的触发方式。"
+    },
+    {
+      "name": "Drag_Index_title",
+      "value": "拖拽事件"
+    },
+    {
+      "name": "Drag_MoreDrag_title",
+      "value": "多选拖拽"
+    },
+    {
+      "name": "Focus_DefaultFocus_title",
+      "value": "默认焦点"
+    },
+    {
+      "name": "Focus_Focusable_title",
+      "value": "设置组件是否可获焦"
+    },
+    {
+      "name": "Focus_Focusable_text",
+      "value": "当某组件处于获焦状态时，将其的focusable属性或enabled属性设置为false，会自动使该组件失焦，然后焦点按照走焦规范将焦点转移给其他组件。"
+    },
+    {
+      "name": "Focus_FocusAndClick_title",
+      "value": "焦点与按键事件"
+    },
+    {
+      "name": "Focus_FocusController_title",
+      "value": "主动获焦/失焦"
+    },
+    {
+      "name": "Focus_FocusPriority_title",
+      "value": "容器默认焦点"
+    },
+    {
+      "name": "Focus_FocusScopePriority_title",
+      "value": "焦点组与获焦优先级"
+    },
+    {
+      "name": "Focus_FocusStyle_title",
+      "value": "焦点样式"
+    },
+    {
+      "name": "Focus_Index_title",
+      "value": "焦点事件"
+    },
+    {
+      "name": "Focus_Index_onFocusBlur_title",
+      "value": "获焦失焦"
+    },
+    {
+      "name": "Focus_Index_FocusableExample_title1",
+      "value": "设置是否可获焦"
+    },
+    {
+      "name": "Focus_Index_FocusableExample_title2",
+      "value": "页面的默认焦点"
+    },
+    {
+      "name": "Focus_Index_FocusableExample_title3",
+      "value": "容器的默认焦点"
+    },
+    {
+      "name": "Focus_Index_FocusStyle_title",
+      "value": "焦点样式"
+    },
+    {
+      "name": "Focus_Index_FocusControl_title",
+      "value": "主动获焦/失焦"
+    },
+    {
+      "name": "Focus_Index_FocusScopePriority_title",
+      "value": "焦点组与获焦优先级"
+    },
+    {
+      "name": "Focus_Index_FocusAndClick_title",
+      "value": "焦点与按键事件"
+    },
+    {
+      "name": "Focus_Index_onFocusBlur_description",
+      "value": "获焦事件回调，绑定该接口的组件获焦时，回调响应。失焦事件回调，绑定该接口的组件失焦时，回调响应。"
+    },
+    {
+      "name": "Focus_Index_FocusableExample_description1",
+      "value": "设置组件是否可获焦。"
+    },
+    {
+      "name": "Focus_Index_FocusableExample_description2",
+      "value": "设置当前组件是否为当前页面上的默认焦点。"
+    },
+    {
+      "name": "Focus_Index_FocusableExample_description3",
+      "value": "FocusPriority是用于指定某个容器首次获焦时其子节点的获焦优先级。"
+    },
+    {
+      "name": "Focus_Index_FocusStyle_description",
+      "value": "设置当前组件系统焦点框样式。"
+    },
+    {
+      "name": "Focus_Index_FocusControl_description",
+      "value": "使用FocusController中的方法。更推荐使用FocusController中的requestFocus主动获取焦点。"
+    },
+    {
+      "name": "Focus_Index_FocusScopePriority_description",
+      "value": "focusScopePriority(scopeId: string, priority?: FocusPriority)设置当前组件在指定容器内获焦的优先级。需要配合focusScopeId一起使用。"
+    },
+    {
+      "name": "Focus_Index_FocusAndClick_description",
+      "value": "当组件获焦且存在点击事件（onClick）或单指单击事件（TapGesture）时，回车和空格会触发对应的事件回调。"
+    },
+    {
+      "name": "Focus_OnFocusBlur_title",
+      "value": "获焦/失焦事件"
+    },
+    {
+      "name": "gesture_GestureJudge_text",
+      "value": "以下示例中，Image和Stack两个组件位于同一区域。长按Stack组件的上半部分可触发挂载在Stack组件上的长按手势，长按Stack组件的下半部分则会响应Image组件的拖拽操作。"
+    },
+    {
+      "name": "gesture_GestureJudge_title",
+      "value": "手势拦截"
+    },
+    {
+      "name": "gesture_Index_title",
+      "value": "手势拦截"
+    },
+    {
+      "name": "gesture_Index_GestureJudge_title",
+      "value": "手势拦截"
+    },
+    {
+      "name": "gesture_Index_GestureJudge_description",
+      "value": "手势拦截主要用于确保手势按需执行，有效解决手势冲突问题。典型应用场景包括：嵌套滚动、通过过滤组件响应手势的范围来优化交互体验。手势拦截主要采用手势触发控制和手势响应控制两种方式实现。"
+    },
+    {
+      "name": "groupgesture_Exclusive_text",
+      "value": "以在一个Column组件上绑定单击手势和双击手势组合而成的互斥识别组合手势为例。若先绑定单击手势后绑定双击手势，由于单击手势只需要一次点击即可触发而双击手势需要两次，每次的点击事件均被单击手势消费而不能积累成双击手势，所以双击手势无法触发。若先绑定双击手势后绑定单击手势，则触发双击手势不触发单击手势。"
+    },
+    {
+      "name": "groupgesture_Exclusive_title",
+      "value": "互斥识别"
+    },
+    {
+      "name": "groupgesture_Parallel_text",
+      "value": "以在一个Column组件上绑定点击手势和双击手势组成的并行识别手势为例，由于单击手势和双击手势是并行识别，因此两个手势可以同时进行识别，二者互不干涉。"
+    },
+    {
+      "name": "groupgesture_Parallel_title",
+      "value": "并行识别"
+    },
+    {
+      "name": "groupgesture_Sequence_text",
+      "value": "'在一个Column组件上绑定了translate属性，通过修改该属性可以设置组件的位置移动。然后在该组件上绑定LongPressGesture和PanGesture组合而成的Sequence组合手势。当触发LongPressGesture时，更新显示的数字。当长按后进行拖动时，根据拖动手势的回调函数，实现组件的拖动。"
+    },
+    {
+      "name": "groupgesture_Sequence_title",
+      "value": "顺序识别"
+    },
+    {
+      "name": "groupgesture_Index_title",
+      "value": "组合手势"
+    },
+    {
+      "name": "groupgesture_Index_Sequence_title",
+      "value": "顺序识别"
+    },
+    {
+      "name": "groupgesture_Index_Parallel_title",
+      "value": "并行识别"
+    },
+    {
+      "name": "groupgesture_Index_Exclusive_title",
+      "value": "互斥识别"
+    },
+    {
+      "name": "groupgesture_Index_Sequence_description",
+      "value": "顺序识别组合手势对应的GestureMode为Sequence。顺序识别组合手势将按照手势的注册顺序识别手势，直到所有的手势识别成功。当顺序识别组合手势中有一个手势识别失败时，后续手势识别均失败。顺序识别手势组仅有最后一个手势可以响应onActionEnd。"
+    },
+    {
+      "name": "groupgesture_Index_Parallel_description",
+      "value": "并行识别组合手势对应的GestureMode为Parallel。并行识别组合手势中注册的手势将同时进行识别，直到所有手势识别结束。并行识别手势组合中的手势进行识别时互不影响。"
+    },
+    {
+      "name": "groupgesture_Index_Exclusive_description",
+      "value": "互斥识别组合手势对应的GestureMode为Exclusive。互斥识别组合手势中注册的手势将同时进行识别，若有一个手势识别成功，则结束手势识别，其他所有手势识别失败。"
+    },
+    {
+      "name": "singlegesture_LongPressGesture_title",
+      "value": "长按手势"
+    },
+    {
+      "name": "singlegesture_PanGesture_title",
+      "value": "拖动手势"
+    },
+    {
+      "name": "singlegesture_PinchGesture_title",
+      "value": "捏合手势"
+    },
+    {
+      "name": "singlegesture_RotationGesture_title",
+      "value": "旋转手势"
+    },
+    {
+      "name": "singlegesture_SwipeGesture_title",
+      "value": "滑动手势"
+    },
+    {
+      "name": "singlegesture_TapGesture_title",
+      "value": "点击手势"
+    },
+    {
+      "name": "singlegesture_Index_title",
+      "value": "单一手势"
+    },
+    {
+      "name": "singlegesture_Index_TapGesture_title",
+      "value": "点击手势"
+    },
+    {
+      "name": "singlegesture_Index_LongPress_title",
+      "value": "长按手势"
+    },
+    {
+      "name": "singlegesture_Index_Pan_title",
+      "value": "拖动手势"
+    },
+    {
+      "name": "singlegesture_Index_Pinch_title",
+      "value": "捏合手势"
+    },
+    {
+      "name": "singlegesture_Index_Rotation_title",
+      "value": "旋转手势"
+    },
+    {
+      "name": "singlegesture_Index_Swipe_title",
+      "value": "滑动手势"
+    },
+    {
+      "name": "singlegesture_Index_TapGesture_description",
+      "value": "单一手势的使用示例，点击手势支持单次点击和多次点击，拥有两个可选参数。"
+    },
+    {
+      "name": "singlegesture_Index_LongPress_description",
+      "value": "长按手势用于触发长按手势事件。"
+    },
+    {
+      "name": "singlegesture_Index_Pan_description",
+      "value": "拖动手势用于触发拖动手势事件，滑动达到最小滑动距离（默认值为5vp）时拖动手势识别成功。"
+    },
+    {
+      "name": "singlegesture_Index_Pinch_description",
+      "value": "捏合手势用于触发捏合手势事件。其中示例为三指捏合"
+    },
+    {
+      "name": "singlegesture_Index_Rotation_description",
+      "value": "旋转手势用于触发旋转手势事件，拥有两个可选参数：fingers：用于声明触发旋转手势所需要的最少手指数量，最小值为2，最大值为5，默认值为2。angle：用于声明触发旋转手势的最小改变度数，单位为deg，默认值为1"
+    },
+    {
+      "name": "singlegesture_Index_Swipe_description",
+      "value": "滑动手势用于触发滑动事件，当滑动速度大于100vp/s时可以识别成功，拥有三个可选参数：fingers：用于声明触发滑动手势所需要的最少手指数量，最小值为1，最大值为10，默认值为1。direction：用于声明触发滑动手势的方向，此枚举值支持逻辑与（&）和逻辑或（|）运算。默认值为SwipeDirection.All。speed：用于声明触发滑动的最小滑动识别速度，单位为vp/s，默认值为100。"
+    },
+    {
+      "name": "Touch_ClickEvent_text",
+      "value": "通过按钮的点击事件控制图片的显示和隐藏。"
+    },
+    {
+      "name": "Touch_ClickEvent_title",
+      "value": "点击事件"
+    },
+    {
+      "name": "Touch_TouchEvent_title",
+      "value": "触摸事件"
+    },
+    {
+      "name": "Touch_Index_title",
+      "value": "触摸事件"
+    },
+    {
+      "name": "Touch_Index_ClickEvent_title",
+      "value": "点击事件"
+    },
+    {
+      "name": "Touch_Index_TouchEvent_title",
+      "value":"触摸事件"
+    },
+    {
+      "name": "Touch_Index_ClickEvent_description",
+      "value": "点击事件是指通过手指或手写笔做出一次完整的按下和抬起动作。当发生点击事件时，会触发以下回调函数：\n onClick(event: (event?: ClickEvent) => void)\n 'event参数提供点击事件相对于窗口或组件的坐标位置，以及发生点击的事件源。"
+    },
+    {
+      "name": "Touch_Index_TouchEvent_description",
+      "value": "当手指或手写笔在组件上触碰时，会触发不同动作所对应的事件响应，包括按下（Down）、滑动（Move）、抬起（Up）事件。"
+    },
+    {
+      "name": "Pages_Index_gesture",
+      "value": "单一手势/gesture"
+    },
+    {
+      "name": "Pages_Index_GroupGesture",
+      "value": "组合手势/GroupGesture"
+    },
+    {
+      "name": "Pages_Index_GestureJudge",
+      "value": "手势拦截/GestureJudge"
+    },
+    {
+      "name": "Pages_Index_TouchEvent",
+      "value": "触摸事件/TouchEvent"
+    },
+    {
+      "name": "Pages_Index_DeviceEvent",
+      "value": "键鼠事件/DeviceEvent"
+    },
+    {
+      "name": "Pages_Index_FocusEvent",
+      "value": "焦点事件/FocusEvent"
+    },
+    {
+      "name": "Pages_Index_DragEvent",
+      "value": "拖拽事件/DragEvent"
+    }
+  ]
+}
