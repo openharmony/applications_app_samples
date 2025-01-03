@@ -1,0 +1,344 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "TextComponent"
+    },
+    {
+      "name": "pageIndex_Text",
+      "value": "文本显示/Text"
+    },
+    {
+      "name": "pageIndex_TextInput",
+      "value": "文本输入/TextInput"
+    },
+    {
+      "name": "CreatText_title",
+      "value": "创建文本"
+    },
+    {
+      "name": "CreatText_title_1",
+      "value": "string字符串"
+    },
+    {
+      "name": "CreatText_title_2",
+      "value": "引用Resource资源"
+    },
+    {
+      "name": "TextSpan_title",
+      "value": "添加子组件"
+    },
+    {
+      "name": "TextSpan_title_1",
+      "value": "创建Span"
+    },
+    {
+      "name": "TextSpan_title_2",
+      "value": "设置文本装饰线及颜色"
+    },
+    {
+      "name": "TextSpan_title_3",
+      "value": "通过textCase设置文字一直保持大写或者小写状态"
+    },
+    {
+      "name": "TextSpan_title_4",
+      "value": "添加事件"
+    },
+    {
+      "name": "TextSpan_description",
+      "value": "Span只能作为Text和RichEditor组件的子组件显示文本内容，可以在一个Text内添加多个Span来显示一段信息。"
+    },
+    {
+      "name": "TextSpan_textContent_1",
+      "value": "我是Text"
+    },
+    {
+      "name": "TextSpan_textContent_2",
+      "value": "我是Span"
+    },
+    {
+      "name": "TextSpan_textContent_3",
+      "value": "我是Span1，"
+    },
+    {
+      "name": "TextSpan_textContent_4",
+      "value": "我是Span2"
+    },
+    {
+      "name": "TextSpan_textContent_5",
+      "value": "，我是Span3"
+    },
+    {
+      "name": "TextSpan_textContent_6",
+      "value": "我是Span——onClick"
+    },
+    {
+      "name": "CreatText_description",
+      "value": "示例使用string字符串和引用Resource资源两种方式来创建文本。"
+    },
+    {
+      "name": "CreatText_description_1",
+      "value": "资源引用类型可以通过$r创建Resource类型对象，文件位置为/resources/base/element/string.json。"
+    },
+    {
+      "name": "CustomTextStyle_title",
+      "value": "自定义文本样式"
+    },
+    {
+      "name": "CustomTextStyle_title_1",
+      "value": "通过textAlign属性设置文本对齐样式"
+    },
+    {
+      "name": "CustomTextStyle_title_2",
+      "value": "通过textOverflow属性控制文本超长处理"
+    },
+    {
+      "name": "CustomTextStyle_title_3",
+      "value": "通过lineHeight属性设置文本行高"
+    },
+    {
+      "name": "CustomTextStyle_title_4",
+      "value": "通过decoration属性设置文本装饰线样式及其颜色"
+    },
+    {
+      "name": "CustomTextStyle_title_5",
+      "value": "通过baselineOffset属性设置文本基线的偏移量"
+    },
+    {
+      "name": "CustomTextStyle_title_6",
+      "value": "通过letterSpacing属性设置文本字符间距"
+    },
+    {
+      "name": "CustomTextStyle_title_7",
+      "value": "通过minFontSize与maxFontSize自适应字体大小"
+    },
+    {
+      "name": "CustomTextStyle_title_8",
+      "value": "通过textCase属性设置文本大小写"
+    },
+    {
+      "name": "CustomTextStyle_title_9",
+      "value": "通过copyOption属性设置文本是否可复制粘贴"
+    },
+    {
+      "name": "CustomTextStyle_description",
+      "value": "示例中展示对文本的对齐、文本超长处理、文本行高、装饰线等属性进行设置的自定义文本样式。"
+    },
+    {
+      "name": "CustomTextStyle_description_1",
+      "value": "textOverflow需配合maxLines一起使用（默认情况下文本自动折行）。"
+    },
+    {
+      "name": "CustomTextStyle_textContent_1",
+      "value": "我是超长文本，超出的部分显示省略号。"
+    },
+    {
+      "name": "CustomTextStyle_textContent_2",
+      "value": "当文本溢出其尺寸时，文本将滚动显示。"
+    },
+    {
+      "name": "CustomTextStyle_textContent_3",
+      "value": "我的最大字号为30，最小字号为5，宽度为250，maxLines为1"
+    },
+    {
+      "name": "CustomTextStyle_textContent_4",
+      "value": "我的最大字号为30，最小字号为5，宽度为250，maxLines为2"
+    },
+    {
+      "name": "CustomTextStyle_textContent_5",
+      "value": "我的最大字号为30，最小字号为15，宽度为250,高度为50"
+    },
+    {
+      "name": "CustomTextStyle_textContent_6",
+      "value": "我的最大字号为30，最小字号为15，宽度为250,高度为100"
+    },
+    {
+      "name": "CustomTextStyle_textContent_7",
+      "value": "这是一段可复制文本。"
+    },
+    {
+      "name": "TextAlign_Start",
+      "value": "左对齐"
+    },
+    {
+      "name": "TextAlign_Center",
+      "value": "中间对齐"
+    },
+    {
+      "name": "TextAlign_End",
+      "value": "右对齐"
+    },
+    {
+      "name": "TextAddEvent_title",
+      "value": "添加事件"
+    },
+    {
+      "name": "TextAddEvent_description",
+      "value": "Text组件可以添加通用事件，可以绑定onClick、onTouch等事件来响应操作。"
+    },
+    {
+      "name": "TextAddEvent_textContent_1",
+      "value": "点我"
+    },
+    {
+      "name": "TextAddEvent_textContent_2",
+      "value": "我是Text的点击响应事件"
+    },
+    {
+      "name": "TextHotSearch_title",
+      "value": "场景示例"
+    },
+    {
+      "name": "TextHotSearch_title_1",
+      "value": "热搜榜示例"
+    },
+    {
+      "name": "TextHotSearch_description",
+      "value": "示例通过maxLines、textOverflow、textAlign、constraintSize属性展示了热搜榜的效果。"
+    },
+    {
+      "name": "TextHotSearch_textContent_1",
+      "value": "我是热搜词条1"
+    },
+    {
+      "name": "TextHotSearch_textContent_2",
+      "value": "爆"
+    },
+    {
+      "name": "TextHotSearch_textContent_3",
+      "value": "我是热搜词条2 我是热搜词条2 我是热搜词条2 我是热搜词条2 我是热搜词条2"
+    },
+    {
+      "name": "TextHotSearch_textContent_4",
+      "value": "热"
+    },
+    {
+      "name": "TextHotSearch_textContent_5",
+      "value": "我是热搜词条3"
+    },
+    {
+      "name": "TextHotSearch_textContent_6",
+      "value": "我是热搜词条4 我是热搜词条4 我是热搜词条4 我是热搜词条4 我是热搜词条4"
+    },
+    {
+      "name": "CreatTextInput_title",
+      "value": "创建输入框"
+    },
+    {
+      "name": "CreatTextInput_title_1",
+      "value": "单行输入框"
+    },
+    {
+      "name": "CreatTextInput_title_2",
+      "value": "多行输入框"
+    },
+    {
+      "name": "CreatTextInput_description",
+      "value": "示例通过接口创建文本输入框，其中TextInput为单行输入框、TextArea为多行输入框。"
+    },
+    {
+      "name": "CreatTextInput_description_1",
+      "value": "多行输入框文字超出一行时会自动折行"
+    },
+    {
+      "name": "CreatTextInput_textContent",
+      "value": "我是TextArea我是TextArea我是TextArea我是TextArea"
+    },
+    {
+      "name": "SetTextInputType_title",
+      "value": "设置输入框类型"
+    },
+    {
+      "name": "SetTextInputType_title_1",
+      "value": "基本输入模式（默认类型）"
+    },
+    {
+      "name": "SetTextInputType_title_2",
+      "value": "密码输入模式"
+    },
+    {
+      "name": "SetTextInputType_description",
+      "value": "TextInput有9种可选类型，示例中展示Normal基本输入模式和Password密码输入模式两种类型"
+    },
+    {
+      "name": "CustomTextInputStyle_title",
+      "value": "自定义样式"
+    },
+    {
+      "name": "CustomTextInputStyle_title_1",
+      "value": "设置无输入时的提示文本"
+    },
+    {
+      "name": "CustomTextInputStyle_title_2",
+      "value": "设置输入框当前的文本内容"
+    },
+    {
+      "name": "CustomTextInputStyle_title_3",
+      "value": "添加backgroundColor改变输入框的背景颜色"
+    },
+    {
+      "name": "CustomTextInputStyle_description",
+      "value": "示例对输入框的提示文本、文本内容和背景颜色进行展示，更丰富的样式可以结合通用属性实现。"
+    },
+    {
+      "name": "CustomTextInputStyle_textContent_1",
+      "value": "我是提示文本"
+    },
+    {
+      "name": "CustomTextInputStyle_textContent_2",
+      "value": "我是当前文本内容"
+    },
+    {
+      "name": "TextInputAddEvent_title",
+      "value": "添加事件"
+    },
+    {
+      "name": "TextInputAddEvent_title_1",
+      "value": "设置无输入时的提示文本"
+    },
+    {
+      "name": "TextInputAddEvent_description",
+      "value": "文本框主要用于获取用户输入的信息，把信息处理成数据进行上传，绑定onChange事件可以获取输入框内改变的内容。用户也可以使用通用事件来进行相应的交互操作。"
+    },
+    {
+      "name": "TextInputAddEvent_textContent_1",
+      "value": "焦点事件"
+    },
+    {
+      "name": "TextInputAddEvent_textContent_2",
+      "value": "输入值"
+    },
+    {
+      "name": "TextInputAddEvent_textContent_3",
+      "value": "获取焦点"
+    },
+    {
+      "name": "LoginRegisterPage_title",
+      "value": "登录/注册示例"
+    },
+    {
+      "name": "LoginRegisterPage_description",
+      "value": "示例模仿用户在登录/注册页面，进行登录或注册。"
+    },
+    {
+      "name": "LoginRegisterPage_textContent",
+      "value": "输入法回车键的类型值"
+    },
+    {
+      "name": "KeyboardAvoidance_title",
+      "value": "键盘避让示例"
+    },
+    {
+      "name": "KeyboardAvoidance_description",
+      "value": "示例中键盘抬起后，具有滚动能力的容器组件在横竖屏切换时，才会生效键盘避让。"
+    }
+  ]
+}
