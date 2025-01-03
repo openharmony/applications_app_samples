@@ -25,8 +25,7 @@ export default class MainAbility extends UIAbility {
     logger.info(TAG, '[Demo] MainAbility onCreate');
     let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
     try {
-      atManager.requestPermissionsFromUser(this.context,
-        ['ohos.permission.READ_MEDIA', 'ohos.permission.WRITE_MEDIA', 'ohos.permission.MEDIA_LOCATION'])
+      atManager.requestPermissionsFromUser(this.context, ['ohos.permission.READ_IMAGEVIDEO'])
         .then((data) => {
           logger.info(TAG, `data: ${JSON.stringify(data)}`);
         }).catch((err) => {

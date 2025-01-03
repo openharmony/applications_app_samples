@@ -3,8 +3,7 @@
 ### 介绍
 
 本示例使用 [TextArea](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md)
-实现多文本输入，使用 [@ohos.app.ability.common](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-common.md)
-依赖系统的图库引用，实现在相册中获取图片，使用 [@ohos.multimedia.image](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-image-kit/js-apis-image.md)
+实现多文本输入，使用 [@ohos.file.photoAccessHelper](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-photoAccessHelper.md)拉起图库，实现在相册中获取图片，使用 [@ohos.multimedia.image](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-image-kit/js-apis-image.md)
 生成pixelMap，使用pixelMap的scale()，crop()，rotate()接口实现对图片的缩放，裁剪，旋转功能。
 使用[@ohos.effectKit](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkgraphics2d/js-apis-effectKit.md)
 生成effectKit,使用effectKit.getHighestSaturationColor()
@@ -75,7 +74,7 @@ photomodify/src/main/ets/components
 ### 具体实现
 
 + 图片选择功能在GetPictures中实现，源码参考[GetPictures.ets](entry%2Fsrc%2Fmain%2Fets%2Fpages%2FGetPictures.ets):
-    + 图片选择：首先使用startAbilityForResult()启动系统图库应用，然后将选择的图片用select数组保存路径，展示到页面便于选择，选择完跳转到首页，点击一张图片，进入到编辑删除界面。
+    + 图片选择：首先使用[@ohos.file.photoAccessHelper](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-photoAccessHelper.md)拉起图库选择图片，然后将选择的图片用select数组保存路径，展示到页面便于选择，选择完跳转到首页，点击一张图片，进入到编辑删除界面。
 + 图片编辑功能在EditImage中实现，源码参考[EditImage.ets](photomodify%2Fsrc%2Fmain%2Fets%2Fcomponents%2Fpages%2FEditImage.ets):
     + 图片编辑：图片编辑权限需要使用[requestPermissionsFromUser](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)
     申请，源码参考[MainAbility.ts](entry/src/main/ets/MainAbility/MainAbility.ts)
@@ -90,11 +89,7 @@ photomodify/src/main/ets/components
 
 ### 相关权限
 
-[ohos.permission.READ_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionread_media)
-
-[ohos.permission.WRITE_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionwrite_media)
-
-[ohos.permission.MEDIA_LOCATION](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionmedia_location)
+[ohos.permission.READ_IMAGEVIDEO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionread_imagevideo)
 
 ### 依赖
 

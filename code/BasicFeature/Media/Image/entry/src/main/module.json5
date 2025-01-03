@@ -56,28 +56,8 @@
     ],
     "requestPermissions": [
       {
-        "name": "ohos.permission.READ_MEDIA",
-        "reason": "$string:media_read_permission",
-        "usedScene": {
-          "abilities": [
-            "MainAbility"
-          ],
-          "when": "inuse"
-        }
-      },
-      {
-        "name": "ohos.permission.WRITE_MEDIA",
-        "reason": "$string:media_write_permission",
-        "usedScene": {
-          "abilities": [
-            "MainAbility"
-          ],
-          "when": "inuse"
-        }
-      },
-      {
-        "name": "ohos.permission.MEDIA_LOCATION",
-        "reason": "$string:media_location_permission",
+        "name": 'ohos.permission.READ_IMAGEVIDEO',
+        "reason": "$string:read_imagevideo_permission",
         "usedScene": {
           "abilities": [
             "MainAbility"
