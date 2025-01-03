@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "TaskPoolIntroduction"
+    },
+    {
+      "name": "General_use",
+      "value": "一般使用"
+    },
+    {
+      "name": "Return_promise",
+      "value": "返回Promise"
+    },
+    {
+      "name": "Custom_classes",
+      "value": "使用自定义类或函数"
+    },
+    {
+      "name": "Asynchronous_functions",
+      "value": "异步函数中使用Promise"
+    },
+    {
+      "name": "Task_pool",
+      "value": "TaskPool简介"
+    }
+  ]
+}

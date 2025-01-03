@@ -1,0 +1,9 @@
+{
+  "src": [
+    "pages/Index",
+    "managers/generaluse",
+    "managers/customclasses",
+    "managers/asynchronousfunctions",
+    "managers/returnpromise"
+  ]
+}
