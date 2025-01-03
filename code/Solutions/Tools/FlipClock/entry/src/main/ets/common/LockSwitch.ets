@@ -18,7 +18,7 @@ import window from '@ohos.window';
 
 @Component
 export struct LockSwitch {
-  private isLock: boolean = false
+  private isLock: boolean = false;
   @Link isComTime: boolean;
   private isKeepScreenOn: boolean = false;
 
@@ -29,7 +29,7 @@ export struct LockSwitch {
       Toggle({ type: ToggleType.Switch, isOn: this.isLock })
         .id('screenLight')
         .onChange(() => {
-          this.isLock = !(this.isLock)
+          this.isLock = !(this.isLock);
           let windowClass: window.Window | undefined = AppStorage.Get('windowClass');
           if (this.isLock === true) {
             // 打开常亮

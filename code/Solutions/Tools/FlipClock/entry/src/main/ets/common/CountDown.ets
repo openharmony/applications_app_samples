@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,132 +13,133 @@
  * limitations under the License.
  */
 
-import display from '@ohos.display'
-import mediaquery from '@ohos.mediaquery'
+import display from '@ohos.display';
+import mediaQuery from '@ohos.mediaquery';
 
-let passSec: number = 0
-let pickerH: number = 0
-let pickerM: number = 0
-let pickerS: number = 0
-let countInSec: number = 0
+let passSec: number = 0;
+let pickerH: number = 0;
+let pickerM: number = 0;
+let pickerS: number = 0;
+let countInSec: number = 0;
 
 @Component
 export struct CountDown {
-  @State displayWidth: number = 0
-  @State timer: number = 0
-  @State displayHeight: number = 0
-  @State centerY: number = 0
-  @State rotates: number = 0
-  @State hoursTime: number = 0
-  @State clockWidth: number = 0
-  @State densityDPI: number = 0
-  @State minuteTime: number = 0
-  @State secondTime: number = 0
-  @State clockHeight: number = 0
-  @State progressVal: number = 0
-  @State densityPixels: number = 0
-  @State scaledDensity: number = 0
-  @State clockDialWidth: number = 0
-  @State clockDialHeight: number = 0
-  @State isRunning: boolean = false
-  @State isPausing: boolean = false
-  @State startImg: Resource = $r('app.media.start')
-  @State resetImg: Resource = $r('app.media.resetccc')
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  @State lineLength: number = undefined
-  @State pickerHeight: number = undefined
-  @State pointerHeight: number = undefined
-  scroller: Scroller = new Scroller()
-  listener = mediaquery.matchMediaSync('(orientation:landscape)')
+  @State displayWidth: number = 0;
+  @State timer: number = 0;
+  @State displayHeight: number = 0;
+  @State centerY: number = 0;
+  @State rotates: number = 0;
+  @State hoursTime: number = 0;
+  @State clockWidth: number = 0;
+  @State densityDPI: number = 0;
+  @State minuteTime: number = 0;
+  @State secondTime: number = 0;
+  @State clockHeight: number = 0;
+  @State progressVal: number = 0;
+  @State densityPixels: number = 0;
+  @State scaledDensity: number = 0;
+  @State clockDialWidth: number = 0;
+  @State clockDialHeight: number = 0;
+  @State isRunning: boolean = false;
+  @State isPausing: boolean = false;
+  @State startImg: Resource = $r('app.media.start');
+  @State resetImg: Resource = $r('app.media.resetccc');
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  @State lineLength: number | undefined = undefined;
+  @State pickerHeight: number | undefined = undefined;
+  @State pointerHeight: number | undefined = undefined;
+  scroller: Scroller = new Scroller();
+  listener = mediaQuery.matchMediaSync('(orientation:landscape)');
+  private portraitFunc: () => void = () => {};
 
-  onPortrait(mediaQueryResult) {
+  onPortrait(mediaQueryResult: mediaQuery.MediaQueryResult) {
     if (mediaQueryResult.matches) {
-      this.pointerHeight = 310
-      this.lineLength = 345
-      this.clockDialHeight = 212
-      this.clockDialWidth = 212
-      this.clockHeight = 188
-      this.clockWidth = 188
-      this.centerY = 99
+      this.pointerHeight = 310;
+      this.lineLength = 345;
+      this.clockDialHeight = 212;
+      this.clockDialWidth = 212;
+      this.clockHeight = 188;
+      this.clockWidth = 188;
+      this.centerY = 99;
     } else {
-      this.clockDialHeight = 280
-      this.clockDialWidth = 280
-      this.clockHeight = 250
-      this.clockWidth = 250
-      this.pickerHeight = 128
-      this.pointerHeight = 375
-      this.lineLength = 410
-      this.centerY = 125
+      this.clockDialHeight = 280;
+      this.clockDialWidth = 280;
+      this.clockHeight = 250;
+      this.clockWidth = 250;
+      this.pickerHeight = 128;
+      this.pointerHeight = 375;
+      this.lineLength = 410;
+      this.centerY = 125;
     }
   }
 
   aboutToAppear() {
-    let portraitFunc = this.onPortrait.bind(this)
-    this.listener.on('change', portraitFunc)
-    let displayObj = display.getDefaultDisplaySync()
-    this.displayWidth = displayObj.width
-    this.displayHeight = displayObj.height
-    this.densityDPI = undefined
-    this.densityPixels = displayObj.densityPixels
-    this.scaledDensity = displayObj.scaledDensity
+    this.portraitFunc = this.onPortrait.bind(this);
+    this.listener.on('change', this.portraitFunc);
+    let displayObj = display.getDefaultDisplaySync();
+    this.displayWidth = displayObj.width;
+    this.displayHeight = displayObj.height;
+    this.densityDPI = 0;
+    this.densityPixels = displayObj.densityPixels;
+    this.scaledDensity = displayObj.scaledDensity;
   }
 
   timerCountDown() {
-    this.secondTime--
+    this.secondTime--;
     if (this.secondTime < 0) {
-      this.minuteTime--
-      this.secondTime = 59
+      this.minuteTime--;
+      this.secondTime = 59;
     }
     if (this.minuteTime < 0) {
-      this.minuteTime = 59
-      this.hoursTime--
+      this.minuteTime = 59;
+      this.hoursTime--;
     }
     if (this.hoursTime < 0) {
-      this.reset()
-      return
+      this.reset();
+      return;
     }
     passSec++
-    this.progressVal = 100 - passSec * 100 / countInSec
-    this.rotates = passSec * 360 / countInSec
+    this.progressVal = 100 - passSec * 100 / countInSec;
+    this.rotates = passSec * 360 / countInSec;
   }
 
   start() {
     if (!this.isPausing) {
-      this.hoursTime = pickerH
-      this.minuteTime = pickerM
-      this.secondTime = pickerS
+      this.hoursTime = pickerH;
+      this.minuteTime = pickerM;
+      this.secondTime = pickerS;
     }
-    countInSec = pickerH * 3600 + pickerM * 60 + pickerS
-    this.isRunning = true
-    this.isPausing = false
-    this.startImg = $r('app.media.pause')
-    this.resetImg = $r('app.media.reset')
-    this.timer = setInterval(this.timerCountDown.bind(this), 1000)
+    countInSec = pickerH * 3600 + pickerM * 60 + pickerS;
+    this.isRunning = true;
+    this.isPausing = false;
+    this.startImg = $r('app.media.pause');
+    this.resetImg = $r('app.media.reset');
+    this.timer = setInterval(this.timerCountDown.bind(this), 1000);
   }
 
   pause() {
-    clearInterval(this.timer)
-    this.isRunning = true
-    this.isPausing = true
-    this.startImg = $r('app.media.start')
+    clearInterval(this.timer);
+    this.isRunning = true;
+    this.isPausing = true;
+    this.startImg = $r('app.media.start');
   }
 
   reset() {
-    clearInterval(this.timer)
-    this.isRunning = false
-    this.isPausing = false
-    this.progressVal = 0
-    this.rotates = 0
-    passSec = 0
-    this.hoursTime = 0
-    this.minuteTime = 0
-    this.secondTime = 0
-    pickerH = 0
-    pickerM = 0
-    pickerS = 0
-    this.startImg = $r('app.media.start')
-    this.resetImg = $r('app.media.resetccc')
+    clearInterval(this.timer);
+    this.isRunning = false;
+    this.isPausing = false;
+    this.progressVal = 0;
+    this.rotates = 0;
+    passSec = 0;
+    this.hoursTime = 0;
+    this.minuteTime = 0;
+    this.secondTime = 0;
+    pickerH = 0;
+    pickerM = 0;
+    pickerS = 0;
+    this.startImg = $r('app.media.start');
+    this.resetImg = $r('app.media.resetccc');
   }
 
   build() {
@@ -155,14 +156,14 @@ export struct CountDown {
 
           Canvas(this.context)
             .onReady(() => {
-              this.context.lineWidth = 8
-              this.context.strokeStyle = '#f2400a'
-              this.context.beginPath()
-              this.context.moveTo(15, 0)
-              this.context.arc(15, this.pointerHeight, 10, 3.14 * 1.5, 3.14 * 0.5)
-              this.context.lineTo(15, this.lineLength)
-              this.context.arc(15, this.pointerHeight, 10, 3.14 * 0.5, 3.14 * 1.5)
-              this.context.stroke()
+              this.context.lineWidth = 8;
+              this.context.strokeStyle = '#f2400a';
+              this.context.beginPath();
+              this.context.moveTo(15, 0);
+              this.context.arc(15, this.pointerHeight, 10, 3.14 * 1.5, 3.14 * 0.5);
+              this.context.lineTo(15, this.lineLength);
+              this.context.arc(15, this.pointerHeight, 10, 3.14 * 0.5, 3.14 * 1.5);
+              this.context.stroke();
             })
             .id('countdownCanvas')
             .width(10)
@@ -221,12 +222,12 @@ export struct CountDown {
             .height(48)
             .onClick(() => {
               if (pickerH + pickerM + pickerS === 0) {
-                return
+                return;
               }
               if (!this.isRunning || this.isPausing) {
-                this.start()
+                this.start();
               } else {
-                this.pause()
+                this.pause();
               }
             })
         }
@@ -239,8 +240,8 @@ export struct CountDown {
 
 @Component
 struct Time {
-  pickerArrayGen(num) {
-    return Array.from({ length: num }, (_, i) => (i < 10) ? ('0' + i) : ('' + i))
+  pickerArrayGen(num: number) {
+    return Array.from({ length: num }, (_: string, i) => (i < 10) ? ('0' + i) : ('' + i));
   }
 
   build() {
@@ -249,8 +250,8 @@ struct Time {
         TextPicker({ range: this.pickerArrayGen(24) })
           .width(60)
           .height('100%')
-          .onChange((value: string, index: number) => {
-            pickerH = index
+          .onChange((value: string | string[], index: number | number[]) => {
+            pickerH = index as number;
           })
 
         Text(':')
@@ -263,8 +264,8 @@ struct Time {
           .id('minute')
           .width(60)
           .height('100%')
-          .onChange((value: string, index: number) => {
-            pickerM = index
+          .onChange((value: string | string[], index: number | number[]) => {
+            pickerM = index as number;
           })
 
         Text(':')
@@ -276,8 +277,8 @@ struct Time {
         TextPicker({ range: this.pickerArrayGen(60) })
           .width(60)
           .height('100%')
-          .onChange((value: string, index: number) => {
-            pickerS = index
+          .onChange((value: string | string[], index: number | number[]) => {
+            pickerS = index as number;
           })
       }
       .height(128)
@@ -307,9 +308,9 @@ struct Time {
   }
 }
 
-function FormatTime(num) {
+function FormatTime(num: number) {
   if (num > 99 || num < 0) {
-    return '**'
+    return '**';
   }
-  return (num < 10) ? ('0' + num).toString() : num.toString()
+  return (num < 10) ? ('0' + num).toString() : num.toString();
 }
