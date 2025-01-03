@@ -17,11 +17,31 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import Logger from '../logger/Logger';
 import { window } from '@kit.ArkUI';
 
-const tag = 'En';
 
 export default class EntryAbility extends UIAbility {
+  private selectPage: string = '';
+  private currentWindowStage: window.WindowStage | null = null;
+
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    Logger.info('Ability onCreate');
+    // 获取router事件中传递的targetPage参数
+    Logger.info( `Ability onCreate: ${JSON.stringify(want?.parameters)}`);
+    if (want?.parameters?.params) {
+      let params: Record<string, Object> = JSON.parse(want.parameters.params as string);
+      this.selectPage = params.targetPage as string;
+      Logger.info( `onCreate selectPage: ${this.selectPage}`);
+    }
+  }
+
+  onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    Logger.info(`Ability onNewWant: ${JSON.stringify(want?.parameters)}`);
+    if (want?.parameters?.params) {
+      let params: Record<string, Object> = JSON.parse(want.parameters.params as string);
+      this.selectPage = params.targetPage as string;
+      Logger.info( `onNewWant selectPage: ${this.selectPage}`);
+    }
+    if (this.currentWindowStage !== null) {
+      this.onWindowStageCreate(this.currentWindowStage);
+    }
   }
 
   onDestroy(): void {
@@ -30,14 +50,25 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability
-    Logger.info('Ability onWindowStageCreate');
-
-    windowStage.loadContent('pages/Index', (err) => {
+    let targetPage: string;
+    // 根据传递的targetPage不同，选择拉起不同的页面
+    switch (this.selectPage) {
+      case 'PageA':
+        targetPage = 'pages/PageA';
+        break;
+      default:
+        targetPage = 'pages/Index';
+    }
+    if (this.currentWindowStage === null) {
+      this.currentWindowStage = windowStage;
+    }
+    Logger.info('load targetPage: %{public}s', targetPage);
+    windowStage.loadContent(targetPage, (err, data) => {
       if (err.code) {
-        Logger.error(`Failed to load the content. Cause: ${JSON.stringify(err)}`);
+        Logger.error('Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
       }
-      Logger.info('Succeeded in loading the content.');
+      Logger.info('Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
     });
   }
 

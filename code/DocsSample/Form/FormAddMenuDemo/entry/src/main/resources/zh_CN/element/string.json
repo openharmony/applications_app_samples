@@ -47,6 +47,21 @@
     {
       "name": "font_size",
       "value": "25fp"
+    },
+    {
+      "name": "page_a_title",
+      "value": "PageA"
+    },    {
+      "name": "form_static_card_name",
+      "value": "静态卡片"
+    },
+    {
+      "name": "form_static_card_desc",
+      "value": "跳转到PageA"
+    },
+    {
+      "name": "full_percent",
+      "value": "100%"
     }
   ]
 }

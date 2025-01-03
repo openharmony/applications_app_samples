@@ -14,7 +14,9 @@
 */
 
 import abilityTest from './Ability.test';
+import addStaticCardTest from './StaticCard.test';
 
 export default function testsuite() {
   abilityTest();
+  addStaticCardTest()
 }
