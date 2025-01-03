@@ -112,7 +112,6 @@ export class DlpManager {
   // 帐号登录
   async AccountLogin(accountName: string) {
     Logger.info('AccountLogin start');
-    await this.AccountLogout();
     let info: UserInfo = {
       name: '',
       id: '1234',
@@ -170,7 +169,7 @@ export class DlpManager {
     this.accountInfo = await this.getOsAccountInfo();
     let property: dlpPermission.DLPProperty = {
       'ownerAccount': this.accountInfo.distributedInfo.name,
-      'ownerAccountID': this.accountInfo.distributedInfo.id,
+      'ownerAccountID': this.accountInfo.distributedInfo.name,
       'ownerAccountType': dlpPermission.AccountType.CLOUD_ACCOUNT,
       'authUserList': userList,
       'contactAccount': this.accountInfo.distributedInfo.name,
