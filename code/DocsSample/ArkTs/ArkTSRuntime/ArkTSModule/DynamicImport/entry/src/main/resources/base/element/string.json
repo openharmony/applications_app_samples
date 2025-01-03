@@ -1,0 +1,128 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "DynamicImport"
+    },
+    {
+      "name": "business_expansion_scenario",
+      "value": "业务扩展场景介绍"
+    },
+    {
+      "name": "dynamic_import_HAR_name",
+      "value": "HAP常量动态import HAR模块名"
+    },
+    {
+      "name": "dynamic_import_HAR_path",
+      "value": "HAP常量动态import HAR模块文件路径"
+    },
+    {
+      "name": "dynamic_import_HSP_name",
+      "value": "HAP常量动态import HSP模块名"
+    },
+    {
+      "name": "dynamic_import_HSP_path",
+      "value": "HAP常量动态import HSP模块名文件路径"
+    },
+    {
+      "name": "dynamic_import_remote_HAR_name",
+      "value": "HAP常量动态import远程HAR模块名"
+    },
+    {
+      "name": "dynamic_import_file",
+      "value": "HAP常量动态import自己的单文件"
+    },
+    {
+      "name": "dynamic_import_native",
+      "value": "HAP常量动态import自己的Native库"
+    },
+    {
+      "name": "dynamic_import_ohpm",
+      "value": "HAP常量动态import ohpm包"
+    },
+    {
+      "name": "dynamic_import_ohos_curves",
+      "value": "HAP常量动态加载@ohos.curves"
+    },
+    {
+      "name": "dynamic_import_system_app",
+      "value": "HAP常量动态加载@system.app"
+    },
+    {
+      "name": "dynamic_import_ohos_matrix4",
+      "value": "HAP常量动态加载@ohos.matrix4"
+    },
+    {
+      "name": "dynamic_import_ohos_hilog",
+      "value": "HAP常量动态加载@ohos.hilog"
+    },
+    {
+      "name": "dynamic_import_module_myhar",
+      "value": "变量动态import其他模块myHar"
+    },
+    {
+      "name": "dynamic_import_module_file",
+      "value": "变量动态import本模块自己的单文件"
+    },
+    {
+      "name": "dynamic_import_HAR_name_variable",
+      "value": "HAP变量动态import HAR模块名"
+    },
+    {
+      "name": "dynamic_import_HAR_path_variable",
+      "value": "HAP变量动态import HAR模块文件路径"
+    },
+    {
+      "name": "dynamic_import_HSP_name_variable",
+      "value": "HAP变量动态import HSP模块名"
+    },
+    {
+      "name": "dynamic_import_HSP_path_variable",
+      "value": "HAP变量动态import HSP模块名文件路径"
+    },
+    {
+      "name": "dynamic_import_remote_HAR_name_variable",
+      "value": "HAP变量动态import远程HAR模块名"
+    },
+    {
+      "name": "dynamic_import_file_variable",
+      "value": "HAP变量动态import自己的单文件"
+    },
+    {
+      "name": "dynamic_import_native_variable",
+      "value": "HAP变量动态import自己的Native库"
+    },
+    {
+      "name": "dynamic_import_ohpm_variable",
+      "value": "HAP变量动态import ohpm包"
+    },
+    {
+      "name": "dynamic_import_ohos_curves_variable",
+      "value": "HAP变量动态加载@ohos.curves"
+    },
+    {
+      "name": "dynamic_import_system_app_variable",
+      "value": "HAP变量动态加载@system.app"
+    },
+    {
+      "name": "dynamic_import_ohos_matrix4_variable",
+      "value": "HAP变量动态加载@ohos.matrix4"
+    },
+    {
+      "name": "dynamic_import_ohos_hilog_variable",
+      "value": "HAP变量动态加载@ohos.hilog"
+    },
+    {
+      "name": "dynamic_import_HAR",
+      "value": "动态加载依赖解耦合"
+    }
+  ]
+}
