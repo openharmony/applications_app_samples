@@ -65,10 +65,10 @@ export default class EntryAbility extends UIAbility {
     Logger.info('load targetPage: %{public}s', targetPage);
     windowStage.loadContent(targetPage, (err, data) => {
       if (err.code) {
-        Logger.error('Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        Logger.error(`Failed to load the content. Cause: ${JSON.stringify(err)}`);
         return;
       }
-      Logger.info('Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      Logger.info('Succeeded in loading the content.');
     });
   }
 
