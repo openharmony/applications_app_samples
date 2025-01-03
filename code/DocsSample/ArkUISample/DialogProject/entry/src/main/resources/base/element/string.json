@@ -1,0 +1,356 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "DialogProject"
+    },
+    {
+      "name": "CustomDialog_dialog",
+      "value": "自定义弹窗"
+    },
+    {
+      "name": "CustomDialog_create",
+      "value": "创建自定义弹框"
+    },
+    {
+      "name": "CustomDialog_Animation",
+      "value": "弹窗渐出动画预览"
+    },
+    {
+      "name": "CustomDialog_Animation1",
+      "value": "弹出框动画"
+    },
+    {
+      "name": "CustomDialog_interaction",
+      "value": "弹出框交互"
+    },
+    {
+      "name": "CustomDialog_interaction1",
+      "value": "弹出框交互页面跳转"
+    },
+    {
+      "name": "CustomDialog_shadow",
+      "value": "弹窗设置边框阴影预览"
+    },
+    {
+      "name": "CustomDialog_style",
+      "value": "弹出框的样式"
+    },
+    {
+      "name": "CustomDialog_nest",
+      "value": "嵌套自定义弹出框"
+    },
+    {
+      "name": "CustomDialog_create_des",
+      "value": "使用@CustomDialog装饰器装饰自定义弹出框，可在此装饰器内自定义弹出框内容。CustomDialogController需在@Component内定义。"
+    },
+    {
+      "name": "CustomDialog_create_title",
+      "value": "创建自定义弹出框"
+    },
+    {
+      "name": "CustomDialog_interaction_des",
+      "value": "弹出框可用于数据交互，完成用户一系列响应操作。"
+    },
+    {
+      "name": "CustomDialog_interaction_title",
+      "value": "弹出框的交互"
+    },
+    {
+      "name": "CustomDialog_interaction1_des",
+      "value": "可通过弹出框中的按钮实现路由跳转，同时获取跳转页面向当前页传入的参数。"
+    },
+    {
+      "name": "CustomDialog_interaction1_title",
+      "value": "弹出框的交互页面跳转"
+    },
+    {
+      "name": "CustomDialog_animation_des",
+      "value": "弹出框通过定义openAnimation控制弹出框出现动画的持续时间，速度等参数。"
+    },
+    {
+      "name": "CustomDialog_animation_title",
+      "value": "弹出框的动画"
+    },
+    {
+      "name": "CustomDialog_Style_des",
+      "value": "弹出框通过定义宽度、高度、背景色、阴影等参数来控制样式。"
+    },
+    {
+      "name": "CustomDialog_Style_title",
+      "value": "弹出框的样式"
+    },
+    {
+      "name": "CustomDialog_nest_des",
+      "value": "弹出框通过定义宽度、高度、背景色、阴影等参数来控制样式。"
+    },
+    {
+      "name": "CustomDialog_nest_title",
+      "value": "弹出框的样式"
+    },
+    {
+      "name": "CustomDialog_ActionSheet",
+      "value": "列表选择弹窗"
+    },
+    {
+      "name": "CustomDialog_AlertDialog",
+      "value": "警告弹窗"
+    },
+    {
+      "name": "CustomDialog_calender",
+      "value": "日历选择器弹窗"
+    },
+    {
+      "name": "CustomDialog_date",
+      "value": "日期滑动选择器弹窗"
+    },
+    {
+      "name": "CustomDialog_text",
+      "value": "文本滑动选择器弹窗"
+    },
+    {
+      "name": "CustomDialog_time",
+      "value": "时间滑动选择器弹窗"
+    },
+    {
+      "name": "CalendarPickerDialog_title",
+      "value": "日历选择器弹窗"
+    },
+    {
+      "name": "CalendarPickerDialog_des",
+      "value": "日历选择器弹窗提供日历视图，包含年、月和星期信息，通过CalendarPickerDialog接口实现。开发者可调用show函数，定义并弹出日历选择器弹窗。"
+    },
+    {
+      "name": "DatePicker_title",
+      "value": "日期滑动选择器弹窗"
+    },
+    {
+      "name": "DatePicker_des",
+      "value": "开发者可以利用指定的日期范围，创建日期滑动选择器弹窗，将日期信息清晰地展示在弹出的窗口上。"
+    },
+    {
+      "name": "TimePicker_title",
+      "value": "时间滑动选择器弹窗"
+    },
+    {
+      "name": "TimePicker_des",
+      "value": "开发者可根据24小时的时间区间，创建时间滑动选择器弹窗，将时间信息清晰地展示在弹出的窗口上。"
+    },
+    {
+      "name": "TextPicker_title",
+      "value": "文本滑动选择器弹窗"
+    },
+    {
+      "name": "TextPicker_des",
+      "value": "开发者可根据指定的选择范围，创建文本滑动选择器弹窗，将文本信息清晰地展示在弹出的窗口上。"
+    },
+    {
+      "name": "ActionSheet_title",
+      "value": "列表选择弹窗"
+    },
+    {
+      "name": "ActionSheet_des",
+      "value": "列表选择器弹窗适用于呈现多个操作选项，尤其当界面中仅需展示操作列表而无其他内容时。"
+    },
+    {
+      "name": "AlertDialog_title",
+      "value": "警告弹窗"
+    },
+    {
+      "name": "AlertDialog_des",
+      "value": "需要向用户提问或得到用户的许可时，可使用警告弹窗。"
+    },
+    {
+      "name": "fixed_dialog",
+      "value": "固定样式弹出框"
+    },
+    {
+      "name": "menu_single",
+      "value": "菜单选项单级"
+    },
+    {
+      "name": "menu_forbid",
+      "value": "菜单不可选择"
+    },
+    {
+      "name": "menu_more",
+      "value": "菜单选项多级"
+    },
+    {
+      "name": "menu_subtitle",
+      "value": "小标题"
+    },
+    {
+      "name": "menu_selection",
+      "value": "菜单选项"
+    },
+    {
+      "name": "menu_default",
+      "value": "默认样式"
+    },
+    {
+      "name": "menu_bind",
+      "value": "属性绑定"
+    },
+    {
+      "name": "menu_rightClick",
+      "value": "支持鼠标右键的菜单"
+    },
+    {
+      "name": "create_menu",
+      "value": "创建菜单"
+    },
+    {
+      "name": "menu",
+      "value": "菜单"
+    },
+    {
+      "name": "CreateMenu_title",
+      "value": "创建自定义样式的菜单"
+    },
+    {
+      "name": "CreateMenu_des",
+      "value": "菜单需要调用bindMenu接口来实现。bindMenu响应绑定组件的点击事件，绑定组件后手势点击对应组件后即可弹出。"
+    },
+    {
+      "name": "Customdialog_title",
+      "value": "不依赖UI组件的全局自定义弹出框"
+    },
+    {
+      "name": "Customdialog_des",
+      "value": "由于CustomDialogController在使用上存在诸多限制，不支持动态创建也不支持动态刷新，在相对较复杂的应用场景中推荐使用UIContext中获取到的PromptAction对象提供的openCustomDialog接口来实现自定义弹出框。"
+    },
+    {
+      "name": "close_dialog",
+      "value": "关闭弹窗"
+    },
+    {
+      "name": "change_dialog",
+      "value": "改变弹窗位置"
+    },
+    {
+      "name": "change_text",
+      "value": "该按钮呼出的弹窗，点击“改变弹窗位置”弹窗由上对齐更新为底部对齐"
+    },
+    {
+      "name": "open_customDialog",
+      "value": "不依赖UI组件的全局自定义弹出框"
+    },
+    {
+      "name": "button_popup",
+      "value": "带按钮的提示气泡"
+    },
+    {
+      "name": "custom_popup",
+      "value": "自定义气泡"
+    },
+    {
+      "name": "popup",
+      "value": "气泡提示"
+    },
+    {
+      "name": "TextPopup_title",
+      "value": "文本提示气泡"
+    },
+    {
+      "name": "TextPopup_des",
+      "value": "文本提示气泡常用于只展示带有文本的信息提示，不带有任何交互的场景。Popup属性需绑定组件，当bindPopup属性中参数show为true时会弹出气泡提示。"
+    },
+    {
+      "name": "onStateChange_title",
+      "value": "添加气泡状态变化的事件"
+    },
+    {
+      "name": "onStateChange_des",
+      "value": "通过onStateChange参数为气泡添加状态变化的事件回调，可以判断当前气泡的显示状态。"
+    },
+    {
+      "name": "ButtonPopup_title",
+      "value": "带按钮的提示气泡"
+    },
+    {
+      "name": "ButtonPopup_des",
+      "value": "通过primaryButton、secondaryButton属性为气泡最多设置两个Button按钮，通过此按钮进行简单的交互，开发者可以通过配置action参数来设置想要触发的操作。"
+    },
+    {
+      "name": "AnimationPopup_title",
+      "value": "气泡的动画"
+    },
+    {
+      "name": "AnimationPopup_des",
+      "value": "气泡通过定义transition控制气泡的进场和出场动画效果。"
+    },
+    {
+      "name": "CustomPopup_title",
+      "value": "自定义气泡"
+    },
+    {
+      "name": "CustomPopup_des",
+      "value": "开发者可以使用CustomPopupOptions的builder创建自定义气泡，@Builder中可以放自定义的内容。除此之外，还可以通过popupColor等参数控制气泡样式。"
+    },
+    {
+      "name": "StylePopup_title",
+      "value": "气泡样式"
+    },
+    {
+      "name": "StylePopup_des",
+      "value": "气泡除了可以通过builder实现自定义气泡，还可以通过接口设置气泡的样式和显示效果。"
+    },
+    {
+      "name": "toast",
+      "value": "即时反馈"
+    },
+    {
+      "name": "CreateToast_title",
+      "value": "创建即时反馈"
+    },
+    {
+      "name": "CreateToast_des",
+      "value": "适用于短时间内提示框自动消失的场景。"
+    },
+    {
+      "name": "OpenCloseToast_title",
+      "value": "显示关闭即时反馈"
+    },
+    {
+      "name": "OpenCloseToast_des",
+      "value": "适用于提示框提留时间较长，用户操作可以提前关闭提示框的场景。"
+    },
+    {
+      "name": "openCustomDialog",
+      "value": "自定义弹出框/openCustomDialog"
+    },
+    {
+      "name": "CustomDialog1",
+      "value": "基础自定义弹出框/CustomDialog"
+    },
+    {
+      "name": "FixedStyleDialog1",
+      "value": "固定样式弹出框/FixedStyleDialog"
+    },
+    {
+      "name": "Menu1",
+      "value": "菜单控制/Menu"
+    },
+    {
+      "name": "Toast1",
+      "value": "即时反馈/Toast"
+    },
+    {
+      "name": "Popup1",
+      "value": "气泡提示/Popup"
+    },
+    {
+      "name": "back",
+      "value": "点击返回"
+    }
+  ]
+}
