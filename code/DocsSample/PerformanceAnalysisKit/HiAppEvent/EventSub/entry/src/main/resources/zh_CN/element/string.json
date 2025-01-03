@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "事件订阅"
+    },
+    {
+      "name": "WriteEventArkTS_Button",
+      "value": "writeEvent ArkTS"
+    },
+    {
+      "name": "Crash_Button",
+      "value": "appCrash ArkTS&C++"
+    },
+    {
+      "name": "Pssleak_Button",
+      "value": "pssleak ArkTS&C++"
+    },
+    {
+      "name": "TimeOut_Button",
+      "value": "timeOut350 ArkTS&C++"
+    },
+    {
+      "name": "WriteEventCPP_Button",
+      "value": "writeEvent C++"
+    },
+    {
+      "name": "Freeze_Button",
+      "value": "appFreeze ArkTS&C++"
+    },
+    {
+      "name": "AsanEvent_Button",
+      "value": "appAsanEvent ArkTS&C++"
+    }
+  ]
+}
