@@ -1,0 +1,52 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "PerformanceAnalysis"
+    },
+    {
+      "name": "HiTraceMeterArkTS_Button",
+      "value": "HiTraceMeter ArkTS"
+    },
+    {
+      "name": "HiTraceChainArkTS_Button",
+      "value": "HiTraceChain ArkTS"
+    },
+    {
+      "name": "HiDebugArkTS_Button",
+      "value": "HiDebug ArkTS"
+    },
+    {
+      "name": "HiCheckerArkTS_Button",
+      "value": "HiChecker ArkTS"
+    },
+    {
+      "name": "HiTraceMeterCPP_Button",
+      "value": "HiTraceMeter C++"
+    },
+    {
+      "name": "HiTraceChainCPP_Button",
+      "value": "HiTraceChain C++"
+    },
+    {
+      "name": "HiDebugCPP_Button",
+      "value": "HiDebug C++"
+    },
+    {
+      "name": "TestHiCollieJankNdk_Button",
+      "value": "testHiCollieJankNdk"
+    },
+    {
+      "name": "TestHiCollieStuckNdk_Button",
+      "value": "testHiCollieStuckNdk"
+    }
+  ]
+}
