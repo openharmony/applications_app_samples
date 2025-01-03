@@ -19,6 +19,14 @@
     {
       "name": "write_image_video_permission",
       "value": "修改用户公共目录的图片或视频文件"
+    },
+    {
+      "name": "use_camera_permission",
+      "value": "允许应用使用相机"
+    },
+    {
+      "name": "media_location_permission",
+      "value": "允许应用访问用户媒体文件中的地理位置信息"
     }
   ]
 }

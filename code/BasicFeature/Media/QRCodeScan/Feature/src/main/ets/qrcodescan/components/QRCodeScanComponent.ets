@@ -23,6 +23,7 @@ import { QRCodeParser } from '../QRCodeParser';
 import Logger from '../../utils/Logger';
 import { BusinessError } from '@ohos.base';
 import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 const TAG: string = 'QRCodeScanComponent';
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
@@ -167,20 +168,13 @@ export default struct QRCodeScanComponent {
               .onClick(async () => {
                 // 打开相册获取图片
                 this.isQRCodeScanStopped = true
-                let context = AppStorage.Get('context') as common.UIAbilityContext
-                await context.startAbilityForResult({
-                  parameters: { uri: 'singleselect' },
-                  bundleName: 'com.ohos.photos',
-                  abilityName: 'com.ohos.photos.MainAbility',
-                }).then(data => {
-                  // 获取want数据
-                  let want = data['want'];
-                  if (want) {
-                    // param代表want参数中的paramters
-                    let param = want['parameters'];
-                    if (param) {
+                let photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
+                photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
+                photoSelectOptions.maxSelectNumber = 1; // 最多只允许选择一张图片
+                let photoPicker = new photoAccessHelper.PhotoViewPicker();
+                photoPicker.select(photoSelectOptions).then((data: photoAccessHelper.PhotoSelectResult) => {
                       // 被选中的图片路径media/image/8
-                      let selectedUri = param['select-item-list'];
+                      let selectedUri = data.photoUris[0];
                       setTimeout(async () => {
                         if (!selectedUri) {
                           prompt.showToast({
@@ -197,7 +191,7 @@ export default struct QRCodeScanComponent {
                           }, 4000)
                         }
                         // 获取解析数据
-                        let qrCodeParseRlt: DecodeResultAttribute = await this.qrCodeParser.parseImageQRCode((selectedUri as string[])[0]);
+                        let qrCodeParseRlt: DecodeResultAttribute = await this.qrCodeParser.parseImageQRCode(selectedUri);
                         if (qrCodeParseRlt.isSucess) {
                           prompt.showDialog({
                             title: $r('app.string.qrcodeResult'),
@@ -209,8 +203,6 @@ export default struct QRCodeScanComponent {
                           })
                         }
                       }, 50)
-                    }
-                  }
                 })
               })
 
