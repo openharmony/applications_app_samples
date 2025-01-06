@@ -1393,6 +1393,17 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/DocsSample/ArkWeb/UseFrontendJSApp/EstabDataChannel/screenshots/EstabDataChannel_2.png" desc="Provided by code/DocsSample/ArkWeb"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkWeb/UseFrontendJSApp/EstabDataChannel/screenshots/EstabDataChannel_3.png" desc="Provided by code/DocsSample/ArkWeb"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkWeb/UseFrontendJSApp/MutualInvokeCCpp/screenshots/MutualInvokeCCpp.jpg" desc="Provided by code/DocsSample/ArkWeb"/>
+				<filteritem type="filepath" name="code/DocsSample/Account/SystemAccount/screenshots/SystemAccount_1.png" desc="Provided by code/DocsSample/Account"/>
+				<filteritem type="filepath" name="code/DocsSample/Account/SystemAccount/screenshots/SystemAccount_2.png" desc="Provided by code/DocsSample/Account"/>
+				<filteritem type="filepath" name="code/DocsSample/Account/SystemAccount/screenshots/SystemAccount_3.png" desc="Provided by code/DocsSample/Account"/>
+				<filteritem type="filepath" name="code/DocsSample/Account/SystemAccount/screenshots/SystemAccount_4.png" desc="Provided by code/DocsSample/Account"/>
+				<filteritem type="filepath" name="code/DocsSample/Account/SystemAccount/screenshots/SystemAccount_5.png" desc="Provided by code/DocsSample/Account"/>
+				<filteritem type="filepath" name="code/DocsSample/Account/SystemAccount/screenshots/SystemAccount_6.png" desc="Provided by code/DocsSample/Account"/>
+				<filteritem type="filepath" name="code/DocsSample/Account/SystemAccount/screenshots/SystemAccount_7.png" desc="Provided by code/DocsSample/Account"/>
+				<filteritem type="filepath" name="code/DocsSample/Account/SystemAccount/screenshots/SystemAccount_8.png" desc="Provided by code/DocsSample/Account"/>
+				<filteritem type="filepath" name="code/DocsSample/Account/SystemAccount/screenshots/SystemAccount_9.png" desc="Provided by code/DocsSample/Account"/>
+				<filteritem type="filepath" name="code/DocsSample/Account/SystemAccount/screenshots/SystemAccount_10.png" desc="Provided by code/DocsSample/Account"/>
+				<filteritem type="filepath" name="code/DocsSample/Account/SystemAccount/screenshots/SystemAccount_11.png" desc="Provided by code/DocsSample/Account"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkWeb/UseFrontendJSApp/EstabDataChannelC_C/screenshots/EstabDataChannelC_C_1.png" desc="Provided by code/DocsSample/ArkWeb"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkWeb/UseFrontendJSApp/EstabDataChannelC_C/screenshots/EstabDataChannelC_C_2.png" desc="Provided by code/DocsSample/ArkWeb"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkWeb/ManageWebPageInteracts/ImpNestedScroll/screenshots/ImpNestedScroll.png" desc="Provided by code/DocsSample/ArkWeb"/>
