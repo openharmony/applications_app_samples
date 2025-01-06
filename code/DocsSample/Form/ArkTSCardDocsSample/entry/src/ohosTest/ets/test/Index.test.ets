@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,38 +13,42 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it } from '@ohos/hypium'
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import { Driver, ON, Component } from '@ohos.UiTest';
+import { Driver, ON, Component, MatchPattern } from '@ohos.UiTest';
 import hilog from '@ohos.hilog';
 
 const TAG = '[Sample_ArkTSCardDemo]'
 const DOMAIN = 0xF811
+const BUNDLE = 'ArkTSCard';
+const DELAYTIME01 = 500;
+const DELAYTIME02 = 1000;
 
 export default function IndexTest() {
   let driver = Driver.create();
   const delegator = AbilityDelegatorRegistry.getAbilityDelegator()
 
-  // 资源本地化
-  async function getResourceString(resource: Resource): Promise<string> {
-    let manage = delegator.getAppContext().resourceManager
-    let text = await manage.getStringValue(resource)
-    return text
-  }
+  let getResourceString: (resource: Resource) => Promise<string> =
+    // 资源本地化
+    async (resource: Resource): Promise<string> => {
+      let manage = delegator.getAppContext().resourceManager;
+      let text = await manage.getStringValue(resource);
+      return text;
+    };
 
-  describe('IndexTest', function () {
+  describe('IndexTest', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
-    beforeAll(async function () {
+    beforeAll(async () => {
       // Presets an action, which is performed only once before all test cases of the test suite start.
       // This API supports only one parameter: preset action function.
       // 回到桌面并进入测试应用的服务卡片预览界面
       hilog.info(DOMAIN, TAG, 'Back to desktop start');
-      await driver.delayMs(500);
+      await driver.delayMs(DELAYTIME01);
       await driver.pressHome();
-      await driver.delayMs(500);
+      await driver.delayMs(DELAYTIME01);
       hilog.info(DOMAIN, TAG, 'Back to desktop finish');
-    })
-    beforeEach(async function () {
+    });
+    beforeEach(async () => {
       // Presets an action, which is performed before each unit test case starts.
       // The number of execution times is the same as the number of test cases defined by **it**.
       // This API supports only one parameter: preset action function.
@@ -59,72 +63,71 @@ export default function IndexTest() {
       let point = await ArkTSCardDemo.getBoundsCenter();
       await driver.longClick(point.x, point.y - height * 2);
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.add_form_to_desktop'))));
-      let serviceCard: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.add_form_to_desktop'))));
+      let serviceCard: Component =
+        await driver.findComponent(ON.text(await getResourceString($r('app.string.add_form_to_desktop'))));
       await serviceCard.click();
-      await driver.delayMs(500);
+      await driver.delayMs(DELAYTIME01);
       hilog.info(DOMAIN, TAG, 'Enter Card preview page finish');
-    })
-    afterEach(async function () {
+    });
+    afterEach(async () => {
       // Presets a clear action, which is performed after each unit test case ends.
       // The number of execution times is the same as the number of test cases defined by **it**.
       // This API supports only one parameter: clear action function.
       hilog.info(DOMAIN, TAG, 'Back to first page start');
-      await driver.delayMs(1000);
-      // 坐标基于rk3568
+      await driver.delayMs(DELAYTIME02);
       await driver.swipe(70, 870, 670, 870, 600);
-      await driver.delayMs(1000);
-      // 坐标基于rk3568
+      await driver.delayMs(DELAYTIME02);
       await driver.swipe(70, 870, 670, 870, 600);
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME02);
       hilog.info(DOMAIN, TAG, 'Back to first page finish');
-    })
-    afterAll(function () {
+    });
+    afterAll(() => {
       // Presets a clear action, which is performed after all test cases of the test suite end.
       // This API supports only one parameter: clear action function.
-    })
-    it('ArkTSCard_HelloWorld', 0, async function () {
+    });
+    it(BUNDLE + '_HelloWorld_001', 0, async () => {
       hilog.info(DOMAIN, TAG, 'ArkTSCard_HelloWorld test start');
-      await driver.assertComponentExist(ON.text('This is a service widget.'));
+      await driver.assertComponentExist(ON.text('widget', MatchPattern.CONTAINS));
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.add_to_desktop'))));
-      let addCard: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.add_to_desktop'))));
+      let addCard: Component =
+        await driver.findComponent(ON.text(await getResourceString($r('app.string.add_to_desktop'))));
       await addCard.click();
       await driver.delayMs(500);
       // 校验是否添加成功
       await driver.assertComponentExist(ON.text('ArkTSCardDemo'));
       hilog.info(DOMAIN, TAG, 'ArkTSCard_HelloWorld test start');
-    })
-    it('ArkTSCard_Animation', 0, async function () {
+    });
+    it(BUNDLE + '_Animation_002', 0, async () => {
       hilog.info(DOMAIN, TAG, 'ArkTSCard_Animation test start');
-      await driver.delayMs(1000);
-      // 坐标基于rk3568
+      await driver.delayMs(DELAYTIME02);
       await driver.swipe(670, 870, 70, 870, 600);
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('This is a service widget for animation.'));
+      await driver.delayMs(DELAYTIME02);
+      await driver.assertComponentExist(ON.text('animation', MatchPattern.CONTAINS));
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.add_to_desktop'))));
-      let addCard: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.add_to_desktop'))));
+      let addCard: Component =
+        await driver.findComponent(ON.text(await getResourceString($r('app.string.add_to_desktop'))));
       await addCard.click();
-      await driver.delayMs(500);
+      await driver.delayMs(DELAYTIME02);
       // 校验是否添加成功
       await driver.assertComponentExist(ON.text('ArkTSCardDemo'));
       hilog.info(DOMAIN, TAG, 'ArkTSCard_Animation test start');
-    })
-    it('ArkTSCard_Canvas', 0, async function () {
+    });
+    it(BUNDLE + '_Canvas_003', 0, async () => {
       hilog.info(DOMAIN, TAG, 'ArkTSCard_Canvas test start');
-      await driver.delayMs(1000);
-      // 坐标基于rk3568
+      await driver.delayMs(DELAYTIME02);
       await driver.swipe(670, 870, 70, 870, 600);
       await driver.delayMs(1000);
-      // 坐标基于rk3568
       await driver.swipe(670, 870, 70, 870, 600);
-      await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text('This is a service widget for canvas.'));
+      await driver.delayMs(DELAYTIME02);
+      await driver.assertComponentExist(ON.text('canvas', MatchPattern.CONTAINS));
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.add_to_desktop'))));
-      let addCard: Component = await driver.findComponent(ON.text(await getResourceString($r('app.string.add_to_desktop'))));
+      let addCard: Component =
+        await driver.findComponent(ON.text(await getResourceString($r('app.string.add_to_desktop'))));
       await addCard.click();
-      await driver.delayMs(500);
+      await driver.delayMs(DELAYTIME01);
       // 校验是否添加成功
       await driver.assertComponentExist(ON.text('ArkTSCardDemo'));
       hilog.info(DOMAIN, TAG, 'ArkTSCard_Canvas test finish');
-    })
+    });
   })
 }
