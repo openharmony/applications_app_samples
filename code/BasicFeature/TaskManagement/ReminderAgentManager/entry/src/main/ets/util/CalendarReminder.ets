@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,13 +14,13 @@
  */
 
 import reminderAgent from '@ohos.reminderAgentManager';
-import vibrator from '@ohos.vibrator'
-import AudioPlayer from './AudioPlayer'
-import Constant from '../common/Constant'
-import Logger from './Logger'
-import PreferencesDataManager from './PreferencesDataManager'
-import { Reminder } from '../common/Reminder'
-import TimeConversion from './TimeConversion'
+import vibrator from '@ohos.vibrator';
+import AudioPlayer from './AudioPlayer';
+import Constant from '../common/Constant';
+import Logger from './Logger';
+import PreferencesDataManager from './PreferencesDataManager';
+import { Reminder } from '../common/Reminder';
+import TimeConversion from './TimeConversion';
 import common from '@ohos.app.ability.common';
 import notificationManager from '@ohos.notificationManager';
 import { BusinessError, deviceInfo } from '@kit.BasicServicesKit';
@@ -30,10 +30,10 @@ import { promptAction } from '@kit.ArkUI';
 
 let deviceTypeInfo: string = deviceInfo.deviceType;
 let calendar: calendarManager.Calendar | undefined = undefined;
-const TAG: string = 'CalendarReminder'
+const TAG: string = 'CalendarReminder';
 
 class CalendarReminder {
-  public calendarReminders: Reminder[] = []
+  public calendarReminders: Reminder[] = [];
 
   setCalendarReminder() {
     let config: calendarManager.CalendarConfig = {
@@ -60,8 +60,8 @@ class CalendarReminder {
     let month = date.month! < 9 ? `0${date.month! + 1}` : `${date.month! + 1}`;
     let day = date.day! < 10 ? `0${date.day}` : date.day;
     let context = getContext(this) as common.UIAbilityContext;
-    let selectCalendar: string = `${date.year}-${month}-${day}`
-    let isExistName = this.calendarReminders.find(element => element.reminderName === selectCalendar) !== undefined
+    let selectCalendar: string = `${date.year}-${month}-${day}`;
+    let isExistName = this.calendarReminders.find(element => element.reminderName === selectCalendar) !== undefined;
     if (!isExistName) {
       let reminder: Reminder = {
         audioSrc: '',
@@ -95,11 +95,11 @@ class CalendarReminder {
         content: context.resourceManager.getStringSync($r('app.string.calendar_reach').id),
         slotType: notificationManager.SlotType.CONTENT_INFORMATION
       }
-      Logger.info(TAG, `setCalendar this calendar is ${JSON.stringify(calendar)}}`)
+      Logger.info(TAG, `setCalendar this calendar is ${JSON.stringify(calendar)}}`);
       reminder.reminderRequestCalendar = calendar
       reminder.isStart = false
       this.calendarReminders.push(reminder)
-      Logger.info(TAG, `setCalendar this all calendar is ${JSON.stringify(this.calendarReminders)}`)
+      Logger.info(TAG, `setCalendar this all calendar is ${JSON.stringify(this.calendarReminders)}`);
       await PreferencesDataManager.putData('Calendar', this.calendarReminders)
       this.setCalendarReminder();
     } else {
@@ -120,10 +120,9 @@ class CalendarReminder {
         this.calendarReminders[index].reminderId = reminderId;
       } else {
         let context = getContext(this) as common.UIAbilityContext;
-        let date = new Date();
-        let year = date.getFullYear();
-        let month = date.getMonth() + 1;
-        let day = date.getDate();
+        let year = this.calendarReminders[index].reminderRequestCalendar!.dateTime.year;
+        let month = this.calendarReminders[index].reminderRequestCalendar!.dateTime.month;
+        let day = this.calendarReminders[index].reminderRequestCalendar!.dateTime.day;
         let dateHour = this.calendarReminders[index].reminderRequestCalendar!.dateTime.hour;
         let dateMinute = this.calendarReminders[index].reminderRequestCalendar!.dateTime.minute;
         let hour = dateHour < 10 ? `0${dateHour}` : dateHour;
@@ -156,7 +155,7 @@ class CalendarReminder {
           this.calendarReminders[index].reminderRequestCalendar!.dateTime.day,
           this.calendarReminders[index].reminderRequestCalendar!.dateTime.hour,
           this.calendarReminders[index].reminderRequestCalendar!.dateTime.minute) * Constant.SECONDS_MILLISECONDS);
-        this.calendarReminders[index].audioTimeouts = audioIndex;
+          this.calendarReminders[index].audioTimeouts = audioIndex;
       }
       await PreferencesDataManager.putData('Calendar', this.calendarReminders)
       if (this.calendarReminders[index].isVibrator) {
@@ -171,9 +170,9 @@ class CalendarReminder {
               usage: 'alarm'
             }, (err) => {
               if (err) {
-                Logger.error(TAG, `setToggle this vibrator is failed err is ${JSON.stringify(err)}`)
+                Logger.error(TAG, `setToggle this vibrator is failed err is ${JSON.stringify(err)}`);
               } else {
-                Logger.info(TAG, `setToggle this vibrator is successed`)
+                Logger.info(TAG, `setToggle this vibrator is successed`);
               }
             })
           }, TimeConversion.dateToMillisecond(this.calendarReminders[index].reminderRequestCalendar!.dateTime.year,
