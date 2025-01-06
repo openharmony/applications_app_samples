@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,13 +13,10 @@
  * limitations under the License.
  */
 
-import formHost from '@ohos.app.form.formHost';
-import formInfo from '@ohos.app.form.formInfo';
-import HashMap from '@ohos.util.HashMap';
-import HashSet from '@ohos.util.HashSet';
-import bundleMonitor from '@ohos.bundle.bundleMonitor';
-import { BusinessError } from '@ohos.base';
-import formObserver from '@ohos.app.form.formObserver';
+import { HashMap, HashSet } from '@kit.ArkTS';
+import { formHost, formInfo, formObserver } from '@kit.FormKit';
+import { bundleMonitor } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -34,18 +31,16 @@ struct formHostSample {
     '1*1',
     '6*4',
   ]
-
   // 模拟卡片尺寸。
   static FORM_SIZE = [
-    [120, 60],    // 1*2
-    [120, 120],   // 2*2
-    [240, 120],   // 2*4
-    [240, 240],   // 4*4
-    [60, 120],    // 2*1
-    [60, 60],     // 1*1
-    [240, 360],   // 6*4
+    [120, 60], // 1*2
+    [120, 120], // 2*2
+    [240, 120], // 2*4
+    [240, 240], // 4*4
+    [60, 120], // 2*1
+    [60, 60], // 1*1
+    [240, 360],// 6*4
   ]
-
   @State message: Resource | string = $r('app.string.Host');
   formCardHashMap: HashMap<string, formInfo.FormInfo> = new HashMap();
   @State showFormPicker: boolean = false;
@@ -75,10 +70,10 @@ struct formHostSample {
     updateDuration: 0,
     defaultDimension: 6,
     supportDimensions: [],
+    supportedShapes: [],
     customizeData: {},
     isDynamic: false,
-    transparencyEnabled: false,
-    supportedShapes: []
+    transparencyEnabled: false
   }
   formInfoRecord: TextCascadePickerRangeContent[] = [];
   pickerBtnMsg: Resource | string = $r('app.string.formType');
@@ -138,8 +133,7 @@ struct formHostSample {
       }).catch((error: BusinessError) => {
         console.error(`error, code: ${error.code}, message: ${error.message}`);
       });
-    }
-    catch (error) {
+    } catch (error) {
       console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
     }
   }
@@ -222,7 +216,11 @@ struct formHostSample {
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
 
-      Divider().vertical(false).color(Color.Black).lineCap(LineCapStyle.Butt).margin({ top: 10, bottom: 10 })
+      Divider()
+        .vertical(false)
+        .color(Color.Black)
+        .lineCap(LineCapStyle.Butt)
+        .margin({ top: 10, bottom: 10 })
 
       Row() {
         // 点击查询所有卡片信息。
@@ -267,9 +265,13 @@ struct formHostSample {
       }
       .margin({ left: 10 })
 
-      Divider().vertical(false).color(Color.Black).lineCap(LineCapStyle.Butt).margin({ top: 10, bottom: 10 })
+      Divider()
+        .vertical(false)
+        .color(Color.Black)
+        .lineCap(LineCapStyle.Butt)
+        .margin({ top: 10, bottom: 10 })
 
-      if(this.showForm){
+      if (this.showForm) {
         Text(this.pickerBtnMsg)
           .margin({ top: 10, bottom: 10 })
       }
@@ -358,7 +360,8 @@ struct formHostSample {
                       }
                     });
                   } catch (error) {
-                    console.error(`deleteForm catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+                    console.error(`deleteForm catch error, code: ${(error as BusinessError).code},
+                    message: ${(error as BusinessError).message}`);
                   }
                   this.showForm = false;
                   this.selectFormId = '';
@@ -371,7 +374,8 @@ struct formHostSample {
                       }
                     });
                   } catch (error) {
-                    console.error(`requestForm catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+                    console.error(`requestForm catch error, code: ${(error as BusinessError).code},
+                    message: ${(error as BusinessError).message}`);
                   }
                   break;
                 case 2:
@@ -384,7 +388,8 @@ struct formHostSample {
                       }
                     });
                   } catch (error) {
-                    console.error(`notifyVisibleForms catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+                    console.error(`notifyVisibleForms catch error, code: ${(error as BusinessError).code},
+                    message: ${(error as BusinessError).message}`);
                   }
                   break;
                 case 3:
@@ -397,7 +402,8 @@ struct formHostSample {
                       }
                     });
                   } catch (error) {
-                    console.error(`notifyInvisibleForms catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+                    console.error(`notifyInvisibleForms catch error, code: ${(error as BusinessError).code},
+                    message: ${(error as BusinessError).message}`);
                   }
                   break;
                 case 4:
@@ -408,7 +414,8 @@ struct formHostSample {
                       }
                     });
                   } catch (error) {
-                    console.error(`enableFormsUpdate catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+                    console.error(`enableFormsUpdate catch error, code: ${(error as BusinessError).code},
+                    message: ${(error as BusinessError).message}`);
                   }
                   break;
                 case 5:
@@ -421,7 +428,8 @@ struct formHostSample {
                       }
                     });
                   } catch (error) {
-                    console.error(`disableFormsUpdate catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+                    console.error(`disableFormsUpdate catch error, code: ${(error as BusinessError).code},
+                    message: ${(error as BusinessError).message}`);
                   }
                   break;
               }
@@ -435,3 +443,4 @@ struct formHostSample {
     }
   }
 }
+
