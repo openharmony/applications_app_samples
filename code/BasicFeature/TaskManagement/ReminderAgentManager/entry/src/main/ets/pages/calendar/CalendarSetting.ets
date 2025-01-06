@@ -104,7 +104,7 @@ export struct CalendarSetting {
           .fontSize(24)
           .margin({ left: 12 })
           .onClick(async () => {
-            CalendarsReminder.setToggle(CalendarsReminder.calendarReminders[this.selectIndex].isStart,this.selectIndex);
+            CalendarsReminder.setToggle(CalendarsReminder.calendarReminders[this.selectIndex].isStart, this.selectIndex);
             await PreferencesDataManager.putData('Calendar', CalendarsReminder.calendarReminders);
             this.controller.close();
           })

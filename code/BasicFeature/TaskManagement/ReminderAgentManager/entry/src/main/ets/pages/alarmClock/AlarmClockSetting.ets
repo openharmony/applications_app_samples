@@ -86,7 +86,7 @@ export struct AlarmClockSetting {
           this.snoozeTimes++
         })
         .onDec(() => {
-            this.snoozeTimes <= 0 ? 0 : this.snoozeTimes--
+          this.snoozeTimes <= 0 ? 0 : this.snoozeTimes--;
         })
       }
       .width('100%')
@@ -106,7 +106,7 @@ export struct AlarmClockSetting {
           this.timeInterval++
         })
         .onDec(() => {
-            this.timeInterval <= 0 ? 0 : this.timeInterval--
+          this.timeInterval <= 0 ? 0 : this.timeInterval--;
         })
       }
       .width('100%')
@@ -187,7 +187,7 @@ export struct AlarmClockSetting {
     this.timeInterval = AlarmClockReminder.alarmClockReminders[this.selectAlarmClockIndex].reminderRequestAlarm!.timeInterval!;
     this.selectName = AlarmClockReminder.alarmClockReminders[this.selectAlarmClockIndex].audioSrc === '/system/etc/demo.wav' ? 'Demo' : 'Dynamic';
     let selectDays = AlarmClockReminder.alarmClockReminders[this.selectAlarmClockIndex].reminderRequestAlarm!.daysOfWeek;
-    if(selectDays !== undefined){
+    if (selectDays !== undefined) {
       for (let i = 0; i < this.days.length; i++) {
         for (let j = 0; j < selectDays.length; j++) {
           if (this.days[i].value === selectDays[j]) {
@@ -196,7 +196,7 @@ export struct AlarmClockSetting {
           }
         }
       }
-    }else{
+    } else {
       logger.error('selectDays is undefined!');
     }
   }

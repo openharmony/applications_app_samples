@@ -120,10 +120,9 @@ class CalendarReminder {
         this.calendarReminders[index].reminderId = reminderId;
       } else {
         let context = getContext(this) as common.UIAbilityContext;
-        let date = new Date();
-        let year = date.getFullYear();
-        let month = date.getMonth() + 1;
-        let day = date.getDate();
+        let year = this.calendarReminders[index].reminderRequestCalendar!.dateTime.year;
+        let month = this.calendarReminders[index].reminderRequestCalendar!.dateTime.month;
+        let day = this.calendarReminders[index].reminderRequestCalendar!.dateTime.day;
         let dateHour = this.calendarReminders[index].reminderRequestCalendar!.dateTime.hour;
         let dateMinute = this.calendarReminders[index].reminderRequestCalendar!.dateTime.minute;
         let hour = dateHour < 10 ? `0${dateHour}` : dateHour;

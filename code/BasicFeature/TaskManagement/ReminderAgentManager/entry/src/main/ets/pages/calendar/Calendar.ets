@@ -67,7 +67,7 @@ export struct ReminderCalendar {
               Text(item)
                 .fontSize(24)
               Blank()
-              if(CalendarReminder.calendarReminders[index]){
+              if (CalendarReminder.calendarReminders[index]) {
                 Toggle({ type: ToggleType.Switch, isOn: CalendarReminder.calendarReminders[index].isStart })
                   .margin({ left: 8 })
                   .id(`calendarSwitch${index}`)
