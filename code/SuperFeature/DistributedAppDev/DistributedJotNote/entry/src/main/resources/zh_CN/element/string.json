@@ -106,7 +106,7 @@
     },
     {
       "name": "PICTURE_TWO",
-      "value": "图片2"
+      "value": "图片"
     },
     {
       "name": "pick_photo_one",
@@ -114,7 +114,7 @@
     },
     {
       "name": "pick_photo_two",
-      "value": "选择图片2"
+      "value": "选择图片"
     },
     {
       "name": "PLEASE_INPUT_ASYNC_TEXT",
