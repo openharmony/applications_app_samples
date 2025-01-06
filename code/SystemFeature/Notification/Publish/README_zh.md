@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例主要展示了通知发布订阅的功能，使用[notificationManager.publish](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-notificationManager.md)
+本示例主要展示了通知发布订阅的功能，使用[notificationManager.publish](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-notification-kit/js-apis-notificationManager.md)
 等接口，实现订阅、发布、推送通知等功能。
 
 ### 效果预览
@@ -45,7 +45,7 @@ entry/src/ohosTest/ets/
 
 ### 相关权限
 
-[ohos.permission.NOTIFICATION_CONTROLLER](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-notificationManager.md)
+[ohos.permission.NOTIFICATION_CONTROLLER](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionnotification_controller)
 
 ### 依赖
 
@@ -58,7 +58,7 @@ entry/src/ohosTest/ets/
 2. 本示例为stage模型，仅适配API version11版本SDK，SDK版本号(API Version 11 Release)。
 3. 本示例需要使用DevEco Studio 版本号(3.1.1 Release)版本才可编译运行。
 
-本示例涉及系统接口，需要配置系统应用签名，可以参考[特殊权限配置方法](https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/security/hapsigntool-overview.md/)
+本示例涉及系统接口，需要配置系统应用签名，可以参考[特殊权限配置方法](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-overview.md)
 ，把配置文件中的“app-feature”字段信息改为“hos_system_app”,"apl"字段修改为“system_basic”。
 
 ### 下载
