@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,34 +13,36 @@
  * limitations under the License.
  */
 
-import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import type Want from '@ohos.app.ability.Want';
-import type window from '@ohos.window';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = 'EntryAbility';
 const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class EntryAbility extends UIAbility {
-  private selectPage: string = '';
+  private selectPage: string = 'funA';
   private currentWindowStage: window.WindowStage | null = null;
 
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // 获取router事件中传递的targetPage参数
     hilog.info(DOMAIN_NUMBER, TAG, `Ability onCreate, ${JSON.stringify(want)}`);
-    if (want.parameters !== undefined) {
-      let params: Record<string, string> = JSON.parse(JSON.stringify(want.parameters));
-      this.selectPage = params.targetPage;
+    if (want?.parameters?.params) {
+      // want.parameters.params 对应 postCardAction() 中 params 内容
+      let params: Record<string, Object> = JSON.parse(want.parameters.params as string);
+      this.selectPage = params.targetPage as string;
+      hilog.info(DOMAIN_NUMBER, TAG, `onCreate selectPage: ${this.selectPage}`);
     }
   }
 
   // 如果UIAbility已在后台运行，在收到Router事件后会触发onNewWant生命周期回调
   onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(DOMAIN_NUMBER, TAG, `onNewWant Want: ${JSON.stringify(want)}`);
-    if (want.parameters?.params !== undefined) {
-      let params: Record<string, string> = JSON.parse(JSON.stringify(want.parameters?.params));
-      this.selectPage = params.targetPage;
+    if (want?.parameters?.params) {
+      // want.parameters.params 对应 postCardAction() 中 params 内容
+      let params: Record<string, Object> = JSON.parse(want.parameters.params as string);
+      this.selectPage = params.targetPage as string;
+      hilog.info(DOMAIN_NUMBER, TAG, `onNewWant selectPage: ${this.selectPage}`);
     }
     if (this.currentWindowStage !== null) {
       this.onWindowStageCreate(this.currentWindowStage);
@@ -53,10 +55,10 @@ export default class EntryAbility extends UIAbility {
     // 根据传递的targetPage不同，选择拉起不同的页面
     switch (this.selectPage) {
       case 'funA':
-        targetPage = 'pages/FunA';
+        targetPage = 'funpages/FunA';
         break;
       case 'funB':
-        targetPage = 'pages/FunB';
+        targetPage = 'funpages/FunB';
         break;
       default:
         targetPage = 'pages/Index';

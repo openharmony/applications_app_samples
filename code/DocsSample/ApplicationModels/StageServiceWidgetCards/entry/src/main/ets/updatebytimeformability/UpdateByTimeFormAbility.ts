@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,13 +13,10 @@
  * limitations under the License.
  */
 
-import type Base from '@ohos.base';
-import formBindingData from '@ohos.app.form.formBindingData';
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import formInfo from '@ohos.app.form.formInfo';
-import formProvider from '@ohos.app.form.formProvider';
-import hilog from '@ohos.hilog';
-import type Want from '@ohos.app.ability.Want';
+import { formBindingData, FormExtensionAbility, formInfo, formProvider } from '@kit.FormKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { Want } from '@kit.AbilityKit';
 
 const TAG: string = 'UpdateByTimeFormAbility';
 const FIVE_MINUTE: number = 5;
@@ -44,7 +41,7 @@ export default class UpdateByTimeFormAbility extends FormExtensionAbility {
     formProvider.updateForm(formId, obj2).then(() => {
       hilog.info(DOMAIN_NUMBER, TAG, 'FormAbility updateForm success.');
     }).catch((error) => {
-      hilog.info(DOMAIN_NUMBER, TAG, 'Operation updateForm failed. Cause: ' + 'error');
+      hilog.error(DOMAIN_NUMBER, TAG, 'Operation updateForm failed. Cause: ' + error);
     });
   }
 
@@ -53,17 +50,21 @@ export default class UpdateByTimeFormAbility extends FormExtensionAbility {
     hilog.info(DOMAIN_NUMBER, TAG, `FormAbility onFormEvent, formId = ${formId}, message: ${JSON.stringify(message)}`);
     try {
       // 设置过5分钟后更新卡片内容
-      formProvider.setFormNextRefreshTime(formId, FIVE_MINUTE, (err: Base.BusinessError) => {
+      formProvider.setFormNextRefreshTime(formId, FIVE_MINUTE, (err: BusinessError) => {
         if (err) {
-          hilog.info(DOMAIN_NUMBER, TAG, `Failed to setFormNextRefreshTime. Code: ${err.code}, message: ${err.message}`);
+          hilog.error(DOMAIN_NUMBER, TAG,
+            `Failed to setFormNextRefreshTime. Code: ${err.code}, message: ${err.message}`);
           return;
         } else {
           hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in setFormNextRefreshTiming.');
         }
       });
     } catch (err) {
-      hilog.info(DOMAIN_NUMBER, TAG, `Failed to setFormNextRefreshTime. Code: ${(err as Base.BusinessError).code}, message: ${(err as Base.BusinessError).message}`);
-    };
+      hilog.error(DOMAIN_NUMBER, TAG,
+        `Failed to setFormNextRefreshTime. Code: ${(err as BusinessError).code},
+         message: ${(err as BusinessError).message}`);
+    }
+    ;
   }
 
   onAcquireFormState(want: Want): formInfo.FormState {

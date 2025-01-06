@@ -26,14 +26,10 @@ export default class JsCardEntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     if (want.parameters) {
       let params: Record<string, Object> = JSON.parse(JSON.stringify(want.parameters.params));
-      // 获取router事件中传递的info参数
-      if (params.info === 'router info') {
-        // 执行业务逻辑
+      if (params.info === 'router info') { 
         hilog.info(DOMAIN_NUMBER, TAG, `router info: ${params.info}`);
       }
-      // 获取router事件中传递的message参数
       if (params.message === 'router message') {
-        // 执行业务逻辑
         hilog.info(DOMAIN_NUMBER, TAG, `router message: ${params.message}`);
       }
     }

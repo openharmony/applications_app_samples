@@ -111,6 +111,9 @@ entry/src/main/ets/
 │   └── EntryAbility.ts						//router事件跳转到指定UIAbility逻辑
 ├── entryformability
 │   └── EntryFormAbility.ts					//卡片业务逻辑模块，提供卡片创建、销毁、刷新等生命周期回调。
+├── funpages
+│   ├── FunA.ets							//router调起ability页面A
+│   └── FunB.ets							//router调起ability页面B
 ├── jscardentryability
 │   └── JsCardEntryAbility.ts				//JS卡片UIAbility实例
 ├── jscardformability
@@ -119,8 +122,6 @@ entry/src/main/ets/
 │   └── pages
 │       └── NextRefreshTimeCard.ets			//固定时间后刷新卡片页面
 ├── pages
-│   ├── FunA.ets							//router调起ability页面A
-│   ├── FunB.ets							//router调起ability页面B
 │   └── Index.ets							//应用的默认页面
 ├── persistentdataformability
 │   └── PersistentDataFormAbility.ts		//持久化数据下代理刷新卡片业务逻辑模块
@@ -208,7 +209,7 @@ entry/src/main/ets/
 
 1.本示例依赖共享数据的更新，由另一应用<共享数据>完成。测试代理刷新卡片功能时需要优先安装该应用。
 
-- `app_signature`字段配置为应用的指纹信息，指纹信息的配置请参见[应用特权配置指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-app-privilege-config-guide.md#install_list_capabilityjson中配置)。
+- `app_signature`字段配置为应用的指纹信息，指纹信息的配置请参见[应用特权配置指南](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.1-Release/zh-cn/device-dev/subsystems/subsys-app-privilege-config-guide.md#install_list_capabilityjson中配置)。
 
   ```
   [
@@ -222,11 +223,14 @@ entry/src/main/ets/
 
 ### 约束与限制
 
-1.本示例仅支持标准系统上运行,支持设备:RK3568。
+1.  本示例支持标准系统上运行，支持设备：RK3568；
 
-2.本示例为Stage模型，已适配API version 11版本SDK，版本号：4.1.3.1
+2. 本示例支持API14版本SDK，版本号：5.0.2.57；
 
-3.本示例需要使用DevEco Studio 3.1.1 Release (Build Version: 3.1.0.501, built on June 20, 2023)及以上版本才可编译运行。
+3.  本示例已支持使DevEco Studio 5.0.1 Release (构建版本：5.0.5.306，构建 2024年12月12日)编译运行；
+
+4. 高等级APL特殊签名说明：无；
+
 
 ### 下载
 
@@ -235,7 +239,7 @@ entry/src/main/ets/
 ```
 git init
 git config core.sparsecheckout true
-echo code/BasicFeature/ApplicationModels/StageServiceWidgetCards/ > .git/info/sparse-checkout
+echo code/DocsSample/ApplicationModels/StageServiceWidgetCards/ > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

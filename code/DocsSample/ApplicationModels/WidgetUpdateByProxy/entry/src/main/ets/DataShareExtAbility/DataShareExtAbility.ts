@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -24,7 +24,7 @@ import type { ValuesBucket } from '@ohos.data.ValuesBucket';
 const DB_NAME = 'DB00.db';
 const TBL_NAME = 'TBL00';
 const DDL_TBL_CREATE = 'CREATE TABLE IF NOT EXISTS ' + TBL_NAME +
-' (cityId INTEGER PRIMARY KEY AUTOINCREMENT, type TEXT)';
+  ' (cityId INTEGER PRIMARY KEY AUTOINCREMENT, type TEXT)';
 
 let rdbStore;
 let result;
@@ -55,8 +55,7 @@ export default class DataShareExtAbility extends Extension {
     if (valueBucket === null) {
       hilog.error(DOMAIN_NUMBER, TAG, 'invalid valueBuckets');
       return;
-    }
-    else {
+    } else {
       hilog.info(DOMAIN_NUMBER, TAG, `valueBucket, ${JSON.stringify(valueBucket)}`);
     }
 
@@ -68,7 +67,8 @@ export default class DataShareExtAbility extends Extension {
     });
   }
 
-  async update(uri: string, predicates: dataSharePredicates.DataSharePredicates, valueBucket: ValuesBucket, callback: Function): Promise<void> {
+  async update(uri: string, predicates: dataSharePredicates.DataSharePredicates, valueBucket: ValuesBucket,
+    callback: Function): Promise<void> {
     hilog.info(DOMAIN_NUMBER, TAG, '[ttt] [DataShareTest] <<Provider>> [update] enter');
     if (predicates === null || predicates === undefined) {
       hilog.info(DOMAIN_NUMBER, TAG, '[ttt] [DataShareTest] <<Provider>> [update] invalid predicates');

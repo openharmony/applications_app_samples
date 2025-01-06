@@ -29,7 +29,7 @@
         "autoDesignWidth": true
       },
       "colorMode": "auto",
-      "isDefault": true,
+      "isDefault": false,
       "updateEnabled": true,
       "scheduledUpdateTime": "10:30",
       "updateDuration": 0,
@@ -48,7 +48,7 @@
         "autoDesignWidth": true
       },
       "colorMode": "auto",
-      "isDefault": true,
+      "isDefault": false,
       "updateEnabled": true,
       "scheduledUpdateTime": "10:30",
       "updateDuration": 0,
@@ -67,7 +67,7 @@
         "autoDesignWidth": true
       },
       "colorMode": "auto",
-      "isDefault": true,
+      "isDefault": false,
       "updateEnabled": true,
       "scheduledUpdateTime": "10:30",
       "updateDuration": 2,

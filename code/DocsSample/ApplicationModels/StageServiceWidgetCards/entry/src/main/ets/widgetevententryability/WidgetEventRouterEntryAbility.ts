@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,15 +13,11 @@
  * limitations under the License.
  */
 
-import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import type Base from '@ohos.base';
-import formBindingData from '@ohos.app.form.formBindingData';
-import formInfo from '@ohos.app.form.formInfo';
-import formProvider from '@ohos.app.form.formProvider';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import type Want from '@ohos.app.ability.Want';
-import type window from '@ohos.window';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { formBindingData, formInfo, formProvider } from '@kit.FormKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = 'WidgetEventRouterEntryAbility';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -43,7 +39,7 @@ export default class WidgetEventRouterEntryAbility extends UIAbility {
       let formMsg = formBindingData.createFormBindingData(formData);
       formProvider.updateForm(want.parameters[formInfo.FormParam.IDENTITY_KEY] + '', formMsg).then((data) => {
         hilog.info(DOMAIN_NUMBER, TAG, 'updateForm success.', JSON.stringify(data));
-      }).catch((error: Base.BusinessError) => {
+      }).catch((error: BusinessError) => {
         hilog.info(DOMAIN_NUMBER, TAG, 'updateForm failed.', JSON.stringify(error));
       });
     }
@@ -62,7 +58,7 @@ export default class WidgetEventRouterEntryAbility extends UIAbility {
       let formMsg = formBindingData.createFormBindingData(formData);
       formProvider.updateForm(want.parameters[formInfo.FormParam.IDENTITY_KEY] + '', formMsg).then((data) => {
         hilog.info(DOMAIN_NUMBER, TAG, 'updateForm success.', JSON.stringify(data));
-      }).catch((error: Base.BusinessError) => {
+      }).catch((error: BusinessError) => {
         hilog.info(DOMAIN_NUMBER, TAG, 'updateForm failed.', JSON.stringify(error));
       });
     }

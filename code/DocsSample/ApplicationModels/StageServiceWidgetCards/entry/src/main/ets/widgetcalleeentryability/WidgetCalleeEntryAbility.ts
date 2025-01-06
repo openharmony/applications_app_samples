@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,14 +13,12 @@
  * limitations under the License.
  */
 
-import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import formBindingData from '@ohos.app.form.formBindingData';
-import formProvider from '@ohos.app.form.formProvider';
-import hilog from '@ohos.hilog';
-import type rpc from '@ohos.rpc';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import type Want from '@ohos.app.ability.Want';
-import type window from '@ohos.window';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { formBindingData, formProvider } from '@kit.FormKit';
+import { rpc } from '@kit.IPCKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = 'WidgetCalleeEntryAbility';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -58,12 +56,12 @@ let funACall = (data: rpc.MessageSequence): MyParcelable => {
     let message: string = params.calleeDetail;
     hilog.info(DOMAIN_NUMBER, TAG, `UpdateForm formId: ${curFormId}, message: ${message}`);
     let formData: Record<string, string> = {
-      calleeDetail: message
+      'calleeDetail': message
     };
     let formMsg: formBindingData.FormBindingData = formBindingData.createFormBindingData(formData);
     formProvider.updateForm(curFormId, formMsg).then((data) => {
       hilog.info(DOMAIN_NUMBER, TAG, `updateForm success. ${JSON.stringify(data)}`);
-    }).catch((error) => {
+    }).catch((error: BusinessError) => {
       hilog.error(DOMAIN_NUMBER, TAG, `updateForm failed: ${JSON.stringify(error)}`);
     });
   }
@@ -77,7 +75,8 @@ export default class WidgetCalleeEntryAbility extends UIAbility {
       this.callee.on(MSG_SEND_METHOD, funACall);
     } catch (error) {
       hilog.error(DOMAIN_NUMBER, TAG, `${MSG_SEND_METHOD} register failed with error ${JSON.stringify(error)}`);
-    };
+    }
+    ;
   }
 
   onWindowStageCreate(windowStage: window.WindowStage): void {

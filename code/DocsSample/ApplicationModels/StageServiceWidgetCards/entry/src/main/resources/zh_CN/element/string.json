@@ -247,6 +247,14 @@
     {
       "name": "to_be_refreshed",
       "value": "待刷新..."
+    },
+    {
+      "name": "refresh",
+      "value": "刷新中..."
+    },
+    {
+      "name": "refresh_error",
+      "value": "刷新失败"
     }
   ]
 }
