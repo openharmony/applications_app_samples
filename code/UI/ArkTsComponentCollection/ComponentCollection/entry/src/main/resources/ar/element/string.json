@@ -1,0 +1,5988 @@
+{
+    "string": [
+      {
+        "name": "focus_control_tab_status",
+        "value": "مركز تنسيق نمط التبديل : لوحة المفاتيح الخارجية تبويب مفتاح التبديل مركز تنسيق عرض التغييرات"
+      },
+      {
+        "name": "select_to_see_status",
+        "value": "اختيار نمط الدولة التبديل"
+      },
+      {
+        "name": "disable_to_see_status",
+        "value": "تعطيل وضع نمط التبديل"
+      },
+      {
+        "name": "press_to_see_status",
+        "value": "اضغط على مفتاح نمط الدولة"
+      },
+      {
+        "name": "click_to_see_status",
+        "value": "الوضع العادي نمط التبديل"
+      },
+      {
+        "name": "custom_event",
+        "value": "عنصر مخصص توزيع الحدث"
+      },
+      {
+        "name": "custom_click_event_button",
+        "value": "نقر"
+      },
+      {
+        "name": "custom_Scrolling_event_button",
+        "value": "توالت"
+      },
+      {
+        "name": "custom_judge_title",
+        "value": "قاضي"
+      },
+      {
+        "name": "custom_judge_long_press",
+        "value": "منطقة استجابة طويلة"
+      },
+      {
+        "name": "custom_long_press_prompt",
+        "value": "اضغط على الجزء العلوي من المنطقة الزرقاء لفترة طويلة ، المنطقة الزرقاء سوف تستجيب"
+      },
+      {
+        "name": "custom_judge_click",
+        "value": "انقر فوق منطقة الاستجابة"
+      },
+      {
+        "name": "custom_tap_prompt",
+        "value": "انقر على الجزء السفلي من المنطقة الصفراء ، المنطقة الصفراء سوف تستجيب"
+      },
+      {
+        "name": "custom_bigcircle_prompt",
+        "value": "العرف نصائح دائرة كبيرة"
+      },
+      {
+        "name": "custom_smallcircle_prompt",
+        "value": "العرف نصائح دائرة صغيرة"
+      },
+      {
+        "name": "custom_gesture",
+        "value": "العرف لفتة تحديد"
+      },
+      {
+        "name": "send_event",
+        "value": "إرسال الحدث"
+      },
+      {
+        "name": "custom_click_event",
+        "value": "نقر"
+      },
+      {
+        "name": "custom_scrolling_event",
+        "value": "توالت"
+      },
+      {
+        "name": "custom_scrolling_area",
+        "value": "منطقة التمرير"
+      },
+      {
+        "name": "custom_click_big_btn",
+        "value": "دائرة كبيرة"
+      },
+      {
+        "name": "custom_click_small_btn",
+        "value": "دائرة صغيرة"
+      },
+      {
+        "name": "big_circle_prompt",
+        "value": "المنطقة الزرقاء مع دائرة الحدث"
+      },
+      {
+        "name": "small_circle_prompt",
+        "value": "المنطقة الصفراء مع دائرة الأحداث"
+      },
+      {
+        "name": "Blue",
+        "value": "بلو"
+      },
+      {
+        "name": "button",
+        "value": "الأزرار"
+      },
+      {
+        "name": "entry_desc",
+        "value": "مجموعة من المكونات"
+      },
+      {
+        "name": "MainAbility_desc",
+        "value": "arkui العنصر ، السمة العامة ، طريقة عامة ، الخ ."
+      },
+      {
+        "name": "animation",
+        "value": "أنمي"
+      },
+      {
+        "name": "component",
+        "value": "مكون"
+      },
+      {
+        "name": "universal",
+        "value": "عام ."
+      },
+      {
+        "name": "global_method",
+        "value": "النهج العالمي"
+      },
+      {
+        "name": "auxiliary",
+        "value": "المعدات المساعدة"
+      },
+      {
+        "name": "common_properties",
+        "value": "السمة المشتركة"
+      },
+      {
+        "name": "prop_background",
+        "value": "معلومات أساسية"
+      },
+      {
+        "name": "safe_area",
+        "value": "منطقة الأمان"
+      },
+      {
+        "name": "attribute_modifier",
+        "value": "خاصية تعديل"
+      },
+      {
+        "name": "prop_foreground",
+        "value": "احتمال"
+      },
+      {
+        "name": "prop_border",
+        "value": "حدود ."
+      },
+      {
+        "name": "prop_outline",
+        "value": "مخطط"
+      },
+      {
+        "name": "prop_font",
+        "value": "فونت"
+      },
+      {
+        "name": "prop_bluefont",
+        "value": "#409EFF"
+      },
+      {
+        "name": "prop_orangefont",
+        "value": "#E6A23C"
+      },
+      {
+        "name": "prop_pinkfont",
+        "value": "#F56C6C"
+      },
+      {
+        "name": "prop_size",
+        "value": "حجم"
+      },
+      {
+        "name": "graphic_transformation",
+        "value": "تحويل الرسومات"
+      },
+      {
+        "name": "common_events",
+        "value": "الأحداث المشتركة"
+      },
+      {
+        "name": "click_event",
+        "value": "انقر فوق الحدث"
+      },
+      {
+        "name": "touch_event",
+        "value": "لمس الحدث"
+      },
+      {
+        "name": "show_hide_event",
+        "value": "إظهار / إخفاء الأحداث"
+      },
+      {
+        "name": "drag_drop_event",
+        "value": "سحب وإسقاط الحدث"
+      },
+      {
+        "name": "key_event",
+        "value": "الأحداث الرئيسية"
+      },
+      {
+        "name": "focus_event",
+        "value": "التركيز على النشاط"
+      },
+      {
+        "name": "mouse_event",
+        "value": "الماوس الحدث"
+      },
+      {
+        "name": "component_area_change_event",
+        "value": "عنصر تغيير الحدث"
+      },
+      {
+        "name": "gesture_processing",
+        "value": "لفتة تجهيز"
+      },
+      {
+        "name": "basic_gestures",
+        "value": "لفتة الأساسية"
+      },
+      {
+        "name": "tap_gesture",
+        "value": "انقر على لفتة"
+      },
+      {
+        "name": "long_press_gesture",
+        "value": "لفتة طويلة"
+      },
+      {
+        "name": "pan_gesture",
+        "value": "بانجيستور"
+      },
+      {
+        "name": "pinch_gesture",
+        "value": "قرصة لفتة"
+      },
+      {
+        "name": "rotation_gesture",
+        "value": "لفتة التناوب"
+      },
+      {
+        "name": "swipe_gesture",
+        "value": "انزلاق الموقف"
+      },
+      {
+        "name": "combined_gestures",
+        "value": "الجمع بين لفتة"
+      },
+      {
+        "name": "transition_animation",
+        "value": "الانتقال من الرسوم المتحركة"
+      },
+      {
+        "name": "interpolation_calculation",
+        "value": "حساب الاستيفاء"
+      },
+      {
+        "name": "dialog",
+        "value": "الحوارات"
+      },
+      {
+        "name": "button_and_selection",
+        "value": "أزرار واختيار"
+      },
+      {
+        "name": "information_presentation_and_dynamic_effects",
+        "value": "عرض المعلومات و تأثير ديناميكي"
+      },
+      {
+        "name": "blank_and_divider",
+        "value": "الفراغات و فواصل"
+      },
+      {
+        "name": "text_and_input",
+        "value": "النص والمدخلات"
+      },
+      {
+        "name": "layout_animation_expansion",
+        "value": "تصميم الرسوم المتحركة"
+      },
+      {
+        "name": "layout_animation_expansion_align",
+        "value": "محاذاة الرسوم المتحركة"
+      },
+      {
+        "name": "layout_animation_expansion_size",
+        "value": "حجم الرسوم المتحركة"
+      },
+      {
+        "name": "layout_animation_expansion_padding",
+        "value": "ملء الرسوم المتحركة"
+      },
+      {
+        "name": "layout_animation_expansion_margin",
+        "value": "الهوامش المتحركة"
+      },
+      {
+        "name": "layout_animation_expansion_offset",
+        "value": "إزاحة الرسوم المتحركة"
+      },
+      {
+        "name": "layout_animation_expansion_position",
+        "value": "الكلمات المتحركة"
+      },
+      {
+        "name": "layout_animation_expansion_markAnchor",
+        "value": "مارك انكور للرسوم المتحركة"
+      },
+      {
+        "name": "layout_animation_expansion_alignRules",
+        "value": "alignrules المتحركة"
+      },
+      {
+        "name": "layout_animation_expansion_direction",
+        "value": "اتجاه الرسوم المتحركة"
+      },
+      {
+        "name": "size_transition_expansion",
+        "value": "بعد الانتقال"
+      },
+      {
+        "name": "alert_dialog",
+        "value": "تنبيه الحوار"
+      },
+      {
+        "name": "alert_dialog_type_one",
+        "value": "مفتاح إنذار مربع الحوار"
+      },
+      {
+        "name": "alert_dialog_type_two",
+        "value": "زر مزدوج مربع الحوار التنبيه"
+      },
+      {
+        "name": "alert_dialog_type_two_button_one",
+        "value": "هذا هو الزر الأول"
+      },
+      {
+        "name": "alert_dialog_type_two_button_two",
+        "value": "هذا هو الزر الثاني"
+      },
+      {
+        "name": "alert_dialog_prompt",
+        "value": "جديلة"
+      },
+      {
+        "name": "alert_dialog_warning",
+        "value": "حذر"
+      },
+      {
+        "name": "alert_dialog_info",
+        "value": "أنت تقوم بعمل"
+      },
+      {
+        "name": "alert_dialog_confirm",
+        "value": "أكّد"
+      },
+      {
+        "name": "alert_dialog_cancel",
+        "value": "ألغى"
+      },
+      {
+        "name": "alert_dialog_type",
+        "value": "نوع الحوار"
+      },
+      {
+        "name": "alert_dialog_location",
+        "value": "موقع المحادثة"
+      },
+      {
+        "name": "alert_dialog_auto_cancel",
+        "value": "انقر فوق طبقة قناع لإغلاق مربع الحوار"
+      },
+      {
+        "name": "alert_dialog_true",
+        "value": "يمكن إغلاق"
+      },
+      {
+        "name": "alert_dialog_false",
+        "value": "لم تغلق"
+      },
+      {
+        "name": "alert_dialog_top",
+        "value": "أعلى رأسي"
+      },
+      {
+        "name": "alert_dialog_center",
+        "value": "مركز عمودي"
+      },
+      {
+        "name": "alert_dialog_bottom",
+        "value": "عمودي أسفل"
+      },
+      {
+        "name": "alert_dialog_offset",
+        "value": "الموقف النسبي إزاحة مربع الحوار"
+      },
+      {
+        "name": "alert_dialog_left",
+        "value": "أعلى اليسار ويقابل"
+      },
+      {
+        "name": "alert_dialog_right",
+        "value": "أسفل اليمين ويقابل"
+      },
+      {
+        "name": "alert_dialog_grid",
+        "value": "شبكة مختلفة عرض مربع الحوار"
+      },
+      {
+        "name": "alert_dialog_grid_two",
+        "value": "عرض الشبكة"
+      },
+      {
+        "name": "alert_dialog_grid_three",
+        "value": "عرض الشبكة"
+      },
+      {
+        "name": "alert_dialog_grid_four",
+        "value": "عرض الشبكة"
+      },
+      {
+        "name": "foreground_color",
+        "value": "تعيين لون المقدمة"
+      },
+      {
+        "name": "background_color",
+        "value": "تعيين لون الخلفية"
+      },
+      {
+        "name": "background_gradient",
+        "value": "تعيين خلفية التدرج"
+      },
+      {
+        "name": "background_gradient_linear",
+        "value": "التدرج الخطي"
+      },
+      {
+        "name": "background_gradient_sweep",
+        "value": "زاوية الانحدار"
+      },
+      {
+        "name": "background_gradient_radial",
+        "value": "شعاعي التدرج"
+      },
+      {
+        "name": "background_image_transformation_effect",
+        "value": "تحويل صورة الخلفية"
+      },
+      {
+        "name": "set_background_image_size",
+        "value": "تعيين حجم الصورة الخلفية"
+      },
+      {
+        "name": "set_background_image_position",
+        "value": "وضع صورة الخلفية"
+      },
+      {
+        "name": "background_image_size_cover",
+        "value": "تغطية"
+      },
+      {
+        "name": "background_image_size_contain",
+        "value": "احتواء"
+      },
+      {
+        "name": "background_image_position_top_start",
+        "value": "توب ستارت"
+      },
+      {
+        "name": "background_image_position_top",
+        "value": "توب ."
+      },
+      {
+        "name": "background_image_position_top_end",
+        "value": "توبند"
+      },
+      {
+        "name": "background_image_position_start",
+        "value": "توب ."
+      },
+      {
+        "name": "background_image_position_center",
+        "value": "مركز"
+      },
+      {
+        "name": "background_image_position_end",
+        "value": "نهاية ."
+      },
+      {
+        "name": "background_image_position_bottom_start",
+        "value": "بداية القاع"
+      },
+      {
+        "name": "background_image_position_bottom",
+        "value": "القاع"
+      },
+      {
+        "name": "background_image_position_bottom_end",
+        "value": "نهاية القاع"
+      },
+      {
+        "name": "background_image",
+        "value": "تعيين صورة الخلفية"
+      },
+      {
+        "name": "background_image_default",
+        "value": "خرق"
+      },
+      {
+        "name": "background_image_repeat",
+        "value": "س ص محور تكرار الرسم البياني"
+      },
+      {
+        "name": "background_image_size",
+        "value": "حجم الصورة 50% عرض 100% ارتفاع"
+      },
+      {
+        "name": "background_image_offset",
+        "value": "صورة الكلمات يقابلها إلى اليمين أو إلى الأسفل"
+      },
+      {
+        "name": "auxiliary_badge",
+        "value": "شارات"
+      },
+      {
+        "name": "badge_type",
+        "value": "نوع التسمية"
+      },
+      {
+        "name": "badge_number",
+        "value": "العلامات الرقمية"
+      },
+      {
+        "name": "badge_string",
+        "value": "نص التسمية"
+      },
+      {
+        "name": "badge_max",
+        "value": "العلامة الرقمية أقصى عدد من الرسائل"
+      },
+      {
+        "name": "badge_number_normal",
+        "value": "شارة عادية"
+      },
+      {
+        "name": "badge_number_max",
+        "value": "ماكس شارات"
+      },
+      {
+        "name": "badge_location",
+        "value": "وضع علامة"
+      },
+      {
+        "name": "badge_left",
+        "value": "علامة على اليسار"
+      },
+      {
+        "name": "badge_top",
+        "value": "أعلى اليمين التسمية"
+      },
+      {
+        "name": "badge_right",
+        "value": "علامة الحق"
+      },
+      {
+        "name": "badge_style",
+        "value": "علامة نمط"
+      },
+      {
+        "name": "badge_blue",
+        "value": "علامة زرقاء كبيرة"
+      },
+      {
+        "name": "badge_green",
+        "value": "علامة خضراء صغيرة"
+      },
+      {
+        "name": "border_type",
+        "value": "نوع الحدود"
+      },
+      {
+        "name": "border_type_dashed",
+        "value": "خط منقط"
+      },
+      {
+        "name": "border_type_dotted",
+        "value": "نقطة"
+      },
+      {
+        "name": "border_type_solid",
+        "value": "خط صلب"
+      },
+      {
+        "name": "border_border_style",
+        "value": "عرض الحدود ، اللون ، فيليه"
+      },
+      {
+        "name": "border_border_width",
+        "value": "عرض"
+      },
+      {
+        "name": "border_border_color",
+        "value": "الألوان"
+      },
+      {
+        "name": "border_border_radius",
+        "value": "فيليه"
+      },
+      {
+        "name": "border_edge_style",
+        "value": "تعيين الحدود ، والأساليب ، والصفات ، على التوالي"
+      },
+      {
+        "name": "border_style_top",
+        "value": "أعلى الحدود"
+      },
+      {
+        "name": "border_style_bottom",
+        "value": "أسفل الحدود"
+      },
+      {
+        "name": "border_style_left",
+        "value": "الحدود اليسرى"
+      },
+      {
+        "name": "border_style_right",
+        "value": "الحدود اليمنى"
+      },
+      {
+        "name": "border_radius",
+        "value": "تعيين أربع زوايا مستديرة"
+      },
+      {
+        "name": "border_radius_left_top",
+        "value": "الحدود العليا اليسرى"
+      },
+      {
+        "name": "border_radius_left_bottom",
+        "value": "أسفل اليسار الحدود"
+      },
+      {
+        "name": "border_radius_right_top",
+        "value": "الحدود العليا اليمنى"
+      },
+      {
+        "name": "border_radius_right_bottom",
+        "value": "أسفل الحدود اليمنى"
+      },
+      {
+        "name": "border_3D",
+        "value": "تعيين الحدود ثلاثية الأبعاد"
+      },
+      {
+        "name": "outline_text",
+        "value": "مخطط"
+      },
+      {
+        "name": "outline_effect",
+        "value": "تأثير توقعات"
+      },
+      {
+        "name": "outline_button",
+        "value": "الأزرار"
+      },
+      {
+        "name": "button_title",
+        "value": "الأزرار"
+      },
+      {
+        "name": "button_type",
+        "value": "نوع ."
+      },
+      {
+        "name": "button_confirm",
+        "value": "أكّد"
+      },
+      {
+        "name": "button_type_capsule",
+        "value": "الكبسولة"
+      },
+      {
+        "name": "button_type_normal",
+        "value": "عادي ."
+      },
+      {
+        "name": "button_type_circle",
+        "value": "دائرة"
+      },
+      {
+        "name": "button_state_effect",
+        "value": "تأثير الدولة"
+      },
+      {
+        "name": "button_state_effect_true",
+        "value": "تأثير"
+      },
+      {
+        "name": "button_state_effect_false",
+        "value": "لا تأثير"
+      },
+      {
+        "name": "button_disable_style",
+        "value": "تعطيل"
+      },
+      {
+        "name": "button_custom_style",
+        "value": "نمط مخصص"
+      },
+      {
+        "name": "button_border_radius",
+        "value": "جولة زر"
+      },
+      {
+        "name": "button_with_icon",
+        "value": "زر الأيقونات"
+      },
+      {
+        "name": "button_custom_bg_color",
+        "value": "لون مخصص"
+      },
+      {
+        "name": "button_click",
+        "value": "اضغط على زر"
+      },
+      {
+        "name": "click_action_tips",
+        "value": "انقر فوق المنطقة الرمادية لتغيير موقف الصليب"
+      },
+      {
+        "name": "touch_action_tips",
+        "value": "لمس المنطقة الرمادية والانتقال إلى تغيير موقف الصليب"
+      },
+      {
+        "name": "component_area_change_action_tips",
+        "value": "انزلاق يمكن تغيير حجم أو موقف المنطقة الرمادية للسيطرة على حركة الكرة في المنطقة"
+      },
+      {
+        "name": "get_click_event_detail",
+        "value": "انقر على معلومات الموقع"
+      },
+      {
+        "name": "drag_drop_action_tips",
+        "value": "اضغط على أيقونة التطبيق لفترة طويلة واسحب إلى مناطق مختلفة"
+      },
+      {
+        "name": "component_drag_and_drop",
+        "value": "عنصر السحب والإفلات"
+      },
+      {
+        "name": "griditem",
+        "value": "شبكة البند"
+      },
+      {
+        "name": "multiselect",
+        "value": "اختيار متعددة"
+      },
+      {
+        "name": "listitem",
+        "value": "قائمة البنود"
+      },
+      {
+        "name": "hyperlink",
+        "value": "ارتباط تشعبي"
+      },
+      {
+        "name": "text",
+        "value": "نص ."
+      },
+      {
+        "name": "image",
+        "value": "صور"
+      },
+      {
+        "name": "video",
+        "value": "فيديو : ."
+      },
+      {
+        "name": "formcomponent",
+        "value": "شكل العنصر"
+      },
+      {
+        "name": "custom_dialog",
+        "value": "تخصيص مربع الحوار"
+      },
+      {
+        "name": "custom_dialog_style_custom",
+        "value": "مربع الحوار نمط مخصص"
+      },
+      {
+        "name": "custom_dialog_style_custom_true",
+        "value": "عرف"
+      },
+      {
+        "name": "custom_dialog_style_custom_false",
+        "value": "غير مخصص"
+      },
+      {
+        "name": "custom_dialog_title",
+        "value": "طلب تمكين الأذونات التالية"
+      },
+      {
+        "name": "custom_dialog_permission_microphone",
+        "value": "ميكروفون السلطة"
+      },
+      {
+        "name": "custom_dialog_permission_microphone_info",
+        "value": "المكالمات الصوتية تتطلب إذن الميكروفون"
+      },
+      {
+        "name": "custom_dialog_permission_location",
+        "value": "موقع السلطة"
+      },
+      {
+        "name": "custom_dialog_permission_location_info",
+        "value": "الملاحة يتطلب إذن الموقع"
+      },
+      {
+        "name": "custom_dialog_start",
+        "value": "فتح"
+      },
+      {
+        "name": "date_picker_dialog",
+        "value": "تاريخ محدد"
+      },
+      {
+        "name": "date_picker_dialog_date",
+        "value": "عرض تاريخ الحوار"
+      },
+      {
+        "name": "date_picker_dialog_date_lunar",
+        "value": "التاريخ القمري"
+      },
+      {
+        "name": "date_picker_dialog_date_gregorian",
+        "value": "تاريخ التقويم الغريغوري"
+      },
+      {
+        "name": "date_picker_dialog_cancel",
+        "value": "ألغى"
+      },
+      {
+        "name": "date_picker_toast_date",
+        "value": "اختيار الوقت :"
+      },
+      {
+        "name": "date_picker_dialog_datetimeone",
+        "value": "2022-10-01"
+      },
+      {
+        "name": "date_picker_dialog_datetimetwo",
+        "value": "1970-1-1"
+      },
+      {
+        "name": "date_picker_dialog_datetimethree",
+        "value": "2100-12-31"
+      },
+      {
+        "name": "date_picker_title",
+        "value": "تاريخ محدد"
+      },
+      {
+        "name": "date_picker_lunar",
+        "value": "القمر"
+      },
+      {
+        "name": "divider_title",
+        "value": "تحويلة"
+      },
+      {
+        "name": "divider_stroke_width",
+        "value": "عرض السكتة الدماغية"
+      },
+      {
+        "name": "divider_line_color",
+        "value": "لون الخط"
+      },
+      {
+        "name": "divider_line_cap",
+        "value": "لين كابستيل"
+      },
+      {
+        "name": "divider_horizontal",
+        "value": "الاتجاه الأفقي"
+      },
+      {
+        "name": "divider_vertical",
+        "value": "عمودي"
+      },
+      {
+        "name": "divider_attribute",
+        "value": "تحويلة"
+      },
+      {
+        "name": "font_color",
+        "value": "الألوان"
+      },
+      {
+        "name": "font_size",
+        "value": "حجم"
+      },
+      {
+        "name": "font_thickness",
+        "value": "سمك ."
+      },
+      {
+        "name": "font_style",
+        "value": "أسلوب ."
+      },
+      {
+        "name": "interpolation_calculation_cubic_bezier_curve",
+        "value": "ثالث ترتيب منحنى بيزيير الكائن"
+      },
+      {
+        "name": "interpolation_calculation_spring",
+        "value": "منحنى الربيع الكائن"
+      },
+      {
+        "name": "interpolation_calculation_init_curve",
+        "value": "easein منحنى تفاضلي"
+      },
+      {
+        "name": "interpolation_calculation_steps_curve",
+        "value": "سلم منحنى الكائن"
+      },
+      {
+        "name": "page_transition",
+        "value": "التحويل بين الصفحات"
+      },
+      {
+        "name": "page_transition_left",
+        "value": "مدخل / مخرج يمين يسار"
+      },
+      {
+        "name": "page_transition_right",
+        "value": "المدخل الأيمن / المخرج الأيسر"
+      },
+      {
+        "name": "page_transition_top",
+        "value": "أعلى مدخل / مخرج أسفل"
+      },
+      {
+        "name": "page_transition_bottom",
+        "value": "أسفل مدخل / مخرج أعلى"
+      },
+      {
+        "name": "page_transition_scale",
+        "value": "تكبير / تصغير"
+      },
+      {
+        "name": "page_transition_rotate",
+        "value": "برغي في / خارج"
+      },
+      {
+        "name": "page_transition_back",
+        "value": "تحويل صفحة العودة بين الصفحات"
+      },
+      {
+        "name": "qrcode_title",
+        "value": "قركودي"
+      },
+      {
+        "name": "qrcode_content",
+        "value": "المحتويات"
+      },
+      {
+        "name": "qrcode_color",
+        "value": "الألوان"
+      },
+      {
+        "name": "qrcode_enter_content",
+        "value": "أدخل تغيير رمز ثنائي الأبعاد"
+      },
+      {
+        "name": "search_placeholder",
+        "value": "اكتب البحث ."
+      },
+      {
+        "name": "search_name",
+        "value": "بحث ."
+      },
+      {
+        "name": "radio_title",
+        "value": "راديو ."
+      },
+      {
+        "name": "radio_no_response_region",
+        "value": "لا إضافة منطقة استجابة ( اضغط على زر الدخول )"
+      },
+      {
+        "name": "radio_has_response_region",
+        "value": "إضافة منطقة استجابة ( انقر على زر خط )"
+      },
+      {
+        "name": "radio_beijing",
+        "value": "بيجينغ"
+      },
+      {
+        "name": "radio_shanghai",
+        "value": "شنغهاي ."
+      },
+      {
+        "name": "radio_shenzhen",
+        "value": "شن تشن"
+      },
+      {
+        "name": "radio_guangzhou",
+        "value": "غوانغ زهو"
+      },
+      {
+        "name": "graphic_transformation_rotate",
+        "value": "استدارة"
+      },
+      {
+        "name": "rotate_photo",
+        "value": "صورة التناوب"
+      },
+      {
+        "name": "rotate_container",
+        "value": "عنصر التناوب"
+      },
+      {
+        "name": "rotate_before_image",
+        "value": "الصورة الأصلية"
+      },
+      {
+        "name": "rotate_before_component",
+        "value": "حاوية الجمعية"
+      },
+      {
+        "name": "rotate_image_angle",
+        "value": "دوران"
+      },
+      {
+        "name": "select_title",
+        "value": "مختار"
+      },
+      {
+        "name": "select_has_icon",
+        "value": "اختيار الرموز"
+      },
+      {
+        "name": "select_option_bg_and_text_style",
+        "value": "اختيار لون الخلفية و نمط النص"
+      },
+      {
+        "name": "select_unselect_option_style",
+        "value": "خيارات الخلفية و نمط النص"
+      },
+      {
+        "name": "select_button_style",
+        "value": "زر القائمة المنسدلة نمط النص"
+      },
+      {
+        "name": "select_picture",
+        "value": "صور ."
+      },
+      {
+        "name": "select_collection",
+        "value": "جمع"
+      },
+      {
+        "name": "select_gesture",
+        "value": "الإيماءات"
+      },
+      {
+        "name": "select_index",
+        "value": "حدد مؤشر الخيارات :"
+      },
+      {
+        "name": "select_value",
+        "value": "قيمة الخيار المختار :"
+      },
+      {
+        "name": "share_element_transition",
+        "value": "عنصر مشترك عملة"
+      },
+      {
+        "name": "Multiplex_interface",
+        "value": "معدد"
+      },
+      {
+        "name": "Floating_window",
+        "value": "نافذة عائمة"
+      },
+      {
+        "name": "Tips_call",
+        "value": "إنتظر"
+      },
+      {
+        "name": "Font_family_regular",
+        "value": "هارمونيوس اس سي روتاري"
+      },
+      {
+        "name": "Font_family_medium",
+        "value": "هارمونيوس سان SC متوسطة"
+      },
+      {
+        "name": "Folder_expansion",
+        "value": "مجلد التمديد"
+      },
+      {
+        "name": "Shop_card_expansion",
+        "value": "تمديد بطاقة المحل"
+      },
+      {
+        "name": "Today",
+        "value": "اليوم ."
+      },
+      {
+        "name": "Gallery_card_expansion",
+        "value": "معرض بطاقة التمديد"
+      },
+      {
+        "name": "size_width",
+        "value": "عرض"
+      },
+      {
+        "name": "size_width_fixed_100vp",
+        "value": "عرض 100vp"
+      },
+      {
+        "name": "size_width_percent",
+        "value": "عرض 60%"
+      },
+      {
+        "name": "size_width_fixed_60vw",
+        "value": "عرض"
+      },
+      {
+        "name": "size_height",
+        "value": "ارتفاع"
+      },
+      {
+        "name": "size_height_fixed_60vh",
+        "value": "عرض 60vh"
+      },
+      {
+        "name": "size_height_fixed_100vp",
+        "value": "ارتفاع 100vp"
+      },
+      {
+        "name": "size_height_percent",
+        "value": "ارتفاع 60%"
+      },
+      {
+        "name": "size_height_fixed_calc",
+        "value": "الارتفاع هو القيمة المحسوبة ( 200vp-100vp ) ."
+      },
+      {
+        "name": "slider_title",
+        "value": "المنزلق"
+      },
+      {
+        "name": "slider_step_tip",
+        "value": "خطوات ونصائح ( الخطوة 10 )"
+      },
+      {
+        "name": "slider_current_value",
+        "value": "عرض القيمة الحالية ( مين - 50 / ماكس - 130 )"
+      },
+      {
+        "name": "slider_events",
+        "value": "النشاطات"
+      },
+      {
+        "name": "slider_attributes",
+        "value": "صفة"
+      },
+      {
+        "name": "slider_vertical_reverse",
+        "value": "عمودي وعكس"
+      },
+      {
+        "name": "slider_forward",
+        "value": "فورورد"
+      },
+      {
+        "name": "slider_reverse",
+        "value": "عكس"
+      },
+      {
+        "name": "slider_select_color",
+        "value": "اختيار اللون"
+      },
+      {
+        "name": "slider_track_color",
+        "value": "لون المسار"
+      },
+      {
+        "name": "slider_block_color",
+        "value": "لون مربع"
+      },
+      {
+        "name": "slider_track_thickness",
+        "value": "سمك المسار"
+      },
+      {
+        "name": "slider_event_begin",
+        "value": "تبدأ سحب شريط التمرير"
+      },
+      {
+        "name": "slider_event_moving",
+        "value": "أثناء سحب شريط التمرير"
+      },
+      {
+        "name": "slider_event_end",
+        "value": "نهاية سحب شريط التمرير"
+      },
+      {
+        "name": "slider_event_click",
+        "value": "انقر فوق شريط التمرير لنقل شريط التمرير الموقف"
+      },
+      {
+        "name": "slider_title_value",
+        "value": "النسبة المئوية من مجموع طول الشريحة :"
+      },
+      {
+        "name": "span_title",
+        "value": "فترة طويلة من الزمن ، بما في ذلك فترة طويلة من الزمن"
+      },
+      {
+        "name": "span_attribute",
+        "value": "تكوين خصائص مختلفة تمتد"
+      },
+      {
+        "name": "span_content_one",
+        "value": "خفف من الصلب في النار والتبريد السريع ،"
+      },
+      {
+        "name": "span_content_two",
+        "value": "لذلك يمكن أن يكون من الصعب ، لا تخاف من أي شيء ."
+      },
+      {
+        "name": "span_content_three",
+        "value": "ومن خلال هذه الطريقة أن جيلنا قد تدرب على النضال و التجارب الرهيبة ،"
+      },
+      {
+        "name": "span_content_four",
+        "value": "تعلم عدم الاستسلام للحياة ."
+      },
+      {
+        "name": "span_decoration_and_letter_spacing",
+        "value": "الديكور و تباعد الحروف"
+      },
+      {
+        "name": "span_letter_spacing",
+        "value": "تباعد الحروف"
+      },
+      {
+        "name": "span_line_height",
+        "value": "خط الطول"
+      },
+      {
+        "name": "span_decoration_type",
+        "value": "نوع الديكور"
+      },
+      {
+        "name": "span_text_decoration",
+        "value": "الديكور اختبار النص"
+      },
+      {
+        "name": "span_text_spacing",
+        "value": "رسالة الفضاء اختبار النص"
+      },
+      {
+        "name": "span_inherits_text_attribute",
+        "value": "سبان يرث خصائص النص"
+      },
+      {
+        "name": "span_does_not_inherit_text_attribute",
+        "value": "سبان لا ترث خصائص النص"
+      },
+      {
+        "name": "span_upper_lower",
+        "value": "كبيرة أو صغيرة"
+      },
+      {
+        "name": "span_decoration_color",
+        "value": "لون الديكور"
+      },
+      {
+        "name": "span_decoration_none",
+        "value": "هل أنت بخير ؟ - لا -"
+      },
+      {
+        "name": "span_decoration_linethrough",
+        "value": "خط مباشر"
+      },
+      {
+        "name": "span_decoration_underline",
+        "value": "التأكيد"
+      },
+      {
+        "name": "span_decoration_overline",
+        "value": "على الخط"
+      },
+      {
+        "name": "image_span_title",
+        "value": "صورة تمتد"
+      },
+      {
+        "name": "image_span_vertical_align",
+        "value": "المحاذاة العمودية"
+      },
+      {
+        "name": "image_span_alignment_baseline",
+        "value": "خط الأساس"
+      },
+      {
+        "name": "image_span_alignment_bottom",
+        "value": "القاع"
+      },
+      {
+        "name": "image_span_alignment_center",
+        "value": "مركز"
+      },
+      {
+        "name": "image_span_alignment_top",
+        "value": "توب ."
+      },
+      {
+        "name": "image_span_object_fit",
+        "value": "موضوع مطابقة"
+      },
+      {
+        "name": "image_fit_contain",
+        "value": "احتواء"
+      },
+      {
+        "name": "image_fit_auto",
+        "value": "السيارات"
+      },
+      {
+        "name": "image_fit_fill",
+        "value": "ملأ"
+      },
+      {
+        "name": "image_fit_none",
+        "value": "هل أنت بخير ؟ - لا -"
+      },
+      {
+        "name": "image_fit_scale_down",
+        "value": "تقليص حجم"
+      },
+      {
+        "name": "image_fit_cover",
+        "value": "تغطية"
+      },
+      {
+        "name": "image_span_and_span",
+        "value": "صورة تمتد تمتد"
+      },
+      {
+        "name": "image_span_vertical_align_and_object_fit",
+        "value": "المحاذاة العمودية و موضوع تركيب الصورة تمتد"
+      },
+      {
+        "name": "text_title",
+        "value": "نص ."
+      },
+      {
+        "name": "text_width",
+        "value": "عرض النص"
+      },
+      {
+        "name": "text_height",
+        "value": "ارتفاع النص"
+      },
+      {
+        "name": "text_content",
+        "value": "خفف من الصلب في النار والتبريد السريع ، بحيث يمكن أن يكون من الصعب جدا ، لا تخافوا من أي شيء . وبهذه الطريقة فقط ، فإن جيلنا قد شحذ في النضال و التجارب الرهيبة و تعلمت عدم الاستسلام للحياة ."
+      },
+      {
+        "name": "text_text_align_center",
+        "value": "مركز"
+      },
+      {
+        "name": "text_text_align_start",
+        "value": "نقطة الانطلاق"
+      },
+      {
+        "name": "text_text_align_end",
+        "value": "نهاية ."
+      },
+      {
+        "name": "text_decoration_type",
+        "value": "نص نوع الديكور"
+      },
+      {
+        "name": "text_decoration_type_under_line",
+        "value": "دوونلين"
+      },
+      {
+        "name": "text_decoration_type_line_through",
+        "value": "من خلال خط"
+      },
+      {
+        "name": "text_decoration_type_over_line",
+        "value": "أكثر من خط"
+      },
+      {
+        "name": "text_text_align_type",
+        "value": "محاذاة النص"
+      },
+      {
+        "name": "text_letter_spacing",
+        "value": "تباعد الحروف"
+      },
+      {
+        "name": "text_overflow",
+        "value": "تجاوز النص"
+      },
+      {
+        "name": "text_none",
+        "value": "هل أنت بخير ؟ - لا -"
+      },
+      {
+        "name": "text_text_over_flow_clip",
+        "value": "قطع"
+      },
+      {
+        "name": "text_text_over_flow_ellipsis",
+        "value": "القطع الناقص"
+      },
+      {
+        "name": "text_line_height",
+        "value": "خط الطول"
+      },
+      {
+        "name": "text_font_color",
+        "value": "لون الخط"
+      },
+      {
+        "name": "text_over_flow",
+        "value": "تجاوز النص"
+      },
+      {
+        "name": "text_text_case_normal",
+        "value": "عادي ."
+      },
+      {
+        "name": "text_text_case",
+        "value": "حالة النص"
+      },
+      {
+        "name": "text_text_case_uppercase",
+        "value": "حروف"
+      },
+      {
+        "name": "text_text_case_lowercase",
+        "value": "حروف صغيرة"
+      },
+      {
+        "name": "text_area_set_text_selection",
+        "value": "حدد النص"
+      },
+      {
+        "name": "text_area_set_text_selection_start_select_error",
+        "value": "خطأ في تحديد بداية اختيار النص"
+      },
+      {
+        "name": "text_area_set_text_selection_end_select_error",
+        "value": "خطأ في تحديد نهاية اختيار النص"
+      },
+      {
+        "name": "text_input_set_text_selection_start_select",
+        "value": "بدء اختيار :"
+      },
+      {
+        "name": "text_input_set_text_selection_end_select",
+        "value": "نهاية الاختيار :"
+      },
+      {
+        "name": "avoiding_input_method_testing",
+        "value": "تجنب اختبار طريقة الإدخال"
+      },
+      {
+        "name": "text_input_title",
+        "value": "مربع إدخال النص"
+      },
+      {
+        "name": "text_input_normal_type",
+        "value": "الأرقام ، الحروف ، يؤكد ، والمسافات ، أحرف خاصة ."
+      },
+      {
+        "name": "text_input_password_type",
+        "value": "أدخل كلمة السر"
+      },
+      {
+        "name": "text_input_email_type",
+        "value": "أدخل البريد الإلكتروني"
+      },
+      {
+        "name": "text_input_number_type",
+        "value": "وضع الإدخال الرقمي"
+      },
+      {
+        "name": "text_input_phone_type",
+        "value": "Digits, spaces, plus signs (+), hyphens (-), asterisks (*), and number signs (#)"
+      },
+      {
+        "name": "text_input_input_type",
+        "value": "نوع الإدخال"
+      },
+      {
+        "name": "text_input_current_type",
+        "value": "النوع الحالي"
+      },
+      {
+        "name": "text_input_show_password_icon",
+        "value": "عرض رمز كلمة السر"
+      },
+      {
+        "name": "text_input_icon_show",
+        "value": "عرض ."
+      },
+      {
+        "name": "text_input_icon_hide",
+        "value": "أخفى"
+      },
+      {
+        "name": "text_input_event",
+        "value": "النشاطات"
+      },
+      {
+        "name": "text_input_event_placeholder",
+        "value": "نسخ ، لصق ، قص ، ارتكاب ، تحرير الحدث"
+      },
+      {
+        "name": "text_input_placeholder_style",
+        "value": "نمط النائبة"
+      },
+      {
+        "name": "text_input_placeholder",
+        "value": "النائبة"
+      },
+      {
+        "name": "text_input_filter",
+        "value": "فلتر الإدخال"
+      },
+      {
+        "name": "text_input_only_input_english",
+        "value": "فقط أدخل الحروف الإنجليزية"
+      },
+      {
+        "name": "text_input_caret_position",
+        "value": "موقف التمريض"
+      },
+      {
+        "name": "text_input_set_text_selection",
+        "value": "حدد النص"
+      },
+      {
+        "name": "text_input_max_length",
+        "value": "الحد من إدخال حرف طول"
+      },
+      {
+        "name": "text_input_placeholder_max_length",
+        "value": "ما يصل إلى 12 حرفا"
+      },
+      {
+        "name": "text_input_toast_paste",
+        "value": "لصق النص كما يلي :"
+      },
+      {
+        "name": "text_input_toast_cut",
+        "value": "قص النص كما يلي :"
+      },
+      {
+        "name": "text_input_toast_copy",
+        "value": "نسخ النص كما يلي :"
+      },
+      {
+        "name": "text_input_toast_submit",
+        "value": "وفيما يلي نص الطلب :"
+      },
+      {
+        "name": "text_input_toast_edit",
+        "value": "نص منقح كما يلي :"
+      },
+      {
+        "name": "time_picker_dialog",
+        "value": "وقت الحوار"
+      },
+      {
+        "name": "time_picker_dialog_time",
+        "value": "عرض مربع الحوار الوقت"
+      },
+      {
+        "name": "time_picker_dialog_24_hour",
+        "value": "ساعة"
+      },
+      {
+        "name": "time_picker_dialog_12_hour",
+        "value": "ح"
+      },
+      {
+        "name": "time_picker_dialog_cancel",
+        "value": "ألغى"
+      },
+      {
+        "name": "time_picker_toast_time",
+        "value": "اختيار الوقت :"
+      },
+      {
+        "name": "time_picker_options_usemilitarytime",
+        "value": "استخدام الوقت العسكري"
+      },
+      {
+        "name": "time_picker_dialog_timeone",
+        "value": "00 : 00"
+      },
+      {
+        "name": "time_picker_dialog_timetwo",
+        "value": "10 / 01 / 2022 12 : 00"
+      },
+      {
+        "name": "toggle_title",
+        "value": "تبديل"
+      },
+      {
+        "name": "toggle_select",
+        "value": "مختار"
+      },
+      {
+        "name": "toggle_unselect",
+        "value": "لا خيار"
+      },
+      {
+        "name": "toggle_type_switch",
+        "value": "التبديل"
+      },
+      {
+        "name": "checkbox",
+        "value": "خانة الاختيار"
+      },
+      {
+        "name": "toggle_type_checkbox",
+        "value": "خانة الاختيار"
+      },
+      {
+        "name": "toggle_type_button",
+        "value": "الأزرار"
+      },
+      {
+        "name": "toggle_state",
+        "value": "مختار"
+      },
+      {
+        "name": "graphic_transformation_translate",
+        "value": "ترجمة ."
+      },
+      {
+        "name": "translate_image",
+        "value": "صورة الترجمة"
+      },
+      {
+        "name": "translate_container",
+        "value": "عنصر الترجمة"
+      },
+      {
+        "name": "translate_x_axis",
+        "value": "المحور العاشر"
+      },
+      {
+        "name": "translate_y_axis",
+        "value": "المحور الصادي"
+      },
+      {
+        "name": "components_display",
+        "value": "عرض"
+      },
+      {
+        "name": "components_interaction",
+        "value": "تفاعلي"
+      },
+      {
+        "name": "components_interaction_menuone",
+        "value": "قائمة البند 1"
+      },
+      {
+        "name": "components_interaction_menutwo",
+        "value": "قائمة البند 2"
+      },
+      {
+        "name": "components_interaction_menuthree",
+        "value": "قائمة البند 3"
+      },
+      {
+        "name": "components_interaction_menufour",
+        "value": "قائمة البند 4"
+      },
+      {
+        "name": "components_interaction_clicktextone",
+        "value": "معلومات أساسية"
+      },
+      {
+        "name": "components_interaction_clicktexttwo",
+        "value": "مكان"
+      },
+      {
+        "name": "components_interaction_clicktextthree",
+        "value": "فورجروند كيدز"
+      },
+      {
+        "name": "components_interaction_hittestbehavior",
+        "value": "Hittest السلوك :"
+      },
+      {
+        "name": "components_interaction_hovereffect",
+        "value": "تأثير تعليق"
+      },
+      {
+        "name": "components_interaction_backgroundresponse",
+        "value": "انقر على خلفية الرد"
+      },
+      {
+        "name": "components_interaction_foregroundresponse",
+        "value": "استجابة الجبهة انقر"
+      },
+      {
+        "name": "components_interaction_contentresponse",
+        "value": "محتوى الرد انقر"
+      },
+      {
+        "name": "components_display_content",
+        "value": "ABCDEFG"
+      },
+      {
+        "name": "components_display_center",
+        "value": "مركز"
+      },
+      {
+        "name": "components_display_topstart",
+        "value": "بداية"
+      },
+      {
+        "name": "components_display_topend",
+        "value": "أعلى"
+      },
+      {
+        "name": "components_display_top",
+        "value": "توب ."
+      },
+      {
+        "name": "components_display_start",
+        "value": "بداية ."
+      },
+      {
+        "name": "components_display_end",
+        "value": "نهاية ."
+      },
+      {
+        "name": "components_display_bottomstart",
+        "value": "أسفل الحذاء"
+      },
+      {
+        "name": "components_display_bottom",
+        "value": "القاع"
+      },
+      {
+        "name": "components_display_bottomend",
+        "value": "رئيس كبير"
+      },
+      {
+        "name": "components_display_none",
+        "value": "هل أنت بخير ؟ - لا -"
+      },
+      {
+        "name": "components_display_hidden",
+        "value": "أخفى"
+      },
+      {
+        "name": "components_display_visible",
+        "value": "مرئي"
+      },
+      {
+        "name": "components_effects",
+        "value": "أثر"
+      },
+      {
+        "name": "blur_effects",
+        "value": "تأثير ضبابي"
+      },
+      {
+        "name": "blur_radius_modify",
+        "value": "نصف قطر غامض"
+      },
+      {
+        "name": "background_blur",
+        "value": "الخلفية ضبابية"
+      },
+      {
+        "name": "background_blur_style",
+        "value": "طمس الخلفية نمط"
+      },
+      {
+        "name": "set_shadow_type",
+        "value": "تعيين نوع الظل"
+      },
+      {
+        "name": "shadow_effects",
+        "value": "تأثير الظل"
+      },
+      {
+        "name": "shadow_effects_content",
+        "value": "تأثير الظل"
+      },
+      {
+        "name": "offset_min",
+        "value": "- 40"
+      },
+      {
+        "name": "offset_max",
+        "value": "٤٠"
+      },
+      {
+        "name": "x_offset",
+        "value": "س تعويض"
+      },
+      {
+        "name": "y_offset",
+        "value": "ذ تعويض"
+      },
+      {
+        "name": "shadow",
+        "value": "شادو"
+      },
+      {
+        "name": "blur",
+        "value": "طمس"
+      },
+      {
+        "name": "effects",
+        "value": "تأثير"
+      },
+      {
+        "name": "effects_display",
+        "value": "عرض"
+      },
+      {
+        "name": "grayscale_change",
+        "value": "مقياس الرمادية"
+      },
+      {
+        "name": "brightness_change",
+        "value": "سطوع"
+      },
+      {
+        "name": "saturate_change",
+        "value": "نقع"
+      },
+      {
+        "name": "constrast_change",
+        "value": "قيد"
+      },
+      {
+        "name": "invert_change",
+        "value": "تحويل"
+      },
+      {
+        "name": "sepia_change",
+        "value": "الإنتان"
+      },
+      {
+        "name": "hueRotate_change",
+        "value": "هيو روت"
+      },
+      {
+        "name": "color_blend_change",
+        "value": "خلط الألوان"
+      },
+      {
+        "name": "spherical_effect_change",
+        "value": "تأثير المجال"
+      },
+      {
+        "name": "light_up_effect_change",
+        "value": "تأثير الإضاءة"
+      },
+      {
+        "name": "pixel_stretch_effect_change",
+        "value": "تأثير بكسل تمتد"
+      },
+      {
+        "name": "z_index",
+        "value": "ض مؤشر"
+      },
+      {
+        "name": "overlay",
+        "value": "تغطية طبقة"
+      },
+      {
+        "name": "visibility",
+        "value": "وضوح"
+      },
+      {
+        "name": "opacity",
+        "value": "التعتيم"
+      },
+      {
+        "name": "z_index_display",
+        "value": "ض مؤشر"
+      },
+      {
+        "name": "Red",
+        "value": "رد : ."
+      },
+      {
+        "name": "Yellow",
+        "value": "أصفر"
+      },
+      {
+        "name": "positon_modify",
+        "value": "الوظائف"
+      },
+      {
+        "name": "offset_modify",
+        "value": "قابل"
+      },
+      {
+        "name": "visibility_change",
+        "value": "وضوح"
+      },
+      {
+        "name": "opacity_change",
+        "value": "التعتيم"
+      },
+      {
+        "name": "opacity_display",
+        "value": "التعتيم عرض"
+      },
+      {
+        "name": "item_select",
+        "value": "قائمة البند"
+      },
+      {
+        "name": "disabled",
+        "value": "المعوقون"
+      },
+      {
+        "name": "button_disabled",
+        "value": "زر تعطيل"
+      },
+      {
+        "name": "list_disabled",
+        "value": "قائمة المعوقين"
+      },
+      {
+        "name": "focus",
+        "value": "فوكوس"
+      },
+      {
+        "name": "popup_window",
+        "value": "نافذة منبثقة"
+      },
+      {
+        "name": "touch_test",
+        "value": "لمس ."
+      },
+      {
+        "name": "touch_region",
+        "value": "منطقة"
+      },
+      {
+        "name": "hovereffect",
+        "value": "تحوم"
+      },
+      {
+        "name": "bind_menu_customBuilder",
+        "value": "ربط القائمة custombuilder"
+      },
+      {
+        "name": "bind_content_menu",
+        "value": "ربط محتوى القائمة"
+      },
+      {
+        "name": "click_on_any_action_below",
+        "value": "انقر فوق أي من الإجراءات التالية"
+      },
+      {
+        "name": "long_press_any_action_below",
+        "value": "اضغط على أي من العمليات التالية لفترة طويلة"
+      },
+      {
+        "name": "bind_menu_content",
+        "value": "ربط محتوى القائمة"
+      },
+      {
+        "name": "menu",
+        "value": "قائمة"
+      },
+      {
+        "name": "multiState",
+        "value": "العديد من الدول"
+      },
+      {
+        "name": "multi_short_key",
+        "value": "مفاتيح متعددة قصيرة"
+      },
+      {
+        "name": "set_mouse_style",
+        "value": "تعيين نمط الماوس"
+      },
+      {
+        "name": "multimode_input",
+        "value": "مدخلات المتعدد"
+      },
+      {
+        "name": "short_key_pressed",
+        "value": "اضغط على مفتاح قصير"
+      },
+      {
+        "name": "on_short_key",
+        "value": "وفي الوقت نفسه ، اضغط على مفتاح الاختصار السيطرة + لتحريك الحدث عن طريق النقر على الزر التالي"
+      },
+      {
+        "name": "alert",
+        "value": "تنبيه"
+      },
+      {
+        "name": "result",
+        "value": "نتيجة"
+      },
+      {
+        "name": "popup",
+        "value": "نافذة منبثقة"
+      },
+      {
+        "name": "custom_popup",
+        "value": "العرف المنبثقة"
+      },
+      {
+        "name": "touch_test_region",
+        "value": "لمس منطقة الاختبار"
+      },
+      {
+        "name": "action_sheet_dialog",
+        "value": "طاولة العمليات في مربع الحوار"
+      },
+      {
+        "name": "action_sheet_title_autoCancel",
+        "value": "إذا كانت نافذة منبثقة تلقائيا إلغاء"
+      },
+      {
+        "name": "action_sheet_click_sheets",
+        "value": "انقر فوق خيارات المحتوى"
+      },
+      {
+        "name": "action_sheet_dialog_click_content",
+        "value": "انقر على المحتوى"
+      },
+      {
+        "name": "text_picker_dialog",
+        "value": "نص محدد في مربع الحوار"
+      },
+      {
+        "name": "text_picker_show",
+        "value": "عرض مربع الحوار النص"
+      },
+      {
+        "name": "text_picker_click_text",
+        "value": "انقر فوق النص"
+      },
+      {
+        "name": "text_picker_text_peach",
+        "value": "خوخ ."
+      },
+      {
+        "name": "text_picker_text_apple",
+        "value": "تفاحة ."
+      },
+      {
+        "name": "text_picker_text_orange",
+        "value": "برتقالي"
+      },
+      {
+        "name": "text_picker_text_grape",
+        "value": "كرمة"
+      },
+      {
+        "name": "text_picker_text_banana",
+        "value": "موز ."
+      },
+      {
+        "name": "global_menu",
+        "value": "ربط قائمة السياق"
+      },
+      {
+        "name": "global_menu_create_way",
+        "value": "طريقة الخلق"
+      },
+      {
+        "name": "global_menu_click_right",
+        "value": "انقر بزر الماوس الأيمن فوق"
+      },
+      {
+        "name": "global_menu_long_press",
+        "value": "الصحافة طويلة"
+      },
+      {
+        "name": "global_menu_close",
+        "value": "انقر فوق إغلاق القائمة"
+      },
+      {
+        "name": "component_transition",
+        "value": "عنصر التحويل"
+      },
+      {
+        "name": "component_transition_show",
+        "value": "عرض ."
+      },
+      {
+        "name": "component_transition_hide",
+        "value": "أخفى"
+      },
+      {
+        "name": "attribute_animation",
+        "value": "خاصية الرسوم المتحركة"
+      },
+      {
+        "name": "motion_path",
+        "value": "مسار الرسوم المتحركة"
+      },
+      {
+        "name": "animate_to",
+        "value": "عرض الرسوم المتحركة"
+      },
+      {
+        "name": "animate_over",
+        "value": "الانتهاء من الرسوم المتحركة"
+      },
+      {
+        "name": "attribute_animation_change_size",
+        "value": "تغيير الحجم"
+      },
+      {
+        "name": "attribute_animation_play_complete",
+        "value": "الانتهاء من اللعب"
+      },
+      {
+        "name": "attribute_animation_unlimited_playback",
+        "value": "اللعب غير محدود"
+      },
+      {
+        "name": "attribute_animation_play_speed",
+        "value": "سرعة اللعب"
+      },
+      {
+        "name": "attribute_animation_delay",
+        "value": "تأخير 3 ثوان"
+      },
+      {
+        "name": "attribute_animation_set_curve",
+        "value": "تعيين منحنى"
+      },
+      {
+        "name": "attribute_animation_change_rotation",
+        "value": "تغيير التناوب"
+      },
+      {
+        "name": "attribute_animation_play_count",
+        "value": "لعب"
+      },
+      {
+        "name": "motion_path_click_me",
+        "value": "انقر على لي"
+      },
+      {
+        "name": "general_mount",
+        "value": "تحميل وتفريغ الحدث"
+      },
+      {
+        "name": "general_mount_toast",
+        "value": "جبل الصورة"
+      },
+      {
+        "name": "general_unmount_toast",
+        "value": "إلغاء تثبيت الصورة"
+      },
+      {
+        "name": "general_mount_text",
+        "value": "انقر فوق تحميل الصور غير المحملة"
+      },
+      {
+        "name": "general_drag",
+        "value": "سحب وإسقاط الحدث"
+      },
+      {
+        "name": "general_drag_text_one",
+        "value": "هنا ثلاثة عناصر النص ، اضغط باستمرار على النص واسحبه إلى القائمة أدناه"
+      },
+      {
+        "name": "general_drag_text_two",
+        "value": "هذا هو عنصر القائمة"
+      },
+      {
+        "name": "drag_list_one",
+        "value": "1 ."
+      },
+      {
+        "name": "drag_list_two",
+        "value": "2 ."
+      },
+      {
+        "name": "drag_list_three",
+        "value": "3 ."
+      },
+      {
+        "name": "drag_list_four",
+        "value": "4 ."
+      },
+      {
+        "name": "size_size",
+        "value": "حجم ."
+      },
+      {
+        "name": "size_padding",
+        "value": "حشية"
+      },
+      {
+        "name": "size_margin",
+        "value": "حافة"
+      },
+      {
+        "name": "size_constraintSize",
+        "value": "حجم القيد"
+      },
+      {
+        "name": "response_region",
+        "value": "منطقة الاستجابة"
+      },
+      {
+        "name": "touch_hit_subtitle",
+        "value": "انقر فوق المنطقة الخضراء لتحريك المنطقة الزرقاء رد"
+      },
+      {
+        "name": "option",
+        "value": "خيارات"
+      },
+      {
+        "name": "hover_region",
+        "value": "تحوم الماوس فوق المنطقة الخضراء لمراقبة تأثير"
+      },
+      {
+        "name": "multistatus_region",
+        "value": "تبديل الدولة ومراقبة تأثير"
+      },
+      {
+        "name": "status_select",
+        "value": "اختيار الدولة"
+      },
+      {
+        "name": "scroll_bar",
+        "value": "شريط التمرير"
+      },
+      {
+        "name": "scroll_vertical_title",
+        "value": "التمرير الرأسي"
+      },
+      {
+        "name": "scroll_horizontal_title",
+        "value": "التمرير الأفقي"
+      },
+      {
+        "name": "auxiliary_refresh",
+        "value": "منعش"
+      },
+      {
+        "name": "auxiliary_refresh_offset",
+        "value": "قابل"
+      },
+      {
+        "name": "auxiliary_refresh_minvalue",
+        "value": "س"
+      },
+      {
+        "name": "auxiliary_refresh_maxvalue",
+        "value": "١٠٠"
+      },
+      {
+        "name": "auxiliary_refresh_friction",
+        "value": "احتكاك"
+      },
+      {
+        "name": "auxiliary_panel",
+        "value": "لوحة"
+      },
+      {
+        "name": "auxiliary_alphabetIndexer",
+        "value": "رسالة مفهرس"
+      },
+      {
+        "name": "loading_progress",
+        "value": "تحميل الجدول"
+      },
+      {
+        "name": "marquee_name",
+        "value": "ماركيز"
+      },
+      {
+        "name": "marquee_src",
+        "value": "مرحبا arkui سلسلة أطول من المحتوى"
+      },
+      {
+        "name": "marquee_fromstart",
+        "value": "من البداية"
+      },
+      {
+        "name": "marquee_step",
+        "value": "خطوة"
+      },
+      {
+        "name": "marquee_loop",
+        "value": "حلقة ."
+      },
+      {
+        "name": "text_timer",
+        "value": "النص الموقت"
+      },
+      {
+        "name": "text_timer_start",
+        "value": "بداية ."
+      },
+      {
+        "name": "text_timer_pause",
+        "value": "وقفة"
+      },
+      {
+        "name": "text_timer_reset",
+        "value": "إعادة"
+      },
+      {
+        "name": "text_timer_iscountdown",
+        "value": "العد التنازلي"
+      },
+      {
+        "name": "text_timer_timeformatone",
+        "value": "مم : الفولاذ المقاوم للصدأ"
+      },
+      {
+        "name": "text_timer_groupformat",
+        "value": "شكل ."
+      },
+      {
+        "name": "text_timer_timeformattwo",
+        "value": "عالية : مم : ثانية"
+      },
+      {
+        "name": "text_timer_timeformatthree",
+        "value": "DD سمو مم SS . اس اس اس"
+      },
+      {
+        "name": "text_clock",
+        "value": "كتلة النص"
+      },
+      {
+        "name": "text_clock_start",
+        "value": "بداية ."
+      },
+      {
+        "name": "text_clock_stop",
+        "value": "توقف"
+      },
+      {
+        "name": "text_clock_timeformatone",
+        "value": "عالية : مم : ثانية"
+      },
+      {
+        "name": "text_clock_groupformat",
+        "value": "شكل ."
+      },
+      {
+        "name": "text_clock_timeformattwo",
+        "value": "السنة : الشهر : النهار"
+      },
+      {
+        "name": "text_clock_timeformatthree",
+        "value": "ساعة - دقيقة - ثانية"
+      },
+      {
+        "name": "progress_name",
+        "value": "تقدم"
+      },
+      {
+        "name": "gauge_name",
+        "value": "متر ."
+      },
+      {
+        "name": "gauge_value",
+        "value": "قيمة ."
+      },
+      {
+        "name": "gauge_strokewidth",
+        "value": "السكتة الدماغية العرض"
+      },
+      {
+        "name": "gauge_startangle",
+        "value": "زاوية البداية"
+      },
+      {
+        "name": "gauge_endangle",
+        "value": "نهاية زاوية"
+      },
+      {
+        "name": "data_panel",
+        "value": "لوحة البيانات"
+      },
+      {
+        "name": "checkbox_checkboxgroup",
+        "value": "فحص مربع مجموعة"
+      },
+      {
+        "name": "checkbox_title",
+        "value": "خانة الاختيار"
+      },
+      {
+        "name": "checkbox_checkbox1",
+        "value": "خانة الاختيار 1"
+      },
+      {
+        "name": "checkbox_checkbox2",
+        "value": "خانة الاختيار 2"
+      },
+      {
+        "name": "checkbox_checkbox3",
+        "value": "خانة الاختيار 3"
+      },
+      {
+        "name": "checkbox_checkgroup",
+        "value": "مجموعة مربع"
+      },
+      {
+        "name": "checkbox_checkgroup_title",
+        "value": "مجموعة مربع"
+      },
+      {
+        "name": "text_picker",
+        "value": "نص محدد"
+      },
+      {
+        "name": "time_picker",
+        "value": "الوقت محدد"
+      },
+      {
+        "name": "counter_name",
+        "value": "مكافحة"
+      },
+      {
+        "name": "rating_name",
+        "value": "تصنيفات"
+      },
+      {
+        "name": "rating_options_indicator",
+        "value": "المؤشر"
+      },
+      {
+        "name": "rating_options_value",
+        "value": "قيمة ."
+      },
+      {
+        "name": "rating_options_stars",
+        "value": "نجوم ."
+      },
+      {
+        "name": "rich_text",
+        "value": "النص التشعبي"
+      },
+      {
+        "name": "scroll_swiper",
+        "value": "المتداول والانزلاق"
+      },
+      {
+        "name": "scroll_name",
+        "value": "ورقة لفة"
+      },
+      {
+        "name": "swiper_name",
+        "value": "بطاقة ممغنطة"
+      },
+      {
+        "name": "alphabetindexer_an",
+        "value": "واحد"
+      },
+      {
+        "name": "alphabetindexer_bu",
+        "value": "يوم تقسيم"
+      },
+      {
+        "name": "alphabetindexer_bai",
+        "value": "ابيض"
+      },
+      {
+        "name": "alphabetindexer_bao",
+        "value": "بالة"
+      },
+      {
+        "name": "alphabetindexer_bi",
+        "value": "بی"
+      },
+      {
+        "name": "alphabetindexer_bing",
+        "value": "بنج"
+      },
+      {
+        "name": "alphabetindexer_cao",
+        "value": "شاو"
+      },
+      {
+        "name": "alphabetindexer_chen",
+        "value": "تشان ›"
+      },
+      {
+        "name": "alphabetindexer_lv",
+        "value": "لو ."
+      },
+      {
+        "name": "alphabetindexer_liu3",
+        "value": "ليو"
+      },
+      {
+        "name": "alphabetindexer_liu",
+        "value": "خط وحدة واجهة"
+      },
+      {
+        "name": "alphabetindexer_li",
+        "value": "الليثيوم"
+      },
+      {
+        "name": "alphabetindexer_lou",
+        "value": "لو ."
+      },
+      {
+        "name": "alphabetindexer_liang",
+        "value": "شعاع"
+      },
+      {
+        "name": "alphabetindexer_lei",
+        "value": "رعد ."
+      },
+      {
+        "name": "alphabetindexer_lu",
+        "value": "أرض ."
+      },
+      {
+        "name": "alphabetindexer_cui",
+        "value": "تشوي"
+      },
+      {
+        "name": "alphabetindexer_cheng",
+        "value": "تشنغ"
+      },
+      {
+        "name": "alphabetindexer_list_display",
+        "value": "عرض قائمة"
+      },
+      {
+        "name": "alphabetindexer_color_select",
+        "value": "اختيار اللون"
+      },
+      {
+        "name": "alphabetindexer_selectedcolor_selectedcolor",
+        "value": "اختيار اللون"
+      },
+      {
+        "name": "alphabetindexer_selectedcolor_selectedbgcolor",
+        "value": "اختيار لون الخلفية"
+      },
+      {
+        "name": "alphabetindexer_selectedcolor_popupcolor",
+        "value": "لون النوافذ المنبثقة"
+      },
+      {
+        "name": "alphabetindexer_selectedcolor_popupbackground",
+        "value": "الخلفية المنبثقة"
+      },
+      {
+        "name": "alphabetindexer_selectedcolor_usingpopup",
+        "value": "استخدام النوافذ المنبثقة"
+      },
+      {
+        "name": "panel_show_minibar",
+        "value": "عرض شريط ميني نوع الفريق"
+      },
+      {
+        "name": "panel_close_minibar",
+        "value": "إغلاق شريط ميني نوع الفريق"
+      },
+      {
+        "name": "panel_show_foldable",
+        "value": "عرض نوع قابلة للطي لوحة"
+      },
+      {
+        "name": "panel_close_foldable",
+        "value": "إغلاق لوحة قابلة للطي"
+      },
+      {
+        "name": "panel_show_temporary",
+        "value": "عرض لوحة نوع مؤقت"
+      },
+      {
+        "name": "panel_close_temporary",
+        "value": "إغلاق لوحة نوع مؤقت"
+      },
+      {
+        "name": "panel_radio_groupname",
+        "value": "فاكهة"
+      },
+      {
+        "name": "checkbox_apple",
+        "value": "تفاحة ."
+      },
+      {
+        "name": "checkbox_blueberry",
+        "value": "عنبية"
+      },
+      {
+        "name": "checkbox_banbana",
+        "value": "موز ."
+      },
+      {
+        "name": "checkbox_cherries",
+        "value": "كرز ."
+      },
+      {
+        "name": "checkbox_durian",
+        "value": "دوريان"
+      },
+      {
+        "name": "checkbox_orange",
+        "value": "برتقالي"
+      },
+      {
+        "name": "checkbox_select_color",
+        "value": "اختيار اللون"
+      },
+      {
+        "name": "checkbox_select_all",
+        "value": "اختيار كامل"
+      },
+      {
+        "name": "normal_display",
+        "value": "عرض"
+      },
+      {
+        "name": "normal_options",
+        "value": "خيارات"
+      },
+      {
+        "name": "datapanel_circle",
+        "value": "دائرة"
+      },
+      {
+        "name": "datapanel_line",
+        "value": "خط"
+      },
+      {
+        "name": "progress_linear",
+        "value": "التقدم الخطي"
+      },
+      {
+        "name": "progress_eclipse",
+        "value": "الكسوف التقدم"
+      },
+      {
+        "name": "progress_scalering",
+        "value": "مقياس التقدم"
+      },
+      {
+        "name": "progress_ring",
+        "value": "حلقة التقدم"
+      },
+      {
+        "name": "progress_capsule",
+        "value": "كبسولة التقدم"
+      },
+      {
+        "name": "progress_change",
+        "value": "تغيير الجدول الزمني"
+      },
+      {
+        "name": "textclock_timeformat",
+        "value": "شكل الوقت"
+      },
+      {
+        "name": "scroll_horizontal",
+        "value": "التمرير الأفقي"
+      },
+      {
+        "name": "scroll_vertical",
+        "value": "التمرير الرأسي"
+      },
+      {
+        "name": "interaction_disable_list",
+        "value": "قائمة الجرحى"
+      },
+      {
+        "name": "interaction_show_one_alert",
+        "value": "انقر على عرض تذكير"
+      },
+      {
+        "name": "interaction_show_two_alert",
+        "value": "انقر على زر عرض التنبيه المزدوج"
+      },
+      {
+        "name": "interaction_placementontop",
+        "value": "وضع سقف :"
+      },
+      {
+        "name": "interaction_arrowoffset",
+        "value": "تغيير إزاحة السهم :"
+      },
+      {
+        "name": "interaction_showpopup",
+        "value": "عرض النوافذ المنبثقة"
+      },
+      {
+        "name": "interaction_showcustompopup",
+        "value": "عرض مخصص المنبثقة"
+      },
+      {
+        "name": "pan_start",
+        "value": "نقطة الانطلاق"
+      },
+      {
+        "name": "pan_end",
+        "value": "نهاية ."
+      },
+      {
+        "name": "pan_button",
+        "value": "تعديل pangesture الزناد"
+      },
+      {
+        "name": "pinch_description",
+        "value": "اضغط على الإطار الأسود مع ثلاثة أصابع"
+      },
+      {
+        "name": "pinch_scale",
+        "value": "نسبة العجن لفتة :"
+      },
+      {
+        "name": "interaction_mask",
+        "value": "إسمك"
+      },
+      {
+        "name": "rotation_description",
+        "value": "تدوير الصندوق الأسود مع اثنين من أصابع"
+      },
+      {
+        "name": "swipe_description",
+        "value": "الشريحة بسرعة الصندوق الأسود في أي اتجاه مع إصبع واحد"
+      },
+      {
+        "name": "combinded_description",
+        "value": "اضغط واسحب مربع أسود"
+      },
+      {
+        "name": "transform_translate_invert",
+        "value": "التكبير مرتين و عكس ( التكبير مرتين )"
+      },
+      {
+        "name": "key_press_description",
+        "value": "اضغط على لوحة المفاتيح الخارجية التبويب ، ثم اضغط على أي مفتاح"
+      },
+      {
+        "name": "april",
+        "value": "ابريل"
+      },
+      {
+        "name": "bind_click",
+        "value": "انقر على لي"
+      },
+      {
+        "name": "interaction_disable",
+        "value": "تعطيل المكونات :"
+      },
+      {
+        "name": "canvas_components",
+        "value": "قماش الجمعية"
+      },
+      {
+        "name": "canvas_component_attributes",
+        "value": "السمة الأساسية"
+      },
+      {
+        "name": "canvas_component_image_bitmap",
+        "value": "صورة نقطية"
+      },
+      {
+        "name": "canvas_component_gradient",
+        "value": "كسر التدرج"
+      },
+      {
+        "name": "canvas_component_method",
+        "value": "الطريقة الأساسية"
+      },
+      {
+        "name": "canvas_component_path_2d",
+        "value": "باث"
+      },
+      {
+        "name": "canvas_component_shadow",
+        "value": "شادو"
+      },
+      {
+        "name": "canvas_component_transform",
+        "value": "تحويل"
+      },
+      {
+        "name": "canvas_canvasZone",
+        "value": "قماش المنطقة"
+      },
+      {
+        "name": "canvas_attributesOperations",
+        "value": "خاصية التشغيل"
+      },
+      {
+        "name": "canvas_clearEffects",
+        "value": "تأثير واضح"
+      },
+      {
+        "name": "canvas_show_message",
+        "value": "طباعة وحدة التحكم"
+      },
+      {
+        "name": "scroll_To_effect",
+        "value": "انتقل إلى تأثير"
+      },
+      {
+        "name": "scroller",
+        "value": "لف الجهاز"
+      },
+      {
+        "name": "list",
+        "value": "قائمة"
+      },
+      {
+        "name": "grid",
+        "value": "شبكة ."
+      },
+      {
+        "name": "waterFlow",
+        "value": "تدفق المياه"
+      },
+      {
+        "name": "tabs_switch_effect",
+        "value": "تسمية التبديل تأثير"
+      },
+      {
+        "name": "image_fit_Full_effect",
+        "value": "صورة مطابقة / تأثير كامل"
+      },
+      {
+        "name": "particle_effect",
+        "value": "تأثير الجسيمات"
+      },
+      {
+        "name": "particle_spawn",
+        "value": "وضع البيض"
+      },
+      {
+        "name": "particle_spawn_stop",
+        "value": "توقف"
+      },
+      {
+        "name": "global_bindSheet_menu",
+        "value": "قائمة أوراق فضفاضة"
+      },
+      {
+        "name": "global_bindSheet_text_allow_interaction",
+        "value": "تسمح صفحة التفاعل"
+      },
+      {
+        "name": "global_bindSheet_text_desc",
+        "value": "تسمح صفحة وصف التفاعل"
+      },
+      {
+        "name": "bindSheet_popup_style",
+        "value": "نمط البوب"
+      },
+      {
+        "name": "bindSheet_default_popup",
+        "value": "نافذة منبثقة"
+      },
+      {
+        "name": "bindSheet_centered_popup",
+        "value": "تركز نافذة منبثقة"
+      },
+      {
+        "name": "bindSheet_popup_appears",
+        "value": "تظهر نافذة منبثقة"
+      },
+      {
+        "name": "bindSheet_icon",
+        "value": "آيدول"
+      },
+      {
+        "name": "bindSheet_blurred_background_texture",
+        "value": "غامض نسيج الخلفية"
+      },
+      {
+        "name": "bindSheet_popup_modal_interface",
+        "value": "طريقة إخراج واجهة"
+      },
+      {
+        "name": "pop_height",
+        "value": "بوب هايت"
+      },
+      {
+        "name": "bindSheet_close_modal",
+        "value": "وضع قبالة"
+      },
+      {
+        "name": "bindSheet_close_confirm",
+        "value": "أكّد"
+      },
+      {
+        "name": "bindSheet_close_cancel",
+        "value": "ألغى"
+      },
+      {
+        "name": "global_popUp_menu",
+        "value": "نافذة منبثقة"
+      },
+      {
+        "name": "popUp_width",
+        "value": "عرض"
+      },
+      {
+        "name": "placement",
+        "value": "إعادة التوطين"
+      },
+      {
+        "name": "popUp_advanced_component",
+        "value": "بوبوب مكونات متقدمة"
+      },
+      {
+        "name": "global_menu_avoid_rule",
+        "value": "قائمة تجنب القاعدة"
+      },
+      {
+        "name": "global_menu_layout",
+        "value": "تصميم القائمة"
+      },
+      {
+        "name": "global_menu_width",
+        "value": "عرض القائمة"
+      },
+      {
+        "name": "menu_option",
+        "value": "قائمة الخيارات"
+      },
+      {
+        "name": "vertical_layout",
+        "value": "تخطيط عمودي"
+      },
+      {
+        "name": "horizontal_layout",
+        "value": "تخطيط أفقي"
+      },
+      {
+        "name": "menu_width",
+        "value": "عرض"
+      },
+      {
+        "name": "textclock_style",
+        "value": "أسلوب ."
+      },
+      {
+        "name": "text_clock_textShadow",
+        "value": "نص الظل"
+      },
+      {
+        "name": "text_clock_fontSetting",
+        "value": "إعدادات الخط"
+      },
+      {
+        "name": "text_clock_select_button",
+        "value": "اختيار زر"
+      },
+      {
+        "name": "text_clock_monospaced_numbers",
+        "value": "رقم واحد"
+      },
+      {
+        "name": "text_clock_monovolume_numbers",
+        "value": "حجم واحد عدد"
+      },
+      {
+        "name": "text_input_text_selection_menu",
+        "value": "قائمة اختيار النص"
+      },
+      {
+        "name": "text_custom_menu",
+        "value": "نص مخصص القائمة"
+      },
+      {
+        "name": "text_input_text_copy",
+        "value": "نسخ"
+      },
+      {
+        "name": "text_input_text_copy_success",
+        "value": "نسخة ناجحة"
+      },
+      {
+        "name": "text_input_text_paste",
+        "value": "لصق"
+      },
+      {
+        "name": "text_input_text_paste_success",
+        "value": "لصق بنجاح"
+      },
+      {
+        "name": "text_input_text_get",
+        "value": "الحصول على"
+      },
+      {
+        "name": "text_input_text_delete",
+        "value": "حذف النص"
+      },
+      {
+        "name": "text_input_line_break_strategy",
+        "value": "كسر استراتيجية"
+      },
+      {
+        "name": "text_input_line_break_strategy_content",
+        "value": "أنها يمكن أن تكون مقسمة إلى المدمج في المكونات -- المكونات التي يتم توفيرها مباشرة من قبل arkui الإطار ، مكونات مخصصة -- التي يحددها المطور . المدمج في المكونات تشمل أزرار ، أزرار الراديو ، ومؤشرات التقدم ، والنصوص . يمكنك تعيين عرض هذه المكونات في طريقة ربط الوضع ، مكونات الصفحة مقسمة إلى وحدات واجهة المستخدم منفصلة لإنشاء وتطوير وإعادة استخدام وحدات مختلفة على الصفحة ، مما يجعل الصفحة أكثر هندسة المنحى ."
+      },
+      {
+        "name": "text_input_word_break",
+        "value": "قطع"
+      },
+      {
+        "name": "text_input_word_break_content",
+        "value": "هذه هي ميزة وضع WordBreak إلى نص WordBreak Taumatawakathangakoauotamateature ، وهذا هو ، عندما كنت لا تعرف ، سوف تجد أنك لا تعرف ."
+      },
+      {
+        "name": "textarea_character_limit",
+        "value": "الحد من حرف"
+      },
+      {
+        "name": "grid_item_polymorphic_styles",
+        "value": "نمط متعدد الأشكال"
+      },
+      {
+        "name": "previous",
+        "value": "سابق"
+      },
+      {
+        "name": "next_step",
+        "value": "الخطوة التالية"
+      },
+      {
+        "name": "text_styled_string_title",
+        "value": "سلسلة نمط النص"
+      },
+      {
+        "name": "text_mutable_styled_string",
+        "value": "نمط سلسلة"
+      },
+      {
+        "name": "text_mutable_styled_string_start",
+        "value": "نقطة الانطلاق"
+      },
+      {
+        "name": "text_mutable_styled_string_length",
+        "value": "طول ."
+      },
+      {
+        "name": "text_mutable_styled_error",
+        "value": "من فضلك أدخل"
+      },
+      {
+        "name": "text_styled_string_gesture_style",
+        "value": "لفتة نمط"
+      },
+      {
+        "name": "rows_and_columns",
+        "value": "الصفوف والأعمدة"
+      },
+      {
+        "name": "stack_flex_and_grid",
+        "value": "كومة ، والانحناء ، تنسجم"
+      },
+      {
+        "name": "list_and_grid",
+        "value": "قائمة الشبكة"
+      },
+      {
+        "name": "navigation",
+        "value": "ملاحة"
+      },
+      {
+        "name": "canvas_and_graphic_drawing",
+        "value": "قماش والرسومات"
+      },
+      {
+        "name": "size_transition_flex",
+        "value": "بنت ."
+      },
+      {
+        "name": "size_transition_grid_item",
+        "value": "شبكة البند"
+      },
+      {
+        "name": "size_transition_list_item",
+        "value": "قائمة البنود"
+      },
+      {
+        "name": "size_transition_swiper_item",
+        "value": "مشروع بطاقة ممغنطة"
+      },
+      {
+        "name": "size_transition_font_size",
+        "value": "حجم الخط"
+      },
+      {
+        "name": "size_transition_expansion_tabContent",
+        "value": "علامة التبويب المحتوى"
+      },
+      {
+        "name": "set_background_blur_style_color_mode",
+        "value": "تعيين نمط لون الخلفية الضبابية"
+      },
+      {
+        "name": "set_background_blur_style_adaptive_color",
+        "value": "تعيين لون الخلفية الضبابي المتكيف"
+      },
+      {
+        "name": "blur_style_system",
+        "value": "نظم"
+      },
+      {
+        "name": "blur_style_light",
+        "value": "الإضاءة"
+      },
+      {
+        "name": "blur_style_dark",
+        "value": "ظلام ."
+      },
+      {
+        "name": "blur_style_default",
+        "value": "خرق"
+      },
+      {
+        "name": "shadow_type_color",
+        "value": "الألوان"
+      },
+      {
+        "name": "shadow_type_blur",
+        "value": "طمس"
+      },
+      {
+        "name": "blur_style_average",
+        "value": "متوسط القيمة"
+      },
+      {
+        "name": "divider_color_blue",
+        "value": "بلو"
+      },
+      {
+        "name": "divider_color_green",
+        "value": "غرين"
+      },
+      {
+        "name": "divider_color_orange",
+        "value": "برتقالي"
+      },
+      {
+        "name": "divider_color_pink",
+        "value": "وردي"
+      },
+      {
+        "name": "divider_line_type_butt",
+        "value": "السيجارة"
+      },
+      {
+        "name": "divider_line_type_round",
+        "value": "دائرة"
+      },
+      {
+        "name": "divider_line_type_square",
+        "value": "ساحة"
+      },
+      {
+        "name": "safe_area_type_and_safe_area_edge",
+        "value": "safeareatype و safeareedge"
+      },
+      {
+        "name": "save_area_input_text",
+        "value": "أدخل كلمة . . ."
+      },
+      {
+        "name": "safe_area_type",
+        "value": "نوع المنطقة الأمنية"
+      },
+      {
+        "name": "safe_area_edge",
+        "value": "سافاريادج"
+      },
+      {
+        "name": "safe_area_edge_top",
+        "value": "توب ."
+      },
+      {
+        "name": "safe_area_edge_bottom",
+        "value": "القاع"
+      },
+      {
+        "name": "safe_area_edge_start",
+        "value": "بداية ."
+      },
+      {
+        "name": "safe_area_edge_end",
+        "value": "نهاية ."
+      },
+      {
+        "name": "safe_area_type_system",
+        "value": "نظم"
+      },
+      {
+        "name": "safe_area_type_cutout",
+        "value": "شق"
+      },
+      {
+        "name": "safe_area_type_keyboard",
+        "value": "لوحة المفاتيح ."
+      },
+      {
+        "name": "System_icon",
+        "value": "رمز النظام"
+      },
+      {
+        "name": "text_content_en",
+        "value": "خفف من الصلب في النار والتبريد السريع ، بحيث يمكن أن يكون من الصعب جدا ، لا تخافوا من أي شيء . وبهذه الطريقة فقط ، فإن جيلنا قد شحذ في النضال و التجارب الرهيبة و تعلمت عدم الاستسلام للحياة ."
+      },
+      {
+        "name": "text_content_en_first",
+        "value": "خفف من الصلب في النار والتبريد السريع ، بحيث يمكن أن يكون من الصعب جدا ، لا تخافوا من أي شيء ."
+      },
+      {
+        "name": "text_content_en_last",
+        "value": "وبهذه الطريقة فقط ، فإن جيلنا قد شحذ في النضال و التجارب الرهيبة و تعلمت عدم الاستسلام للحياة ."
+      },
+      {
+        "name": "touch_hit_test",
+        "value": "انقر فوق منطقة ساخنة : تعيين منطقة ساخنة في المنطقة الخضراء"
+      },
+      {
+        "name": "side_bar_effects_title",
+        "value": "تأثير الشريط الجانبي"
+      },
+      {
+        "name": "set_side_bar_type",
+        "value": "تعيين نوع الشريط الجانبي"
+      },
+      {
+        "name": "side_bar_container_content",
+        "value": "sidebar محتويات الحاوية"
+      },
+      {
+        "name": "hide_side_bar",
+        "value": "إخفاء الشريط الجانبي"
+      },
+      {
+        "name": "show_side_bar",
+        "value": "عرض شريط جانبي"
+      },
+      {
+        "name": "side_bar_type_embed",
+        "value": "جزءا لا يتجزأ من"
+      },
+      {
+        "name": "side_bar_type_overlay",
+        "value": "تغطية طبقة"
+      },
+      {
+        "name": "side_bar_type_auto",
+        "value": "السيارات"
+      },
+      {
+        "name": "auxiliary_refresh_refreshing",
+        "value": "منعش"
+      },
+      {
+        "name": "rich_editor",
+        "value": "ريش ديتور"
+      },
+      {
+        "name": "rich_editor_style",
+        "value": "أسلوب ."
+      },
+      {
+        "name": "rich_editor_title",
+        "value": "ريش ديتور"
+      },
+      {
+        "name": "nav_router",
+        "value": "توجيه الملاحة"
+      },
+      {
+        "name": "tabs_name",
+        "value": "تبويب"
+      },
+      {
+        "name": "select_name",
+        "value": "مختار"
+      },
+      {
+        "name": "slider_name",
+        "value": "المنزلق"
+      },
+      {
+        "name": "delete_list_item",
+        "value": "حذف قائمة البند"
+      },
+      {
+        "name": "size_size_description_one",
+        "value": "العرض والارتفاع"
+      },
+      {
+        "name": "size_size_description_two",
+        "value": "العرض والارتفاع 100%"
+      },
+      {
+        "name": "size_size_padding_one",
+        "value": "أعلى ، أسفل ، اليسار واليمين الهوامش الداخلية 10vp"
+      },
+      {
+        "name": "size_size_padding_two",
+        "value": "الهامش الداخلي 20%"
+      },
+      {
+        "name": "size_size_margin_one",
+        "value": "أعلى ، أسفل ، يسار ، يمين"
+      },
+      {
+        "name": "size_size_margin_two",
+        "value": "المسافة الخارجية العليا 20%"
+      },
+      {
+        "name": "size_size_constraintSize_one",
+        "value": "الحد الأقصى للعرض والارتفاع 90vp"
+      },
+      {
+        "name": "size_size_constraintSize_two",
+        "value": "الحد الأدنى من العرض والارتفاع 80vp"
+      },
+      {
+        "name": "keyPress_event",
+        "value": "اضغط على الحدث"
+      },
+      {
+        "name": "focus_event_description",
+        "value": "اضغط على علامة التبويب لوحة المفاتيح الخارجية للحصول على التركيز ، ثم اضغط على مفتاح التبديل"
+      },
+      {
+        "name": "focus_event_button_one",
+        "value": "الزر الأول"
+      },
+      {
+        "name": "focus_event_button_two",
+        "value": "الزر الثاني"
+      },
+      {
+        "name": "focus_event_button_three",
+        "value": "الزر الثالث"
+      },
+      {
+        "name": "focus_event_toast_text",
+        "value": "الزناد التركيز"
+      },
+      {
+        "name": "press_event_toast_text",
+        "value": "زر الزناد الحدث"
+      },
+      {
+        "name": "press_event_toast_description",
+        "value": "اضغط على أي مفتاح على لوحة المفاتيح الخارجية"
+      },
+      {
+        "name": "mouse_event_move_description",
+        "value": "استخدام الماوس الخارجي للانتقال إلى زر"
+      },
+      {
+        "name": "mouse_event_click_description",
+        "value": "استخدام الفأرة الخارجية للنقر على زر"
+      },
+      {
+        "name": "mouse_event_hover_description",
+        "value": "ماوس"
+      },
+      {
+        "name": "mouse_event_onHover_description",
+        "value": "الماوس لا تتحرك"
+      },
+      {
+        "name": "mouse_event_onMouse_text",
+        "value": "على الماوس"
+      },
+      {
+        "name": "mouse_event_mouseBtn_none",
+        "value": "هل أنت بخير ؟ - لا -"
+      },
+      {
+        "name": "mouse_event_mouseBtn_left",
+        "value": "يسار ."
+      },
+      {
+        "name": "mouse_event_mouseBtn_right",
+        "value": "صحيح ."
+      },
+      {
+        "name": "mouse_event_mouseBtn_back",
+        "value": "العودة"
+      },
+      {
+        "name": "mouse_event_mouseBtn_forward",
+        "value": "فورورد"
+      },
+      {
+        "name": "mouse_event_mouseBtn_middle",
+        "value": "متوسط"
+      },
+      {
+        "name": "mouse_event_mouseAction_hover",
+        "value": "تحوم"
+      },
+      {
+        "name": "mouse_event_mouseAction_press",
+        "value": "ميديا ."
+      },
+      {
+        "name": "mouse_event_mouseAction_move",
+        "value": "تحرك ."
+      },
+      {
+        "name": "mouse_event_mouseAction_release",
+        "value": "أطلق"
+      },
+      {
+        "name": "scroll_event",
+        "value": "عنصر المنطقة المرئية تغيير الحدث"
+      },
+      {
+        "name": "scroll_event_description",
+        "value": "قائمة الشرائح يجعل الصورة تختفي و تظهر"
+      },
+      {
+        "name": "scroll_event_toast_visible",
+        "value": "صور حب واضحة للعيان"
+      },
+      {
+        "name": "scroll_event_toast_invisible",
+        "value": "صورة الحب اختفى تماما"
+      },
+      {
+        "name": "location_settings",
+        "value": "وضع"
+      },
+      {
+        "name": "location_settings_align",
+        "value": "طريقة محاذاة"
+      },
+      {
+        "name": "location_settings_direction",
+        "value": "تخطيط أفقي"
+      },
+      {
+        "name": "location_settings_position",
+        "value": "المواقع المطلقة"
+      },
+      {
+        "name": "location_settings_markAnchor",
+        "value": "مجموعة مرساة"
+      },
+      {
+        "name": "location_settings_offset",
+        "value": "بالنسبة لتحديد المواقع"
+      },
+      {
+        "name": "location_settings_alignRules",
+        "value": "محاذاة القاعدة"
+      },
+      {
+        "name": "location_settings_bottom_end",
+        "value": "نهاية القاع"
+      },
+      {
+        "name": "location_settings_top_start",
+        "value": "أعلى بداية"
+      },
+      {
+        "name": "location_settings_center",
+        "value": "مركز"
+      },
+      {
+        "name": "location_settings_position_text",
+        "value": "الموقع ( 30 ، 10 )"
+      },
+      {
+        "name": "location_settings_position_offSet_text",
+        "value": "Original : ENGLISH"
+      },
+      {
+        "name": "layout_constrain",
+        "value": "تخطيط القيد"
+      },
+      {
+        "name": "layout_constrain_aspectRatio",
+        "value": "عنصر نسبة الارتفاع"
+      },
+      {
+        "name": "layout_constrain_displayPriority",
+        "value": "عنصر الأولوية"
+      },
+      {
+        "name": "layout_constrain_big_container",
+        "value": "حاوية كبيرة"
+      },
+      {
+        "name": "layout_constrain_middle_container",
+        "value": "حاوية متوسطة الحجم"
+      },
+      {
+        "name": "layout_constrain_small_container",
+        "value": "حاوية صغيرة"
+      },
+      {
+        "name": "layout_constrain_children_one",
+        "value": "1 : ( أولوية : 2 )"
+      },
+      {
+        "name": "layout_constrain_children_two",
+        "value": "2 : ( الأولوية : 1 )"
+      },
+      {
+        "name": "layout_constrain_children_three",
+        "value": "3 : ( الأولوية : 3 )"
+      },
+      {
+        "name": "layout_constrain_children_four",
+        "value": "4 : ( الأولوية : 1 )"
+      },
+      {
+        "name": "layout_constrain_children_five",
+        "value": "5 - ( الأولوية : 2 )"
+      },
+      {
+        "name": "layout_constrain_one",
+        "value": "1 ."
+      },
+      {
+        "name": "layout_constrain_two",
+        "value": "2 ."
+      },
+      {
+        "name": "flex",
+        "value": "بنت ."
+      },
+      {
+        "name": "flex_flexBasis",
+        "value": "فليكسباسيس"
+      },
+      {
+        "name": "flex_flexGrow",
+        "value": "فلکسجرو"
+      },
+      {
+        "name": "flex_flexShrink",
+        "value": "فليكس شرينك"
+      },
+      {
+        "name": "flex_alignSelf",
+        "value": "اليغن سلف"
+      },
+      {
+        "name": "flex_layoutWeight",
+        "value": "تخطيط الوزن"
+      },
+      {
+        "name": "flex_no_layoutWeight",
+        "value": "عن تخطيط الوزن"
+      },
+      {
+        "name": "flex_no_alignSelf_70",
+        "value": "محاذاة النفس ، الارتفاع : 70%"
+      },
+      {
+        "name": "flex_end_alignSelf",
+        "value": "محاذاة نهاية النفس"
+      },
+      {
+        "name": "flex_end_alignSelf_100",
+        "value": "محاذاة نهاية النفس"
+      },
+      {
+        "name": "flex_shrink_0",
+        "value": "فليكس انكماش"
+      },
+      {
+        "name": "flex_shrink_default",
+        "value": "فليكس شرينك"
+      },
+      {
+        "name": "flex_shrink_1",
+        "value": "فليكس شرينك"
+      },
+      {
+        "name": "flex_grow_1",
+        "value": "FlexGrow ( 1 )"
+      },
+      {
+        "name": "flex_grow_2",
+        "value": "FlexGrow ( 2 )"
+      },
+      {
+        "name": "flex_no_alignSelf_100",
+        "value": "محاذاة الذاتي ، الطول : 100%"
+      },
+      {
+        "name": "flex_basis_100",
+        "value": "FlexBasis ( 100 )"
+      },
+      {
+        "name": "flex_basis_auto",
+        "value": "FlexBasis ( تلقائي )"
+      },
+      {
+        "name": "picture_border",
+        "value": "حدود الصورة"
+      },
+      {
+        "name": "scale",
+        "value": "مقياس"
+      },
+      {
+        "name": "transform",
+        "value": "تحويل"
+      },
+      {
+        "name": "scale_image",
+        "value": "تكبير الصورة"
+      },
+      {
+        "name": "transform_image",
+        "value": "تحويل الصورة"
+      },
+      {
+        "name": "transform_init",
+        "value": "إنشاء مصفوفة من المرتبة الرابعة"
+      },
+      {
+        "name": "transform_copy",
+        "value": "مصفوفة النسخ المتماثل"
+      },
+      {
+        "name": "transform_combine",
+        "value": "تأثير مصفوفة تراكب"
+      },
+      {
+        "name": "transform_invert",
+        "value": "عكس تأثير المصفوفة"
+      },
+      {
+        "name": "transform_translate",
+        "value": "مصفوفة تأثير الترجمة"
+      },
+      {
+        "name": "transform_scale",
+        "value": "تأثير حجم المصفوفة"
+      },
+      {
+        "name": "transform_rotate",
+        "value": "تأثير مصفوفة التناوب"
+      },
+      {
+        "name": "transform_transformPoint",
+        "value": "تأثير مصفوفة تحويل الإحداثيات"
+      },
+      {
+        "name": "transform_combine_text",
+        "value": "ترجمة × 20 و التكبير مرتين"
+      },
+      {
+        "name": "transform_translate_text",
+        "value": "س : 40 ، ص : 40 ، ض : 20"
+      },
+      {
+        "name": "transform_scale_text",
+        "value": "العرض والارتفاع بمقدار مرتين"
+      },
+      {
+        "name": "transform_rotate_text",
+        "value": "دوران 30 درجة"
+      },
+      {
+        "name": "transform_transformPoint_before",
+        "value": "الإحداثيات بعد تحويل المصفوفة : [ 50 , 50 ]"
+      },
+      {
+        "name": "transform_transformPoint_after",
+        "value": "الإحداثيات بعد تحويل المصفوفة : [ 100 , 0 ]"
+      },
+      {
+        "name": "shape_crop",
+        "value": "شكل الخياطة"
+      },
+      {
+        "name": "shape_crop_clip",
+        "value": "قطع"
+      },
+      {
+        "name": "shape_crop_mask",
+        "value": "غطى"
+      },
+      {
+        "name": "grid_settings",
+        "value": "إعدادات الشبكة"
+      },
+      {
+        "name": "grid_settings_sm",
+        "value": "جهاز عرض خ"
+      },
+      {
+        "name": "grid_settings_md",
+        "value": "عرض الجهاز MD"
+      },
+      {
+        "name": "grid_settings_lg",
+        "value": "عرض الجهاز إل جي"
+      },
+      {
+        "name": "grid_settings_useSize",
+        "value": "استخدام نوع الحجم"
+      },
+      {
+        "name": "grid_settings_gridSpan",
+        "value": "gridspan شبكة تعويض"
+      },
+      {
+        "name": "grid_edgeEffect_spring",
+        "value": "شبكة حافة تأثير الربيع"
+      },
+      {
+        "name": "focus_control",
+        "value": "التركيز على السيطرة"
+      },
+      {
+        "name": "focus_control_tab",
+        "value": "التركيز على السيطرة على التبويب"
+      },
+      {
+        "name": "focus_control_lastPageId",
+        "value": "معرف الصفحة الأخيرة"
+      },
+      {
+        "name": "focus_control_success",
+        "value": "التركيز على السيطرة على النجاح"
+      },
+      {
+        "name": "focus_control_failed",
+        "value": "التركيز على السيطرة على الفشل"
+      },
+      {
+        "name": "focus_control_group1",
+        "value": "المجموعة الأولى"
+      },
+      {
+        "name": "focus_control_group2",
+        "value": "المجموعة الثانية"
+      },
+      {
+        "name": "focus_control_group3",
+        "value": "المجموعة الثالثة"
+      },
+      {
+        "name": "focus_control_input",
+        "value": "المدخلات"
+      },
+      {
+        "name": "focus_control_request_focus",
+        "value": "التركيز على السيطرة على الطلب"
+      },
+      {
+        "name": "component_id",
+        "value": "عنصر الهوية"
+      },
+      {
+        "name": "component_id_onKeyTab",
+        "value": "اونكي تاب"
+      },
+      {
+        "name": "component_id_click",
+        "value": "انقر فوق ابدأ"
+      },
+      {
+        "name": "component_id_longClick",
+        "value": "نقرات طويلة"
+      },
+      {
+        "name": "component_id_onTouch",
+        "value": "اونتوش"
+      },
+      {
+        "name": "component_id_onMouse",
+        "value": "اونموس"
+      },
+      {
+        "name": "component_id_click_text",
+        "value": "انقر على زر ابدأ"
+      },
+      {
+        "name": "component_id_longClick_text",
+        "value": "تم النقر على زر \" LongClick \" لفترة طويلة"
+      },
+      {
+        "name": "component_id_onTouch_text",
+        "value": "انقر على زر \" ontouch \""
+      },
+      {
+        "name": "component_id_onMouse_text",
+        "value": "\" onmouse \" زر في onmouse"
+      },
+      {
+        "name": "component_blurred",
+        "value": "عنصر غامض"
+      },
+      {
+        "name": "component_blurred_thin",
+        "value": "عنصر غامض رقيقة"
+      },
+      {
+        "name": "restore_id",
+        "value": "استعادة الهوية"
+      },
+      {
+        "name": "gesture_process",
+        "value": "لفتة العملية"
+      },
+      {
+        "name": "bind_gesture_methods",
+        "value": "ملزمة لفتة طريقة"
+      },
+      {
+        "name": "bind_gesture_priorityGesture",
+        "value": "prioritygeture يتجاهل النص أولوية تحديد الوالد مكون العمود"
+      },
+      {
+        "name": "bind_gesture_parallelGesture",
+        "value": "parallelgesture يحدد الوالد الطفل عنصر العمود ، النص"
+      },
+      {
+        "name": "bind_gesture_tapGesture",
+        "value": "انقر على الإيماءات :"
+      },
+      {
+        "name": "bind_gesture_text",
+        "value": "نص ."
+      },
+      {
+        "name": "bind_gesture_column",
+        "value": "عمود"
+      },
+      {
+        "name": "double_click",
+        "value": "نقرا مزدوجا فوق الزناد"
+      },
+      {
+        "name": "onAction",
+        "value": "على العمل :"
+      },
+      {
+        "name": "long_press",
+        "value": "إصبع واحد طويل اضغط على النص"
+      },
+      {
+        "name": "long_press_cancel",
+        "value": "إلغاء النشاط"
+      },
+      {
+        "name": "long_press_text",
+        "value": "اضغط على لي مع إصبع واحد ، من فضلك ."
+      },
+      {
+        "name": "pan_text",
+        "value": "سحب مربع أسود بأي شكل من الأشكال مع اثنين من أصابع"
+      },
+      {
+        "name": "pan_text_one",
+        "value": "سحب مربع أسود مع إصبع واحد اليسار واليمين"
+      },
+      {
+        "name": "pan_offset",
+        "value": "( بآلاف دولارات الولايات المتحدة )"
+      },
+      {
+        "name": "pan_offset_y",
+        "value": "ي > ?"
+      },
+      {
+        "name": "pinch_center",
+        "value": "مركز قرصة الإيماءات :"
+      },
+      {
+        "name": "rotation_text",
+        "value": "لفتة التناوب"
+      },
+      {
+        "name": "swipe_text_speed",
+        "value": "انزلاق الموقف"
+      },
+      {
+        "name": "swipe_text_angle",
+        "value": "انزلاق الموقف"
+      },
+      {
+        "name": "combinded_pan_start",
+        "value": "بداية الترجمة"
+      },
+      {
+        "name": "combinded_pan_update",
+        "value": "بان التحديث"
+      },
+      {
+        "name": "combinded_pan_end",
+        "value": "نهاية وعاء"
+      },
+      {
+        "name": "combinded_longPress_onAction",
+        "value": "لونغبريس أون أكشن"
+      },
+      {
+        "name": "combinded_longPress_end",
+        "value": "الصحافة نهاية طويلة"
+      },
+      {
+        "name": "combinded_sequence",
+        "value": "تسلسل لفتة"
+      },
+      {
+        "name": "combinded_longPress",
+        "value": "Longpress على العمل :"
+      },
+      {
+        "name": "combinded_offset",
+        "value": "( بآلاف دولارات الولايات المتحدة )"
+      },
+      {
+        "name": "combinded_x",
+        "value": "عشرة"
+      },
+      {
+        "name": "key_press_keyType",
+        "value": "نوع المفتاح :"
+      },
+      {
+        "name": "key_press_keyCode",
+        "value": "رمز المفتاح"
+      },
+      {
+        "name": "key_press_keyText",
+        "value": "نص الكلمات الرئيسية :"
+      },
+      {
+        "name": "key_press_down",
+        "value": "نزل"
+      },
+      {
+        "name": "key_press_up",
+        "value": "صاعد"
+      },
+      {
+        "name": "componentId_longClick",
+        "value": "نقرات طويلة"
+      },
+      {
+        "name": "componentId_onTouch",
+        "value": "اونتوش"
+      },
+      {
+        "name": "componentId_onMouse",
+        "value": "على الماوس"
+      },
+      {
+        "name": "flex_auto",
+        "value": "السيارات"
+      },
+      {
+        "name": "row_title",
+        "value": "فصيلة"
+      },
+      {
+        "name": "row_introduction_arguments",
+        "value": "تعديل خط المعلمة"
+      },
+      {
+        "name": "row_introduction_properties",
+        "value": "تعديل خصائص الخط"
+      },
+      {
+        "name": "row_element_spacing",
+        "value": "عنصر تباعد"
+      },
+      {
+        "name": "row_alignitems_top",
+        "value": "توب ."
+      },
+      {
+        "name": "row_alignitems_bottom",
+        "value": "القاع"
+      },
+      {
+        "name": "row_alignitems_center",
+        "value": "مركز"
+      },
+      {
+        "name": "row_justifycontent_start",
+        "value": "نقطة الانطلاق"
+      },
+      {
+        "name": "row_justifycontent_center",
+        "value": "مركز"
+      },
+      {
+        "name": "row_justifycontent_end",
+        "value": "نهاية ."
+      },
+      {
+        "name": "row_justifycontent_spacebetween",
+        "value": "بين الفراغات"
+      },
+      {
+        "name": "row_justifycontent_spacearound",
+        "value": "الفضاء المحيط"
+      },
+      {
+        "name": "row_justifycontent_spaceevenly",
+        "value": "مساحة موحدة"
+      },
+      {
+        "name": "row_justifycontent_description",
+        "value": "تنسيق المغزل"
+      },
+      {
+        "name": "row_alignitems_description",
+        "value": "تنسيق المحور الأفقي"
+      },
+      {
+        "name": "row_introduction_tips",
+        "value": "نصيحة"
+      },
+      {
+        "name": "row_tips",
+        "value": "عندما المغزل هو من نوع spacetween spacearound , أو spaceeven ، المعلمة الفضاء صف العنصر لا يعمل"
+      },
+      {
+        "name": "rowsplit_title",
+        "value": "تقسيم أفقي تخطيط"
+      },
+      {
+        "name": "rowsplit_introduction_properties",
+        "value": "تعديل خصائص rowsplit السحب والإسقاط"
+      },
+      {
+        "name": "rowsplit_drag",
+        "value": "سحب التبديل"
+      },
+      {
+        "name": "rowsplit_drag_divider",
+        "value": "سحب فواصل اليسار واليمين لتغيير الموقف"
+      },
+      {
+        "name": "column_title",
+        "value": "عمود"
+      },
+      {
+        "name": "column_introduction_arguments",
+        "value": "تعديل خط المعلمة"
+      },
+      {
+        "name": "column_introduction_properties",
+        "value": "تعديل خصائص الخط"
+      },
+      {
+        "name": "column_element_spacing",
+        "value": "عنصر تباعد"
+      },
+      {
+        "name": "column_alignitems_start",
+        "value": "نقطة الانطلاق"
+      },
+      {
+        "name": "column_alignitems_end",
+        "value": "نهاية ."
+      },
+      {
+        "name": "column_alignitems_center",
+        "value": "مركز"
+      },
+      {
+        "name": "column_justifycontent_start",
+        "value": "نقطة الانطلاق"
+      },
+      {
+        "name": "column_justifycontent_center",
+        "value": "مركز"
+      },
+      {
+        "name": "column_justifycontent_end",
+        "value": "نهاية ."
+      },
+      {
+        "name": "column_justifycontent_spacebetween",
+        "value": "بين الفراغات"
+      },
+      {
+        "name": "column_justifycontent_spacearound",
+        "value": "الفضاء المحيط"
+      },
+      {
+        "name": "column_justifycontent_spaceevenly",
+        "value": "مساحة موحدة"
+      },
+      {
+        "name": "column_justifycontent_description",
+        "value": "تنسيق المغزل"
+      },
+      {
+        "name": "column_alignitems_description",
+        "value": "تنسيق المحور الأفقي"
+      },
+      {
+        "name": "column_introduction_tips",
+        "value": "نصيحة"
+      },
+      {
+        "name": "column_tips",
+        "value": "عندما المغزل هو من نوع spacetween spacearound , أو spaceeven ، المعلمة الفضاء صف العنصر لا يعمل"
+      },
+      {
+        "name": "columnsplit_title",
+        "value": "تقسيم عمودي تخطيط"
+      },
+      {
+        "name": "columnsplit_introduction_properties",
+        "value": "تعديل خاصية السحب والإفلات من columnsplit"
+      },
+      {
+        "name": "columnsplit_drag",
+        "value": "سحب التبديل"
+      },
+      {
+        "name": "columnsplit_introduction_drag_divider",
+        "value": "اسحب خط التقسيم صعودا وهبوطا لتغيير الموقف"
+      },
+      {
+        "name": "sidebarcontainer_title",
+        "value": "sidebar حاوية"
+      },
+      {
+        "name": "sidebarcontainer_content_text",
+        "value": "sidebarcontainer : حاوية الشريط الجانبي الذي يوفر عرض وإخفاء الشريط الجانبي . الشريط الجانبي ومحتوى المناطق المحددة من قبل عناصر فرعية ، أول عنصر فرعي يمثل الشريط الجانبي ، والثاني عنصر فرعي يمثل محتوى المنطقة . هذا العنصر هو مدعوم من المعهد الإصدار 8 . إذا كان محتوى جديد يضاف إلى الإصدارات اللاحقة ، الزاوية العليا علامة تستخدم علامة بداية الإصدارات الفردية من المحتوى ."
+      },
+      {
+        "name": "sidebarcontainer_sidebar_text_one",
+        "value": "جمع"
+      },
+      {
+        "name": "sidebarcontainer_sidebar_text_two",
+        "value": "الصفحة الرئيسية"
+      },
+      {
+        "name": "sidebarcontainer_argument",
+        "value": "تعديل sidebarcontainer عينة"
+      },
+      {
+        "name": "sidebarcontainer_property",
+        "value": "تعديل sidebarcontainer الملكية"
+      },
+      {
+        "name": "sidebarcontainer_argument_type",
+        "value": "الشريط الجانبي نوع العرض"
+      },
+      {
+        "name": "sidebarcontainer_type_embed",
+        "value": "جزءا لا يتجزأ من"
+      },
+      {
+        "name": "sidebarcontainer_type_overlay",
+        "value": "تغطية طبقة"
+      },
+      {
+        "name": "sidebarcontainer_show_switch",
+        "value": "عرض التبديل"
+      },
+      {
+        "name": "sidebarcontainer_left_margin",
+        "value": "زر التحكم في المسافة إلى اليسار"
+      },
+      {
+        "name": "sidebarcontainer_top_margin",
+        "value": "المسافة من زر التحكم"
+      },
+      {
+        "name": "sidebarcontainer_show_button_switch",
+        "value": "زر التحكم عرض التبديل"
+      },
+      {
+        "name": "sidebarcontainer_position_title",
+        "value": "الشريط الجانبي يظهر الموقع"
+      },
+      {
+        "name": "sidebarcontainer_sidebar_show_position_start",
+        "value": "نقطة الانطلاق"
+      },
+      {
+        "name": "sidebarcontainer_sidebar_show_position_end",
+        "value": "نهاية ."
+      },
+      {
+        "name": "sidebarcontainer_min_width",
+        "value": "الحد الأدنى من عرض الشريط الجانبي"
+      },
+      {
+        "name": "sidebarcontainer_max_width",
+        "value": "أقصى عرض الشريط الجانبي"
+      },
+      {
+        "name": "sidebarcontainer_auto_hide",
+        "value": "هو الشريط الجانبي مخفي في الحد الأدنى من الدولة"
+      },
+      {
+        "name": "sidebarcontainer_divider_width",
+        "value": "تقسيم خط العرض"
+      },
+      {
+        "name": "sidebarcontainer_drag_divider",
+        "value": "اسحب فاصل لتغيير حجم الشريط الجانبي"
+      },
+      {
+        "name": "sidebarcontainer__is_show_true",
+        "value": "الشريط الجانبي هو توسيع"
+      },
+      {
+        "name": "sidebarcontainer__is_show_false",
+        "value": "الشريط الجانبي مغلق"
+      },
+      {
+        "name": "stack_title",
+        "value": "كومة"
+      },
+      {
+        "name": "stack_alignments_topstart",
+        "value": "توب ستارت"
+      },
+      {
+        "name": "stack_alignments_top",
+        "value": "توب ."
+      },
+      {
+        "name": "stack_alignments_topend",
+        "value": "توبند"
+      },
+      {
+        "name": "stack_alignments_start",
+        "value": "نقطة الانطلاق"
+      },
+      {
+        "name": "stack_alignment_center",
+        "value": "مركز"
+      },
+      {
+        "name": "stack_alignment_end",
+        "value": "نهاية ."
+      },
+      {
+        "name": "stack_alignments_bottomstart",
+        "value": "بداية القاع"
+      },
+      {
+        "name": "stack_alignments_bottom",
+        "value": "القاع"
+      },
+      {
+        "name": "stack_alignments_bottomend",
+        "value": "نهاية القاع"
+      },
+      {
+        "name": "stack_alignment",
+        "value": "محاذاة المحتوى"
+      },
+      {
+        "name": "stack_introduction",
+        "value": "خاصية المكدس والمعلمة aligncontent تم تحديثها"
+      },
+      {
+        "name": "stack_introduction_zindex",
+        "value": "أكسيد الزنك"
+      },
+      {
+        "name": "stack_zindex_four",
+        "value": "4 ."
+      },
+      {
+        "name": "stack_zindex_one",
+        "value": "1 ."
+      },
+      {
+        "name": "stack_zindex",
+        "value": "زيندكس"
+      },
+      {
+        "name": "flex_title",
+        "value": "بنت ."
+      },
+      {
+        "name": "flex_introduction_arguments",
+        "value": "تعديل تخطيط مرن المعلمات"
+      },
+      {
+        "name": "flex_argument_direction",
+        "value": "الاتجاه"
+      },
+      {
+        "name": "flex_argument_direction_row",
+        "value": "فصيلة"
+      },
+      {
+        "name": "flex_argument_direction_row_reverse",
+        "value": "صف عكس"
+      },
+      {
+        "name": "flex_argument_direction_column",
+        "value": "عمود"
+      },
+      {
+        "name": "flex_argument_direction_column_reverse",
+        "value": "العمود عكس"
+      },
+      {
+        "name": "flex_argument_wrap",
+        "value": "تعديل حزمة لتناسب هذا الانحناء"
+      },
+      {
+        "name": "flex_argument_wrap_no_wrap",
+        "value": "بدون تغليف"
+      },
+      {
+        "name": "flex_argument_wrap_wrap",
+        "value": "لف"
+      },
+      {
+        "name": "flex_argument_wrap_wrap_reverse",
+        "value": "التعبئة والتغليف عكس"
+      },
+      {
+        "name": "flex_introduction_direction",
+        "value": "تغيير اتجاه جميع الانحناء"
+      },
+      {
+        "name": "flex_argument_justifycontent",
+        "value": "تعديل هذا فليكس justifycontent"
+      },
+      {
+        "name": "flex_argument_justifycontent_start",
+        "value": "نقطة الانطلاق"
+      },
+      {
+        "name": "flex_argument_justifycontent_center",
+        "value": "مركز"
+      },
+      {
+        "name": "flex_argument_justifycontent_End",
+        "value": "نهاية ."
+      },
+      {
+        "name": "flex_argument_justifycontent_space_between",
+        "value": "بين الفراغات"
+      },
+      {
+        "name": "flex_argument_justifycontent_space_around",
+        "value": "الفضاء المحيط"
+      },
+      {
+        "name": "flex_argument_justifycontent_speac_evenly",
+        "value": "مساحة موحدة"
+      },
+      {
+        "name": "flex_argument_alignItems",
+        "value": "تعديل alignitems في هذا فليكس"
+      },
+      {
+        "name": "flex_argumen_alignItems_auto",
+        "value": "السيارات"
+      },
+      {
+        "name": "flex_argumen_alignItems_start",
+        "value": "نقطة الانطلاق"
+      },
+      {
+        "name": "flex_argumen_alignItems_center",
+        "value": "مركز"
+      },
+      {
+        "name": "flex_argumen_alignItems_end",
+        "value": "نهاية ."
+      },
+      {
+        "name": "flex_argumen_alignItems_stretch",
+        "value": "امتدت"
+      },
+      {
+        "name": "flex_argumen_alignItems_baseline",
+        "value": "خط الأساس"
+      },
+      {
+        "name": "flex_argument_alignContent",
+        "value": "تعديل aligncontent هذا فليكس"
+      },
+      {
+        "name": "gridcontainer_title",
+        "value": "gridcontainer نظام الشبكة"
+      },
+      {
+        "name": "gridcontainer_introdional_arguments",
+        "value": "تعديل gridcontainer المعلمة"
+      },
+      {
+        "name": "gridcontainer_introdional_properties",
+        "value": "تعديل خاصية gridcontainer"
+      },
+      {
+        "name": "gridcontainer_sizetype",
+        "value": "سيزتايب"
+      },
+      {
+        "name": "gridcontainer_sizetype_xs",
+        "value": "اكس اس"
+      },
+      {
+        "name": "gridcontainer_sizetype_sm",
+        "value": "خ"
+      },
+      {
+        "name": "gridcontainer_sizetype_md",
+        "value": "إم دي"
+      },
+      {
+        "name": "gridcontainer_sizetype_lg",
+        "value": "إل جي"
+      },
+      {
+        "name": "gridcontainer_sizetype_auto",
+        "value": "السيارات"
+      },
+      {
+        "name": "gridcontainer_column",
+        "value": "عمود"
+      },
+      {
+        "name": "gridcontainer_gutter",
+        "value": "مزراب"
+      },
+      {
+        "name": "gridcontainer_margin",
+        "value": "حافة"
+      },
+      {
+        "name": "image_video_and_media",
+        "value": "صورة الفيديو ووسائل الإعلام"
+      },
+      {
+        "name": "image_title",
+        "value": "صور"
+      },
+      {
+        "name": "image_animator_title",
+        "value": "صورة انيماتور"
+      },
+      {
+        "name": "video_title",
+        "value": "فيديو : ."
+      },
+      {
+        "name": "plugin_component_title",
+        "value": "المكونات في مكونات"
+      },
+      {
+        "name": "xcomponent_title",
+        "value": "العنصر العاشر"
+      },
+      {
+        "name": "image_show_test",
+        "value": "عرض الصور"
+      },
+      {
+        "name": "image_object_fit",
+        "value": "objectfit ؛ objectfit"
+      },
+      {
+        "name": "image_sourcesize_height",
+        "value": "حجم الارتفاع"
+      },
+      {
+        "name": "image_sourcesize_width",
+        "value": "حجم العرض"
+      },
+      {
+        "name": "object_fit_cover",
+        "value": "تغطية"
+      },
+      {
+        "name": "object_fit_contain",
+        "value": "احتواء"
+      },
+      {
+        "name": "object_fit_auto",
+        "value": "السيارات"
+      },
+      {
+        "name": "object_fit_fill",
+        "value": "ملأ"
+      },
+      {
+        "name": "object_fit_scale_down",
+        "value": "تقليص حجم"
+      },
+      {
+        "name": "object_fit_none",
+        "value": "هل أنت بخير ؟ - لا -"
+      },
+      {
+        "name": "object_fit_change",
+        "value": "ObjectFitChange"
+      },
+      {
+        "name": "image_sourcesize_change",
+        "value": "تغيير حجم المصدر"
+      },
+      {
+        "name": "image_rendermode_original",
+        "value": "طريقة التقديم الأصلي"
+      },
+      {
+        "name": "image_rendermode_template",
+        "value": "تقديم نموذج"
+      },
+      {
+        "name": "image_renderMode_change",
+        "value": "تغيير طريقة التقديم"
+      },
+      {
+        "name": "image_repeat_xy",
+        "value": "تكرار س ص"
+      },
+      {
+        "name": "image_repeat_x",
+        "value": "تكرار س"
+      },
+      {
+        "name": "image_repeat_y",
+        "value": "تكرار ذ"
+      },
+      {
+        "name": "image_repeat_no",
+        "value": "لا تكرار"
+      },
+      {
+        "name": "image_repeat_change",
+        "value": "تكرار التغييرات"
+      },
+      {
+        "name": "image_fill_color_title",
+        "value": "ملء لون العنوان"
+      },
+      {
+        "name": "image_animator_show",
+        "value": "صورة انيماتور شو"
+      },
+      {
+        "name": "image_animator_control",
+        "value": "imageanimator السيطرة"
+      },
+      {
+        "name": "video_show",
+        "value": "عرض الفيديو"
+      },
+      {
+        "name": "video_auto_play",
+        "value": "اللعب التلقائي"
+      },
+      {
+        "name": "video_controls_show",
+        "value": "عرض التحكم"
+      },
+      {
+        "name": "video_muted_show",
+        "value": "عرض صامت"
+      },
+      {
+        "name": "video_fit_change",
+        "value": "فيديوفيت"
+      },
+      {
+        "name": "video_loop_show",
+        "value": "لوپشو"
+      },
+      {
+        "name": "video_current_rate_change",
+        "value": "التغيرات في سعر الصرف الحالي"
+      },
+      {
+        "name": "video_play_mode",
+        "value": "طريقة تشغيل الفيديو"
+      },
+      {
+        "name": "video_play_switch",
+        "value": "تشغيل الفيديو التبديل"
+      },
+      {
+        "name": "web_title",
+        "value": "شبكي"
+      },
+      {
+        "name": "web_show",
+        "value": "وان نيتكوم"
+      },
+      {
+        "name": "web_use_reason",
+        "value": "سبب"
+      },
+      {
+        "name": "xcomponent_show",
+        "value": "إكسكومبونينتشو"
+      },
+      {
+        "name": "textarea_title",
+        "value": "حقل النص"
+      },
+      {
+        "name": "patternlock_title",
+        "value": "رمز قفل"
+      },
+      {
+        "name": "search_title",
+        "value": "بحث ."
+      },
+      {
+        "name": "textarea_textalign_start",
+        "value": "نقطة الانطلاق"
+      },
+      {
+        "name": "textarea_textalign_center",
+        "value": "مركز"
+      },
+      {
+        "name": "textarea_textalign_end",
+        "value": "نهاية ."
+      },
+      {
+        "name": "textareaa_textalign_change",
+        "value": "textarealatextalignchange"
+      },
+      {
+        "name": "textarea_show",
+        "value": "تكست اريشو"
+      },
+      {
+        "name": "textarea_control",
+        "value": "السيطرة على منطقة النص"
+      },
+      {
+        "name": "textarea_copyoptions_none",
+        "value": "هل أنت بخير ؟ - لا -"
+      },
+      {
+        "name": "textarea_copyoptions_inapp",
+        "value": "داخل التطبيق"
+      },
+      {
+        "name": "textarea_copyoptions_localdevice",
+        "value": "الأجهزة المحلية"
+      },
+      {
+        "name": "textarea_copyoptions_change",
+        "value": "تغيير خيارات النسخ المتماثل"
+      },
+      {
+        "name": "textarea_placeholder_change",
+        "value": "تغيير النائبة"
+      },
+      {
+        "name": "textarea_caretcolor_change",
+        "value": "علوم التمريض"
+      },
+      {
+        "name": "patternlock_active_color",
+        "value": "باترن لوك اكتف كولور"
+      },
+      {
+        "name": "patternlock_path_color",
+        "value": "patternlockparhcolor"
+      },
+      {
+        "name": "patternlock_select_color",
+        "value": "نمط قفل اختيار اللون"
+      },
+      {
+        "name": "patternlock_regular_color",
+        "value": "patternlockregular اللون"
+      },
+      {
+        "name": "patternlock_side_length",
+        "value": "نمط طول القفل"
+      },
+      {
+        "name": "patternlock_circle_radius",
+        "value": "نمط قفل دائرة نصف قطرها"
+      },
+      {
+        "name": "patternlock_pathstroke_width",
+        "value": "patternlockpath strokewidth"
+      },
+      {
+        "name": "patternlock_change",
+        "value": "تغيير نمط قفل"
+      },
+      {
+        "name": "search_textalign_change",
+        "value": "البحث عن النص محاذاة التغييرات"
+      },
+      {
+        "name": "search_placeholder_change",
+        "value": "البحث عن تغيير النائبة"
+      },
+      {
+        "name": "search_copyOption_change",
+        "value": "البحث عن خيارات النسخ المتماثل التغييرات"
+      },
+      {
+        "name": "search_change",
+        "value": "البحث عن التغييرات"
+      },
+      {
+        "name": "list_title",
+        "value": "قائمة"
+      },
+      {
+        "name": "list_introduction_arguments",
+        "value": "قائمة المعلمات"
+      },
+      {
+        "name": "list_introduction_properties",
+        "value": "قائمة خصائص"
+      },
+      {
+        "name": "list_introduction_state",
+        "value": "شريط الحالة"
+      },
+      {
+        "name": "list_properties_direction",
+        "value": "قائمة الاتجاه"
+      },
+      {
+        "name": "list_properties_direction_vertical",
+        "value": "عمودي"
+      },
+      {
+        "name": "list_properties_direction_Horizontal",
+        "value": "الاتجاه الأفقي"
+      },
+      {
+        "name": "list_argument_space",
+        "value": "الفضاء ."
+      },
+      {
+        "name": "list_properties_divider_stroke_width",
+        "value": "فاصل - السكتة الدماغية العرض"
+      },
+      {
+        "name": "list_properties_scroll_bar_width",
+        "value": "سكرول بار - عرض"
+      },
+      {
+        "name": "list_properties_scroll_bar_color",
+        "value": "سكرول بار - لون"
+      },
+      {
+        "name": "list_properties_divider_color",
+        "value": "فاصل - لون"
+      },
+      {
+        "name": "list_properties_scroll_bar",
+        "value": "سكرول بار"
+      },
+      {
+        "name": "list_properties_scroll_bar_off",
+        "value": "قريب"
+      },
+      {
+        "name": "list_properties_scroll_bar_on",
+        "value": "ون"
+      },
+      {
+        "name": "list_properties_scroll_bar_auto",
+        "value": "السيارات"
+      },
+      {
+        "name": "list_properties_initial_index",
+        "value": "initial index"
+      },
+      {
+        "name": "list_properties_edge_effect",
+        "value": "تأثير الحافة"
+      },
+      {
+        "name": "list_properties_edge_effect_spring",
+        "value": "الربيع ."
+      },
+      {
+        "name": "list_properties_edge_effect_fade",
+        "value": "تلاشى"
+      },
+      {
+        "name": "list_properties_edge_effect_none",
+        "value": "هل أنت بخير ؟ - لا -"
+      },
+      {
+        "name": "list_properties_chain_animation",
+        "value": "سلسلة الرسوم المتحركة"
+      },
+      {
+        "name": "list_properties_multi_selectable",
+        "value": "اختيار متعددة"
+      },
+      {
+        "name": "list_properties_lanes",
+        "value": "حارة"
+      },
+      {
+        "name": "list_properties_align_list_item",
+        "value": "اليگنليستیتم"
+      },
+      {
+        "name": "list_properties_align_list_item_start",
+        "value": "نقطة الانطلاق"
+      },
+      {
+        "name": "list_properties_align_list_item_Center",
+        "value": "مركز"
+      },
+      {
+        "name": "list_properties_align_list_item_End",
+        "value": "نهاية ."
+      },
+      {
+        "name": "list_introduction_delete",
+        "value": "غادر انقر فوق حذف البند"
+      },
+      {
+        "name": "list_item_title",
+        "value": "قائمة البنود"
+      },
+      {
+        "name": "list_item_properties_selectable",
+        "value": "اختياري"
+      },
+      {
+        "name": "list_item_introduction_drag",
+        "value": "اسحب العناصر مع الماوس لعرض خصائص اختيارية"
+      },
+      {
+        "name": "list_item_introduction_properties",
+        "value": "تعديل خصائص listitem"
+      },
+      {
+        "name": "grid_title",
+        "value": "شبكة ."
+      },
+      {
+        "name": "grid_item_title",
+        "value": "شبكة البند"
+      },
+      {
+        "name": "grid_properties_columns_template",
+        "value": "columnstemplate ( السيطرة على نسبة العمود الثالث )"
+      },
+      {
+        "name": "grid_properties_columns_gap",
+        "value": "إزالة العمود"
+      },
+      {
+        "name": "girid_properties_rows_gap",
+        "value": "روس جاب"
+      },
+      {
+        "name": "grid_properties_layout_direction",
+        "value": "تخطيط الاتجاه"
+      },
+      {
+        "name": "grid_properties_layout_direction_row",
+        "value": "فصيلة"
+      },
+      {
+        "name": "grid_properties_layout_direction_column",
+        "value": "عمود"
+      },
+      {
+        "name": "grid_properties_layout_direction_row_reverse",
+        "value": "صف عكس"
+      },
+      {
+        "name": "grid_properties_layout_direction_column_reverse",
+        "value": "العمود عكس"
+      },
+      {
+        "name": "grid_properties_rows_template",
+        "value": "rowstemplate ( السيطرة على نسبة من السطر الثالث )"
+      },
+      {
+        "name": "grid_item_introduction",
+        "value": "تغيير الموقع"
+      },
+      {
+        "name": "grid_item_row_start",
+        "value": "تغيير رقم السطر الأول"
+      },
+      {
+        "name": "grid_item_row_end",
+        "value": "تعديل رقم خط النهاية"
+      },
+      {
+        "name": "grid_item_column_start",
+        "value": "تغيير رقم العمود الأولي"
+      },
+      {
+        "name": "grid_item_column_end",
+        "value": "تعديل نهاية العمود رقم"
+      },
+      {
+        "name": "swiper_introduction_arguments",
+        "value": "انزلاق تحكم"
+      },
+      {
+        "name": "swiper_introduction_properties",
+        "value": "تعديل خصائص المنزلق"
+      },
+      {
+        "name": "swiper_properties_disable_swipe",
+        "value": "تعطيل التحول إلى اليسار أو اليمين"
+      },
+      {
+        "name": "swiper_properties_item_space",
+        "value": "المسافة بين الصفحات المنزلقة"
+      },
+      {
+        "name": "swiper_properties_vertical",
+        "value": "انزلاق عمودي"
+      },
+      {
+        "name": "swiper_properties_duration",
+        "value": "مدة الانتقال المتحركة في الألف"
+      },
+      {
+        "name": "swiper_properties_loop",
+        "value": "تمكين حلقة"
+      },
+      {
+        "name": "swiper_properties_interval",
+        "value": "التلقائي الفاصل الزمني ( الوحدة : ماجستير )"
+      },
+      {
+        "name": "swiper_controller_next",
+        "value": "الصفحة التالية"
+      },
+      {
+        "name": "swiper_controller_previous",
+        "value": "الصفحة السابقة"
+      },
+      {
+        "name": "swiper_common_interfaces_and_properties",
+        "value": "واجهة عامة والممتلكات"
+      },
+      {
+        "name": "swiper_custom_properties",
+        "value": "خصائص مخصصة الانتقال المتحركة"
+      },
+      {
+        "name": "swiper_modify_custom_properties",
+        "value": "تعديل خصائص مخصصة الانتقال المتحركة"
+      },
+      {
+        "name": "swiper_custom_property_opacity",
+        "value": "تغيير التعتيم مدة الرسوم المتحركة"
+      },
+      {
+        "name": "swiper_custom_property_scale",
+        "value": "زيادة مدة الصفحة المتحركة"
+      },
+      {
+        "name": "swiper_close_two_pages_together",
+        "value": "الجمع بين صفحتين عند التكبير"
+      },
+      {
+        "name": "swiper_cancel_default_translate",
+        "value": "إلغاء الترجمة الافتراضية"
+      },
+      {
+        "name": "swiper_property_auto_play",
+        "value": "اللعب التلقائي"
+      },
+      {
+        "name": "swiper_custom_property_curve",
+        "value": "عرف الانتقال منحنى الرسوم المتحركة"
+      },
+      {
+        "name": "navRouter_title",
+        "value": "توجيه الملاحة"
+      },
+      {
+        "name": "navigation_title",
+        "value": "ملاحة"
+      },
+      {
+        "name": "navigation_first_page",
+        "value": "تصفح الصفحة الرئيسية"
+      },
+      {
+        "name": "navigation_second_page",
+        "value": "تصفح ب"
+      },
+      {
+        "name": "navigation_third_page",
+        "value": "تصفح ب"
+      },
+      {
+        "name": "navigation_first_page_push",
+        "value": "انتقل إلى الصفحة الثانية"
+      },
+      {
+        "name": "navigation_first_page_active",
+        "value": "انقر فوق تبديل حالة التنشيط"
+      },
+      {
+        "name": "navigation_second_page_push",
+        "value": "انتقل إلى الصفحة الثالثة"
+      },
+      {
+        "name": "navigation_third_page_back",
+        "value": "العودة إلى الصفحة الأولى"
+      },
+      {
+        "name": "navigation_basic_title",
+        "value": "أساسيات الملاحة"
+      },
+      {
+        "name": "navigation_expand",
+        "value": "تكشفت"
+      },
+      {
+        "name": "navigation_list_expand_title",
+        "value": "قائمة التصفح يوسع منطقة آمنة"
+      },
+      {
+        "name": "navigation_bindsheet_title",
+        "value": "منطقة الأمان"
+      },
+      {
+        "name": "navigation_expand_title",
+        "value": "الملاحة في المنطقة الأمنية الموسعة"
+      },
+      {
+        "name": "navigation_unexpand",
+        "value": "لا تتكشف"
+      },
+      {
+        "name": "navigation_split_title",
+        "value": "الملاحة تقسيم"
+      },
+      {
+        "name": "navigation_sidebar_title",
+        "value": "شريط التنقل"
+      },
+      {
+        "name": "navigation_navbar_list_nopara",
+        "value": "قائمة"
+      },
+      {
+        "name": "navigation_navbar_list",
+        "value": "قائمة د"
+      },
+      {
+        "name": "navigation_navcontent_list",
+        "value": "المحتوى د"
+      },
+      {
+        "name": "navigation_hidebar_title",
+        "value": "إخفاء شريط التنقل"
+      },
+      {
+        "name": "navigation_replace_title",
+        "value": "استبدال الملاحة"
+      },
+      {
+        "name": "navigation_replace_page",
+        "value": "استبدال الصفحة الحالية"
+      },
+      {
+        "name": "navigation_modechange_title",
+        "value": "تغيير نمط"
+      },
+      {
+        "name": "navigation_rotate_screen",
+        "value": "تدوير الشاشة"
+      },
+      {
+        "name": "navigation_modevalue",
+        "value": "سمود القيمة"
+      },
+      {
+        "name": "navigation_mode_callback",
+        "value": "طريقة الاستدعاء"
+      },
+      {
+        "name": "navigation_safearea_title",
+        "value": "سلامة الملاحة في المنطقة"
+      },
+      {
+        "name": "navigation_safearea_default",
+        "value": "خرق"
+      },
+      {
+        "name": "navigation_safearea_expand",
+        "value": "تكشفت"
+      },
+      {
+        "name": "navigation_safearea_unexpand",
+        "value": "لا تتكشف"
+      },
+      {
+        "name": "navigation_router_title",
+        "value": "هوب هوب هار"
+      },
+      {
+        "name": "navigation_router_har1",
+        "value": "القفز إلى har1"
+      },
+      {
+        "name": "navigation_router_har2",
+        "value": "القفز إلى هارتو"
+      },
+      {
+        "name": "tabs_title",
+        "value": "تبويب"
+      },
+      {
+        "name": "tabs_introduction_arguments",
+        "value": "تعديل بارامترات التبويب"
+      },
+      {
+        "name": "tabs_introduction_properties",
+        "value": "تعديل خصائص التبويب"
+      },
+      {
+        "name": "tabs_arguments_bar_position",
+        "value": "بار الكلمات"
+      },
+      {
+        "name": "tabs_arguments_bar_position_start",
+        "value": "نقطة الانطلاق"
+      },
+      {
+        "name": "tabs_arguments_bar_position_end",
+        "value": "نهاية ."
+      },
+      {
+        "name": "tabs_properties_vertical",
+        "value": "عمودي"
+      },
+      {
+        "name": "tabs_properties_bar_mode",
+        "value": "بار مود"
+      },
+      {
+        "name": "tabs_properties_bar_mode_fixed",
+        "value": "ثابت"
+      },
+      {
+        "name": "tabs_properties_bar_scrollable",
+        "value": "قابل للتدوير"
+      },
+      {
+        "name": "tabs_properties_is_scrollable",
+        "value": "قابل للتدوير"
+      },
+      {
+        "name": "tabs_properties_animation_duration",
+        "value": "مدة الرسوم المتحركة ( ماجستير )"
+      },
+      {
+        "name": "tabs_arguments_controller",
+        "value": "التبديل إلى مؤشر محدد"
+      },
+      {
+        "name": "tab_content_title",
+        "value": "علامة التبويب المحتوى"
+      },
+      {
+        "name": "tab_content_introduction",
+        "value": "subtab / أسفل التبويب الجلاد"
+      },
+      {
+        "name": "tab_content_side",
+        "value": "تبديل الشريط الجانبي"
+      },
+      {
+        "name": "stepper_title",
+        "value": "السائر السائر المشروع"
+      },
+      {
+        "name": "canvas_title",
+        "value": "قماش"
+      },
+      {
+        "name": "circle_title",
+        "value": "دائرة"
+      },
+      {
+        "name": "ellipse_title",
+        "value": "القطع الناقص"
+      },
+      {
+        "name": "line_title",
+        "value": "خط"
+      },
+      {
+        "name": "polyline_title",
+        "value": "خط الرسم البياني"
+      },
+      {
+        "name": "path_title",
+        "value": "مسار"
+      },
+      {
+        "name": "polygon_title",
+        "value": "مضلع"
+      },
+      {
+        "name": "rect_title",
+        "value": "ناظر"
+      },
+      {
+        "name": "shape_title",
+        "value": "شكل ."
+      },
+      {
+        "name": "circle_change",
+        "value": "دائرة التغيير"
+      },
+      {
+        "name": "circle_change_fill",
+        "value": "دائرة تغيير ملء"
+      },
+      {
+        "name": "circle_change_radius",
+        "value": "دائرة نصف قطرها"
+      },
+      {
+        "name": "circle_change_fillopacity",
+        "value": "جولة تغيير ملء التعتيم"
+      },
+      {
+        "name": "circle_change_strokewidth",
+        "value": "عرض الحلزون"
+      },
+      {
+        "name": "circle_stroke_dash",
+        "value": "سيركلي تروك داش"
+      },
+      {
+        "name": "circle_stroke_color",
+        "value": "نمط دائري"
+      },
+      {
+        "name": "circle_stroke_opacity",
+        "value": "مسار دائري التعتيم"
+      },
+      {
+        "name": "ellipse_fill",
+        "value": "بيضاوي الشكل ملء"
+      },
+      {
+        "name": "ellipse_stroke_color",
+        "value": "القطع الناقص لون السكتة الدماغية"
+      },
+      {
+        "name": "ellipse_stroke_width",
+        "value": "عرض القطع الناقص"
+      },
+      {
+        "name": "ellipse_width",
+        "value": "عرض القطع الناقص"
+      },
+      {
+        "name": "ellipse_height",
+        "value": "ارتفاع القطع الناقص"
+      },
+      {
+        "name": "ellipse_fill_opacity",
+        "value": "بيضاوي الشكل ملء التعتيم"
+      },
+      {
+        "name": "ellipse_stroke_opacity",
+        "value": "حذفي ستروبوسكوبيك التعتيم"
+      },
+      {
+        "name": "ellipse_stroke_dash",
+        "value": "إليبسو ستروك داش"
+      },
+      {
+        "name": "line_start_point_x",
+        "value": "خط البداية س"
+      },
+      {
+        "name": "line_start_point_y",
+        "value": "خط البداية ذ"
+      },
+      {
+        "name": "line_end_point_x",
+        "value": "خط النهاية ذ"
+      },
+      {
+        "name": "line_end_point_y",
+        "value": "خط النهاية ذ"
+      },
+      {
+        "name": "line_stroke_width",
+        "value": "خط العرض"
+      },
+      {
+        "name": "line_stroke_color",
+        "value": "لون الخط"
+      },
+      {
+        "name": "line_stroke_opacity",
+        "value": "خط التعتيم"
+      },
+      {
+        "name": "line_stroke_dash",
+        "value": "لين ستروك داش"
+      },
+      {
+        "name": "polygon_fill",
+        "value": "مضلع ملء"
+      },
+      {
+        "name": "polygon_fill_opacity",
+        "value": "مضلع ملء التعتيم"
+      },
+      {
+        "name": "polygon_stroke_color",
+        "value": "مضلع لون السكتة الدماغية"
+      },
+      {
+        "name": "polygon_stroke_opacity",
+        "value": "مضلع السكتة الدماغية التعتيم"
+      },
+      {
+        "name": "polygon_stroke_width",
+        "value": "عرض مضلع السكتة الدماغية"
+      },
+      {
+        "name": "polygon_stroke_dash",
+        "value": "بوليغون ستروك داش"
+      },
+      {
+        "name": "polyline_first_x",
+        "value": "بولين فيرست إكس"
+      },
+      {
+        "name": "polyline_first_y",
+        "value": "بولين فيرست"
+      },
+      {
+        "name": "polyline_second_x",
+        "value": "بولين سيكوندكس"
+      },
+      {
+        "name": "polyline_second_y",
+        "value": "بولين سيندي"
+      },
+      {
+        "name": "polyline_third_x",
+        "value": "بولين ثيردكس"
+      },
+      {
+        "name": "polyline_third_y",
+        "value": "بولين ثيردي"
+      },
+      {
+        "name": "polyline_stroke_width",
+        "value": "عرض السكتة الدماغية"
+      },
+      {
+        "name": "polyline_stroke_color",
+        "value": "لون الخط"
+      },
+      {
+        "name": "polyline_stroke_dash",
+        "value": "بولين ستروك داش"
+      },
+      {
+        "name": "polyline_stroke_opacity",
+        "value": "السكتة الدماغية التعتيم"
+      },
+      {
+        "name": "rect_height",
+        "value": "ارتفاع المستطيل"
+      },
+      {
+        "name": "rect_width",
+        "value": "عرض مستطيل"
+      },
+      {
+        "name": "rect_radius_width",
+        "value": "عرض المستطيل"
+      },
+      {
+        "name": "rect_radius_height",
+        "value": "ارتفاع المستقيم"
+      },
+      {
+        "name": "rect_fill_opacity",
+        "value": "مستطيلة التعتيم"
+      },
+      {
+        "name": "rect_stroke",
+        "value": "السكتة الدماغية المستقيم"
+      },
+      {
+        "name": "rect_stroke_width",
+        "value": "rectstrokewidth"
+      },
+      {
+        "name": "rect_stroke_dash",
+        "value": "ريكت سروك داش"
+      },
+      {
+        "name": "rect_stroke_opacity",
+        "value": "rectstrokeopacity"
+      },
+      {
+        "name": "rect_fill",
+        "value": "ريكتفيل"
+      },
+      {
+        "name": "path_line",
+        "value": "باث لين"
+      },
+      {
+        "name": "path_triangle",
+        "value": "باث تريانجل"
+      },
+      {
+        "name": "path_square",
+        "value": "باث سكوير"
+      },
+      {
+        "name": "path_polygon",
+        "value": "باث بوليغون"
+      },
+      {
+        "name": "path_camber_first",
+        "value": "باث كامبر فيرست"
+      },
+      {
+        "name": "path_camber_second",
+        "value": "باث كامبر سوند"
+      },
+      {
+        "name": "path_camber_third",
+        "value": "باث كامبر ثيرد"
+      },
+      {
+        "name": "path_commands_select",
+        "value": "اختيار مسار القيادة"
+      },
+      {
+        "name": "path_fill",
+        "value": "باث فيل"
+      },
+      {
+        "name": "path_fill_opacity",
+        "value": "pathfill التعتيم"
+      },
+      {
+        "name": "path_stroke_color",
+        "value": "باث ستروك كولور"
+      },
+      {
+        "name": "path_stroke_opacity",
+        "value": "باث ستوك اوباسيتي"
+      },
+      {
+        "name": "path_stroke_dash",
+        "value": "باث ستوك داش"
+      },
+      {
+        "name": "path_stroke_width",
+        "value": "باث ستوك ويدث"
+      },
+      {
+        "name": "shape_fill",
+        "value": "شكل ملء"
+      },
+      {
+        "name": "shape_stroke_color",
+        "value": "شكل ولون السكتة الدماغية"
+      },
+      {
+        "name": "shape_view_port_x",
+        "value": "shapeviewportx"
+      },
+      {
+        "name": "shape_view_port_y",
+        "value": "شابي فيو بورتي"
+      },
+      {
+        "name": "shape_view_port_width",
+        "value": "shapeviewportwidth"
+      },
+      {
+        "name": "shape_view_port_height",
+        "value": "shapeviewportheight"
+      },
+      {
+        "name": "shape_stroke_opacity",
+        "value": "shapestroke التعتيم"
+      },
+      {
+        "name": "shape_fill_opacity",
+        "value": "shapefill التعتيم"
+      },
+      {
+        "name": "shape_stroke_width",
+        "value": "شكل عرض السكتة الدماغية"
+      },
+      {
+        "name": "shape_stroke_dash",
+        "value": "شابستروك داش"
+      },
+      {
+        "name": "web",
+        "value": "شبكي"
+      },
+      {
+        "name": "canvas_fillStyle",
+        "value": "فيل ستايل"
+      },
+      {
+        "name": "canvas_lineWidth",
+        "value": "خط العرض"
+      },
+      {
+        "name": "canvas_strokeStyle",
+        "value": "ستروك ستايل"
+      },
+      {
+        "name": "canvas_lineCap",
+        "value": "لين كاب"
+      },
+      {
+        "name": "canvas_lineJoin",
+        "value": "خط الانضمام"
+      },
+      {
+        "name": "canvas_miterLimit",
+        "value": "ميتر ليميت"
+      },
+      {
+        "name": "canvas_font",
+        "value": "فونت"
+      },
+      {
+        "name": "canvas_textAlign",
+        "value": "محاذاة النص"
+      },
+      {
+        "name": "canvas_textBaseline",
+        "value": "خط النص"
+      },
+      {
+        "name": "canvas_globalAlpha",
+        "value": "غلوبال ألفا"
+      },
+      {
+        "name": "canvas_lineDashOffset",
+        "value": "لين داش اوفست"
+      },
+      {
+        "name": "canvas_globalCompositeOperation",
+        "value": "عملية التوليف العالمية"
+      },
+      {
+        "name": "canvas_imageSmoothingEnabled",
+        "value": "imagesmoothing تمكين"
+      },
+      {
+        "name": "canvas_createLinearGradient",
+        "value": "إنشاء التدرج الخطي"
+      },
+      {
+        "name": "cavas_createRadialGradient",
+        "value": "خلق التدرج الإشعاعي"
+      },
+      {
+        "name": "canvas_createRadialGradient",
+        "value": "خلق التدرج الإشعاعي"
+      },
+      {
+        "name": "canvas_fillRect",
+        "value": "فيلريكت"
+      },
+      {
+        "name": "canvas_strokeRect",
+        "value": "ستروك ريكت"
+      },
+      {
+        "name": "canvas_fillText",
+        "value": "فيلت تكست"
+      },
+      {
+        "name": "canvas_strokeText",
+        "value": "ستروكيتكست"
+      },
+      {
+        "name": "canvas_measureText",
+        "value": "ميسوريتكست"
+      },
+      {
+        "name": "canvas_stroke",
+        "value": "( ضرب ، ضرب ، الخ )"
+      },
+      {
+        "name": "canvas_createPattern",
+        "value": "كرياتيباترن"
+      },
+      {
+        "name": "canvas_fill",
+        "value": "شغل"
+      },
+      {
+        "name": "canvas_clip",
+        "value": "قطع"
+      },
+      {
+        "name": "canvas_rotate",
+        "value": "استدارة"
+      },
+      {
+        "name": "canvas_scale",
+        "value": "مقياس"
+      },
+      {
+        "name": "canvas_drawImage",
+        "value": "دراويماغي"
+      },
+      {
+        "name": "canvas_getImageData",
+        "value": "الحصول على بيانات الصورة"
+      },
+      {
+        "name": "canvas_putImageData",
+        "value": "بوتیمگدیتا"
+      },
+      {
+        "name": "canvas_setLineDash",
+        "value": "ست لين داش"
+      },
+      {
+        "name": "canvas_getLineDash",
+        "value": "جيتلين داش"
+      },
+      {
+        "name": "canvas_transferFromImageBitmap",
+        "value": "transferfrom imagebitmap"
+      },
+      {
+        "name": "canvas_toDataURL",
+        "value": "توداتورل"
+      },
+      {
+        "name": "cavnas_clearRect",
+        "value": "كلير ريكت"
+      },
+      {
+        "name": "canvas_clearRect",
+        "value": "كلير ريكت"
+      },
+      {
+        "name": "canvas_shadowBlur",
+        "value": "شادوبلور"
+      },
+      {
+        "name": "canvas_shadowColor",
+        "value": "لون الظل"
+      },
+      {
+        "name": "canvas_shadowOffsetX",
+        "value": "شادووفسيتكس"
+      },
+      {
+        "name": "canvas_shadowOffsetY",
+        "value": "الظل تعويض ذ"
+      },
+      {
+        "name": "canvas_addColorStop",
+        "value": "addclorstop"
+      },
+      {
+        "name": "canvas_beginPath",
+        "value": "بيغن باث"
+      },
+      {
+        "name": "canvas_moveTo",
+        "value": "تحرك"
+      },
+      {
+        "name": "canvas_lineTo",
+        "value": "لين تو"
+      },
+      {
+        "name": "canvas_closePath",
+        "value": "كلوس باث"
+      },
+      {
+        "name": "canvas_bezierCurveTo",
+        "value": "بيزير كيرفيتو"
+      },
+      {
+        "name": "canvas_quadraticCurveTo",
+        "value": "الرسم البياني مع منحنى بيزيير"
+      },
+      {
+        "name": "canvas_arc",
+        "value": "قوس"
+      },
+      {
+        "name": "canvas_arcTo",
+        "value": "اركتو"
+      },
+      {
+        "name": "canvas_ellipse",
+        "value": "القطع الناقص"
+      },
+      {
+        "name": "canvas_rect",
+        "value": "ريست"
+      },
+      {
+        "name": "canvas_transform",
+        "value": "تحول"
+      },
+      {
+        "name": "canvas_setTransform",
+        "value": "ست ترانسفورم"
+      },
+      {
+        "name": "canvas_translate",
+        "value": "ترجمة ."
+      },
+      {
+        "name": "canvas_imageSmoothingQuality",
+        "value": "تجانس الصورة"
+      },
+      {
+        "name": "navigator_title",
+        "value": "الملاح"
+      },
+      {
+        "name": "navigator_first_page",
+        "value": "الصفحة الأولى من Navigaor"
+      },
+      {
+        "name": "navigator_second_page",
+        "value": "الصفحة الثانية من المستكشف"
+      },
+      {
+        "name": "navigator_third_page",
+        "value": "الصفحة الثالثة من المستكشف"
+      },
+      {
+        "name": "navigator_first_page_push",
+        "value": "انتقل إلى الصفحة الثانية"
+      },
+      {
+        "name": "navigator_first_page_active",
+        "value": "انقر فوق تبديل حالة التنشيط"
+      },
+      {
+        "name": "navigator_second_page_push",
+        "value": "انتقل إلى الصفحة الثالثة"
+      },
+      {
+        "name": "navigator_third_page_back",
+        "value": "العودة إلى الصفحة الأولى"
+      },
+      {
+        "name": "navigator_return_message",
+        "value": "! مرحباً - ! مرحباً - هذه هي الصفحة الأولى من المعلمات"
+      },
+      {
+        "name": "component_id_press_to_see_attributeModifier",
+        "value": "عرض attributemodifier حسب العنصر رقم"
+      },
+      {
+        "name": "component_id_click_to_see_attributeModifier",
+        "value": "انقر على عنصر معرف لعرض attributemodifier"
+      },
+      {
+        "name": "component_id_disable_to_see_attributeModifier",
+        "value": "العنصر رقم تعطيل عرض attributemodifier"
+      },
+      {
+        "name": "component_id_disable_radio",
+        "value": "العنصر رقم تعطيل الراديو"
+      },
+      {
+        "name": "component_id_press_list_to_see_attributeModifier",
+        "value": "عنصر معرف عرض attributemodifier القائمة"
+      },
+      {
+        "name": "water_flow_title",
+        "value": "تدفق المياه"
+      },
+      {
+        "name": "water_flow_controller",
+        "value": "تحكم تدفق المياه"
+      },
+      {
+        "name": "water_flow_properties",
+        "value": "خصائص تدفق المياه"
+      },
+      {
+        "name": "water_flow_controller_scrollEdge",
+        "value": "سكرول ايدج"
+      },
+      {
+        "name": "water_flow_controller_scrollBy",
+        "value": "المتداول الصحافة"
+      },
+      {
+        "name": "water_flow_controller_top",
+        "value": "توب ."
+      },
+      {
+        "name": "water_flow_controller_bottom",
+        "value": "القاع"
+      },
+      {
+        "name": "water_flow_properties_scroll_bar_width",
+        "value": "scrollbar العرض"
+      },
+      {
+        "name": "water_flow_properties_scroll_bar_color",
+        "value": "لون سكرول بار"
+      },
+      {
+        "name": "water_flow_properties_scroll_bar",
+        "value": "سكرول بار"
+      },
+      {
+        "name": "water_flow_properties_edge_effect",
+        "value": "تأثير الحافة"
+      },
+      {
+        "name": "water_flow_properties_edge_effect_spring",
+        "value": "الربيع ."
+      },
+      {
+        "name": "water_flow_properties_edge_effect_fade",
+        "value": "تلاشى"
+      },
+      {
+        "name": "water_flow_properties_edge_effect_none",
+        "value": "هل أنت بخير ؟ - لا -"
+      },
+      {
+        "name": "horizontal_reach_start",
+        "value": "التمرير الأفقي على reachstart"
+      },
+      {
+        "name": "horizontal_reach_end",
+        "value": "التمرير الأفقي على reachend"
+      },
+      {
+        "name": "vertical_reach_start",
+        "value": "التمرير الرأسي على reachstart"
+      },
+      {
+        "name": "vertical_reach_end",
+        "value": "التمرير الرأسي على reachend"
+      },
+      {
+        "name": "current_initialIndex",
+        "value": "initialindex الحالي هو :"
+      },
+      {
+        "name": "modify_initialIndex_tips",
+        "value": "بعد initialindex التغييرات ، أدخل هذه الصفحة مرة أخرى"
+      },
+      {
+        "name": "current_scroll_event",
+        "value": "أحداث التمرير الحالية :"
+      },
+      {
+        "name": "current_scroll_state",
+        "value": "الوضع الحالي :"
+      },
+      {
+        "name": "current_scroll_distance",
+        "value": "المسافة الحالية التمرير :"
+      },
+      {
+        "name": "current_scroll_index_first",
+        "value": "مؤشر التمرير الحالي ، الأول :"
+      },
+      {
+        "name": "current_scroll_index_last",
+        "value": "وأخيرا :"
+      },
+      {
+        "name": "current_event_value",
+        "value": "لا أحداث"
+      },
+      {
+        "name": "current_event_on_scroll",
+        "value": "على المتداول"
+      },
+      {
+        "name": "current_event_on_scroll_index",
+        "value": "أونسولل إنديكس"
+      },
+      {
+        "name": "current_event_on_scroll_start",
+        "value": "أونسكرول ستارت"
+      },
+      {
+        "name": "current_event_on_scroll_stop",
+        "value": "انسكولستوب"
+      },
+      {
+        "name": "panel_background_color",
+        "value": "#ffffff"
+      },
+      {
+        "name": "multiple_attribute_take_effect",
+        "value": "دينامية مجموعة خصائص العنصر : خصائص متعددة الإعدادات في وقت واحد"
+      },
+      {
+        "name": "click_to_see_image_border_change",
+        "value": "انقر على زر عرض تغيير حدود الصورة"
+      },
+      {
+        "name": "dynamical_updates_ui_directly",
+        "value": "خصائص العنصر هي مجموعة ديناميكية ، غير الدولة متغير يؤدي مباشرة إلى تحديث واجهة المستخدم"
+      },
+      {
+        "name": "click_to_see_component_change",
+        "value": "انقر على زر عرض عنصر تغيير قيمة الممتلكات"
+      },
+      {
+        "name": "click_to_see_text_component_change",
+        "value": "انقر فوق تحديث مكونات النص البناء باستخدام المعلمات"
+      }
+    ]
+  }
