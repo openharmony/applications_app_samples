@@ -1,0 +1,10 @@
+{
+  "src": [
+    "pages/Index",
+    "managers/crosshar",
+    "managers/recommend",
+    "managers/notrecommendedone",
+    "managers/notrecommendedtwo",
+    "managers/basicusage"
+  ]
+}
