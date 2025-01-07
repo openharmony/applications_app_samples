@@ -103,7 +103,7 @@ kikainput是一个轻量级的输入法应用，支持在运行OpenHarmony OS的
 
 2.本示例为Stage模型，从API version 9开始支持。
 
-3. 本示例已适配API version 12版本SDK，SDK版本号(API Version 12 Release),镜像版本号(4.1Release);
+3. 本示例已适配API version 12版本SDK，SDK版本号(API Version 12 Release),镜像版本号(5.0Release);
 
 4. 本示例需要使用DevEco Studio 版本号(4.1Release)及以上版本才可编译运行。
 
