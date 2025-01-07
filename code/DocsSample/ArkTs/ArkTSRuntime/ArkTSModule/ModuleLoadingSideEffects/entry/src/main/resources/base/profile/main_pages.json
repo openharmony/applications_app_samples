@@ -1,0 +1,10 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/LazyImportChangeExecutionOrder/moduleUseGlobalVar",
+    "pages/ModifyGlobalObject/main",
+    "pages/ModifyingGlobalVariables/main",
+    "pages/ModifyTheApplicationLevelArkUI/Index",
+    "pages/TopCodeModification/main"
+  ]
+}
