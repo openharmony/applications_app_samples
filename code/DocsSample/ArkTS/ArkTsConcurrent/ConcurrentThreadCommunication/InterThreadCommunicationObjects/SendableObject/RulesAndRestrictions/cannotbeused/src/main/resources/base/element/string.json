@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "CannotbeusedAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "CannotbeusedAbility_label",
+      "value": "RulesAndRestrictions"
+    }
+  ]
+}

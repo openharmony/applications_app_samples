@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "AchievenonAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "AchievenonAbility_label",
+      "value": "RulesAndRestrictions"
+    }
+  ]
+}

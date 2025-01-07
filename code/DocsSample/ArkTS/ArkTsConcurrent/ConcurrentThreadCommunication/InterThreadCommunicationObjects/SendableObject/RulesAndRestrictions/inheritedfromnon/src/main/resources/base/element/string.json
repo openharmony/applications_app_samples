@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "InheritedfromnonAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "InheritedfromnonAbility_label",
+      "value": "RulesAndRestrictions"
+    }
+  ]
+}
