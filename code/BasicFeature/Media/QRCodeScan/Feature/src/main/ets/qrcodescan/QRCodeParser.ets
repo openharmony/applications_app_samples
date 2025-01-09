@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
-import fileio from '@ohos.fileio'
-import image from '@ohos.multimedia.image'
-import photoAccessHelper from '@ohos.file.photoAccessHelper'
-import common from '@ohos.app.ability.common'
+import fileio from '@ohos.fileio';
+import image from '@ohos.multimedia.image';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import common from '@ohos.app.ability.common';
 import prompt from '@ohos.promptAction';
 import {
   BarcodeFormat,
@@ -30,20 +30,25 @@ import {
   BinaryBitmap,
   HybridBinarizer
 } from '@ohos/zxing';
-import DateTimeUtil from '../utils/DateTimeUtil'
-import { CameraService } from './CameraService'
+import DateTimeUtil from '../utils/DateTimeUtil';
+import { CameraService } from './CameraService';
 import { QRCodeScanConst, ImageAttribute, DecodeResultAttribute } from './QRCodeScanConst';
-import Logger from '../utils/Logger'
-import Want from '@ohos.app.ability.Want'
-import dataSharePredicates from '@ohos.data.dataSharePredicates'
+import Logger from '../utils/Logger';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import deviceInfo from '@ohos.deviceInfo';
 
-const TAG: string = 'QRCodeParser'
-let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+const TAG: string = 'QRCodeParser';
 
 /**
  * 二维码解析器
  */
 class QRCodeParser {
+  private deviceType: string = 'default';
+
+  constructor() {
+    this.deviceType = deviceInfo.deviceType;
+    Logger.info(TAG, `deviceType: ${this.deviceType}`);
+  }
 
   /**
    * 解析从相机获取的二维码图片
@@ -102,35 +107,59 @@ class QRCodeParser {
    * @param imageSrc
    */
   async parseImageQRCode(imageSrc: string): Promise<DecodeResultAttribute> {
-    Logger.info(`parseImageQRCode start`);
-    let media = photoAccessHelper.getPhotoAccessHelper(AppStorage.get<common.UIAbilityContext>('context'));
-    let imagesIdFetchOp: photoAccessHelper.FetchOptions = {
-      fetchColumns: [],
-      predicates: predicates.equalTo('uri', imageSrc)
-    }
-    // 获取图片文件资源
-    let fetchIdFileResult = await media.getAssets(imagesIdFetchOp);
-    let fileIdAsset = await fetchIdFileResult.getFirstObject();
-    // 获取文件描述符
-    let fd = await fileIdAsset.open('RW');
-    // 获取PixelMap图片数据
-    let imageSource = image.createImageSource(fd, { sourceDensity: 120, sourceSize: { width: 120, height: 120 } })
-    let decodingOptions: image.DecodingOptions = {
-      sampleSize: 1,
-      editable: true,
-      desiredSize: { width: 120, height: 120 },
-      rotate: 0,
-      desiredPixelFormat: 3,
-      desiredRegion: { size: { height: 120, width: 120 }, x: 0, y: 0 },
-      index: 0
+    Logger.info(TAG, `parseImageQRCode start`);
+    let parseResult: DecodeResultAttribute = {
+      isSucess: false,
+      decodeResult: 'failed'
     };
-    let pixMapData = await imageSource.createPixelMap(decodingOptions);
-    let pixelBytesNumber = pixMapData.getPixelBytesNumber();
-    let arrayBuffer: ArrayBuffer = new ArrayBuffer(pixelBytesNumber);
-    // 读取图像像素数据，结果写入ArrayBuffer里
-    await pixMapData.readPixelsToBuffer(arrayBuffer);
+    let width: number;
+    let height: number;
+    let pixelBytesNumber: number;
+    let arrayBuffer: ArrayBuffer;
+    if (this.deviceType !== 'default') {
+      let imageSource: ImageAttribute = await this.getImageSource(imageSrc);
+      imageSource = await this.getImageSource(imageSrc);
+      // 图片宽高
+      width = imageSource.width;
+      height = imageSource.height;
+      pixelBytesNumber = imageSource.pixelMap.getPixelBytesNumber();
+      arrayBuffer = new ArrayBuffer(pixelBytesNumber);
+      // 读取图像像素数据，结果写入ArrayBuffer里
+      await imageSource.pixelMap.readPixelsToBuffer(arrayBuffer);
+    } else {
+      let media = photoAccessHelper.getPhotoAccessHelper(AppStorage.get<common.UIAbilityContext>('context'));
+      let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+      let imagesIdFetchOp: photoAccessHelper.FetchOptions = {
+        fetchColumns: [],
+        predicates: predicates.equalTo('uri', imageSrc)
+      };
+      // 获取图片文件资源
+      let fetchIdFileResult = await media.getAssets(imagesIdFetchOp);
+      let fileIdAsset = await fetchIdFileResult.getFirstObject();
+      // 获取文件描述符
+      let fd = await fileIdAsset.open('RW');
+      // 获取PixelMap图片数据
+      let imageSource = image.createImageSource(fd, { sourceDensity: 120, sourceSize: { width: 120, height: 120 } });
+      let decodingOptions: image.DecodingOptions = {
+        sampleSize: 1,
+        editable: true,
+        desiredSize: { width: 120, height: 120 },
+        rotate: 0,
+        desiredPixelFormat: 3,
+        desiredRegion: { size: { height: 120, width: 120 }, x: 0, y: 0 },
+        index: 0
+      };
+      // 图片宽高
+      width = 120;
+      height = 120;
+      let pixMapData = await imageSource.createPixelMap(decodingOptions);
+      pixelBytesNumber = pixMapData.getPixelBytesNumber();
+      arrayBuffer = new ArrayBuffer(pixelBytesNumber);
+      // 读取图像像素数据，结果写入ArrayBuffer里
+      await pixMapData.readPixelsToBuffer(arrayBuffer);
+    }
     let int32Array = new Int32Array(arrayBuffer);
-    let luminanceSource = new RGBLuminanceSource(int32Array, 120, 120);
+    let luminanceSource = new RGBLuminanceSource(int32Array, width, height);
     let binaryBitmap = new BinaryBitmap(new HybridBinarizer(luminanceSource));
     let mltiFormatReader = new MultiFormatReader();
     let hints: Map<number, number[]> = new Map();
@@ -140,14 +169,16 @@ class QRCodeParser {
       // 解析二维码
       let decodeResult = mltiFormatReader.decode(binaryBitmap);
       let decodeText = decodeResult.getText();
-      Logger.info(`parseImageQRCode end ${decodeText}`);
-      return { isSucess: true, decodeResult: decodeText };
+      Logger.info(TAG, `parseImageQRCode end ${decodeText}`);
+      parseResult = { isSucess: true, decodeResult: decodeText };
     } catch (err) {
       let error = `The error is ${err}`;
-      Logger.info(`parseImageQRCode end`);
-      return { isSucess: false, decodeResult: error };
+      Logger.info(TAG, `parseImageQRCode end`);
+      parseResult = { isSucess: false, decodeResult: error };
     }
+    return parseResult;
   }
+
   /**
    * 获取图片的属性
    * @param context
@@ -156,10 +187,11 @@ class QRCodeParser {
   async getImageSource(imageSrc: string): Promise<ImageAttribute> {
     Logger.info(`getImageSource start`);
     let media = photoAccessHelper.getPhotoAccessHelper(AppStorage.get<common.UIAbilityContext>('context'));
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
     let imagesIdFetchOp: photoAccessHelper.FetchOptions = {
       fetchColumns: ['width', 'height'],
       predicates: predicates.equalTo('uri', imageSrc)
-    }
+    };
     // 获取图片文件资源
     let fetchIdFileResult = await media.getAssets(imagesIdFetchOp);
     let fileIdAsset = await fetchIdFileResult.getFirstObject();
@@ -186,6 +218,7 @@ class QRCodeParser {
       pixelMap: pixelMap
     };
   }
+
   /**
    * 在媒体公共资源目录下的创建指定类型的资源对象
    */
