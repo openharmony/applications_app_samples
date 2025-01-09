@@ -766,7 +766,7 @@ Note:If the text contains special characters, please escape them according to th
    		<filteritem type="filepath" name="code/SystemFeature/AutoFill/AutoFillScenarioization/entry/src/main/resources/base/media/style.png" desc="Provided by code/SystemFeature/AutoFill/AutoFillScenarioization"/>
    		<filteritem type="filepath" name="code/SystemFeature/AutoFill/AutoFillScenarioization/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/AutoFill/AutoFillScenarioization"/>
    		<filteritem type="filepath" name="code/SystemFeature/AutoFill/AutoFillScenarioization/entry/src/main/resources/base/media/arrow.png" desc="Provided by code/SystemFeature/AutoFill/AutoFillScenarioization"/>
-		<filteritem type="filepath" name="code/SystemFeature/AutoFill/AutoFillScenarioization/screenshots/NameAssociation.jpg" desc="Provided by code/SystemFeature/AutoFill/AutoFillScenarioization"/>	
+		<filteritem type="filepath" name="code/SystemFeature/AutoFill/AutoFillScenarioization/screenshots/NameAssociation.jpg" desc="Provided by code/SystemFeature/AutoFill/AutoFillScenarioization"/>
                 <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmonyApplication.pem" desc="Provided by code/Project/HapBuild"/>
                 <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmonyProfileRelease.pem" desc="Provided by code/Project/HapBuild"/>
                 <filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/hap-sign-tool.jar" desc="Provided by code/Project/HapBuild"/>
@@ -922,7 +922,154 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/screenshots/device/play.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
 				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
 				<filteritem type="filepath" name="code/SystemFeature/Media/Recorder/entry/src/main/resources/base/media/check.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
-
+				<filteritem type="filepath" name="code/BasicFeature/Ability/UniversalLink/screenshots/app_status.jpeg" desc="Provided by code/BasicFeature/Ability/UniversalLink"/>
+				<filteritem type="filepath" name="code/BasicFeature/Ability/UniversalLink/screenshots/index.jpeg" desc="Provided by code/BasicFeature/Ability/UniversalLink"/>
+				<filteritem type="filepath" name="code/BasicFeature/Ability/UniversalLink/entry/src/main/resources/base/media/background.png" desc="Provided by code/BasicFeature/Ability/UniversalLink"/>
+				<filteritem type="filepath" name="code/BasicFeature/Ability/UniversalLink/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/BasicFeature/Ability/UniversalLink"/>
+				<filteritem type="filepath" name="code/BasicFeature/Ability/UniversalLink/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/BasicFeature/Ability/UniversalLink"/>
+				<filteritem type="filepath" name="code/BasicFeature/Ability/UniversalLink/entry/src/main/resources/base/media/ic_arrow.svg" desc="Provided by code/BasicFeature/Ability/UniversalLink"/>
+				<filteritem type="filepath" name="code/BasicFeature/Ability/UniversalLink/AppScope/resources/base/media/app_icon.png" desc="Provided by code/BasicFeature/Ability/UniversalLink"/>
+				<filteritem type="filepath" name="code/SystemFeature/FullScreenStart/FullScreenStart/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/FullScreenStart/FullScreenStart/entry/src/main/resources/base/media/background.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/FullScreenStart/FullScreenStart/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/FullScreenStart/FullScreenStart/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/FullScreenStart/FullScreenStart/screenshots/atomicServicePage.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/FullScreenStart/FullScreenStart/screenshots/startPage.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/FullScreenStart/FullScreenStart_Service/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/FullScreenStart/FullScreenStart_Service/entry/src/main/resources/base/media/ic_add.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/FullScreenStart/FullScreenStart_Service/entry/src/main/resources/base/media/ic_clean.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/FullScreenStart/FullScreenStart_Service/entry/src/main/resources/base/media/ic_del.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/FullScreenStart/FullScreenStart_Service/entry/src/main/resources/base/media/ic_div.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/FullScreenStart/FullScreenStart_Service/entry/src/main/resources/base/media/ic_equ.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/FullScreenStart/FullScreenStart_Service/entry/src/main/resources/base/media/ic_min.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/FullScreenStart/FullScreenStart_Service/entry/src/main/resources/base/media/ic_mul.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/FullScreenStart/FullScreenStart_Service/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/FullScreenStart/FullScreenStart_Service/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/SystemFeature/FullScreenStart/FullScreenStart_Service/screenshots/atomicServicePage.png" desc="Provided by code/SystemFeature/Media/Recorder"/>
+				<filteritem type="filepath" name="code/BasicFeature/Ability/AbilityRuntime/screenshots/appManager.jpeg" desc="Provided by code/BasicFeature/Ability/AbilityRuntime"/>
+				<filteritem type="filepath" name="code/BasicFeature/Ability/AbilityRuntime/screenshots/index.jpeg" desc="Provided by code/BasicFeature/Ability/AbilityRuntime"/>
+				<filteritem type="filepath" name="code/BasicFeature/Ability/AbilityRuntime/screenshots/errorManager.jpeg" desc="Provided by code/BasicFeature/Ability/AbilityRuntime"/>
+				<filteritem type="filepath" name="code/BasicFeature/Ability/AbilityRuntime/screenshots/UIabilityContext.jpeg" desc="Provided by code/BasicFeature/Ability/AbilityRuntime"/>
+				<filteritem type="filepath" name="code/BasicFeature/Ability/AbilityRuntime/entry/src/main/resources/base/media/background.png" desc="Provided by code/BasicFeature/Ability/AbilityRuntime"/>
+				<filteritem type="filepath" name="code/BasicFeature/Ability/AbilityRuntime/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/BasicFeature/Ability/AbilityRuntime"/>
+				<filteritem type="filepath" name="code/BasicFeature/Ability/AbilityRuntime/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/BasicFeature/Ability/AbilityRuntime"/>
+				<filteritem type="filepath" name="code/BasicFeature/Ability/AbilityRuntime/entry/src/main/resources/base/media/ic_arrow.svg" desc="Provided by code/BasicFeature/Ability/AbilityRuntime"/>
+				<filteritem type="filepath" name="code/BasicFeature/Ability/AbilityRuntime/AppScope/resources/base/media/app_icon.png" desc="Provided by code/BasicFeature/Ability/AbilityRuntime"/>
+				<filteritem type="filepath" name="code/BasicFeature/Ability/AbilityRuntime/entry/src/main/resources/rawfile/font/Roboto-Regular.ttf" desc="Provided by code/BasicFeature/Ability/AbilityRuntime"/>
+				<filteritem type="filepath" name="code/SystemFeature/UIExtensionSamples/screenshots/app_status.jpeg" desc="Provided by code/SystemFeature/UIExtensionSamples"/>
+				<filteritem type="filepath" name="code/SystemFeature/UIExtensionSamples/screenshots/index.jpeg" desc="Provided by code/SystemFeature/UIExtensionSamples"/>
+				<filteritem type="filepath" name="code/SystemFeature/UIExtensionSamples/screenshots/sync_data.jpeg" desc="Provided by code/SystemFeature/UIExtensionSamples"/>
+				<filteritem type="filepath" name="code/SystemFeature/UIExtensionSamples/screenshots/uiextension.jpeg" desc="Provided by code/SystemFeature/UIExtensionSamples"/>
+				<filteritem type="filepath" name="code/SystemFeature/UIExtensionSamples/entry/src/main/resources/base/media/background.png" desc="Provided by code/SystemFeature/UIExtensionSamples"/>
+				<filteritem type="filepath" name="code/SystemFeature/UIExtensionSamples/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/SystemFeature/UIExtensionSamples"/>
+				<filteritem type="filepath" name="code/SystemFeature/UIExtensionSamples/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/SystemFeature/UIExtensionSamples"/>
+				<filteritem type="filepath" name="code/SystemFeature/UIExtensionSamples/entry/src/main/resources/base/media/ic_arrow.svg" desc="Provided by code/SystemFeature/UIExtensionSamples"/>
+				<filteritem type="filepath" name="code/SystemFeature/UIExtensionSamples/AppScope/resources/base/media/app_icon.png" desc="Provided by code/SystemFeature/UIExtensionSamples"/>
+				<filteritem type="filepath" name="code/BasicFeature/Print/ScanNapiInterfaceDemo/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/BasicFeature/Print/ScanNapiInterfaceDemo"/>
+				<filteritem type="filepath" name="code/BasicFeature/Print/ScanNapiInterfaceDemo/entry/src/main/resources/base/media/background.png" desc="Provided by code/BasicFeature/Print/ScanNapiInterfaceDemo"/>
+				<filteritem type="filepath" name="code/BasicFeature/Print/ScanNapiInterfaceDemo/AppScope/resources/base/media/app_icon.png" desc="Provided by code/BasicFeature/Print/ScanNapiInterfaceDemo"/>
+				<filteritem type="filepath" name="code/BasicFeature/Print/ScanNapiInterfaceDemo/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/BasicFeature/Print/ScanNapiInterfaceDemo"/>
+				<filteritem type="filepath" name="code/BasicFeature/Print/ScanNapiInterfaceDemo/sceenshots/scandemo.png" desc="Provided by code/BasicFeature/Print/ScanNapiInterfaceDemo"/>
+				<filteritem type="filepath" name="code/BasicFeature/ApplicationModels/SystemRouter/entry/src/main/resources/base/media/icon.png" desc="code/BasicFeature/ApplicationModels/SystemRouter"/>
+				<filteritem type="filepath" name="code/BasicFeature/ApplicationModels/SystemRouter/entry/src/main/resources/base/media/startIcon.png" desc="code/BasicFeature/ApplicationModels/SystemRouter"/>
+				<filteritem type="filepath" name="code/BasicFeature/ApplicationModels/SystemRouter/entry/src/main/resources/base/media/background.png" desc="code/BasicFeature/ApplicationModels/SystemRouter"/>
+				<filteritem type="filepath" name="code/BasicFeature/ApplicationModels/SystemRouter/AppScope/resources/base/media/app_icon.png" desc="code/BasicFeature/ApplicationModels/SystemRouter"/>
+				<filteritem type="filepath" name="code/BasicFeature/ApplicationModels/SystemRouter/entry/src/main/resources/base/media/foreground.png" desc="code/BasicFeature/ApplicationModels/SystemRouter"/>
+				<filteritem type="filepath" name="code/BasicFeature/ApplicationModels/SystemRouter/images/HspAPageOne.jpeg" desc="code/BasicFeature/ApplicationModels/SystemRouter"/>
+				<filteritem type="filepath" name="code/BasicFeature/ApplicationModels/SystemRouter/images/HarAPageTwo.jpeg" desc="code/BasicFeature/ApplicationModels/SystemRouter"/>
+				<filteritem type="filepath" name="code/BasicFeature/ApplicationModels/SystemRouter/images/HspAPageTwo.jpeg" desc="code/BasicFeature/ApplicationModels/SystemRouter"/>
+				<filteritem type="filepath" name="code/BasicFeature/ApplicationModels/SystemRouter/images/EntryPageOne.jpeg" desc="code/BasicFeature/ApplicationModels/SystemRouter"/>
+				<filteritem type="filepath" name="code/BasicFeature/ApplicationModels/SystemRouter/images/NavIndex.jpeg" desc="code/BasicFeature/ApplicationModels/SystemRouter"/>
+				<filteritem type="filepath" name="code/BasicFeature/ApplicationModels/SystemRouter/images/EntryPageTwo.jpeg" desc="code/BasicFeature/ApplicationModels/SystemRouter"/>
+				<filteritem type="filepath" name="code/BasicFeature/ApplicationModels/SystemRouter/images/HarAPageOne.jpeg" desc="code/BasicFeature/ApplicationModels/SystemRouter"/>
+				<filteritem type="filepath" name="code/Performance/PerformanceArticle/images/reasonable_using_system_interfaces_2.PNG" desc="Provided by code/Performance/PerformanceArticle"/>
+				<filteritem type="filepath" name="code/Performance/PerformanceArticle/images/reasonable_using_system_interfaces_4.PNG" desc="Provided by code/Performance/PerformanceArticle"/>
+				<filteritem type="filepath" name="code/Performance/PerformanceArticle/images/reasonable_using_system_interfaces_getanonymousadsync.png" desc="Provided by code/Performance/PerformanceArticle"/>
+				<filteritem type="filepath" name="code/Performance/PerformanceArticle/images/reasonable_using_system_interfaces_getanonymousid.png" desc="Provided by code/Performance/PerformanceArticle"/>
+				<filteritem type="filepath" name="code/Performance/PerformanceArticle/images/reasonable_using_system_interfaces_getstringsync.png" desc="Provided by code/Performance/PerformanceArticle"/>
+				<filteritem type="filepath" name="code/Performance/PerformanceArticle/images/reasonable_using_system_interfaces_getstringsyncafter.png" desc="Provided by code/Performance/PerformanceArticle"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/AppScope/resources/base/media/app_icon.png" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/background.png" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_ic_back.png" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_photo1.jpg" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_photo2.jpg" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_photo3.jpg" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_photo4.jpg" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_photo5.jpg" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_photo6.jpg" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_photo7.jpg" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_photo8.jpg" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_photo9.jpg" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_photo10.jpg" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_play.png" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_preview1.jpg" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_preview2.jpg" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_preview3.jpg" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_preview4.jpg" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_profile_photo.jpg" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/media_fullscreen.gif" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/rawfile/media_full_screen_video1.mp4" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/rawfile/media_full_screen_video2.mp4" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/rawfile/media_full_screen_video3.mp4" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/rawfile/media_full_screen_video4.mp4" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/AppScope/resources/base/media/app_icon.png" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>	
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/entry/src/main/resources/base/media/background.png" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>	
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/entry/src/main/resources/base/media/layered_image.png" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>	
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/casesfeature/erasercomponent/eraser.gif" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>	
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/casesfeature/erasercomponent/src/main/resources/base/media/eraser_picture.jpg" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>	
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/casesfeature/erasercomponent/src/main/resources/base/media/eraser_redo.svg" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>	
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/casesfeature/erasercomponent/src/main/resources/base/media/eraser_screenshot_eraser.svg" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>	
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/casesfeature/erasercomponent/src/main/resources/base/media/eraser_screenshot_penshape.svg" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>	
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/casesfeature/erasercomponent/src/main/resources/base/media/eraser_undo.svg" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>	
+				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/casesfeature/operaterdbintaskpool/src/main/resources/rawfile/operate_rdb_in_taskpool_photo18.jpg" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
+				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/casesfeature/operaterdbintaskpool/src/main/resources/rawfile/operate_rdb_in_taskpool_photo24.jpg" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
+				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/casesfeature/operaterdbintaskpool/src/main/resources/rawfile/operate_rdb_in_taskpool_photo17.jpg" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
+				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/casesfeature/operaterdbintaskpool/src/main/resources/rawfile/operate_rdb_in_taskpool_photo19.jpg" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
+				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/casesfeature/operaterdbintaskpool/src/main/resources/rawfile/operate_rdb_in_taskpool_photo15.jpg" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
+				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/casesfeature/operaterdbintaskpool/src/main/resources/rawfile/operate_rdb_in_taskpool_photo6.jpg" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
+				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/casesfeature/operaterdbintaskpool/src/main/resources/rawfile/operate_rdb_in_taskpool_photo7.jpg" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
+				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/casesfeature/operaterdbintaskpool/src/main/resources/rawfile/operate_rdb_in_taskpool_photo23.jpg" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
+				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/casesfeature/operaterdbintaskpool/src/main/resources/rawfile/operate_rdb_in_taskpool_photo11.jpg" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
+				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/casesfeature/operaterdbintaskpool/src/main/resources/rawfile/operate_rdb_in_taskpool_photo21.jpg" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
+				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/casesfeature/operaterdbintaskpool/src/main/resources/rawfile/operate_rdb_in_taskpool_photo5.jpg" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
+				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/casesfeature/operaterdbintaskpool/src/main/resources/rawfile/operate_rdb_in_taskpool_photo8.jpg" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
+				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/casesfeature/operaterdbintaskpool/src/main/resources/rawfile/operate_rdb_in_taskpool_photo14.jpg" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
+				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/casesfeature/operaterdbintaskpool/src/main/resources/rawfile/operate_rdb_in_taskpool_photo2.jpg" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
+				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/casesfeature/operaterdbintaskpool/src/main/resources/rawfile/operate_rdb_in_taskpool_photo9.jpg" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
+				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/casesfeature/operaterdbintaskpool/src/main/resources/rawfile/operate_rdb_in_taskpool_photo16.jpg" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
+				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/casesfeature/operaterdbintaskpool/src/main/resources/rawfile/operate_rdb_in_taskpool_photo25.jpg" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
+				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/casesfeature/operaterdbintaskpool/src/main/resources/rawfile/operate_rdb_in_taskpool_photo20.jpg" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
+				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/casesfeature/operaterdbintaskpool/src/main/resources/rawfile/operate_rdb_in_taskpool_photo10.jpg" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
+				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/casesfeature/operaterdbintaskpool/src/main/resources/rawfile/operate_rdb_in_taskpool_photo3.jpg" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
+				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/casesfeature/operaterdbintaskpool/src/main/resources/rawfile/operate_rdb_in_taskpool_photo22.jpg" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
+				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/casesfeature/operaterdbintaskpool/src/main/resources/rawfile/operate_rdb_in_taskpool_photo1.jpg" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
+				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/casesfeature/operaterdbintaskpool/src/main/resources/rawfile/operate_rdb_in_taskpool_photo12.jpg" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
+				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/casesfeature/operaterdbintaskpool/src/main/resources/rawfile/operate_rdb_in_taskpool_photo4.jpg" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
+				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/casesfeature/operaterdbintaskpool/src/main/resources/rawfile/operate_rdb_in_taskpool_photo13.jpg" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
+				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
+				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
+				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/casesfeature/operaterdbintaskpool/operate_rdb_in_taskpool.gif" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
+				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/entry/src/main/resources/base/media/background.png" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
+				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/AppScope/resources/base/media/app_icon.png" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
+				<filteritem type="filepath" name="code/UI/CitySearch/casesfeature/citysearch/city_search.png" desc="Provided by code/UI/CitySearch"/>
+				<filteritem type="filepath" name="code/UI/CitySearch/AppScope/resources/base/media/app_icon.png" desc="Provided by code/UI/CitySearch"/>
+				<filteritem type="filepath" name="code/UI/CitySearch/casesfeature/citysearch/src/main/resources/base/media/icon.png" desc="Provided by code/UI/CitySearch"/>
+				<filteritem type="filepath" name="code/UI/CitySearch/casesfeature/citysearch/src/main/resources/base/media/icon_black_back.png" desc="Provided by code/UI/CitySearch"/>
+				<filteritem type="filepath" name="code/UI/CitySearch/casesfeature/citysearch/src/main/resources/base/media/icon_black_search.png" desc="Provided by code/UI/CitySearch"/>
+				<filteritem type="filepath" name="code/UI/CitySearch/casesfeature/citysearch/src/main/resources/base/media/icon_close.png" desc="Provided by code/UI/CitySearch"/>
+				<filteritem type="filepath" name="code/UI/CitySearch/casesfeature/citysearch/src/main/resources/base/media/startIcon.png" desc="Provided by code/UI/CitySearch"/>
+				<filteritem type="filepath" name="code/UI/CitySearch/entry/src/main/resources/base/media/background.png" desc="Provided by code/UI/CitySearch"/>
+				<filteritem type="filepath" name="code/UI/CitySearch/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/UI/CitySearch"/>
+				<filteritem type="filepath" name="code/UI/CitySearch/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/UI/CitySearch"/>
+				<filteritem type="filepath" name="code/UI/CitySearch/casesfeature/citysearch/city_search.gif" desc="Provided by code/UI/CitySearch"/>
+				<filteritem type="filepath" name="code/SuperFeature/DistributedAppDev/DistributedFilemanager/screenshots/select.jpeg" desc="Provided by code/SuperFeature/DistributedAppDev/DistributedFilemanager"/>
+				<filteritem type="filepath" name="code/SuperFeature/DistributedAppDev/DistributedFilemanager/entry/src/main/resources/base/media/checked.png" desc="Provided by code/SuperFeature/DistributedAppDev/DistributedFilemanager"/>
+				<filteritem type="filepath" name="code/SuperFeature/DistributedAppDev/DistributedFilemanager/entry/src/main/resources/base/media/ic_hop_normal.png" desc="Provided by code/SuperFeature/DistributedAppDev/DistributedFilemanager"/>
+				<filteritem type="filepath" name="code/SuperFeature/DistributedAppDev/DistributedFilemanager/entry/src/main/resources/base/media/uncheck.png" desc="Provided by code/SuperFeature/DistributedAppDev/DistributedFilemanager"/>
 			</filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加License头"/>
