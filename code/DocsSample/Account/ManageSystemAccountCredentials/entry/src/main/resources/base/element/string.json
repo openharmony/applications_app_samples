@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "ManageSystemAccountCredentials"
+    },
+    {
+      "name": "ManageSystemAccountCredentials1",
+      "value": "Enter PIN code"
+    },
+    {
+      "name": "ManageSystemAccountCredentials2",
+      "value": "Authenticate PIN code"
+    },
+    {
+      "name": "ManageSystemAccountCredentials3",
+      "value": "Enter biometric credentials"
+    },
+    {
+      "name": "ManageSystemAccountCredentials4",
+      "value": "Authenticate biometric credentials"
+    },
+    {
+      "name": "ManageSystemAccountCredentials5",
+      "value": "Update credentials"
+    },
+    {
+      "name": "ManageSystemAccountCredentials6",
+      "value": "Query credential information"
+    },
+    {
+      "name": "ManageSystemAccountCredentials7",
+      "value": "Delete biometric credentials"
+    },
+    {
+      "name": "ManageSystemAccountCredentials8",
+      "value": "Delete credentials"
+    }
+  ]
+}
