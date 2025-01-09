@@ -22,7 +22,7 @@ export struct ReminderCalendar {
   @State isEdit: boolean = false
   @State selectCalendar: number = 0
   @State calendarNames: string[] = []
-  private title: string
+  private title: Resource | undefined = undefined;
   private calendarSetting: CustomDialogController = new CustomDialogController({
     builder: CalendarSetting({ selectIndex: this.selectCalendar })
   })
@@ -61,13 +61,13 @@ export struct ReminderCalendar {
       .width('100%')
 
       List({ space: 8 }) {
-        ForEach(this.calendarNames, (item, index) => {
+        ForEach(this.calendarNames, (item: string, index) => {
           ListItem() {
             Row() {
               Text(item)
                 .fontSize(24)
               Blank()
-              if(CalendarReminder.calendarReminders[index]){
+              if (CalendarReminder.calendarReminders[index]) {
                 Toggle({ type: ToggleType.Switch, isOn: CalendarReminder.calendarReminders[index].isStart })
                   .margin({ left: 8 })
                   .id(`calendarSwitch${index}`)

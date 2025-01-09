@@ -17,8 +17,18 @@ import UIAbility from '@ohos.app.ability.UIAbility'
 import notification from '@ohos.notificationManager'
 import window from '@ohos.window'
 import Logger from '../util/Logger'
+import common from '@ohos.app.ability.common';
+import { calendarManager } from '@kit.CalendarKit';
+import { abilityAccessCtrl, PermissionRequestResult, Permissions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { deviceInfo } from '@kit.BasicServicesKit';
 
-const TAG: string = 'MainAbility'
+const TAG: string = 'MainAbility';
+let deviceTypeInfo: string = deviceInfo.deviceType;
+
+export let calendarMgr: calendarManager.CalendarManager | null = null;
+
+export let mContext: common.UIAbilityContext | null = null;
 
 export default class MainAbility extends UIAbility {
   onCreate(want, launchParam) {
@@ -32,17 +42,28 @@ export default class MainAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
     Logger.info(TAG, 'onWindowStageCreate')
-    notification.requestEnableNotification().then(() => {
-      Logger.info(TAG, `requestEnableNotification success`);
-    }).catch((err) => {
-      Logger.error(TAG, `requestEnableNotification fail: ${JSON.stringify(err)}`);
-    });
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
         Logger.error(TAG, `Failed to load the content. Cause: ${JSON.stringify(err)}`)
         return
       }
       Logger.info(TAG, `Succeeded in loading the content. Data: ${JSON.stringify(data)}`)
+      mContext = this.context;
+      notification.requestEnableNotification(mContext).then(() => {
+        Logger.info(TAG, `requestEnableNotification success`);
+      }).catch((err) => {
+        Logger.error(TAG, `requestEnableNotification fail: ${JSON.stringify(err)}`);
+      });
+      if (deviceTypeInfo !== 'default') {
+        const permissions: Permissions[] = ['ohos.permission.READ_CALENDAR', 'ohos.permission.WRITE_CALENDAR'];
+        let atManager = abilityAccessCtrl.createAtManager();
+        atManager.requestPermissionsFromUser(mContext, permissions).then((result: PermissionRequestResult) => {
+          Logger.info(TAG, `get Permission success, result: ${JSON.stringify(result)}`);
+          calendarMgr = calendarManager.getCalendarManager(mContext);
+        }).catch((error: BusinessError) => {
+          Logger.error(TAG, `get Permission error, error. Code: ${error.code}, message: ${error.message}`);
+        })
+      }
     })
   }
 

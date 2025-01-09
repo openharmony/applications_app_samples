@@ -96,6 +96,10 @@ entry/src/main/ets/
 
 3.允许应用读取用户外部存储中的媒体文件信息 [ohos.permission.READ_MEDIA](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionread_media)
 
+4.允许应用读取日历信息 [ohos.permission.READ_CALENDAR](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionread_calendar)
+
+5.允许应用添加、移除或更改日历活动 [ohos.permission.WRITE_CALENDAR](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionwrite_calendar)
+
 ### 依赖
 
 不涉及。
@@ -104,7 +108,7 @@ entry/src/main/ets/
 
 1.本示例仅支持标准系统上运行，支持设备：RK3568。
 
-2.本示例已适配API version 9版本SDK，版本号：3.2.11.9。
+2.本示例已适配API version 12版本SDK，版本号：5.0.0.70。 
 
 3.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)及以上版本才可编译运行。
 

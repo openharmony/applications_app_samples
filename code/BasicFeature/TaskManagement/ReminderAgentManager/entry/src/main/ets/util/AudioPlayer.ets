@@ -27,27 +27,27 @@ export class AudioPlayer {
     let fdPath = 'fd://'
     let fdValue = await fileIo.open(musicSrc)
     fdPath = fdPath + '' + fdValue
-    let audioID: number = setTimeout(function () {
+    let audioID: number = setTimeout(() => {
       audio.src = fdPath // Set the src property and trigger the 'dataLoad' event callback
-    }, delayTime)
+    }, delayTime);
     return audioID
   }
 
-  private setAudio(audio: media.AudioPlayer) {
-    audio.on('dataLoad', () => { // Set the 'dataLoad' event callback, which is triggered after the src attribute is set successfully
-      Logger.info(TAG, 'audio set source success')
-      audio.play() // Call the play method to start playing, triggering the 'play' event callback
+  private setAudio(audio: media.AudioPlayer | undefined) {
+    audio!.on('dataLoad', () => { // Set the 'dataLoad' event callback, which is triggered after the src attribute is set successfully
+      Logger.info(TAG, 'audio set source success');
+      audio!.play(); // Call the play method to start playing, triggering the 'play' event callback
     })
-    audio.on('play', () => { // Set the 'play' event callback
-      Logger.info(TAG, 'audio play success')
-      setTimeout(function () {
-        audio.stop()
-      }, AUDIO_TIME)
+    audio!.on('play', () => { // Set the 'play' event callback
+      Logger.info(TAG, 'audio play success');
+      setTimeout(() => {
+        audio!.stop();
+      }, AUDIO_TIME);
     })
-    audio.on('stop', () => { // Set the 'stop' event callback
-      Logger.info(TAG, 'audio stop success')
-      audio.release() // The audioPlayer resource is destroyed
-      audio = undefined
+    audio!.on('stop', () => { // Set the 'stop' event callback
+      Logger.info(TAG, 'audio stop success');
+      audio!.release(); // The audioPlayer resource is destroyed
+      audio = undefined;
     })
   }
 }

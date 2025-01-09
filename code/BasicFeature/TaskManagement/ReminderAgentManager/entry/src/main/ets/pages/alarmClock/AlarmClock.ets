@@ -18,6 +18,8 @@ import { AlarmClockSetting } from './AlarmClockSetting'
 import { DrawClock } from './DrawClock'
 import PreferencesDataManager from '../../util/PreferencesDataManager'
 
+const TAG: string = 'AlarmClock';
+
 @Component
 export struct AlarmClock {
   @State isEdit: boolean = false
@@ -25,7 +27,7 @@ export struct AlarmClock {
   @State canvasRadius: number = 0
   @State alarmClockName: string[] = []
   @State selectAlarmClockIndex: number = 0
-  private title: Resource
+  private title: Resource | undefined = undefined;
   private alarmClockSetting: CustomDialogController = new CustomDialogController({
     builder: AlarmClockSetting({ selectAlarmClockIndex: this.selectAlarmClockIndex })
   })
@@ -71,7 +73,7 @@ export struct AlarmClock {
       .width('100%')
 
       List({ space: 8 }) {
-        ForEach(this.alarmClockName, (item, index) => {
+        ForEach(this.alarmClockName, (item: string, index) => {
           ListItem() {
             Row() {
               Text(item)

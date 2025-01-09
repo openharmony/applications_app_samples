@@ -15,17 +15,25 @@
 
 import AlarmClockReminder from '../../util/AlarmClockReminder'
 import PreferencesDataManager from '../../util/PreferencesDataManager'
+import logger from '../../util/Logger';
+
+interface daysType {
+  name: Resource,
+  value: number,
+  isSelect: boolean
+}
+
+interface musicsType {
+  value: string,
+  src: string
+}
 
 @CustomDialog
 export struct AlarmClockSetting {
   @State snoozeTimes: number = 0
   @State timeInterval: number = 0
   @State selectName: string = 'Demo'
-  @State days: Array<{
-    name: Resource,
-    value: number,
-    isSelect: boolean
-  }> =
+  @State days: Array<daysType> =
     [
       { name: $r('app.string.alarm_clock_one'), value: 1, isSelect: false },
       { name: $r('app.string.alarm_clock_two'), value: 2, isSelect: false },
@@ -37,10 +45,8 @@ export struct AlarmClockSetting {
     ]
   private selectAlarmClockIndex: number = 0
   private controller: CustomDialogController
-  private musics: Array<{
-    value: string
-    src: string,
-  }> = [{ value: 'Demo', src: '/system/etc/demo.wav' }, { value: 'Dynamic', src: '/system/etc/dynamic.wav' }]
+  private musics: Array<musicsType> = [{ value: 'Demo', src: '/system/etc/demo.wav' },
+    { value: 'Dynamic', src: '/system/etc/dynamic.wav' }];
 
   build() {
     Column() {
@@ -48,12 +54,12 @@ export struct AlarmClockSetting {
         Text($r('app.string.alarm_clock_remind_day'))
           .fontSize(20)
         Blank()
-        ForEach(this.days, (item, index) => {
+        ForEach(this.days, (item: daysType, index) => {
           Column() {
             Text(item.name)
               .margin(2)
               .fontSize(18)
-            Checkbox({ name: item.name, group: 'days' })
+            Checkbox({ name: item.name.toString(), group: 'days' })
               .select(item.isSelect)
               .selectedColor(0x39a2db)
               .id(`day${this.selectAlarmClockIndex}${index}`)
@@ -80,7 +86,7 @@ export struct AlarmClockSetting {
           this.snoozeTimes++
         })
         .onDec(() => {
-            this.snoozeTimes <= 0 ? 0 : this.snoozeTimes--
+          this.snoozeTimes <= 0 ? 0 : this.snoozeTimes--;
         })
       }
       .width('100%')
@@ -100,7 +106,7 @@ export struct AlarmClockSetting {
           this.timeInterval++
         })
         .onDec(() => {
-            this.timeInterval <= 0 ? 0 : this.timeInterval--
+          this.timeInterval <= 0 ? 0 : this.timeInterval--;
         })
       }
       .width('100%')
@@ -161,9 +167,9 @@ export struct AlarmClockSetting {
                 selectDays.push(this.days[i].value)
               }
             }
-            AlarmClockReminder.alarmClockReminders[this.selectAlarmClockIndex].reminderRequestAlarm.snoozeTimes = this.snoozeTimes
-            AlarmClockReminder.alarmClockReminders[this.selectAlarmClockIndex].reminderRequestAlarm.timeInterval = this.timeInterval
-            AlarmClockReminder.alarmClockReminders[this.selectAlarmClockIndex].reminderRequestAlarm.daysOfWeek = selectDays
+            AlarmClockReminder.alarmClockReminders[this.selectAlarmClockIndex].reminderRequestAlarm!.snoozeTimes = this.snoozeTimes;
+            AlarmClockReminder.alarmClockReminders[this.selectAlarmClockIndex].reminderRequestAlarm!.timeInterval = this.timeInterval;
+            AlarmClockReminder.alarmClockReminders[this.selectAlarmClockIndex].reminderRequestAlarm!.daysOfWeek = selectDays;
             await PreferencesDataManager.putData('alarmClock', AlarmClockReminder.alarmClockReminders)
             this.controller.close()
           })
@@ -177,17 +183,21 @@ export struct AlarmClockSetting {
 
   aboutToAppear() {
     // Read the data of the settings and display it
-    this.snoozeTimes = AlarmClockReminder.alarmClockReminders[this.selectAlarmClockIndex].reminderRequestAlarm.snoozeTimes
-    this.timeInterval = AlarmClockReminder.alarmClockReminders[this.selectAlarmClockIndex].reminderRequestAlarm.timeInterval
-    this.selectName = AlarmClockReminder.alarmClockReminders[this.selectAlarmClockIndex].audioSrc === '/system/etc/demo.wav' ? 'Demo' : 'Dynamic'
-    let selectDays = AlarmClockReminder.alarmClockReminders[this.selectAlarmClockIndex].reminderRequestAlarm.daysOfWeek
-    for (let i = 0; i < this.days.length; i++) {
-      for (let j = 0; j < selectDays.length; j++) {
-        if (this.days[i].value === selectDays[j]) {
-          this.days[i].isSelect = true
-          break
+    this.snoozeTimes = AlarmClockReminder.alarmClockReminders[this.selectAlarmClockIndex].reminderRequestAlarm!.snoozeTimes!;
+    this.timeInterval = AlarmClockReminder.alarmClockReminders[this.selectAlarmClockIndex].reminderRequestAlarm!.timeInterval!;
+    this.selectName = AlarmClockReminder.alarmClockReminders[this.selectAlarmClockIndex].audioSrc === '/system/etc/demo.wav' ? 'Demo' : 'Dynamic';
+    let selectDays = AlarmClockReminder.alarmClockReminders[this.selectAlarmClockIndex].reminderRequestAlarm!.daysOfWeek;
+    if (selectDays !== undefined) {
+      for (let i = 0; i < this.days.length; i++) {
+        for (let j = 0; j < selectDays.length; j++) {
+          if (this.days[i].value === selectDays[j]) {
+            this.days[i].isSelect = true;
+            break;
+          }
         }
       }
+    } else {
+      logger.error('selectDays is undefined!');
     }
   }
 }
