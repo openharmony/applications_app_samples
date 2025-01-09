@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "check_permission",
+      "value": "检测权限"
+    },
+    {
+      "name": "req_permission_ability",
+      "value": "在UIAbility中申请权限"
+    },
+    {
+      "name": "req_permission_page",
+      "value": "在Page中申请权限"
+    },
+    {
+      "name": "return_entryability",
+      "value": "导航到EntryAbility"
+    },
+    {
+      "name": "return_main",
+      "value": "返回主页"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "allowed_only_during_use",
+      "value": "仅使用期间允许"
+    }
+  ]
+}

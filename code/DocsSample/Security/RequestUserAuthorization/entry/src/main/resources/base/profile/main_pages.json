@@ -1,0 +1,7 @@
+{
+  "src": [
+    "pages/Index",
+    "reqpermissioninui/pages/Index",
+    "secondpages/Index"
+  ]
+}
