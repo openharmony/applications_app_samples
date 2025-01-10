@@ -920,6 +920,9 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/DocsSample/EnterpriseAdminExtensionAbility/EnterpriseAdminExtensionAbility/entry/src/main/resources/base/media/icon.png" desc="Provided by code/DocsSample/EnterpriseAdminExtensionAbility"/>
 				<filteritem type="filepath" name="code/DocsSample/EnterpriseAdminExtensionAbility/EnterpriseAdminExtensionAbility/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/DocsSample/EnterpriseAdminExtensionAbility"/>
 				<filteritem type="filepath" name="code/DocsSample/EnterpriseAdminExtensionAbility/EnterpriseAdminExtensionAbility/AppScope/resources/base/media/app_icon.png" desc="Provided by code/DocsSample/EnterpriseAdminExtensionAbility"/>
+				<filteritem type="filepath" name="code/DocsSample/ConnectivityKit/NFC/NFCReadAndWrite/screenshots/image.jpeg" desc="Provided by code/DocsSample/ConnectivityKit"/>
+				<filteritem type="filepath" name="code/DocsSample/ConnectivityKit/NFC/HCECardSimulationDevelopment/screenshots/image.jpeg" desc="Provided by code/DocsSample/ConnectivityKit"/>
+				<filteritem type="filepath" name="code/DocsSample/ConnectivityKit/NFC/SecureElement/screenshots/image.jpeg" desc="Provided by code/DocsSample/ConnectivityKit"/>
 				<filteritem type="filepath" name="code/DocsSample/EnterpriseAdminExtensionAbility/EnterpriseAdminExtensionAbility/screenshots/device/first.jpg" desc="Provided by code/DocsSample/EnterpriseAdminExtensionAbility"/>
 				<filteritem type="filepath" name="code/DocsSample/EnterpriseAdminExtensionAbility/EnterpriseAdminExtensionAbility/screenshots/device/second.jpg" desc="Provided by code/DocsSample/EnterpriseAdminExtensionAbility"/>
 				<filteritem type="filepath" name="code/DocsSample/EnterpriseAdminExtensionAbility/EnterpriseAdminExtensionAbility/screenshots/device/third.jpg" desc="Provided by code/DocsSample/EnterpriseAdminExtensionAbility"/>
