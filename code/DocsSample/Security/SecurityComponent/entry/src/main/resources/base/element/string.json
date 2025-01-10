@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "SecurityComponent"
+    },
+    {
+      "name": "get_location_failed",
+      "value": "获取位置信息失败！"
+    },
+    {
+      "name": "input_verify_code",
+      "value": "请输入验证码"
+    },
+    {
+      "name": "saved_in_photo",
+      "value": "已保存至相册！"
+    },
+    {
+      "name": "set_permission_failed",
+      "value": "设置权限失败！"
+    }
+  ]
+}
