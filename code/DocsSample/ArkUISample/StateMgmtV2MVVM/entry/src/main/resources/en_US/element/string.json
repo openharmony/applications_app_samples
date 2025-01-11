@@ -1,0 +1,60 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "TodoList"
+    },
+    {
+      "name": "SettingAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "SettingAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "TodoList_title",
+      "value": "To-Dos"
+    },
+    {
+      "name": "Add_new_task",
+      "value": "Add a new task"
+    },
+    {
+      "name": "Delete_task",
+      "value": "Delete"
+    },
+    {
+      "name": "Finish_all_tasks",
+      "value": "All Finished"
+    },
+    {
+      "name": "Unfinish_all_tasks",
+      "value": "All Unfinished"
+    },
+    {
+      "name": "Setting",
+      "value": "Settings"
+    },
+    {
+      "name": "Show_finished_tasks",
+      "value": "Show finished"
+    },
+    {
+      "name": "Back",
+      "value": "Back"
+    },
+    {
+      "name": "Unfinish_count",
+      "value": "Unfinished"
+    }
+  ]
+}

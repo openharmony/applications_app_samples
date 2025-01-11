@@ -1,0 +1,6 @@
+{
+  "src": [
+    "pages/TodoListPage",
+    "pages/SettingPage"
+  ]
+}

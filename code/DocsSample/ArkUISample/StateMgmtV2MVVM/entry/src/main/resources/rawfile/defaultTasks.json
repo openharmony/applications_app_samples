@@ -1,0 +1,7 @@
+[
+  {"taskName": "学习ArkTS开发", "isFinish": false},
+  {"taskName": "健身", "isFinish": false},
+  {"taskName": "买水果", "isFinish": true},
+  {"taskName": "取快递", "isFinish": true},
+  {"taskName": "刷题", "isFinish": true}
+]

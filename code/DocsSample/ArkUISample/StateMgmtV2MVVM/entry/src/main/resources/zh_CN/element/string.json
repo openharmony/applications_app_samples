@@ -1,0 +1,60 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "TodoList"
+    },
+    {
+      "name": "SettingAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "SettingAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "TodoList_title",
+      "value": "待办"
+    },
+    {
+      "name": "Add_new_task",
+      "value": "添加新任务"
+    },
+    {
+      "name": "Delete_task",
+      "value": "删除"
+    },
+    {
+      "name": "Finish_all_tasks",
+      "value": "全部完成"
+    },
+    {
+      "name": "Unfinish_all_tasks",
+      "value": "全部未完成"
+    },
+    {
+      "name": "Setting",
+      "value": "设置"
+    },
+    {
+      "name": "Show_finished_tasks",
+      "value": "显示已完成任务"
+    },
+    {
+      "name": "Back",
+      "value": "返回待办"
+    },
+    {
+      "name": "Unfinish_count",
+      "value": "未完成任务"
+    }
+  ]
+}
