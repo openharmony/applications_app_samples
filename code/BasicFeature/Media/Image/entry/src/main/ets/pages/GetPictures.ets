@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,47 +13,31 @@
  * limitations under the License.
  */
 
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { logger } from '@ohos/photomodify';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
-const LENGTH_START: number = 0;
 const LENGTH: number = 9;
+const TAG: string = '[GetPictures]';
 
 export default class GetPictures {
   async getImage(): Promise<void> {
     return new Promise(async (resolve, reject) => {
-      let mContext: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
-      let abilityResult: common.AbilityResult = await mContext.startAbilityForResult(
-        {
-          bundleName: 'com.ohos.photos',
-          abilityName: 'com.ohos.photos.MainAbility',
-          parameters: {
-            uri: 'multipleselect',
-            filterMediaType: 'FILTER_MEDIA_TYPE_IMAGE',
-            maxSelectCount: LENGTH
-          }
-        }
-      );
-      let want: Want | undefined = abilityResult.want;
-      if (want !== null && want !== undefined) {
-        let param: Want | undefined = want.parameters;
-        if (param !== null && param !== undefined) {
-          let result: Array<string> = param['select-item-list'] as Array<string>;
-          let select: Array<string> = [];
-          if (result.length === LENGTH) {
-            for (let i: number = LENGTH_START; i < LENGTH; i++) {
-              select.push(result[i]);
-            }
-          } else {
-            result.forEach(item => {
-              select.push(item);
-            })
-          }
-          let imageList:Array<string> = AppStorage.get('imageList') as Array<string>;
-          AppStorage.setOrCreate<Array<string>>('imageList', imageList.concat(select));
-        }
+      try {
+        let photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
+        photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
+        photoSelectOptions.maxSelectNumber = LENGTH;
+        let photoPicker = new photoAccessHelper.PhotoViewPicker();
+        let photoSelectResult = await photoPicker.select(photoSelectOptions);
+        logger.info(TAG, 'PhotoViewPicker.select successfully, PhotoSelectResult uris: ' + JSON.stringify(photoSelectResult));
+        let imageList: Array<string> = AppStorage.get('imageList') as Array<string>;
+        AppStorage.setOrCreate<Array<string>>('imageList', imageList.concat(photoSelectResult.photoUris));
+        resolve();
+      } catch (error) {
+        let err: BusinessError = error as BusinessError;
+        logger.error(TAG, `PhotoViewPicker failed with err: ${err.code}, ${err.message}`);
+        reject();
       }
-      resolve();
     })
   }
 }
