@@ -1,0 +1,10 @@
+{
+  "src": [
+    "pages/Index",
+    "managers/ArktsAsyncLockIntroduction",
+    "managers/AsonParsingGeneration",
+    "managers/ArktsCollectionsIntroduction",
+    "managers/ArktsSendableModule",
+    "managers/SendableFreeze"
+  ]
+}
