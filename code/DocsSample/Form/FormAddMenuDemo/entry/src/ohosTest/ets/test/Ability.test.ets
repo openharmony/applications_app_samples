@@ -98,9 +98,9 @@ export default function abilityTest() {
       await addBtn.click();
       await driver.delayMs(2000);
       // 点击卡片跳转到对应页面
-      await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.router_to_PageA'))));
+      await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.form_static_card_desc'))));
       let routerBtn =
-        await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.router_to_PageA'))));
+        await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.form_static_card_desc'))));
       await routerBtn.click();
       await driver.delayMs(2000);
       done();

@@ -58,15 +58,11 @@
     },
     {
       "name": "form_static_card_desc",
-      "value": "static ArkTS Card"
+      "value": "router to PageA"
     },
     {
       "name": "full_percent",
       "value": "100%"
-    },
-    {
-      "name": "router_to_PageA",
-      "value": "router to PageA"
     },
     {
       "name": "add_form_by_menu_id",

@@ -65,10 +65,6 @@
       "value": "100%"
     },
     {
-      "name": "router_to_PageA",
-      "value": "跳转到PageA"
-    },
-    {
       "name": "add_form_by_menu_id",
       "value": "add_form_by_menu"
     }

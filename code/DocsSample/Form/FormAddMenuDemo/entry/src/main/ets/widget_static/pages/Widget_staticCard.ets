@@ -39,7 +39,7 @@ struct Widget_staticCard {
     }) {
       Row() {
         Column() {
-          Text(this.TITLE)
+          Text($r('app.string.form_static_card_desc'))
             .fontSize($r('app.float.font_size'))
             .fontWeight(FontWeight.Medium)
             .fontColor($r('app.color.item_title_font'))
