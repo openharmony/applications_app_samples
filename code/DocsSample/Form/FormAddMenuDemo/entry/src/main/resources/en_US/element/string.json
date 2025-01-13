@@ -51,7 +51,8 @@
     {
       "name": "page_a_title",
       "value": "PageA"
-    },    {
+    },
+    {
       "name": "form_static_card_name",
       "value": "ArkTS_static_card"
     },
@@ -62,6 +63,14 @@
     {
       "name": "full_percent",
       "value": "100%"
+    },
+    {
+      "name": "router_to_PageA",
+      "value": "router to PageA"
+    },
+    {
+      "name": "add_form_by_menu_id",
+      "value": "add_form_by_menu"
     }
   ]
 }

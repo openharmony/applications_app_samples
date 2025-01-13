@@ -14,7 +14,7 @@
     },
     {
       "name": "add_form",
-      "value": "添加到桌面"
+      "value": "添加至桌面"
     },
     {
       "name": "font_size",
@@ -23,6 +23,22 @@
     {
       "name": "widgets_name",
       "value": "卡片"
+    },
+    {
+      "name": "router_to_PageA",
+      "value": "跳转到PageA"
+    },
+    {
+      "name": "app_name",
+      "value": "Form Sample"
+    },
+    {
+      "name": "add_form_by_menu_id",
+      "value": "add_form_by_menu"
+    },
+    {
+      "name": "app_icon_relative_id",
+      "value": "AppIconRelative_com.samples.formSample.EntryAbility"
     }
   ]
 }

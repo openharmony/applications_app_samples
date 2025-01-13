@@ -23,6 +23,22 @@
     {
       "name": "widgets_name",
       "value": "widgets"
+    },
+    {
+      "name": "router_to_PageA",
+      "value": "router to PageA"
+    },
+    {
+      "name": "app_name",
+      "value": "Form Sample"
+    },
+    {
+      "name": "add_form_by_menu_id",
+      "value": "add_form_by_menu"
+    },
+    {
+      "name": "app_icon_relative_id",
+      "value": "AppIconRelative_com.samples.formSample.EntryAbility"
     }
   ]
 }

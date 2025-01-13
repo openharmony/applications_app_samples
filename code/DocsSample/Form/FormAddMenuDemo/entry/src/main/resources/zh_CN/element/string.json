@@ -30,7 +30,7 @@
     },
     {
       "name": "add_form",
-      "value": "添加到桌面"
+      "value": "添加至桌面"
     },
     {
       "name": "default_city",
@@ -51,7 +51,8 @@
     {
       "name": "page_a_title",
       "value": "PageA"
-    },    {
+    },
+    {
       "name": "form_static_card_name",
       "value": "静态卡片"
     },
@@ -62,6 +63,14 @@
     {
       "name": "full_percent",
       "value": "100%"
+    },
+    {
+      "name": "router_to_PageA",
+      "value": "跳转到PageA"
+    },
+    {
+      "name": "add_form_by_menu_id",
+      "value": "add_form_by_menu"
     }
   ]
 }

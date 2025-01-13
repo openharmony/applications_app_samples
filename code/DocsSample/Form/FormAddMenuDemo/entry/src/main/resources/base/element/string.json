@@ -63,7 +63,14 @@
     {
       "name": "full_percent",
       "value": "100%"
+    },
+    {
+      "name": "router_to_PageA",
+      "value": "router to PageA"
+    },
+    {
+      "name": "add_form_by_menu_id",
+      "value": "add_form_by_menu"
     }
-
   ]
 }
