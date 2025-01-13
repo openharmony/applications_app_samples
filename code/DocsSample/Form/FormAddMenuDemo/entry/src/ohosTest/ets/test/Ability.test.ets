@@ -52,8 +52,6 @@ export default function abilityTest() {
     it(BUNDLE + '_Add_Form', 0, async () => {
       Logger.info(TAG, BUNDLE + '_Add_Form begin');
       await driver.delayMs(1000);
-      // let ability = abilityDelegatorRegistry.getAppContext();
-      // let manager = ability.resourceManager;
       let btnAccept =
         await driver.findComponent(ON.id(await manager.getStringValue($r('app.string.add_form_by_menu_id'))));
       if (btnAccept !== undefined) {
