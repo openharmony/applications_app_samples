@@ -1,5 +1,5 @@
 import modelPredict from './model';
-import picker from '@ohos.file.picker';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { BusinessError } from '@ohos.base';
 import image from '@ohos.multimedia.image';
 import { resourceManager } from '@kit.LocalizationKit'
@@ -17,7 +17,7 @@ struct Index {
   @State maxIndex: number = 0;
   @State maxArray: Array<number> = [];
   @State maxIndexArray: Array<number> = [];
-  @State labelsNameMmap: string[] = [
+  @State labelsNameMap: string[] = [
     'Herd', 'Safari', 'Bangle', 'Cushion', 'Countertop',
     'Prom', 'Branch', 'Sports', 'Sky', 'Community',
     'Wheel', 'Cola', 'Tuxedo', 'Flowerpot', 'Team',
@@ -113,19 +113,19 @@ struct Index {
         Image(this.uris[0]).width(320).height(540).margin(15)
         //显示分类最大值
         if (this.max) {
-          Text(this.labelsNameMmap[this.maxIndexArray[0]] +
+          Text(this.labelsNameMap[this.maxIndexArray[0]] +
             ': ' +
           (this.maxArray[0] / 100).toString() +
             '%\n' +
-          this.labelsNameMmap[this.maxIndexArray[1]] +
+          this.labelsNameMap[this.maxIndexArray[1]] +
             ': ' +
           (this.maxArray[1] / 100).toString() +
             '%\n' +
-          this.labelsNameMmap[this.maxIndexArray[2]] +
+          this.labelsNameMap[this.maxIndexArray[2]] +
             ': ' +
           (this.maxArray[2] / 100).toString() +
             '%\n' +
-          this.labelsNameMmap[this.maxIndexArray[3]] +
+          this.labelsNameMap[this.maxIndexArray[3]] +
             ': ' +
           (this.maxArray[3] / 100).toString() +
             '%').focusable(true).fontSize(20)
@@ -149,16 +149,16 @@ struct Index {
 
             //获取相册图片
             //1.创建图片-视频类型文件选择选项实例
-            let photoSelectOptions = new picker.PhotoSelectOptions();
+            let photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
 
             //2.选择媒体文件类型和选择媒体文件的最大数目
-            photoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE; // 过滤选择媒体文件类型为IMAGE
+            photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE; // 过滤选择媒体文件类型为IMAGE
             photoSelectOptions.maxSelectNumber = 1; // 选择媒体文件的最大数目
 
             //3.创建图库选择器实例，调用select()接口拉起图库界面进行文件选择。文件选择成功后，返回 photoSelectResult 结果集。
-            let photoPicker = new picker.PhotoViewPicker();
+            let photoPicker = new photoAccessHelper.PhotoViewPicker();
             photoPicker.select(photoSelectOptions, async (
-              err: BusinessError, photoSelectResult: picker.PhotoSelectResult) => {
+              err: BusinessError, photoSelectResult: photoAccessHelper.PhotoSelectResult) => {
               if (err) {
                 console.error('MS_LITE_ERR: PhotoViewPicker.select failed with err: ' + JSON.stringify(err));
                 return;
@@ -242,6 +242,10 @@ struct Index {
                         console.info('MS_LITE_LOG: ' + printStr);
 
                         // 取分类最大值top5
+                        this.max = 0;
+                        this.maxIndex = 0;
+                        this.maxArray = [];
+                        this.maxIndexArray = [];
                         let newArray = out.filter(value => value !== this.max)
                         for (let n = 0; n < 5; n++) {
                           this.max = out[0];

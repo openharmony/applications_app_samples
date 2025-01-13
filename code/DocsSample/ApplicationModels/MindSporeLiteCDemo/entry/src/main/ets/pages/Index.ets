@@ -1,7 +1,7 @@
 import resourceManager from '@ohos.resourceManager'
 import fileIo from '@ohos.file.fs';
 import msliteNapi from 'libentry.so'
-import picker from '@ohos.file.picker';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { BusinessError } from '@ohos.base';
 import image from '@ohos.multimedia.image';
 
@@ -148,16 +148,16 @@ struct Index {
 
           //获取相册图片
           //1.创建图片-视频类型文件选择选项实例
-          let PhotoSelectOptions = new picker.PhotoSelectOptions();
+          let photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
 
           //2.选择媒体文件类型和选择媒体文件的最大数目
-          PhotoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE; // 过滤选择媒体文件类型为IMAGE
-          PhotoSelectOptions.maxSelectNumber = 1; // 选择媒体文件的最大数目
+          photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE; // 过滤选择媒体文件类型为IMAGE
+          photoSelectOptions.maxSelectNumber = 1; // 选择媒体文件的最大数目
 
           //3.创建图库选择器实例，调用select()接口拉起图库界面进行文件选择。文件选择成功后，返回 photoSelectResult 结果集。
-          let photoPicker = new picker.PhotoViewPicker();
-          photoPicker.select(PhotoSelectOptions,
-            async (err: BusinessError, photoSelectResult: picker.PhotoSelectResult) => {
+          let photoPicker = new photoAccessHelper.PhotoViewPicker();
+          photoPicker.select(photoSelectOptions,
+            async (err: BusinessError, photoSelectResult: photoAccessHelper.PhotoSelectResult) => {
               if (err) {
                 console.error('MS_LITE_ERR: PhotoViewPicker.select failed with err: ' + JSON.stringify(err));
                 return;
@@ -168,11 +168,11 @@ struct Index {
               console.info('MS_LITE_LOG: uri: ' + this.uris);
               try {
                 // 预处理图片数据
-                // 1.使用fs.openSync接口，通过uri打开这个文件得到fd
+                // 1.使用fileIo.openSync接口，通过uri打开这个文件得到fd
                 let file = fileIo.openSync(this.uris[0], fileIo.OpenMode.READ_ONLY);
                 console.info('MS_LITE_LOG: file fd: ' + file.fd);
 
-                // 2.通过fd使用fs.readSync接口读取这个文件内的数据
+                // 2.通过fd使用fileIo.readSync接口读取这个文件内的数据
                 let inputBuffer = new ArrayBuffer(4096000);
                 let readLen = fileIo.readSync(file.fd, inputBuffer);
                 console.info('MS_LITE_LOG: readSync data to file succeed and inputBuffer size is:' + readLen);
@@ -229,6 +229,10 @@ struct Index {
                       console.warn('MS_LITE_WARN: output length = ', output.length, ';value = ', output.slice(0, 20));
 
                       // 取分类最大值top5
+                      this.max = 0;
+                      this.maxIndex = 0;
+                      this.maxArray = [];
+                      this.maxIndexArray = [];
                       let newArray = output.filter(value => value !== this.max);
                       for (let n = 0; n < 5; n++) {
                         this.max = output[0];
