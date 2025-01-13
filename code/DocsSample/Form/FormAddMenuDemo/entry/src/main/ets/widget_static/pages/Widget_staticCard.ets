@@ -17,10 +17,6 @@
 @Component
 struct Widget_staticCard {
   /*
-   * The title.
-   */
-  readonly TITLE: string = '跳转到PageA';
-  /*
    * The action type.
    */
   readonly ACTION_TYPE: string = 'router';
