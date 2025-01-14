@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "WebSocket_case"
+    },
+    {
+      "name": "WebSocket_Example",
+      "value": "WebSocket_Example"
+    },
+    {
+      "name": "Connect_WebSocket",
+      "value": "Connect_WebSocket"
+    },
+    {
+      "name": "SendMessage",
+      "value": "SendMessage"
+    },
+    {
+      "name": "DisConnect",
+      "value": "DisConnect"
+    },
+    {
+      "name": "ConnectStatus",
+      "value": "ConnectStatus"
+    },
+    {
+      "name": "SendMessageResult",
+      "value": "SendMessageResult"
+    },
+    {
+      "name": "CloseConnectionResult",
+      "value": "CloseConnectionResult"
+    }
+  ]
+}

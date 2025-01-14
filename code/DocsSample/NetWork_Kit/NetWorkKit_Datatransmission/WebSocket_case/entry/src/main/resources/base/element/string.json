@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "WebSocket_case"
+    },
+    {
+      "name": "WebSocket_Example",
+      "value": "WebSocket示例"
+    },
+    {
+      "name": "Connect_WebSocket",
+      "value": "连接WebSocket"
+    },
+    {
+      "name": "SendMessage",
+      "value": "发送消息"
+    },
+    {
+      "name": "DisConnect",
+      "value": "断开连接"
+    },
+    {
+      "name": "ConnectStatus",
+      "value": "连接状态"
+    },
+    {
+      "name": "SendMessageResult",
+      "value": "发送消息结果"
+    },
+    {
+      "name": "CloseConnectionResult",
+      "value": "关闭连接结果"
+    }
+  ]
+}
