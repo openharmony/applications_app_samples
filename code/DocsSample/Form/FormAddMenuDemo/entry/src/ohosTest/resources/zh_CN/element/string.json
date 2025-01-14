@@ -22,7 +22,11 @@
     },
     {
       "name": "widgets_name",
-      "value": "卡片"
+      "value": "服务卡片"
+    },
+    {
+      "name": "add_form_to_desktop",
+      "value": "添加到桌面"
     },
     {
       "name": "form_static_card_desc",

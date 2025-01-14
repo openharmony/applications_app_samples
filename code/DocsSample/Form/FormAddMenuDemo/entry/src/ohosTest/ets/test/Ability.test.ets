@@ -15,7 +15,7 @@
 
 import { describe, it, expect } from '@ohos/hypium';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import { Driver, ON, UiDirection } from '@ohos.UiTest';
+import { Driver, ON, Point, UiDirection } from '@ohos.UiTest';
 import { Logger } from '../logger/Logger';
 
 const TAG = '[Sample_Add_Form]';
@@ -79,22 +79,23 @@ export default function abilityTest() {
         await driver.fling(UiDirection.RIGHT, 1000);
         await driver.delayMs(DELAY_MS);
         try {
-          await driver.assertComponentExist(ON.id(await manager.getStringValue($r('app.string.app_icon_relative_id'))));
+          await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.app_name'))));
           findApp = true;
         } catch (e) {
         }
       } while (!findApp)
-      // 获取应用所在图标
-      let app = await driver.findComponent(ON.id(await manager.getStringValue($r('app.string.app_icon_relative_id'))));
+      // 获取应用名称中心点
+      let appName = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.app_name'))));
+      let appNameCenter: Point = await appName.getBoundsCenter();
       // 打开添加卡片界面
-      await app.longClick();
+      await driver.longClick(appNameCenter.x, appNameCenter.y - 20);
       let cardBtn = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.widgets_name'))));
       await driver.delayMs(1000);
       await cardBtn.click();
-      await driver.delayMs(1000);
+      await driver.delayMs(2000);
       // 将卡片添加到桌面
-      await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.add_form'))));
-      let addBtn = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.add_form'))));
+      await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.add_form_to_desktop'))));
+      let addBtn = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.add_form_to_desktop'))));
       await addBtn.click();
       await driver.delayMs(2000);
       // 点击卡片跳转到对应页面

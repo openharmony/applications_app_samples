@@ -25,6 +25,10 @@
       "value": "widgets"
     },
     {
+      "name": "add_form_to_desktop",
+      "value": "add form to desktop"
+    },
+    {
       "name": "form_static_card_desc",
       "value": "router to PageA"
     },
