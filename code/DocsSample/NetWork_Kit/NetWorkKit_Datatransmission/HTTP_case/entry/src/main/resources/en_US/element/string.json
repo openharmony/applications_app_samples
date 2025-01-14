@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "HTTP_case"
+    },
+    {
+      "name": "HTTP_Request_Button",
+      "value": "HTTP_Request_Button"
+    },
+    {
+      "name": "HTTP_Request_Example",
+      "value": "HTTP_Request"
+    },
+    {
+      "name": "Stream_HTTP_Request_Button",
+      "value": "Stream_HTTP_Request_Button"
+    },
+    {
+      "name": "testSuccess",
+      "value": "httpFlowSendSuccess"
+    },
+    {
+      "name": "testFail",
+      "value": "Failure"
+    },
+    {
+      "name": "testing",
+      "value": "Testing"
+    },
+    {
+      "name": "httpSendSuccess",
+      "value": "httpSendSuccess"
+    }
+  ]
+}

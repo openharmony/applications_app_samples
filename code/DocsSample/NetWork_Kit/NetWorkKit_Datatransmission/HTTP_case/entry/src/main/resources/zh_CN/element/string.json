@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "HTTP_case"
+    },
+    {
+      "name": "HTTP_Request_Button",
+      "value": "发送HTTP请求"
+    },
+    {
+      "name": "HTTP_Request_Example",
+      "value": "HTTP请求示例"
+    },
+    {
+      "name": "Stream_HTTP_Request_Button",
+      "value": "发送流式HTTP请求"
+    },
+    {
+      "name": "testSuccess",
+      "value": "发送流式HTTP请求成功"
+    },
+    {
+      "name": "testFail",
+      "value": "失败"
+    },
+    {
+      "name": "testing",
+      "value": "测试中"
+    },
+    {
+      "name": "httpSendSuccess",
+      "value": "发送HTTP请求成功"
+    }
+  ]
+}
