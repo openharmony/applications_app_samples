@@ -1,0 +1,148 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "Device_Discovered",
+      "value": "已发现设备"
+    },
+    {
+      "name": "mDNS_Service_Example",
+      "value": "mDNS服务示例"
+    },
+    {
+      "name": "Add_Local_Service",
+      "value": "添加本地服务"
+    },
+    {
+      "name": "Resolve_Local_Service",
+      "value": "解析本地服务"
+    },
+    {
+      "name": "Start_mDNS_Service_Discovery",
+      "value": "启动mDNS服务发现"
+    },
+    {
+      "name": "Stop_mDNS_Service_Discovery",
+      "value": "停止mDNS服务发现"
+    },
+    {
+      "name": "remove_Local_Service",
+      "value": "移除本地服务"
+    },
+    {
+      "name": "Add_Status",
+      "value": "添加本地服务: 添加成功"
+    },
+    {
+      "name": "Parse_Status",
+      "value": "解析本地服务: 解析成功"
+    },
+    {
+      "name": "Remove_Status",
+      "value": "移除本地服务: 移除成功"
+    },
+    {
+      "name": "mDNS_Start",
+      "value": "启动mDNS服务发现: 已启动"
+    },
+    {
+      "name": "mDNS_Stop",
+      "value": "启动mDNS服务发现: 已停止"
+    },
+    {
+      "name": "not_added",
+      "value": "未添加"
+    },
+    {
+      "name": "not_resolved",
+      "value": "未解析"
+    },
+    {
+      "name": "not_removed",
+      "value": "未移除"
+    },
+    {
+      "name": "not_started",
+      "value": "未启动"
+    },
+    {
+      "name": "ADD_SUCCESS",
+      "value": "添加成功"
+    },
+    {
+      "name": "ADD_FAIL",
+      "value": "添加失败"
+    },
+    {
+      "name": "ADDING",
+      "value": "添加中"
+    },
+    {
+      "name": "RESOLVE_SUCCESS",
+      "value": "解析成功"
+    },
+    {
+      "name": "RESOLVE_FAIL",
+      "value": "解析失败"
+    },
+    {
+      "name": "RESOLVING",
+      "value": "解析中"
+    },
+    {
+      "name": "REMOVE_SUCCESS",
+      "value": "移除成功"
+    },
+    {
+      "name": "REMOVE_FAIL",
+      "value": "移除失败"
+    },
+    {
+      "name": "REMOVING",
+      "value": "移除中"
+    },
+    {
+      "name": "DISCOVERY_STATED",
+      "value": "已启动"
+    },
+    {
+      "name": "DISCOVERY_FAIL1",
+      "value": "启动失败"
+    },
+    {
+      "name": "DISCOVERY_FAIL2",
+      "value": "启动失败，创建DiscoveryService失败"
+    },
+    {
+      "name": "DISCOVERY_FAIL3",
+      "value": "启动失败，Context无效"
+    },
+    {
+      "name": "DISCOVERY_STARTING",
+      "value": "启动中"
+    },
+    {
+      "name": "STOPPED",
+      "value": "已停止"
+    },
+    {
+      "name": "STOP_FAIL",
+      "value": "停止失败"
+    },
+    {
+      "name": "STOPPING",
+      "value": "停止中"
+    }
+  ]
+}

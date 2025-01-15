@@ -1,0 +1,40 @@
+{
+  "float": [
+    {
+      "name": "margin20",
+      "value": "20"
+    },
+    {
+      "name": "margin18",
+      "value": "18"
+    },
+    {
+      "name": "margin5",
+      "value": "5"
+    },
+    {
+      "name": "margin10",
+      "value": "10"
+    },
+    {
+      "name": "size16",
+      "value": "16"
+    },
+    {
+      "name": "size18",
+      "value": "18"
+    },
+    {
+      "name": "size20",
+      "value": "20"
+    },
+    {
+      "name": "height50",
+      "value": "50"
+    },
+    {
+      "name": "borderRadius",
+      "value": "5"
+    }
+  ]
+}
