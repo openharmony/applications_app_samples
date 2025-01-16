@@ -1,0 +1,52 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "VPN_Case"
+    },
+    {
+      "name": "VPNExtensionAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "VPNExtensionAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "VPN_Case",
+      "value": "VPN示例"
+    },
+    {
+      "name": "Certain",
+      "value": "确定"
+    },
+    {
+      "name": "notification_content",
+      "value": "通知内容"
+    },
+    {
+      "name": "notification_additional",
+      "value": "通知附加内容"
+    },
+    {
+      "name": "vpn_clickable_notification",
+      "value": "VPN连接成功"
+    },
+    {
+      "name": "vpn_clickable_information",
+      "value": "连接时长: 00:00 网络速度: 50 KB/s"
+    },
+    {
+      "name": "Allow",
+      "value": "允许"
+    }
+  ]
+}

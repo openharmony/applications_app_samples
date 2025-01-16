@@ -1,0 +1,52 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "VPN_Case"
+    },
+    {
+      "name": "VPNExtensionAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "VPNExtensionAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "VPN_Case",
+      "value": "VPN_Case"
+    },
+    {
+      "name": "Allow",
+      "value": "允许"
+    },
+    {
+      "name": "Certain",
+      "value": "确定"
+    },
+    {
+      "name": "notification_content",
+      "value": "notification_content"
+    },
+    {
+      "name": "notification_additional",
+      "value": "notification_additional"
+    },
+    {
+      "name": "vpn_clickable_notification",
+      "value": "vpn_clickable_notification"
+    },
+    {
+      "name": "vpn_clickable_information",
+      "value": "vpn_clickable_information"
+    }
+  ]
+}
