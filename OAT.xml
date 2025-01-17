@@ -103,6 +103,11 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="network/Bluetooth/entry/src/main/java/ohos/samples/bluetooth/adapter/" desc="Not contains 3rd code，license file is not required in this subdirectory."/>
             </filefilter>
             <filefilter name="binaryFileTypePolicyFilter" desc="Filters for binary file policies" >
+			    <filteritem type="filepath" name="code/UI/KeyboardAvoid/casesfeature/keyboardavoid/keyboard_avoid.gif" desc="Provide by code/UI/KeyboardAvoid"/>
+				<filteritem type="filepath" name="code/UI/KeyboardAvoid/entry/src/main/resources/base/media/startIcon.png" desc="Provide by code/UI/KeyboardAvoid"/>
+				<filteritem type="filepath" name="code/UI/KeyboardAvoid/entry/src/main/resources/base/media/background.png" desc="Provide by code/UI/KeyboardAvoid"/>
+				<filteritem type="filepath" name="code/UI/KeyboardAvoid/AppScope/resources/base/media/app_icon.png" desc="Provide by code/UI/KeyboardAvoid"/>
+				<filteritem type="filepath" name="code/UI/KeyboardAvoid/entry/src/main/resources/base/media/foreground.png" desc="Provide by code/UI/KeyboardAvoid"/>
 				<filteritem type="filepath" name="code/BasicFeature/Media/VideoSwitching/entry/src/main/resources/base/media/video_screen_direction_switching_ic_back.png" desc="Provide by code/BasicFeature/Media/VideoSwitching"/>
 				<filteritem type="filepath" name="code/BasicFeature/Media/VideoSwitching/entry/src/main/resources/base/media/video_screen_direction_switching_ic_back1.png" desc="Provide by code/BasicFeature/Media/VideoSwitching"/>
 				<filteritem type="filepath" name="code/BasicFeature/Media/VideoSwitching/entry/src/main/resources/base/media/video_screen_direction_switching_preview2.jpg" desc="Provide by code/BasicFeature/Media/VideoSwitching"/>
@@ -145,6 +150,7 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/DocsSample/Form/FormAddMenuDemo/AppScope/resources/base/media/app_icon.png" desc="Provided by code/DocsSample/Form/FormAddMenuDemo."/>
 				<filteritem type="filepath" name="code/DocsSample/Form/FormAddMenuDemo/entry/src/main/resources/base/media/CardEvent.png" desc="Provided by code/DocsSample/Form/FormAddMenuDemo."/>
 				<filteritem type="filepath" name="code/DocsSample/Form/FormAddMenuDemo/screenshots/addFormByMenu.png" desc="Provided by code/DocsSample/Form/FormAddMenuDemo."/>
+				<filteritem type="filepath" name="code/DocsSample/Form/FormAddMenuDemo/screenshots/addStaticCard.png" desc="Provided by code/DocsSample/Form/FormAddMenuDemo."/>
 				<filteritem type="filepath" name="code/DocsSample/Form/FormAddMenuDemo/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/DocsSample/Form/FormAddMenuDemo."/>
                 <filteritem type="filepath" name="code/BasicFeature/Native/ArkTSXComponent/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by the UX team."/>
                 <filteritem type="filepath" name="code/BasicFeature/Native/ArkTSXComponent/screenshots/device/changeColor.png" desc="Provided by code/BasicFeature/Native/ArkTSXComponent."/>
@@ -967,6 +973,9 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/DocsSample/EnterpriseAdminExtensionAbility/EnterpriseAdminExtensionAbility/screenshots/device/second.jpg" desc="Provided by code/DocsSample/EnterpriseAdminExtensionAbility"/>
 				<filteritem type="filepath" name="code/DocsSample/EnterpriseAdminExtensionAbility/EnterpriseAdminExtensionAbility/screenshots/device/third.jpg" desc="Provided by code/DocsSample/EnterpriseAdminExtensionAbility"/>
 				<filteritem type="filepath" name="code/DocsSample/EnterpriseAdminExtensionAbility/EnterpriseAdminExtensionAbility/screenshots/device/fourth.jpg" desc="Provided by code/DocsSample/EnterpriseAdminExtensionAbility"/>
+				<filteritem type="filepath" name="code/DocsSample/UserAuthentication/screenshots/example1.jpeg" desc="Provided by code/DocsSample/UserAuthentication"/>
+				<filteritem type="filepath" name="code/DocsSample/UserAuthentication/screenshots/mockLogin.jpeg" desc="Provided by code/DocsSample/UserAuthentication"/>
+				<filteritem type="filepath" name="code/DocsSample/UserAuthentication/screenshots/query.jpeg" desc="Provided by code/DocsSample/UserAuthentication"/>
 				<filteritem type="filepath" name="code/Project/HapBuild/compile-tool/tool/sign_tool/OpenHarmonyProfileDebug.pem" desc="Provided by code/Project/HapBuild"/>
 	        <filteritem type="filepath" name="code/BasicFeature/ApplicationModels/BundleManager/BundleManagement/libraryOverlay/src/main/resources/base/media/icon.png" desc="Provided by code/BasicFeature/ApplicationModels/BundleManager/BundleManagement"/>
                 <filteritem type="filepath" name="code/BasicFeature/ApplicationModels/BundleManager/BundleManagement/sceenshots/device/snapshot_directory.png" desc="Provided by code/BasicFeature/ApplicationModels/BundleManager/BundleManagement"/>
@@ -1211,6 +1220,7 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/Performance/PerformanceArticle/images/reasonable_using_system_interfaces_getanonymousid.png" desc="Provided by code/Performance/PerformanceArticle"/>
 				<filteritem type="filepath" name="code/Performance/PerformanceArticle/images/reasonable_using_system_interfaces_getstringsync.png" desc="Provided by code/Performance/PerformanceArticle"/>
 				<filteritem type="filepath" name="code/Performance/PerformanceArticle/images/reasonable_using_system_interfaces_getstringsyncafter.png" desc="Provided by code/Performance/PerformanceArticle"/>
+
 				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/AppScope/resources/base/media/app_icon.png" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
 				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/background.png" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
 				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
@@ -1278,6 +1288,31 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/casesfeature/operaterdbintaskpool/operate_rdb_in_taskpool.gif" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
 				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/entry/src/main/resources/base/media/background.png" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
 				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/AppScope/resources/base/media/app_icon.png" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/ErrorManage/ApplyRecovery/screenshots/Screenshot_20241217182358071.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/ErrorManage/ErrorManage/screenshots/Screenshot_20241217180226713.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiCollie/HiCollie_CPP/screenshots/Screenshot_20241217175158455.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiDebug/HiDebug_CPP/screenshots/Screenshot_20241217173421459.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiDebug/HiDebug_ArkTS/screenshots/Screenshot_20241217173806480.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiChecker/HiChecker_ArkTS/screenshots/Screenshot_20241217173011590.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiTraceChain/HiTraceChain_ArkTS/screenshots/Screenshot_20241217163807312.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiTraceChain/HiTraceChain_CPP/screenshots/Screenshot_20241217164714258.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiTraceMeter/HiTraceMeter_ArkTS/screenshots/Screenshot_20241217160657487.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiTraceMeter/HiTraceMeter_CPP/screenshots/Screenshot_20241217162307411.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventEsc/screenshots/Screenshot_20241217155644259.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/AppEvents/AppEvents_ArkTS/screenshots/Screenshot_20241216110221038.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/AppEvents/AppEvents_CPP/screenshots/Screenshot_20241216111352383.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/SystemEvents/CrashEvent/CrashEvent_ArkTS/Screenshot_20241216112612313.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/SystemEvents/CrashEvent/CrashEvent_CPP/Screenshot_20241216113343596.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/SystemEvents/FreezeEvent/FreezeEvent_ArkTS/Screenshot_20241216172715954.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/SystemEvents/FreezeEvent/FreezeEvent_CPP/Screenshot_20241216181024896.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/SystemEvents/PssLeakEvent/PssLeakEvent_ArkTS/Screenshot_20241217095825273.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/SystemEvents/PssLeakEvent/PssLeakEvent_CPP/Screenshot_20241217110156344.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/SystemEvents/AddressDisEvent/AddressDisEvent_ArkTS/Screenshot_20241216100856439.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/SystemEvents/AddressDisEvent/AddressDisEvent_CPP/Screenshot_20241217152733739.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/SystemEvents/TimeOutEvent/TimeOutEvent_ArkTS/Screenshot_20241217153926668.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/SystemEvents/TimeOutEvent/TimeOutEvent_CPP/Screenshot_20241217155302579.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/Hilog/Hilog_ArkTS/screenshots/Screenshot_20241217111119407.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/Hilog/Hilog_CPP/screenshots/Screenshot_20241216103815304.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
 				<filteritem type="filepath" name="code/UI/CitySearch/casesfeature/citysearch/city_search.png" desc="Provided by code/UI/CitySearch"/>
 				<filteritem type="filepath" name="code/UI/CitySearch/AppScope/resources/base/media/app_icon.png" desc="Provided by code/UI/CitySearch"/>
 				<filteritem type="filepath" name="code/UI/CitySearch/casesfeature/citysearch/src/main/resources/base/media/icon.png" desc="Provided by code/UI/CitySearch"/>
@@ -1289,6 +1324,30 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/UI/CitySearch/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/UI/CitySearch"/>
 				<filteritem type="filepath" name="code/UI/CitySearch/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/UI/CitySearch"/>
 				<filteritem type="filepath" name="code/UI/CitySearch/casesfeature/citysearch/city_search.gif" desc="Provided by code/UI/CitySearch"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/drag_and_exchange.gif" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_ic_public_app1.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_ic_public_app2.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_ic_public_app3.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_ic_public_app4.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_ic_public_app5.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_ic_public_app6.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_ic_public_app7.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_ic_public_app8.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_ic_public_app9.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_ic_public_app10.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_ic_public_app11.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_ic_public_app12.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_ic_public_app13.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_ic_public_app14.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_ic_public_app15.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_ic_public_game1.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_ic_public_game2.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_ic_public_game3.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_ic_public_game4.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_wallpaper_default.jpg" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/entry/src/main/resources/base/media/background.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/UI/DragAndExchange"/>
 				<filteritem type="filepath" name="code/SuperFeature/DistributedAppDev/DistributedFilemanager/screenshots/select.jpeg" desc="Provided by code/SuperFeature/DistributedAppDev/DistributedFilemanager"/>
 				<filteritem type="filepath" name="code/SuperFeature/DistributedAppDev/DistributedFilemanager/entry/src/main/resources/base/media/checked.png" desc="Provided by code/SuperFeature/DistributedAppDev/DistributedFilemanager"/>
 				<filteritem type="filepath" name="code/SuperFeature/DistributedAppDev/DistributedFilemanager/entry/src/main/resources/base/media/ic_hop_normal.png" desc="Provided by code/SuperFeature/DistributedAppDev/DistributedFilemanager"/>
@@ -1341,25 +1400,13 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/UI/ImperativeDynamicLayouts/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/UI/ImperativeDynamicLayouts"/>
 				<filteritem type="filepath" name="code/UI/ImperativeDynamicLayouts/casesfeature/imperativedynamiclayouts/src/main/resources/base/media/movie5.jpg" desc="Provided by code/UI/ImperativeDynamicLayouts"/>
 				<filteritem type="filepath" name="code/UI/ImperativeDynamicLayouts/casesfeature/imperativedynamiclayouts/src/main/resources/base/media/movie1.jpg" desc="Provided by code/UI/ImperativeDynamicLayouts"/>
-				<filteritem type="filepath" name="code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/DynamicallyImport/BusinessExpansionScenario/screenshots/BusinessExpansionScenario.png" desc="Provided by code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/DynamicallyImport/BusinessExpansionScenario"/>
-				<filteritem type="filepath" name="code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/DynamicallyImport/DynamicImportConstantExpression/screenshots/DynamicImportConstantExpression.png" desc="Provided by code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/DynamicallyImport/DynamicImportConstantExpression"/>
-				<filteritem type="filepath" name="code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/DynamicallyImport/DynamicImportDependenciesBetweenHAR/screenshots/DynamicImportDependenciesBetweenHAR.png" desc="Provided by code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/DynamicallyImport/DynamicImportDependenciesBetweenHAR"/>
-				<filteritem type="filepath" name="code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/DynamicallyImport/DynamicImportVariableExpression/screenshots/DynamicImportVariableExpression.png" desc="Provided by code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/DynamicallyImport/DynamicImportVariableExpression"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/DynamicImport/screenshots/DynamicImport.png" desc="Provided by code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/DynamicImport"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/JsApisLoadNativeModule/screenshots/JsApisLoadNativeModule1.png" desc="Provided by code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/JsApisLoadNativeModule"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/JsApisLoadNativeModule/screenshots/JsApisLoadNativeModule2.png" desc="Provided by code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/JsApisLoadNativeModule"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/JsApisLoadNativeModule/screenshots/JsApisLoadNativeModule3.png" desc="Provided by code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/JsApisLoadNativeModule"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/LazyImport/screenshots/LazyImport1.png" desc="Provided by code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/LazyImport"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/LazyImport/screenshots/LazyImport2.png" desc="Provided by code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/LazyImport"/>
-				<filteritem type="filepath" name="code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/ModuleLoadingSideEffects/LazyImportChangeExecutionOrder/screenshots/LazyImportChangeExecutionOrder1.png" desc="Provided by code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/ModuleLoadingSideEffects/LazyImportChangeExecutionOrder"/>
-				<filteritem type="filepath" name="code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/ModuleLoadingSideEffects/LazyImportChangeExecutionOrder/screenshots/LazyImportChangeExecutionOrder2.png" desc="Provided by code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/ModuleLoadingSideEffects/LazyImportChangeExecutionOrder"/>
-				<filteritem type="filepath" name="code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/ModuleLoadingSideEffects/ModifyGlobalObject/screenshots/ModifyGlobalObject1.png" desc="Provided by code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/ModuleLoadingSideEffects/ModifyGlobalObject"/>
-				<filteritem type="filepath" name="code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/ModuleLoadingSideEffects/ModifyGlobalObject/screenshots/ModifyGlobalObject2.png" desc="Provided by code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/ModuleLoadingSideEffects/ModifyGlobalObject"/>
-				<filteritem type="filepath" name="code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/ModuleLoadingSideEffects/ModifyingGlobalVariables/screenshots/ModifyingGlobalVariables1.png" desc="Provided by code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/ModuleLoadingSideEffects/ModifyingGlobalVariables"/>
-				<filteritem type="filepath" name="code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/ModuleLoadingSideEffects/ModifyingGlobalVariables/screenshots/ModifyingGlobalVariables2.png" desc="Provided by code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/ModuleLoadingSideEffects/ModifyingGlobalVariables"/>
-				<filteritem type="filepath" name="code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/ModuleLoadingSideEffects/ModifyingGlobalVariables/screenshots/ModifyingGlobalVariables3.png" desc="Provided by code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/ModuleLoadingSideEffects/ModifyingGlobalVariables"/>
-				<filteritem type="filepath" name="code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/ModuleLoadingSideEffects/ModifyTheApplicationLevelArkUI/screenshots/ModifyTheApplicationLevelArkUI.png" desc="Provided by code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/ModuleLoadingSideEffects/ModifyTheApplicationLevelArkUI"/>
-				<filteritem type="filepath" name="code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/ModuleLoadingSideEffects/TopCodeModification/screenshots/TopCodeModification1.png" desc="Provided by code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/ModuleLoadingSideEffects/TopCodeModification"/>
-				<filteritem type="filepath" name="code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/ModuleLoadingSideEffects/TopCodeModification/screenshots/TopCodeModification2.png" desc="Provided by code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/ModuleLoadingSideEffects/TopCodeModification"/>
+                <filteritem type="filepath" name="code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/ModuleLoadingSideEffects/screenshots/ModuleLoadingSideEffects.png" desc="Provided by code/DocsSample/ArkTs/ArkTSRuntime/ArkTSModule/ModuleLoadingSideEffects"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview/screenshots/AsyncConcurrencyOverview_1.png" desc="Provided by code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview/screenshots/AsyncConcurrencyOverview_2.png" desc="Provided by code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkWeb/LifecycleWebComp/screenshots/LifecycleWebComp.png" desc="Provided by code/DocsSample/ArkWeb"/>
@@ -1488,6 +1535,10 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/DocsSample/ArkWeb/UseOfflineWebComp/PreLaunchingRenderingProcess_one/screenshots/PreLaunchingRenderingProcess_one_1.png" desc="Provided by code/DocsSample/ArkWeb"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkWeb/UseOfflineWebComp/PreLaunchingRenderingProcess_one/screenshots/PreLaunchingRenderingProcess_one_2.png" desc="Provided by code/DocsSample/ArkWeb"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkWeb/UseOfflineWebComp/PreLaunchingRenderingProcess_two/screenshots/PreLaunchingRenderingProcess_two.png" desc="Provided by code/DocsSample/ArkWeb"/>
+				<filteritem type="filepath" name="code/DocsSample/International/Internationalization/screenshots/CalendarSetting.jpg" desc="Provided by code/DocsSample/International"/>
+				<filteritem type="filepath" name="code/DocsSample/International/Internationalization/screenshots/DateTimeFormatting.jpg" desc="Provided by code/DocsSample/International"/>
+				<filteritem type="filepath" name="code/DocsSample/International/Internationalization/screenshots/LocaleCulturalDivision.jpg" desc="Provided by code/DocsSample/International"/>
+				<filteritem type="filepath" name="code/DocsSample/International/Internationalization/screenshots/MainPage.jpg" desc="Provided by code/DocsSample/International"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkTs/ArkTsConcurrent/MultithreadedConcurrency/MultiThreadConcurrencyOverview/screenshots/MultiThreadConcurrencyOverview_1.png" desc="Provided by code/DocsSample/ArkTs/ArkTsConcurrent/MultithreadedConcurrency/MultiThreadConcurrencyOverview"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkTs/ArkTsConcurrent/MultithreadedConcurrency/MultiThreadConcurrencyOverview/screenshots/MultiThreadConcurrencyOverview_2.png" desc="Provided by code/DocsSample/ArkTs/ArkTsConcurrent/MultithreadedConcurrency/MultiThreadConcurrencyOverview"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkTs/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/ConcurrentLoadingModulesGuide/screenshots/ConcurrentLoadingModulesGuide_1.png" desc="Provided by code/DocsSample/ArkTs"/>
@@ -1548,6 +1599,58 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableScenarios/screenshots/SendableScenarios_2.png" desc="Provided by code/DocsSample/ArkTs"/>
                 <filteritem type="filepath" name="code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/BatchDatabaseOperationsGuide/screenshots/BatchDatabaseOperationsGuide_1.png" desc="Provided by code/DocsSample/ArkTs"/>
                 <filteritem type="filepath" name="code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/BatchDatabaseOperationsGuide/screenshots/BatchDatabaseOperationsGuide_2.png" desc="Provided by code/DocsSample/ArkTs"/>
+				<filteritem type="filepath" name="code/UI/PageLoading/pageloading/src/main/resources/base/media/page_loading_commodity00.png" desc="Provided by code/UI/PageLoading"/>
+				<filteritem type="filepath" name="code/UI/PageLoading/pageloading/src/main/resources/base/media/page_loading_commodity01.png" desc="Provided by code/UI/PageLoading"/>
+				<filteritem type="filepath" name="code/UI/PageLoading/pageloading/src/main/resources/base/media/page_loading_commodity02.png" desc="Provided by code/UI/PageLoading"/>
+				<filteritem type="filepath" name="code/UI/PageLoading/pageloading/src/main/resources/base/media/page_loading_commodity03.png" desc="Provided by code/UI/PageLoading"/>
+				<filteritem type="filepath" name="code/UI/PageLoading/pageloading/src/main/resources/base/media/page_loading_commodity04.png" desc="Provided by code/UI/PageLoading"/>
+				<filteritem type="filepath" name="code/UI/PageLoading/pageloading/src/main/resources/base/media/page_loading_commodity05.png" desc="Provided by code/UI/PageLoading"/>
+				<filteritem type="filepath" name="code/UI/PageLoading/pageloading/src/main/resources/base/media/page_loading_light_mode_banner.jpg" desc="Provided by code/UI/PageLoading"/>
+				<filteritem type="filepath" name="code/UI/PageLoading/pageloading/src/main/resources/base/media/page_loading_views.svg" desc="Provided by code/UI/PageLoading"/>
+				<filteritem type="filepath" name="code/UI/PageLoading/pageloading/src/main/resources/base/media/page_loading.gif" desc="Provided by code/UI/PageLoading"/>
+				<filteritem type="filepath" name="code/UI/PageLoading/AppScope/resources/base/media/app_icon.png" desc="Provided by code/UI/PageLoading"/>
+				<filteritem type="filepath" name="code/UI/PageLoading/entry/src/main/resources/base/media/background.png" desc="Provided by code/UI/PageLoading"/>
+				<filteritem type="filepath" name="code/UI/PageLoading/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/UI/PageLoading"/>
+				<filteritem type="filepath" name="code/UI/PageLoading/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/UI/PageLoading"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkUISample/StateMgmtV2MVVM/screenshots/MVVMV2-todolist.gif" desc="Provide by code/DocsSample/ArkUISample/StateMgmtV2MVVM"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkUISample/StateMgmtV2MVVM/entry/src/main/resources/base/media/background.png" desc="Provide by code/DocsSample/ArkUISample/StateMgmtV2MVVM"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkUISample/StateMgmtV2MVVM/entry/src/main/resources/base/media/finished.png" desc="Provide by code/DocsSample/ArkUISample/StateMgmtV2MVVM"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkUISample/StateMgmtV2MVVM/entry/src/main/resources/base/media/foreground.png" desc="Provide by code/DocsSample/ArkUISample/StateMgmtV2MVVM"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkUISample/StateMgmtV2MVVM/entry/src/main/resources/base/media/startIcon.png" desc="Provide by code/DocsSample/ArkUISample/StateMgmtV2MVVM"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkUISample/StateMgmtV2MVVM/entry/src/main/resources/base/media/unfinished.png" desc="Provide by code/DocsSample/ArkUISample/StateMgmtV2MVVM"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkUISample/StateMgmtV2MVVM/AppScope/resources/base/media/app_icon.png" desc="Provide by code/DocsSample/ArkUISample/StateMgmtV2MVVM"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPIObject/screenshots/NodeAPIObject1.png" desc="Provided by code/DocsSample/ArkTS"/>
+                <filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPIObject/screenshots/NodeAPIObject2.png" desc="Provided by code/DocsSample/ArkTS"/>
+                <filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPIPrimitive/screenshots/NodeAPIPrimitive1.png" desc="Provided by code/DocsSample/ArkTS"/>
+                <filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPIPrimitive/screenshots/NodeAPIPrimitive2.png" desc="Provided by code/DocsSample/ArkTS"/>
+                <filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPIPromise/screenshots/NodeAPIPromise1.png" desc="Provided by code/DocsSample/ArkTS"/>
+                <filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPIPromise/screenshots/NodeAPIPromise2.png" desc="Provided by code/DocsSample/ArkTS"/>
+                <filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPIProperty/screenshots/NodeAPIProperty1.png" desc="Provided by code/DocsSample/ArkTS"/>
+                <filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPIProperty/screenshots/NodeAPIProperty2.png" desc="Provided by code/DocsSample/ArkTS"/>
+                <filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeApiString/screenshots/NodeApiString1.png" desc="Provided by code/DocsSample/ArkTS"/>
+                <filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeApiString/screenshots/NodeApiString2.png" desc="Provided by code/DocsSample/ArkTS"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPICleanuphook/screenshots/NodeAPICleanuphook1.png" desc="Provided by code/DocsSample/ArkTS"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPICleanuphook/screenshots/NodeAPICleanuphook2.png" desc="Provided by code/DocsSample/ArkTS"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeApiCustomAsynchronousOperations/screenshots/NodeApiCustomAsynchronousOperations1.png" desc="Provided by code/DocsSample/ArkTS"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeApiCustomAsynchronousOperations/screenshots/NodeApiCustomAsynchronousOperations2.png" desc="Provided by code/DocsSample/ArkTS"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPIDate/screenshots/NodeAPIDate1.png" desc="Provided by code/DocsSample/ArkTS"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPIDate/screenshots/NodeAPIDate2.png" desc="Provided by code/DocsSample/ArkTS"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPIEnvironmentalLifeCycle/screenshots/NodeAPIEnvironmentalLifeCycle1.png" desc="Provided by code/DocsSample/ArkTS"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPIEnvironmentalLifeCycle/screenshots/NodeAPIEnvironmentalLifeCycle2.png" desc="Provided by code/DocsSample/ArkTS"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPIError/screenshots/NodeAPIError1.png" desc="Provided by code/DocsSample/ArkTS"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPIError/screenshots/NodeAPIError2.png" desc="Provided by code/DocsSample/ArkTS"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/screenshots/NodeAPIExtendCapabilities1.png" desc="Provided by code/DocsSample/ArkTS"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/screenshots/NodeAPIExtendCapabilities2.png" desc="Provided by code/DocsSample/ArkTS"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPIFunction/screenshots/NodeAPIFunction1.png" desc="Provided by code/DocsSample/ArkTS"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPIFunction/screenshots/NodeAPIFunction2.png" desc="Provided by code/DocsSample/ArkTS"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPILifeCycle/screenshots/NodeAPILifeCycle1.png" desc="Provided by code/DocsSample/ArkTS"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPILifeCycle/screenshots/NodeAPILifeCycle2.png" desc="Provided by code/DocsSample/ArkTS"/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/AudioToVideoSync/screenshots/device/play.png" desc="Provide by code/BasicFeature/Media/AudioToVideoSync"/>	
+				<filteritem type="filepath" name="code/BasicFeature/Media/AudioToVideoSync/entry/src/main/resources/base/media/startIcon.png" desc="Provide by code/BasicFeature/Media/AudioToVideoSync"/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/AudioToVideoSync/screenshots/device/ATVS_Index.png" desc="Provide by code/BasicFeature/Media/AudioToVideoSync"/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/AudioToVideoSync/entry/src/main/resources/base/media/background.png" desc="Provide by code/BasicFeature/Media/AudioToVideoSync"/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/AudioToVideoSync/AppScope/resources/base/media/app_icon.png" desc="Provide by code/BasicFeature/Media/AudioToVideoSync"/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/AudioToVideoSync/entry/src/main/resources/base/media/foreground.png" desc="Provide by code/BasicFeature/Media/AudioToVideoSync"/>
 			</filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加License头"/>

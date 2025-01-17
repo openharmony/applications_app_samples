@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "ResultsOfLocalSort",
+      "value": "本地习惯排序: "
+    },
+    {
+      "name": "ResultOfEnglishSort",
+      "value": "英文区分大小写排序结果: \n"
+    },
+    {
+      "name": "ResultOfChineseSort",
+      "value": "中文拼音排序结果: \n"
+    },
+    {
+      "name": "ResultOfChineseStrokeSort",
+      "value": "中文按笔画排序结果: \n"
+    },
+    {
+      "name": "ResultOfSearchMatch",
+      "value": "搜索匹配的字符串结果: "
+    },
+    {
+      "name": "ResultsOfCreateIndex",
+      "value": "创建索引结果: "
+    },
+    {
+      "name": "ResultOfIndexList",
+      "value": "混合语言索引列表: "
+    },
+    {
+      "name": "ResultOfIndex",
+      "value": "\"你好\" 的索引: "
+    }
+  ]
+}

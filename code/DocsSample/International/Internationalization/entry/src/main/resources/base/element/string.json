@@ -1,0 +1,68 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "国际化"
+    },
+    {
+      "name": "Internationalization",
+      "value": "国际化"
+    },
+    {
+      "name": "LocaleCulturalDivision",
+      "value": "区域标识与文化习惯划分"
+    },
+    {
+      "name": "LocaleCulturalDivisionExample",
+      "value": "区域标识与文化习惯划分 (时间日期格式化为例)"
+    },
+    {
+      "name": "LanguagePreferenceSetting",
+      "value": "设置语言与用户偏好"
+    },
+    {
+      "name": "DateTimeFormatting",
+      "value": "时间日期国际化"
+    },
+    {
+      "name": "NumberMeasurementFormatting",
+      "value": "数字与度量衡国际化"
+    },
+    {
+      "name": "PhoneNumberFormatting",
+      "value": "电话号码格式化"
+    },
+    {
+      "name": "CalendarSetting",
+      "value": "设置日历和历法"
+    },
+    {
+      "name": "TimezoneDstSetting",
+      "value": "时区与夏令时国际化"
+    },
+    {
+      "name": "MultilingualSorting",
+      "value": "多语言排序"
+    },
+    {
+      "name": "CharacterProcessing",
+      "value": "字符处理"
+    },
+    {
+      "name": "NameLocalization",
+      "value": "本地化名称"
+    },
+    {
+      "name": "reason",
+      "value": "用于更新系统配置"
+    }
+  ]
+}

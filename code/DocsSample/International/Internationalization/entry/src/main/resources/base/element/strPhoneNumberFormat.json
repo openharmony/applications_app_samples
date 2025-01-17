@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "ResultsOfPhoneNumberFormat",
+      "value": "电话号码格式化结果: "
+    },
+    {
+      "name": "PhoneNumberFormat",
+      "value": "格式化电话号码: "
+    },
+    {
+      "name": "RFC3966TypeNumberFormat",
+      "value": "RFC3966类型的电话号码: "
+    },
+    {
+      "name": "IsValidNumber",
+      "value": "判断电话号码是否有效: "
+    },
+    {
+      "name": "CNLocationName",
+      "value": "以某种语言(以中文为例)显示号码归属地: "
+    },
+    {
+      "name": "FormatResult",
+      "value": "拨号中的电话号码格式化: "
+    }
+  ]
+}

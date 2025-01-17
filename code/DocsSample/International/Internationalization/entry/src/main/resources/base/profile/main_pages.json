@@ -1,0 +1,15 @@
+{
+  "src": [
+    "pages/Index",
+    "i18napplication/LocaleCulturalDivision",
+    "i18napplication/LanguagePreferenceSetting",
+    "i18napplication/DateTimeFormatting",
+    "i18napplication/NumberMeasurementFormatting",
+    "i18napplication/PhoneNumberFormatting",
+    "i18napplication/CalendarSetting",
+    "i18napplication/TimezoneDstSetting",
+    "i18napplication/MultilingualSorting",
+    "i18napplication/CharacterProcessing",
+    "i18napplication/NameLocalization"
+  ]
+}

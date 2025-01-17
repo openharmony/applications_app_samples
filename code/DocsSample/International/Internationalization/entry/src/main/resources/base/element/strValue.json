@@ -1,0 +1,140 @@
+{
+  "string": [
+    {
+      "name": "Calendar",
+      "value": "公历"
+    },
+    {
+      "name": "Hua",
+      "value": "华"
+    },
+    {
+      "name": "CountryWordChina",
+      "value": "中国"
+    },
+    {
+      "name": "CountryWordGermany",
+      "value": "德国"
+    },
+    {
+      "name": "CountryWordUSA",
+      "value": "美国"
+    },
+    {
+      "name": "CountryWordFrance",
+      "value": "法国"
+    },
+    {
+      "name": "TeacherShan",
+      "value": "单老师"
+    },
+    {
+      "name": "ZhangSunWuJi",
+      "value": "长孙无忌"
+    },
+    {
+      "name": "ExpectedFormattedDate1",
+      "value": "2021年9月17日星期五 中国标准时间 13:04:00"
+    },
+    {
+      "name": "ExpectedFormattedDate4",
+      "value": "9月17日星期五"
+    },
+    {
+      "name": "ExpectedFormattedDate5",
+      "value": "2021/9/17 下午13:04"
+    },
+    {
+      "name": "Apple",
+      "value": "苹果"
+    },
+    {
+      "name": "Pear",
+      "value": "梨"
+    },
+    {
+      "name": "Banana",
+      "value": "香蕉"
+    },
+    {
+      "name": "Pomegranate",
+      "value": "石榴"
+    },
+    {
+      "name": "Sugarcane",
+      "value": "甘蔗"
+    },
+    {
+      "name": "Grapes",
+      "value": "葡萄"
+    },
+    {
+      "name": "Orange",
+      "value": "橘子"
+    },
+    {
+      "name": "ExpectedChineseSort",
+      "value": "甘蔗,橘子,梨,苹果,葡萄,石榴,香蕉"
+    },
+    {
+      "name": "ExpectedChineseStrokeSort",
+      "value": "甘蔗,石榴,苹果,香蕉,梨,葡萄,橘子"
+    },
+    {
+      "name": "NiHao",
+      "value": "你好"
+    },
+    {
+      "name": "ExpectedDisplayLanguage",
+      "value": "德文"
+    },
+    {
+      "name": "ExpectedTimeZoneName",
+      "value": "巴西利亚"
+    },
+    {
+      "name": "ExpectedTimeZone",
+      "value": "巴西利亚"
+    },
+    {
+      "name": "ExpectedFormattedNumber2",
+      "value": "12万"
+    },
+    {
+      "name": "ExpectedFormattedNumber6",
+      "value": "123,400.00美元"
+    },
+    {
+      "name": "TimeZone",
+      "value": "时区:"
+    },
+    {
+      "name": "Time",
+      "value": "时间:"
+    },
+    {
+      "name": "ExpectedCityDisplayName",
+      "value": "奥克兰 (新西兰)"
+    },
+    {
+      "name": "Adak",
+      "value": "埃达克 (美国)"
+    },
+    {
+      "name": "Anchorage",
+      "value": "安克雷奇 (美国)"
+    },
+    {
+      "name": "ExpectedTimeZoneData1",
+      "value": "时区: America/Sao_Paulo"
+    },
+    {
+      "name": "Yerevan",
+      "value": "埃里温 (亚美尼亚)"
+    },
+    {
+      "name": "ExpectedTimeZoneData2",
+      "value": "时区: Asia/Shanghai"
+    }
+  ]
+}
