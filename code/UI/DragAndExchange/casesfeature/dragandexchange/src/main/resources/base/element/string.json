@@ -1,0 +1,72 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "drag_and_exchange_grid_drag_title",
+      "value": "Grid拖动互换子组件"
+    },
+    {
+      "name": "drag_and_exchange_list_drag_title",
+      "value": "List拖动互换子组件"
+    },
+    {
+      "name": "drag_and_exchange_layout_100_percent",
+      "value": "100%"
+    },
+    {
+      "name": "drag_and_exchange_layout_90_percent",
+      "value": "90%"
+    },
+    {
+      "name": "drag_and_exchange_layout_250",
+      "value": "250"
+    },
+    {
+      "name": "drag_and_exchange_layout_70",
+      "value": "70"
+    },
+    {
+      "name": "drag_and_exchange_layout_90",
+      "value": "90"
+    },
+    {
+      "name": "drag_and_exchange_icon_square_size",
+      "value": "50"
+    },
+    {
+      "name": "drag_and_exchange_layout_20",
+      "value": "20"
+    },
+    {
+      "name": "drag_and_exchange_layout_15",
+      "value": "15"
+    },
+    {
+      "name": "drag_and_exchange_layout_10",
+      "value": "10"
+    },
+    {
+      "name": "drag_and_exchange_layout_5",
+      "value": "5"
+    },
+    {
+      "name": "drag_and_exchange_layout_1",
+      "value": "1"
+    },
+    {
+      "name": "drag_and_exchange_opt_title_font_size",
+      "value": "25"
+    },
+    {
+      "name": "drag_and_exchange_app_name_font_size",
+      "value": "16"
+    },
+    {
+      "name": "drag_and_exchange_background_opacity",
+      "value": "0.8"
+    }
+  ]
+}
