@@ -260,7 +260,7 @@ Signed-off-by: jiangwensai <jiangwensai@huawei.com>
 
 ## 二进制文件合入规范<a name="section6"></a>
 
-当提交的代码涉及到二进制文件时（图片、视频、压缩包、hap/har包等），需要在[OTA.xml](OAT.xml)中设置文件过滤：
+当提交的代码涉及到二进制文件时（图片、视频、压缩包、hap/har包等），需要在[OTA.xml](OAT.xml)中设置文件过滤，并将源码打包（如涉及）与二进制文件一并上传：
 
 1.找到 name 为 "binaryFileTypePolicyFilter" 的过滤器:
 ```
@@ -275,3 +275,10 @@ Signed-off-by: jiangwensai <jiangwensai@huawei.com>
 ```
 <filteritem type="filepath" name="code/Solutions/Shopping/OrangeShopping/libs/ohos-notification-1.0.0.tgz" desc="Provided by Notification/CustomEmitter"/>
 ```
+
+若出现如下门禁告警：
+```
+3rdCheck 1. 预编译二进制管理
+Invalid File Type: SHA:xxxxxxxxxxxxxxxx
+```
+请详细提供二进制来源信息并找committer手动屏蔽
