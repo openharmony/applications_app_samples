@@ -1,0 +1,10 @@
+{
+  "routerMap": [
+    {
+      "name": "dragandexchange/LauncherComponent",
+      "pageModule": "dragandexchange",
+      "pageSourceFile": "src/main/ets/generated/RouterBuilder.ets",
+      "registerFunction": "launcherComponentRegister"
+    }
+  ]
+}

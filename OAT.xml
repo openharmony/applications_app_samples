@@ -1289,6 +1289,30 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/UI/CitySearch/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/UI/CitySearch"/>
 				<filteritem type="filepath" name="code/UI/CitySearch/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/UI/CitySearch"/>
 				<filteritem type="filepath" name="code/UI/CitySearch/casesfeature/citysearch/city_search.gif" desc="Provided by code/UI/CitySearch"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/drag_and_exchange.gif" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_ic_public_app1.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_ic_public_app2.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_ic_public_app3.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_ic_public_app4.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_ic_public_app5.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_ic_public_app6.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_ic_public_app7.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_ic_public_app8.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_ic_public_app9.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_ic_public_app10.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_ic_public_app11.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_ic_public_app12.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_ic_public_app13.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_ic_public_app14.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_ic_public_app15.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_ic_public_game1.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_ic_public_game2.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_ic_public_game3.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_ic_public_game4.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/casesfeature/dragandexchange/src/main/resources/base/media/drag_and_exchange_wallpaper_default.jpg" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/entry/src/main/resources/base/media/background.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/UI/DragAndExchange"/>
+				<filteritem type="filepath" name="code/UI/DragAndExchange/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/UI/DragAndExchange"/>
 				<filteritem type="filepath" name="code/SuperFeature/DistributedAppDev/DistributedFilemanager/screenshots/select.jpeg" desc="Provided by code/SuperFeature/DistributedAppDev/DistributedFilemanager"/>
 				<filteritem type="filepath" name="code/SuperFeature/DistributedAppDev/DistributedFilemanager/entry/src/main/resources/base/media/checked.png" desc="Provided by code/SuperFeature/DistributedAppDev/DistributedFilemanager"/>
 				<filteritem type="filepath" name="code/SuperFeature/DistributedAppDev/DistributedFilemanager/entry/src/main/resources/base/media/ic_hop_normal.png" desc="Provided by code/SuperFeature/DistributedAppDev/DistributedFilemanager"/>
