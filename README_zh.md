@@ -34,13 +34,28 @@
   <td width="680" colspan="4" align="center" x:str><strong>应用示例</strong></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-  <td width="140" align="center" rowspan="1" style='height:27.00pt' x:str><strong>UI</strong></td>
-  <td x:str><strong>声明式开发范式</strong></td>
-  <td width="170" x:str><a href="code/UI/ArkTsComponentCollection/ComponentCollection">ArkTS组件集（API 11）</a></td>
+  <td width="140" align="center" rowspan="3" style='height:27.00pt' x:str><strong>UI</strong></td>
+  <td rowspan="3" x:str><strong>声明式开发范式</strong></td>
+  <td width="170" x:str><a href="code/UI/ArkTsComponentCollection/ComponentCollection">ArkTS组件集（API 12）</a></td>
   <td width="170" x:str><a href="code/UI/ArkTsComponentCollection/MediaQuery">横竖屏切换</a></td>
   <td width="170" x:str><a href="code/UI/ArkTsComponentCollection/DefiningPageLayoutAndConnection">页面布局和连接</a></td>
   <td width="170" x:str><a href="code/UI/ArkTsComponentCollection/StateManagement">状态管理</a></td>
  </tr>
+<tr height="18" style='height:13.50pt;'>
+  <td width="170" x:str><a href="code/UI/CalendarViewSwitch">日历视图切换</a></td>
+  <td width="170" x:str><a href="code/UI/CitySearch">城市选择案例</a></td>
+  <td width="170" x:str><a href="code/UI/ExpandTitle">标题下拉缩放案例</a></td>
+  <td width="170" x:str><a href="code/UI/Immersive">沉浸式适配案例</a></td>
+ </tr>
+<tr height="18" style='height:13.50pt;'>
+  <td width="170" x:str><a href="code/UI/ImperativeDynamicLayouts">动态布局类框架</a></td>
+  <td width="170" x:str><a href="code/UI/TabContentTouchHotZone">触摸热区增大案例</a></td>
+  <td ></td>
+  <td ></td>
+ </tr>
+
+
+
  <tr height="18" style='height:13.50pt;'>
   <td height="270" align="center" rowspan="30" style='height:202.50pt' x:str><strong>基础特性</strong></td>
   <td x:str><strong>能力增强</strong></td>
@@ -79,7 +94,7 @@
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td rowspan="4" x:str><strong>媒体</strong></td>
-  <td x:str><a href="code/BasicFeature/Media/Image">图片显示及处理（API 11）</a></td>
+  <td x:str><a href="code/BasicFeature/Media/Image">图片编辑（API 14）</a></td>
   <td x:str><a href="code/BasicFeature/Media/VideoShow">媒体库视频</a></td>
   <td x:str><a href="code/BasicFeature/Media/ImageShow">图片显示</a></td>
   <td x:str><a href="code/BasicFeature/Media/ImageEffect">图片编辑</a></td>
@@ -125,7 +140,7 @@
  <tr height="18" style='height:13.50pt;'>
   <td x:str><a href="code/BasicFeature/Connectivity/StageSocket">Socket连接</a></td> 
   <td x:str><a href="code/BasicFeature/Connectivity/Bluetooth">蓝牙</a></td>
-  <td x:str><a href="code/BasicFeature/Connectivity/UploadAndDownLoad">上传和下载（API 10）</a></td>
+  <td x:str><a href="code/BasicFeature/Connectivity/UploadAndDownLoad">上传和下载（API 12）</a></td>
   <td x:str><a href="code/BasicFeature/Connectivity/VPN">VPN连接</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
@@ -221,7 +236,7 @@
   <td x:str><a href="code/BasicFeature/Native/NdkRawfile">获取Rawfile资源</a></td>
   <td x:str><a href="code/BasicFeature/Native/NdkXComponent">Native XComponent（API 10）</a></td>
   <td x:str><a href="code/BasicFeature/Native/NdkOpenGL">OpenGL三棱椎（API 10）</a></td>
-  <td x:str><a href="code/BasicFeature/Native/Audio">音频管理</a></td>
+  <td x:str><a href="code/DocsSample/Media/Audio/AudioEffectManagement">音效管理</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
   <td x:str><a href="code/BasicFeature/Native/NdkDrawing">Native Drawing</a></td>
@@ -437,7 +452,7 @@
   <td rowspan="3" x:str><strong>分布式</strong></td>
   <td x:str><a href="code/SuperFeature/DistributedAppDev/ArkTSDistributedMusicPlayer">ArkTS分布式音乐播放</a></td>
   <td x:str><a href="code/SuperFeature/DistributedAppDev/JsDistributedMusicPlayer">JS分布式音乐播放（API 10）</a></td>
-  <td x:str><a href="code/SuperFeature/DistributedAppDev/ArkTSDistributedCalc">分布式计算器（API 10）</a></td>
+  <td x:str><a href="code/SuperFeature/DistributedAppDev/ArkTSDistributedCalc">分布式计算器（API 12）</a></td>
   <td x:str><a href="code/SuperFeature/DistributedAppDev/DistributeCalc">JS分布式计算器（API 10）</a></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
@@ -574,6 +589,12 @@ Sample仓下所展示的组件能力：
 code
 |---UI                         # UI开发
   |---ArkTsComponentCollection    # ArkTs组件集
+  |---CalendarViewSwitch          # 日历视图切换
+  |---CitySearch                  # 城市选择案例
+  |---ExpandTitle                 # 标题下拉缩放案例
+  |---Immersive                   # 沉浸式适配案例
+  |---ImperativeDynamicLayouts    # 动态布局类框架
+  |---TabContentTouchHotZone      # 触摸热区增大案例
 |---BasicFeature               # 基础特性
   |---Ability                      # 能力增强
   |---Ads                          # 广告
@@ -595,6 +616,7 @@ code
   |---TaskManagement               # 任务管理
   |---Telephony                    # 电话服务
   |---Web                          # Web
+  |---Window                       # 窗口
 |---SystemFeature              # 系统特性
   |---Ability                      # 能力增强
   |---ApplicationModels            # 应用模型
@@ -640,6 +662,7 @@ code
   |---ZipLib                       # 解压与压缩
 |---Performance                # 性能
   |---ArkRuntime                   # 方舟运行时
+  |---OperateRDBInTaskPool         # TaskPool线程中操作关系型数据库
   |---PerformanceLibrary           # 性能示例
   |---renderGroup                  # 性能示例
 ```
