@@ -242,7 +242,7 @@
   <td ></td>
  </tr>
  <tr height="18" style='height:13.50pt;'>
-<td height="90" align="center" rowspan="26" style='height:67.50pt;' x:str><strong>系统特性（仅对系统应用开放）</strong></td>
+<td height="90" align="center" rowspan="25" style='height:67.50pt;' x:str><strong>系统特性（仅对系统应用开放）</strong></td>
   <td x:str><strong>能力增强</strong></td>
   <td x:str><a href="code/SystemFeature/Ability/AbilityFeatureSystem">基础能力增强</a></td>
   <td ></td>
@@ -332,13 +332,6 @@
  <tr height="18" style='height:13.50pt;'>
   <td x:str><strong>数据管理</strong></td>
   <td x:str><a href="code/SystemFeature/DataManagement/CrossAppDataShare">跨应用数据共享</a></td>
-  <td ></td>
-  <td ></td>
-  <td ></td>
- </tr>
- <tr height="18" style='height:13.50pt;'>
-  <td x:str><strong>卡片能力增强</strong></td>
-  <td x:str><a href="code/SystemFeature/ArkTSCard/ArkTSCard">ArkTs卡片能力增强</a></td>
   <td ></td>
   <td ></td>
   <td ></td>
