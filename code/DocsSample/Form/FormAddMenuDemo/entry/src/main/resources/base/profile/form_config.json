@@ -1,6 +1,27 @@
 {
   "forms": [
     {
+      "name": "widget_static",
+      "displayName": "$string:form_static_card_name",
+      "description": "$string:form_static_card_desc",
+      "src": "./ets/widget_static/pages/Widget_staticCard.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDynamic": false,
+      "isDefault": false,
+      "updateEnabled": false,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 1,
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "2*2"
+      ]
+    },
+    {
       "name": "widget",
       "displayName": "$string:widget_display_name",
       "description": "$string:widget_desc",

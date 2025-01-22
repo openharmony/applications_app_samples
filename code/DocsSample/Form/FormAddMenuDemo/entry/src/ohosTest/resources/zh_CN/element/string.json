@@ -14,7 +14,35 @@
     },
     {
       "name": "add_form",
+      "value": "添加至桌面"
+    },
+    {
+      "name": "font_size",
+      "value": "25fp"
+    },
+    {
+      "name": "widgets_name",
+      "value": "服务卡片"
+    },
+    {
+      "name": "add_form_to_desktop",
       "value": "添加到桌面"
+    },
+    {
+      "name": "form_static_card_desc",
+      "value": "跳转到PageA"
+    },
+    {
+      "name": "app_name",
+      "value": "Form Sample"
+    },
+    {
+      "name": "add_form_by_menu_id",
+      "value": "add_form_by_menu"
+    },
+    {
+      "name": "app_icon_relative_id",
+      "value": "AppIconRelative_com.samples.formSample.EntryAbility"
     }
   ]
 }

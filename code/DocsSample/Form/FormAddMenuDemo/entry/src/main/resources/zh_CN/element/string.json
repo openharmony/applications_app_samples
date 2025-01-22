@@ -30,7 +30,7 @@
     },
     {
       "name": "add_form",
-      "value": "添加到桌面"
+      "value": "添加至桌面"
     },
     {
       "name": "default_city",
@@ -47,6 +47,26 @@
     {
       "name": "font_size",
       "value": "25fp"
+    },
+    {
+      "name": "page_a_title",
+      "value": "PageA"
+    },
+    {
+      "name": "form_static_card_name",
+      "value": "静态卡片"
+    },
+    {
+      "name": "form_static_card_desc",
+      "value": "跳转到PageA"
+    },
+    {
+      "name": "full_percent",
+      "value": "100%"
+    },
+    {
+      "name": "add_form_by_menu_id",
+      "value": "add_form_by_menu"
     }
   ]
 }

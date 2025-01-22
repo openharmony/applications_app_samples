@@ -15,6 +15,34 @@
     {
       "name": "add_form",
       "value": "add form"
+    },
+    {
+      "name": "font_size",
+      "value": "25fp"
+    },
+    {
+      "name": "widgets_name",
+      "value": "widgets"
+    },
+    {
+      "name": "add_form_to_desktop",
+      "value": "add form to desktop"
+    },
+    {
+      "name": "form_static_card_desc",
+      "value": "router to PageA"
+    },
+    {
+      "name": "app_name",
+      "value": "Form Sample"
+    },
+    {
+      "name": "add_form_by_menu_id",
+      "value": "add_form_by_menu"
+    },
+    {
+      "name": "app_icon_relative_id",
+      "value": "AppIconRelative_com.samples.formSample.EntryAbility"
     }
   ]
 }

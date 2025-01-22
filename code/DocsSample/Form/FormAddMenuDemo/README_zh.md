@@ -10,19 +10,23 @@
 [FormMenu](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-formmenu.md)
 ，该功能提供了将卡片添加至桌面的菜单，通过桌面访问该应用快捷卡片，可以直接访问该组件功能。在应用使用过程中，该组件作为留存和复访入口，可吸引用户将功能快捷添加到桌面。
 
+[FormLink](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-formlink.md)
+，该提供静态卡片交互组件，用于静态卡片内部和提供方应用间的交互。
+
 ### 效果预览
 
-| 主页                         | 通过菜单添加卡片至桌面页面                      |
-|----------------------------|------------------------------------|
-| ![](screenshots/index.png) | ![](screenshots/addFormByMenu.png) |
+| 主页                         | 通过菜单添加卡片至桌面页面                      | 添加静态卡片并跳转到制定页面                     |
+|----------------------------|------------------------------------|------------------------------------|
+| ![](screenshots/index.png) | ![](screenshots/addFormByMenu.png) | ![](screenshots/addStaticCard.png) |
 
 使用说明：
 
 1.启动Form Sample应用，首页正常显示待添加卡片内容。
 
-2.长按主页卡片内容，卡片内容上方显示菜单"添加到桌面"。
+2.长按主页卡片内容，卡片内容上方显示菜单"添加到桌面"，点击"添加到桌面"，退出Form Sample应用到桌面，可看到"添加到桌面"卡片。
 
-3.点击"添加到桌面",退出Form Sample应用到桌面，可看到"添加到桌面"卡片。
+3.长按应用图标，显示菜单栏，点击"卡片"后进入应用卡片页面，选择静态卡片并点击"添加到桌面"，后可在桌面就看新添加静态卡片。点击静态卡片即可跳转到对应页面。
+
 
 ### 工程目录
 
@@ -36,11 +40,14 @@ entry/src/main/ets/
 |   └---Logger.ts                      // 日志工具
 └---pages
     |---AddFormByMenu.ets              // 使用Menu组件添加卡片到桌面
-    └---Index.ets                      // 首页
+    |---Index.ets                      // 首页
+    └---PageA.ets                      // 页面A
 └---widget
     └---pages
         └---WidgetCard.ets
-
+└---widget_static
+    └---pages
+        └---Widget_staticCard.ets      // 静态卡片
 ```
 
 ### 具体实现
@@ -49,7 +56,7 @@ entry/src/main/ets/
 来完成。
 
 本sample中功能主要参考[Menu](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-menu.md)
-和[FormMenu](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-formmenu.md)
+、[FormMenu](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-formmenu.md)和[FormLink](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-formlink.md)
 组件，完成功能开发。
 
 ### 相关权限

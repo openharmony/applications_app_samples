@@ -47,6 +47,26 @@
     {
       "name": "font_size",
       "value": "25fp"
+    },
+    {
+      "name": "page_a_title",
+      "value": "PageA"
+    },
+    {
+      "name": "form_static_card_name",
+      "value": "ArkTS_static_card"
+    },
+    {
+      "name": "form_static_card_desc",
+      "value": "router to PageA"
+    },
+    {
+      "name": "full_percent",
+      "value": "100%"
+    },
+    {
+      "name": "add_form_by_menu_id",
+      "value": "add_form_by_menu"
     }
   ]
 }
