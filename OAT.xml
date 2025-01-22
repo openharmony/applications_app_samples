@@ -1572,6 +1572,19 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableScenarios/screenshots/SendableScenarios_2.png" desc="Provided by code/DocsSample/ArkTs"/>
                 <filteritem type="filepath" name="code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/BatchDatabaseOperationsGuide/screenshots/BatchDatabaseOperationsGuide_1.png" desc="Provided by code/DocsSample/ArkTs"/>
                 <filteritem type="filepath" name="code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/BatchDatabaseOperationsGuide/screenshots/BatchDatabaseOperationsGuide_2.png" desc="Provided by code/DocsSample/ArkTs"/>
+				<filteritem type="filepath" name="code/UI/PageLoading/pageloading/src/main/resources/base/media/page_loading_commodity00.png" desc="Provided by code/UI/PageLoading"/>
+				<filteritem type="filepath" name="code/UI/PageLoading/pageloading/src/main/resources/base/media/page_loading_commodity01.png" desc="Provided by code/UI/PageLoading"/>
+				<filteritem type="filepath" name="code/UI/PageLoading/pageloading/src/main/resources/base/media/page_loading_commodity02.png" desc="Provided by code/UI/PageLoading"/>
+				<filteritem type="filepath" name="code/UI/PageLoading/pageloading/src/main/resources/base/media/page_loading_commodity03.png" desc="Provided by code/UI/PageLoading"/>
+				<filteritem type="filepath" name="code/UI/PageLoading/pageloading/src/main/resources/base/media/page_loading_commodity04.png" desc="Provided by code/UI/PageLoading"/>
+				<filteritem type="filepath" name="code/UI/PageLoading/pageloading/src/main/resources/base/media/page_loading_commodity05.png" desc="Provided by code/UI/PageLoading"/>
+				<filteritem type="filepath" name="code/UI/PageLoading/pageloading/src/main/resources/base/media/page_loading_light_mode_banner.jpg" desc="Provided by code/UI/PageLoading"/>
+				<filteritem type="filepath" name="code/UI/PageLoading/pageloading/src/main/resources/base/media/page_loading_views.svg" desc="Provided by code/UI/PageLoading"/>
+				<filteritem type="filepath" name="code/UI/PageLoading/pageloading/src/main/resources/base/media/page_loading.gif" desc="Provided by code/UI/PageLoading"/>
+				<filteritem type="filepath" name="code/UI/PageLoading/AppScope/resources/base/media/app_icon.png" desc="Provided by code/UI/PageLoading"/>
+				<filteritem type="filepath" name="code/UI/PageLoading/entry/src/main/resources/base/media/background.png" desc="Provided by code/UI/PageLoading"/>
+				<filteritem type="filepath" name="code/UI/PageLoading/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/UI/PageLoading"/>
+				<filteritem type="filepath" name="code/UI/PageLoading/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/UI/PageLoading"/>
 			</filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加License头"/>
