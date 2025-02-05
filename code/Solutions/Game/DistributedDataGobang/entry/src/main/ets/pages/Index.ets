@@ -152,7 +152,7 @@ struct Index {
   }
 
   private cleanChessBoard() {
-    this.context.fillStyle = 'RGB(222,184,135)';
+    this.context.fillStyle = '#deb887';
     this.context.fillRect(0, 0, this.screenWidth / this.dpiBi, this.screenWidth / this.dpiBi);
   }
 
@@ -186,13 +186,13 @@ struct Index {
       this.context.arc(this.screenWidth / this.dpiBi / 4, this.screenWidth / this.dpiBi / 4, 3, 0, Math.PI * 2, false);
       this.context.arc(this.screenWidth / this.dpiBi / 4 * 3, this.screenWidth / this.dpiBi / 4 * 3, 3, 0, Math.PI * 2, false);
       this.context.closePath();
-      this.context.fillStyle = 'black';
+      this.context.fillStyle = '#000000';
       this.context.fill();
       this.context.beginPath();
       this.context.arc(this.screenWidth / this.dpiBi / 4, this.screenWidth / this.dpiBi / 4 * 3, 3, 0, Math.PI * 2, false);
       this.context.arc(this.screenWidth / this.dpiBi / 4 * 3, this.screenWidth / this.dpiBi / 4, 3, 0, Math.PI * 2, false);
       this.context.closePath();
-      this.context.fillStyle = 'black';
+      this.context.fillStyle = '#000000';
       this.context.fill();
       this.context.closePath();
     };
