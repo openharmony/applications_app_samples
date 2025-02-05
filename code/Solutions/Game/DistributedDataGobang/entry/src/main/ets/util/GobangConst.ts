@@ -18,7 +18,7 @@ export class GobangConst {
   static readonly DEVICE_A: string = 'deviceA';
   static readonly DEVICE_B: string = 'deviceB';
   static readonly EXIT: string = 'exit';
-  static readonly CHESS_COLOR: Array<string> = ['black', 'white'];
+  static readonly CHESS_COLOR: Array<string> = ['#000000', '#ffffff'];
   static readonly WIDTH: number = 720;
   static readonly HEIGHT: number = 1280;
   static readonly SIZE: number = 16;
