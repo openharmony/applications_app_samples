@@ -1,5 +1,5 @@
 /*
-  * Copyright (c) 2023 Huawei Device Co., Ltd.
+  * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
   *
   * Licensed under the Apache License, Version 2.0 (the "License");
   * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ export class GlobalContext {
   getValue(value: string): Object {
     let result = this._objects.get(value);
     if (!result) {
-      throw new Error("this value undefined")
+      throw new Error("this value undefined");
     }
     return result;
   }

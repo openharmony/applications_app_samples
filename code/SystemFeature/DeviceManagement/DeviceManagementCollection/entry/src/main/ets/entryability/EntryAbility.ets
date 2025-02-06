@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,7 +17,7 @@ import display from '@ohos.display';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { logger } from '@ohos/common/src/main/ets/util/Logger';
-import { GlobalContext } from '../pages/GlobalContext'
+import { GlobalContext } from '@ohos/capabilities/src/main/ets/components/GlobalContext';
 import Want from '@ohos.app.ability.Want';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
