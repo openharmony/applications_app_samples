@@ -39,6 +39,10 @@
     {
       "name": "input_key_event",
       "value": "Input Key Event"
+    },
+    {
+      "name": "GET_INSTALLED_BUNDLE_LIST",
+      "value": "Allow apps to read the list of installed apps"
     }
   ]
 }
