@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Hunan OpenValley Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023-2025 Hunan OpenValley Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,7 +17,7 @@ import batteryStats from '@ohos.batteryStatistics';
 import { BatteryStatsModel } from '../model/BatteryStatsModel';
 import bundleManager from '@ohos.bundle.bundleManager';
 import { logger } from '@ohos/common/src/main/ets/util/Logger';
-import { GlobalContext } from '../../../../../../entry/src/main/ets/pages/GlobalContext';
+import { GlobalContext } from '../components/GlobalContext';
 import resourceManager from '@ohos.resourceManager';
 
 const TAG: string = '[Sample_BatteryStatsUtil]';

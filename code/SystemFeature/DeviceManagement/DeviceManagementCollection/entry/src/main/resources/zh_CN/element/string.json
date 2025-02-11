@@ -39,6 +39,10 @@
     {
       "name": "input_key_event",
       "value": "输入按键事件"
+    },
+    {
+      "name": "GET_INSTALLED_BUNDLE_LIST",
+      "value": "允许应用读取已安装应用列表"
     }
   ]
 }
