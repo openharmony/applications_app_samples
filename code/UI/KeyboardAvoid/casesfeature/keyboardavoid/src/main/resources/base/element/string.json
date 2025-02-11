@@ -1,0 +1,88 @@
+{
+  "string": [
+    {
+      "name": "key_board_button_input_string",
+      "value": "弹出键盘"
+    },
+    {
+      "name": "key_board_button_lift_up_string",
+      "value": "上抬避让"
+    },
+    {
+      "name": "key_board_button_scaling_string",
+      "value": "缩小避让"
+    },
+    {
+      "name": "key_board_top_area_height",
+      "value": "40"
+    },
+    {
+      "name": "key_board_text_input_key_string",
+      "value": "keyInput"
+    },
+    {
+      "name": "key_board_scenes_main_page_list_borderRadius",
+      "value": "8"
+    },
+    {
+      "name": "key_board_scenes_main_page_padding6",
+      "value": "16"
+    },
+    {
+      "name": "key_board_scenes_main_page_margin_top",
+      "value": "10"
+    },
+    {
+      "name": "key_board_scenes_item_gap_half",
+      "value": "4"
+    },
+    {
+      "name": "key_board_scenes_item_image_border_radius",
+      "value": "8"
+    },
+    {
+      "name": "key_board_scenes_item_big_image_height",
+      "value": "80"
+    },
+    {
+      "name": "key_board_scenes_item_small_image_height",
+      "value": "40"
+    },
+    {
+      "name": "key_board_scenes_item_big_height",
+      "value": "175"
+    },
+    {
+      "name": "key_board_scenes_item_small_height",
+      "value": "110"
+    },
+    {
+      "name": "key_board_scenes_item_image_height",
+      "value": "50"
+    },
+    {
+      "name": "key_board_scenes_item_text_font_size",
+      "value": "14"
+    },
+    {
+      "name": "key_board_scenes_item_image_opacity",
+      "value": "0.8"
+    },
+    {
+      "name": "key_board_components_height",
+      "value": "100%"
+    },
+    {
+      "name": "key_board_components_weight",
+      "value": "100%"
+    },
+    {
+      "name": "key_board_lift_up_components_height",
+      "value": "600"
+    },
+    {
+      "name": "key_board_one_percent",
+      "value": "100%"
+    }
+  ]
+}

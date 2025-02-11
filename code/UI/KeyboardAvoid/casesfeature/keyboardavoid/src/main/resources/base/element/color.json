@@ -1,0 +1,36 @@
+{
+  "color": [
+    {
+      "name": "key_board_page_background_color",
+      "value": "#f1f1f1"
+    },
+    {
+      "name": "key_board_item_image_background_color",
+      "value": "#ff918f8f"
+    },
+    {
+      "name": "key_board_item_font_color",
+      "value": "#ff222222"
+    },
+    {
+      "name": "key_board_item_background_color1",
+      "value": "#CCDFFF"
+    },
+    {
+      "name": "key_board_item_background_color2",
+      "value": "#F3F4F7"
+    },
+    {
+      "name": "key_board_input_border_color",
+      "value": "#ffb1b0b0"
+    },
+    {
+      "name": "key_board_button_selected_color",
+      "value": "#0a59f7"
+    },
+    {
+      "name": "key_board_button_unselected_color",
+      "value": "#e8e8e8"
+    }
+  ]
+}
