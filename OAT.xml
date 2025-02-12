@@ -1212,6 +1212,7 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/Performance/PerformanceArticle/images/reasonable_using_system_interfaces_getanonymousid.png" desc="Provided by code/Performance/PerformanceArticle"/>
 				<filteritem type="filepath" name="code/Performance/PerformanceArticle/images/reasonable_using_system_interfaces_getstringsync.png" desc="Provided by code/Performance/PerformanceArticle"/>
 				<filteritem type="filepath" name="code/Performance/PerformanceArticle/images/reasonable_using_system_interfaces_getstringsyncafter.png" desc="Provided by code/Performance/PerformanceArticle"/>
+
 				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/AppScope/resources/base/media/app_icon.png" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
 				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/background.png" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
 				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
@@ -1279,6 +1280,31 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/casesfeature/operaterdbintaskpool/operate_rdb_in_taskpool.gif" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
 				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/entry/src/main/resources/base/media/background.png" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
 				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/AppScope/resources/base/media/app_icon.png" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/ErrorManage/ApplyRecovery/screenshots/Screenshot_20241217182358071.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/ErrorManage/ErrorManage/screenshots/Screenshot_20241217180226713.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiCollie/HiCollie_CPP/screenshots/Screenshot_20241217175158455.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiDebug/HiDebug_CPP/screenshots/Screenshot_20241217173421459.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiDebug/HiDebug_ArkTS/screenshots/Screenshot_20241217173806480.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiChecker/HiChecker_ArkTS/screenshots/Screenshot_20241217173011590.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiTraceChain/HiTraceChain_ArkTS/screenshots/Screenshot_20241217163807312.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiTraceChain/HiTraceChain_CPP/screenshots/Screenshot_20241217164714258.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiTraceMeter/HiTraceMeter_ArkTS/screenshots/Screenshot_20241217160657487.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiTraceMeter/HiTraceMeter_CPP/screenshots/Screenshot_20241217162307411.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventEsc/screenshots/Screenshot_20241217155644259.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/AppEvents/AppEvents_ArkTS/screenshots/Screenshot_20241216110221038.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/AppEvents/AppEvents_CPP/screenshots/Screenshot_20241216111352383.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/SystemEvents/CrashEvent/CrashEvent_ArkTS/Screenshot_20241216112612313.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/SystemEvents/CrashEvent/CrashEvent_CPP/Screenshot_20241216113343596.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/SystemEvents/FreezeEvent/FreezeEvent_ArkTS/Screenshot_20241216172715954.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/SystemEvents/FreezeEvent/FreezeEvent_CPP/Screenshot_20241216181024896.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/SystemEvents/PssLeakEvent/PssLeakEvent_ArkTS/Screenshot_20241217095825273.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/SystemEvents/PssLeakEvent/PssLeakEvent_CPP/Screenshot_20241217110156344.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/SystemEvents/AddressDisEvent/AddressDisEvent_ArkTS/Screenshot_20241216100856439.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/SystemEvents/AddressDisEvent/AddressDisEvent_CPP/Screenshot_20241217152733739.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/SystemEvents/TimeOutEvent/TimeOutEvent_ArkTS/Screenshot_20241217153926668.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/SystemEvents/TimeOutEvent/TimeOutEvent_CPP/Screenshot_20241217155302579.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/Hilog/Hilog_ArkTS/screenshots/Screenshot_20241217111119407.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/Hilog/Hilog_CPP/screenshots/Screenshot_20241216103815304.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
 				<filteritem type="filepath" name="code/UI/CitySearch/casesfeature/citysearch/city_search.png" desc="Provided by code/UI/CitySearch"/>
 				<filteritem type="filepath" name="code/UI/CitySearch/AppScope/resources/base/media/app_icon.png" desc="Provided by code/UI/CitySearch"/>
 				<filteritem type="filepath" name="code/UI/CitySearch/casesfeature/citysearch/src/main/resources/base/media/icon.png" desc="Provided by code/UI/CitySearch"/>
