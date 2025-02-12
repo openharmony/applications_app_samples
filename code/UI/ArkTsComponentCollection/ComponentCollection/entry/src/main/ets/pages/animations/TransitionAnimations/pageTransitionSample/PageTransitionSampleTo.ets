@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,23 +13,18 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
+import router from '@ohos.router';
 
-const ANIMATION_TIME: number = 1000
-const ANIMATION_PROGRESS: number = -600
+const ANIMATION_TIME: number = 1000;
 
 @Entry
 @Component
 struct PageTransitionSampleTo {
-  @State topY: number = 0
-  @State zoom: number = 0
-  @State angle: number = 1
-  @State leftX: number = 0
-  @State rightX: number = 0
-  @State bottomY: number = 0
-  @State progress: number = 0
-  @State animationType: number = 0
-  @State transitionType: SlideEffect = SlideEffect.Left
+  @State zoom: number = 0;
+  @State angle: number = 1;
+  @State progress: number = 0;
+  @State animationType: number = 0;
+  @State transitionType: SlideEffect = SlideEffect.Left;
 
   build() {
     Column() {
@@ -46,7 +41,7 @@ struct PageTransitionSampleTo {
         .fontColor($r('app.color.font_color_shallow'))
         .backgroundColor($r('app.color.pop_up_background'))
         .onClick(() => {
-          router.back()
+          router.back();
         })
         .margin({ top: 100 })
     }
@@ -78,22 +73,14 @@ struct PageTransitionSampleTo {
     PageTransitionEnter({ duration: ANIMATION_TIME, curve: Curve.Linear })
       .slide(this.transitionType)
       .onEnter((type: RouteType, progress: number) => {
-        this.topY = (-progress + 1) * this.topY
-        this.bottomY = (-progress + 1) * this.bottomY
-        this.leftX = (-progress + 1) * this.leftX
-        this.rightX = (-progress + 1) * this.rightX
-        this.progress = progress
+        this.progress = progress;
       })
 
     // Exit animation
     PageTransitionExit({ duration: ANIMATION_TIME, curve: Curve.Ease })
       .slide(this.transitionType)
       .onExit((type: RouteType, progress: number) => {
-        this.topY = -ANIMATION_PROGRESS * progress
-        this.bottomY = ANIMATION_PROGRESS * progress
-        this.leftX = -ANIMATION_PROGRESS * progress
-        this.rightX = ANIMATION_PROGRESS * progress
-        this.progress = progress
+        this.progress = progress;
       })
   }
 }
