@@ -1,0 +1,168 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "WorkerIntroduction"
+    },
+    {
+      "name": "Basic_usage",
+      "value": "Worker基本用法示例"
+    },
+    {
+      "name": "Worker_introduction",
+      "value": "Worker简介"
+    },
+    {
+      "name": "Cross_har",
+      "value": "跨har包加载Worker"
+    },
+    {
+      "name": "Recommend",
+      "value": "推荐使用示例"
+    },
+    {
+      "name": "Not_recommended_one",
+      "value": "不推荐使用示例1"
+    },
+    {
+      "name": "Not_recommended_two",
+      "value": "不推荐使用示例2"
+    },
+    {
+      "name": "Recommend_child_worker1",
+      "value": "父Worker向子Worker发送信息-推荐示例"
+    },
+    {
+      "name": "Recommend_child_worker2",
+      "value": "业务执行结束，然后子Worker销毁"
+    },
+    {
+      "name": "Recommend_parentworker_worker1",
+      "value": "主线程发送消息给父worker-推荐示例"
+    },
+    {
+      "name": "Recommend_parentworker_worker2",
+      "value": "父Worker收到子Worker的信息"
+    },
+    {
+      "name": "Recommend_parentworker_worker3",
+      "value": "子Worker向父Worker发送信息"
+    },
+    {
+      "name": "Recommend_parentworker_worker4",
+      "value": "父Worker向主线程发送信息"
+    },
+    {
+      "name": "Recommend_parentworker_worker5",
+      "value": "子Worker退出"
+    },
+    {
+      "name": "Recommend_parentworker_worker6",
+      "value": "子Worker发生报错 "
+    },
+    {
+      "name": "Recommend_parentworker_worker7",
+      "value": "父Worker向子Worker发送信息-推荐示例"
+    },
+    {
+      "name": "Not_two_childworker_worker",
+      "value": "子Worker收到信息 "
+    },
+    {
+      "name": "Not_two_parentworker_worker1",
+      "value": "父Worker收到主线程的信息 "
+    },
+    {
+      "name": "Not_two_parentworker_worker2",
+      "value": "父Worker收到子Worker的信息 "
+    },
+    {
+      "name": "Not_two_parentworker_worker3",
+      "value": "子Worker退出"
+    },
+    {
+      "name": "Not_two_parentworker_worker4",
+      "value": "父Worker向主线程发送信息"
+    },
+    {
+      "name": "Not_two_parentworker_worker5",
+      "value": "子Worker发生报错 "
+    },
+    {
+      "name": "Not_two_parentworker_worker6",
+      "value": "父Worker向子Worker发送信息"
+    },
+    {
+      "name": "Not_one_childworker_worker1",
+      "value": "子Worker收到信息 "
+    },
+    {
+      "name": "Not_one_childworker_worker2",
+      "value": "子Worker向父Worker发送信息 "
+    },
+    {
+      "name": "Not_one_parentworker_worker1",
+      "value": "父Worker收到主线程的信息 "
+    },
+    {
+      "name": "Not_one_parentworker_worker2",
+      "value": "父Worker收到子Worker的信息 "
+    },
+    {
+      "name": "Not_one_parentworker_worker3",
+      "value": "子Worker退出"
+    },
+    {
+      "name": "Not_one_parentworker_worker4",
+      "value": "父Worker向主线程发送信息"
+    },
+    {
+      "name": "Not_one_parentworker_worker5",
+      "value": "子Worker发生报错 "
+    },
+    {
+      "name": "Not_one_parentworker_worker6",
+      "value": "父Worker向子Worker发送信息 "
+    },
+    {
+      "name": "recommend1",
+      "value": "主线程收到父worker线程信息 "
+    },
+    {
+      "name": "recommend2",
+      "value": "父worker退出"
+    },
+    {
+      "name": "recommend3",
+      "value": "主线程接收到父worker报错 "
+    },
+    {
+      "name": "recommend4",
+      "value": "主线程发送消息给父worker-推荐示例"
+    },
+    {
+      "name": "Not_recommended1",
+      "value": "主线程收到父Worker信息"
+    },
+    {
+      "name": "Not_recommended2",
+      "value": "父Worker退出"
+    },
+    {
+      "name": "Not_recommended3",
+      "value": "主线程接收到父Worker报错 "
+    },
+    {
+      "name": "Not_recommended4",
+      "value": "主线程发送消息给父Worker"
+    }
+  ]
+}
