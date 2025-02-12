@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "SendableObjectIntroduction"
+    },
+    {
+      "name": "Sendable_object",
+      "value": "Sendable对象简介"
+    },
+    {
+      "name": "Modifying_class",
+      "value": "装饰器修饰Class"
+    },
+    {
+      "name": "Modifying_function",
+      "value": "装饰器修饰Function"
+    }
+  ]
+}
