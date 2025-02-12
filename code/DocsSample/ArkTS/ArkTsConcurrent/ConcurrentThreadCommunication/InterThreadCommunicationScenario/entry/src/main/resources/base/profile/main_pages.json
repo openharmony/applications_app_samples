@@ -1,0 +1,10 @@
+{
+  "src": [
+    "pages/Index",
+    "managers/MultiTimeConsumingTasks",
+    "managers/TaskSendDataUsage",
+    "managers/WorkerCallGlobalUsage",
+    "managers/WorkerCommunicatesWithMainthread",
+    "managers/IndependentTimeConsumingTask"
+  ]
+}

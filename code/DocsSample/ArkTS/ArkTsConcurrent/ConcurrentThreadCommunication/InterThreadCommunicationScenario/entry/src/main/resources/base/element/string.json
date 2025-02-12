@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "InterThreadCommunicationScenario"
+    },
+    {
+      "name": "Communication_scenario",
+      "value": "线程间通信场景"
+    },
+    {
+      "name": "MultiTime_consumingTasks",
+      "value": "使用TaskPool执行多个耗时任务"
+    },
+    {
+      "name": "TaskSend_dataUsage",
+      "value": "TaskPool任务与宿主线程通信"
+    },
+    {
+      "name": "WorkerCall_globalUsage",
+      "value": "Worker同步调用宿主线程的接口"
+    },
+    {
+      "name": "WorkerCommunicates_with_mainthread",
+      "value": "Worker和宿主线程的即时消息通信"
+    },
+    {
+      "name": "IndependentTime_consuming_task",
+      "value": "使用TaskPool执行独立的耗时任务"
+    },
+    {
+      "name": "Loading_pictures",
+      "value": "子线程任务已执行完，共加载图片: "
+    }
+  ]
+}
