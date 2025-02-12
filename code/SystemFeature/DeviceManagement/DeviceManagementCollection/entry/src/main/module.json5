@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -29,7 +29,7 @@
     "abilities": [
       {
         "name": "EntryAbility",
-        "srcEntrance": "./ets/entryability/EntryAbility.ets",
+        "srcEntry": "./ets/entryability/EntryAbility.ets",
         "description": "$string:EntryAbility_desc",
         "icon": "$media:icon",
         "label": "$string:device_management",
@@ -65,7 +65,11 @@
         "name": "ohos.permission.INPUT_MONITORING"
       },
       {
-        "name": "ohos.permission.GET_INSTALLED_BUNDLE_LIST"
+        "name": "ohos.permission.GET_INSTALLED_BUNDLE_LIST",
+        "reason": "$string:GET_INSTALLED_BUNDLE_LIST",
+        "usedScene": {
+          "when": "inuse"
+        }
       }
     ]
   }
