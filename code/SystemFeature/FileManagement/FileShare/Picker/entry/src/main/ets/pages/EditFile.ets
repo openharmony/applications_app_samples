@@ -23,6 +23,7 @@ import MediaFileUri from '../media/MediaFileUri';
 import Logger from '../common/Logger';
 import { terminateSelf } from '../utils/utils';
 
+const FILE_SIZE = 0; // 文件读写缓冲区大小
 const TAG = 'EditFile: ';
 let storage = LocalStorage.GetShared();
 const OPACITY_VALUE = 0.6; // 透明度
@@ -71,6 +72,9 @@ struct EditFile {
       Logger.info(TAG, 'The count of getFileInfo is myFileName is: ' + this.myFileName);
       Logger.info(TAG, 'The count of getFileInfo is myFileContent ' + this.myFileContent);
       Logger.info(TAG, 'The count of getFileInfo is myFileSize ' + this.myFileSize);
+      if (this.myFileSize === FILE_SIZE) {
+        this.myFileContent = '';
+      }
     }
     AppStorage.SetOrCreate('myFileContent', this.myFileContent);
     AppStorage.SetOrCreate('myFileSize', this.myFileSize);
