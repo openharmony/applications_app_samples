@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "FileUriDevelopment_C"
+    },
+    {
+      "name": "invokeInterfaceButton1",
+      "value": "GetUriFromPath"
+    },
+    {
+      "name": "invokeInterfaceButton2",
+      "value": "GetPathFromUri"
+    },
+    {
+      "name": "invokeInterfaceButton3",
+      "value": "GetFullDirectoryUri"
+    },
+    {
+      "name": "invokeInterfaceButton4",
+      "value": "IsValidUri"
+    },
+    {
+      "name": "invokeInterfaceButton5",
+      "value": "GetFileName"
+    }
+  ]
+}
