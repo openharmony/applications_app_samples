@@ -1,0 +1,64 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Distributed"
+    },
+    {
+      "name": "dataflow",
+      "value": "跨设备数据流转"
+    },
+    {
+      "name": "requestINTER",
+      "value": "网络请求"
+    },
+    {
+      "name": "CerNetwork",
+      "value": "允许应用获取分布式设备的认证组网能力"
+    },
+    {
+      "name": "SetFileLevel",
+      "value": "设置文件等级"
+    },
+    {
+      "name": "AccessPublicFileDir",
+      "value": "访问公共目录"
+    },
+    {
+      "name": "DisconnectingLink",
+      "value": "断开链路"
+    },
+    {
+      "name": "CopySandToDistributed",
+      "value": "从沙箱复制到分布式目录"
+    },
+    {
+      "name": "CopyDistributedToSand",
+      "value": "从分布式目录复制到沙箱"
+    },
+    {
+      "name": "GetFileList",
+      "value": "获取文件列表"
+    },
+    {
+      "name": "ApplyPermission",
+      "value": "申请权限"
+    },
+    {
+      "name": "CreateFile",
+      "value": "文件创建"
+    },
+    {
+      "name": "permit",
+      "value": "允许"
+    }
+  ]
+}
