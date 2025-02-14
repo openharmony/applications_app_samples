@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "PracticalCases"
+    },
+    {
+      "name": "Practical_cases",
+      "value": "应用多线程开发实践案例"
+    },
+    {
+      "name": "Using_taskpool",
+      "value": "使用TaskPool进行频繁数据库操作"
+    },
+    {
+      "name": "Using_sendable",
+      "value": "使用Sendable进行大容量数据库操作"
+    },
+    {
+      "name": "Concurrent_loading_modules_guide",
+      "value": "业务模块并发加载场景"
+    },
+    {
+      "name": "Global_configuration_guide",
+      "value": "全局配置项功能场景"
+    },
+    {
+      "name": "Makeobserved_sendable",
+      "value": "ArkUI数据更新场景"
+    },
+    {
+      "name": "Waterfall_rendering",
+      "value": "ArkUI瀑布流渲染场景"
+    },
+    {
+      "name": "Image_loading",
+      "value": "图片加载中..."
+    }
+  ]
+}
