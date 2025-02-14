@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "ApplicationMultithreading"
+    },
+    {
+      "name": "Time_consuming_task_concurrency",
+      "value": "应用多线程开发"
+    },
+    {
+      "name": "Cpu_intensive_task_development",
+      "value": "CPU密集型任务开发指导"
+    },
+    {
+      "name": "Io_intensive_task_development",
+      "value": "I/O密集型任务开发指导"
+    },
+    {
+      "name": "Sync_task_development",
+      "value": "同步任务开发指导"
+    },
+    {
+      "name": "Long_time_task_guide",
+      "value": "长时任务开发指导"
+    },
+    {
+      "name": "Resident_task_guide",
+      "value": "常驻任务开发指导"
+    },
+    {
+      "name": "Information",
+      "value": "UI主线程收到消息:"
+    }
+  ]
+}
