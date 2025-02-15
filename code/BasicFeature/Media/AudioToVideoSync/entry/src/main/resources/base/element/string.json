@@ -1,0 +1,72 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "AVSync"
+    },
+    {
+      "name": "alert",
+      "value": "None video selected"
+    },
+    {
+      "name": "full_width",
+      "value": "100%"
+    },
+    {
+      "name": "full_height",
+      "value": "100%"
+    },
+    {
+      "name": "reason",
+      "value": "label"
+    },
+    {
+      "name": "playing",
+      "value": "Playing"
+    },
+    {
+      "name": "play",
+      "value": "Play"
+    },
+    {
+      "name": "rate1",
+      "value": "x1"
+    },
+    {
+      "name": "rate2",
+      "value": "x2"
+    },
+    {
+      "name": "rate3",
+      "value": "x3"
+    },
+    {
+      "name": "record",
+      "value": "Record"
+    },
+    {
+      "name": "alert_setting",
+      "value": "The setting is not supported by the current device."
+    },
+    {
+      "name": "saveButtonNote",
+      "value": "Allow AVCodecVideo to save captured video to gallery?"
+    },
+    {
+      "name": "saveButtonCancel",
+      "value": "Cancel"
+    },
+    {
+      "name": "saveButtonTitle",
+      "value": "Confirm the video storage location"
+    }
+  ]
+}
