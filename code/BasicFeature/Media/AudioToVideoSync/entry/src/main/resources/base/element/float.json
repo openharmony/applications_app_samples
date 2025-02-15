@@ -1,0 +1,72 @@
+{
+  "float": [
+    {
+      "name": "set_image_width",
+      "value": "24vp"
+    },
+    {
+      "name": "set_image_height",
+      "value": "24vp"
+    },
+    {
+      "name": "set_button_width",
+      "value": "40vp"
+    },
+    {
+      "name": "set_button_height",
+      "value": "40vp"
+    },
+    {
+      "name": "set_button_margin_right",
+      "value": "16vp"
+    },
+    {
+      "name": "set_row_height",
+      "value": "40vp"
+    },
+    {
+      "name": "set_row_margin_top",
+      "value": "8vp"
+    },
+    {
+      "name": "window_margin_top",
+      "value": "8vp"
+    },
+    {
+      "name": "index_button_width",
+      "value": "288vp"
+    },
+    {
+      "name": "index_button_height",
+      "value": "40vp"
+    },
+    {
+      "name": "button_margin_bottom",
+      "value": "12vp"
+    },
+    {
+      "name": "last_button_margin_bottom",
+      "value": "16vp"
+    },
+    {
+      "name": "index_column_height",
+      "value": "40vp"
+    },
+    {
+      "name": "recorder_time_margin_bottom",
+      "value": "500vp"
+    },
+    {
+      "name": "recorder_image_width",
+      "value": "60vp"
+    },
+    {
+      "name": "recorder_image_height",
+      "value": "60vp"
+    },
+    {
+      "name": "recorder_image_margin_top",
+      "value": "550vp"
+    }
+  ]
+}

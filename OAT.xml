@@ -1638,6 +1638,12 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPIFunction/screenshots/NodeAPIFunction2.png" desc="Provided by code/DocsSample/ArkTS"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPILifeCycle/screenshots/NodeAPILifeCycle1.png" desc="Provided by code/DocsSample/ArkTS"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPILifeCycle/screenshots/NodeAPILifeCycle2.png" desc="Provided by code/DocsSample/ArkTS"/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/AudioToVideoSync/screenshots/device/play.png" desc="Provide by code/BasicFeature/Media/AudioToVideoSync"/>	
+				<filteritem type="filepath" name="code/BasicFeature/Media/AudioToVideoSync/entry/src/main/resources/base/media/startIcon.png" desc="Provide by code/BasicFeature/Media/AudioToVideoSync"/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/AudioToVideoSync/screenshots/device/ATVS_Index.png" desc="Provide by code/BasicFeature/Media/AudioToVideoSync"/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/AudioToVideoSync/entry/src/main/resources/base/media/background.png" desc="Provide by code/BasicFeature/Media/AudioToVideoSync"/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/AudioToVideoSync/AppScope/resources/base/media/app_icon.png" desc="Provide by code/BasicFeature/Media/AudioToVideoSync"/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/AudioToVideoSync/entry/src/main/resources/base/media/foreground.png" desc="Provide by code/BasicFeature/Media/AudioToVideoSync"/>
 			</filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加License头"/>

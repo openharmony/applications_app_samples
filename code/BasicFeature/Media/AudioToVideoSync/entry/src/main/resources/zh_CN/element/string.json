@@ -1,0 +1,72 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "音画同步示例"
+    },
+    {
+      "name": "full_width",
+      "value": "100%"
+    },
+    {
+      "name": "full_height",
+      "value": "100%"
+    },
+    {
+      "name": "alert",
+      "value": "未选择视频！"
+    },
+    {
+      "name": "reason",
+      "value": "label"
+    },
+    {
+      "name": "playing",
+      "value": "播放中"
+    },
+    {
+      "name": "play",
+      "value": "播放"
+    },
+    {
+      "name": "rate1",
+      "value": "x1"
+    },
+    {
+      "name": "rate2",
+      "value": "x2"
+    },
+    {
+      "name": "rate3",
+      "value": "x3"
+    },
+    {
+      "name": "record",
+      "value": "录制"
+    },
+    {
+      "name": "alert_setting",
+      "value": "当前设备不支持该设置。"
+    },
+    {
+      "name": "saveButtonNote",
+      "value": "是否允许AVCodecVideo保存拍摄的视频到图库？"
+    },
+    {
+      "name": "saveButtonCancel",
+      "value": "取消"
+    },
+    {
+      "name": "saveButtonTitle",
+      "value": "视频保存位置确认"
+    }
+  ]
+}
