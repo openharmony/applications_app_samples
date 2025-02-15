@@ -1,0 +1,156 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "User Authentication"
+    },
+    {
+      "name": "module_desc",
+      "value": "UserAuthentication工程化示例代码"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "UserAuthentication工程化示例代码"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "User Authentication"
+    },
+    {
+      "name": "reason",
+      "value": "用于验证用户权限"
+    },
+    {
+      "name": "whetherSupported",
+      "value": "认证能力是否支持"
+    },
+    {
+      "name": "query",
+      "value": "查询"
+    },
+    {
+      "name": "descriptionContent1",
+      "value": "采用认证可信等级≥ATL3的人脸 + 锁屏密码 + 指纹认证，获取认证结果"
+    },
+    {
+      "name": "example1",
+      "value": "发起用户认证示例1"
+    },
+    {
+      "name": "descriptionContent2",
+      "value": "采用认证可信等级≥ATL3的人脸 + 锁屏密码 + 指纹认证 + 认证类型相关 + 复用设备解锁最大有效时长认证，获取认证结果"
+    },
+    {
+      "name": "example2",
+      "value": "发起用户认证示例2"
+    },
+    {
+      "name": "descriptionContent3",
+      "value": "发起用户认证，采用认证可信等级≥ATL3的人脸 + 锁屏密码 + 指纹认证 + 任意应用认证类型相关 + 复用任意应用最大有效时长认证，获取认证结果"
+    },
+    {
+      "name": "example3",
+      "value": "发起用户认证示例3"
+    },
+    {
+      "name": "descriptionContent4",
+      "value": "以模应用方式进行用户身份认证"
+    },
+    {
+      "name": "example4",
+      "value": "发起用户认证示例4"
+    },
+    {
+      "name": "queryCredentials",
+      "value": "查询用户注册凭据的状态，当认证方式被关闭再开启后，再次查询凭据会变化"
+    },
+    {
+      "name": "customLogin",
+      "value": "模拟自定义登录"
+    },
+    {
+      "name": "simpleLogin",
+      "value": "用户验证登录"
+    },
+    {
+      "name": "refreshTheCredentials",
+      "value": "刷新凭证信息"
+    },
+    {
+      "name": "credentialDescription",
+      "value": "当认证方式被关闭再开启后，点击“刷新凭证信息”下方凭据码会发生变化"
+    },
+    {
+      "name": "refreshSupported",
+      "value": "刷新认证能力支持状态"
+    },
+    {
+      "name": "queryCapability",
+      "value": "查询能力"
+    },
+    {
+      "name": "exampleTab1",
+      "value": "实例1、2"
+    },
+    {
+      "name": "exampleTab2",
+      "value": "实例3、4"
+    },
+    {
+      "name": "exampleTab3",
+      "value": "取消实例"
+    },
+    {
+      "name": "exampleTab4",
+      "value": "自定义"
+    },
+    {
+      "name": "credentialQueries",
+      "value": "查询凭据"
+    },
+    {
+      "name": "waitQuery",
+      "value": "等待查询"
+    },
+    {
+      "name": "queryPass",
+      "value": "支持认证能力"
+    },
+    {
+      "name": "queryError",
+      "value": "不支持，请前往 设置->生物识别和密码 设置认证能力"
+    },
+    {
+      "name": "simulationValidation",
+      "value": "模拟验证"
+    },
+    {
+      "name": "title",
+      "value": "请进行身份认证"
+    },
+    {
+      "name": "navigationButtonText",
+      "value": "使用应用密码"
+    },
+    {
+      "name": "dialogOfCustom",
+      "value": "此处拉起应用密码输入界面"
+    },
+    {
+      "name": "descriptionContent5",
+      "value": "发起认证可信等级≥ATL3的人脸 + 锁屏密码 + 指纹认证认证后，取消认证请求"
+    },
+    {
+      "name": "example5",
+      "value": "认证过程中取消认证"
+    },
+    {
+      "name": "descriptionContent6",
+      "value": "切换自定义认证"
+    },
+    {
+      "name": "example6",
+      "value": "拉起认证"
+    }
+  ]
+}
