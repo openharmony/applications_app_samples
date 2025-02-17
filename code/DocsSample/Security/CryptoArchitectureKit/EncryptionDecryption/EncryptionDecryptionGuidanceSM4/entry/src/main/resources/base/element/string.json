@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "EncryptionDecryptionGuidanceSM4"
+    },
+    {
+      "name": "call_sm4_ecb",
+      "value": "Call SM4_ECB"
+    },
+    {
+      "name": "call_sm4_cbc",
+      "value": "Call SM4_CBC"
+    },
+    {
+      "name": "call_sm4_gcm",
+      "value": "Call SM4_GCM"
+    },
+    {
+      "name": "call_sm4_gcm_seg",
+      "value": "Call SM4_GCM_SEG"
+    }
+  ]
+}
