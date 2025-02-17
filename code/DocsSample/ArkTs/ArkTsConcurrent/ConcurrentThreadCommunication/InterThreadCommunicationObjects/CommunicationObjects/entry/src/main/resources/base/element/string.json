@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "CommunicationObjects"
+    },
+    {
+      "name": "Communication_Objects",
+      "value": "线程间通信对象"
+    },
+    {
+      "name": "Normal_Object",
+      "value": "普通对象"
+    },
+    {
+      "name": "ArrayBuffer_Object",
+      "value": "ArrayBuffer对象"
+    },
+    {
+      "name": "SharedArrayBuffer_Object",
+      "value": "SharedArrayBuffer对象"
+    },
+    {
+      "name": "Transferabled_Object",
+      "value": "Transferable对象"
+    }
+  ]
+}
