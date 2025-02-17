@@ -44,6 +44,5 @@ export default class MainAbility extends UIAbility {
   onBackground() {
     // Ability has back to background
     Logger.info('MainAbility', 'onBackground')
-    this.context.terminateSelf();
   }
 };
