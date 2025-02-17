@@ -1,0 +1,11 @@
+{
+  "src": [
+    "pages/Index",
+    "arkgraphic/scene",
+    "arkgraphic/resource",
+    "arkgraphic/animation",
+    "scene/init",
+    "scene/camera",
+    "scene/light"
+  ]
+}
