@@ -1,0 +1,64 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "网络状态监听"
+    },
+    {
+      "name": "network_status_observer_cellular_dialog_title",
+      "value": "提示"
+    },
+    {
+      "name": "network_status_observer_cellular_dialog_message",
+      "value": "WIFI连接已断开，是否使用流量继续播放？"
+    },
+    {
+      "name": "network_status_observer_weak",
+      "value": "当前网络环境较差，视频播放可能出现卡顿"
+    },
+    {
+      "name": "network_status_observer_user_cellular",
+      "value": "正在使用流量进行播放"
+    },
+    {
+      "name": "network_status_observer_auto_play_setting",
+      "value": "自动播放设置"
+    },
+    {
+      "name": "network_status_observer_percent_100",
+      "value": "100%"
+    },
+    {
+      "name": "network_status_observer_percent_10",
+      "value": "10%"
+    },
+    {
+      "name": "network_status_observer_percent_90",
+      "value": "90%"
+    },
+    {
+      "name": "network_status_observer_dialog_cancel",
+      "value": "取消"
+    },
+    {
+      "name": "network_status_observer_dialog_confirm",
+      "value": "确认"
+    },
+    {
+      "name": "network_status_observer_cellular_auto_play",
+      "value": "3G/4G/5G自动播放"
+    },
+    {
+      "name": "network_status_observer_wifi_auto_play",
+      "value": "WI-FI自动播放"
+    }
+  ]
+}

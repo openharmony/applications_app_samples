@@ -1,0 +1,48 @@
+{
+  "integer": [
+    {
+      "name": "network_status_observer_cellular_dialog_title_font_size",
+      "value": 16
+    },
+    {
+      "name": "network_status_observer_cellular_dialog_message_padding",
+      "value": 20
+    },
+    {
+      "name": "network_status_observer_cellular_dialog_message_margin_top",
+      "value": 12
+    },
+    {
+      "name": "network_status_observer_cellular_dialog_message_radius",
+      "value": 10
+    },
+    {
+      "name": "network_status_observer_cellular_dialog_padding_top",
+      "value": 12
+    },
+    {
+      "name": "network_status_observer_cellular_dialog_button_margin_top",
+      "value": 20
+    },
+    {
+      "name": "network_status_observer_video_height",
+      "value": 300
+    },
+    {
+      "name": "network_status_observer_setting_title_font_size",
+      "value": 12
+    },
+    {
+      "name": "network_status_observer_setting_toggle_margin_top",
+      "value": 10
+    },
+    {
+      "name": "network_status_observer_setting_padding",
+      "value": 10
+    },
+    {
+      "name": "network_status_observer_setting_padding_top",
+      "value": 30
+    }
+  ]
+}
