@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "ResultsOfSetSystemLanguageAndRegion",
+      "value": "设置系统语言与区域结果: "
+    },
+    {
+      "name": "SetAndGetSystemLanguage",
+      "value": "设置并获取系统语言为: "
+    },
+    {
+      "name": "SetAndGetSystemRegion",
+      "value": "设置并获取系统地区为: "
+    },
+    {
+      "name": "SetAndGetSystemLocale",
+      "value": "设置并获取系统区域为: "
+    },
+    {
+      "name": "ResultsOfSetPreferredLanguage",
+      "value": "设置应用偏好语言结果: "
+    },
+    {
+      "name": "SetAndGetPreferredLanguage",
+      "value": "设置并获取应用偏好语言为: "
+    },
+    {
+      "name": "ResultsOfSetUserPreference",
+      "value": "设置用户偏好结果: "
+    },
+    {
+      "name": "SetApplicationInterfaceNumber",
+      "value": "设置应用界面数字，2023年9月25日阿拉伯语为: "
+    },
+    {
+      "name": "SetFormatTo24Format",
+      "value": "设置格式化的24小时制，格式化2023年9月25日16时48分0秒结果: "
+    }
+  ]
+}

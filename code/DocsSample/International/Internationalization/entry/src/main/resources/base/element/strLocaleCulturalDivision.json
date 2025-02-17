@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "MethodOne",
+      "value": "方法一: "
+    },
+    {
+      "name": "ResultOfMethodOne",
+      "value": "通过区域标识字符串创建区域标识对象结果: "
+    },
+    {
+      "name": "MethodTwo",
+      "value": "方法二: "
+    },
+    {
+      "name": "ResultOfMethodTwo",
+      "value": "通过区域标识字符串和LocaleOptions对象创建区域标识对象结果: "
+    },
+    {
+      "name": "MethodThree",
+      "value": "方法三: "
+    },
+    {
+      "name": "ResultOfMethodThree",
+      "value": "通过默认Locale函数创建系统区域标识对象结果: "
+    }
+  ]
+}

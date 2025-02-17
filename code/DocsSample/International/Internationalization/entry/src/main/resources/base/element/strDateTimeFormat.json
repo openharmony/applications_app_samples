@@ -1,0 +1,68 @@
+{
+  "string": [
+    {
+      "name": "ResultsOfDateTimeFormat",
+      "value": "时间日期格式化结果: "
+    },
+    {
+      "name": "FullDateStyle",
+      "value": "在软件上展示完整的时间信息: "
+    },
+    {
+      "name": "ShortDateStyle",
+      "value": "在有限的空间展示简短的时间信息: "
+    },
+    {
+      "name": "CustomDateStyle",
+      "value": "自定义年月日时分秒的显示效果: "
+    },
+    {
+      "name": "PartDateStyle",
+      "value": "仅显示一部分时间: "
+    },
+    {
+      "name": "CustomTimeStyle",
+      "value": "自定义时制格式: "
+    },
+    {
+      "name": "CustomNumberingSystem",
+      "value": "面向习惯于其他数字系统的用户: "
+    },
+    {
+      "name": "FormatDateRange",
+      "value": "格式化时间段: "
+    },
+    {
+      "name": "FormatDateStyle",
+      "value": "获取格式化选项: "
+    },
+    {
+      "name": "ResultsOfRelativeTimeFormat",
+      "value": "相对时间格式化结果: "
+    },
+    {
+      "name": "FormatRelativeTime",
+      "value": "显示相对时间: "
+    },
+    {
+      "name": "AutoFormatRelativeTime",
+      "value": "口语化: "
+    },
+    {
+      "name": "LongFormatRelativeTime",
+      "value": "部分语言支持更为简短的显示风格 (long): "
+    },
+    {
+      "name": "NarrowFormatRelativeTime",
+      "value": "部分语言支持更为简短的显示风格 (narrow): "
+    },
+    {
+      "name": "CustomFormatRelativeTime",
+      "value": "自定义区域设置格式的相对时间格式 (parts): "
+    },
+    {
+      "name": "GetRelativeTimeFormatOptions",
+      "value": "获取RelativeTimeFormat对象的格式化选项 (numeric): "
+    }
+  ]
+}

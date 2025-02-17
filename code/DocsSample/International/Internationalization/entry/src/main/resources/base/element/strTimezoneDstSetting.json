@@ -1,0 +1,60 @@
+{
+  "string": [
+    {
+      "name": "ResultsOfTimezoneFunction",
+      "value": "时区功能结果: "
+    },
+    {
+      "name": "GetTimezoneID",
+      "value": "获取巴西时区ID: "
+    },
+    {
+      "name": "GetAucklandID",
+      "value": "获取奥克兰时区ID: "
+    },
+    {
+      "name": "TimeZoneLocalName",
+      "value": "时区的本地化名称: "
+    },
+    {
+      "name": "AucklandDisplayName",
+      "value": "奥克兰本地化城市名称: "
+    },
+    {
+      "name": "GetRawOffset",
+      "value": "巴西时区的固定偏移量: "
+    },
+    {
+      "name": "GetOffset",
+      "value": "巴西时区的实际偏移量: "
+    },
+    {
+      "name": "GetAvailableIDs",
+      "value": "系统支持的时区ID列表: "
+    },
+    {
+      "name": "GetAvailableZoneCityIDs",
+      "value": "系统支持的时区城市ID列表: "
+    },
+    {
+      "name": "TimezoneList",
+      "value": "时区城市列表: "
+    },
+    {
+      "name": "IDOfGeographicCoordinate",
+      "value": "指定地理坐标所在的时区ID: "
+    },
+    {
+      "name": "ResultsOfDualClockFeature",
+      "value": "双时钟应用功能结果: "
+    },
+    {
+      "name": "ResultsOfDaylightSavingTimeJumps",
+      "value": "夏令时跳变测试结果: "
+    },
+    {
+      "name": "DaylightSavingTimeHourDifference",
+      "value": "2021年2月27日16:00（夏令时前一天）到2021年2月28日16:00（夏令时当天）的小时差: "
+    }
+  ]
+}

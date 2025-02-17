@@ -1,0 +1,56 @@
+{
+  "string": [
+    {
+      "name": "ResultsOfNumberFormat",
+      "value": "数字格式化测试结果: "
+    },
+    {
+      "name": "ScientificDisplayNumber",
+      "value": "科学计数法显示数字: "
+    },
+    {
+      "name": "CompactDisplayNumber",
+      "value": "紧凑的格式显示数字: "
+    },
+    {
+      "name": "SignDisplayNumber",
+      "value": "显示数字的符号: "
+    },
+    {
+      "name": "PercentDisplayNumber",
+      "value": "显示百分数: "
+    },
+    {
+      "name": "ResultsOfCurrencyAndUnit",
+      "value": "货币和单位格式化结果: "
+    },
+    {
+      "name": "DisplayCurrency",
+      "value": "格式化货币: "
+    },
+    {
+      "name": "DisplayCurrencyName",
+      "value": "名称表示货币: "
+    },
+    {
+      "name": "DisplayUnit",
+      "value": "格式化度量衡: "
+    },
+    {
+      "name": "DisplayUnitLand",
+      "value": "格式化特定场景下度量衡，如面积-土地-农业: "
+    },
+    {
+      "name": "ResultsOfMeasureTrans",
+      "value": "度量衡转换结果: "
+    },
+    {
+      "name": "MeasureTrans",
+      "value": "以en-US区域参数转换度量衡: "
+    },
+    {
+      "name": "LongMeasureTrans",
+      "value": "显示完整的度量衡: "
+    }
+  ]
+}

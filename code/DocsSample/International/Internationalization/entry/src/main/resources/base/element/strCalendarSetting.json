@@ -1,0 +1,64 @@
+{
+  "string": [
+    {
+      "name": "ResultsOfTheGregorianCalendar",
+      "value": "公历相关用法: "
+    },
+    {
+      "name": "TheGregorianCalendarSets",
+      "value": "设置公历时间为2023/5/13 08:00:00"
+    },
+    {
+      "name": "Timezone",
+      "value": "该时间时区: "
+    },
+    {
+      "name": "FirstDayOfWeek",
+      "value": "该时间第一周的起始日: "
+    },
+    {
+      "name": "MinimalDaysInFirstWeek",
+      "value": "该年第一周的最少天数: "
+    },
+    {
+      "name": "SetMinimalDaysInFirstWeek",
+      "value": "设置一年中第一周的最少天数为3天: "
+    },
+    {
+      "name": "YearOfTheFirstWeekIs3",
+      "value": "第一周最少天数是3的年份: "
+    },
+    {
+      "name": "LocalizedCalendarName",
+      "value": "日历的本地化名称: "
+    },
+    {
+      "name": "IsWeekend",
+      "value": "2023/10/15是否为周末: "
+    },
+    {
+      "name": "DateAfterAddingDays",
+      "value": "2023/10/25加上2天后的日期: "
+    },
+    {
+      "name": "DaysBetweenDates",
+      "value": "两个日期之间相差的天数: "
+    },
+    {
+      "name": "LunarCalendar",
+      "value": "获取公历2023年6月25日对应的农历日期结果: "
+    },
+    {
+      "name": "LunarYear",
+      "value": "2023/6/25对应的农历年: "
+    },
+    {
+      "name": "LunarMonth",
+      "value": "2023/6/25对应的农历月: "
+    },
+    {
+      "name": "LunarDate",
+      "value": "2023/6/25对应的农历日: "
+    }
+  ]
+}

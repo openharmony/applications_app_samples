@@ -1,0 +1,76 @@
+{
+  "string": [
+    {
+      "name": "ResultsOfCharacterType",
+      "value": "字符属性测试结果: "
+    },
+    {
+      "name": "Character1IsNumber",
+      "value": "判断字符1是否是数字: "
+    },
+    {
+      "name": "AIsRightToLeft",
+      "value": "判断字符a是否是从右到左语言的字符: "
+    },
+    {
+      "name": "HuaIsIdeograph",
+      "value": "判断字符‘华’是否是表意文字: "
+    },
+    {
+      "name": "AGetType",
+      "value": "字符a的一般类别值: "
+    },
+    {
+      "name": "ResultsOfTrans",
+      "value": "音译测试结果: "
+    },
+    {
+      "name": "CharacterTransResult",
+      "value": "中国,德国,美国,法国音译结果: "
+    },
+    {
+      "name": "ChinaTrans",
+      "value": "汉语中国音译去声调: "
+    },
+    {
+      "name": "TeachersSurnameTrans",
+      "value": "汉语单老师姓氏音译: "
+    },
+    {
+      "name": "ZhangSunWuJiTrans",
+      "value": "汉语长孙无忌姓氏音译: "
+    },
+    {
+      "name": "ResultsOfSupportedId",
+      "value": "音译支持的ID列表: "
+    },
+    {
+      "name": "ResultsOfNormalize",
+      "value": "字符标准化测试结果: "
+    },
+    {
+      "name": "NFCNormalizeResult",
+      "value": "以NFC范式标准化字符: "
+    },
+    {
+      "name": "ResultsOfBreakIterator",
+      "value": "断句 Apple is my favorite fruit. 测试结果: "
+    },
+    {
+      "name": "FirstPos",
+      "value": "首位置: "
+    },
+    {
+      "name": "NextPos",
+      "value": "分割点位置: "
+    },
+    {
+      "name": "IsBoundary",
+      "value": "是否是分割点: "
+    },
+    {
+      "name": "BreakText",
+      "value": "断句文本: "
+    }
+  ]
+}

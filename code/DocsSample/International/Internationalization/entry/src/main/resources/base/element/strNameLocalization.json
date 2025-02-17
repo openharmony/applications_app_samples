@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "ResultsOfLanguageRegion",
+      "value": "本地化语言与地区名称测试结果: "
+    },
+    {
+      "name": "DisplayLanguage",
+      "value": "显示语言（以德文为例）: "
+    },
+    {
+      "name": "DisplayCountry",
+      "value": "显示国家/地区（沙特阿拉伯）: "
+    },
+    {
+      "name": "ResultsOfDisplayTimezone",
+      "value": "本地化时区名称测试结果: "
+    },
+    {
+      "name": "ResultOfTimezoneName",
+      "value": "显示时区名称（以美洲/圣保罗为例）: "
+    }
+  ]
+}
