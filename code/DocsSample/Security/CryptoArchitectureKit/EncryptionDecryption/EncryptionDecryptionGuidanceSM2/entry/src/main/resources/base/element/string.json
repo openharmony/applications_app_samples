@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "EncryptionDecryptionGuidanceSM2"
+    },
+    {
+      "name": "sm2_async",
+      "value": "SM2 Async"
+    },
+    {
+      "name": "sm2_sync",
+      "value": "SM2 Sync"
+    },
+    {
+      "name": "create_asn1",
+      "value": "Create ASN.1"
+    },
+    {
+      "name": "obtain_ciphertext",
+      "value": "Obtain Ciphertext"
+    },
+    {
+      "name": "call_create_asn1",
+      "value": "Call Create ASN.1"
+    },
+    {
+      "name": "call_obtain_ciphertext",
+      "value": "Call Obtain Ciphertext"
+    },
+    {
+      "name": "call_sm2_async",
+      "value": "Call SM2 Async"
+    },
+    {
+      "name": "call_sm2_sync",
+      "value": "Call SM2 Sync"
+    }
+  ]
+}

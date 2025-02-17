@@ -1,0 +1,9 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/sm2/CreateASN.1Ciphertext",
+    "pages/sm2/ObtainCiphertext",
+    "pages/sm2/SM2EncryptionDecryptionAsync",
+    "pages/sm2/SM2EncryptionDecryptionSync"
+  ]
+}
