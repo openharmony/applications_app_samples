@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "EncryptionDecryptionGuidance3DES"
+    },
+    {
+      "name": "3des_ecb_encryption_decryption_asynchronous",
+      "value": "3des_ecb_encryption_decryption_asynchronous"
+    },
+    {
+      "name": "3des_ecb_encryption_decryption_synchronous",
+      "value": "3des_ecb_encryption_decryption_synchronous"
+    },
+    {
+      "name": "3des_ecb_encryption_decryption",
+      "value": "3des_ecb_encryption_decryption"
+    },
+    {
+      "name": "call_3des_ecb",
+      "value": "Call 3DES_ECB"
+    },
+    {
+      "name": "call_3des_ecb_asynchronous",
+      "value": "Call 3DES_ECB Asynchronous"
+    },
+    {
+      "name": "call_3des_ecb_synchronous",
+      "value": "Call 3DES_ECB Synchronous"
+    }
+  ]
+}
