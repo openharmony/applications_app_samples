@@ -1,0 +1,13 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/sm4_cbc_encryption_decryption/sm4_cbc_encryption_decryption_asynchronous",
+    "pages/sm4_cbc_encryption_decryption/sm4_cbc_encryption_decryption_synchronous",
+    "pages/sm4_ecb_encryption_decryption/sm4_ecb_encryption_decryption_asynchronous",
+    "pages/sm4_ecb_encryption_decryption/sm4_ecb_encryption_decryption_synchronous",
+    "pages/sm4_gcm_encryption_decryption/sm4_gcm_encryption_decryption_asynchronous",
+    "pages/sm4_gcm_encryption_decryption/sm4_gcm_encryption_decryption_synchronous",
+    "pages/sm4_gcm_seg_encryption_decryption/sm4_gcm_seg_encryption_decryption_asynchronous",
+    "pages/sm4_gcm_seg_encryption_decryption/sm4_gcm_seg_encryption_decryption_synchronous"
+  ]
+}
