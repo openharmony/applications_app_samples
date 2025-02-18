@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "MessageAuthenticationCode"
+    },
+    {
+      "name": "segmentation_async",
+      "value": "Segmentation Async"
+    },
+    {
+      "name": "segmentation_sync",
+      "value": "Segmentation Sync"
+    },
+    {
+      "name": "single_time_async",
+      "value": "SingleTime Async"
+    },
+    {
+      "name": "single_time_sync",
+      "value": "SingleTime Sync"
+    },
+    {
+      "name": "call_segmentation_async",
+      "value": "Call Segmentation Async"
+    },
+    {
+      "name": "call_segmentation_sync",
+      "value": "Call Segmentation Sync"
+    },
+    {
+      "name": "call_single_time_async",
+      "value": "Call SingleTime Async"
+    },
+    {
+      "name": "call_single_time_sync",
+      "value": "Call SingleTime Sync"
+    }
+  ]
+}
