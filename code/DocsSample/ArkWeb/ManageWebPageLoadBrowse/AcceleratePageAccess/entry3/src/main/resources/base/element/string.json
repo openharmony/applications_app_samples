@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "Entry3Ability_desc",
+      "value": "description"
+    },
+    {
+      "name": "Entry3Ability_label",
+      "value": "AcceleratePageAccess"
+    },
+    {
+      "name": "web_path",
+      "value": "https://www.example.com/example.js"
+    },
+    {
+      "name": "web_path_one",
+      "value": "https://www.example.com/"
+    }
+  ]
+}
