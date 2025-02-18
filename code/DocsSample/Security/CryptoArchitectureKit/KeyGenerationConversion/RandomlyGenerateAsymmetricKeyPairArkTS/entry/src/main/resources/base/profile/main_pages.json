@@ -1,0 +1,9 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/sm2/Sync",
+    "pages/sm2/Promise",
+    "pages/rsa/Sync",
+    "pages/rsa/Promise"
+  ]
+}
