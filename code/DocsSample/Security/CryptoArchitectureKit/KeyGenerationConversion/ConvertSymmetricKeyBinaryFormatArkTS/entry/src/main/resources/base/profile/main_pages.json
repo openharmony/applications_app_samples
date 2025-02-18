@@ -1,0 +1,9 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/3des/Callback",
+    "pages/3des/Sync",
+    "pages/hmac/Await",
+    "pages/hmac/Sync"
+  ]
+}
