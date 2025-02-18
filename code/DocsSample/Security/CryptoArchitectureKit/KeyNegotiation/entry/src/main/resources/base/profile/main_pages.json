@@ -1,0 +1,11 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/DH/DHAsync",
+    "pages/DH/DHSync",
+    "pages/ECDH/EDCHAsync",
+    "pages/ECDH/EDCHSync",
+    "pages/X25519/X25519Async",
+    "pages/X25519/X25519Sync"
+  ]
+}
