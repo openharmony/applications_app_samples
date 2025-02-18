@@ -1,0 +1,8 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/CompressedPointData",
+    "pages/GetKeyObject",
+    "pages/SpecifyUncompressedPublicKey"
+  ]
+}
