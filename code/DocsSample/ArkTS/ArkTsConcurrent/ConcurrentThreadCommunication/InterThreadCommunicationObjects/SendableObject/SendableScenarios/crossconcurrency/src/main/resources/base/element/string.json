@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "CrossconcurrencyAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "CrossconcurrencyAbility_label",
+      "value": "SendableScenarios"
+    }
+  ]
+}
