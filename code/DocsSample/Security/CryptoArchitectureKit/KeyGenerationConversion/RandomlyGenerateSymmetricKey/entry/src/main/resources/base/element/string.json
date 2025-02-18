@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "RandomlyGenerateSymmetricKey"
+    },
+    {
+      "name": "call_aes",
+      "value": "Call AES"
+    },
+    {
+      "name": "call_sm4",
+      "value": "Call SM4"
+    }
+  ]
+}
