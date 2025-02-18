@@ -1,0 +1,64 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "SpecifiedParametersGenerateAsymmetricKeyPair"
+    },
+    {
+      "name": "ecc_promise",
+      "value": "ECC Promise"
+    },
+    {
+      "name": "ecc_sync",
+      "value": "ECC Sync"
+    },
+    {
+      "name": "rsa_callback",
+      "value": "RSA Callback"
+    },
+    {
+      "name": "rsa_sync",
+      "value": "RSA Sync"
+    },
+    {
+      "name": "sm2_promise",
+      "value": "SM2 Promise"
+    },
+    {
+      "name": "sm2_sync",
+      "value": "SM2 Sync"
+    },
+    {
+      "name": "call_ecc_promise",
+      "value": "Call ECC Promise"
+    },
+    {
+      "name": "call_ecc_sync",
+      "value": "Call ECC Sync"
+    },
+    {
+      "name": "call_rsa_callback",
+      "value": "Call RSA Callback"
+    },
+    {
+      "name": "call_rsa_sync",
+      "value": "Call RSA Sync"
+    },
+    {
+      "name": "call_sm2_promise",
+      "value": "Call SM2 Promise"
+    },
+    {
+      "name": "call_sm2_sync",
+      "value": "Call SM2 Sync"
+    }
+  ]
+}
