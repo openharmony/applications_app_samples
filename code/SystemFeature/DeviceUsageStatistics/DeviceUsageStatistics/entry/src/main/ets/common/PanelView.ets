@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -63,8 +63,13 @@ export struct PanelView {
             Text(item)
               .fontSize(20)
               .margin({ top: 5 })
+              .textOverflow({ overflow: TextOverflow.Ellipsis })
+              .maxLines(1)
           }, item => item)
         }
+        .constraintSize({
+          maxWidth: 150
+        })
         .margin({ top: 10, left: 35 })
       }
       .height(250)
