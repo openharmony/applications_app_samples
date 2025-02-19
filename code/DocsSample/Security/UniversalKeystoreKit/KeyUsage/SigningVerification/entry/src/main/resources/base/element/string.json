@@ -1,0 +1,68 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "SigningVerification"
+    },
+    {
+      "name": "ecc256_sha256",
+      "value": "ECC256/SHA256"
+    },
+    {
+      "name": "sm2_sm3",
+      "value": "SM2/SM3"
+    },
+    {
+      "name": "rsa_sha256_pss",
+      "value": "RSA/SHA256/PSS"
+    },
+    {
+      "name": "rsa_sha256_pkcs1_v1_5",
+      "value": "RSA/SHA256/PKCS1_V1_5"
+    },
+    {
+      "name": "call_cpp_sign_verify",
+      "value": "Call C/C++"
+    },
+    {
+      "name": "ecc256_sha256_result_success",
+      "value": "ECC256/SHA256 Result: Success"
+    },
+    {
+      "name": "ecc256_sha256_result_failed",
+      "value": "ECC256/SHA256 Result: Failed"
+    },
+    {
+      "name": "rsa_sha256_pkcs1_v1_5_result_success",
+      "value": "RSA/SHA256/PKCS1_V1_5 Result: Success"
+    },
+    {
+      "name": "rsa_sha256_pkcs1_v1_5_result_failed",
+      "value": "RSA/SHA256/PKCS1_V1_5 Result: Failed"
+    },
+    {
+      "name": "rsa_sha256_pss_result_success",
+      "value": "RSA/SHA256/PSS Result: Success"
+    },
+    {
+      "name": "rsa_sha256_pss_result_failed",
+      "value": "RSA/SHA256/PSS Result: Failed"
+    },
+    {
+      "name": "sm2_sm3_result_success",
+      "value": "SM2/SM3 Result: Success"
+    },
+    {
+      "name": "sm2_sm3_result_failed",
+      "value": "SM2/SM3 Result: Failed"
+    }
+  ]
+}
