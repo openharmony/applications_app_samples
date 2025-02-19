@@ -317,20 +317,22 @@ export struct XVideoComponent {
       } else {
         // 设置窗口的显示方向属性，UNSPECIFIED表示未定义方向模式，由系统判定
         lastWindow.setPreferredOrientation(window.Orientation.UNSPECIFIED, () => {
-          // 设置窗口全屏模式时导航栏、状态栏的可见模式
-          lastWindow.setWindowSystemBarEnable(WINDOW_SYSTEM_BAR).then(() => {
-            setTimeout(() => {
-              // 设置退出全屏动画
-              animateTo({
-                duration: ANIMATE_DURATION,
-                onFinish: () => {
-                  this.fileName = '';
-                  this.maskShow = false;
-                }
-              }, () => {
-                this.isFullScreen = !this.isFullScreen;
-              });
-            }, TIMEOUT_DURATION);
+          lastWindow.setWindowLayoutFullScreen(false).then(() => {
+            // 设置窗口全屏模式时导航栏、状态栏的可见模式
+            lastWindow.setWindowSystemBarEnable(WINDOW_SYSTEM_BAR).then(() => {
+              setTimeout(() => {
+                // 设置退出全屏动画
+                animateTo({
+                  duration: ANIMATE_DURATION,
+                  onFinish: () => {
+                    this.fileName = '';
+                    this.maskShow = false;
+                  }
+                }, () => {
+                  this.isFullScreen = !this.isFullScreen;
+                });
+              }, TIMEOUT_DURATION);
+            });
           });
         });
       }

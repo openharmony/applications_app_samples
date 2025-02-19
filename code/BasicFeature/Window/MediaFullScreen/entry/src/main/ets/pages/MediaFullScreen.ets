@@ -16,7 +16,6 @@
 import window from '@ohos.window';
 import { FlowItemContentsData, FlowItemContent, JsonObject } from '../model/BasicDataSource';
 import { XVideoComponent } from './XComponentVideo';
-import { promptAction } from '@kit.ArkUI';
 
 // window.setWindowSystemBarEnable方法的预设值，设置窗口全屏模式时状态栏和导航栏是否显示
 const WINDOW_SYSTEM_BAR: ('status' | 'navigation')[] = ['navigation', 'status'];
@@ -49,7 +48,6 @@ export struct MediaFullScreenComponent {
   @State cachedCountNumber: number = 6; // 懒加载缓存数
   @State contentData: FlowItemContentsData = new FlowItemContentsData(); // 瀑布流内容
   @State selectedVideo: string = ''; // 选择的视频名称
-  @Provide pageMediaFullScreen: NavPathStack = new NavPathStack();
   @State videoLocation: Area = {
     // 视频在屏幕中的位置信息
     width: 0,
@@ -72,74 +70,58 @@ export struct MediaFullScreenComponent {
   }
 
   build() {
-    // 应用主页用NavDestination承载，用于显示Navigation的内容区
-    Navigation(this.pageMediaFullScreen) {
 
+    Column() {
+      // 引入自定义视频组件
+      XVideoComponent({
+        fileName: this.selectedVideo,
+        videoLocation: this.videoLocation,
+        isLandscape: this.isLandscape,
+        maskShow: this.maskShow
+      })
+      Column() {
+      }
+      .width($r('app.string.media_full_screen_layout_100'))
+      .height($r('app.string.media_full_screen_layout_100'))
+      .backgroundColor(Color.Transparent)
+      .position({ x: 0, y: 0 })
+      .zIndex(VIDEO_Z_INDEX)
+      .visibility(this.maskShow ? Visibility.Visible : Visibility.None)
+
+      WaterFlow() {
+        // 性能知识点: LazyForEach 懒加载优化，详情请见 https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/performance/lazyforeach_optimization.md/
+        LazyForEach(this.contentData, (moment: FlowItemContent) => {
+          FlowItem() {
+            ReusableComponent({
+              moment,
+              selectedVideo: this.selectedVideo,
+              videoLocation: this.videoLocation,
+              maskShow: this.maskShow
+            })
+          }
+          .width($r('app.string.media_full_screen_video_width'))
+        }, (moment: FlowItemContent) => moment.id)
+      }
+      .columnsTemplate('1fr 1fr')
+      .columnsGap($r('app.integer.media_full_screen_main_page_row_padding_left'))
+      .rowsGap($r('app.integer.media_full_screen_main_page_row_padding_left'))
+      .cachedCount(this.cachedCountNumber) // 懒加载缓存配置
+      .width($r('app.string.media_full_screen_layout_100'))
+      .height($r('app.string.media_full_screen_layout_100'))
     }
-    .mode(NavigationMode.Stack)
-    .onAppear(() => {
-      this.pageMediaFullScreen.pushPathByName('MediaFullScreen', null, false);
-    })
-    // 创建NavDestination组件，需使用此组件的onBackPressed回调拦截返回事件
-    .navDestination(this.videoArea)
+    .backgroundColor($r('app.color.media_full_screen_search_border_color'))
+    .height($r('app.string.media_full_screen_layout_100'))
+    .layoutWeight(LAYOUT_WEIGHT)
   }
 
-  @Builder
-  videoArea() {
-    // 性能知识点: 功能是以har的形式集成在主工程中，没有@Entry修饰的组件，无法使用@Entry组件的onBackPress生命周期函数。
-    NavDestination() {
-      Column() {
-        // 引入自定义视频组件
-        XVideoComponent({
-          fileName: this.selectedVideo,
-          videoLocation: this.videoLocation,
-          isLandscape: this.isLandscape,
-          maskShow: this.maskShow
-        })
-        Column() {
-        }
-        .width($r('app.string.media_full_screen_layout_100'))
-        .height($r('app.string.media_full_screen_layout_100'))
-        .backgroundColor(Color.Transparent)
-        .position({ x: 0, y: 0 })
-        .zIndex(VIDEO_Z_INDEX)
-        .visibility(this.maskShow ? Visibility.Visible : Visibility.None)
-
-        WaterFlow() {
-          // 性能知识点: LazyForEach 懒加载优化，详情请见 https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/performance/lazyforeach_optimization.md/
-          LazyForEach(this.contentData, (moment: FlowItemContent) => {
-            FlowItem() {
-              ReusableComponent({
-                moment,
-                selectedVideo: this.selectedVideo,
-                videoLocation: this.videoLocation,
-                maskShow: this.maskShow
-              })
-            }
-            .width($r('app.string.media_full_screen_video_width'))
-          }, (moment: FlowItemContent) => moment.id)
-        }
-        .columnsTemplate('1fr 1fr')
-        .columnsGap($r('app.integer.media_full_screen_main_page_row_padding_left'))
-        .rowsGap($r('app.integer.media_full_screen_main_page_row_padding_left'))
-        .cachedCount(this.cachedCountNumber) // 懒加载缓存配置
-        .width($r('app.string.media_full_screen_layout_100'))
-        .height($r('app.string.media_full_screen_layout_100'))
-      }
-      .backgroundColor($r('app.color.media_full_screen_search_border_color'))
-      .height($r('app.string.media_full_screen_layout_100'))
-      .layoutWeight(LAYOUT_WEIGHT)
+  // TODO：知识点：返回时进行判断，如果在非全屏状态则返回首页，否则仅退出全屏
+  onBackPress(): boolean | void {
+    if (this.selectedVideo !== '') {
+      this.maskShow = false;
+      this.isLandscape = !this.isLandscape;
+      return true;
     }
-    .hideTitleBar(true)
-    // TODO：知识点：返回时进行判断，如果在非全屏状态则返回首页，否则仅退出全屏
-    .onBackPressed(() => {
-      if (this.selectedVideo !== '') {
-        this.maskShow = false;
-        this.isLandscape = !this.isLandscape;
-        return true;
-      }
-      return false;
-    })
+    return false;
   }
 }
 
