@@ -1,0 +1,32 @@
+{
+  "integer": [
+    {
+      "name": "pull_refresh_title_text_font_size",
+      "value": 16
+    },
+    {
+      "name": "pull_refresh_content_font_size",
+      "value": 14
+    },
+    {
+      "name": "pull_refresh_content_font_line_height",
+      "value": 18
+    },
+    {
+      "name": "pull_refresh_time_font_size",
+      "value": 10
+    },
+    {
+      "name": "pull_refresh_list_border_radius",
+      "value": 16
+    },
+    {
+      "name": "pull_refresh_page_text_font_size",
+      "value": 18
+    },
+    {
+      "name": "pull_refresh_page_text_line_height",
+      "value": 40
+    }
+  ]
+}

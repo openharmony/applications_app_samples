@@ -1834,6 +1834,14 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/DocsSample/ArkWeb/UseFrontendJSApp/screenshots/UsageOfComplexTypes_three.png" desc="Provided by code/DocsSample/ArkWeb"/>
                 <filteritem type="filepath" name="code/DocsSample/ArkWeb/UseFrontendJSApp/screenshots/UsageOfComplexTypes_two.png" desc="Provided by code/DocsSample/ArkWeb"/>
                 <filteritem type="filepath" name="code/DocsSample/ArkWeb/UseOfflineWebComp/screenshots/CreatingOfflineWebComponents.png" desc="Provided by code/DocsSample/ArkWeb"/>
+                <filteritem type="filepath" name="code/UI/PullToRefresh/entry/src/main/resources/base/media/background.png" desc="code/UI/PullToRefresh"/>
+                <filteritem type="filepath" name="code/UI/PullToRefresh/entry/src/main/resources/base/media/foreground.png" desc="code/UI/PullToRefresh"/>
+                <filteritem type="filepath" name="code/UI/PullToRefresh/entry/src/main/resources/base/media/startIcon.png" desc="code/UI/PullToRefresh"/>
+                <filteritem type="filepath" name="code/UI/PullToRefresh/pulltorefresh/src/main/resources/base/media/pull_icon_load.png" desc="code/UI/PullToRefresh"/>
+                <filteritem type="filepath" name="code/UI/PullToRefresh/pulltorefresh/src/main/resources/base/media/pull_icon_up.png" desc="code/UI/PullToRefresh"/>
+                <filteritem type="filepath" name="code/UI/PullToRefresh/pulltorefresh/src/main/resources/base/media/pull_refresh_news.png" desc="code/UI/PullToRefresh"/>
+                <filteritem type="filepath" name="code/UI/PullToRefresh/pulltorefresh/src/main/resources/base/media/pull_to_refresh_news.gif" desc="code/UI/PullToRefresh"/>
+                <filteritem type="filepath" name="code/UI/PullToRefresh/AppScope/resources/base/media/app_icon.png" desc="code/UI/PullToRefresh"/>
 			</filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加License头"/>

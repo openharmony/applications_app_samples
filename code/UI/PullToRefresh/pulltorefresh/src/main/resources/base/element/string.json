@@ -1,0 +1,116 @@
+{
+  "string": [
+    {
+      "name": "pull_refresh_title_image_height",
+      "value": "80%"
+    },
+    {
+      "name": "pull_refresh_title_image_width",
+      "value": "9.9%"
+    },
+    {
+      "name": "pull_refresh_title_text_width",
+      "value": "78.6%"
+    },
+    {
+      "name": "pull_refresh_title_text_margin_left",
+      "value": "2.4%"
+    },
+    {
+      "name": "pull_refresh_title_row_height",
+      "value": "20vp"
+    },
+    {
+      "name": "pull_refresh_title_row_margin_top",
+      "value": "16vp"
+    },
+    {
+      "name": "pull_refresh_title_image_margin_left",
+      "value": "3.5%"
+    },
+    {
+      "name": "pull_refresh_content_height",
+      "value": "5.8%"
+    },
+    {
+      "name": "pull_refresh_content_width",
+      "value": "93%"
+    },
+    {
+      "name": "pull_refresh_content_margin_left",
+      "value": "3.5%"
+    },
+    {
+      "name": "pull_refresh_content_margin_top",
+      "value": "1.4%"
+    },
+    {
+      "name": "pull_refresh_time_height",
+      "value": "3.4%"
+    },
+    {
+      "name": "pull_refresh_time_width",
+      "value": "93%"
+    },
+    {
+      "name": "pull_refresh_time_margin_left",
+      "value": "3.5%"
+    },
+    {
+      "name": "pull_refresh_time_margin_top",
+      "value": "1.4%"
+    },
+    {
+      "name": "pull_refresh_list_item_height",
+      "value": "200vp"
+    },
+    {
+      "name": "pull_refresh_list_margin_bottom",
+      "value": "12vp"
+    },
+    {
+      "name": "pull_refresh_List_width",
+      "value": "100%"
+    },
+    {
+      "name": "pull_refresh_List_height",
+      "value": "100%"
+    },
+    {
+      "name": "pull_refresh_page_title",
+      "value": "资讯"
+    },
+    {
+      "name": "pull_refresh_page_text_padding_left",
+      "value": "3.3%"
+    },
+    {
+      "name": "pull_refresh_load_width",
+      "value": "100%"
+    },
+    {
+      "name": "pull_refresh_load_height",
+      "value": "100%"
+    },
+    {
+      "name": "pull_refresh_page_text_width",
+      "value": "100%"
+    },
+    {
+      "name": "pull_refresh_page_text_height",
+      "value": "7%"
+    },
+    {
+      "name": "pull_refresh_list_item_margin_left",
+      "value": "3.3%"
+    },
+    {
+      "name": "pull_refresh_page_height",
+      "value": "93.3%"
+    },
+    {
+      "name": "pull_refresh_list_divider_margin_end",
+      "value": "3.3%"
+    }
+  ]
+}

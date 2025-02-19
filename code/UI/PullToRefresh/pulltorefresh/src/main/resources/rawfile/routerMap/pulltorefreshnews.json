@@ -1,0 +1,10 @@
+{
+  "routerMap": [
+    {
+      "name": "pulltorefreshnews/PullToRefreshNews",
+      "pageModule": "pulltorefreshnews",
+      "pageSourceFile": "src/main/ets/generated/RouterBuilder.ets",
+      "registerFunction": "pullToRefreshNewsRegister"
+    }
+  ]
+}

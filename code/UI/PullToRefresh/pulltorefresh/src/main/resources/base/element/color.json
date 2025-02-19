@@ -1,0 +1,32 @@
+{
+  "color": [
+    {
+      "name": "pull_refresh_start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "pull_refresh_title_fontColor",
+      "value": "#000000"
+    },
+    {
+      "name": "pull_refresh_content_fontColor",
+      "value": "#000000"
+    },
+    {
+      "name": "pull_refresh_time_fontColor",
+      "value": "#FF989898"
+    },
+    {
+      "name": "pull_refresh_white",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "pull_refresh_listColor",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "pull_refresh_dividerColor",
+      "value": "#E2E2E2"
+    }
+  ]
+}
