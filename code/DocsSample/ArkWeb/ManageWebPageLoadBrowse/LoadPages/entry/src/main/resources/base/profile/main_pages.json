@@ -1,0 +1,10 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/LoadingWebPages",
+    "pages/LoadingLocalPages",
+    "pages/LoadingHTMLRichTextData",
+    "pages/LoadLocalPageFileInSandboxPath_one",
+    "pages/LoadLocalPageFileInSandboxPath_two"
+  ]
+}
