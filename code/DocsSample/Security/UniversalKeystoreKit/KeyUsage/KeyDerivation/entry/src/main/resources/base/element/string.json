@@ -1,0 +1,60 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "KeyDerivation"
+    },
+    {
+      "name": "key_derivation",
+      "value": "KeyDerivation"
+    },
+    {
+      "name": "hkdf",
+      "value": "HKDF"
+    },
+    {
+      "name": "pbkdf2",
+      "value": "PBKDF2"
+    },
+    {
+      "name": "call_cpp_derive_key",
+      "value": "Call C/C++"
+    },
+    {
+      "name": "call_cpp_result",
+      "value": "Call C/C++ Result: "
+    },
+    {
+      "name": "call_hkdf",
+      "value": "Call HKDF"
+    },
+    {
+      "name": "call_pbkdf2",
+      "value": "Call PBKDF2"
+    },
+    {
+      "name": "hkdf_result_success",
+      "value": "HKDF Result: Success"
+    },
+    {
+      "name": "hkdf_result_failed",
+      "value": "HKDF Result: Failed"
+    },
+    {
+      "name": "pbkdf2_result_success",
+      "value": "PBKDF2 Result: Success"
+    },
+    {
+      "name": "pbkdf2_result_failed",
+      "value": "PBKDF2 Result: Failed"
+    }
+  ]
+}
