@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "KeyDeletion"
+    },
+    {
+      "name": "key_deletion",
+      "value": "KeyDeletion"
+    },
+    {
+      "name": "call_cpp_delete_key",
+      "value": "Call C/C++"
+    },
+    {
+      "name": "call_cpp_result",
+      "value": "Call C/C++ Result: "
+    },
+    {
+      "name": "call_key_deletion",
+      "value": "Call KeyDeletion"
+    },
+    {
+      "name": "key_deletion_result",
+      "value": "KeyDeletion Result: "
+    },
+    {
+      "name": "key_deletion_failed",
+      "value": "KeyDeletion Result: Failed"
+    }
+  ]
+}
