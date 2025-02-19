@@ -1,0 +1,10 @@
+{
+  "src": [
+    "pages/Index",
+    "managers/CpuIntensiveTaskDevelopment",
+    "managers/IoIntensiveTaskDevelopment",
+    "managers/SyncTaskDevelopment",
+    "managers/LongTimeTaskGuide",
+    "managers/ResidentTaskGuide"
+  ]
+}
