@@ -1,0 +1,60 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "Network_Connection_Example",
+      "value": "网络连接示例"
+    },
+    {
+      "name": "Connect_Network",
+      "value": "连接网络并接收网络状态变化"
+    },
+    {
+      "name": "Disconnect_Network",
+      "value": "断开网络"
+    },
+    {
+      "name": "Get_Connected_Network",
+      "value": "获取已注册的网络"
+    },
+    {
+      "name": "Get_Default_Network",
+      "value": "获取默认网络信息"
+    },
+    {
+      "name": "Get_Default_Network_IP",
+      "value": "获取默认网络IP"
+    },
+    {
+      "name": "connectStatus",
+      "value": "连接状态"
+    },
+    {
+      "name": "disconnectStatus",
+      "value": "断开连接"
+    },
+    {
+      "name": "allNetworkStatus",
+      "value": "已注册网络"
+    },
+    {
+      "name": "defaultNetworkStatus",
+      "value": "默认网络状态"
+    },
+    {
+      "name": "defaultNetworkIPStatus",
+      "value": "默认网络IP"
+    }
+  ]
+}
