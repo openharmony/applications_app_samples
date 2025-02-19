@@ -1,0 +1,120 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "TsDrawingSample"
+    },
+    {
+      "name": "crop",
+      "value": "裁剪"
+    },
+    {
+      "name": "scaling",
+      "value": "矩阵变换-缩放"
+    },
+    {
+      "name": "translation_and_rotation",
+      "value": "矩阵变换-平移和旋转"
+    },
+    {
+      "name": "tailor_and_translation",
+      "value": "裁剪+平移"
+    },
+    {
+      "name": "ShaderEffect",
+      "value": "ShaderEffect"
+    },
+    {
+      "name": "ImageFilter",
+      "value": "ImageFilter"
+    },
+    {
+      "name": "PathEffect",
+      "value": "PathEffect"
+    },
+    {
+      "name": "DrawImage",
+      "value": "DrawImage"
+    },
+    {
+      "name": "DrawPixelMapMesh",
+      "value": "DrawPixelMapMesh"
+    },
+    {
+      "name": "DrawPicture",
+      "value": "图片绘制"
+    },
+    {
+      "name": "DrawImageRectWithSrc",
+      "value": "DrawImageRectWithSrc"
+    },
+    {
+      "name": "DrawImageRect",
+      "value": "DrawImageRect"
+    },
+    {
+      "name": "DrawPathWithBrush",
+      "value": "Path填充绘制矢量图元"
+    },
+    {
+      "name": "DrawPathWithPen",
+      "value": "Path描边绘制矢量图元"
+    },
+    {
+      "name": "DrawPathWithShader",
+      "value": "Path渐变绘制矢量图元"
+    },
+    {
+      "name": "PathWithBrush",
+      "value": "路径填充"
+    },
+    {
+      "name": "PathWithPen",
+      "value": "路径描边"
+    },
+    {
+      "name": "CurveClose",
+      "value": "曲线闭合"
+    },
+    {
+      "name": "CurveNotClose",
+      "value": "曲线未闭合"
+    },
+    {
+      "name": "ComplexPath",
+      "value": "复杂路径"
+    },
+    {
+      "name": "GeometryWithPen",
+      "value": "几何形状绘制-描边"
+    },
+    {
+      "name": "GeometryWithBrush",
+      "value": "几何形状绘制-填充"
+    },
+    {
+      "name": "DrawTextBlob",
+      "value": "字块绘制"
+    },
+    {
+      "name": "DrawBaseTextBlob",
+      "value": "基本字块绘制"
+    },
+    {
+      "name": "FontWithPen",
+      "value": "文字描边"
+    },
+    {
+      "name": "TextGradient",
+      "value": "文字渐变"
+    }
+  ]
+}
