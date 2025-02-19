@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "ArrowfunctionsAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "ArrowfunctionsAbility_label",
+      "value": "RulesAndRestrictions"
+    }
+  ]
+}
