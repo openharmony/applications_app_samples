@@ -1,0 +1,8 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/AES256",
+    "pages/RSA2048",
+    "pages/X25519"
+  ]
+}
