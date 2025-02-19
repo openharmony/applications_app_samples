@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "KeyExport"
+    },
+    {
+      "name": "call_keyExport",
+      "value": "Call KeyExport"
+    },
+    {
+      "name": "key_export",
+      "value": "KeyExport"
+    },
+    {
+      "name": "call_cpp",
+      "value": "Call C/C++"
+    }
+  ]
+}
