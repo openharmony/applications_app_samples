@@ -1,0 +1,92 @@
+{
+  "float": [
+    {
+      "name": "title_font_size",
+      "value": "20fp"
+    },
+    {
+      "name": "home_page_title_margin",
+      "value": "10"
+    },
+    {
+      "name": "home_page_title_height",
+      "value": "38"
+    },
+    {
+      "name": "title_image_width",
+      "value": "24vp"
+    },
+    {
+      "name": "title_image_height",
+      "value": "24vp"
+    },
+    {
+      "name": "title_size",
+      "value": "30"
+    },
+    {
+      "name": "filter_text_size",
+      "value": "10"
+    },
+    {
+      "name": "filter_number_size",
+      "value": "12"
+    },
+    {
+      "name": "button_width",
+      "value": "100"
+    },
+    {
+      "name": "filter_info_size",
+      "value": "16"
+    },
+    {
+      "name": "filter_info_opacity",
+      "value": "0.8"
+    },
+    {
+      "name": "divider_height",
+      "value": "2"
+    },
+    {
+      "name": "dialog_title_size",
+      "value": "18"
+    },
+    {
+      "name": "search_size",
+      "value": "20"
+    },
+    {
+      "name": "bottom_size",
+      "value": "10"
+    },
+    {
+      "name": "value_max",
+      "value": "100"
+    },
+    {
+      "name": "check_box_width",
+      "value": "10"
+    },
+    {
+      "name": "check_box_height",
+      "value": "14"
+    },
+    {
+      "name": "margin_left",
+      "value": "2"
+    },
+    {
+      "name": "margin",
+      "value": "24"
+    },
+    {
+      "name": "offset_x",
+      "value": "0"
+    },
+    {
+      "name": "offset_y",
+      "value": "220"
+    }
+  ]
+}

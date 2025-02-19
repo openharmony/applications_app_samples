@@ -1,0 +1,197 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "btn_setting",
+      "value": "btn_setting"
+    },
+    {
+      "name": "btn_dialog_confirm",
+      "value": "btn_dialog_confirm"
+    },
+    {
+      "name": "btn_dialog_cancel",
+      "value": "btn_dialog_cancel"
+    },
+    {
+      "name": "checkbox_brightness",
+      "value": "checkbox_brightness"
+    },
+    {
+      "name": "slider_brightness",
+      "value": "slider_brightness"
+    },
+    {
+      "name": "btn_apply",
+      "value": "btn_apply"
+    },
+    {
+      "name": "btn_reset",
+      "value": "btn_reset"
+    },
+    {
+      "name": "checkbox_contrast",
+      "value": "checkbox_contrast"
+    },
+    {
+      "name": "slider_contrast",
+      "value": "slider_contrast"
+    },
+    {
+      "name": "checkbox_crop",
+      "value": "checkbox_crop"
+    },
+    {
+      "name": "slider_crop",
+      "value": "slider_crop"
+    },
+    {
+      "name": "checkbox_custom_brightness",
+      "value": "checkbox_custom_brightness"
+    },
+    {
+      "name": "checkbox_custom_crop",
+      "value": "checkbox_custom_crop"
+    },
+    {
+      "name": "slider_custom_brightness",
+      "value": "slider_custom_brightness"
+    },
+    {
+      "name": "slider_custom_crop",
+      "value": "slider_custom_crop"
+    },
+    {
+      "name": "btn_search_brightness",
+      "value": "btn_search_brightness"
+    },
+    {
+      "name": "filter_info_menu",
+      "value": "filter_info_menu"
+    },
+    {
+      "name": "btn_search_contrast",
+      "value": "btn_search_contrast"
+    },
+    {
+      "name": "btn_search_crop",
+      "value": "btn_search_crop"
+    },
+    {
+      "name": "btn_search_custom_brightness",
+      "value": "btn_search_custom_brightness"
+    },
+    {
+      "name": "btn_search_custom_crop",
+      "value": "btn_search_custom_crop"
+    },
+    {
+      "name": "slider_custom",
+      "value": "slider_custom"
+    },
+    {
+      "name": "checkbox_custom",
+      "value": "checkbox_custom"
+    },
+    {
+      "name": "btn_search",
+      "value": "btn_search"
+    },
+    {
+      "name": "menu_category",
+      "value": "menu_category"
+    },
+    {
+      "name": "menu_format",
+      "value": "menu_format"
+    },
+    {
+      "name": "btn_search_custom",
+      "value": "btn_search_custom"
+    },
+    {
+      "name": "allow",
+      "value": "允许"
+    },
+    {
+      "name": "native_buffer_description",
+      "value": "此场景无图片演示，请观察日志信息"
+    },
+    {
+      "name": "select_description",
+      "value": "请选择输入场景"
+    },
+    {
+      "name": "PixelmapNative",
+      "value": "PixelmapNative"
+    },
+    {
+      "name": "NativeBuffer",
+      "value": "NativeBuffer"
+    },
+    {
+      "name": "URI",
+      "value": "URI"
+    },
+    {
+      "name": "NativeWindow",
+      "value": "NativeWindow"
+    },
+    {
+      "name": "PixelMapNative_Succeed",
+      "value": "apply PixelMapNative succeed!"
+    },
+    {
+      "name": "NativeBuffer_Succeed",
+      "value": "apply NativeBuffer succeed!"
+    },
+    {
+      "name": "URI_Succeed",
+      "value": "apply URI succeed!"
+    },
+    {
+      "name": "NativeWindow_Succeed",
+      "value": "apply NativeWindow succeed!"
+    },
+    {
+      "name": "Permission_Succeed",
+      "value": "permission succeed!"
+    },
+    {
+      "name": "query_brightness",
+      "value": "name:Brightness, supportedBufferType: {Texture Pixel }supportedFormat: {YUVNV12 YUVNV21 RGBA8888 }"
+    },
+    {
+      "name": "query_contrast",
+      "value": "name:Contrast, supportedBufferType: {Texture Pixel }supportedFormat: {YUVNV12 YUVNV21 RGBA8888 }"
+    },
+    {
+      "name": "query_crop",
+      "value": "name:Crop, supportedBufferType: {Pixel }supportedFormat: {unknown RGBA8888 }"
+    },
+
+    {
+      "name": "query_custom_brightness",
+      "value": "name:CustomBrightness, supportedBufferType: {Pixel }supportedFormat: {RGBA8888 }"
+    },
+    {
+      "name": "query_custom_crop",
+      "value": "name:CustomCrop, supportedBufferType: {Pixel }supportedFormat: {RGBA8888 }"
+    },
+    {
+      "name": "query_rgba_8888",
+      "value": "Filters:\nsize: 5, name: Brightness | Contrast | Crop | CustomBrightness | CustomCrop"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "ImageEffect"
+    },
+    {
+      "name": "image_edit",
+      "value": "imageEdit"
+    },
+    {
+      "name": "btn_search",
+      "value": "Search"
+    },
+    {
+      "name": "look_up",
+      "value": "LookUp"
+    },
+    {
+      "name": "btn_confirm",
+      "value": "btn_confirm"
+    },
+    {
+      "name": "btn_cancel",
+      "value": "Cancel"
+    },
+    {
+      "name": "camera_reason",
+      "value": "用于相机预览"
+    },
+    {
+      "name": "native_buffer_description",
+      "value": "此场景无图片演示，请观察日志信息"
+    },
+    {
+      "name": "select_description",
+      "value": "请选择输入场景"
+    }
+  ]
+}
