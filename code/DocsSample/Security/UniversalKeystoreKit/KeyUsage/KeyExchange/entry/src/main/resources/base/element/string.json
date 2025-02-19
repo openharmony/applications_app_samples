@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "KeyExchange"
+    },
+    {
+      "name": "x25519",
+      "value": "X25519"
+    },
+    {
+      "name": "dh",
+      "value": "DH"
+    },
+    {
+      "name": "call_cpp_agree_key",
+      "value": "Call C/C++"
+    }
+  ]
+}
