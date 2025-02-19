@@ -51,7 +51,7 @@
 │   ├── UserFileModel.ts                    // photoAccessHelper接口封装
 │   ├── UserFileObserverCallback.ts         // 图片数据监听回调
 │   └── UserFileObserver.ts                 // 图片数据监听类
-├── common //业务逻辑
+├── common // 业务逻辑
 │   ├── ActionBarProp.ts
 │   ├── AlbumDataImpl.ts                    // 相册数据查询接口封装
 │   ├── AlbumDataItem.ts                    // 相册数据类
@@ -68,7 +68,7 @@
 │   ├── ScreenManager.ts                    // 屏幕显示逻辑
 │   ├── SelectManager.ts                    // 选择状态逻辑
 │   └── SimpleAlbumDataItem.ts              // 简化相册数据类
-├── components //UI组件
+├── components // UI组件
 │   ├── ActionBarButton.ets
 │   ├── ActionBar.ets
 │   ├── AddNotesDialog.ets
@@ -107,7 +107,7 @@
 │   ├── ToolBarButton.ets
 │   ├── ToolBar.ets
 │   └── VideoIcon.ets
-├── constants //常量
+├── constants // 常量
 │   ├── AnimationConstants.ts
 │   ├── BroadcastConstants.ts
 │   ├── BrowserConstants.ts
@@ -117,7 +117,7 @@
 │   └── RouterConstants.ts
 ├── entryability //HAP入口
 │   └── EntryAbility.ts
-├── menus //菜单操作
+├── menus // 菜单操作
 │   ├── AlbumSetDeleteMenuOperation.ts
 │   ├── AlbumSetNewMenuOperation.ts
 │   ├── AlbumSetRenameMenuOperation.ts
@@ -133,7 +133,7 @@
 │   ├── MoveMenuOperation.ets
 │   ├── ProcessMenuOperation.ts
 │   ├── RenameMenuOperation.ts
-├── models //类型定义
+├── models // 类型定义
 │   ├── ActionBarMode.ts
 │   ├── Action.ts
 │   ├── AlbumBarModel.ts
@@ -144,7 +144,7 @@
 │   ├── PhotoGridBarModel.ts
 │   ├── ThumbnailModel.ts
 │   └── ViewType.ts
-├── pages //页面
+├── pages // 页面
 │   ├── AlbumSelect.ets                           // 相册选择页面
 │   ├── Index.ets                                 // 主页面
 │   ├── MediaOperationPage.ets                    // 图片文件操作页面
@@ -153,7 +153,7 @@
 │   ├── PhotoGridPage.ets                         // 图片列表页面
 │   ├── SelectPhotoBrowser.ets                    // 图片选择页面
 │   └── VideoBrowser.ets                          // 视频查看页面
-└── utils //工具类
+└── utils // 工具类
     ├── AbilityUtils.ts
     ├── AlbumUtil.ts
     ├── DateUtil.ts
@@ -198,9 +198,9 @@
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568。
 
-2. 本示例为Stage模型，支持API12版本SDK，SDK版本号(API Version 12 5.0.0.20),镜像版本号(5.0.0.20)
+2. 本示例为Stage模型，支持API15版本SDK，SDK版本号(API Version 15 5.0.3.130),镜像版本号(5.0.3.130)
 
-3. 本示例需要使用DevEco Studio 版本号(4.0 Release)及以上版本才可编译运行。需要配置"apl":"system_basic"才可安装成功；
+3. 本示例需要使用DevEco Studio NEXT Release 版本号(Build Version: 5.0.3.900)及以上版本才可编译运行。需要配置"apl":"system_basic"才可安装成功；
 
 ### 下载
 
