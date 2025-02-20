@@ -1,0 +1,120 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "TsDrawingSample"
+    },
+    {
+      "name": "crop",
+      "value": "tailor"
+    },
+    {
+      "name": "scaling",
+      "value": "scaling"
+    },
+    {
+      "name": "translation_and_rotation",
+      "value": "translation and rotation"
+    },
+    {
+      "name": "tailor_and_translation",
+      "value": "tailor and translation"
+    },
+    {
+      "name": "ShaderEffect",
+      "value": "ShaderEffect"
+    },
+    {
+      "name": "ImageFilter",
+      "value": "ImageFilter"
+    },
+    {
+      "name": "PathEffect",
+      "value": "PathEffect"
+    },
+    {
+      "name": "DrawImage",
+      "value": "DrawImage"
+    },
+    {
+      "name": "DrawPixelMapMesh",
+      "value": "DrawPixelMapMesh"
+    },
+    {
+      "name": "DrawPicture",
+      "value": "DrawPicture"
+    },
+    {
+      "name": "DrawImageRectWithSrc",
+      "value": "DrawImageRectWithSrc"
+    },
+    {
+      "name": "DrawImageRect",
+      "value": "DrawImageRect"
+    },
+    {
+      "name": "DrawPathWithBrush",
+      "value": "DrawPathWithBrush"
+    },
+    {
+      "name": "DrawPathWithPen",
+      "value": "DrawPathWithPen"
+    },
+    {
+      "name": "DrawPathWithShader",
+      "value": "DrawPathWithShader"
+    },
+    {
+      "name": "PathWithBrush",
+      "value": "PathWithBrush"
+    },
+    {
+      "name": "PathWithPen",
+      "value": "PathWithPen"
+    },
+    {
+      "name": "CurveClose",
+      "value": "CurveClose"
+    },
+    {
+      "name": "CurveNotClose",
+      "value": "CurveNotClose"
+    },
+    {
+      "name": "ComplexPath",
+      "value": "ComplexPath"
+    },
+    {
+      "name": "GeometryWithPen",
+      "value": "GeometryWithPen"
+    },
+    {
+      "name": "GeometryWithBrush",
+      "value": "GeometryWithBrush"
+    },
+    {
+      "name": "DrawTextBlob",
+      "value": "DrawTextBlob"
+    },
+    {
+      "name": "DrawBaseTextBlob",
+      "value": "DrawBaseTextBlob"
+    },
+    {
+      "name": "FontWithPen",
+      "value": "FontWithPen"
+    },
+    {
+      "name": "TextGradient",
+      "value": "TextGradient"
+    }
+  ]
+}

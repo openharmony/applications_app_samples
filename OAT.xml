@@ -464,6 +464,14 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/BasicFeature/Native/NdkTsDrawing/entry/src/main/resources/base/media/icon.png" desc="Provided by code/BasicFeature/Native/NdkTsDrawing"/>
 				<filteritem type="filepath" name="code/BasicFeature/Native/NdkTsDrawing/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/BasicFeature/Native/NdkTsDrawing"/>
 				<filteritem type="filepath" name="code/BasicFeature/Native/NdkTsDrawing/AppScope/resources/base/media/app_icon.png" desc="Provided by code/BasicFeature/Native/NdkTsDrawing"/>
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/TsDrawingSample/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/BasicFeature/Graphics/Graphics2d/TsDrawingSample"/>
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/TsDrawingSample/AppScope/resources/base/media/app_icon.png" desc="Provided by code/BasicFeature/Graphics/Graphics2d/TsDrawingSample"/>
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/TsDrawingSample/screenshots/device/Index.png" desc="Provided by code/BasicFeature/Graphics/Graphics2d/TsDrawingSample"/>
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/TsDrawingSample/screenshots/device/Path.png" desc="Provided by code/BasicFeature/Graphics/Graphics2d/TsDrawingSample"/>
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/TsDrawingSample/screenshots/device/ImageAndFont.png" desc="Provided by code/BasicFeature/Graphics/Graphics2d/TsDrawingSample"/>
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/TsDrawingSample/screenshots/device/Canvas.png" desc="Provided by code/BasicFeature/Graphics/Graphics2d/TsDrawingSample"/>
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/TsDrawingSample/screenshots/device/GeometricShape.png" desc="Provided by code/BasicFeature/Graphics/Graphics2d/TsDrawingSample"/>
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/TsDrawingSample/screenshots/device/Complex.png" desc="Provided by code/BasicFeature/Graphics/Graphics2d/TsDrawingSample"/>
 				<filteritem type="filepath" name="code/BasicFeature/Native/NdkNativeWindow/screenshots/device/ChangeColor.jpg" desc="Provided by code/BasicFeature/Native/NdkNativeWindow"/>
 				<filteritem type="filepath" name="code/BasicFeature/Native/NdkNativeWindow/screenshots/device/GetAvailableCount.jpg" desc="Provided by code/BasicFeature/Native/NdkNativeWindow"/>
 				<filteritem type="filepath" name="code/BasicFeature/Native/NdkNativeWindow/screenshots/device/Main.jpg" desc="Provided by code/BasicFeature/Native/NdkNativeWindow"/>
