@@ -1125,6 +1125,10 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/AppScope/resources/base/media/app_icon.png" desc="Provided by code/BasicFeature/Graphics/Graphics3d"/>
                 <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/BasicFeature/Graphics/Graphics3d"/>
                 <filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics3d/entry/src/main/resources/base/media/icon.png" desc="Provided by code/BasicFeature/Graphics/Graphics3d"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/PerformanceAnalysisTool/screenshots/Screenshot_20241217162307411.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventEsc/screenshots/Screenshot_20241217155644259.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/screenshots/Screenshot_20250219094941818.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
+				<filteritem type="filepath" name="code/DocsSample/PerformanceAnalysisKit/Hilog/screenshots/Screenshot_20250219094412587.jpeg" desc="Provided by code/DocsSample/PerformanceAnalysisKit"/>
 				<filteritem type="filepath" name="code/SuperFeature/MultiDeviceAppDev/AdaptiveCapabilities/entry/src/main/resources/base/media/lg_new.png" desc="Provided by code/SuperFeature/MultiDeviceAppDev/AdaptiveCapabilities"/>
 				<filteritem type="filepath" name="code/SuperFeature/MultiDeviceAppDev/AdaptiveCapabilities/entry/src/main/resources/base/media/md_new.png" desc="Provided by code/SuperFeature/MultiDeviceAppDev/AdaptiveCapabilities"/>
 				<filteritem type="filepath" name="code/SuperFeature/MultiDeviceAppDev/AdaptiveCapabilities/entry/src/main/resources/base/media/sm_new.png" desc="Provided by code/SuperFeature/MultiDeviceAppDev/AdaptiveCapabilities"/>
@@ -1495,7 +1499,7 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/DocsSample/ArkWeb/UseFrontendJSApp/EstabDataChannel/screenshots/EstabDataChannel_3.png" desc="Provided by code/DocsSample/ArkWeb"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkWeb/UseFrontendJSApp/MutualInvokeCCpp/screenshots/MutualInvokeCCpp.jpg" desc="Provided by code/DocsSample/ArkWeb"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkWeb/UseFrontendJSApp/EstabDataChannelC_C/screenshots/EstabDataChannelC_C_1.png" desc="Provided by code/DocsSample/ArkWeb"/>
-				<filteritem type="filepath" name="code/DocsSample/ArkWeb/UseFrontendJSApp/EstabDataChannelC_C/screenshots/EstabDataChannelC_C_2.png" desc="Provided by code/DocsSample/ArkWeb"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkWeb/UseFrontendJSApp/EstabDataChannelC_C/screenshots/EstabDataChannelC_C_2.png" desc="Provided by code/DocsSample/ArkWeb"/>`
 				<filteritem type="filepath" name="code/DocsSample/ArkWeb/ManageWebPageInteracts/ImpNestedScroll/screenshots/ImpNestedScroll.png" desc="Provided by code/DocsSample/ArkWeb"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkWeb/ManageWebPageInteracts/DockWebCompSoftKey/SetSKBMode_one/screenshots/SetSKBMode_one_1.png" desc="Provided by code/DocsSample/ArkWeb"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkWeb/ManageWebPageInteracts/DockWebCompSoftKey/SetSKBMode_one/screenshots/SetSKBMode_one_2.png" desc="Provided by code/DocsSample/ArkWeb"/>
