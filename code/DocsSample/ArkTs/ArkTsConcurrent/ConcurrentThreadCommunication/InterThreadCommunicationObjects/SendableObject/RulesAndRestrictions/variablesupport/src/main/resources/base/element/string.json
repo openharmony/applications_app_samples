@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "VariablesupportAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "VariablesupportAbility_label",
+      "value": "RulesAndRestrictions"
+    }
+  ]
+}

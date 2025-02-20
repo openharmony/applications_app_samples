@@ -113,6 +113,78 @@
           ]
         }
       ]
+    },
+    {
+      "name": "notallowedInside",
+      "srcPath": "./notallowedInside",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "objectliterals",
+      "srcPath": "./objectliterals",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "templatetype",
+      "srcPath": "./templatetype",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "typecannot",
+      "srcPath": "./typecannot",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "variablenotsupported",
+      "srcPath": "./variablenotsupported",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "variablesupport",
+      "srcPath": "./variablesupport",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
     }
   ]
 }
