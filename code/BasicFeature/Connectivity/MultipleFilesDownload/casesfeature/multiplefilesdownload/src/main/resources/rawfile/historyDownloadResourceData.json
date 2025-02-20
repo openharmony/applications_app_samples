@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "url": "https://gitee.com/openharmony/applications_app_samples/raw/master/code/Solutions/Shopping/OrangeShopping/feature/navigationHome/src/main/resources/base/media/favor_list_tea.png",
+    "fileStatus": 0,
+    "downloadTime": 1728529510880
+  },
+  {
+    "id": 2,
+    "url": "https://gitee.com/openharmony/applications_app_samples/blob/master/code/Solutions/Shopping/OrangeShopping/feature/navigationHome/src/main/resources/base/media/banner_movie1.png",
+    "fileStatus": 0,
+    "downloadTime": 1728529510880
+  },
+  {
+    "id": 3,
+    "url": "https://gitee.com/openharmony/applications_app_samples/blob/master/code/Solutions/Shopping/OrangeShopping/feature/navigationHome/src/main/resources/base/media/banner_movie2.png",
+    "fileStatus": 0,
+    "downloadTime": 1728529510880
+  },
+  {
+    "id": 4,
+    "url": "https://gitee.com/openharmony/applications_app_samples/blob/master/code/Solutions/Shopping/OrangeShopping/feature/navigationHome/src/main/resources/base/media/banner_movie3.png",
+    "fileStatus": 0,
+    "downloadTime": 1728529510880
+  },
+  {
+    "id": 5,
+    "url": "https://gitee.com/openharmony/applications_app_samples/blob/master/code/Solutions/Shopping/OrangeShopping/feature/navigationHome/src/main/resources/base/media/banner_movie4.png",
+    "fileStatus": 0,
+    "downloadTime": 1728529510880
+  }
+]

@@ -1,0 +1,92 @@
+{
+  "string": [
+    {
+      "name": "multiple_files_download_text_width",
+      "value": "40%"
+    },
+    {
+      "name": "multiple_files_download_relative_container_width",
+      "value": "100%"
+    },
+    {
+      "name": "multiple_files_download_relative_container_height",
+      "value": "15%"
+    },
+    {
+      "name": "multiple_files_download_row_width",
+      "value": "50%"
+    },
+    {
+      "name": "multiple_files_download_row_text_width",
+      "value": "100%"
+    },
+    {
+      "name": "multiple_files_download_outer_row_width",
+      "value": "100%"
+    },
+    {
+      "name": "multiple_files_download_transfer_list",
+      "value": "传输列表"
+    },
+    {
+      "name": "multiple_files_download_queue",
+      "value": "下载队列  "
+    },
+    {
+      "name": "multiple_files_download_completed",
+      "value": "下载已完成"
+    },
+    {
+      "name": "multiple_files_download_function_only_display_purposes",
+      "value": "功能仅做展示"
+    },
+    {
+      "name": "multiple_files_download_list",
+      "value": "下载列表"
+    },
+    {
+      "name": "multiple_files_download_file_upload",
+      "value": "文件上传"
+    },
+    {
+      "name": "multiple_files_download_album_backup",
+      "value": "下载历史"
+    },
+    {
+      "name": "multiple_files_download_row_height",
+      "value": "30%"
+    },
+    {
+      "name": "multiple_files_download_list_width",
+      "value": "100%"
+    },
+    {
+      "name": "multiple_files_download_list_height",
+      "value": "80%"
+    },
+    {
+      "name": "multiple_files_download_history_button_del",
+      "value": "删除"
+    },
+    {
+      "name": "multiple_files_download_history_toast_text_del",
+      "value": "文件已删除"
+    },
+    {
+      "name": "multiple_files_download_history_text_downloaded",
+      "value": "已下载"
+    },
+    {
+      "name": "multiple_files_download_history_button_text_cancel",
+      "value": "取消"
+    },
+    {
+      "name": "multiple_files_download_history_button_text_confirm",
+      "value": "确定"
+    },
+    {
+      "name": "multiple_files_download_history_toast_text_exist",
+      "value": "文件已存在"
+    }
+  ]
+}
