@@ -1,0 +1,104 @@
+{
+  "integer": [
+    {
+      "name": "multiple_files_download_image_size_fifty",
+      "value": 50
+    },
+    {
+      "name": "multiple_files_download_image_size_twenty_five",
+      "value": 25
+    },
+    {
+      "name": "multiple_files_download_text_font_size_fourteen",
+      "value": 14
+    },
+    {
+      "name": "multiple_files_download_text_font_size_twelve",
+      "value": 12
+    },
+    {
+      "name": "multiple_files_download_text_font_size_twenty_five",
+      "value": 25
+    },
+    {
+      "name": "multiple_files_download_text_font_size_twenty",
+      "value": 20
+    },
+    {
+      "name": "multiple_files_download_padding_twenty",
+      "value": 20
+    },
+    {
+      "name": "multiple_files_download_padding_fifteen",
+      "value": 15
+    },
+    {
+      "name": "multiple_files_download_margin_bottom_eighteen",
+      "value": 18
+    },
+    {
+      "name": "multiple_files_download_margin_bottom_twelve",
+      "value": 12
+    },
+    {
+      "name": "multiple_files_download_margin_top_twenty",
+      "value": 20
+    },
+    {
+      "name": "multiple_files_download_margin_top_seven",
+      "value": 7
+    },
+    {
+      "name": "multiple_files_download_margin_top_five",
+      "value": 5
+    },
+    {
+      "name": "multiple_files_download_progress_height",
+      "value": 5
+    },
+    {
+      "name": "multiple_files_download_border_width",
+      "value": 5
+    },
+    {
+      "name": "multiple_files_download_border_radius",
+      "value": 10
+    },
+    {
+      "name": "multiple_files_download_margin_top_thirty",
+      "value": 30
+    },
+    {
+      "name": "multiple_files_download_margin_left_four",
+      "value": 4
+    },
+    {
+      "name": "multiple_files_download_padding_zero",
+      "value": 0
+    },
+    {
+      "name": "multiple_files_download_padding_five",
+      "value": 5
+    },
+    {
+      "name": "multiple_files_download_height_twenty_six",
+      "value": 26
+    },
+    {
+      "name": "multiple_files_download_borderRadius_eight",
+      "value": 8
+    },
+    {
+      "name": "multiple_files_download_borderRadius_twelve",
+      "value": 12
+    },
+    {
+      "name": "multiple_files_download_history_percentage_fifty",
+      "value": 50
+    },
+    {
+      "name": "multiple_files_download_margin_left_sixty",
+      "value": 60
+    }
+  ]
+}
