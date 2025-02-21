@@ -1,0 +1,56 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "system account"
+    },
+    {
+      "name": "Manager1",
+      "value": "Create system account"
+    },
+    {
+      "name": "Manager2",
+      "value": "Query all system accounts"
+    },
+    {
+      "name": "Manager3",
+      "value": "Query specified system account information"
+    },
+    {
+      "name": "Manager4",
+      "value": "Modify system account avatar"
+    },
+    {
+      "name": "Manager5",
+      "value": "Modify system account nickname"
+    },
+    {
+      "name": "Manager6",
+      "value": "Activate system account"
+    },
+    {
+      "name": "Manager7",
+      "value": "Delete system account"
+    },
+    {
+      "name": "Use1",
+      "value": "Set the constraint list for the specified system account"
+    },
+    {
+      "name": "Use2",
+      "value": "Determine if the specified constraint for the target system account is enabled"
+    },
+    {
+      "name": "Use3",
+      "value": "Go to ManageSystem"
+    }
+  ]
+}
