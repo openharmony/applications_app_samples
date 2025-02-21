@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,16 +12,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import { BusinessError } from '@ohos.base';
-import { describe, it, expect, beforeAll, afterAll } from '@ohos/hypium';
-import { Driver, ON, Component, MatchPattern } from '@ohos.UiTest';
-import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import hilog from '@ohos.hilog';
+import { abilityDelegatorRegistry, Driver, MatchPattern, ON } from '@kit.TestKit';
+import { beforeAll, describe, expect, it } from '@ohos/hypium';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG = '[Sample_ServiceCard_Test]';
 const DOMAIN = 0xF811;
 const BUNDLE = 'ServiceCard_';
+const DELAYTIME01 = 1000;
+const DELAYTIME02 = 2000;
+const DELAYTIME03 = 3000;
 let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 let resourceManager = abilityDelegator.getAppContext().resourceManager;
 let cardArkTsWidgetEventRouter = 'WidgetEventRouter';
@@ -53,7 +54,7 @@ export default function formTest() {
     beforeAll(async () => {
       // Exit the test interface to execute the test case
       await driver.pressHome();
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
     })
 
     /*
@@ -66,7 +67,7 @@ export default function formTest() {
      */
     it(BUNDLE + 'ArkTS_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_001 begin');
-      await driver.delayMs(3000);
+      await driver.delayMs(DELAYTIME01);
       // Confirm the number of cards on the desktop
       let cardArkTsCount = 0;
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a '-n com.samples.stageservicewidgetcards'")
@@ -79,13 +80,16 @@ export default function formTest() {
           hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_001 cardArkTsCount:' + cardArkTsCount);
         })
         .catch((err: BusinessError) => {
-          hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_001 hilog err is: ' + JSON.stringify(err));
+          hilog.error(DOMAIN, TAG, BUNDLE + 'ArkTS_001 hilog err is: ' + JSON.stringify(err));
         });
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
 
       // Long click the application
-      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')), MatchPattern.CONTAINS));
-      let app = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')), MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')),
+        MatchPattern.CONTAINS));
+      let app =
+        await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')),
+          MatchPattern.CONTAINS));
 
       // Get the text control border
       let rect = await app.getBounds();
@@ -95,32 +99,29 @@ export default function formTest() {
       let point = await app.getBoundsCenter();
       await driver.longClick(point.x, point.y - height);
       hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_001 long click app, coordinate:(${point.x},` + `${point.y - height})`);
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME02);
 
       // Add an ArkTs card to launcher
-      // let serviceCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label'))));
       await driver.assertComponentExist(ON.text('服务卡片', MatchPattern.CONTAINS));
       let serviceCard = await driver.findComponent(ON.text('服务卡片', MatchPattern.CONTAINS));
       await serviceCard.click();
       hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_001 Start to fling cards)`);
-      await driver.delayMs(2000);
-
+      await driver.delayMs(DELAYTIME02);
       for (let i = 0; i < 2; i++) {
-        await driver.fling({
-          x: START_SLIDING_X, y: SLIDING_COORDINATE_Y
-        }, {
-          x: FINISH_SLIDING_X, y: SLIDING_COORDINATE_Y
-        }, 5, 500);
-        await driver.delayMs(2000);
+        await driver.swipe(START_SLIDING_X, SLIDING_COORDINATE_Y, FINISH_SLIDING_X, SLIDING_COORDINATE_Y, DELAYTIME03);
+        await driver.delayMs(DELAYTIME01);
       }
 
       // Click to add to desktop
-      // await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop')), MatchPattern.CONTAINS));
-      // let addCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop')), MatchPattern.CONTAINS));
-      // await addCard.click();
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop')),
+        MatchPattern.CONTAINS));
+      let addCard =
+        await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop')),
+          MatchPattern.CONTAINS));
+      await addCard.click();
       await driver.click(ADD_TO_DESKTOP_X, ADD_TO_DESKTOP_Y);
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_001 addCardToDesktop');
-      await driver.delayMs(2000);
+      await driver.delayMs(DELAYTIME02);
 
       // Verify that only one card has been added
       let cardArkTsCountSecond = 0;
@@ -129,18 +130,18 @@ export default function formTest() {
           hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_001 hilog data success');
           let result = JSON.stringify(data);
           hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_001 getFormData data: ${JSON.stringify(data)}`);
-          cardArkTsCountSecond = result.split(cardArkTsWidgetEventRouter).length - 1;
+          cardArkTsCountSecond = result.split(cardArkTsWidgetEventRouter).length;
         })
         .catch((err: BusinessError) => {
-          hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_001 hilog err is: ' + JSON.stringify(err));
+          hilog.error(DOMAIN, TAG, BUNDLE + 'ArkTS_001 hilog err is: ' + JSON.stringify(err));
         });
 
       // Assert an ArkTs card has been added
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_001 assert an ArkTs card has been added, ' +
-      'cardArkTsCountSecond:' + cardArkTsCountSecond);
+        'cardArkTsCountSecond:' + cardArkTsCountSecond);
       expect(cardArkTsCount + 1).assertEqual(cardArkTsCountSecond);
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_001 ' + (cardArkTsCountSecond - cardArkTsCount) + ' card has been added');
-      await driver.delayMs(2000);
+      await driver.delayMs(DELAYTIME02);
       done();
     })
 
@@ -154,7 +155,7 @@ export default function formTest() {
      */
     it(BUNDLE + 'ArkTS_002', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_002 begin');
-      await driver.delayMs(3000);
+      await driver.delayMs(DELAYTIME03);
       // Confirm the number of cards on the desktop
       let cardArkTsCount = 0;
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a '-n com.samples.stageservicewidgetcards'")
@@ -167,13 +168,16 @@ export default function formTest() {
           hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_002 cardArkTsCount:' + cardArkTsCount);
         })
         .catch((err: BusinessError) => {
-          hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_002 hilog err is: ' + JSON.stringify(err));
+          hilog.error(DOMAIN, TAG, BUNDLE + 'ArkTS_002 hilog err is: ' + JSON.stringify(err));
         });
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
 
       // Long click the application
-      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')), MatchPattern.CONTAINS));
-      let app = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')), MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')),
+        MatchPattern.CONTAINS));
+      let app =
+        await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')),
+          MatchPattern.CONTAINS));
       // Get the text control border
       let rect = await app.getBounds();
       // Calculate the height of the text control
@@ -182,31 +186,23 @@ export default function formTest() {
       let point = await app.getBoundsCenter();
       await driver.longClick(point.x, point.y - height);
       hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_002 long click app, coordinate:(${point.x},` + `${point.y - height})`);
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
 
       // Add an ArkTs card to launcher
       await driver.assertComponentExist(ON.text('服务卡片', MatchPattern.CONTAINS));
       let serviceCard = await driver.findComponent(ON.text('服务卡片', MatchPattern.CONTAINS));
       await serviceCard.click();
       hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_002 Start to fling cards)`);
-      await driver.delayMs(2000);
-
+      await driver.delayMs(DELAYTIME02);
       for (let i = 0; i < 12; i++) {
-        await driver.fling({
-          x: START_SLIDING_X, y: SLIDING_COORDINATE_Y
-        }, {
-          x: FINISH_SLIDING_X, y: SLIDING_COORDINATE_Y
-        }, 5, 500);
-        await driver.delayMs(2000);
+        await driver.swipe(START_SLIDING_X, SLIDING_COORDINATE_Y, FINISH_SLIDING_X, SLIDING_COORDINATE_Y, DELAYTIME03);
+        await driver.delayMs(DELAYTIME01);
       }
 
       // Click to add to desktop
-      // await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop')), MatchPattern.CONTAINS));
-      // let addCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop')), MatchPattern.CONTAINS));
-      // await addCard.click();
       await driver.click(ADD_TO_DESKTOP_X, ADD_TO_DESKTOP_Y);
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_002 addCardToDesktop');
-      await driver.delayMs(2000);
+      await driver.delayMs(DELAYTIME02);
 
       // Verify that only one card has been added
       let cardArkTsCountSecond = 0;
@@ -215,18 +211,18 @@ export default function formTest() {
           hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_002 hilog data success');
           let result = JSON.stringify(data);
           hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_002 getFormData data: ${JSON.stringify(data)}`);
-          cardArkTsCountSecond = result.split(cardWidgetUpdateRouter).length - 1;
+          cardArkTsCountSecond = result.split(cardWidgetUpdateRouter).length;
         })
         .catch((err: BusinessError) => {
-          hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_002 hilog err is: ' + JSON.stringify(err));
+          hilog.error(DOMAIN, TAG, BUNDLE + 'ArkTS_002 hilog err is: ' + JSON.stringify(err));
         });
 
       // Assert an ArkTs card has been added
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_002 assert an ArkTs card has been added, ' +
-      'cardArkTsCountSecond:' + cardArkTsCountSecond);
+        'cardArkTsCountSecond:' + cardArkTsCountSecond);
       expect(cardArkTsCount + 1).assertEqual(cardArkTsCountSecond);
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_002 ' + (cardArkTsCountSecond - cardArkTsCount) + ' card has been added');
-      await driver.delayMs(2000);
+      await driver.delayMs(DELAYTIME02);
       done();
     })
 
@@ -240,7 +236,7 @@ export default function formTest() {
      */
     it(BUNDLE + 'ArkTS_003', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_003 begin');
-      await driver.delayMs(3000);
+      await driver.delayMs(DELAYTIME03);
       // Confirm the number of cards on the desktop
       let cardArkTsCount = 0;
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a '-n com.samples.stageservicewidgetcards'")
@@ -253,13 +249,16 @@ export default function formTest() {
           hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_003 cardArkTsCount:' + cardArkTsCount);
         })
         .catch((err: BusinessError) => {
-          hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_003 hilog err is: ' + JSON.stringify(err));
+          hilog.error(DOMAIN, TAG, BUNDLE + 'ArkTS_003 hilog err is: ' + JSON.stringify(err));
         });
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
 
       // Long click the application
-      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')), MatchPattern.CONTAINS));
-      let app = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')), MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')),
+        MatchPattern.CONTAINS));
+      let app =
+        await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')),
+          MatchPattern.CONTAINS));
       // Get the text control border
       let rect = await app.getBounds();
       // Calculate the height of the text control
@@ -268,31 +267,23 @@ export default function formTest() {
       let point = await app.getBoundsCenter();
       await driver.longClick(point.x, point.y - height);
       hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_003 long click app, coordinate:(${point.x},` + `${point.y - height})`);
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
 
       // Add an ArkTs card to launcher
-      // let serviceCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label'))));
       await driver.assertComponentExist(ON.text('服务卡片', MatchPattern.CONTAINS));
       let serviceCard = await driver.findComponent(ON.text('服务卡片', MatchPattern.CONTAINS));
       await serviceCard.click();
       hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_003 Start to fling cards)`);
-      await driver.delayMs(2000);
-
+      await driver.delayMs(DELAYTIME02);
       for (let i = 0; i < 3; i++) {
-        await driver.fling({
-          x: START_SLIDING_X, y: SLIDING_COORDINATE_Y
-        }, {
-          x: FINISH_SLIDING_X, y: SLIDING_COORDINATE_Y
-        }, 5, 500);
-        await driver.delayMs(2000);
+        await driver.swipe(START_SLIDING_X, SLIDING_COORDINATE_Y, FINISH_SLIDING_X, SLIDING_COORDINATE_Y, DELAYTIME03);
+        await driver.delayMs(DELAYTIME01);
       }
+
       // Click to add to desktop
-      // await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop')), MatchPattern.CONTAINS));
-      // let addCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop')), MatchPattern.CONTAINS));
-      // await addCard.click();
       await driver.click(ADD_TO_DESKTOP_X, ADD_TO_DESKTOP_Y);
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_003 addCardToDesktop');
-      await driver.delayMs(2000);
+      await driver.delayMs(DELAYTIME02);
 
       // Verify that only one card has been added
       let cardArkTsCountSecond = 0;
@@ -301,18 +292,18 @@ export default function formTest() {
           hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_003 hilog data success');
           let result = JSON.stringify(data);
           hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_003 getFormData data: ${JSON.stringify(data)}`);
-          cardArkTsCountSecond = result.split(cardUpdateByMessage).length - 1;
+          cardArkTsCountSecond = result.split(cardUpdateByMessage).length;
         })
         .catch((err: BusinessError) => {
-          hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_003 hilog err is: ' + JSON.stringify(err));
+          hilog.error(DOMAIN, TAG, BUNDLE + 'ArkTS_003 hilog err is: ' + JSON.stringify(err));
         });
 
       // Assert an ArkTs card has been added
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_003 assert an ArkTs card has been added, ' +
-      'cardArkTsCountSecond:' + cardArkTsCountSecond);
+        'cardArkTsCountSecond:' + cardArkTsCountSecond);
       expect(cardArkTsCount + 1).assertEqual(cardArkTsCountSecond);
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_003 ' + (cardArkTsCountSecond - cardArkTsCount) + ' card has been added');
-      await driver.delayMs(2000);
+      await driver.delayMs(DELAYTIME02);
       done();
     })
 
@@ -326,7 +317,7 @@ export default function formTest() {
      */
     it(BUNDLE + 'ArkTS_004', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_004 begin');
-      await driver.delayMs(3000);
+      await driver.delayMs(DELAYTIME03);
       // Confirm the number of cards on the desktop
       let cardArkTsCount = 0;
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a '-n com.samples.stageservicewidgetcards'")
@@ -339,13 +330,16 @@ export default function formTest() {
           hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_004 cardArkTsCount:' + cardArkTsCount);
         })
         .catch((err: BusinessError) => {
-          hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_004 hilog err is: ' + JSON.stringify(err));
+          hilog.error(DOMAIN, TAG, BUNDLE + 'ArkTS_004 hilog err is: ' + JSON.stringify(err));
         });
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
 
       // Long click the application
-      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')), MatchPattern.CONTAINS));
-      let app = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')), MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')),
+        MatchPattern.CONTAINS));
+      let app =
+        await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')),
+          MatchPattern.CONTAINS));
       // Get the text control border
       let rect = await app.getBounds();
       // Calculate the height of the text control
@@ -354,30 +348,22 @@ export default function formTest() {
       let point = await app.getBoundsCenter();
       await driver.longClick(point.x, point.y - height);
       hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_004 long click app, coordinate:(${point.x},` + `${point.y - height})`);
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
 
       // Add an ArkTs card to launcher
-      // let serviceCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label'))));
       await driver.assertComponentExist(ON.text('服务卡片', MatchPattern.CONTAINS));
       let serviceCard = await driver.findComponent(ON.text('服务卡片', MatchPattern.CONTAINS));
       await serviceCard.click();
       hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_004 Start to fling cards)`);
-      await driver.delayMs(2000);
+      await driver.delayMs(DELAYTIME02);
 
-      await driver.fling({
-        x: START_SLIDING_X, y: SLIDING_COORDINATE_Y
-      }, {
-        x: FINISH_SLIDING_X, y: SLIDING_COORDINATE_Y
-      }, 5, 500);
-      await driver.delayMs(2000);
+      await driver.swipe(START_SLIDING_X, SLIDING_COORDINATE_Y, FINISH_SLIDING_X, SLIDING_COORDINATE_Y, DELAYTIME03);
+      await driver.delayMs(DELAYTIME01);
 
       // Click to add to desktop
-      // await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop')), MatchPattern.CONTAINS));
-      // let addCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop')), MatchPattern.CONTAINS));
-      // await addCard.click();
       await driver.click(ADD_TO_DESKTOP_X, ADD_TO_DESKTOP_Y);
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_004 addCardToDesktop');
-      await driver.delayMs(2000);
+      await driver.delayMs(DELAYTIME02);
 
       // Verify that only one card has been added
       let cardArkTsCountSecond = 0;
@@ -386,18 +372,18 @@ export default function formTest() {
           hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_004 hilog data success');
           let result = JSON.stringify(data);
           hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_004 getFormData data: ${JSON.stringify(data)}`);
-          cardArkTsCountSecond = result.split(cardCustomCanvasDrawing).length - 1;
+          cardArkTsCountSecond = result.split(cardCustomCanvasDrawing).length;
         })
         .catch((err: BusinessError) => {
-          hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_004 hilog err is: ' + JSON.stringify(err));
+          hilog.error(DOMAIN, TAG, BUNDLE + 'ArkTS_004 hilog err is: ' + JSON.stringify(err));
         });
 
       // Assert an ArkTs card has been added
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_004 assert an ArkTs card has been added, ' +
-      'cardArkTsCountSecond:' + cardArkTsCountSecond);
+        'cardArkTsCountSecond:' + cardArkTsCountSecond);
       expect(cardArkTsCount + 1).assertEqual(cardArkTsCountSecond);
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_004 ' + (cardArkTsCountSecond - cardArkTsCount) + ' card has been added');
-      await driver.delayMs(2000);
+      await driver.delayMs(DELAYTIME02);
       done();
     })
 
@@ -411,7 +397,7 @@ export default function formTest() {
      */
     it(BUNDLE + 'ArkTS_005', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_005 begin');
-      await driver.delayMs(3000);
+      await driver.delayMs(DELAYTIME03);
       // Confirm the number of cards on the desktop
       let cardArkTsCount = 0;
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a '-n com.samples.stageservicewidgetcards'")
@@ -424,13 +410,16 @@ export default function formTest() {
           hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_005 cardArkTsCount:' + cardArkTsCount);
         })
         .catch((err: BusinessError) => {
-          hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_005 hilog err is: ' + JSON.stringify(err));
+          hilog.error(DOMAIN, TAG, BUNDLE + 'ArkTS_005 hilog err is: ' + JSON.stringify(err));
         });
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
 
       // Long click the application
-      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')), MatchPattern.CONTAINS));
-      let app = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')), MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')),
+        MatchPattern.CONTAINS));
+      let app =
+        await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')),
+          MatchPattern.CONTAINS));
       // Get the text control border
       let rect = await app.getBounds();
       // Calculate the height of the text control
@@ -439,20 +428,16 @@ export default function formTest() {
       let point = await app.getBoundsCenter();
       await driver.longClick(point.x, point.y - height);
       hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_005 long click app, coordinate:(${point.x},` + `${point.y - height})`);
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
 
       // Add an ArkTs card to launcher
-      // let serviceCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label'))));
       await driver.assertComponentExist(ON.text('服务卡片', MatchPattern.CONTAINS));
       let serviceCard = await driver.findComponent(ON.text('服务卡片', MatchPattern.CONTAINS));
       await serviceCard.click();
       hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_005 Start to fling cards)`);
-      await driver.delayMs(2000);
+      await driver.delayMs(DELAYTIME02);
 
       // Click to add to desktop
-      // await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop')), MatchPattern.CONTAINS));
-      // let addCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop')), MatchPattern.CONTAINS));
-      // await addCard.click();
       await driver.click(ADD_TO_DESKTOP_X, ADD_TO_DESKTOP_Y);
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_005 addCardToDesktop');
       await driver.delayMs(2000);
@@ -464,18 +449,18 @@ export default function formTest() {
           hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_005 hilog data success');
           let result = JSON.stringify(data);
           hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_005 getFormData data: ${JSON.stringify(data)}`);
-          cardArkTsCountSecond = result.split(cardAttrAnimation).length - 1;
+          cardArkTsCountSecond = result.split(cardAttrAnimation).length;
         })
         .catch((err: BusinessError) => {
-          hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_005 hilog err is: ' + JSON.stringify(err));
+          hilog.error(DOMAIN, TAG, BUNDLE + 'ArkTS_005 hilog err is: ' + JSON.stringify(err));
         });
 
       // Assert an ArkTs card has been added
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_005 assert an ArkTs card has been added, ' +
-      'cardArkTsCountSecond:' + cardArkTsCountSecond);
+        'cardArkTsCountSecond:' + cardArkTsCountSecond);
       expect(cardArkTsCount + 1).assertEqual(cardArkTsCountSecond);
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_005 ' + (cardArkTsCountSecond - cardArkTsCount) + ' card has been added');
-      await driver.delayMs(2000);
+      await driver.delayMs(DELAYTIME02);
       done();
     })
 
@@ -489,7 +474,7 @@ export default function formTest() {
      */
     it(BUNDLE + 'ArkTS_006', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_006 begin');
-      await driver.delayMs(3000);
+      await driver.delayMs(DELAYTIME03);
       // Confirm the number of cards on the desktop
       let cardArkTsCount = 0;
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a '-n com.samples.stageservicewidgetcards'")
@@ -502,13 +487,16 @@ export default function formTest() {
           hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_006 cardArkTsCount:' + cardArkTsCount);
         })
         .catch((err: BusinessError) => {
-          hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_006 hilog err is: ' + JSON.stringify(err));
+          hilog.error(DOMAIN, TAG, BUNDLE + 'ArkTS_006 hilog err is: ' + JSON.stringify(err));
         });
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
 
       // Long click the application
-      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')), MatchPattern.CONTAINS));
-      let app = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')), MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')),
+        MatchPattern.CONTAINS));
+      let app =
+        await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')),
+          MatchPattern.CONTAINS));
       // Get the text control border
       let rect = await app.getBounds();
       // Calculate the height of the text control
@@ -517,31 +505,22 @@ export default function formTest() {
       let point = await app.getBoundsCenter();
       await driver.longClick(point.x, point.y - height);
       hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_006 long click app, coordinate:(${point.x},` + `${point.y - height})`);
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
 
       // Add an ArkTs card to launcher
-      // let serviceCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label'))));
       let serviceCard = await driver.findComponent(ON.text('服务卡片', MatchPattern.CONTAINS));
       await serviceCard.click();
       hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_006 Start to fling cards)`);
-      await driver.delayMs(2000);
-
+      await driver.delayMs(DELAYTIME02);
       for (let i = 0; i < 7; i++) {
-        await driver.fling({
-          x: START_SLIDING_X, y: SLIDING_COORDINATE_Y
-        }, {
-          x: FINISH_SLIDING_X, y: SLIDING_COORDINATE_Y
-        }, 5, 500);
-        await driver.delayMs(1000);
+        await driver.swipe(START_SLIDING_X, SLIDING_COORDINATE_Y, FINISH_SLIDING_X, SLIDING_COORDINATE_Y, DELAYTIME03);
+        await driver.delayMs(DELAYTIME01);
       }
 
       /// Click to add to desktop
-      // await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop')), MatchPattern.CONTAINS));
-      // let addCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop')), MatchPattern.CONTAINS));
-      // await addCard.click();
       await driver.click(ADD_TO_DESKTOP_X, ADD_TO_DESKTOP_Y);
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_006 addCardToDesktop');
-      await driver.delayMs(2000);
+      await driver.delayMs(DELAYTIME02);
 
       // Verify that only one card has been added
       let cardArkTsCountSecond = 0;
@@ -550,18 +529,18 @@ export default function formTest() {
           hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_006 hilog data success');
           let result = JSON.stringify(data);
           hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_006 getFormData data: ${JSON.stringify(data)}`);
-          cardArkTsCountSecond = result.split(cardWidgetUpdateByStatus).length - 1;
+          cardArkTsCountSecond = result.split(cardWidgetUpdateByStatus).length;
         })
         .catch((err: BusinessError) => {
-          hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_006 hilog err is: ' + JSON.stringify(err));
+          hilog.error(DOMAIN, TAG, BUNDLE + 'ArkTS_006 hilog err is: ' + JSON.stringify(err));
         });
 
       // Assert an ArkTs card has been added
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_006 assert an ArkTs card has been added, ' +
-      'cardArkTsCountSecond:' + cardArkTsCountSecond);
+        'cardArkTsCountSecond:' + cardArkTsCountSecond);
       expect(cardArkTsCount + 1).assertEqual(cardArkTsCountSecond);
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_006 ' + (cardArkTsCountSecond - cardArkTsCount) + ' card has been added');
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
       done();
     })
 
@@ -575,7 +554,7 @@ export default function formTest() {
      */
     it(BUNDLE + 'ArkTS_007', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_007 begin');
-      await driver.delayMs(3000);
+      await driver.delayMs(DELAYTIME03);
       // Confirm the number of cards on the desktop
       let cardArkTsCount = 0;
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a '-n com.samples.stageservicewidgetcards'")
@@ -588,13 +567,16 @@ export default function formTest() {
           hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_007 cardArkTsCount:' + cardArkTsCount);
         })
         .catch((err: BusinessError) => {
-          hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_007 hilog err is: ' + JSON.stringify(err));
+          hilog.error(DOMAIN, TAG, BUNDLE + 'ArkTS_007 hilog err is: ' + JSON.stringify(err));
         });
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
 
       // Long click the application
-      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')), MatchPattern.CONTAINS));
-      let app = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')), MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')),
+        MatchPattern.CONTAINS));
+      let app =
+        await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')),
+          MatchPattern.CONTAINS));
       // Get the text control border
       let rect = await app.getBounds();
       // Calculate the height of the text control
@@ -603,30 +585,22 @@ export default function formTest() {
       let point = await app.getBoundsCenter();
       await driver.longClick(point.x, point.y - height);
       hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_007 long click app, coordinate:(${point.x},` + `${point.y - height})`);
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
 
       // Add an ArkTs card to launcher
-      // let serviceCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label'))));
       let serviceCard = await driver.findComponent(ON.text('服务卡片', MatchPattern.CONTAINS));
       await serviceCard.click();
       hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_007 Start to fling cards)`);
-      await driver.delayMs(2000);
-
+      await driver.delayMs(DELAYTIME02);
       for (let i = 0; i < 6; i++) {
-        await driver.fling({
-          x: START_SLIDING_X, y: SLIDING_COORDINATE_Y
-        }, {
-          x: FINISH_SLIDING_X, y: SLIDING_COORDINATE_Y
-        }, 5, 500);
-        await driver.delayMs(1000);
+        await driver.swipe(START_SLIDING_X, SLIDING_COORDINATE_Y, FINISH_SLIDING_X, SLIDING_COORDINATE_Y, DELAYTIME03);
+        await driver.delayMs(DELAYTIME01);
       }
+
       // Click to add to desktop
-      // await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop')), MatchPattern.CONTAINS));
-      // let addCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop')), MatchPattern.CONTAINS));
-      // await addCard.click();
       await driver.click(ADD_TO_DESKTOP_X, ADD_TO_DESKTOP_Y);
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_007 addCardToDesktop');
-      await driver.delayMs(2000);
+      await driver.delayMs(DELAYTIME02);
 
       // Verify that only one card has been added
       let cardArkTsCountSecond = 0;
@@ -635,18 +609,18 @@ export default function formTest() {
           hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_007 hilog data success');
           let result = JSON.stringify(data);
           hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_007 getFormData data: ${JSON.stringify(data)}`);
-          cardArkTsCountSecond = result.split(cardWidgetProcessData).length - 1;
+          cardArkTsCountSecond = result.split(cardWidgetProcessData).length;
         })
         .catch((err: BusinessError) => {
-          hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_007 hilog err is: ' + JSON.stringify(err));
+          hilog.error(DOMAIN, TAG, BUNDLE + 'ArkTS_007 hilog err is: ' + JSON.stringify(err));
         });
 
       // Assert an ArkTs card has been added
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_007 assert an ArkTs card has been added, ' +
-      'cardArkTsCountSecond:' + cardArkTsCountSecond);
+        'cardArkTsCountSecond:' + cardArkTsCountSecond);
       expect(cardArkTsCount + 1).assertEqual(cardArkTsCountSecond);
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_007 ' + (cardArkTsCountSecond - cardArkTsCount) + ' card has been added');
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
       done();
     })
 
@@ -660,7 +634,7 @@ export default function formTest() {
      */
     it(BUNDLE + 'ArkTS_008', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_008 begin');
-      await driver.delayMs(3000);
+      await driver.delayMs(DELAYTIME03);
       // Confirm the number of cards on the desktop
       let cardArkTsCount = 0;
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a '-n com.samples.stageservicewidgetcards'")
@@ -673,13 +647,16 @@ export default function formTest() {
           hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_008 cardArkTsCount:' + cardArkTsCount);
         })
         .catch((err: BusinessError) => {
-          hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_008 hilog err is: ' + JSON.stringify(err));
+          hilog.error(DOMAIN, TAG, BUNDLE + 'ArkTS_008 hilog err is: ' + JSON.stringify(err));
         });
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
 
       // Long click the application
-      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')), MatchPattern.CONTAINS));
-      let app = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')), MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')),
+        MatchPattern.CONTAINS));
+      let app =
+        await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')),
+          MatchPattern.CONTAINS));
       // Get the text control border
       let rect = await app.getBounds();
       // Calculate the height of the text control
@@ -688,32 +665,23 @@ export default function formTest() {
       let point = await app.getBoundsCenter();
       await driver.longClick(point.x, point.y - height);
       hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_008 long click app, coordinate:(${point.x},` + `${point.y - height})`);
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
 
       // Add an ArkTs card to launcher
-      // let serviceCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label'))));
       await driver.assertComponentExist(ON.text('服务卡片', MatchPattern.CONTAINS));
       let serviceCard = await driver.findComponent(ON.text('服务卡片', MatchPattern.CONTAINS));
       await serviceCard.click();
       hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_008 Start to fling cards)`);
-      await driver.delayMs(2000);
-
+      await driver.delayMs(DELAYTIME02);
       for (let i = 0; i < 8; i++) {
-        await driver.fling({
-          x: START_SLIDING_X, y: SLIDING_COORDINATE_Y
-        }, {
-          x: FINISH_SLIDING_X, y: SLIDING_COORDINATE_Y
-        }, 5, 500);
-        await driver.delayMs(1000);
+        await driver.swipe(START_SLIDING_X, SLIDING_COORDINATE_Y, FINISH_SLIDING_X, SLIDING_COORDINATE_Y, DELAYTIME03);
+        await driver.delayMs(DELAYTIME01);
       }
 
       // Click to add to desktop
-      // await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop')), MatchPattern.CONTAINS));
-      // let addCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop')), MatchPattern.CONTAINS));
-      // await addCard.click();
       await driver.click(ADD_TO_DESKTOP_X, ADD_TO_DESKTOP_Y);
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_008 addCardToDesktop');
-      await driver.delayMs(2000);
+      await driver.delayMs(DELAYTIME02);
 
       // Verify that only one card has been added
       let cardArkTsCountSecond = 0;
@@ -722,18 +690,18 @@ export default function formTest() {
           hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_008 hilog data success');
           let result = JSON.stringify(data);
           hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_008 getFormData data: ${JSON.stringify(data)}`);
-          cardArkTsCountSecond = result.split(cardUpdateDuration).length - 1;
+          cardArkTsCountSecond = result.split(cardUpdateDuration).length;
         })
         .catch((err: BusinessError) => {
-          hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_008 hilog err is: ' + JSON.stringify(err));
+          hilog.error(DOMAIN, TAG, BUNDLE + 'ArkTS_008 hilog err is: ' + JSON.stringify(err));
         });
 
       // Assert an ArkTs card has been added
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_008 assert an ArkTs card has been added, ' +
-      'cardArkTsCountSecond:' + cardArkTsCountSecond);
+        'cardArkTsCountSecond:' + cardArkTsCountSecond);
       expect(cardArkTsCount + 1).assertEqual(cardArkTsCountSecond);
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_008 ' + (cardArkTsCountSecond - cardArkTsCount) + ' card has been added');
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
       done();
     })
 
@@ -747,7 +715,7 @@ export default function formTest() {
      */
     it(BUNDLE + 'ArkTS_009', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_009 begin');
-      await driver.delayMs(3000);
+      await driver.delayMs(DELAYTIME03);
       // Confirm the number of cards on the desktop
       let cardArkTsCount = 0;
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a '-n com.samples.stageservicewidgetcards'")
@@ -760,13 +728,16 @@ export default function formTest() {
           hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_009 cardArkTsCount:' + cardArkTsCount);
         })
         .catch((err: BusinessError) => {
-          hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_009 hilog err is: ' + JSON.stringify(err));
+          hilog.error(DOMAIN, TAG, BUNDLE + 'ArkTS_009 hilog err is: ' + JSON.stringify(err));
         });
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
 
       // Long click the application
-      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')), MatchPattern.CONTAINS));
-      let app = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')), MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')),
+        MatchPattern.CONTAINS));
+      let app =
+        await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')),
+          MatchPattern.CONTAINS));
       // Get the text control border
       let rect = await app.getBounds();
       // Calculate the height of the text control
@@ -775,32 +746,23 @@ export default function formTest() {
       let point = await app.getBoundsCenter();
       await driver.longClick(point.x, point.y - height);
       hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_009 long click app, coordinate:(${point.x},` + `${point.y - height})`);
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
 
       // Add an ArkTs card to launcher
-      // let serviceCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label'))));
       await driver.assertComponentExist(ON.text('服务卡片', MatchPattern.CONTAINS));
       let serviceCard = await driver.findComponent(ON.text('服务卡片', MatchPattern.CONTAINS));
       await serviceCard.click();
       hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_009 Start to fling cards)`);
-      await driver.delayMs(2000);
-
+      await driver.delayMs(DELAYTIME02);
       for (let i = 0; i < 9; i++) {
-        await driver.fling({
-          x: START_SLIDING_X, y: SLIDING_COORDINATE_Y
-        }, {
-          x: FINISH_SLIDING_X, y: SLIDING_COORDINATE_Y
-        }, 5, 500);
-        await driver.delayMs(2000);
+        await driver.swipe(START_SLIDING_X, SLIDING_COORDINATE_Y, FINISH_SLIDING_X, SLIDING_COORDINATE_Y, DELAYTIME03);
+        await driver.delayMs(DELAYTIME01);
       }
 
       // Click to add to desktop
-      // await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop')), MatchPattern.CONTAINS));
-      // let addCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop')), MatchPattern.CONTAINS));
-      // await addCard.click();
       await driver.click(ADD_TO_DESKTOP_X, ADD_TO_DESKTOP_Y);
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_009 addCardToDesktop');
-      await driver.delayMs(2000);
+      await driver.delayMs(DELAYTIME02);
 
       // Verify that only one card has been added
       let cardArkTsCountSecond = 0;
@@ -809,18 +771,18 @@ export default function formTest() {
           hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_009 hilog data success');
           let result = JSON.stringify(data);
           hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_009 getFormData data: ${JSON.stringify(data)}`);
-          cardArkTsCountSecond = result.split(cardScheduledUpdateTime).length - 1;
+          cardArkTsCountSecond = result.split(cardScheduledUpdateTime).length;
         })
         .catch((err: BusinessError) => {
-          hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_009 hilog err is: ' + JSON.stringify(err));
+          hilog.error(DOMAIN, TAG, BUNDLE + 'ArkTS_009 hilog err is: ' + JSON.stringify(err));
         });
 
       // Assert an ArkTs card has been added
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_009 assert an ArkTs card has been added, ' +
-      'cardArkTsCountSecond:' + cardArkTsCountSecond);
+        'cardArkTsCountSecond:' + cardArkTsCountSecond);
       expect(cardArkTsCount + 1).assertEqual(cardArkTsCountSecond);
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_009 ' + (cardArkTsCountSecond - cardArkTsCount) + ' card has been added');
-      await driver.delayMs(2000);
+      await driver.delayMs(DELAYTIME02);
       done();
     })
 
@@ -834,7 +796,7 @@ export default function formTest() {
      */
     it(BUNDLE + 'ArkTS_010', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_010 begin');
-      await driver.delayMs(3000);
+      await driver.delayMs(DELAYTIME03);
       // Confirm the number of cards on the desktop
       let cardArkTsCount = 0;
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a '-n com.samples.stageservicewidgetcards'")
@@ -847,13 +809,16 @@ export default function formTest() {
           hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_010 cardArkTsCount:' + cardArkTsCount);
         })
         .catch((err: BusinessError) => {
-          hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_010 hilog err is: ' + JSON.stringify(err));
+          hilog.error(DOMAIN, TAG, BUNDLE + 'ArkTS_010 hilog err is: ' + JSON.stringify(err));
         });
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
 
       // Long click the application
-      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')), MatchPattern.CONTAINS));
-      let app = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')), MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')),
+        MatchPattern.CONTAINS));
+      let app =
+        await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')),
+          MatchPattern.CONTAINS));
       // Get the text control border
       let rect = await app.getBounds();
       // Calculate the height of the text control
@@ -862,32 +827,23 @@ export default function formTest() {
       let point = await app.getBoundsCenter();
       await driver.longClick(point.x, point.y - height);
       hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_010 long click app, coordinate:(${point.x},` + `${point.y - height})`);
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
 
       // Add an ArkTs card to launcher
-      // let serviceCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label'))));
       await driver.assertComponentExist(ON.text('服务卡片', MatchPattern.CONTAINS));
       let serviceCard = await driver.findComponent(ON.text('服务卡片', MatchPattern.CONTAINS));
       await serviceCard.click();
       hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_010 Start to fling cards)`);
-      await driver.delayMs(2000);
-
+      await driver.delayMs(DELAYTIME02);
       for (let i = 0; i < 10; i++) {
-        await driver.fling({
-          x: START_SLIDING_X, y: SLIDING_COORDINATE_Y
-        }, {
-          x: FINISH_SLIDING_X, y: SLIDING_COORDINATE_Y
-        }, 5, 500);
-        await driver.delayMs(2000);
+        await driver.swipe(START_SLIDING_X, SLIDING_COORDINATE_Y, FINISH_SLIDING_X, SLIDING_COORDINATE_Y, DELAYTIME03);
+        await driver.delayMs(DELAYTIME01);
       }
 
       // Click to add to desktop
-      // await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop')), MatchPattern.CONTAINS));
-      // let addCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop')), MatchPattern.CONTAINS));
-      // await addCard.click();
       await driver.click(ADD_TO_DESKTOP_X, ADD_TO_DESKTOP_Y);
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_010 addCardToDesktop');
-      await driver.delayMs(2000);
+      await driver.delayMs(DELAYTIME02);
 
       // Verify that only one card has been added
       let cardArkTsCountSecond = 0;
@@ -896,18 +852,18 @@ export default function formTest() {
           hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_010 hilog data success');
           let result = JSON.stringify(data);
           hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_010 getFormData data: ${JSON.stringify(data)}`);
-          cardArkTsCountSecond = result.split(cardNextRefreshTimeCard).length - 1;
+          cardArkTsCountSecond = result.split(cardNextRefreshTimeCard).length;
         })
         .catch((err: BusinessError) => {
-          hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_010 hilog err is: ' + JSON.stringify(err));
+          hilog.error(DOMAIN, TAG, BUNDLE + 'ArkTS_010 hilog err is: ' + JSON.stringify(err));
         });
 
       // Assert an ArkTs card has been added
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_010 assert an ArkTs card has been added, ' +
-      'cardArkTsCountSecond:' + cardArkTsCountSecond);
+        'cardArkTsCountSecond:' + cardArkTsCountSecond);
       expect(cardArkTsCount + 1).assertEqual(cardArkTsCountSecond);
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_010 ' + (cardArkTsCountSecond - cardArkTsCount) + ' card has been added');
-      await driver.delayMs(2000);
+      await driver.delayMs(DELAYTIME02);
       done();
     })
 
@@ -921,7 +877,7 @@ export default function formTest() {
      */
     it(BUNDLE + 'ArkTS_011', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_011 begin');
-      await driver.delayMs(3000);
+      await driver.delayMs(DELAYTIME03);
       // Confirm the number of cards on the desktop
       let cardArkTsCount = 0;
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a '-n com.samples.stageservicewidgetcards'")
@@ -934,13 +890,16 @@ export default function formTest() {
           hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_011 cardArkTsCount:' + cardArkTsCount);
         })
         .catch((err: BusinessError) => {
-          hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_011 hilog err is: ' + JSON.stringify(err));
+          hilog.error(DOMAIN, TAG, BUNDLE + 'ArkTS_011 hilog err is: ' + JSON.stringify(err));
         });
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
 
       // Long click the application
-      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')), MatchPattern.CONTAINS));
-      let app = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')), MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')),
+        MatchPattern.CONTAINS));
+      let app =
+        await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')),
+          MatchPattern.CONTAINS));
       // Get the text control border
       let rect = await app.getBounds();
       // Calculate the height of the text control
@@ -949,32 +908,23 @@ export default function formTest() {
       let point = await app.getBoundsCenter();
       await driver.longClick(point.x, point.y - height);
       hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_011 long click app, coordinate:(${point.x},` + `${point.y - height})`);
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
 
       // Add an ArkTs card to launcher
-      // let serviceCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label'))));
       await driver.assertComponentExist(ON.text('服务卡片', MatchPattern.CONTAINS));
       let serviceCard = await driver.findComponent(ON.text('服务卡片', MatchPattern.CONTAINS));
       await serviceCard.click();
       hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_011 Start to fling cards)`);
-      await driver.delayMs(2000);
-
+      await driver.delayMs(DELAYTIME02);
       for (let i = 0; i < 11; i++) {
-        await driver.fling({
-          x: START_SLIDING_X, y: SLIDING_COORDINATE_Y
-        }, {
-          x: FINISH_SLIDING_X, y: SLIDING_COORDINATE_Y
-        }, 5, 500);
-        await driver.delayMs(2000);
+        await driver.swipe(START_SLIDING_X, SLIDING_COORDINATE_Y, FINISH_SLIDING_X, SLIDING_COORDINATE_Y, DELAYTIME03);
+        await driver.delayMs(DELAYTIME01);
       }
 
       // Click to add to desktop
-      // await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop')), MatchPattern.CONTAINS));
-      // let addCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop')), MatchPattern.CONTAINS));
-      // await addCard.click();
       await driver.click(ADD_TO_DESKTOP_X, ADD_TO_DESKTOP_Y);
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_011 addCardToDesktop');
-      await driver.delayMs(2000);
+      await driver.delayMs(DELAYTIME02);
 
       // Verify that only one card has been added
       let cardArkTsCountSecond = 0;
@@ -983,18 +933,18 @@ export default function formTest() {
           hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_011 hilog data success');
           let result = JSON.stringify(data);
           hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_011 getFormData data: ${JSON.stringify(data)}`);
-          cardArkTsCountSecond = result.split(cardWidgetImageUpdate).length - 1;
+          cardArkTsCountSecond = result.split(cardWidgetImageUpdate).length;
         })
         .catch((err: BusinessError) => {
-          hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_011 hilog err is: ' + JSON.stringify(err));
+          hilog.error(DOMAIN, TAG, BUNDLE + 'ArkTS_011 hilog err is: ' + JSON.stringify(err));
         });
 
       // Assert an ArkTs card has been added
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_011 assert an ArkTs card has been added, ' +
-      'cardArkTsCountSecond:' + cardArkTsCountSecond);
+        'cardArkTsCountSecond:' + cardArkTsCountSecond);
       expect(cardArkTsCount + 1).assertEqual(cardArkTsCountSecond);
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_011 ' + (cardArkTsCountSecond - cardArkTsCount) + ' card has been added');
-      await driver.delayMs(2000);
+      await driver.delayMs(DELAYTIME02);
       done();
     })
 
@@ -1008,7 +958,7 @@ export default function formTest() {
      */
     it(BUNDLE + 'ArkTS_012', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_012 begin');
-      await driver.delayMs(3000);
+      await driver.delayMs(DELAYTIME03);
       // Confirm the number of cards on the desktop
       let cardArkTsCount = 0;
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a '-n com.samples.stageservicewidgetcards'")
@@ -1021,13 +971,16 @@ export default function formTest() {
           hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_012 cardArkTsCount:' + cardArkTsCount);
         })
         .catch((err: BusinessError) => {
-          hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_012 hilog err is: ' + JSON.stringify(err));
+          hilog.error(DOMAIN, TAG, BUNDLE + 'ArkTS_012 hilog err is: ' + JSON.stringify(err));
         });
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
 
       // Long click the application
-      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')), MatchPattern.CONTAINS));
-      let app = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')), MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')),
+        MatchPattern.CONTAINS));
+      let app =
+        await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')),
+          MatchPattern.CONTAINS));
       // Get the text control border
       let rect = await app.getBounds();
       // Calculate the height of the text control
@@ -1036,32 +989,23 @@ export default function formTest() {
       let point = await app.getBoundsCenter();
       await driver.longClick(point.x, point.y - height);
       hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_012 long click app, coordinate:(${point.x},` + `${point.y - height})`);
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
 
       // Add an ArkTs card to launcher
-      // let serviceCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label'))));
       await driver.assertComponentExist(ON.text('服务卡片', MatchPattern.CONTAINS));
       let serviceCard = await driver.findComponent(ON.text('服务卡片', MatchPattern.CONTAINS));
       await serviceCard.click();
       hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_012 Start to fling cards)`);
-      await driver.delayMs(2000);
-
+      await driver.delayMs(DELAYTIME02);
       for (let i = 0; i < 13; i++) {
-        await driver.fling({
-          x: START_SLIDING_X, y: SLIDING_COORDINATE_Y
-        }, {
-          x: FINISH_SLIDING_X, y: SLIDING_COORDINATE_Y
-        }, 5, 500);
-        await driver.delayMs(2000);
+        await driver.swipe(START_SLIDING_X, SLIDING_COORDINATE_Y, FINISH_SLIDING_X, SLIDING_COORDINATE_Y, DELAYTIME03);
+        await driver.delayMs(DELAYTIME01);
       }
 
       // Click to add to desktop
-      // await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop')), MatchPattern.CONTAINS));
-      // let addCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop')), MatchPattern.CONTAINS));
-      // await addCard.click();
       await driver.click(ADD_TO_DESKTOP_X, ADD_TO_DESKTOP_Y);
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_012 addCardToDesktop');
-      await driver.delayMs(2000);
+      await driver.delayMs(DELAYTIME02);
 
       // Verify that only one card has been added
       let cardArkTsCountSecond = 0;
@@ -1070,18 +1014,18 @@ export default function formTest() {
           hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_012 hilog data success');
           let result = JSON.stringify(data);
           hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_012 getFormData data: ${JSON.stringify(data)}`);
-          cardArkTsCountSecond = result.split(cardWidgetEventCall).length - 1;
+          cardArkTsCountSecond = result.split(cardWidgetEventCall).length;
         })
         .catch((err: BusinessError) => {
-          hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_012 hilog err is: ' + JSON.stringify(err));
+          hilog.error(DOMAIN, TAG, BUNDLE + 'ArkTS_012 hilog err is: ' + JSON.stringify(err));
         });
 
       // Assert an ArkTs card has been added
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_012 assert an ArkTs card has been added, ' +
-      'cardArkTsCountSecond:' + cardArkTsCountSecond);
+        'cardArkTsCountSecond:' + cardArkTsCountSecond);
       expect(cardArkTsCount + 1).assertEqual(cardArkTsCountSecond);
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_012 ' + (cardArkTsCountSecond - cardArkTsCount) + ' card has been added');
-      await driver.delayMs(2000);
+      await driver.delayMs(DELAYTIME02);
       done();
     })
 
@@ -1095,7 +1039,7 @@ export default function formTest() {
      */
     it(BUNDLE + 'ArkTS_013', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_013 begin');
-      await driver.delayMs(3000);
+      await driver.delayMs(DELAYTIME03);
       // Confirm the number of cards on the desktop
       let cardArkTsCount = 0;
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a '-n com.samples.stageservicewidgetcards'")
@@ -1108,13 +1052,16 @@ export default function formTest() {
           hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_013 cardArkTsCount:' + cardArkTsCount);
         })
         .catch((err: BusinessError) => {
-          hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_013 hilog err is: ' + JSON.stringify(err));
+          hilog.error(DOMAIN, TAG, BUNDLE + 'ArkTS_013 hilog err is: ' + JSON.stringify(err));
         });
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
 
       // Long click the application
-      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')), MatchPattern.CONTAINS));
-      let app = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')), MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')),
+        MatchPattern.CONTAINS));
+      let app =
+        await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')),
+          MatchPattern.CONTAINS));
       // Get the text control border
       let rect = await app.getBounds();
       // Calculate the height of the text control
@@ -1123,32 +1070,24 @@ export default function formTest() {
       let point = await app.getBoundsCenter();
       await driver.longClick(point.x, point.y - height);
       hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_013 long click app, coordinate:(${point.x},` + `${point.y - height})`);
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
 
       // Add an ArkTs card to launcher
-      // let serviceCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label'))));
       await driver.assertComponentExist(ON.text('服务卡片', MatchPattern.CONTAINS));
       let serviceCard = await driver.findComponent(ON.text('服务卡片', MatchPattern.CONTAINS));
       await serviceCard.click();
       hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_013 Start to fling cards)`);
-      await driver.delayMs(2000);
+      await driver.delayMs(DELAYTIME02);
 
       for (let i = 0; i < 14; i++) {
-        await driver.fling({
-          x: START_SLIDING_X, y: SLIDING_COORDINATE_Y
-        }, {
-          x: FINISH_SLIDING_X, y: SLIDING_COORDINATE_Y
-        }, 5, 500);
-        await driver.delayMs(1000);
+        await driver.swipe(START_SLIDING_X, SLIDING_COORDINATE_Y, FINISH_SLIDING_X, SLIDING_COORDINATE_Y, DELAYTIME03);
+        await driver.delayMs(DELAYTIME01);
       }
 
       // Click to add to desktop
-      // await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop')), MatchPattern.CONTAINS));
-      // let addCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop')), MatchPattern.CONTAINS));
-      // await addCard.click();
       await driver.click(ADD_TO_DESKTOP_X, ADD_TO_DESKTOP_Y);
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_013 addCardToDesktop');
-      await driver.delayMs(2000);
+      await driver.delayMs(DELAYTIME02);
 
       // Verify that only one card has been added
       let cardArkTsCountSecond = 0;
@@ -1157,18 +1096,18 @@ export default function formTest() {
           hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_013 hilog data success');
           let result = JSON.stringify(data);
           hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_013 getFormData data: ${JSON.stringify(data)}`);
-          cardArkTsCountSecond = result.split(cardWidgetUpdateCallCard).length - 1;
+          cardArkTsCountSecond = result.split(cardWidgetUpdateCallCard).length;
         })
         .catch((err: BusinessError) => {
-          hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_013 hilog err is: ' + JSON.stringify(err));
+          hilog.error(DOMAIN, TAG, BUNDLE + 'ArkTS_013 hilog err is: ' + JSON.stringify(err));
         });
 
       // Assert an ArkTs card has been added
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_013 assert an ArkTs card has been added, ' +
-      'cardArkTsCountSecond:' + cardArkTsCountSecond);
+        'cardArkTsCountSecond:' + cardArkTsCountSecond);
       expect(cardArkTsCount + 1).assertEqual(cardArkTsCountSecond);
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_013 ' + (cardArkTsCountSecond - cardArkTsCount) + ' card has been added');
-      await driver.delayMs(2000);
+      await driver.delayMs(DELAYTIME02);
       done();
     })
 
@@ -1182,7 +1121,7 @@ export default function formTest() {
      */
     it(BUNDLE + 'ArkTS_014', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_014 begin');
-      await driver.delayMs(3000);
+      await driver.delayMs(DELAYTIME03);
       // Confirm the number of cards on the desktop
       let cardArkTsCount = 0;
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a '-n com.samples.stageservicewidgetcards'")
@@ -1195,13 +1134,16 @@ export default function formTest() {
           hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_014 cardArkTsCount:' + cardArkTsCount);
         })
         .catch((err: BusinessError) => {
-          hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_014 hilog err is: ' + JSON.stringify(err));
+          hilog.error(DOMAIN, TAG, BUNDLE + 'ArkTS_014 hilog err is: ' + JSON.stringify(err));
         });
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
 
       // Long click the application
-      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')), MatchPattern.CONTAINS));
-      let app = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')), MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')),
+        MatchPattern.CONTAINS));
+      let app =
+        await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')),
+          MatchPattern.CONTAINS));
       // Get the text control border
       let rect = await app.getBounds();
       // Calculate the height of the text control
@@ -1210,32 +1152,23 @@ export default function formTest() {
       let point = await app.getBoundsCenter();
       await driver.longClick(point.x, point.y - height);
       hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_014 long click app, coordinate:(${point.x},` + `${point.y - height})`);
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
 
       // Add an ArkTs card to launcher
-      // let serviceCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label'))));
       await driver.assertComponentExist(ON.text('服务卡片', MatchPattern.CONTAINS));
       let serviceCard = await driver.findComponent(ON.text('服务卡片', MatchPattern.CONTAINS));
       await serviceCard.click();
       hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_014 Start to fling cards)`);
-      await driver.delayMs(2000);
-
+      await driver.delayMs(DELAYTIME02);
       for (let i = 0; i < 5; i++) {
-        await driver.fling({
-          x: START_SLIDING_X, y: SLIDING_COORDINATE_Y
-        }, {
-          x: FINISH_SLIDING_X, y: SLIDING_COORDINATE_Y
-        }, 5, 500);
-        await driver.delayMs(1000);
+        await driver.swipe(START_SLIDING_X, SLIDING_COORDINATE_Y, FINISH_SLIDING_X, SLIDING_COORDINATE_Y, DELAYTIME03);
+        await driver.delayMs(DELAYTIME01);
       }
 
       // Click to add to desktop
-      // await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop')), MatchPattern.CONTAINS));
-      // let addCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop')), MatchPattern.CONTAINS));
-      // await addCard.click();
       await driver.click(ADD_TO_DESKTOP_X, ADD_TO_DESKTOP_Y);
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_014 addCardToDesktop');
-      await driver.delayMs(2000);
+      await driver.delayMs(DELAYTIME02);
 
       // Verify that only one card has been added
       let cardArkTsCountSecond = 0;
@@ -1244,18 +1177,18 @@ export default function formTest() {
           hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_014 hilog data success');
           let result = JSON.stringify(data);
           hilog.info(DOMAIN, TAG, BUNDLE + `ArkTS_014 getFormData data: ${JSON.stringify(data)}`);
-          cardArkTsCountSecond = result.split(cardWidgetPersistentData).length - 1;
+          cardArkTsCountSecond = result.split(cardWidgetPersistentData).length;
         })
         .catch((err: BusinessError) => {
-          hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_014 hilog err is: ' + JSON.stringify(err));
+          hilog.error(DOMAIN, TAG, BUNDLE + 'ArkTS_014 hilog err is: ' + JSON.stringify(err));
         });
 
       // Assert an ArkTs card has been added
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_014 assert an ArkTs card has been added, ' +
-      'cardArkTsCountSecond:' + cardArkTsCountSecond);
+        'cardArkTsCountSecond:' + cardArkTsCountSecond);
       expect(cardArkTsCount + 1).assertEqual(cardArkTsCountSecond);
       hilog.info(DOMAIN, TAG, BUNDLE + 'ArkTS_014 ' + (cardArkTsCountSecond - cardArkTsCount) + ' card has been added');
-      await driver.delayMs(2000);
+      await driver.delayMs(DELAYTIME02);
       done();
     })
 
@@ -1269,7 +1202,7 @@ export default function formTest() {
      */
     it(BUNDLE + 'JS_UI_001', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'JS_UI_001 begin');
-      await driver.delayMs(3000);
+      await driver.delayMs(DELAYTIME03);
       // Confirm the number of cards on the desktop
       let cardArkTsCount = 0;
       await abilityDelegator.executeShellCommand("hidumper -s FormMgr -a '-n com.samples.stageservicewidgetcards'")
@@ -1282,13 +1215,16 @@ export default function formTest() {
           hilog.info(DOMAIN, TAG, BUNDLE + 'JS_UI_001 cardArkTsCount:' + cardArkTsCount);
         })
         .catch((err: BusinessError) => {
-          hilog.info(DOMAIN, TAG, BUNDLE + 'JS_UI_001 hilog err is: ' + JSON.stringify(err));
+          hilog.error(DOMAIN, TAG, BUNDLE + 'JS_UI_001 hilog err is: ' + JSON.stringify(err));
         });
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
 
       // Long click the application
-      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')), MatchPattern.CONTAINS));
-      let app = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')), MatchPattern.CONTAINS));
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')),
+        MatchPattern.CONTAINS));
+      let app =
+        await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label')),
+          MatchPattern.CONTAINS));
       // Get the text control border
       let rect = await app.getBounds();
       // Calculate the height of the text control
@@ -1297,31 +1233,22 @@ export default function formTest() {
       let point = await app.getBoundsCenter();
       await driver.longClick(point.x, point.y - height);
       hilog.info(DOMAIN, TAG, BUNDLE + `JS_UI_001 long click app, coordinate:(${point.x},` + `${point.y - height})`);
-      await driver.delayMs(1000);
+      await driver.delayMs(DELAYTIME01);
 
       // Add an ArkTs card to launcher
-      // let serviceCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label'))));
       await driver.assertComponentExist(ON.text('服务卡片', MatchPattern.CONTAINS));
       let serviceCard = await driver.findComponent(ON.text('服务卡片', MatchPattern.CONTAINS));
       await serviceCard.click();
       hilog.info(DOMAIN, TAG, BUNDLE + `JS_UI_001 Start to fling cards)`);
-      await driver.delayMs(2000);
-
+      await driver.delayMs(DELAYTIME02);
       for (let i = 0; i < 4; i++) {
-        await driver.fling({
-          x: START_SLIDING_X, y: SLIDING_COORDINATE_Y
-        }, {
-          x: FINISH_SLIDING_X, y: SLIDING_COORDINATE_Y
-        }, 5, 500);
-        await driver.delayMs(1000);
+        await driver.swipe(START_SLIDING_X, SLIDING_COORDINATE_Y, FINISH_SLIDING_X, SLIDING_COORDINATE_Y, DELAYTIME03);
+        await driver.delayMs(DELAYTIME01);
       }
       // Click to add to desktop
-      // await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop')), MatchPattern.CONTAINS));
-      // let addCard = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.add_to_desktop')), MatchPattern.CONTAINS));
-      // await addCard.click();
       await driver.click(ADD_TO_DESKTOP_X, ADD_TO_DESKTOP_Y);
       hilog.info(DOMAIN, TAG, BUNDLE + 'JS_UI_001 addCardToDesktop');
-      await driver.delayMs(2000);
+      await driver.delayMs(DELAYTIME02);
 
       // Verify that only one card has been added
       let cardArkTsCountSecond = 0;
@@ -1330,18 +1257,18 @@ export default function formTest() {
           hilog.info(DOMAIN, TAG, BUNDLE + 'JS_UI_001 hilog data success');
           let result = JSON.stringify(data);
           hilog.info(DOMAIN, TAG, BUNDLE + `JS_UI_001 getFormData data: ${JSON.stringify(data)}`);
-          cardArkTsCountSecond = result.split(cardWidgetJS).length - 1;
+          cardArkTsCountSecond = result.split(cardWidgetJS).length;
         })
         .catch((err: BusinessError) => {
-          hilog.info(DOMAIN, TAG, BUNDLE + 'JS_UI_001 hilog err is: ' + JSON.stringify(err));
+          hilog.error(DOMAIN, TAG, BUNDLE + 'JS_UI_001 hilog err is: ' + JSON.stringify(err));
         });
 
       // Assert an ArkTs card has been added
       hilog.info(DOMAIN, TAG, BUNDLE + 'JS_UI_001 assert an ArkTs card has been added, ' +
-      'cardArkTsCountSecond:' + cardArkTsCountSecond);
+        'cardArkTsCountSecond:' + cardArkTsCountSecond);
       expect(cardArkTsCount + 1).assertEqual(cardArkTsCountSecond);
       hilog.info(DOMAIN, TAG, BUNDLE + 'JS_UI_001 ' + (cardArkTsCountSecond - cardArkTsCount) + ' card has been added');
-      await driver.delayMs(2000);
+      await driver.delayMs(DELAYTIME02);
       done();
     })
   })

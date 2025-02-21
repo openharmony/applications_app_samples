@@ -247,6 +247,14 @@
     {
       "name": "imgName",
       "value": "imgName"
+    },
+    {
+      "name": "refresh",
+      "value": "refresh"
+    },
+    {
+      "name": "refresh_error",
+      "value": "refresh_error"
     }
   ]
 }

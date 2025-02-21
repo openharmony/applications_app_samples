@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,13 +13,11 @@
  * limitations under the License.
  */
 
-import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import type Base from '@ohos.base';
-import hilog from '@ohos.hilog';
-import promptAction from '@ohos.promptAction';
-import type rpc from '@ohos.rpc';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import type Want from '@ohos.app.ability.Want';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { promptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { rpc } from '@kit.IPCKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = 'WidgetEventCallEntryAbility';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -70,7 +68,7 @@ export default class WidgetEventCallEntryAbility extends UIAbility {
         return new MyParcelable(CONST_NUMBER_2, 'bbb');
       });
     } catch (err) {
-      hilog.error(DOMAIN_NUMBER, TAG, `Failed to register callee on. Cause: ${JSON.stringify(err as Base.BusinessError)}`);
+      hilog.error(DOMAIN_NUMBER, TAG, `Failed to register callee on. Cause: ${JSON.stringify(err as BusinessError)}`);
     };
   }
 
@@ -80,7 +78,7 @@ export default class WidgetEventCallEntryAbility extends UIAbility {
       this.callee.off('funA');
       this.callee.off('funB');
     } catch (err) {
-      hilog.error(DOMAIN_NUMBER, TAG, `Failed to register callee off. Cause: ${JSON.stringify(err as Base.BusinessError)}`);
+      hilog.error(DOMAIN_NUMBER, TAG, `Failed to register callee off. Cause: ${JSON.stringify(err as BusinessError)}`);
     };
   }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,10 +13,11 @@
  * limitations under the License.
  */
 
-import hilog from '@ohos.hilog';
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, } from '@ohos/hypium';
+
 
 export default function abilityTest() {
+
   describe('ActsAbilityTest', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
     beforeAll(() => {

@@ -1,7 +1,7 @@
 {
   "src": [
     "pages/Index",
-    "pages/FunA",
-    "pages/FunB"
+    "funpages/FunA",
+    "funpages/FunB"
   ]
 }

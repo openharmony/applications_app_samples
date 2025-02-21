@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,49 +13,50 @@
  * limitations under the License.
  */
 
-import type Base from '@ohos.base';
-import type common from '@ohos.app.ability.common';
-import dataPreferences from '@ohos.data.preferences';
-import formBindingData from '@ohos.app.form.formBindingData';
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import formInfo from '@ohos.app.form.formInfo';
-import formProvider from '@ohos.app.form.formProvider';
-import hilog from '@ohos.hilog';
-import type Want from '@ohos.app.ability.Want';
-import { Configuration } from '@ohos.app.ability.Configuration';
+import { common, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { formBindingData, FormExtensionAbility, formInfo, formProvider } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { preferences } from '@kit.ArkData';
+import { Configuration } from '@kit.ArkUI';
 
 const TAG: string = 'JsCardFormAbility';
 const DATA_STORAGE_PATH: string = '/data/storage/el2/base/haps/form_store';
 const DOMAIN_NUMBER: number = 0xFF00;
 
-let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, context: common.FormExtensionContext): Promise<void> => {
-  // 此处仅对卡片ID：formId，卡片名：formName和是否为临时卡片：tempFlag进行了持久化
-  let formInfo: Record<string, string | boolean | number> = {
-    formName: formName,
-    tempFlag: tempFlag,
-    updateCount: 0
+let storeFormInfo =
+  async (formId: string, formName: string, tempFlag: boolean, context: common.FormExtensionContext): Promise<void> => {
+    // 此处仅对卡片ID：formId，卡片名：formName和是否为临时卡片：tempFlag进行了持久化
+    let formInfo: Record<string, string | boolean | number> = {
+      formName: formName,
+      tempFlag: tempFlag,
+      updateCount: 0
+    };
+    try {
+      const storage: preferences.Preferences = await preferences.getPreferences(context, DATA_STORAGE_PATH);
+      // put form info
+      await storage.put(formId, JSON.stringify(formInfo));
+      hilog.info(DOMAIN_NUMBER, TAG, `[EntryFormAbility] storeFormInfo, put form info successfully, formId: ${formId}`);
+      await storage.flush();
+    } catch (err) {
+      hilog.error(DOMAIN_NUMBER, TAG,
+        `[EntryFormAbility] failed to storeFormInfo, err: ${JSON.stringify(err as BusinessError)}`);
+    }
+    ;
   };
-  try {
-    const storage: dataPreferences.Preferences = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
-    // put form info
-    await storage.put(formId, JSON.stringify(formInfo));
-    hilog.info(DOMAIN_NUMBER, TAG, `[EntryFormAbility] storeFormInfo, put form info successfully, formId: ${formId}`);
-    await storage.flush();
-  } catch (err) {
-    hilog.error(DOMAIN_NUMBER, TAG, `[EntryFormAbility] failed to storeFormInfo, err: ${JSON.stringify(err as Base.BusinessError)}`);
-  };
-};
 
 let deleteFormInfo = async (formId: string, context: common.FormExtensionContext): Promise<void> => {
   try {
-    const storage: dataPreferences.Preferences = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
+    const storage: preferences.Preferences = await preferences.getPreferences(context, DATA_STORAGE_PATH);
     // del form info
     await storage.delete(formId);
     hilog.info(DOMAIN_NUMBER, TAG, `[EntryFormAbility] deleteFormInfo, del form info successfully, formId: ${formId}`);
     await storage.flush();
   } catch (err) {
-    hilog.error(DOMAIN_NUMBER, TAG, `[EntryFormAbility] failed to deleteFormInfo, err: ${JSON.stringify(err as Base.BusinessError)}`);
-  };
+    hilog.error(DOMAIN_NUMBER, TAG,
+      `[EntryFormAbility] failed to deleteFormInfo, err: ${JSON.stringify(err as BusinessError)}`);
+  }
+  ;
 };
 
 export default class JsCardFormAbility extends FormExtensionAbility {
@@ -93,7 +94,7 @@ export default class JsCardFormAbility extends FormExtensionAbility {
       detail: 'detailOnUpdate'
     };
     let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
-    formProvider.updateForm(formId, formData).catch((error: Base.BusinessError) => {
+    formProvider.updateForm(formId, formData).catch((error: BusinessError) => {
       hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] updateForm, error:' + JSON.stringify(error));
     });
   }

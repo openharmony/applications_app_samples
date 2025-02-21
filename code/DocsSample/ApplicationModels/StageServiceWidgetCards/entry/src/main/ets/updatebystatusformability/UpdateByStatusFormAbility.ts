@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,14 +13,11 @@
  * limitations under the License.
  */
 
-import type Base from '@ohos.base';
-import dataPreferences from '@ohos.data.preferences';
-import formInfo from '@ohos.app.form.formInfo';
-import formProvider from '@ohos.app.form.formProvider';
-import formBindingData from '@ohos.app.form.formBindingData';
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import hilog from '@ohos.hilog';
-import type Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
+import { preferences } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { formBindingData, FormExtensionAbility, formInfo, formProvider } from '@kit.FormKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = 'UpdateByStatusFormAbility';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -34,14 +31,14 @@ export default class UpdateByStatusFormAbility extends FormExtensionAbility {
       isTempCard = want.parameters[formInfo.FormParam.TEMPORARY_KEY] as boolean;
       if (isTempCard === false) { // 如果为常态卡片，直接进行信息持久化
         hilog.info(DOMAIN_NUMBER, TAG, 'Not temp card, init db for:' + formId);
-        let promise: Promise<dataPreferences.Preferences> = dataPreferences.getPreferences(this.context, 'myStore');
-        promise.then(async (storeDB: dataPreferences.Preferences) => {
+        let promise: Promise<preferences.Preferences> = preferences.getPreferences(this.context, 'myStore');
+        promise.then(async (storeDB: preferences.Preferences) => {
           hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded to get preferences.');
           await storeDB.put('A' + formId, 'false');
           await storeDB.put('B' + formId, 'false');
           await storeDB.flush();
-        }).catch((err: Base.BusinessError) => {
-          hilog.info(DOMAIN_NUMBER, TAG, `Failed to get preferences. ${JSON.stringify(err)}`);
+        }).catch((err: BusinessError) => {
+          hilog.error(DOMAIN_NUMBER, TAG, `Failed to get preferences. ${JSON.stringify(err)}`);
         });
       }
     }
@@ -51,33 +48,33 @@ export default class UpdateByStatusFormAbility extends FormExtensionAbility {
 
   onRemoveForm(formId: string): void {
     hilog.info(DOMAIN_NUMBER, TAG, 'onRemoveForm, formId:' + formId);
-    let promise = dataPreferences.getPreferences(this.context, 'myStore');
+    let promise = preferences.getPreferences(this.context, 'myStore');
     promise.then(async (storeDB) => {
       hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded to get preferences.');
       await storeDB.delete('A' + formId);
       await storeDB.delete('B' + formId);
-    }).catch((err: Base.BusinessError) => {
-      hilog.info(DOMAIN_NUMBER, TAG, `Failed to get preferences. ${JSON.stringify(err)}`);
+    }).catch((err: BusinessError) => {
+      hilog.error(DOMAIN_NUMBER, TAG, `Failed to get preferences. ${JSON.stringify(err)}`);
     });
   }
 
   // 如果在添加时为临时卡片，则建议转为常态卡片时进行信息持久化
   onCastToNormalForm(formId: string): void {
     hilog.info(DOMAIN_NUMBER, TAG, 'onCastToNormalForm, formId:' + formId);
-    let promise: Promise<dataPreferences.Preferences> = dataPreferences.getPreferences(this.context, 'myStore');
-    promise.then(async (storeDB: dataPreferences.Preferences) => {
+    let promise: Promise<preferences.Preferences> = preferences.getPreferences(this.context, 'myStore');
+    promise.then(async (storeDB: preferences.Preferences) => {
       hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded to get preferences.');
       await storeDB.put('A' + formId, 'false');
       await storeDB.put('B' + formId, 'false');
       await storeDB.flush();
-    }).catch((err: Base.BusinessError) => {
-      hilog.info(DOMAIN_NUMBER, TAG, `Failed to get preferences. ${JSON.stringify(err)}`);
+    }).catch((err: BusinessError) => {
+      hilog.error(DOMAIN_NUMBER, TAG, `Failed to get preferences. ${JSON.stringify(err)}`);
     });
   }
 
   onUpdateForm(formId: string): void {
-    let promise: Promise<dataPreferences.Preferences> = dataPreferences.getPreferences(this.context, 'myStore');
-    promise.then(async (storeDB: dataPreferences.Preferences) => {
+    let promise: Promise<preferences.Preferences> = preferences.getPreferences(this.context, 'myStore');
+    promise.then(async (storeDB: preferences.Preferences) => {
       hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded to get preferences from onUpdateForm.');
       let stateA = await storeDB.get('A' + formId, 'false');
       let stateB = await storeDB.get('B' + formId, 'false');
@@ -98,16 +95,16 @@ export default class UpdateByStatusFormAbility extends FormExtensionAbility {
         await formProvider.updateForm(formId, formInfo);
       }
       hilog.info(DOMAIN_NUMBER, TAG, `Update form success stateA:${stateA} stateB:${stateB}.`);
-    }).catch((err: Base.BusinessError) => {
-      hilog.info(DOMAIN_NUMBER, TAG, `Failed to get preferences. ${JSON.stringify(err)}`);
+    }).catch((err: BusinessError) => {
+      hilog.error(DOMAIN_NUMBER, TAG, `Failed to get preferences. ${JSON.stringify(err)}`);
     });
   }
 
   onFormEvent(formId: string, message: string): void {
     // 存放卡片状态
     hilog.info(DOMAIN_NUMBER, TAG, 'onFormEvent formId:' + formId + 'msg:' + message);
-    let promise: Promise<dataPreferences.Preferences> = dataPreferences.getPreferences(this.context, 'myStore');
-    promise.then(async (storeDB: dataPreferences.Preferences) => {
+    let promise: Promise<preferences.Preferences> = preferences.getPreferences(this.context, 'myStore');
+    promise.then(async (storeDB: preferences.Preferences) => {
       hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded to get preferences.');
       let msg: Record<string, string> = JSON.parse(message);
       if (msg.selectA !== undefined) {
@@ -119,8 +116,8 @@ export default class UpdateByStatusFormAbility extends FormExtensionAbility {
         await storeDB.put('B' + formId, msg.selectB);
       }
       await storeDB.flush();
-    }).catch((err: Base.BusinessError) => {
-      hilog.info(DOMAIN_NUMBER, TAG, `Failed to get preferences. ${JSON.stringify(err)}`);
+    }).catch((err: BusinessError) => {
+      hilog.error(DOMAIN_NUMBER, TAG, `Failed to get preferences. ${JSON.stringify(err)}`);
     });
   }
 }

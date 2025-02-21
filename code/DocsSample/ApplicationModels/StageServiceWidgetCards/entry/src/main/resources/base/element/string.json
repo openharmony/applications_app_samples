@@ -247,6 +247,14 @@
     {
       "name": "to_be_refreshed",
       "value": "to be refreshed"
+    },
+    {
+      "name": "refresh",
+      "value": "refresh"
+    },
+    {
+      "name": "refresh_error",
+      "value": "refresh_error"
     }
   ]
 }
