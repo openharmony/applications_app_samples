@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2024 Huawei Device Co., Ltd.
+* Copyright (C) 2024-2025 Huawei Device Co., Ltd.
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -13,13 +13,13 @@
 * limitations under the License.
 */
 
-const local = new LocalStorage()
+const local = new LocalStorage();
 
 @Entry(local)
 @Component
 struct WidgetCard {
-  @LocalStorageProp('city') cityValue: string = ''; // 定义需要刷新的卡片数据
-  @LocalStorageProp('time') timeValue: string = ''; // 定义需要刷新的卡片数据
+  @LocalStorageProp('city') cityValue: string | Resource = $r('app.string.unknown_city'); // 定义需要刷新的卡片数据
+  @LocalStorageProp('time') timeValue: string = new Date().toLocaleTimeString(); // 定义需要刷新的卡片数据
   /*
    * The action type.
    */
