@@ -1,0 +1,304 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "Socket",
+      "value": "Socket连接"
+    },
+    {
+      "name": "TcpClient",
+      "value": "Tcp客户端"
+    },
+    {
+      "name": "TcpServer",
+      "value": "Tcp服务端"
+    },
+    {
+      "name": "Udp",
+      "value": "Udp客户端&服务端"
+    },
+    {
+      "name": "Multicast",
+      "value": "多播通信"
+    },
+    {
+      "name": "LocalSocket",
+      "value": "LocalSocket 数据传输"
+    },
+    {
+      "name": "OneWayTls",
+      "value": "单向TLS Socket 加密数据传输"
+    },
+    {
+      "name": "TwoWayTls",
+      "value": "双向TLS Socket 加密数据传输"
+    },
+    {
+      "name": "Tcp2OneWayTls",
+      "value": "TCP Socket 升级为单向TLS Socket 加密数据传输"
+    },
+    {
+      "name": "Tcp2TwoWayTls",
+      "value": "TCP Socket 升级为双向TLS Socket加密数据传输"
+    },
+    {
+      "name": "TlsServer",
+      "value": "TLS Socket Server 加密数据传输"
+    },
+    {
+      "name": "Parameter_error",
+      "value": "参数错误"
+    },
+    {
+      "name": "sendMessageSuccess",
+      "value": "发送消息成功"
+    },
+    {
+      "name": "sendMessageFailure",
+      "value": "发送消息失败"
+    },
+    {
+      "name": "Close_connection_failed",
+      "value": "连接关闭失败"
+    },
+    {
+      "name": "TcpClient_does_not_exist",
+      "value": "Tcp客户端不存在"
+    },
+    {
+      "name": "No_Client_Connected",
+      "value": "无客户端连接"
+    },
+    {
+      "name": "No_client_to_close",
+      "value": "无可关闭客户端"
+    },
+    {
+      "name": "Socket_Communication_Example",
+      "value": "LocalSocket通信示例"
+    },
+    {
+      "name": "Server_Status",
+      "value": "服务端状态： "
+    },
+    {
+      "name": "Client_Status",
+      "value": "客户端状态： "
+    },
+    {
+      "name": "Start_Local_Socket_Communication",
+      "value": "开始Local_Socket通信"
+    },
+    {
+      "name": "Start_Local_Socket_Server",
+      "value": "启动LocalSocket服务器"
+    },
+    {
+      "name": "Start_multicast_communication",
+      "value": "开始多播通信： "
+    },
+    {
+      "name": "TLS_Communication_Example",
+      "value": "TLS通讯示例"
+    },
+    {
+      "name": "Local_IP_Address",
+      "value": "本地IP地址"
+    },
+    {
+      "name": "Server_Address",
+      "value": "服务端地址"
+    },
+    {
+      "name": "CA",
+      "value": "CA(输入或者加载)"
+    },
+    {
+      "name": "Select",
+      "value": "选择"
+    },
+    {
+      "name": "Connect",
+      "value": "连接"
+    },
+    {
+      "name": "Enter_The_Message_To_Send",
+      "value": "输入消息"
+    },
+    {
+      "name": "Send",
+      "value": "发送"
+    },
+    {
+      "name": "Load",
+      "value": "加载"
+    },
+    {
+      "name": "UDP_Socket_Communication_Example",
+      "value": "UDP连接示例"
+    },
+    {
+      "name": "UDP_Client_Communication",
+      "value": "启动UDP连接"
+    },
+    {
+      "name": "ConnectExternalUDPServer",
+      "value": "连接UDP服务器"
+    },
+    {
+      "name": "SendUDPMessage",
+      "value": "发送消息"
+    },
+    {
+      "name": "CloseUDPConnection",
+      "value": "关闭UDP连接"
+    },
+    {
+      "name": "Enter_Server_Ip",
+      "value": "输入服务端IP"
+    },
+    {
+      "name": "Enter_Server_Port",
+      "value": "输入服务端Port"
+    },
+    {
+      "name": "localIp",
+      "value": "本地IP地址:"
+    },
+    {
+      "name": "serverIp",
+      "value": "服务端地址:"
+    },
+    {
+      "name": "chooseCA",
+      "value": "选择 CA 证书:"
+    },
+    {
+      "name": "select",
+      "value": "选择"
+    },
+    {
+      "name": "connect",
+      "value": "连接"
+    },
+    {
+      "name": "Enter_Message",
+      "value": "输入消息"
+    },
+    {
+      "name": "caSelected",
+      "value": "已选择 CA 文件: "
+    },
+    {
+      "name": "caSelectFailed",
+      "value": "选择 CA 文件失败: "
+    },
+    {
+      "name": "caLoadedSuccess",
+      "value": "CA 文件加载成功"
+    },
+    {
+      "name": "caContentEmpty",
+      "value": "CA 文件内容为空"
+    },
+    {
+      "name": "caLoadFailed",
+      "value": "加载 CA 文件失败: "
+    },
+    {
+      "name": "tcpConnectSuccess",
+      "value": "TCP 连接成功"
+    },
+    {
+      "name": "tcpConnectFailed",
+      "value": "TCP 连接失败: "
+    },
+    {
+      "name": "tlsConnectSuccess",
+      "value": "TLS 连接成功"
+    },
+    {
+      "name": "tlsConnectFailed",
+      "value": "TLS 连接失败: "
+    },
+    {
+      "name": "messageSent",
+      "value": "我: "
+    },
+    {
+      "name": "sendMessageFailed",
+      "value": "消息发送失败: "
+    },
+    {
+      "name": "tlsConnectionClosed",
+      "value": "TLS 连接已关闭"
+    },
+    {
+      "name": "serverPort",
+      "value": "服务端端口:"
+    },
+    {
+      "name": "send",
+      "value": "发送"
+    },
+    {
+      "name": "status",
+      "value": "状态:"
+    },
+    {
+      "name": "StartMulticast",
+      "value": "启动多播通信"
+    },
+    {
+      "name": "Start_Server",
+      "value": "启动服务器"
+    },
+    {
+      "name": "Message_History",
+      "value": "消息记录"
+    },
+    {
+      "name": "Enter_Client_Ip",
+      "value": "输入客户端IP"
+    },
+    {
+      "name": "Enter_Client_Port",
+      "value": "输入客户端Port"
+    },
+    {
+      "name": "Close_Connection",
+      "value": "关闭连接"
+    },
+    {
+      "name": "CA_File",
+      "value": "CA证书文件"
+    },
+    {
+      "name": "Client_Cert",
+      "value": "客户端证书"
+    },
+    {
+      "name": "Client_Key",
+      "value": "客户端私钥"
+    },
+    {
+      "name": "Select_Server_Key",
+      "value": "选择服务器私钥"
+    },
+    {
+      "name": "Select_Server_Cert",
+      "value": "选择服务器证书"
+    }
+  ]
+}
