@@ -1685,6 +1685,28 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableScenarios/screenshots/SendableScenarios_2.png" desc="Provided by code/DocsSample/ArkTs"/>
                 <filteritem type="filepath" name="code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/BatchDatabaseOperationsGuide/screenshots/BatchDatabaseOperationsGuide_1.png" desc="Provided by code/DocsSample/ArkTs"/>
                 <filteritem type="filepath" name="code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/BatchDatabaseOperationsGuide/screenshots/BatchDatabaseOperationsGuide_2.png" desc="Provided by code/DocsSample/ArkTs"/>
+				<filteritem type="filepath" name="code/DocsSample/CoreFile/AppFileBackup/screenshots/start.jpg" desc="Provided by code/DocsSample/CoreFile"/>
+				<filteritem type="filepath" name="code/DocsSample/CoreFile/DistributedFileSample/screenshots/start.jpg" desc="Provided by code/DocsSample/CoreFile"/>
+				<filteritem type="filepath" name="code/DocsSample/CoreFile/FileBackupExtension/screenshots/start.jpg" desc="Provided by code/DocsSample/CoreFile"/>
+				<filteritem type="filepath" name="code/DocsSample/CoreFile/FileBackupExtension/screenshots/fileRestore.jpg" desc="Provided by code/DocsSample/CoreFile"/>
+				<filteritem type="filepath" name="code/DocsSample/CoreFile/FileBackupExtension/screenshots/fileDelete.jpg" desc="Provided by code/DocsSample/CoreFile"/>
+				<filteritem type="filepath" name="code/DocsSample/CoreFile/FileBackupExtension/screenshots/fileCreate.jpg" desc="Provided by code/DocsSample/CoreFile"/>
+				<filteritem type="filepath" name="code/DocsSample/CoreFile/FileSample/screenshots/start.jpg" desc="Provided by code/DocsSample/CoreFile"/>
+				<filteritem type="filepath" name="code/DocsSample/CoreFile/FileSample/screenshots/end.jpg" desc="Provided by code/DocsSample/CoreFile"/>
+				<filteritem type="filepath" name="code/DocsSample/CoreFile/NDKAppFileSample/screenshots/start.jpg" desc="Provided by code/DocsSample/CoreFile"/>
+				<filteritem type="filepath" name="code/DocsSample/CoreFile/NDKAppFileSample/screenshots/end.jpg" desc="Provided by code/DocsSample/CoreFile"/>
+				<filteritem type="filepath" name="code/DocsSample/CoreFile/SandBoxShare/screenshots/share.jpg" desc="Provided by code/DocsSample/CoreFile"/>
+				<filteritem type="filepath" name="code/DocsSample/CoreFile/SandBoxShare/screenshots/start.jpg" desc="Provided by code/DocsSample/CoreFile"/>
+				<filteritem type="filepath" name="code/DocsSample/CoreFile/SandBoxShare/screenshots/fileReception.jpg" desc="Provided by code/DocsSample/CoreFile"/>
+				<filteritem type="filepath" name="code/DocsSample/CoreFile/UserFile/DevelopingFileManagerApplication/PageImg/DevelopingFileManager1.jpeg" desc="Provided by code/DocsSample/CoreFile"/>
+				<filteritem type="filepath" name="code/DocsSample/CoreFile/UserFile/DevelopingFileManagerApplication/PageImg/DevelopingFileManager2.jpeg" desc="Provided by code/DocsSample/CoreFile"/>
+				<filteritem type="filepath" name="code/DocsSample/CoreFile/UserFile/DevelopingFileManagerApplication/PageImg/DevelopingFileManager3.jpeg" desc="Provided by code/DocsSample/CoreFile"/>
+				<filteritem type="filepath" name="code/DocsSample/CoreFile/UserFile/FileUriDevelopment_C/PageImg/FileUriDevelopment_C.jpeg" desc="Provided by code/DocsSample/CoreFile"/>
+				<filteritem type="filepath" name="code/DocsSample/CoreFile/UserFile/ManagingExternalStorageDevices/PageImg/ManagingExternalStorage.jpeg" desc="Provided by code/DocsSample/CoreFile"/>
+				<filteritem type="filepath" name="code/DocsSample/CoreFile/UserFile/SavingUserFiles/PageImg/SavingUserFiles.jpeg" desc="Provided by code/DocsSample/CoreFile"/>
+				<filteritem type="filepath" name="code/DocsSample/CoreFile/UserFile/SelectingUserFiles/PageImg/AudioPicker.jpeg" desc="Provided by code/DocsSample/CoreFile"/>
+				<filteritem type="filepath" name="code/DocsSample/CoreFile/UserFile/SelectingUserFiles/PageImg/SelectingUserFiles.jpeg" desc="Provided by code/DocsSample/CoreFile"/>
+				<filteritem type="filepath" name="code/DocsSample/CoreFile/UserFile/UserFileURI/PageImg/UserFileURI.jpeg" desc="Provided by code/DocsSample/CoreFile"/>
 				<filteritem type="filepath" name="code/UI/PageLoading/pageloading/src/main/resources/base/media/page_loading_commodity00.png" desc="Provided by code/UI/PageLoading"/>
 				<filteritem type="filepath" name="code/UI/PageLoading/pageloading/src/main/resources/base/media/page_loading_commodity01.png" desc="Provided by code/UI/PageLoading"/>
 				<filteritem type="filepath" name="code/UI/PageLoading/pageloading/src/main/resources/base/media/page_loading_commodity02.png" desc="Provided by code/UI/PageLoading"/>

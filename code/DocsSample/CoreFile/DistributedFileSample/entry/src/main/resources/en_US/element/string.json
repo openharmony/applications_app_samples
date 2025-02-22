@@ -1,0 +1,64 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Distributed"
+    },
+    {
+      "name": "dataflow",
+      "value": "dataflow"
+    },
+    {
+      "name": "requestINTER",
+      "value": "requestINTER"
+    },
+    {
+      "name": "CerNetwork",
+      "value": "CerNetwork"
+    },
+    {
+      "name": "SetFileLevel",
+      "value": "SetFileLevel"
+    },
+    {
+      "name": "AccessPublicFileDir",
+      "value": "AccessPublicFileDir"
+    },
+    {
+      "name": "DisconnectingLink",
+      "value": "DisconnectingLink"
+    },
+    {
+      "name": "CopySandToDistributed",
+      "value": "CopySandToDistributed"
+    },
+    {
+      "name": "CopyDistributedToSand",
+      "value": "CopyDistributedToSand"
+    },
+    {
+      "name": "GetFileList",
+      "value": "GetFileList"
+    },
+    {
+      "name": "ApplyPermission",
+      "value": "ApplyPermission"
+    },
+    {
+      "name": "CreateFile",
+      "value": "CreateFile"
+    },
+    {
+      "name": "permit",
+      "value": "permit"
+    }
+  ]
+}
