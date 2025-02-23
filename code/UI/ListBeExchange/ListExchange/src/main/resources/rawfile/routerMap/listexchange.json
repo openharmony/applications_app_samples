@@ -1,0 +1,10 @@
+{
+  "routerMap": [
+    {
+      "name": "listexchange/ListExchangeView",
+      "pageModule": "listexchange",
+      "pageSourceFile": "src/main/ets/generated/RouterBuilder.ets",
+      "registerFunction": "listExchangeViewRegister"
+    }
+  ]
+}
