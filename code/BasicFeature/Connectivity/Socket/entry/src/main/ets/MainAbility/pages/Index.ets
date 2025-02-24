@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -66,6 +66,21 @@ struct Index {
     this.bindOption();
   }
 
+  aboutToDisappear() {
+    //   退出页面时关闭udp连接
+    udp.getState((err: Error, data: socket.SocketStateBase) => {
+      if (err) {
+        Logger.error(TAG, 'get socket state fail');
+      } else {
+        Logger.info(TAG, `get socket state success, state: ${JSON.stringify(data)}`);
+        if (data.isBound && !data.isClose) {
+          udp.off('message', () => {});
+          udp.close();
+        }
+      }
+    })
+  }
+
   bindOption() {
     if (callOnceForudpObj == 0) {
       //绑定，开始监听消息
@@ -88,11 +103,9 @@ struct Index {
 
         if (str == 'online') {
           this.onlineState = true;
-          udp.close();
         }
         else if (str == 'offline') {
           this.onlineState = false;
-          udp.close();
         } else if (str == 'exit') {
           udp.off('message', () => {
           });
@@ -162,7 +175,7 @@ struct Index {
       .padding({ left: 10, right: 10 })
 
       Column() {
-        Text(this.user === 'fengzi' ? $r('app.string.classmate_wenzi') : $r('app.string.classmate_fengzi'))
+        Text(this.user === 'fengzi' ? $r('app.string.classmate_fengzi') : $r('app.string.classmate_wenzi'))
           .fontSize(20)
           .width('100%')
           .padding({ top: 5 })
@@ -212,7 +225,6 @@ struct Index {
             }).catch(function (err) {
               Logger.info(TAG, `TAG,send : ${JSON.stringify(err)}`);
             })
-            udp.close();
           }
         }
       ])
@@ -224,7 +236,7 @@ struct Index {
               Row() {
                 Column() {
                   Text(item.date)
-                    .fontSize(15)//时间
+                    .fontSize(15) //时间
                     .width('100%')
                     .textAlign(TextAlign.End)
                   Text(item.message)
