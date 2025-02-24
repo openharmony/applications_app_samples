@@ -1517,8 +1517,8 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/DocsSample/ArkWeb/SetBasicAttrsEvts/UseIncognito/IncognitoMode_two/screenshots/IncognitoMode_two.png" desc="Provided by code/DocsSample/ArkWeb"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkWeb/SetBasicAttrsEvts/UseMotionDirSensor/screenshots/UseMotionDirSensor_1.png" desc="Provided by code/DocsSample/ArkWeb"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkWeb/SetBasicAttrsEvts/UseMotionDirSensor/screenshots/UseMotionDirSensor_2.png" desc="Provided by code/DocsSample/ArkWeb"/>
-				<filteritem type="filepath" name="code/DocsSample/ArkWeb/WebRenderLayout/RenderModeWebComp/screenshots/RenderModeWebComp.png" desc="Provided by code/DocsSample/ArkWeb"/>
-				<filteritem type="filepath" name="code/DocsSample/ArkWeb/WebRenderLayout/FitPageContent/screenshots/FitPageContent.png" desc="Provided by code/DocsSample/ArkWeb"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkWeb/WebRenderLayout/screenshots/RenderModeWebComp.png" desc="Provided by code/DocsSample/ArkWeb"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkWeb/WebRenderLayout/screenshots/FitPageContent.png" desc="Provided by code/DocsSample/ArkWeb"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkWeb/UseFrontendJSApp/AppCallFrontendFn/screenshots/AppCallFrontendFn_1.png" desc="Provided by code/DocsSample/ArkWeb"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkWeb/UseFrontendJSApp/AppCallFrontendFn/screenshots/AppCallFrontendFn_2.png" desc="Provided by code/DocsSample/ArkWeb"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkWeb/UseFrontendJSApp/AppCallFrontendFn/screenshots/AppCallFrontendFn_3.png" desc="Provided by code/DocsSample/ArkWeb"/>
