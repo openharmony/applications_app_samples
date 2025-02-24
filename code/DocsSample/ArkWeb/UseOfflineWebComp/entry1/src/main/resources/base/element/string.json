@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "Entry1Ability_desc",
+      "value": "description"
+    },
+    {
+      "name": "Entry1Ability_label",
+      "value": "UseOfflineWebComp"
+    },
+    {
+      "name": "Jump_to_Web_Page",
+      "value": "跳转到Web页面"
+    }
+  ]
+}
