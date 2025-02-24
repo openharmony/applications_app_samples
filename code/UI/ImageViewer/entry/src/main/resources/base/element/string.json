@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "image viewer"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "EntryAbility desc"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "多图片预览"
+    },
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "imageviewer_image_item_width",
+      "value": "100%"
+    },
+    {
+      "name": "imageviewer_image_item_height",
+      "value": "100%"
+    },
+    {
+      "name": "imageviewer_image_item_stack_width",
+      "value": "100%"
+    },
+    {
+      "name": "imageviewer_image_item_stack_height",
+      "value": "100%"
+    },
+    {
+      "name": "imageviewer_image_default_width",
+      "value": "100%"
+    },
+    {
+      "name": "imageviewer_image_default_height",
+      "value": "100%"
+    },
+    {
+      "name": "imageviewer_full_size",
+      "value": "100%"
+    }
+  ]
+}
