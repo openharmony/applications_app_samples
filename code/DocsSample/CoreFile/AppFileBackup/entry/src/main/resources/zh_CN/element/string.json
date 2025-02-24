@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "AppBackup"
+    },
+    {
+      "name": "capabilityDocumentation",
+      "value": "获取能力文件"
+    },
+    {
+      "name": "applicationTriggersDataBackup",
+      "value": "应用触发数据备份"
+    },
+    {
+      "name": "applicationTriggersDataReStore",
+      "value": "应用触发数据恢复"
+    },
+    {
+      "name": "releaseBackup",
+      "value": "结束备份服务"
+    },
+    {
+      "name": "deleteFile",
+      "value": "文件删除"
+    }
+  ]
+}
