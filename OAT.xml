@@ -300,11 +300,11 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow/tabcontentoverflow.gif" desc="Provided by code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow"/>
                 <filteritem type="filepath" name="code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow/src/main/resources/base/media/tabcontentoverflow_follow.png" desc="Provided by code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow"/>
 				<filteritem type="filepath" name="code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow/src/main/resources/base/media/tabcontentoverflow_add.png" desc="Provided by code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow"/>
-				<filteritem type="filepath" name="code/UI/TabContentTouchHotZone/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow"/>	
-				<filteritem type="filepath" name="code/UI/TabContentTouchHotZone/entry/src/main/resources/base/media/background.png" desc="Provided by code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow"/>	
+				<filteritem type="filepath" name="code/UI/TabContentTouchHotZone/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow"/>
+				<filteritem type="filepath" name="code/UI/TabContentTouchHotZone/entry/src/main/resources/base/media/background.png" desc="Provided by code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow"/>
 				<filteritem type="filepath" name="code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow/src/main/resources/base/media/tabcontentoverflow_foucs_add.png" desc="Provided by code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow"/>
-				<filteritem type="filepath" name="code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow/src/main/resources/base/media/tabcontentoverflow_fabulo.png" desc="Provided by code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow"/>		
-				<filteritem type="filepath" name="code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow/src/main/resources/base/media/tabcontentoverflow_preview.jpg" desc="Provided by code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow"/>		
+				<filteritem type="filepath" name="code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow/src/main/resources/base/media/tabcontentoverflow_fabulo.png" desc="Provided by code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow"/>
+				<filteritem type="filepath" name="code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow/src/main/resources/base/media/tabcontentoverflow_preview.jpg" desc="Provided by code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow"/>
 				<filteritem type="filepath" name="code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow/src/main/resources/base/media/tabcontentoverflow_comment.png" desc="Provided by code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow"/>
 				<filteritem type="filepath" name="code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow/src/main/resources/base/media/tabcontentoverflow_share.png" desc="Provided by code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow"/>
 				<filteritem type="filepath" name="code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow/src/main/resources/base/media/tabcontentoverflow_search_icon.png" desc="Provided by code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow"/>
@@ -543,7 +543,7 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/DocsSample/graphic/ArkGraphics3D/entry/src/main/resources/rawfile/gltf/DamagedHelmet/glTF/Default_AO.jpg" desc="Provided by code/DocsSample/graphic/ArkGraphics3D/entry/src/main/resources/rawfile/gltf/DamagedHelmet/glTF/Default_AO.jpg"/>
 				<filteritem type="filepath" name="code/DocsSample/graphic/ArkGraphics3D/entry/src/main/resources/rawfile/gltf/DamagedHelmet/glTF/Default_metalRoughness.jpg" desc="Provided by code/DocsSample/graphic/ArkGraphics3D/entry/src/main/resources/rawfile/gltf/DamagedHelmet/glTF/Default_metalRoughness.jpg"/>
 				<filteritem type="filepath" name="code/DocsSample/graphic/ArkGraphics3D/entry/src/main/resources/rawfile/KTX/quarry_02_2k_radiance.ktx" desc="Provided by code/DocsSample/graphic/ArkGraphics3D/entry/src/main/resources/rawfile/KTX/quarry_02_2k_radiance.ktx"/>
-				<filteritem type="filepath" name="code/DocsSample/graphic/ArkGraphics3D/entry/src/main/resources/rawfile/gltf/BrainStem/glTF/BrainStem0.bin" desc="Provided by code/DocsSample/graphic/ArkGraphics3D/entry/src/main/resources/rawfile/gltf/BrainStem/glTF/BrainStem0.bin"/>	
+				<filteritem type="filepath" name="code/DocsSample/graphic/ArkGraphics3D/entry/src/main/resources/rawfile/gltf/BrainStem/glTF/BrainStem0.bin" desc="Provided by code/DocsSample/graphic/ArkGraphics3D/entry/src/main/resources/rawfile/gltf/BrainStem/glTF/BrainStem0.bin"/>
 				<filteritem type="filepath" name="code/DocsSample/ApplicationModels/MindSporeLiteArkTSDemo/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/DocsSample/ApplicationModels/MindSporeLiteArkTSDemo"/>
 				<filteritem type="filepath" name="code/DocsSample/ApplicationModels/MindSporeLiteArkTSDemo/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/DocsSample/ApplicationModels/MindSporeLiteArkTSDemo"/>
 				<filteritem type="filepath" name="code/DocsSample/ApplicationModels/MindSporeLiteArkTSDemo/entry/src/main/resources/base/media/background.png" desc="Provided by code/DocsSample/ApplicationModels/MindSporeLiteArkTSDemo"/>
@@ -1305,16 +1305,16 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/rawfile/media_full_screen_video3.mp4" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
 				<filteritem type="filepath" name="code/BasicFeature/Window/MediaFullScreen/entry/src/main/resources/rawfile/media_full_screen_video4.mp4" desc="Provided by code/BasicFeature/Window/MediaFullScreen"/>
 				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/AppScope/resources/base/media/app_icon.png" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>
-				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>	
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>
 				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/entry/src/main/resources/base/media/background.png" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>
-				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>	
-				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/entry/src/main/resources/base/media/layered_image.png" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>	
-				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/casesfeature/erasercomponent/eraser.gif" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>	
-				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/casesfeature/erasercomponent/src/main/resources/base/media/eraser_picture.jpg" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>	
-				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/casesfeature/erasercomponent/src/main/resources/base/media/eraser_redo.svg" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>	
-				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/casesfeature/erasercomponent/src/main/resources/base/media/eraser_screenshot_eraser.svg" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>	
-				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/casesfeature/erasercomponent/src/main/resources/base/media/eraser_screenshot_penshape.svg" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>	
-				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/casesfeature/erasercomponent/src/main/resources/base/media/eraser_undo.svg" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>	
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/entry/src/main/resources/base/media/layered_image.png" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/casesfeature/erasercomponent/eraser.gif" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/casesfeature/erasercomponent/src/main/resources/base/media/eraser_picture.jpg" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/casesfeature/erasercomponent/src/main/resources/base/media/eraser_redo.svg" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/casesfeature/erasercomponent/src/main/resources/base/media/eraser_screenshot_eraser.svg" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/casesfeature/erasercomponent/src/main/resources/base/media/eraser_screenshot_penshape.svg" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>
+				<filteritem type="filepath" name="code/BasicFeature/Graphics/Graphics2d/Eraser/casesfeature/erasercomponent/src/main/resources/base/media/eraser_undo.svg" desc="Provided by code/BasicFeature/Graphics/Graphics2d/Eraser"/>
 				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/casesfeature/operaterdbintaskpool/src/main/resources/rawfile/operate_rdb_in_taskpool_photo18.jpg" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
 				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/casesfeature/operaterdbintaskpool/src/main/resources/rawfile/operate_rdb_in_taskpool_photo24.jpg" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
 				<filteritem type="filepath" name="code/Performance/OperateRDBInTaskPool/casesfeature/operaterdbintaskpool/src/main/resources/rawfile/operate_rdb_in_taskpool_photo17.jpg" desc="Provided by code/Performance/OperateRDBInTaskPool"/>
@@ -1753,7 +1753,7 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPIFunction/screenshots/NodeAPIFunction2.png" desc="Provided by code/DocsSample/ArkTS"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPILifeCycle/screenshots/NodeAPILifeCycle1.png" desc="Provided by code/DocsSample/ArkTS"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkTS/NodeAPI/NodeApiUse/NodeAPILifeCycle/screenshots/NodeAPILifeCycle2.png" desc="Provided by code/DocsSample/ArkTS"/>
-				<filteritem type="filepath" name="code/BasicFeature/Media/AudioToVideoSync/screenshots/device/play.png" desc="Provide by code/BasicFeature/Media/AudioToVideoSync"/>	
+				<filteritem type="filepath" name="code/BasicFeature/Media/AudioToVideoSync/screenshots/device/play.png" desc="Provide by code/BasicFeature/Media/AudioToVideoSync"/>
 				<filteritem type="filepath" name="code/BasicFeature/Media/AudioToVideoSync/entry/src/main/resources/base/media/startIcon.png" desc="Provide by code/BasicFeature/Media/AudioToVideoSync"/>
 				<filteritem type="filepath" name="code/BasicFeature/Media/AudioToVideoSync/screenshots/device/ATVS_Index.png" desc="Provide by code/BasicFeature/Media/AudioToVideoSync"/>
 				<filteritem type="filepath" name="code/BasicFeature/Media/AudioToVideoSync/entry/src/main/resources/base/media/background.png" desc="Provide by code/BasicFeature/Media/AudioToVideoSync"/>
@@ -1919,6 +1919,12 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/UI/PullToRefresh/pulltorefresh/src/main/resources/base/media/pull_to_refresh_news.gif" desc="code/UI/PullToRefresh"/>
                 <filteritem type="filepath" name="code/UI/PullToRefresh/AppScope/resources/base/media/app_icon.png" desc="code/UI/PullToRefresh"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/resources/rawfile/test.abc" desc="Provided by code/DocsSample/ArkTs"/>
+				<filteritem type="filepath" name="code/UI/VerifyCode/casesfeature/verifycode/src/main/resources/base/media/verify_code.gif" desc="Provide by code/UI/VerifyCode"/>
+				<filteritem type="filepath" name="code/UI/VerifyCode/entry/src/main/resources/base/media/background.png" desc="Provide by code/UI/VerifyCode"/>
+				<filteritem type="filepath" name="code/UI/VerifyCode/entry/src/main/resources/base/media/foreground.png" desc="Provide by code/UI/VerifyCode"/>
+				<filteritem type="filepath" name="code/UI/VerifyCode/entry/src/main/resources/base/media/startIcon.png" desc="Provide by code/UI/VerifyCode"/>
+				<filteritem type="filepath" name="code/UI/VerifyCode/casesfeature/verifycode/src/main/resources/base/media/icon.png" desc="Provide by code/UI/VerifyCode"/>
+				<filteritem type="filepath" name="code/UI/VerifyCode/casesfeature/verifycode/src/main/resources/base/media/startIcon.png" desc="Provide by code/UI/VerifyCode"/>
 			</filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加License头"/>
@@ -2053,7 +2059,7 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/BasicFeature/Media/VideoSwitching/entry/src/main/resources/rawfile/video_screen_direction_switching1.MP4" desc="Provide by code/BasicFeature/Media/VideoSwitching"/>
 				<filteritem type="filepath" name="code/BasicFeature/Media/VideoSwitching/entry/src/main/resources/base/media/video_screen_direction_switching_video.MP4" desc="Provide by code/BasicFeature/Media/VideoSwitching"/>
 				<filteritem type="filepath" name="code/BasicFeature/Media/VideoSwitching/entry/src/main/resources/rawfile/video_screen_direction_switching2.MP4" desc="Provide by code/BasicFeature/Media/VideoSwitching"/>
-            </filefilter>
+			</filefilter>
         </filefilterlist>
     </oatconfig>
 </configuration>

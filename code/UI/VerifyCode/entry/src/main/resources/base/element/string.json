@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "验证码布局模块"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "验证码布局"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "VerifyCode"
+    }
+  ]
+}
