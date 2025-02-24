@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "Entry4Ability_desc",
+      "value": "description"
+    },
+    {
+      "name": "Entry4Ability_label",
+      "value": "AcceleratePageAccess"
+    },
+    {
+      "name": "web_path",
+      "value": "https://www.example.com/"
+    },
+    {
+      "name": "web_path_one",
+      "value": "https://www.example.com/example.js"
+    },
+    {
+      "name": "web_path_two",
+      "value": "https://www.example.com/empty.html"
+    },
+    {
+      "name": "web_path_three",
+      "value": "https://www.example.com/business.html"
+    }
+  ]
+}

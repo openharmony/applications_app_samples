@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "Entry2Ability_desc",
+      "value": "description"
+    },
+    {
+      "name": "Entry2Ability_label",
+      "value": "AcceleratePageAccess"
+    },
+    {
+      "name": "web_path",
+      "value": "https://www.example.com/"
+    },
+    {
+      "name": "domains_path",
+      "value": "https://www.iana.org/help/example-domains"
+    },
+    {
+      "name": "post_path",
+      "value": "https://www.example1.com/post?e=f&g=h"
+    }
+  ]
+}
