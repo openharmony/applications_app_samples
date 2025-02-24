@@ -10,7 +10,7 @@
 
 |PageAbility组件开发指导|ServiceAbility&DataAbility组件开发指导|FA模型与Stage模型应用组件互通指导|FA模型服务卡片开发指导|
 |--------------------------------|--------------------------------|--------------------------------|--------------------------------|
-|![PageAbility组件开发指导](screenshots/PageAbility组件开发指导.gif)|![ServiceAbility&DataAbility组件开发指导](screenshots/ServiceAbility&DataAbility组件开发指导.gif)| ![FA模型与Stage模型应用组件互通指导](screenshots/FA模型与Stage模型应用组件互通指导.gif) | ![FA模型服务卡片开发指导](screenshots/FA模型服务卡片开发指导.gif) |
+|<img src="screenshots/PageAbility组件开发指导.gif" width="250" />|<img src="screenshots/ServiceAbility&DataAbility组件开发指导.gif" width="250" />|<img src="screenshots/FA模型与Stage模型应用组件互通指导.gif" width="250" />|<img src="screenshots/FA模型服务卡片开发指导.gif" width="250" />|
 
 #### 使用说明
 
@@ -60,7 +60,7 @@
 
 6）点击[查找数据-callback方式]，再点击[查找数据-promise方式]，点击后均弹出toast[查找数据成功]；
 
-7）点击[批量插入数据-callback方式]，再点击[批量插入数据-promise方式，点击后均弹出toast[批量插入数据成功]；
+7）点击[批量插入数据-callback方式]，再点击[批量插入数据-promise方式]，点击后均弹出toast[批量插入数据成功]；
 
 8）点击[批量处理数据-callback方式]，再点击[批量处理数据-promise方式]，点击后均弹出toast[批量处理数据成功]。
 
@@ -129,25 +129,25 @@ entry/src/main/ets/
 
     * 源码链接：[pagePageAbilityFirst.ets](entry\src\main\ets\MainAbility\pages\pagePageAbilityFirst.ets) [pagePageAbilitySecond.ets](entry\src\main\ets\MainAbility\pages\pagePageAbilitySecond.ets) [first.ets](entry\src\main\ets\PageAbilitySingleton\pages\first.ets)  [second.ets](entry\src\main\ets\PageAbilitySingleton\pages\second.ets)   [first.ets](entry\src\main\ets\PageAbilityStandard\pages\first.ets)  [second.ets](entry\src\main\ets\PageAbilityStandard\pages\second.ets)  [worker.ts](entry\src\main\ets\workers\worker.ts)  
 
-    * 参考接口：[@ohos.ability.featureAbility](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/apis/js-apis-ability-featureAbility.md/)  [@ohos.worker](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-worker.md)
+    * 参考接口：[@ohos.ability.featureAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-ability-featureAbility.md)  [@ohos.worker](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkts/js-apis-worker.md)
   * ServiceAbility组件开发指导：
 
     * 调用相关接口函数来实现FA模型中ServiceAbility的启动和连接等功能。
     * 源码链接：[pageServiceAbility.ets](entry\src\main\ets\MainAbility\pages\pageServiceAbility.ets)  [service.ts](entry\src\main\ets\ServiceAbility\service.ts) 
 
-    * 参考接口：[@ohos.ability.featureAbility](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/apis/js-apis-ability-featureAbility.md/)
+    * 参考接口：[@ohos.ability.featureAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-ability-featureAbility.md)
   * DataAbility组件开发指导：
     * 调用相关接口函数来实现FA模型中DataAbility的增删改查等功能。
     * 源码链接：[pageDataAbility.ets](entry\src\main\ets\MainAbility\pages\pageDataAbility.ets)  [data.ts](entry\src\main\ets\DataAbility\data.ts) 
-    * 参考接口：[@ohos.data.dataAbility](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/apis/js-apis-data-ability.md/)
+    * 参考接口：[@ohos.data.dataAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkdata/js-apis-data-ability.md)
   * FA模型与Stage模型应用组件互通指导：
     * 调用相关接口函数来实现FA模型中调用相关接口函数来启动Stage模型中UIAbility的功能。
     * 源码链接：[pageInterflowFaAndStage.ets](entry\src\main\ets\MainAbility\pages\pageInterflowFaAndStage.ets)  [service.ts](entry\src\main\ets\ServiceAbilityStartUIAbility\service.ts) 
-    * 参考接口：[@ohos.ability.featureAbility](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/apis/js-apis-ability-featureAbility.md/)
+    * 参考接口：[@ohos.ability.featureAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-ability-featureAbility.md)
   * FA模型服务卡片开发指导：
     * 调用相关接口函数来实现FA模型中服务卡片的创建，更新及事件等功能。
     * 源码链接：[form.ts](entry\src\main\ets\FormAbility\form.ts)  [index.css](entry\src\main\js\widget\pages\index\index.css)  [index.hml](entry\src\main\js\widget\pages\index\index.hml)  [index.json](entry\src\main\js\widget\pages\index\index.json) 
-    * 参考接口：[@ohos.app.form.formBindingData](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/apis/js-apis-app-form-formBindingData.md/) [@ohos.app.form.formInfo](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/apis/js-apis-app-form-formInfo.md/) [@ohos.app.form.formProvider](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/apis/js-apis-app-form-formProvider.md/)
+    * 参考接口：[@ohos.app.form.formBindingData](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-form-kit/js-apis-app-form-formBindingData.md) [@ohos.app.form.formInfo](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-form-kit/js-apis-app-form-formInfo.md) [@ohos.app.form.formProvider](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-form-kit/js-apis-app-form-formProvider.md)
 
 ### 相关权限
 
@@ -182,9 +182,9 @@ entry/src/main/ets/
 
 3.本示例需要使用DevEco Studio 3.1.1 Release (Build Version: 3.1.0.501, built on June 20, 2023)及以上版本才可编译运行。
 
-4.本示例涉及相关权限为system_basic级别(相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)查看)，需要手动配置对应级别的权限签名(具体操作可查看[自动化签名方案](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Fsecurity%2Fhapsigntool-overview.md%2F))。
+4.本示例涉及相关权限为system_basic级别(相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md)查看)，需要手动配置对应级别的权限签名(具体操作可查看[自动化签名方案](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-overview.md))。
 
-6.本示例类型为系统应用，需要手动配置对应级别的应用类型("app-feature": "hos_system_app")。具体可参考profile配置文件[bundle-info对象内部结构]( https://gitee.com/openharmony/docs/blob/eb73c9e9dcdd421131f33bb8ed6ddc030881d06f/zh-cn/application-dev/security/app-provision-structure.md#bundle-info%E5%AF%B9%E8%B1%A1%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84 )
+6.本示例类型为系统应用，需要手动配置对应级别的应用类型("app-feature": "hos_system_app")。具体可参考profile配置文件[bundle-info对象内部结构](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/app-provision-structure.md#bundle-info%E5%AF%B9%E8%B1%A1%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84)。
 
 ### 下载
 
