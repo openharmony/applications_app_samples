@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "ShareFile"
+    },
+    {
+      "name": "ShareFileBasedOnName",
+      "value": "根据文件名分享文件"
+    },
+    {
+      "name": "CreateFileTest",
+      "value": "创建文本文件"
+    },
+    {
+      "name": "getFileList",
+      "value": "获取文件列表"
+    },
+    {
+      "name": "ReadFile",
+      "value": "读取文件内容"
+    },
+    {
+      "name": "FileShare",
+      "value": "分享文件"
+    },
+    {
+      "name": "getShareFile",
+      "value": "读取分享文件"
+    }
+  ]
+}
