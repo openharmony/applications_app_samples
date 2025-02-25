@@ -1,0 +1,56 @@
+<!--/*
+* Copyright (c) 2025 Huawei Device Co., Ltd.
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/-->
+
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='utf-8'>
+    <title>Demo</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=no,   viewport-fit=cover'>
+    <script>
+        function getFile() {
+            const file = 'file:///data/storage/el1/bundle/entry/resources/resfile/js/script.js';
+      // 使用file协议通过XMLHttpRequest跨域访问本地js文件。
+            const xmlHttpReq = new XMLHttpRequest();
+            xmlHttpReq.onreadystatechange = function() {
+                console.log('readyState:' + xmlHttpReq.readyState);
+                console.log('status:' + xmlHttpReq.status);
+                if (xmlHttpReq.readyState === 4) {
+                    if (xmlHttpReq.status === 200) {
+                // 如果ets侧正确设置路径列表，则此处能正常获取资源
+                        const element = document.getElementById('text');
+                        element.textContent = 'load ' + file + ' success';
+                    } else {
+                // 如果ets侧不设置路径列表，则此处会触发CORS跨域检查错误
+                        const element = document.getElementById('text');
+                        element.textContent = 'load ' + file + ' failed';
+                    }
+                }
+            };
+            xmlHttpReq.open('GET', file);
+            xmlHttpReq.send(null);
+        }
+    </script>
+</head>
+
+<body>
+<div class='page'>
+    <button id='example' onclick='getFile()'>stealFile</button>
+</div>
+<div id='text'></div>
+</body>
+
+</html>
