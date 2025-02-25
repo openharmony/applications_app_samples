@@ -187,8 +187,9 @@ struct SpatialAudio {
       let audioDeviceDescriptors: audio.AudioDeviceDescriptors =
         this.audioRoutingManager.getPreferredOutputDeviceForRendererInfoSync(this.audioRendererOptions[0].rendererInfo);
       audioDeviceDescriptors.forEach(audioDeviceDescriptor => {
-        Logger.info("Device Role:" + audioDeviceDescriptor.deviceRole + ", device Type:" +
-        audioDeviceDescriptor.deviceType + ", Macaddress:" + audioDeviceDescriptor.address);
+        console.info("Device Role:" + audioDeviceDescriptor.deviceRole + ", device Type:" +
+        audioDeviceDescriptor.deviceType + ", Macaddress:" + audioDeviceDescriptor.address +
+        ", Support:" + audioDeviceDescriptor.spatializationSupported);
       })
 
       let isSpaSupported: boolean = false;
@@ -241,13 +242,17 @@ struct SpatialAudio {
       this.audioRoutingManager.on("preferOutputDeviceChangeForRendererInfo", t_audioRendererInfo, () => {
         Logger.info("Output device changed");
         this.updateSupportStateUI();
+        if (this.audioRenderers[1] && this.audioRenderers[1].state === audio.AudioState.STATE_RUNNING) {
+          this.audioRenderers[1].pause();
+          this.musicState2 = false;
+        }
       })
     }
     if (this.audioSpatializationManager) {
       this.audioSpatializationManager.on("spatializationEnabledChangeForCurrentDevice", (res) => {
         this.spatializationEnabled = res;
+        this.showToastBySpatialEnabled();
       })
-      this.showToastBySpatialEnabled();
     }
   }
 
