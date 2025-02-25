@@ -1620,9 +1620,9 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/DocsSample/ArkWeb/ProcessWebPageCont/PrintFrontendPage/InitiatePrintAppAPI/screenshots/InitiatePrintAppAPI.png" desc="Provided by code/DocsSample/ArkWeb"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkWeb/ProcessWebPageCont/PreviewPDF/screenshots/PreviewPDF.png" desc="Provided by code/DocsSample/ArkWeb"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkWeb/ProcessWebPageCont/CalcAdjustSafeArea/screenshots/CalcAdjustSafeArea.png" desc="Provided by code/DocsSample/ArkWeb"/>
-				<filteritem type="filepath" name="code/DocsSample/ArkWeb/UseSameLayerRender/RenderTxtBoxSameLayer_one/screenshots/RenderTxtBoxSameLayer_one.jpg" desc="Provided by code/DocsSample/ArkWeb"/>
-				<filteritem type="filepath" name="code/DocsSample/ArkWeb/UseSameLayerRender/RenderTxtBoxSameLayer_two/screenshots/RenderTxtBoxSameLayer_two.jpg" desc="Provided by code/DocsSample/ArkWeb"/>
-				<filteritem type="filepath" name="code/DocsSample/ArkWeb/UseSameLayerRender/DrawXCompAVPBtn/screenshots/DrawXCompAVPBtn.jpg" desc="Provided by code/DocsSample/ArkWeb"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkWeb/UseSameLayerRender/screenshots/RenderTxtBoxSameLayer_one.png" desc="Provided by code/DocsSample/ArkWeb"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkWeb/UseSameLayerRender/screenshots/RenderTxtBoxSameLayer_two.png" desc="Provided by code/DocsSample/ArkWeb"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkWeb/UseSameLayerRender/screenshots/DrawXCompAVPBtn.png" desc="Provided by code/DocsSample/ArkWeb"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkWeb/UseOfflineWebComp/screenshots/PreLaunchingRenderingProcess_two_2.png" desc="Provided by code/DocsSample/ArkWeb"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkWeb/UseOfflineWebComp/screenshots/PreLaunchingRenderingProcess_one_1.png" desc="Provided by code/DocsSample/ArkWeb"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkWeb/UseOfflineWebComp/screenshots/PreLaunchingRenderingProcess_two_1.png" desc="Provided by code/DocsSample/ArkWeb"/>
