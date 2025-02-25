@@ -1,0 +1,40 @@
+{
+  "float": [
+    {
+      "name": "container_horizontal_padding_sm",
+      "value": "16vp"
+    },
+    {
+      "name": "container_horizontal_padding_md",
+      "value": "24vp"
+    },
+    {
+      "name": "container_horizontal_padding_lg",
+      "value": "32vp"
+    },
+    {
+      "name": "flash_horizontal_margin_right_sm",
+      "value": "0vp"
+    },
+    {
+      "name": "flash_horizontal_margin_right_md",
+      "value": "12vp"
+    },
+    {
+      "name": "flash_horizontal_margin_right_lg",
+      "value": "24vp"
+    },
+    {
+      "name": "icon_container_horizontal_width_sm",
+      "value": "0vp"
+    },
+    {
+      "name": "icon_container_horizontal_width_md",
+      "value": "96vp"
+    },
+    {
+      "name": "icon_container_horizontal_width_lg",
+      "value": "166vp"
+    }
+  ]
+}
