@@ -1,0 +1,55 @@
+<!--/*
+* Copyright (c) 2025 Huawei Device Co., Ltd.
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/-->
+
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="UTF-8">
+ <title>test</title>
+ <script type="text/javascript">
+
+   let db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
+   let msg;
+
+   db.transaction(function(tx) {
+     tx.executeSql('INSERT INTO LOGS (id,log) VALUES(1,"test1")');
+     tx.executeSql('INSERT INTO LOGS (id,log) VALUES(2,"test2")');
+     msg = '<p>数据表已创建,且插入了两条数据。</p>';
+
+     document.querySelector('#status').innerHTML = msg;
+   });
+
+   db.transaction(function(tx) {
+     tx.executeSql('SELECT * FROM LOGS', [], function (tx, results) {
+       let len = results.rows.length;
+       let i;
+       msg = '<p>查询记录条数：' + len + '</p>';
+
+       document.querySelector('#status').innerHTML += msg;
+
+           for (i = 0; i < len; i++) {
+             msg = '<p><b>' + results.rows.item(i).log + '</b></p>';
+
+       document.querySelector('#status').innerHTML += msg;
+       }
+     }, null);
+   });
+
+   </script>
+</head>
+<body>
+<div id='status' name='status'>状态信息</div>
+</body>
+</html>
