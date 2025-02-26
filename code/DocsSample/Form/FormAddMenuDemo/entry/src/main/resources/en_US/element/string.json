@@ -67,6 +67,10 @@
     {
       "name": "add_form_by_menu_id",
       "value": "add_form_by_menu"
+    },
+    {
+      "name": "unknown_city",
+      "value": "unknown"
     }
   ]
 }
