@@ -1,0 +1,36 @@
+{
+  "integer": [
+    {
+      "name": "custom_scan_btn_scan_close_margin_top",
+      "value": 40
+    },
+    {
+      "name": "custom_scan_btn_scan_close_margin_left",
+      "value": 20
+    },
+    {
+      "name": "custom_scan_btn_scan_close_padding",
+      "value": 6
+    },
+    {
+      "name": "custom_scan_text_scan_font_size",
+      "value": 18
+    },
+    {
+      "name": "custom_scan_text_scan_margin_top",
+      "value": 24
+    },
+    {
+      "name": "custom_scan_result_dialog_padding",
+      "value": 5
+    },
+    {
+      "name": "custom_scan_result_dialog_title_font_size",
+      "value": 20
+    },
+    {
+      "name": "custom_scan_result_dialog_msg_margin_top",
+      "value": 10
+    }
+  ]
+}
