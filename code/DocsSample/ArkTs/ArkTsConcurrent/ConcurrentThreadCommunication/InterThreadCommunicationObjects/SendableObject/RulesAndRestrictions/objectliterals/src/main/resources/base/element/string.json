@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "ObjectliteralsAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "ObjectliteralsAbility_label",
+      "value": "RulesAndRestrictions"
+    }
+  ]
+}
