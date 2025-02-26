@@ -104,7 +104,7 @@ struct SpatialAudio {
         } else {
           promptAction.showToast({
             duration: 3000,
-            message: ("请开启空间音频")
+            message: ('请开启空间音频')
           });
         }
       })
@@ -135,11 +135,11 @@ struct SpatialAudio {
       .height(36)
       .width(36)
       .margin({ right: 16 })
-      .id("5P1_play_btn")
+      .id('5P1_play_btn')
   }
 
   @Builder AudioVividIfSupport() {
-    Text($r("app.string.5P1_MUSIC"))
+    Text($r('app.string.5P1_MUSIC'))
       .fontSize(20)
       .fontWeight(500)
       .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
@@ -160,12 +160,12 @@ struct SpatialAudio {
     if (this.spatializationEnabled === true) {
       promptAction.showToast({
         duration: 6000,
-        message: ("空间音频已开启")
+        message: ('空间音频已开启')
       });
     } else {
       promptAction.showToast({
         duration: 6000,
-        message: ("空间音频已关闭")
+        message: ('空间音频已关闭')
       });
     }
   }

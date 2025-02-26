@@ -895,5 +895,72 @@ export default function abilityTest() {
       Logger.info(TAG, BUNDLE + 'ParallelCapturer_004 end');
       done();
     })
+
+    /**
+     * [Index]
+     * back tp homepage
+     * Display  entry card
+     * Click spatial_audio_card
+     */
+    it(BUNDLE + 'IndexShow_004', 0, async (done: Function) => {
+      Logger.info(TAG, BUNDLE + 'IndexShow_004 begin');
+      try {
+        await driver.delayMs(500);
+        Logger.info(TAG, BUNDLE + 'spatial_audio_card');
+        await driver.assertComponentExist(ON.id('spatial_audio_card'));
+        let audioEffectManagerCardComponent = await driver.findComponent(ON.id('spatial_audio_card'));
+        await audioEffectManagerCardComponent.click();
+      } catch (err) {
+        Logger.error(TAG, BUNDLE + 'IndexShow_004 err:' + JSON.stringify(err));
+        expect(false).assertTrue();
+      }
+      Logger.info(TAG, BUNDLE + 'IndexShow_004 end');
+      done();
+    })
+
+    /**
+     * [SpatialAudio] click 2P0 to play
+     */
+    it(BUNDLE + 'SpatialAudio_001', 0, async (done: Function) => {
+      Logger.info(TAG, BUNDLE + 'SpatialAudio_001 begin');
+      try {
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.id('2P0_play_btn'));
+        let playBtn2P0 = await driver.findComponent(ON.id('2P0_play_btn'));
+        await playBtn2P0.click();
+
+      } catch (err) {
+        Logger.error(TAG, BUNDLE + 'SpatialAudio_001 err:' + JSON.stringify(err));
+        expect(false).assertTrue();
+      }
+      Logger.info(TAG, BUNDLE + 'SpatialAudio_001 end');
+      done();
+    })
+
+    /**
+     * [SpatialAudio] click 2P1 to pause
+     */
+    it(BUNDLE + 'SpatialAudio_002', 0, async (done: Function) => {
+      Logger.info(TAG, BUNDLE + 'SpatialAudio_002 begin');
+      try {
+        await driver.delayMs(1000);
+        await driver.assertComponentExist(ON.id('2P0_pause_btn'))
+        await driver.delayMs(500);
+        let pauseBtn2P0 = await driver.findComponent(ON.id('2P0_pause_btn'));
+        await pauseBtn2P0.click();
+        await driver.delayMs(500);
+        await driver.assertComponentExist(ON.id('2P0_play_btn'))
+        await driver.delayMs(500);
+
+        let backComponent = await driver.findComponent(ON.id('spatial_audio_back_btn'));
+        await backComponent.click();
+        await driver.delayMs(500);
+      } catch (err) {
+        Logger.error(TAG, BUNDLE + 'SpatialAudio_002 err:' + JSON.stringify(err));
+        expect(false).assertTrue();
+      }
+      Logger.info(TAG, BUNDLE + 'SpatialAudio_002 end');
+      done();
+    })
   })
 }
