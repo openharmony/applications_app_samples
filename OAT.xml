@@ -293,6 +293,26 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/UI/ImageViewer/entry/src/main/resources/base/media/icon.png" desc="Provided by code/UI/ImageViewer"/>
 				<filteritem type="filepath" name="code/UI/ImageViewer/entry/src/main/resources/base/media/picturepreview_image.jpg" desc="Provided by code/UI/ImageViewer"/>
 				<filteritem type="filepath" name="code/UI/ImageViewer/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/UI/ImageViewer"/>
+				<filteritem type="filepath" name="code/UI/FoldableAdaptation/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/UI/FoldableAdaptation"/>
+				<filteritem type="filepath" name="code/UI/FoldableAdaptation/entry/src/main/resources/base/media/background.png" desc="Provided by code/UI/FoldableAdaptation"/>
+				<filteritem type="filepath" name="code/UI/FoldableAdaptation/entry/src/main/resources/base/media/banner_movie1.png" desc="Provided by code/UI/FoldableAdaptation"/>
+				<filteritem type="filepath" name="code/UI/FoldableAdaptation/entry/src/main/resources/base/media/banner_movie2.png" desc="Provided by code/UI/FoldableAdaptation"/>
+				<filteritem type="filepath" name="code/UI/FoldableAdaptation/entry/src/main/resources/base/media/banner_movie3.png" desc="Provided by code/UI/FoldableAdaptation"/>
+				<filteritem type="filepath" name="code/UI/FoldableAdaptation/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/UI/FoldableAdaptation"/>
+				<filteritem type="filepath" name="code/UI/FoldableAdaptation/entry/src/main/resources/base/media/product001.png" desc="Provided by code/UI/FoldableAdaptation"/>
+				<filteritem type="filepath" name="code/UI/FoldableAdaptation/entry/src/main/resources/base/media/product002.png" desc="Provided by code/UI/FoldableAdaptation"/>
+				<filteritem type="filepath" name="code/UI/FoldableAdaptation/entry/src/main/resources/base/media/product003.png" desc="Provided by code/UI/FoldableAdaptation"/>
+				<filteritem type="filepath" name="code/UI/FoldableAdaptation/entry/src/main/resources/base/media/product004.png" desc="Provided by code/UI/FoldableAdaptation"/>
+				<filteritem type="filepath" name="code/UI/FoldableAdaptation/entry/src/main/resources/base/media/product005.png" desc="Provided by code/UI/FoldableAdaptation"/>
+				<filteritem type="filepath" name="code/UI/FoldableAdaptation/entry/src/main/resources/base/media/product006.png" desc="Provided by code/UI/FoldableAdaptation"/>
+				<filteritem type="filepath" name="code/UI/FoldableAdaptation/entry/src/main/resources/base/media/product007.png" desc="Provided by code/UI/FoldableAdaptation"/>
+				<filteritem type="filepath" name="code/UI/FoldableAdaptation/entry/src/main/resources/base/media/product008.png" desc="Provided by code/UI/FoldableAdaptation"/>
+				<filteritem type="filepath" name="code/UI/FoldableAdaptation/screenshots/detail_expand_full.png" desc="Provided by code/UI/FoldableAdaptation"/>
+				<filteritem type="filepath" name="code/UI/FoldableAdaptation/screenshots/detail_expand_normal.png" desc="Provided by code/UI/FoldableAdaptation"/>
+				<filteritem type="filepath" name="code/UI/FoldableAdaptation/screenshots/detail_fold_full.png" desc="Provided by code/UI/FoldableAdaptation"/>
+				<filteritem type="filepath" name="code/UI/FoldableAdaptation/screenshots/detail_fold_normal.png" desc="Provided by code/UI/FoldableAdaptation"/>
+				<filteritem type="filepath" name="code/UI/FoldableAdaptation/screenshots/home_expand.png" desc="Provided by code/UI/FoldableAdaptation"/>
+				<filteritem type="filepath" name="code/UI/FoldableAdaptation/screenshots/home_fold.png" desc="Provided by code/UI/FoldableAdaptation"/>
                 <filteritem type="filepath" name="code/UI/ArkTsComponentCollection/ComponentCollection/lib/DragEvent-1.0.0.tgz" desc="Provided by code/UI/ArkTsComponentCollection/ComponentCollection"/>
 				<filteritem type="filepath" name="code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow/tabcontentoverflow.gif" desc="Provided by code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow"/>
                 <filteritem type="filepath" name="code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow/src/main/resources/base/media/tabcontentoverflow_follow.png" desc="Provided by code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow"/>
