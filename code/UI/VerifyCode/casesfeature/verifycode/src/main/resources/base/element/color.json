@@ -1,0 +1,48 @@
+{
+  "color": [
+    {
+      "name": "citysearch_start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "citysearch_text_font_color",
+      "value": "#000000"
+    },
+    {
+      "name": "citysearch_search_bgc",
+      "value": "#d9d8d8"
+    },
+    {
+      "name": "citysearch_bgc",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "citysearch_text_font_color2",
+      "value": "#191919"
+    },
+    {
+      "name": "citysearch_text_bgc",
+      "value": "#d9d8d8"
+    },
+    {
+      "name": "citysearch_divider_color",
+      "value": "#f5f5f5"
+    },
+    {
+      "name": "citysearch_alphabet_select_color",
+      "value": "#ffffff"
+    },
+    {
+      "name": "citysearch_alphabet_pop_color",
+      "value": "#a9a9a9"
+    },
+    {
+      "name": "citysearch_alphabet_selected_bgc",
+      "value": "#5dabff"
+    },
+    {
+      "name": "citysearch_alphabet_pop_bgc",
+      "value": "#F1F3F5"
+    }
+  ]
+}

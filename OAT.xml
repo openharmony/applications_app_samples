@@ -1939,6 +1939,12 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/BasicFeature/Media/CustomScan/entry/src/main/resources/base/media/foreground.png" desc="code/BasicFeature/Media/CustomScan"/>
 				<filteritem type="filepath" name="code/BasicFeature/Media/CustomScan/entry/src/main/resources/base/media/startIcon.png" desc="code/BasicFeature/Media/CustomScan"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/resources/rawfile/test.abc" desc="Provided by code/DocsSample/ArkTs"/>
+				<filteritem type="filepath" name="code/UI/VerifyCode/casesfeature/verifycode/src/main/resources/base/media/verify_code.gif" desc="Provide by code/UI/VerifyCode"/>
+				<filteritem type="filepath" name="code/UI/VerifyCode/entry/src/main/resources/base/media/background.png" desc="Provide by code/UI/VerifyCode"/>
+				<filteritem type="filepath" name="code/UI/VerifyCode/entry/src/main/resources/base/media/foreground.png" desc="Provide by code/UI/VerifyCode"/>
+				<filteritem type="filepath" name="code/UI/VerifyCode/entry/src/main/resources/base/media/startIcon.png" desc="Provide by code/UI/VerifyCode"/>
+				<filteritem type="filepath" name="code/UI/VerifyCode/casesfeature/verifycode/src/main/resources/base/media/icon.png" desc="Provide by code/UI/VerifyCode"/>
+				<filteritem type="filepath" name="code/UI/VerifyCode/casesfeature/verifycode/src/main/resources/base/media/startIcon.png" desc="Provide by code/UI/VerifyCode"/>
 			</filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加License头"/>
@@ -2073,7 +2079,7 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/BasicFeature/Media/VideoSwitching/entry/src/main/resources/rawfile/video_screen_direction_switching1.MP4" desc="Provide by code/BasicFeature/Media/VideoSwitching"/>
 				<filteritem type="filepath" name="code/BasicFeature/Media/VideoSwitching/entry/src/main/resources/base/media/video_screen_direction_switching_video.MP4" desc="Provide by code/BasicFeature/Media/VideoSwitching"/>
 				<filteritem type="filepath" name="code/BasicFeature/Media/VideoSwitching/entry/src/main/resources/rawfile/video_screen_direction_switching2.MP4" desc="Provide by code/BasicFeature/Media/VideoSwitching"/>
-            </filefilter>
+			</filefilter>
         </filefilterlist>
     </oatconfig>
 </configuration>
