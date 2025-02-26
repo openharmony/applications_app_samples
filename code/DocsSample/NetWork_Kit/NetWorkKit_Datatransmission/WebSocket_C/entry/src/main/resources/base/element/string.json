@@ -1,0 +1,58 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "WebSocket_address",
+      "value": "WebSocket地址："
+    },
+    {
+      "name": "Content",
+      "value": "发送内容："
+    },
+    {
+      "name": "Connect",
+      "value": "连接"
+    },
+    {
+      "name": "Send",
+      "value": "发送"
+    },
+    {
+      "name": "Close",
+      "value": "断开连接"
+    },
+    {
+      "name": "Connect_successfully",
+      "value": "连接成功！"
+    },
+    {
+      "name": "Connect_failed",
+      "value": "连接失败！"
+    },
+    {
+      "name": "Send_message_successfully",
+      "value": "消息发送成功！"
+    },
+    {
+      "name": "Close_connection",
+      "value": "关闭连接！"
+    },
+    {
+      "name": "Close_connection_failed",
+      "value": "关闭连接失败！"
+    }
+
+
+  ]
+}
