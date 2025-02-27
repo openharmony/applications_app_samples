@@ -103,6 +103,24 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="network/Bluetooth/entry/src/main/java/ohos/samples/bluetooth/adapter/" desc="Not contains 3rd code，license file is not required in this subdirectory."/>
             </filefilter>
             <filefilter name="binaryFileTypePolicyFilter" desc="Filters for binary file policies" >
+				<filteritem type="filepath" name="code/UI/WindowStartIcon/AppScope/resources/base/media/app_icon.png" desc="Provide by code/UI/WindowStartIcon"/>
+				<filteritem type="filepath" name="code/UI/WindowStartIcon/entry/src/main/resources/base/media/background.png" desc="Provide by code/UI/WindowStartIcon"/>
+				<filteritem type="filepath" name="code/UI/WindowStartIcon/entry/src/main/resources/base/media/enter_app_animation.gif" desc="Provide by code/UI/WindowStartIcon"/>
+				<filteritem type="filepath" name="code/UI/WindowStartIcon/entry/src/main/resources/base/media/foreground.png" desc="Provide by code/UI/WindowStartIcon"/>
+				<filteritem type="filepath" name="code/UI/WindowStartIcon/entry/src/main/resources/ldpi/media/icon.png" desc="Provide by code/UI/WindowStartIcon"/>
+				<filteritem type="filepath" name="code/UI/WindowStartIcon/entry/src/main/resources/ldpi/media/icon_startwindow.png" desc="Provide by code/UI/WindowStartIcon"/>
+				<filteritem type="filepath" name="code/UI/WindowStartIcon/entry/src/main/resources/mdpi/media/icon.png" desc="Provide by code/UI/WindowStartIcon"/>
+				<filteritem type="filepath" name="code/UI/WindowStartIcon/entry/src/main/resources/mdpi/media/icon_startwindow.png" desc="Provide by code/UI/WindowStartIcon"/>
+				<filteritem type="filepath" name="code/UI/WindowStartIcon/entry/src/main/resources/sdpi/media/icon.png" desc="Provide by code/UI/WindowStartIcon"/>
+				<filteritem type="filepath" name="code/UI/WindowStartIcon/entry/src/main/resources/sdpi/media/icon_startwindow.png" desc="Provide by code/UI/WindowStartIcon"/>
+				<filteritem type="filepath" name="code/UI/WindowStartIcon/entry/src/main/resources/xldpi/media/icon.png" desc="Provide by code/UI/WindowStartIcon"/>
+				<filteritem type="filepath" name="code/UI/WindowStartIcon/entry/src/main/resources/xldpi/media/icon_startwindow.png" desc="Provide by code/UI/WindowStartIcon"/>
+				<filteritem type="filepath" name="code/UI/WindowStartIcon/entry/src/main/resources/xxldpi/media/icon.png" desc="Provide by code/UI/WindowStartIcon"/>
+				<filteritem type="filepath" name="code/UI/WindowStartIcon/entry/src/main/resources/xxldpi/media/icon_startwindow.png" desc="Provide by code/UI/WindowStartIcon"/>
+				<filteritem type="filepath" name="code/UI/WindowStartIcon/entry/src/main/resources/xxxldpi/media/icon.png" desc="Provide by code/UI/WindowStartIcon"/>
+				<filteritem type="filepath" name="code/UI/WindowStartIcon/entry/src/main/resources/xxxldpi/media/icon_startwindow.png" desc="Provide by code/UI/WindowStartIcon"/>
+				<filteritem type="filepath" name="code/UI/WindowStartIcon/screenshots/devices/create_image_asset.png" desc="Provide by code/UI/WindowStartIcon"/>
+				<filteritem type="filepath" name="code/UI/WindowStartIcon/screenshots/devices/window_start_icon.jpeg" desc="Provide by code/UI/WindowStartIcon"/>
 			    <filteritem type="filepath" name="code/UI/KeyboardAvoid/casesfeature/keyboardavoid/keyboard_avoid.gif" desc="Provide by code/UI/KeyboardAvoid"/>
 				<filteritem type="filepath" name="code/UI/KeyboardAvoid/entry/src/main/resources/base/media/startIcon.png" desc="Provide by code/UI/KeyboardAvoid"/>
 				<filteritem type="filepath" name="code/UI/KeyboardAvoid/entry/src/main/resources/base/media/background.png" desc="Provide by code/UI/KeyboardAvoid"/>

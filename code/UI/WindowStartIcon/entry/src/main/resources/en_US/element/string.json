@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "Implementation_case_of_startup_page",
+      "value": "Implementation case of startup page"
+    },
+    {
+      "name": "advertising_description",
+      "value": "Adaptation of cold start application icons with different resolutions and implementation of launching advertisement pages"
+    },
+    {
+      "name": "skip",
+      "value": "skip"
+    },
+    {
+      "name": "advertising_description_backgroundColor",
+      "value": "rgba(0,0,0,0.3)"
+    }
+  ]
+}

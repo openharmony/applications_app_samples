@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "WindowStartIcon"
+    },
+    {
+      "name": "Implementation_case_of_startup_page",
+      "value": "启动页实现案例"
+    },
+    {
+      "name": "advertising_description",
+      "value": "不同分辨率冷启动应用图标适配和启动广告页的实现"
+    },
+    {
+      "name": "skip",
+      "value": "跳过"
+    },
+    {
+      "name": "advertising_description_backgroundColor",
+      "value": "rgba(0,0,0,0.3)"
+    }
+  ]
+}

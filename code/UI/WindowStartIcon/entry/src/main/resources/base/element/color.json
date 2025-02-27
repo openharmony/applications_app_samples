@@ -1,0 +1,12 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "advertising_backgroundColor",
+      "value": "#f1f3f5"
+    }
+  ]
+}
