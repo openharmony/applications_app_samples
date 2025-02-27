@@ -127,26 +127,26 @@ entry/src/main/ets/
 
     * 调用相关接口函数来实现FA模型中单例PageAbility/多例PageAbility的启动停止以及启动远程PageAbility等功能，以及还实现了使用worker进行线程间通信的功能。
 
-    * 源码链接：[pagePageAbilityFirst.ets](entry\src\main\ets\MainAbility\pages\pagePageAbilityFirst.ets) [pagePageAbilitySecond.ets](entry\src\main\ets\MainAbility\pages\pagePageAbilitySecond.ets) [first.ets](entry\src\main\ets\PageAbilitySingleton\pages\first.ets)  [second.ets](entry\src\main\ets\PageAbilitySingleton\pages\second.ets)   [first.ets](entry\src\main\ets\PageAbilityStandard\pages\first.ets)  [second.ets](entry\src\main\ets\PageAbilityStandard\pages\second.ets)  [worker.ts](entry\src\main\ets\workers\worker.ts)  
+    * 源码链接：[pagePageAbilityFirst.ets](entry/src/main/ets/MainAbility/pages/pagePageAbilityFirst.ets) [pagePageAbilitySecond.ets](entry/src/main/ets/MainAbility/pages/pagePageAbilitySecond.ets) [first.ets](entry/src/main/ets/PageAbilitySingleton/pages/first.ets)  [second.ets](entry/src/main/ets/PageAbilitySingleton/pages/second.ets)   [first.ets](entry/src/main/ets/PageAbilityStandard/pages/first.ets)  [second.ets](entry/src/main/ets/PageAbilityStandard/pages/second.ets)  [worker.ts](entry/src/main/ets/workers/worker.ts)  
 
     * 参考接口：[@ohos.ability.featureAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-ability-featureAbility.md)  [@ohos.worker](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkts/js-apis-worker.md)
   * ServiceAbility组件开发指导：
 
     * 调用相关接口函数来实现FA模型中ServiceAbility的启动和连接等功能。
-    * 源码链接：[pageServiceAbility.ets](entry\src\main\ets\MainAbility\pages\pageServiceAbility.ets)  [service.ts](entry\src\main\ets\ServiceAbility\service.ts) 
+    * 源码链接：[pageServiceAbility.ets](entry/src/main/ets/MainAbility/pages/pageServiceAbility.ets)  [service.ts](entry/src/main/ets/ServiceAbility/service.ts) 
 
     * 参考接口：[@ohos.ability.featureAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-ability-featureAbility.md)
   * DataAbility组件开发指导：
     * 调用相关接口函数来实现FA模型中DataAbility的增删改查等功能。
-    * 源码链接：[pageDataAbility.ets](entry\src\main\ets\MainAbility\pages\pageDataAbility.ets)  [data.ts](entry\src\main\ets\DataAbility\data.ts) 
+    * 源码链接：[pageDataAbility.ets](entry/src/main/ets/MainAbility/pages/pageDataAbility.ets)  [data.ts](entry/src/main/ets/DataAbility/data.ts) 
     * 参考接口：[@ohos.data.dataAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkdata/js-apis-data-ability.md)
   * FA模型与Stage模型应用组件互通指导：
     * 调用相关接口函数来实现FA模型中调用相关接口函数来启动Stage模型中UIAbility的功能。
-    * 源码链接：[pageInterflowFaAndStage.ets](entry\src\main\ets\MainAbility\pages\pageInterflowFaAndStage.ets)  [service.ts](entry\src\main\ets\ServiceAbilityStartUIAbility\service.ts) 
+    * 源码链接：[pageInterflowFaAndStage.ets](entry/src/main/ets/MainAbility/pages/pageInterflowFaAndStage.ets)  [service.ts](entry/src/main/ets/ServiceAbilityStartUIAbility/service.ts) 
     * 参考接口：[@ohos.ability.featureAbility](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-ability-featureAbility.md)
   * FA模型服务卡片开发指导：
     * 调用相关接口函数来实现FA模型中服务卡片的创建，更新及事件等功能。
-    * 源码链接：[form.ts](entry\src\main\ets\FormAbility\form.ts)  [index.css](entry\src\main\js\widget\pages\index\index.css)  [index.hml](entry\src\main\js\widget\pages\index\index.hml)  [index.json](entry\src\main\js\widget\pages\index\index.json) 
+    * 源码链接：[form.ts](entry/src/main/ets/FormAbility/form.ts)  [index.css](entry/src/main/js/widget/pages/index/index.css)  [index.hml](entry/src/main/js/widget/pages/index/index.hml)  [index.json](entry/src/main/js/widget/pages/index/index.json) 
     * 参考接口：[@ohos.app.form.formBindingData](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-form-kit/js-apis-app-form-formBindingData.md) [@ohos.app.form.formInfo](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-form-kit/js-apis-app-form-formInfo.md) [@ohos.app.form.formProvider](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-form-kit/js-apis-app-form-formProvider.md)
 
 ### 相关权限
