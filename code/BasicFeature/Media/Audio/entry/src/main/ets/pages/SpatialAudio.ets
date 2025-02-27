@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2023-2024 Huawei Device Co., Ltd.
+* Copyright (c) 2025 Huawei Device Co., Ltd.
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -65,8 +65,8 @@ struct SpatialAudio {
   @State musicState1: boolean = false;
   @State musicState2: boolean = false;
 
-  @Builder Press2PlayDemo1() {
-    Image($r("app.media.ic_pause_spa"))
+  @Builder press2PlayDemo1() {
+    Image($r('app.media.ic_pause_spa'))
       .height(36)
       .width(36)
       .margin({ right: 16 })
@@ -78,8 +78,8 @@ struct SpatialAudio {
       })
   }
 
-  @Builder Press2PauseDemo1() {
-    Image($r("app.media.ic_play_spa"))
+  @Builder press2PauseDemo1() {
+    Image($r('app.media.ic_play_spa'))
       .height(36)
       .width(36)
       .margin({ right: 16 })
@@ -90,8 +90,8 @@ struct SpatialAudio {
       })
   }
 
-  @Builder Press2PlayDemo2() {
-    Image($r("app.media.ic_pause_spa"))
+  @Builder press2PlayDemo2() {
+    Image($r('app.media.ic_pause_spa'))
       .height(36)
       .width(36)
       .margin({ right: 16 })
@@ -110,8 +110,8 @@ struct SpatialAudio {
       })
   }
 
-  @Builder Press2PauseDemo2() {
-    Image($r("app.media.ic_play_spa"))
+  @Builder press2PauseDemo2() {
+    Image($r('app.media.ic_play_spa'))
       .height(36)
       .width(36)
       .margin({ right: 16 })
@@ -123,8 +123,8 @@ struct SpatialAudio {
 
   }
 
-  @Builder AudioVividIfNotSupport() {
-    Text($r("app.string.5P1_MUSIC"))
+  @Builder audioVividIfNotSupport() {
+    Text($r('app.string.5P1_MUSIC'))
       .fontSize(20)
       .fontWeight(500)
       .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
@@ -138,7 +138,7 @@ struct SpatialAudio {
       .id('5P1_play_btn')
   }
 
-  @Builder AudioVividIfSupport() {
+  @Builder audioVividIfSupport() {
     Text($r('app.string.5P1_MUSIC'))
       .fontSize(20)
       .fontWeight(500)
@@ -146,7 +146,7 @@ struct SpatialAudio {
       .margin({ top: 21, bottom: 21, left: 16.5 })
   }
 
-  @Builder DIYTitle() {
+  @Builder dIYTitle() {
     Row() {
       Text($r('app.string.SPATIAL_AUDIO'))
         .fontWeight(700)
@@ -383,7 +383,7 @@ struct SpatialAudio {
           }
           .hideBackButton(false)
           .titleMode(NavigationTitleMode.Mini)
-          .title(this.DIYTitle())
+          .title(this.dIYTitle())
           .mode(NavigationMode.Stack)
         }
         .height(56)
@@ -395,15 +395,15 @@ struct SpatialAudio {
 
         Row() {
           Row() {
-            Text($r("app.string.2P0_MUSIC"))
+            Text($r('app.string.2P0_MUSIC'))
               .fontSize(20)
               .fontWeight(500)
               .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
               .margin({ top: 21, bottom: 21, left: 16.5 })
             if (!this.musicState1) {
-              this.Press2PlayDemo1();
+              this.press2PlayDemo1();
             } else {
-              this.Press2PauseDemo1();
+              this.press2PauseDemo1();
             }
           }
           .height("100%")
@@ -420,13 +420,13 @@ struct SpatialAudio {
         Row() {
           Row() {
             if (this.supportState === false) {
-              this.AudioVividIfNotSupport();
+              this.audioVividIfNotSupport();
             } else {
-              this.AudioVividIfSupport();
+              this.audioVividIfSupport();
               if (!this.musicState2) {
-                this.Press2PlayDemo2();
+                this.press2PlayDemo2();
               } else {
-                this.Press2PauseDemo2();
+                this.press2PauseDemo2();
               }
             }
           }
