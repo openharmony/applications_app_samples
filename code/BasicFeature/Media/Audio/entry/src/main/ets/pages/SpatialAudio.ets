@@ -70,7 +70,7 @@ struct SpatialAudio {
       .height(36)
       .width(36)
       .margin({ right: 16 })
-      .id'('2P0_play_btn')
+      .id('2P0_play_btn')
       .fillColor('#182431')
       .onClick(async () => {
         this.musicState1 = !this.musicState1;
@@ -187,7 +187,7 @@ struct SpatialAudio {
       let audioDeviceDescriptors: audio.AudioDeviceDescriptors =
         this.audioRoutingManager.getPreferredOutputDeviceForRendererInfoSync(this.audioRendererOptions[0].rendererInfo);
       audioDeviceDescriptors.forEach(audioDeviceDescriptor => {
-        console.info("Device Role:" + audioDeviceDescriptor.deviceRole + ", device Type:" +
+        Logger.info("Device Role:" + audioDeviceDescriptor.deviceRole + ", device Type:" +
         audioDeviceDescriptor.deviceType + ", Macaddress:" + audioDeviceDescriptor.address +
         ", Support:" + audioDeviceDescriptor.spatializationSupported);
       })
