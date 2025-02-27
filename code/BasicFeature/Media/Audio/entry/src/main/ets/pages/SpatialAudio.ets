@@ -152,7 +152,7 @@ struct SpatialAudio {
         .fontWeight(700)
         .fontSize(20)
     }
-    .height("100%")
+    .height('100%')
     .justifyContent(FlexAlign.Center)
   }
 
@@ -200,7 +200,7 @@ struct SpatialAudio {
           Logger.error(`supportStateQuery ,Error: ${JSON.stringify(err)}`);
         }
       } else {
-        Logger.info("Get manager failed.");
+        Logger.info('Get manager failed.');
       }
       return isSpaSupported;
     }
@@ -216,7 +216,7 @@ struct SpatialAudio {
     for (let index = 0; index < 2; index++) {
       try {
         let renderer = await audio.createAudioRenderer(this.audioRendererOptions[index]);
-        Logger.info("Create renderer success");
+        Logger.info('Create renderer success');
         this.audioRenderers.push(renderer);
       } catch (err) {
         Logger.error(`audioRenderer_${index} create ,Error: ${JSON.stringify(err)}`);
@@ -240,7 +240,7 @@ struct SpatialAudio {
     }
     if (this.audioRoutingManager) {
       this.audioRoutingManager.on("preferOutputDeviceChangeForRendererInfo", t_audioRendererInfo, () => {
-        Logger.info("Output device changed");
+        Logger.info('Output device changed');
         this.updateSupportStateUI();
         if (this.audioRenderers[1] && this.audioRenderers[1].state === audio.AudioState.STATE_RUNNING) {
           this.audioRenderers[1].pause();
@@ -308,7 +308,7 @@ struct SpatialAudio {
       if (!this.audioRenderers[index]) {
         break;
       }
-      Logger.info("start write");
+      Logger.info('start write');
       while (i < len) {
         if (this.audioRenderers[index].state === audio.AudioState.STATE_RELEASED) {
           return;
@@ -360,11 +360,11 @@ struct SpatialAudio {
       return;
     }
     this.updateSupportStateUI()
-    Logger.info("Page show");
+    Logger.info('Page show');
   }
 
   onPageHide(): void {
-    Logger.info("Page Hide");
+    Logger.info('Page Hide');
     if (this.audioRenderers[0] && this.audioRenderers[0].state === audio.AudioState.STATE_RUNNING) {
       this.audioRenderers[0].pause();
       this.musicState1 = false;
@@ -406,7 +406,7 @@ struct SpatialAudio {
               this.press2PauseDemo1();
             }
           }
-          .height("100%")
+          .height('100%')
           .width(336)
           .backgroundColor('#FFFFFF')
           .justifyContent(FlexAlign.SpaceBetween)
@@ -430,7 +430,7 @@ struct SpatialAudio {
               }
             }
           }
-          .height("100%")
+          .height('100%')
           .width(336)
           .backgroundColor('#FFFFFF')
           .justifyContent(FlexAlign.SpaceBetween)
