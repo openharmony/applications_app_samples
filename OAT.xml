@@ -103,6 +103,11 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="network/Bluetooth/entry/src/main/java/ohos/samples/bluetooth/adapter/" desc="Not contains 3rd code，license file is not required in this subdirectory."/>
             </filefilter>
             <filefilter name="binaryFileTypePolicyFilter" desc="Filters for binary file policies" >
+				<filteritem type="filepath" name="code/UI/ListBeExchange/ListExchange/src/main/resources/base/media/list_exchange.gif" desc="code/UI/ListExchange"/>
+				<filteritem type="filepath" name="code/UI/ListBeExchange/entry/src/main/resources/base/media/startIcon.png" desc="code/UI/ListExchange"/>
+				<filteritem type="filepath" name="code/UI/ListBeExchange/entry/src/main/resources/base/media/background.png" desc="code/UI/ListExchange"/>
+				<filteritem type="filepath" name="code/UI/ListBeExchange/AppScope/resources/base/media/app_icon.png" desc="code/UI/ListExchange"/>
+				<filteritem type="filepath" name="code/UI/ListBeExchange/entry/src/main/resources/base/media/foreground.png" desc="code/UI/ListExchange"/>
 			    <filteritem type="filepath" name="code/UI/KeyboardAvoid/casesfeature/keyboardavoid/keyboard_avoid.gif" desc="Provide by code/UI/KeyboardAvoid"/>
 				<filteritem type="filepath" name="code/UI/KeyboardAvoid/entry/src/main/resources/base/media/startIcon.png" desc="Provide by code/UI/KeyboardAvoid"/>
 				<filteritem type="filepath" name="code/UI/KeyboardAvoid/entry/src/main/resources/base/media/background.png" desc="Provide by code/UI/KeyboardAvoid"/>
@@ -2079,7 +2084,13 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/BasicFeature/Media/VideoSwitching/entry/src/main/resources/rawfile/video_screen_direction_switching1.MP4" desc="Provide by code/BasicFeature/Media/VideoSwitching"/>
 				<filteritem type="filepath" name="code/BasicFeature/Media/VideoSwitching/entry/src/main/resources/base/media/video_screen_direction_switching_video.MP4" desc="Provide by code/BasicFeature/Media/VideoSwitching"/>
 				<filteritem type="filepath" name="code/BasicFeature/Media/VideoSwitching/entry/src/main/resources/rawfile/video_screen_direction_switching2.MP4" desc="Provide by code/BasicFeature/Media/VideoSwitching"/>
-			</filefilter>
+				<filteritem type="filepath" name="code/UI/ListBeExchange/ListExchange/src/main/resources/base/media/list_exchange_ic_public_cards_filled.svg" desc="code/UI/ListExchange"/>
+				<filteritem type="filepath" name="code/UI/ListBeExchange/ListExchange/src/main/resources/base/media/list_exchange_ic_public_cards_filled2.svg" desc="code/UI/ListExchange"/>
+				<filteritem type="filepath" name="code/UI/ListBeExchange/ListExchange/src/main/resources/base/media/list_exchange_ic_public_cards_filled3.svg" desc="code/UI/ListExchange"/>
+				<filteritem type="filepath" name="code/UI/ListBeExchange/ListExchange/src/main/resources/base/media/list_exchange_ic_public_cards_filled4.svg" desc="code/UI/ListExchange"/>
+				<filteritem type="filepath" name="code/UI/ListBeExchange/ListExchange/src/main/resources/base/media/list_exchange_ic_public_drawer.svg" desc="code/UI/ListExchange"/>
+				<filteritem type="filepath" name="code/UI/ListBeExchange/ListExchange/src/main/resources/base/media/list_exchange_icon_delete.svg" desc="code/UI/ListExchange"/>
+            </filefilter>
         </filefilterlist>
     </oatconfig>
 </configuration>

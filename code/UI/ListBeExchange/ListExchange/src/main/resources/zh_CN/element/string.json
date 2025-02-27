@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "list_exchange_deduction_sort",
+      "value": "扣款排序"
+    },
+    {
+      "name": "list_exchange_custom_sort",
+      "value": "自定义排序"
+    },
+    {
+      "name": "list_exchange_operation_text",
+      "value": "长按拖动/左滑删除"
+    }
+  ]
+}
