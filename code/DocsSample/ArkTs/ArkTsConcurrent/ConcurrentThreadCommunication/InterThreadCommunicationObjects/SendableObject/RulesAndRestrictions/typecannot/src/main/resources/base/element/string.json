@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "TypecannotAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "TypecannotAbility_label",
+      "value": "RulesAndRestrictions"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "FileManagement"
+    },
+    {
+      "name": "Dataflow",
+      "value": "Dataflow"
+    },
+    {
+      "name": "createWriteReadfile",
+      "value": "WriteReadFile"
+    },
+    {
+      "name": "copyDocument",
+      "value": "copyDocument"
+    },
+    {
+      "name": "ReadFile",
+      "value": "ReadFile"
+    },
+    {
+      "name": "GetFileList",
+      "value": "GetFileList"
+    },
+    {
+      "name": "getFileSystemSize",
+      "value": "getFileSystemSize"
+    },
+    {
+      "name": "appStorageSpaceSize",
+      "value": "appStorageSpaceSize"
+    },
+    {
+      "name": "getShareFile",
+      "value": "getShareFile"
+    },
+    {
+      "name": "hash",
+      "value": "hash"
+    }
+  ]
+}

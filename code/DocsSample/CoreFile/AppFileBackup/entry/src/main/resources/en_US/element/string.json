@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "AppBackup"
+    },
+    {
+      "name": "capabilityDocumentation",
+      "value": "capabilityDocumentation"
+    },
+    {
+      "name": "applicationTriggersDataBackup",
+      "value": "applicationTriggersDataBackup"
+    },
+    {
+      "name": "applicationTriggersDataReStore",
+      "value": "applicationTriggersDataRestore"
+    },
+    {
+      "name": "releaseBackup",
+      "value": "releaseBackup"
+    },
+    {
+      "name": "deleteFile",
+      "value": "deleteFile"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "allowToBackupRestore": true,
+  "includes": [
+    "data/app/el2/100/base/com.example.filesample/haps/entry/files"
+  ],
+  "excludes": [
+    ""
+  ],
+  "fullBackupOnly": false,
+  "restoreDeps": ""
+}

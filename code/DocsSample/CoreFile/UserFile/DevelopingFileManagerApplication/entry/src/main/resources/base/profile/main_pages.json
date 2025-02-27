@@ -1,0 +1,7 @@
+{
+  "src": [
+    "pages/Index",
+    "filemanager/pages/FileManagerApplication",
+    "filemanager/pages/ListeningForDeviceOnline"
+  ]
+}

@@ -86,22 +86,21 @@ WindowStartIcon
 |---pages                                           
 |   |---AdvertisingPage.ets                       // 开屏广告页面        
 |   |---Index.ets                                 // 首页页面              
-|---resources                                     // 资源文件管理                               
-|   |---pages                                             
-|       |---base                                  // 默认资源   
-|       |---en_US                                 // 英文资源 
-|       |---zh_CN                                 // 中文资源 
-|       |---sdpi                                  // 小屏dpi图标 
-|       |---mdpi                                  // 中屏dpi图标
-|       |---ldpi                                  // 大屏dpi图标
-|       |---xldpi                                 // 特大屏dpi图标 
-|       |---xxldpi                                // 超大屏dpi图标
-|       |---xxxldpi                               // 超特大屏dpi图标      
+|---resources                                     // 资源文件管理                                                                          
+|   |---base                                      // 默认资源   
+|   |---en_US                                     // 英文资源 
+|   |---zh_CN                                     // 中文资源 
+|   |---sdpi                                      // 小屏dpi图标 
+|   |---mdpi                                      // 中屏dpi图标
+|   |---ldpi                                      // 大屏dpi图标
+|   |---xldpi                                     // 特大屏dpi图标 
+|   |---xxldpi                                    // 超大屏dpi图标
+|   |---xxxldpi                                   // 超特大屏dpi图标      
 ```
 
 ### 参考资料
 
-[资源分类与访问](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/resource-categories-and-access-V5)
+[资源分类与访问](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/quick-start/resource-categories-and-access.md)
 
 ### 依赖
 不涉及
@@ -109,7 +108,7 @@ WindowStartIcon
 ### 约束与限制
 1.本示例仅支持标准系统上运行，支持设备：RK3568。
 
-2.本示例已适配API version 14（5.0.2.301）版本SDK。
+2.本示例已适配API version 12（5.0.0.70）版本SDK。
 
 3.本示例需要使用DevEco Studio NEXT Release（Build Version: 5.0.3.900）及以上版本才可编译运行。
 

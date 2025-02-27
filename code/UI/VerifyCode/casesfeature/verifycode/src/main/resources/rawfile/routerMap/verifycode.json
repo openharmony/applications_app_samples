@@ -1,0 +1,10 @@
+{
+  "routerMap": [
+    {
+      "name": "verifycode/VerifyCodeView",
+      "pageModule": "verifycode",
+      "pageSourceFile": "src/main/ets/generated/RouterBuilder.ets",
+      "registerFunction": "verifyCodeViewRegister"
+    }
+  ]
+}

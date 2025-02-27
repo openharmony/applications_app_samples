@@ -1,0 +1,24 @@
+{
+  "integer": [
+    {
+      "name": "list_exchange_icon_size",
+      "value": 30
+    },
+    {
+      "name": "list_exchange_title_height",
+      "value": 50
+    },
+    {
+      "name": "list_exchange_list_height",
+      "value": 210
+    },
+    {
+      "name": "list_exchange_delete_icon_margin_right",
+      "value": 12
+    },
+    {
+      "name": "list_exchange_shadow_radius",
+      "value": 70
+    }
+  ]
+}

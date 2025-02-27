@@ -22,6 +22,13 @@ const TAG: string = '[Sample_WindowStartIcon]';
 const BUNDLE = 'WindowStartIcon_';
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
+// 资源本地化
+async function getResourceString<T extends Resource>(resource: T): Promise<string> {
+  let manage = abilityDelegator.getAppContext().resourceManager;
+  let text = await manage.getStringValue(resource);
+  return text;
+}
+
 export default function abilityTest() {
   describe('ActsAbilityTest', () => {
     /**
@@ -31,7 +38,7 @@ export default function abilityTest() {
       Logger.info(`${BUNDLE}StartAbility_001 begin`);
       try {
         await abilityDelegator.startAbility({
-          bundleName: 'ohos.samples.windowstarticon',
+          bundleName: 'com.samples.windowstarticon',
           abilityName: 'EntryAbility'
         })
         done();
@@ -50,7 +57,7 @@ export default function abilityTest() {
       Logger.info('AdvertingShowTest begin');
       let driver = Driver.create();
       await driver.delayMs(1000);
-      await driver.assertComponentExist(ON.text("跳过"));
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.skip'))));
       await driver.delayMs(1000);
       Logger.info('AdvertingShowTest end');
       done();

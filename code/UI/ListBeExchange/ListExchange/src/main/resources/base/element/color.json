@@ -1,0 +1,12 @@
+{
+  "color": [
+    {
+      "name": "list_exchange_background_color",
+      "value": "#F3F3F3"
+    },
+    {
+      "name": "list_exchange_box_shadow",
+      "value": "#ffd2d2d2"
+    }
+  ]
+}

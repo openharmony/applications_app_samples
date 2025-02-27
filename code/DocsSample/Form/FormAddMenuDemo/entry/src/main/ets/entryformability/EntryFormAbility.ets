@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2024 Huawei Device Co., Ltd.
+* Copyright (C) 2024-2025 Huawei Device Co., Ltd.
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -19,10 +19,7 @@ import { Want } from '@kit.AbilityKit';
 export default class EntryFormAbility extends FormExtensionAbility {
   onAddForm(want: Want) {
     // Called to return a FormBindingData object.
-    let formData: Record<string, string> = {
-      'city': '未知',
-      'time': new Date().toLocaleTimeString()
-    };
+    let formData: Record<string, string> = {};
     return formBindingData.createFormBindingData(formData);
   }
 

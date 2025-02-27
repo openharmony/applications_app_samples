@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "list_exchange_deduction_sort",
+      "value": "deduction sort"
+    },
+    {
+      "name": "list_exchange_custom_sort",
+      "value": "custom sort"
+    },
+    {
+      "name": "list_exchange_operation_text",
+      "value": "operation text"
+    }
+  ]
+}

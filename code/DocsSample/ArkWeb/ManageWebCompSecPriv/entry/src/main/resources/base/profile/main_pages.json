@@ -1,0 +1,17 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/LocCrossOriginResAccSol_one",
+    "pages/LocCrossOriginResAccSol_two",
+    "pages/AddIntTrackPreventByPassList",
+    "pages/ClearIntTrackPreventByPassList",
+    "pages/EnableIntTrackPrevent",
+    "pages/IsIntTrackPreventEnabled",
+    "pages/OnIntTrackPreventResult",
+    "pages/RemoveIntTrackPreventByPassList",
+    "pages/EnablingAdsBlocking",
+    "pages/DisAdsBlockSpecDomPages_one",
+    "pages/DisAdsBlockSpecDomPages_two",
+    "pages/CollectingAdsBlockingInformation"
+  ]
+}

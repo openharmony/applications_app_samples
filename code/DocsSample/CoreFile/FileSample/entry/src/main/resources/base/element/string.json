@@ -1,0 +1,52 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "FileManagement"
+    },
+    {
+      "name": "Dataflow",
+      "value": "跨设备数据流转"
+    },
+    {
+      "name": "createWriteReadfile",
+      "value": "读写文件"
+    },
+    {
+      "name": "copyDocument",
+      "value": "文件复制"
+    },
+    {
+      "name": "ReadFile",
+      "value": "读取文件内容"
+    },
+    {
+      "name": "GetFileList",
+      "value": "获取文件列表"
+    },
+    {
+      "name": "getFileSystemSize",
+      "value": "获取文件系统数据分区剩余空间大小"
+    },
+    {
+      "name": "appStorageSpaceSize",
+      "value": "获取当前应用的存储空间大小"
+    },
+    {
+      "name": "getShareFile",
+      "value": "读取分享文件"
+    },
+    {
+      "name": "hash",
+      "value": "hash计算"
+    }
+  ]
+}

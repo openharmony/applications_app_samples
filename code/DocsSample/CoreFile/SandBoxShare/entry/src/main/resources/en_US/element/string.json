@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "ShareFile"
+    },
+    {
+      "name": "ShareFileBasedOnName",
+      "value": "ShareFileBasedOnName"
+    },
+    {
+      "name": "CreateFileTest",
+      "value": "CreateFileTest"
+    },
+    {
+      "name": "getFileList",
+      "value": "GetFileList"
+    },
+    {
+      "name": "ReadFile",
+      "value": "ReadFile"
+    },
+    {
+      "name": "FileShare",
+      "value": "FileShare"
+    },
+    {
+      "name": "getShareFile",
+      "value": "getShareFile"
+    }
+  ]
+}

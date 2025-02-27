@@ -54,7 +54,7 @@ struct TransitionsAnimation {
             .fontSize($r('app.integer.advertising_description_skip_font_size'))
             .textAlign(TextAlign.Center)
             .fontColor(Color.White)
-            .margin({ left: $r('app.integer.skip_button_margin_left') })
+            .margin({ left: $r('app.integer.skip_text_margin_left') })
           Text(`${this.pageCountDown}`)
             .fontSize($r('app.integer.advertising_description_skip_font_size'))
             .textAlign(TextAlign.Center)
@@ -72,8 +72,8 @@ struct TransitionsAnimation {
           router.replaceUrl({ url: 'pages/Index' });
         })
       }
-      .width("100%")
-      .margin({top: app.integer.skip_button_margin_top,right: app.integer.skip_button_margin_right})
+      .width('100%')
+      .margin({top: $r('app.integer.skip_button_margin_top'),right: $r('app.integer.skip_button_margin_right')})
       .justifyContent(FlexAlign.End)
 
       // 广告页动图和描述
