@@ -70,8 +70,8 @@ struct SpatialAudio {
       .height(36)
       .width(36)
       .margin({ right: 16 })
-      .id("2P0_play_btn")
-      .fillColor("#182431")
+      .id'('2P0_play_btn')
+      .fillColor('#182431')
       .onClick(async () => {
         this.musicState1 = !this.musicState1;
         await this.playAudio(0);
@@ -83,7 +83,7 @@ struct SpatialAudio {
       .height(36)
       .width(36)
       .margin({ right: 16 })
-      .id("2P0_pause_btn")
+      .id('2P0_pause_btn')
       .onClick(async () => {
         this.musicState1 = !this.musicState1;
         await this.pauseAudio(0);
@@ -95,8 +95,8 @@ struct SpatialAudio {
       .height(36)
       .width(36)
       .margin({ right: 16 })
-      .id("5P1_play_btn")
-      .fillColor("#182431")
+      .id('5P1_play_btn')
+      .fillColor('#182431')
       .onClick(async () => {
         if (this.spatializationEnabled === true) {
           this.musicState2 = !this.musicState2;
@@ -115,7 +115,7 @@ struct SpatialAudio {
       .height(36)
       .width(36)
       .margin({ right: 16 })
-      .id("5P1_pause_btn")
+      .id('5P1_pause_btn')
       .onClick(async () => {
         this.musicState2 = !this.musicState2;
         await this.pauseAudio(1);
