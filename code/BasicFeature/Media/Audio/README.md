@@ -163,7 +163,7 @@ library/
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568；
 2. 本示例仅支持API16版本SDK，SDK版本号(API Version 16 Release),镜像版本号(5.1Release)；
-3. 本示例需要使用DevEco Studio 版本号(4.0Release)才可编译运行；
+3. 本示例需要使用DevEco Studio 版本号(5.0Release)才可编译运行；
 
 ### 下载
 
