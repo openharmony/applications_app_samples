@@ -131,7 +131,7 @@ struct SpatialAudio {
       .fontColor(Color.Grey)
       .margin({ top: 21, bottom: 21, left: 16.5 })
 
-    Image($r("app.media.ic_pause_spa"))
+    Image($r('app.media.ic_pause_spa'))
       .height(36)
       .width(36)
       .margin({ right: 16 })
