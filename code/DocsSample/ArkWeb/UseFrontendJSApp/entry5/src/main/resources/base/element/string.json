@@ -1,0 +1,29 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "Entry5Ability_desc",
+      "value": "description"
+    },
+    {
+      "name": "Entry5Ability_label",
+      "value": "UseFrontendJSApp"
+    },
+    {
+      "name": "H5_Side_Message_Display_From_App",
+      "value": "H5侧接收到应用侧发送消息展示"
+    },
+    {
+      "name": "App_Side_Button",
+      "value": "应用侧按钮"
+    },
+    {
+      "name": "H5_Side_Send_Button",
+      "value": "H5侧发送按钮"
+    }
+
+  ]
+}

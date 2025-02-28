@@ -1,0 +1,14 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/JavaScriptProxy",
+    "pages/RegisterJavaScriptProxy",
+    "pages/Promise_one",
+    "pages/Promise_two",
+    "pages/UsageOfComplexTypes_one",
+    "pages/UsageOfComplexTypes_two",
+    "pages/UsageOfComplexTypes_three",
+    "pages/UsageOfComplexTypes_four",
+    "pages/UsageOfComplexTypes_five"
+  ]
+}
