@@ -1,0 +1,39 @@
+<!--/*
+* Copyright (c) 2025 Huawei Device Co., Ltd.
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/-->
+
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<body>
+<button type='button' onclick='callArkTS()'>Click Me!</button>
+<h1 id='text'>这是一个测试信息，默认字体为黑色，调用runJavaScript方法后字体为绿色，调用runJavaScriptCodePassed方法后字体为红色</h1>
+<script>
+    // 调用有参函数时实现。
+    let param = 'param: JavaScript Hello World!';
+    function htmlTest(param) {
+        document.getElementById('text').style.color = 'green';
+        console.log(param);
+    }
+    // 调用无参函数时实现。
+    function htmlTest() {
+        document.getElementById('text').style.color = 'green';
+    }
+    // Click Me！触发前端页面callArkTS()函数执行JavaScript传递的代码。
+    function callArkTS() {
+        changeColor();
+    }
+</script>
+</body>
+</html>

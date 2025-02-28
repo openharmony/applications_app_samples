@@ -1,0 +1,138 @@
+<!--/*
+* Copyright (c) 2025 Huawei Device Co., Ltd.
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/-->
+
+<!DOCTYPE html>
+<html lang='en-gb'>
+<body>
+<h1>etsRunJavaScriptExt测试demo</h1>
+<h1 id='h1'></h1>
+<h3 id='msg'>Receive string:</h3>
+<h3 id='msg2'>Receive arraybuffer:</h3>
+
+</body>
+<script type='text/javascript'>
+    let h5Port;
+
+    window.addEventListener('message', function (event) {
+        if (event.data === 'init_web_messageport') {
+            const port = event.ports.at(0); // 1. 保存从应用侧发送过来的端口。
+            if (port) {
+                console.log('hwd In html got message');
+                h5Port = port;
+                port.onmessage = function (event) {
+                    console.log('hwd In html got message');
+                    // 2. 接收应用侧发送过来的消息.
+                    let result = event.data;
+                    let typeS = typeof (result);
+                    switch (typeS) {
+                        case 'object':
+                            if (result instanceof ArrayBuffer) {
+                                typeS = 'ArrayBuffer';
+                                let view = new Uint8Array(result);
+                                const decoder = new TextDecoder('utf-8');
+                                result = decoder.decode(result);
+                            } else if (result instanceof Error) {
+                                typeS = 'Error';
+                            } else if (result instanceof Array) {
+                                typeS = 'Array';
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                    console.log('H5 recv type: ' + typeS + '\nH5 recv result: ' + result);
+                    document.getElementById('msg').innerHTML = 'recv type: ' + typeS;
+                    document.getElementById('msg2').innerHTML = 'recv value: ' + result;
+                };
+                h5Port.onmessageerror = (event) => {
+                    console.error(`hwd In html Error receiving message: ${event}`);
+                };
+            }
+        }
+    });
+    window.onerror = function(message, url, line, column, error) {
+      console.log('JavaScript Error: ' + message + ' on line ' + line + ' in ' + url);
+      document.getElementById('h1').innerHTML = '执行函数失败';
+    };
+
+    // 3. 使用h5Port向应用侧发送消息。
+    function postStringToApp() {
+        if (h5Port) {
+            h5Port.postMessage('send string from H5');
+        } else {
+            console.error('In html h5port is null, please init first');
+        }
+    }
+    function postBufferToApp() {
+        if (h5Port) {
+            const str = 'Hello, World!';
+            const encoder = new TextEncoder();
+            const uint8Array = encoder.encode(str);
+            h5Port.postMessage(uint8Array.buffer);
+        } else {
+            console.error('In html h5port is null, please init first');
+        }
+    }
+
+    function postJsonToApp() {
+        if (h5Port) {
+            let e = {'json': 'json'};
+            h5Port.postMessage(e);
+        } else {
+            console.error('In html h5port is null, please init first');
+        }
+    }
+
+    function postArrayStringToApp() {
+        if (h5Port) {
+            h5Port.postMessage(['1', '2', '3']);
+        } else {
+            console.error('In html h5port is null, please init first');
+        }
+    }
+
+    function postNumberToApp() {
+        if (h5Port) {
+            h5Port.postMessage(123);
+        } else {
+            console.error('In html h5port is null, please init first');
+        }
+    }
+    class MyClass {
+      constructor() {
+        // 构造器
+        this.myProperty = 'Hello, World!';
+      }
+
+      myMethod() {
+        // 实例方法
+        console.log(this.myProperty);
+      }
+
+      static myStaticMethod() {
+        // 静态方法
+        console.log('This is a static method.');
+      }
+    }
+    function postObjectToApp() {
+        if (h5Port) {
+            h5Port.postMessage(new MyClass());
+        } else {
+            console.error('In html h5port is null, please init first');
+        }
+    }
+
+</script>
+</html>
