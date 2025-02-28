@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例通过使用[@ohos.display](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-display.md) 接口以及Canvas组件来实现一个简单的时钟应用。
+本示例通过使用[@ohos.display](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-display.md) 接口以及Canvas组件来实现一个简单的时钟应用。
 
 ### 效果预览
 

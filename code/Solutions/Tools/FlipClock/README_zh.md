@@ -62,19 +62,26 @@ entry/src/main/ets/
     import data_preferences from '@ohos.data.preferences';
     import reminderAgentManager from '@ohos.reminderAgentManager';
   * b) 页面从data.preferences获取添加的闹钟数据，通过Scroll()标签渲染，在标签row内，设置delete按钮，如果删除就调用以下函数取消系统时钟
+  ```typescript
     import reminderAgentManager from '@ohos.reminderAgentManager';
     reminderAgentManager.cancelReminder;
+  ```
     3、倒计时
   * a) 使用aboutToAppear()初始化界面布局，通过this.listener.on('change', portraitFunc)添加监听，
   * b) 点击开始按钮触发以下函数开始计时，并修改按钮的样式为暂停，并将running=true，触发canvas样式
+  ```typescript
     countInSec = pickerH * 3600 + pickerM * 60 + pickerS; //总计时计算
     this.timer = setInterval(this.timerCountDown.bind(this), 1000); //时间计算
-  * c) 点击暂停按钮，时间暂停，并将按钮样式修改为开始  
+  ```
+  * c) 点击暂停按钮，时间暂停，并将按钮样式修改为开始
+  ```typescript
     clearInterval(this.timer);
     this.isRunning = true;
     this.isPausing = true;
     this.startImg = $r('app.media.start');
-  * d) 点击reset计时重置，将所有数据初始化  
+  ```
+  * d) 点击reset计时重置，将所有数据初始化
+  ```typescript
     clearInterval(this.timer);
     this.isRunning = false;
     this.isPausing = false;
@@ -89,6 +96,7 @@ entry/src/main/ets/
     pickerS = 0;
     this.startImg = $r('app.media.start');
     this.resetImg = $r('app.media.resetccc');
+  ```
 
 ### 相关权限
 
