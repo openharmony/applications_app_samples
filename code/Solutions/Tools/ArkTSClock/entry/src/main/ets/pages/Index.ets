@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -27,6 +27,7 @@ const UPDATE_DELAY: number = 1000;
 struct Clock {
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  @State canvasReady: boolean = false // canvas是否准备好
   @State canvasWidth: number = 300 // 300是表盘默认大小
   private radius: number = 150 // 默认表盘半径
   private intervalId: number = 0
@@ -59,8 +60,11 @@ struct Clock {
 
   onPageShow() {
     Logger.info(TAG, `onPageShow`);
-    this.updateTime();
-    this.intervalId = setInterval(this.updateTime, UPDATE_DELAY);
+    if (this.canvasReady) {
+      this.updateTime();
+      this.intervalId = setInterval(this.updateTime, UPDATE_DELAY);
+      this.intervalIdGC = setInterval(forceGC, DELAY); // 2小时GC一次
+    }
   }
 
   // 获取设备宽高计算表盘大小
@@ -212,6 +216,8 @@ struct Clock {
         .height(this.canvasWidth + HEIGHT_ADD)
         .onReady(() => {
           Logger.info(TAG, `onReady`)
+          clearInterval(this.intervalId)
+          clearInterval(this.intervalIdGC)
           this.updateTime()
           this.intervalId = setInterval(this.updateTime, 1000)
           this.intervalIdGC = setInterval(forceGC, DELAY); // 2小时GC一次
@@ -223,6 +229,7 @@ struct Clock {
 
   onPageHide() {
     Logger.info(TAG, `onPageHide`)
+    this.canvasReady = true
     clearInterval(this.intervalId)
     clearInterval(this.intervalIdGC);
   }
