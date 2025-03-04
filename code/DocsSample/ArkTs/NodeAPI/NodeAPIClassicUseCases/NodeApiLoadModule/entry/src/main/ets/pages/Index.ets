@@ -25,14 +25,14 @@ struct Index {
     Column() {
       Text(this.message)
         .fontSize(30)
-      Button($r('app.string.loadModuleSystem))
+      Button($r('app.string.loadModuleSystem'))
         .margin(3)
         .width('70%')
         .onClick(() => {
           testNapi.loadModule();
           this.message = 'loadModuleSystem success';
         })
-      Button($r('app.string.loadModuleFile))
+      Button($r('app.string.loadModuleFile'))
         .margin(3)
         .width('70%')
         .onClick(() => {

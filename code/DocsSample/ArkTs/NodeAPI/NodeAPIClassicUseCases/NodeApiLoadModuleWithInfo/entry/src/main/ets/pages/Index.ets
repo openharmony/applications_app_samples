@@ -30,37 +30,37 @@ struct Index {
       Text(this.message)
         .fontSize(25)
         .fontWeight(FontWeight.Bolder)
-      Button($r('app.string.loadModuleFile))
+      Button($r('app.string.loadModuleFile'))
         .width('70%')
         .onClick(() => {
           napiFile.loadModule();
           this.message = 'loadModuleFile success';
         })
-      Button($r('app.string.loadModuleHarName))
+      Button($r('app.string.loadModuleHarName'))
         .width('70%')
         .onClick(() => {
           napiHar.loadModule();
           this.message = 'loadModuleHarName success';
         })
-      Button($r('app.string.loadModuleRemoteHar))
+      Button($r('app.string.loadModuleRemoteHar'))
         .width('70%')
         .onClick(() => {
           napiRemoteHar.loadModule();
           this.message = 'loadModuleRemoteHar success';
         })
-      Button($r('app.string.loadModuleAPI))
+      Button($r('app.string.loadModuleAPI'))
         .width('70%')
         .onClick(() => {
           napiAPI.loadModule();
           this.message = 'loadModuleAPI success';
         })
-      Button($r('app.string.loadModuleNative))
+      Button($r('app.string.loadModuleNative'))
         .width('70%')
         .onClick(() => {
           testNapi.loadModule();
           this.message = 'loadModuleNative success';
         })
-      Button($r('app.string.loadModuleHarToHar))
+      Button($r('app.string.loadModuleHarToHar'))
         .width('70%')
         .onClick(() => {
           tests();

@@ -30,7 +30,7 @@ struct Index {
         Text(this.message)
           .fontSize(30)
           .fontWeight(FontWeight.Bold)
-        Button($r('app.string.AsyncWorkPromise))
+        Button($r('app.string.AsyncWorkPromise'))
           .margin(3)
           .onClick(() => {
             testNapi.asyncWork(1024).then((result) => {
@@ -38,7 +38,7 @@ struct Index {
               this.message = 'result is ' + result.toString();
             });
           })
-        Button($r('app.string.AsyncWorkCallback))
+        Button($r('app.string.AsyncWorkCallback'))
           .margin(3)
           .onClick(() => {
             nativeModule.asyncWork(num1, num2, (result) => {
