@@ -14,13 +14,13 @@
 |-----------------------------------------|----------------------------------------|----------------------------------------|----------------------------------------|
 | ![PresetEffect](screenshots/device/PresetEffect.jpg) | ![RealtimeEffect](screenshots/device/RealtimeEffect.jpg) | ![NormalCapturer](screenshots/device/normal_capturer.jpg) | ![ParallelCapturer](screenshots/device/parallel_capturer.jpg) |
 
-| 音量组件页面                                             | 音量组件页面-<br>音量面板                                                     |
-|----------------------------------------------------|---------------------------------------------------------------------|
-| ![VolumePanel](screenshots/device/VolumePanel.png) | ![VolumePanel](screenshots/device/VolumePanel_ChangeVolumLevel.png) |
+| 音量组件页面                                             | 音量组件页面-<br>音量面板                                                     | 空间音频页面                                           |
+|----------------------------------------------------|---------------------------------------------------------------------|---------------------------------------------------------------------|
+| ![VolumePanel](screenshots/device/VolumePanel.png) | ![VolumePanel](screenshots/device/VolumePanel_ChangeVolumLevel.png) | ![SpatialAudio](screenshots/device/SpatialAudio.jpg) |
 
 使用说明
 
-注意：6，7，8是连续的串行操作，不是并行的
+注意：6，7，8是连续的串行操作，不是并行的。空间音频需要在具体路径上添加pcm文件。
 
 1. 弹出麦克风权限访问提示框，点击“允许”
 2. 在主界面点击“发声设备查询与选择”按钮，进入发声设备查询与选择页面
@@ -60,6 +60,19 @@
 36. 在主界面点击“音量组件”按钮，进入音量组件页面
 37. 在音量组件页面，点击“音量+”或“音量-”按钮，弹出音量面板
 38. 在音量组件页面，点击左上方返回图标，回到主页
+39. 在主界面点击“空间音频”按钮，进入空间音频页面
+40. 若本地没有音频资源，可主动push音频文件到本地媒体库路径：
+```
+hdc file send 2p0.pcm data/app/el2/100/base/com.samples.audio/haps/entry/files/
+hdc file send 5p1.pcm data/app/el2/100/base/com.samples.audio/haps/entry/files/
+```
+41. 在空间音频页面，点击“2.0音乐示例”播放器，开始播放立体声音源
+42. 在空间音频页面，当设备不支持空间音频时，“5.0音乐示例”播放器置灰
+43. 在空间音频页面，当设备支持空间音频时，“5.0音乐示例”播放器亮起，点击出现弹窗提示“请开启空间音频”
+44. 在空间音频页面，当设备支持空间音频且空间音频开关已开启时，点击“5.0音乐示例”播放器，开始播放AudioVivid音源
+45. 在空间音频页面，当设备支持空间音频且空间音频开关被打开时，出现弹窗提示“空间音频已开启”
+46. 在空间音频页面，当设备支持空间音频且空间音频开关被关闭时，出现弹窗提示“空间音频已关闭”
+
 
 ### 工程目录
 
@@ -74,6 +87,7 @@ entry/src/main/ets/
 |---|---NormalCapturer.ets                  //音频录制-普通录制
 |---|---ParallelCapturer.ets                //音频录制-并行录制
 |---|---VolumePanel.ets                     //音量组件页面
+|---|---SpatialAudio.ets                    //空间音频页面
 library/
 |---Logger.ts                               //日志打印封装
 ```
@@ -129,12 +143,22 @@ library/
 * 音量组件功能都封装在VolumePanel,源码参考：[VolumePanel.ets](entry/src/main/ets/pages/VolumePanel.ets)
     * 调用AVVolumePanel组件创建音量面板,其中参数volumeLevel属于number类型,用于设置设备音量;参数volumeParameter属于AVVolumePanelParameter类型,用于设置音量面板的自定义参数
     * 点击”音量+”或”音量-”按钮,会传入不同的volumeLevel，从而弹出音量面板
+* 空间音频功能都封装在SpatialAudio,源码参考：[SpatialAudio.ets](entry/src/main/ets/pages/SpatialAudio.ets)
+    * 调用audioRoutingManager.getPreferredOutputDeviceForRendererInfoSync(rendererInfo)获取当前发声设备
+    * 使用audioDeviceDescriptor.SpatializationSupported属性获取设备是否支持空间音频，不支持时“5.0音乐播放示例”将被置灰
+    * 调用isSpatializationEnabledForCurrentDevice()接口查询当前发声设备空间音频开关状态
+    * 调用on("spatializationEnabledChangeForCurrentDevice")接口订阅当前发声设备空间音频空间音频开关状态变化事件
+    * 调用off("spatializationEnabledChangeForCurrentDevice")接口取消订阅当前发声设备空间音频空间音频开关状态变化事件
 
 ### 相关权限
 
 音频录制涉及的权限包括：
 
 1.允许应用使用麦克风：[ohos.permission.MICROPHONE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionmicrophone)
+
+空间音频涉及的权限包括：
+
+1.允许应用使用蓝牙：[ohos.permission.BLUETOOTH](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionuse_bluetooth)
 
 ### 依赖
 
@@ -143,8 +167,8 @@ library/
 ### 约束与限制
 
 1. 本示例仅支持标准系统上运行，支持设备：RK3568；
-2. 本示例仅支持API10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0Release)；
-3. 本示例需要使用DevEco Studio 版本号(4.0Release)才可编译运行；
+2. 本示例仅支持API16版本SDK，SDK版本号(API Version 16 Release),镜像版本号(5.1Release)；
+3. 本示例需要使用DevEco Studio 版本号(5.0Release)才可编译运行；
 
 ### 下载
 

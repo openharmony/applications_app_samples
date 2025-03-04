@@ -30,8 +30,8 @@ struct Index {
         .width(174)
         .height(188)
         .borderRadius(30)
-        .onClick(async() => {
-          await router.pushUrl({ url:'pages/PreferOutputDevice' });
+        .onClick(async () => {
+          await router.pushUrl({ url: 'pages/PreferOutputDevice' });
         });
 
         Column() {
@@ -43,7 +43,7 @@ struct Index {
         .borderRadius(30)
         .width(174)
         .height(188)
-        .onClick(async() => {
+        .onClick(async () => {
           await router.pushUrl({ url: 'pages/Focus' });
         });
       }
@@ -78,6 +78,8 @@ struct Index {
           await router.pushUrl({ url: 'pages/NormalCapturer' });
         });
       }
+      .margin({ top: 12 })
+      .justifyContent(FlexAlign.SpaceBetween)
 
       Row() {
         Column() {
@@ -93,10 +95,23 @@ struct Index {
         .onClick(async () => {
           await router.pushUrl({ url: 'pages/VolumePanel' });
         })
-      }
-      .margin({ top: 12 })
-      .justifyContent(FlexAlign.SpaceBetween);
+
+        Column() {
+          Image($r('app.media.ic_index_spatial')).width(72).height(72).margin({ top: 36 });
+          Text($r('app.string.SPATIAL_AUDIO')).fontColor(Color.Black).fontSize(16).margin({ top: 12 });
+        }
+        .id('spatial_audio_card')
+        .backgroundColor(Color.White)
+        .borderRadius(30)
+        .width(174)
+        .height(188)
+        .onClick(async () => {
+          await router.pushUrl({ url: 'pages/SpatialAudio'});
+        });
     }
-    .height('100%').width('100%').backgroundColor('#F1F3F5');
+    .margin({ top: 12 })
+    .justifyContent(FlexAlign.SpaceBetween);
+  }
+  .height('100%').width('100%').backgroundColor('#F1F3F5');
   }
 }
