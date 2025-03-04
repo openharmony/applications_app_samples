@@ -43,7 +43,7 @@ static void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window)
     if ((xSize == OH_NATIVEXCOMPONENT_RESULT_SUCCESS) && (render != nullptr)) {
         render->SetHeight(height);
         render->SetWidth(width);
-        SAMPLE_LOGI("xComponent width = %{public}lu, height = %{public}llu", width, height);
+        SAMPLE_LOGI("xComponent width = %{public}llu, height = %{public}llu", width, height);
     }
 }
 
@@ -431,6 +431,7 @@ void SampleXComponent::RegisterCallback(OH_NativeXComponent *nativeXComponent)
     renderCallback_.DispatchTouchEvent = nullptr;
     renderCallback_.OnSurfaceChanged = nullptr;
     OH_NativeXComponent_RegisterCallback(nativeXComponent, &renderCallback_);
+    OH_NativeXComponent_RegisterOnFrameCallback(nativeXComponent, TestCallback);
 }
 
 void SampleXComponent::RegisterOnFrameCallback(OH_NativeXComponent *nativeXComponent)

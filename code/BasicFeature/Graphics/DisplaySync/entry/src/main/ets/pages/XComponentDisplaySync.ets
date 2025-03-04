@@ -35,10 +35,10 @@ struct Index {
           .width(40)
           .height(30)
 
-        XComponent({ id: 'xcomponentId_30', type: 'surface', libraryname: 'entry' })
+        XComponent({ id: 'xcomponentId_30', type: XComponentType.SURFACE, libraryname: 'entry' })
           .onLoad((xComponentContext) => {
             this.xComponentContext1 = xComponentContext as XComponentContext;
-          }).width('832px')
+          }).width('80%')
       }.height('40%')
 
       Row() {
@@ -50,10 +50,10 @@ struct Index {
           .width(40)
           .height(30)
 
-        XComponent({ id: 'xcomponentId_120', type: 'surface', libraryname: 'entry' })
+        XComponent({ id: 'xcomponentId_120', type: XComponentType.SURFACE, libraryname: 'entry' })
           .onLoad((xComponentContext) => {
             this.xComponentContext2 = xComponentContext as XComponentContext;
-          }).width('832px')// Multiples of 64
+          }).width('80%')// Multiples of 64
       }.height('40%')
 
       Row() {
