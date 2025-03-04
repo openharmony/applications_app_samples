@@ -5,3 +5,6 @@
 /.hvigor
 /package-lock.json
 /entry/package-lock.json
+/.clang-format
+**/oh-package-lock.json5
+/oh_modules

@@ -96,9 +96,9 @@ deviceManager.createDeviceManager('ohos.samples.distributedmusicplayer') [源码
 
 2.本示例完整功能必须双端授予允许使用分布式协同能力，否则在只有发起端授权条件下，发起端会弹框提示错误。
 
-3.本示例为stage模型，已适配API version 10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0Release)。
+3.本示例为stage模型，已适配API version 14版本SDK，SDK版本号(API Version 14 Release),镜像版本号(5.0.2Release)。
 
-4.本示例需要使用DevEco Studio 版本号(4.0Release)才可编译运行。
+4.本示例需要使用DevEco Studio 版本号(5.0.2Release)才可编译运行。
 
 5.本示例需要使用@ohos.distributedDeviceManager系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)。
 
