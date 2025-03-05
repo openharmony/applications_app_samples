@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例使用分布式能力实现了一个分布式的文件管理，可以进行文件的跨设备拷贝。
+本示例使用分布式能力实现了一个分布式的文件管理，可以进行文件的跨设备拷贝。本示例仅适配设备类型为phone。
 
 本示例用到了文件管理接口[@ohos.file.fs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-fs.md)。
 
@@ -11,9 +11,9 @@
 设备管理接口[@ohos.distributedDeviceManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md)。
 
 ### 效果预览
-|                                |
-|--------------------------------|
-| ![](./screenshots/select.jpeg) |
+|                                                    |
+|----------------------------------------------------|
+| <img src="./screenshots/select.jpeg" width="350"/> |
 
 使用说明
 
@@ -53,7 +53,7 @@ entry/src/main/ets/
 
 ### 约束与限制
 
-1.本示例仅支持标准系统上运行。
+1.本示例仅支持标准系统上运行，由于设备能力限制，暂不支持RK3568。
 
 2.本示例为Stage模型，已适配API version 11版本SDK，版本号：4.1.3.3，镜像版本号：OpenHarmony4.1.5.3；
 
