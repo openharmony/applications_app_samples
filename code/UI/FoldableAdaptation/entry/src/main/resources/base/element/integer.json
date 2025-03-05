@@ -1,0 +1,32 @@
+{
+  "integer": [
+    {
+      "name": "size_40",
+      "value": 40
+    },
+    {
+      "name": "size_16",
+      "value": 16
+    },
+    {
+      "name": "size_160",
+      "value": 160
+    },
+    {
+      "name": "size_8",
+      "value": 8
+    },
+    {
+      "name": "size_24",
+      "value": 24
+    },
+    {
+      "name": "size_353",
+      "value": 353
+    },
+    {
+      "name": "size_6",
+      "value": 6
+    }
+  ]
+}
