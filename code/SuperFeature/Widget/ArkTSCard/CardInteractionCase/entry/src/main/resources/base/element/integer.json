@@ -1,0 +1,16 @@
+{
+  "integer": [
+    {
+      "name": "widget_display_margin",
+      "value": 15
+    },
+    {
+      "name": "widget_name_fontsize",
+      "value": 18
+    },
+    {
+      "name": "widget_describe_fontsize",
+      "value": 15
+    }
+  ]
+}

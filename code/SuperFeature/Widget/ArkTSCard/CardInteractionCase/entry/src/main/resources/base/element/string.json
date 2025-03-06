@@ -1,0 +1,60 @@
+{
+  "string": [
+    {
+      "name": "widget_desc",
+      "value": "This is a service widget."
+    },
+    {
+      "name": "widget_display_name",
+      "value": "widget"
+    },
+    {
+      "name": "widget_display_full_width_percent",
+      "value": "100%"
+    },
+    {
+      "name": "widget_display_full_height_percent",
+      "value": "100%"
+    },
+    {
+      "name": "widget_display_part_width_percent",
+      "value": "50%"
+    },
+    {
+      "name": "widget_form_ability_name",
+      "value": "100%"
+    },
+    {
+      "name": "widget_message_content",
+      "value": "getData"
+    },
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "CardInteractionCase"
+    },
+    {
+      "name": "EntryFormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "EntryFormAbility_label",
+      "value": "form_label"
+    },
+    {
+      "name": "casesSwiper_desc",
+      "value": "This is a service widget."
+    },
+    {
+      "name": "casesSwiper_display_name",
+      "value": "widget"
+    }
+  ]
+}

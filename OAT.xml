@@ -1989,6 +1989,17 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/UI/VerifyCode/entry/src/main/resources/base/media/startIcon.png" desc="Provide by code/UI/VerifyCode"/>
 				<filteritem type="filepath" name="code/UI/VerifyCode/casesfeature/verifycode/src/main/resources/base/media/icon.png" desc="Provide by code/UI/VerifyCode"/>
 				<filteritem type="filepath" name="code/UI/VerifyCode/casesfeature/verifycode/src/main/resources/base/media/startIcon.png" desc="Provide by code/UI/VerifyCode"/>
+				<filteritem type="filepath" name="code/SuperFeature/Widget/ArkTSCard/CardInteractionCase/AppScope/resources/base/media/app_icon.png" desc="Provide by code/SuperFeature/Widget/ArkTSCard/CardInteractionCase"/>
+				<filteritem type="filepath" name="code/SuperFeature/Widget/ArkTSCard/CardInteractionCase/entry/src/main/resources/base/media/background.png" desc="Provide by code/SuperFeature/Widget/ArkTSCard/CardInteractionCase"/>
+				<filteritem type="filepath" name="code/SuperFeature/Widget/ArkTSCard/CardInteractionCase/entry/src/main/resources/base/media/deal_stride_solution.gif" desc="Provide by code/SuperFeature/Widget/ArkTSCard/CardInteractionCase"/>
+				<filteritem type="filepath" name="code/SuperFeature/Widget/ArkTSCard/CardInteractionCase/entry/src/main/resources/base/media/encapsulation_dialog.gif" desc="Provide by code/SuperFeature/Widget/ArkTSCard/CardInteractionCase"/>
+				<filteritem type="filepath" name="code/SuperFeature/Widget/ArkTSCard/CardInteractionCase/entry/src/main/resources/base/media/foreground.png" desc="Provide by code/SuperFeature/Widget/ArkTSCard/CardInteractionCase"/>
+				<filteritem type="filepath" name="code/SuperFeature/Widget/ArkTSCard/CardInteractionCase/entry/src/main/resources/base/media/share_button.gif" desc="Provide by code/SuperFeature/Widget/ArkTSCard/CardInteractionCase"/>
+				<filteritem type="filepath" name="code/SuperFeature/Widget/ArkTSCard/CardInteractionCase/entry/src/main/resources/base/media/smart_fill.gif" desc="Provide by code/SuperFeature/Widget/ArkTSCard/CardInteractionCase"/>
+				<filteritem type="filepath" name="code/SuperFeature/Widget/ArkTSCard/CardInteractionCase/entry/src/main/resources/base/media/startIcon.png" desc="Provide by code/SuperFeature/Widget/ArkTSCard/CardInteractionCase"/>
+				<filteritem type="filepath" name="code/SuperFeature/Widget/ArkTSCard/CardInteractionCase/entry/src/main/resources/base/media/video_trimmer.gif" desc="Provide by code/SuperFeature/Widget/ArkTSCard/CardInteractionCase"/>
+				<filteritem type="filepath" name="code/SuperFeature/Widget/ArkTSCard/CardInteractionCase/screenshots/devices/Case.jpg" desc="Provide by code/SuperFeature/Widget/ArkTSCard/CardInteractionCase"/>
+				<filteritem type="filepath" name="code/SuperFeature/Widget/ArkTSCard/CardInteractionCase/screenshots/devices/Widget.jpg" desc="Provide by code/SuperFeature/Widget/ArkTSCard/CardInteractionCase"/>
 			</filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加License头"/>
