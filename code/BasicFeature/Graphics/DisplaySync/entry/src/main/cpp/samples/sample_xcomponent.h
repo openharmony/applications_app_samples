@@ -56,7 +56,7 @@ public:
     void Destroy();
     static SampleXComponent *GetInstance(std::string &id);
     std::string id_;
-    int defaultOffsetY = 300;
+    int defaultOffsetY = 200;
 private:
     OH_NativeXComponent_Callback renderCallback_;
 
