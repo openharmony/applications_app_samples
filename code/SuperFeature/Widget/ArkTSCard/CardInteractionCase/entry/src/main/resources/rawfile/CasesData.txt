@@ -1,0 +1,46 @@
+cases_detail
+**下面是详细的案例列表：**
+#### 180.分享二维码按钮案例（2025/01/22更新）
+
+本示例介绍如何在应用中，通过url自动生成二维码，并通过Share Kit的接口拉起系统分享。[详细说明文档](./CommonAppDevelopment/feature/ShareButton/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/share_button.gif" width="200">
+
+#### 179.智能填充案例（2025/01/23更新）
+
+本示例介绍了使用智能填充自动补充表单的功能。
+该场景多用于需要使用多个填充相同表单的场景。[详细说明文档](./CommonAppDevelopment/feature/SmartFill/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/smart_fill.gif" width="200">
+
+#### 178.弹窗封装（2025/01/23更新）
+
+本示例介绍如何封装弹窗，以及如何使用这种封装后的弹窗
+[详细说明文档](./CommonAppDevelopment/feature/EncapsulationDialog/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/encapsulation_dialog.gif" width="200">
+
+#### 177.视频下载保存及剪辑压缩上传（2025/01/23更新）
+
+本示例主要介绍从网上下载视频到相册，以及从相册中选择视频进行剪辑、压缩、以及上传到服务器进行保存。从相册中选择一个视频保存到沙箱中，再使用FFmpeg命令对沙箱中的视频进行压缩、剪辑。最后使用request.agent将剪辑后的视频上传到服务器进行保存。
+[详细说明文档](./CommonAppDevelopment/feature/VideoTrimmer/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/video_trimmer.gif" width="200">
+
+#### 176.解决相机预览花屏案例（2025/01/21更新）
+
+本示例用于开发者在使用相机服务时，如果仅用于预览流展示，通常使用XComponent组件实现，如果需要获取每帧图像做二次处理（例如获取每帧图像完成二维码识别或人脸识别场景），可以通过ImageReceiver中imageArrival事件监听预览流每帧数据，解析图像内容。在解析图像内容时，如果未考虑stride，直接通过使用width*height读取图像内容去解析图像，会导致相机预览异常，从而出现相机预览花屏的现象。当预览流图像stride与width不一致时，需要对stride进行无效像素的去除处理。[详细说明文档](./CommonAppDevelopment/feature/DealStrideSolution/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/deal_stride_solution.gif" width="200">
+
+#### 166.自定义地址选择组件（1125更新）
+
+本示例介绍如何使用bindSheet，changeIndex，onAreaChange实现带切换动效的自定义地址选择组件。[详细说明文档](./CommonAppDevelopment/feature/customaddresspicker/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/custom_address_picker.gif" width="200">
+
+### 公共能力层
+
+公共功能层用于存放公共基础能力，集中了例如公共UI组件、数据管理、外部交互以及工具库等的共享功能。应用与元服务都可以共享和调用这些公共能力。
+
+公共能力层为上层的基础特性层和产品定制层提供稳定可靠的功能支持，确保整个应用/元服务的稳定性和可维护性。

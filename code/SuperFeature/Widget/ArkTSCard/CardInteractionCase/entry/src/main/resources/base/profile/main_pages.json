@@ -1,0 +1,10 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/DealStrideSolution",
+    "pages/EncapsulationDialog",
+    "pages/ShareButton",
+    "pages/SmartFill",
+    "pages/VideoTrimmer"
+  ]
+}

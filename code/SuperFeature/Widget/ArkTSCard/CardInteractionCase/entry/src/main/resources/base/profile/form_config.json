@@ -1,0 +1,26 @@
+{
+  "forms": [
+    {
+      "name": "casesSwiper",
+      "displayName": "$string:casesSwiper_display_name",
+      "description": "$string:casesSwiper_desc",
+      "src": "./ets/widget/pages/CasesSwiperCard.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDynamic": true,
+      "isDefault": true,
+      "updateEnabled": false,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 1,
+      "defaultDimension": "6*4",
+      "supportDimensions": [
+        "6*4",
+        "4*4"
+      ]
+    }
+  ]
+}
