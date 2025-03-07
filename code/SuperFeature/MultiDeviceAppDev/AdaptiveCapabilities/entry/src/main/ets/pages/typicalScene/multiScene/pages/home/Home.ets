@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -49,8 +49,7 @@ export struct HomePage {
             .fontColor('#182431')
             .fontSize(20)
         }
-        .height(20)
-        .width('80%')
+        .width('100%')
 
         Row() {
           Text(article.disc)
@@ -58,16 +57,13 @@ export struct HomePage {
             .fontColor('#182431')
             .opacity(0.4)
         }
-        .height(15)
-        .width('80%')
+        .width('100%')
       }
-      .height('100%')
       .margin({ left: 13 })
       .alignItems(HorizontalAlign.Start)
       .justifyContent(FlexAlign.SpaceAround)
     }
     .padding({ top: 13, bottom: 13, left: 13, right: 13 })
-    .height(70)
     .backgroundColor('#FFFFFF')
     .borderRadius(25)
   }
