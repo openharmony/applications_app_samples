@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2023 Hunan OpenValley Digital Industry Development Co., Ltd.
+* Copyright (c) 2023-2025 Hunan OpenValley Digital Industry Development Co., Ltd.
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -13,75 +13,76 @@
 * limitations under the License.
 */
 
-import router from '@ohos.router'
-import display from '@ohos.display'
-import window from '@ohos.window'
-import bluetoothViewModel from '../viewmodel/BluetoothViewModel'
-import NavigationBar from '../uicomponents/NavigationBar'
-import HeartRateGraph from '../uicomponents/HeartRateGraph'
-import StyleConstants from '../constants/StyleConstants'
-import Log from '../utils/Log'
+import router from '@ohos.router';
+import display from '@ohos.display';
+import window from '@ohos.window';
+import bluetoothViewModel from '../viewmodel/BluetoothViewModel';
+import NavigationBar from '../uicomponents/NavigationBar';
+import HeartRateGraph from '../uicomponents/HeartRateGraph';
+import StyleConstants from '../constants/StyleConstants';
+import Log from '../utils/Log';
+import { GlobalContext } from '../utils/GlobalContext';
 
-const TAG = '[Sample_HeartRate]'
+const TAG = '[Sample_HeartRate]';
 
-const HEIGHT_NAVIGATION_BAR = StyleConstants.HEIGHT_NAVIGATION_BAR
-const HEIGHT_TOP_ROW = 40
-const MARGIN_HORIZONTAL = 60
-const HEART_RATE_TOO_LOW = 50
-const HEART_RATE_TOO_HIGH = 100
+const HEIGHT_NAVIGATION_BAR = StyleConstants.HEIGHT_NAVIGATION_BAR;
+const HEIGHT_TOP_ROW = 40;
+const MARGIN_HORIZONTAL = 60;
+const HEART_RATE_TOO_LOW = 50;
+const HEART_RATE_TOO_HIGH = 100;
 
 @Entry
 @Component
 struct HeartRate {
-  @StorageLink('heartRate') @Watch('onHeartRate') heartRate: number = 0
+  @StorageLink('heartRate') @Watch('onHeartRate') heartRate: number = 0;
   @StorageLink('windowSize') @Watch('onWindowSizeChange') windowSize: window.Size = {
     width: display.getDefaultDisplaySync().width,
     height: display.getDefaultDisplaySync().height
-  }
-  @State heartRateTop: number = 0
-  @State heartRateBottom: number = 0
-  @State heartRateAverage: number = 0
-  @State graphWidth: number = this.windowSize.width - vp2px(MARGIN_HORIZONTAL) * 2
-  @State graphHeight: number = this.windowSize.height - vp2px(HEIGHT_NAVIGATION_BAR) - vp2px(HEIGHT_TOP_ROW)
+  };
+  @State heartRateTop: number = 0;
+  @State heartRateBottom: number = 0;
+  @State heartRateAverage: number = 0;
+  @State graphWidth: number = this.windowSize.width - vp2px(MARGIN_HORIZONTAL) * 2;
+  @State graphHeight: number = this.windowSize.height - vp2px(HEIGHT_NAVIGATION_BAR) - vp2px(HEIGHT_TOP_ROW);
 
   onHeartRate() {
-    Log.showInfo(TAG, `onHeartRate: heartRate = ${this.heartRate}`)
-    this.heartRateTop = this.heartRateTop < this.heartRate ? this.heartRate : this.heartRateTop
-    this.heartRateBottom = this.heartRateBottom === 0 ? this.heartRate : this.heartRateBottom > this.heartRate ? this.heartRate : this.heartRateBottom
-    this.heartRateAverage = (this.heartRateAverage + this.heartRate) / 2
+    Log.showInfo(TAG, `onHeartRate: heartRate = ${this.heartRate}`);
+    this.heartRateTop = this.heartRateTop < this.heartRate ? this.heartRate : this.heartRateTop;
+    this.heartRateBottom = this.heartRateBottom === 0 ? this.heartRate : this.heartRateBottom > this.heartRate ? this.heartRate : this.heartRateBottom;
+    this.heartRateAverage = (this.heartRateAverage + this.heartRate) / 2;
   }
 
   onWindowSizeChange() {
-    Log.showInfo(TAG, `onWindowSizeChange: windowSize = ${JSON.stringify(this.windowSize)}`)
-    this.graphWidth = this.windowSize.width - vp2px(MARGIN_HORIZONTAL) * 2
-    this.graphHeight = this.windowSize.height - vp2px(HEIGHT_NAVIGATION_BAR) - vp2px(HEIGHT_TOP_ROW)
+    Log.showInfo(TAG, `onWindowSizeChange: windowSize = ${JSON.stringify(this.windowSize)}`);
+    this.graphWidth = this.windowSize.width - vp2px(MARGIN_HORIZONTAL) * 2;
+    this.graphHeight = this.windowSize.height - vp2px(HEIGHT_NAVIGATION_BAR) - vp2px(HEIGHT_TOP_ROW);
   }
 
   showWarningReminder(): boolean {
-    return this.tooHigh() || this.tooLow()
+    return this.tooHigh() || this.tooLow();
   }
 
   tooHigh(): boolean {
-    return this.heartRate > HEART_RATE_TOO_HIGH
+    return this.heartRate > HEART_RATE_TOO_HIGH;
   }
 
   tooLow(): boolean {
-    return this.heartRate < HEART_RATE_TOO_LOW
+    return this.heartRate < HEART_RATE_TOO_LOW;
   }
 
-  warningReminderIcon(): Resource {
+  warningReminderIcon(): Resource | null {
     if (this.tooHigh()) {
-      return $r('app.media.ic_red_arrow_up')
+      return $r('app.media.ic_red_arrow_up');
     }
     if (this.tooLow()) {
-      return $r('app.media.ic_red_arrow_down')
+      return $r('app.media.ic_red_arrow_down');
     }
-    return null
+    return null;
   }
 
   async aboutToAppear() {
-    Log.showInfo(TAG, `aboutToAppear`)
-    await globalThis.setOrientation(window.Orientation.AUTO_ROTATION_LANDSCAPE)
+    Log.showInfo(TAG, `aboutToAppear`);
+    await GlobalContext.getContext().setOrientation(window.Orientation.AUTO_ROTATION_LANDSCAPE);
   }
 
   build() {
@@ -90,8 +91,8 @@ struct HeartRate {
         id: 'btn_disconnect',
         name: $r('app.string.btn_disconnect'),
         event: () => {
-          bluetoothViewModel.disconnect()
-          router.back()
+          bluetoothViewModel.disconnect();
+          router.back();
         }
       }] })
         .height(HEIGHT_NAVIGATION_BAR)

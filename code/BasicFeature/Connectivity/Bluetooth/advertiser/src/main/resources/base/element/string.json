@@ -13,6 +13,10 @@
       "value": "模拟心率设备"
     },
     {
+      "name": "permission_reason_ACCESS_BLUETOOTH",
+      "value": "允许应用接入蓝牙并使用蓝牙能力，例如配对、连接外围设备等。"
+    },
+    {
       "name": "permission_reason_use_bluetooth",
       "value": "允许应用查看蓝牙的配置。"
     },

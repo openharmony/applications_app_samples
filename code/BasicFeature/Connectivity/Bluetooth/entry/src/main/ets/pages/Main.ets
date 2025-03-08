@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2023 Hunan OpenValley Digital Industry Development Co., Ltd.
+* Copyright (c) 2023-2025 Hunan OpenValley Digital Industry Development Co., Ltd.
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -13,43 +13,41 @@
 * limitations under the License.
 */
 
-import router from '@ohos.router'
-import window from '@ohos.window'
-import promptAction from '@ohos.promptAction'
-import NavigationBar from '../uicomponents/NavigationBar'
-import EmptyPage from '../uicomponents/EmptyPage'
-import bluetoothViewModel, { ConnectionState } from '../viewmodel/BluetoothViewModel'
-import BluetoothDevice from '../model/BluetoothDevice'
-import StyleConstants from '../constants/StyleConstants'
-import Log from '../utils/Log'
+import router from '@ohos.router';
+import promptAction from '@ohos.promptAction';
+import NavigationBar from '../uicomponents/NavigationBar';
+import EmptyPage from '../uicomponents/EmptyPage';
+import bluetoothViewModel, { ConnectionState } from '../viewmodel/BluetoothViewModel';
+import BluetoothDevice from '../model/BluetoothDevice';
+import StyleConstants from '../constants/StyleConstants';
+import Log from '../utils/Log';
 
-const TAG = '[Sample_Main]'
+const TAG = '[Sample_Main]';
 
 @Entry
 @Component
 struct Main {
-  @StorageLink('availableDevices') @Watch('onAvailableDevicesChange') availableDevices: Array<BluetoothDevice> = []
+  @StorageLink('availableDevices') @Watch('onAvailableDevicesChange') availableDevices: BluetoothDevice[] = [];
   @StorageLink('connectBluetoothDevice') @Watch('onConnectBluetoothDeviceChange') connectBluetoothDevice: BluetoothDevice = {
-  }
-  @State connectBluetoothDevice1: BluetoothDevice = {}
+  };
+  @State connectBluetoothDevice1: BluetoothDevice = {};
 
   onAvailableDevicesChange() {
-    Log.showInfo(TAG, `onAvailableDevicesChange: availableDevices = ${JSON.stringify(this.availableDevices)}`)
+    Log.showInfo(TAG, `onAvailableDevicesChange: availableDevices = ${JSON.stringify(this.availableDevices)}`);
   }
 
   onConnectBluetoothDeviceChange() {
-    Log.showInfo(TAG, `onConnectBluetoothDeviceChange: connectBluetoothDevice = ${JSON.stringify(this.connectBluetoothDevice)}`)
-    this.connectBluetoothDevice1 = this.connectBluetoothDevice
+    Log.showInfo(TAG, `onConnectBluetoothDeviceChange: connectBluetoothDevice = ${JSON.stringify(this.connectBluetoothDevice)}`);
+    this.connectBluetoothDevice1 = this.connectBluetoothDevice;
   }
 
   async onPageShow() {
-    Log.showInfo(TAG, `onPageShow`)
-    await globalThis.setOrientation(window.Orientation.AUTO_ROTATION_LANDSCAPE)
+    Log.showInfo(TAG, `onPageShow`);
   }
 
   aboutToDisappear() {
-    Log.showInfo(TAG, `aboutToDisappear`)
-    bluetoothViewModel.close()
+    Log.showInfo(TAG, `aboutToDisappear`);
+    bluetoothViewModel.close();
   }
 
   build() {
@@ -77,7 +75,7 @@ struct Main {
             .height(76)
             .borderRadius(16)
             .backgroundColor($r('app.color.bg_white'))
-          }, item => item)
+          }, (item: BluetoothDevice) => item.deviceId)
         }
         .scrollBar(BarState.Auto)
         .width('100%')
@@ -96,9 +94,9 @@ struct Main {
           .id('btn_start_scan')
           .fontSize($r('app.float.text_size_medium'))
           .onClick(() => {
-            let ret = bluetoothViewModel.startBLEScan()
+            let ret = bluetoothViewModel.startBLEScan();
             if (!ret) {
-              Log.showError(TAG, `startBLEScan: ret = ${ret}`)
+              Log.showError(TAG, `startBLEScan: ret = ${ret}`);
             }
           })
           .width(180)
@@ -116,28 +114,27 @@ struct Main {
 
 @Component
 struct Item {
-  @ObjectLink bluetoothDevice: BluetoothDevice
-  private index: number
+  @ObjectLink bluetoothDevice: BluetoothDevice;
+  private index: number = 0;
 
   getConnectionStateDescription(): ResourceStr {
-    let description = $r('app.string.btn_connect')
+    let description = $r('app.string.btn_connect');
     switch (this.bluetoothDevice.connectionState) {
       case ConnectionState.STATE_CONNECTING:
-        description = $r('app.string.btn_connecting')
-        break
+        description = $r('app.string.btn_connecting');
+        break;
       case ConnectionState.STATE_DISCONNECTING:
-        description = $r('app.string.btn_disconnecting')
-        break
+        description = $r('app.string.btn_disconnecting');
+        break;
       case ConnectionState.STATE_DISCONNECTED:
-        description = $r('app.string.btn_connect')
-        break
+        description = $r('app.string.btn_connect');
+        break;
     }
-    return description
+    return description;
   }
 
   async aboutToAppear() {
-    Log.showInfo(TAG, `aboutToAppear: bluetoothDevice = ${JSON.stringify(this.bluetoothDevice)}`)
-    await globalThis.setOrientation(window.Orientation.AUTO_ROTATION_LANDSCAPE)
+    Log.showInfo(TAG, `aboutToAppear: bluetoothDevice = ${JSON.stringify(this.bluetoothDevice)}`);
   }
 
   build() {
@@ -164,12 +161,12 @@ struct Item {
         .visibility(this.bluetoothDevice.connectionState === ConnectionState.STATE_CONNECTED ? Visibility.None : Visibility.Visible)
         .onClick(() => {
           if (this.bluetoothDevice.connectionState === ConnectionState.STATE_DISCONNECTED) {
-            let ret: boolean = bluetoothViewModel.connect(this.bluetoothDevice)
+            let ret: boolean = bluetoothViewModel.connect(this.bluetoothDevice);
             if (ret) {
-              promptAction.showToast({ message: $r('app.string.toast_connecting'), duration: 2000 })
+              promptAction.showToast({ message: $r('app.string.toast_connecting'), duration: 2000 });
             }
           } else if (this.bluetoothDevice.connectionState === ConnectionState.STATE_CONNECTED) {
-            bluetoothViewModel.disconnect()
+            bluetoothViewModel.disconnect();
           }
         })
 
@@ -194,7 +191,7 @@ struct Item {
     .justifyContent(FlexAlign.SpaceBetween)
     .onClick(async () => {
       if (this.bluetoothDevice.connectionState === ConnectionState.STATE_CONNECTED) {
-        await router.pushUrl({ url: 'pages/HeartRate' })
+        await router.pushUrl({ url: 'pages/HeartRate' });
       }
     })
   }
