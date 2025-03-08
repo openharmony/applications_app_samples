@@ -33,25 +33,26 @@ class NativeMediaPlayerImpl implements webview.NativeMediaPlayerBridge {
     this.nativePlayerInfo = nativePlayerInfo;
     this.mediaHandler = handler;
     this.surfaceId = mediaInfo.surfaceInfo.id;
-    this.mediaSource = mediaInfo.mediaSrcList.find((item)=>{item.source.indexOf('.mp4') > 0})?.source
-      || mediaInfo.mediaSrcList[0].source;
+    this.mediaSource = mediaInfo.mediaSrcList.find((item)=>{
+      item.source.indexOf('.mp4') > 0
+    })?.source || mediaInfo.mediaSrcList[0].source;
     this.httpHeaders = mediaInfo.headers;
     this.nativePlayer = new AVPlayerDemo();
 
     // 使用同层渲染功能，将视频及其播控组件绘制到网页中
-    this.nativePlayerInfo.node_controller = new MyNodeController(
+    this.nativePlayerInfo.nodeController = new MyNodeController(
       this.nativePlayerInfo, this.surfaceId, this.mediaHandler, this, NodeRenderType.RENDER_TYPE_TEXTURE);
-    this.nativePlayerInfo.node_controller.build();
-    this.nativePlayerInfo.show_native_media_player = true;
+    this.nativePlayerInfo.nodeController.build();
+    this.nativePlayerInfo.showNativeMediaPlayer = true;
 
     console.log(
       `NativeMediaPlayerImpl.mediaSource: ${this.mediaSource}, headers: ${JSON.stringify(this.httpHeaders)}`);
   }
 
   updateRect(x: number, y: number, width: number, height: number): void {
-    let width_in_vp = px2vp(width);
-    let height_in_vp = px2vp(height);
-    console.log(`updateRect(${x}, ${y}, ${width}, ${height}), vp:{${width_in_vp}, ${height_in_vp}}`);
+    let widthInVp = px2vp(width);
+    let heightInVp = px2vp(height);
+    console.log(`updateRect(${x}, ${y}, ${width}, ${height}), vp:{${widthInVp}, ${heightInVp}}`);
     this.nativePlayerInfo.updateNativePlayerRect(x, y, width, height);
   }
 
@@ -81,9 +82,9 @@ class NativeMediaPlayerImpl implements webview.NativeMediaPlayerBridge {
   release() {
     console.log('NativeMediaPlayerImpl.release');
     this.nativePlayer?.release();
-    this.nativePlayerInfo.show_native_media_player = false;
-    this.nativePlayerInfo.node_width = 300;
-    this.nativePlayerInfo.node_height = 150;
+    this.nativePlayerInfo.showNativeMediaPlayer = false;
+    this.nativePlayerInfo.nodeWidth = 300;
+    this.nativePlayerInfo.nodeHeight = 150;
     this.nativePlayerInfo.destroyed();
   }
   enterFullscreen() {
@@ -159,34 +160,34 @@ struct NativePlayerComponent {
   mXComponentController: XComponentController = new XComponentController();
 
   videoController: VideoController = new VideoController();
-  offset_x: number = 0;
-  offset_y: number = 0;
-  @State video_width_percent: number = 100;
-  @State video_height_percent: number = 100;
-  view_width: number = 0;
-  view_height: number = 0;
-  video_width: number = 0;
-  video_height: number = 0;
+  offsetX: number = 0;
+  offsetY: number = 0;
+  @State videoWidthPercent: number = 100;
+  @State videoHeightPercent: number = 100;
+  viewWidth: number = 0;
+  viewHeight: number = 0;
+  videoWidth: number = 0;
+  videoHeight: number = 0;
 
   fullscreen: boolean = false;
   @State has_error: boolean = false;
 
   onSizeChanged(width: number, height: number) {
-    this.video_width = width;
-    this.video_height = height;
-    let scale: number = this.view_width / width;
-    let scaled_video_height: number = scale * height;
-    this.video_height_percent = scaled_video_height / this.view_height * 100;
+    this.videoWidth = width;
+    this.videoHeight = height;
+    let scale: number = this.viewWidth / width;
+    let scaledVideoHeight: number = scale * height;
+    this.videoHeightPercent = scaledVideoHeight / this.viewHeight * 100;
     console.log(
-      `NativePlayerComponent.onSizeChanged(${width},${height}), video_height_percent[${this.video_height_percent }]`);
+      `NativePlayerComponent.onSizeChanged(${width},${height}), videoHeightPercent[${this.videoHeightPercent }]`);
   }
 
   build() {
     Column() {
       Stack() {
         XComponent({ id: 'video_player_id', type: XComponentType.SURFACE, controller: this.mXComponentController })
-          .width(this.video_width_percent + '%')
-          .height(this.video_height_percent + '%')
+          .width(this.videoWidthPercent + '%')
+          .height(this.videoHeightPercent + '%')
           .onLoad(()=>{
             if (!this.params) {
               console.log('this.params is null');
@@ -246,15 +247,15 @@ struct NativePlayerComponent {
     .height('100%')
     .onAreaChange((oldValue: Area, newValue: Area) => {
       console.log(`NativePlayerComponent.onAreaChange(${JSON.stringify(oldValue)}, ${JSON.stringify(newValue)})`);
-      this.view_width = new Number(newValue.width).valueOf();
-      this.view_height = new Number(newValue.height).valueOf();
-      this.onSizeChanged(this.video_width, this.video_height);
+      this.viewWidth = parseFloat(newValue.width.toString());
+      this.viewHeight = parseFloat(newValue.height.toString());
+      this.onSizeChanged(this.videoWidth, this.videoHeight);
     })
   }
 }
 
 @Builder
-function NativePlayerComponentBuilder(params: ComponentParams) {
+function nativePlayerComponentBuilder(params: ComponentParams) {
   NativePlayerComponent({ params: params })
     .backgroundColor(Color.Green)
     .border({ width: 1, color: Color.Brown })
@@ -304,7 +305,7 @@ class MyNodeController extends NodeController {
       player: this.player
     };
     if (this.rootNode) {
-      this.rootNode.build(wrapBuilder(NativePlayerComponentBuilder), params);
+      this.rootNode.build(wrapBuilder(nativePlayerComponentBuilder), params);
     }
   }
 
@@ -332,26 +333,26 @@ class Rect {
 @Observed
 class NativePlayerInfo {
   public web: WebComponent;
-  public embed_id: string;
+  public embedId: string;
   public player: webview.NativeMediaPlayerBridge;
-  public node_controller?: MyNodeController;
-  public show_native_media_player: boolean = false;
-  public node_pos_x: number;
-  public node_pos_y: number;
-  public node_width: number;
-  public node_height: number;
+  public nodeController?: MyNodeController;
+  public showNativeMediaPlayer: boolean = false;
+  public nodePosX: number;
+  public nodePosY: number;
+  public nodeWidth: number;
+  public nodeHeight: number;
 
   playerComponent?: NativeMediaPlayerComponent;
 
   constructor(web: WebComponent, handler: webview.NativeMediaPlayerHandler, videoInfo: webview.MediaInfo) {
     this.web = web;
-    this.embed_id = videoInfo.embedID;
+    this.embedId = videoInfo.embedID;
 
-    let node_rect = Rect.toNodeRect(videoInfo.surfaceInfo.rect);
-    this.node_pos_x = node_rect.x;
-    this.node_pos_y = node_rect.y;
-    this.node_width = node_rect.width;
-    this.node_height = node_rect.height;
+    let nodeRect = Rect.toNodeRect(videoInfo.surfaceInfo.rect);
+    this.nodePosX = nodeRect.x;
+    this.nodePosY = nodeRect.y;
+    this.nodeWidth = nodeRect.width;
+    this.nodeHeight = nodeRect.height;
 
     this.player = new NativeMediaPlayerImpl(this, handler, videoInfo);
   }
@@ -361,10 +362,10 @@ class NativePlayerInfo {
   }
 
   destroyed() {
-    let info_list = this.web.native_player_info_list;
-    console.log(`NativePlayerInfo[${this.embed_id}] destroyed, list.size[${info_list.length}]`);
-    this.web.native_player_info_list = info_list.filter((item) => item.embed_id != this.embed_id);
-    console.log(`NativePlayerInfo after destroyed, new_list.size[${this.web.native_player_info_list.length}]`);
+    let infoList = this.web.nativePlayerInfoList;
+    console.log(`NativePlayerInfo[${this.embedId}] destroyed, list.size[${infoList.length}]`);
+    this.web.nativePlayerInfoList = infoList.filter((item) => item.embedId != this.embedId);
+    console.log(`NativePlayerInfo after destroyed, new_list.size[${this.web.nativePlayerInfoList.length}]`);
   }
 }
 
@@ -377,25 +378,24 @@ struct NativeMediaPlayerComponent {
   }
 
   build() {
-    NodeContainer(this.playerInfo.node_controller)
-      .width(this.playerInfo.node_width)
-      .height(this.playerInfo.node_height)
-      .offset({x: this.playerInfo.node_pos_x, y: this.playerInfo.node_pos_y})
+    NodeContainer(this.playerInfo.nodeController)
+      .width(this.playerInfo.nodeWidth)
+      .height(this.playerInfo.nodeHeight)
+      .offset({x: this.playerInfo.nodePosX, y: this.playerInfo.nodePosY})
       .backgroundColor(Color.Transparent)
       .border({ width: 2, color: Color.Orange })
       .onAreaChange((oldValue, newValue) => {
-        console.log(
-          `NodeContainer[${this.playerInfo.embed_id}].onAreaChange(
-            [${oldValue.width} x ${oldValue.height}]->[${newValue.width} x ${newValue.height}]`));
-      })
+        console.log(`NodeContainer[${this.playerInfo.embedId}]` +
+          `.onAreaChange([${oldValue.width} x ${oldValue.height}]->[${newValue.width} x ${newValue.height}])`)
+      });
   }
 
   updateNativePlayerRect(x: number, y: number, width: number, height: number) {
-    let node_rect = Rect.toNodeRect({x, y, width, height});
-    this.playerInfo.node_pos_x = node_rect.x;
-    this.playerInfo.node_pos_y = node_rect.y;
-    this.playerInfo.node_width = node_rect.width;
-    this.playerInfo.node_height = node_rect.height;
+    let nodeRect = Rect.toNodeRect({x, y, width, height});
+    this.playerInfo.nodePosX = nodeRect.x;
+    this.playerInfo.nodePosY = nodeRect.y;
+    this.playerInfo.nodeWidth = nodeRect.width;
+    this.playerInfo.nodeHeight = nodeRect.height;
   }
 }
 
@@ -403,30 +403,30 @@ struct NativeMediaPlayerComponent {
 @Component
 struct WebComponent {
   controller: WebviewController = new webview.WebviewController();
-  page_url: Resource = $rawfile('main.html');
+  pageUrl: Resource = $rawfile('main.html');
 
-  @State native_player_info_list: NativePlayerInfo[] = [];
+  @State nativePlayerInfoList: NativePlayerInfo[] = [];
 
   area?: Area;
 
   build() {
     Column() {
       Stack({alignContent: Alignment.TopStart}) {
-        ForEach(this.native_player_info_list, (item: NativePlayerInfo) => {
-          if (item.show_native_media_player) {
+        ForEach(this.nativePlayerInfoList, (item: NativePlayerInfo) => {
+          if (item.showNativeMediaPlayer) {
             NativeMediaPlayerComponent({ playerInfo: item })
           }
         }, (item: NativePlayerInfo) => {
-          return item.embed_id;
+          return item.embedId;
         })
-        Web({ src: this.page_url, controller: this.controller })
+        Web({ src: this.pageUrl, controller: this.controller })
           .enableNativeMediaPlayer({ enable: true, shouldOverlay: true })
           .onPageBegin(() => {
             this.controller.onCreateNativeMediaPlayer((
               handler: webview.NativeMediaPlayerHandler, mediaInfo: webview.MediaInfo) => {
               console.log('onCreateNativeMediaPlayer(' + JSON.stringify(mediaInfo) + ')');
               let nativePlayerInfo = new NativePlayerInfo(this, handler, mediaInfo);
-              this.native_player_info_list.push(nativePlayerInfo);
+              this.nativePlayerInfoList.push(nativePlayerInfo);
               return nativePlayerInfo.player;
             });
           })
@@ -436,18 +436,18 @@ struct WebComponent {
               return;
             }
             console.log(`WebComponent.onNativeEmbedGestureEvent, embedId[${event.embedId}]`);
-            let native_player_info = this.getNativePlayerInfoByEmbedId(event.embedId);
-            if (!native_player_info) {
-              console.log(`WebComponent.onNativeEmbedGestureEvent, embedId[${event.embedId}], no native_player_info`);
+            let nativePlayerInfo = this.getNativePlayerInfoByEmbedId(event.embedId);
+            if (!nativePlayerInfo) {
+              console.log(`WebComponent.onNativeEmbedGestureEvent, embedId[${event.embedId}], no nativePlayerInfo`);
               event.result?.setGestureEventResult(false);
               return;
             }
-            if (!native_player_info.node_controller) {
-              console.log(`WebComponent.onNativeEmbedGestureEvent, embedId[${event.embedId}], no node_controller`);
+            if (!nativePlayerInfo.nodeController) {
+              console.log(`WebComponent.onNativeEmbedGestureEvent, embedId[${event.embedId}], no nodeController`);
               event.result?.setGestureEventResult(false);
               return;
             }
-            let ret = native_player_info.node_controller.postTouchEvent(event.touchEvent);
+            let ret = nativePlayerInfo.nodeController.postTouchEvent(event.touchEvent);
             console.log(`WebComponent.postTouchEvent, ret[${ret}], touchEvent[${JSON.stringify(event.touchEvent)}]`);
             event.result?.setGestureEventResult(ret);
           })
@@ -462,6 +462,6 @@ struct WebComponent {
   }
 
   getNativePlayerInfoByEmbedId(embedId: string) : NativePlayerInfo | undefined {
-    return this.native_player_info_list.find((item)=> item.embed_id == embedId);
+    return this.nativePlayerInfoList.find((item)=> item.embedId == embedId);
   }
 }
