@@ -71,7 +71,7 @@ entry/src/main/ets/
 ### 相关权限
 
 获取OAID功能需要申请广告跟踪权限：
-[ohos.permission.APP_TRACKING_CONSENT](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/security/permission-list.md/)。
+[ohos.permission.APP_TRACKING_CONSENT](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all-user.md#ohospermissionapp_tracking_consent)。
 
 ### 依赖
 
