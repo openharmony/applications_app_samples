@@ -84,7 +84,7 @@ entry/src/main/ets/
 1. 本示例仅支持标准系统上运行，支持设备：RK3568。
 2. 本示例为Stage模型，仅支持API12版本SDK，SDK版本号(API Version 12 Release),镜像版本号(OpenHarmony 5.0.0.25及更高版本)。
 3. 本示例需要使用DevEco Studio 版本号(4.1Release)及以上版本才可编译运行。
-4. 本示例涉及调用系统权限的接口，需要配置允许权限列表，可以参考[特殊权限配置方法](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/) ，在配置文件中的“allowed-acls”字段中增加"ohos.permission.READ_PASTEBOARD"权限，ohos.permission.REQUIRE_FORM为system_basic级别。
+4. 本示例涉及调用系统权限的接口，需要配置允许权限列表，可以参考[特殊权限配置方法](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-overview.md) ，在配置文件中的“allowed-acls”字段中增加"ohos.permission.READ_PASTEBOARD"权限，ohos.permission.REQUIRE_FORM为system_basic级别。
 
 ### 下载
 

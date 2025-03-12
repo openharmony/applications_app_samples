@@ -72,7 +72,7 @@ entry/src/main/ets/
 
 3.本示例需要使用DevEco Studio 版本号(4.0 Release)及以上版本才可编译运行。
 
-4.静态订阅仅支持系统应用，需要配置系统应用签名，可以参考[特殊权限配置方法](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/)，把配置文件中的“apl”字段信息改为“system_core”。
+4.静态订阅仅支持系统应用，需要配置系统应用签名，可以参考[特殊权限配置方法](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-overview.md)，把配置文件中的“apl”字段信息改为“system_core”。
 
 5.本示例开发中需要手动替换Full SDK才能编译通过，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/)。
 
