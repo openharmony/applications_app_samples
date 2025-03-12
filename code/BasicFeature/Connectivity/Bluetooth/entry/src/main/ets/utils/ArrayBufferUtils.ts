@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2023 Hunan OpenValley Digital Industry Development Co., Ltd.
+* Copyright (c) 2023-2025 Hunan OpenValley Digital Industry Development Co., Ltd.
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -19,7 +19,7 @@ export default class ArrayBufferUtils {
    * byte array to ArrayBuffer
    * @param byteArr
    */
-  public static byteArray2ArrayBuffer(byteArr: Array<number>): ArrayBufferLike {
+  public static byteArray2ArrayBuffer(byteArr: number[]): ArrayBufferLike {
     let ret: ArrayBufferLike = new Uint8Array(byteArr).buffer;
     return ret;
   }
@@ -28,8 +28,8 @@ export default class ArrayBufferUtils {
    * ArrayBuffer to byte array
    * @param arrayBuffer
    */
-  public static arrayBuffer2ByteArray(arrayBuffer: ArrayBuffer): Array<number> {
-    let ret: Array<number> = Array.prototype.slice.call(new Uint8Array(arrayBuffer));
+  public static arrayBuffer2ByteArray(arrayBuffer: ArrayBuffer): number[] {
+    let ret: number[] = Array.prototype.slice.call(new Uint8Array(arrayBuffer));
     return ret;
   }
 }

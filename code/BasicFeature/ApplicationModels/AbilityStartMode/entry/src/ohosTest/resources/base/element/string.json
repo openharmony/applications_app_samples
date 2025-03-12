@@ -11,6 +11,26 @@
     {
       "name": "TestAbility_label",
       "value": "test label"
+    },
+    {
+      "name": "Ordinary_multiple_instances",
+      "value": "普通多实例"
+    },
+    {
+      "name": "Specify_multiple_instances",
+      "value": "指定多实例"
+    },
+    {
+      "name": "Single_instance",
+      "value": "单实例"
+    },
+    {
+      "name": "Tomato",
+      "value": "番茄"
+    },
+    {
+      "name": "Cucumber",
+      "value": "黄瓜"
     }
   ]
 }

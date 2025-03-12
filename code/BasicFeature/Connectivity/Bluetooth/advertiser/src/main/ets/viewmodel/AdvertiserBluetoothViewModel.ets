@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2023 Hunan OpenValley Digital Industry Development Co., Ltd.
+* Copyright (c) 2023-2025 Hunan OpenValley Digital Industry Development Co., Ltd.
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -13,22 +13,25 @@
 * limitations under the License.
 */
 
-import bluetoothManager from '@ohos.bluetooth';
 import promptAction from '@ohos.promptAction';
 import BleConstants from '../constants/BleConstants';
 import Log from '../utils/Log';
 import ArrayBufferUtils from '../utils/ArrayBufferUtils';
+import ble from '@ohos.bluetooth.ble';
+import access from '@ohos.bluetooth.access';
+import connection from '@ohos.bluetooth.connection';
+import constant from '@ohos.bluetooth.constant';
 
 const TAG = '[Sample_AdvertiserBluetoothViewModel]';
 
 export class AdvertiserBluetoothViewModel {
-  private mGattServer: bluetoothManager.GattServer;
+  private mGattServer: ble.GattServer = ble.createGattServer();
 
   isBluetoothEnabled(): boolean {
     Log.showInfo(TAG, `isBluetoothEnabled`);
-    let state: bluetoothManager.BluetoothState = bluetoothManager.getState();
+    let state: access.BluetoothState = access.getState();
     Log.showInfo(TAG, `isBluetoothEnabled: state = ${state}`);
-    if (state === bluetoothManager.BluetoothState.STATE_ON || state === bluetoothManager.BluetoothState.STATE_TURNING_ON) {
+    if (state === access.BluetoothState.STATE_ON || state === access.BluetoothState.STATE_TURNING_ON) {
       return true;
     }
     return false;
@@ -38,7 +41,7 @@ export class AdvertiserBluetoothViewModel {
     Log.showInfo(TAG, `enableBluetooth`);
     try {
       this.onBTStateChange();
-      bluetoothManager.enableBluetooth();
+      access.enableBluetooth();
     } catch (err) {
       Log.showError(TAG, `enableBluetooth: err = ${err}`);
     }
@@ -48,7 +51,7 @@ export class AdvertiserBluetoothViewModel {
     Log.showInfo(TAG, `disableBluetooth`);
     try {
       this.offBTStateChange();
-      bluetoothManager.disableBluetooth();
+      access.disableBluetooth();
     } catch (err) {
       Log.showError(TAG, `disableBluetooth: err = ${err}`);
     }
@@ -57,7 +60,7 @@ export class AdvertiserBluetoothViewModel {
   getLocalName(): string {
     let localName = '';
     try {
-      localName = bluetoothManager.getLocalName();
+      localName = connection.getLocalName();
       Log.showInfo(TAG, `getLocalName: localName = ${localName}`);
     } catch (err) {
       Log.showError(TAG, `getLocalName: err = ${err}`);
@@ -78,11 +81,11 @@ export class AdvertiserBluetoothViewModel {
       return false;
     }
 
-    this.mGattServer = bluetoothManager.BLE.createGattServer();
+    this.mGattServer = ble.createGattServer();
 
-    let descriptors: Array<bluetoothManager.BLEDescriptor> = [];
+    let descriptors: ble.BLEDescriptor[] = [];
     let arrayBuffer = ArrayBufferUtils.byteArray2ArrayBuffer([11]);
-    let descriptor: bluetoothManager.BLEDescriptor = {
+    let descriptor: ble.BLEDescriptor = {
       serviceUuid: BleConstants.UUID_SERVICE_HEART_RATE,
       characteristicUuid: BleConstants.UUID_CHARACTERISTIC_HEART_RATE_MEASUREMENT,
       descriptorUuid: BleConstants.UUID_DESCRIPTOR_HEART_RATE,
@@ -90,9 +93,9 @@ export class AdvertiserBluetoothViewModel {
     };
     descriptors[0] = descriptor;
 
-    let characteristics: Array<bluetoothManager.BLECharacteristic> = [];
+    let characteristics: ble.BLECharacteristic[] = [];
     let arrayBufferC = ArrayBufferUtils.byteArray2ArrayBuffer([1]);
-    let characteristic: bluetoothManager.BLECharacteristic = {
+    let characteristic: ble.BLECharacteristic = {
       serviceUuid: BleConstants.UUID_SERVICE_HEART_RATE,
       characteristicUuid: BleConstants.UUID_CHARACTERISTIC_HEART_RATE_MEASUREMENT,
       characteristicValue: arrayBufferC,
@@ -100,7 +103,7 @@ export class AdvertiserBluetoothViewModel {
     };
     characteristics[0] = characteristic;
 
-    let service: bluetoothManager.GattService = {
+    let service: ble.GattService = {
       serviceUuid: BleConstants.UUID_SERVICE_HEART_RATE,
       isPrimary: true,
       characteristics: characteristics,
@@ -116,7 +119,7 @@ export class AdvertiserBluetoothViewModel {
 
     try {
       this.onConnectStateChange();
-      this.mGattServer.startAdvertising({
+      ble.startAdvertising({
         interval: 160,
         txPower: 1,
         connectable: true,
@@ -142,7 +145,7 @@ export class AdvertiserBluetoothViewModel {
     if (this.mGattServer) {
       try {
         this.offConnectStateChange();
-        this.mGattServer.stopAdvertising();
+        ble.stopAdvertising();
       } catch (err) {
         Log.showError(TAG, `stopAdvertiser: startAdvertising err = ${err}`);
       }
@@ -161,9 +164,9 @@ export class AdvertiserBluetoothViewModel {
 
     if (this.mGattServer) {
       try {
-        let descriptors = [];
+        let descriptors: ble.BLEDescriptor[] = [];
         let arrayBuffer = ArrayBufferUtils.byteArray2ArrayBuffer([11]);
-        let descriptor = {
+        let descriptor: ble.BLEDescriptor = {
           serviceUuid: BleConstants.UUID_SERVICE_HEART_RATE,
           characteristicUuid: BleConstants.UUID_CHARACTERISTIC_HEART_RATE_MEASUREMENT,
           descriptorUuid: BleConstants.UUID_DESCRIPTOR_HEART_RATE,
@@ -171,13 +174,13 @@ export class AdvertiserBluetoothViewModel {
         };
         descriptors[0] = descriptor;
         let arrayBufferC = ArrayBufferUtils.byteArray2ArrayBuffer([0x00, heartRate]);
-        let characteristic = {
+        let characteristic: ble.BLECharacteristic = {
           serviceUuid: BleConstants.UUID_SERVICE_HEART_RATE,
           characteristicUuid: BleConstants.UUID_CHARACTERISTIC_HEART_RATE_MEASUREMENT,
           characteristicValue: arrayBufferC,
           descriptors: descriptors
         };
-        let notifyCharacteristic = {
+        let notifyCharacteristic: ble.NotifyCharacteristic = {
           serviceUuid: BleConstants.UUID_SERVICE_HEART_RATE,
           characteristicUuid: BleConstants.UUID_CHARACTERISTIC_HEART_RATE_MEASUREMENT,
           characteristicValue: characteristic.characteristicValue,
@@ -195,13 +198,13 @@ export class AdvertiserBluetoothViewModel {
   private onBTStateChange() {
     Log.showInfo(TAG, `onBTStateChange`);
     try {
-      bluetoothManager.on('stateChange', (data: bluetoothManager.BluetoothState) => {
+      access.on('stateChange', (data: access.BluetoothState) => {
         Log.showInfo(TAG, `onBTStateChange: data = ${data}`);
-        if (data === bluetoothManager.BluetoothState.STATE_ON) {
+        if (data === access.BluetoothState.STATE_ON) {
           AppStorage.SetOrCreate('bluetoothEnable', true);
           this.startAdvertiser();
         }
-        if (data === bluetoothManager.BluetoothState.STATE_OFF) {
+        if (data === access.BluetoothState.STATE_OFF) {
           AppStorage.SetOrCreate('bluetoothEnable', false);
         }
       });
@@ -213,7 +216,7 @@ export class AdvertiserBluetoothViewModel {
   private offBTStateChange() {
     Log.showInfo(TAG, `offBTStateChange`);
     try {
-      bluetoothManager.off('stateChange');
+      access.off('stateChange');
     } catch (err) {
       Log.showError(TAG, `offBTStateChange: err = ${err}`);
     }
@@ -227,15 +230,15 @@ export class AdvertiserBluetoothViewModel {
     }
 
     try {
-      this.mGattServer.on('connectStateChange', async (data: bluetoothManager.BLEConnectChangedState) => {
-        Log.showInfo(TAG, `onConnectStateChange: data = ${JSON.stringify(data)}`);
+      this.mGattServer.on('connectionStateChange', async (data: ble.BLEConnectionChangeState) => {
+        Log.showInfo(TAG, `connectionStateChange: data = ${JSON.stringify(data)}`);
         if (data) {
-          if (data.state === bluetoothManager.ProfileConnectionState.STATE_CONNECTED) {
+          if (data.state === constant.ProfileConnectionState.STATE_CONNECTED) {
             Log.showInfo(TAG, `onConnectStateChange: Connected GATT Device.`);
             let deviceId = data.deviceId;
             AppStorage.SetOrCreate('deviceId', deviceId);
             Log.showInfo(TAG, `onConnectStateChange: Connected GATT Device. deviceId = ${deviceId}`);
-          } else if (data.state === bluetoothManager.ProfileConnectionState.STATE_DISCONNECTED) {
+          } else if (data.state === constant.ProfileConnectionState.STATE_DISCONNECTED) {
             Log.showInfo(TAG, `onConnectStateChange: Disonnected GATT Device.`);
             AppStorage.SetOrCreate('deviceId', '');
           }
@@ -254,7 +257,7 @@ export class AdvertiserBluetoothViewModel {
     }
 
     try {
-      this.mGattServer.off('connectStateChange');
+      this.mGattServer.off('connectionStateChange');
     } catch (err) {
       Log.showError(TAG, `offConnectStateChange: err = ${err}`);
     }

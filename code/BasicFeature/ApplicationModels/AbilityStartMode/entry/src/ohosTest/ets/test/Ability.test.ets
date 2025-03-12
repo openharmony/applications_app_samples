@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -19,6 +19,14 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 import { Driver, ON } from '@ohos.UiTest';
 
 const DRIVER = Driver.create();
+let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
+
+// 资源本地化
+async function getResourceString<T extends Resource>(resource: T): Promise<string> {
+  let manage = abilityDelegatorRegistry.getAppContext().resourceManager;
+  let text = await manage.getStringValue(resource);
+  return text;
+}
 
 // 结果需要使用aa工具查看，这里仅测试UI部分是否展示正常
 export default function abilityTest() {
@@ -29,7 +37,6 @@ export default function abilityTest() {
      */
     it('StartAbility_001', 0, async function (done) {
       hilog.info(0xF811, 'testTag', 'StartAbility_001 begin');
-      let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
         await abilityDelegatorRegistry.startAbility({
           bundleName: 'ohos.samples.startmode',
@@ -50,9 +57,9 @@ export default function abilityTest() {
       hilog.info(0xF811, 'testTag', 'CheckPage_001 begin');
       await DRIVER.delayMs(1000);
       // 检查是否存在这三个板块
-      await DRIVER.assertComponentExist(ON.text('普通多实例'));
-      await DRIVER.assertComponentExist(ON.text('指定多实例'));
-      await DRIVER.assertComponentExist(ON.text('单实例'));
+      await DRIVER.assertComponentExist(ON.text(await getResourceString($r('app.string.Ordinary_multiple_instances'))));
+      await DRIVER.assertComponentExist(ON.text(await getResourceString($r('app.string.Specify_multiple_instances'))));
+      await DRIVER.assertComponentExist(ON.text(await getResourceString($r('app.string.Single_instance'))));
       hilog.info(0xF811, 'testTag', 'CheckPage_001 end');
     })
 
@@ -63,12 +70,12 @@ export default function abilityTest() {
       hilog.info(0xF811, 'testTag', 'CheckDetailPage_001 begin');
       await DRIVER.delayMs(1000);
       // 点击番茄
-      await DRIVER.assertComponentExist(ON.text('番茄'));
-      let tomato = await DRIVER.findComponent(ON.text('番茄'));
+      await DRIVER.assertComponentExist(ON.text(await getResourceString($r('app.string.Tomato'))));
+      let tomato = await DRIVER.findComponent(ON.text(await getResourceString($r('app.string.Tomato'))));
       await tomato.click();
       await DRIVER.delayMs(1000);
       // 断言存在text为番茄的组件
-      await DRIVER.assertComponentExist(ON.text('番茄'));
+      await DRIVER.assertComponentExist(ON.text(await getResourceString($r('app.string.Tomato'))));
       await DRIVER.assertComponentExist(ON.id('ContentTable'));
       let contentTable = await DRIVER.findComponent(ON.id('ContentTable'));
       let contentTablePoint = await contentTable.getBoundsCenter();
@@ -78,7 +85,7 @@ export default function abilityTest() {
       }, {
         x: contentTablePoint.x - 200, y: contentTablePoint.y
       }, 50, 200);
-      await DRIVER.delayMs(1000);
+      await DRIVER.delayMs(2000);
       await DRIVER.assertComponentExist(ON.id('CaloriesProgress'));
       await DRIVER.assertComponentExist(ON.id('detailPage'));
       let detailPage = await DRIVER.findComponent(ON.id('detailPage'));
@@ -89,7 +96,8 @@ export default function abilityTest() {
       }, {
         x: detailPagePoint.x, y: detailPagePoint.y - 100
       }, 100, 200);
-      await DRIVER.assertComponentExist(ON.text('黄瓜'));
+      await DRIVER.delayMs(2000);
+      await DRIVER.assertComponentExist(ON.text(await getResourceString($r('app.string.Cucumber'))));
       hilog.info(0xF811, 'testTag', 'CheckDetailPage_001 end');
     })
 
@@ -100,9 +108,10 @@ export default function abilityTest() {
       hilog.info(0xF811, 'testTag', 'CheckDetailPage_002 begin');
       // 点击黄瓜
       await DRIVER.delayMs(1000);
-      let cucumber = await DRIVER.findComponent(ON.text('黄瓜'));
+      let cucumber = await DRIVER.findComponent(ON.text(await getResourceString($r('app.string.Cucumber'))));
       await cucumber.click();
-      await DRIVER.assertComponentExist(ON.text('黄瓜'));
+      await DRIVER.delayMs(1000);
+      await DRIVER.assertComponentExist(ON.text(await getResourceString($r('app.string.Cucumber'))));
       await DRIVER.assertComponentExist(ON.text('Food Detail'));
       hilog.info(0xF811, 'testTag', 'CheckDetailPage_002 end');
     })
