@@ -1,0 +1,179 @@
+{
+  "float": [
+    {
+      "name": "custom_animation_tab_list_item_width",
+      "value": "100"
+    },
+    {
+      "name": "custom_animation_tab_indicator_height",
+      "value": "40"
+    },
+    {
+      "name": "custom_animation_tab_indicator_border_radius",
+      "value": "20"
+    },
+    {
+      "name": "custom_animation_tab_inner_tabBar_height",
+      "value": "40"
+    },
+    {
+      "name": "custom_animation_tab_menu_button_size",
+      "value": "40"
+    },
+    {
+      "name": "custom_animation_tab_menu_button_inner_size",
+      "value": "30"
+    },
+    {
+      "name": "custom_animation_tab_list_select_font_size",
+      "value": "18"
+    },
+    {
+      "name": "custom_animation_tab_list_unselect_font_size",
+      "value": "17"
+    },
+    {
+      "name": "custom_animation_tab_inner_tab_divider_width",
+      "value": "2px"
+    },
+    {  "name": "custom_animation_tab_ske_xs_font_size",
+      "value": "10fp"
+    },
+    {
+      "name": "custom_animation_tab_ske_small_text_size",
+      "value": "12fp"
+    },
+    {
+      "name": "custom_animation_tab_ske_normal_text_size",
+      "value": "14fp"
+    },
+    {
+      "name": "custom_animation_tab_ske_failure_img_size",
+      "value": "120vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_reload_btn_height",
+      "value": "32vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_reload_btn_width",
+      "value": "80vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_large_border_radius",
+      "value": "8vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_small_border_radius",
+      "value": "8vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_xs_border_radius",
+      "value": "4vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_lg_topic_width",
+      "value": "58vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_topic_height",
+      "value": "16vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_action_area_width",
+      "value": "58vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_action_area_height",
+      "value": "20vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_card_height",
+      "value": "102vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_card_title_height",
+      "value": "20vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_card_text_height",
+      "value": "20vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_image_height",
+      "value": "80vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_image_width",
+      "value": "128vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_type_width",
+      "value": "28vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_type_height",
+      "value": "16vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_sm_margin",
+      "value": "5vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_topic_width",
+      "value": "132vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_xxl_padding_margin",
+      "value": "24vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_xl_padding_margin",
+      "value": "20vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_md_padding_margin",
+      "value": "12vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_sm_padding_margin",
+      "value": "8vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_xs_padding_margin",
+      "value": "4vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_xxs_padding_margin",
+      "value": "2vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_icon_size",
+      "value": "18vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_navigation_height",
+      "value": "56vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_none_view_image_size",
+      "value": "120vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_view_count_icon_width",
+      "value": "36vp"
+    },
+    {
+      "name": "custom_animation_tab_ske_row_height",
+      "value": "40vp"
+    },
+    {
+      "name": "custom_animation_tab_search_height",
+      "value": "120px"
+    },
+    {
+      "name": "custom_animation_tab_ic_public_more",
+      "value": "18"
+    }
+  ]
+}
