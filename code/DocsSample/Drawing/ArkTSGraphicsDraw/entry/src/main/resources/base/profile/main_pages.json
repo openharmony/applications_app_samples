@@ -1,0 +1,12 @@
+{
+  "src": [
+    "pages/Index",
+    "drawing/pages/CanvasGetResult",
+    "drawing/pages/CanvasOperationState",
+    "drawing/pages/BasicEffect",
+    "drawing/pages/ComplexEffect",
+    "drawing/pages/ShapeDrawing",
+    "drawing/pages/PixelMapDrawing",
+    "drawing/pages/TextBlockDrawing"
+  ]
+}
