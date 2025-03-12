@@ -2012,6 +2012,21 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/SuperFeature/Widget/ArkTSCard/CardInteractionCase/entry/src/main/resources/base/media/video_trimmer.gif" desc="Provide by code/SuperFeature/Widget/ArkTSCard/CardInteractionCase"/>
 				<filteritem type="filepath" name="code/SuperFeature/Widget/ArkTSCard/CardInteractionCase/screenshots/devices/Case.jpg" desc="Provide by code/SuperFeature/Widget/ArkTSCard/CardInteractionCase"/>
 				<filteritem type="filepath" name="code/SuperFeature/Widget/ArkTSCard/CardInteractionCase/screenshots/devices/Widget.jpg" desc="Provide by code/SuperFeature/Widget/ArkTSCard/CardInteractionCase"/>
+	            <filteritem type="filepath" name="code/UI/CustomAnimationTab/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/UI/CustomAnimationTab"/>
+				<filteritem type="filepath" name="code/UI/CustomAnimationTab/src/main/resources/base/media/customanimationtabs_example3.jpg" desc="Provided by code/UI/CustomAnimationTab"/>	
+				<filteritem type="filepath" name="code/UI/CustomAnimationTab/customanimationtab/src/customanimationtabs.gif" desc="Provided by code/UI/CustomAnimationTab"/>
+				<filteritem type="filepath" name="code/UI/CustomAnimationTab/src/main/resources/base/media/customanimationtabs_eq.jpg" desc="Provided by code/UI/CustomAnimationTab"/>
+				<filteritem type="filepath" name="code/UI/CustomAnimationTab/entry/src/main/resources/base/media/background.png" desc="Provided by code/UI/CustomAnimationTab"/>
+				<filteritem type="filepath" name="code/UI/CustomAnimationTab/customanimationtab/src/main/resources/base/media/customanimationtabs_example5.jpg" desc="Provided by code/UI/CustomAnimationTab"/>
+				<filteritem type="filepath" name="code/UI/CustomAnimationTab/customanimationtab/src/main/resources/base/media/customanimationtab_example2.jpg" desc="Provided by code/UI/CustomAnimationTab"/>
+				<filteritem type="filepath" name="code/UI/CustomAnimationTab/customanimationtab/src/main/resources/base/media/customanimationtabs_example2.jpg" desc="Provided by code/UI/CustomAnimationTab"/>
+				<filteritem type="filepath" name="code/UI/CustomAnimationTab/customanimationtab/src/main/resources/base/media/customanimationtabs_example4.jpg" desc="Provided by code/UI/CustomAnimationTab"/>
+				<filteritem type="filepath" name="code/UI/CustomAnimationTab/AppScope/resources/base/media/app_icon.png" desc="Provided by code/UI/CustomAnimationTab"/>
+				<filteritem type="filepath" name="code/UI/CustomAnimationTab/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/UI/CustomAnimationTab"/>
+				<filteritem type="filepath" name="code/UI/CustomAnimationTab/customanimationtab/src/main/resources/base/media/customanimationtabs_example3.jpg" desc="Provided by code/UI/CustomAnimationTab"/>	
+				<filteritem type="filepath" name="code/UI/CustomAnimationTab/customanimationtab/customanimationtabs.gif" desc="Provided by code/UI/CustomAnimationTab"/>		
+				<filteritem type="filepath" name="code/UI/CustomAnimationTab/customanimationtab/src/main/resources/base/media/customanimationtabs_eq.jpg" desc="Provided by code/UI/CustomAnimationTab"/>	
+				<filteritem type="filepath" name="code/UI/CustomAnimationTab/customanimationtab/src/main/resources/base/media/customanimationtabs_example1.jpg" desc="Provided by code/UI/CustomAnimationTab"/>	
 			</filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加License头"/>

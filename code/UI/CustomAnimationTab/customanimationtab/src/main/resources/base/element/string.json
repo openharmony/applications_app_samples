@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "entryability_desc",
+      "value": "description"
+    },
+    {
+      "name": "custom_animation_tab_one_hundred_percent",
+      "value": "100%"
+    },
+    {
+      "name": "custom_animation_tab_ninety_percent",
+      "value": "90%"
+    },
+    {
+      "name": "custom_animation_tab_ten_percent",
+      "value": "10%"
+    },
+    {
+      "name": "custom_animation_tab_sixty_percent",
+      "value": "60%"
+    },
+    {
+      "name": "custom_animation_tab_button_text",
+      "value": "修改背景条颜色"
+    }
+  ]
+}
