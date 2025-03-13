@@ -2026,7 +2026,17 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/UI/CustomAnimationTab/customanimationtab/src/main/resources/base/media/customanimationtabs_example3.jpg" desc="Provided by code/UI/CustomAnimationTab"/>	
 				<filteritem type="filepath" name="code/UI/CustomAnimationTab/customanimationtab/customanimationtabs.gif" desc="Provided by code/UI/CustomAnimationTab"/>		
 				<filteritem type="filepath" name="code/UI/CustomAnimationTab/customanimationtab/src/main/resources/base/media/customanimationtabs_eq.jpg" desc="Provided by code/UI/CustomAnimationTab"/>	
-				<filteritem type="filepath" name="code/UI/CustomAnimationTab/customanimationtab/src/main/resources/base/media/customanimationtabs_example1.jpg" desc="Provided by code/UI/CustomAnimationTab"/>	
+				<filteritem type="filepath" name="code/UI/CustomAnimationTab/customanimationtab/src/main/resources/base/media/customanimationtabs_example1.jpg" desc="Provided by code/UI/CustomAnimationTab"/>
+				<filteritem type="filepath" name="code/UI/SearchComponent/AppScope/resources/base/media/app_icon.png" desc="Provide by code/UI/SearchComponent"/>
+				<filteritem type="filepath" name="code/UI/SearchComponent/entry/src/main/resources/base/media/background.png" desc="Provide by code/UI/SearchComponent"/>
+				<filteritem type="filepath" name="code/UI/SearchComponent/entry/src/main/resources/base/media/foreground.png" desc="Provide by code/UI/SearchComponent"/>
+				<filteritem type="filepath" name="code/UI/SearchComponent/entry/src/main/resources/base/media/startIcon.png" desc="Provide by code/UI/SearchComponent"/>
+				<filteritem type="filepath" name="code/UI/SearchComponent/entry/src/main/resources/base/media/search_component.gif" desc="Provide by code/UI/SearchComponent"/>
+				<filteritem type="filepath" name="code/UI/SearchComponent/searchcomponent/src/main/resources/base/media/ic_public_settings.svg" desc="Provide by code/UI/SearchComponent"/>
+				<filteritem type="filepath" name="code/UI/SearchComponent/searchcomponent/src/main/resources/base/media/search_component_arrow_left.svg" desc="Provide by code/UI/SearchComponent"/>
+				<filteritem type="filepath" name="code/UI/SearchComponent/searchcomponent/src/main/resources/base/media/search_component_ic_public_back.svg" desc="Provide by code/UI/SearchComponent"/>
+				<filteritem type="filepath" name="code/UI/SearchComponent/searchcomponent/src/main/resources/base/media/search_component_ic_public_delete.svg" desc="Provide by code/UI/SearchComponent"/>
+				<filteritem type="filepath" name="code/UI/SearchComponent/searchcomponent/src/main/resources/base/media/search_component_search.svg" desc="Provide by code/UI/SearchComponent"/>
 			</filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加License头"/>
