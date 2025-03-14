@@ -418,6 +418,10 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/DocsSample/Media/Image/PixelMap/screenshots/pixelmap_2.jpeg" desc="Provided by code/DocsSample/Media/Image/PixelMap"/>
 				<filteritem type="filepath" name="code/DocsSample/Media/Image/PixelMap/screenshots/pixelmap_3.jpeg" desc="Provided by code/DocsSample/Media/Image/PixelMap"/>
 				<filteritem type="filepath" name="code/DocsSample/Media/Image/PixelMap/screenshots/pixelmap_4.jpeg" desc="Provided by code/DocsSample/Media/Image/PixelMap"/>
+        <filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/FlowManagement_case/screenshots/Aquire_all_traffic_downStream.jpeg" desc="Provided by code/DocsSample/NetWork_Kit"/>
+        <filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/FlowManagement_case/screenshots/Aquire_all_traffic_upStream.jpeg" desc="Provided by code/DocsSample/NetWork_Kit"/>
+        <filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/FlowManagement_case/screenshots/Aquire_traffic_downStream.jpeg" desc="Provided by code/DocsSample/NetWork_Kit"/>
+        <filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/FlowManagement_case/screenshots/Aquire_traffic_upStream.jpeg" desc="Provided by code/DocsSample/NetWork_Kit"/>
                 <filteritem type="filepath" name="code/SystemFeature/Security/DLP/screenshots/haps/DlpManager.hap" desc="Provided by DlpManager"/>
                 <filteritem type="filepath" name="code/SystemFeature/Security/DLP/screenshots/haps/FileEdit.hap" desc="Provided by FileEdit"/>
                 <filteritem type="filepath" name="code/BasicFeature/DeviceManagement/Sensor/Capi/libs/library.har" desc="Provided by code/BasicFeature/DeviceManagement/Sensor"/>

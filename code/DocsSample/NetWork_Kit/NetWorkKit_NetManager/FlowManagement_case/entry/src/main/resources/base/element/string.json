@@ -1,0 +1,60 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "Get_Designated_Network_Card_Downstream_Traffic",
+      "value": "获取指定网卡下行流量"
+    },
+    {
+      "name": "Get_Designated_Network_Card_Upstream_Traffic",
+      "value": "获取指定网卡上行流量"
+    },
+    {
+      "name": "Get_Cellular_Downstream_Traffic",
+      "value": "获取蜂窝下行流量"
+    },
+    {
+      "name": "Get_Cellular_Upstream_Traffic",
+      "value": "获取蜂窝上行流量"
+    },
+    {
+      "name": "Get_All_Network_Card_Downstream_Traffic",
+      "value": "获取所有网卡下行流量"
+    },
+    {
+      "name": "Get_All_Network_Card_Upstream_Traffic",
+      "value": "获取所有网卡上行流量"
+    },
+    {
+      "name": "Get_Designated_App_Downstream_Traffic",
+      "value": "获取指定应用下行流量"
+    },
+    {
+      "name": "Get_Designated_App_Upstream_Traffic",
+      "value": "获取指定应用上行流量"
+    },
+    {
+      "name": "Get_Designated_Socket_Downstream_Traffic",
+      "value": "获取指定Socket下行流量"
+    },
+    {
+      "name": "Get_Designated_Socket_Upstream_Traffic",
+      "value": "获取指定Socket上行流量"
+    },
+    {
+      "name": "TitleName",
+      "value": "流量管理"
+    }
+  ]
+}
