@@ -1,0 +1,92 @@
+{
+  "string": [
+    {
+      "name": "search_component_page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "search_component_main_page_top_borderRadius",
+      "value": "8"
+    },
+    {
+      "name": "search_component_main_page_padding",
+      "value": "12"
+    },
+    {
+      "name": "search_component_search_placeholder",
+      "value": "搜索"
+    },
+    {
+      "name": "search_component_search_history",
+      "value": "搜索历史"
+    },
+    {
+      "name": "search_component_search_delete_title",
+      "value": "确认删除全部历史记录"
+    },
+    {
+      "name": "search_component_delete_back",
+      "value": "取消"
+    },
+    {
+      "name": "search_component_delete_ok",
+      "value": "确认"
+    },
+    {
+      "name": "search_component_search_history_font_size1",
+      "value": "12"
+    },
+    {
+      "name": "search_component_search_history_font_size2",
+      "value": "16"
+    },
+    {
+      "name": "search_component_search_history_font_size3",
+      "value": "14"
+    },
+    {
+      "name": "search_component_search_history_text_padding_margin1",
+      "value": "16"
+    },
+    {
+      "name": "search_component_search_history_text_padding_margin2",
+      "value": "12"
+    },
+    {
+      "name": "search_component_search_history_text_padding_margin3",
+      "value": "6"
+    },
+    {
+      "name": "search_component_search_history_text_padding_margin4",
+      "value": "10"
+    },
+    {
+      "name": "search_component_search_list_image_width",
+      "value": "16"
+    },
+    {
+      "name": "search_component_search_history_delete_size",
+      "value": "20"
+    },
+    {
+      "name": "search_component_search_height",
+      "value": "40"
+    },
+    {
+      "name": "search_component_search_background_color",
+      "value": "#E7E9E8"
+    },
+    {
+      "name": "search_component_search_history_text_color",
+      "value": "#AAB3B8"
+    },
+    {
+      "name": "search_component_search_list_text_color",
+      "value": "#F5F6F8"
+    },
+    {
+      "name": "search_component_button_text_color",
+      "value": "#0000FF"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "color": [
+    {
+      "name": "search_item_number_color",
+      "value": "#777777"
+    },
+    {
+      "name": "search_classify_fixed_words_color",
+      "value": "#8b8c8c"
+    },
+    {
+      "name": "search_classify_category_chosen_color",
+      "value": "#0A59F7"
+    },
+    {
+      "name": "search_classify_category_not_chosen_color",
+      "value": "#f5f5f5"
+    },
+    {
+      "name": "search_classify_split_line_color",
+      "value": "#dee0e6"
+    }
+  ]
+}

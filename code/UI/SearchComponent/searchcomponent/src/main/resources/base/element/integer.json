@@ -1,0 +1,124 @@
+{
+  "integer": [
+    {
+      "name": "search_component_image_left_width",
+      "value": 24
+    },
+    {
+      "name": "search_component_image_left_background_size",
+      "value": 40
+    },
+    {
+      "name": "search_component_image_left_border_radius",
+      "value": 100
+    },
+    {
+      "name": "search_component_search_button_text_size",
+      "value": 14
+    },
+    {
+      "name": "search_component_search_border_radius",
+      "value": 24
+    },
+    {
+      "name": "search_component_search_width",
+      "value": 302
+    },
+    {
+      "name": "search_component_search_margin",
+      "value": 8
+    },
+    {
+      "name": "search_component_search_padding",
+      "value": 17
+    },
+    {
+      "name": "search_component_history_padding",
+      "value": 12
+    },
+    {
+      "name": "search_component_list_size",
+      "value": 16
+    },
+    {
+      "name": "search_component_list_margin",
+      "value": 30
+    },
+    {
+      "name": "search_component_list_height",
+      "value": 600
+    },
+    {
+      "name": "search_component_home_search_width",
+      "value": 320
+    },
+    {
+      "name": "search_component_home_search_height",
+      "value": 43
+    },
+    {
+      "name": "search_component_search_foldable_padding1",
+      "value": 16
+    },
+    {
+      "name": "search_component_search_foldable_padding2",
+      "value": 0
+    },
+    {
+      "name": "search_component_search_foldable_width",
+      "value": 264
+    },
+    {
+      "name": "search_component_search_icon_height",
+      "value": 16
+    },
+    {
+      "name": "search_component_search_text_width",
+      "value": 240
+    },
+    {
+      "name": "search_component_search_number_font_size",
+      "value": 12
+    },
+    {
+      "name": "search_component_classify_description_margin",
+      "value": 10
+    },
+    {
+      "name": "search_component_classify_category_item_height",
+      "value": 35
+    },
+    {
+      "name": "search_component_classify_category_item_weight",
+      "value": 90
+    },
+    {
+      "name": "search_component_classify_category_border_radius",
+      "value": 10
+    },
+    {
+      "name": "search_component_classify_category_height",
+      "value": 80
+    },
+    {
+      "name": "search_component_classify_category_rows_gap",
+      "value": 10
+    },
+    {
+      "name": "search_component_classify_category_columns_gap",
+      "value": 20
+    },
+    {
+      "name": "search_component_classify_category_padding",
+      "value": 12
+    },
+    {
+      "name": "search_component_classify_category_split_line",
+      "value": 2
+    },
+    {
+      "name": "search_component_search_input_width",
+      "value": 353
+    }
+  ]
+}
