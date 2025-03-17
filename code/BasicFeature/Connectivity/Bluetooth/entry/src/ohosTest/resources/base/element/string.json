@@ -14,6 +14,10 @@
     },
     {
       "name": "allow",
+      "value": "允许本次使用"
+    },
+    {
+      "name": "allow2",
       "value": "允许"
     }
   ]
