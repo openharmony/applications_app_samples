@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,25 +13,25 @@
  * limitations under the License.
  */
 
-import common from '@ohos.app.ability.common'
-import historyFeature from '../feature/HistoryFeature'
-import { Header } from '../component/Header'
-import Logger from '../module/Logger'
+import common from '@ohos.app.ability.common';
+import historyFeature from '../feature/HistoryFeature';
+import { Header } from '../component/Header';
+import Logger from '../module/Logger';
 
-const TAG: string = '[Sample_CustomCommonEvent_History]'
+const TAG: string = '[Sample_CustomCommonEvent_History]';
 
 @Entry
 @Component
 struct History {
-  private feature: historyFeature = new historyFeature(getContext() as common.UIAbilityContext)
-  @State arr: Array<Array<string>> = []
+  private feature: historyFeature = new historyFeature(getContext() as common.UIAbilityContext);
+  @State arr: Array<Array<string>> = [];
 
   async onPageShow() {
     this.feature.getData().then((data: Array<Array<string>>) => {
-      this.arr = data
-      Logger.info('mst arr is ' + JSON.stringify(this.arr.length))
-      Logger.info('mst arr is ' + JSON.stringify(this.arr))
-    })
+      this.arr = data;
+      Logger.info('mst arr is ' + JSON.stringify(this.arr.length));
+      Logger.info('mst arr is ' + JSON.stringify(this.arr));
+    });
   }
 
   build() {
@@ -54,33 +54,33 @@ struct History {
                 }.size({ width: '80%', height: '30%' })
 
                 Row() {
-                  Text($r('app.string.end_time')).size({ width: '20%', height: '100%' })
+                  Text($r('app.string.end_time')).size({ width: '30%', height: '100%' })
                     .fontSize(12)
-                    .textAlign(TextAlign.Center)
+                    .textAlign(TextAlign.Start)
                     .fontColor(0x000000)
-                  Text(item[1]).size({ width: '80%', height: '100%' })
-                    .fontSize(12)
-                    .textAlign(TextAlign.Center)
-                    .fontColor(0x000000)
-                }.size({ width: '80%', height: '20%' })
-
-                Row() {
-                  Text($r('app.string.total_time')).size({ width: '20%', height: '100%' })
-                    .fontSize(12)
-                    .textAlign(TextAlign.Center)
-                    .fontColor(0x000000)
-                  Text(item[2]).size({ width: '80%', height: '100%' })
+                  Text(item[1]).size({ width: '70%', height: '100%' })
                     .fontSize(12)
                     .textAlign(TextAlign.Center)
                     .fontColor(0x000000)
                 }.size({ width: '80%', height: '20%' })
 
                 Row() {
-                  Text($r('app.string.total_interrupt')).size({ width: '20%', height: '100%' })
+                  Text($r('app.string.total_time')).size({ width: '30%', height: '100%' })
+                    .fontSize(12)
+                    .textAlign(TextAlign.Start)
+                    .fontColor(0x000000)
+                  Text(item[2]).size({ width: '70%', height: '100%' })
                     .fontSize(12)
                     .textAlign(TextAlign.Center)
                     .fontColor(0x000000)
-                  Text(item[3]).size({ width: '80%', height: '100%' })
+                }.size({ width: '80%', height: '20%' })
+
+                Row() {
+                  Text($r('app.string.total_interrupt')).size({ width: '30%', height: '100%' })
+                    .fontSize(12)
+                    .textAlign(TextAlign.Start)
+                    .fontColor(0x000000)
+                  Text(item[3]).size({ width: '70%', height: '100%' })
                     .fontSize(12)
                     .textAlign(TextAlign.Center)
                     .fontColor(0x000000)
