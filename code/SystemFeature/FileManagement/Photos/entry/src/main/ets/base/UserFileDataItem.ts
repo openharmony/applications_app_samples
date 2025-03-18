@@ -185,15 +185,30 @@ export class UserFileDataItem implements DateAdded {
   async getExif(fileAsset: photoAccessHelper.PhotoAsset): Promise<void> {
     let file = await fs.open(fileAsset.uri);
     let imageSourceApi: image.ImageSource = image.createImageSource(file.fd);
-    this.latitude = await imageSourceApi.getImageProperty(image.PropertyKey.GPS_LATITUDE);
-    this.longitude = await imageSourceApi.getImageProperty(image.PropertyKey.GPS_LONGITUDE);
-    let light = await imageSourceApi.getImageProperty(image.PropertyKey.EXPOSURE_TIME);
-    let fNumber = await imageSourceApi.getImageProperty(image.PropertyKey.F_NUMBER);
-    let photographicSensitivity = await imageSourceApi.getImageProperty(
-      image.PropertyKey.PHOTOGRAPHIC_SENSITIVITY);
+    let light = '';
+    let fNumber = '';
+    let photographicSensitivity = '';
+
+    await Promise.all([
+      imageSourceApi.getImageProperty(image.PropertyKey.GPS_LATITUDE).then(data => this.latitude = data)
+        .catch((err) => Log.error(TAG, 'getImageProperty latitude error: ' + JSON.stringify(err))),
+      imageSourceApi.getImageProperty(image.PropertyKey.GPS_LONGITUDE).then(data => this.longitude = data)
+        .catch((err) => Log.error(TAG, 'getImageProperty longitude error: ' + JSON.stringify(err))),
+      imageSourceApi.getImageProperty(image.PropertyKey.EXPOSURE_TIME).then(data => light = data)
+        .catch((err) => Log.error(TAG, 'getImageProperty light error: ' + JSON.stringify(err))),
+      imageSourceApi.getImageProperty(image.PropertyKey.F_NUMBER).then(data => fNumber = data)
+        .catch((err) => Log.error(TAG, 'getImageProperty fNumber error: ' + JSON.stringify(err))),
+      imageSourceApi.getImageProperty(image.PropertyKey.PHOTOGRAPHIC_SENSITIVITY)
+        .then(data => photographicSensitivity = data)
+        .catch((err) => Log.error(TAG, 'getImageProperty photographicSensitivity error: ' + JSON.stringify(err))),
+    ]);
+
     this.shootingParams = 'F_NUMBER ' + fNumber +
       ' PHOTOGRAPHIC_SENSITIVITY ' + photographicSensitivity +
       ' EXPOSURE_TIME ' + light;
+    fs.closeSync(file.fd);
+    Log.info(TAG, `getExif end, latitude: ${this.latitude}, longitude: ${this.longitude}, light: ${light},
+    fNumber: ${fNumber}, photographicSensitivity: ${photographicSensitivity}`);
   }
 
   async getThumbnail(width: number, height: number): Promise<PixelMap> {
