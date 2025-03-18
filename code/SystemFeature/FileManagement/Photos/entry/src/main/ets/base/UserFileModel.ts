@@ -538,11 +538,16 @@ class UserFileModel {
   }
 
   async hideSensitives(type: number, uris: string[]): Promise<void> {
-    let flags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+    let flags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION;
     let bundleInfo = bundleManager.getBundleInfoForSelfSync(flags);
-    let appId = bundleInfo.signatureInfo.appId;
+    let tokenId = bundleInfo.appInfo.accessTokenId;
     for (let uri of uris) {
-      await this.userFileMgr.grantPhotoUriPermission(appId, uri, 1, type);
+      try {
+        let grantResult = await this.userFileMgr.grantPhotoUriPermission(tokenId, uri, 1, type);
+        Log.info(TAG, `grantPhotoUriPermission success, result: ${grantResult}`);
+      }catch (err) {
+        Log.error(TAG, 'grantPhotoUriPermission failed with error: ' + JSON.stringify(err));
+      }
     }
   }
 }
