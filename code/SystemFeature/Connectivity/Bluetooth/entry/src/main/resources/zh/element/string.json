@@ -67,6 +67,10 @@
     {
       "name": "grant_manage_bluetooth",
       "value": "管理蓝牙权限"
+    },
+    {
+      "name": "no_relevant_devices_found",
+      "value": "没有搜到相关设备~"
     }
   ]
 }

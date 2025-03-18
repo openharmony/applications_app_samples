@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,6 +16,7 @@ import bluetooth from '@ohos.bluetooth'
 import logger from '../Model/Logger'
 import { TitleBar } from '../Commom/TitleBar'
 import { PinDialog } from '../Commom/PinDialog'
+import promptAction from '@ohos.promptAction';
 
 const TAG: string = 'Index'
 const TIME: number = 0 // 设备可被发现的持续时间
@@ -26,6 +27,10 @@ struct Index {
   @State isOn: boolean = false
   @State deviceList: Array<string> = []
   @State discoveryList: Array<string> = []
+  @State changeValue: string = '';
+  @State submitValue: string = '';
+  @State isSearchState: boolean = false;
+  @State deviceNames: string[] = [];
   private bluetoothState: boolean = false
   private pinDialogController: CustomDialogController | null = null
   private intervalId: number = -1
@@ -218,6 +223,50 @@ struct Index {
               .margin({ left: '5%', bottom: '2%' })
               .alignSelf(ItemAlign.Start)
 
+            Column() {
+              Search({ value: this.changeValue, placeholder: 'Type to search...' })
+                .searchButton('SEARCH')
+                .width('90%')
+                .height(40)
+                .backgroundColor('#F5F5F5')
+                .placeholderColor(Color.Grey)
+                .placeholderFont({ size: 14, weight: 400 })
+                .textFont({ size: 14, weight: 400 })
+                .onSubmit((value: string) => {
+                  this.submitValue = value;
+                  this.isSearchState = true;
+                  this.searchResultList(value);
+                  if (this.deviceNames.length === 0) {
+                    promptAction.showToast({
+                      message: $r('app.string.no_relevant_devices_found')
+                    })
+                  }
+                })
+                .onChange((value: string) => {
+                  this.changeValue = value;
+                  // 清空数据
+                  this.deviceNames.splice(0, this.deviceNames.length);
+                })
+                .margin(20)
+
+              ForEach(this.deviceNames, (item) => {
+                Row() {
+                  Text(item)
+                    .fontSize(20)
+                }
+                .backgroundColor('#F5F5F5')
+                .alignSelf(ItemAlign.Start)
+                .width('100%')
+                .height(50)
+                .margin({ left: '5%', top: '1%' })
+                .onClick(() => {
+                  logger.info(TAG, `start bluetooth.pairDevice,item = ${item}`);
+                  let pairStatus = bluetooth.pairDevice(item);
+                  logger.info(TAG, `pairStatus = ${pairStatus}`);
+                })
+              })
+            }.width('100%')
+
             ForEach(this.discoveryList, (item) => {
               Row() {
                 Text(item)
@@ -244,5 +293,13 @@ struct Index {
       }
       .constraintSize({ maxHeight: '85%' })
     }
+  }
+
+  searchResultList(value: string) {
+    this.discoveryList.forEach(item => {
+      if (item.includes(value)) {
+        this.deviceNames.push(item);
+      }
+    })
   }
 }
