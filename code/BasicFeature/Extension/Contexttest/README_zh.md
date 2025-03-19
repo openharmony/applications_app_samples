@@ -36,7 +36,7 @@ entry/src/main/ets/
 |---entryability
 |---inputMethodextability
     |---pages
-        |---inputMethodService.ts            //input独立extension
+        |---inputMethodService.ts            // input独立extension
 |---pages
 |   |---Index.ets                            // 首页
 entry/src/ohosTest/ets/
@@ -78,7 +78,7 @@ entry/src/ohosTest/ets/
 4.本示例需要使用Full SDK编译。使用Full SDK时需要手动从镜像站点获取，并在DevEco
 Studio中替换，具体操作可参考[替换指南](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)。
 
-5.本实例需要用到相同dataGroupId实现共享文件，所以需要在签名证书UnsgnedReleasedProfileTemplate.json中添加配置如"
+5.本实例需要用到相同dataGroupId实现共享文件，所以需要在签名证书UnsgnedReleasedProfileTemplate.json中的"bundle-info"配置项中添加配置如："
 data-group-ids":["test1","test2","test3"]，同时需要在module.json5中的extensionAbilities中添加配置如："
 dataGroupIds": ["test1"]
 ，只有当前extension和应用配置相同dataGroupId，才可以和应用共享这一个dataGroupId生成的目录。具体操作指南可参考[HarmonyAppProvision配置文件说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/app-provision-structure.md#bundle-info%E5%AF%B9%E8%B1%A1%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84)。
