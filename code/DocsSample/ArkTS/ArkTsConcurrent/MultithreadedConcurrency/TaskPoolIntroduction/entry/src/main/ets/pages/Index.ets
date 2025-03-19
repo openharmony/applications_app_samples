@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [StartExclude main_page]
 import { CommonButton } from '../util/CommonButton';
 import resource from '../util/resource';
 
@@ -53,3 +54,4 @@ struct Index {
     .width('100%')
   }
 }
+// [EndExclude main_page]

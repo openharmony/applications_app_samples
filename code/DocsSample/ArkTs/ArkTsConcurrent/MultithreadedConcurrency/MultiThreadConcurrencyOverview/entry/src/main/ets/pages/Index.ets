@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start actor_model]
 import { taskpool } from '@kit.ArkTS';
 
 // 跨线程并发任务
@@ -54,9 +55,13 @@ struct Index {
               console.error(e.message);
             })
           }
+          // [StartExclude update_message_on_success]
           this.message = 'success';
+          // [EndExclude update_message_on_success]
         })
+        // [StartExclude set_button_id]
         .id('button')
+        // [EndExclude set_button_id]
         .width('20%')
         .height('20%')
       }
@@ -65,3 +70,4 @@ struct Index {
     .height('100%')
   }
 }
+// [End actor_model]

@@ -13,8 +13,10 @@
  * limitations under the License.
  */
 
+// [Start promise_then_catch_handling]
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// [Start promise_async_operation]
 const promise: Promise<number> = new Promise((resolve: Function, reject: Function) => {
   setTimeout(() => {
     const randomNumber: number = Math.random();
@@ -25,24 +27,16 @@ const promise: Promise<number> = new Promise((resolve: Function, reject: Functio
     }
   }, 1000);
 })
+// [End promise_async_operation]
 
 promise.then((result: number) => {
   console.info(`Random number is ${result}`);
 }).catch((error: BusinessError) => {
   console.error(error.message);
 });
+// [End promise_then_catch_handling]
 
-async function myAsyncFunction(): Promise<string> {
-  const result: string = await new Promise((resolve: Function) => {
-    setTimeout(() => {
-      resolve('Hello, world!');
-    }, 3000);
-  });
-  console.info(result); // 输出： Hello, world!
-  return result;
-}
-
-//除了在async函数中使用await外，还可以使用try/catch块来捕获异步操作中的异常。
+// [Start async_operation_error_handling_with_try_catch]
 // async function myAsyncFunction(): Promise<void> {
 //   try {
 //     const result: string = await new Promise((resolve: Function) => {
@@ -52,6 +46,18 @@ async function myAsyncFunction(): Promise<string> {
 //     console.error(`Get exception: ${e}`);
 //   }
 // }
+// [End async_operation_error_handling_with_try_catch]
+
+// [Start async_await_sync_operation]
+async function myAsyncFunction(): Promise<string> {
+  const result: string = await new Promise((resolve: Function) => {
+    setTimeout(() => {
+      resolve('Hello, world!');
+    }, 3000);
+  });
+  console.info(result); // 输出： Hello, world!
+  return result;
+}
 
 @Entry
 @Component
@@ -67,7 +73,9 @@ struct PromiseAsyncAwait {
           .onClick(async () => {
             let res = await myAsyncFunction();
             console.info('res is: ' + res);
+            // [StartExclude update_message_on_success]
             this.message = 'success';
+            // [EndExclude update_message_on_success]
           })
       }
       .width('100%')
@@ -75,3 +83,4 @@ struct PromiseAsyncAwait {
     .height('100%')
   }
 }
+// [End async_await_sync_operation]

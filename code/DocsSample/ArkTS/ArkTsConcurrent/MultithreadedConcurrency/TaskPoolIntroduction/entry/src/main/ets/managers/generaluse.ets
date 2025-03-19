@@ -15,6 +15,7 @@
 
 // 并发函数一般使用
 // 并发函数为一个计算两数之和的普通函数，taskpool执行该函数并返回结果。
+// [Start concurrent_taskpool_common_usage]
 import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
@@ -44,7 +45,9 @@ struct Index {
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
             concurrentFunc();
+            // [StartExclude update_message_on_success]
             this.message = 'success';
+            // [EndExclude update_message_on_success]
           })
       }
       .width('100%')
@@ -52,3 +55,4 @@ struct Index {
     .height('100%')
   }
 }
+// [End concurrent_taskpool_common_usage]

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [StartExclude p2p_manager_resource]
 export class P2PManager {
   public resourceToString(resource: Resource):string {
     return getContext(this).resourceManager.getStringSync(resource);
@@ -23,3 +24,4 @@ export class P2PManager {
 let p2pManager = new P2PManager();
 
 export default p2pManager as P2PManager;
+// [EndExclude p2p_manager_resource]

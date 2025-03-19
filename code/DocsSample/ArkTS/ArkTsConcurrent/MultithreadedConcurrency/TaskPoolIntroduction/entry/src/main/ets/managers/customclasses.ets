@@ -15,6 +15,7 @@
 
 // 并发函数中使用自定义类或函数
 // 并发函数中使用自定义类或函数时需定义在不同文件，否则会被认为是闭包，如下例所示。
+// [Start concurrent_taskpool_custom_class_function]
 import { taskpool } from '@kit.ArkTS';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { testAdd, MyTestA, MyTestB } from './Test';
@@ -82,10 +83,13 @@ struct Index {
           }).catch((e:BusinessError) => {
             console.error(`taskpool: execute: Code: ${e.code}, message: ${e.message}`);
           })
+          // [StartExclude update_message_on_success]
           this.message = 'success';
+          // [EndExclude update_message_on_success]
         })
     }
     .height('100%')
     .width('100%')
   }
 }
+// [End concurrent_taskpool_custom_class_function]

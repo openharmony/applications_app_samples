@@ -15,6 +15,7 @@
 
 // 并发异步函数中使用Promise
 // 并发异步函数中如果使用Promise，建议搭配await使用捕获Promise中可能发生的异常。推荐使用示例如下。
+// [Start concurrent_taskpool_async_promise_usage]
 import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
@@ -75,7 +76,9 @@ struct Index {
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
             testConcurrentFunc();
+            // [StartExclude update_message_on_success]
             this.message = 'success';
+            // [EndExclude update_message_on_success]
           })
       }
       .width('100%')
@@ -83,3 +86,4 @@ struct Index {
     .height('100%')
   }
 }
+// [End concurrent_taskpool_async_promise_usage]
