@@ -40,6 +40,9 @@ const EL2_AREA_FLAG = '/data/storage/el2';
 const EL3_AREA_FLAG = '/data/storage/el3';
 const EL4_AREA_FLAG = '/data/storage/el4';
 
+// 新增文件后缀
+const SUFFIX: string = '.txt';
+
 const TAG: string = 'MyPhone';
 
 let myContext = getContext(this) as common.UIAbilityContext;
@@ -195,7 +198,7 @@ export struct MyPhone {
           NewFileSystem.createDirectory(this.directoryPath + name);
         } else {
           // 创建文件
-          FileSystem.createFile(this.directoryPath + name);
+          FileSystem.createFile(this.directoryPath + name + SUFFIX);
         }
         this.updateFileData();
         this.inputNameDialog.close();
