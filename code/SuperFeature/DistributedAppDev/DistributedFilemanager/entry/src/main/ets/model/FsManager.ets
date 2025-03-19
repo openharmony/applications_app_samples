@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023-2024 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023-2025 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -196,14 +196,14 @@ class FsManager {
           item = item.substring(5, item.length);
           let fileName: string | undefined = item.split('/').pop();
           if (fileName) {
-            newFileName = fileName;
+            newFileName = decodeURIComponent(fileName);
           } else {
             return;
           }
           //判断本地是否有同名文件，有则重命名
           fileData.forEach(file => {
             //有同名文件
-            if (file.name.includes(newFileName)) {
+            if (decodeURIComponent(file.name).includes(newFileName)) {
               //extension 文件后缀
               let extension: string = newFileName.slice((newFileName.lastIndexOf(".") - 1 >>> 0) + 2);
               if (extension) {
@@ -225,11 +225,11 @@ class FsManager {
           let fileName: string | undefined = item.split('/').pop();
           let newFileName: string = '';
           if (fileName) {
-            newFileName = fileName;
+            newFileName = decodeURIComponent(fileName);
             //判断是否有同名文件，有则重命名
             fileData.forEach(file => {
               //有同名文件
-              if (file.name.includes(newFileName)) {
+              if (decodeURIComponent(file.name).includes(newFileName)) {
                 //extension 文件后缀
                 let extension: string = newFileName.slice((newFileName.lastIndexOf(".") - 1 >>> 0) + 2);
                 if (extension) {
