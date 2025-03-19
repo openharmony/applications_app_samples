@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "GetvaluedoubleAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "GetvaluedoubleAbility_label",
+      "value": "JsvmBasicDataTypes"
+    }
+  ]
+}

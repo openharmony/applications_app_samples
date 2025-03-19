@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "Getvalueuint32Ability_desc",
+      "value": "description"
+    },
+    {
+      "name": "Getvalueuint32Ability_label",
+      "value": "JsvmBasicDataTypes"
+    }
+  ]
+}

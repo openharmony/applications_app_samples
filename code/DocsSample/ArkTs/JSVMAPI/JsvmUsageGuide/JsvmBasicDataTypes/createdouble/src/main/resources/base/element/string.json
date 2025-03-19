@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "CreatedoubleAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "CreatedoubleAbility_label",
+      "value": "JsvmBasicDataTypes"
+    }
+  ]
+}
