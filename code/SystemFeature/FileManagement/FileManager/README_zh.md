@@ -129,7 +129,7 @@ Library/src/main/ets/
     * 获取缩略图：在[ThumbnailImage.ets](Library/src/main/ets/filemanager/components/ThumbnailImage.ets) 中调用FileManager.getThumbnail()；
     * 如效果预览中的**图片预览**，获取预览图：在[ImagePreview.ets](entry/src/main/ets/filemanager/pages/image/ImagePreview.ets) 中调用FileManager.getPixelMapByFileAsset()。
     
-* 监听文件模块中的文件增删、查找、修改、监听功能封装在MyWatcher，源码参考：[MyWatcher.ts](ets/src/main/ets/filemanager/fileFs/MyWatcher.ts)
+* 监听文件模块中的文件增删、查找、修改、监听功能封装在MyWatcher，源码参考：[MyWatcher.ts](entry/src/main/ets/filemanager/fileFs/MyWatcher.ets)
 
     * 增加文件、删除文件、监听文件、停止监听文件：在[WatcherFile.ets](entry/src/main/ets/pages/WatcherFile.ets)
       中调用MyWathcer.addFileToWatcher()、MyWathcer.deleteFileToWatcher()、MyWathcer.startWatcher(watcherName)、MyWathcer.stopWatcher()；
