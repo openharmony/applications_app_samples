@@ -110,11 +110,11 @@ hdc shell param set persist.sys.abilityms.autofill.is_passwd_popup_window false
 
 1.本示例仅支持标准系统上运行，支持设备：RK3568；
 
-2.本示例为Stage模型，支持API12版本SDK，版本号：5.0.0.22；
+2.本示例为Stage模型，支持API14版本SDK，版本号：5.0.2；
 
 3.本示例涉及使用系统接口：AutoFillExtensionAbility.onFillRequest，AutoFillExtensionAbility.onSaveRequest，autoFillManager.requestAutoSave，需要手动替换Full SDK才能编译通过；
 
-4.本示例需要使用DevEco Studio 4.1.3 Release（Build Version: 4.1.3.500, built on January 20, 2024）才可编译运行；
+4.本示例需要使用DevEco Studio 5.0.2 Release 才可编译运行；
 
 5.本示例涉及权限至少为system_basic级别；
 
