@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,10 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import { Driver, ON } from '@ohos.UiTest';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import Logger from '../../utils/Logger';
+import resource from '@ohos.resourceManager';
 
 const TAG: string = '[Sample_AuthorizedButton]';
 const DOMAIN = '0xF811';
@@ -51,6 +52,10 @@ export default function abilityTest() {
     it(BUNDLE + 'GetLocation_001', 0, async () =>{
       Logger.info(DOMAIN, TAG, BUNDLE + 'GetLocation_001 begin');
       await driver.delayMs(DELAY_TIME);
+      // 获取ability
+      let ability = await abilityDelegator.getCurrentTopAbility();
+      //获取manager
+      let manager = ability.context.resourceManager;
       // 点击Location
       await driver.assertComponentExist(ON.id('Location'));
       let location = await driver.findComponent(ON.id('Location'));
@@ -62,8 +67,8 @@ export default function abilityTest() {
       await locationButton.click();
       await driver.delayMs(DELAY_TIME);
       // 点击确定
-      await driver.assertComponentExist(ON.text('知道了'));
-      let Button = await driver.findComponent(ON.text('知道了'));
+      await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.allow'))));
+      let Button = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.allow'))));
       await Button.click();
       // 返回
       let backBtn = await driver.findComponent(ON.id('backBtn'));
@@ -104,6 +109,10 @@ export default function abilityTest() {
     it(BUNDLE + 'Save_001', 0, async () =>{
       Logger.info(DOMAIN, TAG, BUNDLE + 'Save_001 begin');
       await driver.delayMs(DELAY_TIME);
+      // 获取ability
+      let ability = await abilityDelegator.getCurrentTopAbility();
+      //获取manager
+      let manager = ability.context.resourceManager;
       // 点击Save
       await driver.assertComponentExist(ON.id('Save'));
       let save = await driver.findComponent(ON.id('Save'));
@@ -115,8 +124,8 @@ export default function abilityTest() {
       await saveButton.click();
       await driver.delayMs(DELAY_TIME);
       // 点击确定
-      await driver.assertComponentExist(ON.text('知道了'));
-      let Button = await driver.findComponent(ON.text('知道了'));
+      await driver.assertComponentExist(ON.text(await manager.getStringValue($r('app.string.allow'))));
+      let Button = await driver.findComponent(ON.text(await manager.getStringValue($r('app.string.allow'))));
       await Button.click();
       // 返回
       let backBtn = await driver.findComponent(ON.id('backBtn'));

@@ -83,6 +83,10 @@
     {
       "name": "Save_succeed",
       "value": "Save succeed"
+    },
+    {
+      "name": "allow",
+      "value": "允许"
     }
   ]
 }
