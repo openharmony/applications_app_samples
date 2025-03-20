@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start concurrent_taskpool_test_resources]
 export function testAdd(arg: number) {
   return ++arg;
 }
@@ -28,3 +29,4 @@ export class MyTestA {
 export class MyTestB {
   static nameStr:string = 'MyTestB';
 }
+// [End concurrent_taskpool_test_resources]

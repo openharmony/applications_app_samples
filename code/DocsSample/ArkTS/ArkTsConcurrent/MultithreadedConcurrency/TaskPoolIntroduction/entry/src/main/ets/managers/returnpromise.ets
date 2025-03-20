@@ -15,6 +15,7 @@
 
 // 并发函数返回Promise
 // 并发函数中返回Promise的表现需关注，其中并发同步函数会处理返回该Promise并返回结果，如下例所示。
+// [Start concurrent_taskpool_promise_return]
 import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
@@ -110,7 +111,9 @@ struct Index {
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
             testConcurrentFunc();
+            // [StartExclude update_message_on_success]
             this.message = 'success';
+            // [EndExclude update_message_on_success]
           })
       }
       .width('100%')
@@ -118,3 +121,4 @@ struct Index {
     .height('100%')
   }
 }
+// [End concurrent_taskpool_promise_return]

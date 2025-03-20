@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [StartExclude button_component]
 import router from '@ohos.router';
 
 @Component
@@ -44,3 +45,4 @@ export struct CommonButton {
       })
   }
 }
+// [EndExclude button_component]
