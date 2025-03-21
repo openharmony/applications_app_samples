@@ -1586,6 +1586,41 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/DocsSample/ArkWeb/UseFrontendJSApp/FrontendCallAppFn/JavaScriptProxy/screenshots/JavaScriptProxy_2.png" desc="Provided by code/DocsSample/ArkWeb"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkWeb/UseFrontendJSApp/FrontendCallAppFn/RegisterJavaScriptProxy/screenshots/RegisterJavaScriptProxy_1.png" desc="Provided by code/DocsSample/ArkWeb"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkWeb/UseFrontendJSApp/FrontendCallAppFn/RegisterJavaScriptProxy/screenshots/RegisterJavaScriptProxy_2.png" desc="Provided by code/DocsSample/ArkWeb"/>
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/NetConnection_Exploitation_case/screenshots/CodeNumber.jpg" desc="Provided by code/DocsSample/NetWork_Kit"/>
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/NetConnection_Exploitation_case/screenshots/GetDefaultNet.jpg" desc="Provided by code/DocsSample/NetWork_Kit"/>
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/NetConnection_Exploitation_case/screenshots/GetHasDefaultNet.jpg" desc="Provided by code/DocsSample/NetWork_Kit"/>
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/NetConnection_Exploitation_case/screenshots/GetIsDefaultNetMetered.jpg" desc="Provided by code/DocsSample/NetWork_Kit"/>			
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/HTTP_case/screenshots/Program_Startup.jpg" desc="Provided by code/DocsSample/NetWork_Kit"/>
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/HTTP_case/screenshots/Send_HTTP_Request.jpg" desc="Provided by code/DocsSample/NetWork_Kit"/>
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/HTTP_case/screenshots/Send_Streaming_HTTP_Request.jpg" desc="Provided by code/DocsSample/NetWork_Kit"/>
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/screenshots/MainPage.jpeg" desc="Provided by code/DocsSample/NetWork_Kit"/>
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/screenshots/TcpClient.jpeg" desc="Provided by code/DocsSample/NetWork_Kit"/>
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/screenshots/TcpServer.jpeg" desc="Provided by code/DocsSample/NetWork_Kit"/>
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/screenshots/UDP.jpeg" desc="Provided by code/DocsSample/NetWork_Kit"/>
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/WebSocket_case/screenshots/ApplicationStart.png" desc="Provided by code/DocsSample/NetWork_Kit"/>
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/WebSocket_case/screenshots/CloseConnection.png" desc="Provided by code/DocsSample/NetWork_Kit"/>
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/WebSocket_case/screenshots/ConnectSuccess.png" desc="Provided by code/DocsSample/NetWork_Kit"/>
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/WebSocket_case/screenshots/SendMessage.png" desc="Provided by code/DocsSample/NetWork_Kit"/>
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/WebSocket_C/screenshots/WebSocket_Close.jpg" desc="Provided by code/DocsSample/NetWork_Kit"/>
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/WebSocket_C/screenshots/WebSocket_Connect.jpg" desc="Provided by code/DocsSample/NetWork_Kit"/>
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/WebSocket_C/screenshots/WebSocket_Index.jpg" desc="Provided by code/DocsSample/NetWork_Kit"/>
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/WebSocket_C/screenshots/WebSocket_Send.jpg" desc="Provided by code/DocsSample/NetWork_Kit"/>
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/MDNS_case/screenshots/Add_Local_Service.jpg" desc="Provided by code/DocsSample/NetWork_Kit"/>
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/MDNS_case/screenshots/Remove_Local_Service.jpg" desc="Provided by code/DocsSample/NetWork_Kit"/>
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/MDNS_case/screenshots/Resolve_Local_Service.jpg" desc="Provided by code/DocsSample/NetWork_Kit"/>
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/MDNS_case/screenshots/Start_mDNS_Service_Discovery.jpg" desc="Provided by code/DocsSample/NetWork_Kit"/>
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/NetConnection_Manage_case/screenshots/Connected.jpg" desc="Provided by code/DocsSample/NetWork_Kit"/>
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/NetConnection_Manage_case/screenshots/GetNetworkInfo.jpg" desc="Provided by code/DocsSample/NetWork_Kit"/>
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/NetConnection_Manage_case/screenshots/GetSocketConnected.jpg" desc="Provided by code/DocsSample/NetWork_Kit"/>
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/NetConnection_Manage_case/screenshots/NetworkConnection.jpg" desc="Provided by code/DocsSample/NetWork_Kit"/>
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/FlowManagement_case/screenshots/Aquire_all_traffic_downStream.jpeg" desc="Provided by code/DocsSample/NetWork_Kit"/>
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/FlowManagement_case/screenshots/Aquire_all_traffic_upStream.jpeg" desc="Provided by code/DocsSample/NetWork_Kit"/>
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/FlowManagement_case/screenshots/Aquire_traffic_downStream.jpeg" desc="Provided by code/DocsSample/NetWork_Kit"/>
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/FlowManagement_case/screenshots/Aquire_traffic_upStream.jpeg" desc="Provided by code/DocsSample/NetWork_Kit"/>
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/VPNControl_Case/screenshots/Vpn_Index.jpg" desc="Provided by code/DocsSample/NetWork_Kit"/>				
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/VPNControl_Case/screenshots/Create_Tunnel.jpg" desc="Provided by code/DocsSample/NetWork_Kit"/>					
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/VPNControl_Case/screenshots/Start_VpnExt.jpg" desc="Provided by code/DocsSample/NetWork_Kit"/>				
+				<filteritem type="filepath" name="code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/VPNControl_Case/screenshots/Stop_Vpn.jpg" desc="Provided by code/DocsSample/NetWork_Kit"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkWeb/UseFrontendJSApp/FrontendCallAppFn/UsageOfComplexTypes_one/screenshots/UsageOfComplexTypes_one.png" desc="Provided by code/DocsSample/ArkWeb"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkWeb/UseFrontendJSApp/FrontendCallAppFn/UsageOfComplexTypes_two/screenshots/UsageOfComplexTypes_two.png" desc="Provided by code/DocsSample/ArkWeb"/>
 				<filteritem type="filepath" name="code/DocsSample/ArkWeb/UseFrontendJSApp/FrontendCallAppFn/UsageOfComplexTypes_three/screenshots/UsageOfComplexTypes_three.png" desc="Provided by code/DocsSample/ArkWeb"/>
