@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -25,9 +25,12 @@ struct Index {
   build() {
     Column() {
       Row() {
-        XComponent({ id: 'xcomponentId', type: 'surface', libraryname: 'entry' })
+        XComponent({ id: 'xcomponentId', type: XComponentType.SURFACE, libraryname: 'entry' })
           .onLoad((xComponentContext) => {
             this.xComponentContext = xComponentContext as XComponentContext;
+            if (this.xComponentContext) {
+              this.xComponentContext.drawPattern();
+            }
           }).width('640px') // Multiples of 64
       }.height('88%')
       .backgroundColor(Color.White)
