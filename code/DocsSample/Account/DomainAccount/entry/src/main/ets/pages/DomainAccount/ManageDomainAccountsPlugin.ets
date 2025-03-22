@@ -13,9 +13,12 @@
  * limitations under the License.
  */
 
+// [Start import_the_system_account_module]
 import { osAccount, AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+// [End import_the_system_account_module]
 import { router } from '@kit.ArkUI';
 
+// [Start define_the_plug_in]
 let plugin: osAccount.DomainPlugin = {
   auth: (domainAccountInfo: osAccount.DomainAccountInfo, credential: Uint8Array,
     callback: osAccount.IUserAuthCallback) => {
@@ -134,6 +137,7 @@ let plugin: osAccount.DomainPlugin = {
     callback(code, token);
   }
 }
+// [End define_the_plug_in]
 
 
 @Entry
@@ -142,25 +146,37 @@ struct ManageDomainAccountsPlugin {
   @State message: string = 'Manage domain account plugin';
 
   private async registrationPlugin(): Promise<void> {
+    // [Start call_the_api_to_register_the_plug_in]
     try {
       osAccount.DomainAccountManager.registerPlugin(plugin)
       console.info('registerPlugin success');
+      // [StartExclude call_the_api_to_register_the_plug_in]
       this.message = 'Successfully registered plugin';
+      // [EndExclude call_the_api_to_register_the_plug_in]
     } catch (err) {
       console.error('registerPlugin err: ' + JSON.stringify(err));
+      // [StartExclude call_the_api_to_register_the_plug_in]
       this.message = 'Failed to register plugin:  ' + JSON.stringify(err);
+      // [EndExclude call_the_api_to_register_the_plug_in]
     }
+    // [End call_the_api_to_register_the_plug_in]
   }
 
   private async logoutPlugin(): Promise<void> {
+    // [Start call_the_api_to_log_out_the_plug_in]
     try {
       osAccount.DomainAccountManager.unregisterPlugin();
       console.log('unregisterPlugin success.');
+      // [StartExclude call_the_api_to_log_out_the_plug_in]
       this.message = 'unregisterPlugin success';
+      // [EndExclude call_the_api_to_log_out_the_plug_in]
     } catch(err) {
       console.error('unregisterPlugin err:' + JSON.stringify(err));
+      // [StartExclude call_the_api_to_log_out_the_plug_in]
       this.message = 'Failed to unregister plugin: ' + JSON.stringify(err);
+      // [EndExclude call_the_api_to_log_out_the_plug_in]
     }
+    // [End call_the_api_to_log_out_the_plug_in]
   }
 
   build() {

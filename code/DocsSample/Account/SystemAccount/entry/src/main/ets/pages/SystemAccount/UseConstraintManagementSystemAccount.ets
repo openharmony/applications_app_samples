@@ -13,10 +13,14 @@
  * limitations under the License.
  */
 
+// [Start import_system_account_module]
 import { osAccount } from '@kit.BasicServicesKit';
+// [End import_system_account_module]
 import { router } from '@kit.ArkUI';
 
+// [Start obtain_account_single_instance_object]
 let accountManager = osAccount.getAccountManager();
+// [End obtain_account_single_instance_object]
 
 @Entry
 @Component
@@ -24,28 +28,42 @@ struct UseConstraintManagementSystemAccount {
   @State message: string = 'No work done';
 
   private async setOsAccountConstraints(): Promise<void> {
+    // [Start constraint_collections]
     let localId: number = 100;
     let constraint: string[] = [ 'constraint.wifi.set' ];
+    // [End constraint_collections]
+    // [Start system_account_constraint]
     try {
       accountManager.setOsAccountConstraints(localId, constraint, true);
       console.log('setOsAccountConstraints successfully');
+      // [StartExclude system_account_constraint]
       this.message = 'Successfully set the constraint list for the specified system account';
+      // [EndExclude system_account_constraint]
     } catch (err) {
       console.error('setOsAccountConstraints failed, error: ' + JSON.stringify(err));
+      // [StartExclude system_account_constraint]
       this.message = 'Failed to set the constraint list for the specified system account';
+      // [EndExclude system_account_constraint]
     }
+    // [End system_account_constraint]
   }
 
   private async isOsAccountConstraintEnabled(): Promise<void> {
+    // [Start specify_the_system_account_id_and_constraint_name]
     let localId: number = 100;
     let constraint: string = 'constraint.wifi.set';
+    // [End specify_the_system_account_id_and_constraint_name]
+    // [Start check_whether_the_specified_constraint_is_enabled]
     let isEnabled: boolean = await accountManager.isOsAccountConstraintEnabled(localId, constraint);
     if (isEnabled) {
       // your business logic
+      // [StartExclude check_whether_the_specified_constraint_is_enabled]
       this.message = 'Set the constraint list for the specified system account';
     } else {
       this.message = 'Can not set the constraint list for the specified system account';
+      // [EndExclude check_whether_the_specified_constraint_is_enabled]
     }
+    // [End check_whether_the_specified_constraint_is_enabled]
   }
 
   build() {
