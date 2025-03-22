@@ -78,12 +78,12 @@ export class KvStoreModel {
 
   put(key: string, value: string) {
     if (this.kvStore) {
-      Logger.debug(TAG, `kvStore.put ${key} = ${value}`)
+      Logger.info(TAG, `kvStore.put ${key} = ${value}`);
       this.kvStore.put(
         key,
         value
       ).then((data) => {
-        Logger.debug(TAG, `kvStore.put ${key} finished, data= ${JSON.stringify(data)}`);
+        Logger.info(TAG, `kvStore.put ${key} finished, data= ${JSON.stringify(data)}`);
         devManager = distributedDeviceManager.createDeviceManager(BUNDLE_NAME);
         let deviceIds: string[] = [];
         if (devManager != null) {
@@ -97,7 +97,7 @@ export class KvStoreModel {
           this.kvStore.sync(deviceIds, mode, 1000);
         }
       }).catch((err: BusinessError) => {
-        Logger.debug(TAG, `kvStore.put ${key} failed, ${JSON.stringify(err)}`);
+        Logger.error(TAG, `kvStore.put ${key} failed, ${JSON.stringify(err)}`);
       })
     }
   }
@@ -109,12 +109,12 @@ export class KvStoreModel {
       if (this.kvStore !== undefined && this.kvStore !== null) {
         try {
           this.kvStore!.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (data) => {
-            Logger.debug(TAG, `dataChange, ${JSON.stringify(data)}`);
+            Logger.info(TAG, `dataChange, ${JSON.stringify(data)}`);
             let entries = data.insertEntries.length > 0 ? data.insertEntries : data.updateEntries;
             for (let i = 0; i < entries.length; i++) {
               if (entries[i].key === msg) {
                 let value = entries[i].value.value.toString();
-                Logger.debug(TAG, `Entries receive msg :${msg}, value：${value}`);
+                Logger.info(TAG, `Entries receive msg :${msg}, value：${value}`);
                 callback(value);
                 return;
               }

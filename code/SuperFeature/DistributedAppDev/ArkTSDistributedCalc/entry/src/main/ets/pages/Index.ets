@@ -32,6 +32,7 @@ const DATA_CHANGE: string = 'dataChange'
 @Entry
 @Component
 struct Index {
+  @State isCallback: boolean = false;
   @State isLand: boolean = false
   @State result: string = ''
   @State @Watch('dataChange') expression: string = ''
@@ -41,7 +42,7 @@ struct Index {
   private kvStoreModel: KvStoreModel = new KvStoreModel()
   private remoteDeviceModel: RemoteDeviceModel = new RemoteDeviceModel()
   onLand = (mediaQueryResult: mediaquery.MediaQueryResult) => {
-    Logger.debug(TAG, `onLand: mediaQueryResult.matches= ${mediaQueryResult.matches}`)
+    Logger.info(TAG, `onLand: mediaQueryResult.matches= ${mediaQueryResult.matches}`);
     if (mediaQueryResult.matches) {
       this.isLand = true
     } else {
@@ -51,7 +52,11 @@ struct Index {
 
   dataChange() {
     Logger.info(TAG, `dataChange, expression = ${this.expression}`)
-    this.kvStoreModel.put(DATA_CHANGE, this.expression)
+    if (this.isCallback) {
+      this.isCallback = false;
+    } else {
+      this.kvStoreModel.put(DATA_CHANGE, this.expression);
+    }
   }
 
   isOperator(operator: string) {
@@ -62,6 +67,7 @@ struct Index {
 
   onInputValue = (value: string) => {
     Logger.info(TAG, `this.isLand=${this.isLand}`);
+    Logger.info(TAG, `onInputValue=${value}`);
     if (value === 'C') { // 当用户点击C按钮，表达式和运算结果归0
       this.expression = '';
       this.result = '';
@@ -128,7 +134,7 @@ struct Index {
       this.isShow = true
     }
     this.kvStoreModel.setOnMessageReceivedListener(context, DATA_CHANGE, (value: string) => {
-      Logger.debug(TAG, `DATA_CHANGE: ${value},this.isDistributed = ${this.isDistributed}`)
+      Logger.info(TAG, `DATA_CHANGE: ${value},this.isDistributed = ${this.isDistributed}`);
       if (this.isDistributed) {
         if (value.search(EXIT) !== -1) {
           Logger.info(TAG, `EXIT ${EXIT}`)
@@ -136,6 +142,7 @@ struct Index {
             Logger.error(TAG, `terminateSelf finished, error= ${error}`)
           })
         } else {
+          this.isCallback = true;
           if (value === 'null') {
             this.expression = ''
           } else {
