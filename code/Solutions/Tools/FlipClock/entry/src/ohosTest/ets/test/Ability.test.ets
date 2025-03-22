@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,11 +14,19 @@
  */
 
 import hilog from '@ohos.hilog';
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import { describe, it, expect } from '@ohos/hypium';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON } from '@ohos.UiTest';
 
 const DRIVER = Driver.create();
+let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
+
+// 资源本地化
+async function getResourceString<T extends Resource>(resource: T): Promise<string> {
+  let manage = abilityDelegatorRegistry.getAppContext().resourceManager;
+  let text = await manage.getStringValue(resource);
+  return text;
+}
 
 export default function abilityTest() {
   describe('ActsAbilityTest', () => {
@@ -52,9 +60,12 @@ export default function abilityTest() {
       await driver.delayMs(2000);
       // 获取发送通知权限
       hilog.info(0x0000, 'testTag', 'RequestPermission requestPermission');
-      await driver.assertComponentExist(ON.text('允许'));
-      let btnStart = await driver.findComponent(ON.text('允许'));
-      await btnStart.click();
+      for (let i = 0; i < 2; i++) {
+        await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.allow'))));
+        let btnStart = await driver.findComponent(ON.text(await getResourceString($r('app.string.allow'))));
+        await btnStart.click();
+        await driver.delayMs(1000);
+      }
       hilog.info(0x0000, 'testTag', 'RequestPermission end');
     })
 
@@ -73,8 +84,8 @@ export default function abilityTest() {
      */
     it('ToAlarmClock_001', 0, async () => {
       hilog.info(0x0000, 'testTag', 'ToAlarmClock_001 begin');
-      await DRIVER.assertComponentExist(ON.text('闹钟'));
-      let alarmClock = await DRIVER.findComponent(ON.text('闹钟'));
+      await DRIVER.assertComponentExist(ON.text(await getResourceString($r('app.string.alarm_clock'))));
+      let alarmClock = await DRIVER.findComponent(ON.text(await getResourceString($r('app.string.alarm_clock'))));
       await alarmClock.click();
       await DRIVER.delayMs(1000);
       await DRIVER.assertComponentExist(ON.id('add'));
@@ -94,8 +105,8 @@ export default function abilityTest() {
       let point = await timePicker.getBoundsCenter();
       await DRIVER.swipe(point.x + 20, point.y, point.x + 20, point.y - 40);
       await DRIVER.delayMs(1000);
-      await DRIVER.assertComponentExist(ON.text('是'));
-      let confirmBtn = await DRIVER.findComponent(ON.text('是'));
+      await DRIVER.assertComponentExist(ON.text(await getResourceString($r('app.string.yes'))));
+      let confirmBtn = await DRIVER.findComponent(ON.text(await getResourceString($r('app.string.yes'))));
       await confirmBtn.click();
       await DRIVER.delayMs(1000);
       await DRIVER.assertComponentExist(ON.id('deleteAlarmClock'));
@@ -120,8 +131,8 @@ export default function abilityTest() {
      */
     it('ToCountDown_001', 0, async () => {
       hilog.info(0x0000, 'testTag', 'ToCountDown_001 begin');
-      await DRIVER.assertComponentExist(ON.text('倒计时'));
-      let countdown = await DRIVER.findComponent(ON.text('倒计时'));
+      await DRIVER.assertComponentExist(ON.text(await getResourceString($r('app.string.countdown'))));
+      let countdown = await DRIVER.findComponent(ON.text(await getResourceString($r('app.string.countdown'))));
       await countdown.click();
       await DRIVER.delayMs(1000);
       await DRIVER.assertComponentExist(ON.id('countdownCanvas'));
@@ -189,7 +200,7 @@ export default function abilityTest() {
       await DRIVER.delayMs(2000);
       let currentTimeSecond2 = parseInt((await currentTime1.getText()).split(':')[2]);
       // 断言第一次获取的时间比第二次的大
-      console.info(`LSQ: ${currentTimeSecond1}--${currentTimeSecond2}`)
+      hilog.info(0x0000, 'testTag', `LSQ: ${currentTimeSecond1}--${currentTimeSecond2}`);
       expect(currentTimeSecond1).assertLarger(currentTimeSecond2);
       hilog.info(0x0000, 'testTag', 'ContinueCountDown_001 end');
     })
@@ -213,17 +224,17 @@ export default function abilityTest() {
     it('ToSetPage_001', 0, async () => {
       hilog.info(0x0000, 'testTag', 'ToSetPage_001 begin');
       // 底部tabBar的设置菜单
-      await DRIVER.assertComponentExist(ON.text('设置'));
-      let setBtn = await DRIVER.findComponent(ON.text('设置'));
+      await DRIVER.assertComponentExist(ON.text(await getResourceString($r('app.string.setting'))));
+      let setBtn = await DRIVER.findComponent(ON.text(await getResourceString($r('app.string.setting'))));
       await setBtn.click();
       await DRIVER.delayMs(1000);
       // 设置页面上的设置按钮
       await DRIVER.assertComponentExist(ON.id('Setting'));
       let settingBtn = await DRIVER.findComponent(ON.id('Setting'));
       await settingBtn.click();
-      await DRIVER.assertComponentExist(ON.text('全屏'));
-      await DRIVER.assertComponentExist(ON.text('屏幕常亮'));
-      await DRIVER.assertComponentExist(ON.text('亮度'));
+      await DRIVER.assertComponentExist(ON.text(await getResourceString($r('app.string.full_screen'))));
+      await DRIVER.assertComponentExist(ON.text(await getResourceString($r('app.string.keep_screen_on'))));
+      await DRIVER.assertComponentExist(ON.text(await getResourceString($r('app.string.brightness'))));
       hilog.info(0x0000, 'testTag', 'ToSetPage_001 end');
     })
   })
