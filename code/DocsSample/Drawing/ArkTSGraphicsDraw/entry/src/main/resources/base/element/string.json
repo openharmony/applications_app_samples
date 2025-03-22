@@ -1,0 +1,160 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "ArkTSGraphicsDraw"
+    },
+    {
+      "name": "CanvasGetResult",
+      "value": "画布的获取与绘制结果的显示"
+    },
+    {
+      "name": "CanvasOperationState",
+      "value": "画布操作及状态处理"
+    },
+    {
+      "name": "BasicEffect",
+      "value": "基础绘制效果"
+    },
+    {
+      "name": "ComplexEffect",
+      "value": "复杂绘制效果"
+    },
+    {
+      "name": "Shape_Drawing",
+      "value": "几何图形绘制"
+    },
+    {
+      "name": "PixelMap_Drawing",
+      "value": "图片绘制"
+    },
+    {
+      "name": "TextBlock_Drawing",
+      "value": "字块绘制"
+    },
+    {
+      "name": "DirectCanvas",
+      "value": "获取直接画布绘图结果"
+    },
+    {
+      "name": "OffScreenCanvas",
+      "value": "获取离屏画布绘图结果"
+    },
+    {
+      "name": "ClipOperation",
+      "value": "裁剪操作"
+    },
+    {
+      "name": "TranslationOperation",
+      "value": "平移操作"
+    },
+    {
+      "name": "RotationOperation",
+      "value": "旋转操作"
+    },
+    {
+      "name": "ScaleOperation",
+      "value": "缩放操作"
+    },
+    {
+      "name": "StateOperation",
+      "value": "画布状态操作"
+    },
+    {
+      "name": "Filling",
+      "value": "填充效果"
+    },
+    {
+      "name": "Stroke",
+      "value": "描边效果"
+    },
+    {
+      "name": "MixedMode",
+      "value": "混合模式"
+    },
+    {
+      "name": "PathEffect",
+      "value": "路径效果"
+    },
+    {
+      "name": "LinearGradient",
+      "value": "线性渐变"
+    },
+    {
+      "name": "PathGradient",
+      "value": "径向渐变"
+    },
+    {
+      "name": "SectorGradient",
+      "value": "扇形渐变"
+    },
+    {
+      "name": "ColorFilter",
+      "value": "颜色滤波器"
+    },
+    {
+      "name": "ImageFilter",
+      "value": "图像滤波器"
+    },
+    {
+      "name": "MaskFilter",
+      "value": "蒙版滤波器"
+    },
+    {
+      "name": "Point",
+      "value": "点"
+    },
+    {
+      "name": "Arc",
+      "value": "圆弧"
+    },
+    {
+      "name": "Circle",
+      "value": "圆"
+    },
+    {
+      "name": "Path",
+      "value": "路径"
+    },
+    {
+      "name": "Region",
+      "value": "区域"
+    },
+    {
+      "name": "Rect",
+      "value": "矩形"
+    },
+    {
+      "name": "RoundRect",
+      "value": "圆角矩形"
+    },
+    {
+      "name": "PixelMap",
+      "value": "绘制图片"
+    },
+    {
+      "name": "EditMiddlePixel",
+      "value": "编辑中间像素"
+    },
+    {
+      "name": "BaseText",
+      "value": "基本文字"
+    },
+    {
+      "name": "StrokeText",
+      "value": "文字描边"
+    },
+    {
+      "name": "GradientText",
+      "value": "文字渐变"
+    }
+  ]
+}

@@ -629,6 +629,10 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/DocsSample/Drawing/ArkTSDrawing/screenshot/path.png" desc="Provided by code/DocsSample/Drawing/ArkTSDrawing"/>
 				<filteritem type="filepath" name="code/DocsSample/Drawing/ArkTSDrawing/screenshot/rect.png" desc="Provided by code/DocsSample/Drawing/ArkTSDrawing"/>
 				<filteritem type="filepath" name="code/DocsSample/Drawing/ArkTSDrawing/screenshot/text.png" desc="Provided by code/DocsSample/Drawing/ArkTSDrawing"/>
+				<filteritem type="filepath" name="code/DocsSample/Drawing/ArkTSGraphicsDraw/screenshot/index.jpeg" desc="Provided by code/DocsSample/Drawing/ArkTSGraphicsDraw"/>
+				<filteritem type="filepath" name="code/DocsSample/Drawing/ArkTSGraphicsDraw/screenshot/canvas.jpeg" desc="Provided by code/DocsSample/Drawing/ArkTSGraphicsDraw"/>
+				<filteritem type="filepath" name="code/DocsSample/Drawing/ArkTSGraphicsDraw/screenshot/effect.jpeg" desc="Provided by code/DocsSample/Drawing/ArkTSGraphicsDraw"/>
+				<filteritem type="filepath" name="code/DocsSample/Drawing/ArkTSGraphicsDraw/screenshot/shape.jpeg" desc="Provided by code/DocsSample/Drawing/ArkTSGraphicsDraw"/>
 				<filteritem type="filepath" name="code/SystemFeature/Telephony/Message/entry/src/main/resources/base/media/icon.png" desc="Provided by code/SystemFeature/Telephony/Message"/>
 				<filteritem type="filepath" name="code/SystemFeature/Telephony/Message/entry/src/main/resources/base/media/call_off.png" desc="Provided by code/SystemFeature/Telephony/Message"/>
 				<filteritem type="filepath" name="code/SystemFeature/Telephony/Message/screenshots/device/create_contact.png" desc="Provided by code/SystemFeature/Telephony/Message"/>
