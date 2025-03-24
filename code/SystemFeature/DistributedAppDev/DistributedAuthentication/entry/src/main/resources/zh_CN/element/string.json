@@ -151,6 +151,10 @@
     {
       "name": "incredible",
       "value": "不可信"
+    },
+    {
+      "name": "distributed_permission",
+      "value": "允许不同设备间的数据交换"
     }
   ]
 }

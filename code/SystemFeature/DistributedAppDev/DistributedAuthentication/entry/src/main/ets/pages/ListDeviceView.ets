@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,15 +14,14 @@
  */
 
 import deviceInfo from '@ohos.deviceInfo';
-import deviceManager from '@ohos.distributedHardware.deviceManager';
-import { GlobalContext, getGlobalObject, setGlobalObject } from '../common/GlobalThis';
+import deviceManager from '@ohos.distributedDeviceManager';
 import logger from '../common/Logger';
 import remoteDeviceModel from '../model/RemoteDeviceModel';
 
 @CustomDialog
 struct DeleteDeviceDialog {
   @Prop deviceName: string = '';
-  @Link deviceInfo: deviceManager.DeviceInfo;
+  @Link deviceInfo: deviceManager.DeviceBasicInfo;
   controller?: CustomDialogController;
   cancel: () => void = () => {
   };
@@ -32,7 +31,6 @@ struct DeleteDeviceDialog {
 
   aboutToAppear() {
     this.isDelete = getContext(this).resourceManager.getStringSync($r('app.string.isDelete').id);
-    setGlobalObject('isDelete', this.isDelete)
   }
 
   build() {
@@ -83,7 +81,7 @@ struct DeleteDeviceDialog {
 
 @Component
 export struct ListDeviceView {
-  @State deviceInfo: deviceManager.DeviceInfo | undefined = undefined;
+  @State deviceInfo: deviceManager.DeviceBasicInfo | undefined = undefined;
   @State visible: Visibility = Visibility.None;
   dialogController: CustomDialogController = new CustomDialogController({
     builder: DeleteDeviceDialog({
@@ -113,12 +111,13 @@ export struct ListDeviceView {
     logger.info('Click the callback in the blank area');
   }
 
-  getDeviceTypeIcon(deviceType: deviceManager.DeviceType): Resource {
-    if (deviceType == deviceManager.DeviceType.TABLET) {
+  getDeviceTypeIcon(deviceType: number): Resource {
+    logger.info(`getDeviceTypeIcon deviceType: ${deviceType}`)
+    if (deviceType == 0x11) {
       return $r('app.media.ic_pad');
-    } else if (deviceType == deviceManager.DeviceType.PHONE) {
+    } else if (deviceType == 0x0E) {
       return $r('app.media.ic_phone');
-    } else if (deviceType == deviceManager.DeviceType.UNKNOWN_TYPE) {
+    } else if (deviceType == 0) {
       return $r('app.media.ic_pc');
     } else {
       return $r('app.media.ic_pc');
@@ -128,7 +127,7 @@ export struct ListDeviceView {
   build() {
     Column() {
       Row() {
-        Image(this.getDeviceTypeIcon(this.deviceInfo!.deviceType))
+        Image(this.getDeviceTypeIcon(Number(this.deviceInfo!.deviceType)))
           .width(24)
           .height(24)
           .align(Alignment.Start)
@@ -140,7 +139,7 @@ export struct ListDeviceView {
             .fontWeight(500)
             .margin({ left: 12 })
             .lineHeight(22)
-          Text(this.deviceInfo!.deviceId + ', ' + this.deviceInfo!.authForm.toString())
+          Text(this.deviceInfo!.deviceId)
             .fontSize(14)
             .opacity(0.6)
             .margin({ left: 12, top: 2 })

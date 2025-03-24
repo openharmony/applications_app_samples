@@ -151,6 +151,10 @@
     {
       "name": "incredible",
       "value": "不可信"
+    },
+    {
+      "name": "accept",
+      "value": "允许"
     }
   ]
 }
