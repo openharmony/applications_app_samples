@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,13 +13,36 @@
  * limitations under the License.
  */
 
-import prompt from '@system.prompt';
+let context = getContext();
 
-class showToastType{
-  showToast(message:string): void {
-    prompt.showToast({
-      message: message
-    });
-  }
+interface DistributedFilterOptionListType {
+  isOnlineItemList: string[],
+  isTrustedItemList: string[],
+  authFormItemList: string[],
+  rangeItemList: string[]
 }
-export default new showToastType();
+
+export const DISTRIBUTED_FILTER_OPTION_LIST: DistributedFilterOptionListType = {
+  isOnlineItemList: [
+    context.resourceManager.getStringSync($r('app.string.no_filter')),
+    context.resourceManager.getStringSync($r('app.string.online')),
+    context.resourceManager.getStringSync($r('app.string.offline')),
+  ],
+  isTrustedItemList: [
+    context.resourceManager.getStringSync($r('app.string.no_filter')),
+    context.resourceManager.getStringSync($r('app.string.credible')),
+    context.resourceManager.getStringSync($r('app.string.incredible')),
+  ],
+  authFormItemList: [
+    context.resourceManager.getStringSync($r('app.string.no_filter')),
+    context.resourceManager.getStringSync($r('app.string.identical_account')),
+    context.resourceManager.getStringSync($r('app.string.across_account')),
+    context.resourceManager.getStringSync($r('app.string.no_account')),
+  ],
+  rangeItemList: [
+    context.resourceManager.getStringSync($r('app.string.no_filter')),
+    '50',
+    '80',
+    '100'
+  ]
+};
