@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "GetarraylengthAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "GetarraylengthAbility_label",
+      "value": "JsvmAboutArray"
+    }
+  ]
+}

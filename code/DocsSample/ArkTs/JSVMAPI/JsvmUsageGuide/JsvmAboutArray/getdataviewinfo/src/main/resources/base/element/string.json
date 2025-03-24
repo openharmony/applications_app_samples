@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "GetdataviewinfoAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "GetdataviewinfoAbility_label",
+      "value": "JsvmAboutArray"
+    }
+  ]
+}
