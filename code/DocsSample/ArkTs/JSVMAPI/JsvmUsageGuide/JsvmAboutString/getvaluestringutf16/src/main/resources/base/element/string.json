@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "Getvaluestringutf16Ability_desc",
+      "value": "description"
+    },
+    {
+      "name": "Getvaluestringutf16Ability_label",
+      "value": "JsvmAboutString"
+    }
+  ]
+}

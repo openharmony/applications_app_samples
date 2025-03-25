@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "Createstringlatin1Ability_desc",
+      "value": "description"
+    },
+    {
+      "name": "Createstringlatin1Ability_label",
+      "value": "JsvmAboutString"
+    }
+  ]
+}
