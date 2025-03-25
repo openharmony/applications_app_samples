@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "OpenescapablehandlescopeAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "OpenescapablehandlescopeAbility_label",
+      "value": "JsvmLifeCycle"
+    }
+  ]
+}

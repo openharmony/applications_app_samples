@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "ReferencerefAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "ReferencerefAbility_label",
+      "value": "JsvmLifeCycle"
+    }
+  ]
+}
