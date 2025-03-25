@@ -67,6 +67,10 @@
     {
       "name": "grant_manage_bluetooth",
       "value": "Managing bluetooth permission"
+    },
+    {
+      "name": "no_relevant_devices_found",
+      "value": "No relevant devices found~"
     }
   ]
 }
