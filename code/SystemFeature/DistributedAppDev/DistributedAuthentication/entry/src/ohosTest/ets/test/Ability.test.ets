@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import { describe, it, expect } from '@ohos/hypium';
 import { Driver, ON, Component, MatchPattern } from '@ohos.UiTest';
 import hilog from '@ohos.hilog';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
@@ -25,9 +25,9 @@ const DOMAIN = 0xF811;
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
 async function getResourceString(resource: Resource): Promise<string> {
-  let manage = abilityDelegator.getAppContext().resourceManager
-  let text = await manage.getStringValue(resource)
-  return text
+  let manage = abilityDelegator.getAppContext().resourceManager;
+  let text = await manage.getStringValue(resource);
+  return text;
 }
 
 export default function IndexTest() {
@@ -56,7 +56,13 @@ export default function IndexTest() {
     it(BUNDLE + 'IndexPageEnter_001', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'IndexPageEnter_001 start');
       let driver = Driver.create();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
+      // 获取分布式访问权限
+      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.accept'))));
+      let btnAccept = await driver.findComponent(ON.text(await getResourceString($r('app.string.accept'))));
+      await driver.delayMs(200);
+      await btnAccept.click();
+      await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.app_name')), MatchPattern.CONTAINS));
       let titleComponent = await driver.findComponent(ON.text(await getResourceString($r('app.string.app_name')), MatchPattern.CONTAINS));
       let titleContent = await titleComponent.getText();
@@ -83,32 +89,16 @@ export default function IndexTest() {
     });
 
     /**
-     * 支持距离上报和允许被发现
-     */
-    it(BUNDLE + 'NotAllowDiscovered_001', 0, async () => {
-      hilog.info(DOMAIN, TAG, BUNDLE + 'NotAllowDiscovered_001 start');
-      let driver = Driver.create();
-      await driver.delayMs(500);
-      await driver.assertComponentExist(ON.type('Toggle'));
-      let toggleList: Array<Component> = await driver.findComponents(ON.type('Toggle'));
-      hilog.info(DOMAIN, TAG, BUNDLE + 'NotAllow_Discovered end toggleList.length = ' + toggleList.length);
-      await driver.delayMs(500);
-      await toggleList[0].click();
-      await driver.delayMs(1000);
-      hilog.info(DOMAIN, TAG, BUNDLE + 'NotAllowDiscovered_001 end');
-    });
-
-    /**
      * 发现可用设备
      */
     it(BUNDLE + 'DiscoveryDevices_001', 0, async () => {
       hilog.info(DOMAIN, TAG, BUNDLE + 'DiscoveryDevices_001 start');
       let driver = Driver.create();
-      await driver.delayMs(500);
+      await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.discover')), MatchPattern.CONTAINS));
       let discover = await driver.findComponents(ON.text(await getResourceString($r('app.string.discover')), MatchPattern.CONTAINS));
       await driver.delayMs(500);
-      await discover[2].click();
+      await discover[1].click();
       await driver.delayMs(1000);
       hilog.info(DOMAIN, TAG, BUNDLE + 'DiscoveryDevices_001 end');
     });
@@ -123,16 +113,6 @@ export default function IndexTest() {
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.filter_options')), MatchPattern.CONTAINS));
       let filterOption = await driver.findComponent(ON.text(await getResourceString($r('app.string.filter_options')), MatchPattern.CONTAINS));
       await filterOption.click();
-      await driver.delayMs(500);
-      // 点击设备类型
-      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.device_type')), MatchPattern.CONTAINS));
-      let type = await driver.findComponent(ON.text(await getResourceString($r('app.string.device_type')), MatchPattern.CONTAINS));
-      await type.click();
-      let typeRadioList = await driver.findComponents(ON.type('Radio'));
-      await typeRadioList[0].click();
-      await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.confirm')), MatchPattern.CONTAINS));
-      let typeConfirm = await driver.findComponent(ON.text(await getResourceString($r('app.string.confirm')), MatchPattern.CONTAINS));
-      await typeConfirm.click();
       await driver.delayMs(500);
       // 点击是否上线
       await driver.assertComponentExist(ON.text(await getResourceString($r('app.string.is_online')), MatchPattern.CONTAINS));

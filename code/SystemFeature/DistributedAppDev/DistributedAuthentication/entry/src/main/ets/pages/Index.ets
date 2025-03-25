@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,13 +14,14 @@
  */
 
 import deviceInfo from '@ohos.deviceInfo';
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+import deviceManager from '@ohos.distributedDeviceManager';
 import logger from '../common/Logger';
 import remoteDeviceModel from '../model/RemoteDeviceModel';
 import router from '@ohos.router';
 import { FilterOption } from '../pages/FilterOption';
 import { ListDeviceView } from '../pages/ListDeviceView';
-import { getGlobalObject, setGlobalObject } from '../common/GlobalThis'
+import { abilityAccessCtrl } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class optionsType {
   url: string = 'pages/FilterOption'
@@ -31,11 +32,11 @@ class optionsType {
 struct Index {
   @State isShowLoading: boolean = false;
   @State indexWidth: string = '100%';
-  @StorageLink('localDevice') localDevice: deviceManager.DeviceInfo | undefined = undefined;
-  @StorageLink('trustedDeviceList') trustedDeviceList: Array<deviceManager.DeviceInfo> =
-  new Array<deviceManager.DeviceInfo>();
-  @StorageLink('discoverDeviceList') discoverDeviceList: Array<deviceManager.DeviceInfo> =
-  new Array<deviceManager.DeviceInfo>();
+  @StorageLink('localDevice') localDevice: deviceManager.DeviceBasicInfo | undefined = undefined;
+  @StorageLink('trustedDeviceList') trustedDeviceList: Array<deviceManager.DeviceBasicInfo> =
+  new Array<deviceManager.DeviceBasicInfo>();
+  @StorageLink('discoverDeviceList') discoverDeviceList: Array<deviceManager.DeviceBasicInfo> =
+  new Array<deviceManager.DeviceBasicInfo>();
   @State isSupportRange: boolean = false;
   @State isAllowDiscovered: boolean = true;
   @State isLocalDeviceActive: boolean = false;
@@ -52,12 +53,13 @@ struct Index {
     }
   }
 
-  getDeviceTypeIcon(deviceType: deviceManager.DeviceType): Resource {
-    if (deviceType == deviceManager.DeviceType.TABLET) {
+  getDeviceTypeIcon(deviceType: number): Resource {
+    logger.info(`getDeviceTypeIcon deviceType: ${deviceType}`)
+    if (deviceType == 0x11) {
       return $r('app.media.ic_pad');
-    } else if (deviceType == deviceManager.DeviceType.PHONE) {
+    } else if (deviceType == 0x0E) {
       return $r('app.media.ic_phone');
-    } else if (deviceType == deviceManager.DeviceType.UNKNOWN_TYPE) {
+    } else if (deviceType == 0) {
       return $r('app.media.ic_pc');
     } else {
       return $r('app.media.ic_pc');
@@ -65,54 +67,37 @@ struct Index {
   }
 
   async aboutToAppear() {
-    await remoteDeviceModel.createDeviceManager();
-    try {
-      logger.info(`local deviceType:` + deviceInfo.deviceType);
-      let deviceTypeName: string = getContext(this).resourceManager.getStringSync($r('app.string.device_type').id);
-      let authFormName: string = getContext(this).resourceManager.getStringSync($r('app.string.auth_form').id);
-      let isOnlineName: string = getContext(this).resourceManager.getStringSync($r('app.string.is_online').id);
-      let isTrustedName: string = getContext(this).resourceManager.getStringSync($r('app.string.is_trusted').id);
-      let rangeName: string = getContext(this).resourceManager.getStringSync($r('app.string.range').id);
+    let atManager = abilityAccessCtrl.createAtManager();
+    atManager.requestPermissionsFromUser(getContext(this), ['ohos.permission.DISTRIBUTED_DATASYNC'])
+      .then(async (data) => {
+        logger.info(`data: ${JSON.stringify(data)}`);
+        await remoteDeviceModel.createDeviceManager();
+        try {
+          logger.info(`local deviceType:` + deviceInfo.deviceType);
+          let authFormName: string = getContext(this).resourceManager.getStringSync($r('app.string.auth_form').id);
+          let isOnlineName: string = getContext(this).resourceManager.getStringSync($r('app.string.is_online').id);
+          let isTrustedName: string = getContext(this).resourceManager.getStringSync($r('app.string.is_trusted').id);
+          let rangeName: string = getContext(this).resourceManager.getStringSync($r('app.string.range').id);
 
-      setGlobalObject('deviceTypeName', deviceTypeName)
-      setGlobalObject('authFormName', authFormName)
-      setGlobalObject('isOnlineName', isOnlineName)
-      setGlobalObject('isTrustedName', isTrustedName)
-      setGlobalObject('rangeName', rangeName)
+          AppStorage.setOrCreate('authFormName', authFormName);
+          AppStorage.setOrCreate('isOnlineName', isOnlineName);
+          AppStorage.setOrCreate('isTrustedName', isTrustedName);
+          AppStorage.setOrCreate('rangeName', rangeName);
 
-      let filterOptions = new Map<string, number>();
-      filterOptions.set(deviceTypeName, 0)
-      filterOptions.set(authFormName, 0)
-      filterOptions.set(isOnlineName, 0)
-      filterOptions.set(isTrustedName, 0)
-      filterOptions.set(rangeName, 0)
-      setGlobalObject('filterOptions', filterOptions)
-
-    } catch (error) {
-      logger.error(`getStringByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
-    }
-  }
-
-  getFilterOption() {
-    let filterOptionList = new Map<string, Array<string>>();
-    filterOptionList.set(getGlobalObject('deviceTypeName') as string, getGlobalObject('DeviceTypeItemList') as string[])
-    filterOptionList.set(getGlobalObject('authFormName') as string, getGlobalObject('AuthFormItemList') as string[])
-    filterOptionList.set(getGlobalObject('isOnlineName') as string, getGlobalObject('IsOnlineItemList') as string[])
-    filterOptionList.set(getGlobalObject('isTrustedName') as string, getGlobalObject('IsTrustedItemList') as string[])
-    filterOptionList.set(getGlobalObject('rangeName') as string, getGlobalObject('RangeItemList') as string[])
-    this.filterOption = '';
-    let tempMap = getGlobalObject('filterOptions') as Map<string, number>
-    tempMap.forEach((value: number, key: string, map: Map<string, number>) => {
-      if (value !== 0) {
-        this.filterOption += (filterOptionList.get(key) as Array<string>)[value] + ' ';
-      }
-    })
-    logger.info('[DeviceManager.RemoteDeviceModel] this.filterOption = ' + JSON.stringify(this.filterOption));
-  }
-
-  onPageShow() {
-    logger.info('onPageShow');
-    this.getFilterOption();
+          let filterOptions = new Map<string, number>();
+          filterOptions.set(authFormName, 0);
+          filterOptions.set(isOnlineName, 0);
+          filterOptions.set(isTrustedName, 0);
+          filterOptions.set(rangeName, 0);
+          AppStorage.setOrCreate('filterOptions', filterOptions);
+          logger.info(`local filterOptions:` + JSON.stringify(filterOptions));
+        } catch (error) {
+          logger.error(`getStringByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
+        }
+      })
+      .catch((err: BusinessError) => {
+        logger.error(`requestPermissionsFromUser error: ${JSON.stringify(err)}`);
+    });
   }
 
   build() {
@@ -132,10 +117,10 @@ struct Index {
 
           Column() {
             Row() {
-              Image(this.getDeviceTypeIcon(this.localDevice!.deviceType))
+              Image(this.getDeviceTypeIcon(Number(this.localDevice?.deviceType)))
                 .width(24)
                 .height(24)
-              Text(this.localDevice!.deviceName)
+              Text(this.localDevice?.deviceName)
                 .fontSize(16)
                 .fontColor('#182431')
                 .fontFamily('HarmonyHeiTi-Medium')
@@ -145,59 +130,6 @@ struct Index {
             .width('100%')
             .height(48)
 
-            Divider()
-              .color('#182431')
-              .opacity(0.05)
-
-            Row() {
-              Text($r('app.string.support_range'))
-                .fontSize(16)
-                .fontColor('#182431')
-                .fontFamily('HarmonyHeiTi-Medium')
-                .fontWeight(500)
-              Blank()
-              Toggle({ type: ToggleType.Switch, isOn: this.isSupportRange })
-                .selectedColor('#007DFF')
-                .switchPointColor('#FFFFFF')
-                .onChange((isOn: boolean) => {
-                  logger.info('Component status:' + isOn);
-                  this.isSupportRange = isOn;
-                  remoteDeviceModel.setIsSupportRange(this.isSupportRange);
-                  if (this.isAllowDiscovered) {
-                    this.isAllowDiscovered = false;
-                    let gThis = this;
-                    setTimeout(() => {
-                      gThis.isAllowDiscovered = true;
-                    }, 1000);
-                  }
-                })
-            }.width('100%')
-            .height(48)
-
-            Divider()
-              .color('#182431')
-              .opacity(0.05)
-
-            Row() {
-              Text($r('app.string.allowed_discovered'))
-                .fontSize(16)
-                .fontColor('#182431')
-                .fontFamily('HarmonyHeiTi-Medium')
-                .fontWeight(500)
-              Blank()
-              Toggle({ type: ToggleType.Switch, isOn: this.isAllowDiscovered })
-                .selectedColor('#007DFF')
-                .switchPointColor('#FFFFFF')
-                .onChange((isOn: boolean) => {
-                  logger.info('Component status:' + isOn);
-                  this.isAllowDiscovered = isOn;
-                  if (this.isAllowDiscovered) {
-                    remoteDeviceModel.publishDeviceDiscovery();
-                  } else {
-                    remoteDeviceModel.unPublishDeviceDiscovery();
-                  }
-                })
-            }.width('100%')
             .height(48)
           }.borderRadius(24)
           .backgroundColor('#FFFFFF')
@@ -240,7 +172,7 @@ struct Index {
             }.width('100%')
 
             List() {
-              ForEach(this.trustedDeviceList, (item: deviceManager.DeviceInfo, index: number) => {
+              ForEach(this.trustedDeviceList, (item: deviceManager.DeviceBasicInfo, index: number) => {
                 ListItem() {
                   Column() {
                     ListDeviceView({ deviceInfo: item, visible: Visibility.Visible })
@@ -250,13 +182,14 @@ struct Index {
                       .visibility(index == this.trustedDeviceList.length - 1 ? Visibility.None : Visibility.Visible)
                   }
                 }
-              }, (item: deviceManager.DeviceInfo) => JSON.stringify(item))
+              }, (item: deviceManager.DeviceBasicInfo) => JSON.stringify(item))
             }
             .width('100%')
             .borderRadius(24)
             .padding({ left: 12, right: 12, top: 4, bottom: 4 })
             .backgroundColor('#FFFFFF')
-          }.visibility(this.trustedDeviceList.length == 0 ? Visibility.None : Visibility.Visible)
+            .visibility(this.trustedDeviceList.length == 0 ? Visibility.None : Visibility.Visible)
+          }
 
           Column() {
             Row() {
@@ -328,7 +261,7 @@ struct Index {
             .alignItems(HorizontalAlign.Center)
 
             List() {
-              ForEach(this.discoverDeviceList, (item: deviceManager.DeviceInfo, index: number) => {
+              ForEach(this.discoverDeviceList, (item: deviceManager.DeviceBasicInfo, index: number) => {
                 ListItem() {
                   Column() {
                     ListDeviceView({ deviceInfo: item })
@@ -341,7 +274,7 @@ struct Index {
                 .onClick(() => {
                   remoteDeviceModel.authenticateDevice(item);
                 })
-              }, (item: deviceManager.DeviceInfo) => JSON.stringify(item))
+              }, (item: deviceManager.DeviceBasicInfo) => JSON.stringify(item))
             }
             .visibility(this.discoverDeviceList.length == 0 ? Visibility.None : Visibility.Visible)
             .width('100%')

@@ -151,6 +151,10 @@
     {
       "name": "incredible",
       "value": "Incredible"
+    },
+    {
+      "name": "distributed_permission",
+      "value": "allows data exchange between different devices"
     }
   ]
 }

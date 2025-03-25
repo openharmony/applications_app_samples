@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,7 +16,7 @@
 import deviceInfo from '@ohos.deviceInfo';
 import logger from '../common/Logger';
 import router from '@ohos.router';
-import { GlobalContext, getGlobalObject, setGlobalObject } from '../common/GlobalThis'
+import { DISTRIBUTED_FILTER_OPTION_LIST } from '../common/Constant';
 
 @CustomDialog
 struct FilterOptionDialog {
@@ -123,26 +123,24 @@ export struct FilterOption {
 
   aboutToAppear() {
     try {
-      let filterOptions = getGlobalObject('filterOptions') as Map<string, number>;
-      let DeviceTypeItemList = getGlobalObject('DeviceTypeItemList') as string[];
-      let deviceTypeName = getGlobalObject("deviceTypeName") as string;
-      let AuthFormItemList = getGlobalObject('AuthFormItemList') as string[];
-      let authFormName = getGlobalObject("authFormName") as string;
-      let IsOnlineItemList = getGlobalObject('IsOnlineItemList') as string[];
-      let isOnlineName = getGlobalObject("isOnlineName") as string;
-      let IsTrustedItemList = getGlobalObject('IsTrustedItemList') as string[];
-      let isTrustedName = getGlobalObject("isTrustedName") as string;
-      let RangeItemList = getGlobalObject('RangeItemList') as string[];
-      let rangeName = getGlobalObject("rangeName") as string;
-      this.deviceType = DeviceTypeItemList[filterOptions.get(deviceTypeName)!]
-      this.authForm = AuthFormItemList[filterOptions.get(authFormName)!]
-      this.isOnline = IsOnlineItemList[filterOptions.get(isOnlineName)!]
-      this.isTrusted = IsTrustedItemList[filterOptions.get(isTrustedName)!]
-      this.range = RangeItemList[filterOptions.get(rangeName)!]
+      let filterOptions = AppStorage.get('filterOptions') as Map<string, number>;
+      let authFormItemList = DISTRIBUTED_FILTER_OPTION_LIST.authFormItemList;
+      let authFormName = AppStorage.get("authFormName") as string;
+      let isOnlineItemList = DISTRIBUTED_FILTER_OPTION_LIST.isOnlineItemList;
+      let isOnlineName = AppStorage.get("isOnlineName") as string;
+      let isTrustedItemList = DISTRIBUTED_FILTER_OPTION_LIST.isTrustedItemList;
+      let isTrustedName = AppStorage.get("isTrustedName") as string;
+      let rangeItemList = DISTRIBUTED_FILTER_OPTION_LIST.rangeItemList;
+      let rangeName = AppStorage.get("rangeName") as string;
+      this.authForm = authFormItemList[filterOptions.get(authFormName)!];
+      this.isOnline = isOnlineItemList[filterOptions.get(isOnlineName)!];
+      this.isTrusted = isTrustedItemList[filterOptions.get(isTrustedName)!];
+      this.range = rangeItemList[filterOptions.get(rangeName)!];
+      logger.info(`getStringByNameSync success, ${this.authForm} ${this.isOnline} ${this.isTrusted} ${this.range}`);
     } catch (error) {
       logger.error(`getStringByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
     }
-    logger.info('aboutToAppear filterOptions = ' + JSON.stringify(getGlobalObject('filterOptions')));
+    logger.info('aboutToAppear filterOptions = ' + JSON.stringify(AppStorage.get('filterOptions')));
   }
 
   onCancel() {
@@ -150,29 +148,24 @@ export struct FilterOption {
   }
 
   onSelected(index: number, title: string) {
-    logger.info('filterOptions = ' + JSON.stringify(GlobalContext.getContext()
-      .getObject('filterOptions')) + ' index = ' + index +
+    logger.info('filterOptions = ' + JSON.stringify(AppStorage.get('filterOptions')) + ' index = ' + index +
       ' title = ' + title);
-    setGlobalObject("title", index)
-    let filterOptions = getGlobalObject('filterOptions') as Map<string, number>;
+    let filterOptions = AppStorage.get('filterOptions') as Map<string, number>;
     filterOptions.set(title, index)
-    setGlobalObject('filterOptions', filterOptions)
-    filterOptions = getGlobalObject('filterOptions') as Map<string, number>;
-    let DeviceTypeItemList = getGlobalObject('DeviceTypeItemList') as string[];
-    let deviceTypeName = getGlobalObject("deviceTypeName") as string;
-    let AuthFormItemList = getGlobalObject('AuthFormItemList') as string[];
-    let authFormName = getGlobalObject("authFormName") as string;
-    let IsOnlineItemList = getGlobalObject('IsOnlineItemList') as string[];
-    let isOnlineName = getGlobalObject("isOnlineName") as string;
-    let IsTrustedItemList = getGlobalObject('IsTrustedItemList') as string[];
-    let isTrustedName = getGlobalObject("isTrustedName") as string;
-    let RangeItemList = getGlobalObject('RangeItemList') as string[];
-    let rangeName = getGlobalObject("rangeName") as string;
-    this.deviceType  = DeviceTypeItemList[filterOptions.get(deviceTypeName)!]
-    this.authForm = AuthFormItemList[filterOptions.get(authFormName)!]
-    this.isOnline = IsOnlineItemList[filterOptions.get(isOnlineName)!]
-    this.isTrusted = IsTrustedItemList[filterOptions.get(isTrustedName)!]
-    this.range = RangeItemList[filterOptions.get(rangeName)!]
+    AppStorage.setOrCreate('filterOptions', filterOptions)
+    filterOptions = AppStorage.get('filterOptions') as Map<string, number>;
+    let authFormItemList = DISTRIBUTED_FILTER_OPTION_LIST.authFormItemList;
+    let authFormName = AppStorage.get("authFormName") as string;
+    let isOnlineItemList = DISTRIBUTED_FILTER_OPTION_LIST.isOnlineItemList;
+    let isOnlineName = AppStorage.get("isOnlineName") as string;
+    let isTrustedItemList = DISTRIBUTED_FILTER_OPTION_LIST.isTrustedItemList;
+    let isTrustedName = AppStorage.get("isTrustedName") as string;
+    let rangeItemList = DISTRIBUTED_FILTER_OPTION_LIST.rangeItemList;
+    let rangeName = AppStorage.get("rangeName") as string;
+    this.authForm = authFormItemList[filterOptions.get(authFormName)!]
+    this.isOnline = isOnlineItemList[filterOptions.get(isOnlineName)!]
+    this.isTrusted = isTrustedItemList[filterOptions.get(isTrustedName)!]
+    this.range = rangeItemList[filterOptions.get(rangeName)!]
   }
 
   existApp() {
@@ -193,7 +186,7 @@ export struct FilterOption {
         filterItems: itemList,
         cancel: this.onCancel,
         confirm: this.onSelectedIndexChange,
-        selectedIndex: (getGlobalObject('filterOptions') as Map<string, number>).get(title)
+        selectedIndex: (AppStorage.get('filterOptions') as Map<string, number>).get(title)
       }),
       cancel: this.existApp,
       autoCancel: true,
@@ -229,34 +222,6 @@ export struct FilterOption {
 
       Column() {
         Row() {
-          Text($r('app.string.device_type'))
-            .fontColor('#182431')
-            .fontSize(16)
-            .fontFamily('HarmonyHeiTi-Medium')
-            .fontWeight(500)
-          Blank()
-          Text(this.deviceType)
-            .fontColor('#182431')
-            .fontFamily('HarmonyHeiTi')
-            .fontSize(14)
-            .opacity(0.6)
-          Image($r('app.media.ic_arrow'))
-            .width(12)
-            .height(24)
-            .margin({ left: 4 })
-        }
-        .margin({ top: 4 })
-        .width('100%')
-        .height(48)
-        .onClick(() => {
-          this.openDialog(getGlobalObject('DeviceTypeItemList') as string[], $r('app.string.device_type'));
-        })
-
-        Divider()
-          .color('#182431')
-          .opacity(0.05)
-
-        Row() {
           Text($r('app.string.is_online'))
             .fontColor('#182431')
             .fontSize(16)
@@ -276,7 +241,7 @@ export struct FilterOption {
         .width('100%')
         .height(48)
         .onClick(() => {
-          this.openDialog(getGlobalObject('IsOnlineItemList') as string[], $r('app.string.is_online'));
+          this.openDialog(DISTRIBUTED_FILTER_OPTION_LIST.isOnlineItemList, $r('app.string.is_online'));
         })
 
         Divider()
@@ -303,7 +268,7 @@ export struct FilterOption {
         .width('100%')
         .height(48)
         .onClick(() => {
-          this.openDialog(getGlobalObject('IsTrustedItemList') as string[], $r('app.string.is_trusted'));
+          this.openDialog(DISTRIBUTED_FILTER_OPTION_LIST.isTrustedItemList, $r('app.string.is_trusted'));
         })
 
         Divider()
@@ -330,7 +295,7 @@ export struct FilterOption {
         .width('100%')
         .height(48)
         .onClick(() => {
-          this.openDialog(getGlobalObject('AuthFormItemList') as string[], $r('app.string.auth_form'));
+          this.openDialog(DISTRIBUTED_FILTER_OPTION_LIST.authFormItemList, $r('app.string.auth_form'));
         })
 
         Divider()
@@ -357,7 +322,7 @@ export struct FilterOption {
         .width('100%')
         .height(48)
         .onClick(() => {
-          this.openDialog(getGlobalObject('RangeItemList') as string[], $r('app.string.range'));
+          this.openDialog(DISTRIBUTED_FILTER_OPTION_LIST.rangeItemList, $r('app.string.range'));
         })
         .margin({ bottom: 4 })
       }.width('100%')
