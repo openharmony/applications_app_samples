@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "CoercetoobjectAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "CoercetoobjectAbility_label",
+      "value": "JsvmAboutPrimitive"
+    }
+  ]
+}

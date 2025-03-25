@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "GetbooleanAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "GetbooleanAbility_label",
+      "value": "JsvmAboutPrimitive"
+    }
+  ]
+}
