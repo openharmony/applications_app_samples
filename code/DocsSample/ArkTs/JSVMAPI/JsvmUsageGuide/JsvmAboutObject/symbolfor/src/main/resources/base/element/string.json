@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "SymbolforAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "SymbolforAbility_label",
+      "value": "label"
+    }
+  ]
+}
