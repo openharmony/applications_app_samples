@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "Getvaluebigintint64Ability_desc",
+      "value": "description"
+    },
+    {
+      "name": "Getvaluebigintint64Ability_label",
+      "value": "JsvmAboutBigint"
+    }
+  ]
+}

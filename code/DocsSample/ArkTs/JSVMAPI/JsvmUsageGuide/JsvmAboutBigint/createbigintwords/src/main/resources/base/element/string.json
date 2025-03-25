@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "CreatebigintwordsAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "CreatebigintwordsAbility_label",
+      "value": "JsvmAboutBigint"
+    }
+  ]
+}
