@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "CheckobjecttypetagAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "CheckobjecttypetagAbility_label",
+      "value": "JsvmAboutObject"
+    }
+  ]
+}
