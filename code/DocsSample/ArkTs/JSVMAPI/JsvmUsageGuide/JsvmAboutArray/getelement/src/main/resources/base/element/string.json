@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "GetelementAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "GetelementAbility_label",
+      "value": "JsvmAboutArray"
+    }
+  ]
+}
