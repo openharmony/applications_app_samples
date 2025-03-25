@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "HaspropertyAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "HaspropertyAbility_label",
+      "value": "JsvmAboutProperty"
+    }
+  ]
+}
