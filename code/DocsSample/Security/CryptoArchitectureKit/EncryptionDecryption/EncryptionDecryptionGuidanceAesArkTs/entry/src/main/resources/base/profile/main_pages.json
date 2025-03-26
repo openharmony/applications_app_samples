@@ -1,0 +1,15 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/aes_cbc_encryption_decryption/aes_cbc_encryption_decryption_asynchronous",
+    "pages/aes_cbc_encryption_decryption/aes_cbc_encryption_decryption_synchronous",
+    "pages/aes_ccm_encryption_decryption/aes_ccm_encryption_decryption_asynchronous",
+    "pages/aes_ccm_encryption_decryption/aes_ccm_encryption_decryption_synchronous",
+    "pages/aes_ecb_encryption_decryption/aes_ecb_encryption_decryption_asynchronous",
+    "pages/aes_ecb_encryption_decryption/aes_ecb_encryption_decryption_synchronous",
+    "pages/aes_gcm_encryption_decryption/aes_gcm_encryption_decryption_asynchronous",
+    "pages/aes_gcm_encryption_decryption/aes_gcm_encryption_decryption_synchronous",
+    "pages/aes_gcm_seg_encryption_decryption/aes_gcm_seg_encryption_decryption_asynchronous",
+    "pages/aes_gcm_seg_encryption_decryption/aes_gcm_seg_encryption_decryption_synchronous"
+  ]
+}
