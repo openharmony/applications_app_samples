@@ -1,0 +1,64 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "KeyNegotiation"
+    },
+    {
+      "name": "ecdh_async",
+      "value": "ECDH Async"
+    },
+    {
+      "name": "ecdh_sync",
+      "value": "ECDH Sync"
+    },
+    {
+      "name": "x25519_async",
+      "value": "X25519 Async"
+    },
+    {
+      "name": "x25519_sync",
+      "value": "X25519 Sync"
+    },
+    {
+      "name": "dh_async",
+      "value": "DH Async"
+    },
+    {
+      "name": "dh_sync",
+      "value": "DH Sync"
+    },
+    {
+      "name": "call_dh_async",
+      "value": "Call DH Async"
+    },
+    {
+      "name": "call_dh_sync",
+      "value": "Call DH Sync"
+    },
+    {
+      "name": "call_edch_async",
+      "value": "Call EDCH Async"
+    },
+    {
+      "name": "call_edch_sync",
+      "value": "Call EDCH Sync"
+    },
+    {
+      "name": "call_x25519_async",
+      "value": "Call X25519 Async"
+    },
+    {
+      "name": "call_x25519_sync",
+      "value": "Call X25519 Sync"
+    }
+  ]
+}
