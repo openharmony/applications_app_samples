@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "RandomlyGenerateSymmetricKeyArkTS"
+    },
+    {
+      "name": "aes_promise",
+      "value": "AES Promise"
+    },
+    {
+      "name": "aes_sync",
+      "value": "AES Sync"
+    },
+    {
+      "name": "sm4_promise",
+      "value": "SM4 Promise"
+    },
+    {
+      "name": "call_aes_promise",
+      "value": "Call AES Promise"
+    },
+    {
+      "name": "call_aes_sync",
+      "value": "Call AES Sync"
+    },
+    {
+      "name": "call_sm4_sync",
+      "value": "Call SM4 Sync"
+    },
+    {
+      "name": "call_sm4_promise",
+      "value": "Call SM4 Promise"
+    }
+  ]
+}
