@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,30 +13,30 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
-import { AVPlayer } from '../model/AVPlayer'
-import { getTimeString } from '../model/TimeTools'
-import Logger from '../model/Logger'
+import router from '@ohos.router';
+import { AVPlayer } from '../model/AVPlayer';
+import { getTimeString } from '../model/TimeTools';
+import Logger from '../model/Logger';
 
-const TAG = 'AVPlayerSample:'
+const TAG = 'AVPlayerSample:';
 
 @Component
 export struct BroadcastControl {
-  @State isInformation: boolean = false
-  @Link myMedia: AVPlayer
-  @Link isXComponent: boolean
-  @Link surfaceId: number
-  @Link isPlaying: boolean
-  @Link currentTime: number
-  @State speedTag: number = 1
-  private timer: number = 0
-  private mXComponentController: XComponentController = {} as XComponentController
+  @State isInformation: boolean = false;
+  @Link myMedia: AVPlayer;
+  @Link isXComponent: boolean;
+  @Link surfaceId: number;
+  @Link isPlaying: boolean;
+  @Link currentTime: number;
+  @State speedTag: number = 1;
+  private timer: number = 0;
+  private mXComponentController: XComponentController = {} as XComponentController;
 
   async aboutToAppear() {
     this.myMedia.setTimeUpdateCallback((time) => {
-      Logger.info(TAG, 'timeUpdate, time is:' + time)
-      this.currentTime = time
-    })
+      Logger.info(TAG, 'timeUpdate, time is:' + time);
+      this.currentTime = time;
+    });
   }
 
   build() {
@@ -66,8 +66,8 @@ export struct BroadcastControl {
             .onClick(() => {
               if (this.isPlaying) {
                 this.timer = setInterval(() => {
-                  this.currentTime = this.myMedia.getCurrentTime()
-                }, 1000)
+                  this.currentTime = this.myMedia.getCurrentTime();
+                }, 1000);
               }
             })
           Row() {
@@ -86,20 +86,21 @@ export struct BroadcastControl {
           .justifyContent(FlexAlign.SpaceEvenly)
         }.height('15%')
 
-        if (this.isXComponent) {
-          Row() {
-            XComponent({
-              id: '',
-              type: 'surface',
-              controller: this.mXComponentController
+        Row() {
+          XComponent({
+            id: '',
+            type: XComponentType.SURFACE,
+            controller: this.mXComponentController
+          })
+            .onLoad(() => {
+              this.surfaceId = Number(this.mXComponentController.getXComponentSurfaceId());
+              Logger.info(TAG, `BroadcastControl XComponent loaded, surfaceId: ${this.surfaceId}`);
             })
-              .onLoad(() => {
-                this.surfaceId = Number(this.mXComponentController.getXComponentSurfaceId())
-              })
-              .height('70%')
-              .width('100%')
-          }
+            .height('70%')
+            .width('100%')
         }
+        .visibility(this.isXComponent ? Visibility.Visible : Visibility.Hidden)
+
         Blank()
         Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceEvenly }) {
           Image(this.isPlaying ? $r('app.media.icon_play') : $r('app.media.icon_pause'))
