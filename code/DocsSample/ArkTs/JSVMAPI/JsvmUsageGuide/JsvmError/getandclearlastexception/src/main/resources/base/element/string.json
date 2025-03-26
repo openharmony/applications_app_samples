@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "GetandclearlastexceptionAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "GetandclearlastexceptionAbility_label",
+      "value": "JsvmError"
+    }
+  ]
+}
