@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "FunctioncallAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "FunctioncallAbility_label",
+      "value": "UsageInstructionsOne"
+    }
+  ]
+}
