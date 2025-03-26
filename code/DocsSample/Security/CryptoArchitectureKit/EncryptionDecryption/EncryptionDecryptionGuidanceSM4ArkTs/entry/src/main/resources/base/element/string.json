@@ -1,0 +1,76 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "EncryptionDecryptionGuidanceSM4ArkTs"
+    },
+    {
+      "name": "sm4_cbc_encryption_decryption_asynchronous",
+      "value": "sm4_cbc_encryption_decryption_asynchronous"
+    },
+    {
+      "name": "sm4_cbc_encryption_decryption_synchronous",
+      "value": "sm4_cbc_encryption_decryption_synchronous"
+    },
+    {
+      "name": "sm4_ecb_encryption_decryption_asynchronous",
+      "value": "sm4_ecb_encryption_decryption_asynchronous"
+    },
+    {
+      "name": "sm4_ecb_encryption_decryption_synchronous",
+      "value": "sm4_ecb_encryption_decryption_synchronous"
+    },
+    {
+      "name": "sm4_gcm_encryption_decryption_asynchronous",
+      "value": "sm4_gcm_encryption_decryption_asynchronous"
+    },
+    {
+      "name": "sm4_gcm_encryption_decryption_synchronous",
+      "value": "sm4_gcm_encryption_decryption_synchronous"
+    },
+    {
+      "name": "sm4_gcm_seg_encryption_decryption_asynchronous",
+      "value": "sm4_gcm_seg_encryption_decryption_asynchronous"
+    },
+    {
+      "name": "call_sm4_cbc_asynchronous",
+      "value": "Call SM4_CBC Asynchronous"
+    },
+    {
+      "name": "call_sm4_cbc_synchronous",
+      "value": "Call SM4_CBC Synchronous"
+    },
+    {
+      "name": "call_sm4_ecb_asynchronous",
+      "value": "Call SM4_ECB Asynchronous"
+    },
+    {
+      "name": "call_sm4_ecb_synchronous",
+      "value": "Call SM4_ECB Synchronous"
+    },
+    {
+      "name": "call_sm4_gcm_synchronous",
+      "value": "Call SM4_GCM Synchronous"
+    },
+    {
+      "name": "call_sm4_gcm_asynchronous",
+      "value": "Call SM4_GCM Asynchronous"
+    },
+    {
+      "name": "call_sm4_gcm_segmentation_asynchronous",
+      "value": "Call SM4_GCM Segmentation Asynchronous"
+    },
+    {
+      "name": "call_sm4_gcm_segmentation_synchronous",
+      "value": "Call SM4_GCM Segmentation Synchronous"
+    }
+  ]
+}
