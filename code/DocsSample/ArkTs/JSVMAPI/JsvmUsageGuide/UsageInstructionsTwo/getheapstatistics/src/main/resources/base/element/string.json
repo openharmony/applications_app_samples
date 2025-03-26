@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "GetheapstatisticsAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "GetheapstatisticsAbility_label",
+      "value": "UsageInstructionsTwo"
+    }
+  ]
+}

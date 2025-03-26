@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "AdjustexternalmemoryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "AdjustexternalmemoryAbility_label",
+      "value": "UsageInstructionsTwo"
+    }
+  ]
+}
