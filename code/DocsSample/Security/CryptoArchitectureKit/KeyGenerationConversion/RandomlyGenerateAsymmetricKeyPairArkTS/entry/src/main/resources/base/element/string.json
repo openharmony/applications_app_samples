@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "RandomlyGenerateAsymmetricKeyPairArkTS"
+    },
+    {
+      "name": "rsa_promise",
+      "value": "RSA Promise"
+    },
+    {
+      "name": "rsa_sync",
+      "value": "RSA Sync"
+    },
+    {
+      "name": "sm2_promise",
+      "value": "SM2 Promise"
+    },
+    {
+      "name": "sm2_sync",
+      "value": "SM2 Sync"
+    },
+    {
+      "name": "call_rsa_promise",
+      "value": "Call RSA Promise"
+    },
+    {
+      "name": "call_rsa_sync",
+      "value": "Call RSA Sync"
+    },
+    {
+      "name": "call_sm2_promise",
+      "value": "Call SM2 Promise"
+    },
+    {
+      "name": "call_sm2_sync",
+      "value": "Call SM2 Sync"
+    }
+  ]
+}
