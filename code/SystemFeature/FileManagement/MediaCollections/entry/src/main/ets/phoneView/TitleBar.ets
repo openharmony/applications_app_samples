@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,33 +13,33 @@
  * limitations under the License.
  */
 
-import { LoadingDialog } from '../phoneView/LoadingDialog'
-import { AVPlayer } from '../model/AVPlayer'
-import Logger from '../model/Logger'
+import { LoadingDialog } from '../phoneView/LoadingDialog';
+import { AVPlayer } from '../model/AVPlayer';
+import Logger from '../model/Logger';
 
-const TAG = 'InputDialog: '
-const TITLE_HTTP: string = 'http'
-const TITLE_HTTPS: string = 'https'
-const TITLE_DATA: string = 'dataSource'
-const TITLE_FILE: string = 'file'
+const TAG = 'InputDialog: ';
+const TITLE_HTTP: string = 'http';
+const TITLE_HTTPS: string = 'https';
+const TITLE_DATA: string = 'dataSource';
+const TITLE_FILE: string = 'file';
 
 @Component
 export struct TitleBar {
-  @Link isPlaying: boolean
-  @Link currentTime: number
-  @Link myMedia: AVPlayer
-  @Prop httpUrl: string = ''
-  @Link isXComponent: boolean
-  @State search: boolean = true
-  @State isInputBg: string = 'rgba(255,255,255,1)'
-  private timer: number = 0
-  private mXComponentController: XComponentController = {} as XComponentController
+  @Link isPlaying: boolean;
+  @Link currentTime: number;
+  @Link myMedia: AVPlayer;
+  @Prop httpUrl: string = '';
+  @Link isXComponent: boolean;
+  @State search: boolean = true;
+  @State isInputBg: string = 'rgba(255,255,255,1)';
+  private timer: number = 0;
+  private mXComponentController: XComponentController = {} as XComponentController;
   private LoadingDialog: CustomDialogController = new CustomDialogController({
     builder: LoadingDialog(),
     autoCancel: false,
     alignment: DialogAlignment.Center,
     customStyle: true
-  })
+  });
 
   aboutToDisappear() {
     clearInterval(this.timer);
@@ -57,26 +57,26 @@ export struct TitleBar {
           .fontSize(18)
           .align(Alignment.Center)
           .onChange((value) => {
-            this.httpUrl = value
-            this.isXComponent = true
-            this.search = false
+            this.httpUrl = value;
+            this.search = false;
           })
           .onEditChange(() => {
             this.search = false
           })
           .onSubmit(() => {
-            this.isInputBg = 'rgba(255,255,255,0.6)'
-            this.isPlaying = true
-            Logger.info(TAG + `${this.httpUrl}`)
-            let surfaceId = this.mXComponentController.getXComponentSurfaceId()
-            Logger.info(TAG + surfaceId)
-            let index = this.httpUrl.indexOf(':')
-            let playMode = this.httpUrl.slice(0, index)
-            Logger.info(TAG, 'play mode is:' + playMode)
+            this.isInputBg = 'rgba(255,255,255,0.6)';
+            this.isXComponent = true;
+            this.isPlaying = true;
+            Logger.info(TAG + `${this.httpUrl}`);
+            let surfaceId = this.mXComponentController.getXComponentSurfaceId();
+            Logger.info(TAG + surfaceId);
+            let index = this.httpUrl.indexOf(':');
+            let playMode = this.httpUrl.slice(0, index);
+            Logger.info(TAG, 'play mode is:' + playMode);
             if ((playMode === TITLE_HTTP) || (playMode === TITLE_HTTPS)) {
-              this.myMedia.httpInit(this.httpUrl, surfaceId)
+              this.myMedia.httpInit(this.httpUrl, surfaceId);
             } else if (playMode === TITLE_FILE) {
-              this.myMedia.fdSrcInit(this.httpUrl.substr(index + 1), surfaceId)
+              this.myMedia.fdSrcInit(this.httpUrl.substr(index + 1), surfaceId);
             }
             clearInterval(this.timer);
             this.LoadingDialog.open();
