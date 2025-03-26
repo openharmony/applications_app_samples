@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "ThrowrangeerrorAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "ThrowrangeerrorAbility_label",
+      "value": "JsvmError"
+    }
+  ]
+}
