@@ -1,0 +1,72 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "BinaryDataConvertAsymmetricKeyPairArkTS"
+    },
+    {
+      "name": "ecc_callback",
+      "value": "ECC Callback"
+    },
+    {
+      "name": "ecc_sync",
+      "value": "ECC Sync"
+    },
+    {
+      "name": "pkcs8_ecc",
+      "value": "PKCS8 ECC"
+    },
+    {
+      "name": "rsa_callback",
+      "value": "RSA Callback"
+    },
+    {
+      "name": "rsa_sync",
+      "value": "RSA Sync"
+    },
+    {
+      "name": "sm2_callback",
+      "value": "SM2 Callback"
+    },
+    {
+      "name": "sm2_sync",
+      "value": "SM2 Sync"
+    },
+    {
+      "name": "call_ecc_callback",
+      "value": "Call ECC Callback"
+    },
+    {
+      "name": "call_ecc_sync",
+      "value": "Call ECC Sync"
+    },
+    {
+      "name": "call_pkcs8_ecc_sync",
+      "value": "Call PKCS8 ECC Sync"
+    },
+    {
+      "name": "call_rsa_callback",
+      "value": "Call RSA Callback"
+    },
+    {
+      "name": "call_rsa_sync",
+      "value": "Call RSA Sync"
+    },
+    {
+      "name": "call_sm2_callback",
+      "value": "Call SM2 Callback"
+    },
+    {
+      "name": "call_sm2_sync",
+      "value": "Call SM2 Sync"
+    }
+  ]
+}
