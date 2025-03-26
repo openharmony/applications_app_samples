@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "ConvertSymmetricKeyBinaryFormatArkTS"
+    },
+    {
+      "name": "3des_callback",
+      "value": "3DES Callback"
+    },
+    {
+      "name": "3des_sync",
+      "value": "3DES Sync"
+    },
+    {
+      "name": "hmac_await",
+      "value": "HMAC Await"
+    },
+    {
+      "name": "hmac_sync",
+      "value": "HMAC Sync"
+    },
+    {
+      "name": "call_3des_callback",
+      "value": "Call 3DES Callback"
+    },
+    {
+      "name": "call_3des_sync",
+      "value": "Call 3DES Sync"
+    },
+    {
+      "name": "call_hmac_await",
+      "value": "Call HMAC Await"
+    },
+    {
+      "name": "call_hmac_sync",
+      "value": "Call HMAC Sync"
+    }
+  ]
+}
