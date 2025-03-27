@@ -1,0 +1,12 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/CreateParseVerifyCertObject",
+    "pages/CreateParseVerifyCertextensionObject",
+    "pages/CreateGetCertCrlObject",
+    "pages/CreateParseVerifyCrlObject",
+    "pages/CreateTrustanchorFromP12",
+    "pages/CreateVerifyCertchainObject",
+    "pages/CreateVerifyCerchainvalidatorObject"
+  ]
+}
