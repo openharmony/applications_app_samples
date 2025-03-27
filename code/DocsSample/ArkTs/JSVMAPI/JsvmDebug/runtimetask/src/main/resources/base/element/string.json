@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "RuntimetaskAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "RuntimetaskAbility_label",
+      "value": "JsvmDebug"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "SnapshotAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "SnapshotAbility_label",
+      "value": "JsvmDebug"
+    }
+  ]
+}
