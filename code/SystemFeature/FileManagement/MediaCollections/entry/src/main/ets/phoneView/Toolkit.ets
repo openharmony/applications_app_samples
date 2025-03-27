@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,51 +13,51 @@
  * limitations under the License.
  */
 
-import { MediaItem } from '../common/MediaItem'
-import { AVPlayer } from '../model/AVPlayer'
-import { gridData } from '../model/GridData'
+import { MediaItem } from '../common/MediaItem';
+import { AVPlayer } from '../model/AVPlayer';
+import { gridData } from '../model/GridData';
 import userFileManager from '@ohos.filemanagement.userFileManager';
-import { GridDataItem } from '../phoneView/GridDataItem'
+import { GridDataItem } from '../phoneView/GridDataItem';
 
 @Component
 export struct Toolkit {
-  @State isBom: boolean = true
-  @State isTitle: string = ''
-  @State leftSliderIndex: number = -1
-  @State clickIndex: number = -1
-  @State itemData: userFileManager.FileAsset = {} as userFileManager.FileAsset
-  @State audioText: string = ''
-  @State videoText: string = ''
-  @Link myMedia: AVPlayer
-  @Link currentTime: number
-  @Link isXComponent: boolean
-  @Link audioData: userFileManager.FileAsset[]
-  @Link videoData: userFileManager.FileAsset[]
-  @Link isPlaying: boolean
-  @Link surfaceId: number
-  @Link fileIndex: number
-  @Link fileType: number
-  private timer: number = 0
-  private scroller: Scroller = new Scroller()
+  @State isBom: boolean = true;
+  @State isTitle: string = '';
+  @State leftSliderIndex: number = -1;
+  @State clickIndex: number = -1;
+  @State itemData: userFileManager.FileAsset = {} as userFileManager.FileAsset;
+  @State audioText: string = '';
+  @State videoText: string = '';
+  @Link myMedia: AVPlayer;
+  @Link currentTime: number;
+  @Link isXComponent: boolean;
+  @Link audioData: userFileManager.FileAsset[];
+  @Link videoData: userFileManager.FileAsset[];
+  @Link isPlaying: boolean;
+  @Link surfaceId: number;
+  @Link fileIndex: number;
+  @Link fileType: number;
+  private timer: number = 0;
+  private scroller: Scroller = new Scroller();
   private deleteDialogShow: () => void = () => {
-  }
+  };
   private renameDialogShow: () => void = () => {
-  }
+  };
   private GridData: gridData[] = [
     { icon: $r('app.media.icon_color_music'), textStr: '音频', id: 'music' },
     { icon: $r('app.media.icon_color_video'), textStr: '视频', id: 'video' },
     { icon: $r('app.media.icon_color_favorite'), textStr: '收藏', id: 'favorite' },
     { icon: $r('app.media.icon_color_me'), textStr: '我的', id: 'me' },
-  ]
-  private context: Context = getContext(this)
+  ];
+  private context: Context = getContext(this);
 
   async aboutToAppear() {
-    this.audioText = await this.convertResourceToString($r('app.string.phoneMain_audio'))
-    this.videoText = await this.convertResourceToString($r('app.string.phoneMain_video'))
+    this.audioText = await this.convertResourceToString($r('app.string.phoneMain_audio'));
+    this.videoText = await this.convertResourceToString($r('app.string.phoneMain_video'));
   }
 
   async convertResourceToString(resource: Resource) {
-    return await this.context.resourceManager.getStringValue(resource.id)
+    return await this.context.resourceManager.getStringValue(resource.id);
   }
 
   build() {
@@ -95,18 +95,19 @@ export struct Toolkit {
                 .width('96%')
                 .padding({ bottom: 12, left: 4 })
                 .onClick(async () => {
-                  this.isPlaying = true
-                  this.itemData = item
+                  this.isPlaying = true;
+                  this.itemData = item;
                   if (this.isTitle == this.audioText) {
-                    this.isXComponent = false
-                    this.myMedia.init(this.itemData)
+                    this.isXComponent = false;
+                    this.myMedia.init(this.itemData);
                   } else {
-                    this.myMedia.init(this.itemData, this.surfaceId.toString())
+                    this.isXComponent = true;
+                    this.myMedia.init(this.itemData, this.surfaceId.toString());
                   }
                   if (this.isPlaying) {
                     this.timer = setInterval(() => {
-                      this.currentTime = this.myMedia.getCurrentTime()
-                    }, 1000)
+                      this.currentTime = this.myMedia.getCurrentTime();
+                    }, 1000);
                   }
                 })
               }, (item: userFileManager.FileAsset) => item.displayName)
