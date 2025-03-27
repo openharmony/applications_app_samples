@@ -1,0 +1,11 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/rsa/Callback",
+    "pages/ecc/Sync",
+    "pages/sm2/Sync",
+    "pages/rsa/Sync",
+    "pages/sm2/Promise",
+    "pages/ecc/Promise"
+  ]
+}
