@@ -4,37 +4,37 @@
     "samples": [
       {
         "name": "sm4c ChinaDRMLab_Promo_210525-264-30-480P-2000K",
-        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/20240117/h264-sm4c-hls/ChinaDRMLab_Promo_210525-264-30-480P-2000K/sm4c.m3u8",
+        "uri": "https://hwposter-inland.hwcloudtest.cn/rem/DTA/20240117/h264-sm4c-hls/ChinaDRMLab_Promo_210525-264-30-480P-2000K/sm4c.m3u8",
         "drm_scheme": "chinadrm",
         "drm_license_url": "http://license.dev.trustdta.com:8080/drmproxy/v3/getLicense"
       },
       {
         "name": "sm4c ChinaDRMLab_Promo_210525-264-30-720P-5000K",
-        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/20240117/h264-sm4c-hls/ChinaDRMLab_Promo_210525-264-30-720P-5000K/sm4c.m3u8",
+        "uri": "https://hwposter-inland.hwcloudtest.cn/rem/DTA/20240117/h264-sm4c-hls/ChinaDRMLab_Promo_210525-264-30-720P-5000K/sm4c.m3u8",
         "drm_scheme": "chinadrm",
         "drm_license_url": "http://license.dev.trustdta.com:8080/drmproxy/v3/getLicense"
       },
       {
         "name": "sm4c ChinaDRMLab_Promo_210525-264-30-1080P-10000K",
-        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/20240117/h264-sm4c-hls/ChinaDRMLab_Promo_210525-264-30-1080P-10000K/sm4c.m3u8",
+        "uri": "https://hwposter-inland.hwcloudtest.cn/rem/DTA/20240117/h264-sm4c-hls/ChinaDRMLab_Promo_210525-264-30-1080P-10000K/sm4c.m3u8",
         "drm_scheme": "chinadrm",
         "drm_license_url": "http://license.dev.trustdta.com:8080/drmproxy/v3/getLicense"
       },
       {
         "name": "ChinaDRMLab-264-30-1080P-10000K-TS-CBC1 可离线",
-        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-1080P-10000K-TS-CBC1/playlist.m3u8",
+        "uri": "https://hwposter-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-1080P-10000K-TS-CBC1/playlist.m3u8",
         "drm_scheme": "chinadrm",
         "drm_license_url": "http://license.dev.trustdta.com:8080/drmproxy/v3/getLicense"
       },
       {
         "name": "playbackduration 70s 后过期",
-        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "uri": "https://hwposter-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
         "drm_scheme": "chinadrm",
         "drm_license_url": "http://license.dev.trustdta.com:8080/drmproxy/v3/getLicense?contentId=policytest07ibL"
       },
       {
         "name": "每20s进行一次renew ",
-        "uri": "https://poster-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
+        "uri": "https://hwposter-inland.hwcloudtest.cn/rem/DTA/ChinaDRMLab-264-30-480P-2000K-TS-SM4C/playlist.m3u8",
         "drm_scheme": "chinadrm",
         "drm_license_url": "http://license.dev.trustdta.com:8080/drmproxy/v3/getLicense?contentId=policytest15ibL"
       }

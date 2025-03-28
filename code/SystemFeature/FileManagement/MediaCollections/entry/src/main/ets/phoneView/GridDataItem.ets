@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,33 +13,33 @@
  * limitations under the License.
  */
 
-import { gridData } from '../model/GridData'
+import { gridData } from '../model/GridData';
 
 @Component
 export struct GridDataItem {
-  @State bgrColor: string = '#222324'
-  @Link isBom: boolean
-  @Link isTitle: string
-  @Link isXComponent: boolean
-  @Link @Watch('clickSetBgrColor') clickIndex: number
-  private context: Context = getContext(this)
-  private item: gridData = {} as gridData
-  private index: number = -1
-  @State videoText: string = ''
+  @State bgrColor: string = '#222324';
+  @Link isBom: boolean;
+  @Link isTitle: string;
+  @Link isXComponent: boolean;
+  @Link @Watch('clickSetBgrColor') clickIndex: number;
+  private context: Context = getContext(this);
+  private item: gridData = {} as gridData;
+  private index: number = -1;
+  @State videoText: string = '';
 
   async aboutToAppear() {
-    this.videoText = await this.convertResourceToString($r('app.string.phoneMain_video'))
+    this.videoText = await this.convertResourceToString($r('app.string.phoneMain_video'));
   }
 
   async convertResourceToString(resource: Resource) {
-    return await this.context.resourceManager.getStringValue(resource.id)
+    return await this.context.resourceManager.getStringValue(resource.id);
   }
 
   clickSetBgrColor() {
     if (this.index !== this.clickIndex) {
-      this.bgrColor = '#222324'
+      this.bgrColor = '#222324';
     } else {
-      this.bgrColor = 'rgba(255,255,255,0.1)'
+      this.bgrColor = 'rgba(255,255,255,0.1)';
     }
   }
 
@@ -63,12 +63,9 @@ export struct GridDataItem {
     .borderRadius(12)
     .backgroundColor(this.bgrColor)
     .onClick(() => {
-      this.clickIndex = this.index
-      this.isBom = !this.isBom
-      this.isTitle = this.item.textStr
-      if (this.isTitle == this.videoText) {
-        this.isXComponent = true
-      }
+      this.clickIndex = this.index;
+      this.isBom = !this.isBom;
+      this.isTitle = this.item.textStr;
     })
   }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -169,17 +169,19 @@ export class AVPlayer {
   }
 
   async httpInit(url: string, surfaceId?: string) {
-    this.isHttp = true
+    this.isHttp = true;
+    this.isVideo = false;
     if (surfaceId) {
-      this.surfaceId = surfaceId.toString()
-      Logger.info(TAG, `surfaceId success: ${surfaceId}`)
+      this.isVideo = true;
+      this.surfaceId = surfaceId.toString();
+      Logger.info(TAG, `surfaceId success: ${surfaceId}`);
     }
-    await this.release()
-    this.media = await media.createAVPlayer()
-    this.isCreate = true
-    this.setSourceInfo()
-    this.setStateChangeCallback()
-    this.media.url = url
+    await this.release();
+    this.media = await media.createAVPlayer();
+    this.isCreate = true;
+    this.setSourceInfo();
+    this.setStateChangeCallback();
+    this.media.url = url;
   }
 
   async openFileDescriptor(name: string): Promise<media.AVFileDescriptor> {
@@ -214,44 +216,44 @@ export class AVPlayer {
   }
 
   async init(resourceAddress: userFileManager.FileAsset, surfaceId?: string) {
-    this.isHttp = false
-    Logger.info(TAG, 'init state')
-    this.isVideo = false
+    this.isHttp = false;
+    Logger.info(TAG, 'init state');
+    this.isVideo = false;
     // 判断是否传入surfaceID
     if (surfaceId) {
-      this.isVideo = true
-      this.surfaceId = surfaceId.toString()
-      Logger.info(TAG, `surfaceId success: ${surfaceId}`)
+      this.isVideo = true;
+      this.surfaceId = surfaceId.toString();
+      Logger.info(TAG, `surfaceId success: ${surfaceId}`);
     }
     // 如果已经存在avplayer实例对象则释放该对象重新创建
-    await this.release()
-    this.resourceAddress = resourceAddress
-    Logger.info(TAG, `resourceAddress success: ${this.resourceAddress}`)
-    this.fileName = resourceAddress.displayName
-    Logger.info(TAG, `fileName success: ${this.fileName}`)
-    this.totalDuration = resourceAddress.get('duration') as number
-    Logger.info(TAG, `AVPlayer totalDuration success: ${this.totalDuration}`)
+    await this.release();
+    this.resourceAddress = resourceAddress;
+    Logger.info(TAG, `resourceAddress success: ${this.resourceAddress}`);
+    this.fileName = resourceAddress.displayName;
+    Logger.info(TAG, `fileName success: ${this.fileName}`);
+    this.totalDuration = resourceAddress.get('duration') as number;
+    Logger.info(TAG, `AVPlayer totalDuration success: ${this.totalDuration}`);
     // 获取待播放的fd地址
     this.resourceAddress.open('r').then(async (fd: number) => {
-      Logger.info(TAG, `get fd success: ${fd}`)
-      this.media = await media.createAVPlayer()
-      this.fd = fd
+      Logger.info(TAG, `get fd success: ${fd}`);
+      this.media = await media.createAVPlayer();
+      this.fd = fd;
       if (this.resourceAddress.fileType == userFileManager.FileType.AUDIO) {
-        Logger.info(TAG, 'AUDIO success')
-        this.getFileIndex(this.audioData)
-        this.mediaDataLen = this.audioData.length
+        Logger.info(TAG, 'AUDIO success');
+        this.getFileIndex(this.audioData);
+        this.mediaDataLen = this.audioData.length;
       } else if (this.resourceAddress.fileType == userFileManager.FileType.VIDEO) {
-        this.getFileIndex(this.videoData)
-        this.mediaDataLen = this.videoData.length
-        const width: number = this.resourceAddress.get('width') as number
-        const height: number = this.resourceAddress.get('height') as number
-        this.ratio = width / height
-        Logger.info(TAG, `VIDEO success this.ratio` + this.ratio)
+        this.getFileIndex(this.videoData);
+        this.mediaDataLen = this.videoData.length;
+        const width: number = this.resourceAddress.get('width') as number;
+        const height: number = this.resourceAddress.get('height') as number;
+        this.ratio = width / height;
+        Logger.info(TAG, `VIDEO success this.ratio` + this.ratio);
       }
-      this.isCreate = true
-      this.setSourceInfo()
-      this.setStateChangeCallback()
-      this.media.url = `fd://${this.fd}`
+      this.setSourceInfo();
+      this.setStateChangeCallback();
+      this.isCreate = true;
+      this.media.url = `fd://${this.fd}`;
     })
   }
 
@@ -505,7 +507,7 @@ export class AVPlayer {
       // --- 3 --- 生成license请求；发送license到云端获取响应，将响应交给底层
       let licenseType: number = AppStorage.get('licenseType') as number
       let isSuccess: boolean = await this.drmController
-          .executeLicenseProcess(this.drmUrl, this.drmLicenseUrl, drmInfoArr, licenseType)
+        .executeLicenseProcess(this.drmUrl, this.drmLicenseUrl, drmInfoArr, licenseType)
       if (!isSuccess) {
         Logger.error(TAG, 'Failed to process the license, Release Playback Resources.')
         this.release()
