@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -19,55 +19,13 @@ import Window from '@ohos.window';
 import remoteDeviceModel from '../model/RemoteDeviceModel';
 import Want from '@ohos.app.ability.Want';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import { GlobalContext, getGlobalObject, setGlobalObject } from '../common/GlobalThis'
 
 export default class EntryAbility extends Ability {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+  async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
     hilog.info(0x0000, 'testTag', '%{public}s', 'want param:' + JSON.stringify(want) ?? '');
     hilog.info(0x0000, 'testTag', '%{public}s', 'launchParam:' + JSON.stringify(launchParam) ?? '');
-    setGlobalObject('this.context', this.context);
-    setGlobalObject('this.context.resourceManager', this.context.resourceManager);
-    this.initFilterOption();
-    remoteDeviceModel.createDeviceManager();
-  }
-
-  getStringByResource(r: Resource) {
-    return this.context.resourceManager.getStringSync(r.id);
-  }
-
-  initFilterOption() {
-    let DeviceTypeItemList: Array<string> = [
-    this.context.resourceManager.getStringSync($r('app.string.no_filter')),
-    this.context.resourceManager.getStringSync($r('app.string.tablet')),
-    this.context.resourceManager.getStringSync($r('app.string.phone')),
-    this.context.resourceManager.getStringSync($r('app.string.other')),
-    ];
-    setGlobalObject('DeviceTypeItemList', DeviceTypeItemList);
-    let AuthFormItemList: Array<string> = [
-    this.context.resourceManager.getStringSync($r('app.string.no_filter')),
-    this.context.resourceManager.getStringSync($r('app.string.identical_account')),
-    this.context.resourceManager.getStringSync($r('app.string.across_account')),
-    this.context.resourceManager.getStringSync($r('app.string.no_account')),
-    ];
-    setGlobalObject('AuthFormItemList', AuthFormItemList);
-    let IsOnlineItemList: Array<string> = [
-    this.context.resourceManager.getStringSync($r('app.string.no_filter')),
-    this.context.resourceManager.getStringSync($r('app.string.online')),
-    this.context.resourceManager.getStringSync($r('app.string.offline')),
-    ];
-    setGlobalObject('IsOnlineItemList', IsOnlineItemList);
-    let IsTrustedItemList: Array<string> = [
-    this.context.resourceManager.getStringSync($r('app.string.no_filter')),
-    this.context.resourceManager.getStringSync($r('app.string.credible')),
-    this.context.resourceManager.getStringSync($r('app.string.incredible')),
-    ];
-    setGlobalObject('IsTrustedItemList', IsTrustedItemList);
-    let RangeItemList: Array<string> = [
-    this.context.resourceManager.getStringSync($r('app.string.no_filter')), '50', '80', '100'];
-    setGlobalObject('RangeItemList', RangeItemList);
-
   }
 
   onDestroy() {
