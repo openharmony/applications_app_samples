@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,19 +14,24 @@
  */
 import display from '@ohos.display'
 import Logger from '../model/Logger'
+import { forceGC } from '../util/ForceGCUtil';
 
 const HOURS: Array<string> = ['3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '1', '2']
 const HEIGHT_ADD: number = 150 // 表盘下面需要绘制时间，canvas高度是宽度加150
 const TAG: string = 'Index'
+const DELAY: number = 7200000;
+const UPDATE_DELAY: number = 1000;
 
 @Entry
 @Component
 struct Clock {
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  @State canvasReady: boolean = false; // canvas是否准备好
   @State canvasWidth: number = 300 // 300是表盘默认大小
   private radius: number = 150 // 默认表盘半径
   private intervalId: number = 0
+  private intervalIdGC: number = 0;
   updateTime = () => {
     this.context.clearRect(0, 0, this.canvasWidth, this.canvasWidth + HEIGHT_ADD)
     let nowTime = new Date()
@@ -41,6 +46,7 @@ struct Clock {
     this.drawDot()
     this.drawTime(time)
     this.context.translate(-this.radius, -this.radius)
+    Logger.info(TAG, `update time end`);
   }
 
   fillTime(time: number) {
@@ -48,7 +54,17 @@ struct Clock {
   }
 
   aboutToAppear() {
+    Logger.info(TAG, `enter aboutToAppear`);
     this.getSize()
+  }
+
+  onPageShow() {
+    Logger.info(TAG, `onPageShow`);
+    if (this.canvasReady) {
+      this.updateTime();
+      this.intervalId = setInterval(this.updateTime, UPDATE_DELAY);
+      this.intervalIdGC = setInterval(forceGC, DELAY); // 2小时GC一次
+    }
   }
 
   // 获取设备宽高计算表盘大小
@@ -57,6 +73,7 @@ struct Clock {
     Logger.info(TAG, `getDefaultDisplay mDisplay = ${JSON.stringify(mDisplay)}`)
     this.canvasWidth = px2vp(mDisplay.width > mDisplay.height ? mDisplay.height * 0.6 : mDisplay.width * 0.6)
     this.radius = this.canvasWidth / 2
+    Logger.info(TAG, `get size end`);
   }
 
   drawBackGround() {
@@ -114,7 +131,7 @@ struct Clock {
       }
       this.context.stroke()
     }
-    this.context.restore()
+    Logger.info(TAG, `draw background end`);
   }
 
   // 绘制时针
@@ -131,6 +148,7 @@ struct Clock {
     this.context.lineTo(0, -this.radius / 2)
     this.context.stroke()
     this.context.restore()
+    Logger.info(TAG, `draw hour end`);
   }
 
   // 绘制分针
@@ -146,6 +164,7 @@ struct Clock {
     this.context.lineTo(0, -this.radius + 40)
     this.context.stroke()
     this.context.restore()
+    Logger.info(TAG, `draw minute end`);
   }
 
   // 绘制秒针
@@ -161,6 +180,7 @@ struct Clock {
     this.context.lineTo(0, -this.radius + 21)
     this.context.stroke()
     this.context.restore()
+    Logger.info(TAG, `draw second end`);
   }
 
   // 绘制中心点
@@ -171,6 +191,7 @@ struct Clock {
     this.context.arc(0, 0, 4, 0, 2 * Math.PI, false)
     this.context.fill()
     this.context.restore()
+    Logger.info(TAG, `draw dot end`);
   }
 
   // 绘制表盘下面时间文本
@@ -183,6 +204,7 @@ struct Clock {
     this.context.fillStyle = '#000'
     this.context.fillText(time, 0, this.radius + 80)
     this.context.restore()
+    Logger.info(TAG, `draw time end`);
   }
 
   build() {
@@ -192,8 +214,12 @@ struct Clock {
         .width(this.canvasWidth)
         .height(this.canvasWidth + HEIGHT_ADD)
         .onReady(() => {
+          Logger.info(TAG, `onReady`);
+          clearInterval(this.intervalId);
+          clearInterval(this.intervalIdGC);
           this.updateTime()
           this.intervalId = setInterval(this.updateTime, 1000)
+          this.intervalIdGC = setInterval(forceGC, DELAY); // 2小时GC一次
         })
     }
     .width('100%')
@@ -201,6 +227,15 @@ struct Clock {
   }
 
   onPageHide() {
+    Logger.info(TAG, `onPageHide`);
+    this.canvasReady = true;
+    clearInterval(this.intervalId);
+    clearInterval(this.intervalIdGC);
+  }
+
+  aboutToDisappear() {
+    Logger.info(TAG, `aboutToDisappear`);
     clearInterval(this.intervalId)
+    clearInterval(this.intervalIdGC);
   }
 }
