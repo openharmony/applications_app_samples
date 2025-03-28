@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "PBKDF2Derivation"
+    },
+    {
+      "name": "await",
+      "value": "Await"
+    },
+    {
+      "name": "promise",
+      "value": "Promise"
+    },
+    {
+      "name": "sync",
+      "value": "Sync"
+    },
+    {
+      "name": "call_await",
+      "value": "Call Await"
+    },
+    {
+      "name": "call_promise",
+      "value": "Call Promise"
+    },
+    {
+      "name": "call_sync",
+      "value": "Call Sync"
+    }
+  ]
+}
