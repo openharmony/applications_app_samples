@@ -131,6 +131,10 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/UI/KeyboardAvoid/entry/src/main/resources/base/media/background.png" desc="Provide by code/UI/KeyboardAvoid"/>
 				<filteritem type="filepath" name="code/UI/KeyboardAvoid/AppScope/resources/base/media/app_icon.png" desc="Provide by code/UI/KeyboardAvoid"/>
 				<filteritem type="filepath" name="code/UI/KeyboardAvoid/entry/src/main/resources/base/media/foreground.png" desc="Provide by code/UI/KeyboardAvoid"/>
+				<filteritem type="filepath" name="code/SystemFeature/IPC/ObjectTransfer/IPC_Client/image/client.png" desc="Provided by code/SystemFeature/IPC"/>
+				<filteritem type="filepath" name="code/SystemFeature/IPC/ObjectTransfer/IPC_Client/image/service.png" desc="Provided by code/SystemFeature/IPC"/>
+                <filteritem type="filepath" name="code/SystemFeature/IPC/ObjectTransfer/IPC_Client/image/fingerprint.png" desc="Provided by code/SystemFeature/IPC"/>
+                <filteritem type="filepath" name="code/SystemFeature/IPC/ObjectTransfer/IPC_Client/image/permission.png" desc="Provided by code/SystemFeature/IPC"/>
 				<filteritem type="filepath" name="code/BasicFeature/Media/VideoSwitching/entry/src/main/resources/base/media/video_screen_direction_switching_ic_back.png" desc="Provide by code/BasicFeature/Media/VideoSwitching"/>
 				<filteritem type="filepath" name="code/BasicFeature/Media/VideoSwitching/entry/src/main/resources/base/media/video_screen_direction_switching_ic_back1.png" desc="Provide by code/BasicFeature/Media/VideoSwitching"/>
 				<filteritem type="filepath" name="code/BasicFeature/Media/VideoSwitching/entry/src/main/resources/base/media/video_screen_direction_switching_preview2.jpg" desc="Provide by code/BasicFeature/Media/VideoSwitching"/>
@@ -179,7 +183,7 @@ Note:If the text contains special characters, please escape them according to th
         <filteritem type="filepath" name="code/BasicFeature/Connectivity/MultipleFilesDownload/casesfeature/multiplefilesdownload/src/main/resources/base/media/multiple_files_download_start.png" desc="Provided by code/BasicFeature/Connectivity/MultipleFilesDownload"/>
         <filteritem type="filepath" name="code/BasicFeature/Connectivity/MultipleFilesDownload/casesfeature/multiplefilesdownload/multiple_files_download.gif" desc="Provided by code/BasicFeature/Connectivity/MultipleFilesDownload"/>
         <filteritem type="filepath" name="code/BasicFeature/Connectivity/MultipleFilesDownload/casesfeature/multiplefilesdownload/src/main/resources/base/media/multiple_files_download_file.png" desc="Provided by code/BasicFeature/Connectivity/MultipleFilesDownload"/>
-                <filteritem type="filepath" name="code/BasicFeature/Native/ArkTSXComponent/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by the UX team."/>
+				<filteritem type="filepath" name="code/BasicFeature/Native/ArkTSXComponent/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by the UX team."/>
                 <filteritem type="filepath" name="code/BasicFeature/Native/ArkTSXComponent/screenshots/device/changeColor.png" desc="Provided by code/BasicFeature/Native/ArkTSXComponent."/>
                 <filteritem type="filepath" name="code/BasicFeature/Native/ArkTSXComponent/screenshots/device/drawStar.png" desc="Provided by code/BasicFeature/Native/ArkTSXComponent."/>
                 <filteritem type="filepath" name="code/BasicFeature/Native/ArkTSXComponent/screenshots/device/main.png" desc="Provided by code/BasicFeature/Native/ArkTSXComponent."/>
@@ -1214,6 +1218,10 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/BasicFeature/DataManagement/pasteboard/screenshots/first.png" desc="Provided by code/BasicFeature/DataManagement/pasteboard"/>
 				<filteritem type="filepath" name="code/Solutions/InputMethod/KikaInputMethod/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/Solutions/InputMethod/KikaInputMethod"/>
 				<filteritem type="filepath" name="code/Solutions/InputMethod/KikaInputMethod/screenshots/devices/preview.jpg" desc="Provided by code/Solutions/InputMethod/KikaInputMethod"/>
+				<filteritem type="filepath" name="code/SystemFeature/IPC/ObjectTransfer/IPC_Client/image/client.png" desc="Provided by code/SystemFeature/IPC"/>
+				<filteritem type="filepath" name="code/SystemFeature/IPC/ObjectTransfer/IPC_Client/image/service.png" desc="Provided by code/SystemFeature/IPC"/>
+                <filteritem type="filepath" name="code/SystemFeature/IPC/ObjectTransfer/IPC_Client/image/fingerprint.png" desc="Provided by code/SystemFeature/IPC"/>
+                <filteritem type="filepath" name="code/SystemFeature/IPC/ObjectTransfer/IPC_Client/image/permission.png" desc="Provided by code/SystemFeature/IPC"/>
 				<filteritem type="filepath" name="code/BasicFeature/DataManagement/UDMF/UDMFDemo/AppScope/resources/base/media/app_icon.png" desc="Provided by code/BasicFeature/DataManagement/UDMF/UDMFDemo"/>
 				<filteritem type="filepath" name="code/BasicFeature/DataManagement/UDMF/UDMFDemo/entry/src/main/resources/base/media/ic_select_option_collection.png" desc="Provided by code/BasicFeature/DataManagement/UDMF/UDMFDemo"/>
 				<filteritem type="filepath" name="code/BasicFeature/DataManagement/UDMF/UDMFDemo/entry/src/ohosTest/resources/base/media/icon.png" desc="Provided by code/BasicFeature/DataManagement/UDMF/UDMFDemo"/>
@@ -2209,7 +2217,11 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/BasicFeature/Media/VideoSwitching/entry/src/main/resources/rawfile/video_screen_direction_switching1.MP4" desc="Provide by code/BasicFeature/Media/VideoSwitching"/>
 				<filteritem type="filepath" name="code/BasicFeature/Media/VideoSwitching/entry/src/main/resources/base/media/video_screen_direction_switching_video.MP4" desc="Provide by code/BasicFeature/Media/VideoSwitching"/>
 				<filteritem type="filepath" name="code/BasicFeature/Media/VideoSwitching/entry/src/main/resources/rawfile/video_screen_direction_switching2.MP4" desc="Provide by code/BasicFeature/Media/VideoSwitching"/>
-            </filefilter>
+				<filteritem type="filepath" name="code/SystemFeature/IPC/ObjectTransfer/IPC_Client/image/client.png" desc="Provided by code/SystemFeature/IPC"/>
+				<filteritem type="filepath" name="code/SystemFeature/IPC/ObjectTransfer/IPC_Client/image/service.png" desc="Provided by code/SystemFeature/IPC"/>
+                <filteritem type="filepath" name="code/SystemFeature/IPC/ObjectTransfer/IPC_Client/image/fingerprint.png" desc="Provided by code/SystemFeature/IPC"/>
+                <filteritem type="filepath" name="code/SystemFeature/IPC/ObjectTransfer/IPC_Client/image/permission.png" desc="Provided by code/SystemFeature/IPC"/>
+			</filefilter>
             <filefilter name="copyrightPolicyFilter" desc="Copyright文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加版权头"/>
                 <filteritem type="filename" name="hvigorw" desc="OpenHarmony工程编译入口脚本，无需添加版权头"/>
@@ -2282,6 +2294,10 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/UI/ListBeExchange/ListExchange/src/main/resources/base/media/list_exchange_ic_public_cards_filled4.svg" desc="code/UI/ListExchange"/>
 				<filteritem type="filepath" name="code/UI/ListBeExchange/ListExchange/src/main/resources/base/media/list_exchange_ic_public_drawer.svg" desc="code/UI/ListExchange"/>
 				<filteritem type="filepath" name="code/UI/ListBeExchange/ListExchange/src/main/resources/base/media/list_exchange_icon_delete.svg" desc="code/UI/ListExchange"/>
+				<filteritem type="filepath" name="code/SystemFeature/IPC/ObjectTransfer/IPC_Client/image/client.PNG" desc="Provided by code/SystemFeature/IPC"/>
+				<filteritem type="filepath" name="code/SystemFeature/IPC/ObjectTransfer/IPC_Client/image/service.PNG" desc="Provided by code/SystemFeature/IPC"/>
+                <filteritem type="filepath" name="code/SystemFeature/IPC/ObjectTransfer/IPC_Client/image/fingerprint.PNG" desc="Provided by code/SystemFeature/IPC"/>
+                <filteritem type="filepath" name="code/SystemFeature/IPC/ObjectTransfer/IPC_Client/image/permission.PNG" desc="Provided by code/SystemFeature/IPC"/>
             </filefilter>
         </filefilterlist>
     </oatconfig>
