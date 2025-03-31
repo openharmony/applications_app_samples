@@ -1,0 +1,64 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "EncryptionDecryptionGuidanceRSA"
+    },
+    {
+      "name": "rsa_pkcs1_async",
+      "value": "RSA PKCS1 Async"
+    },
+    {
+      "name": "rsa_pkcs1_sync",
+      "value": "RSA PKCS1 Sync"
+    },
+    {
+      "name": "rsa_segmentation_async",
+      "value": "RSA Segmentation Async"
+    },
+    {
+      "name": "rsa_segmentation_sync",
+      "value": "RSA Segmentation Sync"
+    },
+    {
+      "name": "rsa_pkcs1_oaep_async",
+      "value": "RSA PKCS1 OAEP Async"
+    },
+    {
+      "name": "rsa_pkcs1_oaep_sync",
+      "value": "RSA PKCS1 OAEP Sync"
+    },
+    {
+      "name": "call_rsa_pkcs1_async",
+      "value": "Call RSA PKCS1 Async"
+    },
+    {
+      "name": "call_rsa_pkcs1_sync",
+      "value": "Call RSA PKCS1 Sync"
+    },
+    {
+      "name": "call_rsa_pkcs1_oaep_async",
+      "value": "Call RSA PKCS1 OAEP Async"
+    },
+    {
+      "name": "call_rsa_pkcs1_oaep_sync",
+      "value": "Call RSA PKCS1 OAEP Sync"
+    },
+    {
+      "name": "call_rsa_segmentation_async",
+      "value": "Call RSA Segmentation Async"
+    },
+    {
+      "name": "call_rsa_segmentation_sync",
+      "value": "Call RSA Segmentation Sync"
+    }
+  ]
+}
