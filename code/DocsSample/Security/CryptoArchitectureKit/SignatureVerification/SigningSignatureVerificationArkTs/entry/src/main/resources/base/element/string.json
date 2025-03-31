@@ -1,0 +1,112 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "SigningSignatureVerificationArkTs"
+    },
+    {
+      "name": "rsa_pkcs1_signature_validator_asynchronous",
+      "value": "rsa_pkcs1_signature_validator_asynchronous"
+    },
+    {
+      "name": "rsa_pkcs1_signature_validator_synchronous",
+      "value": "rsa_pkcs1_signature_validator_synchronous"
+    },
+    {
+      "name": "rsa_pkcs1_signature_restoration_asynchronous",
+      "value": "rsa_pkcs1_signature_restoration_asynchronous"
+    },
+    {
+      "name": "rsa_pkcs1_signature_restoration_synchronous",
+      "value": "rsa_pkcs1_signature_restoration_synchronous"
+    },
+    {
+      "name": "rsa_pkcs1_segment_signature_asynchronous",
+      "value": "rsa_pkcs1_segment_signature_asynchronous"
+    },
+    {
+      "name": "rsa_pkcs1_segment_signature_synchronous",
+      "value": "rsa_pkcs1_segment_signature_synchronous"
+    },
+    {
+      "name": "rsa_pss_signature_verification_asynchronous",
+      "value": "rsa_pss_signature_verification_asynchronous"
+    },
+    {
+      "name": "rsa_pss_signature_verification_synchronous",
+      "value": "rsa_pss_signature_verification_synchronous"
+    },
+    {
+      "name": "ecdsa_signature_verification_asynchronous",
+      "value": "ecdsa_signature_verification_asynchronous"
+    },
+    {
+      "name": "ecdsa_signature_verification_synchronous",
+      "value": "ecdsa_signature_verification_synchronous"
+    },
+    {
+      "name": "sm2_signature_verification_asynchronous",
+      "value": "sm2_signature_verification_asynchronous"
+    },
+    {
+      "name": "sm2_signature_verification_synchronous",
+      "value": "sm2_signature_verification_synchronous"
+    },
+    {
+      "name": "call_ecdsasignature_asynchronous",
+      "value": "Call ECDSASignature Asynchronous"
+    },
+    {
+      "name": "call_ecdsasignature_synchronous",
+      "value": "Call ECDSASignature Synchronous"
+    },
+    {
+      "name": "call_signatureseg_asynchronous",
+      "value": "Call SignatureSeg Asynchronous"
+    },
+    {
+      "name": "call_signatureseg_synchronous",
+      "value": "Call SignatureSeg Synchronous"
+    },
+    {
+      "name": "call_signature_recover_asynchronous",
+      "value": "Call SignatureRecover Asynchronous"
+    },
+    {
+      "name": "call_signature_recover_synchronous",
+      "value": "Call SignatureRecover Synchronous"
+    },
+    {
+      "name": "call_signature_verify_asynchronous",
+      "value": "Call SignatureVerify Asynchronous"
+    },
+    {
+      "name": "call_signature_verify_synchronous",
+      "value": "Call SignatureVerify Synchronous"
+    },
+    {
+      "name": "call_psssignatureseg_asynchronous",
+      "value": "Call PSSSignatureSeg Asynchronous"
+    },
+    {
+      "name": "call_psssignatureseg_synchronous",
+      "value": "Call PSSSignatureSeg Synchronous"
+    },
+    {
+      "name": "call_sm2_signature_asynchronous",
+      "value": "Call SM2Signature Asynchronous"
+    },
+    {
+      "name": "call_sm2_signature_synchronous",
+      "value": "Call SM2Signature Synchronous"
+    }
+  ]
+}
