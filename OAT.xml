@@ -2142,6 +2142,12 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/DocsSample/Security/DeviceCertificateKit/CertificateAlgorithmLibrary/screenshots/CertificateAlgorithmLibrary2.png" desc="Provided by code/DocsSample/Security"/>
 				<filteritem type="filepath" name="code/DocsSample/Security/DeviceCertificateKit/CertificateManagement/screenshots/CertificateManagement1.png" desc="Provided by code/DocsSample/Security"/>
 				<filteritem type="filepath" name="code/DocsSample/Security/DeviceCertificateKit/CertificateManagement/screenshots/CertificateManagement2.png" desc="Provided by code/DocsSample/Security"/>
+				<filteritem type="filepath" name="code/BasicFeature/Web/WebGetCameraImage/entry/src/main/resources/base/media/background.png" desc="Provided by code/UI/WebGetCameraImage"/>
+				<filteritem type="filepath" name="code/BasicFeature/Web/WebGetCameraImage/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/UI/WebGetCameraImage"/>
+				<filteritem type="filepath" name="code/BasicFeature/Web/WebGetCameraImage/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/UI/WebGetCameraImage"/>
+				<filteritem type="filepath" name="code/BasicFeature/Web/WebGetCameraImage/entry/src/main/resources/base/media/web_get_camera_image.gif" desc="Provided by code/UI/WebGetCameraImage"/>
+				<filteritem type="filepath" name="code/BasicFeature/Web/WebGetCameraImage/AppScope/resources/base/media/background.png" desc="Provided by code/UI/WebGetCameraImage"/>
+				<filteritem type="filepath" name="code/BasicFeature/Web/WebGetCameraImage/AppScope/resources/base/media/foreground.png" desc="Provided by code/UI/WebGetCameraImage"/>
 			</filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加License头"/>
