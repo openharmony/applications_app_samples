@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "ConvertSpecifiedPEMAsymmetricKeyPair"
+    },
+    {
+      "name": "pem_to_rsa",
+      "value": "PEM TO RSA"
+    },
+    {
+      "name": "promise",
+      "value": "Promise"
+    },
+    {
+      "name": "sync",
+      "value": "Sync"
+    },
+    {
+      "name": "call_promise",
+      "value": "Call Promise"
+    },
+    {
+      "name": "call_sync",
+      "value": "Call Sync"
+    }
+  ]
+}
