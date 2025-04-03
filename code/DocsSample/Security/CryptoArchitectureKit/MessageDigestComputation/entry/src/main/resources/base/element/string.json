@@ -1,0 +1,56 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "MessageDigestComputation"
+    },
+    {
+      "name": "segmentation_async",
+      "value": "SegmentationAsync"
+    },
+    {
+      "name": "segmentation_sync",
+      "value": "SegmentationSync"
+    },
+    {
+      "name": "single_time_async",
+      "value": "SingleTimeAsync"
+    },
+    {
+      "name": "single_time_sync",
+      "value": "SingleTimeSync"
+    },
+    {
+      "name": "single_time",
+      "value": "SingleTime C++"
+    },
+    {
+      "name": "segmentation",
+      "value": "Segmentation C++"
+    },
+    {
+      "name": "call_segmentation_async",
+      "value": "Call SegmentationAsync"
+    },
+    {
+      "name": "call_segmentation_sync",
+      "value": "Call SegmentationSync"
+    },
+    {
+      "name": "call_single_time_async",
+      "value": "Call SingleTimeAsync"
+    },
+    {
+      "name": "call_single_time_sync",
+      "value": "Call SingleTimeSync"
+    }
+  ]
+}
