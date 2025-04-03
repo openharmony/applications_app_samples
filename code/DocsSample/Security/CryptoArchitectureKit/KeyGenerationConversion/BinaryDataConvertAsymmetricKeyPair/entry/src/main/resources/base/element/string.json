@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "BinaryDataConvertAsymmetricKeyPair"
+    },
+    {
+      "name": "call_rsa",
+      "value": "Call RSA"
+    },
+    {
+      "name": "call_ecc",
+      "value": "Call ECC"
+    },
+    {
+      "name": "call_sm2",
+      "value": "Call SM2"
+    }
+  ]
+}
