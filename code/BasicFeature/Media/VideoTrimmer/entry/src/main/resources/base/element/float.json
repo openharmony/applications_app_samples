@@ -1,0 +1,36 @@
+{
+  "float": [
+    {
+      "name": "page_text_font_size",
+      "value": "50fp"
+    },
+    {
+      "name": "video_trimmer_tab_font_size",
+      "value": "10fp"
+    },
+    {
+      "name": "video_trimmer_tab_border_width",
+      "value": "0.5vp"
+    },
+    {
+      "name": "video_trimmer_tab_img_size",
+      "value": "24vp"
+    },
+    {
+      "name": "video_trimmer_tab_big_img_width",
+      "value": "40vp"
+    },
+    {
+      "name": "video_trimmer_tab_big_img_height",
+      "value": "38vp"
+    },
+    {
+      "name": "video_trimmer_tab_margin",
+      "value": "-15vp"
+    },
+    {
+      "name": "video_trimmer_tab_title_margin",
+      "value": "5vp"
+    }
+  ]
+}

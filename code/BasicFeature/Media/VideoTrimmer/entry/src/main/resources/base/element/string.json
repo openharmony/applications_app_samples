@@ -1,0 +1,256 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "视频剪辑"
+    },
+    {
+      "name": "video_trimmer_tab_main",
+      "value": "首页"
+    },
+    {
+      "name": "video_trimmer_tab_short",
+      "value": "短片"
+    },
+    {
+      "name": "video_trimmer_tab_vip",
+      "value": "会员"
+    },
+    {
+      "name": "video_trimmer_tab_message",
+      "value": "消息"
+    },
+    {
+      "name": "video_trimmer_tab_mine",
+      "value": "个人中心"
+    },
+    {
+      "name": "video_trimmer_rangeSeekBar_height",
+      "value": "15%"
+    },
+    {
+      "name": "video_trimmer_bottom_height",
+      "value": "25%"
+    },
+    {
+      "name": "video_trimmer_half_height",
+      "value": "50%"
+    },
+    {
+      "name": "video_trimmer_video_item_news_name_column_width",
+      "value": "60%"
+    },
+    {
+      "name": "video_trimmer_server_input_width",
+      "value": "70%"
+    },
+    {
+      "name": "video_trimmer_video_item_row_column_width",
+      "value": "80%"
+    },
+    {
+      "name": "video_trimmer_list_height",
+      "value": "85%"
+    },
+    {
+      "name": "video_trimmer_video_item_news_name_row_width",
+      "value": "90%"
+    },
+    {
+      "name": "video_trimmer_lazy_foreach_list_page_list_width",
+      "value": "95%"
+    },
+    {
+      "name": "video_trimmer_lazy_foreach_list_page_width",
+      "value": "100%"
+    },
+    {
+      "name": "video_trimmer_custom_tab_bar_width",
+      "value": "100%"
+    },
+    {
+      "name": "video_trimmer_full_size",
+      "value": "100%"
+    },
+    {
+      "name": "video_trimmer_custom_search_text",
+      "value": "搜索"
+    },
+    {
+      "name": "video_trimmer_video_item_news_performer",
+      "value": "演员"
+    },
+    {
+      "name": "video_trimmer_component_video_loading_progress",
+      "value": "努力加载中..."
+    },
+    {
+      "name": "video_trimmer_toast_tips",
+      "value": "仅用作美化，请根据业务需要自行实现"
+    },
+    {
+      "name": "video_trimmer_cancel_confirm",
+      "value": "动态尚未发送，是否需要放弃？"
+    },
+    {
+      "name": "video_trimmer_cancel",
+      "value": "取消"
+    },
+    {
+      "name": "video_trimmer_ok",
+      "value": "确定"
+    },
+    {
+      "name": "video_trimmer_finish",
+      "value": "完成"
+    },
+    {
+      "name": "video_trimmer_share",
+      "value": "分享到"
+    },
+    {
+      "name": "video_trimmer_save_success",
+      "value": "视频下载成功"
+    },
+    {
+      "name": "video_trimmer_hint",
+      "value": "拖动选择你要发表的%s秒以内片段"
+    },
+    {
+      "name": "read_permission",
+      "value": "user read file permission"
+    },
+    {
+      "name": "write_permission",
+      "value": "user write file permission"
+    },
+    {
+      "name": "write_image_video_permission",
+      "value": "user write image video permission"
+    },
+    {
+      "name": "edit_file_permission",
+      "value": "user edit file permission"
+    },
+    {
+      "name": "video_trimmer_have_upload_task_tips",
+      "value": "当前存在前台上传任务，请稍后上传"
+    },
+    {
+      "name": "video_trimmer_have_download_task_tips",
+      "value": "当前存在前台下载任务，请稍后下载"
+    },
+    {
+      "name": "video_trimmer_upload_fail",
+      "value": "上传失败，稍后继续上传"
+    },
+    {
+      "name": "video_trimmer_upload_success",
+      "value": "上传成功"
+    },
+    {
+      "name": "video_trimmer_serverName",
+      "value": "服务器地址："
+    },
+    {
+      "name": "video_trimmer_default_serverIP",
+      "value": "http://10.56.237.239/"
+    },
+    {
+      "name": "video_trimmer_share_delete",
+      "value": "删除"
+    },
+    {
+      "name": "video_trimmer_save",
+      "value": "保存"
+    },
+    {
+      "name": "video_trimmer_who_can_see",
+      "value": "谁可以看"
+    },
+    {
+      "name": "video_trimmer_all_user",
+      "value": "所有亲 >"
+    },
+    {
+      "name": "video_trimmer_record_time",
+      "value": "记录时间"
+    },
+    {
+      "name": "video_trimmer_user_address",
+      "value": "所在位置"
+    },
+    {
+      "name": "video_trimmer_labels",
+      "value": "北高峰"
+    },
+    {
+      "name": "video_trimmer_btn_label",
+      "value": "+ 标签"
+    },
+    {
+      "name": "video_trimmer_btn_add",
+      "value": "添加"
+    },
+    {
+      "name": "video_trimmer_workitem",
+      "value": "作品墙"
+    },
+    {
+      "name": "video_trimmer_plats",
+      "value": "我的平台"
+    },
+    {
+      "name": "video_trimmer_spaces",
+      "value": "我的空间"
+    },
+    {
+      "name": "video_trimmer_friends",
+      "value": "朋友圈"
+    },
+    {
+      "name": "video_trimmer_myHome",
+      "value": "我的家园"
+    },
+    {
+      "name": "video_trimmer_garden",
+      "value": "后花园"
+    },
+    {
+      "name": "video_trimmer_download",
+      "value": "下载"
+    },
+    {
+      "name": "video_trimmer_delete",
+      "value": "删除"
+    },
+    {
+      "name": "video_trimmer_download_status",
+      "value": "下载中"
+    },
+    {
+      "name": "video_trimmer_video_url1",
+      "value": "https://gitee.com/harmonyos-cases/cases/raw/master/CommonAppDevelopment/feature/mediafullscreen/src/main/resources/rawfile/media_full_screen_video1.MP4"
+    },
+    {
+      "name": "video_trimmer_video_url2",
+      "value": "https://gitee.com/harmonyos-cases/cases/raw/master/CommonAppDevelopment/feature/mediafullscreen/src/main/resources/rawfile/media_full_screen_video2.MP4"
+    },
+    {
+      "name": "video_trimmer_video_url3",
+      "value": "https://gitee.com/harmonyos-cases/cases/raw/master/CommonAppDevelopment/feature/mediafullscreen/src/main/resources/rawfile/media_full_screen_video3.MP4"
+    },
+    {
+      "name": "video_trimmer_video_url4",
+      "value": "https://gitee.com/harmonyos-cases/cases/raw/master/CommonAppDevelopment/feature/mediafullscreen/src/main/resources/rawfile/media_full_screen_video4.MP4"
+    }
+  ]
+}

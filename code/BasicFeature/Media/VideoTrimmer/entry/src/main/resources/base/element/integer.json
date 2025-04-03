@@ -1,0 +1,384 @@
+{
+  "integer": [
+    {
+      "name": "video_trimmer_detail_back_height",
+      "value": 60
+    },
+    {
+      "name": "video_trimmer_detail_back_width",
+      "value": 34
+    },
+    {
+      "name": "video_trimmer_detail_ack_button_left_padding",
+      "value": 10
+    },
+    {
+      "name": "video_trimmer_detail_ack_button_top_padding",
+      "value": 18
+    },
+    {
+      "name": "video_trimmer_detail_video_loading_height",
+      "value": 25
+    },
+    {
+      "name": "video_trimmer_detail_video_loading_padding",
+      "value": 16
+    },
+    {
+      "name": "video_trimmer_share_borderRadius",
+      "value": 16
+    },
+    {
+      "name": "video_trimmer_server_borderRadius",
+      "value": 24
+    },
+    {
+      "name": "video_trimmer_detail_video_loading_offset",
+      "value": -25
+    },
+    {
+      "name": "video_trimmer_detail_back_margin",
+      "value": 30
+    },
+    {
+      "name": "video_trimmer_update_item_height",
+      "value": 53
+    },
+    {
+      "name": "video_trimmer_server_input_height",
+      "value": 32
+    },
+    {
+      "name": "video_trimmer_update_image_size",
+      "value": 270
+    },
+    {
+      "name": "video_trimmer_thumb_height",
+      "value": 45
+    },
+    {
+      "name": "video_trimmer_user_select_height",
+      "value": 76
+    },
+    {
+      "name": "video_trimmer_custom_tab_bar_height",
+      "value": 60
+    },
+    {
+      "name": "video_trimmer_server_dlg_height",
+      "value": 120
+    },
+    {
+      "name": "video_trimmer_tab_item_padding",
+      "value": 2
+    },
+    {
+      "name": "video_trimmer_custom_search_image",
+      "value": 20
+    },
+    {
+      "name": "video_trimmer_custom_search_text_font_size",
+      "value": 12
+    },
+    {
+      "name": "video_trimmer_custom_search_text_padding_left",
+      "value": 3
+    },
+    {
+      "name": "video_trimmer_custom_search_row_padding_left",
+      "value": 2
+    },
+    {
+      "name": "video_trimmer_custom_search_row_padding_top",
+      "value": 1
+    },
+    {
+      "name": "video_trimmer_custom_search_row_border_radius",
+      "value": 20
+    },
+    {
+      "name": "video_trimmer_lazy_foreach_list_page_list_item_border_radius",
+      "value": 30
+    },
+    {
+      "name": "video_trimmer_lazy_foreach_list_page_list_item_margin_bottom",
+      "value": 20
+    },
+    {
+      "name": "video_trimmer_lazy_foreach_list_page_list_padding_top",
+      "value": 5
+    },
+    {
+      "name": "video_trimmer_progress_size",
+      "value": 100
+    },
+    {
+      "name": "video_trimmer_loading_progress_size",
+      "value": 200
+    },
+    {
+      "name": "video_trimmer_component_margin_bottom",
+      "value": 15
+    },
+    {
+      "name": "video_trimmer_component_video_height",
+      "value": 220
+    },
+    {
+      "name": "video_trimmer_component_video_component_border_radius",
+      "value": 30
+    },
+    {
+      "name": "video_trimmer_upload_label_radius",
+      "value": 40
+    },
+    {
+      "name": "video_trimmer_upload_label_margin",
+      "value": 15
+    },
+    {
+      "name": "video_trimmer_upload_label_row_height",
+      "value": 73
+    },
+    {
+      "name": "video_trimmer_upload_label_padding_top",
+      "value": 20
+    },
+    {
+      "name": "video_trimmer_upload_cancel_padding",
+      "value": 10
+    },
+    {
+      "name": "video_trimmer_upload_detail_left_padding",
+      "value": 25
+    },
+    {
+      "name": "video_trimmer_upload_detail_bottom_margin",
+      "value": 41
+    },
+    {
+      "name": "video_trimmer_upload_video_height",
+      "value": 390
+    },
+    {
+      "name": "video_trimmer_upload_video_left_margin",
+      "value": 53
+    },
+    {
+      "name": "video_trimmer_upload_video_top_margin",
+      "value": 10
+    },
+    {
+      "name": "video_trimmer_top_padding",
+      "value": 10
+    },
+    {
+      "name": "video_trimmer_top_date_padding",
+      "value": 5
+    },
+    {
+      "name": "video_trimmer_upload_save_btn_width",
+      "value": 55
+    },
+    {
+      "name": "video_trimmer_upload_label_padding_bottom",
+      "value": 20
+    },
+    {
+      "name": "video_trimmer_upload_info_height",
+      "value": 35
+    },
+    {
+      "name": "video_trimmer_upload_top_height",
+      "value": 59
+    },
+    {
+      "name": "video_trimmer_component_video_loading_progress_width",
+      "value": 80
+    },
+    {
+      "name": "video_trimmer_component_video_loading_text_font_size",
+      "value": 16
+    },
+    {
+      "name": "video_trimmer_component_video_playing_image_width",
+      "value": 24
+    },
+    {
+      "name": "video_trimmer_component_video_playing_image_margin_left",
+      "value": 10
+    },
+    {
+      "name": "video_trimmer_update_save_width",
+      "value": 65
+    },
+    {
+      "name": "video_trimmer_update_button_width",
+      "value": 80
+    },
+    {
+      "name": "video_trimmer_update_server_width",
+      "value": 100
+    },
+    {
+      "name": "video_trimmer_update_icon_size",
+      "value": 16
+    },
+    {
+      "name": "video_trimmer_video_item_news_image_height",
+      "value": 40
+    },
+    {
+      "name": "video_trimmer_btn_width",
+      "value": 80
+    },
+    {
+      "name": "video_trimmer_btn_height",
+      "value": 40
+    },
+    {
+      "name": "video_trimmer_hit_height",
+      "value": 20
+    },
+    {
+      "name": "video_trimmer_video_item_news_image_width",
+      "value": 30
+    },
+    {
+      "name": "video_trimmer_video_item_news_image_margin_right",
+      "value": 5
+    },
+    {
+      "name": "video_trimmer_video_item_news_image_margin_bottom",
+      "value": 2
+    },
+    {
+      "name": "video_trimmer_video_item_news_name_font_size",
+      "value": 16
+    },
+    {
+      "name": "video_trimmer_video_item_news_name_margin_bottom",
+      "value": 3
+    },
+    {
+      "name": "video_trimmer_video_item_news_performer_font_size",
+      "value": 14
+    },
+    {
+      "name": "video_trimmer_video_item_news_name_row_margin_top",
+      "value": 5
+    },
+    {
+      "name": "video_trimmer_share_image_width",
+      "value": 40
+    },
+    {
+      "name": "video_trimmer_font_size_12",
+      "value": 12
+    },
+    {
+      "name": "video_trimmer_list_chat_img_size",
+      "value": 20
+    },
+    {
+      "name": "video_trimmer_share_margin_10",
+      "value": 10
+    },
+    {
+      "name": "video_trimmer_server_5",
+      "value": 5
+    },
+    {
+      "name": "video_trimmer_server_margin_top",
+      "value": 15
+    },
+    {
+      "name": "video_trimmer_upload_prompt_bottom",
+      "value": 135
+    },
+    {
+      "name": "video_trimmer_server_12",
+      "value": 12
+    },
+    {
+      "name": "video_trimmer_share_margin_bottom",
+      "value": 30
+    },
+    {
+      "name": "video_trimmer_share_oprate_padding",
+      "value": 30
+    },
+    {
+      "name": "video_trimmer_video_item_icon_image_width",
+      "value": 18
+    },
+    {
+      "name": "video_trimmer_video_item_row_icon_image_padding",
+      "value": 10
+    },
+    {
+      "name": "video_trimmer_video_item_row_icon_image_height",
+      "value": 80
+    },
+    {
+      "name": "video_trimmer_video_height_daytop",
+      "value": 310
+    },
+    {
+      "name": "video_trimmer_video_height_day",
+      "value": 280
+    },
+    {
+      "name": "video_trimmer_list_item_top_height",
+      "value": 30
+    },
+    {
+      "name": "video_trimmer_list_detail_height",
+      "value": 30
+    },
+    {
+      "name": "video_trimmer_list_item_circle_size",
+      "value": 10
+    },
+    {
+      "name": "video_trimmer_list_item_circle_stroke",
+      "value": 2
+    },
+    {
+      "name": "video_trimmer_list_item_circle_margin",
+      "value": 3
+    },
+    {
+      "name": "video_trimmer_list_item_time_position_x",
+      "value": -4
+    },
+    {
+      "name": "video_trimmer_list_item_time_position_y",
+      "value": 6
+    },
+    {
+      "name": "video_trimmer_list_item_time_top_width",
+      "value": 9
+    },
+    {
+      "name": "video_trimmer_list_item_time_top_height",
+      "value": 15
+    },
+    {
+      "name": "video_trimmer_list_item_time_top_maigin_left",
+      "value": 5
+    },
+    {
+      "name": "video_trimmer_list_item_date_height",
+      "value": 30
+    },
+    {
+      "name": "video_trimmer_list_item_xc_margin_left",
+      "value": 12
+    },
+    {
+      "name": "video_trimmer_list_item_xc_margin_right",
+      "value": 10
+    }
+  ]
+}
