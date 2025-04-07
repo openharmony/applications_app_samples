@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "ECCCompressPublicKeyFormatConversion"
+    },
+    {
+      "name": "SpecifyUncompressedPublicKey",
+      "value": "SpecifyUncompressedPublicKey"
+    },
+    {
+      "name": "SpecifyUncompressedPublicKeyArkTS",
+      "value": "SpecifyUncompressedPublicKeyArkTS"
+    },
+    {
+      "name": "CompressedPointData",
+      "value": "CompressedPointData"
+    },
+    {
+      "name": "GetKeyObject",
+      "value": "GetKeyObject"
+    },
+    {
+      "name": "call_compressedPointData",
+      "value": "Call CompressedPointData"
+    },
+    {
+      "name": "call_getKeyObject",
+      "value": "Call GetKeyObject"
+    },
+    {
+      "name": "call_specifyUncompressedPublicKey",
+      "value": "Call SpecifyUncompressedPublicKey"
+    }
+  ]
+}
