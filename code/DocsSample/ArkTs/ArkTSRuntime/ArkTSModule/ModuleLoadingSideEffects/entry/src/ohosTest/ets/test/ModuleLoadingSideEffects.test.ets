@@ -71,8 +71,8 @@ export default function moduleLoadingSideEffectsTest() {
       await driver.delayMs(1000);
       await button1.click();
 
-      const button2 = await driver.findComponent(ON.text('SideEffect'));
-      const button3 = await driver.findComponent(ON.text('Optimize'));
+      const button2 = await driver.findComponent(ON.text('SideEffect').type('Button'));
+      const button3 = await driver.findComponent(ON.text('Optimize').type('Button'));
       await driver.delayMs(1000);
 
       await button2.click();

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+#include "hilog/log.h"
 #include "napi/native_api.h"
 
 // napi_get_last_error_info

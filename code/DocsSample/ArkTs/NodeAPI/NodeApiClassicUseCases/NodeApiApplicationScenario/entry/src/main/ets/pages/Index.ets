@@ -26,19 +26,19 @@ struct Index {
       Text(this.message)
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
-      Button($r('app.string.createArkRuntime))
+      Button($r('app.string.createArkRuntime'))
         .width('70%')
         .onClick(() => {
           testNapi.createArkRuntime();
           this.message = 'ArkRuntime success';
         })
-      Button($r('app.string.runEventLoop))
+      Button($r('app.string.runEventLoop'))
         .width('70%')
         .onClick(() => {
           testNapi.runEventLoop(true);
           this.message = 'EventLoop success';
         })
-      Button($r('app.string.CallThreadSafeWithPriority))
+      Button($r('app.string.CallThreadSafeWithPriority'))
         .width('70%')
         .onClick(() => {
           let callback = (a: number, b: number): number => {
@@ -48,7 +48,7 @@ struct Index {
           testNapi.callThreadSafeWithPriority(callback);
           this.message = 'ThreadSafeWithPriority success';
         })
-      Button($r('app.string.startThread))
+      Button($r('app.string.startThread'))
         .width('70%')
         .onClick(() => {
           let callback = (): Promise<string> => {
