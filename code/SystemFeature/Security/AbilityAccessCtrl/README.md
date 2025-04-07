@@ -45,4 +45,4 @@ Application access control: provides application permission management, includin
 
 - This sample requires DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100) to compile and run.
 
-- The ohos.permission.GET_SENSITIVE_PERMISSIONS, ohos.permission.REVOKE_SENSITIVE_PERMISSIONS, and ohos.permission.GRANT_SENSITIVE_PERMISSIONS permissions used in this sample are of the system_core level. You need to configure signatures for these permissions. For details about the application permission level (APL), see [Permission List](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/permission-list.md).
+- The ohos.permission.GET_SENSITIVE_PERMISSIONS, ohos.permission.REVOKE_SENSITIVE_PERMISSIONS, and ohos.permission.GRANT_SENSITIVE_PERMISSIONS permissions used in this sample are of the system_core level. You need to configure signatures for these permissions. For details about the application permission level (APL), see [Permission List](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/AccessToken/permissions-for-system-apps.md).

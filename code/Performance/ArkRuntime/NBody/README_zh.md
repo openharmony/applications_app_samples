@@ -47,7 +47,7 @@ AOT(Ahead Of Time)，即预先编译，在应用程序运行前，将代码预�
 - 使用Worker开启子线程运行，计算5000万次时间推计算移天体运行轨道，源码参考[CalculateUtil.ets ](entry/src/main/ets/model/CalculateUtil.ets )
   - 通过调用computeNBodyByWorker()创建一个worker线程，把要计算的时间推移量发送给worker线程。
   - 等待worker线程调用computeTask()计算完成后再把结果返回主线程。
-- computeTask()完成具体计算任务，源码参考[NBody_ETS_6.ets](entry/src/main/ets/model/NBody_ETS_6.ets) 
+- computeTask()完成具体计算任务，源码参考[NBody_ETS_6.ets](entry/src/main/ets/model/NBody_ETS_6.ts) 
   - offsetMomentum() 建立孤立系统的动量守恒。
   - advance() 更新天体在按指定的时间变化后的位置信息。
   - energy() 判断系统计算前后机械能守恒。

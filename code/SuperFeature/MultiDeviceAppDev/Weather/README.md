@@ -8,9 +8,9 @@ This sample demonstrates one-time development for multi-device deployment by sho
 
 1. Use the grid breakpoint system of responsive layout to implement different display effects on windows of different sizes.
 
-2. Use [SideBarContainer](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/arkui-ts/ts-container-sidebarcontainer.md) to implement the sidebar.
+2. Use [SideBarContainer](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md) to implement the sidebar.
 
-3. Use [GridRow](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/arkui-ts/ts-container-gridrow.md) to implement content split and display.
+3. Use [GridRow](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-arkui/arkui-ts/ts-container-gridrow.md) to implement content split and display.
 
 4. Use **Canvas** and **CanvasRenderingContext2D** to draw curves that show the air quality and sunrise and sunset.
 

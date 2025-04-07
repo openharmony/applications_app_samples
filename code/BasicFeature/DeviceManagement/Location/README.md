@@ -4,7 +4,7 @@
 
 This sample shows how to use **geolocation** APIs to implement location services.
 
-In this example, we'll use [Geolocation](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-geolocation.md) APIs to obtain the longitude and latitude of the current location, and use [HTTP](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-http.md) APIs to obtain the city where the longitude and latitude are located. With the [AlphabetIndexer](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/arkui-ts/ts-container-alphabet-indexer.md) APIs, we can also quickly locate the container display area based on the logical structure.
+In this example, we'll use [Geolocation](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-location-kit/js-apis-geolocation.md) APIs to obtain the longitude and latitude of the current location, and use [HTTP](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-network-kit/js-apis-http.md) APIs to obtain the city where the longitude and latitude are located. With the [AlphabetIndexer](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md) APIs, we can also quickly locate the container display area based on the logical structure.
 
 How to Use
 
@@ -19,11 +19,11 @@ How to Use
 
 ### Required Permissions
 
-Using network sockets: [ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/permission-list.md)
+Using network sockets: [ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/AccessToken/permissions-for-all.md)
 
-Obtaining location information while running in the foreground: [ohos.permission.LOCATION](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/permission-list.md)
+Obtaining location information while running in the foreground: [ohos.permission.LOCATION](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/AccessToken/permissions-for-all-user.md)
 
-Obtaining location information while running in the background: [ohos.permission.LOCATION_IN_BACKGROUND](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/permission-list.md)
+Obtaining location information while running in the background: [ohos.permission.LOCATION_IN_BACKGROUND](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/AccessToken/permissions-for-all-user.md)
 
 ### Dependency
 

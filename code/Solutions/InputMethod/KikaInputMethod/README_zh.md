@@ -64,7 +64,7 @@ KikaInput
     * 参考接口：[ArkTs声明式开发范式](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/reference/apis-arkui)
   * 输入法控制
     * 使用[@ohos.request](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request.md)中API 10接口agent.create创建上传任务，调用@ohos.request中的Task相关接口实现上传任务的创建、取消、进度加载，前台任务只支持单文件下载，后台任务支持多文件下载。使用[@ohos.file.fs](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-fs.md)完成指定路径的创建和查询已下载的文件。
-    * 源码链接：[KeyboardController.ets](.entry/src/main/ets/model/KeyboardController.ets)
+    * 源码链接：[KeyboardController.ets](entry/src/main/ets/model/KeyboardController.ets)
     * 参考接口：[@ohos.inputMethodEngine](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ime-kit/js-apis-inputmethodengine.md)
 
 ### 相关权限

@@ -4,7 +4,7 @@
 
 This sample demonstrates the use of @ohos.zlib. Below shows the sample app.
 
-![](screenshots/device/main.png)
+![](./screenshots/device/Screenshot_20231208091553194.jpeg)
 
 ### Concepts
 

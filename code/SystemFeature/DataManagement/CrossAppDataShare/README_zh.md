@@ -42,7 +42,7 @@ dataProvider/src/main/ets/
 ### 具体实现
 
 * 使用DataShareExtensionAbility实现数据共享，关系型数据库实现数据的增、删、改、查接口，DataShare管理和访问数据库数据变化。
-* 源码链接：[DataShareAbility.ts](code/SystemFeature/DataManagement/CrossAppDataShare/dataProvider/src/main/ets/DataShareAbility/DataShareAbility.ts)，[ContactEdit.ets](code/SystemFeature/DataManagement/CrossAppDataShare/dataProvider/src/main/ets/pages/ContactEdit.ets)，[ContactStore.ets](code/SystemFeature/DataManagement/CrossAppDataShare/dataUser/src/main/ets/feature/ContactStore.ets)
+* 源码链接：[DataShareAbility.ts](dataProvider/src/main/ets/DataShareAbility/DataShareAbility.ts)，[ContactEdit.ets](dataProvider/src/main/ets/pages/ContactEdit.ets)，[ContactStore.ets](dataUser/src/main/ets/feature/ContactStore.ets)
 * 接口参考：[@ohos.data.DataShareResultSet](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)，[@ohos.data.relationalStore](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkdata/js-apis-data-dataShare-sys.md)，[@ohos.data.rdb](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkdata/js-apis-data-rdb.md)
 
 ### 相关权限
