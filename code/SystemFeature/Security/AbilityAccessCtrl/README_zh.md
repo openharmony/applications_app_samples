@@ -40,21 +40,21 @@ entry/src/main/ets/
 
 * 该示例使用abilityAccessCtrl接口中abilityAccessCtrl方法获取访问控制模块对象，GrantStatus.PERMISSION_GRANTED方法表示已授权状态，bundleManager接口中getApplicationInfo方法根据包名获取ApplicationInfo等展示应用申请权限场景
 * 源码链接：[Index.ets](entry/src/main/ets/verifyability/pages/Index.ets)
-* 接口参考：[@ohos.abilityAccessCtrl](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-abilityAccessCtrl.md)，[@ohos.bundle.bundleManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-bundleManager.md)
+* 接口参考：[@ohos.abilityAccessCtrl](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-abilityAccessCtrl.md)，[@ohos.bundle.bundleManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-bundleManager.md)
 
 ### 相关权限
 
-1.允许应用读取其他应用的敏感权限的状态权限：[ohos.permission.GET_SENSITIVE_PERMISSIONS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionget_sensitive_permissions)
+1.允许应用读取其他应用的敏感权限的状态权限：[ohos.permission.GET_SENSITIVE_PERMISSIONS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionget_sensitive_permissions)
 
-2.允许应用撤销给其他应用授予的敏感信息权限：[ohos.permission.REVOKE_SENSITIVE_PERMISSIONS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionrevoke_sensitive_permissions)
+2.允许应用撤销给其他应用授予的敏感信息权限：[ohos.permission.REVOKE_SENSITIVE_PERMISSIONS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionrevoke_sensitive_permissions)
 
-3.允许应用为其他应用授予敏感权限：[ohos.permission.GRANT_SENSITIVE_PERMISSIONS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissiongrant_sensitive_permissions)
+3.允许应用为其他应用授予敏感权限：[ohos.permission.GRANT_SENSITIVE_PERMISSIONS](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissiongrant_sensitive_permissions)
 
-4.允许应用同时查询其他多个应用的信息权限：[ohos.permission.GET_BUNDLE_INFO_PRIVILEGED](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionget_bundle_info_privileged)
+4.允许应用同时查询其他多个应用的信息权限：[ohos.permission.GET_BUNDLE_INFO_PRIVILEGED](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-enterprise-apps.md#ohospermissionget_bundle_info_privileged)
 
-5.允许应用查询其他单个应用的信息权限：[ohos.permission.GET_BUNDLE_INFO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionget_bundle_info)
+5.允许应用查询其他单个应用的信息权限：[ohos.permission.GET_BUNDLE_INFO](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionget_bundle_info)
 
-6.允许应用使用麦克风权限：[ohos.permission.MICROPHONE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md#ohospermissionmicrophone)
+6.允许应用使用麦克风权限：[ohos.permission.MICROPHONE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-all-user.md#ohospermissionmicrophone)
 
 ### 依赖
 
@@ -72,7 +72,7 @@ entry/src/main/ets/
 
 5.本示例需要使用DevEco Studio 3.1 Beta2 (Build Version: 3.1.0.400, built on April 7, 2023)及以上版本才可编译运行。
 
-6.本示例所配置的权限ohos.permission.GET_SENSITIVE_PERMISSIONS、ohos.permission.REVOKE_SENSITIVE_PERMISSIONS、ohos.permission.GRANT_SENSITIVE_PERMISSIONS为system_core级别(相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/permission-list.md)查看)，需要手动配置对应级别的权限签名(具体操作可查看[自动化签名方案](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/))。
+6.本示例所配置的权限ohos.permission.GET_SENSITIVE_PERMISSIONS、ohos.permission.REVOKE_SENSITIVE_PERMISSIONS、ohos.permission.GRANT_SENSITIVE_PERMISSIONS为system_core级别(相关权限级别可通过[权限定义列表](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md)查看)，需要手动配置对应级别的权限签名(具体操作可查看[自动化签名方案](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/security/hapsigntool-overview.md/))。
 
 ### 下载
 

@@ -4,7 +4,7 @@
 
 This sample demonstrates the image processing function.
 
-In this sample, [\<TextArea>](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/arkui-ts/ts-basic-components-textarea.md) is used to implement multi-line text input, [mediaLibrary](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-mediaquery.md) is used to obtain images from albums, [image](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-image.md) is used to generate pixel maps, and **scale()**, **crop()**, and **rotate()** of the **pixelMap** class are used to scale, crop, and rotate images.
+In this sample, [\<TextArea>](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md) is used to implement multi-line text input, [@ohos.app.ability.common](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-ability-kit/js-apis-app-ability-common.md) is used to obtain images from albums, [@ohos.multimedia.image](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-image-kit/js-apis-image.md) is used to generate pixel maps, and **scale()**, **crop()**, and **rotate()** of the **pixelMap** class are used to scale, crop, and rotate images.
 
 ### Usage
 
@@ -26,7 +26,11 @@ In this sample, [\<TextArea>](https://gitee.com/openharmony/docs/blob/master/en/
 
 ### Required Permissions
 
-[ohos.permission.READ_MEDIA](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/permission-list.md), which allows an app to read media files from the user's external storage.
+[ohos.permission.READ_IMAGEVIDEO](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/AccessToken/restricted-permissions.md)
+
+[ohos.permission.WRITE_IMAGEVIDEO](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/AccessToken/restricted-permissions.md)
+
+[ohos.permission.MEDIA_LOCATION](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/AccessToken/permissions-for-all.md#ohospermissionmedia_location)
 
 ### Dependency
 

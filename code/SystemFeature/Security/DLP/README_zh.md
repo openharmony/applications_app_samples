@@ -32,7 +32,7 @@ entry/src/main/ets/
 ```
 ### 具体实现
 
-+ 文件的添加和文件列表的获取分别在Index和MediaFileUri中，源码参考[Index.ets](entry/src/main/ets/pages/Index.ets) 和 [MediaFileUri.ets](entry/src/main/ets/feature/MediaFileUri.ets):
++ 文件的添加和文件列表的获取分别在Index和MediaFileUri中，源码参考[Index.ets](entry/src/main/ets/pages/Index.ets) 和 [FileManager.ets](entry/src/main/ets/feature/FileManager.ets):
   + 文件的添加：首先通过[@ohos.file.picker](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-picker.md)接口的DocumentSaveOptions()方法自定一个参数，然后通过new picker.DocumentViewPicker()方法拉起文件管理应用去新建一个普通文件。
   + 文件列表的获取：首先使用[@ohos.file.fileAccess](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-fileAccess-sys.md) 接口的createFileAccessHelper()方法来创建连接指定wants的helper对象，然后通过getRoots()方法来获取helper对象连接的文件管理服务类的设备根节点信息，并获取到目录url，最后通过getFileInfoFromUri()方法得到文件的信息。
 + 文件的加密操作在DlpManager中，源码参考[DlpManager.ets](entry/src/main/ets/feature/DlpManager.ets):

@@ -58,7 +58,7 @@ entry/src/main/
 ```
 
 ### 具体实现
-* 音频录制和播放-源码参考：[audioRecording.cpp](entry/src/main/cpp/audioRecording.cpp)
+* 音频录制和播放-源码参考：[audio.cpp](entry/src/main/cpp/audio.cpp)
     * [低时延录制开发指导文档](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.0-Release/zh-cn/application-dev/media/using-ohaudio-for-recording.md)
     * [低时延播放开发指导文档](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.0-Release/zh-cn/application-dev/media/using-ohaudio-for-playback.md)
     * [低时延录制开发示例](https://gitee.com/openharmony/multimedia_audio_framework/blob/OpenHarmony-4.0-Release/frameworks/native/ohaudio/test/example/oh_audio_capturer_test.cpp)

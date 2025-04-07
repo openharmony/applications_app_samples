@@ -126,7 +126,7 @@ entry/src/main/ets/
   
   - 设置中订阅事件模块
     - 本模块主要支持指定应用订阅自定义事件。subScribeInfo新增可选属性publisherBundleName,创建订阅对象时可指定PublisherBundlerName，事件发布时，获取订阅者信息，增加校验bundleName是否等于publisherBundlerName，相等则加入事件回调方，达成只接收指定发布方发布的事件的效果。
-    - 源码链接：[EntryFormAbility.ts](entry/src/main/ets/entryformability/EntryFormAbility.ts)，[Index.ets](src/main/ets/pages/Index.ets)，[PublishCard.ets](src/main/ets/widget/pages/PublishCard.ets)
+    - 源码链接：[EntryFormAbility.ts](entry/src/main/ets/entryformability/EntryFormAbility.ts)，[Main.ets](entry/src/main/ets/pages/Main.ets)，[PublishCard.ets](entry/src/main/ets/publishcard/pages/PublishCard.ets)
     - 参考接口：[@ohos.commonEventManager](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-commonEventManager.md)，[@ohos.hilog](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-performance-analysis-kit/js-apis-hilog.md)，[@ohos.app.form.formInfo](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-form-kit/js-apis-app-form-formInfo.md)，[@ohos.app.form.formBindingData](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-form-kit/js-apis-app-form-formBindingData.md)，[@ohos.app.form.FormExtensionAbility](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md)
   
   

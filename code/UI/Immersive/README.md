@@ -40,7 +40,7 @@ Navigation(this.navPathStack) {
 ```
 ###### 滚动场景沉浸式适配
 滚动场景需要对每一个嵌套的带有滚动的组件设置expandSafeArea属性，使其视窗范围扩展至导航条。
-1. 设置Scroller组件的视窗范围扩展至导航条。详情见[NavImmersive.ets](src/main/ets/view/NavImmersive.ets)。
+1. 设置Scroller组件的视窗范围扩展至导航条。详情见[NavImmersive.ets](./casesfeature/immersive/src/main/ets/view/NavImmersive.ets)。
 ```typescript
 Scroll() {
  ...
@@ -95,7 +95,7 @@ Web({ src: $rawfile('web_immersive.html'), controller: this.controller })
 
 ##### 2、通过设置[setWindowLayoutFullScreen()](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/reference/apis-arkui/js-apis-window.md#setwindowlayoutfullscreen9)这个接口实现窗口强制全屏布局，再通过接口getWindowAvoidArea()和on('avoidAreaChange')获取并动态监听安全区域的高度信息，手动进行避让。
 ###### 窗口全屏布局方案沉浸式适配示例
-1. 设置窗口强制全屏布局。详情见[FullScreenImmersive.ets](src/main/ets/view/FullScreenImmersive.ets)。
+1. 设置窗口强制全屏布局。详情见[FullScreenImmersive.ets](./casesfeature/immersive/src/main/ets/view/FullScreenImmersive.ets)。
 ```typescript
 window.getLastWindow(getContext(), (err, windowClass) => {
   ...
@@ -127,14 +127,14 @@ Column() {
 ```
 ###### 底部弹框沉浸式适配
 底部弹框沉浸式场景只需要处理导航条，需要获取导航条高度，手动对其进行避让。
-1. 获取导航条的高度。详情见[ImmersiveDialog.ets](src/main/ets/dialog/ImmersiveDialog.ets)。
+1. 获取导航条的高度。详情见[ImmersiveDialog.ets](./casesfeature/immersive/src/main/ets/dialog/ImmersiveDialog.ets)。
 ```typescript
 window.getLastWindow(getContext(), (err, data) => {
   const avoidAreaBottom = data.getWindowAvoidArea(window.AvoidAreaType.TYPE_NAVIGATION_INDICATOR);
   this.bottomHeight = avoidAreaBottom.bottomRect.height;
 })
 ```
-2. 设置弹框尾部元素对导航条进行避让。详情见[Comment.ets](src/main/ets/components/Comment.ets)。
+2. 设置弹框尾部元素对导航条进行避让。详情见[Comment.ets](./casesfeature/immersive/src/main/ets/components/Comment.ets)。
 ```typescript
 ...
 List({ space: Constants.COMMENT_SPACE, scroller: this.scroller }) {

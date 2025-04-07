@@ -20,7 +20,7 @@ https://nchc.dl.sourceforge.net/project/hfs/HFS/2.3m/hfs.exe
 
 |          获取url          |          修改url          |
 | :-----------------------: | :-----------------------: |
-| ![copy](src/copy_url.png) | ![copy](src/past_url.jpg) |
+| ![copy](src/copy_url.png) | ![copy](src/past_url.png) |
 
 5、按照顺序操作1-4步骤后，即可测试上传下载任务。
 

@@ -38,4 +38,4 @@ ohos.permission.APPROXIMATELY_LOCATION
 
 - This sample requires DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100) to compile and run. 
 
-- The ohos.permission.MANAGE_BLUETOOTH permission used in this sample is of the system_basic level. You need to configure a signature for it. For details about the application permission level (APL), see [Permission List](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/permission-list.md).
+- The ohos.permission.MANAGE_BLUETOOTH permission used in this sample is of the system_basic level. You need to configure a signature for it. For details about the application permission level (APL), see [Permission List](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/AccessToken/permissions-for-system-apps.md).
