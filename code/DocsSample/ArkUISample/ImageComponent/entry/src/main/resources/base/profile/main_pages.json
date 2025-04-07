@@ -1,0 +1,12 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/AddFilterEffectsToImages",
+    "pages/EventCall",
+    "pages/ImageInterpolation",
+    "pages/SetImageDecodingSize",
+    "pages/SetImageRenderingMode",
+    "pages/SetImageRepetitionStyle",
+    "pages/SetImageZoomType"
+  ]
+}
