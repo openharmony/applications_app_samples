@@ -8,7 +8,7 @@ This sample shows how to enable the notification feature and how to publish and 
 
 1. Implement the notification sender functions as instructed in [Notification](https://gitee.com/openharmony/docs/blob/master/en/application-dev/notification/Readme-EN.md).
 
-2. Implement the APIs described in [@ohos.notification (Notification)](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-notification.md).
+2. Implement the APIs described in [@ohos.notification (Notification)](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-notification-kit/js-apis-notification.md).
 
 **How to Use**
 

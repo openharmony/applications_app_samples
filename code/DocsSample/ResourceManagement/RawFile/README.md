@@ -8,7 +8,7 @@
 
 | 显示页面                                                     | 点击后日志打印效果                              |
 | ------------------------------------------------------------ | ----------------------------------------------- |
-| ![](screenshots/index.png) | ![](screenshots/log.png) |
+| ![](screenshots/RawFile_Index1.png) | ![](screenshots/log.png) |
 
 ### 使用说明
 

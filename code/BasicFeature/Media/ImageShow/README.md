@@ -4,7 +4,7 @@
 
 In this sample, you can add images from **Gallery** to the offering review page.
 
-This sample uses the [**\<TextArea>**](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/arkui-ts/ts-basic-components-textarea.md) component to implement multi-line text input and the [mediaLibrary](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-mediaquery.md) class to obtain and select images.
+This sample uses the [**\<TextArea>**](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md) component to implement multi-line text input and the [@ohos.file.photoAccessHelper](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-media-library-kit/js-apis-photoAccessHelper.md) class to obtain and select images.
 
 ### Usage
 
@@ -24,7 +24,9 @@ This sample uses the [**\<TextArea>**](https://gitee.com/openharmony/docs/blob/m
 
 ### Required Permissions
 
-[ohos.permission.READ_MEDIA](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/permission-list.md), which allows an app to read media files from the user's external storage.
+[ohos.permission.MEDIA_LOCATION](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/AccessToken/permissions-for-all-user.md)
+
+[ohos.permission.READ_IMAGEVIDEO](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/AccessToken/restricted-permissions.md)
 
 ### Dependency
 

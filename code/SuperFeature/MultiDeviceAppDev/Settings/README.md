@@ -93,7 +93,7 @@ Navigation组件支持自动切换单栏和双栏的显示效果，同时可以�
 
 4. 本示例需要使用[新框架](https://gitee.com/yan-shuifeng/arkui_docs/blob/master/%E6%96%B0%E6%A1%86%E6%9E%B6%E5%88%87%E6%8D%A2/acenewpipe.md)，才可以正常安装运行。
 
-5. 本示例在开发板上运行时，可以[修改开发板系统配置文件以使能系统窗口能力](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/key-features/multi-device-app-dev/faq.md#%E5%A6%82%E4%BD%95%E5%BC%80%E5%90%AF%E8%87%AA%E7%94%B1%E7%AA%97%E5%8F%A3)。
+5. 本示例在开发板上运行时，可以[修改开发板系统配置文件以使能系统窗口能力](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/key-features/multi-device-app-dev/multi-faq.md#%E5%A6%82%E4%BD%95%E5%BC%80%E5%90%AF%E8%87%AA%E7%94%B1%E7%AA%97%E5%8F%A3)。
 
 ### 下载
 

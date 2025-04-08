@@ -28,8 +28,8 @@ ohos.permission.MANAGE_MISSIONS
 
 1. This sample can only be run on standard-system devices.
 
-2. This sample supports only the SDK of API version 9 and uses the system API **@ohos.application.missionManager**. Therefore, you must manually switch to the Full SDK for successful compilation. For details about the operation, see [Guide to Switching to Full SDK](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md/).
+2. This sample supports only the SDK of API version 9 and uses the system API **@ohos.application.missionManager**. Therefore, you must manually switch to the Full SDK for successful compilation. For details about the operation, see [Guide to Switching to Full SDK](https://gitee.com/openharmony/docs/blob/master/en/application-dev/faqs/full-sdk-switch-guide.md/).
 
 3. DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100) must be used.
 
-4. The permission **ohos.permission.MANAGE_MISSIONS** is at the system_core level. Therefore, you must manually configure the signature for the corresponding permission level. For details about the permission level, see [Permission List](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/permission-list.md). For details about the configuration operation, see [Having Your App Automatically Signed](https://docs.openharmony.cn/pages/v3.2/en/application-dev/security/hapsigntool-overview.md/).
+4. The permission **ohos.permission.MANAGE_MISSIONS** is at the system_core level. Therefore, you must manually configure the signature for the corresponding permission level. For details about the permission level, see [Permission List](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/AccessToken/permissions-for-system-apps.md). For details about the configuration operation, see [Having Your App Automatically Signed](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/hapsigntool-overview.md/).
