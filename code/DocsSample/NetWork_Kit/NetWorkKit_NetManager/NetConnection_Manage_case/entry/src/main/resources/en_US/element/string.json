@@ -1,0 +1,60 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "Network_Connection_Example",
+      "value": "Network_Connection_Example"
+    },
+    {
+      "name": "Connect_Network",
+      "value": "Connect_Network"
+    },
+    {
+      "name": "Disconnect_Network",
+      "value": "Disconnect_Network"
+    },
+    {
+      "name": "Get_Connected_Network",
+      "value": "Get_Connected_Network"
+    },
+    {
+      "name": "Get_Default_Network",
+      "value": "Get_Default_Network"
+    },
+    {
+      "name": "Get_Default_Network_IP",
+      "value": "Get_Default_Network_IP"
+    },
+    {
+      "name": "connectStatus",
+      "value": "connectStatus"
+    },
+    {
+      "name": "disconnectStatus",
+      "value": "disconnectStatus"
+    },
+    {
+      "name": "allNetworkStatus",
+      "value": "allNetworksStatus"
+    },
+    {
+      "name": "defaultNetworkStatus",
+      "value": "defaultNetworkStatus"
+    },
+    {
+      "name": "defaultNetworkIPStatus",
+      "value": "defaultNetworkIPStatus"
+    }
+  ]
+}
