@@ -1,0 +1,148 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "Device_Discovered",
+      "value": "Device_Discovered"
+    },
+    {
+      "name": "mDNS_Service_Example",
+      "value": "mDNS_Service_Example"
+    },
+    {
+      "name": "Add_Local_Service",
+      "value": "Add_Local_Service"
+    },
+    {
+      "name": "Resolve_Local_Service",
+      "value": "Resolve_Local_Service"
+    },
+    {
+      "name": "Start_mDNS_Service_Discovery",
+      "value": "Start_mDNS_Service_Discovery"
+    },
+    {
+      "name": "Stop_mDNS_Service_Discovery",
+      "value": "Stop_mDNS_Service_Discovery"
+    },
+    {
+      "name": "remove_Local_Service",
+      "value": "Remove_Local_Service"
+    },
+    {
+      "name": "Add_Status",
+      "value": "Add_Status"
+    },
+    {
+      "name": "Parse_Status",
+      "value": "Parse_Status"
+    },
+    {
+      "name": "Remove_Status",
+      "value": "Remove_Status"
+    },
+    {
+      "name": "mDNS_Start",
+      "value": "mDNS_Start"
+    },
+    {
+      "name": "mDNS_Stop",
+      "value": "mDNS_Stop"
+    },
+    {
+      "name": "not_added",
+      "value": "not_added"
+    },
+    {
+      "name": "not_resolved",
+      "value": "not_resolved"
+    },
+    {
+      "name": "not_removed",
+      "value": "not_removed"
+    },
+    {
+      "name": "not_started",
+      "value": "not_started"
+    },
+    {
+      "name": "ADD_SUCCESS",
+      "value": "ADD_SUCCESS"
+    },
+    {
+      "name": "ADD_FAIL",
+      "value": "ADD_FAIL"
+    },
+    {
+      "name": "ADDING",
+      "value": "ADDING"
+    },
+    {
+      "name": "RESOLVE_SUCCESS",
+      "value": "RESOLVE_SUCCESS"
+    },
+    {
+      "name": "RESOLVE_FAIL",
+      "value": "RESOLVE_FAIL"
+    },
+    {
+      "name": "RESOLVING",
+      "value": "RESOLVING"
+    },
+    {
+      "name": "REMOVE_SUCCESS",
+      "value": "REMOVE_SUCCESS"
+    },
+    {
+      "name": "REMOVE_FAIL",
+      "value": "REMOVE_FAIL"
+    },
+    {
+      "name": "REMOVING",
+      "value": "REMOVING"
+    },
+    {
+      "name": "DISCOVERY_STATED",
+      "value": "DISCOVERY_STATED"
+    },
+    {
+      "name": "DISCOVERY_FAIL1",
+      "value": "DISCOVERY_FAIL1"
+    },
+    {
+      "name": "DISCOVERY_FAIL2",
+      "value": "DISCOVERY_FAIL2"
+    },
+    {
+      "name": "DISCOVERY_FAIL3",
+      "value": "DISCOVERY_FAIL3"
+    },
+    {
+      "name": "DISCOVERY_STARTING",
+      "value": "DISCOVERY_STARTING"
+    },
+    {
+      "name": "STOPPED",
+      "value": "STOPPED"
+    },
+    {
+      "name": "STOP_FAIL",
+      "value": "STOP_FAIL"
+    },
+    {
+      "name": "STOPPING",
+      "value": "STOPPING"
+    }
+  ]
+}
