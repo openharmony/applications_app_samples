@@ -9,7 +9,7 @@
 
 |主页|
 |---|
-|![main](/sceenshots/device/Scene-directory.png)|
+|![main](./sceenshots/device/Scene-directory.png)|
 
 ### 使用说明
 
@@ -21,7 +21,7 @@
 
 |资源API测试|
 |---|
-|![main](/sceenshots/device/snapshot_directory.png)|
+|![main](./sceenshots/device/snapshot_directory.png)|
 
 ### 工程目录
 

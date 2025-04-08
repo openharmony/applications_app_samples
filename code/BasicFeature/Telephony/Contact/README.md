@@ -4,7 +4,7 @@
 
 This sample shows how to use the mobile phone contact function.
 
-In this example, we'll use the [Tabs](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/arkui-ts/ts-container-tabs.md) component to set the overall application layout, and use the [List](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/arkui-ts/ts-container-list.md) component to set the page layout of the home page, and use the [AlphabetIndexer](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/arkui-ts/ts-container-alphabet-indexer.md) component to set the index bar.
+In this example, we'll use the [Tabs](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-arkui/arkui-ts/ts-container-tabs.md) component to set the overall application layout, and use the [List](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-arkui/arkui-ts/ts-container-list.md) component to set the page layout of the home page, and use the [AlphabetIndexer](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md) component to set the index bar.
 
 Usage
 
@@ -20,9 +20,9 @@ Usage
 
 ### Required Permissions
 
-Reading of contact information: [ohos.permission.READ_CONTACTS](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/permission-list.md)
+Reading of contact information: [ohos.permission.READ_CONTACTS](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/AccessToken/restricted-permissions.md)
 
-Adding, removing, and changing contact information: [ohos.permission.WRITE_CONTACTS](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/permission-list.md)
+Adding, removing, and changing contact information: [ohos.permission.WRITE_CONTACTS](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/AccessToken/restricted-permissions.md)
 
 ### Dependency
 
@@ -34,4 +34,4 @@ N/A
 
 2. DevEco Studio 3.1 Canary1 (Build Version: 3.1.0.100) must be used.
 
-3. [ohos.permission.READ_CONTACTS](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/permission-list.md) and [ohos.permission.WRITE_CONTACTS](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/permission-list.md) are permissions of the system_basic level, which can be viewed from the permission list (https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/permission-list.md). You need to manually configure the signature of the corresponding permission level by following instructions in [Having Your App Automatically Signed](https://docs.openharmony.cn/pages/v3.2/en/application-dev/security/hapsigntool-overview.md/).
+3. [ohos.permission.READ_CONTACTS](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/AccessToken/restricted-permissions.md) and [ohos.permission.WRITE_CONTACTS](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/AccessToken/restricted-permissions.md) are permissions of the system_basic level, which can be viewed from the permission list (https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/AccessToken/restricted-permissions.md). You need to manually configure the signature of the corresponding permission level by following instructions in [Having Your App Automatically Signed](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/hapsigntool-overview.md/).

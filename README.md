@@ -22,14 +22,12 @@ We provide a series of app samples to help you quickly get familiar with the API
   - [`Wlan`：WLAN （ArkTS）（API9）](code/SystemFeature/Connectivity/Wlan)
 - ability
   - [`JsDistributedMusicPlayer`：Distributed Music Player（JS）（API10）](code/SuperFeature/DistributedAppDev/JsDistributedMusicPlayer)
-  - [`FormExtAbility`：Stage Form（ArkTS）（API9）](code/SuperFeature/Widget/FormExtAbility)
+  - [`FormExtAbility`：Stage Form（ArkTS）（API9）](code/SystemFeature/Widget/FormExtAbility)
   - [`MissionManager`：System Mission Manager(ArkTS)（API9）](code/SystemFeature/ApplicationModels/MissionManager)
 - common
   - [`Clock`：Clock（JS）（API10）](code/Solutions/Tools/JsClock)
   - [`DistributeCalc`：Distributed Calculator（JS）（API10）](code/SuperFeature/DistributedAppDev/DistributeCalc)
-  - [`ResourceManager`：Resource Manager（ArkTS）（API9）](code/BasicFeature/Internationalnation/ResourceManager)
-  - [`JsHelloWorld`：'Hello World'（JS）（API8）](common/JsHelloWorld)
-  - [`PowerManager`：System Power Manager（ArkTS）（API9）](code/SystemFeature/DeviceManagement/PowerManager)
+  - [`ResourceManager`：Resource Manager（ArkTS）（API9）](code/BasicFeature/Resource/ResourceManager)
   - [`International`：i18n（ArkTS）（API9）](code/SystemFeature/Internationalnation/International)
 - data
   - [`KvStore`：Distributed Database（ArkTS）（API9）](code/SuperFeature/DistributedAppDev/Kvstore)
@@ -39,31 +37,29 @@ We provide a series of app samples to help you quickly get familiar with the API
 - device
   - [`Sensor`：Sensor（ArkTS）（API9）](code/BasicFeature/DeviceManagement/Sensor)
   - [`Vibrator`：Vibrator（ArkTS）（API9）](code/BasicFeature/DeviceManagement/Vibrator)
-  - [`DeviceUsageStatistics`：Device Usage Statistics（ArkTS）（API9）](code/BasicFeature/DeviceUsageStatistics/DeviceUsageStatistics)
+  - [`DeviceUsageStatistics`：Device Usage Statistics（ArkTS）（API9）](code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics)
   - [`Browser`：Browser（ArkTS）（API9）](code/BasicFeature/Web/Browser)
 - Graphics
-  - [`Window`：Window(ArkTS)（API9）](code/BasicFeature/WindowManagement/WindowManage)
+  - [`Window`：Window(ArkTS)（API9）](code/SystemFeature/WindowManagement/WindowManage)
 - media
-  - [`Recorder`：Recorder（ArkTS）（API9）](code/BasicFeature/Media/Recorder)
+  - [`Recorder`：Recorder（ArkTS）（API9）](code/SystemFeature/Media/Recorder)
   - [`MultiMedia`：Multi Media（ArkTS）（API9）](code/Solutions/Media/MultiMedia)
 - DFX
   - [`FaultLogger`：Fault Logger（ArkTS）（API9）](code/BasicFeature/DFX/FaultLogger)
   - [`Logger`：Logger(ArkTS)（API9）](code/BasicFeature/DFX/Logger)
 - Telephony
-  - [`Call`：Call（ArkTS）（API9）](code/BasicFeature/Telephony/Call)
-  - [`Message`：Message（ArkTS）（API9）](code/BasicFeature/Telephony/Message)
+  - [`Call`：Call（ArkTS）（API9）](code/SystemFeature/Telephony/Call)
+  - [`Message`：Message（ArkTS）（API9）](code/SystemFeature/Telephony/Message)
   - [`RadioTech`：Radio Tech（ArkTS）（API9）](code/BasicFeature/Telephony/RadioTech)
   - [`SimManager`：SIM Card Manager（ArkTS）（API9）](code/BasicFeature/Telephony/SimManager)
   - [`MobileNetwork`：Cellular Network(ArkTS)（API9）](code/BasicFeature/Telephony/MobileNetwork)
 - thread
-  - [`JsWorker`：Launch a worker（JS）（API9）](code/LaunguageBaseClassLibrary/JsWorker)
+  - [`JsWorker`：Launch a worker（API12）](code/LaunguageBaseClassLibrary/ConcurrentModule)
 - CompleteApps
   - [`KikaInput`：Lite Input Method（JS）（API10）](code/Solutions/InputMethod/KikaInput)
   - [`FlipClock`：Flip Clock（ArkTS）（API9）](code/Solutions/Tools/FlipClock)
 - ETSUI
-  - [`Canvas`：Canvas（ArkTS）（API9）](code/UI/ArkTsComponentCollection/Canvas)
   - [`DefiningPageLayoutAndConnection`：Defining Page Layout and Connection（ArkTS）（API9）](code/UI/ArkTsComponentCollection/DefiningPageLayoutAndConnection)
-  - [`Drag`：Drag （ArkTS）（API9）](code/UI/ArkTsComponentCollection/Drag)
   - [`MediaQuery`：Media Query （ArkTS）（API9）](code/UI/ArkTsComponentCollection/MediaQuery)
   - [`AdaptiveCapabilities`：AdaptiveCapabilities（ArkTS）（API9）](code/SuperFeature/MultiDeviceAppDev/AdaptiveCapabilities)
   - [`Game2048`：2048 Game（ArkTS）（API9）](code/Solutions/Game/Game2048)
@@ -82,11 +78,7 @@ We provide a series of app samples to help you quickly get familiar with the API
 - PackageManagement
   - [`ZipLib`：zip&unzip(ArkTS)（API9）](code/LaunguageBaseClassLibrary/ZipLib)
 - ResourcesSchedule
-  - [`Flybird`：Game（ArkTS）（API9）](code/BasicFeature/TaskManagement/Flybird)
-- UI
-  - [`AtomicLayout`：Atomic Layout（JS）（API8）](UI/AtomicLayout)
-  - [`Badge`：Badge（JS）（API8）](UI/Badge)
-  - [`JsAnimationStyle`：Animation Style（JS）（API8）](UI/JsAnimationStyle)
+  - [`Flybird`：Game（ArkTS）（API9）](code/SystemFeature/TaskManagement/Flybird)
 
 ## Usage<a name="section17988202503116"></a>
 

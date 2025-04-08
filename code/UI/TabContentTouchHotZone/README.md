@@ -153,7 +153,7 @@ Tabs({ index: this.index, controller: this.tabsController }) {
 ...
 ```
 5. 再设置hitTestBehavior属性使被覆盖的自定义的tabBar可以响应点击事件。
-   源码参考[TabContentOverFlow.ets](./casefeature/tabcontentoverflow/src/main/ets/mainpage/TabContentOverFlow.ets)。
+   源码参考[TabContentOverFlow.ets](casesfeature/tabcontentoverflow/src/main/ets/mainpage/TabContentOverFlow.ets)。
 
 ```typescript
 Tabs({ index: this.index, controller: this.tabsController }) {

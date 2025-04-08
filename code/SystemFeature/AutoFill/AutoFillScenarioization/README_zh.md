@@ -67,7 +67,7 @@ entry/src/main/ets/
   4. 用户主动调用保存接口。
   
   * 用户主动调用requestAutoSave接口保存账号密码。
-  * 源码链接：[RegisterPage.ets](entry/src/main/ets/autofillpages/RegisterPage.ets)，[AutoFillAbility.ts](entry/src/main/ets/autofillability/TextAutoFillAbility.ts)，[SavePage.ets](entry/src/main/ets/autofillpages/SavePage.ets)
+  * 源码链接：[SelectorList.ets](entry/src/main/ets/autofillpages/SelectorList.ets)，[AutoFillAbility.ts](entry/src/main/ets/autofillability/TextAutoFillAbility.ts)，[SavePage.ets](entry/src/main/ets/autofillpages/SavePage.ets)
   * 参考接口：[@ohos.app.ability.UIExtensionContentSession](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.app.ability.UIExtensionContentSession.d.ts)，[@ohos.app.ability.autoFillManager](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.app.ability.autoFillManager.d.ts)
 
 ### 相关权限

@@ -74,7 +74,7 @@ entry/src/main/ets/
 
 * 加锁、解锁、清理后台任务功能模块
   * 使用missionManager模块接口（系统能力：SystemCapability.Ability.AbilityRuntime.Mission），获取最近任务信息，并实现加锁、解锁、清理后台任务的功能。
-  * 源码链接：[MissionModel.ts](recents/src/main/ets/default/model/MissionModel.ts)
+  * 源码链接：[MissionModel.ts](recents/src/main/ets/default/model/MissionModel.ets)
   * 接口参考：[@ohos.application.missionManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-application-missionManager-sys.md)
 
 * 点击桌面应用拉起最近任务至前台功能模块

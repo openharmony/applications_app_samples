@@ -4,7 +4,7 @@
 
 This sample shows how to use the **TextInput** component to enter parameters and use the **Text** component to display the return result.
 
-In this example, we'll use [SystemCapability.Communication.NetStack](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-http.md) to initiate HTTP network requests to the destination URL based on specified configuration.
+In this example, we'll use [SystemCapability.Communication.NetStack](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-network-kit/js-apis-http.md) to initiate HTTP network requests to the destination URL based on specified configuration.
 
 Usage
 
@@ -22,7 +22,7 @@ NOTE: You can compile the http module into a **.tgz** package depending on your 
 
 ### Required Permissions
 
-Access to the Internet: [ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/permission-list.md)
+Access to the Internet: [ohos.permission.INTERNET](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/AccessToken/permissions-for-all.md)
 
 ### Dependency
 
