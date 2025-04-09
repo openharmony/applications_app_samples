@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "EncryptionDecryptionGuidanceAes"
+    },
+    {
+      "name": "call_aes_gcm",
+      "value": "Call AES_GCM"
+    },
+    {
+      "name": "call_aes_ccm",
+      "value": "Call AES_CCM"
+    },
+    {
+      "name": "call_aes_cbc",
+      "value": "Call AES_CBC"
+    },
+    {
+      "name": "call_aes_ecb",
+      "value": "Call AES_ECB"
+    },
+    {
+      "name": "call_aes_gcm_segment",
+      "value": "Call AES_GCM_Segment"
+    }
+  ]
+}
