@@ -19,6 +19,9 @@ import bundleManager from '@ohos.bundle.bundleManager';
 import { logger } from '@ohos/common/src/main/ets/util/Logger';
 import { GlobalContext } from '../components/GlobalContext';
 import resourceManager from '@ohos.resourceManager';
+import drawableDescriptor from '@ohos.arkui.drawableDescriptor';
+import image from '@ohos.multimedia.image';
+import util from '@ohos.util';
 
 const TAG: string = '[Sample_BatteryStatsUtil]';
 
@@ -117,7 +120,7 @@ export class BatteryStatsUtil {
   getItemSoftware(appInfo: bundleManager.ApplicationInfo): Promise<BatteryStatsModel | null> {
     return new Promise(async (resolve, reject) => {
       let label: string = '';
-      let imageBase64: string = '';
+      let imageBase64: string | PixelMap = '';
       let power = 0;
       let percent = 0;
       let icon: Resource | undefined = undefined;
@@ -143,6 +146,33 @@ export class BatteryStatsUtil {
         try {
           let ctx: Context = GlobalContext.getContext().getValue('abilityContext') as Context;
           imageBase64 = await ctx.resourceManager.getMediaContentBase64(iconResource);
+
+          // 分层图标和SVG图标需要额外做处理
+          if (imageBase64.startsWith('data:image/json')) {
+            // 当获取应用图标资源为包含前景和背景资源的json文件时
+            // 获取图标的DrawableDescriptor对象为LayeredDrawableDescriptor对象
+            const imageDescriptor = ctx.resourceManager.getDrawableDescriptor(appInfo.iconResource);
+            if (imageDescriptor !== null && imageDescriptor !== undefined &&
+              imageDescriptor instanceof drawableDescriptor.LayeredDrawableDescriptor) {
+              let layeredDrawableDescriptor: drawableDescriptor.LayeredDrawableDescriptor = imageDescriptor;
+              imageBase64 = layeredDrawableDescriptor.getPixelMap();
+            }
+            logger.info(TAG, `${label} getDrawableDescriptor success`);
+          } else if (imageBase64.startsWith('data:image/svg')) {
+            // 将原始SVG图片base64串转换为不带前缀的base64字符串
+            const reg = new RegExp('data:image/\\w+;base64,');
+            const base64Str = imageBase64.replace(reg, '');
+            // 将转换后的base64字符串转为arrayBuffer
+            let base64Helper = new util.Base64Helper();
+            let arrayBuffer = base64Helper.decodeSync(base64Str).buffer as ArrayBuffer;
+            // 将arrayBuffer转为pixelMap
+            let imageSource = image.createImageSource(arrayBuffer);
+            let opts: image.DecodingOptions = {
+              editable: false
+            };
+            imageBase64 = imageSource.createPixelMapSync(opts);
+            logger.info(TAG, `${label} svg convert to pixelMap success`);
+          }
         } catch (err) {
           logger.error(TAG, `getMediaContent failed, err : ${JSON.stringify(err)}.`);
           icon = $r("app.media.ic_default");

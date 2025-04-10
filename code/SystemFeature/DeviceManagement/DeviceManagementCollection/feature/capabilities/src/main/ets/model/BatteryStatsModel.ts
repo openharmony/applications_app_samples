@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Hunan OpenValley Digital Industry Development Co., Ltd.
+ * Copyright (c) 2023-2025 Hunan OpenValley Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -21,7 +21,7 @@ import type batteryStats from '@ohos.batteryStatistics';
 export class BatteryStatsModel {
   icon: Resource | undefined; // 耗电信息相关图标资源文件
 
-  iconBase64: string; // 耗电信息相关图标二进制文件
+  iconBase64: string | PixelMap; // 耗电信息相关图标二进制文件
 
   name: Resource | undefined; // 耗电信息相关的名字资源文件
 
