@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+	{
+      "name": "ProgressProject",
+      "value": "progress"
+    },
+    {
+      "name": "Linear_Progress",
+      "value": "Linear Progress"
+    },
+    {
+      "name": "Ring_Progress",
+      "value": "Ring Progress"
+    },
+    {
+      "name": "ScaleRing_Progress",
+      "value": "ScaleRing Progress"
+    },
+    {
+      "name": "Eclipse_Progress",
+      "value": "Eclipse Progress"
+    },
+    {
+      "name": "Capsule_Progress",
+      "value": "Capsule Progress"
+    },
+    {
+      "name": "progress_add",
+      "value": "progress add 5"
+    },
+    {
+      "name": "progress_reduce",
+      "value": "progress reduce 5"
+    }
+  ]
+}
