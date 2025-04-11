@@ -15,6 +15,18 @@
     {
       "name": "permissionsReason",
       "value": "NonAnonymousKeyProof"
+    },
+    {
+      "name": "non_anonymous_key_proof",
+      "value": "NonAnonymousKeyProof"
+    },
+    {
+      "name": "call_cpp_attest_key",
+      "value": "Call C/C++"
+    },
+    {
+      "name": "call_non_anonymous_key_proof",
+      "value": "Call NonAnonymousKeyProof"
     }
   ]
 }

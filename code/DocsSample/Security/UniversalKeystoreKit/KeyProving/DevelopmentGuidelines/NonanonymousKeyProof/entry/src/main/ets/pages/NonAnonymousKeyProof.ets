@@ -193,7 +193,7 @@ struct Index {
   build() {
     Column({ space: 12 }) {
       Text(this.message).fontSize(20).fontWeight(FontWeight.Bold)
-      Button('Call NonAnonymousKeyProof')
+      Button($r('app.string.call_non_anonymous_key_proof'))
         .width('70%')
         .onClick(async () => {
           let ret = await attestKeyTest();

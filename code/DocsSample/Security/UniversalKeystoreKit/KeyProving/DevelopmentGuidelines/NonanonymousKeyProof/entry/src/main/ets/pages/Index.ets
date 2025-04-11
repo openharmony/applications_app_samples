@@ -38,12 +38,12 @@ struct Index {
       Text(this.message)
         .fontSize(25)
         .fontWeight(FontWeight.Bold)
-      Button('NonAnonymousKeyProof')
+      Button($r('app.string.non_anonymous_key_proof'))
         .width('70%')
         .onClick(() => {
           this.goToSample('pages/NonAnonymousKeyProof')
         })
-      Button('Call C/C++')
+      Button($r('app.string.call_cpp_attest_key'))
         .width('70%')
         .onClick(() => {
           let ret: number = testNapi.attestKey();
