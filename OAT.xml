@@ -441,6 +441,10 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/DocsSample/Sensor/screenshots/devices/subscribe.jpeg" desc="Provided by code/DocsSample/Sensor"/>
 				<filteritem type="filepath" name="code/DocsSample/Drawing/NDKDrawing/screenshot/path.png" desc="Provided by code/DocsSample/Drawing/NDKDrawing"/>
 				<filteritem type="filepath" name="code/DocsSample/Drawing/NDKDrawing/screenshot/text.png" desc="Provided by code/DocsSample/Drawing/NDKDrawing"/>
+				<filteritem type="filepath" name="code/DocsSample/Drawing/NDKGraphicsDraw/screenshot/canvas.jpeg" desc="Provided by code/DocsSample/Drawing/NDKGraphicsDraw"/>
+				<filteritem type="filepath" name="code/DocsSample/Drawing/NDKGraphicsDraw/screenshot/effect.jpeg" desc="Provided by code/DocsSample/Drawing/NDKGraphicsDraw"/>
+				<filteritem type="filepath" name="code/DocsSample/Drawing/NDKGraphicsDraw/screenshot/index.jpeg" desc="Provided by code/DocsSample/Drawing/NDKGraphicsDraw"/>
+				<filteritem type="filepath" name="code/DocsSample/Drawing/NDKGraphicsDraw/screenshot/shape.jpeg" desc="Provided by code/DocsSample/Drawing/NDKGraphicsDraw"/>
 				<filteritem type="filepath" name="code/DocsSample/Security/RequestUserAuthorization/screenshots/dialog.png" desc="Provided by code/DocsSample/Security/RequestUserAuthorization"/>
 				<filteritem type="filepath" name="code/DocsSample/Security/RequestUserAuthorization/screenshots/main.png" desc="Provided by code/DocsSample/Security/RequestUserAuthorization"/>
 				<filteritem type="filepath" name="code/DocsSample/Security/RequestUserAuthorization/screenshots/seconddialog.png" desc="Provided by code/DocsSample/Security/RequestUserAuthorization"/>
