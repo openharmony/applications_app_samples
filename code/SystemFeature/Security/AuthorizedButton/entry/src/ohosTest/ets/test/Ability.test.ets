@@ -16,7 +16,6 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 import { Driver, ON } from '@ohos.UiTest';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import Logger from '../../utils/Logger';
-import resource from '@ohos.resourceManager';
 
 const TAG: string = '[Sample_AuthorizedButton]';
 const DOMAIN = '0xF811';
