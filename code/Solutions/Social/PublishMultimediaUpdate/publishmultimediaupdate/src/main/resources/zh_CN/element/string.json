@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "Photo",
+      "value": "拍照"
+    },
+    {
+      "name": "Video",
+      "value": "录像"
+    }
+  ]
+}

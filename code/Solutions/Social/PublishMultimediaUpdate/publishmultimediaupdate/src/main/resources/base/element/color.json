@@ -1,0 +1,28 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "publish_multimedia_updates_title_font_color",
+      "value": "#182431"
+    },
+    {
+      "name": "publish_multimedia_updates_divider_color",
+      "value": "#0c000000"
+    },
+    {
+      "name": "publish_multimedia_updates_jump_button_bgc",
+      "value": "#FFAEAEAE"
+    },
+    {
+      "name": "publish_multimedia_updates_jump_button_font_color",
+      "value": "#000"
+    },
+    {
+      "name": "image_comment_button_publish_background",
+      "value": "#be1d1d"
+    }
+  ]
+}

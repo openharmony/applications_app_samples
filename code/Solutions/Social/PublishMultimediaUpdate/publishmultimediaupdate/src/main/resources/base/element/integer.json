@@ -1,0 +1,432 @@
+{
+  "integer": [
+    {
+      "name": "publish_multimedia_updates_divider_width",
+      "value": 1
+    },
+    {
+      "name": "publish_multimedia_updates_list_divider_margin",
+      "value": 12
+    },
+    {
+      "name": "publish_multimedia_updates_image_group_padding_left",
+      "value": 60
+    },
+    {
+      "name": "publish_multimedia_updates_image_group_padding_right",
+      "value": 60
+    },
+    {
+      "name": "publish_multimedia_updates_thumbsup_margin_left",
+      "value": 111
+    },
+    {
+      "name": "publish_multimedia_updates_message_margin_left",
+      "value": 24
+    },
+    {
+      "name": "publish_multimedia_updates_single_image_width",
+      "value": 184
+    },
+    {
+      "name": "publish_multimedia_updates_single_image_height",
+      "value": 112
+    },
+    {
+      "name": "publish_multimedia_updates_single_image_radius",
+      "value": 16
+    },
+    {
+      "name": "publish_multimedia_updates_icon_play_width",
+      "value": 40
+    },
+    {
+      "name": "publish_multimedia_updates_icon_play_height",
+      "value": 40
+    },
+    {
+      "name": "publish_multimedia_updates_image_borderRadius",
+      "value": 5
+    },
+    {
+      "name": "publish_multimedia_updates_image_margin_right",
+      "value": 15
+    },
+    {
+      "name": "publish_multimedia_updates_image_margin_top",
+      "value": -55
+    },
+    {
+      "name": "publish_multimedia_updates_owner_margin_bottom",
+      "value": 20
+    },
+    {
+      "name": "publish_multimedia_updates_owner_margin_height",
+      "value": 20
+    },
+    {
+      "name": "publish_multimedia_updates_layout_padding_bottom",
+      "value": 50
+    },
+    {
+      "name": "publish_multimedia_updates_oneMoment_width",
+      "value": 50
+    },
+    {
+      "name": "publish_multimedia_updates_oneMoment_height",
+      "value": 38
+    },
+    {
+      "name": "publish_multimedia_updates_useImage_radius",
+      "value": 50
+    },
+    {
+      "name": "publish_multimedia_updates_useName_fontSize",
+      "value": 16
+    },
+    {
+      "name": "publish_multimedia_updates_useName_line_height",
+      "value": 22
+    },
+    {
+      "name": "publish_multimedia_updates_user_image_width",
+      "value": 40
+    },
+    {
+      "name": "publish_multimedia_updates_user_image_height",
+      "value": 40
+    },
+    {
+      "name": "publish_multimedia_updates_user_image_border_radius",
+      "value": 20
+    },
+    {
+      "name": "publish_multimedia_updates_userText_fontSize",
+      "value": 14
+    },
+    {
+      "name": "publish_multimedia_updates_userText_line_height",
+      "value": 19
+    },
+    {
+      "name": "publish_multimedia_updates_userText_margin_top",
+      "value": 1
+    },
+    {
+      "name": "publish_multimedia_updates_user_col_margin_left",
+      "value": 8
+    },
+    {
+      "name": "publish_multimedia_updates_row_padding_left",
+      "value": 12
+    },
+    {
+      "name": "publish_multimedia_updates_row_padding_right",
+      "value": 16
+    },
+    {
+      "name": "publish_multimedia_updates_row_padding_top",
+      "value": 10
+    },
+    {
+      "name": "publish_multimedia_updates_row_padding_bottom",
+      "value": 11
+    },
+    {
+      "name": "publish_multimedia_updates_grid_gap",
+      "value": 4
+    },
+    {
+      "name": "publish_multimedia_updates_grid_width",
+      "value": 248
+    },
+    {
+      "name": "publish_multimedia_updates_grid_height",
+      "value": 248
+    },
+    {
+      "name": "publish_multimedia_updates_time_fontSize",
+      "value": 12
+    },
+    {
+      "name": "publish_multimedia_updates_time_height",
+      "value": 15
+    },
+    {
+      "name": "publish_multimedia_updates_time_width",
+      "value": 20
+    },
+    {
+      "name": "publish_multimedia_updates_handler_icon_width",
+      "value": 20
+    },
+    {
+      "name": "publish_multimedia_updates_handler_icon_height",
+      "value": 20
+    },
+    {
+      "name": "publish_multimedia_updates_handler_text_font_size",
+      "value": 12
+    },
+    {
+      "name": "publish_multimedia_updates_handler_padding_left",
+      "value": 60
+    },
+    {
+      "name": "publish_multimedia_updates_handler_padding_right",
+      "value": 16
+    },
+    {
+      "name": "publish_multimedia_updates_handler_margin_top",
+      "value": 14
+    },
+    {
+      "name": "publish_multimedia_updates_handler_margin_bottom",
+      "value": 13
+    },
+    {
+      "name": "publish_multimedia_updates_layout",
+      "value": 5
+    },
+    {
+      "name": "publish_multimedia_updates_jump_button_radius",
+      "value": 20
+    },
+    {
+      "name": "publish_multimedia_updates_jump_button_height",
+      "value": 40
+    },
+    {
+      "name": "publish_multimedia_updates_jump_button_width",
+      "value": 200
+    },
+    {
+      "name": "image_comment_text_input_height",
+      "value": 40
+    },
+    {
+      "name": "image_comment_text_input_padding_left",
+      "value": 10
+    },
+    {
+      "name": "image_comment_text_input_padding_right",
+      "value": 50
+    },
+    {
+      "name": "image_comment_text_input_padding_top",
+      "value": 3
+    },
+    {
+      "name": "image_comment_text_input_padding_bottom",
+      "value": 3
+    },
+    {
+      "name": "image_comment_text_input_margin_top",
+      "value": 10
+    },
+    {
+      "name": "image_comment_image_camera_margin_top",
+      "value": 10
+    },
+    {
+      "name": "image_comment_button_publish_width",
+      "value": 60
+    },
+    {
+      "name": "image_comment_button_publish_height",
+      "value": 30
+    },
+    {
+      "name": "image_comment_button_publish_border_radius",
+      "value": 15
+    },
+    {
+      "name": "image_comment_image_camera_width",
+      "value": 30
+    },
+    {
+      "name": "image_comment_image_camera_height",
+      "value": 30
+    },
+    {
+      "name": "image_comment_relative_container_input_height",
+      "value": 50
+    },
+    {
+      "name": "image_comment_column_input_padding",
+      "value": 10
+    },
+    {
+      "name": "image_comment_image_avatar_height",
+      "value": 50
+    },
+    {
+      "name": "image_comment_image_avatar_width",
+      "value": 50
+    },
+    {
+      "name": "image_comment_image_avatar_border_radius",
+      "value": 25
+    },
+    {
+      "name": "image_comment_comment_column_info_margin_left",
+      "value": 5
+    },
+    {
+      "name": "image_comment_text_comment_margin_top",
+      "value": 5
+    },
+    {
+      "name": "image_comment_list_comment_image_margin_top",
+      "value": 5
+    },
+    {
+      "name": "image_comment_view_comment_padding",
+      "value": 10
+    },
+    {
+      "name": "image_comment_image_comment_image_width",
+      "value": 100
+    },
+    {
+      "name": "image_comment_image_comment_image_height",
+      "value": 100
+    },
+    {
+      "name": "image_comment_image_comment_image_border_radius",
+      "value": 5
+    },
+    {
+      "name": "image_comment_list_comment_image_space",
+      "value": 10
+    },
+    {
+      "name": "image_comment_list_comment_image_height",
+      "value": 120
+    },
+    {
+      "name": "image_comment_list_comment_image_padding_top",
+      "value": 10
+    },
+    {
+      "name": "image_comment_list_comment_image_padding_bottom",
+      "value": 10
+    },
+    {
+      "name": "image_comment_text_hot_comment_height",
+      "value": 40
+    },
+    {
+      "name": "image_comment_text_hot_comment_padding_left",
+      "value": 10
+    },
+    {
+      "name": "image_comment_text_hot_comment_border_width_bottom",
+      "value": 1
+    },
+    {
+      "name": "image_comment_list_comment_margin_bottom",
+      "value": 50
+    },
+    {
+      "name": "image_comment_text_no_comment_margin_bottom",
+      "value": 50
+    },
+    {
+      "name": "image_comment_text_input_hint_height",
+      "value": 40
+    },
+    {
+      "name": "image_comment_text_input_hint_border_radius",
+      "value": 30
+    },
+    {
+      "name": "image_comment_text_input_hint_padding_left",
+      "value": 15
+    },
+    {
+      "name": "image_comment_text_input_hint_border_width",
+      "value": 1
+    },
+    {
+      "name": "image_comment_row_input_hint_border_width_top",
+      "value": 1
+    },
+    {
+      "name": "image_comment_row_input_hint_height",
+      "value": 50
+    },
+    {
+      "name": "image_comment_column_input_dialog_offset_y",
+      "value": 20
+    },
+    {
+      "name": "image_comment_image_delete_height",
+      "value": 20
+    },
+    {
+      "name": "image_comment_image_delete_width",
+      "value": 20
+    },
+    {
+      "name": "image_comment_image_relative_container_height",
+      "value": 110
+    },
+    {
+      "name": "image_comment_image_relative_container_width",
+      "value": 110
+    },
+    {
+      "name": "image_comment_dialog_offset_x",
+      "value": 0
+    },
+    {
+      "name": "image_comment_dialog_offset_y",
+      "value": -20
+    },
+    {
+      "name": "media_offset_to_right",
+      "value": 80
+    },
+    {
+      "name": "my_add_position_top",
+      "value": 20
+    },
+    {
+      "name": "my_add_position_right",
+      "value": 5
+    },
+    {
+      "name": "camera_position_top",
+      "value": 15
+    },
+    {
+      "name": "camera_position_left",
+      "value": 10
+    },
+    {
+      "name": "toolbar_height",
+      "value": 56
+    },
+    {
+      "name": "publish_multimedia_updates_toolbar_padding_bottom",
+      "value": 30
+    },
+    {
+      "name": "publish_multimedia_updates_toolbar_padding_top",
+      "value": 0
+    },
+    {
+      "name": "publish_multimedia_updates_list_barwidth",
+      "value": 360
+    },
+    {
+      "name": "publish_multimedia_updates_list_barheight",
+      "value": 56
+    },
+    {
+      "name": "publish_multimedia_updates_list_bar_padding_top",
+      "value": -20
+    }
+  ]
+}

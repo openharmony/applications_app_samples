@@ -1,0 +1,120 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "publish_multimedia_updates_share",
+      "value": "分享"
+    },
+    {
+      "name": "publish_multimedia_updates_thumbs_up",
+      "value": "点赞"
+    },
+    {
+      "name": "publish_multimedia_updates_message",
+      "value": "评论"
+    },
+    {
+      "name": "publish_multimedia_updates_layout_100",
+      "value": "100%"
+    },
+    {
+      "name": "publish_multimedia_updates_jump_position_x",
+      "value": "50%"
+    },
+    {
+      "name": "publish_multimedia_updates_jump_position_y",
+      "value": "90%"
+    },
+    {
+      "name": "publish_multimedia_updates_jump_markAnchor_x",
+      "value": "50%"
+    },
+    {
+      "name": "publish_multimedia_updates_other_function",
+      "value": "仅演示，可自行实现业务功能"
+    },
+    {
+      "name": "image_comment_publish",
+      "value": "发布"
+    },
+    {
+      "name": "toolbarList_more",
+      "value": "more"
+    },
+    {
+      "name": "toolbarList_Message",
+      "value": "Message"
+    },
+    {
+      "name": "toolbarList_Super_Group",
+      "value": "Super Group"
+    },
+    {
+      "name": "toolbarList_discover",
+      "value": "Discover"
+    },
+    {
+      "name": "toolbarList_home",
+      "value": "Home"
+    },
+    {
+      "name": "publish_multimedia_updates_harmony_hei_ti",
+      "value": "HarmonyHeiTi"
+    },
+    {
+      "name": "publish_multimedia_updates_layout_94",
+      "value": "94%"
+    },
+    {
+      "name": "publish_multimedia_updates_following",
+      "value": "Following"
+    },
+    {
+      "name": "publish_multimedia_updates_for_you",
+      "value": "For You"
+    },
+    {
+      "name": "publish_multimedia_updates_layout_40",
+      "value": "40%"
+    },
+    {
+      "name": "publish_multimedia_updates_layout_30",
+      "value": "30%"
+    },
+    {
+      "name": "publish_multimedia_updates_live",
+      "value": "Live"
+    },
+    {
+      "name": "publish_multimedia_updates_review",
+      "value": "Review"
+    },
+    {
+      "name": "publish_multimedia_updates_video",
+      "value": "Video"
+    },
+    {
+      "name": "publish_multimedia_updates_photo",
+      "value": "Photo"
+    },
+    {
+      "name": "publish_multimedia_updates_post",
+      "value": "Post "
+    },
+    {
+      "name": "publish_multimedia_updates_input_comment",
+      "value": "请输入评论内容"
+    },
+    {
+      "name": "publish_multimedia_updates_input_video",
+      "value": "请选择视频"
+    },
+    {
+      "name": "publish_multimedia_updates_input_image",
+      "value": "请选择图片"
+    }
+  ]
+}
