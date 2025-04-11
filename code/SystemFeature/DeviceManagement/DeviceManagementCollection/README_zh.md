@@ -185,7 +185,7 @@ DeviceManagementCollection
 
 1.本示例仅支持标准系统上运行。
 
-2.本示例适配API version 10版本SDK，SDK版本号(API Version 10 Release),镜像版本号(4.0Release)
+2.本示例适配API version 12版本SDK，SDK版本号(API Version 12 Release),镜像版本号(5.0Release)
 
 3.本示例需要使用DevEco Studio 版本号(4.0Release)才可编译运行。
 
