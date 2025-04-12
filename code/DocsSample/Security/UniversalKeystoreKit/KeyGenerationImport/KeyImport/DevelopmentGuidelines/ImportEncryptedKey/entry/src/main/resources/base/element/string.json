@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "ImportEncryptedKey"
+    },
+    {
+      "name": "call_arkts",
+      "value": "Call ArkTS"
+    },
+    {
+      "name": "call_cpp",
+      "value": "Call C/C++"
+    }
+  ]
+}
