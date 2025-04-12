@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "NonAnonymousKeyProof"
+    },
+    {
+      "name": "permissionsReason",
+      "value": "NonAnonymousKeyProof"
+    },
+    {
+      "name": "non_anonymous_key_proof",
+      "value": "NonAnonymousKeyProof"
+    },
+    {
+      "name": "call_cpp_attest_key",
+      "value": "Call C/C++"
+    },
+    {
+      "name": "call_non_anonymous_key_proof",
+      "value": "Call NonAnonymousKeyProof"
+    }
+  ]
+}
