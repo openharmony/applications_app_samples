@@ -1,0 +1,9 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/ECC256SHA256",
+    "pages/RSASHA256PKCS1_V1_5",
+    "pages/RSASHA256PSS",
+    "pages/SM2SM3"
+  ]
+}
