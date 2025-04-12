@@ -11,10 +11,6 @@
     {
       "name": "EntryAbility_label",
       "value": "UseOfflineWebComp"
-    },
-    {
-      "name": "Jump_to_Web_Page",
-      "value": "跳转到Web页面"
     }
   ]
 }

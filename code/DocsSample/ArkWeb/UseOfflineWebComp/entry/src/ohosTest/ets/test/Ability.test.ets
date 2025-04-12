@@ -59,10 +59,6 @@ export default function abilityTest() {
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
       await driver.delayMs(3000);
 
-      const button = await driver.findComponent(ON.type('Button'));
-      await button.click();
-      await driver.delayMs(2000);
-
       const web1 = await driver.findComponent(ON.type('Web'));
       let src: string = await web1.getText();
       expect(src).assertContain('example.com');

@@ -14,6 +14,7 @@
  */
 
 // 创建NodeController
+// common.ets
 import { UIContext, NodeController, BuilderNode, Size, FrameNode } from '@kit.ArkUI';
 import { webview } from '@kit.ArkWeb';
 

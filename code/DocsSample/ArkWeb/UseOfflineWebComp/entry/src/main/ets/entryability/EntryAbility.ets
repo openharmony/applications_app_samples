@@ -29,8 +29,8 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
     windowStage.loadContent('pages/Index', (err, data) => {
-      // 创建空的Web动态组件（需传入UIContext），loadContent之后的任意时机均可创建
-      createNWeb("about：blank", windowStage.getMainWindowSync().getUIContext());
+      // 创建Web动态组件（需传入UIContext），loadContent之后的任意时机均可创建
+      createNWeb('www.example.com', windowStage.getMainWindowSync().getUIContext());
       if (err.code) {
         return;
       }
