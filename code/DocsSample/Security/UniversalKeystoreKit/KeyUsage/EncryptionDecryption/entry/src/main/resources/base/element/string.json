@@ -1,0 +1,64 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "EncryptionDecryption"
+    },
+    {
+      "name": "aes_cbc_pkcs7",
+      "value": "Call AES/CBC/PKCS7"
+    },
+    {
+      "name": "aes_gcm_nopadding",
+      "value": "Call AES/GCM/NoPadding"
+    },
+    {
+      "name": "rsa_ecb_pkcs1_v1_5",
+      "value": "Call RSA/ECB/PKCS1_V1_5"
+    },
+    {
+      "name": "rsa_ecb_oaep_sha256",
+      "value": "Call RSA/ECB/OAEP/SHA256"
+    },
+    {
+      "name": "sm2",
+      "value": "Call SM2"
+    },
+    {
+      "name": "call_cpp",
+      "value": "Call C/C++"
+    },
+    {
+      "name": "enc_aes_cbc_pkcs7",
+      "value": "AES/CBC/PKCS7"
+    },
+    {
+      "name": "enc_aes_gcm_nopadding",
+      "value": "AES/GCM/NoPadding"
+    },
+    {
+      "name": "enc_rsa_ecb_pkcs1_v1_5",
+      "value": "RSA/ECB/PKCS1_V1_5"
+    },
+    {
+      "name": "enc_rsa_ecb_oaep_sha256",
+      "value": "RSA/ECB/OAEP/SHA256"
+    },
+    {
+      "name": "enc_sm2",
+      "value": "SM2"
+    },
+    {
+      "name": "call_cpp_enc_dec",
+      "value": "Call C/C++"
+    }
+  ]
+}
