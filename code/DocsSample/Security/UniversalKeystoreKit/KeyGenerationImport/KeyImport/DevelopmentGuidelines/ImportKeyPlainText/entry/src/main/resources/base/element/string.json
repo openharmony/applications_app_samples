@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "ImportKeyPlainText"
+    },
+    {
+      "name": "aes_256",
+      "value": "AES256"
+    },
+    {
+      "name": "rsa_2048",
+      "value": "RSA2048"
+    },
+    {
+      "name": "x25519",
+      "value": "X25519"
+    },
+    {
+      "name": "call_aes_256",
+      "value": "Call AES256"
+    },
+    {
+      "name": "call_rsa_2048",
+      "value": "Call RSA2048"
+    },
+    {
+      "name": "call_x25519",
+      "value": "Call X25519"
+    },
+    {
+      "name": "call_cpp_import_key",
+      "value": "Call C/C++"
+    }
+  ]
+}
