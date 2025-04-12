@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "GetKeyAttributes"
+    },
+    {
+      "name": "get_key_attributes",
+      "value": "GetKeyAttributes"
+    },
+    {
+      "name": "call_cpp_get_key_param_set",
+      "value": "Call C/C++"
+    },
+    {
+      "name": "call_get_key_attributes",
+      "value": "Call GetKeyAttributes"
+    }
+  ]
+}
