@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "AnonymousKeyProof"
+    },
+    {
+      "name": "anonymous_key_proof",
+      "value": "AnonymousKeyProof"
+    },
+    {
+      "name": "call_cpp_anon_attest_key",
+      "value": "Call C/C++"
+    },
+    {
+      "name": "call_anonymous_key_proof",
+      "value": "Call AnonymousKeyProof"
+    }
+  ]
+}
