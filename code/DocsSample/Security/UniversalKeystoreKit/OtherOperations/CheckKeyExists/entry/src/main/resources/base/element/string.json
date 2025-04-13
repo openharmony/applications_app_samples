@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "CheckKeyExists"
+    },
+    {
+      "name": "check_key_exists",
+      "value": "CheckKeyExists"
+    },
+    {
+      "name": "call_cpp_is_key_exist",
+      "value": "Call C/C++"
+    },
+    {
+      "name": "call_check_key_exists",
+      "value": "Call CheckKeyExists"
+    }
+  ]
+}
