@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "HMAC"
+    },
+    {
+      "name": "hmac",
+      "value": "HMAC"
+    },
+    {
+      "name": "call_cpp_hmac_key",
+      "value": "Call C/C++"
+    },
+    {
+      "name": "call_hmac",
+      "value": "Call HMAC"
+    }
+  ]
+}
