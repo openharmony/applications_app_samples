@@ -13,22 +13,23 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router';
-import { webview } from '@kit.ArkWeb';
-
+// 使用NodeController的Page页
+// Index.ets
+import { getNWeb } from './common'
 @Entry
 @Component
-struct Index1 {
-  WebviewController: webview.WebviewController = new webview.WebviewController();
-
+struct Index {
   build() {
-    Column() {
-      //已经预启动Render进程 
-      Button($r('app.string.Jump_to_Web_Page')).onClick(()=>{
-        router.pushUrl({url: 'pages/index2'});
-      })
-        .width('100%')
-        .height('100%')
+    Row() {
+      Column() {
+        // NodeContainer用于与NodeController节点绑定，rebuild会触发makeNode
+        // Page页通过NodeContainer接口绑定NodeController，实现动态组件页面显示
+        NodeContainer(getNWeb('www.example.com'))
+          .height('90%')
+          .width('100%')
+      }
+      .width('100%')
     }
+    .height('100%')
   }
 }

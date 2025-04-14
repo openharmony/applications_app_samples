@@ -69,7 +69,6 @@ entry/src/main/
 |---|---pages
 |---|---|---common.ets
 |---|---|---Index.ets						// 首页
-|---|---|---index2.ets
 |---resources								// 静态资源
 |---ohosTest
 |---|---ets
@@ -81,7 +80,9 @@ entry1/src/main/
 |---|---entry1ability
 |---|---|---Entry1Ability.ets
 |---|---pages
+|---|---|---common.ets
 |---|---|---Index.ets						// 首页
+|---|---|---index2.ets
 |---resources								// 静态资源
 |---ohosTest
 |---|---ets
@@ -93,7 +94,9 @@ entry2/src/main/
 |---|---entry2ability
 |---|---|---Entry2Ability.ets
 |---|---pages
+|---|---|---common.ets
 |---|---|---Index.ets						// 首页
+|---|---|---index2.ets
 |---resources								// 静态资源
 |---ohosTest
 |---|---ets
