@@ -75,7 +75,64 @@
      });
    }
    ```
-4. 自定义上拉加载动画。源码参考[PullToRefreshNews.ets](./pulltorefresh/src/main/ets/pages/PullToRefreshNews.ets)
+4. 自定义下拉更新动画。源码参考[PullToRefreshNews.ets](./pulltorefresh/src/main/ets/pages/PullToRefreshNews.ets)
+   ```typescript
+   @Builder
+   private customRefresh() {
+      Row() {
+         // 下滑加载图片
+         Image($r('app.media.pull_icon_load'))
+            .width($r('app.string.pull_refresh_load_width'))
+            .height($r('app.string.pull_refresh_load_height'))
+            .objectFit(ImageFit.Contain)
+            .rotate({
+               z: 1,
+               angle: this.angle2 !== undefined ? this.angle2 : 0
+            })
+            .width(this.refreshConfigurator.getLoadImgHeight())
+            .height(this.refreshConfigurator.getLoadImgHeight())
+      
+         // 下拉时提示文本
+         Stack() {
+            Text(CURRENT_DATA_TIP)
+               .height($r('app.string.pull_refresh_load_height'))
+               .textAlign(TextAlign.Center)
+               .margin({ left: this.newsDataListIndex === NEWS_MAX_LIST && this.isLoading ? 0 : 8 })
+               .fontColor(this.refreshConfigurator !== undefined ? this.refreshConfigurator.getLoadTextColor() : 0)
+               .fontSize(this.refreshConfigurator !== undefined ? this.refreshConfigurator.getLoadTextSize() : 0)
+               .visibility(this.pullHeightValue <= CHANGE_PAGE_STATE ? Visibility.Visible : Visibility.Hidden)
+            Text(NEW_DATA_TIP)
+               .height($r('app.string.pull_refresh_load_height'))
+               .textAlign(TextAlign.Center)
+               .margin({ left: this.newsDataListIndex === NEWS_MAX_LIST && this.isLoading ? 0 : 8 })
+               .fontColor(this.refreshConfigurator !== undefined ? this.refreshConfigurator.getLoadTextColor() : 0)
+               .fontSize(this.refreshConfigurator !== undefined ? this.refreshConfigurator.getLoadTextSize() : 0)
+               .visibility(this.pullHeightValue > CHANGE_PAGE_STATE ? Visibility.Visible : Visibility.Hidden)
+         }
+      }
+      .height($r('app.string.pull_refresh_load_height'))
+   }
+   ```
+5. 通过下拉距离判断页面是刷新当前数据还是更新为下一页。源码参考[PullToRefreshNews.ets](./pulltorefresh/src/main/ets/pages/PullToRefreshNews.ets)
+   ```typescript
+   onAnimPullDown: (value) => {
+      this.pullHeightValue = value;
+   },
+   onAnimRefreshing: (value, width, height) => {
+      if (value !== undefined && width !== undefined && height !== undefined) {
+         if (value) {
+            this.angle2 = value * 360;
+            if (this.pullHeightValue > LOAD_PULL_STATE_CHANGE && this.pullHeightValue <= CHANGE_PAGE_STATE) {
+               this.isChangePage = false;
+            } else {
+               // 当下拉到最顶部时，触发更新页面，不再刷新当前页。
+               this.isChangePage = true;
+            }
+         }
+      }
+   }
+   ```
+6. 自定义上拉加载动画。源码参考[PullToRefreshNews.ets](./pulltorefresh/src/main/ets/pages/PullToRefreshNews.ets)
    ```typescript
    @Builder
    private customLoad() {
@@ -119,7 +176,7 @@
      .height('100%')
    }
    ```
-5. 设置上拉与加载时的动画回调。源码参考[PullToRefreshNews.ets](./pulltorefresh/src/main/ets/pages/PullToRefreshNews.ets)
+7. 设置上拉与加载时的动画回调。源码参考[PullToRefreshNews.ets](./pulltorefresh/src/main/ets/pages/PullToRefreshNews.ets)
    ```typescript
    onAnimPullUp: (value, width, height) => {
      if (value !== undefined && width !== undefined && height !== undefined) {
