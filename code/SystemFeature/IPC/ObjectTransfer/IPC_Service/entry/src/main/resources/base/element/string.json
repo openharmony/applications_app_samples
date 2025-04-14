@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "Ability_label",
+      "value": "IPC_Service"
+    },
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "DisplayParcelable",
+      "value": "显示接收到的Parcelable:"
+    },
+    {
+      "name": "DisplayArrayBuffer",
+      "value": "显示接收到的ArrayBuffer:"
+    },
+    {
+      "name": "Parcelable",
+      "value": "Parcelable:"
+    },
+    {
+      "name": "ArrayBuffer",
+      "value": "ArrayBuffer:"
+    }
+  ]
+}

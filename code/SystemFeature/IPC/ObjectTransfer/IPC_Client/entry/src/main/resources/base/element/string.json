@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "Ability_label",
+      "value": "IPC_Client"
+    },
+    {
+      "name": "GetProxy",
+      "value": "获取服务端代理"
+    },
+    {
+      "name": "SendParcelable",
+      "value": "发送Parcelable"
+    },
+    {
+      "name": "SendArrayBuffer",
+      "value": "发送ArrayBuffer"
+    },
+    {
+      "name": "IPCDisconnects",
+      "value": "IPC断开通信"
+    },
+    {
+      "name": "Parcelable",
+      "value": "输入Parcelable传输的内容"
+    },
+    {
+      "name": "ArrayBuffer",
+      "value": "输入ArrayBuffer传输的内容"
+    }
+  ]
+}
