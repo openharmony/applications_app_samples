@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -96,12 +96,12 @@ class Http {
   async request() {
     let httpRequest = http.createHttp()
     httpRequest.on('dataReceive', function (data) {
-      AppStorage.SetOrCreate('dataLength', data.byteLength);
+      AppStorage.setOrCreate('dataLength', data.byteLength);
       console.info('[ Demo dataReceive ]  ReceivedDataLength: ' + data.byteLength);
     });
     httpRequest.on('dataReceiveProgress', function (data) {
-      AppStorage.SetOrCreate('receiveSize', data.receiveSize);
-      AppStorage.SetOrCreate('totalSize', data.totalSize);
+      AppStorage.setOrCreate('receiveSize', data.receiveSize);
+      AppStorage.setOrCreate('totalSize', data.totalSize);
       console.info('[ Demo dataProgress ]  ReceivedSize: ' + data.receiveSize + ' TotalSize: ' + data.totalSize);
     });
     httpRequest.requestInStream(this.url, this.options);
