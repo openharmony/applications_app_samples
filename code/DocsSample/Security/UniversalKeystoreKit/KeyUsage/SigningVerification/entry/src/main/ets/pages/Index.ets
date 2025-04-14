@@ -36,30 +36,58 @@ struct Index {
   build() {
     Column({ space: 5 }) {
       Text(this.message)
-        .fontSize(25)
-        .fontWeight(FontWeight.Bold)
+        .fontWeight(FontWeight.Regular)
+        .fontSize($r('sys.float.ohos_id_text_size_body1'))
+        .fontColor($r('sys.color.ohos_id_color_text_primary'))
+        .maxLines(Infinity)
+        .textAlign(TextAlign.Start)
       Button($r('app.string.ecc256_sha256'))
-        .width('70%')
+        .padding('12vp')
+        .height('40vp')
+        .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+        .backgroundColor($r('sys.color.ohos_id_color_emphasize'))
+        .fontSize('14sp')
+        .fontColor('#ffffff')
         .onClick(() => {
           this.goToSample('pages/ECC256SHA256');
         })
       Button($r('app.string.sm2_sm3'))
-        .width('70%')
+        .padding('12vp')
+        .height('40vp')
+        .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+        .backgroundColor($r('sys.color.ohos_id_color_emphasize'))
+        .fontSize('14sp')
+        .fontColor('#ffffff')
         .onClick(() => {
           this.goToSample('pages/SM2SM3');
         })
       Button($r('app.string.rsa_sha256_pss'))
-        .width('70%')
+        .padding('12vp')
+        .height('40vp')
+        .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+        .backgroundColor($r('sys.color.ohos_id_color_emphasize'))
+        .fontSize('14sp')
+        .fontColor('#ffffff')
         .onClick(() => {
           this.goToSample('pages/RSASHA256PSS');
         })
       Button($r('app.string.rsa_sha256_pkcs1_v1_5'))
-        .width('70%')
+        .padding('12vp')
+        .height('40vp')
+        .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+        .backgroundColor($r('sys.color.ohos_id_color_emphasize'))
+        .fontSize('14sp')
+        .fontColor('#ffffff')
         .onClick(() => {
           this.goToSample('pages/RSASHA256PKCS1_V1_5');
         })
       Button($r('app.string.call_cpp_sign_verify'))
-        .width('70%')
+        .padding('12vp')
+        .height('40vp')
+        .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+        .backgroundColor($r('sys.color.ohos_id_color_emphasize'))
+        .fontSize('14sp')
+        .fontColor('#ffffff')
         .onClick(() => {
           let ret: number = testNapi.signVerifyKey();
           this.message = 'Call C/C++ Result: ' + ret.toString();
