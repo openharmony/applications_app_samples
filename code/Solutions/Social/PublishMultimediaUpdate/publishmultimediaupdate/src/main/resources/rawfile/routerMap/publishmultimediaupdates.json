@@ -1,0 +1,10 @@
+{
+  "routerMap": [
+    {
+      "name": "publishmultimediaupdates/PublishMultimediaUpdatesComponent",
+      "pageModule": "publishmultimediaupdates",
+      "pageSourceFile": "src/main/ets/generated/RouterBuilder.ets",
+      "registerFunction": "publishMultimediaUpdatesComponentRegister"
+    }
+  ]
+}
