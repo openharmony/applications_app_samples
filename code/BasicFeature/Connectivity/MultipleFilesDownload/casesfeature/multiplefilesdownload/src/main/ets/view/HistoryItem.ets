@@ -36,10 +36,14 @@ export default struct HistoryItem {
   @Link historyArray: downloadFilesData[];
   // 下载列表
   @Link downloadFileArray: downloadFilesData[];
+  // 文件下载状态
+  @State fileStatus: number = -1;
 
   aboutToAppear(): void {
     // 从下载链接获取文件名
     this.fileName = getFileNameFromUrl(this.fileInfo.url);
+    // 获取文件下载状态
+    this.fileStatus = this.fileInfo.fileStatus;
   }
 
   build() {
@@ -65,12 +69,12 @@ export default struct HistoryItem {
             left: { anchor: 'fileImage', align: HorizontalAlign.End }
           })
           .decoration({
-            type: this.fileInfo.fileStatus === 1 ? TextDecorationType.None : TextDecorationType.LineThrough
+            type: this.fileStatus === 1 ? TextDecorationType.None : TextDecorationType.LineThrough
           })
           .id('fileName')
 
         // 已下载文本
-        Text(this.fileInfo.fileStatus === 1 ? $r('app.string.multiple_files_download_history_text_downloaded') : '')
+        Text(this.fileStatus === 1 ? $r('app.string.multiple_files_download_history_text_downloaded') : '')
           .fontSize($r('app.integer.multiple_files_download_text_font_size_twelve'))
           .fontColor($r('app.color.multiple_files_download_text_font_color'))
           .margin({
@@ -84,7 +88,7 @@ export default struct HistoryItem {
           .id(this.fileName + 'state')
 
         // 下载完成时间
-        Text(this.fileInfo.fileStatus === 1 ? formatTime(this.fileInfo.downloadTime, 'YYYY/MM/DD HH:mm') : '')
+        Text(this.fileStatus === 1 ? formatTime(this.fileInfo.downloadTime, 'YYYY/MM/DD HH:mm') : '')
           .fontSize($r('app.integer.multiple_files_download_text_font_size_twelve'))
           .fontColor($r('app.color.multiple_files_download_text_font_color'))
           .margin({
@@ -109,8 +113,8 @@ export default struct HistoryItem {
           })
           .height($r('app.integer.multiple_files_download_height_twenty_six'))
           .borderRadius($r('app.integer.multiple_files_download_borderRadius_eight'))
-          .enabled(this.fileInfo.fileStatus === 1 ? true : false)
-          .opacity(this.fileInfo.fileStatus === 1 ? 1 : 0.7)
+          .enabled(this.fileStatus === 1 ? true : false)
+          .opacity(this.fileStatus === 1 ? 1 : 0.7)
           .backgroundColor($r('app.color.multiple_files_download_del_bgc'))
           .alignRules({
             bottom: { anchor: 'fileImage', align: VerticalAlign.Bottom },
@@ -123,7 +127,8 @@ export default struct HistoryItem {
             // TODO：知识点：删除该条数据应用文件路径
             fs.unlink(filePath).then(() => {
               // 文件状态变为已删除
-              this.fileInfo.fileStatus = 3;
+              this.fileStatus = 3;
+              this.fileInfo.fileStatus = this.fileStatus;
               promptAction.showToast({
                 message: $r('app.string.multiple_files_download_history_toast_text_del'),
                 duration: 2000,
@@ -170,7 +175,8 @@ export default struct HistoryItem {
               fontColor: $r('app.color.multiple_files_download_del_bgc'),
               action: () => {
                 // 更改该条数据下载状态
-                this.fileInfo.fileStatus = 0;
+                this.fileStatus = 0;
+                this.fileInfo.fileStatus = this.fileStatus;
                 // 该条数据加入下载列表数组中
                 this.downloadFileArray.push(this.fileInfo);
                 // 下载历史列表删除该条数据
