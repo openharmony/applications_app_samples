@@ -1,0 +1,119 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "bluetoothSample"
+    },
+    {
+      "name": "ACCESS_BLUETOOTH",
+      "value": "允许应用接入蓝牙并使用蓝牙能力，例如配对、连接外围设备等。"
+    },
+    {
+      "name": "DISCOVER_BLUETOOTH",
+      "value": "允许应用配置本地蓝牙，查找远端设备且与之配对连接。"
+    },{
+      "name": "USE_BLUETOOTH",
+      "value": "允许应用查看蓝牙的配置。"
+    },
+    {
+      "name": "RegisterReadChar",
+      "value": "订阅读特征值"
+    },
+    {
+      "name": "RegisterWriteChar",
+      "value": "订阅写特征值"
+    },
+    {
+      "name": "RegisterReadDes",
+      "value": "订阅读描述符"
+    },
+    {
+      "name": "RegisterWriteDes",
+      "value": "订阅写描述符"
+    },
+    {
+      "name": "registerServer",
+      "value": "注册服务"
+    },
+    {
+      "name": "unRegisterServer",
+      "value": "注销服务"
+    },
+    {
+      "name": "Set_filtering_parameters",
+      "value": "设置过滤参数"
+    },
+    {
+      "name": "StartScan",
+      "value": "开始扫描"
+    },
+    {
+      "name": "StopScan",
+      "value": "停止扫描"
+    },
+    {
+      "name": "Refresh",
+      "value": "刷新"
+    },
+    {
+      "name": "DiscoverService",
+      "value": "发现服务"
+    },
+    {
+      "name": "readChar",
+      "value": "读特征值"
+    },
+    {
+      "name": "writeChar",
+      "value": "写特征值"
+    },
+    {
+      "name": "readDes",
+      "value": "读描述符"
+    },
+    {
+      "name": "writeDes",
+      "value": "写描述符"
+    },
+    {
+      "name": "disconnect",
+      "value": "断开连接"
+    },
+    {
+      "name": "startAdv",
+      "value": "开始广播"
+    },
+    {
+      "name": "stopAdv",
+      "value": "暂停广播"
+    },
+    {
+      "name": "continueAdv",
+      "value": "继续广播"
+    },
+    {
+      "name": "closeAdv",
+      "value": "关闭广播"
+    },
+    {
+      "name": "setAdv",
+      "value": "设置广播内容"
+    },
+    {
+      "name": "openBlueTooth",
+      "value": "开启蓝牙"
+    },
+    {
+      "name": "closeBlueTooth",
+      "value": "关闭蓝牙"
+    }
+  ]
+}
