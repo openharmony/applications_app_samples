@@ -72,7 +72,7 @@ export default class EntryAbility extends UIAbility {
     // 监听窗口大小变化
     this.mWindow.on('windowSizeChange', (size: window.Size) => {
       Log.showInfo(TAG, `onWindowSizeChange: size = ${JSON.stringify(size)}`);
-      AppStorage.SetOrCreate('windowSize', size);
+      AppStorage.setOrCreate('windowSize', size);
     });
 
     // 获取context
