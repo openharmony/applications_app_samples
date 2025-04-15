@@ -201,11 +201,11 @@ export class AdvertiserBluetoothViewModel {
       access.on('stateChange', (data: access.BluetoothState) => {
         Log.showInfo(TAG, `onBTStateChange: data = ${data}`);
         if (data === access.BluetoothState.STATE_ON) {
-          AppStorage.SetOrCreate('bluetoothEnable', true);
+          AppStorage.setOrCreate('bluetoothEnable', true);
           this.startAdvertiser();
         }
         if (data === access.BluetoothState.STATE_OFF) {
-          AppStorage.SetOrCreate('bluetoothEnable', false);
+          AppStorage.setOrCreate('bluetoothEnable', false);
         }
       });
     } catch (err) {
@@ -236,11 +236,11 @@ export class AdvertiserBluetoothViewModel {
           if (data.state === constant.ProfileConnectionState.STATE_CONNECTED) {
             Log.showInfo(TAG, `onConnectStateChange: Connected GATT Device.`);
             let deviceId = data.deviceId;
-            AppStorage.SetOrCreate('deviceId', deviceId);
+            AppStorage.setOrCreate('deviceId', deviceId);
             Log.showInfo(TAG, `onConnectStateChange: Connected GATT Device. deviceId = ${deviceId}`);
           } else if (data.state === constant.ProfileConnectionState.STATE_DISCONNECTED) {
             Log.showInfo(TAG, `onConnectStateChange: Disonnected GATT Device.`);
-            AppStorage.SetOrCreate('deviceId', '');
+            AppStorage.setOrCreate('deviceId', '');
           }
         }
       });

@@ -106,7 +106,7 @@ export class BluetoothViewModel {
     this.close();
 
     this.mConnectBluetoothDevice = bluetoothDevice;
-    AppStorage.SetOrCreate('connectBluetoothDevice', this.mConnectBluetoothDevice);
+    AppStorage.setOrCreate('connectBluetoothDevice', this.mConnectBluetoothDevice);
 
     this.mGattClientDevice = ble.createGattClientDevice(bluetoothDevice.deviceId);
     let ret: boolean = this.connectInner(this.mGattClientDevice);
@@ -143,7 +143,7 @@ export class BluetoothViewModel {
           this.startBLEScan();
         } else if (data === access.BluetoothState.STATE_OFF) {
           this.mAvailableDevices = [];
-          AppStorage.SetOrCreate('availableDevices', this.mAvailableDevices);
+          AppStorage.setOrCreate('availableDevices', this.mAvailableDevices);
         }
       });
     } catch (err) {
@@ -179,7 +179,7 @@ export class BluetoothViewModel {
           // deviceName里存在一些未知数据导致显示乱码，暂时使用deviceId替代
           deviceName = deviceId;
           this.mAvailableDevices.push(this.getDevice(deviceId, deviceName));
-          AppStorage.SetOrCreate('availableDevices', this.mAvailableDevices);
+          AppStorage.setOrCreate('availableDevices', this.mAvailableDevices);
         }
       })
     } catch (err) {
@@ -211,7 +211,7 @@ export class BluetoothViewModel {
           if (state === constant.ProfileConnectionState.STATE_CONNECTED) {
             Log.showInfo(TAG, `onBLEConnectionStateChange: Connected GATT server.`);
             this.mConnectBluetoothDevice.connectionState = ConnectionState.STATE_CONNECTED;
-            AppStorage.SetOrCreate('connectBluetoothDevice', this.mConnectBluetoothDevice);
+            AppStorage.setOrCreate('connectBluetoothDevice', this.mConnectBluetoothDevice);
 
             try {
               // Starts discovering services.
@@ -278,7 +278,7 @@ export class BluetoothViewModel {
       let byteArr = ArrayBufferUtils.arrayBuffer2ByteArray(characteristicValue);
       Log.showInfo(TAG, `byteArr = ${byteArr}`);
       let heartRate = byteArr[1];
-      AppStorage.SetOrCreate('heartRate', heartRate);
+      AppStorage.setOrCreate('heartRate', heartRate);
     })
   }
 
@@ -298,7 +298,7 @@ export class BluetoothViewModel {
       if (this.mConnectBluetoothDevice.connectionState === ConnectionState.STATE_CONNECTED) {
         this.mAvailableDevices.push(this.mConnectBluetoothDevice);
       }
-      AppStorage.SetOrCreate('availableDevices', this.mAvailableDevices);
+      AppStorage.setOrCreate('availableDevices', this.mAvailableDevices);
       ble.startBLEScan([{ serviceUuid: BleConstants.UUID_SERVICE_HEART_RATE }]);
       Log.showInfo(TAG, `startBLEScanInner: scan ble start`);
       this.mTimeoutID = setTimeout(() => {
@@ -334,7 +334,7 @@ export class BluetoothViewModel {
       this.onBLECharacteristicChange();
       gattClientDevice.connect();
       this.mConnectBluetoothDevice.connectionState = ConnectionState.STATE_CONNECTING;
-      AppStorage.SetOrCreate('connectBluetoothDevice', this.mConnectBluetoothDevice);
+      AppStorage.setOrCreate('connectBluetoothDevice', this.mConnectBluetoothDevice);
       return true;
     } catch (err) {
       Log.showError(TAG, `connectInner: err = ${err}`);
@@ -359,7 +359,7 @@ export class BluetoothViewModel {
         Log.showWarn(TAG, `disconnectInner: mConnectionState is ConnectionState.STATE_CONNECTED`);
         gattClientDevice.disconnect();
         this.mConnectBluetoothDevice.connectionState = ConnectionState.STATE_DISCONNECTING;
-        AppStorage.SetOrCreate('connectBluetoothDevice', this.mConnectBluetoothDevice);
+        AppStorage.setOrCreate('connectBluetoothDevice', this.mConnectBluetoothDevice);
         this.close(); // @ohos.bluetooth不会调用BLEConnectionStateChange通知disconnected成功，但是@ohos.bluetoothManager没问题
       }
     } catch (err) {
@@ -378,7 +378,7 @@ export class BluetoothViewModel {
       gattClientDevice.close();
       Log.showWarn(TAG, `closeInner: gatt close`);
       this.mConnectBluetoothDevice.connectionState = ConnectionState.STATE_DISCONNECTED;
-      AppStorage.SetOrCreate('connectBluetoothDevice', this.mConnectBluetoothDevice);
+      AppStorage.setOrCreate('connectBluetoothDevice', this.mConnectBluetoothDevice);
       this.release();
     } catch (err) {
       Log.showError(TAG, `closeInner: err = ${err}`);
