@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,9 +16,9 @@
 import router from '@ohos.router'
 import Http from '../model/http'
 
-AppStorage.SetOrCreate('receiveSize', 0)
-AppStorage.SetOrCreate('totalSize', 0)
-AppStorage.SetOrCreate('dataLength', 0)
+AppStorage.setOrCreate('receiveSize', 0)
+AppStorage.setOrCreate('totalSize', 0)
+AppStorage.setOrCreate('dataLength', 0)
 
 @Entry
 @Component
@@ -62,13 +62,12 @@ export struct setting {
     this.resultInfo = context.resourceManager.getStringSync($r('app.string.result').id)
     setInterval(() => {
       if (Http.url !== '') {
-        this.result = "\r\nThe length of the data received by this callback: " +
-        JSON.stringify(AppStorage.Get('dataLength') as number) +
-        "\r\n" + "The length of the data received: " +
-        JSON.stringify(AppStorage.Get('receiveSize') as number) + "\r\n" + "Total length of data: " +
-        JSON.stringify(AppStorage.Get('totalSize') as number) + "\r\n" + "Percentage: " +
-        JSON.stringify(Math.floor((AppStorage.Get('receiveSize') as number) /
-        (AppStorage.Get('totalSize') as number) * 10000) / 100) + '%'
+        this.result = '\r\n\The length of the data received by this callback: ' +
+        JSON.stringify(AppStorage.get('dataLength') as number) + '\r\n' + 'The length of the data received: ' +
+        JSON.stringify(AppStorage.get('receiveSize') as number) + '\r\n' + 'Total length of data: ' +
+        JSON.stringify(AppStorage.get('totalSize') as number) + '\r\n' + 'Percentage: ' +
+        JSON.stringify(Math.floor((AppStorage.get('receiveSize') as number) /
+        (AppStorage.get('totalSize') as number) * 10000) / 100) + '%'
       } else {
         this.result = 'Failed'
       }
@@ -215,9 +214,9 @@ export struct setting {
           Button($r('app.string.back'))
             .fontSize(25)
             .onClick(() => {
-              AppStorage.SetOrCreate('receiveData', 0)
-              AppStorage.SetOrCreate('totalSize', 0)
-              AppStorage.SetOrCreate('dataLength', 0)
+              AppStorage.setOrCreate('receiveData', 0)
+              AppStorage.setOrCreate('totalSize', 0)
+              AppStorage.setOrCreate('dataLength', 0)
               this.url = ''
               this.flag = 1
               this.keys = []
