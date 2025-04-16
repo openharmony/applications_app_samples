@@ -72,7 +72,7 @@ export default function IndexTest() {
      */
     it('testProgressIncrease', 0, async (done: Function) => {
       console.info('ProgressTest: testProgressIncrease begin');
-      const increaseBtn = await driver.findComponent(ON.text('进度条+5'));
+      const increaseBtn = await driver.findComponent(ON.text('progress add 5'));
       expect(increaseBtn === null).assertFalse();
       await increaseBtn.click();
       await driver.delayMs(500);
@@ -87,11 +87,11 @@ export default function IndexTest() {
      */
     it('testProgressDecrease', 0, async (done: Function) => {
       console.info('ProgressTest: testProgressDecrease begin');
-      const increaseBtn = await driver.findComponent(ON.text('进度条+5'));
+      const increaseBtn = await driver.findComponent(ON.text('progress add 5'));
       await increaseBtn.click();
       await increaseBtn.click();
       await driver.delayMs(500);
-      const decreaseBtn = await driver.findComponent(ON.text('进度条-5'));
+      const decreaseBtn = await driver.findComponent(ON.text('progress reduce 5'));
       expect(decreaseBtn === null).assertFalse();
       await decreaseBtn.click();
       await driver.delayMs(500);
@@ -106,13 +106,13 @@ export default function IndexTest() {
      */
     it('testProgressMaxValue', 0, async (done: Function) => {
       console.info('ProgressTest: testProgressMaxValue begin');
-      const increaseBtn = await driver.findComponent(ON.text('进度条+5'));
+      const increaseBtn = await driver.findComponent(ON.text('progress add 5'));
       for (let i = 0; i < 25; i++) {
         await increaseBtn.click();
         await driver.delayMs(100);
       }
       await driver.delayMs(500);
-      const decreaseBtn = await driver.findComponent(ON.text('进度条-5'));
+      const decreaseBtn = await driver.findComponent(ON.text('progress reduce 5'));
       expect(decreaseBtn === null).assertFalse();
       await decreaseBtn.click();
       await driver.delayMs(500);

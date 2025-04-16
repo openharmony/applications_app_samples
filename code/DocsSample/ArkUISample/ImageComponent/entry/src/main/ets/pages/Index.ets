@@ -23,38 +23,38 @@ interface listItem {
 
 let demandList: listItem[] = [
   {
-    name: "设置图片缩放类型",
-    description: "通过objectFit属性使图片缩放到高度和宽度确定的框内",
+    name: "SetImageZoomType",
+    description: "Scale the image to a box with a determined height and width using the objectFit attribute",
     router: "pages/SetImageZoomType",
   },
   {
-    name: "图片插值",
-    description: "当原图分辨率较低并且放大显示时，图片会模糊出现锯齿。这时可以使用interpolation属性对图片进行插值，使图片显示得更清晰",
+    name: "ImageInterpolation",
+    description: "Interpolate the image using the interpolation property to make it appear clearer",
     router: "pages/ImageInterpolation",
   },
   {
-    name: "设置图片重复样式",
-    description: "通过objectRepeat属性设置图片的重复样式方式，重复样式请参考ImageRepeat枚举说明",
+    name: "SetImageRepetitionStyle",
+    description: "Set the repetition style of the image through the objectRepeat property",
     router: "pages/SetImageRepetitionStyle",
   },
   {
-    name: "设置图片渲染模式",
-    description: "通过renderMode属性设置图片的渲染模式为原色或黑白",
+    name: "SetImageRenderingMode",
+    description: "primary color or black and white through the renderMode property",
     router: "pages/SetImageRenderingMode",
   },
   {
-    name: "设置图片解码尺寸",
-    description: "通过sourceSize属性设置图片解码尺寸，降低图片的分辨率",
+    name: "SetImageDecodingSize",
+    description: "Set image decoding size to reduce image resolution",
     router: "pages/SetImageDecodingSize",
   },
   {
-    name: "为图片添加滤镜效果",
-    description: "通过colorFilter修改图片的像素颜色，为图片添加滤镜",
+    name: "AddFilterEffectsToImages",
+    description: "Modify the pixel color of the image and add filters to the image",
     router: "pages/AddFilterEffectsToImages",
   },
   {
-    name: "事件调用",
-    description: "通过在Image组件上绑定onComplete事件，图片加载成功后可以获取图片的必要信息",
+    name: "EventCall",
+    description: "After the image is successfully loaded, necessary information about the image can be obtained",
     router: "pages/EventCall",
   },
 ]
