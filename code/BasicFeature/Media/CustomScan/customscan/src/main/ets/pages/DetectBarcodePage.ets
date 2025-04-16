@@ -53,12 +53,19 @@ export struct DetectBarcodePage {
       Web({ src: this.urlForShow, controller: this.webController })
         .width('100%')
         .height('100%')
+        .mixedMode(MixedMode.All)
         .expandSafeArea([SafeAreaType.SYSTEM],[SafeAreaEdge.BOTTOM])
+        .onLoadIntercept((event) => {
+          const requestUrl = event.data.getRequestUrl();
+          if (!requestUrl.startsWith('http')) {
+            return true;
+          }
+
+          return false;
+        })
         .onErrorReceive((event) => {
           if (event) {
             logger.error('[customscan]', `errorInfo: ${event.error.getErrorInfo()} errorCode: ${event.error.getErrorCode()}`)
-            this.detectResult = this.urlForShow;
-            this.urlForShow = '';
           }
         })
     } else {
