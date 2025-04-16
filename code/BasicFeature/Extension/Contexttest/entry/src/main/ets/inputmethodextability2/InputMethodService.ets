@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,6 +17,7 @@ import fs from '@ohos.file.fs';
 import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
 import keyboardController1 from './model/KeyboardController1';
 import Want from '@ohos.app.ability.Want';
+import { logger } from '../utils/Logger';
 
 export default class InputDemo2Service extends InputMethodExtensionAbility {
   onCreate(want: Want): void {
@@ -30,14 +31,14 @@ export default class InputDemo2Service extends InputMethodExtensionAbility {
     try {
       fs.openSync(filesDir + '/inputtest1.txt', fs.OpenMode.READ_WRITE);
     } catch (e) {
-      console.log(`input openSync module err: ${JSON.stringify(e)}`);
+      logger.error(`input openSync module err: ${JSON.stringify(e)}`);
     }
 
     //预期结果，无法读写
     try {
       fs.openSync(filesDir2 + '/inputtest2.txt', fs.OpenMode.READ_WRITE);
     } catch (e) {
-      console.log(`input openSync app err: ${JSON.stringify(e)}`);
+      logger.error(`input openSync app err: ${JSON.stringify(e)}`);
     }
   }
 

@@ -45,11 +45,11 @@
       "value": "label"
     },
     {
-      "name": "SharedFileSuccess",
+      "name": "CreateShareFileText1",
       "value": "创建\"test1\"共享文件"
     },
     {
-      "name": "SharedFileFail",
+      "name": "CreateShareFileText2",
       "value": "创建\"test2\"共享文件"
     },
     {

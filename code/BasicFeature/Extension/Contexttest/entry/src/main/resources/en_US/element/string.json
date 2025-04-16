@@ -45,12 +45,12 @@
       "value": "label"
     },
     {
-      "name": "SharedFileSuccess",
-      "value": "创建\"test1\"共享文件"
+      "name": "CreateShareFileText1",
+      "value": "Create a 'test1' shared file"
     },
     {
-      "name": "SharedFileFail",
-      "value": "创建\"test2\"共享文件"
+      "name": "CreateShareFileText2",
+      "value": "Create a 'test2' shared file"
     },
     {
       "name": "InterviewModuleExtension",

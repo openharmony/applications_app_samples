@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,6 +17,7 @@ import buffer from '@ohos.buffer';
 import common from '@ohos.app.ability.common';
 import promptAction from '@ohos.promptAction';
 import fs, { ReadOptions } from '@ohos.file.fs';
+import { logger } from '../utils/Logger';
 
 // 获取应用文件路径
 let context = getContext(this) as common.UIAbilityContext;
@@ -38,7 +39,7 @@ struct Index {
           .textAlign(TextAlign.Start)
           .margin({ bottom: 100 })
 
-        Button($r('app.string.SharedFileSuccess'))
+        Button($r('app.string.CreateShareFileText1'))
           .onClick(() => {
             let filesDir = '';
             try {
@@ -49,10 +50,10 @@ struct Index {
                     duration: 2000,
                     bottom: 464
                   })
-                  console.error(`getGroupDir faile, err: ${JSON.stringify(err)}`);
+                  logger.error(`getGroupDir faile, err: ${JSON.stringify(err)}`);
                 } else {
                   filesDir = data;
-                  console.log(`getGroupDir result is: ${JSON.stringify(data)}`);
+                  logger.info(`getGroupDir result is: ${JSON.stringify(data)}`);
                   let file = fs.openSync(filesDir + '/groupTest1.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
                   // 写入一段内容至文件
                   let writeLen = fs.writeSync(file.fd, 'Try to write str.');
@@ -65,7 +66,7 @@ struct Index {
                   let readLen = fs.readSync(file.fd, arrayBuffer, readOptions);
                   //创建新的buffer对象
                   let buf = buffer.from(arrayBuffer, 0, readLen);
-                  console.info('the content of file:' + buf.toString());
+                  logger.info('the content of file:' + buf.toString());
                   promptAction.showToast({
                     message: $r('app.string.CreatedSuccess'),
                     duration: 2000,
@@ -76,7 +77,7 @@ struct Index {
                 }
               });
             } catch (e) {
-              console.log(`getGroupDir err: ${JSON.stringify(e)}`);
+              logger.error(`getGroupDir err: ${JSON.stringify(e)}`);
             }
           })
           .margin({ bottom: 24 })
@@ -87,7 +88,7 @@ struct Index {
           .fontWeight(500)
           .width('90%')
 
-        Button($r('app.string.SharedFileFail'))
+        Button($r('app.string.CreateShareFileText2'))
           .onClick(() => {
             let filesDir = '';
             try {
@@ -98,14 +99,14 @@ struct Index {
                     duration: 2000,
                     bottom: 530
                   })
-                  console.error(`getGroupDir faile, err: ${JSON.stringify(err)}`);
+                  logger.error(`getGroupDir faile, err: ${JSON.stringify(err)}`);
                 } else {
                   filesDir = data;
-                  console.log(`getGroupDir result is: ${JSON.stringify(data)}`);
+                  logger.info(`getGroupDir result is: ${JSON.stringify(data)}`);
                   let file = fs.openSync(filesDir + '/groupTest2.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
                   // 写入一段内容至文件
                   let writeLen = fs.writeSync(file.fd, 'Try to write str.');
-                  console.info('The length of str is:' + writeLen);
+                  logger.info('The length of str is:' + writeLen);
                   // 从文件读取一段内容
                   let arrayBuffer = new ArrayBuffer(1024);
                   let readOptions: ReadOptions = {
@@ -114,7 +115,7 @@ struct Index {
                   };
                   let readLen = fs.readSync(file.fd, arrayBuffer, readOptions);
                   let buf = buffer.from(arrayBuffer, 0, readLen);
-                  console.info('the content of file:' + buf.toString());
+                  logger.info('the content of file:' + buf.toString());
                   promptAction.showToast({
                     message: $r('app.string.CreatedSuccess'),
                     duration: 2000,
@@ -125,7 +126,7 @@ struct Index {
                 }
               });
             } catch (e) {
-              console.log(`getGroupDir err: ${JSON.stringify(e)}`);
+              logger.error(`getGroupDir err: ${JSON.stringify(e)}`);
             }
           })
           .margin({ bottom: 24 })
@@ -152,7 +153,7 @@ struct Index {
                 duration: 2000,
                 bottom: 530
               })
-              console.log(`openSync err: ${JSON.stringify(e)}`);
+              logger.error(`openSync err: ${JSON.stringify(e)}`);
               this.Message = 'moduleFailed';
             }
           })
@@ -180,7 +181,7 @@ struct Index {
                 duration: 2000,
                 bottom: 530
               })
-              console.log(`openSync err: ${JSON.stringify(e)}`);
+              logger.error(`openSync err: ${JSON.stringify(e)}`);
               this.Message = 'appFailed';
             }
           })
