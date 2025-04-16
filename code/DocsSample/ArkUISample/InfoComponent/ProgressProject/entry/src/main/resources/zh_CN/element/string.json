@@ -14,7 +14,7 @@
     },
 	{
       "name": "ProgressProject",
-      "value": "进度条"
+      "value": "progress"
     },
     {
       "name": "Linear_Progress",
@@ -38,11 +38,11 @@
     },
     {
       "name": "progress_add",
-      "value": "进度条+5"
+      "value": "progress add 5"
     },
     {
       "name": "progress_reduce",
-      "value": "进度条-5"
+      "value": "progress reduce 5"
     }
   ]
 }

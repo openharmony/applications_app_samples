@@ -49,7 +49,7 @@ export default function IndexTest() {
       console.info('ImageTest: testHomePageLoad begin');
 
       // 验证标题存在
-      const title = await driver.findComponent(ON.text('图片显示'));
+      const title = await driver.findComponent(ON.text('Show Image'));
       expect(title === null).assertFalse();
 
       // 验证列表存在
@@ -69,7 +69,7 @@ export default function IndexTest() {
       console.info('ImageTest: testImageZoomNavigation begin');
 
       // 点击"设置图片缩放类型"项
-      const zoomItem = await driver.findComponent(ON.text('设置图片缩放类型'));
+      const zoomItem = await driver.findComponent(ON.text('SetImageZoomType'));
       expect(zoomItem === null).assertFalse();
       await zoomItem.click();
       await driver.delayMs(1000);
@@ -95,7 +95,7 @@ export default function IndexTest() {
       console.info('ImageTest: testImageInterpolationNavigation begin');
 
       // 点击"图片插值"项
-      const interpolationItem = await driver.findComponent(ON.text('图片插值'));
+      const interpolationItem = await driver.findComponent(ON.text('ImageInterpolation'));
       expect(interpolationItem === null).assertFalse();
       await interpolationItem.click();
       await driver.delayMs(1000);
@@ -121,7 +121,7 @@ export default function IndexTest() {
       console.info('ImageTest: testSetImageRepetitionStyle begin');
 
       // 点击"设置图片重复样式"项
-      const interpolationItem = await driver.findComponent(ON.text('设置图片重复样式'));
+      const interpolationItem = await driver.findComponent(ON.text('SetImageRepetitionStyle'));
       expect(interpolationItem === null).assertFalse();
       await interpolationItem.click();
       await driver.delayMs(1000);
@@ -147,7 +147,7 @@ export default function IndexTest() {
       console.info('ImageTest: testSetImageRenderingMode begin');
 
       // 点击"设置图片渲染模式"项
-      const interpolationItem = await driver.findComponent(ON.text('设置图片渲染模式'));
+      const interpolationItem = await driver.findComponent(ON.text('SetImageRenderingMode'));
       expect(interpolationItem === null).assertFalse();
       await interpolationItem.click();
       await driver.delayMs(1000);
@@ -176,7 +176,7 @@ export default function IndexTest() {
       const startTime = new Date().getTime();
 
       // 点击第一个项目
-      const firstItem = await driver.findComponent(ON.text('设置图片缩放类型'));
+      const firstItem = await driver.findComponent(ON.text('SetImageZoomType'));
       await firstItem.click();
 
       // 等待新页面加载完成
