@@ -1,0 +1,48 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "video_trimmer_tab_title_font_color",
+      "value": "#0a59f7"
+    },
+    {
+      "name": "video_trimmer_tab_title_font_color_change",
+      "value": "#898585"
+    },
+    {
+      "name": "video_trimmer_list_detail_color",
+      "value": "#0E0B07"
+    },
+    {
+      "name": "video_trimmer_frame_bg_color",
+      "value": "#000000"
+    },
+    {
+      "name": "video_trimmer_cancel",
+      "value": "#c71d23"
+    },
+    {
+      "name": "video_trimmer_confirm",
+      "value": "#5bb8f7"
+    },
+    {
+      "name": "video_trimmer_finish_color",
+      "value": "#FF669900"
+    },
+    {
+      "name": "video_trimmer_label_color",
+      "value": "#59595980"
+    },
+    {
+      "name": "video_trimmer_text_normal",
+      "value": "#182431"
+    },
+    {
+      "name": "video_trimmer_save_background",
+      "value": "#ff9900"
+    }
+  ]
+}
