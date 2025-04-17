@@ -58,66 +58,82 @@ export default function nodeAPIBufferTest() {
     })
 
     /**
-     * 点击按钮，调用napiCreateExternalBuffer相关函数
+     * 点击按钮，调用napiCreateBufferCopy相关函数
      */
     it('testNodeAPIBuffer002', 0, async (done: Function) => {
       console.info('uitest: testNodeAPIBuffer002 begin');
       const driver = Driver.create();
       await driver.delayMs(1000);
-      const text = await driver.findComponent(ON.text('2.napiCreateExternalBuffer'));
+      const text = await driver.findComponent(ON.text('2.napiCreateBufferCopy'));
+      await driver.delayMs(1000);
+      await text.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('Result: napiCreateBufferCopySuccess'));
+      console.info('uitest: testNodeAPIBuffer002 end');
+      done();
+    })
+
+    /**
+     * 点击按钮，调用napiCreateExternalBuffer相关函数
+     */
+    it('testNodeAPIBuffer003', 0, async (done: Function) => {
+      console.info('uitest: testNodeAPIBuffer003 begin');
+      const driver = Driver.create();
+      await driver.delayMs(1000);
+      const text = await driver.findComponent(ON.text('3.napiCreateExternalBuffer'));
       await driver.delayMs(1000);
       await text.click();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Result: napiCreateExternalBufferSuccess'));
-      console.info('uitest: testNodeAPIBuffer002 end');
+      console.info('uitest: testNodeAPIBuffer003 end');
       done();
     })
 
     /**
      * 点击按钮，调用napiGetBufferInfo相关函数
      */
-    it('testNodeAPIBuffer003', 0, async (done: Function) => {
-      console.info('uitest: testNodeAPIBuffer003 begin');
+    it('testNodeAPIBuffer004', 0, async (done: Function) => {
+      console.info('uitest: testNodeAPIBuffer004 begin');
       const driver = Driver.create();
       await driver.delayMs(1000);
-      const text = await driver.findComponent(ON.text('3.napiGetBufferInfo'));
+      const text = await driver.findComponent(ON.text('4.napiGetBufferInfo'));
       await driver.delayMs(1000);
       await text.click();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Result: napiGetBufferInfoSuccess'));
-      console.info('uitest: testNodeAPIBuffer003 end');
+      console.info('uitest: testNodeAPIBuffer004 end');
       done();
     })
 
     /**
      * 点击按钮，调用napiIsBuffer相关函数
      */
-    it('testNodeAPIBuffer004', 0, async (done: Function) => {
-      console.info('uitest: testNodeAPIBuffer004 begin');
+    it('testNodeAPIBuffer005', 0, async (done: Function) => {
+      console.info('uitest: testNodeAPIBuffer005 begin');
       const driver = Driver.create();
       await driver.delayMs(1000);
-      const text = await driver.findComponent(ON.text('4.napiIsBuffer'));
+      const text = await driver.findComponent(ON.text('5.napiIsBuffer'));
       await driver.delayMs(1000);
       await text.click();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Result: napiIsBufferSuccess'));
-      console.info('uitest: testNodeAPIBuffer004 end');
+      console.info('uitest: testNodeAPIBuffer005 end');
       done();
     })
 
     /**
      * 点击按钮，调用napiCreateExternalArraybuffer相关函数
      */
-    it('testNodeAPIBuffer005', 0, async (done: Function) => {
-      console.info('uitest: testNodeAPIBuffer005 begin');
+    it('testNodeAPIBuffer006', 0, async (done: Function) => {
+      console.info('uitest: testNodeAPIBuffer006 begin');
       const driver = Driver.create();
       await driver.delayMs(1000);
-      const text = await driver.findComponent(ON.text('5.napiCreateExternalArraybuffer'));
+      const text = await driver.findComponent(ON.text('6.napiCreateExternalArraybuffer'));
       await driver.delayMs(1000);
       await text.click();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Result: napiCreateExternalArraybufferSuccess'));
-      console.info('uitest: testNodeAPIBuffer005 end');
+      console.info('uitest: testNodeAPIBuffer006 end');
       done();
     })
   })
