@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -21,7 +21,7 @@ import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    console.log('entryAbility onCreate going');
+    hilog.info(0x0000, 'testTag', '%{public}s','entryAbility onCreate going');
     let bundleCodeDir = this.context.bundleCodeDir;
     // data/sto
     let bundleCodeDir2 = this.context.getApplicationContext().bundleCodeDir;
