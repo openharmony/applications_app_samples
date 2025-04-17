@@ -36,20 +36,38 @@ struct Index {
   build() {
     Column({ space: 5 }) {
       Text(this.message)
-        .fontSize(25)
-        .fontWeight(FontWeight.Bold)
+        .fontWeight(FontWeight.Regular)
+        .fontSize($r('sys.float.ohos_id_text_size_body1'))
+        .fontColor($r('sys.color.ohos_id_color_text_primary'))
+        .maxLines(Infinity)
+        .textAlign(TextAlign.Start)
       Button($r('app.string.x25519'))
-        .width('70%')
+        .padding('12vp')
+        .height('40vp')
+        .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+        .backgroundColor($r('sys.color.ohos_id_color_emphasize'))
+        .fontSize('14sp')
+        .fontColor('#ffffff')
         .onClick(() => {
           this.goToSample('pages/X25519')
         })
       Button($r('app.string.dh'))
-        .width('70%')
+        .padding('12vp')
+        .height('40vp')
+        .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+        .backgroundColor($r('sys.color.ohos_id_color_emphasize'))
+        .fontSize('14sp')
+        .fontColor('#ffffff')
         .onClick(() => {
           this.goToSample('pages/DH')
         })
       Button($r('app.string.call_cpp_agree_key'))
-        .width('70%')
+        .padding('12vp')
+        .height('40vp')
+        .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+        .backgroundColor($r('sys.color.ohos_id_color_emphasize'))
+        .fontSize('14sp')
+        .fontColor('#ffffff')
         .onClick(() => {
           let ret: number = testNapi.agreeKey();
           this.message = 'Call C/C++ Result: ' + ret.toString();
