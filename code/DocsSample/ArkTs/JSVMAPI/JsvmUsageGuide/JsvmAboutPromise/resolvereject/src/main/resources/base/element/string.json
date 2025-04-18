@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "ResolverejectAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "ResolverejectAbility_label",
+      "value": "JsvmAboutPromise"
+    }
+  ]
+}
