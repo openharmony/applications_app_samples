@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "DefineclassAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "DefineclassAbility_label",
+      "value": "JsvmAboutClass"
+    }
+  ]
+}
