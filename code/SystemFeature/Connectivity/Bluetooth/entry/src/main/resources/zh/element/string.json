@@ -71,6 +71,18 @@
     {
       "name": "no_relevant_devices_found",
       "value": "没有搜到相关设备~"
+    },
+    {
+      "name": "pair_tips_1",
+      "value": "要与您配对。请确认此配对码已在"
+    },
+    {
+      "name": "pair_tips_2",
+      "value": "上直接显示，且不是手动输入的"
+    },
+    {
+      "name": "grant_access_bluetooth",
+      "value": "允许应用接入蓝牙并使用蓝牙能力，例如配对、连接外围设备等"
     }
   ]
 }

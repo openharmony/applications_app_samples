@@ -71,6 +71,18 @@
     {
       "name": "no_relevant_devices_found",
       "value": "No relevant devices found~"
+    },
+    {
+      "name": "pair_tips_1",
+      "value": "To pair with you. Please confirm that this pairing code has been directly displayed on"
+    },
+    {
+      "name": "pair_tips_2",
+      "value": "and is not manually entered"
+    },
+    {
+      "name": "grant_access_bluetooth",
+      "value": "Apply bluetooth permission"
     }
   ]
 }

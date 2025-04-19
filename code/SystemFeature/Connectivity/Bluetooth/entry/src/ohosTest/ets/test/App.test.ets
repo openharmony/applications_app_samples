@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,10 +15,10 @@
 
 import { describe, it, expect } from '@ohos/hypium';
 import { Driver, ON, Component } from '@ohos.UiTest';
-import bluetoothManager from '@ohos.bluetoothManager';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import Logger from '../util/Logger';
+import access from '@ohos.bluetooth.access';
 
 const TAG = 'AppTest';
 const BUNDLE = 'Bluetooth_';
@@ -27,16 +27,16 @@ let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator();
 let ability: UIAbility;
 
 export default function appTest() {
-  describe('appTest', function () {
+  describe('appTest', () => {
     // 启动应用
-    it(BUNDLE + 'StartAbility_001', 0, async function (done) {
+    it(BUNDLE + 'StartAbility_001', 0, async (done: Function) => {
       Logger.info(TAG, `${BUNDLE}StartAbility start`);
-      let want = {
-        bundleName: 'ohos.samples.bluetooth',
-        abilityName: 'MainAbility'
-      }
-      abilityDelegatorRegistry.startAbility(want, (err) => {
-        Logger.info(TAG, `${BUNDLE}StartAbility get err ${JSON.stringify(err)}`);
+      abilityDelegatorRegistry.startAbility(
+        {
+          bundleName: 'ohos.samples.bluetooth',
+          abilityName: 'MainAbility'
+        }, (err) => {
+        Logger.error(TAG, `${BUNDLE}StartAbility get err ${JSON.stringify(err)}`);
         done();
       });
       ability = await abilityDelegatorRegistry.getCurrentTopAbility();
@@ -46,26 +46,30 @@ export default function appTest() {
     it(`${BUNDLE}OpenBlueTooth_001`, 0, async () => {
       Logger.info(TAG, `${BUNDLE}OpenBlueTooth_001 begin`);
       await driver.delayMs(3000);
-      // 点击允许，应用获取设备位置
       let resourceManager = ability.context.resourceManager;
-      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.only_accept_during_use'))));
-      let addBtn = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.only_accept_during_use'))));
+      // 请求蓝牙权限
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.accept'))));
+      let permissionBtn1 = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.accept'))));
+      await permissionBtn1.click();
       await driver.delayMs(1000);
-      await addBtn.click();
+      // 请求位置权限
+      await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.only_accept_during_use'))));
+      let permissionBtn2 = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.only_accept_during_use'))));
+      await permissionBtn2.click();
       await driver.delayMs(1000);
       // 打开蓝牙开关
       try {
-        let blueToothState = bluetoothManager.getState();
+        let blueToothState = access.getState();
         if (!blueToothState) {
           await driver.assertComponentExist(ON.id('toggleBtn'));
           let blueTooth = await driver.findComponent(ON.id('toggleBtn'));
           await driver.delayMs(1000);
           await blueTooth.click();
           await driver.delayMs(3000);
-          blueToothState = bluetoothManager.getState();
+          blueToothState = access.getState();
           await driver.delayMs(3000);
-          if(!blueToothState){
-            Logger.info(TAG,'Failed to open');
+          if (!blueToothState) {
+            Logger.error(TAG, 'Failed to open');
             expect().assertFail();
           }
         }
@@ -79,13 +83,13 @@ export default function appTest() {
       Logger.info(TAG, `${BUNDLE}MatchingDevices_001 begin`);
       await driver.delayMs(3000);
       // 获取识别到的数据
-      if(await driver.findComponent(ON.id(`pairedDevice0`))){
+      if (await driver.findComponent(ON.id(`pairedDevice0`))) {
         let pairedDevice = await driver.findComponent(ON.id(`pairedDevice0`));
         await driver.delayMs(1000);
         await pairedDevice.click();
         await driver.delayMs(1000);
         let resourceManager = ability.context.resourceManager;
-        if(await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.match_request'))))){
+        if (await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.match_request'))))) {
           await driver.assertComponentExist(ON.text(await resourceManager.getStringValue($r('app.string.match'))));
           let pairBtn = await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.match'))));
           await driver.delayMs(1000);
