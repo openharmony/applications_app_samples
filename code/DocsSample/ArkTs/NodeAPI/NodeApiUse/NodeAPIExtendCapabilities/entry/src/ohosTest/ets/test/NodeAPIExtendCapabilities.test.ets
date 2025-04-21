@@ -42,260 +42,276 @@ export default function nodeAPIExtendCapabilitiesTest() {
     })
 
     /**
-     * 点击，调用napiCreateObjectWithProperties相关函数
+     * 点击，调用napiLoadModule相关函数
      */
     it('testNodeAPIExtendCapabilities001', 0, async (done: Function) => {
       console.info('uitest: testNodeAPIExtendCapabilities001 begin');
       const driver = Driver.create();
       await driver.delayMs(1000);
-      const text = await driver.findComponent(ON.text('1.napiCreateObjectWithProperties'));
+      const text = await driver.findComponent(ON.text('1.napiLoadModule'));
+      await driver.delayMs(1000);
+      await text.click();
+      await driver.delayMs(1000);
+      await driver.assertComponentExist(ON.text('Result: napiLoadModuleSuccess'));
+      console.info('uitest: testNodeAPIExtendCapabilities001 end');
+      done();
+    })
+
+    /**
+     * 点击，调用napiCreateObjectWithProperties相关函数
+     */
+    it('testNodeAPIExtendCapabilities002', 0, async (done: Function) => {
+      console.info('uitest: testNodeAPIExtendCapabilities002 begin');
+      const driver = Driver.create();
+      await driver.delayMs(1000);
+      const text = await driver.findComponent(ON.text('2.napiCreateObjectWithProperties'));
       await driver.delayMs(1000);
       await text.click();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Result: napiCreateObjectWithPropertiesSuccess'));
-      console.info('uitest: testNodeAPIExtendCapabilities001 end');
+      console.info('uitest: testNodeAPIExtendCapabilities002 end');
       done();
     })
 
     /**
      * 点击，调用napiCreateObjectWithNamedProperties相关函数
      */
-    it('testNodeAPIExtendCapabilities002', 0, async (done: Function) => {
-      console.info('uitest: testNodeAPIExtendCapabilities002 begin');
+    it('testNodeAPIExtendCapabilities003', 0, async (done: Function) => {
+      console.info('uitest: testNodeAPIExtendCapabilities003 begin');
       const driver = Driver.create();
       await driver.delayMs(1000);
-      const text = await driver.findComponent(ON.text('2.napiCreateObjectWithNamedProperties'));
+      const text = await driver.findComponent(ON.text('3.napiCreateObjectWithNamedProperties'));
       await driver.delayMs(1000);
       await text.click();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Result: napiCreateObjectWithNamedPropertiesSuccess'));
-      console.info('uitest: testNodeAPIExtendCapabilities002 end');
+      console.info('uitest: testNodeAPIExtendCapabilities003 end');
       done();
     })
 
     /**
      * 点击，调用napiRunScriptPath相关函数
      */
-    it('testNodeAPIExtendCapabilities003', 0, async (done: Function) => {
-      console.info('uitest: testNodeAPIExtendCapabilities003 begin');
+    it('testNodeAPIExtendCapabilities004', 0, async (done: Function) => {
+      console.info('uitest: testNodeAPIExtendCapabilities004 begin');
       const driver = Driver.create();
       await driver.delayMs(1000);
-      const text = await driver.findComponent(ON.text('3.napiRunScriptPath'));
+      const text = await driver.findComponent(ON.text('4.napiRunScriptPath'));
       await driver.delayMs(1000);
       await text.click();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Result: napiRunScriptPathSuccess'));
-      console.info('uitest: testNodeAPIExtendCapabilities003 end');
+      console.info('uitest: testNodeAPIExtendCapabilities004 end');
       done();
     })
 
     /**
      * 点击，调用napiCoerceToNativeBindingObject相关函数
      */
-    it('testNodeAPIExtendCapabilities004', 0, async (done: Function) => {
-      console.info('uitest: testNodeAPIExtendCapabilities004 begin');
+    it('testNodeAPIExtendCapabilities005', 0, async (done: Function) => {
+      console.info('uitest: testNodeAPIExtendCapabilities005 begin');
       const driver = Driver.create();
       await driver.delayMs(1000);
-      const text = await driver.findComponent(ON.text('4.napiCoerceToNativeBindingObject'));
+      const text = await driver.findComponent(ON.text('5.napiCoerceToNativeBindingObject'));
       await driver.delayMs(1000);
       await text.click();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Result: napiCoerceToNativeBindingObjectSuccess'));
-      console.info('uitest: testNodeAPIExtendCapabilities004 end');
+      console.info('uitest: testNodeAPIExtendCapabilities005 end');
       done();
     })
 
     /**
      * 点击，调用napiAboutSerialize相关函数
      */
-    it('testNodeAPIExtendCapabilities005', 0, async (done: Function) => {
-      console.info('uitest: testNodeAPIExtendCapabilities005 begin');
+    it('testNodeAPIExtendCapabilities006', 0, async (done: Function) => {
+      console.info('uitest: testNodeAPIExtendCapabilities006 begin');
       const driver = Driver.create();
       await driver.delayMs(1000);
-      const text = await driver.findComponent(ON.text('5.napiAboutSerialize'));
+      const text = await driver.findComponent(ON.text('6.napiAboutSerialize'));
       await driver.delayMs(1000);
       await text.click();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Result: napiAboutSerializeSuccess'));
-      console.info('uitest: testNodeAPIExtendCapabilities005 end');
+      console.info('uitest: testNodeAPIExtendCapabilities006 end');
       done();
     })
 
     /**
      * 点击，调用napiIsSendable相关函数
      */
-    it('testNodeAPIExtendCapabilities006', 0, async (done: Function) => {
-      console.info('uitest: testNodeAPIExtendCapabilities006 begin');
+    it('testNodeAPIExtendCapabilities007', 0, async (done: Function) => {
+      console.info('uitest: testNodeAPIExtendCapabilities007 begin');
       const driver = Driver.create();
       await driver.delayMs(1000);
-      const text = await driver.findComponent(ON.text('6.napiIsSendable'));
+      const text = await driver.findComponent(ON.text('7.napiIsSendable'));
       await driver.delayMs(1000);
       await text.click();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Result: napiIsSendableSuccess'));
-      console.info('uitest: testNodeAPIExtendCapabilities006 end');
+      console.info('uitest: testNodeAPIExtendCapabilities007 end');
       done();
     })
 
     /**
      * 点击，调用napiDefineSendableClass相关函数
      */
-    it('testNodeAPIExtendCapabilities007', 0, async (done: Function) => {
-      console.info('uitest: testNodeAPIExtendCapabilities007 begin');
+    it('testNodeAPIExtendCapabilities008', 0, async (done: Function) => {
+      console.info('uitest: testNodeAPIExtendCapabilities008 begin');
       const driver = Driver.create();
       await driver.delayMs(1000);
-      const text = await driver.findComponent(ON.text('7.napiDefineSendableClass'));
+      const text = await driver.findComponent(ON.text('8.napiDefineSendableClass'));
       await driver.delayMs(1000);
       await text.click();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Result: napiDefineSendableClassSuccess'));
-      console.info('uitest: testNodeAPIExtendCapabilities007 end');
+      console.info('uitest: testNodeAPIExtendCapabilities008 end');
       done();
     })
 
     /**
      * 点击，调用napiCreateSendableObjectWithProperties相关函数
      */
-    it('testNodeAPIExtendCapabilities008', 0, async (done: Function) => {
-      console.info('uitest: testNodeAPIExtendCapabilities008 begin');
+    it('testNodeAPIExtendCapabilities009', 0, async (done: Function) => {
+      console.info('uitest: testNodeAPIExtendCapabilities009 begin');
       const driver = Driver.create();
       await driver.delayMs(1000);
-      const text = await driver.findComponent(ON.text('8.napiCreateSendableObjectWithProperties'));
+      const text = await driver.findComponent(ON.text('9.napiCreateSendableObjectWithProperties'));
       await driver.delayMs(1000);
       await text.click();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Result: napiCreateSendableObjectWithPropertiesSuccess'));
-      console.info('uitest: testNodeAPIExtendCapabilities008 end');
+      console.info('uitest: testNodeAPIExtendCapabilities009 end');
       done();
     })
 
     /**
      * 点击，调用napiCreateSendableArray相关函数
      */
-    it('testNodeAPIExtendCapabilities009', 0, async (done: Function) => {
-      console.info('uitest: testNodeAPIExtendCapabilities009 begin');
+    it('testNodeAPIExtendCapabilities010', 0, async (done: Function) => {
+      console.info('uitest: testNodeAPIExtendCapabilities010 begin');
       const driver = Driver.create();
       await driver.delayMs(1000);
-      const text = await driver.findComponent(ON.text('9.napiCreateSendableArray'));
+      const text = await driver.findComponent(ON.text('10.napiCreateSendableArray'));
       await driver.delayMs(1000);
       await text.click();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Result: napiCreateSendableArraySuccess'));
-      console.info('uitest: testNodeAPIExtendCapabilities009 end');
+      console.info('uitest: testNodeAPIExtendCapabilities010 end');
       done();
     })
 
     /**
      * 点击，调用napiCreateSendableArrayWithLength相关函数
      */
-    it('testNodeAPIExtendCapabilities010', 0, async (done: Function) => {
-      console.info('uitest: testNodeAPIExtendCapabilities010 begin');
+    it('testNodeAPIExtendCapabilities011', 0, async (done: Function) => {
+      console.info('uitest: testNodeAPIExtendCapabilities011 begin');
       const driver = Driver.create();
       await driver.delayMs(1000);
       const list = await driver.findComponent(ON.id('List'))
       await list.scrollToBottom();
-      const text = await driver.findComponent(ON.text('10.napiCreateSendableArrayWithLength'));
+      const text = await driver.findComponent(ON.text('11.napiCreateSendableArrayWithLength'));
       await driver.delayMs(1000);
       await text.click();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Result: napiCreateSendableArrayWithLengthSuccess'));
-      console.info('uitest: testNodeAPIExtendCapabilities010 end');
+      console.info('uitest: testNodeAPIExtendCapabilities011 end');
       done();
     })
 
     /**
      * 点击，调用napiCreateSendableArraybuffer相关函数
      */
-    it('testNodeAPIExtendCapabilities011', 0, async (done: Function) => {
-      console.info('uitest: testNodeAPIExtendCapabilities011 begin');
+    it('testNodeAPIExtendCapabilities012', 0, async (done: Function) => {
+      console.info('uitest: testNodeAPIExtendCapabilities012 begin');
       const driver = Driver.create();
       await driver.delayMs(1000);
-      const text = await driver.findComponent(ON.text('11.napiCreateSendableArraybuffer'));
+      const text = await driver.findComponent(ON.text('12.napiCreateSendableArraybuffer'));
       await driver.delayMs(1000);
       await text.click();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Result: napiCreateSendableArraybufferSuccess'));
-      console.info('uitest: testNodeAPIExtendCapabilities011 end');
+      console.info('uitest: testNodeAPIExtendCapabilities012 end');
       done();
     })
 
     /**
      * 点击，调用napiCreateSendableTypedArray相关函数
      */
-    it('testNodeAPIExtendCapabilities012', 0, async (done: Function) => {
-      console.info('uitest: testNodeAPIArray012 begin');
+    it('testNodeAPIExtendCapabilities013', 0, async (done: Function) => {
+      console.info('uitest: testNodeAPIArray013 begin');
       const driver = Driver.create();
       await driver.delayMs(1000);
-      const text = await driver.findComponent(ON.text('12.napiCreateSendableTypedArray'));
+      const text = await driver.findComponent(ON.text('13.napiCreateSendableTypedArray'));
       await driver.delayMs(1000);
       await text.click();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Result: napiCreateSendableTypedArraySuccess'));
-      console.info('uitest: testNodeAPIArray012 end');
+      console.info('uitest: testNodeAPIArray013 end');
       done();
     })
 
     /**
      * 点击，调用napiWrapSendable相关函数
      */
-    it('testNodeAPIExtendCapabilities013', 0, async (done: Function) => {
-      console.info('uitest: testNodeAPIExtendCapabilities013 begin');
+    it('testNodeAPIExtendCapabilities014', 0, async (done: Function) => {
+      console.info('uitest: testNodeAPIExtendCapabilities014 begin');
       const driver = Driver.create();
       await driver.delayMs(1000);
-      const text = await driver.findComponent(ON.text('13.napiWrapSendable'));
+      const text = await driver.findComponent(ON.text('14.napiWrapSendable'));
       await driver.delayMs(1000);
       await text.click();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Result: napiWrapSendableSuccess'));
-      console.info('uitest: testNodeAPIExtendCapabilities013 end');
+      console.info('uitest: testNodeAPIExtendCapabilities014 end');
       done();
     })
 
     /**
      * 点击，调用napiWrapSendableWithSize相关函数
      */
-    it('testNodeAPIExtendCapabilities014', 0, async (done: Function) => {
-      console.info('uitest: testNodeAPIExtendCapabilities014 begin');
+    it('testNodeAPIExtendCapabilities015', 0, async (done: Function) => {
+      console.info('uitest: testNodeAPIExtendCapabilities015 begin');
       const driver = Driver.create();
       await driver.delayMs(1000);
-      const text = await driver.findComponent(ON.text('14.napiWrapSendableWithSize'));
+      const text = await driver.findComponent(ON.text('15.napiWrapSendableWithSize'));
       await driver.delayMs(1000);
       await text.click();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Result: napiWrapSendableWithSizeSuccess'));
-      console.info('uitest: testNodeAPIExtendCapabilities014 end');
+      console.info('uitest: testNodeAPIExtendCapabilities015 end');
       done();
     })
 
     /**
      * 点击，调用napiUnwrapSendable相关函数
      */
-    it('testNodeAPIExtendCapabilities015', 0, async (done: Function) => {
-      console.info('uitest: testNodeAPIExtendCapabilities015 begin');
+    it('testNodeAPIExtendCapabilities016', 0, async (done: Function) => {
+      console.info('uitest: testNodeAPIExtendCapabilities016 begin');
       const driver = Driver.create();
       await driver.delayMs(1000);
-      const text = await driver.findComponent(ON.text('15.napiUnwrapSendable'));
+      const text = await driver.findComponent(ON.text('16.napiUnwrapSendable'));
       await driver.delayMs(1000);
       await text.click();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Result: napiUnwrapSendableSuccess'));
-      console.info('uitest: testNodeAPIExtendCapabilities015 end');
+      console.info('uitest: testNodeAPIExtendCapabilities016 end');
       done();
     })
 
     /**
      * 点击，调用napiRemoveWrapSendable相关函数
      */
-    it('testNodeAPIExtendCapabilities016', 0, async (done: Function) => {
-      console.info('uitest: testNodeAPIExtendCapabilities016 begin');
+    it('testNodeAPIExtendCapabilities017', 0, async (done: Function) => {
+      console.info('uitest: testNodeAPIExtendCapabilities017 begin');
       const driver = Driver.create();
       await driver.delayMs(1000);
-      const text = await driver.findComponent(ON.text('16.napiRemoveWrapSendable'));
+      const text = await driver.findComponent(ON.text('17.napiRemoveWrapSendable'));
       await driver.delayMs(1000);
       await text.click();
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Result: napiRemoveWrapSendableSuccess'));
-      console.info('uitest: testNodeAPIExtendCapabilities016 end');
+      console.info('uitest: testNodeAPIExtendCapabilities017 end');
       done();
     })
   })

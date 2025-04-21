@@ -23,10 +23,11 @@ struct Index {
   private items: string[] = [
     'Reset Result Message',
     '1.napiCreateBuffer',
-    '2.napiCreateExternalBuffer',
-    '3.napiGetBufferInfo',
-    '4.napiIsBuffer',
-    '5.napiCreateExternalArraybuffer'
+    '2.napiCreateBufferCopy',
+    '3.napiCreateExternalBuffer',
+    '4.napiGetBufferInfo',
+    '5.napiIsBuffer',
+    '6.napiCreateExternalArraybuffer'
   ]
 
   build() {
@@ -59,7 +60,16 @@ struct Index {
                     hilog.error(0x0000, 'testTag', 'Test Node-API napi_create_buffer error');
                     this.result = 'napiCreateBufferFail';
                   }
-                } else if (item === '2.napiCreateExternalBuffer') {
+                } else if (item === '2.napiCreateBufferCopy') {
+                  try {
+                    hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_buffer_copy: %{public}s',
+                      testNapi.createBufferCopy().toString());
+                    this.result = 'napiCreateBufferCopySuccess';
+                  } catch (error) {
+                    hilog.error(0x0000, 'testTag', 'Test Node-API napi_create_buffer_copy error');
+                    this.result = 'napiCreateBufferCopyFail';
+                  }
+                } else if (item === '3.napiCreateExternalBuffer') {
                   // napi_create_external_buffer
                   try {
                     hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_external_buffer: %{public}s',
@@ -70,7 +80,7 @@ struct Index {
                     hilog.error(0x0000, 'testTag', 'Test Node-API napi_create_external_buffer error');
                     this.result = 'napiCreateExternalBufferFail';
                   }
-                } else if (item === '3.napiGetBufferInfo') {
+                } else if (item === '4.napiGetBufferInfo') {
                   // napi_get_buffer_info
                   try {
                     hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_buffer_info: %{public}s',
@@ -80,7 +90,7 @@ struct Index {
                     hilog.error(0x0000, 'testTag', 'Test Node-API napi_get_buffer_info error');
                     this.result = 'napiGetBufferInfoFail';
                   }
-                } else if (item === '4.napiIsBuffer') {
+                } else if (item === '5.napiIsBuffer') {
                   // napi_is_buffer
                   try {
                     hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_buffer: %{public}s',
@@ -90,7 +100,7 @@ struct Index {
                     hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_buffer error');
                     this.result = 'napiIsBufferFail';
                   }
-                } else if (item === '5.napiCreateExternalArraybuffer') {
+                } else if (item === '6.napiCreateExternalArraybuffer') {
                   // napi_create_external_arraybuffer
                   hilog.info(0x0000, 'testTag', 'Node-API createExternalArraybuffer: %{public}s',
                     JSON.stringify(testNapi.createExternalArraybuffer()));

@@ -85,22 +85,23 @@ struct Index {
   @State result: string = ''
   private items: string[] = [
     'Reset Result Message',
-    '1.napiCreateObjectWithProperties',
-    '2.napiCreateObjectWithNamedProperties',
-    '3.napiRunScriptPath',
-    '4.napiCoerceToNativeBindingObject',
-    '5.napiAboutSerialize',
-    '6.napiIsSendable',
-    '7.napiDefineSendableClass',
-    '8.napiCreateSendableObjectWithProperties',
-    '9.napiCreateSendableArray',
-    '10.napiCreateSendableArrayWithLength',
-    '11.napiCreateSendableArraybuffer',
-    '12.napiCreateSendableTypedArray',
-    '13.napiWrapSendable',
-    '14.napiWrapSendableWithSize',
-    '15.napiUnwrapSendable',
-    '16.napiRemoveWrapSendable'
+    '1.napiLoadModule',
+    '2.napiCreateObjectWithProperties',
+    '3.napiCreateObjectWithNamedProperties',
+    '4.napiRunScriptPath',
+    '5.napiCoerceToNativeBindingObject',
+    '6.napiAboutSerialize',
+    '7.napiIsSendable',
+    '8.napiDefineSendableClass',
+    '9.napiCreateSendableObjectWithProperties',
+    '10.napiCreateSendableArray',
+    '11.napiCreateSendableArrayWithLength',
+    '12.napiCreateSendableArraybuffer',
+    '13.napiCreateSendableTypedArray',
+    '14.napiWrapSendable',
+    '15.napiWrapSendableWithSize',
+    '16.napiUnwrapSendable',
+    '17.napiRemoveWrapSendable'
   ]
 
   build() {
@@ -123,19 +124,22 @@ struct Index {
               .onClick(() => {
                 if (item === 'Reset Result Message') {
                   this.result = '';
-                } else if (item === '1.napiCreateObjectWithProperties') {
+                } else if (item === '1.napiLoadModule') {
+                  hilog.info(0x0000, 'testTag', 'Test Node-API 2 + 3 = %{public}d', testNapi.add(2, 3));
+                  this.result = 'napiLoadModuleSuccess';
+                } else if (item === '2.napiCreateObjectWithProperties') {
                   // ArkTS Object相关 napi_create_object_with_properties
                   let value1 = testNapi.createObjectWithProperties('createObject');
                   hilog.info(0x0000, 'testTag', 'Node-API napi_create_object_with_properties:%{public}s',
                     JSON.stringify(value1));
                   this.result = 'napiCreateObjectWithPropertiesSuccess';
-                } else if (item === '2.napiCreateObjectWithNamedProperties') {
+                } else if (item === '3.napiCreateObjectWithNamedProperties') {
                   // ArkTS Object相关 napi_create_object_with_named_properties
                   let value2 = testNapi.createObjectWithNameProperties('ls');
                   hilog.info(0x0000, 'testTag', 'Node-API napi_create_object_with_named_properties:%{public}s',
                     JSON.stringify(value2));
                   this.result = 'napiCreateObjectWithNamedPropertiesSuccess';
-                } else if (item === '3.napiRunScriptPath') {
+                } else if (item === '4.napiRunScriptPath') {
                   // 运行指定abc文件 napi_run_script_path
                   try { // 在此处执行错误返回false，成功就返回true
                     hilog.info(0x0000, 'testTag', 'Test Node-API napi_run_script_path: %{public}s',
@@ -146,64 +150,64 @@ struct Index {
                       error.message);
                     this.result = 'napiRunScriptPathFail';
                   }
-                } else if (item === '4.napiCoerceToNativeBindingObject') {
+                } else if (item === '5.napiCoerceToNativeBindingObject') {
                   // 给ArkTS对象绑定回调和回调所需的参数 napi_coerce_to_native_binding_object
                   test01();
                   this.result = 'napiCoerceToNativeBindingObjectSuccess';
-                } else if (item === '5.napiAboutSerialize') {
+                } else if (item === '6.napiAboutSerialize') {
                   // 序列化和反序列化
                   let obj: Obj = { numKey: 500 };
                   hilog.info(0x0000, 'testTag', ' Node-API aboutSerialize: %{public}d', testNapi.aboutSerialize(obj));
                   this.result = 'napiAboutSerializeSuccess';
-                } else if (item === '6.napiIsSendable') {
+                } else if (item === '7.napiIsSendable') {
                   // Sendable相关 napi_is_sendable
                   let value = testNapi.isSendable('createObject');
                   hilog.info(0x0000, 'testTag', 'Node-API napi_is_sendable: %{public}s', JSON.stringify(value));
                   this.result = 'napiIsSendableSuccess';
-                } else if (item === '7.napiDefineSendableClass') {
+                } else if (item === '8.napiDefineSendableClass') {
                   // Sendable相关 napi_define_sendable_class
                   let value = new testNapi.SendableClass();
                   hilog.info(0x0000, 'testTag', 'Node-API napi_define_sendable_class: %{public}s', value.str);
                   this.result = 'napiDefineSendableClassSuccess';
-                } else if (item === '8.napiCreateSendableObjectWithProperties') {
+                } else if (item === '9.napiCreateSendableObjectWithProperties') {
                   // Sendable相关 napi_create_sendable_object_with_properties
                   let value = testNapi.getSendableObject();
                   hilog.info(0x0000, 'testTag', 'Node-API napi_create_sendable_object_with_properties: %{public}s',
                     JSON.stringify(value));
                   this.result = 'napiCreateSendableObjectWithPropertiesSuccess';
-                } else if (item === '9.napiCreateSendableArray') {
+                } else if (item === '10.napiCreateSendableArray') {
                   // Sendable相关 napi_create_sendable_array
                   let value = testNapi.getSendableArray();
                   hilog.info(0x0000, 'testTag', 'Node-API napi_create_sendable_array: %{public}s',
                     JSON.stringify(value));
                   this.result = 'napiCreateSendableArraySuccess';
-                } else if (item === '10.napiCreateSendableArrayWithLength') {
+                } else if (item === '11.napiCreateSendableArrayWithLength') {
                   // Sendable相关 napi_create_sendable_array_with_length
                   let value = testNapi.getSendableArrayWithLength();
                   hilog.info(0x0000, 'testTag', 'Node-API napi_create_sendable_array_with_length: %{public}s',
                     JSON.stringify(value.length));
                   this.result = 'napiCreateSendableArrayWithLengthSuccess';
-                } else if (item === '11.napiCreateSendableArraybuffer') {
+                } else if (item === '12.napiCreateSendableArraybuffer') {
                   // Sendable相关 napi_create_sendable_arraybuffer
                   testNapi.getSendableArrayBuffer();
                   this.result = 'napiCreateSendableArraybufferSuccess';
-                } else if (item === '12.napiCreateSendableTypedArray') {
+                } else if (item === '13.napiCreateSendableTypedArray') {
                   // Sendable相关 napi_create_sendable_typedarray
                   testNapi.getSendableTypedArray();
                   this.result = 'napiCreateSendableTypedArraySuccess';
-                } else if (item === '13.napiWrapSendable') {
+                } else if (item === '14.napiWrapSendable') {
                   // Sendable相关 napi_wrap_sendable
                   testNapi.wrapSendable();
                   this.result = 'napiWrapSendableSuccess';
-                } else if (item === '14.napiWrapSendableWithSize') {
+                } else if (item === '15.napiWrapSendableWithSize') {
                   // Sendable相关 napi_wrap_sendable_with_size
                   testNapi.wrapSendableWithSize();
                   this.result = 'napiWrapSendableWithSizeSuccess';
-                } else if (item === '15.napiUnwrapSendable') {
+                } else if (item === '16.napiUnwrapSendable') {
                   // Sendable相关 napi_unwrap_sendable
                   testNapi.unwrapSendable();
                   this.result = 'napiUnwrapSendableSuccess';
-                } else if (item === '16.napiRemoveWrapSendable') {
+                } else if (item === '17.napiRemoveWrapSendable') {
                   // Sendable相关 napi_remove_wrap_sendable
                   testNapi.removeWrapSendable();
                   this.result = 'napiRemoveWrapSendableSuccess';
