@@ -26,7 +26,7 @@ struct AnimationToAnimationDemo {
   aboutToAppear() {
     this.uiContext = this.getUIContext();
     if (!this.uiContext) {
-      console.warn("no uiContext");
+      console.warn('no uiContext');
       return;
     }
   }
