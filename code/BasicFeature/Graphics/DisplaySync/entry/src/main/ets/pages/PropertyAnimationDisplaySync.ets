@@ -23,6 +23,15 @@ struct AnimationToAnimationDemo {
   @State translateX1: number = -100;
   @State translateX2: number = -100;
   @State translateX3: number = -100;
+  uiContext: UIContext | undefined = undefined;
+
+  aboutToAppear() {
+    this.uiContext = this.getUIContext();
+    if (!this.uiContext) {
+      console.warn("no uiContext");
+      return;
+    }
+  }
 
   build() {
     Column() {
@@ -90,7 +99,7 @@ struct AnimationToAnimationDemo {
             this.isAnimation = !this.isAnimation;
             this.translateX3 = this.isAnimation ? 100 : -100;
 
-            animateTo({
+            this.uiContext?.animateTo({
               duration: 1200,
               iterations: 10,
               curve: curves.springMotion(),
@@ -104,7 +113,7 @@ struct AnimationToAnimationDemo {
               this.translateX1 = this.isAnimation ? 100 : -100;
             })
 
-            animateTo({
+            this.uiContext?.animateTo({
               duration: 1200,
               iterations: 10,
               curve: curves.springMotion(),
