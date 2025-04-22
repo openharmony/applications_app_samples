@@ -33,7 +33,10 @@ const NEWS_TITLE_TEXT_FONT_WEIGHT: number = 500;
 const NEWS_CONTENT_MAX_LINES: number = 2;
 const NEWS_TIME_MAX_LINES: number = 1;
 const NEWS_PAGE_TEXT_FONT_WEIGHT: number = 600;
-const NEWS_RESOLVE_SUCCESS: string = '刷新成功';
+const CURRENT_DATA_RESOLVE_SUCCESS: string = '刷新当前数据成功';
+const NEW_DATA_RESOLVE_SUCCESS: string = '更新数据成功';
+const CURRENT_DATA_TIP: string = '释放刷新当前页面数据';
+const NEW_DATA_TIP: string = '释放更新下页数据';
 const NEWS_MOCK_DATA_COUNT: number = 8; // 每份模拟数据所含的新闻个数为8
 const MOCK_DATA_FILE_ONE_DIR: string = 'mockDataOne.json'; // 模拟数据路径
 const MOCK_DATA_FILE_TWO_DIR: string = 'mockDataTwo.json'; // 模拟数据路径
@@ -44,13 +47,13 @@ const LOAD_TEXT_PULL_UP_1: string = '正在上拉刷新...'; // 上拉1阶段文
 const LOAD_TEXT_PULL_UP_2: string = '放开刷新'; // 上拉2阶段文本
 const NEWS_MAX_LIST: number = 4; // 数据列表总页数
 const LOAD_PULL_STATE_CHANGE: number = 0.75; // 根据组件动画配置的上拉阶段改变临界值
+const CHANGE_PAGE_STATE: number = 0.99 //下拉改变刷新状态的临界值
 const PAGE_LIST_ID: string = 'pageList'; // 列表ID
 
 @Component
 export struct PullToRefreshNewsComponent {
   // 创建用于懒加载的数据对象
   @State newsData: NewsDataSource = new NewsDataSource();
-  private mockFlag: boolean = true;
   // 需绑定列表或宫格组件
   private scroller: Scroller = new Scroller();
   // 模拟数据列表页
@@ -61,8 +64,17 @@ export struct PullToRefreshNewsComponent {
   @State private angle1?: number | string = 0;
   @State private angle2?: number | string = 0;
   @State loadText: string = '';
+  @State pullHeightValue: number = 0;
+  // 每页与数据的对应关系
+  private currentPageMap: Map<number, string> = new Map();
+  // 当前页
+  @State currentPage: number = 0;
+  // 是否更换页面
+  @State isChangePage: boolean = false;
 
   aboutToAppear() {
+    this.currentPageMap.set(0, MOCK_DATA_FILE_ONE_DIR);
+    this.currentPageMap.set(1, MOCK_DATA_FILE_TWO_DIR);
     const newsModelMockData: NewsData[] = getNews(MOCK_DATA_FILE_ONE_DIR);
     for (let j = 0; j < NEWS_MOCK_DATA_COUNT; j++) {
       this.newsData.pushData(newsModelMockData[j]);
@@ -98,21 +110,22 @@ export struct PullToRefreshNewsComponent {
           // TODO: 知识点：设置onRefresh下拉刷新回调方法，该方法必须返回一个Promise类型。
           onRefresh: () => {
             return new Promise<string>((resolve, reject) => {
-              // 模拟网络请求操作，请求网络1.5秒后得到数据，通知组件，变更列表数据
               setTimeout(() => {
+                if (this.isChangePage) {
+                  // 计算改变页面
+                  this.currentPage = (this.currentPage + 1) % 2;
+                }
                 this.newsData.clear();
                 let newsModelMockData: NewsData[] = [];
-                // 根据mockFlag切换获取的数据文件
-                if (this.mockFlag) {
-                  newsModelMockData = getNews(MOCK_DATA_FILE_TWO_DIR);
-                } else {
-                  newsModelMockData = getNews(MOCK_DATA_FILE_ONE_DIR);
-                }
-                this.mockFlag = !this.mockFlag;
+                newsModelMockData = getNews(this.currentPageMap.get(this.currentPage));
                 for (let j = 0; j < NEWS_MOCK_DATA_COUNT; j++) {
                   this.newsData.pushData(newsModelMockData[j]);
                 }
-                resolve(NEWS_RESOLVE_SUCCESS);
+                if (this.isChangePage) {
+                  resolve(NEW_DATA_RESOLVE_SUCCESS);
+                } else {
+                  resolve(CURRENT_DATA_RESOLVE_SUCCESS);
+                }
                 // 页码归零
                 this.newsDataListIndex = 1;
               }, NEWS_REFRESH_TIME);
@@ -141,7 +154,23 @@ export struct PullToRefreshNewsComponent {
             });
           },
           customLoad: () => this.customLoad(),
-          customRefresh: null,
+          customRefresh: () => this.customRefresh(),
+          onAnimPullDown: (value) => {
+            this.pullHeightValue = value;
+          },
+          onAnimRefreshing: (value, width, height) => {
+            if (value !== undefined && width !== undefined && height !== undefined) {
+              if (value) {
+                this.angle2 = value * 360;
+                if (this.pullHeightValue > LOAD_PULL_STATE_CHANGE && this.pullHeightValue <= CHANGE_PAGE_STATE) {
+                  this.isChangePage = false;
+                } else {
+                  // 当下拉到最顶部时，触发更新页面，不再刷新当前页。
+                  this.isChangePage = true;
+                }
+              }
+            }
+          },
           onAnimPullUp: (value, width, height) => {
             if (value !== undefined && width !== undefined && height !== undefined) {
               if (value) {
@@ -186,6 +215,7 @@ export struct PullToRefreshNewsComponent {
     .height($r('app.string.pull_refresh_page_height'))
   }
 
+  // 上滑加载提示
   @Builder
   private customLoad() {
     Row() {
@@ -224,6 +254,43 @@ export struct PullToRefreshNewsComponent {
         .margin({ left: this.newsDataListIndex === NEWS_MAX_LIST && this.isLoading ? 0 : 8 })
         .fontColor(this.refreshConfigurator !== undefined ? this.refreshConfigurator.getLoadTextColor() : 0)
         .fontSize(this.refreshConfigurator !== undefined ? this.refreshConfigurator.getLoadTextSize() : 0)
+    }
+    .height($r('app.string.pull_refresh_load_height'))
+  }
+
+  // 下拉刷新提示
+  @Builder
+  private customRefresh() {
+    Row() {
+      // 下滑加载图片
+      Image($r('app.media.pull_icon_load'))
+        .width($r('app.string.pull_refresh_load_width'))
+        .height($r('app.string.pull_refresh_load_height'))
+        .objectFit(ImageFit.Contain)
+        .rotate({
+          z: 1,
+          angle: this.angle2 !== undefined ? this.angle2 : 0
+        })
+        .width(this.refreshConfigurator.getLoadImgHeight())
+        .height(this.refreshConfigurator.getLoadImgHeight())
+
+      // 下拉时提示文本
+      Stack() {
+        Text(CURRENT_DATA_TIP)
+          .height($r('app.string.pull_refresh_load_height'))
+          .textAlign(TextAlign.Center)
+          .margin({ left: this.newsDataListIndex === NEWS_MAX_LIST && this.isLoading ? 0 : 8 })
+          .fontColor(this.refreshConfigurator !== undefined ? this.refreshConfigurator.getLoadTextColor() : 0)
+          .fontSize(this.refreshConfigurator !== undefined ? this.refreshConfigurator.getLoadTextSize() : 0)
+          .visibility(this.pullHeightValue <= CHANGE_PAGE_STATE ? Visibility.Visible : Visibility.Hidden)
+        Text(NEW_DATA_TIP)
+          .height($r('app.string.pull_refresh_load_height'))
+          .textAlign(TextAlign.Center)
+          .margin({ left: this.newsDataListIndex === NEWS_MAX_LIST && this.isLoading ? 0 : 8 })
+          .fontColor(this.refreshConfigurator !== undefined ? this.refreshConfigurator.getLoadTextColor() : 0)
+          .fontSize(this.refreshConfigurator !== undefined ? this.refreshConfigurator.getLoadTextSize() : 0)
+          .visibility(this.pullHeightValue > CHANGE_PAGE_STATE ? Visibility.Visible : Visibility.Hidden)
+      }
     }
     .height($r('app.string.pull_refresh_load_height'))
   }
@@ -368,7 +435,7 @@ class NewsDataSource extends BasicDataSource {
 }
 
 class JsonObjType {
-  public newsList: NewsData[] = [];
+  newsList: Array<NewsData> = [];
 }
 
 class JsonObject {
