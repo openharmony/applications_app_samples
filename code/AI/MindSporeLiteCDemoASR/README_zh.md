@@ -4,13 +4,13 @@
 
 本文基于MindSpore Lite提供的[Native API](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/reference/apis-mindspore-lite-kit/_mind_spore.md)，实现“自动语音识别 ASR”示例程序，来演示端侧部署的流程。
 
-###效果预览
+### 效果预览
 
 | 主页                                               |
 | -------------------------------------------------- |
 | <img src="screenshots/MIndSporeLiteCDemoASR.PNG"/> |
 
-###使用说明
+#### 使用说明
 
 1. 在主界面点击“播放示例音频”按钮，即可播放音频文件；
 2. 在主界面点击“识别示例音频”按钮，即可显示出音频的识别结果；
