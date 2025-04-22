@@ -350,6 +350,32 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/UI/FoldableAdaptation/screenshots/detail_fold_normal.png" desc="Provided by code/UI/FoldableAdaptation"/>
 				<filteritem type="filepath" name="code/UI/FoldableAdaptation/screenshots/home_expand.png" desc="Provided by code/UI/FoldableAdaptation"/>
 				<filteritem type="filepath" name="code/UI/FoldableAdaptation/screenshots/home_fold.png" desc="Provided by code/UI/FoldableAdaptation"/>
+				<filteritem type="filepath" name="code/UI/MediaFullScreen/screenshots/media_fullscreen.gif" desc="Provided by code/UI/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/UI/MediaFullScreen/entry/src/main/resources/base/media/background.png" desc="Provided by code/UI/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/UI/MediaFullScreen/entry/src/main/resources/base/media/foreground.png" desc="Provided by code/UI/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/UI/MediaFullScreen/entry/src/main/resources/base/media/layered_image.json" desc="Provided by code/UI/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/UI/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_ic_back.png" desc="Provided by code/UI/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/UI/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_icon_large.svg" desc="Provided by code/UI/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/UI/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_icon_pause.svg" desc="Provided by code/UI/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/UI/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_icon_play.svg" desc="Provided by code/UI/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/UI/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_photo1.png" desc="Provided by code/UI/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/UI/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_photo2.png" desc="Provided by code/UI/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/UI/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_photo3.png" desc="Provided by code/UI/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/UI/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_photo4.png" desc="Provided by code/UI/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/UI/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_photo5.png" desc="Provided by code/UI/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/UI/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_photo6.png" desc="Provided by code/UI/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/UI/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_photo7.png" desc="Provided by code/UI/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/UI/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_photo8.png" desc="Provided by code/UI/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/UI/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_photo9.png" desc="Provided by code/UI/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/UI/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_photo10.png" desc="Provided by code/UI/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/UI/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_play.png" desc="Provided by code/UI/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/UI/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_preview1.jpg" desc="Provided by code/UI/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/UI/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_preview2.jpg" desc="Provided by code/UI/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/UI/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_preview3.jpg" desc="Provided by code/UI/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/UI/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_preview4.jpg" desc="Provided by code/UI/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/UI/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_profile_photo.jpg" desc="Provided by code/UI/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/UI/MediaFullScreen/entry/src/main/resources/base/media/media_full_screen_video.MP4" desc="Provided by code/UI/MediaFullScreen"/>
+				<filteritem type="filepath" name="code/UI/MediaFullScreen/entry/src/main/resources/base/media/startIcon.png" desc="Provided by code/UI/MediaFullScreen"/>
                 <filteritem type="filepath" name="code/UI/ArkTsComponentCollection/ComponentCollection/lib/DragEvent-1.0.0.tgz" desc="Provided by code/UI/ArkTsComponentCollection/ComponentCollection"/>
 				<filteritem type="filepath" name="code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow/tabcontentoverflow.gif" desc="Provided by code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow"/>
                 <filteritem type="filepath" name="code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow/src/main/resources/base/media/tabcontentoverflow_follow.png" desc="Provided by code/UI/TabContentTouchHotZone/casesfeature/tabcontentoverflow"/>

@@ -1,0 +1,16 @@
+{
+  "color": [
+    {
+      "name": "media_full_screen_title_font_color",
+      "value": "#182431"
+    },
+    {
+      "name": "media_full_screen_search_border_color",
+      "value": "#33182431"
+    },
+    {
+      "name": "media_full_screen_white_color",
+      "value": "#FFFFFF"
+    }
+  ]
+}
