@@ -61,11 +61,11 @@ entry/src/
 
 ### 相关权限
 
-ohos.permission.MANAGE_LOCAL_ACCOUNTS
+[ohos.permission.MANAGE_LOCAL_ACCOUNTS](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionmanagelocalaccounts)
 
-ohos.permission.GET_DOMAIN_ACCOUNTS
+[ohos.permission.GET_DOMAIN_ACCOUNTS](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissiongetdomainaccounts)
 
-ohos.permission.ACCESS_USER_AUTH_INTERNAL
+[ohos.permission.ACCESS_USER_AUTH_INTERNAL](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionaccessuserauthinternal)
 
 ### 依赖
 
