@@ -57,6 +57,16 @@ let demandList: listItem[] = [
     description: "After the image is successfully loaded, necessary information about the image can be obtained",
     router: "pages/EventCall",
   },
+  {
+    name: "LoadImageResources",
+    description: "Supports file://path prefix, used to access the image path provided through the selector.",
+    router: "pages/LoadImageResources",
+  },
+  {
+    name: "DisplayVectorDiagram",
+    description: "SVG format images can use the fillColor property to change the drawing color of the image.",
+    router: "pages/DisplayVectorDiagram",
+  },
 ]
 
 @Entry
