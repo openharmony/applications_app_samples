@@ -448,6 +448,10 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filepath" name="code/Solutions/Media/MultiMedia/lib/VideoPlayer.hap" desc="Provided by code/Solutions/Media/MultiMedia"/>
                 <filteritem type="filepath" name="code/Solutions/Media/MultiMedia/lib/CameraPage-1.0.0.hap" desc="Provided by code/Solutions/Media/MultiMedia"/>
                 <filteritem type="filepath" name="code/BasicFeature/Media/AVRecorder/lib/VideoRecorder-1.0.0.hap" desc="Provided by code/BasicFeature/Media/AVRecorder"/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/Camera/app_pic/auth1.jpg" desc="Provided by code/BasicFeature/Media/Camera"/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/Camera/app_pic/auth2.jpg" desc="Provided by code/BasicFeature/Media/Camera"/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/Camera/app_pic/auth3.jpg" desc="Provided by code/BasicFeature/Media/Camera"/>
+				<filteritem type="filepath" name="code/BasicFeature/Media/Camera/app_pic/preview.jpg" desc="Provided by code/BasicFeature/Media/Camera"/>
                 <filteritem type="filepath" name="code/BasicFeature/Media/Camera_js/entry/src/main/resources/base/media/pic_avatar_radio01.png" desc="Provided by code/BasicFeature/Media/Camera_js"/>
                 <filteritem type="filepath" name="code/BasicFeature/Media/Camera_js/entry/src/main/resources/base/media/pic_avatar_regular.png" desc="Provided by code/BasicFeature/Media/Camera_js"/>
                 <filteritem type="filepath" name="code/BasicFeature/Media/Camera_js/entry/src/main/resources/base/media/pic_popup_right.png" desc="Provided by code/BasicFeature/Media/Camera_js"/>

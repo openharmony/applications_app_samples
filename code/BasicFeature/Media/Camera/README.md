@@ -9,15 +9,15 @@
 
 ### 效果预览
 
-| 相机权限                       | 麦克风权限                      | 文件权限                       | 预览界面                            |
+| 相机权限                    | 图片和视频权限              | 麦克风权限                  | 预览界面                         |
 |----------------------------|----------------------------|----------------------------|---------------------------------|
 | ![auth](app_pic/auth1.jpg) | ![auth](app_pic/auth2.jpg) | ![auth](app_pic/auth3.jpg) | ![preview](app_pic/preview.jpg) |
 
 使用说明
 (因RK3568设备硬件能力，现仅支持验证1、2、3、9、10、13)
 1. 弹出是否允许“CameraSample”使用相机？点击“允许”
-2. 弹出是否允许“CameraSample”使用麦克风？点击“允许”
-3. 弹出是否允许“CameraSample”访问文件？点击“允许”
+2. 弹出是否允许“CameraSample”访问图片和视频？点击“允许”
+3. 弹出是否允许“CameraSample”使用麦克风？点击“允许”
 4. 进入预览界面，预览正常，滑动变焦按钮，同一画面远近变焦效果明显
 5. 进入预览界面，预览正常，点击画面模糊处，点击处画面会变得清晰，对焦效果明显
 6. 进入预览界面，预览正常，上下滑动屏幕，屏幕场景亮度发生变化，曝光效果明显
@@ -125,8 +125,8 @@ entry/src/main
 ### 约束与限制
 
 1. 本示例支持标准系统上运行，支持设备：RK3568；
-2. 本示例为Stage模型，已适配API version 10版本SDK，SDK版本号(API Version 10 Release)，镜像版本号(4.0Release)；
-3. 本示例需要使用DevEco Studio 版本号(4.0.0.600)及以上版本才可编译运行。
+2. 本示例为Stage模型，已适配API version 12版本SDK，SDK版本号(API Version 12 Release)，镜像版本号(5.0Release)；
+3. 本示例需要使用DevEco Studio 版本号(5.0)及以上版本才可编译运行。
 
 ### 下载
 
@@ -135,7 +135,7 @@ entry/src/main
 ```
 git init
 git config core.sparsecheckout true
-echo Camera/Camera/ > .git/info/sparse-checkout
+echo code/BasicFeature/Media/Camera > .git/info/sparse-checkout
 git remote add origin https://gitee.com/openharmony/applications_app_samples.git
 git pull origin master
 ```

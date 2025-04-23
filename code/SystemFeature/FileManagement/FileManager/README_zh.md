@@ -126,7 +126,7 @@ Library/src/main/ets/
     
 * 监听文件模块中的文件增删、查找、修改、监听功能封装在MyWatcher，源码参考：[MyWatcher.ts](entry/src/main/ets/filemanager/fileFs/MyWatcher.ets)
 
-    * 增加文件、删除文件、监听文件、停止监听文件：在[WatcherFile.ets](entry/src/main/ets/pages/WatcherFile.ets)中调用MyWathcer.addFileToWatcher()、MyWathcer.deleteFileToWatcher()、MyWathcer.startWatcher(watcherName)、MyWathcer.stopWatcher()；
+    * 增加文件、删除文件、监听文件、停止监听文件：在[WatcherFile.ets](entry/src/main/ets/pages/WatcherFile.ets)中调用MyWatcher.addFileToWatcher()、MyWatcher.deleteFileToWatcher()、MyWatcher.startWatcher(watcherName)、MyWatcher.stopWatcher()；
 
     * 修改文件：在[EditFile.ets](entry/src/main/ets/pages/EditFile.ets)中调用MyWatcher.modifyFileToWatcher()。
 
