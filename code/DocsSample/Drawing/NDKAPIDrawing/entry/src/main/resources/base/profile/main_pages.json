@@ -1,0 +1,14 @@
+{
+  "src": [
+    "pages/Index",
+    "drawing/pages/BitmapDrawing",
+    "drawing/pages/BrushDrawing",
+    "drawing/pages/PenDrawing",
+    "drawing/pages/RectDrawing",
+    "drawing/pages/PathDrawing",
+    "drawing/pages/MatrixDrawing",
+    "drawing/pages/CanvasDrawing",
+    "drawing/pages/PixelMapDrawing",
+    "drawing/pages/ImageDrawing"
+  ]
+}

@@ -1,0 +1,208 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "NDKAPIDrawing"
+    },
+    {
+      "name": "DrawingBrushAccess",
+      "value": "drawing_brush"
+    },
+    {
+      "name": "DrawingPenAccess",
+      "value": "drawing_pen"
+    },
+    {
+      "name": "DrawingRectAccess",
+      "value": "drawing_rect"
+    },
+    {
+      "name": "DrawingPathAccess",
+      "value": "drawing_path"
+    },
+    {
+      "name": "DrawingMatrixAccess",
+      "value": "drawing_matrix"
+    },
+    {
+      "name": "DrawingCanvasAccess",
+      "value": "drawing_canvas"
+    },
+    {
+      "name": "DrawingPixelmapAccess",
+      "value": "drawing_pixelmap"
+    },
+    {
+      "name": "DrawingBitmapAccess",
+      "value": "drawing_bitmap"
+    },
+    {
+      "name": "DrawingImageAccess",
+      "value": "drawing_image"
+    },
+    {
+      "name": "DrawingBrushBasic",
+      "value": "Basic Brush"
+    },
+    {
+      "name": "DrawingBlendMode",
+      "value": "BlendMode"
+    },
+    {
+      "name": "DrawingColorFilter",
+      "value": "ColorFilter"
+    },
+    {
+      "name": "DrawingShaderEffect",
+      "value": "ShaderEffect"
+    },
+    {
+      "name": "DrawingMaskFilter",
+      "value": "MaskFilter"
+    },
+    {
+      "name": "DrawingPenBasic",
+      "value": "Basic Pen"
+    },
+    {
+      "name": "DrawingCapJoin",
+      "value": "Cap & Join"
+    },
+    {
+      "name": "DrawingMiterLimit",
+      "value": "MiterLimit"
+    },
+    {
+      "name": "DrawingImageFilter",
+      "value": "ImageFilter"
+    },
+    {
+      "name": "DrawingPathEffect",
+      "value": "PathEffect"
+    },
+    {
+      "name": "DrawingRectBasic",
+      "value": "Basic Rect"
+    },
+    {
+      "name": "DrawingIntersect",
+      "value": "Intersect"
+    },
+    {
+      "name": "DrawingJoin",
+      "value": "Join"
+    },
+    {
+      "name": "DrawingRoundRect",
+      "value": "RoundRect"
+    },
+    {
+      "name": "DrawingPathBasic",
+      "value": "PathBasic"
+    },
+    {
+      "name": "DrawingPathAdd",
+      "value": "PathAdd*"
+    },
+    {
+      "name": "DrawingPathTo",
+      "value": "Path*To"
+    },
+    {
+      "name": "DrawingPathStar",
+      "value": "PathStar"
+    },
+    {
+      "name": "DrawingBuildFromSvgString",
+      "value": "BuildFromSvgString"
+    },
+    {
+      "name": "DrawingMatrixBasic",
+      "value": "MatrixBasic"
+    },
+    {
+      "name": "DrawingTranslation",
+      "value": "Translation"
+    },
+    {
+      "name": "DrawingPreTranslation",
+      "value": "PreTranslation"
+    },
+    {
+      "name": "DrawingPostTranslation",
+      "value": "PostTranslation"
+    },
+    {
+      "name": "DrawingRotation",
+      "value": "Rotation"
+    },
+    {
+      "name": "DrawingPreRotation",
+      "value": "PreRotation"
+    },
+    {
+      "name": "DrawingPostRotation",
+      "value": "PostRotation"
+    },
+    {
+      "name": "DrawingScale",
+      "value": "Scale"
+    },
+    {
+      "name": "DrawingPreScale",
+      "value": "PreScale"
+    },
+    {
+      "name": "DrawingPostScale",
+      "value": "PostScale"
+    },
+    {
+      "name": "DrawingConcat",
+      "value": "Concat"
+    },
+    {
+      "name": "DrawingCreateCanvas",
+      "value": "CreateCanvas"
+    },
+    {
+      "name": "DrawingClip",
+      "value": "Clip"
+    },
+    {
+      "name": "DrawingSave",
+      "value": "Save"
+    },
+    {
+      "name": "DrawingSaveLayer",
+      "value": "SaveLayer"
+    },
+    {
+      "name": "DrawingConcatMatrix",
+      "value": "ConcatMatrix"
+    },
+    {
+      "name": "DrawingDrawPixelMap",
+      "value": "DrawPixelMap"
+    },
+    {
+      "name": "DrawingDrawRegion",
+      "value": "DrawRegion"
+    },
+    {
+      "name": "DrawingLocalPixelMap",
+      "value": "LocalPixelMap"
+    },
+    {
+      "name": "DrawingCustomPixelMap",
+      "value": "CustomPixelMap"
+    }
+  ]
+}
