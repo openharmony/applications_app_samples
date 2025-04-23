@@ -18,7 +18,7 @@ import resource from '../../common/resource';
 import { Route } from '../../common/Route';
 import { CreateToastExample } from './CreateToast';
 import { OpenCloseToastExample } from './OpenCloseToast';
-
+import { DefaultAndTopToastExample } from './DefaultAndTopToast';
 
 export const Toast_ROUTE_PREFIX: string = 'Toast_ROUTE_PREFIX';
 
@@ -32,6 +32,11 @@ const routes: Route[] = [
     name: `${Toast_ROUTE_PREFIX}/OpenCloseToast`,
     title: resource.resourceToString($r('app.string.OpenCloseToast_title')),
     description: $r('app.string.OpenCloseToast_des'),
+  },
+  {
+  name: `${Toast_ROUTE_PREFIX}/DefaultAndTopToast`,
+  title: resource.resourceToString($r('app.string.DefaultAndTopToast_title')),
+  description: $r('app.string.DefaultAndTopToast_des'),
   }
 ]
 
@@ -43,6 +48,8 @@ export function ToastDestination(name: string) {
     CreateToastExample();
   } else if (name === routes[1].name) {
     OpenCloseToastExample();
+  }else if (name === routes[2].name) {
+    DefaultAndTopToastExample();
   }
 }
 
