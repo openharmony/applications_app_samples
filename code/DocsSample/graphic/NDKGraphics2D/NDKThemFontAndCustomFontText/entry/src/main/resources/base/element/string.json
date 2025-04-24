@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "NDKThemFontAndCustomFontText"
+    },
+    {
+      "name": "Button_label1",
+      "value": "Draw theme font"
+    },
+    {
+      "name": "Button_label2",
+      "value": "Draw CustomFont"
+    },
+    {
+      "name": "Button_label3",
+      "value": "SysFontMetrics"
+    },
+    {
+      "name": "Button_label4",
+      "value": "DisableSysFont"
+    }
+  ]
+}
