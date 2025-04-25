@@ -1,0 +1,60 @@
+{
+  "integer": [
+    {
+      "name": "decode_heif_image_button_width",
+      "value": 100
+    },
+    {
+      "name": "decode_heif_image_button_margin_top",
+      "value": 10
+    },
+    {
+      "name": "decode_heif_image_button_margin_bottom",
+      "value": 10
+    },
+    {
+      "name": "decode_heif_image_flow_item_margin_top",
+      "value": 5
+    },
+    {
+      "name": "decode_heif_image_flow_item_margin_bottom",
+      "value": 5
+    },
+    {
+      "name": "decode_heif_image_water_flow_cache_count",
+      "value": 5
+    },
+    {
+      "name": "decode_heif_image_water_flow_column_gap",
+      "value": 10
+    },
+    {
+      "name": "decode_heif_image_padding",
+      "value": 5
+    },
+    {
+      "name": "decode_heif_image_flow_item_image_border_radius_top_left",
+      "value": 6
+    },
+    {
+      "name": "decode_heif_image_flow_item_image_border_radius_top_right",
+      "value": 6
+    },
+    {
+      "name": "decode_heif_image_flow_item_border_radius",
+      "value": 6
+    },
+    {
+      "name": "decode_heif_image_flow_item_text_margin_top",
+      "value": 5
+    },
+    {
+      "name": "decode_heif_image_flow_item_text_margin_bottom",
+      "value": 5
+    },
+    {
+      "name": "decode_heif_image_flow_item_text_font_size",
+      "value": 16
+    }
+  ]
+}
