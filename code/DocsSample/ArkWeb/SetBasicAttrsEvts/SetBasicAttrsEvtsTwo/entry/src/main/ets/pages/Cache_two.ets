@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start clear_the_cached_resources_that_have_been_stored]
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -38,3 +39,4 @@ struct WebComponent {
     }
   }
 }
+// [End clear_the_cached_resources_that_have_been_stored]

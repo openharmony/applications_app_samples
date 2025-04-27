@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start mp4_player_example]
 import { media } from '@kit.MediaKit';
 import { BusinessError } from '@ohos.base';
 
@@ -99,3 +100,4 @@ export class AVPlayerDemo {
     avPlayer.url = 'xxx/demo.mp4';
   }
 }
+// [End mp4_player_example]

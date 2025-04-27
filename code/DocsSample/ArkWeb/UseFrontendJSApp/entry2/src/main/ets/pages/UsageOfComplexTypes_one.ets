@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start pass_an_array_between_the_application_side_and_the_front_end_page]
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -68,3 +69,4 @@ struct Index {
     }
   }
 }
+// [End pass_an_array_between_the_application_side_and_the_front_end_page]

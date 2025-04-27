@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start initialize_kernel_in_onCreate_and_pre_fetch_post_request]
 import { webview } from '@kit.ArkWeb';
 
 function resourceToString(resource: Resource) {
@@ -40,3 +41,4 @@ struct WebComponent {
     }
   }
 }
+// [End initialize_kernel_in_onCreate_and_pre_fetch_post_request]

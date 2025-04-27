@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start a_page_that_contains_a_webview_and_text_in_the_comment_section]
 import { webview } from '@kit.ArkWeb';
 
 @Entry
@@ -46,3 +47,4 @@ struct WebHeightPage {
     .title($r('app.string.Title_bar'))
   }
 }
+// [End a_page_that_contains_a_webview_and_text_in_the_comment_section]

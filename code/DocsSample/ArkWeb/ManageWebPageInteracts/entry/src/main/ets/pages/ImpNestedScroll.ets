@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start nested_scrolling]
 import { webview } from '@kit.ArkWeb';
 
 @Entry
@@ -135,3 +136,4 @@ struct NestedScroll {
     }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding(20)
   }
 }
+// [End nested_scrolling]

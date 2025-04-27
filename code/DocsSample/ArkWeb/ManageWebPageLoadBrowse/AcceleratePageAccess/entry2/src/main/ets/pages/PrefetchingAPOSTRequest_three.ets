@@ -12,13 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+// [Start on_page_end_trigger_prefetch_post_request_access_page]
 import { webview } from '@kit.ArkWeb';
-
+// [StartExclude on_page_end_trigger_prefetch_post_request_access_page]
 function resourceToString(resource: Resource) {
   return getContext().resourceManager.getStringSync(resource);
 }
-
+// [EndExclude on_page_end_trigger_prefetch_post_request_access_page]
 @Entry
 @Component
 struct WebComponent {
@@ -40,4 +40,4 @@ struct WebComponent {
     }
   }
 }
-
+//[End on_page_end_trigger_prefetch_post_request_access_page]

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start web_module_create_load_pdf]
 import { webview } from '@kit.ArkWeb';
 
 @Entry
@@ -34,3 +35,4 @@ struct WebComponent {
     }
   }
 }
+// [End web_module_create_load_pdf]

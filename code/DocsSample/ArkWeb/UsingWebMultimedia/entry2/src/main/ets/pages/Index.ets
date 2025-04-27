@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start video_hosting_usage]
 import { webview } from '@kit.ArkWeb';
 import { BuilderNode, FrameNode, NodeController, NodeRenderType, UIContext } from '@kit.ArkUI';
 import { AVPlayerDemo, AVPlayerListener } from './PlayerDemo';
@@ -465,3 +465,4 @@ struct WebComponent {
     return this.nativePlayerInfoList.find((item)=> item.embedId == embedId);
   }
 }
+// [End video_hosting_usage]

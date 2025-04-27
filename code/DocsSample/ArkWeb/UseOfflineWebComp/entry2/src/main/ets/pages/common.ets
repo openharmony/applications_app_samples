@@ -26,6 +26,7 @@ class Data{
 }
 // 通过布尔变量shouldInactive控制网页在后台完成预渲染后停止渲染
 let shouldInactive: boolean = true;
+// [Start call_onActive_method_to_pre_render_offline_web_component]
 @Builder
 function webBuilder(data:Data) {
   Column() {
@@ -34,6 +35,7 @@ function webBuilder(data:Data) {
         // 调用onActive，开启渲染
         data.controller.onActive();
       })
+      // [StartExclude call_onActive_method_to_pre_render_offline_web_component]
       .onFirstMeaningfulPaint(() =>{
         if (!shouldInactive) {
           return;
@@ -42,10 +44,12 @@ function webBuilder(data:Data) {
         data.controller.onInactive();
         shouldInactive = false;
       })
+      // [EndExclude call_onActive_method_to_pre_render_offline_web_component]
       .width('100%')
       .height('100%')
   }
 }
+// [End call_onActive_method_to_pre_render_offline_web_component]
 let wrap = wrapBuilder<Data[]>(webBuilder);
 // 用于控制和反馈对应的NodeContianer上的节点的行为，需要与NodeContainer一起使用
 export class MyNodeController extends NodeController {

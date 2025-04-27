@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start webview_and_native_modules_are_used_to_implement_complex_message_interaction_between_applications_and_h5_pages]
 import testNapi from 'libentry.so';
 import web_webview from '@ohos.web.webview';
 import { BusinessError } from '@ohos.base';
@@ -270,3 +271,4 @@ struct Index {
     .edgeEffect(EdgeEffect.Spring)
   }
 }
+// [End webview_and_native_modules_are_used_to_implement_complex_message_interaction_between_applications_and_h5_pages]

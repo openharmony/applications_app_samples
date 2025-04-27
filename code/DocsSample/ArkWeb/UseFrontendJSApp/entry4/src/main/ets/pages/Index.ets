@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+// [Start interact_with_the_webview_via_the_native_api]
+// [Start use_the_native_interface_to_bind_arkweb]
 import testNapi from 'libentry.so';
 import { webview } from '@kit.ArkWeb';
 
@@ -33,6 +35,7 @@ class testObj {
 @Entry
 @Component
 struct Index {
+  // [Start customize_a_webtag_and_send_it_to_the_native_side_of_the_application]
   webTag: string = 'ArkWeb1';
   controller: webview.WebviewController = new webview.WebviewController(this.webTag);
   @State testObjtest: testObj = new testObj();
@@ -41,7 +44,9 @@ struct Index {
     console.info('aboutToAppear');
     //初始化web Native Development Kit
     testNapi.nativeWebInit(this.webTag);
+    // [End customize_a_webtag_and_send_it_to_the_native_side_of_the_application]
   }
+  // [End use_the_native_interface_to_bind_arkweb]
 
   build() {
     Column() {
@@ -64,3 +69,4 @@ struct Index {
     }
   }
 }
+// [End interact_with_the_webview_via_the_native_api]

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start clear_all_cookies_in_privacy_mode]
 import { webview } from '@kit.ArkWeb';
 
 @Entry
@@ -31,3 +32,4 @@ struct WebComponent {
     }
   }
 }
+// [End clear_all_cookies_in_privacy_mode]

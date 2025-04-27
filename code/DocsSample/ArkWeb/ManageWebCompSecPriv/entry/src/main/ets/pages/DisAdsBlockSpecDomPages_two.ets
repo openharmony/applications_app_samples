@@ -12,13 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start set_up_page_level_ad_filtering_switch]
 import { webview } from '@kit.ArkWeb';
 
+// [StartExclude set_up_page_level_ad_filtering_switch]
 function resourceToString(resource: Resource) {
   return getContext().resourceManager.getStringSync(resource);
 }
-
+// [EndExclude set_up_page_level_ad_filtering_switch]
 @Entry
 @Component
 struct WebComponent {
@@ -63,3 +64,4 @@ struct WebComponent {
     }
   }
 }
+// [End set_up_page_level_ad_filtering_switch]

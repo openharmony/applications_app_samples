@@ -12,7 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
+// [Start read_local_js_resource_from_rawfile_dir_via_file_api]
 import { BuilderData } from './DynamicComponent';
 import { Config, configs } from './PrecompileConfig';
 
@@ -51,3 +52,4 @@ async function readRawFile(path: string) {
     return new Uint8Array(0);
   }
 }
+// [End read_local_js_resource_from_rawfile_dir_via_file_api]

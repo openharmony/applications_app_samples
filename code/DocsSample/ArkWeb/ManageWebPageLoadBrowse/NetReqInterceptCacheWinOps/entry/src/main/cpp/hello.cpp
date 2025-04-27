@@ -13,6 +13,7 @@
  * limitations under the License.
  */
  
+// [Start set_intercept_web_module_request_example]
 #include "hilog/log.h"
 #include "napi/native_api.h"
 #include "rawfile_request.h"
@@ -23,7 +24,9 @@
 #undef LOG_TAG
 #define LOG_TAG "ss-handler"
 
+// [Start set_intercept_web_module_request]
 ArkWeb_SchemeHandler *g_schemeHandler;
+// [StartExclude set_intercept_web_module_request]
 ArkWeb_SchemeHandler *g_schemeHandlerForSW;
 NativeResourceManager *g_resourceManager;
 
@@ -31,11 +34,13 @@ NativeResourceManager *g_resourceManager;
 static napi_value RegisterCustomSchemes(napi_env env, napi_callback_info info)
 {
     OH_LOG_INFO(LOG_APP, "register custom schemes");
+    // [Start register_set_custom_schemes]
     OH_ArkWeb_RegisterCustomSchemes("custom", ARKWEB_SCHEME_OPTION_STANDARD | ARKWEB_SCHEME_OPTION_CORS_ENABLED);
     OH_ArkWeb_RegisterCustomSchemes("custom-local", ARKWEB_SCHEME_OPTION_LOCAL);
     OH_ArkWeb_RegisterCustomSchemes(
         "custom-csp-bypassing", ARKWEB_SCHEME_OPTION_CSP_BYPASSING | ARKWEB_SCHEME_OPTION_STANDARD);
     OH_ArkWeb_RegisterCustomSchemes("custom-isolated", ARKWEB_SCHEME_OPTION_DISPLAY_ISOLATED);
+    // [End register_set_custom_schemes]
     return nullptr;
 }
 
@@ -95,21 +100,27 @@ void OnURLRequestStopForSW(const ArkWeb_SchemeHandler *schemeHandler,
 static napi_value SetSchemeHandler(napi_env env, napi_callback_info info)
 {
     OH_LOG_INFO(LOG_APP, "set scheme handler");
+    // [EndExclude set_intercept_web_module_request]
+    // [Start set_intercept_web_module_request_custom]
     OH_ArkWeb_CreateSchemeHandler(&g_schemeHandler);
     OH_ArkWeb_CreateSchemeHandler(&g_schemeHandlerForSW);
 
     OH_ArkWebSchemeHandler_SetOnRequestStart(g_schemeHandler, OnURLRequestStart);
     OH_ArkWebSchemeHandler_SetOnRequestStop(g_schemeHandler, OnURLRequestStop);
 
+    // [StartExclude set_intercept_web_module_request_custom]
     OH_ArkWebSchemeHandler_SetOnRequestStart(g_schemeHandlerForSW, OnURLRequestStart);
     OH_ArkWebSchemeHandler_SetOnRequestStop(g_schemeHandlerForSW, OnURLRequestStop);
+    // [EndExclude set_intercept_web_module_request_custom]
 
     OH_ArkWeb_SetSchemeHandler("custom", "scheme-handler", g_schemeHandler);
     OH_ArkWeb_SetSchemeHandler("custom-csp-bypassing", "scheme-handler", g_schemeHandler);
     OH_ArkWeb_SetSchemeHandler("custom-isolated", "scheme-handler", g_schemeHandler);
     OH_ArkWeb_SetSchemeHandler("custom-local", "scheme-handler", g_schemeHandler);
+    // [End set_intercept_web_module_request_custom]
     OH_ArkWeb_SetSchemeHandler("https", "scheme-handler", g_schemeHandler);
     OH_ArkWeb_SetSchemeHandler("http", "scheme-handler", g_schemeHandler);
+    // [End set_intercept_web_module_request]
 
     OH_ArkWebServiceWorker_SetSchemeHandler("https", g_schemeHandlerForSW);
     return nullptr;
@@ -151,3 +162,4 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
 {
     napi_module_register(&demoModule);
 }
+// [End set_intercept_web_module_request_example]

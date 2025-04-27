@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+// [Start initialize_kernel_in_onCreate_and_pre_connect_to_homepage]
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
@@ -29,6 +29,7 @@ export default class Entry1Ability extends UIAbility {
     console.log('EntryAbility onCreate done');
   }
 
+  // [StartExclude initialize_kernel_in_onCreate_and_pre_connect_to_homepage]
   onDestroy(): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
   }
@@ -60,4 +61,6 @@ export default class Entry1Ability extends UIAbility {
     // Ability has back to background
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
   }
+  // [EndExclude initialize_kernel_in_onCreate_and_pre_connect_to_homepage]
 }
+// [End initialize_kernel_in_onCreate_and_pre_connect_to_homepage]

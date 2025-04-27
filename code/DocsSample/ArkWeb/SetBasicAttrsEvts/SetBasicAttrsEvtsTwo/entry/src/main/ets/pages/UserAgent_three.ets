@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start get_a_custom_user_agent]
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -38,3 +39,4 @@ struct WebComponent {
     }
   }
 }
+// [End get_a_custom_user_agent]

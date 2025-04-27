@@ -15,6 +15,7 @@
 
 import { webview } from '@kit.ArkWeb';
 
+// [Start button_click_trigger_back]
 @Entry
 @Component
 struct WebComponent {
@@ -32,3 +33,4 @@ struct WebComponent {
     }
   }
 }
+// [End button_click_trigger_back]

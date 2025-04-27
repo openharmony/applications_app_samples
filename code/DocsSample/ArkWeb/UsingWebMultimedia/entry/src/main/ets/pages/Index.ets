@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start click_button_to_turn_on_camera_microphone]
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { abilityAccessCtrl } from '@kit.AbilityKit';
@@ -66,3 +66,4 @@ struct WebComponent {
     }
   }
 }
+// [End click_button_to_turn_on_camera_microphone]

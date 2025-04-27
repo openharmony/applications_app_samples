@@ -13,5 +13,7 @@
  * limitations under the License.
  */
 
+// [Start the_arkts_interface_is_exposed_on_the_node_api_side]
 export const nativeWebInit: (webName: string) => void;
 export const runJavaScript: (webName: string, jsCode: string) => void;
+// [End the_arkts_interface_is_exposed_on_the_node_api_side]

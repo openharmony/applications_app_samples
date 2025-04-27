@@ -13,5 +13,7 @@
 * limitations under the License.
 */
 
+// [Start isolated_script_java_script]
 const element = document.getElementById('isolated_test');
 element.textContent = 'isolated_script.js not blocked';
+// [End isolated_script_java_script]

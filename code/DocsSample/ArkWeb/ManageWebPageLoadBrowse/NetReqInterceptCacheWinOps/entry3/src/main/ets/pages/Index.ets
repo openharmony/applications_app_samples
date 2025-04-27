@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start web_module_dynamic_attach_detach]
 // 使用NodeController的Page页
 import { getBuilderNode, MyNodeController, defaultUrl, getWebviewController } from './common';
 
@@ -47,4 +48,5 @@ struct Index {
     .height('100%')
   }
 }
+// [End web_module_dynamic_attach_detach]
 

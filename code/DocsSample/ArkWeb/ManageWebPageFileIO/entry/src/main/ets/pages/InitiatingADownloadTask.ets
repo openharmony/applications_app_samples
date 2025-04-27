@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start init_download_task]
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -69,3 +70,4 @@ struct WebComponent {
     }
   }
 }
+// [End init_download_task]

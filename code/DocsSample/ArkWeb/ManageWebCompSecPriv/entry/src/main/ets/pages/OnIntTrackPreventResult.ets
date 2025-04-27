@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start retrieve_blocked_and_visited_domain_names]
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -41,3 +42,4 @@ struct WebComponent {
     }
   }
 }
+// [End retrieve_blocked_and_visited_domain_names]

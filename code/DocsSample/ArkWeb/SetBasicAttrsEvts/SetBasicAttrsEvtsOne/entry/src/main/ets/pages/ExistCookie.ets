@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start check_whether_cookies_exist_in_mode]
 import { webview } from '@kit.ArkWeb';
 
 @Entry
@@ -32,3 +33,4 @@ struct WebComponent {
     }
   }
 }
+// [End check_whether_cookies_exist_in_mode]

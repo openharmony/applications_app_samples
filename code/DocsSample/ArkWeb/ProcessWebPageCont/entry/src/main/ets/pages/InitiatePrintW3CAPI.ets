@@ -12,7 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
+// [Start w3c_print_html]
 import { webview } from '@kit.ArkWeb';
 
 @Entry
@@ -31,3 +32,4 @@ struct Index {
     .height('100%')
   }
 }
+// [End w3c_print_html]

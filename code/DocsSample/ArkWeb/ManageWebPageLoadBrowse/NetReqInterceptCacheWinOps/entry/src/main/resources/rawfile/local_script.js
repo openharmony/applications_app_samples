@@ -13,5 +13,7 @@
 * limitations under the License.
 */
 
+// [Start local_script_java_script]
 const element = document.getElementById('local_test');
 element.textContent = 'local_script.js not blocked.';
+// [End local_script_java_script]

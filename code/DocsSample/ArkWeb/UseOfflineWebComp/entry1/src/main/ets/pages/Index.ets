@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start navigate_to_web_page_pre_start_webview_load]
 import router from '@ohos.router';
 import { webview } from '@kit.ArkWeb';
 
@@ -32,3 +33,4 @@ struct Index1 {
     }
   }
 }
+// [End navigate_to_web_page_pre_start_webview_load]

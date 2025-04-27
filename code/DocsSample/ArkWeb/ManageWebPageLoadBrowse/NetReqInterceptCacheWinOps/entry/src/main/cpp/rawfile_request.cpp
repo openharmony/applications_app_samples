@@ -13,6 +13,7 @@
  * limitations under the License.
  */
  
+// [Start intercepted_request_processing_cpp]
 #include "rawfile_request.h"
 #include "threads.h"
 
@@ -118,6 +119,7 @@ RawfileRequest::~RawfileRequest() {}
 void RawfileRequest::Start()
 {
     OH_LOG_INFO(LOG_APP, "start a rawfile request.");
+    // [Start get_intercepted_request_info]
     char* url;
     OH_ArkWebResourceRequest_GetUrl(resourceRequest_, &url);
     std::string urlStr(url);
@@ -126,14 +128,20 @@ void RawfileRequest::Start()
         rawfilePath_ = urlStr.substr(position + 1);
     }
     OH_ArkWeb_ReleaseString(url);
+    // [End get_intercepted_request_info]
 
+    // [Start set_intercepted_request_response]
+    // [StartExclude set_intercepted_request_response]
     OH_ArkWeb_CreateResponse(&response_);
+    // [EndExclude set_intercepted_request_response]
     OH_ArkWebResourceRequest_GetHttpBodyStream(resourceRequest(), &stream_);
     if (stream_) {
         OH_LOG_ERROR(LOG_APP, "have http body stream");
+        // [Start get_put_post_request_data]
         OH_ArkWebHttpBodyStream_SetUserData(stream_, this);
         OH_ArkWebHttpBodyStream_SetReadCallback(stream_, ReadCallback);
         OH_ArkWebHttpBodyStream_Init(stream_, InitCallback);
+        // [End get_put_post_request_data]
     } else {
         thrd_t th;
         if (thrd_create(&th, ReadRawfileOnWorkerThread, static_cast<void*>(this)) != thrd_success) {
@@ -177,11 +185,13 @@ void RawfileRequest::ReadRawfileDataOnWorkerThread()
     }
 
     RawFile *rawfile = OH_ResourceManager_OpenRawFile(resourceManager(), RawfilePath().c_str());
+    // [StartExclude set_intercepted_request_response]
     if (!rawfile) {
         OH_ArkWebResponse_SetStatus(response(), HTTP_NOT_FOUND);
     } else {
         OH_ArkWebResponse_SetStatus(response(), HTTP_OK);
     }
+    // [EndExclude set_intercepted_request_response]
 
     for (auto &urlInfo : urlInfos) {
         if (urlInfo.resource == RawfilePath()) {
@@ -189,10 +199,14 @@ void RawfileRequest::ReadRawfileDataOnWorkerThread()
             break;
         }
     }
+    // [StartExclude set_intercepted_request_response]
     OH_ArkWebResponse_SetCharset(response(), "UTF-8");
+    // [EndExclude set_intercepted_request_response]
 
     long len = OH_ResourceManager_GetRawFileSize(rawfile);
+    // [StartExclude set_intercepted_request_response]
     OH_ArkWebResponse_SetHeaderByName(response(), "content-length", std::to_string(len).c_str(), false);
+    // EndExclude set_intercepted_request_response]
     DidReceiveResponse();
 
     long consumed = 0;
@@ -236,7 +250,9 @@ void RawfileRequest::DidReceiveResponse()
     OH_LOG_INFO(LOG_APP, "did receive response.");
     std::lock_guard<std::mutex> guard(mutex_);
     if (!stopped_) {
+        // [StartExclude set_intercepted_request_response]
         OH_ArkWebResourceHandler_DidReceiveResponse(resourceHandler_, response_);
+        // [EndExclude set_intercepted_request_response]
     }
 }
 
@@ -245,7 +261,9 @@ void RawfileRequest::DidReceiveData(const uint8_t *buffer, int64_t bufLen)
     OH_LOG_INFO(LOG_APP, "did receive data.");
     std::lock_guard<std::mutex> guard(mutex_);
     if (!stopped_) {
+        // [StartExclude set_intercepted_request_response]
         OH_ArkWebResourceHandler_DidReceiveData(resourceHandler_, buffer, bufLen);
+        // [EndExclude set_intercepted_request_response]
     }
 }
 
@@ -254,7 +272,10 @@ void RawfileRequest::DidFinish()
     OH_LOG_INFO(LOG_APP, "did finish.");
     std::lock_guard<std::mutex> guard(mutex_);
     if (!stopped_) {
+        // [StartExclude set_intercepted_request_response]
         OH_ArkWebResourceHandler_DidFinish(resourceHandler_);
+        // [EndExclude set_intercepted_request_response]
+        // [End set_intercepted_request_response]
     }
 }
 
@@ -265,3 +286,4 @@ void RawfileRequest::DidFailWithError(ArkWeb_NetError errorCode)
         OH_ArkWebResourceHandler_DidFailWithError(resourceHandler_, errorCode);
     }
 }
+// [End intercepted_request_processing_cpp]

@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start use_expand_safe_area_to_enable_immersive_effect]
 import { webview } from '@kit.ArkWeb';
 
 @Entry
@@ -28,3 +28,4 @@ struct WebComponent {
     }
   }
 }
+// [End use_expand_safe_area_to_enable_immersive_effect]

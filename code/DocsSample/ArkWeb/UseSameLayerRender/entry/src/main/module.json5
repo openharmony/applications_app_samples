@@ -62,11 +62,13 @@
         ]
       }
     ],
+    // [Start request_permissions]
     "requestPermissions":[
       {
         "name" : "ohos.permission.INTERNET"
       }
-    ]
+    ],
+    // [End request_permissions]
 
   }
 }

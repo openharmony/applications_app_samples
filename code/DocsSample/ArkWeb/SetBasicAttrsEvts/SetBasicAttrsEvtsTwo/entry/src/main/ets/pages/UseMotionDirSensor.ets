@@ -12,7 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
+// [Start the_type_of_resource_for_which_permission_is_requested]
 import { webview } from '@kit.ArkWeb';
 import { abilityAccessCtrl, PermissionRequestResult } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -70,3 +71,4 @@ struct WebComponent {
     }
   }
 }
+// [End the_type_of_resource_for_which_permission_is_requested]

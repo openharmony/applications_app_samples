@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start  dynamic_webview_component_loading]
 import { webview } from '@kit.ArkWeb';
 import { NodeController } from '@kit.ArkUI';
 import { createNode } from "./DynamicComponent";
@@ -53,3 +54,4 @@ struct Index {
     }
   }
 }
+// [End dynamic_webview_component_loading]

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start set_test_html]
 import testNapi from 'libentry.so';
 import { webview } from '@kit.ArkWeb';
 import { resourceManager } from '@kit.LocalizationKit';
@@ -46,3 +47,4 @@ struct Index {
     .height('100%')
   }
 }
+// [End set_test_html]

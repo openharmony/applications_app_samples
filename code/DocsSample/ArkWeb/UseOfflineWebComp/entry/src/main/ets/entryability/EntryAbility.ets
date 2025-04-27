@@ -13,10 +13,12 @@
  * limitations under the License.
  */
 
+
+import { createNWeb } from "../pages/common";
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
-import { createNWeb } from "../pages/common";
+
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
@@ -26,7 +28,7 @@ export default class EntryAbility extends UIAbility {
   onDestroy(): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
   }
-
+  // [Start entry_ability_window_stage_created_after_specified_page_loaded]
   onWindowStageCreate(windowStage: window.WindowStage): void {
     windowStage.loadContent('pages/Index', (err, data) => {
       // 创建Web动态组件（需传入UIContext），loadContent之后的任意时机均可创建
@@ -36,6 +38,7 @@ export default class EntryAbility extends UIAbility {
       }
     });
   }
+  // [End entry_ability_window_stage_created_after_specified_page_loaded]
 
   onWindowStageDestroy(): void {
     // Main window is destroyed, release UI related resources

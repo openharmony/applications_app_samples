@@ -62,13 +62,21 @@
         ]
       }
     ],
+    // [Start web_module_print_html]
+    // [Start web_module_preview_pdf]
     "requestPermissions":[
+      // [StartExclude web_module_preview_pdf]
       {
         "name" : "ohos.permission.PRINT"
       },
+      // EndExclude web_module_preview_pdf]
+      // [StartExclude web_module_print_html]
       {
         "name" : "ohos.permission.INTERNET"
       }
-    ]
+      // [EndExclude web_module_print_html]
+    ],
+    // [End web_module_preview_pdf]
+    // [End web_module_print_html]
   }
 }

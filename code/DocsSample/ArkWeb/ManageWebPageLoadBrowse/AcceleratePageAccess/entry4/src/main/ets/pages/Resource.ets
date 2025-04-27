@@ -12,13 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-import { webview } from '@kit.ArkWeb';
 
+// [Start compile_resource_allocation_information]
+import { webview } from '@kit.ArkWeb';
+// [StartExclude compile_resource_allocation_information]
 function resourceToString(resource: Resource) {
   return getContext().resourceManager.getStringSync(resource);
 }
-
+// [EndExclude compile_resource_allocation_information]
 export interface ResourceConfig {
   urlList: Array<string>,
   type: webview.OfflineResourceType,
@@ -52,3 +53,4 @@ export const resourceConfigs: ResourceConfig[] = [
     ]
   },
 ];
+// [End compile_resource_allocation_information]

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start create_a_web_component_in_privacy_mode]
 import { webview } from '@kit.ArkWeb';
 
 @Entry
@@ -26,3 +27,4 @@ struct WebComponent {
     }
   }
 }
+// [End create_a_web_component_in_privacy_mode]

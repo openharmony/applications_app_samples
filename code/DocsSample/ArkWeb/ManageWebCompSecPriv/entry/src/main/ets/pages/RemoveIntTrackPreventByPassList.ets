@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start partial_domain_name_list]
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -37,3 +37,4 @@ struct WebComponent {
     }
   }
 }
+// [End partial_domain_name_list]

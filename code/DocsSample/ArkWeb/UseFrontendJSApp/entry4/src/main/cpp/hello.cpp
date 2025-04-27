@@ -13,6 +13,7 @@
  * limitations under the License.
  */
  
+// [Start node_api_layer_code]
 #include "napi/native_api.h"
 #include <bits/alltypes.h>
 #include <memory>
@@ -123,7 +124,8 @@ void ValidCallback(const char *webTag, void *userData)
             LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb",
             "Native Development Kit ValidCallback jsb_weak_ptr lock failed");
     }
-
+    
+    // [Start the_front_end_page_calls_application_side_functions]
     // 注册对象
     OH_LOG_Print(
         LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "Native Development Kit RegisterJavaScriptProxy begin");
@@ -134,6 +136,7 @@ void ValidCallback(const char *webTag, void *userData)
     // 如此注册的情况下，在H5页面就可以使用proxy.method1、proxy.method1调用此文件下的ProxyMethod1和ProxyMethod2方法了
     ArkWeb_ProxyObject proxyObject = {"ndkProxy", methodList, 2};
     controller->registerJavaScriptProxy(webTag, &proxyObject);
+    // [End the_front_end_page_calls_application_side_functions]
 
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "Native Development Kit RegisterJavaScriptProxy end");
 }
@@ -203,6 +206,7 @@ void DestroyCallback(const char *webTag, void *userData)
 
 void SetComponentCallback(ArkWeb_ComponentAPI * component, const char* webTagValue)
 {
+    // [Start the_native_side_registers_the_callback_of_the_component_lifecycle]
     if (!ARKWEB_MEMBER_MISSING(component, onControllerAttached)) {
         component->onControllerAttached(
             webTagValue, ValidCallback, static_cast<void *>(jsbridge_object_ptr->GetWeakPtr()));
@@ -227,8 +231,10 @@ void SetComponentCallback(ArkWeb_ComponentAPI * component, const char* webTagVal
     } else {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ArkWeb", "component onDestroy func not exist");
     }
+    // [End the_native_side_registers_the_callback_of_the_component_lifecycle]
 }
 
+// [Start parse_and_store_webtags]
 // 解析存储webTag
 static napi_value NativeWebInit(napi_env env, napi_callback_info info)
 {
@@ -250,7 +256,8 @@ static napi_value NativeWebInit(napi_env env, napi_callback_info info)
     jsbridge_object_ptr = std::make_shared<JSBridgeObject>(webTagValue);
     if (jsbridge_object_ptr)
         jsbridge_object_ptr->Init();
-
+// [End parse_and_store_webtags]
+    
     controller = reinterpret_cast<ArkWeb_ControllerAPI *>(OH_ArkWeb_GetNativeAPI(ARKWEB_NATIVE_CONTROLLER));
     component = reinterpret_cast<ArkWeb_ComponentAPI *>(OH_ArkWeb_GetNativeAPI(ARKWEB_NATIVE_COMPONENT));
     SetComponentCallback(component, webTagValue);
@@ -317,3 +324,4 @@ static napi_module demoModule = {
 };
 
 extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
+// [End node_api_layer_code]

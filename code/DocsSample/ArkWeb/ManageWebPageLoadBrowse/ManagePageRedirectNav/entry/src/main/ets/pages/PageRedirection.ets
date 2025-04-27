@@ -16,6 +16,7 @@
 import { webview } from '@kit.ArkWeb';
 import { router } from '@kit.ArkUI';
 
+// [Start index_load_route_link_to_profile]
 @Entry
 @Component
 struct WebComponent {
@@ -39,3 +40,4 @@ struct WebComponent {
     }
   }
 }
+// [End index_load_route_link_to_profile]

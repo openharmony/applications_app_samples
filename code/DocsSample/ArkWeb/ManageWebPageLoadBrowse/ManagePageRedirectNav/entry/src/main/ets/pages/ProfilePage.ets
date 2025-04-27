@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+// [Start navigate_to_profile_page]
 @Entry
 @Component
 struct ProfilePage {
@@ -25,3 +25,4 @@ struct ProfilePage {
     }
   }
 }
+// [End navigate_to_profile_page]

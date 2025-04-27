@@ -15,7 +15,7 @@
 
 import { webview } from '@kit.ArkWeb';
 import { call } from '@kit.TelephonyKit';
-
+// [Start click_link_call_html_to_reach_phone_dialing_screen]
 @Entry
 @Component
 struct WebComponent {
@@ -45,3 +45,4 @@ struct WebComponent {
     }
   }
 }
+//[End click_link_call_html_to_reach_phone_dialing_screen]

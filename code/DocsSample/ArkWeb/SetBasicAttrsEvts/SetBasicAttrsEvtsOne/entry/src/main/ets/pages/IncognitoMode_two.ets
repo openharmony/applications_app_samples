@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start determine_whether_the_current_web_component_is_in_privacy_mode]
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -37,3 +38,4 @@ struct WebComponent {
     }
   }
 }
+// [End determine_whether_the_current_web_component_is_in_privacy_mode]

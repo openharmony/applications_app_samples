@@ -12,7 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
+// [Start compile_resource_allocation_information]
 import { webview } from '@kit.ArkWeb'
 
 function resourceToString(resource: Resource) {
@@ -37,3 +38,4 @@ export let configs: Config[] = [
     }
   }
 ]
+// [End compile_resource_allocation_information]

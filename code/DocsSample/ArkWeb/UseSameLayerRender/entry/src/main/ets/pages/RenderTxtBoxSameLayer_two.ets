@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start set_web_peer_render]
 import webview from '@ohos.web.webview';
 import { UIContext } from '@ohos.arkui.UIContext';
 import { NodeController, BuilderNode, NodeRenderType, FrameNode } from '@ohos.arkui.node';
@@ -36,6 +37,7 @@ declare class NodeControllerParams {
 }
 
 // 用于控制和反馈对应的NodeContainer上的节点的行为，需要与NodeContainer一起使用。
+// [Start control_reflect_node_container]
 class MyNodeController extends NodeController {
   private rootNode: BuilderNode<[Params]> | undefined | null;
   private embedId_: string = '';
@@ -102,7 +104,9 @@ class MyNodeController extends NodeController {
     return this.rootNode?.postTouchEvent(event) as boolean;
   }
 }
+// [End control_reflect_node_container]
 
+// [Start create_custom_module]
 @Component
 struct TextInputComponent {
   @Prop params: Params;
@@ -132,6 +136,7 @@ function textInputBuilder(params:Params) {
     .height(params.height)
     .backgroundColor(Color.White)
 }
+// [End create_custom_module]
 
 @Entry
 @Component
@@ -145,6 +150,8 @@ struct Page{
   @State positionMap: Map<string, Edges> = new Map();
   @State edges: Edges = {};
 
+  // [Start listen_peer_renders_life_cycle]
+  // [Start peer_renders_gesture_event]
   build() {
     Row() {
       Column() {
@@ -156,13 +163,16 @@ struct Page{
               .height(this.heightMap.get(componentId))
           }, (embedId: string) => embedId)
           // Web组件加载本地test2.html页面。
+          // [Start register_object_label]
           Web({src: $rawfile('test2.html'), controller: this.browserTabController})
             // 注册同层标签为'object'，类型为'test'前缀
             .registerNativeEmbedRule('object', 'test')
+              // [End register_object_label]
               // 配置同层渲染开关开启。
             .enableNativeEmbedMode(true)
               // 获取embed标签的生命周期变化数据。
             .onNativeEmbedLifecycleChange((embed) => {
+              // [StartExclude peer_renders_gesture_event]
               console.log('NativeEmbed surfaceId' + embed.surfaceId);
               // 如果使用embed.info.id作为映射nodeController的key，请在h5页面显式指定id
               const componentId = embed.info?.id?.toString() as string;
@@ -213,7 +223,10 @@ struct Page{
               } else {
                 console.log('NativeEmbed status' + embed.status);
               }
-            })// 获取同层渲染组件触摸事件信息。
+              // [EndExclude peer_renders_gesture_event]
+            })
+              // [StartExclude listen_peer_renders_life_cycle]
+              // 获取同层渲染组件触摸事件信息。
             .onNativeEmbedGestureEvent((touch) => {
               console.log('NativeEmbed onNativeEmbedGestureEvent' + JSON.stringify(touch.touchEvent));
               this.componentIdArr.forEach((componentId: string) => {
@@ -233,8 +246,12 @@ struct Page{
                 }
               })
             })
+          // [EndExclude listen_peer_renders_life_cycle]
         }
       }
     }
   }
+  // [End peer_renders_gesture_event]
+  // [End listen_peer_renders_life_cycle]
 }
+// [End set_web_peer_render]

@@ -13,13 +13,15 @@
  * limitations under the License.
  */
 
+// [Start app_select_list_rule_file_for_ad_filter]
 import { webview } from '@kit.ArkWeb';
 import { picker, fileUri } from '@kit.CoreFileKit';
 
+// [StartExclude app_select_list_rule_file_for_ad_filter]
 function resourceToString(resource: Resource) {
   return getContext().resourceManager.getStringSync(resource);
 }
-
+// [EndExclude app_select_list_rule_file_for_ad_filter]
 @Entry
 @Component
 struct WebComponent {
@@ -59,3 +61,4 @@ struct WebComponent {
     }
   }
 }
+// [End app_select_list_rule_file_for_ad_filter]

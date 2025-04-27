@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start a_pop_up_window_is_used_to_notify_the_app_side_location_permission_request_message]
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { abilityAccessCtrl, common } from '@kit.AbilityKit';
@@ -68,3 +69,4 @@ struct WebComponent {
     }
   }
 }
+// [End a_pop_up_window_is_used_to_notify_the_app_side_location_permission_request_message]

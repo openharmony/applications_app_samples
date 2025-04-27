@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [Start web_components_load_html_strings_by_data_url]
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -29,3 +29,4 @@ struct WebComponent {
     }
   }
 }
+// [End web_components_load_html_strings_by_data_url]

@@ -16,8 +16,10 @@
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
+// [Start create_main_window]
 import { createNWeb, defaultUrl } from '../pages/common';
 
+// [StartExclude create_main_window]
 export default class Entry3Ability extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
@@ -26,6 +28,7 @@ export default class Entry3Ability extends UIAbility {
   onDestroy(): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
   }
+  // [EndExclude create_main_window]
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability
@@ -41,6 +44,7 @@ export default class Entry3Ability extends UIAbility {
       hilog.info(0x0000, 'testTag', 'Succeeded in loading the content.');
     });
   }
+  // [End create_main_window]
 
   onWindowStageDestroy(): void {
       // Main window is destroyed, release UI related resources

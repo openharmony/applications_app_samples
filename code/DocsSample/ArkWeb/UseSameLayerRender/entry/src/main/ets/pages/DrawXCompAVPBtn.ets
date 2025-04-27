@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start draw_x_component_av_player_button]
 // 创建NodeController
 import { webview } from '@kit.ArkWeb';
 import { UIContext, NodeController, BuilderNode, NodeRenderType, FrameNode } from '@kit.ArkUI';
@@ -212,3 +213,4 @@ struct WebIndex {
     }
   }
 }
+// [End draw_x_component_av_player_button]

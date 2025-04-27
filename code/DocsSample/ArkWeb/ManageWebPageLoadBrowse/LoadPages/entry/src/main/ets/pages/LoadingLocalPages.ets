@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+
+// [Start after_load_complete_call_to_change_page]
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -37,3 +39,4 @@ struct WebComponent {
     }
   }
 }
+// [End after_load_complete_call_to_change_page]
