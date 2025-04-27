@@ -63,7 +63,7 @@ entry/src/main/ets/
 1. 本示例仅支持标准系统上运行;
 2. 本示例仅支持API10版本SDK，SDK版本号(4.0.10.10), 镜像版本号(4.0 Release)。
 3. 本示例需要使用DevEco Studio 4.0 Beta2 (Build Version: 4.0.0.400, built on August 2, 2023)才可编译运行;
-4. 本示例需要使用@@ohos.dlpPermission系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)。
+4. 本示例需要使用@ohos.dlpPermission系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)。
 
 ### 下载
 

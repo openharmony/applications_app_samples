@@ -191,7 +191,7 @@ entry/src/main/ets/
   
   * 卡片数据交互：
 
-    * ArkTS卡片框架提供了updateForm()接口和requestForm()接口主动触发卡片的页面刷新，通过[LocalStorageProp](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/arkts-localstorage.md#localstorageprop)确认需要刷新的卡片数据。
+    * ArkTS卡片框架提供了updateForm()接口和requestForm()接口主动触发卡片的页面刷新，通过[LocalStorageProp](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-localstorage.md#localstorageprop)确认需要刷新的卡片数据。
   * 介绍了按时间刷新方式（通过form_config.json配置文件的updateDuration字段中进行设置），代理刷新，刷新网络数据等能力。
   
 
