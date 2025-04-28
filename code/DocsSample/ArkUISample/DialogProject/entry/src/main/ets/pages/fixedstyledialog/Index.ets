@@ -21,6 +21,8 @@ import { DatePickerDialogExample } from './DatePickerDialog';
 import { TextPickerDialogExample } from './TextPickerDialog';
 import { TimePickerDialogExample } from './TimePickerDialog';
 import { showAlertDialogExample } from './AlertDialog';
+import { ShowActionMenuExample } from './ShowActionMenu';
+import { ShowDialogExample } from './ShowDialog';
 import resource from '../../common/resource';
 
 
@@ -56,6 +58,16 @@ const routes: Route[] = [
     name: `${Fixed_ROUTE_PREFIX}/AlertDialog`,
     title: resource.resourceToString($r('app.string.AlertDialog_title')),
     description:  $r('app.string.AlertDialog_des'),
+  },
+  {
+    name: `${Fixed_ROUTE_PREFIX}/ShowActionMenu`,
+    title: resource.resourceToString($r('app.string.ShowActionMenu_title')),
+    description: $r('app.string.ShowActionMenu_des'),
+  },
+  {
+    name: `${Fixed_ROUTE_PREFIX}/ShowDialog`,
+    title: resource.resourceToString($r('app.string.ShowDialog_title')),
+    description: $r('app.string.ShowDialog_des'),
   }
 ]
 
@@ -75,6 +87,10 @@ export function FixedDialogDestination(name: string) {
     showActionSheetExample();
   } else if (name === routes[5].name) {
     showAlertDialogExample();
+  } else if (name === routes[6].name) {
+    ShowActionMenuExample();
+  } else if (name === routes[7].name) {
+    ShowDialogExample();
   }
 }
 

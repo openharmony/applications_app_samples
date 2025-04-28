@@ -45,6 +45,8 @@ entry/src/main/ets/
 |   |       |---CalendarPickerDialog.ets
 |   |       |---DatePickerDialog.ets
 |   |       |---Index.ets
+|   |       |---ShowActionMenu.ets
+|   |       |---ShowDialog.ets
 |   |       |---TextPickerDialog.ets
 |   |       |---TimePickerDialog.ets
 |   |---Menu                                  //菜单

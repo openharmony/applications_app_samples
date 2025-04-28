@@ -351,6 +351,30 @@
     {
       "name": "back",
       "value": "点击返回"
+    },
+    {
+      "name": "ShowActionMenu_title",
+      "value": "操作菜单"
+    },
+    {
+      "name": "ShowActionMenu_des",
+      "value": "操作菜单通过UIContext中的getPromptAction方法获取到PromptAction对象，再通过该对象调用showActionMenu接口实现，支持在回调或开发者自定义类中使用。"
+    },
+    {
+      "name": "ShowDialog_title",
+      "value": "对话框"
+    },
+    {
+      "name": "ShowDialog_des",
+      "value": "对话框通过UIContext中的getPromptAction方法获取到PromptAction对象，再通过该对象调用showDialog接口实现，支持在回调或开发者自定义类中使用。"
+    },
+    {
+      "name": "DefaultAndTopToast_title",
+      "value": "即时反馈模式对比"
+    },
+    {
+      "name": "DefaultAndTopToast_des",
+      "value": "即时反馈提供了两种显示模式，分别为DEFAULT（显示在应用内）、TOP_MOST（显示在应用之上）。"
     }
   ]
 }
