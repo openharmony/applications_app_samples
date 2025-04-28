@@ -122,6 +122,86 @@ getboolean/src/
  │   ├── ets
  │   │   ├── test
  │   │       ├── Ability.test.ets        // 自动化测试代码
+getglobal/src/
+ ├── main
+ │   ├── cpp
+ │   │   ├── types
+ │   │   │   ├── libentry
+ │   │   │   │   ├── Index.d.ts          // 提供JS侧的接口方法
+ │   │   │   │   ├── oh-package.json5 	 // 将index.d.ts与cpp文件关
+ │   │   ├── CMakeLists.txt              // 配置CMake打包参数
+ │   │   ├── hello.cpp                   // 实现Native侧的runTest接
+ │   ├── ets
+ │   │   ├── entryability
+ │   │   ├── entrybackupability
+ │   │   ├── pages
+ │   │       ├── Index.ets               // ArkTS侧调用C/C++方法实现
+ │   ├── module.json5
+ │   └── resources
+ ├── ohosTest
+ │   ├── ets
+ │   │   ├── test
+ │   │       ├── Ability.test.ets        // 自动化测试代码
+getnull/src/
+ ├── main
+ │   ├── cpp
+ │   │   ├── types
+ │   │   │   ├── libentry
+ │   │   │   │   ├── Index.d.ts          // 提供JS侧的接口方法
+ │   │   │   │   ├── oh-package.json5 	 // 将index.d.ts与cpp文件关
+ │   │   ├── CMakeLists.txt              // 配置CMake打包参数
+ │   │   ├── hello.cpp                   // 实现Native侧的runTest接
+ │   ├── ets
+ │   │   ├── entryability
+ │   │   ├── entrybackupability
+ │   │   ├── pages
+ │   │       ├── Index.ets               // ArkTS侧调用C/C++方法实现
+ │   ├── module.json5
+ │   └── resources
+ ├── ohosTest
+ │   ├── ets
+ │   │   ├── test
+ │   │       ├── Ability.test.ets        // 自动化测试代码
+getundefined/src/
+ ├── main
+ │   ├── cpp
+ │   │   ├── types
+ │   │   │   ├── libentry
+ │   │   │   │   ├── Index.d.ts          // 提供JS侧的接口方法
+ │   │   │   │   ├── oh-package.json5 	 // 将index.d.ts与cpp文件关
+ │   │   ├── CMakeLists.txt              // 配置CMake打包参数
+ │   │   ├── hello.cpp                   // 实现Native侧的runTest接
+ │   ├── ets
+ │   │   ├── entryability
+ │   │   ├── entrybackupability
+ │   │   ├── pages
+ │   │       ├── Index.ets               // ArkTS侧调用C/C++方法实现
+ │   ├── module.json5
+ │   └── resources
+ ├── ohosTest
+ │   ├── ets
+ │   │   ├── test
+ │   │       ├── Ability.test.ets        // 自动化测试代码
+getvaluebool/src/
+ ├── main
+ │   ├── cpp
+ │   │   ├── types
+ │   │   │   ├── libentry
+ │   │   │   │   ├── Index.d.ts          // 提供JS侧的接口方法
+ │   │   │   │   ├── oh-package.json5 	 // 将index.d.ts与cpp文件关
+ │   │   ├── CMakeLists.txt              // 配置CMake打包参数
+ │   │   ├── hello.cpp                   // 实现Native侧的runTest接
+ │   ├── ets
+ │   │   ├── entryability
+ │   │   ├── entrybackupability
+ │   │   ├── pages
+ │   │       ├── Index.ets               // ArkTS侧调用C/C++方法实现
+ │   ├── module.json5
+ │   └── resources
+ ├── ohosTest
+ │   ├── ets
+ │   │   ├── test
+ │   │       ├── Ability.test.ets        // 自动化测试代码
 ```
 
 ### 相关权限

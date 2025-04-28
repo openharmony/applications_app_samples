@@ -101,6 +101,54 @@
           ]
         }
       ]
+    },
+    {
+      "name": "getvaluebool",
+      "srcPath": "./getvaluebool",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "getglobal",
+      "srcPath": "./getglobal",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "getnull",
+      "srcPath": "./getnull",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "getundefined",
+      "srcPath": "./getundefined",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
     }
   ]
 }

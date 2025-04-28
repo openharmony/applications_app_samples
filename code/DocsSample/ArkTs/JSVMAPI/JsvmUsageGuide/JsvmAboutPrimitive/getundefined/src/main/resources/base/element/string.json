@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "GetundefinedAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "GetundefinedAbility_label",
+      "value": "JsvmAboutPrimitive"
+    }
+  ]
+}
