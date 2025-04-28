@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -37,15 +37,15 @@ class TimeConversion {
 
   // Converts the time units obtained in the date selection component to milliseconds
   dateToMillisecond(year: number, month: number, day: number, hour: number, minute: number) {
-    let nowTime: Date = new Date
-    let nowAllTime: number = nowTime.getFullYear() * YEAR_SECONDS + nowTime.getMonth() * MONTH_SECONDS +
-    nowTime.getDay() * DAY_SECONDS + nowTime.getHours() * HOUR_SECONDS + nowTime.getMinutes() * MINUTES_SECONDS +
-    nowTime.getSeconds()
+    let nowTime: Date = new Date;
+    let nowAllTime: number = nowTime.getFullYear() * YEAR_SECONDS + (nowTime.getMonth() + 1) * MONTH_SECONDS +
+      nowTime.getDate() * DAY_SECONDS + nowTime.getHours() * HOUR_SECONDS + nowTime.getMinutes() * MINUTES_SECONDS +
+    nowTime.getSeconds();
     let selectAllTime: number = year * YEAR_SECONDS + month * MONTH_SECONDS + day * DAY_SECONDS + hour * HOUR_SECONDS +
-    minute * MINUTES_SECONDS
-    let delayTime: number = selectAllTime - nowAllTime
-    Logger.info(TAG, `this vibratorTime is ${delayTime}`)
-    return delayTime
+      minute * MINUTES_SECONDS;
+    let delayTime: number = selectAllTime - nowAllTime;
+    Logger.info(TAG, `this vibratorTime is ${delayTime}`);
+    return delayTime;
   }
 }
 
