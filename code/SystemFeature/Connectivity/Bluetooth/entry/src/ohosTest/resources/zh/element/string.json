@@ -15,6 +15,10 @@
     {
       "name": "only_accept_during_use",
       "value": "仅使用期间允许"
+    },
+    {
+      "name": "accept",
+      "value": "允许"
     }
   ]
 }

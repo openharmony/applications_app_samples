@@ -12,114 +12,132 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import bluetooth from '@ohos.bluetooth'
-import logger from '../Model/Logger'
-import { TitleBar } from '../Commom/TitleBar'
-import { PinDialog } from '../Commom/PinDialog'
+import logger from '../Model/Logger';
+import { TitleBar } from '../Commom/TitleBar';
+import { BusinessError } from '@ohos.base';
+import access from '@ohos.bluetooth.access';
+import common from '@ohos.app.ability.common';
+import connection from '@ohos.bluetooth.connection';
 import promptAction from '@ohos.promptAction';
 
-const TAG: string = 'Index'
-const TIME: number = 0 // 设备可被发现的持续时间
+
+const TAG: string = 'Index';
+const TIME: number = 0; // 设备可被发现的持续时间
 
 @Entry
 @Component
 struct Index {
-  @State isOn: boolean = false
-  @State deviceList: Array<string> = []
-  @State discoveryList: Array<string> = []
+  @State isOn: boolean = false;
+  @State deviceList: Array<string> = [];
+  @State discoveryList: Array<string> = [];
   @State changeValue: string = '';
   @State submitValue: string = '';
   @State isSearchState: boolean = false;
   @State deviceNames: string[] = [];
-  private bluetoothState: boolean = false
-  private pinDialogController: CustomDialogController | null = null
-  private intervalId: number = -1
+  private intervalId: number = -1;
   handlerClickButton = () => {
-    let context = getContext(this) as any
-    context.terminateSelf()
+    let context = getContext(this) as common.UIAbilityContext;
+    context.terminateSelf();
   }
 
   foundDevices() {
-    bluetooth.on('bluetoothDeviceFind', (data) => {
-      logger.info(TAG, `enter on bluetoothDeviceFind`)
+    connection.on('bluetoothDeviceFind', (data) => {
+      logger.info(TAG, `enter on bluetoothDeviceFind`);
+      let list = connection.getPairedDevices();
+      if (list !== null && list.length > 0) {
+        this.deviceList = list;
+        logger.info(TAG, `deviceList =  ${JSON.stringify(this.deviceList)}`);
+      }
       if (data !== null && data.length > 0) {
         if (this.discoveryList.indexOf(data[0]) === -1 && this.deviceList.indexOf(data[0]) === -1) {
-          this.discoveryList.push(data[0])
+          this.discoveryList.push(data[0]);
         }
-        logger.info(TAG, `discoveryList = ${JSON.stringify(this.discoveryList)}`)
-      }
-      let list = bluetooth.getPairedDevices()
-      if (list !== null && list.length > 0) {
-        this.deviceList = list
-        logger.info(TAG, `deviceList =  ${JSON.stringify(this.deviceList)}`)
+        logger.info(TAG, `discoveryList = ${JSON.stringify(this.discoveryList)}`);
       }
     })
-    bluetooth.startBluetoothDiscovery()
-    bluetooth.setBluetoothScanMode(bluetooth.ScanMode.SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE, TIME)
+    try {
+      connection.startBluetoothDiscovery();
+    } catch (err) {
+      const errCode = (err as BusinessError).code;
+      const errMessage = (err as BusinessError).message;
+      logger.error(TAG, 'startBluetoothDiscovery failed' + errCode + ', errMessage: ' + errMessage);
+    }
+    try {
+      connection.setBluetoothScanMode(connection.ScanMode.SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE, TIME);
+    } catch (err) {
+      const errCode = (err as BusinessError).code;
+      const errMessage = (err as BusinessError).message;
+      logger.error(TAG, 'setBluetoothScanMode failed' + errCode + ', errMessage: ' + errMessage);
+    }
+
   }
 
   async aboutToAppear() {
-    let state = bluetooth.getState()
-    if (state === bluetooth.BluetoothState.STATE_ON) {
-      this.isOn = true
-      this.foundDevices()
+    let state = access.getState();
+    if (state === access.BluetoothState.STATE_ON) {
+      this.isOn = true;
+      this.foundDevices();
     }
-    if (state === bluetooth.BluetoothState.STATE_OFF) {
-      this.isOn = false
+    if (state === access.BluetoothState.STATE_OFF) {
+      this.isOn = false;
     }
 
-    bluetooth.on('pinRequired', (data) => {
-      logger.info(TAG, `enter pinRequired`)
-      this.pinDialogController = new CustomDialogController({
-        builder: PinDialog({ data: data }),
-        autoCancel: true,
-        alignment: DialogAlignment.Bottom
-      })
-      this.pinDialogController.open()
-      logger.info(TAG, `onPinRequiredData = ${JSON.stringify(data)}`)
+    connection.on('pinRequired', (data) => {
+      logger.info(TAG, `enter pinRequired`);
+      logger.info(TAG, `onPinRequiredData = ${JSON.stringify(data)}`);
     })
 
-    bluetooth.on('bondStateChange', (data) => {
-      logger.info(TAG, `enter bondStateChange`)
-      logger.info(TAG, `data = ${JSON.stringify(data)}`)
-      if (data.state === bluetooth.BondState.BOND_STATE_BONDED) {
-        logger.info(TAG, `BOND_STATE_BONDED`)
-        let index = this.discoveryList.indexOf(data.deviceId)
-        this.discoveryList.splice(index, 1)
-        this.deviceList = bluetooth.getPairedDevices()
+    connection.on('bondStateChange', (data) => {
+      logger.info(TAG, ` nter bondStateChange`);
+      logger.info(TAG, `data = ${JSON.stringify(data)}`);
+      if (data.state === connection.BondState.BOND_STATE_BONDED) {
+        logger.info(TAG, `BOND_STATE_BONDED`);
+        let index = this.discoveryList.indexOf(data.deviceId);
+        this.discoveryList.splice(index, 1);
+        this.deviceList = connection.getPairedDevices();
       }
-      if (data.state === bluetooth.BondState.BOND_STATE_INVALID) {
-        logger.info(TAG, `BOND_STATE_INVALID`)
-        this.deviceList = bluetooth.getPairedDevices()
+      if (data.state === connection.BondState.BOND_STATE_INVALID) {
+        logger.info(TAG, `BOND_STATE_INVALID`);
+        this.deviceList = connection.getPairedDevices();
       }
-      logger.info(TAG, `bondStateChange,data = ${JSON.stringify(data)}`)
+      logger.info(TAG, `bondStateChange,data = ${JSON.stringify(data)}`);
     })
 
     this.intervalId = setInterval(() => {
-      this.discoveryList = []
-      this.foundDevices()
+      this.discoveryList = [];
+      this.foundDevices();
     }, 30000)
 
   }
 
+  async aboutToDisappear() {
+    clearInterval(this.intervalId);
+  }
+
   initBluetooth() {
-    bluetooth.on('stateChange', (data) => {
-      logger.info(TAG, `enter on stateChange`)
-      if (data === bluetooth.BluetoothState.STATE_ON) {
-        logger.info(TAG, `enter BluetoothState.STATE_ON`)
-        this.foundDevices()
+    access.on('stateChange', (data) => {
+      logger.info(TAG, `enter on stateChange`);
+      if (data === access.BluetoothState.STATE_ON) {
+        logger.info(TAG, ` nter BluetoothState.STATE_ON`);
+        this.foundDevices();
       }
-      if (data === bluetooth.BluetoothState.STATE_OFF) {
-        logger.info(TAG, `enter BluetoothState.STATE_OFF`)
-        bluetooth.off('bluetoothDeviceFind', (data) => {
-          logger.info(TAG, `offBluetoothDeviceFindData = ${JSON.stringify(data)}`)
+      if (data === access.BluetoothState.STATE_OFF) {
+        logger.info(TAG, `enter BluetoothState.STATE_OFF`);
+        connection.off('bluetoothDeviceFind', (data) => {
+          logger.info(TAG, `offBluetoothDeviceFindData = ${JSON.stringify(data)}`);
         })
-        bluetooth.stopBluetoothDiscovery()
-        this.discoveryList = []
+        try {
+          connection.stopBluetoothDiscovery();
+        } catch (err) {
+          const errCode = (err as BusinessError).code;
+          const errMessage = (err as BusinessError).message;
+          logger.error(TAG + 'errCode: ' + errCode + ', errMessage: ' + errMessage);
+        }
+        this.discoveryList = [];
       }
-      logger.info(TAG, `BluetoothState = ${JSON.stringify(data)}`)
+      logger.info(TAG, `BluetoothState = ${JSON.stringify(data)}`);
     })
-    bluetooth.enableBluetooth()
+    access.enableBluetooth();
   }
 
   build() {
@@ -147,13 +165,20 @@ struct Index {
                 .selectedColor('#ff2982ea')
                 .onChange((isOn: boolean) => {
                   if (isOn) {
-                    this.isOn = true
-                    this.initBluetooth()
+                    this.isOn = true;
+                    this.initBluetooth();
                   } else {
-                    this.isOn = false
-                    bluetooth.disableBluetooth()
-                    this.deviceList = []
-                    this.discoveryList = []
+                    this.isOn = false;
+                    try {
+                      connection.stopBluetoothDiscovery();
+                    } catch (err) {
+                      const errCode = (err as BusinessError).code;
+                      const errMessage = (err as BusinessError).message;
+                      logger.error(TAG + 'errCode: ' + errCode + ', errMessage: ' + errMessage);
+                    }
+                    access.disableBluetooth();
+                    this.deviceList = [];
+                    this.discoveryList = [];
                   }
                 })
             }
@@ -175,7 +200,7 @@ struct Index {
               .margin({ left: '5%' })
               .alignSelf(ItemAlign.Start)
 
-            ForEach(this.deviceList, (item, index) => {
+            ForEach(this.deviceList, (item: string, index) => {
               Row() {
                 Text(item)
                   .fontSize(20)
@@ -197,13 +222,18 @@ struct Index {
                   secondaryButton: {
                     value: $r('app.string.confirm'),
                     action: () => {
-                      let deleteStatus = bluetooth.cancelPairedDevice(item);
-                      logger.info(TAG, `deleteStatus = ${deleteStatus}`)
-                      if (deleteStatus === true) {
-                        this.deviceList = bluetooth.getPairedDevices()
-                        this.discoveryList = []
-                        bluetooth.startBluetoothDiscovery()
-                      }
+                      connection.cancelPairedDevice(item).then(() => {
+                        logger.info(TAG, `${item}cancelPairedDevice success`);
+                        this.deviceList = connection.getPairedDevices();
+                        this.discoveryList = [];
+                        try {
+                          connection.startBluetoothDiscovery();
+                        } catch (err) {
+                          const errCode = (err as BusinessError).code;
+                          const errMessage = (err as BusinessError).message;
+                          logger.error(TAG, 'startBluetoothDiscovery failed' + errCode + ', errMessage: ' + errMessage);
+                        }
+                      });
                     }
                   }
                 })
@@ -249,7 +279,7 @@ struct Index {
                 })
                 .margin(20)
 
-              ForEach(this.deviceNames, (item) => {
+              ForEach(this.deviceNames, (item: string) => {
                 Row() {
                   Text(item)
                     .fontSize(20)
@@ -261,13 +291,13 @@ struct Index {
                 .margin({ left: '5%', top: '1%' })
                 .onClick(() => {
                   logger.info(TAG, `start bluetooth.pairDevice,item = ${item}`);
-                  let pairStatus = bluetooth.pairDevice(item);
+                  let pairStatus = connection.pairDevice(item);
                   logger.info(TAG, `pairStatus = ${pairStatus}`);
                 })
               })
             }.width('100%')
 
-            ForEach(this.discoveryList, (item) => {
+            ForEach(this.discoveryList, (item: string) => {
               Row() {
                 Text(item)
                   .fontSize(20)
@@ -277,9 +307,9 @@ struct Index {
               .height(50)
               .margin({ left: '5%', top: '1%' })
               .onClick(() => {
-                logger.info(TAG, `start bluetooth.pairDevice,item = ${item}`)
-                let pairStatus = bluetooth.pairDevice(item)
-                logger.info(TAG, `pairStatus = ${pairStatus}`)
+                logger.info(TAG, `start bluetooth.pairDevice,item = ${item}`);
+                let pairStatus = connection.pairDevice(item);
+                logger.info(TAG, `pairStatus = ${pairStatus}`);
               })
 
               Divider()
