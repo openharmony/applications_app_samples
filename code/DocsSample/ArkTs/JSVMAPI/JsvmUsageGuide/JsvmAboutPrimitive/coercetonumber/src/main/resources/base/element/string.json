@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "CoercetonumberAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "CoercetonumberAbility_label",
+      "value": "JsvmAboutPrimitive"
+    }
+  ]
+}
