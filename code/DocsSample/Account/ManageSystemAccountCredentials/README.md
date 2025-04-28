@@ -47,8 +47,13 @@ entry/src/
 
 ### 相关权限
 
-- ohos.permission.MANAGE_USER_IDM
-- ohos.permission.ACCESS_PIN_AUTH
+[ohos.permission.MANAGE_USER_IDM](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionmanageuseridm)
+
+[ohos.permission.ACCESS_PIN_AUTH](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionaccesspinauth)
+
+[ohos.permission.ACCESS_USER_AUTH_INTERNAL](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionaccessuserauthinternal)
+
+[ohos.permission.USE_USER_IDM](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionuseuseridm)
 
 ### 依赖
 

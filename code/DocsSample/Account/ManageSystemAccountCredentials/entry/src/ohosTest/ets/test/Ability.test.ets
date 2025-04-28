@@ -25,8 +25,7 @@ function sleep(time: number) {
 }
 export default function abilityTest() {
   describe('AccountCredentialsAbilityTest', () => {
-
-     /*
+    /*
      * 打开应用，依次点击页面中按钮
      * 使用系统凭证账号接口功能
      */
@@ -67,7 +66,7 @@ export default function abilityTest() {
       await button4.click();
       await driver.delayMs(1000);
       let content4: string = await text.getText();
-      expect(content4).assertEqual('Query information length:1');
+      expect(content4).assertEqual('Query information length: 1');
 
       const button5 = await driver.findComponent(ON.id('button7'));
       await button5.click();

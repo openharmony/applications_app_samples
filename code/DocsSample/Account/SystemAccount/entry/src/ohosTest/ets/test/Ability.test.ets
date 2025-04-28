@@ -25,7 +25,6 @@ function sleep(time: number) {
 }
 export default function abilityTest() {
   describe('ActsAbilityTest', () => {
-
     /*
      * 打开应用，依次点击页面中按钮
      * 使用系统账号接口功能
@@ -44,11 +43,7 @@ export default function abilityTest() {
       const driver = Driver.create();
       await driver.delayMs(1000);
 
-      const button = await driver.findComponent(ON.text('SystemAccount'));
-      await button.click();
-      await driver.delayMs(1000);
-
-      const button1 = await driver.findComponent(ON.text('UseConstraintManagementSystemAccount'));
+      const button1 = await driver.findComponent(ON.id('UseConstraintManagementSystemAccount'));
       await button1.click();
       await driver.delayMs(1000);
 
@@ -74,7 +69,7 @@ export default function abilityTest() {
       await driver.delayMs(10000);
       const text2 = await driver.findComponent(ON.id('show'));
       let content3: string = await text2.getText();
-      expect(content3).assertEqual('Account creation successful. Account name:: "Bob"');
+      expect(content3).assertEqual('Account creation successful. Account name: "Bob"');
 
       const button6 = await driver.findComponent(ON.id('button2'));
       await button6.click();

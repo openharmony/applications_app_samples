@@ -24,50 +24,52 @@ function sleep(time: number) {
   return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
 }
 export default function abilityTest() {
-
-  /*
+  describe('DistributedAccountsTest', () => {
+    /*
      * 打开应用，依次点击页面中按钮
      * 使用分布式账号接口功能
      */
-  it('distributedAccountsExample',0, async (done: Function) => {
-    console.info("uitest: TestUiExample begin");
-    const want: Want = {
-      bundleName: bundleName,
-      abilityName: 'EntryAbility'
-    }
-    await delegator.startAbility(want);
-    await sleep(1000);
-    const ability: UIAbility = await delegator.getCurrentTopAbility();
-    console.info("get top ability");
-    expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
-    const driver = Driver.create();
-    await driver.delayMs(1000);
+    it('distributedAccountsExample', 0, async (done: Function) => {
+      console.info("uitest: TestUiExample begin");
+      const want: Want = {
+        bundleName: bundleName,
+        abilityName: 'EntryAbility'
+      }
+      await delegator.startAbility(want);
+      await sleep(1000);
+      const ability: UIAbility = await delegator.getCurrentTopAbility();
+      console.info("get top ability");
+      expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
+      const driver = Driver.create();
+      await driver.delayMs(1000);
 
-    const button1 = await driver.findComponent(ON.id('button1'));
-    await button1.click();
-    await driver.delayMs(1000);
-    const text = await driver.findComponent(ON.id('show'));
-    let content1: string = await text.getText();
-    expect(content1).assertEqual('Bind distributed account: ZhangSan');
+      const button1 = await driver.findComponent(ON.id('button1'));
+      await button1.click();
+      await driver.delayMs(1000);
+      const text = await driver.findComponent(ON.id('show'));
+      let content1: string = await text.getText();
+      expect(content1).assertEqual('Bind distributed account: ZhangSan');
 
-    const button2 = await driver.findComponent(ON.id('button2'));
-    await button2.click();
-    await driver.delayMs(1000);
-    let content2: string = await text.getText();
-    expect(content2).assertEqual('Successfully unbound distributed account');
+      const button2 = await driver.findComponent(ON.id('button2'));
+      await button2.click();
+      await driver.delayMs(1000);
+      let content2: string = await text.getText();
+      expect(content2).assertEqual('Successfully unbound distributed account');
 
-    const button3 = await driver.findComponent(ON.id('button3'));
-    await button3.click();
-    await driver.delayMs(1000);
-    let content3: string = await text.getText();
-    expect(content3).assertEqual('Bind distributed account on the specified system account: ZhangSan');
+      const button3 = await driver.findComponent(ON.id('button3'));
+      await button3.click();
+      await driver.delayMs(1000);
+      let content3: string = await text.getText();
+      expect(content3).assertEqual('Bind distributed account on the specified system account: ZhangSan');
 
-    const button4 = await driver.findComponent(ON.id('button4'));
-    await button4.click();
-    await driver.delayMs(1000);
-    let content4: string = await text.getText();
-    expect(content4).assertEqual('Successfully logged out and unbound distributed account on the specified system account');
-    done();
-    console.info("uitest: TestUiExample end");
+      const button4 = await driver.findComponent(ON.id('button4'));
+      await button4.click();
+      await driver.delayMs(1000);
+      let content4: string = await text.getText();
+      expect(content4)
+        .assertEqual('Successfully logged out and unbound distributed account on the specified system account');
+      done();
+      console.info("uitest: TestUiExample end");
+    })
   })
 }

@@ -91,7 +91,7 @@ struct Index {
 
   private async setAuthToken(): Promise<void> {
     let name: string = 'ZhangSan';
-    let owner: string = 'com.example.s9';
+    let owner: string = 'com.samples.managerapplicationaccount';
     let authType: string = 'getSocialData';
     let token: string = 'xxxxxx';
     await appAccountManager.setAuthToken(name, authType, token).then(() => {

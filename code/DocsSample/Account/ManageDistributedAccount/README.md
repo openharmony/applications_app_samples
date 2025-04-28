@@ -44,7 +44,7 @@ entry/src/
 
 ### 相关权限
 
-ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS
+[ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS](https://docs.openharmony.cn/pages/v5.0/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionmanagedistributedaccounts)
 
 ### 依赖
 

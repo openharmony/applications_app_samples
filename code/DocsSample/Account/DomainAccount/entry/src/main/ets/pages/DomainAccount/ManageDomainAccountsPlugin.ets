@@ -181,7 +181,7 @@ struct ManageDomainAccountsPlugin {
         .id('button3')
         .onClick(() => {
           router.pushUrl({
-            url: 'pages/DomainAccount/DomainAccountHome'
+            url: 'pages/DomainAccount/ManageDomainAccounts'
           })
         })
     }
