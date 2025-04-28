@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -208,16 +208,7 @@ class AlarmClockReminder {
   }
 
   async openDialog(dialog: CustomDialogController, index: number) {
-    try {
-      if (deviceTypeInfo === 'default') {
-        await reminderAgent.cancelReminder(this.alarmClockReminders[index].reminderId);
-      } else {
-        await calendar!.deleteEvent(this.alarmClockReminders[index].reminderId);
-      }
-    } catch (err) {
-      Logger.error(TAG, `openDialog this cancelReminder is not exist,err is ${JSON.stringify(err)}`)
-    }
-    dialog.open()
+    dialog.open();
   }
 
   async deleteAlarmReminder(index: number) {
