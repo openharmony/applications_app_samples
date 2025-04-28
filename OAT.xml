@@ -2330,6 +2330,40 @@ Note:If the text contains special characters, please escape them according to th
 				<filteritem type="filepath" name="code/BasicFeature/Web/WebGetCameraImage/entry/src/main/resources/base/media/web_get_camera_image.gif" desc="Provided by code/UI/WebGetCameraImage"/>
 				<filteritem type="filepath" name="code/BasicFeature/Web/WebGetCameraImage/AppScope/resources/base/media/background.png" desc="Provided by code/UI/WebGetCameraImage"/>
 				<filteritem type="filepath" name="code/BasicFeature/Web/WebGetCameraImage/AppScope/resources/base/media/foreground.png" desc="Provided by code/UI/WebGetCameraImage"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTs/JSVMAPI/JsvmProcess/screenshots/JsvmProcess_1.png" desc="Provided by code/DocsSample/ArkTs/JSVMAPI/JsvmProcess"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTs/JSVMAPI/JsvmProcess/screenshots/JsvmProcess_2.png" desc="Provided by code/DocsSample/ArkTs/JSVMAPI/JsvmProcess"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmBasicDataTypes/screenshots/JsvmBasicDataTypes_1.png" desc="Provided by code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmBasicDataTypes"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmBasicDataTypes/screenshots/JsvmBasicDataTypes_2.png" desc="Provided by code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmBasicDataTypes"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/screenshots/JsvmAboutArray_1.png" desc="Provided by code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutArray"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/screenshots/JsvmAboutArray_2.png" desc="Provided by code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutArray"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutArrayBuffer/screenshots/JsvmAboutArrayBuffer_1.png" desc="Provided by code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutArrayBuffer"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutArrayBuffer/screenshots/JsvmAboutArrayBuffer_2.png" desc="Provided by code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutArrayBuffer"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutBigint/screenshots/JsvmAboutBigint_1.png" desc="Provided by code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutBigint"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutBigint/screenshots/JsvmAboutBigint_2.png" desc="Provided by code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutBigint"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutDate/screenshots/JsvmAboutDate_1.png" desc="Provided by code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutDate"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutDate/screenshots/JsvmAboutDate_2.png" desc="Provided by code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutDate"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/screenshots/JsvmAboutObject_1.png" desc="Provided by code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/screenshots/JsvmAboutObject_2.png" desc="Provided by code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutPrimitive/screenshots/JsvmAboutPrimitive_1.png" desc="Provided by code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutPrimitive"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutPrimitive/screenshots/JsvmAboutPrimitive_2.png" desc="Provided by code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutPrimitive"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutProperty/screenshots/JsvmAboutProperty_1.png" desc="Provided by code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutProperty"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutProperty/screenshots/JsvmAboutProperty_2.png" desc="Provided by code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutProperty"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutString/screenshots/JsvmAboutString_1.png" desc="Provided by code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutString"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutString/screenshots/JsvmAboutString_2.png" desc="Provided by code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutString"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmLifeCycle/screenshots/JsvmLifeCycle_1.png" desc="Provided by code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmLifeCycle"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmLifeCycle/screenshots/JsvmLifeCycle_2.png" desc="Provided by code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmLifeCycle"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmError/screenshots/JsvmError_1.png" desc="Provided by code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmError"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmError/screenshots/JsvmError_2.png" desc="Provided by code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmError"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/screenshots/UsageInstructionsOne_1.png" desc="Provided by code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/screenshots/UsageInstructionsOne_2.png" desc="Provided by code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/screenshots/UsageInstructionsTwo_1.png" desc="Provided by code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/screenshots/UsageInstructionsTwo_2.png" desc="Provided by code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTs/JSVMAPI/JsvmDebug/screenshots/JsvmDebug_1.png" desc="Provided by code/DocsSample/ArkTs/JSVMAPI/JsvmDebug"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTs/JSVMAPI/JsvmDebug/screenshots/JsvmDebug_2.png" desc="Provided by code/DocsSample/ArkTs/JSVMAPI/JsvmDebug"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutClass/screenshots/JsvmAboutClass_1.png" desc="Provided by code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutClass"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutClass/screenshots/JsvmAboutClass_2.png" desc="Provided by code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutClass"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutPromise/screenshots/JsvmAboutPromise_1.png" desc="Provided by code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutPromise"/>
+				<filteritem type="filepath" name="code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutPromise/screenshots/JsvmAboutPromise_2.png" desc="Provided by code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutPromise"/>
 			</filefilter>
             <filefilter name="defaultPolicyFilter" desc="License文件头校验策略的过滤条件" >
                 <filteritem type="filename" name="oh-package.json5" desc="OpenHarmony工程编译入口脚本，无需添加License头"/>
