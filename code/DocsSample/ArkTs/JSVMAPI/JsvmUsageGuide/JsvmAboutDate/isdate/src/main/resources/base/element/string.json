@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "IsdateAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "IsdateAbility_label",
+      "value": "JsvmAboutDate"
+    }
+  ]
+}
