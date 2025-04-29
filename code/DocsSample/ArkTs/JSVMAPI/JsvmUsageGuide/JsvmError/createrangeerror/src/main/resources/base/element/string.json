@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "CreaterangeerrorAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "CreaterangeerrorAbility_label",
+      "value": "JsvmError"
+    }
+  ]
+}

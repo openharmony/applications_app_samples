@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "CreatesyntaxerrorAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "CreatesyntaxerrorAbility_label",
+      "value": "JsvmError"
+    }
+  ]
+}
