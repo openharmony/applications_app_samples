@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "CreatedataviewAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "CreatedataviewAbility_label",
+      "value": "JsvmAboutArray"
+    }
+  ]
+}

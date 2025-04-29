@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "CreatearraywithlengthAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "CreatearraywithlengthAbility_label",
+      "value": "JsvmAboutArray"
+    }
+  ]
+}

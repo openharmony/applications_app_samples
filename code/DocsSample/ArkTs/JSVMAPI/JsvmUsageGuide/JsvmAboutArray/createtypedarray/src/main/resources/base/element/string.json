@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "CreatetypedarrayAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "CreatetypedarrayAbility_label",
+      "value": "JsvmAboutArray"
+    }
+  ]
+}
