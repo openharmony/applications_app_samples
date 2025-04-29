@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "IserrorAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "IserrorAbility_label",
+      "value": "JsvmError"
+    }
+  ]
+}

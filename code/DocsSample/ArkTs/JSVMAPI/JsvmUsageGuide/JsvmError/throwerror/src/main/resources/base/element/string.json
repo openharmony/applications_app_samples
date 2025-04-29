@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "ThrowerrorAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "ThrowerrorAbility_label",
+      "value": "JsvmError"
+    }
+  ]
+}

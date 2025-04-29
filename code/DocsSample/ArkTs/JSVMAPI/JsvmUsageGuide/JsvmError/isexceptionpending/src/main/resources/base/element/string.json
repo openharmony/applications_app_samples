@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "IsexceptionpendingAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "IsexceptionpendingAbility_label",
+      "value": "JsvmError"
+    }
+  ]
+}
