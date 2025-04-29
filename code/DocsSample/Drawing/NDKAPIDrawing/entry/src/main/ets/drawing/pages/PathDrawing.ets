@@ -1,0 +1,78 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import XComponentContext from '../../interface/XComponentContext';
+
+@Entry
+@Component
+struct PathDrawing {
+  private xComponentContext: XComponentContext | undefined = undefined;
+
+  build() {
+    Column() {
+      XComponent({ id: 'basicEffectXComponent', type: XComponentType.SURFACE, libraryname: 'entry' })
+        .onLoad((xComponentContext) => {
+          this.xComponentContext = xComponentContext as XComponentContext;
+        })
+        .backgroundColor(Color.White)
+        .width('100%')
+        .height('70%')
+      Flex({
+        direction: FlexDirection.Row,
+        wrap: FlexWrap.Wrap,
+        justifyContent: FlexAlign.Start,
+        alignItems: ItemAlign.Start
+      }) {
+        Button($r('app.string.DrawingPathBasic'))
+          .onClick((): void => {
+            if (this.xComponentContext) {
+              this.xComponentContext.draw('CanvasGet', 'PathBasic');
+            }
+          })
+          .margin({ top: 10, bottom: 10, left: 10, right: 10 })
+        Button($r('app.string.DrawingPathAdd'))
+          .onClick((): void => {
+            if (this.xComponentContext) {
+              this.xComponentContext.draw('CanvasGet', 'PathAdd');
+            }
+          })
+          .margin({ top: 10, bottom: 10, left: 10, right: 10 })
+        Button($r('app.string.DrawingPathTo'))
+          .onClick((): void => {
+            if (this.xComponentContext) {
+              this.xComponentContext.draw('CanvasGet', 'PathTo');
+            }
+          })
+          .margin({ top: 10, bottom: 10, left: 10, right: 10 })
+        Button($r('app.string.DrawingPathStar'))
+          .onClick((): void => {
+            if (this.xComponentContext) {
+              this.xComponentContext.draw('CanvasGet', 'PathStar');
+            }
+          })
+          .margin({ top: 10, bottom: 10, left: 10, right: 10 })
+        Button($r('app.string.DrawingBuildFromSvgString'))
+          .onClick((): void => {
+            if (this.xComponentContext) {
+              this.xComponentContext.draw('CanvasGet', 'BuildFromSvgString');
+            }
+          })
+          .margin({ top: 10, bottom: 10, left: 10, right: 10 })
+      }
+      .width('100%')
+      .height('30%')
+    }
+  }
+}
