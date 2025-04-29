@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "GettypedarrayinfoAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "GettypedarrayinfoAbility_label",
+      "value": "JsvmAboutArray"
+    }
+  ]
+}
