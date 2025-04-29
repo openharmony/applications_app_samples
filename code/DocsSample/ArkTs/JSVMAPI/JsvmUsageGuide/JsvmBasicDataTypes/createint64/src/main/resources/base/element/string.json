@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "Createint64Ability_desc",
+      "value": "description"
+    },
+    {
+      "name": "Createint64Ability_label",
+      "value": "JsvmBasicDataTypes"
+    }
+  ]
+}
