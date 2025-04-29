@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "Getvaluestringlatin1Ability_desc",
+      "value": "description"
+    },
+    {
+      "name": "Getvaluestringlatin1Ability_label",
+      "value": "JsvmAboutString"
+    }
+  ]
+}
