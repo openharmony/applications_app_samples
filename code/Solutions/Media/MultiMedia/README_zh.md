@@ -99,7 +99,7 @@ entry/src/main/ets/
 
 1.本示例仅支持标准系统上运行。
 
-2.本示例为Stage模型，已适配API version 10版本SDK，版本号：4.0.10.15。
+2.本示例为Stage模型，已适配API version 12版本SDK，版本号：5.0.0。
 
 3.本示例需要使用DevEco Studio NEXT Developer Preview1 (Build Version: 4.1.3.500, built on January 20, 2024)及以上版本才可编译运行。
 
