@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "DeletepropertyAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "DeletepropertyAbility_label",
+      "value": "JsvmAboutProperty"
+    }
+  ]
+}
