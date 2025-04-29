@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "MemorypressurenotificationAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MemorypressurenotificationAbility_label",
+      "value": "UsageInstructionsTwo"
+    }
+  ]
+}

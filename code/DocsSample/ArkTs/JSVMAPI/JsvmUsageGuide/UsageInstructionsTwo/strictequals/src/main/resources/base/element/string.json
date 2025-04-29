@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "StrictequalsAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "StrictequalsAbility_label",
+      "value": "UsageInstructionsTwo"
+    }
+  ]
+}
