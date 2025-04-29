@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "CreatesymbolAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "CreatesymbolAbility_label",
+      "value": "JsvmAboutObject"
+    }
+  ]
+}

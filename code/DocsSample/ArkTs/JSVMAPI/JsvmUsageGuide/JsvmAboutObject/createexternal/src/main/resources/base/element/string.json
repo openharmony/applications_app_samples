@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "CreateexternalAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "CreateexternalAbility_label",
+      "value": "JsvmAboutObject"
+    }
+  ]
+}
