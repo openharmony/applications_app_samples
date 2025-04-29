@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "GetvalueboolAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "GetvalueboolAbility_label",
+      "value": "JsvmAboutPrimitive"
+    }
+  ]
+}
