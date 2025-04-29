@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "IsdetachedarraybufferAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "IsdetachedarraybufferAbility_label",
+      "value": "JsvmAboutArraybuffer"
+    }
+  ]
+}

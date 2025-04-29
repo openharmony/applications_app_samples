@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "IsarraybufferAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "IsarraybufferAbility_label",
+      "value": "JsvmAboutArraybuffer"
+    }
+  ]
+}

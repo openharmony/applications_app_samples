@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "CreatearraybufferAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "CreatearraybufferAbility_label",
+      "value": "JsvmAboutArraybuffer"
+    }
+  ]
+}
