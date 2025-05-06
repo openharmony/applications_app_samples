@@ -79,7 +79,7 @@ struct Index {
             }
           }).margin(4)
 
-        XComponent({ id: 'xcomponentId30', type: 'surface', libraryname: 'entry' })
+        XComponent({ id: 'xcomponentId30', type: XComponentType.SURFACE, libraryname: 'entry' })
           .onLoad((xComponentContext) => {
             this.xComponentContext1 = xComponentContext as XComponentContext;
           }).width('640px')
@@ -105,7 +105,7 @@ struct Index {
             }
           }).margin(4)
 
-        XComponent({ id: 'xcomponentId60', type: 'surface', libraryname: 'entry' })
+        XComponent({ id: 'xcomponentId60', type: XComponentType.SURFACE, libraryname: 'entry' })
           .onLoad((xComponentContext) => {
             this.xComponentContext2 = xComponentContext as XComponentContext;
           }).width('640px')
@@ -131,7 +131,7 @@ struct Index {
             }
           }).margin(4)
 
-        XComponent({ id: 'xcomponentId120', type: 'surface', libraryname: 'entry' })
+        XComponent({ id: 'xcomponentId120', type: XComponentType.SURFACE, libraryname: 'entry' })
           .onLoad((xComponentContext) => {
             this.xComponentContext3 = xComponentContext as XComponentContext;
           }).width('640px')
