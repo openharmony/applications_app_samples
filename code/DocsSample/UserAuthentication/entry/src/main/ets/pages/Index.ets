@@ -79,6 +79,7 @@ struct Index {
    * obtain-supported-authentication-capabilities.md
    * 以查询设备是否支持认证可信等级≥ATL1的PIN认证功能为例
    */
+  // [Start obtain_supported_capabilities]
   obtainingSupported() {
     try {
       // 查询认证能力是否支持
@@ -92,36 +93,81 @@ struct Index {
     }
   }
 
+  // [End obtain_supported_capabilities]
   // 用于处理示例1，示例2，示例3和示例4的部分操作
+  // [Start authentication_example1]
+  // [Start authentication_example2]
+  // [Start authentication_example3]
+  // [Start authentication_example4]
   handleAuthResult(userAuthInstance: userAuth.UserAuthInstance, exampleNumber: number) {
+    // [StartExclude authentication_example1]
+    // [StartExclude authentication_example2]
+    // [StartExclude authentication_example3]
+    // [StartExclude authentication_example4]
     try {
+      // [EndExclude authentication_example1]
+      // [EndExclude authentication_example2]
+      // [EndExclude authentication_example3]
+      // [EndExclude authentication_example4]
       // userAuthInstance.on异常抛出层
       userAuthInstance.on('result', {
         onResult: (result: userAuth.UserAuthResult) => {
+          // [StartExclude authentication_example1]
+          // [StartExclude authentication_example2]
+          // [StartExclude authentication_example3]
+          // [StartExclude authentication_example4]
           this.result[exampleNumber] = (`${result.result}`);
           try {
             // onResult异常抛出层
             try {
               // JSON.stringify异常抛出层
+              // [EndExclude authentication_example1]
+              // [EndExclude authentication_example2]
+              // [EndExclude authentication_example3]
+              // [EndExclude authentication_example4]
               Logger.info(`userAuthInstance callback result: ${JSON.stringify(result)}`);
+              // [StartExclude authentication_example1]
+              // [StartExclude authentication_example2]
+              // [StartExclude authentication_example3]
+              // [StartExclude authentication_example4]
             } catch (error) {
               const err: BusinessError = error as BusinessError;
               Logger.error(`JSON stringify catch error. Code is ${err?.code}, message is ${err?.message}`);
             }
+            // [EndExclude authentication_example1]
+            // [EndExclude authentication_example2]
+            // [EndExclude authentication_example3]
+            // [EndExclude authentication_example4]
             userAuthInstance.off('result'); // 认证完成后取消订阅
+            // [StartExclude authentication_example1]
+            // [StartExclude authentication_example2]
+            // [StartExclude authentication_example3]
+            // [StartExclude authentication_example4]
           } catch (error) {
             const err: BusinessError = error as BusinessError;
             Logger.error(`onResult catch error. Code: ${err?.code}, Message: ${err?.message}`);
           }
+          // [EndExclude authentication_example1]
+          // [EndExclude authentication_example2]
+          // [EndExclude authentication_example3]
+          // [EndExclude authentication_example4]
         }
       });
       // 启动认证
       userAuthInstance.start();
       Logger.info('auth start success');
+      // [StartExclude authentication_example1]
+      // [StartExclude authentication_example2]
+      // [StartExclude authentication_example3]
+      // [StartExclude authentication_example4]
     } catch (error) {
       const err: BusinessError = error as BusinessError;
       Logger.error(`userAuthInstance.on catch error. Code: ${err?.code}, Message: ${err?.message}`);
     }
+    // [EndExclude authentication_example1]
+    // [EndExclude authentication_example2]
+    // [EndExclude authentication_example3]
+    // [EndExclude authentication_example4]
   }
 
   /*
@@ -129,6 +175,9 @@ struct Index {
    * 示例1：
    * 发起用户认证，采用认证可信等级≥ATL3的人脸 + 锁屏密码 + 指纹认证，获取认证结果
    * */
+  // [StartExclude authentication_example2]
+  // [StartExclude authentication_example3]
+  // [StartExclude authentication_example4]
   initiatingUserAuthentication1() {
     try {
       const rand = cryptoFramework.createRandom();
@@ -154,6 +203,8 @@ struct Index {
     }
   }
 
+  // [EndExclude authentication_example2]
+  // [End authentication_example1]
   /*
    * start-authentication.md
    * 示例2：
@@ -190,6 +241,8 @@ struct Index {
     }
   }
 
+  // [EndExclude authentication_example3]
+  // [End authentication_example2]
   /*
    * start-authentication.md
    * 示例3：
@@ -226,6 +279,8 @@ struct Index {
     }
   }
 
+  // [EndExclude authentication_example4]
+  // [End authentication_example3]
   /*
    * start-authentication.md
    * 示例4：
@@ -263,7 +318,10 @@ struct Index {
     }
   }
 
+  // [End authentication_example4]
+  // [Start cancel_authentication]
   handleAuthResultAndCanceling(userAuthInstance: userAuth.UserAuthInstance, exampleNumber: number) {
+    // [StartExclude cancel_authentication]
     try {
       // userAuthInstance.on异常抛出层
       userAuthInstance.on('result', {
@@ -285,20 +343,25 @@ struct Index {
           }
         }
       });
+      // [EndExclude cancel_authentication]
       // 启动认证
       userAuthInstance.start();
       Logger.info('auth start success');
+      // [StartExclude cancel_authentication]
       // 使用等待函数模拟等待用户认证
       let DELAY_TIME: number = 3000; // 停止3秒
       waiting(DELAY_TIME).then(() => {
         // 延迟后取消认证
+        // [EndExclude cancel_authentication]
         userAuthInstance.cancel();
         Logger.info('auth cancel success');
+        // [StartExclude cancel_authentication]
       });
     } catch (error) {
       const err: BusinessError = error as BusinessError;
       Logger.error(`userAuthInstance.on catch error. Code: ${err?.code}, Message: ${err?.message}`);
     }
+    // [EndExclude cancel_authentication]
   }
 
   /*
@@ -331,45 +394,59 @@ struct Index {
     }
   }
 
+  // [End cancel_authentication]
+  // [Start custom_authentication]
   handleCustomAuthResult(userAuthInstance: userAuth.UserAuthInstance, exampleNumber: number) {
+    // [StartExclude custom_authentication]
     try {
+    // [EndExclude custom_authentication]
       // userAuthInstance.on异常抛出层
       userAuthInstance.on('result', {
         onResult: (result: userAuth.UserAuthResult) => {
+          // [StartExclude custom_authentication]
           this.result[exampleNumber] = (`${result.result}`);
           try {
             // onResult异常抛出层
             try {
               // JSON.stringify异常抛出层
+              // [EndExclude custom_authentication]
               Logger.info(`userAuthInstance callback result: ${JSON.stringify(result)}`);
+              // [StartExclude custom_authentication]
             } catch (error) {
               const err: BusinessError = error as BusinessError;
               Logger.error(`JSON stringify catch error. Code is ${err?.code}, message is ${err?.message}`);
             }
             userAuthInstance.off('result'); // 认证完成后取消订阅
+            // [EndExclude custom_authentication]
             if (result.result == userAuth.UserAuthResultCode.CANCELED_FROM_WIDGET ||
               result.result == userAuth.UserAuthResultCode.NOT_ENROLLED) {
               // 请开发者自行完成拉起自定义认证界面的实现
               // 此处拉起类似于支付宝输入密码支付的界面
+              // [StartExclude custom_authentication]
               promptAction.showToast({
                 message: resourceToString($r('app.string.dialogOfCustom')), // 显示文本
                 duration: 3000, // 显示时长3000ms
                 bottom: 300     // 距离底部的距离300vp
               });
+              // [EndExclude custom_authentication]
             }
+            // [StartExclude custom_authentication]
           } catch (error) {
             const err: BusinessError = error as BusinessError;
             Logger.error(`onResult catch error. Code: ${err?.code}, Message: ${err?.message}`);
           }
+          // [EndExclude custom_authentication]
         }
       });
       // 启动认证
       userAuthInstance.start();
       Logger.info('auth start success');
+      // [StartExclude custom_authentication]
     } catch (error) {
       const err: BusinessError = error as BusinessError;
       Logger.error(`userAuthInstance.on catch error. Code: ${err?.code}, Message: ${err?.message}`);
     }
+    // [EndExclude custom_authentication]
   }
 
   /*
@@ -401,11 +478,13 @@ struct Index {
       Logger.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
     }
   }
+  // [End custom_authentication]
 
   /*
    * obtain-enrolled-state-capabilities.md
    * 以查询用户人脸注册凭据的状态为例
    * */
+  // [Start obtain_enrolled_capabilities]
   obtainingEnrolledCredentialInformation() {
     try {
       let enrolledState = userAuth.getEnrolledState(userAuth.UserAuthType.PIN);
@@ -418,6 +497,7 @@ struct Index {
     }
   }
 
+  // [End obtain_enrolled_capabilities]
   comprehensiveFeatures() {
     let reuseUnlockResult: userAuth.ReuseUnlockResult = {
       reuseMode: userAuth.ReuseMode.AUTH_TYPE_RELEVANT,
