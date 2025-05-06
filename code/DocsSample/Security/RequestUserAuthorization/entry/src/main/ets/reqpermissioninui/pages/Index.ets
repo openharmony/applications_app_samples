@@ -14,6 +14,7 @@
  */
 
 import { router } from '@kit.ArkUI';
+// [Start request_permission_in_UI]
 import { abilityAccessCtrl, common, Permissions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -48,6 +49,7 @@ struct Index {
   }
 
   build() {
+    // [StartExclude request_permission_in_UI]
     Column() {
       Button($r('app.string.return_main'))
         .onClick(() => {
@@ -57,5 +59,7 @@ struct Index {
     .width('100%')
     .height('100%')
     .justifyContent(FlexAlign.SpaceEvenly)
+    // [EndExclude request_permission_in_UI]
   }
 }
+// [End request_permission_in_UI]

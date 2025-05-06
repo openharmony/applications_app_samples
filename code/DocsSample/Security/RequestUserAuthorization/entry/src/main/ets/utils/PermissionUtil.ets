@@ -13,9 +13,10 @@
  * limitations under the License.
  */
 
+import { promptAction } from '@kit.ArkUI';
+// [Start check_permission_func]
 import { abilityAccessCtrl, bundleManager, Permissions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { promptAction } from '@kit.ArkUI';
 
 async function checkPermissionGrant(permission: Permissions): Promise<abilityAccessCtrl.GrantStatus> {
   let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
@@ -49,16 +50,22 @@ async function checkPermissions(): Promise<void> {
   // 精确定位权限只能跟模糊定位权限一起申请，或者已经有模糊定位权限才能申请精确定位权限
   if (grantStatus2 && !grantStatus1) {
     // 申请精确定位权限
+    // [StartExclude check_permission_func]
     promptAction.showToast({ message: $r('app.string.location_not_apply') });
+    // [EndExclude check_permission_func]
   } else if (!grantStatus1 && !grantStatus2) {
     // 申请模糊定位权限与精确定位权限或单独申请模糊定位权限
+    // [StartExclude check_permission_func]
     promptAction.showToast({ message: $r('app.string.permission_not_apply') });
+    // [EndExclude check_permission_func]
   } else {
     // 已经授权，可以继续访问目标操作
+    // [StartExclude check_permission_func]
     promptAction.showToast({ message: $r('app.string.permission_apply') });
+    // [EndExclude check_permission_func]
   }
 }
-
+// [End check_permission_func]
 export {
   checkPermissionGrant, checkPermissions
 }
