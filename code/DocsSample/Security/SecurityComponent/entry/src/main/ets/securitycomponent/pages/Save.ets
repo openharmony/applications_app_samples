@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start use_save_button]
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
@@ -75,3 +76,4 @@ struct Index {
     .backgroundColor(0xF1F3F5)
   }
 }
+// [End use_save_button]

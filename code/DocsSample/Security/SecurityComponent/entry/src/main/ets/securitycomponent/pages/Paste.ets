@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start use_paste_button]
 import { pasteboard, BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
@@ -49,3 +50,4 @@ struct Index {
     .height('100%')
   }
 }
+// [End use_paste_button]
