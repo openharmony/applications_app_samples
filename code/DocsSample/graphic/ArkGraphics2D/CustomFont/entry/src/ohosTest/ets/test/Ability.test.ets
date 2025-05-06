@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -45,10 +45,10 @@ export default function abilityTest() {
     })
 
     /**
-     * 点击按钮，绘制简单排版文本
+     * 点击按钮，绘制自定义字体文本
      */
-    it('DrawSimpleTextTEST_001', 2, async () => {
-      console.info(TAG, 'DrawSimpleTextTEST_001 begin');
+    it('DrawCustomFontTEST_001', 2, async () => {
+      console.info(TAG, 'DrawCustomFontTEST_001 begin');
       let driver = Driver.create();
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       try {
@@ -57,16 +57,16 @@ export default function abilityTest() {
           abilityName: 'EntryAbility'
         });
       } catch (exception) {
-        console.info(TAG, `DrawSimpleTextTEST_001 exception = ${JSON.stringify(exception)}`);
+        console.info(TAG, `DrawCustomFontTEST_001 exception = ${JSON.stringify(exception)}`);
         expect().assertFail();
       }
       await driver.delayMs(1000);
       await driver.assertComponentExist(ON.text('Draw Text'));
       let drawTextBtn = await driver.findComponent(ON.text('Draw Text'));
-      // 点击'Draw simple text'按钮
+      // 点击'Draw Text'按钮
       await drawTextBtn.click();
       await driver.delayMs(1000);
-      console.info(TAG, 'DrawSimpleTextTEST_001 end');
+      console.info(TAG, 'DrawCustomFontTEST_001 end');
     })
 
   })

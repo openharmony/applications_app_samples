@@ -70,7 +70,7 @@ export default function abilityTest() {
     })
 
     /**
-     * 点击按钮，绘制设置语言文本
+     * 点击按钮，绘制多语言文本
      */
     it('DrawMultilingualTextTEST_001', 2, async () => {
       console.info(TAG, 'DrawMultilingualTextTEST_001 begin');
@@ -95,7 +95,7 @@ export default function abilityTest() {
     })
 
     /**
-     * 点击按钮，绘制设置断词策略多行文本
+     * 点击按钮，绘制断词策略多行文本
      */
     it('DrawMultiLineTextTEST_001', 2, async () => {
       console.info(TAG, 'DrawMultiLineTextTEST_001 begin');
