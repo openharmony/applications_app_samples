@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,11 +13,33 @@
  * limitations under the License.
  */
 
-import imageEffect from 'libentry.so'
+import imageEffect from 'libentry.so';
 import image from '@ohos.multimedia.image';
 import { ImageUtils } from '../utils/ImageUtils';
 import { fileUri } from '@kit.CoreFileKit';
 import fs from '@ohos.file.fs';
+
+interface FilterDataType {
+  brightnessSetValue: number,
+  brightnessSelect: boolean,
+  contrastSetValue: number,
+  contrastSelect: boolean,
+  cropSetValue: number,
+  cropSelect: boolean,
+  customSetValue: number,
+  customSelect: boolean
+}
+
+const DEFAULT_FILTER_DATA: FilterDataType = {
+  brightnessSetValue: 100,
+  brightnessSelect: true,
+  contrastSetValue: 0,
+  contrastSelect: false,
+  cropSetValue: 100,
+  cropSelect: false,
+  customSetValue: 0,
+  customSelect: false
+};
 
 @Entry
 @Component
@@ -26,16 +48,9 @@ struct ImageEditPage {
   settingBtn: Resource = $r('app.media.ic_public_settings');
   @Provide pixelMap: image.PixelMap | undefined = undefined;
   @Provide displayPixelMap: image.PixelMap | undefined = undefined;
-  @State brightnessSetValue: number = 100;
-  @State brightnessSelect: boolean = true;
-  @State contrastSetValue: number = 0;
-  @State contrastSelect: boolean = false;
-  @State cropSetValue: number = 100;
-  @State cropSelect: boolean = false;
-  @State customSetValue: number = 0;
-  @State customSelect: boolean = false;
   @State filterOptions: Array<Array<string | number>> = [];
   @State filterInfo: string = "";
+  @State nowSelectedData: FilterDataType = DEFAULT_FILTER_DATA;
 
   aboutToAppear(): void {
     console.info(`${this.tag} aboutToAppear called`);
@@ -99,6 +114,7 @@ struct ImageEditPage {
       Column() {
         Row() {
           Button("Reset").id("btn_reset").onClick(() => {
+            this.resetParams();
             this.pixelInit();
           }).width(100).margin({ left: 3, right: 3, top: 3, bottom: 6 })
 
@@ -137,36 +153,41 @@ struct ImageEditPage {
 
   private confirmInfo() {
     this.filterOptions = [];
-    if (this.brightnessSelect) {
+    if (this.nowSelectedData.brightnessSelect) {
       let brightnessArray: (string | number)[] = [];
-      brightnessArray.push("Brightness", this.brightnessSetValue);
+      brightnessArray.push("Brightness", this.nowSelectedData.brightnessSetValue);
       this.filterOptions.push(brightnessArray);
     }
-    if (this.contrastSelect) {
+    if (this.nowSelectedData.contrastSelect) {
       let contrastArray: (string | number)[] = [];
-      contrastArray.push("Contrast", this.contrastSetValue);
+      contrastArray.push("Contrast", this.nowSelectedData.contrastSetValue);
       this.filterOptions.push(contrastArray);
     }
-    if (this.cropSelect) {
+    if (this.nowSelectedData.cropSelect) {
       let cropArray: (string | number)[] = [];
-      cropArray.push("Crop", this.cropSetValue);
+      cropArray.push("Crop", this.nowSelectedData.cropSetValue);
       this.filterOptions.push(cropArray);
     }
-    if (this.customSelect) {
+    if (this.nowSelectedData.customSelect) {
       let customArray: (string | number)[] = [];
-      customArray.push("CustomBrightness", this.customSetValue);
+      customArray.push("CustomBrightness", this.nowSelectedData.customSetValue);
       this.filterOptions.push(customArray);
     }
   }
 
   private async doApply(): Promise<void> {
     this.confirmInfo();
-    if (this.brightnessSelect || this.contrastSelect || this.cropSelect || this.customSelect) {
+    if (this.nowSelectedData.brightnessSelect || this.nowSelectedData.contrastSelect ||
+      this.nowSelectedData.cropSelect || this.nowSelectedData.customSelect) {
       await this.doSavePixel();
       let filePath = getContext().filesDir + "/test.jpg";
       imageEffect.apply(filePath, [...this.filterOptions]);
       this.displayPixelMap = await ImageUtils.getInstance().getPixelMapByFilePath(filePath);
     }
+  }
+
+  resetParams() {
+    this.nowSelectedData = DEFAULT_FILTER_DATA;
   }
 
   private async pixelInit(): Promise<void> {
@@ -179,15 +200,8 @@ struct ImageEditPage {
       cancel: this.onCancel,
       confirm: this.onAccept,
       filterOptions: $filterOptions,
-      brightnessSetValue: $brightnessSetValue,
-      brightnessSelect: $brightnessSelect,
-      contrastSetValue: $contrastSetValue,
-      contrastSelect: $contrastSelect,
-      cropSetValue: $cropSetValue,
-      cropSelect: $cropSelect,
-      customSetValue: $customSetValue,
-      customSelect: $customSelect,
       filterInfo: $filterInfo,
+      nowSelectedData: $nowSelectedData
     }),
     cancel: this.existApp,
     autoCancel: true,
@@ -197,8 +211,9 @@ struct ImageEditPage {
     console.info(`Callback when the cancel button is clicked`);
   }
 
-  onAccept() {
+  onAccept(nowSelectedData: FilterDataType) {
     console.info(`Callback when the confirm button is clicked`);
+    this.nowSelectedData = nowSelectedData;
   }
 
   existApp() {
@@ -208,23 +223,35 @@ struct ImageEditPage {
 
 @CustomDialog
 struct CustomDialogExample {
-  @Link brightnessSetValue: number
-  @Link brightnessSelect: boolean
-  @Link contrastSetValue: number
-  @Link contrastSelect: boolean
-  @Link cropSetValue: number
-  @Link cropSelect: boolean
-  @Link customSetValue: number
-  @Link customSelect: boolean
-  @Link filterOptions: Array<Array<string | number>>
+  @State brightnessSetValue: number = 100;
+  @State brightnessSelect: boolean = true;
+  @State contrastSetValue: number = 0;
+  @State contrastSelect: boolean = false;
+  @State cropSetValue: number = 100;
+  @State cropSelect: boolean = false;
+  @State customSetValue: number = 0;
+  @State customSelect: boolean = false;
+  @Link filterOptions: Array<Array<string | number>>;
   @Link filterInfo: string;
+  @Link nowSelectedData: FilterDataType;
   controller: CustomDialogController;
   cancel: () => void = () => {
+  };
+  confirm: (nowSelectedData: FilterDataType) => void = (nowSelectedData: FilterDataType) => {
+  };
+  @State formatList: Array<String> = ["Format:default", "Format:rgba_8888", "Format:nv21", "Format:nv12"];
+  @State handlePopup: boolean = false;
+
+  aboutToAppear(): void {
+    this.brightnessSetValue = this.nowSelectedData.brightnessSetValue;
+    this.brightnessSelect = this.nowSelectedData.brightnessSelect;
+    this.contrastSetValue = this.nowSelectedData.contrastSetValue;
+    this.contrastSelect = this.nowSelectedData.contrastSelect;
+    this.cropSetValue = this.nowSelectedData.cropSetValue;
+    this.cropSelect = this.nowSelectedData.cropSelect;
+    this.customSetValue = this.nowSelectedData.customSetValue;
+    this.customSelect = this.nowSelectedData.customSelect;
   }
-  confirm: () => void = () => {
-  }
-  @State formatList: Array<String> = ["Format:default", "Format:rgba_8888", "Format:nv21", "Format:nv12"]
-  @State handlePopup: boolean = false
 
   @Builder
   FilterInfoMenu() {
@@ -480,9 +507,17 @@ struct CustomDialogExample {
           .id("btn_dialog_cancel")
         Button($r('app.string.btn_confirm'))
           .onClick(() => {
-
-            this.controller.close()
-            this.confirm()
+            this.controller.close();
+            this.confirm({
+              brightnessSetValue: this.brightnessSetValue,
+              brightnessSelect: this.brightnessSelect,
+              contrastSetValue: this.contrastSetValue,
+              contrastSelect: this.contrastSelect,
+              cropSetValue: this.cropSetValue,
+              cropSelect: this.cropSelect,
+              customSetValue: this.customSetValue,
+              customSelect: this.customSelect
+            });
           }).backgroundColor(0xffffff)
           .fontColor(Color.Red)
           .id("btn_dialog_confirm")
