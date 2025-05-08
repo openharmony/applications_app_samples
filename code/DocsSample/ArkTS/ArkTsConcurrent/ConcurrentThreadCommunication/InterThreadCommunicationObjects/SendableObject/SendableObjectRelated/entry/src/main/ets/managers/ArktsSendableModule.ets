@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start multi_thread_operate_exported_obj]
 import { ArkTSUtils, taskpool } from '@kit.ArkTS';
 import { singletonA } from './sharedModule';
 
@@ -89,3 +90,4 @@ struct Index {
     .height('100%')
   }
 }
+// [End multi_thread_operate_exported_obj]

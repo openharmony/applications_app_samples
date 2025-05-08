@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start copy_arraybuffer_transfer]
 import { taskpool } from '@kit.ArkTS';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -63,10 +64,13 @@ struct Index {
           }).catch((e: BusinessError) => {
             console.error(e.message);
           })
+          // [StartExclude copy_arraybuffer_transfer]
           this.message = 'success';
+          // [EndExclude copy_arraybuffer_transfer]
         })
     }
     .height('100%')
     .width('100%')
   }
 }
+// [End copy_arraybuffer_transfer]

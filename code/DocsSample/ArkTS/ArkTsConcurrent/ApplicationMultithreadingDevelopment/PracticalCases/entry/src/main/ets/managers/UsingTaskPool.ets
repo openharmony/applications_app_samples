@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start operate_child_thread_data]
 import { relationalStore, ValuesBucket } from '@kit.ArkData';
 import { taskpool } from '@kit.ArkTS';
 
@@ -139,3 +140,4 @@ struct Index {
     .width('100%')
   }
 }
+// [End operate_child_thread_data]

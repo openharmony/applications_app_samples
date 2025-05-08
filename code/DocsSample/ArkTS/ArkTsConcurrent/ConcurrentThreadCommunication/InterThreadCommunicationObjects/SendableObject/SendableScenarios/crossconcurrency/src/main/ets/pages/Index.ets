@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start across_concurrent_instance_pass_class_method]
 import { taskpool, ArkTSUtils } from '@kit.ArkTS';
 import { SendableTestClass, ISendable } from './sendable';
 
@@ -68,3 +69,4 @@ struct Index {
     .width('100%')
   }
 }
+// [End across_concurrent_instance_pass_class_method]

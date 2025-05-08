@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start receive_child_thread_data_render_waterfall_component]
 import { WaterFlowDataSource } from './WaterFlowDataSource';
 import { getImgFromDB } from './Mock';
 import resource from '../util/resource';
@@ -129,3 +130,4 @@ struct WaterFlowDemo {
     }
   }
 }
+// [End receive_child_thread_data_render_waterfall_component]

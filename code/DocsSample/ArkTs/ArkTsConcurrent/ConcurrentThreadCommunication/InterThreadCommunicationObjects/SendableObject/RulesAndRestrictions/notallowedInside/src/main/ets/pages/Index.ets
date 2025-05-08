@@ -14,6 +14,7 @@
  */
 
 // Sendable class的内部不允许使用当前模块内上下文环境中定义的变量
+// [Start counter_example]
 // 正例：
 import { lang } from '@kit.ArkTS';
 
@@ -70,6 +71,7 @@ class C {
 //     }
 //   }
 // }
+// [End counter_example]
 
 @Entry
 @Component

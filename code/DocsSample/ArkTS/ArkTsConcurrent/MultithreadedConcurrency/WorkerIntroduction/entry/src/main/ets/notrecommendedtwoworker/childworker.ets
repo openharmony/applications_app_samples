@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start not_recommended_example]
 import resource from '../util/resource';
 import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
 
@@ -21,3 +22,4 @@ const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents) => {
   console.info(resource.resourceToString($r('app.string.Not_two_childworker_worker')) + e.data);
 }
+// [End not_recommended_example]

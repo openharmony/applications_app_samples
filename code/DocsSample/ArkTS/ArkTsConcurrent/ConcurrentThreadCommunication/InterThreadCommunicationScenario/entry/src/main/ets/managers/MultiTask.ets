@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start execute_task_group]
 import { taskpool } from '@kit.ArkTS';
 import { IconItemSource } from './IconItemSource';
 import { loadPicture } from './IndependentTask';
@@ -31,3 +32,4 @@ taskpool.execute(taskGroup).then((ret: object) => {
     }
   }
 })
+// [End execute_task_group]

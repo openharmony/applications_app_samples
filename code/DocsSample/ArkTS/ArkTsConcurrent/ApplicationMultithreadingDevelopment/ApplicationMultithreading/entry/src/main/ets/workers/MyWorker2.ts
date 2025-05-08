@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start worker_handle_associated_sync_task]
 import { worker, ThreadWorkerGlobalScope, MessageEvents } from '@kit.ArkTS';
 import Handle from './handle'; // 返回句柄
 
@@ -34,3 +35,4 @@ workerPort.onmessage = (e: MessageEvents): void => {
       break;
   }
 }
+// [End worker_handle_associated_sync_task]

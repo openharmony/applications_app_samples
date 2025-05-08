@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start export_sendable_object]
 // 共享模块
 import { ArkTSUtils } from '@kit.ArkTS';
 
@@ -39,3 +40,4 @@ class SingletonA {
 }
 
 export let singletonA = new SingletonA();
+// [End export_sendable_object]

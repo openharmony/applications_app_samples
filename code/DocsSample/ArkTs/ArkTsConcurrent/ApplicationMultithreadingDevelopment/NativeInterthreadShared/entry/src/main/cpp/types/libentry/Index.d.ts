@@ -13,4 +13,6 @@
  * limitations under the License.
  */
 
+// [Start native_deserialize_sendable]
 export const testSendSendable: () => void;
+// [End native_deserialize_sendable]

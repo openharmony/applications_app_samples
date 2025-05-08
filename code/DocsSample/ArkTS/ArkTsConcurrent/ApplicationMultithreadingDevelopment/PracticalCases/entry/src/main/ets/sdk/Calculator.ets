@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start define_calculator_module]
 import { collections } from '@kit.ArkTS';
 
 @Sendable
@@ -66,3 +67,4 @@ export class Calculator {
     this.totalCount = this.history!.unshift(newRecord);
   }
 }
+// [End define_calculator_module]

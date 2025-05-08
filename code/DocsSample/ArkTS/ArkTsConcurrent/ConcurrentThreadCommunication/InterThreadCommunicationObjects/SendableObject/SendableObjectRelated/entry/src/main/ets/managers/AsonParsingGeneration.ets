@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start example_serialize]
 import { ArkTSUtils, collections } from '@kit.ArkTS';
 
 @Entry
@@ -40,3 +41,4 @@ struct Index {
     .width('100%')
   }
 }
+// [End example_serialize]

@@ -1,4 +1,4 @@
-/*
+  /*
  * Copyright (c) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 // [Start promise_then_catch_handling]
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// [StartExclude promise_then_catch_handling]
 // [Start promise_async_operation]
 const promise: Promise<number> = new Promise((resolve: Function, reject: Function) => {
   setTimeout(() => {
@@ -28,25 +29,28 @@ const promise: Promise<number> = new Promise((resolve: Function, reject: Functio
   }, 1000);
 })
 // [End promise_async_operation]
+// [EndExclude promise_then_catch_handling]
 
-promise.then((result: number) => {
+  promise.then((result: number) => {
   console.info(`Random number is ${result}`);
 }).catch((error: BusinessError) => {
   console.error(error.message);
 });
 // [End promise_then_catch_handling]
 
+/*
 // [Start async_operation_error_handling_with_try_catch]
-// async function myAsyncFunction(): Promise<void> {
-//   try {
-//     const result: string = await new Promise((resolve: Function) => {
-//       resolve('Hello, world!');
-//     });
-//   } catch (e) {
-//     console.error(`Get exception: ${e}`);
-//   }
-// }
+async function myAsyncFunction(): Promise<void> {
+  try {
+     const result: string = await new Promise((resolve: Function) => {
+        resolve('Hello, world!');
+     });
+  } catch (e) {
+     console.error(`Get exception: ${e}`);
+  }
+}
 // [End async_operation_error_handling_with_try_catch]
+*/
 
 // [Start async_await_sync_operation]
 async function myAsyncFunction(): Promise<string> {

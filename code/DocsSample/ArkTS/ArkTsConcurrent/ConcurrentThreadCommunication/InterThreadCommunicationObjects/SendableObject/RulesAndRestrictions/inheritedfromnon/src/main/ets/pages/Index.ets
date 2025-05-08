@@ -14,6 +14,7 @@
  */
 
 //非Sendable class只能继承自非Sendable class
+// [Start counter_example]
 //正例：
 class A {
   constructor() {
@@ -40,6 +41,7 @@ class B extends A {
 //     super()
 //   }
 // }
+// [End counter_example]
 
 @Entry
 @Component

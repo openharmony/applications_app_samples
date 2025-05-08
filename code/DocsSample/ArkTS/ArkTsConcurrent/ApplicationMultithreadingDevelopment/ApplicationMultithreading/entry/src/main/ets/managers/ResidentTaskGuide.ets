@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start worker_receive_child_thread_message]
 import { worker } from '@kit.ArkTS';
 import resource from '../util/resource';
 
@@ -30,7 +31,7 @@ struct Index {
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
-          workerInstance.postMessage({ type: 'start' });
+          workerInstance.postMessage({ type: 'End' });
           workerInstance.onmessage = (event) => {
             console.info(resource.resourceToString($r('app.string.Information')), event.data);
           }
@@ -45,3 +46,4 @@ struct Index {
     .width('100%')
   }
 }
+// [End worker_receive_child_thread_message]

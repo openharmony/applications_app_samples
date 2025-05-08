@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start example_pass_obj]
 import { image } from '@kit.ImageKit';
 
 @Concurrent
@@ -28,3 +29,4 @@ export async function loadPixelMap(rawFileDescriptor: number): Promise<PixelMap>
   // 返回pixelMap给主线程。
   return pixelMap;
 }
+// [End example_pass_obj]

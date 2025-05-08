@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start example_modify_function]
 @Sendable
 type SendableFuncType = () => void;
 
@@ -50,6 +51,7 @@ class SendableTestClass {
     sendableTestFunction(); // 顶层sendable function
   }
 }
+// [End example_modify_function]
 
 @Entry
 @Component

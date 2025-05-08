@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start recommended_example]
 import resource from '../util/resource';
 import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
 
@@ -26,3 +27,4 @@ workerPort.onmessage = (e: MessageEvents) => {
     workerPort.close();
   }
 }
+// [End recommended_example]

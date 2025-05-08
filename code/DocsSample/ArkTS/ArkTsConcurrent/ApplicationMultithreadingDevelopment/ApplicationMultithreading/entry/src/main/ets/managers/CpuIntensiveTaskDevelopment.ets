@@ -13,7 +13,10 @@
  * limitations under the License.
  */
 
+// [Start process_image_histogram]
 import { taskpool } from '@kit.ArkTS';
+// [StartExclude process_image_histogram]
+// [Start call_worker_message]
 import { worker } from '@kit.ArkTS';
 
 const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker1.ts');
@@ -35,11 +38,15 @@ workerInstance.onerror = (() => {
 
 // 向Worker子线程发送训练消息
 workerInstance.postMessage({ 'type': 0 });
+// [End call_worker_message]
 
+// [Start after_destroy_callback]
 // Worker线程销毁后，执行onexit回调方法
 workerInstance.onexit = (): void => {
   console.info('main thread terminate');
 }
+// [End after_destroy_callback]
+// [EndExclude process_image_histogram]
 
 @Concurrent
 function imageProcessing(dataSlice: ArrayBuffer): ArrayBuffer {
@@ -88,3 +95,4 @@ struct Index {
     .height('100%')
   }
 }
+// [End process_image_histogram]

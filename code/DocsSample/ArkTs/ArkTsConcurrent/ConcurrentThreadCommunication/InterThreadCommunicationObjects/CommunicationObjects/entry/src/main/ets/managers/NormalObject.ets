@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start example_normal_obj]
 import { taskpool } from '@kit.ArkTS';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { TestA } from './Test';
@@ -55,3 +56,4 @@ struct Index {
     .width('100%')
   }
 }
+// [End example_normal_obj]

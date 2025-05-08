@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start define_concurrent_function]
 import { fileIo } from '@kit.CoreFileKit';
 
 // 定义并发函数，内部密集调用I/O能力
@@ -22,3 +23,4 @@ export async function write(data: string, filePath: string): Promise<void> {
   await fileIo.write(file.fd, data);
   fileIo.close(file);
 }
+// [End define_concurrent_function]

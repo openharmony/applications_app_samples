@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start across_concurrent_instance_transfer_large_data]
 // 将数据量较大的数据在Sendable class中组装
 @Sendable
 export class TestTypeA {
@@ -39,3 +40,4 @@ export class Test {
     this.data2 = arg2;
   }
 }
+// [End across_concurrent_instance_transfer_large_data]

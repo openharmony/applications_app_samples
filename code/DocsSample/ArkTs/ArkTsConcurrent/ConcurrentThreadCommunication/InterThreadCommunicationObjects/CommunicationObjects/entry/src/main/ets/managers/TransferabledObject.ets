@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start example_pass_obj]
 import { taskpool } from '@kit.ArkTS';
 import { loadPixelMap } from './pixelMapTest';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -61,3 +62,5 @@ struct Index {
     .width('100%')
   }
 }
+// [End example_pass_obj]
+

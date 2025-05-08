@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start taskpool_frequently_operate_database]
 import { relationalStore, ValuesBucket } from '@kit.ArkData';
 import { collections, taskpool } from '@kit.ArkTS';
 import { IValueBucket, SharedValuesBucket } from './SharedValuesBucket';
@@ -141,3 +142,4 @@ struct Index {
     .width('100%')
   }
 }
+// [End taskpool_frequently_operate_database]

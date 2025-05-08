@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start freeze_obj_send_child_thread]
 import { freezeObj } from './helper';
 import { worker } from '@kit.ArkTS';
 
@@ -52,3 +53,4 @@ struct Index {
     .width('100%')
   }
 }
+// [End freeze_obj_send_child_thread]

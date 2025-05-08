@@ -12,6 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+// [Start pass_obj_example]
 import { CommonButton } from '../util/CommonButton';
 import resource from '../util/resource';
 
@@ -52,3 +54,4 @@ struct Index {
     .width('100%')
   }
 }
+// [End pass_obj_example]

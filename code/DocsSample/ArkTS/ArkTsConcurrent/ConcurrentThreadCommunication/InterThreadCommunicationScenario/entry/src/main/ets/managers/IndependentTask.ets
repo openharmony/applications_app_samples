@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start implement_child_thread_task]
 import { IconItemSource } from './IconItemSource';
 
 // 在Task中执行的方法，需要添加@Concurrent注解，否则无法正常调用。
@@ -32,3 +33,4 @@ export function loadPicture(count: number): IconItemSource[] {
   }
   return iconItemSourceList;
 }
+// [End implement_child_thread_task]

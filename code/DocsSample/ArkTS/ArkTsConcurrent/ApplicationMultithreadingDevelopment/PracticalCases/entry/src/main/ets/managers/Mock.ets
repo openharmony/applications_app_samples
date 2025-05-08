@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start query_database_return_main_thread]
 import { taskpool } from '@kit.ArkTS';
 import { fillImg } from './WaterfallRendering';
 
@@ -26,10 +27,10 @@ function query() {
   taskpool.Task.sendData(result);
 }
 
-
 export function getImgFromDB() {
   //此处模拟查询数据库，并返回数据
   let task = new taskpool.Task(query);
   task.onReceiveData(fillImg);
   taskpool.execute(task);
 }
+// [End query_database_return_main_thread]

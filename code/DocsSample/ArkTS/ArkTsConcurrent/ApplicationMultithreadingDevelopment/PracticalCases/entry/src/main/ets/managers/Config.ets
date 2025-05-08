@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start global_config]
 import { ArkTSUtils } from '@kit.ArkTS';
 
 'use shared'
@@ -64,3 +65,4 @@ class Config {
 }
 
 export let config = new Config();
+// [End global_config]

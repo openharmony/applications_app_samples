@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start define_data_format]
 export interface IValueBucket {
   id: number;
   name: string;
@@ -34,3 +35,4 @@ export class SharedValuesBucket implements IValueBucket {
     this.salary = v.salary;
   }
 }
+// [End define_data_format]

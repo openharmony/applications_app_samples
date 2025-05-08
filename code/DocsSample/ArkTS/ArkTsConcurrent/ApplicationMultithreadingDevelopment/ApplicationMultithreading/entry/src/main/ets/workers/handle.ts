@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start worker_handle_associated_sync_task]
 export default class Handle {
   syncGet() {
     return;
@@ -22,3 +23,4 @@ export default class Handle {
     return;
   }
 }
+// [End worker_handle_associated_sync_task]

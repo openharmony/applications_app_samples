@@ -14,6 +14,7 @@
  */
 
 //Sendable class和Sendable function不能使用除了@Sendable的其它装饰器
+// [Start counter_example]
 //正例：
 @Sendable
 class A {
@@ -26,6 +27,7 @@ class A {
 // class C {
 //   num: number = 1;
 // }
+// [End counter_example]
 
 @Entry
 @Component

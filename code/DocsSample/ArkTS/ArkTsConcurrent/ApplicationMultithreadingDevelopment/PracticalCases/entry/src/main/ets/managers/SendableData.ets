@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start define_sendable_class]
 @Sendable
 export class SendableData {
   public name: string = 'Tom';
@@ -21,3 +22,4 @@ export class SendableData {
   public likes: number = 1;
   public follow: boolean = false;
 }
+// [End define_sendable_class]

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start load_har_worker]
 import { worker } from '@kit.ArkTS';
 
 @Entry
@@ -44,3 +45,4 @@ struct Index {
     .width('100%')
   }
 }
+// [End load_har_worker]

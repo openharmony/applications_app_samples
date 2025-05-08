@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start respond_worker_instant_message]
 import { worker } from '@kit.ArkTS';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -73,3 +74,4 @@ struct Index {
     .height('100%')
   }
 }
+// [End respond_worker_instant_message]

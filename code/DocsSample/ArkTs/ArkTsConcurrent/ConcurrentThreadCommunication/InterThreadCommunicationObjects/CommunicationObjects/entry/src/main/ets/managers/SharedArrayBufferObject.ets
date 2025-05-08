@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start example_pass_obj]
 import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
@@ -56,3 +57,4 @@ struct sharedArrayBuffer {
     .width('100%')
   }
 }
+// [End example_pass_obj]

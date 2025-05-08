@@ -14,6 +14,7 @@
  */
 
 // 非Sendable类型不可以as成Sendable类型
+// [Start counter_example]
 // 正例：
 class A {
   state: number = 0;
@@ -37,6 +38,7 @@ let a1: A = new SendableA() as A;
 // }
 //
 // let a2: SendableA = new A() as SendableA;
+// [End counter_example]
 
 @Entry
 @Component

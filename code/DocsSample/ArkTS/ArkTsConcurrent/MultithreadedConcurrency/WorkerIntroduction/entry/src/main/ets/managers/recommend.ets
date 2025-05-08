@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [Start recommended_example]
 import resource from '../util/resource';
 import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
@@ -55,3 +56,4 @@ struct Index {
     .width('100%')
   }
 }
+// [End recommended_example]
