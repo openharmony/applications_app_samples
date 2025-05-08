@@ -1,0 +1,144 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "UIExtensionProvider_desc",
+      "value": "description"
+    },
+    {
+      "name": "UIExtensionProvider_label",
+      "value": "label"
+    },
+    {
+      "name": "pageIndex_UIExtensionComponent",
+      "value": "UIExtensionComponent 组件"
+    },
+    {
+      "name": "pageIndex_EmbeddedComponent",
+      "value": "EmbeddedComponent 组件"
+    },
+    {
+      "name": "pageIndex_FullScreenComponent",
+      "value": "FullScreenComponent 组件"
+    },
+    {
+      "name": "pageIndex_IsolatedComponent",
+      "value": "IsolatedComponent 组件"
+    },
+    {
+      "name": "pageIndex_UniversalAttributesAccessibility",
+      "value": "ArkUI 无障碍能力"
+    },
+    {
+      "name": "Embedded_Component_title",
+      "value": "使用 EmbeddedComponent 组件"
+    },
+    {
+      "name": "Full_Screen_Launch_Component_title",
+      "value": "使用 FullScreenLaunch 组件"
+    },
+    {
+      "name": "UI_Extension_Component_title",
+      "value": "使用 UIExtensionComponent 组件"
+    },
+    {
+      "name": "Isolated_Component_title",
+      "value": "使用 IsolatedComponent 组件"
+    },
+    {
+      "name": "UniversalAttributesAccessibility_title1",
+      "value": "使用无障碍属性 1"
+    },
+    {
+      "name": "UniversalAttributesAccessibility_title2",
+      "value": "使用无障碍属性 2"
+    },
+    {
+      "name": "Embedded_Component_description",
+      "value": "展示 EmbeddedComponent 组件的基础使用方式"
+    },
+    {
+      "name": "Full_Screen_Launch_Component_description",
+      "value": "展示 FullScreenLaunch 组件的基础使用方式"
+    },
+    {
+      "name": "UI_Extension_Component_description",
+      "value": "加载UIExtension"
+    },
+    {
+      "name": "Isolated_Component_description",
+      "value": "展示 IsolatedComponent 组件的基础使用方式"
+    },
+    {
+      "name": "UniversalAttributesAccessibility_description1",
+      "value": "设置无障碍文本和无障碍说明"
+    },
+    {
+      "name": "UniversalAttributesAccessibility_description2",
+      "value": "设置无障碍组"
+    },
+    {
+      "name": "UIExtensionComponent_button1",
+      "value": "点击向Component发送数据"
+    },
+    {
+      "name": "UIExtensionComponent_button2",
+      "value": "点击跳转"
+    },
+    {
+      "name": "UIExtensionComponent_button3",
+      "value": "点击向UIExtensionAbility发送数据"
+    },
+    {
+      "name": "UIExtensionComponent_return",
+      "value": "点击跳转"
+    },
+    {
+      "name": "UIExtensionComponent_hello1",
+      "value": "你好1"
+    },
+    {
+      "name": "UIExtensionComponent_hello2",
+      "value": "你好2"
+    },
+    {
+      "name": "UniversalAttributesAccessibility_text1",
+      "value": "有accessibility有text优先读accessibility"
+    },
+    {
+      "name": "UniversalAttributesAccessibility_text2",
+      "value": "accessibility无text 读accessibility"
+    },
+    {
+      "name": "UniversalAttributesAccessibility_text3",
+      "value": "无accessibility有text 读text"
+    },
+    {
+      "name": "UniversalAttributesAccessibility_text4",
+      "value": "有accessibility有text btn123"
+    },
+    {
+      "name": "UniversalAttributesAccessibility_text5",
+      "value": "文本1"
+    },
+    {
+      "name": "UniversalAttributesAccessibility_text6",
+      "value": "文本2"
+    },
+    {
+      "name": "UniversalAttributesAccessibility_text7",
+      "value": "分组"
+    },
+    {
+      "name": "UniversalAttributesAccessibility_text8",
+      "value": "Column组件可以被选中，播报的内容是“分组”"
+    }
+  ]
+}
