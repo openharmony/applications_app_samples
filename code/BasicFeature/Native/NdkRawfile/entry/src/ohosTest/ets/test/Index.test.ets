@@ -39,35 +39,75 @@ export default function IndexTest() {
       hilog.info(DOMAIN, TAG, 'StartAbility_001 end')
     })
 
-  it(BUNDLE + 'GetFileListTest', 0, async (done: Function) => {
-    hilog.info(DOMAIN, TAG, BUNDLE + 'GetFileListTest begin')
-    let driver = Driver.create()
-    await driver.delayMs(1000)
-    let text = await driver.findComponent(ON.id('get_file_list'))
-    expect(await text.getText() === 'getFileList = rawfile.txt,rawfile1.txt,subrawfile').assertTrue()
-    hilog.info(DOMAIN, TAG, BUNDLE + 'GetFileListTest end')
-    done()
-  })
+    it(BUNDLE + 'GetFileListTest', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'GetFileListTest begin')
+      let driver = Driver.create()
+      await driver.delayMs(1000)
+      let text = await driver.findComponent(ON.id('raw_file_list'))
+      expect(await text.getText() === 'file list: ["rawfile.txt","rawfile1.txt","subrawfile"]').assertTrue()
+      hilog.info(DOMAIN, TAG, BUNDLE + 'GetFileListTest end')
+      done()
+    })
 
-  it(BUNDLE + 'GetRawFileContentTest', 0, async (done: Function) => {
-    hilog.info(DOMAIN, TAG, BUNDLE + 'GetRawFileContentTest begin')
-    let driver = Driver.create()
-    await driver.delayMs(1000)
-    let text = await driver.findComponent(ON.id('get_raw_file_content'))
-    expect(await text.getText() === 'getRawFileContent = 114,97,119,102,105,108,101,49,32,99,111,110,116,101,110,116')
-      .assertTrue()
-    hilog.info(DOMAIN, TAG, BUNDLE + 'GetRawFileContentTest end')
-    done()
-  })
+    it(BUNDLE + 'GetRawFileContentTest', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'GetRawFileContentTest begin')
+      let driver = Driver.create()
+      await driver.delayMs(1000)
+      let text = await driver.findComponent(ON.id('raw_file_content'))
+      expect(await text.getText() === 'rawfile.txt content: rawfile1 content').assertTrue()
+      hilog.info(DOMAIN, TAG, BUNDLE + 'GetRawFileContentTest end')
+      done()
+    })
 
-  it(BUNDLE + 'GetRawfileDescriptorTest', 0, async (done: Function) => {
-    hilog.info(DOMAIN, TAG, BUNDLE + 'GetRawfileDescriptorTest begin')
-    let driver = Driver.create()
-    await driver.delayMs(1000)
-    let text = await driver.findComponent(ON.id('length'))
-    expect(await text.getText() === 'rawfileDescriptor.length = 16').assertTrue()
-    hilog.info(DOMAIN, TAG, BUNDLE + 'GetRawfileDescriptorTest end')
-    done()
+    it(BUNDLE + 'GetRawFileContentOffsetTest', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'GetRawFileContentOffsetTest begin')
+      let driver = Driver.create()
+      await driver.delayMs(1000)
+      let text = await driver.findComponent(ON.id('raw_file_content_offset'))
+      expect(await text.getText() === 'rawfile.txt content with offset: file1 content').assertTrue()
+      hilog.info(DOMAIN, TAG, BUNDLE + 'GetRawFileContentOffsetTest end')
+      done()
+    })
+
+    it(BUNDLE + 'GetRawfileDescriptorTest', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'GetRawfileDescriptorTest begin')
+      let driver = Driver.create()
+      await driver.delayMs(1000)
+      let text = await driver.findComponent(ON.id('raw_file_fd_length'))
+      expect(await text.getText() === 'rawfile.txt fd.length: 16').assertTrue()
+      hilog.info(DOMAIN, TAG, BUNDLE + 'GetRawfileDescriptorTest end')
+      done()
+    })
+
+    it(BUNDLE + 'GetRawFileContent64Test', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'GetRawFileContent64Test begin')
+      let driver = Driver.create()
+      await driver.delayMs(1000)
+      let text = await driver.findComponent(ON.id('raw_file_content64'))
+      expect(await text.getText() === 'rawfile.txt content64: rawfile content for 64').assertTrue()
+      hilog.info(DOMAIN, TAG, BUNDLE + 'GetRawFileContent64Test end')
+      done()
+    })
+
+    it(BUNDLE + 'GetRawFileContentOffset64Test', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'GetRawFileContentOffset64Test begin')
+      let driver = Driver.create()
+      await driver.delayMs(1000)
+      let text = await driver.findComponent(ON.id('raw_file_content_offset64'))
+      expect(await text.getText() === 'rawfile.txt content with offset64: content for 64').assertTrue()
+      hilog.info(DOMAIN, TAG, BUNDLE + 'GetRawFileContentOffset64Test end')
+      done()
+    })
+
+    it(BUNDLE + 'GetRawfileDescriptor64Test', 0, async (done: Function) => {
+      hilog.info(DOMAIN, TAG, BUNDLE + 'GetRawfileDescriptor64Test begin')
+      let driver = Driver.create()
+      await driver.delayMs(1000)
+      let text = await driver.findComponent(ON.id('raw_file_fd_length64'))
+      expect(await text.getText() === 'rawfile.txt fd.length64: 22').assertTrue()
+      hilog.info(DOMAIN, TAG, BUNDLE + 'GetRawfileDescriptor64Test end')
+      done()
+    })
+
   })
-})
 }

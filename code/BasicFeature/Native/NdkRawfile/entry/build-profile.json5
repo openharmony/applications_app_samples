@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 {
   "apiType": 'stageMode',
   "buildOption": {
@@ -20,6 +20,10 @@
       "path": "./src/main/cpp/CMakeLists.txt",
       "arguments": "",
       "cppFlags": "",
+      "abiFilters": [
+        "arm64-v8a",
+        "armeabi-v7a"
+      ]
     }
   },
   "targets": [
