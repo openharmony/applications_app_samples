@@ -16,7 +16,9 @@
 import TitleBar from '../component/TitleBar';
 import { assertEqual, assertEqualLong } from '../component/AssertEqual';
 import { resourceToString } from '../component/ResourceToString';
+// [Start import_module]
 import { i18n, intl } from '@kit.LocalizationKit';
+// [End import_module]
 
 /**********************************************************************************************************************
  * 本地习惯排序开发参考步骤
@@ -30,7 +32,7 @@ import { i18n, intl } from '@kit.LocalizationKit';
  *  // compareResult 为0，表示第一个参数与第二个参数排序不分先后
  *  // compareResult 为正数，表示第一个参数排在第二个参数之后
  *********************************************************************************************************************/
-
+// [Start local_custom_sorting]
 // 创建排序对象
 let options: intl.CollatorOptions = {
   localeMatcher: 'lookup',
@@ -82,6 +84,7 @@ let sourceArray = ['Türkiye', 'TüRkiye', 'salt', 'bright'];
 let s = 'türkiye';
 let matches = sourceArray.filter(item => collator.compare(item, s) === 0);
 console.log(matches.toString()); // Türkiye,TüRkiye
+// [End local_custom_sorting]
 
 /**********************************************************************************************************************
  * 创建索引开发参考步骤
@@ -92,7 +95,7 @@ console.log(matches.toString()); // Türkiye,TüRkiye
  * 3. 以获取索引列表为例
  *  let indexList = indexUtil.getIndexList();
  *********************************************************************************************************************/
-
+// [Start create_index]
 // 创建索引开发实例
 // 创建索引
 let indexUtil = i18n.getInstance('zh-CN');
@@ -102,6 +105,7 @@ indexUtil.addLocale('ru-RU');
 // …,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,…,А,Б,В,Г,Д,Е,Ж,З,И,Й,К,Л,М,Н,О,П,Р,С,Т,У,Ф,Х,Ц,Ч,Ш,Щ,Ы,Э,Ю,Я,…
 indexList = indexUtil.getIndexList();
 indexUtil.getIndex(resourceToString($r('app.string.NiHao'))); // N
+// [End create_index]
 
 const expectedEnglishSort = 'animal ANIMAL app App apple Apple APPLE';
 const expectedChineseSort = resourceToString($r('app.string.ExpectedChineseSort'));

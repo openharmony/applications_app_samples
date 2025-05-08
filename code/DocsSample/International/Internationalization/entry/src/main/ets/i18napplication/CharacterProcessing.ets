@@ -16,8 +16,10 @@
 import TitleBar from '../component/TitleBar';
 import { assertEqual, assertEqualLong } from '../component/AssertEqual';
 import { resourceToString } from '../component/ResourceToString';
+// [Start import_module]
 import { i18n, intl } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+// [End import_module]
 
 /**********************************************************************************************************************
  * 字符属性开发参考步骤
@@ -29,6 +31,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
  *  let type = i18n.Unicode.getType(char: string);
  *********************************************************************************************************************/
 
+// [Start identify_character_type]
 // 判断字符是否是数字
 let isDigit = i18n.Unicode.isDigit('1'); // isDigit: true
 
@@ -40,6 +43,7 @@ let isIdeograph = i18n.Unicode.isIdeograph(resourceToString($r('app.string.Hua')
 
 // 获取字符的一般类别值
 let type = i18n.Unicode.getType('a'); // type: U_LOWERCASE_LETTER
+// [End identify_character_type]
 
 /**********************************************************************************************************************
  * 音译开发参考步骤
@@ -53,10 +57,23 @@ let type = i18n.Unicode.getType('a'); // type: U_LOWERCASE_LETTER
  *  let res: string = transliterator.transform(text: string); // 对text内容进行音译
  *********************************************************************************************************************/
 
+// [Start get_transliteration]
 // 音译成Latn格式
 let transliterator = i18n.Transliterator.getInstance('Any-Latn');
 let text = resourceToString($r('app.string.CountryWordChina'));
 let translatedText: string = transliterator.transform(text); // translatedText = 'zhōng guó'
+let wordArray =
+  [resourceToString($r('app.string.CountryWordChina')), resourceToString($r('app.string.CountryWordGermany')),
+    resourceToString($r('app.string.CountryWordUSA')), resourceToString($r('app.string.CountryWordFrance'))]
+// [StartExclude get_transliteration]
+let transRes: string[] = [];
+// [EndExclude get_transliteration]
+for (let i = 0; i < wordArray.length; i++) {
+  let res = transliterator.transform(wordArray[i]); // res: zhōng guó, dé guó, měi guó, fǎ guó
+  // [StartExclude get_transliteration]
+  transRes.push(res);
+  // [EndExclude get_transliteration]
+}
 
 // 汉语音译去声调
 let toneLessTransliterator = i18n.Transliterator.getInstance('Any-Latn;Latin-Ascii');
@@ -68,6 +85,7 @@ let nameTranslatedText: string = nameTransliterator.transform(resourceToString($
 
 // 获取音译支持的ID列表
 let ids = i18n.Transliterator.getAvailableIDs(); // ids: ['ASCII-Latin', 'Accents-Any', ...]
+// [End get_transliteration]
 
 /**********************************************************************************************************************
  * 字符标准化开发参考步骤
@@ -79,9 +97,11 @@ let ids = i18n.Transliterator.getAvailableIDs(); // ids: ['ASCII-Latin', 'Accent
  *  let normalizedText: string = normalizer.normalize(text: string); // 对text文本进行标准化
  *********************************************************************************************************************/
 
+// [Start character_normalization]
 // 以NFC范式标准化字符
 let normalizer = i18n.Normalizer.getInstance(i18n.NormalizerMode.NFC);
 let normalizedText = normalizer.normalize('\u1E9B\u0323'); // normalizedText: \u1E9B\u0323
+// [End character_normalization]
 
 /**********************************************************************************************************************
  * 断词换行开发参考步骤
@@ -104,6 +124,7 @@ let normalizedText = normalizer.normalize('\u1E9B\u0323'); // normalizedText: \u
  *  let isBoundary: boolean = iterator.isBoundary(number);
  *********************************************************************************************************************/
 
+// [Start set_text_line_break_settings]
 // 断句对象
 let iterator = i18n.getLineInstance('en-GB');
 
@@ -121,6 +142,7 @@ let isBoundary = iterator.isBoundary(9); // isBoundary: true
 
 // 获取BreakIterator对象处理的文本
 let breakText = iterator.getLineBreakText(); // breakText: Apple is my favorite fruit.
+// [End set_text_line_break_settings]
 
 /**********************************************************************************************************************
  * 文件路径镜像处理开发步骤参考

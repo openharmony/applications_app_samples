@@ -16,11 +16,14 @@
 import TitleBar from '../component/TitleBar';
 import { assertEqual, assertEqualFuzzy, assertEqualLong } from '../component/AssertEqual';
 import { resourceToString } from '../component/ResourceToString';
+// [Start import_module]
 import { i18n } from '@kit.LocalizationKit';
+// [End import_module]
 
 /**********************************************************************************************************************
  * 时区开发步骤
  *********************************************************************************************************************/
+// [Start get_current_timezone]
 // 时区相关功能开发实例
 // 获取巴西时区
 let timezone = i18n.getTimeZone('America/Sao_Paulo'); // 传入特定时区，创建时区类
@@ -75,12 +78,18 @@ for (let i = 0; i < cityIdArray.length; i++) {
 
 // 指定地理坐标所在的时区对象数组
 let timezoneArray = i18n.TimeZone.getTimezonesByLocation(-43.1, -22.5);
+// [StartExclude get_current_timezone]
 let locationTimezones: string[] = [];
+// [EndExclude get_current_timezone]
 for (let i = 0; i < timezoneArray.length; i++) {
   let tzId = timezoneArray[i].getID(); // America/Sao_Paulo
+  // [StartExclude get_current_timezone]
   locationTimezones.push(tzId);
+  // [EndExclude get_current_timezone]
 }
+// [End get_current_timezone]
 
+// [Start get_preferred_timezones_list]
 // 双时钟应用开发实例
 // 选择时区列表中的时区放入应用偏好时区列表中
 let timezone1 = i18n.getTimeZone('America/Sao_Paulo');
@@ -88,10 +97,14 @@ let timezone2 = i18n.getTimeZone();
 let appPreferredTimeZoneList: i18n.TimeZone[] = []; // 应用偏好时区列表
 appPreferredTimeZoneList.push(timezone1);
 appPreferredTimeZoneList.push(timezone2);
+// [End get_preferred_timezones_list]
 
+// [Start display_dual_timezones]
 // 选择时区列表中的时区放入应用偏好时区列表中
 let locale = i18n.System.getSystemLocale();
+// [StartExclude display_dual_timezones]
 let timeZoneData: string[] = []; // 用于存储每个时区的时间信息
+// [EndExclude display_dual_timezones]
 // 遍历时区数组并获取时间信息
 for (let i = 0; i < appPreferredTimeZoneList.length; i++) {
   let timezone = appPreferredTimeZoneList[i].getID();
@@ -104,17 +117,20 @@ for (let i = 0; i < appPreferredTimeZoneList.length; i++) {
   let hour = calendar.get('hour');
   let minute = calendar.get('minute');
   let second = calendar.get('second');
+  // [StartExclude display_dual_timezones]
   // 格式化时间信息并存储
   timeZoneData.push(
     `${resourceToString($r('app.string.TimeZone'))} ${timezone}, ` +
       `${resourceToString($r('app.string.Time'))} ${year}-${month}-${day} ${hour}:${minute}:${second}`
   );
+  // [EndExclude display_dual_timezones]
 }
+// [End display_dual_timezones]
 
 /**********************************************************************************************************************
  * 夏令时跳变实现原理
  *********************************************************************************************************************/
-
+// [Start handle_dst_transition]
 // 计算夏令时跳变前后同一个挂钟时间之间相差的小时数示例
 let calendar = i18n.getCalendar('zh-Hans');
 calendar.setTimeZone('Europe/London');
@@ -124,6 +140,7 @@ calendar.set(2021, 2, 28, 16, 0, 0); // The day daylight saving time start
 let time2 = calendar.getTimeInMillis();
 let hours =
   (time2 - time1) / (3600 * 1000); // The hours between the same wall clock time before and after DST. Should be 23
+// [End handle_dst_transition]
 
 const expectedTimezoneId = 'America/Sao_Paulo';
 const expectedAucklandTzId = 'Pacific/Auckland';

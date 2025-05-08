@@ -16,7 +16,9 @@
 import TitleBar from '../component/TitleBar';
 import { assertEqual } from '../component/AssertEqual';
 import { resourceToString } from '../component/ResourceToString';
+// [Start import_module]
 import { i18n, intl } from '@kit.LocalizationKit';
+// [End import_module]
 
 /**********************************************************************************************************************
  * 数字格式化开发参考步骤
@@ -30,7 +32,7 @@ import { i18n, intl } from '@kit.LocalizationKit';
  * 4. 获取数字格式化选项，查看对象的设置信息
  *  let options: intl.NumberOptions = numberFormat.resolvedOptions();
  *********************************************************************************************************************/
-
+// [Start format_numbers]
 // 数字格式化开发示实例
 // 用科学计数法显示数字
 let scientificFormat: intl.NumberFormat = new intl.NumberFormat('zh-CN',
@@ -94,7 +96,11 @@ let options: intl.NumberOptions = {
 let numberRangeFormat: intl.NumberFormat = new intl.NumberFormat('es-ES', options);
 let integerFormattedRange: string = numberRangeFormat.formatRange(2, 8); // integerFormattedRange = '2-8 €'
 let fractionFormattedRange: string = numberRangeFormat.formatRange(2.9, 3.1); // fractionFormattedRange = '~3 €'
+let numberFormat4 = new intl.NumberFormat('zh-CN', { style: 'percent' });
+let formattedNumber4 = numberFormat4.format(0.25); // formattedNumber4: 25%
+// [End format_numbers]
 
+// [Start currency_and_unit_formatting]
 // 货币和单位格式化开发实例
 // 格式化货币
 let currencyFormat: intl.NumberFormat = new intl.NumberFormat('zh-CN', { style: 'currency', currency: 'USD' });
@@ -121,6 +127,9 @@ let unitUsageFormat: intl.NumberFormat = new intl.NumberFormat('en-GB',
     unitUsage: 'area-land-agricult'
   });
 let unitUsageNumber = unitUsageFormat.format(123400); // unitUsageNumber = '304,928.041 ac'
+let numberFormat8 = new intl.NumberFormat('en-GB', { style: 'unit', unit: 'hectare', unitUsage: 'area-land-agricult' });
+let formattedNumber8 = numberFormat8.format(123400); // formattedNumber8: 304,928.041 ac
+// [End currency_and_unit_formatting]
 
 /**********************************************************************************************************************
  * 度量衡转换开发参考步骤
@@ -130,7 +139,7 @@ let unitUsageNumber = unitUsageFormat.format(123400); // unitUsageNumber = '304,
  *  let convertedUnit: string =
  *    i18n.I18NUtil.unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string);
  *********************************************************************************************************************/
-
+// [Start measurement_conversion]
 // 度量衡转换开发实例
 // 设置要转换的单位和目标单位
 let fromUnit: i18n.UnitInfo = { unit: 'cup', measureSystem: 'US' };
@@ -142,6 +151,7 @@ let simplifyConvertedUnit: string = i18n.I18NUtil.unitConvert(fromUnit, toUnit, 
 // 显示完整的度量衡
 let convertedUnit =
   i18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, 'en-US', 'long'); // convertedUnit2: 236.588 liters
+// [End measurement_conversion]
 
 const expectedScientificNumber = '1.23E5';
 const expectedCompactNumber = resourceToString($r('app.string.ExpectedFormattedNumber2'));

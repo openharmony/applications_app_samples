@@ -15,11 +15,16 @@
 
 import TitleBar from '../component/TitleBar';
 import { assertEqual } from '../component/AssertEqual';
+// [Start import_module]
 import { intl } from '@kit.LocalizationKit';
+// [End import_module]
 
+// [Start create_locale_object]
 // 创建区域标识对象。格式化时间日期如下给出了三种方法:
 let date = new Date(2023, 9, 15);
+// [End create_locale_object]
 
+// [Start format_date_and_time]
 // 方法一: 通过区域标识字符串创建区域标识对象
 let zhLocale = new intl.Locale('zh-Hans-CN-u-nu-latn');
 let zhDateTimeFmt = new intl.DateTimeFormat(zhLocale.toString());
@@ -34,6 +39,7 @@ let result2 = enDateTimeFmt.format(date); // "10/15/23"
 let systemLocale = new intl.Locale();
 let systemDateTimeFmt = new intl.DateTimeFormat(systemLocale.toString());
 let result3 = systemDateTimeFmt.format(date); // "2023/10/15" （具体显示效果依赖于当前系统环境）
+// [End format_date_and_time]
 
 const expectedResult1 = '2023/10/15';
 const expectedResult2 = '10/15/23';
